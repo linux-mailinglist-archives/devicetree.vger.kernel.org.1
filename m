@@ -1,48 +1,55 @@
-Return-Path: <devicetree+bounces-41579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAD3685451F
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 10:25:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 097CB854528
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 10:28:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A73828EAD6
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 09:25:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BAB46288DE3
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 09:28:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F209125CF;
-	Wed, 14 Feb 2024 09:25:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9610B14ABC;
+	Wed, 14 Feb 2024 09:28:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f1Dyi4h1"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="4uggz3V0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3B9C168BC;
-	Wed, 14 Feb 2024 09:25:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D19651429C;
+	Wed, 14 Feb 2024 09:27:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707902731; cv=none; b=nALOStXMX5dEXdC1GF6v/QNqOJW29ebdso8VD+Em7GO5Xk0GoPBwMx5NHr1BNOx217SmjMaA77nn3yKgoFnzsfcLr1xd0LppINvqPk4K7q+PwD9dMqIWw3Fyz9dU8Z+sr87KlDNW51NK7jVhsTNYmVzuq3zIcHgVZ5cIY5/5qCQ=
+	t=1707902880; cv=none; b=XE58aZvStvjhIznJ/mUrji2H5u6HQOnxM5+Q02p9TGUrummMpupbVzxDPg6gb8yaQNmtGhax1T3/w/w5QNaRu6j4K50gvGuRmjilzUEOC0wZATlEIQrZvd6E1uce6jVwS4YvIwPY+xYNFs25za4CNmosZ+ei8QkPYIdjMwGS/DM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707902731; c=relaxed/simple;
-	bh=1Sxlw3DtRHuf/+Tg21dw2Havl+gSDlEajrxvtNXrd24=;
+	s=arc-20240116; t=1707902880; c=relaxed/simple;
+	bh=R7/bEBifI4lBAh8QUwfn+H3MAcMLkC8MOxtp6x/n10M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CLpKDzdLGKVqJy+x/HS2EEtM8kh7smUq3C5h4q+lhXLAHNEbd+AovD3RhwbNLMdLfjL9we4L02aqeVeEgj7XnT87YjhVYwV3VvyT47W3q5sfXQK5a2FE3ObZGyZJZt928/19sA1boHCJN8+q0qCc3wfSENQV9/7FTV5QhHw+v4w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f1Dyi4h1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6782FC433F1;
-	Wed, 14 Feb 2024 09:25:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707902731;
-	bh=1Sxlw3DtRHuf/+Tg21dw2Havl+gSDlEajrxvtNXrd24=;
+	 In-Reply-To:Content-Type; b=KLLP0nyULMPB05MmIOFj/C7ttkD8947q1sQDtHVXm0lhzjEqbRkP+J2u675Y6zAkISwtKv969zMQIk2hmLnuo7qVLdaDrKFnUpp3C7Z0hy3adl/TN7dtf4ju3PUOhqX1DoClROrf4aUakC6D/c4CcIwV4h+TeDjzn2T4Bkyy7l8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=4uggz3V0; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1707902876;
+	bh=R7/bEBifI4lBAh8QUwfn+H3MAcMLkC8MOxtp6x/n10M=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=f1Dyi4h1lddcPnpZvA7OTRd+buAWhbnKUUuqixk424akMnmEN4iZ74PNi4FuEn0rJ
-	 23/2YheISdo2HTLE9XYZ8dncxaDDDD/O2euCTjPU3ZjR16ZaK/zqBkNC9/tCPrS97O
-	 fLH6KR1Y0a8DjGJojnGklo56I1z4+cOmdwEXZn7JKNUmlmaeBeH1QxbHFvSJ9gTene
-	 2BN30q5cPV9hG4U4InvnjJast3eA9+QSKgUNTKF4IiC2cfvDukmeSISKm5jNmrfN5g
-	 UdOo04qH+ihhW0jnsBPFESEBfnOQCJYc8xXadBMvKP+D2vKeyX16oad/age2C10HGr
-	 sGKnco2WhpVLg==
-Message-ID: <8fc9bac2-d0ce-4c24-b88b-fab1f65dcf37@kernel.org>
-Date: Wed, 14 Feb 2024 11:25:24 +0200
+	b=4uggz3V0Edxv8IP6cRbU05flDUjer1IhQ4PFjTRlQUhgVduHUEqnpHW8Yyrkwsz1z
+	 sjZU2G8VmNpGDZ/ZLCnoWGrsECWcSlKn+UrXq0aJARQmubB0T9vXZNDct5ks00j1xp
+	 gouKT9E02DbzrkddLKKJnCfwm0z0SmFeC6KjChIh2b5d9un4TFz7S0lAX3YDDjLi2i
+	 OVDzwPrPBVsr8eHkabjEMthfceQ2mC49sVxKGSR+ts4dE2KhXN0vhmgecQXbG2csbq
+	 HK3kP2gG+VcB6Dfnu6p3GxbPtxBPPvaNsRGhjGhQiq+NzvRLEa1wL08BAbxB6AA7Fc
+	 pnQhu/Fs7tksg==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 3AD113781FEF;
+	Wed, 14 Feb 2024 09:27:55 +0000 (UTC)
+Message-ID: <e957b044-fe84-4b72-bdf1-cbc40c722019@collabora.com>
+Date: Wed, 14 Feb 2024 10:27:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,50 +57,100 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] arm64: dts: ti: k3-am62-main: disable usb lpm
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: mediatek,mt2712: add compatible for
+ MT7988
 Content-Language: en-US
-To: Andrejs Cainikovs <andrejs.cainikovs@gmail.com>,
- Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+ Conor Dooley <conor@kernel.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Aswath Govindraju <a-govindraju@ti.com>,
- Sjoerd Simons <sjoerd@collabora.com>
-Cc: Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240209130213.38908-1-andrejs.cainikovs@gmail.com>
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20240209130213.38908-1-andrejs.cainikovs@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+ Conor Dooley <conor+dt@kernel.org>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ John Crispin <john@phrozen.org>, linux-pwm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20240213164633.25447-1-zajec5@gmail.com>
+ <20240213-resource-evaluator-0754cfd5882d@spud>
+ <d4391868-ddcd-4f66-b539-28d245fa83df@gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <d4391868-ddcd-4f66-b539-28d245fa83df@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-
-
-On 09/02/2024 15:02, Andrejs Cainikovs wrote:
-> From: Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
-> 
-> AM62 USB works with some devices, while failing to operate with others.
-> 
-> [  560.189822] xhci-hcd xhci-hcd.4.auto: xHCI Host Controller
-> [  560.195631] xhci-hcd xhci-hcd.4.auto: new USB bus registered, assigned bus number 2
-> [  574.388509] xhci-hcd xhci-hcd.4.auto: can't setup: -110
-> [  574.393814] xhci-hcd xhci-hcd.4.auto: USB bus 2 deregistered
-> [  574.399544] xhci-hcd: probe of xhci-hcd.4.auto failed with error -110
-> 
-> This seems to be related to LPM (Link Power Management), and disabling it
-> turns USB into reliable working state.
-> 
-> As per AM62 reference manual:
-> 
->> 4.8.2.1 USB2SS Unsupported Features
+Il 14/02/24 07:34, Rafał Miłecki ha scritto:
+> On 13.02.2024 19:18, Conor Dooley wrote:
+>> On Tue, Feb 13, 2024 at 05:46:32PM +0100, Rafał Miłecki wrote:
+>>> From: Rafał Miłecki <rafal@milecki.pl>
+>>>
+>>> MT7988 has on-SoC controller that can control up to 8 PWMs.
 >>
->> The following features are not supported on this family of devices:
->> ...
->> - USB 2.0 ECN: Link Power Management (LPM)
->> ...
+>> I see a binding and a dts patch, but no driver patch, how come?
 > 
-> Fixes: 2240f96cf3cd ("arm64: dts: ti: k3-am62-main: Add support for USB")
-> Signed-off-by: Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
+> I believe that to avoid cross-trees patchsets (which are sometimes
+> tricky for maintainers) there are two ways of submiting such changes:
+> 1. dt-binding + driver; then (separately) DTS
+> 2. dt-binding + DTS; then (separately) driver
+> 
+> I chose later in this case as my personal priority right now is to deal
+> with all MediaTek DTS files.
+> 
+> Is that wrong or unacceptable?
+> 
 
-Reviewed-by: Roger Quadros <rogerq@kernel.org>
+It's not wrong but it's partially unacceptable, at least on my side.
+
+In my opinion (and I believe many do agree with me), sending the binding along
+with the driver is the right choice, and if you also want to include the dts
+that is also appreciated: series can go through multiple maintainers applying
+subsets - it's ok to do.
+
+I want to put emphasis on sending the binding with the driver, as this allows
+for a better review on everyone's side because we do see the full picture and
+we can give better advices: in this case, I'm not sure whether adding a new
+compatible for MT7988 in an enum is a good idea, as the compatible string may
+be shared with one of the *eleven* SoCs that are supported in the PWM driver,
+meaning that (hardware speaking!) the PWM controller in 7988 might be the same
+as the one in mt1234.
+
+Thanks for the great work that you're doing on the bindings btw.
+Keep it up!
+Angelo
+
+> 
+>> Also, what makes this incompatibly different with the other devices in
+>> the binding, like the 8183?
+> 
+> It can control 8 PWMs unlike any other SoC block except for MT2712.
+> It uses different registers than MT2712 thought.
+> 
+> 
+>> Cheers,
+>> Conor.
+>>
+>>>
+>>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+>>> ---
+>>>   Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml | 1 +
+>>>   1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml 
+>>> b/Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml
+>>> index 0fbe8a6469eb..a5c308801619 100644
+>>> --- a/Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml
+>>> +++ b/Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml
+>>> @@ -24,6 +24,7 @@ properties:
+>>>             - mediatek,mt7629-pwm
+>>>             - mediatek,mt7981-pwm
+>>>             - mediatek,mt7986-pwm
+>>> +          - mediatek,mt7988-pwm
+>>>             - mediatek,mt8183-pwm
+>>>             - mediatek,mt8365-pwm
+>>>             - mediatek,mt8516-pwm
+>>> -- 
+>>> 2.35.3
+>>>
+> 
+
+
 
