@@ -1,75 +1,84 @@
-Return-Path: <devicetree+bounces-41751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41752-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0673E854FC2
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 18:19:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9654855010
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 18:25:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE7741F2175F
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 17:19:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECE201C2099E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 17:25:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7307B839FD;
-	Wed, 14 Feb 2024 17:19:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C7658592F;
+	Wed, 14 Feb 2024 17:21:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="35fvl8bj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZrPXNqt5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AA4A7F7E0;
-	Wed, 14 Feb 2024 17:19:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 906438562E
+	for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 17:21:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707931143; cv=none; b=DcP4o+yc7Zrys9WChikFsjtbe8XguIjwYCSaEeooHp35FmI0nzYn5EkfLm8QCo5dNx+e/HwUJHDUkQr/cX0nNRvNRg4WOm9egGA7eBAGZuvfnY6/A/hiC82egsDoJt+UR/BGLq1sf09orz29epYcMt/6GN5HMYKSpwlWsgHP3w4=
+	t=1707931269; cv=none; b=S4MgggCyQEGm6mk5v2kNlHX9jdtF/jS/Y5lawAOH/txcmnS41EU/X/A+70aOIamCOydQoR8jX+fm963560/N7n6tABBLcaHYmK/2qt+ALeQd096coCK4XfknL4ZvLjxYBxDRMOo2twIHG4iqfH0BkVvZtX8DQRaZ0mkLLDtmXRM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707931143; c=relaxed/simple;
-	bh=FzmanoFfNktS2f2G7iWqRptc+GWThwORnp08ceRIa4k=;
+	s=arc-20240116; t=1707931269; c=relaxed/simple;
+	bh=S7N5Ad2Nqrbj49SUQEtcPGXzZDyRUyvs+feHRNMHcIM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dIP7xbNGG65ZScvawCoTBYbs5Xu6JiyLEnkxV7yop6ZNQUwAAQOEfztQ3LBETep2sNAKJtMJogiDUWINLMjbi9kbmsKh0hdSB6Obg3iDXuaNF8ZAoTDO2fTHyqu6/ebKnEOnv8LnTK8Ujjvat1vSBdded1uTdrKyOtgJIPcKjrk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=35fvl8bj; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=rqjuTCEFxSun0myagncIypgOBLIS1dt11iBFupB/8I0=; b=35fvl8bjUNypOVFnnp7BYsLaCU
-	htuVcTLOpxRx5y6RRlA9/WqKclOgTV47qY8c6NfL7YGMbIBx+MIRCEjT2nY2lJTVLPBbVaWW8KXYt
-	ch1niwMWsbH4e9GxFF89AOQhp44UDWWLlkYFlT9CDZL6kQgrJSk/0dEEpH6Qpipl3X+g=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1raIuR-007oA8-FZ; Wed, 14 Feb 2024 18:18:59 +0100
-Date: Wed, 14 Feb 2024 18:18:59 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	Mark Brown <broonie@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-	Dent Project <dentproject@linuxfoundation.org>
-Subject: Re: [PATCH net-next v3 05/17] net: pse-pd: Introduce PSE types
- enumeration
-Message-ID: <d2f974e4-6b31-49c0-88ac-7741a980739c@lunn.ch>
-References: <20240208-feature_poe-v3-0-531d2674469e@bootlin.com>
- <20240208-feature_poe-v3-5-531d2674469e@bootlin.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=LLjSg4dnjw5PvPHyjJ9GANV/uGwV1cIhDOefpxFydBdPWg3mDDrOd2mcluvqEhp3E7ILbmo3/SU3c7e/oScbWoqZxk9sZlO2C/bsQQQRlNrBduomEgaRjl9lYDKG/bxou7NY7zzQwczQtDDh8GGIKZAOnU18u7i0iwnvpJ2xsiU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZrPXNqt5; arc=none smtp.client-ip=209.85.216.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-296c562ac70so11976a91.2
+        for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 09:21:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707931267; x=1708536067; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=y+GLw4edkO69eFBIaZa2fDtYB7rYenDCtOXaRNz8hT8=;
+        b=ZrPXNqt5fbS8GDyoR347+DxOOl7sD2H6+IyP8DF4KSDhnfIcPSO+0O3MBiG45YdMBS
+         ZlGrk8uMU6t7K97Fi2lzZEsKHizkqUzd+GeSROZ8I37XIfliazCg1Qc+jiNSpeBW6s9f
+         4XFPgdt4bfT8VbWy2Lzdge7o/wdKhpJkuAE85TSw4ugsigD3oCQrCtZZ05Z9cXqVuXfh
+         tKvuZ4n6/CHAPKaZUBlutAAE1atGifBPg2+gjbI4a0W2E63tFvl669KjaEmULp286Cev
+         tYYOBIukcVbyQHfGs8PZLWfgnsmMDeZDJLbmu1JaYB/XBJ/VwwQoR7x1f4rdTu3TM7nx
+         /QfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707931267; x=1708536067;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=y+GLw4edkO69eFBIaZa2fDtYB7rYenDCtOXaRNz8hT8=;
+        b=U8KIVAjP9uiWqqt1YQcsHAaLYPe2v9MfqG8sK3il7pBJIZX07XO1gPVZDO6tSGcM4o
+         IATciWCwZZpY5m87FKGwNVJC+FFmTr0L64nrzQsgHPV416hAz9joJ+ZEFALjiB59kEXu
+         u21LDYcBiZADyq1a3hkmgieKG06O+WgRcoN40A2p3v6uZ6LVT5o3Vnyea3tHRz2vi4Sr
+         2rRn77Pswk74VtAf/MBgEBrvuZs1hYvWgOS7O+SwiVsg7qmdCjNtoifVhwH6iFqrbGNs
+         l4VYl1BkB9URT48yHcMHfhqmyvb4Z+/W6Y/xdmpXWWHUuku2yeh6Tv/3FBdr00c+cmqr
+         6n2w==
+X-Forwarded-Encrypted: i=1; AJvYcCUYSfxV4lNGlD/oMMgLFuOI/3vqR170i+dSs56bdFO31tv3cFtkUzuJYvTtON1WSzr7BvxnKVSFIXooBerYsE9gSukpIaJ3udfgjw==
+X-Gm-Message-State: AOJu0YyeqSVwsqFBYWeSTE63qqGYRogehCesNV+tQ31xNkZPsDpcpsg8
+	Ei+2RtInqPHkOd1qj1GB/xvUn/A5zTc2t9eD4gVqoSRPw8iMvuculKNeM6dtwjo=
+X-Google-Smtp-Source: AGHT+IE9Pnjo6ou5luyV/r8s33nLYEdd+B7r13dw3T/QzHcEFLNf1/OVaVKnhjctOSPGTGrgO4qEYw==
+X-Received: by 2002:a17:90a:9b8c:b0:298:c136:2ffc with SMTP id g12-20020a17090a9b8c00b00298c1362ffcmr2584760pjp.45.1707931266846;
+        Wed, 14 Feb 2024 09:21:06 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVWodR54OSPqGD9VrYyvs5GM3YIST40u2Cyby+MBVNL/KbwkBOEjGMst0gElgv3G0ZqBEpDHffJ6Hpf1DN4gmNnrmLLUCCDaD4+j7w9w7X5Kje/6b85htP6dil3TbA71I9c1YSh5Gzyk+CeHHC9ze5cQ7rD6mrpF2246hpzApVpZUv3YecIa7T1M1/1nsSrkCcV/6+YgFzSjx52coZzbD95XLCwXsrU3iaE0s1OSXf4cuiMxGu3JU4GG+8oKg/n2PWl+UOPDSOQu4rOaZ2NVvayNRMAumzkFWoxFxEmg1sdxm44ZQ50/lV3jB6bMIVdGAwtn/CZCqBr2qnQYynJ/ug8j+Pe2Flg6+iAJZNT8c3UPd+Jk9d7EXe2L0JTlfPLUqPIYa4KDPJoTw==
+Received: from p14s ([2604:3d09:148c:c800:96ea:e45d:5361:78d0])
+        by smtp.gmail.com with ESMTPSA id ev6-20020a17090aeac600b00298d203d359sm1696864pjb.24.2024.02.14.09.21.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Feb 2024 09:21:06 -0800 (PST)
+Date: Wed, 14 Feb 2024 10:21:03 -0700
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: Tanmay Shah <tanmay.shah@amd.com>
+Cc: andersson@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	michal.simek@amd.com, ben.levinsky@amd.com,
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v10 4/4] remoteproc: zynqmp: parse TCM from device tree
+Message-ID: <Zcz2f3eZrXrRAX6F@p14s>
+References: <20240213175450.3097308-1-tanmay.shah@amd.com>
+ <20240213175450.3097308-5-tanmay.shah@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,17 +87,190 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240208-feature_poe-v3-5-531d2674469e@bootlin.com>
+In-Reply-To: <20240213175450.3097308-5-tanmay.shah@amd.com>
 
-On Thu, Feb 08, 2024 at 02:08:42PM +0100, Kory Maincent wrote:
-> Introduce an enumeration to define PSE types (C33 or PoDL),
-> utilizing a bitfield for potential future support of both types.
-> Include 'pse_get_types' helper for external access to PSE type info.
+Good morning,
+
+On Tue, Feb 13, 2024 at 09:54:50AM -0800, Tanmay Shah wrote:
+> ZynqMP TCM information was fixed in driver. Now ZynqMP TCM information
+> is available in device-tree. Parse TCM information in driver
+> as per new bindings.
 > 
-> Sponsored-by: Dent Project <dentproject@linuxfoundation.org>
-> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+> ---
+> 
+> Changes in v10:
+>   - Remove redundant changes to handle TCM in lockstep mode
+> 
+> Changes in v9:
+>   - Introduce new API to request and release core1 TCM power-domains in
+>     lockstep mode. This will be used during prepare -> add_tcm_banks
+>     callback to enable TCM in lockstep mode.
+>   - Parse TCM from device-tree in lockstep mode and split mode in
+>     uniform way.
+>   - Fix TCM representation in device-tree in lockstep mode.
+> 
+> Changes in v8:
+>   - Remove pm_domains framework
+>   - Remove checking of pm_domain_id validation to power on/off tcm
+>   - Remove spurious change
+>   - parse power-domains property from device-tree and use EEMI calls
+>     to power on/off TCM instead of using pm domains framework
+> 
+> Changes in v7:
+>   - move checking of pm_domain_id from previous patch
+>   - fix mem_bank_data memory allocation
+> 
+>  drivers/remoteproc/xlnx_r5_remoteproc.c | 112 ++++++++++++++++++++++--
+>  1 file changed, 107 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/remoteproc/xlnx_r5_remoteproc.c b/drivers/remoteproc/xlnx_r5_remoteproc.c
+> index 42b0384d34f2..49e8eaf83fce 100644
+> --- a/drivers/remoteproc/xlnx_r5_remoteproc.c
+> +++ b/drivers/remoteproc/xlnx_r5_remoteproc.c
+> @@ -74,8 +74,8 @@ struct mbox_info {
+>  };
+>  
+>  /*
+> - * Hardcoded TCM bank values. This will be removed once TCM bindings are
+> - * accepted for system-dt specifications and upstreamed in linux kernel
+> + * Hardcoded TCM bank values. This will stay in driver to maintain backward
+> + * compatibility with device-tree that does not have TCM information.
+>   */
+>  static const struct mem_bank_data zynqmp_tcm_banks_split[] = {
+>  	{0xffe00000UL, 0x0, 0x10000UL, PD_R5_0_ATCM, "atcm0"}, /* TCM 64KB each */
+> @@ -757,6 +757,103 @@ static struct zynqmp_r5_core *zynqmp_r5_add_rproc_core(struct device *cdev)
+>  	return ERR_PTR(ret);
+>  }
+>  
+> +static int zynqmp_r5_get_tcm_node_from_dt(struct zynqmp_r5_cluster *cluster)
+> +{
+> +	int i, j, tcm_bank_count, ret, tcm_pd_idx, pd_count;
+> +	struct of_phandle_args out_args = {0};
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Is this really needed?  As far as I can tell it isn't.  
 
-    Andrew
+Otherwise and if it wasn't for the modification on the DT side, I would apply
+this patch.
+
+Thanks,
+Mathieu
+
+> +	struct zynqmp_r5_core *r5_core;
+> +	struct platform_device *cpdev;
+> +	struct mem_bank_data *tcm;
+> +	struct device_node *np;
+> +	struct resource *res;
+> +	u64 abs_addr, size;
+> +	struct device *dev;
+> +
+> +	for (i = 0; i < cluster->core_count; i++) {
+> +		r5_core = cluster->r5_cores[i];
+> +		dev = r5_core->dev;
+> +		np = r5_core->np;
+> +
+> +		pd_count = of_count_phandle_with_args(np, "power-domains",
+> +						      "#power-domain-cells");
+> +
+> +		if (pd_count <= 0) {
+> +			dev_err(dev, "invalid power-domains property, %d\n", pd_count);
+> +			return -EINVAL;
+> +		}
+> +
+> +		/* First entry in power-domains list is for r5 core, rest for TCM. */
+> +		tcm_bank_count = pd_count - 1;
+> +
+> +		if (tcm_bank_count <= 0) {
+> +			dev_err(dev, "invalid TCM count %d\n", tcm_bank_count);
+> +			return -EINVAL;
+> +		}
+> +
+> +		r5_core->tcm_banks = devm_kcalloc(dev, tcm_bank_count,
+> +						  sizeof(struct mem_bank_data *),
+> +						  GFP_KERNEL);
+> +		if (!r5_core->tcm_banks)
+> +			ret = -ENOMEM;
+> +
+> +		r5_core->tcm_bank_count = tcm_bank_count;
+> +		for (j = 0, tcm_pd_idx = 1; j < tcm_bank_count; j++, tcm_pd_idx++) {
+> +			tcm = devm_kzalloc(dev, sizeof(struct mem_bank_data),
+> +					   GFP_KERNEL);
+> +			if (!tcm)
+> +				return -ENOMEM;
+> +
+> +			r5_core->tcm_banks[j] = tcm;
+> +
+> +			/* Get power-domains id of TCM. */
+> +			ret = of_parse_phandle_with_args(np, "power-domains",
+> +							 "#power-domain-cells",
+> +							 tcm_pd_idx, &out_args);
+> +			if (ret) {
+> +				dev_err(r5_core->dev,
+> +					"failed to get tcm %d pm domain, ret %d\n",
+> +					tcm_pd_idx, ret);
+> +				return ret;
+> +			}
+> +			tcm->pm_domain_id = out_args.args[0];
+> +			of_node_put(out_args.np);
+> +
+> +			/* Get TCM address without translation. */
+> +			ret = of_property_read_reg(np, j, &abs_addr, &size);
+> +			if (ret) {
+> +				dev_err(dev, "failed to get reg property\n");
+> +				return ret;
+> +			}
+> +
+> +			/*
+> +			 * Remote processor can address only 32 bits
+> +			 * so convert 64-bits into 32-bits. This will discard
+> +			 * any unwanted upper 32-bits.
+> +			 */
+> +			tcm->da = (u32)abs_addr;
+> +			tcm->size = (u32)size;
+> +
+> +			cpdev = to_platform_device(dev);
+> +			res = platform_get_resource(cpdev, IORESOURCE_MEM, j);
+> +			if (!res) {
+> +				dev_err(dev, "failed to get tcm resource\n");
+> +				return -EINVAL;
+> +			}
+> +
+> +			tcm->addr = (u32)res->start;
+> +			tcm->bank_name = (char *)res->name;
+> +			res = devm_request_mem_region(dev, tcm->addr, tcm->size,
+> +						      tcm->bank_name);
+> +			if (!res) {
+> +				dev_err(dev, "failed to request tcm resource\n");
+> +				return -EINVAL;
+> +			}
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  /**
+>   * zynqmp_r5_get_tcm_node()
+>   * Ideally this function should parse tcm node and store information
+> @@ -835,9 +932,14 @@ static int zynqmp_r5_core_init(struct zynqmp_r5_cluster *cluster,
+>  	struct zynqmp_r5_core *r5_core;
+>  	int ret, i;
+>  
+> -	ret = zynqmp_r5_get_tcm_node(cluster);
+> -	if (ret < 0) {
+> -		dev_err(dev, "can't get tcm node, err %d\n", ret);
+> +	r5_core = cluster->r5_cores[0];
+> +	if (of_find_property(r5_core->np, "reg", NULL))
+> +		ret = zynqmp_r5_get_tcm_node_from_dt(cluster);
+> +	else
+> +		ret = zynqmp_r5_get_tcm_node(cluster);
+> +
+> +	if (ret) {
+> +		dev_err(dev, "can't get tcm, err %d\n", ret);
+>  		return ret;
+>  	}
+>  
+> -- 
+> 2.25.1
+> 
 
