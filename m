@@ -1,119 +1,174 @@
-Return-Path: <devicetree+bounces-41614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EAB885471A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 11:26:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5659B854765
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 11:42:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C2C2B1F2ABD7
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 10:26:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8CBB8B2444E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 10:42:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76D6318042;
-	Wed, 14 Feb 2024 10:25:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 168D61863F;
+	Wed, 14 Feb 2024 10:42:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="MPX0uB6F"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="EKClzF++"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C4511757A;
-	Wed, 14 Feb 2024 10:25:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.152.168
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA68218EB0
+	for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 10:42:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707906307; cv=none; b=SSUMNiw0QAOTwotTGVAXycKwrlgc1HLEU9ODbFVnNc3iNOt6JaBLiKR2igcZk/l88S5zu01wF2aziJjLligi0iVcvcYC9/Zde5edxzQiq7E1FphrkDC2+qMxXNx5H837vnm7XyBxq6dnegsXEn9Alb50cyj6WIeobm2DHpFZFxU=
+	t=1707907331; cv=none; b=FRv6naxDnOrDYZrE7eF3DKIPCWdxLSDdu34CFuAxoQIP/FG7zBR5v8sciEOVqH/eBjfthIU2VGGL9C4uZ9Y5iqgSPDhdARCBf8cdoYfpJU7rnwRrXDWRFl/h9cBAtEnXr7KGAt75fOhYHETGFDyWtdvRTmt7YFpDe+RGKZL3T9o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707906307; c=relaxed/simple;
-	bh=L815oFbIeIuu/nPLWPfmkBBD824MSDUKPhdjuYMkxoI=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SMyHAwhaFUodgwotEWdyCEPWXTH8sZIfqxVr1tT1FbXKhFtmtepCsUR3+yaVTrZat9pNF7Ihh9+VEc52I4pUk/f0jOnp+S4vMzIexmCon+mA6i4A8kN65602JZ5kEsLomZk5J7mM9ujckoctWsHYP/7w2esNIi/W3Ng9Meq7/Ug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=MPX0uB6F; arc=none smtp.client-ip=67.231.152.168
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-	by mx0b-001ae601.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41E8556f007521;
-	Wed, 14 Feb 2024 04:24:46 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=PODMain02222019; bh=C43+mmqH+ywn9It
-	Rt2YS6FoSpdQ9++9eC/aPhwewHIU=; b=MPX0uB6FLeKx3sWOtpEJkE3BiC8DscE
-	3nc2VahgvcSQWAlhvC/cg1R/Hbgfe/KdKRX/jgmqh2aT+qr1+ogANqDWpe4nJwi/
-	SAyHztTQAEPlN80Fmgh9ifiBGQzS6TlQSFkNr9pxdzBq1+zOC7e1qs0utqowSiiJ
-	OKraYH3pwN6n4Xaro73nwALeDXsts/EsjYlYZFKt5llqjg7QNxO+TOAnT1lBUQEH
-	bllzg2MFhC81rYlxh0rE2JsH3L5jh8bi9FZZMrHfGTCNh10tLZPWl6qEPJRdrCMY
-	YyqJV3EU3Gk9xFDr0o1nQvonmCkWjIh14z84f0dOkdjmFgj5eiekqCg==
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3w8sp4g329-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 14 Feb 2024 04:24:46 -0600 (CST)
-Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 14 Feb
- 2024 10:24:44 +0000
-Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
- ediex01.ad.cirrus.com (198.61.84.80) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40 via Frontend Transport; Wed, 14 Feb 2024 10:24:44 +0000
-Received: from ediswmail9.ad.cirrus.com (ediswmail9.ad.cirrus.com [198.61.86.93])
-	by ediswmail9.ad.cirrus.com (Postfix) with ESMTPS id 7B6B3820242;
-	Wed, 14 Feb 2024 10:24:44 +0000 (UTC)
-Date: Wed, 14 Feb 2024 10:24:43 +0000
-From: Charles Keepax <ckeepax@opensource.cirrus.com>
-To: James Ogletree <jogletre@opensource.cirrus.com>
-CC: <dmitry.torokhov@gmail.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <lee@kernel.org>, <broonie@kernel.org>, <jeff@labundy.com>,
-        <patches@opensource.cirrus.com>, <linux-sound@vger.kernel.org>,
-        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v7 1/5] firmware: cs_dsp: Add write sequencer interface
-Message-ID: <ZcyU6xgpOvrhX57D@ediswmail9.ad.cirrus.com>
-References: <20240212173111.771107-1-jogletre@opensource.cirrus.com>
- <20240212173111.771107-2-jogletre@opensource.cirrus.com>
+	s=arc-20240116; t=1707907331; c=relaxed/simple;
+	bh=6ZsuriBMCohN5uvava8Z+HPI6zdzB9t2C5NoARUcrA0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Ja7hbUSCPoBXvtK9Y1LK7RWr3hBv5oCYaSBhYNKDDd40yHdSGJGfl/HwDXUqDdFZrBLM3ZlIUAKalUPwqRudFcnXrtiMVXSXxsaheUKLmAUZhKm/+8sG7kqcUoEweYQzVGWtnGzxxahWCEzdqmh3VvlEq4e60E8JFRaikUf/5sE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=EKClzF++; arc=none smtp.client-ip=91.26.50.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+	q=dns/txt; i=@phytec.de; t=1707906416; x=1710498416;
+	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=6ZsuriBMCohN5uvava8Z+HPI6zdzB9t2C5NoARUcrA0=;
+	b=EKClzF++kzDneUpOxjj1LNg3J7VxxTXQ1o2BclCJuH+nZuex6qvYbqRLUhHQURHE
+	fHbhCbzIt9u5NVU8Aq6dJNxUdppaCcyGYiwYhaXKUMJrc8h0EX55Hhat7JA/Nm70
+	ZMiAtmvOfIVosah5kf6esFDJuGIvP+3nQkxu/SmCz6s=;
+X-AuditID: ac14000a-fbefe7000000290d-ac-65cc9570d89d
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(Client did not present a certificate)
+	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 1F.75.10509.0759CC56; Wed, 14 Feb 2024 11:26:56 +0100 (CET)
+Received: from [172.25.39.28] (172.25.0.11) by Berlix.phytec.de (172.25.0.12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Wed, 14 Feb
+ 2024 11:26:53 +0100
+Message-ID: <6c8feafd-a34c-4c7b-b6cd-4cd73b086259@phytec.de>
+Date: Wed, 14 Feb 2024 11:26:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240212173111.771107-2-jogletre@opensource.cirrus.com>
-X-Proofpoint-ORIG-GUID: saAm5YBNWf7RG7dsp8C3pW95M6OB6FDH
-X-Proofpoint-GUID: saAm5YBNWf7RG7dsp8C3pW95M6OB6FDH
-X-Proofpoint-Spam-Reason: safe
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/9] Fix MMC properties on Sitara K3 devices
+Content-Language: en-US
+To: Judith Mendez <jm@ti.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero
+ Kristo <kristo@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Francesco
+ Dolcini <francesco.dolcini@toradex.com>
+References: <20240213235701.2438513-1-jm@ti.com>
+From: Wadim Egorov <w.egorov@phytec.de>
+In-Reply-To: <20240213235701.2438513-1-jm@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: Florix.phytec.de (172.25.0.13) To Berlix.phytec.de
+ (172.25.0.12)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprEIsWRmVeSWpSXmKPExsWyRpKBR7dg6plUg6VrDC3W7D3HZDH/yDlW
+	i7tLfzJafPqQabH882x2i74XD5ktNj2+xmpxedccNos3P84yWbTuPcJu8f/sB3YHbo9NqzrZ
+	PO5c28PmsXlJvcfxG9uZPDa98vD4vEkugC2KyyYlNSezLLVI3y6BK2Piu+ksBU+lK9rmHGBq
+	YDwm1sXIySEhYCLxY/lk5i5GLg4hgcVMEj9777NAOHcZJY7OOMLWxcjBwStgI/Hppz9IA4uA
+	qsStbQeYQGxeAUGJkzOfsIDYogLyEvdvzWAHsYUFnCXubm0CizMLiEvcejKfCWSmiMACRolD
+	h3eBOcwCrUwSDxpegnUICRhIXFjeBmazCahL3NnwjRXE5hQwlDjQ8YoZYpKFxOI3B9khbHmJ
+	7W/nMEP0yku8uLScBeIdeYlp514zQ9ihEkc2rWaawCg8C8mxs5AcNQvJ2FlIxi5gZFnFKJSb
+	mZydWpSZrVeQUVmSmqyXkrqJERRvIgxcOxj75ngcYmTiYDzEKMHBrCTCO6n3TKoQb0piZVVq
+	UX58UWlOavEhRmkOFiVx3tUdwalCAumJJanZqakFqUUwWSYOTqkGxqm8zgXHL4tPYOsLX1S3
+	u+HMP82oI+fnvb1acU04xvphn8SNlf4egQ82Z2r96LJoFvtSv8Xp0eOGo5vdPZvUbQJLSj5m
+	cjM4fJt1b3Z8zvnL+zfq2jJL/Iiwy3Z1iwmYeDn5um3RkTdf7gvkJG7gtb6c6Pa5LqeVO8hH
+	z39//PN31+TfnT/drMRSnJFoqMVcVJwIAEHTlw2lAgAA
 
-On Mon, Feb 12, 2024 at 05:31:07PM +0000, James Ogletree wrote:
-> A write sequencer is a sequence of register addresses
-> and values executed by some Cirrus DSPs following
-> power state transitions.
-> 
-> Add support for Cirrus drivers to update or add to a
-> write sequencer present in firmware.
-> 
-> Signed-off-by: James Ogletree <jogletre@opensource.cirrus.com>
-> ---
-> +	if (!update) {
-> +		if (wseq->ctl->len - op_end->offset < new_op_size) {
-> +			cs_dsp_err(dsp, "Not enough memory in write sequence for entry\n");
-> +			ret = -ENOMEM;
-> +			goto op_new_free;
-> +		}
-> +
-> +		op_end->offset += new_op_size;
-> +
-> +		ret = cs_dsp_coeff_write_ctrl(wseq->ctl, op_end->offset / sizeof(u32),
-> +					      &op_end->data, sizeof(u32));
-> +		if (ret)
-> +			goto op_new_free;
-> +
-> +		list_add_tail(&op_new->list, &wseq->ops);
 
-This means the new write will be after the terminator in the
-list. Whilst I think the code will work this way it would be
-much cleaner if we kept the list ordered to match the writes,
-by inserting the new element just before op_end.
+Am 14.02.24 um 00:56 schrieb Judith Mendez:
+> This patch series aims to fix and update MMC nodes for TI
+> Sitara K3 devices with the following changes.
+>
+> The series introduces sdhci0 and sdhci2 nodes and enables
+> eMMC for AM62ax platform.
+>
+> Also introduce fixes for MMC ITAP/OTAP values for AM64x
+> platform according to device datasheet [0], and add ITAP/
+> OTAP values for AM62p to enable the highest timing possible
+> for MMC0 and MMC1, according to device datasheet [1].
+>
+> The DLL properties ti,trm-icp and ti,driver-strength-ohm
+> should be removed for soft PHYs since drive strength cannot
+> be changed, so remove these properties when not applicable.
+> Since this fix touches non-TI boards and therefore cannot be
+> tested, all tested-by's are welcome.
+>
+> Also include a few fixes for ti,clkbuf-sel, bus-width,
+> and bootph-all device tree properties in MMC nodes.
+>
+> This series was tested on:
+> - AM62a SK
+> - AM62x SK
+> - AM62p SK
+> - AM64x GP EVM
+> - AM64x SK EVM
+> - Beagleplay
 
-Thanks,
-Charles
+Adding my Tested-by for the phyBOARD-Electra-AM642 board.
+
+Tested-by: Wadim Egorov <w.egorov@phytec.de>
+
+
+>
+> [0] https://www.ti.com/lit/ds/symlink/am6442.pdf
+> [1] https://www.ti.com/lit/ds/symlink/am62p.pdf
+>
+> Fixes since V2:
+> - Remove ti,driver-strength-ohm property in sdhci1 node for
+>   k3-am642-tqma64xxl-mbax4xxl and k3-am642-phyboard-electra-rdk board files.
+> - Add Francesco's Acked-by
+>
+> V2: https://lore.kernel.org/linux-devicetree/20240213002416.1560357-1-jm@ti.com/
+> V1: https://lore.kernel.org/linux-devicetree/22af7436-8833-4049-bdbb-f79bb3314ee8@ti.com/
+> RFC: https://lore.kernel.org/linux-devicetree/c94b7399-31c0-4e7d-a616-8f29c86a27ba@ti.com/
+>
+> Judith Mendez (7):
+>    arm64: dts: ti: k3-am62a-main: Add sdhci2 instance
+>    arm64: dts: ti: k3-am64-main: Fix ITAP/OTAP values for MMC
+>    arm64: dts: ti: k3-am62p: Add ITAP/OTAP values for MMC
+>    arm64: dts: ti: k3-am6*: Remove DLL properties for soft PHYs
+>    arm64: dts: ti: k3-am6*: Fix ti,clkbuf-sel property in MMC nodes
+>    arm64: dts: ti: k3-am6*: Fix bus-width property in MMC nodes
+>    arm64: dts: ti: k3-am6*: Add bootph-all property in MMC node
+>
+> Nitin Yadav (2):
+>    arm64: dts: ti: k3-am62a-main: Add sdhci0 instance
+>    arm64: dts: ti: k3-am62a7-sk: Enable eMMC support
+>
+>   arch/arm64/boot/dts/ti/k3-am62-main.dtsi      | 12 +++--
+>   .../boot/dts/ti/k3-am62-phycore-som.dtsi      |  1 -
+>   .../boot/dts/ti/k3-am62-verdin-dahlia.dtsi    |  1 -
+>   .../arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi |  1 -
+>   .../boot/dts/ti/k3-am62-verdin-wifi.dtsi      |  1 -
+>   arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi    |  2 -
+>   .../arm64/boot/dts/ti/k3-am625-beagleplay.dts |  4 --
+>   .../dts/ti/k3-am625-phyboard-lyra-rdk.dts     |  1 -
+>   arch/arm64/boot/dts/ti/k3-am62a-main.dtsi     | 45 ++++++++++++++++++-
+>   arch/arm64/boot/dts/ti/k3-am62a7-sk.dts       | 27 ++++++++++-
+>   arch/arm64/boot/dts/ti/k3-am62p-main.dtsi     | 44 ++++++++++++++++--
+>   arch/arm64/boot/dts/ti/k3-am62p5-sk.dts       |  3 +-
+>   .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi |  2 -
+>   arch/arm64/boot/dts/ti/k3-am64-main.dtsi      | 15 +++++--
+>   arch/arm64/boot/dts/ti/k3-am642-evm.dts       |  4 +-
+>   .../dts/ti/k3-am642-phyboard-electra-rdk.dts  |  1 -
+>   arch/arm64/boot/dts/ti/k3-am642-sk.dts        |  2 -
+>   .../dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts    |  1 -
+>   18 files changed, 129 insertions(+), 38 deletions(-)
+>
+>
+> base-commit: 1e6bbc5185bcd113c8d2f7aa0a02f588a6bdbe5d
 
