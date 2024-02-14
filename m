@@ -1,132 +1,95 @@
-Return-Path: <devicetree+bounces-41587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECCA4854562
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 10:34:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34FB2854634
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 10:36:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A1D531F2DFCF
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 09:34:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 679231C2139B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 09:36:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5150B134D9;
-	Wed, 14 Feb 2024 09:34:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="rDMgrC6r"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16E4A125BA;
+	Wed, 14 Feb 2024 09:36:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A77D91427F;
-	Wed, 14 Feb 2024 09:34:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47058171A8;
+	Wed, 14 Feb 2024 09:36:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707903242; cv=none; b=MkM+wdcvl4wEYTf0Z6LE+oQ3EWuW9s275wDubuMYqtPeD8klT1A9lQFHl9nbTC+cdvTT+MK3VtY2SicpuwegqOQDAaMfYdQudBEhVwuRgv7fEf9DByTplxK6Vg9URN0H4vRTnutnEJurtseTKaS8h9eQ48oyiAM8GwPfvjKEsN8=
+	t=1707903377; cv=none; b=p/tmF+whNaZ+K6VJ93Gp75eeEI8Fe6xYxthshDfZ0oxmvuxXAYTY04eWs2RWGxw7/Jh7A56wpv210VwjsOnJBEEQr6wYAxSHDKdF8Aqu86mF3xXYlPK3wC6iwwweg18aSPENUrrjYhwS9yxqlhF+H38qLyfkBwWZ6zOqxcf60aw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707903242; c=relaxed/simple;
-	bh=U4bNMH+xtiCB6Y3mK6uVJUXqmlGYS1dPqnhcpgvAQPY=;
+	s=arc-20240116; t=1707903377; c=relaxed/simple;
+	bh=5kLoz2/KdhnPXN8zihUJoO8TpE72NNonn4kqQWWIPzI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GspFXtVWEyJwsckBJSiBWZ6P9CoK5Rzn/i8y9XGGHwGGNBnSZlmTOfg1clDc9DtWtAaJ/RtY4GpFNbqaKRuBHjyVIJGrejShrT8ygkLJUVOD7DC7dy8c+/st7NxChkdelQkOmDpQ25tSqBKzXd1Tx2IIdQkW0Cl4zOV1aNLMO70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=rDMgrC6r; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1707903238;
-	bh=U4bNMH+xtiCB6Y3mK6uVJUXqmlGYS1dPqnhcpgvAQPY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rDMgrC6rjZB/wQwJNDPBTssIhx6YtdbvO59smkyyIL2/OBTXaqrPZL+cF4R45oZs1
-	 /HdY2mIKiqSR1mfojtQ2NUox3hQnvpMy1WZlMVPDuhBFwPE0wYXiNMUhOPhT+PdcGA
-	 Si20XPPYL7ZSjL93bDlF68G8vD+9Kv9ESDhHcDkDUi7ThJm66cwp5XpxaDWLux9hqs
-	 rdQHyJDWST73v+C4egSDmNxCdIN4ulD9+YSybmD8yPt+FhXxZUzcyF38b3VVrkbaZq
-	 h02UjL0Y32yX4y7TSEeotI54jaHGLGrbNhe6rFBiKBZqO3lBEDUQ6FP7JWv/xrcyR1
-	 WMp9oKkBefdCw==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 0AEF23782076;
-	Wed, 14 Feb 2024 09:33:57 +0000 (UTC)
-Message-ID: <b5dce02f-414a-42df-8210-3e80a769e324@collabora.com>
-Date: Wed, 14 Feb 2024 10:33:57 +0100
+	 In-Reply-To:Content-Type; b=MAjeUHOSUYNvYNZuk68RGPih6MijVCg0kZuQSltxQkOyFrO8KKS0pkYAxzmGXi1NLDGOe0z0kcQW4+Z2PsO0IN05wj1rUxO4ocZeVIRNh+RnHeR4xKjksdzDiYx5CUZYRJVd9q14Ha8TXsJByh8KEJF4SUTTaUKXQzoMUauT3ZY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B92B31FB;
+	Wed, 14 Feb 2024 01:36:54 -0800 (PST)
+Received: from [192.168.1.100] (unknown [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A55553F766;
+	Wed, 14 Feb 2024 01:36:11 -0800 (PST)
+Message-ID: <df3162c0-4b29-77a2-20b5-b36637fb11cf@arm.com>
+Date: Wed, 14 Feb 2024 09:36:10 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: mediatek: mt7988: add PWM controller
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v1 1/2] dt-bindings: arm: qcom,coresight-tpdm: Rename
+ qcom,dsb-element-size
 Content-Language: en-US
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
+To: Jinlong Mao <quic_jinlmao@quicinc.com>, Rob Herring <robh@kernel.org>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
+ Mike Leach <mike.leach@linaro.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: John Crispin <john@phrozen.org>, linux-pwm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20240213164633.25447-1-zajec5@gmail.com>
- <20240213164633.25447-2-zajec5@gmail.com>
- <36baacb4-4aa9-421f-bde0-c4be7d7f4aa1@collabora.com>
- <bbacfaad-a182-4df5-8317-640e32a1954a@gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <bbacfaad-a182-4df5-8317-640e32a1954a@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+ Conor Dooley <conor+dt@kernel.org>, Tao Zhang <quic_taozha@quicinc.com>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240213160521.15925-1-quic_jinlmao@quicinc.com>
+ <20240213160521.15925-2-quic_jinlmao@quicinc.com>
+ <20240213222957.GA2502642-robh@kernel.org>
+ <a062ce8d-638a-4a33-8afa-45ad47efcd72@quicinc.com>
+From: James Clark <james.clark@arm.com>
+In-Reply-To: <a062ce8d-638a-4a33-8afa-45ad47efcd72@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Il 14/02/24 10:24, Rafał Miłecki ha scritto:
-> On 14.02.2024 10:09, AngeloGioacchino Del Regno wrote:
->> Il 13/02/24 17:46, Rafał Miłecki ha scritto:
->>> From: Rafał Miłecki <rafal@milecki.pl>
->>>
->>> Add binding for on-SoC controller that can control up to 8 PWMs.
->>>
->>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->>> ---
->>>   arch/arm64/boot/dts/mediatek/mt7988a.dtsi | 21 ++++++++++++++++++++-
->>>   1 file changed, 20 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi 
->>> b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
->>> index bba97de4fb44..67007626b5cd 100644
->>> --- a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
->>> +++ b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
->>> @@ -1,5 +1,6 @@
->>>   // SPDX-License-Identifier: GPL-2.0-only OR MIT
->>> +#include <dt-bindings/clock/mediatek,mt7988-clk.h>
->>>   #include <dt-bindings/interrupt-controller/arm-gic.h>
->>>   / {
->>> @@ -78,7 +79,7 @@ gic: interrupt-controller@c000000 {
->>>               #interrupt-cells = <3>;
->>>           };
->>> -        clock-controller@10001000 {
->>> +        infracfg: clock-controller@10001000 {
->>>               compatible = "mediatek,mt7988-infracfg", "syscon";
->>>               reg = <0 0x10001000 0 0x1000>;
->>>               #clock-cells = <1>;
->>> @@ -103,6 +104,24 @@ clock-controller@1001e000 {
->>>               #clock-cells = <1>;
->>>           };
->>> +        pwm@10048000 {
->>> +            compatible = "mediatek,mt7988-pwm";
->>
->> I can't take this unless there's a driver that supports your device.
+
+
+On 14/02/2024 01:43, Jinlong Mao wrote:
 > 
-> I'd argue you should rather look for a documented binding rather than a
-> (Linux?) driver. Otherwise you would refuse changes that are not
-> strictly Linux related. DTS files are meant to describe hardware in a
-> generic way and not be driven by Linux drivers / design.
+> On 2/14/2024 6:29 AM, Rob Herring wrote:
+>> On Tue, Feb 13, 2024 at 08:05:17AM -0800, Mao Jinlong wrote:
+>>> Change qcom,dsb-element-size to qcom,dsb-element-bits as the unit is
+>>> bit.
+>> That may be, but this is an ABI and you are stuck with it. Unless, you
+>> can justify why that doesn't matter. (IIRC, this is new, so maybe no
+>> users yet?)
+> 
+> Hi Rob,
+> 
+> Because for CMB type, it uses qcom,cmb-element-bits. So I change the
+> format to be the same as
+> CMB.
+> 
+> Thanks
+> Jinlong Mao
 > 
 
-Of course, devicetree describes hardware - that is pretty much globally known.
-
-As I wrote in the bindings patch, I still anyway want to see the driver part
-for this block before deciding if your description of this hardware is correct.
-
-Regards,
-Angelo
+I think what Rob was trying to say was that in the interest of not
+breaking existing DTs it's best to leave the existing names as they are,
+even if they aren't technically correct. And to only add new parameters
+with the -bits suffix, even if it's inconsistent with what's already there.
 
 
