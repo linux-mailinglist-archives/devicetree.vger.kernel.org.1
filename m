@@ -1,113 +1,123 @@
-Return-Path: <devicetree+bounces-41677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC9B5854B2A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 15:12:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E966854B2D
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 15:13:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 230731C213DC
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 14:12:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9457E281B55
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 14:12:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C60FF54FAE;
-	Wed, 14 Feb 2024 14:12:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01C0455E45;
+	Wed, 14 Feb 2024 14:12:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8A2954FA4;
-	Wed, 14 Feb 2024 14:12:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C58D54BD9;
+	Wed, 14 Feb 2024 14:12:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707919962; cv=none; b=tTtrvBELaFKcvpnZokBSRi3ogRmuZPGpkBafGtqlV4tXX8Fi/f5j0GXUixva5tLH5oKEabRuYvLJ2nlSMC67b0to/eXFW8pF01cI8zEtdQ06eAerv5/rXqcli5h8S4hXaZva7SN87tqvqCFM2HSsq4ASEwKK0uMDBnuT+rzp1nI=
+	t=1707919955; cv=none; b=RS/Oqc33vFQRLnxyYrn2igFcYsIwWR+g3iDBRQwlp5icWZMCtAssFvlnKTithiPB8KG8zHhjJs6PnP3wH/ixKbFakCU5Gx96u9zYs73QuIuSZch5cL9TMTJfbTHrO2vTMZpZ88z39zmOxX1HI1KEUbASND/Pz6e49RiCfdkwhCQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707919962; c=relaxed/simple;
-	bh=XYOhbvhPZxYmBhp1tU8taJa8/fjCiGlVZn1WC/bNMZI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T160rZs4n5nBvcaLPv1nMe1zU2ir0PsJGnHu724w8NAiqTTSnCdR5hxWGTPwvrguhHIvmceiW1CRR2zTOR1kUDpt/6unwMGi72huOGaYnDKtl4GV38TWMl/oBz+WGohgZqrPxiDlD/pgVCi/Ok8TSHoLtxZ92IwQMgzu7uZcUDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.96.2)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1raFzr-00046P-39;
-	Wed, 14 Feb 2024 14:12:24 +0000
-Date: Wed, 14 Feb 2024 14:12:15 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	John Crispin <john@phrozen.org>, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH V2 2/2] pwm: mediatek: add support for MT7988
-Message-ID: <ZczKP-L7MptwnKF_@makrotopia.org>
-References: <20240214140454.6438-1-zajec5@gmail.com>
- <20240214140454.6438-2-zajec5@gmail.com>
+	s=arc-20240116; t=1707919955; c=relaxed/simple;
+	bh=2GJQISDkv6jRPcP4DODxleLSjsThEWXj8M2v2WcKJQs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KMm0xLPh2UpjM6S91BvfM1fuDLki26QJZJCCf7BbIvBb/9qQo8yiSZx1wbuEYVNvLDGtw8xnTrYhyZSbTlwhz8/aj+kU6JOVk/+bRFkB6qBvbV5oLfOk8U9Y3xqNTtC6vfXDCPcuoTlW/+jKVevXPbmFxXwvqfKpHPEEFxv51mQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-60757c46e34so19975577b3.1;
+        Wed, 14 Feb 2024 06:12:33 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707919953; x=1708524753;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cb9+3wwx/AEqScRVEPt4G2UGdfMfQvmiqk4DpiK9PjE=;
+        b=TfqW3BM+lz6BtXH6NyvDJ2nFgYmuR+p3GhkT/RfZShAo4YsNgGWjX7PieMjAVxZTuN
+         OKwVQQAun+U7a2Ea35t/ENOKm94Pwo46kYYkZ3oIRvjnI7GvS069joA/9eFm4J5Bbhuq
+         jTwTuhfO4SYK7hnOL+HzeYESBI1/a9s60frbQyAGUn3fAo24rujnLWekxhrWwGuRCxyS
+         etfB4BL4lrizl8ex6/pDxA6fW6HmzPqSfR9pBNjf2xNS/OtR0obfH33JDbXbJ4PUIWJQ
+         n0fDCeTDYtKviVKDzJGG+/O4JYWEEAQ/irFiRvwwD043Ots0VzHPZSq8wx87YYv1gcII
+         HxXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUY1XXyvlG+8gUYWCM5mQbWUae5rzmiRas1OfyO6ABFdrOWb7TSRGsa9CYc+Qk3A0AcSEH6X8pOp51OzZw8wv4qTB1KHHL7K6Or0gK9lGRAkI5Vq93l/11VBfiudLwEw4nNqr6AAtGk3FfZTbOi
+X-Gm-Message-State: AOJu0YytsVigKljyCoFf6jqfWpw+hYw5llpSWTW4MWDGA5+3Qy7ARfWA
+	6XIbvowsfTRrnmi0nqMO3z89Ket36pyCXB9XiUawgdYSY9Da/WQLv814Dd+6O1I=
+X-Google-Smtp-Source: AGHT+IGYihkpbcwQMUuxrWCKgub/LGUa3/RjFJq29oePROrxRNVlT2Dlo/AUGtRXi0Z7f5dhBUThdQ==
+X-Received: by 2002:a81:520a:0:b0:607:7aac:6707 with SMTP id g10-20020a81520a000000b006077aac6707mr2646354ywb.12.1707919952836;
+        Wed, 14 Feb 2024 06:12:32 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVhKmS+KCY2DRHC+8lb8H8q1AloYt8/6MI0XS0zfh6FZwFHferra/BnpLeYhj/8Gg1o+kxnVIGUGnlInw3eEknk/+qMu7dDkEAbIqhjhtO4rYbPAVry1FFK8R3Q7I7y99ds6va7IhEW2JkfXxsv
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
+        by smtp.gmail.com with ESMTPSA id p4-20020a0dcd04000000b00604a80b94b9sm2204902ywd.129.2024.02.14.06.12.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Feb 2024 06:12:32 -0800 (PST)
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-dcc73148611so2110978276.3;
+        Wed, 14 Feb 2024 06:12:32 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVETi8s0ljL5RFe8riMlqYO0v80JbmpWGYeltOw5nMZ54nQOvGJf1rJ89f3i/scwdsmVHjKmIMYINJ2Da0/zNOwI1Tir3dyZtZkZKBZfpvbqjTgAKeejmnjVGmlf9PVQkc5LNxMtiZHRMl7vkbV
+X-Received: by 2002:a25:6942:0:b0:dc7:443d:d9da with SMTP id
+ e63-20020a256942000000b00dc7443dd9damr2446212ybc.4.1707919952447; Wed, 14 Feb
+ 2024 06:12:32 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240214140454.6438-2-zajec5@gmail.com>
+References: <87cyszpwmp.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87cyszpwmp.wl-kuninori.morimoto.gx@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 14 Feb 2024 15:12:20 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXih9g46JKvz_UsjH3h_OrJOJLnFv6ixpYjE6Q4DRxbsA@mail.gmail.com>
+Message-ID: <CAMuHMdXih9g46JKvz_UsjH3h_OrJOJLnFv6ixpYjE6Q4DRxbsA@mail.gmail.com>
+Subject: Re: [PATCH] ARM: renesas: r8a7778: add missing reg-name for sound
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 14, 2024 at 03:04:54PM +0100, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> MT7988 uses new registers layout just like MT7981 but it supports 8 PWM
-> interfaces.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+Hi Morimoto-san,
 
-Reviewed-by: Daniel Golle <daniel@makrotopia.org>
+On Wed, Feb 14, 2024 at 4:12=E2=80=AFAM Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> Sound Driver requires "reg-name" to get register info. Current driver
+> try to get register info via "reg" instead of "reg-name" as backup plan,
+> but this support will be removed soon.
+> Use "reg-names" for r8a7778 sound.
+>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 
-> ---
-> V2: New patch in the series
-> 
->  drivers/pwm/pwm-mediatek.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/drivers/pwm/pwm-mediatek.c b/drivers/pwm/pwm-mediatek.c
-> index 562102a47ac0..292c8bd5b343 100644
-> --- a/drivers/pwm/pwm-mediatek.c
-> +++ b/drivers/pwm/pwm-mediatek.c
-> @@ -339,6 +339,13 @@ static const struct pwm_mediatek_of_data mt7986_pwm_data = {
->  	.reg_offset = mtk_pwm_reg_offset_v1,
->  };
->  
-> +static const struct pwm_mediatek_of_data mt7988_pwm_data = {
-> +	.num_pwms = 8,
-> +	.pwm45_fixup = false,
-> +	.has_ck_26m_sel = false,
-> +	.reg_offset = mtk_pwm_reg_offset_v2,
-> +};
-> +
->  static const struct pwm_mediatek_of_data mt8183_pwm_data = {
->  	.num_pwms = 4,
->  	.pwm45_fixup = false,
-> @@ -369,6 +376,7 @@ static const struct of_device_id pwm_mediatek_of_match[] = {
->  	{ .compatible = "mediatek,mt7629-pwm", .data = &mt7629_pwm_data },
->  	{ .compatible = "mediatek,mt7981-pwm", .data = &mt7981_pwm_data },
->  	{ .compatible = "mediatek,mt7986-pwm", .data = &mt7986_pwm_data },
-> +	{ .compatible = "mediatek,mt7988-pwm", .data = &mt7988_pwm_data },
->  	{ .compatible = "mediatek,mt8183-pwm", .data = &mt8183_pwm_data },
->  	{ .compatible = "mediatek,mt8365-pwm", .data = &mt8365_pwm_data },
->  	{ .compatible = "mediatek,mt8516-pwm", .data = &mt8516_pwm_data },
-> -- 
-> 2.35.3
-> 
-> 
+Nice catch!
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.9.
+
+This never triggered with "make dtbs_check", because
+arch/arm/boot/dts/r8a7778-bockw.dts does not change the status property
+of the rcar_sound node to "ok".
+
+Can we just add a line to do that, or is anything else related to
+sound missing in r8a7778-bockw.dts?
+
+I do not have a Bock-W, so I cannot test this.
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
