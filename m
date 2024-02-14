@@ -1,153 +1,98 @@
-Return-Path: <devicetree+bounces-41654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41655-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94CBB8549B0
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 13:53:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 571578549BB
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 13:55:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C0451F23ECC
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 12:53:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A3891C2226F
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 12:55:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8307354BD6;
-	Wed, 14 Feb 2024 12:52:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A935535DA;
+	Wed, 14 Feb 2024 12:54:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="CwertjnW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lz26F2Iq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AE705466D;
-	Wed, 14 Feb 2024 12:52:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE65F52F81;
+	Wed, 14 Feb 2024 12:54:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707915142; cv=none; b=NJyiaZ1/QMhj6lliXsTjKwYPJjjXoScs3JezLNuuuZrM9aG5MPlMRvQxcMG1M5hQ/GbfaywN5IwHkiE0MjmtgNvA2/Pv80SMEQO3UD5nShxwxNoHGV6jV0EVBoBxRd4JVVlL1qUUIuicYyw/6uiiThjGb1cl6lW5juPGItn1p4E=
+	t=1707915248; cv=none; b=AHxQFi4E1Dj5HZ2r9YIngRy6kqJBAhE40+yPFch5stzKFhoEdZezGe+skRMmCca4bcwxaJiAeuS7CqlASRw6uEOcoy9mJpeQ+Sq4fvd26seI6u96VyjCZOxQCxt7snID4pFut64bTOskrayPs6aBzEv5RUARmVX5GHLi5wFOWXY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707915142; c=relaxed/simple;
-	bh=sJkoOqDE1OojDBngEzOhOKC5OyFtGpe8Wxft0K0Mrbo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cbEMl7e829YbJ3yxtIxe012pcKBmaI5GA/dA4WCaxlw1emHEIe1NNPNvzUjeOUgakVzz1vP19x7MR6jbaYshZcuFGndd/k+BB805kYZZ+dtcGOcOjHTG4KNq53o822ooxlLpSUwAwYt7Yilx5kHI46k+6UVLf7V1cyo2XfC/u3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=CwertjnW; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41ECptst008400;
-	Wed, 14 Feb 2024 06:51:55 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707915116;
-	bh=kuoeBUR4o4+sd1G1Nxv5Un7Uktabr5/pM9BWB3fx2HY=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=CwertjnW7LcohMDThCNa/jRApyrXKYeO5YOGIvmNxLFDfPVeZRhmc7D2mWe7Et5Sw
-	 c3X7MaXVfTF37+3FJC7LzJXKnsFDgavmNFZvaWv52LQQzzgbfSXKQbEjDY4NmeB8qS
-	 x2gFSOfksnTRuJRKrdbosxRCSmLrzFxQJReyMBrA=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41ECpthd100144
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 14 Feb 2024 06:51:55 -0600
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 14
- Feb 2024 06:51:55 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 14 Feb 2024 06:51:55 -0600
-Received: from localhost (ti.dhcp.ti.com [172.24.227.95] (may be forged))
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41ECpsTq092363;
-	Wed, 14 Feb 2024 06:51:55 -0600
-From: Devarsh Thakkar <devarsht@ti.com>
-To: <jyri.sarha@iki.fi>, <tomi.valkeinen@ideasonboard.com>,
-        <airlied@gmail.com>, <daniel@ffwll.ch>,
-        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <robh@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>
-CC: <praneeth@ti.com>, <a-bhatia1@ti.com>, <j-luthra@ti.com>,
-        <devarsht@ti.com>
-Subject: [PATCH v2 2/2] arm64: dts: ti: Add common1 register space for AM62x, AM62A & AM65x SoCs
-Date: Wed, 14 Feb 2024 18:21:51 +0530
-Message-ID: <20240214125151.1965137-3-devarsht@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240214125151.1965137-1-devarsht@ti.com>
-References: <20240214125151.1965137-1-devarsht@ti.com>
+	s=arc-20240116; t=1707915248; c=relaxed/simple;
+	bh=Jra6v3PLuIdfTUMCLPbuHtEJrWWs298/umdqjKiHzfg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Twut/MN4dAa5BQwbdXzWJR6FzxUpw9T+MGkHwwI1Qga47iS3v/OgVIdq7mhF9tE7Meso5Onhan/NgHmzvxdNR75o5x3p344Njy/O5z/Oacf9nYiTqC6SCkXB5SyrvaJHDL37n3mMLm8wzVqTbroQqs9/DoMEhPKPpSWKAEv5x0Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lz26F2Iq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49CA9C433F1;
+	Wed, 14 Feb 2024 12:54:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707915248;
+	bh=Jra6v3PLuIdfTUMCLPbuHtEJrWWs298/umdqjKiHzfg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lz26F2IqlJ/5YiIBXs3eQoGhiILAbJAbFe0tmJbbCql8OHSUkDsZ6D4G5DljflMgn
+	 swWwAjpgkM/Rnb1FUzmq9FWeZtXDjVHPz30TRZjgyUPZuqxj3MPeWV0pvTAfz1Ar+R
+	 ZiKBvgcQwtPSFme842EZE3BkesKCb+b1yLSpZE/y7tgDPPS/1R8NYOkFa2sB9A8KhX
+	 +uFPu625QKMKaDf0YKYDObARIK6u4f8hnk6Tk8PYfJzhCYDU0Cp59PfwwNr8HJMkaI
+	 m63+0x6X1UPNhvLkehCQt9eMr1KEbngXEzrCiL/OSrTQ/NvUpXUZcDAJb6PAFOeAfF
+	 KWBc6fb/Yobsw==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1raEmQ-000000004oS-1O2K;
+	Wed, 14 Feb 2024 13:54:27 +0100
+Date: Wed, 14 Feb 2024 13:54:26 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 02/10] dt-bindings: PCI: qcom: Do not require
+ 'msi-map-mask'
+Message-ID: <Zcy4Atjmb6-wofCL@hovoldconsulting.com>
+References: <20240212165043.26961-1-johan+linaro@kernel.org>
+ <20240212165043.26961-3-johan+linaro@kernel.org>
+ <e396cf20-8598-4437-b635-09a4a737a772@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e396cf20-8598-4437-b635-09a4a737a772@linaro.org>
 
-This adds common1 register space for AM62x, AM62A and AM65x SoC's which are
-using TI's Keystone display hardware and supporting it as described in
-Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+On Wed, Feb 14, 2024 at 01:01:20PM +0100, Krzysztof Kozlowski wrote:
+> On 12/02/2024 17:50, Johan Hovold wrote:
+> > Whether the 'msi-map-mask' property is needed or not depends on how the
+> > MSI interrupts are mapped and it should therefore not be described as
+> > required.
+> 
+> I could imagine that on all devices the interrupts are mapped in a way
+> you need to provide msi-map-mask. IOW, can there be a Qualcomm platform
+> without msi-map-mask?
 
-Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
----
-V2: Add common1 region for AM62A SoC too
----
- arch/arm64/boot/dts/ti/k3-am62-main.dtsi  | 5 +++--
- arch/arm64/boot/dts/ti/k3-am62a-main.dtsi | 5 +++--
- arch/arm64/boot/dts/ti/k3-am65-main.dtsi  | 5 +++--
- 3 files changed, 9 insertions(+), 6 deletions(-)
+I don't have access to the documentation so I'll leave that for you guys
+to determine. I do note that the downstream DT does not use it and that
+we have a new devicetree in linux-next which also does not have it:
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-index fe0cc4a9a501..8cee4d94cdd3 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-@@ -779,9 +779,10 @@ dss: dss@30200000 {
- 		      <0x00 0x30207000 0x00 0x1000>, /* ovr1 */
- 		      <0x00 0x30208000 0x00 0x1000>, /* ovr2 */
- 		      <0x00 0x3020a000 0x00 0x1000>, /* vp1: Used for OLDI */
--		      <0x00 0x3020b000 0x00 0x1000>; /* vp2: Used as DPI Out */
-+		      <0x00 0x3020b000 0x00 0x1000>, /* vp2: Used as DPI Out */
-+		      <0x00 0x30201000 0x00 0x1000>; /* common1 */
- 		reg-names = "common", "vidl1", "vid",
--			    "ovr1", "ovr2", "vp1", "vp2";
-+			    "ovr1", "ovr2", "vp1", "vp2", "common1";
- 		power-domains = <&k3_pds 186 TI_SCI_PD_EXCLUSIVE>;
- 		clocks = <&k3_clks 186 6>,
- 			 <&dss_vp1_clk>,
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-index 972971159a62..f475daea548e 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-@@ -994,9 +994,10 @@ dss: dss@30200000 {
- 		      <0x00 0x30207000 0x00 0x1000>, /* ovr1 */
- 		      <0x00 0x30208000 0x00 0x1000>, /* ovr2 */
- 		      <0x00 0x3020a000 0x00 0x1000>, /* vp1: Tied OFF in the SoC */
--		      <0x00 0x3020b000 0x00 0x1000>; /* vp2: Used as DPI Out */
-+		      <0x00 0x3020b000 0x00 0x1000>, /* vp2: Used as DPI Out */
-+		      <0x00 0x30201000 0x00 0x1000>; /* common1 */
- 		reg-names = "common", "vidl1", "vid",
--			    "ovr1", "ovr2", "vp1", "vp2";
-+			    "ovr1", "ovr2", "vp1", "vp2", "common1";
- 		power-domains = <&k3_pds 186 TI_SCI_PD_EXCLUSIVE>;
- 		clocks = <&k3_clks 186 6>,
- 			 <&k3_clks 186 0>,
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-index 07010d31350e..ff857117d719 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-@@ -991,9 +991,10 @@ dss: dss@4a00000 {
- 		      <0x0 0x04a07000 0x0 0x1000>, /* ovr1 */
- 		      <0x0 0x04a08000 0x0 0x1000>, /* ovr2 */
- 		      <0x0 0x04a0a000 0x0 0x1000>, /* vp1 */
--		      <0x0 0x04a0b000 0x0 0x1000>; /* vp2 */
-+		      <0x0 0x04a0b000 0x0 0x1000>, /* vp2 */
-+		      <0x0 0x04a01000 0x0 0x1000>; /* common1 */
- 		reg-names = "common", "vidl1", "vid",
--			"ovr1", "ovr2", "vp1", "vp2";
-+			"ovr1", "ovr2", "vp1", "vp2", "common1";
- 
- 		ti,am65x-oldi-io-ctrl = <&dss_oldi_io_ctrl>;
- 
--- 
-2.34.1
+	https://lore.kernel.org/r/20240125-topic-sm8650-upstream-pcie-its-v1-1-cb506deeb43e@linaro.org
 
+But at least the latter looks like an omission that should be fixed.
+
+Johan
 
