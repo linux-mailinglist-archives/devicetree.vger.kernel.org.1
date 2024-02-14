@@ -1,364 +1,300 @@
-Return-Path: <devicetree+bounces-41746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD026854F56
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 18:03:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CB6E854F65
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 18:06:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 635B128274E
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 17:03:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B82C328B3EA
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 17:05:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76505605DF;
-	Wed, 14 Feb 2024 17:01:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B02AF6024D;
+	Wed, 14 Feb 2024 17:05:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b="MPHVT4xD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from mx0a-0046e701.pphosted.com (mx0a-0046e701.pphosted.com [67.231.149.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A17D160DC2;
-	Wed, 14 Feb 2024 17:01:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B64F560867;
+	Wed, 14 Feb 2024 17:05:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707930104; cv=none; b=OlWuKtyxKlYmFlZJux1YgFgU64nmUFX+wJZ4KWtMEeXE9WlbhowmLYPLBHrzMMNpapqMcfwlml4ZWdmZtmgKOLdxHAPrVRZbQ+vQpHpzFmtUmkk3Z5FPD315PaCQ4nWupvT/jkAINlGyT1FarErZzkvAiy2lzC7vF8G7fu3q0Lg=
+	t=1707930354; cv=none; b=QEDQr1nCwlSin9Wv4WvHeg5v99VSbOD2Rz6cIeN1s7Mzo3SrzujQ0NZPHJlF3Pnio1tl/97+qnVsWYSjUqcPkS855GO4PhQI0i3Y9EtNUSE6TBqsdj7pfHz/KhjjoPSNuMbQcy1PSV0l051aTFqEAiZqRxcmZbt/2xVI0Dj1x7o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707930104; c=relaxed/simple;
-	bh=tP7PPmCwxb3w/ItsQ2l3HAoLtVbGyYY+RZhlA6Qba34=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EwqkbesI8t/GyTZoMDJe7ytr1+311ZTSWFH+HBWHWVLQ+yFH/y2TP5soYgrHneO3TZfas4qfnb/3xH1qIAk1yXeQYJC5ORbBWe4z4aj4eE5PPabtxoimMSIUxAdMLuuKDREVc/AjS1qGU0Lx7U2Yiuhg86qk2I5Y2XzhbV3WSXY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4TZkrx594yz6JB09;
-	Thu, 15 Feb 2024 00:57:37 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id B9F1C140B55;
-	Thu, 15 Feb 2024 01:01:37 +0800 (CST)
-Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 14 Feb
- 2024 17:01:37 +0000
-Date: Wed, 14 Feb 2024 17:01:36 +0000
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: =?UTF-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-CC: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Andrey Skvortsov <andrej.skvortzov@gmail.com>, Icenowy Zheng
-	<icenowy@aosc.io>, Dalton Durst <dalton@ubports.com>, Shoji Keita
-	<awaittrot@shjk.jp>, <linux-iio@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/4] iio: magnetometer: add a driver for Voltafield
- AF8133J magnetometer
-Message-ID: <20240214170136.00003a22@Huawei.com>
-In-Reply-To: <20240212175410.3101973-4-megi@xff.cz>
-References: <20240212175410.3101973-1-megi@xff.cz>
-	<20240212175410.3101973-4-megi@xff.cz>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1707930354; c=relaxed/simple;
+	bh=rx3M+Duu0YsPRFId7MG8RbxYqjR1u0OvnRcZx0ekX40=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=GaMmOwrO1BojaUmn9x5QjAWqRCuVpWOz17FIREYJdSQxeUkw6qQuAmDnQ0VEXXOsl/CCA3EtdrEQIhikvQeuKUcZTLohIKT+7Wrtl6H731sVW+lJDu2aPFS4rme36T3xPn38rTtYy2ypMGeFbGB4X/R1b++L+ENDdJCaGDJW//U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=plexus.com; spf=pass smtp.mailfrom=plexus.com; dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b=MPHVT4xD; arc=none smtp.client-ip=67.231.149.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=plexus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=plexus.com
+Received: from pps.filterd (m0341554.ppops.net [127.0.0.1])
+	by mx0a-0046e701.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41EAorNh015120;
+	Wed, 14 Feb 2024 10:07:30 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=plexus.com; h=
+	from:to:cc:subject:date:message-id:in-reply-to:references
+	:mime-version:content-transfer-encoding:content-type; s=pps1;
+	 bh=xnq1AQLHK2MU8DiOuNCgG/K29mjeX+zve6mmPdGlY68=; b=MPHVT4xDLQoN
+	/1zvNof2zQICOz6Tlx8rfOZRqPP4Bp4AW/+H89TQeHo89LS6VKE+lHOIuU5OHmuf
+	zibJAbYemgpH5st1nIwhmwGBitwO16mOzoRfmtastl+2LE/W0ceBbmT+EUv85DJy
+	DcmeyTgA1E64PO/kqp0o36nL/foYjeBAr3wvuDWCiiZSkKeTpNodNTwqhA/1hqcH
+	y8Xcnhn3QHw2vtp45LOwPiEXKHnj3c6QtxZU4znfQfromZIOJrMRmIaIikIdhR8D
+	MlPSAoNfzqgZ8OWG6nqDnlCicOOTSNS6jemSQUhgF8CwHntWHO1FaSvRjXxA3YDo
+	NJHHjVooMA==
+Received: from gcc-mail-mx-004.na.plexus.com (outbound.plexus.com [64.215.193.254])
+	by mx0a-0046e701.pphosted.com (PPS) with ESMTPS id 3w8v4ggvyr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+	Wed, 14 Feb 2024 10:07:29 -0600 (CST)
+Received: from gcc-mail-mx-002.Na.Plexus.com (10.255.51.221) by
+ gcc-mail-mx-004.na.plexus.com (10.255.51.224) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 14 Feb 2024 16:07:28 +0000
+Received: from LNDCL34533.neenah.na.plexus.com (10.255.48.203) by
+ gcc-mail-mx-002.Na.Plexus.com (10.255.51.221) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Wed, 14 Feb 2024 16:07:28 +0000
+From: Danny Kaehn <danny.kaehn@plexus.com>
+To: <robh@kernel.org>
+CC: <andriy.shevchenko@linux.intel.com>, <bartosz.golaszewski@linaro.org>,
+        <bentiss@kernel.org>, <danny.kaehn@plexus.com>,
+        <devicetree@vger.kernel.org>, <dmitry.torokhov@gmail.com>,
+        <ethan.twardy@plexus.com>, <jikos@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linux-input@vger.kernel.org>,
+        <niyas.sait@linaro.org>
+Subject: Re: [PATCH v10 1/3] dt-bindings: i2c: Add CP2112 HID USB to SMBus
+Date: Wed, 14 Feb 2024 10:06:16 -0600
+Message-ID: <20240214160616.2377733-1-danny.kaehn@plexus.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240213152825.GA1223720-robh@kernel.org>
+References: <20240213152825.GA1223720-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: lhrpeml500006.china.huawei.com (7.191.161.198) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-GUID: -MsJYhM0Ofpt2r8PTgUYC-bAc6z3Pnc7
+X-Proofpoint-ORIG-GUID: -MsJYhM0Ofpt2r8PTgUYC-bAc6z3Pnc7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-14_08,2024-02-14_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 lowpriorityscore=0 adultscore=0 spamscore=0 suspectscore=0
+ clxscore=1011 phishscore=0 impostorscore=0 mlxscore=0 bulkscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402140125
 
-On Mon, 12 Feb 2024 18:53:55 +0100
-Ond=C5=99ej Jirman <megi@xff.cz> wrote:
+Thanks for taking a look Rob.
 
-> From: Icenowy Zheng <icenowy@aosc.io>
->=20
-> AF8133J is a simple I2C-connected magnetometer, without interrupts.
->=20
-> Add a simple IIO driver for it.
->=20
-> Co-developed-by: Icenowy Zheng <icenowy@aosc.io>
-> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
-> Signed-off-by: Dalton Durst <dalton@ubports.com>
-> Signed-off-by: Shoji Keita <awaittrot@shjk.jp>
-> Co-developed-by: Ondrej Jirman <megi@xff.cz>
-> Signed-off-by: Ondrej Jirman <megi@xff.cz>
+On Tue, 2024-02-13 at 09:28 -0600, Rob Herring wrote:
+> On Mon, Feb 05, 2024 at 11:09:20AM -0600, Danny Kaehn wrote:
+> > This is a USB HID device which includes an I2C controller and 8 GPIO pins.
+...
+> > 2. There has been some contention between using named child nodes to
+> > identify i2c and gpio nodes, and also making the driver implementing this
+> > binding compatible with ACPI, since names aren't significant for ACPI
+> > nodes, and ACPI names are always automatically uppercased. It has been
+> > suggested that perhaps the DT binding should use child nodes with
+> > addressable `reg` properties to identify the child nodes, instead of by
+> > name [1].
+> 
+> 'reg' only makes sense if there are values which relate to the h/w. If 
+> your addresses are indices, that will be suspect.
+> 
+> There's documented nodenames for specific device classes in DT. You have 
+> to use those whether there's 'reg' and a unit-address or not. I'm not 
+> really clear what the problem is.
+> 
+Ack. Mostly just forwarding on Andy Shevchenko's suggestion for making a more
+consistent interface across ACPI and DT since ACPI doesn't support identifying
+children by named nodes.
 
+> > 
+> > Of course, I acknowledge that other firmware languages and kernel details
+> > shouldn't impact DT bindings, but it also seems that there should
+> > be some consistent way to specify sub-functions like this accross DT
+> > and ACPI. Some additional commentary / requests for comment about the
+> > seemingly missing glue here can be found in [2].
+> 
+> I have little interest in worrying about ACPI as I have limited 
+> knowledge in ACPI requirements, what I do know is the model for bindings 
+> are fundamentally differ, and no one has stepped up to maintain bindings 
+> from an ACPI perspective.
+> 
 
-Hi a few comments (mostly on changes)
+Fair enough.
 
-The runtime_pm handling can be simplified somewhat if you
-rearrange probe a little.
+> > Any comments from Rob/Krzysztof/other DT folks would be greatly appreciated
+> > 
+> > [1] https://lore.kernel.org/all/ZBhoHzTr5l38u%2FkX@smile.fi.intel.com/
+> > [2] https://lore.kernel.org/all/CAP+ZCCd0cD+q7=ngyEzScAte2VT9R00mqCQxB3K2TMbeg8UAfA@mail.gmail.com/
+> > 
+> >  .../bindings/i2c/silabs,cp2112.yaml           | 113 ++++++++++++++++++
+> >  1 file changed, 113 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/i2c/silabs,cp2112.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/i2c/silabs,cp2112.yaml b/Documentation/devicetree/bindings/i2c/silabs,cp2112.yaml
+> > new file mode 100644
+> > index 000000000000..a27509627804
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/i2c/silabs,cp2112.yaml
+> > @@ -0,0 +1,113 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/i2c/silabs,cp2112.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: CP2112 HID USB to SMBus/I2C Bridge
+> > +
+> > +maintainers:
+> > +  - Danny Kaehn <kaehndan@gmail.com>
+> > +
+> > +description:
+> > +  The CP2112 is a USB HID device which includes an integrated I2C controller
+> > +  and 8 GPIO pins. Its GPIO pins can each be configured as inputs, open-drain
+> > +  outputs, or push-pull outputs.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: usb10c4,ea90
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +    description: The USB port number on the host controller
+> > +
+> > +  i2c:
+> > +    description: The SMBus/I2C controller node for the CP2112
+> > +    $ref: /schemas/i2c/i2c-controller.yaml#
+> > +    unevaluatedProperties: false
+> > +
+> > +    properties:
+> > +      sda-gpios:
+> > +        maxItems: 1
+> > +
+> > +      scl-gpios:
+> > +        maxItems: 1
+> 
+> Why do you have GPIOs if this is a proper controller?
 
-> diff --git a/drivers/iio/magnetometer/af8133j.c b/drivers/iio/magnetomete=
-r/af8133j.c
-> new file mode 100644
-> index 000000000000..1f64a2337f6e
-> --- /dev/null
-> +++ b/drivers/iio/magnetometer/af8133j.c
-> @@ -0,0 +1,528 @@
+This is exclusively for bus recovery (not implemented in the driver patch
+sent here). I believe there's precedent for this in bindings like i2c-imx.yaml?
 
+(skip if the above was all you needed):
 
-> +static int af8133j_take_measurement(struct af8133j_data *data)
-> +{
-> +	unsigned int val;
-> +	int ret;
-> +
-> +	ret =3D regmap_write(data->regmap,
-> +			   AF8133J_REG_STATE, AF8133J_REG_STATE_WORK);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* The datasheet says "Mesaure Time <1.5ms" */
-> +	ret =3D regmap_read_poll_timeout(data->regmap, AF8133J_REG_STATUS, val,
-> +				       val & AF8133J_REG_STATUS_ACQ,
-> +				       500, 1500);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret =3D regmap_write(data->regmap,
-> +			   AF8133J_REG_STATE, AF8133J_REG_STATE_STBY);
+Hopefully without going into more details than you're interested in, the
+CP2112 hardware doesn't implement any runtime bus recovery algorithms.
+Even just by bridging two of the CP2112's GPIOs with SCL and SDA,
+I was able to use the generic GPIO bus recovery routine to recover a stuck bus.
+This was especially important since v2 of the CP2112 hardware has an errata
+which can cause uncompleted I2C transactions on a semi-regular basis.
 
-return regmap_write()
+> 
+> > +
+> > +      clock-frequency:
+> > +        minimum: 10000
+> > +        default: 100000
+> > +        maximum: 400000
+> > +
+> > +  gpio:
+> > +    description: The GPIO controller node for the CP2112
+> 
+> There's no need for a child node here. All these properties can be part 
+> of the parent.
 
-regmap accesses return 0 or a negative error code enabling little code
-reductions like this.
+I had gone back and forth on this for quite some time. Would you suggest this
+just because it _can_ be combined, due to the naming constraint on the "hog"
+nodes? (as opposed to the i2c not being able to be combined, due to
+unconstrained names of child nodes?).
 
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static int af8133j_read_measurement(struct af8133j_data *data, __le16 bu=
-f[3])
-> +{
-> +	struct device *dev =3D &data->client->dev;
-> +	int ret;
-> +
-> +	ret =3D pm_runtime_resume_and_get(dev);
-> +	if (ret) {
-> +		/*
-> +		 * Ignore EACCES because that happens when RPM is disabled
-> +		 * during system sleep, while userspace leave eg. hrtimer
-> +		 * trigger attached and IIO core keeps trying to do measurements.
+I had initially thought this approach would scale better -- say there was a
+similar chip with I2C, GPIO, SPI, and UART interfaces -- would GPIO still
+share a node with the parent? And is there a reason that gpio is
+special, or just it _can_ be combined due to the naming restrictions? Looking
+at some of the bindings under mfd/ I see the GPIO controller broken into a
+named child node, although I see they also have their own compatible strings...
 
-Yeah. We still need to fix that more elegantly :(
+> 
+> 
+> > +    type: object
+> > +    unevaluatedProperties: false
+> > +
+> > +    properties:
+> > +      interrupt-controller: true
+> > +      "#interrupt-cells":
+> > +        const: 2
+> > +
+> > +      gpio-controller: true
+> > +      "#gpio-cells":
+> > +        const: 2
+> > +
+> > +      gpio-line-names:
+> > +        minItems: 1
+> > +        maxItems: 8
+> > +
+> > +    patternProperties:
+> > +      "-hog(-[0-9]+)?$":
+> > +        type: object
+> > +
+> > +        required:
+> > +          - gpio-hog
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +    usb {
+> > +      #address-cells = <1>;
+> > +      #size-cells = <0>;
+> > +
+> > +      device@1 {
+> > +        compatible = "usb10c4,ea90";
+> > +        reg = <1>;
+> > +
+> > +        i2c {
+> > +          #address-cells = <1>;
+> > +          #size-cells = <0>;
+> > +          sda-gpios = <&cp2112_gpio 0 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> > +          scl-gpios = <&cp2112_gpio 1 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> > +
+> > +          temp@48 {
+> > +            compatible = "national,lm75";
+> > +            reg = <0x48>;
+> > +          };
+> > +        };
+> > +
+> > +        cp2112_gpio: gpio {
+> > +          gpio-controller;
+> > +          interrupt-controller;
+> > +          #gpio-cells = <2>;
+> > +          gpio-line-names = "CP2112_SDA", "CP2112_SCL", "TEST2",
+> > +            "TEST3","TEST4", "TEST5", "TEST6";
+> > +
+> > +          fan-rst-hog {
+> > +              gpio-hog;
+> > +              gpios = <7 GPIO_ACTIVE_HIGH>;
+> > +              output-high;
+> > +              line-name = "FAN_RST";
+> > +          };
+> > +        };
+> > +      };
+> > +    };
+> > -- 
+> > 2.25.1
+> > 
 
-> +		 */
-> +		if (ret !=3D -EACCES)
-> +			dev_err(dev, "Failed to power on (%d)\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	scoped_guard(mutex, &data->mutex) {
-> +		ret =3D af8133j_take_measurement(data);
-> +		if (ret)
-> +			goto out_rpm_put;
-> +
-> +		ret =3D regmap_bulk_read(data->regmap, AF8133J_REG_OUT,
-> +				       buf, sizeof(__le16) * 3);
-> +	}
-> +
-> +out_rpm_put:
-> +	pm_runtime_mark_last_busy(dev);
-> +	pm_runtime_put_autosuspend(dev);
-> +
-> +	return ret;
-> +}
-> +
+Thanks,
 
-
-> +
-> +static int af8133j_set_scale(struct af8133j_data *data,
-> +			     unsigned int val, unsigned int val2)
-> +{
-> +	struct device *dev =3D &data->client->dev;
-> +	u8 range;
-> +	int ret =3D 0;
-> +
-> +	if (af8133j_scales[0][0] =3D=3D val && af8133j_scales[0][1] =3D=3D val2)
-> +		range =3D AF8133J_REG_RANGE_12G;
-> +	else if (af8133j_scales[1][0] =3D=3D val && af8133j_scales[1][1] =3D=3D=
- val2)
-> +		range =3D AF8133J_REG_RANGE_22G;
-> +	else
-> +		return -EINVAL;
-> +
-> +	pm_runtime_disable(dev);
-> +
-> +	/*
-> +	 * When suspended, just store the new range to data->range to be
-> +	 * applied later during power up.
-Better to just do
-	pm_runtime_resume_and_get() here
-
-> +	 */
-> +	if (!pm_runtime_status_suspended(dev))
-> +		ret =3D regmap_write(data->regmap, AF8133J_REG_RANGE, range);
-> +
-> +	pm_runtime_enable(dev);
-and
-	pm_runtime_mark_last_busy(dev);
-	pm_runtime_put_autosuspend(dev);
-here.
-
-The userspace interface is only way this function is called so rearrange
-probe a little so that you don't need extra complexity in these functions.
-
-
-> +
-> +	data->range =3D range;
-
-If the write failed, generally don't update the cached value.
-
-> +	return ret;
-> +}
-> +
-> +static int af8133j_write_raw(struct iio_dev *indio_dev,
-> +			     struct iio_chan_spec const *chan,
-> +			     int val, int val2, long mask)
-> +{
-> +	struct af8133j_data *data =3D iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_SCALE:
-> +		scoped_guard(mutex, &data->mutex)
-> +			ret =3D af8133j_set_scale(data, val, val2);
-
-Look more closely at what scoped_guard() does.
-			return af8133j_set_scale(data, val, val2);
-is fine and simpler as no local variable needed.
-
-> +		return ret;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-
-> +static void af8133j_power_down_action(void *ptr)
-> +{
-> +	struct af8133j_data *data =3D ptr;
-> +	struct device *dev =3D &data->client->dev;
-> +
-> +	pm_runtime_disable(dev);
-You group together unwinding of calls that occur in very
-different places in probe.  Don't do that as it leas
-to disabling runtime pm having never enabled it
-in some error paths.  That may be safe but if fails the
-obviously correct test.
-
-Instead, have multiple callbacks registered.
-Disable will happen anyway due to=20
-> +	if (!pm_runtime_status_suspended(dev))
-This works as the stub for no runtime pm support returns
-false.
-
-So this is a good solution to the normal dance of turning power on
-just to turn it off shortly afterwards.
-
-> +		af8133j_power_down(data);
-> +	pm_runtime_enable(dev);
-Why?
-
-> +}
-> +
-> +static int af8133j_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev =3D &client->dev;
-> +	struct af8133j_data *data;
-> +	struct iio_dev *indio_dev;
-> +	struct regmap *regmap;
-> +	int ret, i;
-> +
-> +	indio_dev =3D devm_iio_device_alloc(dev, sizeof(*data));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	regmap =3D devm_regmap_init_i2c(client, &af8133j_regmap_config);
-> +	if (IS_ERR(regmap))
-> +		return dev_err_probe(dev, PTR_ERR(regmap),
-> +				     "regmap initialization failed\n");
-> +
-> +	data =3D iio_priv(indio_dev);
-> +	i2c_set_clientdata(client, indio_dev);
-> +	data->client =3D client;
-> +	data->regmap =3D regmap;
-> +	data->range =3D AF8133J_REG_RANGE_12G;
-> +	mutex_init(&data->mutex);
-> +
-> +	data->reset_gpiod =3D devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_H=
-IGH);
-> +	if (IS_ERR(data->reset_gpiod))
-> +		return dev_err_probe(dev, PTR_ERR(data->reset_gpiod),
-> +				     "Failed to get reset gpio\n");
-> +
-> +	for (i =3D 0; i < ARRAY_SIZE(af8133j_supply_names); i++)
-> +		data->supplies[i].supply =3D af8133j_supply_names[i];
-> +	ret =3D devm_regulator_bulk_get(dev, ARRAY_SIZE(data->supplies),
-> +				      data->supplies);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D iio_read_mount_matrix(dev, &data->orientation);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to read mount matrix\n");
-> +
-> +	ret =3D af8133j_power_up(data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	pm_runtime_set_active(dev);
-> +
-> +	ret =3D devm_add_action_or_reset(dev, af8133j_power_down_action, data);
-
-As mentioned above, this should only undo things done before this point.
-So just the af8133j_power_down() I think.
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D af8133j_product_check(data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	indio_dev->info =3D &af8133j_info;
-> +	indio_dev->name =3D "af8133j";
-> +	indio_dev->channels =3D af8133j_channels;
-> +	indio_dev->num_channels =3D ARRAY_SIZE(af8133j_channels);
-> +	indio_dev->modes =3D INDIO_DIRECT_MODE;
-> +
-> +	ret =3D devm_iio_triggered_buffer_setup(dev, indio_dev, NULL,
-> +					      &af8133j_trigger_handler, NULL);
-> +	if (ret < 0)
-> +		return dev_err_probe(&client->dev, ret,
-> +				     "Failed to setup iio triggered buffer\n");
-> +
-> +	ret =3D devm_iio_device_register(dev, indio_dev);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to register iio device");
-> +
-> +	pm_runtime_get_noresume(dev);
-
-> +	pm_runtime_use_autosuspend(dev);
-> +	pm_runtime_set_autosuspend_delay(dev, 500);
-> +	ret =3D devm_pm_runtime_enable(dev);
-
-This already deals with pm_runtime_disable() so you shouldn't need do it ma=
-nually.
-Also you want to enable that before the devm_iio_device_register() to avoid
-problems with it not being available as the userspace interfaces are used.
-
-So just move this up a few lines.
-
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	pm_runtime_put_autosuspend(dev);
-> +
-> +	return 0;
-> +}
-
+Danny Kaehn
 
