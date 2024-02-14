@@ -1,104 +1,142 @@
-Return-Path: <devicetree+bounces-41645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A924285492A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 13:25:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1897854940
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 13:32:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 44624B22AF2
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 12:25:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F626282966
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 12:32:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60A4F1B97C;
-	Wed, 14 Feb 2024 12:25:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE7B348CD4;
+	Wed, 14 Feb 2024 12:32:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sY+W//+o"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L4RVRHfB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3413C1B813;
-	Wed, 14 Feb 2024 12:25:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EB4A487BF;
+	Wed, 14 Feb 2024 12:32:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707913502; cv=none; b=db58AvSrT7m0YecBxKdl9LklxN5EGht3L7dd57fRSEyoO12eOVv7yFnaZKVhT7j1kg9imzlLnMivihZCoMKuf+HXv3+sEYSvKOyAi2rKcQnJU8bgvntsbxnDXi/h0lRI5YuLdjKx31P9sAysW21Sy0zQ9pQ/MNdKCJAVshIaNNo=
+	t=1707913973; cv=none; b=XasEzEihXAAOK9x/yNZ5wtazUj1byUff7ivi2PPp9OOQNX5pa3gPt+IC/qBLc8gh6L6vZnJ45KnVxhdcfjI7radPsbaSlvR1/G/8pOYoCNMJKqyUoa8MuyWx39GRoV9fxOgaMD8sc3NFDEUj6XqxO5gNLLTmVD9sDmy/DuYguSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707913502; c=relaxed/simple;
-	bh=om12AIRXbhoBkX5ErV9iC57tbcp9qmnO+XHs8NR0XaA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pst2ZP/FPvYwsprb52cDBfog4IkNVroBsvoWQ+tHZOyg/vcWcfsGrMVFKkLO48yfF+vcSbnfwlodr2XL2bYyiwzf6O60SvyHVfxif/kyKwTOEs1+Hyk8nSg4wpQs6Ac8s8K/4MotID3cu0HDLrejUMAW1RYBAimDoDY0MpaB1po=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sY+W//+o; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E18DDC433F1;
-	Wed, 14 Feb 2024 12:24:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707913501;
-	bh=om12AIRXbhoBkX5ErV9iC57tbcp9qmnO+XHs8NR0XaA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sY+W//+oR5pT+WqLTp1mUjOaDEV57w6AM2zyTU5R+puNv38dmMoH3d477WwuHMWCc
-	 Byzg4+kFesYaTSSssDgxb+3kjerABcZ2lY6PXSEIQE8Ag7sRhypfakz6Q8fTRn6Yok
-	 fzK4Cw9GnU+bUQrxxMnq9eJ9B2URNGFJbpEOC8xCHLyzw/1SsYyVAXsnK24PMJUsae
-	 rN9i3eNBbqJ1OePuJ7qeOah1liQQE6RbNN0+0uYBxP1iF8ow0YivnQZ9ZT5+kHFZnc
-	 juE1ksU1dgDn4v9IXyAHJ8M/sicz3YNjb+9nW1koJPEhZMeEmeYcy4VOdmLNsUvCno
-	 ZwlOG9l8DAwjA==
-Date: Wed, 14 Feb 2024 12:24:56 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Balakrishnan Sambath <balakrishnan.s@microchip.com>
-Cc: Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: sound:atmel-at91sam9g20ek: convert bindings
- to json-schema
-Message-ID: <aa707af2-b0ef-46de-83ae-584756d5569d@sirena.org.uk>
-References: <20240214-at91sam9g20ek-wm8731-yaml-v1-1-33333e17383b@microchip.com>
+	s=arc-20240116; t=1707913973; c=relaxed/simple;
+	bh=dPtWFbe9ncomcuz14UEKUw0b6c7nUIN51XsH8rzmQWc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Dp6t4/+ViHV3Vae5KT/q7T4LLlQ/5HVPq/+tgrQCTFYO7Mq2hVmtTthCk1cqgxGRe3HeF90iMU8qfJfRCD7o/4828vZJu0p+pZpaNemT5DqjqlGUkGWesUL0GCMnGSXx8X6dKEKR9C9pxkMLTvXRoCcx56RxR8biqzRsegs0+JA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L4RVRHfB; arc=none smtp.client-ip=209.85.215.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-5cedfc32250so4060572a12.0;
+        Wed, 14 Feb 2024 04:32:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707913971; x=1708518771; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=X1Ye0dunwLazzlcONdORYQz6R5DZTpTLJFqvm1NaBMM=;
+        b=L4RVRHfB19RkkRl0nH3ATnSVRvff+UsjyYiUAG3rMollnecGgnKQ60GKb5LLVJpaPm
+         jX5xGuY8Punh1PulT9K+cPRjuJuMfwRxJQxCXmQ+EPzBozdGh89bAI6AxDHlknIN/6z2
+         JpPDh7u72EUT2cl+tDAWk9Jg4VyMA0sPj8KylTVaEyvnldKD8ATCddkd3QtW5KD/q6j0
+         ksM4eEIeFufZXbjH0DMC//TYN21y4o8tNy2SWKcxQdD7DwwH8PfMnrJ+FFEz+E00fnlx
+         Tlpe19awLpC0AKHxWaBy+NTxzeHDTfn58ouOdzAJd20JJ14F7pNAR/WUpT86qjRFHjuz
+         tyDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707913971; x=1708518771;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=X1Ye0dunwLazzlcONdORYQz6R5DZTpTLJFqvm1NaBMM=;
+        b=EVQsWJJvDNr3pQX7/JrJATVOUv8dwbb3wHPl99JOFq5i9Oq7SmnJAa41loKFkyL94w
+         Fnhf/T6jsRSdqLqmiRB8kdl1xTMSwbpW4DB47Y9+8p5q20lGk3x8buAqcS0F3eda4g3D
+         ZQ4KoNTwQcrqOeH8PS0AEQ6IHaNXevNFPSk3U3P7mASidcipzOYF4TNIoDYgocx8ntEp
+         dYgGHGOzUivKJc9VOgADMTrslzUDp6w5WFqQUmOY+F9/+t6EDBKg+d0TCcIQTozYEPHB
+         MEKq3jrS/YFEmFkUMQo+mtIFzXYw4/TuWm/d/RXDt/HUMgcEofueUA2+AeajCZaYHfkN
+         rxKA==
+X-Forwarded-Encrypted: i=1; AJvYcCW7G4XtPGgsmcnASLc9AZuQ4PECHXS5OV3tHdUY9puhutFFmjN6haV6fSzAKn7XiPCbIM7wKCurkfjLPpWVA8y7T0ITeJNzIDvjr+WIr+58Go/Pxybpd0RW5K+TUcFS81pp+D1IAICCBQ==
+X-Gm-Message-State: AOJu0Ywq+wjOkhe3qUgMk7JbGmdIJ/7NZ1ZOxXTDyhze3eYzlBWF5pHv
+	UsnH7uPrhXrz+PysgTzgMAEOdHRMNNvJgHsZJnYCcez8gtfCLyhkJVKhGZFZ9Tdh78C8wgDKZ1k
+	su2HcwSaFeWzII18dToTbs4A5pc4=
+X-Google-Smtp-Source: AGHT+IHVmdw1nY0+4qD7E7k6QaVH+5XJQDDsj/LW3oDNKR06kE80kLwbeGs6MxsY6a+Qs73lI5I8l/GC4hlcwQZRmYY=
+X-Received: by 2002:a17:90a:f407:b0:296:2f49:6c04 with SMTP id
+ ch7-20020a17090af40700b002962f496c04mr2192291pjb.19.1707913971359; Wed, 14
+ Feb 2024 04:32:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="s7rTl/oWJRMeE7uX"
-Content-Disposition: inline
-In-Reply-To: <20240214-at91sam9g20ek-wm8731-yaml-v1-1-33333e17383b@microchip.com>
-X-Cookie: Available while quantities last.
+References: <20240210204606.11944-1-aford173@gmail.com> <20240210204606.11944-2-aford173@gmail.com>
+ <20240214121438.331a9f20@booty>
+In-Reply-To: <20240214121438.331a9f20@booty>
+From: Adam Ford <aford173@gmail.com>
+Date: Wed, 14 Feb 2024 06:32:40 -0600
+Message-ID: <CAHCN7x+y9bcdEqDkpma1oaY88WvjHsWUOm55B4XNsPy5HM_-vw@mail.gmail.com>
+Subject: Re: [PATCH V4 1/6] dt-bindings: phy: add binding for the i.MX8MP HDMI PHY
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: linux-arm-kernel@lists.infradead.org, marex@denx.de, 
+	aford@beaconembedded.com, Lucas Stach <l.stach@pengutronix.de>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	NXP Linux Team <linux-imx@nxp.com>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Feb 14, 2024 at 5:14=E2=80=AFAM Luca Ceresoli <luca.ceresoli@bootli=
+n.com> wrote:
+>
+> Hi Adam,
+>
+> On Sat, 10 Feb 2024 14:45:57 -0600
+> Adam Ford <aford173@gmail.com> wrote:
+>
+> > From: Lucas Stach <l.stach@pengutronix.de>
+> >
+> > Add a DT binding for the HDMI PHY found on the i.MX8MP SoC.
+> >
+> > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>
+> I was a bit puzzled by this v4 series as it comes after v8... however
+> thanks for keeping up!
 
---s7rTl/oWJRMeE7uX
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+It was confusing to me to try and figure out where the latest of each
+of the various components were found.  I tried to explain it in the
+cover letter, but basically the previous V8 was due to the fact that
+some portion of it had been attempted 7 times.  When it was brought to
+my attention that the PHY driver I used was not he right one and the
+HDMI-TX and the PVI driver were already applied, I reverted to using
+the revision history of the version of the PHY driver I pulled which
+was V3 and with my changes became V4.
 
-On Wed, Feb 14, 2024 at 12:10:06PM +0530, Balakrishnan Sambath wrote:
-> Convert atmel-at91sam9g20ek-wm8731-audio DT binding to yaml
-> based json-schema.Change file name to match json-scheme naming.
+I debated on making this V9, but inreality this code was only
+attempted 3 times, and the subsequent device tree stuff had undergone
+some changes, but it was easier to keep them paired together with the
+PHY driver so the series could be applied as a whole.
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
+I will be making a V5 due to some build-bot feedback and your
+feedback, but I'll be sure to pull your tags when I try again.  I just
+want to give people around a week to mull it over and test it.
 
---s7rTl/oWJRMeE7uX
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXMsRcACgkQJNaLcl1U
-h9AUYQf+IoYLzVMnh8iw5Nit64An1Vh3KQ/uSzayMzfztETr+85K7EGJw6RuAuEF
-X9XXAgq5jPkq4VvN57Urd4ieIR4gajNsEoOk09cM3w7hYF0UNk8BcnX1LF/c4/JZ
-+ItbXiyPZUNXGjHwi4IEoMK1g0Og6Y0B7lSwTb+bYV0NYTu1LIZytwpYQEBeXRGY
-g5dm+0Hh0dzJ5yAT8zT7PyoxMaHmNB7lHU9v0RYtSVbj7lg836C3uI1TM8TllMMZ
-afjmEjNPP7I8eCI+X8NzorvWLi+e0CwHvI3SZnZoflcGhuxQGlGNPPtdeT2hmFq5
-hrT3azEJn0Olq8RI61G+QCJK9J8ziw==
-=dEZg
------END PGP SIGNATURE-----
-
---s7rTl/oWJRMeE7uX--
+adam
+>
+> This patch is identical to the v8 I already reviewed, so:
+>
+> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+>
+> --
+> Luca Ceresoli, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
 
