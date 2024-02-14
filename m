@@ -1,174 +1,206 @@
-Return-Path: <devicetree+bounces-41616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5659B854765
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 11:42:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D876854790
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 11:52:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8CBB8B2444E
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 10:42:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 027A32860FB
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 10:52:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 168D61863F;
-	Wed, 14 Feb 2024 10:42:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89AF61865C;
+	Wed, 14 Feb 2024 10:52:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="EKClzF++"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="oAl2KAv9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA68218EB0
-	for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 10:42:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0F0C18638;
+	Wed, 14 Feb 2024 10:52:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707907331; cv=none; b=FRv6naxDnOrDYZrE7eF3DKIPCWdxLSDdu34CFuAxoQIP/FG7zBR5v8sciEOVqH/eBjfthIU2VGGL9C4uZ9Y5iqgSPDhdARCBf8cdoYfpJU7rnwRrXDWRFl/h9cBAtEnXr7KGAt75fOhYHETGFDyWtdvRTmt7YFpDe+RGKZL3T9o=
+	t=1707907963; cv=none; b=auQK4CbBVCtnFxXyaFNxp7Qz0o6RDtewRKcYAHt0T6PquO2ULtDHtwCdlE/EgNQBWUXplcRtB7G6MUgCC57lm3IJxFQjBHFcjGT+yZcoR9wcE8mFWTjyO2CDKFVlxjoMhrjSSh+O+SJd/w1Gsvq9r0QSwAtl+iMSNo7q/PRjnXg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707907331; c=relaxed/simple;
-	bh=6ZsuriBMCohN5uvava8Z+HPI6zdzB9t2C5NoARUcrA0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Ja7hbUSCPoBXvtK9Y1LK7RWr3hBv5oCYaSBhYNKDDd40yHdSGJGfl/HwDXUqDdFZrBLM3ZlIUAKalUPwqRudFcnXrtiMVXSXxsaheUKLmAUZhKm/+8sG7kqcUoEweYQzVGWtnGzxxahWCEzdqmh3VvlEq4e60E8JFRaikUf/5sE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=EKClzF++; arc=none smtp.client-ip=91.26.50.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1707906416; x=1710498416;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=6ZsuriBMCohN5uvava8Z+HPI6zdzB9t2C5NoARUcrA0=;
-	b=EKClzF++kzDneUpOxjj1LNg3J7VxxTXQ1o2BclCJuH+nZuex6qvYbqRLUhHQURHE
-	fHbhCbzIt9u5NVU8Aq6dJNxUdppaCcyGYiwYhaXKUMJrc8h0EX55Hhat7JA/Nm70
-	ZMiAtmvOfIVosah5kf6esFDJuGIvP+3nQkxu/SmCz6s=;
-X-AuditID: ac14000a-fbefe7000000290d-ac-65cc9570d89d
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 1F.75.10509.0759CC56; Wed, 14 Feb 2024 11:26:56 +0100 (CET)
-Received: from [172.25.39.28] (172.25.0.11) by Berlix.phytec.de (172.25.0.12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Wed, 14 Feb
- 2024 11:26:53 +0100
-Message-ID: <6c8feafd-a34c-4c7b-b6cd-4cd73b086259@phytec.de>
-Date: Wed, 14 Feb 2024 11:26:49 +0100
+	s=arc-20240116; t=1707907963; c=relaxed/simple;
+	bh=aBaw8zzSOYKdXSP4WFB7oN6QAraRJxc+J8ue3z3jQPg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=H4Dd9WQrhoMgBg4BXPSOrdBflCnsSl+eNtQ0IlrT1ydpd47KQ0jmiQRJ7yjZRbP6+Xh9yXwwvlMLGCUVjBesrE114cg28Lwo5rtp5NYF9FEOeK4pdoq7SjpU2i5oQEUHP5D5vg8uOHeXPTtIg0fp/9Lah9HRYuqjC22uiH+HZ2o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=oAl2KAv9; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id EEE8120272;
+	Wed, 14 Feb 2024 11:52:30 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1707907951;
+	bh=3piN2479mTbGHmItuCrKboZS6ZZmmMJocdeKlE4lYoE=; h=From:To:Subject;
+	b=oAl2KAv9Kq22FWnYKpuVm7S8yQAERPms1HXNxtnhCAb1VQsKEm6h+7T4DoHJJ83p+
+	 Pr/E70uV1Q4fDGsd5DmS1l3z9qS5LELsTRZ0rGOUlAghjM2qvRi2iLGQnle0ANkJdR
+	 ZHtgIMsf479bU24I5iHEXsJpqRwRsI2/9GjWLsAFD539zRjjzOYXhxTOyaxEojcSSN
+	 wUzHKVPplmA5iYL5xyGZipDc0nOVO5ID5rIWB7gZ25qMylzIuo9C61U1htvN2BL+b9
+	 JxI6Wu6H+V9L1R34yQyfU4Fcbm6rWXls6lqLsFPUQ484YJQGC6rPsqXtmFkGAYPihJ
+	 SEIXw8b8X/2Fg==
+Date: Wed, 14 Feb 2024 11:52:23 +0100
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Roland Hieber <rhi@pengutronix.de>,
+	Linux Regressions <regressions@lists.linux.dev>
+Cc: Hiago De Franco <hiagofranco@gmail.com>,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>, kernel@pengutronix.de,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: MXSFB error: -ENODEV: Cannot connect bridge
+Message-ID: <20240214105223.GA78582@francesco-nb>
+References: <34yzygh3mbwpqr2re7nxmhyxy3s7qmqy4vhxvoyxnoguktriur@z66m7gvpqlia>
+ <20240212110706.ibrreoj2wgzhltyw@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/9] Fix MMC properties on Sitara K3 devices
-Content-Language: en-US
-To: Judith Mendez <jm@ti.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero
- Kristo <kristo@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Francesco
- Dolcini <francesco.dolcini@toradex.com>
-References: <20240213235701.2438513-1-jm@ti.com>
-From: Wadim Egorov <w.egorov@phytec.de>
-In-Reply-To: <20240213235701.2438513-1-jm@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: Florix.phytec.de (172.25.0.13) To Berlix.phytec.de
- (172.25.0.12)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprEIsWRmVeSWpSXmKPExsWyRpKBR7dg6plUg6VrDC3W7D3HZDH/yDlW
-	i7tLfzJafPqQabH882x2i74XD5ktNj2+xmpxedccNos3P84yWbTuPcJu8f/sB3YHbo9NqzrZ
-	PO5c28PmsXlJvcfxG9uZPDa98vD4vEkugC2KyyYlNSezLLVI3y6BK2Piu+ksBU+lK9rmHGBq
-	YDwm1sXIySEhYCLxY/lk5i5GLg4hgcVMEj9777NAOHcZJY7OOMLWxcjBwStgI/Hppz9IA4uA
-	qsStbQeYQGxeAUGJkzOfsIDYogLyEvdvzWAHsYUFnCXubm0CizMLiEvcejKfCWSmiMACRolD
-	h3eBOcwCrUwSDxpegnUICRhIXFjeBmazCahL3NnwjRXE5hQwlDjQ8YoZYpKFxOI3B9khbHmJ
-	7W/nMEP0yku8uLScBeIdeYlp514zQ9ihEkc2rWaawCg8C8mxs5AcNQvJ2FlIxi5gZFnFKJSb
-	mZydWpSZrVeQUVmSmqyXkrqJERRvIgxcOxj75ngcYmTiYDzEKMHBrCTCO6n3TKoQb0piZVVq
-	UX58UWlOavEhRmkOFiVx3tUdwalCAumJJanZqakFqUUwWSYOTqkGxqm8zgXHL4tPYOsLX1S3
-	u+HMP82oI+fnvb1acU04xvphn8SNlf4egQ82Z2r96LJoFvtSv8Xp0eOGo5vdPZvUbQJLSj5m
-	cjM4fJt1b3Z8zvnL+zfq2jJL/Iiwy3Z1iwmYeDn5um3RkTdf7gvkJG7gtb6c6Pa5LqeVO8hH
-	z39//PN31+TfnT/drMRSnJFoqMVcVJwIAEHTlw2lAgAA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240212110706.ibrreoj2wgzhltyw@pengutronix.de>
+
++ Linux regression.
+
+This is a regression on v6.8-rc1.
+
+On Mon, Feb 12, 2024 at 12:07:06PM +0100, Roland Hieber wrote:
+> On Thu, Feb 08, 2024 at 12:58:02PM -0300, Hiago De Franco wrote:
+> > Hello all,
+> > 
+> > while doing some tests with kernel v6.8-rc3 and Colibri iMX7D, we
+> > noticed the following error:
+> > 
+> > [    0.432547] mxsfb 30730000.lcdif: error -ENODEV: Cannot connect bridge
+> > 
+> > This was introduced by commit edbbae7fba495284f72f05768696572691231558
+> > ("ARM: dts: imx7: add MIPI-DSI support"). This patch is routing the
+> > lcdif to the mipi_dsi_in_lcdif endpoint, however we do not have the DSI
+> > pins available in our edge connector. Instead, we use the parallel RGB
+> > LCD interface directly with, as example, an external LVDS transmitter:
+> > 
+> > &lcdif {
+> > ...
+> > 	status = "disabled";
+> > 
+> > 	port {
+> > 		lcdif_out: endpoint {
+> > 			remote-endpoint = <&lcd_panel_in>;
+> > 		};
+> > 	};
+> > };
+> > 
+> > By applying the following patch, the issue is gone and the LVDS works
+> > again:
+> > 
+> > diff --git a/arch/arm/boot/dts/nxp/imx/imx7s.dtsi b/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
+> > index ebf7befcc11e..9c81c6baa2d3 100644
+> > --- a/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
+> > +++ b/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
+> > @@ -834,16 +834,6 @@ lcdif: lcdif@30730000 {
+> >  					<&clks IMX7D_LCDIF_PIXEL_ROOT_CLK>;
+> >  				clock-names = "pix", "axi";
+> >  				status = "disabled";
+> > -
+> > -				port {
+> > -					#address-cells = <1>;
+> > -					#size-cells = <0>;
+> > -
+> > -					lcdif_out_mipi_dsi: endpoint@0 {
+> > -						reg = <0>;
+> > -						remote-endpoint = <&mipi_dsi_in_lcdif>;
+> > -					};
+> > -				};
+> >  			};
+> >  
+> >  			mipi_csi: mipi-csi@30750000 {
+> > @@ -895,22 +885,6 @@ mipi_dsi: dsi@30760000 {
+> >  				samsung,esc-clock-frequency = <20000000>;
+> >  				samsung,pll-clock-frequency = <24000000>;
+> >  				status = "disabled";
+> > -
+> > -				ports {
+> > -					#address-cells = <1>;
+> > -					#size-cells = <0>;
+> > -
+> > -					port@0 {
+> > -						reg = <0>;
+> > -						#address-cells = <1>;
+> > -						#size-cells = <0>;
+> > -
+> > -						mipi_dsi_in_lcdif: endpoint@0 {
+> > -							reg = <0>;
+> > -							remote-endpoint = <&lcdif_out_mipi_dsi>;
+> > -						};
+> > -					};
+> > -				};
+> >  			};
+> >  		};
+> > 
+> > I would like to know your opinion about this patch before sending it,
+> > does it makes sense for you? I understand that routing to endpoint
+> > should be done in the SoM device tree, so we are free to rout other
+> > endpoint without issues.
+> 
+> As far as I understood, the LCDIF -> DSI connection is always present in
+> the SoC. Can you overwrite the routing in your dts like this:?
+> 
+>     &lcdif_out_mipi_dsi {
+>         remote-endpoint = <&lcd_panel_in>;
+>     };
+> 
+> I'm not sure what is the best default solution here for imx7s.dtsi. Also
+> the labels don't work out in that case, this could be improved.
+
+For sure for something to be defined a solution it should not introduce
+regressions :-)
+
+This commit makes other boards not work anymore, specifically this
+reports is about colibri-imx7.
+
+With that said, the following patch solves the issue
+
+diff --git a/arch/arm/boot/dts/nxp/imx/imx7-colibri.dtsi b/arch/arm/boot/dts/nxp/imx/imx7-colibri.dtsi
+index 9fe51884af79..966ad13e7c78 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx7-colibri.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx7-colibri.dtsi
+@@ -536,12 +536,15 @@ &lcdif {
+        status = "disabled";
+
+        port {
+-               lcdif_out: endpoint {
++               lcdif_out: endpoint@0 {
++                       reg = <0>;
+                        remote-endpoint = <&lcd_panel_in>;
+                };
+        };
+ };
+
++/delete-node/ &mipi_dsi_in_lcdif;
++
+ /* Colibri PWM<A> */
+ &pwm1 {
+        pinctrl-names = "default";
 
 
-Am 14.02.24 um 00:56 schrieb Judith Mendez:
-> This patch series aims to fix and update MMC nodes for TI
-> Sitara K3 devices with the following changes.
->
-> The series introduces sdhci0 and sdhci2 nodes and enables
-> eMMC for AM62ax platform.
->
-> Also introduce fixes for MMC ITAP/OTAP values for AM64x
-> platform according to device datasheet [0], and add ITAP/
-> OTAP values for AM62p to enable the highest timing possible
-> for MMC0 and MMC1, according to device datasheet [1].
->
-> The DLL properties ti,trm-icp and ti,driver-strength-ohm
-> should be removed for soft PHYs since drive strength cannot
-> be changed, so remove these properties when not applicable.
-> Since this fix touches non-TI boards and therefore cannot be
-> tested, all tested-by's are welcome.
->
-> Also include a few fixes for ti,clkbuf-sel, bus-width,
-> and bootph-all device tree properties in MMC nodes.
->
-> This series was tested on:
-> - AM62a SK
-> - AM62x SK
-> - AM62p SK
-> - AM64x GP EVM
-> - AM64x SK EVM
-> - Beagleplay
+However, ... I do not really like the delete node, but it's required to
+prevent this error:
 
-Adding my Tested-by for the phyBOARD-Electra-AM642 board.
+arch/arm/boot/dts/nxp/imx/imx7s.dtsi:908.37-911.9: Warning (graph_endpoint): /soc/bus@30400000/dsi@30760000/ports/port@0/endpoint@0: graph connection to node '/soc/bus@30400000/lcdif@30730000/port/endpoint@0' is not bidirectional
 
-Tested-by: Wadim Egorov <w.egorov@phytec.de>
+With that said, unless you have a better solution I would just send a
+revert for your change.
 
+Francesco
 
->
-> [0] https://www.ti.com/lit/ds/symlink/am6442.pdf
-> [1] https://www.ti.com/lit/ds/symlink/am62p.pdf
->
-> Fixes since V2:
-> - Remove ti,driver-strength-ohm property in sdhci1 node for
->   k3-am642-tqma64xxl-mbax4xxl and k3-am642-phyboard-electra-rdk board files.
-> - Add Francesco's Acked-by
->
-> V2: https://lore.kernel.org/linux-devicetree/20240213002416.1560357-1-jm@ti.com/
-> V1: https://lore.kernel.org/linux-devicetree/22af7436-8833-4049-bdbb-f79bb3314ee8@ti.com/
-> RFC: https://lore.kernel.org/linux-devicetree/c94b7399-31c0-4e7d-a616-8f29c86a27ba@ti.com/
->
-> Judith Mendez (7):
->    arm64: dts: ti: k3-am62a-main: Add sdhci2 instance
->    arm64: dts: ti: k3-am64-main: Fix ITAP/OTAP values for MMC
->    arm64: dts: ti: k3-am62p: Add ITAP/OTAP values for MMC
->    arm64: dts: ti: k3-am6*: Remove DLL properties for soft PHYs
->    arm64: dts: ti: k3-am6*: Fix ti,clkbuf-sel property in MMC nodes
->    arm64: dts: ti: k3-am6*: Fix bus-width property in MMC nodes
->    arm64: dts: ti: k3-am6*: Add bootph-all property in MMC node
->
-> Nitin Yadav (2):
->    arm64: dts: ti: k3-am62a-main: Add sdhci0 instance
->    arm64: dts: ti: k3-am62a7-sk: Enable eMMC support
->
->   arch/arm64/boot/dts/ti/k3-am62-main.dtsi      | 12 +++--
->   .../boot/dts/ti/k3-am62-phycore-som.dtsi      |  1 -
->   .../boot/dts/ti/k3-am62-verdin-dahlia.dtsi    |  1 -
->   .../arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi |  1 -
->   .../boot/dts/ti/k3-am62-verdin-wifi.dtsi      |  1 -
->   arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi    |  2 -
->   .../arm64/boot/dts/ti/k3-am625-beagleplay.dts |  4 --
->   .../dts/ti/k3-am625-phyboard-lyra-rdk.dts     |  1 -
->   arch/arm64/boot/dts/ti/k3-am62a-main.dtsi     | 45 ++++++++++++++++++-
->   arch/arm64/boot/dts/ti/k3-am62a7-sk.dts       | 27 ++++++++++-
->   arch/arm64/boot/dts/ti/k3-am62p-main.dtsi     | 44 ++++++++++++++++--
->   arch/arm64/boot/dts/ti/k3-am62p5-sk.dts       |  3 +-
->   .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi |  2 -
->   arch/arm64/boot/dts/ti/k3-am64-main.dtsi      | 15 +++++--
->   arch/arm64/boot/dts/ti/k3-am642-evm.dts       |  4 +-
->   .../dts/ti/k3-am642-phyboard-electra-rdk.dts  |  1 -
->   arch/arm64/boot/dts/ti/k3-am642-sk.dts        |  2 -
->   .../dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts    |  1 -
->   18 files changed, 129 insertions(+), 38 deletions(-)
->
->
-> base-commit: 1e6bbc5185bcd113c8d2f7aa0a02f588a6bdbe5d
 
