@@ -1,123 +1,134 @@
-Return-Path: <devicetree+bounces-41589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 815D185463B
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 10:38:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3128685464C
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 10:43:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 274E41F26B97
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 09:38:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D53E21F21F8E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 09:43:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2240B134AD;
-	Wed, 14 Feb 2024 09:38:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ABC112E6C;
+	Wed, 14 Feb 2024 09:43:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B7zqyhsq"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="hoPxFim3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7DCA134A0;
-	Wed, 14 Feb 2024 09:38:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 579A0134A0;
+	Wed, 14 Feb 2024 09:43:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707903519; cv=none; b=LOrf8FVbRUEno7IvOOxKm/3s1ajVzmlceLvQuWE/mIgqt/emjCp5HrRutz9qnPyOVJv3NViraqGEXFRnrKYHS7LFuouXmrL4/SiTJEN5Ax4Pu9kwvl/N5D2fT9PxQgpRPDHZwE2otN5sJlYZN6MVYJsRVWRcaTVtrd1WDj/Bod8=
+	t=1707903789; cv=none; b=UMIVzUy+2ad/q9x+Ox5uoymjFDK4liRt6E2EJMZUksZOjxOHom38CGkfmv9e3vVlXxRb2Lgbav0ue4eAKZaJvcYjylTgVmyWJY1Cm5eMsBzzbCVF+U+llJ9RpjbzCGVgVeSqvAPwlb7PsuXit7FAT70W8AxCvyJ1ebvlkLaBlr4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707903519; c=relaxed/simple;
-	bh=dz5V4kR1LuJbVIZ4dAGFdi8A2apYcjn87QSy+rVXNsA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nnBe06B61FHLQPYxgte4q4zNoSzCArWLX713RXFkmeFCyC9hXVT763STn1AGLd9sRh1BcAgenBPVXjWjdzig6j6fKEk5FSbOJjkQS9uchyvBK7ECfxa7ZA+L2mz0ersXD0EpqDWLTckk5HqQw98gYRBCRz1/XnsZrYvL9sbaxRc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B7zqyhsq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFFB1C433F1;
-	Wed, 14 Feb 2024 09:38:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707903518;
-	bh=dz5V4kR1LuJbVIZ4dAGFdi8A2apYcjn87QSy+rVXNsA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=B7zqyhsqWntTU0ZYqNqy+uJY0/kpfKgSqfIQgafxHQxLHh/aG4BMvKgKKSEyHKvVQ
-	 nN3yua93J85s9bPWXEt48LUbWYNpPCbdHcGSA2ttpnUbsCWllg+dbGTeDKqUxkRhcf
-	 DF0Jeyb3ibQCgsqx+F6hfsN4DB0aF+pr9lRdNtq3xH8pbwzzFZ3IMgD2HGkQsF90wD
-	 FLFwvGjxZ4A8vJY0BBzkkgh8VPmXKb6D4STEqB+VRZvUapu3Xg8V03swFWwtPNRoNz
-	 qS9kkvardxBYPALbHcUkYv/2CGiD42d4SSmPCWAawQCYo2MniV0Ykx2yGVdxHu+Pi0
-	 AjUFtD2gJ3U7w==
-Date: Wed, 14 Feb 2024 09:38:32 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Bhargav Raviprakash <bhargav.r@ltts.com>
-Cc: arnd@arndb.de, broonie@kernel.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
-	jpanis@baylibre.com, kristo@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-	lgirdwood@gmail.com, linus.walleij@linaro.org,
-	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, m.nirmaladevi@ltts.com, nm@ti.com,
-	robh+dt@kernel.org, vigneshr@ti.com
-Subject: Re: [RESEND PATCH v1 03/13] dt-bindings: mfd: ti,tps6594: Add TI
- TPS65224 PMIC
-Message-ID: <20240214-galley-dweller-1e9872229d80@spud>
-References: <20240209-blitz-fidgety-78469aa80d6d@spud>
- <20240214093106.86483-1-bhargav.r@ltts.com>
+	s=arc-20240116; t=1707903789; c=relaxed/simple;
+	bh=HMI1tbD40fcGI/Gob3tsmSySOJRmfxkF2v0X/xjyfg0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ZOFMF27TzsxuoztDSw9iPWCT9HVXDrvJh/+dzHHWDxOeT6vjNzTc/gA7UaG40GQwZqiUyXKgFd+OxaXH/bVHgXyPijDyN1kjZIlbQlbD/uKMidGg4r/m73x5ypQ5XjDobmF0jEGhP8q3NTNc6uS+OO90/53WQW2o1hr2Qk9KmcQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=hoPxFim3; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41E9h2hP095235;
+	Wed, 14 Feb 2024 03:43:02 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1707903782;
+	bh=uju5aoFJkk6TMHaeqnz2NpeT+LqncuXnyulu66p63c8=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=hoPxFim30jjKVogLslEViC6zyluNQGbPGw1L+VJxTcoDw65LPHvni4YQitVob6aqJ
+	 q6tfaBil/slkxbvPfLGfT2h7WyB5bEEBRu6AhX3yD8tZAUSsaAOkkmW7FfRjidureJ
+	 T0lThVMTBlHwH8pMYWg+SmW8GadrmB0hUOsxJ9bc=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41E9h2eL038895
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 14 Feb 2024 03:43:02 -0600
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 14
+ Feb 2024 03:43:01 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 14 Feb 2024 03:43:01 -0600
+Received: from [172.24.227.94] (uda0132425.dhcp.ti.com [172.24.227.94])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41E9guiN104110;
+	Wed, 14 Feb 2024 03:42:57 -0600
+Message-ID: <40e15761-70b3-4343-a4b3-653bc4e6637e@ti.com>
+Date: Wed, 14 Feb 2024 15:12:56 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="EFq+e2HVA4/N0Ifh"
-Content-Disposition: inline
-In-Reply-To: <20240214093106.86483-1-bhargav.r@ltts.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] arm64: dts: ti: Add support for TI J722S
+ Evaluation Module
+Content-Language: en-US
+To: Vaishnav Achath <vaishnav.a@ti.com>, Michael Walle <mwalle@kernel.org>,
+        Andrew Davis <afd@ti.com>, <nm@ti.com>, <conor+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>,
+        <j-choudhary@ti.com>
+References: <20240206100608.127702-1-vaishnav.a@ti.com>
+ <20240206100608.127702-4-vaishnav.a@ti.com>
+ <CZ386ITQ83KH.1KNOV5MXLXPBF@kernel.org>
+ <45bd5618-2e22-4715-9724-92f1d4b84608@ti.com>
+From: Vignesh Raghavendra <vigneshr@ti.com>
+In-Reply-To: <45bd5618-2e22-4715-9724-92f1d4b84608@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
 
---EFq+e2HVA4/N0Ifh
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 14, 2024 at 03:01:06PM +0530, Bhargav Raviprakash wrote:
-> Hi Conor,
->=20
-> On Fri 2/9/2024 10:41 PM, Conor Dooley wrote:
-> > On Thu, Feb 08, 2024 at 04:23:33PM +0530, Bhargav Raviprakash wrote:
-> > > TPS65224 is a Power Management IC with 4 Buck regulators and 3 LDO
-> > > regulators, it includes additional features like GPIOs, watchdog, ESMs
-> > > (Error Signal Monitor), and PFSM (Pre-configurable Finite State Machi=
-ne)
-> > > managing the state of the device.
-> >=20
-> > > TPS6594 and TPS65224 have significant functional overlap.
-> >=20
-> > What does "significant functional overlap" mean? Does one implement a
-> > compatible subset of the other? I assume the answer is no, given there
-> > seems to be some core looking registers at different addresses.
->=20
-> The intention behind =E2=80=9Csignificant functional overlap=E2=80=9D was=
- meant to
-> indicate a lot of the features between TPS6594 and TPS65224 overlap,
-> while there are some features specific to TPS65224.
-> There is compatibility between the PMIC register maps, I2C, PFSM,
-> and other drivers even though there are some core registers at
-> different addresses.
->=20
-> Would it be more appropriate to say the 2 devices are compatible and have
-> sufficient feature overlap rather than significant functional overlap?
+On 14/02/24 13:13, Vaishnav Achath wrote:
+> Hi Michael,
+> 
+> On 12/02/24 21:32, Michael Walle wrote:
+>> Hi,
+>>
+>> On Tue Feb 6, 2024 at 11:06 AM CET, Vaishnav Achath wrote:
+>>> +# Boards with J722s SoC
+>>> +dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm.dtb
+>>
+>> I'm a bit confused by your names. What are the new/correct ones now?
+>> Some seem to use the amXX names and some the jXX ones. I've read [1]
+>> and it appears it was suggested to use the am67 names for the device
+>> trees. Esp. because there is already, am62, am64, am65, am68 and
+>> am69 in as names for the device trees.
+>>
+>> The TRM you've linked in the cover letter doesn't shed much light
+>> either. It just lists both.
+>>
+> 
+> Both names are correct, for other Jacinto devices J721S2 and J784S4, the
+> industrial variants (AM68, AM69 respectively) and those boards were
+> announced at a later point of time and since the automotive/J7 variants
+> were introduced first, the SoC dtsi and files have the J7XX names, for
+> AM62/AM64 there is no confusion in naming, in this case the initial TRM
+> itself mentions J722S and AM67 variants with similar capabilities, the
+> reasoning behind continuing with the J722S name is because the initial
+> support is being added for J722S EVM (the top marking on the SoC package
+> populated on the EVM say XJ722SAMW, this can be seen in the schematics
+> also), please let know if this clarifies the confusion.
+> 
 
-If core registers are at different addresses, then it is unlikely that
-these devices are compatible. In this context, compatible means that
-existing software intended for the 6594 would run without modification
-on the 65224, although maybe only supporting a subset of features.
-If that's not the case, then the devices are not compatible.
+AM64,AM62x/A/P are from different product line (Sitara) and don't have
+any other aliases.
 
---EFq+e2HVA4/N0Ifh
-Content-Type: application/pgp-signature; name="signature.asc"
+On the other hand, Jacinto SoCs have both J7xx variant and AM6xx part
+numbers. Its being really unpredictable wrt when AM6xx variants of
+Jacinto devices come out. So as a general rule, we name the DTS files
+based on the name of the first device that comes out in the market which
+has consistently been J7xx.
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcyKGAAKCRB4tDGHoIJi
-0kAGAQCCU0bkl+s+BdL+d40Qr/mkOI5Ie4yq/1oBg7aALwQ3RwEAx4O9b5/Q5bbk
-UfmurbkwjbQMV4Ls0UIFvMC7Mi8rxA8=
-=byM7
------END PGP SIGNATURE-----
-
---EFq+e2HVA4/N0Ifh--
+-- 
+Regards
+Vignesh
 
