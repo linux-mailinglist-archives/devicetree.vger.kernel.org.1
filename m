@@ -1,63 +1,75 @@
-Return-Path: <devicetree+bounces-41615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1776985471E
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 11:27:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C004A8546FB
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 11:19:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 918A31F21A08
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 10:27:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5EC7B25FAC
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 10:19:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E0B417571;
-	Wed, 14 Feb 2024 10:27:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 738EF171C1;
+	Wed, 14 Feb 2024 10:19:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="xYbt46DM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WCVnLR+2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01A9D17552;
-	Wed, 14 Feb 2024 10:27:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD5D914ABC;
+	Wed, 14 Feb 2024 10:19:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707906424; cv=none; b=Ams0B8oBmPgO2rnvolk8waIu15R1WFWDYZSiZ9qaWO/8sZYKmy70AiI5n7d2JPW2gE2yoTsLmllAivivWLK2k1z8Aq1RNybOZTBrfHSFe6OoF69C0xu+4qKkfhB/AQiIGyyJE0oW58ZGdJ+BNT9UNFAeflSRbSZPFnY9dvuyDLY=
+	t=1707905956; cv=none; b=jZunKASwtoRTICN0DoototlDcQL6NqmjSjAOnvY9qun6N+3jKbhtK6hdHBRB000/DI0lbXMhhXryXcJIa+KSbfdHQOQPvQ+eEKDz/zWFpyAXmnyLgmSSnTuz8LesBk5IOBVC23LoQnpeRuOw1iWRZdsqoJN3LcqnP1llv7tfCjY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707906424; c=relaxed/simple;
-	bh=teavYKWn7MDa4qq3Bv2CSJ8svQxWFPEc08FKfKtL2t4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=jyHL93BO+AiKVnZL7XBEa5UxUIzfpfQmdU4bg5GI/UG8/+88LJ4tugaf+UxXUtupYlzWjXUwwURLFU48OWFCtU17z99aqTCljtTFhyqvBt2FuD42T5Seig+uMZ6t1ttrMkGib3JwazyWFX+LZBZ1VgMqXOpcC9qgRdtguRjro+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=xYbt46DM; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41EADKCM016860;
-	Wed, 14 Feb 2024 04:13:20 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707905600;
-	bh=bjdfTlC774uUXe81o8dxQeT0S9fWJO5KRJ77upIQLhw=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=xYbt46DMd6hV74O0FIblr0PzoNOwGjn7b02vohYGYnOBU1mhYG2GGZbuaEBBpHG/u
-	 wiqWqKxINFFO09tnbKYECGksGXeECOctfnIXqJ6uT5cCUYxBsuUvyTaBeH+Lx6inHd
-	 nzWU4l62KFwqxE2hh42ZsJqh462dZRbF7faY9API=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41EADJbK075785
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 14 Feb 2024 04:13:19 -0600
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 14
- Feb 2024 04:13:19 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 14 Feb 2024 04:13:19 -0600
-Received: from [172.24.227.94] (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41EADFtd012758;
-	Wed, 14 Feb 2024 04:13:16 -0600
-Message-ID: <4f122f5d-e430-4299-b6c5-bbe778aad736@ti.com>
-Date: Wed, 14 Feb 2024 15:43:15 +0530
+	s=arc-20240116; t=1707905956; c=relaxed/simple;
+	bh=dXM4ltp9m0nlbbTajOk7i5VsfwfQ7oRilD4YzJbboQ0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rRU//azmS2g17vDFU1rTtJL0WTioqRUizU0VeCus+7158IdxL6zpO+WPpXaJwjr0wt3k0t9M0v7c+pUbjHxoRVx6UhGs4iGbzOsPMVlmhzhKDRx0mLlCkaqMeNCGFuJ2q1xUoB7b2DwF89Eq60vX+f40yhMYALeZq3ooerTzzcQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WCVnLR+2; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a3d2cce1126so112323866b.2;
+        Wed, 14 Feb 2024 02:19:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707905953; x=1708510753; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OLRj1mFJpl+9yLnpvglaJFB5v6n1ThidnnLPgjLs0yo=;
+        b=WCVnLR+2sS3d6FzMgTflTqFZwaB+QSyrWmmzmu+hVLXAlJwmcaK+b4eVigowanU6Rv
+         LWvtss9ftURJ2+p9c85KCuLqTf6YoqrVsIlTuoV/rLpGp4ctHaMxE0Sp/D7MhdxTShxg
+         7ySO8r0zuRZZKIG3rvvaIFEVaKZxQOZpeC1GM35yKIgBG3oADGZWIlIxF18mR1Dp6HrS
+         OrU5YtmFmSU73mzgrmzvvhQ83zFmHDwSF9shoNS4E8ECuCuQgGqbzUKWNbka+EIuRxW6
+         YZj7+N+yy3ZIT/+mqfyLIlzEDCzLojQr46c27olpwpslA46qDYp6PE7cVrZ8P1FIhg4B
+         udYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707905953; x=1708510753;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OLRj1mFJpl+9yLnpvglaJFB5v6n1ThidnnLPgjLs0yo=;
+        b=LuNO5sLagB64QHQ5oTkzbsu8rTfyd+VLrbdYR88EAg2f1bb+ihD61U1Wt5EJvZJGwT
+         Mx9gLxp5k1DuBjEmJy4Z/ybQSaL1tXa1lfRB5Ruk39sADjLydKUAHAjpTsCjr+1K3WWE
+         Bb6j/Zkioft8sTjO0N3wEs2FCUyDkZLdkX/nWzT6HnzMuZYJH/0JVrsupM/V2eQJshGI
+         NvHlZRz2gXqmObgY3E/jPgZ8eIOQkCBjAiRhQtlze42AmKj/YxZcJ2bA4+rJdMfTHLXg
+         hYKOUmEfw+1InzmJHuihibY99C3qBMUBoiPOc9y0lkQsu+6zklLMTPm95Oj8cfvd5CyJ
+         Ht7w==
+X-Forwarded-Encrypted: i=1; AJvYcCWjYH1WxGoCn1SjCMjkgXAI7z2BQ259A/6z/JpPyXBiyqjtYp8+DzjMX7cdOrblIS4g/hLtFgT6WxcmW0rP22w5DoIg/46e6dE488PWS3BLE4WAYtUC2yQmQNvy4bLn81+uNU4vgy9A4vokLiy7csUi+4ijDsQQhmqwR7OiyKnbRZ3YtA==
+X-Gm-Message-State: AOJu0YxOI7TvhBYPcyEtyDwlQ0dqprZCNdDHRyz01WbzwfvVKsFbbKq6
+	Wxta5mgRxICWzg0QQteewc+AS/innGmpQTwh41rdi3w+8+AVx3DG
+X-Google-Smtp-Source: AGHT+IEl2Ag3bYgP/Z3P3BT488BPaO2IYQUkRcodC6FMIdU8fXJSacH/fwANZYS9xUDvQUcknqsHSw==
+X-Received: by 2002:a17:906:4f0a:b0:a3d:607b:a280 with SMTP id t10-20020a1709064f0a00b00a3d607ba280mr349986eju.59.1707905952758;
+        Wed, 14 Feb 2024 02:19:12 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWOAx91eFcQOTulUqIbqfn4LyXCdEoTcC5Pncl3OX9Nh3Y4eCJSvYtv4fepI/t678chIot8cgWsOLyFXrLQqAOPHDpxX9Q/nqSucOiEXT7CQKSy9KVdZwTjtiSTBdA2puJ9YkN8pBi3EorRj/RBhLKdvQd8kvz+VSNzweM93AqP22Mv8Gz84kGcz/YfhKS2bWfYr13nQTskzh6dlIyq6HlMLvC/3KZDfE6rQ6hRInA2DUOBjUkAW+F4HVTPHb14OxJb0MBD2M80EendauhuZgrosIyicqRZDtL/f5eBVFVJMzqNAoNcH9/a55tMn/fh+0V+apL6py8P0xZKZSXz7Nn1eQf+0HlIC1PrjuFnViUzZh70KdJcgz1T8G2nW0goknTQQ4U9lCGW5Gcb0edyC1RcOSbiZeM/0XWmlVRijqqh9nAH3y5v086utpkgcKpnG6uVV/wbaneG4v+iCYsib1NRjBrkYcNaYUDw5W0prtE=
+Received: from [192.168.26.149] (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.googlemail.com with ESMTPSA id hw20-20020a170907a0d400b00a3cf243de37sm1738164ejc.111.2024.02.14.02.19.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Feb 2024 02:19:12 -0800 (PST)
+Message-ID: <eb97a068-4de6-4500-993b-86737844de70@gmail.com>
+Date: Wed, 14 Feb 2024 11:19:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,71 +77,97 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/7] arm64: dts: ti: iot2050: Factor out arduino
- connector bits
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: mediatek,mt2712: add compatible for
+ MT7988
+To: Conor Dooley <conor@kernel.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ John Crispin <john@phrozen.org>, linux-pwm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20240213164633.25447-1-zajec5@gmail.com>
+ <20240213-resource-evaluator-0754cfd5882d@spud>
+ <d4391868-ddcd-4f66-b539-28d245fa83df@gmail.com>
+ <e957b044-fe84-4b72-bdf1-cbc40c722019@collabora.com>
+ <20240214-reversion-arguably-37bbee9caf78@spud>
 Content-Language: en-US
-To: Jan Kiszka <jan.kiszka@siemens.com>, Nishanth Menon <nm@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Bao Cheng Su <baocheng.su@siemens.com>
-References: <cover.1707463401.git.jan.kiszka@siemens.com>
- <3366367dc9f190c9e21027b9a810886791e99245.1707463401.git.jan.kiszka@siemens.com>
-From: Vignesh Raghavendra <vigneshr@ti.com>
-In-Reply-To: <3366367dc9f190c9e21027b9a810886791e99245.1707463401.git.jan.kiszka@siemens.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <20240214-reversion-arguably-37bbee9caf78@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-
-
-On 09/02/24 12:53, Jan Kiszka wrote:
-> From: Jan Kiszka <jan.kiszka@siemens.com>
+On 14.02.2024 11:06, Conor Dooley wrote:
+> On Wed, Feb 14, 2024 at 10:27:54AM +0100, AngeloGioacchino Del Regno wrote:
+>> Il 14/02/24 07:34, Rafał Miłecki ha scritto:
+>>> On 13.02.2024 19:18, Conor Dooley wrote:
+>>>> On Tue, Feb 13, 2024 at 05:46:32PM +0100, Rafał Miłecki wrote:
+>>>>> From: Rafał Miłecki <rafal@milecki.pl>
+>>>>>
+>>>>> MT7988 has on-SoC controller that can control up to 8 PWMs.
+>>>>
+>>>> I see a binding and a dts patch, but no driver patch, how come?
+>>>
+>>> I believe that to avoid cross-trees patchsets (which are sometimes
+>>> tricky for maintainers) there are two ways of submiting such changes:
+>>> 1. dt-binding + driver; then (separately) DTS
+>>> 2. dt-binding + DTS; then (separately) driver
+>>>
+>>> I chose later in this case as my personal priority right now is to deal
+>>> with all MediaTek DTS files.
+>>>
+>>> Is that wrong or unacceptable?
+>>>
+>>
+>> It's not wrong but it's partially unacceptable, at least on my side.
 > 
-> A new variant is to be added which will not have a arduino connector
-> like the existing ones. Factor out all bits that are specific to this
-> connector.
+>> I want to put emphasis on sending the binding with the driver, as this allows
+>> for a better review on everyone's side because we do see the full picture and
+>> we can give better advices: in this case, I'm not sure whether adding a new
+>> compatible for MT7988 in an enum is a good idea, as the compatible string may
+>> be shared with one of the *eleven* SoCs that are supported in the PWM driver,
+>> meaning that (hardware speaking!) the PWM controller in 7988 might be the same
+>> as the one in mt1234.
 > 
-> The split is not perfect because wkup_gpio0 is defined based on what is
-> common to all variants having the connector, thus containing also
-> connector-unrelated information. But this is still cleaner than
-> replicating this node into all 4 variants.
+> Re-ordering to make my reply make more sense...
 > 
-> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-> ---
->  .../ti/k3-am65-iot2050-arduino-connector.dtsi | 768 ++++++++++++++++++
->  .../boot/dts/ti/k3-am65-iot2050-common.dtsi   | 753 -----------------
->  .../ti/k3-am6528-iot2050-basic-common.dtsi    |   1 +
->  .../dts/ti/k3-am6548-iot2050-advanced-m2.dts  |   1 +
->  .../dts/ti/k3-am6548-iot2050-advanced-pg2.dts |   1 +
->  .../dts/ti/k3-am6548-iot2050-advanced.dts     |   1 +
->  6 files changed, 772 insertions(+), 753 deletions(-)
->  create mode 100644 
-> arch/arm64/boot/dts/ti/k3-am65-iot2050-arduino-connector.dtsi
+>> In my opinion (and I believe many do agree with me), sending the binding along
+>> with the driver is the right choice, and if you also want to include the dts
+>> that is also appreciated: series can go through multiple maintainers applying
+>> subsets - it's ok to do.
 > 
-> diff --git 
-> a/arch/arm64/boot/dts/ti/k3-am65-iot2050-arduino-connector.dtsi 
-> b/arch/arm64/boot/dts/ti/k3-am65-iot2050-arduino-connector.dtsi
-> new file mode 100644
-> index 000000000000..cd86f412b837
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-arduino-connector.dtsi
-> @@ -0,0 +1,768 @@
-> +// SPDX-License-Identifier: GPL-2.0
+> Ye, either of those two makes my life a lot easier. I can then at least
+> go and check the driver patch to see if things match up. In this case, I
+> would want to check that the driver requires changes to support this
+> device, given the commit message mentions nothing about the difference
+> between this device and others. I'd still probably request that the
+> commit message be improved to explain the lack of a fallback, but at
+> least I would be clear about what I want and could provide a conditional
+> Ack.
+> 
+> If you're not sending the bindings patch with the driver, there's an
+> extra onus on you to explain exactly what makes this device incompatible
+> with the other devices in the enum, although in an ideal world it'd make
+> no difference and every bindings patch would contain that information.
 
-This and elsewhere in the series should be
+I understand, thanks guys for discussing this with me.
 
-// SPDX-License-Identifier: GPL-2.0-only
+I'll send V2 with Linux driver part.
 
-as fixed up by Nishanth in [0]. I can fix that locally, let me know.
 
-[0] https://lore.kernel.org/r/20240122145539.194512-16-nm@ti.com
+>>>
+>>>> Also, what makes this incompatibly different with the other devices in
+>>>> the binding, like the 8183?
+>>>
+>>> It can control 8 PWMs unlike any other SoC block except for MT2712.
+>>> It uses different registers than MT2712 thought.
+> 
+> Put this information in your commit message next time :)
+> 
+> Cheers,
+> Conor.
 
--- 
-Regards
-Vignesh
 
