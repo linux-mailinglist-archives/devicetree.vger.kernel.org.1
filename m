@@ -1,178 +1,183 @@
-Return-Path: <devicetree+bounces-41514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71DC88541DC
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 04:45:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14A538541E5
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 05:00:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35CA2285A08
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 03:45:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 840D01F29F67
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 04:00:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1292B64A;
-	Wed, 14 Feb 2024 03:44:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42424B673;
+	Wed, 14 Feb 2024 04:00:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="U3YcoCss"
+	dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b="bVoF6owy";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Qu3kXAZp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fhigh7-smtp.messagingengine.com (fhigh7-smtp.messagingengine.com [103.168.172.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2450210A11
-	for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 03:44:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A152B670;
+	Wed, 14 Feb 2024 04:00:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707882297; cv=none; b=GW0N+TrnQw4kIqw8KHXXNIo+GtHPYCT75nONknicZoYJIRn1x3e/b0UR7uhfFF6TB43pTuMLsnVQkToHoiADG+t2DBZQmh+FxexbQsNEJrx+6390DwmHkLx/K9PnXheK3Lek6l91jMrvc42aCCXbv3cZm67Ab9axK6pyA3o7Dvo=
+	t=1707883220; cv=none; b=Tkju8VRTUgUH/7PHQBTA5QlyTQ5iGs5qXcP6/DEd5Zkc4SljemnzdVQodL5cu6pTkeNYovKxrX0nH77qEBXGhmrmUf48+vtO8znj2rPug38qKPOSN/NsqCVI08VkUYgCj1MTu9BgVxotZ+Qk8KcjzTGPpU2k018r/T4tJ6GUc5o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707882297; c=relaxed/simple;
-	bh=UUnUEzJ5jjH8ByEMpB5TAcY1gR1nRdoCWKhMnfRZjTA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SyXo5lYFkOwcNERsX1tlA6/8j0AgwXBvEoJZjE32laL7eTpOEvDbDDYk2j3t+FeLnO958fG+J3fsjnei51MQ1R22VSDhoqpkjtUSzQhquoP/ZeThx2DMamPaECgAg3kLLPyUZZy6/q9QwPihXKNUWVn3y1/BrfakURSvmU+c9UM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=U3YcoCss; arc=none smtp.client-ip=209.85.160.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-428405a0205so577491cf.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 19:44:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1707882295; x=1708487095; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xdTms2KNxEQNoDVfOlewboipZEhREK6jYFWALQnd5FA=;
-        b=U3YcoCss3f7/3PmjPae7nfgc799BQ8PwWHJeoQ1vQ/7amakQUxevj4Ht0mYjYbFUDk
-         HEIVsy5UfvRD6j0SdV9kZSuV4SvRm7zx5eRcJ5lYf7+FQjBwAufRuVCP4wFzPrUSBQ6K
-         uBGZmLYfBgwiHcuxTMalYiZfKaDhJCNtvkYV/+iBTmjaAe5R+DBVX3Px2PlUYlu8u+ur
-         RKtPyjH5G8By6TwQt4g+JnbtTu/ibrDk0aXGWG8EYOYi0eZC1M2hiLLYBeqgcKwwQ15c
-         ekJ6GhMK3BQmTtAzULAMXp8t1HagJK2KHoKLZsk7ab4dOrcmv/yeYUJmxRgfTL+0+6OQ
-         96QQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707882295; x=1708487095;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xdTms2KNxEQNoDVfOlewboipZEhREK6jYFWALQnd5FA=;
-        b=ZU7Q/oiXus2ZZj1SxNfhJ5efl5wKnBpVc5T+gYaPEKAsxpMSkyftnlOqGmxq+uN2ye
-         PRf39/MIK7v3s3ynpt7CK96iFiOYyIf5Fdq4gLaFF7+A2qLgsfkDot5XvnQyb2iFIReE
-         K0Qs5j/oLYZEzTCO0OxbLfotNoQMoOgthqYitFdMiDi1vOrRgpNg/hDaSDukEhBZTbR4
-         kweL9vZ4nQvsFpr1jfQTDyEiQjMkrsuC8AjaX4e8LrC8mkZk0moMS915WCHV0uQ45lbr
-         NLEawI/7hFN3z6AHWUyFHCC83vmzhTlrvfyLS+ssPzT6fPAZ3r+8aGfiVq9dVlSpyG5U
-         mu9w==
-X-Forwarded-Encrypted: i=1; AJvYcCXZTvjVbkyZETYkcY6JFLIhgg+LWzSDP9qdFyusDE+Ac7sloLYUA4WQJ16ZnX9AcAY5ueZzLPqYo0s1GBlr8s2w7a6AEcAJVtVKsg==
-X-Gm-Message-State: AOJu0YxNKF7M/iZPutchbmrib1+lg6qHhzbOkWO/kqe3nlzErjg3pw+6
-	OfJ3CIqajddNUNDCA0G7PXMlevfrRSe7uyBKyfa5pFDI95kIJv25ZqijKiVLOmacrQ8Z/MwNiqq
-	NQjaiO4bdhL6aORN0IFufH7lzEL/z47NwC7by
-X-Google-Smtp-Source: AGHT+IEtlCu0eM580Furc3rmgyMklSoe0aIdEca8lCSagMVKVqwdNppeUF13e/3urtg3bOPhQwYFfvnJjJyd9TaboDU=
-X-Received: by 2002:ac8:4f49:0:b0:42b:f8ef:9d60 with SMTP id
- i9-20020ac84f49000000b0042bf8ef9d60mr137168qtw.19.1707882294841; Tue, 13 Feb
- 2024 19:44:54 -0800 (PST)
+	s=arc-20240116; t=1707883220; c=relaxed/simple;
+	bh=K8qOiZrUEmXMyJy8G+Prfu4akp3Z9sfjpsVZ8t1PZt4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mIfvt4VIiew2moY2cLQ8TAIfPNkV+3DyG+XFHLbxZFS/2gmlUJ0kIPwgv0WPHEizNXVLqV5rKvRurtwtJTXsq53Sst8x3avNQxScd7UN1Q86k2+S/J3WjONV4JasWhn3rVIM+kwXU+MmDjQ5+KLCuepeZnPInPCPmP+p5hg2CQ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=feathertop.org; spf=pass smtp.mailfrom=feathertop.org; dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b=bVoF6owy; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Qu3kXAZp; arc=none smtp.client-ip=103.168.172.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=feathertop.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=feathertop.org
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+	by mailfhigh.nyi.internal (Postfix) with ESMTP id E7C8211400D7;
+	Tue, 13 Feb 2024 23:00:15 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Tue, 13 Feb 2024 23:00:15 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=feathertop.org;
+	 h=cc:cc:content-transfer-encoding:content-type:content-type
+	:date:date:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:subject:subject:to:to; s=fm2;
+	 t=1707883215; x=1707969615; bh=eSqa5vOfrNq3JhkGEjhlTovtf3Fms65Y
+	5Wl9KASJnhQ=; b=bVoF6owyQdmalEip/o/0JXNG/IaQitreZFqqWh3mHLjkIDyh
+	NtMm1YhHFe28g3s1afs4NpvpRGsZSCoVMkYZaIlHzCG7KF3TWoyata9fe869Srlt
+	KtIq0kYFqXsIY0rG3FFu3RODA0pEhwvGcAyAeShwiez0ZcChygqSOfrncaxKNmyY
+	PhayC7Jzc9ARYflnxguggFzxJNZs6V4Ugm7tCBmjtzOKJU1DrRIID766rg2PTZj3
+	m1YIMLRuoHbFIXxRawA4f0Ua9Kh+ZKC/NsloKDXJMYGG+i6v+uVe45Kqt/iJ9XDm
+	prK/kIAauCnkejz4QLkYvEj0WIWu5qXhtEddhg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1707883215; x=
+	1707969615; bh=eSqa5vOfrNq3JhkGEjhlTovtf3Fms65Y5Wl9KASJnhQ=; b=Q
+	u3kXAZpLHb2gSNJio3rMDMMrtdUquV/3uM1FSeylMK2/0fKZ/mFCQJhSFoxj+hPl
+	ZOAjbY6VILrDbBvmouIGZx6oysoBxyFY5HW4Hb30paTZFAnX2m6Y11D/ODMgSK8h
+	vMAfcF5Kkrns/3hYNWWALugz1yYMMYAsjCTBNZXNAnbJ0ox7Hpcv1A6OuXqWCAQb
+	YcQkJk/BmVTOJcslTJXd47ItpUI77paVjSLN35xd+ofDv+KURp41KZ7IyrMOIOVo
+	IENPsAe1du+CX3XW0CB8R6fkr/IoB4MoKg1c5u//xFy7Z3iRD2zsWigKWHE62yi6
+	NHtdE5anHlvmxyMexCdmw==
+X-ME-Sender: <xms:zzrMZfnZ8_epbNtUEmqlLfnsT-7kvx1hYhnZ5aHwM89nR-20eDxAQA>
+    <xme:zzrMZS2hK9Bb0YjRPf87hTp24R7e0Z6qgH09ByENLOwWycMCV_ftxmORVYSvDUP_Y
+    R10oaXVeg>
+X-ME-Received: <xmr:zzrMZVpmPmjj6EnCU260QAdScGKNcJs0aE1zkiyDQiQSyfQGzgu_IEfIaUHiPrRbSrGOUrzUa1YUMAKgRezmOtjefACor31rspdNMw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudeigdeikecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefkffggfgfuvfevfhfhjggtgfesthekredttddvjeenucfhrhhomhepvfhimhcu
+    nfhunhhnuceothhimhesfhgvrghthhgvrhhtohhprdhorhhgqeenucggtffrrghtthgvrh
+    hnpeetfeefheettdffheeggefhtdegfeeltdekjeeiteevtdefieevvedtheejfedvteen
+    ucffohhmrghinheplhhinhgrrhhordhorhhgnecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepthhimhesfhgvrghthhgvrhhtohhprdhorhhg
+X-ME-Proxy: <xmx:zzrMZXncYR6XbSIcg5M2AiPhJpbPBT-am3_L1eDdi4D2BhkSaX2vkw>
+    <xmx:zzrMZd1Zj0WSrjxCoHajH3LQJGCmppcyd5NrGDi9K0mXBGJqK5O-zA>
+    <xmx:zzrMZWttaGcUbmaWDYLD3wLLW-V8zdFPwsiqbKEPFfQQ_1tHV2uOCQ>
+    <xmx:zzrMZc3ogRcU6nKwH_AKPyL9DIO1eu1TnbLMwFTgDrlodNvPLjshbA>
+Feedback-ID: i1f8241ce:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 13 Feb 2024 23:00:09 -0500 (EST)
+Message-ID: <3aa1fe01-0d7d-4d42-af31-8cdd24363910@feathertop.org>
+Date: Wed, 14 Feb 2024 15:00:06 +1100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240205-fix-device-links-overlays-v2-0-5344f8c79d57@analog.com>
- <20240205-fix-device-links-overlays-v2-2-5344f8c79d57@analog.com>
- <aed988a09cb4347ec7ac1b682c4ee53b7d2a840b.camel@gmail.com>
- <20240213145131.GA1180152-robh@kernel.org> <48a86fa6908a2a7a38a45dc6dbb5574c4a9d7400.camel@gmail.com>
-In-Reply-To: <48a86fa6908a2a7a38a45dc6dbb5574c4a9d7400.camel@gmail.com>
-From: Saravana Kannan <saravanak@google.com>
-Date: Tue, 13 Feb 2024 19:44:16 -0800
-Message-ID: <CAGETcx9xgLykm7Ti-A4+sYxQkn=KTUptW9fbFxgTcceihutwRQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] of: dynamic: flush devlinks workqueue before
- destroying the changeset
-To: =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Nuno Sa <nuno.sa@analog.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Frank Rowand <frowand.list@gmail.com>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Len Brown <lenb@kernel.org>, 
-	linux-acpi@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: rockchip: Fix Hardkernel ODROID-M1 board
+ bindings
+Content-Language: en-US
+To: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>
+Cc: KyuHyuk Lee <lee@kyuhyuk.kr>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chris Morgan <macromorgan@hotmail.com>,
+ Tianling Shen <cnsztl@gmail.com>, Jagan Teki <jagan@edgeble.ai>,
+ Ondrej Jirman <megi@xff.cz>, Andy Yan <andyshrk@163.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240115145142.6292-1-lee@kyuhyuk.kr> <47795047.XUcTiDjVJD@diego>
+ <194a0894-a9f9-4c5e-b304-e7278104d8e7@feathertop.org>
+ <2185016.Icojqenx9y@phil>
+From: Tim Lunn <tim@feathertop.org>
+In-Reply-To: <2185016.Icojqenx9y@phil>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Tue, Feb 13, 2024 at 6:57=E2=80=AFAM Nuno S=C3=A1 <noname.nuno@gmail.com=
-> wrote:
+Hi Heiko,
+
+On 2/14/24 06:31, Heiko Stuebner wrote:
+> Hi Tim,
 >
-> On Tue, 2024-02-13 at 08:51 -0600, Rob Herring wrote:
-> > On Mon, Feb 12, 2024 at 01:10:27PM +0100, Nuno S=C3=A1 wrote:
-> > > On Mon, 2024-02-05 at 13:09 +0100, Nuno Sa wrote:
-> > > > Device links will drop their supplier + consumer refcounts
-> > > > asynchronously. That means that the refcount of the of_node attache=
-d to
-> > > > these devices will also be dropped asynchronously and so we cannot
-> > > > guarantee the DT overlay assumption that the of_node refcount must =
-be 1 in
-> > > > __of_changeset_entry_destroy().
-> > > >
-> > > > Given the above, call the new fwnode_links_flush_queue() helper to =
-flush
-> > > > the devlink workqueue so we can be sure that all links are dropped =
-before
-> > > > doing the proper checks.
-> > > >
-> > > > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> > > > ---
-> > > >  drivers/of/dynamic.c | 8 ++++++++
-> > > >  1 file changed, 8 insertions(+)
-> > > >
-> > > > diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-> > > > index 3bf27052832f..b7153c72c9c9 100644
-> > > > --- a/drivers/of/dynamic.c
-> > > > +++ b/drivers/of/dynamic.c
-> > > > @@ -14,6 +14,7 @@
-> > > >  #include <linux/slab.h>
-> > > >  #include <linux/string.h>
-> > > >  #include <linux/proc_fs.h>
-> > > > +#include <linux/fwnode.h>
-> > > >
-> > > >  #include "of_private.h"
-> > > >
-> > > > @@ -518,6 +519,13 @@ EXPORT_SYMBOL(of_changeset_create_node);
-> > > >
-> > > >  static void __of_changeset_entry_destroy(struct of_changeset_entry=
- *ce)
-> > > >  {
-> > > > + /*
-> > > > +  * device links drop their device references (and hence their
-> > > > of_node
-> > > > +  * references) asynchronously on a dedicated workqueue. Hence we
-> > > > need
-> > > > +  * to flush it to make sure everything is done before doing the
-> > > > below
-> > > > +  * checks.
-> > > > +  */
-> > > > + fwnode_links_flush_queue();
-> > > >   if (ce->action =3D=3D OF_RECONFIG_ATTACH_NODE &&
-> > > >       of_node_check_flag(ce->np, OF_OVERLAY)) {
-> > > >           if (kref_read(&ce->np->kobj.kref) > 1) {
-> > > >
-> > >
-> > > Hi Rob and Frank,
-> > >
-> > > Any way you could take a look at this and see if you're ok with the c=
-hange
-> > > in the
-> > > overlay code?
-> > >
-> > > On the devlink side , we already got the ok from Rafael.
-> >
-> > Didn't Saravana say he was going to look at this? As of yesterday, he's
-> > also a DT maintainer so deferring to him.
-> >
+> Am Mittwoch, 17. Januar 2024, 11:03:26 CET schrieb Tim Lunn:
+>> On 1/17/24 06:55, Heiko Stübner wrote:
+>>> Am Dienstag, 16. Januar 2024, 20:26:05 CET schrieb Rob Herring:
+>>>> On Tue, Jan 16, 2024 at 09:31:35AM +0100, Heiko Stübner wrote:
+>>>>> Am Dienstag, 16. Januar 2024, 08:24:44 CET schrieb Krzysztof Kozlowski:
+>>>>>> On 16/01/2024 03:00, Tim Lunn wrote:
+>>>>>>> On 1/16/24 01:58, Krzysztof Kozlowski wrote:
+>>>>>>>> On 15/01/2024 15:51, KyuHyuk Lee wrote:
+>>>>>>>>> The vendor in ODROID-M1 is hardkernel, but it was incorrectly written
+>>>>>>>>> as rockchip. Fixed the vendor prefix correctly.
+>>>>>>>>>
+>>>>>>>>> Signed-off-by: KyuHyuk Lee <lee@kyuhyuk.kr>
+>>>>>>>>> ---
+>>>>>>>>>     Documentation/devicetree/bindings/arm/rockchip.yaml | 2 +-
+>>>>>>>>>     1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>>>>> You need to start testing your patches. Your last M1 fails as well in
+>>>>>>>> multiple places.
+>>>>>>>>
+>>>>>>>> It does not look like you tested the DTS against bindings. Please run
+>>>>>>>> `make dtbs_check W=1` (see
+>>>>>>>> Documentation/devicetree/bindings/writing-schema.rst or
+>>>>>>>> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+>>>>>>>> for instructions).
+>>>>>>>>
+>>>>>>>> The DTS change will break the users, so would be nice to mention this in
+>>>>>>>> its commit msg.
+>>>>>>> I notice there are a couple of other boards that incorrectly use
+>>>>>>> rockchip as the vendor also:
+>>>>>>>
+>>>>>>>              - const: rockchip,rk3399-orangepi
+>>>>>>>              - const: rockchip,rk3568-bpi-r2pro
+>>>>>>>
+>>>>>>> Perhaps these should also be fixed at the same time?
+>>>>>> What is happening with rockchip boards?
+>>>>> Copy-paste stuff ... boards using rockchip,boardname instead of
+>>>>> vendor,boardname for their compatible.
+>>>>>
+>>>>> I do remember us noticing this a number of times on some boards
+>>>>> and requesting fixes, but looks like some slipped through.
+>>>>>
+>>>>> So I guess Tim is suggesting changing the compatible, but with boards
+>>>>> being merged a while ago, this would break backwards compatibility.
+>>>>> So I guess both the Orange and Banana Pies will need to live with that.
+>>>> You may get away with it because we generally don't use the names...
+>>>>
+>>>> Though there are some discussions to start using them to select dtbs by
+>>>> bootloaders.
+>>> Ah, that's good to know (both points) ... so essentially right now would be
+>>> a good time to do what Tim suggested, before the names get actual usage.
+>>>
+>>> @Tim: is that something you'd want to do?
+>>>
+>> Sure, I will prepare patches and send them out soon.
+> As I stumbled upon this patch just now, how is that coming along? :-)
+
+
+Thanks for the reminder, I will send them now ;)
+
+Regards
+   Tim
+
 >
-> Yeah, I did asked him but I guess he never had the time for it... Saravan=
-a,
-> could you please give some feedback on this? I think the most sensible pa=
-rt is
-> on the devlink side but I assume this is not going to be merged without a=
-n ack
-> from a DT maintainer...
-
-Sorry for the delay Nuno. I'll get to this. I promise. This week is a bit b=
-usy.
-
--Saravana
+> Thanks
+> Heiko
+>
+>
 
