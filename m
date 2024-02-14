@@ -1,100 +1,113 @@
-Return-Path: <devicetree+bounces-41675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90D3D854B1B
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 15:09:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC9B5854B2A
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 15:12:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DC7D9B21742
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 14:09:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 230731C213DC
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 14:12:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D74D54F9A;
-	Wed, 14 Feb 2024 14:09:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oxxk8g7s"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C60FF54FAE;
+	Wed, 14 Feb 2024 14:12:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D18FD54672;
-	Wed, 14 Feb 2024 14:09:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8A2954FA4;
+	Wed, 14 Feb 2024 14:12:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707919773; cv=none; b=ccnA/YTODp6WKSbfYCUfwRR0/37q5iiPpxLbk5ud/c176SnnhTMJiSdnKBSKwI7Z5/0DKGrY0xob7V7enkR2NnKwYdQBZTmPsAiN2ETBkcZ0QDc0FSRSsZ74tcjaY/Idy6owj4Gjzxr/rvw34padKiIXuKaOkXB14URZM/dLowU=
+	t=1707919962; cv=none; b=tTtrvBELaFKcvpnZokBSRi3ogRmuZPGpkBafGtqlV4tXX8Fi/f5j0GXUixva5tLH5oKEabRuYvLJ2nlSMC67b0to/eXFW8pF01cI8zEtdQ06eAerv5/rXqcli5h8S4hXaZva7SN87tqvqCFM2HSsq4ASEwKK0uMDBnuT+rzp1nI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707919773; c=relaxed/simple;
-	bh=prrU+2rb8WSBlJKg4/DaFqxlc6JwuwO2bPcuZ3Ze08k=;
+	s=arc-20240116; t=1707919962; c=relaxed/simple;
+	bh=XYOhbvhPZxYmBhp1tU8taJa8/fjCiGlVZn1WC/bNMZI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kAAMLMNhKI7hvdNaaSVjtsmHl/6/TYM8ANl5IM6I3g8yfzdEXCKMvE/co1nkG9VfSM1WbHmHiSg984ZnSBv7vrF0VxulRZQ6g6bIG2vpty8N0heGz8CPS0Fpyn//92zz6mkGJX/bHv5jh/9CxmKhOOmUNcXJcsvjzLQei2Bw+8U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oxxk8g7s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 212ACC43390;
-	Wed, 14 Feb 2024 14:09:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707919773;
-	bh=prrU+2rb8WSBlJKg4/DaFqxlc6JwuwO2bPcuZ3Ze08k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oxxk8g7sB7afAAW/gxhROlk2joqPCmi6oLP7cD4lpuJD4tTP0LsMm9BQHGuHGwk5+
-	 gukv+3lWrnu8m/vZaKr4PURClWA0OrPaZGMup5ko8BZmAZA+fBaZ73FdVrPBKDGu6l
-	 bYAGijLpQ0RBt4m3SR5xmt/KMAMy8aakxXd5FfqVqICLOk14S9QmVRtO61/+KdNpSs
-	 N6jqRqN4sOy9gp72ihb/ETq+71AIY2JJ7Ei20odHIfv3fcxUvDIpDPLHxFselFE0S4
-	 XiNU8gElC74TBDEj+xw4kzULx6xdNdwC4CiRmVtrC5YgdNfxj10BgKSlElcTCKk2n3
-	 V2zzIxjjovR1Q==
-Date: Wed, 14 Feb 2024 08:09:31 -0600
-From: Rob Herring <robh@kernel.org>
-To: Roger Quadros <rogerq@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, nm@ti.com,
-	devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=T160rZs4n5nBvcaLPv1nMe1zU2ir0PsJGnHu724w8NAiqTTSnCdR5hxWGTPwvrguhHIvmceiW1CRR2zTOR1kUDpt/6unwMGi72huOGaYnDKtl4GV38TWMl/oBz+WGohgZqrPxiDlD/pgVCi/Ok8TSHoLtxZ92IwQMgzu7uZcUDQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.96.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1raFzr-00046P-39;
+	Wed, 14 Feb 2024 14:12:24 +0000
+Date: Wed, 14 Feb 2024 14:12:15 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	francesco@dolcini.it, linux-usb@vger.kernel.org, b-liu@ti.com,
-	afd@ti.com, srk@ti.com, Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	linux-kernel@vger.kernel.org, r-gunasekaran@ti.com
-Subject: Re: [PATCH v3 4/5] dt-bindings: usb/ti,am62-usb.yaml: Add PHY2
- register space
-Message-ID: <170791976957.762179.4700463999378462794.robh@kernel.org>
-References: <20240214-for-v6-9-am62-usb-errata-3-0-v3-0-147ec5eae18c@kernel.org>
- <20240214-for-v6-9-am62-usb-errata-3-0-v3-4-147ec5eae18c@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	John Crispin <john@phrozen.org>, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH V2 2/2] pwm: mediatek: add support for MT7988
+Message-ID: <ZczKP-L7MptwnKF_@makrotopia.org>
+References: <20240214140454.6438-1-zajec5@gmail.com>
+ <20240214140454.6438-2-zajec5@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240214-for-v6-9-am62-usb-errata-3-0-v3-4-147ec5eae18c@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240214140454.6438-2-zajec5@gmail.com>
 
+On Wed, Feb 14, 2024 at 03:04:54PM +0100, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> MT7988 uses new registers layout just like MT7981 but it supports 8 PWM
+> interfaces.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
-On Wed, 14 Feb 2024 11:46:48 +0200, Roger Quadros wrote:
-> Add PHY2 register space to DT binding documentation.
-> 
-> We use minItems: 1 as DT update will come later and we don't
-> want warnings for existing DTs.
-> 
-> So far this register space was not required but due to the
-> newly identified Errata i2409 [1] we need to poke this
-> register space.
-> 
-> [1] https://www.ti.com/lit/er/sprz487d/sprz487d.pdf
-> 
-> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+Reviewed-by: Daniel Golle <daniel@makrotopia.org>
+
 > ---
-> Changelog:
+> V2: New patch in the series
 > 
-> v3: no change
+>  drivers/pwm/pwm-mediatek.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
-> v2: add minItems and update commit log
-> 	https://lore.kernel.org/all/20240205141221.56076-5-rogerq@kernel.org/
+> diff --git a/drivers/pwm/pwm-mediatek.c b/drivers/pwm/pwm-mediatek.c
+> index 562102a47ac0..292c8bd5b343 100644
+> --- a/drivers/pwm/pwm-mediatek.c
+> +++ b/drivers/pwm/pwm-mediatek.c
+> @@ -339,6 +339,13 @@ static const struct pwm_mediatek_of_data mt7986_pwm_data = {
+>  	.reg_offset = mtk_pwm_reg_offset_v1,
+>  };
+>  
+> +static const struct pwm_mediatek_of_data mt7988_pwm_data = {
+> +	.num_pwms = 8,
+> +	.pwm45_fixup = false,
+> +	.has_ck_26m_sel = false,
+> +	.reg_offset = mtk_pwm_reg_offset_v2,
+> +};
+> +
+>  static const struct pwm_mediatek_of_data mt8183_pwm_data = {
+>  	.num_pwms = 4,
+>  	.pwm45_fixup = false,
+> @@ -369,6 +376,7 @@ static const struct of_device_id pwm_mediatek_of_match[] = {
+>  	{ .compatible = "mediatek,mt7629-pwm", .data = &mt7629_pwm_data },
+>  	{ .compatible = "mediatek,mt7981-pwm", .data = &mt7981_pwm_data },
+>  	{ .compatible = "mediatek,mt7986-pwm", .data = &mt7986_pwm_data },
+> +	{ .compatible = "mediatek,mt7988-pwm", .data = &mt7988_pwm_data },
+>  	{ .compatible = "mediatek,mt8183-pwm", .data = &mt8183_pwm_data },
+>  	{ .compatible = "mediatek,mt8365-pwm", .data = &mt8365_pwm_data },
+>  	{ .compatible = "mediatek,mt8516-pwm", .data = &mt8516_pwm_data },
+> -- 
+> 2.35.3
 > 
-> v1: was sent as part of different series
-> https://lore.kernel.org/all/20240201120332.4811-5-rogerq@kernel.org/
-> ---
->  Documentation/devicetree/bindings/usb/ti,am62-usb.yaml | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
 > 
-
-Acked-by: Rob Herring <robh@kernel.org>
-
 
