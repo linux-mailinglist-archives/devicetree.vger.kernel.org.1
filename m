@@ -1,175 +1,117 @@
-Return-Path: <devicetree+bounces-41631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91C40854835
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 12:23:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2367385483C
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 12:27:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6FAE1C21764
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 11:23:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B44A81F27544
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 11:27:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBBFC18EB9;
-	Wed, 14 Feb 2024 11:23:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D40B419472;
+	Wed, 14 Feb 2024 11:27:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fVWLZWg/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Albkkf6m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 126821B95C;
-	Wed, 14 Feb 2024 11:23:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B24318633;
+	Wed, 14 Feb 2024 11:27:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707909820; cv=none; b=CYONNXAeeK8jtu6FhOdBw6WxhPzm90wAoX1m+wxDrwSzwK6h2nLcbvaCqa2SLZ3CgBj9BjkAzUcBAnB6P72ZB6YmqWuSXkHTl7bSjLJ6Rne6la5PTwtckjviuR6thEFt1iSGmhkJgGcoZszfadyeg78mpkvBLC249nwPSwLRkyc=
+	t=1707910035; cv=none; b=h7mwgMpTHgcnxOR4SZGmQ90M9SMLpACkQ43zEAOLQagHyp1SBcN+Vzm7482xoZcQo4uyAo8GtT2L7hOinAOjsoAsUDQURnIzn2rwrV+nHWkZYqE5fVOS/fvO/0jzeBgAbShmcjnWtrrKuYC3vb/asCEGMKRTHMRa3oUwJ4bOpnU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707909820; c=relaxed/simple;
-	bh=ZH2htZe2F0UTQznys7dAzZ6IPIFJUeDOTkTb6krdadw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=kFc3MDTrBu4odlGI5hCUJ7s8K7cJAVqGUutRNKVuUOWRdjLQN7pQPGgVH6VGmrTg5VMs7U3l2cFUa5ushZq37B2ZI3BRuhT/F/5VXgily6VwhYEkNeZ/DLCFNVT3oX6jYRibbsBnlJhS0DrI1Demh/2kuA9GnMwOJ30Ge5sBX+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fVWLZWg/; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41EBNFgR117953;
-	Wed, 14 Feb 2024 05:23:15 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707909795;
-	bh=PH0Rx/TGo6A+YAqh7yAPgthl3XrH8s/yUYRL3Tk7b7g=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=fVWLZWg/n/3O5x/EmTPzFDMtGuT0PotHKOvVVn1iGgzf2we1L1ig01BNtS19jxQ7s
-	 xVKm7q4llhXpB8LPe5FlbF/jaj5wYSMdJ5iAfC/CStLGtOyG19V7g/HuTvIKhsFK/h
-	 yIw9M6v427oP9td75CRWCkTP17p14qZKIY972COs=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41EBNFgb016640
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 14 Feb 2024 05:23:15 -0600
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 14
- Feb 2024 05:23:14 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 14 Feb 2024 05:23:14 -0600
-Received: from [172.24.227.193] (devarsht.dhcp.ti.com [172.24.227.193])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41EBN8Va102851;
-	Wed, 14 Feb 2024 05:23:09 -0600
-Message-ID: <9314a841-d983-0254-c30a-4500864d0a1b@ti.com>
-Date: Wed, 14 Feb 2024 16:53:07 +0530
+	s=arc-20240116; t=1707910035; c=relaxed/simple;
+	bh=Y9ZOz9wfhoWTc74GBWwODS9bl4h4+TQW+6+1SJl1ulU=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=SMewTqY2Lf3arVXDt/CrAH0BePP3WscSoAGHeUU910zmjDF44VaiucNWXjs2kdc9wCnYaOQoVC3blX7D+/z5oSSZ8ZQsO1mHY5CcdJAzuAV1acmhYmeRETfd3cBBACRzfzrZOizbvzdP4MDX39czmQN0iTRAVs27P6prmZv2tDk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Albkkf6m; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a3122b70439so686974866b.3;
+        Wed, 14 Feb 2024 03:27:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707910032; x=1708514832; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RvnuYy0h15lFkU1OUHWfDosbzwhtBQMjSlFdPWysW7Q=;
+        b=Albkkf6m8knYWt3o0diqeYVjt4/P5VszWL4OGG2KcoZxsh/mo7cjdz2yhaxpBWq7sx
+         wrz1QGvA/rg7D2Z/04iG4QogTwTsWq6VfCt+64ci8OH5jnQa3b3UauSVIB7o4sI9kDWc
+         0zLt9ldFhzoaaML1jZ6S2VC4gEqolWPYvwpNazNE1mQcwvGGkaGavwnnBVpLsgr4Czz5
+         /DM4EL9N/nQKalYUMy56VPK1+M/9O2LWiM7mHlYgchpyUr67k6RyXMPrBC83EsJGL1ED
+         uHpRNarcDZT7jHlgK/xxW/OhO/Y+voHYvRItS304c9zE6pyMFSfM3P8XxWlrBEuuOvXD
+         OWnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707910032; x=1708514832;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RvnuYy0h15lFkU1OUHWfDosbzwhtBQMjSlFdPWysW7Q=;
+        b=QLl+XOUezRYOMJZPL/sEoZUADDSls+OQi88ZCgGIRTUx1wdcHEYvbzzg3h4vuLtriE
+         zn2q5bbgALldiXeZKuQ8Pct661APL0oVVbw6+YM/smuInLCKgPrM2oVutdtI/P4F7iJh
+         +Iz6sm8GWw/fK7xOL9zXIPRJO6ddNlxqdkzoR4QDvfuL0qO0EWUiEE/7a1i8eWtgDekw
+         GVQoE0NgnYYjJOJQyQKLLKCV52ew2aRY0lYDhxXS4h1nE62YR2WF3AuNq4MjhzAXzxrx
+         N1FzjDvy8MCClR5am3IsW2r2NlpnhpDE08o9gVbuEs92i8muYaUlPSL+jbjOvO6H6l6C
+         VoKg==
+X-Forwarded-Encrypted: i=1; AJvYcCXlsgJvH71Y7MSm28tmZEof90EURo1KrkEA7JrwW1PUkzqcx9r4l0xo24NYBe2H3x06itowQ3hwh7YK9v0J9hF7cZ/qMQuyMDR9OXhgDTBxU/LVkwAtHfL0mYE1FSXo5rkJPI0BVi+eeg==
+X-Gm-Message-State: AOJu0YzuvcnPGOdMjwPeoEZfA6CzBMrCOK9ECxyur97icAzmOAXXhDoX
+	JbnW+bwX4WIFhj/FoqkODBlN3Ckx+CSHF96ht3vnHBKBd+V+5+/X
+X-Google-Smtp-Source: AGHT+IEyA8IghOjt0/o24CNEtlvU8Q8EpuH4t5P+6Twv6iElYcBmi65oltjzzBJ6k3JW8qLE3O5n2g==
+X-Received: by 2002:a17:906:459:b0:a3c:91e:a7d7 with SMTP id e25-20020a170906045900b00a3c091ea7d7mr1681566eja.60.1707910032171;
+        Wed, 14 Feb 2024 03:27:12 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUHvmngmL9lPnXkipC4/DtY3Zg1e18hVX6Q1AxtWOfRKQdeZbYHMAwFpb8FW172+NkrE2Q/gHTQyRj/stlBsuV58V60mppe1beHyb2CC64xj4vW4XPds60ERDgEI98yJ3y/AehXn4o8D3t4m/MNSFdXwvzP7mAkX9MG7PQpMRsUJWNuVr1lyLX64Tytn/Q1VstX7L0rW6QMiZOd0IT3THzoYpSmynF6WVC2ygUs6XgbmzEHIHIHX3VlxzCBHbDWFw6L+t9HGAFbLUoJE8Tyz3bePOhiqk3TbsBxCjdsuDOuEdJljjMBYAgbaGx4PzqKhRUrCoLOj5Ps8qgGcUECE3QbwaNoUjhgLihcSlluhW5elIEXHNKcFGVSnWCK3U5/yfYKM/RcGdM2r10cwkdHgICsTu6prJ1dgU8H+q0sOI4AyuVyNT5YjviMGxeh8feRdT4pyovufik3xZG25v4SIXFeArPnjLaR4etwTfTFGkw/
+Received: from andrejs-nb.. (31-10-206-125.static.upc.ch. [31.10.206.125])
+        by smtp.gmail.com with ESMTPSA id tj13-20020a170907c24d00b00a38a705121csm2212012ejc.47.2024.02.14.03.27.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Feb 2024 03:27:11 -0800 (PST)
+From: Andrejs Cainikovs <andrejs.cainikovs@gmail.com>
+To: b-liu@ti.com
+Cc: afd@ti.com,
+	conor+dt@kernel.org,
+	conor@kernel.org,
+	devicetree@vger.kernel.org,
+	kristo@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	nm@ti.com,
+	r-gunasekaran@ti.com,
+	robh+dt@kernel.org,
+	rogerq@kernel.org,
+	srk@ti.com,
+	vigneshr@ti.com,
+	Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
+Subject: Re: [PATCH v3 5/5] usb: dwc3-am62: add workaround for Errata i2409
+Date: Wed, 14 Feb 2024 12:27:08 +0100
+Message-Id: <20240214112708.157743-1-andrejs.cainikovs@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240201183522.ssj553rwefr2wuqi@iaqt7>
+References: <20240201183522.ssj553rwefr2wuqi@iaqt7>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 1/2] dt-bindings: display: ti,am65x-dss: Add support for
- common1 region
-Content-Language: en-US
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, <conor+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        "Raghavendra,
- Vignesh" <vigneshr@ti.com>
-CC: <praneeth@ti.com>, <nm@ti.com>, <vigneshr@ti.com>, <a-bhatia1@ti.com>,
-        <j-luthra@ti.com>, <kristo@kernel.org>, <jyri.sarha@iki.fi>,
-        <airlied@gmail.com>, <daniel@ffwll.ch>,
-        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <dri-devel@lists.freedesktop.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devarsht@ti.com>
-References: <20240115125716.560363-1-devarsht@ti.com>
- <20240115125716.560363-2-devarsht@ti.com>
- <f8cc383e-1150-45d2-8325-a8dd69969300@ideasonboard.com>
- <839d6de4-b396-4799-8a62-9249727b6dcc@ideasonboard.com>
-From: Devarsh Thakkar <devarsht@ti.com>
-In-Reply-To: <839d6de4-b396-4799-8a62-9249727b6dcc@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Tomi, Vignesh,
-
-On 14/02/24 14:53, Tomi Valkeinen wrote:
-> On 14/02/2024 11:10, Tomi Valkeinen wrote:
->> Hi,
->>
->> On 15/01/2024 14:57, Devarsh Thakkar wrote:
->>> TI keystone display subsystem present in AM65 and other SoCs such as AM62
->>> support two separate register spaces namely "common" and "common1" which
->>> can be used by two separate hosts to program the display controller as
->>> described in respective Technical Reference Manuals [1].
->>>
->>> The common1 register space has similar set of configuration registers as
->>> supported in common register space except the global configuration
->>> registers which are exclusive to common region.
->>>
->>> This adds binding for "common1" register region too as supported by the
->>> hardware.
->>>
->>> [1]:
->>> AM62x TRM:
->>> https://www.ti.com/lit/pdf/spruiv7 (Section 14.8.9.1 DSS Registers)
->>>
->>> AM65x TRM:
->>> https://www.ti.com/lit/pdf/spruid7 (Section 12.6.5 DSS Registers)
->>>
->>> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
->>> ---
->>>   .../devicetree/bindings/display/ti/ti,am65x-dss.yaml       | 7 +++++--
->>>   1 file changed, 5 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
->>> b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
->>> index b6767ef0d24d..55e3e490d0e6 100644
->>> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
->>> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
->>> @@ -37,6 +37,7 @@ properties:
->>>         - description: OVR2 overlay manager for vp2
->>>         - description: VP1 video port 1
->>>         - description: VP2 video port 2
->>> +      - description: common1 DSS register area
->>>     reg-names:
->>>       items:
->>> @@ -47,6 +48,7 @@ properties:
->>>         - const: ovr2
->>>         - const: vp1
->>>         - const: vp2
->>> +      - const: common1
->>>     clocks:
->>>       items:
->>> @@ -147,9 +149,10 @@ examples:
->>>                       <0x04a07000 0x1000>, /* ovr1 */
->>>                       <0x04a08000 0x1000>, /* ovr2 */
->>>                       <0x04a0a000 0x1000>, /* vp1 */
->>> -                    <0x04a0b000 0x1000>; /* vp2 */
->>> +                    <0x04a0b000 0x1000>, /* vp2 */
->>> +                    <0x04a01000 0x1000>; /* common1 */
->>>               reg-names = "common", "vidl1", "vid",
->>> -                    "ovr1", "ovr2", "vp1", "vp2";
->>> +                    "ovr1", "ovr2", "vp1", "vp2", "common1";
->>>               ti,am65x-oldi-io-ctrl = <&dss_oldi_io_ctrl>;
->>>               power-domains = <&k3_pds 67 TI_SCI_PD_EXCLUSIVE>;
->>>               clocks =        <&k3_clks 67 1>,
->>
->> Looks fine to me, I'll apply to drm-misc-next.
+> All AM62 devices have Errata i2409 [1] due to which
+> USB2 PHY may lock up due to short suspend.
 > 
-> Hmm, now thinking about this, doesn't this cause dtb checks to start failing,
-> as the dtbs are missing one entry? Is it better to merge these kind of changes
-> with the dts changes? Or does it matter?
+> Workaround involves setting bit 5 and 4 PLL_REG12
+> in PHY2 register space after USB controller is brought
+> out of LPSC reset but before controller initialization.
 > 
+> Handle this workaround.
 
-Yes if one get's applied and other doesn't then there will be such issues.
-I am sending shortly both the dt-binding and device-tree patches together, as
-long as both look fine and ready to be accepted by respective maintainers, I
-think both can get merged to respective trees and land in linux-next without
-causing any issues.
+Tested-by: Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
 
-Regards
-Devarsh
+You have requested [1] to check whether this patch
+fixes issues I observed, and I can confirm it does.
 
->  Tomi
-> 
+[1]: https://lore.kernel.org/all/2629cd30-23aa-4f03-8452-ae13297fd6b6@kernel.org/
 
