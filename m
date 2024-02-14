@@ -1,76 +1,77 @@
-Return-Path: <devicetree+bounces-41594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B28D854662
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 10:48:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79FAE85467A
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 10:50:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 79D7DB241E2
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 09:48:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 309EA288245
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 09:50:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABA80134AD;
-	Wed, 14 Feb 2024 09:48:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ABF81427F;
+	Wed, 14 Feb 2024 09:50:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zp9djSgE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Fg0FNhUA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD15C134B7
-	for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 09:47:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74DB712E76
+	for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 09:50:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707904080; cv=none; b=Uxkk8CVA7ypYYffi/fstYqIf/DQg/29STCuEVTkiII16eNVfRXgtuPJql0/9eTWdVkrDEjcrD7Zrnt55C6kdDH8f2ELLPOTg2X3ab8ftnDQf6wLpePdAYeNfwRD9ik2EOb8+/2gNAyOt7PdmQCE/40CvTNrWnlqVXgON/amDKCk=
+	t=1707904227; cv=none; b=TWo1ZqKDAAtJw/nOAZ84/nz8YDFIjWLq3QAg37Kzdk8Eo6uFrS5riqnSTGR62kGJvX5kxzUOr+AqFyLD36IiPHOX3mhgLIAtpdzKYletgVV7lf4zUiZtWOB/0Q+XKOcs49aFv7drxmkpEPz89bIyxjREZkP4JLrhZGja+cUkW2c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707904080; c=relaxed/simple;
-	bh=uD69rWSEYvYLcLtH1t4LY23aZ71pPSKr+Hdl/0kX40s=;
+	s=arc-20240116; t=1707904227; c=relaxed/simple;
+	bh=zk4EnXBuE0K5H30v5NDcVwK4iqg3fzeexCaeoohuMwM=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=AnDUgIlWJvtO1GjxxyU3NfiL2iwW0xN0zT2GX1frMn5+vtj/wNALyoAPn9hz19JtZYq/92oAkUCRvWjsMmbkFUrTWa7+cQECmtdZIzFizgtqrAea/pACX+s01WIKm9J6iBiBHimgv8Aoma8KLUGyvHPPe5sRV/TZ+a0fT+58yno=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zp9djSgE; arc=none smtp.client-ip=209.85.128.49
+	 In-Reply-To:Content-Type; b=sBoCSmiDIl6m0dhiMZrNFA+7rDP5BfGCCVp8eFokaFclDy1Aq7923TXCuDT+qAmiul0piqSiT2oWowq3X5QO0Uu+dSB9K5yxyjCgn5VuEAirLDWX99XyA3Quk+IUUjscoae256aur9Mxf/6g3Sr0vGW5wSEJJqN62kczV3Tp2o8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Fg0FNhUA; arc=none smtp.client-ip=209.85.221.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-411c2f76308so10964325e9.3
-        for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 01:47:58 -0800 (PST)
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-33cd57b86bfso1153155f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 01:50:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707904077; x=1708508877; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1707904223; x=1708509023; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=uSuVj+jbjDBpUS6t8xOIUdYVO200EmHxi/94a8qnAv8=;
-        b=zp9djSgE3Ph0AJOwkv1E/RgABineb2572GDsFSTpq9vOokNxCt+YPwqBSvlBNnoHXA
-         liP1yMGy/iOFAHPNFxReybZQtVhxhcbOkwGkXlIjhWJ3PJQdo44AvkN44FtmxupQAQjc
-         FvuMNQGTpCIZn8xxNTo9TKHCuXX5oOJBqYTbRhqMutacN7YiVpK8ZyCGl6aDjboBTWem
-         lkQpmv2ct1raR1v8qBsLaIG/U1K/VsAa+x3j+aSBBa2Ru+oDijsZUMajYQDPvmmIPmQW
-         nKEFV2C1m0Rayqxjz8De0JcKV4sWn6/PY8hzH42HtT6b+NL2+KXB32z4NsEVliV3U0Ri
-         KOxw==
+        bh=K3oqzJu651I3hD2aUVksoi8h7VJNzLL1lNiNLXvIQ20=;
+        b=Fg0FNhUAVtt3/ex4OA3pFVzMbbDQ3hX+XnBqN3BmZA3ncRqyUX2DbeZSOgefF98toL
+         v+Tw0ix7WTeAXDoqL5D/RezzUgsPVRV+EIjOZN5reDVBenwUMInqL2mX1O2m7vy/6HN4
+         N7EP1zFb2eIPSO8/H4SfV8r3K2SjOZz3kNjgu43LVBW7dZsZ1Uewb+Y2EMMJgvoQCr0J
+         5MhEMUu4kviW46kMZEzMIBBqNAmpzh7FEKp3a70TH/h26z6VbDufev7DJmFGW8ZKfwBL
+         wkhfFhrNP3zQW5b/FMy8vw8qevezUHoMNDAyPu/B9wk9L499LHn+RxHoAgEMK5YIjHxP
+         Tnog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707904077; x=1708508877;
+        d=1e100.net; s=20230601; t=1707904224; x=1708509024;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=uSuVj+jbjDBpUS6t8xOIUdYVO200EmHxi/94a8qnAv8=;
-        b=jKdH0sOKip32rCPdACJ+5b1ebVdltwzj21ZmeW6kgGI8pMPzhT9x7HLpZxiL4y/Hy4
-         gnIBnWbhhma6s89rBhcyItdTrSU3XoiuVfi7mOedQBhPipDl/cakTfWFU8ucDc9mA03c
-         xWDJL3jyFTR/TOgOIgQphhhsJQYTUIQFnJwKHf0FY/FJ372hDAibnf8NH1r9D0tWt0Tz
-         SN/hvpsWQKAKqlnlc3yA6Uq4Yllb4w6c7WZBMAN/J+z8TaJyF2kKQXHDthenWa+TLl3i
-         3MKdo4xHDPod4J/oNooG6s83Y/0HsOD19irwLhVN7wJ4K4W+ReESOQx0dSH2tDX7feDm
-         Jthw==
-X-Forwarded-Encrypted: i=1; AJvYcCUlSndt9Jc/Old+gbgPJe8tAdrA9H48gDqIYh7q3i/5gf4CR+bEEGVNW55pGckvczk8o1rvXdPG9dpAYDHVR8f1POhYS4JMLgsC+g==
-X-Gm-Message-State: AOJu0YxxJLH9xJESKHWI5i6iQYl8urgqFCjDxR5Lpj2DonmxwL2PYJFq
-	M+sQreu2yWxhvERQ8HcQlZjzEDGWLs/SC3nXYvd+1pN+/pfK5wZOmhmVZnVwlE0=
-X-Google-Smtp-Source: AGHT+IEp6MgTJq+5iTVJvLK1LW2DIy5gRkBC54vIBWz2gEVbchEhOytEQE2J+8uJfbFFTyvSkQvgnQ==
-X-Received: by 2002:a05:600c:a49:b0:410:d3d9:91a1 with SMTP id c9-20020a05600c0a4900b00410d3d991a1mr1563124wmq.10.1707904076824;
-        Wed, 14 Feb 2024 01:47:56 -0800 (PST)
+        bh=K3oqzJu651I3hD2aUVksoi8h7VJNzLL1lNiNLXvIQ20=;
+        b=ewyQKjNZa6VUpuKqo4yUu6EtNYzzXw6pMa26qMcuUzsqQlSULUabhO46GoxBhqV++L
+         Qaf6vuVbLgIUij/NUHeBvP5lsXrZVRf05JrhnaSCU6FS8mKKo7VfhZR2WiMM7oD1B3on
+         TOwrh1wWwcMc1bC/iSj61h7LhbMo1sTRpdgtyZesF1v1m3TkYQyRsc1RCAG5975Un31Q
+         tVqsxLbRAbC4DPbRratc5OZ4q54clioIDqWpsOYCFrIMFnO6PR822Y0rewpn9QAGu5hL
+         sijhD5Zfm154qz6kVQT4FqbYwZevqm+D5Rn9Gdl638InBZ2VHdCf0MEdiY3/WBbxL5uy
+         Zehg==
+X-Forwarded-Encrypted: i=1; AJvYcCWNKuf8m3Qm0+kXiNET2/koOjCkmGAF2tibthgUJ+OcLIb29a0E0uH5qyaR+6QNuzhYb7KmGcmf3hHibGzpTyv5D4ICKk1q9cONOw==
+X-Gm-Message-State: AOJu0YyHH/Rsn9w5hBhS0a5j8fbxMH7QJB3wPyrzanA5ovynjQFGPH56
+	Hpspj9HVNNfwViORmx//BijDGDoo19x5bURz3kfQcKx+lPiB3oSXBiF0iknICw4=
+X-Google-Smtp-Source: AGHT+IHmyPUjUsGUAjjrxpz8F2ZqModlPfmBdwaETRWIh6d05Ckg0QgddgagrlPFXl8qhK5otBtxZw==
+X-Received: by 2002:a5d:558e:0:b0:33b:49bb:5f91 with SMTP id i14-20020a5d558e000000b0033b49bb5f91mr1383897wrv.16.1707904223601;
+        Wed, 14 Feb 2024 01:50:23 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUOBmHidvJmdLA/fLShjhU6mSvfYljQS2avuA9S1BOTgr0k/gV3tq6mFxzsXbiGd32AL15BGjwpkfaSMlDVL3aKSWNFvLYEkYoeQa7El8rpv/kGRExl7ax5XGhNY04rrZYRkh9lQKLT9AddhyjkFAGv950Ic0GWvCv+0v+p2BrOJuEMsQv491ZKos1SWkhhRFoZhpsmChhH9SugyG9lA1c+K4l+Q4LIjGrkwstbRgETiwQelCLq95P1702l6zpwIpaad1Yjzla0fdv2Zp/ERevwnv8qy7sF9DUbGxldVtMK+rh1oe3fLx4/6Gqn6P3fVphIfVR9XJ+y35Ps3CpWIL5zO8TStNr8fcm/n/oX6bROuC9SksQLt9NmyPWTATtxaK/8sxChHAW2qeOhVyzN80GBAAIi1D+40cjZ6y8dMvwuM9tUs8rsUrBTKqAO6KV40u5rzad/O7x+33IRqg9Jz/EMTtGPfJfiSK7G6+tSQCxr96tDINJOv3NE4GIAye3isOOziT+qpOEsWwp8XUZbwuKKE7Y0SVqAu/4UZei3GoAWqXu128Njlh+XdUZvHyMN+PHpCbJxhFMchq8+T+5laOBnqs18dX4uDX2uW22ooCjrUyCoI7rCpYUwgat6BOKfvHsJV6dg58kp3agHqI7QTr70cuCJ6nZtuYNg21cQiKfoTyvDZAV+EZcofIiE60sVe3aqfjMPOryY
 Received: from ?IPV6:2a01:e0a:982:cbb0:31aa:ecd:7a9f:63a1? ([2a01:e0a:982:cbb0:31aa:ecd:7a9f:63a1])
-        by smtp.gmail.com with ESMTPSA id x17-20020a05600c21d100b00410b98a5c77sm1383011wmj.32.2024.02.14.01.47.55
+        by smtp.gmail.com with ESMTPSA id e12-20020adf9bcc000000b0033ce9e6e8easm1444672wrc.32.2024.02.14.01.50.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Feb 2024 01:47:56 -0800 (PST)
-Message-ID: <54b4e810-754e-481a-bbc8-984f859b116d@linaro.org>
-Date: Wed, 14 Feb 2024 10:47:55 +0100
+        Wed, 14 Feb 2024 01:50:23 -0800 (PST)
+Message-ID: <f9164049-6529-42c1-a35a-e91132c823b9@linaro.org>
+Date: Wed, 14 Feb 2024 10:50:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,21 +79,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
+From: neil.armstrong@linaro.org
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 4/4] arm64: dts: amlogic: add fbx8am DT overlays
+Subject: Re: [PATCH v2 2/4] drm/panel: Add driver for DJN HX83112A LCD panel
 Content-Language: en-US, fr
-To: Marc Gonzalez <mgonzalez@freebox.fr>,
- AML <linux-amlogic@lists.infradead.org>, DT <devicetree@vger.kernel.org>
-Cc: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet
- <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+To: Luca Weiss <luca.weiss@fairphone.com>,
+ Linus Walleij <linus.walleij@linaro.org>
+Cc: Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg
+ <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>
-References: <07f7a695-18a0-4211-82e9-b1e2c7166969@freebox.fr>
- <79ba726d-d02c-44b9-b6f6-59b17ba9755c@freebox.fr>
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
+ devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20240110-fp4-panel-v2-0-8ad11174f65b@fairphone.com>
+ <20240110-fp4-panel-v2-2-8ad11174f65b@fairphone.com>
+ <CACRpkdaWTfPDCin_L6pefHsokjNyO8Mo6hWPdzPLLi1EUkKUuA@mail.gmail.com>
+ <CYBZEZ4IM6IL.VR04W7933VI@fairphone.com>
+ <CACRpkdZQbVXfBa70nhDOqfWPbsh-6DgX-uvZOxr19pzMmF2giQ@mail.gmail.com>
+ <CYCLSCKPPBOC.1B1MP3VOOC0Q8@fairphone.com>
+ <cdc18e2a-b7eb-4b54-a513-481148fb3b0d@linaro.org>
+ <CYCMVXHYVDCI.HVH1TR8MWEUK@fairphone.com>
+ <CACRpkdacS9ojXUuogygkz6xxCf3mMq6GG_75sze8ukUu=rxVyw@mail.gmail.com>
+ <f99d363c-d4a6-44b3-8057-3925f8dac1d5@linaro.org>
+ <CYL76M5KT424.G3BC6JX74XVN@fairphone.com>
+ <CZ4P5PWJTODV.3UJ89H6M8W07H@fairphone.com>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -118,121 +134,78 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <79ba726d-d02c-44b9-b6f6-59b17ba9755c@freebox.fr>
+In-Reply-To: <CZ4P5PWJTODV.3UJ89H6M8W07H@fairphone.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Hi,
-
-On 13/02/2024 18:14, Marc Gonzalez wrote:
-> From: Pierre-Hugues Husson <phhusson@freebox.fr>
+On 14/02/2024 10:33, Luca Weiss wrote:
+> On Mon Jan 22, 2024 at 12:27 PM CET, Luca Weiss wrote:
+>> On Fri Jan 12, 2024 at 11:26 AM CET,  wrote:
+>>> On 12/01/2024 11:23, Linus Walleij wrote:
+>>>> On Fri, Jan 12, 2024 at 10:52 AM Luca Weiss <luca.weiss@fairphone.com> wrote:
+>>>>
+>>>>> Since there's zero indication Truly is involved in this panel in my
+>>>>> documentation - much less the number 5P65 - I'm not going to add that.
+>>>
+>>> Ack
+>>>
+>>>>
+>>>> OK then, I fold, thanks for looking into it.
+>>>> Keep the Himax hx83112a file name and symbols.
+>>>>
+>>>>> So in short this panel is the model 9A-3R063-1102B from DJN, which uses
+>>>>> a Himax HX83112A driver IC.
+>>>>
+>>>> So compatible = "djn,9a-3r063-1102b" since the setup sequences for
+>>>> hx83112a are clearly for this one display?
+>>>
+>>> Yep let's settle on that!
+>>
 > 
-> Add support for two variants of the fbx8am board.
+> Hi Neil and Linus,
 > 
-> Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
-> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
-> ---
->   arch/arm64/boot/dts/amlogic/Makefile                       |  6 ++++++
->   arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso    | 35 ++++++++++++++++++++++++++++++++++
->   arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso | 25 ++++++++++++++++++++++++
->   3 files changed, 66 insertions(+)
+> Any feedback about the below question?
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> index cc8b34bd583d8..1ab160bf928ae 100644
-> --- a/arch/arm64/boot/dts/amlogic/Makefile
-> +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> @@ -8,6 +8,8 @@ dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j100.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j110-rev-2.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j110-rev-3.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-axg-s400.dtb
-> +dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am-brcm.dtb
-> +dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am-realtek.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-g12a-radxa-zero.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-g12a-sei510.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
-> @@ -80,3 +82,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air-gbit.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air.dtb
-> +
-> +# Overlays
-> +meson-g12a-fbx8am-brcm-dtbs	:= meson-g12a-fbx8am.dtb meson-g12a-fbx8am-brcm.dtbo
-> +meson-g12a-fbx8am-realtek-dtbs	:= meson-g12a-fbx8am.dtb meson-g12a-fbx8am-realtek.dtbo
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
-> new file mode 100644
-> index 0000000000000..ed79809b15859
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
-> @@ -0,0 +1,35 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +// Copyright (c) 2024 Freebox SAS
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/gpio/meson-g12a-gpio.h>
-> +
-> +/ {
-> +	compatible = "freebox,fbx8am-brcm", "freebox,fbx8am", "amlogic,g12a";
+> Regards
+> Luca
+> 
+>> It's clear to me to use "djn,9a-3r063-1102b" in the driver now but what
+>> about dts?
+>>
+>> Currently here in v2 we have this:
+>> compatible = "fairphone,fp4-hx83112a-djn", "himax,hx83112a";
+>>
+>> Should this just become this?
+>> compatible = "djn,9a-3r063-1102b";
+>>
+>> Or e.g. this?
+>> compatible = "djn,9a-3r063-1102b", "himax,hx83112a";
+>>
+>> Or something else completely? Do we have some documentation / best
+>> practises around this maybe?
 
-This looks fine but I'm unsure if those new compatible should be documented of not since they are in an overlay
+Sorry I totally missed the question.
 
+Not sure if "himax,hx83112a" is needed here, the "djn,9a-3r063-1102b" is enough to know the IC is hx83112a.
+
+I don't think you'll ever find a "djn,9a-3r063-1102b" with another controller IC ?
+
+And "himax,hx83112a" alone as fallback is not enough to describe the panel hardware, so I think it should be dropped.
+
+Thanks,
 Neil
 
-> +};
-> +
-> +&uart_A {
-> +	bluetooth {
-> +		compatible = "brcm,bcm43438-bt";
-> +		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-> +		max-speed = <2000000>;
-> +		clocks = <&wifi32k>;
-> +		clock-names = "lpo";
-> +		vbat-supply = <&vddao_3v3>;
-> +		vddio-supply = <&vddio_ao1v8>;
-> +	};
-> +};
-> +
-> +&sd_emmc_a {
-> +	/* Per mmc-controller.yaml */
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	/* NB: may be either AP6398S or AP6398SR3 wifi module */
-> +	brcmf: wifi@1 {
-> +		reg = <1>;
-> +		compatible = "brcm,bcm4329-fmac";
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso
-> new file mode 100644
-> index 0000000000000..5da88fb94fb98
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso
-> @@ -0,0 +1,25 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +// Copyright (c) 2024 Freebox SAS
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/gpio/meson-g12a-gpio.h>
-> +
-> +/ {
-> +	compatible = "freebox,fbx8am-realtek", "freebox,fbx8am", "amlogic,g12a";
-> +};
-> +
-> +&uart_A {
-> +	bluetooth {
-> +		compatible = "realtek,rtl8822cs-bt";
-> +		enable-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-> +		host-wake-gpios = <&gpio GPIOX_19 GPIO_ACTIVE_HIGH>;
-> +		device-wake-gpios = <&gpio GPIOX_18 GPIO_ACTIVE_HIGH>;
-> +	};
-> +};
-> +
-> +&sd_emmc_a {
-> +	/* No explicit compatible for rtl8822cs sdio */
-> +};
+>>
+>> Regards
+>> Luca
+>>
+>>>
+>>> Thanks,
+>>> Neil
+>>>
+>>>>
+>>>> Yours,
+>>>> Linus Walleij
+> 
+
 
