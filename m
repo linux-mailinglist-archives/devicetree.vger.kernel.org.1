@@ -1,63 +1,75 @@
-Return-Path: <devicetree+bounces-41831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5011D8554DD
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 22:34:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8644855517
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 22:44:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B8227B20E33
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 21:34:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 756201F2B37C
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 21:44:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDAFF13EFF3;
-	Wed, 14 Feb 2024 21:34:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD5C0141986;
+	Wed, 14 Feb 2024 21:43:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lk+ojk3f"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ibq/1/om"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F7ED134740;
-	Wed, 14 Feb 2024 21:34:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A700955C1A
+	for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 21:43:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707946467; cv=none; b=nJgkqwpt3etEE5QEAYbTQtk69CKZW5i/JAUM8OjlnzgH0Z9AHAIViUk9xg8YcNq4lZGhIiOJUzZaISx85a2vrDj471EJjYFt0UoL9gXM+31q32iFq3nCHTH5mdfRheJfHKA9xy34chp+i/b/Yc1yjGgY9HV3XCi7A+SKp+mAHb8=
+	t=1707947030; cv=none; b=ad2zFcxfcjPYYjNTaJ3OdTbT6N8X/mhmj7WC+HOEJAQAX7eeP72o0FtNKWx8go6C13nl4XmU5WyOSgQtuzGV8vdnMJVmbh9gh/b4X/D3eBiUujfJq1kpInfspm5ji6DpBp6K8x0JTyU/hpCnyn2hWhflIDcJdl2oWoW+5cFjLS0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707946467; c=relaxed/simple;
-	bh=Q6j4BHMns0h+WxQIjqSMnT4o7C6OxX6xtAP1jLjnNNU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=DSMrAUEGBwwcHJBohw3z5bvdil03cyLwmUVRwO+7ni3XsEXYnpn3hRjD902FPtDuBvYEiS9j8Glhtx0ONNIKps1EMRPVDCJmFU9zmyt11/eXuvPKlLuZihs/Zsp+zjpuIYOMW5WpU3XORpgAGjAPuNlNqnPFlvQlmm1zaXEejX0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=lk+ojk3f; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41ELUeZ9005821;
-	Wed, 14 Feb 2024 21:31:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=dbVwpts8F08fJF//2xqBb1oUCy/fQrwva/LA3Jl6tbE=; b=lk
-	+ojk3fxEKc2MVBIKWw87aFtQb5Diu3u/9AwC1170Rid8VLeo1VyJf5HBycZUdN1C
-	fruWjgflEnWxGxGWlunnh8lTr/NEb749q02Tdcof7cwi/eGIsAMQV2Mb8VW5BSZZ
-	ZudRu0AtcBrwuHyE4v66aT/XP3LcOIQjvrEgOggN0izMS7bqWn82AwfDwUILczmw
-	2NPqOu6my3IdI+PoqpPoIsUpif0rlH4b8fkeCzZ4xVODuWkVX6w93ed8216Adqcq
-	S/Rlh6KOIJSiNHOIptYAbw4PRYEUTSLbY4Ha6QFcFbuqCmLaCa/VwEWhIw0/USyg
-	VmbEag0rBBNQhCXJbRVQ==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w8myg26dt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 14 Feb 2024 21:31:50 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41ELVnJn016056
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 14 Feb 2024 21:31:49 GMT
-Received: from [10.71.110.192] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 14 Feb
- 2024 13:31:46 -0800
-Message-ID: <03c2c48d-d05f-4906-b63b-711c94133489@quicinc.com>
-Date: Wed, 14 Feb 2024 13:31:28 -0800
+	s=arc-20240116; t=1707947030; c=relaxed/simple;
+	bh=jzDKArta05/SueeyHjcOmqtwh2NVrtwFbWx9We1YttA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NGddsO3Migar7wRq5Jo9cqZ9gBRmMz3cbrGkVcuQm8hiMg3AFr+KT02anNBabaJT98wOnTy6KO/s3DiLCFWsMjMvh8ySkLi1f2gDN1Pdt6ZVgeDtTLZyIphjrtMZU2xcYANJYG31aW4kkgtNSZTJpiW+IscIeXZKuy5DqkZGWWc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ibq/1/om; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a26fa294e56so24737166b.0
+        for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 13:43:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707947026; x=1708551826; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FH2C7vn8hDWw4rS59jrNqZ5mvcTJOw6OI/RhdHm4JoE=;
+        b=Ibq/1/om0fxcRKJ5GRlcXUOArldx4Ov6HsknYQ1nQa+vM8h8Xr5+zWaMjnCKnGFA17
+         ZolXRYC80/v85fUu6Rgpj7UT1ukAK0SfNI4xEUSfXOJxcw98rHlj2G54pgqOIryHpgu5
+         t8ZCipLIVph47u2qyPGHaqsLZdA8zi/lcBDutDRaH3GoQMDn3VZpUK5nQZkm2K/hKl5p
+         V+NHV5L+dxXHi27mQ7tHcnYOV2jsfivVeOB/hJtUURZXd0+nMtFr/B1e/i+Xpn5TuW7I
+         uSHGc4ZYrWeDQUckNAUf5rrV1KdBSR7t7DK+X1w7LxJNp8EcwfDLmolakEC1ABA2AhCK
+         4d0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707947026; x=1708551826;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FH2C7vn8hDWw4rS59jrNqZ5mvcTJOw6OI/RhdHm4JoE=;
+        b=gOahg2pcbScb6cSViOciW01FG9K+B3LP2EWyKfmO+yKJbZGY9R4eXlz8g0LvcLWc0o
+         yFvpJPptW+/2OcT5Uq9CKAElu8xfoDY3b45C/2YRmU/M/6GyrQDavTFnFmRjU8swBw2P
+         sO9Rod6PidghWGIL7DwBUgNf3CrDUkiWkkdEktwwuqBgRK53rkJ6FCJIcXc1Kp3DbPQm
+         aKfJdgvwU1xkloe16wr0gLd9rVDiNgpYAI/pIhemHspd0YYUs2CaDlfJmKQlCfTHpqoz
+         zwVlyYj9F/6I6zCOgB+mCElSsAF+301l1x2JoZXCnUv6h6KgdHU4XZjJTq/DA1d2XbqH
+         POIw==
+X-Forwarded-Encrypted: i=1; AJvYcCXz18Rmmxi57P4bnde8kjRyG51sn66EaRk8iUCcGrnj/2BgIydrJdC1Fxh9dH3gh4W1JA28ziZfx7v22rsWiCcUrhcbCLwxBpwJfA==
+X-Gm-Message-State: AOJu0YyMAY/JQ9hJt91ZpU5uRfJKvcku5IStHmXbrH6eVDKLONV1CWHN
+	Hu0vja0Z5z2vgG1GlezMbA1kld1yf4f2cPfuXbZNMNHLLAHLgUK3fwcHh3Y7FiQ=
+X-Google-Smtp-Source: AGHT+IG7UQyEyDms50ny2v6l+WwpJ0LwBFQwJp87OYPcEEuRnmhBvrC48Jo9frT13TADGjAKcjdmrQ==
+X-Received: by 2002:a17:906:1cd0:b0:a3d:5932:7f59 with SMTP id i16-20020a1709061cd000b00a3d59327f59mr1945165ejh.71.1707947025935;
+        Wed, 14 Feb 2024 13:43:45 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCX+n+tcGDQQCOX21+nPmBrawzYkshOo9vWPljGBds4b7g2q8cM5IFouMZRoU+qnitU3L5Rbe3hXEEo5qfQcMJW9Yq50F1TwKjXqNt1GjVn0txnn7BH8JwJSU7hoFBwSrrw76BjuZYkHCbJ0WhNWjyEpnVzl4xh7vxHB7h5ytWaI9B1roXRtp8hdoiDojN6/6hxORYbHXIYfW+n+ZkPIysJ+R+Iua0A1qOonW3n19IDDhMC4FmC4BuYKTPtGxptu/+JxSJ8vIsIMgCcH+sNh+8jXdLrDlpPUhgMtbosP64grS5AeqNkJ7HOuc7vNRFHWKOEgwWVQRASjEfnKJ00s/pJJ1dckpg68xpWtmVHVtwNFs69iybWa7UAPeEt02b4nRg9Y1qx4QZ1qwPC32haGw90HI/B2kHLlaQjG0m53c4X7NpaANOuG3SzwS63F5Si8touyQG8kkD9fWg075wrUfLh2oFRVTlSpjmjXa3vX9i5MzeyEDZguO/w5IisoGBYezFEjuKXVn6Ss0A3sLjSlZXFsqGqLLq+mG6KlKkkvlO0ubAU3uXbRs0sfrkyPA5Fc8a2On/VMcdjb4eEQ1CB1llaIDNylVi222BLPiWFL1tOWDismznKU4I3bEMrKuXX0mlFrr47QQIAOxqQYvJsHLHrYkROFsxY+HKXSYh311+HSdeGnb+wZqP2rD5nYJe0Y7TpGPu8SOSw16Wz6ZWPX7t8t7eWhwQIv549wd2y3XDv4x4NOMm+A6YSPB+5fYG1nCTzR38h4EykOLrnCVGtWz0iL2NReuzZ+7DYURshGxC89RYM0zlm2rpZM477m
+Received: from [192.168.192.135] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
+        by smtp.gmail.com with ESMTPSA id sa4-20020a1709076d0400b00a3d841e627bsm51757ejc.58.2024.02.14.13.43.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Feb 2024 13:43:45 -0800 (PST)
+Message-ID: <13d65685-b306-43ad-b9ca-a799f2cf73e5@linaro.org>
+Date: Wed, 14 Feb 2024 22:43:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,119 +77,212 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] loongarch: Call arch_mem_init() before
- platform_init() in the init sequence
-To: Huacai Chen <chenhuacai@kernel.org>
-CC: <jonas@southpole.se>, <stefan.kristiansson@saunalahti.fi>,
-        <shorne@gmail.com>, <ysato@users.sourceforge.jp>, <dalias@libc.org>,
-        <glaubitz@physik.fu-berlin.de>, <robh+dt@kernel.org>,
-        <frowand.list@gmail.com>, <linux-openrisc@vger.kernel.org>,
-        <loongarch@lists.linux.dev>, <linux-sh@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <kernel@quicinc.com>
-References: <1707524971-146908-1-git-send-email-quic_obabatun@quicinc.com>
- <1707524971-146908-2-git-send-email-quic_obabatun@quicinc.com>
- <CAAhV-H5f5e-cCaX7Gr20oG8F-aywJcosLn4ajxx2SQWoB8JtSA@mail.gmail.com>
+Subject: Re: [PATCH 3/5] drm: msm: add support for A750 GPU
 Content-Language: en-US
-From: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
-In-Reply-To: <CAAhV-H5f5e-cCaX7Gr20oG8F-aywJcosLn4ajxx2SQWoB8JtSA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+To: neil.armstrong@linaro.org, Rob Clark <robdclark@gmail.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
+ Bjorn Andersson <andersson@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ iommu@lists.linux.dev
+References: <20240212-topic-sm8650-gpu-v1-0-708a40b747b5@linaro.org>
+ <20240212-topic-sm8650-gpu-v1-3-708a40b747b5@linaro.org>
+ <b5d76a25-045a-4acd-ad20-d28855b40222@linaro.org>
+ <bcad544c-7ca2-4b4f-805b-4ccaedbd091c@linaro.org>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <bcad544c-7ca2-4b4f-805b-4ccaedbd091c@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: QnVTO4n29rWWGb8jdilowa6YD6gHzyG_
-X-Proofpoint-ORIG-GUID: QnVTO4n29rWWGb8jdilowa6YD6gHzyG_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-14_14,2024-02-14_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 suspectscore=0
- mlxlogscore=999 priorityscore=1501 impostorscore=0 bulkscore=0 mlxscore=0
- adultscore=0 lowpriorityscore=0 spamscore=0 clxscore=1015 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2401310000
- definitions=main-2402140166
 
-
-On 2/14/2024 5:03 AM, Huacai Chen wrote:
-> Hi, Oreoluwa,
->
-> On Sat, Feb 10, 2024 at 8:29 AM Oreoluwa Babatunde
-> <quic_obabatun@quicinc.com> wrote:
->> The platform_init() function which is called during device bootup
->> contains a few calls to memblock_alloc().
->> This is an issue because these allocations are done before reserved
->> memory regions are set aside in arch_mem_init().
->> This means that there is a possibility for memblock to allocate memory
->> from any of the reserved memory regions.
+On 12.02.2024 15:45, Neil Armstrong wrote:
+> On 12/02/2024 11:46, Konrad Dybcio wrote:
+>> On 12.02.2024 11:37, Neil Armstrong wrote:
+>>> Add support for the A750 GPU found on the SM8650 platform
+>>>
+>>> Unlike the the very close A740 GPU on the SM8550 SoC, the A750 GPU
+>>> doesn't have an HWCFG block but a separate register set.
+>>>
+>>> The missing registers are added in the a6xx.xml.h file that would
+>>> require a subsequent sync and the non-existent hwcfg is handled
+>>> in a6xx_set_hwcg().
 >>
->> Hence, move the call to arch_mem_init() to be earlier in the init
->> sequence so that all reserved memory is set aside before any allocations
->> are made with memblock.
+>> These should also be submitted to mesa to make sure the next header sync
+>> doesn't wipe them
+> 
+> Ack submitting them right now: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/27576
+
+Thanks
+
+> 
 >>
->> Signed-off-by: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
->> ---
->>  arch/loongarch/kernel/setup.c | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
+>> [...]
 >>
->> diff --git a/arch/loongarch/kernel/setup.c b/arch/loongarch/kernel/setup.c
->> index edf2bba..66c307c 100644
->> --- a/arch/loongarch/kernel/setup.c
->> +++ b/arch/loongarch/kernel/setup.c
->> @@ -597,8 +597,8 @@ void __init setup_arch(char **cmdline_p)
->>         parse_early_param();
->>         reserve_initrd_mem();
+>>> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+>>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+>>> @@ -958,10 +958,11 @@ static void a6xx_set_hwcg(struct msm_gpu *gpu, bool state)
+>>>       struct a6xx_gpu *a6xx_gpu = to_a6xx_gpu(adreno_gpu);
+>>>       struct a6xx_gmu *gmu = &a6xx_gpu->gmu;
+>>>       const struct adreno_reglist *reg;
+>>> +    bool skip_programming = !(adreno_gpu->info->hwcg || adreno_is_a7xx(adreno_gpu));
 >>
->> -       platform_init();
->>         arch_mem_init(cmdline_p);
->> +       platform_init();
-> Thank you for your patch, but I think we cannot simply exchange their
-> order. If I'm right, you try to move all memblock_reserve() as early
-> as possible, but both arch_mem_init() and platform_init() call
-> memblock_reserve(), we should do a complete refactor for this. And
-> since it works with the existing order, we can simply keep it as is
-> now.
->
-> Huacai
-Hi Huacai,
+>> is_a750?
+> 
+> OK right, I was thinking of the next gpu which will probably also miss an hwcfg
+> 
+>>
+>>>       unsigned int i;
+>>>       u32 val, clock_cntl_on, cgc_mode;
+>>>   -    if (!adreno_gpu->info->hwcg)
+>>> +    if (skip_programming)
+>>>           return;
+>>>         if (adreno_is_a630(adreno_gpu))
+>>> @@ -982,6 +983,25 @@ static void a6xx_set_hwcg(struct msm_gpu *gpu, bool state)
+>>>                 state ? 0x5555 : 0);
+>>>       }
+>>>   +    if (!adreno_gpu->info->hwcg) {
+>>
+>> I don't think this block of code is reachable now, no?
+> 
+> It is because we didn't skip when adreno_is_a7xx(adreno_gpu)
 
-Thank you for your response!
+Ahh I misread the brackets within the assignment
 
-I'm not trying to move all memblock_reserve() to be as early as possible,
-I'm trying to move the call to early_init_fdt_scan_reserved_mem() to be
-as early as possible. This is the function that is used to set aside all the
-reserved memory regions that are meant for certain devices/drivers.
+> 
+>>
+>> Maybe remove the skip_programming and if_a750 here?
+> This would require:
+>>> -    if (!adreno_gpu->info->hwcg || )
+>>> +    if (!(adreno_gpu->info->hwcg || adreno_is_a750(adreno_gpu)))
+> 
+> and:
+> 
+>>> +    if (adreno_is_a750(adreno_gpu)) {
+> 
+> But if the next gpu also doesn't have an hwcfg, we will need to use
+> the current design...
+> 
+> I just tried with:
+> ====================><===============================
+> @@ -961,7 +961,7 @@ static void a6xx_set_hwcg(struct msm_gpu *gpu, bool state)
+>         unsigned int i;
+>         u32 val, clock_cntl_on, cgc_mode;
+> 
+> -       if (!adreno_gpu->info->hwcg)
+> +       if (!(adreno_gpu->info->hwcg || adreno_is_a750(adreno_gpu)))
+>                 return;
+> 
+>         if (adreno_is_a630(adreno_gpu))
+> @@ -982,6 +982,25 @@ static void a6xx_set_hwcg(struct msm_gpu *gpu, bool state)
+>                           state ? 0x5555 : 0);
+>         }
+> 
+> +       if (adreno_is_a750(adreno_gpu)) {
+> +               gpu_write(gpu, REG_A7XX_RBBM_CLOCK_CNTL_GLOBAL, 1);
+> +               gpu_write(gpu, REG_A7XX_RBBM_CGC_GLOBAL_LOAD_CMD, state ? 1 : 0);
+> +
+> +               if (state) {
+> +                       gpu_write(gpu, REG_A7XX_RBBM_CGC_P2S_TRIG_CMD, 1);
+> +
+> +                       if (gpu_poll_timeout(gpu, REG_A7XX_RBBM_CGC_P2S_STATUS, val,
+> +                                            val & A7XX_RBBM_CGC_P2S_STATUS_TXDONE, 1, 10)) {
+> +                               dev_err(&gpu->pdev->dev, "RBBM_CGC_P2S_STATUS TXDONE Poll failed\n");
+> +                               return;
+> +                       }
+> +
+> +                       gpu_write(gpu, REG_A7XX_RBBM_CLOCK_CNTL_GLOBAL, 0);
+> +               }
+> +
+> +               return;
+> +       }
+> +
+>         val = gpu_read(gpu, REG_A6XX_RBBM_CLOCK_CNTL);
+> 
+>         /* Don't re-program the registers if they are already correct */
+> ====================><===============================
+> 
+> And it works fine, does it work it for you ?
 
-The reserved memory regions I am referring to are explicitly defined in
-the DT. These regions are set aside so that the system will have either
-limited access or no access to them at all.
-Some of these regions are also defined with a property called no-map
-which tells the system not to create a memory mapping for them.
-https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/reserved-memory/reserved-memory.yaml#L79
+Let's keep it as-is in the original submission, as I've mentioned, I had
+misread the code
 
-Hence, setting aside these memory regions should take priority and should
-be done first before any memblock allocations are done so that the system
-does not  unknowingly allocate memory from a region that is meant to be
-reserved for a device/driver.
+Konrad
 
-Eg:
-    unflatten_and_copy_device_tree() eventually calls memblock_alloc():
-    https://elixir.bootlin.com/linux/latest/source/drivers/of/fdt.c#L1264
-
-    Since unflatten_and_copy_device_tree() is called in platform_init(), this
-    allocation is done before we are able to set aside any of the reserved
-    memory regions from the DT which is supposed to be done by
-    early_init_fdt_scan_reserved_mem() in the arch_mem_init() function.
-
-    Hence, it is possible for unflatten_and_copy_device_tree() to allocate
-    memory from a region that is meant to be set aside for a device/driver
-    without the system knowing.
-
-This can create problems for a device/driver if a region of memory that was
-supposed to be set aside for it ends up being allocated for another use case
-by memblock_alloc*().
-
-Regards,
-
-Oreoluwa
+> 
+>>
+>>> +        gpu_write(gpu, REG_A7XX_RBBM_CLOCK_CNTL_GLOBAL, 1);
+>>> +        gpu_write(gpu, REG_A7XX_RBBM_CGC_GLOBAL_LOAD_CMD, state ? 1 : 0);
+>>> +
+>>> +        if (state) {
+>>> +            gpu_write(gpu, REG_A7XX_RBBM_CGC_P2S_TRIG_CMD, 1);
+>>> +
+>>> +            if (gpu_poll_timeout(gpu, REG_A7XX_RBBM_CGC_P2S_STATUS, val,
+>>> +                         val & BIT(0), 1, 10)) {
+>>
+>> We should define that bit name (the err suggests it's
+>> REG_A7XX_RBBM_GCC_P2S_STATUS_TXDONE or so)
+>>
+>> [...]
+>>
+>>> +static inline int adreno_is_a750(struct adreno_gpu *gpu)
+>>> +{
+>>> +    return gpu->info->chip_ids[0] == 0x43051401;
+>>> +}
+>>> +
+>>>   /* Placeholder to make future diffs smaller */
+>>
+>> Please also remove this comment now that it's invalid
+> 
+> Ack
+> 
+>>
+>> Konrad
+> 
+> Thanks,
+> Neil
+> 
 
