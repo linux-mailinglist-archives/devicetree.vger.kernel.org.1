@@ -1,123 +1,106 @@
-Return-Path: <devicetree+bounces-41548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41551-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46452854391
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 08:44:03 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FE678543C1
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 09:04:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D53C51F239E1
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 07:44:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F101EB20B4A
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 08:04:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4200411706;
-	Wed, 14 Feb 2024 07:43:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C21A6125C0;
+	Wed, 14 Feb 2024 08:04:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="XIEFh2Vh"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Mzq4aFBA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 622B4125A1;
-	Wed, 14 Feb 2024 07:43:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E83EB11C80;
+	Wed, 14 Feb 2024 08:04:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707896638; cv=none; b=m0NojRhtDoNr6xT1q8rXp4CQurjTRUEiLgir86HmKfgU8zXR5Q5q7ZjbRS4VqXHJBoT68q5/XucSCIDUr9lH1UQX1FeZYjY35/LLj4BJDMBMAvOyESHooQrvtmOxnsimVkbEK2XEBOyopOx/hpg6QAPgttclUrsQBi9aUAHHnpw=
+	t=1707897859; cv=none; b=ZthvqBSC9dE43nzEi/mBcwJ7KQbUSmcTrqELfHuKl50tNWI1e6L1Sg/1E5DLm02ZPeYV3MdGFD3Yrt6AzpKGTdNJ82DReS0X8s2BmHNy0EO3f07l/F4V5Vi3S5XX9WVwNPhO4PYJB5Jp2hYL/7vRL8ggtOBLL2rkGBrJkmCLvYo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707896638; c=relaxed/simple;
-	bh=v3L39AG6iIecOgYkszF4p8cxFB40CDXlfe218wo6Xg8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=GRovJkvuKPoLKq3svMyyojBd34VTsef0dn6V9shd6f+Oepb+R66SyI9IS1yN4tk7RQ4lNQJzb/3XgqnJudEiM7+pBLcrM4Q10I+fKtpH21jFr+BDrifK2SEgtOTUO8zS2f0Nif40kodEAMbOe/6QUkdVnMr95/huaK5lT4w3r/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=XIEFh2Vh; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41E7hnRS112889;
-	Wed, 14 Feb 2024 01:43:49 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707896629;
-	bh=tnihI+YM3AXr5w3Jx4CWOP0Vj9gtjnvp82oYgzAV3jc=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=XIEFh2Vhl6RYwnXj5/GrFmRlty1mzwtRrU939XWONr5OrZWnB3VH8XWGbS8Wy8/BK
-	 d4VF1tqjKDijBm9D5BIUPLasnLCsZDi687ScQrbs1CYKlwUU61fLOoRYbs3cJeUhFr
-	 KftOkUFVQdsGC6KPvDkWXsCVPu3Y0on/tH4gmC2M=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41E7hnKs015561
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 14 Feb 2024 01:43:49 -0600
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 14
- Feb 2024 01:43:49 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 14 Feb 2024 01:43:48 -0600
-Received: from [10.24.69.142] ([10.24.69.142])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41E7hj04028714;
-	Wed, 14 Feb 2024 01:43:45 -0600
-Message-ID: <45bd5618-2e22-4715-9724-92f1d4b84608@ti.com>
-Date: Wed, 14 Feb 2024 13:13:44 +0530
+	s=arc-20240116; t=1707897859; c=relaxed/simple;
+	bh=DUP0bjlDiDxEt7EBusweiwjiFrBmZVWOoGBRTMCwIeo=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Qs1NUxkDwS1MOYNOyc41SMvOetauIMDEkVHVSQJWxIkz6QgbsZTocg8wwUPC0hLgxGeEVfwPh8TbGTCbK/KZzyVJegtGBJuOojJ8QJZVK216ReXUyoVdW/LwSBoEt0Rz7kvAVLZpbMIk48c6q5MJoCgpLYweHtBXEOZJViajTZ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Mzq4aFBA; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1707897858; x=1739433858;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=DUP0bjlDiDxEt7EBusweiwjiFrBmZVWOoGBRTMCwIeo=;
+  b=Mzq4aFBAtzpKRjuItGpVgbb1sNAkzGFVrc/Z71pFXX6XJl1w9vNDMfSH
+   ws89igI2pI7y4GfwB+5J3Ihy/nOoe9sZ5OF8jEGF2ScNRgIvaeJjA9TFX
+   MUKGNOlATTA01DL7rnzFxpYuoAS1Oumpkuozq2uvJ3KWHP+IaITZwAQGT
+   xnqEB7AXhhLJZKl+jaNwA4+yDz5vnLR9w301c1t8R1p+o1PMx+jPGyF1t
+   12n6++gZ803CHBx3rlea22NK7KXbde8bnNWjc75CGHYCGj/Uhfkni7Tq6
+   cPWuLe89S/C9AHaYuzcyM/ybfgcy+R53pFTkxD+mXQWb4WQNXBwYiNXIQ
+   w==;
+X-CSE-ConnectionGUID: uXOR+YopRZ6oLQavHYuSyg==
+X-CSE-MsgGUID: JZh0of/fT/KSDyDsVN33Yg==
+X-IronPort-AV: E=Sophos;i="6.06,159,1705388400"; 
+   d="scan'208";a="16216868"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Feb 2024 01:04:16 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 14 Feb 2024 01:03:56 -0700
+Received: from virtualbox.microchip.com (10.10.85.11) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Wed, 14 Feb 2024 01:03:53 -0700
+From: Mihai Sain <mihai.sain@microchip.com>
+To: <claudiu.beznea@tuxon.dev>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+	<andre.przywara@arm.com>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+CC: <cristian.birsan@microchip.com>, Mihai Sain <mihai.sain@microchip.com>
+Subject: [PATCH v2 0/3] Add initial support for Microchip SAMA7G54 Curiosity board
+Date: Wed, 14 Feb 2024 10:03:45 +0200
+Message-ID: <20240214080348.7540-1-mihai.sain@microchip.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: ti: Add support for TI J722S
- Evaluation Module
-Content-Language: en-US
-To: Michael Walle <mwalle@kernel.org>, Andrew Davis <afd@ti.com>, <nm@ti.com>,
-        <vigneshr@ti.com>, <conor+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>,
-        <j-choudhary@ti.com>
-References: <20240206100608.127702-1-vaishnav.a@ti.com>
- <20240206100608.127702-4-vaishnav.a@ti.com>
- <CZ386ITQ83KH.1KNOV5MXLXPBF@kernel.org>
-From: Vaishnav Achath <vaishnav.a@ti.com>
-In-Reply-To: <CZ386ITQ83KH.1KNOV5MXLXPBF@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Hi Michael,
+This patch series adds initial support for Microchip SAMA7G54 Curiosity board.
 
-On 12/02/24 21:32, Michael Walle wrote:
-> Hi,
-> 
-> On Tue Feb 6, 2024 at 11:06 AM CET, Vaishnav Achath wrote:
->> +# Boards with J722s SoC
->> +dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm.dtb
-> 
-> I'm a bit confused by your names. What are the new/correct ones now?
-> Some seem to use the amXX names and some the jXX ones. I've read [1]
-> and it appears it was suggested to use the am67 names for the device
-> trees. Esp. because there is already, am62, am64, am65, am68 and
-> am69 in as names for the device trees.
-> 
-> The TRM you've linked in the cover letter doesn't shed much light
-> either. It just lists both.
-> 
+Changes in v2:
+--------------
 
-Both names are correct, for other Jacinto devices J721S2 and J784S4, the 
-industrial variants (AM68, AM69 respectively) and those boards were 
-announced at a later point of time and since the automotive/J7 variants 
-were introduced first, the SoC dtsi and files have the J7XX names, for 
-AM62/AM64 there is no confusion in naming, in this case the initial TRM 
-itself mentions J722S and AM67 variants with similar capabilities, the 
-reasoning behind continuing with the J722S name is because the initial 
-support is being added for J722S EVM (the top marking on the SoC package 
-populated on the EVM say XJ722SAMW, this can be seen in the schematics 
-also), please let know if this clarifies the confusion.
+* Remove bootargs.
+* Use phandle style for clock nodes.
+* Use color and function for gpio-leds.
+* Remove status okay from leds, nand, eeprom, pmic, flash.
+* Use generic name like pmic for mcp16502 regulator.
 
-Thanks and Regards,
-Vaishnav
+Mihai Sain (3):
+  dt-bindings: ARM: at91: Document Microchip SAMA7G54 Curiosity
+  ARM: dts: microchip: sama7g5: Add flexcom 10 node
+  ARM: dts: microchip: sama7g54_curiosity: Add initial device tree of the board
 
-> -michael
-> 
-> [1] https://lore.kernel.org/all/81f90d13-da10-4a68-a0e7-95212f40b3e8@ti.com/
+ .../devicetree/bindings/arm/atmel-at91.yaml   |   6 +
+ arch/arm/boot/dts/microchip/Makefile          |   4 +-
+ .../dts/microchip/at91-sama7g54_curiosity.dts | 487 ++++++++++++++++++
+ arch/arm/boot/dts/microchip/sama7g5.dtsi      |  26 +
+ 4 files changed, 522 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/microchip/at91-sama7g54_curiosity.dts
+
+-- 
+2.43.0
+
 
