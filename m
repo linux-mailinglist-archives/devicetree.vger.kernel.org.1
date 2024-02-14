@@ -1,145 +1,129 @@
-Return-Path: <devicetree+bounces-41556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95A4085441B
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 09:36:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3767854462
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 09:54:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C80AD1C26D88
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 08:36:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A81BB1F2A793
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 08:54:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC26717CE;
-	Wed, 14 Feb 2024 08:35:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1B0179C1;
+	Wed, 14 Feb 2024 08:54:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W2/18nlT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48F6F1FB4;
-	Wed, 14 Feb 2024 08:35:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0715C125D3;
+	Wed, 14 Feb 2024 08:54:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707899757; cv=none; b=UbFnK8Vi0f5jWtlJEbkEr9DfffSkwpZn4u3oiGmjmb6CA+0j8SHwx6aEvKdiof+f2f2xv2ioGzljcrxu+mhdmrnLOhLr3wZoGBSdC2jmCqyz83CWROp+EAp7T0p0Dm0gvodY5t6TRwUll9Dov9l2z/XZvir96ykV4MzRnjSc8Ac=
+	t=1707900852; cv=none; b=rr3ZxVt7UifkRQSZKiXmHgsXBnPnRmPtdlhJ4tzlxGgjJ3EvCXBnXN7lxob+lLGhDku/pvAZ9zBbqFI87+B+M3gV1Su1EnA6DGlnc9LgaGasi+FDHN1Pkjy0wG2nWUVbxearMZSQt88mUAzbN2BKGsW3fPOxepVoJxS4Hc2DykE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707899757; c=relaxed/simple;
-	bh=G80kAQT7MwVwK+q1TP/+PTGwSsJM0oWNxYt1TUSDTHI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oF/tTNCVkuinR2elC5/4Ia3A9XIOWXf9w2sIDsePWYG00FGIq4+PZnJQSL3tcmqNUq0ZPBo6arl2LShG74t+ChvI+mWRShkHoGfaP/NjdrE7TIKgB7xemV2HcTCw8qCZULnGriN8LKJWtzu38Y71Y+mfBEFzFQZ2IjAR36IIHP4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1707900852; c=relaxed/simple;
+	bh=JIupEgZdlhi1DwMWARijZBjPHa2nr9YDs+J+OgdUkYY=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=Z+rWdj/g5Kd4oFwL2HsG5TMBQQScszlzblkkoci8iw54VrOGGlxG68lfneMGNk4O9t4xWFYk5LOLkAurbr/UcH1UxKV+yDLBgxiCTV40IviWKVa1WvrSOWWJLnr8LT+fr9nRWm/mxVBsVPqy4dc/qifpOspvB095OVWgxy3sk94=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W2/18nlT; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6002317a427so47028387b3.2;
-        Wed, 14 Feb 2024 00:35:54 -0800 (PST)
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a26fa294e56so705375366b.0;
+        Wed, 14 Feb 2024 00:54:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707900849; x=1708505649; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ds/QrOAUfj55fwmiogY89G0c95jjcvTfyeTi82RwVPQ=;
+        b=W2/18nlT/wmqK186h0NIRKl/S3O1p8BMibKV64D27f6Mj8+Nfh2eMApn0p1qOmcxRg
+         4OLnwrFjGWGXNY01Tasl8gSNAXr7kbsCLWqOZ6iwRnOmqdoR3mVBCGuK/gYeQKS3McTe
+         thYksbRtda1PyZd8YH5F837rZGrdzyVOgKjlfjrwsxP1GAIIfD6pGosXodPK2PZRWaN5
+         1BLksh7EUKEhsidiZR18XmRBfpOQKuh4kg93v+lNEOFG2daTCUQHc+9zEs/5AB2Z8a/z
+         VqCZ6WldIOn/kM7h8gBSut91ac2ad2IWmu558RnUdSWfm+l2jJwYlzOum1BwYx6skhT+
+         1O+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707899752; x=1708504552;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1707900849; x=1708505649;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=qhJlZCcRgqTba1suffIYy/S2Gadkij2N+hd17VddZnM=;
-        b=jJsXIHH49ymdhbGiJixJ1GSrgia1NrYlyFYPK9YnoFrhsKCJugbGNHQ3Ql3iXmld+S
-         ngRbnr4tsfF6C4uUVrdIZFu3Ca5r7i3RmK6sYYXpBbsggDp/0QiUIYF2V5sIyOBBizzo
-         otgOsDuR/ZDJjl5C7H2QA3heL0i5k0YjkkkphbmAsUi3kTRXS6r1ntGWbKV5Pn3vCUWL
-         zqM8GCuyN1X4olwQogNCxH3HTckv++deQqSppuXOotvo2eHzgsdLd1qmWwlK8QhbckcD
-         xp19ANDgL7vycqVnnBT2vPfBkQprOzzk6CB092rpIU0qDKUUVoWZS5kfgOB5L5QZvJvn
-         bqew==
-X-Forwarded-Encrypted: i=1; AJvYcCUzyaCqxu5lUt17dZpJCUa9VkbcB/gdvOQncj89xLJwmha6S8pS5v4Lx8XCtGnBebzAUqIpWSHUu7gRnDVPgzT9luxjKNIDJIXSy9avPwbBEv8QgGaygvL+aW2GNc4gULufQ9CWoeSzHsFzolxKB1N5gZ1yaikBsDqwnvVLdW80aobXcL0tfIzHeU/PCWGdWpt5vPTwrkHDxErSELj+AI4ym74=
-X-Gm-Message-State: AOJu0Yyg34SrO+qm85Ro3xhFkxJgcd27pLXqne+y0o0IquabArU+4v/s
-	IyR5gYhQIB4yBqbQBhhcMWhzIlibZw9/tOvoaM3LwfDm1Z+4V8wKo/zO07RtPIo=
-X-Google-Smtp-Source: AGHT+IH7w6QLIfgNrszxlKE78XNWCSjjYGNraAZ+ea8wcrBoeplhrbDLb1PeWFSNcChTQ9MtT6UNyQ==
-X-Received: by 2002:a81:84c9:0:b0:604:b08c:348d with SMTP id u192-20020a8184c9000000b00604b08c348dmr1615046ywf.1.1707899752108;
-        Wed, 14 Feb 2024 00:35:52 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU3kB/B5WZaBOwFU458Gbikm7YLFToDCMZIMHGgWLNsYimJ2f7WNBDN7+QBURGuTfpBmRxmZn2Zimovo5ZG/7tI4vByX0m3jJ8oP7M2OBERHad12czrvX2DOBLkCRrHqaX1eyTYDSDCp9je9LhimRIAfQ3ONgzN1Cpml6Aeaoy7WWg+4iglDTG2OGKT/SMctbwacGPoAgVAwnXyoD6Ss3sfb3g=
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
-        by smtp.gmail.com with ESMTPSA id b81-20020a0dd954000000b006078ad0243csm689386ywe.59.2024.02.14.00.35.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Feb 2024 00:35:51 -0800 (PST)
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-dcc4de7d901so1484144276.0;
-        Wed, 14 Feb 2024 00:35:51 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUqaqHeHdPWCke88qqVKNUCTowy6wOKw/w0Pk0Bsd4JbzaUNGvC5rtcqvpCVJImgluMjXM6TS+bEEgjgAf9hty/YhFGjly7qP19Fw0ajUq3zfsErADyyyvaSCOZUHM7+XCBm+iZ/flNlTQa/VMLhFHKxwvgKAPiHa3fka3XhMv2rIY96bax4SPzciAFnE+lhmMU1Cz4NY4KlKP3GbFTdNWl/mo=
-X-Received: by 2002:a25:c7c9:0:b0:dc6:ff12:1a21 with SMTP id
- w192-20020a25c7c9000000b00dc6ff121a21mr1674869ybe.31.1707899751143; Wed, 14
- Feb 2024 00:35:51 -0800 (PST)
+        bh=Ds/QrOAUfj55fwmiogY89G0c95jjcvTfyeTi82RwVPQ=;
+        b=lcqDyIpWR7y+pYl5tjRyO2XKRu8rWD8/PIKBsCK2sWuzhEjZLPxTAKNYTj4HbSfxAN
+         43W/UeuK8Fm2PAHNbfdofG4JP1netWurbLkkaPqvA679AmA9H14g7+769H0a+fww/eFF
+         xYK7XJmFuqAdsPy1Z1jMzItSTUbSI1115z6amGoe9JT7wxfO0CLVTIE+rzYCuoLipZYa
+         RwafwnLf1OdvyaUVFACRCvK7IouKTzEPamFqvPHF37mK2OqF2m9lerWGkxKTV5SjF/Dm
+         wYlhW3nqDoDkaRlsDMIXmo+yCzSGawMlCXQ9/HEkyKP87Nu10eGD1TC+WMZ97cT81BtA
+         86gw==
+X-Forwarded-Encrypted: i=1; AJvYcCXanTfprVQBsjYTdix30b3orEpx3jGWONlP0GNwrwmPJpEIOWh02+q5Mej0HaaRWynvdT2VdlwmYSRlZMk+KzKYUcxDrY9xmV+/Cb/jzuZhaqZ/nmoTzLs7iyCQHaXBzRV2TxjzD2uN1xn2TQ7HnYsnUf6x1GQuvlLe63ZGK7smrp2zCQ==
+X-Gm-Message-State: AOJu0YwgsUOXihQGyvmFIhxNRdQ2jGHlLRecBndOf7uWf2I5+0O8EAYb
+	1PiKqywHTTrHZsvWY4CU6hQMlFh19qJ6cGWmHnILDojPpfHC9Guc
+X-Google-Smtp-Source: AGHT+IHtQkkg7cmPOVNhPqSRXK5hIlaovqOGnDqh3sNWSzqQsse6el+sdvq++8Bg64n7SL5C0jJ2WQ==
+X-Received: by 2002:a17:906:118d:b0:a3d:4036:4543 with SMTP id n13-20020a170906118d00b00a3d40364543mr858290eja.51.1707900848950;
+        Wed, 14 Feb 2024 00:54:08 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVEJYQ2MujHYQ4aClq9TFiI/b7CEexbSpF3JNd4i7OZvcIvbNQufcjzKwdtnXvO0cP9yuL59lijEE++hQo3ZDB1scsWxygqwZ70735Yj0gJB7s3FJ54vSyACtrIe1cVw6b5hfxFHxaWfprgP/DMa5eTF1w4RJkzlKUprjkMcg5HpzJ8eXAPU9FVFpdnR6HCWNFUD9KLOVtLN/rJCIucyHGlCz16qTgGewEwZ7686VR8+aX5hUuL2T7cHkd6BYDy36K23YJH1aaHucoMRHVXG9RgK94pn5+l3BstckIkciTOPKuqpRKqd/NJYSHLgTTrPiqyvvhaa+SSyHKvMvumGCvi4WtmNw0s7RqBhcJHY+a3lQZmDpL0ULk/JU3qBbMuHStaiwkYcNcsS6VYGrxeShvreiFZomM5OCA=
+Received: from debian.fritz.box ([93.184.186.109])
+        by smtp.gmail.com with ESMTPSA id tj3-20020a170907c24300b00a3cf5450b28sm1617264ejc.189.2024.02.14.00.54.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Feb 2024 00:54:08 -0800 (PST)
+From: Dimitri Fedrau <dima.fedrau@gmail.com>
+To: 
+Cc: Dimitri Fedrau <dima.fedrau@gmail.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Li peiyu <579lpy@gmail.com>,
+	Nuno Sa <nuno.sa@analog.com>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 2/3] dt-bindings: iio: humidity: hdc3020: add interrupt bindings in example
+Date: Wed, 14 Feb 2024 09:53:44 +0100
+Message-Id: <20240214085350.19382-3-dima.fedrau@gmail.com>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20240214085350.19382-1-dima.fedrau@gmail.com>
+References: <20240214085350.19382-1-dima.fedrau@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1706194617.git.geert+renesas@glider.be> <CAPDyKFpxaEUHvKKb+spxV6HG2P2gLx5qM1mLPxJie+PdkmTL4w@mail.gmail.com>
- <CAMuHMdUswhJ3BQLnOQZC7X7qc7SFCqsr9Uy65LfBT_BNWfyhFQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdUswhJ3BQLnOQZC7X7qc7SFCqsr9Uy65LfBT_BNWfyhFQ@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 14 Feb 2024 09:35:38 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdX1tjgPJ8t+XoASuMvzvSognu7q2=aGfBO8r77JsbR82w@mail.gmail.com>
-Message-ID: <CAMuHMdX1tjgPJ8t+XoASuMvzvSognu7q2=aGfBO8r77JsbR82w@mail.gmail.com>
-Subject: Re: [PATCH v2 00/15] arm64: renesas: Add R-Car V4M and Gray Hawk
- Single support
-To: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Magnus Damm <magnus.damm@gmail.com>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Cong Dang <cong.dang.xn@renesas.com>, Duy Nguyen <duy.nguyen.rh@renesas.com>, 
-	Hai Pham <hai.pham.ud@renesas.com>, Linh Phung <linh.phung.jy@renesas.com>, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Ulf,
+Add interrupt bindings in example.
 
-On Wed, Jan 31, 2024 at 3:56=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
-> On Tue, Jan 30, 2024 at 2:11=E2=80=AFPM Ulf Hansson <ulf.hansson@linaro.o=
-rg> wrote:
-> > On Thu, 25 Jan 2024 at 16:34, Geert Uytterhoeven
-> > <geert+renesas@glider.be> wrote:
-> > > This patch series adds initial support for the Renesas R-Car V4M
-> > > (R8A779G0) SoC and the Renesas Gray Hawk Single development board.
-> > >
-> > > As both driver code and DTS have hard dependencies on DT binding
-> > > definitions, most patches in this series are supposed to go in throug=
-h
-> > > the renesas-devel and/or renesas-clk trees, using a shared branch for=
- DT
-> > > binding definitions, as usual.  For the PM domain patches (03, 04, 09=
-),
-> > > Ulf already offered to apply these to his pmdomain tree, and provide =
-an
-> > > immutable "dt" branch, to be pulled in my renesas-devel tree.
-> >
-> > Patch 3,4 and 9 (I dropped the copyright line in patch9, as pointed
-> > out by Niklas) applied for next, thanks!
-> >
-> > Patch 3,4 are also available at the immutable dt branch for you to pull=
- in.
->
-> Thank you!
->
-> I have pulled the immutable branch, added the remaining DT binding
-> definitions, and queued all remaining patches.
+Signed-off-by: Dimitri Fedrau <dima.fedrau@gmail.com>
+---
+ Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-It looks like you have applied copies of all commits on the "dt"
-branch to the "next"
-branch, so now there are two copies?
+diff --git a/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml b/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
+index 7f6d0f9edc75..8b5dedd1a598 100644
+--- a/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
++++ b/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
+@@ -43,6 +43,7 @@ additionalProperties: false
+ 
+ examples:
+   - |
++    #include <dt-bindings/interrupt-controller/irq.h>
+     i2c {
+         #address-cells = <1>;
+         #size-cells = <0>;
+@@ -51,5 +52,7 @@ examples:
+             compatible = "ti,hdc3021", "ti,hdc3020";
+             reg = <0x47>;
+             vdd-supply = <&vcc_3v3>;
++            interrupt-parent = <&gpio3>;
++            interrupts = <23 IRQ_TYPE_EDGE_RISING>;
+         };
+     };
+-- 
+2.39.2
 
-See the output of "git range-diff v6.8-rc1..pmdomain/dt
-v6.8-rc4..pmdomain/next".
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
