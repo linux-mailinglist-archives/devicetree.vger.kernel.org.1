@@ -1,121 +1,159 @@
-Return-Path: <devicetree+bounces-41504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 910E8854176
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 03:22:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CD9C854194
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 03:45:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E14E1F29244
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 02:22:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C00D71C220E4
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 02:45:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 004F179E4;
-	Wed, 14 Feb 2024 02:21:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C1E5B653;
+	Wed, 14 Feb 2024 02:45:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eOvlzN6D"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="tHaQvRcF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12olkn2019.outbound.protection.outlook.com [40.92.21.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C95817465;
-	Wed, 14 Feb 2024 02:21:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707877313; cv=none; b=c7DmoVHoinjKdgWs2AwPOLxRRYeSwoyL67wOw7H0DnNG4JUdxvJ2unVXp0h0fRui9/4aspTx1v6fOATyuXtlhSKecykopkYurDwmfg6Oxl4WDcyW/UiSbskn5yIgz4yzvpXxz7H9+XNkcFQF6qx7QsDSzeT2C4I6hUZq9C8xjZI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707877313; c=relaxed/simple;
-	bh=oGA8Zybm6NlRQ7jaj1sY+qjLjdoZy0Kj7v2TUM0bTpw=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=GJgTvRekAMWO8Grc2TXIu9vsYXHzWDAW2uZSr7eEHZTbTcZjZ298oXyEERZWIPDtz7VktIJoJazq7s/0ftvtPpF0GdL/mKKmRX5Y8ohEsdf+lDdY7P3Gxx7G0IVrjG2Q+6Jv1CA8/zjpIdHJ+3E5hMAnNsLtH/8qFty9fkb9hjI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eOvlzN6D; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DA38C433C7;
-	Wed, 14 Feb 2024 02:21:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707877313;
-	bh=oGA8Zybm6NlRQ7jaj1sY+qjLjdoZy0Kj7v2TUM0bTpw=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=eOvlzN6DaLNwBvUZauy7PAast2Pw+KkeEEirwWhSXY0EDNlpEO0rVTUTY3j5UNaWc
-	 J1P35mCN6WmtgY0IyLWgbgmPUjuKQZhDCLu8YowvFHUCWSMZaaXH9J32yOu1Vqx5Hq
-	 MlM1yrp0DHNz1BbXXOr/rf8I/1cuMCMFNa83g9zHDha/OTuXtrh+6Clj2M9rYYo83w
-	 fzk21WFTPuOCmAQDnZnnfIZR6sXz+GtH/9iL8G+brHky32DqIjEXlLhqhiF1Kwvn8n
-	 SPG373QnH5vfTprzTF2PRXpTjuqvgxGtoKIyr2BBYz4RzPZ702c6aDAZfhpYdXKxt2
-	 t1n2qwWBLpzgg==
-Date: Tue, 13 Feb 2024 20:21:51 -0600
-Content-Type: text/plain; charset="utf-8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C6FEB64A;
+	Wed, 14 Feb 2024 02:44:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.21.19
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707878700; cv=fail; b=RV5OAdD8YVf+nl7JKeUHOVMqIwn9GYfYAXTqCQAWM+j4l2HjIsITa4c0xEq0Cm/GrvonWBBl/NOyemCwe9oW3wWNjy/WWOXdeP2RVgQeD42UazkijKXGZDjKz9c+OOPVaIwoXzaIEIlQNnLkDNDaOdcHdyeLS4wwbEluRzgbSRw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707878700; c=relaxed/simple;
+	bh=FL07OiEBzAHCcLGwY9P4n956HkCfzmdu4g026jaepcw=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=YfTa4iFdBgh6UFB27HssJzWlg+iN34RThWYWzq7QzWu5jzsKhxjy1gkdKXW44MVuUTRToMCP23JKBAA5FziWl5aX/nG8xnlpTB9iZmMCn9EvjZ4990GQI4JW1b4DmQ2uvqtdh+S3t03TpGbQ1b3SE/GNQBFaTqdv2homiakQIZ8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=tHaQvRcF; arc=fail smtp.client-ip=40.92.21.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GjV3ubEII8KEtKcILPS+pYn3n72uTkFlxXfRVuJXosImuuP05+1nUOrxezM+/0Kk/aFI/HPvIbZyuG2PziCHP+LF32Ua3G9m90ygH6UzGr6yIljYQhtl3EDa1N0xiNwhDKoF/cgly724Yd9NLxuUdObLJQqjQip5smVCZP1xakI4inMV94hfTPWHCSPBzr/auJnbwuACu+2Eawzzx0ZsAF3yyGRhKg2SOLWBppTlDCDBAfR8Efoijit+ctkQRYhPT7XLWuFIizYeYnlG1Mbx6oF11Ilu7pvXKc0jZ+rxbxhGbsfclN8/cqngTwkCG1M37UojBBe2ZBlyQumfM4u+lA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sJ2M+DysXepoDTezNl6s4nOqMkjh0T3KRNnpm9ct2ww=;
+ b=Ni7xIAaT2Ake12gOzT8IBy2LE21nG4maEE0jDUXpPOtWFq/w+fYemsUGgoCnztfE5vCJ5F3vk+wolgJA9nEWHRpxmcHlB4P2pOPG9a46baD93yJep4DqKEanECWVxXGcN5D0AbU048gcaMSvhN6b0dS/dSr03jWPcvKyaRfZGIrfovmXTWdspPUxjOoipbTaIUSP7svj2LhsGmrNFMqbXF8jpLM2ZB7vx7hxe5VoLTUfWlD8K1l978yMCUawH9os4I053zVjTTTYhmERHDcak8WkLzp5VsPhYlt5yxVxpV6BGlzCksLZwR6QQdoCc1JT16sE9hhCpiIjsDKUn4UusA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sJ2M+DysXepoDTezNl6s4nOqMkjh0T3KRNnpm9ct2ww=;
+ b=tHaQvRcFp7RycbI/3eqcU6ImF8+eSaenWA+USpYRCYNj65Mrjw3M9UOkvc+E0hz7psNJRpLeC48zshc3YsM8HrmWzhwoPWglXJZ4Vn9WFTp2wzl2/Hq9vEQH2HQPXkrREO7+SLGlea3uJqvKITwqNSdpySaPC/6NhGcvimaO/pHgMJn8NIeVQlba4CpVjinSZrCb7WkVAPRuYfrhs1NtpZcdc3K3j2cx+cWlgHmWwlt4ehoLHFzP4dK0kK7Fd01CaWPaPBG7gicBzbg+iHLdDlnxwKC8m0f+gZs5oQTXnI4ycN10VRIoZH27KmiYbdrMkDJt6EpEIxcuGGO3cMT/FA==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by CH0PR20MB3788.namprd20.prod.outlook.com (2603:10b6:610:dc::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.26; Wed, 14 Feb
+ 2024 02:44:56 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::406a:664b:b8bc:1e6b]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::406a:664b:b8bc:1e6b%2]) with mapi id 15.20.7270.036; Wed, 14 Feb 2024
+ 02:44:56 +0000
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chao Wei <chao.wei@sophgo.com>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Inochi Amaoto <inochiama@outlook.com>
+Cc: Jisheng Zhang <jszhang@kernel.org>,
+	Liu Gui <kenneth.liu@sophgo.com>,
+	Jingbao Qiu <qiujingbao.dlmu@gmail.com>,
+	dlan@gentoo.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v2 0/2] riscv: sophgo: cv18xx: add top misc system controller
+Date: Wed, 14 Feb 2024 10:44:59 +0800
+Message-ID:
+ <IA1PR20MB4953C0B48F84A3F3A500253CBB4E2@IA1PR20MB4953.namprd20.prod.outlook.com>
+X-Mailer: git-send-email 2.43.1
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [a1dOetuf2yDh/pv/U1jbvvsRBwsqn0bRMtjcw6q0sBjdm16znKuxYclS6y9355o4]
+X-ClientProxiedBy: SG3P274CA0013.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:be::25)
+ To IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <20240214024500.292723-1-inochiama@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Inochi Amaoto <inochiama@outlook.com>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, Albert Ou <aou@eecs.berkeley.edu>, 
- dlan@gentoo.org, Jingbao Qiu <qiujingbao.dlmu@gmail.com>, 
- Liu Gui <kenneth.liu@sophgo.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
- Jisheng Zhang <jszhang@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Chen Wang <unicorn_wang@outlook.com>, Chao Wei <chao.wei@sophgo.com>, 
- linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-In-Reply-To: 
- <IA1PR20MB4953DA1000B825CA29E3BD11BB4E2@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <IA1PR20MB4953D95E8657A480813767FCBB4E2@IA1PR20MB4953.namprd20.prod.outlook.com>
- <IA1PR20MB4953DA1000B825CA29E3BD11BB4E2@IA1PR20MB4953.namprd20.prod.outlook.com>
-Message-Id: <170787731083.3026929.8244516804059249825.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: clock: sophgo: Add top misc
- controller of CV18XX/SG200X series SoC
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|CH0PR20MB3788:EE_
+X-MS-Office365-Filtering-Correlation-Id: 08ef5f2f-7617-4623-5495-08dc2d06ed99
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	dqMkPWhRvajgHCTMt4nURKlQe0NOYznlHuQNrHMlIjOb8jrnRyEJDvTBs0uzIeFKIrbcijVGfUTi57gkc3mQywOyQFU4i9yNS5oEOzP6PGrdHFSZ8TOKN13PEBAaIBIROk2qo4AtgI222BQhgrKVsrQpHIrMmTOwwvwFq83/UH7nKN0bZc4ml6Wrm7WnOgAUl/d97Lh3MHVrP3PQsPKrg1pfKAETQYalDNF7XIqRLofwgs2jNmZoAScu38H0ASEttWl2J6ify0RXCaX7Npb4YJtbWHxQUUeMGWROLqfzERVYuD3kWa6JodtZuVix/nov9YjtKZXNX8LESqflQ+P6inEeUHByvLw6cOqFeDFdeqVcjpTWboUWMSBxq0zMA97c8emPhKCxFFslhuRPEbVh9mYBq5rYc9otayK6gLLOlC0XlgK0HOkKUK/sKNTkXJULTtbI2AkO325EvTYwW6fUQVbf7rnJ5tgH2Li5u56Y6sk+WOTW+wsVJYpr1SycYc85P+5LhxL5S+MlhbcovvRlEkKb57ku74f8aJjksZ2erxaPW72tmQVBKGGw0huR7c/8Q34/MS8GlRgqDWYKKKAa4pEqfQW/7hLrqaDk8wEcGRw4Sk+RV0r6iVDGexERuO+p
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?4moU8CW4BD0A5huzYihGCtIuisHKHddklLdaC2p8J5dOyV/jOn8d57zg6mXh?=
+ =?us-ascii?Q?yygtl/D42/96A/2Zkcsb1I+3yCmAkRD133dvmoEMpvyqn4NcsBgYTXfVrJUq?=
+ =?us-ascii?Q?pF+AlPG9xrXmiVTBRB05cUfsfl73n5guvaLOEIwJ7N5P46W8lsBYU1fetuDj?=
+ =?us-ascii?Q?E7uDmxc2cimQ/nzjpxTdGNOmMRlcoSb5DozyY8KBsBxQrfb1O5Coq/neQTVb?=
+ =?us-ascii?Q?XF71ibxMkPX6fbNUMLFVONzLwXUfUQB9Lq3oHfMVMDPMc/XbUkn7k+DKPV48?=
+ =?us-ascii?Q?bJHUp2japQ+k1Zfcf1WJoTQ7PdOLrjADS52MUgFN1Qzkhx6Ns18IuqvLpW8m?=
+ =?us-ascii?Q?gqR9Ix576HXG3VFmgzbcxrLwl6vjRu63loQ7+jZos+3LowV7KnIzWpML93ZW?=
+ =?us-ascii?Q?xWLd26CVWsBZCvBfKw2Y8+05Goo2Dxd01Jei95QNPu0GjS/wokG+QPoz7bzS?=
+ =?us-ascii?Q?GeDqIB0rJRAqHHstkJ/kkKCReW0WMxTWR5PxnSnvxJOvSwW5Sw1+C8TAoXy2?=
+ =?us-ascii?Q?Q6/MdSfm3IT4VOjuEhSjpcfDcUhcPxaJ0N2ScwcdDG4cPkS8nlKuMftMMf5y?=
+ =?us-ascii?Q?TW1oln4K2tsvqVKzbsIzBlyOt+FC80dL6VJvV+0PCdMzgNeKiu/N6wqqVaTG?=
+ =?us-ascii?Q?heoGRQQOJw5BGs31pVSK/oBHV4YvrEygD1lNkqci0gOQqzgm/zXs/m0xG4Nv?=
+ =?us-ascii?Q?BiUN3iw1m/70LTQY28PTyWX4rCmnnBH9t1ZuyCNw6zIkNagh242r/HNDMzcd?=
+ =?us-ascii?Q?7Zs643ffgsDuzCyXyD/j/dOE62xr+HZl72fQjknRHiTMuyFyquRyRjE/3W/m?=
+ =?us-ascii?Q?gIp+Xl7WeF5mmiLMevM83FRzL3FYS64wBIZ7APioCCAsjHXArLfUPw+vzcot?=
+ =?us-ascii?Q?q9E54T/vDmQQO0nB5n3M3+PO8Fa0x7b/NDU7ZDkNNPb48uUxm5gaSvCXATZH?=
+ =?us-ascii?Q?6Yx4RSgHj1uo1j+aHzg4aGkNnuMsRuM0aKThur9nAc0vbpe/J/DGNSuLpBSf?=
+ =?us-ascii?Q?2Ipie0oEbCKwGGrgliqYdnSJBAaStwf6hKAidgPy2cQfmM0UPsBY4OPjimLt?=
+ =?us-ascii?Q?v6aQbguZRuOMQTwvnck/UAC+fy/BIBj56evWkaN46cxDgpEFvwb/+WL8F0dA?=
+ =?us-ascii?Q?kEq0MFgVlQ19/DvaOKFWqWuPLS0BYOh71QpPkchVVHlH8fPW6PJa73IC1FBc?=
+ =?us-ascii?Q?NM/G83AJ2vfoR976ahrxt0pjA7R5VkwECtAE6Nm5LnTc2z9pN3WTD4RaKVmv?=
+ =?us-ascii?Q?QJJsequytakJ41gsaLoiasXdnehYQqQk6vsTUoZiRq1riw2I+RyvJPCacKCM?=
+ =?us-ascii?Q?QCY=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 08ef5f2f-7617-4623-5495-08dc2d06ed99
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2024 02:44:56.0761
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR20MB3788
 
+Add top misc system controller to CV18XX/SG200X series.
 
-On Wed, 14 Feb 2024 09:35:54 +0800, Inochi Amaoto wrote:
-> CV18XX/SG200X series SoCs have a special top misc system controller,
-> which provides register access for several devices. In addition to
-> register access, this system controller also contains some subdevices
-> (such as dmamux).
-> 
-> Add bindings for top misc controller of CV18XX/SG200X series SoC.
-> 
-> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
-> ---
->  .../soc/sophgo/sophgo,cv1800-top-syscon.yaml  | 43 +++++++++++++++++++
->  1 file changed, 43 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800-top-syscon.yaml
-> 
+At least for now, this topctrl dt node has no related driver, because
+it only contains register for other devices, or the subdevice for some
+other purposes. The patch is submitted for providing potential common
+dependency for watchdog, sdhci, usb phy and maybe etc.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Changed from v1:
+1. fix linting issue.
+2. remove #address-cells and #size-cells in the dtb.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800-top-syscon.yaml:35:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
+Inochi Amaoto (2):
+  dt-bindings: clock: sophgo: Add top misc controller of CV18XX/SG200X
+    series SoC
+  riscv: dts: sophgo: cv18xx: add top misc system controller
 
-dtschema/dtc warnings/errors:
-make[2]: *** Deleting file 'Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800-top-syscon.example.dts'
-Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800-top-syscon.yaml:35:1: found a tab character where an indentation space is expected
-make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800-top-syscon.example.dts] Error 1
-make[2]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800-top-syscon.yaml:35:1: found a tab character where an indentation space is expected
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800-top-syscon.yaml: ignoring, error parsing file
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1428: dt_binding_check] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
+ .../soc/sophgo/sophgo,cv1800-top-syscon.yaml  | 41 +++++++++++++++++++
+ arch/riscv/boot/dts/sophgo/cv18xx.dtsi        |  6 +++
+ 2 files changed, 47 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800-top-syscon.yaml
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/IA1PR20MB4953DA1000B825CA29E3BD11BB4E2@IA1PR20MB4953.namprd20.prod.outlook.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+--
+2.43.1
 
 
