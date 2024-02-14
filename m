@@ -1,108 +1,140 @@
-Return-Path: <devicetree+bounces-41811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E77458552AF
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 19:51:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56FB08552FA
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 20:12:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2F35287981
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 18:51:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC5A828F30D
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 19:12:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BDC513A888;
-	Wed, 14 Feb 2024 18:51:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95F9E13A276;
+	Wed, 14 Feb 2024 19:12:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HdqVmsai"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F4cChNzy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67D13139569;
-	Wed, 14 Feb 2024 18:51:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67E9E171A2;
+	Wed, 14 Feb 2024 19:12:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707936696; cv=none; b=m0SCq83N+lbjIbrzRMjSqvYsupAZml088euU1Hso9N5/XKDFH4v1G6f6bf153WB6we3lAgrJVDz2Np96ZFKPfxe/Q3ZCIhSr3OjrwxHWUtTOx0JXkE0K9+2rZEUccJ9DwXGBwBwr0dQl1asACU8f9o8qsNqK7LRAr4BOwuowwCA=
+	t=1707937971; cv=none; b=RonN0RFG4MqY5frDfXQvAwL40KBDqiN8ysMU6CCFmO82ZxJJd4uwhdFNzpU+JOzhdXdYFrtVoRLHDrIB4kDjUNQdNhQqTJlM7KeAu2+HNeWVXTSh1LgOeURUQWDQ2u86nFsZuz2u8bOVumeDvSbjz44V7GkNT5nuNRj2p96SNPw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707936696; c=relaxed/simple;
-	bh=C7ZecKmows7A/FnODjYQYrDRyqjpmvCXfGu6TaOC4B0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gz+S3iGZJRHVwcf7h/qfQJkASr9Fl+s72MbEhGq/gZE76/wOFCBPY+EcTWiDvyS5mPl/zKZqPv2a5HbkVDcnXU2S93Far6juYof25wUlF//jKtykRrhQTyKnq4x4ivCoutFFFqlRW5VS/chOqE/hbriW0OTd337VlFSe1+zTZ4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HdqVmsai; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1707936695; x=1739472695;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=C7ZecKmows7A/FnODjYQYrDRyqjpmvCXfGu6TaOC4B0=;
-  b=HdqVmsai+FgSOvtDSoxo5yDOiPQwLh5N7ow66aMdZtz5Gx+xcnTzJXSR
-   X+a+5cucgr6GYtZAnHrmV0oPASxDTMQW7wybaRaIbO411NoF2kAGMgzLR
-   UnOf2BhEO6XzQzNOAdxHmV5LltMpP5KLKj7MtRsKG6K9iUIT2YhirXXCn
-   7xM62ewL7jv3WSQwkio9DySfycQD3xAyjsBwrFYCos1uJxmcCNWryoz6t
-   UdMk7i9WVDfIJk97rT4I24yU03+yHkH84ih3hjo+d+38Iv3myuEhHFsiY
-   sYK6s+i3iHesRkaKdWZ4Rio8Tg2hEazm5o3KHwP0e8fSYi7QPatyGUuuC
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="1869772"
-X-IronPort-AV: E=Sophos;i="6.06,160,1705392000"; 
-   d="scan'208";a="1869772"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2024 10:51:34 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="912094191"
-X-IronPort-AV: E=Sophos;i="6.06,160,1705392000"; 
-   d="scan'208";a="912094191"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2024 10:51:32 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1raKLx-00000004ZvU-37RZ;
-	Wed, 14 Feb 2024 20:51:29 +0200
-Date: Wed, 14 Feb 2024 20:51:29 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Robin van der Gracht <robin@protonic.nl>,
-	Paul Burton <paulburton@kernel.org>
-Subject: Re: [PATCH v2 00/15] auxdisplay: linedisp: Clean up and add new
- driver
-Message-ID: <Zc0LscBjCefhJhyx@smile.fi.intel.com>
-References: <20240212170423.2860895-1-andriy.shevchenko@linux.intel.com>
- <Zcz--YJmWLm0ikUT@smile.fi.intel.com>
- <CAMuHMdW5nwtuZpTyf+_41bcHeR+MA6Ko2++JiC8Xz6u1tDNQ_Q@mail.gmail.com>
+	s=arc-20240116; t=1707937971; c=relaxed/simple;
+	bh=GaNW4qJLhcZQPDq6m88xXy4RMPI4Vwk6x2NaA/U2ssA=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=rfu/R8oEsHNsg5jT43ErftGqK55ynG+Xp0u2CdFgKb3w142evcuNErpmLJm2bP+X0bxkdsJal2GQ120EramZPR2DuyI4ee+v3hpRHHd5LgAqeqqnlllnfHF6vkJM6F5Hha48hlu7QJi8KjVBC5H2aeJZThOdJMHrVd3xkjzEkn4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F4cChNzy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99C9DC433C7;
+	Wed, 14 Feb 2024 19:12:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707937970;
+	bh=GaNW4qJLhcZQPDq6m88xXy4RMPI4Vwk6x2NaA/U2ssA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=F4cChNzyKBXOwwfxXYohSyCAMg1dlwLd7cLrxNDuPtwGDI382Mp2mpUlZQn8prFf/
+	 NdIU32bTxG4qoylo01LS3cDpCML72NtUL+SNhUdTb+GZev1zuUtUCZi8Zy+LNtKy4z
+	 tDEhQZZmpodutqmmBYham8OPm8HxdjIaaNgDx72vr/VowZGVFLXa4fOGHEl8cnUFXt
+	 EpU6rWFIc7mrdCoeTkIrjPPgXfFkXD6jMz4T8kFCmOoLHIZuQ9fJISSddWwaMewxMA
+	 n8Ox+OnzOe4tapu+/U0GoqEvw13IhuXjYdVFhTAy6fJU6pcSA/PFN+h1Op4gvLaT4S
+	 h7NGbTQbsSSFA==
+Date: Wed, 14 Feb 2024 13:12:49 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Vidya Sagar <vidyas@nvidia.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, bhelgaas@google.com,
+	robh+dt@kernel.org, mark.rutland@arm.com, thierry.reding@gmail.com,
+	jonathanh@nvidia.com, Kishon Vijay Abraham I <kishon@kernel.org>,
+	catalin.marinas@arm.com, Will Deacon <will@kernel.org>,
+	jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+	digetx@gmail.com, mperttunen@nvidia.com, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	kthota@nvidia.com, mmaddireddy@nvidia.com, sagar.tv@gmail.com
+Subject: Re: [PATCH V16 13/13] PCI: tegra: Add Tegra194 PCIe support
+Message-ID: <20240214191249.GA1263222@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdW5nwtuZpTyf+_41bcHeR+MA6Ko2++JiC8Xz6u1tDNQ_Q@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20190813113627.27251-14-vidyas@nvidia.com>
 
-On Wed, Feb 14, 2024 at 07:45:01PM +0100, Geert Uytterhoeven wrote:
-> On Wed, Feb 14, 2024 at 6:57 PM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
-> > On Mon, Feb 12, 2024 at 07:01:33PM +0200, Andy Shevchenko wrote:
+Hi Vidya, question about ancient history:
 
-...
+On Tue, Aug 13, 2019 at 05:06:27PM +0530, Vidya Sagar wrote:
+> Add support for Synopsys DesignWare core IP based PCIe host controller
+> present in Tegra194 SoC.
+> ...
 
-> > Geert, I would like to apply at least the first 13 patches.
-> > Do you have any comments or even possibility to perform a regression test?
-> 
-> I'll try to give it a try on my Adafruit Quad 14-segment display tomorrow...
+> +static int tegra_pcie_dw_host_init(struct pcie_port *pp)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	struct tegra_pcie_dw *pcie = to_tegra_pcie(pci);
+> +	u32 val, tmp, offset, speed;
+> +
+> +	tegra_pcie_prepare_host(pp);
+> +
+> +	if (dw_pcie_wait_for_link(pci)) {
+> +		/*
+> +		 * There are some endpoints which can't get the link up if
+> +		 * root port has Data Link Feature (DLF) enabled.
+> +		 * Refer Spec rev 4.0 ver 1.0 sec 3.4.2 & 7.7.4 for more info
+> +		 * on Scaled Flow Control and DLF.
+> +		 * So, need to confirm that is indeed the case here and attempt
+> +		 * link up once again with DLF disabled.
 
-Thank you!
+This comment suggests that there's an issue with *Endpoints*, not an
+issue with the Root Port.  If so, it seems like this problem could
+occur with all Root Ports, not just Tegra194.  Do you remember any
+details about this?
 
--- 
-With Best Regards,
-Andy Shevchenko
+I don't remember hearing about any similar issues, and this driver is
+the only place PCI_EXT_CAP_ID_DLF is referenced, so maybe it is
+actually something related to Tegra194?
 
-
+> +		val = appl_readl(pcie, APPL_DEBUG);
+> +		val &= APPL_DEBUG_LTSSM_STATE_MASK;
+> +		val >>= APPL_DEBUG_LTSSM_STATE_SHIFT;
+> +		tmp = appl_readl(pcie, APPL_LINK_STATUS);
+> +		tmp &= APPL_LINK_STATUS_RDLH_LINK_UP;
+> +		if (!(val == 0x11 && !tmp)) {
+> +			/* Link is down for all good reasons */
+> +			return 0;
+> +		}
+> +
+> +		dev_info(pci->dev, "Link is down in DLL");
+> +		dev_info(pci->dev, "Trying again with DLFE disabled\n");
+> +		/* Disable LTSSM */
+> +		val = appl_readl(pcie, APPL_CTRL);
+> +		val &= ~APPL_CTRL_LTSSM_EN;
+> +		appl_writel(pcie, val, APPL_CTRL);
+> +
+> +		reset_control_assert(pcie->core_rst);
+> +		reset_control_deassert(pcie->core_rst);
+> +
+> +		offset = dw_pcie_find_ext_capability(pci, PCI_EXT_CAP_ID_DLF);
+> +		val = dw_pcie_readl_dbi(pci, offset + PCI_DLF_CAP);
+> +		val &= ~PCI_DLF_EXCHANGE_ENABLE;
+> +		dw_pcie_writel_dbi(pci, offset, val);
+> +
+> +		tegra_pcie_prepare_host(pp);
+> +
+> +		if (dw_pcie_wait_for_link(pci))
+> +			return 0;
+> +	}
+> +
+> +	speed = dw_pcie_readw_dbi(pci, pcie->pcie_cap_base + PCI_EXP_LNKSTA) &
+> +		PCI_EXP_LNKSTA_CLS;
+> +	clk_set_rate(pcie->core_clk, pcie_gen_freq[speed - 1]);
+> +
+> +	tegra_pcie_enable_interrupts(pp);
+> +
+> +	return 0;
+> +}
 
