@@ -1,89 +1,143 @@
-Return-Path: <devicetree+bounces-41706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41707-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A380F854D7C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 16:57:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E4EB854D80
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 16:58:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 326F0B28701
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 15:57:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE3371F29C00
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 15:58:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B78D5DF1D;
-	Wed, 14 Feb 2024 15:57:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 519A35FDC4;
+	Wed, 14 Feb 2024 15:58:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="1LScw71g"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FpaHQ+hM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E6A95D8EF;
-	Wed, 14 Feb 2024 15:57:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A92F5C906;
+	Wed, 14 Feb 2024 15:58:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707926246; cv=none; b=KA5Z5w6vPMSTQuiZwxUULmHEtZ4yPmI0EAXFyuKwyMOZPSj8kgg5KaQAVxvOM1uk5zbj8hxTP7JDvuzOvvBR6crZOm0FbbaNarDC42mqUjmqVtXYj9aldNaRgOGVb6TF73AJ0Ec+tPM2vd+KZ8biAnj5yyT4dcU6U8T8lfqZKrQ=
+	t=1707926312; cv=none; b=cZiyFgFgX02BBJviCN0HtnoK+SPPEoB8aGclJhcaMT19kK9u9VSqr96XDFiWvaxfFnIkNjjQZ4XUuFH0Fie7sY1mK5ft6V+mNke7bEfZj6L5GzQMiiABKqI80+aySAEQOBqFpEUKd8P+p+GDmk+XKwgu6w3Shs0QDM9MCBLuqEQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707926246; c=relaxed/simple;
-	bh=Bd5EcXpITfABSAnDz1WzxxXsNxYIHPEqoPgVPDXjEq4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LL8KEUDVhTEnv79arRciZkaxOfMgeKn/EOF2ejcdEmgivRYZh4rlaj0Gpwiv25JUXP3CyXxMkeImy7ZQT/ObZpsdaSr3pj8XeinpM9N4oZzaci6a8Bv+HBCs7FsFE8XEptVOhKppbMLC78+eS0isGIu/kmaZjB6NS2coftR1XLY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=1LScw71g; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1707926243;
-	bh=Bd5EcXpITfABSAnDz1WzxxXsNxYIHPEqoPgVPDXjEq4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=1LScw71gscHusyEbrd4zfM/xFcfo0LDyiCDjfjNLpdlC3vXCIHGOr+OVC9UiG49oe
-	 Th3ePND4eiQ+rojPuKJ8Ul9Y+E1FFnccwqYGQF0xHzYC7IMjIq5c9uMuwurenmCKqx
-	 sv/hbGpdt9GkC7qTGJ3iaWcX78+sXr4RJdWffHH0J2R8yA6xUMrCeBW1YtQPhNxgBz
-	 5fM2NOr0/nOkeQJ1jhxsvBhe9yq8EFM1wtBQlJABI00Rolc0BXToX5rZCe/opBVClS
-	 J+sLyrhBZunjmRZj6pb9OUrrsTG/fXVRneMn76dUWdJi6VxrSyQMXaK+HXnOrJB+4H
-	 cy526X8mMBR9w==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id C33673782083;
-	Wed, 14 Feb 2024 15:57:22 +0000 (UTC)
-Message-ID: <f5998e7c-674b-4ee5-b25f-d280db2f912d@collabora.com>
-Date: Wed, 14 Feb 2024 16:57:22 +0100
+	s=arc-20240116; t=1707926312; c=relaxed/simple;
+	bh=oB7y26cHY18BFwgZZYSp49BaRjDmeMewAnXDzdUPdTA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NFeXwlZcmNqKU3httILwdiFPqtPUk2h4Ux+0JMzhw0otiwIkzA5wHBLQK9jp+uTnwZPFVjJLcwdf2LWmSJ681HfW3Mvdwlmo4a9rChGnT/JM6gzK4yXxw/B5acHblLy3GRV5CiRslvq3AMeEe0g//mCJNN1Ll1osbItD8UMaqQg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FpaHQ+hM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1E9AC43399;
+	Wed, 14 Feb 2024 15:58:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707926311;
+	bh=oB7y26cHY18BFwgZZYSp49BaRjDmeMewAnXDzdUPdTA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FpaHQ+hM3RyU71YtYb3zG+Iy0dU0hLDJhcN31jc3o7Z0ulTmns1wxJoJ7dmiPzR2S
+	 r7U2vTqHBkhTXOO7SnHsXdZixs/BZXuQqdiggP7yL/o8QvSWV6Yb1n6iRTvANTRVzj
+	 2N+pD9miPRBsxvz9RJvqtJf6kX5ExqkVB3wlyDMpKwOlZp45E5ZsZlKeS+fZ7N5GUg
+	 nel46MQoIfCX8K8DR4xXUbKOyh0NC4pvssM0Qt75YuvXeGfbHSrxo/9PLugiRhDSyo
+	 rMYJH6okEofdyKOF5vuGyIFUVZ6i0d1kJR4tVE53jtkqC4NLbGHQvLQkf0ofUbH0NW
+	 bMqXcc8vjmLnA==
+Date: Wed, 14 Feb 2024 15:58:27 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Support Opensource <support.opensource@diasemi.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Steve Twiss <stwiss.opensource@diasemi.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mfd: dlg,da9063: Make #interrupt-cells
+ required
+Message-ID: <20240214-divorcee-backside-3a3767d054e9@spud>
+References: <2212567f4c17251011e5e0bfa4ea0126d9815d39.1707922672.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 2/2] pwm: mediatek: add support for MT7988
-Content-Language: en-US
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, John Crispin
- <john@phrozen.org>, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>
-References: <20240214140454.6438-1-zajec5@gmail.com>
- <20240214140454.6438-2-zajec5@gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20240214140454.6438-2-zajec5@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="DGn9G3gGimok5V3Z"
+Content-Disposition: inline
+In-Reply-To: <2212567f4c17251011e5e0bfa4ea0126d9815d39.1707922672.git.geert+renesas@glider.be>
 
-Il 14/02/24 15:04, Rafał Miłecki ha scritto:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> MT7988 uses new registers layout just like MT7981 but it supports 8 PWM
-> interfaces.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+--DGn9G3gGimok5V3Z
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+Hey,
+
+On Wed, Feb 14, 2024 at 04:03:42PM +0100, Geert Uytterhoeven wrote:
+> '#interrupt-cells' is a required property for interrupt providers, hence
+> make it required.
+
+I actually meant to send this patch yesterday but I forgot, thanks for
+doing it - the only riscv violation of what Rob reported was also a
+da9063..
+
+> While at it, move '#interrupt-cells' in the example to match common sort
+> order.
+>=20
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+I think:
+Fixes: 361104b05684 ("dt-bindings: mfd: Convert da9063 to yaml")
+
+and
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+> ---
+>  Documentation/devicetree/bindings/mfd/dlg,da9063.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml b/Docu=
+mentation/devicetree/bindings/mfd/dlg,da9063.yaml
+> index c5a7e10d7d80e8d7..e5ccc2708f0bb0f8 100644
+> --- a/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
+> @@ -87,6 +87,7 @@ required:
+>    - reg
+>    - interrupts
+>    - interrupt-controller
+> +  - '#interrupt-cells'
+> =20
+>  additionalProperties: false
+> =20
+> @@ -99,10 +100,10 @@ examples:
+>        pmic@58 {
+>          compatible =3D "dlg,da9063";
+>          reg =3D <0x58>;
+> -        #interrupt-cells =3D <2>;
+>          interrupt-parent =3D <&gpio6>;
+>          interrupts =3D <11 IRQ_TYPE_LEVEL_LOW>;
+>          interrupt-controller;
+> +        #interrupt-cells =3D <2>;
+> =20
+>          rtc {
+>            compatible =3D "dlg,da9063-rtc";
+> --=20
+> 2.34.1
+>=20
+
+--DGn9G3gGimok5V3Z
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZczjIwAKCRB4tDGHoIJi
+0ls2AP9kHzeiP4ColiDDTjA9ec9ni5ouN6qt1khCu44ICoTLAwD/RZ8bWYVG4fFL
+TJb0YDw6dvhg1LWXJ9QRXE7GUtt6zgM=
+=7Kaf
+-----END PGP SIGNATURE-----
+
+--DGn9G3gGimok5V3Z--
 
