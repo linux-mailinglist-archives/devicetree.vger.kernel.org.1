@@ -1,122 +1,96 @@
-Return-Path: <devicetree+bounces-41822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33EFD855413
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 21:35:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34D94855481
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 22:12:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 66E0B1C2795F
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 20:35:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FE3B1C21FA3
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 21:12:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B78BF328AC;
-	Wed, 14 Feb 2024 20:35:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2165513DBA4;
+	Wed, 14 Feb 2024 21:12:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UTYJ8qsH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cy0cA1dm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05E6C1DDE7;
-	Wed, 14 Feb 2024 20:35:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E187941C71;
+	Wed, 14 Feb 2024 21:12:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707942947; cv=none; b=qA+rhzi3+MLUXjLVnizC43SII30x3o6WpUGfgy6wHMLi+B7mf6YZOzg+6sF2mOA+XSaE6nkYxuLnMUmidtCSHyQSFdmE0vQw35z2sxgOg3nRsEm2cWnQ0LnCBhPVYgndDYEgjMZB+gnNZUTKCJdG+Ul0DXrqYWy2mTvAaZVmNCU=
+	t=1707945168; cv=none; b=k62J2/aKUTn0PmizdQI1x1JZW5SOPt8A0mgZE0ofaN/6LlAux5BDcvWHnQPnixQVZW78TrXHjt7aPLdvJf+d1w09QpLa0mAspjZUsBPJ3u65v1bOpm0v9ekW799qTa3IVfgGg3r0zXZUU0w48QGlr9SWDD5qtXQtJx8w6fmzQ2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707942947; c=relaxed/simple;
-	bh=AwNGRr3P6UeHkwkfGk+RMyvN6HM4hjPVJ6icGLILO+M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VKmrAe2tGdwqJitmwgomGpFfZa/o+lhlg4PLaV74Rv4kqr3aaQqyqswQOiKZ4qiuRblakKxq162sy1zt7Cn0ACsbJbXbsRTfAhi0pegf6nNQb5wvVKZRVZX6JVa3V44jyEWlOhT3uNirlJgda+mnod+O1qjhT56S05ekklYA77k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UTYJ8qsH; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5610cc8cc1aso175462a12.1;
-        Wed, 14 Feb 2024 12:35:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707942944; x=1708547744; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZoK5DDGECT3y2yC/4x+K2eF6VlIMfrM4/DtWMEfIDm0=;
-        b=UTYJ8qsH4s4MNop4dH3rWrTr5ge1/TZOGE0HYQJUu+BRLNRP/B6DN8oQiTNxodLkBe
-         0jmREJQK/17VIENUlKxqWI+kMn1nhvs5RWM7r3gYFX3wfZoZGgTZyvq8dJIiyaEo9Y35
-         3y9OtkZo13RS/ZPnuSefruOOfdCvL8efOgfEsh714ZwbyPBh3X0ZJ4Tl7fOrYGC1xJDq
-         CXd1O2oL7E7r3VT9Kv3UG1pl/+Nb2kX9nzYNPniB2MJe01DQUAetWuwaqF+MCLjwFkHf
-         kLw7zNEBT7KlB9rkSpHCOAi9DyaSW3w9H6YYWNODFJY9dBpvBgnwJvU/7ROEgfEVhF6T
-         tV9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707942944; x=1708547744;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZoK5DDGECT3y2yC/4x+K2eF6VlIMfrM4/DtWMEfIDm0=;
-        b=Y/80MWuihCm1/0M4JZNEfvCXId2YjtJizOdd1Z1j3J5cIcKg5ozpyLTF/kGXr32fug
-         bKxbeuTynCFeNf+Xi+6cs0uVgu+ZKqT9kd8uTl3sNjUnuOMXXiAqA8q2irO2K8FoS3WZ
-         8IxrWDz75T03NyJKI2R0ZZwrYMUQdORqcjhPQtFAiFPz1xHgv1B+HblIPf7C3HKcmmqV
-         wYfo+lXknI4JrTUpaMXN6OipuDti2V/8E/xhU6Df6wxzcpbYagOtbZpnL8jbF1EK+R9D
-         BV6SqSNNMXgI/8/YP/sYQfNvDk4LVESKVkOAzD49gpAKXHxu6fSbXxFDHCmMNoj2eM1L
-         FIxg==
-X-Forwarded-Encrypted: i=1; AJvYcCUYg90tNju/WOUHaA3NVDN75C+8gcrc7lLZi34+Z1+YJz+tTsromIABT9EuLEdSkfMTfD2C907Iqg29iL/dTnHbQqY8y/i8Yg/ODGlg8hlhHs9pWVMxBO4tfk0EFRCDJtitZK+g
-X-Gm-Message-State: AOJu0Yy1m30Gog8mMztmvZVV0W4VhUutvj4AEkrYuyWanot9rcWDK7Zb
-	+K2QZfvhSxdc818yFqyHTb40h/EQmGTeV502mMae8MTKLYj87o58
-X-Google-Smtp-Source: AGHT+IE+6v6GkktwOFy5sYNfQpUQjHr1S06/NsGtwNn3OxmYTmNEbUvMzaogP/sq4WjmIpKbJQCNrg==
-X-Received: by 2002:a05:6402:2ce:b0:563:7ee0:b865 with SMTP id b14-20020a05640202ce00b005637ee0b865mr1930319edx.15.1707942944090;
-        Wed, 14 Feb 2024 12:35:44 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWNoa72Uu049WhSseEkbY6cpFGS1+Y7YTmDO7b4fU8At5Xq076737IJXdhaU2dEVwGWonzTMEUIlohLFHnCfBszBvLRR4bgUEXZejEEBwU/aRkosYABU9RauERH6+i6yTiQOJXMEmVbRoV1txWhydTAlG8OJpMjdwn5ixSkvsuFa7daogC9HQXDQXrOFO+YEgbK9jUxWdjpxnPdXXy+aNZB2XKSRQ6NlulC2ZhTy/ju2OtUTaMqGhia7Fv1AwMBy2wfIuXXuL9hq9SZYdl6SRFNzybrqP3gl4sskhVFXp5R5FaBcWqhhXg/xoYF6yFUslGtJG9VG+Ueu/vQEoQAvG8ErvJW9jEWSYm/4JA8radzy1/Ml/CmfxGJ/3P1L1xgnGSRsZBBcfqx16o7/CvLrRdshktygZrXw6HwTewDf/IBTbN6l4Dp4/2M/2BqO3mBNoEahyxDAOC4HX+FSJcdpJIlQN5jwvY5bHjNJhUaoAsi7PNwYZllhxUGrb1/tvRKhh2+qSQgFU65ZdnIjDxRJEYFZUB0vIBdrZQzE6i6SZorAzrNvWSKje9VY/+G04TNApmG5UAPTShhfQR/XaEKyd0O/psySHsdeWDKIiSVo7hoLCqhpUi8Ww==
-Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id fe9-20020a056402390900b00561ffe7adb2sm1627977edb.1.2024.02.14.12.35.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Feb 2024 12:35:43 -0800 (PST)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Vasily Khoruzhick <anarsoul@gmail.com>,
- Yangtao Li <tiny.windzz@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>, Andre Przywara <andre.przywara@arm.com>
-Cc: "Rafael J . Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Martin Botka <martin.botka@somainline.org>,
- Maksim Kiselev <bigunclemax@gmail.com>,
- Bob McChesney <bob@electricworry.net>, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev
-Subject:
- Re: [PATCH v4 4/7] thermal: sun8i: extend H6 calibration to support 4 sensors
-Date: Wed, 14 Feb 2024 21:35:42 +0100
-Message-ID: <10416904.nUPlyArG6x@jernej-laptop>
-In-Reply-To: <20240209144221.3602382-5-andre.przywara@arm.com>
-References:
- <20240209144221.3602382-1-andre.przywara@arm.com>
- <20240209144221.3602382-5-andre.przywara@arm.com>
+	s=arc-20240116; t=1707945168; c=relaxed/simple;
+	bh=QHlUn7j+whCcTjU2YSEiwH0wkOJ1VRvYJdLbQbKERwE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=b1kDqZ/Ezdq9/GGxlYBYfcdlbhgeZuLqwXyRmiavTrVqDw49xqSGu4FTHdZ30J271omu5FaU3katR58w/Jdl1XAYDLXTO2/iokSlm8FvqZJ+z6YqfX0HjtQtdIyLGnWAANW1cG8uuZrQcYZ5gh6ryHLidr72+hUU7hug773sc9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cy0cA1dm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A97A6C433F1;
+	Wed, 14 Feb 2024 21:12:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707945167;
+	bh=QHlUn7j+whCcTjU2YSEiwH0wkOJ1VRvYJdLbQbKERwE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Cy0cA1dm/w3fJYblgoSIz2DUc/m8dwso+8pd3s9Bsyt8i1CGableenwz5zBIaU567
+	 OsBXw1kjmiKS6fGS9Y337KXaQBCEkwyFLq4lxkRe26zsYBILb5/nSjBvTvTkNVktMU
+	 VhIjjxIUTEIGnrzx1FvfOvuUGsV+/hVIUdgQXG9fFLEidhj46vGHNT4zM8NKnA0sDa
+	 CL1fAkzvruDp/rmSCNtMAB3vIjWJOMid9Eso32W/cQllEUGDx2YlfJ34SWT6a40Cby
+	 zTSEooISGX4glir10A0h79MEOzqbuAnER2YPv5MLpiisEsM1aBot8ATtAAJxJwwChz
+	 G3VfujpmZYtBA==
+Date: Wed, 14 Feb 2024 22:12:43 +0100
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Naresh Solanki <naresh.solanki@9elements.com>
+Cc: Peter Rosin <peda@axentia.se>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, mazziesaccount@gmail.com, 
+	Patrick Rudolph <patrick.rudolph@9elements.com>, Rob Herring <robh@kernel.org>, linux-i2c@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/2] dt-bindings: i2c: pca954x: Add custom properties
+ for MAX7357
+Message-ID: <6wpmx3ivbp5wihdm6nbul6sjxvbkh4oe3sdthdikm4ikofgsiq@vnviyphamouu>
+References: <20240213142228.2146218-1-naresh.solanki@9elements.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240213142228.2146218-1-naresh.solanki@9elements.com>
 
-Dne petek, 09. februar 2024 ob 15:42:18 CET je Andre Przywara napisal(a):
-> From: Maksim Kiselev <bigunclemax@gmail.com>
+Hi Naresh,
+
+On Tue, Feb 13, 2024 at 07:52:26PM +0530, Naresh Solanki wrote:
+> From: Patrick Rudolph <patrick.rudolph@9elements.com>
 > 
-> The H616 SoC resembles the H6 thermal sensor controller, with a few
-> changes like four sensors.
+> Maxim Max7357 has a configuration register to enable additional
+> features. These features aren't enabled by default & its up to
+> board designer to enable the same as it may have unexpected side effects.
 > 
-> Extend sun50i_h6_ths_calibrate() function to support calibration of
-> these sensors.
+> These should be validated for proper functioning & detection of devices
+> in secondary bus as sometimes it can cause secondary bus being disabled.
 > 
-> Signed-off-by: Maksim Kiselev <bigunclemax@gmail.com>
-> Co-developed-by: Martin Botka <martin.botka@somainline.org>
-> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> Add booleans for:
+>  - maxim,isolate-stuck-channel
+>  - maxim,send-flush-out-sequence
+>  - maxim,preconnection-wiggle-test-enable
+> 
+> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+> Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+this series was already applied and I sent the notification.
+Didn't you receive it?
 
-Best regards,
-Jernej
+You can check here[*] (branch i2c/i2c-host).
 
+Thanks,
+Andi
 
+[*] https://git.kernel.org/pub/scm/linux/kernel/git/andi.shyti/linux.git/log/?h=i2c/i2c-host
 
