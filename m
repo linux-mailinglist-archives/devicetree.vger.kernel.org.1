@@ -1,64 +1,50 @@
-Return-Path: <devicetree+bounces-41643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A44838548E2
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 13:03:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF04F8548EF
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 13:10:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9E176B23C79
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 12:03:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F7911C23948
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 12:10:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EDBD1AADF;
-	Wed, 14 Feb 2024 12:03:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFC2D1B7EF;
+	Wed, 14 Feb 2024 12:10:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FyrMFbas"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa1.ltts.com (unknown [118.185.121.105])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57B881B943;
-	Wed, 14 Feb 2024 12:03:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=118.185.121.105
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 708D94436;
+	Wed, 14 Feb 2024 12:10:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707912190; cv=none; b=h5PUsP2RyTfgNPX8XkS89MGOSEfrfdsBSkwqVTQaU3zoIGK8WZ2txv1pnHxrBK7IkYP4HKVOHZxDu5YVgB/1+PnSxI4FY0vxfLxbzw5qVpKHMao2h//DovRm3+zFWKWtJtpvc/ulTvZqfC5qQpAUWZEpdB3h2ExerKMEzxFxeNQ=
+	t=1707912626; cv=none; b=iiYMDnbpkR5DeUsUBduHlejVKzCsSMfwoFs6fUo+huNWr0lgnHup11u38irC5QcCKgKY+ozoTyNz74b3H+CgA4+6cg7b553Not2yuW487o+38WniO/oTPqP0TpM8x5x7yCJ42LGO+bg/I38bpY8YpLgc/zGhb4jw9jbQe2OP+Og=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707912190; c=relaxed/simple;
-	bh=vhfzV/ZvaGbZZuBUKxehjhDgFWsM6Gh+JqVkHYcwahU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=m/Drklx3T2tWObfsGREVnFA5InwlDbx61IrkiNQGewqb9j1L3sl6Mxk2iKDlkS7uNADmM05GmZfMg4K4xmWY3F0wHao0ee0GRtO0R+yArBYWXGVoVNEoItVlgZ4atrCibQmSmpHplzJaDLJunQjcd7MXosGB9A4NVwSBR76BjYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ltts.com; spf=pass smtp.mailfrom=ltts.com; arc=none smtp.client-ip=118.185.121.105
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ltts.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ltts.com
-IronPort-SDR: 95/x58YRaKojPGapQKZszgEdMGRnLhW3ZO5ah2CNGaOJs7kBs77zA69Gv6JGe7wEvW+swWdC15
- oUQSaK/bRvKA==
-Received: from unknown (HELO localhost.localdomain) ([192.168.34.55])
-  by esa1.ltts.com with ESMTP; 14 Feb 2024 17:32:56 +0530
-From: Bhargav Raviprakash <bhargav.r@ltts.com>
-To: nm@ti.com
-Cc: arnd@arndb.de,
-	bhargav.r@ltts.com,
-	broonie@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	gregkh@linuxfoundation.org,
-	jpanis@baylibre.com,
-	kristo@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	lee@kernel.org,
-	lgirdwood@gmail.com,
-	linus.walleij@linaro.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	m.nirmaladevi@ltts.com,
-	robh+dt@kernel.org,
-	vigneshr@ti.com
-Subject: Re: [RESEND PATCH v1 01/13] mfd: tps6594: Add register definitions for TI TPS65224 PMIC
-Date: Wed, 14 Feb 2024 17:32:49 +0530
-Message-Id: <20240214120249.89716-1-bhargav.r@ltts.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240209173517.i67qttasxjum7oek@strum>
-References: <20240209173517.i67qttasxjum7oek@strum>
+	s=arc-20240116; t=1707912626; c=relaxed/simple;
+	bh=x1g6GMNkLoMW1m0Fc0n7IJtC/rw991yy2r9DfS39pRQ=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=jWYfN5vPmkL6AITZvEl9rg0S0khMBpX48Zrvz9fZFzAJGOUYLMGWs9Oq1SbOHGwoBlu00tCnYXR+61GGV05usdLlQTfWhrAfrU5JNOw/bao4tk+UWnrsUVVeaGaopO9mlADvBVTJYQa+xE3TSPjNsmqc02Bc2lbnEAgSzYAXibk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FyrMFbas; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6A0D7C433F1;
+	Wed, 14 Feb 2024 12:10:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707912625;
+	bh=x1g6GMNkLoMW1m0Fc0n7IJtC/rw991yy2r9DfS39pRQ=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=FyrMFbasaadIkbNrMUy9vE03K5vYZIFJmQbWGN/ptTjFv7K9HCTHXzZBXawzonz8S
+	 Cv/g6bGaiMnf0fVZexvFbzuAiXhkdlrwDPFuOxcZPbBQSWzndY5OV+kTLW5llA4Y+q
+	 q23zc3E9syZRXI79Tuyel5Iuayuw29+4z8k+UKhVgWPZFhLy3OzOel/kAQi1RmxCLm
+	 3JHkGJXDsxbH6IYn5kgOWV3WzbsiEYskXvur066PmvyRp8FroeZUmfpECCSDvjGXfb
+	 ESnxF72KUryMNRP5R3FNTyJC3n681zigVIV25s4ApnZtTAzGWB06XpORABq6TrJLFZ
+	 gfjfNcv6LS4wg==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 4D476D84BCD;
+	Wed, 14 Feb 2024 12:10:25 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,32 +52,47 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v5 1/2] dt-bindings: net: dp83826: support TX data voltage
+ tuning
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <170791262530.17764.12992441887115183588.git-patchwork-notify@kernel.org>
+Date: Wed, 14 Feb 2024 12:10:25 +0000
+References: <20240213080705.4184566-1-catalin.popescu@leica-geosystems.com>
+In-Reply-To: <20240213080705.4184566-1-catalin.popescu@leica-geosystems.com>
+To: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+Cc: davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ afd@ti.com, andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, bsp-development.geo@leica-geosystems.com,
+ m.felsch@pengutronix.de, krzysztof.kozlowski@linaro.org
 
-Hi,
+Hello:
 
-On Fri, 9 Feb 2024 11:35:17 -0600, Nishanth Menon wrote:
-> On 16:23-20240208, Bhargav Raviprakash wrote:
-> > From: Nirmala Devi Mal Nadar <m.nirmaladevi@ltts.com>
-> > 
-> > Extend TPS6594 PMIC register and field definitions to support TPS65224
-> > power management IC.
-> > 
-> > TPS65224 is software compatible to TPS6594 and can re-use many of the
-> > same definitions, new definitions are added to support additional
-> > controls available on TPS65224.
-> > 
-> > Signed-off-by: Nirmala Devi Mal Nadar <m.nirmaladevi@ltts.com>
+This series was applied to netdev/net-next.git (main)
+by David S. Miller <davem@davemloft.net>:
+
+On Tue, 13 Feb 2024 09:07:04 +0100 you wrote:
+> Add properties ti,cfg-dac-minus-one-bp/ti,cfg-dac-plus-one-bp
+> to support voltage tuning of logical levels -1/+1 of the MLT-3
+> encoded TX data.
 > 
-> You've got to Sign-off as part of recommendations read [1]
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
 > 
-> 
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst#n451
-> -- 
-> Regards,
-> Nishanth Menon
+> [...]
 
-Thanks for your feedback. We will do the sign-off in next patch version.
+Here is the summary with links:
+  - [v5,1/2] dt-bindings: net: dp83826: support TX data voltage tuning
+    https://git.kernel.org/netdev/net-next/c/ed1d7dac08c5
+  - [v5,2/2] net: phy: dp83826: support TX data voltage tuning
+    https://git.kernel.org/netdev/net-next/c/d1d77120bc28
 
-Regards,
-Bhargav
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
 
