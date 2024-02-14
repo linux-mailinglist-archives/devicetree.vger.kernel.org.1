@@ -1,205 +1,145 @@
-Return-Path: <devicetree+bounces-41555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92A3A8543D3
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 09:11:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95A4085441B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 09:36:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44B6A288517
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 08:11:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C80AD1C26D88
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 08:36:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AED9011CB3;
-	Wed, 14 Feb 2024 08:11:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nuONOwuK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC26717CE;
+	Wed, 14 Feb 2024 08:35:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D96FD11CAE
-	for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 08:11:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48F6F1FB4;
+	Wed, 14 Feb 2024 08:35:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707898314; cv=none; b=jIbWL7DKEox69rA/Mc2pZT+XLWbJi9GQR77KdvttujT44+3o/lSXV2988lIMHn++bbTtRWkwbhnJIzUA7V05xAkmh38dzsGDzlvfpwaPZeScFvCIoSR6LA40K+uga1OS45XbdJ783uqzuIZHSWM+PxydsiG/pK/yWjvyEzcBrGA=
+	t=1707899757; cv=none; b=UbFnK8Vi0f5jWtlJEbkEr9DfffSkwpZn4u3oiGmjmb6CA+0j8SHwx6aEvKdiof+f2f2xv2ioGzljcrxu+mhdmrnLOhLr3wZoGBSdC2jmCqyz83CWROp+EAp7T0p0Dm0gvodY5t6TRwUll9Dov9l2z/XZvir96ykV4MzRnjSc8Ac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707898314; c=relaxed/simple;
-	bh=cORV1hPVEb1NyHs06SF8qOrnoTvO2nGd8lmVc/S9+cw=;
+	s=arc-20240116; t=1707899757; c=relaxed/simple;
+	bh=G80kAQT7MwVwK+q1TP/+PTGwSsJM0oWNxYt1TUSDTHI=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MuxPCW14jP76UsSdEtpBBLEOxDljJk6i/aPBSEVrR2CRtUp7jrlZ0SdLLQ1CRx5saxio3U7xGT37KOl/cy8vEvZoqNwBF6ITIBOjkdqAGDtU2eTleDETDtvpiilpqX/E65S6oErfTdiGY9oKqoXkTLsSJxq79ivmj7sm/S42weM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nuONOwuK; arc=none smtp.client-ip=209.85.219.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-dc6cbe1ac75so399903276.1
-        for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 00:11:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707898312; x=1708503112; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=KfOoEa6KDVG5lBUOB2ugHyccJS6WfRjSfp0n81i8FVY=;
-        b=nuONOwuKSRycmF3gATjjXmdjZfPkI96mDAuy6Xu3K1PCz0h/3kTsZcU5AvQm9wT3ds
-         u2YwTZOyAPViPKj5iYS0INYUixKi7iWeAFylGG5kd8+b1AQVOAVEM5OYmoPbRnvH5oK3
-         MG25dcn9oZ0c/wnBYep5NWWleTZnZ4QoaSh2fEQEV4Jiv0E5L+LXnxSbFDHO8BjmDf6n
-         09w3mdDrlO1RMQWi/8PNE7WNckq9EmZnBMzicet3Wb1GsZcXOWELiPcwAv+RzCcrkx2V
-         oe3bnr3r82FZ1YVnYORUNPeGAGQz3c1J1BykqzLIrrUV9ekCymCJ0xXy8gkFO5FmDmKD
-         w8bQ==
+	 To:Cc:Content-Type; b=oF/tTNCVkuinR2elC5/4Ia3A9XIOWXf9w2sIDsePWYG00FGIq4+PZnJQSL3tcmqNUq0ZPBo6arl2LShG74t+ChvI+mWRShkHoGfaP/NjdrE7TIKgB7xemV2HcTCw8qCZULnGriN8LKJWtzu38Y71Y+mfBEFzFQZ2IjAR36IIHP4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6002317a427so47028387b3.2;
+        Wed, 14 Feb 2024 00:35:54 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707898312; x=1708503112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KfOoEa6KDVG5lBUOB2ugHyccJS6WfRjSfp0n81i8FVY=;
-        b=qc8RciiPPcX4hCcSdSjBjo/ZR2dMBcpigXLUuSmo/CMMsazSxDmn78lQ5cazekgl4I
-         0FvgfdTZu95C1nxiDuVN1FP9Odv6sSblg8RWJG2hni3mh+EMhResNOGDsSrS0ONS7Zy4
-         5x58XlPHQOAJvkI1TOikYybDHhCyX+U1lKyaebeFq7el8fUAJyaeGrPemMz+gWt4xDK6
-         tGGxvQWTYBYtEaukgFG4/7vOne2dZLU5Y1FKvJrQG1Q5Lw7oQewArPudFRFchs06NJi1
-         ExL45qcbMh4j+fb7QEeJlP16oAVJiHrMOEfMTj+6zC1WnPvWiMxeUr2eJGwP+dotEbi3
-         9GwA==
-X-Forwarded-Encrypted: i=1; AJvYcCUMKd7UQ54Pu9fkvKor/RCwgvaP0SFqmCes27rE/f9SfOnyoo3n0ta/acBCZmi3aPNUgma2oHtTNdyY+GY/W8MG2rRnxZSNvUGzvA==
-X-Gm-Message-State: AOJu0YyIcg26iPNDfiV/wp/OHi6P1ZGoGV0ooXHviIWlHLQLXDaICnzH
-	MBFMUYmFgIgY5z6w/Ne23rHJxj7/95XQcA19fQuOY89etsSJ/GJzDmHRxfp6n+EYWeorP3hXPXg
-	dFdeokGtEdnS/QQewiIz2BNsEuBJY+JRsq/6qqA==
-X-Google-Smtp-Source: AGHT+IFAn6NP7cUBJnGhZzmKFmr3z8S4XNhtXr3hHrBsJyxvM947Lhuu6U6liOw/rKr+h9SZcVchZb+pkdi1vk3t71U=
-X-Received: by 2002:a25:3c87:0:b0:dcb:b072:82d8 with SMTP id
- j129-20020a253c87000000b00dcbb07282d8mr826745yba.15.1707898311745; Wed, 14
- Feb 2024 00:11:51 -0800 (PST)
+        d=1e100.net; s=20230601; t=1707899752; x=1708504552;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qhJlZCcRgqTba1suffIYy/S2Gadkij2N+hd17VddZnM=;
+        b=jJsXIHH49ymdhbGiJixJ1GSrgia1NrYlyFYPK9YnoFrhsKCJugbGNHQ3Ql3iXmld+S
+         ngRbnr4tsfF6C4uUVrdIZFu3Ca5r7i3RmK6sYYXpBbsggDp/0QiUIYF2V5sIyOBBizzo
+         otgOsDuR/ZDJjl5C7H2QA3heL0i5k0YjkkkphbmAsUi3kTRXS6r1ntGWbKV5Pn3vCUWL
+         zqM8GCuyN1X4olwQogNCxH3HTckv++deQqSppuXOotvo2eHzgsdLd1qmWwlK8QhbckcD
+         xp19ANDgL7vycqVnnBT2vPfBkQprOzzk6CB092rpIU0qDKUUVoWZS5kfgOB5L5QZvJvn
+         bqew==
+X-Forwarded-Encrypted: i=1; AJvYcCUzyaCqxu5lUt17dZpJCUa9VkbcB/gdvOQncj89xLJwmha6S8pS5v4Lx8XCtGnBebzAUqIpWSHUu7gRnDVPgzT9luxjKNIDJIXSy9avPwbBEv8QgGaygvL+aW2GNc4gULufQ9CWoeSzHsFzolxKB1N5gZ1yaikBsDqwnvVLdW80aobXcL0tfIzHeU/PCWGdWpt5vPTwrkHDxErSELj+AI4ym74=
+X-Gm-Message-State: AOJu0Yyg34SrO+qm85Ro3xhFkxJgcd27pLXqne+y0o0IquabArU+4v/s
+	IyR5gYhQIB4yBqbQBhhcMWhzIlibZw9/tOvoaM3LwfDm1Z+4V8wKo/zO07RtPIo=
+X-Google-Smtp-Source: AGHT+IH7w6QLIfgNrszxlKE78XNWCSjjYGNraAZ+ea8wcrBoeplhrbDLb1PeWFSNcChTQ9MtT6UNyQ==
+X-Received: by 2002:a81:84c9:0:b0:604:b08c:348d with SMTP id u192-20020a8184c9000000b00604b08c348dmr1615046ywf.1.1707899752108;
+        Wed, 14 Feb 2024 00:35:52 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU3kB/B5WZaBOwFU458Gbikm7YLFToDCMZIMHGgWLNsYimJ2f7WNBDN7+QBURGuTfpBmRxmZn2Zimovo5ZG/7tI4vByX0m3jJ8oP7M2OBERHad12czrvX2DOBLkCRrHqaX1eyTYDSDCp9je9LhimRIAfQ3ONgzN1Cpml6Aeaoy7WWg+4iglDTG2OGKT/SMctbwacGPoAgVAwnXyoD6Ss3sfb3g=
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
+        by smtp.gmail.com with ESMTPSA id b81-20020a0dd954000000b006078ad0243csm689386ywe.59.2024.02.14.00.35.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Feb 2024 00:35:51 -0800 (PST)
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-dcc4de7d901so1484144276.0;
+        Wed, 14 Feb 2024 00:35:51 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUqaqHeHdPWCke88qqVKNUCTowy6wOKw/w0Pk0Bsd4JbzaUNGvC5rtcqvpCVJImgluMjXM6TS+bEEgjgAf9hty/YhFGjly7qP19Fw0ajUq3zfsErADyyyvaSCOZUHM7+XCBm+iZ/flNlTQa/VMLhFHKxwvgKAPiHa3fka3XhMv2rIY96bax4SPzciAFnE+lhmMU1Cz4NY4KlKP3GbFTdNWl/mo=
+X-Received: by 2002:a25:c7c9:0:b0:dc6:ff12:1a21 with SMTP id
+ w192-20020a25c7c9000000b00dc6ff121a21mr1674869ybe.31.1707899751143; Wed, 14
+ Feb 2024 00:35:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <1649704172-13181-1-git-send-email-quic_faiyazm@quicinc.com>
- <YlW2TO0O8qDHpkGW@kernel.org> <7b18bea8-b996-601d-f490-cb8aadfffa1b@quicinc.com>
- <YnQBKPWtPa87y4NA@kernel.org> <42f28e7b-c001-7d01-1eb6-fe963491898e@quicinc.com>
- <Ynj+M9cRm6zdCMMi@kernel.org> <22aca197-8d18-2c9e-b3c4-f6fdc893ceb1@quicinc.com>
- <Yu1t8TpXT1f372v/@kernel.org> <76cb3b37-5887-404f-95b7-10a22a7ba65b@quicinc.com>
- <ZcxvKvSfJv6L2O9e@kernel.org>
-In-Reply-To: <ZcxvKvSfJv6L2O9e@kernel.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 14 Feb 2024 10:11:40 +0200
-Message-ID: <CAA8EJpqpGN6yzd5pUs06aax=L5wDwPK6aM6R2X784y7ot+P-aQ@mail.gmail.com>
-Subject: Re: [PATCH] mm: memblock: avoid to create memmap for memblock nomap regions
-To: Mike Rapoport <rppt@kernel.org>
-Cc: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>, Vijayanand Jitta <quic_vjitta@quicinc.com>, 
-	Faiyaz Mohammed <quic_faiyazm@quicinc.com>, karahmed@amazon.de, qperret@google.com, 
-	robh@kernel.org, akpm@linux-foundation.org, linux-mm@kvack.org, 
-	linux-kernel@vger.kernel.org, robh+dt@kernel.org, frowand.list@gmail.com, 
-	devicetree@vger.kernel.org
+References: <cover.1706194617.git.geert+renesas@glider.be> <CAPDyKFpxaEUHvKKb+spxV6HG2P2gLx5qM1mLPxJie+PdkmTL4w@mail.gmail.com>
+ <CAMuHMdUswhJ3BQLnOQZC7X7qc7SFCqsr9Uy65LfBT_BNWfyhFQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdUswhJ3BQLnOQZC7X7qc7SFCqsr9Uy65LfBT_BNWfyhFQ@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 14 Feb 2024 09:35:38 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdX1tjgPJ8t+XoASuMvzvSognu7q2=aGfBO8r77JsbR82w@mail.gmail.com>
+Message-ID: <CAMuHMdX1tjgPJ8t+XoASuMvzvSognu7q2=aGfBO8r77JsbR82w@mail.gmail.com>
+Subject: Re: [PATCH v2 00/15] arm64: renesas: Add R-Car V4M and Gray Hawk
+ Single support
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Magnus Damm <magnus.damm@gmail.com>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Cong Dang <cong.dang.xn@renesas.com>, Duy Nguyen <duy.nguyen.rh@renesas.com>, 
+	Hai Pham <hai.pham.ud@renesas.com>, Linh Phung <linh.phung.jy@renesas.com>, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-pm@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 14 Feb 2024 at 09:44, Mike Rapoport <rppt@kernel.org> wrote:
->
-> On Thu, Feb 08, 2024 at 02:37:25PM +0800, Aiqun Yu (Maria) wrote:
-> >
-> > On 8/6/2022 3:22 AM, Mike Rapoport wrote:
-> > > Hi Vijay,
+Hi Ulf,
+
+On Wed, Jan 31, 2024 at 3:56=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+> On Tue, Jan 30, 2024 at 2:11=E2=80=AFPM Ulf Hansson <ulf.hansson@linaro.o=
+rg> wrote:
+> > On Thu, 25 Jan 2024 at 16:34, Geert Uytterhoeven
+> > <geert+renesas@glider.be> wrote:
+> > > This patch series adds initial support for the Renesas R-Car V4M
+> > > (R8A779G0) SoC and the Renesas Gray Hawk Single development board.
 > > >
-> > > On Wed, Aug 03, 2022 at 04:27:33PM +0530, Vijayanand Jitta wrote:
-> > > >
-> > > > On 5/9/2022 5:12 PM, Mike Rapoport wrote:
-> > > > > On Mon, May 09, 2022 at 04:37:30PM +0530, Faiyaz Mohammed wrote:
-> > > > > >
-> > > > > > On 5/5/2022 10:24 PM, Mike Rapoport wrote:
-> > > > > > > On Thu, May 05, 2022 at 08:46:15PM +0530, Faiyaz Mohammed wrote:
-> > > > > > > > On 4/12/2022 10:56 PM, Mike Rapoport wrote:
-> > > > > > > > > On Tue, Apr 12, 2022 at 12:39:32AM +0530, Faiyaz Mohammed wrote:
-> > > > > > > > > > This 'commit 86588296acbf ("fdt: Properly handle "no-map" field in the
-> > > > > > > > > > memory region")' is keeping the no-map regions in memblock.memory with
-> > > > > > > > > > MEMBLOCK_NOMAP flag set to use no-map memory for EFI using memblock api's,
-> > > > > > > > > > but during the initialization sparse_init mark all memblock.memory as
-> > > > > > > > > > present using for_each_mem_pfn_range, which is creating the memmap for
-> > > > > > > > > > no-map memblock regions. To avoid it skiping the memblock.memory regions
-> > > > > > > > > > set with MEMBLOCK_NOMAP set and with this change we will be able to save
-> > > > > > > > > > ~11MB memory for ~612MB carve out.
-> > > > > > > > > The MEMBLOCK_NOMAP is very fragile and caused a lot of issues already. I
-> > > > > > > > > really don't like the idea if adding more implicit assumptions about how
-> > > > > > > > > NOMAP memory may or may not be used in a generic iterator function.
-> > > > > > > > Sorry for delayed response.
-> > > > > > > > Yes, it is possible that implicit assumption can create
-> > > > > > > > misunderstanding. How about adding command line option and control the
-> > > > > > > > no-map region in fdt.c driver, to decide whether to keep "no-map" region
-> > > > > > > > with NOMAP flag or remove?. Something like below
-> > > > > > > I really don't like memblock_remove() for such cases.
-> > > > > > > Pretending there is a hole when there is an actual DRAM makes things really
-> > > > > > > hairy when it comes to memory map and page allocator initialization.
-> > > > > > > You wouldn't want to trade system stability and random memory corruptions
-> > > > > > > for 11M of "saved" memory.
-> > > > > >
-> > > > > > Creating memory map for holes memory is adding 11MB overhead which is
-> > > > > > huge on low memory target and same time 11MB memory saving is good enough
-> > > > > > on low memory target.
-> > > > > >
-> > > > > > Or we can have separate list of NOMAP like reserved?.
-> > > > > >
-> > > > > > Any other suggestion to address this issue?.
-> > > > >
-> > > > > Make your firmware to report the memory that Linux cannot use as a hole,
-> > > > > i.e. _not_ report it as memory.
-> > > >
-> > > > Thanks, Mike for the comments.
-> > > >
-> > > > Few concerns with this approach.
-> > > >
-> > > > 1) One concern is, even if firmware doesn't report these regions as
-> > > > memory, we would need addresses for these to be part of device tree so
-> > > > that the clients would be able to get these addresses. Otherwise there
-> > > > is no way for client to know these addresses.
-> > > >
-> > > > 2) This would also add a dependency on firmware to be able to pass these
-> > > > regions not as memory, though we know that these regions would be used
-> > > > by the clients. Isn't it better to have such control within the kernel ?
-> > >
-> > > If it is memory that is used by the kernel it should be reported as memory
-> > > and have the memory map.
-> > > If this is a hole in the memory layout from the kernel perspective, then
-> > > kernel should not bother with this memory.
-> > Hi Mike,
+> > > As both driver code and DTS have hard dependencies on DT binding
+> > > definitions, most patches in this series are supposed to go in throug=
+h
+> > > the renesas-devel and/or renesas-clk trees, using a shared branch for=
+ DT
+> > > binding definitions, as usual.  For the PM domain patches (03, 04, 09=
+),
+> > > Ulf already offered to apply these to his pmdomain tree, and provide =
+an
+> > > immutable "dt" branch, to be pulled in my renesas-devel tree.
 > >
-> > We've put effort on bootloader side to implement the similar suggestion of
-> > os bootloader to convey the reserved memory by omit the hole from
-> > /memory@0{reg=[]} directly.
-> > While there is a concern from device tree spec perspective, link [1]: "A
-> > memory device node is required for all devicetrees and describes the
-> > physical memory layout for the system. "
-> > Do you have any idea on this pls?
->
-> I'm not sure I understand your concern. Isn't there a /memory node that
-> describes the memory available to Linux in your devicetree?
-
-That was the question. It looks like your opinion on /memory was that
-it describes "memory available to Linux", while device tree spec
-defines it as "physical memory layout".
-
->
-> > [1] https://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter3-devicenodes.rst
-> > >
-> > > And I'm not buying "low memory target" argument if you have enough memory
-> > > to carve out ~600M for some mysterious clients.
+> > Patch 3,4 and 9 (I dropped the copyright line in patch9, as pointed
+> > out by Niklas) applied for next, thanks!
 > >
-> > Just for your information, for low memory target, the carve out can be more
-> > than ~60M out of 128M in total.
+> > Patch 3,4 are also available at the immutable dt branch for you to pull=
+ in.
 >
-> If saving ~1M of memory map is important, hide the carve out from Linux
-> entirely.
+> Thank you!
 >
-> > > > Let me know your comments on these.
-> > > >
-> > > > Thanks,
-> > > > Vijay
-> >
-> > --
-> > Thx and BRs,
-> > Aiqun(Maria) Yu
->
-> --
-> Sincerely yours,
-> Mike.
+> I have pulled the immutable branch, added the remaining DT binding
+> definitions, and queued all remaining patches.
 
+It looks like you have applied copies of all commits on the "dt"
+branch to the "next"
+branch, so now there are two copies?
 
+See the output of "git range-diff v6.8-rc1..pmdomain/dt
+v6.8-rc4..pmdomain/next".
 
--- 
-With best wishes
-Dmitry
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
