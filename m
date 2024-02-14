@@ -1,66 +1,66 @@
-Return-Path: <devicetree+bounces-41801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47C048551CA
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 19:13:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70A708551DC
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 19:15:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02F1A29956B
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 18:13:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F7AE1F29611
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 18:15:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F155712BF17;
-	Wed, 14 Feb 2024 18:10:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96E57129A8C;
+	Wed, 14 Feb 2024 18:12:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DCXwpPhT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FhmO2/GB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C832412BE9D;
-	Wed, 14 Feb 2024 18:10:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F2368527F;
+	Wed, 14 Feb 2024 18:12:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707934231; cv=none; b=OgxPM3259nwrbKY/lTH1w6BVrIplAvNPOd45TyFhvIvtWC6HzgEyHs8D09g8A5EMywLRFV0wiUkuCEgySR4xv9pvGtytn8BfEDIGHkIzV04o9x5jB/IU3bIEkDmlpRqTCGPoB6UUPHr21u6OF1ucy+9qnyhh9sAzNueEokBf5SY=
+	t=1707934345; cv=none; b=a8nAHkS0C/RtklU7JapLvyuKtazpM+fS8DeyDbr7sNoFyvl12ug3NUBx/1uNie/3g2ZFIEEe6v/n+6uXd/iUuaCeEmmfhDiw+1k93/o6vt0kxOMvGaOvf6dG228Q9FYTII3laiomOefVDFer/WeSb0sH56jzL+SAq8GvnNoEv9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707934231; c=relaxed/simple;
-	bh=bCCGgn+cpKHU5JFXR2s9+uZ+k8e1qm+nuyp7hb6VGn8=;
+	s=arc-20240116; t=1707934345; c=relaxed/simple;
+	bh=CDlqvcoUaaFjZ++J28H0zcJUMfv3V3DXrfQN3Lt2XuM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DACo+r4fwOtIlP1uprUZ/7Kfu8pcEzbZYCdkixBHmN+y1oYkQBVXu3AZaJRPdGp0or/XN1wiTmn2FzaPa8EU2cnBto/I337ijPfQLFbxN1Z4Kcv2VUvOurJXoruqaj/cRh0j4GwWfBxnFaAeiCqiodEZ09IKlCYytGG1v2phckw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DCXwpPhT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76FDAC433F1;
-	Wed, 14 Feb 2024 18:10:27 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZibZ6OsMahw/W1jKdRiS4stn2APEQzz38KplYUvxv6eyxVUR8WbI0cmfylEaHUYmKHFPRst2Zch8StI+J8Bbd2GaL+GgOrbC350EDR1h6pUWOf/u1LSEDmOOPBChWBxLB8xE3edSB2+frdlwzHwh7HL9SXtN2q1ddtiaVUWd2mE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FhmO2/GB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87DA1C433C7;
+	Wed, 14 Feb 2024 18:12:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707934231;
-	bh=bCCGgn+cpKHU5JFXR2s9+uZ+k8e1qm+nuyp7hb6VGn8=;
+	s=k20201202; t=1707934344;
+	bh=CDlqvcoUaaFjZ++J28H0zcJUMfv3V3DXrfQN3Lt2XuM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DCXwpPhT/NKoQfWRmmbBUxheorAiKdzTz4qu02bcQfbFMZEahwkAmz9j7Ew6fal1z
-	 36QF49gHihoDjpV41J+CQ8OUAfQtLqMLENRSrW4n1MPl5vEXGHBeYs9yvSE5ITdlQw
-	 1zL91DiOphomMkWJkynKI28nbL35GXhJygfU/FSFRjH2nmjJVYJxuVmUJfLxZUXeGJ
-	 gK7eD+JzIAJpYUC70htRLMq8Q9Y9pwOyGaXa8Iq4o1k/iBJHKwLdoy+OKczAWgy1t+
-	 RVVFSnJmhk8mz1blrugMg295JNWOckCQGCYedAfJhxZaHjFLnY8jeQInBi6N+11Hx6
-	 qmB76bmfB3lUQ==
-Date: Wed, 14 Feb 2024 18:10:25 +0000
+	b=FhmO2/GBR4pf1wnPFAUrJMYYOsp1eWlMvm9qhAcjmfPzxb0H7Nd8STbTB38vJc8BW
+	 /jPYSgEYnYxBmeAtTgMQHh/EJVBMmJryXTm/DbLiOBzTqPuXupLG6sWjwkE4Gb41m8
+	 zEvigiSmLlhOLmOl3uYM8r3m5Stb0rMs1hR+kDEAGkHVKtXklHpObmo7526vO4AfnA
+	 Y6GsRdd/T7IiO6BkyVSi/f7RBBwjyAKqKmb6vMxniPQXMHoxsOC2AwP8JFp1q89NXX
+	 XiPsT42i1Oy3jmB0xfSz0An6xDCKX6YGPaSSU+cjBMfdbZxFVjlTfjEAUgvNbSMPcq
+	 X6ARDw/uAme0w==
+Date: Wed, 14 Feb 2024 18:12:19 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Kevin Hilman <khilman@kernel.org>
-Cc: Bhargav Raviprakash <bhargav.r@ltts.com>, arnd@arndb.de,
-	broonie@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	gregkh@linuxfoundation.org, jpanis@baylibre.com, kristo@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-	lgirdwood@gmail.com, linus.walleij@linaro.org,
-	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, m.nirmaladevi@ltts.com, nm@ti.com,
-	robh+dt@kernel.org, vigneshr@ti.com
-Subject: Re: [RESEND PATCH v1 03/13] dt-bindings: mfd: ti,tps6594: Add TI
- TPS65224 PMIC
-Message-ID: <20240214-canola-strongman-69b7fc90bd31@spud>
-References: <20240209-blitz-fidgety-78469aa80d6d@spud>
- <20240214093106.86483-1-bhargav.r@ltts.com>
- <20240214-galley-dweller-1e9872229d80@spud>
- <7hil2r5556.fsf@baylibre.com>
- <20240214-depraved-unfunded-3f0b3d6bf3e2@spud>
- <7hfrxu6i0t.fsf@baylibre.com>
+To: Tim Lunn <tim@feathertop.org>
+Cc: Dragan Simic <dsimic@manjaro.org>, linux-rockchip@lists.infradead.org,
+	Andy Yan <andyshrk@163.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	David Heidelberg <david@ixit.cz>, Heiko Stuebner <heiko@sntech.de>,
+	Jagan Teki <jagan@edgeble.ai>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Ondrej Jirman <megi@xff.cz>, Rob Herring <robh+dt@kernel.org>,
+	Tianling Shen <cnsztl@gmail.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/4] Fix vendor strings on Rockchip boards
+Message-ID: <20240214-moocher-womanless-21201b67b76d@spud>
+References: <20240214040731.3069111-1-tim@feathertop.org>
+ <c03220db663279c9e83bab81f3d829e7@manjaro.org>
+ <e952d127-b12d-4b5a-838b-807a876db707@feathertop.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,30 +68,56 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="aEtsIK1cbYXVAH0m"
+	protocol="application/pgp-signature"; boundary="xM0QSn4CMXaJ9cxt"
 Content-Disposition: inline
-In-Reply-To: <7hfrxu6i0t.fsf@baylibre.com>
+In-Reply-To: <e952d127-b12d-4b5a-838b-807a876db707@feathertop.org>
 
 
---aEtsIK1cbYXVAH0m
+--xM0QSn4CMXaJ9cxt
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 14, 2024 at 10:02:42AM -0800, Kevin Hilman wrote:
-> Sorry for the noise.
+On Wed, Feb 14, 2024 at 03:27:08PM +1100, Tim Lunn wrote:
+> Hi Dragan,
+>=20
+> On 2/14/24 15:14, Dragan Simic wrote:
+> > Hello Tim,
+> >=20
+> > On 2024-02-14 05:07, Tim Lunn wrote:
+> > > A couple of rockchip boards incorrectly list their vendor as Rockchip
+> > > when they are in fact not manufactured by Rockchip.
+> > >=20
+> > > Fix the vendor strings to correctly list the manufacturer
+> >=20
+> > Just checking, have you verified that the old, incorrect "compatible"
+> > strings from the board dts files aren't used anywhere in the kernel cod=
+e,
+> > such as in some drivers?
+> >=20
+> Yes I checked that, there are no remaining references to the old/incorrect
+> compatible strings in kernel code
 
-nw chief
+What about other code? Like a BSD or a bootloader? If nothing is using
+them
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---aEtsIK1cbYXVAH0m
+Fixes tags I think wouldn't go amiss, but I'm not expecting a resend
+with them.
+
+Cheers,
+Conor.
+
+--xM0QSn4CMXaJ9cxt
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZc0CEQAKCRB4tDGHoIJi
-0p25AQDihDMz1ib1pvi6dgCUIRsPT6mndLgVz01AxshTU471VwEAllyu+KCTnixG
-yvV3pEm+PwEJN3mWqucoVYApQXhgRgM=
-=QOTA
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZc0CgwAKCRB4tDGHoIJi
+0rnIAP4266uBVs8L2WyYwA8DkZLeNbpLCOsYZojqX3g8t5zn2QEAmlVsc/c21nrD
+IOXryV8IFMuPO4v9U4rwGrS6mo9QQQ4=
+=kr05
 -----END PGP SIGNATURE-----
 
---aEtsIK1cbYXVAH0m--
+--xM0QSn4CMXaJ9cxt--
 
