@@ -1,85 +1,153 @@
-Return-Path: <devicetree+bounces-41668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A47EA854ACB
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 14:55:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A491854AD4
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 14:58:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E0841F26A30
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 13:55:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5AD528574B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 13:58:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 071BF54BCF;
-	Wed, 14 Feb 2024 13:54:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4638A54BDB;
+	Wed, 14 Feb 2024 13:58:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="glOf6NWf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PpH00fCG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D172A54BC9;
-	Wed, 14 Feb 2024 13:54:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 189C354BC7;
+	Wed, 14 Feb 2024 13:58:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707918898; cv=none; b=AEcSumaAUlLy84KZ6JHDX/CTzdR8dDVqwYVzaM6e51ksPRrGiOUfccEZ/I18MtCOS6JkVTyDTdZH4FqKTVtnpPzlIDY49s1fRnleMr64GEmoskooBsBNtkXFFeohEtV4l8je2onraP8iS1Wt8i5VKR5xUvbCXZZCddjp5Omu8ew=
+	t=1707919107; cv=none; b=jmeVoNxjfCZLYXl2AsmRi04KyZNPFc8T67QPc5H1TzPTzbYrx1ejgWxkFJoTP3GBJtVwZqayngkhfe6Xos1ks+qrPfxycNSJecp48kSJDqvEMczKoDZrvxViYukMNqEq2pNNqSEACAozv9sgbsiSEkVRRJEZV55hwnBlgkNFQVY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707918898; c=relaxed/simple;
-	bh=R2GYoNLZ4RTpO70AujPg/1RrzI1BJGVw3w2HYNt5j9U=;
+	s=arc-20240116; t=1707919107; c=relaxed/simple;
+	bh=D4otYk0l4L8666y0XkXrWB2HS/+cq+srK0Sn0rtCIgk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uhWdd+2ykCTpAJVWeYxAZL4txm26yokDvTZ8iYn4G7wgBucRKpay7iNivaRwS5ZEjUBZwpyd2/6CvyZU6hlZUc79oMm92HO++a+M3rRBRTILe7sv5LBTR7JIgvFum0RooPalLeYLfSTUpBJF2hKXMVWdeMXQeiKQXiJ3roKPLUE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=glOf6NWf; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=dgXYrhLbpWQPlz5UKTX6bJxUhxWWR7lyTKdm0QhL0HM=; b=gl
-	Of6NWfNtO/v+zOuzpBcd/d/doAHpd6qkP8hgGN5M5asLoGEuLZRZsb37vZcCaRbC8zMc5fNzHDeRw
-	+t86ZZJGL2JdMELzf4Ol/7VA8ged38QGneBC1ZljseePDoZIh51B9b5Oi0WOFaIHVzRFp4QGQR0oz
-	ZV/fldP0XIeio88=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1raFix-007n5X-Pr; Wed, 14 Feb 2024 14:54:55 +0100
-Date: Wed, 14 Feb 2024 14:54:55 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Michal =?utf-8?B?Vm9rw6HEjQ==?= <michal.vokac@ysoft.com>
-Cc: Shawn Guo <shawnguo@kernel.org>, Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=lQaW1NHpJ08xR7qk7ykMDWprq/MBrenU5Qc0tPxSWnFsu7nT1jrlyym56w87PcE6kX1j/jEd5Oy/ZzuHWWsTO5ti4C5lNkA3XimI+9UamO3GRT7H+CzhZF44YGSo0+YauP9KLX7nw1d/JBKtNhrCeLCw1WTs+Q5rC6ygv7tdRlg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PpH00fCG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4735BC433F1;
+	Wed, 14 Feb 2024 13:58:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707919106;
+	bh=D4otYk0l4L8666y0XkXrWB2HS/+cq+srK0Sn0rtCIgk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PpH00fCGZkawUyAQTGR2TJxby/VMmedAoH91WkBzTCBJPBA9L9ngKEcwTbQB1WeOn
+	 Vm+B+wi8IE+rNXNnlBUb+MngbMOaFL/yhsgGY/K6mWYtahg/XAh2jAgUrOx3356qgS
+	 yPXSEGPFbdums4li05nbf2yeQjT4rY+RxFT+DKgqTpEWBWeMZmumjkjcB2HG4ahyQ6
+	 7Ih/Dz/EfauKYuTUaObB3U+1wMhWe0zyYG4+oU/cGCE9deNCUP3i9ds7ici6u/zOHJ
+	 XaGeyZGm71QkHVZiawpTCIC/qNECvfNzq9m2fpUjKqXGeuiEqBq++0UBf9wfrp8WZH
+	 jv9s8oPPfPk7Q==
+Date: Wed, 14 Feb 2024 07:58:24 -0600
+From: Rob Herring <robh@kernel.org>
+To: Balakrishnan Sambath <balakrishnan.s@microchip.com>
+Cc: Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Jonathan McDowell <noodles@earth.li>
-Subject: Re: [PATCH v2 1/2] ARM: dts: imx6dl-yapp4: Fix typo in the QCA
- switch register address
-Message-ID: <8c765a36-4718-4f5f-a8d0-3763ac97ab7b@lunn.ch>
-References: <1707901408-17084-1-git-send-email-michal.vokac@ysoft.com>
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: sound:atmel-at91sam9g20ek: convert bindings
+ to json-schema
+Message-ID: <20240214135824.GA692740-robh@kernel.org>
+References: <20240214-at91sam9g20ek-wm8731-yaml-v1-1-33333e17383b@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1707901408-17084-1-git-send-email-michal.vokac@ysoft.com>
+In-Reply-To: <20240214-at91sam9g20ek-wm8731-yaml-v1-1-33333e17383b@microchip.com>
 
-On Wed, Feb 14, 2024 at 10:03:27AM +0100, Michal Vokáč wrote:
-> This change does not have any functional effect. The switch works just
-> fine without this patch as it has full access to all the addresses
-> on the bus. This is simply a clean-up to set the node name address
-> and reg address to the same value.
+On Wed, Feb 14, 2024 at 12:10:06PM +0530, Balakrishnan Sambath wrote:
+> Convert atmel-at91sam9g20ek-wm8731-audio DT binding to yaml
+> based json-schema.Change file name to match json-scheme naming.
 > 
-> Fixes: 15b43e497ffd ("ARM: dts: imx6dl-yapp4: Use correct pseudo PHY address for the switch")
-> Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
+> Signed-off-by: Balakrishnan Sambath <balakrishnan.s@microchip.com>
+> ---
+>  .../bindings/sound/atmel,at91sam9g20ek-wm8731.yaml | 60 ++++++++++++++++++++++
+>  .../sound/atmel-at91sam9g20ek-wm8731-audio.txt     | 26 ----------
+>  2 files changed, 60 insertions(+), 26 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/atmel,at91sam9g20ek-wm8731.yaml b/Documentation/devicetree/bindings/sound/atmel,at91sam9g20ek-wm8731.yaml
+> new file mode 100644
+> index 000000000000..f6330707fe1b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/atmel,at91sam9g20ek-wm8731.yaml
+> @@ -0,0 +1,60 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/atmel,at91sam9g20ek-wm8731.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Atmel at91sam9g20ek wm8731 audio complex
+> +
+> +maintainers:
+> +  - Balakrishnan Sambath <balakrishnan.s@microchip.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: atmel,at91sam9g20ek-wm8731-audio
+> +
+> +  atmel,model:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: The user-visible name of this sound complex.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+blank line between DT properties
 
-    Andrew
+> +  atmel,audio-routing:
+> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> +    description: A list of the connections between audio components.
+> +    minItems: 2
+
+No max?
+
+> +    items:
+> +      enum:
+> +        # Board Connectors
+> +        - "Ext Spk"
+> +        - "Int MIC"
+> +
+> +        # CODEC Pins
+> +        - LHPOUT
+> +        - MICIN
+> +  atmel,ssc-controller:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: The phandle of the SSC controller
+> +  atmel,audio-codec:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: The phandle of WM8731 audio codec
+> +
+> +required:
+> +  - compatible
+> +  - atmel,model
+> +  - atmel,audio-routing
+> +  - atmel,ssc-controller
+> +  - atmel,audio-codec
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    sound {
+> +        compatible = "atmel,at91sam9g20ek-wm8731-audio";
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&pinctrl_pck0_as_mck>;
+> +        atmel,model = "wm8731 @ AT91SAMG20EK";
+> +        atmel,audio-routing =
+> +            "Ext Spk", "LHPOUT",
+> +            "Int MIC", "MICIN";
+> +        atmel,ssc-controller = <&ssc0>;
+> +        atmel,audio-codec = <&wm8731>;
+> +    };
 
