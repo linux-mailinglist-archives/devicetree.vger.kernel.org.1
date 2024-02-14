@@ -1,142 +1,108 @@
-Return-Path: <devicetree+bounces-41778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0F358550DE
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 18:54:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFAE08550F3
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 18:57:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 956591F219BF
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 17:54:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA6001C21C21
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 17:57:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ECFD1272AE;
-	Wed, 14 Feb 2024 17:54:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8127C1272D3;
+	Wed, 14 Feb 2024 17:57:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l+A8JqIH"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CiM7ByVg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EE6364CCE;
-	Wed, 14 Feb 2024 17:54:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E79391272CA;
+	Wed, 14 Feb 2024 17:57:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707933273; cv=none; b=bCeQSysirG38JiUPsmMJp1xaq8XAwuEBbgYrzNzlESkhqA7xZbpcKn9jUMyLsWO0E1LWnvxbGAumCvYrJi/+Z3VuNh80kT78GJGAz9NJQj9wOZN0unXHp+x+ti8AE3hnqt97sx6EGI9WXexx9Xe2A2qEaUkteY7ya0EHmEgBw2o=
+	t=1707933440; cv=none; b=bkHcTzSoeT87/pqFuU6abHsdy9u+zd205oiGa47pSztcbKniBeiZeUq8nuwQJOIiS0NyzfgVzdgUX10VufRd/bAwNjqekOdHycvJv0/0u5TUl3KUIMw4FdSPRE+ndIUR8SmZXFuX96pYEnBhggKOYPCERhWNAE6QEVj35TWZ6SE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707933273; c=relaxed/simple;
-	bh=ZTeQV27LyiWxhDtHvAK8nA1pMIO1NH+Bi7YkTdMe1Ms=;
+	s=arc-20240116; t=1707933440; c=relaxed/simple;
+	bh=w7YKlQ1AIzWIBl1dATjxOvc0WtReTODZFO/0ZXY1B54=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LEaG7+3+aJ3mXSE3ZxNE+QDvC3e/NWvSLMXHJT/4Tl4AbTInNrQ5o7dzhfQHX/yUZQnsvsUi70tp7UzsEYuliqOF1IJ6oZWvxLFkFbVlBWEz9JCwS4dV2CnjGMOCDYqa2Ao/oQmakJuFy10ZrH4uL4UJLpNymCIXva5HzKO8XgA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l+A8JqIH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 161EFC43390;
-	Wed, 14 Feb 2024 17:54:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707933271;
-	bh=ZTeQV27LyiWxhDtHvAK8nA1pMIO1NH+Bi7YkTdMe1Ms=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=l+A8JqIHfa1E7pwjzgdiEZ9CjIGzy8gR8nzllyIV+xKO9W75Qa0joiLYavYkuERQN
-	 ollX9l2H04JjvxyAHukxkwSzA0tfvqUe2qI1EOPVeDMN4pdnT7N7abb+lLNXQGe0BA
-	 1SmpexPHgOE1PhF4a45Mq3LERnkNh37z0zr5yTMPtJH7xUHt5F8hdbd1CALu/NGMmU
-	 SybUUusGxx6jvkaEZl+sRMJkzsOVB9AKK2IJtsqNaY6u7flnUMa1ZvKoJktHDIzY/S
-	 1uLzzgiEOvk4JsnRc98awQmCwBIrKj8Bz+Pd3wg/zGx/QHevq1AaTVfN3VzvMaqW5A
-	 UKOZy3wHVSPiw==
-Date: Wed, 14 Feb 2024 17:54:26 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Mihai Sain <mihai.sain@microchip.com>
-Cc: claudiu.beznea@tuxon.dev, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-	andre.przywara@arm.com, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	cristian.birsan@microchip.com
-Subject: Re: [PATCH v2 2/3] ARM: dts: microchip: sama7g5: Add flexcom 10 node
-Message-ID: <20240214-robe-pregnancy-a1b056c9fe14@spud>
-References: <20240214080348.7540-1-mihai.sain@microchip.com>
- <20240214080348.7540-3-mihai.sain@microchip.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ezP49czFfFXmDi9yZ/Kbh+OzsW36Lhpoppn0syxmZksD1zCEut7OJT85yERHGOxiZyn2jM3F3IM4ppzESgGKT2fmJucEwds/3eVF6J5LPG0T9EFi20Ci4bkfjBs6hnMjCCsJeUsr4IxfX0WCKW5/5z8eclqxYTzBvZiBB9lfUMM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=CiM7ByVg; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1707933439; x=1739469439;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=w7YKlQ1AIzWIBl1dATjxOvc0WtReTODZFO/0ZXY1B54=;
+  b=CiM7ByVgyW9E5UNCZFnAleIc1kN7N4h8jNF85gUPAJqVG6bOh3SpyUCR
+   Cv7KOXByH3eSMK+CiZ3Shqb6wyAYCiLmEN5f5nMdQoKb0l1kiPmymNYu2
+   zkIXbfYYZhvQrfmy9iqjnV3ffeojBv+tmSj6j5qhcbOa3m6MWrAwua0X3
+   V2575pPIJXY3dwkwrZIvFS+7MOHmkovNoTxIsS1gdrNYAwNRQ1WH29e8c
+   ghYnJ0ncnbMarRN1Lj07cz2RXvR2x8BkTQR9wheVRAPoFWBPTQpRrXYwY
+   iTfpcSZE4fo6sONtIIAw8kcAX2ZNVO8q32eVUR6LPuW4V6UYFBAgyqCUC
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="13381607"
+X-IronPort-AV: E=Sophos;i="6.06,160,1705392000"; 
+   d="scan'208";a="13381607"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2024 09:57:18 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="912092919"
+X-IronPort-AV: E=Sophos;i="6.06,160,1705392000"; 
+   d="scan'208";a="912092919"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2024 09:57:15 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1raJVR-00000004YoV-1VfP;
+	Wed, 14 Feb 2024 19:57:13 +0200
+Date: Wed, 14 Feb 2024 19:57:13 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Robin van der Gracht <robin@protonic.nl>,
+	Paul Burton <paulburton@kernel.org>
+Subject: Re: [PATCH v2 00/15] auxdisplay: linedisp: Clean up and add new
+ driver
+Message-ID: <Zcz--YJmWLm0ikUT@smile.fi.intel.com>
+References: <20240212170423.2860895-1-andriy.shevchenko@linux.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="i7w97PXK10Ag2OJm"
-Content-Disposition: inline
-In-Reply-To: <20240214080348.7540-3-mihai.sain@microchip.com>
-
-
---i7w97PXK10Ag2OJm
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240212170423.2860895-1-andriy.shevchenko@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Wed, Feb 14, 2024 at 10:03:47AM +0200, Mihai Sain wrote:
-> Add flexcom 10 node for usage on the SAMA7G54 Curiosity board.
->=20
-> Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
-> ---
->  arch/arm/boot/dts/microchip/sama7g5.dtsi | 26 ++++++++++++++++++++++++
->  1 file changed, 26 insertions(+)
->=20
-> diff --git a/arch/arm/boot/dts/microchip/sama7g5.dtsi b/arch/arm/boot/dts=
-/microchip/sama7g5.dtsi
-> index 269e0a3ca269..c90e404e8ed9 100644
-> --- a/arch/arm/boot/dts/microchip/sama7g5.dtsi
-> +++ b/arch/arm/boot/dts/microchip/sama7g5.dtsi
-> @@ -958,6 +958,32 @@ i2c9: i2c@600 {
->  			};
->  		};
-> =20
-> +		flx10: flexcom@e2820000 {
-> +			compatible =3D "atmel,sama5d2-flexcom";
-> +			reg =3D <0xe2820000 0x200>;
+On Mon, Feb 12, 2024 at 07:01:33PM +0200, Andy Shevchenko wrote:
+> Add a new initial driver for Maxim MAX6958/6959 chips.
+> While developing that driver I realised that there is a lot
+> of duplication between ht16k33 and a new one. Hence set of
+> cleanups and refactorings.
+> 
+> Note, the new driver has minimum support of the hardware and
+> I have plans to cover more features in the future.
+> 
+> In v2:
+> - updated DT bindings to follow specifications and requirements (Krzysztof)
+> - unified return code variable (err everywhere)
+> - left patches 10 and 13 untouched, we may amend later on (Robin)
 
-This is a sama7g5, how come this flexcom is using a sama5d2 compatible?
+Geert, I would like to apply at least the first 13 patches.
+Do you have any comments or even possibility to perform a regression test?
 
-Cheers,
-Conor.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-> +			clocks =3D <&pmc PMC_TYPE_PERIPHERAL 48>;
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <1>;
-> +			ranges =3D <0x0 0xe2820000 0x800>;
-> +			status =3D "disabled";
-> +
-> +			i2c10: i2c@600 {
-> +				compatible =3D "microchip,sama7g5-i2c", "microchip,sam9x60-i2c";
-> +				reg =3D <0x600 0x200>;
-> +				interrupts =3D <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
-> +				#address-cells =3D <1>;
-> +				#size-cells =3D <0>;
-> +				clocks =3D <&pmc PMC_TYPE_PERIPHERAL 48>;
-> +				atmel,fifo-size =3D <32>;
-> +				dmas =3D <&dma0 AT91_XDMAC_DT_PERID(25)>,
-> +					<&dma0 AT91_XDMAC_DT_PERID(26)>;
-> +				dma-names =3D "rx", "tx";
-> +				atmel,use-dma-rx;
-> +				atmel,use-dma-tx;
-> +				status =3D "disabled";
-> +			};
-> +		};
-> +
->  		flx11: flexcom@e2824000 {
->  			compatible =3D "atmel,sama5d2-flexcom";
->  			reg =3D <0xe2824000 0x200>;
-> --=20
-> 2.43.0
->=20
 
---i7w97PXK10Ag2OJm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcz+UgAKCRB4tDGHoIJi
-0uiBAP9sCfWXzDmB20GQqPgUx21MD2Wufjy5otnUOVcS3lrfHwEAnup1ChedOWaD
-nqbRyjVqCuvpc2j/lqTpMnNgspprFwg=
-=Rbar
------END PGP SIGNATURE-----
-
---i7w97PXK10Ag2OJm--
 
