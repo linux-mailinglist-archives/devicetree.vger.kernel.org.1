@@ -1,178 +1,124 @@
-Return-Path: <devicetree+bounces-41670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41671-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A07ED854AF4
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 15:01:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8B27854B07
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 15:05:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89B891C2831E
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 14:01:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 251BA1C21162
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 14:05:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDFD954F89;
-	Wed, 14 Feb 2024 13:59:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B46754F89;
+	Wed, 14 Feb 2024 14:05:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ljkXjH4C"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="enzfK2AJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0011D5C8FE;
-	Wed, 14 Feb 2024 13:59:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6387D5467A;
+	Wed, 14 Feb 2024 14:05:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707919154; cv=none; b=dNitJRw7i4/1AuTlv25dktPnOAn9KFNMQ28sd+zo8s7hneX2evl2LMTv9dKc3gxfoyCpBLeZPOHLOIrJRfQwG1C6LT+6EHLujzVzQDwz4P+/yX/HIvLZkGJfB15Y+UihSc2R0DY78EH/22Y0cVDz7u/1a7jEGyEFIPw0+R0IViU=
+	t=1707919505; cv=none; b=uUoeW9arPHLrpYI4jeMjVomJr0Dca/w3J+cmGkmLHiIh83DcUlN1yza1iucvrxN8UJR7Kyj99DJORAPh+BdGNGVsVygMY3ap3xvf8ddG7CQYVrvc7VCNEe52oZFsMqbK3juYxSw8o7X/tYHnPskEkznWyTKWgvlWtCpGsxrEMnk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707919154; c=relaxed/simple;
-	bh=gvJJZ/u+oFmJe9o1bdHtO/O/5u2N3evyh8Zop5iY370=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=XjFBcmmXx8L/Xp5ybq9KjVWh7XmwuCo/xhGtLhmMH/jdBNL9j6LuDt0Tgwf4Uq2K+K59apnRFNvlNvkFlSAIOk/G82vFF2tFknogr6GP/30CAtYl+ro81VsZ1ygHOY+oeTfozKFVQ+Uryib5G/OhKnQuN11ggyDFewUhPEuumLs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ljkXjH4C; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41EAxMXw001851;
-	Wed, 14 Feb 2024 13:58:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=UsRN04YgdttuRzXuuaPeRfbR90rptVxiln+xXdu7HOM=; b=lj
-	kXjH4CFDMWOxTHHPA+dFro8BHptRBBZHD55vn6e728Un0kpyEwCNNbi3yTPzcfvc
-	Z9frQZ9CfyqnIIhH74EPauBaZ3rDqjUJNFld/Id7QQWQdhQ5wecheYYbd7YbuSDR
-	Mnv2ufEeexLbxdSdavuVptXyzF4txem6Lqui8MwrHw+62A41sesLPlxJFrj2VcPh
-	s0vHwftM3XG+yMIREDFZdXnwGNyuKgGdsBPa+80rkGsDn1Mn+7g3fRmHjY08+67d
-	6JaehgHgm/7Iw/eTsppRD/aYr30qLAWPAjzEPc5R80O6HArRaAlRRfJxViAekSKX
-	MEmdMrhl5CLvunNSykKQ==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w8jn9hb6j-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 14 Feb 2024 13:58:47 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41EDwjva016998
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 14 Feb 2024 13:58:45 GMT
-Received: from [10.216.19.164] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 14 Feb
- 2024 05:58:31 -0800
-Message-ID: <e5a5b32c-bc9d-42b7-b1a8-90e22b957915@quicinc.com>
-Date: Wed, 14 Feb 2024 19:28:26 +0530
+	s=arc-20240116; t=1707919505; c=relaxed/simple;
+	bh=XTHsakMKCRvGMeYX+V9AYEltoRSA1pIrIQBwCDAiBXg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=T89zSXPJMDvBwAgzNXN2hSNFDM8v5ANbI5R2LDXsdNL+WX1E9Xvdd7OVzID9ZVWhwOhIV7980tNWJaSl6hrzVQ0Ztyz0keqqy5/rM5w7fMJBAEipdBwEFQ04SGXve/BPlTprE29NE82rmosZao6V47IQl9nNAfgj0qrFZnCFqbk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=enzfK2AJ; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5638dbf1417so493729a12.0;
+        Wed, 14 Feb 2024 06:05:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707919501; x=1708524301; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=z7Q1BpdFE96j/+901jCtibE5f/f88ZZPNniLXRQM0DA=;
+        b=enzfK2AJ7PAsh90saisXmtk9KmF8WKUlCesV602TvNxpl5beHjDkrbcC//VVO5DPdy
+         CsOJrWWixYDj3lcqHxk3UUSr7NCjpp/uMC6QF37jPlbAwcUuPwRS2MwMmNrqqtdRAQU3
+         GONCX1H6GqRNYCOBwIPboGhMvs0KZemKiMmGBL0LXJyORvocxBj+9XZTebr2qx9aMq+9
+         vttBtlf5+4B+7jMmXeJIh1nsN4tWTy0Vvg6Q7V0AFL74yCP6GiXZSA9HUVbJNV0t59CG
+         iDF0GuRRN+IslOsd7E1YNDIhkU2rBwiuwERjUwWz5Mv9mnwOAFA4T7y/1OYuhbzFk9cz
+         bHhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707919501; x=1708524301;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=z7Q1BpdFE96j/+901jCtibE5f/f88ZZPNniLXRQM0DA=;
+        b=NgSyfe8KhlPBI756W1tz7eTyR0Zbm4GKLPOmS3Rm18Zzp82Tv6WebzaQq5qUeodii7
+         5e3eNKgu/owYYYdaJ49Y4gMkv+h9Ns9F5YiRkQL4qs6iBrJ765Rf+/b521G1L+x/sg9m
+         OPIU7+yF28c9UGW8jipPaxlVMhMlqcISuluibMTHVnD4Rsb2psbLP3F4IeaZzEPFWGjC
+         yFKSv/ZDyXY2ualfwq0fqs10RxFBjYbGUepqQQPiZw54j4Cwmb0op9G/HOTIUyrPPo4e
+         iCeEx9UPoy7ZkmjgwndxdXz4AbmxD6Zdf//rSFOV7YvjgOOCecmZ/V7KAT9MGacMjlrJ
+         xryg==
+X-Forwarded-Encrypted: i=1; AJvYcCVlOo5Hsb3J/J0Jzu/w22+SwrvQqIx2RtrbTcNt6hr44spNwiJ7BK3ptlDPtAjF6iyaXJ8NOgrUlI47QanJXnd8OAA/WxGm9MWnWO/dEpw8nVcQhKhKt4Hf0MYzp0Jnx8JglQzu3lbWt3O8IQIWqfrawia0EMVcj+Qg6/wpomvGnVTflg==
+X-Gm-Message-State: AOJu0Yx9Uh0+4zWZ3SneSa73AcmW/DOW6mMvlqKBWXkEB4zvmGkHGN6n
+	BFN5cp7cwQVH5l4QvVhCq232cgNtHXXcrbaCOt1uojZmKDB1N0OkBTzSsKCz
+X-Google-Smtp-Source: AGHT+IHV5lTBSsU2P4rgMTuePMzPF3w3ljb7dMNL+67Z2B7qY19FGGj9oQip/nDTMA6wH9kRqjNzqg==
+X-Received: by 2002:aa7:c61a:0:b0:560:799:f802 with SMTP id h26-20020aa7c61a000000b005600799f802mr1932526edq.21.1707919501304;
+        Wed, 14 Feb 2024 06:05:01 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUtmzNXaugjkX2Lbay0q+RsXHbXxui68JmgAB7AAmk4fN6jM65+wulw9ikFfckzf4uYl4dacm8xHp/v2UQatJoXIMh9DdY4tfvpVmwaS8QRN26anrUvaF40ZtJauATQNUIsMTq7FYNnfRokS3gSUXM2eLI33PzYCSVvpQiDHEuJk81vMeQX2XhGl6jYHsBVrk22H67C4u8N+drhgxpW2To1xIPETJ8yOjudZKLtwmBEIvy/VaytbZGFC5FcZQBMSl1/azpXi+FC16ov9Iv4Tz+CikGEFzMUZxfRTlukzTpTaSDTWrlC5aEYVUl0EaWshVPu+v9XjqKmshRUdwH7HGTkIprdv/AYXAXMiFYqDqplLuVKPHl/OmnMHinF+8gTyWy/2P6Gd8pfN09kXEM6KlzG4q+VuzFZHKCYPtrc72Z67u21U0VQJzM5lPAOlld1uLGGuJoHHWrhGCkvLqV1zYzp77iazMGiQSMqtOk1/a2fQuY13LupsaYThSx/+PlTPg==
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id p23-20020a056402501700b005614409022esm4700646eda.63.2024.02.14.06.04.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Feb 2024 06:05:00 -0800 (PST)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	John Crispin <john@phrozen.org>,
+	linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH V2 1/2] dt-bindings: pwm: mediatek,mt2712: add compatible for MT7988
+Date: Wed, 14 Feb 2024 15:04:53 +0100
+Message-Id: <20240214140454.6438-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] iio: adc: Add support for QCOM PMIC5 Gen3 ADC
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <lee@kernel.org>,
-        <andriy.shevchenko@linux.intel.com>, <daniel.lezcano@linaro.org>,
-        <lars@metafoo.de>, <luca@z3ntu.xyz>, <marijn.suijten@somainline.org>,
-        <agross@kernel.org>, <sboyd@kernel.org>, <rafael@kernel.org>,
-        <rui.zhang@intel.com>, <lukasz.luba@arm.com>,
-        <linus.walleij@linaro.org>, <quic_subbaram@quicinc.com>,
-        <quic_collinsd@quicinc.com>, <quic_amelende@quicinc.com>,
-        <quic_kamalw@quicinc.com>, <kernel@quicinc.com>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-arm-msm-owner@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <cros-qcom-dts-watchers@chromium.org>
-References: <20231231171237.3322376-1-quic_jprakash@quicinc.com>
- <20231231171237.3322376-4-quic_jprakash@quicinc.com>
- <CAA8EJpr4q7pFF44oUjJSWGYKgiUCB_23zVHw6J3a3mwn7cKgyg@mail.gmail.com>
-Content-Language: en-US
-From: Jishnu Prakash <quic_jprakash@quicinc.com>
-In-Reply-To: <CAA8EJpr4q7pFF44oUjJSWGYKgiUCB_23zVHw6J3a3mwn7cKgyg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: jDzhMT2m9_qcniAuUC2Ibd9s1FWU_QVo
-X-Proofpoint-ORIG-GUID: jDzhMT2m9_qcniAuUC2Ibd9s1FWU_QVo
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-14_06,2024-02-14_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- adultscore=0 mlxlogscore=999 bulkscore=0 priorityscore=1501 clxscore=1011
- phishscore=0 suspectscore=0 malwarescore=0 spamscore=0 mlxscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402140108
 
-Hi Dmitry,
+From: Rafał Miłecki <rafal@milecki.pl>
 
-On 12/31/2023 11:16 PM, Dmitry Baryshkov wrote:
-> On Sun, 31 Dec 2023 at 19:13, Jishnu Prakash <quic_jprakash@quicinc.com> wrote:
->> The ADC architecture on PMIC5 Gen3 is similar to that on PMIC5 Gen2,
->> with all SW communication to ADC going through PMK8550 which
->> communicates with other PMICs through PBS.
+MT7988 has on-SoC controller that can control up to 8 PWM interfaces. It
+differs from blocks on other SoCs (amount of PWMs & registers) so it
+needs its own compatible string.
 
->> +static int adc_tm_register_tzd(struct adc5_chip *adc)
->> +{
->> +       unsigned int i, channel;
->> +       struct thermal_zone_device *tzd;
->> +
->> +       for (i = 0; i < adc->nchannels; i++) {
->> +               channel = V_CHAN(adc->chan_props[i]);
->> +
->> +               if (!adc->chan_props[i].adc_tm)
->> +                       continue;
->> +               tzd = devm_thermal_of_zone_register(adc->dev, channel,
->> +                       &adc->chan_props[i], &adc_tm_ops);
-> It is _very_ useful to register a hwmon too by calling
-> devm_thermal_add_hwmon_sysfs(). However this becomes tricky, as this
-> function is not defined in one of the global headers.
->
-> This actually points out an issue. You have the ADC driver fused
-> together with the thermal driver. Can I suggest using the aux device
-> to split the thermal functionality to the separate driver?
->
-> This way it would be possible to use the ADC without any thermal
-> monitoring in place.
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+V2: Explain new compatibility string reason in commit body
 
+ Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-There are a couple of issues which may make it harder to split the 
-thermal functionality from this driver into an auxiliary driver as you 
-mentioned.
+diff --git a/Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml b/Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml
+index 0fbe8a6469eb..a5c308801619 100644
+--- a/Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml
++++ b/Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml
+@@ -24,6 +24,7 @@ properties:
+           - mediatek,mt7629-pwm
+           - mediatek,mt7981-pwm
+           - mediatek,mt7986-pwm
++          - mediatek,mt7988-pwm
+           - mediatek,mt8183-pwm
+           - mediatek,mt8365-pwm
+           - mediatek,mt8516-pwm
+-- 
+2.35.3
 
-For one, we use the same set of registers (offsets 0x4f-0x55) for both 
-VADC function(requesting an immediate channel reading) and ADC_TM 
-function (setting upper/lower thermal thresholds on a channel). To avoid 
-any race conditions, we would need to share a mutex between the 
-top-level ADC driver and the auxiliary ADC_TM thermal driver to avoid 
-concurrently accessing these or any other shared registers.
-
-In addition, the device has only one interrupt with one interrupt 
-handler, and it gets triggered for both VADC and ADC_TM  events (end of 
-conversion and threshold violation, respectively). The handler checks 
-for both types of event and handles it as required.
-
-For the shared interrupt, we may be able to keep the interrupt handler 
-in the top-level driver and just notify the auxiliary TM driver if a 
-threshold violation is detected. For the shared mutex, I think the 
-auxiliary driver may be able to access the parent driver's mutex, but 
-I'll need to check more for the implementation in both of these cases.
-
-Please let me know if you see any problems with this kind of 
-implementation or if you have any additional comments.
-
-Thanks,
-
-Jishnu
-
->> +
->> +               if (IS_ERR(tzd)) {
->> +                       if (PTR_ERR(tzd) == -ENODEV) {
->> +                               dev_warn(adc->dev, "thermal sensor on channel %d is not used\n",
->> +                                        channel);
->> +                               continue;
->> +                       }
->> +
->>
->
 
