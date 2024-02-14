@@ -1,341 +1,173 @@
-Return-Path: <devicetree+bounces-41842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1663E85574D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 00:33:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCC08855753
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 00:35:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9577B1F2A531
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 23:33:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85BA6282B03
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 23:35:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 572921419B4;
-	Wed, 14 Feb 2024 23:33:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F6B21419A9;
+	Wed, 14 Feb 2024 23:35:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="JT9ibqn5"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="m+p3Fhm2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2048.outbound.protection.outlook.com [40.107.113.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59E641419A6
-	for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 23:33:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.180
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707953600; cv=none; b=OPnjOeNKOoUDTzTFu52SnvSKtaJ98XvHgIicC435FemEFntyN9vG/uyJ1uxZQdqt5ml9/I/5EUlaR3DWkgoDH8nTpbVhPiuLLGXybiBHhmGQJQdXgCRmSb5E9pqHgsfkoksIWEht4WgelIntNhUGpb4Hhm5rleDOi86LvEd1kQ8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707953600; c=relaxed/simple;
-	bh=lNniGJRWqs5vkdggTeOdCVtP1zQiJDAGENzRNbCCrRQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Gf0moQFefb6C28EqrzzJIYcKN47D9PuGu11I2d9P60fgnxHO7x3NMMsDnMn4cPWsU/c+xqmVx7MOkBDdhIE9BD0h+7EcSvjzMwo7tQJVGfqSyLtl9mxcaEhs1+tEnXuPMA7SemqGEML16/fxZK8gzxp1r+YELTx9bLSk4t0HLyE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=JT9ibqn5; arc=none smtp.client-ip=209.85.160.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-42db1baff53so56311cf.0
-        for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 15:33:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1707953597; x=1708558397; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oWVOuj4rMvhSLFWAyEWK0L/EZU9RsmUUAUz5wQ+DXOg=;
-        b=JT9ibqn53dRKfmOEdnKPGH2NnhgyEfSS2aQVKMgSqfgZLAhy0ws2l4S5e9gR+MuEso
-         8VXT0OdaNXjtjFp1rv7vmu1/NPW3zNbvOwSXUwYatjR3wGgrTOgqHRhyj7OPspd7pXdS
-         fJVRYl69wHV7p5UJaa5tcAC97HUtHpR4GhHd9wCD5eHgNuXXOAHWB001RDpFqsNEbLr5
-         R8/nikApEf80NAAtvxzKN3qPK29TRtl2ak+z8Q4oFsAMFkXWQb8V/uXR7Cer39pcmFif
-         SkcdlzKmr7PEojp1YxdRdoUA/eg/h6IIFN3tiTNK2MC5hT6mkBL1i2nGusmrZihL3jG+
-         y+AA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707953597; x=1708558397;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oWVOuj4rMvhSLFWAyEWK0L/EZU9RsmUUAUz5wQ+DXOg=;
-        b=JsDm11iWVg9b4mBeG3czGw+TIjLeQCmVwAOo5SJUEHfFaUmDP0o4NiZG6jkST9sw5a
-         WjNL+6hbJdncV/JyBH2AvsZVrovdNQ1sp5Rlz0LYgTOKA6DOnA60kX7+nnuwMJbJdEJJ
-         u+SRXW7WE3XgE/RGk8IxiRVyNwtlqUXahSYyhfaUsMO/MVAOfu/oTM3Lg51jE0u2cnnj
-         6YaKtsleIuNaxG5psGUs8E/obiLKpLZ/J/JbY/opVJsykT5SDZNkaGB8HtMUDQvBvt8A
-         9xiUYIAP3LKpxwqJDlJuSSyru9ahc6QhArx7fV3gw4KYH6mBV9l+cVD4Q3bl7yEJXa6E
-         PfPA==
-X-Forwarded-Encrypted: i=1; AJvYcCUSV/1ZE7a77D3lyItglO5HOfz67aCQiUd+UEAuA2fPir2Z+InipK+WgdhjZVozPpaOD+oj1HliLDTCG8r91iKZ7bM7lBK8seyUCw==
-X-Gm-Message-State: AOJu0Yygdkla0MumUePW8i+8XnkuaFMk+sBEwVHZBf3T4RrGQc3CTS/B
-	HIelng3VMx/9DU97hh4ffvwOn4xVbEzEj7gkYxmbdjwnaxlKR9zKCaJLZbRgv+d1X4D0gj/L4sx
-	10T8B9Jd2HegVmCERsICqEIaqkGC7v6jEilMr
-X-Google-Smtp-Source: AGHT+IECnRFS3Tun1wI7WB58zzwXAljD8tU5Rk8kG3Biy3kLhdVu7WmMzEwtevTLy/jxlgfm7mjMfgk9rNK0K90YwDw=
-X-Received: by 2002:ac8:5916:0:b0:42c:59b3:31d5 with SMTP id
- 22-20020ac85916000000b0042c59b331d5mr515930qty.17.1707953596990; Wed, 14 Feb
- 2024 15:33:16 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE5181419A2;
+	Wed, 14 Feb 2024 23:34:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.113.48
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707953702; cv=fail; b=IZDfKCp+TR55B7SW7l27K1RpP8rJ84uZhii9lmMQTcjcFU8xEthrmyGDkOVMbh663qRclY7/QEZJrwQXTvlPH+ZJgS0fRUF9afY1C2LBd8UD1654SMVZ6zPEsnFLIA6y+tgw/x1+2DHKyMZku+Wk5wtv6bqKs+dtbG76JwK623c=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707953702; c=relaxed/simple;
+	bh=uP9oKQ57wd5HmLyC6pYP/Q7UmLvVl/Knz0U2VMX8gdY=;
+	h=Message-ID:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 Date:MIME-Version; b=BVzR2ShnO+OeZWtV3Up/pPvAlWu8li0G7QT2U8If2AaTUS/sEF9o29/xQi9r/0QP9F109JWJpAd8fjkWmW7rH4Uvv3kvE6esL+fxSzvFGIqJzDsScwGLsQgw7UcaNB1CICpVVlEKfXWfLfW5aLmKV5TAWXTQATJXBe5XOMPfs18=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=m+p3Fhm2; arc=fail smtp.client-ip=40.107.113.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=g0wodMEkVwHLZWlgoOlTHIgh1ZFhyQHUsQkjVBBg56a5+c1dE6bsF/oaGMyxHZyCWfXxMcPTSWtxuuNQ1tVJ2LyWJiym6cOhKWWCwaZ92capglGT33G+7nBnkFuzGn/h14SrrIldIgzQFUEqsg+Pka+wSI5v62CdvMMnqSZOxGEsDmrL5b2Uqrdm0nCPiNmJrQieOYAmobQySy3ZlAaeRkic6G7lmmnwIKz0rdjmtoqdu+pVHtPpsPNKULz4KW3RmKeYoiqMLgB/ZCNlp826YnIn3tZXFYyml4ZbDkUjWzFTCxFKcGbu6wrHL/Y68RZXiVpwABAjSxJfSDuKlW6KZg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=D8DNiAb3ntPEQfEqcy746fn6MwmI7pUX831+lb9KBOM=;
+ b=GrG3L6odCyL4jsJnAoSjU2Lhbzs6v2nSuU9bAPAUdx6R9+iSOTnrXVRWZMP/r7f98BcijqcjhCS6UKAHx+NJIGoEXl9TADTuhYIs6DtCTqJOkIU5ZESSe4NRvZjqQFujl5uE0tFUlY24cvDYLJS65nPbVCbk4Yq5yl0T9sscryCogA+oEvFb3d+YY+y9rAgRx97pnSfa5vHC0c6OMJrUlIFwTxZfjVEPniTxTPlr5LGAqAEBiFfxxf/PBLsILjRe+8psggIE6c+wJNzPqezBuiN254wha20XtkFMU8AYK1ybWtTJ0Pvld8rPoAxpTdAITyw1ycOS9ITgvtWnrzVKKg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=D8DNiAb3ntPEQfEqcy746fn6MwmI7pUX831+lb9KBOM=;
+ b=m+p3Fhm2mEJFYg+i6kSum0mrqkyPVI2wGYfnpfEUNIpBmxn5HiYvCt1+KFBwujf/9l8t+oY7zvGsrQEB3s0RMYJ1BLpQQ5QYMohlAeZlgVUgDtN4AVaF5rlAhgffVn9JpRsfvYFpBS2rhJNsjyaiVgn4bcOjldx7gUF8gEr+M98=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by TYWPR01MB11464.jpnprd01.prod.outlook.com
+ (2603:1096:400:401::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.29; Wed, 14 Feb
+ 2024 23:34:56 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::4d0b:6738:dc2b:51c8]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::4d0b:6738:dc2b:51c8%6]) with mapi id 15.20.7292.029; Wed, 14 Feb 2024
+ 23:34:55 +0000
+Message-ID: <87h6iahb6o.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] ARM: renesas: r8a7778: add missing reg-name for sound
+In-Reply-To: <CAMuHMdXih9g46JKvz_UsjH3h_OrJOJLnFv6ixpYjE6Q4DRxbsA@mail.gmail.com>
+References: <87cyszpwmp.wl-kuninori.morimoto.gx@renesas.com>
+	<CAMuHMdXih9g46JKvz_UsjH3h_OrJOJLnFv6ixpYjE6Q4DRxbsA@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 Emacs/27.1 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date: Wed, 14 Feb 2024 23:34:55 +0000
+X-ClientProxiedBy: TYCPR01CA0044.jpnprd01.prod.outlook.com
+ (2603:1096:405:1::32) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240212213147.489377-1-saravanak@google.com> <20240212213147.489377-4-saravanak@google.com>
- <20240214-stable-anytime-b51b898d87af@spud>
-In-Reply-To: <20240214-stable-anytime-b51b898d87af@spud>
-From: Saravana Kannan <saravanak@google.com>
-Date: Wed, 14 Feb 2024 15:32:31 -0800
-Message-ID: <CAGETcx-tBjfaLQqmGW=ap2N5FLK_gvTzxskA6sVsr_SUEpvomA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] dt-bindings: Add post-init-supplier property
-To: Conor Dooley <conor@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Ard Biesheuvel <ardb@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Len Brown <lenb@kernel.org>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, kernel-team@android.com, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-efi@vger.kernel.org, linux-acpi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TYWPR01MB11464:EE_
+X-MS-Office365-Filtering-Correlation-Id: 36f6e205-3df7-438d-eec5-08dc2db58d02
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	73I8GZx/oOFhyNz3VnwZiqvyiRx+RUSM/NsoBLum09jYT8a2yycEDMJq8n9OsC76S5ATetCxA1Ko88/CgCyXTjqKdl2MFQQEhoMBGHWxCyVodvynt1Y54nlWP6W63MXRHRiNbLhvhHVlFlJXvyv3sYQtwdyq8Rx6QMBzQsoyGiUb7EDEFggK1iSB0ER9q0qT4iMU/sgMWxGm2zRTdGyAS8IMQtcK+jDGnHQRkAT5kBM8baiyKb4OhPmk4h2C+/VZVPjECQsfE/v2G4HJ6CcvtDC4EUGslNDg5p4bBDvqGebxMDLL7H8Z8Xl1e7c/LfIxKvPOpElU9fU5bQgfoVW3tAQsVtIO+JsSJ97odGwEitM6FKO+K7wq+zh9yjKqHgdVnwA+p/b+KcLO9wl/kMToaq44EuG/Uad8fJFNWcCxjJoN1fRhuVA1po0SQLFtSDvi2SL+kSpI5oueyyOW0V4T6bkIx4DFgweO7r1mebZqSlR3A3Qs6KPxsDSrZDoPPjm3Q1TDhug2L63KlypA5NvbrCI096iNk45iXg5R8msv8muq0FJetZsEHJyoGI+ZafwuZa7928sK5sXf8hhq/cvGcNJEC8kbQLdoJNVs2ceFDuibv9C1yVGP9LB/5ghoZc2x
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(376002)(346002)(39860400002)(136003)(366004)(230922051799003)(186009)(64100799003)(451199024)(1800799012)(86362001)(5660300002)(8936002)(66946007)(66476007)(66556008)(4326008)(6916009)(8676002)(6512007)(6506007)(478600001)(52116002)(2906002)(6486002)(2616005)(26005)(38100700002)(36756003)(54906003)(41300700001)(38350700005)(316002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?zCEUT4W9vm+W25v+KwMGKKL00s+vTDxmb5KFU5ZUKk9m6ZzpLbZ4oa95w4IL?=
+ =?us-ascii?Q?ZbOeGgLjUZF5Egji+B0uyEd2HcA26o3iWu2AIkwfW+mekIe+Lcmx0PZ6L3DP?=
+ =?us-ascii?Q?pRjwcCPqAfb4bKIfM8ZzwECuJ4zG4n/KsV6M+2DHJGwPc95QADZGE2v8JEGY?=
+ =?us-ascii?Q?b+0g+qI9AicOfzR1yrFHp8YjdfyjFf9/IDswuPwaS6cglddNXIZycRfID7zp?=
+ =?us-ascii?Q?LmkXjKx9WIBVNUi0XQwtG8z/hz/YS6PE8H3bCIOUtdFjGu0MTCTolw5FrmBc?=
+ =?us-ascii?Q?lQOBsZ1VsfZTjqaR6WrrT4/H23WB5G+KEU+IGK0DUf37MQDub4b5mLVlrcB+?=
+ =?us-ascii?Q?a/K9Ac8UOg2tV54HMa8KflkBUcwAJ26AfLIsK6z3dfP3sjV7Ghp3NesSbDYM?=
+ =?us-ascii?Q?wt8QySk9krKBaK5LmqA1M3DCvuhwkTDU2U3XvtVn+rrexn7G5QyNncoD3EjB?=
+ =?us-ascii?Q?1GnOS8s99QugtzvLIfFSthNA++BFulbGXrw/c3Xc8E9F7Btyr+BjiZq5ajF7?=
+ =?us-ascii?Q?Ge0MPwitb6JwaDcltinSrrqUNCdOjhcsCe5cKvzo1j4P4qSV2v/5jKDdvBfx?=
+ =?us-ascii?Q?t/qiqEoc+nsrmtJhgEXdFrtl+/6ohhCoI7gKnVx4FcZhJTQ84VhqkMEx47PA?=
+ =?us-ascii?Q?dA7aHl4lfPwju1dKnTpV5kyDhfQeW528PclZREParO+nj5BDu1xnYNv9hHBW?=
+ =?us-ascii?Q?ng4TD88aN5n0WtvZsBNEuQ71dHx9asjn/QDvIxEr4rdo80iqgfMlyee+aK8a?=
+ =?us-ascii?Q?wZGg1Uz6D6uUaepqV9J2jcgHD1hXJqwn91S4KyndDpPCa/NKIwnzCHGBsgdp?=
+ =?us-ascii?Q?k2NVq0c5R+QXs9TMiw/g0hyY+LXh4owZJkOY41kV9/uZQzdEaMIJQqrPuphZ?=
+ =?us-ascii?Q?/EduPC7jjot9INY40HloWhsAzFBbMPXuWMNbxfX+MvouryxbQ6jwzmqGBWjU?=
+ =?us-ascii?Q?pst5mscTDApU74ER88xrr0fR+8cH/M7xckTliMuZpM/ypVFDSaU9GXyLsOH4?=
+ =?us-ascii?Q?dgLwhJg01YtJAUXGcqdb6+V70JBqc1LK+5l8Uh4acraCJxqJLrYAhaFrNIy6?=
+ =?us-ascii?Q?44IpI+6D9RP+D+zN9e7BJAbX6eAyX0QHqWvFMmSjo0icWFGEInrVKxnKKFAt?=
+ =?us-ascii?Q?5XFOqN4TJLQ5cmX0xsFER5oCLuqoniQdEMvHQL+k0xGG9IeJ8BdV2u8oGWeW?=
+ =?us-ascii?Q?Wl33u1iRg8JZsEiZVuoWcTyQrb59E2jc5AH04xAcsn49P+Qrai3NrcJFnbBT?=
+ =?us-ascii?Q?LfkVR9b3zH0P9gcN8Z7R6K5StaU5655q2OCr3WQHPPO25+Ipr506cGR5p5F7?=
+ =?us-ascii?Q?gTtuKNeYlP1waEo+kJ7KmD0g7f3mgFbrLtlWAfVY3xhBI5lumoKNnw4ZUu5E?=
+ =?us-ascii?Q?uZUiJE5ME/GlBu4+HdHvupdb5W2APUg+o5hR5GA43zdpCs6HHC32Hgv89MQx?=
+ =?us-ascii?Q?ktg7BqwMD+zGV6QRp4tfUImW5x2jJeimD0jPJHR2Uksmu0bJb//N4+2tE2fr?=
+ =?us-ascii?Q?mUNJHADHYUE3PyRTCq9yX66k5Fgl2GPmEWF2cT0lqmhhrMcWkikm2R+yIPdf?=
+ =?us-ascii?Q?nn7HfmeKbYuVzLLfmx0DGXtkkK84CKDMqu3ec7O88Yte0n9hWorWKbQ1YxSk?=
+ =?us-ascii?Q?cOuBXJeYm0/kIMkyiLF5m1U=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 36f6e205-3df7-438d-eec5-08dc2db58d02
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2024 23:34:55.8917
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZUoTHTwS18ELpPZW4cpdr+EuyaS92zDYjF+qMk3CpMaqVeF19fN9kekwedZ5hrSjbcZF4B0IewamC2MXW6Hn/S+89SATATlHPkhMcqqq4DFxj41SSkCdaGbN+R6rnZK/
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB11464
 
-Hi Conon,
 
-On Wed, Feb 14, 2024 at 10:49=E2=80=AFAM Conor Dooley <conor@kernel.org> wr=
-ote:
->
-> On Mon, Feb 12, 2024 at 01:31:44PM -0800, Saravana Kannan wrote:
-> > The post-init-supplier property can be used to break a dependency cycle=
- by
-> > marking some supplier(s) as a post device initialization supplier(s). T=
-his
-> > allows an OS to do a better job at ordering initialization and
-> > suspend/resume of the devices in a dependency cycle.
+Hi Geert
+
+> > Sound Driver requires "reg-name" to get register info. Current driver
+> > try to get register info via "reg" instead of "reg-name" as backup plan,
+> > but this support will be removed soon.
+> > Use "reg-names" for r8a7778 sound.
 > >
-> > Signed-off-by: Saravana Kannan <saravanak@google.com>
-> > ---
-> >  .../bindings/post-init-supplier.yaml          | 101 ++++++++++++++++++
-> >  MAINTAINERS                                   |  13 +--
-> >  2 files changed, 108 insertions(+), 6 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/post-init-supplie=
-r.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/post-init-supplier.yaml =
-b/Documentation/devicetree/bindings/post-init-supplier.yaml
-> > new file mode 100644
-> > index 000000000000..aab75b667259
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/post-init-supplier.yaml
-> > @@ -0,0 +1,101 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +# Copyright (c) 2020, Google LLC. All rights reserved.
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/post-init-supplier.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Post device initialization supplier
-> > +
-> > +maintainers:
-> > +  - Saravana Kannan <saravanak@google.com>
-> > +
-> > +description: |
-> > +  This property is used to indicate that the device(s) pointed to by t=
-he
-> > +  property are not needed for the initialization of the device that li=
-sts this
-> > +  property.
->
-> > This property is meaningful only when pointing to direct suppliers
-> > +  of a device that are pointed to by other properties in the device.
->
-> I don't think this sentence makes sense, or at least it is not easy to
-> parse. It implies that it can "point to" other properties too
+> > Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> 
+> Nice catch!
+> 
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> i.e. will queue in renesas-devel for v6.9.
 
-I don't see how this sentence implies this. But open to suggestions on
-how to reword it. I don't want to drop this line entirely though
-because I'm trying to make it clear that this doesn't make a device
-(that's not previously a supplier) into a supplier. It only down
-grades an existing supplier to a post device initialization supplier.
+Thanks
 
-> - but
-> that's not the case. It is only valid to "point to" these suppliers.
-> I'd drop this entirely.
+> Can we just add a line to do that, or is anything else related to
+> sound missing in r8a7778-bockw.dts?
 
->
-> > +
-> > +  A device can list its suppliers in devicetree using one or more of t=
-he
-> > +  standard devicetree bindings. By default, it would be safe to assume=
- the
-> > +  supplier device can be initialized before the consumer device is ini=
-tialized.
->
-> "it would be safe to assume" seems odd wording to me - I feel like the
-> default is stronger than "safe to assume". I'd just drop the "would be
-> safe to assume and replace with "is assumed".
+In my memory, first BockW support used platform-data style
+(= arch/arm/mach-shmobile/board-bockw.c) but was switched to DT style
+after that by Ulrich. I don't remember details, but when it switched to
+DT style, we already focusing to Gen2 board support. So I didn't use it
+via DT style. I guess he didn't test it, because it is missing many
+settings to use sound on DT. So, just adding a line is enough anyway.
 
-Sounds good.
+> I do not have a Bock-W, so I cannot test this.
 
->
-> > +
-> > +  However, that assumption cannot be made when there are cyclic depend=
-encies
-> > +  between devices. Since each device is a supplier (directly or indire=
-ctly) of
-> > +  the others in the cycle, there is no guaranteed safe order for initi=
-alizing
-> > +  the devices in a cycle. We can try to initialize them in an arbitrar=
-y order
-> > +  and eventually successfully initialize all of them, but that doesn't=
- always
-> > +  work well.
-> > +
-> > +  For example, say,
-> > +  * The device tree has the following cyclic dependency X -> Y -> Z ->=
- X (where
-> > +    -> denotes "depends on").
-> > +  * But X is not needed to fully initialize Z (X might be needed only =
-when a
-> > +    specific functionality is requested post initialization).
-> > +
-> > +  If all the other -> are mandatory initialization dependencies, then =
-trying to
-> > +  initialize the devices in a loop (or arbitrarily) will always eventu=
-ally end
-> > +  up with the devices being initialized in the order Z, Y and X.
-> > +
-> > +  However, if Y is an optional supplier for X (where X provides limite=
-d
-> > +  functionality when Y is not initialized and providing its services),=
- then
-> > +  trying to initialize the devices in a loop (or arbitrarily) could en=
-d up with
-> > +  the devices being initialized in the following order:
-> > +
-> > +  * Z, Y and X - All devices provide full functionality
-> > +  * Z, X and Y - X provides partial functionality
-> > +  * X, Z and Y - X provides partial functionality
-> > +
-> > +  However, we always want to initialize the devices in the order Z, Y =
-and X
-> > +  since that provides the full functionality without interruptions.
-> > +
-> > +  One alternate option that might be suggested is to have the driver f=
-or X
-> > +  notice that Y became available at a later point and adjust the funct=
-ionality
-> > +  it provides. However, other userspace applications could have starte=
-d using X
-> > +  with the limited functionality before Y was available and it might n=
-ot be
-> > +  possible to transparently transition X or the users of X to full
-> > +  functionality while X is in use.
-> > +
-> > +  Similarly, when it comes to suspend (resume) ordering, it's unclear =
-which
-> > +  device in a dependency cycle needs to be suspended/resumed first and=
- trying
-> > +  arbitrary orders can result in system crashes or instability.
-> > +
-> > +  Explicitly calling out which link in a cycle needs to be broken when
-> > +  determining the order, simplifies things a lot, improves efficiency,=
- makes
-> > +  the behavior more deterministic and maximizes the functionality that=
- can be
-> > +  provided without interruption.
-> > +
-> > +  This property is used to provide this additional information between=
- devices
-> > +  in a cycle by telling which supplier(s) is not needed for initializi=
-ng the
-> > +  device that lists this property.
-> > +
-> > +  In the example above, Z would list X as a post-init-supplier and the
-> > +  initialization dependency would become X -> Y -> Z -/-> X. So the be=
-st order
-> > +  to initialize them become clear: Z, Y and then X.
->
-> Otherwise, I think this is a great description, describing the use case
-> well :)
+Same here.
 
-Thanks! I always spend more time writing documentation and commit text
-than the time I spend writing code.
+Thank you for your help !!
 
->
-> > +
-> > +select: true
-> > +properties:
-> > +  post-init-supplier:
-
-[Merging your other email here]
-
-> Also, this should likely be pluralised, to match "clocks" "resets"
-> "interrupts" etc.
-
-Good point. Done.
-
-> > +    # One or more suppliers can be marked as post initialization suppl=
-ier
-> > +    description:
-> > +      List of phandles to suppliers that are not needed for initializi=
-ng or
-> > +      resuming this device.
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +      items:
-> > +        maxItems: 1
->
-> Rob's bot rightfully complains here about invalid syntax.
-
-I added these two lines based on Rob's feedback. Is the indentation
-that's wrong?
-
-Yeah, I'm trying to run the dts checker, but I haven't be able to get
-it to work on my end. See my email to Rob on the v1 series about this.
-
-$ make DT_CHECKER_FLAGS=3D-m dt_binding_check
-
-The best I could get out of it is a bunch of error reports on other
-files and then:
-...
-<snip>/Documentation/devicetree/bindings/post-init-suppliers.yaml:
-ignoring, error parsing file
-...
-
-I also tried to use DT_SCHEMA_FILES so I can only test this one file,
-but that wasn't working either:
-
-$ make DT_CHECKER_FLAGS=3D-m dt_binding_check
-DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/post-init-suppliers.yam=
-l
-or
-$ make DT_CHECKER_FLAGS=3D-m dt_binding_check DT_SCHEMA_FILES=3D<path to
-the .patch file>
-
-Results in this error early on in the output:
-...
-usage: yamllint [-h] [-] [-c CONFIG_FILE | -d CONFIG_DATA]
-[--list-files] [-f {parsable,standard,colored,github,auto}] [-s]
-[--no-warnings] [-v] [FILE_OR_DIR ...]
-yamllint: error: one of the arguments FILE_OR_DIR - is required
-...
-/mnt/android/linus-tree/Documentation/devicetree/bindings/post-init-supplie=
-rs.yaml:
-ignoring, error parsing file
-...
-
-> What you
-> actually want to enforce here is any number of device phandles, but
-> these phandles all contain only the label and no indices etc, right?
-
-Correct.
-
->
-> > +
-> > +examples:
-> > +  - |
-> > +    gcc: clock-controller@1000 {
-> > +        compatible =3D "vendor,soc4-gcc", "vendor,soc1-gcc";
-> > +        reg =3D <0x1000 0x80>;
-> > +        clocks =3D <&dispcc 0x1>
->
-> This clearly was never tested, Rob's bot warnings aside. You're missing
-> a ; at EOL here and with the other clock below.
-
-Yup. I'm unable to get the test to run.
-
-Thanks,
-Saravana
+Best regards
+---
+Renesas Electronics
+Ph.D. Kuninori Morimoto
 
