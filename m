@@ -1,57 +1,63 @@
-Return-Path: <devicetree+bounces-41525-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41526-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4B67854273
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 06:35:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5DF4854278
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 06:41:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2318D1C26601
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 05:35:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 758A01F21963
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 05:41:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33E41D26D;
-	Wed, 14 Feb 2024 05:35:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B7E5C153;
+	Wed, 14 Feb 2024 05:41:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l5g9znEn"
+	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="VUYoomvE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E087811184;
-	Wed, 14 Feb 2024 05:35:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FF4A10A01;
+	Wed, 14 Feb 2024 05:41:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.50.62.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707888910; cv=none; b=qQPTk3TbmJsxkeFnb/QyfPbnOwhLglAE41VPcjz7ssuvdLDGSYmSowRnLDDl7aT0l0dFmjR73du3QveQsS/tWTQZMzoczStSc0mcFahEH8vNQUMwpKv4pM+TeFyQXJeKX0Xq8/TY7qTdVEZkNlEc/6gJ19udD9+FfGb0TFDEWKE=
+	t=1707889285; cv=none; b=HN7QYvPDokGgOukh7Tk1IjR55vM7R7uMTdJ+kS1QzrIzhEa/vgiCg95f+G+jhK5BZ+h+s85aOJpFH3J2+MU+axQd234BxqdQU9DO7IG5ceVFDqoJPwHj5eUbGs7iTsUptUZjVbjB36+pl+gQqx2a6c52dA8KE2DS2UfnGbJlhx0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707888910; c=relaxed/simple;
-	bh=m1GBJXdml05m+ZQGwL9I84ENjQ47pwGxOdhJnLCsWjg=;
+	s=arc-20240116; t=1707889285; c=relaxed/simple;
+	bh=0tB7VxJceoDK157Ny7pJ8vSDYDHhGqWHtOd2r/BfMP8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XymJOThSppQ0Dl881x/2QDoSz6R7dLz+QOc0JN2PoNxqPjkvgOpMVfChiGctD7OSUqeY5XC3agt+hQq58mMjIJJH6ver13j9E7uZdVsDyFmMJCeMji04Kvt136IHavHeTScdYeyZ4w2AXXWz4tIrFfdM/eAco0Aw+CCfkWvQSeA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l5g9znEn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74BDEC43394;
-	Wed, 14 Feb 2024 05:35:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707888909;
-	bh=m1GBJXdml05m+ZQGwL9I84ENjQ47pwGxOdhJnLCsWjg=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=nnAi9OKcZmpgyskZk8wcWWUemharfdV/ek/gqqd7J1xBMTtHElRQcYybh1KxzZu3FyYAnSnJ9v0CpJ/uhLDF8yd0hD9jGENkfPbZtObW9F0ItwV+388qOWvrE+zDXxam37ORczll1RateOlq60ctWXs730hlyWPC+ISDmfABHp0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com; spf=fail smtp.mailfrom=atomide.com; dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b=VUYoomvE; arc=none smtp.client-ip=74.50.62.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=atomide.com
+Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
+	by mail5.25mail.st (Postfix) with ESMTPSA id 703546033F;
+	Wed, 14 Feb 2024 05:40:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
+	s=25mailst; t=1707889281;
+	bh=0tB7VxJceoDK157Ny7pJ8vSDYDHhGqWHtOd2r/BfMP8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=l5g9znEnbJEjSemVk9BYdVONj5AnSZzmHN6IIaN6v3ahmNsBNLG3znOX7vSYQe6KB
-	 zzaxhrKI6ElmQajiZ0cyp57X3oWz6Dfgg2O7yv2ncvt5Oo48kZvY/whlFiv8iWnhfp
-	 OKvC8A2TbBGCtGVQwWNhk51iH8/4i47XyYP6ze86o2QzbNXEy78Talhuyk5DyQoEHB
-	 yVo1/QZ+PuwVnnnk8woiRtNrJbkKZHKvsr1/sxStx6E2c6hhl3lIHOUzxNsVHzRaQm
-	 jpnLrqfqurzI4HLS677g9RvpW61kDaqLJWWtwP1Js3ASAAkAF7PrPL8gHOHCHyKW+P
-	 58FsOyyMffHxQ==
-Date: Tue, 13 Feb 2024 23:35:06 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Johan Hovold <johan+linaro@kernel.org>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Konrad Dybcio <konrad.dybcio@somainline.org>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH RFT v2 0/3] Fix up SC8280XP idle states
-Message-ID: <k7v2qov3m43q7vniqu3w6q64277ea5mf7gvt6fzgj4e3a5uagt@fcsmuu24cfqr>
-References: <20230619-topic-sc8280xp-idle-v2-0-cde50bf02f3c@linaro.org>
+	b=VUYoomvE8Cwk0XGNeZ3c6zwZWKCG69N8YKgq17BJtb8pHTJI4KnJkyTVzuCotVrb/
+	 citEi6ETPSGHO1a9GnsVAQaXOrrwccNTfNRQG8A0vr4qN9984LfgQei/H+Gk3bmuwh
+	 Ju7DEtjGeBb/9gfEdL0iPrg6oA7n4l8aJI7qUV0GNi9PVb62OFrT7FAFoBkK8TkgW7
+	 D6JUuv2Vw/TUKhtFZNj91uUSk2J7O6h4k0jqluq8sidfoPzbh1eItFWtnOjqSaaMqV
+	 yTn12EqlzxNj/gorUdj5UfVoVm0ZWOr85JbYGXZvBdmJzkosqYWafc0ntEnHKvF5xi
+	 kH5xM3mf9tmTg==
+Date: Wed, 14 Feb 2024 07:40:44 +0200
+From: Tony Lindgren <tony@atomide.com>
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Tero Kristo <kristo@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, linux-omap@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH 0/4] Use reg instead of ti,bit-shift for clksel
+Message-ID: <20240214054044.GK52537@atomide.com>
+References: <20240213105730.5287-1-tony@atomide.com>
+ <20240214001140.2abe0d80@aktux>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,56 +66,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230619-topic-sc8280xp-idle-v2-0-cde50bf02f3c@linaro.org>
+In-Reply-To: <20240214001140.2abe0d80@aktux>
 
-On Wed, Dec 20, 2023 at 11:12:53PM +0100, Konrad Dybcio wrote:
-> Comparing the data available in the downstream sources with what's there
-> upstream, it was easy to spot some differences. This series aligns what
-> we have upstream with what is there on the vendor kernel.
+* Andreas Kemnade <andreas@kemnade.info> [240213 23:11]:
+> On Tue, 13 Feb 2024 12:56:40 +0200
+> Tony Lindgren <tony@atomide.com> wrote:
 > 
-> The big asterisk there is that the downstream sources for SC8280XP can't
-> always be trusted. A simple test shows that the lower idle states that
-> were previously missing are implemented in the firmware (Linux reports no
-> errors and enters them).
+> > Hi all,
+> > 
+> > This series updates the clksel clocks to use the standard reg property
+> > instead of ti,bit-shift.
+> > 
+> > I'd like to apply these before we make further use of the clksel clocks
+> > to reduce the dtb check warnings.
+> > 
 > 
-> HOWEVER
-> 
-> The only cluster idle state that's been present until now (the deepest
-> one) is now barely used if at all, as the scheduler seems to deem it
-> inefficient or so.
-> 
-> Hence, a request for testing and comments, especially from those who
-> use the X13s daily or have reliable setup to measure the power usage.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> hmm, we still have ti,bit-shift if these clocks are not used below a ti,clksel.
+> Just wondering, can we completely deorbit ti,bit-shift if we used #address-cells = <2>;
+> in those cases? I wait a bit with further txt->yaml conversions until
+> this is settled.
 
-What did we conclude on this one? Does the extra state make sense?
-The last patch looks useful...
+No need to wait on the yaml conversion I think :) How about just tag the
+ti,bit-shift property as deprecated? And add a comment saying it is only
+needed for the remaining unconnected clocks.
+
+Eventually we can move all the component clocks under clksel clocks, or the
+related clock such as the dpll clock for the clkdcoldo clocks.
 
 Regards,
-Bjorn
 
-> ---
-> Changes in v2:
-> - Rename the idle states
-> - Drop RFC, confirmed with Qualcomm
-> - Rebase
-> - Link to v1: https://lore.kernel.org/r/20230619-topic-sc8280xp-idle-v1-0-35a8b98451d0@linaro.org
-> 
-> ---
-> Konrad Dybcio (3):
->       arm64: dts: qcom: sc8280xp: Add lower cluster idle states
->       arm64: dts: qcom: sc8280xp: Add missing CPU idle states
->       arm64: dts: qcom: sc8280xp: Fix up idle state periods
-> 
->  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 72 +++++++++++++++++++++++++---------
->  1 file changed, 54 insertions(+), 18 deletions(-)
-> ---
-> base-commit: 20d857259d7d10cd0d5e8b60608455986167cfad
-> change-id: 20230619-topic-sc8280xp-idle-00fc007234c8
-> 
-> Best regards,
-> -- 
-> Konrad Dybcio <konrad.dybcio@linaro.org>
-> 
+Tony
+
+
 
