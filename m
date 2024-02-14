@@ -1,64 +1,59 @@
-Return-Path: <devicetree+bounces-41776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7562B8550A9
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 18:45:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 680F28550CE
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 18:52:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A804C1C292D6
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 17:45:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8CD701C2A5BC
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 17:52:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10091126F34;
-	Wed, 14 Feb 2024 17:45:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 232331272B9;
+	Wed, 14 Feb 2024 17:51:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PuvqwQxT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ahkMHS9i"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D71AC7E0EA;
-	Wed, 14 Feb 2024 17:45:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E735C86644;
+	Wed, 14 Feb 2024 17:51:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707932746; cv=none; b=JfFLV25QOp9oZmjq3GZFDaw6v+k9Ogm/wAT4zEvFT8Dgnoa4EmWlq8hbfy1xHYsjTpNUmgBBjnVd3O+A//uRK//e9+hi03owgievEs7WYxplB6rJl2k+YowNaCQ84sFf1n26ykTQJ7y75vkCZ4fuXcaaq7ys5dzULURntyU6nnE=
+	t=1707933108; cv=none; b=L8fWs24f6vvQGOP5+/mFIZVvFnnq1wdsCS7HGkU2O+t/kShpndJJv9PUdbN/mRcJ6IkAVfKkf4LNclfT0sneU2GCieYaAnxqDtpN2CTMPWOnAh3bS73dL7+EAX9tt+3V2kPm3D1G40KoO5OdrSAIm/wHldyAPXgG+Ti/hi0tGXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707932746; c=relaxed/simple;
-	bh=CdALU6kimwQEEEZPNowgMiQLVRcl3vVQkRejqTYl/M0=;
+	s=arc-20240116; t=1707933108; c=relaxed/simple;
+	bh=D7ZXt13m5wJPpJvRrcstm/rrc9ZCgmeDjwqMNKdG5Fo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R8S5NfQCL9X5XliFxftwXIEe38aisRsGI9boj5KBiplqbX1VUqKtq1RQ9UCsuHbxQNxsmMBVly5RRPE7xovXTKNnrKTinLmN+5MZFv0RV7pzlfMRu1cnGXV8RTfVNDfukkv9wZtPaDoJf2ppozh/gQ7ULpAICg47m5hriEPefxw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PuvqwQxT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97808C433C7;
-	Wed, 14 Feb 2024 17:45:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=dSWxIsrRwgKb7/P7BvXZBTMsc5Wp6hCsdelfx4FQ9y+N6QFhsa30aJqRw4JFabBE+fSQzAAco8SYZN6Lyb7w9XGSRIAvr2AWNLsUG/ww59c8Li0NVZ9VdxHUaYqGoDaU3HYs3nq4QZurLsocd6F5xiRc/MbkXMmK0ecRltPUDd8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ahkMHS9i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40CC2C433C7;
+	Wed, 14 Feb 2024 17:51:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707932745;
-	bh=CdALU6kimwQEEEZPNowgMiQLVRcl3vVQkRejqTYl/M0=;
+	s=k20201202; t=1707933107;
+	bh=D7ZXt13m5wJPpJvRrcstm/rrc9ZCgmeDjwqMNKdG5Fo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PuvqwQxT0yFuLg3JYi6SkC7s+zUcf33bKQRfnYeCAZ10S6ltzefsp0+Hzl6BuKFjW
-	 OJ8jfP8gsi2kx3IxnVlK37hYwBNgylkWcXrRMGiwaLUgGWZOGHbwsyybxrmHlkapjb
-	 jYmUV5JiBVLa7ySZf0yfdcpqwQC3NXcNNz6UYhKr3aIVAghsxjdRTtLyu5uKQDIJCL
-	 StTr3DUVC/B0CoczHNHep0vIRY7tb0UI/f07FbTqHAwFldcUszfPmKzqZ3pqPLsqsa
-	 s+eEHwXsr9opdqw8dsbArVTr5Fj94VRaKXZsHO/y/SDJwcOFyjHoV/sQUx7tJfNgwk
-	 XtKZTEMvo8MDQ==
-Date: Wed, 14 Feb 2024 17:45:39 +0000
+	b=ahkMHS9ijn3AOUwmUoMW3wlEWdyMxVbH9TLN+XkqI5eeIyTjFSfBImfBE2bTu0tpb
+	 cK5eaPRpNrlMfTkBGwElJ4NTH/RNgRb1Esv+Q7W/UCpP4tg+3ThrEUcrOziDh4vZ0L
+	 nGTG5OTAkjUD1lzDSikFwETwDskjISvEpAvzZXzil+smSPJfbQzOP61NTGFn/sOT3w
+	 6OrDGL0/5j9XaKnk1iiA2KRvYnOZKMjbq8DveY+cfcQwNWvFWPP6oa0sXkZ1E622Lv
+	 9gn20wp84DndxoCcaC6i0hvrGui9Pia81RNqOURAB+iVDdEX/LJV39geTzZXvyekQf
+	 kNjMWxjBfHkbg==
+Date: Wed, 14 Feb 2024 17:51:42 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Kevin Hilman <khilman@kernel.org>
-Cc: Bhargav Raviprakash <bhargav.r@ltts.com>, arnd@arndb.de,
-	broonie@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	gregkh@linuxfoundation.org, jpanis@baylibre.com, kristo@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-	lgirdwood@gmail.com, linus.walleij@linaro.org,
-	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, m.nirmaladevi@ltts.com, nm@ti.com,
-	robh+dt@kernel.org, vigneshr@ti.com
-Subject: Re: [RESEND PATCH v1 03/13] dt-bindings: mfd: ti,tps6594: Add TI
- TPS65224 PMIC
-Message-ID: <20240214-depraved-unfunded-3f0b3d6bf3e2@spud>
-References: <20240209-blitz-fidgety-78469aa80d6d@spud>
- <20240214093106.86483-1-bhargav.r@ltts.com>
- <20240214-galley-dweller-1e9872229d80@spud>
- <7hil2r5556.fsf@baylibre.com>
+To: Naresh Solanki <naresh.solanki@9elements.com>
+Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, mazziesaccount@gmail.com,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: hwmon: tda38640: Add interrupt &
+ regulator properties
+Message-ID: <20240214-trinity-delouse-6dcd0b046895@spud>
+References: <20240214092504.1237402-1-naresh.solanki@9elements.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,99 +61,129 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="v1AS/JdF6e6MzIix"
+	protocol="application/pgp-signature"; boundary="nhWZ/akHVA7OeoZg"
 Content-Disposition: inline
-In-Reply-To: <7hil2r5556.fsf@baylibre.com>
+In-Reply-To: <20240214092504.1237402-1-naresh.solanki@9elements.com>
 
 
---v1AS/JdF6e6MzIix
-Content-Type: text/plain; charset=utf-8
+--nhWZ/akHVA7OeoZg
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 14, 2024 at 09:26:13AM -0800, Kevin Hilman wrote:
-> Conor Dooley <conor@kernel.org> writes:
-> > On Wed, Feb 14, 2024 at 03:01:06PM +0530, Bhargav Raviprakash wrote:
-> >> On Fri 2/9/2024 10:41 PM, Conor Dooley wrote:
-> >> > On Thu, Feb 08, 2024 at 04:23:33PM +0530, Bhargav Raviprakash wrote:
-> >> > > TPS65224 is a Power Management IC with 4 Buck regulators and 3 LDO
-> >> > > regulators, it includes additional features like GPIOs, watchdog, =
-ESMs
-> >> > > (Error Signal Monitor), and PFSM (Pre-configurable Finite State Ma=
-chine)
-> >> > > managing the state of the device.
-> >> >=20
-> >> > > TPS6594 and TPS65224 have significant functional overlap.
-> >> >=20
-> >> > What does "significant functional overlap" mean? Does one implement a
-> >> > compatible subset of the other? I assume the answer is no, given the=
-re
-> >> > seems to be some core looking registers at different addresses.
-> >>=20
-> >> The intention behind =E2=80=9Csignificant functional overlap=E2=80=9D =
-was meant to
-> >> indicate a lot of the features between TPS6594 and TPS65224 overlap,
-> >> while there are some features specific to TPS65224.
-> >> There is compatibility between the PMIC register maps, I2C, PFSM,
-> >> and other drivers even though there are some core registers at
-> >> different addresses.
-> >>=20
-> >> Would it be more appropriate to say the 2 devices are compatible and h=
-ave
-> >> sufficient feature overlap rather than significant functional overlap?
-> >
-> > If core registers are at different addresses, then it is unlikely that
-> > these devices are compatible.
->=20
-> That's not necessarily true.  Hardware designers can sometimes be
-> creative. :)
+On Wed, Feb 14, 2024 at 02:55:03PM +0530, Naresh Solanki wrote:
+> Add properties for interrupt & regulator.
+> Also update example.
 
-Hence "unlikely" in my mail :)
+I feel like a broken record. Your patches need to explain _why_ you're
+doing what you're doing. I can read the diff and see this, but I do not
+know what the justification for it is.
 
-> > In this context, compatible means that existing software intended for
-> > the 6594 would run without modification on the 65224, although maybe
-> > only supporting a subset of features.  If that's not the case, then
-> > the devices are not compatible.
->=20
-> Compatible is a fuzzy term... so we need to get into the gray area.
->=20
-> What's going on here is that this new part is derivative in many
-> signifcant (but not all) ways from an existing similar part.  When
-> writing drivers for new, derivative parts, there's always a choice
-> between 1) extending the existing driver (using a new compatible string
-> & match table for the diffs) or 2) creating a new driver which will have
-> a bunch of duplicated code.
->=20
-> The first verion of this series[1] took the 2nd approach, but due to the
-> significant functional (and feature) overlap, the recommendation was
-> instead to take the "reuse" path to avoid signficant amounts of
-> duplicated code.
->=20
-> Of course, it's possible that while going down the "reuse" path, there
-> may be a point where creating a separate driver for some aspects might
-> make sense, but that needs to be justified.  Based on a quick glance of
-> what I see in this series so far (I have not done a detailed review),
-> the differences with the new device look to me like they can be handled
-> with chip-specific data in a match table.
+/30 seconds later
+I really am a broken record, to quote from v1:
+| Feeling like a broken record, given I am leaving the same comments on
+| multiple patches. The commit message needs to explain why you're doing
+| something. I can read the diff and see what you did!
 
-This is all nice information, but not really relevant here - this is a
-binding patch, not a driver one & the conversation stemmed from me
-making sure that a fallback compatible was not suitable. Whether or not
-there are multiple drivers or not is someone else's problem!
+https://lore.kernel.org/all/20240126-fleshed-subdued-36bae813e2ba@spud/
+
+The patch itself does look better than the v1, with one minor comment
+below.
 
 Thanks,
 Conor.
 
---v1AS/JdF6e6MzIix
+> Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
+>=20
+> ---
+> Changes in v2:
+> 1. Remove TEST=3D..
+> 2. Update regulator subnode property as vout0
+> 3. Restore commented line in example
+> 4. blank line after interrupts property in example.
+> ---
+>  .../hwmon/pmbus/infineon,tda38640.yaml        | 28 +++++++++++++++++++
+>  1 file changed, 28 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38=
+640.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.=
+yaml
+> index ded1c115764b..a93b3f86ee87 100644
+> --- a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
+> @@ -30,6 +30,23 @@ properties:
+>        unconnected(has internal pull-down).
+>      type: boolean
+> =20
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  regulators:
+> +    type: object
+> +    description:
+> +      list of regulators provided by this controller.
+> +
+> +    properties:
+> +      vout0:
+
+Why "vout0" if there's only one output? Is it called that in the
+documentation? I had a quick check but only saw it called "vout".
+Are there other related devices that would have multiple regulators
+that might end up sharing the binding?
+
+Thanks,
+Conor.
+
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        type: object
+> +
+> +        unevaluatedProperties: false
+> +
+> +    additionalProperties: false
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -38,6 +55,7 @@ additionalProperties: false
+> =20
+>  examples:
+>    - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+>      i2c {
+>          #address-cells =3D <1>;
+>          #size-cells =3D <0>;
+> @@ -45,5 +63,15 @@ examples:
+>          tda38640@40 {
+>              compatible =3D "infineon,tda38640";
+>              reg =3D <0x40>;
+> +
+> +            interrupt-parent =3D <&smb_pex_cpu0_event>;
+> +            interrupts =3D <10 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +            regulators {
+> +                pvnn_main_cpu0: vout0 {
+> +                    regulator-name =3D "pvnn_main_cpu0";
+> +                    regulator-enable-ramp-delay =3D <200>;
+> +                };
+> +            };
+>          };
+>      };
+>=20
+> base-commit: 7e90b5c295ec1e47c8ad865429f046970c549a66
+> --=20
+> 2.42.0
+>=20
+
+--nhWZ/akHVA7OeoZg
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcz8QwAKCRB4tDGHoIJi
-0opXAP9Dzoxnv9sksP1u0YCoiAGJJzhIzB+7PIP4EvpF9S2//AEAhmgjJMls9n0T
-M1W2/BJjVKqm2mghYoQMHLkZ7ElrNAI=
-=6W+V
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcz9rgAKCRB4tDGHoIJi
+0gTzAQDjf5WWpV+Bz95OQla4FHrvbaTxNWagjMktSpIKUlPZwQD9HWA+ph4V+CXu
+mI9iji9Fzt36AlQa4omQh4iJlu5A7A0=
+=t3wm
 -----END PGP SIGNATURE-----
 
---v1AS/JdF6e6MzIix--
+--nhWZ/akHVA7OeoZg--
 
