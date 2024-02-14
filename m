@@ -1,147 +1,166 @@
-Return-Path: <devicetree+bounces-41494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0C8E85409A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 01:03:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B47C8540F0
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 01:54:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C05F1F22E2A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 00:03:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22B6E282543
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 00:54:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E71623BF;
-	Wed, 14 Feb 2024 00:03:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CC85385;
+	Wed, 14 Feb 2024 00:54:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="RFc+zHDD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EyI55Nnc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42EE6191
-	for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 00:03:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 720FC7F;
+	Wed, 14 Feb 2024 00:54:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707869014; cv=none; b=MV0+jRBEC//s8YByTnkXWYcVbrunZf+WL37hPbB8ySdjUgkBXzUNOVI4xvzSBfTDiUGBVCitCBDK10qN5cEzqFvtvJBCL2tWZy7W5V1Vw0ajC8oj1Mi1l046TY4mkjka04aW+V7ErNrteDChD8dHg/ndMFF+wWVSqwwPv4Foo9Q=
+	t=1707872069; cv=none; b=o9+0AsWq7Rl9Hm1WPlITM1levEGFmEjNofqJi1pNaL+0np/+6CvLSdNIFTp7qPJVHarLFguE3Qk6Hag+pPYR3jC2lUraF2ZmK7F3MUyubHa3OBQhz16GGhCz7ZmBh6jl6gsxM7koy7FPXSq08kC8dZUKyBKPhMfErE2ju0XTo5I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707869014; c=relaxed/simple;
-	bh=LUHwCmgFvsLI2w7Qfq1pAeSWXQrKo7dao4Gqpb0bey4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=J6LdSkKqXqTKfwkwLYVeKXTuwbbbAXd9BqXbSpx4Kx89/sy7pWTs5VzZHi4VqTLLhHAZsJkccAljHADiYq09JEmxGztW2HSgzHvSpdAOBBWnCAlgCOzsgQ87bRJGyv1JFw8uTK5At234Wu0/vTht5quwXGweALnqnOu/csZzods=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=RFc+zHDD; arc=none smtp.client-ip=209.85.218.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a26ed1e05c7so223532266b.2
-        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 16:03:31 -0800 (PST)
+	s=arc-20240116; t=1707872069; c=relaxed/simple;
+	bh=+MpH6MyUTdWv3FaAVCTooanj1lBPt+xls+adOgFJAzY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=QIKLl8dqdEZ+RBsTODcTfyjxa+1Ek+g3FCMQ+DFf8dIWLsqDDWwkz/KKoPbMfs5F+KPLRuTvNVU25ZE33LZyKL+duoPhDYVKVXkGTEOWWD927Byg3AtxDeEX7MAzqIbmUpK7luW3oeHkoDOAfLP5XpEY2/++93WXQeyGSV8+ltI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EyI55Nnc; arc=none smtp.client-ip=209.85.215.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-5d8df2edd29so1101739a12.2;
+        Tue, 13 Feb 2024 16:54:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1707869009; x=1708473809; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LUHwCmgFvsLI2w7Qfq1pAeSWXQrKo7dao4Gqpb0bey4=;
-        b=RFc+zHDDHNHZPYY860JMcUjw1ieTPl0k3wPCGB1xgdl+6Whc110soGGTgVZNSfGmPO
-         yYh5oG756OHA0+czTTUDsGKrEkOvy4nWfmlDrs6Z8w+uLNmkdqTUsGyKSbXyy7WJ4/L/
-         8gbaVfoe1VuKUfWF8OyGCF2nH9a7BaGY0nmAg=
+        d=gmail.com; s=20230601; t=1707872067; x=1708476867; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IRAv5G1mvUWjYBsrE0YtysVB4o7+LEIixKnLnZc8qP4=;
+        b=EyI55Nnc7AD3sdYkJ73MAVWdWwp8ElI5yuifLCB5c5HyLaE/jIXNNpDp31P16z37uQ
+         pvjgBoxnVFPXDVqIuc439C/pub1JorCB1PLdFMNRV8WZpX3PbJzr3Y8p+APar8OXF/9G
+         z45jkln8Wb/Xty/7mVzcvhkXozzZCg9u+NBm/IdBsHwFPXnxZ5Rdm4hRYPbNVcJim2Fz
+         5jSbXIjJv4Vqb3gIO7eZ46rnGs35mUzJseqIslbV4b61lUNVLQ/dZuJ7deFTkyGp2Lw4
+         xMNHhqokcNEMOotlzbaP12mI2ySz3u/XLYiSFN5Hwr3V7RbCl1WLaM7Ma5W85sQkSXem
+         gUvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707869009; x=1708473809;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LUHwCmgFvsLI2w7Qfq1pAeSWXQrKo7dao4Gqpb0bey4=;
-        b=XONagP1Qi86NE7T/j8cIlljhI94zxQbngrhpunVNfEVEZtPXhUUtimHBjDWd0jU6fj
-         5rDrGepDXswE+KzrqtN01JYjQ+lalFUhnJunYCW4L9pPEKHMwsDW2aQ5QMRb04vnDQr2
-         NxjNHllV6gWQdeq0dg7M/ZFLJcnsGXKdYwtNp5DPpMaOkF2kvkHR3+eMGKlIB8pz7pwY
-         QBai/8EB/cYWLW74JQ/SsYcm2lOIx29IL3+rxnRPr8gl9tepMRiDNQmIMVjlBPOraYic
-         W4lK3zjVf2l+dDOeo7Cwjzp1Qv+epzlhG0dixexHpK+JyMtmBQbTSQSkPVn2nTb56v/d
-         xsCg==
-X-Forwarded-Encrypted: i=1; AJvYcCXpNe+z1n3cWprBK3HgcuYDyMNjmNrXCzM770F98Avk+MYoc6AUE801yFVBpdO0iqNxj4AewIQ41uK+fjZe5+L0gi+Dx6d+Wsla2w==
-X-Gm-Message-State: AOJu0Ywz8rzqVNCyQY5WNM56Gi7rNDMhqiMsN97YiF5SUorL6ohcXsiT
-	sYg/h3WDa9WtfoUxn5rec8UrA7V7kK+30dEKCSlA51bIE8G1AnmXLQ4kNITSx2kuExxalBUQ53R
-	zPeqE
-X-Google-Smtp-Source: AGHT+IETWlbvt+St8xhJJDl2FmLejEkAlPxYEFLkvAD95r03uwJYKtHIeTPBTRsCQ93MuQSEAA2gVw==
-X-Received: by 2002:a17:906:1313:b0:a37:4765:658 with SMTP id w19-20020a170906131300b00a3747650658mr563333ejb.34.1707869009144;
-        Tue, 13 Feb 2024 16:03:29 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUAqfzMEwSztlhEUjtiRjFGFlxkx8WmUuIQ3WJNv2OdzYpDYBQyL3H9xA38Bkuahao8JxzlYmbHigxuRlS5ATauBaAWhXYHY72Ndg==
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com. [209.85.128.49])
-        by smtp.gmail.com with ESMTPSA id fj5-20020a1709069c8500b00a3cf8cb80c1sm1216738ejc.156.2024.02.13.16.03.27
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Feb 2024 16:03:28 -0800 (PST)
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-411d9e901dcso42185e9.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 16:03:27 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVBDKWa1Y5SMGC6f71pl/AY0CRVXN+tAthkZD5OgN8eVpk7pC0OFsZ3mMcjESwE4I74Xxv/JtvulgbYzi5Jj115qCf+sClQwMRaqw==
-X-Received: by 2002:a05:600c:519b:b0:411:e5c1:9b2a with SMTP id
- fa27-20020a05600c519b00b00411e5c19b2amr21434wmb.2.1707869006878; Tue, 13 Feb
- 2024 16:03:26 -0800 (PST)
+        d=1e100.net; s=20230601; t=1707872067; x=1708476867;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IRAv5G1mvUWjYBsrE0YtysVB4o7+LEIixKnLnZc8qP4=;
+        b=Y0F/yhIzMPd9dY8sZduOFcsdnD7ab89PXhZE8c4XRS6KoB9N0z3yK9t1w+4cyww9eH
+         ujR8cH1uJFnP0XH/nCZLWyD3N5957oZwr5zrzEaYrqtzSHlvN2/9Lkj3XyPXbrIueJAw
+         zlnXpNHsDQtPCGpehNBtDpi0zvVooynFv0PtAavD01ghdo6+sxKadEqELvMzYR3SgAkM
+         b2K+6J5fsbUkPS+ISVqxJIGF+iOX6wK9Bf9gINbFv7+m4HvgSbv/JTL4xDHyBcgii8cQ
+         ooaq/ZrQ433VozICwIj+AvorW0owMT4v8TqVo2mmXNMt3YaCmWAeSLc7NWMO6MV/MboT
+         TomQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUckiCxdRNF9v7A9Bslq/c7bWC3W3iANEAW72PQW3/xDlNzl0f1MrnQHoWnffzHaxpovh+Pt2P8LOh7iExeOkmYiTSeawo3n7G3rl6421/VsQQ1h8N388v0vtgh83Co/2eEOeoUG+pGxw==
+X-Gm-Message-State: AOJu0YzJdrxpHDur86qU4MekMWT320yt/mmh5ERFuymESxifKXN3II1L
+	ux1/3yzUlpJHnQMhaaPywtHJbKvFYbG00jkAUwGQX1hFzWiO6Toy
+X-Google-Smtp-Source: AGHT+IHMDwwoT3BKADBeEicpLQUF/XmxqD8G8bt1SAgGiBJR+XjDvUYZMi2w90n9bZWA9TQFdxzxSA==
+X-Received: by 2002:a05:6a20:bc01:b0:19e:48e9:5052 with SMTP id fw1-20020a056a20bc0100b0019e48e95052mr1098724pzb.22.1707872066763;
+        Tue, 13 Feb 2024 16:54:26 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCX+oLq1TSbRAwIsNWJvgzFoXR36Vm7QOY4/URojqtbdaMuz+f3u/duTCMGUylCSr4/nQOJauPk5aCJu819NPbv3FYt2YX+6kV4Nd2OlFoDlpd8WXTUOY0rU2VCkJnJnSaJ1NJ0OfvMJ9YSNfIF5inYHC5cUNj+GVNK0giAb8UoiJ7eeYLUqZCwGdxQdiyJjzuxOsQd0rZkb2Upf8p+px0ziJ/NRfvOAa+QyOt/d+tTaUl1gAABGiuywlbYJkmv7TO0U1gT8JTajajRoTb5AE25GzphwoJbPWlTLiei1yLc7WwTEyxi3FdQFPacLFPLLH1Uf60AJlPd4W76EnR/woSmDnVCVE7IesoIHEhrOER7qz2cAeJEXIJL+PACGGNsC/vQ1Id9dx9t08h2lXQvWtJ86Fm3/vn+9hQrMLQETfbwVGnHtzJmtlAeHw7cfy5Gq/T59Q1QwY57juhSxkUwJzG+OnR979EB6MIvNClPn8qKjOCNwzOcCrYsYOCKN4Gyv2iaQyUWj+lbgIoZ4w8YFjhUztgyuSRuwLr5KtuzbK5n5ggFwZFD0
+Received: from tresc054937.tre-sc.gov.br ([2804:c:204:200:2be:43ff:febc:c2fb])
+        by smtp.gmail.com with ESMTPSA id q10-20020aa7982a000000b006e094bf05f4sm8005694pfl.213.2024.02.13.16.54.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Feb 2024 16:54:26 -0800 (PST)
+From: Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Subject: [PATCH net-next v3 0/3] net: dsa: realtek: support reset
+ controller and update docs
+Date: Tue, 13 Feb 2024 21:54:14 -0300
+Message-Id: <20240213-realtek-reset-v3-0-37837e574713@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240210070934.2549994-1-swboyd@chromium.org> <20240210070934.2549994-5-swboyd@chromium.org>
-In-Reply-To: <20240210070934.2549994-5-swboyd@chromium.org>
-From: Doug Anderson <dianders@chromium.org>
-Date: Tue, 13 Feb 2024 16:03:11 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=UuunNnXJ0kAzRPVy0DX7Wv2eQOa-fMJQ-aKtaGnyQaQA@mail.gmail.com>
-Message-ID: <CAD=FV=UuunNnXJ0kAzRPVy0DX7Wv2eQOa-fMJQ-aKtaGnyQaQA@mail.gmail.com>
-Subject: Re: [PATCH 04/22] usb: core: Set connect_type of ports based on DT node
-To: Stephen Boyd <swboyd@chromium.org>
-Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	patches@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	Pin-yen Lin <treapking@chromium.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Matthias Kaehlcke <mka@chromium.org>, linux-usb@vger.kernel.org, 
-	maciek swiech <drmasquatch@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADcPzGUC/x2M0QqDMBAEf0XuuYH0rBD6K9KHxK71UNKSCxIQ/
+ 92jT8PA7B6kKAKlZ3dQwS4q32zS3zqalpg/cPI2J/b88HxnVxC3itWoqC6E6NPMQ0rMZJtfwSz
+ t/zdStiCjVXqd5wWUKiYtaQAAAA==
+To: Linus Walleij <linus.walleij@linaro.org>, 
+ =?utf-8?q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>, 
+ Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>, 
+ Vladimir Oltean <olteanv@gmail.com>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Luiz Angelo Daros de Luca <luizluca@gmail.com>, 
+ =?utf-8?q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>, 
+ Rob Herring <robh@kernel.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2247; i=luizluca@gmail.com;
+ h=from:subject:message-id; bh=+MpH6MyUTdWv3FaAVCTooanj1lBPt+xls+adOgFJAzY=;
+ b=owEBbQGS/pANAwAIAbsR27rRBztWAcsmYgBlzA89WGb88ILlID120vimjP3ywfQPNEK9cImoT
+ znBvY35E86JATMEAAEIAB0WIQQRByhHhc1bOhL6L/i7Edu60Qc7VgUCZcwPPQAKCRC7Edu60Qc7
+ VvNvB/9YKsxOUQbfYacjU/vvdQf7EwylJ1tfxEDWTZloC9x0dRrYlr+AxSzy8yiErFx4BeAy32a
+ 17OhSANqYzoEnwP8VcjnmBfRteKclqD7fDl3ksY1Duo7qGgj7cNwgvZ6fNeJXfL1nyq6swviH7g
+ u/a6vmoI0qDgEvN/iCt2fKMU6kP8dyAqx9GiCGg5xCbTn5KV51PpxJaBxPCRIzOgiYEVUmlTLGk
+ sO0U8Xciyv5YLkLLAq4CST/XjgZ1Wc5FNJPqM6of+n/FmDV3WyJ4cHY6jzzusdSIfI7a1EJ84R5
+ 8F0CbQO5ZfiIdHqAapcIZT6jDYKCIKfXNgXaAKeNU/uDFcN2
+X-Developer-Key: i=luizluca@gmail.com; a=openpgp;
+ fpr=1107284785CD5B3A12FA2FF8BB11DBBAD1073B56
 
-Hi,
+The driver previously supported reset pins using GPIO, but it lacked
+support for reset controllers. Although a reset method is generally not
+required, the driver fails to detect the switch if the reset was kept
+asserted by a previous driver.
 
-On Fri, Feb 9, 2024 at 11:09=E2=80=AFPM Stephen Boyd <swboyd@chromium.org> =
-wrote:
->
-> When a USB hub is described in DT, such as any device that matches the
-> onboard-hub driver, the connect_type is set to "unknown" or
-> USB_PORT_CONNECT_TYPE_UNKNOWN. This makes any device plugged into that
-> USB port report their 'removable' device attribute as "unknown". Improve
-> the connect_type attribute for ports, and in turn the removable
-> attribute for USB devices, by looking for child devices with a reg
-> property or an OF graph when the device is described in DT.
->
-> If the graph exists, endpoints that are connected to a remote node must
-> be something like a usb-{a,b,c}-connector compatible node, or an
-> intermediate node like a redriver, and not a hardwired USB device on the
-> board. Set the connect_type to USB_PORT_CONNECT_TYPE_HOT_PLUG in this
-> case because the device is going to be plugged in. Set the connect_type
-> to USB_PORT_CONNECT_TYPE_HARD_WIRED if there's a child node for the port
-> like 'device@2' for port2. Set the connect_type to USB_PORT_NOT_USED if
-> there isn't an endpoint or child node corresponding to the port number.
+This series adds support to reset a Realtek switch using a reset
+controller. It also updates the binding documentation to remove the
+requirement of a reset method and to add the new reset controller
+property.
 
-The above sounds good, but then I look at patch #18 ("dt-bindings:
-chrome: Add binding for ChromeOS Pogo pin connector") and patch #22
-("arm64: dts: qcom: sc7180-trogdor: Wire up USB and DP to
-usb-c-connectors") and it makes my Spidey Sense tingle.
+It was tested on a TL-WR1043ND v1 router (rtl8366rb via SMI).
 
-Specifically, I _think_ if a port is "hard wired" that can sometimes
-tell the system that the port is a bit more trusted. In the case of
-the "pogo" pins on detachables, though, I don't _think_ there's
-anything that prevents someone from making a "pogo to USB A port"
-adapter and then you could plug anything you wanted into the pogo
-port. If there's any extra trust given to these "internal" ports a
-nefarious attacker could presumably abuse that trust for the pogo
-pins.
+Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
+---
 
-I have no idea if this is a realistic concern or not. I'm about 95%
-sure that hardwired "PCIe" ports get extra trust and get "deferred
-IOMMU flush" enabled and, in the case of PCIe, that actually is a real
-security hole. For USB, though, I think the system is more isolated by
-the USB host controller so I'm not sure that there is any extra trust
-given to "hard wired" ports. ...so maybe the answer here is to just
-ignore my rambling. ...or maybe the answer here is that everything is
-fine but patches #18 and #22 should be modified not to cause the pogo
-pins to be considered as "hard wired" since they really aren't...
+Changes in v3:
+- Rebased on the Realtek DSA driver refactoring (08f627164126)
+- Dropped the reset controller example in bindings
+- Used %pe in error printing
+- Linked to v2: https://lore.kernel.org/r/20231027190910.27044-1-luizluca@gmail.com/
 
+Changes in v2:
+- Introduced a dedicated commit for removing the reset-gpios requirement
+- Placed binding patches before code changes
+- Removed the 'reset-names' property
+- Moved the example from the commit message to realtek.yaml
+- Split the reset function into _assert/_deassert variants
+- Modified reset functions to return a warning instead of a value
+- Utilized devm_reset_control_get_optional to prevent failure when the
+  reset control is missing
+- Used 'true' and 'false' for boolean values
+- Removed the CONFIG_RESET_CONTROLLER check as stub methods are
+  sufficient when undefined
+- Linked to v1: https://lore.kernel.org/r/20231024205805.19314-1-luizluca@gmail.com/
 
--Doug
+---
+Luiz Angelo Daros de Luca (3):
+      dt-bindings: net: dsa: realtek: reset-gpios is not required
+      dt-bindings: net: dsa: realtek: add reset controller
+      net: dsa: realtek: support reset controller
+
+ .../devicetree/bindings/net/dsa/realtek.yaml       |  4 +-
+ drivers/net/dsa/realtek/realtek.h                  |  2 +
+ drivers/net/dsa/realtek/rtl83xx.c                  | 52 +++++++++++++++++++---
+ drivers/net/dsa/realtek/rtl83xx.h                  |  2 +
+ 4 files changed, 54 insertions(+), 6 deletions(-)
+---
+base-commit: 0f37666d87d2dea42ec21776c3d562b7cbd71612
+change-id: 20240212-realtek-reset-88a0bf25bb22
+
+Best regards,
+-- 
+Luiz Angelo Daros de Luca <luizluca@gmail.com>
+
 
