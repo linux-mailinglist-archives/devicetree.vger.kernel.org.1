@@ -1,142 +1,139 @@
-Return-Path: <devicetree+bounces-41647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1897854940
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 13:32:59 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25A1585493F
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 13:32:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F626282966
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 12:32:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5BF30B22DF5
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 12:32:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE7B348CD4;
-	Wed, 14 Feb 2024 12:32:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69AB6487A3;
+	Wed, 14 Feb 2024 12:32:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L4RVRHfB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dOOQEJMV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EB4A487BF;
-	Wed, 14 Feb 2024 12:32:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACC58364BF;
+	Wed, 14 Feb 2024 12:32:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707913973; cv=none; b=XasEzEihXAAOK9x/yNZ5wtazUj1byUff7ivi2PPp9OOQNX5pa3gPt+IC/qBLc8gh6L6vZnJ45KnVxhdcfjI7radPsbaSlvR1/G/8pOYoCNMJKqyUoa8MuyWx39GRoV9fxOgaMD8sc3NFDEUj6XqxO5gNLLTmVD9sDmy/DuYguSc=
+	t=1707913927; cv=none; b=jD8MXVNK3bH+0PUzr74S1YYkTaKgOIhPb8+bxtY1G04PfqooujA1ka5y0HQkQZw498BnYEhnSZeb8RC7RX06DgJ9Lptx7qa2KJj+CHmG000Ff1x6Tje3maGjYkJAkSaOYFOYiaxwFLIUaClzxDB0r5lTp6GhHLsDcmd/vfG6bu8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707913973; c=relaxed/simple;
-	bh=dPtWFbe9ncomcuz14UEKUw0b6c7nUIN51XsH8rzmQWc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Dp6t4/+ViHV3Vae5KT/q7T4LLlQ/5HVPq/+tgrQCTFYO7Mq2hVmtTthCk1cqgxGRe3HeF90iMU8qfJfRCD7o/4828vZJu0p+pZpaNemT5DqjqlGUkGWesUL0GCMnGSXx8X6dKEKR9C9pxkMLTvXRoCcx56RxR8biqzRsegs0+JA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L4RVRHfB; arc=none smtp.client-ip=209.85.215.172
+	s=arc-20240116; t=1707913927; c=relaxed/simple;
+	bh=wyuyLEh2cqw5UMwPruowX3Q/bkgESYYC7Ij/ClDKrZw=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=futn16nrbByf+hOoxfDP3lS8MPAu8L3I5nLo/hNq22uMTYwqA34DcYR8ZyAvGCKlMAbr+z5JHijpj4Z0c0tSM8H/KPFBN7E/lSK88vpfne5/hsa/Y3ohrXm+GAe3Y7a+D1z9p0Am1v/4ODfmj3V2jujd93MRI8SzIaCGKKJ7MSY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dOOQEJMV; arc=none smtp.client-ip=209.85.208.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-5cedfc32250so4060572a12.0;
-        Wed, 14 Feb 2024 04:32:52 -0800 (PST)
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5638de1d953so299390a12.0;
+        Wed, 14 Feb 2024 04:32:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707913971; x=1708518771; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=X1Ye0dunwLazzlcONdORYQz6R5DZTpTLJFqvm1NaBMM=;
-        b=L4RVRHfB19RkkRl0nH3ATnSVRvff+UsjyYiUAG3rMollnecGgnKQ60GKb5LLVJpaPm
-         jX5xGuY8Punh1PulT9K+cPRjuJuMfwRxJQxCXmQ+EPzBozdGh89bAI6AxDHlknIN/6z2
-         JpPDh7u72EUT2cl+tDAWk9Jg4VyMA0sPj8KylTVaEyvnldKD8ATCddkd3QtW5KD/q6j0
-         ksM4eEIeFufZXbjH0DMC//TYN21y4o8tNy2SWKcxQdD7DwwH8PfMnrJ+FFEz+E00fnlx
-         Tlpe19awLpC0AKHxWaBy+NTxzeHDTfn58ouOdzAJd20JJ14F7pNAR/WUpT86qjRFHjuz
-         tyDg==
+        d=gmail.com; s=20230601; t=1707913924; x=1708518724; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=wyuyLEh2cqw5UMwPruowX3Q/bkgESYYC7Ij/ClDKrZw=;
+        b=dOOQEJMVrgExo70l1Osxwc4aWYp9sUIMcId8YWlg6aDdBtB/GdpF6SHRPnbNGydCbr
+         qXCWI8kDme19cPyuQz5FidfnHJXkcs0PyeFnazv3Zhtv9dijdX0BboRtmgvU2Q/Ytxtw
+         FW2+V+/RgLR/8mSY/JRUklVsfkn4apZkETvJg17ml5Z8RYsJkaGA0wgl7yFhWURDPVeA
+         UWu7Wr0qiKysbE8BKyCsJfjKuu9CbJqEJVMbtV+47R8oTp0XngxoCLQ+DAv+FB6SUDgA
+         sPomxX0owkufLxcgU+cC4xg5RlyHDVcXwkcFtoGXrNDpOLDzNGwPXBq2yF42Adx+K3yv
+         CE7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707913971; x=1708518771;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=X1Ye0dunwLazzlcONdORYQz6R5DZTpTLJFqvm1NaBMM=;
-        b=EVQsWJJvDNr3pQX7/JrJATVOUv8dwbb3wHPl99JOFq5i9Oq7SmnJAa41loKFkyL94w
-         Fnhf/T6jsRSdqLqmiRB8kdl1xTMSwbpW4DB47Y9+8p5q20lGk3x8buAqcS0F3eda4g3D
-         ZQ4KoNTwQcrqOeH8PS0AEQ6IHaNXevNFPSk3U3P7mASidcipzOYF4TNIoDYgocx8ntEp
-         dYgGHGOzUivKJc9VOgADMTrslzUDp6w5WFqQUmOY+F9/+t6EDBKg+d0TCcIQTozYEPHB
-         MEKq3jrS/YFEmFkUMQo+mtIFzXYw4/TuWm/d/RXDt/HUMgcEofueUA2+AeajCZaYHfkN
-         rxKA==
-X-Forwarded-Encrypted: i=1; AJvYcCW7G4XtPGgsmcnASLc9AZuQ4PECHXS5OV3tHdUY9puhutFFmjN6haV6fSzAKn7XiPCbIM7wKCurkfjLPpWVA8y7T0ITeJNzIDvjr+WIr+58Go/Pxybpd0RW5K+TUcFS81pp+D1IAICCBQ==
-X-Gm-Message-State: AOJu0Ywq+wjOkhe3qUgMk7JbGmdIJ/7NZ1ZOxXTDyhze3eYzlBWF5pHv
-	UsnH7uPrhXrz+PysgTzgMAEOdHRMNNvJgHsZJnYCcez8gtfCLyhkJVKhGZFZ9Tdh78C8wgDKZ1k
-	su2HcwSaFeWzII18dToTbs4A5pc4=
-X-Google-Smtp-Source: AGHT+IHVmdw1nY0+4qD7E7k6QaVH+5XJQDDsj/LW3oDNKR06kE80kLwbeGs6MxsY6a+Qs73lI5I8l/GC4hlcwQZRmYY=
-X-Received: by 2002:a17:90a:f407:b0:296:2f49:6c04 with SMTP id
- ch7-20020a17090af40700b002962f496c04mr2192291pjb.19.1707913971359; Wed, 14
- Feb 2024 04:32:51 -0800 (PST)
+        d=1e100.net; s=20230601; t=1707913924; x=1708518724;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wyuyLEh2cqw5UMwPruowX3Q/bkgESYYC7Ij/ClDKrZw=;
+        b=cNDwjberh8Vk1j/gwoOebcyADv4aaeD5+k+eSvrl4c8IUKQjnlZ4NGcq9fPWdwtd1T
+         5vbtHHQtZNGB+fiNcQsQ3N4pB4OSGXI54O5hft0h3eUCl04D/2/Tqno6fjkY4GdGJxWA
+         2zI1By7uB1TkS2AqUO0itgi7n/FEi5PSh9hhWAgK1obwgSsJfdVNSQWwmvZKii9I10on
+         dQYdHsvd+vioQY8thr7t+W5ZiDwkIUWReTGssrfMk7fhSHrxLoWPJm7QtNdxq+9UEXB+
+         IA5ONAt16C35ydORe6vAwJi2QXq41yPmdVbeOsm3jxZxHepApAnTWLFkTUv6VttyOzld
+         fisQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWK2rfU2/MwDlGEzqzY6KVwZmSMV84gmBWkySq2k64HQQ+qz5DU/cCAxoskBrQwlkAckqra/Q78aqpw+lEvUJXALBilxV52kjjNDQ==
+X-Gm-Message-State: AOJu0Yz4L//2JYcuYtvameYXjqVeWqrturDpR8qHgv5gTS8oBTCZMQsi
+	26nydZFdfY4J23IJsEEhWq/SR+rw2lKFuE10YPMRisw8OMT8yTri
+X-Google-Smtp-Source: AGHT+IG00Wt0n2r2pqLN7EQ2e8M8e0/dFzf14vl8JKN+kK6YMyeoSPUmX1bX3H+8MFFnq2PgWuKjtA==
+X-Received: by 2002:aa7:d3cc:0:b0:561:3006:4df0 with SMTP id o12-20020aa7d3cc000000b0056130064df0mr1814167edr.42.1707913923465;
+        Wed, 14 Feb 2024 04:32:03 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVcpYnaEk1/psLR8AjkN8bKHxpB7XDXOUKqgbwYe8viL2ARjnjKr14OgYdPBBConLASo4mvQIQyXaUSwPjkPTG+W/qaOMkukIk+P9pUtMf2njdlD2SkVgr1F2DvuvBD6ReJLssf3QFo6Q5oPUq9YvKQUCMIoKj/E6JxS0/PPAnAvH4S0lcdpCB+CbbnebFR8zvl4UOJ5FZ06i8WfOWZHg5ZzO3+svNMf9bL+M8WT7zI9DBag0AcCUSBoEaVq5sPB6mQxK4Ul+wPgRybLHMIPQPbI+ATXYDsJnd444ALvNe2H9vnGE5GxiQMmvkqy7opkLMJ1zBk0fLN1yz98WeIVfBHzjjV/KA+v0tZkYi5NZ4AzF4TKu60GqW/9Sit2wnNGA==
+Received: from ?IPv6:2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47? (p200300f6ef1b2000944ccbc71e1c2c47.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47])
+        by smtp.gmail.com with ESMTPSA id es27-20020a056402381b00b00561f2b109cfsm1495617edb.76.2024.02.14.04.32.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Feb 2024 04:32:02 -0800 (PST)
+Message-ID: <be58e8b4716dae855843645de59671309352eb41.camel@gmail.com>
+Subject: Re: [PATCH v11 7/7] iio: adc: adi-axi-adc: move to backend framework
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>, nuno.sa@analog.com
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Lars-Peter
+ Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>,  Jonathan Cameron <jic23@kernel.org>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Frank Rowand <frowand.list@gmail.com>, Olivier Moysan
+ <olivier.moysan@foss.st.com>
+Date: Wed, 14 Feb 2024 13:35:22 +0100
+In-Reply-To: <CAHp75VfiM0cqFsdN3nQQzZkea+cKfbFKkSM1J4LdE3LYGFedWg@mail.gmail.com>
+References: <20240210-iio-backend-v11-0-f5242a5fb42a@analog.com>
+	 <20240210-iio-backend-v11-7-f5242a5fb42a@analog.com>
+	 <CAHp75VfiM0cqFsdN3nQQzZkea+cKfbFKkSM1J4LdE3LYGFedWg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240210204606.11944-1-aford173@gmail.com> <20240210204606.11944-2-aford173@gmail.com>
- <20240214121438.331a9f20@booty>
-In-Reply-To: <20240214121438.331a9f20@booty>
-From: Adam Ford <aford173@gmail.com>
-Date: Wed, 14 Feb 2024 06:32:40 -0600
-Message-ID: <CAHCN7x+y9bcdEqDkpma1oaY88WvjHsWUOm55B4XNsPy5HM_-vw@mail.gmail.com>
-Subject: Re: [PATCH V4 1/6] dt-bindings: phy: add binding for the i.MX8MP HDMI PHY
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: linux-arm-kernel@lists.infradead.org, marex@denx.de, 
-	aford@beaconembedded.com, Lucas Stach <l.stach@pengutronix.de>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	NXP Linux Team <linux-imx@nxp.com>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 14, 2024 at 5:14=E2=80=AFAM Luca Ceresoli <luca.ceresoli@bootli=
-n.com> wrote:
->
-> Hi Adam,
->
-> On Sat, 10 Feb 2024 14:45:57 -0600
-> Adam Ford <aford173@gmail.com> wrote:
->
-> > From: Lucas Stach <l.stach@pengutronix.de>
-> >
-> > Add a DT binding for the HDMI PHY found on the i.MX8MP SoC.
-> >
-> > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
-> I was a bit puzzled by this v4 series as it comes after v8... however
-> thanks for keeping up!
+On Sun, 2024-02-11 at 18:52 +0200, Andy Shevchenko wrote:
+> On Sat, Feb 10, 2024 at 10:57=E2=80=AFPM Nuno Sa via B4 Relay
+> <devnull+nuno.sa.analog.com@kernel.org> wrote:
+> >=20
+> > From: Nuno Sa <nuno.sa@analog.com>
+> >=20
+> > Move to the IIO backend framework. Devices supported by adi-axi-adc now
+> > register themselves as backend devices.
+>=20
+> ...
+>=20
+> > =C2=A0struct adi_axi_adc_state {
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct regmap=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *regmap;
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct device=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *dev;
+> > =C2=A0};
+>=20
+> So, not sure you need these two as one can be derived from the other one
+> (IIUC).
+> In any case, it may be amended in a follow up.
 
-It was confusing to me to try and figure out where the latest of each
-of the various components were found.  I tried to explain it in the
-cover letter, but basically the previous V8 was due to the fact that
-some portion of it had been attempted 7 times.  When it was brought to
-my attention that the PHY driver I used was not he right one and the
-HDMI-TX and the PVI driver were already applied, I reverted to using
-the revision history of the version of the PHY driver I pulled which
-was V3 and with my changes became V4.
+Yeah, I think you're right and I never really thought about it but one can =
+use
+regmap_get_device()...=20
 
-I debated on making this V9, but inreality this code was only
-attempted 3 times, and the subsequent device tree stuff had undergone
-some changes, but it was easier to keep them paired together with the
-PHY driver so the series could be applied as a whole.
+>=20
+> ...
+>=20
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fsleep(10000);
+>=20
+> As I pointed out, the comment is good to have. Maybe you can add it
+> when reducing the timeout in a follow up patch...
+>=20
 
-I will be making a V5 due to some build-bot feedback and your
-feedback, but I'll be sure to pull your tags when I try again.  I just
-want to give people around a week to mull it over and test it.
+I did not included because there's no documentation for the delay. But I'll=
+ try
+to ask around about...
 
-adam
->
-> This patch is identical to the v8 I already reviewed, so:
->
-> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
->
-> --
-> Luca Ceresoli, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
+- Nuno S=C3=A1
 
