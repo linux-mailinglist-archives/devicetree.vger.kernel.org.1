@@ -1,87 +1,63 @@
-Return-Path: <devicetree+bounces-41522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5951C854204
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 05:27:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8421E854235
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 05:59:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B88E21F29F4A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 04:27:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DCF2D1F22D4B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 04:59:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B116BA46;
-	Wed, 14 Feb 2024 04:27:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6454C126;
+	Wed, 14 Feb 2024 04:59:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b="qs2P9hef";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="SFcASVsS"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VAAgy3v+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh7-smtp.messagingengine.com (fhigh7-smtp.messagingengine.com [103.168.172.158])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E586DBA38;
-	Wed, 14 Feb 2024 04:27:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CFD7BE7F;
+	Wed, 14 Feb 2024 04:59:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707884838; cv=none; b=aOz4RxGOsU8U2rxuIky07p7x2VS17PVupTdz/i5RqFTEcSy7mqQJHBJ1fbB7zvbgmp0IZ/P4y4zK7siSchWsDWTITlPu72vS5KEisKdLRQQjLOGVW6Bdwzvk33C3HOdD2jHUk0k3931G0DIQSse42r5DrlaKNpJSdEveqfHNx/c=
+	t=1707886782; cv=none; b=X0nC0yosriC/rYOWfocLlF5QsANwZhjgyfPAKXKko+3ZdOqx5d3Rs5bGmOiY22NtEIEJCzxJCIQMtZObhJJKuCwXal8iMZHcRqEMojg5bdgM6U/5OVv0jGLJFrJBmZ6wpndyACoKzF8LFWBTKBFDAB9Y0CKpqZlt4JtXi+7bR+8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707884838; c=relaxed/simple;
-	bh=Ol/PurIm4wxjhSRQmPC3WQpP/BfIk21zoo875dvLBGM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CaKyg9yvYFrs9NXd6+YWDXxdudzYIUiFT1ZRcw0jYCxCMWSpLl41affIOq2Dj/kAmsFKJNGtrxBFQm+iCHr2ZATr6b2OyZNUqxyHtku69RA20UNPZsVVKVhwwIZn9W2ueccatgqrzINbZWshEBG08tURR6mvhjRBNyDdN3HYMvk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=feathertop.org; spf=pass smtp.mailfrom=feathertop.org; dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b=qs2P9hef; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=SFcASVsS; arc=none smtp.client-ip=103.168.172.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=feathertop.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=feathertop.org
-Received: from compute7.internal (compute7.nyi.internal [10.202.2.48])
-	by mailfhigh.nyi.internal (Postfix) with ESMTP id E7A2911400CC;
-	Tue, 13 Feb 2024 23:27:15 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute7.internal (MEProxy); Tue, 13 Feb 2024 23:27:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=feathertop.org;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm2;
-	 t=1707884835; x=1707971235; bh=NcDqWldwOd38d78Sab57ZcHkd6M15Epg
-	BXZmppi5guU=; b=qs2P9hefaHjj53jCs7xvzmkhxzNirHB7fBfeMubnx6bLkn2g
-	3JUlEcaYrDAltnTY1mR3QsbC/utMAA5vmyzFYlA3o1en3kI4we4AqjfDqVZmaz92
-	49KxIEvBoNfSiUBeP+scY78x0ss+ZJkY0SDyCIq6B1RDRU97NHBf9qxCgcEFyhvq
-	F+ARvySi1pgRXCReTrDAqReMRd9EzMfB03MADKvrNwDl6w+Fq2WO4aLD/WyRzga6
-	no6ZBDHwCXwGxAzZwBHUQs94U1iEStRNgl0SaO5z68qhYUx3WttTlvKcmgd9TgAf
-	NtWZcLYgQ0TCNl8aV/dnZwMQKU6Xl9VTigLsDQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1707884835; x=
-	1707971235; bh=NcDqWldwOd38d78Sab57ZcHkd6M15EpgBXZmppi5guU=; b=S
-	FcASVsSdhyYXhlJIsm3VKqlIO43D0QQYLCFUnLLjzecomk004GoE+RenTKqFeI7L
-	GHUu/Ppa8qCoeydRaPGE4Vd6QRzCJiiZo9R51+e7w2alUPxv4nCzgkCUt8vkcfxt
-	5s6dTCJk5uZhSnoon0QY0elbqVmNktzjHYMrJfWAD777TMfZmNSjOsmmiZICG2/m
-	Nj8oNO3sihET6DrH5SmWGs71tonmfaDgrqmoybkf1pmmHea6VBKCJxSW69Cjsh6M
-	vJ0t7y8ZWTtYDYitmSYIeuNshxAvMD7VI+HVK2R1rnrkvKS7LeDYRmlfjYd3MyEq
-	AJL/fWaDmQ72iBtCd6m/w==
-X-ME-Sender: <xms:I0HMZZ8vJqWoj4L05vDQe5BlBq-t1u9EGb1_51UyReDFgz5XQzorEA>
-    <xme:I0HMZds8lbD8fjZcEy2mXENdQMT46386GB3u71ywQV3Yh9sfn7ugcSOcBSirSxiPg
-    g9R0p05EQ>
-X-ME-Received: <xmr:I0HMZXADfD9LLKtsGayRai3RVZGZHNU495y-AkUcLFwxl038JAJqsaQ0S2rQLT59DJ5MJrZX-EhucdpfNwP1_x-L43_AFqYLwOqVcQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudeigdejfecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefkffggfgfuvfevfhfhjggtgfesthekredttddvjeenucfhrhhomhepvfhimhcu
-    nfhunhhnuceothhimhesfhgvrghthhgvrhhtohhprdhorhhgqeenucggtffrrghtthgvrh
-    hnpeeugeefgfevueeitdehfffgfeevjeekteeihffhvdejveelhfeukeduueelgefhkeen
-    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehtihhmse
-    hfvggrthhhvghrthhophdrohhrgh
-X-ME-Proxy: <xmx:I0HMZdeCBwPfnT1ZIH0n26LFgfadXuZOPl7VDgxPfzBSVH8fgggPIw>
-    <xmx:I0HMZeOjN1bErTEzCVtjYu5gSM8IwUNZ8RV1o61DZ1MfKNusRKN_bA>
-    <xmx:I0HMZflVGSMJgYnWtvsO8jBnCK0mBavjdmsEpkcTK9CACqrWUeX2xg>
-    <xmx:I0HMZTw09S9uGhOiQQufUIfKJKEaVAAEBk89p69zQ16q7RmP_tMsQg>
-Feedback-ID: i1f8241ce:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 13 Feb 2024 23:27:10 -0500 (EST)
-Message-ID: <e952d127-b12d-4b5a-838b-807a876db707@feathertop.org>
-Date: Wed, 14 Feb 2024 15:27:08 +1100
+	s=arc-20240116; t=1707886782; c=relaxed/simple;
+	bh=GnF+HftFJovaowMYlUfGsE6UDD5v909bbQ4eem1ZV1s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=HvGgLOLtMzx30tYHSfOxW3K0w+fkzfBFj4jCJHdcjvKRWvMFvOZdqx86Vr4n6Mtjf2BkBnOuGdV9lmkckgj/WbnYPAN/B9PGwc3LYZyHeUP9PE72AfbblYlQt/2RFnUFx+qsfCzwpSvVa/QpzM2h83nEg7h95dQzJaNKx/l0V8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VAAgy3v+; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41E4lLWY016894;
+	Wed, 14 Feb 2024 04:59:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=J5dw5NdwV5Wy8v/c5P6wBJjzKMEYcDWvV01sDtAgRUY=; b=VA
+	Agy3v+Kb51xaStEdrJWwC/NAEDFG6+VQ2EHb4mjX75xKOV8KxlN0hcAYA9WBUIwj
+	vGMa79XzAmNWelkDQ+X53QVRwcb11Cryn84R9keVr0Jty2J77gx+oBr/NywLRDoj
+	y2B3pwZ7v0zMbn/Pq4b12pXW+gIG3JACRHTGgI7k36l5LrtBiJ79pj0vb5loS2yP
+	MU2TfJhjeD4Hy9O02X747IaDnnGG3amO8VHkbXj5ePBxUsAgKld+tevAbU/8Nbx4
+	RY0B++0QveHQbzeeHjMdTwpXazjfmtiEpD7AIiblzgTKCniNhstu22O2TNgnWnDv
+	Bhb5fiD44X7zwiMrdffA==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w8448t7tp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 14 Feb 2024 04:59:15 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41E4xE5k026181
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 14 Feb 2024 04:59:14 GMT
+Received: from [10.214.25.202] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 13 Feb
+ 2024 20:59:09 -0800
+Message-ID: <8a2a4ae4-26d3-40f2-b87b-336093a1ec8f@quicinc.com>
+Date: Wed, 14 Feb 2024 10:29:06 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,58 +65,128 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/4] Fix vendor strings on Rockchip boards
+Subject: Re: [PATCH v1 08/10] iommu/arm-smmu-qcom: Merge table from
+ arm-smmu-qcom-debug into match data
 Content-Language: en-US
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: linux-rockchip@lists.infradead.org, Andy Yan <andyshrk@163.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Chris Morgan <macromorgan@hotmail.com>, Conor Dooley <conor+dt@kernel.org>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- David Heidelberg <david@ixit.cz>, Heiko Stuebner <heiko@sntech.de>,
- Jagan Teki <jagan@edgeble.ai>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Ondrej Jirman <megi@xff.cz>, Rob Herring <robh+dt@kernel.org>,
- Tianling Shen <cnsztl@gmail.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240214040731.3069111-1-tim@feathertop.org>
- <c03220db663279c9e83bab81f3d829e7@manjaro.org>
-From: Tim Lunn <tim@feathertop.org>
-In-Reply-To: <c03220db663279c9e83bab81f3d829e7@manjaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <andersson@kernel.org>, <devicetree@vger.kernel.org>,
+        <freedreno@lists.freedesktop.org>, <iommu@lists.linux.dev>,
+        <konrad.dybcio@somainline.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-arm-msm@vger.kernel.org>, <quic_saipraka@quicinc.com>,
+        <robdclark@gmail.com>, <robh+dt@kernel.org>, <robin.murphy@arm.com>,
+        <vkoul@kernel.org>, <will@kernel.org>, <joro@8bytes.org>,
+        <quic_guptap@quicinc.com>, Pavan Kondeti
+	<quic_pkondeti@quicinc.com>
+References: <20221114170635.1406534-9-dmitry.baryshkov@linaro.org>
+ <a61a3561-0dde-472b-b8a5-451703f6d8ee@quicinc.com>
+ <CAA8EJpoJUZDUxpA1+LJTEVRaMQJrpZ7iU9_dZ3uQvzPKE_UUfg@mail.gmail.com>
+From: Pratyush Brahma <quic_pbrahma@quicinc.com>
+In-Reply-To: <CAA8EJpoJUZDUxpA1+LJTEVRaMQJrpZ7iU9_dZ3uQvzPKE_UUfg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: cMw8gIWXHn67I5PMbVm_WYWQlK0UxZUH
+X-Proofpoint-GUID: cMw8gIWXHn67I5PMbVm_WYWQlK0UxZUH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-13_16,2024-02-12_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=999
+ phishscore=0 adultscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1015
+ spamscore=0 suspectscore=0 priorityscore=1501 impostorscore=0 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2401310000
+ definitions=main-2402140036
 
-Hi Dragan,
 
-On 2/14/24 15:14, Dragan Simic wrote:
-> Hello Tim,
->
-> On 2024-02-14 05:07, Tim Lunn wrote:
->> A couple of rockchip boards incorrectly list their vendor as Rockchip
->> when they are in fact not manufactured by Rockchip.
+On 2/13/2024 4:40 PM, Dmitry Baryshkov wrote:
+> On Tue, 13 Feb 2024 at 12:29, Pratyush Brahma <quic_pbrahma@quicinc.com> wrote:
+>> Hi
 >>
->> Fix the vendor strings to correctly list the manufacturer
->
-> Just checking, have you verified that the old, incorrect "compatible"
-> strings from the board dts files aren't used anywhere in the kernel code,
-> such as in some drivers?
->
-Yes I checked that, there are no remaining references to the 
-old/incorrect compatible strings in kernel code
-
-Regards
-    Tim
-> Otherwise, for the entire series:
->
-> Reviewed-by: Dragan Simic <dsimic@manjaro.org>
->
->> Tim Lunn (4):
->>   dt-bindings: arm: rockchip: Correct vendor for Orange Pi RK3399 board
->>   dt-bindings: arm: rockchip: Correct vendor for Banana Pi R2 Pro
->>   arm64: dts: rockchip: adjust vendor on Banana Pi R2 Pro board
->>   arm64: dts: rockchip: adjust vendor on orangepi rk3399 board
+>> Patch [1] introduces a use after free bug in the function
+>> "qcom_smmu_create()" in file: drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+>> wherein devm_krealloc() frees the old pointer marked by "smmu" but it is
+>> still being accessed later in qcom_smmu_impl_data() in the same function
+>> as:
 >>
->>  Documentation/devicetree/bindings/arm/rockchip.yaml | 8 ++++----
->>  arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts    | 2 +-
->>  arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts  | 2 +-
->>  3 files changed, 6 insertions(+), 6 deletions(-)
+>> qsmmu->cfg = qcom_smmu_impl_data(smmu);
+>>
+>> The current patchset [2] implicitly fixes this issue as it doesn't
+>> access the freed ptr in the line:
+>>
+>> qsmmu->cfg = data->cfg;
+>>
+>> Hence, can this patchset[2] be propagated to branches where patchset[1]
+>> has been propagated already? The bug is currently present in all branches
+>> that have patchset[1] but do not have patchset[2].
+Can you please comment on your thoughts on this as well?
+>>
+>> RFC:
+>>
+>> This bug would be reintroduced if patchset [3] is accepted. This makes
+>> the path prone to such errors as it relies on the
+>> developer's understanding on the internal implementation of devm_krealloc().
+> realloc is a basic function. Not understanding it is a significant
+> problem for the developer.
+>
+>> Hence, a better fix IMO, would be to remove the confusion around the
+>> freed "smmu" ptr in the following way:
+> Could you please post a proper patch, which can be reviewed and
+> accepted or declined?
+Sure, will do.
+>
+>> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+>> b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+>> index 549ae4dba3a6..6dd142ce75d1 100644
+>> --- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+>> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+>> @@ -463,11 +463,12 @@ static struct arm_smmu_device
+>> *qcom_smmu_create(struct arm_smmu_device *smmu,
+>>           qsmmu = devm_krealloc(smmu->dev, smmu, sizeof(*qsmmu), GFP_KERNEL);
+>>           if (!qsmmu)
+>>                   return ERR_PTR(-ENOMEM);
+>> +       smmu = &qsmmu->smmu;
+>>
+>>           qsmmu->smmu.impl = impl;
+>>           qsmmu->cfg = data->cfg;
+>>
+>> -       return &qsmmu->smmu;
+>> +       return smmu;
+>>    }
+>>
+>> This is similar to the patch[4] which I've sent in-reply-to patch[3].
+>> Will send a formal patch if you think this approach is better.
+>>
+>> Please let me know your thoughts.
+> None of the other implementations does this. If you are going to fix
+> qcom implementation, please fix all implementations.
+Ohh okay. Wasn't aware that this may be an issue in other 
+implementations as well.
+Will check and raise a formal patch.
+>   However a better
+> option might be to change arm-smmu to remove devm_krealloc() usage at
+> all.
+>
+Can you please elaborate on your thoughts on how removing devm_krealloc()
+usage would be better? Is it because this implementation is error prone 
+or do you
+think this isn't required at all?
+
+
+I agree on your previous comment that realloc is a basic function and 
+developers
+should understand that before using it. But as you've pointed out that 
+implementations other than
+qcom may also have this issue, I'm inclined to think that the usage of 
+the api is quite error prone and
+there may be some room for improving the usage text perhaps or some 
+other way.
+>
+> --
+> With best wishes
+> Dmitry
+Thanks,
+Pratyush
 
