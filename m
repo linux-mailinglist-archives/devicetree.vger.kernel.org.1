@@ -1,124 +1,111 @@
-Return-Path: <devicetree+bounces-41711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF173854DA5
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 17:07:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43D25854DD2
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 17:13:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4B4A1B29425
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 16:07:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D54731F2B24E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 16:13:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E240C5DF1D;
-	Wed, 14 Feb 2024 16:06:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="vEnP7+eA";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="KpKSvEUN"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 530435FF1E;
+	Wed, 14 Feb 2024 16:13:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from wfhigh1-smtp.messagingengine.com (wfhigh1-smtp.messagingengine.com [64.147.123.152])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDFEC5F865;
-	Wed, 14 Feb 2024 16:06:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A75DC5FF0B;
+	Wed, 14 Feb 2024 16:13:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707926814; cv=none; b=FTK00fIjGhHlvXlXe/VsqcKwuEXzGkVTCb/o213J0uDfvGzE9SQ8BpVTNIU9nC8qURDmAzDh6NOH+SOtFqNGBIBPzxoBtU35/7zjX6/IIGk1eU/Y5nqX/jBzYgP9H5JVzJ07O9oaDO75TZ4DRosNI3zOIqCaeVayk5kehd6vQHI=
+	t=1707927193; cv=none; b=jeWk60HZnB0cTLi4IWF/2VxFYX6gO0uj3z+adoTJ5CZMg3XswmRHY8lSglwZh50XoOELvzPRv9Ruos2RZFpVplnqTTwsSVzU+U67B3Y9kDQOiL4SkGTqti2cXVfZ0TuagFF+MqmWlrl48F1j7/OtCgyakMknhhBGb54NdqRtLio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707926814; c=relaxed/simple;
-	bh=laNZL1qkr6vvHLZ55G/iXz2T7t7aplhdDjaSRRekAhk=;
-	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
-	 Subject:Content-Type; b=WAf+FiFcOujOzbuFCwEzKdmCVAcYCLQJlazZa40gHOxBD5WPj7N3B+p4+7gEbfBw6iv2qzYsuN+XMby/ajW3vN/mbTJyoonYDOtT8LxPa4hD3eTIDLPDELift2SjeyVLWGHkrS77WOwzuQZN7TbUzGp5XIJiaMeC1IfVTOC7hq0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=vEnP7+eA; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=KpKSvEUN; arc=none smtp.client-ip=64.147.123.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailfhigh.west.internal (Postfix) with ESMTP id 4305D18000F7;
-	Wed, 14 Feb 2024 11:06:51 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute5.internal (MEProxy); Wed, 14 Feb 2024 11:06:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:subject
-	:subject:to:to; s=fm3; t=1707926810; x=1708013210; bh=deSom4GjuR
-	klhwqg007ZgFkO+lEEC7ONrawL97ILwOQ=; b=vEnP7+eADkhKOnCPeDLox5/IMC
-	nb0fu+Li12ouTj865pq6esKkpuOO9UQ/7HahJEvAhC3kMh885juyINjg4RiHuS9N
-	tl/re3nT1PpA8Sgf5/h7fnJ68aBKFoWHaylxphth07ALzlFP/NgrxW6u9oksU4ii
-	jIgNgAev62dW31T0RGPGMSxPpsDZKWINKapOsq/JtP2L9LHBUTkJUZRSkI4+p5Oo
-	TVlcEV3SSuLsdpl03T1g3EHCDs+B6hVHCEcGRO5yXxSrVwMy2rQBME/C2lKFSeMK
-	hif1IAETobwM7uZ6xBdhEL7KjfZsdX9iUFEa2OY6KHsItdGgF89hGlmLMofA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm3; t=1707926810; x=1708013210; bh=deSom4GjuRklhwqg007ZgFkO+lEE
-	C7ONrawL97ILwOQ=; b=KpKSvEUNINZk4o4OUI82TxqluNWpmkoyyrBtl+QRI9a8
-	K84NeOGNwuBiR6hn8J+BBKaRd2UV2Phd98cK4oMmyj3c+a7eIDS8a8DiIAuR/8cJ
-	vdIOuZ+/LMipAvGNu+Vp2MWifn1BH8oqAWqtrd1IvtaBMzPgMJMzS+ARuBbNA/o2
-	AllUID/iRXrToShz+zyTcmpPP0BMbvjQxcDODYcgaKJRuSpoJY43RILRwYn4n1KX
-	hCaqtvB5wM4oV4vuf/YdU4zXqkw3+l/mhG8wV/jYNXhw3ksWSFfWuQAO5tj5lwkX
-	0yg9oYCjz5KIPMioZLCJvCHzxWRklb9cHNxC1MSy0Q==
-X-ME-Sender: <xms:GeXMZad6vEzx9l6MOHVMmIG2Zs_UA9-G1qowd8O8ZzP-XsbEvcXIfQ>
-    <xme:GeXMZUNfXC5_3FxzZNJArnLHx9yPZK1FbjoH5EEChnSZyfJNq3wz5ZxLG3Vlv1GmR
-    ugGT3SOCeVbR-fe3H4>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudejgdekhecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
-    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
-    gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
-    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
-    hnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:GuXMZbgZD57qyDNDopse154lgj_bstb6PI9rWR-y2QAURa01u4wl6g>
-    <xmx:GuXMZX-vDGh35pQlAWAwb88hH3m79Sud1hwC6R4WhEG75TYmgo0TPQ>
-    <xmx:GuXMZWuXatqYasoqXnwDeAVXGEJgSnDc8M6Fwyf2SJh9QQ0-cF_BFw>
-    <xmx:GuXMZT9A-LpEBg3xhL3rRRA71p7GJYGRXFD37JXY5CL3VMsS5mlgF_vhmiQ>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id DF83BB6008D; Wed, 14 Feb 2024 11:06:49 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-144-ge5821d614e-fm-20240125.002-ge5821d61
+	s=arc-20240116; t=1707927193; c=relaxed/simple;
+	bh=gKGPpN82UO99dZXmEZzyw8Ch/RLfAFBr6rDbmHC+BAA=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=JGbLdOOFG6NCMxnUZ9+XJ9jCS63s88ZKukY4h6+JgWnzsJ7hkM0ZPR3+JEgrwCY648OhdFq0I6OM9PS8REARGxVphriIlYtZescsKceHvLKgx5O2rzmjAetTk9qd6C5+YQCugPQAb426M2f4XQUdm/U8Ho1WKgW9d2wIl+2HuGM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.216])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4TZjng1VVBz6K7rL;
+	Thu, 15 Feb 2024 00:09:43 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
+	by mail.maildlp.com (Postfix) with ESMTPS id 98CB41400CA;
+	Thu, 15 Feb 2024 00:13:09 +0800 (CST)
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 14 Feb
+ 2024 16:13:09 +0000
+Date: Wed, 14 Feb 2024 16:13:08 +0000
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: David Lechner <dlechner@baylibre.com>
+CC: Jonathan Cameron <jic23@kernel.org>, <linux-iio@vger.kernel.org>, "Michael
+ Hennerich" <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>, Liam
+ Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/2] iio: adc: ad7944: add driver for
+ AD7944/AD7985/AD7986
+Message-ID: <20240214161308.00003ddb@Huawei.com>
+In-Reply-To: <CAMknhBG3J-fW8o6DaAE34GD-_oNk6pnMpV4SnoA26gVmHWJP6g@mail.gmail.com>
+References: <20240206-ad7944-mainline-v1-0-bf115fa9474f@baylibre.com>
+	<20240206-ad7944-mainline-v1-2-bf115fa9474f@baylibre.com>
+	<20240210174729.7c6cb953@jic23-huawei>
+	<CAMknhBG3J-fW8o6DaAE34GD-_oNk6pnMpV4SnoA26gVmHWJP6g@mail.gmail.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <c6e55baf-4f0c-4342-971a-713ed55f5a51@app.fastmail.com>
-In-Reply-To: <867cj75q52.wl-maz@kernel.org>
-References: <20240213225619.11726-1-rdunlap@infradead.org>
- <867cj75q52.wl-maz@kernel.org>
-Date: Wed, 14 Feb 2024 17:06:06 +0100
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Marc Zyngier" <maz@kernel.org>, "Randy Dunlap" <rdunlap@infradead.org>
-Cc: linux-kernel@vger.kernel.org, "Geert Uytterhoeven" <geert@linux-m68k.org>,
- "Rob Herring" <robh@kernel.org>, "Philipp Zabel" <p.zabel@pengutronix.de>,
- "Peter Rosin" <peda@axentia.se>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] of: OF_IRQ: select IRQ_DOMAIN instead of depending on it
-Content-Type: text/plain
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: lhrpeml100002.china.huawei.com (7.191.160.241) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
 
-On Wed, Feb 14, 2024, at 10:52, Marc Zyngier wrote:
-> On Tue, 13 Feb 2024 22:56:19 +0000, Randy Dunlap <rdunlap@infradead.org> wrote:
->>
->> diff -- a/drivers/of/Kconfig b/drivers/of/Kconfig
->> --- a/drivers/of/Kconfig
->> +++ b/drivers/of/Kconfig
->> @@ -80,7 +80,8 @@ config OF_ADDRESS
->>  
->>  config OF_IRQ
->>  	def_bool y
->> -	depends on !SPARC && IRQ_DOMAIN
->> +	depends on !SPARC
->> +	select IRQ_DOMAIN
-> 
->
-> This seems to be moving is the right direction.
+On Sun, 11 Feb 2024 11:03:43 -0600
+David Lechner <dlechner@baylibre.com> wrote:
 
-Can we move the 'select IRQ_DOMAIN' under CONFIG_IRQCHIP
-then and remove the individual selects from the irqchip
-drivers? It looks like CONFIG_OF (other than sparc) now
-unconditionally enables OF_IRQ and IRQCHIP anyway.
+> On Sat, Feb 10, 2024 at 11:47=E2=80=AFAM Jonathan Cameron <jic23@kernel.o=
+rg> wrote:
+> >
+> > On Tue,  6 Feb 2024 11:26:00 -0600
+> > David Lechner <dlechner@baylibre.com> wrote:
+> > =20
+> > > This adds a driver for the Analog Devices Inc. AD7944, AD7985, and
+> > > AD7986 ADCs. These are a family of pin-compatible ADCs that can sample
+> > > at rates up to 2.5 MSPS.
+> > >
+> > > The initial driver adds support for sampling at lower rates using the
+> > > usual IIO triggered buffer and can handle all 3 possible reference
+> > > voltage configurations.
+> > >
+> > > Signed-off-by: David Lechner <dlechner@baylibre.com> =20
+> >
+> >
+> > The one thing in here that will probably bite if this gets much use of
+> > different boards is the use of non multiple of 8 word sizes.
+> >
+> > Often we can get away with padding those with trailing clocks.
+> > Any idea if that is safe here? =20
+>=20
+> We can probably get away with it on these chips. The ultimate goal
+> here, though, is to get these chips working a max sample rate which
+> only has a few 10s of nanoseconds of wiggle room between SPI
+> transfers. So I would rather have a bit more play in the timing than
+> try to support generic SPI controllers.
+>=20
+Would just be a case of providing a fallback. If you have a good spi
+controller then you get better data rats.
 
-     Arnd
+Meh, can be added later when someone needs this. We've done that a few
+times before.
+
+Jonathan
 
