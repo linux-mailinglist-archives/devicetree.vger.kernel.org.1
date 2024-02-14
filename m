@@ -1,166 +1,168 @@
-Return-Path: <devicetree+bounces-41608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D21A58546C8
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 11:02:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C682B8546CE
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 11:07:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 317C3B24395
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 10:02:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 060951C22E6C
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 10:07:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA0AD168CE;
-	Wed, 14 Feb 2024 10:02:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15B25171C4;
+	Wed, 14 Feb 2024 10:06:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oGmpWvM+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NEIeFAEa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 131DC16423
-	for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 10:02:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC085171AE;
+	Wed, 14 Feb 2024 10:06:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707904965; cv=none; b=LnLJSY+5oUs3n4Ugtq8VDHjd1yc0/G7QsnKJ250XNetMskMLbnoT9eVfiF7Pr6IsPJjBD/k+8lgD8OC48kKgORKF09MfA4CvIvIdSoE5heFrysB5pBdfkIvh90/Vi7ykra3T08sGJhEb963SPwTrLZ+dfw9PkNtJ+WUbCk5BAg0=
+	t=1707905210; cv=none; b=lmiJs/RJlM2E1XyxhY4xuOf9dXwiEqQXFcsrBpM4iydM7R29I4HkOEcOWKYVETd4uo0oZJH0HfnUSVJuRRhxj2wmnfpfYNuhoim6P1hwSzkPOn70EkQWBaIQK6PuZ5peXgptf07DmsEsIxgZ1zREVHfAX2vTDsYypdp9iMuTw8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707904965; c=relaxed/simple;
-	bh=apRKVNhBQJHlkjixukc6o0dx+/iVFiLgbLhv6KDF56I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HT1IP8lLHXe5bf4GqaDQz7DLDZo79+8h8cxEI7qC10kHOkTw2sJnd+YlEt3CNJIwRu8tpO+9Q698zchev2qbDFmvhJeuhKvBTqrE675TJjA/qOrI3rAu4WwuptV2rtLwQk/asempmqsED+XSstpwYaKyzlE8N3/RoqDs796Z7NA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oGmpWvM+; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-55c2cf644f3so7066079a12.1
-        for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 02:02:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707904962; x=1708509762; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3bMW9whpBA0jL3HiuL3tccPcVAuuxpNXPVuN6B+u2gg=;
-        b=oGmpWvM+otbvKEcD/YtPoGxgsblMJqpo4/Vecdm9nKuNAm4W5HSbh6xUPXREYNbZt0
-         RbaqUmMSAFeq3Nga3wgWJLozzmxmkRrSMdTUJP7wI5vkEy+exWUec7igLYxB9Zl/RO3b
-         eOapxvhk7eXM+vgqRFp2+h+XYhFvtOp1x1L8Y4VkBYDba6a1xvtBcgDyXyEPkB6GhlnW
-         iJmOTFNEtyJ8gAbjc0kVLaD2kp1dZTzaiwOB+85GTL6VmP9uVafcob81+yc+q8JI9EfQ
-         M5E/km3Jo4sPS7UQJMAIDrl6qyhOvcjvxgsHfjrRBeJedCxPRhOjYV4QH7FNvL4cz72/
-         X0rA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707904962; x=1708509762;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3bMW9whpBA0jL3HiuL3tccPcVAuuxpNXPVuN6B+u2gg=;
-        b=gO+SMLKuSqPOjyHbADIGtcWOPrmYhUwGljd6I47VyploUIfAlUHy2mmLlR/+V9dP4K
-         nufugSYS02y1AcrfMs+J/obj6xwq6dEwMWuYBdc6buwArqQBCdZXZ3WjJ77HH3WVpjky
-         vng81Lanq5v1YmszLLZ52fBsEUKc4eTCBS5ikFk/mL/MLmh4O6bSbe5Utzpmh5wgmoVm
-         3mCbojbgCUKFA8SG2qibHPYj4236hqeNF0CR2EqphdJPADKaGOq7aPYWfOUoE45oQz9m
-         WiH0RFa7ox8xMqAXZILmdz4wGRYM2xQeH99qdQ9ti7SjLyjl42/mmDbEcT3rDlkrkdaK
-         czUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVVfeMMFSV1Oq7Fzwz5HP8wsec8NXhgd9QeMekCpekSbpQXHj8joYs2dYW/QjcqgdncM6L7G/7bsPJ1/x4WoM+R2SAMEiXQCWpw8Q==
-X-Gm-Message-State: AOJu0YwhIzTmGQjPjZsN6d0T55bNHSL9TLD99dJgnHNfWd+LGC7sjcre
-	tbV9g/QjNT7djlXOBPYr+Ozi40XyD2ZAiHXcxwU8eLxgkB8pvjZrYqqWce0UfpM=
-X-Google-Smtp-Source: AGHT+IHNVysDTvrlpcCZDo0fkXx0/f/34mP+7CCFE+pH3BouUA6vCsnowXjEfoeQZZOjgW0VU98yIg==
-X-Received: by 2002:a17:906:378a:b0:a3d:1ca9:b994 with SMTP id n10-20020a170906378a00b00a3d1ca9b994mr1336086ejc.33.1707904962270;
-        Wed, 14 Feb 2024 02:02:42 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCW8vaf5LHXA17YCCPIKcCCtlN1JISNK+L+VrIGFWTWtREpE1AommHGZJDnPVDiyqv5Kb3Yot2I0tQMagrYNam/8/G1wb/LJQvRe7L+8jidwhLyIZLCQVvqF61FOsGBALdfbuybfh96uQ0O8DdqzPj++WYaJYxVcDNGiiIWzCHqzwRPG0esmoeeKjcnwxpub+78fyDCH5C1za7lKiNo/wLYhTWB7TMIS89U+ZH2yoA0naIxu2VBihinXMTW1ulQ3/vBQ9GtBRNsipahtPye1hljmvrCfPLaQRHZloR87PxaIbaqz/iw715ueVl/uyKpO/xlITCbHZ//w0q7f35j/3UPxcl+0cKzt423t0OxTNavA+Q6y7bagpiTRrII=
-Received: from [192.168.0.22] ([78.10.207.130])
-        by smtp.gmail.com with ESMTPSA id wp14-20020a170907060e00b00a3d36da3a57sm589083ejb.7.2024.02.14.02.02.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Feb 2024 02:02:41 -0800 (PST)
-Message-ID: <ff61656d-e4a8-4561-a3ba-f34abd1c6ce4@linaro.org>
-Date: Wed, 14 Feb 2024 11:02:40 +0100
+	s=arc-20240116; t=1707905210; c=relaxed/simple;
+	bh=xnJOc4z//DOjfKlx8+OsKAL8Ga16tYDqx+CAITnN62Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=K8aZo8Mgex5kVFWVQ/ltApnh3m4F27CtZpPm1Q4Vapu3Ony9lH3k3nN3hsC7DYkLA9uXwz4SwVq1NNMgAi+uh421fCgLrXgfd9NsdH5zx/14/fLgTfIC19smMfFuGk5ujNckFmCgflCwbepo1qFwz6bn1kh0sNj3KjueJWEc2QY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NEIeFAEa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A67D9C433F1;
+	Wed, 14 Feb 2024 10:06:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707905209;
+	bh=xnJOc4z//DOjfKlx8+OsKAL8Ga16tYDqx+CAITnN62Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NEIeFAEabfVaJlHVQUx7gy7CMJqfiDCHXwmKI2Q3EtXXl9CIlPPmPNdGwOMm4GlXw
+	 pVqe8n/wjChC71Gw2lWLq6cMk7djaFqNGOikZZORFb4CTlg4tNp7KkrHy4pLrFMqvl
+	 do8Sherb+C43R2vc80w14BFe457qgOs7vXRiUrPLeJPQ7spwnj0f4pStnCX245WD2f
+	 7s6yiZY3uz5/7EeHiit/dcsoudDQBOfL5yZfib9JkAUA/oVO/LJc65zjEkzoTBKVmI
+	 QC4/wvHjEJn0eVGbiz9bhn9UBM48Yjht46O51IoP8o1dcthzymMThf6tyl2FbxWL+/
+	 sARjWgrYJXTkw==
+Date: Wed, 14 Feb 2024 10:06:44 +0000
+From: Conor Dooley <conor@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	John Crispin <john@phrozen.org>, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: mediatek,mt2712: add compatible
+ for MT7988
+Message-ID: <20240214-reversion-arguably-37bbee9caf78@spud>
+References: <20240213164633.25447-1-zajec5@gmail.com>
+ <20240213-resource-evaluator-0754cfd5882d@spud>
+ <d4391868-ddcd-4f66-b539-28d245fa83df@gmail.com>
+ <e957b044-fe84-4b72-bdf1-cbc40c722019@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/12] Add MP25 FMC2 support
-Content-Language: en-US
-To: Christophe Kerello <christophe.kerello@foss.st.com>,
- miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com, devicetree@vger.kernel.org
-References: <20240212174822.77734-1-christophe.kerello@foss.st.com>
- <fbaad3c7-13b7-41a2-a8f6-7036ec1ca2fe@linaro.org>
- <9f20563b-bef1-41d0-a1ba-fefeabed2e09@foss.st.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <9f20563b-bef1-41d0-a1ba-fefeabed2e09@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="mPF6YbHq+X8lxM7g"
+Content-Disposition: inline
+In-Reply-To: <e957b044-fe84-4b72-bdf1-cbc40c722019@collabora.com>
 
-On 13/02/2024 13:09, Christophe Kerello wrote:
-> 
-> 
-> On 2/13/24 08:34, Krzysztof Kozlowski wrote:
->> On 12/02/2024 18:48, Christophe Kerello wrote:
->>> Add MP25 SOC support in stm32_fmc2 drivers:
->>>   - Update stm32-fmc2-ebi driver to support FMC2 revision 2 and MP25 SOC.
->>>   - Update stm32_fmc2_nand driver to support FMC2 revision 2 and MP25 SOC
->>
->> Why do you combine memory controller driver and NAND in one patchset if
->> there is no dependency? On any further submissions, please split
->> independent works.
-> 
-> Hi Krzysztof,
-> 
-> NAND driver patch 11 refers to the compatible described for the memory
 
-Eh, it shouldn't really. This does not scale - you will keep growing
-that 'if' clause? And other drivers should not include other device
-compatibles.
+--mPF6YbHq+X8lxM7g
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-But anyway that's not a real subsystem dependency. Just mention in patch
-changelog (so ---) that compatible is documented somewhere at URL xyz.
+On Wed, Feb 14, 2024 at 10:27:54AM +0100, AngeloGioacchino Del Regno wrote:
+> Il 14/02/24 07:34, Rafa=C5=82 Mi=C5=82ecki ha scritto:
+> > On 13.02.2024 19:18, Conor Dooley wrote:
+> > > On Tue, Feb 13, 2024 at 05:46:32PM +0100, Rafa=C5=82 Mi=C5=82ecki wro=
+te:
+> > > > From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> > > >=20
+> > > > MT7988 has on-SoC controller that can control up to 8 PWMs.
+> > >=20
+> > > I see a binding and a dts patch, but no driver patch, how come?
+> >=20
+> > I believe that to avoid cross-trees patchsets (which are sometimes
+> > tricky for maintainers) there are two ways of submiting such changes:
+> > 1. dt-binding + driver; then (separately) DTS
+> > 2. dt-binding + DTS; then (separately) driver
+> >=20
+> > I chose later in this case as my personal priority right now is to deal
+> > with all MediaTek DTS files.
+> >=20
+> > Is that wrong or unacceptable?
+> >=20
+>=20
+> It's not wrong but it's partially unacceptable, at least on my side.
 
-Best regards,
-Krzysztof
+> I want to put emphasis on sending the binding with the driver, as this al=
+lows
+> for a better review on everyone's side because we do see the full picture=
+ and
+> we can give better advices: in this case, I'm not sure whether adding a n=
+ew
+> compatible for MT7988 in an enum is a good idea, as the compatible string=
+ may
+> be shared with one of the *eleven* SoCs that are supported in the PWM dri=
+ver,
+> meaning that (hardware speaking!) the PWM controller in 7988 might be the=
+ same
+> as the one in mt1234.
 
+Re-ordering to make my reply make more sense...
+
+> In my opinion (and I believe many do agree with me), sending the binding =
+along
+> with the driver is the right choice, and if you also want to include the =
+dts
+> that is also appreciated: series can go through multiple maintainers appl=
+ying
+> subsets - it's ok to do.
+
+Ye, either of those two makes my life a lot easier. I can then at least
+go and check the driver patch to see if things match up. In this case, I
+would want to check that the driver requires changes to support this
+device, given the commit message mentions nothing about the difference
+between this device and others. I'd still probably request that the
+commit message be improved to explain the lack of a fallback, but at
+least I would be clear about what I want and could provide a conditional
+Ack.
+
+If you're not sending the bindings patch with the driver, there's an
+extra onus on you to explain exactly what makes this device incompatible
+with the other devices in the enum, although in an ideal world it'd make
+no difference and every bindings patch would contain that information.
+
+> >=20
+> > > Also, what makes this incompatibly different with the other devices in
+> > > the binding, like the 8183?
+> >=20
+> > It can control 8 PWMs unlike any other SoC block except for MT2712.
+> > It uses different registers than MT2712 thought.
+
+Put this information in your commit message next time :)
+
+Cheers,
+Conor.
+
+--mPF6YbHq+X8lxM7g
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcyQtAAKCRB4tDGHoIJi
+0ueXAQDCS+trr+ex9ySxR5bxD0kVm8SrRFLeLixgJlLEsQasHAEAiqnEQG8s/IH4
+xMOno6DMMEiw9aCzIyGoQTTN4Ied7wg=
+=QoHf
+-----END PGP SIGNATURE-----
+
+--mPF6YbHq+X8lxM7g--
 
