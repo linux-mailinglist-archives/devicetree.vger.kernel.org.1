@@ -1,64 +1,67 @@
-Return-Path: <devicetree+bounces-41795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88ECA855132
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 19:03:16 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2CFA8551DE
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 19:15:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4475B29206B
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 18:03:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD392B2EBA2
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 18:04:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2548512F363;
-	Wed, 14 Feb 2024 17:58:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F2FC1292D6;
+	Wed, 14 Feb 2024 17:58:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jwBTzaDt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gMJ3bSz0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F05B512EBFE;
-	Wed, 14 Feb 2024 17:58:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6D0612FB25;
+	Wed, 14 Feb 2024 17:58:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707933490; cv=none; b=ZJ4v4tQA9MrZ5eSLYfJncuU5ffkD5pbNAjYW2oX8uQct16o9faUekuHzdeZVvdsFDKkfIRb9PWGPn0okO2ctkHUa0SMRNVfqQjJ7g0AIoq4w7JBHh7Tsxk4+1LJwGlAlTDE0BWGhBKe1dMk0+ZC+O9eWkhGgXKQgPL3fBA8iqy4=
+	t=1707933493; cv=none; b=keCeBHNCHVyhAy2wByKPNuYIFSJ7nr9BxY+3wWRZjl+N1Enh1DQPz8iefvPVQmNkbD0mO9nopo02wP6Qz/iXRLmD0q1CMbPN+WrFgEo3U5PSG7cVBjV9dapc5HWp8MuMM4XIWeGB9U1MLA8B9NbxyB46ull42KBcdbLVa4/a0o4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707933490; c=relaxed/simple;
-	bh=jMrPnTQTKhmPGsqwrrcW8eXdyj+2Ygq9BMpe0jyLIZw=;
+	s=arc-20240116; t=1707933493; c=relaxed/simple;
+	bh=wztF8XzxdbVB9Jk+ZtbZZ2oEzTpOr4x4BBNA8Lz2aIQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QH0p88LPrCXc4gjATGUKSWgszpumDqPCpRoZgKDOD9XPxDrpEpXzDiY3Z3V9uXjR5JTlXjOBWhCypF8tSEGo2D3MybF60AppXU2qDbumY/CtvOE/MdbB4Pmq7OnVlznvS3qSCiryMdiPq5Dlo20fSKAjavwBptm2yetMzBtIYJw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jwBTzaDt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 982D2C43390;
-	Wed, 14 Feb 2024 17:58:08 +0000 (UTC)
+	 MIME-Version:Content-Type; b=UAklT1wYNX64SaA7vk1dR4KaOeHQHhREPWiI0Nlfu2Ac/+LDNyFvAXjx0lhyUn9huXXpBygyDJPdi3BDvDZiBh9chLz119aLkKkDVjKLciTfIXWlHa8Yylu8osFZCmloG3FovUQgyr53+/w79cnnJ7YShE5+yzuvhsjqbbhxXXI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gMJ3bSz0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A9A9C43390;
+	Wed, 14 Feb 2024 17:58:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707933489;
-	bh=jMrPnTQTKhmPGsqwrrcW8eXdyj+2Ygq9BMpe0jyLIZw=;
+	s=k20201202; t=1707933493;
+	bh=wztF8XzxdbVB9Jk+ZtbZZ2oEzTpOr4x4BBNA8Lz2aIQ=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=jwBTzaDtEMzO1joIGQkeKmKmt0ORNWQYvdvAY6KM9jA273Ti3dlv8lhd4KzPhz4Ck
-	 lJNlFjs9o8CVtkuaK80UM58xSSsn6Ei9qsu+gmKJ6NuMsBFrsILWmpGhco9UlDqlpb
-	 t6z5q1JOwqdRfUxGwcyTteN7j5w3xuSdonNPLYqhrYw/G5xI2eIfV9ecaHxSX50K7A
-	 wMZSFKmrNQ+UdXa1WV6KD2AEKcfwseyIu3yLiiQMcDiODZBNyJgXgl8ea7RymX+IRK
-	 YDjUqvrW8IHOOYjs8mmNdlQc1dhBiQhhardzENbtPfpAitWxHVbj6chH8j3KUwtTWq
-	 S14mw3Y61P/6Q==
+	b=gMJ3bSz0UubYUwNhzZrP3ZTeEE476eQttaoMMgO8tGZpIgBkeVh8AHt5LetCUltQP
+	 6RaMpNj4NnXxutc+Vdi3r4XGTY7KphLugB8kaHlddHMpRdQig04Y0dB9Gp+cTGLmv5
+	 xjvasuxw7pYWAgiQn0nec8IAkQgcrYI4iD1gtRp/VD4jQQQRI6ZuP7mR7D4q+VU4vl
+	 om1+Y919Y1rKOPYmuvTXaXSIWe4tXlv64vhuslpfMTjGLZm02BtDSlNs411bn3BSjD
+	 ZBFb2LPpXGKpiP7/tF9jFZU0FBUryO7oriSR4Du0Xe+/BSZXgCp54gmEopugIaPVoE
+	 IWE1SpDoOQgYg==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
+To: linux-kernel@vger.kernel.org,
+	Raymond Hackley <raymondhackley@protonmail.com>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Taniya Das <quic_tdas@quicinc.com>,
-	Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Stephan Gerhold <stephan@gerhold.net>,
+	Nikita Travkin <nikita@trvn.ru>,
 	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Luca Weiss <luca.weiss@fairphone.com>
-Subject: Re: [PATCH v2] arm64: dts: qcom: qcs6490-rb3gen2: Declare GCC clocks protected
-Date: Wed, 14 Feb 2024 11:57:37 -0600
-Message-ID: <170793345801.27225.1462005277982698945.b4-ty@kernel.org>
+	~postmarketos/upstreaming@lists.sr.ht,
+	Walter Broemeling <wallebroem@gmail.com>,
+	Joe Mason <buddyjojo06@outlook.com>,
+	Siddharth Manthan <siddharth.manthan@gmail.com>
+Subject: Re: [PATCH v4] arm64: dts: qcom: msm8916-samsung-fortuna/rossa: Add initial device trees
+Date: Wed, 14 Feb 2024 11:57:41 -0600
+Message-ID: <170793345832.27225.12573915129416662258.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240209-qcm6490-gcc-protected-clocks-v2-1-11cd5fc13bd0@quicinc.com>
-References: <20240209-qcm6490-gcc-protected-clocks-v2-1-11cd5fc13bd0@quicinc.com>
+In-Reply-To: <20240129143147.5058-1-raymondhackley@protonmail.com>
+References: <20240129143147.5058-1-raymondhackley@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,21 +72,23 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Fri, 09 Feb 2024 15:21:48 -0800, Bjorn Andersson wrote:
-> The SC7280 GCC binding describes clocks which, due to the difference in
-> security model, are not accessible on the RB3gen2 - in the same way seen
-> on QCM6490.
+On Mon, 29 Jan 2024 14:32:02 +0000, Raymond Hackley wrote:
+> Samsung Galaxy Core Prime and Grand Prime are phones based on MSM8916.
+> They are similar to the other Samsung devices based on MSM8916 with only a
+> few minor differences.
 > 
-> Mark these clocks as protected, to allow the board to boot. In contrast
-> to the present QCM6490 boards GCC_EDP_CLKREF_EN is left out, as this
-> does not need to be "protected" and is used on the RB3Gen2 board.
+> This initial commit adds support for:
+>  - fortuna3g (SM-G530H)
+>  - gprimeltecan (SM-G530W)
+>  - grandprimelte (SM-G530FZ)
+>  - rossa (SM-G360G)
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: qcs6490-rb3gen2: Declare GCC clocks protected
-      commit: 7c6bef576a8891abce08d448165b53328032aa5f
+[1/1] arm64: dts: qcom: msm8916-samsung-fortuna/rossa: Add initial device trees
+      commit: e1839f78e4699005cfd4f5f59107c33b174fa706
 
 Best regards,
 -- 
