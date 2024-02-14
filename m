@@ -1,133 +1,102 @@
-Return-Path: <devicetree+bounces-41520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D2F48541F8
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 05:08:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE0628541FB
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 05:14:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EDF71C2141D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 04:08:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECF591C266C8
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 04:14:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B128BE48;
-	Wed, 14 Feb 2024 04:08:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEE4CBA30;
+	Wed, 14 Feb 2024 04:14:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b="n4r+WwaM";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Ix29FDKW"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="IBBinqAt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from wfhigh2-smtp.messagingengine.com (wfhigh2-smtp.messagingengine.com [64.147.123.153])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8C9BBA46;
-	Wed, 14 Feb 2024 04:08:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.153
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E343D524;
+	Wed, 14 Feb 2024 04:14:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707883701; cv=none; b=qx9EHnjdf4xZDGmDizg7seAy4XEC9G26gnUd64DcLo5sHzfSqm2FJ/3WOa9AWnmZsbNdwKyq1juy80uBKJmztZTtxVGSuzxoDGHWO5e5xnlBGZNMx69fOay5R7xIdavEh+GLaIAT7bH8jtLJ12cswN+aJx77LT0Dot8bpdjxhUg=
+	t=1707884073; cv=none; b=iR5a5wuBXt2dn3EjtSC5eC5WbhVf2ypWgaY2iVkoKtOyM79QEc1AgcGxonqEqlK/Z6BV6W2nEn+zlsHjtT4/AcY6LSmyLE6QiFgrSIodWQyfbttA7GmB0Ggz4BuQSK/MX+xPjatb1Bny9HPjI6PFWk8YgKwJJSUfl4PVFdwY5SE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707883701; c=relaxed/simple;
-	bh=q3m82E7/yf+o8OwFMcBEiYpHUYOuWXod+duJNvWLjqM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=LrHWbOiiUD/+sNhH29Cn7Ai4bWZq3uSA7RhYnFoQd6KroOUNwb+kxcGEIz4j1ApUCJQoQmxm8ZPWW2QdikjRH5TZ/4872IM0xqNptwrHEjY7M5M7xPH0UgbjJxuXNpKToYnZJYNJo/u0PVKnRQZU2UD15jcfn1QbwapZaLldxjk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=feathertop.org; spf=pass smtp.mailfrom=feathertop.org; dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b=n4r+WwaM; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Ix29FDKW; arc=none smtp.client-ip=64.147.123.153
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=feathertop.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=feathertop.org
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-	by mailfhigh.west.internal (Postfix) with ESMTP id 274931800084;
-	Tue, 13 Feb 2024 23:08:18 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Tue, 13 Feb 2024 23:08:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=feathertop.org;
-	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
-	:from:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm2; t=1707883697; x=
-	1707970097; bh=dpyL4PQAJGDQZibg4w7Ubg9AMrLDbdkCnl9FxVnyHf0=; b=n
-	4r+WwaM94dlOXT/D2fCePU0mDJEFJKT97Kc95S9ZpC9rsOrsJElLpsvLtHH7MQI2
-	NDrqwkYBSJ0NT5lHDuTFBuVj9rVoatVxgy9o3fpzXZIRU64QA2LmK2i30Gqd1fkV
-	vJQaD7YwKx+ImdamncZk53Xsjv4N7tcsk8cRU6v5yNgoPeEiWUlsVu8s6EUuN9/e
-	ogpO3PuwYKIGtD8PuyYrnNhzTcjVUJRhd7QtYXVTgJX9xceyK7sZ7/BKGuIZfJnn
-	s3mSkrTOoLS5alPIP4vIn9YJRzgkMsttKJuqREdbBNCQ4xPdHaAUieiU8+E5eQqP
-	9wScZhOGUHJw+GrxcGkiw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1707883697; x=
-	1707970097; bh=dpyL4PQAJGDQZibg4w7Ubg9AMrLDbdkCnl9FxVnyHf0=; b=I
-	x29FDKWXdVs7BNpW0s8y2Qno9puAUdzgTYRMKcYudtYqr9LH34UXklzYBnyjzYUX
-	9cXKTFGN58Ij75uAtA8f7icUGWwsEdSy9kfCTvjr9suoLo7bwPUxxYt5o84KuuZN
-	QJYj6A/UJUAPZPAmAMwMU9CfFVCAgDOnhUx5TvigoM2UqZbT5SDILw5DoHy6aor8
-	5vQWxyzfIwOGPiTGCJMHN9xYyz16KDvymtcQJMh7YyYfz2maoZcY1ULVKartWrkT
-	vhrs3WB8K1Pnn+xLc7Del+yHgr8UIRXMG25727mcGToJb+zO6DOszW+mNk8k1fnL
-	diASMEFJ8D9T0sgWpSJnA==
-X-ME-Sender: <xms:sTzMZVQFUAkzubDY17qTsgCkmuM1203vJ_VY5oxHKQZOg9AdxaMrhg>
-    <xme:sTzMZezYQeX5vd4DhGLrGthU0T-6jJQn94vMXJQOaHsH9yQuuwUsvkahcdqE0lxHY
-    g15rUORSw>
-X-ME-Received: <xmr:sTzMZa283V77HkV4VPU3NgT5MPZR8klXM2i1Vz2i_jp8x_WPNienyRkuuKuVj7SmUVJRdTThYd-zo4B4O1-nDdZsY0ROVDXdLEg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudeigdeilecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvfevufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefvihhmucfn
-    uhhnnhcuoehtihhmsehfvggrthhhvghrthhophdrohhrgheqnecuggftrfgrthhtvghrnh
-    epfeffuefhteegieekjeevgfdtfeethefgvdfhteefueffuefhhfefkefgkeegheeinecu
-    vehluhhsthgvrhfuihiivgepudenucfrrghrrghmpehmrghilhhfrhhomhepthhimhesfh
-    gvrghthhgvrhhtohhprdhorhhg
-X-ME-Proxy: <xmx:sTzMZdAvTNaPVIf5q8f8f4yS1dwou4jbN2iCpMK5ZxAFsA-yJRlNxA>
-    <xmx:sTzMZej_aGGJctJe_3QGJOyQ5Tevhvdn7hMCjShE4Tl1dEmmcmv4WQ>
-    <xmx:sTzMZRoCZmr52-Rf1ZrRnXMmcU4a0THBA2VKNLZfUYAzHgETZ21ayQ>
-    <xmx:sTzMZTZcLxMbZXAttWLlCVh7O971ZoRNnWXcx0lHkKXZyjfIGxKPKFiLfdQ>
-Feedback-ID: i1f8241ce:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 13 Feb 2024 23:08:13 -0500 (EST)
-Received: by feathertop.org (sSMTP sendmail emulation); Wed, 14 Feb 2024 15:08:10 +1100
-From: Tim Lunn <tim@feathertop.org>
-To: linux-rockchip@lists.infradead.org
-Cc: Tim Lunn <tim@feathertop.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 4/4] arm64: dts: rockchip: adjust vendor on orangepi rk3399 board
-Date: Wed, 14 Feb 2024 15:07:31 +1100
-Message-Id: <20240214040731.3069111-5-tim@feathertop.org>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20240214040731.3069111-1-tim@feathertop.org>
-References: <20240214040731.3069111-1-tim@feathertop.org>
+	s=arc-20240116; t=1707884073; c=relaxed/simple;
+	bh=crnFU8k6nMxj6JY71ROeDrnhyTdlUaUSsz2aPsHqj8o=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=BHSWL/hQH0gfw9Eb6LpP4x5gsHLV8EUmGOVG8RQa3e/aP7wJs3Wc3MhDfZHMUXsV7mS00pgqxlsASzMOr5Xz6F6a6iH/4I5V7wTgYXMGxAR2E4MwCUVaRGu/LdWndt7+oW2uLyJ/CDbDhW+OXu3sTOErsiJ26Qm1/EOjAtgv6Lw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=IBBinqAt; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1707884062;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=+eiBT625I2qlHvYLLXothJ7tnuzCBy930SrRvWjZiPo=;
+	b=IBBinqAtdzjnhrWHXDlV6WWsjZI6lk67YJJaW7+e/Padr0qOxM3htyl2YEzq6lLLCl6Qvl
+	MIJHgmi3mR91OZXfDyjcRThuRIymA499ySpa8osdqDIfd6lxzJ0w0ff57bFgkczwTfwXeL
+	r/IZDnEao6NNlMzkjiVT1NB19AmYLj+LXwIHPd66tTse6AZ52+2xZtpMm/uWISCn3wEzZN
+	SnKa1YcGaQISsQ4VngTtCs6/7cG6OzMYcE+VGuJTSeHtwKgl9z6eKUFAt/qfaMPK0wLpNM
+	Rev1YR2x11cyCPi6/kTxEBdC2x2W+AygUOjAUJE+tr0iN70nc6GJ+MLqtaSg9w==
+Date: Wed, 14 Feb 2024 05:14:21 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Tim Lunn <tim@feathertop.org>
+Cc: linux-rockchip@lists.infradead.org, Andy Yan <andyshrk@163.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Chris
+ Morgan <macromorgan@hotmail.com>, Conor Dooley <conor+dt@kernel.org>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, David Heidelberg
+ <david@ixit.cz>, Heiko Stuebner <heiko@sntech.de>, Jagan Teki
+ <jagan@edgeble.ai>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Ondrej Jirman <megi@xff.cz>, Rob Herring <robh+dt@kernel.org>, Tianling Shen
+ <cnsztl@gmail.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/4] Fix vendor strings on Rockchip boards
+In-Reply-To: <20240214040731.3069111-1-tim@feathertop.org>
+References: <20240214040731.3069111-1-tim@feathertop.org>
+Message-ID: <c03220db663279c9e83bab81f3d829e7@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Adjust compatible string to match the board vendor of Xunlong
+Hello Tim,
 
-Signed-off-by: Tim Lunn <tim@feathertop.org>
----
+On 2024-02-14 05:07, Tim Lunn wrote:
+> A couple of rockchip boards incorrectly list their vendor as Rockchip
+> when they are in fact not manufactured by Rockchip.
+> 
+> Fix the vendor strings to correctly list the manufacturer
 
- arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Just checking, have you verified that the old, incorrect "compatible"
+strings from the board dts files aren't used anywhere in the kernel 
+code,
+such as in some drivers?
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts b/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
-index e7551449e718..e26e2d86279c 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
-@@ -14,7 +14,7 @@
- 
- / {
- 	model = "Orange Pi RK3399 Board";
--	compatible = "rockchip,rk3399-orangepi", "rockchip,rk3399";
-+	compatible = "xunlong,rk3399-orangepi", "rockchip,rk3399";
- 
- 	aliases {
- 		ethernet0 = &gmac;
--- 
-2.40.1
+Otherwise, for the entire series:
 
+Reviewed-by: Dragan Simic <dsimic@manjaro.org>
+
+> Tim Lunn (4):
+>   dt-bindings: arm: rockchip: Correct vendor for Orange Pi RK3399 board
+>   dt-bindings: arm: rockchip: Correct vendor for Banana Pi R2 Pro
+>   arm64: dts: rockchip: adjust vendor on Banana Pi R2 Pro board
+>   arm64: dts: rockchip: adjust vendor on orangepi rk3399 board
+> 
+>  Documentation/devicetree/bindings/arm/rockchip.yaml | 8 ++++----
+>  arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts    | 2 +-
+>  arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts  | 2 +-
+>  3 files changed, 6 insertions(+), 6 deletions(-)
 
