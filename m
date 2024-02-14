@@ -1,139 +1,177 @@
-Return-Path: <devicetree+bounces-41646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25A1585493F
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 13:32:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B2EC854945
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 13:35:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5BF30B22DF5
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 12:32:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6939287CF0
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 12:35:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69AB6487A3;
-	Wed, 14 Feb 2024 12:32:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48AA5524CA;
+	Wed, 14 Feb 2024 12:35:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dOOQEJMV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hg3G8MWx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACC58364BF;
-	Wed, 14 Feb 2024 12:32:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6C1E524C2;
+	Wed, 14 Feb 2024 12:35:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707913927; cv=none; b=jD8MXVNK3bH+0PUzr74S1YYkTaKgOIhPb8+bxtY1G04PfqooujA1ka5y0HQkQZw498BnYEhnSZeb8RC7RX06DgJ9Lptx7qa2KJj+CHmG000Ff1x6Tje3maGjYkJAkSaOYFOYiaxwFLIUaClzxDB0r5lTp6GhHLsDcmd/vfG6bu8=
+	t=1707914150; cv=none; b=jh5C2JD6JgNkoThEYHkjCgDxHOJScbqOr3q75wDVq3twqwlz4o6A8r7XEp/K75DEaFs4ih2dekBHmEH4i5k4tj3bJbifJMdv0AxfRAFcbhrb4CzrRL9jBJkbm4xiXTUka5KmUrX/myX2p6Wtx4Jcp6s1JI36jjNjdwrAJxKo+D4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707913927; c=relaxed/simple;
-	bh=wyuyLEh2cqw5UMwPruowX3Q/bkgESYYC7Ij/ClDKrZw=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=futn16nrbByf+hOoxfDP3lS8MPAu8L3I5nLo/hNq22uMTYwqA34DcYR8ZyAvGCKlMAbr+z5JHijpj4Z0c0tSM8H/KPFBN7E/lSK88vpfne5/hsa/Y3ohrXm+GAe3Y7a+D1z9p0Am1v/4ODfmj3V2jujd93MRI8SzIaCGKKJ7MSY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dOOQEJMV; arc=none smtp.client-ip=209.85.208.53
+	s=arc-20240116; t=1707914150; c=relaxed/simple;
+	bh=hPoElhL1cWn5imNJJY6Az5vPc9ieKDZyk2fjNSIhrkQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CPja8YR2qj5rt0jQlpVzD9Kms9KRteTb97tefATrhnCvOITpU3erCT00isn5SwBIjomEXyy5lMH8CDFwvWRy7jCs/VLlVNpNDRme5mJbNs2DxFknX4UzbABrYjP5+k7wEmz3gC5YGiFswffr2EgbCBnELDTaafwCmskyB513Tyg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hg3G8MWx; arc=none smtp.client-ip=209.85.215.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5638de1d953so299390a12.0;
-        Wed, 14 Feb 2024 04:32:05 -0800 (PST)
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-5ca29c131ebso3858580a12.0;
+        Wed, 14 Feb 2024 04:35:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707913924; x=1708518724; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=wyuyLEh2cqw5UMwPruowX3Q/bkgESYYC7Ij/ClDKrZw=;
-        b=dOOQEJMVrgExo70l1Osxwc4aWYp9sUIMcId8YWlg6aDdBtB/GdpF6SHRPnbNGydCbr
-         qXCWI8kDme19cPyuQz5FidfnHJXkcs0PyeFnazv3Zhtv9dijdX0BboRtmgvU2Q/Ytxtw
-         FW2+V+/RgLR/8mSY/JRUklVsfkn4apZkETvJg17ml5Z8RYsJkaGA0wgl7yFhWURDPVeA
-         UWu7Wr0qiKysbE8BKyCsJfjKuu9CbJqEJVMbtV+47R8oTp0XngxoCLQ+DAv+FB6SUDgA
-         sPomxX0owkufLxcgU+cC4xg5RlyHDVcXwkcFtoGXrNDpOLDzNGwPXBq2yF42Adx+K3yv
-         CE7A==
+        d=gmail.com; s=20230601; t=1707914148; x=1708518948; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KuQsJK3xx4vzJDNKSqqrpk7uzcrIY6fu81NCi7MHe2w=;
+        b=hg3G8MWxQQ1pdPt57ecuCzR/d9OSaeRjNNKF0z1lNh8tr/Kp3uU3DDLuM9a3CGAMWh
+         pIny7MEdPrOszfQcD8x2peUcM7l9wZXmDclvGP1cQQBesn9VlhlffR5CBnPoChr4uD8c
+         tZP1sUvXiIJaAuWG2lbpWKLSvTpIywt61/qB5SswegCn7GgUULuyrOrYV2UOBMmzH1Le
+         fbZ8bqWDER03MEs/O8qHC5FIdwSkKSNY+Bb91InejpWtxVDrpwYK4dlXMJ/JQlmHl1iv
+         tvX6Dcgt7ogBm7X04kMMGfTzj5/1k0WDgJqfbuUpvcz3sp4RLP4/DHfCeAz49BVvc1MB
+         9zjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707913924; x=1708518724;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wyuyLEh2cqw5UMwPruowX3Q/bkgESYYC7Ij/ClDKrZw=;
-        b=cNDwjberh8Vk1j/gwoOebcyADv4aaeD5+k+eSvrl4c8IUKQjnlZ4NGcq9fPWdwtd1T
-         5vbtHHQtZNGB+fiNcQsQ3N4pB4OSGXI54O5hft0h3eUCl04D/2/Tqno6fjkY4GdGJxWA
-         2zI1By7uB1TkS2AqUO0itgi7n/FEi5PSh9hhWAgK1obwgSsJfdVNSQWwmvZKii9I10on
-         dQYdHsvd+vioQY8thr7t+W5ZiDwkIUWReTGssrfMk7fhSHrxLoWPJm7QtNdxq+9UEXB+
-         IA5ONAt16C35ydORe6vAwJi2QXq41yPmdVbeOsm3jxZxHepApAnTWLFkTUv6VttyOzld
-         fisQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWK2rfU2/MwDlGEzqzY6KVwZmSMV84gmBWkySq2k64HQQ+qz5DU/cCAxoskBrQwlkAckqra/Q78aqpw+lEvUJXALBilxV52kjjNDQ==
-X-Gm-Message-State: AOJu0Yz4L//2JYcuYtvameYXjqVeWqrturDpR8qHgv5gTS8oBTCZMQsi
-	26nydZFdfY4J23IJsEEhWq/SR+rw2lKFuE10YPMRisw8OMT8yTri
-X-Google-Smtp-Source: AGHT+IG00Wt0n2r2pqLN7EQ2e8M8e0/dFzf14vl8JKN+kK6YMyeoSPUmX1bX3H+8MFFnq2PgWuKjtA==
-X-Received: by 2002:aa7:d3cc:0:b0:561:3006:4df0 with SMTP id o12-20020aa7d3cc000000b0056130064df0mr1814167edr.42.1707913923465;
-        Wed, 14 Feb 2024 04:32:03 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVcpYnaEk1/psLR8AjkN8bKHxpB7XDXOUKqgbwYe8viL2ARjnjKr14OgYdPBBConLASo4mvQIQyXaUSwPjkPTG+W/qaOMkukIk+P9pUtMf2njdlD2SkVgr1F2DvuvBD6ReJLssf3QFo6Q5oPUq9YvKQUCMIoKj/E6JxS0/PPAnAvH4S0lcdpCB+CbbnebFR8zvl4UOJ5FZ06i8WfOWZHg5ZzO3+svNMf9bL+M8WT7zI9DBag0AcCUSBoEaVq5sPB6mQxK4Ul+wPgRybLHMIPQPbI+ATXYDsJnd444ALvNe2H9vnGE5GxiQMmvkqy7opkLMJ1zBk0fLN1yz98WeIVfBHzjjV/KA+v0tZkYi5NZ4AzF4TKu60GqW/9Sit2wnNGA==
-Received: from ?IPv6:2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47? (p200300f6ef1b2000944ccbc71e1c2c47.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47])
-        by smtp.gmail.com with ESMTPSA id es27-20020a056402381b00b00561f2b109cfsm1495617edb.76.2024.02.14.04.32.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Feb 2024 04:32:02 -0800 (PST)
-Message-ID: <be58e8b4716dae855843645de59671309352eb41.camel@gmail.com>
-Subject: Re: [PATCH v11 7/7] iio: adc: adi-axi-adc: move to backend framework
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>, nuno.sa@analog.com
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Lars-Peter
- Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>,  Jonathan Cameron <jic23@kernel.org>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
- Frank Rowand <frowand.list@gmail.com>, Olivier Moysan
- <olivier.moysan@foss.st.com>
-Date: Wed, 14 Feb 2024 13:35:22 +0100
-In-Reply-To: <CAHp75VfiM0cqFsdN3nQQzZkea+cKfbFKkSM1J4LdE3LYGFedWg@mail.gmail.com>
-References: <20240210-iio-backend-v11-0-f5242a5fb42a@analog.com>
-	 <20240210-iio-backend-v11-7-f5242a5fb42a@analog.com>
-	 <CAHp75VfiM0cqFsdN3nQQzZkea+cKfbFKkSM1J4LdE3LYGFedWg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3 
+        d=1e100.net; s=20230601; t=1707914148; x=1708518948;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KuQsJK3xx4vzJDNKSqqrpk7uzcrIY6fu81NCi7MHe2w=;
+        b=s8OEw3w9haVTllmK1LPrPDFTDxFecNkzyMeL8A5MXh4lO39FDL5p/1Q6tYZ0cCEsT6
+         KCOOqDJzPAe8crDsRka4PRjpHRziLe3pItojNODyGDu7gcIC1ljm3HyeFsahiUGfgQNY
+         ruQ9bTLNzXuaO1POOilKrzkh8bbsltQqR9+H/tG6XB0jwa1lXD35NAGQWJd4Iko6Tsiv
+         fkfsCiKac46yCuMmVn+2CFcJguhWQAHy30t8WtusURaUAZk3o5YzZefeCw4gOO0/mD7N
+         YHoRH4WBzr86Dk82I+IXOyvZchEq7ja+FkzHUQBEiNhIIT+5EHPHu8VP0TxUBjdUql1O
+         Ualg==
+X-Forwarded-Encrypted: i=1; AJvYcCUaQw52kWuF82VbaukUR2sxp7dkJcD3pWx6eDMo8m3NyyWneAy3W4KOheHKnnMuLq7YRNl+k/hwzZQslW7qnPK7gpDDwE98cvJEkiQRdRKb99ooeMb335uz7twpODLswJxGgiub/BeKbw==
+X-Gm-Message-State: AOJu0Ywj0YE9BDTLIHURsOHpQjbd0lYPambvJA0P2rzwVtEz2kHnW+ZA
+	COLRO7s9r9GjoYLJ74YTac9F8ZxodGMa2h3JFE8ihr4DFPb0jtSLtwAk+XmCw3+l0GWJUjy6gyl
+	ljbVnSZ7Av10QXYaPqvCl2eqVSz1aUUmsE62Rcg==
+X-Google-Smtp-Source: AGHT+IER90ym3bDK7JudSoNNudRE0z+M1P+V1ivLZu6NX3UJfAamDs2NQ97Mj+3rkSkXqNsZ2saJSmewlkm0u0vVcRk=
+X-Received: by 2002:a17:90a:5d08:b0:298:a9a5:48ba with SMTP id
+ s8-20020a17090a5d0800b00298a9a548bamr2462478pji.20.1707914147948; Wed, 14 Feb
+ 2024 04:35:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20240210204606.11944-1-aford173@gmail.com> <20240210204606.11944-3-aford173@gmail.com>
+ <20240214121448.451e2e1c@booty>
+In-Reply-To: <20240214121448.451e2e1c@booty>
+From: Adam Ford <aford173@gmail.com>
+Date: Wed, 14 Feb 2024 06:35:36 -0600
+Message-ID: <CAHCN7xKa3svzoRiQZ=KO-zwpmXL7Dw7hOp7B0MF-2EQCQ=f-eA@mail.gmail.com>
+Subject: Re: [PATCH V4 2/6] phy: freescale: add Samsung HDMI PHY
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: linux-arm-kernel@lists.infradead.org, marex@denx.de, 
+	aford@beaconembedded.com, Lucas Stach <l.stach@pengutronix.de>, 
+	Richard Leitner <richard.leitner@skidata.com>, Marco Felsch <m.felsch@pengutronix.de>, 
+	Alexander Stein <alexander.stein@ew.tq-group.com>, 
+	Frieder Schrempf <frieder.schrempf@kontron.de>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	NXP Linux Team <linux-imx@nxp.com>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, 2024-02-11 at 18:52 +0200, Andy Shevchenko wrote:
-> On Sat, Feb 10, 2024 at 10:57=E2=80=AFPM Nuno Sa via B4 Relay
-> <devnull+nuno.sa.analog.com@kernel.org> wrote:
-> >=20
-> > From: Nuno Sa <nuno.sa@analog.com>
-> >=20
-> > Move to the IIO backend framework. Devices supported by adi-axi-adc now
-> > register themselves as backend devices.
->=20
-> ...
->=20
-> > =C2=A0struct adi_axi_adc_state {
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct regmap=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *regmap;
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct device=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *dev;
-> > =C2=A0};
->=20
-> So, not sure you need these two as one can be derived from the other one
-> (IIUC).
-> In any case, it may be amended in a follow up.
+On Wed, Feb 14, 2024 at 5:14=E2=80=AFAM Luca Ceresoli <luca.ceresoli@bootli=
+n.com> wrote:
+>
+> On Sat, 10 Feb 2024 14:45:58 -0600
+> Adam Ford <aford173@gmail.com> wrote:
+>
+> > From: Lucas Stach <l.stach@pengutronix.de>
+> >
+> > This adds the driver for the Samsung HDMI PHY found on the
+> > i.MX8MP SoC. Based on downstream implementation from
+> > Sandor Yu <Sandor.yu@nxp.com>.  According to the TRM, the PHY
+> > receives parallel data from the link and serializes it.  It
+> > also sets the PLL clock needed for the TX serializer.
+> >
+> > Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com> (v2)
+> > Tested-by: Richard Leitner <richard.leitner@skidata.com> (v2)
+> > Co-developed-by: Marco Felsch <m.felsch@pengutronix.de>
+> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> > Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > Tested-by: Frieder Schrempf <frieder.schrempf@kontron.de> # Kontron BL
+> > Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> > Signed-off-by: Adam Ford <aford173@gmail.com>
+>
+> [...]
+>
+> > +static int phy_clk_register(struct fsl_samsung_hdmi_phy *phy)
+> > +{
+> > +     struct device *dev =3D phy->dev;
+> > +     struct device_node *np =3D dev->of_node;
+> > +     struct clk_init_data init;
+> > +     const char *parent_name;
+> > +     struct clk *phyclk;
+> > +     int ret;
+> > +
+> > +     parent_name =3D __clk_get_name(phy->refclk);
+> > +
+> > +     init.parent_names =3D &parent_name;
+> > +     init.num_parents =3D 1;
+> > +     init.flags =3D 0;
+> > +     init.name =3D "hdmi_pclk";
+> > +     init.ops =3D &phy_clk_ops;
+> > +
+> > +     phy->hw.init =3D &init;
+> > +
+> > +     phyclk =3D devm_clk_register(dev, &phy->hw);
+> > +     if (IS_ERR(phyclk))
+> > +             return dev_err_probe(dev, PTR_ERR(phyclk),
+> > +                                  "failed to register clock\n");
+> > +
+> > +     ret =3D of_clk_add_provider(np, of_clk_src_simple_get, phyclk);
+>
+> As per my v8 review, this function is deprecated:
+> https://elixir.bootlin.com/linux/v6.8-rc4/source/drivers/clk/clk.c#L4881
+>
 
-Yeah, I think you're right and I never really thought about it but one can =
-use
-regmap_get_device()...=20
+When I found out that the entire driver I pulled was the wrong
+starting point, and noticed that this version had very little in
+common with the previous one, I didn't review the feedback knowing tha
+tI would have thrown away any of the tags from it since it was such a
+drastic change.  I should have caught it, but I missed it, so
+apologies for that.  I will be sure to include this feedback in the
+next attempt.
 
->=20
-> ...
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fsleep(10000);
->=20
-> As I pointed out, the comment is good to have. Maybe you can add it
-> when reducing the timeout in a follow up patch...
->=20
 
-I did not included because there's no documentation for the delay. But I'll=
- try
-to ask around about...
+> However:
+>
+> [Tested using Avnet MSC SM2S-IMX8PLUS SoM on Avnet MSC SM2-MB-EP1]
+> Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
-- Nuno S=C3=A1
+Thanks for testing.
+
+adam
+>
+> Luca
+>
+> --
+> Luca Ceresoli, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
 
