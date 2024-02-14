@@ -1,206 +1,116 @@
-Return-Path: <devicetree+bounces-41617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D876854790
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 11:52:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 191FA8547A0
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 11:59:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 027A32860FB
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 10:52:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA4DE28194B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 10:59:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89AF61865C;
-	Wed, 14 Feb 2024 10:52:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E4EC18E0F;
+	Wed, 14 Feb 2024 10:58:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="oAl2KAv9"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="k1bT8Ze6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0F0C18638;
-	Wed, 14 Feb 2024 10:52:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67B2D19473;
+	Wed, 14 Feb 2024 10:58:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707907963; cv=none; b=auQK4CbBVCtnFxXyaFNxp7Qz0o6RDtewRKcYAHt0T6PquO2ULtDHtwCdlE/EgNQBWUXplcRtB7G6MUgCC57lm3IJxFQjBHFcjGT+yZcoR9wcE8mFWTjyO2CDKFVlxjoMhrjSSh+O+SJd/w1Gsvq9r0QSwAtl+iMSNo7q/PRjnXg=
+	t=1707908336; cv=none; b=Jlf3x4hxeoe7JI3+G/kPB7If4y1gKCh0AXleD02IRXHUPgIIVKYqCe6so5DdcsEKIE5cwHFZRqcjeDZNKaKyEG7AtxmLt4GPEI8hZm5L+xWozaJMEHMQ1XN/bh8iSMbkUfSAzgIHow3TFsf/pcl3D6gZVruNC+wNdSjoaS9Ni9M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707907963; c=relaxed/simple;
-	bh=aBaw8zzSOYKdXSP4WFB7oN6QAraRJxc+J8ue3z3jQPg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H4Dd9WQrhoMgBg4BXPSOrdBflCnsSl+eNtQ0IlrT1ydpd47KQ0jmiQRJ7yjZRbP6+Xh9yXwwvlMLGCUVjBesrE114cg28Lwo5rtp5NYF9FEOeK4pdoq7SjpU2i5oQEUHP5D5vg8uOHeXPTtIg0fp/9Lah9HRYuqjC22uiH+HZ2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=oAl2KAv9; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id EEE8120272;
-	Wed, 14 Feb 2024 11:52:30 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1707907951;
-	bh=3piN2479mTbGHmItuCrKboZS6ZZmmMJocdeKlE4lYoE=; h=From:To:Subject;
-	b=oAl2KAv9Kq22FWnYKpuVm7S8yQAERPms1HXNxtnhCAb1VQsKEm6h+7T4DoHJJ83p+
-	 Pr/E70uV1Q4fDGsd5DmS1l3z9qS5LELsTRZ0rGOUlAghjM2qvRi2iLGQnle0ANkJdR
-	 ZHtgIMsf479bU24I5iHEXsJpqRwRsI2/9GjWLsAFD539zRjjzOYXhxTOyaxEojcSSN
-	 wUzHKVPplmA5iYL5xyGZipDc0nOVO5ID5rIWB7gZ25qMylzIuo9C61U1htvN2BL+b9
-	 JxI6Wu6H+V9L1R34yQyfU4Fcbm6rWXls6lqLsFPUQ484YJQGC6rPsqXtmFkGAYPihJ
-	 SEIXw8b8X/2Fg==
-Date: Wed, 14 Feb 2024 11:52:23 +0100
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Roland Hieber <rhi@pengutronix.de>,
-	Linux Regressions <regressions@lists.linux.dev>
-Cc: Hiago De Franco <hiagofranco@gmail.com>,
-	Marco Felsch <m.felsch@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>, kernel@pengutronix.de,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: MXSFB error: -ENODEV: Cannot connect bridge
-Message-ID: <20240214105223.GA78582@francesco-nb>
-References: <34yzygh3mbwpqr2re7nxmhyxy3s7qmqy4vhxvoyxnoguktriur@z66m7gvpqlia>
- <20240212110706.ibrreoj2wgzhltyw@pengutronix.de>
+	s=arc-20240116; t=1707908336; c=relaxed/simple;
+	bh=qxEx1is+rHLu8sXjAQxdC0cDa5bG4byiwMMFn1yF/Do=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=QE+QH5Tg3zOACMMlMLxKCxENMlUB1f+ysefYgNuBc1Qa98Xhzpjd9R4s4LXMMHk6Eyl2Tf/4dLoUrv70PTg4oOxdMlH2Ik4BjYnjGQqjVUrbMY+muAGSgGd+EiaHaUe7byn8POW9tmnnO0rajMdk6nkX8bng+cL6rtcSpgCaxyg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=k1bT8Ze6; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41EAwlDe030229;
+	Wed, 14 Feb 2024 04:58:47 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1707908327;
+	bh=1ZaRMwxoLh/RwYheULKH0st1GQ8R7ktaclahghQmrc8=;
+	h=From:To:CC:Subject:Date;
+	b=k1bT8Ze6sybteJ+7BWD14hefdAtyN+TElWOzWmmGYT9U0IZuHcJExSuWvPjkuMKw1
+	 HtxNR0aATfp0X6TE+xqBr0BdLzmpVKOP0DRWpmMVoe9l8gClP5jnhroms4MI1CKd6v
+	 NnBo0UaL7bnkKuAZaShaYC+ivH3mjAu9gwc8TpZE=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41EAwlo1121623
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 14 Feb 2024 04:58:47 -0600
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 14
+ Feb 2024 04:58:47 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 14 Feb 2024 04:58:47 -0600
+Received: from localhost (a0498981-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.68.216])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41EAwkCu070774;
+	Wed, 14 Feb 2024 04:58:47 -0600
+From: Bhavya Kapoor <b-kapoor@ti.com>
+To: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <b-kapoor@ti.com>
+Subject: [PATCH v3 0/4] arm64: dts: ti: Modify pinmux for wkup_uart0 and mcu_uart0
+Date: Wed, 14 Feb 2024 16:28:42 +0530
+Message-ID: <20240214105846.1096733-1-b-kapoor@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240212110706.ibrreoj2wgzhltyw@pengutronix.de>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-+ Linux regression.
+WKUP_PADCONFIG registers for wkup_uart0 and mcu_uart0 lies under
+wkup_pmx2 for J7200. Thus, modify pinmux for both of them. Also,
+remove the redundant clock-frequency property from mcu_uart0 node.
 
-This is a regression on v6.8-rc1.
+Only Tx and Rx Signal lines for wkup_uart0 are brought out on
+J721S2 Common Proc Board and J784S4 EVM, but CTS and RTS signal lines
+are not brought out. Thus, remove pinmux for CTS and RTS signal lines
+for wkup_uart0 in J721S2 and J784S4.
 
-On Mon, Feb 12, 2024 at 12:07:06PM +0100, Roland Hieber wrote:
-> On Thu, Feb 08, 2024 at 12:58:02PM -0300, Hiago De Franco wrote:
-> > Hello all,
-> > 
-> > while doing some tests with kernel v6.8-rc3 and Colibri iMX7D, we
-> > noticed the following error:
-> > 
-> > [    0.432547] mxsfb 30730000.lcdif: error -ENODEV: Cannot connect bridge
-> > 
-> > This was introduced by commit edbbae7fba495284f72f05768696572691231558
-> > ("ARM: dts: imx7: add MIPI-DSI support"). This patch is routing the
-> > lcdif to the mipi_dsi_in_lcdif endpoint, however we do not have the DSI
-> > pins available in our edge connector. Instead, we use the parallel RGB
-> > LCD interface directly with, as example, an external LVDS transmitter:
-> > 
-> > &lcdif {
-> > ...
-> > 	status = "disabled";
-> > 
-> > 	port {
-> > 		lcdif_out: endpoint {
-> > 			remote-endpoint = <&lcd_panel_in>;
-> > 		};
-> > 	};
-> > };
-> > 
-> > By applying the following patch, the issue is gone and the LVDS works
-> > again:
-> > 
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx7s.dtsi b/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
-> > index ebf7befcc11e..9c81c6baa2d3 100644
-> > --- a/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
-> > +++ b/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
-> > @@ -834,16 +834,6 @@ lcdif: lcdif@30730000 {
-> >  					<&clks IMX7D_LCDIF_PIXEL_ROOT_CLK>;
-> >  				clock-names = "pix", "axi";
-> >  				status = "disabled";
-> > -
-> > -				port {
-> > -					#address-cells = <1>;
-> > -					#size-cells = <0>;
-> > -
-> > -					lcdif_out_mipi_dsi: endpoint@0 {
-> > -						reg = <0>;
-> > -						remote-endpoint = <&mipi_dsi_in_lcdif>;
-> > -					};
-> > -				};
-> >  			};
-> >  
-> >  			mipi_csi: mipi-csi@30750000 {
-> > @@ -895,22 +885,6 @@ mipi_dsi: dsi@30760000 {
-> >  				samsung,esc-clock-frequency = <20000000>;
-> >  				samsung,pll-clock-frequency = <24000000>;
-> >  				status = "disabled";
-> > -
-> > -				ports {
-> > -					#address-cells = <1>;
-> > -					#size-cells = <0>;
-> > -
-> > -					port@0 {
-> > -						reg = <0>;
-> > -						#address-cells = <1>;
-> > -						#size-cells = <0>;
-> > -
-> > -						mipi_dsi_in_lcdif: endpoint@0 {
-> > -							reg = <0>;
-> > -							remote-endpoint = <&lcdif_out_mipi_dsi>;
-> > -						};
-> > -					};
-> > -				};
-> >  			};
-> >  		};
-> > 
-> > I would like to know your opinion about this patch before sending it,
-> > does it makes sense for you? I understand that routing to endpoint
-> > should be done in the SoM device tree, so we are free to rout other
-> > endpoint without issues.
-> 
-> As far as I understood, the LCDIF -> DSI connection is always present in
-> the SoC. Can you overwrite the routing in your dts like this:?
-> 
->     &lcdif_out_mipi_dsi {
->         remote-endpoint = <&lcd_panel_in>;
->     };
-> 
-> I'm not sure what is the best default solution here for imx7s.dtsi. Also
-> the labels don't work out in that case, this could be improved.
+v1 Link : https://lore.kernel.org/all/20240208110602.931573-1-b-kapoor@ti.com/
+v2 Link : https://lore.kernel.org/all/20240212104417.1058993-1-b-kapoor@ti.com/
 
-For sure for something to be defined a solution it should not introduce
-regressions :-)
+Changelog v1->v2:
+ - Divided Pinmux and clock frequency patch(1/3) for J7200 into 2 patches
+ - Change commit message to include wkup_uart0 for referring to the instance
 
-This commit makes other boards not work anymore, specifically this
-reports is about colibri-imx7.
+Changelog v1->v2:
+ - Added Fixes tag in Commit message
 
-With that said, the following patch solves the issue
+Rebased to 20240214
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx7-colibri.dtsi b/arch/arm/boot/dts/nxp/imx/imx7-colibri.dtsi
-index 9fe51884af79..966ad13e7c78 100644
---- a/arch/arm/boot/dts/nxp/imx/imx7-colibri.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx7-colibri.dtsi
-@@ -536,12 +536,15 @@ &lcdif {
-        status = "disabled";
+Bhavya Kapoor (4):
+  arm64: dts: ti: k3-j7200-common-proc-board: Modify Pinmux for
+    wkup_uart0 and mcu_uart0
+  arm64: dts: ti: k3-j7200-common-proc-board: Remove clock-frequency
+    from mcu_uart0
+  arm64: dts: ti: k3-j721s2-common-proc-board: Remove Pinmux for CTS and
+    RTS in wkup_uart0
+  arm64: dts: ti: k3-j784s4-evm: Remove Pinmux for CTS and RTS in
+    wkup_uart0
 
-        port {
--               lcdif_out: endpoint {
-+               lcdif_out: endpoint@0 {
-+                       reg = <0>;
-                        remote-endpoint = <&lcd_panel_in>;
-                };
-        };
- };
+ .../boot/dts/ti/k3-j7200-common-proc-board.dts | 18 +++++++++---------
+ .../dts/ti/k3-j721s2-common-proc-board.dts     |  2 --
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts       |  2 --
+ 3 files changed, 9 insertions(+), 13 deletions(-)
 
-+/delete-node/ &mipi_dsi_in_lcdif;
-+
- /* Colibri PWM<A> */
- &pwm1 {
-        pinctrl-names = "default";
-
-
-However, ... I do not really like the delete node, but it's required to
-prevent this error:
-
-arch/arm/boot/dts/nxp/imx/imx7s.dtsi:908.37-911.9: Warning (graph_endpoint): /soc/bus@30400000/dsi@30760000/ports/port@0/endpoint@0: graph connection to node '/soc/bus@30400000/lcdif@30730000/port/endpoint@0' is not bidirectional
-
-With that said, unless you have a better solution I would just send a
-revert for your change.
-
-Francesco
+-- 
+2.34.1
 
 
