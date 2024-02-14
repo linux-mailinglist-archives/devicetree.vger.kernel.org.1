@@ -1,142 +1,150 @@
-Return-Path: <devicetree+bounces-41845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 733C285576E
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 00:46:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3308685577E
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 00:51:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C1B3BB27E6D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 23:46:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 82843B21549
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 23:51:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEDAD145326;
-	Wed, 14 Feb 2024 23:45:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA3B01420D1;
+	Wed, 14 Feb 2024 23:51:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b="PGF6LE/z";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="KyU24nWb"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="OM9jhaoz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh3-smtp.messagingengine.com (fhigh3-smtp.messagingengine.com [103.168.172.154])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0701D1420DD;
-	Wed, 14 Feb 2024 23:45:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.154
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6F921420B8
+	for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 23:51:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707954348; cv=none; b=DU/niFBcHAWdgB1ggSPXcC6v9ZmCHa3Lej//ZYhhadgx02aEqx/Qn9k1aqznmT9QoNZqS+b9JkmThK+/jX10UVVGJpWwTzJsibEXP+JZ3nk2OKzp40qBmPkGmuzNtNZ88g1zrLVr9J3aYDSfplj9qFAH8N7m2OP81Uup/9gEdP0=
+	t=1707954682; cv=none; b=PYyn1zpFRwSH6V8GfL2kxgXkYqJ2ybHDU3fgvB/L0v5aYRg8r3mmZBI1dlBaV33EBesSRIIWoX7Ypx9rNFl1G9ADm/ldm7p6notLeNu88QimqPxQvy0L7x3w4PGMsmE/+LyJAYfQWF/tHY8WWCjfdhxDGM8+z4vNiW58INN+O/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707954348; c=relaxed/simple;
-	bh=fi7gfzCCbQQA/Oqoj1M8vAgZsO6JfkjOligTB2EWADM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RpnQRMJ2+t6MUK3E5Ze7l+yTS7GkaIKP+ozgK0qGOIQQl3c/R3/poN9e+Jf4Z8fwoADR741acM3Kd0JsshmZE2MpT2Ln96oH7Je7koBkXTr3IoB3V78p116wRjf3aJmpaF7f0JXgBuU6ZPCv6/HxkC2Qxwg8dm0vstrTAzCCAOI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=feathertop.org; spf=pass smtp.mailfrom=feathertop.org; dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b=PGF6LE/z; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=KyU24nWb; arc=none smtp.client-ip=103.168.172.154
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=feathertop.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=feathertop.org
-Received: from compute7.internal (compute7.nyi.internal [10.202.2.48])
-	by mailfhigh.nyi.internal (Postfix) with ESMTP id D2E1C11400C2;
-	Wed, 14 Feb 2024 18:45:45 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute7.internal (MEProxy); Wed, 14 Feb 2024 18:45:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=feathertop.org;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm2;
-	 t=1707954345; x=1708040745; bh=AQeY3wowKfmbs6NAg7U/aU+sEcmVoRrQ
-	g5C1WLQ/QO0=; b=PGF6LE/zkDkCYCDm/EJaL5w0K9+oXiJY11zZWFAJm3A6x5OT
-	hvTDzTGTGh0JHAru/3tvOouhTIhZFaS+gVZT8kVD0zNj9St7d/6JTQFekOrZUb0C
-	Z+e1VrbB2701a+jOuW3nmiGm1q/GBlU7ZITwVj8V8wju5Q4Mte9N4mCHiPOvQJQ/
-	ArO9eKyHPz6vu66mI0RGfx5mD28KM/13hWHVsbPjr4mn9J+NjsS7YTjTFwT+FvsN
-	L5ED6enZbWdntfJw2HApjRHPMNt9JQX0TzceikeelyLC3Z0pC/m0v9SX+rSE8245
-	pSj0l28Lm40zH2H17cdqwfkLu0F//GzoglI5kg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1707954345; x=
-	1708040745; bh=AQeY3wowKfmbs6NAg7U/aU+sEcmVoRrQg5C1WLQ/QO0=; b=K
-	yU24nWblowt5brepYqhv6N5qd26FZXoSlN6P220E81HW30koTR1imPi/acCiHEHr
-	hl916m7X39ViLbAN2AQSw/fLghKny2RF0RUVSeK+gIsziKCgmebk5JQLPohS1uwz
-	kQUBE8CG8OQEzHNsanpyskaL1aojThbyztqU/0akmx3pifHd/6jt3vCEAFsj3QWX
-	rsReDrfy7N30/LjUxfGTkkPdXcC7FQ5h2XGqt1AKmdZIZ6beJud+/yjgPjvrEJnu
-	AjytQUp/aVThVCxwvS3X7FKjQhuKvHHl+V9zf9o+lAlqW96vn8mqqMHKAIVXjrnc
-	KRU1P5rDWHiDI9j+FTidg==
-X-ME-Sender: <xms:qVDNZWHQoDROPXgJowx7MWn4lnle8T_fjnl0MBg-t3kc9gHdJp7d6w>
-    <xme:qVDNZXX7EWNaHN_r_cOAZ8du8E8mO7O0XI2J51b4Izy8Ek4IBS9b5umgbpatRz7LN
-    hH6g6-icw>
-X-ME-Received: <xmr:qVDNZQKHz5PInv9C4CtVaj7WMam4j8_U0e0maZkrZ2v8vnfIcBqM9FkcgFyNEsLa4CopB_VbGk-Eb3XdjiP8tD4t40AW0ZfY1B1oFQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudekgdduvdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefkffggfgfuvfevfhfhjggtgfesthejredttddvjeenucfhrhhomhepvfhimhcu
-    nfhunhhnuceothhimhesfhgvrghthhgvrhhtohhprdhorhhgqeenucggtffrrghtthgvrh
-    hnpeehhefglefhffegfeekgfejleekudelfeevhffgkefgteeftedvieegkeejvdffheen
-    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehtihhmse
-    hfvggrthhhvghrthhophdrohhrgh
-X-ME-Proxy: <xmx:qVDNZQG0Y9kzOgZRWdfoIbd344AzibkCTxqA8mTm1LSbCuWceL5HmA>
-    <xmx:qVDNZcVOXC4Vao3e_kMJkXNRwmwU2DBBJwMdTdk8TB8cT1C_TcaMsA>
-    <xmx:qVDNZTMklaBxEWqSaPKDzG3MXZ-cQnx0b6uB51J3fCxR56mIGKOhpw>
-    <xmx:qVDNZdV4r5lJSb-FppgdDlv1dx_Q0-vgCFIojEWSqUCM1wCAIFQSHg>
-Feedback-ID: i1f8241ce:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 14 Feb 2024 18:45:41 -0500 (EST)
-Message-ID: <0e6cee7c-9726-4d45-a06a-a8882e271e7b@feathertop.org>
-Date: Thu, 15 Feb 2024 10:45:39 +1100
+	s=arc-20240116; t=1707954682; c=relaxed/simple;
+	bh=gC+EHOPYgEnF4B4thgpejb8qEq5JPx1Zww7p4djo4U8=;
+	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eX/U2ih+Ln4uh21+JchetcDKxmXz57e/FPS24BjDWYYsGc6z5nRKSEJBOqddzrAYSujJd95MQFkgFlt7xOAeCP6MkmYYDItU0p/Vk9qnbL7aE6pVpAuBLsUchqkE5Gi+7OYvj9nAxc0+MlSb5V7wfuJWLQquWN6ei7J6CcjzSds=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=OM9jhaoz; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5128812662eso20438e87.0
+        for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 15:51:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1707954678; x=1708559478; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:user-agent
+         :from:references:in-reply-to:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gC+EHOPYgEnF4B4thgpejb8qEq5JPx1Zww7p4djo4U8=;
+        b=OM9jhaozeUM0qJdXcnYNfoZ5rOWPSyeUqfGlWFjFhhuUw+PFX71ToeEPbz3XF29S+i
+         QJpWT9uDbkEJRy36Nxtcrp6Q/cpe26tKTXHvQJY3p+2enE+OIX84Afhks6re1yumjvZM
+         DaVoJS0iLYfFeO9yS74w156tz+VGL/BwmeVCc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707954678; x=1708559478;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:user-agent
+         :from:references:in-reply-to:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=gC+EHOPYgEnF4B4thgpejb8qEq5JPx1Zww7p4djo4U8=;
+        b=nQRXYZdlsnt4kRbyz/IFjX8KGv125YmbJCIO56iZ2cALkxJh4+qfoC5NUjjoFbXzX6
+         a6IUMnQlOnwjIInP5N/3p72mTSYUPce28WI6HgMoCavu7HvMX74VuortZg4AK+e+Tw0T
+         N29MAHRjPIwlcIF/keJB62DtIrhjm4AXPMKZ4fY5JkHlXUp+TFrF6LxyQKVpP9HZemo8
+         KmEe8RoRPBh/UA+gt9YxoeGehMeNJsoaIYJCYtaNOesQofvIm2LrCaiLuhOWLjSi5OWV
+         tBRd8xo7G0xM1KHiR6Pyygm42tPOgSYIvUsndHOB1MulQ4GNzrR5RDK9RVGmYGapgsl9
+         5IWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVS6dl+sgaYt0PdLbXZ8iI+nXYwOJmkQqajURQpk8IiQ3w+R3JONEe5LwEcXAJoB13O0Kx2MtUHomuJ1D/8Jz+h8LK1dPwmePHMBA==
+X-Gm-Message-State: AOJu0YxTtKmwkMKSEHXPTSl5I5R515/TB01sJMwPP22vDZb1PTMhcpBP
+	cR7cU+KVKzJIBEP7my7UykgNhJNBxr8J4gH+AT4TbuFL52AMnnPDDWg5+ypwJ9YJCb6BzjVAVaz
+	1KLXNF8bkSntWewB4wdXIv60rpFdTh2y/Vzmg
+X-Google-Smtp-Source: AGHT+IHY6HUhss7mHx1ExihADt6J1OI5zkXYcKo2xuLwjQ63JGNlMqWZ5oVvebM0eOWq56qXmv8DOgdu6dbCXc/ooo8=
+X-Received: by 2002:a05:6512:3ca5:b0:511:87c6:3060 with SMTP id
+ h37-20020a0565123ca500b0051187c63060mr321912lfv.12.1707954678054; Wed, 14 Feb
+ 2024 15:51:18 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 14 Feb 2024 15:51:17 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: arm: rockchip: Correct vendor for Orange
- Pi RK3399 board
-Content-Language: en-US
-To: linux-rockchip@lists.infradead.org
-Cc: Andy Yan <andyshrk@163.com>, Chris Morgan <macromorgan@hotmail.com>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Jagan Teki <jagan@edgeble.ai>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Ondrej Jirman <megi@xff.cz>, Rob Herring <robh+dt@kernel.org>,
- Tianling Shen <cnsztl@gmail.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240214040731.3069111-1-tim@feathertop.org>
- <20240214040731.3069111-2-tim@feathertop.org>
-From: Tim Lunn <tim@feathertop.org>
-In-Reply-To: <20240214040731.3069111-2-tim@feathertop.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <CAD=FV=UuunNnXJ0kAzRPVy0DX7Wv2eQOa-fMJQ-aKtaGnyQaQA@mail.gmail.com>
+References: <20240210070934.2549994-1-swboyd@chromium.org> <20240210070934.2549994-5-swboyd@chromium.org>
+ <CAD=FV=UuunNnXJ0kAzRPVy0DX7Wv2eQOa-fMJQ-aKtaGnyQaQA@mail.gmail.com>
+From: Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date: Wed, 14 Feb 2024 15:51:17 -0800
+Message-ID: <CAE-0n51b9=BJv6PMmsdLDT7tcgKT63qrqNknp-CQd5BOb1dhjA@mail.gmail.com>
+Subject: Re: [PATCH 04/22] usb: core: Set connect_type of ports based on DT node
+To: Doug Anderson <dianders@chromium.org>
+Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	patches@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Pin-yen Lin <treapking@chromium.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Matthias Kaehlcke <mka@chromium.org>, linux-usb@vger.kernel.org, 
+	maciek swiech <drmasquatch@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Quoting Doug Anderson (2024-02-13 16:03:11)
+> Hi,
+>
+> On Fri, Feb 9, 2024 at 11:09=E2=80=AFPM Stephen Boyd <swboyd@chromium.org=
+> wrote:
+> >
+> > When a USB hub is described in DT, such as any device that matches the
+> > onboard-hub driver, the connect_type is set to "unknown" or
+> > USB_PORT_CONNECT_TYPE_UNKNOWN. This makes any device plugged into that
+> > USB port report their 'removable' device attribute as "unknown". Improv=
+e
+> > the connect_type attribute for ports, and in turn the removable
+> > attribute for USB devices, by looking for child devices with a reg
+> > property or an OF graph when the device is described in DT.
+> >
+> > If the graph exists, endpoints that are connected to a remote node must
+> > be something like a usb-{a,b,c}-connector compatible node, or an
+> > intermediate node like a redriver, and not a hardwired USB device on th=
+e
+> > board. Set the connect_type to USB_PORT_CONNECT_TYPE_HOT_PLUG in this
+> > case because the device is going to be plugged in. Set the connect_type
+> > to USB_PORT_CONNECT_TYPE_HARD_WIRED if there's a child node for the por=
+t
+> > like 'device@2' for port2. Set the connect_type to USB_PORT_NOT_USED if
+> > there isn't an endpoint or child node corresponding to the port number.
+>
+> The above sounds good, but then I look at patch #18 ("dt-bindings:
+> chrome: Add binding for ChromeOS Pogo pin connector") and patch #22
+> ("arm64: dts: qcom: sc7180-trogdor: Wire up USB and DP to
+> usb-c-connectors") and it makes my Spidey Sense tingle.
+>
+> Specifically, I _think_ if a port is "hard wired" that can sometimes
+> tell the system that the port is a bit more trusted. In the case of
+> the "pogo" pins on detachables, though, I don't _think_ there's
+> anything that prevents someone from making a "pogo to USB A port"
+> adapter and then you could plug anything you wanted into the pogo
+> port. If there's any extra trust given to these "internal" ports a
+> nefarious attacker could presumably abuse that trust for the pogo
+> pins.
 
-On 2/14/24 15:07, Tim Lunn wrote:
-> The vendor for this board was incorrectly listed as Rockchip. Fix this
-> now while they are not used anywhere, in the future they may be used by
-> bootloader to select dts.
+The pogo pins on detachables are connected via the OF graph, so they are
+only ever going to be either "not connected" or "hotplug". They can't
+become "hard wired" because they're not a child node with a reg property
+corresponding to the USB port.
+
 >
-> Update the vendor to Xunlong.
+> I have no idea if this is a realistic concern or not. I'm about 95%
+> sure that hardwired "PCIe" ports get extra trust and get "deferred
+> IOMMU flush" enabled and, in the case of PCIe, that actually is a real
+> security hole. For USB, though, I think the system is more isolated by
+> the USB host controller so I'm not sure that there is any extra trust
+> given to "hard wired" ports. ...so maybe the answer here is to just
+> ignore my rambling. ...or maybe the answer here is that everything is
+> fine but patches #18 and #22 should be modified not to cause the pogo
+> pins to be considered as "hard wired" since they really aren't...
 >
-> Signed-off-by: Tim Lunn <tim@feathertop.org>
-Fixes: 08b64bd2c681 ("arm64: dts: rockchip: Add support for the Orange 
-Pi RK3399 board")
-> ---
->
->   Documentation/devicetree/bindings/arm/rockchip.yaml | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> index 5cf5cbef2cf5..29f922f3ca4e 100644
-> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> @@ -626,9 +626,9 @@ properties:
->             - const: openailab,eaidk-610
->             - const: rockchip,rk3399
->   
-> -      - description: Orange Pi RK3399 board
-> +      - description: Xunlong Orange Pi RK3399 board
->           items:
-> -          - const: rockchip,rk3399-orangepi
-> +          - const: xunlong,rk3399-orangepi
->             - const: rockchip,rk3399
->   
->         - description: Phytec phyCORE-RK3288 Rapid Development Kit
+
+Pogo pins should be considered hot plug with this patch series, but I
+will double check that I didn't mess up that logic.
 
