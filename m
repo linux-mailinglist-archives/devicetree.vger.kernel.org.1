@@ -1,178 +1,129 @@
-Return-Path: <devicetree+bounces-41565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C80EB8544AF
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 10:10:23 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61C3F8544BA
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 10:12:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B184285A59
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 09:10:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 02CA2B27591
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 09:12:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1FE88473;
-	Wed, 14 Feb 2024 09:10:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFE60C13C;
+	Wed, 14 Feb 2024 09:12:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="vlDXD7CU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b4lhTf+M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29E1D881E;
-	Wed, 14 Feb 2024 09:10:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1003112B61;
+	Wed, 14 Feb 2024 09:12:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707901818; cv=none; b=TOVMTSeVcD4GYjUMMGJ4jPxje25ZwuH4MIuUO/OVfr55LOF+LUZ08qwDt3QtBZyXRQdGAug9gkHNqYnHuhoS09bxL+vwZ/crvVA8xxJUJMPDGhZzTS62kMobYelcqBgTZz0F3gRD3oLaZXWkRvRoY42pQb02LeLc/vQ20Qig8/o=
+	t=1707901948; cv=none; b=T6rRHTl0oP/dmVHVnabVBd0Ybp6ucpdeMnVFyyCIaP0TE8XW4y33qgu2aC4Oi8Z13Hze+S25d35iClfQY4uYsP4ZGCru6YuQ8ec4Yu9MKgZQ+/JHbSxFlUCrU+semPHD/Z+Ym3H8yihEEijlAibnqd2AM7XvMo8M3sSd6eaM6l0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707901818; c=relaxed/simple;
-	bh=3YwKRfcPdFsjeEMhHnvS47aZ2jLEkh8n77Xdcl6IJK4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MUCXbCfo8YJv5SU4+HwLe5MPdfiSKSJ3lC5iRyuxIkQmYUjIdHZRsgPpIs0oAlCBA8LDnD8Hcvk/UMv4i7ekb2a74SPL4EEcw4dTb5BnFw14bw4ltoK8ApEQaDue2ICrzSk9SOigIaGGjU7gH22cPBg2V7cHD0bcRAkQNUTss6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=vlDXD7CU; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-154-35-128.elisa-laajakaista.fi [91.154.35.128])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9DB30673;
-	Wed, 14 Feb 2024 10:10:09 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1707901810;
-	bh=3YwKRfcPdFsjeEMhHnvS47aZ2jLEkh8n77Xdcl6IJK4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=vlDXD7CUtsM3S/0Kz1c/9k/2uJ15zie2ru4qiPbPFxnFfRO9QmlO5MsDt9J9HxZ5+
-	 00K9e0JtFYQyp0FLB2F/wiupPQvvJIJZ8G40b0q9WHcscXp00bLhCcPjQb5rdprG+g
-	 s2EfB4gNZNBwmG75ASpDPFl63dc9oQbzy363A5nM=
-Message-ID: <f8cc383e-1150-45d2-8325-a8dd69969300@ideasonboard.com>
-Date: Wed, 14 Feb 2024 11:10:09 +0200
+	s=arc-20240116; t=1707901948; c=relaxed/simple;
+	bh=F9YHKt7vlCOx2x3TIANU6dgGdN4C9EWaFM6RKZfh7ws=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=A6mqVaRhB5MBOcsIFXXr7TmaveejPJAR1aadrLc60gKloQrQzXBwB7Ewbls6YtlLyCgCiIdx8CRjHR3C8CHnKPTvIYQVpLuQPOOzH4TOA5iRai/Cb6VfUzPlVPClFU6rrtvlsAJKl3lH+YP5Z6jFedoTCkUM31mzvkiTWm3m1E8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=b4lhTf+M; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-40fd2f7ef55so2934845e9.0;
+        Wed, 14 Feb 2024 01:12:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707901945; x=1708506745; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=I08sVNnQTI0Ia1/oQu2yuFjR+ZMqJnMvnSDXwosq+50=;
+        b=b4lhTf+Mcf31xNYVW4LqvE8B9hpme7qVQD6dh+nkOdJz/gChP6CIJPrA0ehSmY3Xnx
+         GLcxiqdr4o2qJFPXw16YcB86d9GOoUHutcLD7gXmcjP+txfvZB3dqtt09irCreGuxFee
+         i8KQyV3iV3MudpkxB4B9zgfxeteApJHaBw3npFdKdyP7ht2deiMprIrt+HOFyW86uq7/
+         sAfBCN2PFF9G0ugBzEeaGX8s+6afk5wVSI5XzB9RLaZLNlNTGd8hVW5c+CHoDFAend0P
+         e5sTldbtIU1e26xCN8STJ1yEWEe/xK8FvDXHnJJaKB+3bPCDtIupC3Zt54lXA8EFXOB0
+         ATwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707901945; x=1708506745;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=I08sVNnQTI0Ia1/oQu2yuFjR+ZMqJnMvnSDXwosq+50=;
+        b=r4Jhd8eC5NRU0wsEJ/X9F28w8282tpszEMVOCY+MWQYjGSi1P7LlyLQlW5rtvo5Gz9
+         3vUZ6PVBkz0mUYvDxAH99FWNdahyTlNIVhjlYTdi3WGH23rm4f8pWgBJpcAmeqDyA4Fm
+         LK+bD0EGLNCjExtUwTNuXZijt9kX71ixf7TdyaGJtAWvX04W6AqoqIXkFH7MV2A6WEbS
+         A3EwqgJUXAmPV+Covya1UTH26xwuOW0Ye2OjV4rlog401wHWdiOX1cvxyGJB3B+zHXsC
+         46kmdpsvrMCWvp3O+ROgPM4BAMzw2aiPETVZjgsNIWXN0uiV33MCSBvf2B93kl774h1v
+         A5CA==
+X-Forwarded-Encrypted: i=1; AJvYcCUwq1DOpSkAw9oYBqALsV8hAUYQ4lqgCj2nyUbdN0GScQAxvRVtYSeFduSI2BdQW9vQ4QLzp3RL+LowbmBa50yfKXkH0YBgCb1Fw8nddQKg6QetdvovXQdYZEEOMFU/Q4iHwoiQ5Gn6d/4M1JA1R+AHsR5kq7wGx7YpWGi4h1fbMeeYh20MRKDHR/o=
+X-Gm-Message-State: AOJu0YwsNJ7LSl3Dq1zrT6yMtJ14J6Hw2/F/PgnkruhWH6gNHMZj7J30
+	KdWto2r/Stp6wdGJqH6joqF/Q2Qrk6UH2UqMlgJVBxtNY4bPzBRk
+X-Google-Smtp-Source: AGHT+IGc2a/pariFjVnhGDzMwNj8lX/FQ1kuJbdji4LsUJU9eT6elEttg6ZSO7TQO+OTN+tXcOmZaA==
+X-Received: by 2002:a05:600c:358c:b0:411:e0cd:9916 with SMTP id p12-20020a05600c358c00b00411e0cd9916mr1178198wmq.0.1707901944923;
+        Wed, 14 Feb 2024 01:12:24 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUJo0+d5Hgk3kbtsdsvu6OvPT7Q9R80TRmclN2RqNc/5xCqSMHWcYYi3RONwWwETsUSPRP/ochVNhrCda++8M2A5Eja9eKDWIFdG4PrE3rDJfcoxSUfiAmtcps59X52MlRPCV0yLXnIQe4HXhJIfjX1OqDGUwRC34SbI/z2tYKHb+IYtx4DEd4I/8W2WT4asQs9/HJ8rK51JwmfqOKppG/Z1HrVpi+ElGBkBCFQaKqgJQcKeRjPUWR4tGNdacZl52PmzYSUzLVIUUpXTDCcTHC5sEHPnPRPydg/DdShqDCbBP+StfKJ56QLIHwwVnvyRSAWA7OxQoYb6Ly3PHwXoEUgRB8RQH42f4nSL9AbzL4UNY98n/A+KyTMJVwg7ZhA/KR12Q==
+Received: from xeon.. ([188.163.112.53])
+        by smtp.gmail.com with ESMTPSA id ay7-20020a5d6f07000000b0033cf053fa1esm738376wrb.106.2024.02.14.01.12.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Feb 2024 01:12:24 -0800 (PST)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Kees Cook <keescook@chromium.org>,
+	Maxim Schwalm <maxim.schwalm@gmail.com>
+Cc: devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-hardening@vger.kernel.org
+Subject: [PATCH v4 0/3] Tegra30: add support for LG tegra based phones
+Date: Wed, 14 Feb 2024 11:11:58 +0200
+Message-Id: <20240214091201.17636-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: display: ti,am65x-dss: Add support for
- common1 region
-Content-Language: en-US
-To: Devarsh Thakkar <devarsht@ti.com>
-Cc: praneeth@ti.com, nm@ti.com, vigneshr@ti.com, a-bhatia1@ti.com,
- j-luthra@ti.com, kristo@kernel.org, jyri.sarha@iki.fi, airlied@gmail.com,
- daniel@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240115125716.560363-1-devarsht@ti.com>
- <20240115125716.560363-2-devarsht@ti.com>
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <20240115125716.560363-2-devarsht@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Hi,
+Bring up Tegra 3 based LG phones Optimus 4X HD and Optimus Vu based
+on LG X3 board.
 
-On 15/01/2024 14:57, Devarsh Thakkar wrote:
-> TI keystone display subsystem present in AM65 and other SoCs such as AM62
-> support two separate register spaces namely "common" and "common1" which
-> can be used by two separate hosts to program the display controller as
-> described in respective Technical Reference Manuals [1].
-> 
-> The common1 register space has similar set of configuration registers as
-> supported in common register space except the global configuration
-> registers which are exclusive to common region.
-> 
-> This adds binding for "common1" register region too as supported by the
-> hardware.
-> 
-> [1]:
-> AM62x TRM:
-> https://www.ti.com/lit/pdf/spruiv7 (Section 14.8.9.1 DSS Registers)
-> 
-> AM65x TRM:
-> https://www.ti.com/lit/pdf/spruid7 (Section 12.6.5 DSS Registers)
-> 
-> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
-> ---
->   .../devicetree/bindings/display/ti/ti,am65x-dss.yaml       | 7 +++++--
->   1 file changed, 5 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> index b6767ef0d24d..55e3e490d0e6 100644
-> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> @@ -37,6 +37,7 @@ properties:
->         - description: OVR2 overlay manager for vp2
->         - description: VP1 video port 1
->         - description: VP2 video port 2
-> +      - description: common1 DSS register area
->   
->     reg-names:
->       items:
-> @@ -47,6 +48,7 @@ properties:
->         - const: ovr2
->         - const: vp1
->         - const: vp2
-> +      - const: common1
->   
->     clocks:
->       items:
-> @@ -147,9 +149,10 @@ examples:
->                       <0x04a07000 0x1000>, /* ovr1 */
->                       <0x04a08000 0x1000>, /* ovr2 */
->                       <0x04a0a000 0x1000>, /* vp1 */
-> -                    <0x04a0b000 0x1000>; /* vp2 */
-> +                    <0x04a0b000 0x1000>, /* vp2 */
-> +                    <0x04a01000 0x1000>; /* common1 */
->               reg-names = "common", "vidl1", "vid",
-> -                    "ovr1", "ovr2", "vp1", "vp2";
-> +                    "ovr1", "ovr2", "vp1", "vp2", "common1";
->               ti,am65x-oldi-io-ctrl = <&dss_oldi_io_ctrl>;
->               power-domains = <&k3_pds 67 TI_SCI_PD_EXCLUSIVE>;
->               clocks =        <&k3_clks 67 1>,
+---
+Changes from v3:
+- set max77663 ldo0 to be always on since it is required by the SOC
+- adjusted bluetooth module comment
+- added enable gpio to dw9714 focuser
 
-Looks fine to me, I'll apply to drm-misc-next.
+Changes from v2:
+- switched from _ to - in node names
 
-  Tomi
+Changes from v1:
+- switched from prefix lge to lg
+---
+
+Maxim Schwalm (1):
+  dt-bindings: arm: tegra: Add LG Optimus Vu P895 and Optimus 4X P880
+
+Svyatoslav Ryhel (2):
+  ARM: tegra: Add device-tree for LG Optimus Vu (P895)
+  ARM: tegra: Add device-tree for LG Optimus 4X HD (P880)
+
+ .../devicetree/bindings/arm/tegra.yaml        |    8 +
+ arch/arm/boot/dts/nvidia/Makefile             |    2 +
+ arch/arm/boot/dts/nvidia/tegra30-lg-p880.dts  |  489 +++++
+ arch/arm/boot/dts/nvidia/tegra30-lg-p895.dts  |  496 +++++
+ arch/arm/boot/dts/nvidia/tegra30-lg-x3.dtsi   | 1812 +++++++++++++++++
+ 5 files changed, 2807 insertions(+)
+ create mode 100644 arch/arm/boot/dts/nvidia/tegra30-lg-p880.dts
+ create mode 100644 arch/arm/boot/dts/nvidia/tegra30-lg-p895.dts
+ create mode 100644 arch/arm/boot/dts/nvidia/tegra30-lg-x3.dtsi
+
+-- 
+2.40.1
 
 
