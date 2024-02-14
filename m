@@ -1,165 +1,152 @@
-Return-Path: <devicetree+bounces-41536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F098C8542D0
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 07:33:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C67C8542D5
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 07:34:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 642EF1F265ED
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 06:33:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52A4928A096
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 06:34:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5023911705;
-	Wed, 14 Feb 2024 06:33:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A675710A25;
+	Wed, 14 Feb 2024 06:34:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="LKU/C/MT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Cvn9rzcJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04olkn2070.outbound.protection.outlook.com [40.92.46.70])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 767DE111A4;
-	Wed, 14 Feb 2024 06:33:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.46.70
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707892406; cv=fail; b=lqUD8kdYXWKeJUTO0NZXbhVj2IWt2fSvJImBOSGLbV3IhOa7B+KAOo1VZAhiLQOtiQKNIJJ3jyhEoOK1ME5YLOKEsgNKh/DaqVvW56XAZg+XA5eEDu+ovwsFlbAoyCObYvxnX9NdgP4fEDTapbuS7wcpoYPjmMYXu0XRD7Qzq5Q=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707892406; c=relaxed/simple;
-	bh=OIMbOhFsCD9M+V3iY/T947GfH8E84t8lcFWZd8s+sao=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=WcpxuvhHboAInodxGpwK5VsluaZmLyvV9lVw5bJWh/vgQHZeBVcSj65fYQTRuM64QeYmfERQWwL1sy2M7ZLv6zjoVZGGlNmxsrB4Qi/IG3hR6vsve6wo/FrUWM5m7lO+7eVEhSrs8i8PDL3gfgKCA+AJBNMRoXvHPBn3gehljg8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=LKU/C/MT; arc=fail smtp.client-ip=40.92.46.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MlHgw70XjHGZ2OuYKxRt4wF0GFAElVZQRNw94UXNnHIpoQgP0wypwuAec/1McJE5Otd4JNsd/liCR5vNmW4n1Z4Cpb5BWGFZ4s3eJIBdBvm6g5mAIKlc3M/riz5KuqahG87ahqtfWjEJfTOO+fZ7x1CtZeC2Y6gRqhFQv4WcmFjwcYc9XD6UeDfabNG3xf9XlhcpAhosubpUzujG5wCu+4WHrINn4qxKANUpvDQUz5HctjmE+No36H2S9rmHMPgQ6cdSw2e6FDCrJBhBMOlovpk96Yy28CULmRB9O7pjoJco2+1MOPgkziwBsuKqwQQeJDBZPkZPV2MM0dtxKOvoNw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=94k3JfKWEls+7907kp1nt5YO2OSY2Jh6iUZUYZw86ug=;
- b=VPYjtBH38PyP275UIewS4t3PhsHSNDptn6eJxXqqrG3SbdnNLCJXnPQ+hRzTOes4qDsWdY3Ix8oGRsoGJHZCVZceWRQvazTQkDaG8jMD59taPPAqUxqQs0TORD0AoIxxgDbFPFfqgV864HcG09TVKB3hVsqQ4gTVImrk1SC8iFjN71rBBMtBDVBj6HLi/qPWEc3v6eecIz1udb5JjRbMrxjFvQH+wjkApWIVKl6ZJ3TZvWR2vdWCdYITUn/b+oiDDVPa4bRrVOimzf+i2RmZ0Mgr70xkKvXvftQHkrgOqUqGs6MTfcG3ibAEDc1xHnHReIowQtoSbcJG744ievypmA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=94k3JfKWEls+7907kp1nt5YO2OSY2Jh6iUZUYZw86ug=;
- b=LKU/C/MT7rCY3+jOCkBHYZJBOTe9qAoKEyZFcX3N9BnOPpnYRHfIqiB1DJF82srLD1nUd/3qt5PbPJsOEI3IyXC59lvw7sWyKH5xSkVG1px6GXfi4yBuUDwZKh6kGSQHCGJ/OPjUo0Fj2C9ckBmCjGNP8ryBfa1pYA7b9/b/zTue/gZdU1KgCoSJjKfHRYFZgXzARwbnahBnpTc97uKNunWO+7RqtOYj0qh74tKl2eX6f3IfZwQMJ0nDRCINhxGAB0v/QAqbPP30Agwdt6lKV7Z2fFy5qk6cmkorw9kruWv1ayR/Jr84HkrPQ8Uho8xxWrZc6rdvy672ch4fTABHmQ==
-Received: from PH7PR20MB4962.namprd20.prod.outlook.com (2603:10b6:510:1fa::6)
- by DM4PR20MB5063.namprd20.prod.outlook.com (2603:10b6:8:8c::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.39; Wed, 14 Feb
- 2024 06:33:22 +0000
-Received: from PH7PR20MB4962.namprd20.prod.outlook.com
- ([fe80::4719:8c68:6f:34ff]) by PH7PR20MB4962.namprd20.prod.outlook.com
- ([fe80::4719:8c68:6f:34ff%6]) with mapi id 15.20.7270.036; Wed, 14 Feb 2024
- 06:33:22 +0000
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Inochi Amaoto <inochiama@outlook.com>
-Cc: Jisheng Zhang <jszhang@kernel.org>,
-	Liu Gui <kenneth.liu@sophgo.com>,
-	Jingbao Qiu <qiujingbao.dlmu@gmail.com>,
-	dlan@gentoo.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH v3 2/2] riscv: dts: sophgo: cv18xx: add top misc system controller
-Date: Wed, 14 Feb 2024 14:33:15 +0800
-Message-ID:
- <PH7PR20MB4962D7791717C6D579BC1CCFBB4E2@PH7PR20MB4962.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.43.1
-In-Reply-To: <PH7PR20MB4962F822A64CB127911978AABB4E2@PH7PR20MB4962.namprd20.prod.outlook.com>
-References: <PH7PR20MB4962F822A64CB127911978AABB4E2@PH7PR20MB4962.namprd20.prod.outlook.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [UxZAobAUWuHp2W/lXBdaEJTm0JaeaJyKwwv37isfItbkEbuQ7DrhVNgf1rLvZ0Z/]
-X-ClientProxiedBy: TYCP286CA0285.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:3c9::20) To PH7PR20MB4962.namprd20.prod.outlook.com
- (2603:10b6:510:1fa::6)
-X-Microsoft-Original-Message-ID:
- <20240214063316.435254-2-inochiama@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E551F8C06;
+	Wed, 14 Feb 2024 06:34:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707892488; cv=none; b=FccsKJyeIn3A4Ys1nttgfghxh3b7/uTCV9GsB32LCBQDwhNdPt2OR+BDQfGgyZ5p0YUnz2Pm2/37aRJcF7Z3mtIpALrCKMq1k1U1rpRE74b8ZMi8fgc+Vrto868MTGAdTLZgdSy7H/7oqXXOCZpOxjRkp5x6doSxMUdkLEBbR3U=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707892488; c=relaxed/simple;
+	bh=eEHPUbvHfD27bana0BRRHxvfB5Gt0cYRP8x1lbtuhM8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iGBD6wmXRIxCvAWMYjtu9pvD+iiJt3vBx3e2gNX33aARwwhBAl6A01gQJurYjO5912fpOJDFG1muTXGK9XUzLxKKgjkEhkP5Ep3GrY1rCi8hV2DggAk0w3v2HvfPCT5VDvf4A/Rj9kgI+9turjyLTz88UOJ1+pXx1oDyTB3/V88=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Cvn9rzcJ; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-561f78f1ba1so1535828a12.0;
+        Tue, 13 Feb 2024 22:34:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707892485; x=1708497285; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IvuFwE9JH8AL4WuwyCUWF595QEwuv9nlPeFYbel5Slw=;
+        b=Cvn9rzcJIsoV4fGNTNgMbB1CUyG8+9v6ym28P/LP8AngLpcGOCw5tdM+GvWnJNfxdC
+         Su5Ma0InYnH0ahXEbsGMxdkkqz6oQL8+0w2Mncozo/PDqVXr/rFRMxAD8LDpJlr6WPKu
+         290V2e+96N8SCH+yf7DDjfV23cuQa4A6Y3FVk5DD8Nx7vrJeGlvzzvSMfgxiZ60jpko8
+         1j2YuNB/FHuLGZ6ZU+ZygI5LxhdRn5KxJBb6iOCS2OyYaOyFiFeUzqDPCK+AHGukVUEa
+         KKYIDAin9EhdSDgvAuk3KkDQKe++N9uOStR0IMpjW6UCPlfnxwdWfObsh2WpJFelOTrw
+         UvPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707892485; x=1708497285;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IvuFwE9JH8AL4WuwyCUWF595QEwuv9nlPeFYbel5Slw=;
+        b=GHhn0FZzukxmU8GLQNeUV9tM2BwnWAt/LzyIIjAq4PPFFZd6EUutQ2qNLbLOO9+CQ3
+         djLTVULQQwRD9jD0+UAQJWaoielvXHF6+P2dS9C06srtySB4G7/P7nTxpNksGapY0MCI
+         VaNSHcHGB90Larw/eEqF3GRssdXUMSILFJg8V3Tpb5/etDmjz4wGEtDBcVE26GQX95Uo
+         5eDKjKFOB1tR9A2YbAKVPW1tD6J5K89dU0kJJjy9SvfplJWY14uMRj8eFcVhTs4RbMNR
+         jcQA6pFu9Ym7rUkAM5y3cQQiOCnGyfnDgDDCHFxEdDuOAhRTqpApF2pyym0Ojd3CdwIf
+         XPhg==
+X-Forwarded-Encrypted: i=1; AJvYcCX4EgB2eXhQqsp03/NrH5/WXOWmTG6CeXnABRYvXSegQTXwwIRiqkJo1gN45OJegiws0lJaU2j/NSNcj8mTfjk0yOMEutqLwTs+vZJxu7t/8i6WOIQ74gcBq5LLsNfiPRq08XNXs4RGmOIgmmpKx8fZ+ZswA8+qC8Y1sLaYypTziqBjwQ==
+X-Gm-Message-State: AOJu0YyFGcDjLcMNAayQl09TwPxIVeDGlXhS/1v7BgqdW/ORIwaS4fcV
+	d32sYIoKLi95CUyF8ATjdLdv8zJXzcOMbWNIFMb6YS6ob+llyT8R
+X-Google-Smtp-Source: AGHT+IHv+h8nilZZuuQrNuz2sPa7nTzeb5gGsJU/RCpp62Djtg8Tx7IBmD08B8kU0Zzb0q6Sou+1qg==
+X-Received: by 2002:aa7:c54b:0:b0:560:c6a8:e7c8 with SMTP id s11-20020aa7c54b000000b00560c6a8e7c8mr1318865edr.10.1707892482532;
+        Tue, 13 Feb 2024 22:34:42 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVYZNO4JHkvDYTwsSttpiPIZ3L8seVIgzLVDNEi6Zky1po9/QSq3tFucI4ZDAcKsdb2s08oFBX9nr9gVXyygAgkdFhXGmu+bpBNO9iIOT/jceybNOvG36LbmiAgu7DPUb29/gh+3aunjo99O/DIxNvImO+H+qTtXRmkz0JxT9JCXP7827qqsbgr2pqEb7MZSBu6rFAe6ue+Lf9IpMNosN6WPbJWTQ4OrJUOlrr63vUVE0WsVsfDrrOhcqfv8KBoml2jGwJ0NS5rmjPi44u2ngb7Bqs+ixptzf6Jbbap3azFppHRMq/J63gCNyt+v4yscVk2z4HysH7KxyfFQLCKBDERK4iXKUE63sSnjiiAGgAw76THJ+xPDWGkN4ZY3k8BR/ysKil0eqM+8D0WT7N1nakLiiT28kSjIe0AR1aRUJa/Y7RRmmkxX2g3lAvlnLU8bSIZRgXWICT8CBCxTZubUCM+uGl5Etj7+1oYLkmBk38=
+Received: from [192.168.26.149] (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.googlemail.com with ESMTPSA id dh12-20020a0564021d2c00b00561970655bbsm3290214edb.4.2024.02.13.22.34.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Feb 2024 22:34:41 -0800 (PST)
+Message-ID: <d4391868-ddcd-4f66-b539-28d245fa83df@gmail.com>
+Date: Wed, 14 Feb 2024 07:34:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR20MB4962:EE_|DM4PR20MB5063:EE_
-X-MS-Office365-Filtering-Correlation-Id: c2235895-6631-4e45-ec9b-08dc2d26d73a
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	S1EtiNx+boA6qNGE8NPtLRRHgQWOgyIRsMydalGCLEaIBrKb9fZPN4StXnjxFuUJnJwdXu3tvMce0PXQj+nDg46xV8AyWcv7lfkVaM/wrT3Q02Mxkfta1JscxKZ5K5Ozo5LhfbGx+MVamltv2307+c9oshSCU1hzzdcQAB8rfwZaK3MYuExKduWKb+P5FHKy6ry9gof8FaDuOjOm86evmUk3S3CZ+4b87RmsfO7qoJlCvxbmWZOOZAaw6O2+OUFUepgg9OfpXqdOAF5tD1aJQ/6aMp4WBdgp+qUF83RUKi9/2c4910NyYVyn7lUHAgr4hhwzk9rnSF51lpR9neXUmLpd2cTZMcq44GxDBxSNU6QQLMJr5xZnGYFfgFUeJQcfGVakgd4/3xefprko6yiMadZaCUlxJfComPRZCaxwShAt7ZJIDBSss+Y3ueGQ/dN+j5xGQ1ZUA4DCOCxunL0G/3oPVgsUET41mkJYaZpoXpPB+z72b+bXXIz3HK38BlI1RIkcRo/E3Rtc/3Gnm7Cwmc+/g6sYaRa9K4cf2c7btXFPWlZgHcMviNq0Zn/cqvyt+Fz/ihvdcluFTAFBjV9qogfseMk9cwKLuEP+DYb0c4Q=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?HYs1e1GaU797hXOToU1cM1F0SRSmsJBttu+Bdt4X2yiB+vQmB5d98PKs3fGf?=
- =?us-ascii?Q?rvHpxMf089x7SdQ9h267fUosq33Y5L+Mh8qr5wZz1RTZgDRL0THhvhZD4f45?=
- =?us-ascii?Q?dlUlEcEgLga71rC/8DIYCr4VU1QLgx596v4W2/MDpb2yM1ZCMNHFqeaxPDeh?=
- =?us-ascii?Q?3pHvGJhjvSANtpA3DX2nOtHF60NlVZeMSydLfnnF7uLEBCMLef90+ABwVhfP?=
- =?us-ascii?Q?B/gYFaENI//7L8scdYY23l3NIgHtFmoKyGlNyVngFVxB3pDM7Ms37HL4u0EH?=
- =?us-ascii?Q?sqM48uFR5VoBiLd3VrPnRlSrh9udAUrLc6taTIwvXHzMAZ0jEWSDHAYcMl8q?=
- =?us-ascii?Q?U2y6I3S6fHgEcHMI2c6Aa4dbO1F+9AtTqz+0EdPjGbvGnQz2EGwhx/LRWTgM?=
- =?us-ascii?Q?0HUa16SGBfC4aMLn+a2NC6KnCqy1+DxZKLFakAZBGK+khRNeDCORo0e/vxD2?=
- =?us-ascii?Q?VogzsgJ59qkEcVwPoDerWNYYfd7pnyPooWupPNvWCzcBNoZnlx1OqvMMqpDw?=
- =?us-ascii?Q?PttNQZ0IK37cKTDcbIQYKVtqBH8RwvKuPgzkFwey7vvilqH5a2HLnq3ihyly?=
- =?us-ascii?Q?qJ47BIN0veNoQEaQakav1F7/EDR+4huS4axdgwfXEXwby7ITG4znat/OQjGl?=
- =?us-ascii?Q?NeSfpcJMCiPoE9BlK/KQtSyRFAzK7xq42qT1lTtbazsyG4neuS2qLHzIb/7N?=
- =?us-ascii?Q?vP0Jz4+peFgFsru9AyIWPTnO9vgi1FHF01U6ZODEqm9SzK4WDzQ+fzXnuawZ?=
- =?us-ascii?Q?0IGVGUxfvVKKRnLqKz8esWMVVYXEsAwFF4G8k3VJyT7LQGEwGUnDYTk5kVXA?=
- =?us-ascii?Q?E6MCtT+AdU9+zXzt6iWoq6szJA0lw98stnDoTNOP13NtB7qX62OL5qKR+EbC?=
- =?us-ascii?Q?8ccTvZ2DBYkURHZMsRC1pmaJO6BA71/WFtExJBbBHOthCyyNRXvlSk3k3XU/?=
- =?us-ascii?Q?LBQgTGWgEzkd4AOkPyBORFnpG6GRRmBQ/7Cbaen0Fs/XTG78SSgr6Dsd8hw3?=
- =?us-ascii?Q?YQUT4rIFqGKKXJTnfyLp899jjbI3k174VjDmywXZ8tXubRrH4wKy7dJQ0euR?=
- =?us-ascii?Q?PR2Jdn2IMuDW9mtXUaPgdqdm3x8FzKkRlVBTwAhilYQXelFLXFzxx3HX4Rhr?=
- =?us-ascii?Q?kco4Tgq2UySZgkJbVNKXUl7nSK99Rc6ElheVfSUV5mODpc1PcR0CFAkk8aKh?=
- =?us-ascii?Q?/tO/76FdT+LlgiIaRxD3XxnSgkpBQS6xBKY4IfKaNwIOpviJ1Tap/dIqSwSk?=
- =?us-ascii?Q?sisQUhIOIb2h0ADswUybFZjYZexx/nf4NDJU3w8vpmvIyGnluWhdORvIhuJQ?=
- =?us-ascii?Q?K8E=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c2235895-6631-4e45-ec9b-08dc2d26d73a
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR20MB4962.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2024 06:33:22.5190
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR20MB5063
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: mediatek,mt2712: add compatible for
+ MT7988
+To: Conor Dooley <conor@kernel.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ John Crispin <john@phrozen.org>, linux-pwm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20240213164633.25447-1-zajec5@gmail.com>
+ <20240213-resource-evaluator-0754cfd5882d@spud>
+Content-Language: en-US
+From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <20240213-resource-evaluator-0754cfd5882d@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Add top misc system controller dt node for CV18XX/SG200x.
+On 13.02.2024 19:18, Conor Dooley wrote:
+> On Tue, Feb 13, 2024 at 05:46:32PM +0100, Rafał Miłecki wrote:
+>> From: Rafał Miłecki <rafal@milecki.pl>
+>>
+>> MT7988 has on-SoC controller that can control up to 8 PWMs.
+> 
+> I see a binding and a dts patch, but no driver patch, how come?
 
-Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
----
- arch/riscv/boot/dts/sophgo/cv18xx.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+I believe that to avoid cross-trees patchsets (which are sometimes
+tricky for maintainers) there are two ways of submiting such changes:
+1. dt-binding + driver; then (separately) DTS
+2. dt-binding + DTS; then (separately) driver
 
-diff --git a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
-index 2d6f4a4b1e58..908d858a63ab 100644
---- a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
-@@ -53,6 +53,12 @@ soc {
- 		dma-noncoherent;
- 		ranges;
+I chose later in this case as my personal priority right now is to deal
+with all MediaTek DTS files.
 
-+		topctrl: syscon@3000000 {
-+			compatible = "sophgo,cv1800-top-syscon",
-+				     "syscon", "simple-mfd";
-+			reg = <0x03000000 0x1000>;
-+		};
-+
- 		gpio0: gpio@3020000 {
- 			compatible = "snps,dw-apb-gpio";
- 			reg = <0x3020000 0x1000>;
---
-2.43.1
+Is that wrong or unacceptable?
+
+
+> Also, what makes this incompatibly different with the other devices in
+> the binding, like the 8183?
+
+It can control 8 PWMs unlike any other SoC block except for MT2712.
+It uses different registers than MT2712 thought.
+
+
+> Cheers,
+> Conor.
+> 
+>>
+>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+>> ---
+>>   Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml b/Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml
+>> index 0fbe8a6469eb..a5c308801619 100644
+>> --- a/Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml
+>> +++ b/Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml
+>> @@ -24,6 +24,7 @@ properties:
+>>             - mediatek,mt7629-pwm
+>>             - mediatek,mt7981-pwm
+>>             - mediatek,mt7986-pwm
+>> +          - mediatek,mt7988-pwm
+>>             - mediatek,mt8183-pwm
+>>             - mediatek,mt8365-pwm
+>>             - mediatek,mt8516-pwm
+>> -- 
+>> 2.35.3
+>>
 
 
