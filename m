@@ -1,144 +1,88 @@
-Return-Path: <devicetree+bounces-41656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41657-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A3598549C2
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 13:56:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A9CD8549DB
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 14:00:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EB127B21104
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 12:56:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D5BD1C210A3
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 13:00:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4B8C52F6E;
-	Wed, 14 Feb 2024 12:56:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="EFc3LRbK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AA0E4315C;
+	Wed, 14 Feb 2024 13:00:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from albert.telenet-ops.be (albert.telenet-ops.be [195.130.137.90])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA1CF487BC;
-	Wed, 14 Feb 2024 12:56:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D1F152F75
+	for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 13:00:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.137.90
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707915383; cv=none; b=fJihn8LkEtPfwDlweawxyUG8XVmyR6wjsPAhKruLRzEHWuiQ8llZjY82InDnvBfeo8YNzJRwbKTqkYCPm31rCgP860Fh+BfQ0YywCvyl8c+dJ7Ui3C6NeewWVdeguB0HTc7f6JzeKl8dYIy0kXcWC3FWg6an6vh76eo9Zhf/Blo=
+	t=1707915611; cv=none; b=CWvIJIVDRVQjXYmjELyl5vXacpsfWTVLX6Ef/K5wZZT5N1p9w8dlfoAa3okIp0t4NkmHoVsqQmH9YN9j6c3oniPau6pX+0ZD6CiIccT/u6x75nUDO5mB7e6rBXMFwLiupaRigh3sn4qMlc6HWuOkkBDP4TSXUGMg6ykkINL3JKo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707915383; c=relaxed/simple;
-	bh=6DR0P/WQ+fKVZKkQryKokxeT6znavJmaWnFd7byWnkc=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
-	 In-Reply-To:Content-Type; b=iDNYWHcEbXy12cK4vssvDMwhVDc03kN8igpJRTxgy/tT2sDXfXDsVLpqOOR34/JtiFPxQExMYN+nbwII6kAyTJgBo9sp+5Z3fFdTMNKxawpftdtEiJN2E/Lb5dDjEcFSJRKhQSs3RAUmpgRSB7t7fKXXWkH5CHZ/L8/+HKSbCqc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=EFc3LRbK; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41E6q01Z027945;
-	Wed, 14 Feb 2024 12:56:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:from:to:cc:references
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=IqeTyFlzG5Lbc99OW9HRKNNfQNLD+RGgkxJvm4oKLAI=; b=EF
-	c3LRbKYJhnk8C1CCCe3TrG/gmzRlh7kBJsxHSXvXv/66oK5Wey/mpHGMASWvD0aV
-	OhJ4J1PGqLHwgUSPY1im0/XBlZbaaPaaRkm0tUh6sgSAh3NOBo4lRuIdX0HyBK1L
-	CyOhsvDwVW79UVIl5DrvpolUA96RQVN3jCQLeD+qiaojlK1kW2lIXlbznhTTHiUC
-	hHdUBPanEGniRX0VgchpIoD7Uvjm3zCFlZyEtSd4pAxxrQ8loXY+FZeGBsiZMFp/
-	YuNmvLD48Ux9SumJ7b3/YtqvUc+9M1YMjYT1VgRWnyi4mvEfUP78BKX2mLyXi/QZ
-	BV6l/FAoLovjoHAYKBCg==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w8myg1165-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 14 Feb 2024 12:56:17 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41ECuG3j008259
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 14 Feb 2024 12:56:16 GMT
-Received: from [10.214.225.222] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 14 Feb
- 2024 04:56:09 -0800
-Message-ID: <a930a3d6-0846-a709-8fe9-44335fec92ca@quicinc.com>
-Date: Wed, 14 Feb 2024 18:26:06 +0530
+	s=arc-20240116; t=1707915611; c=relaxed/simple;
+	bh=MX9wy0cQjMkxldJr9nwe1wJabPI0qxGXaDS7doiphr0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=aV8PJMSFfSDpNEwk5DbsErKgkHpwmHasOpNdnT3Y1qos6OHOVKHW6Sp3D1DnzakOxwVMyJwablWlRPb9KTcRT4kxUKCUhm0yMWj7TbIDAw1WcQrrAFjMOet8e2L+/JxXZjM8x/RKKb5p5crVsRc+qH+KqCCDSuZXfNECkzq0Prg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.137.90
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:ac52:3a54:2a84:d65a])
+	by albert.telenet-ops.be with bizsmtp
+	id n1012B00B0LVNSS06101bK; Wed, 14 Feb 2024 14:00:01 +0100
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1raEri-000d4N-AL;
+	Wed, 14 Feb 2024 14:00:01 +0100
+Received: from geert by rox.of.borg with local (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1raEro-00GpW3-UL;
+	Wed, 14 Feb 2024 14:00:00 +0100
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Ulf Hansson <ulf.hansson@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: mmc: renesas,sdhi: Document R-Car V4M support
+Date: Wed, 14 Feb 2024 13:59:57 +0100
+Message-Id: <fffc5a0a73c4cc8e8d7c5d93679531cc24e006ca.1707915511.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 0/2] Add board-id support for multiple DT selection
-Content-Language: en-US
-From: Amrit Anand <quic_amrianan@quicinc.com>
-To: Rob Herring <robh@kernel.org>
-CC: <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <kernel@quicinc.com>
-References: <1705749649-4708-1-git-send-email-quic_amrianan@quicinc.com>
- <20240124145631.GA873781-robh@kernel.org>
- <b929f0cd-89b6-c48d-d466-db6bbed621b5@quicinc.com>
-In-Reply-To: <b929f0cd-89b6-c48d-d466-db6bbed621b5@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: k8sSZjfZbDmNnlavKhPAmg49Bqb6K69a
-X-Proofpoint-ORIG-GUID: k8sSZjfZbDmNnlavKhPAmg49Bqb6K69a
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-14_05,2024-02-14_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 suspectscore=0
- mlxlogscore=999 priorityscore=1501 impostorscore=0 bulkscore=0 mlxscore=0
- adultscore=0 lowpriorityscore=0 spamscore=0 clxscore=1015 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2401310000
- definitions=main-2402140099
+Content-Transfer-Encoding: 8bit
 
-On 2/2/2024 10:30 AM, Amrit Anand wrote:
-<snip>
->> There's a similar issue for EFI boot with how to select an OS installed
->> DTB[1]. You might not care now, but users may later on (like we have
->> already with QCom devices with fixed bootloaders). If you do this
->> board-id route, then no doubt that compatible values won't be specific
->> enough or have suitable fallbacks to be used. Then EFI boot can't use
->> compatible either and needs to use this QCom specific logic. It may be a
->> common property name, but all the types you defined are QCom specific
->> and the matching logic is pretty much undocumented. I'm not saying we
->> have to use compatible. There wasn't even agreement to use it for EFI
->> boot case. This does need to work for multiple vendors and multiple boot
->> scenarios.
->>
-> Agree, given so many hardware identifiers Qcom uses to find the DT 
-> based on a best and exact match algorithm, it may not work as is for 
-> other vendors/users outside the scope of Qcom.
-> Since we have none to very limited visibility into complete set of DT 
-> selection identifiers being used by other users or into their 
-> selection algorithms since it is mostly undocumented,
-> designing a perfectly generic solution (one-size-fits-all) could be 
-> far-fetched. The number of board files in Qcom DT selection software 
-> package often reaches over 100 DT files due to multiple SoCs and
-> board types being supported out of a single software package and these 
-> multiple hardware identifiers helps to pick the closest best match DT 
-> within a very large pool of DTs.
-> Not to affect other users/vendors who would be using their own set of 
-> identifiers and an entirely different algorithm for DT selection, 
-> would it make more sense to define these Qcom specific
-> identifiers within Qcom specific bindings (qcom.yaml), along with 
-> detailed documentation on our DT selection algorithm?
+Document support for the SD Card/MMC Interface in the Renesas R-Car V4M
+(R8A779H0) SoC.
 
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+ Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-I have written a patch for defining Qcom specific identifiers within 
-Qcom specific bindings (qcom.yaml) along with documentation on DT 
-selection algorithm, would it be okay to send for review?
+diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+index f7a4c6bc70f6cade..29f2400247ebc674 100644
+--- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
++++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+@@ -67,6 +67,7 @@ properties:
+               - renesas,sdhi-r8a779a0  # R-Car V3U
+               - renesas,sdhi-r8a779f0  # R-Car S4-8
+               - renesas,sdhi-r8a779g0  # R-Car V4H
++              - renesas,sdhi-r8a779h0  # R-Car V4M
+           - const: renesas,rcar-gen4-sdhi # R-Car Gen4
+ 
+   reg:
+-- 
+2.34.1
 
->
-> Thanks,
-> Amrit
->
->>
->> Rob
->>
->> [1] https://lore.kernel.org/u-boot/20231114232012.GD6601@bill-the-cat/#r
 
