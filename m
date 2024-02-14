@@ -1,346 +1,351 @@
-Return-Path: <devicetree+bounces-41512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41513-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C78D8541C0
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 04:19:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CD988541C5
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 04:29:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5B05B20F04
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 03:19:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F29EF1F26EDE
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 03:29:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9B32944D;
-	Wed, 14 Feb 2024 03:19:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D415133E5;
+	Wed, 14 Feb 2024 03:29:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="pKVl96KF"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="fKl2EIOp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F17088F40
-	for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 03:19:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 492649474
+	for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 03:29:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707880763; cv=none; b=HLIzSlDnSdM+Wv5ODt86vnBE8kxSylyU6AbwOHTVU6EejZ0kmEqQ9t1My4oNBI1pHLyRH4OC3koGtJuAnXiwFhEncw3muiTJwEWN0H1Jdf63SFgZRht6N8P3hjuc64mU0xQpGrUfenFsBFLPAe5zrHQjHasMYAafnkWQOEhcyeo=
+	t=1707881358; cv=none; b=DLsAsHFkVI5r50n0GSkWgNnpb84zp6KbwCnkD4gBk5g05IQOHhr+lfN2mEWG2FDwp8HPBhpSjAikmTnZs/24elyxASla6RXsp5qk2oeFgqJC4NIvRRGVrLB3eTNmgjpRJeYWhUSyGPFJ+nsHGpw7M3YynbuWUQ3u6ytffByUcgg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707880763; c=relaxed/simple;
-	bh=69Rxxi2EKAhMQyUucC5cwSxnuGaoDRibaHawy8tkJls=;
+	s=arc-20240116; t=1707881358; c=relaxed/simple;
+	bh=uQ9lj8YmsGd2m3HSYfn58m69JIvnSWjra9sGbJgUSQ8=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rlEss1S4k1tWX1zprPVQXveD5Qg4QAtsIW2QkdMPwlTolXGl773xvpgoLlMr5Br0/cs0jYyETwGHXXCdEX8Z6HOpmlgD8Gm5hPYrQmfWZUIeeXWW6ImroUkWhmObGVzBPzP2SvlvfcwE0QtM996KPa7dZqhUoy7lw60ObZgbgbk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=pKVl96KF; arc=none smtp.client-ip=209.85.160.176
+	 To:Cc:Content-Type; b=Gy6ct8a5V6Xepx7OgExTJSIdX7bBPQGJTT5pLkIEQVUj2SvxTz0Yv0V1nCExCFNWrfJtJguLQEOLh0sM4JaFU0QR8sX9wtPszjAO7yIP0hl9dRvcAj55LWY+HjHU0Me0vnCWQsA2sWBzSAz9sGq8x2oRHLgVauXj3VDW/3ZdAE4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=fKl2EIOp; arc=none smtp.client-ip=209.85.160.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-42a99dc9085so260791cf.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 19:19:21 -0800 (PST)
+Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-42a99dc9085so261691cf.0
+        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 19:29:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1707880761; x=1708485561; darn=vger.kernel.org;
+        d=google.com; s=20230601; t=1707881355; x=1708486155; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=57bVfLp5qWcmTWfkRj5+xYHg+ux1DaNl30cWWz8YFtI=;
-        b=pKVl96KFc4a4a3srQl7ql3qwRORZwVdd8a+zMya9nL6gHIVoMAfll5/hKtkiBPnMYe
-         vxRDcoalJN0NtfohTDWqg8zK5xd5L3sZI6RcSXbivE9HOJGamiyoLUeVe3GuaZUw5sYQ
-         Yt3rrPd+UTJcKa+5wDRuXfZEXW4J9szQ4gIxLqh6uaJSnCugPIYCLjhCRkY8XgG1Y11/
-         f3fLZTY0IEt9X5v+1vu1BbpuuWn3Pavb/CLj/C4jLK2TblLsUeDWONbN+7cPumMUxtAn
-         G1fz/71yvNRYXThqT9tAVegQFJkJJoM8Q55ghn5wdCSFzOT12/dWn7E81lF0GxTOUQLZ
-         0e/A==
+        bh=sEpPY5pRAKDFBbmEO202dbr7ZJfJqmGAy9ZnyjZq7WI=;
+        b=fKl2EIOpcxtU0n+DatCIzed9OiGyWILYBSa/8hd15uxPJ/ormoeUtTUgKnzZnGXBxS
+         k+8wGMPaAR8OdRqHtaZMc5m9G6J8P4lQkI/BiYRGtKKFC/rZkKNgo7G3lLd1Fdl+LFCD
+         C2C0LVr+C97CBriOB0kayAYzzRFjcv7j5+SLp5C4OQdtvK4jcgPg5CRYLLfnssawCQei
+         o30Z+5RtdLJ10Scrjcut0VD9zcuvflr/t/7Kx6F9kvGmfgrEtzlTJbKeeJ4VWI6Qwkp5
+         7Jqt/01/uQHXuF6d/SEEFxEpW1vsMkU0ceUwDfVgDL6afG9u0gBY376Om7joIitxh/EV
+         2LCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707880761; x=1708485561;
+        d=1e100.net; s=20230601; t=1707881355; x=1708486155;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=57bVfLp5qWcmTWfkRj5+xYHg+ux1DaNl30cWWz8YFtI=;
-        b=w8eSuJtErzw0DubXIFFLR3z7+r+wcgz7KKy0VctQdQFimxuzsG4g9d8LIdbaVZwr7z
-         KM7mVS5DlA1DBW/CMUzikS5uML5QT+YrXY4QLKRk5yPD3LsyGOeCdl2cM7gDmYRGmvCh
-         aULP4Z5V9+yDCVNisO8Z3JVpTCKmjaEOEOplez0cFvv8HrfN2CdYiC2p9A2MhT8+bYzB
-         9AHSBzbx1R1rfzXSz0LxVKxWTCxOwN8n0pfj39VGGmfnhWUyE0ZCwfDOE8GogUIXYB7t
-         IcvpFQ9170+zNHJ9e9x7cc1z0TIn86N+cfRC43+On+cKBV6FVM34kDHf98F7z1pQ4Ui0
-         dwKQ==
-X-Gm-Message-State: AOJu0YzEtmjR6dYFdxyWw5GBtuvLMR34Ji2kWgh999yl/njdFGrK/Rmm
-	gZ2hJUYqMdlkUL08rPE6r9qrjrFPs1HXpOu9yRB/iT2Y1/qzoPRHxLFBzz26QDLpALX+fPQGrgc
-	u544efYsyHeXtY6AMujJHHnR6kvrxHUumFozf
-X-Google-Smtp-Source: AGHT+IHj3we2hhKYiF4yaGsT774ZtxKPXust7boogLjJxzLlcpesmXv91EXUg+DHUIJLk2J1CAa84d5e0vUqK7OlvJo=
-X-Received: by 2002:a05:622a:85:b0:42d:a974:5b65 with SMTP id
- o5-20020a05622a008500b0042da9745b65mr152539qtw.17.1707880760686; Tue, 13 Feb
- 2024 19:19:20 -0800 (PST)
+        bh=sEpPY5pRAKDFBbmEO202dbr7ZJfJqmGAy9ZnyjZq7WI=;
+        b=lH6SNZ+JQCirjLFKRrjKDN8B3qbh6oQGON39JQ6N3D/sxC6VraNd2LFcR7w83UdzkR
+         4i1MKAHRqoRqf77Jn+gmcMX2tFjhT05YBQP+YUVIz+b/Vm8OlZP87xwI4XgtBsbYjjtM
+         Jgo557xuwRsvm9xUv+a+YUVEfW/G2ocRFSLa25FL4y1KDgWQ1hggoA5lpBGkvJu67lJ3
+         YVzV8A/O+H07AXoYk3cliZXpdD9VFkCZyMoLvAJRXR4xCHhS9i7tBXYQFYUxBJ7uGZgo
+         yFTNOaKEnQC9XlqOb92KYGDtW9P/uJryehDWmpCeb/8sJacZIkFlVt/A3w4tCAsRkggA
+         LMkw==
+X-Gm-Message-State: AOJu0Yw5h2FagUMUn68/NI254pwXliRSNRe+6oN17M1JRDX4jh3s4oiW
+	fqxl8oSBu427sZIHNsm9tgqKjHxT6sWxMZGlb3nObYF07t5FZdgAXNe5BTOXnbb7xVbfFDU6y74
+	FQUMYt3eEhMKjlsAdAs//XzFFam+g09kKA/WQ
+X-Google-Smtp-Source: AGHT+IEGinB5yJc+8L21uHOW4Lfff3h4LeG46EUoXKaXv9FaBM1ND/dLM4MEtlY6evLI45L9Fg80+59JFqEwzCWojXE=
+X-Received: by 2002:ac8:5dce:0:b0:42d:b492:868f with SMTP id
+ e14-20020ac85dce000000b0042db492868fmr196989qtx.24.1707881354884; Tue, 13 Feb
+ 2024 19:29:14 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240123014517.5787-1-mcpratt@pm.me> <20240123014517.5787-3-mcpratt@pm.me>
- <CAGETcx8S6B09T==dSp38-vX+rYjRyTaRwVqF0c2Nh-KxwDFAtw@mail.gmail.com>
-In-Reply-To: <CAGETcx8S6B09T==dSp38-vX+rYjRyTaRwVqF0c2Nh-KxwDFAtw@mail.gmail.com>
+References: <20240123014517.5787-1-mcpratt@pm.me> <CAGETcx_CqcHhKCXrUQOOnrr9Ke=dJRcJGTGxrdbPxnDOG1Xrbw@mail.gmail.com>
+In-Reply-To: <CAGETcx_CqcHhKCXrUQOOnrr9Ke=dJRcJGTGxrdbPxnDOG1Xrbw@mail.gmail.com>
 From: Saravana Kannan <saravanak@google.com>
-Date: Tue, 13 Feb 2024 19:18:43 -0800
-Message-ID: <CAGETcx9pVa=SyymOmkEtvZHuCs93QxjOADhK=JRpy32YDTje+Q@mail.gmail.com>
-Subject: Re: [PATCH v1 2/4] driver core: fw_devlink: Link to supplier ancestor
- if no device
+Date: Tue, 13 Feb 2024 19:28:35 -0800
+Message-ID: <CAGETcx_kH1Z7YuciybYac+q5qpA3EQb+7q77vx5OV+dk8_uwCQ@mail.gmail.com>
+Subject: Re: [PATCH v1 0/4] fw_devlink: generically handle bad links to child fwnodes
 To: Michael Pratt <mcpratt@pm.me>
-Cc: "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, LKML <linux-kernel@vger.kernel.org>, 
-	linux-mtd@lists.infradead.org, Abel Vesa <abel.vesa@linaro.org>, 
-	Alexander Stein <alexander.stein@ew.tq-group.com>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Maksim Kiselev <bigunclemax@gmail.com>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Colin Foster <colin.foster@in-advantage.com>, 
-	Daniel Scally <djrscally@gmail.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	Fabio Estevam <festevam@gmail.com>, Maxim Kochetkov <fido_max@inbox.ru>, 
-	Frank Rowand <frowand.list@gmail.com>, Geert Uytterhoeven <geert@linux-m68k.org>, 
-	heikki.krogerus@linux.intel.com, Sascha Hauer <kernel@pengutronix.de>, 
-	Linus Walleij <linus.walleij@linaro.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Luca Weiss <luca.weiss@fairphone.com>, Magnus Damm <magnus.damm@gmail.com>, 
-	Martin Kepplinger <martin.kepplinger@puri.sm>, Miquel Raynal <miquel.raynal@bootlin.com>, 
-	=?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	Ansuel Smith <ansuelsmth@gmail.com>, Richard Weinberger <richard@nod.at>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Sudeep Holla <sudeep.holla@arm.com>, 
-	Thomas Gleixner <tglx@linutronix.de>, Tony Lindgren <tony@atomide.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Doug Anderson <dianders@chromium.org>, 
-	Jean-Philippe Brucker <jpb@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Android Kernel Team <kernel-team@android.com>
+Cc: devicetree@vger.kernel.org, gregkh@linuxfoundation.org, 
+	linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org, 
+	abel.vesa@linaro.org, alexander.stein@ew.tq-group.com, 
+	andriy.shevchenko@linux.intel.com, bigunclemax@gmail.com, brgl@bgdev.pl, 
+	colin.foster@in-advantage.com, djrscally@gmail.com, 
+	dmitry.baryshkov@linaro.org, festevam@gmail.com, fido_max@inbox.ru, 
+	frowand.list@gmail.com, geert@linux-m68k.org, heikki.krogerus@linux.intel.com, 
+	kernel@pengutronix.de, linus.walleij@linaro.org, linux@roeck-us.net, 
+	luca.weiss@fairphone.com, magnus.damm@gmail.com, martin.kepplinger@puri.sm, 
+	miquel.raynal@bootlin.com, rafal@milecki.pl, ansuelsmth@gmail.com, 
+	richard@nod.at, sakari.ailus@linux.intel.com, sudeep.holla@arm.com, 
+	tglx@linutronix.de, tony@atomide.com, vigneshr@ti.com, dianders@chromium.org, 
+	jpb@kernel.org, rafael@kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Feb 5, 2024 at 11:25=E2=80=AFAM Saravana Kannan <saravanak@google.c=
+On Mon, Feb 5, 2024 at 12:06=E2=80=AFPM Saravana Kannan <saravanak@google.c=
 om> wrote:
 >
 > On Mon, Jan 22, 2024 at 5:46=E2=80=AFPM Michael Pratt <mcpratt@pm.me> wro=
 te:
 > >
-> > Driver core currently supports linking to the next parent fwnode,
-> > but is not yet handling cases where that parent
-> > is also a firmware child node not representing a real device,
-
-Can you tell me why you say this? Because as far as I can tell, I did
-take into account climbing all the way up to find the actual struct
-device that encompasses a fwnode and then create a device link to that
-struct device.
-
-> > which can lead to an indefinite deferred probe in some cases.
-> > In this case, the fwnode that should actually be linked to
-> > is multiple ancestors up which presents a challenge where
-> > it is unknown how many ancestors up the node that
-> > represents the real probing device is.
-
-The goal is to find the device. Not "the probing device". That device
-IS the one providing the functionality of the fwnode. If you never use
-that device, don't create it? If you never probe the device, then use
-a class instead of a bus?
-
-> > This makes the usage of
-> > fwnode_get_next_parent_dev() insufficient because the real device's
-> > fwnode may or may not be an ancestor of the next parent fwnode as well.
-
-It is doing what it's supposed to do. Finding the parent device. Not
-the next probing parent device. This becomes even more relevant when
-we start talking about suspend/resume. Too much to explain about
-suspend/resume and it's not relevant to your case. So I'll leave that
-as an exercise to the reader.
-
-> > Introduce flag FWNODE_FLAG_PARENT_IS_DEV
-> > in order to mark child firmware nodes of a device
-> > as having a parent device that can probe.
+> > Hi all,
 > >
-> > Allow fwnode link creation to the original supplier fwnode's ancestors
-> > when the original supplier fwnode and any fwnodes in between are flagge=
-d
-> > as FWNODE_FLAG_NOT_DEVICE and/or FWNODE_FLAG_PARENT_IS_DEV
-> > with a new function __fwnode_link_add_parents() which then creates
-> > the fwnode link to a real device that provides the supplier's function.
+> > First off, if you are CC'ed here, it's likely because you were
+> > involved in or CC'ed in a patch series by Saravana Kannan for fw_devlin=
+k,
+> > and for consistency, I'm kindly asking for review from you all as well.
+> > If you think this may not affect your use cases, feel free to ignore th=
+is.
+> > I'm also CC'ing Christian and Rafal from the Openwrt project.
 > >
-> > This depends on other functions to label a supplier fwnode
-> > as not a real device, which must be done before the fwnode links
-> > are created, and if after that, relevant links to the supplier
-> > would have to be deleted and have links recreated, otherwise,
-> > the fwnode link would be dropped before the device link is attempted
-> > or a fwnode link would not be able to become a device link at all,
-> > because they were created before these fwnode flags can have any effect=
-.
+> > This series is following up on some excellent work from Saravana [1]
+> > which is another patch series that includes some changes
+> > that helped make it possible for fw_devlink to work with MTD partitions
+> > that are a supplier fwnode by being a NVMEM provider. For an MTD partit=
+ion
+> > to become an NVMEM provider, it must be registered as a platform device
+> > using of_platform_populate() or similar function
+> > which was done in a previous commit [2]
+> > but this also resulted in fw_devlink to apply
+> > to those fwnodes and their child fwnodes.
 > >
-> > It also depends on the supplier device to actually probe first
-> > in order to have the fwnode flags in place to know for certain
-> > which fwnodes are non-probing child nodes
-> > of the fwnode for the supplier device.
+> > That regression caused consumer devices to defer indefinitely
+> > while waiting for probing that will never happen or for device links
+> > to form from fwnode links with fwnodes that are not associated
+> > with any real device or driver that probes
+> > (e.g. describing the location of a MAC address).
 > >
-> > The use case of function __fw_devlink_pickup_dangling_consumers()
-> > is designed so that the parameters are always a supplier fwnode
-> > and one of it's parent fwnodes, so it is safer to assume and more speci=
-fic
-> > that the flag PARENT_IS_DEV should be added there, rather than
-> > declaring the original supplier fwnode as NOT_DEVICE at that point.
-> > Because this function is called when the real supplier device probes
-> > and recursively calls itself for all child nodes of the device's fwnode=
-,
-> > set the new flag here in order to let it propagate down
-> > to all descendant nodes, thereby providing the info needed later
-> > in order to link to the proper fwnode representing the supplier device.
+> > Saravana's patch series helped in two ways:
+> > First, by moving consumers from a child fwnode (in this case,
+> > the "nvmem-cells" compatible node) to an ancestor fwnode
+> > that represents the actual supplier device when that device probes,
+> > which handles the case where
+> > the supplier device has a probe attempt first. [3] [4]
+> > And secondly, by specifically marking "nvmem-cells" compatible nodes
+> > as populated during MTD partition parsing which also occurs during
+> > the supplier device probe, which handles both cases of initial probe or=
+der,
+> > but only for that node type. [5]
 > >
-> > If a fwnode is flagged as FWNODE_FLAG_NOT_DEVICE
-> > by the time a device link is to be made with it,
-> > but not flagged as FWNODE_FLAG_PARENT_IS_DEV,
-> > the link is dropped, otherwise the device link
-> > is still made with the original supplier fwnode.
-> > Theoretically, we can also handle linking to an ancestor
-> > of the supplier fwnode when forming device links, but there
-> > are still cases where the necessary fwnode flags are still missing
-> > because the real supplier device did not probe yet.
-
-It's still not clear why you need FWNODE_FLAG_PARENT_IS_DEV, but
-considering patch 1 is a definite no-go, I'll stop here.
-
--Saravana
-
-> >
-> > Signed-off-by: Michael Pratt <mcpratt@pm.me>
+> > However, there's some drawbacks to the second solution
 >
-> NACK for a bunch of reasons.
+> Oh, somehow missed this thread entirely until it saw some activity today.
 >
-> 1. This logic should not be in fwnode_link_add(). That's supposed to
-> do the exact linking that the firmware meant. This logic should be
-> where the fwnode links are converted to device links or deferred
-> probing decision is done.
+> > from having to manually name which nodes need the workaround
+> > for the corner case with the compatible string.
+> > Most notably, that it's possible for this corner case
+> > to apply to other nodes types, but also the fact that initial probe ord=
+er
+> > deciding whether or not everything probes in the intended order, if at =
+all,
+> > through driver core alone is still an issue with fw_devlink,
+> > despite the fact that controlling probe order in driver core
+> > is one of it's goals. In other words, the real problem is in driver cor=
+e,
+> > but the fix is in the mtd driver.
 >
-> 2. If we handle one parent above correctly, it should be easy to
-> handle multiple parents above too. So why not fix it where we handle
-> multiple parents above?
+> It's been a while since I looked at MTD code, but the real problem is
+> not in driver core, but how it's used incorrectly by the MTD/nvmem
+> frameworks. Adding devices to a bus that'll never probe is wrong. I
+> think there's also a case of two devices being created off the same DT
+> node. While not technically wrong, it's weird when one of them never
+> probes.
 >
-> Btw, I'm happy to fix this or help you fix this once I understand the
-> issue. Just wanted to give a quick NACK to avoid people spending
-> cycles on this patch in its current state.
+> I'll take a closer look and respond to this series later. Hopefully
+> this week, but if not, then next week.
 >
-> -Saravana
+> As I said in the other patch, I don't like the series in the current
+> form because it's changing APIs in not so great ways.
 >
+> fwnode_link_add() is supposed to be super dumb and simple. It's
+> literally there just to avoid reparsing DT nodes multiple times.
+> Nothing more ever. It just denotes the "pointers" between fwnode or DT
+> nodes.
 >
-> > ---
-> >  drivers/base/core.c    | 49 ++++++++++++++++++++++++++++++++++++------
-> >  include/linux/fwnode.h |  4 ++++
-> >  2 files changed, 47 insertions(+), 6 deletions(-)
+> The "smarts" should either be where fwnode links are converted into
+> device links (and not have to fix them up) or where nvmem-cells is
+> being parsed and converted to fwnode links.
+>
+> As I said in the other patch, let me take a closer look this week or
+> next and get back. These things needs several hours of uninterrupted
+> time for me to debug and unwind.
+
+As promised, I took a closer look and left some comments in Patch 1
+and 2. Patch 1 is 100% broken/wrong so the series will not be
+accepted.
+
+Just for the sake of understanding, can you send a patch that'll add
+these additional compatible strings similar to how I handled
+nvmem-cells and show my how much worse it is than this series?
+
+>
 > >
-> > diff --git a/drivers/base/core.c b/drivers/base/core.c
-> > index c05a5f6b0641..7f2652cf5edc 100644
-> > --- a/drivers/base/core.c
-> > +++ b/drivers/base/core.c
-> > @@ -92,13 +92,45 @@ static int __fwnode_link_add(struct fwnode_handle *=
-con,
-> >         return 0;
-> >  }
+> > Unfortunately, with the Openwrt project
+> > we are experiencing this regression again
+> > by implementing the new NVMEM layout "fixed-layout"
+> > after it was accepted into the kernel. [6]
+> > This causes some subsystems of an SOC, like
+> > ethernet or wireless or both depending on hardware and DTS,
+> > and in some cases a completely different function like USB
+> > to never probe once again, and the temporary fix, like before,
+> > is by disabling fw_devlink. [7]
 > >
-> > +static int __fwnode_link_add_parents(struct fwnode_handle *con,
-> > +                                    struct fwnode_handle *sup,
-> > +                                    u8 flags, bool loop)
-> > +{
-> > +       int ret =3D -EINVAL;
-> > +       struct fwnode_handle *parent;
-> > +
-> > +       fwnode_for_each_parent_node(sup, parent) {
-> > +               /* Ignore the root node */
-> > +               if (fwnode_count_parents(parent) &&
-> > +                   fwnode_device_is_available(parent) &&
-> > +                 !(parent->flags & FWNODE_FLAG_NOT_DEVICE) &&
-> > +                 !(parent->flags & FWNODE_FLAG_PARENT_IS_DEV)) {
-> > +                       ret =3D __fwnode_link_add(con, parent, flags);
-> > +               }
-> > +
-> > +               if (!loop && !ret) {
-> > +                       fwnode_handle_put(parent);
-> > +                       return 0;
-> > +               }
-> > +       }
-> > +
-> > +       return ret;
-> > +}
-> > +
-> >  int fwnode_link_add(struct fwnode_handle *con, struct fwnode_handle *s=
-up)
-> >  {
-> >         int ret;
+> > Below is a simplified DTS of an Atheros device with the NVMEM layout:
 > >
-> >         mutex_lock(&fwnode_link_lock);
-> > -       ret =3D __fwnode_link_add(con, sup, 0);
-> > +
-> > +       if ((sup->flags & FWNODE_FLAG_NOT_DEVICE) &&
-> > +           (sup->flags & FWNODE_FLAG_PARENT_IS_DEV))
-> > +               ret =3D __fwnode_link_add_parents(con, sup, 0, false);
-> > +       else
-> > +               ret =3D __fwnode_link_add(con, sup, 0);
-> > +
-> >         mutex_unlock(&fwnode_link_lock);
-> > +
-> >         return ret;
-> >  }
 > >
-> > @@ -218,7 +250,8 @@ static void __fwnode_links_move_consumers(struct fw=
-node_handle *from,
-> >   * MANAGED device links to this device, so leave @fwnode and its desce=
-ndant's
-> >   * fwnode links alone.
-> >   *
-> > - * Otherwise, move its consumers to the new supplier @new_sup.
-> > + * Otherwise, flag descendants of @fwnode as having a parent fwnode fo=
-r a device
-> > + * that has probed and move bad fwnode consumer links from @fwnode to =
-@new_sup.
-> >   */
-> >  static void __fw_devlink_pickup_dangling_consumers(struct fwnode_handl=
-e *fwnode,
-> >                                                    struct fwnode_handle=
- *new_sup)
-> > @@ -228,8 +261,11 @@ static void __fw_devlink_pickup_dangling_consumers=
-(struct fwnode_handle *fwnode,
-> >         if (fwnode->dev && fwnode->dev->driver)
-> >                 return;
+> > &eth0 {
+> >         nvmem-cells =3D <&macaddr_art_0>;
+> >         nvmem-cell-names =3D "mac-address";
+> > };
 > >
-> > -       fwnode->flags |=3D FWNODE_FLAG_NOT_DEVICE;
-> > -       __fwnode_links_move_consumers(fwnode, new_sup);
-> > +       if (fwnode->flags & FWNODE_FLAG_NOT_DEVICE)
-> > +               __fwnode_links_move_consumers(fwnode, new_sup);
-> > +
-> > +       fwnode->flags |=3D FWNODE_FLAG_PARENT_IS_DEV;
-> > +       new_sup->flags &=3D ~(FWNODE_FLAG_PARENT_IS_DEV);
+> > &wifi {
+> >         nvmem-cells =3D <&caldata_art_1000>;
+> >         nvmem-cell-names =3D "calibration";
+> > };
 > >
-> >         fwnode_for_each_available_child_node(fwnode, child)
-> >                 __fw_devlink_pickup_dangling_consumers(child, new_sup);
-> > @@ -2071,8 +2107,9 @@ static int fw_devlink_create_devlink(struct devic=
-e *con,
-> >                 device_links_write_unlock();
-> >         }
+> > &spi {
+> >         status =3D "okay";
 > >
-> > -       if (sup_handle->flags & FWNODE_FLAG_NOT_DEVICE)
-> > -               sup_dev =3D fwnode_get_next_parent_dev(sup_handle);
-> > +       if ((sup_handle->flags & FWNODE_FLAG_NOT_DEVICE) &&
-> > +          !(sup_handle->flags & FWNODE_FLAG_PARENT_IS_DEV))
-> > +               return -EINVAL;
-> >         else
-> >                 sup_dev =3D get_dev_from_fwnode(sup_handle);
+> >         flash@0 {
+> >                 compatible =3D "jedec,spi-nor";
 > >
-> > diff --git a/include/linux/fwnode.h b/include/linux/fwnode.h
-> > index 2a72f55d26eb..3ed8ba503062 100644
-> > --- a/include/linux/fwnode.h
-> > +++ b/include/linux/fwnode.h
-> > @@ -30,6 +30,9 @@ struct device;
-> >   * BEST_EFFORT: The fwnode/device needs to probe early and might be mi=
-ssing some
-> >   *             suppliers. Only enforce ordering with suppliers that ha=
-ve
-> >   *             drivers.
-> > + * PARENT_IS_DEV: The fwnode is a child of a fwnode that is or will be=
- populated as a
-> > + *               struct device, which is more suitable for device link=
-s
-> > + *               than the fwnode child which may never have a struct d=
-evice.
-> >   */
-> >  #define FWNODE_FLAG_LINKS_ADDED                        BIT(0)
-> >  #define FWNODE_FLAG_NOT_DEVICE                 BIT(1)
-> > @@ -37,6 +40,7 @@ struct device;
-> >  #define FWNODE_FLAG_NEEDS_CHILD_BOUND_ON_ADD   BIT(3)
-> >  #define FWNODE_FLAG_BEST_EFFORT                        BIT(4)
-> >  #define FWNODE_FLAG_VISITED                    BIT(5)
-> > +#define FWNODE_FLAG_PARENT_IS_DEV              BIT(6)
+> >                 partitions {
+> >                         compatible =3D "fixed-partitions";
 > >
-> >  struct fwnode_handle {
-> >         struct fwnode_handle *secondary;
+> >                         partition@ff0000 {
+> >                                 label =3D "art";
+> >                                 reg =3D <0xff0000 0x010000>;
+> >                                 read-only;
+> >
+> >                                 nvmem-layout {
+> >                                         compatible =3D "fixed-layout";
+> >
+> >                                         macaddr_art_0: macaddr@0 {
+> >                                                 reg =3D <0x0 0x6>;
+> >                                         };
+> >
+> >                                         caldata_art_1000: caldata@1000 =
+{
+> >                                                 reg =3D <0x1000 0x440>;
+> >                                         };
+> >                                 };
+> >                         };
+> >                 };
+> >         };
+> > };
+
+In this example, can you walk me through the probe attempts/successes
+of the nvmem supplier and it's consumers and at what point does
+fw_devlink makes the wrong decision? You also said fw_devlink depends
+on the order in which devices probe to work correctly. This is
+definitely not the case/intention. So, if you can show me an example
+of that, I'll fix that too.
+
+I'm fairly certain this example will end up being a case of the nvmem
+framework creating pointless devices or using a "bus" when it needs a
+"class". But I don't want to assume.
+
+I'm asking all these question to understand your case better and maybe
+suggest a better fix that doesn't break fw_devlink or effectively
+disable it.
+
+Thanks,
+Saravana
+
+> >
+> >
+> > When the DTS is written this way, not only is there a different node
+> > involved for NVMEM, but this node is a new node that is yet another
+> > descendant in the tree. In other words, the "partition@ff0000" node
+> > used to be what designated this device as the NVMEM provider
+> > with the "nvmem-cells" compatible, so the node that represents
+> > the actual probing device is now 4 parent nodes up in the tree
+> > in this example instead of 3 parent nodes up in the tree as before.
+> >
+> > For the past year, and even before the "fixed-layout" issue came up,
+> > I had been experimenting with a way to handle these reverse probe order
+> > and linking of distant descendant node issues in a generic way instead =
+of
+> > naming exceptions with the compatible string, and this series is the
+> > culmination of those efforts. It may look strange at first,
+> > but there are a myriad set of cases to handle and other reasons
+> > that led me to develop this approach of using existing bad device links
+> > in order to find the correct fwnode to link to, and then redo
+> > the relevant links for that consumer device altogether.
+> > I'm concerned that doing this another way would be a much more massive
+> > project that would basically rewrite what the fw_devlink feature does.
+> > Or perhaps there would have to be a new, third form of device links
+> > that would be a "placeholder" before it becomes a fwnode link.
+> > Eventually, I came to the conclusion that
+> > there simply is not enough information to form the correct fwnode link
+> > before the real supplier device has a successful probe.
+> >
+> > Some of the changes proposed here are made on the extreme side of cauti=
+on,
+> > for example, checking for null dereference when it might not be necessa=
+ry,
+> > and reducing the activity of some functions in order to reduce
+> > the amount of assumptions taking place in the middle of driver core
+> > in cases where the new functions proposed here handles that just as wel=
+l
+> > and closer to a possible probe defer event
+> > (e.g. not declaring a fwnode as NOT_DEVICE before
+> > a probe attempt is expected to have happened).
+> >
+> > I have tried to make the commit messages as self-explanatory as I can,
+> > but they might have ended up a little too verbose, and therefore confus=
+ing
+> > but I'm ready to explain whatever has not been explained well already.
+> > Lastly, this is my first attempt at sending a larger change to the kern=
+el,
+> > so I appreciate your time and patience very much.
+> >
+> > MCP
+> >
+> >
+> > [1] https://lore.kernel.org/lkml/20230207014207.1678715-1-saravanak@goo=
+gle.com/
+> >
+> > [2] bcdf0315a61a29eb753a607d3a85a4032de72d94
+> >
+> > [3] 3a2dbc510c437ca392516b0105bad8e7970e6614
+> >
+> > [4] 411c0d58ca6faa9bc4b9f5382118a31c7bb92a6f
+> >
+> > [5] fb42378dcc7f247df56f0ecddfdae85487495fbc
+> >
+> > [6] 27f699e578b1a72df89dfa3bc42e093a01dc8d10
+> >
+> > [7] https://github.com/openwrt/openwrt/commit/703d667a0cdf6dfa402c08e72=
+d0c77a257ca5009
+> >
+> >
+> > Michael Pratt (4):
+> >   driver core: fw_devlink: Use driver to determine probe ability
+> >   driver core: fw_devlink: Link to supplier ancestor if no device
+> >   driver core: fw_devlink: Add function device_links_fixup_suppliers()
+> >   mtd: mtdpart: Allow fwnode links to NVMEM compatible fwnodes
+> >
+> >  drivers/base/base.h    |   1 +
+> >  drivers/base/core.c    | 144 ++++++++++++++++++++++++++++++++++++++---
+> >  drivers/base/dd.c      |   2 +
+> >  drivers/mtd/mtdpart.c  |  10 ---
+> >  include/linux/fwnode.h |   4 ++
+> >  5 files changed, 143 insertions(+), 18 deletions(-)
+> >
+> >
+> > base-commit: b0d326da462e20285236e11e4cbc32085de9f363
 > > --
 > > 2.30.2
 > >
