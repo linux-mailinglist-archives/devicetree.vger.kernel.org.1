@@ -1,205 +1,175 @@
-Return-Path: <devicetree+bounces-41630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A22CC854826
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 12:22:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91C40854835
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 12:23:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 593E5281E2B
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 11:22:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6FAE1C21764
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 11:23:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAC3518EB4;
-	Wed, 14 Feb 2024 11:22:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBBFC18EB9;
+	Wed, 14 Feb 2024 11:23:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b="i/PjkPvQ"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fVWLZWg/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2081.outbound.protection.outlook.com [40.107.8.81])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91CEB18EB0;
-	Wed, 14 Feb 2024 11:21:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.8.81
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707909724; cv=fail; b=eD1+R3O/dQa3CZZuCrM6NqVnnuSuf2tEXLTAKoTI+YrNdONhg5Kh+jcDg6PqYW6KuOi+tUtR3mOBHdBVZYl4FdEeDrgh4ibl+SNI8gzBqQxJXMoLNdVrEJUFEvf8cs9Kr10xd+1gdoocHLZQmkB+htpmT5gOKxMeRRLUPBhLlow=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707909724; c=relaxed/simple;
-	bh=FqGSslI0ZwgBhUGWNBRcOIMnVXDTfaDSCoD+3kLf0LQ=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=M+DIBT6LL8Jv6ElTDskO4tz6vRgWn8CBBqEn+1uIQ75QLLauduh0YA/y6zEWdUOIrrSSJUFeGTaApEDkc0AaGZ8QefbB31uKrLOhwNmPp84cWGA7x2u/Tq0iis0umPnY0p2tiC9GUcQz/tX4sjqKscf7Sc4bRhL/M6zE9HqM1jU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b=i/PjkPvQ; arc=fail smtp.client-ip=40.107.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siemens.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YovSyJi4rm1UgMz5IdayC9LtOKE95sYqvJH8i06z5e5b1g/KdEb4Hwe1sUg+nk6Cu/jBPjv+FF/cgJPr75JsFGqReoeyTK49ZmhhHibnNWiQl9gMbDvLbjidEfyZtX7wjhzX1oKBS22vUENrh7h09Nij9zl4Hcr4uBrzxEyE2XSStQH04GyRbCC4klfs9NY9mk+sgtjmR1IZrEvrimF8RVAwqUptTcUQCpQ7i3ue4eObaKbZJCVP9x+M+VYeHL7XggawFy86myjY5g8ZCGmJzIcysAu6BQ58b4XiXYjQIXhKyBhtjR+b/KzGQYcERUg5/Pf+tT95oM1G55XSn6wxKQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4PtSN5ESxAqXb6uVbSMtjI8aaIh8/vNJyGGOFE/o+x4=;
- b=MUENn82Ab1emwtSqEof4zRLYlNRv+ERb2x/HS46Zxm1cqWfWLeRqEAWRVOSGHA1CwId8jQi9Is+VA8qlZQsuUyBoPZT9py86OYbmd4CygCZVK9ksULXnJ0AnS/rJqWl/AhUb870T0LHRzbnHQCWvBcElk9tnFSPttqNmkchJ/C1TfUrznkH6ie8fABW5NdhoIybgYSWAG9Yvcb6imy/pOAZg3DPFwC3t/BSjQKf3kBNG0RXnfctemBaimEEQjONKwGNdPMdOqkrhc4xTsT0AGcwtiBJ6v96AiwqMzvCuEGvb+nYydFNzl4U1UpFi29Yit5nALjz9A7nndXB9MDYbjw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
- dkim=pass header.d=siemens.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4PtSN5ESxAqXb6uVbSMtjI8aaIh8/vNJyGGOFE/o+x4=;
- b=i/PjkPvQChCCjq2d6owOQItwBQfuJZ5pdkMw9iQeofMTOO3khfOSMTtDuAhgwi7vZlxiLeDYK1IUUOKnc0ZyNsKl5E1yQUsm+VORX2cIU9nxnkcdHHnn2FGfYxvZNjODuqhvfZ5hb/OzMhCqHTmLyjtG4PYzThzEddseXLsHNHgdPdtTRWXyIEg0k9IR1KmBDdnmM8cbJwVR/LvHEEkEHqPekry6YaQjNwZ4oXiatvkPdwl8KMsJ3R6DSAbL7y33+EA2ngd3Y4m1Jn0APwTof3BbJvCkIMrobEuru5kx+FIZCgAEOMHbNumoVRIKRyXu098JPN0x07jiDhtMjoRoww==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=siemens.com;
-Received: from AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:588::19)
- by DU2PR10MB7882.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:46e::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.26; Wed, 14 Feb
- 2024 11:21:56 +0000
-Received: from AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::8d16:7fbb:4964:94fe]) by AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::8d16:7fbb:4964:94fe%3]) with mapi id 15.20.7270.036; Wed, 14 Feb 2024
- 11:21:55 +0000
-Message-ID: <78aac8b5-4ae0-4a0d-9b74-35bf88e3cbf2@siemens.com>
-Date: Wed, 14 Feb 2024 12:21:53 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/7] arm64: dts: ti: iot2050: Factor out arduino
- connector bits
-Content-Language: en-US
-To: Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
- Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Bao Cheng Su <baocheng.su@siemens.com>
-References: <cover.1707463401.git.jan.kiszka@siemens.com>
- <3366367dc9f190c9e21027b9a810886791e99245.1707463401.git.jan.kiszka@siemens.com>
- <4f122f5d-e430-4299-b6c5-bbe778aad736@ti.com>
-From: Jan Kiszka <jan.kiszka@siemens.com>
-In-Reply-To: <4f122f5d-e430-4299-b6c5-bbe778aad736@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR5P281CA0022.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:f1::8) To AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:20b:588::19)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 126821B95C;
+	Wed, 14 Feb 2024 11:23:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707909820; cv=none; b=CYONNXAeeK8jtu6FhOdBw6WxhPzm90wAoX1m+wxDrwSzwK6h2nLcbvaCqa2SLZ3CgBj9BjkAzUcBAnB6P72ZB6YmqWuSXkHTl7bSjLJ6Rne6la5PTwtckjviuR6thEFt1iSGmhkJgGcoZszfadyeg78mpkvBLC249nwPSwLRkyc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707909820; c=relaxed/simple;
+	bh=ZH2htZe2F0UTQznys7dAzZ6IPIFJUeDOTkTb6krdadw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=kFc3MDTrBu4odlGI5hCUJ7s8K7cJAVqGUutRNKVuUOWRdjLQN7pQPGgVH6VGmrTg5VMs7U3l2cFUa5ushZq37B2ZI3BRuhT/F/5VXgily6VwhYEkNeZ/DLCFNVT3oX6jYRibbsBnlJhS0DrI1Demh/2kuA9GnMwOJ30Ge5sBX+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fVWLZWg/; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41EBNFgR117953;
+	Wed, 14 Feb 2024 05:23:15 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1707909795;
+	bh=PH0Rx/TGo6A+YAqh7yAPgthl3XrH8s/yUYRL3Tk7b7g=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=fVWLZWg/n/3O5x/EmTPzFDMtGuT0PotHKOvVVn1iGgzf2we1L1ig01BNtS19jxQ7s
+	 xVKm7q4llhXpB8LPe5FlbF/jaj5wYSMdJ5iAfC/CStLGtOyG19V7g/HuTvIKhsFK/h
+	 yIw9M6v427oP9td75CRWCkTP17p14qZKIY972COs=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41EBNFgb016640
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 14 Feb 2024 05:23:15 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 14
+ Feb 2024 05:23:14 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 14 Feb 2024 05:23:14 -0600
+Received: from [172.24.227.193] (devarsht.dhcp.ti.com [172.24.227.193])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41EBN8Va102851;
+	Wed, 14 Feb 2024 05:23:09 -0600
+Message-ID: <9314a841-d983-0254-c30a-4500864d0a1b@ti.com>
+Date: Wed, 14 Feb 2024 16:53:07 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS4PR10MB6181:EE_|DU2PR10MB7882:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1d00958b-e953-41e3-3d66-08dc2d4f26c4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	colz3LPg53LcDUnFeoY2JHM2/Jf1KxjjFpliOM/N+l+u0MIwPUw/CfDKCudgMs/EEZF7REbrO7YBUc4+pZMkFZ01Iqiz/cUSm9nybDqrci1OpZCHE9dNJ04tkWfU0By10BA8E/xxJCcCajd1AoGN6vsG1GqO0CAqAMI3cjU2sIEMfSfAQP60EmSWYbPFDIBZ8O4xOhyfn6XNqljQMpxbfJPqgZlUmASXFdUE75Y/Aw+il4J22EqpZ2QN5WQu5trnG1KquBTXR+IrFyLWnsX47Vjl8f7Ujv8oeBXts8xBeOJfivzpit1WPukeHmLJ9T0klFuvP4JTse9grXaRAFf+CCKCIVaPFGnju542sYXGSpPlAgMrShjkxU0Io9mwKKyh0EzmjCm2NtYPTGBkv/BOTCrFEZ311olu/zwqLa6MzvEUPXIslzKFWjmqD2CQ7onaYEWo3m9FqxWZ4D6DtmtvGO68i1Ukon4F5cGt9HfnsiB6nh3bxDUPv6vL7sXN53Ozgbq/I12mEXdwyufjjvmrVMU6UEWOE+CZ/NjB7ZbDJ1U=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(376002)(136003)(396003)(366004)(346002)(39860400002)(230922051799003)(1800799012)(451199024)(186009)(64100799003)(83380400001)(82960400001)(86362001)(31696002)(38100700002)(478600001)(966005)(6486002)(110136005)(316002)(2616005)(107886003)(6506007)(53546011)(6512007)(26005)(36756003)(31686004)(66946007)(2906002)(5660300002)(4326008)(66476007)(8676002)(66556008)(8936002)(44832011)(41300700001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?U2U0MllBQ0pVc1NlNkZiNUEvRnVPOWlNSGl2emV2TjJvakFHajNWdmd1ZHp2?=
- =?utf-8?B?Yk5taXNrOVRQVk9pN0NZc2NPT3F1cHFDRlcxZWVoYi82L1h6K3JnRTI0UFF2?=
- =?utf-8?B?N1V0V0g0bG9sbEZGbU4vWnJ5U2IrTFQ0dHZkM2VXaEtUYVMwWG9tRlQ3bWwx?=
- =?utf-8?B?MjFpaWkzbWR5K21yQlRoUnZhaGFYbFA0MUhwdW1jZkNneEZ5UjlmWVZuaGxa?=
- =?utf-8?B?ajZvRktjU2FHRWdvejRZT0xzbVBvaWlCaUpPMHZGODhEQ3VGU2czMHVrS3k1?=
- =?utf-8?B?djhCMWpmRDA3bXU4SVA5OVN0UTJrRjVRRXhiN0lCWW1tTGZ0VmNjdlAyQUdP?=
- =?utf-8?B?YkNkZlpHSXJzanQzdjF3c2prOFljRFd5OUtlWTA3d2MrTmQ2c0JkNi9HQXEy?=
- =?utf-8?B?ckd0R1c0V2JFUmJGMHFTeHNiZE1xMG1RcEhzOVRDNEtGVWNBVTJTTCtXQUY3?=
- =?utf-8?B?VXd1TzM1S0Y4R1ZBak9mMU1yRFhzaDU3cmVTQ3BhOVRLcnAwSjM4SzNFOFZ6?=
- =?utf-8?B?MHhOcmRjWlBsWWtTZ1h4eFd4cC9ZSFA4L29majFxRk8vLzhRUnZvREY5UGth?=
- =?utf-8?B?WkNmc3FKS0x6a0lNTytSbmdnU21URjI3cFNvZ2kyU1JZanJveXJoNUhUdmJs?=
- =?utf-8?B?ZE1zb0EyWUliUTNjZmM2b2Y4VDVRQjNaREg1MWNxNkxTY0I0cWlBTHJ3TmdO?=
- =?utf-8?B?NlR3dkJQOTBjQUhZU3ZDNUtmeEo3SnNMZkhwdnJpRGRhZEtiTjkzVnJ1OHZN?=
- =?utf-8?B?QVdhNTY1WDJtalAzOXd5ZytxeUJod1lqSEZDT2c1Y29XTUVTbkVyaVRlanVo?=
- =?utf-8?B?bUh2djBYTmVDTXZOU0t1YVhjNHJrd3dXbGxFZ29KK3JXRTdiZmJNR2pRNk10?=
- =?utf-8?B?b1NrMUxLcndPSmFHV05pTkIxUko0K3hFZCtpOWZJZFBQaHhrYjBkVERkV1Bw?=
- =?utf-8?B?R2N2bzRNTHhwRmFqQkVjZWNRTVU2VWVabmpDVTZVR1ViVkpmWjd6KzQrOEs1?=
- =?utf-8?B?RUNGdTB6VUJDWVkycUlIQU94YkhTWFpMVzhhOEVwMmh1WHY5dzI5bFdkcmd2?=
- =?utf-8?B?cXFuNU1oZ3lmTHRNTmU3aHBPRnpiSC94ak1iZ1czYlVucW10TThwQ0ZnYVZI?=
- =?utf-8?B?TkttT1F5V1RSakJ4c05NNGpSRHA5QmpUTWUwV3hzUjc3V2xGOTVqWHVPb25s?=
- =?utf-8?B?elZxb1IxZlo3SzlrcG1PNEtpM2FqeGgzcmdHcGt6ZDhsbzBEM05OSGpSaUhy?=
- =?utf-8?B?WFdvUXZGbHJRd3NKTWEyRXNKU1hnSUtaaG5oRWx5UDZHTEs0aEMvSHZCRVla?=
- =?utf-8?B?ZHg5VCtNTzhXZ2VBR0FsallkdEJWbDZYc1MrZmlvZjN6aUZhSEl5NzBNemZZ?=
- =?utf-8?B?Uy9teHk2WmQwMFFMRmcxWXpzS28xdjdVaHZxZS9idklOMCtESzJCN3NKS3hK?=
- =?utf-8?B?TFBiUGNSWDQxSm5KZ0tHTHJVNWJ4TFhJd25MWGdhanNVRFdEd2Y5TFduTnpD?=
- =?utf-8?B?eHdnWlkrdndVR3Y4S2F3bGlLejAyK3Z5bk02Z0RnQi9rQ1p6emhqNUMxdktX?=
- =?utf-8?B?WDlWTkFCUW5jNWgwQnJMbW5pTXBFa1hCTEhPcEthcHY0SGhoQjhIbnowZjhZ?=
- =?utf-8?B?SmRKTXoyS1E0T25NeHNwRWF4UThNRlpweHpnUm5Fb1h4SzA0clh2N1VsOUYr?=
- =?utf-8?B?YmM5QlJrUWhzNnAwM2pjcXVtVGladGttRnFHTkswOWZLVkd4MXd5NUNNWEJ2?=
- =?utf-8?B?NUFGWlpOeW9CZk5uTFVVN0ZxL1dkcDZtdEhBS1llc2V1Z0xzK2kwWEh6WUpl?=
- =?utf-8?B?c0RFaU1lQkkwNnJLaWNrNm5vY2c2VWw1V2lBR0VLSGo1a1BCaE9SUEtnQnZx?=
- =?utf-8?B?UTZlWUlGdFlCSnZBUitSdkpYUmJyaHNjTjNvckhGekJjNFM3NXZQaW5WYjJK?=
- =?utf-8?B?YVpHZHhqRk5HaG1TVU03TVFEVWo1YWpmNUM0akVLWnl1Z09ZOVhUMDNuR0Rh?=
- =?utf-8?B?WDBxMFExRVRFUDRRLzRCUGd2bHpkVHJ1K0ExdEJVeEQxZWxpNkhtaGc0ZGJM?=
- =?utf-8?B?VWpoRW5FQ1p6VWxnME1RRWNsY3VTR0tZM2VzdjlYZm5nM0VXMjIwTnFJWjBv?=
- =?utf-8?B?WEhkRDFLTTBlaHpOaktESlFDWC9EWlRKQ2oramNJSFprNW5WU3NETmI4S1Yz?=
- =?utf-8?B?Z2c9PQ==?=
-X-OriginatorOrg: siemens.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1d00958b-e953-41e3-3d66-08dc2d4f26c4
-X-MS-Exchange-CrossTenant-AuthSource: AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2024 11:21:55.7304
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hipKgctiCKUeIWHFOzlyPNpR3X4fCKQnL/NQwTikg3Itykqq/RqLdKJHsfTch2lCEoLa9Zk4LJhkM3hMePGyzQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR10MB7882
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 1/2] dt-bindings: display: ti,am65x-dss: Add support for
+ common1 region
+Content-Language: en-US
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, <conor+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
+        "Raghavendra,
+ Vignesh" <vigneshr@ti.com>
+CC: <praneeth@ti.com>, <nm@ti.com>, <vigneshr@ti.com>, <a-bhatia1@ti.com>,
+        <j-luthra@ti.com>, <kristo@kernel.org>, <jyri.sarha@iki.fi>,
+        <airlied@gmail.com>, <daniel@ffwll.ch>,
+        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <dri-devel@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devarsht@ti.com>
+References: <20240115125716.560363-1-devarsht@ti.com>
+ <20240115125716.560363-2-devarsht@ti.com>
+ <f8cc383e-1150-45d2-8325-a8dd69969300@ideasonboard.com>
+ <839d6de4-b396-4799-8a62-9249727b6dcc@ideasonboard.com>
+From: Devarsh Thakkar <devarsht@ti.com>
+In-Reply-To: <839d6de4-b396-4799-8a62-9249727b6dcc@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 14.02.24 11:13, Vignesh Raghavendra wrote:
-> 
-> 
-> On 09/02/24 12:53, Jan Kiszka wrote:
->> From: Jan Kiszka <jan.kiszka@siemens.com>
+Hi Tomi, Vignesh,
+
+On 14/02/24 14:53, Tomi Valkeinen wrote:
+> On 14/02/2024 11:10, Tomi Valkeinen wrote:
+>> Hi,
 >>
->> A new variant is to be added which will not have a arduino connector
->> like the existing ones. Factor out all bits that are specific to this
->> connector.
+>> On 15/01/2024 14:57, Devarsh Thakkar wrote:
+>>> TI keystone display subsystem present in AM65 and other SoCs such as AM62
+>>> support two separate register spaces namely "common" and "common1" which
+>>> can be used by two separate hosts to program the display controller as
+>>> described in respective Technical Reference Manuals [1].
+>>>
+>>> The common1 register space has similar set of configuration registers as
+>>> supported in common register space except the global configuration
+>>> registers which are exclusive to common region.
+>>>
+>>> This adds binding for "common1" register region too as supported by the
+>>> hardware.
+>>>
+>>> [1]:
+>>> AM62x TRM:
+>>> https://www.ti.com/lit/pdf/spruiv7 (Section 14.8.9.1 DSS Registers)
+>>>
+>>> AM65x TRM:
+>>> https://www.ti.com/lit/pdf/spruid7 (Section 12.6.5 DSS Registers)
+>>>
+>>> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+>>> ---
+>>>   .../devicetree/bindings/display/ti/ti,am65x-dss.yaml       | 7 +++++--
+>>>   1 file changed, 5 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+>>> b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+>>> index b6767ef0d24d..55e3e490d0e6 100644
+>>> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+>>> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+>>> @@ -37,6 +37,7 @@ properties:
+>>>         - description: OVR2 overlay manager for vp2
+>>>         - description: VP1 video port 1
+>>>         - description: VP2 video port 2
+>>> +      - description: common1 DSS register area
+>>>     reg-names:
+>>>       items:
+>>> @@ -47,6 +48,7 @@ properties:
+>>>         - const: ovr2
+>>>         - const: vp1
+>>>         - const: vp2
+>>> +      - const: common1
+>>>     clocks:
+>>>       items:
+>>> @@ -147,9 +149,10 @@ examples:
+>>>                       <0x04a07000 0x1000>, /* ovr1 */
+>>>                       <0x04a08000 0x1000>, /* ovr2 */
+>>>                       <0x04a0a000 0x1000>, /* vp1 */
+>>> -                    <0x04a0b000 0x1000>; /* vp2 */
+>>> +                    <0x04a0b000 0x1000>, /* vp2 */
+>>> +                    <0x04a01000 0x1000>; /* common1 */
+>>>               reg-names = "common", "vidl1", "vid",
+>>> -                    "ovr1", "ovr2", "vp1", "vp2";
+>>> +                    "ovr1", "ovr2", "vp1", "vp2", "common1";
+>>>               ti,am65x-oldi-io-ctrl = <&dss_oldi_io_ctrl>;
+>>>               power-domains = <&k3_pds 67 TI_SCI_PD_EXCLUSIVE>;
+>>>               clocks =        <&k3_clks 67 1>,
 >>
->> The split is not perfect because wkup_gpio0 is defined based on what is
->> common to all variants having the connector, thus containing also
->> connector-unrelated information. But this is still cleaner than
->> replicating this node into all 4 variants.
->>
->> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
->> ---
->>  .../ti/k3-am65-iot2050-arduino-connector.dtsi | 768 ++++++++++++++++++
->>  .../boot/dts/ti/k3-am65-iot2050-common.dtsi   | 753 -----------------
->>  .../ti/k3-am6528-iot2050-basic-common.dtsi    |   1 +
->>  .../dts/ti/k3-am6548-iot2050-advanced-m2.dts  |   1 +
->>  .../dts/ti/k3-am6548-iot2050-advanced-pg2.dts |   1 +
->>  .../dts/ti/k3-am6548-iot2050-advanced.dts     |   1 +
->>  6 files changed, 772 insertions(+), 753 deletions(-)
->>  create mode 100644 
->> arch/arm64/boot/dts/ti/k3-am65-iot2050-arduino-connector.dtsi
->>
->> diff --git 
->> a/arch/arm64/boot/dts/ti/k3-am65-iot2050-arduino-connector.dtsi 
->> b/arch/arm64/boot/dts/ti/k3-am65-iot2050-arduino-connector.dtsi
->> new file mode 100644
->> index 000000000000..cd86f412b837
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-arduino-connector.dtsi
->> @@ -0,0 +1,768 @@
->> +// SPDX-License-Identifier: GPL-2.0
+>> Looks fine to me, I'll apply to drm-misc-next.
 > 
-> This and elsewhere in the series should be
-> 
-> // SPDX-License-Identifier: GPL-2.0-only
-> 
-> as fixed up by Nishanth in [0]. I can fix that locally, let me know.
+> Hmm, now thinking about this, doesn't this cause dtb checks to start failing,
+> as the dtbs are missing one entry? Is it better to merge these kind of changes
+> with the dts changes? Or does it matter?
 > 
 
-Yes, please.
+Yes if one get's applied and other doesn't then there will be such issues.
+I am sending shortly both the dt-binding and device-tree patches together, as
+long as both look fine and ready to be accepted by respective maintainers, I
+think both can get merged to respective trees and land in linux-next without
+causing any issues.
 
-> [0] https://lore.kernel.org/r/20240122145539.194512-16-nm@ti.com
+Regards
+Devarsh
+
+>  Tomi
 > 
-
-Thanks,
-Jan
-
--- 
-Siemens AG, Technology
-Linux Expert Center
-
 
