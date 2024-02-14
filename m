@@ -1,110 +1,81 @@
-Return-Path: <devicetree+bounces-41813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A865855302
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 20:14:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0C43855373
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 20:48:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4DFF41C20D59
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 19:14:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C065284EEB
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 19:48:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF4C213A863;
-	Wed, 14 Feb 2024 19:13:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AsxoVIFd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8014E13B7B4;
+	Wed, 14 Feb 2024 19:48:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC84B171A2;
-	Wed, 14 Feb 2024 19:13:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E03017E767;
+	Wed, 14 Feb 2024 19:48:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.175.24.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707938037; cv=none; b=KqpnnvSA90BO7xbY+pGc7P+iKri5y0CqemOhOygojEFYA9hIGk3gdE/z1MOLztHkpGbXIDPhvf+kpFRsD+n4OlANesrIMS4UF06V+OuWR0JxGY2l/3E1b0OYJlvGvYCPvoLaN76LTOnDpkQQFYmaYWNFrWzGKRCKSChcWlOeuLE=
+	t=1707940108; cv=none; b=Lsuwk5MQEoP3TUZBtIhlL2f2bhQjJu5mXkPipFPbSaXilqsDHGW0uZYxF3wnGoSJLDuyFW57BZcdnNdMg5pxJa2WgRw5WxQd5PrVFlKa814BoSyqb4ubFsEFSIvKwEaqa5pxtXDVTcp3Mg17/OXVP6QXuyAjRbISAp6vyLfeh3U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707938037; c=relaxed/simple;
-	bh=2h5BfRmGTY9n7Y2yzZd3yjGkBXp1UeuXXBTE1xv0r8E=;
+	s=arc-20240116; t=1707940108; c=relaxed/simple;
+	bh=NC8mTAJ2+Ru4a70SXpBDjYkA5AKa1yGpczglRB9UknU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fWokXOTi4lNyMDFM1gRMmlladGyg+YOCJkNScTl1U1vP/yuef+fbOmFBz3ffpO9ImqgdlKje8j/n6tI3nGZa1DJaYtaspOHFZI+eZ4ZWhal3AswAJj+bbfOXUCG2EWpslPih1TMZsqfuZD3MN/thZfiyoj6sdYl+9z9rH+kFFCE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AsxoVIFd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE237C433F1;
-	Wed, 14 Feb 2024 19:13:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707938037;
-	bh=2h5BfRmGTY9n7Y2yzZd3yjGkBXp1UeuXXBTE1xv0r8E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AsxoVIFdP9/Lw8KV6evO4VEF4HyAEY/I+rOCxdu4bmWbTkBvKDgoY2UmPOnUoopem
-	 CNNY+MpzHFcKZR8ZLUSsPLauy4eDfPpfY6hJmC6bsKtt/eqo89XuD6f5Cgp2Q7LYfm
-	 YhuWALZBFeXsNbW0tKow3otbFQLUACzEhvH1bQ2LMEvBTQb4j9fM7OACPIVlTwtR5R
-	 rbzR9Bit+NBb+VZ/1wKYghmOS2NzQ1rxi6lCrXnuHHellvfDh+duQgJClyJ69B74MS
-	 Kw9xeC70Hv3X92OE694gc32nCpglO1Zhzi+ozyphvjSVtSmvlkjTsxlZRtTweB+dK2
-	 v/p+jVLbNbT1A==
-Date: Wed, 14 Feb 2024 19:13:51 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Saravana Kannan <saravanak@google.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=WV8XEkPPhfNsYWiCF/KO1/HmhbQfrcFwb8/gR3bYlsW7wK71ptrBnOMZQgH7vZMQOlojms7tdpn1bf00B7JbYDmZgAsW+UX0vdu536feQC7MtnEfSQQkAcFd22xj9T7G4DllPy9z+swiKJZSCqVVlHqMG9KG+rpWJwi4ngxaer4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
+Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
+	id 1raLEy-0000vd-00; Wed, 14 Feb 2024 20:48:20 +0100
+Received: by alpha.franken.de (Postfix, from userid 1000)
+	id EC942C0267; Wed, 14 Feb 2024 20:14:27 +0100 (CET)
+Date: Wed, 14 Feb 2024 20:14:27 +0100
+From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc: Paul Burton <paulburton@kernel.org>, linux-mips@vger.kernel.org,
+	Jiaxun Yang <jiaxun.yang@flygoat.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Ard Biesheuvel <ardb@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>, Len Brown <lenb@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	kernel-team@android.com, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-efi@vger.kernel.org,
-	linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] dt-bindings: Add post-init-supplier property
-Message-ID: <20240214-paradox-lining-387df67842eb@spud>
-References: <20240212213147.489377-1-saravanak@google.com>
- <20240212213147.489377-4-saravanak@google.com>
- <20240214-stable-anytime-b51b898d87af@spud>
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v7 03/14] MIPS: Allows relocation exception vectors
+ everywhere
+Message-ID: <Zc0RE8NE0sfYYmZN@alpha.franken.de>
+References: <20240205153503.574468-1-gregory.clement@bootlin.com>
+ <20240205153503.574468-4-gregory.clement@bootlin.com>
+ <ZcTE8nKCaKuaUvAe@alpha.franken.de>
+ <87plwzj8jw.fsf@BL-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Ga/ylhVRuzIrSHgn"
-Content-Disposition: inline
-In-Reply-To: <20240214-stable-anytime-b51b898d87af@spud>
-
-
---Ga/ylhVRuzIrSHgn
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <87plwzj8jw.fsf@BL-laptop>
 
-On Wed, Feb 14, 2024 at 06:48:59PM +0000, Conor Dooley wrote:
+On Wed, Feb 14, 2024 at 05:48:51PM +0100, Gregory CLEMENT wrote:
+> Jiaxun Yang sent a series to address it [1]. I managed to rebase my
+> series on top of this one.
+> 
+> Do you agree with these 8 patches?
 
-> > +  post-init-supplier:
-> > +    # One or more suppliers can be marked as post initialization supplier
+first glance looked good ;-)
 
-Also, this should likely be pluralised, to match "clocks" "resets"
-"interrupts" etc.
+> Can I send my next series with the assumption that it will be merged?
 
-> > +    description:
-> > +      List of phandles to suppliers that are not needed for initializing or
-> > +      resuming this device.
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +      items:
-> > +        maxItems: 1
+yes, I'll start applying next week.
 
+Thomas.
 
---Ga/ylhVRuzIrSHgn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZc0Q7wAKCRB4tDGHoIJi
-0o6yAQCn+Yeqh7KiSBuQXm/qbP6ixeqfhiNoyTXK3AjFQZwSdAD/TFE1/Hw4fiFO
-Wb2RRaPzNPElghkWVu6qlYuSQtgAoQg=
-=55O+
------END PGP SIGNATURE-----
-
---Ga/ylhVRuzIrSHgn--
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
 
