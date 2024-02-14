@@ -1,66 +1,60 @@
-Return-Path: <devicetree+bounces-41767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F180855057
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 18:31:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A98C855071
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 18:37:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 91A011C2152E
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 17:31:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB289282C40
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 17:37:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 876647E0E3;
-	Wed, 14 Feb 2024 17:29:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 919417D3E1;
+	Wed, 14 Feb 2024 17:37:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a3DgzkPw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F+LwPgyI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5846D60BBA;
-	Wed, 14 Feb 2024 17:29:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 691F55579B;
+	Wed, 14 Feb 2024 17:37:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707931781; cv=none; b=QtPXB74iSJD+pMot80PYPqTb5ZGMQGooYHoz7nI1wEu8Rk6efALbU2C8rRM6/pUZR4OB2wyVVTv+o692TYaVts8+1IXV/8GaoDY4DKIK9Bsa5Xi9guxWxd4KmaGypMhXSWXc3y66oFAwscL4TqZ71MkhtfoLbnglNv638mLYhzE=
+	t=1707932242; cv=none; b=BHrRmrSQkSaCFaejBoLJSbO7joAxUVllmsQ2kFCDDlzL9foVpiNPloCArkLLhkZaSC87+F+V4eFR9Fol5j9nBb7P4g5G+L2bHAX8jZvOaHkqEOlOQj+xEW3EXJ0RTdMI+4rmAeYtyt86yl72sCQj7/0AApPQsYe84T8Jpn6kNoI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707931781; c=relaxed/simple;
-	bh=+joyx0bmEnXyVy5esBqSXjpzYkY8kxZ8vd/ZpfSmvWM=;
+	s=arc-20240116; t=1707932242; c=relaxed/simple;
+	bh=ek0NtWmXn+TPNiS8vFBud6b8Ud2vwDMcMY53ZCY+JtQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HMbno+lui2Y9Z4sAHmGjbLIXHlAIzTZD6vnHhyJSKvygFeL709WewM7vlBZEK1ch0Hi3FyBSDSUOBEpA8cjG02aZWFAjrqC+CRuk1XmbYXIRrhpfBvhJQo0RluAb6gerGFk1sG5gYU77Vgs8gx9u76e/M7fC7rW6c5SQM9dlSN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a3DgzkPw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F345C433F1;
-	Wed, 14 Feb 2024 17:29:38 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q67Q5q0WmjIkOLqVbWaaNoM6Mv7/UiruLPTI68fJjHigrjm5V6ZcBmv2r4iOJ8M9u3OeIMuKwFON8b79sP/CjzEdYKnGis4XpjZBIrvuhfZkvW2dhyWsG6skSz31rneWoSJ6WUoCodAoWHS3USJgunUjDjO0HQA65RnM7dPgl8M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F+LwPgyI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4215EC433C7;
+	Wed, 14 Feb 2024 17:37:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707931780;
-	bh=+joyx0bmEnXyVy5esBqSXjpzYkY8kxZ8vd/ZpfSmvWM=;
+	s=k20201202; t=1707932241;
+	bh=ek0NtWmXn+TPNiS8vFBud6b8Ud2vwDMcMY53ZCY+JtQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=a3DgzkPw6OKniqOGuHrkCmMdzuJ8k/Vd7nQRWLRwRP7ys6T/7dUj8nrqk9FOb+Ahe
-	 ywbR/psfeipPxPNrfO0NWUJ9STX86CF6b6SsJ77UtCSnj6QgEPgVVSDxKwmrhnMGvU
-	 m9FIC4ae9obhqn/231NelfgGPO3uLgalkutO+8WYgPNsvR6lrLnbrgGYBfrDFEaUW6
-	 ZsQMxHAr4QQQSzaFl8HUrrfnraN4qd8o3xkihmp+nMKdTYO4qSsvVtkZAxffEiz+Ni
-	 tKlo/bd0ufomJOVKIPJFQ8jV5dRJPHEmHg2VfeM5YHByrBCTwsEvIEVfvgHW6ViD5L
-	 hwPhGgX7eL1BA==
-Date: Wed, 14 Feb 2024 17:29:36 +0000
+	b=F+LwPgyIF84VQbj5U8WQ+0p7pORiBON/e13af5EX5X7Kn0Pt9QWqdSovyNxFILQWK
+	 U9ITu+xJiXrz5c0ZeNeTcx/mxJvD7pvy+xa0NkE+9w4NFX9TMtPrH5fM9eaStrHcAy
+	 KcTLqGw2jSbhQGt1Ffukl9WrwMjT69hNeLzhwjsmH8jL/kopEgTM0NKjZTvzr56e6/
+	 d70KfOke0axc7ffOtRboRbA8935VXmWEnJzSukRXW9hV0+lnVhpB0PnpCVx59ISIwK
+	 DRT4alC+YWwSTAQ/tylUdm4UZTWhjh/fgwNpJv3HUEeorDJOq3YUFhsdfuniDGUBva
+	 nZ4GHIYvu8rIw==
+Date: Wed, 14 Feb 2024 17:37:17 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Cc: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andrey Skvortsov <andrej.skvortzov@gmail.com>,
-	Icenowy Zheng <icenowy@aosc.io>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: iio: magnetometer: Add DT binding for
- Voltafield AF8133J
-Message-ID: <20240214-boat-drapery-3f957d393ccc@spud>
-References: <20240211205211.2890931-1-megi@xff.cz>
- <20240211205211.2890931-3-megi@xff.cz>
- <20240212114738.0000535b@Huawei.com>
- <i2q2vntbhilrpwppzl367ndoetbyd6guyti4t4n7vtg5pwq7bi@tjkio7zpwrfw>
- <20240214163116.000031b5@Huawei.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Daniel Scally <dan.scally@ideasonboard.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
+	nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com
+Subject: Re: [PATCH v2 2/5] dt-bindings: media: Add bindings for ARM mali-c55
+Message-ID: <20240214-velcro-pushy-0cbd18b23361@spud>
+References: <20240214141906.245685-1-dan.scally@ideasonboard.com>
+ <20240214141906.245685-3-dan.scally@ideasonboard.com>
+ <20240214142825.GA7873@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,79 +62,110 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ZURdXPkQnAo0vG8A"
+	protocol="application/pgp-signature"; boundary="O6sj7yKlLqG4SpJ7"
 Content-Disposition: inline
-In-Reply-To: <20240214163116.000031b5@Huawei.com>
+In-Reply-To: <20240214142825.GA7873@pendragon.ideasonboard.com>
 
 
---ZURdXPkQnAo0vG8A
+--O6sj7yKlLqG4SpJ7
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 14, 2024 at 04:31:16PM +0000, Jonathan Cameron wrote:
+On Wed, Feb 14, 2024 at 04:28:25PM +0200, Laurent Pinchart wrote:
+> Hi Dan,
 >=20
-> > > > +
-> > > > +  dvdd-supply:
-> > > > +    description: |
-> > > > +      an optional regulator that needs to be on to provide DVDD po=
-wer (Digital
-> > > > +      IO power, 1.8V~AVDD) to the sensor.
-> > > > +
-> > > > +  mount-matrix:
-> > > > +    description: an optional 3x3 mounting rotation matrix.
-> > > > +
-> > > > +required:
-> > > > +  - compatible
-> > > > +  - reg =20
-> > >=20
-> > > Any power supply that is required for operation should be listed here=
- (even though
-> > > we can rely on the stub supplies if it isn't in the DT).
-> > > I used to think this wasn't necessary, so lots of bindings upstream d=
-on't yet
-> > > have it. =20
-> >=20
-> > By stub supply you mean dummy supply created when the *-supply property=
- is not
-> > specified in DT? Or something else?
+> Thank you for the patch.
 >=20
-> Ah yes. I got the term wrong.
+> On Wed, Feb 14, 2024 at 02:19:03PM +0000, Daniel Scally wrote:
+> > Add the yaml binding for ARM's Mali-C55 Image Signal Processor.
 > >=20
-> > Because DTC_CHK prints a warning if I make the proerty required in bind=
-ings and
-> > not specify it in DT
+> > Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
+> > Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+> > ---
+> > Changes in v2:
 > >=20
-> > arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.2b.dtb: magnetomet=
-er@1c: 'avdd-supply' is a required property
-> > 	from schema $id: http://devicetree.org/schemas/iio/magnetometer/voltaf=
-ield,af8133j.yaml#
+> > 	- Added clocks information
+> > 	- Fixed the warnings raised by Rob
+> >=20
+> >  .../bindings/media/arm,mali-c55.yaml          | 77 +++++++++++++++++++
+> >  1 file changed, 77 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/arm,mali-c5=
+5.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/media/arm,mali-c55.yaml =
+b/Documentation/devicetree/bindings/media/arm,mali-c55.yaml
+> > new file mode 100644
+> > index 000000000000..30038cfec3a4
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/arm,mali-c55.yaml
+> > @@ -0,0 +1,77 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/arm,mali-c55.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: ARM Mali-C55 Image Signal Processor
+> > +
+> > +maintainers:
+> > +  - Daniel Scally <dan.scally@ideasonboard.com>
+> > +  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: arm,mali-c55
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: ISP video clock
 >=20
-> Provide one, or don't worry about that warning.=20
+> I wonder if we need this clock. Granted, it's an input clock to the ISP,
+> but it's part of the input video bus. I don't expect anyone would ever
+> need to control it manually, it should be provided by the video source
+> automatically.
 
-For the sake of the platform maintainer, please choose option 1.
+I'd say that if there's a clock controller providing this clock, even if
+it is implicit in the video feed it's good to have here. Being able to
+increment the refcount on that clock would be good, even if you don't
+actually control it manually?
 
-Thanks,
+>=20
+> > +      - description: ISP AXI clock
+> > +      - description: ISP AHB-lite clock
+>=20
+> These two other clocks look good to me.
+>=20
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: vclk
+> > +      - const: aclk
+> > +      - const: hclk
+
+Why not "video" "axi" "ahb-lite"? There's 3 useful letters between the
+tree clock names you've provided - they're all clocks, so having "clk"
+in them is just noise :)
+
+Cheers,
 Conor.
 
-> Various discussions have taken place on this over time and end
-> result is bindings should require them to differentiate from power
-> supplies that are actually optional.
->=20
-> Jonathan
->=20
->=20
-
---ZURdXPkQnAo0vG8A
+--O6sj7yKlLqG4SpJ7
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcz4gAAKCRB4tDGHoIJi
-0t2XAP4nJHA2b9GYmFqXkv+07/EH+A0d1pTP+qFxL6MbEPfAnwEA3fFVoQUTBNDE
-m/cQ44UUEixiyx9FrScrbk45rvjqEAc=
-=0zCn
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcz6TAAKCRB4tDGHoIJi
+0qn4AQCdJgBnLTSQ8gusKx8Zo7Jon05mtC/gi+jhKni5OcXmEgD+LLunh7p+YkjY
+0u9tdxfmxPW4Wa7dkDdQSr7iSDDlUwY=
+=B5rx
 -----END PGP SIGNATURE-----
 
---ZURdXPkQnAo0vG8A--
+--O6sj7yKlLqG4SpJ7--
 
