@@ -1,48 +1,75 @@
-Return-Path: <devicetree+bounces-41576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C0E385450A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 10:23:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01405854512
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 10:24:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D141B263D9
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 09:23:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B6A71F2C7D6
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 09:24:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D799125AD;
-	Wed, 14 Feb 2024 09:23:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69DB3125C3;
+	Wed, 14 Feb 2024 09:24:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="d2oZ0m8B"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="URX3IcFo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53A3212E6C;
-	Wed, 14 Feb 2024 09:23:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF02C125B8;
+	Wed, 14 Feb 2024 09:24:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707902593; cv=none; b=KICD4oTnS4jrtLYf0DpCKyRg/kWittm1b0Aa9En+x7kzxYgtLkm2ZD74Rc1ViGKVLWqQKx45QKKD7ZMjfOMjQMhDHziVBfW2HK4cO7IM+qBpWtCsSHIEe8ukjb3zsED4xGFAAlDmaTBboOjZSg0GzjkByBdEeGxIyx+NmqO+rRw=
+	t=1707902678; cv=none; b=iMoyL9GSYRXGEjci47o5l1UvQ0+KvbPMzbUUxxQJh4iLc/cNaBT3E4Pc/O2FYwKqUl7XqRDGhAIsxEKmRlfqSYAXiTxnBu/1jmuv15NKN5+8uTnqU7Qii0ayEMETrJZEkzJd2bBIzGTcA93hvrXLLu8pA6qU4W1icdlpZAzi/2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707902593; c=relaxed/simple;
-	bh=BzXd7RuiwCTqBRO3TrKhE8xbVkPb0y7sK2NROp8pCZo=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=PoJWS+6J0KY8DCafbki9/TAvnwtWoW6ONpDX80lxI1HFGM0nigQ43hgnp313Iu6l1x6lkbI2T4a//XGn0wavQU4LY/25irRWlMx/hPL/HhGL/fQNN881b1Uh/IECsfle/xy4w0qYN2u5X5UuJyNIweh3On95E/ujyFQ6Cd6Q3VY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=d2oZ0m8B; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-154-35-128.elisa-laajakaista.fi [91.154.35.128])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 62DEB673;
-	Wed, 14 Feb 2024 10:23:05 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1707902586;
-	bh=BzXd7RuiwCTqBRO3TrKhE8xbVkPb0y7sK2NROp8pCZo=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=d2oZ0m8Bhk2IB/H2j5z6rKeUnA1tftzalI8uarCo30Bsq4XiRVAv6lFroGxGJIDYb
-	 1ILjo5z1NnlFOC/nFHkXLCuFPyWMMg9PWQXgfy2htLK/ShBui/5FOqIPvfd/r3z7Hh
-	 c02gDS7di1d7lTCdSoZ0s6hOWAa7GMGL1HqE1ijg=
-Message-ID: <839d6de4-b396-4799-8a62-9249727b6dcc@ideasonboard.com>
-Date: Wed, 14 Feb 2024 11:23:05 +0200
+	s=arc-20240116; t=1707902678; c=relaxed/simple;
+	bh=41Mh4KpWrduupYGMz0oD5L7b3mxUfFV/Gi6M3Kps/QU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QQ/n/khliYvBBpddLxpl82gHV1GyHTeHaBbz8dS5r6wrkgnYSAXcjcTCTDNpCnsufM7guM5gZKxoCgw7yA5FuMLXg1KU4lct5RKdmibr09ZfLRdksv7SkBWEHy4JAV00KaCjn1shsrZVWgEHV3rl7O4NWDzASEpOKEHZmtXE6+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=URX3IcFo; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-55a179f5fa1so7123856a12.0;
+        Wed, 14 Feb 2024 01:24:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707902675; x=1708507475; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=autbkFLkjIeFP2IoTWAP7V+DqrVLjHlcVKE9Dqcp+7Q=;
+        b=URX3IcFoF4Lhtwc7A0uFJA4+3GnOD+ZkyMc3iZ+T/Uwu+qgc+Q5/E9UlacR3bCanq+
+         KJ3Vfyxoc+5i7oFJTZu1qNKsm4ekzjwv0hlZRECeeJnQgr6XTvJcdY7sASpDzu70OeIF
+         aWpvRu4Z9IR8KeuUIBTqJf5fTMWZma6ERs5aS/ynRERrTE56Zarns1LdWvHsmq+529Yq
+         QL9uksyIsmqIB51SXpTLPUWlTxwOQNaFdswpgg27M1wrAwTu0r6bgqnGgTOlabFCoQpH
+         c49kGSaommc80kz683luWL70jSb/l9kJngnZUAYIrMnebpoIi5nHVWsfaeEWFE8yzQnK
+         zo3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707902675; x=1708507475;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=autbkFLkjIeFP2IoTWAP7V+DqrVLjHlcVKE9Dqcp+7Q=;
+        b=VSTIMIV66foy1SUVC4j584T8bgzsyl/tFATKQTrL5ALf1I2tArfbV+DHHxOd7uxSmc
+         8PFQY7PuOwUbrzau/2E9UE3Biaw2C7epVj47w9ZxRxsgQqRL4VkNW18mFUZLFi68ZVHb
+         UO5TGrAWDE+5LxoM2VAKsVlwFdzTb7+74Dj3HC34/JXXYgjc4xaozBi1jOiDNystM0u4
+         m5Pc9/g39EjyDmRm9EHm9SnyTYB6PxF2fktYFAI/xPMuIuD0lXLHNbiG9STCLtlumgC6
+         1qZfO5FlxUsJRErw7Rs0tv5EBDpBFwGMpP6jfb67qv6HraPkr6wNAHuApoO3W/LMdrd5
+         dxCQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXt0tr99dDkoamaxoC7o83oRtSUnen8BPpKNhOrtZhEYm1w/Rit3BGz7T+onwLC5vAjXalJWT8Spam+2C76KENHBjusdwDg7rSOwzFxgsvRusFI+2VUsjy+I51p+JplKvYWzyrSizdieO8DNQkcS2CkfxIzgUGZQJY7swgqNtNtX4QZtw==
+X-Gm-Message-State: AOJu0Yyzc6KUVakFacHsqnxRt4b+ZG6tLT23dyBGwmuj1THjDDjB5og1
+	8VbqaT1VZ6fLfSsUVvh9oYaH5wVUVfSGFZPh8FxIWzHTXI3hveyB
+X-Google-Smtp-Source: AGHT+IEIRK0LiG32CesRopAhB5xn0V0/7DWQoZ3+1hg39jN/1KBKrKr4SXdEpoYMVIpPCy2AIxG62A==
+X-Received: by 2002:a17:906:4158:b0:a3d:26b2:94f4 with SMTP id l24-20020a170906415800b00a3d26b294f4mr1389226ejk.73.1707902674566;
+        Wed, 14 Feb 2024 01:24:34 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCX3CDe8Xc/tATxS7T7yF2GAH4vsL09Wkp69VRwWz7CXelPz+Y3qX6mCVXQoiLVeDQjXN4B2M7OS6GeN2B2a7Crtgov9zLzWIvOlMdSYOjmaTQ1kSeeN9nW1WHcvwX9Jbaokv+jiZs+Yw5lWz7mZ/Y4enHVIoJhrLyjFcwY/vlzeIsQSgTht3lgfkPHwfBjRDdxOI4OSCHDKvPQJIbbVsmJIL/0/UhLWKCv3cVdsb6rwaD+6Cmxy/MiLputfczmnLOTqgffmeaJpCdcTOM5PjBQ87lSHA2nqCQjIwWiGT01w/uU9lPIEcuZxccYhMM6FybU5VvmIf05oXjULJGxcwcN6X66B4rmc/i3NZV5EaiMwsMlqIw1fEUOCQFBSc+y0Y95HOg44oORhyU9fiL0ZF1c+kiJTifxJdOHvGoihDF2Ir7aXXpb8s83kRYLquvlyfVMpoVqfRA+G1UiogrTcCRUO
+Received: from [192.168.26.149] (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.googlemail.com with ESMTPSA id vo2-20020a170907a80200b00a3cf66ec008sm1636224ejc.166.2024.02.14.01.24.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Feb 2024 01:24:34 -0800 (PST)
+Message-ID: <bbacfaad-a182-4df5-8317-640e32a1954a@gmail.com>
+Date: Wed, 14 Feb 2024 10:24:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,135 +77,73 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: display: ti,am65x-dss: Add support for
- common1 region
+Subject: Re: [PATCH 2/2] arm64: dts: mediatek: mt7988: add PWM controller
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc: John Crispin <john@phrozen.org>, linux-pwm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20240213164633.25447-1-zajec5@gmail.com>
+ <20240213164633.25447-2-zajec5@gmail.com>
+ <36baacb4-4aa9-421f-bde0-c4be7d7f4aa1@collabora.com>
 Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-To: Devarsh Thakkar <devarsht@ti.com>, conor+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-Cc: praneeth@ti.com, nm@ti.com, vigneshr@ti.com, a-bhatia1@ti.com,
- j-luthra@ti.com, kristo@kernel.org, jyri.sarha@iki.fi, airlied@gmail.com,
- daniel@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240115125716.560363-1-devarsht@ti.com>
- <20240115125716.560363-2-devarsht@ti.com>
- <f8cc383e-1150-45d2-8325-a8dd69969300@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <f8cc383e-1150-45d2-8325-a8dd69969300@ideasonboard.com>
+From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <36baacb4-4aa9-421f-bde0-c4be7d7f4aa1@collabora.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 14/02/2024 11:10, Tomi Valkeinen wrote:
-> Hi,
-> 
-> On 15/01/2024 14:57, Devarsh Thakkar wrote:
->> TI keystone display subsystem present in AM65 and other SoCs such as AM62
->> support two separate register spaces namely "common" and "common1" which
->> can be used by two separate hosts to program the display controller as
->> described in respective Technical Reference Manuals [1].
+On 14.02.2024 10:09, AngeloGioacchino Del Regno wrote:
+> Il 13/02/24 17:46, Rafał Miłecki ha scritto:
+>> From: Rafał Miłecki <rafal@milecki.pl>
 >>
->> The common1 register space has similar set of configuration registers as
->> supported in common register space except the global configuration
->> registers which are exclusive to common region.
+>> Add binding for on-SoC controller that can control up to 8 PWMs.
 >>
->> This adds binding for "common1" register region too as supported by the
->> hardware.
->>
->> [1]:
->> AM62x TRM:
->> https://www.ti.com/lit/pdf/spruiv7 (Section 14.8.9.1 DSS Registers)
->>
->> AM65x TRM:
->> https://www.ti.com/lit/pdf/spruid7 (Section 12.6.5 DSS Registers)
->>
->> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 >> ---
->>   .../devicetree/bindings/display/ti/ti,am65x-dss.yaml       | 7 +++++--
->>   1 file changed, 5 insertions(+), 2 deletions(-)
+>>   arch/arm64/boot/dts/mediatek/mt7988a.dtsi | 21 ++++++++++++++++++++-
+>>   1 file changed, 20 insertions(+), 1 deletion(-)
 >>
->> diff --git 
->> a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml 
->> b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
->> index b6767ef0d24d..55e3e490d0e6 100644
->> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
->> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
->> @@ -37,6 +37,7 @@ properties:
->>         - description: OVR2 overlay manager for vp2
->>         - description: VP1 video port 1
->>         - description: VP2 video port 2
->> +      - description: common1 DSS register area
->>     reg-names:
->>       items:
->> @@ -47,6 +48,7 @@ properties:
->>         - const: ovr2
->>         - const: vp1
->>         - const: vp2
->> +      - const: common1
->>     clocks:
->>       items:
->> @@ -147,9 +149,10 @@ examples:
->>                       <0x04a07000 0x1000>, /* ovr1 */
->>                       <0x04a08000 0x1000>, /* ovr2 */
->>                       <0x04a0a000 0x1000>, /* vp1 */
->> -                    <0x04a0b000 0x1000>; /* vp2 */
->> +                    <0x04a0b000 0x1000>, /* vp2 */
->> +                    <0x04a01000 0x1000>; /* common1 */
->>               reg-names = "common", "vidl1", "vid",
->> -                    "ovr1", "ovr2", "vp1", "vp2";
->> +                    "ovr1", "ovr2", "vp1", "vp2", "common1";
->>               ti,am65x-oldi-io-ctrl = <&dss_oldi_io_ctrl>;
->>               power-domains = <&k3_pds 67 TI_SCI_PD_EXCLUSIVE>;
->>               clocks =        <&k3_clks 67 1>,
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
+>> index bba97de4fb44..67007626b5cd 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
+>> +++ b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
+>> @@ -1,5 +1,6 @@
+>>   // SPDX-License-Identifier: GPL-2.0-only OR MIT
+>> +#include <dt-bindings/clock/mediatek,mt7988-clk.h>
+>>   #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>   / {
+>> @@ -78,7 +79,7 @@ gic: interrupt-controller@c000000 {
+>>               #interrupt-cells = <3>;
+>>           };
+>> -        clock-controller@10001000 {
+>> +        infracfg: clock-controller@10001000 {
+>>               compatible = "mediatek,mt7988-infracfg", "syscon";
+>>               reg = <0 0x10001000 0 0x1000>;
+>>               #clock-cells = <1>;
+>> @@ -103,6 +104,24 @@ clock-controller@1001e000 {
+>>               #clock-cells = <1>;
+>>           };
+>> +        pwm@10048000 {
+>> +            compatible = "mediatek,mt7988-pwm";
 > 
-> Looks fine to me, I'll apply to drm-misc-next.
+> I can't take this unless there's a driver that supports your device.
 
-Hmm, now thinking about this, doesn't this cause dtb checks to start 
-failing, as the dtbs are missing one entry? Is it better to merge these 
-kind of changes with the dts changes? Or does it matter?
+I'd argue you should rather look for a documented binding rather than a
+(Linux?) driver. Otherwise you would refuse changes that are not
+strictly Linux related. DTS files are meant to describe hardware in a
+generic way and not be driven by Linux drivers / design.
 
-  Tomi
+Example:
+We have bindings for "brcm,bcm6345-timer" and "bcm63138-timer" (see
+commit e112f2de151b) and DTS files with those bindings.
+There is no Linux driver for that hardware block as there is no need
+for it.
 
+
+In this context I'm explaining binding thing with Conor in discussion
+on PATCH 1/1. So stay tuned :)
 
