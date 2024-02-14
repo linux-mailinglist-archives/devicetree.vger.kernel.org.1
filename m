@@ -1,148 +1,139 @@
-Return-Path: <devicetree+bounces-41678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EED2E854B38
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 15:18:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CBC1854B42
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 15:20:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C1691F2891F
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 14:18:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C4B151F29556
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 14:20:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 791845576A;
-	Wed, 14 Feb 2024 14:18:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 117C855E69;
+	Wed, 14 Feb 2024 14:19:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bnGo2ZFd"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="S7XayFHa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E183029437;
-	Wed, 14 Feb 2024 14:18:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E004955C10;
+	Wed, 14 Feb 2024 14:19:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707920330; cv=none; b=OiL8suyfTEBjgujuAkTGXgPLXkr3qftcWL4DzFBNICKHvCVeJpbfAp01l4mnCmTwxVQu5rTS7Su4gvfeva5cRrPL7jy/YcGTez1SqgWgBqaUfaG6m5teH/ew6d1brxZt9kvyw36aUR8aeab7kMFylv/sxk5sgyjnRvaQq2P0zYE=
+	t=1707920378; cv=none; b=Z3p4NqnVB+Kkzu0FkkuVWIGl0NiMyCYkY/lyHy3ve6KkL1Bm9rq+vd9UUiBY64iuNH9sX6RMmbTSMaDoANIyTx0P5tDkcGWgOBWqzMulHn9pkd/5IahbLF99iHk4roEtknLrznVFlpQEoWGRwUT+Hd423RP0t0D55qcHVdcwmIY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707920330; c=relaxed/simple;
-	bh=PIuaAUi/HzNr4VIVJ5ZGwCFEsvTBUElTsmJcUcDltIA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=LjpbkRzKoEFOcU7M2f7wxo+sFgzk2wle+tcLdGoN0erMU0wbtPiGjYPr8w+XmavgLt97z+leoB9c9UPTRPgwMI9n4gtw3bzQ6GMyYtvM7nd+0DTFPfCt3UCII7u1t+GIAOWbI4VCcEhDOKsYWY9sN0Te8EJYyeRIcwWtLA6F/v0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bnGo2ZFd; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41EDgeuc031838;
-	Wed, 14 Feb 2024 14:18:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=Yi7PoTcuUFdMcrMmHrp4lMRyH4ZMSNadhMdkORqgv98=; b=bn
-	Go2ZFdRWmIkxDYakQ8s+BTC2FQfnBaEdXtWTBy4KYITzp1RFs0129inOMHOmNKrY
-	qp/UDJy95D8hV33tUxX2WgMZK7Qo8Ig3JbuebXuecNaS9tEgLPwdO0dPDlNKf1sR
-	LaDmt9ZroHBRSgDk0rp6Zl6zgqZfMhD2FyOpjF9VMIbNdt1s4+vcPmdEw0k/4d51
-	xnkOPt33SEQa3SDEoVt4KNGXAwtNQW74sFAayh6F7a+HDolxi476h/GGdbq362O1
-	z6x/s5sRQHUSQTIhaDsWpJfkKRUnKkATKqT3lO4GwKLClHeysGVvSauEXpKYdWO/
-	eNKHJFl9rv9a/1G6yvFg==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w8enn9u9w-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 14 Feb 2024 14:18:27 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41EEIQiS010082
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 14 Feb 2024 14:18:26 GMT
-Received: from [10.253.37.199] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 14 Feb
- 2024 06:18:23 -0800
-Message-ID: <162256e1-416f-46ea-9698-9de507768cb0@quicinc.com>
-Date: Wed, 14 Feb 2024 22:18:20 +0800
+	s=arc-20240116; t=1707920378; c=relaxed/simple;
+	bh=Op8xfYq9CEblapR+ckPR9YtdwoyMOHb40q2SOwH43kU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Mvm7fA/p6uffWHIyai+PJLTL4CNhRGcAlnUoPJU2aWzA9VBsW1aSF2h/xiL1g/i/xnBYy7Q3XMScZIvOD5nvXed9lnVtZKChazE3N46rHo8OQJSaAKpWUlyc550MPdvZX3Drqu0LpT5lj6ZRJSlQVw0kF5h3F/Riq19qdE2agPY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=S7XayFHa; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from mail.ideasonboard.com (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 599BCB3;
+	Wed, 14 Feb 2024 15:19:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1707920364;
+	bh=Op8xfYq9CEblapR+ckPR9YtdwoyMOHb40q2SOwH43kU=;
+	h=From:To:Cc:Subject:Date:From;
+	b=S7XayFHaqVyvax7NMvSVk5ZKI37o5XAL3YEHiap6YtjxiziCkHYyA+Q4+LoO3XsH6
+	 CG5gTGVhYxbbPh20OwSj32dMP8EuFtDzrQZcywUZvY6z4c5nZtmFHkgVlpoIhfhCmh
+	 358+QkAIZ0A8oBDGuNgq6Ee9xkYvPcZYlQnCZ0Gg=
+From: Daniel Scally <dan.scally@ideasonboard.com>
+To: linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: jacopo.mondi@ideasonboard.com,
+	nayden.kanchev@arm.com,
+	robh+dt@kernel.org,
+	mchehab@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	jerome.forissier@linaro.org,
+	kieran.bingham@ideasonboard.com,
+	laurent.pinchart@ideasonboard.com,
+	Daniel Scally <dan.scally@ideasonboard.com>
+Subject: [PATCH v2 0/5] Add Arm Mali-C55 Image Signal Processor Driver
+Date: Wed, 14 Feb 2024 14:19:01 +0000
+Message-Id: <20240214141906.245685-1-dan.scally@ideasonboard.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: arm: qcom,coresight-tpdm: Rename
- qcom,dsb-element-size
-Content-Language: en-US
-To: James Clark <james.clark@arm.com>, Rob Herring <robh@kernel.org>
-CC: Mike Leach <mike.leach@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        "Alexander
- Shishkin" <alexander.shishkin@linux.intel.com>,
-        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20240213160521.15925-1-quic_jinlmao@quicinc.com>
- <20240213160521.15925-2-quic_jinlmao@quicinc.com>
- <20240213222957.GA2502642-robh@kernel.org>
- <a062ce8d-638a-4a33-8afa-45ad47efcd72@quicinc.com>
- <df3162c0-4b29-77a2-20b5-b36637fb11cf@arm.com>
-From: Jinlong Mao <quic_jinlmao@quicinc.com>
-In-Reply-To: <df3162c0-4b29-77a2-20b5-b36637fb11cf@arm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 8V3cEsuZeHlInIBshwPCyrtxSdRR6O96
-X-Proofpoint-ORIG-GUID: 8V3cEsuZeHlInIBshwPCyrtxSdRR6O96
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-14_06,2024-02-14_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- suspectscore=0 phishscore=0 mlxscore=0 impostorscore=0 priorityscore=1501
- spamscore=0 malwarescore=0 bulkscore=0 adultscore=0 mlxlogscore=935
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402140109
+Content-Transfer-Encoding: 8bit
 
+Hello all
 
-On 2/14/2024 5:36 PM, James Clark wrote:
->
-> On 14/02/2024 01:43, Jinlong Mao wrote:
->> On 2/14/2024 6:29 AM, Rob Herring wrote:
->>> On Tue, Feb 13, 2024 at 08:05:17AM -0800, Mao Jinlong wrote:
->>>> Change qcom,dsb-element-size to qcom,dsb-element-bits as the unit is
->>>> bit.
->>> That may be, but this is an ABI and you are stuck with it. Unless, you
->>> can justify why that doesn't matter. (IIRC, this is new, so maybe no
->>> users yet?)
->> Hi Rob,
->>
->> Because for CMB type, it uses qcom,cmb-element-bits. So I change the
->> format to be the same as
->> CMB.
->>
->> Thanks
->> Jinlong Mao
->>
-> I think what Rob was trying to say was that in the interest of not
-> breaking existing DTs it's best to leave the existing names as they are,
-> even if they aren't technically correct. And to only add new parameters
-> with the -bits suffix, even if it's inconsistent with what's already there.
+This patchset introduces a driver for Arm's Mali-C55 Image Signal Processor.
+The driver uses the media controller API and in this initial support implements
+both of the ISP's capture pipelines allowing a range of output formats plus
+downscaling and cropping. The capture pipelines are named "Full resolution" and
+"Downscale" and so abbreviated FR and DS throughout the driver.
 
-Hi Rob & James,
+The driver exposes 4 V4L2 subdevices:
 
-There is no tpdm nodes in any DT as of now. So I want to make this 
-change before any tpdm
-node is added in DT.
+- mali-c55 isp: input data formatting
+- mali-c55 tpg: test pattern generator (modeled as a camera sensor entity)
+- mali-c55 resizer fr: downscale / crop and format setting for the FR pipe
+- mali-c55 resizer ds: downscale / crop and format setting for the DS pipe
+
+Conspicuously missing from the list are subdevices for the ISP's statistics and
+parameters; work is progressing in these areas and we plan on introducing them
+in later series on top of this one.
 
 Thanks
-Jinlong Mao
+Dan
 
->
-> _______________________________________________
-> CoreSight mailing list -- coresight@lists.linaro.org
-> To unsubscribe send an email to coresight-leave@lists.linaro.org
+Daniel Scally (5):
+  media: uapi: Add MEDIA_BUS_FMT_RGB202020_1X60 format code
+  dt-bindings: media: Add bindings for ARM mali-c55
+  media: mali-c55: Add Mali-C55 ISP driver
+  media: Documentation: Add Mali-C55 ISP Documentation
+  MAINTAINERS: Add entry for mali-c55 driver
+
+ .../admin-guide/media/mali-c55-graph.dot      |   19 +
+ Documentation/admin-guide/media/mali-c55.rst  |  318 +++++
+ .../admin-guide/media/v4l-drivers.rst         |    1 +
+ .../bindings/media/arm,mali-c55.yaml          |   77 ++
+ .../media/v4l/subdev-formats.rst              |  168 +++
+ MAINTAINERS                                   |   10 +
+ drivers/media/platform/Kconfig                |    1 +
+ drivers/media/platform/Makefile               |    1 +
+ drivers/media/platform/arm/Kconfig            |    5 +
+ drivers/media/platform/arm/Makefile           |    2 +
+ drivers/media/platform/arm/mali-c55/Kconfig   |   18 +
+ drivers/media/platform/arm/mali-c55/Makefile  |    9 +
+ .../platform/arm/mali-c55/mali-c55-capture.c  | 1021 +++++++++++++++++
+ .../platform/arm/mali-c55/mali-c55-common.h   |  271 +++++
+ .../platform/arm/mali-c55/mali-c55-core.c     |  767 +++++++++++++
+ .../platform/arm/mali-c55/mali-c55-isp.c      |  682 +++++++++++
+ .../arm/mali-c55/mali-c55-registers.h         |  180 +++
+ .../arm/mali-c55/mali-c55-resizer-coefs.h     |  382 ++++++
+ .../platform/arm/mali-c55/mali-c55-resizer.c  |  678 +++++++++++
+ .../platform/arm/mali-c55/mali-c55-tpg.c      |  425 +++++++
+ include/uapi/linux/media-bus-format.h         |    3 +-
+ 21 files changed, 5037 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/admin-guide/media/mali-c55-graph.dot
+ create mode 100644 Documentation/admin-guide/media/mali-c55.rst
+ create mode 100644 Documentation/devicetree/bindings/media/arm,mali-c55.yaml
+ create mode 100644 drivers/media/platform/arm/Kconfig
+ create mode 100644 drivers/media/platform/arm/Makefile
+ create mode 100644 drivers/media/platform/arm/mali-c55/Kconfig
+ create mode 100644 drivers/media/platform/arm/mali-c55/Makefile
+ create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-capture.c
+ create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-common.h
+ create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-core.c
+ create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-isp.c
+ create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-registers.h
+ create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-resizer-coefs.h
+ create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-resizer.c
+ create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-tpg.c
+
+-- 
+2.34.1
+
 
