@@ -1,149 +1,203 @@
-Return-Path: <devicetree+bounces-42200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0A45856D06
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 19:46:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF535856D2C
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 19:56:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE34A288630
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 18:46:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A72F1F262FC
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 18:56:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08FBA1386BB;
-	Thu, 15 Feb 2024 18:46:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 894B61386B3;
+	Thu, 15 Feb 2024 18:56:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tlew/9Ss"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jSWBods/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDD831386AE;
-	Thu, 15 Feb 2024 18:46:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1FE412BEAF
+	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 18:56:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708022778; cv=none; b=PWvioEkvOAP7srhtjigSi2Mq3hjl1qjWjiOVDy2vmzbeGElzASF5Czi/H7Y4kGMK94wyF2AbcmmIIVUyGZTajyYFaTx0sM+m5hF4kAhrkkkYOLTddT0V7sYY1SRe/UxZpCGY+QU2oZC+bh+UC1p2quNeIn4j7Iy6liH+MRSJOlQ=
+	t=1708023369; cv=none; b=rTLRhT0gYfybyhP9x9FLl6WbyyirU3lMtURngqxRp6VHkXliNxo+oNffGRcUFtRu/ubSCJfhBb53zaAiiZF8G1JRbHgS6P/Vm2w8FSrcz+znQ+Q7J9b904wzduEHbQem8lQiLaNhCxuP5jJoEkL6P29WL0Ws14Fxv0IWVAvNrt8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708022778; c=relaxed/simple;
-	bh=gsqZ97hpL+qwMfZA8WVX81FYsijpd+FqSBNu6MOGT5Q=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=qAJwdq3WQ1WBgriHtOm4eBDb99xMmU/JzijwQROsg4stjJW+EtV1HYhOgwEUjhbPVhsp5gla1lnMajdCkFujINTuos63d9wBcR9N+zjvvu69o/ZG+SstBusYLvp75WsCgjQDjvpUTm2GTXEb6elg/REn4SegOnHVZaYNBLNgiOA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tlew/9Ss; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96D28C433F1;
-	Thu, 15 Feb 2024 18:46:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708022778;
-	bh=gsqZ97hpL+qwMfZA8WVX81FYsijpd+FqSBNu6MOGT5Q=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=tlew/9Ss3MNeqTJjIN56A8/T4CV50IX+T+8/QuKNeBr2PrLn/b03nxDIcysewSSUP
-	 87YhpUZQLyvyD2TXT4uTypFyRDmBO5POpMKbjd6Imog0bX3VxTf89FWuqkIHeawruf
-	 bXcPq0w66y+ixEhBDm9LJmvT16eVIaHMyBAYNBXube5cx+w/b3KwUwuXmVtC20OcAD
-	 JF/bWuQlZxMcNeFIUzpVC3ay6Re0pFwTP3gLamR2XrJChchXT2vNed7HMoabh/Z1r1
-	 qTRDStwaafgan4QrGrDGyrFKjuFKb4UzknD33Vs1MknEmOelP40bi6+c+DTOu8FwBF
-	 pX3mthT+ykz7w==
-Date: Thu, 15 Feb 2024 12:46:16 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1708023369; c=relaxed/simple;
+	bh=kXPQO+rEIu0FnBDjvhp7f2t/7FBxe0fcseMERvCf4No=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WVnUvpm8hz7gpd1Rmh6ywszTEkEKdN7wbk8ajExBcEIp1HgSuuIrO/hjZb3uz/nQpfkXaoJaRovPMF3Kn7AHvlrITaJyvARpq1aKdPDiWgevwC/vjQFq88Q22Gp4v/6kqpzuQkdI4IcBqBO3Rnk8atRqHJhoTITjZcUiAOVdQqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jSWBods/; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-563bb51c36eso978655a12.2
+        for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 10:56:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708023366; x=1708628166; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4cAJLHNF/JRrCEO49lp/BKyIGOuJcZVH2wEu3LRWvvE=;
+        b=jSWBods/dP4SiHbRd0cSkNnMRCO9007lj7/CUc9E/1xTONFWcPMaRtLunoJqBnsyAU
+         NcecIXzihgi2FDUIu2o6wid3raLGPsT0DFAbc3YNUaO4uvtkAAKI9MX7saD593QjkdLf
+         0X3swW12Oo8hWlYqOqEhtbagBqEFXyvQ3eOvJzrodrIJ0RiRY6a1SeJcqBvgXyLCAgop
+         ei5AN/+S2JmoGlKzILILfY75gE5ggA3KoFlrIJFoNBTjytw3nlosB7RlyJzJIvipK/7p
+         rcdt8qwJkLzytiwrwYvhyPPbFlANyLPkEZQXkM74To6wyOntIGJEjNdJTQ27rtYgFfLf
+         GOgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708023366; x=1708628166;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4cAJLHNF/JRrCEO49lp/BKyIGOuJcZVH2wEu3LRWvvE=;
+        b=VsqXZPrp6eGn8lkORf19B5vsYqQzs2XTPeHkoRV3sfI3/ai7Hekp20o98VGdJWhJH+
+         Ew/UQx1wGLyLB18+S21RO7CH65fMblDkEIBwVyGdOwZpi4KD50b7kM3X//C7hL/yBfuj
+         UEWrmiYCQHPH9pFy29KRlszn780fJ5FwdzHmY5Zey6LBUJrFpMmtjj2vV3RUSNy4v7wj
+         nYxRe4f6DBb8RdGPZGx8EfaLPvMyRa/18TFT+b/5WxXApC7p3QlaBinsVxF2+3gZJoM4
+         QRwCG0OM2cIppbvhzy4tKF+nhuV7Mx3qxNNgh3rYvjRiSmgm/5KA4XFY7wOpp0PMPAFF
+         /pzg==
+X-Forwarded-Encrypted: i=1; AJvYcCUkw6w3C1Q6YwqADtrzghH335SwadWtylwARHl9/ciCV8ngey911mmBGnM0uO5PD0X/OFYVPmJiwclwWww35zjqibXeR4QQvsSFzw==
+X-Gm-Message-State: AOJu0YyQCM3yfsVbO2fL459lw0FoZ1beWz5l8uxdKQUEvV/08NSDtBja
+	u4YPMxY6iroNkWJ01I18yLilRIwb/8mD0SwLEH7UgnJFyriDLok9J0SuTTSLGKc=
+X-Google-Smtp-Source: AGHT+IEP+URuxt3T56XaW6PGp8rRSuDf5PyL8goXj3rHrMJxTftAeuUO0uUbbfH7vkxrWaqXZt2u9A==
+X-Received: by 2002:a17:906:1186:b0:a39:6c07:d31c with SMTP id n6-20020a170906118600b00a396c07d31cmr1969344eja.25.1708023366046;
+        Thu, 15 Feb 2024 10:56:06 -0800 (PST)
+Received: from [192.168.0.22] ([78.10.207.130])
+        by smtp.gmail.com with ESMTPSA id tj6-20020a170907c24600b00a3dba44a709sm261960ejc.50.2024.02.15.10.56.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Feb 2024 10:56:05 -0800 (PST)
+Message-ID: <9c36b6e5-262d-48b1-971c-b03d9edf7789@linaro.org>
+Date: Thu, 15 Feb 2024 19:56:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Luis Chamberlain <mcgrof@kernel.org>, 
- "David S. Miller" <davem@davemloft.net>, Jonathan Corbet <corbet@lwn.net>, 
- netdev@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org, 
- Andrew Lunn <andrew@lunn.ch>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Dent Project <dentproject@linuxfoundation.org>, 
- Heiner Kallweit <hkallweit1@gmail.com>, 
- Frank Rowand <frowand.list@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Oleksij Rempel <o.rempel@pengutronix.de>, 
- Russ Weight <russ.weight@linux.dev>, Eric Dumazet <edumazet@google.com>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
- Jakub Kicinski <kuba@kernel.org>
-In-Reply-To: <20240215-feature_poe-v4-11-35bb4c23266c@bootlin.com>
-References: <20240215-feature_poe-v4-0-35bb4c23266c@bootlin.com>
- <20240215-feature_poe-v4-11-35bb4c23266c@bootlin.com>
-Message-Id: <170802277529.323906.8697693998570251856.robh@kernel.org>
-Subject: Re: [PATCH net-next v4 11/17] dt-bindings: net: pse-pd: Add
- another way of describing several PSE PIs
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 06/12] memory: stm32-fmc2-ebi: add RIF support
+Content-Language: en-US
+To: Christophe Kerello <christophe.kerello@foss.st.com>,
+ miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, devicetree@vger.kernel.org
+References: <20240212174822.77734-1-christophe.kerello@foss.st.com>
+ <20240212174822.77734-7-christophe.kerello@foss.st.com>
+ <989661f0-f539-43c3-a332-13c0e99ed7b9@linaro.org>
+ <edbb5e6e-44c0-426b-9c97-87ea1eee1b4c@foss.st.com>
+ <1e1ae38b-7f8c-44ba-9970-0929aaaa28a8@linaro.org>
+ <a1badd8b-041b-495d-81cb-b264c687de80@foss.st.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <a1badd8b-041b-495d-81cb-b264c687de80@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-On Thu, 15 Feb 2024 17:02:52 +0100, Kory Maincent wrote:
-> PSE PI setup may encompass multiple PSE controllers or auxiliary circuits
-> that collectively manage power delivery to one Ethernet port.
-> Such configurations might support a range of PoE standards and require
-> the capability to dynamically configure power delivery based on the
-> operational mode (e.g., PoE2 versus PoE4) or specific requirements of
-> connected devices. In these instances, a dedicated PSE PI node becomes
-> essential for accurately documenting the system architecture. This node
-> would serve to detail the interactions between different PSE controllers,
-> the support for various PoE modes, and any additional logic required to
-> coordinate power delivery across the network infrastructure.
+On 15/02/2024 10:00, Christophe Kerello wrote:
 > 
-> The old usage of "#pse-cells" is unsuficient as it carries only the PSE PI
-> index information.
 > 
-> This patch is sponsored by Dent Project <dentproject@linuxfoundation.org>.
+> On 2/14/24 11:07, Krzysztof Kozlowski wrote:
+>> On 13/02/2024 14:15, Christophe Kerello wrote:
+>>>>> +
+>>>>> +	if (ebi->majrev < FMC2_VERR_MAJREV_2)
+>>>>> +		return 0;
+>>>>> +
+>>>>> +	if (resource >= FMC2_MAX_RESOURCES)
+>>>>> +		return -EINVAL;
+>>>>> +
+>>>>> +	regmap_read(ebi->regmap, FMC2_SECCFGR, &seccfgr);
+>>>
+>>> Hi Krzysztof,
+>>>
+>>>>
+>>>> No checking of read value?
+>>>>
+>>>
+>>> No, it should never failed.
+>>
+>> And you tested that neither smatch, sparse nor Coverity report here
+>> warnings?
+>>
 > 
-> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
-> ---
+> Hi Krzysztof,
 > 
-> Changes in v3:
-> - New patch
+> There is a lot of driver in the Kernel that are using same 
+> implementation, and I am surprised to not have had this comment 4 years 
+> ago when the driver was introduced.
+
+Really? Care to give some pointers? Heh, I don't know what to respond to
+it. Either you say that my comment is incorrect or you say that it's
+okay to sneak poor code if no one notices? We can argue on the first,
+whether my comment is reasonable or not. But if you claim that previous
+poor choice of code is argument of bringing more of such poor choices,
+then we are done here. It's the oldest argument: someone did it that
+way, so I can do the same. Nope.
+
 > 
-> Changes in v4:
-> - Remove $def
-> - Fix pairset-names item list
-> - Upgrade few properties description
-> - Update the commit message
-> ---
->  .../bindings/net/pse-pd/pse-controller.yaml        | 84 +++++++++++++++++++++-
->  1 file changed, 81 insertions(+), 3 deletions(-)
-> 
+> So, how should I proceed? Shall I initialize all local variables used by 
+> regmap_read? Or shall I check the return value of regmap_read?
+> And, as there is a lot of regmap_read call in this driver, shall I fix 
+> them in a separate patch?
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+regmap operations, depending on the regmap used, can fail. Most of the
+errors are result of static configuration, e.g. alignment, regmap in
+cache mode etc. Then certain regmap implementations can produce errors,
+which is not a static condition but dynamic.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:74:19: [error] string value is redundantly quoted with any quotes (quoted-strings)
-./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:75:19: [error] string value is redundantly quoted with any quotes (quoted-strings)
-./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:84:111: [warning] line too long (111 > 110 characters) (line-length)
-./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:86:111: [warning] line too long (111 > 110 characters) (line-length)
-./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:87:111: [warning] line too long (111 > 110 characters) (line-length)
-./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:88:111: [warning] line too long (111 > 110 characters) (line-length)
-./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:89:111: [warning] line too long (111 > 110 characters) (line-length)
-./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:90:111: [warning] line too long (111 > 110 characters) (line-length)
-./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:91:111: [warning] line too long (111 > 110 characters) (line-length)
-./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:92:111: [warning] line too long (111 > 110 characters) (line-length)
-./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:93:111: [warning] line too long (111 > 110 characters) (line-length)
+You have neither error checking nor value initialization. You risk here
+to have quite tricky to find, unnoticeable bugs, if there any mistake
+leading to regmap errors.
 
-dtschema/dtc warnings/errors:
+Indeed neither smatch nor sparse report this as error currently, but
+maybe that's their limitation?
 
-doc reference errors (make refcheckdocs):
-Warning: Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml references a file that doesn't exist: Documentation/networking/pse-pd/pse-pi.rst
-Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml: Documentation/networking/pse-pd/pse-pi.rst
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240215-feature_poe-v4-11-35bb4c23266c@bootlin.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+Krzysztof
 
 
