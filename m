@@ -1,114 +1,133 @@
-Return-Path: <devicetree+bounces-42166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D3FA856A54
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 17:58:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F07F856A5F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 18:00:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BFCDE1C23AE6
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 16:58:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A7321F23167
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 17:00:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1573E136651;
-	Thu, 15 Feb 2024 16:57:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E65513665E;
+	Thu, 15 Feb 2024 17:00:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="MofzPKt0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VmGmXp9h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39FBD135A70;
-	Thu, 15 Feb 2024 16:57:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8408135A75;
+	Thu, 15 Feb 2024 17:00:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708016237; cv=none; b=ElpKeiNLjH1N2czjp+Rt86L+CbjSzdEPXjwZU2jWNyNYI6yLF6/7wvnFcPxcBMqVCB7zBprYs1spkRb8CZAIjuGVfvInMK/JVPwlvcBr7/oJkKlG8GOfJSjb2lO5dsqlKtAOCRtg2uQ7yG04jq/9AuNjWHNCaX5kAo/2EdaHdZg=
+	t=1708016437; cv=none; b=MQo26Eyi3IOhlNu5Q79k7w8JIkArQAShcCHWTK2egOGF/f+DrxYCpl7k/dLzNoF7S8wVVsAu3EhiragpxmpTH3M0lGPWV3h/saRhEza/af4eZrXGEECu0rS/SDFR3bby3p6uwJagwgbB2JNRceBQzNy4PLttQ6Canogbazuxqbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708016237; c=relaxed/simple;
-	bh=Teovor+0cNBgqv0pxvlZZTXnZq+NJs8jQr9ByH5s71c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=XQzlZQBE1HzHurjTPDWfQu7DLqbIpgIuCcvjEOPwebxZPXXseNDWv5Bdxy21eKyPiiUBYCOHTDPGVXkdt3Jh/rQDEBz6MdtCaWD6NzST5Zz+CTQ4ptiT0sIXxOJ9S8BvOXtmj7fX/J9ms1cOycvkvWHCz9rFHecGQmgxi6/hetU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=MofzPKt0; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41FGv4Df063872;
-	Thu, 15 Feb 2024 10:57:04 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1708016224;
-	bh=Z4RnqGGznCJSeFLUCS/wbnFfpLvync7aTHoThMZ9qH0=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=MofzPKt0R/Z7VHhjt58hopkb1FITPJbseGGzei/F6gfjbEsn2D0dNokIi8ADOD8hl
-	 ITpiHJcL9aB6xugaxTFoKG2SFUozVM1uQGhJlamBrN7F3ft8MrSqFO9JbYp4o7wmI9
-	 z9+jk4DnwVRyu+iw3wcKTEUTDP2QQfVvjKYbdndU=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41FGv48Z057710
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 15 Feb 2024 10:57:04 -0600
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
- Feb 2024 10:57:04 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 15 Feb 2024 10:57:04 -0600
-Received: from [10.249.135.225] ([10.249.135.225])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41FGux4V066060;
-	Thu, 15 Feb 2024 10:57:00 -0600
-Message-ID: <4ef87f6c-caa8-45a8-8649-422806ec6eb2@ti.com>
-Date: Thu, 15 Feb 2024 22:26:59 +0530
+	s=arc-20240116; t=1708016437; c=relaxed/simple;
+	bh=ICrWTbldjX975W3btYUWwVrChRkDG1H5ULl0Muhb6hM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JnmD722Mhjo17AqAdy8JYblY8tXI7A/q6xbkfAiIl+6f4DIbKm9jjSwzHlEEDA2qFMo8nV59syfhwRDktRZSpaZm6k1OgeAOHmZ0ETIQp2g5CqA3v63xZO0KD+vrGYfQXc0nV1WscDoJgbBvlyJIxquwW1TmZY7Rk7LgBSCZANg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VmGmXp9h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97159C43394;
+	Thu, 15 Feb 2024 17:00:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708016436;
+	bh=ICrWTbldjX975W3btYUWwVrChRkDG1H5ULl0Muhb6hM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VmGmXp9h8/NmjOVvPq2UXmxKPbIo0y7BYxzGHZv6aadFtcdMuMdbnYUGmQlO913DH
+	 LTVHQayO6nKjrvBtRy6BurVGNcoq50fnejWw3RpSLVwNtS8vG7I5ZeC3dhzezTTvWj
+	 PtAfGth6k8UAVkcJof1FI/SJ+KQqZvejxnRQLyHepkvLDIrydcShyy37QCE6KdjkVP
+	 IOOa+lwQgp72wkcYr+MTeUxXwNS1uOfUMaf/KovpVvgPVTmGsNbIzZIGSpjclG4Sr+
+	 v6yr3ItVCPcBgyZI2j5Fo9KDpR2f8eDDK8ScCJbb9CL3PvQuNPBeygARTqQIjHAsAb
+	 kWcK15ViP1wvQ==
+Date: Thu, 15 Feb 2024 17:00:29 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Clark <robdclark@gmail.com>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Sean Paul <sean@poorly.run>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	iommu@lists.linux.dev
+Subject: Re: [PATCH v2 1/6] dt-bindings: display/msm/gmu: Document Adreno 750
+ GMU
+Message-ID: <20240215-trout-written-9ba8c929f9a5@spud>
+References: <20240215-topic-sm8650-gpu-v2-0-6be0b4bf2e09@linaro.org>
+ <20240215-topic-sm8650-gpu-v2-1-6be0b4bf2e09@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: k3-am654: Drop ti,syscon-rgmii-delay from
- ICSSG nodes
-Content-Language: en-US
-To: Roger Quadros <rogerq@kernel.org>, MD Danish Anwar <danishanwar@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
-CC: Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring
-	<robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Tero
- Kristo <kristo@kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>
-References: <20240215105407.2868266-1-danishanwar@ti.com>
- <71adaabd-bb24-4181-9fdf-f7191e93edb5@kernel.org>
-From: "Anwar, Md Danish" <a0501179@ti.com>
-In-Reply-To: <71adaabd-bb24-4181-9fdf-f7191e93edb5@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="HZ+0T1NysZqNQ3hJ"
+Content-Disposition: inline
+In-Reply-To: <20240215-topic-sm8650-gpu-v2-1-6be0b4bf2e09@linaro.org>
 
 
+--HZ+0T1NysZqNQ3hJ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 2/15/2024 9:27 PM, Roger Quadros wrote:
-> 
-> 
-> On 15/02/2024 12:54, MD Danish Anwar wrote:
->> Drop ti,syscon-rgmii-delay from ICSSG0, ICSSG1 and ICSSG2 node as this
->> property is no longer used by ICSSG driver.
->>
->> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
->> ---
->>  arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso | 2 --
->>  arch/arm64/boot/dts/ti/k3-am654-idk.dtso    | 4 ----
->>  2 files changed, 6 deletions(-)
-> 
-> What about the DT binding document?
-> 
+On Thu, Feb 15, 2024 at 10:20:23AM +0100, Neil Armstrong wrote:
+> Document the Adreno 750 GMU found on the SM8650 platform.
+>=20
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-Now I am only removing the property from device tree. Once this proprty
-is removed from all DTs, in the 6.9-rc-1 I will remove the binding as
-well so that net people can merge that without getting any errors /
-warnings.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
--- 
-Thanks and Regards,
-Md Danish Anwar
+Cheers,
+Conor.
+
+> ---
+>  Documentation/devicetree/bindings/display/msm/gmu.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/msm/gmu.yaml b/Doc=
+umentation/devicetree/bindings/display/msm/gmu.yaml
+> index 4e1c25b42908..b3837368a260 100644
+> --- a/Documentation/devicetree/bindings/display/msm/gmu.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/gmu.yaml
+> @@ -224,6 +224,7 @@ allOf:
+>              enum:
+>                - qcom,adreno-gmu-730.1
+>                - qcom,adreno-gmu-740.1
+> +              - qcom,adreno-gmu-750.1
+>      then:
+>        properties:
+>          reg:
+>=20
+> --=20
+> 2.34.1
+>=20
+
+--HZ+0T1NysZqNQ3hJ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZc5DLQAKCRB4tDGHoIJi
+0uvUAQCtCgC2eHupKQtPKFOnR5PFcNSjcf0kcLi4MhaYUVZEzgD/REr3WQUpQ8eD
+moB3rhx2b3tSDbMaZ5ZNmayqfscT5QA=
+=aBoj
+-----END PGP SIGNATURE-----
+
+--HZ+0T1NysZqNQ3hJ--
 
