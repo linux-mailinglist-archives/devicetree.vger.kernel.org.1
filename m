@@ -1,136 +1,110 @@
-Return-Path: <devicetree+bounces-42229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 663E6856F87
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 22:49:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6C89856FA5
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 22:57:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85CC01C21871
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 21:49:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62E0B284517
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 21:57:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8BC7141988;
-	Thu, 15 Feb 2024 21:49:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 760DF1419BE;
+	Thu, 15 Feb 2024 21:57:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="rh9lSOmr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HKqLNhPX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C36D6A349
-	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 21:49:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E0EE13DB92;
+	Thu, 15 Feb 2024 21:57:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708033768; cv=none; b=DyxOWu8vOSqagYoKNNuat3aa9H//rPjUzDlMRg+iWAICWLnTEGc8wrshPa2bhmP5oywxLXAhGwVi0PFaJxbntamP6w7sIICmVWsz4Kg3EaAreIdiJKlQUpMy1besGV1UzjhWKaCEua/Fp3nMdj4xsO6A8fC7FzDS5eGsvpsQRak=
+	t=1708034262; cv=none; b=LtGkANG199WfhTgJa1UIHMSrsgLkqRwFOGr5Lgb32SUgIGiVyBc8EMUcoEqUb47j2cSPC7R+oSwcm678nWZkVK09B+dr/D5ZSI9Y4jtuY9mQ1sJWM/QSQEUoQzuXpjJHZIQTvKj59vqUyCbA0ZO/HvscRQ/6XFn9bIbCzLsbPq4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708033768; c=relaxed/simple;
-	bh=egrIl87HVa6P/9NzKEjM0euP217KPHODBvobgCHy12A=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pJX+BVChuMP0Am9tTcOIdoU+1GK5gupamBMyKX+6fwfOqhRmuRkDVRb52oDs7nK0PK1r/z66Ph4h2/eV16TnAFqFlfNSjluCQuCje3Xg3YnIORbEg7SjUiNdrR4VzfUzLdrLhUNmr2RCszkXK2YLG96w6/keD/zVkqyX61cBVsk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=rh9lSOmr; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5116ec49365so120944e87.3
-        for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 13:49:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1708033764; x=1708638564; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wy4dy8qC/aEpgjhI6zSmtJIrU/2TuVH5URvhfhOyGwE=;
-        b=rh9lSOmrU+eCmbHKQwi9E9XEvOeICGmz0ntsyrw+XJ/xjZjRAzEo7QVJAjidP3IrfC
-         Sn9KbY2qYcHOPcpMaeIzajiJaqwBgGXfNeko9YB92BEcHsrXlM0Vyat4NlPZWUEjOmqc
-         LHIgsXjkIHmtkVhyhdyS03Y7RhuFh7k5Y2tCq9XmOODfe+jkuzIRgvq45VIchQ5ru2lx
-         VkvomhrYCA4hTxEbGkbUdZKLNjHHar1DQAUlrs6+ST9FZq4UoWY5PysTWkg5FIqFXhlj
-         NTCYMgp6dIwRA9qwpplKmd76Dhk05r9uzdOkHqfav4GkP91JK+/O5ffcmDyefwwQZFBL
-         tVBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708033764; x=1708638564;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wy4dy8qC/aEpgjhI6zSmtJIrU/2TuVH5URvhfhOyGwE=;
-        b=YHNX2esyDG3Vwq5R+jyIMy7NY0CILnUjCM66c9sYNh1ja7extA3MdEOhdbrd+Ck5Mw
-         T5MapJN9sI+jWHk/aCJb4FcehJiHrr0WCiEeRVCD9NH6Qd7IoXmCLY75sXmgnUJv8qfW
-         IxX6FpdfUFfLgTMHz6O7TEnZWz/KJbjZEsHwWz3fdkVFl9jY6l+U8IfFbdE+5kWerqBr
-         9JZgB3qHi+6wwW5cTBewOYq3kEe7chVFi8kNUaW2CZCKxAzZmWkCpklzmEmdfBQssYfj
-         FzyYmF1CKX4c9Ero5J1/I9MoFUzhqcd8tLXiV78kNurQj1oNhkYhTnv0WREXCEH4WypP
-         v3yw==
-X-Forwarded-Encrypted: i=1; AJvYcCWAPWC0qBHOcNl7QPromK+lSPFcodmmfgzMyEQVbR9qN144vgBnkpqIpKZ4mBfIUf9SYf6WRz3yWQ4eLhIgNq7K54/FzWTPI1+oLQ==
-X-Gm-Message-State: AOJu0Yw7OyjubzEy4D5TBVzdO3cBSG3HsP1HTHylD7VldAPATWLpwSBq
-	Bcg/SE8CxUH4LnaZb/cc30MtQPo/Hlj0lz3gOdceDXg/I9M2cGeh+EOMOV0RKXumADR/mxBNR93
-	APsykEUGR7dkECazCHkHPTapk0bcBNIAbpjG4Zg==
-X-Google-Smtp-Source: AGHT+IFblS658xAUkyzNInl0/6coFWFu424jBrjv6P7mBNcHohWTiH831Tul1x/9RSSF6JS9qjHsfg7rEDFJ3nMR9BI=
-X-Received: by 2002:a2e:9c87:0:b0:2d2:1699:fb5e with SMTP id
- x7-20020a2e9c87000000b002d21699fb5emr210697lji.2.1708033764453; Thu, 15 Feb
- 2024 13:49:24 -0800 (PST)
+	s=arc-20240116; t=1708034262; c=relaxed/simple;
+	bh=T7MZeg+yLjaU4BtqowdnnpbuIdHLYtXGFMcH9SwnC3o=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=V6WopTJ0krUuKlWeei1EOXn0xfBWd+xIMww7Tp8uhiYJVvg74Y3mNb5Tq4Au4jo7CmvibuVnsFCCzImsKL0Z5gk41WISfzb6w1Tx3XfQEgd1ia+JBQYKQy6poW1hAk/Twd3BhXLdDpUXcY94g4/mCmstIhFu5h7RibjgJeGClRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HKqLNhPX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F234FC433C7;
+	Thu, 15 Feb 2024 21:57:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708034262;
+	bh=T7MZeg+yLjaU4BtqowdnnpbuIdHLYtXGFMcH9SwnC3o=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=HKqLNhPXnNKvbiW3EkbP1vnJu/P3vG86/ySfYdF3/dkJRvBlKdC16LT5mZItEadLZ
+	 598aG+3ah3tkmZLOIrdMCA71Mv1dhqn/X9wN6XZE2PFnEQ6u9ytiCXPexNV6EfMqDL
+	 +S/VfoHHM1M1sW6VN+xeXqAf7GACRVuBldgxHQqrhOn1ISIO28LWtV2GGCUmEB3zYg
+	 LhUL9oistI6vrDdKAo/sunUbQYDUYBQ9qCuFzIPCyK9fbnmogWsbeD7/IbCkVRVYdg
+	 ZDB69vXMxMVXPPwP5isAT3K/QDz1xP57NY8LETK4c19bJ9dWpvu+gdz4RikrKAAj9r
+	 WXx8+d2ecNk+g==
+Message-ID: <3e67766fa85be7dd865c5ec9dea1b53b.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240206-ad7944-mainline-v1-0-bf115fa9474f@baylibre.com>
- <20240206-ad7944-mainline-v1-1-bf115fa9474f@baylibre.com> <CAMknhBGG_RS1t0OJw6_UnNQ_=S4YgN4i1YN26V8n=f9y28J9hQ@mail.gmail.com>
- <20240215132334.GA3847183-robh@kernel.org>
-In-Reply-To: <20240215132334.GA3847183-robh@kernel.org>
-From: David Lechner <dlechner@baylibre.com>
-Date: Thu, 15 Feb 2024 15:49:13 -0600
-Message-ID: <CAMknhBF8BQQfXkMvu3dS-RtaYBeOZ7mfCNxMaq3LOWwLp1_cxg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: add ad7944 ADCs
-To: Rob Herring <robh@kernel.org>
-Cc: linux-iio@vger.kernel.org, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAL_JsqLrRXdPZ+u9XG960V7sXECBi5Ko7BYdreftYz-O=Hwieg@mail.gmail.com>
+References: <20240202195909.3458162-1-sboyd@kernel.org> <20240202195909.3458162-8-sboyd@kernel.org> <CABVgOS=A8BQ6HHpBKFqg-N10ckk2XYavaS-MPXvZ0wenrVm=1g@mail.gmail.com> <89892ecd6b1b043db58258705c32b02b.sboyd@kernel.org> <CAMuHMdUuP5Ya2gU3V_ET=Ji_+yx+jr7eCch5uDJSqvQN9jJM3g@mail.gmail.com> <2185a3cc3152a0b9a94b0c64353bc9a1.sboyd@kernel.org> <CAL_JsqLrRXdPZ+u9XG960V7sXECBi5Ko7BYdreftYz-O=Hwieg@mail.gmail.com>
+Subject: Re: [PATCH v3 7/7] of: Add KUnit test to confirm DTB is loaded
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>, David Gow <davidgow@google.com>, linux-kernel@vger.kernel.org, patches@lists.linux.dev, linux-um@lists.infradead.org, linux-arm-kernel@lists.infradead.org, kunit-dev@googlegroups.com, linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>, Brendan Higgins <brendan.higgins@linux.dev>
+To: Rob Herring <robh+dt@kernel.org>
+Date: Thu, 15 Feb 2024 13:57:39 -0800
+User-Agent: alot/0.10
 
-On Thu, Feb 15, 2024 at 7:23=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
-:
->
-> On Tue, Feb 06, 2024 at 11:34:13AM -0600, David Lechner wrote:
-> > On Tue, Feb 6, 2024 at 11:26=E2=80=AFAM David Lechner <dlechner@baylibr=
-e.com> wrote:
-> > >
+Quoting Rob Herring (2024-02-13 09:52:00)
+> On Fri, Feb 9, 2024 at 8:59=E2=80=AFPM Stephen Boyd <sboyd@kernel.org> wr=
+ote:
 > >
-> >      if:
-> >        properties:
-> >          adi,reference:
-> >            const: external
->
->          required:
->            - adi,reference
->
-> >      then:
-> >        required:
-> >          - ref-supply
-> >      else:
-> >        properties:
-> >          ref-supply: false
-> >
-> > to be sufficient here. However, currently, if the adi,reference
-> > property is omitted from the dts/dtb, the condition here evaluates to
-> > true and unexpectedly (incorrectly?) the validator requires the
-> > ref-supply property.
->
-> That's just how json-schema works. With the above, it should work for
-> you.
->
-> However, redesigning the binding would make things simpler. Just make
-> 'ref-supply' being present mean external ref. No 'ref-supply' is then
-> internal. Then you just need a boolean for 'internal-buffer' mode and:
->
-> dependentSchemas:
->   ref-supply:
->     not:
->       required: ['adi,internal-buffer-ref']
->
+> > ---8<---
+> > diff --git a/init/main.c b/init/main.c
+> > index e24b0780fdff..02f5cf8be6c1 100644
+> > --- a/init/main.c
+> > +++ b/init/main.c
+> > @@ -97,6 +97,8 @@
+> >  #include <linux/jump_label.h>
+> >  #include <linux/kcsan.h>
+> >  #include <linux/init_syscalls.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_fdt.h>
+> >  #include <linux/stackdepot.h>
+> >  #include <linux/randomize_kstack.h>
+> >  #include <net/net_namespace.h>
+> > @@ -895,6 +897,8 @@ void start_kernel(void)
+> >         pr_notice("%s", linux_banner);
+> >         early_security_init();
+> >         setup_arch(&command_line);
+> > +       if (!of_root)
+>=20
+> of_root is another thing I'd like to remove direct access to. That
+> check could be inside unflatten_device_tree().
 
-Per Jonathan's suggestion, I plan to simplify the bindings like this
-but just use the presence/absence of refin-supply as this boolean
-value to simplify it even further.
+Ok.
+
+>=20
+> > +               unflatten_device_tree();
+>=20
+> That's back to what Frank had essentially and I wanted to avoid.
+
+Alright, fair enough.
+
+>=20
+> I think I'd just disable the tests on the above arches and let them
+> opt-in. I could be convinced otherwise though.
+>=20
+
+Kunit folks would prefer to skip tests when dependencies aren't
+satisfied. The OF_UNITTEST config already depends on !SPARC so perhaps
+it's simplest to have tests skip if OF_EARLY_FLATREE=3Dn. Then
+OF_EARLY_FLATREE can be def_bool OF && !(SPARC || M68K || other arches).
+The OF_UNITTEST config can depend on OF_EARLY_FLATREE instead of select
+it then. This way new supporting architectures can remove themselves
+from the def_bool line when they start calling unflatten_device_tree().
 
