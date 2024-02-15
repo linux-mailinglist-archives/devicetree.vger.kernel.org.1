@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-42118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9D928566E8
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 16:08:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF0A68566F2
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 16:09:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88C041F22C7F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 15:08:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B921282E9E
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 15:09:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB34913248B;
-	Thu, 15 Feb 2024 15:08:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D142C1332A2;
+	Thu, 15 Feb 2024 15:09:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MSb2wHlf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bDsd+9yt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8510613AF0;
-	Thu, 15 Feb 2024 15:08:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6CD6132C12;
+	Thu, 15 Feb 2024 15:09:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708009691; cv=none; b=PVGPfL8ZhabEVNcGln61pbvZqc4vXVebNpsSX2B9hRBTWfuT9a+bmd8w1gQ1JGYkX09GWTrLbdyrmCUsVsSavTExKUIoSFnJKoTmppyWKSkpiIKjEgVLfHWva9IlQ+wgNv0f9ZtOyOBBYLYWfGrGZjpooekPjXtCdkcqR0fh75c=
+	t=1708009758; cv=none; b=UurAUn4w2RGX+5zXidRINfYJhhjWQCemlDCWoKaApRgWVFSx0flxkBknIf1oZaG40M9COM010Wcv7hYn8o0WHzeHppj8e5qgb2+SnIrUbuy1WSYadqlP0aQMYRmVd2fxJnigeEzRhdKZFYdVHaA0FSZHBCYTRKVqRlVrQAS+m7w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708009691; c=relaxed/simple;
-	bh=nneF9xSwpmvvSrQTIwVRr6WPxaypX0oRVP9xZNFAWJA=;
+	s=arc-20240116; t=1708009758; c=relaxed/simple;
+	bh=UmSuqy1e0KO55/hZOC+tsKy7sIDZ/d3eWv4j//O/vCY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ne6f2ldFqQTRwtWYEupiD6SDGD3WCaO98Cp4m+frlqckhLOK8erkIQAXGsCAQL3Zo3imlPIWdFoFfYgyqpS1drWau/AvMHjp1TvGzHUIqOimO7BbxCKJTl76cuZZlXGsY8g28kkMHmyG+TRniGkaYXGdn0Ylz+49ijTgXNzEsYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MSb2wHlf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A993C433F1;
-	Thu, 15 Feb 2024 15:08:10 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=e2qGsGGgapmP7qPq+0J2rR8EWyYgxRW/sJAGoWAV5HM7EjVgV8Ka/dP/+zLQeQ7x7c4VLOc8Wcpom6hse9w+OiSldZKR/kdBOxYhLQy4QM0P8u5dfD3sgKtp8u7QrXeqS1r1Une09amgSpqvgbLSreaUcA/t0V7u82cN8H8Be/I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bDsd+9yt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E65A5C433C7;
+	Thu, 15 Feb 2024 15:09:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708009690;
-	bh=nneF9xSwpmvvSrQTIwVRr6WPxaypX0oRVP9xZNFAWJA=;
+	s=k20201202; t=1708009758;
+	bh=UmSuqy1e0KO55/hZOC+tsKy7sIDZ/d3eWv4j//O/vCY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MSb2wHlfmhYR4fsXlhz3741dHPdDL6zxJdrHPh6h73dbvtLM55oPrb02X0JjrsUCU
-	 kDr9JlBaYctKAZO3kqdlvn9WBX40Wy1R8DqOf/o1zeE5xtDXp7GQC6kT8RsBbG3orv
-	 iOpnaet5A5gHM/RbQCeaTeCnt0V0h9/CxrsYTnDVX75zXYM/M9yjJxymK89zOwdJOo
-	 K8I6LRBng85mFDVxq2Hdzr8zuVV3+BnX+jktiXCC3HpWUpgs0uJYwZQhu/pI8DA56T
-	 F23qxPHJmwVeb4MpyfKH609w61gx+Sk6+fC3m5/ONrjgvi1WA906eO/ICz443ZEJCV
-	 SUMBKbOggdGLg==
-Date: Thu, 15 Feb 2024 09:08:07 -0600
+	b=bDsd+9ytV2t0oeK9R4hYEdsx/hmlcomT2jY59gJpUmDpc60AbobevxuClshAPLyvT
+	 tELy6AjllNsZhEC68tNhjuFUc4XLMs59lveBLL2RTsAanxA5YyE5E2iHHzla/4Pvl/
+	 HqbjmReVWf8pCaqV7V3oNGaW58rIx2pOU6g3YgzI10c81H2ixm87461zanqunnwmo3
+	 Gvo1PhOY9adhiNvBmQcNNXS54C8wpq0eSuoCVvz01Dg+RWuaV3XYxorDQqnyNXBMk8
+	 Lgkk+JoE/Jde48PFX1xeg3YazCDfS/8JU+zvu6prGGClRKKkwX1W07hFh6rDyETk94
+	 k/8lU7NvR9jZA==
+Date: Thu, 15 Feb 2024 09:09:15 -0600
 From: Rob Herring <robh@kernel.org>
-To: Arnd Bergmann <arnd@arndb.de>
-Cc: Marc Zyngier <maz@kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
-	linux-kernel@vger.kernel.org,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Peter Rosin <peda@axentia.se>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] of: OF_IRQ: select IRQ_DOMAIN instead of depending on
- it
-Message-ID: <20240215150807.GA28377-robh@kernel.org>
-References: <20240213225619.11726-1-rdunlap@infradead.org>
- <867cj75q52.wl-maz@kernel.org>
- <c6e55baf-4f0c-4342-971a-713ed55f5a51@app.fastmail.com>
- <8634tv57i2.wl-maz@kernel.org>
- <886629be-a492-4c8c-aa79-d13847cb228a@app.fastmail.com>
+To: Tim Lunn <tim@feathertop.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Tianling Shen <cnsztl@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
+	Ondrej Jirman <megi@xff.cz>, Andy Yan <andyshrk@163.com>,
+	linux-rockchip@lists.infradead.org, Jagan Teki <jagan@edgeble.ai>,
+	linux-arm-kernel@lists.infradead.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: arm: rockchip: Correct vendor for
+ Orange Pi RK3399 board
+Message-ID: <170800975373.77965.10834715351049347685.robh@kernel.org>
+References: <20240214040731.3069111-1-tim@feathertop.org>
+ <20240214040731.3069111-2-tim@feathertop.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,70 +66,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <886629be-a492-4c8c-aa79-d13847cb228a@app.fastmail.com>
+In-Reply-To: <20240214040731.3069111-2-tim@feathertop.org>
 
-On Wed, Feb 14, 2024 at 06:22:53PM +0100, Arnd Bergmann wrote:
-> On Wed, Feb 14, 2024, at 17:35, Marc Zyngier wrote:
-> > On Wed, 14 Feb 2024 16:06:06 +0000,
-> > "Arnd Bergmann" <arnd@arndb.de> wrote:
-> >> 
-> >> On Wed, Feb 14, 2024, at 10:52, Marc Zyngier wrote:
-> >> > On Tue, 13 Feb 2024 22:56:19 +0000, Randy Dunlap <rdunlap@infradead.org> wrote:
-> >> >>
-> >> >> diff -- a/drivers/of/Kconfig b/drivers/of/Kconfig
-> >> >> --- a/drivers/of/Kconfig
-> >> >> +++ b/drivers/of/Kconfig
-> >> >> @@ -80,7 +80,8 @@ config OF_ADDRESS
-> >> >>  
-> >> >>  config OF_IRQ
-> >> >>  	def_bool y
-> >> >> -	depends on !SPARC && IRQ_DOMAIN
-> >> >> +	depends on !SPARC
-> >> >> +	select IRQ_DOMAIN
-> >> > 
-> >> >
-> >> > This seems to be moving is the right direction.
-> >> 
-> >> Can we move the 'select IRQ_DOMAIN' under CONFIG_IRQCHIP
-> >> then and remove the individual selects from the irqchip
-> >> drivers? It looks like CONFIG_OF (other than sparc) now
-> >> unconditionally enables OF_IRQ and IRQCHIP anyway.
-> >
-> > As long as it also works ACPI, it should be OK.
-> 
-> Out of the four architectures that have ACPI support (x86,
-> arm64, loongarch, rv64), only x86 doesn't always select
-> IRQ_DOMAIN already, and x86 selects it for almost all
-> configs:
-> 
-> config X86_UP_APIC
->         bool "Local APIC support on uniprocessors" if !PCI_MSI
->         default PCI_MSI
->         depends on X86_32 && !SMP && !X86_32_NON_STANDARD
-> 
-> config X86_LOCAL_APIC
->         def_bool y
->         depends on X86_64 || SMP || X86_32_NON_STANDARD || X86_UP_APIC || PCI_MSI
->         select IRQ_DOMAIN_HIERARCHY
-> 
-> so it's only disabled here with
-> 
-> CONFIG_64BIT=n
-> CONFIG_SMP=n
-> CONFIG_X86_32_NON_STANDARD=n
-> CONFIG_ACPI=y
-> CONFIG_PCI=y (implied by ACPI)
-> CONFIG_PCI_MSI=n
-> 
-> As far as I can tell, this specific configuration is
-> currently able to save a little bit of kernel size
-> by avoiding IRQ_DOMAIN, but we are probably better off
-> enabling it here as well for consistency
 
-+1
+On Wed, 14 Feb 2024 15:07:28 +1100, Tim Lunn wrote:
+> The vendor for this board was incorrectly listed as Rockchip. Fix this
+> now while they are not used anywhere, in the future they may be used by
+> bootloader to select dts.
+> 
+> Update the vendor to Xunlong.
+> 
+> Signed-off-by: Tim Lunn <tim@feathertop.org>
+> ---
+> 
+>  Documentation/devicetree/bindings/arm/rockchip.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
 
-Also, looks like we have a couple of 'select OF_IRQ' that could be 
-dropped.
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-Rob
 
