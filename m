@@ -1,114 +1,155 @@
-Return-Path: <devicetree+bounces-41991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EE4685607F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:01:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8D9D856099
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:03:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A0BE51F21DB8
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:01:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 225C11C23805
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:03:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF03413342A;
-	Thu, 15 Feb 2024 10:47:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9AAC129A7E;
+	Thu, 15 Feb 2024 10:54:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="yug2Ruys"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C19C12EBD4;
-	Thu, 15 Feb 2024 10:47:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D148284FC2;
+	Thu, 15 Feb 2024 10:54:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707994051; cv=none; b=GyJMNwWNeQMAylGjc7QF00DQo6QmtUAxH+nld9kBiMoMq+jvjZO28iqHv/2/lXvNplKf5l5HoKIzwWxUK91PPQsjx23oKrW0Q0q8iwN7qHeLLtXI0LHe2nLVztYhRBTnr40eed/KLnjhDkc936KjuWBRj/Bl3eXPCS5sYqrf3O0=
+	t=1707994460; cv=none; b=asLfMeNJNpjOl5VyW7XvNv2HCeH6R13ti8gkxRaPfPFNOYYkfnWCVifVsbptsIxdX12kjo2RNEaoqiLcGQdso8XQd+B78Nw0f/BRBhEaEDxQTYg8iH18fqqDprquCpUB1r2/Kfi9zecIIH2OK05lk58EI/9TW6e3/DPUxNLCY0I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707994051; c=relaxed/simple;
-	bh=J1lf+RbzBwTUdgwEgk5Mt6fRHJgMnJQ02SQ/jvvXxO0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gGN90EDz2TE88x8BPIgrI8H8YMHyqPGcx/oX40K2/21C9bY7Shx3K7V+AE1cNVySVF/L3YhV24IaVzgwqtQoVYNHS54kpb2nqXOZE3I2bTzLn25U5ceoRo3MgFxk1EvVfsWnMvlkXfw7cZgWc4DFzAdeudnusdM8atTQwwkvULE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-604a1581cffso7017697b3.3;
-        Thu, 15 Feb 2024 02:47:29 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707994048; x=1708598848;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cngMjuMI3kUloDphCEqdAv46UiS6t4QhdjtrFhn8Hf4=;
-        b=rjuNsd1M9XcEWl3TVu2Oa6CjvhhLyj+qdPbzSf3aJLF9vwsulnQ0Dui4LqShQL5GgU
-         Ltd5eScCq+kKNfBP5Lzvz8fS0JDgmGlazzVU3OYd54kutf66n2PCIq2RagrvEJAMvzG2
-         HsAZSPH+fQzI9MPs4H4zfKBE7pDtb3i/fXr1m0n9KmdiLrWeHV9bWxhIzfFe5nOzZrjh
-         e9NtgX0AoUASaF7+Q6ELA2YofiHp5AL89j0usdUXjEl4JasG5XitKjmUb/m6+4KOPpqY
-         uHw4KY0fI8vsDIggGi5ZyeudSguEmqmc05UqzAYQ0Qz1jEA5GFtOKvFl5hyD1UgsfuEP
-         AHng==
-X-Forwarded-Encrypted: i=1; AJvYcCUdOfmYhVnI6jEYf4/dNxhjn7Rhbofhik8hYCLch0yoV4x8fUt1aryl8PT0py1ENzsB30nKZhSUvCp/0O1t0/4Lhgw1NFC5GHs0tB/i
-X-Gm-Message-State: AOJu0Yx2sfF6I5liDaIFlVPET4OCWJoWa1M9VMrScJx1/LjmToyzm2Am
-	vrfsR1NmJrpiUb2tRQDGXLtgWO+ln2ALNVDyOrLDCV+mTYp/jptko2JeKfrYjqEUvQ==
-X-Google-Smtp-Source: AGHT+IHOqRgKg85V89qJIZJsNTKTfY3fp02aVzakTIfez8ZotOJ/GbvMTlHdhfa3kUO3SVxKdajh1A==
-X-Received: by 2002:a0d:e284:0:b0:607:8c4a:b4e5 with SMTP id l126-20020a0de284000000b006078c4ab4e5mr1389652ywe.22.1707994048284;
-        Thu, 15 Feb 2024 02:47:28 -0800 (PST)
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
-        by smtp.gmail.com with ESMTPSA id i204-20020a816dd5000000b005ff9bb7fa40sm196400ywc.34.2024.02.15.02.47.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Feb 2024 02:47:27 -0800 (PST)
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-dc238cb1b17so641204276.0;
-        Thu, 15 Feb 2024 02:47:27 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWlM9bMfsj/sIlh1TLirASmeyI3HKwHAZP7PoTkKJzrJHnkWD4KOEz0zEAJI5J+xO2mDorv/HVPen7ZofUr5mrmOXKxCDSRnwMQ+3MQ
-X-Received: by 2002:a25:2bca:0:b0:dc2:6f92:2ec0 with SMTP id
- r193-20020a252bca000000b00dc26f922ec0mr1301977ybr.51.1707994047597; Thu, 15
- Feb 2024 02:47:27 -0800 (PST)
+	s=arc-20240116; t=1707994460; c=relaxed/simple;
+	bh=cC3P+3YPJZ8DEQuyMwtvREG1h4T/0uy60ycQvGZgIOE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=WvjjbY/ujjRExf1lqZSBtzF6Sp6/1zh5SpAB4m7POlMy/oisoRzAxAzjQmm9v389sHCXZDmIKep32fSHV1PLmN7r/LhiA3ZWScNpbrjtnKmaa/VYWjBmR5TPlpPKUgK9BojATqR/BCu4Jluf+cXKUY9wwt1EoALcpmVwEliQSNg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=yug2Ruys; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41FAsArR079124;
+	Thu, 15 Feb 2024 04:54:10 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1707994450;
+	bh=RoF4JGo7T+l/qiSRUHs0bG2icW5UtJRDcR9gW/2M1xs=;
+	h=From:To:CC:Subject:Date;
+	b=yug2RuyssKJoI+tWVV4Ypg7kcuLnSaKvT8LbVeAva9P70YaSQ/CourxfeOEHI3gcq
+	 Av+oyo3bXyAa5Y9xwWuVuod9QIt1i4j8jXaL/IHOYiFo1tt2ZXBJ6Z8RH2iX+DmVP4
+	 Ctz3RRRDer5jMr4Y+k+kmjGOQWKEZUJKonkcJKG4=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41FAsATZ072313
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 15 Feb 2024 04:54:10 -0600
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
+ Feb 2024 04:54:10 -0600
+Received: from fllvsmtp7.itg.ti.com (10.64.40.31) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 15 Feb 2024 04:54:10 -0600
+Received: from fllv0122.itg.ti.com (fllv0122.itg.ti.com [10.247.120.72])
+	by fllvsmtp7.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41FAsAEr026545;
+	Thu, 15 Feb 2024 04:54:10 -0600
+Received: from localhost (danish-tpc.dhcp.ti.com [10.24.69.25])
+	by fllv0122.itg.ti.com (8.14.7/8.14.7) with ESMTP id 41FAs95d003642;
+	Thu, 15 Feb 2024 04:54:09 -0600
+From: MD Danish Anwar <danishanwar@ti.com>
+To: Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+CC: Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Tero
+ Kristo <kristo@kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>,
+        Roger
+ Quadros <rogerq@kernel.org>,
+        MD Danish Anwar <danishanwar@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-am654: Drop ti,syscon-rgmii-delay from ICSSG nodes
+Date: Thu, 15 Feb 2024 16:24:07 +0530
+Message-ID: <20240215105407.2868266-1-danishanwar@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240212170423.2860895-1-andriy.shevchenko@linux.intel.com>
- <20240212170423.2860895-13-andriy.shevchenko@linux.intel.com> <CAMuHMdUqvotuuj6p7SNVo3X+BRvc0MAeQ9krLnJVQywr6rzOKg@mail.gmail.com>
-In-Reply-To: <CAMuHMdUqvotuuj6p7SNVo3X+BRvc0MAeQ9krLnJVQywr6rzOKg@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 15 Feb 2024 11:47:15 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWQ5D-H22+is4PO5MS7CHnb8xDwO-1FXDQtkZmyJ8Z4pw@mail.gmail.com>
-Message-ID: <CAMuHMdWQ5D-H22+is4PO5MS7CHnb8xDwO-1FXDQtkZmyJ8Z4pw@mail.gmail.com>
-Subject: Re: [PATCH v2 12/15] auxdisplay: ht16k33: Switch to use line display
- character mapping
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Robin van der Gracht <robin@protonic.nl>, Paul Burton <paulburton@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Thu, Feb 15, 2024 at 11:44=E2=80=AFAM Geert Uytterhoeven
-<geert@linux-m68k.org> wrote:
-> On Mon, Feb 12, 2024 at 6:04=E2=80=AFPM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
-> > Since line display library supports necessary bits to map the character=
-s
-> > (if required), switch this driver to use that.
-> >
-> > Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
->
-> Thanks for your patch!
->
-> Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
+Drop ti,syscon-rgmii-delay from ICSSG0, ICSSG1 and ICSSG2 node as this
+property is no longer used by ICSSG driver.
 
-With the missing return-statement reported before added, of course ;-)
+Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso | 2 --
+ arch/arm64/boot/dts/ti/k3-am654-idk.dtso    | 4 ----
+ 2 files changed, 6 deletions(-)
 
-Gr{oetje,eeting}s,
+diff --git a/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso b/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
+index 0a6e75265ba9..bb0e29873df7 100644
+--- a/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
++++ b/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
+@@ -68,7 +68,6 @@ icssg2_emac0: port@0 {
+ 				reg = <0>;
+ 				phy-handle = <&icssg2_phy0>;
+ 				phy-mode = "rgmii-id";
+-				ti,syscon-rgmii-delay = <&scm_conf 0x4120>;
+ 				/* Filled in by bootloader */
+ 				local-mac-address = [00 00 00 00 00 00];
+ 			};
+@@ -76,7 +75,6 @@ icssg2_emac1: port@1 {
+ 				reg = <1>;
+ 				phy-handle = <&icssg2_phy1>;
+ 				phy-mode = "rgmii-id";
+-				ti,syscon-rgmii-delay = <&scm_conf 0x4124>;
+ 				/* Filled in by bootloader */
+ 				local-mac-address = [00 00 00 00 00 00];
+ 			};
+diff --git a/arch/arm64/boot/dts/ti/k3-am654-idk.dtso b/arch/arm64/boot/dts/ti/k3-am654-idk.dtso
+index 8bdb87fcbde0..d4bc80032587 100644
+--- a/arch/arm64/boot/dts/ti/k3-am654-idk.dtso
++++ b/arch/arm64/boot/dts/ti/k3-am654-idk.dtso
+@@ -72,7 +72,6 @@ icssg0_emac0: port@0 {
+ 				reg = <0>;
+ 				phy-handle = <&icssg0_phy0>;
+ 				phy-mode = "rgmii-id";
+-				ti,syscon-rgmii-delay = <&scm_conf 0x4100>;
+ 				/* Filled in by bootloader */
+ 				local-mac-address = [00 00 00 00 00 00];
+ 			};
+@@ -80,7 +79,6 @@ icssg0_emac1: port@1 {
+ 				reg = <1>;
+ 				phy-handle = <&icssg0_phy1>;
+ 				phy-mode = "rgmii-id";
+-				ti,syscon-rgmii-delay = <&scm_conf 0x4104>;
+ 				/* Filled in by bootloader */
+ 				local-mac-address = [00 00 00 00 00 00];
+ 			};
+@@ -140,7 +138,6 @@ icssg1_emac0: port@0 {
+ 				reg = <0>;
+ 				phy-handle = <&icssg1_phy0>;
+ 				phy-mode = "rgmii-id";
+-				ti,syscon-rgmii-delay = <&scm_conf 0x4110>;
+ 				/* Filled in by bootloader */
+ 				local-mac-address = [00 00 00 00 00 00];
+ 			};
+@@ -148,7 +145,6 @@ icssg1_emac1: port@1 {
+ 				reg = <1>;
+ 				phy-handle = <&icssg1_phy1>;
+ 				phy-mode = "rgmii-id";
+-				ti,syscon-rgmii-delay = <&scm_conf 0x4114>;
+ 				/* Filled in by bootloader */
+ 				local-mac-address = [00 00 00 00 00 00];
+ 			};
+-- 
+2.34.1
 
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
