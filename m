@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-41882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C79DE855C5E
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:23:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 242AD855C64
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:24:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC4651C21DF7
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 08:23:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B2BD1F22F44
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 08:24:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A535134CE;
-	Thu, 15 Feb 2024 08:21:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8484712B7C;
+	Thu, 15 Feb 2024 08:24:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Fb+ADIvM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Nq3HHa8d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 429E2134A9
-	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 08:21:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A16F519A
+	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 08:24:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707985275; cv=none; b=IzXVrHY0B3ewl5y7isiiJcfv5fp4QtlvAEzx4BtG0/Fm0tr4szoinX0U7g56VON2HsHjfqnIwWN32UKjr4cZXQBlAzZ+vc2EabJmatbq1kRMSfh+3Oo//wnf1N0VoSQFipoNau8GS1iCmcBx7OaO9Cvb6rJ7MwZA5QZfD2PWMvs=
+	t=1707985459; cv=none; b=DRsWb6Hn6bTl0Spm99TfqVb+TXc6VT0v5K0OkWA54d2HJP5lPzGSvLMZZtq272PbER9ac1ZpRRCnxaKjEW92wnQaAnR6jMzJFnuN2XBf4AtTL+QkUYaZz9smjJFHmqloZiqgC3Uk2pH/VrmmNGaDGln35yb99vGxmO2xDJpJgh8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707985275; c=relaxed/simple;
-	bh=p0rW9PHSjls5IMBOSFlbxJHTFDsIja4DXqJ0rRyATWA=;
+	s=arc-20240116; t=1707985459; c=relaxed/simple;
+	bh=wnUBH1VhNPx79Exig+hMwiYyDb0NRwe30R1lRnmUHvU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jkzPkIDxO/JMosDqGWQLoIz/HfjebfnWyMu+0r8vL2vzr4biZPl/w8CTjr/X67WFQZbY5Cttnx8Ojd08cLVbE6gHiLPY4vMzyDrMvLka6zqmmPxAwJeIYcitkt+fCAKkt6mFWw9Pk472kEM7BBny249RZfP9mhd5CPBY9nldQoM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Fb+ADIvM; arc=none smtp.client-ip=209.85.208.49
+	 In-Reply-To:Content-Type; b=MCla2dh2iNJIVM4A/odgcHPY7CLWppERd0VgMc9KPVjdyDW0g56F+I6ULinaCnPGPzXoSJW4VDuN3WX44Wi4X6/+rVqJsitRSMywYzraTFQjQEjHB7Haa+LJkPBHRlMSCSW13AX6ILk9LArjYYVG6EOCfK+1kke8vLmFMbi4QxY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Nq3HHa8d; arc=none smtp.client-ip=209.85.208.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-563bb51c36eso211188a12.2
-        for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 00:21:13 -0800 (PST)
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2d0fd07ba8bso6329811fa.1
+        for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 00:24:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707985271; x=1708590071; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1707985456; x=1708590256; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=QvT/wcQc5j++kaaqRgB4CtTRwkDywujES22YaF5pKPM=;
-        b=Fb+ADIvMIt6tEOBvhs57VHE9vQuSc7HWS2nBez6XNVSJXqSxFBYIlDwh+qteF5sKlF
-         9M8vzZbljQyh+Zpm+zq7QvkcpPA0QykIuukr5Wgtq4FjEB/fhy3jfkdlH3obezHEYQIA
-         HKp4zzBYy/dA4v9StHuHKcJY+0NDlX1WeJnyct+Oy8XKljHjAYf8IcBBU4aD1ZS2p2jv
-         k0/kBUro9AF/NSp0Yu0CA2dVv23SgJknROMTQEeIw7l1cxY8QVhPbq/GJxYywM7uACUC
-         pfYMl52VovYAbfwYzcYP18JkS5A2ad04a5uk6F6aQHrLOiRR1Ttwl0WeBhyQ+YvGMkUv
-         nGBg==
+        bh=trfg4+xWum33uVUB6CG91+USLu/b7kuYi1txCb8DJCQ=;
+        b=Nq3HHa8dYMZVIBkDryar8Noh33jV/D3gnUSDrskmJgblVFbdVXQumg+Z9tRmw86P4s
+         +saqqTT3Eddz4T+2QnEtRSHYUQ7ivu8tP3e5FrzQNKX5lut7sQl19BgbCkSHRiPyyWkr
+         QS1E+40j6n3nPN6c/5n9DDeHz9L0y9flh6zDBsESyBQm5uXGGrXJMj07hdJVExEP2wgo
+         vVptsoAkcVh+MrN7zQ1Pa+49YgpU6EPnjHXy+CTgawl0CcSYermMgsi8cEc8VlVXWBrm
+         AU2R9FKaGhZph48s1c1nZB85my2JDAH70SuNaLg6SSFUUuyYEiPS5egvEUZK9QW0w38N
+         1Z8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707985271; x=1708590071;
+        d=1e100.net; s=20230601; t=1707985456; x=1708590256;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QvT/wcQc5j++kaaqRgB4CtTRwkDywujES22YaF5pKPM=;
-        b=Q4VQ4k3rF60j3qEqS6+0cxFxucXnw47ndv51G4igzNHswunZdD85oJEskLFet1ETwN
-         ZF2SMD8brqYlBO9Bf6+EXT8Tfp5tEewXi/1TRy6ZN5JbangY/9X/vSJsmVMWF/2kAQRx
-         Z8x3lPksahRGSQfhUz/lCHz7ysYaB/IHh4ahStweKUQ4Rurhs0GBEWmoW2pxPuRYWpzP
-         F8XzfjdC3nMy5kLgqo/Eiz3p8rfNa/JSDhZOl++Y/dQ+3oyXtnNnIV1RQbjahCpbPK6E
-         z+L7ZAwffWrUKshEek0skMZj//AvY99O4zoVfB8PifWn1RFimxbsa3uN0Q4AfzVIqB4P
-         6MIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUXzF6wFPi638mXCMEzHLoEU612ES+iAuXYMEBgCJVmvjpaQBBoqSFgIPesUcLGRPjIOh1RnbLeIeg5IGUZTd7oVWWqz574VLhKpg==
-X-Gm-Message-State: AOJu0YxIg6P45hRicp627fweJezoxqO8TDdl/YiJbReSmxrJA3un8aSh
-	+X/B4PGEvbl/u9BwYRqcEdYBlQoHUQBOO65yKhf/h031w+vmROSsn84CNmL15mmK3WnAFo7kPdn
-	A
-X-Google-Smtp-Source: AGHT+IFlDzBvcBLha/q5mXvwtJ3F3GH7APScXRBIR+Jqt+zAVCMF0GCuPOg6q9mbFUg69ane1ipUyw==
-X-Received: by 2002:aa7:c88e:0:b0:560:3a3:0 with SMTP id p14-20020aa7c88e000000b0056003a30000mr951071eds.30.1707985271538;
-        Thu, 15 Feb 2024 00:21:11 -0800 (PST)
+        bh=trfg4+xWum33uVUB6CG91+USLu/b7kuYi1txCb8DJCQ=;
+        b=aZMPrOBnbAvaLE/aSAXkNItj/kl+nvkmWBDr68u+ZVvIVrcD/FSPvadkJUh5ufvjYg
+         fCA9ObfPP2M8tslabFJ35M9hJRKn9tCHjTg8xs2VAaMvTAObrc3sLDSexO7WfWY++/PO
+         TP/3CWpKfEsEPCnDdxSVNtXqEZrfAFQ/wMcM5a81HQaFOWDP+IvwkPo9UIpFewC+p6R7
+         tMB9z2zsS0vBNiwilY4f/aKrKUiiLiwg6EjQgaaHMFJbB3TbUegtzc+CEH8LpMz8Fn7A
+         8SPial/3pH7r94GLNuuj9HzPw8n8UaSqFSZi9YeIZWb0pqrNlgF4zTojnBvK8VDCLZKf
+         Lfiw==
+X-Forwarded-Encrypted: i=1; AJvYcCW3CyJvuWsNbO9AsCP0RQsEIKCLrackEXh0QcLmOEEzLNthpBqZZ3Kx/jMUV+/4c9NnbNF+5uHeKJP/SepAE+jbQDE1ord6jxzRkA==
+X-Gm-Message-State: AOJu0YzeI+YR2hLiv5ZRDE972a52rzz92P5DW60PG27geYumolhHYgXP
+	ML2+h3fZRORH6t6NK7xzn0l5fnDt+zlcuCd2RAQFD9yQwE+Iwe5eMRxBu8f9PBE=
+X-Google-Smtp-Source: AGHT+IFB/cl+K8o+EokXbjb+xzVBKV6VljmG+JW9bBjcsAbAP8MBZEpKH7wpdOVZvJhmVzdsaWPCbg==
+X-Received: by 2002:a2e:9a86:0:b0:2d2:f50:5a04 with SMTP id p6-20020a2e9a86000000b002d20f505a04mr124384lji.32.1707985455725;
+        Thu, 15 Feb 2024 00:24:15 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.207.130])
-        by smtp.gmail.com with ESMTPSA id v12-20020aa7d64c000000b00562156c563esm316898edr.33.2024.02.15.00.21.10
+        by smtp.gmail.com with ESMTPSA id f23-20020a2e9517000000b002d0f3c58e60sm177617ljh.117.2024.02.15.00.24.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Feb 2024 00:21:11 -0800 (PST)
-Message-ID: <fc325835-6fcb-4fac-b907-93a95d8d6d7d@linaro.org>
-Date: Thu, 15 Feb 2024 09:21:10 +0100
+        Thu, 15 Feb 2024 00:24:15 -0800 (PST)
+Message-ID: <98c9d3ce-8a97-499f-b78a-b918a06ec779@linaro.org>
+Date: Thu, 15 Feb 2024 09:24:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,18 +76,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 14/15] dt-bindings: auxdisplay: Add Maxim MAX6958/6959
+Subject: Re: [PATCH 1/3] dt-bindings: cpufreq: Add nvmem-cells for chip
+ information
 Content-Language: en-US
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
- Rob Herring <robh+dt@kernel.org>,
+To: Markus Schneider-Pargmann <msp@baylibre.com>,
+ Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Robin van der Gracht
- <robin@protonic.nl>, Paul Burton <paulburton@kernel.org>
-References: <20240212170423.2860895-1-andriy.shevchenko@linux.intel.com>
- <20240212170423.2860895-15-andriy.shevchenko@linux.intel.com>
- <ZcpSDOk-IQVasHud@smile.fi.intel.com> <ZcpSaHW-RQ3dzywP@smile.fi.intel.com>
+ Conor Dooley <conor+dt@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Tero Kristo <kristo@kernel.org>, "Rafael J . Wysocki" <rafael@kernel.org>
+Cc: Andrew Davis <afd@ti.com>, Dhruva Gole <d-gole@ti.com>,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20240206145721.2418893-1-msp@baylibre.com>
+ <20240206145721.2418893-2-msp@baylibre.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,29 +135,17 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZcpSaHW-RQ3dzywP@smile.fi.intel.com>
+In-Reply-To: <20240206145721.2418893-2-msp@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/02/2024 18:16, Andy Shevchenko wrote:
-> On Mon, Feb 12, 2024 at 07:14:53PM +0200, Andy Shevchenko wrote:
->> On Mon, Feb 12, 2024 at 07:01:47PM +0200, Andy Shevchenko wrote:
->>> Add initial device tree documentation for Maxim MAX6958/6959.
->>
->> Oh, this is an old version :-(
+On 06/02/2024 15:57, Markus Schneider-Pargmann wrote:
+> Add nvmem-cells to describe chip information like chipvariant and
+> chipspeed. If nvmem-cells are used, the syscon property is not necessary
+> anymore.
 > 
-> Here is a new one:
-> 
-> From d8c826e06cf9237cd5fc6b2bb0b1cac5aff4fd8a Mon Sep 17 00:00:00 2001
-> From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Date: Thu, 8 Feb 2024 17:23:38 +0200
-> Subject: [PATCH 1/1] dt-bindings: auxdisplay: Add Maxim MAX6958/6959
-> 
-> Add initial device tree documentation for Maxim MAX6958/6959.
-> 
-
-Anyway you need to send the new version to the list, so the bot will
-test it.
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Acked-by: Andrew Davis <afd@ti.com>
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
