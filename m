@@ -1,108 +1,91 @@
-Return-Path: <devicetree+bounces-41869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1460C855BBC
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 08:38:04 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED762855C06
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:09:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD1371F292AA
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 07:38:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8E4C0B2A5D1
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 08:09:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C8A5DDD1;
-	Thu, 15 Feb 2024 07:37:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 336A0111BD;
+	Thu, 15 Feb 2024 08:09:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cKYv8CDc"
+	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b="ABpf9BJF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp28.bhosted.nl (smtp28.bhosted.nl [94.124.121.40])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF239DDAE;
-	Thu, 15 Feb 2024 07:37:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12F56111A0
+	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 08:09:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.124.121.40
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707982679; cv=none; b=N/t0P0+AOmf/4g16WXpNrFXl8ioQh3oI0qsW2akgCax/UvJmMoXCnd9Gki6PMfhZjxnBFWWnXHIH7qucIxmCzir7etpdAWh1GZXz56FXti5onycHsoLuTvuSGtrhc9AVW77e4a/akx+206rxyA4cCFb1UnodKYNIUKGv1nIfkzI=
+	t=1707984570; cv=none; b=tH0fDD1bCyYUHJxBYbMRuC9jIeoEG1w2N1KP76uPC6N6Ak3gxvzyayYEYguf0A5/rS+kZ7qTPyAu4+qrtlUNhr6dT4wzXu7cOU+SE/+Zwl3+HpbxqfXVPedEeG0/i4Ka59nYBZ6Dy7yvk9vhaDIn/v0QuZc6YENn0RO4iELwc34=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707982679; c=relaxed/simple;
-	bh=m56EgYE9aTH5bwqtaWRmlBM91krkH7JiWCqkxNH8zHA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C5VebZyjjNUOvheZ6l9pMjBZoo1asU6AiBm5FrVNxbJP7YSMW5G360GGzSqpLqY47CLB32EXcJSSD9wUOFB1pwY38dLoz0azi7dyVnfEEhOQ38Zcsgq+KLkmniRiDAEzzNLafx7UyPvlCwmxtLE+9yKs3dstmh/bH4s920Xvplg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cKYv8CDc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06892C433C7;
-	Thu, 15 Feb 2024 07:37:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707982678;
-	bh=m56EgYE9aTH5bwqtaWRmlBM91krkH7JiWCqkxNH8zHA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cKYv8CDcKjum5/gKIM01h9SIJu8ikhRsqlFDRytMTj2vC/iuC4AzkGtftPwzhxaKF
-	 aol/2APaDtW4bCExipwsht3dNAlT2Si3z5zKZ049/rF+KZyB5TPyJbfc7NYNUOD4mq
-	 PmZb91nTd8TVt/ZRMMuOjswTbP6aKkNezgVyyDd9uZf5o0o4crWv7zuTEZIAgntMLp
-	 iuC9sZlJ/2geLm6f1DLYQig4oW9ByBaHjykoO9SC/AFJaiGgNU7qomVu+GY/d3OUDs
-	 KadhGsjoknJeVy5GVfq8XUaovG2Uz5UvPOq+TDSPwYZn0F3hA9RIxMdqen4U1zqbat
-	 0PP1zDOQuFjDQ==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1raWK3-000000002IB-1FkX;
-	Thu, 15 Feb 2024 08:38:19 +0100
-Date: Thu, 15 Feb 2024 08:38:19 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@somainline.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH RFT v2 0/3] Fix up SC8280XP idle states
-Message-ID: <Zc2_a9_w1Val6Lz4@hovoldconsulting.com>
-References: <20230619-topic-sc8280xp-idle-v2-0-cde50bf02f3c@linaro.org>
- <k7v2qov3m43q7vniqu3w6q64277ea5mf7gvt6fzgj4e3a5uagt@fcsmuu24cfqr>
+	s=arc-20240116; t=1707984570; c=relaxed/simple;
+	bh=rvQ+BGvz4Ur3Y3yGG6aT2h/S6cdZvcGtvjc69nxLSmg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=bnROaeorn8cIhpjMs3qrH3rb3Ry7D5qgxLbkZSyzm0Joz9+hNmRi0QJLSSx1pnQBMx9y4MuwmSQKwJ2NnL24m5aSuPsC5sCDHobL8eaqMbbKc6H2BrUhczkB4xwFJqHqB/qB/WBYRiPOMdn0zq/vvnJkHMtmjursvNCtyPn6d5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=pass smtp.mailfrom=protonic.nl; dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=ABpf9BJF; arc=none smtp.client-ip=94.124.121.40
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonic.nl
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=protonic.nl; s=202111;
+	h=content-transfer-encoding:content-type:mime-version:references:in-reply-to:
+	 message-id:subject:cc:to:from:date:from;
+	bh=fNfrKgN3kLObdycvA/+kY7RqzkR6TPDMJgFqmqIeLZ8=;
+	b=ABpf9BJF2XW8rQnAHZShtEsCvWTovWqO9KGW1M9yXTygOEPPe3r++vfHI14nJ3D/QQVCg1E2orsrP
+	 MXMjumKRqtFUfK5B56ep4KQJrQE+ZyiXv2WFGsMlUnsjhYQmpE//UIvM93X7RYhZSvuvklSheQYs3z
+	 +OC5qEFGNErGqES1VJnCsjA6pUTqeJ1O/YJaIEVp4pn4oYRrUjuFrGHMUAsXNwWm7VRKk1yFJt9FZA
+	 KYidvQlhy9MpZLuwHv3w7kHB/7VCjcvE/j+s8OHwAZcTxbvrL7WIdJaSWzPzXS+imhaFZsKRcmPKv7
+	 qilOUfwf1ubeuqZVv4rXg20BLHiazsw==
+X-MSG-ID: 847ace45-cbd9-11ee-ba6d-0050568164d1
+Date: Thu, 15 Feb 2024 09:09:18 +0100
+From: Robin van der Gracht <robin@protonic.nl>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Andy
+ Shevchenko <andy@kernel.org>, Geert Uytterhoeven <geert@linux-m68k.org>,
+ Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Paul Burton <paulburton@kernel.org>
+Subject: Re: [PATCH v2 11/15] auxdisplay: ht16k33: Move ht16k33_linedisp_ops
+ down
+Message-ID: <20240215090918.31ac2006@ERD993>
+In-Reply-To: <20240212170423.2860895-12-andriy.shevchenko@linux.intel.com>
+References: <20240212170423.2860895-1-andriy.shevchenko@linux.intel.com>
+	<20240212170423.2860895-12-andriy.shevchenko@linux.intel.com>
+Organization: Protonic Holland
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <k7v2qov3m43q7vniqu3w6q64277ea5mf7gvt6fzgj4e3a5uagt@fcsmuu24cfqr>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Tue, Feb 13, 2024 at 11:35:06PM -0600, Bjorn Andersson wrote:
-> On Wed, Dec 20, 2023 at 11:12:53PM +0100, Konrad Dybcio wrote:
-> > Comparing the data available in the downstream sources with what's there
-> > upstream, it was easy to spot some differences. This series aligns what
-> > we have upstream with what is there on the vendor kernel.
-> > 
-> > The big asterisk there is that the downstream sources for SC8280XP can't
-> > always be trusted. A simple test shows that the lower idle states that
-> > were previously missing are implemented in the firmware (Linux reports no
-> > errors and enters them).
-> > 
-> > HOWEVER
-> > 
-> > The only cluster idle state that's been present until now (the deepest
-> > one) is now barely used if at all, as the scheduler seems to deem it
-> > inefficient or so.
-> > 
-> > Hence, a request for testing and comments, especially from those who
-> > use the X13s daily or have reliable setup to measure the power usage.
-> > 
-> > Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+On Mon, 12 Feb 2024 19:01:44 +0200
+Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+
+> We will need the update functions to be defined before
+> ht16k33_linedisp_ops. Move the latter down in the code.
+> No functional change intended.
 > 
-> What did we conclude on this one? Does the extra state make sense?
-> The last patch looks useful...
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> ---
+>  drivers/auxdisplay/ht16k33.c | 24 ++++++++++++------------
+>  1 file changed, 12 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/auxdisplay/ht16k33.c b/drivers/auxdisplay/ht16k33.c
+> index 0cdf3fbdf81e..75c4a8d31642 100644
+> --- a/drivers/auxdisplay/ht16k33.c
+> +++ b/drivers/auxdisplay/ht16k33.c
+> @@ -440,18 +440,6 @@ static void ht16k33_keypad_stop(struct input_dev *dev)
+>  	disable_irq(keypad->client->irq);
+>  }
 
-I asked Konrad a while back to provide some performance numbers to
-accompany this change.
-
-I think he said that this series made no difference in either direction,
-but IIUC that only after a really quick attempt at evaluating the
-impact during a meeting we had.
-
-Johan
+Acked-by: Robin van der Gracht <robin@protonic.nl>
 
