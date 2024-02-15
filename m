@@ -1,113 +1,112 @@
-Return-Path: <devicetree+bounces-42214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3559856E3A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 21:00:24 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06585856EBF
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 21:44:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FD52288830
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 20:00:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8971EB246C2
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 20:44:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A38913A87E;
-	Thu, 15 Feb 2024 19:59:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C40813B285;
+	Thu, 15 Feb 2024 20:44:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="FC2rV3J7";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="vvEDjueY"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="aSnG0L2j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D66CE13959C;
-	Thu, 15 Feb 2024 19:59:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 222932595;
+	Thu, 15 Feb 2024 20:44:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708027192; cv=none; b=I6KCGWdcJKP3w7H7TSl59Mcf5kWnGlyqtiGZqs17a9CGwGMdsKfB+ZZaEmLXcLiUauCbhDb6gYmXjhnuPnjT11MyvmWfpTb1cv4hJ+SSwryD46E49fIjtQyVxFQTb8NGNF1POaEcLZ2QN/4X/iWr27QAp2qwvlb6Tbh6Zqnhacs=
+	t=1708029890; cv=none; b=flITeU1UPh07g8E2ggdX36RdQ7FUCOjKnrvV6wGxiUX29HGR5jzQZCd08BuD8yIELa8PaBTBWsHmrrxWLiVXH76bO++BPVViVUVbD1/JqYR4Ll7qiOb0L7eWDfKuRlJCgDGtC3jR+Hk1jvYAwNTLNYkG4cooYYfRY1527oDCNe0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708027192; c=relaxed/simple;
-	bh=L7bcSnkXrPvlWYl4fEOQIJjl5ykV3vORJAPl4RXnXTU=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=FM1fmTzTuw3fopIYHS0AsVUxX7b+ZXp6HCUd486s8vG/cC/n8sdvdzhUdJRchG85iHE3PxLWXTBkpAvLdNGyiwRtvVvVrb59ts/2PSud5udu5Uok7E5RwKP1eP4UCssYPYDO58Z9XfEgmSkGdjuhRweJIkaakkrH/Qb/h1WcxWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=FC2rV3J7; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=vvEDjueY; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1708027189;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=JSYfftfvnoNIEsV/zUwUyNXq3OsLbyrS3xmJdbEjgcg=;
-	b=FC2rV3J7iMT20bfmDpKIzYMB6ZmyLIA/IJRb4Tx8xL2Qxt1IsRvPEyD2xPtSipTMBYLgTr
-	7nxv5wFY8MllxiR/F0Y2y7blCZLBfc8c8+2e8CH87qyRxCNJZUgqLxj7LE+4e+3RRNOXHH
-	lkMZ8JrZZXYDs+HoHK4mDrwGYN3dga8dU/SJ3KSsZeCzs0mxe7rYGaOLqOcczSA8KaubWT
-	n1g+WSqIL5bnK7cZzxRg40w+MJ9a3WxFS1CtLqCZqSnQwUt6qT0pkRNFXqYwFNJRI+hQ19
-	3N5SN3FMJB8mwHBpH7Vqbb9IH7Hy+EPm8f/W6z4e/7UHow3CcU77GADiJE6xCA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1708027189;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=JSYfftfvnoNIEsV/zUwUyNXq3OsLbyrS3xmJdbEjgcg=;
-	b=vvEDjueYHLIdYonrN/q3kU2Ip6cwkYGmm05lIBYR4BpbPCEnN8wSz1ZvlaD2M3vGVpsr8f
-	7P1l5q83KTxAcAAg==
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>, Marc Zyngier <maz@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, =?utf-8?B?QmrDtnJuIFTDtnBlbA==?=
- <bjorn@kernel.org>, Rob
- Herring <robh+dt@kernel.org>, Atish Patra <atishp@atishpatra.org>, Andrew
- Jones <ajones@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>,
- Saravana Kannan <saravanak@google.com>, Anup Patel <anup@brainfault.org>,
- linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
- <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>, "Ahmed S.
- Darwish" <darwi@linutronix.de>
-Subject: Re: [PATCH v12 00/25] Linux RISC-V AIA Support
-In-Reply-To: <CAK9=C2WsSSHgDF+7ruxx_QF0Lk+Dsx2F2Y-_NabnxrJ_qWhgGQ@mail.gmail.com>
-References: <20240127161753.114685-1-apatel@ventanamicro.com>
- <CAK9=C2Vwtj2gZg-P73yLMxu0rPXQ3YrRRuxq6HcpHMXgs-jHaw@mail.gmail.com>
- <87bk8ig6t2.ffs@tglx>
- <CAK9=C2WsSSHgDF+7ruxx_QF0Lk+Dsx2F2Y-_NabnxrJ_qWhgGQ@mail.gmail.com>
-Date: Thu, 15 Feb 2024 20:59:48 +0100
-Message-ID: <87v86pcxcb.ffs@tglx>
+	s=arc-20240116; t=1708029890; c=relaxed/simple;
+	bh=7+C+nuf2HLU4u1NNutFvy9AsrXNIpxJuVzWnH369IPI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cGux7GOfqQguDISlbftN11Qmbovda4IX9vvVD0AfXO/fk/yPrOKnJvba3EHFbVl5zCOnee6SIa4wvitUCM6ZhX1UcY+LRe8VnwzFlooDw2CR77TePc0gy89923Fp49meDoTI6+vhKAqDGhiyohox2a1YHRuaf0i2ZgO2uwaLfQ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=aSnG0L2j; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from umang.jain (unknown [103.86.18.214])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1D18D1325;
+	Thu, 15 Feb 2024 21:44:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1708029881;
+	bh=7+C+nuf2HLU4u1NNutFvy9AsrXNIpxJuVzWnH369IPI=;
+	h=From:To:Cc:Subject:Date:From;
+	b=aSnG0L2jd2x7PXkKXGbkfdM0+RGIiflExiCWgzAvNKic1JeJOE8YAj012n7UphuHW
+	 CLF+gmXaK1ovZ9SS04tksD3E3J5RrcBEVUgJp4uSRrdj/w7PK9fSrgNdg4jUiEwusc
+	 SivjosE2+w0BTs6INL9gJtb2zKL5Wz3m9wDkvbDs=
+From: Umang Jain <umang.jain@ideasonboard.com>
+To: linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	willl will <will@willwhang.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Umang Jain <umang.jain@ideasonboard.com>
+Subject: [PATCH 0/2] media: i2c: Add imx283 camera sensor driver
+Date: Fri, 16 Feb 2024 02:14:33 +0530
+Message-ID: <20240215204436.9194-1-umang.jain@ideasonboard.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Anup!
+Add a v4l2 subdevice driver for the Sony IMX283 image sensor.
+  
+The IMX283 is a 20MP Diagonal 15.86 mm (Type 1) CMOS Image Sensor with
+Square Pixel for Color Cameras.
+    
+The following features are supported:
+- Manual exposure an gain control support
+- vblank/hblank/link freq control support
+- Test pattern support control
+- Arbitrary horizontal and vertical cropping
+- Supported resolution:
+   - 5472x3648 @ 20fps (SRGGB12)
+   - 5472x3648 @ 25fps (SRGGB10)
+   - 2736x1824 @ 50fps (SRGGB12)
 
-On Thu, Feb 15 2024 at 11:18, Anup Patel wrote:
-> On Thu, Feb 15, 2024 at 1:24=E2=80=AFAM Thomas Gleixner <tglx@linutronix.=
-de> wrote:
->> Thanks for picking this up and driving it forward!
->
-> Thanks Thomas, I will be sending v13 of this series next week.
->
-> For the time being, I will carry the 13 infrastructure patches in
-> this series until they land in upstream Linux so that it is easier
-> for people to try this series.
+The driver is tested on mainline branch v6.8-rc2 on IMX8MP Debix-SOM-A.
+Additional testing has been done on RPi5 with the downstream BSP.
 
-I pushed out the lot on top of 6.8-rc4 (no other changes) to
+In the driver, CENTERED_RECTANGLE macro is defined to center the crop
+rectangle. Possibly that should be removed, and a V4L2 helper can be
+introduced if more use cases are identified.
 
-     git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git irq/msi
+Kieran Bingham (1):
+  media: i2c: Add imx283 camera sensor driver
 
-with some minimal changes (DEVICE_IMS -> DEVICE_MSI, removal of an
-unused interface).
+Umang Jain (1):
+  media: dt-bindings: media: Add bindings for IMX283
 
-I'm going over the rest of the series after I dealt with my other patch
-backlog.
+ .../bindings/media/i2c/sony,imx283.yaml       |  100 +
+ MAINTAINERS                                   |    9 +
+ drivers/media/i2c/Kconfig                     |   13 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/imx283.c                    | 1601 +++++++++++++++++
+ 5 files changed, 1724 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx283.yaml
+ create mode 100644 drivers/media/i2c/imx283.c
 
-Thanks,
-
-        tglx
+-- 
+2.43.0
 
 
