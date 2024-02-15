@@ -1,116 +1,130 @@
-Return-Path: <devicetree+bounces-41950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54533855E64
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:40:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A5C6855E76
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:46:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19CDD28C95D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:40:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1864528A7F2
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:46:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B21A1BC20;
-	Thu, 15 Feb 2024 09:40:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B59B58AB0;
+	Thu, 15 Feb 2024 09:46:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BKs045jm"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Wl3Y/x3J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DBCB1B952;
-	Thu, 15 Feb 2024 09:40:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8627B58AA4;
+	Thu, 15 Feb 2024 09:46:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707990027; cv=none; b=nFP+eOmLuUe+ccfkCy3B0u8Rt6dx13qAXQ9BW03lk9vP8mwWIVLRZIGlY8jVvBJXdw1WfiPWfDBi1ProhCI0+NJ2pQGvTrw7IacEtFWfVjgk40bpPYiN//uVNhnAr7+/qViJW0no+I4vl/nJJnhrYyDVtd2Z6Zp0I3lIxluoKiA=
+	t=1707990386; cv=none; b=EqWBJlNPaixhicyHeBuIGipSMPnoivHgfPTmIICw5/XdBkp7Xdo1Elo+/jxgf7Abra/n2DVFfIa2DqR4bzt8r/Dj+VwX+X25iM9fyE7RjKbrXgxQEAW30T/aK64FXV7yL9iukXHOe3B8sw+Nog45f9UUuYMXW2vsiKV0ENAiYSE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707990027; c=relaxed/simple;
-	bh=jF7g/BNY1ew/ksUnMTv0LSyOc1c7mlln2aCKdpP95RY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Hxg8CN7OYT4lFSnQF0AdfPtzi0+/OSRx31/RRBSQeTDjt6BNZu1czF9f1RP4AlU/luKrdGfh/BK2mqMT8OaxFAj38+okS7M5GIWLkaOJpOuSjYAjBpzaHn4hKU9PtbgZ261M0WPP6OdWYsAt5c77zIX0j8Itb+oTC0kZWMBF5ac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BKs045jm; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5600c43caddso733302a12.2;
-        Thu, 15 Feb 2024 01:40:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707990023; x=1708594823; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=jF7g/BNY1ew/ksUnMTv0LSyOc1c7mlln2aCKdpP95RY=;
-        b=BKs045jmn+XPcC/qtrGRgFGrFwNEC0woHPLcpU/7OaLvR8VgoqUT0i7BO190op+bBi
-         iLfJ3KDngIiqppHnasK4i2wOtgycecq2Fzlo5pdJa/5HpCO4Ex9D2QRZnfbqWE0/2iEm
-         sA2QGF45wPORWmM/mkK8UVVuyMhcpik7ju3/4Sh7al+XZyupsmqtlgLBWK6tXt++Zp18
-         2x+a6wTnkLXMJPQopjWa2OYAQSUTnGsS6cKpCwh2KWr4BDJhtKfDwqlMxLW+gtK+J9mY
-         alboXoTWcBU7E//JjaRsjQNN/uF52bgNHktY/95oCPBAfGLlqDS+6ksFXD73jxvbWf8X
-         ZQZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707990023; x=1708594823;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jF7g/BNY1ew/ksUnMTv0LSyOc1c7mlln2aCKdpP95RY=;
-        b=G67JKf28V8Q5NJCIuoPPBK0uz2bS+gOKw1Q+QgQr1uY6sC6NGcQK5qRF5X8CCNXJHf
-         HNEUf8MYxkWT/c0iYBstNHQAtSbqILWud3qP2oP7V/vqxyfa5I2nw1fOg0xZdwXxBcA9
-         NcVhVRhRInge8QAtGJ4jvhwdBmzbEToxDPE7ChLp4IhJYyHw6eNU86rEJiVTitT0oO7z
-         qNufWbDHRtkTXQorNi3E+ohtfKMb+V8snVV/lT60tubED0JTQtM01Gu35WLGM/C+vEvb
-         IQdJmLaSnKMPc0B3O2ft8rrncLSLtxtZD5ntps+IpOi7ZxLZL5NeeN5zJFQ0hortmEL7
-         MHGw==
-X-Forwarded-Encrypted: i=1; AJvYcCUDw1cKFZWpp7UAYepkWTIONkl0384r2VX9XVslDllVfuRZxLJrpjnxEFT9kxAEKVUiHUQj24V4l2LSTphO5+/4Z8GNw343Ip/VAV401nnrTHDrI+J9GYw4II5gc4ALy29AVDWXnFmWH6yrqKq9GrQ7TItXDblkUMAC/W+NlNdPxJ5C5auUWFQ=
-X-Gm-Message-State: AOJu0YzHzrGn7IF4hTYPyTQx2wHnRJDDvBK0sWpeHCa933JJPZE+Pfga
-	T+nij0QYBVwoX3zj2Tszptfyr6pLRHZR7JtK4+BsKG3ehOlX/8EC
-X-Google-Smtp-Source: AGHT+IF7eZeenH3Tp8rtyK0+O82Ksc4ZZLSvY+q0z2/DD+UkdP7PUH+0s6Pg+tGjJfC9XxbAIPoU6Q==
-X-Received: by 2002:a17:906:da03:b0:a3d:1249:25dd with SMTP id fi3-20020a170906da0300b00a3d124925ddmr780139ejb.15.1707990023176;
-        Thu, 15 Feb 2024 01:40:23 -0800 (PST)
-Received: from [192.168.3.32] (cpe-94-253-164-151.zg.cable.xnet.hr. [94.253.164.151])
-        by smtp.gmail.com with ESMTPSA id v28-20020a50955c000000b0056003b75400sm396834eda.44.2024.02.15.01.40.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Feb 2024 01:40:22 -0800 (PST)
-Message-ID: <db20d64b-cf76-4a93-896e-e501f0e1720c@gmail.com>
-Date: Thu, 15 Feb 2024 10:40:20 +0100
+	s=arc-20240116; t=1707990386; c=relaxed/simple;
+	bh=m7HjE3gAIDiXIS1ZaeL2QN44pLxesvU8VZZHmb2N7pQ=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=V/wXxMFGGVPgI4LgalDgOCUX0h4SdtkkZeFHP5oQVcgswyTipqtJD7QuEiqEHvU8i7cyGe43nPPZeyGsfUp3lONVgYrUrU2Xj8Q7z56bY18SXfLSjS5i7dlKhktJzaap39P6TXYs4dYN0zXoSXoe+Jvh6+cCEzctWoCDvHf8pXs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Wl3Y/x3J; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41F9k7ln086992;
+	Thu, 15 Feb 2024 03:46:07 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1707990367;
+	bh=Bbs6Kf6AEMDgIsTNm4jANFNwHRYod3wkTlwK7cFL2PQ=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=Wl3Y/x3J+A/vz4+5Q/GB0oCN+3sGeFBpOnAddbGz0wzHmmKw1MfE08B81eiG+nGS1
+	 l5q1XrxD0e655QYaU/atK2JQFr5vIvg4/mtHzkyw/JeHXAbg+isjvJrKVIMubMy1in
+	 NzohO+HG6EcdBis95tKN7r4KJQu7y/yqcf9kAPKE=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41F9k7BH003508
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 15 Feb 2024 03:46:07 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
+ Feb 2024 03:46:07 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 15 Feb 2024 03:46:07 -0600
+Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.94])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41F9k35S129651;
+	Thu, 15 Feb 2024 03:46:03 -0600
+From: Vignesh Raghavendra <vigneshr@ti.com>
+To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Sjoerd Simons
+	<sjoerd@collabora.com>,
+        Andrejs Cainikovs <andrejs.cainikovs@gmail.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>,
+        Andrejs Cainikovs
+	<andrejs.cainikovs@toradex.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1] arm64: dts: ti: k3-am62-main: disable usb lpm
+Date: Thu, 15 Feb 2024 15:15:56 +0530
+Message-ID: <170798813445.1487216.9575227386692519157.b4-ty@ti.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240209130213.38908-1-andrejs.cainikovs@gmail.com>
+References: <20240209130213.38908-1-andrejs.cainikovs@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: qcom: ipq4019: add QCA8075 PHY Package nodes
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
- Christian Marangi <ansuelsmth@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240211202700.17810-1-ansuelsmth@gmail.com>
- <55fded4e-1c14-4f1d-a1b7-08fdbf05bfe7@linaro.org>
-Content-Language: en-US
-From: Robert Marko <robimarko@gmail.com>
-In-Reply-To: <55fded4e-1c14-4f1d-a1b7-08fdbf05bfe7@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+Hi Andrejs Cainikovs,
 
-On 12. 02. 2024. 12:05, Konrad Dybcio wrote:
-> On 11.02.2024 21:26, Christian Marangi wrote:
->> Add QCA8075 PHY Package nodes. The PHY nodes that were previously
->> defined never worked and actually never had a driver to correctly setup
->> these PHY.
-> Missing Fixes tag?
->
-> Also, could you please give me a link to the series that fixed this
-> on the kernel side?
+On Fri, 09 Feb 2024 14:02:12 +0100, Andrejs Cainikovs wrote:
+> AM62 USB works with some devices, while failing to operate with others.
+> 
+> [  560.189822] xhci-hcd xhci-hcd.4.auto: xHCI Host Controller
+> [  560.195631] xhci-hcd xhci-hcd.4.auto: new USB bus registered, assigned bus number 2
+> [  574.388509] xhci-hcd xhci-hcd.4.auto: can't setup: -110
+> [  574.393814] xhci-hcd xhci-hcd.4.auto: USB bus 2 deregistered
+> [  574.399544] xhci-hcd: probe of xhci-hcd.4.auto failed with error -110
+> 
+> [...]
 
-Hi Konrad,
-Support for this PHY and PHY package concept was added in:
-https://patchwork.kernel.org/project/netdevbpf/cover/20240206173115.7654-1-ansuelsmth@gmail.com/
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
-Series has been merged couple of days ago so its in linux-next already.
+[1/1] arm64: dts: ti: k3-am62-main: disable usb lpm
+      commit: 576ad1d1d8b12a632598f7963d640f9422781f9a
 
-Regards,
-Robert
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
->
-> Konrad
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+--
+Vignesh
+
 
