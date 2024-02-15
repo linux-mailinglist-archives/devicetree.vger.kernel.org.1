@@ -1,75 +1,79 @@
-Return-Path: <devicetree+bounces-42084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27519856533
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 15:01:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A21385653D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 15:01:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B3CBFB22D53
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 14:01:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B2EDF1F2768E
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 14:01:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 840BE131752;
-	Thu, 15 Feb 2024 14:01:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E986113175B;
+	Thu, 15 Feb 2024 14:01:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fK9xup7P"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ZyS54oNG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A542131743;
-	Thu, 15 Feb 2024 14:01:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C24B8132465;
+	Thu, 15 Feb 2024 14:01:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708005662; cv=none; b=ISXgSPJQJ5hLMCqNkC25XBlpsi8aOaOf8r8MrgDW+cJPo0fH1R2ek9PUd++mynqSRoDFXDNQlpmWk8Z1b24Q8IF2EsVb2DcWH8cF2yqs4V8oYYfANnPwJtEUDmEMLG9BRJmoTlDg3t9kgtu3CGdrDV5nbBjgFE4ZS+MyIg0BJ28=
+	t=1708005687; cv=none; b=SR7YH6paNZ7gURNmVF2RNV7430MUolB4Yn2SRzgj6sWso+FBp1m4jr6YBaYxbIQA75ch5qmRZdObQZq2nOXdmbaSrfQ8Wg5h/cL+sN3MeYVymg/TCROFY3KH/mRT2ntC4+A7iSpl7kyhTWPf09b9gR1NbO8QHVuho7RoMczRmUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708005662; c=relaxed/simple;
-	bh=AoV2FcT5GnLVyJhfwTJTRdtE/FdznPqSlJ0AXzkDRJY=;
+	s=arc-20240116; t=1708005687; c=relaxed/simple;
+	bh=c2eWBTlGEu9aq8CNMf8XJPB074jKqxTWK1kHhQIMRO4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hQ5yiaa8qspZL6RoA/Jy2fPWp59l9xZn1b8EOsb4ThnjRJPvvNZmu26IasDL+LipMJehl6gjCdgQR1GfYd5iZN37Bm3rXkRybXqTyc3+3ECFfAt8Tam2BMWYiG46kFaR9KrtrY9SwHYSOlZKGpXXFpNMUZeiuvtPeMk0e+yjGJU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fK9xup7P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91D0DC433F1;
-	Thu, 15 Feb 2024 14:01:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708005661;
-	bh=AoV2FcT5GnLVyJhfwTJTRdtE/FdznPqSlJ0AXzkDRJY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fK9xup7PvbUOxhbTFEOLPjDlrRTI/2iVmYTdg6CD47kThNboaW11h5UinQfXKm/Xb
-	 hZxnxfP2s5esDnti2QIfXNUARJIJrXrP5sVGc9m+YNlUDAWduo+iWBsvz+kp5cDDjX
-	 3dS0yXWs7LQybkJZuG45s5idnNWlun82WdEBgC6GvGn4zanciBSH9A7Cmn5ezjpOsV
-	 yH1hofPbl8XU85CmmP3rZaGGVZy5qtdHaDaUtRr2HV1pgN9N/l3k0rZpM6U72JpbkJ
-	 5YQdEy0OtN15ZADZ+np0ZClW4sDXUYeFaqiSViHxC6sOYvljk1JHLhpVBGesxfrs3A
-	 2KnE+uc4Uh3qg==
-Date: Thu, 15 Feb 2024 08:00:58 -0600
-From: Rob Herring <robh@kernel.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Naushir Patuck <naush@raspberrypi.com>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	Linux Media Mailing List <linux-media@vger.kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=KQFserFwkCawxqSeJXnKGED5hXeNGBchV0gAj//N/yVTHJmWU1UjmdQ5zZI23cx22p1bCNydCFhHl9T3k02e4FY3Uw49S3RpuRlbkWiDepSEXSzM5c5SRpES5Ti780fF1GyG4KClsg91iVLBf9Y3bdEWYUe04b/dc4KfSJV5IoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=ZyS54oNG; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=MP9f/rVbWc8Azf9/HkrCVr+0l2iPqEASnSuI5i7emHY=; b=ZyS54oNGsIqe8TzktlKcR2hpmc
+	MEbR/UxclHNRt8HBD+OmD7bDrFwl4xHuDhk2bJ5bWi/2VhGoiIBIV4X4XmsjkNqTQDBzh8S51v0lb
+	wwSMjPqthOfWWBRPbTdLvn7cmDXCoKs+jxg0JrzyOR9igsq5/hk/3TS8MIwXucDdgTIg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1racIW-007tXM-Sv; Thu, 15 Feb 2024 15:01:08 +0100
+Date: Thu, 15 Feb 2024 15:01:08 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Rob Herring <robh@kernel.org>
+Cc: =?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	David Plowman <david.plowman@raspberrypi.com>,
-	Nick Hollinghurst <nick.hollinghurst@raspberrypi.org>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Sakari Ailus <sakari.ailus@iki.fi>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 6/8] media: dt-bindings: Add bindings for Raspberry Pi
- PiSP Back End
-Message-ID: <20240215140058.GA4147262-robh@kernel.org>
-References: <20240209164825.166800-1-jacopo.mondi@ideasonboard.com>
- <20240209164825.166800-7-jacopo.mondi@ideasonboard.com>
- <7f7979af-8eda-48cd-a334-bb64ddf5b9b8@linaro.org>
- <myfjzqh4wqa3lf4dcrgaswrarlh7sril6vz3mtnbz646rwxylt@oz75b5j5srot>
- <b55f4d1e-2e77-4539-8d18-8d8f2185b501@linaro.org>
- <5db2c830-2615-4416-9bb1-18fcd2a3a980@ideasonboard.com>
- <CAEmqJPo-A4wiAiuCa2pb84UU_rTTo9i5P9Kj6eo78MFEs1Y45w@mail.gmail.com>
- <20240213104405.GB5012@pendragon.ideasonboard.com>
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	Mark Brown <broonie@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+	Dent Project <dentproject@linuxfoundation.org>
+Subject: Re: [PATCH net-next v3 10/17] dt-bindings: net: pse-pd: Add another
+ way of describing several PSE PIs
+Message-ID: <377d2e0f-dc0c-400f-9c10-f4a158146ceb@lunn.ch>
+References: <20240208-feature_poe-v3-0-531d2674469e@bootlin.com>
+ <20240208-feature_poe-v3-10-531d2674469e@bootlin.com>
+ <20240209144349.GA3678044-robh@kernel.org>
+ <20240214141310.119364c4@kmaincent-XPS-13-7390>
+ <20240214164150.5be591d0@kmaincent-XPS-13-7390>
+ <20240215135130.GA4139246-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,62 +82,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240213104405.GB5012@pendragon.ideasonboard.com>
+In-Reply-To: <20240215135130.GA4139246-robh@kernel.org>
 
-On Tue, Feb 13, 2024 at 12:44:05PM +0200, Laurent Pinchart wrote:
-> On Tue, Feb 13, 2024 at 08:35:39AM +0000, Naushir Patuck wrote:
-> > On Tue, 13 Feb 2024 at 07:28, Tomi Valkeinen wrote:
-> > > On 12/02/2024 11:05, Krzysztof Kozlowski wrote:
-> > > > On 12/02/2024 09:50, Jacopo Mondi wrote:
-> > > >
-> > > >>>> +properties:
-> > > >>>> +  compatible:
-> > > >>>> +    const: raspberrypi,pispbe
-> > > >>>
-> > > >>> Nothing more specific? No model name, no version? It's quite generic
-> > > >>> compatible which in general should not be allowed. I would assume that
-> > > >>> at least version of Pi could denote some sort of a model... unless
-> > > >>> version is detectable?
-> > > >>
-> > > >> The driver matches on a version register and that should be enough to
-> > > >> handle quirks which are specific to an IP revision in the driver
-> > > >> itself.
-> > > >>
-> > > >> Considering how minimal the integration with the SoC is (one clock, one
-> > > >> interrupt and one optional iommu reference) even if we'll get future
-> > > >> revisions of the SoC I don't think there will be any need to match on
-> > > >> a dedicated compatible for bindings-validation purposes.
-> > > >>
-> > > >> However I understand that to be future-proof it's good practice to
-> > > >> allow a more flexible scheme, so we can have a generic fallback and a
-> > > >> revision-specific entry.
-> > > >>
-> > > >> Would
-> > > >>
-> > > >>    compatible:
-> > > >>      items:
-> > > >>        - enum:
-> > > >>          - raspberrypi,pipspbe-bcm2712
-> > > >
-> > > > bcm2712 is manufactured by Broadcom, not Raspberry Pi, so it should be
-> > > > rather Pi model?
-> > >
-> > > Indeed, this is something I don't get. If the BE is in the bcm2712, is
-> > > it not a broadcom IP? Why is raspberrypi in the compatible name at all?
-> > >
-> > > Naush, Dave?
+> > Not so much used indeed:
+> > $ git log --grep="Sponsored" | grep Sponsored     
+> >     Sponsored by:  The FreeBSD Foundation
+> >     Sponsored by:  The FreeBSD Foundation
+> >     Sponsored by:  The FreeBSD Foundation
+> >     Sponsored by:  The FreeBSD Foundation
+> >     Sponsored-by: Google Chromium project
+> >     Sponsored: Google ChromeOS
+> >     Sponsored: Google ChromeOS
 > > 
-> > The Backend (and Frontend) IP are both owned solely by Raspberry Pi,
-> > and the BE is instantiated on the BCM2712.  So I think "raspberry" in
-> > the compatible string is correct here.
+> > Is it ok to keep it?
 > 
-> Following what we do with other SoCs, we could have
-> 
-> 	compatible = "brcm,pispbe-bcm2712", "raspberrypi,pispbe";
+> IMO, its use should be documented like other tags, or it should not be 
+> used. Just write a sentence to the same effect.
 
-Nit: brcm,bcm7212-pispbe
+Or include a patch to document it :-)
 
-Otherwise looks fine to me.
-
-Rob
+   Andrew
 
