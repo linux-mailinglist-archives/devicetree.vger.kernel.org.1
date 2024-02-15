@@ -1,111 +1,149 @@
-Return-Path: <devicetree+bounces-42116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42117-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55C8F8566DF
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 16:06:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CE058566E0
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 16:06:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 33ED0B2909A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 15:02:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27C2B289649
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 15:06:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEB52132C35;
-	Thu, 15 Feb 2024 15:01:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEA4F13248D;
+	Thu, 15 Feb 2024 15:06:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="ACCFDxP4";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="KXqXpqo8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lPtIZ+DX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F5F4132491;
-	Thu, 15 Feb 2024 15:01:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E98D132475;
+	Thu, 15 Feb 2024 15:06:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708009267; cv=none; b=qxWhZeTvt1LXAuroB0iVz4poaA8PqlF7o9AX6etxgMfpoliwpCI9fih5AqQe3/XFBgwMHF56V6xRB6kRIQect4Of8MpMejh+MNkoP6Rexy0npwyjA2RKzRhY+en1SHiLxytKmoNfg/8/eCxIxx2o2cj2FfDDSfcKyYFcOU/T0v4=
+	t=1708009610; cv=none; b=Jm5XjVPo9YtHyqsjzY1S9nT2zlsPfZhI60flbvUJydO+xdmewxJCn3ruIkpPgRlFC/y2ExrgI3+qNqqPos/3e/u4IyffMilTIxUI0cOSQ2sFfoLpGkBAKwyN2BKRSpmkYSOUAG6XpAi8H3foAAUGAdVgn3B8vY1hVwPhCFvxaUY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708009267; c=relaxed/simple;
-	bh=MtMq9tcbpWwfTdQNJk1rzVu9HeI1V4yx38+kxXa5HNg=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=CpWJOoS8m8MlFbNfzEdIU70zaXRc4ceqALUygtP7BgLJpfPlXN3S+de1RiYYis8kLsxUmhsCgmPNybO9/4Sfii9p6u2Jxao0oNy46Usj8wyUY/V8qF3AzE1F32gJCnNJfvTB4qv3LwG629wDTuDbQ4zgytTDwzZM3nW2NRBLj0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=ACCFDxP4; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=KXqXpqo8; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1708009264;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=7jurcXevAzLq5b3XNHkngyd9aG7HXv/ajp+hOIdurHE=;
-	b=ACCFDxP4M6h+kPZxC8n5YjerDJytE7XIB0xzvUQXXsvsgxPRymDCIwAOCzBTMwjF/tAC6G
-	5DClIsEIgMg8ovLCONa+WB3EEhNaR0do2/BXAHLP/kwTJWohwek+I2LO/AhhBv4naEVE0e
-	aHQgbFkMm4aV/a+ICweO1zbPNB9N6AaJDpzcUIWsYMFaaN5tq4TzG4KtRQiOI3ZH5zRyML
-	a3IJasqR/LwhLRPH+XRe6Jqq5lcpAy4rh9jyXmQL4Rc0PsGK3z88opG/4JIKCQLL2Mssf8
-	aa1w9c8EObkVpg4klvWcgi5NpujCCu6uXwJBtrkci69IOAL7y7ahvCT+XVT0PQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1708009264;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=7jurcXevAzLq5b3XNHkngyd9aG7HXv/ajp+hOIdurHE=;
-	b=KXqXpqo8rLP9B7h0qdTcwSs6/WBr1zOrw9q92FTDKvwl3twYREKP5rQvKTif3BtifKxCaI
-	TvV5B162CoS6pGDQ==
-To: Marc Zyngier <maz@kernel.org>, Anup Patel <apatel@ventanamicro.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
- <paul.walmsley@sifive.com>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
- <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
- =?utf-8?B?QmrDtnJuIFTDtnBlbA==?=
- <bjorn@kernel.org>, Atish Patra <atishp@atishpatra.org>, Andrew Jones
- <ajones@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>, Saravana
- Kannan <saravanak@google.com>, Anup Patel <anup@brainfault.org>,
- linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v12 04/25] genirq/irqdomain: Add DOMAIN_BUS_DEVICE_IMS
-In-Reply-To: <86o7ci3puk.wl-maz@kernel.org>
-References: <20240127161753.114685-1-apatel@ventanamicro.com>
- <20240127161753.114685-5-apatel@ventanamicro.com>
- <86o7ci3puk.wl-maz@kernel.org>
-Date: Thu, 15 Feb 2024 16:01:03 +0100
-Message-ID: <87h6i9epqo.ffs@tglx>
+	s=arc-20240116; t=1708009610; c=relaxed/simple;
+	bh=dYgvVx5J6FbrtTz2KxiUN3WJoc9vX9mVpIumVJo3C/0=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=Se1Ecm0XKPScTQY4y3zbZ+BUsaaumQw4a39GhAgkfTUlFiRmiMeaM4A04wM8ecZNHLVbITHzKOcuxOulpJrbl9bjVq30cJtk2dm8wT8QQlw5bJC6MVPkFz08fu1Nwcm1mKWlOmI/7sdHG/dwz9wnrHbn3/rENQTGyazZ5sR4GCE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lPtIZ+DX; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-1db51e55023so5931355ad.1;
+        Thu, 15 Feb 2024 07:06:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708009609; x=1708614409; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wRHZqIOyBrytKgjz2NXJfF7uGwSTiUJd7ozSIo4Rz5Y=;
+        b=lPtIZ+DXzIyzRKv6fL/ZkPhnWJFs9TrMWFgDwUewDEO51ooboeg8SPHCKIf1s+ODyY
+         1XgrZUbr+PwhVjnJoI6cuvFdyS283GxeSzYKfDtp90KOOMMVuQFEvGar0Fg5Y7maJSxp
+         lZB62rWZXePpK1KsPrIsVVrevafyjoesWZYbVckYanFmddgumc+viXjuf9k5ZC8Vl/2m
+         Wg7LXRJMdPZXp5kmOMhNXTZ0XIGyUj2B0nMjpfTcEza54qhGOA3PWnfPrx//UPsJ/TQ3
+         Zfy5PSM+VIQ3GwMvTi3FBLz2tW9+qM0GME0ExTQe3jzfSnLUwDUosBVl224iXZ2qL6GS
+         gK6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708009609; x=1708614409;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wRHZqIOyBrytKgjz2NXJfF7uGwSTiUJd7ozSIo4Rz5Y=;
+        b=U8RgZ6Vd77WR5PwxrR27XoLP6an8adbFot7TGjxUXNsbEcuJJhnQiCfU8sHdzrgWWO
+         10diU1x8/rbPH5HvKGtqKsTr3UxpStIrGfe7+F6VOaU86nUC/Sfge8sx2l0e37uFRyrK
+         mtu/KUeFX72LeDT5yFTAwcmQjg02slqBGGtT6fZV6sI29hrb2VOJ7CxBHcmijMMnE13y
+         psKhXc0grg4lEca2S682bToBelOfSuAiY/G4IEYmtm+QLHnQ40Cvz2n9mZ/CTRYYsy6l
+         SH2UlRBgg1fQ+kLkfq9R7xdbQYISD8tZcK7BTO5qeT7Bhs9HqO2lwyuAn3DAAiuTJKls
+         pE/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXMXxfwKzqJ1MO3OiL0I5K1yIz6aYm+koc2q+MgoOlg0FyJijNWkd0GuAUsXo2teuJ1+fpehuV+txXlFsMFHDhQUMcCLeJQDP0TNPJzSn69zfEmWXKhMbKD7W5qAlqS+03YLhAk4dbf6013OD7Ciio6vTpEVPklmioeFjYAAY8dtvwV
+X-Gm-Message-State: AOJu0YxQqkhjJpK9ctUieWM6fbEedBKiqrr5TIJuDKJJSydysWkB73KW
+	vFiohwpsceutyk0FEk2NsGVrdQw8E8qQUsrlANgTwrfjVdld80+9
+X-Google-Smtp-Source: AGHT+IEblop9x6atphDkcaL7O9OM5+yWMRm/XmJEMDeW45mWdx6pdQdYqGT8NM/WQeUzq7tk9pqffA==
+X-Received: by 2002:a17:902:c948:b0:1da:2b52:52d4 with SMTP id i8-20020a170902c94800b001da2b5252d4mr2938295pla.39.1708009608588;
+        Thu, 15 Feb 2024 07:06:48 -0800 (PST)
+Received: from joaog-nb.. ([152.249.118.214])
+        by smtp.gmail.com with ESMTPSA id u5-20020a17090282c500b001d8aadaa7easm1375987plz.96.2024.02.15.07.06.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Feb 2024 07:06:47 -0800 (PST)
+From: Joao Paulo Goncalves <jpaulo.silvagoncalves@gmail.com>
+To: aford173@gmail.com
+Cc: Laurent.pinchart@ideasonboard.com,
+	airlied@gmail.com,
+	alexander.stein@ew.tq-group.com,
+	andrzej.hajda@intel.com,
+	catalin.marinas@arm.com,
+	conor+dt@kernel.org,
+	daniel@ffwll.ch,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	festevam@gmail.com,
+	frieder.schrempf@kontron.de,
+	jernej.skrabec@gmail.com,
+	jonas@kwiboo.se,
+	kernel@pengutronix.de,
+	kishon@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	l.stach@pengutronix.de,
+	linux-arm-kernel@lists.infradead.org,
+	linux-imx@nxp.com,
+	linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	linux-pm@vger.kernel.org,
+	maarten.lankhorst@linux.intel.com,
+	marex@denx.de,
+	mripard@kernel.org,
+	neil.armstrong@linaro.org,
+	p.zabel@pengutronix.de,
+	rfoss@kernel.org,
+	robh+dt@kernel.org,
+	s.hauer@pengutronix.de,
+	shawnguo@kernel.org,
+	tzimmermann@suse.de,
+	ulf.hansson@linaro.org,
+	victor.liu@nxp.com,
+	vkoul@kernel.org,
+	will@kernel.org,
+	Joao Paulo Goncalves <joao.goncalves@toradex.com>
+Subject: Re: [PATCH V8 00/12] soc: imx8mp: Add support for HDMI
+Date: Thu, 15 Feb 2024 12:05:59 -0300
+Message-Id: <20240215150559.287571-1-jpaulo.silvagoncalves@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240203165307.7806-1-aford173@gmail.com>
+References: <20240203165307.7806-1-aford173@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 
-On Thu, Feb 15 2024 at 11:54, Marc Zyngier wrote:
-> On Sat, 27 Jan 2024 16:17:32 +0000,
-> Anup Patel <apatel@ventanamicro.com> wrote:
->>  	DOMAIN_BUS_PCI_DEVICE_IMS,
->> +	DOMAIN_BUS_DEVICE_IMS,
->
-> Only a personal taste, but since we keep calling it "device MSI",
-> which it really is, I find it slightly odd to name the token
-> "DEVICE_IMS".
->
-> From what I understand, IMS is PCIe specific. Platform (and by
-> extension device) MSI extends far beyond PCIe. So here, DEVICE_MSI
-> would make a lot more sense and avoid confusion.
+>The i.MX8M Plus has an HDMI controller, but it depends on two
+>other systems, the Parallel Video Interface (PVI) and the
+>HDMI PHY from Samsung. The LCDIF controller generates the display
+>and routes it to the PVI which converts passes the parallel video
+>to the HDMI bridge.  The HDMI system has a corresponding power
+>domain controller whose driver was partially written, but the
+>device tree for it was never applied, so some changes to the
+>power domain should be harmless because they've not really been
+>used yet.
 
-That's true, but I chose it intentionally because Interrupt Message
-Store (IMS) is a (PCI) device specific way to store the message contrary
-to PCI/MSI[-X] which has standardized storage.
+>This series is adapted from multiple series from Lucas Stach with
+>edits and suggestions from feedback from various series, but it
+>since it's difficult to use and test them independently,
+>I merged them into on unified series.  The version history is a
+>bit ambiguous since different components were submitted at different
+times and had different amount of retries.  In an effort to merge them
+>I used the highest version attempt.
 
-So my thought was that this exactly reflects what the platform device
-requires: device specific message store, aka DMS or DSMS :)
+Tested-by: Joao Paulo Goncalves <joao.goncalves@toradex.com>
 
-> But hey, I don't have much skin in this game, and I can probably
-> mentally rotate the acronym...
+Tested on Toradex Verdin-iMX8MP.
 
-I have no strong opinion about it though.
+Thanks!
 
-Thanks,
-
-        tglx
+Regards,
+Joao Paulo Goncalves
 
