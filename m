@@ -1,231 +1,174 @@
-Return-Path: <devicetree+bounces-41987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 027AC85605B
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:57:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80141856069
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:58:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E9D8287B1D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:57:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A4E541C20C3E
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:58:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F17F012BE8D;
-	Thu, 15 Feb 2024 10:43:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="aC1Zn/hJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3662A12CD82;
+	Thu, 15 Feb 2024 10:44:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A17D12BE85;
-	Thu, 15 Feb 2024 10:43:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 805FC85297;
+	Thu, 15 Feb 2024 10:44:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707993803; cv=none; b=IFMLFyP+0zQ2YKUgd6STW/bP/8CMHUh3heDNWdRBVblYNeQDp2UyWspeexhPrhMK1bE25u8np9bMH5jWNYkbmC6yVFLpMOtH8mihZtRQ8wKGXtnScR2Ue+ZIpq/EYTX2u52pPey3ru/9ergvBLLIue5DDGj/QEeM139z3E5tJVs=
+	t=1707993890; cv=none; b=LoGPDLaGYebIdFOufjyELh6tCFVT7qqBIONG7B6T5bI+Q+YqH9lsyRyLD/n5343hRt5MvCWoORhlJfsIMF019pQaPTa4qakkOhjjAG/mY84FMAUGNV2eVNDczgDmIzeMwqsykqHmBj5Bkp7SPc1YR0foPecFAalnCBj8OhCuvPw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707993803; c=relaxed/simple;
-	bh=WRkahTUfWZzwX8Vr9v8Xuq2gLkRiI5fGDnkFKyJWX+w=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=XS8KjY23BqiWWruyv7HWR37oEXrgCZts8xAFD2K+GgFVA0COafQj3cvazn9iZcKYZXD8BxafEZvPJVoag+QkK6EpWhl6eYGsBsNGjl8tXb/VZSoCXGICsv5fSje6+Hw1T7IQSMPxWwjBbe1r7kQNgqjhdUqmwQP8pSoHgn1TN9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=aC1Zn/hJ; arc=none smtp.client-ip=37.18.73.165
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id AE8E1100009;
-	Thu, 15 Feb 2024 13:43:09 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru AE8E1100009
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1707993789;
-	bh=JH0whwe9yMPahO4ftK676Nk9OMPAhJpwKYEfE7/kv2M=;
-	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version:From;
-	b=aC1Zn/hJKlJFXDVZ+wkACWbtJu26OlgtisJNavzTdaqoCPGYUN4lO/QLRkQCcaURI
-	 eE2LcgzjrsLvFgCbQa8xOI8nOqxEYKyzF8kxac1+9Vqmg8XykHBJtZOiSVD3zC/iS2
-	 qlZUAU/Ko7qhuwqRLAsznBaELJtQgTySt+o9C6uhF7CIQRaitc5raOUTuiR1DLPyRN
-	 ffacTzCT1Zz4zJ41jbfeMS6iRi2KCSLmtJyrUw8l4y2FYFO3SB008uh4App2wq4tRd
-	 S+tcJHTnHMBgHslg4YS8GY0CmRKdF1T4KHcjgaZeDCSeCzCWA8yuHJCSSo9M0LLyHg
-	 njHIvT9R09hGw==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Thu, 15 Feb 2024 13:43:09 +0300 (MSK)
-Received: from p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 15 Feb 2024 13:43:09 +0300
-Received: from p-i-exch-sc-m01.sberdevices.ru ([fe80::6d41:e8f1:b95e:ba1]) by
- p-i-exch-sc-m01.sberdevices.ru ([fe80::6d41:e8f1:b95e:ba1%7]) with mapi id
- 15.02.1118.040; Thu, 15 Feb 2024 13:43:09 +0300
-From: Alexey Romanov <avromanov@salutedevices.com>
-To: Corentin Labbe <clabbe.montjoie@gmail.com>
-CC: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-	"clabbe@baylibre.com" <clabbe@baylibre.com>, "herbert@gondor.apana.org.au"
-	<herbert@gondor.apana.org.au>, "davem@davemloft.net" <davem@davemloft.net>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "khilman@baylibre.com"
-	<khilman@baylibre.com>, "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
-	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
-	"vadim.fedorenko@linux.dev" <vadim.fedorenko@linux.dev>,
-	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, kernel <kernel@sberdevices.ru>
-Subject: Re: [PATCH v4 00/20] Support more Amlogic SoC families in crypto
- driver
-Thread-Topic: [PATCH v4 00/20] Support more Amlogic SoC families in crypto
- driver
-Thread-Index: AQHaXbqRFptCyAwKyUyy1Cn5x5FmZLEHrLEAgANdAYA=
-Date: Thu, 15 Feb 2024 10:43:09 +0000
-Message-ID: <20240215104251.pcqj532ekhq5dfbt@cab-wsm-0029881.sigma.sbrf.ru>
-References: <20240212135108.549755-1-avromanov@salutedevices.com>
- <ZcsYaPIUrBSg8iXu@Red>
-In-Reply-To: <ZcsYaPIUrBSg8iXu@Red>
-Accept-Language: ru-RU, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <1F71700A325F53478901685FB02CFC10@sberdevices.ru>
-Content-Transfer-Encoding: quoted-printable
+	s=arc-20240116; t=1707993890; c=relaxed/simple;
+	bh=rEfHphf8TVKM2mNrRqxuojkJo7yWHdXJjr38782xKJQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZECMjLzopbcPRkXwkVQ49KVP/eER8lDxBKP5eTFoi9kVYsX90XksB2g0w4D6FFwzGgFDUu8jxCMd7rByLVkw++yT4pcCO6eGcPArC/2FZB1P1oQ+929RT1cQEdwRzZkLAVCn/tU05gtg8jHMQa8BVv8lsQbAn97lIgCSHkL8PHs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-607e705f745so314717b3.2;
+        Thu, 15 Feb 2024 02:44:48 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707993887; x=1708598687;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ENTHKve8MexsMKpgWm23bV9atjw5KN2SAIf+2QKC+IU=;
+        b=xAY8pb77lDDJAH1NubepKkmhwMoNtVOO7tJbqRqvtOhSezT8OUyIfhjKNklF2ZyOXe
+         FqnKhy8n+aegW5d5uC6fcKMD+AHHMBLhoS8G95wqY1bSZMfiqpXb1AfBZd761gXhT0V1
+         pXn9dqjq46/0r34RFPJUGPs5VIx74oiDxCYcthB9es2jUQE+2lHBLIo3Haj3yN0AlUK1
+         kOzhBZwGvj2hup4zyiNSf2TkXwzIqXz3rkZVuILcH8mSUNaV4bQ7Tzgr3WVBl12hQoTU
+         SHKeMB2bo+98viorWEqRGHXEVjDbpdh7SSp6DL1EAE9mF9aE5pumj26ATgIlNcP791/d
+         j7uQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUlJlDvGAP5hX4zKXviyVPEzbBA4w/GqCv9cvQ6ydtF8EL3Lo1/JrK+VoLX3SiBp9siwzkuZvTQbvfaQCXjf97XI+OCh4aVl9tE01f1
+X-Gm-Message-State: AOJu0Yxv3rwgkjLh2lMcenPSLlyHY+XarAoJisNcqWK7ljmHH3igrQyE
+	nKM9ffhmnFO6pdG2b20nPB8V8EDW0xFiSNqDHofz4YulDHy+7+i3n5aZQjWWtwxiiw==
+X-Google-Smtp-Source: AGHT+IEYzmuGSNm1DtjmG4YoN9SNQa1SVy9TPcjDmzOvtlDd898mC5OCEAwRsVCByUc/cpgWt4KkmA==
+X-Received: by 2002:a05:690c:d1a:b0:607:9918:8c7b with SMTP id cn26-20020a05690c0d1a00b0060799188c7bmr1434441ywb.22.1707993886987;
+        Thu, 15 Feb 2024 02:44:46 -0800 (PST)
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
+        by smtp.gmail.com with ESMTPSA id h189-20020a0dc5c6000000b006040f198d3esm188263ywd.142.2024.02.15.02.44.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Feb 2024 02:44:46 -0800 (PST)
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-607e705f745so314507b3.2;
+        Thu, 15 Feb 2024 02:44:46 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU8UUiOX/uAEZB1Cj3GiQtvuhi32KA/mxsZvhnQ41uSJ12aOyiFZShum2ZaYvRjJTcLH2Vo6OHfneHlPA+cJKRok01wOLZkBs4P78t7
+X-Received: by 2002:a81:f00b:0:b0:607:9202:3fd9 with SMTP id
+ p11-20020a81f00b000000b0060792023fd9mr1257053ywm.41.1707993886590; Thu, 15
+ Feb 2024 02:44:46 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 183458 [Feb 15 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.3
-X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, smtp.sberdevices.ru:7.1.1,5.0.1;cab-wsm-0029881.sigma.sbrf.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: s
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/15 04:37:00 #23614209
-X-KSMG-AntiVirus-Status: Clean, skipped
+References: <20240212170423.2860895-1-andriy.shevchenko@linux.intel.com> <20240212170423.2860895-13-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20240212170423.2860895-13-andriy.shevchenko@linux.intel.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 15 Feb 2024 11:44:34 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUqvotuuj6p7SNVo3X+BRvc0MAeQ9krLnJVQywr6rzOKg@mail.gmail.com>
+Message-ID: <CAMuHMdUqvotuuj6p7SNVo3X+BRvc0MAeQ9krLnJVQywr6rzOKg@mail.gmail.com>
+Subject: Re: [PATCH v2 12/15] auxdisplay: ht16k33: Switch to use line display
+ character mapping
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Robin van der Gracht <robin@protonic.nl>, Paul Burton <paulburton@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello,
+Hi Andy,
 
-On Tue, Feb 13, 2024 at 08:21:12AM +0100, Corentin Labbe wrote:
-> Le Mon, Feb 12, 2024 at 04:50:48PM +0300, Alexey Romanov a 'ecrit :
-> > Hello!
-> >=20
-> > This patchset expand the funcionality of the Amlogic
-> > crypto driver by adding support for more SoC families:
-> > AXG, G12A, G12B, SM1, A1, S4.
-> >=20
-> > Also specify and enable crypto node in device tree
-> > for reference Amlogic devices.
-> >=20
-> > Tested on AXG, G12A/B, SM1, A1 and S4 devices via
-> > custom tests [1] and tcrypt module.
-> >=20
-> > ---
-> >=20
->=20
-> I started to test on Lepotato board and added patchs up to  "drivers: cry=
-pto: meson: process more than MAXDESCS descriptors"
-> booting lead to:
+On Mon, Feb 12, 2024 at 6:04=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+> Since line display library supports necessary bits to map the characters
+> (if required), switch this driver to use that.
+>
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-Can you please give me your test cases?
-Which tool are you using or is it something custom?
+Thanks for your patch!
 
-> [   18.559922] gxl-crypto c883e000.crypto: will run requests pump with re=
-altime priority
-> [   18.562492] gxl-crypto c883e000.crypto: will run requests pump with re=
-altime priority
-> [   18.570328] Unable to handle kernel NULL pointer dereference at virtua=
-l address 0000000000000028
-> [   18.581135] Mem abort info:
-> [   18.581354]   ESR =3D 0x0000000096000006
-> [   18.585138]   EC =3D 0x25: DABT (current EL), IL =3D 32 bits
-> [   18.593005]   SET =3D 0, FnV =3D 0
-> [   18.593334]   EA =3D 0, S1PTW =3D 0
-> [   18.597329]   FSC =3D 0x06: level 2 translation fault
-> [   18.604250] Data abort info:
-> [   18.604282]   ISV =3D 0, ISS =3D 0x00000006, ISS2 =3D 0x00000000
-> [   18.612243]   CM =3D 0, WnR =3D 0, TnD =3D 0, TagAccess =3D 0
-> [   18.614552]   GCS =3D 0, Overlay =3D 0, DirtyBit =3D 0, Xs =3D 0
-> [   18.624249] user pgtable: 4k pages, 48-bit VAs, pgdp=3D000000007b8ab00=
-0
-> [   18.626196] [0000000000000028] pgd=3D080000007b8ac003, p4d=3D080000007=
-b8ac003, pud=3D080000007b8ad003, pmd=3D0000000000000000
-> [   18.640426] Internal error: Oops: 0000000096000006 [#1] PREEMPT SMP
-> [   18.642929] Modules linked in: of_mdio fixed_phy fwnode_mdio sm4_ce(-)=
- sm4 meson_rng meson_canvas libphy rng_core meson_gxbb_wdt watchdog amlogic=
-_gxl_crypto(+) ghash_generic gcm xctr xts cts essiv authenc cmac xcbc ccm
-> [   18.662164] CPU: 3 PID: 264 Comm: cryptomgr_test Not tainted 6.8.0-rc1=
--00052-gf70f2b0814a0 #11
-> [   18.670698] Hardware name: Libre Computer AML-S905X-CC (DT)
-> [   18.676220] pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYP=
-E=3D--)
-> [   18.683118] pc : meson_get_engine_number+0x2c/0x50 [amlogic_gxl_crypto=
-]
-> [   18.689674] lr : meson_skencrypt+0x38/0x8c [amlogic_gxl_crypto]
-> [   18.695539] sp : ffff800081393790
-> [   18.698816] x29: ffff800081393790 x28: 0000000000000400 x27: ffff80008=
-0874a80
-> [   18.705888] x26: ffff800081393830 x25: ffff800081393bd8 x24: ffff00000=
-1aaa000
-> [   18.712961] x23: 0000000000000001 x22: 0000000000000000 x21: ffff00000=
-11b1c50
-> [   18.720033] x20: ffff00007bac8248 x19: ffff0000011b1c00 x18: fffffffff=
-fffffff
-> [   18.727105] x17: 00000000000001a4 x16: ffff800078edc1f0 x15: ffff80008=
-13938e0
-> [   18.734178] x14: ffff800101393bd7 x13: 0000000000000000 x12: 000000000=
-0000000
-> [   18.741250] x11: 000000000000021c x10: fffffffff81213e0 x9 : 000000000=
-00730d5
-> [   18.748323] x8 : ffff0000011b1ca8 x7 : fefefefefefefefe x6 : fffffc000=
-007a302
-> [   18.755395] x5 : ffff800078eb4148 x4 : 0000000000000000 x3 : 000000000=
-0000028
-> [   18.762468] x2 : ffff000001aaa040 x1 : 0000000000000000 x0 : 000000000=
-0000000
-> [   18.769541] Call trace:
-> [   18.771956]  meson_get_engine_number+0x2c/0x50 [amlogic_gxl_crypto]
-> [   18.778167]  crypto_skcipher_encrypt+0xe0/0x124
-> [   18.782651]  test_skcipher_vec_cfg+0x2a8/0x6b0
-> [   18.787050]  test_skcipher_vec+0x80/0x1c4
-> [   18.791017]  alg_test_skcipher+0xbc/0x1fc
-> [   18.794985]  alg_test+0x140/0x628
-> [   18.798262]  cryptomgr_test+0x24/0x44
-> [   18.801885]  kthread+0x110/0x114
-> [   18.805076]  ret_from_fork+0x10/0x20
-> [   18.808617] Code: 1b008440 d65f03c0 9100a003 f9800071 (885f7c61)=20
-> [   18.814651] ---[ end trace 0000000000000000 ]---
-> [   18.862270] meson8b-dwmac c9410000.ethernet: IRQ eth_wake_irq not foun=
-d
-> [   18.863897] meson8b-dwmac c9410000.ethernet: IRQ eth_lpi not found
-> [   18.870349] meson8b-dwmac c9410000.ethernet: PTP uses main clock
-> [   18.880548] meson8b-dwmac c9410000.ethernet: User ID: 0x11, Synopsys I=
-D: 0x37
-> [   18.882403] meson8b-dwmac c9410000.ethernet: 	DWMAC1000
-> [   18.887926] meson8b-dwmac c9410000.ethernet: DMA HW capability registe=
-r supported
-> [   18.895215] meson8b-dwmac c9410000.ethernet: RX Checksum Offload Engin=
-e supported
-> [   18.902627] meson8b-dwmac c9410000.ethernet: COE Type 2
-> [   18.907756] meson8b-dwmac c9410000.ethernet: TX Checksum insertion sup=
-ported
-> [   18.914750] meson8b-dwmac c9410000.ethernet: Wake-Up On Lan supported
-> [   18.921246] meson8b-dwmac c9410000.ethernet: Normal descriptors
-> [   18.927017] meson8b-dwmac c9410000.ethernet: Ring mode enabled
-> [   18.932782] meson8b-dwmac c9410000.ethernet: Enable RX Mitigation via =
-HW Watchdog Timer
+Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
+
+Minor nits below.
+
+> --- a/drivers/auxdisplay/ht16k33.c
+> +++ b/drivers/auxdisplay/ht16k33.c
+> @@ -445,18 +413,20 @@ static void ht16k33_seg7_update(struct work_struct =
+*work)
+>         struct ht16k33_priv *priv =3D container_of(work, struct ht16k33_p=
+riv,
+>                                                  work.work);
+>         struct ht16k33_seg *seg =3D &priv->seg;
+> +       struct linedisp *linedisp =3D &seg->linedisp;
+> +       struct linedisp_map *map =3D linedisp->map;
+
+struct linedisp_map *map =3D seg.linedisp->map;
+
+as linedisp is not used below.
+
+>         char *s =3D seg->curr;
+>         uint8_t buf[9];
+>
+> -       buf[0] =3D map_to_seg7(&seg->map.seg7, *s++);
+> +       buf[0] =3D map_to_seg7(&map->map.seg7, *s++);
+>         buf[1] =3D 0;
+> -       buf[2] =3D map_to_seg7(&seg->map.seg7, *s++);
+> +       buf[2] =3D map_to_seg7(&map->map.seg7, *s++);
+>         buf[3] =3D 0;
+>         buf[4] =3D 0;
+>         buf[5] =3D 0;
+> -       buf[6] =3D map_to_seg7(&seg->map.seg7, *s++);
+> +       buf[6] =3D map_to_seg7(&map->map.seg7, *s++);
+>         buf[7] =3D 0;
+> -       buf[8] =3D map_to_seg7(&seg->map.seg7, *s++);
+> +       buf[8] =3D map_to_seg7(&map->map.seg7, *s++);
+>
+>         i2c_smbus_write_i2c_block_data(priv->client, 0, ARRAY_SIZE(buf), =
+buf);
+>  }
+> @@ -466,17 +436,39 @@ static void ht16k33_seg14_update(struct work_struct=
+ *work)
+>         struct ht16k33_priv *priv =3D container_of(work, struct ht16k33_p=
+riv,
+>                                                  work.work);
+>         struct ht16k33_seg *seg =3D &priv->seg;
+> +       struct linedisp *linedisp =3D &seg->linedisp;
+> +       struct linedisp_map *map =3D linedisp->map;
+
+Likewise.
+
+>         char *s =3D seg->curr;
+>         uint8_t buf[8];
+>
+> -       put_unaligned_le16(map_to_seg14(&seg->map.seg14, *s++), buf);
+> -       put_unaligned_le16(map_to_seg14(&seg->map.seg14, *s++), buf + 2);
+> -       put_unaligned_le16(map_to_seg14(&seg->map.seg14, *s++), buf + 4);
+> -       put_unaligned_le16(map_to_seg14(&seg->map.seg14, *s++), buf + 6);
+> +       put_unaligned_le16(map_to_seg14(&map->map.seg14, *s++), buf + 0);
+> +       put_unaligned_le16(map_to_seg14(&map->map.seg14, *s++), buf + 2);
+> +       put_unaligned_le16(map_to_seg14(&map->map.seg14, *s++), buf + 4);
+> +       put_unaligned_le16(map_to_seg14(&map->map.seg14, *s++), buf + 6);
+>
+>         i2c_smbus_write_i2c_block_data(priv->client, 0, ARRAY_SIZE(buf), =
+buf);
+>  }
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 --=20
-Thank you,
-Alexey=
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
