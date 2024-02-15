@@ -1,134 +1,109 @@
-Return-Path: <devicetree+bounces-42004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15C6385621C
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:49:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1869856202
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:47:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7B279B239D8
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:19:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 735BBB2C657
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:19:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD732128361;
-	Thu, 15 Feb 2024 11:17:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B73012BF05;
+	Thu, 15 Feb 2024 11:18:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KnfYHgi+"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="EMb19AQD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 064F01EF1D;
-	Thu, 15 Feb 2024 11:17:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23C4A12A142;
+	Thu, 15 Feb 2024 11:18:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707995829; cv=none; b=Tne7o/XZpIvusPKIzvfetjk277aEE3zkXTkfVDuVC8yKThDazDHF2e41fSocjGJlK7BLiwMCNIaU+cM3y4Izc78MMAhg94JaonLOAmas6wDDpbApnmy7Otuup9JXZjcNFz4QgZXGg9pu8I3bG4Xd736q5ofwAk4omjlE/tYmwwI=
+	t=1707995919; cv=none; b=dIi2DHiVMQN+pKmGqY5Vo0pcoB6DwmuFRG4OEO3L42YmyAT3oDWSE7XNln2Jfvs/4QPXnW3XsWTnfpkmuFsa6GzWoIrgJY8+NRGMh12zDjwAcwYHJR8Vx0xAC4y/bTcfsSUMl/QQW1n72QF3k4igZW3OIsao26kMCGWmNbDTV7M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707995829; c=relaxed/simple;
-	bh=f8P9dbNtAFnROptNGXdBS94c+k3CdsGOwXBnn1nCnWA=;
+	s=arc-20240116; t=1707995919; c=relaxed/simple;
+	bh=R+FFZm2kIt1rkSWq6fz+cQ9DMqvgqPj+NJHYrc5V7d4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p1R3tJdZnQjRXIg2NA06ly9bBMhIm0JaUkaC0cP4GAqwgbWpuvoGeazGTKASAEitMwNgXAEgvLC05q1KtaMBovusqkpVG9D8gf+E6WqdK6OklI8ytUU2Q22NUavXPkWwx4Uz5OsEg2M7JVL5CWT8bbYH6TmgHLe7zE1ow8FZQfY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KnfYHgi+; arc=none smtp.client-ip=198.175.65.14
+	 Content-Type:Content-Disposition:In-Reply-To; b=iRgA9HWbxGz94YR+ShK94L6C83zt95iaKLh9ihzeHUV10pQwiG5cgiFM92F3RZfFqij3qi3DNfSsaVlhHCqz5Wmfydpeb/kVFp6ZIzrOlmUG9yFgW5S9iR6wa22UHOfnI7jIxrx8pg82/9eaegp1y+/pvLtt0zywCAvGc3rO4r8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=EMb19AQD; arc=none smtp.client-ip=198.175.65.14
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1707995828; x=1739531828;
+  t=1707995919; x=1739531919;
   h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=f8P9dbNtAFnROptNGXdBS94c+k3CdsGOwXBnn1nCnWA=;
-  b=KnfYHgi+uzUv/+uaFvIVxckAAoFXjQ9JBFHKFSUkNB2kCYLbj6u7PmFE
-   M/CjVtlf//El5T9FrbiNTrEaa704KCX51OFsA42IH/dJHUDU5W0lRMnAY
-   RlWzmp5FzAeiZI6EdQf309E1L0OqGlYxvtfBHFHOn8UzqDIWlHuvS1hgo
-   X/q8MVpDv6tZQz11Jrc13T+XaITzzOX0feiQTawzCplaC3Y1gTOyGtxZN
-   In0iBNZqI6DqVCJ7HrP0z8n3Q+beS3CTPUlizzsO6TM13MSJ8lsmhIfvd
-   l5BCfEJdp3AtLtV7nTuaGlzMDv6Ys/hMDcuZGPP6+q65U7sPWSInCk/gG
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="5890767"
+   mime-version:in-reply-to;
+  bh=R+FFZm2kIt1rkSWq6fz+cQ9DMqvgqPj+NJHYrc5V7d4=;
+  b=EMb19AQDkn232udTtrwwNnHMrMMI8mq6K142UU+Vl0ksotGGfTonM6Cl
+   DrbhB52WPKOW39RzWTS8tt3wKgOhkn+2brzb3PoLaPSzD7i2U0TePo+61
+   43sAvugKNofDBX8Ydq9A0RsQWvslz/p5gEU+0uk9Jeuvz8pK7XVy20FQO
+   roLi9iPC5tmZ5I5u5RKjv4zzTewALCoIYXRenA/5nexEsUvmubiVl/c61
+   bBNBxhMBCAiw9eQIkM+NabcYSQONeBKn7npaymuczr8bG9SHqYjIH+xqF
+   5+TZTIHz+yzrlAkPk+Qjs2oxTkaWefxOme4X3ruxbndsb+EpPak/lqH8o
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="5890849"
 X-IronPort-AV: E=Sophos;i="6.06,161,1705392000"; 
-   d="scan'208";a="5890767"
+   d="scan'208";a="5890849"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2024 03:17:08 -0800
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2024 03:18:38 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="912148288"
+X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="912148420"
 X-IronPort-AV: E=Sophos;i="6.06,161,1705392000"; 
-   d="scan'208";a="912148288"
+   d="scan'208";a="912148420"
 Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2024 03:17:05 -0800
+  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2024 03:18:34 -0800
 Received: from andy by smile.fi.intel.com with local (Exim 4.97)
 	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1raZji-00000004lvA-02IS;
-	Thu, 15 Feb 2024 13:17:02 +0200
-Date: Thu, 15 Feb 2024 13:17:01 +0200
+	id 1raZlA-00000004lwe-1Gi9;
+	Thu, 15 Feb 2024 13:18:32 +0200
+Date: Thu, 15 Feb 2024 13:18:32 +0200
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Robin van der Gracht <robin@protonic.nl>,
 	Paul Burton <paulburton@kernel.org>
 Subject: Re: [PATCH v2 14/15] dt-bindings: auxdisplay: Add Maxim MAX6958/6959
-Message-ID: <Zc3yrdAdQ7-SRs1C@smile.fi.intel.com>
+Message-ID: <Zc3zCMbq9ftok3e-@smile.fi.intel.com>
 References: <20240212170423.2860895-1-andriy.shevchenko@linux.intel.com>
  <20240212170423.2860895-15-andriy.shevchenko@linux.intel.com>
  <ZcpSDOk-IQVasHud@smile.fi.intel.com>
  <ZcpSaHW-RQ3dzywP@smile.fi.intel.com>
- <CAMuHMdV8mTa-qutFgqRKJyES7evEqEYhs=_eHtrKTTs5NkNa9A@mail.gmail.com>
+ <fc325835-6fcb-4fac-b907-93a95d8d6d7d@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdV8mTa-qutFgqRKJyES7evEqEYhs=_eHtrKTTs5NkNa9A@mail.gmail.com>
+In-Reply-To: <fc325835-6fcb-4fac-b907-93a95d8d6d7d@linaro.org>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Thu, Feb 15, 2024 at 11:57:53AM +0100, Geert Uytterhoeven wrote:
-> On Mon, Feb 12, 2024 at 6:16 PM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
+On Thu, Feb 15, 2024 at 09:21:10AM +0100, Krzysztof Kozlowski wrote:
+> On 12/02/2024 18:16, Andy Shevchenko wrote:
 > > On Mon, Feb 12, 2024 at 07:14:53PM +0200, Andy Shevchenko wrote:
 
 ...
 
-> > +description:
-> > +  The Maxim MAX6958/6959 7-segment LED display controller provides
-> > +  an I2C interface to up to four 7-segment LED digits. The MAX6959
-> > +  in comparison to MAX6958 has the debounce and interrupt support.
+> > Add initial device tree documentation for Maxim MAX6958/6959.
 > 
-> IUIC, the primary differentiating factor is that the MAX6959 adds input
-> and GPIO support?  Debounce and interrupt support are merely features
-> of input support.
+> Anyway you need to send the new version to the list, so the bot will
+> test it.
 
-What should I do here? Rephrase?
+Sure, that's the plan after applying first ones, so the only two can be left
+in v4. I will wait for Geert's comments as well.
 
-> > +  Type of the chip can be autodetected via specific register read,
-> > +  and hence the features may be enabled in the driver at run-time.
-> 
-> I don't think you need to read that register, as the users of the
-> features (keypad mapping, interrupts property, ...) also need to be
-> described in DTS (once supported).
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-So, the idea that if DT describes those we will check the chip ID and
-instantiate what is asked?
-
-> > +  Given hardware is simple and does not provide any additional pins,
-> > +  such as reset or enable.
-> 
-> Does this matter? I.e. is it important to say this in the bindings?
-
-From Krzysztof's review of v1 I understood that it is important to say so
-people wouldn't wonder if HW has support of that which is not implemented
-(yet) or simply has no such pins.
-
-Personally I would lean towards leaving this in the description.
-
-...
-
-Can you propose the full description text how you see it?
+Thank you!
 
 -- 
 With Best Regards,
