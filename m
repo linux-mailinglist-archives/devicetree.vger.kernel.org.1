@@ -1,125 +1,148 @@
-Return-Path: <devicetree+bounces-41970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1889855EF9
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:16:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17E1A855F03
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:19:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 006591C23838
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:16:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A92F1C20C95
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:19:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC1C167E97;
-	Thu, 15 Feb 2024 10:13:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFED467A1D;
+	Thu, 15 Feb 2024 10:19:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E324679FE;
-	Thu, 15 Feb 2024 10:13:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63932168D2
+	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 10:19:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707992030; cv=none; b=BIy8yaeWYF10O+FVsqkHj9uSUQjtgycDcseMgsL0+bxcuexP4repyyLtIQChXD5yZDQ8x1UOb+AgeIP5Kr7TcD+Krkkc8O0BmadF27hHuZykaH3hi0ZkaG/C1HhHFi6ZAWVkpODpgH/cX0Ec9stfvyeoqX3ZCeQUATkrcYHPMEw=
+	t=1707992364; cv=none; b=HyveYgIhiUhcHUxTrTFAjrtXnY/turqk9PNsvRBEoPbC1oH8s7Bs2j5yb6k59qQAPsMDstFRuhBQoEuUyhBJAZopKOtTA05BOjvq1msefCx9DBJvDYsWTgbkL6z/d/HkrvzWZ+5gYof2V6sK0coUPLuhAdzeFrP7gyt6bIARjo8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707992030; c=relaxed/simple;
-	bh=zQK9YWdnA2MLFWkG0KYucAtSWqDsyb5toZ7+7+Lze/o=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nmgqufxdNwoFOXIhVtwDumZY4gtyt2BdKD64gbLNjt0P8VIskruREPY3T2CArq91eyueyFy3rj97jA8ASnAteZNXxHCuKNCNl3xFFaSJXaD/8sCjQofoSSCLd9yat5YCWXVTPhyIwy8HrqnePOXPJX40EmDh3mEiEd1wQL8bhNQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2d10ad265d5so8814151fa.0;
-        Thu, 15 Feb 2024 02:13:48 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707992026; x=1708596826;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YNaDKxTWYbBEr/pCLpL+n0Yx2MpOWuz0pvKe7ocVQwQ=;
-        b=EXaElozzM7IYTeEUeuLAlMFBM1n4aikJ/sza54ziNGGcVPgJnKl8scOAzH+dxE+/pK
-         QU0I42aLG3Lyw3/llxzqjgbyRC2gECweADd01wq/4H3Cjyq/6ZyoFGdsdNzIQ+yO6ZGQ
-         aI4vdOm8ppxlZM/6zqQhMNGFpDUu9dZTysU+KF3z5maSwwavn6tehMiL4GgADvnLtwzu
-         xbZL6eIRalUM7/yU0nR7/iZuHK9jUntQ34wKfjt/js1bXzfcs6EQNBeycLxiTitX7tIq
-         8TAXBKBjKo4FXz4b8te+UwAI8W/DldS2V7qLSeRBcY60ELO9saRt0al0q+mkKd0yVVvA
-         YpTg==
-X-Forwarded-Encrypted: i=1; AJvYcCVlhoBwWZXwy2t9/M+tG6YXr8L8Wi54N6mg419n3tNHWhtpkjRL5yC937NiZw3XdUFpv/WYTMhQSg4up9jGbtTuNiRhvK6We+mcLR6G
-X-Gm-Message-State: AOJu0Yz4zgDbE+sh4ZMV6OB7yAf6knBkuY6vUKovM8/XIJ2DG66+ahaq
-	lWBQUNpmM/tz3it7Q5jlWA8CVixye2bIpEZyervPpR3RNq4j/hYIVYn+xJ6usyNv9Q==
-X-Google-Smtp-Source: AGHT+IFrxfdkttYFuNy6II5xa4smJepNzsJk8CRsvZGZjwLVwwsWfBFtm5hbprjBOMNmkLh0mZktWg==
-X-Received: by 2002:a2e:9793:0:b0:2d0:ce22:516d with SMTP id y19-20020a2e9793000000b002d0ce22516dmr1087986lji.3.1707992026019;
-        Thu, 15 Feb 2024 02:13:46 -0800 (PST)
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com. [209.85.167.51])
-        by smtp.gmail.com with ESMTPSA id w12-20020a2e9bcc000000b002cf1cf44a00sm213259ljj.52.2024.02.15.02.13.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Feb 2024 02:13:45 -0800 (PST)
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5128812662eso506854e87.0;
-        Thu, 15 Feb 2024 02:13:45 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVJUq9XOyf+GVgx4V7x0bM/P358v4Ldow+vaGD6bOfcBZL5LrcCQ3v0MfgGH5fcgXk9sDCS1mzYUbkiWu0uBDjikMeWFJT+95iUrJt2
-X-Received: by 2002:a05:6512:4884:b0:511:61bd:d748 with SMTP id
- eq4-20020a056512488400b0051161bdd748mr1062136lfb.36.1707992025566; Thu, 15
- Feb 2024 02:13:45 -0800 (PST)
+	s=arc-20240116; t=1707992364; c=relaxed/simple;
+	bh=u3rr8q+SLGsobq+2sOE/JWMdQphGfdS+OP4Y4ErJR1o=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=FWCeeAZSASPNDM9dHJeDzOuGU7+zbGGdM0svkeQsesBxpcNf8sNWpeN8jxdqiZOjQ9C9WG/BfRlSCiPlg9F340hS/MMbHvYvvRtbDrhG54TpOBpzTXH2ci8mpQNozLbzYsKmqZNm6dEzN1RZZ+6S6F8fgMvCaWZJt0+635yTm+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1raYpm-0006ML-Vw; Thu, 15 Feb 2024 11:19:15 +0100
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1raYpm-000reV-AH; Thu, 15 Feb 2024 11:19:14 +0100
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1raYpm-00041o-0n;
+	Thu, 15 Feb 2024 11:19:14 +0100
+Message-ID: <d51dbac55d3677031bfab8bfe959f7b556b1c373.camel@pengutronix.de>
+Subject: Re: [PATCH 19/23] gpio: nomadik: grab optional reset control and
+ deassert it at probe
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: =?ISO-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>, Linus Walleij
+ <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mips@vger.kernel.org, Gregory CLEMENT <gregory.clement@bootlin.com>, 
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+Date: Thu, 15 Feb 2024 11:19:14 +0100
+In-Reply-To: <20240214-mbly-gpio-v1-19-f88c0ccf372b@bootlin.com>
+References: <20240214-mbly-gpio-v1-0-f88c0ccf372b@bootlin.com>
+	 <20240214-mbly-gpio-v1-19-f88c0ccf372b@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240212170423.2860895-1-andriy.shevchenko@linux.intel.com> <20240212170423.2860895-9-andriy.shevchenko@linux.intel.com>
-In-Reply-To: <20240212170423.2860895-9-andriy.shevchenko@linux.intel.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 15 Feb 2024 11:13:31 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXWu4JYT5wCX8sbwdM8gt571JakL1UHi2SGd5wKB41pxQ@mail.gmail.com>
-Message-ID: <CAMuHMdXWu4JYT5wCX8sbwdM8gt571JakL1UHi2SGd5wKB41pxQ@mail.gmail.com>
-Subject: Re: [PATCH v2 08/15] auxdisplay: linedisp: Provide struct
- linedisp_ops for future extension
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Robin van der Gracht <robin@protonic.nl>, Paul Burton <paulburton@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Andy,
+On Mi, 2024-02-14 at 17:24 +0100, Th=C3=A9o Lebrun wrote:
+> Fetch a reference to the optional shared reset control and deassert it
+> if it exists.
+>=20
+> Optional because not all platforms that use this driver have a reset
+> attached to the reset block. Shared because some platforms that use the
+> reset (at least Mobileye EyeQ5) share the reset across banks.
+>=20
+> Do not keep a reference to the reset control as it is not needed
+> afterwards; the driver does not handle suspend, does not use runtime PM
+> and does not register a remove callback.
 
-On Mon, Feb 12, 2024 at 6:04=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
-> Currently the line display library doesn't scale in case we want to
-> provide more operations. Prepare the library to take a newly created
-> struct linedisp_ops that scales.
->
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+I suppose you don't care that the reset is only ever deasserted once
+and never asserted again on this hardware, but for shared reset
+controls the expectation is that deassert/assert calls are balanced:
 
-For the code changes:
-Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
+https://docs.kernel.org/driver-api/reset.html?highlight=3Dbalanced#assertio=
+n-and-deassertion
 
-> --- a/drivers/auxdisplay/ht16k33.c
-> +++ b/drivers/auxdisplay/ht16k33.c
-> @@ -696,8 +700,7 @@ static int ht16k33_seg_probe(struct device *dev, stru=
-ct ht16k33_priv *priv,
->         if (err)
->                 return err;
->
-> -       err =3D linedisp_register(&seg->linedisp, dev, 4, seg->curr,
-> -                               ht16k33_linedisp_update);
-> +       err =3D linedisp_register(&seg->linedisp, dev, 4, seg->curr, &ht1=
-6k33_linedisp_ops);
+So maybe this warrants a comment in the code. Or do you mean to
+suppress unbind via suppress_bind_attrs to explain away any missing
+cleanup?
 
-Please wrap this long line (everywhere).
-All lines in these drivers fit in 80-columns before.
+> The operation is done in nmk_gpio_populate_chip(). This function is
+> called by either gpio-nomadik or pinctrl-nomadik, whoever comes first.
+> This is here for historic reasons and could probably be removed now; it
+> seems gpio-ranges enforces the ordering to be pinctrl-first. It is not
+> the topic of the present patch however.
+>=20
+> Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+> ---
+>  drivers/gpio/gpio-nomadik.c | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+>=20
+> diff --git a/drivers/gpio/gpio-nomadik.c b/drivers/gpio/gpio-nomadik.c
+> index 21bb6d6363fc..b623c093b54d 100644
+> --- a/drivers/gpio/gpio-nomadik.c
+> +++ b/drivers/gpio/gpio-nomadik.c
+> @@ -513,12 +513,14 @@ struct nmk_gpio_chip *nmk_gpio_populate_chip(struct=
+ device_node *np,
+>  {
+>  	struct nmk_gpio_chip *nmk_chip;
+>  	struct platform_device *gpio_pdev;
+> +	struct reset_control *reset;
+>  	struct gpio_chip *chip;
+>  	struct resource *res;
+>  	struct clk *clk;
+>  	void __iomem *base;
+>  	uintptr_t flags;
+>  	u32 id, ngpio;
+> +	int ret;
+> =20
+>  	gpio_pdev =3D of_find_device_by_node(np);
+>  	if (!gpio_pdev) {
+> @@ -576,6 +578,19 @@ struct nmk_gpio_chip *nmk_gpio_populate_chip(struct =
+device_node *np,
+>  	clk_prepare(clk);
+>  	nmk_chip->clk =3D clk;
+> =20
+> +	reset =3D devm_reset_control_get_optional_shared(&gpio_pdev->dev, NULL)=
+;
+> +	if (IS_ERR(reset)) {
+> +		dev_err(&pdev->dev, "failed getting reset control: %ld\n",
+> +			PTR_ERR(reset));
+> +		return ERR_CAST(reset);
 
-Gr{oetje,eeting}s,
+Consider using dev_err_probe() here.
 
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+regards
+Philipp
 
