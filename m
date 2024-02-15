@@ -1,200 +1,136 @@
-Return-Path: <devicetree+bounces-42228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42229-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A89B856F52
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 22:29:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 663E6856F87
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 22:49:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A2C25B2460E
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 21:29:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85CC01C21871
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 21:49:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81E1D13F001;
-	Thu, 15 Feb 2024 21:29:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8BC7141988;
+	Thu, 15 Feb 2024 21:49:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="rh9lSOmr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC71E13DBB3
-	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 21:29:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C36D6A349
+	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 21:49:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708032551; cv=none; b=aB/EsF/H69OjaIpDaCJas1lcT8HTFTxSzAMh6VSypGB77STXS9SAVeo6hOvS5+RunJFt8NmMNYq5vk/nJRFJba3AIYnpg9RgvvFU/JM31HrtaFKKvj757zLV76dZh7Ua8whjNMfuDSZZvpj+d4OdW8F4KTmuGZpdpu3YvpEXyBc=
+	t=1708033768; cv=none; b=DyxOWu8vOSqagYoKNNuat3aa9H//rPjUzDlMRg+iWAICWLnTEGc8wrshPa2bhmP5oywxLXAhGwVi0PFaJxbntamP6w7sIICmVWsz4Kg3EaAreIdiJKlQUpMy1besGV1UzjhWKaCEua/Fp3nMdj4xsO6A8fC7FzDS5eGsvpsQRak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708032551; c=relaxed/simple;
-	bh=wdfDYbwXdmf30ZCyxHt+C8YT25tN2OJ3GnO7DFGD1Uk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=gniPzWFpl7CDbBeQx5sCOWpv26I7ZJSDNzh1XC/MvVwqsm+Io6ikZOnXqdhu9qk0PPdo9mo041XYmOU5OjB5KQT4+sYlGNly1/t0ahDlQTVwht4tPGZeYKeX8KVKzAmpUVGQDII66EQp8jIIwDWvORETGhWwdrx4ebKZZXeEPxY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <m.felsch@pengutronix.de>)
-	id 1rajHr-0001xh-K9; Thu, 15 Feb 2024 22:28:55 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: gregkh@linuxfoundation.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	linux@roeck-us.net,
-	heikki.krogerus@linux.intel.com,
-	jun.li@nxp.com
-Cc: linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	kernel@pengutronix.de
-Subject: [PATCH v2 4/4] usb: typec: tcpci: add support to set connector orientation
-Date: Thu, 15 Feb 2024 22:28:52 +0100
-Message-Id: <20240215212852.1202339-5-m.felsch@pengutronix.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240215212852.1202339-1-m.felsch@pengutronix.de>
-References: <20240215212852.1202339-1-m.felsch@pengutronix.de>
+	s=arc-20240116; t=1708033768; c=relaxed/simple;
+	bh=egrIl87HVa6P/9NzKEjM0euP217KPHODBvobgCHy12A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pJX+BVChuMP0Am9tTcOIdoU+1GK5gupamBMyKX+6fwfOqhRmuRkDVRb52oDs7nK0PK1r/z66Ph4h2/eV16TnAFqFlfNSjluCQuCje3Xg3YnIORbEg7SjUiNdrR4VzfUzLdrLhUNmr2RCszkXK2YLG96w6/keD/zVkqyX61cBVsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=rh9lSOmr; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5116ec49365so120944e87.3
+        for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 13:49:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1708033764; x=1708638564; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wy4dy8qC/aEpgjhI6zSmtJIrU/2TuVH5URvhfhOyGwE=;
+        b=rh9lSOmrU+eCmbHKQwi9E9XEvOeICGmz0ntsyrw+XJ/xjZjRAzEo7QVJAjidP3IrfC
+         Sn9KbY2qYcHOPcpMaeIzajiJaqwBgGXfNeko9YB92BEcHsrXlM0Vyat4NlPZWUEjOmqc
+         LHIgsXjkIHmtkVhyhdyS03Y7RhuFh7k5Y2tCq9XmOODfe+jkuzIRgvq45VIchQ5ru2lx
+         VkvomhrYCA4hTxEbGkbUdZKLNjHHar1DQAUlrs6+ST9FZq4UoWY5PysTWkg5FIqFXhlj
+         NTCYMgp6dIwRA9qwpplKmd76Dhk05r9uzdOkHqfav4GkP91JK+/O5ffcmDyefwwQZFBL
+         tVBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708033764; x=1708638564;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wy4dy8qC/aEpgjhI6zSmtJIrU/2TuVH5URvhfhOyGwE=;
+        b=YHNX2esyDG3Vwq5R+jyIMy7NY0CILnUjCM66c9sYNh1ja7extA3MdEOhdbrd+Ck5Mw
+         T5MapJN9sI+jWHk/aCJb4FcehJiHrr0WCiEeRVCD9NH6Qd7IoXmCLY75sXmgnUJv8qfW
+         IxX6FpdfUFfLgTMHz6O7TEnZWz/KJbjZEsHwWz3fdkVFl9jY6l+U8IfFbdE+5kWerqBr
+         9JZgB3qHi+6wwW5cTBewOYq3kEe7chVFi8kNUaW2CZCKxAzZmWkCpklzmEmdfBQssYfj
+         FzyYmF1CKX4c9Ero5J1/I9MoFUzhqcd8tLXiV78kNurQj1oNhkYhTnv0WREXCEH4WypP
+         v3yw==
+X-Forwarded-Encrypted: i=1; AJvYcCWAPWC0qBHOcNl7QPromK+lSPFcodmmfgzMyEQVbR9qN144vgBnkpqIpKZ4mBfIUf9SYf6WRz3yWQ4eLhIgNq7K54/FzWTPI1+oLQ==
+X-Gm-Message-State: AOJu0Yw7OyjubzEy4D5TBVzdO3cBSG3HsP1HTHylD7VldAPATWLpwSBq
+	Bcg/SE8CxUH4LnaZb/cc30MtQPo/Hlj0lz3gOdceDXg/I9M2cGeh+EOMOV0RKXumADR/mxBNR93
+	APsykEUGR7dkECazCHkHPTapk0bcBNIAbpjG4Zg==
+X-Google-Smtp-Source: AGHT+IFblS658xAUkyzNInl0/6coFWFu424jBrjv6P7mBNcHohWTiH831Tul1x/9RSSF6JS9qjHsfg7rEDFJ3nMR9BI=
+X-Received: by 2002:a2e:9c87:0:b0:2d2:1699:fb5e with SMTP id
+ x7-20020a2e9c87000000b002d21699fb5emr210697lji.2.1708033764453; Thu, 15 Feb
+ 2024 13:49:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
-X-SA-Exim-Mail-From: m.felsch@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20240206-ad7944-mainline-v1-0-bf115fa9474f@baylibre.com>
+ <20240206-ad7944-mainline-v1-1-bf115fa9474f@baylibre.com> <CAMknhBGG_RS1t0OJw6_UnNQ_=S4YgN4i1YN26V8n=f9y28J9hQ@mail.gmail.com>
+ <20240215132334.GA3847183-robh@kernel.org>
+In-Reply-To: <20240215132334.GA3847183-robh@kernel.org>
+From: David Lechner <dlechner@baylibre.com>
+Date: Thu, 15 Feb 2024 15:49:13 -0600
+Message-ID: <CAMknhBF8BQQfXkMvu3dS-RtaYBeOZ7mfCNxMaq3LOWwLp1_cxg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: add ad7944 ADCs
+To: Rob Herring <robh@kernel.org>
+Cc: linux-iio@vger.kernel.org, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-This add the support to set the optional connector orientation bit which
-is part of the optional CONFIG_STANDARD_OUTPUT register 0x18 [1]. This
-allows system designers to connect the tcpc orientation pin directly to
-the 2:1 ss-mux.
+On Thu, Feb 15, 2024 at 7:23=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> On Tue, Feb 06, 2024 at 11:34:13AM -0600, David Lechner wrote:
+> > On Tue, Feb 6, 2024 at 11:26=E2=80=AFAM David Lechner <dlechner@baylibr=
+e.com> wrote:
+> > >
+> >
+> >      if:
+> >        properties:
+> >          adi,reference:
+> >            const: external
+>
+>          required:
+>            - adi,reference
+>
+> >      then:
+> >        required:
+> >          - ref-supply
+> >      else:
+> >        properties:
+> >          ref-supply: false
+> >
+> > to be sufficient here. However, currently, if the adi,reference
+> > property is omitted from the dts/dtb, the condition here evaluates to
+> > true and unexpectedly (incorrectly?) the validator requires the
+> > ref-supply property.
+>
+> That's just how json-schema works. With the above, it should work for
+> you.
+>
+> However, redesigning the binding would make things simpler. Just make
+> 'ref-supply' being present mean external ref. No 'ref-supply' is then
+> internal. Then you just need a boolean for 'internal-buffer' mode and:
+>
+> dependentSchemas:
+>   ref-supply:
+>     not:
+>       required: ['adi,internal-buffer-ref']
+>
 
-[1] https://www.usb.org/sites/default/files/documents/usb-port_controller_specification_rev2.0_v1.0_0.pdf
-
-Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
----
-v2:
-- Make use of fallthrough
-
- drivers/usb/typec/tcpm/tcpci.c | 44 ++++++++++++++++++++++++++++++++++
- include/linux/usb/tcpci.h      |  8 +++++++
- 2 files changed, 52 insertions(+)
-
-diff --git a/drivers/usb/typec/tcpm/tcpci.c b/drivers/usb/typec/tcpm/tcpci.c
-index 7118551827f6..73a52e7f95c2 100644
---- a/drivers/usb/typec/tcpm/tcpci.c
-+++ b/drivers/usb/typec/tcpm/tcpci.c
-@@ -67,6 +67,18 @@ static int tcpci_write16(struct tcpci *tcpci, unsigned int reg, u16 val)
- 	return regmap_raw_write(tcpci->regmap, reg, &val, sizeof(u16));
- }
- 
-+static bool tcpci_check_std_output_cap(struct regmap *regmap, u8 mask)
-+{
-+	unsigned int reg;
-+	int ret;
-+
-+	ret = regmap_read(regmap, TCPC_STD_OUTPUT_CAP, &reg);
-+	if (ret < 0)
-+		return ret;
-+
-+	return (reg & mask) == mask;
-+}
-+
- static int tcpci_set_cc(struct tcpc_dev *tcpc, enum typec_cc_status cc)
- {
- 	struct tcpci *tcpci = tcpc_to_tcpci(tcpc);
-@@ -301,6 +313,28 @@ static int tcpci_set_polarity(struct tcpc_dev *tcpc,
- 			   TCPC_TCPC_CTRL_ORIENTATION : 0);
- }
- 
-+static int tcpci_set_orientation(struct tcpc_dev *tcpc,
-+				 enum typec_orientation orientation)
-+{
-+	struct tcpci *tcpci = tcpc_to_tcpci(tcpc);
-+	unsigned int reg;
-+
-+	switch (orientation) {
-+	case TYPEC_ORIENTATION_NONE:
-+		/* We can't put a single output into high impedance */
-+		fallthrough;
-+	case TYPEC_ORIENTATION_NORMAL:
-+		reg = TCPC_CONFIG_STD_OUTPUT_ORIENTATION_NORMAL;
-+		break;
-+	case TYPEC_ORIENTATION_REVERSE:
-+		reg = TCPC_CONFIG_STD_OUTPUT_ORIENTATION_FLIPPED;
-+		break;
-+	}
-+
-+	return regmap_update_bits(tcpci->regmap, TCPC_CONFIG_STD_OUTPUT,
-+				  TCPC_CONFIG_STD_OUTPUT_ORIENTATION_MASK, reg);
-+}
-+
- static void tcpci_set_partner_usb_comm_capable(struct tcpc_dev *tcpc, bool capable)
- {
- 	struct tcpci *tcpci = tcpc_to_tcpci(tcpc);
-@@ -808,6 +842,9 @@ struct tcpci *tcpci_register_port(struct device *dev, struct tcpci_data *data)
- 	if (tcpci->data->vbus_vsafe0v)
- 		tcpci->tcpc.is_vbus_vsafe0v = tcpci_is_vbus_vsafe0v;
- 
-+	if (tcpci->data->set_orientation)
-+		tcpci->tcpc.set_orientation = tcpci_set_orientation;
-+
- 	err = tcpci_parse_config(tcpci);
- 	if (err < 0)
- 		return ERR_PTR(err);
-@@ -851,6 +888,13 @@ static int tcpci_probe(struct i2c_client *client)
- 	if (err < 0)
- 		return err;
- 
-+	err = tcpci_check_std_output_cap(chip->data.regmap,
-+					 TCPC_STD_OUTPUT_CAP_ORIENTATION);
-+	if (err < 0)
-+		return err;
-+
-+	chip->data.set_orientation = err;
-+
- 	chip->tcpci = tcpci_register_port(&client->dev, &chip->data);
- 	if (IS_ERR(chip->tcpci))
- 		return PTR_ERR(chip->tcpci);
-diff --git a/include/linux/usb/tcpci.h b/include/linux/usb/tcpci.h
-index 467e8045e9f8..f2bfb4250366 100644
---- a/include/linux/usb/tcpci.h
-+++ b/include/linux/usb/tcpci.h
-@@ -47,6 +47,9 @@
- #define TCPC_SINK_FAST_ROLE_SWAP	BIT(0)
- 
- #define TCPC_CONFIG_STD_OUTPUT		0x18
-+#define TCPC_CONFIG_STD_OUTPUT_ORIENTATION_MASK		BIT(0)
-+#define TCPC_CONFIG_STD_OUTPUT_ORIENTATION_NORMAL	0
-+#define TCPC_CONFIG_STD_OUTPUT_ORIENTATION_FLIPPED	1
- 
- #define TCPC_TCPC_CTRL			0x19
- #define TCPC_TCPC_CTRL_ORIENTATION	BIT(0)
-@@ -127,6 +130,7 @@
- #define TCPC_DEV_CAP_2			0x26
- #define TCPC_STD_INPUT_CAP		0x28
- #define TCPC_STD_OUTPUT_CAP		0x29
-+#define TCPC_STD_OUTPUT_CAP_ORIENTATION	BIT(0)
- 
- #define TCPC_MSG_HDR_INFO		0x2e
- #define TCPC_MSG_HDR_INFO_DATA_ROLE	BIT(3)
-@@ -198,12 +202,16 @@ struct tcpci;
-  *		Chip level drivers are expected to check for contaminant and call
-  *		tcpm_clean_port when the port is clean to put the port back into
-  *		toggling state.
-+ * @set_orientation:
-+ *		Optional; Enable setting the connector orientation
-+ *		CONFIG_STANDARD_OUTPUT (0x18) bit0.
-  */
- struct tcpci_data {
- 	struct regmap *regmap;
- 	unsigned char TX_BUF_BYTE_x_hidden:1;
- 	unsigned char auto_discharge_disconnect:1;
- 	unsigned char vbus_vsafe0v:1;
-+	unsigned char set_orientation:1;
- 
- 	int (*init)(struct tcpci *tcpci, struct tcpci_data *data);
- 	int (*set_vconn)(struct tcpci *tcpci, struct tcpci_data *data,
--- 
-2.39.2
-
+Per Jonathan's suggestion, I plan to simplify the bindings like this
+but just use the presence/absence of refin-supply as this boolean
+value to simplify it even further.
 
