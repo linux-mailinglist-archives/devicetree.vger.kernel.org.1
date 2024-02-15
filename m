@@ -1,59 +1,61 @@
-Return-Path: <devicetree+bounces-42168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 744E7856A6C
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 18:03:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A011856A85
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 18:06:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A7C5E1C22414
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 17:03:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 060881F26FF5
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 17:06:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79533136986;
-	Thu, 15 Feb 2024 17:03:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F17CF13699E;
+	Thu, 15 Feb 2024 17:06:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bou2quAK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eDTIumQm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52A2B136660;
-	Thu, 15 Feb 2024 17:03:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C737C12DD9A;
+	Thu, 15 Feb 2024 17:06:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708016589; cv=none; b=EekP/gC7NXHjwGhGFhLtqp6m7DHiM7rooG4RbvcEB3QmwLTZsLcK1YHjzwDBuBdWtvcl6q8fuq5AVQyxxZP2q7q2du6zMmaKGAMhe4/Sj0s9bCr+LUHhCbS5QgekmYHTrYCZOdngYUIuk1QJRb292yawawlRNoXnUI35IkW5OvA=
+	t=1708016771; cv=none; b=dhTwKbu8Z4/a7O9aMb/p5RGDnvzRMaThsR4hwN6dJoMS/RbIAHIpLoeyeug2mdrwJcnuJgsBKC1Eh/fjAhgi86CsKcrAmK4b1zOiNdo/H7CLREUToWmVQAMUS46vJwHrbWikJvFzUxrmNHhQxQHIDFMlYCXZRlEwQCwY4L63zCI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708016589; c=relaxed/simple;
-	bh=VjV8BcdelqThJ3MbQmqnK86uf/IxokI/jkq4gMntqq0=;
+	s=arc-20240116; t=1708016771; c=relaxed/simple;
+	bh=KElkYGBiD4v/kDlWoYsOgMzKDGtsKxpQOCFbAZgDAVI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DTTEVInqJitYGOB4Pu41khhWoCudwDIGADqeGf2iC6UFOOz3PT9L4T3NHPKSmha7B9FhlcjIySIb+uewQZHo7OEffbnpgCAzHpmPURiPsPur/xJaWGvPZVpT2QHxv+W4mJSOtMeRVcy6Jq42f4Gb3Na7+pW6R5wNCfpoDXnLokA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bou2quAK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66D91C433C7;
-	Thu, 15 Feb 2024 17:03:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=SX9Lj4T8Wzggc9Qfri9F0SWXn0vtJRlApiAmMn/4xhd/vbpd44komN2qUkKeH9rgU9rDs9WoPwhby321hudCTeZhaEc2rGOFjHtOYnPm3GrN8eDayO0Ry+8qmsz7SkamOsUASEt4DW86iedBRNtOr4GmtTx3op2bbzLg/MJGvj0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eDTIumQm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60A6FC433C7;
+	Thu, 15 Feb 2024 17:06:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708016588;
-	bh=VjV8BcdelqThJ3MbQmqnK86uf/IxokI/jkq4gMntqq0=;
+	s=k20201202; t=1708016771;
+	bh=KElkYGBiD4v/kDlWoYsOgMzKDGtsKxpQOCFbAZgDAVI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Bou2quAKZgYkJwONG/1O7OaZ2gzBTNRXUgEgrqNg19OgXv1QWeq4K8wb7T4tjiONZ
-	 wf8g4XtT6G0fbmWM8ieic3rfmXs0fjVaFRq6qjA65f7oCJ7VAsuVrHAJFpQwRP/TPd
-	 smxs4kTbm9ehT1yAS7VCT5goKXpXzdS1SJnPRMdJ5DL9ca/pUO2hhEGSxVXI7QY+S5
-	 vyJz6v+qtb4HWWr++vC2m6eYRpzwyuJyKm6yMjV1xT5bm31hKDRBhj50FGUdtKAy73
-	 FvImMWTegnm1GcWXtSOtWW9xGQl/U8oWhwmQIE6c6dbVw8pf8pSWYD8ispkB2pNYey
-	 UO5tcDqIQ5lGg==
-Date: Thu, 15 Feb 2024 17:03:04 +0000
+	b=eDTIumQmpuZVkJkzWHyYLh0IuxXqavUkd4qjsMqzWFvyYWz4KeoQ+TwHO9smxpUYI
+	 YIC4RqUQj0sxEFYKk9ygbusIsvORwn6Iu5Yj5Sm9ffDC1bt3whW4vUHSyUlaWKbutR
+	 l0CM8rWQ3N6I3GITQlC423KdwEoWnVbcDCQCoizqTTqWAXU5o8UUN7Rn63hYNXfv4i
+	 3iQUBhPGRSj8Om7WGtuLeI9ouBEN+10/CTzy73L/OyERIEWJOfXUZhBg1mVJw+BY24
+	 NnBy1pVp75czHbx8XEp00QMdjeAXYLp58h1zdpeYo+ZKvysjlueBrIAF4IAssTEYK3
+	 8CkXtqv+UfKhA==
+Date: Thu, 15 Feb 2024 17:06:06 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Mihai Sain <mihai.sain@microchip.com>
-Cc: claudiu.beznea@tuxon.dev, robh+dt@kernel.org,
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, sam@ravnborg.org,
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+	tzimmermann@suse.de, robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-	andre.przywara@arm.com, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	cristian.birsan@microchip.com
-Subject: Re: [PATCH v3 2/3] ARM: dts: microchip: sama7g5: Add flexcom 10 node
-Message-ID: <20240215-lustily-flick-69cb48b123c3@spud>
-References: <20240215091524.14732-1-mihai.sain@microchip.com>
- <20240215091524.14732-3-mihai.sain@microchip.com>
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, quentin.schulz@theobroma-systems.com,
+	Heiko Stuebner <heiko.stuebner@cherry.de>
+Subject: Re: [PATCH 2/3] dt-bindings: display: ltk500hd1829: add variant
+ compatible for ltk101b4029w
+Message-ID: <20240215-boat-grid-d50f0eccec67@spud>
+References: <20240215090515.3513817-1-heiko@sntech.de>
+ <20240215090515.3513817-3-heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,78 +63,71 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="zfv+/8Ldmdc7cdaf"
+	protocol="application/pgp-signature"; boundary="uAgW2Em0kHJeJUhg"
 Content-Disposition: inline
-In-Reply-To: <20240215091524.14732-3-mihai.sain@microchip.com>
+In-Reply-To: <20240215090515.3513817-3-heiko@sntech.de>
 
 
---zfv+/8Ldmdc7cdaf
+--uAgW2Em0kHJeJUhg
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 15, 2024 at 11:15:23AM +0200, Mihai Sain wrote:
-> Add flexcom 10 node for usage on the SAMA7G54 Curiosity board.
+On Thu, Feb 15, 2024 at 10:05:14AM +0100, Heiko Stuebner wrote:
+> From: Heiko Stuebner <heiko.stuebner@cherry.de>
 >=20
-> Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
+> Add the compatible for the ltk101b4029w panel, that is really similar
+> to the ltk500hd1829.
+
+Please mention what makes the devices incompatible. "really similar" is
+vague and could be used for a device that was only cosmetically
+different.
+
+With that,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+>=20
+> Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
 > ---
->  arch/arm/boot/dts/microchip/sama7g5.dtsi | 24 ++++++++++++++++++++++++
->  1 file changed, 24 insertions(+)
+>  .../bindings/display/panel/leadtek,ltk500hd1829.yaml          | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 >=20
-> diff --git a/arch/arm/boot/dts/microchip/sama7g5.dtsi b/arch/arm/boot/dts=
-/microchip/sama7g5.dtsi
-> index 269e0a3ca269..c030b318985a 100644
-> --- a/arch/arm/boot/dts/microchip/sama7g5.dtsi
-> +++ b/arch/arm/boot/dts/microchip/sama7g5.dtsi
-> @@ -958,6 +958,30 @@ i2c9: i2c@600 {
->  			};
->  		};
+> diff --git a/Documentation/devicetree/bindings/display/panel/leadtek,ltk5=
+00hd1829.yaml b/Documentation/devicetree/bindings/display/panel/leadtek,ltk=
+500hd1829.yaml
+> index c5944b4d636c5..d589f16772145 100644
+> --- a/Documentation/devicetree/bindings/display/panel/leadtek,ltk500hd182=
+9.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/leadtek,ltk500hd182=
+9.yaml
+> @@ -14,7 +14,9 @@ allOf:
 > =20
-> +		flx10: flexcom@e2820000 {
-> +			compatible =3D "atmel,sama5d2-flexcom";
-
-My comment here was ignored:
-https://lore.kernel.org/all/20240214-robe-pregnancy-a1b056c9fe14@spud/
-
-> +			reg =3D <0xe2820000 0x200>;
-> +			clocks =3D <&pmc PMC_TYPE_PERIPHERAL 48>;
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <1>;
-> +			ranges =3D <0x0 0xe2820000 0x800>;
-> +			status =3D "disabled";
-> +
-> +			i2c10: i2c@600 {
-> +				compatible =3D "microchip,sama7g5-i2c", "microchip,sam9x60-i2c";
-> +				reg =3D <0x600 0x200>;
-> +				interrupts =3D <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
-> +				#address-cells =3D <1>;
-> +				#size-cells =3D <0>;
-> +				clocks =3D <&pmc PMC_TYPE_PERIPHERAL 48>;
-> +				atmel,fifo-size =3D <32>;
-> +				dmas =3D <&dma0 AT91_XDMAC_DT_PERID(26)>,
-> +					<&dma0 AT91_XDMAC_DT_PERID(25)>;
-> +				dma-names =3D "tx", "rx";
-> +				status =3D "disabled";
-> +			};
-> +		};
-> +
->  		flx11: flexcom@e2824000 {
->  			compatible =3D "atmel,sama5d2-flexcom";
->  			reg =3D <0xe2824000 0x200>;
+>  properties:
+>    compatible:
+> -    const: leadtek,ltk500hd1829
+> +    enum:
+> +      - leadtek,ltk101b4029w
+> +      - leadtek,ltk500hd1829
+>    reg: true
+>    backlight: true
+>    reset-gpios: true
 > --=20
-> 2.43.0
+> 2.39.2
 >=20
 
---zfv+/8Ldmdc7cdaf
+--uAgW2Em0kHJeJUhg
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZc5DxwAKCRB4tDGHoIJi
-0vJsAQDeQhIb3G2vqcVcBI18bJC0ZUioeFGxbNSWOAUjN7G2mwD/XaLf8/ElSyxG
-SZ8uAxcymPu/A6opdb1qEBlCIoZjkQg=
-=gg+J
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZc5EfgAKCRB4tDGHoIJi
+0mg8AQDnVMCCNnW/BjpK3m7RSYd2PlygPSQcY9KfMc/u+FOnmAD+JfhDWteO5rdB
+4I4vgyPxLWbg0qw+KHEZIn4ucWBjmwY=
+=AQS2
 -----END PGP SIGNATURE-----
 
---zfv+/8Ldmdc7cdaf--
+--uAgW2Em0kHJeJUhg--
 
