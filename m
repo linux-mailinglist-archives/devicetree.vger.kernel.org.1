@@ -1,236 +1,175 @@
-Return-Path: <devicetree+bounces-42150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D51D8569DB
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 17:45:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CA99856A05
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 17:52:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 042B8288CA1
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 16:45:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6175F1C23AD2
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 16:52:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B417135A78;
-	Thu, 15 Feb 2024 16:45:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CB7513667F;
+	Thu, 15 Feb 2024 16:52:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="czS/kJlN"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="jtRPtvNb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2074.outbound.protection.outlook.com [40.107.93.74])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8F5612FB27;
-	Thu, 15 Feb 2024 16:45:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.93.74
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708015528; cv=fail; b=pWk88hoZ1ZImQM9wXgfvXKS8Au0GqbKdcvDftdNEUHqvQyLFpOmneLPA2NKw7DsYHwBJ4LDiU9ko/F1HWvzICsMO5q+Y14TO0BhPkRZnQbZR3AMvt8BsTab2tVTFmm+QPFn7ggiOxFUcCVRuXoMs1TWBBtbiUFPGaaX/uVg3ngc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708015528; c=relaxed/simple;
-	bh=lEiZIEh4l1Pzg41gN8ZF1pb0O6WpqU6yanm3S86SMlg=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=dTX8E7HQNcgRaDhn2okX+X1f8gOmMs/h6Fd4DrQom5FkfRwbqfvTxjbr4gNlZwzPfwXr9lszcZkbte2ANeqUFfrJpTzFd0P8FapX8OkK93rdvW+axy43B/yUauH/2uMqayTOAI6Smf+R+zv3FDlTyDfBRzrFzd1I41pTZblkg4o=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=czS/kJlN; arc=fail smtp.client-ip=40.107.93.74
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cbrczpK9uoN2tfeWkXfq8j1LztEpHkAyawjqOQtuYIOFhakO9e5yBjXgtcfgumb3pk2CkgbgYY/bWAlDFAwZ8YmxW6jwamdFQhI1oBkOVfCLo/oJQ5dPRjZ9FxLY9SXfMbRMTMhLeCodrPGYtSr3R+b1q35uRJ6041w9trGKL52uotyX/tLCDydPdCiv1u5Zzds+ESDMPLd2tdqVuqyO4+SBWN2dzqG/lqfh/xgEOuqckz1zzJ3nUA6vlyZNzDZGpPf5Ck0CxyABEDYIrvw8ukN+3q+tEK2XsScOXd4YfYlpaPuS7kz5JlDnr42lURbS0RhbQCaJveswkEcyYjaUow==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wA3kd2hbT/QH3z/uGrj3MRkMNir987+rE5C5rpOV7I4=;
- b=GM94RGQG/x7JUPhsKV1v6M+RAa2C1krNy7FU8d9pp5/djF2qBo38ahD1PUCFxtscvdGPXWmsAcZQu2Z/CIxjGZ6cMG1gRExbKDOupdWA8sXWy5FFBvg+uhO2McQc3/+LILrvvDXznCVJnXXoXgkoPVDPwolZlYTXEEBKVXIumfRgd9Al7L3X7W+5GJKsR7eNCHmUef0HxE+Z8yStYtBGTBGfXElqYWwkquQH93AKV34MGSTkBbRw8rnqWBQ6IiqKMCifKGyLp8o3C1GkFKa/qj9fjw+Kp89kBdNz49dbfrl/inkEQsSsAl8qUD4HsKmKW8RjOFMO87rBD8ZCy1NyJA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wA3kd2hbT/QH3z/uGrj3MRkMNir987+rE5C5rpOV7I4=;
- b=czS/kJlNxfwpZ/QKGJjx7I7s0QtZuztnCdqpjw55aKPtIde93nerDV7yiT9OfRQXYnrw5GL+WvHD+OMlKUkmibvyh7jl+qa/hmNpRt+GhHCLMgjsHfUqzUzXC+zmmTKLkOZWQCpgU+ekWs9R8eMe0GIjNVuOTK5QnuSTAUi0T/g=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BL1PR12MB5874.namprd12.prod.outlook.com (2603:10b6:208:396::17)
- by CYYPR12MB8870.namprd12.prod.outlook.com (2603:10b6:930:bb::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.25; Thu, 15 Feb
- 2024 16:45:24 +0000
-Received: from BL1PR12MB5874.namprd12.prod.outlook.com
- ([fe80::251:b545:952c:18dd]) by BL1PR12MB5874.namprd12.prod.outlook.com
- ([fe80::251:b545:952c:18dd%7]) with mapi id 15.20.7316.012; Thu, 15 Feb 2024
- 16:45:24 +0000
-Message-ID: <09b0768a-4534-420f-9774-50e250795dd7@amd.com>
-Date: Thu, 15 Feb 2024 10:45:21 -0600
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v10 2/4] dt-bindings: remoteproc: add Tightly Coupled
- Memory (TCM) bindings
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Rob Herring <robh@kernel.org>
-Cc: andersson@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
- krzysztof.kozlowski+dt@linaro.org, linux-remoteproc@vger.kernel.org,
- michal.simek@amd.com, Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
- ben.levinsky@amd.com, linux-kernel@vger.kernel.org,
- mathieu.poirier@linaro.org, conor+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20240213175450.3097308-1-tanmay.shah@amd.com>
- <20240213175450.3097308-3-tanmay.shah@amd.com>
- <170785205177.2155555.1311787541370066483.robh@kernel.org>
- <b931a24c-f676-4ddb-bb7c-e7a509d5dd4b@amd.com>
- <135e3154-2a55-40ac-9ba9-2de00833b903@linaro.org>
-Content-Language: en-US
-From: Tanmay Shah <tanmay.shah@amd.com>
-In-Reply-To: <135e3154-2a55-40ac-9ba9-2de00833b903@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SN7PR04CA0074.namprd04.prod.outlook.com
- (2603:10b6:806:121::19) To BL1PR12MB5874.namprd12.prod.outlook.com
- (2603:10b6:208:396::17)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EC61135A69;
+	Thu, 15 Feb 2024 16:52:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708015959; cv=none; b=ntSoplI8ZbvLiLNj5dxpP5Q7XRJMr0ykUWScXooa6h9pWTsrMebalIVH8p0UEF8j5C8GTl0sptIAaqu41xGw19+ero2A28kBSQV7L+nr1ZCy9yw/opEjS/673OcDr/CBlipyFYeiWHXbzFAM1fMi3ZsMfpi+N5TONK7QKN2X0yQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708015959; c=relaxed/simple;
+	bh=uz+Np8+G4qWw8PU0VSBJNfx1oM1lJAFehJiEej4mz+4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=LZOe9xyq8VaKynrlMAj0g8i7GCtf3E4Vy9M/zagA9SwUeypNyonlmmYsoXno7ErZAbTsWMujpFjFDPIM5gVBOXfLmqeyCsPoc/o0eZw4yYjxcI4zauXKcTjD5/ITS+6wvIjj24GVbk3lG+rrs+ovCP4JneLD+UtAIqTGmcRVkek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=jtRPtvNb; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id CDF77E0011;
+	Thu, 15 Feb 2024 16:52:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1708015953;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=jQzNaC4fbX9njWrN3MZ96SWXHEvPGyukJ/MJUgb0Ufw=;
+	b=jtRPtvNbikaavwuAwhIXCTXCvi72i/3fzBPBJgxgqtcU72jRmj4Gnvu88GQzqS5ktzDtUv
+	Szm8DiTfA/Jgk2Q8EZb86VnPARemwTMraYVwkBLbfapJA9fQhOV5QIPDaVtn2LSF3k42Fn
+	JPpRIVV5cGmnmJKfdMRzurQuzVBb853IcPg03oiVTAryYNZ/p0DrgWgGaQoyiuTtH9Ir5m
+	kAtEhNWN3ap9+kCzJVnild5PYp5M974xw67+I3X25MV7QiYnUxzTmOdyJYLI5wiDq2OPha
+	lqmeQFwK0crtd7nRXenqGH4Pex8d9fqvPEYTgRyqmDuDjS+CNTQVzf69px69Iw==
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: [PATCH 00/13] Add Mobileye EyeQ5 support to the Nomadik I2C
+ controller & use hrtimers for timeouts
+Date: Thu, 15 Feb 2024 17:52:07 +0100
+Message-Id: <20240215-mbly-i2c-v1-0-19a336e91dca@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5874:EE_|CYYPR12MB8870:EE_
-X-MS-Office365-Filtering-Correlation-Id: c9c20ad0-4609-47ac-4c6f-08dc2e45819b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	0r0JEsIUCxVGNldJWq98SuaKV9CDnS+qL+6OcDe5BOaASO47qbLgmuHfBzjtwdcFwpBG2yYXXtDhtFwitGBOzmzDjHe63pJDpjf+B4p0Q5Yj/tCdR2snOqWQUvXvgsPx3xr+jlCTSDJo4uM8uk9iRGSPLiITz8bZaFeUOwyAn3ASkXpXZufyu0D28vInTNmTSRKvdWvIXzTgb0Exznl1FyCmcD2IDLMhHOpdFho1tIpq5oJ/CabYkCTmy1JmFxqsWgBkbtpsNgo5UWNf24e/8jZkCrMyHLkKo65rA8NIfNP0E2t7QNlZYpnYeEtrOOm6AAOdygjEXF6z1ll2QltUSWTnhrHQlhChBHEG4+9tDhNzr4SJVqhkcBTJypAuM9RTGb4jBsaG0FH92BapCI5Zm0UMRNP1pkVkxKVhDwSBT3i2tb4VEAmG0scxLa9DoqYYkGKgb3cYlWPuCft8Uk1GRggbJxzQkQJfyFtN538Gu4fenZ9Z7AYPWfE2tG2m07VSME5xl4K+nW+701lqGQ7KNIR3cI6ZTUlrf5/JCOpg/by3OiR/gdQL5o6MexeObKJH
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL1PR12MB5874.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(396003)(136003)(366004)(39860400002)(346002)(230273577357003)(230922051799003)(64100799003)(451199024)(1800799012)(186009)(66476007)(26005)(4326008)(41300700001)(83380400001)(2616005)(8676002)(8936002)(66556008)(6512007)(66946007)(53546011)(6506007)(110136005)(316002)(6486002)(6666004)(36756003)(38100700002)(966005)(86362001)(31696002)(478600001)(5660300002)(44832011)(2906002)(7416002)(31686004);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?enBTc2pyb3dqcjVZL015MklvMHlFbDFrQTZjZmhDRlZtYmtSV1BLbUZPeXBq?=
- =?utf-8?B?clZ4bVh4NlVIcGQ4QU1XT0VaNXE5Z3p4OVFHRkpiK0FpM1dDZUQ3UDZ3b08v?=
- =?utf-8?B?Y3RtUlVhdE1aOENUZVBIREdUOEtUT0VGZnVVaWRNZVZGQlQxSFM5OVlHdytV?=
- =?utf-8?B?MEhRTWNWZDE1WFZoTWl2VGRNNUlJT3ZJNGE2VXJudW5NQmlJcDdVVThCbVNP?=
- =?utf-8?B?dlM3QWhka2VTbkI5ZHUyYnYrQ3RTY1ZDSUk4UE5GNEwyNTZueWF3Rm5yMk5i?=
- =?utf-8?B?dGJsd2tPNTlXdm9DTzIvZ2s1OUdFdGRUV2NFaHRWTEwwY21vdGlGR1BPeU5S?=
- =?utf-8?B?V054cEg1bVFsdy82QkowQlBpLy9VRHNkSlBHK1hyYWlIN2hqQ1NwRmRFUWIz?=
- =?utf-8?B?S1RubjhvRTcyazRFa2NmbmdZdDdXVmJOTWh2UU5EeWozOXNFYVBaRm5Ja01K?=
- =?utf-8?B?bkxUeU1waWgvQ1JzOVNUWStCZHRTVjJWTDdVaktzYWhjeGpiMXBNbThPVE4z?=
- =?utf-8?B?b0VpcXNoZ1hXRzBlSWlRM05jclRHSjlUazV6N3g5d1NSWHdPMVhtWEUyaGFu?=
- =?utf-8?B?RWhXWkZKNzRraFZGcWxUMk1pRitRREdNZTcybE9mOUlCbVRsa1Y0SVNBdkxZ?=
- =?utf-8?B?SDBwSGdxQkhlMUxORytDa0x3bkNhaG9nUSsyZkU5UHEwVXhpR0hoZHY2amxC?=
- =?utf-8?B?d0ZYQm5SaWN2NVVxdEQxaWg4cWlIZUZ6a3RrSlg2Y2wzbDUzbjNHS2ZjMjgv?=
- =?utf-8?B?OTR5b3ovbEhLMnppUUtsdDhtVEVGS3I3OWkyS3Z2U0xudXlrQU9sMERGNmVP?=
- =?utf-8?B?bDJtV1g0M3ZhSGdDb3IwbFI4RGdrSUY0eis4MVZlRi9JNGx2ZWgwWUQ0RW1w?=
- =?utf-8?B?bExRMmN2UTNkbHd2R21hQzZzVjkrMmZKNHZnNkc1Yy96ZUROQzRPZEJlcE1C?=
- =?utf-8?B?MGxDL3J2b2dJWXVrVnVkUTB1d2hyaHo3QjMrbitmN0MvcTMza0RTSmd1TEl3?=
- =?utf-8?B?dGFGbmw4Vm9ZSnlETmhlcXhZbFNtM2FEV3NnK05wSW9oU2x1WFhsU0NTYlFD?=
- =?utf-8?B?NzJqWlBrdFdrQWtnRjl4WENnUEFsNkNBekt4c0Q4SmtVcTJ2em81cTVNV2ZF?=
- =?utf-8?B?UHJzbVR5cWwzNHNBUGZraTBWcmVScUV3eVdob283czVnYktUSFJMNzV2YnNq?=
- =?utf-8?B?VEdiMmtDS09IU1JSR2dpeSsweU5ZWHNRY2llZERqVnNQWnd0K0NKYmcxN3kr?=
- =?utf-8?B?ZUwvb0ljTVhiMUhzMFNVOS9oTHVJRFNOVHBoNnJFTW5zZkVvMUlzV2UxUzRY?=
- =?utf-8?B?RldPL1JJSkozL25MR2FlN3RiaUpWVnl3VDVGaXBKcityM2l6RnpDNVMyNHEr?=
- =?utf-8?B?VGtTUnRoemxxbFcxeU81THR4MXJIc2xXQUtycHRQQnpqUkk2NHlSUlVrT0Yy?=
- =?utf-8?B?UkV6UTVHaHVCTmJPVm9QMHdZSUZURU5JZnpGemJYZWpreU10R0ZnOW5kaTNU?=
- =?utf-8?B?RFF5ZFFKL3RFNkNVaGJHYkRuOXptdUU3Wnk5eVhlRGp0bEk5OEh5aEJrS2pH?=
- =?utf-8?B?SEZMOHRqbWVxVDliRitoRHBNb0toYmYwY0VZeDZGVXpIZGFta0t3OFFEWm1C?=
- =?utf-8?B?VFQ5Ti9UWmZreWl0eUZCYWRVVVpoRXlSVkR0RGU4UU5KUndFbHRYZ2V2T2o0?=
- =?utf-8?B?TzBVRWxLcFVibVVQVjVZWVBUYnQzM081UWtNN2hWVXI1em91a3R3QUpERHR6?=
- =?utf-8?B?c1NSL0k2MDZGaDVGbVdEZ3hmZmtNZGoxWWFONDYvQ3VyL1NCMnJhbWVHZHlv?=
- =?utf-8?B?NHNlZjJLc3BTQThEaXQwNFVQcFp4NnV4WXBLS3BDS1lKQS9kY1JxNytFWkE1?=
- =?utf-8?B?WG5mRTcxV0lyQk0rTVdhMVlncGx6QTRDS04yZDQva2h0V0ErTmUzNHVWMVVF?=
- =?utf-8?B?aks4WlJkUUVCK2V3WFIvejg4YlQway85QlhtTlVHbzVjOXNpUXN5bmJhOXA2?=
- =?utf-8?B?OCt2dkF2OUM4MVNwWVlEKzAzUjNpc0pEZ2llQTBIQ0J3UFhMVWptN2ZuNFlB?=
- =?utf-8?B?YU4zNU5rSGhSeUV5T3Y5eFlMN0ZLUjJFQ0drUnRwQm9GMFFhRk5ZdS91RW9E?=
- =?utf-8?Q?3OT8If1lmzmFJ+SmokIbG+pen?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c9c20ad0-4609-47ac-4c6f-08dc2e45819b
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5874.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Feb 2024 16:45:24.3205
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 22jkE02zne0OPnzasJNbD1zx8/wsUKmZErSrIBcD+3WiTn3rYbGE+z3sukmXxX3T
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB8870
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIADhBzmUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI2NDINbNTcqp1M00StY1TzZKS0pKMjSytExTAiovKEpNy6wAGxUdW1sLAHn
+ jwDRaAAAA
+To: Linus Walleij <linus.walleij@linaro.org>, 
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-mips@vger.kernel.org, Gregory Clement <gregory.clement@bootlin.com>, 
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
+ Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
+ linux-hwmon@vger.kernel.org
+X-Mailer: b4 0.12.4
+X-GND-Sasl: theo.lebrun@bootlin.com
 
+Hi,
 
-On 2/15/24 3:06 AM, Krzysztof Kozlowski wrote:
-> On 13/02/2024 21:37, Tanmay Shah wrote:
-> > Hello,
-> > 
-> > Thanks for reviews please find my comments below.
-> > 
-> > On 2/13/24 1:20 PM, Rob Herring wrote:
-> >> On Tue, 13 Feb 2024 09:54:48 -0800, Tanmay Shah wrote:
-> >>> From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-> >>>
-> >>> Introduce bindings for TCM memory address space on AMD-xilinx Zynq
-> >>> UltraScale+ platform. It will help in defining TCM in device-tree
-> >>> and make it's access platform agnostic and data-driven.
-> >>>
-> >>> Tightly-coupled memories(TCMs) are low-latency memory that provides
-> >>> predictable instruction execution and predictable data load/store
-> >>> timing. Each Cortex-R5F processor contains two 64-bit wide 64 KB memory
-> >>> banks on the ATCM and BTCM ports, for a total of 128 KB of memory.
-> >>>
-> >>> The TCM resources(reg, reg-names and power-domain) are documented for
-> >>> each TCM in the R5 node. The reg and reg-names are made as required
-> >>> properties as we don't want to hardcode TCM addresses for future
-> >>> platforms and for zu+ legacy implementation will ensure that the
-> >>> old dts w/o reg/reg-names works and stable ABI is maintained.
-> >>>
-> >>> It also extends the examples for TCM split and lockstep modes.
-> >>>
-> >>> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-> >>> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
-> >>> ---
-> >>>
-> >>> Changes in v10:
-> >>>   - modify number of "reg", "reg-names" and "power-domains" entries
-> >>>     based on cluster mode
-> >>>   - Add extra optional atcm and btcm in "reg" property for lockstep mode
-> >>>   - Add "reg-names" for extra optional atcm and btcm for lockstep mode
-> >>>   - Drop previous Ack as bindings has new change
-> >>>
-> >>> Changes in v9:
-> >>>   - None
-> >>> Changes in v8:
-> >>>   - None
-> >>> Changes in v7:
-> >>>   - None
-> >>> Changes in v6:
-> >>>   - None
-> >>> Changes in v5:
-> >>>   - None
-> >>>
-> >>> Changes in v4:
-> >>>   - Use address-cells and size-cells value 2
-> >>>   - Modify ranges property as per new value of address-cells
-> >>>     and size-cells
-> >>>   - Modify child node "reg" property accordingly
-> >>>   - Remove previous ack for further review
-> >>>
-> >>> v4 link: https://lore.kernel.org/all/20230829181900.2561194-2-tanmay.shah@amd.com/
-> >>>
-> >>>  .../remoteproc/xlnx,zynqmp-r5fss.yaml         | 192 ++++++++++++++++--
-> >>>  1 file changed, 170 insertions(+), 22 deletions(-)
-> >>>
-> >>
-> >> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> >> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> >>
-> >> yamllint warnings/errors:
-> >> ./Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml:118:13: [warning] wrong indentation: expected 10 but found 12 (indentation)
-> > Ack. I will fix this.
-> > 
-> > However, can I still get reviews on patch itself so if something else needs to be fixed I can fix in next revision as well.
->
-> Sorry, I have too many patches to review to provide feedback on work
-> which does not build/compile/test. First use automated tooling, like
-> building a C code, to detect as many issues as possible then ask for
-> reviewing. Not the other way around.
+This series adds two tangent features to the Nomadik I2C controller:
 
-Ack. I will send new revision fixing the warning.
+ - Add a new compatible to support Mobileye EyeQ5 which uses the same IP
+   block as Nomadik.
 
-Thanks.
+   It has two quirks to be handled:
+    - The memory bus only supports 32-bit accesses. A writeb() is used
+      which we avoid.
+    - We must write a value into a shared register region (OLB, "Other
+      Logic Block") depending on the I2C bus speed.
 
+ - Allow xfer timeouts below one jiffy by using a workqueue and hrtimers
+   instead of a completion.
 
->
-> Best regards,
-> Krzysztof
+   The situation to be addressed is:
+    - Many devices on the same I2C bus.
+    - One xfer to each device is sent at regular interval.
+    - One device gets stuck and does not answer.
+    - With long timeouts, following devices won't get their message. A
+      shorter timeout ensures we can still talk to the following
+      devices.
+
+   This clashes a bit with the current i2c_adapter timeout field that
+   stores a jiffies amount. We cannot rely on it and therefore we take
+   a value from devicetree as a µs value. If the timeout is less than a
+   jiffy duration, we switch from standard jiffies timeout to
+   hrtimers.
+
+There is one patch targeting a hwmon dt-bindings file:
+Documentation/devicetree/bindings/hwmon/lm75.yaml. The rest is touching
+the I2C bus driver, its bindings and platform devicetrees.
+
+About dependencies:
+ - The series is based upon v6.8-rc4.
+ - For testing on EyeQ5 hardware and devicetree patches, we need the
+   base platform series from Grégory [0].
+ - The last commit (adding DT phandles for resets), we need the syscon
+   series [1] that provides the reset controller node.
+
+I think there are discussions to be had about:
+
+ - The handling of timeouts. Having a non-jiffy value is not driver
+   specific. Should this change be done at the subsystem layer? The
+   subsystem could even fetch the value from devicetree and auto-fill
+   timeout, with a default given by the driver. Not many drivers seem
+   to use the i2c_adapter timeout field from my quick grepping.
+
+ - The DT prop for timeout. I've picked "timeout-usecs". Some drivers
+   use vendor prefixes, but this is not vendor-specific and only a
+   software implementation detail.
+
+ - The shape of this series. Initially it was split in two. However I
+   brought them together as they cannot be applied independently.
+   Please tell me if a better approach is to be preferred.
+
+Those are thoughts, I'm sure people will have feedback on this.
+
+Have a nice day,
+Théo Lebrun
+
+[0]: https://lore.kernel.org/lkml/20240205153503.574468-1-gregory.clement@bootlin.com/
+[1]: https://lore.kernel.org/lkml/20240212-mbly-clk-v6-0-c46fa1f93839@bootlin.com/
+
+Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+---
+Théo Lebrun (13):
+      dt-bindings: i2c: nomadik: add timeout-usecs property bindings
+      dt-bindings: i2c: nomadik: add mobileye,eyeq5-i2c bindings and example
+      dt-bindings: hwmon: lm75: add label property
+      i2c: nomadik: rename private struct pointers from dev to priv
+      i2c: nomadik: simplify IRQ masking logic
+      i2c: nomadik: use bitops helpers
+      i2c: nomadik: support short xfer timeouts using waitqueue & hrtimer
+      i2c: nomadik: replace jiffies by ktime for FIFO flushing timeout
+      i2c: nomadik: fetch timeout-usecs property from devicetree
+      i2c: nomadik: support Mobileye EyeQ5 I2C controller
+      MIPS: mobileye: eyeq5: add 5 I2C controller nodes
+      MIPS: mobileye: eyeq5: add evaluation board I2C temp sensor
+      MIPS: mobileye: eyeq5: add resets to I2C controllers
+
+ Documentation/devicetree/bindings/hwmon/lm75.yaml  |   4 +
+ .../devicetree/bindings/i2c/st,nomadik-i2c.yaml    |  49 +-
+ arch/mips/boot/dts/mobileye/eyeq5-epm5.dts         |   8 +
+ arch/mips/boot/dts/mobileye/eyeq5.dtsi             |  75 +++
+ drivers/i2c/busses/i2c-nomadik.c                   | 710 ++++++++++++---------
+ 5 files changed, 534 insertions(+), 312 deletions(-)
+---
+base-commit: d55aa725e32849f709b61eab3b7a50b810a71a84
+change-id: 20231023-mbly-i2c-7c2fbbb1299f
+
+Best regards,
+-- 
+Théo Lebrun <theo.lebrun@bootlin.com>
+
 
