@@ -1,121 +1,103 @@
-Return-Path: <devicetree+bounces-41886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26557855C72
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:28:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64769855C81
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:32:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3EB3C1C20BEE
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 08:28:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC375281D3E
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 08:32:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0029011CB0;
-	Thu, 15 Feb 2024 08:28:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 532EABA2D;
+	Thu, 15 Feb 2024 08:32:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="eE0oELpZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35E8EDDD9;
-	Thu, 15 Feb 2024 08:28:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0E8C13AD1;
+	Thu, 15 Feb 2024 08:32:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707985731; cv=none; b=FwLHgHS7zK/QSOFJAdWqQLg6EHFMtEeQ+yYELn/g8W4LTQkRPlYk7ROIyqnOU7f1v2DhBOacrWTHtqoFr4e/5xr0EDN+N+WKogb2pTOI3NTVsteVv7mhJ1dExrQJMxndwzvsU4g62nuXZga99QdWgS974mwLC0+HtLIEuMQ2v2I=
+	t=1707985977; cv=none; b=o8mYfQ2AM28spPQA32z1tF1jd5yArSdflCdvqBz0M80YHPWRzs6mms3goG8AZ4SwhBO8ixXVGfJnAyCs5TUkAM/Ev5LavMDVVGFy2r/Kjporrn/g8Gn8UAZgeMDYZ+kCmPQ2YpGZ3ap+PdW0KpifiJfWApFnAaDku8setjqSarE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707985731; c=relaxed/simple;
-	bh=+yCxwEKKSG6fISdJT1tUcPSgfuvsXTudLPDveVFJc20=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rbnubvJNUweDQSYSbuoSumf7ETd98s372lINKQYxU37wRTwxEtPVnSx9L4yrILlwSXJ/aiX4wEmZnDyHQAS6JOdZU3jkVFn+wctJazOhTOHu/EOv0x5ysaI6T86X8vrFdfF6aeYVN+axTGR41Grs1J3R/otokrx2zS1N9MWpFMw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-60757c46e34so5504787b3.1;
-        Thu, 15 Feb 2024 00:28:49 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707985729; x=1708590529;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=74P+OGTCQd9afgZ87N6w9iKczJuwqlWRYbhKOMZQBF4=;
-        b=dWb0y+CfyjFYT/CXWVyaUKr4bkR7pIaPydjaSV+pfihQdpxSmPkapTqy6jhq62LSD8
-         3HpYFgA8NYVOXnMLvgySvB1Cc3DpWwkJnaotqO68BAv09nnh/X4UJoCbGvqCj+yvfTPu
-         NLHB2M2g/Lv01XiXmtTOgzlzl2uv0Q4uk6yO+K6MmZEDR1IyjyKgZ2SrqcCGFaLOnOc5
-         zr9i5tBvoWk/Ji2/+/2UbIz4JqZQ9whj67VDI6TTtPEIdm+iCsKimn//k14YMJW6fLJs
-         oOr4Q1U/a5L9eHtbUwA9EvZ7/4CSdhcIdVdtubXuU2bMvFo/RsiWdhpHExY6tnkLEiLc
-         SPdA==
-X-Forwarded-Encrypted: i=1; AJvYcCVfwWxOKtPQPseikCXdXysSHM5Eoi1KpnDAiI1Hmf5HoA71tdD9J5eL/4ADnXeXVT9fuar1xSd9rDEuAj+e8LD780lMUFauh3NAB9//3G+rgf2Fv5xMj4y9pHRSCCkTUWXXHcVj0/AUAX67j4nX
-X-Gm-Message-State: AOJu0Ywlh1wxszytmaAzYesM00QvW5avGpeK8cDQWDevhQ9Bx1c3hGQr
-	M7stlKrMNq+CRLB3ebbfIiHShm3a6tWXD9842owA03WuZtS1DAF7z/SFfRcVzGE=
-X-Google-Smtp-Source: AGHT+IECYy1kbv1UjRQyl9p4HPR/2Y3rfQJW+/G1kbqSoHV4lldCeTDd/EV+WmsphGE3RfABEgdnYA==
-X-Received: by 2002:a81:6d04:0:b0:607:c7a5:d1af with SMTP id i4-20020a816d04000000b00607c7a5d1afmr1060646ywc.16.1707985728853;
-        Thu, 15 Feb 2024 00:28:48 -0800 (PST)
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
-        by smtp.gmail.com with ESMTPSA id c4-20020a0df304000000b006077f869225sm160827ywf.73.2024.02.15.00.28.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Feb 2024 00:28:48 -0800 (PST)
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-dcc73148611so613861276.3;
-        Thu, 15 Feb 2024 00:28:48 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUgcTVgsN+enYfdSYOHWHXmGntn16ZgHBs/1OkT3FYegBNLS3Ty5KnJumXLIR8K5ccHxv+L+yUkMAhDv4cq+6fgSm5NPE4xkyWFFf5jPb9ppqDcbB7inEaEPLzOlwo7wMxK7QFSL4kViVRSfmfD
-X-Received: by 2002:a25:b282:0:b0:dc7:46ef:8b9e with SMTP id
- k2-20020a25b282000000b00dc746ef8b9emr942868ybj.29.1707985728513; Thu, 15 Feb
- 2024 00:28:48 -0800 (PST)
+	s=arc-20240116; t=1707985977; c=relaxed/simple;
+	bh=AhM39UWbG/Oh4jBUS4gyxetK2SaA22mS/2gf/zbMErk=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=qYhViza5DsJYxDzCdeBy2hXeErEgqW6ZnMUzUlixmhG25i6/ulyqnZw06Uh99xoA/cV07w097bLO33Rz0cC+pp6GdjXF/3jYXD+9VfAYJ72/GLR4aKgNbRcs8dy/Ncn+KNKMu1Q/lNpMbR0HSJzuLupIjRmh85S+DrSZn7PWykk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=eE0oELpZ; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41F8W7O0072534;
+	Thu, 15 Feb 2024 02:32:07 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1707985927;
+	bh=/X1wR89ZBb3UtaGiPPrCIVmHNgdtrQGVd2HpQqSUzhQ=;
+	h=From:To:CC:Subject:Date;
+	b=eE0oELpZXEvMKOUNUGTX3O4fEgEYYOhyqxck6kjejIqmBheSWSWS/45w0gsARc/6y
+	 1oiQTmGG7wPKxLRV4l69YU+szViKJGrWQPDE18c4R+ybSf2QofJPqZbk6fF1DKrWr9
+	 UfK0aaw82Sq3c6bTQod9/+dv7iJfZ6voS6whNDjo=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41F8W7bt005206
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 15 Feb 2024 02:32:07 -0600
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
+ Feb 2024 02:32:07 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 15 Feb 2024 02:32:07 -0600
+Received: from localhost (ti.dhcp.ti.com [172.24.227.95] (may be forged))
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41F8W5RU107645;
+	Thu, 15 Feb 2024 02:32:06 -0600
+From: Devarsh Thakkar <devarsht@ti.com>
+To: <jyri.sarha@iki.fi>, <tomi.valkeinen@ideasonboard.com>,
+        <airlied@gmail.com>, <daniel@ffwll.ch>,
+        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>
+CC: <praneeth@ti.com>, <a-bhatia1@ti.com>, <j-luthra@ti.com>,
+        <devarsht@ti.com>
+Subject: [PATCH v3 0/2] Add common1 region for AM62, AM62A & AM65x
+Date: Thu, 15 Feb 2024 14:02:03 +0530
+Message-ID: <20240215083205.2902634-1-devarsht@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <87cyszpwmp.wl-kuninori.morimoto.gx@renesas.com>
- <CAMuHMdXih9g46JKvz_UsjH3h_OrJOJLnFv6ixpYjE6Q4DRxbsA@mail.gmail.com>
- <87h6iahb6o.wl-kuninori.morimoto.gx@renesas.com> <CAMuHMdXAbbVs=OOkqsKz11e2TtbUWSMxNAiG+kus_T-0cr_ZdA@mail.gmail.com>
-In-Reply-To: <CAMuHMdXAbbVs=OOkqsKz11e2TtbUWSMxNAiG+kus_T-0cr_ZdA@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 15 Feb 2024 09:28:36 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVjDfpsyXbG3ZPJ3YWup71kAUevV8CX+1tcbGmG=80nDQ@mail.gmail.com>
-Message-ID: <CAMuHMdVjDfpsyXbG3ZPJ3YWup71kAUevV8CX+1tcbGmG=80nDQ@mail.gmail.com>
-Subject: Re: [PATCH] ARM: renesas: r8a7778: add missing reg-name for sound
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Thu, Feb 15, 2024 at 9:20=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
-> On Thu, Feb 15, 2024 at 12:35=E2=80=AFAM Kuninori Morimoto
-> <kuninori.morimoto.gx@renesas.com> wrote:
-> > > This never triggered with "make dtbs_check", because
-> > > arch/arm/boot/dts/r8a7778-bockw.dts does not change the status proper=
-ty
-> > > of the rcar_sound node to "ok".
-> > >
-> > > Can we just add a line to do that, or is anything else related to
-> > > sound missing in r8a7778-bockw.dts?
-> >
-> > In my memory, first BockW support used platform-data style
-> > (=3D arch/arm/mach-shmobile/board-bockw.c) but was switched to DT style
-> > after that by Ulrich. I don't remember details, but when it switched to
-> > DT style, we already focusing to Gen2 board support. So I didn't use it
-> > via DT style. I guess he didn't test it, because it is missing many
-> > settings to use sound on DT. So, just adding a line is enough anyway.
->
-> To clarify: adding the line is enough, or is not enough?
+This adds DSS common1 region for respective SoCs supporting it.
 
-It's missing (at least) pin control.
+Changelog:
+V2 : Remove do-not-merge tag and add am62a dss common1 reion
+V3 : Add Fixes tag to each commit
+ 
+Devarsh Thakkar (2):
+  dt-bindings: display: ti,am65x-dss: Add support for common1 region
+  arm64: dts: ti: Add common1 register space for AM62x, AM62A & AM65x
+    SoCs
 
+ .../devicetree/bindings/display/ti/ti,am65x-dss.yaml       | 7 +++++--
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi                   | 5 +++--
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi                  | 5 +++--
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi                   | 5 +++--
+ 4 files changed, 14 insertions(+), 8 deletions(-)
 
-Gr{oetje,eeting}s,
+-- 
+2.34.1
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
