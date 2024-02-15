@@ -1,229 +1,141 @@
-Return-Path: <devicetree+bounces-41989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB4E9856075
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:00:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E42985607A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:00:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A37D1F21125
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:00:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59F97283918
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:00:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B9BE132C3C;
-	Thu, 15 Feb 2024 10:46:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="UY6Fx3jO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BA5B133408;
+	Thu, 15 Feb 2024 10:46:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9992612E1C4;
-	Thu, 15 Feb 2024 10:46:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71E56133412;
+	Thu, 15 Feb 2024 10:46:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707993987; cv=none; b=GEN6WkEfV5SUsRRNtxdBJMi8GDWogOCuc+4tzIQLSs7bCO4+KXalnE+mWvXImigA4whFVijV3Ky/hdoyzCZo8ZYSSF+Oi/b20mIcWC+4vGpAXN5MfP3nbmWH/R0oGCKTlybrnNUn2BK0ZbIZoJr14hrLSrwynqqnGYPYa8A8b0Y=
+	t=1707994007; cv=none; b=vBPIg/x2IbtaZnxgcrzt7DUvu9DBId0UGbpmrrri3MqsRzNdFHQLqcgUwtKkU7kIJhBhpon6LTpXeoTfzt21TNxv7scAJSjuwDmvFjQm32iOaiNlnm0B4sb9ZCbzWkIybNlD5GYb//4iaEe8CeQcPZYNaaPMpiRtgLrPKW8+ano=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707993987; c=relaxed/simple;
-	bh=m1LjF1npWj8tCKHK1NcAZBpF2cD039mfR5VwBO1BovM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=kccfve1LLYruIby3ee7i3f8uAtjKVcHl/PJIX6wLXuxIww1yzZz22c++Ib6sxkXWLcy6nSnd0haZ0f2T+q5iPIfFYMGcGxXZoRXYmSj6KCnN0Vuqz4rfZgjA51jb4/qZcRh53xWavexcDAGnNC0PhDAKP0lkrRMw67H1PJ4dQBw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=UY6Fx3jO; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1707993986; x=1739529986;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:to:cc;
-  bh=m1LjF1npWj8tCKHK1NcAZBpF2cD039mfR5VwBO1BovM=;
-  b=UY6Fx3jOMxV3CrJQzLMf9i15vr0aa8ezR/NecGHE3kehyXm5VcCE/Nqn
-   70B2FUz/F6NhT/E+YqoDloyJ6H5KJOKreM0JqfMvMe8LbSIcaWo4qgRmJ
-   X1h49QteXFNcCWk+l6B28N8QzVUX5kNgcsBM7U/nuTszksBXLcJ7Y0i4F
-   Z8mE2BbIvJKqobYVfoZnUUzLLZHZuUvlOCMAjQRXKWXW1eSxS3KsMuOIw
-   hRZT7zLKMcONeUIY6DoygyTY3pJfs4nyqJQ8SxlLEyPh+JMnC62NxnHL2
-   Zx3f6WUMeTf3YfrZoe/GQB4tXM6IvS3WrWQO8Tw8S4BlKLG5iNhPFZM2a
-   g==;
-X-CSE-ConnectionGUID: sBOc7X1pTDaZ9glc9RjUSQ==
-X-CSE-MsgGUID: IeU7h4lfSoWKR0brJFk/NA==
-X-IronPort-AV: E=Sophos;i="6.06,161,1705388400"; 
-   d="scan'208";a="247024159"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 15 Feb 2024 03:46:24 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 15 Feb 2024 03:46:01 -0700
-Received: from che-lt-i66125lx.microchip.com (10.10.85.11) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Thu, 15 Feb 2024 03:45:56 -0700
-From: Durai Manickam KR <durai.manickamkr@microchip.com>
-Date: Thu, 15 Feb 2024 16:15:44 +0530
-Subject: [PATCH] dt-bindings: dma: convert atmel-dma.txt to YAML
+	s=arc-20240116; t=1707994007; c=relaxed/simple;
+	bh=2g1UCNPioXAN/NTdQsZtoVsmkeQZGEUJ1Z4j/bMyhTw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fGgqrVbVSFbULcxZVgdt7aCMdWt8eAUFN87OqnoG4Eqz+y1sXi3jt8JEYBSClZ210rhGK8h1prSThjxNJztBpJLNeOAYmvXgGX44p94dp8iUd+IZ8qHIqt2yxP1xw1vqB2TDXFxnODvV8egWfvLymWJEoF0A9wTlO257xlQBR6s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-604a1581cffso7011917b3.3;
+        Thu, 15 Feb 2024 02:46:46 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707994004; x=1708598804;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=i1lAFMaqNvrj4VTIdRbaFJPSTWNCjgzdwW6T4WWjzLw=;
+        b=Cq6v1D9BLWOn9lNzBr955DlR5NMKKzXRcNeoilXgtscZvTuWcoG8Yb77pdIQXT4sc/
+         gln0uNZhZMCgauPlvdOjvR8s/S8ebc/fyD9fbB0lbGN4tdHYtXuRpWtaWdoWvezWhhHX
+         SCTzXV1IzDuh4wG3ziy8h9G//L0OfQxmlsCVXEi2nTdMli3q0wsFoDSBW4JhJdkEtxHW
+         OrZ3Td5mZ1l106KxD8eazUT8jFM6KZFfJ/fTNzhLJvzgtP644pmSPE5gD644XRN0LNGz
+         WJexq+AcYNRLF4CNz3DXVIhmOBF9aXAUPgI/XlXiCWoyz+V2sej2X1/L2O1gKAh06lK7
+         OCqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWC8+p3j8i4Hst+GI6kTAjTs6bev4UWsd+TF5pP3d/ibIc68Auv0gcQwskwftVAgYmfSF0GR888zgDIcNolR3Z9c3QYelkJMUZuq/og
+X-Gm-Message-State: AOJu0Yw5oEIutZaFZXsj7D25MYvGQ8QxhiKlT2KIFGjUz+IqyPE8E+B4
+	jdeV9odTBTADXQfYcCugZpFhJjbtlNyQg4heCfb5Hk5iwGbL9ctPo2kShkW9H27NAQ==
+X-Google-Smtp-Source: AGHT+IEAMlNuzUm4x9ocnPd/5LkUN4u0ASIukzxeWojbjm37d9otLvtmnc69XPSSRz/FYuxLNcNGjg==
+X-Received: by 2002:a0d:ca0c:0:b0:604:93a9:386a with SMTP id m12-20020a0dca0c000000b0060493a9386amr1559700ywd.39.1707994004304;
+        Thu, 15 Feb 2024 02:46:44 -0800 (PST)
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
+        by smtp.gmail.com with ESMTPSA id b188-20020a0dc0c5000000b00607c2ab443dsm189942ywd.130.2024.02.15.02.46.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Feb 2024 02:46:44 -0800 (PST)
+Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-dc238cb1b17so640483276.0;
+        Thu, 15 Feb 2024 02:46:44 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUgjAPnek/Orp6jTomrskDZpjzDtNIPVZk2s96++Xw3pW5YRGkI4/GOvySAxVV7OWIYVqUXQstYnEzRulqs3GtidAcTviPElkaBpJCV
+X-Received: by 2002:a81:8492:0:b0:607:90a5:dc15 with SMTP id
+ u140-20020a818492000000b0060790a5dc15mr1629169ywf.7.1707994003820; Thu, 15
+ Feb 2024 02:46:43 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240215-dmac-v1-1-8f1c6f031c98@microchip.com>
-X-B4-Tracking: v=1; b=H4sIAFfrzWUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIxMDI0MT3ZTcxGRd0zQTi7QU8zTjJMsUJaDSgqLUtMwKsDHRsbW1AFX/e49
- WAAAA
-To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	"Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>,
-	"Alexandre Belloni" <alexandre.belloni@bootlin.com>, Claudiu Beznea
-	<claudiu.beznea@tuxon.dev>, Ludovic Desroches
-	<ludovic.desroches@microchip.com>, Tudor Ambarus <tudor.ambarus@linaro.org>
-CC: <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	"Durai Manickam KR" <durai.manickamkr@microchip.com>
-X-Mailer: b4 0.12.4
+References: <20240212170423.2860895-1-andriy.shevchenko@linux.intel.com> <20240212170423.2860895-14-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20240212170423.2860895-14-andriy.shevchenko@linux.intel.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 15 Feb 2024 11:46:32 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUMgGsuxo+hB9EDeq+ZU3awUMYok1NWKTaR4Yu61W7kEQ@mail.gmail.com>
+Message-ID: <CAMuHMdUMgGsuxo+hB9EDeq+ZU3awUMYok1NWKTaR4Yu61W7kEQ@mail.gmail.com>
+Subject: Re: [PATCH v2 13/15] auxdisplay: ht16k33: Use buffer from struct linedisp
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Robin van der Gracht <robin@protonic.nl>, Paul Burton <paulburton@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Added a description, required properties and appropriate compatibles
-for all the SoCs that are supported by microchip.
+On Mon, Feb 12, 2024 at 6:04=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+> struct linedips embedds a small buffer for the string that we may reuse.
+> Update the driver accordingly.
+>
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-Signed-off-by: Durai Manickam KR <durai.manickamkr@microchip.com>
----
- .../devicetree/bindings/dma/atmel-dma.txt          | 42 -------------
- .../bindings/dma/microchip,at91-dma.yaml           | 71 ++++++++++++++++++++++
- 2 files changed, 71 insertions(+), 42 deletions(-)
+Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
+Two nits below.
 
-diff --git a/Documentation/devicetree/bindings/dma/atmel-dma.txt b/Documentation/devicetree/bindings/dma/atmel-dma.txt
-deleted file mode 100644
-index f69bcf5a6343..000000000000
---- a/Documentation/devicetree/bindings/dma/atmel-dma.txt
-+++ /dev/null
-@@ -1,42 +0,0 @@
--* Atmel Direct Memory Access Controller (DMA)
--
--Required properties:
--- compatible: Should be "atmel,<chip>-dma".
--- reg: Should contain DMA registers location and length.
--- interrupts: Should contain DMA interrupt.
--- #dma-cells: Must be <2>, used to represent the number of integer cells in
--the dmas property of client devices.
--
--Example:
--
--dma0: dma@ffffec00 {
--	compatible = "atmel,at91sam9g45-dma";
--	reg = <0xffffec00 0x200>;
--	interrupts = <21>;
--	#dma-cells = <2>;
--};
--
--DMA clients connected to the Atmel DMA controller must use the format
--described in the dma.txt file, using a three-cell specifier for each channel:
--a phandle plus two integer cells.
--The three cells in order are:
--
--1. A phandle pointing to the DMA controller.
--2. The memory interface (16 most significant bits), the peripheral interface
--(16 less significant bits).
--3. Parameters for the at91 DMA configuration register which are device
--dependent:
--  - bit 7-0: peripheral identifier for the hardware handshaking interface. The
--  identifier can be different for tx and rx.
--  - bit 11-8: FIFO configuration. 0 for half FIFO, 1 for ALAP, 2 for ASAP.
--
--Example:
--
--i2c0@i2c@f8010000 {
--	compatible = "atmel,at91sam9x5-i2c";
--	reg = <0xf8010000 0x100>;
--	interrupts = <9 4 6>;
--	dmas = <&dma0 1 7>,
--	       <&dma0 1 8>;
--	dma-names = "tx", "rx";
--};
-diff --git a/Documentation/devicetree/bindings/dma/microchip,at91-dma.yaml b/Documentation/devicetree/bindings/dma/microchip,at91-dma.yaml
-new file mode 100644
-index 000000000000..a0a582902e4d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/dma/microchip,at91-dma.yaml
-@@ -0,0 +1,71 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/dma/microchip,at91-dma.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Atmel Direct Memory Access Controller (DMA)
-+
-+maintainers:
-+  - Ludovic Desroches <ludovic.desroches@microchip.com>
-+  - Tudor Ambarus <tudor.ambarus@linaro.org>
-+
-+description: |
-+  The Atmel Direct Memory Access Controller (DMAC) transfers data from a source
-+  peripheral to a destination peripheral over one or more AMBA buses. One channel
-+  is required for each source/destination pair. In the most basic configuration,
-+  the DMAC has one master interface and one channel. The master interface reads
-+  the data from a source and writes it to a destination. Two AMBA transfers are
-+  required for each DMAC data transfer. This is also known as a dual-access transfer.
-+  The DMAC is programmed via the APB interface.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - atmel,at91sam9g45-dma
-+          - atmel,at91sam9rl-dma
-+  reg:
-+    description: Should contain DMA registers location and length.
-+    maxItems: 1
-+
-+  interrupts:
-+    description: Should contain the DMA interrupts associated to the DMA channels.
-+    maxItems: 1
-+
-+  "#dma-cells":
-+    description:
-+      Must be <2>, used to represent the number of integer cells in the dmas
-+      property of client devices.
-+    const: 2
-+
-+  clocks:
-+    description: Should contain a clock specifier for each entry in clock-names.
-+    maxItems: 1
-+
-+  clock-names:
-+    description: Should contain the clock of the DMA controller.
-+    const: dma_clk
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - "#dma-cells"
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    dma0: dma-controller@ffffec00 {
-+            compatible = "atmel,at91sam9g45-dma";
-+            reg = <0xffffec00 0x200>;
-+            interrupts = <21>;
-+            #dma-cells = <2>;
-+            clocks = <&pmc 2 20>;
-+            clock-names = "dma_clk";
-+    };
-+
-+...
+> --- a/drivers/auxdisplay/ht16k33.c
+> +++ b/drivers/auxdisplay/ht16k33.c
+> @@ -451,8 +444,7 @@ static void ht16k33_seg14_update(struct work_struct *=
+work)
+>
+>  static int ht16k33_linedisp_get_map_type(struct linedisp *linedisp)
+>  {
+> -       struct ht16k33_priv *priv =3D container_of(linedisp, struct ht16k=
+33_priv,
+> -                                                seg.linedisp);
+> +       struct ht16k33_priv *priv =3D container_of(linedisp, struct ht16k=
+33_priv, linedisp);
 
----
-base-commit: 7e90b5c295ec1e47c8ad865429f046970c549a66
-change-id: 20240214-dmac-5f48fd7f3b9d
+Please wrap long lines.
 
-Best regards,
--- 
-Durai Manickam KR <durai.manickamkr@microchip.com>
+>
+>         switch (priv->type) {
+>         case DISP_MATRIX:
+> @@ -471,8 +463,7 @@ static int ht16k33_linedisp_get_map_type(struct lined=
+isp *linedisp)
+>
+>  static void ht16k33_linedisp_update(struct linedisp *linedisp)
+>  {
+> -       struct ht16k33_priv *priv =3D container_of(linedisp, struct ht16k=
+33_priv,
+> -                                                seg.linedisp);
+> +       struct ht16k33_priv *priv =3D container_of(linedisp, struct ht16k=
+33_priv, linedisp);
 
+Likewise.
+
+>
+>         schedule_delayed_work(&priv->work, 0);
+>  }
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
