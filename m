@@ -1,157 +1,166 @@
-Return-Path: <devicetree+bounces-41997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 815A58560C2
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:06:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAA3B8560C4
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:06:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 324BC1F21607
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:06:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74F8A286F6F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:06:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48C0B12C7FD;
-	Thu, 15 Feb 2024 11:02:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 696D112CD87;
+	Thu, 15 Feb 2024 11:02:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="MBk8zBOQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A00E912C803;
-	Thu, 15 Feb 2024 11:02:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00C2A12C7E0;
+	Thu, 15 Feb 2024 11:02:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707994925; cv=none; b=W6Kp0hlsfUYghS8jD2R1YnS6TfUjAlcGup7LZSFJNcAb463hRH6jBHw4vYPRGdirwegagT7lk25VwG9VanjNOqne7ic23d1M6HUf9/K4i89GWx+BtbK+8ZjIn1u45n1N701Pds113McozWsAnPlORYiN2uGXHHswZaESoVoPEog=
+	t=1707994927; cv=none; b=sXeC3Ujr7/KDS2CvuCfI8qatm3HlquqghDPkaMidSrkmEDFmGMjTpVeYG89ddTptpJe57ZiDn8fEetX1tFXVbqSHfYinm9oaMGm54BGNRJHMJckGfazTUG/q3DoOiPUz/awHk9Y+F9whpYi7WktNXqdU448I4jzAj0CZN0i9ZmA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707994925; c=relaxed/simple;
-	bh=Hm8P6oyenZi1eBAN/OYEEjXEBmdCYWOQryV6DrT4dG4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=a6zOK0f9u8GJSMylU6a+9nsTwrofYJ3us/7bwLSpSwFi6dq97P2cfKLXhGn3DqwGkjdp8erSHxglMVUXPQghZmFMsKmTSY0LNdGRZ1z3MybR9o4E0RWLHqE1YIXBrrdfWlv9dnmJ55ZGYIXqRRNp353yb7XEeQOHAIm7KqjGV1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-60792653b94so7207997b3.3;
-        Thu, 15 Feb 2024 03:02:03 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707994921; x=1708599721;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=X2t28MWrQY7W2xrmkJ0+2MqE764Vph7M/VElh1kErvI=;
-        b=vwQyxUdgFU2pEm8C0wXUszuwAZKzfTR/npEJad27wvKl3HYYHcZEwW47dBMfgJSePB
-         fNMzFhHdjzdBMYZEm753jr6nGR2UEU/K5N0A3+TuGiXMAxtxsg7U7QKoffwdK0RQXTVB
-         gFO7ApP9zmwogmduUOBYFqtmiSXycGSdXQAwqk/wSoS3tKIcThiRRGEgrG3kl9tO7KjY
-         v16fdh3VOji3be1IyDoCNAXf/pSz/ibP4HD21+jzcyLzYhGC2HmSJZ4ehVgfxKeo1fCg
-         Uip5FE9zQvMrcadt2oxKpAyANNudsBH1bt3xOEcS0sGPnwHbybWvXrEklHNbNG8cVB7+
-         s4Lg==
-X-Forwarded-Encrypted: i=1; AJvYcCUH7se4Fa6lu5WbVJ+3yfHyuFLPC/eGeJMaMYK+p3qF/N8LZtDzW/1wLGyHwzq8VNohPD+dZVhwK6A0zpYutfJqV/75C2tUGe9cYS5z
-X-Gm-Message-State: AOJu0Yz8IAziqXkiI3TSDg9V1ElY5dywEEjZweWHIyIl9Q0JrGNNOzoU
-	jqjwaLJx2s5fgD0p0G+/x0uBsIlEu3B9r2DQrO1CcyvLq2NGpSZOfafvb9H8KvMJBw==
-X-Google-Smtp-Source: AGHT+IFp/GUaVBX5zoCb3rmqVmvDAR+9wQUUZl43QSTZ+paxGWDoy+ekaDJYp4BvQJD2K89GA6zk0w==
-X-Received: by 2002:a81:a743:0:b0:607:9cf8:931f with SMTP id e64-20020a81a743000000b006079cf8931fmr1151829ywh.6.1707994921347;
-        Thu, 15 Feb 2024 03:02:01 -0800 (PST)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
-        by smtp.gmail.com with ESMTPSA id t18-20020a81c252000000b006078c48a265sm193310ywg.6.2024.02.15.03.02.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Feb 2024 03:02:01 -0800 (PST)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-60792653b94so7207757b3.3;
-        Thu, 15 Feb 2024 03:02:00 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUKI7tm2VPv3qye/uwdbsaZ0XY4xnDzzrOq2Np9woEkvG6jW3xP0V+6+yVBs0W/K2AA4jJJxuDBVMfzr4M8mPh939jJO3viX3Q7SeYR
-X-Received: by 2002:a81:ae1a:0:b0:607:835b:8cac with SMTP id
- m26-20020a81ae1a000000b00607835b8cacmr1048601ywh.42.1707994920654; Thu, 15
- Feb 2024 03:02:00 -0800 (PST)
+	s=arc-20240116; t=1707994927; c=relaxed/simple;
+	bh=Nj1yulrL/F/3NFHpUqtTgULAH+4SIsqHUM2uketxzIc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NczVqy+o3tO9ZHGAvCyZHXknPofNGJmMzp8ZJ8AFxZOS4BX3zdvNSFojt5mMRHYkirhqBnXHNOaccxBnHXEDcrNauZqETYYtBba43S7l7CVaMyuDDE0NQI6Ul9hThPXVnVc+/N2O+cWVdfk2w8VbaSsCBLAJOREBnK/MXVPOdwk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=MBk8zBOQ; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (89-27-53-110.bb.dnainternet.fi [89.27.53.110])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id E488E183;
+	Thu, 15 Feb 2024 12:01:58 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1707994919;
+	bh=Nj1yulrL/F/3NFHpUqtTgULAH+4SIsqHUM2uketxzIc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MBk8zBOQqbJHfWopb+XTymwf/ByBbxflk6s44hkpi/zBcKTZ0AY0fdVB946vnkz7B
+	 KfSy8pfE1x61XO0G3WZ1ABUngH0T3DTyU+frXdHobiApQRM8LmcZJ0mYCPGhrhoaY+
+	 mLruYonaTmhAzT4n24Z2wWzPwmxq9zgBTjlPfdRM=
+Date: Thu, 15 Feb 2024 13:02:05 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Daniel Scally <dan.scally@ideasonboard.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
+	nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com
+Subject: Re: [PATCH v2 2/5] dt-bindings: media: Add bindings for ARM mali-c55
+Message-ID: <20240215110205.GD7873@pendragon.ideasonboard.com>
+References: <20240214141906.245685-1-dan.scally@ideasonboard.com>
+ <20240214141906.245685-3-dan.scally@ideasonboard.com>
+ <20240214142825.GA7873@pendragon.ideasonboard.com>
+ <20240214-velcro-pushy-0cbd18b23361@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240212170423.2860895-1-andriy.shevchenko@linux.intel.com> <20240212170423.2860895-16-andriy.shevchenko@linux.intel.com>
-In-Reply-To: <20240212170423.2860895-16-andriy.shevchenko@linux.intel.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 15 Feb 2024 12:01:49 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUM1o7bEaUdU=CmcJakZ4kMvWPTrBZG+s=eK3xdc9WRFA@mail.gmail.com>
-Message-ID: <CAMuHMdUM1o7bEaUdU=CmcJakZ4kMvWPTrBZG+s=eK3xdc9WRFA@mail.gmail.com>
-Subject: Re: [PATCH v2 15/15] auxdisplay: Add driver for MAX695x 7-segment LED controllers
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Robin van der Gracht <robin@protonic.nl>, Paul Burton <paulburton@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240214-velcro-pushy-0cbd18b23361@spud>
 
-Hi Andy,
+On Wed, Feb 14, 2024 at 05:37:17PM +0000, Conor Dooley wrote:
+> On Wed, Feb 14, 2024 at 04:28:25PM +0200, Laurent Pinchart wrote:
+> > On Wed, Feb 14, 2024 at 02:19:03PM +0000, Daniel Scally wrote:
+> > > Add the yaml binding for ARM's Mali-C55 Image Signal Processor.
+> > > 
+> > > Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
+> > > Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+> > > ---
+> > > Changes in v2:
+> > > 
+> > > 	- Added clocks information
+> > > 	- Fixed the warnings raised by Rob
+> > > 
+> > >  .../bindings/media/arm,mali-c55.yaml          | 77 +++++++++++++++++++
+> > >  1 file changed, 77 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/media/arm,mali-c55.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/media/arm,mali-c55.yaml b/Documentation/devicetree/bindings/media/arm,mali-c55.yaml
+> > > new file mode 100644
+> > > index 000000000000..30038cfec3a4
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/media/arm,mali-c55.yaml
+> > > @@ -0,0 +1,77 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/media/arm,mali-c55.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: ARM Mali-C55 Image Signal Processor
+> > > +
+> > > +maintainers:
+> > > +  - Daniel Scally <dan.scally@ideasonboard.com>
+> > > +  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: arm,mali-c55
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    items:
+> > > +      - description: ISP video clock
+> > 
+> > I wonder if we need this clock. Granted, it's an input clock to the ISP,
+> > but it's part of the input video bus. I don't expect anyone would ever
+> > need to control it manually, it should be provided by the video source
+> > automatically.
+> 
+> I'd say that if there's a clock controller providing this clock, even if
+> it is implicit in the video feed it's good to have here. Being able to
+> increment the refcount on that clock would be good, even if you don't
+> actually control it manually?
 
-On Mon, Feb 12, 2024 at 6:04=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
-> Add initial driver for the MAX6958 and MAX6959 7-segment LED
-> controllers.
->
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+I don't expect there would be a clock controller to directly reference
+in most cases. It depends a bit on where the clock domain crossing
+between the source (often a CSI-2 receiver) and the ISP is. If it's
+implemented in glue logic bundled with the ISP, which wouldn't be
+described in DT as a separate node, then there's a higher chance we'll
+have a clock controller for vclk. If it's implemented in the source,
+vclk will just come from the source, which won't be listed as a clock
+controller.
 
-Thanks for your patch!
+One option would be to make this clock optional, by moving it to the end
+of the clocks list, and setting
 
-> --- a/drivers/auxdisplay/Kconfig
-> +++ b/drivers/auxdisplay/Kconfig
-> @@ -187,6 +187,20 @@ config HT16K33
->           Say yes here to add support for Holtek HT16K33, RAM mapping 16*=
-8
->           LED controller driver with keyscan.
->
-> +config MAX6959
-> +       tristate "Maxim MAX6958/6959 7-segment LED controller with keysca=
-n"
+	minItems: 2
+	maxItems: 3
 
-I'd drop the "with keyscan" for now...
+> > > +      - description: ISP AXI clock
+> > > +      - description: ISP AHB-lite clock
+> > 
+> > These two other clocks look good to me.
+> > 
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: vclk
+> > > +      - const: aclk
+> > > +      - const: hclk
+> 
+> Why not "video" "axi" "ahb-lite"? There's 3 useful letters between the
+> tree clock names you've provided - they're all clocks, so having "clk"
+> in them is just noise :)
 
-> +       depends on I2C
-> +       select REGMAP_I2C
-> +       select LINEDISP
-> +       help
-> +         If you say yes here you get support for the following Maxim chi=
-ps
-> +         (I2C 7-segment LED display controller with keyscan):
-> +         - MAX6958
-> +         - MAX6959 (debounce support)
+As far as I understand, the names proposed by Dan come directly from the
+IP core documentation.
 
-s/debounce/input/
+-- 
+Regards,
 
-> +
-> +         This driver can also be built as a module. If so, the module
-> +         will be called max6959.
-
-> --- /dev/null
-> +++ b/drivers/auxdisplay/max6959.c
-
-> +/* Defines */
-> +#define MIN_BRIGHTNESS                 0x01
-> +#define MAX_BRIGHTNESS                 0x40
-
-Unused? (for now, until you add LED brightness support)
-
-> +
-> +struct max6959_priv {
-> +       struct linedisp linedisp;
-> +
-> +       struct delayed_work work;
-> +
-
-IMHO these blank lines don't add any value.
-
-> +       struct regmap *regmap;
-> +};
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Laurent Pinchart
 
