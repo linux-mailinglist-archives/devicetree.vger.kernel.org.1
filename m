@@ -1,137 +1,159 @@
-Return-Path: <devicetree+bounces-42009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DB95856194
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:30:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0CD0856265
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 13:00:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E4D01C20434
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:30:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ECB31B2C42D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:37:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79414129A9D;
-	Thu, 15 Feb 2024 11:30:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45B6912AADB;
+	Thu, 15 Feb 2024 11:33:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VDZcAQJg"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="MX5vMfrw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1A2A53369;
-	Thu, 15 Feb 2024 11:30:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73FC312AACF;
+	Thu, 15 Feb 2024 11:33:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707996651; cv=none; b=kVV1XJ6lmlEa/eZE3XnKzoBCkII1wCQH4Y2qc2g8F2W8dz7K34T+ljHuoD5T96x2E14XwJgA5dBF0ICOYg2QEJS5x74l7GOb8BueDCQlmClQkTuztr/6Tl5ZLHS1Hj44vRnDgCB0GVo+cfZnut45wnz31KiO/xtDtLWLzP45aDA=
+	t=1707996819; cv=none; b=aSd/wEG89m2DZwxw0KMMkWljwZLr9lByXhAjwy0f1MyUq76kuvTAoNHjvDMSI67wrsHJIRx+DqSKurAbuTdVV8K+Vc87IzYlG6ANh4n12zLrDpaeIZ/1F9nAzEjQMlHbYowx+tADlXHRpgYh4y/ekWaEmRrNC/MtiO2xh594BdA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707996651; c=relaxed/simple;
-	bh=OQ3ONUklx6xe0843f/W9xcoeemcGjph6v2Pe5TPLF8M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ck2/4/ZnxBaqd167eIKdQjOur6t3WuuKjul5+BIYCiU6Sc2N8V+NiAl30UiZKomIEaev0yw9zx60q3LGgfiJsk78My4XNZRwnUqZz7AF+tYdPNrHNWWbXWRCKtgy31BZ0Fkv+nu95ooi8OcfqLX5ie933FjkTHxrug00/gXbAOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VDZcAQJg; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1707996649; x=1739532649;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=OQ3ONUklx6xe0843f/W9xcoeemcGjph6v2Pe5TPLF8M=;
-  b=VDZcAQJgb7QA1H1QY/hyq2SWRuuUw2dXspH43hodzltN+gq3S9wwaiV1
-   9097kcj2OfrprHbRRCmQ2a7u8sufTuwqoNbu9j4kMS7xJIDTdsYcJwd3/
-   xHZd95H/RhDn3HUYh/QNead/U6JiO24Vn5G8jt/l7Yh71UcVcFL46dfLZ
-   4XXL5gNgQfLwojh60Bc6t6W3xe9sRETe4Z4dhXAMUhYq/Z/eIuxsub+Bt
-   El6W56J8RcLE/st1g6PwS0hMX8SCm81Jf40Odd/1hODCrMKi6KA26HgqU
-   3F2/T2GzQ3cs0C+PWhY/qiPRa9v/aUVD0Nf54n8KZRCXO1m+5iw0gMwIZ
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="1954407"
-X-IronPort-AV: E=Sophos;i="6.06,161,1705392000"; 
-   d="scan'208";a="1954407"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2024 03:30:48 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="912150105"
-X-IronPort-AV: E=Sophos;i="6.06,161,1705392000"; 
-   d="scan'208";a="912150105"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2024 03:30:46 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1raZwx-00000004m5l-3Aw5;
-	Thu, 15 Feb 2024 13:30:43 +0200
-Date: Thu, 15 Feb 2024 13:30:43 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Robin van der Gracht <robin@protonic.nl>,
-	Paul Burton <paulburton@kernel.org>
-Subject: Re: [PATCH v2 07/15] auxdisplay: linedisp: Group line display
- drivers together
-Message-ID: <Zc3147U697zQ6OwY@smile.fi.intel.com>
-References: <20240212170423.2860895-1-andriy.shevchenko@linux.intel.com>
- <20240212170423.2860895-8-andriy.shevchenko@linux.intel.com>
- <CAMuHMdW=gTH12vLALAU_ioCKX9E2mJ3uR+8Q6GT0brc4yg83_A@mail.gmail.com>
+	s=arc-20240116; t=1707996819; c=relaxed/simple;
+	bh=5Mxr7TMKSWsl11qn4WggocCDFkTw3msUvohOG+7eml4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=KFejLw/Rw06lWHNwpVfm1XCkcT9uotH7fBkl+H1AoLuBdOG/vCDS34z6WqOP9AvFvE6mNSAS6eShXTEAR3BCVlHFcT5SyPADZ84jPyhv8G+KqnuqNw8BziJV5eM54h0phBtM2l0RaYjkr0cbpYaKNHP6Whmu7ggGwOYM1aAC0xg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=MX5vMfrw; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41FBX79G107037;
+	Thu, 15 Feb 2024 05:33:07 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1707996787;
+	bh=ABHkRW2SheIUF0P3f0D9642QH8CsZI9lD6RNSWt1xzU=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=MX5vMfrwGgdQUAUzso/q6iFDNfLD8Je8/6enYBBsOT4e7sYSr012n10tcYu5jGlSZ
+	 Z3eERe0CILc0/zUYc/qD8mjQ/cWm2th5c6FnPdnialoX6VopbwEVyE62EJ3Kh7KUEb
+	 0ImxEdDURUYM7jHkkuuWlQaExlZXXiVrLeaBOSFY=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41FBX6wS026115
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 15 Feb 2024 05:33:06 -0600
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
+ Feb 2024 05:33:06 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 15 Feb 2024 05:33:06 -0600
+Received: from [172.24.227.31] (uda0496377.dhcp.ti.com [172.24.227.31])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41FBX1NF008649;
+	Thu, 15 Feb 2024 05:33:01 -0600
+Message-ID: <5c73328c-5a83-4937-aafe-af55d14fcb89@ti.com>
+Date: Thu, 15 Feb 2024 17:03:00 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdW=gTH12vLALAU_ioCKX9E2mJ3uR+8Q6GT0brc4yg83_A@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: display: ti,am65x-dss: Add support
+ for common1 region
+Content-Language: en-US
+To: Devarsh Thakkar <devarsht@ti.com>, <jyri.sarha@iki.fi>,
+        <tomi.valkeinen@ideasonboard.com>, <airlied@gmail.com>,
+        <daniel@ffwll.ch>, <maarten.lankhorst@linux.intel.com>,
+        <mripard@kernel.org>, <tzimmermann@suse.de>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>
+CC: <praneeth@ti.com>, <j-luthra@ti.com>
+References: <20240215083205.2902634-1-devarsht@ti.com>
+ <20240215083205.2902634-2-devarsht@ti.com>
+From: Aradhya Bhatia <a-bhatia1@ti.com>
+In-Reply-To: <20240215083205.2902634-2-devarsht@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Thu, Feb 15, 2024 at 11:05:00AM +0100, Geert Uytterhoeven wrote:
-> On Mon, Feb 12, 2024 at 6:04 PM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
-
-> I think it would be good to have "# <display type> section" comments,
-> to make the grouping clear.
-> Else I wonder why "L" is sorted before "K" ;-)
-
-Makes sense, I added locally.
-
-...
 
 
-> Shouldn't this (and PARPORT_PANEL and friends) be moved up, to the
-> character LCD section?
-
-I tried to be less invasive.
-
-...
-
-> >  obj-$(CONFIG_CHARLCD)          += charlcd.o
-> >  obj-$(CONFIG_HD44780_COMMON)   += hd44780_common.o
-> > -obj-$(CONFIG_ARM_CHARLCD)      += arm-charlcd.o
-> > +obj-$(CONFIG_HD44780)          += hd44780.o
-> > +obj-$(CONFIG_LCD2S)            += lcd2s.o
-> >  obj-$(CONFIG_KS0108)           += ks0108.o
-> >  obj-$(CONFIG_CFAG12864B)       += cfag12864b.o cfag12864bfb.o
-> > -obj-$(CONFIG_IMG_ASCII_LCD)    += img-ascii-lcd.o
-> > -obj-$(CONFIG_HD44780)          += hd44780.o
-> > -obj-$(CONFIG_HT16K33)          += ht16k33.o
-> > -obj-$(CONFIG_PARPORT_PANEL)    += panel.o
-> > -obj-$(CONFIG_LCD2S)            += lcd2s.o
-> >  obj-$(CONFIG_LINEDISP)         += line-display.o
-> > +obj-$(CONFIG_IMG_ASCII_LCD)    += img-ascii-lcd.o
-> > +obj-$(CONFIG_HT16K33)          += ht16k33.o
-> > +obj-$(CONFIG_ARM_CHARLCD)      += arm-charlcd.o
-> > +obj-$(CONFIG_PARPORT_PANEL)    += panel.o
+On 15/02/24 14:02, Devarsh Thakkar wrote:
+> TI keystone display subsystem present in AM65 and other SoCs such as AM62
+> support two separate register spaces namely "common" and "common1" which
+> can be used by two separate hosts to program the display controller as
+> described in respective Technical Reference Manuals [1].
 > 
-> IMHO it hurts to not sort Makefile entries alphabetically.
+> The common1 register space has similar set of configuration registers as
+> supported in common register space except the global configuration
+> registers which are exclusive to common region.
+> 
+> This adds binding for "common1" register region too as supported by the
+> hardware.
+> 
+> [1]:
+> AM62x TRM:
+> https://www.ti.com/lit/pdf/spruiv7 (Section 14.8.9.1 DSS Registers)
+> 
+> AM65x TRM:
+> https://www.ti.com/lit/pdf/spruid7 (Section 12.6.5 DSS Registers)
 
-I can add blank lines to follow the same grouping as in Kconfig. Would it work
-for you?
+Can you add the TRM link for AM62A too?
 
--- 
-With Best Regards,
-Andy Shevchenko
+With that sorted,
 
+Reviewed-by: Aradhya Bhatia <a-bhatia1@ti.com>
 
+> 
+> Fixes: 2d8730f1021f ("dt-bindings: display: ti,am65x-dss: Add dt-schema yaml binding")
+> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>> ---
+> V2: Add Acked-by tag
+> V3: Add Fixes tag
+> ---
+>  .../devicetree/bindings/display/ti/ti,am65x-dss.yaml       | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> index b6767ef0d24d..55e3e490d0e6 100644
+> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> @@ -37,6 +37,7 @@ properties:
+>        - description: OVR2 overlay manager for vp2
+>        - description: VP1 video port 1
+>        - description: VP2 video port 2
+> +      - description: common1 DSS register area
+>  
+>    reg-names:
+>      items:
+> @@ -47,6 +48,7 @@ properties:
+>        - const: ovr2
+>        - const: vp1
+>        - const: vp2
+> +      - const: common1
+>  
+>    clocks:
+>      items:
+> @@ -147,9 +149,10 @@ examples:
+>                      <0x04a07000 0x1000>, /* ovr1 */
+>                      <0x04a08000 0x1000>, /* ovr2 */
+>                      <0x04a0a000 0x1000>, /* vp1 */
+> -                    <0x04a0b000 0x1000>; /* vp2 */
+> +                    <0x04a0b000 0x1000>, /* vp2 */
+> +                    <0x04a01000 0x1000>; /* common1 */
+>              reg-names = "common", "vidl1", "vid",
+> -                    "ovr1", "ovr2", "vp1", "vp2";
+> +                    "ovr1", "ovr2", "vp1", "vp2", "common1";
+>              ti,am65x-oldi-io-ctrl = <&dss_oldi_io_ctrl>;
+>              power-domains = <&k3_pds 67 TI_SCI_PD_EXCLUSIVE>;
+>              clocks =        <&k3_clks 67 1>,
 
