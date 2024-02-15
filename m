@@ -1,132 +1,182 @@
-Return-Path: <devicetree+bounces-41946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67013855E40
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:33:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1122855E5B
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:39:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24F47283514
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:33:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B627282988
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:39:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A5831B960;
-	Thu, 15 Feb 2024 09:32:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C10618637;
+	Thu, 15 Feb 2024 09:37:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="DUtk2RS1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tqbcpMwt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83CDD18B1A
-	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 09:32:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A5631B941;
+	Thu, 15 Feb 2024 09:37:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707989547; cv=none; b=t9RiTUlbc8tfVKOlegdfemrriC4hYZ84ajP1MrRKwDKtG3KSSKzjIt16NaUEpVoaYB5CNQWor/7oWua9L9XVDJLoUnZbFUoiyn/rd5Lc01Q31Kzn2gj9uM3SH6hQt2f5a8EWqSH0ecMOT8fFJcZd8QimyynnwyoSXRRfZ1EJWRs=
+	t=1707989871; cv=none; b=mqBphtoaNygibm+xEDSm0tggU5OOE9enhFCjwefhiEK48yxYc5WcJ3UXjXR2DigBdfdRZgkggEWULNnPreMQNg3AkjOrK2zkjbQFMbz/nOvLbi0GAPMd6ep6ertJavyhvtMwu1N7/G93W4x1XHjI2XX3MaaFIz4jSATauGPHyE0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707989547; c=relaxed/simple;
-	bh=D/t0C+8KcMP8sG5P6Wj4ltiyYg7yKs+F15Uv70RNytE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=C87hqvOV4AFJCqoN3K+xMz7A0zAQLOcjNQrQXs9NI/j41FNBKdD/pSdp2m4dBD5uhNmM1A5X9qUSR6uVDOcppWzpn6TfT2Kf7Q2hvYIlJBdoMHZdWa29SvQZ4lrwqaId4Zo+C7rcMp15a/qXx0vlZkUN6NGem89AcpjOryldSdA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=DUtk2RS1; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1707989544; x=1739525544;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=ys7+gAx0aNBkte/FWD7H4VU0J/Z7WfW29i7yuLuFcpM=;
-  b=DUtk2RS1rYv7FVT8CR9IMZbxGm3Tvc4MPkzeJo/SgXGVT8LzUmJM8Xjj
-   GvXdEmXuxuNWHPHuIZEWicgVhjz3weFlOVWsTxPQ3bOQO6X4ptfQ77G1o
-   TqQZmWXZ/fry7NVzGFIGjf3SPEgGxuleoNLk3r1S1+bqdfrg+cellZFCM
-   /W+hwHFX6/w9rIc9InM+Gs28X7ljo74CSUduw2Iy2cfkU67lNOIdXhulf
-   sHl3Ick6RNZXL4kn8x21eKhY41ybyl29ZSZ2+nSwfZ55CO7D/3sXkCPAl
-   IS1iwV182BaliF48YjtB6Y1lIY2K5/P5KYRadSMKysXCyddFcw4f2t8u3
-   g==;
-X-IronPort-AV: E=Sophos;i="6.06,161,1705359600"; 
-   d="scan'208";a="35420060"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 15 Feb 2024 10:32:16 +0100
-Received: from steina-w.tq-net.de (steina-w.tq-net.de [10.123.53.25])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 60DA6280085;
-	Thu, 15 Feb 2024 10:32:16 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: MyungJoo Ham <myungjoo.ham@samsung.com>,
-	Chanwoo Choi <cw00.choi@samsung.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Shawn Guo <shawnguo@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v5 2/2] arm64: dts: mediatek: Replace deprecated extcon-usb-gpio id-gpio/vbus-gpio properties
-Date: Thu, 15 Feb 2024 10:32:14 +0100
-Message-Id: <20240215093214.796821-3-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240215093214.796821-1-alexander.stein@ew.tq-group.com>
-References: <20240215093214.796821-1-alexander.stein@ew.tq-group.com>
+	s=arc-20240116; t=1707989871; c=relaxed/simple;
+	bh=XWzXYMIAl5du5PxNXpMtWrx/xUd9S1UtlNgDsdvpVYs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mT/GSWMgPusdLgE/4W42WfK9/qHWfhKGRVD1WVeGXE9wx3BXoSjNN5VWl5XWa1fuiL38HNsdioCVKZKCWzV7jB702PMCj+KhP9OZ+t+zUHplwVTr1jc5RxWAZoS+p4BzjHtzc8HYfs9Kc6Tp93SN8fHIF8CO7RFrKVu67sTgNpE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tqbcpMwt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A187BC43601;
+	Thu, 15 Feb 2024 09:37:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707989870;
+	bh=XWzXYMIAl5du5PxNXpMtWrx/xUd9S1UtlNgDsdvpVYs=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=tqbcpMwt+RJK0bT7zP5Thwu2cDEM//NkD7FkrqHiee0uQahAhGkG2bKaJHrDnrOkM
+	 /FVOdoC9PgkgNJ2liE5LmZoTTyQJ+S8LFWvEtyHL6RmenbCdbr6kBiHg+N2SzDWGdS
+	 PoQ4kO/UbSgPGgUUDW9MgcCl1rL+6AVaYsCjvLL9GZjGqzf8gVZYtkV4T7LTC4/PUQ
+	 3D2iXUaGlspgYCOy84t5gcugYZLsxQ9ZU/XJLWgaEQu0Ayjkn6NlG+M2EiP84niTsW
+	 egnLzkuT+sXI/5tGJUhQG/+2nKlqSSaYJCgsT8FtO0+8+/84DFpidNICbscDf7n1G5
+	 SDXRlw6yKlQ5w==
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-563a6656c46so880369a12.1;
+        Thu, 15 Feb 2024 01:37:50 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVAmedFYP1efxGdMvnx9c04A7cVya7J1mkew9lfzqurRXt+866NHkDrlYVK1aKXtfLempZ2maGWnVWoReJH8Ah/Gnbi61nWFPbPpB9/H7aEnFq7HBedAFd9tI2K0Le2QvnaxvKxZ0+MoIJawLafVrcOxLQigca0bhFnrQI6Njj5F6TE9uIJYxAlDyZBHo2Ga76WxxTt4J9NoWRrmmKmfqlAjN4=
+X-Gm-Message-State: AOJu0YyJfpuXgRAlDj3eOelr3jSxb6k6eu/2NEuLACyWtWBF6XEGLCwi
+	K+oITGevDmG1pHjNNbORL8Jep3/AD7efKyGDyEb/dKYpMFhNs7iGshI434IAMTLTygomzptYYu9
+	LK6BplnaZS2CBugK0nRvKlcElWng=
+X-Google-Smtp-Source: AGHT+IEmBloe5542STqKSjMgCQLk/2kmMzo0mUwVRqwPEAS+jeamlb9AXP+9iombv2qJdh1ZY+MCjKhV36aat8bfIJI=
+X-Received: by 2002:aa7:cd46:0:b0:561:f211:fcdb with SMTP id
+ v6-20020aa7cd46000000b00561f211fcdbmr871927edw.1.1707989869133; Thu, 15 Feb
+ 2024 01:37:49 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1707524971-146908-1-git-send-email-quic_obabatun@quicinc.com>
+ <1707524971-146908-2-git-send-email-quic_obabatun@quicinc.com>
+ <CAAhV-H5f5e-cCaX7Gr20oG8F-aywJcosLn4ajxx2SQWoB8JtSA@mail.gmail.com> <03c2c48d-d05f-4906-b63b-711c94133489@quicinc.com>
+In-Reply-To: <03c2c48d-d05f-4906-b63b-711c94133489@quicinc.com>
+From: Huacai Chen <chenhuacai@kernel.org>
+Date: Thu, 15 Feb 2024 17:37:44 +0800
+X-Gmail-Original-Message-ID: <CAAhV-H7LjadN99OAdpX4OxU-bcjVC45iUwrzTfQz28UMc0K0JQ@mail.gmail.com>
+Message-ID: <CAAhV-H7LjadN99OAdpX4OxU-bcjVC45iUwrzTfQz28UMc0K0JQ@mail.gmail.com>
+Subject: Re: [PATCH 1/3] loongarch: Call arch_mem_init() before
+ platform_init() in the init sequence
+To: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+Cc: jonas@southpole.se, stefan.kristiansson@saunalahti.fi, shorne@gmail.com, 
+	ysato@users.sourceforge.jp, dalias@libc.org, glaubitz@physik.fu-berlin.de, 
+	robh+dt@kernel.org, frowand.list@gmail.com, linux-openrisc@vger.kernel.org, 
+	loongarch@lists.linux.dev, linux-sh@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, kernel@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Use id-gpios and vbus-gpios instead.
+Hi, Oreoluwa,
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Acked-by: Shawn Guo <shawnguo@kernel.org>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/mediatek/mt2712-evb.dts | 4 ++--
- arch/arm64/boot/dts/mediatek/mt8173-evb.dts | 2 +-
- 2 files changed, 3 insertions(+), 3 deletions(-)
+On Thu, Feb 15, 2024 at 5:31=E2=80=AFAM Oreoluwa Babatunde
+<quic_obabatun@quicinc.com> wrote:
+>
+>
+> On 2/14/2024 5:03 AM, Huacai Chen wrote:
+> > Hi, Oreoluwa,
+> >
+> > On Sat, Feb 10, 2024 at 8:29=E2=80=AFAM Oreoluwa Babatunde
+> > <quic_obabatun@quicinc.com> wrote:
+> >> The platform_init() function which is called during device bootup
+> >> contains a few calls to memblock_alloc().
+> >> This is an issue because these allocations are done before reserved
+> >> memory regions are set aside in arch_mem_init().
+> >> This means that there is a possibility for memblock to allocate memory
+> >> from any of the reserved memory regions.
+> >>
+> >> Hence, move the call to arch_mem_init() to be earlier in the init
+> >> sequence so that all reserved memory is set aside before any allocatio=
+ns
+> >> are made with memblock.
+> >>
+> >> Signed-off-by: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+> >> ---
+> >>  arch/loongarch/kernel/setup.c | 2 +-
+> >>  1 file changed, 1 insertion(+), 1 deletion(-)
+> >>
+> >> diff --git a/arch/loongarch/kernel/setup.c b/arch/loongarch/kernel/set=
+up.c
+> >> index edf2bba..66c307c 100644
+> >> --- a/arch/loongarch/kernel/setup.c
+> >> +++ b/arch/loongarch/kernel/setup.c
+> >> @@ -597,8 +597,8 @@ void __init setup_arch(char **cmdline_p)
+> >>         parse_early_param();
+> >>         reserve_initrd_mem();
+> >>
+> >> -       platform_init();
+> >>         arch_mem_init(cmdline_p);
+> >> +       platform_init();
+> > Thank you for your patch, but I think we cannot simply exchange their
+> > order. If I'm right, you try to move all memblock_reserve() as early
+> > as possible, but both arch_mem_init() and platform_init() call
+> > memblock_reserve(), we should do a complete refactor for this. And
+> > since it works with the existing order, we can simply keep it as is
+> > now.
+> >
+> > Huacai
+> Hi Huacai,
+>
+> Thank you for your response!
+>
+> I'm not trying to move all memblock_reserve() to be as early as possible,
+> I'm trying to move the call to early_init_fdt_scan_reserved_mem() to be
+> as early as possible. This is the function that is used to set aside all =
+the
+> reserved memory regions that are meant for certain devices/drivers.
+>
+> The reserved memory regions I am referring to are explicitly defined in
+> the DT. These regions are set aside so that the system will have either
+> limited access or no access to them at all.
+> Some of these regions are also defined with a property called no-map
+> which tells the system not to create a memory mapping for them.
+> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/re=
+served-memory/reserved-memory.yaml#L79
+>
+> Hence, setting aside these memory regions should take priority and should
+> be done first before any memblock allocations are done so that the system
+> does not  unknowingly allocate memory from a region that is meant to be
+> reserved for a device/driver.
+>
+> Eg:
+>     unflatten_and_copy_device_tree() eventually calls memblock_alloc():
+>     https://elixir.bootlin.com/linux/latest/source/drivers/of/fdt.c#L1264
+>
+>     Since unflatten_and_copy_device_tree() is called in platform_init(), =
+this
+>     allocation is done before we are able to set aside any of the reserve=
+d
+>     memory regions from the DT which is supposed to be done by
+>     early_init_fdt_scan_reserved_mem() in the arch_mem_init() function.
+>
+>     Hence, it is possible for unflatten_and_copy_device_tree() to allocat=
+e
+>     memory from a region that is meant to be set aside for a device/drive=
+r
+>     without the system knowing.
+>
+> This can create problems for a device/driver if a region of memory that w=
+as
+> supposed to be set aside for it ends up being allocated for another use c=
+ase
+> by memblock_alloc*().
+OK, then I think the best solution is move
+early_init_fdt_scan_reserved_mem() to before
+unflatten_and_copy_device_tree() in platform_init().
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt2712-evb.dts b/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
-index fffdb7bbf889e..0c38f7b517637 100644
---- a/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
-@@ -43,12 +43,12 @@ cpus_fixed_vproc1: regulator-vproc-buck1 {
- 
- 	extcon_usb: extcon_iddig {
- 		compatible = "linux,extcon-usb-gpio";
--		id-gpio = <&pio 12 GPIO_ACTIVE_HIGH>;
-+		id-gpios = <&pio 12 GPIO_ACTIVE_HIGH>;
- 	};
- 
- 	extcon_usb1: extcon_iddig1 {
- 		compatible = "linux,extcon-usb-gpio";
--		id-gpio = <&pio 14 GPIO_ACTIVE_HIGH>;
-+		id-gpios = <&pio 14 GPIO_ACTIVE_HIGH>;
- 	};
- 
- 	usb_p0_vbus: regulator-usb-p0-vbus {
-diff --git a/arch/arm64/boot/dts/mediatek/mt8173-evb.dts b/arch/arm64/boot/dts/mediatek/mt8173-evb.dts
-index 0e5c628d1ec3e..3fab21f59d183 100644
---- a/arch/arm64/boot/dts/mediatek/mt8173-evb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8173-evb.dts
-@@ -41,7 +41,7 @@ hdmi_connector_in: endpoint {
- 
- 	extcon_usb: extcon_iddig {
- 		compatible = "linux,extcon-usb-gpio";
--		id-gpio = <&pio 16 GPIO_ACTIVE_HIGH>;
-+		id-gpios = <&pio 16 GPIO_ACTIVE_HIGH>;
- 	};
- 
- 	usb_p1_vbus: regulator-usb-p1 {
--- 
-2.34.1
+Huacai
 
+>
+> Regards,
+>
+> Oreoluwa
 
