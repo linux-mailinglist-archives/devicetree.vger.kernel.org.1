@@ -1,119 +1,114 @@
-Return-Path: <devicetree+bounces-42165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 187FD856A49
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 17:58:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D3FA856A54
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 17:58:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B8A51C23BC6
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 16:58:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BFCDE1C23AE6
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 16:58:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA4E41386B6;
-	Thu, 15 Feb 2024 16:55:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1573E136651;
+	Thu, 15 Feb 2024 16:57:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MXWLoHsU"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="MofzPKt0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 227171386A3
-	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 16:55:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39FBD135A70;
+	Thu, 15 Feb 2024 16:57:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708016138; cv=none; b=b/M2VOK1A6XhbhKqYMfGhRSAzyX8yD6OvVwhY8vFyxaMDulO5+ax8YFWIVCydtOii93oSiv32ik6bcRxlakeXksxc7sQsBme2BUCsVqRTdro58IWdzl2HglE9BZsp/5YZ+x+E4NbYAOzGUQfR1H6tGpAGeEmXCVDvLMwEJsoxtw=
+	t=1708016237; cv=none; b=ElpKeiNLjH1N2czjp+Rt86L+CbjSzdEPXjwZU2jWNyNYI6yLF6/7wvnFcPxcBMqVCB7zBprYs1spkRb8CZAIjuGVfvInMK/JVPwlvcBr7/oJkKlG8GOfJSjb2lO5dsqlKtAOCRtg2uQ7yG04jq/9AuNjWHNCaX5kAo/2EdaHdZg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708016138; c=relaxed/simple;
-	bh=T2n/4szixuLGXvgOOUzbiM5pm5IPW+9TOhwcsXEbR5I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LM/cQOyUGNiWSPj9AeW+r6yKzo4n0cwyoqPKb3UZxw/HhLk/l6IhOxcvkqDPFWTK6iI5tCxQJo+8qKCmj5rQFdz1HenfgGYOFdaNQSVPLzFsSmdu42QOeFW0ib+xS+1z3XJtErHqHD+imw05tm78jKccFIGNbZQzsuTtAyhQtM0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MXWLoHsU; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-607a84acf6aso10421267b3.2
-        for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 08:55:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708016136; x=1708620936; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=poZheT8LMONbwbXG36LCp2KJuCiXKMOv0XD+rp8kofA=;
-        b=MXWLoHsUzbZOipRQqvHODtlCF2KUMWTOjeTYURysSEaWzYRYRDbzyyOx0XpTK7Y3b1
-         Eoq0/p3KIzN18HWNHmmei1JxOSN6HZys3TifDBabMcRFzHjP8aVjSSbAwjtvrDB8qoxB
-         RlQDxOC3AXySlH+bLX3Q+TCd6UzndUGgHLfJ1x+TMU04idm+Wc4S0kEj0Xm93CLDv7mz
-         kXMmZUbXBzGGro7KtGgMcuQIhV+C04j2OzGdNQagzjLA5Xe5k4rQMPlQtf7EC2NXVm3J
-         y+Okcsj5kYQZVR8QkpVn2QIsldDajLWpnzoUuCdg4dG4zWMPUAwrHi+2LSSnLly4ubIP
-         Ztiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708016136; x=1708620936;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=poZheT8LMONbwbXG36LCp2KJuCiXKMOv0XD+rp8kofA=;
-        b=aC3L6j8MBQxID+4kvN2yTyUwaJ727MET+HbRYj9vgEiGyLn3kiygt1z4puYkUEk9zN
-         V9N+MRD+V4YfdJmPFvjKRyzwdYVyf0OHoNlKp8Vmag8yeMxHUOCILoqqdk1wajwHgwrc
-         dzGn9GhnMFOYy3VA5YBhu+uzm8fHHCwMIdoolWfIeVsuRxKIHRBISN3KD52FTuLBpdfm
-         TTy+cLVqz7/gUvl6RGT/ewrs1a+k1xNuD47ldlxPsRDippz4kMm+hQvOMfmeLecRCYmY
-         cQEKv4QYGAv6XvIZ5aMaf7qQ85mVwAFHdqdgJD1Iae8Gvcci7/5C4Zl2YEvqZSb8TKWI
-         3veQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXu65My5BTOVeENVXdjrLCgtcdhUiLgEVjDLijc/gfwvyVkm9+34FRmJE5Brlr1fiG7plyJDMj7wWF0sAbeZZDSF3yHrMcaVr2kmA==
-X-Gm-Message-State: AOJu0YzFQpsSH+KrhxF56TkFU97FiW7O46TluMwojP6IOXdun8F8YVgm
-	nTZAwazRw6jL9+ecB8TUbpXlWfiF0pcf0iayaqFahSf06OMG6kH+7rVUPHIN0hp5X8XXHDAw43v
-	RrEUd41sUjo6zsX1/Ax6VutzHQykbnE9LkNxA3Q==
-X-Google-Smtp-Source: AGHT+IEpJGNu8IMFSpuSTsiV8rNUurQsbhlaADMNqmbysfbAkAFNijtgAVbyd6vcEq1kI+aXaqyzELrondiqZuik5WE=
-X-Received: by 2002:a81:7c55:0:b0:604:9322:9d56 with SMTP id
- x82-20020a817c55000000b0060493229d56mr2291098ywc.38.1708016136169; Thu, 15
- Feb 2024 08:55:36 -0800 (PST)
+	s=arc-20240116; t=1708016237; c=relaxed/simple;
+	bh=Teovor+0cNBgqv0pxvlZZTXnZq+NJs8jQr9ByH5s71c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=XQzlZQBE1HzHurjTPDWfQu7DLqbIpgIuCcvjEOPwebxZPXXseNDWv5Bdxy21eKyPiiUBYCOHTDPGVXkdt3Jh/rQDEBz6MdtCaWD6NzST5Zz+CTQ4ptiT0sIXxOJ9S8BvOXtmj7fX/J9ms1cOycvkvWHCz9rFHecGQmgxi6/hetU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=MofzPKt0; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41FGv4Df063872;
+	Thu, 15 Feb 2024 10:57:04 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1708016224;
+	bh=Z4RnqGGznCJSeFLUCS/wbnFfpLvync7aTHoThMZ9qH0=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=MofzPKt0R/Z7VHhjt58hopkb1FITPJbseGGzei/F6gfjbEsn2D0dNokIi8ADOD8hl
+	 ITpiHJcL9aB6xugaxTFoKG2SFUozVM1uQGhJlamBrN7F3ft8MrSqFO9JbYp4o7wmI9
+	 z9+jk4DnwVRyu+iw3wcKTEUTDP2QQfVvjKYbdndU=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41FGv48Z057710
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 15 Feb 2024 10:57:04 -0600
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
+ Feb 2024 10:57:04 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 15 Feb 2024 10:57:04 -0600
+Received: from [10.249.135.225] ([10.249.135.225])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41FGux4V066060;
+	Thu, 15 Feb 2024 10:57:00 -0600
+Message-ID: <4ef87f6c-caa8-45a8-8649-422806ec6eb2@ti.com>
+Date: Thu, 15 Feb 2024 22:26:59 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <fffc5a0a73c4cc8e8d7c5d93679531cc24e006ca.1707915511.git.geert+renesas@glider.be>
-In-Reply-To: <fffc5a0a73c4cc8e8d7c5d93679531cc24e006ca.1707915511.git.geert+renesas@glider.be>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 15 Feb 2024 17:55:00 +0100
-Message-ID: <CAPDyKFotPHiAWux8mhjFPMG7kwqaq6u-YZ957-6_=gKnVkDh6Q@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mmc: renesas,sdhi: Document R-Car V4M support
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-mmc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-am654: Drop ti,syscon-rgmii-delay from
+ ICSSG nodes
+Content-Language: en-US
+To: Roger Quadros <rogerq@kernel.org>, MD Danish Anwar <danishanwar@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+CC: Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Tero
+ Kristo <kristo@kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>
+References: <20240215105407.2868266-1-danishanwar@ti.com>
+ <71adaabd-bb24-4181-9fdf-f7191e93edb5@kernel.org>
+From: "Anwar, Md Danish" <a0501179@ti.com>
+In-Reply-To: <71adaabd-bb24-4181-9fdf-f7191e93edb5@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-
-On Wed, 14 Feb 2024 at 14:00, Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
->
-> Document support for the SD Card/MMC Interface in the Renesas R-Car V4M
-> (R8A779H0) SoC.
->
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Applied for next, thanks!
-
-Kind regards
-Uffe
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
 
-> ---
->  Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-> index f7a4c6bc70f6cade..29f2400247ebc674 100644
-> --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-> @@ -67,6 +67,7 @@ properties:
->                - renesas,sdhi-r8a779a0  # R-Car V3U
->                - renesas,sdhi-r8a779f0  # R-Car S4-8
->                - renesas,sdhi-r8a779g0  # R-Car V4H
-> +              - renesas,sdhi-r8a779h0  # R-Car V4M
->            - const: renesas,rcar-gen4-sdhi # R-Car Gen4
->
->    reg:
-> --
-> 2.34.1
->
+
+On 2/15/2024 9:27 PM, Roger Quadros wrote:
+> 
+> 
+> On 15/02/2024 12:54, MD Danish Anwar wrote:
+>> Drop ti,syscon-rgmii-delay from ICSSG0, ICSSG1 and ICSSG2 node as this
+>> property is no longer used by ICSSG driver.
+>>
+>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>> ---
+>>  arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso | 2 --
+>>  arch/arm64/boot/dts/ti/k3-am654-idk.dtso    | 4 ----
+>>  2 files changed, 6 deletions(-)
+> 
+> What about the DT binding document?
+> 
+
+Now I am only removing the property from device tree. Once this proprty
+is removed from all DTs, in the 6.9-rc-1 I will remove the binding as
+well so that net people can merge that without getting any errors /
+warnings.
+
+-- 
+Thanks and Regards,
+Md Danish Anwar
 
