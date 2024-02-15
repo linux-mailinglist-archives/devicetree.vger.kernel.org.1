@@ -1,132 +1,142 @@
-Return-Path: <devicetree+bounces-41983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79195856172
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:25:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF61A85611F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:13:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B502CB277CB
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:55:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2F1F2B35784
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:01:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48DCB1386A2;
-	Thu, 15 Feb 2024 10:41:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47C5B133434;
+	Thu, 15 Feb 2024 10:47:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="PTvYSRzc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5144131E58;
-	Thu, 15 Feb 2024 10:40:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34C5F133422;
+	Thu, 15 Feb 2024 10:47:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707993661; cv=none; b=MGqVU6jrtksn6f1IIEu0Sk61KhN1VCRSyIizbjgSArsnq5hoFMqjQyPpdTsgtcB1ILhHaJmkP4YrrliSmL6+l64vUVO3BwzZ6wCxfPPub4JhsFv6E21qt56WBqeii2VxxMNf6c+VVw3RjzfanShztZXr1criHJWic2+ZTgGOMyo=
+	t=1707994057; cv=none; b=ottbys2YdDIGZsjR18wZj2eNgFoFbeQEifbs04Je7ffUbZgL15xZMqdlv+hCEzDHFNXIQyQxRMStWYexFhTiyhZdUk0hMOYT33wR9ZLtNA9DgAo6bd0jXgIzopEcJEosU6GhfDO9pmiFuWl8wSPZV6RG3q3scyacuJ9tRwK0Zog=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707993661; c=relaxed/simple;
-	bh=Y/NM07+ec8X945QyavCo9A6gSVvDgYuzRMM4zril0OE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TJ5sn/n4SQVzeQFkhfXd8suh3St9EFitCL4oJqkjyktRaSSeGur3IVSmp3wtA1qlUg26FzjbjE+xnN19+L6u2JWBaE56YzsAoOZfNpR9McSITvqScE2jojcVpFXGRfgH/dCVdgGiWsS5V/1Fgy7ENqiOJuQKHsWkII0jjobDj8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-607dec82853so2036107b3.3;
-        Thu, 15 Feb 2024 02:40:59 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707993658; x=1708598458;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=o57CBG8kxGbBsN3aPo1NEC+C0U+G30UcOmuYFLRG5FE=;
-        b=AbsSVirNgIKB7dEors/J5DIZnT9s4zcZaPaOfqa+ImOD85ZPXPLTdK1fvg6ci40AWE
-         THTGtnmrDd4W11CyIdR3oTiN4ngotBm7VBOT8WWJWlpu8B9BFhay1nbcA6OweC9/D8dK
-         lBh1SfCMkH9qyEJPax/o5E2No21gw2IqJ06OohN6mpxxzZo8GpKPeCOZ+8QlOmj0A1wO
-         UprHS0EsBpcXXBWn0uOrGNgv3iN2vwGvfFiik/gNxAJ+JXxY1SBKtYoAGU6gPZ2IWtEk
-         343lRPopqtF+TeUmlLVX1iz83Pn6TytSF6Tq4kijlOx60U8QizdL1XY+IikRj6R7aI4g
-         QqQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXHZv4dIED/0CggRilhOPds+M2f+s+dg4wT7Ociet33fM+QS1HCaNJtlQ02RXu+rTkbAny5EKKc+z6tIj03HFtM3bSF58RGt6aboIqB
-X-Gm-Message-State: AOJu0YyraAXEu7SL2h2X76t57uvcq5+FxoPA4rqZbKssJkLvHV4KfBtK
-	W2QgFJSpMpxL6qoKFgm+Dw1UOYbnzEzGx6fz02X56S6SCuxkpD9R4nYR5/sl3fFYag==
-X-Google-Smtp-Source: AGHT+IEHf96BeW0BIv4Njrjh4PAwlj3UkutpCOGzr6rypxE+ZTQfYmR8LEmQYwbw8zWq5RSaPRS/HA==
-X-Received: by 2002:a0d:dd03:0:b0:607:8177:660 with SMTP id g3-20020a0ddd03000000b0060781770660mr1258057ywe.47.1707993657954;
-        Thu, 15 Feb 2024 02:40:57 -0800 (PST)
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
-        by smtp.gmail.com with ESMTPSA id x35-20020a81af63000000b00607b53565afsm187744ywj.97.2024.02.15.02.40.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Feb 2024 02:40:57 -0800 (PST)
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-dcc84ae94c1so619249276.1;
-        Thu, 15 Feb 2024 02:40:57 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXtgnUZEmipl7sJyPHH17DAmN7JclgfOPTGYojVLf1TxHu/1TVaFWka9/nczJmpZWZ3joZvTeaZRaikL//WjlWjXyV1a3G/+j+99ugq
-X-Received: by 2002:a25:ced3:0:b0:dc6:a74b:f200 with SMTP id
- x202-20020a25ced3000000b00dc6a74bf200mr1238211ybe.38.1707993657261; Thu, 15
- Feb 2024 02:40:57 -0800 (PST)
+	s=arc-20240116; t=1707994057; c=relaxed/simple;
+	bh=RJDAsKe/aBk8AYh4rDTIh54ZmBRzY5mDVvLfCyAvXrQ=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=s/jpGRjOCb4A4nZXz76qe9QkNGF0keO79GjR8XsxJ/wHYzlGR7A3heoYtiPw4eV6nRWnbzk4HbPRr2gyRSWI+q8BdEklk3ynSQNaxL3cAqbcxBxmnZtNS8BeJkkEfIKwGhuGtBQtGJWdrSq5b5LnaCdj4sG3+qDRPP9b4mih4oc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=PTvYSRzc; arc=none smtp.client-ip=45.89.224.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 6B7EF120005;
+	Thu, 15 Feb 2024 13:47:25 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 6B7EF120005
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1707994045;
+	bh=ZMXILtHC08+ORAOMdLV08SaTMzWfQR2g0BN83OzVl4o=;
+	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version:From;
+	b=PTvYSRzcm7SkQ4jmbt1M7PmtlwMEnEvbr3WZmXhSFIcOFzc9cdquy/XKZkT5huX2u
+	 0AZXiOZOKzSsxdfYtEuxuMPmtsjkk3ZKiGom90RpxVZeu/6MD5eTQAZRtIKOnftDcy
+	 CWhPun885cAV33ZVNJurwC4znQqBfkk2r6qgmUb8Wm0rPu0rKlUsWPdbEt5nxSgw5q
+	 7j/JRhaqbHTm7ud9Mm3ggCE3NGiRTWXBuzEI4w8JjHjb/mr5JpWCjhQKVglj+v7Dw2
+	 yzWuiweq/lABslXYAN+1gr9/1wuUj6qvaOqTbgrjZujD6K2+w4cHGFx2eDqHZAOz//
+	 cNma5geBk27bQ==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Thu, 15 Feb 2024 13:47:25 +0300 (MSK)
+Received: from p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Thu, 15 Feb 2024 13:47:24 +0300
+Received: from p-i-exch-sc-m01.sberdevices.ru ([fe80::6d41:e8f1:b95e:ba1]) by
+ p-i-exch-sc-m01.sberdevices.ru ([fe80::6d41:e8f1:b95e:ba1%7]) with mapi id
+ 15.02.1118.040; Thu, 15 Feb 2024 13:47:24 +0300
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: Corentin Labbe <clabbe.montjoie@gmail.com>
+CC: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+	"clabbe@baylibre.com" <clabbe@baylibre.com>, "herbert@gondor.apana.org.au"
+	<herbert@gondor.apana.org.au>, "davem@davemloft.net" <davem@davemloft.net>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "khilman@baylibre.com"
+	<khilman@baylibre.com>, "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
+	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
+	"vadim.fedorenko@linux.dev" <vadim.fedorenko@linux.dev>,
+	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, kernel <kernel@sberdevices.ru>
+Subject: Re: [PATCH v4 00/20] Support more Amlogic SoC families in crypto
+ driver
+Thread-Topic: [PATCH v4 00/20] Support more Amlogic SoC families in crypto
+ driver
+Thread-Index: AQHaXbqRFptCyAwKyUyy1Cn5x5FmZLEHrLEAgANeQYA=
+Date: Thu, 15 Feb 2024 10:47:24 +0000
+Message-ID: <20240215104719.njq6ie2niisntcnv@cab-wsm-0029881.sigma.sbrf.ru>
+References: <20240212135108.549755-1-avromanov@salutedevices.com>
+ <ZcsYaPIUrBSg8iXu@Red>
+In-Reply-To: <ZcsYaPIUrBSg8iXu@Red>
+Accept-Language: ru-RU, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <02AD52C50B92B74A88D1647594C86269@sberdevices.ru>
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240212170423.2860895-1-andriy.shevchenko@linux.intel.com> <20240212170423.2860895-11-andriy.shevchenko@linux.intel.com>
-In-Reply-To: <20240212170423.2860895-11-andriy.shevchenko@linux.intel.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 15 Feb 2024 11:40:44 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVtqWBi4Y1tj74m4V4kp-3cFe_FphKKeY7zOkrbMVkKRg@mail.gmail.com>
-Message-ID: <CAMuHMdVtqWBi4Y1tj74m4V4kp-3cFe_FphKKeY7zOkrbMVkKRg@mail.gmail.com>
-Subject: Re: [PATCH v2 10/15] auxdisplay: linedisp: Provide a small buffer in
- the struct linedisp
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Robin van der Gracht <robin@protonic.nl>, Paul Burton <paulburton@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 183458 [Feb 15 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.3
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;127.0.0.199:7.1.2;cab-wsm-0029881.sigma.sbrf.ru:5.0.1,7.1.1, FromAlignment: s
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/15 04:37:00 #23614209
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-Hi Andy,
+On Tue, Feb 13, 2024 at 08:21:12AM +0100, Corentin Labbe wrote:
+> Le Mon, Feb 12, 2024 at 04:50:48PM +0300, Alexey Romanov a 'ecrit :
+> > Hello!
+> >=20
+> > This patchset expand the funcionality of the Amlogic
+> > crypto driver by adding support for more SoC families:
+> > AXG, G12A, G12B, SM1, A1, S4.
+> >=20
+> > Also specify and enable crypto node in device tree
+> > for reference Amlogic devices.
+> >=20
+> > Tested on AXG, G12A/B, SM1, A1 and S4 devices via
+> > custom tests [1] and tcrypt module.
+> >=20
+> > ---
+> >=20
+>=20
+> added patchs up to  "drivers: crypto: meson: process more than MAXDESCS d=
+escriptors"
 
-On Mon, Feb 12, 2024 at 6:04=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
-> There is a driver that uses small buffer for the string, when we
-> add a new one, we may avoid duplication and use one provided by
-> the line display library. Allow user to skip buffer pointer when
-> registering a device.
->
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-
-Thanks for your patch!
-
-> --- a/drivers/auxdisplay/line-display.c
-> +++ b/drivers/auxdisplay/line-display.c
-> @@ -330,8 +330,8 @@ int linedisp_register(struct linedisp *linedisp, stru=
-ct device *parent,
->         linedisp->dev.parent =3D parent;
->         linedisp->dev.type =3D &linedisp_type;
->         linedisp->ops =3D ops;
-> -       linedisp->buf =3D buf;
-> -       linedisp->num_chars =3D num_chars;
-> +       linedisp->buf =3D buf ? buf : linedisp->curr;
-> +       linedisp->num_chars =3D buf ? num_chars : min(num_chars, LINEDISP=
-_DEFAULT_BUF_SZ);
-
-I think it would be safer to return an error if buf =3D=3D NULL and
-num_chars < LINEDISP_DEFAULT_BUF_SZ.
-Else a careless driver that doesn't check linedisp->num_chars might
-overflow the buffer.
-
->         linedisp->scroll_rate =3D DEFAULT_SCROLL_RATE;
->
->         err =3D ida_alloc(&linedisp_id, GFP_KERNEL);
-
-Gr{oetje,eeting}s,
-
-                        Geert
+Including this patch or not?
 
 --=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Thank you,
+Alexey=
 
