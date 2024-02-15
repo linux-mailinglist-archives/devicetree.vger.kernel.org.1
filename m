@@ -1,151 +1,125 @@
-Return-Path: <devicetree+bounces-41969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57156855EF8
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:16:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1889855EF9
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:16:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E800B1F256AC
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:16:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 006591C23838
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:16:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 778D867E70;
-	Thu, 15 Feb 2024 10:13:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XGvuqbOg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC1C167E97;
+	Thu, 15 Feb 2024 10:13:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B007679FE
-	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 10:13:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E324679FE;
+	Thu, 15 Feb 2024 10:13:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707992016; cv=none; b=T6D741NfUDJqd5AdnHiZ9mRDwc7kgvnrPfM6YboNGwJvwBLvRzCFyjLSO8buAwFJHJydUG5cy+wOtKlvXIKkl4kfFNIbltsGa6sQf5+mMFeBgMNHLPVELAF4bg/6787SxOUFduG4o4xvXQJgWWSq0TfNkoXFjjjuNPhvleq84p4=
+	t=1707992030; cv=none; b=BIy8yaeWYF10O+FVsqkHj9uSUQjtgycDcseMgsL0+bxcuexP4repyyLtIQChXD5yZDQ8x1UOb+AgeIP5Kr7TcD+Krkkc8O0BmadF27hHuZykaH3hi0ZkaG/C1HhHFi6ZAWVkpODpgH/cX0Ec9stfvyeoqX3ZCeQUATkrcYHPMEw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707992016; c=relaxed/simple;
-	bh=ZEAy2vsTuvbVZtCxXB6RDSeHSsx3hJ7z7LfhOyAo6Wg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XfHNaxPuaGIKOIgk83EQOHRqJ6qyVGLAUXRLsD9B+fyy6pCRKFL6YvZ+pORpYxFw4T9/vWv4zXVFofcitMKwl5wylXNql2O9fbzyn51lxi9a9Gk0eUR3uLzACBDlTa4tunVAH9Xr2Mnj5s4Hph2W2hlH90CKml9Ystr0Dmz+n/E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XGvuqbOg; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a3d002bc6f7so61288266b.3
-        for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 02:13:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707992013; x=1708596813; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=x9pR26FVIzhwv4EBVG4Z7ANEx3ahh/hwyMHy9sO47BY=;
-        b=XGvuqbOgfQ1p+f6kZV8lFPvFbgKbidKtInQyJMYLkF7zDs1RFLXpVZrMvIskancJEc
-         x/sT+hK8Pf5PHXhL2j3+vNYXzydv3cs3Hy5arpvkUcq/TKJBDBDDHsdIPaZGnxBulQ5j
-         L1VDkp+Lmzkx4fBklh23VQMVLNtGk+Ko5OV0GD5Y41yUEPHfxhpU43U2pUssxXZ+VUFx
-         nSdFnUjUilO2dm8R9Fro1XS5CnWcJsSVt7ftd5sy/c49seWKuVnhUSx3DSvtI8YvA6qU
-         Y1zNFuQ/uug8HOfc9EIaBd53KuF5V+awtRinawyfyILRQflNarnGlJk20qwBKcZ2TqeQ
-         OmkA==
+	s=arc-20240116; t=1707992030; c=relaxed/simple;
+	bh=zQK9YWdnA2MLFWkG0KYucAtSWqDsyb5toZ7+7+Lze/o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nmgqufxdNwoFOXIhVtwDumZY4gtyt2BdKD64gbLNjt0P8VIskruREPY3T2CArq91eyueyFy3rj97jA8ASnAteZNXxHCuKNCNl3xFFaSJXaD/8sCjQofoSSCLd9yat5YCWXVTPhyIwy8HrqnePOXPJX40EmDh3mEiEd1wQL8bhNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2d10ad265d5so8814151fa.0;
+        Thu, 15 Feb 2024 02:13:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707992013; x=1708596813;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=x9pR26FVIzhwv4EBVG4Z7ANEx3ahh/hwyMHy9sO47BY=;
-        b=toBO5/1nNRFRupVn7JSHcOqURRkGZM4F5zosrhVSKL7wwF231189d+2Mj5w+F86fff
-         eVWwOaIaY0qWXn7hrReOt8V7PkQxnJSSTwiQLa+oXAOdpibYtaBKrbhCtpOmM6dfrFLd
-         Z0/OY5c7+kljM5Z+/ZepRn/JhCzBWgf0Wsm32dCC/OhrEiizI9TTcRbcxefvWTdeBO4X
-         +3P6u1NhpfSkpF4dlhJem59+k+jFOM0M4ApNzyBDCNIPUMraNm7Vvm8gIldHr7RO0jQn
-         KKLWmfT1614L2Q6GBHnwbJPbrIuLbEDo3fdtdU8tAmVLhKCS+ACem/oYCfLGfNkYVBkO
-         qdjQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVbGKC1Ubyd84BU3eqEJIH1JbBSYskkkdpaPqGdpmqdugdfsWviwLFVXqH8H6QXQKl2VxG7dOsGB6FiOy3a99+ZFd0nPFQJzciYtw==
-X-Gm-Message-State: AOJu0Yy0ZgOZxeRvKLIzYFav/mkvo+RJIBlAgXsZfMz+g8hHxLMSYTyp
-	4uqPeDO7DvGAJLnCwSUEdXxht2Znu24o64+45ekTUnNmUbuwvKxjXjY69UwfGxk=
-X-Google-Smtp-Source: AGHT+IHWjEqgS4qtK7c1Wqm1WQJi9RjfH/SzldS0H4/bwXMnVaJYoyVnB04Cc3/EV/ZeVy+Qsgq3hA==
-X-Received: by 2002:a17:906:5905:b0:a3d:481c:7d45 with SMTP id h5-20020a170906590500b00a3d481c7d45mr902070ejq.16.1707992012797;
-        Thu, 15 Feb 2024 02:13:32 -0800 (PST)
-Received: from [192.168.192.135] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
-        by smtp.gmail.com with ESMTPSA id tk11-20020a170907c28b00b00a3d8fb05c0csm373420ejc.86.2024.02.15.02.13.30
+        d=1e100.net; s=20230601; t=1707992026; x=1708596826;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YNaDKxTWYbBEr/pCLpL+n0Yx2MpOWuz0pvKe7ocVQwQ=;
+        b=EXaElozzM7IYTeEUeuLAlMFBM1n4aikJ/sza54ziNGGcVPgJnKl8scOAzH+dxE+/pK
+         QU0I42aLG3Lyw3/llxzqjgbyRC2gECweADd01wq/4H3Cjyq/6ZyoFGdsdNzIQ+yO6ZGQ
+         aI4vdOm8ppxlZM/6zqQhMNGFpDUu9dZTysU+KF3z5maSwwavn6tehMiL4GgADvnLtwzu
+         xbZL6eIRalUM7/yU0nR7/iZuHK9jUntQ34wKfjt/js1bXzfcs6EQNBeycLxiTitX7tIq
+         8TAXBKBjKo4FXz4b8te+UwAI8W/DldS2V7qLSeRBcY60ELO9saRt0al0q+mkKd0yVVvA
+         YpTg==
+X-Forwarded-Encrypted: i=1; AJvYcCVlhoBwWZXwy2t9/M+tG6YXr8L8Wi54N6mg419n3tNHWhtpkjRL5yC937NiZw3XdUFpv/WYTMhQSg4up9jGbtTuNiRhvK6We+mcLR6G
+X-Gm-Message-State: AOJu0Yz4zgDbE+sh4ZMV6OB7yAf6knBkuY6vUKovM8/XIJ2DG66+ahaq
+	lWBQUNpmM/tz3it7Q5jlWA8CVixye2bIpEZyervPpR3RNq4j/hYIVYn+xJ6usyNv9Q==
+X-Google-Smtp-Source: AGHT+IFrxfdkttYFuNy6II5xa4smJepNzsJk8CRsvZGZjwLVwwsWfBFtm5hbprjBOMNmkLh0mZktWg==
+X-Received: by 2002:a2e:9793:0:b0:2d0:ce22:516d with SMTP id y19-20020a2e9793000000b002d0ce22516dmr1087986lji.3.1707992026019;
+        Thu, 15 Feb 2024 02:13:46 -0800 (PST)
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com. [209.85.167.51])
+        by smtp.gmail.com with ESMTPSA id w12-20020a2e9bcc000000b002cf1cf44a00sm213259ljj.52.2024.02.15.02.13.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Feb 2024 02:13:32 -0800 (PST)
-Message-ID: <72d98246-2bb4-479e-b39c-58e325f2e825@linaro.org>
-Date: Thu, 15 Feb 2024 11:13:30 +0100
+        Thu, 15 Feb 2024 02:13:45 -0800 (PST)
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5128812662eso506854e87.0;
+        Thu, 15 Feb 2024 02:13:45 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVJUq9XOyf+GVgx4V7x0bM/P358v4Ldow+vaGD6bOfcBZL5LrcCQ3v0MfgGH5fcgXk9sDCS1mzYUbkiWu0uBDjikMeWFJT+95iUrJt2
+X-Received: by 2002:a05:6512:4884:b0:511:61bd:d748 with SMTP id
+ eq4-20020a056512488400b0051161bdd748mr1062136lfb.36.1707992025566; Thu, 15
+ Feb 2024 02:13:45 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/6] arm64: dts: qcom: msm8996: drop source clock
- entries from the UFS node
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- "James E.J. Bottomley" <jejb@linux.ibm.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Nitin Rawat <quic_nitirawa@quicinc.com>, Can Guo <quic_cang@quicinc.com>,
- Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>,
- Andy Gross <agross@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240213-msm8996-fix-ufs-v2-0-650758c26458@linaro.org>
- <20240213-msm8996-fix-ufs-v2-6-650758c26458@linaro.org>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20240213-msm8996-fix-ufs-v2-6-650758c26458@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240212170423.2860895-1-andriy.shevchenko@linux.intel.com> <20240212170423.2860895-9-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20240212170423.2860895-9-andriy.shevchenko@linux.intel.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 15 Feb 2024 11:13:31 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXWu4JYT5wCX8sbwdM8gt571JakL1UHi2SGd5wKB41pxQ@mail.gmail.com>
+Message-ID: <CAMuHMdXWu4JYT5wCX8sbwdM8gt571JakL1UHi2SGd5wKB41pxQ@mail.gmail.com>
+Subject: Re: [PATCH v2 08/15] auxdisplay: linedisp: Provide struct
+ linedisp_ops for future extension
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Robin van der Gracht <robin@protonic.nl>, Paul Burton <paulburton@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 13.02.2024 12:22, Dmitry Baryshkov wrote:
-> There is no need to mention and/or to touch in any way the intermediate
-> (source) clocks. Drop them from MSM8996 UFSHCD schema, making it follow
-> the example lead by all other platforms.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
+Hi Andy,
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+On Mon, Feb 12, 2024 at 6:04=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+> Currently the line display library doesn't scale in case we want to
+> provide more operations. Prepare the library to take a newly created
+> struct linedisp_ops that scales.
+>
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-Konrad
+For the code changes:
+Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
 
+> --- a/drivers/auxdisplay/ht16k33.c
+> +++ b/drivers/auxdisplay/ht16k33.c
+> @@ -696,8 +700,7 @@ static int ht16k33_seg_probe(struct device *dev, stru=
+ct ht16k33_priv *priv,
+>         if (err)
+>                 return err;
+>
+> -       err =3D linedisp_register(&seg->linedisp, dev, 4, seg->curr,
+> -                               ht16k33_linedisp_update);
+> +       err =3D linedisp_register(&seg->linedisp, dev, 4, seg->curr, &ht1=
+6k33_linedisp_ops);
 
+Please wrap this long line (everywhere).
+All lines in these drivers fit in 80-columns before.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
