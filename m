@@ -1,73 +1,59 @@
-Return-Path: <devicetree+bounces-42167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F07F856A5F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 18:00:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 744E7856A6C
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 18:03:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A7321F23167
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 17:00:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A7C5E1C22414
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 17:03:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E65513665E;
-	Thu, 15 Feb 2024 17:00:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79533136986;
+	Thu, 15 Feb 2024 17:03:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VmGmXp9h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bou2quAK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8408135A75;
-	Thu, 15 Feb 2024 17:00:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52A2B136660;
+	Thu, 15 Feb 2024 17:03:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708016437; cv=none; b=MQo26Eyi3IOhlNu5Q79k7w8JIkArQAShcCHWTK2egOGF/f+DrxYCpl7k/dLzNoF7S8wVVsAu3EhiragpxmpTH3M0lGPWV3h/saRhEza/af4eZrXGEECu0rS/SDFR3bby3p6uwJagwgbB2JNRceBQzNy4PLttQ6Canogbazuxqbw=
+	t=1708016589; cv=none; b=EekP/gC7NXHjwGhGFhLtqp6m7DHiM7rooG4RbvcEB3QmwLTZsLcK1YHjzwDBuBdWtvcl6q8fuq5AVQyxxZP2q7q2du6zMmaKGAMhe4/Sj0s9bCr+LUHhCbS5QgekmYHTrYCZOdngYUIuk1QJRb292yawawlRNoXnUI35IkW5OvA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708016437; c=relaxed/simple;
-	bh=ICrWTbldjX975W3btYUWwVrChRkDG1H5ULl0Muhb6hM=;
+	s=arc-20240116; t=1708016589; c=relaxed/simple;
+	bh=VjV8BcdelqThJ3MbQmqnK86uf/IxokI/jkq4gMntqq0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JnmD722Mhjo17AqAdy8JYblY8tXI7A/q6xbkfAiIl+6f4DIbKm9jjSwzHlEEDA2qFMo8nV59syfhwRDktRZSpaZm6k1OgeAOHmZ0ETIQp2g5CqA3v63xZO0KD+vrGYfQXc0nV1WscDoJgbBvlyJIxquwW1TmZY7Rk7LgBSCZANg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VmGmXp9h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97159C43394;
-	Thu, 15 Feb 2024 17:00:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=DTTEVInqJitYGOB4Pu41khhWoCudwDIGADqeGf2iC6UFOOz3PT9L4T3NHPKSmha7B9FhlcjIySIb+uewQZHo7OEffbnpgCAzHpmPURiPsPur/xJaWGvPZVpT2QHxv+W4mJSOtMeRVcy6Jq42f4Gb3Na7+pW6R5wNCfpoDXnLokA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bou2quAK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66D91C433C7;
+	Thu, 15 Feb 2024 17:03:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708016436;
-	bh=ICrWTbldjX975W3btYUWwVrChRkDG1H5ULl0Muhb6hM=;
+	s=k20201202; t=1708016588;
+	bh=VjV8BcdelqThJ3MbQmqnK86uf/IxokI/jkq4gMntqq0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VmGmXp9h8/NmjOVvPq2UXmxKPbIo0y7BYxzGHZv6aadFtcdMuMdbnYUGmQlO913DH
-	 LTVHQayO6nKjrvBtRy6BurVGNcoq50fnejWw3RpSLVwNtS8vG7I5ZeC3dhzezTTvWj
-	 PtAfGth6k8UAVkcJof1FI/SJ+KQqZvejxnRQLyHepkvLDIrydcShyy37QCE6KdjkVP
-	 IOOa+lwQgp72wkcYr+MTeUxXwNS1uOfUMaf/KovpVvgPVTmGsNbIzZIGSpjclG4Sr+
-	 v6yr3ItVCPcBgyZI2j5Fo9KDpR2f8eDDK8ScCJbb9CL3PvQuNPBeygARTqQIjHAsAb
-	 kWcK15ViP1wvQ==
-Date: Thu, 15 Feb 2024 17:00:29 +0000
+	b=Bou2quAKZgYkJwONG/1O7OaZ2gzBTNRXUgEgrqNg19OgXv1QWeq4K8wb7T4tjiONZ
+	 wf8g4XtT6G0fbmWM8ieic3rfmXs0fjVaFRq6qjA65f7oCJ7VAsuVrHAJFpQwRP/TPd
+	 smxs4kTbm9ehT1yAS7VCT5goKXpXzdS1SJnPRMdJ5DL9ca/pUO2hhEGSxVXI7QY+S5
+	 vyJz6v+qtb4HWWr++vC2m6eYRpzwyuJyKm6yMjV1xT5bm31hKDRBhj50FGUdtKAy73
+	 FvImMWTegnm1GcWXtSOtWW9xGQl/U8oWhwmQIE6c6dbVw8pf8pSWYD8ispkB2pNYey
+	 UO5tcDqIQ5lGg==
+Date: Thu, 15 Feb 2024 17:03:04 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Rob Clark <robdclark@gmail.com>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Sean Paul <sean@poorly.run>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	iommu@lists.linux.dev
-Subject: Re: [PATCH v2 1/6] dt-bindings: display/msm/gmu: Document Adreno 750
- GMU
-Message-ID: <20240215-trout-written-9ba8c929f9a5@spud>
-References: <20240215-topic-sm8650-gpu-v2-0-6be0b4bf2e09@linaro.org>
- <20240215-topic-sm8650-gpu-v2-1-6be0b4bf2e09@linaro.org>
+To: Mihai Sain <mihai.sain@microchip.com>
+Cc: claudiu.beznea@tuxon.dev, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+	andre.przywara@arm.com, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	cristian.birsan@microchip.com
+Subject: Re: [PATCH v3 2/3] ARM: dts: microchip: sama7g5: Add flexcom 10 node
+Message-ID: <20240215-lustily-flick-69cb48b123c3@spud>
+References: <20240215091524.14732-1-mihai.sain@microchip.com>
+ <20240215091524.14732-3-mihai.sain@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,59 +61,78 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="HZ+0T1NysZqNQ3hJ"
+	protocol="application/pgp-signature"; boundary="zfv+/8Ldmdc7cdaf"
 Content-Disposition: inline
-In-Reply-To: <20240215-topic-sm8650-gpu-v2-1-6be0b4bf2e09@linaro.org>
+In-Reply-To: <20240215091524.14732-3-mihai.sain@microchip.com>
 
 
---HZ+0T1NysZqNQ3hJ
+--zfv+/8Ldmdc7cdaf
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 15, 2024 at 10:20:23AM +0100, Neil Armstrong wrote:
-> Document the Adreno 750 GMU found on the SM8650 platform.
+On Thu, Feb 15, 2024 at 11:15:23AM +0200, Mihai Sain wrote:
+> Add flexcom 10 node for usage on the SAMA7G54 Curiosity board.
 >=20
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-Cheers,
-Conor.
-
+> Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
 > ---
->  Documentation/devicetree/bindings/display/msm/gmu.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  arch/arm/boot/dts/microchip/sama7g5.dtsi | 24 ++++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/display/msm/gmu.yaml b/Doc=
-umentation/devicetree/bindings/display/msm/gmu.yaml
-> index 4e1c25b42908..b3837368a260 100644
-> --- a/Documentation/devicetree/bindings/display/msm/gmu.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/gmu.yaml
-> @@ -224,6 +224,7 @@ allOf:
->              enum:
->                - qcom,adreno-gmu-730.1
->                - qcom,adreno-gmu-740.1
-> +              - qcom,adreno-gmu-750.1
->      then:
->        properties:
->          reg:
->=20
+> diff --git a/arch/arm/boot/dts/microchip/sama7g5.dtsi b/arch/arm/boot/dts=
+/microchip/sama7g5.dtsi
+> index 269e0a3ca269..c030b318985a 100644
+> --- a/arch/arm/boot/dts/microchip/sama7g5.dtsi
+> +++ b/arch/arm/boot/dts/microchip/sama7g5.dtsi
+> @@ -958,6 +958,30 @@ i2c9: i2c@600 {
+>  			};
+>  		};
+> =20
+> +		flx10: flexcom@e2820000 {
+> +			compatible =3D "atmel,sama5d2-flexcom";
+
+My comment here was ignored:
+https://lore.kernel.org/all/20240214-robe-pregnancy-a1b056c9fe14@spud/
+
+> +			reg =3D <0xe2820000 0x200>;
+> +			clocks =3D <&pmc PMC_TYPE_PERIPHERAL 48>;
+> +			#address-cells =3D <1>;
+> +			#size-cells =3D <1>;
+> +			ranges =3D <0x0 0xe2820000 0x800>;
+> +			status =3D "disabled";
+> +
+> +			i2c10: i2c@600 {
+> +				compatible =3D "microchip,sama7g5-i2c", "microchip,sam9x60-i2c";
+> +				reg =3D <0x600 0x200>;
+> +				interrupts =3D <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
+> +				#address-cells =3D <1>;
+> +				#size-cells =3D <0>;
+> +				clocks =3D <&pmc PMC_TYPE_PERIPHERAL 48>;
+> +				atmel,fifo-size =3D <32>;
+> +				dmas =3D <&dma0 AT91_XDMAC_DT_PERID(26)>,
+> +					<&dma0 AT91_XDMAC_DT_PERID(25)>;
+> +				dma-names =3D "tx", "rx";
+> +				status =3D "disabled";
+> +			};
+> +		};
+> +
+>  		flx11: flexcom@e2824000 {
+>  			compatible =3D "atmel,sama5d2-flexcom";
+>  			reg =3D <0xe2824000 0x200>;
 > --=20
-> 2.34.1
+> 2.43.0
 >=20
 
---HZ+0T1NysZqNQ3hJ
+--zfv+/8Ldmdc7cdaf
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZc5DLQAKCRB4tDGHoIJi
-0uvUAQCtCgC2eHupKQtPKFOnR5PFcNSjcf0kcLi4MhaYUVZEzgD/REr3WQUpQ8eD
-moB3rhx2b3tSDbMaZ5ZNmayqfscT5QA=
-=aBoj
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZc5DxwAKCRB4tDGHoIJi
+0vJsAQDeQhIb3G2vqcVcBI18bJC0ZUioeFGxbNSWOAUjN7G2mwD/XaLf8/ElSyxG
+SZ8uAxcymPu/A6opdb1qEBlCIoZjkQg=
+=gg+J
 -----END PGP SIGNATURE-----
 
---HZ+0T1NysZqNQ3hJ--
+--zfv+/8Ldmdc7cdaf--
 
