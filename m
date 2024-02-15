@@ -1,296 +1,221 @@
-Return-Path: <devicetree+bounces-41911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 848CB855D69
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:07:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67E30855D6D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:08:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CDAC2827ED
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:07:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E247289DE1
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:08:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3BC61BF31;
-	Thu, 15 Feb 2024 09:05:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB659134D3;
+	Thu, 15 Feb 2024 09:07:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="woUs3HEE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AB231BDCD;
-	Thu, 15 Feb 2024 09:05:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B72CC13AC6
+	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 09:06:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707987927; cv=none; b=i2oK0QbiXxFqVi5co2Vd2RGqT5hyPbx8i8tDywf2LmdaAoI9IjT9VKI8fx+5D//pip2n0WsNwklwo9M8atUPMZdGOeDpOlYR624ULwq2mk5zEr9U9KM4WVLIhSMKb2vFAWYLR5S81LsVA7yMVX23+iGhTedsPJe/5dcuAIcPoAc=
+	t=1707988020; cv=none; b=f+Cgi85bRU8mcpZGFASwnPz0wBAjxjsT31AuDu+E0VrahAm3oVxyDyxe0450ONjTyoj2/uAFcTgxZ1BB3TP3B/vH/iUbxdfHlz2376Et2wUagN8SY3xoEA4KsIjTvXhCljFQ6kP596G7UGMEqG1Jqcwxd+FbtZU9whZ+A+5mQec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707987927; c=relaxed/simple;
-	bh=bYtuL0zq4IRle17HeXXccmuSAgR32YzpZuy/32aWRDE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=UL2tgDfntS9nyHieFLSWb9X2Tyo/ousE1Yem12YyC0gBmkFY7E1CA0m047BLGalIA08Vmizb8TZHDcZduMjwr22YSgotcO8gbaspQcfmD/cb310ABwtgKtRFqd0s4P8rXYLGW5oA+D2uQfk/f4ewESdWBWlIRyGJebMyKggE2nQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875b6c.versanet.de ([83.135.91.108] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1raXgE-0002M4-Ua; Thu, 15 Feb 2024 10:05:19 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: neil.armstrong@linaro.org
-Cc: quic_jesszhan@quicinc.com,
-	sam@ravnborg.org,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	quentin.schulz@theobroma-systems.com,
-	Heiko Stuebner <heiko.stuebner@cherry.de>
-Subject: [PATCH 3/3] drm/panel: ltk500hd1829: add panel type for ltk101b4029w
-Date: Thu, 15 Feb 2024 10:05:15 +0100
-Message-Id: <20240215090515.3513817-4-heiko@sntech.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240215090515.3513817-1-heiko@sntech.de>
-References: <20240215090515.3513817-1-heiko@sntech.de>
+	s=arc-20240116; t=1707988020; c=relaxed/simple;
+	bh=jI9LqSmuZj4H5TkJ6IK9Ersbmyseu+sPzIbpCKzMIok=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=giUqsisL3W181amFUXJnL3lobsRnzqKcwDPHTHzasUzBCsRJL9Rzz28eJbXODOeKQ/sslWyzb3uGzmYGyP63mcdySUH+HvaV9dYrsM2PJOgyyUNpVR+zA6EzF3247JeKv3Dn18pF+StCnPuEdi1w14pQ8vpLqdU8bN2EhDLupQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=woUs3HEE; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a3122b70439so68223766b.3
+        for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 01:06:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707988017; x=1708592817; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=+/cr0SnJgLt/Y/uPlaXf1y6lLfASp/lHSA1ZZKTjFds=;
+        b=woUs3HEEb+Z0RCi/bHu0Cab/Otjvdh9/1Is8kFXy7VbTNV3Jm9cry8tDCRTpsnIRLo
+         37wPiW3nLQHzpOG0G8zDvrFYjNe9GAQa73rqQfQS4Z4/QAvND0g6oN5RdmXjQMFa4x5j
+         3sy0qnPx6bodciRVeLHpmvMwwjp83EaklHvAjPE/5/rzYjpgtTZeGqxNZ93pejytlRjW
+         /+JwULnndDhv/EXpiZSv4K8UjIzIYX5dqIBuPv8363fJ0yW8T7j7+dXrqBvcRObWN5AA
+         7DkRXEtOAmdZuQDj4CznHrhoT7VVkoE7aD7ASL/dvYFN/6efZ8NDeKureP5lc/DQjtYD
+         0aHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707988017; x=1708592817;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+/cr0SnJgLt/Y/uPlaXf1y6lLfASp/lHSA1ZZKTjFds=;
+        b=E5FOjSvyqPvQqhZP1xRzydIRSsQUq0Sr7RPNO5eKlk1IC/5xOHmMPLEFufRHmMCDBq
+         KICmKCs8TlTG2kov5e4wucLhDJh59ZL3/h3iGi7TAbf/TuinzuonNOqbLUQyf38NiiNv
+         hhUd59EfkdU3lrEE3cGmyq8re0msaVnnAYUPHBSvs0jdkpccSJLQVfPA2eL1eQZenlbS
+         QKTPmTzfuOk3Eh2jNE8EnVRi0e6yzjv904yEil+dN2uVBjpktEC0E8gYRkNppSjZDTj+
+         bpogRR16H9UcVcsOwQcV7xRAo5Cpw23PX+lES/EFeszF+bRGN2ZE6y1oQcHxbpvBmEIr
+         YJ1g==
+X-Forwarded-Encrypted: i=1; AJvYcCXX+WoMWX8hoAxP27KzgEgeTe/us4YhVWzFj/dQp0Z06I6YbibphsRH/8PT/Q0v6w+8hbnQCleSdniO+c6IeGXxyQ9uAqGlNrdEng==
+X-Gm-Message-State: AOJu0YxnR4g55a7ndTLioY+S3/WTZaFL42aBdU+J+08iq2iM7QaWJj5Z
+	vrfMXhTVJ3nXMVyPLFwj4EcCu6hw7/neqcfIjPviC/Re6tcKLlGG7LIINWSqvP0=
+X-Google-Smtp-Source: AGHT+IG0Ct+yZqI7+1UXBfdoxvX4aSQmC2oI3+DGIhN2luBFZTFtiXiW6nej5EfwumSj+h6NuoGbAQ==
+X-Received: by 2002:a17:906:a40f:b0:a3c:d669:c48e with SMTP id l15-20020a170906a40f00b00a3cd669c48emr788548ejz.2.1707988016905;
+        Thu, 15 Feb 2024 01:06:56 -0800 (PST)
+Received: from [192.168.0.22] ([78.10.207.130])
+        by smtp.gmail.com with ESMTPSA id gt18-20020a170906f21200b00a36c5b01ef3sm338626ejb.225.2024.02.15.01.06.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Feb 2024 01:06:56 -0800 (PST)
+Message-ID: <135e3154-2a55-40ac-9ba9-2de00833b903@linaro.org>
+Date: Thu, 15 Feb 2024 10:06:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 2/4] dt-bindings: remoteproc: add Tightly Coupled
+ Memory (TCM) bindings
+To: Tanmay Shah <tanmay.shah@amd.com>, Rob Herring <robh@kernel.org>
+Cc: andersson@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, linux-remoteproc@vger.kernel.org,
+ michal.simek@amd.com, Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
+ ben.levinsky@amd.com, linux-kernel@vger.kernel.org,
+ mathieu.poirier@linaro.org, conor+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20240213175450.3097308-1-tanmay.shah@amd.com>
+ <20240213175450.3097308-3-tanmay.shah@amd.com>
+ <170785205177.2155555.1311787541370066483.robh@kernel.org>
+ <b931a24c-f676-4ddb-bb7c-e7a509d5dd4b@amd.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <b931a24c-f676-4ddb-bb7c-e7a509d5dd4b@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Heiko Stuebner <heiko.stuebner@cherry.de>
+On 13/02/2024 21:37, Tanmay Shah wrote:
+> Hello,
+> 
+> Thanks for reviews please find my comments below.
+> 
+> On 2/13/24 1:20 PM, Rob Herring wrote:
+>> On Tue, 13 Feb 2024 09:54:48 -0800, Tanmay Shah wrote:
+>>> From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+>>>
+>>> Introduce bindings for TCM memory address space on AMD-xilinx Zynq
+>>> UltraScale+ platform. It will help in defining TCM in device-tree
+>>> and make it's access platform agnostic and data-driven.
+>>>
+>>> Tightly-coupled memories(TCMs) are low-latency memory that provides
+>>> predictable instruction execution and predictable data load/store
+>>> timing. Each Cortex-R5F processor contains two 64-bit wide 64 KB memory
+>>> banks on the ATCM and BTCM ports, for a total of 128 KB of memory.
+>>>
+>>> The TCM resources(reg, reg-names and power-domain) are documented for
+>>> each TCM in the R5 node. The reg and reg-names are made as required
+>>> properties as we don't want to hardcode TCM addresses for future
+>>> platforms and for zu+ legacy implementation will ensure that the
+>>> old dts w/o reg/reg-names works and stable ABI is maintained.
+>>>
+>>> It also extends the examples for TCM split and lockstep modes.
+>>>
+>>> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+>>> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+>>> ---
+>>>
+>>> Changes in v10:
+>>>   - modify number of "reg", "reg-names" and "power-domains" entries
+>>>     based on cluster mode
+>>>   - Add extra optional atcm and btcm in "reg" property for lockstep mode
+>>>   - Add "reg-names" for extra optional atcm and btcm for lockstep mode
+>>>   - Drop previous Ack as bindings has new change
+>>>
+>>> Changes in v9:
+>>>   - None
+>>> Changes in v8:
+>>>   - None
+>>> Changes in v7:
+>>>   - None
+>>> Changes in v6:
+>>>   - None
+>>> Changes in v5:
+>>>   - None
+>>>
+>>> Changes in v4:
+>>>   - Use address-cells and size-cells value 2
+>>>   - Modify ranges property as per new value of address-cells
+>>>     and size-cells
+>>>   - Modify child node "reg" property accordingly
+>>>   - Remove previous ack for further review
+>>>
+>>> v4 link: https://lore.kernel.org/all/20230829181900.2561194-2-tanmay.shah@amd.com/
+>>>
+>>>  .../remoteproc/xlnx,zynqmp-r5fss.yaml         | 192 ++++++++++++++++--
+>>>  1 file changed, 170 insertions(+), 22 deletions(-)
+>>>
+>>
+>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>>
+>> yamllint warnings/errors:
+>> ./Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml:118:13: [warning] wrong indentation: expected 10 but found 12 (indentation)
+> Ack. I will fix this.
+> 
+> However, can I still get reviews on patch itself so if something else needs to be fixed I can fix in next revision as well.
 
-The ltk101b4029w ist a 10.1 inch DSI panel and shares the same supplies
-and startup timings with the existing ltk500hd1829.
+Sorry, I have too many patches to review to provide feedback on work
+which does not build/compile/test. First use automated tooling, like
+building a C code, to detect as many issues as possible then ask for
+reviewing. Not the other way around.
 
-So simply add it as a variant with its own init sequence and display-mode.
-
-Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
----
- .../drm/panel/panel-leadtek-ltk500hd1829.c    | 196 ++++++++++++++++++
- 1 file changed, 196 insertions(+)
-
-diff --git a/drivers/gpu/drm/panel/panel-leadtek-ltk500hd1829.c b/drivers/gpu/drm/panel/panel-leadtek-ltk500hd1829.c
-index 42f4e2584af18..7bc538b7c6b7c 100644
---- a/drivers/gpu/drm/panel/panel-leadtek-ltk500hd1829.c
-+++ b/drivers/gpu/drm/panel/panel-leadtek-ltk500hd1829.c
-@@ -43,6 +43,198 @@ struct ltk500hd1829 {
- 	bool prepared;
- };
- 
-+static const struct ltk500hd1829_cmd ltk101b4029w_init[] = {
-+	/* Page0 */
-+	{ 0xE0, 0x00 },
-+	/* PASSWORD */
-+	{ 0xE1, 0x93 },
-+	{ 0xE2, 0x65 },
-+	{ 0xE3, 0xF8 },
-+	{ 0x80, 0x03 }, /* 0X03:4-LANE; 0X02:3-LANE; 0X01:2-LANE */
-+	/* Page1 */
-+	{ 0xE0, 0x01 },
-+	/* Set VCOM */
-+	{ 0x00, 0x00 },
-+	{ 0x01, 0x6F },
-+	/* Set Gamma Power, VGMP,VGMN,VGSP,VGSN */
-+	{ 0x17, 0x00 },
-+	{ 0x18, 0xAF }, /* 4.3V */
-+	{ 0x19, 0x01 }, /* 0.3V */
-+	{ 0x1A, 0x00 },
-+	{ 0x1B, 0xAF }, /* 4.3V */
-+	{ 0x1C, 0x01 }, /* 0.3V */
-+	/* Set Gate Power */
-+	{ 0x1F, 0x3E }, /* VGH_R  = 15V */
-+	{ 0x20, 0x28 }, /* VGL_R  = -12V */
-+	{ 0x21, 0x28 }, /* VGL_R2 = -12V */
-+	{ 0x22, 0x7E },
-+	/* SETPANEL */
-+	{ 0x35, 0x26 },
-+	{ 0x37, 0x09 },
-+	/* SET RGBCYC */
-+	{ 0x38, 0x04 },
-+	{ 0x39, 0x00 },
-+	{ 0x3A, 0x01 },
-+	{ 0x3C, 0x7C },
-+	{ 0x3D, 0xFF },
-+	{ 0x3E, 0xFF },
-+	{ 0x3F, 0x7F },
-+	/* Set TCON */
-+	{ 0x40, 0x06 }, /* RSO = 800 RGB */
-+	{ 0x41, 0xA0 }, /* LN = 640->1280 line */
-+	{ 0x42, 0x81 },
-+	{ 0x43, 0x08 }, /* VFP = 8 */
-+	{ 0x44, 0x0B }, /* VBP = 12 */
-+	{ 0x45, 0x28 }, /* HBP = 40 */
-+	/* power voltage */
-+	{ 0x55, 0x0F }, /* DCDCM = 0001, JD PWR_IC */
-+	{ 0x57, 0x69 },
-+	{ 0x59, 0x0A }, /* VCL = -2.9V */
-+	{ 0x5A, 0x28 }, /* VGH = 15V */
-+	{ 0x5B, 0x14 }, /* VGL = -11V */
-+	/* Gamma */
-+	{ 0x5D, 0x7C },
-+	{ 0x5E, 0x65 },
-+	{ 0x5F, 0x55 },
-+	{ 0x60, 0x47 },
-+	{ 0x61, 0x43 },
-+	{ 0x62, 0x32 },
-+	{ 0x63, 0x34 },
-+	{ 0x64, 0x1C },
-+	{ 0x65, 0x33 },
-+	{ 0x66, 0x31 },
-+	{ 0x67, 0x30 },
-+	{ 0x68, 0x4E },
-+	{ 0x69, 0x3C },
-+	{ 0x6A, 0x44 },
-+	{ 0x6B, 0x35 },
-+	{ 0x6C, 0x31 },
-+	{ 0x6D, 0x23 },
-+	{ 0x6E, 0x11 },
-+	{ 0x6F, 0x00 },
-+	{ 0x70, 0x7C },
-+	{ 0x71, 0x65 },
-+	{ 0x72, 0x55 },
-+	{ 0x73, 0x47 },
-+	{ 0x74, 0x43 },
-+	{ 0x75, 0x32 },
-+	{ 0x76, 0x34 },
-+	{ 0x77, 0x1C },
-+	{ 0x78, 0x33 },
-+	{ 0x79, 0x31 },
-+	{ 0x7A, 0x30 },
-+	{ 0x7B, 0x4E },
-+	{ 0x7C, 0x3C },
-+	{ 0x7D, 0x44 },
-+	{ 0x7E, 0x35 },
-+	{ 0x7F, 0x31 },
-+	{ 0x80, 0x23 },
-+	{ 0x81, 0x11 },
-+	{ 0x82, 0x00 },
-+	 /* Page2, for GIP */
-+	{ 0xE0, 0x02 },
-+	/* GIP_L Pin mapping */
-+	{ 0x00, 0x1E },
-+	{ 0x01, 0x1E },
-+	{ 0x02, 0x41 },
-+	{ 0x03, 0x41 },
-+	{ 0x04, 0x43 },
-+	{ 0x05, 0x43 },
-+	{ 0x06, 0x1F },
-+	{ 0x07, 0x1F },
-+	{ 0x08, 0x35 },
-+	{ 0x09, 0x1F },
-+	{ 0x0A, 0x15 },
-+	{ 0x0B, 0x15 },
-+	{ 0x0C, 0x1F },
-+	{ 0x0D, 0x47 },
-+	{ 0x0E, 0x47 },
-+	{ 0x0F, 0x45 },
-+	{ 0x10, 0x45 },
-+	{ 0x11, 0x4B },
-+	{ 0x12, 0x4B },
-+	{ 0x13, 0x49 },
-+	{ 0x14, 0x49 },
-+	{ 0x15, 0x1F },
-+	/* GIP_R Pin mapping */
-+	{ 0x16, 0x1E },
-+	{ 0x17, 0x1E },
-+	{ 0x18, 0x40 },
-+	{ 0x19, 0x40 },
-+	{ 0x1A, 0x42 },
-+	{ 0x1B, 0x42 },
-+	{ 0x1C, 0x1F },
-+	{ 0x1D, 0x1F },
-+	{ 0x1E, 0x35 },
-+	{ 0x1F, 0x1F },
-+	{ 0x20, 0x15 },
-+	{ 0x21, 0x15 },
-+	{ 0x22, 0x1f },
-+	{ 0x23, 0x46 },
-+	{ 0x24, 0x46 },
-+	{ 0x25, 0x44 },
-+	{ 0x26, 0x44 },
-+	{ 0x27, 0x4A },
-+	{ 0x28, 0x4A },
-+	{ 0x29, 0x48 },
-+	{ 0x2A, 0x48 },
-+	{ 0x2B, 0x1F },
-+	/* GIP Timing */
-+	{ 0x58, 0x40 },
-+	{ 0x5B, 0x30 },
-+	{ 0x5C, 0x03 },
-+	{ 0x5D, 0x30 },
-+	{ 0x5E, 0x01 },
-+	{ 0x5F, 0x02 },
-+	{ 0x63, 0x14 },
-+	{ 0x64, 0x6A },
-+	{ 0x67, 0x73 },
-+	{ 0x68, 0x05 },
-+	{ 0x69, 0x14 },
-+	{ 0x6A, 0x6A },
-+	{ 0x6B, 0x08 },
-+	{ 0x6C, 0x00 },
-+	{ 0x6D, 0x00 },
-+	{ 0x6E, 0x00 },
-+	{ 0x6F, 0x88 },
-+	{ 0x77, 0xDD },
-+	{ 0x79, 0x0E },
-+	{ 0x7A, 0x03 },
-+	{ 0x7D, 0x14 },
-+	{ 0x7E, 0x6A },
-+	/* Page4 */
-+	{ 0xE0, 0x04 },
-+	{ 0x09, 0x11 },
-+	{ 0x0E, 0x48 },
-+	{ 0x2B, 0x2B },
-+	{ 0x2D, 0x03 },
-+	{ 0x2E, 0x44 },
-+	/* Page0 */
-+	{ 0xE0, 0x00 },
-+	{ 0xE6, 0x02 },
-+	{ 0xE7, 0x0C },
-+};
-+
-+static const struct drm_display_mode ltk101b4029w_mode = {
-+	.hdisplay	= 800,
-+	.hsync_start	= 800 + 18,
-+	.hsync_end	= 800 + 18 + 18,
-+	.htotal		= 800 + 18 + 18 + 18,
-+	.vdisplay	= 1280,
-+	.vsync_start	= 1280 + 24,
-+	.vsync_end	= 1280 + 24 + 4,
-+	.vtotal		= 1280 + 24 + 4 + 8,
-+	.clock		= 67330,
-+	.width_mm	= 136,
-+	.height_mm	= 218,
-+};
-+
-+static const struct ltk500hd1829_desc ltk101b4029w_data = {
-+	.mode = &ltk101b4029w_mode,
-+	.init = ltk101b4029w_init,
-+	.num_init = ARRAY_SIZE(ltk101b4029w_init),
-+};
-+
- /*
-  * There is no description in the Reference Manual about these commands.
-  * We received them from the vendor, so just use them as is.
-@@ -510,6 +702,10 @@ static void ltk500hd1829_remove(struct mipi_dsi_device *dsi)
- }
- 
- static const struct of_device_id ltk500hd1829_of_match[] = {
-+	{
-+		.compatible = "leadtek,ltk101b4029w",
-+		.data = &ltk101b4029w_data,
-+	},
- 	{
- 		.compatible = "leadtek,ltk500hd1829",
- 		.data = &ltk500hd1829_data,
--- 
-2.39.2
+Best regards,
+Krzysztof
 
 
