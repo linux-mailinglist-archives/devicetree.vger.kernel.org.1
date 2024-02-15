@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-41904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EE74855D47
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:04:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CB69855D64
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:07:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 173A428ABA9
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:04:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 78AEEB2B1B5
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 08:58:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17EAF14AA9;
-	Thu, 15 Feb 2024 08:59:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6226313FF5;
+	Thu, 15 Feb 2024 08:56:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="o87EUIFF"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="wRPnb62B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F330D1C6A0;
-	Thu, 15 Feb 2024 08:59:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88A521BDE0;
+	Thu, 15 Feb 2024 08:56:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707987574; cv=none; b=eqYdNj09PFAd+7zFevtNJJaA7n2vOsTC9QAkkC1j3jDuTaTtqKY1sYUTWL3xcA1PTdN7Id7hwnOZiFvLiLpvPFZ9VjpyaDcQkU835NW/vlqZq7/qmZ2icVualeWa/hHcypv9Qz3bdT3yAHQu33eGqQMBKhCwNiS8AmQ4+tc/9AM=
+	t=1707987366; cv=none; b=uGTZW4CukfDAuJSbHLK+hvRiIog/k8Pyseovrd3oI3fq+MpPc9La5gbIiqcWUhj4Lc2b/KsRM9MXw7Qt3crLTQ8wme92iS834EvcfzUQD4X/B1XTwHBcZsfbfEqEWBagbZ31xDgcu6ac76qL74oZALBIDy860NlKwRwCv2dLEUw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707987574; c=relaxed/simple;
-	bh=OecqNcscZJ13PH840r95jogObDqAALk8/vWY1iDigqo=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jWz8aGy31xhMKZ5iMfUPfb6PwWClvsfQ/Sk5kbPZmlnE9cFWMEpYGmbCgOYKoOtXzQGyjbidwUAUQmetsmeaSz/QH/zk96eJFsUWJV3hsLmeBxOmpaReSkCU4XQAvnsCMCcJWbjeNBa3R/0JkC4STNJ63XsdOb80rxFv2ulbf68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=o87EUIFF; arc=none smtp.client-ip=198.47.23.249
+	s=arc-20240116; t=1707987366; c=relaxed/simple;
+	bh=wNv4a6Md8eOgqP+Ve8O8gkO4YdqeO12NW2BZ0s1DMMo=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CzlCN0WrIUNScJ6iMloDjAiV/yn3f7zRNYqJvDy+fQGdJJ2M5bxcTchRXvvg491O+tEiySmOx/CgmbXacLDM13x3UGZwwXvvokYeccrfABLO5QLmCZNlNvNqaB/ilJm+cEaka7QXhqOwYV34N7Wc+VapODA2VIDzrijx3H05POQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=wRPnb62B; arc=none smtp.client-ip=198.47.19.142
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41F8tOla046504;
-	Thu, 15 Feb 2024 02:55:24 -0600
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41F8trCe076934;
+	Thu, 15 Feb 2024 02:55:53 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707987324;
-	bh=GzoAjTL40y+5uHYK1NwcGcZJ3oE8njc2MXrOuA9vRSU=;
-	h=From:To:CC:Subject:Date;
-	b=o87EUIFFcS530DcQHNxRLaKSNOpc77gesm8dhxwRe7jfIZ9g8x6nm+pXym5XS+S88
-	 NFV68VNySHNUzFWc+Qo1W8lPLGEt3oJifER2PlKB2x9MASfobPGABWa0fZQuNKDSdL
-	 i1A18q/82/9MK45EvhQ+wXM6hQxR2UeCzUuXptbM=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41F8tOAc069295
+	s=ti-com-17Q1; t=1707987353;
+	bh=qS7ma5QtwgNFRPziAmeuyTE5bj091f6X4+AXhzup8IM=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=wRPnb62Bj+cgrYp+FMtjlc0/MvwHru+8BwgdKn/NAKfv04EOrc41bAqwkYlxR59mp
+	 zvd3NJya3KmyNqD1I0RxcRRqagKnte2hJxuHec/K8jGWsZ7xXcwOZoWYmhWysHdbRw
+	 UyfiPWa8Razxv5R5iwa7oyDPpoVqsKTbsDjxNVMY=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41F8tr6K060027
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 15 Feb 2024 02:55:24 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 15 Feb 2024 02:55:53 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
- Feb 2024 02:55:23 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ Feb 2024 02:55:52 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 15 Feb 2024 02:55:23 -0600
+ Frontend Transport; Thu, 15 Feb 2024 02:55:52 -0600
 Received: from uda0490681.. ([10.24.69.142])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41F8tJ7j008333;
-	Thu, 15 Feb 2024 02:55:19 -0600
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41F8tJ7q008333;
+	Thu, 15 Feb 2024 02:55:48 -0600
 From: Vaishnav Achath <vaishnav.a@ti.com>
 To: <vigneshr@ti.com>, <nm@ti.com>, <conor+dt@kernel.org>, <kristo@kernel.org>,
         <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>
@@ -62,10 +63,12 @@ CC: <j-luthra@ti.com>, <devicetree@vger.kernel.org>, <j-choudhary@ti.com>,
         <kernel@pengutronix.de>, <linux-arm-kernel@lists.infradead.org>,
         <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>, <vaishnav.a@ti.com>,
         <afd@ti.com>
-Subject: [PATCH v4 0/9] Add CSI2RX capture support on TI J7 platforms
-Date: Thu, 15 Feb 2024 14:25:09 +0530
-Message-ID: <20240215085518.552692-1-vaishnav.a@ti.com>
+Subject: [PATCH v4 7/9] arm64: dts: ti: k3-j721s2-main: Add CSI2RX capture nodes
+Date: Thu, 15 Feb 2024 14:25:16 +0530
+Message-ID: <20240215085518.552692-8-vaishnav.a@ti.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240215085518.552692-1-vaishnav.a@ti.com>
+References: <20240215085518.552692-1-vaishnav.a@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,67 +79,165 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi,
+J721S2 has two CSI2RX capture subsystem featuring Cadence CSI2RX,
+DPHY and TI's pixel grabbing wrapper. Add nodes for the same and
+keep them disabled by default. J721S2 uses a dedicated BCDMA instance
+for CSI-RX traffic, so enable that as well.
 
-This series adds support for CSI2RX capture support on J7 platforms,
-series was tested for CSI2RX capture on OV5640 sensor and RPI camera
-v2 IMX219 sensor on J721e Common Processor Board, J721E Starter kit,
-J721S2 Common Processor Board, AM68 Starter Kit, J784s4 EVM and AM69
-Starter kit.
+J721S2 TRM (Section 12.7 Camera Subsystem):
+	https://www.ti.com/lit/zip/spruj28
 
-V1: https://lore.kernel.org/all/20240129132742.1189783-1-vaishnav.a@ti.com/
-V2: https://lore.kernel.org/all/20240208084254.295289-1-vaishnav.a@ti.com/
-V3: https://lore.kernel.org/all/20240208123233.391115-1-vaishnav.a@ti.com/
+Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
+Reviewed-by: Jai Luthra <j-luthra@ti.com>
+---
 
-Changelog:
-V3->V4:
-  * Add additional port information in overlays to fix DTC warning:
-	Warning (graph_child_address): graph node has single child node,
-	#address-cells/#size-cells are not necessary  
-V2->V3:
-  * Fix order of properties in patch 6/7/8 as per dts coding style.
-V1->V2:
-  * Address feedback from Jai and Andrew
-    * Rename overlays to indicate first platform supported/dual camera.
-    * Add missed build test.
-    * Add board schematics for all commit messages.
+V2->V3: Fix order of properties as per dts coding style.
+V1->V2: Update commit message with TRM.
 
-Test logs:
-J721E EVM OV5640 - https://gist.github.com/vaishnavachath/b08521386cfbe1939facf39b8b2d796b
-J721S2 EVM OV5640 - https://gist.github.com/vaishnavachath/1b0d60da6b6464cf12334cd5e161a79b
-J784s4 EVM OV5640 - https://gist.github.com/vaishnavachath/02b70df94d2d41662eff99f4ce966d67
-TDA4VM SK IMX219 - https://gist.github.com/vaishnavachath/64fc6edd6cc060027812bebd6573df07
-AM68 SK IMX219 - https://gist.github.com/vaishnavachath/d522254ff5e797bc853e0706fbea932a
-AM69 SK IMX219 - https://gist.github.com/vaishnavachath/8dbd960cc89d691886df371c53aac399
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 123 ++++++++++++++++++++-
+ 1 file changed, 122 insertions(+), 1 deletion(-)
 
-Only a single set of overlays for dual RPI IMX219 is included in the series
-for reference and other overlays to test OV5640 can be found here:
-https://gist.github.com/vaishnavachath/d0a052106892fe9f3096733931e9ad5f
-
-Vaishnav Achath (9):
-  arm64: dts: ti: k3-j721s2-common-proc-board: Enable camera peripherals
-  arm64: dts: ti: k3-j784s4-evm: Enable camera peripherals
-  arm64: dts: ti: k3-am68-sk-base-board: Enable camera peripherals
-  arm64: dts: ti: k3-am69-sk: Enable camera peripherals
-  arm64: dts: ti: k3-j721e-sk: Model CSI2RX connector mux
-  arm64: dts: ti: k3-j721e-main: Add CSI2RX capture nodes
-  arm64: dts: ti: k3-j721s2-main: Add CSI2RX capture nodes
-  arm64: dts: ti: k3-j784s4-main: Add CSI2RX capture nodes
-  arm64: dts: ti: k3-j721e-sk: Add overlay for IMX219
-
- arch/arm64/boot/dts/ti/Makefile               |  13 ++
- .../boot/dts/ti/k3-am68-sk-base-board.dts     |  50 +++++
- arch/arm64/boot/dts/ti/k3-am69-sk.dts         |  51 +++++
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 122 ++++++++++++
- .../dts/ti/k3-j721e-sk-csi2-dual-imx219.dtso  | 165 ++++++++++++++++
- arch/arm64/boot/dts/ti/k3-j721e-sk.dts        |  19 +-
- .../dts/ti/k3-j721s2-common-proc-board.dts    |  25 +++
- arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi    | 123 +++++++++++-
- arch/arm64/boot/dts/ti/k3-j784s4-evm.dts      |  25 +++
- arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi    | 183 +++++++++++++++++-
- 10 files changed, 772 insertions(+), 4 deletions(-)
- create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-sk-csi2-dual-imx219.dtso
-
+diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+index dcaa4da0d678..9063aa609993 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+@@ -1122,7 +1122,6 @@ main_bcdma_csi: dma-controller@311a0000 {
+ 			ti,sci-dev-id = <225>;
+ 			ti,sci-rm-range-rchan = <0x21>;
+ 			ti,sci-rm-range-tchan = <0x22>;
+-			status = "disabled";
+ 		};
+ 
+ 		cpts@310d0000 {
+@@ -1233,6 +1232,128 @@ usb0: usb@6000000 {
+ 		};
+ 	};
+ 
++	ti_csi2rx0: ticsi2rx@4500000 {
++		compatible = "ti,j721e-csi2rx-shim";
++		reg = <0x00 0x04500000 0x00 0x1000>;
++		ranges;
++		#address-cells = <2>;
++		#size-cells = <2>;
++		dmas = <&main_bcdma_csi 0 0x4940 0>;
++		dma-names = "rx0";
++		power-domains = <&k3_pds 38 TI_SCI_PD_EXCLUSIVE>;
++		status = "disabled";
++
++		cdns_csi2rx0: csi-bridge@4504000 {
++			compatible = "ti,j721e-csi2rx", "cdns,csi2rx";
++			reg = <0x00 0x04504000 0x00 0x1000>;
++			clocks = <&k3_clks 38 3>, <&k3_clks 38 1>, <&k3_clks 38 3>,
++				<&k3_clks 38 3>, <&k3_clks 38 4>, <&k3_clks 38 4>;
++			clock-names = "sys_clk", "p_clk", "pixel_if0_clk",
++				"pixel_if1_clk", "pixel_if2_clk", "pixel_if3_clk";
++			phys = <&dphy0>;
++			phy-names = "dphy";
++
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				csi0_port0: port@0 {
++					reg = <0>;
++					status = "disabled";
++				};
++
++				csi0_port1: port@1 {
++					reg = <1>;
++					status = "disabled";
++				};
++
++				csi0_port2: port@2 {
++					reg = <2>;
++					status = "disabled";
++				};
++
++				csi0_port3: port@3 {
++					reg = <3>;
++					status = "disabled";
++				};
++
++				csi0_port4: port@4 {
++					reg = <4>;
++					status = "disabled";
++				};
++			};
++		};
++	};
++
++	ti_csi2rx1: ticsi2rx@4510000 {
++		compatible = "ti,j721e-csi2rx-shim";
++		reg = <0x00 0x04510000 0x00 0x1000>;
++		ranges;
++		#address-cells = <2>;
++		#size-cells = <2>;
++		dmas = <&main_bcdma_csi 0 0x4960 0>;
++		dma-names = "rx0";
++		power-domains = <&k3_pds 39 TI_SCI_PD_EXCLUSIVE>;
++		status = "disabled";
++
++		cdns_csi2rx1: csi-bridge@4514000 {
++			compatible = "ti,j721e-csi2rx", "cdns,csi2rx";
++			reg = <0x00 0x04514000 0x00 0x1000>;
++			clocks = <&k3_clks 39 3>, <&k3_clks 39 1>, <&k3_clks 39 3>,
++				<&k3_clks 39 3>, <&k3_clks 39 4>, <&k3_clks 39 4>;
++			clock-names = "sys_clk", "p_clk", "pixel_if0_clk",
++				"pixel_if1_clk", "pixel_if2_clk", "pixel_if3_clk";
++			phys = <&dphy1>;
++			phy-names = "dphy";
++
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				csi1_port0: port@0 {
++					reg = <0>;
++					status = "disabled";
++				};
++
++				csi1_port1: port@1 {
++					reg = <1>;
++					status = "disabled";
++				};
++
++				csi1_port2: port@2 {
++					reg = <2>;
++					status = "disabled";
++				};
++
++				csi1_port3: port@3 {
++					reg = <3>;
++					status = "disabled";
++				};
++
++				csi1_port4: port@4 {
++					reg = <4>;
++					status = "disabled";
++				};
++			};
++		};
++	};
++
++	dphy0: phy@4580000 {
++		compatible = "cdns,dphy-rx";
++		reg = <0x00 0x04580000 0x00 0x1100>;
++		#phy-cells = <0>;
++		power-domains = <&k3_pds 152 TI_SCI_PD_EXCLUSIVE>;
++		status = "disabled";
++	};
++
++	dphy1: phy@4590000 {
++		compatible = "cdns,dphy-rx";
++		reg = <0x00 0x04590000 0x00 0x1100>;
++		#phy-cells = <0>;
++		power-domains = <&k3_pds 153 TI_SCI_PD_EXCLUSIVE>;
++		status = "disabled";
++	};
++
+ 	serdes_wiz0: wiz@5060000 {
+ 		compatible = "ti,j721s2-wiz-10g";
+ 		#address-cells = <1>;
 -- 
 2.34.1
 
