@@ -1,132 +1,108 @@
-Return-Path: <devicetree+bounces-42180-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42181-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 943BA856B16
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 18:33:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8F43856B67
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 18:46:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 490B51F2442E
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 17:33:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 863262864E9
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 17:46:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94AD11369AC;
-	Thu, 15 Feb 2024 17:33:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61FB6138481;
+	Thu, 15 Feb 2024 17:46:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Yl217RKq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qi6EPdrC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C69071369AA;
-	Thu, 15 Feb 2024 17:33:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36EA9132C04;
+	Thu, 15 Feb 2024 17:46:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708018412; cv=none; b=EjR5PksbKxJegZqEJFRyT/5LaeFb9I0olQrwHm+PXRRBoKQshn+U8jLXkwgHL1J5Ka5IyiVOlU5q9JnCKCPAOXGzZLx0GNIuvLRAT50qVxWjhkDZkI/O26ysJRmuSun0xKQFkht1fIvWKcKLt6D9ZuZOhHa/aRB89cJspmPVZ7s=
+	t=1708019203; cv=none; b=pUw7oHNiZpavvR8xGhHkRj7IOhd1Yisu2zNmfh0VjB6jbm/WGV8HCglGsg65ovNlfThvLvg/LO6KM47+XNpvn6hmPIFRcAlnBtoMGQXebTnepVrELCTsHmaMp2D+3TIRWP/B+25LotiNgb2iALCKDhxnqYZpKBjpF8bVO7WyFe4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708018412; c=relaxed/simple;
-	bh=p31H8uOEp0HuhwRG30YTgQDQ++yGEhc75SspKNi/tkU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ADVrckUghSb/ghHz4Dkqh9Riw6od+v8c6zAk2CsDtKMHAB+NUVbNtfpFh16y4ORnHpY3EhXF390OvoP0x4+loWHoAtg21phdpcmec/e/bbcjJuwbSCgd2XdQGAOdf+duJElc2fCPmjkJWAfgoWsSDTFZ2+JrP0AXVzAEpuizZBw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Yl217RKq; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41FHXLg1077311;
-	Thu, 15 Feb 2024 11:33:21 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1708018401;
-	bh=3m5CY2TlNVkh9N5ta1BmX3oJiLnGhcLpO2VHPGpYWkY=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=Yl217RKqVk4A83gphfnfFFEKlw0qJ5vK9VGDNU/2cODSHuF39kSFE1Tk4r0X+5Uaq
-	 JSFoOEmXvDwmi3FSVFQJE+jlYMpBLVQN68OJPfseNCK9IaydUny3MSZXDeZjNOYtFl
-	 AlhB13AV2ioEumDI8PxX4hVjK+fG8YVyp2NniZvU=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41FHXLhU032488
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 15 Feb 2024 11:33:21 -0600
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
- Feb 2024 11:33:20 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 15 Feb 2024 11:33:20 -0600
-Received: from [10.249.135.225] ([10.249.135.225])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41FHXGhL074623;
-	Thu, 15 Feb 2024 11:33:17 -0600
-Message-ID: <7b99b3c2-d0dc-4092-9090-5b960ba12738@ti.com>
-Date: Thu, 15 Feb 2024 23:03:16 +0530
+	s=arc-20240116; t=1708019203; c=relaxed/simple;
+	bh=3SmWmcck5G21RkHFmC4DweIdttsir78RJ8t2utgkGNQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=XB6SJ5Q0pAvWsA8RlMLi9Uqp2kpTJzQF/Tu/OQiMVD5yZMNagaQVmgJktGH9c5+7kRIH2VS5Bkgz6ZlmTvQo9uRLmHG+7TBmyYQIGOGM0ISX/cVnV9M/Z5iyz2kUlpcybl44erp3zocChi+PkQeURUce7XuKgGg9M8s6rnFe4dw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qi6EPdrC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B1690C433F1;
+	Thu, 15 Feb 2024 17:46:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708019202;
+	bh=3SmWmcck5G21RkHFmC4DweIdttsir78RJ8t2utgkGNQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=Qi6EPdrCc9v89k+Gm73FXJRcklShAe0JaStEoTGaOsHOZx4A6nJXfUYHCZxr1eYwa
+	 5DSX3gfAdzLA++F72H7WqmfSwfNZMDydaRqr5fs7lHXvWX8msxP3RVnqRZWSkCYF9X
+	 qCHY6jcWZQjpX15S1u7w9OD63YARQWxjOLk3ThEgU/XqEzjARRV0pCvVhB5s2nQ9Lh
+	 g8e70In+BINtknlacjzN0NGu8FtK9Lbg1wgq08dAaNXLwp7XjRXeDG15W4DhdtjSAo
+	 0aIATAYjiCCE5VWtfGaQiIss1ecWHhvt533cUwmF6i2ewOB7mycLbxqX6H1QALLowr
+	 RcB78yQblUDdg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9081DC4829E;
+	Thu, 15 Feb 2024 17:46:42 +0000 (UTC)
+From: Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>
+Subject: [PATCH 0/3] mmc: add hi3798mv200 specific extensions of DWMMC
+Date: Fri, 16 Feb 2024 01:46:41 +0800
+Message-Id: <20240216-b4-mmc-hi3798mv200-v1-0-7d46db845ae6@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: k3-am654: Drop ti,syscon-rgmii-delay from
- ICSSG nodes
-Content-Language: en-US
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Roger Quadros <rogerq@kernel.org>, MD Danish Anwar <danishanwar@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>
-References: <20240215105407.2868266-1-danishanwar@ti.com>
- <71adaabd-bb24-4181-9fdf-f7191e93edb5@kernel.org>
- <4ef87f6c-caa8-45a8-8649-422806ec6eb2@ti.com>
- <a0dc9fb7-2124-4f0d-a136-fc16a2301b0d@lunn.ch>
-From: "Anwar, Md Danish" <a0501179@ti.com>
-In-Reply-To: <a0dc9fb7-2124-4f0d-a136-fc16a2301b0d@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-B4-Tracking: v=1; b=H4sIAAFOzmUC/x3MPQqAMAxA4atIZgNpVPy5ijhom2qGqrQggnh3i
+ +M3vPdAkqiSYCgeiHJp0mPPMGUBdpv3VVBdNjBxTYYNLjWGYHHTqu27cDERzk1bkThvmC3k8Iz
+ i9f6n4/S+HxbAM4FkAAAA
+To: Ulf Hansson <ulf.hansson@linaro.org>, 
+ Jaehoon Chung <jh80.chung@samsung.com>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Igor Opaniuk <igor.opaniuk@linaro.org>, 
+ tianshuliang <tianshuliang@hisilicon.com>, David Yang <mmyangfl@gmail.com>, 
+ linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org, 
+ devicetree@vger.kernel.org, Yang Xiwen <forbidden405@outlook.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1708019203; l=1049;
+ i=forbidden405@outlook.com; s=20230724; h=from:subject:message-id;
+ bh=3SmWmcck5G21RkHFmC4DweIdttsir78RJ8t2utgkGNQ=;
+ b=iDJmQqTXs95Iec5RYgBkbeSZNLygTPRYG7YrVtIPzwwKnTycoUIsL5xoH+f3o+MFsRz0AY/z3
+ hPEFez78WuhDTV2TNtdCfyP+ZoRA1tu2zw+hH8asPLXEDBC5PvPIlWu
+X-Developer-Key: i=forbidden405@outlook.com; a=ed25519;
+ pk=qOD5jhp891/Xzc+H/PZ8LWVSWE3O/XCQnAg+5vdU2IU=
+X-Endpoint-Received:
+ by B4 Relay for forbidden405@outlook.com/20230724 with auth_id=67
+X-Original-From: Yang Xiwen <forbidden405@outlook.com>
+Reply-To: <forbidden405@outlook.com>
 
+it's modified from hi3798cv200 driver, but quite a lot of code gets
+rewritten because of the hardware differences. Actually cv200 DWMMC core
+is called HIMCIV200 while mv200 DWMMC core is called HIMCIV300 in
+downstream.
 
+Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+---
+Yang Xiwen (3):
+      mmc: dw_mmc: add support for hi3798mv200
+      dt-bindings: mmc: dw-mshc-hi3798cv200: convert to YAML
+      dt-bindings: mmc: dw-mshc-hi3798cv200: rename to dw-mshc-histb
 
-On 2/15/2024 10:53 PM, Andrew Lunn wrote:
-> On Thu, Feb 15, 2024 at 10:26:59PM +0530, Anwar, Md Danish wrote:
->>
->>
->> On 2/15/2024 9:27 PM, Roger Quadros wrote:
->>>
->>>
->>> On 15/02/2024 12:54, MD Danish Anwar wrote:
->>>> Drop ti,syscon-rgmii-delay from ICSSG0, ICSSG1 and ICSSG2 node as this
->>>> property is no longer used by ICSSG driver.
->>>>
->>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
->>>> ---
->>>>  arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso | 2 --
->>>>  arch/arm64/boot/dts/ti/k3-am654-idk.dtso    | 4 ----
->>>>  2 files changed, 6 deletions(-)
->>>
->>> What about the DT binding document?
->>>
->>
->> Now I am only removing the property from device tree. Once this proprty
->> is removed from all DTs, in the 6.9-rc-1 I will remove the binding as
->> well so that net people can merge that without getting any errors /
->> warnings.
-> 
-> Did the binding have the property as mandatory? If so you are probably
-> doing this the wrong way around. You should first modify the binding
-> to mark it as optional and deprecated. Then modify the .dts{i} files
-> to remove it.
-> 
+ .../bindings/mmc/hi3798cv200-dw-mshc.txt           |  40 ----
+ .../devicetree/bindings/mmc/histb-dw-mshc.yaml     | 130 +++++++++++
+ drivers/mmc/host/Kconfig                           |   9 +
+ drivers/mmc/host/Makefile                          |   1 +
+ drivers/mmc/host/dw_mmc-hi3798mv200.c              | 238 +++++++++++++++++++++
+ 5 files changed, 378 insertions(+), 40 deletions(-)
+---
+base-commit: 8d3dea210042f54b952b481838c1e7dfc4ec751d
+change-id: 20240121-b4-mmc-hi3798mv200-a5730edf122c
 
-No the binding is optional that is why I am removing this property from
-DTs first.
-
->    Andrew
-
+Best regards,
 -- 
-Thanks and Regards,
-Md Danish Anwar
+Yang Xiwen <forbidden405@outlook.com>
+
 
