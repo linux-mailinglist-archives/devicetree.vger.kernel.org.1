@@ -1,106 +1,79 @@
-Return-Path: <devicetree+bounces-42212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 860AE856DF5
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 20:42:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F441856E09
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 20:50:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 254C41F23853
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 19:42:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 623D41C241A7
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 19:50:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDFFA13A895;
-	Thu, 15 Feb 2024 19:42:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1B8C13AA44;
+	Thu, 15 Feb 2024 19:50:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="dFtui1+D"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jmuka/BD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F8BE13A252;
-	Thu, 15 Feb 2024 19:42:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA36013AA35;
+	Thu, 15 Feb 2024 19:50:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708026145; cv=none; b=hO3gA16k9BuoKtb3U5C00u0itsjfP8u1FMbz/c0QlqbIw2gTGhJQDGXmOvNVykgOz5B3vQ0n0F7Vyrk0uKxsZfoGHciq+ozVP4Ckghmx8sHfSdl8Wcy4Z712oQPWMRVGmc+/7es/KP2xRfEnmRaDTTOZsu4Em/hPOqg4hfwozZo=
+	t=1708026607; cv=none; b=WzXzj6/E5VoI7JSEtCrwN9avwqw6l8Cs1ubbD1GafUM6KVjljq3rIMtTa/9crrqu9W/PXxyNo+mm8/eUHfQ+gczWDm8ZwW5nCdpZncv5f+IxdozvioMCBMR7gUVWFFCtJg5rADsLIoscxlPvpUaWxi/C8PUnOLlv7idSpdKpJyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708026145; c=relaxed/simple;
-	bh=4qLmN4QeIb1XHEXWSfCSf+PqwEjw73xNNLMKPiCBaOs=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=PvyupocbXxsMW+cDRVgL+pu3RTnKHcvolV+1LbsSt1Outa1Wax7aJKwvEEbuEMA0ulmlb2wI5B+G/F5gAgoBlotvqhoYWf3VT6udkGVFwpQZUiKzTm8nCcjSrNdTHQYTlFebwkddf7KgkQjYK5IcPfeymhdTMQ/ZLqab5DazdBA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=dFtui1+D; arc=none smtp.client-ip=208.88.110.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id D89459C2B79;
-	Thu, 15 Feb 2024 14:42:14 -0500 (EST)
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id czNSXTnX_0Np; Thu, 15 Feb 2024 14:42:14 -0500 (EST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 3A8219C45E9;
-	Thu, 15 Feb 2024 14:42:14 -0500 (EST)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 3A8219C45E9
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
-	t=1708026134; bh=d0kaTdAspeMgz7/MP6qC8ExPvkrFjxSvhwBGjWMBF3c=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=dFtui1+D6xeFRwkukPMrjqdBh9H1FWX42dXfOVsL3fJ0JLhtKvMrf2xlZAyXrUYO7
-	 Of6Fe547fJ+HFh8jqFkuU4O0Lngi9+u+5haXhB0M3LJsnVXjTChWSaq645ZG6obVwv
-	 IXa/+eg3quyWkYhpCWCPotjPaPhtqQ2iwntABdkVVWRtzrg46hMrU1ZyTIai2WvyEo
-	 Q3O4SbACYkH8W48o7nxJcwoH5wna0r3wguFkBw44ABlDfxuAJPuOwsCrZgl+FaBeou
-	 5T32jxrRZIO046MTicgqygNWWuiqvHma1inGwCORA7JVJ4vgl48fSKy0plgDsgInmb
-	 A/yhs+mk23fDA==
-X-Virus-Scanned: amavis at mail.savoirfairelinux.com
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id P9_wQCFyOOFl; Thu, 15 Feb 2024 14:42:14 -0500 (EST)
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 066379C2B79;
-	Thu, 15 Feb 2024 14:42:14 -0500 (EST)
-Date: Thu, 15 Feb 2024 14:42:13 -0500 (EST)
-From: Charles Perry <charles.perry@savoirfairelinux.com>
+	s=arc-20240116; t=1708026607; c=relaxed/simple;
+	bh=jDIZVjmxrgUu27lhO2P/zOKIwiJENod221wvbFXGcl8=;
+	h=Subject:From:In-Reply-To:References:Message-Id:Date:To:Cc; b=mlhXNCxZuZV5NJBgTWqIiplZiWN/eJ3Vw95wKuor8y7eIRr0hVd9O5J9v3hJTFwAhOail5jhHIhRH1IRb8fP810jTxCE0qZJF5u5F+nhLlVgnQchpMgk/lhTFtoXW1VwyTB/H5IqIRv2JU1zERvlZU0csOplyuaMJAXT/mbHNHU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jmuka/BD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 5A100C43609;
+	Thu, 15 Feb 2024 19:50:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708026607;
+	bh=jDIZVjmxrgUu27lhO2P/zOKIwiJENod221wvbFXGcl8=;
+	h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
+	b=Jmuka/BD+sT+9hXwIG0LfNMV/TwOqeklYb8thXneq8yxleDzsLmuu7xUyPfwBQFxE
+	 htfU+7ICwXDjBAq7RBjuTC2QsM7tU6zRT1edxD8tQ9aFTyCacca6dR+Ii+aGGeP9q3
+	 RGHXFak7Q0V+RBfKxx5N1fjJPW420LaRn/1TrG6KGTwl5vWR27M+Of5f27Tv/45K0q
+	 hmOUW+oF9ZFXyCZiG9IE5bkWWBOk80RDaXCDLqTJ7jfw8wfy2lUdJ+wPzaW1q58Epz
+	 Gnnpg38fqjjxDOhYZE5ZcQ5xWGqu20rxSdpJsrkNo7+OzEHQcvVZxxGcrJdruUC1BL
+	 kwDH6R/fIITXg==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 3E9B5DCB6EC;
+	Thu, 15 Feb 2024 19:50:07 +0000 (UTC)
+Subject: Re: [GIT PULL] Devicetree fixes for v6.8
+From: pr-tracker-bot@kernel.org
+In-Reply-To: <20240215153248.GA181950-robh@kernel.org>
+References: <20240215153248.GA181950-robh@kernel.org>
+X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
+X-PR-Tracked-Message-Id: <20240215153248.GA181950-robh@kernel.org>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.8-1
+X-PR-Tracked-Commit-Id: 4e06ec0774f5bebf10e27bc7a5ace4b48ae0fa56
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: 339e2fca02141ee74bd705b3d409aa81d9ca3d0a
+Message-Id: <170802660725.17476.10766418345866334930.pr-tracker-bot@kernel.org>
+Date: Thu, 15 Feb 2024 19:50:07 +0000
 To: Rob Herring <robh@kernel.org>
-Cc: mdf <mdf@kernel.org>, Allen VANDIVER <avandiver@markem-imaje.com>, 
-	Brian CODY <bcody@markem-imaje.com>, hao wu <hao.wu@intel.com>, 
-	yilun xu <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>, 
-	krzysztof kozlowski+dt <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	Michal Simek <michal.simek@amd.com>, 
-	kishore Manne <nava.kishore.manne@amd.com>, 
-	linux-fpga <linux-fpga@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Message-ID: <747282644.1027419.1708026133594.JavaMail.zimbra@savoirfairelinux.com>
-In-Reply-To: <20240215133240.GA4061942-robh@kernel.org>
-References: <20240207180142.79625-1-charles.perry@savoirfairelinux.com> <20240207180142.79625-3-charles.perry@savoirfairelinux.com> <20240215133240.GA4061942-robh@kernel.org>
-Subject: Re: [PATCH v3 2/5] dt-bindings: fpga: xlnx,fpga-slave-serial:
- rename gpios
+Cc: Linus Torvalds <torvalds@linux-foundation.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 8.8.15_GA_4581 (ZimbraWebClient - GC121 (Linux)/8.8.15_GA_4581)
-Thread-Topic: dt-bindings: fpga: xlnx,fpga-slave-serial: rename gpios
-Thread-Index: 8UFoOUIQo66Y04KiBhC3i+CHQF5HTA==
 
-On Feb 15, 2024, at 8:32 AM, Rob Herring robh@kernel.org wrote:
-> On Wed, Feb 07, 2024 at 01:01:25PM -0500, Charles Perry wrote:
->> By convention, gpio consumer names should not contain underscores
->> (prog_b here) and shouldn't contain active low suffixes (-b here).
-> 
-> Yes, that is the preference, but we are stuck with supporting the old
-> name. It is not worth it to carry both in the binding and kernel.
-> 
-> Rob
+The pull request you sent on Thu, 15 Feb 2024 09:32:48 -0600:
 
-Ok, I'll go back to "prog_b", "init-b" and drop patch 2 and 3 for v4.
+> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.8-1
 
-Regards,
-Charles
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/339e2fca02141ee74bd705b3d409aa81d9ca3d0a
+
+Thank you!
+
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html
 
