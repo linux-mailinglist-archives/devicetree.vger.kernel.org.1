@@ -1,275 +1,137 @@
-Return-Path: <devicetree+bounces-42146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D02BA856981
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 17:26:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16D6A856993
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 17:29:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B8B26B229DE
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 16:25:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 493F31C2269F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 16:29:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CA11134733;
-	Thu, 15 Feb 2024 16:25:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 339EA13473D;
+	Thu, 15 Feb 2024 16:29:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QazWVB4P"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s1nLqiiP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45C71134743;
-	Thu, 15 Feb 2024 16:25:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A738134739;
+	Thu, 15 Feb 2024 16:29:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708014355; cv=none; b=e0SpvyzPQ7wDvbR4sZyTm1uuIAV4yUAifqtwnWTtdl2yb7kuCyV1qnO+YU4URVONZBJ9srmvfrhf62bDeoDmTemY/GTubOmcsZ18iKCMrrUoSIrC6do7dlkogpdJZFB3rqhShSHsXK0okqAVj3C4ZhUV0s+YfcpM7UYiIupRORo=
+	t=1708014586; cv=none; b=OlnIfmsBvlwfw7jypr3N7ekLu8NLNIdMgvF1iQtmnXJnH3HnxQzof1MiDi72IUNJS0PVzGeziFGF5Ot62fvP49s1ORxSAXy+OGVVwlA/927H595tY+haW1ZH2X0QAE3RJN0WRuXRg4mAcRYmtT7skVwWGhiy8VLw3oytvfLAKjU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708014355; c=relaxed/simple;
-	bh=VSAALJp4MFaIgFzqjLLc6BeLPyT7H5C4A+EO6BbIRzM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=rHQRTYfvc4XHIroqR7eQNLaNvxg2qxc3PdsuXKS9zuJwsqHxEgx4V/v1URbsSIsy12rIh6WHTicLaAMF+5Xgh8twv181EBuMmaMdIKDimr9r3hGWn3tDJrhxMud71EinChhEdDD2i9CZMUhYeyJGOVShOWF9HIXd+u5Xhd7pdDo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QazWVB4P; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41FBfcDE002449;
-	Thu, 15 Feb 2024 16:25:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=2Z2TB9HMc/XqBevRu67UWw4yo4bEz0HNufbBYufQook=; b=Qa
-	zWVB4Plwn5QYzPoDSce+5P7tJRoq5Rs9A5yqLbnNwDN68bwyHOi6PGQDEhfBrAWv
-	9cZBYHLdek4zigR4bB653tZmodepZShH8afgaS/2aksdm/Te3Zg/GWK/280tpIYu
-	MyI7qCT6GAXI/xse+IUPUMBkD1rwhVZJCvPkZnnlDgmD24xRLGUQMKFhQARTRjDZ
-	+R7Hh+q5P1eZBa8iKbrD/9T9w4Nahp5h+n8ui+2v1z93O8eUjfN6x8r6NxvCp7V/
-	IuK4VpDJcilPAdwttIUVni8BEmvuD3oD/mSQLYUy4GoLGTpdEuEPNXxgcN3vPEwF
-	G76wS9sOiYzeryssWFTA==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w9bfs1m9e-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 15 Feb 2024 16:25:30 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41FGPToN023623
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 15 Feb 2024 16:25:29 GMT
-Received: from [10.71.111.207] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 15 Feb
- 2024 08:25:29 -0800
-Message-ID: <74b6c3dc-6add-414c-8056-3dcb94b12cd7@quicinc.com>
-Date: Thu, 15 Feb 2024 08:25:20 -0800
+	s=arc-20240116; t=1708014586; c=relaxed/simple;
+	bh=xpMCGqwTxgUJyuySQdpmgx/+9jeLznpOpOU3fi5NUlw=;
+	h=Content-Type:Date:Message-Id:Subject:Cc:From:To:References:
+	 In-Reply-To; b=I9hbivp3L8Uy7L7ZSJszxn/YoHV+WzYtYkfExvk6npCKHwbazFTvBWJdzqsVvc7cAvqhhHzWvn59+xa5CR+UhhtorcTv44YXhozAIn/1Up3b8xB/wuoPaHXo+VG7N/Qsc0UvQXSJEPySVbH0snqEJUqiqFQqikdpF9mPq4EJOmc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s1nLqiiP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC3ECC433F1;
+	Thu, 15 Feb 2024 16:29:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708014585;
+	bh=xpMCGqwTxgUJyuySQdpmgx/+9jeLznpOpOU3fi5NUlw=;
+	h=Date:Subject:Cc:From:To:References:In-Reply-To:From;
+	b=s1nLqiiPVk4EeZbWMEb93s1oFad4QsucBcR5DtkpsSl2RCAwsjmYK662tUsXHN3kj
+	 aBVTiNgVslX8e75hX4vznqC1kL+2z126Gczfvu6oHByBV1XA68r/h90+Tf2AUSOWgt
+	 exQblEzu2gpC9V7wT71ewdnaNu9MzdmsDh8wY9WBy4iS5baUFrM6libK3aif+p5EKr
+	 5D6KTuXxvk53i9Wruq2TVqq9UtRcGiB3PB8s2LpnnLRDJ5TUL/4hbzJgdnB7PfYX7v
+	 RZueBdOKMBr/REVPprmArSHuRnZoyDZKjNtWi70cyqmyi1Wzia9pG8zZ3FLGKB2Vip
+	 PBca0AuNItqsg==
+Content-Type: multipart/signed;
+ boundary=d8fe15f87fbebbfb1a05ad0234592c7c1f29a5ff64a6a3d68c8a574e83bd;
+ micalg=pgp-sha256; protocol="application/pgp-signature"
+Date: Thu, 15 Feb 2024 17:29:42 +0100
+Message-Id: <CZ5SMYXNTTOP.3MZ8P9N5BY4SH@kernel.org>
+Subject: Re: [PATCH v2 3/3] arm64: dts: ti: Add support for TI J722S
+ Evaluation Module
+Cc: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>, <j-choudhary@ti.com>
+From: "Michael Walle" <mwalle@kernel.org>
+To: "Vignesh Raghavendra" <vigneshr@ti.com>, "Vaishnav Achath"
+ <vaishnav.a@ti.com>, "Andrew Davis" <afd@ti.com>, <nm@ti.com>,
+ <conor+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+ <kristo@kernel.org>, <robh+dt@kernel.org>
+X-Mailer: aerc 0.16.0
+References: <20240206100608.127702-1-vaishnav.a@ti.com>
+ <20240206100608.127702-4-vaishnav.a@ti.com>
+ <CZ386ITQ83KH.1KNOV5MXLXPBF@kernel.org>
+ <45bd5618-2e22-4715-9724-92f1d4b84608@ti.com>
+ <40e15761-70b3-4343-a4b3-653bc4e6637e@ti.com>
+In-Reply-To: <40e15761-70b3-4343-a4b3-653bc4e6637e@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] drm/panel: ltk500hd1829: make room for more similar
- panels
-To: Heiko Stuebner <heiko@sntech.de>, <neil.armstrong@linaro.org>
-CC: <sam@ravnborg.org>, <maarten.lankhorst@linux.intel.com>,
-        <mripard@kernel.org>, <tzimmermann@suse.de>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quentin.schulz@theobroma-systems.com>,
-        Heiko
- Stuebner <heiko.stuebner@cherry.de>
-References: <20240215090515.3513817-1-heiko@sntech.de>
- <20240215090515.3513817-2-heiko@sntech.de>
-Content-Language: en-US
-From: Jessica Zhang <quic_jesszhan@quicinc.com>
-In-Reply-To: <20240215090515.3513817-2-heiko@sntech.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: LZfVm8segKP6sX68vyDuaTOJKWkKYxEo
-X-Proofpoint-GUID: LZfVm8segKP6sX68vyDuaTOJKWkKYxEo
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-15_15,2024-02-14_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- bulkscore=0 phishscore=0 suspectscore=0 priorityscore=1501 spamscore=0
- clxscore=1011 adultscore=0 mlxscore=0 impostorscore=0 mlxlogscore=999
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402150133
 
+--d8fe15f87fbebbfb1a05ad0234592c7c1f29a5ff64a6a3d68c8a574e83bd
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
+Hi,
 
-On 2/15/2024 1:05 AM, Heiko Stuebner wrote:
-> From: Heiko Stuebner <heiko.stuebner@cherry.de>
-> 
-> There exist more dsi-panels from Leadtek sharing supplies and timings
-> with only the panel-mode and init commands differing.
-> 
-> So make room in the driver to also keep variants here instead of
-> requiring additional drivers per panel.
-> 
-> Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
+On Wed Feb 14, 2024 at 10:42 AM CET, Vignesh Raghavendra wrote:
+> On 14/02/24 13:13, Vaishnav Achath wrote:
+> > On 12/02/24 21:32, Michael Walle wrote:
+> >> On Tue Feb 6, 2024 at 11:06 AM CET, Vaishnav Achath wrote:
+> >>> +# Boards with J722s SoC
+> >>> +dtb-$(CONFIG_ARCH_K3) +=3D k3-j722s-evm.dtb
+> >>
+> >> I'm a bit confused by your names. What are the new/correct ones now?
+> >> Some seem to use the amXX names and some the jXX ones. I've read [1]
+> >> and it appears it was suggested to use the am67 names for the device
+> >> trees. Esp. because there is already, am62, am64, am65, am68 and
+> >> am69 in as names for the device trees.
+> >>
+> >> The TRM you've linked in the cover letter doesn't shed much light
+> >> either. It just lists both.
+> >>
+> >=20
+> > Both names are correct, for other Jacinto devices J721S2 and J784S4, th=
+e
+> > industrial variants (AM68, AM69 respectively) and those boards were
+> > announced at a later point of time and since the automotive/J7 variants
+> > were introduced first, the SoC dtsi and files have the J7XX names, for
+> > AM62/AM64 there is no confusion in naming, in this case the initial TRM
+> > itself mentions J722S and AM67 variants with similar capabilities, the
+> > reasoning behind continuing with the J722S name is because the initial
+> > support is being added for J722S EVM (the top marking on the SoC packag=
+e
+> > populated on the EVM say XJ722SAMW, this can be seen in the schematics
+> > also), please let know if this clarifies the confusion.
+> >=20
+>
+> AM64,AM62x/A/P are from different product line (Sitara) and don't have
+> any other aliases.
+>
+> On the other hand, Jacinto SoCs have both J7xx variant and AM6xx part
+> numbers. Its being really unpredictable wrt when AM6xx variants of
+> Jacinto devices come out. So as a general rule, we name the DTS files
+> based on the name of the first device that comes out in the market which
+> has consistently been J7xx.
 
-Hi Heiko,
+Thanks for the explanation. I just noticed that any k3-am6[89]*
+device trees will include the j7xx SoC dtsi. That would have been my
+next question: Boards with the AMxx will have the "correct" name
+k3-amNN-*.
 
-Reviewed-by: Jessica Zhang <quic_jesszhan@quicinc.com>
+-michael
 
-Thanks,
+--d8fe15f87fbebbfb1a05ad0234592c7c1f29a5ff64a6a3d68c8a574e83bd
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Jessica Zhang
+-----BEGIN PGP SIGNATURE-----
 
-> ---
->   .../drm/panel/panel-leadtek-ltk500hd1829.c    | 73 ++++++++++++-------
->   1 file changed, 47 insertions(+), 26 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/panel/panel-leadtek-ltk500hd1829.c b/drivers/gpu/drm/panel/panel-leadtek-ltk500hd1829.c
-> index 39e408c9f762f..42f4e2584af18 100644
-> --- a/drivers/gpu/drm/panel/panel-leadtek-ltk500hd1829.c
-> +++ b/drivers/gpu/drm/panel/panel-leadtek-ltk500hd1829.c
-> @@ -11,6 +11,7 @@
->   #include <linux/gpio/consumer.h>
->   #include <linux/module.h>
->   #include <linux/of.h>
-> +#include <linux/of_device.h>
->   #include <linux/regulator/consumer.h>
->   
->   #include <video/mipi_display.h>
-> @@ -21,25 +22,32 @@
->   #include <drm/drm_modes.h>
->   #include <drm/drm_panel.h>
->   
-> +struct ltk500hd1829_cmd {
-> +	char cmd;
-> +	char data;
-> +};
-> +
-> +struct ltk500hd1829_desc {
-> +	const struct drm_display_mode *mode;
-> +	const struct ltk500hd1829_cmd *init;
-> +	unsigned int num_init;
-> +};
-> +
->   struct ltk500hd1829 {
->   	struct device *dev;
->   	struct drm_panel panel;
->   	struct gpio_desc *reset_gpio;
->   	struct regulator *vcc;
->   	struct regulator *iovcc;
-> +	const struct ltk500hd1829_desc *panel_desc;
->   	bool prepared;
->   };
->   
-> -struct ltk500hd1829_cmd {
-> -	char cmd;
-> -	char data;
-> -};
-> -
->   /*
->    * There is no description in the Reference Manual about these commands.
->    * We received them from the vendor, so just use them as is.
->    */
-> -static const struct ltk500hd1829_cmd init_code[] = {
-> +static const struct ltk500hd1829_cmd ltk500hd1829_init[] = {
->   	{ 0xE0, 0x00 },
->   	{ 0xE1, 0x93 },
->   	{ 0xE2, 0x65 },
-> @@ -260,6 +268,26 @@ static const struct ltk500hd1829_cmd init_code[] = {
->   	{ 0x35, 0x00 },
->   };
->   
-> +static const struct drm_display_mode ltk500hd1829_mode = {
-> +	.hdisplay	= 720,
-> +	.hsync_start	= 720 + 50,
-> +	.hsync_end	= 720 + 50 + 50,
-> +	.htotal		= 720 + 50 + 50 + 50,
-> +	.vdisplay	= 1280,
-> +	.vsync_start	= 1280 + 30,
-> +	.vsync_end	= 1280 + 30 + 4,
-> +	.vtotal		= 1280 + 30 + 4 + 12,
-> +	.clock		= 69217,
-> +	.width_mm	= 62,
-> +	.height_mm	= 110,
-> +};
-> +
-> +static const struct ltk500hd1829_desc ltk500hd1829_data = {
-> +	.mode = &ltk500hd1829_mode,
-> +	.init = ltk500hd1829_init,
-> +	.num_init = ARRAY_SIZE(ltk500hd1829_init),
-> +};
-> +
->   static inline
->   struct ltk500hd1829 *panel_to_ltk500hd1829(struct drm_panel *panel)
->   {
-> @@ -324,8 +352,8 @@ static int ltk500hd1829_prepare(struct drm_panel *panel)
->   	/* tRT: >= 5ms */
->   	usleep_range(5000, 6000);
->   
-> -	for (i = 0; i < ARRAY_SIZE(init_code); i++) {
-> -		ret = mipi_dsi_generic_write(dsi, &init_code[i],
-> +	for (i = 0; i < ctx->panel_desc->num_init; i++) {
-> +		ret = mipi_dsi_generic_write(dsi, &ctx->panel_desc->init[i],
->   					     sizeof(struct ltk500hd1829_cmd));
->   		if (ret < 0) {
->   			dev_err(panel->dev, "failed to write init cmds: %d\n", ret);
-> @@ -359,31 +387,17 @@ static int ltk500hd1829_prepare(struct drm_panel *panel)
->   	return ret;
->   }
->   
-> -static const struct drm_display_mode default_mode = {
-> -	.hdisplay	= 720,
-> -	.hsync_start	= 720 + 50,
-> -	.hsync_end	= 720 + 50 + 50,
-> -	.htotal		= 720 + 50 + 50 + 50,
-> -	.vdisplay	= 1280,
-> -	.vsync_start	= 1280 + 30,
-> -	.vsync_end	= 1280 + 30 + 4,
-> -	.vtotal		= 1280 + 30 + 4 + 12,
-> -	.clock		= 69217,
-> -	.width_mm	= 62,
-> -	.height_mm	= 110,
-> -};
-> -
->   static int ltk500hd1829_get_modes(struct drm_panel *panel,
->   				  struct drm_connector *connector)
->   {
->   	struct ltk500hd1829 *ctx = panel_to_ltk500hd1829(panel);
->   	struct drm_display_mode *mode;
->   
-> -	mode = drm_mode_duplicate(connector->dev, &default_mode);
-> +	mode = drm_mode_duplicate(connector->dev, ctx->panel_desc->mode);
->   	if (!mode) {
->   		dev_err(ctx->dev, "failed to add mode %ux%u@%u\n",
-> -			default_mode.hdisplay, default_mode.vdisplay,
-> -			drm_mode_vrefresh(&default_mode));
-> +			ctx->panel_desc->mode->hdisplay, ctx->panel_desc->mode->vdisplay,
-> +			drm_mode_vrefresh(ctx->panel_desc->mode));
->   		return -ENOMEM;
->   	}
->   
-> @@ -413,6 +427,10 @@ static int ltk500hd1829_probe(struct mipi_dsi_device *dsi)
->   	if (!ctx)
->   		return -ENOMEM;
->   
-> +	ctx->panel_desc = of_device_get_match_data(dev);
-> +	if (!ctx->panel_desc)
-> +		return -EINVAL;
-> +
->   	ctx->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LOW);
->   	if (IS_ERR(ctx->reset_gpio)) {
->   		dev_err(dev, "cannot get reset gpio\n");
-> @@ -492,7 +510,10 @@ static void ltk500hd1829_remove(struct mipi_dsi_device *dsi)
->   }
->   
->   static const struct of_device_id ltk500hd1829_of_match[] = {
-> -	{ .compatible = "leadtek,ltk500hd1829", },
-> +	{
-> +		.compatible = "leadtek,ltk500hd1829",
-> +		.data = &ltk500hd1829_data,
-> +	},
->   	{ /* sentinel */ }
->   };
->   MODULE_DEVICE_TABLE(of, ltk500hd1829_of_match);
-> -- 
-> 2.39.2
-> 
+iIgEABYIADAWIQQCnWSOYTtih6UXaxvNyh2jtWxG+wUCZc479hIcbXdhbGxlQGtl
+cm5lbC5vcmcACgkQzcodo7VsRvtvBAD/Q6zUsGrsdv2dI2Lie45k5Qcf7kNAr1qK
+LgqLuy/NP4ABAM+pdNE3IZ1Y5tNuoJ7txSvxjr4/Ns+fFKB88i39r+UL
+=LpmB
+-----END PGP SIGNATURE-----
+
+--d8fe15f87fbebbfb1a05ad0234592c7c1f29a5ff64a6a3d68c8a574e83bd--
 
