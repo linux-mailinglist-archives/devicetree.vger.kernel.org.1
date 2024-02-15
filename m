@@ -1,148 +1,134 @@
-Return-Path: <devicetree+bounces-41971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17E1A855F03
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:19:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52603855F09
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:20:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A92F1C20C95
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:19:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85B611C20FF4
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:20:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFED467A1D;
-	Thu, 15 Feb 2024 10:19:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E22467C44;
+	Thu, 15 Feb 2024 10:20:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Satc0Gr7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63932168D2
-	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 10:19:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BF5169D07
+	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 10:20:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707992364; cv=none; b=HyveYgIhiUhcHUxTrTFAjrtXnY/turqk9PNsvRBEoPbC1oH8s7Bs2j5yb6k59qQAPsMDstFRuhBQoEuUyhBJAZopKOtTA05BOjvq1msefCx9DBJvDYsWTgbkL6z/d/HkrvzWZ+5gYof2V6sK0coUPLuhAdzeFrP7gyt6bIARjo8=
+	t=1707992402; cv=none; b=UgnxibvPnJy8qvtYF8OfR2TkEi5D7ctBR/mchu7GaAHO7nq3OzziXI8o6No88l/Qg8r1EVccKwZt7hRY75+2j0uz1sO0F9d6STsSLbBl/sz/hjHFBbvaNfVZHg8aAC4BxGu89ogcwVQvhLZ/h5n0aO5h6EuB8JHGYUwmb/EzdwQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707992364; c=relaxed/simple;
-	bh=u3rr8q+SLGsobq+2sOE/JWMdQphGfdS+OP4Y4ErJR1o=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=FWCeeAZSASPNDM9dHJeDzOuGU7+zbGGdM0svkeQsesBxpcNf8sNWpeN8jxdqiZOjQ9C9WG/BfRlSCiPlg9F340hS/MMbHvYvvRtbDrhG54TpOBpzTXH2ci8mpQNozLbzYsKmqZNm6dEzN1RZZ+6S6F8fgMvCaWZJt0+635yTm+g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1raYpm-0006ML-Vw; Thu, 15 Feb 2024 11:19:15 +0100
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1raYpm-000reV-AH; Thu, 15 Feb 2024 11:19:14 +0100
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1raYpm-00041o-0n;
-	Thu, 15 Feb 2024 11:19:14 +0100
-Message-ID: <d51dbac55d3677031bfab8bfe959f7b556b1c373.camel@pengutronix.de>
-Subject: Re: [PATCH 19/23] gpio: nomadik: grab optional reset control and
- deassert it at probe
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: =?ISO-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>, Linus Walleij
- <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mips@vger.kernel.org, Gregory CLEMENT <gregory.clement@bootlin.com>, 
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>
-Date: Thu, 15 Feb 2024 11:19:14 +0100
-In-Reply-To: <20240214-mbly-gpio-v1-19-f88c0ccf372b@bootlin.com>
-References: <20240214-mbly-gpio-v1-0-f88c0ccf372b@bootlin.com>
-	 <20240214-mbly-gpio-v1-19-f88c0ccf372b@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1707992402; c=relaxed/simple;
+	bh=6T+B23RM48DgKeyvyI3A1orWH9VcY1C1hi6ykGKmpV4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IpW1xRKJ8o7cHjlsGXYXGp/3fVVG9QtscIYWGfu0A0rmSkAASfSpKgywwe1R/7bQn71pmuSBlhRmdpcGwh+VhpblMq+wd/tJeT58Vo/PnK8fQtxSNw/WAPfMGobYDbEgT1H2PS2nfsFSOjTFMEg5XlOXKi/s9BlKW9wOvGFHuyk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Satc0Gr7; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-41205e19660so4928245e9.2
+        for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 02:20:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1707992399; x=1708597199; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=S3f0rb4C5lvPslwqInmE+iQAff85wgbT5AhACglF67s=;
+        b=Satc0Gr7dlkIf4mTMylvPBzcysXP5Y0We7A2r+7GRPVKq0ypgv6NB+ymw81vh29Nf+
+         5B+1Q+sQz/8x+cUC1zc2ul+wcXyWcWqKva7+TEAE5A2q24sAixzu0aRMUsFAqNFwLuDr
+         VmIrEYo1uh0aAZRqDThQCrbb/KdDQsRjVONkpmnnct1cWsyeJHxhXlydF1DQdS0q5/eG
+         OuxvAfva4GXpcHJxtpd+b1NQVUwXaOmnWDuVWwDXW77oupIbE835nIJVh7EAeaXM2q9o
+         k0ysVx+jBM2BvslKpXrg9vtE4Wp6rS3cHpUntG230L34nIJ8WwCJaNAApMQYeV0+b53k
+         N/oQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707992399; x=1708597199;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=S3f0rb4C5lvPslwqInmE+iQAff85wgbT5AhACglF67s=;
+        b=es8JXujfQDXnBHXVfVjC8/HCaktj4gWXZBFsFkZUTxgGEo1Gp4Lz/2+EZkf2pVP7j+
+         zazpJmcNY+Ca4kq5fekTmUAr66YXvCuUhLdT3Lcy7LdbChSoYizDWvBk0ssKMHhODWNv
+         JPGfh6WucCr8W0zYWGDJw8rtBECrbK44u0sIiboLRin8E4uCDoelEGDR8az8s84z1MvF
+         9srCZIVvsyg9s/T7C6o5GlurUbFUuX0AZeOu93LBz2JF5zGnuKEDgfi+gDyvW42MnoeH
+         hn56jis5izFLP0pbvtplhMMpD5460iP/qpDZKfkqQYzVPaOXGiSuvmqBCRmQlyenNaHY
+         Co4g==
+X-Forwarded-Encrypted: i=1; AJvYcCVSmhZYiFynopAiXs3PRFgnkyMOAd2tGxPPG37M3ee2yhLS2+qA21STo0wAKODVpz3Ci73kzUvrgVHVd0ybM8Ve1MjPCQ8/GVDT9w==
+X-Gm-Message-State: AOJu0YxZsKIkT2HKZ5mtdKyIpRvqZwRdsDl7831fiTiMRTRgCTcGBlaz
+	nMZo9Z8mRKorwYt8sEEHGl+Q2G6lxMNL+g/JYDgKUyxrbbPhUl9O0zfAGtc7VFo=
+X-Google-Smtp-Source: AGHT+IEMO7O+5pkB5+NxkwSGjJ6icX5ZUnJ2Axo2drnnhvTA2O1MS5a8l4X/yqzJHPWAoy7WsV1Yxg==
+X-Received: by 2002:a05:600c:1f8d:b0:410:c5a9:a24a with SMTP id je13-20020a05600c1f8d00b00410c5a9a24amr908467wmb.20.1707992398598;
+        Thu, 15 Feb 2024 02:19:58 -0800 (PST)
+Received: from [192.168.50.4] ([82.78.167.20])
+        by smtp.gmail.com with ESMTPSA id t12-20020a05600c198c00b004107686650esm1518508wmq.36.2024.02.15.02.19.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Feb 2024 02:19:57 -0800 (PST)
+Message-ID: <0815e67c-36b8-4626-90a2-f11607915da2@tuxon.dev>
+Date: Thu, 15 Feb 2024 12:19:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next 1/3] net: macb: queue tie-off or disable during
+ WOL suspend
+Content-Language: en-US
+To: "Karumanchi, Vineeth" <vineeth.karumanchi@amd.com>,
+ nicolas.ferre@microchip.com, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux@armlinux.org.uk
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, git@amd.com
+References: <20240130104845.3995341-1-vineeth.karumanchi@amd.com>
+ <20240130104845.3995341-2-vineeth.karumanchi@amd.com>
+ <d8c48839-8b22-47ad-b270-e96a1ad1adee@tuxon.dev>
+ <6a8d100c-57a5-4c92-b744-453c106352ad@amd.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <6a8d100c-57a5-4c92-b744-453c106352ad@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mi, 2024-02-14 at 17:24 +0100, Th=C3=A9o Lebrun wrote:
-> Fetch a reference to the optional shared reset control and deassert it
-> if it exists.
->=20
-> Optional because not all platforms that use this driver have a reset
-> attached to the reset block. Shared because some platforms that use the
-> reset (at least Mobileye EyeQ5) share the reset across banks.
->=20
-> Do not keep a reference to the reset control as it is not needed
-> afterwards; the driver does not handle suspend, does not use runtime PM
-> and does not register a remove callback.
+Hi, Vineeth,
 
-I suppose you don't care that the reset is only ever deasserted once
-and never asserted again on this hardware, but for shared reset
-controls the expectation is that deassert/assert calls are balanced:
+On 15.02.2024 07:43, Karumanchi, Vineeth wrote:
+> Hi Claudiu,
+> 
+> On 2/3/2024 9:08 PM, claudiu beznea wrote:
+> <...>
+>>>           queue->tx_skb = NULL;
+>>> @@ -2568,6 +2574,16 @@ static int macb_alloc_consistent(struct macb *bp)
+>>>       if (bp->macbgem_ops.mog_alloc_rx_buffers(bp))
+>>>           goto out_err;
+>>>   +    /* Required for tie off descriptor for PM cases */
+>>> +    if (!(bp->caps & MACB_CAPS_QUEUE_DISABLE)) {
+>>> +        bp->rx_ring_tieoff = dma_alloc_coherent(&bp->pdev->dev,
+>>> +                            macb_dma_desc_get_size(bp),
+>>> +                            &bp->rx_ring_tieoff_dma,
+>>> +                            GFP_KERNEL);
+>>> +        if (!bp->rx_ring_tieoff)
+>>> +            goto out_err;
+>> You also need to free the previously allocated rx buffers.
+> 
+> Are you referring to (bp->macbgem_ops.mog_alloc_rx_buffers(bp)) allocation ?
+> It was freed in macb_free_consistent():
+>              ...
+>              bp->macbgem_ops.mog_free_rx_buffers(bp);
+>              ...
 
-https://docs.kernel.org/driver-api/reset.html?highlight=3Dbalanced#assertio=
-n-and-deassertion
+You're right, my bad.
 
-So maybe this warrants a comment in the code. Or do you mean to
-suppress unbind via suppress_bind_attrs to explain away any missing
-cleanup?
+> 
+> Please let me know if you are referring to different buffers.
 
-> The operation is done in nmk_gpio_populate_chip(). This function is
-> called by either gpio-nomadik or pinctrl-nomadik, whoever comes first.
-> This is here for historic reasons and could probably be removed now; it
-> seems gpio-ranges enforces the ordering to be pinctrl-first. It is not
-> the topic of the present patch however.
->=20
-> Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
-> ---
->  drivers/gpio/gpio-nomadik.c | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
->=20
-> diff --git a/drivers/gpio/gpio-nomadik.c b/drivers/gpio/gpio-nomadik.c
-> index 21bb6d6363fc..b623c093b54d 100644
-> --- a/drivers/gpio/gpio-nomadik.c
-> +++ b/drivers/gpio/gpio-nomadik.c
-> @@ -513,12 +513,14 @@ struct nmk_gpio_chip *nmk_gpio_populate_chip(struct=
- device_node *np,
->  {
->  	struct nmk_gpio_chip *nmk_chip;
->  	struct platform_device *gpio_pdev;
-> +	struct reset_control *reset;
->  	struct gpio_chip *chip;
->  	struct resource *res;
->  	struct clk *clk;
->  	void __iomem *base;
->  	uintptr_t flags;
->  	u32 id, ngpio;
-> +	int ret;
-> =20
->  	gpio_pdev =3D of_find_device_by_node(np);
->  	if (!gpio_pdev) {
-> @@ -576,6 +578,19 @@ struct nmk_gpio_chip *nmk_gpio_populate_chip(struct =
-device_node *np,
->  	clk_prepare(clk);
->  	nmk_chip->clk =3D clk;
-> =20
-> +	reset =3D devm_reset_control_get_optional_shared(&gpio_pdev->dev, NULL)=
-;
-> +	if (IS_ERR(reset)) {
-> +		dev_err(&pdev->dev, "failed getting reset control: %ld\n",
-> +			PTR_ERR(reset));
-> +		return ERR_CAST(reset);
+I was referring to bp->macbgem_ops.mog_alloc_rx_buffers but hat is covered
+as you pointed out.
 
-Consider using dev_err_probe() here.
-
-regards
-Philipp
+Thank you,
+Claudiu Beznea
 
