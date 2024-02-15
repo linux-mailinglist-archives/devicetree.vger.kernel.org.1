@@ -1,142 +1,156 @@
-Return-Path: <devicetree+bounces-41992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF61A85611F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:13:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3723A85611D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:13:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2F1F2B35784
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:01:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E002B2BF6F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:05:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47C5B133434;
-	Thu, 15 Feb 2024 10:47:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="PTvYSRzc"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EA8B12AAF8;
+	Thu, 15 Feb 2024 10:58:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34C5F133422;
-	Thu, 15 Feb 2024 10:47:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B085512AAEA;
+	Thu, 15 Feb 2024 10:58:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707994057; cv=none; b=ottbys2YdDIGZsjR18wZj2eNgFoFbeQEifbs04Je7ffUbZgL15xZMqdlv+hCEzDHFNXIQyQxRMStWYexFhTiyhZdUk0hMOYT33wR9ZLtNA9DgAo6bd0jXgIzopEcJEosU6GhfDO9pmiFuWl8wSPZV6RG3q3scyacuJ9tRwK0Zog=
+	t=1707994690; cv=none; b=fgSwty/+16Q4H1W99kUBc4gHpqshPbrd7BAVew9UjpCsioHOcWeGGQobJIDJMVQQ21uF+501ehgVSS6hcvsNE3ibese/WAEeoQjp4jSkrmTytvyxppUEAz4ETzkCdIADQBb7sBsEzIvqoRf6DxSiZ8PRrdygpdU5/rQKXQHWJl4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707994057; c=relaxed/simple;
-	bh=RJDAsKe/aBk8AYh4rDTIh54ZmBRzY5mDVvLfCyAvXrQ=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=s/jpGRjOCb4A4nZXz76qe9QkNGF0keO79GjR8XsxJ/wHYzlGR7A3heoYtiPw4eV6nRWnbzk4HbPRr2gyRSWI+q8BdEklk3ynSQNaxL3cAqbcxBxmnZtNS8BeJkkEfIKwGhuGtBQtGJWdrSq5b5LnaCdj4sG3+qDRPP9b4mih4oc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=PTvYSRzc; arc=none smtp.client-ip=45.89.224.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 6B7EF120005;
-	Thu, 15 Feb 2024 13:47:25 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 6B7EF120005
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1707994045;
-	bh=ZMXILtHC08+ORAOMdLV08SaTMzWfQR2g0BN83OzVl4o=;
-	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version:From;
-	b=PTvYSRzcm7SkQ4jmbt1M7PmtlwMEnEvbr3WZmXhSFIcOFzc9cdquy/XKZkT5huX2u
-	 0AZXiOZOKzSsxdfYtEuxuMPmtsjkk3ZKiGom90RpxVZeu/6MD5eTQAZRtIKOnftDcy
-	 CWhPun885cAV33ZVNJurwC4znQqBfkk2r6qgmUb8Wm0rPu0rKlUsWPdbEt5nxSgw5q
-	 7j/JRhaqbHTm7ud9Mm3ggCE3NGiRTWXBuzEI4w8JjHjb/mr5JpWCjhQKVglj+v7Dw2
-	 yzWuiweq/lABslXYAN+1gr9/1wuUj6qvaOqTbgrjZujD6K2+w4cHGFx2eDqHZAOz//
-	 cNma5geBk27bQ==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Thu, 15 Feb 2024 13:47:25 +0300 (MSK)
-Received: from p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 15 Feb 2024 13:47:24 +0300
-Received: from p-i-exch-sc-m01.sberdevices.ru ([fe80::6d41:e8f1:b95e:ba1]) by
- p-i-exch-sc-m01.sberdevices.ru ([fe80::6d41:e8f1:b95e:ba1%7]) with mapi id
- 15.02.1118.040; Thu, 15 Feb 2024 13:47:24 +0300
-From: Alexey Romanov <avromanov@salutedevices.com>
-To: Corentin Labbe <clabbe.montjoie@gmail.com>
-CC: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-	"clabbe@baylibre.com" <clabbe@baylibre.com>, "herbert@gondor.apana.org.au"
-	<herbert@gondor.apana.org.au>, "davem@davemloft.net" <davem@davemloft.net>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "khilman@baylibre.com"
-	<khilman@baylibre.com>, "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
-	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
-	"vadim.fedorenko@linux.dev" <vadim.fedorenko@linux.dev>,
-	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, kernel <kernel@sberdevices.ru>
-Subject: Re: [PATCH v4 00/20] Support more Amlogic SoC families in crypto
- driver
-Thread-Topic: [PATCH v4 00/20] Support more Amlogic SoC families in crypto
- driver
-Thread-Index: AQHaXbqRFptCyAwKyUyy1Cn5x5FmZLEHrLEAgANeQYA=
-Date: Thu, 15 Feb 2024 10:47:24 +0000
-Message-ID: <20240215104719.njq6ie2niisntcnv@cab-wsm-0029881.sigma.sbrf.ru>
-References: <20240212135108.549755-1-avromanov@salutedevices.com>
- <ZcsYaPIUrBSg8iXu@Red>
-In-Reply-To: <ZcsYaPIUrBSg8iXu@Red>
-Accept-Language: ru-RU, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <02AD52C50B92B74A88D1647594C86269@sberdevices.ru>
-Content-Transfer-Encoding: quoted-printable
+	s=arc-20240116; t=1707994690; c=relaxed/simple;
+	bh=vUesT69O7egr26kxPrRgX5ev/5Rrb6u8SstpGni/Rss=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=b+pFcV0VFXn7FdkuEQsBu7uBd7nET47ED3WXR39H+bMPODbzjSHX5hxSd53mELRSjPodhAk3qtZ5/mTSb6VS9xAmQDjz/y0i3F4yQdXaHd5lIlrVrXpiSjmbASuBkByWlGPR143Jdu0xXcwMeq11GazL/y+bYU8xui3vKr+TbLM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-6078350e130so7048797b3.0;
+        Thu, 15 Feb 2024 02:58:08 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707994686; x=1708599486;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=noynfA6+8D/0XF211K1pp3EPN1BH66Mm0ZHWHWfYWy8=;
+        b=W1QZQ1Jomsd6f/zfOLZdtkCI7Gfyl1XLzfJhQ5Tx7dZtHPtSaDPslCYziu+CBqQ1p3
+         IMpv2WqMOcGxB716BHiD69wWceRA2J3fy7Uum/7HAuqgI81G9Szn6oPWI97a2edjT56g
+         w/Da3f4HgQbxm5oGFiiAr7agM8agCETDgVwoOrnR9jsuUXKTCn8918VZAhvze+cIw9Ei
+         xVfUzr2W3EdcVnEERF2ExtWSbyoAHr9Kj0hLSzYHrTcH1HeQBieY1qLG4OIhdSK3es+w
+         N3BIrhijt6PaybdE35r2NfnxrElPvmPOXW0r6h/07nyf8sH008C/+YO2IINHWRJSXVW4
+         JC4A==
+X-Forwarded-Encrypted: i=1; AJvYcCUusYzdIbF9TWARKFy1K7A5OopSIqFvkD73E0OlCCUvE+tV5L5LJ0oeXRA7U9ylnR4jukcm7A8wz29CS18iW0FM8eqOb3Eu9VSOgtXJ
+X-Gm-Message-State: AOJu0Yx4zEpGgjmxDq2T7/1tzBP6Skhoqd+5RK/Fo/WnuQqnFKnKvCri
+	rMe+fmi6lYDB6F15NOE8LXIwYbeAP0JWqjOlQ/g5l3GQkpBqEjE8+3cW716Pnp9lQQ==
+X-Google-Smtp-Source: AGHT+IGyQRKvD7MpSfh04UErENSY1UqOWXAS+fj6K3UTjRjIPhIGzzmpM6ZsQ6Qj3+uxnbm5HcxupA==
+X-Received: by 2002:a0d:ca12:0:b0:607:84d9:9820 with SMTP id m18-20020a0dca12000000b0060784d99820mr1213084ywd.24.1707994686268;
+        Thu, 15 Feb 2024 02:58:06 -0800 (PST)
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
+        by smtp.gmail.com with ESMTPSA id h130-20020a816c88000000b006042cdc8de6sm190142ywc.101.2024.02.15.02.58.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Feb 2024 02:58:06 -0800 (PST)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-607c5679842so7515717b3.2;
+        Thu, 15 Feb 2024 02:58:06 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWzy1y1fVNMWvdWk/VJFQS6NUWisVkGkwSzPdO1r1IkITSpjeYrWd8NjlzJB5EgcyisTZ/C7hznxY+K9vK+bsQQXbH8eD8BTRLf/0UI
+X-Received: by 2002:a81:994b:0:b0:607:a0ab:c238 with SMTP id
+ q72-20020a81994b000000b00607a0abc238mr1320310ywg.8.1707994685833; Thu, 15 Feb
+ 2024 02:58:05 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 183458 [Feb 15 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.3
-X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;127.0.0.199:7.1.2;cab-wsm-0029881.sigma.sbrf.ru:5.0.1,7.1.1, FromAlignment: s
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/15 04:37:00 #23614209
-X-KSMG-AntiVirus-Status: Clean, skipped
+References: <20240212170423.2860895-1-andriy.shevchenko@linux.intel.com>
+ <20240212170423.2860895-15-andriy.shevchenko@linux.intel.com>
+ <ZcpSDOk-IQVasHud@smile.fi.intel.com> <ZcpSaHW-RQ3dzywP@smile.fi.intel.com>
+In-Reply-To: <ZcpSaHW-RQ3dzywP@smile.fi.intel.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 15 Feb 2024 11:57:53 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV8mTa-qutFgqRKJyES7evEqEYhs=_eHtrKTTs5NkNa9A@mail.gmail.com>
+Message-ID: <CAMuHMdV8mTa-qutFgqRKJyES7evEqEYhs=_eHtrKTTs5NkNa9A@mail.gmail.com>
+Subject: Re: [PATCH v2 14/15] dt-bindings: auxdisplay: Add Maxim MAX6958/6959
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Robin van der Gracht <robin@protonic.nl>, Paul Burton <paulburton@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Feb 13, 2024 at 08:21:12AM +0100, Corentin Labbe wrote:
-> Le Mon, Feb 12, 2024 at 04:50:48PM +0300, Alexey Romanov a 'ecrit :
-> > Hello!
-> >=20
-> > This patchset expand the funcionality of the Amlogic
-> > crypto driver by adding support for more SoC families:
-> > AXG, G12A, G12B, SM1, A1, S4.
-> >=20
-> > Also specify and enable crypto node in device tree
-> > for reference Amlogic devices.
-> >=20
-> > Tested on AXG, G12A/B, SM1, A1 and S4 devices via
-> > custom tests [1] and tcrypt module.
-> >=20
-> > ---
-> >=20
->=20
-> added patchs up to  "drivers: crypto: meson: process more than MAXDESCS d=
-escriptors"
+Hi Andy,
 
-Including this patch or not?
+On Mon, Feb 12, 2024 at 6:16=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+> On Mon, Feb 12, 2024 at 07:14:53PM +0200, Andy Shevchenko wrote:
+> > On Mon, Feb 12, 2024 at 07:01:47PM +0200, Andy Shevchenko wrote:
+> > > Add initial device tree documentation for Maxim MAX6958/6959.
+> >
+> > Oh, this is an old version :-(
+>
+> Here is a new one:
+>
+> From d8c826e06cf9237cd5fc6b2bb0b1cac5aff4fd8a Mon Sep 17 00:00:00 2001
+> From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Date: Thu, 8 Feb 2024 17:23:38 +0200
+> Subject: [PATCH 1/1] dt-bindings: auxdisplay: Add Maxim MAX6958/6959
+>
+> Add initial device tree documentation for Maxim MAX6958/6959.
+>
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+
+Thanks for your patch!
+
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/auxdisplay/maxim,max6959.yaml
+> @@ -0,0 +1,44 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/auxdisplay/maxim,max6959.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MAX6958/6959 7-segment LED display controller with keyscan
+> +
+> +maintainers:
+> +  - Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> +
+> +description:
+> +  The Maxim MAX6958/6959 7-segment LED display controller provides
+> +  an I2C interface to up to four 7-segment LED digits. The MAX6959
+> +  in comparison to MAX6958 has the debounce and interrupt support.
+
+IUIC, the primary differentiating factor is that the MAX6959 adds input
+and GPIO support?  Debounce and interrupt support are merely features
+of input support.
+
+> +  Type of the chip can be autodetected via specific register read,
+> +  and hence the features may be enabled in the driver at run-time.
+
+I don't think you need to read that register, as the users of the
+features (keypad mapping, interrupts property, ...) also need to be
+described in DTS (once supported).
+
+> +  Given hardware is simple and does not provide any additional pins,
+> +  such as reset or enable.
+
+Does this matter? I.e. is it important to say this in the bindings?
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 --=20
-Thank you,
-Alexey=
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
