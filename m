@@ -1,330 +1,288 @@
-Return-Path: <devicetree+bounces-41901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7745C855D11
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:58:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4575C855D3A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:03:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9AB4D1C22176
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 08:58:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC0F11F2252F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:03:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 918EA134BA;
-	Thu, 15 Feb 2024 08:56:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A707414286;
+	Thu, 15 Feb 2024 08:58:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="cSHQDJLD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TDSHlRGv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4AAF1C2BD;
-	Thu, 15 Feb 2024 08:56:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E9221BF33
+	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 08:58:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707987374; cv=none; b=tXGF6Hp4woe5uIhQdVGrOOW2BJGKVP3wQLILG0W/aZDeMa6EpbewVexCrZYGlzZrtSNYvsiBLudWQcwNf3cZLOH4tEHfbX7OA01pDpvV+dDL3oJP1CUEvLwszHSC/bev6ZTQxyz4odDYX7W3N2cvtMpZJxJ+Jtq/vhF1g3Ry6lM=
+	t=1707987539; cv=none; b=c5YNlAmZSubgcax1BWTLvkLyHKvA0gM69GyEOyEj00HY4u0csL+GbKE0Xv0muXhxSSUkUOpWIlJwh0hjccESzw4sjgWR5HdBwDFZNAdRz0knmWj2igbxJwbVVYR9jtd7FGem/iKMIKkgkQxbNY1zEeEtcOtklc3v3soStMThqyo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707987374; c=relaxed/simple;
-	bh=gpqQRRDPQBPXaAkoedqV4bTe9pjWXhRY3M39Q7k4e+A=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EBTxgqon+LQ6j97E75Ph17+Mqypc2xQX8O1pnv36F+lgy5V8GlTSXoubY6+pj5uISnz6/adIwsSroNI8NiC/nUYs0aqlKKMepj7aTyga4jwjgq/hw+PmpBOC881ocAsK1L25cICdC0ftzAWVNw7NtCLY2i9HG53H4ZTphFwfgtg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=cSHQDJLD; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41F8u1QX090559;
-	Thu, 15 Feb 2024 02:56:01 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707987361;
-	bh=QGK+gjRP4X2BkVV/ukKldEjKRwEktFPDzNaOM4M1prU=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=cSHQDJLDGzMu5RLPHtu29ckpAYBdoBesDGzdkGvFBrOM++pgOdy3Beb4dLKG/jxCV
-	 EI61FmgJfRqvJ6GCpLXUdHBtSqeGrnCQo9zsaILY6yB+hb3DK8yiiEyfMTSKr6VIYO
-	 v+CzLbuDWBtpZz83fDhJuqvZPECe76dww3287iA4=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41F8u1ep005368
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 15 Feb 2024 02:56:01 -0600
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
- Feb 2024 02:56:01 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 15 Feb 2024 02:56:01 -0600
-Received: from uda0490681.. ([10.24.69.142])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41F8tJ7s008333;
-	Thu, 15 Feb 2024 02:55:57 -0600
-From: Vaishnav Achath <vaishnav.a@ti.com>
-To: <vigneshr@ti.com>, <nm@ti.com>, <conor+dt@kernel.org>, <kristo@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>
-CC: <j-luthra@ti.com>, <devicetree@vger.kernel.org>, <j-choudhary@ti.com>,
-        <kernel@pengutronix.de>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>, <vaishnav.a@ti.com>,
-        <afd@ti.com>
-Subject: [PATCH v4 9/9] arm64: dts: ti: k3-j721e-sk: Add overlay for IMX219
-Date: Thu, 15 Feb 2024 14:25:18 +0530
-Message-ID: <20240215085518.552692-10-vaishnav.a@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240215085518.552692-1-vaishnav.a@ti.com>
-References: <20240215085518.552692-1-vaishnav.a@ti.com>
+	s=arc-20240116; t=1707987539; c=relaxed/simple;
+	bh=dNYeOqFk3ZAXp+sfHqfy+SC1Wh73yci1bZ7gt+mg/ps=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=LxbhVrea7XVvj4p0bkAnx76bwnOdTCZ1vc0kopIveVwJ2wtB1wwiuj7aEa663ELQwC2SrBLFwO4daeiVYzT4cknPRFZBdOOJDrdWMgzF4uXVTQPoGmxrGzVmv/Fa+n0sIXfovxWj/12T2VEt5iy9FQqysnzJ75EaoLilFgG/cXs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TDSHlRGv; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2d1080cb9easo8109191fa.1
+        for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 00:58:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707987534; x=1708592334; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=thSm/NaAqUDsrmdo57qMDQ5CJPadtCEGhN2rge4I/tg=;
+        b=TDSHlRGvqmitp3cNGfyOrfonhROt6jXCQagHISJQa7Gji1oh/bdpq0QSDRhGFwTZsY
+         ITHVM59WCs/Opwa0dq7E2LyXHdqWvqjqJbc4qC/GnEzmiBtWkF8LG/hyugy/1muQB7Lw
+         /eXnONAdYyaMrfSfo1hD5H99JIo29M9ayVwFcubxMMVPuAh65oFi8bhga0tdEHDmmvKK
+         ifvQXkAJSl1RtX6lP9daqskNHSvS0srf2wNSDdHwbY+5egYiHOPp4mzkI5ZWGW+ALBR6
+         LvnoOlT9Hlxqm88nk6TD9+sFZt0JjRAylrfVZWJM3REulN7MFmRwsyYiPrOxyjWeiws+
+         v/5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707987534; x=1708592334;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=thSm/NaAqUDsrmdo57qMDQ5CJPadtCEGhN2rge4I/tg=;
+        b=DPNHZmn7AtV73UjZs0nqdFlWLAAI1UejKSycn7b12gtKjwJs0Z3chUZLmLvigy4MSS
+         Uaw6xSNs1bfxV7NBKP/O4CIOpYBmlIN+yxKwhROWtdyGuvip5eL5CaccQbLoZecRJOac
+         bDL7oqZhktamz1It84VxxjqfCA/FHy9lTKH5PVX20EnqBDJkCZbqPC+YAdOZH3cRb4Ov
+         O5pac2yGvLcu+9OaVC4j9e6vj5o4wqxn1cMj749OZgW9RFtC2tZNFrF4Y/SaiWX1Ixou
+         wteTuWpzkWoekXYSnMRiKOtsdOvCl6beqTsBNWjUw4mR6j0XmEL9a/Tv8v6M0LOWvk4d
+         DhDA==
+X-Forwarded-Encrypted: i=1; AJvYcCU9XnZPTt5NV79vbalZCy72xKJ9fZhPx/j970y3kgU/GQjX2xs0bAIApYtq4Sf1V4BFO2XP+dLJHvawDMwzvwpySZ0ARAo0u0ctdQ==
+X-Gm-Message-State: AOJu0YxebtGKc+aSkJfGmhZKM492jkDhaSvSb5y7liMrg6ji6b9r86s+
+	mCyXtnKzKaiBRr2IASKIpHHv6dTH1RgKJehDIbl38MdREcid26pbvOjwlw+sAXI=
+X-Google-Smtp-Source: AGHT+IHKg6BKjhzeos5aBRrK7kpueZ7SscUJfjJ3GKRg9xsS0chtvU+B6KhAY4Ng3oin0rL4VZwv5g==
+X-Received: by 2002:a2e:8805:0:b0:2d1:1df8:9ddd with SMTP id x5-20020a2e8805000000b002d11df89dddmr706979ljh.27.1707987534530;
+        Thu, 15 Feb 2024 00:58:54 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:4589:7160:c264:fa3b? ([2a01:e0a:982:cbb0:4589:7160:c264:fa3b])
+        by smtp.gmail.com with ESMTPSA id n16-20020a5d51d0000000b0033cefb84b16sm1101386wrv.52.2024.02.15.00.58.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Feb 2024 00:58:54 -0800 (PST)
+Message-ID: <6aea55e7-2ca6-444c-b111-e3cc45bd28a5@linaro.org>
+Date: Thu, 15 Feb 2024 09:58:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 3/5] drm: msm: add support for A750 GPU
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Clark
+ <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
+ Bjorn Andersson <andersson@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ iommu@lists.linux.dev
+References: <20240212-topic-sm8650-gpu-v1-0-708a40b747b5@linaro.org>
+ <20240212-topic-sm8650-gpu-v1-3-708a40b747b5@linaro.org>
+ <b5d76a25-045a-4acd-ad20-d28855b40222@linaro.org>
+ <bcad544c-7ca2-4b4f-805b-4ccaedbd091c@linaro.org>
+ <13d65685-b306-43ad-b9ca-a799f2cf73e5@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <13d65685-b306-43ad-b9ca-a799f2cf73e5@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-RPi v2 Camera (IMX219) is an 8MP camera that can be used with SK-AM69,
-J721E SK, and AM68 SK through the 22-pin CSI-RX connector.
+On 14/02/2024 22:43, Konrad Dybcio wrote:
+> On 12.02.2024 15:45, Neil Armstrong wrote:
+>> On 12/02/2024 11:46, Konrad Dybcio wrote:
+>>> On 12.02.2024 11:37, Neil Armstrong wrote:
+>>>> Add support for the A750 GPU found on the SM8650 platform
+>>>>
+>>>> Unlike the the very close A740 GPU on the SM8550 SoC, the A750 GPU
+>>>> doesn't have an HWCFG block but a separate register set.
+>>>>
+>>>> The missing registers are added in the a6xx.xml.h file that would
+>>>> require a subsequent sync and the non-existent hwcfg is handled
+>>>> in a6xx_set_hwcg().
+>>>
+>>> These should also be submitted to mesa to make sure the next header sync
+>>> doesn't wipe them
+>>
+>> Ack submitting them right now: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/27576
+> 
+> Thanks
+> 
+>>
+>>>
+>>> [...]
+>>>
+>>>> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+>>>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+>>>> @@ -958,10 +958,11 @@ static void a6xx_set_hwcg(struct msm_gpu *gpu, bool state)
+>>>>        struct a6xx_gpu *a6xx_gpu = to_a6xx_gpu(adreno_gpu);
+>>>>        struct a6xx_gmu *gmu = &a6xx_gpu->gmu;
+>>>>        const struct adreno_reglist *reg;
+>>>> +    bool skip_programming = !(adreno_gpu->info->hwcg || adreno_is_a7xx(adreno_gpu));
+>>>
+>>> is_a750?
+>>
+>> OK right, I was thinking of the next gpu which will probably also miss an hwcfg
+>>
+>>>
+>>>>        unsigned int i;
+>>>>        u32 val, clock_cntl_on, cgc_mode;
+>>>>    -    if (!adreno_gpu->info->hwcg)
+>>>> +    if (skip_programming)
+>>>>            return;
+>>>>          if (adreno_is_a630(adreno_gpu))
+>>>> @@ -982,6 +983,25 @@ static void a6xx_set_hwcg(struct msm_gpu *gpu, bool state)
+>>>>                  state ? 0x5555 : 0);
+>>>>        }
+>>>>    +    if (!adreno_gpu->info->hwcg) {
+>>>
+>>> I don't think this block of code is reachable now, no?
+>>
+>> It is because we didn't skip when adreno_is_a7xx(adreno_gpu)
+> 
+> Ahh I misread the brackets within the assignment
+> 
+>>
+>>>
+>>> Maybe remove the skip_programming and if_a750 here?
+>> This would require:
+>>>> -    if (!adreno_gpu->info->hwcg || )
+>>>> +    if (!(adreno_gpu->info->hwcg || adreno_is_a750(adreno_gpu)))
+>>
+>> and:
+>>
+>>>> +    if (adreno_is_a750(adreno_gpu)) {
+>>
+>> But if the next gpu also doesn't have an hwcfg, we will need to use
+>> the current design...
+>>
+>> I just tried with:
+>> ====================><===============================
+>> @@ -961,7 +961,7 @@ static void a6xx_set_hwcg(struct msm_gpu *gpu, bool state)
+>>          unsigned int i;
+>>          u32 val, clock_cntl_on, cgc_mode;
+>>
+>> -       if (!adreno_gpu->info->hwcg)
+>> +       if (!(adreno_gpu->info->hwcg || adreno_is_a750(adreno_gpu)))
+>>                  return;
+>>
+>>          if (adreno_is_a630(adreno_gpu))
+>> @@ -982,6 +982,25 @@ static void a6xx_set_hwcg(struct msm_gpu *gpu, bool state)
+>>                            state ? 0x5555 : 0);
+>>          }
+>>
+>> +       if (adreno_is_a750(adreno_gpu)) {
+>> +               gpu_write(gpu, REG_A7XX_RBBM_CLOCK_CNTL_GLOBAL, 1);
+>> +               gpu_write(gpu, REG_A7XX_RBBM_CGC_GLOBAL_LOAD_CMD, state ? 1 : 0);
+>> +
+>> +               if (state) {
+>> +                       gpu_write(gpu, REG_A7XX_RBBM_CGC_P2S_TRIG_CMD, 1);
+>> +
+>> +                       if (gpu_poll_timeout(gpu, REG_A7XX_RBBM_CGC_P2S_STATUS, val,
+>> +                                            val & A7XX_RBBM_CGC_P2S_STATUS_TXDONE, 1, 10)) {
+>> +                               dev_err(&gpu->pdev->dev, "RBBM_CGC_P2S_STATUS TXDONE Poll failed\n");
+>> +                               return;
+>> +                       }
+>> +
+>> +                       gpu_write(gpu, REG_A7XX_RBBM_CLOCK_CNTL_GLOBAL, 0);
+>> +               }
+>> +
+>> +               return;
+>> +       }
+>> +
+>>          val = gpu_read(gpu, REG_A6XX_RBBM_CLOCK_CNTL);
+>>
+>>          /* Don't re-program the registers if they are already correct */
+>> ====================><===============================
+>>
+>> And it works fine, does it work it for you ?
+> 
+> Let's keep it as-is in the original submission, as I've mentioned, I had
+> misread the code
 
-Add a reference overlay for dual IMX219 RPI camera v2 modules
-which can be used across AM68 SK, AM69 SK, TDA4VM SK boards
-that have a 15/22-pin FFC connector. Also enable build testing
-and symbols for all the three platforms.
+Ack thanks
 
-Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
-Reviewed-by: Jai Luthra <j-luthra@ti.com>
----
+Neil
 
-V3->V4:
-* Add additional port information in overlays to fix DTC warning:
-	Warning (graph_child_address): graph node has single child node,
-	#address-cells/#size-cells are not necessary 
-
-V1->V2:
- * Rename overlays to indicate first platform (j721e-sk) supported
-   and dual camera.
- * Add missed build test, fix missing newline.
-
- arch/arm64/boot/dts/ti/Makefile               |  13 ++
- .../dts/ti/k3-j721e-sk-csi2-dual-imx219.dtso  | 165 ++++++++++++++++++
- 2 files changed, 178 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-sk-csi2-dual-imx219.dtso
-
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 4a570dffb638..e019efd3ce94 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -69,6 +69,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm-gesi-exp-board.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm-pcie0-ep.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk-csi2-dual-imx219.dtbo
- 
- # Boards with J721s2 SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board.dtb
-@@ -106,8 +107,14 @@ k3-am642-tqma64xxl-mbax4xxl-sdcard-dtbs := \
- 	k3-am642-tqma64xxl-mbax4xxl.dtb k3-am64-tqma64xxl-mbax4xxl-sdcard.dtbo
- k3-am642-tqma64xxl-mbax4xxl-wlan-dtbs := \
- 	k3-am642-tqma64xxl-mbax4xxl.dtb k3-am64-tqma64xxl-mbax4xxl-wlan.dtbo
-+k3-am68-sk-base-board-csi2-dual-imx219-dtbs := k3-am68-sk-base-board.dtb \
-+	k3-j721e-sk-csi2-dual-imx219.dtbo
-+k3-am69-sk-csi2-dual-imx219-dtbs := k3-am69-sk.dtb \
-+	k3-j721e-sk-csi2-dual-imx219.dtbo
- k3-j721e-evm-pcie0-ep-dtbs := k3-j721e-common-proc-board.dtb \
- 	k3-j721e-evm-pcie0-ep.dtbo
-+k3-j721e-sk-csi2-dual-imx219-dtbs := k3-j721e-sk.dtb \
-+	k3-j721e-sk-csi2-dual-imx219.dtbo
- k3-j721s2-evm-pcie1-ep-dtbs := k3-j721s2-common-proc-board.dtb \
- 	k3-j721s2-evm-pcie1-ep.dtbo
- dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
-@@ -122,7 +129,10 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
- 	k3-am62a7-sk-hdmi-audio.dtb \
- 	k3-am642-tqma64xxl-mbax4xxl-sdcard.dtb \
- 	k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
-+	k3-am68-sk-base-board-csi2-dual-imx219-dtbs \
-+	k3-am69-sk-csi2-dual-imx219-dtbs \
- 	k3-j721e-evm-pcie0-ep.dtb \
-+	k3-j721e-sk-csi2-dual-imx219-dtbs \
- 	k3-j721s2-evm-pcie1-ep.dtb
- 
- # Enable support for device-tree overlays
-@@ -132,5 +142,8 @@ DTC_FLAGS_k3-am62-lp-sk += -@
- DTC_FLAGS_k3-am62a7-sk += -@
- DTC_FLAGS_k3-am642-tqma64xxl-mbax4xxl += -@
- DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
-+DTC_FLAGS_k3-am68-sk-base-board += -@
-+DTC_FLAGS_k3-am69-sk += -@
- DTC_FLAGS_k3-j721e-common-proc-board += -@
-+DTC_FLAGS_k3-j721e-sk += -@
- DTC_FLAGS_k3-j721s2-common-proc-board += -@
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk-csi2-dual-imx219.dtso b/arch/arm64/boot/dts/ti/k3-j721e-sk-csi2-dual-imx219.dtso
-new file mode 100644
-index 000000000000..47bb5480b5b0
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-sk-csi2-dual-imx219.dtso
-@@ -0,0 +1,165 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/**
-+ * DT Overlay for dual RPi Camera V2.1 (Sony IMX219) interfaced with CSI2
-+ * on J721E SK, AM68 SK or AM69-SK board.
-+ * https://datasheets.raspberrypi.org/camera/camera-v2-schematic.pdf
-+ *
-+ * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include "k3-pinctrl.h"
-+
-+&{/} {
-+	clk_imx219_fixed: imx219-xclk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <24000000>;
-+	};
-+};
-+
-+&csi_mux {
-+	idle-state = <1>;
-+};
-+
-+/* CAM0 I2C */
-+&cam0_i2c {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	imx219_0: imx219-0@10 {
-+		compatible = "sony,imx219";
-+		reg = <0x10>;
-+
-+		clocks = <&clk_imx219_fixed>;
-+		clock-names = "xclk";
-+
-+		port {
-+			csi2_cam0: endpoint {
-+				remote-endpoint = <&csi2rx0_in_sensor>;
-+				link-frequencies = /bits/ 64 <456000000>;
-+				clock-lanes = <0>;
-+				data-lanes = <1 2>;
-+			};
-+		};
-+	};
-+};
-+
-+/* CAM1 I2C */
-+&cam1_i2c {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	imx219_1: imx219-1@10 {
-+		compatible = "sony,imx219";
-+		reg = <0x10>;
-+
-+		clocks = <&clk_imx219_fixed>;
-+		clock-names = "xclk";
-+
-+		port {
-+			csi2_cam1: endpoint {
-+				remote-endpoint = <&csi2rx1_in_sensor>;
-+				link-frequencies = /bits/ 64 <456000000>;
-+				clock-lanes = <0>;
-+				data-lanes = <1 2>;
-+			};
-+		};
-+	};
-+};
-+
-+
-+&cdns_csi2rx0 {
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		csi0_port0: port@0 {
-+			reg = <0>;
-+			status = "okay";
-+
-+			csi2rx0_in_sensor: endpoint {
-+				remote-endpoint = <&csi2_cam0>;
-+				bus-type = <4>; /* CSI2 DPHY. */
-+				clock-lanes = <0>;
-+				data-lanes = <1 2>;
-+			};
-+		};
-+
-+		csi0_port1: port@1 {
-+			reg = <1>;
-+			status = "disabled";
-+		};
-+
-+		csi0_port2: port@2 {
-+			reg = <2>;
-+			status = "disabled";
-+		};
-+
-+		csi0_port3: port@3 {
-+			reg = <3>;
-+			status = "disabled";
-+		};
-+
-+		csi0_port4: port@4 {
-+			reg = <4>;
-+			status = "disabled";
-+		};
-+	};
-+};
-+
-+&dphy0 {
-+	status = "okay";
-+};
-+
-+&ti_csi2rx0 {
-+	status = "okay";
-+};
-+
-+&cdns_csi2rx1 {
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		csi1_port0: port@0 {
-+			reg = <0>;
-+			status = "okay";
-+
-+			csi2rx1_in_sensor: endpoint {
-+				remote-endpoint = <&csi2_cam1>;
-+				bus-type = <4>; /* CSI2 DPHY. */
-+				clock-lanes = <0>;
-+				data-lanes = <1 2>;
-+			};
-+		};
-+
-+		csi1_port1: port@1 {
-+			reg = <1>;
-+			status = "disabled";
-+		};
-+
-+		csi1_port2: port@2 {
-+			reg = <2>;
-+			status = "disabled";
-+		};
-+
-+		csi1_port3: port@3 {
-+			reg = <3>;
-+			status = "disabled";
-+		};
-+
-+		csi1_port4: port@4 {
-+			reg = <4>;
-+			status = "disabled";
-+		};
-+	};
-+};
-+
-+&dphy1 {
-+	status = "okay";
-+};
-+
-+&ti_csi2rx1 {
-+	status = "okay";
-+};
--- 
-2.34.1
+> 
+> Konrad
+> 
+>>
+>>>
+>>>> +        gpu_write(gpu, REG_A7XX_RBBM_CLOCK_CNTL_GLOBAL, 1);
+>>>> +        gpu_write(gpu, REG_A7XX_RBBM_CGC_GLOBAL_LOAD_CMD, state ? 1 : 0);
+>>>> +
+>>>> +        if (state) {
+>>>> +            gpu_write(gpu, REG_A7XX_RBBM_CGC_P2S_TRIG_CMD, 1);
+>>>> +
+>>>> +            if (gpu_poll_timeout(gpu, REG_A7XX_RBBM_CGC_P2S_STATUS, val,
+>>>> +                         val & BIT(0), 1, 10)) {
+>>>
+>>> We should define that bit name (the err suggests it's
+>>> REG_A7XX_RBBM_GCC_P2S_STATUS_TXDONE or so)
+>>>
+>>> [...]
+>>>
+>>>> +static inline int adreno_is_a750(struct adreno_gpu *gpu)
+>>>> +{
+>>>> +    return gpu->info->chip_ids[0] == 0x43051401;
+>>>> +}
+>>>> +
+>>>>    /* Placeholder to make future diffs smaller */
+>>>
+>>> Please also remove this comment now that it's invalid
+>>
+>> Ack
+>>
+>>>
+>>> Konrad
+>>
+>> Thanks,
+>> Neil
+>>
 
 
