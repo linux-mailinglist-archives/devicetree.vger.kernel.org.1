@@ -1,138 +1,148 @@
-Return-Path: <devicetree+bounces-41874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCC18855C19
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:16:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67AE6855C3C
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:20:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 17F60B216A8
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 08:16:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E9691F24C64
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 08:20:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFCCF11702;
-	Thu, 15 Feb 2024 08:16:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FEF213AEC;
+	Thu, 15 Feb 2024 08:18:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 287CB9475;
-	Thu, 15 Feb 2024 08:16:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F35017984
+	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 08:18:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707984983; cv=none; b=oFdfo3cCu5BYiMMuG2ytprEckC3tnMjmX1DO5j0zBbjsPAOBwwtymFvwAao7Jfpriqrm45qPnLGimb2kJMJmMYwWgj2P0MFsYQVJrhc55FQ+0hHAut/JWC+0vj4wtt/XU+npLuNmcvPynAJjQrG63Jn+XlpT0Yh4ijRdz9I85u4=
+	t=1707985113; cv=none; b=uj4wyBdmejzAUNVlrv/JKQkmeBFYwST1JtxZ/wOT+6psJSZgdJ1Pa2+85i94OudFbWMrQVJ5ZdnBHGxsD64yU+FUVKzunEGSKUEUJDzN/B6vFefU5Z6CgBefglLCQhR6cuv4QqROdIokMn/1IdQe8Re14oT6FdEYGyWtlWSuBbA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707984983; c=relaxed/simple;
-	bh=JjGi5ZDYvrRIDl/1EOJ5b0pBB3A9qnfjnY9iKfbunL4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=j12l91NYWtjskd7oxQ0G2KxXxyBOLjst0zErZiKMttUbduWuJ8F5UlfUpUuCnHWn2kwuK65v5N7gTe/zRghJeHQ5oBYFpnHBbj/RXPZu7foXLucMZP/9cP5MpLVAdx1nJ6qynwWSCwO+a2pJzQqWOi0XZJnDFXfPL7GGfj3P40o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-607e364c985so89167b3.1;
-        Thu, 15 Feb 2024 00:16:20 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707984979; x=1708589779;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qPcCwO5p3sWFBxGdMeqPKr7uj3BE3coRyKUOujECZjw=;
-        b=VNArU4g+ZE1SU7wOgRGL5IxrJxOrvMMEKPS4HiiCnirr8m/ApZeoyg84r8dpT+oSFW
-         30X31i4lVHurarFcfy1rV2CUvyawHiAJnTHs9DOmeKYd9OrrmYsl1Y29AIT6xJQ3FBqs
-         GPcn+/D3j/EFOzRoQ4hA/jowFVhGg2Slv6QFnW2aF1MN1uX6dwx5UZ/yCeT9S1P0vwE9
-         78yLIfCawwqscIcfCdwyeGlFpjvDprfENUygcqZJKYrOOnTEGHQhwbfZBu52ilLVQRLU
-         N+CxSKJEU+leYMOEeq9ZdUpXawep8uj5Db0g8joxdbBRbbbzk99ZHEDbZ/d018lfHvWK
-         3MMQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVZTYxZPgFlu3uWVFoO+IGDIS08IM7QLk6flK+1seBrRZVuaruc5xtf0Ti/jST6dh3HGEHrg72wEiz9iIlHWwHMR2JnKnLysujK1AHc
-X-Gm-Message-State: AOJu0Yyz8J2SakZ/QFAEpDkob1PMsOtW/54nMi4HePlnyJXrq7JuKtFX
-	DqJtkIofdHqHSm4LXNJ4V/eZlxUi97kV2XrAaPx3xd/ep361ZHBAxfz7DHeeZGM=
-X-Google-Smtp-Source: AGHT+IGTU51hzIcmvWTsH6waHMr9BHRdirebk0iWMhCja7IYV2GF1mFR4zw4Br9NhavrtW/vLttdVw==
-X-Received: by 2002:a81:4417:0:b0:607:82e6:aa40 with SMTP id r23-20020a814417000000b0060782e6aa40mr1080551ywa.27.1707984979136;
-        Thu, 15 Feb 2024 00:16:19 -0800 (PST)
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
-        by smtp.gmail.com with ESMTPSA id c9-20020a814e09000000b005ff9c1373ddsm154545ywb.88.2024.02.15.00.16.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Feb 2024 00:16:18 -0800 (PST)
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-dcbc6a6808fso554703276.2;
-        Thu, 15 Feb 2024 00:16:18 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWTkEVsS+CFiYr5O+lX0ArkAAKdzB3wYJwm2hMP6uAA6SFdNf4oyviZkDdfR0HrAy0RLnrucIpH+v6RX3OklIKHqviZ3nke+j6AgHXW
-X-Received: by 2002:a05:6902:2501:b0:dcc:97e4:bc61 with SMTP id
- dt1-20020a056902250100b00dcc97e4bc61mr1069341ybb.57.1707984978176; Thu, 15
- Feb 2024 00:16:18 -0800 (PST)
+	s=arc-20240116; t=1707985113; c=relaxed/simple;
+	bh=T2XuyeJ06MJPPCxU0//IIk7MVsi0C5XUfXUB6lx/2NI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KHExh3C5KzQ/goLb3aJ26mibNBcp3vCJtlcyDX3M8ZxLyRYlYPOkk8I5ygDjioRv2bRK33oeHRYQs06Haw3/NmosWtsCak3i08tfWIwbblxm9rFr1lxMo2jOJIkZA7hMnFRTq36GLzYO7b8lSVgeSEtWUHMFp+6pM0OIYYACRyc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1raWwN-0002wJ-5C; Thu, 15 Feb 2024 09:17:55 +0100
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1raWwG-000qaq-AJ; Thu, 15 Feb 2024 09:17:48 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1raWwG-009xxI-0d;
+	Thu, 15 Feb 2024 09:17:48 +0100
+Date: Thu, 15 Feb 2024 09:17:48 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Rob Herring <robh@kernel.org>,
+	Kory Maincent <kory.maincent@bootlin.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+	Dent Project <dentproject@linuxfoundation.org>
+Subject: Re: [PATCH net-next v3 14/17] dt-bindings: net: pse-pd: Add bindings
+ for PD692x0 PSE controller
+Message-ID: <Zc3IrO_MXIdLXnEL@pengutronix.de>
+References: <20240208-feature_poe-v3-0-531d2674469e@bootlin.com>
+ <20240208-feature_poe-v3-14-531d2674469e@bootlin.com>
+ <20240209145727.GA3702230-robh@kernel.org>
+ <ZciUQqjM4Z8Tc6Db@pengutronix.de>
+ <618be4b1-c52c-4b8f-8818-1e4150867cad@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240212170423.2860895-1-andriy.shevchenko@linux.intel.com> <20240212170423.2860895-13-andriy.shevchenko@linux.intel.com>
-In-Reply-To: <20240212170423.2860895-13-andriy.shevchenko@linux.intel.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 15 Feb 2024 09:16:05 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUBMieOt8V03OzRXO84w6RTjnMDHwBr3RtAWc+v-cRUsA@mail.gmail.com>
-Message-ID: <CAMuHMdUBMieOt8V03OzRXO84w6RTjnMDHwBr3RtAWc+v-cRUsA@mail.gmail.com>
-Subject: Re: [PATCH v2 12/15] auxdisplay: ht16k33: Switch to use line display
- character mapping
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Robin van der Gracht <robin@protonic.nl>, Paul Burton <paulburton@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <618be4b1-c52c-4b8f-8818-1e4150867cad@lunn.ch>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Andy,
+On Wed, Feb 14, 2024 at 06:41:54PM +0100, Andrew Lunn wrote:
+> > Alternative A and B Overview
+> > ----------------------------
+> > 
+> > - **Alternative A:** Utilizes the data-carrying pairs for power transmission in
+> >   10/100BaseT networks. The power delivery's polarity in this alternative can
+> >   vary based on the MDI (Medium Dependent Interface) or MDI-X (Medium Dependent
+> >   Interface Crossover) configuration.
+> > 
+> > - **Alternative B:** Delivers power over the spare pairs not used for data in
+> >   10/100BaseT networks. Unlike Alternative A, Alternative B's method separates
+> >   power from data lines within the cable. Though it is less influenced by data
+> >   transmission direction, Alternative B includes two configurations with
+> >   different polarities, known as variant X and variant S, to accommodate
+> >   different network requirements and device specifications.
+> 
+> Thanks for this documentation.
+> 
+> It might be worth pointing out that RJ-45 supports up to 4
+> pairs. However, 10/100BaseT only makes use of two pairs for data
+> transfer from the four. 1000BaseT and above make use of all four pairs
+> for data transfer. If you don't know this, it is not so obvious what
+> 'data-carrying pairs' and 'spare pairs' mean.
 
-On Mon, Feb 12, 2024 at 6:04=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
-> Since line display library supports necessary bits to map the characters
-> (if required), switch this driver to use that.
->
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+@Kory, can you please update it.
 
-Thanks for your patch!
+> And what happens for 1000BaseT when all four pairs are in use?
 
-> --- a/drivers/auxdisplay/ht16k33.c
-> +++ b/drivers/auxdisplay/ht16k33.c
+Hm.. good question. I didn't found the answer in the spec. By combining all
+puzzle parts I assume, different Alternative configurations are designed
+to handle conflict between "PSE Physical Layer classification" and PHY
+autoneg.
 
-> +static int ht16k33_linedisp_get_map_type(struct linedisp *linedisp)
-> +{
-> +       struct ht16k33_priv *priv =3D container_of(linedisp, struct ht16k=
-33_priv,
-> +                                                seg.linedisp);
-> +
-> +       switch (priv->type) {
-> +       case DISP_MATRIX:
-> +               /* not handled here */
-> +               return -EINVAL;
-> +
-> +       case DISP_QUAD_7SEG:
-> +               INIT_DELAYED_WORK(&priv->work, ht16k33_seg7_update);
-> +               return LINEDISP_MAP_SEG7;
-> +
-> +       case DISP_QUAD_14SEG:
-> +               INIT_DELAYED_WORK(&priv->work, ht16k33_seg14_update);
-> +               return LINEDISP_MAP_SEG14;
-> +       }
+Here is how multi-pulse Physical Layer classification is done:
+https://img.electronicdesign.com/files/base/ebm/electronicdesign/image/2020/07/Figure_5.5f2094553a61c.png
 
-error: control reaches end of non-void function [-Werror=3Dreturn-type]
+this is the source:
+https://www.electronicdesign.com/technologies/power/whitepaper/21137799/silicon-labs-90-w-power-over-ethernet-explained
 
-Missing "return -EINVAL";
+To avoid classification conflict with autoneg. Assuming, PHY on PD side
+will be not powered until classification is completed. The only source
+of pulses is the PHY on PSE side (if it is not under control of software
+on PSE side or Midspan PSE is used), so aneg pulses should be send on
+negative PoE pair? This all is just speculation, I would need to ask
+some expert or do testing.
 
-This case cannot happen, so it wasn't handled in the old code.
-But with the new code, it fails at compile-time.
+If this assumption is correct, PHY framework will need to know exact
+layout of MDI-X setting and/or silent PHY until PSE classification is done.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
