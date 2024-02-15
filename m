@@ -1,140 +1,86 @@
-Return-Path: <devicetree+bounces-42124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E2DA8567DF
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 16:35:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2355E85689D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 16:57:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD26A1C220E7
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 15:35:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C49A28E9FF
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 15:57:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACBAD133409;
-	Thu, 15 Feb 2024 15:32:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 976C2133983;
+	Thu, 15 Feb 2024 15:57:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ScmA7EFj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hOI5aQCy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82DD9132C13;
-	Thu, 15 Feb 2024 15:32:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CC2213342A;
+	Thu, 15 Feb 2024 15:57:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708011172; cv=none; b=F9Ja7dl2nw213uMRPG76BFrLoDfn3roUwYMEQGvTzpg1JSPCh1TMw3Tagyrflt8Wk1SjmapKp3uCrM/QQnphPoQetASgd6tUjgQT07zb8cHi04CqNEogZqjgom3Vhc00nIaW18RAvzxIlp00bAXzd+Llu+7gB4ShiQfyID2bodE=
+	t=1708012671; cv=none; b=g5I2zacKyIE7dFkagh7XvaALXqhw3IeyOw90SwH5yacnzfaFiO9tNx5yIrKu/38kWdf4dkhJBc7TME/PHqGBnhSb70pYQAYiLvoryuKFpvaqqoVzfUzLgy4viMpLGL0+z8pPLTtIDP3mSmvgSPjRu8WXWRTsLCR4BJrDtO+Tm9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708011172; c=relaxed/simple;
-	bh=w95nUrhyNSbM1lYPsRxeWQzJj/TfrgaNgfXeD6b7tPU=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=eNoXMLE0DD3u82e/ax8XabA2r4WyUTgytrbYu4PbQiMGobHrr4gbE3j2jlNuh2fpzn4l23gTgghA5Fib/cbbjE/9+Ll5jcJsOD6cwo/jRO+ad9s81BgTY5WFj0TBYxeyQGS8yh4+TdcEl+FNug9J8PhC5tlgEW317kqJunNOhpI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ScmA7EFj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90C5AC433C7;
-	Thu, 15 Feb 2024 15:32:51 +0000 (UTC)
+	s=arc-20240116; t=1708012671; c=relaxed/simple;
+	bh=9EX9jPvqFAvyjUBCps/eEytir8Ftg1wlyBTqud2KIzE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=vAFlaCDe4mGODzWj9b/NLSJwyjHaIlK0D6I85muZeQSIkyG80Scwxm6+9wlVHRbk+z3YQSympI8A71mg4rd4O+fLsDnGPB/hrStdm4LL8EXbXfD0KA5JSS8SryGuCdNB1YbG3nMtcadR3iJzYeNGC7xBzZR0FoI0OtrES3+1A7g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hOI5aQCy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24899C433C7;
+	Thu, 15 Feb 2024 15:57:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708011172;
-	bh=w95nUrhyNSbM1lYPsRxeWQzJj/TfrgaNgfXeD6b7tPU=;
-	h=Date:From:To:Cc:Subject:From;
-	b=ScmA7EFjU/CbMaEttI/s+eQx+J5cBqq3fKTFxT5ulmtoIIxuxEMa8aglNkbmJ/ARw
-	 q36G/7RdGi+qPSTlaOzgSHQB5+InFg0ENo5Xf8M+yanAb4f4ubWr3sMwAzxsJ6VKL9
-	 Hy7c8tGma/I0DuVLAoot4SXa4b2QnYQxEp7WlilStp/MMFBPgVtutNQSBZdjdHplO+
-	 8IDwGUDed/g0fAYQ6+QW+zwdsgMs/AUoHV+n6/H+sTLCXwYs8AVdrvzscKeRYdRY1i
-	 QnZo2maIS9G6ugDzhDRq16Zi+CdAZaLILt/avwwJU6sZyhLGTpHyelsl752NSFKfjk
-	 xdI9WolG+03yg==
-Date: Thu, 15 Feb 2024 09:32:48 -0600
-From: Rob Herring <robh@kernel.org>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [GIT PULL] Devicetree fixes for v6.8
-Message-ID: <20240215153248.GA181950-robh@kernel.org>
+	s=k20201202; t=1708012670;
+	bh=9EX9jPvqFAvyjUBCps/eEytir8Ftg1wlyBTqud2KIzE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=hOI5aQCyPXj8CawPNruNCcI1r+/1MZsvdkOCXPHZFsv+iDeR67jktysjLi9LI20o9
+	 fcrUVzp23hGMhJ662bdPaozNwZXLf0stEwFQfWFyy//q6/CMkpFNAKd71dsvsEW48K
+	 vG8lJ117ervzUUf4b7fy4Y4+34vAzZwymy6wHgE3e/Olqb+1X/NiYUWvOTcIdWs9Um
+	 AGOt6JFSFou/VI0as8Z/rF0L4jencRtd3BbvFV7Wv58ojiuAChsBuWZpO6jllfh5O0
+	 2XiVmNK4Up7eflGqVIRbzLeu8U6lohBNAIG9r34KhoI+baCacNnfUz2h4Z0g80FVf6
+	 2/gxc5lQrthzQ==
+Message-ID: <71adaabd-bb24-4181-9fdf-f7191e93edb5@kernel.org>
+Date: Thu, 15 Feb 2024 17:57:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-am654: Drop ti,syscon-rgmii-delay from
+ ICSSG nodes
+Content-Language: en-US
+To: MD Danish Anwar <danishanwar@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Tero Kristo <kristo@kernel.org>, srk@ti.com, r-gunasekaran@ti.com
+References: <20240215105407.2868266-1-danishanwar@ti.com>
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20240215105407.2868266-1-danishanwar@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Linus,
-
-Please pull DT fixes for 6.8.
-
-Rob
 
 
-The following changes since commit 716089b417cf98d01f0dc1b39f9c47e1d7b4c965:
+On 15/02/2024 12:54, MD Danish Anwar wrote:
+> Drop ti,syscon-rgmii-delay from ICSSG0, ICSSG1 and ICSSG2 node as this
+> property is no longer used by ICSSG driver.
+> 
+> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso | 2 --
+>  arch/arm64/boot/dts/ti/k3-am654-idk.dtso    | 4 ----
+>  2 files changed, 6 deletions(-)
 
-  of: unittest: Fix of_count_phandle_with_args() expected value message (2024-01-11 16:18:30 -0600)
+What about the DT binding document?
 
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.8-1
-
-for you to fetch changes up to 4e06ec0774f5bebf10e27bc7a5ace4b48ae0fa56:
-
-  dt-bindings: ufs: samsung,exynos-ufs: Add size constraints on "samsung,sysreg" (2024-02-13 10:32:13 -0600)
-
-----------------------------------------------------------------
-Devicetree fixes for v6.8:
-
-- Improve devlink dependency parsing for DT graphs
-
-- Fix devlink handling of io-channels dependencies
-
-- Fix PCI addressing in marvell,prestera example
-
-- A few schema fixes for property constraints
-
-- Improve performance of DT unprobed devices kselftest
-
-- Fix regression in DT_SCHEMA_FILES handling
-
-- Fix compile error in unittest for !OF_DYNAMIC
-
-----------------------------------------------------------------
-André Draszik (1):
-      dt-bindings: don't anchor DT_SCHEMA_FILES to bindings directory
-
-Christian A. Ehrhardt (1):
-      of: unittest: Fix compile in the non-dynamic case
-
-Nuno Sa (1):
-      of: property: fix typo in io-channels
-
-Nícolas F. R. A. Prado (1):
-      kselftest: dt: Stop relying on dirname to improve performance
-
-Radhey Shyam Pandey (1):
-      dt-bindings: xilinx: replace Piyush Mehta maintainership
-
-Rob Herring (4):
-      dt-bindings: display: nxp,tda998x: Fix 'audio-ports' constraints
-      dt-bindings: tpm: Drop type from "resets"
-      net: marvell,prestera: Fix example PCI bus addressing
-      dt-bindings: ufs: samsung,exynos-ufs: Add size constraints on "samsung,sysreg"
-
-Saravana Kannan (3):
-      of: property: Improve finding the consumer of a remote-endpoint property
-      of: property: Improve finding the supplier of a remote-endpoint property
-      of: property: Add in-ports/out-ports support to of_graph_get_port_parent()
-
- Documentation/devicetree/bindings/Makefile         |  5 +-
- .../devicetree/bindings/ata/ceva,ahci-1v84.yaml    |  3 +-
- .../bindings/display/bridge/nxp,tda998x.yaml       |  7 ++-
- .../bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml    |  3 +-
- .../devicetree/bindings/net/marvell,prestera.yaml  |  4 +-
- .../bindings/reset/xlnx,zynqmp-reset.yaml          |  3 +-
- .../devicetree/bindings/tpm/tpm-common.yaml        |  2 +-
- .../bindings/ufs/samsung,exynos-ufs.yaml           |  9 ++-
- .../devicetree/bindings/usb/dwc3-xilinx.yaml       |  3 +-
- .../devicetree/bindings/usb/microchip,usb5744.yaml |  3 +-
- .../devicetree/bindings/usb/xlnx,usb2.yaml         |  3 +-
- drivers/of/property.c                              | 65 +++++++++-------------
- drivers/of/unittest.c                              | 12 +++-
- .../testing/selftests/dt/test_unprobed_devices.sh  | 13 +++--
- 14 files changed, 71 insertions(+), 64 deletions(-)
+-- 
+cheers,
+-roger
 
