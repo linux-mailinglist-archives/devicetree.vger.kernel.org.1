@@ -1,209 +1,154 @@
-Return-Path: <devicetree+bounces-42184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42185-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6106F856B6A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 18:46:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73635856B8C
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 18:49:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE2C11F21953
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 17:46:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F54EB25532
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 17:48:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71D8D138494;
-	Thu, 15 Feb 2024 17:46:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3DCC137C59;
+	Thu, 15 Feb 2024 17:48:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R4jYCgIO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IqUQdTtH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41DDC1369B2;
-	Thu, 15 Feb 2024 17:46:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93548135A75
+	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 17:48:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708019203; cv=none; b=Itizu7zr+BaciO0cIWU6J4CnDg1FLVtvijaVkSOmfw6PAuRXo5YQMwRyCh5t2C5jwHv1sXnjAKXSa3PWIWC2NJqp+xsaCku+x1ZuuzRkn282aJFXZqFG5Lyn9Fr1VIKRlhmsWiCkXHzILaHh7H1XbbsWRtrJO+ABgp6CL2FqP8E=
+	t=1708019332; cv=none; b=l+eSqBr0rYlv/8Wye9ubpLPWByiLyf4jhlK3DhzRE6Y9VbctvSmCwBe7AmJnLb/ooX0kL2GEHQCEO1/KndzTIy8rdletRqYi7z7r0SkOQbgp/M84d3ZEVo2/Rlh7KF9zez5XEeSssEgcISn34NcVAd8doqQbslskhVkpHlTOi5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708019203; c=relaxed/simple;
-	bh=qrkL/cNhS+5VssaK2deynwkxln+cK6Q46lyuSrshsP8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=VKo4MHo9RPh9TXfrg5ZFEkTKevWVGJn8H6BDJ7Uas63c9ZP76jAVx3eYT0TZq6rbKw+pGWoegGTnWno2nunSslJgQtQE5Iy5HY3wmO2um5UsbIYxKff7ELrKZ7H+lQtOPNptgSAJzg/LuxJ9cnT3bbzv9MOosjUulX0AHw7v2tQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R4jYCgIO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D8706C43399;
-	Thu, 15 Feb 2024 17:46:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708019202;
-	bh=qrkL/cNhS+5VssaK2deynwkxln+cK6Q46lyuSrshsP8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=R4jYCgIOG1sqiWcVTSMjk3GVSIyvK3jhwIHX8a/OR9wFQ6JqA5U9QZ8Ve7wn+Z2Gf
-	 IyJcbct0J2eQBHWHUNk6BToF6BIjYrnbetgjl8rTG6F0Z6BEUx5GsloDmo5KVKakVB
-	 4sJRD8vdDnuIg3UCit0Q2pWaTezfDyUg8UelflIO/VM0Up7OfcBqkUEJo6hyZUHAo1
-	 dnbnLx1lRkbbWwV6U7UoMQCGrEMg6Q6mslVOcsbjNE2JQxTNAHTJ+pBnUQB4ehjxiB
-	 ufi2FQ4xwF2K07Y/di93LwXpoqzqQ65bcIMNn0aAepLtlnpUgOzl+5XsuWdJ53ni5r
-	 REPxrKbwBv2wA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BFFC1C48BF2;
-	Thu, 15 Feb 2024 17:46:42 +0000 (UTC)
-From: Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>
-Date: Fri, 16 Feb 2024 01:46:44 +0800
-Subject: [PATCH 3/3] dt-bindings: mmc: dw-mshc-hi3798cv200: rename to
- dw-mshc-histb
+	s=arc-20240116; t=1708019332; c=relaxed/simple;
+	bh=VBkqrqV6+5LV+EFIvspNumc41UHE2ANtr0AfhgHR8no=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WbzrX1NiGcVH2Ptagl08UUQ5+6X3sFRP3YWgIufDjPlBxo/LTNYU86daf/Ih90SvsDaZg0I2kn7LXkDwTyeKbfWCk8Wb15s/5whg9z+OFBj95jwHcJNF7ma/DbLc0/BUqv2kMYeNS3UsJln28lO6OgnmGtNCcOjxq/cJZf+BVD4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IqUQdTtH; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-511a45f6a57so1490718e87.2
+        for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 09:48:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708019328; x=1708624128; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gSGm1/quDyVH7f1J1vE3tPRgaBvwY8ELdKiGbMB2DOI=;
+        b=IqUQdTtHcCj3/fblX7GeeMx5RfZqHkSJSr5v51TD/Uzo1Yy0R87ZIzieEIrUSdLyi0
+         ipCvW+IljRyiSwtRmvT2bnTa1qgUHyReNsnX+uTNa4iEbkLpX1I0ouMY5OkJjlBhcKHC
+         wrM8Zswc//VIPrGYGSFbWaT+7zyu6Elw6jXzMVErpUmOq73jo1imvUvhBwrWKpOvrSOU
+         Fa4goiNlerZBqNI2Um9OzowW3lvVWtor+4q5dX8tqtLxU6yIU7mflQA/RtvpyIuGnMKY
+         4Urtp2oUD0HRGmO8HyoPg/eO3n1101p2MYeNLAAjU4GFNphljKOu+NWQS7qCwfdJkYIC
+         Enxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708019328; x=1708624128;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gSGm1/quDyVH7f1J1vE3tPRgaBvwY8ELdKiGbMB2DOI=;
+        b=tS1qQ1ic1mBqrdF9m9fFWSy1Y8u4pnnzOG+cW6R74lcColalK+yFr5B+UuKBAs6nUI
+         SFXqS0/zAwW+py9gZJY9C0EXls9I3WltVhI2Xus3KSf4GXUSftEz59Rur1+YTvozpzcj
+         74R0CLQDtFFEmOrF+bbzYA0pd+EOjGaYhXhEOKAVrpbE1ctmi4Ag13vzF5d/l4C8Kr0+
+         lVw3SIfiGtKt1/pb5D6S0mAd3wh2H6xsWw4wY093oC4aPLLnz0ps7LpLXtuBVbHysyHy
+         CyM3w1Ip8RLBAtTALCZQrtG8Cvd7hBolyChvnnLJTDi9rP+olw2h6GnvrVgxgGcE4j33
+         wGBA==
+X-Forwarded-Encrypted: i=1; AJvYcCXpxFKZaKQ2PRRuB4QaQ3HT8Gyw/MKLEHvNVonKyfI0NHIf8Vi5SvNXlpYmqlZWdEfOyg/WUyL9vZHlp8WtY6s6/U36BPWnEgLWzQ==
+X-Gm-Message-State: AOJu0YwpPeWO8/a2V8Ac0EPn8KVbV/AIbdcowb6SMAMmtLgFMaUWxsZK
+	2Dgvbn5NK6ZCjSq/eI9rCnBZwI4IP0NGCVSHYa7tAKvaz/ZOZp5/6sYIFGUSlds=
+X-Google-Smtp-Source: AGHT+IHMfabMlTI3VJdHnS+r4bOWJPpFsDpM4SkglaQSyM4zv1SCpO8KBg7+698Clyq0oHLcDOCKSg==
+X-Received: by 2002:a19:e004:0:b0:511:5308:5c78 with SMTP id x4-20020a19e004000000b0051153085c78mr1902026lfg.4.1708019328632;
+        Thu, 15 Feb 2024 09:48:48 -0800 (PST)
+Received: from [192.168.192.135] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
+        by smtp.gmail.com with ESMTPSA id r1-20020a50d681000000b005638f04c122sm790193edi.14.2024.02.15.09.48.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Feb 2024 09:48:46 -0800 (PST)
+Message-ID: <7827ef92-e3af-49f6-b9ed-5bac0cbcc513@linaro.org>
+Date: Thu, 15 Feb 2024 18:48:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/6] drm/msm: add support for A750 GPU
+Content-Language: en-US
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
+ Bjorn Andersson <andersson@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ iommu@lists.linux.dev
+References: <20240215-topic-sm8650-gpu-v2-0-6be0b4bf2e09@linaro.org>
+ <20240215-topic-sm8650-gpu-v2-4-6be0b4bf2e09@linaro.org>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240215-topic-sm8650-gpu-v2-4-6be0b4bf2e09@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240216-b4-mmc-hi3798mv200-v1-3-7d46db845ae6@outlook.com>
-References: <20240216-b4-mmc-hi3798mv200-v1-0-7d46db845ae6@outlook.com>
-In-Reply-To: <20240216-b4-mmc-hi3798mv200-v1-0-7d46db845ae6@outlook.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>, 
- Jaehoon Chung <jh80.chung@samsung.com>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Igor Opaniuk <igor.opaniuk@linaro.org>, 
- tianshuliang <tianshuliang@hisilicon.com>, David Yang <mmyangfl@gmail.com>, 
- linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org, 
- devicetree@vger.kernel.org, Yang Xiwen <forbidden405@outlook.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1708019203; l=4176;
- i=forbidden405@outlook.com; s=20230724; h=from:subject:message-id;
- bh=vyT5SY9rrA1BRKlIPW3ARvBOXeZjjpuC0pdH+zidx+U=;
- b=Tf3Nb3SLoAI+EwCZ6ijWxGYdkpP8wYBMIRw7xswxJo5oZ6AvOrrL3r6U3dllsArYeg57hgvnE
- 9OOU7fzbCSNBO41J+nGHqoN6vK/gcrutOvSe/waWCtMDad1zAuLOUIS
-X-Developer-Key: i=forbidden405@outlook.com; a=ed25519;
- pk=qOD5jhp891/Xzc+H/PZ8LWVSWE3O/XCQnAg+5vdU2IU=
-X-Endpoint-Received:
- by B4 Relay for forbidden405@outlook.com/20230724 with auth_id=67
-X-Original-From: Yang Xiwen <forbidden405@outlook.com>
-Reply-To: <forbidden405@outlook.com>
 
-From: Yang Xiwen <forbidden405@outlook.com>
+On 15.02.2024 10:20, Neil Armstrong wrote:
+> Add support for the A750 GPU found on the SM8650 platform
+> 
+> Unlike the the very close A740 GPU on the SM8550 SoC, the A750 GPU
+> doesn't have an HWCFG block but a separate register set.
+> 
+> The A750 GPU info are added under the adreno_is_a750() macro and
+> the ADRENO_7XX_GEN3 family id.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
 
-Add binding for Hi3798MV200 DWMMC specific extension.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
----
- ...hi3798cv200-dw-mshc.yaml => histb-dw-mshc.yaml} | 60 +++++++++++++++++++---
- 1 file changed, 52 insertions(+), 8 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/mmc/hi3798cv200-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/histb-dw-mshc.yaml
-similarity index 57%
-rename from Documentation/devicetree/bindings/mmc/hi3798cv200-dw-mshc.yaml
-rename to Documentation/devicetree/bindings/mmc/histb-dw-mshc.yaml
-index 5db99cd94b90..d2f5b7bb7a58 100644
---- a/Documentation/devicetree/bindings/mmc/hi3798cv200-dw-mshc.yaml
-+++ b/Documentation/devicetree/bindings/mmc/histb-dw-mshc.yaml
-@@ -1,11 +1,11 @@
- # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/mmc/hi3798cv200-dw-mshc.yaml#
-+$id: http://devicetree.org/schemas/mmc/histb-dw-mshc.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title:
--  Hisilicon Hi3798CV200 SoC specific extensions to the Synopsys DWMMC controller
-+  Hisilicon HiSTB SoCs specific extensions to the Synopsys DWMMC controller
- 
- maintainers:
-   - Yang Xiwen <forbidden405@outlook.com>
-@@ -14,16 +14,14 @@ description:
-   The Synopsys designware mobile storage host controller is used to interface
-   a SoC with storage medium such as eMMC or SD/MMC cards. This file documents
-   differences between the core Synopsys dw mshc controller properties described
--  by synopsys-dw-mshc.txt and the properties used by the Hisilicon Hi3798CV200
--  specific extensions to the Synopsys Designware Mobile Storage Host Controller.
--
--allOf:
--  - $ref: synopsys-dw-mshc-common.yaml#
-+  by synopsys-dw-mshc.txt and the properties used by the Hisilicon HiSTB specific
-+  extensions to the Synopsys Designware Mobile Storage Host Controller.
- 
- properties:
-   compatible:
-     enum:
-       - hisilicon,hi3798cv200-dw-mshc
-+      - hisilicon,hi3798mv200-dw-mshc
- 
-   reg:
-     maxItems: 1
-@@ -48,6 +46,12 @@ properties:
-       control the clock phases, "ciu-sample" is required for tuning
-       high speed modes.
- 
-+  hisilicon,sap-dll-reg:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      A phandle points to the sample delay-locked-loop(DLL)
-+      syscon node, used for tuning.
-+
- required:
-   - compatible
-   - reg
-@@ -55,13 +59,25 @@ required:
-   - clocks
-   - clock-names
- 
-+allOf:
-+  - $ref: synopsys-dw-mshc-common.yaml#
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: hisilicon,hi3798mv200-dw-mshc
-+    then:
-+      required:
-+        - hisilicon,sap-dll-reg
-+
- unevaluatedProperties: false
- 
- examples:
-   - |
-     #include <dt-bindings/clock/histb-clock.h>
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
--    emmc: mmc@9830000 {
-+    mmc@9830000 {
-       compatible = "hisilicon,hi3798cv200-dw-mshc";
-       reg = <0x9830000 0x10000>;
-       interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
-@@ -84,3 +100,31 @@ examples:
-       bus-width = <8>;
-       status = "okay";
-     };
-+  - |
-+    #include <dt-bindings/clock/histb-clock.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    mmc@9830000 {
-+      compatible = "hisilicon,hi3798mv200-dw-mshc";
-+      reg = <0x9830000 0x10000>;
-+      interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
-+      clocks = <&crg HISTB_MMC_CIU_CLK>,
-+               <&crg HISTB_MMC_BIU_CLK>,
-+               <&crg HISTB_MMC_SAMPLE_CLK>,
-+               <&crg HISTB_MMC_DRV_CLK>;
-+      clock-names = "ciu", "biu", "ciu-sample", "ciu-drive";
-+      resets = <&crg 0xa0 4>;
-+      reset-names = "reset";
-+      pinctrl-names = "default";
-+      pinctrl-0 = <&emmc_pins>;
-+      fifo-depth = <256>;
-+      clock-frequency = <50000000>;
-+      max-frequency = <150000000>;
-+      cap-mmc-highspeed;
-+      mmc-ddr-1_8v;
-+      mmc-hs200-1_8v;
-+      mmc-hs400-1_8v;
-+      non-removable;
-+      bus-width = <8>;
-+      hisilicon,sap-dll-reg = <&emmc_sap_dll_reg>;
-+      status = "okay";
-+    };
-
--- 
-2.43.0
-
+Konrad
 
