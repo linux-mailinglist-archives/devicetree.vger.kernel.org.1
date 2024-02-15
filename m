@@ -1,122 +1,275 @@
-Return-Path: <devicetree+bounces-42208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F19B1856DA8
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 20:26:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E28B856DB1
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 20:28:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 632441F242C7
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 19:26:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE1881F26D1F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 19:28:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F243013959B;
-	Thu, 15 Feb 2024 19:26:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB8E213959C;
+	Thu, 15 Feb 2024 19:27:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nc6nx3Uw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ESSBPCq6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5C6813956C;
-	Thu, 15 Feb 2024 19:26:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFBF04369A;
+	Thu, 15 Feb 2024 19:27:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708025191; cv=none; b=oUykhBHU2NuLikgqbKEL1mGpkjiC/jRn5twIhtgjAF2h9RyR32s0ZByA+7saS/OXQcgn/Q//Qt+UDmFjvyC0B++kIkSugKIx0fSS5FUGeUHwxMzGEhcXoI1gwn/fRFC6MsLnzB7G/rZ+TB3qupzQgREeceVJUhUebE00npuIMt8=
+	t=1708025278; cv=none; b=TDs1FiGK95YqX0ZFMsapsiNuBtT2YedLcDdc6wveNMUHHyVj+i9r5j5BiFx2TEPRg6p1Otboyi1PB6udFJ2isGsxW4OkQ3MYMecntPXyt1qVNPhw6wl4VOslfAVx9IrtL0SFPzCOPkQrDKOcqP7FUfv7GPN1fGgESCAxcPjCYOI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708025191; c=relaxed/simple;
-	bh=cm8rH2x5vSZHUysm9+yiXHe3CkE2IKLLaEg/WQdrvbg=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=Zcr/diW4zv+XO7DG98Qkp51cP0JEFMRmtKkYQ3jmuEDikXEEHGKvT+ZTkGFuBl0yDJRTz18lKrL8SGB4uVMMxrS5HL0+09qo1SKiiQV3xiPamP77f7q08K52dmWuyJq7EtsV8gxsnx1IgdX7VHndv3NLTsQz0c488vQHFm/UUII=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nc6nx3Uw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09E6EC433F1;
-	Thu, 15 Feb 2024 19:26:30 +0000 (UTC)
+	s=arc-20240116; t=1708025278; c=relaxed/simple;
+	bh=B78tA8mwIJHcwuf2kjNoy1MeVZF1wEVHnLOpPqSiT6Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z/YL5jQO0ffedJKpRONiTKUqCKsv+aCSskkD9BY8lWIoWqnTljHb0hRDEOut9rSkbfq759C3EDJcDEZzhYsNsOOGno4k75nthjzL61Yh3prZz7QRogOAf6OVHp9hnzLcd6nRYmpYc4qw+OKYz+GNEBAzzpx8EsrSMPNIOgtFfpU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ESSBPCq6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DCCBC433C7;
+	Thu, 15 Feb 2024 19:27:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708025191;
-	bh=cm8rH2x5vSZHUysm9+yiXHe3CkE2IKLLaEg/WQdrvbg=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=nc6nx3UwHMgP/utT/ps5kDENqQdoWV2KusfXUGxdz3JX7jWG7RARE3eh+YPYGRjPP
-	 jKusFcF3Sy6z17rAiFxrICI0No8Pym6fV//FLXPRdoPbYre/Fv04nx9ak/t+WRMVgD
-	 vJNecazteb8VktNPXRc+8H5FeO6yNEc2CNR9kIyaY9v0aZk0FFnROHS4SL6oNlSfD+
-	 McWVxTzeJqmVI2i+Z6wr5ub4n0OaawxlfWFf3ARzqa46IsEhrmzerAHk2uBrkBDJhw
-	 rmGr/cEYv6G9LAZwLUxMLHHM+Z1EO+badBN7yzxPUu4Rslc0kH5xBT1BR3bd1zO3po
-	 jqn0Y1N8Yyksw==
-Date: Thu, 15 Feb 2024 13:26:30 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1708025277;
+	bh=B78tA8mwIJHcwuf2kjNoy1MeVZF1wEVHnLOpPqSiT6Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ESSBPCq6Mv09IKJYpnk+10FnNRAqmX1wv+FDoOylq3zXzhHDIPbmL35QKW0qOOL44
+	 e/MzsY4QXAz1EBrUnfP+RPWibnwRFcVMHII27qacd/1jKbv5aG798jc0ED5ClHO1oB
+	 1bAYTYN2OCUi2AiusQ1IKRcW1YUaurJBuqCtM7nnOJiBU+jk9dbp5lTLueW4HiUNqV
+	 ZBboK1JdCnD/aiNj4rV0m9f40N6LhfN2pK9AGCsvnz/LP7lUJX+Pi3a7PA9M8I5tHn
+	 6HeSZBPQRabsIAgV89MOfsnO6E5Ns4GQF4nNMfG5WMHWoqfAujfDYccHMO9a261IvL
+	 cMdGdzThwyXSg==
+Date: Thu, 15 Feb 2024 19:27:52 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Durai Manickam KR <durai.manickamkr@microchip.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Ludovic Desroches <ludovic.desroches@microchip.com>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>, dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: dma: convert atmel-dma.txt to YAML
+Message-ID: <20240215-broken-emu-64a6dabc43e2@spud>
+References: <20240215-dmac-v1-1-8f1c6f031c98@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Conor Dooley <conor+dt@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
- linux-mips@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Rob Herring <robh+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-i2c@vger.kernel.org, 
- devicetree@vger.kernel.org, Gregory Clement <gregory.clement@bootlin.com>, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20240215-mbly-i2c-v1-2-19a336e91dca@bootlin.com>
-References: <20240215-mbly-i2c-v1-0-19a336e91dca@bootlin.com>
- <20240215-mbly-i2c-v1-2-19a336e91dca@bootlin.com>
-Message-Id: <170802518884.600590.10776396012079314632.robh@kernel.org>
-Subject: Re: [PATCH 02/13] dt-bindings: i2c: nomadik: add
- mobileye,eyeq5-i2c bindings and example
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="/iXZ72FAuAF0yk9f"
+Content-Disposition: inline
+In-Reply-To: <20240215-dmac-v1-1-8f1c6f031c98@microchip.com>
 
 
-On Thu, 15 Feb 2024 17:52:09 +0100, Théo Lebrun wrote:
-> Add EyeQ5 bindings to the existing Nomadik I2C dt-bindings. Add the two
-> EyeQ5-specific properties behind a conditional. Add an example for this
-> compatible.
-> 
-> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+--/iXZ72FAuAF0yk9f
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Feb 15, 2024 at 04:15:44PM +0530, Durai Manickam KR wrote:
+> Added a description, required properties and appropriate compatibles
+> for all the SoCs that are supported by microchip.
+>=20
+> Signed-off-by: Durai Manickam KR <durai.manickamkr@microchip.com>
 > ---
->  .../devicetree/bindings/i2c/st,nomadik-i2c.yaml    | 44 ++++++++++++++++++++--
->  1 file changed, 40 insertions(+), 4 deletions(-)
-> 
+>  .../devicetree/bindings/dma/atmel-dma.txt          | 42 -------------
+>  .../bindings/dma/microchip,at91-dma.yaml           | 71 ++++++++++++++++=
+++++++
+>  2 files changed, 71 insertions(+), 42 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/dma/atmel-dma.txt b/Docume=
+ntation/devicetree/bindings/dma/atmel-dma.txt
+> deleted file mode 100644
+> index f69bcf5a6343..000000000000
+> --- a/Documentation/devicetree/bindings/dma/atmel-dma.txt
+> +++ /dev/null
+> @@ -1,42 +0,0 @@
+> -* Atmel Direct Memory Access Controller (DMA)
+> -
+> -Required properties:
+> -- compatible: Should be "atmel,<chip>-dma".
+> -- reg: Should contain DMA registers location and length.
+> -- interrupts: Should contain DMA interrupt.
+> -- #dma-cells: Must be <2>, used to represent the number of integer cells=
+ in
+> -the dmas property of client devices.
+> -
+> -Example:
+> -
+> -dma0: dma@ffffec00 {
+> -	compatible =3D "atmel,at91sam9g45-dma";
+> -	reg =3D <0xffffec00 0x200>;
+> -	interrupts =3D <21>;
+> -	#dma-cells =3D <2>;
+> -};
+> -
+> -DMA clients connected to the Atmel DMA controller must use the format
+> -described in the dma.txt file, using a three-cell specifier for each cha=
+nnel:
+> -a phandle plus two integer cells.
+> -The three cells in order are:
+> -
+> -1. A phandle pointing to the DMA controller.
+> -2. The memory interface (16 most significant bits), the peripheral inter=
+face
+> -(16 less significant bits).
+> -3. Parameters for the at91 DMA configuration register which are device
+> -dependent:
+> -  - bit 7-0: peripheral identifier for the hardware handshaking interfac=
+e. The
+> -  identifier can be different for tx and rx.
+> -  - bit 11-8: FIFO configuration. 0 for half FIFO, 1 for ALAP, 2 for ASA=
+P.
+> -
+> -Example:
+> -
+> -i2c0@i2c@f8010000 {
+> -	compatible =3D "atmel,at91sam9x5-i2c";
+> -	reg =3D <0xf8010000 0x100>;
+> -	interrupts =3D <9 4 6>;
+> -	dmas =3D <&dma0 1 7>,
+> -	       <&dma0 1 8>;
+> -	dma-names =3D "tx", "rx";
+> -};
+> diff --git a/Documentation/devicetree/bindings/dma/microchip,at91-dma.yam=
+l b/Documentation/devicetree/bindings/dma/microchip,at91-dma.yaml
+> new file mode 100644
+> index 000000000000..a0a582902e4d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dma/microchip,at91-dma.yaml
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Filename matching the compatible please.
 
-yamllint warnings/errors:
+> @@ -0,0 +1,71 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/dma/microchip,at91-dma.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Atmel Direct Memory Access Controller (DMA)
+> +
+> +maintainers:
+> +  - Ludovic Desroches <ludovic.desroches@microchip.com>
+> +  - Tudor Ambarus <tudor.ambarus@linaro.org>
+> +
+> +description: |
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/st,nomadik-i2c.example.dtb: i2c@300000: 'mobileye,id', 'mobileye,olb' do not match any of the regexes: '^#.*', '^(at25|bm|devbus|dmacap|dsa|exynos|fsi[ab]|gpio-fan|gpio-key|gpio|gpmc|hdmi|i2c-gpio),.*', '^(keypad|m25p|max8952|max8997|max8998|mpmc),.*', '^(pinctrl-single|#pinctrl-single|PowerPC),.*', '^(pl022|pxa-mmc|rcar_sound|rotary-encoder|s5m8767|sdhci),.*', '^(simple-audio-card|st-plgpio|st-spics|ts),.*', '^100ask,.*', '^70mai,.*', '^8dev,.*', '^GEFanuc,.*', '^ORCL,.*', '^SUNW,.*', '^[a-zA-Z0-9#_][a-zA-Z0-9+\\-._@]{0,63}$', '^[a-zA-Z0-9+\\-._]*@[0-9a-zA-Z,]*$', '^abb,.*', '^abilis,.*', '^abracon,.*', '^abt,.*', '^acbel,.*', '^acer,.*', '^acme,.*', '^actions,.*', '^active-semi,.*', '^ad,.*', '^adafruit,.*', '^adapteva,.*', '^adaptrum,.*', '^adh,.*', '^adi,.*', '^adieng,.*', '^advantech,.*', '^aeroflexgaisler,.*', '^aesop,.*', '^airoha,.*', '^al,.*', '^alcatel,.*', '^aldec,.*', '^alfa-network,.*', '^allegro
- ,.*', '^alliedvision,.*', '^allo,.*', '^allwinner,.*', '^alphascale,.*', '^alps,.*', '^alt,.*', '^altr,.*', '^amarula,.*', '^amazon,.*', '^amcc,.*', '^amd,.*', '^amediatech,.*', '^amlogic,.*', '^ampere,.*', '^ampire,.*', '^ams,.*', '^amstaos,.*', '^analogix,.*', '^anbernic,.*', '^andestech,.*', '^anvo,.*', '^aosong,.*', '^apm,.*', '^apple,.*', '^aptina,.*', '^arasan,.*', '^archermind,.*', '^arcom,.*', '^arctic,.*', '^arcx,.*', '^aries,.*', '^arm,.*', '^armadeus,.*', '^arrow,.*', '^artesyn,.*', '^asahi-kasei,.*', '^asc,.*', '^asix,.*', '^aspeed,.*', '^asrock,.*', '^asus,.*', '^atheros,.*', '^atlas,.*', '^atmel,.*', '^auo,.*', '^auvidea,.*', '^avago,.*', '^avia,.*', '^avic,.*', '^avnet,.*', '^awinic,.*', '^axentia,.*', '^axis,.*', '^azoteq,.*', '^azw,.*', '^baikal,.*', '^bananapi,.*', '^beacon,.*', '^beagle,.*', '^belling,.*', '^bhf,.*', '^bigtreetech,.*', '^bitmain,.*', '^blutek,.*', '^boe,.*', '^bosch,.*', '^boundary,.*', '^brcm,.*', '^broadmobi,.*', '^bsh,.*', '^bticino,.*', '^buff
- alo,.*', '^bur,.*', '^bytedance,.*', '^calamp,.*', '^calaosystems,.*', '^calxeda,.*', '^canaan,.*', '^caninos,.*', '^capella,.*', '^cascoda,.*', '^catalyst,.*', '^cavium,.*', '^cdns,.*', '^cdtech,.*', '^cellwise,.*', '^ceva,.*', '^chargebyte,.*', '^checkpoint,.*', '^chefree,.*', '^chipidea,.*', '^chipone,.*', '^chipspark,.*', '^chongzhou,.*', '^chrontel,.*', '^chrp,.*', '^chunghwa,.*', '^chuwi,.*', '^ciaa,.*', '^cirrus,.*', '^cisco,.*', '^clockwork,.*', '^cloos,.*', '^cloudengines,.*', '^cnm,.*', '^cnxt,.*', '^colorfly,.*', '^compulab,.*', '^congatec,.*', '^coolpi,.*', '^coreriver,.*', '^corpro,.*', '^cortina,.*', '^cosmic,.*', '^crane,.*', '^creative,.*', '^crystalfontz,.*', '^csky,.*', '^csq,.*', '^ctera,.*', '^ctu,.*', '^cubietech,.*', '^cui,.*', '^cypress,.*', '^cyx,.*', '^cznic,.*', '^dallas,.*', '^dataimage,.*', '^davicom,.*', '^dell,.*', '^delta,.*', '^densitron,.*', '^denx,.*', '^devantech,.*', '^dfi,.*', '^dh,.*', '^difrnce,.*', '^digi,.*', '^digilent,.*', '^dimonoff,.*', '
- ^diodes,.*', '^dioo,.*', '^dlc,.*', '^dlg,.*', '^dlink,.*', '^dmo,.*', '^domintech,.*', '^dongwoon,.*', '^dptechnics,.*', '^dragino,.*', '^ds,.*', '^dserve,.*', '^dynaimage,.*', '^ea,.*', '^ebang,.*', '^ebbg,.*', '^ebs-systart,.*', '^ebv,.*', '^eckelmann,.*', '^edgeble,.*', '^edimax,.*', '^edt,.*', '^ees,.*', '^eeti,.*', '^einfochips,.*', '^eink,.*', '^elan,.*', '^element14,.*', '^elgin,.*', '^elida,.*', '^elimo,.*', '^elpida,.*', '^embedfire,.*', '^embest,.*', '^emlid,.*', '^emmicro,.*', '^empire-electronix,.*', '^emtrion,.*', '^enclustra,.*', '^endless,.*', '^ene,.*', '^energymicro,.*', '^engicam,.*', '^engleder,.*', '^epcos,.*', '^epfl,.*', '^epson,.*', '^esp,.*', '^est,.*', '^ettus,.*', '^eukrea,.*', '^everest,.*', '^everspin,.*', '^evervision,.*', '^exar,.*', '^excito,.*', '^exegin,.*', '^ezchip,.*', '^facebook,.*', '^fairphone,.*', '^faraday,.*', '^fascontek,.*', '^fastrax,.*', '^fcs,.*', '^feixin,.*', '^feiyang,.*', '^fii,.*', '^firefly,.*', '^focaltech,.*', '^forlinx,.*', '^
- freecom,.*', '^frida,.*', '^friendlyarm,.*', '^fsl,.*', '^fujitsu,.*', '^fxtec,.*', '^galaxycore,.*', '^gardena,.*', '^gateway,.*', '^gateworks,.*', '^gcw,.*', '^ge,.*', '^geekbuying,.*', '^gef,.*', '^gemei,.*', '^gemtek,.*', '^genesys,.*', '^geniatech,.*', '^giantec,.*', '^giantplus,.*', '^globalscale,.*', '^globaltop,.*', '^gmt,.*', '^goldelico,.*', '^goodix,.*', '^google,.*', '^goramo,.*', '^gplus,.*', '^grinn,.*', '^grmn,.*', '^gumstix,.*', '^gw,.*', '^hannstar,.*', '^haochuangyi,.*', '^haoyu,.*', '^hardkernel,.*', '^hechuang,.*', '^hideep,.*', '^himax,.*', '^hirschmann,.*', '^hisi,.*', '^hisilicon,.*', '^hit,.*', '^hitex,.*', '^holt,.*', '^holtek,.*', '^honestar,.*', '^honeywell,.*', '^hoperun,.*', '^hp,.*', '^hpe,.*', '^hsg,.*', '^htc,.*', '^huawei,.*', '^hugsun,.*', '^hwacom,.*', '^hxt,.*', '^hycon,.*', '^hydis,.*', '^hynitron,.*', '^hynix,.*', '^hyundai,.*', '^i2se,.*', '^ibm,.*', '^icplus,.*', '^idt,.*', '^ifi,.*', '^ilitek,.*', '^imagis,.*', '^img,.*', '^imi,.*', '^inanbo,
- .*', '^incircuit,.*', '^indiedroid,.*', '^inet-tek,.*', '^infineon,.*', '^inforce,.*', '^ingenic,.*', '^ingrasys,.*', '^injoinic,.*', '^innocomm,.*', '^innolux,.*', '^inside-secure,.*', '^insignal,.*', '^inspur,.*', '^intel,.*', '^intercontrol,.*', '^invensense,.*', '^inventec,.*', '^inversepath,.*', '^iom,.*', '^irondevice,.*', '^isee,.*', '^isil,.*', '^issi,.*', '^ite,.*', '^itead,.*', '^itian,.*', '^ivo,.*', '^iwave,.*', '^jadard,.*', '^jasonic,.*', '^jdi,.*', '^jedec,.*', '^jesurun,.*', '^jethome,.*', '^jianda,.*', '^joz,.*', '^kam,.*', '^karo,.*', '^keithkoep,.*', '^keymile,.*', '^khadas,.*', '^kiebackpeter,.*', '^kinetic,.*', '^kingdisplay,.*', '^kingnovel,.*', '^kionix,.*', '^kobo,.*', '^kobol,.*', '^koe,.*', '^kontron,.*', '^kosagi,.*', '^kvg,.*', '^kyo,.*', '^lacie,.*', '^laird,.*', '^lamobo,.*', '^lantiq,.*', '^lattice,.*', '^lctech,.*', '^leadtek,.*', '^leez,.*', '^lego,.*', '^lemaker,.*', '^lenovo,.*', '^lg,.*', '^lgphilips,.*', '^libretech,.*', '^licheepi,.*', '^linaro,
- .*', '^lineartechnology,.*', '^linksprite,.*', '^linksys,.*', '^linutronix,.*', '^linux,.*', '^linx,.*', '^liteon,.*', '^litex,.*', '^lltc,.*', '^logicpd,.*', '^logictechno,.*', '^longcheer,.*', '^lontium,.*', '^loongmasses,.*', '^loongson,.*', '^lsi,.*', '^lunzn,.*', '^lwn,.*', '^lxa,.*', '^m5stack,.*', '^macnica,.*', '^mantix,.*', '^mapleboard,.*', '^marantec,.*', '^marvell,.*', '^maxbotix,.*', '^maxim,.*', '^maxlinear,.*', '^mbvl,.*', '^mcube,.*', '^meas,.*', '^mecer,.*', '^mediatek,.*', '^megachips,.*', '^mele,.*', '^melexis,.*', '^melfas,.*', '^mellanox,.*', '^memsensing,.*', '^memsic,.*', '^menlo,.*', '^mentor,.*', '^meraki,.*', '^merrii,.*', '^methode,.*', '^micrel,.*', '^microchip,.*', '^microcrystal,.*', '^micron,.*', '^microsoft,.*', '^microsys,.*', '^mikroe,.*', '^mikrotik,.*', '^milkv,.*', '^miniand,.*', '^minix,.*', '^miramems,.*', '^mitsubishi,.*', '^mitsumi,.*', '^mixel,.*', '^miyoo,.*', '^mntre,.*', '^modtronix,.*', '^moortec,.*', '^mosaixtech,.*', '^motorcomm,.*', '
- ^motorola,.*', '^moxa,.*', '^mpl,.*', '^mps,.*', '^mqmaker,.*', '^mrvl,.*', '^mscc,.*', '^msi,.*', '^mstar,.*', '^mti,.*', '^multi-inno,.*', '^mundoreader,.*', '^murata,.*', '^mxic,.*', '^mxicy,.*', '^myir,.*', '^national,.*', '^nec,.*', '^neonode,.*', '^netgear,.*', '^netlogic,.*', '^netron-dy,.*', '^netronix,.*', '^netxeon,.*', '^neweast,.*', '^newhaven,.*', '^newvision,.*', '^nexbox,.*', '^nextthing,.*', '^ni,.*', '^nintendo,.*', '^nlt,.*', '^nokia,.*', '^nordic,.*', '^novatek,.*', '^novtech,.*', '^nutsboard,.*', '^nuvoton,.*', '^nvd,.*', '^nvidia,.*', '^nxp,.*', '^oceanic,.*', '^ocs,.*', '^oct,.*', '^okaya,.*', '^oki,.*', '^olimex,.*', '^olpc,.*', '^oneplus,.*', '^onie,.*', '^onion,.*', '^onnn,.*', '^ontat,.*', '^opalkelly,.*', '^openailab,.*', '^opencores,.*', '^openembed,.*', '^openpandora,.*', '^openrisc,.*', '^option,.*', '^oranth,.*', '^orisetech,.*', '^ortustech,.*', '^osddisplays,.*', '^osmc,.*', '^ouya,.*', '^overkiz,.*', '^ovti,.*', '^oxsemi,.*', '^ozzmaker,.*', '^panas
- onic,.*', '^parade,.*', '^parallax,.*', '^pda,.*', '^pericom,.*', '^pervasive,.*', '^phicomm,.*', '^phytec,.*', '^picochip,.*', '^pine64,.*', '^pineriver,.*', '^pixcir,.*', '^plantower,.*', '^plathome,.*', '^plda,.*', '^plx,.*', '^ply,.*', '^pni,.*', '^pocketbook,.*', '^polaroid,.*', '^polyhex,.*', '^portwell,.*', '^poslab,.*', '^pov,.*', '^powertip,.*', '^powervr,.*', '^powkiddy,.*', '^primux,.*', '^probox2,.*', '^prt,.*', '^pulsedlight,.*', '^purism,.*', '^qca,.*', '^qcom,.*', '^qemu,.*', '^qi,.*', '^qiaodian,.*', '^qihua,.*', '^qishenglong,.*', '^qnap,.*', '^quanta,.*', '^radxa,.*', '^raidsonic,.*', '^ralink,.*', '^ramtron,.*', '^raspberrypi,.*', '^raydium,.*', '^rda,.*', '^realtek,.*', '^remarkable,.*', '^renesas,.*', '^rervision,.*', '^revotics,.*', '^rex,.*', '^richtek,.*', '^ricoh,.*', '^rikomagic,.*', '^riot,.*', '^riscv,.*', '^rockchip,.*', '^rocktech,.*', '^rohm,.*', '^ronbo,.*', '^roofull,.*', '^roseapplepi,.*', '^rve,.*', '^saef,.*', '^samsung,.*', '^samtec,.*', '^sanclo
- ud,.*', '^sandisk,.*', '^satoz,.*', '^sbs,.*', '^schindler,.*', '^seagate,.*', '^seeed,.*', '^seirobotics,.*', '^semtech,.*', '^senseair,.*', '^sensirion,.*', '^sensortek,.*', '^sercomm,.*', '^sff,.*', '^sgd,.*', '^sgmicro,.*', '^sgx,.*', '^sharp,.*', '^shift,.*', '^shimafuji,.*', '^shineworld,.*', '^shiratech,.*', '^si-en,.*', '^si-linux,.*', '^siemens,.*', '^sifive,.*', '^sigma,.*', '^sii,.*', '^sil,.*', '^silabs,.*', '^silan,.*', '^silead,.*', '^silergy,.*', '^silex-insight,.*', '^siliconfile,.*', '^siliconmitus,.*', '^silvaco,.*', '^simtek,.*', '^sinlinx,.*', '^sinovoip,.*', '^sinowealth,.*', '^sipeed,.*', '^sirf,.*', '^sis,.*', '^sitronix,.*', '^skov,.*', '^skyworks,.*', '^smartlabs,.*', '^smi,.*', '^smsc,.*', '^snps,.*', '^sochip,.*', '^socionext,.*', '^solidrun,.*', '^solomon,.*', '^sony,.*', '^sophgo,.*', '^sourceparts,.*', '^spansion,.*', '^sparkfun,.*', '^spinalhdl,.*', '^sprd,.*', '^square,.*', '^ssi,.*', '^sst,.*', '^sstar,.*', '^st,.*', '^st-ericsson,.*', '^starfive,.*'
- , '^starry,.*', '^startek,.*', '^starterkit,.*', '^ste,.*', '^stericsson,.*', '^storlink,.*', '^storm,.*', '^storopack,.*', '^summit,.*', '^sunchip,.*', '^sundance,.*', '^sunplus,.*', '^supermicro,.*', '^swir,.*', '^syna,.*', '^synology,.*', '^synopsys,.*', '^tbs,.*', '^tbs-biometrics,.*', '^tcg,.*', '^tcl,.*', '^tcs,.*', '^tdo,.*', '^team-source-display,.*', '^technexion,.*', '^technologic,.*', '^techstar,.*', '^techwell,.*', '^teejet,.*', '^teltonika,.*', '^tempo,.*', '^terasic,.*', '^tesla,.*', '^tfc,.*', '^thead,.*', '^thine,.*', '^thingyjp,.*', '^thundercomm,.*', '^thwc,.*', '^ti,.*', '^tianma,.*', '^tlm,.*', '^tmt,.*', '^topeet,.*', '^topic,.*', '^toppoly,.*', '^topwise,.*', '^toradex,.*', '^toshiba,.*', '^toumaz,.*', '^tpk,.*', '^tplink,.*', '^tpo,.*', '^tq,.*', '^transpeed,.*', '^traverse,.*', '^tronfy,.*', '^tronsmart,.*', '^truly,.*', '^tsd,.*', '^turing,.*', '^tyan,.*', '^u-blox,.*', '^u-boot,.*', '^ubnt,.*', '^ucrobotics,.*', '^udoo,.*', '^ufispace,.*', '^ugoos,.*', '^un
- iwest,.*', '^upisemi,.*', '^urt,.*', '^usi,.*', '^usr,.*', '^utoo,.*', '^v3,.*', '^vaisala,.*', '^vamrs,.*', '^variscite,.*', '^vdl,.*', '^vertexcom,.*', '^via,.*', '^vialab,.*', '^vicor,.*', '^videostrong,.*', '^virtio,.*', '^virtual,.*', '^vishay,.*', '^visionox,.*', '^vitesse,.*', '^vivante,.*', '^vivax,.*', '^vocore,.*', '^voipac,.*', '^vot,.*', '^vxt,.*', '^wanchanglong,.*', '^wand,.*', '^waveshare,.*', '^wd,.*', '^we,.*', '^welltech,.*', '^wetek,.*', '^wexler,.*', '^whwave,.*', '^wi2wi,.*', '^widora,.*', '^wiligear,.*', '^willsemi,.*', '^winbond,.*', '^wingtech,.*', '^winlink,.*', '^winstar,.*', '^wirelesstag,.*', '^wits,.*', '^wlf,.*', '^wm,.*', '^wobo,.*', '^x-powers,.*', '^xen,.*', '^xes,.*', '^xiaomi,.*', '^xillybus,.*', '^xingbangda,.*', '^xinpeng,.*', '^xiphera,.*', '^xlnx,.*', '^xnano,.*', '^xunlong,.*', '^xylon,.*', '^yadro,.*', '^yamaha,.*', '^yes-optoelectronics,.*', '^yic,.*', '^yiming,.*', '^ylm,.*', '^yna,.*', '^yones-toptech,.*', '^ys,.*', '^ysoft,.*', '^zarlink,
- .*', '^zealz,.*', '^zeitec,.*', '^zidoo,.*', '^zii,.*', '^zinitix,.*', '^zkmagic,.*', '^zte,.*', '^zyxel,.*', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/vendor-prefixes.yaml#
+The | is not needed.
 
-doc reference errors (make refcheckdocs):
+> +  The Atmel Direct Memory Access Controller (DMAC) transfers data from a=
+ source
+> +  peripheral to a destination peripheral over one or more AMBA buses. On=
+e channel
+> +  is required for each source/destination pair. In the most basic config=
+uration,
+> +  the DMAC has one master interface and one channel. The master interfac=
+e reads
+> +  the data from a source and writes it to a destination. Two AMBA transf=
+ers are
+> +  required for each DMAC data transfer. This is also known as a dual-acc=
+ess transfer.
+> +  The DMAC is programmed via the APB interface.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - atmel,at91sam9g45-dma
+> +          - atmel,at91sam9rl-dma
+> +  reg:
+> +    description: Should contain DMA registers location and length.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240215-mbly-i2c-v1-2-19a336e91dca@bootlin.com
+Drop the description from these common properties.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description: Should contain the DMA interrupts associated to the DMA=
+ channels.
+> +    maxItems: 1
+> +
+> +  "#dma-cells":
+> +    description:
+> +      Must be <2>, used to represent the number of integer cells in the =
+dmas
+> +      property of client devices.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+You've lost the description of how these cells work, which is somewhat
+unique and needs to be preserved.
+This is the only property that needs a description.
 
-pip3 install dtschema --upgrade
+> +    const: 2
+> +
+> +  clocks:
+> +    description: Should contain a clock specifier for each entry in cloc=
+k-names.
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    description: Should contain the clock of the DMA controller.
+> +    const: dma_clk
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+This is a new addition? You should call out in the commit message wat
+you've added that was not in th text binding.
 
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - "#dma-cells"
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    dma0: dma-controller@ffffec00 {
+
+Drop the label, its not used.
+
+Thanks,
+Conor.
+
+> +            compatible =3D "atmel,at91sam9g45-dma";
+> +            reg =3D <0xffffec00 0x200>;
+> +            interrupts =3D <21>;
+> +            #dma-cells =3D <2>;
+> +            clocks =3D <&pmc 2 20>;
+> +            clock-names =3D "dma_clk";
+> +    };
+> +
+> +...
+>=20
+> ---
+> base-commit: 7e90b5c295ec1e47c8ad865429f046970c549a66
+> change-id: 20240214-dmac-5f48fd7f3b9d
+>=20
+> Best regards,
+> --=20
+> Durai Manickam KR <durai.manickamkr@microchip.com>
+>=20
+
+--/iXZ72FAuAF0yk9f
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZc5luAAKCRB4tDGHoIJi
+0pZ7AP9n//Tc16Y7sathkrqYZctgnGZndX8EG6lO9YREEHFWSgEA9A8snBLnm4Gz
+wPMTjmPK3L6Re/0FWReZcHxvibMJeAU=
+=4pGP
+-----END PGP SIGNATURE-----
+
+--/iXZ72FAuAF0yk9f--
 
