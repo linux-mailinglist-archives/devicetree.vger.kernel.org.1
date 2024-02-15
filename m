@@ -1,194 +1,149 @@
-Return-Path: <devicetree+bounces-42199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18EAB856D26
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 19:54:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0A45856D06
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 19:46:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B8797B225A9
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 18:45:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE34A288630
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 18:46:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9BB21386A2;
-	Thu, 15 Feb 2024 18:45:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08FBA1386BB;
+	Thu, 15 Feb 2024 18:46:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Yn8PqIiF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tlew/9Ss"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2E7E1386B5
-	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 18:44:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDD831386AE;
+	Thu, 15 Feb 2024 18:46:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708022700; cv=none; b=W1/K1RSiDjgGFog0zSEVfEevUnTo8EFfabXZu/BkI97O0X+aKYDjzQzFBCWbZtt2nc6srQyXAxjtWM9sup3w+P9vizFiYYA10a6odvXrsLbEamqo3Cn+Wayh3x2fBwiZufGZLUl6twOzkKbzuck4GEnXQCCUrIQ0zhlxKdfgSiE=
+	t=1708022778; cv=none; b=PWvioEkvOAP7srhtjigSi2Mq3hjl1qjWjiOVDy2vmzbeGElzASF5Czi/H7Y4kGMK94wyF2AbcmmIIVUyGZTajyYFaTx0sM+m5hF4kAhrkkkYOLTddT0V7sYY1SRe/UxZpCGY+QU2oZC+bh+UC1p2quNeIn4j7Iy6liH+MRSJOlQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708022700; c=relaxed/simple;
-	bh=PbhhQzsCOzluMRuJrO5H2BPda4J2I15V9bFTUKFH6J8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PgZ+qD9BiCsY6ktPiYtnCefFMbvBTrnhv4RHXkp5wnqL8CXujWpDwmeb6Z4IkQuebevnVC2q1EF71R1XeMsR8d+WMfwWr1tVlqwAMl2+7f4lKig++J1SjA/7PKjKEI17xKSsL8veCPYotHHlGRj8LembrEzZruTW1hlSkx+Ixc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Yn8PqIiF; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5118d65cf9cso1529785e87.0
-        for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 10:44:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708022697; x=1708627497; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BA2WiEiZ8gMhFWkJbMFNImep7UDUbAJ5L5wptDO6vH8=;
-        b=Yn8PqIiFLGQLTdu69uklZRkamueVKyB3ZvRxo4smHxbjmPVDOawOVyl78nQBzxOrNb
-         S344N05bqD1jRjbnYhDIx6T0G35SOJB9Oc5+0puNQr/cPYQXeQ5ruHmv8nM+tZWsNrVp
-         pyvlQKKogaRdcDXZB9LQzWJptLeMVvnhM8LKspT9lC4ayQvmMTfjKPKukD/supxjwyte
-         FZaaftGWVlU9k720/WtLdIZpBK2RVU+GF0T9FlhOVYdephnbRVlRB758BxgPphSg12zp
-         epaIiQ1YwIdUuW7LJ97ZcQRs90AgQ0kcG7pu65ZvutG0Nprqw+OlrvlmAYo3InpnnXuY
-         YSYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708022697; x=1708627497;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BA2WiEiZ8gMhFWkJbMFNImep7UDUbAJ5L5wptDO6vH8=;
-        b=aYdT/+oe9HYei3p/Gj+u3xOUTFd1EF/YmvtwiNFoIENxkoqbVr8y1H+s81b8rJuzbt
-         USPXT+Z6YVt/VPMteEx+u2e4xO50n5QLNuuoJnm1oloEEiH8N8QqVcYllnsrfWomOlvZ
-         MnBu4kbz7D/Ao7n7AgrnkoRoPJ7E4qr7KCL0OHAig5wz7U5/cUZ3uVtl61aMQM0RLtjw
-         ckjRLJ+dWYeLKWj2+5l0CAbE41LqTKJySWvQdaS6EMZTln9kPWOfJVceOienxmhVc36U
-         x7VlkZnYp5KEtwQEhV4C3ZUoQqMTVQQYlWGcjWRl6EZVoPg23C/gjmZ/BuL0OAY4s4yG
-         Ic1w==
-X-Forwarded-Encrypted: i=1; AJvYcCWChsESXMRi624tw9IF9hBBrujdMQFk1jPhZfpHZh2tKmpiijaPAeiMEvPqlQCtmBw+f0j615ZBkmlDQQAkogRc4Sk+Tj7nMaPR4w==
-X-Gm-Message-State: AOJu0YxZvJW1KPvoKIPrXsb2eOiJ7+u2K/4Gb3edwdn2eKzCmY3ofRve
-	X6V+sJSrg0I2fkdtU7DrASU7vZXq+EzhMardt7gs/l5ZKbNIWxsZN3+FhGoPwdw=
-X-Google-Smtp-Source: AGHT+IH1y1N708HUEGsnjoS6q4nNZv5jpR1ruiNr5BhgXx9htfbJ5Gvlx0osVvA0Xyky5zIXqmiVjw==
-X-Received: by 2002:a05:6512:945:b0:511:4175:8d16 with SMTP id u5-20020a056512094500b0051141758d16mr1702012lft.55.1708022696771;
-        Thu, 15 Feb 2024 10:44:56 -0800 (PST)
-Received: from [192.168.0.22] ([78.10.207.130])
-        by smtp.gmail.com with ESMTPSA id i9-20020a0565123e0900b005128a755676sm284393lfv.110.2024.02.15.10.44.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Feb 2024 10:44:55 -0800 (PST)
-Message-ID: <2e96c824-47e8-48bd-9e03-8c7390b02d24@linaro.org>
-Date: Thu, 15 Feb 2024 19:44:53 +0100
+	s=arc-20240116; t=1708022778; c=relaxed/simple;
+	bh=gsqZ97hpL+qwMfZA8WVX81FYsijpd+FqSBNu6MOGT5Q=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=qAJwdq3WQ1WBgriHtOm4eBDb99xMmU/JzijwQROsg4stjJW+EtV1HYhOgwEUjhbPVhsp5gla1lnMajdCkFujINTuos63d9wBcR9N+zjvvu69o/ZG+SstBusYLvp75WsCgjQDjvpUTm2GTXEb6elg/REn4SegOnHVZaYNBLNgiOA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tlew/9Ss; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96D28C433F1;
+	Thu, 15 Feb 2024 18:46:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708022778;
+	bh=gsqZ97hpL+qwMfZA8WVX81FYsijpd+FqSBNu6MOGT5Q=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=tlew/9Ss3MNeqTJjIN56A8/T4CV50IX+T+8/QuKNeBr2PrLn/b03nxDIcysewSSUP
+	 87YhpUZQLyvyD2TXT4uTypFyRDmBO5POpMKbjd6Imog0bX3VxTf89FWuqkIHeawruf
+	 bXcPq0w66y+ixEhBDm9LJmvT16eVIaHMyBAYNBXube5cx+w/b3KwUwuXmVtC20OcAD
+	 JF/bWuQlZxMcNeFIUzpVC3ay6Re0pFwTP3gLamR2XrJChchXT2vNed7HMoabh/Z1r1
+	 qTRDStwaafgan4QrGrDGyrFKjuFKb4UzknD33Vs1MknEmOelP40bi6+c+DTOu8FwBF
+	 pX3mthT+ykz7w==
+Date: Thu, 15 Feb 2024 12:46:16 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: (subset) [linux][PATCH v6 3/3] dt-bindings: mfd: atmel,hlcdc:
- Convert to DT schema format
-Content-Language: en-US
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Lee Jones <lee@kernel.org>, sam@ravnborg.org, bbrezillon@kernel.org,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
- claudiu.beznea@tuxon.dev, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, thierry.reding@gmail.com,
- linux-pwm@vger.kernel.org, Dharma Balasubiramani <dharma.b@microchip.com>,
- hari.prasathge@microchip.com, manikandan.m@microchip.com,
- Conor Dooley <conor.dooley@microchip.com>
-References: <20240202001733.91455-1-dharma.b@microchip.com>
- <20240202001733.91455-4-dharma.b@microchip.com>
- <170738899221.920003.15342446791449663430.b4-ty@kernel.org>
- <cedecdb7-fe4a-42ea-9a11-faa82f84b57d@linaro.org>
- <aamdttvdk3jmswvy3rw3debk3ouddkgjbs6xmixroe6kqakjw4@lnd5crcgoeyj>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <aamdttvdk3jmswvy3rw3debk3ouddkgjbs6xmixroe6kqakjw4@lnd5crcgoeyj>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: Rob Herring <robh@kernel.org>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Luis Chamberlain <mcgrof@kernel.org>, 
+ "David S. Miller" <davem@davemloft.net>, Jonathan Corbet <corbet@lwn.net>, 
+ netdev@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org, 
+ Andrew Lunn <andrew@lunn.ch>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Dent Project <dentproject@linuxfoundation.org>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, 
+ Frank Rowand <frowand.list@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Oleksij Rempel <o.rempel@pengutronix.de>, 
+ Russ Weight <russ.weight@linux.dev>, Eric Dumazet <edumazet@google.com>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
+ Jakub Kicinski <kuba@kernel.org>
+In-Reply-To: <20240215-feature_poe-v4-11-35bb4c23266c@bootlin.com>
+References: <20240215-feature_poe-v4-0-35bb4c23266c@bootlin.com>
+ <20240215-feature_poe-v4-11-35bb4c23266c@bootlin.com>
+Message-Id: <170802277529.323906.8697693998570251856.robh@kernel.org>
+Subject: Re: [PATCH net-next v4 11/17] dt-bindings: net: pse-pd: Add
+ another way of describing several PSE PIs
 
-On 15/02/2024 11:02, Uwe Kleine-König wrote:
-> On Mon, Feb 12, 2024 at 11:23:02AM +0100, Krzysztof Kozlowski wrote:
->> On 08/02/2024 11:43, Lee Jones wrote:
->>> On Fri, 02 Feb 2024 05:47:33 +0530, Dharma Balasubiramani wrote:
->>>> Convert the atmel,hlcdc binding to DT schema format.
->>>>
->>>> Align clocks and clock-names properties to clearly indicate that the LCD
->>>> controller expects lvds_pll_clk when interfaced with the lvds display. This
->>>> alignment with the specific hardware requirements ensures accurate device tree
->>>> configuration for systems utilizing the HLCDC IP.
->>>>
->>>> [...]
->>>
->>> Applied, thanks!
->>>
->>> [3/3] dt-bindings: mfd: atmel,hlcdc: Convert to DT schema format
->>>       commit: cb946db1335b599ece363d33966bf653ed0fa58a
->>>
->>
->> Next is still failing.
+
+On Thu, 15 Feb 2024 17:02:52 +0100, Kory Maincent wrote:
+> PSE PI setup may encompass multiple PSE controllers or auxiliary circuits
+> that collectively manage power delivery to one Ethernet port.
+> Such configurations might support a range of PoE standards and require
+> the capability to dynamically configure power delivery based on the
+> operational mode (e.g., PoE2 versus PoE4) or specific requirements of
+> connected devices. In these instances, a dedicated PSE PI node becomes
+> essential for accurately documenting the system architecture. This node
+> would serve to detail the interactions between different PSE controllers,
+> the support for various PoE modes, and any additional logic required to
+> coordinate power delivery across the network infrastructure.
 > 
-> Failing in the sense of dtbs_check, right?
-
-No, bindings were failing. dt_binding_check. This must not fail, so kind
-of bummer...
-
-
+> The old usage of "#pse-cells" is unsuficient as it carries only the PSE PI
+> index information.
 > 
->> Dharma,
->> You must explain and clearly mark dependencies between patches.
->>
->> Lee,
->> Can you pick up two previous patches as well?
+> This patch is sponsored by Dent Project <dentproject@linuxfoundation.org>.
 > 
-> I applied the pwm patch now. If Lee wants to pick up this one via his
-> tree that would be fine for me, too. If that's the case please tell me,
-> then I'll drop it from my for-next branch again. Feel free to add
-> my Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de> for patch
-> #2 then.
-
-At least next is happy.
+> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+> ---
+> 
+> Changes in v3:
+> - New patch
+> 
+> Changes in v4:
+> - Remove $def
+> - Fix pairset-names item list
+> - Upgrade few properties description
+> - Update the commit message
+> ---
+>  .../bindings/net/pse-pd/pse-controller.yaml        | 84 +++++++++++++++++++++-
+>  1 file changed, 81 insertions(+), 3 deletions(-)
 > 
 
-Best regards,
-Krzysztof
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:74:19: [error] string value is redundantly quoted with any quotes (quoted-strings)
+./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:75:19: [error] string value is redundantly quoted with any quotes (quoted-strings)
+./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:84:111: [warning] line too long (111 > 110 characters) (line-length)
+./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:86:111: [warning] line too long (111 > 110 characters) (line-length)
+./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:87:111: [warning] line too long (111 > 110 characters) (line-length)
+./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:88:111: [warning] line too long (111 > 110 characters) (line-length)
+./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:89:111: [warning] line too long (111 > 110 characters) (line-length)
+./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:90:111: [warning] line too long (111 > 110 characters) (line-length)
+./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:91:111: [warning] line too long (111 > 110 characters) (line-length)
+./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:92:111: [warning] line too long (111 > 110 characters) (line-length)
+./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:93:111: [warning] line too long (111 > 110 characters) (line-length)
+
+dtschema/dtc warnings/errors:
+
+doc reference errors (make refcheckdocs):
+Warning: Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml references a file that doesn't exist: Documentation/networking/pse-pd/pse-pi.rst
+Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml: Documentation/networking/pse-pd/pse-pi.rst
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240215-feature_poe-v4-11-35bb4c23266c@bootlin.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
