@@ -1,206 +1,114 @@
-Return-Path: <devicetree+bounces-42066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3020856481
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 14:33:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3128D8564DC
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 14:51:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E4E41F23972
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 13:33:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 999F7B23FD6
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 13:44:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15A53130E5E;
-	Thu, 15 Feb 2024 13:33:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD30213172F;
+	Thu, 15 Feb 2024 13:44:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EK5fY5Eu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WoFIFb1g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D526130E55
-	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 13:33:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B07F912B144;
+	Thu, 15 Feb 2024 13:44:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708003993; cv=none; b=bYEwTc/TU6O5moT/XZr/BfRgih1kQ1qO342UoWslWbFJHtMjKPHh3WhKtIug868aH04yQ+FWmuQOo+cZDFSq0s+D5bBF+SHPz8cEZY6dpCmHkotE0OKelJrFsF70Lp0CAiUO98psezzuLNNbj3Gs55DO10+dG/lYqFmO5WYLSqQ=
+	t=1708004673; cv=none; b=ETABrmof6LTeTG1eow5865zkbFypiSDS4bXvytJpvfBPgdX0lb5lHnoOc5Yvajwx07p++dMALMqzHedVKr/Uyp7slhDL4kObXvj+nhYx+QMHxTjOjxbrv8redoCN32XO9DZ69urOriSJeSv2lII3D8TAUjHhXOlVnaELJd97IWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708003993; c=relaxed/simple;
-	bh=iu7IiIWT/WJciCFSKsL5CnkliaSf2y0e5gCmKjL/tD8=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=poPnUFKiiV3YxNY/10gc5XLUD5ymSDwAUBDfzPJe1koiZy6TtP4TqvpnS+JOJWDU2juevrqRYs2GNAOVcYXmoEz9+ec90JynIrqN4W6coaqaty6297psp+bLE0TdJt6GhMlzfo6TCdcw4odxPQvKrEESwtuUWQFlqE6vUdUukuI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EK5fY5Eu; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a3d54555692so87065366b.1
-        for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 05:33:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708003989; x=1708608789; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=z8FccHgP1nlIIDxh3beS9dJmKPci7aq2sL05JU739TA=;
-        b=EK5fY5EurBPM0pkzYwvK8cpgDNG3KKIn7ZhpsWa3rdX10hMCUj4i4hLYR2VCsBPySo
-         kiGtHJbO079dj/cf7nsK19AuLUeYF7bD2G30Dj1OrvhguetBzHBzGDHhpiI0iQEkKmg4
-         sLKXqKbNSkKSF9sBhu+Zv4J6EcyMh+ULJ8Rm49YV2PzzM95DX7oyzDNHgLoZVd3jRmMd
-         wW6ENPCHh9OyAFENq1FniZVmTzsYytvog6kGr6qDrVF0tbNJQmHZWz5zuViL7BBKl89C
-         88kJmuEyxorfegFuihdh88toslitQVbW6XnUTQYeiaQ+gZXlrDxW58M863zly4gFnPCi
-         wseA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708003989; x=1708608789;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=z8FccHgP1nlIIDxh3beS9dJmKPci7aq2sL05JU739TA=;
-        b=P/X96ZaPo6TViiSD+kNXdQxAi7DKRUWIDajff+GU1CqwdO/JfpJh+E6vpNO/jrOWEP
-         /4bJZ9ej6YT3q5zFENl/NzGXpIgAj0219iyXFU6yw41URBcMEh9j39+pE3HHdFU2rLxX
-         1qCWXbc/K0qSB9OnpNHJePdBkdcsm21dd2Ufl8ncS3TcDYmYoS/bACUqoS88X6kmeZqV
-         iV9d3d5E5B6/CNzFGPHV77e96PMo+VPGzqr/1CRQmiWskY8qhfl/bIk+K+sTaza7Kd0p
-         Q0VaIFxs08zqSmKCdgwR19bZmeRAAolo2BtzwTUW3ksBeFkYmVz7VuQzXxbGi+WshPxt
-         lcFQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX2aGakui0yBBKLLXJ8JuIN315CrDnkXIcaJvGw4UIOx89hQew0xsMeegapMPWdDWrAgiYqxy4PzAHn9wAJpwT3tXQs+jDvdbBmlQ==
-X-Gm-Message-State: AOJu0YznegVgY1MHwLHVJK9ugxW5JT5nYLNYP3abFLcptIx4LHBQiS4x
-	96fZtdOWhigEqNwHsXQxnsUXbXHf2z4FA8A6ulafl+kcBfK2nLI/G73KSrZZI3c=
-X-Google-Smtp-Source: AGHT+IGXQY2xgSKFPhczZZiTjQ6N1O0RfsfU58vW/70tHk+S+ZXTkDOKRyUr+Bk5Kzb8qmDDxFFdTA==
-X-Received: by 2002:a17:906:1c8d:b0:a3d:16dd:307c with SMTP id g13-20020a1709061c8d00b00a3d16dd307cmr1498463ejh.5.1708003989366;
-        Thu, 15 Feb 2024 05:33:09 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:7555:8187:c6f1:9c02? ([2a01:e0a:982:cbb0:7555:8187:c6f1:9c02])
-        by smtp.gmail.com with ESMTPSA id oq25-20020a170906cc9900b00a3cd41b3c19sm541532ejb.199.2024.02.15.05.33.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Feb 2024 05:33:08 -0800 (PST)
-Message-ID: <2df69499-4ffa-46a9-8e7f-041e87ad3034@linaro.org>
-Date: Thu, 15 Feb 2024 14:33:06 +0100
+	s=arc-20240116; t=1708004673; c=relaxed/simple;
+	bh=HKfR9ylXwCI1xaOSoIMnYxGSAZTtAAZJXYwyP3U/bBU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=A65bcOlcrf10trIwuuAqBGnvU1gL6/4zRkmt5m71m8oY6O7ZAAEOwDLLvq12K9vRG/ftLHJjpGbMfh1BspW5YHsbhbVJz1i+J2XT9xSF38aeLz85N3KRqe9zJ6LYEoiV1dfDkmu66mfVU3nzzCkbb5i2W9N2W2C73zkrw41WADM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WoFIFb1g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E35D0C433F1;
+	Thu, 15 Feb 2024 13:44:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708004673;
+	bh=HKfR9ylXwCI1xaOSoIMnYxGSAZTtAAZJXYwyP3U/bBU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WoFIFb1gfGpzhXLWHgopbqFUm54/XRWvj+EGtSeiX40FqFJ+fAmIP5zwI2aFOKRa/
+	 SQTGvZJ58jU0qgqVV4lw+o/CcaeqUFovii3/As0PrLbnHbttjwnAGDaIS2HsKG+eaf
+	 jrmqgxVFmPGvy0/ANDctHBjdZH+ZptvDDu6r2lnF78l1y8TptIEExgp+gN+hukfdVp
+	 RPAkPrGF873g3oimQhHvhf2LhbRaVeaAKbrdet7lxvTWdcm2+/or9ROpULdFKCcsz+
+	 9J2ZhiiPeRibTs9K9xS/EVi0/1p2TXF3HlHbEoj4Z/+PgTGnAd3dXgx3czILC5zBxr
+	 zI1DuUZx6Tu+g==
+Date: Thu, 15 Feb 2024 07:44:29 -0600
+From: Rob Herring <robh@kernel.org>
+To: Shenghao Ding <shenghao-ding@ti.com>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	manisha.agrawal@ti.com, hnagalla@ti.com, praneeth@ti.com,
+	lgirdwood@gmail.com, linux-sound@vger.kernel.org,
+	conor+dt@kernel.org, aviel@ti.com, perex@perex.cz, pdjuandi@ti.com,
+	linux-kernel@vger.kernel.org, tiwai@suse.de,
+	devicetree@vger.kernel.org, tiwai@suse.com, mohit.chawla@ti.com,
+	13916275206@139.com, s-hari@ti.com, soyer@irl.hu,
+	broonie@kernel.org, jkhuang3@ti.com
+Subject: Re: [RESEND PATCH v4 4/4] ASoc: dt-bindings: PCM6240: Add initial DT
+ binding
+Message-ID: <170800466884.4134047.16156792945843659627.robh@kernel.org>
+References: <20240208114049.1429-1-shenghao-ding@ti.com>
+ <20240208114049.1429-4-shenghao-ding@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 2/6] dt-bindings: arm-smmu: Document SM8650 GPU SMMU
-Content-Language: en-US, fr
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Rob Clark <robdclark@gmail.com>, Abhinav Kumar
- <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, linux-arm-msm@vger.kernel.org,
- dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev
-References: <20240215-topic-sm8650-gpu-v2-0-6be0b4bf2e09@linaro.org>
- <20240215-topic-sm8650-gpu-v2-2-6be0b4bf2e09@linaro.org>
- <CAA8EJprpYEhGi5b+uWGWtOa+qbSwUR8C0j9NLC+ah_-nvy-=Ng@mail.gmail.com>
- <ffb16ef6-fc9a-42b1-b9c3-4e8f6b52d849@linaro.org>
- <CAA8EJpobWYu8LoHZarOw82z78=kLJrKH0P4ncK6sX7zE1nHuqQ@mail.gmail.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <CAA8EJpobWYu8LoHZarOw82z78=kLJrKH0P4ncK6sX7zE1nHuqQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240208114049.1429-4-shenghao-ding@ti.com>
 
-On 15/02/2024 10:32, Dmitry Baryshkov wrote:
-> On Thu, 15 Feb 2024 at 11:29, Neil Armstrong <neil.armstrong@linaro.org> wrote:
->>
->> On 15/02/2024 10:25, Dmitry Baryshkov wrote:
->>> On Thu, 15 Feb 2024 at 11:20, Neil Armstrong <neil.armstrong@linaro.org> wrote:
->>>>
->>>> Document the GPU SMMU found on the SM8650 platform.
->>>>
->>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->>>> ---
->>>>    Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 7 +++++--
->>>>    1 file changed, 5 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->>>> index a4042ae24770..3ad5c850f3bf 100644
->>>> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->>>> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->>>> @@ -93,6 +93,7 @@ properties:
->>>>                  - qcom,sm8350-smmu-500
->>>>                  - qcom,sm8450-smmu-500
->>>>                  - qcom,sm8550-smmu-500
->>>> +              - qcom,sm8650-smmu-500
->>>>              - const: qcom,adreno-smmu
->>>>              - const: qcom,smmu-500
->>>>              - const: arm,mmu-500
->>>> @@ -508,7 +509,10 @@ allOf:
->>>>      - if:
->>>>          properties:
->>>>            compatible:
->>>> -          const: qcom,sm8550-smmu-500
->>>> +          contains:
->>>> +            enum:
->>>> +              - qcom,sm8550-smmu-500
->>>> +              - qcom,sm8650-smmu-500
->>>
->>> Doesn't this cause warnings for non-GPU SMMU on this platform?
->>
->> No because it doesn't add those to required, it simply allows clock the properties.
-> 
-> Can we further constrain this branch so that it is applicable only to
-> the Adreno SMMUs (and enforce requirement)? And maybe constrain the
-> second if-branch so that it doesn't apply to the Adreno SMMUs?
 
-Indeed, it's done like that for the a6 gpu, I'll send a fix for that
+On Thu, 08 Feb 2024 19:40:48 +0800, Shenghao Ding wrote:
+> PCM6240 family chips are popular among audio customers, in spite of only a
+> portion of the functionality of codec, such as ADC or DAC, and so on, for
+> different Specifications, range from Personal Electric to Automotive
+> Electric, even some professional fields.yet their audio performance is far
+> superior to the codec's, and cost is lower than codec, and much easier to
+> program than codec.
+> 
+> Signed-off-by: Shenghao Ding <shenghao-ding@ti.com>
+> 
+> ---
+> Change in v4:
+>  - Rewrite the subject to match something similar to other commits.
+>  - And none of them are compatible with something.
+>  - minItems, then maxItems.
+>  - Drop reset-gpios description
+>  - Remove the repeated reg descriptions and reg constraints.
+>  - Drop redundant spaces.
+>  - Add missing line breaks between blocks and additionalProperties.
+>  - Correct compatibility issue on adc6120 and pcm6240.
+>  - All these chips have only a portion of the functionality of codec,
+>    such as ADC or DAC, and so on, but their audio performance is far
+>    superior to the codec's, and cost is lower than codec, and much easier
+>    to program than codec. Simply one or two register settings can enable
+>    them to work. Init for these chips are hardware reset or software reset.
+>    As to some audio filter params for internal filters, it is up to the
+>    special user cases, which can be saved into the bin file. The default
+>    value also can work well.
+>  - Add blank line before reg.
+>  - remove unneeded items and if branches.
+>  - Add missing compatible devices, such as adc6120, etc.
+>  - Add necessary people into the list for DTS review
+>  - correct misaligned.
+>  - Remove dix4192
+>  - simplify the compatibility
+> ---
+>  .../devicetree/bindings/sound/ti,pcm6240.yaml | 172 ++++++++++++++++++
+>  1 file changed, 172 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/ti,pcm6240.yaml
+> 
 
-Neil
-
-> 
->>
->>>
->>>>        then:
->>>>          properties:
->>>>            clock-names:
->>>> @@ -544,7 +548,6 @@ allOf:
->>>>                  - qcom,sdx65-smmu-500
->>>>                  - qcom,sm6350-smmu-500
->>>>                  - qcom,sm6375-smmu-500
->>>> -              - qcom,sm8650-smmu-500
->>>>                  - qcom,x1e80100-smmu-500
->>>>        then:
->>>>          properties:
->>>>
->>>> --
->>>> 2.34.1
->>>>
->>>
->>>
->>
-> 
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 
