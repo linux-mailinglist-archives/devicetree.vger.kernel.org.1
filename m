@@ -1,189 +1,166 @@
-Return-Path: <devicetree+bounces-42232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3788F856FBA
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 23:01:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEA90856FD2
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 23:08:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D3803281AAD
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 22:01:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 382D61F23651
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 22:08:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0987F1419A1;
-	Thu, 15 Feb 2024 22:01:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7B23145337;
+	Thu, 15 Feb 2024 22:08:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GW94aQAm"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="EmKLQGdy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7719013DB92;
-	Thu, 15 Feb 2024 22:01:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE2871420B8;
+	Thu, 15 Feb 2024 22:08:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708034473; cv=none; b=Q6AwkAsu8wmZ1ionzg8C2dnZbssV0C05f/CBU7lxTEuI4GiZcb+jR0lFLeTcd1H9cdNw7lceDkQ/8s3wZOGCYeh8hL8ure6HVNALVVmIaDyUZmpdVAA0qRzPmO9J2JDMwUHpTuRlV3UJs03hOUCVseAD1W3LDUMvvYlIjbzKQnI=
+	t=1708034903; cv=none; b=pqviL8jqoJs/CFs8DvJgwGN4rPVA1pGw7v2x45zG4E8/E85nN6BPAXe9DjOqP3swqC/2sxpHgZfuFXKpqDYWCPbHfzEa343wWp1JHZK+2VzARrDOA3SzUrKVhz1WrEDBlbqpqJ9wzuLIyXnjxiRpv3EblDSs2mAhvHUPruyk1wU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708034473; c=relaxed/simple;
-	bh=r+fF7hspTcauMVJ6ENMToSqRGVf6qDI5uFjl4h27hAM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZlNVU/QdeSJRCul54X1ZyO6xtCUfMrqfkKv2TGq9QAAufeTIu8gwUoGdlzquzhJfwcj/ipb0XTEsV2bZ0DPDskMbohzYrhx4Lm6kWaML3OOhFdZwdgvmjehQjcClAyjbEIXdQPmMcMZ08bzy/2w4QiIVsizsHmk2W09Kz1d6Gdw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GW94aQAm; arc=none smtp.client-ip=209.85.216.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-296cca9169bso1173304a91.3;
-        Thu, 15 Feb 2024 14:01:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708034472; x=1708639272; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zMw8ym7Hes5nA0a7OJqANqfyz//pYIxa/w4OlCDzeSo=;
-        b=GW94aQAmzsoSd5vlP3RBwLdJgdtzvLK2Vca4Du4/QJ7+MOxbPM+DhVSrGHuL1spbdt
-         MjqSR8651mH4zaZIRdQ1OA7cdpRWKab3aX21Hz4gm9UmOiQIGxj7TPD785h575Zgzd2k
-         LfpXKKaVEkzDb2PjIj8qOQW2Chz4VutITKUPXr+u1sGXpsQB/6uRimYKgiH7VnT4En+8
-         7+AKEBfQKYLX5OFnz0i9iJtQsKPAbun25DOzKTE/7HVBKqh1OMA/xYJ1HaUh7DIknE0g
-         5658XqlMSNcaQH3pTKZFSvelbLsqspthoBObMIv4skuOOSslWoYc294AwLdRok4CqtIw
-         8zoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708034472; x=1708639272;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zMw8ym7Hes5nA0a7OJqANqfyz//pYIxa/w4OlCDzeSo=;
-        b=a9pArIS5WsnjXDdgGzTPSSzsKGYDKExRBIQeKt7pwLZDI1CmSjCahdg3TjrpjbIf8p
-         KYnJSQANmAlt00fKpJOBK3KaW1iBb7OChmg/diKVTfeV21lLEWdXAwbdkCxRJy+9nUZF
-         R2JNDikOqTHBSz0rLErvm9wXJtHF5yxdh4J0GsmL9ETxysOhEd0gjBFZ7WuEdtEkTP5y
-         ySWZKdVPCV8mOEymb5SAIXeHSB5UGAlbavv15dHjBpifJ2rc9XUk43Vi7ehBKtaqh4+Z
-         +FY65Rz1gE0ARyvp7vnbReGiNa1zU2Y76qhOE7xDSYfEou15WDfj7jhJFxALmWvCTdrz
-         7s1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWuDpdoS/mNA1/457CpH8QJK/m3YVluaZ3m2MjyLR74M3eX/jnUDPmpnwSnOtwniMvztxf8J0qYYO5aJUk2/0Xh9NV5HwwEkyTP1hOrVuRXHoTfQykoToX7DWU4hp4zs11o66s9KmeE+TlMurX00zJzBRnz8fVpXwkFnoAytkLVt/xhQg==
-X-Gm-Message-State: AOJu0Yz7Q3HMYChJHh76XwuSfYZYlpsivoiHlIwlu/c8R4vJ/6QV0HMJ
-	ppu6y6QVs2aI8/ZWdWoM6HlWCb6MHkoYzymTxd8RMm0o7KTbdiZ05TIJyKGr/lQL1+7AF1bnlRz
-	ew/PHgpdJi1rKi48guNtfAbGM2w==
-X-Google-Smtp-Source: AGHT+IEi646NKnhmT37pZ1NAnDETQM7w7aM9iIytbbEJKQ+CWwALKbge6VymBHYk2T5dOZHHUtCJikXQx1ipCutpDHw=
-X-Received: by 2002:a17:90a:c08f:b0:299:21ef:6b5a with SMTP id
- o15-20020a17090ac08f00b0029921ef6b5amr1710226pjs.24.1708034471706; Thu, 15
- Feb 2024 14:01:11 -0800 (PST)
+	s=arc-20240116; t=1708034903; c=relaxed/simple;
+	bh=jK0WN05HRYLD6LUs0wfM9Y6pDXPMZjoGHEJ0pxKMgzU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=THT5rRSqqkYIM5rUhBc+kbqnbjro2jN/TnM9nSh//Vhua4padkcIjUu1QIgRp6npQVkb88Rw6ET5WpU+vHA57MmQt3FH7EKI/KPTaR9MdoST8kGQgpoRzRzQBPfEfZlqPrV45LaXUDBtuYr8JDoWTWLOS29KNrzBoHLJxOfq8c0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=EmKLQGdy; arc=none smtp.client-ip=148.163.158.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0356516.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 41FLoM7N002178;
+	Thu, 15 Feb 2024 22:08:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=ti+vasKVUZQ1CgAe9GPm+P7+NUBFvUgZB+fHIsDLLfs=;
+ b=EmKLQGdyhKXnh1KZsy6vgnySrnjBgkDBApiDoBhdfkVGzWzbKPKKADAxf5gTw9yz6gAz
+ V4el22B+z/U6PU7T6PspCyDEknaJ+LobvIq1XwHm72t5+5RAMg2iunHtOBcqE/jZNqJU
+ bFssyKKWIhsOLHsmju+jswx6xnegv9Ar2cI5A4DiFBF2F799zmjQFE+rNxDVJCsLpN/F
+ 1/tJ1sSgxYulxJWg8t/06aG6WsCtwglrhlg00ucXBr4ABV2IRf2hu3e9Ve/pzk9OA3oP
+ dCZYMwBwU02twvhwoLj7uSeLSgxpDXnPotLyrgULVVaBzyadJFq5gtubB7A9eVF7k32N 7Q== 
+Received: from ppma13.dal12v.mail.ibm.com (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3w9s0tjy23-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 15 Feb 2024 22:08:06 +0000
+Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma13.dal12v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 41FKU3Qx010060;
+	Thu, 15 Feb 2024 22:08:05 GMT
+Received: from smtprelay05.wdc07v.mail.ibm.com ([172.16.1.72])
+	by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 3w6npm780n-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 15 Feb 2024 22:08:05 +0000
+Received: from smtpav03.dal12v.mail.ibm.com (smtpav03.dal12v.mail.ibm.com [10.241.53.102])
+	by smtprelay05.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 41FM82Ep28377632
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 15 Feb 2024 22:08:04 GMT
+Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 09A6A5805A;
+	Thu, 15 Feb 2024 22:08:02 +0000 (GMT)
+Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id B24245806A;
+	Thu, 15 Feb 2024 22:08:01 +0000 (GMT)
+Received: from slate16.aus.stglabs.ibm.com (unknown [9.61.14.18])
+	by smtpav03.dal12v.mail.ibm.com (Postfix) with ESMTP;
+	Thu, 15 Feb 2024 22:08:01 +0000 (GMT)
+From: Eddie James <eajames@linux.ibm.com>
+To: linux-fsi@lists.ozlabs.org
+Cc: linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        andi.shyti@kernel.org, eajames@linux.ibm.com, alistair@popple.id.au,
+        joel@jms.id.au, jk@ozlabs.org, sboyd@kernel.org,
+        mturquette@baylibre.com, robh@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Subject: [PATCH 00/33] fsi: Interrupt support
+Date: Thu, 15 Feb 2024 16:07:26 -0600
+Message-Id: <20240215220759.976998-1-eajames@linux.ibm.com>
+X-Mailer: git-send-email 2.39.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <ZcH9u7Vo2sFERIHJ@finisterre.sirena.org.uk> <20240207224546.44030-1-frut3k7@gmail.com>
- <20240207224546.44030-2-frut3k7@gmail.com> <cd8c2f79-2307-4ad8-90c7-747d40f14ede@linaro.org>
-In-Reply-To: <cd8c2f79-2307-4ad8-90c7-747d40f14ede@linaro.org>
-From: frut3k7 <frut3k7@gmail.com>
-Date: Thu, 15 Feb 2024 23:01:00 +0100
-Message-ID: <CAKEyCaAy9U_qQ=pXPYaGetEuuuVuoejxjKPrG92fBFauy1wwuw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: trivial-devices: Add qca,qca4024
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>, Robert Marko <robimarko@gmail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mark Brown <broonie@kernel.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Peter Yin <peteryin.openbmc@gmail.com>, 
-	Patrick Rudolph <patrick.rudolph@9elements.com>, Michal Simek <michal.simek@amd.com>, 
-	Marek Vasut <marex@denx.de>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Lukas Wunner <lukas@wunner.de>, Fabio Estevam <festevam@denx.de>, 
-	Alexander Stein <alexander.stein@ew.tq-group.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: 4CT9BIZ8st8WKKVU5iDpkiYHOssifd2b
+X-Proofpoint-ORIG-GUID: 4CT9BIZ8st8WKKVU5iDpkiYHOssifd2b
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-15_20,2024-02-14_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=604 clxscore=1015
+ suspectscore=0 phishscore=0 lowpriorityscore=0 spamscore=0 malwarescore=0
+ bulkscore=0 impostorscore=0 priorityscore=1501 mlxscore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311290000
+ definitions=main-2402150171
 
-The device I use has the QCA4024 chip connected via the spi controller:
-        blsp1_spi4: spi@78b8000 {
-            compatible =3D "qcom,spi-qup-v2.2.1";
-            #address-cells =3D <1>;
-            #size-cells =3D <0>;
-            reg =3D <0x78b8000 0x600>;
-            interrupts =3D <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
-            clocks =3D <&gcc GCC_BLSP1_QUP4_SPI_APPS_CLK>,
-                 <&gcc GCC_BLSP1_AHB_CLK>;
-            clock-names =3D "core", "iface";
-            dmas =3D <&blsp_dma 18>, <&blsp_dma 19>;
-            dma-names =3D "tx", "rx";
-            status =3D "disabled";
-        };
+This series primarily adds interrupt support to the FSI driver subsystem.
+The series first improves the clocking model in the FSI core to provide
+real clock rates to the engine drivers. Then there are various quality,
+trace, and organizational improvements.
+Another substantial part of the series is to make some master code common
+through the use of a regmap to access master structures. This will prove
+more useful as additional FSI master drivers are added.
+Finally, interrupt support is added to the I2C driver as an alternative to
+polling.
 
-and apart from setting the frequency and gpio there is nothing else:
-        &blsp1_spi4 {
-            status =3D "okay";
+Eddie James (33):
+  dt-bindings: clock: ast2600: Add FSI clock
+  clk: ast2600: Add FSI parent clock with correct rate
+  fsi: Move slave definitions to fsi-slave.h
+  fsi: Improve master indexing
+  fsi: Use a defined value for default echo delay
+  fsi: Expose master-specific local bus clock divider
+  ARM: dts: aspeed: p10 and tacoma: Set FSI clock frequency
+  fsi: core: Improve master read/write/error traces
+  fsi: core: Add slave error trace
+  fsi: aspeed: Add AST2700 support
+  fsi: core: Add slave spinlock
+  fsi: core: Allow cfam device type aliases
+  fsi: core: Add common regmap master functions
+  fsi: hub: Use common initialization and link enable
+  fsi: aspeed: Use common initialization and link enable
+  fsi: aspeed: Remove cfam reset sysfs file in error path and remove
+  fsi: aspeed: Refactor trace functions
+  fsi: aspeed: Don't clear all IRQs during OPB transfers
+  fsi: aspeed: Only read result register for successful read
+  fsi: aspeed: Switch to spinlock
+  fsi: aspeed: Disable relative addressing and IPOLL for cfam reset
+  fsi: aspeed: Use common master error handler
+  fsi: core: Add interrupt support
+  fsi: aspeed: Add interrupt support
+  fsi: hub: Add interrupt support
+  ARM: dts: aspeed: FSI interrupt support
+  i2c: fsi: Calculate clock divider from local bus frequency
+  i2c: fsi: Improve formatting
+  i2c: fsi: Change fsi_i2c_write_reg to accept data instead of a pointer
+  i2c: fsi: Remove list structure of ports
+  i2c: fsi: Define a function to check status error bits
+  i2c: fsi: Add boolean for skip stop command on abort
+  i2c: fsi: Add interrupt support
 
-            pinctrl-0 =3D <&spi_3_pins &quartz_pins>;
-            pinctrl-names =3D "default";
+ .../boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts |   1 +
+ arch/arm/boot/dts/aspeed/aspeed-g6.dtsi       |   4 +
+ .../arm/boot/dts/aspeed/ibm-power10-dual.dtsi |   3 +
+ drivers/clk/clk-ast2600.c                     |   7 +-
+ drivers/fsi/Kconfig                           |   2 +
+ drivers/fsi/fsi-core.c                        | 528 ++++++++++++++----
+ drivers/fsi/fsi-master-aspeed.c               | 391 +++++++------
+ drivers/fsi/fsi-master-hub.c                  | 231 ++++----
+ drivers/fsi/fsi-master.h                      |  27 +
+ drivers/fsi/fsi-slave.h                       |  89 +++
+ drivers/i2c/busses/i2c-fsi.c                  | 464 ++++++++++-----
+ include/dt-bindings/clock/ast2600-clock.h     |   1 +
+ include/linux/fsi.h                           |   3 +
+ include/trace/events/fsi.h                    | 190 ++++---
+ include/trace/events/fsi_master_aspeed.h      |  86 ++-
+ include/trace/events/i2c_fsi.h                |  45 ++
+ 16 files changed, 1432 insertions(+), 640 deletions(-)
+ create mode 100644 include/trace/events/i2c_fsi.h
 
-            /* Qualcomm QCA4024 IoT */
-            iot@3 {
-                compatible =3D "qca,qca4024";
-                reg =3D <0>;
-                spi-max-frequency =3D <24000000>;
-            };
-        };
+-- 
+2.39.3
 
-        &tlmm {
-            spi_3_pins: spi-3-state {
-                spi-pins {
-                    pins =3D "gpio50", "gpio52", "gpio53";
-                    function =3D "blsp3_spi";
-                    drive-strength =3D <8>;
-                    bias-disable;
-                };
-
-                cs-pins {
-                    pins =3D "gpio22";
-                    function =3D "blsp3_spi2";
-                    drive-strength =3D <8>;
-                    bias-disable;
-                };
-            };
-
-            quartz_pins: quartz-state {
-                interrupt-pins {
-                    pins =3D "gpio48";
-                    function =3D "gpio";
-                    bias-disable;
-                    input;
-                };
-
-                reset-pins {
-                    pins =3D "gpio21";
-                    function =3D "gpio";
-                    bias-disable;
-                    output-high;
-                };
-            };
-        };
-
-On Thu, Feb 8, 2024 at 8:32=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 07/02/2024 23:45, Pawe=C5=82 Owoc wrote:
-> > Add Qualcomm QCA4024 to trivial devices.
-> >
-> > Signed-off-by: Pawe=C5=82 Owoc <frut3k7@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/D=
-ocumentation/devicetree/bindings/trivial-devices.yaml
-> > index 79dcd92c4a43..c6362e981920 100644
-> > --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> > +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> > @@ -309,6 +309,8 @@ properties:
-> >            - plx,pex8648
-> >              # Pulsedlight LIDAR range-finding sensor
-> >            - pulsedlight,lidar-lite-v2
-> > +            # Qualcomm QCA4024 Multi-mode Bluetooth and 802.15.4 SoC
-> > +          - qca,qca4024
->
->
-> As I wrote, Bluetooth chip is not a trivial device. This one
-> particular exposes several interfaces to the host, needs a clock and
-> power supply.
->
-> Best regards,
-> Krzysztof
->
 
