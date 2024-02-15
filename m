@@ -1,131 +1,132 @@
-Return-Path: <devicetree+bounces-41982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE9D48560F9
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:10:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79195856172
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:25:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D27F5B37D7B
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:52:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B502CB277CB
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:55:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B28B413665C;
-	Thu, 15 Feb 2024 10:40:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="p1zwR6i9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48DCB1386A2;
+	Thu, 15 Feb 2024 10:41:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1E5113173F;
-	Thu, 15 Feb 2024 10:39:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5144131E58;
+	Thu, 15 Feb 2024 10:40:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707993600; cv=none; b=J7kJCPaN0YBugHhPFTBRLu83S9YXlnj4l2lzxBf4PtuK4xjFAgJybF9Qw6jHLBCXHlinPL9jlM0pndShBGQpS1rKHZbPyXWPZJHPRSHZSUxB77mN6gJRyhcDUP2+LIH69z1WOm8+0HC5yeEDBPClG9Ydo9h0DDh/1Gc7XrAebfs=
+	t=1707993661; cv=none; b=MGqVU6jrtksn6f1IIEu0Sk61KhN1VCRSyIizbjgSArsnq5hoFMqjQyPpdTsgtcB1ILhHaJmkP4YrrliSmL6+l64vUVO3BwzZ6wCxfPPub4JhsFv6E21qt56WBqeii2VxxMNf6c+VVw3RjzfanShztZXr1criHJWic2+ZTgGOMyo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707993600; c=relaxed/simple;
-	bh=3DRaxfRX0WV3VdMSyOsaAEEh1cKEYJFdFUbwZW6uKk8=;
-	h=From:To:Cc:Subject:Date:Message-Id; b=RgrRTsW58U2+GFeGg+3OLOzoqChEh0grxc8SppdQGaZakCDd3wq4C/lMExLp/fK9xl76OfdELPtwiZMMjXFDb+4bzjTvBtQqsqz8GbJuA0bNKz26XV00OcltbrGTPgxh7bSNTrIu21gR6ZfWoUWptvaNPRcKqzAwCHw2+c1hgIY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=p1zwR6i9; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41F7KNij007372;
-	Thu, 15 Feb 2024 10:39:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id; s=qcppdkim1; bh=hHFw//1+BQxq
-	kGcqXGiC1LeRSZmYFGoSjsSnWsluyxI=; b=p1zwR6i9D6H0tToMffAhgxkl9TQM
-	VqB7jP8mOsT3HwuYb/opfpe6PdakTOlb2EzbbOU8Ap8ka53YD/V5Z5rOjp5E4lqE
-	UgwmgP82sPqyF2CYt2vSazVzyTABtMEDX2ym4xW+mDYUunNxLVHmy9zRXSLLjFae
-	VNY7CONXg10uc4dvKcxeklrFpV+LGb1e0OsQOAVJgJRlbD6YU86CBZiS0pxhiiwe
-	OsByPZ7OnTCLFj1uH/fLSwOCX2wNfsjK25s5X6Fp78uBqAV2dFppxHLwCCEM8Lt1
-	AZQTWEF5wB90cf+6WAoUYjZagxl7bs3r676+/098XcACY3vjJb2yVLVR1w==
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w9e4h0c46-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 15 Feb 2024 10:39:38 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 41FAdXVg013844;
-	Thu, 15 Feb 2024 10:39:33 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3w627mab7d-1;
-	Thu, 15 Feb 2024 10:39:33 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 41FAdXrX013828;
-	Thu, 15 Feb 2024 10:39:33 GMT
-Received: from hu-maiyas-hyd.qualcomm.com (hu-riteshk-hyd.qualcomm.com [10.147.241.247])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 41FAdXDW013824;
-	Thu, 15 Feb 2024 10:39:33 +0000
-Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 2314801)
-	id DBCB860142D; Thu, 15 Feb 2024 16:09:31 +0530 (+0530)
-From: Ritesh Kumar <quic_riteshk@quicinc.com>
-To: andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        catalin.marinas@arm.com, will@kernel.org, quic_bjorande@quicinc.com,
-        geert+renesas@glider.be, arnd@arndb.de, neil.armstrong@linaro.org,
-        dmitry.baryshkov@linaro.org, nfraprado@collabora.com,
-        m.szyprowski@samsung.com
-Cc: Ritesh Kumar <quic_riteshk@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, quic_abhinavk@quicinc.com,
-        quic_rajeevny@quicinc.com, quic_vproddut@quicinc.com
-Subject: [PATCH v3 0/2] add display and panel on qcm6490 idp
-Date: Thu, 15 Feb 2024 16:09:27 +0530
-Message-Id: <20240215103929.19357-1-quic_riteshk@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: vsqQs8P2CNeXpdR6YUEChV7Oz-n1HAYM
-X-Proofpoint-ORIG-GUID: vsqQs8P2CNeXpdR6YUEChV7Oz-n1HAYM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-15_10,2024-02-14_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 spamscore=0
- impostorscore=0 adultscore=0 mlxscore=0 phishscore=0 malwarescore=0
- priorityscore=1501 suspectscore=0 bulkscore=0 mlxlogscore=615
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402150084
+	s=arc-20240116; t=1707993661; c=relaxed/simple;
+	bh=Y/NM07+ec8X945QyavCo9A6gSVvDgYuzRMM4zril0OE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TJ5sn/n4SQVzeQFkhfXd8suh3St9EFitCL4oJqkjyktRaSSeGur3IVSmp3wtA1qlUg26FzjbjE+xnN19+L6u2JWBaE56YzsAoOZfNpR9McSITvqScE2jojcVpFXGRfgH/dCVdgGiWsS5V/1Fgy7ENqiOJuQKHsWkII0jjobDj8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-607dec82853so2036107b3.3;
+        Thu, 15 Feb 2024 02:40:59 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707993658; x=1708598458;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=o57CBG8kxGbBsN3aPo1NEC+C0U+G30UcOmuYFLRG5FE=;
+        b=AbsSVirNgIKB7dEors/J5DIZnT9s4zcZaPaOfqa+ImOD85ZPXPLTdK1fvg6ci40AWE
+         THTGtnmrDd4W11CyIdR3oTiN4ngotBm7VBOT8WWJWlpu8B9BFhay1nbcA6OweC9/D8dK
+         lBh1SfCMkH9qyEJPax/o5E2No21gw2IqJ06OohN6mpxxzZo8GpKPeCOZ+8QlOmj0A1wO
+         UprHS0EsBpcXXBWn0uOrGNgv3iN2vwGvfFiik/gNxAJ+JXxY1SBKtYoAGU6gPZ2IWtEk
+         343lRPopqtF+TeUmlLVX1iz83Pn6TytSF6Tq4kijlOx60U8QizdL1XY+IikRj6R7aI4g
+         QqQQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXHZv4dIED/0CggRilhOPds+M2f+s+dg4wT7Ociet33fM+QS1HCaNJtlQ02RXu+rTkbAny5EKKc+z6tIj03HFtM3bSF58RGt6aboIqB
+X-Gm-Message-State: AOJu0YyraAXEu7SL2h2X76t57uvcq5+FxoPA4rqZbKssJkLvHV4KfBtK
+	W2QgFJSpMpxL6qoKFgm+Dw1UOYbnzEzGx6fz02X56S6SCuxkpD9R4nYR5/sl3fFYag==
+X-Google-Smtp-Source: AGHT+IEHf96BeW0BIv4Njrjh4PAwlj3UkutpCOGzr6rypxE+ZTQfYmR8LEmQYwbw8zWq5RSaPRS/HA==
+X-Received: by 2002:a0d:dd03:0:b0:607:8177:660 with SMTP id g3-20020a0ddd03000000b0060781770660mr1258057ywe.47.1707993657954;
+        Thu, 15 Feb 2024 02:40:57 -0800 (PST)
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
+        by smtp.gmail.com with ESMTPSA id x35-20020a81af63000000b00607b53565afsm187744ywj.97.2024.02.15.02.40.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Feb 2024 02:40:57 -0800 (PST)
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-dcc84ae94c1so619249276.1;
+        Thu, 15 Feb 2024 02:40:57 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXtgnUZEmipl7sJyPHH17DAmN7JclgfOPTGYojVLf1TxHu/1TVaFWka9/nczJmpZWZ3joZvTeaZRaikL//WjlWjXyV1a3G/+j+99ugq
+X-Received: by 2002:a25:ced3:0:b0:dc6:a74b:f200 with SMTP id
+ x202-20020a25ced3000000b00dc6a74bf200mr1238211ybe.38.1707993657261; Thu, 15
+ Feb 2024 02:40:57 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20240212170423.2860895-1-andriy.shevchenko@linux.intel.com> <20240212170423.2860895-11-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20240212170423.2860895-11-andriy.shevchenko@linux.intel.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 15 Feb 2024 11:40:44 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVtqWBi4Y1tj74m4V4kp-3cFe_FphKKeY7zOkrbMVkKRg@mail.gmail.com>
+Message-ID: <CAMuHMdVtqWBi4Y1tj74m4V4kp-3cFe_FphKKeY7zOkrbMVkKRg@mail.gmail.com>
+Subject: Re: [PATCH v2 10/15] auxdisplay: linedisp: Provide a small buffer in
+ the struct linedisp
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Robin van der Gracht <robin@protonic.nl>, Paul Burton <paulburton@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Build the Novatek NT36672E DSI Panel driver as module and enable
-display subsystem on Qualcomm qcm6490 idp board.
+Hi Andy,
 
----
-This series depends on following series:
-1. https://lore.kernel.org/all/20231222073135.2512313-1-quic_uchheda@quicinc.com/
-   (arm64: dts: qcom: qcm6490-idp: Add support for PM7250B PMIC)
-2. https://lore.kernel.org/all/20240108095902.22725-1-quic_riteshk@quicinc.com/
-   (Add support for Novatek NT36672E LCD DSI panel)
-3. https://lore.kernel.org/all/20240116071803.5264-1-quic_riteshk@quicinc.com/t/#u
-   (drm/panel: novatek-nt36672e: Include <linux/of.h>)
+On Mon, Feb 12, 2024 at 6:04=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+> There is a driver that uses small buffer for the string, when we
+> add a new one, we may avoid duplication and use one provided by
+> the line display library. Allow user to skip buffer pointer when
+> registering a device.
+>
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-v2: Fixed review comments from Dmitry and Konrad
-      - moved pinctrl-names after pinctrl-0 property.
-      - removed gpu disablement change after validating gpu.
-      - updated commit text.
-    Rebased the patch
-      - rebased the patch to resolve conflicts.
-v3: Fixed review comments from Dmitry
-      - renamed panel supply to regulator-lcd-disp-bias.
-      - moved backlight as per sort order.
----
+Thanks for your patch!
 
-Ritesh Kumar (2):
-  arm64: defconfig: enable Novatek NT36672E DSI Panel driver
-  arm64: dts: qcom: qcm6490-idp: add display and panel
+> --- a/drivers/auxdisplay/line-display.c
+> +++ b/drivers/auxdisplay/line-display.c
+> @@ -330,8 +330,8 @@ int linedisp_register(struct linedisp *linedisp, stru=
+ct device *parent,
+>         linedisp->dev.parent =3D parent;
+>         linedisp->dev.type =3D &linedisp_type;
+>         linedisp->ops =3D ops;
+> -       linedisp->buf =3D buf;
+> -       linedisp->num_chars =3D num_chars;
+> +       linedisp->buf =3D buf ? buf : linedisp->curr;
+> +       linedisp->num_chars =3D buf ? num_chars : min(num_chars, LINEDISP=
+_DEFAULT_BUF_SZ);
 
- arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 92 ++++++++++++++++++++++++
- arch/arm64/configs/defconfig             |  1 +
- 2 files changed, 93 insertions(+)
+I think it would be safer to return an error if buf =3D=3D NULL and
+num_chars < LINEDISP_DEFAULT_BUF_SZ.
+Else a careless driver that doesn't check linedisp->num_chars might
+overflow the buffer.
 
--- 
-2.17.1
+>         linedisp->scroll_rate =3D DEFAULT_SCROLL_RATE;
+>
+>         err =3D ida_alloc(&linedisp_id, GFP_KERNEL);
 
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
