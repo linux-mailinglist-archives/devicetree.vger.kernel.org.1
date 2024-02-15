@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-42027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29E078562E8
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 13:17:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BACF8562FB
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 13:19:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F1E41C21528
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:17:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DBFB1C21949
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:19:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1217312BF05;
-	Thu, 15 Feb 2024 12:17:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81D5812BF0A;
+	Thu, 15 Feb 2024 12:19:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aZ/tVpPT"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Byp4KWo3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB96F12BEAF;
-	Thu, 15 Feb 2024 12:17:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB7AB12BF04;
+	Thu, 15 Feb 2024 12:19:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707999430; cv=none; b=Yrum2QewLfM5Ucn2mpVPw/NLJ8NWNqvb6eaR2t8IsfxFGnqJzNQck3rmb9L0RTO61h473jqmTDwSvTJIvjJ5rGvkvmlJCN69hdMTIxtrDzRUbBOzUVl/cfHKvZ4m2eJGGSIeiojsElL7+nEtUR+a4YneHyDkLISNVsjuW+QKqcE=
+	t=1707999580; cv=none; b=nKYbhqi12B9+xo6DvUuws2lk5qHzv9PVg8EniugcUPiAmvdfYRLpktOWeWKWKfQ6Bnl+BvXtF2OuJhS7Yq1xgaj0lmN4NplxI2yoza6mmu6oHfOuqJy3wCDVxxaqN1opyBeCzU5paQ2agHkKFF5beoTmiYGx2IXG/klEFWTsPRE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707999430; c=relaxed/simple;
-	bh=zFgVeZ+HCPKzMsMvNy4bcqrK2mPXB/8qWs0nNlUKGR8=;
+	s=arc-20240116; t=1707999580; c=relaxed/simple;
+	bh=K3WhC0oEC+qO0zQoV5jfi/pvA9TOx/NiS3IqRkMlXLU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DKFOBT6WEGnO0X18WW8YFeKNxWqqMPZTPKAKBWkOtsXK8+RGica+kKTX+zCfMadAKX/46CYTNt/aCS9MSPXybPLKtoiBs+rPK2X7mPU38EzgX8criZ3WoaHnVg+NaK1XXbIRa0fjxWpPhBfrsTwUMkuNdbApD52KOlDFzZvHOFs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aZ/tVpPT; arc=none smtp.client-ip=192.198.163.13
+	 Content-Type:Content-Disposition:In-Reply-To; b=GHKpylxA9H5BoqcGm7wTToA3gAH/d0NF1IwyMrYQTxxng9Y1TwE6WyqdxUk42oNUcNMS1mxUwOqZsy4nj6TxxPZ/bgv8rW8KTu18b2+c20/EXhnzChz4KtAB9K8DoSmj7MisKNmV9BKm1MsehNH0CHnk3cSLzbAsBN1Xt0XOfJk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Byp4KWo3; arc=none smtp.client-ip=192.198.163.13
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1707999428; x=1739535428;
+  t=1707999578; x=1739535578;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:content-transfer-encoding:in-reply-to;
-  bh=zFgVeZ+HCPKzMsMvNy4bcqrK2mPXB/8qWs0nNlUKGR8=;
-  b=aZ/tVpPTUPNsEHgqs7GZHe6nXe+DXqfuX6VSjuWDJx6kY1uyuVRkQDvT
-   fouf95ppAe1CMW1lWBPdfL+ngSng5JzOeCisQqMw+bi+O15J/Cyj9oMML
-   43GNZonbWzgtd6bTqztxpyMVA7UOMv+F3qh+ZNHECipOJIbtTDJZJIi52
-   jdQc9tH02jkTltF63CDhf0njznyLXjDbXjuYXuZer2w8yyi4Z5WYGO9J1
-   FY81m5b1RrHz0RLn182JC3VcRFta2QD+FTE27nat9LOFv0JIC50R5fPKh
-   d4q7aag5qvyoN7A5LAplMC7GZkbnh+/6Sl5EXx7N4ALvYSL065cRHHpq0
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="5049590"
+  bh=K3WhC0oEC+qO0zQoV5jfi/pvA9TOx/NiS3IqRkMlXLU=;
+  b=Byp4KWo33DbrJcQEAe6+vTVG2HL8KWRs0g/vQ0VKWphsGOxHwlIbR6pg
+   q2oearnqiziKU7oq1EGHk1oy7KhzAitMwCsZurz0sf34cLtxTFSowzuSk
+   Ux/6unGeCB1YIAhqcxdHRmaGy0Hx7DWrIl81H6adsFGKgErv00n0fm/F6
+   x81tU10JRvUV7ngdOqr9mUyp1qczGQI0slhsXkP0tGHByMo4hUjtnTh17
+   i5931Jp0RMbYlBUTgXtkeMXAIX6tBjmj1/QJn9TxMWZBYyvCWVdp3f3ji
+   b+Xvdq5dO4kW5bJDrZl2RiGnnx/uk2m5q5NmPydgNbYDLxsGG5qoODoSO
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="5049899"
 X-IronPort-AV: E=Sophos;i="6.06,161,1705392000"; 
-   d="scan'208";a="5049590"
+   d="scan'208";a="5049899"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2024 04:17:04 -0800
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2024 04:19:37 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="912156788"
+X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="912157066"
 X-IronPort-AV: E=Sophos;i="6.06,161,1705392000"; 
-   d="scan'208";a="912156788"
+   d="scan'208";a="912157066"
 Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2024 04:17:02 -0800
+  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2024 04:19:34 -0800
 Received: from andy by smile.fi.intel.com with local (Exim 4.97)
 	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1raafk-00000004mim-099p;
-	Thu, 15 Feb 2024 14:17:00 +0200
-Date: Thu, 15 Feb 2024 14:16:59 +0200
+	id 1raaiC-00000004mlg-37MC;
+	Thu, 15 Feb 2024 14:19:32 +0200
+Date: Thu, 15 Feb 2024 14:19:32 +0200
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Geert Uytterhoeven <geert@linux-m68k.org>
 Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
@@ -70,10 +70,11 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	Paul Burton <paulburton@kernel.org>
 Subject: Re: [PATCH v2 10/15] auxdisplay: linedisp: Provide a small buffer in
  the struct linedisp
-Message-ID: <Zc4Au5Q_rOAx7_4Y@smile.fi.intel.com>
+Message-ID: <Zc4BVIwpAqJYPuTH@smile.fi.intel.com>
 References: <20240212170423.2860895-1-andriy.shevchenko@linux.intel.com>
  <20240212170423.2860895-11-andriy.shevchenko@linux.intel.com>
  <CAMuHMdVtqWBi4Y1tj74m4V4kp-3cFe_FphKKeY7zOkrbMVkKRg@mail.gmail.com>
+ <Zc4Au5Q_rOAx7_4Y@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,27 +84,30 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdVtqWBi4Y1tj74m4V4kp-3cFe_FphKKeY7zOkrbMVkKRg@mail.gmail.com>
+In-Reply-To: <Zc4Au5Q_rOAx7_4Y@smile.fi.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Thu, Feb 15, 2024 at 11:40:44AM +0100, Geert Uytterhoeven wrote:
-> On Mon, Feb 12, 2024 at 6:04 PM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
+On Thu, Feb 15, 2024 at 02:17:00PM +0200, Andy Shevchenko wrote:
+> On Thu, Feb 15, 2024 at 11:40:44AM +0100, Geert Uytterhoeven wrote:
+> > On Mon, Feb 12, 2024 at 6:04 PM Andy Shevchenko
+> > <andriy.shevchenko@linux.intel.com> wrote:
 
 ...
 
-> > +       linedisp->buf = buf ? buf : linedisp->curr;
-> > +       linedisp->num_chars = buf ? num_chars : min(num_chars, LINEDISP_DEFAULT_BUF_SZ);
+> > > +       linedisp->buf = buf ? buf : linedisp->curr;
+> > > +       linedisp->num_chars = buf ? num_chars : min(num_chars, LINEDISP_DEFAULT_BUF_SZ);
+> > 
+> > I think it would be safer to return an error if buf == NULL and
+> > num_chars < LINEDISP_DEFAULT_BUF_SZ.
 > 
-> I think it would be safer to return an error if buf == NULL and
-> num_chars < LINEDISP_DEFAULT_BUF_SZ.
+> I think you meant >= ?
+> 
+> > Else a careless driver that doesn't check linedisp->num_chars might
+> > overflow the buffer.
+> 
+> Okay, check has been added.
 
-I think you meant >= ?
-
-> Else a careless driver that doesn't check linedisp->num_chars might
-> overflow the buffer.
-
-Okay, check has been added.
+Hold on, but I have min() being called, isn't it enough?
 
 -- 
 With Best Regards,
