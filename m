@@ -1,126 +1,163 @@
-Return-Path: <devicetree+bounces-42020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01169856256
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:58:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23DEC85627E
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 13:04:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AAAF028A329
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:58:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 55A231C21325
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:04:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD9EB12C526;
-	Thu, 15 Feb 2024 11:57:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fyqziwEu"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1367A12C559;
+	Thu, 15 Feb 2024 12:04:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B348412BF3D;
-	Thu, 15 Feb 2024 11:57:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 629B212C53F
+	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 12:04:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707998264; cv=none; b=dyNC1F4kg5QTGqMQ1hKgr7ZYZt+k9zG3+0aQy9g5HtVtb8XZOZAIOZkmXkI93Vz+x0AtUG6UobZpExU8RIT74Jhq5XkXg01xParqFm+lQBaYHJhmA8XIlj5aR/FOvSJg2sUgWPlBZyuE/i1FpGn+dmwIW1bNZogA1V9haUv7vWI=
+	t=1707998671; cv=none; b=LY4ZtcEk2o36bxljpVNs07/lUZ7AFGvyHLjBpejEwCb7yGD3zZdPjavef1ltl85VxayJwkYIuvY1dcaxVykvbwz5Ovdx35LXfXPM7jAL1A8Pbhg+dWhGFBiYucnRZGXFdOGKSiYq04m9B8MoziCKU/dMERDW+KgPNcFTGj29BiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707998264; c=relaxed/simple;
-	bh=ZjS4FGsh59FRrV3bPIOZFy21FV9/UD4J8wYNJ7V5MEQ=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IzNE1lCoUL9WYKK11XlRu5FB5ykvMcKT4+S4iDK7nExdVOgGlHzHkmmlS5a4gHoKLqGEMzoLcKwqh1auStdul1jJZwsw5XdDtEw+d1kkfWnVpGqxMbVevux6jSak0TXlbzTwOYnZWBvDVzivMkraQA+XCJ7LWEYB9SoV0TmGRvU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fyqziwEu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 227AEC433C7;
-	Thu, 15 Feb 2024 11:57:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707998264;
-	bh=ZjS4FGsh59FRrV3bPIOZFy21FV9/UD4J8wYNJ7V5MEQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=fyqziwEu8JdiAmob0PH9svSFBnqigFzaCsruuY6/sSL8n/lx13X7r+aHvc1fR6ku0
-	 ItZYqHANHGzkuMaai6nZniqcTF0IqTmFZy0R6qtJguVrm1hHSwNtdZpkqPmttdPXGo
-	 XJ8puKluzojxXDHIQIJHsDA75WWcxlWlka7Yd8CQK9MULvbOGdm/+G3RIvIVlAq7FR
-	 GVwQrmyu742daoxjOCs9BO7VF3FrlNa3VSMbpuJYIbTnWUSE0neWsxZklEKiU/1/fd
-	 MgDmUWBG5Bg+CFmCTaeMP4Q4TBHmFm354vPdharLHmZedzJo+89/aOyGTdOQY/O2qM
-	 /WHWZ0IHsL82A==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1raaN3-003U4v-Qq;
-	Thu, 15 Feb 2024 11:57:41 +0000
-Date: Thu, 15 Feb 2024 11:57:41 +0000
-Message-ID: <86mss23poq.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Thomas Gleixner <tglx@linutronix.de>
-Cc: Anup Patel <apatel@ventanamicro.com>,	Paul Walmsley
- <paul.walmsley@sifive.com>,	Palmer Dabbelt <palmer@dabbelt.com>,
-	=?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>,	Rob Herring
- <robh+dt@kernel.org>,	Atish Patra <atishp@atishpatra.org>,	Andrew Jones
- <ajones@ventanamicro.com>,	Sunil V L <sunilvl@ventanamicro.com>,	Saravana
- Kannan <saravanak@google.com>,	Anup Patel <anup@brainfault.org>,
-	linux-riscv@lists.infradead.org,	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,	devicetree@vger.kernel.org,	Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,	Frank Rowand
- <frowand.list@gmail.com>,	Conor Dooley <conor+dt@kernel.org>,
-	"Ahmed S.\ Darwish" <darwi@linutronix.de>
-Subject: Re: [PATCH v12 00/25] Linux RISC-V AIA Support
-In-Reply-To: <87bk8ig6t2.ffs@tglx>
-References: <20240127161753.114685-1-apatel@ventanamicro.com>
-	<CAK9=C2Vwtj2gZg-P73yLMxu0rPXQ3YrRRuxq6HcpHMXgs-jHaw@mail.gmail.com>
-	<87bk8ig6t2.ffs@tglx>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=arc-20240116; t=1707998671; c=relaxed/simple;
+	bh=I+WHBDh5S+oGpcU8eKBicxfnW8AnEzmC7pw6JB4nYoI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y2zCUCr4lzVtkwzjDEAQvdXoJCFPbsyXQ+gB6J66PG6QqBzQT91XX3+9U6CvpWShbcLXT3F82HUdUBGpa+HBTBXYWMC6Vp8ug0lhQFAphd/ymhejSCybAsa/pObU6xdie9/1qhu3X/tNKESnTNRdBIbcI6dwriYWpVRgerzzWUM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1raaTD-0000bP-Ha; Thu, 15 Feb 2024 13:04:03 +0100
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1raaTB-000sKl-Ua; Thu, 15 Feb 2024 13:04:01 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1raaTB-00A1XF-2g;
+	Thu, 15 Feb 2024 13:04:01 +0100
+Date: Thu, 15 Feb 2024 13:04:01 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: =?utf-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+	Dent Project <dentproject@linuxfoundation.org>
+Subject: Re: [PATCH net-next v3 14/17] dt-bindings: net: pse-pd: Add bindings
+ for PD692x0 PSE controller
+Message-ID: <Zc39sUlxnkrkXWhR@pengutronix.de>
+References: <20240208-feature_poe-v3-0-531d2674469e@bootlin.com>
+ <20240208-feature_poe-v3-14-531d2674469e@bootlin.com>
+ <20240209145727.GA3702230-robh@kernel.org>
+ <ZciUQqjM4Z8Tc6Db@pengutronix.de>
+ <618be4b1-c52c-4b8f-8818-1e4150867cad@lunn.ch>
+ <Zc3IrO_MXIdLXnEL@pengutronix.de>
+ <20240215114123.128e7907@kmaincent-XPS-13-7390>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: tglx@linutronix.de, apatel@ventanamicro.com, paul.walmsley@sifive.com, palmer@dabbelt.com, bjorn@kernel.org, robh+dt@kernel.org, atishp@atishpatra.org, ajones@ventanamicro.com, sunilvl@ventanamicro.com, saravanak@google.com, anup@brainfault.org, linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org, frowand.list@gmail.com, conor+dt@kernel.org, darwi@linutronix.de
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240215114123.128e7907@kmaincent-XPS-13-7390>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Wed, 14 Feb 2024 19:54:49 +0000,
-Thomas Gleixner <tglx@linutronix.de> wrote:
+On Thu, Feb 15, 2024 at 11:41:23AM +0100, Köry Maincent wrote:
+> On Thu, 15 Feb 2024 09:17:48 +0100
+> Oleksij Rempel <o.rempel@pengutronix.de> wrote:
 > 
-> Anup!
+> > On Wed, Feb 14, 2024 at 06:41:54PM +0100, Andrew Lunn wrote:
+> > > > Alternative A and B Overview
+> > > > ----------------------------
+> > > > 
+> > > > - **Alternative A:** Utilizes the data-carrying pairs for power
+> > > > transmission in 10/100BaseT networks. The power delivery's polarity in
+> > > > this alternative can vary based on the MDI (Medium Dependent Interface)
+> > > > or MDI-X (Medium Dependent Interface Crossover) configuration.
+> > > > 
+> > > > - **Alternative B:** Delivers power over the spare pairs not used for
+> > > > data in 10/100BaseT networks. Unlike Alternative A, Alternative B's
+> > > > method separates power from data lines within the cable. Though it is
+> > > > less influenced by data transmission direction, Alternative B includes
+> > > > two configurations with different polarities, known as variant X and
+> > > > variant S, to accommodate different network requirements and device
+> > > > specifications.  
+> > > 
+> > > Thanks for this documentation.
+> > > 
+> > > It might be worth pointing out that RJ-45 supports up to 4
+> > > pairs. However, 10/100BaseT only makes use of two pairs for data
+> > > transfer from the four. 1000BaseT and above make use of all four pairs
+> > > for data transfer. If you don't know this, it is not so obvious what
+> > > 'data-carrying pairs' and 'spare pairs' mean.  
+> > 
+> > @Kory, can you please update it.
+> > 
+> > > And what happens for 1000BaseT when all four pairs are in use?  
+> > 
+> > Hm.. good question. I didn't found the answer in the spec. By combining all
+                                                               ^^^^^^^^^^^^^^^^
+
+> > puzzle parts I assume, different Alternative configurations are designed
+    ^^^^^^^^^^^^^^^^^^^^^^
+
+> > to handle conflict between "PSE Physical Layer classification" and PHY
+> > autoneg.
 > 
-> On Sat, Jan 27 2024 at 21:50, Anup Patel wrote:
-> >> Changes since v11:
-> >>  - Rebased on Linux-6.8-rc1
-> >>  - Included kernel/irq related patches from "genirq, irqchip: Convert ARM
-> >>    MSI handling to per device MSI domains" series by Thomas.
-> >>    (PATCH7, PATCH8, PATCH9, PATCH14, PATCH16, PATCH17, PATCH18, PATCH19,
-> >>     PATCH20, PATCH21, PATCH22, PATCH23, and PATCH32 of
-> >>     https://lore.kernel.org/linux-arm-kernel/20221121135653.208611233@linutronix.de/)
-> >>  - Updated APLIC MSI-mode driver to use the new WIRED_TO_MSI mechanism.
-> >>  - Updated IMSIC driver to support per-device MSI domains for PCI and
-> >>    platform devices.
-> >
-> > I have rebased and included 13 patches (which add per-device MSI domain
-> > infrastructure) from your series [1]. In this series, the IMSIC driver
-> > implements the msi_parent_ops and APLIC driver implements wired-to-msi
-> > bridge using your new infrastructure.
-> >
-> > The remaining 27 patches of your series [1] requires testing on ARM
-> > platforms which I don't have. I suggest these remaining patches to
-> > go as separate series.
+> Oleksij how did you get the definition of Alternative A uses the "data-carrying"
+> pairs for power transmission and Alternative B Delivers power over the "spare
+> pairs"?
 > 
-> Of course. Darwi (in Cc) is going to work on the ARM parts when he
-> returns from vacation. I'm going to apply the infrastructure patches
-> (1-13) in the next days so they are out of the way for you and Darwi,
-> unless someone has any objections.
+> On my understanding of the 2022 standard the definition is: 
+> - Alternative A is for pinout conductors 1, 2, 3 and 6
+> - Alternative B is for pinout conductors 4, 5, 7, 8.
+> 
+> Then indeed if we are in 10/100BaseT Alternative A are "data-carrying
+> pairs" and Alternative B are "spare pairs" but that's not the case on
+> 1000BaseT.
+> 
+> You can see it in the figures in the paragraph 145.2.3.
 
-FWIW, I've fiven the first 13 patches a go on two of the most
-problematic platforms (Huawei's D05, and Marvell's McBin). Nothing
-immediately broke, so it's obviously perfect.
+Please, re-read my answer :)
 
-Thanks,
-
-	M.
+Autoneg for 1000Mbit is not done on all 4 pairs. The only MDI/-X
+dependent transfer processes only on one pair is autoneg. Every thing
+else is extrapolated out of it.
 
 -- 
-Without deviation from the norm, progress is not possible.
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
