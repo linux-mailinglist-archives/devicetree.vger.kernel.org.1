@@ -1,118 +1,178 @@
-Return-Path: <devicetree+bounces-42126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BCFD8568BA
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 17:04:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCC9B8568C1
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 17:05:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CD0BCB268CC
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 16:03:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08C9D1C229AB
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 16:05:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2115813398A;
-	Thu, 15 Feb 2024 16:02:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D6E51350EB;
+	Thu, 15 Feb 2024 16:03:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TaUOWjhk"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="dzeFiStR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8AFC1350F6;
-	Thu, 15 Feb 2024 16:01:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59C86131E23;
+	Thu, 15 Feb 2024 16:03:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708012920; cv=none; b=MJ8MU6M0n5Wxlmt6UUvUTABPvgCi/F1Bcp3OOFYlgvPniA4zBPJwNqEnJDcW6XWnGdsQM7KJL+vh3myyLonowEB4PpxReRXwY7/BIFDRxrKPW7W++uLe7Xnv3R4cJGzOyuQIe1yvMZyAP+7apuLFhOH09caz3ZvNRMhD36Da65o=
+	t=1708013008; cv=none; b=ogHYw92eLraGdjrOvzzQlI9CZ7ET9fRgQsuMa/7aCAw8x8GXDZ12xhdZSqrNfzsoQvfjY7rPlT5xhaSHhv/m0b5e2dD50ktKZSEuR9RB/ybDrFbB7YyaHDuklQpIZY/5RqCGI+V7fAY5OVXy07DhhWPi5fABPo2Tx3zaBPdvWnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708012920; c=relaxed/simple;
-	bh=pWw8ohlMdJOBYl5mwsS+UEZnUOAY6rOv2BrZBdYFroE=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=USUcjXD+WiDPJzbUNOzxK45vLe0Y7YhW/Kbf71ZrX6tu9j9x6GLtrJsj45z2suFZxT4rr+HEL7/eThEyVJa+1+SfBLxKZc+Vwv7k9dE4Vg6cp2K4kxuwVbPnM4/Go6V5ZKo2nqpOAd476wibCQ95Ls/4hQM3hDE4iB417CjS3Us=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TaUOWjhk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26DF5C433C7;
-	Thu, 15 Feb 2024 16:01:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708012919;
-	bh=pWw8ohlMdJOBYl5mwsS+UEZnUOAY6rOv2BrZBdYFroE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=TaUOWjhkb5mM0/BsHOScRRcw1Loz1te9kYIoI82lkP56F49Uzy9oG+HgmRR2cD0S0
-	 jYP3vTctJ84N23BibErGY4gMhi7ULXq3jshaOuJdvl13WzszMz9M3spY8VwUwSG1DP
-	 ATEIWlZ/hwegkwSNt3tPKxboCw5MkCRORCdUtTlPr/Na6ow4v2f0fvJbJPNKLAvjwu
-	 x3ouW88CaQfG/+ghH2q+QBA0mN37y77UO6x0DzXFu3kDWWKS9aiQpeIzbHjtU2raFk
-	 9J19JecmfXkwoKtOcoUcqHEYV5WF4iwo9vxzepup41U18GaLxltBu//PsWHna/zubC
-	 0tEepQWrESd4Q==
-Date: Thu, 15 Feb 2024 10:01:57 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Vidya Sagar <vidyas@nvidia.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, bhelgaas@google.com,
-	robh+dt@kernel.org, mark.rutland@arm.com, thierry.reding@gmail.com,
-	jonathanh@nvidia.com, Kishon Vijay Abraham I <kishon@kernel.org>,
-	catalin.marinas@arm.com, Will Deacon <will@kernel.org>,
-	jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-	digetx@gmail.com, mperttunen@nvidia.com, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	kthota@nvidia.com, mmaddireddy@nvidia.com, sagar.tv@gmail.com
-Subject: Re: [PATCH V16 13/13] PCI: tegra: Add Tegra194 PCIe support
-Message-ID: <20240215160157.GA1291755@bhelgaas>
+	s=arc-20240116; t=1708013008; c=relaxed/simple;
+	bh=2TJdMPFdOgFLb/nW2s4jY9+qUvs7xtAMEcpF7eDKsZM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=WNMSpt3FERMYs+1nf27S5lpaHBTuAoy8ig9gMATsbn1UR137HUuJXijM3r/eBW62Zqdq6ycfQ/G+OBBQb/t0/DH0j8r7VRGwqn0JZPSiEO7nd2Jr3ONNL69eMnKZQF9rvIA1Zh3bFuwbrh749DqOSM4wk6tJ2GxE103sHeXzLG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=dzeFiStR; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A296C20002;
+	Thu, 15 Feb 2024 16:03:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1708013001;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=R6uiPqbPN7XJ+nzOLa+wt5jzQyWXqcWr0TSp4g4OjDk=;
+	b=dzeFiStRybXlU0hqd4iuXwFON4FHo5WjGzD/noNDf6qkpYtw21VzJw/NHPGwqDmwB/U2gu
+	AEQhc+PCjGq1+fJd62zz8+lK84yBsYXOv0gUQeX1Z6cfyKhw+3UKfl/3AGlZbVQCOi3+Gl
+	dO11RhudSsoLwfdLCuQXEl+TNs9GJvjE3/f902rX5CKGGflEk3hHLJRy6+kgbDKeSUqxo2
+	yfYpJCXaPyOHSJSbnt88K/9LOT0441LeuhbnndU1hcfdpmBAtaQbYMZlp1JshqNPQDShEo
+	4nJawlooBR9syoPmxHuU+Bhi9SPqLtchpZBGCkGtQey3mwJj1MU2RITNiiGPGw==
+From: Kory Maincent <kory.maincent@bootlin.com>
+Subject: [PATCH net-next v4 00/17] net: Add support for Power over Ethernet
+ (PoE)
+Date: Thu, 15 Feb 2024 17:02:41 +0100
+Message-Id: <20240215-feature_poe-v4-0-35bb4c23266c@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <17dadf66-055c-4796-a905-44e37b6fcfe3@nvidia.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAKI1zmUC/2XNTQrCMBCG4atI1kYmkzFtXXkPEenPVAOalDQWR
+ Xp3Y0CkuPwYnndeYuRgeRS71UsEnuxovUuD1ivRXmp3Zmm7tAUCagVIsuc63gOfBs9S6Yoq4EI
+ TaJHEELi3j1w7CMdROn5EcUyXix2jD8/8ZlL5notKmUVxUhJkw1QCUdMjVfvG+3i1btP6Wy5N+
+ NMIaqkx6a3pyrZuDRR9/a/1VxMglEutP1qrDk1BZCpe6nme3+ew4yguAQAA
+To: "David S. Miller" <davem@davemloft.net>, 
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+ Paolo Abeni <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, 
+ Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Oleksij Rempel <o.rempel@pengutronix.de>, Mark Brown <broonie@kernel.org>, 
+ Frank Rowand <frowand.list@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
+ devicetree@vger.kernel.org, Dent Project <dentproject@linuxfoundation.org>, 
+ Kory Maincent <kory.maincent@bootlin.com>
+X-Mailer: b4 0.12.4
+X-GND-Sasl: kory.maincent@bootlin.com
 
-On Thu, Feb 15, 2024 at 04:55:47PM +0530, Vidya Sagar wrote:
-> On 15-02-2024 00:42, Bjorn Helgaas wrote:
-> > Hi Vidya, question about ancient history:
-> > 
-> > On Tue, Aug 13, 2019 at 05:06:27PM +0530, Vidya Sagar wrote:
-> > > Add support for Synopsys DesignWare core IP based PCIe host controller
-> > > present in Tegra194 SoC.
-> > > ...
-> > > +static int tegra_pcie_dw_host_init(struct pcie_port *pp)
-> > > +{
-> > > +     struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> > > +     struct tegra_pcie_dw *pcie = to_tegra_pcie(pci);
-> > > +     u32 val, tmp, offset, speed;
-> > > +
-> > > +     tegra_pcie_prepare_host(pp);
-> > > +
-> > > +     if (dw_pcie_wait_for_link(pci)) {
-> > > +             /*
-> > > +              * There are some endpoints which can't get the link up if
-> > > +              * root port has Data Link Feature (DLF) enabled.
-> > > +              * Refer Spec rev 4.0 ver 1.0 sec 3.4.2 & 7.7.4 for more info
-> > > +              * on Scaled Flow Control and DLF.
-> > > +              * So, need to confirm that is indeed the case here and attempt
-> > > +              * link up once again with DLF disabled.
-> >
-> > This comment suggests that there's an issue with *Endpoints*, not an
-> > issue with the Root Port.  If so, it seems like this problem could
-> > occur with all Root Ports, not just Tegra194.  Do you remember any
-> > details about this?
-> > 
-> > I don't remember hearing about any similar issues, and this driver is
-> > the only place PCI_EXT_CAP_ID_DLF is referenced, so maybe it is
-> > actually something related to Tegra194?
->
-> We noticed PCIe link-up issues with some endpoints. link-up at the physical
-> layer level but NOT at the Data link layer level precisely. We further
-> figured out that it is the DLFE DLLPs that the root port sends during the
-> link up process which are causing the endpoints get confused and preventing
-> them from sending the InitFC DLLPs leading to the link not being up at
-> Data Link Layer level.
+This patch series aims at adding support for PoE (Power over Ethernet),
+based on the already existing support for PoDL (Power over Data Line)
+implementation. In addition, it adds support for two specific PoE
+controller, the Microchip PD692x0 and the TI TPS23881.
 
-Do you happen to remember any of the endpoints that have issues?
+This patch series is sponsored by Dent Project
+<dentproject@linuxfoundation.org>.
 
-Could save some painful debugging if we trip over this issue on other
-systems.  We have seen a few cases where links wouldn't train at full
-speed unless they trained at a lower speed first, e.g.,
-imx6_pcie_start_link(), fu740_pcie_start_link().  I guess there are
-probably lots of edge cases that can cause link failures.
+In detail:
+- Patch 1 to 13 prepare net to support PoE devices.
+- Patch 14 and 15 add PD692x0 PoE PSE controller driver and its binding.
+- Patch 16 and 17 add TI TPS23881 PSE controller driver and its binding.
 
-Bjorn
+Changes in v2:
+- Extract "firmware_loader: Expand Firmware upload error codes patches" to
+  send it alone and get it merge in an immutable branch.
+- Add "c33" prefix for PoE variables and enums.
+- Enhance few comments.
+- Add PSE Documentation.
+- Make several changes in pd692x0 driver, mainly for readibility.
+- Link to v1: https://lore.kernel.org/r/20231116-feature_poe-v1-0-be48044bf249@bootlin.com
+
+Changes in v3:
+- Add patches to add Oleksij and myself to PSE MAINTAINERS.
+- Add patches to add pse devlink.
+- Add TI TPS23881 PSE controller driver with its binding.
+- Replace pse_get_types helper by pse_has_podl and pse_has_c33
+- Changed the PSE core bindings.
+- Add a setup_pi_matrix callback.
+- Register regulator for each PSE PI (Power Interface).
+- Changed the PD692x0 bindings.
+- Updated PD692x0 drivers to new bindings and PSE PI description.
+- Updated PD692x0 drivers according to the reviews and made fixes.
+- Link to v2: https://lore.kernel.org/r/20231201-feature_poe-v2-0-56d8cac607fa@bootlin.com
+
+Changes in v4:
+- Replaced sponsored-by tag by a simple sentence.
+- Fix pse_pi node bindings.
+- Add pse pi documentation written by Oleksij.
+- Link to v3: https://lore.kernel.org/r/20240208-feature_poe-v3-0-531d2674469e@bootlin.com
+
+Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+---
+Kory Maincent (17):
+      MAINTAINERS: net: Add Oleksij to pse-pd maintainers
+      of: property: Add fw_devlink support for pse parent
+      net: pse-pd: Rectify and adapt the naming of admin_cotrol member of struct pse_control_config
+      ethtool: Expand Ethernet Power Equipment with c33 (PoE) alongside PoDL
+      net: pse-pd: Introduce PSE types enumeration
+      net: ethtool: pse-pd: Expand pse commands with the PSE PoE interface
+      netlink: specs: Modify pse attribute prefix
+      netlink: specs: Expand the pse netlink command with PoE interface
+      MAINTAINERS: Add myself to pse networking maintainer
+      net: pse-pd: Add support for PSE PIs
+      dt-bindings: net: pse-pd: Add another way of describing several PSE PIs
+      net: pse-pd: Add support for setup_pi_matrix callback
+      net: pse-pd: Use regulator framework within PSE framework
+      dt-bindings: net: pse-pd: Add bindings for PD692x0 PSE controller
+      net: pse-pd: Add PD692x0 PSE controller driver
+      dt-bindings: net: pse-pd: Add bindings for TPS23881 PSE controller
+      net: pse-pd: Add TI TPS23881 PSE controller driver
+
+ .../bindings/net/pse-pd/microchip,pd692x0.yaml     |  157 +++
+ .../bindings/net/pse-pd/pse-controller.yaml        |   84 +-
+ .../bindings/net/pse-pd/ti,tps23881.yaml           |  111 ++
+ Documentation/netlink/specs/ethtool.yaml           |   33 +-
+ Documentation/networking/ethtool-netlink.rst       |   20 +
+ Documentation/networking/index.rst                 |    1 +
+ Documentation/networking/pse-pd/index.rst          |   10 +
+ Documentation/networking/pse-pd/introduction.rst   |   73 ++
+ Documentation/networking/pse-pd/pse-pi.rst         |  275 +++++
+ MAINTAINERS                                        |    8 +
+ drivers/net/mdio/fwnode_mdio.c                     |   29 +-
+ drivers/net/pse-pd/Kconfig                         |   20 +
+ drivers/net/pse-pd/Makefile                        |    2 +
+ drivers/net/pse-pd/pd692x0.c                       | 1223 ++++++++++++++++++++
+ drivers/net/pse-pd/pse_core.c                      |  491 +++++++-
+ drivers/net/pse-pd/pse_regulator.c                 |   49 +-
+ drivers/net/pse-pd/tps23881.c                      |  818 +++++++++++++
+ drivers/of/property.c                              |    2 +
+ include/linux/pse-pd/pse.h                         |   89 +-
+ include/uapi/linux/ethtool.h                       |   43 +
+ include/uapi/linux/ethtool_netlink.h               |    3 +
+ include/uapi/linux/pse.h                           |   23 +
+ net/ethtool/pse-pd.c                               |   60 +-
+ 23 files changed, 3504 insertions(+), 120 deletions(-)
+---
+base-commit: 069f62e4e393fc9ffa2f0da501155fbdce7e2605
+change-id: 20231024-feature_poe-139490e73403
+
+Best regards,
+-- 
+Köry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
 
