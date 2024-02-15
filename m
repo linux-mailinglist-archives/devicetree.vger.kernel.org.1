@@ -1,135 +1,275 @@
-Return-Path: <devicetree+bounces-42145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 758B085690C
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 17:11:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D02BA856981
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 17:26:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A84541C220A2
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 16:11:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B8B26B229DE
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 16:25:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D972F134735;
-	Thu, 15 Feb 2024 16:03:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CA11134733;
+	Thu, 15 Feb 2024 16:25:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QazWVB4P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6F67145344;
-	Thu, 15 Feb 2024 16:03:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45C71134743;
+	Thu, 15 Feb 2024 16:25:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708013032; cv=none; b=oyHnXDMepfibNrTsUfYnK+PnOr32ND0y4lESu5OiFLCQWQ2i2CiG3eRsuwoYRHANamE6+k3NNiJ+udZU/BPe8FbZDWMUlHsKDhQVtCX+LbbDgWbMZoi1vHneXleIaDOPg9v+y6JNz1ulUXRPimZCTmjEYsXdwn5nxf/BsxPRQJE=
+	t=1708014355; cv=none; b=e0SpvyzPQ7wDvbR4sZyTm1uuIAV4yUAifqtwnWTtdl2yb7kuCyV1qnO+YU4URVONZBJ9srmvfrhf62bDeoDmTemY/GTubOmcsZ18iKCMrrUoSIrC6do7dlkogpdJZFB3rqhShSHsXK0okqAVj3C4ZhUV0s+YfcpM7UYiIupRORo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708013032; c=relaxed/simple;
-	bh=hV9MxJcjm23EOX6eGaga79dWMWpuvzLq6EToYUusulM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tzrnH9hBFhgYBhDeIDdPSpKcaXvGWVUSD+GAoHtvGn1gMhSD6Lv4RkF47AlA6CE1M4jmMUrtS+BUIgoRXTijE333JfH9Gr3Ex6FHHzX4MSCcmlbR+pIaZJHS4SIc0AalC8Ir80xPsCrxiMt6TbPZ2K7e54CE6eEe3oeuEgNbQac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-6078f656914so10987677b3.3;
-        Thu, 15 Feb 2024 08:03:50 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708013027; x=1708617827;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IOKsrsoKMiggnztIq23XbGLOwUc2F18odZleUnfyY3o=;
-        b=qrXOOa2SUpph3vgX+dbj7AN3XGkT40zApP8q1QMBdanInpbTI+emQlx71RMb1qSBPl
-         UnD3MkqKerj5jqM8Fo4oQE9AJeMnRRG98JLb1EPEkZ2/FMl/L5gB8+S5zzhe9Ic4TEIK
-         K7ariItqEo3+9nz9Ya9UT+HRMu6T5KDGXB56BriBMntKIXOeRodlLzX/gKBFathLTsJF
-         V7H2sW+CoCGZnHv8vSuMXcsQ1ymbINIactpDMWWgWm2Ss5+gYl3LEoXEeBW1m7LIPzg9
-         Y4jue57gX6pIToi/1qQoxkOBSsvovA1wIDKWSSNFdtRK7WHQ4pRqIvw/VO3t0yClqvFF
-         Vi5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXpU2btGl0TMUvh8fFiCPeep8dCzjdX46XnfiFaZhoTfA+1AO7ovgeN5OK19voyfvV7bpcNh0pXbgh/n850bDA2d60J9clL8EMRTfx226Ipo2MFoFJE0qCwmyLajGzm4UTljaC41QkniK4GXqOdI5mMzBt1ZcVF5di6r/3OuWrsonICPPmw
-X-Gm-Message-State: AOJu0YyzkoxgT7S7JF1TZL+bnGk6GRBTcrfFZ1aZcBKg0g/rRHjJQpPd
-	gDZeCPJ9jaHIoyz9EUyG/qq5Op36LKXjVfQysRRS4shUq45XHeP6VK7kDY3Qpr5aRw==
-X-Google-Smtp-Source: AGHT+IFjn0gosnSbOGdcD75OcCjlwM1GzRSlhYFRUH39DW1SSSzwYnH8vQKc7wCJKgCmKzogl7oxBw==
-X-Received: by 2002:a05:690c:82e:b0:604:3d5c:e1f5 with SMTP id by14-20020a05690c082e00b006043d5ce1f5mr2246710ywb.1.1708013027564;
-        Thu, 15 Feb 2024 08:03:47 -0800 (PST)
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
-        by smtp.gmail.com with ESMTPSA id i204-20020a816dd5000000b005ff9bb7fa40sm300265ywc.34.2024.02.15.08.03.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Feb 2024 08:03:47 -0800 (PST)
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-dc6e080c1f0so917292276.2;
-        Thu, 15 Feb 2024 08:03:46 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWTPsqXKhttht8egRVD/+/mAyzV8MLYY4dBv5eNRyZigh0CWVdAmlxKVdXwg9wjvpL1uFZRVR1dihdSF360+LRDqEq5oPSxRboCEx1uLkExdD+CNCTMMjFyRyoacFXtoRJaov7Q4vc3Ky22Mrtlohm0B0bATwrNUAtfi6EQFGIdYeniH6YZ
-X-Received: by 2002:a05:6902:220f:b0:dc7:6d9a:37f2 with SMTP id
- dm15-20020a056902220f00b00dc76d9a37f2mr2694796ybb.38.1708013026518; Thu, 15
- Feb 2024 08:03:46 -0800 (PST)
+	s=arc-20240116; t=1708014355; c=relaxed/simple;
+	bh=VSAALJp4MFaIgFzqjLLc6BeLPyT7H5C4A+EO6BbIRzM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=rHQRTYfvc4XHIroqR7eQNLaNvxg2qxc3PdsuXKS9zuJwsqHxEgx4V/v1URbsSIsy12rIh6WHTicLaAMF+5Xgh8twv181EBuMmaMdIKDimr9r3hGWn3tDJrhxMud71EinChhEdDD2i9CZMUhYeyJGOVShOWF9HIXd+u5Xhd7pdDo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QazWVB4P; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41FBfcDE002449;
+	Thu, 15 Feb 2024 16:25:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=2Z2TB9HMc/XqBevRu67UWw4yo4bEz0HNufbBYufQook=; b=Qa
+	zWVB4Plwn5QYzPoDSce+5P7tJRoq5Rs9A5yqLbnNwDN68bwyHOi6PGQDEhfBrAWv
+	9cZBYHLdek4zigR4bB653tZmodepZShH8afgaS/2aksdm/Te3Zg/GWK/280tpIYu
+	MyI7qCT6GAXI/xse+IUPUMBkD1rwhVZJCvPkZnnlDgmD24xRLGUQMKFhQARTRjDZ
+	+R7Hh+q5P1eZBa8iKbrD/9T9w4Nahp5h+n8ui+2v1z93O8eUjfN6x8r6NxvCp7V/
+	IuK4VpDJcilPAdwttIUVni8BEmvuD3oD/mSQLYUy4GoLGTpdEuEPNXxgcN3vPEwF
+	G76wS9sOiYzeryssWFTA==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w9bfs1m9e-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 15 Feb 2024 16:25:30 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41FGPToN023623
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 15 Feb 2024 16:25:29 GMT
+Received: from [10.71.111.207] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 15 Feb
+ 2024 08:25:29 -0800
+Message-ID: <74b6c3dc-6add-414c-8056-3dcb94b12cd7@quicinc.com>
+Date: Thu, 15 Feb 2024 08:25:20 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231121183738.656192-1-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20231121183738.656192-1-niklas.soderlund+renesas@ragnatech.se>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 15 Feb 2024 17:03:33 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdU_CxNu-BF66POeqKv1_=ujBp8Z=cT=08crFxhgQ+gZ=g@mail.gmail.com>
-Message-ID: <CAMuHMdU_CxNu-BF66POeqKv1_=ujBp8Z=cT=08crFxhgQ+gZ=g@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: net: renesas,ethertsn: Add Ethernet TSN
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	netdev@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] drm/panel: ltk500hd1829: make room for more similar
+ panels
+To: Heiko Stuebner <heiko@sntech.de>, <neil.armstrong@linaro.org>
+CC: <sam@ravnborg.org>, <maarten.lankhorst@linux.intel.com>,
+        <mripard@kernel.org>, <tzimmermann@suse.de>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quentin.schulz@theobroma-systems.com>,
+        Heiko
+ Stuebner <heiko.stuebner@cherry.de>
+References: <20240215090515.3513817-1-heiko@sntech.de>
+ <20240215090515.3513817-2-heiko@sntech.de>
+Content-Language: en-US
+From: Jessica Zhang <quic_jesszhan@quicinc.com>
+In-Reply-To: <20240215090515.3513817-2-heiko@sntech.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: LZfVm8segKP6sX68vyDuaTOJKWkKYxEo
+X-Proofpoint-GUID: LZfVm8segKP6sX68vyDuaTOJKWkKYxEo
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-15_15,2024-02-14_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ bulkscore=0 phishscore=0 suspectscore=0 priorityscore=1501 spamscore=0
+ clxscore=1011 adultscore=0 mlxscore=0 impostorscore=0 mlxlogscore=999
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402150133
 
-Hi Niklas,
 
-On Tue, Nov 21, 2023 at 7:38=E2=80=AFPM Niklas S=C3=B6derlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> Add bindings for Renesas R-Car Ethernet TSN End-station IP. The RTSN
-> device provides Ethernet network.
->
-> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
-se>
 
-Thanks for your patch, which is now commit c5b9f4792ea6b9ab
-("dt-bindings: net: renesas,ethertsn: Add Ethernet TSN") in v6.8-rc1.
+On 2/15/2024 1:05 AM, Heiko Stuebner wrote:
+> From: Heiko Stuebner <heiko.stuebner@cherry.de>
+> 
+> There exist more dsi-panels from Leadtek sharing supplies and timings
+> with only the panel-mode and init commands differing.
+> 
+> So make room in the driver to also keep variants here instead of
+> requiring additional drivers per panel.
+> 
+> Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/renesas,ethertsn.yaml
+Hi Heiko,
 
-> +  interrupts:
-> +    items:
-> +      - description: TX data interrupt
-> +      - description: RX data interrupt
+Reviewed-by: Jessica Zhang <quic_jesszhan@quicinc.com>
+
+Thanks,
+
+Jessica Zhang
+
+> ---
+>   .../drm/panel/panel-leadtek-ltk500hd1829.c    | 73 ++++++++++++-------
+>   1 file changed, 47 insertions(+), 26 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/panel/panel-leadtek-ltk500hd1829.c b/drivers/gpu/drm/panel/panel-leadtek-ltk500hd1829.c
+> index 39e408c9f762f..42f4e2584af18 100644
+> --- a/drivers/gpu/drm/panel/panel-leadtek-ltk500hd1829.c
+> +++ b/drivers/gpu/drm/panel/panel-leadtek-ltk500hd1829.c
+> @@ -11,6 +11,7 @@
+>   #include <linux/gpio/consumer.h>
+>   #include <linux/module.h>
+>   #include <linux/of.h>
+> +#include <linux/of_device.h>
+>   #include <linux/regulator/consumer.h>
+>   
+>   #include <video/mipi_display.h>
+> @@ -21,25 +22,32 @@
+>   #include <drm/drm_modes.h>
+>   #include <drm/drm_panel.h>
+>   
+> +struct ltk500hd1829_cmd {
+> +	char cmd;
+> +	char data;
+> +};
 > +
-> +  interrupt-names:
-> +    items:
-> +      - const: tx
-> +      - const: rx
-
-What about the (17!) other interrupts?
-
-> +  rx-internal-delay-ps:
-> +    enum: [0, 1800]
+> +struct ltk500hd1829_desc {
+> +	const struct drm_display_mode *mode;
+> +	const struct ltk500hd1829_cmd *init;
+> +	unsigned int num_init;
+> +};
 > +
-> +  tx-internal-delay-ps:
-> +    enum: [0, 2000]
-
-These two should either have a default, or be required (like on
-EtherAVB, where we couldn't have a default because the absence of
- these properties is used to enable a legacy fallback).
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+>   struct ltk500hd1829 {
+>   	struct device *dev;
+>   	struct drm_panel panel;
+>   	struct gpio_desc *reset_gpio;
+>   	struct regulator *vcc;
+>   	struct regulator *iovcc;
+> +	const struct ltk500hd1829_desc *panel_desc;
+>   	bool prepared;
+>   };
+>   
+> -struct ltk500hd1829_cmd {
+> -	char cmd;
+> -	char data;
+> -};
+> -
+>   /*
+>    * There is no description in the Reference Manual about these commands.
+>    * We received them from the vendor, so just use them as is.
+>    */
+> -static const struct ltk500hd1829_cmd init_code[] = {
+> +static const struct ltk500hd1829_cmd ltk500hd1829_init[] = {
+>   	{ 0xE0, 0x00 },
+>   	{ 0xE1, 0x93 },
+>   	{ 0xE2, 0x65 },
+> @@ -260,6 +268,26 @@ static const struct ltk500hd1829_cmd init_code[] = {
+>   	{ 0x35, 0x00 },
+>   };
+>   
+> +static const struct drm_display_mode ltk500hd1829_mode = {
+> +	.hdisplay	= 720,
+> +	.hsync_start	= 720 + 50,
+> +	.hsync_end	= 720 + 50 + 50,
+> +	.htotal		= 720 + 50 + 50 + 50,
+> +	.vdisplay	= 1280,
+> +	.vsync_start	= 1280 + 30,
+> +	.vsync_end	= 1280 + 30 + 4,
+> +	.vtotal		= 1280 + 30 + 4 + 12,
+> +	.clock		= 69217,
+> +	.width_mm	= 62,
+> +	.height_mm	= 110,
+> +};
+> +
+> +static const struct ltk500hd1829_desc ltk500hd1829_data = {
+> +	.mode = &ltk500hd1829_mode,
+> +	.init = ltk500hd1829_init,
+> +	.num_init = ARRAY_SIZE(ltk500hd1829_init),
+> +};
+> +
+>   static inline
+>   struct ltk500hd1829 *panel_to_ltk500hd1829(struct drm_panel *panel)
+>   {
+> @@ -324,8 +352,8 @@ static int ltk500hd1829_prepare(struct drm_panel *panel)
+>   	/* tRT: >= 5ms */
+>   	usleep_range(5000, 6000);
+>   
+> -	for (i = 0; i < ARRAY_SIZE(init_code); i++) {
+> -		ret = mipi_dsi_generic_write(dsi, &init_code[i],
+> +	for (i = 0; i < ctx->panel_desc->num_init; i++) {
+> +		ret = mipi_dsi_generic_write(dsi, &ctx->panel_desc->init[i],
+>   					     sizeof(struct ltk500hd1829_cmd));
+>   		if (ret < 0) {
+>   			dev_err(panel->dev, "failed to write init cmds: %d\n", ret);
+> @@ -359,31 +387,17 @@ static int ltk500hd1829_prepare(struct drm_panel *panel)
+>   	return ret;
+>   }
+>   
+> -static const struct drm_display_mode default_mode = {
+> -	.hdisplay	= 720,
+> -	.hsync_start	= 720 + 50,
+> -	.hsync_end	= 720 + 50 + 50,
+> -	.htotal		= 720 + 50 + 50 + 50,
+> -	.vdisplay	= 1280,
+> -	.vsync_start	= 1280 + 30,
+> -	.vsync_end	= 1280 + 30 + 4,
+> -	.vtotal		= 1280 + 30 + 4 + 12,
+> -	.clock		= 69217,
+> -	.width_mm	= 62,
+> -	.height_mm	= 110,
+> -};
+> -
+>   static int ltk500hd1829_get_modes(struct drm_panel *panel,
+>   				  struct drm_connector *connector)
+>   {
+>   	struct ltk500hd1829 *ctx = panel_to_ltk500hd1829(panel);
+>   	struct drm_display_mode *mode;
+>   
+> -	mode = drm_mode_duplicate(connector->dev, &default_mode);
+> +	mode = drm_mode_duplicate(connector->dev, ctx->panel_desc->mode);
+>   	if (!mode) {
+>   		dev_err(ctx->dev, "failed to add mode %ux%u@%u\n",
+> -			default_mode.hdisplay, default_mode.vdisplay,
+> -			drm_mode_vrefresh(&default_mode));
+> +			ctx->panel_desc->mode->hdisplay, ctx->panel_desc->mode->vdisplay,
+> +			drm_mode_vrefresh(ctx->panel_desc->mode));
+>   		return -ENOMEM;
+>   	}
+>   
+> @@ -413,6 +427,10 @@ static int ltk500hd1829_probe(struct mipi_dsi_device *dsi)
+>   	if (!ctx)
+>   		return -ENOMEM;
+>   
+> +	ctx->panel_desc = of_device_get_match_data(dev);
+> +	if (!ctx->panel_desc)
+> +		return -EINVAL;
+> +
+>   	ctx->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LOW);
+>   	if (IS_ERR(ctx->reset_gpio)) {
+>   		dev_err(dev, "cannot get reset gpio\n");
+> @@ -492,7 +510,10 @@ static void ltk500hd1829_remove(struct mipi_dsi_device *dsi)
+>   }
+>   
+>   static const struct of_device_id ltk500hd1829_of_match[] = {
+> -	{ .compatible = "leadtek,ltk500hd1829", },
+> +	{
+> +		.compatible = "leadtek,ltk500hd1829",
+> +		.data = &ltk500hd1829_data,
+> +	},
+>   	{ /* sentinel */ }
+>   };
+>   MODULE_DEVICE_TABLE(of, ltk500hd1829_of_match);
+> -- 
+> 2.39.2
+> 
 
