@@ -1,131 +1,87 @@
-Return-Path: <devicetree+bounces-42053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42055-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02AF285638A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 13:45:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98979856390
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 13:46:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB4812891F7
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:45:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B5E61F25EB0
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:46:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05C7C12DDB8;
-	Thu, 15 Feb 2024 12:45:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kbTsGR/p"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF2CD12CDBE;
+	Thu, 15 Feb 2024 12:45:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E70712DD85;
-	Thu, 15 Feb 2024 12:45:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC70C12C7E9
+	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 12:45:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708001107; cv=none; b=oG7+IiOSecGS84ui61lAbDert6++l0TPyHy3MmQHtKxMhMMK92o5QK8CEn0pB+7BsQXedKHSkkeDnJ7/qkW2Pf3TuJMrrprqwUZgsiM/f7g8lFN8QwNixLGZCw+vMferb4sVeT90ojEhCMXGy1/La0EK40UJ2aw0ytiSkcR53nA=
+	t=1708001127; cv=none; b=IYxeVMUdV2EgUR2DQUdp+9UicEwtzUxy5otttWVFkPi1KVTISoT6E4P7UMizqk0AGZK78CcJZYU46UAnHGol2u2XXRpm6W6/2eZW4paYvxQR+RIrYEtlscWD3PvvuqiBR1cZK/NQgKtNc96u4d2ItjGfw8XwnBXju1RonpATyDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708001107; c=relaxed/simple;
-	bh=r1qCmEfG9TOJIeTRiTy4CJ/2RXzY6FXSnyuokA3WHn0=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DiC4qv26j6shfdoslTdOd1E0rCFvrLo8LVn7VJOprgWqhdlXQBqLF73GSGBd52btxpslEkStrKZkMyUfzSW9lP32nabRqFsKm0AlrwWKd/3bPwnQygcecjIlwBhk1llu8SO92fBT+rBANPfb9/A9xJTAt/2NqTiADj03jVnNoCc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kbTsGR/p; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41FBi3VN009426;
-	Thu, 15 Feb 2024 12:44:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	qcppdkim1; bh=4IHe2eNrOxuBbvyn8W0GTqyrfuds0kMln3z9TSBgCGo=; b=kb
-	TsGR/pw8p3NuTQWJ/O4DNiPNu0cJQSWyTe8hfdUtcpytAUA6CdXh8xupaqtYX4CG
-	Dk8lkiFekgHP5hU+W3X/FrBkBjGsxdV0M+mmncoukPZt67CQU0lUilaiqWH+Pye2
-	8VRpz7NK1JPvqvtHasJz6esjciiPDA443OS/JQ7nLdFCY9ginemH41njuuQ+v7Lb
-	6XFK7i26HRSISpRp5BhdaynMGC9wfq0WZhvpJPf/knw8eXpqZWWLsib+5juqgZUp
-	5VhztktkCdvasroi5gLLfSBQGrNVE1WrEp0rGPE2G61LCvhktmqhuyEyGyQ/4Tdi
-	oqzzAwy2K9HbzaJthL4Q==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w96c3sgf7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 15 Feb 2024 12:44:52 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41FCipVU028580
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 15 Feb 2024 12:44:51 GMT
-Received: from hu-jinlmao-lv.qualcomm.com (10.49.16.6) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 15 Feb 2024 04:44:51 -0800
-From: Mao Jinlong <quic_jinlmao@quicinc.com>
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach
-	<mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Mao
- Jinlong" <quic_jinlmao@quicinc.com>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>
-CC: <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 2/2] coresight-tpda: Change qcom,dsb-element-size to qcom,dsb-elem-bits
-Date: Thu, 15 Feb 2024 04:44:37 -0800
-Message-ID: <20240215124439.30037-3-quic_jinlmao@quicinc.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20240215124439.30037-1-quic_jinlmao@quicinc.com>
-References: <20240215124439.30037-1-quic_jinlmao@quicinc.com>
+	s=arc-20240116; t=1708001127; c=relaxed/simple;
+	bh=UzKmg5Hhf+KMfuB37xNJBpKPXOndS3x3f0mxLQwSk9Q=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=CS05Q5oOQJ/GP+75cGp48tVOwMWdNNxW0GWTfpiuM2SALOxeTv5GHZIUXAPuej8m4s6RPJL46fvODLYXjapfmIPR5Yg4mTz1kAnZvV+rgm/ItHbScw2FxEd9M8oQAW6dbgAmzJKFZuGdsKiOjY2a0KR4tf7T1DenrTHa+lsiuJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rab7B-0003jZ-Iz; Thu, 15 Feb 2024 13:45:21 +0100
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rab77-000t5u-9s; Thu, 15 Feb 2024 13:45:17 +0100
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rab77-0007iB-0k;
+	Thu, 15 Feb 2024 13:45:17 +0100
+Message-ID: <8981ec7d30444d2127ee97f5c804f8837ae5c6ce.camel@pengutronix.de>
+Subject: Re: [PATCH v3 2/4] reset: simple: add support for Sophgo SG2042
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
+ chao.wei@sophgo.com,  conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ palmer@dabbelt.com,  paul.walmsley@sifive.com, robh+dt@kernel.org,
+ devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org,  haijiao.liu@sophgo.com,
+ xiaoguang.xing@sophgo.com, guoren@kernel.org,  jszhang@kernel.org,
+ inochiama@outlook.com
+Cc: Chen Wang <unicorn_wang@outlook.com>
+Date: Thu, 15 Feb 2024 13:45:17 +0100
+In-Reply-To: <1cfd7b3ba447942784c4f7aa595e962399e9f617.1706577450.git.unicorn_wang@outlook.com>
+References: <cover.1706577450.git.unicorn_wang@outlook.com>
+	 <1cfd7b3ba447942784c4f7aa595e962399e9f617.1706577450.git.unicorn_wang@outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: uzAGRWWQWwkUy8tJU8yoqbV6LScbyqo5
-X-Proofpoint-GUID: uzAGRWWQWwkUy8tJU8yoqbV6LScbyqo5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-15_12,2024-02-14_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 suspectscore=0
- impostorscore=0 adultscore=0 mlxscore=0 mlxlogscore=948 malwarescore=0
- spamscore=0 lowpriorityscore=0 priorityscore=1501 phishscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402150102
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Change qcom,dsb-element-size to qcom,dsb-elem-bits as the unit is bit.
+On Di, 2024-01-30 at 09:50 +0800, Chen Wang wrote:
+> From: Chen Wang <unicorn_wang@outlook.com>
+>=20
+> Reuse reset-simple driver for the Sophgo SG2042 reset generator.
+>=20
+> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
 
-Fixes: 57e7235aa1d1 ("coresight-tpda: Add DSB dataset support")
-Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
----
- drivers/hwtracing/coresight/coresight-tpda.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 
-diff --git a/drivers/hwtracing/coresight/coresight-tpda.c b/drivers/hwtracing/coresight/coresight-tpda.c
-index 6863afe7ca94..5d20e10be24b 100644
---- a/drivers/hwtracing/coresight/coresight-tpda.c
-+++ b/drivers/hwtracing/coresight/coresight-tpda.c
-@@ -70,7 +70,7 @@ static int tpdm_read_element_size(struct tpda_drvdata *drvdata,
- 
- 	if (tpdm_has_dsb_dataset(tpdm_data)) {
- 		rc = fwnode_property_read_u8(dev_fwnode(csdev->dev.parent),
--				"qcom,dsb-element-size", &drvdata->dsb_esize);
-+				"qcom,dsb-element-bits", &drvdata->dsb_esize);
- 	}
- 	if (tpdm_has_cmb_dataset(tpdm_data)) {
- 		rc = fwnode_property_read_u32(dev_fwnode(csdev->dev.parent),
--- 
-2.41.0
+regards
+Philipp
 
 
