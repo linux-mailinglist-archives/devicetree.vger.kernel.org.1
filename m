@@ -1,151 +1,240 @@
-Return-Path: <devicetree+bounces-42097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2481C856585
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 15:11:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92A738565B0
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 15:15:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ABBD01F26508
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 14:11:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 086AE1F2148B
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 14:15:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16E6213398C;
-	Thu, 15 Feb 2024 14:09:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19B06131E31;
+	Thu, 15 Feb 2024 14:14:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="b7BmtPHD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="idNGx56Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01C3913340F
-	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 14:09:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB9CC13175E;
+	Thu, 15 Feb 2024 14:14:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708006157; cv=none; b=YWwYXuWA4t13UGQl2OsnZJ4z/6pr9Tuij/baUaY8p9mebI5jUswz8Sq+huxeN4uQi0RRVPjdMWp4Ytt1XgXpfoPSBISlHAx9YfjmX1bCmavrJQNP1LxIEwGNQLfXnG0FTODcK778HT7+Z3TFk5RmIatP0AjeOkx1KzPeoU5KDbA=
+	t=1708006476; cv=none; b=YXDKom8hFmISfbrcH+2eollfj+GdVa/WyEswQYDszQopS/R/fyomhL1RXHf8QVr57bOpfkDor3/Q2MSL3rNsqSKSg/OvDNWbpHJIbodLtj1/IhGXcilB0TkLRo2IRFiCm+RWWikqqNjvEnqeQgdrqnkYf1O/DytQG34IeJ9WzmU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708006157; c=relaxed/simple;
-	bh=2C2IVa4viiNlUGmLOxJLTFOjDptgPpUuxtWwnvfEGIU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=jJKBWyl/YAwDmtBB1ueUCAdAs72uiBtKrv1aQADzoQ+kb28onsg7d+bsJgT9CgYGEV5AaEur5qRveNkSMWUTVbTE9kJKbm9b8tlJjU2NmZHS+SntAzMcgW76Inuo7QJjRtOaD+Cj725DQOsZDKgSj+rYpVKMsAqygCUY0xQVD5s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=b7BmtPHD; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-411fc50e4e9so7064075e9.0
-        for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 06:09:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1708006152; x=1708610952; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rijbwvHcSAy25b/Tneh/0DG0Xorpu1pIj5rjNv2eY/w=;
-        b=b7BmtPHDrwRBmIFvsaHyY67L3XK7LLc2QkaSykgvNG1mrH/KxPwMA3Lg50yx3F54KB
-         F4YLr2QT1F36G3PQ78FdZiT9+xfoA7M/UENCf77pxcQBso3CgFKOoNr4Hud3uhjK+FGU
-         /lgggoT5X5V9x0GI9dU1+tWip45QkhZYpAsKUm8awe6RjQGNVcFDh0kZEAux4cJXdsQQ
-         PzourC3eMqQTJ7z1ia+yMA72XCqrJCPQawPH1msEpvThc0885D4zEDkikky2mRo5GDyE
-         zDqSDMlK4V9+ApDP6WtiTKMOkqx1n25bGB/bHmUZUzc/n/zk5vdZ8jFHAUuTVT2a5iFd
-         MDkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708006152; x=1708610952;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rijbwvHcSAy25b/Tneh/0DG0Xorpu1pIj5rjNv2eY/w=;
-        b=aCQjpTMH4+IDTVMKFVFMWCBAWTxddUM9khZqkVCDs2K5YGKGBLlzHGzIlaQkl+sSo4
-         6hmXofeE3CFkKCZp8zlAMvag4wrOXpyfR6TLyQmkD4h/ESpuAvW4JVWuLDyym2bs7cpB
-         TkwbqjH/G+H38sbwSqyf0XkH+7Cm4aNavJdDCz31PBmsNkQt78YyOxyEC/2m3AG90sD2
-         9vwLkXO4/BWcdsjcQL5B8P6j06mq4NirvIWPRXoI8OJdyk7KIzhcyyepl3xVpFhndZyA
-         DYWZXM66CAoz7+hZ2MYP8HgQ8vj9EipDuRPJ6wmNBeXgpSzJu4egUoezhMKW0zbk/bTQ
-         /59w==
-X-Forwarded-Encrypted: i=1; AJvYcCVvbaME5Y6MHutJDrJ5OvZvLtVvIZkVbtw6kt860qpGAeLemB8g343ntyP/LBBn+h4KlwpW65nzU5d2o21IWDxYdxzat9lxIlDxdg==
-X-Gm-Message-State: AOJu0Yya45OMKqtla+x3wsForBI4Y+nMC+dfJ+RM4iMKO8yfZcl6iAa6
-	+QVEgKNW7dllez3S15aVduReBd682fnZiUfwvAazQBlAej6xelBz8JgBub8SgYc=
-X-Google-Smtp-Source: AGHT+IFO4kixRtEYXDlu3mbSKifqhuSVYxtsIbsqSj/Di6B6cs7A9YuUvATjjzuvOpQ53ZC9zpVw8A==
-X-Received: by 2002:a05:600c:4507:b0:410:71e8:4921 with SMTP id t7-20020a05600c450700b0041071e84921mr1683519wmo.24.1708006152465;
-        Thu, 15 Feb 2024 06:09:12 -0800 (PST)
-Received: from claudiu-X670E-Pro-RS.. ([82.78.167.20])
-        by smtp.gmail.com with ESMTPSA id h17-20020a05600c261100b0040fe4b733f4sm5120950wma.26.2024.02.15.06.09.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Feb 2024 06:09:11 -0800 (PST)
-From: Claudiu <claudiu.beznea@tuxon.dev>
-X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
-To: wim@linux-watchdog.org,
-	linux@roeck-us.net,
-	robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	p.zabel@pengutronix.de,
-	geert+renesas@glider.be,
-	magnus.damm@gmail.com,
-	biju.das.jz@bp.renesas.com
-Cc: linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	claudiu.beznea@tuxon.dev,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v7 9/9] dt-bindings: watchdog: renesas,wdt: Document RZ/G3S support
-Date: Thu, 15 Feb 2024 16:08:41 +0200
-Message-Id: <20240215140841.2278657-10-claudiu.beznea.uj@bp.renesas.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240215140841.2278657-1-claudiu.beznea.uj@bp.renesas.com>
-References: <20240215140841.2278657-1-claudiu.beznea.uj@bp.renesas.com>
+	s=arc-20240116; t=1708006476; c=relaxed/simple;
+	bh=RtD5fIwW2Tv98e2ZwItrznuWej/tQ+n+fDjWn0UkU18=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pB4AcRoudpHuGlh1k8Uth+fU8Ma9DL9w17bA/DTZNuOzJ2dKrVp52fZ4DnHwle+Ee5y/5qq/ALucXqBw8pRJUGMN6wn5VJErkA6T0dgAVSx/DcWYAJWrEfQ/hoOQcWu3b9e26V6iIfpRtHpovJt49ErBNNtPbDoHs96W7wUgUns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=idNGx56Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1856FC43399;
+	Thu, 15 Feb 2024 14:14:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708006475;
+	bh=RtD5fIwW2Tv98e2ZwItrznuWej/tQ+n+fDjWn0UkU18=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=idNGx56Z5MDGH1zTVRUU5AS28xfueBdbCV1C/deCWpkJJh6WN0lbvNfZTwGBpT2ih
+	 m2QBP/WBTV+9ooTCV+3tUsOix0622rp1usFV97Bd0FmZsZyFARUCYG9FrH4mb/46wM
+	 ao2XsXsdzY5cW8n1Z6y87mu6DLtn4DDLpPkrXg0bfAs32llBCdaQD1x93BosBzuWGm
+	 Vv5w3Duz4ylJepPvEGPgwTe69fgpd5sAeK101U9vg5p0+jaT4kkkaIB/ReOG5drZ/n
+	 574CJarVFgDx7NsiiJ2yRmYIhjDdYYqsmEl7Pgcs65ecGf7pPpdLZ6xWeBFlaD7Re8
+	 ZZIkTkge6/ORw==
+Date: Thu, 15 Feb 2024 14:14:29 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Md Sadre Alam <quic_mdalam@quicinc.com>
+Cc: andersson@kernel.org, konrad.dybcio@linaro.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+	manivannan.sadhasivam@linaro.org, linux-arm-msm@vger.kernel.org,
+	linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+	quic_srichara@quicinc.com, quic_varada@quicinc.com
+Subject: Re: [PATCH 3/5] spi: spi-qpic: Add qpic spi nand driver support
+Message-ID: <21dde665-54b4-48e4-b963-1008ac890df3@sirena.org.uk>
+References: <20240215134856.1313239-1-quic_mdalam@quicinc.com>
+ <20240215134856.1313239-4-quic_mdalam@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="XhokIFG6tLIbxTBQ"
+Content-Disposition: inline
+In-Reply-To: <20240215134856.1313239-4-quic_mdalam@quicinc.com>
+X-Cookie: Pass with care.
 
-From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Document the support for the watchdog IP available on RZ/G3S SoC. The
-watchdog IP available on RZ/G3S SoC is identical to the one found on
-RZ/G2L SoC.
+--XhokIFG6tLIbxTBQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
+On Thu, Feb 15, 2024 at 07:18:54PM +0530, Md Sadre Alam wrote:
 
-Changes in v7:
-- none
+> +config SPI_QPIC_SNAND
+> +	tristate "QPIC SNAND controller"
+> +	default y
 
-Changes in v6:
-- none
+Why is this driver so special it should be enabled by default?
 
-Changes in v5:
-- none
+> +	depends on ARCH_QCOM
 
-Changes in v4:
-- none
+Please add an || COMPILE_TEST so this gets some build coverage.
 
-Changes in v3:
-- re-arranged the tags as my b4 am/shazam placed previously the
-  Ab, Rb tags before the author's Sob
+> +	help
+> +	  QPIC_SNAND (QPIC SPI NAND) driver for Qualcomm QPIC controller.
+> +	  QPIC controller supports both parallel nand and serial nand.
+> +	  This config will enable serial nand driver for QPIC controller.
+> +
+>  config SPI_QUP
+>  	tristate "Qualcomm SPI controller with QUP interface"
+>  	depends on ARCH_QCOM || COMPILE_TEST
+> diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
+> index 4ff8d725ba5e..1ac3bac35007 100644
+> --- a/drivers/spi/Makefile
+> +++ b/drivers/spi/Makefile
+> @@ -153,6 +153,7 @@ obj-$(CONFIG_SPI_XTENSA_XTFPGA)		+= spi-xtensa-xtfpga.o
+>  obj-$(CONFIG_SPI_ZYNQ_QSPI)		+= spi-zynq-qspi.o
+>  obj-$(CONFIG_SPI_ZYNQMP_GQSPI)		+= spi-zynqmp-gqspi.o
+>  obj-$(CONFIG_SPI_AMD)			+= spi-amd.o
+> +obj-$(CONFIG_SPI_QPIC_SNAND)            += spi-qpic-snand.o
 
-Changes in v2:
-- collected tags
-- s/G2UL/G2L in patch description
+Please keep this sorted.
 
- Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml | 1 +
- 1 file changed, 1 insertion(+)
+> --- /dev/null
+> +++ b/drivers/spi/spi-qpic-snand.c
+> @@ -0,0 +1,1025 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
 
-diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-index 951a7d54135a..220763838df0 100644
---- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-@@ -29,6 +29,7 @@ properties:
-               - renesas,r9a07g043-wdt    # RZ/G2UL and RZ/Five
-               - renesas,r9a07g044-wdt    # RZ/G2{L,LC}
-               - renesas,r9a07g054-wdt    # RZ/V2L
-+              - renesas,r9a08g045-wdt    # RZ/G3S
-           - const: renesas,rzg2l-wdt
- 
-       - items:
--- 
-2.39.2
+Please make the entire comment a C++ one so things look more
+intentional.
 
+> +#define snandc_set_read_loc_first(snandc, reg, cw_offset, read_size, is_last_read_loc)	\
+> +snandc_set_reg(snandc, reg,			\
+> +	      ((cw_offset) << READ_LOCATION_OFFSET) |		\
+> +	      ((read_size) << READ_LOCATION_SIZE) |			\
+> +	      ((is_last_read_loc) << READ_LOCATION_LAST))
+> +
+> +#define snandc_set_read_loc_last(snandc, reg, cw_offset, read_size, is_last_read_loc)	\
+> +snandc_set_reg(snandc, reg,			\
+> +	      ((cw_offset) << READ_LOCATION_OFFSET) |		\
+> +	      ((read_size) << READ_LOCATION_SIZE) |			\
+> +	      ((is_last_read_loc) << READ_LOCATION_LAST))
+
+For type safety and legibility please write these as functions, mark
+them as static inline if needed.
+
+> +void snandc_set_reg(struct qcom_nand_controller *snandc, int offset, u32 val)
+> +{
+> +	struct nandc_regs *regs = snandc->regs;
+> +	__le32 *reg;
+> +
+> +	reg = offset_to_nandc_reg(regs, offset);
+> +
+> +	if (reg)
+> +		*reg = cpu_to_le32(val);
+> +}
+
+This silently ignores writes to invalid registers, that doesn't seem
+great.
+
+> +	return snandc->ecc_stats.failed ? -EBADMSG : snandc->ecc_stats.bitflips;
+
+For legibility please just write normal conditional statements.
+
+> +static int qpic_snand_program_execute(struct qcom_nand_controller *snandc,
+> +				      const struct spi_mem_op *op)
+> +{
+
+> +       int num_cw = 4;
+
+> +	data_buf = (u8 *)snandc->wbuf;
+
+Why the cast?  If it's needed that smells like it's masking a bug, it
+looks like it's casting from a u8 * to a u8 *.
+
+> +	for (i = 0; i < num_cw; i++) {
+> +		int data_size;
+
+All these functions appear to hard code "num_cw" to 4.  What is "num_cw"
+and why are we doing this per function?
+
+> +static int qpic_snand_program_execute(struct qcom_nand_controller *snandc,
+> +                                     const struct spi_mem_op *op)
+
+> +	if (op->cmd.opcode == SPINAND_READID) {
+> +		snandc->buf_count = 4;
+> +		read_reg_dma(snandc, NAND_READ_ID, 1, NAND_BAM_NEXT_SGL);
+> +
+> +		ret = submit_descs(snandc);
+> +		if (ret)
+> +			dev_err(snandc->dev, "failure in submitting descriptor for readid\n");
+> +
+> +		nandc_read_buffer_sync(snandc, true);
+> +		memcpy(op->data.buf.in, snandc->reg_read_buf, snandc->buf_count);
+
+These memcpy()s don't seem great, why aren't we just reading directly
+into the output buffer?
+
+> +	if (op->cmd.opcode == SPINAND_GET_FEATURE) {
+
+This function looks like it should be a switch statement.
+
+> +static bool qpic_snand_is_page_op(const struct spi_mem_op *op)
+> +{
+
+> +	if (op->data.dir == SPI_MEM_DATA_IN) {
+> +		if (op->addr.buswidth == 4 && op->data.buswidth == 4)
+> +			return true;
+> +
+> +		if (op->addr.nbytes == 2 && op->addr.buswidth == 1)
+> +			return true;
+> +
+> +	} else if (op->data.dir == SPI_MEM_DATA_OUT) {
+> +		if (op->data.buswidth == 4)
+> +			return true;
+> +		if (op->addr.nbytes == 2 && op->addr.buswidth == 1)
+> +			return true;
+> +	}
+
+Again looks like a switch statement.
+
+> +	ctlr = devm_spi_alloc_master(dev, sizeof(*snandc));
+> +	if (!ctlr)
+> +		return -ENOMEM;
+
+Please use _alloc_controller.
+
+> +static int qcom_snand_remove(struct platform_device *pdev)
+> +{
+> +	struct spi_controller *ctlr = platform_get_drvdata(pdev);
+> +
+> +	spi_unregister_controller(ctlr);
+> +
+> +	return 0;
+> +}
+
+We don't disable any of the clocks in the remove path.
+
+--XhokIFG6tLIbxTBQ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXOHEQACgkQJNaLcl1U
+h9DPNQf+J50wqlt9PTavj5k8BZ9Z6zwjzegCMvrnHopmC1YAf4xbXkQCAQxV7emn
+twIkNpsgq47QVVagkvGaKItUPEEBYLfAD0xSueD9f45evFnwqXWn0vKkaVIN4rwu
+1G/1V7E6yS71iuctmkMd1QDTey4Q2zG869/GYDKkBC01JFJ5yWzMi8kpCetcJYs1
+D1a6PVUMWv6wWaCGIcXPjPXguhKmy2S3Z6WSqZ/pr8hxDfNHgy58ie9lvh71axNc
+AM+nlRRggHB6he9/9EtGMxe1nNAmFa5i6rIPVHlPYgbmKiy9H325PnGwXsoJ0GRb
+3BRpV35HMNNSHJyfXyBP/J3nWz7MqQ==
+=n07f
+-----END PGP SIGNATURE-----
+
+--XhokIFG6tLIbxTBQ--
 
