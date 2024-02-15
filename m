@@ -1,128 +1,157 @@
-Return-Path: <devicetree+bounces-41996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 931368560B4
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:05:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 815A58560C2
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:06:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1DABA1F213EB
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:05:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 324BC1F21607
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:06:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4720D12BE89;
-	Thu, 15 Feb 2024 10:58:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="gA66lzTh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48C0B12C7FD;
+	Thu, 15 Feb 2024 11:02:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16D7012BE80
-	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 10:58:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A00E912C803;
+	Thu, 15 Feb 2024 11:02:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707994719; cv=none; b=uCz4VtPgn4NPwy9YBdQrpigOTnZiBSsaI3UPkRvREiwWBZ8XwRSsxfuirNGc9W9BqAtpBgK91uKKV3ezQEoKJWhSdNVHuA/XwleDMt2DwvMk6GKCSAoDrECc/WkO/Dol3Jt9RIu9MNtOfMtbfJhVnNYwkGBH4uZH7CJ5xt89LP8=
+	t=1707994925; cv=none; b=W6Kp0hlsfUYghS8jD2R1YnS6TfUjAlcGup7LZSFJNcAb463hRH6jBHw4vYPRGdirwegagT7lk25VwG9VanjNOqne7ic23d1M6HUf9/K4i89GWx+BtbK+8ZjIn1u45n1N701Pds113McozWsAnPlORYiN2uGXHHswZaESoVoPEog=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707994719; c=relaxed/simple;
-	bh=tzDHngKZk6QIBWOoNYjBmQJOk/IA1gtla0htMhR27Q8=;
+	s=arc-20240116; t=1707994925; c=relaxed/simple;
+	bh=Hm8P6oyenZi1eBAN/OYEEjXEBmdCYWOQryV6DrT4dG4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qpHosMCp1hAu60Iw3wzbA9kKDPUhbo/70FVKSn5Iz6mXbRku4N0kz8DZa8eOogoSd2v5+eH25yHPqOhiuCWzih9HE2mYDbgC29mPiURXYSYFQSJpMsdCBMSTI0OGc4ItWw1t7eDVt+g5rjCF4sPVWTlfj0w8XBCqquVpDwmZX/4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=gA66lzTh; arc=none smtp.client-ip=209.85.215.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=9elements.com
-Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-5d42e7ab8a9so558221a12.3
-        for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 02:58:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1707994716; x=1708599516; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=YJvPkqnLdxaKyN0Hdk5m+Q6BeTQyhOtuZMBz4sQhbGo=;
-        b=gA66lzThdoTm4RVqUuFEAFNC2bTxpYTBVgTJenOa9z09KiZ5pqF1Xgf56GBq6R6nCA
-         ZlcNAJGaPG6qwaHiMGjNYbz7myDAQkoWNcCldTfRrOuArGBe04aRAsDDxaxpy5F6hlPn
-         jY3d0QD5Djp6ELW3WVkwQFlJDSpW4LBKop1/ixNuwPLYQpEeYum6oQiJPKmYkTWaUGw9
-         xY4XZJJs8ccI2elpPbHc8U83sjRaZ2ZPfxCmlwZPqMZed/URFrOVyPVRe2XDGmfH3j5B
-         sPkTKJFx0B4rLdQbjHEERvWYEn2cZ5XhRae/8rKlE21Hg2F21cfwVdk9A7orRnFsDJCW
-         9+eg==
+	 To:Cc:Content-Type; b=a6zOK0f9u8GJSMylU6a+9nsTwrofYJ3us/7bwLSpSwFi6dq97P2cfKLXhGn3DqwGkjdp8erSHxglMVUXPQghZmFMsKmTSY0LNdGRZ1z3MybR9o4E0RWLHqE1YIXBrrdfWlv9dnmJ55ZGYIXqRRNp353yb7XEeQOHAIm7KqjGV1o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-60792653b94so7207997b3.3;
+        Thu, 15 Feb 2024 03:02:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707994716; x=1708599516;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YJvPkqnLdxaKyN0Hdk5m+Q6BeTQyhOtuZMBz4sQhbGo=;
-        b=X3fg0uLJRB5qv+0A5SheeQbB3oi2uWt3Q331QPEJNB9Z941vPVEuHInhOKkVftFwPk
-         kLIYv2sQJOX6rn2lloC9J2/b2s2CQTE1JsoJp+cJWGCh3VZmznj18ku+6Bapb6vJwhuD
-         z5UOmAzBNWw3wck2Sehep7PSz1MKxpXp6zUNG1fvhbx2oGK6qMwklWcRAxM6a5DWRtBS
-         0FvffxM1Cl/RbXNeyNOEMLTsMqfoCESmSn7VJRS7FtzyG/ljdSRck/dt5/+oeNJuLMN0
-         b/FNCsFchSV9NJDFz5tgCM2UUk8J3RSFRoYkK/FS/opAi7LxOkGSYsoly1DVP/F+9aoO
-         Et8g==
-X-Forwarded-Encrypted: i=1; AJvYcCX5Lh1xo2JAuNlmXq52xLhy9yc7y2+FU1XdnkprBLoGKA1rUUXqJB4NDFNs5R3NBfDoPe9Mp6eR10/Cdc4Ix+EbFLr1fCZ99S4kVw==
-X-Gm-Message-State: AOJu0YzKKMoMFDK5/enIi83U76OvxmQhuLrvpz0iPqlGRb4IH8WtboQf
-	vI5l9+MJzhnoXA/W+jHhT/hTgnSoSNYbj28Vjg71Iy8FX5NJGDoQFR038nHaeVjSmPJXfsiWmQu
-	49t7pbWMFToTaVMDf+3fMy5jCTuNz1V8ne8u8Sw==
-X-Google-Smtp-Source: AGHT+IEzCZBAeq/xYnVu2+hD//hf32Mg4uqn5Mqc4dDYQHNZxNY994qa1bP2ikp+DEEJOhrLGMkMQ/cWEBk62jrYjiE=
-X-Received: by 2002:a17:90b:f8d:b0:299:1f21:e54d with SMTP id
- ft13-20020a17090b0f8d00b002991f21e54dmr275615pjb.8.1707994716320; Thu, 15 Feb
- 2024 02:58:36 -0800 (PST)
+        d=1e100.net; s=20230601; t=1707994921; x=1708599721;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=X2t28MWrQY7W2xrmkJ0+2MqE764Vph7M/VElh1kErvI=;
+        b=vwQyxUdgFU2pEm8C0wXUszuwAZKzfTR/npEJad27wvKl3HYYHcZEwW47dBMfgJSePB
+         fNMzFhHdjzdBMYZEm753jr6nGR2UEU/K5N0A3+TuGiXMAxtxsg7U7QKoffwdK0RQXTVB
+         gFO7ApP9zmwogmduUOBYFqtmiSXycGSdXQAwqk/wSoS3tKIcThiRRGEgrG3kl9tO7KjY
+         v16fdh3VOji3be1IyDoCNAXf/pSz/ibP4HD21+jzcyLzYhGC2HmSJZ4ehVgfxKeo1fCg
+         Uip5FE9zQvMrcadt2oxKpAyANNudsBH1bt3xOEcS0sGPnwHbybWvXrEklHNbNG8cVB7+
+         s4Lg==
+X-Forwarded-Encrypted: i=1; AJvYcCUH7se4Fa6lu5WbVJ+3yfHyuFLPC/eGeJMaMYK+p3qF/N8LZtDzW/1wLGyHwzq8VNohPD+dZVhwK6A0zpYutfJqV/75C2tUGe9cYS5z
+X-Gm-Message-State: AOJu0Yz8IAziqXkiI3TSDg9V1ElY5dywEEjZweWHIyIl9Q0JrGNNOzoU
+	jqjwaLJx2s5fgD0p0G+/x0uBsIlEu3B9r2DQrO1CcyvLq2NGpSZOfafvb9H8KvMJBw==
+X-Google-Smtp-Source: AGHT+IFp/GUaVBX5zoCb3rmqVmvDAR+9wQUUZl43QSTZ+paxGWDoy+ekaDJYp4BvQJD2K89GA6zk0w==
+X-Received: by 2002:a81:a743:0:b0:607:9cf8:931f with SMTP id e64-20020a81a743000000b006079cf8931fmr1151829ywh.6.1707994921347;
+        Thu, 15 Feb 2024 03:02:01 -0800 (PST)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
+        by smtp.gmail.com with ESMTPSA id t18-20020a81c252000000b006078c48a265sm193310ywg.6.2024.02.15.03.02.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Feb 2024 03:02:01 -0800 (PST)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-60792653b94so7207757b3.3;
+        Thu, 15 Feb 2024 03:02:00 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUKI7tm2VPv3qye/uwdbsaZ0XY4xnDzzrOq2Np9woEkvG6jW3xP0V+6+yVBs0W/K2AA4jJJxuDBVMfzr4M8mPh939jJO3viX3Q7SeYR
+X-Received: by 2002:a81:ae1a:0:b0:607:835b:8cac with SMTP id
+ m26-20020a81ae1a000000b00607835b8cacmr1048601ywh.42.1707994920654; Thu, 15
+ Feb 2024 03:02:00 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240213142228.2146218-1-naresh.solanki@9elements.com> <6wpmx3ivbp5wihdm6nbul6sjxvbkh4oe3sdthdikm4ikofgsiq@vnviyphamouu>
-In-Reply-To: <6wpmx3ivbp5wihdm6nbul6sjxvbkh4oe3sdthdikm4ikofgsiq@vnviyphamouu>
-From: Naresh Solanki <naresh.solanki@9elements.com>
-Date: Thu, 15 Feb 2024 16:28:26 +0530
-Message-ID: <CABqG17iiCJQ5=bECMQ8CMT-6LJp6bhtDSfdMYM+n1xWXvjHBGA@mail.gmail.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: i2c: pca954x: Add custom properties
- for MAX7357
-To: Andi Shyti <andi.shyti@kernel.org>
-Cc: Peter Rosin <peda@axentia.se>, Rob Herring <robh+dt@kernel.org>, 
+References: <20240212170423.2860895-1-andriy.shevchenko@linux.intel.com> <20240212170423.2860895-16-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20240212170423.2860895-16-andriy.shevchenko@linux.intel.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 15 Feb 2024 12:01:49 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUM1o7bEaUdU=CmcJakZ4kMvWPTrBZG+s=eK3xdc9WRFA@mail.gmail.com>
+Message-ID: <CAMuHMdUM1o7bEaUdU=CmcJakZ4kMvWPTrBZG+s=eK3xdc9WRFA@mail.gmail.com>
+Subject: Re: [PATCH v2 15/15] auxdisplay: Add driver for MAX695x 7-segment LED controllers
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, mazziesaccount@gmail.com, 
-	Patrick Rudolph <patrick.rudolph@9elements.com>, Rob Herring <robh@kernel.org>, 
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+	Robin van der Gracht <robin@protonic.nl>, Paul Burton <paulburton@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Andi,
+Hi Andy,
 
+On Mon, Feb 12, 2024 at 6:04=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+> Add initial driver for the MAX6958 and MAX6959 7-segment LED
+> controllers.
+>
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-On Thu, 15 Feb 2024 at 02:42, Andi Shyti <andi.shyti@kernel.org> wrote:
->
-> Hi Naresh,
->
-> On Tue, Feb 13, 2024 at 07:52:26PM +0530, Naresh Solanki wrote:
-> > From: Patrick Rudolph <patrick.rudolph@9elements.com>
-> >
-> > Maxim Max7357 has a configuration register to enable additional
-> > features. These features aren't enabled by default & its up to
-> > board designer to enable the same as it may have unexpected side effects.
-> >
-> > These should be validated for proper functioning & detection of devices
-> > in secondary bus as sometimes it can cause secondary bus being disabled.
-> >
-> > Add booleans for:
-> >  - maxim,isolate-stuck-channel
-> >  - maxim,send-flush-out-sequence
-> >  - maxim,preconnection-wiggle-test-enable
-> >
-> > Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> > Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
->
-> this series was already applied and I sent the notification.
-> Didn't you receive it?
->
-> You can check here[*] (branch i2c/i2c-host).
-Acknowledged. Thanks.
+Thanks for your patch!
 
-Regards,
-Naresh
+> --- a/drivers/auxdisplay/Kconfig
+> +++ b/drivers/auxdisplay/Kconfig
+> @@ -187,6 +187,20 @@ config HT16K33
+>           Say yes here to add support for Holtek HT16K33, RAM mapping 16*=
+8
+>           LED controller driver with keyscan.
 >
-> Thanks,
-> Andi
->
-> [*] https://git.kernel.org/pub/scm/linux/kernel/git/andi.shyti/linux.git/log/?h=i2c/i2c-host
+> +config MAX6959
+> +       tristate "Maxim MAX6958/6959 7-segment LED controller with keysca=
+n"
+
+I'd drop the "with keyscan" for now...
+
+> +       depends on I2C
+> +       select REGMAP_I2C
+> +       select LINEDISP
+> +       help
+> +         If you say yes here you get support for the following Maxim chi=
+ps
+> +         (I2C 7-segment LED display controller with keyscan):
+> +         - MAX6958
+> +         - MAX6959 (debounce support)
+
+s/debounce/input/
+
+> +
+> +         This driver can also be built as a module. If so, the module
+> +         will be called max6959.
+
+> --- /dev/null
+> +++ b/drivers/auxdisplay/max6959.c
+
+> +/* Defines */
+> +#define MIN_BRIGHTNESS                 0x01
+> +#define MAX_BRIGHTNESS                 0x40
+
+Unused? (for now, until you add LED brightness support)
+
+> +
+> +struct max6959_priv {
+> +       struct linedisp linedisp;
+> +
+> +       struct delayed_work work;
+> +
+
+IMHO these blank lines don't add any value.
+
+> +       struct regmap *regmap;
+> +};
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
