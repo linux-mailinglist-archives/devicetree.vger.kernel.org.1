@@ -1,137 +1,147 @@
-Return-Path: <devicetree+bounces-41935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B854D855DE7
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:25:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24368855DF2
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:26:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57A691F211BE
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:25:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D3B0828C6AD
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:26:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C635168D2;
-	Thu, 15 Feb 2024 09:25:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61B7E175AA;
+	Thu, 15 Feb 2024 09:25:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="aP94wqFb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="te1hOjk9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 938BBDDA5;
-	Thu, 15 Feb 2024 09:25:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F05217BC4
+	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 09:25:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707989105; cv=none; b=TWaThs519h3FmxZ53MD8KhxNNBbECFxRt0YJe7jcdTrSCKgPK1qWd2cpgaZ1vXz4vMD9XbRgEbpEJpt6M1wvyVTmUH4B+qC3Vs8pdcE1brCGJlNE3pvc/mVALFXGXbeWcRpOlZcNhZGHS3qI9xO8eUEg1BkAEJF5YcfnJeM9Cqg=
+	t=1707989147; cv=none; b=SBCd6v3tJj3jVscB2EcJY3dKEdj1FOw2K01OxiLdJVDNPVXmzAB/34UnZu9rrG4Ay3oitF23ekgjUdwnXSeukVOOXmHNB32Q2RItVtPaOO4/ohDjtw5YLXPlpspH9Enqt2RG1tJz4mgbUXlH8R2rXW2j+2JBfCDbxewZ7S0SEn8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707989105; c=relaxed/simple;
-	bh=Tt8BCHmtbJz3x2cgOU1o7/jB7h4WOyYohMZqaQf1V7Y=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qBaANYykppiNpafoDnvoNOLL7FAwJoktoLd/+1uf5h0rqidKrtFfy/cXCu0mGQ8Dt+7GWXRAbFE5PbNkbfqpg23b2UggDnWZaUVf2MpT9azokbFd3KgCG2KtQL3GIhR6BvZ3yr3EjxQG3o/WYGezrFuH/e1jBke8QnP7NbhiDs0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=aP94wqFb; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41F9Op96082808;
-	Thu, 15 Feb 2024 03:24:51 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707989091;
-	bh=nWwyC19a93cQ/YZxeF9xsq+xSAyx/j26ftFvPq9oipU=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=aP94wqFbPSWkEW0vE2JnvjbuQQw2rilYXc0rsG0Cw9qms+8GkaN0qfsSfTCD+dDKw
-	 luIo7gdt8t4woIbESihzat51WdGg3nbp/ObZJ2JUKsfkgJEvBTblRHQrhf5/sIWWep
-	 eCKoL5bqAjclDktGciV34F8nCC1kYxU8SR0LXlNk=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41F9OpI4010077
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 15 Feb 2024 03:24:51 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
- Feb 2024 03:24:50 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 15 Feb 2024 03:24:50 -0600
-Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41F9Ojht098491;
-	Thu, 15 Feb 2024 03:24:45 -0600
-From: Vignesh Raghavendra <vigneshr@ti.com>
-To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Roger Quadros <rogerq@kernel.org>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, Andrew Davis <afd@ti.com>,
-        "Tomi
- Valkeinen" <tomi.valkeinen@ideasonboard.com>,
-        Aradhya Bhatia
-	<a-bhatia1@ti.com>,
-        Nikhil Devshatwar <nikhil.nd@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>,
-        "Roger
- Quadros" <rogerq@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-Subject: Re: [PATCH v2 0/3] arm64: dts: ti: am65x: Add PCIe + USB DT overlay files
-Date: Thu, 15 Feb 2024 14:54:34 +0530
-Message-ID: <170798904376.1504164.3974928327305600054.b4-ty@ti.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240208-for-v6-9-am65-overlays-2-0-v2-0-70bae3e91597@kernel.org>
-References: <20240208-for-v6-9-am65-overlays-2-0-v2-0-70bae3e91597@kernel.org>
+	s=arc-20240116; t=1707989147; c=relaxed/simple;
+	bh=ovUyhUiMjBKTnx4DSiTfVdweq3UHIu1azJ/rG3mlzsU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=c1C1cdHhk4lWzqL7DrVHJhkIu+829JshvDvxluD74hMuDw5BfksEmDtOz+bLfnVlP/J0eqiUCCFMo6LONgYezWdY3dS+55IUrZlCDhAbyrJOZn9kpB74Q2FEN9O/Un1ndKZdmio9wES1detdSpoTejg0LEnb89mC5nRyT3atykU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=te1hOjk9; arc=none smtp.client-ip=209.85.219.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-dcc84ae94c1so562857276.1
+        for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 01:25:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707989144; x=1708593944; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ut8NlXOEY0y/ncuagbllCtcYDmgG86ebbFIp8z5hh8U=;
+        b=te1hOjk9XbaUg0o+jvjaQb0DlHJh2hri0GdgTFcbE1PR1bAl8k5GFnANjnUflYHS6M
+         l4wcXyA7Kvi97d3PFUnwOkiYLfONFwEwgh33i9AHB+dz0duApDOvblyL86Z+32Y/TLGd
+         a06JQ726EjKwcKP31mI+8iqhNFocYW3YwRx1QZKwauRf32XHe90smEGAGZvMhWF2G0e2
+         g+mStjP23DTNtYptuNz17TkVa3w60Sy1MFBDqw6zBbZFxKH/ORFR8lQzm3vyraIi6siP
+         ZA9pPZGguq6QyxTMmOF9s9m0g9hApAYHXvKlpRuobpvY1DxMRlXOoTnUi//bl/ATeG2t
+         UC1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707989144; x=1708593944;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ut8NlXOEY0y/ncuagbllCtcYDmgG86ebbFIp8z5hh8U=;
+        b=MfvxUr04RkpiVWd9E0Il7R1PXJeL9J416Y+/35PbhlI7hJX3eS+abxvlt0uykS7YGG
+         KozPbg7EVamE0jRvDP7luaPzJuK4bqQ9dOxFbol/WKVAsSNxtUjv8saU+SR4w62f17nM
+         S2ksgrrCwFTRr6F4JWwPcq7rxA0jwGLvUZXWSjzUCWSifKfeY3qRQ1TlJj9HyaFLdHpo
+         Y6FWZEiWEjZKI7or2cBcua2pG/itSscBC6/A2n+/8tg5QsFK2LppSYmh7uePRf6P+q8A
+         0Mu6/zFOo56R0AR4Jx6Oxo3jI3OC0fy3K8IdifMWgHmgNXUkeKDdDaUY6E83vSf7Qwym
+         sOtw==
+X-Forwarded-Encrypted: i=1; AJvYcCUyqMxAtihgGfgA5lEsJTNkuThC7PI0n2ff+CDSxttod0l+8npYqYmgstTfTwyPY0XlsKGO8GgzW70MfqXD1JYVaHmXHAWFLuzWIg==
+X-Gm-Message-State: AOJu0YwXlIY0Xvt+3AhShfz52/VV0X/M1XK+87Brqavh0jQ6Gyh+NK0d
+	w9rHhHc/QgXT7hHEKwFcOzgKxxp8creXNPwDySxy77LFVoiUv2iOIlNx039uFNEd3M1gPFdwUTv
+	jDu/r3rZuKPXpmNBNqYRvsWswlmjAl0ZQQ+3BpA==
+X-Google-Smtp-Source: AGHT+IGK2EB5aTs8BfG4jSsckxgl2EOaTmuQv0ycjxUuZs5Mb4QsZ7LrFpeHU2Kn6y9+s5eezLpdwLHcymkVAR1BGTw=
+X-Received: by 2002:a25:7447:0:b0:dcc:273e:1613 with SMTP id
+ p68-20020a257447000000b00dcc273e1613mr1232044ybc.40.1707989144074; Thu, 15
+ Feb 2024 01:25:44 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20240215-topic-sm8650-gpu-v2-0-6be0b4bf2e09@linaro.org> <20240215-topic-sm8650-gpu-v2-2-6be0b4bf2e09@linaro.org>
+In-Reply-To: <20240215-topic-sm8650-gpu-v2-2-6be0b4bf2e09@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 15 Feb 2024 11:25:33 +0200
+Message-ID: <CAA8EJprpYEhGi5b+uWGWtOa+qbSwUR8C0j9NLC+ah_-nvy-=Ng@mail.gmail.com>
+Subject: Re: [PATCH v2 2/6] dt-bindings: arm-smmu: Document SM8650 GPU SMMU
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	iommu@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Roger Quadros,
+On Thu, 15 Feb 2024 at 11:20, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+>
+> Document the GPU SMMU found on the SM8650 platform.
+>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> index a4042ae24770..3ad5c850f3bf 100644
+> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> @@ -93,6 +93,7 @@ properties:
+>                - qcom,sm8350-smmu-500
+>                - qcom,sm8450-smmu-500
+>                - qcom,sm8550-smmu-500
+> +              - qcom,sm8650-smmu-500
+>            - const: qcom,adreno-smmu
+>            - const: qcom,smmu-500
+>            - const: arm,mmu-500
+> @@ -508,7 +509,10 @@ allOf:
+>    - if:
+>        properties:
+>          compatible:
+> -          const: qcom,sm8550-smmu-500
+> +          contains:
+> +            enum:
+> +              - qcom,sm8550-smmu-500
+> +              - qcom,sm8650-smmu-500
 
-On Thu, 08 Feb 2024 15:51:42 +0200, Roger Quadros wrote:
-> There are 2 types of (PCIe + USB) expansion cards that are provided with
-> the AM654 board configurations.
-> 
-> 1) 2 lane PCIe + USB 2.0 card is supplied with the AM65 IDK
-> configuration [1]
-> 
-> 2) 1 lane PCIe + USB 3.0 card is supplied with the AM65 GP EVM
-> configuration [2]
-> 
-> [...]
+Doesn't this cause warnings for non-GPU SMMU on this platform?
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+>      then:
+>        properties:
+>          clock-names:
+> @@ -544,7 +548,6 @@ allOf:
+>                - qcom,sdx65-smmu-500
+>                - qcom,sm6350-smmu-500
+>                - qcom,sm6375-smmu-500
+> -              - qcom,sm8650-smmu-500
+>                - qcom,x1e80100-smmu-500
+>      then:
+>        properties:
+>
+> --
+> 2.34.1
+>
 
-[1/3] arm64: dts: ti: am65x: Fix dtbs_install for Rocktech OLDI overlay
-      commit: 8ada14cafc5e185c668198617cd1ab4f1d8d325a
-[2/3] arm64: dts: ti: Add DT overlay for PCIe + USB2.0 SERDES personality card
-      commit: aea902b9e0cb9c596aa2e70a9c8d7d7a15673e45
-[3/3] arm64: dts: ti: Add DT overlay for PCIe + USB3.0 SERDES personality card
-      commit: c472011e7aeef5f7a7d9f40c3c275d8ab82aa745
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
---
-Vignesh
-
+-- 
+With best wishes
+Dmitry
 
