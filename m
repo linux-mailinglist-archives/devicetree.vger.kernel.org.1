@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-42041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5136E856349
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 13:35:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0E2685634C
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 13:35:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7BEE31C21804
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:35:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7DE271F25B92
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:35:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9107129A80;
-	Thu, 15 Feb 2024 12:35:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8951012CDA9;
+	Thu, 15 Feb 2024 12:35:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="RffNoAU9"
+	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="cULphLRZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48DDB1E500
-	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 12:34:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2951912C81A
+	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 12:35:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.50.62.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708000500; cv=none; b=nzoCFjv7j4dmn0ThQQjfgqgYOe/r8v6lf62RvhgGD0ZN57+loCZUc66u9DwmaVgulKGMleTfxjCiAngTLgzGCR4szIYOep/rDgWk4yK/m/3WpUe17t28V0Kicv7m3O8vyEk9A3KmvwwLj8sChpmnwVMMGFWeAmU3CHyXPGWHuCc=
+	t=1708000548; cv=none; b=tJB9IHpHNVYvs2LQmdTDJ1n6Rg5EJBXo7FUsBwEB/7ILA7g4xmKbs7rkgt0nikxb1Jh4WDAZHsu8tUjZONxV8C0ezD3WtwGER3qyv/fgMb9KWR/vcQJg+xwV9mi5oBIlTHvackKpDuVkw2rM3ZDcz9tBybTVdtT09BjLdYdz4Qw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708000500; c=relaxed/simple;
-	bh=2YQlVtdBShuw6krXfWfGvayyaRZm4Qpf3bbRehj6cqI=;
+	s=arc-20240116; t=1708000548; c=relaxed/simple;
+	bh=hYmGXCjbhdkE6FVhogn5qqay1orb1dFcVmICxeA9fi0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=YRKt7bW3ebP6J3lJQmZo7122G/bQ6/KLMZAAiL+w6o4nFYxMdMj+WqirrVkUDcNG5TJ6stf5xQvDFwYTVTHqJhxFFiMe+NuJOeXo9L+RkTA7LaKwwfzPwXd016IpGwuuLHfpkgwFpOeiGWqCSO6XCAasI+wuGtN9cSzJ9H+vn/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com; spf=fail smtp.mailfrom=atomide.com; dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b=RffNoAU9; arc=none smtp.client-ip=74.50.62.9
+	 MIME-Version; b=icRpaYi5kyHuoU5Q0LQ4YC/9GfYGEdE+A4hc4OZjWP0BXpFMxK9BmD0uwDZrSwQAHDBsxI+oI8wANej3U+gZPXy/QP84p3ZQq5basKU4fwbPTIYL46M1HkRuwlhNNCndP22Y5RHkUyPjlU03thxza8dI5hqgfuDRIx4vmWCk4EI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com; spf=fail smtp.mailfrom=atomide.com; dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b=cULphLRZ; arc=none smtp.client-ip=74.50.62.9
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=atomide.com
 Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
-	by mail5.25mail.st (Postfix) with ESMTPSA id D311C603EE;
-	Thu, 15 Feb 2024 12:34:14 +0000 (UTC)
+	by mail5.25mail.st (Postfix) with ESMTPSA id D0B40603EE;
+	Thu, 15 Feb 2024 12:35:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
-	s=25mailst; t=1708000498;
-	bh=2YQlVtdBShuw6krXfWfGvayyaRZm4Qpf3bbRehj6cqI=;
+	s=25mailst; t=1708000546;
+	bh=hYmGXCjbhdkE6FVhogn5qqay1orb1dFcVmICxeA9fi0=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=RffNoAU9/WKvAlvyGMHmGnSafH4cJfShFKD45j3QdIm5sscQuAvhBTYULdo0aAgoP
-	 5Rvn+3g5ddqHXv/f7xIMTtqqz8TXo06vIHbzjj9yksrHMEwek5DcC1ysT/5JItXR3D
-	 8HfmxszLAMIKTS9xuSoTOCXZ2s5YVRGNdk/bl50OVnssg1l3cOrZo0eYVveurzbuON
-	 FiW7Sddj0tDrflnEPHLa2ciNvO+O19SzO0eL2Km6rfxUnJGF25gBrSZHimMhogt4gy
-	 xP5kEczE8NwKrnfF60Bz+3UopskiCh/KaeiSgvX8oUibtvpq6wYeYSfl18suQpmPbJ
-	 ftqxtpng28rZQ==
+	b=cULphLRZZD2+FKheXMDqAAQ+y1bQnljm4tzUmMV7hGoFdYOJzlh+rp2OM9623Ben9
+	 +4Tj9gFpS2YGFhTxqgfpKTT87HUKspJ2oJeZ9oxN167blejxSHP/wuQbQ4hKndII63
+	 +w14U9d+eCrRk4V5GFxEc4UWlmcrti+oquEDouX2uZhIV3i8UhskRwUbr5j99XN3M3
+	 jgHYXgr4JuaHrypeiKCu0kxPnEz+JdcIl3djwmUyZQ5ApfIphqwNW4vVB8OLt3ZiEO
+	 muiC1O4gIvaM03tOMUASmR0a9BD5b94XYJakjc2I9YDM6c4rKKpZQqWFZHHPHV7mx9
+	 3a0HJK6CbryRQ==
 From: Tony Lindgren <tony@atomide.com>
 To: Andrzej Hajda <andrzej.hajda@intel.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
@@ -66,9 +66,9 @@ Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
 	Michael Walle <mwalle@kernel.org>,
 	dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH v4 02/10] dt-bindings: display: bridge: tc358775: Add data-lanes
-Date: Thu, 15 Feb 2024 14:31:45 +0200
-Message-ID: <20240215123222.42609-3-tony@atomide.com>
+Subject: [PATCH v4 03/10] dt-bindings: display: bridge: tc358775: Add support for tc358765
+Date: Thu, 15 Feb 2024 14:31:46 +0200
+Message-ID: <20240215123222.42609-4-tony@atomide.com>
 X-Mailer: git-send-email 2.43.1
 In-Reply-To: <20240215123222.42609-1-tony@atomide.com>
 References: <20240215123222.42609-1-tony@atomide.com>
@@ -80,84 +80,58 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The device uses a clock lane, and 1 to 4 DSI data lanes. Let's add the
-data-lanes property starting at 1 similar to what the other bridge
-bindings are doing.
+The tc358765 is similar to tc358775. The tc358765 just an earlier version
+of the hardware, and it's pin and register compatible with tc358775 for
+most part.
 
-Let's also drop the data-lanes properties in the example for the DSI host
-controller to avoid confusion. The configuration of the DSI host depends
-on the controller used and is unrelated to the bridge binding.
+From the binding point of view the only difference is that the tc358765
+does not have stdby-gpios.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Tony Lindgren <tony@atomide.com>
 ---
- .../display/bridge/toshiba,tc358775.yaml      | 22 ++++++++++++++++---
- 1 file changed, 19 insertions(+), 3 deletions(-)
+ .../display/bridge/toshiba,tc358775.yaml         | 16 ++++++++++++++--
+ 1 file changed, 14 insertions(+), 2 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358775.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358775.yaml
 --- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358775.yaml
 +++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358775.yaml
-@@ -46,11 +46,27 @@ properties:
+@@ -10,7 +10,7 @@ maintainers:
+   - Vinay Simha BN <simhavcs@gmail.com>
  
-     properties:
-       port@0:
--        $ref: /schemas/graph.yaml#/properties/port
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-         description: |
-           DSI Input. The remote endpoint phandle should be a
-           reference to a valid mipi_dsi_host device node.
+ description: |
+-  This binding supports DSI to LVDS bridge TC358775
++  This binding supports DSI to LVDS bridges TC358765 and TC358775
  
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            unevaluatedProperties: false
+   MIPI DSI-RX Data 4-lane, CLK 1-lane with data rates up to 800 Mbps/lane.
+   Video frame size:
+@@ -21,7 +21,9 @@ description: |
+ 
+ properties:
+   compatible:
+-    const: toshiba,tc358775
++    enum:
++      - toshiba,tc358765
++      - toshiba,tc358775
+ 
+   reg:
+     maxItems: 1
+@@ -81,6 +83,16 @@ properties:
+       - port@0
+       - port@1
+ 
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: toshiba,tc358765
++    then:
++      properties:
++        stby-gpios: false
 +
-+            properties:
-+              data-lanes:
-+                description: array of physical DSI data lane indexes.
-+                minItems: 1
-+                items:
-+                  - const: 1
-+                  - const: 2
-+                  - const: 3
-+                  - const: 4
-+
-       port@1:
-         $ref: /schemas/graph.yaml#/properties/port
-         description: |
-@@ -107,6 +123,7 @@ examples:
-                     reg = <0>;
-                     d2l_in_test: endpoint {
-                         remote-endpoint = <&dsi0_out>;
-+                        data-lanes = <1 2 3 4>;
-                     };
-                 };
- 
-@@ -131,7 +148,6 @@ examples:
-                 reg = <1>;
-                 dsi0_out: endpoint {
-                     remote-endpoint = <&d2l_in_test>;
--                    data-lanes = <0 1 2 3>;
-                 };
-              };
-          };
-@@ -166,6 +182,7 @@ examples:
-                     reg = <0>;
-                     d2l_in_dual: endpoint {
-                         remote-endpoint = <&dsi0_out_dual>;
-+                        data-lanes = <1 2 3 4>;
-                     };
-                 };
- 
-@@ -197,7 +214,6 @@ examples:
-                 reg = <1>;
-                 dsi0_out_dual: endpoint {
-                     remote-endpoint = <&d2l_in_dual>;
--                    data-lanes = <0 1 2 3>;
-                 };
-              };
-          };
+ required:
+   - compatible
+   - reg
 -- 
 2.43.1
 
