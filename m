@@ -1,117 +1,115 @@
-Return-Path: <devicetree+bounces-42220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 334F5856EE5
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 21:52:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04916856F2D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 22:18:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 656021C23459
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 20:52:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A058428AA22
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 21:18:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 938B913B2AB;
-	Thu, 15 Feb 2024 20:52:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="goLAtfVr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29ED013B284;
+	Thu, 15 Feb 2024 21:18:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6599B13B293;
-	Thu, 15 Feb 2024 20:52:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8D2441C61;
+	Thu, 15 Feb 2024 21:18:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708030368; cv=none; b=HTFi4BF3sAaHu6HedXnPXSk1GaLKqwElCKcTGaOnHpgwUc/NvsJor02yW5+UlHhB3WeHap+/UhXcpxnkW2iu1ClWXn8Ty0EZoy3fGVbDnGNMnJDYzxsaH0jorWNyC1smWkI1jQyCs8DrR3LHV5lDFH6y8VsAKyHH7rYAc9qOtbg=
+	t=1708031884; cv=none; b=CGUZmc+bZFY42cuJezOs1UAYmPJeezhOqQoLlKJS4GjbUryEZAy3i0sIdrI14/sQ3NdFDhY+H2c0K8IDcA0pvzL+r8GXNfFoAY5dv3q7Hg54ZohmkeYjwrt/DghZb2Y7K0q24KaFZsfKaisvO477eX2EC3GD2hC5k3b131X8zVo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708030368; c=relaxed/simple;
-	bh=Av6COBMGvbBgCAaGuD1gcM1sjuS4XKo36Ub7qNtB1Q0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Yn9Oay4WrUp8niLu86YoQOtCG2ReTaveJJohxXzA2RsuCQY8xp0y0HyX66SM+Bz7W6ZRoKuYUT3kK3EkYoGV5Oat2V81+hd/o8wKMJB6bN+6e+E7vSoa+2d3JYalZnYAKg/y0+EyYE7+eyw3PwkrGy7Z0wD9YI1Fc94RJf3u/nA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=goLAtfVr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C0D8C433F1;
-	Thu, 15 Feb 2024 20:52:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708030367;
-	bh=Av6COBMGvbBgCAaGuD1gcM1sjuS4XKo36Ub7qNtB1Q0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=goLAtfVrUVQAGrqoYfGle7Ir7lKrAhPROqJkehCegdGaXWoT3cLTrIIRU48vmF4hI
-	 hmLmSxyMhc6T1L9dkSafU8mZ8aAa6IRw5GN1TYlkdnYUPuyhWOicZnXrbiMKPwpeC9
-	 4uFNQpvhpeLEYk8u35HNhWFLGWkGGd1Mb8L/RBmVlRchl2xSz/mhMcnoadZzMEAmhc
-	 xwf5hciyhaIXero+PR9u90F5e98cwtGimgFp4cg8Nnc41o5O84+bEg6BSMQeM756iX
-	 FYoH9c/6sqRjEuOBnUTcFc+o3vdXqjQVbw3c04L0eJIFz2WRoAX8u7/yKf/xQsywOK
-	 NoOJhU4jCM40A==
-Received: by mercury (Postfix, from userid 1000)
-	id D6EF31061C37; Thu, 15 Feb 2024 21:52:44 +0100 (CET)
-Date: Thu, 15 Feb 2024 21:52:44 +0100
-From: Sebastian Reichel <sre@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, 
-	Dong Aisheng <aisheng.dong@nxp.com>, Linus Walleij <linus.walleij@linaro.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 06/17] dt-bindings: soc: imx: fsl,imx-iomuxc-gpr: add
- imx6
-Message-ID: <vncxxpe4ts2nybyrrgqps44eyj3t2ss63ado2pqiycpponxyy4@mhp3egl4c27a>
-References: <20240213010347.1075251-1-sre@kernel.org>
- <20240213010347.1075251-7-sre@kernel.org>
- <20240215145520.GA20171-robh@kernel.org>
+	s=arc-20240116; t=1708031884; c=relaxed/simple;
+	bh=wKYFQJd0uZWlsl2zlOip9+kLfJKcOYvYrfvlJ8UN2uY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=HD/NzGR2pKjF/ZNW/mWVe7OQD9PhgwoCiQeyMOLhF+Ui0Da2/ID8FjIglYSdAiSwhVxOVKr/48L4RAYrsDxRH+nV+DUP/v0WmXJR4W0A+VeMSwcw1mJtBGM2C5GmySjIJM5DM+eBjHgt2AGYKJRe6TWZB9vqbbFVmF19oaK85c4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875b6c.versanet.de ([83.135.91.108] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1raj73-0000Yz-48; Thu, 15 Feb 2024 22:17:45 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Conor Dooley <conor@kernel.org>
+Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, sam@ravnborg.org,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, quentin.schulz@theobroma-systems.com,
+ Heiko Stuebner <heiko.stuebner@cherry.de>
+Subject:
+ Re: [PATCH 2/3] dt-bindings: display: ltk500hd1829: add variant compatible
+ for ltk101b4029w
+Date: Thu, 15 Feb 2024 22:17:43 +0100
+Message-ID: <16747948.geO5KgaWL5@diego>
+In-Reply-To: <20240215-boat-grid-d50f0eccec67@spud>
+References:
+ <20240215090515.3513817-1-heiko@sntech.de>
+ <20240215090515.3513817-3-heiko@sntech.de>
+ <20240215-boat-grid-d50f0eccec67@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240215145520.GA20171-robh@kernel.org>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi,
-
-On Thu, Feb 15, 2024 at 08:55:20AM -0600, Rob Herring wrote:
-> On Tue, Feb 13, 2024 at 02:00:55AM +0100, Sebastian Reichel wrote:
-> > Add compatibles used by different i.MX6 variants to the i.MX IOMUX
-> > Controller GPR binding.
+Am Donnerstag, 15. Februar 2024, 18:06:06 CET schrieb Conor Dooley:
+> On Thu, Feb 15, 2024 at 10:05:14AM +0100, Heiko Stuebner wrote:
+> > From: Heiko Stuebner <heiko.stuebner@cherry.de>
 > > 
-> > Signed-off-by: Sebastian Reichel <sre@kernel.org>
-> > ---
-> >  .../bindings/soc/imx/fsl,imx-iomuxc-gpr.yaml   | 18 +++++++++++++++++-
-> >  1 file changed, 17 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx-iomuxc-gpr.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx-iomuxc-gpr.yaml
-> > index 1da1b758b4ae..8451cb4dd87c 100644
-> > --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx-iomuxc-gpr.yaml
-> > +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx-iomuxc-gpr.yaml
-> > @@ -17,7 +17,23 @@ properties:
-> >    compatible:
-> >      oneOf:
-> >        - items:
-> > -          - const: fsl,imx8mq-iomuxc-gpr
-> > +          - enum:
-> > +              - fsl,imx6q-iomuxc-gpr
-> > +              - fsl,imx8mq-iomuxc-gpr
-> > +          - const: syscon
-> > +          - const: simple-mfd
-> > +      - items:
-> > +          - enum:
-> > +              - fsl,imx6sl-iomuxc-gpr
-> > +              - fsl,imx6sll-iomuxc-gpr
-> > +              - fsl,imx6ul-iomuxc-gpr
-> > +          - const: fsl,imx6q-iomuxc-gpr
-> > +          - const: syscon
+> > Add the compatible for the ltk101b4029w panel, that is really similar
+> > to the ltk500hd1829.
 > 
-> A bit odd that imx6q is a simple-mfd above, but not here. I suppose 
-> that could be valid if the variants here don't have sub-devices or they 
-> do, but have a dependency on the parent.
+> Please mention what makes the devices incompatible. "really similar" is
+> vague and could be used for a device that was only cosmetically
+> different.
 
-These do not have sub-nodes, while the other instances have.
+ok, I'll modify the paragraph to:
 
-> Acked-by: Rob Herring <robh@kernel.org>
+=======
+Add the compatible for the ltk101b4029w panel, that has the same
+manufacturer, general bringup and supplies but a different dsi-init-
+sequence as the ltk500hd1829 .
+=======
 
-Thanks,
+> With that,
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> 
+> Cheers,
+> Conor.
+> 
+> > 
+> > Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
+> > ---
+> >  .../bindings/display/panel/leadtek,ltk500hd1829.yaml          | 4 +++-
+> >  1 file changed, 3 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/panel/leadtek,ltk500hd1829.yaml b/Documentation/devicetree/bindings/display/panel/leadtek,ltk500hd1829.yaml
+> > index c5944b4d636c5..d589f16772145 100644
+> > --- a/Documentation/devicetree/bindings/display/panel/leadtek,ltk500hd1829.yaml
+> > +++ b/Documentation/devicetree/bindings/display/panel/leadtek,ltk500hd1829.yaml
+> > @@ -14,7 +14,9 @@ allOf:
+> >  
+> >  properties:
+> >    compatible:
+> > -    const: leadtek,ltk500hd1829
+> > +    enum:
+> > +      - leadtek,ltk101b4029w
+> > +      - leadtek,ltk500hd1829
+> >    reg: true
+> >    backlight: true
+> >    reset-gpios: true
+> 
 
--- Sebastian
+
+
+
 
