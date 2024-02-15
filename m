@@ -1,216 +1,156 @@
-Return-Path: <devicetree+bounces-41965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B40D3855EBC
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:05:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71961855EC4
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:08:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D98231C215DA
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:05:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 239D528108D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:08:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFB0565E20;
-	Thu, 15 Feb 2024 10:05:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFB6066B50;
+	Thu, 15 Feb 2024 10:08:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pB1Qx2Mh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7F3966B4B;
-	Thu, 15 Feb 2024 10:05:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E4A766B2D
+	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 10:08:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707991523; cv=none; b=Zccmf1TcshUte7QSMUlHkEsn5GXPlqQrpdBraLpmgOB6H2NVdyckfTsiwUVrcimubnAWHqZVi7HElCQr1YVJ4/5dAT6G6uStr9FAfozh0lB4C4ZqDb4kLqwdpiGfrC6vOQSWj08LalNTYOczbMqKJqyvXScZH9SojBNwaPWJV3s=
+	t=1707991708; cv=none; b=Sd6EyUnHJkCq4IJTWV1fvWkyFGNta/B5BO/6ELmBxSx4nAqux8nkWBFmnn1fnJU1NIx4csCS3VNiqew4fpq5E/OyuNX8rvPzonLjLFqcwlrp1BI8hQOW4G9Xg9dw4wQe2+GJ0T+ZTazOwp7haotiKzuCsqjYUKoJPheHMoRN5q4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707991523; c=relaxed/simple;
-	bh=zXR1Th1Fns4JSC7Jtt7QoNy6Isissiie5f7KTXRyD6A=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RHoB4HYVyRr5afl0LHxrZI92wIEMWt8/oXQ1BpQ3t6WHWNvWpf7La3ipsg3sq14iMwLwR/biQ2LKMw1x6Ni3uKOq5Qf9RxApJimdcygwZG/2kjozt8zlTH7hV7182xVl39FQ5ZHJEAaz1JjjT7mBZfetq8DU/aLHusdUqi1bEHw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-511a04c837bso775214e87.0;
-        Thu, 15 Feb 2024 02:05:21 -0800 (PST)
+	s=arc-20240116; t=1707991708; c=relaxed/simple;
+	bh=1XW6dJGVap1RTXpvTalbBTgq8po7T8yAj0Db/h1SwOo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WKfqXNsSUBTBOa0UpnVRyrb/uHKHx+ogw9GN6RnLY37fQkhIhKKdhU21XD4swkzPFaXyyHfFNOs8PnTgj/Jalp1u1YuJ5O4k9syUMoFjY4iEM5SHjZRCHvQ0PWb/CFJyknoALfohMtj5Kt8tfUfi83XvlmeOWj64qfWKGbTn8tA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pB1Qx2Mh; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a28a6cef709so81592466b.1
+        for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 02:08:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707991704; x=1708596504; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1yjCWaZLj3Bg+5utErLSqApvP2nKRZIX0oRCEMSazYI=;
+        b=pB1Qx2Mhb2VsFOj3VYRZjKDoSg5DrONZr6qTaOArknRlEDYf7h+LppnT/XAdE+A0kL
+         XN5wLOzN9nZB1oPzxr3pT/LeqJ8eGCfVy4LITYhg6uEs3VK8WgvBJ3sLCI7yDe0G9jeV
+         d7FwQEaDgupPfabVZW89S3VpEF6sKXTbqO8qsJ478vqUL64EKkz0KXSSuB1dbGD63Wzq
+         JzYpfzP4FBQR8vsEpLzdofqLY6vn7ft5Tvcoksb/fu4Gsm68ffyAV7b4XsJQMXn8TRQE
+         3xc6yt508pfwsCXiWpRmESvqZe/Ng++gyMjgFk8mHhxKlFhcW078Tgk6/G7Gh9Z7whSR
+         Exww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707991519; x=1708596319;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sMGJ76noLanla/25q8E8XYSHetkA+XFXEotUyozLh+0=;
-        b=PL/5fKiheZGESkle5RNOy37J0oUpdiKmjro4412xeZJylgJ00EzlfAzjUclrrOoa/w
-         kEV/idGXySw/4vqURvy2GyHr5g4ICKDKMjADixm3s9aUg8nZIYeHfHRiTvGgqXaZKzoK
-         0qWlWOpyiaF/nnt8VFShu79+lnk2H3AdKWnwPPzl86rmweBxOdCbCiy8LLJ/CosLbeSJ
-         aw30KPdvZOt+FRS/LjuhyTjxjNJYf1jffJWvnqoq3qJsXkOVbrRsZ9saKtoGgn0j7dvG
-         TvMImkz9/zc9nRhYClt04vt/kXKSgYQax2PnfVgsgs0VUPnYA3MmtXhunE9S8tDDsDSf
-         ABTg==
-X-Forwarded-Encrypted: i=1; AJvYcCWdIMkwH6bFK2BWSOfSOdeI5QhyrvA8EkBSZuBkFYBAY5UzAqt9ABgRvnkf7qkzgZL2hldJ8WHvWI6a1mSBMGVIX1kOtqkD7KhZBd4t
-X-Gm-Message-State: AOJu0Yyy7rIvZsOxNlzSalBLFsymvg55Bixx4nNSSj1WqtQrXbiM3Wbo
-	Hzid2lsPX/ZTS63brBL0DXRszY415YwLsUzMQwHGzxb/AxBu/oJkslV406TE1wIq3Q==
-X-Google-Smtp-Source: AGHT+IGuKk8ytxzR5E+csW4iJscA2ebWInfYZQ+TaRtE0Dn9WyeQH1XRAXoNxabfhu/kV3SJ9ZhZIQ==
-X-Received: by 2002:a05:6512:3d0f:b0:512:8a75:53f9 with SMTP id d15-20020a0565123d0f00b005128a7553f9mr815582lfv.57.1707991518871;
-        Thu, 15 Feb 2024 02:05:18 -0800 (PST)
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com. [209.85.167.49])
-        by smtp.gmail.com with ESMTPSA id v22-20020a197416000000b0051181cbea91sm178297lfe.228.2024.02.15.02.05.18
+        d=1e100.net; s=20230601; t=1707991704; x=1708596504;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1yjCWaZLj3Bg+5utErLSqApvP2nKRZIX0oRCEMSazYI=;
+        b=C+o536n2q9Yd51rqz88/A4yQRFzPtjsofjePa8qYFgx+7fs7ZBf8174w7sWgFf0fZl
+         rIQlcFt77UruwzAK2n+VH0eKoK7hXlY2IFudfMvqSNA9bEgiHEySkoYbKcSoBOM/aqmZ
+         umV4EE/BCR9gKaX5500ueauLwz7PNnYRBQm9qcvTnzJJxyUHSqVM7lC+VjmXAjJ8JLg4
+         8v+eqUJNWfJNwEUiaIL+XNbiUIwqMSQ+aJjueHcSY3V+nIqtIuaCq988dlmAyPl8U86v
+         zq4xFBu9XeP3mfCyqDtOkrOyts5+qloEHAqD/HBg3WW3MnwPCtLXqpbDvDypwZq9yC6b
+         4U+w==
+X-Forwarded-Encrypted: i=1; AJvYcCUZcORZKY2fLYWVr2Ji9gRNihQlITeXVWHEikVaOxFNKBYQsUFZvQJMSetQFpuvYn41dtaBVs0KawSR8YOYba97OofKSPq77QLwUw==
+X-Gm-Message-State: AOJu0YxnMl9I2ZRYkgx1GgRl+O0zg4VB9dPyf7+mSbxA3efmXXqsqdCA
+	0QYL1BWWLjIRAzBdazgX6vBSk+E7FvJIIi1Bd1COYfPtOWrrdb/o14EtQZS0EpI=
+X-Google-Smtp-Source: AGHT+IFE/GHHRU0Axhmv7YFm0niGgsMkvygmGJ0wxS9m8WWz4yCSUAf84JDW4bgIMRVUJt/YvcNLKA==
+X-Received: by 2002:a17:906:71cc:b0:a3c:8f4c:b1d with SMTP id i12-20020a17090671cc00b00a3c8f4c0b1dmr923386ejk.63.1707991704450;
+        Thu, 15 Feb 2024 02:08:24 -0800 (PST)
+Received: from [192.168.192.135] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
+        by smtp.gmail.com with ESMTPSA id h22-20020a17090634d600b00a3ca744438csm380427ejb.213.2024.02.15.02.08.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Feb 2024 02:05:18 -0800 (PST)
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-511a04c837bso775176e87.0;
-        Thu, 15 Feb 2024 02:05:18 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV7yxXMkr9BV7pLCXIobItVSglQVQh8m8qfyB6QH0AwSKuJyGar0F61eaic8zFnxUKb6lNj6LMSnpzlOdgmTYGgE4CB28vJSbXvXKep
-X-Received: by 2002:a05:6512:3d0f:b0:512:8a75:53f9 with SMTP id
- d15-20020a0565123d0f00b005128a7553f9mr815564lfv.57.1707991518416; Thu, 15 Feb
- 2024 02:05:18 -0800 (PST)
+        Thu, 15 Feb 2024 02:08:23 -0800 (PST)
+Message-ID: <43d248ea-fbfc-498b-b279-13074f010310@linaro.org>
+Date: Thu, 15 Feb 2024 11:08:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240212170423.2860895-1-andriy.shevchenko@linux.intel.com> <20240212170423.2860895-8-andriy.shevchenko@linux.intel.com>
-In-Reply-To: <20240212170423.2860895-8-andriy.shevchenko@linux.intel.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 15 Feb 2024 11:05:00 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdW=gTH12vLALAU_ioCKX9E2mJ3uR+8Q6GT0brc4yg83_A@mail.gmail.com>
-Message-ID: <CAMuHMdW=gTH12vLALAU_ioCKX9E2mJ3uR+8Q6GT0brc4yg83_A@mail.gmail.com>
-Subject: Re: [PATCH v2 07/15] auxdisplay: linedisp: Group line display drivers together
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Robin van der Gracht <robin@protonic.nl>, Paul Burton <paulburton@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/6] arm64: dts: qcom: msm8996: unbreak UFS HCD support
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ "James E.J. Bottomley" <jejb@linux.ibm.com>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ Nitin Rawat <quic_nitirawa@quicinc.com>, Can Guo <quic_cang@quicinc.com>,
+ Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>,
+ Andy Gross <agross@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240213-msm8996-fix-ufs-v2-0-650758c26458@linaro.org>
+ <20240213-msm8996-fix-ufs-v2-2-650758c26458@linaro.org>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240213-msm8996-fix-ufs-v2-2-650758c26458@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Andy,
+On 13.02.2024 12:22, Dmitry Baryshkov wrote:
+> Since the commit b4e13e1ae95e ("scsi: ufs: qcom: Add multiple frequency
+> support for MAX_CORE_CLK_1US_CYCLES") the Qualcomm UFS driver uses
+> core_clk_unipro values from frequency table to calculate cycles_in_1us.
+> The DT file for MSM8996  passed 0 HZ frequencies there, resulting in
+> broken UFS support on that platform. Fix the corresponding clock values
+> in the frequency table.
+> 
+> Suggested-by: Nitin Rawat <quic_nitirawa@quicinc.com>
+> Fixes: 57fc67ef0d35 ("arm64: dts: qcom: msm8996: Add ufs related nodes")
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
 
-On Mon, Feb 12, 2024 at 6:04=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
-> For better usability group the line display drivers together in Kconfig
-> and Makefile.
->
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Okay, so this one apparently doesn't apply, seems like commit
+68c4c20848d71b0e69c3403becb5dd23e89e5896 ("arm64: dts: qcom: msm8996:
+Define UFS UniPro clock limits") did the exact same
 
-Thanks for your patch!
-
-> --- a/drivers/auxdisplay/Kconfig
-> +++ b/drivers/auxdisplay/Kconfig
-> @@ -25,12 +25,6 @@ config CHARLCD
->           This is some character LCD core interface that multiple drivers=
- can
->           use.
->
-> -config LINEDISP
-> -       tristate "Character line display core support" if COMPILE_TEST
-> -       help
-> -         This is the core support for single-line character displays, to=
- be
-> -         selected by drivers that use it.
-> -
->  config HD44780_COMMON
->         tristate "Common functions for HD44780 (and compatibles) LCD disp=
-lays" if COMPILE_TEST
->         select CHARLCD
-> @@ -52,6 +46,16 @@ config HD44780
->           kernel and started at boot.
->           If you don't understand what all this is about, say N.
->
-> +config LCD2S
-> +       tristate "lcd2s 20x4 character display over I2C console"
-> +       depends on I2C
-> +       select CHARLCD
-> +       help
-> +         This is a driver that lets you use the lcd2s 20x4 character dis=
-play
-> +         from Modtronix engineering as a console output device. The disp=
-lay
-> +         is a simple single color character display. You have to connect=
- it
-> +         to an I2C bus.
-> +
-
-I think it would be good to have "# <display type> section" comments,
-to make the grouping clear.
-Else I wonder why "L" is sorted before "K" ;-)
-
->  config KS0108
->         tristate "KS0108 LCD Controller"
->         depends on PARPORT_PC
-> @@ -153,6 +157,12 @@ config CFAG12864B_RATE
->           If you compile this as a module, you can still override this
->           value using the module parameters.
->
-> +config LINEDISP
-> +       tristate "Character line display core support" if COMPILE_TEST
-> +       help
-> +         This is the core support for single-line character displays, to=
- be
-> +         selected by drivers that use it.
-> +
->  config IMG_ASCII_LCD
->         tristate "Imagination Technologies ASCII LCD Display"
->         depends on HAS_IOMEM
-> @@ -177,16 +187,6 @@ config HT16K33
->           Say yes here to add support for Holtek HT16K33, RAM mapping 16*=
-8
->           LED controller driver with keyscan.
->
-> -config LCD2S
-> -       tristate "lcd2s 20x4 character display over I2C console"
-> -       depends on I2C
-> -       select CHARLCD
-> -       help
-> -         This is a driver that lets you use the lcd2s 20x4 character dis=
-play
-> -         from Modtronix engineering as a console output device. The disp=
-lay
-> -         is a simple single color character display. You have to connect=
- it
-> -         to an I2C bus.
-> -
->  config ARM_CHARLCD
->         bool "ARM Ltd. Character LCD Driver"
->         depends on PLAT_VERSATILE
-
-Shouldn't this (and PARPORT_PANEL and friends) be moved up, to the
-character LCD section?
-
-> diff --git a/drivers/auxdisplay/Makefile b/drivers/auxdisplay/Makefile
-> index 6968ed4d3f0a..43bad850481c 100644
-> --- a/drivers/auxdisplay/Makefile
-> +++ b/drivers/auxdisplay/Makefile
-> @@ -5,12 +5,12 @@
->
->  obj-$(CONFIG_CHARLCD)          +=3D charlcd.o
->  obj-$(CONFIG_HD44780_COMMON)   +=3D hd44780_common.o
-> -obj-$(CONFIG_ARM_CHARLCD)      +=3D arm-charlcd.o
-> +obj-$(CONFIG_HD44780)          +=3D hd44780.o
-> +obj-$(CONFIG_LCD2S)            +=3D lcd2s.o
->  obj-$(CONFIG_KS0108)           +=3D ks0108.o
->  obj-$(CONFIG_CFAG12864B)       +=3D cfag12864b.o cfag12864bfb.o
-> -obj-$(CONFIG_IMG_ASCII_LCD)    +=3D img-ascii-lcd.o
-> -obj-$(CONFIG_HD44780)          +=3D hd44780.o
-> -obj-$(CONFIG_HT16K33)          +=3D ht16k33.o
-> -obj-$(CONFIG_PARPORT_PANEL)    +=3D panel.o
-> -obj-$(CONFIG_LCD2S)            +=3D lcd2s.o
->  obj-$(CONFIG_LINEDISP)         +=3D line-display.o
-> +obj-$(CONFIG_IMG_ASCII_LCD)    +=3D img-ascii-lcd.o
-> +obj-$(CONFIG_HT16K33)          +=3D ht16k33.o
-> +obj-$(CONFIG_ARM_CHARLCD)      +=3D arm-charlcd.o
-> +obj-$(CONFIG_PARPORT_PANEL)    +=3D panel.o
-
-IMHO it hurts to not sort Makefile entries alphabetically.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Konrad
 
