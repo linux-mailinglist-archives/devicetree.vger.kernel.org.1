@@ -1,77 +1,85 @@
-Return-Path: <devicetree+bounces-41934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95E06855DDA
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:23:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B854D855DE7
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:25:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A7651F2E106
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:23:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57A691F211BE
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:25:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE15F1643A;
-	Thu, 15 Feb 2024 09:22:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C635168D2;
+	Thu, 15 Feb 2024 09:25:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="QDlIiS9V"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="aP94wqFb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FB4A17730;
-	Thu, 15 Feb 2024 09:22:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 938BBDDA5;
+	Thu, 15 Feb 2024 09:25:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707988955; cv=none; b=GeC2GMEgHa6Np2pS2Fuju9KS3AtFoVIaoKsrDwy8+KPwzcwwrzbOJwCN39kwvfEps8+rjFA8mrKfIf+XTSn7Xk8ZZ5KRHusVQPaNvR3muS5rC3o3a8sTQ1C9CL/ZNQZh9UyT+viWbokFPKYB5/of91zyAdMkqBXo3UJdcC1X+Gs=
+	t=1707989105; cv=none; b=TWaThs519h3FmxZ53MD8KhxNNBbECFxRt0YJe7jcdTrSCKgPK1qWd2cpgaZ1vXz4vMD9XbRgEbpEJpt6M1wvyVTmUH4B+qC3Vs8pdcE1brCGJlNE3pvc/mVALFXGXbeWcRpOlZcNhZGHS3qI9xO8eUEg1BkAEJF5YcfnJeM9Cqg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707988955; c=relaxed/simple;
-	bh=OULdzMWgxfFFg9LRf6bcSMGbltqVRUYec/PuCMqih6c=;
+	s=arc-20240116; t=1707989105; c=relaxed/simple;
+	bh=Tt8BCHmtbJz3x2cgOU1o7/jB7h4WOyYohMZqaQf1V7Y=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=o7Qp/d2onj1+cGG+I+j1pBK6tvsxDssqVdcJJ8hkvhnNupgFXMP8jJOqnq33nXn9Xcv7Ld5N2DUf+EaRt7adrx+OijaPy5W8hrTBBNQb3TkzRFBPef94PnQ73esrTAOmfvp/UgTezcO6jrPTz1e0/HdMLODSyhgfX2MA2ZPo654=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=QDlIiS9V; arc=none smtp.client-ip=198.47.19.141
+	 MIME-Version:Content-Type; b=qBaANYykppiNpafoDnvoNOLL7FAwJoktoLd/+1uf5h0rqidKrtFfy/cXCu0mGQ8Dt+7GWXRAbFE5PbNkbfqpg23b2UggDnWZaUVf2MpT9azokbFd3KgCG2KtQL3GIhR6BvZ3yr3EjxQG3o/WYGezrFuH/e1jBke8QnP7NbhiDs0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=aP94wqFb; arc=none smtp.client-ip=198.47.19.142
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41F9LoQt095990;
-	Thu, 15 Feb 2024 03:21:50 -0600
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41F9Op96082808;
+	Thu, 15 Feb 2024 03:24:51 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707988910;
-	bh=xCLD175GRPHiHDl/Ut7lhjopF0rR8HNYuLJPwOGdpOI=;
+	s=ti-com-17Q1; t=1707989091;
+	bh=nWwyC19a93cQ/YZxeF9xsq+xSAyx/j26ftFvPq9oipU=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=QDlIiS9VxsssxRW7nUXSxvUtKTPMhPWskGfJy8z/TyzSELBfc9PM+5jrBxFtFf538
-	 +0RHv0zUT/d3eKe+CcH/CvxbOFa4nbOZo7p2wdr37W5V7UGbDEGAnloTNxUHhwmNwo
-	 F5PBgiDQ5PoAmhaNSwf5agJJezpvcC+krgjFTlnI=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41F9LoxI058910
+	b=aP94wqFbPSWkEW0vE2JnvjbuQQw2rilYXc0rsG0Cw9qms+8GkaN0qfsSfTCD+dDKw
+	 luIo7gdt8t4woIbESihzat51WdGg3nbp/ObZJ2JUKsfkgJEvBTblRHQrhf5/sIWWep
+	 eCKoL5bqAjclDktGciV34F8nCC1kYxU8SR0LXlNk=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41F9OpI4010077
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 15 Feb 2024 03:21:50 -0600
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 15 Feb 2024 03:24:51 -0600
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
- Feb 2024 03:21:50 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ Feb 2024 03:24:50 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 15 Feb 2024 03:21:50 -0600
+ Frontend Transport; Thu, 15 Feb 2024 03:24:50 -0600
 Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41F9LlST094738;
-	Thu, 15 Feb 2024 03:21:47 -0600
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41F9Ojht098491;
+	Thu, 15 Feb 2024 03:24:45 -0600
 From: Vignesh Raghavendra <vigneshr@ti.com>
 To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
         Rob Herring
 	<robh+dt@kernel.org>,
         Krzysztof Kozlowski
 	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>,
+        Conor Dooley <conor+dt@kernel.org>, Roger Quadros <rogerq@kernel.org>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Andrew Davis <afd@ti.com>,
+        "Tomi
+ Valkeinen" <tomi.valkeinen@ideasonboard.com>,
+        Aradhya Bhatia
+	<a-bhatia1@ti.com>,
+        Nikhil Devshatwar <nikhil.nd@ti.com>,
         <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: (subset) [PATCH 01/11] arm64: dts: ti: k3-am64: Convert serdes_ln_ctrl node into reg-mux
-Date: Thu, 15 Feb 2024 14:51:44 +0530
-Message-ID: <170798859433.1495814.14458901296374501325.b4-ty@ti.com>
+        <linux-kernel@vger.kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>,
+        "Roger
+ Quadros" <rogerq@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+Subject: Re: [PATCH v2 0/3] arm64: dts: ti: am65x: Add PCIe + USB DT overlay files
+Date: Thu, 15 Feb 2024 14:54:34 +0530
+Message-ID: <170798904376.1504164.3974928327305600054.b4-ty@ti.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240124184722.150615-1-afd@ti.com>
-References: <20240124184722.150615-1-afd@ti.com>
+In-Reply-To: <20240208-for-v6-9-am65-overlays-2-0-v2-0-70bae3e91597@kernel.org>
+References: <20240208-for-v6-9-am65-overlays-2-0-v2-0-70bae3e91597@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,42 +90,29 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Andrew Davis,
+Hi Roger Quadros,
 
-On Wed, 24 Jan 2024 12:47:12 -0600, Andrew Davis wrote:
-> This removes a dependency on the parent node being a syscon node.
-> Convert from mmio-mux to reg-mux adjusting node name and properties
-> as needed.
+On Thu, 08 Feb 2024 15:51:42 +0200, Roger Quadros wrote:
+> There are 2 types of (PCIe + USB) expansion cards that are provided with
+> the AM654 board configurations.
 > 
+> 1) 2 lane PCIe + USB 2.0 card is supplied with the AM65 IDK
+> configuration [1]
 > 
-
-Dropping 2/11 as indicated. Rest applied.
+> 2) 1 lane PCIe + USB 3.0 card is supplied with the AM65 GP EVM
+> configuration [2]
+> 
+> [...]
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[01/11] arm64: dts: ti: k3-am64: Convert serdes_ln_ctrl node into reg-mux
-        commit: 91e93fdae6bab038f5913f766a9640371f9c630a
-[02/11] arm64: dts: tidd: k3-am65: Convert serdes_mux node into reg-mux
-        (no commit info)
-[03/11] arm64: dts: ti: k3-j7200: Convert serdes_ln_ctrl node into reg-mux
-        commit: 80d835defb8c9c696be35d86cb7949e5e7c0f1f6
-[04/11] arm64: dts: ti: k3-j7200: Convert usb_serdes_mux node into reg-mux
-        commit: 6b52caf93289a0f0f9980b7d21a5ae376c2afe8e
-[05/11] arm64: dts: ti: k3-j721e: Convert serdes_ln_ctrl node into reg-mux
-        commit: 4cd6d56c3c81e31aba3d69a6cf872770e8945dc7
-[06/11] arm64: dts: ti: k3-j721e: Convert usb_serdes_mux node into reg-mux
-        commit: 62b19a64e121e9ce081d18a77436a846585b9c7e
-[07/11] arm64: dts: ti: k3-j721s2: Convert usb_serdes_mux node into reg-mux
-        commit: 6b3a4da3ed71473126036c363261c5f1271e8e51
-[08/11] arm64: dts: ti: k3-j721s2: Convert serdes_ln_ctrl node into reg-mux
-        commit: 0985bf59052fbc932ff05ea760c8d177f390f20c
-[09/11] arm64: dts: ti: k3-j7200: Make the FSS node a simple-bus
-        commit: 3829ee48a4c44c28e397859c8df1d9e2ed7c5b3b
-[10/11] arm64: dts: ti: k3-am62: Make the main_conf node a simple-bus
-        commit: 3f6de97ee917ddabea8dcfab315fa6806cf7f230
-[11/11] arm64: dts: ti: k3-am62a: Make the main_conf node a simple-bus
-        commit: ad163bb36344f0432d8aee48553a17997b926c29
+[1/3] arm64: dts: ti: am65x: Fix dtbs_install for Rocktech OLDI overlay
+      commit: 8ada14cafc5e185c668198617cd1ab4f1d8d325a
+[2/3] arm64: dts: ti: Add DT overlay for PCIe + USB2.0 SERDES personality card
+      commit: aea902b9e0cb9c596aa2e70a9c8d7d7a15673e45
+[3/3] arm64: dts: ti: Add DT overlay for PCIe + USB3.0 SERDES personality card
+      commit: c472011e7aeef5f7a7d9f40c3c275d8ab82aa745
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
