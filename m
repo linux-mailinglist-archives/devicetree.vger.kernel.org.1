@@ -1,95 +1,116 @@
-Return-Path: <devicetree+bounces-42007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C0D685617C
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:26:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10C4F856187
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:28:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF5721C20381
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:26:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 255781C23097
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 11:28:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 159F7129A75;
-	Thu, 15 Feb 2024 11:26:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C034129A98;
+	Thu, 15 Feb 2024 11:28:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="bkqR6Eya"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8831F53369;
-	Thu, 15 Feb 2024 11:26:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5407129A75;
+	Thu, 15 Feb 2024 11:28:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707996398; cv=none; b=jhKPI6PZxsCUSC95ygDUnsNzNmRlE5YOHBO3KsWUHz8Snjxlto9UbDKCP2GBXr49o0C4WhLRyw6pE35OV0dXj5q3HvURu3y+0Sm9Kgf6LAtdtQMEiP1JgvprV7KKzduDjIIZHkVJaTa/f+JaixULYx0Bu3IwPrf9T9vINeJ16ZM=
+	t=1707996489; cv=none; b=kYxWriWD12sG7Plmy+PQg7cZxneGATu4CdozN11kO/PKrH5AFtzTQc1lWMzGcKemrGl1K/Z7FBAXEDUFkWDC+h8BvpN//X/Z1KBLQB2lilN3RXthmTkvV+wyEWOxdTAJ3cPyhRfmff+GoqZFS/hA4j6xFYsIq6cDqYbrMmm6SdE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707996398; c=relaxed/simple;
-	bh=pBEYU4AJhnNOJ1+oImLXGXidM99AZZHk0MSAwGM42SA=;
+	s=arc-20240116; t=1707996489; c=relaxed/simple;
+	bh=xO9ERZYT04zobE8avkfrLBAVFW+bp83vnhF4juLP3AY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jZRsaR9VE5JZ0mEbB/mFxYpq+q+f0NPA1ybyQrNbh3bgYDI/tjx6qcvYDiRY/UfmpXPSkbfROO3i+Ynh5DL4MmteOpnUSx3SSe4FQ6py2NfmCIQpOricOUDvGtpXW8spku7GI/9ir4sLV5lRYUNpNdievsfgFu0xEjqtTTxX5sU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 128ABDA7;
-	Thu, 15 Feb 2024 03:27:17 -0800 (PST)
-Received: from bogus (unknown [10.163.74.245])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7821A3F7B4;
-	Thu, 15 Feb 2024 03:26:27 -0800 (PST)
-Date: Thu, 15 Feb 2024 11:26:26 +0000
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Saravana Kannan <saravanak@google.com>, David Dai <davidai@google.com>
-Cc: Rob Herring <robh@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=W1pDdLEn9L3ZQ5itBn1VMRNfkG30OIxLFkf1xN43ZqPI7CsEkagL3JW94ATN780PLwrIcx0HIZj91KsUgWFC3ts5JBiE2LilQMpr/zPvU1HfuAWzNRAc2BzxmnvBo6IGDPZhtAFArKCXzok1D/mVmHTzo2S0u0nxXn1UOYmK23Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=bkqR6Eya; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1707996487; x=1739532487;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=xO9ERZYT04zobE8avkfrLBAVFW+bp83vnhF4juLP3AY=;
+  b=bkqR6EyawmhotfDgII8pyqI/tFR6JZ8/XUGGfVc3F5UqDexZDaf78lJy
+   HxxqxESLJK45t9yUE+GGkpw6lZW3Mbzttn+aLI1MKvWnNSZBPmDzeBu9F
+   1yJjZ0iwrSx1yMSi+nHYHXdb7wI/Bwk3cjiWjHqZE7UA8J9tYRavG+MFW
+   YUT2ExM/VQQnW2o+eoDGxLMMqieh3U9hr2m4NI4fh7pM1r/G9o2D0k36T
+   64dRsJ36i+VG5qW3zyvh37veLTzEhvckhZSN8V4KBhRy9Me/qSoa17VMg
+   Al+TI4E+PZiGjRRzCpdVCDCITdeb5C60qQ+Chyi8gleX4gn87Wc0o3lLu
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="1954098"
+X-IronPort-AV: E=Sophos;i="6.06,161,1705392000"; 
+   d="scan'208";a="1954098"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2024 03:28:06 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="912149520"
+X-IronPort-AV: E=Sophos;i="6.06,161,1705392000"; 
+   d="scan'208";a="912149520"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2024 03:28:04 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1raZuL-00000004m4B-4BsW;
+	Thu, 15 Feb 2024 13:28:02 +0200
+Date: Thu, 15 Feb 2024 13:28:01 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Quentin Perret <qperret@google.com>,
-	Masami Hiramatsu <mhiramat@google.com>,
-	Will Deacon <will@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Vincent Guittot <vincent.guittot@linaro.org>,
-	Marc Zyngier <maz@kernel.org>,
-	Oliver Upton <oliver.upton@linux.dev>,
-	Dietmar Eggemann <dietmar.eggemann@arm.com>,
-	Pavan Kondeti <quic_pkondeti@quicinc.com>,
-	Gupta Pankaj <pankaj.gupta@amd.com>, Mel Gorman <mgorman@suse.de>,
-	kernel-team@android.com, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/2] dt-bindings: cpufreq: add virtual cpufreq device
-Message-ID: <20240215112626.zfkiq2i2imbqcdof@bogus>
-References: <20240127004321.1902477-1-davidai@google.com>
- <20240127004321.1902477-2-davidai@google.com>
- <20240131170608.GA1441369-robh@kernel.org>
- <CAGETcx8S0oS67oMZsPKk6_MGAtygoHEf_LN1gbcNDEBqRJ4PPg@mail.gmail.com>
- <20240202155352.GA37864-robh@kernel.org>
+	Robin van der Gracht <robin@protonic.nl>,
+	Paul Burton <paulburton@kernel.org>
+Subject: Re: [PATCH v2 03/15] auxdisplay: linedisp: Use unique number for id
+Message-ID: <Zc31QVEEzM5jQ0jy@smile.fi.intel.com>
+References: <20240212170423.2860895-1-andriy.shevchenko@linux.intel.com>
+ <20240212170423.2860895-4-andriy.shevchenko@linux.intel.com>
+ <CAMuHMdUWw-_dECEXrTt--AX400YZOhP7b+tBOD0bHYQmS0z=1g@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240202155352.GA37864-robh@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMuHMdUWw-_dECEXrTt--AX400YZOhP7b+tBOD0bHYQmS0z=1g@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Fri, Feb 02, 2024 at 09:53:52AM -0600, Rob Herring wrote:
-> On Wed, Jan 31, 2024 at 10:23:03AM -0800, Saravana Kannan wrote:
-> >
-> > We also need the OPP tables to indicate which CPUs are part of the
-> > same cluster, etc. Don't want to invent a new "protocol" and just use
-> > existing DT bindings.
+On Thu, Feb 15, 2024 at 11:03:27AM +0100, Geert Uytterhoeven wrote:
+> On Mon, Feb 12, 2024 at 6:04 PM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
+
+...
+
+> >  struct linedisp {
+> >         struct device dev;
+> > +       unsigned int id;
 > 
-> Topology binding is for that.
-> 
-> What about when x86 and other ACPI systems need to do this too? You 
-> define a discoverable interface, then it works regardless of firmware. 
-> KVM, Virtio, VFIO, etc. are all their own protocols.
->
+> Note that there is a hole on 64-bit platforms.
+> Hence I'd move id below, so the hole is at the end of the
+> structure, and might be filled by future changes.
 
-+1 for the above. I have mentioned the same couple of times but I am told
-it can be taken up later which I fail to understand. Once we define DT
-bindings, it must be supported for long time which doesn't provide any
-motivation to such a discoverable interface which works on any virtual
-platforms irrespective of the firmware.
+I had checked timer_list, but while it has holes, without debug it ends on
+4-bytes boundary (without debug enabled), otherwise on 8-bytes.
+Nevertheless, relying on the above seems fragile, so I follow your suggestion.
+Thank you!
 
---
-Regards,
-Sudeep
+> >         struct timer_list timer;
+> >         void (*update)(struct linedisp *linedisp);
+> >         char *buf;
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
