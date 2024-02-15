@@ -1,131 +1,124 @@
-Return-Path: <devicetree+bounces-42047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9C8585635E
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 13:38:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DE4B856388
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 13:45:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0859D1C21EB4
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:38:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 413AB1F260D4
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 12:45:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9CD512DD94;
-	Thu, 15 Feb 2024 12:38:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBF9412DD9B;
+	Thu, 15 Feb 2024 12:45:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hrMhz0kT"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Fu8GgC2M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DCBB12E1FB;
-	Thu, 15 Feb 2024 12:38:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18B8458ABC;
+	Thu, 15 Feb 2024 12:45:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708000706; cv=none; b=srGfhePGblmYGVt0KoJcZ3LIQC70/EZ96kAseaznuXX7DQ9RAeNqFeir//3iPi4BsmyFD7RKgGgUKYnOwfrNslvAFYhQR1Xu5k17xtY5RtWOxtdBak15fNQRxFn/j1zYWs8x8q4MdkbKosCMuyFb1LYsjqPBNHoJPd8uCT9a8vU=
+	t=1708001107; cv=none; b=muMaOqtEx6LbfZMPu3vfGQsXkNX6wFe0uuTlEtlN7UZFFIHjr5HufkvNAgoCZK5qDJLNlFr7UL/fToVdLDq9BLu+IdBxEocwDH0XETVyyNnSevCVYro3zpFI8s9YvFXY5a2zJc/lcbWN6OZn1atFgqACJ14/WINn6AebNAd5q74=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708000706; c=relaxed/simple;
-	bh=wX8xUiIMHpOyqdGdolyWgF5hNZn2Vqj8dYkmFKwuuDQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b/ba81O9TlG6nFNkudHg/FmkKJXrJAU2rmyYgwHuVAG9AtsSRzgq/fVGdGvZrT1lhBp/Gcc048rBi7B8ygkVvyxLVDMXDTClZPEV8SZTUP0BoHrwdrBvLOF+Lm6lEFPPVaoaoK/h6nYyLZvRo8LinqtU70KlSK3F6k+iMKvr+7c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hrMhz0kT; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1708000705; x=1739536705;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=wX8xUiIMHpOyqdGdolyWgF5hNZn2Vqj8dYkmFKwuuDQ=;
-  b=hrMhz0kTTyRHcOYHmZzRwSQRH+m0k8yKAufCMcYyCrbuXICn2fWRhQ+3
-   AteNkByHBBXN4LQmHCsAZVe2ouhT41M6mT0FdWC+Xjitv6sYAIzJNrQEX
-   D6hsr1wZcHKeVO41TCFcgVPJvKYkWUiFevZoR/kVFvJHZrzELxtamp5RA
-   bEIg6E/4Y79UftZ1SUPxDNfyqeoXixzP2X0hhQElKRC1C87YRK8U97P8t
-   3TgRWD2BFXNub7zL4QGOA6F2406P8RcGJ9G1L2HvDhIKvmTTIG9F3ADfh
-   jxR8oa5QEJlwCwpW7ivTMCvkQxQRdjSECas+I084hTAhoR2JoPxW5DGAb
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="5051960"
-X-IronPort-AV: E=Sophos;i="6.06,161,1705392000"; 
-   d="scan'208";a="5051960"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2024 04:38:24 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="912159489"
-X-IronPort-AV: E=Sophos;i="6.06,161,1705392000"; 
-   d="scan'208";a="912159489"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2024 04:38:21 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1rab0N-00000004n1N-1fm1;
-	Thu, 15 Feb 2024 14:38:19 +0200
-Date: Thu, 15 Feb 2024 14:38:18 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Robin van der Gracht <robin@protonic.nl>,
-	Paul Burton <paulburton@kernel.org>
-Subject: Re: [PATCH v2 00/15] auxdisplay: linedisp: Clean up and add new
- driver
-Message-ID: <Zc4FutGKA0gUFvev@smile.fi.intel.com>
-References: <20240212170423.2860895-1-andriy.shevchenko@linux.intel.com>
- <Zcz--YJmWLm0ikUT@smile.fi.intel.com>
- <CAMuHMdW5nwtuZpTyf+_41bcHeR+MA6Ko2++JiC8Xz6u1tDNQ_Q@mail.gmail.com>
- <CAMuHMdWKAf_Yi59RWoA5=K=ajS0-+Vn8tgwzy5tAzLmqizZLtg@mail.gmail.com>
+	s=arc-20240116; t=1708001107; c=relaxed/simple;
+	bh=Mgp00C5UQtSRyPwSCiGeC8fFaUThfqgMHNgJPSY/Oug=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=E2L3UEPY+f7ZxsYY2Ftc9Ui1PGDJd+7BK5da1J92cshDHMaWdJmVipvYeJoCJ2uKPOHPUVOHkJsese3ppmKSNHQk43TN3kuWAtGZsxduMiAj31ZsZnsvrg/2HoWfuy/rYtW31HGHWCFOGtUMETsm2UFSSQiwDDv/hVRLc75+K7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Fu8GgC2M; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41FBe9Wx029250;
+	Thu, 15 Feb 2024 12:44:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=jss1n6W
+	RXgUmgKBvDKm6RZxp/HrIA3PlBrDIIsPb8r4=; b=Fu8GgC2Myp/wKqd/1mJ7MPl
+	xWPAyQj1+wBv8xs3BkdVqVbSdGzTO6vBY62AnwhWqFPSOXbl9Ky9ouUA0Y+1QIeE
+	SWqHGtLokC///C2mjmMhC5NdPUN9mgBcTHFHkzXLhOVXWgktDwD52nRU1mXq4jRG
+	fMWduXx0gbB9f1j0c7Ryj8MrTqacdvK1Smn9dqedQPUjGNDWhaQAhOwl9uzDqhW4
+	x5CylQCCHXt4DOgo/8k4tr5rOvgtWXy07ggR7G+C/JPK1ENOKqj4AJ/jwcKad89j
+	nsxvgU995KXlYTTqMh2L2WfabzKIwApFxQF05IhZa5ZBdAjCZO5MHJyMvhUzKwA=
+	=
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w9435sru2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 15 Feb 2024 12:44:52 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41FCiond026387
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 15 Feb 2024 12:44:51 GMT
+Received: from hu-jinlmao-lv.qualcomm.com (10.49.16.6) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Thu, 15 Feb 2024 04:44:50 -0800
+From: Mao Jinlong <quic_jinlmao@quicinc.com>
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach
+	<mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Mao
+ Jinlong" <quic_jinlmao@quicinc.com>,
+        Tao Zhang <quic_taozha@quicinc.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>
+CC: <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/2] coresight: tpdm: Change qcom,dsb-element-size to qcom,dsb-elem-bits
+Date: Thu, 15 Feb 2024 04:44:35 -0800
+Message-ID: <20240215124439.30037-1-quic_jinlmao@quicinc.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdWKAf_Yi59RWoA5=K=ajS0-+Vn8tgwzy5tAzLmqizZLtg@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Mt0kXIpjqrmyvXPsQYZAt2pEM1q6xtcN
+X-Proofpoint-ORIG-GUID: Mt0kXIpjqrmyvXPsQYZAt2pEM1q6xtcN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-15_11,2024-02-14_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ lowpriorityscore=0 mlxscore=0 suspectscore=0 spamscore=0
+ priorityscore=1501 malwarescore=0 adultscore=0 bulkscore=0 mlxlogscore=713
+ clxscore=1015 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402150100
 
-On Thu, Feb 15, 2024 at 12:05:37PM +0100, Geert Uytterhoeven wrote:
-> On Wed, Feb 14, 2024 at 7:45 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > On Wed, Feb 14, 2024 at 6:57 PM Andy Shevchenko
-> > <andriy.shevchenko@linux.intel.com> wrote:
-> > > On Mon, Feb 12, 2024 at 07:01:33PM +0200, Andy Shevchenko wrote:
-> > > > Add a new initial driver for Maxim MAX6958/6959 chips.
-> > > > While developing that driver I realised that there is a lot
-> > > > of duplication between ht16k33 and a new one. Hence set of
-> > > > cleanups and refactorings.
-> > > >
-> > > > Note, the new driver has minimum support of the hardware and
-> > > > I have plans to cover more features in the future.
-> > > >
-> > > > In v2:
-> > > > - updated DT bindings to follow specifications and requirements (Krzysztof)
-> > > > - unified return code variable (err everywhere)
-> > > > - left patches 10 and 13 untouched, we may amend later on (Robin)
-> > >
-> > > Geert, I would like to apply at least the first 13 patches.
-> > > Do you have any comments or even possibility to perform a regression test?
-> >
-> > I'll try to give it a try on my Adafruit Quad 14-segment display tomorrow...
-> 
-> With the missing return-statement added, the ht16k33 driver builds
-> and works fine: the kernel version is happily scrolling by.
-> I didn't test userspace line display control, as there is an issue
-> with the uSD interface on my OrangeCrab, preventing it from booting
-> into userspace.
-> 
-> Tested-by: Geert Uytterhoeven <geert@linux-m68k.org>
+As unit of dsb element size is bit, change qcom,dsb-element-size to
+qcom,dsb-elem-bits. And CMB uses -bits suffix as well. There is no
+TPDM node in any DT now. Make such change before any TPDM node is added
+to DT. 
 
-Thank you!
+Change since V1:
+1. Update the commit message for dt-binding.
+2. Fix the dt_binding_check error for dt-binding change.
 
-So far I have applied patches 1-6,8-9 with the respective suggestions
-implemented.
+Mao Jinlong (2):
+  dt-bindings: arm: qcom,coresight-tpdm: Rename qcom,dsb-element-size
+  coresight-tpda: Change qcom,dsb-element-size to qcom,dsb-elem-bits
+
+ .../devicetree/bindings/arm/qcom,coresight-tpdm.yaml         | 5 ++---
+ drivers/hwtracing/coresight/coresight-tpda.c                 | 2 +-
+ 2 files changed, 3 insertions(+), 4 deletions(-)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.41.0
 
 
