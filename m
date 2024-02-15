@@ -1,145 +1,236 @@
-Return-Path: <devicetree+bounces-41954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8642E855E85
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:53:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BC1E855E93
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:55:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B83AD1C216F5
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:53:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B98C61F21D7E
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:55:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D0636341C;
-	Thu, 15 Feb 2024 09:52:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="QaEsskPh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B780763503;
+	Thu, 15 Feb 2024 09:54:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 542256340F;
-	Thu, 15 Feb 2024 09:52:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C38A2634FD
+	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 09:54:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707990777; cv=none; b=qMUFWQaj+HUIKTdFl4p/aQS1R276LSK8JrUOORdoA+A7QY/ym1fw2SBdCJmFr35YM6JbSwOOBdQupoM2056EFprcy3xKowebM0p2LhqO0ZZ5u3Jt6wd+Axt5GEbRdqWsqdfdd4i4v9vtzL0KcTI6m6NnrTuCgX16eUDbqf0Hd3c=
+	t=1707990893; cv=none; b=WHKLhDT2NZmjZkuwEo/fbjP0pualctC/yzkKoLmtPbSqwWz7Qwl6bJGY4p25xPKm/1QeL00s1+MrW+VWRqdFVrzeTnZCu3wTKhvHfBOMY4qJI1a7iSx9mQQejD95SHJd8ocyusvq89TJhSYbvQk2S8l9uVkrT0tvlnUQU+FVe3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707990777; c=relaxed/simple;
-	bh=NpT4MujOWA1QAn/s06YLRsKfLQx4zRuyUaPcyLqGa/0=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=FgdVHbMGuUaF7AMlDGNWCjjccljNFM0FstI8Y1LjFjh/j+CWbqYBrLYD1J0AUJfrY1yA1l14w8YmvvC9ePS1K3wBsl5BFllyQjHZ+RClgHoOr12UqXpm4phbjSHCUhXk/Qzs5G2Xw1t+TbG/oeXMbYsAd8/UNT45HG/ddLt51gw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=QaEsskPh; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id DF44C24000F;
-	Thu, 15 Feb 2024 09:52:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1707990766;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Z0R7cedwXz8r4syjj8vVk7jrDrE/C0nhuEPgHT7CMLE=;
-	b=QaEsskPhSgsZB/TB+dXWgSCBO9KxJbwVruQNhObt7j1OrUXjORU/qfqNIXzMAMj8AnnTlK
-	9d5+4RthCg2tpHT3ZQnf+c1snCdi9Ed0gGNUTOhQkpGngf3JqzZsIquzsKiUUvDljL3mnL
-	NHaTW1TCUBjkJW8r3X08dgVaH1WKrAvyBOqNIeqIAyEDZmZvoccQNkv34r+79VfaYtwCoX
-	cg2V7he5PLcGWhYouj0A9lEMNCevjORUX/3k4lKgvy81bfqG69Hzv8fsr9dPdq7a7zn/Ea
-	nmKOpCJZ3YzdQRCxEj8k5LIMPwBMN6U7dX1gFzW6Sfaln7YW6Ocu/bevQQsesQ==
+	s=arc-20240116; t=1707990893; c=relaxed/simple;
+	bh=RNF989/m20IyPhB5QfOKoOvl9/hYrxwPiHxxPlAAJzk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MR6Pxydw/deWy8EiU2G+rVMOJZW6j2x2bICU9xJdQvFUcCdhdYjE91YbIAC9WxMTWn6PF1gGSV2ZklFIIfAfl+r0ilIS/cMDha5UVDYPVxzc48S3Q5ZNs6ItVAEwxp2ZSDHYbq1a5URMMv61PEykaLE9sK0aHtwlvGmeOy8gNnU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1raYRr-00047w-9k; Thu, 15 Feb 2024 10:54:31 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1raYRp-000rFT-Ba; Thu, 15 Feb 2024 10:54:29 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1raYRp-005HU7-0o;
+	Thu, 15 Feb 2024 10:54:29 +0100
+Date: Thu, 15 Feb 2024 10:54:28 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Dharma Balasubiramani <dharma.b@microchip.com>
+Cc: sam@ravnborg.org, bbrezillon@kernel.org, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, 
+	daniel@ffwll.ch, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, 
+	claudiu.beznea@tuxon.dev, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, lee@kernel.org, 
+	thierry.reding@gmail.com, linux-pwm@vger.kernel.org, hari.prasathge@microchip.com, 
+	manikandan.m@microchip.com, Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [linux][PATCH v6 2/3] dt-bindings: atmel,hlcdc: convert pwm
+ bindings to json-schema
+Message-ID: <4psibzz7xylyp3zbmp3gup2gojh77bsllkyosbfdacyw4gzxuw@djl7eg4oeg2r>
+References: <20240202001733.91455-1-dharma.b@microchip.com>
+ <20240202001733.91455-3-dharma.b@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="bkvbrrniz7f544mh"
+Content-Disposition: inline
+In-Reply-To: <20240202001733.91455-3-dharma.b@microchip.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+
+
+--bkvbrrniz7f544mh
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 15 Feb 2024 10:52:44 +0100
-Message-Id: <CZ5K713P9WDB.FN0HZ3ANLTNC@bootlin.com>
-Subject: Re: [PATCH 03/23] dt-bindings: gpio: nomadik: add
- mobileye,eyeq5-gpio compatible
-Cc: <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-mips@vger.kernel.org>, "Gregory CLEMENT"
- <gregory.clement@bootlin.com>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Linus Walleij"
- <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>, "Rob
- Herring" <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Philipp Zabel" <p.zabel@pengutronix.de>, "Thomas Bogendoerfer"
- <tsbogend@alpha.franken.de>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: aerc 0.15.2
-References: <20240214-mbly-gpio-v1-0-f88c0ccf372b@bootlin.com>
- <20240214-mbly-gpio-v1-3-f88c0ccf372b@bootlin.com>
- <9e19c820-c9aa-4eef-a594-f7305b03eea4@linaro.org>
-In-Reply-To: <9e19c820-c9aa-4eef-a594-f7305b03eea4@linaro.org>
-X-GND-Sasl: theo.lebrun@bootlin.com
 
 Hello,
 
-On Thu Feb 15, 2024 at 10:13 AM CET, Krzysztof Kozlowski wrote:
-> On 14/02/2024 17:23, Th=C3=A9o Lebrun wrote:
-> > This GPIO controller is used on the Mobileye EyeQ5 SoC. Add its
-> > compatible to the dt-bindings. One difference is that the block as
-> > integrated on EyeQ5 does not support sleep-mode.
-> >=20
-> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
-> > ---
-> >  .../devicetree/bindings/gpio/st,nomadik-gpio.yaml        | 16 ++++++++=
-+++++++-
-> >  1 file changed, 15 insertions(+), 1 deletion(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/gpio/st,nomadik-gpio.yam=
-l b/Documentation/devicetree/bindings/gpio/st,nomadik-gpio.yaml
-> > index bbd23daed229..e44cf292bc6d 100644
-> > --- a/Documentation/devicetree/bindings/gpio/st,nomadik-gpio.yaml
-> > +++ b/Documentation/devicetree/bindings/gpio/st,nomadik-gpio.yaml
-> > @@ -19,7 +19,9 @@ properties:
-> >      pattern: "^gpio@[0-9a-f]+$"
-> > =20
-> >    compatible:
-> > -    const: st,nomadik-gpio
-> > +    enum:
-> > +      - st,nomadik-gpio
-> > +      - mobileye,eyeq5-gpio
-> > =20
-> >    reg:
-> >      maxItems: 1
-> > @@ -65,6 +67,18 @@ required:
-> > =20
-> >  unevaluatedProperties: false
-> > =20
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: st,nomadik-gpio
-> > +    then:
-> > +      properties:
-> > +        st,supports-sleepmode:
-> > +          description: Whether the controller can sleep or not.
-> > +          $ref: /schemas/types.yaml#/definitions/flag
->
-> You already have such property, so you are defining it second time. You
-> want instead if: for eyeq5-gpio making it:
-> then:
->   properties:
->     st,supports-sleepmode: false
+On Fri, Feb 02, 2024 at 05:47:32AM +0530, Dharma Balasubiramani wrote:
+> Convert device tree bindings for Atmel's HLCDC PWM controller to YAML
+> format.
+>=20
+> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> Changelog
+> v5 -> v6
+> - Drop the example as we have one complete example in mfd binding.
+> v4 -> v5
+> v3 -> v4
+> - No changes
+> Note: The clean up patch will be sent later as Sam suggested.
+> v2 -> v3
+> - Remove '|' in description, as there is no formatting to preserve.
+> - Delete the description for pwm-cells.
+> - Drop the label for pwm node as it not used.
+> v1 -> v2
+> - Remove the explicit copyrights.
+> - Modify title (not include words like binding/driver).
+> - Modify description actually describing the hardware and not the driver.
+> - Remove pinctrl properties which aren't required.
+> - Drop parent node and it's other sub-device node which are not related h=
+ere.
+> ---
+>  .../bindings/pwm/atmel,hlcdc-pwm.yaml         | 35 +++++++++++++++++++
+>  .../bindings/pwm/atmel-hlcdc-pwm.txt          | 29 ---------------
+>  2 files changed, 35 insertions(+), 29 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/atmel,hlcdc-pwm=
+=2Eyaml
+>  delete mode 100644 Documentation/devicetree/bindings/pwm/atmel-hlcdc-pwm=
+=2Etxt
+>=20
+> diff --git a/Documentation/devicetree/bindings/pwm/atmel,hlcdc-pwm.yaml b=
+/Documentation/devicetree/bindings/pwm/atmel,hlcdc-pwm.yaml
+> new file mode 100644
+> index 000000000000..0e92868a2b68
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/atmel,hlcdc-pwm.yaml
+> @@ -0,0 +1,35 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/atmel,hlcdc-pwm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Atmel's HLCDC's PWM controller
+> +
+> +maintainers:
+> +  - Nicolas Ferre <nicolas.ferre@microchip.com>
+> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
+> +  - Claudiu Beznea <claudiu.beznea@tuxon.dev>
+> +
+> +description:
+> +  The LCDC integrates a Pulse Width Modulation (PWM) Controller. This bl=
+ock
+> +  generates the LCD contrast control signal (LCD_PWM) that controls the
+> +  display's contrast by software. LCDC_PWM is an 8-bit PWM signal that c=
+an be
+> +  converted to an analog voltage with a simple passive filter. LCD displ=
+ay
+> +  panels have different backlight specifications in terms of minimum/max=
+imum
+> +  values for PWM frequency. If the LCDC PWM frequency range does not mat=
+ch the
+> +  LCD display panel, it is possible to use the standalone PWM Controller=
+ to
+> +  drive the backlight.
+> +
+> +properties:
+> +  compatible:
+> +    const: atmel,hlcdc-pwm
+> +
+> +  "#pwm-cells":
+> +    const: 3
+> +
+> +required:
+> +  - compatible
+> +  - "#pwm-cells"
+> +
+> +additionalProperties: false
+> diff --git a/Documentation/devicetree/bindings/pwm/atmel-hlcdc-pwm.txt b/=
+Documentation/devicetree/bindings/pwm/atmel-hlcdc-pwm.txt
+> deleted file mode 100644
+> index afa501bf7f94..000000000000
+> --- a/Documentation/devicetree/bindings/pwm/atmel-hlcdc-pwm.txt
+> +++ /dev/null
+> @@ -1,29 +0,0 @@
+> -Device-Tree bindings for Atmel's HLCDC (High-end LCD Controller) PWM dri=
+ver
+> -
+> -The Atmel HLCDC PWM is subdevice of the HLCDC MFD device.
+> -See ../mfd/atmel-hlcdc.txt for more details.
+> -
+> -Required properties:
+> - - compatible: value should be one of the following:
+> -   "atmel,hlcdc-pwm"
+> - - pinctr-names: the pin control state names. Should contain "default".
+> - - pinctrl-0: should contain the pinctrl states described by pinctrl
+> -   default.
+> - - #pwm-cells: should be set to 3. This PWM chip use the default 3 cells
+> -   bindings defined in pwm.yaml in this directory.
+> -
+> -Example:
+> -
+> -	hlcdc: hlcdc@f0030000 {
+> -		compatible =3D "atmel,sama5d3-hlcdc";
+> -		reg =3D <0xf0030000 0x2000>;
+> -		clocks =3D <&lcdc_clk>, <&lcdck>, <&clk32k>;
+> -		clock-names =3D "periph_clk","sys_clk", "slow_clk";
+> -
+> -		hlcdc_pwm: hlcdc-pwm {
+> -			compatible =3D "atmel,hlcdc-pwm";
+> -			pinctrl-names =3D "default";
+> -			pinctrl-0 =3D <&pinctrl_lcd_pwm>;
+> -			#pwm-cells =3D <3>;
+> -		};
+> -	};
 
-Good catch. I hesitated between declaring the property inside an
-if-statement or disabling it inside an if-statement as you show here. I
-ended-up mixing those two approaches.
+I guess dropping the example is fine because it's included now in the
+mfd binding.
 
-Wil pick the if-eyeq5-then-disable-prop solution.
+Applied to
 
-Thanks for the review Krzysztof!
+	https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/for=
+-next
 
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--bkvbrrniz7f544mh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmXN31QACgkQj4D7WH0S
+/k6NeAf9EVR8Xz9GuvTvAqU0vc/y1P/c6V7/AtXRwh5HxqS2eziYkB1DZ7gU7MzY
+pZ5nyNIvTFXxrcGr4jKn8XaFMUVLaduPRRld8o4OpCxgrRcdG6yj+MRox9gQ4eTq
+H31V7tmZCubtMX1CIrNgFv91u6mj2tnndzxCS2MpVIYCt4SVG0SH9Yah3VTZ2Q4h
+zHteuvTsi/4n0JIx4qBGjJerCR8+5DrTW4NxbawleSuXpqfbSSPfabVjPHd4sA9g
+DnREROuPWeL3QV/aQ3F7X9y2FcfjK1B2F7V3MVm6N/S7Y/gT7NjmF1985t9O3hmK
+hxUuN2McBmMJC3yK4gUBzlAYjOCE3w==
+=Q1fN
+-----END PGP SIGNATURE-----
+
+--bkvbrrniz7f544mh--
 
