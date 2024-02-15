@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-41929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 145DD855DC6
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:21:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B022A855DCA
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 10:21:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFD6F28A8B7
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:21:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 254DB1F25470
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:21:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04B6017BBB;
-	Thu, 15 Feb 2024 09:20:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD6401B805;
+	Thu, 15 Feb 2024 09:20:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uT5LL9Zd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WSq2SiQQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40ADD17580
-	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 09:20:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8E0F179B5
+	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 09:20:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707988837; cv=none; b=OXLY2TuJ6Lunu2TP3Xc3c/YVJqq3hKTij2Hl0jEvNBK+AEIHjU0tzunyvPfeSfa9tCHfJ3XrHsrZjEGs5wVqLCqYB77plq4Ponx6FAkGu7UrtCL1vofpQB+SD6VHHnjiw3LxCpMCeQLyWMorx4pu+t88XdamNsHXqmTzm5BueeI=
+	t=1707988839; cv=none; b=YgTC5Zz96z6wiQ80ylYXmE4Np+IAIy/zmKYutb7if8BaUpg7YtSS78QAHGgX/KpQ74qbs2AQQoGPBxkC4X1B9jpX3QbIX/xlzGE2SgOCz5ZKPTN9uv0dWf7yXA9AcGo15PHqiZJB1ZVuJUtWg+hsTNLOGvIl/4np6B4s7YKdJWc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707988837; c=relaxed/simple;
-	bh=B2VkxjrRCyr4kbi/Ih6iBNEXikEKFqg0faRJON0SE+g=;
+	s=arc-20240116; t=1707988839; c=relaxed/simple;
+	bh=ixdWRZ9//fnKbR3faHjO8JwXZWGtnv2p+6cX0KLfh90=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=bSAbrDirdv2xLkbTxdvPExW3930ee6if1KQ+DuGTL2G4vSg20EatpoSGuh1m+2Zv+fx1pqUNK7W1vZTxRKkfUPWZMLn21q0xpqe9oK5s36vkKkme5sKxE3/9maokRKWHQkqsXxC4dgKzbIs4/9B5+0DMiJuZxKegDDvpngNj7jA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uT5LL9Zd; arc=none smtp.client-ip=209.85.128.54
+	 In-Reply-To:To:Cc; b=tGN8xICyDIWTEho8ORjzZOtSFU9R1nd+WzfGgerMCswNuOINE/rE/xfjglsctU6vgtBLvv2XkcE4qKezDvJKTzpYrw5dg3+/UecUu1UgFXv70yT65HVTXdOhWWml21bCrWXIzODI9BkVoHRdVjgfA1YDNJ66xCPX3AOmaMYe6kU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WSq2SiQQ; arc=none smtp.client-ip=209.85.167.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-411a5a86078so5277205e9.2
-        for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 01:20:36 -0800 (PST)
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-51187830d6dso682265e87.3
+        for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 01:20:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707988834; x=1708593634; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1707988836; x=1708593636; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=5ygFt5WEvBpqUpx/ZfEWpp/27W6mJ4fXmmus9YC0aao=;
-        b=uT5LL9ZdVrzsCndwmJUyxxkOZre1UwZJZsxEWvwPVjoDKsjTQ5HerQ6P5JYTQhVL4d
-         eDo8m/HLFHKYFMO/+94Rh5xWcj9jjaLQba+Nf6a+oHu6wXS/FsYs+5GiWBs32Xps+ne9
-         pCsJIZIREeEkqF6nIktbI6jynFDh9L8h4CyUOwj7sWB1fKNW1x4NqShx4DOiB9kLAuLh
-         MnazYASm2vhxTJa1/fxKBDmF654Rvqp0KiNVhuPZSHQwC/+rbiOgStXOccnz/u8iahvz
-         Jb77u59lzO+97HfPNVFvgRxepZH74QOQwiEx7vcIDGrIvfs/ahBagr54smf70HPHvTaW
-         Z5Lg==
+        bh=Wz/R+OttvCXysokn6zYBH1UjPAsuemNSOQvMKQiaZxo=;
+        b=WSq2SiQQDfJ0iZO2MyTBrMGvh6AkDXX7wNWpWWlLWAfk+y0LY3ion6yjyP6lAqD2+b
+         6MR+P1sjH38P4k7/Ncqh37vmh61HPFRUAj5Nqx3VqRqNC3apRza+xG+eGk4Kzks3nypW
+         bFVp74H79eQvlaBQAAdm9VYtKQMulMUQSiBCa1/oGVz0MxlzhVCiJVN2jmx8V9BSqNC7
+         UekydgkOgfQeE+qCD6eO2qV/4+Vv8IWVSFxgXH/EjAMlqgK26qeZLB9z0436ZcYj8fMy
+         S6ghR6KQBL3Wc5MqTOp9KzgtvIBI06pedol6yoswcE77dmY7Kh02My09vP6FKZuaUT7o
+         lJCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707988834; x=1708593634;
+        d=1e100.net; s=20230601; t=1707988836; x=1708593636;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=5ygFt5WEvBpqUpx/ZfEWpp/27W6mJ4fXmmus9YC0aao=;
-        b=p1Chdf9qAM94UUk2D7MuzOmbn7Fia7YkSfVQIs/YE53c5gqeiRAHV9TFhvc+aQ2BgV
-         4X8OTOfEE+boTAq6mPjrEvGFnvkQxcCAg7QC9HWiIiD3fEPww1pXkX4OXmzhSfWOc2+7
-         zgblatvxpjyi/hjHiaYTcbDuXyIGZUKOFr6U3/tMkkTtMcb8nCiq96wIe0O42J0k+9Qh
-         ihCTVdo77IeF/Th6c8fZcs2ht9giI4GuOkhTonw2pJbYmiq71/HnnBIT5+Id1a+9awxx
-         YF9br/1LI4IUmlrkbLOtqs+O9CAcudHTHm0jOSoi9L7zvfK81dCMXvaJkK9fGiStD2Il
-         5tHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWJc+gtBKznKVC74XbjiH2vQ8tM2jfGr4FbsrHLZVYSeEXBpDJNrI3GHBzsrUWUBd3Bh927ZGHyGuGCjMfYElLbEEcWlrMacQfWXQ==
-X-Gm-Message-State: AOJu0YwztXIW1l93zbbN7vKYbf52FQEL8RtRC/XnOFcJ7+pUwDhVxzpr
-	br8w1xl734B7xSIS6IozoJq4e2pZzZFhE8RPCyAQVM3OuIebvwZ5A4Xi+k4DRaY=
-X-Google-Smtp-Source: AGHT+IHr6EIY5IaqJsX6nTJIJL95gxp6F5b/cqLuuSuiPNhGAbkKg8Oqmhr9/MhVWmYu+JmkeXZw2A==
-X-Received: by 2002:a5d:6205:0:b0:33b:131b:d8c1 with SMTP id y5-20020a5d6205000000b0033b131bd8c1mr830193wru.66.1707988834512;
-        Thu, 15 Feb 2024 01:20:34 -0800 (PST)
+        bh=Wz/R+OttvCXysokn6zYBH1UjPAsuemNSOQvMKQiaZxo=;
+        b=n9L2Fo5liPKAiIhB7zbPSC9fFVMpgZ7SKkezRPkmREE9G4GTCifMs7s7UT9iLg9qa+
+         yrrvB8Usqdf07/Jgd0vVOfxt9FNsGA0vomQ/J4MyvJCo1ORiej2yTfmC//9ZGaetrmD/
+         4/clTgeIsES8+FfSD6jW+hEds6uJ2MdgkzgioGDPxxIOKCaK0XK8zVZIF0vv+KpDij4e
+         QASB1rrqkHyGxqyf1iUAG8UE9rlEh2FwvNg504p2zxSePgONn9hPqo1rbjMtnPTmmtz6
+         Qhl3oEfa6ergfyWsPnepB7+ATEuxb7CSk+nOK7i+stHd/XuhH+aaPMsUv2W42nLYBzN6
+         j8Qw==
+X-Forwarded-Encrypted: i=1; AJvYcCX/Ui7N/J+3BlN050fbMeY5410DtYgZ6j7gtI6t5bECreqbPUXOqzFYvkfn59A8YRkizvykaWZk5OjDvSL36Qd1ITNLL/6Gv8PMxA==
+X-Gm-Message-State: AOJu0YwzzgjF/NgB4Wp0Bv6AjVsWdMHSyyLjrsUQ0zDWZy1J16a+vq2d
+	0kH1gCvD2Hw3epSMt3kvuVve28zybxvk9/cYfXy2sQbuyvlU6KDlSuWeAS7/pLk=
+X-Google-Smtp-Source: AGHT+IHBmz4GVIy7zAi8s3FiY53U4JGKrIlZnsRERqf4vG0ewFy912D5q7no0BNnnpGjpNZ9tS3lbw==
+X-Received: by 2002:ac2:4e6b:0:b0:511:4f21:4517 with SMTP id y11-20020ac24e6b000000b005114f214517mr811967lfs.33.1707988835788;
+        Thu, 15 Feb 2024 01:20:35 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id l8-20020adfa388000000b0033b66c2d61esm1156435wrb.48.2024.02.15.01.20.33
+        by smtp.gmail.com with ESMTPSA id l8-20020adfa388000000b0033b66c2d61esm1156435wrb.48.2024.02.15.01.20.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Feb 2024 01:20:34 -0800 (PST)
+        Thu, 15 Feb 2024 01:20:35 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Thu, 15 Feb 2024 10:20:25 +0100
-Subject: [PATCH v2 3/6] drm/msm/a6xx: Add missing regs for A750
+Date: Thu, 15 Feb 2024 10:20:26 +0100
+Subject: [PATCH v2 4/6] drm/msm: add support for A750 GPU
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,7 +78,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240215-topic-sm8650-gpu-v2-3-6be0b4bf2e09@linaro.org>
+Message-Id: <20240215-topic-sm8650-gpu-v2-4-6be0b4bf2e09@linaro.org>
 References: <20240215-topic-sm8650-gpu-v2-0-6be0b4bf2e09@linaro.org>
 In-Reply-To: <20240215-topic-sm8650-gpu-v2-0-6be0b4bf2e09@linaro.org>
 To: Rob Clark <robdclark@gmail.com>, 
@@ -99,68 +99,169 @@ Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  iommu@lists.linux.dev, Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1661;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5285;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=B2VkxjrRCyr4kbi/Ih6iBNEXikEKFqg0faRJON0SE+g=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlzddb1o2L2JxYU4dBpeU0HKoP1vroEL7LdMCezqtZ
- gfjwvXCJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZc3XWwAKCRB33NvayMhJ0YUkD/
- 9qLaDOjrM6piXhQRYK/i3fQkR18QxDH9oUXsgK71P1WL7T/sD8NNMAoo703snTLkzqTlmnf4CXu1qd
- 7lC7wxhiKxpQXO3B5GdZ/RKiesscwFJn44lVY1ybLECyxTldEu7k4RpkeZ+tslnzVw/D990cKWHViI
- 2QbZ1/KogldxveyiRY8iPVTjJI/YB/JiKrDJlIKE9dKcwpurOIt9ezL05fCs4lejcvcKcgOup46guY
- wfSsjHyFzWkeiBAtuk0XPAuo3gGFrXIvWobHrEhfvArLoPVihzapOipOwP4LI5HMONmcQKIlyoWfFT
- OqOmbrHNHR9Zt7pUS589p/9EZIIARfbX7pXxHkd85yDxt05Xx2CBdAeN+R5ntmxOjthtvpyPpivqfV
- SRp8exyNiJo5PskG49xEhVPNK0lCuLMie/tA3EGzz65+7mHUDG4mHDUS1iFwIvi+ueq0k+gLOWj1pD
- NkmRfvclMXK7tW/tEEsdiRq9J0V7ff07QWwOo6Aht6u8nXT4PTl4QLU4HUL5l74RB37Y8u/VCe/xWc
- leZE6NwHMngwOo4np7EQUu2AeCyKefiFsCErQEs4CPecO2H6rRhfoZkBvc3g6hauQ45kln3lEoggnr
- 6eog8DskhoUC+fXUOhab9hmCAba/BIQdkfLJuDMcrgJ5/2Mygit3ECp9JPiA==
+ bh=ixdWRZ9//fnKbR3faHjO8JwXZWGtnv2p+6cX0KLfh90=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlzddcnLjmvv0nTN8GFLC9Fke9petDEfzJ7VXUKlfj
+ +3W/SP2JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZc3XXAAKCRB33NvayMhJ0RGvD/
+ 9QocmR+Xa8sAWfqhRHvsj7tM+SuPd43FlQR3B7be5t+4qWg95KJW0oalbulAmlNPrCjMG9Jx+hlg3U
+ YwSh+MQ3mRH+SjE6SqjVnnlO6YxgHgF7X+c2IjebRQX/BIx3W5wgsJanACdEmA8BRhfynOmxLFFVDN
+ 9YvBn2jeyx6Zs8vj69Q72rjFO7eLKvUcOBr9CA06EhV0N5qCYe85rJkzHc86GcjEQB2EULNlv5iOCO
+ ZH0juLzthp5OM9URIHs7jV8aKTnFxQbK7stw9XMnXLFrZANah/SaOECKbFbK+5aHcPpzZiUlVjA5Vq
+ QMMjIw5TvYC2Xas8ZkO4rN04vNCDom3mDETtjcIz5TdZw2aiPqwzd7I3RgpGIFBoNH/68Plmm1oBkG
+ JP+zRjZgES2o8MecLmeLwJBIY+OE5cfmohzi5o9Im9jha0aDVTFOqBn294/X4Sp/XnowpOh5CtjtCP
+ r3isnEgxpAvj8ZUXfVun2YNSnyfCeUla+2RRLRLUB4BvMdAu08JvIqRsrnUtYyP5lcFsLCsJ0IAmdA
+ EI51WCbV0mqxPil1zWVq3VbzewR/QsQLjHwtBTb76Tw0lm7JZbMltmajK9QsbXIi/EKSrfjThqWB/p
+ +yyu5M8x6WVOpzG5KdLu3dDCQoiqW4k6oWZxCrWpVk8hm7RBx9UtYM4vsxMA==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-Sync missing regs for A750 clock gating control related registers
-from Mesa a6xx.xml.h generated file.
+Add support for the A750 GPU found on the SM8650 platform
 
-Those registers were added in the !27576 merge request [1].
+Unlike the the very close A740 GPU on the SM8550 SoC, the A750 GPU
+doesn't have an HWCFG block but a separate register set.
 
-[1] https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/27576
+The A750 GPU info are added under the adreno_is_a750() macro and
+the ADRENO_7XX_GEN3 family id.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- drivers/gpu/drm/msm/adreno/a6xx.xml.h | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/gpu/drm/msm/adreno/a6xx_gmu.c      |  2 ++
+ drivers/gpu/drm/msm/adreno/a6xx_gpu.c      | 28 +++++++++++++++++++++++++---
+ drivers/gpu/drm/msm/adreno/adreno_device.c | 14 ++++++++++++++
+ drivers/gpu/drm/msm/adreno/adreno_gpu.h    | 10 ++++++++--
+ 4 files changed, 49 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/msm/adreno/a6xx.xml.h b/drivers/gpu/drm/msm/adreno/a6xx.xml.h
-index 863b5e3b0e67..58877464692a 100644
---- a/drivers/gpu/drm/msm/adreno/a6xx.xml.h
-+++ b/drivers/gpu/drm/msm/adreno/a6xx.xml.h
-@@ -1725,6 +1725,8 @@ static inline uint32_t REG_A6XX_RBBM_PERFCTR_RBBM_SEL(uint32_t i0) { return 0x00
+diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+index 8c4900444b2c..325881d8ff08 100644
+--- a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
++++ b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+@@ -842,6 +842,8 @@ static int a6xx_gmu_fw_start(struct a6xx_gmu *gmu, unsigned int state)
+ 		 */
+ 		if (adreno_is_a740(adreno_gpu))
+ 			chipid_min = 2;
++		else if (adreno_is_a750(adreno_gpu))
++			chipid_min = 9;
+ 		else
+ 			return -EINVAL;
  
- #define REG_A6XX_RBBM_BLOCK_SW_RESET_CMD2			0x00000046
+diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+index c9c55e2ea584..475b601a48ee 100644
+--- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
++++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+@@ -961,7 +961,7 @@ static void a6xx_set_hwcg(struct msm_gpu *gpu, bool state)
+ 	unsigned int i;
+ 	u32 val, clock_cntl_on, cgc_mode;
  
-+#define REG_A7XX_RBBM_CLOCK_CNTL_GLOBAL				0x000000ad
+-	if (!adreno_gpu->info->hwcg)
++	if (!(adreno_gpu->info->hwcg || adreno_is_a7xx(adreno_gpu)))
+ 		return;
+ 
+ 	if (adreno_is_a630(adreno_gpu))
+@@ -982,6 +982,25 @@ static void a6xx_set_hwcg(struct msm_gpu *gpu, bool state)
+ 			  state ? 0x5555 : 0);
+ 	}
+ 
++	if (!adreno_gpu->info->hwcg) {
++		gpu_write(gpu, REG_A7XX_RBBM_CLOCK_CNTL_GLOBAL, 1);
++		gpu_write(gpu, REG_A7XX_RBBM_CGC_GLOBAL_LOAD_CMD, state ? 1 : 0);
 +
- #define REG_A6XX_RBBM_CLOCK_CNTL				0x000000ae
- 
- #define REG_A6XX_RBBM_CLOCK_CNTL_SP0				0x000000b0
-@@ -1939,12 +1941,19 @@ static inline uint32_t REG_A6XX_RBBM_PERFCTR_RBBM_SEL(uint32_t i0) { return 0x00
- 
- #define REG_A6XX_RBBM_CLOCK_HYST_HLSQ				0x0000011d
- 
-+#define REG_A7XX_RBBM_CGC_GLOBAL_LOAD_CMD			0x0000011e
++		if (state) {
++			gpu_write(gpu, REG_A7XX_RBBM_CGC_P2S_TRIG_CMD, 1);
 +
-+#define REG_A7XX_RBBM_CGC_P2S_TRIG_CMD				0x0000011f
++			if (gpu_poll_timeout(gpu, REG_A7XX_RBBM_CGC_P2S_STATUS, val,
++					     val & A7XX_RBBM_CGC_P2S_STATUS_TXDONE, 1, 10)) {
++				dev_err(&gpu->pdev->dev, "RBBM_CGC_P2S_STATUS TXDONE Poll failed\n");
++				return;
++			}
 +
- #define REG_A6XX_RBBM_CLOCK_CNTL_TEX_FCHE			0x00000120
- 
- #define REG_A6XX_RBBM_CLOCK_DELAY_TEX_FCHE			0x00000121
- 
- #define REG_A6XX_RBBM_CLOCK_HYST_TEX_FCHE			0x00000122
- 
-+#define REG_A7XX_RBBM_CGC_P2S_STATUS				0x00000122
-+#define A7XX_RBBM_CGC_P2S_STATUS_TXDONE				0x00000001
++			gpu_write(gpu, REG_A7XX_RBBM_CLOCK_CNTL_GLOBAL, 0);
++		}
 +
- #define REG_A7XX_RBBM_CLOCK_HYST2_VFD				0x0000012f
++		return;
++	}
++
+ 	val = gpu_read(gpu, REG_A6XX_RBBM_CLOCK_CNTL);
  
- #define REG_A6XX_RBBM_LPAC_GBIF_CLIENT_QOS_CNTL			0x000005ff
+ 	/* Don't re-program the registers if they are already correct */
+@@ -1239,7 +1258,9 @@ static void a6xx_set_cp_protect(struct msm_gpu *gpu)
+ 		count = ARRAY_SIZE(a660_protect);
+ 		count_max = 48;
+ 		BUILD_BUG_ON(ARRAY_SIZE(a660_protect) > 48);
+-	} else if (adreno_is_a730(adreno_gpu) || adreno_is_a740(adreno_gpu)) {
++	} else if (adreno_is_a730(adreno_gpu) ||
++		   adreno_is_a740(adreno_gpu) ||
++		   adreno_is_a750(adreno_gpu)) {
+ 		regs = a730_protect;
+ 		count = ARRAY_SIZE(a730_protect);
+ 		count_max = 48;
+@@ -2880,7 +2901,8 @@ struct msm_gpu *a6xx_gpu_init(struct drm_device *dev)
+ 
+ 	/* gpu->info only gets assigned in adreno_gpu_init() */
+ 	is_a7xx = config->info->family == ADRENO_7XX_GEN1 ||
+-		  config->info->family == ADRENO_7XX_GEN2;
++		  config->info->family == ADRENO_7XX_GEN2 ||
++		  config->info->family == ADRENO_7XX_GEN3;
+ 
+ 	a6xx_llc_slices_init(pdev, a6xx_gpu, is_a7xx);
+ 
+diff --git a/drivers/gpu/drm/msm/adreno/adreno_device.c b/drivers/gpu/drm/msm/adreno/adreno_device.c
+index 2ce7d7b1690d..e2582c91d7e7 100644
+--- a/drivers/gpu/drm/msm/adreno/adreno_device.c
++++ b/drivers/gpu/drm/msm/adreno/adreno_device.c
+@@ -522,6 +522,20 @@ static const struct adreno_info gpulist[] = {
+ 		.zapfw = "a740_zap.mdt",
+ 		.hwcg = a740_hwcg,
+ 		.address_space_size = SZ_16G,
++	}, {
++		.chip_ids = ADRENO_CHIP_IDS(0x43051401), /* "C520v2" */
++		.family = ADRENO_7XX_GEN3,
++		.fw = {
++			[ADRENO_FW_SQE] = "gen70900_sqe.fw",
++			[ADRENO_FW_GMU] = "gmu_gen70900.bin",
++		},
++		.gmem = 3 * SZ_1M,
++		.inactive_period = DRM_MSM_INACTIVE_PERIOD,
++		.quirks = ADRENO_QUIRK_HAS_CACHED_COHERENT |
++			  ADRENO_QUIRK_HAS_HW_APRIV,
++		.init = a6xx_gpu_init,
++		.zapfw = "gen70900_zap.mbn",
++		.address_space_size = SZ_16G,
+ 	},
+ };
+ 
+diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+index bc14df96feb0..9e9415df2cea 100644
+--- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
++++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+@@ -48,6 +48,7 @@ enum adreno_family {
+ 	ADRENO_6XX_GEN4,  /* a660 family */
+ 	ADRENO_7XX_GEN1,  /* a730 family */
+ 	ADRENO_7XX_GEN2,  /* a740 family */
++	ADRENO_7XX_GEN3,  /* a750 family */
+ };
+ 
+ #define ADRENO_QUIRK_TWO_PASS_USE_WFI		BIT(0)
+@@ -423,12 +424,17 @@ static inline int adreno_is_a740(struct adreno_gpu *gpu)
+ 	return gpu->info->chip_ids[0] == 0x43050a01;
+ }
+ 
+-/* Placeholder to make future diffs smaller */
++static inline int adreno_is_a750(struct adreno_gpu *gpu)
++{
++	return gpu->info->chip_ids[0] == 0x43051401;
++}
++
+ static inline int adreno_is_a740_family(struct adreno_gpu *gpu)
+ {
+ 	if (WARN_ON_ONCE(!gpu->info))
+ 		return false;
+-	return gpu->info->family == ADRENO_7XX_GEN2;
++	return gpu->info->family == ADRENO_7XX_GEN2 ||
++	       gpu->info->family == ADRENO_7XX_GEN3;
+ }
+ 
+ static inline int adreno_is_a7xx(struct adreno_gpu *gpu)
 
 -- 
 2.34.1
