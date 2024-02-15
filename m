@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-41884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBA10855C68
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:24:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88060855C6B
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:25:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 77919283C4D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 08:24:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6945C1F22FFE
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 08:25:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E80E12E67;
-	Thu, 15 Feb 2024 08:24:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD7EB12B9C;
+	Thu, 15 Feb 2024 08:25:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fKFW46LR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XzyHLDub"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABB13BA37
-	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 08:24:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1E8EBA37
+	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 08:25:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707985475; cv=none; b=CpzZodIP57PyLJIP+6cUU1YWp9AK3oJxQcLmMcDimcf+DcO6WSJ/d0TqJoK+Vtanhm+I3C/gher30RwQ1mYoxovFiyhUlxB+DH+3PIoCrhtKywFQIRmWMNg9Du4TNvkBDyW02JqIozK8ldmvOOoDytasnvo31CJPdEebETFjIo0=
+	t=1707985505; cv=none; b=QMqjuWuaDNtdrjRK7CShZH9KNNiyKgyhXllvbmBaCorQXbX9OBoQgUWq+uN5Rr4tyOLPYGSTJfxf5ASUg3f9SfUPyOiubay9L5wdHQEJvG5vGWO/j9qGcl3+k8S1T96i3aOj1bLC3vExvNEEkbz+EAc5nvzxZY3oW79H5a+rj1k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707985475; c=relaxed/simple;
-	bh=JTOBiJWWU0KworatiTOeaZJg4usH/4DIgmieEgaE/OM=;
+	s=arc-20240116; t=1707985505; c=relaxed/simple;
+	bh=OxC8nbS93w6KQk0DI5EA44QT1rGCMjYm36P6qBiZdss=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rU0ANsRG85ufHSaxXvZCHsPM44k47S5E7ivyB78f5gf7nCtTeLzkw3n0vbwx/sMim7pNWi8fQbEaMREY84QSPHZz9TviLq5SNG51/WUwqhQqRk9PVyKlLe1PEU+NjoqbYZn5jA02KpuTWcrKpJEVoUDn36SGnR837xkyPE/kuic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fKFW46LR; arc=none smtp.client-ip=209.85.208.169
+	 In-Reply-To:Content-Type; b=Sy025B8cYOMQrtL5gucq4elb1VmSriUgbDNK12PzQkScIZL1eoe5Z+F+SjK3Ot65w6yQQjFK2PFUmngMKeR4xABH0yyLRSr1BGR2rrFxq6hVfHWE3gRyD3FT42BxnK1JmY41deU0BGBz8p77xW+2IXkdpbSgIliDiw3nLAYVwwg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XzyHLDub; arc=none smtp.client-ip=209.85.208.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2d0f7585d89so6690841fa.3
-        for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 00:24:33 -0800 (PST)
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2d0d7985dfdso7988971fa.2
+        for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 00:25:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707985472; x=1708590272; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1707985502; x=1708590302; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=IwCuIC1bMslsjIPl6aswFvbfP7zof/j/F7ZsomcVMLk=;
-        b=fKFW46LR37Yd6ReqhnQPn+eVJ1FG9pDnt1xJKm2LgFuB6VR3mlYMFT88z6ttmn2BCg
-         Ab0Gtiepp3SB227qJqrYGPfKsgOaBO0hbebLXwbb31Uk5gaVDFHe2QuiU4U/VETTzYMt
-         BVCktLOeSRj95igJDuq5lRFa3+hamW6VxRlKPe60d0jFeDEC6O2CJbPe94q295lO6g2f
-         LW11cA2S/rm8VKBcZ8P9vRZcHMNCD2IMWwdi+7h+mLuMvxrdlaCq2ne45LarE7zbZ/pl
-         GB/BZ/hT+wvC1LEvV7qHElNbCO0KYKzTt0UygH/wX1uKSw3DV0CmK6QnPWgN+p1ro4MM
-         p0qw==
+        bh=Ntw3z7pJMwuhA+IHFxXM8UnffSSkVtxTI5eJwIDL+0s=;
+        b=XzyHLDubj5KSDWGqVhq+gQt+ykfoPsKtHz3pnXpWYamYzeHEoBDkHKqMo/i8F7n+5g
+         UHxrIcr7xy3R8ukfRdApDyQ9wjGyqewDbOobGbHpduOIFazoL6nmSLddLFiRV6jnwzz5
+         s9mV1pESD0Gh7el4WltTqdoXhzK6EJSiN1ZErbt5+hGBR4Kyvmd8suWygZfV2NUirLq7
+         UkG4MxsmEWzW+GnJ7PuOyuGuQtT/3Mj/k3PjpDtvq5VWuLDKQiCAqjR2KpRwYuTFvzCL
+         tClt+1TnYTwhkZrbs1ULVHM3f05hJkILJDybxJ+RdeqCV3iOuv/p0M+GzCiX1sYKAIzj
+         trxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707985472; x=1708590272;
+        d=1e100.net; s=20230601; t=1707985502; x=1708590302;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IwCuIC1bMslsjIPl6aswFvbfP7zof/j/F7ZsomcVMLk=;
-        b=ILYvwm4FsPdbQDo4OV/t9Wj4muXNZqp9paQ4is8KKc9sZ7W2RS1zusgU2fovfTYJf5
-         ZwCnzptooiRPAVUnowuonnwik9UGEDo9ys+HizG7OwswPZHvZjZecHe6/1JUvmy2OgrS
-         k6whXjGkvGBbDatS37ErY4jNm0A8eJFp1TGAqLK/c5qc65Pqo+du/G7kDSRJw8n7pGRu
-         up6TV/7HU5H+1J7XwUpZ29WZKCA32K8tPq4gxwJp9CXkDzNGTwFl+JVAlOqSHuyUIwtq
-         yUrQP9rfkfHRsE75ByNgK2io8MF70PfchjDh+X04Xbi8ECW/jootBckAlM+78xVhK85Z
-         pkpA==
-X-Forwarded-Encrypted: i=1; AJvYcCXmKqZ+SNYid+85Gq9VZWqP7ZkFne48tl3PatrF9YiNUYnwnBwgjD0h8nCjUikOrR42ovsJO0zQMlMe4avFBA9T0Nrs+5b+xqebFA==
-X-Gm-Message-State: AOJu0YxuRec1ohyJA1oVnizfGAUENXx9sPDp5E3oRgJbxEou3qqKIHkv
-	dsyl3VIaE615vxO0lB8CDIatoKckY8Sx2kU2ZItwyx7J78CrB3kGy8/awxaAToY=
-X-Google-Smtp-Source: AGHT+IE6enZKHEetYt2BoknyYKotecC09lJ6VlV4R8vJH7LAgGUI+luHWGj2Mc5FlULlra0QOfUxZA==
-X-Received: by 2002:a2e:9b82:0:b0:2d0:d300:e482 with SMTP id z2-20020a2e9b82000000b002d0d300e482mr684818lji.20.1707985471845;
-        Thu, 15 Feb 2024 00:24:31 -0800 (PST)
+        bh=Ntw3z7pJMwuhA+IHFxXM8UnffSSkVtxTI5eJwIDL+0s=;
+        b=YqKCib6/QXqvXZEp1ueXDpDbXYHOoredO8ocY4g9I57OVe3mRuWZn3PIzLZ6/mYhKf
+         GKUm3ZU5Dc1O5C+/oLTrvHE47KeNo4+zT894+9lBFxdes+2xiFHIXx02ZGZb1oexqv5t
+         fBQGRdlTsfcOA80iTOwj8WSHOGO74qdXCtUthUyuJpqIS48fsg71C5OgjMkYIMfXx0uP
+         R9scl8LpqTlnfKV5sAKqUdiJjrAAUA4CenIJCI62q8JQBS9Z8sUzY29IkhogvNNMStZf
+         vFynJQrr7GV2h5ie0NKuDYYlnuwZ9Ue4qA7bPL9EozyIGzCvYBd08FW+dyv6iboKqZYo
+         3rzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUHc7D29zxxAmy6Lmh3z6sgkwckKMPwg3A73zUOGfqZr4DWTTWVokuL61+D+zPEYhTb7efWpQHi+M0cozdvCZ3fBCBspkQusTqsOw==
+X-Gm-Message-State: AOJu0YzOFh/pcg6kxkNbWRddqotsspJaGQZfkwH3W4W5i03L0by+U3Tt
+	Fa4N3p2ynl6PopMRWTqSc5axUkTyBHgpLPbu7OI+ez0fNUZ9e0u/99nPnk1IXgs=
+X-Google-Smtp-Source: AGHT+IF2aqtWVjobeWJ5rEv5s8eK4ESA+WWY5BYeEFIVPGkmPJvk/q48jhqnjC4iZhEmhzEHbnIAjw==
+X-Received: by 2002:a2e:7017:0:b0:2d0:c176:ebcc with SMTP id l23-20020a2e7017000000b002d0c176ebccmr812362ljc.18.1707985501903;
+        Thu, 15 Feb 2024 00:25:01 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.207.130])
-        by smtp.gmail.com with ESMTPSA id f23-20020a2e9517000000b002d0f3c58e60sm177617ljh.117.2024.02.15.00.24.30
+        by smtp.gmail.com with ESMTPSA id f23-20020a2e9517000000b002d0f3c58e60sm177617ljh.117.2024.02.15.00.25.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Feb 2024 00:24:31 -0800 (PST)
-Message-ID: <f010b72e-955f-4bb9-aad7-5cb9bb91502c@linaro.org>
-Date: Thu, 15 Feb 2024 09:24:30 +0100
+        Thu, 15 Feb 2024 00:25:01 -0800 (PST)
+Message-ID: <46645341-1484-42d8-8540-580b586e2315@linaro.org>
+Date: Thu, 15 Feb 2024 09:25:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,19 +76,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: ti: k3-am625: Use nvmem-cells for opp
+Subject: Re: [PATCH 1/3] dt-bindings: cpufreq: Add nvmem-cells for chip
+ information
 Content-Language: en-US
-To: Markus Schneider-Pargmann <msp@baylibre.com>,
- Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To: Viresh Kumar <viresh.kumar@linaro.org>,
+ Markus Schneider-Pargmann <msp@baylibre.com>,
+ Rob Herring <robh+dt@kernel.org>
+Cc: Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+ Stephen Boyd <sboyd@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>, "Rafael J . Wysocki" <rafael@kernel.org>
-Cc: Andrew Davis <afd@ti.com>, Dhruva Gole <d-gole@ti.com>,
+ Tero Kristo <kristo@kernel.org>, "Rafael J . Wysocki" <rafael@kernel.org>,
+ Andrew Davis <afd@ti.com>, Dhruva Gole <d-gole@ti.com>,
  linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <20240206145721.2418893-1-msp@baylibre.com>
- <20240206145721.2418893-4-msp@baylibre.com>
+ <20240206145721.2418893-2-msp@baylibre.com>
+ <20240215072653.lscrdrmsges3psmc@vireshk-i7>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,35 +138,25 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240206145721.2418893-4-msp@baylibre.com>
+In-Reply-To: <20240215072653.lscrdrmsges3psmc@vireshk-i7>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/02/2024 15:57, Markus Schneider-Pargmann wrote:
-> Use nvmem cells referring to chip variant and speed grade for the
-> operating points.
+On 15/02/2024 08:26, Viresh Kumar wrote:
+> On 06-02-24, 15:57, Markus Schneider-Pargmann wrote:
+>> Add nvmem-cells to describe chip information like chipvariant and
+>> chipspeed. If nvmem-cells are used, the syscon property is not necessary
+>> anymore.
+>>
+>> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+>> Acked-by: Andrew Davis <afd@ti.com>
 > 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am625.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
+> Rob,
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am625.dtsi b/arch/arm64/boot/dts/ti/k3-am625.dtsi
-> index 4193c2b3eed6..d60e1be9eb89 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am625.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am625.dtsi
-> @@ -105,6 +105,8 @@ a53_opp_table: opp-table {
->  		compatible = "operating-points-v2-ti-cpu";
->  		opp-shared;
->  		syscon = <&wkup_conf>;
-> +		nvmem-cells = <&chip_variant>, <&chip_speed>;
-> +		nvmem-cell-names = "chipvariant", "chipspeed";
+> Can you please review / Ack this one ?
 
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
+Done now, although it is not aligned with DTS in this patchset, so this
+does not look tested...
 
 Best regards,
 Krzysztof
