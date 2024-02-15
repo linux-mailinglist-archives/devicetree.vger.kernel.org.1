@@ -1,45 +1,45 @@
-Return-Path: <devicetree+bounces-42060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13F8B856428
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 14:17:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 369FD85642E
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 14:20:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 28AA21C21DF9
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 13:17:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B840A1F29EA2
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 13:20:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE98A12F387;
-	Thu, 15 Feb 2024 13:17:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D3DC12FF8C;
+	Thu, 15 Feb 2024 13:20:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [195.130.137.89])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CDC912CDBE
-	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 13:17:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1698512E1C7
+	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 13:20:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.137.89
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708003038; cv=none; b=kwp9k9YSitHnjEWa0+WTFd2/rXShv0OwGmgxeb3WSXNIbn2QBC748Hm9OiOoko2bc//cisp21FxTF1WYRvg/brExub6ckWviOTspQaSvEMzSQygrvKhGBAyH9sgL/8c/A/LyDuij6O0gnMDPPxwB2yd3OQjNnrsvdAFGrjDNlHk=
+	t=1708003252; cv=none; b=PNhBadH3XriNcjX/28TAZ90lXbxYyjiCrU4xvhvemq8PfHvlTIpgdK0XioXBUtX42nzH3n7oc2A2DWP6XTVMuSL82daTgPzuS8jrzVMOrj6t6S8WJfr0e+5UGMV96Ic7tLZWZ/hQNjdsf8/DOTEyxqWZXlgWT+MYP+/KEcLoZ6I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708003038; c=relaxed/simple;
-	bh=izLNtqucpNVv58YIRx7Ezi1gl7sLN7uHZzckPi/y0oQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=t00cYuyLECgAF9+rOjYpArDUEywHijQaaMhcLuEjRnEarKmatN39UvQcz3qS6MuiG/nlolYDISOi+/+XxYjKQEGqhHSufPIGceMqGhZkYfeNDvnSIVW4XLKznB0MQk2cfp2K/OXdEakOU3kcPknTAM/oQzWcyUdwEJAbLlX1kA4=
+	s=arc-20240116; t=1708003252; c=relaxed/simple;
+	bh=IJsj6fPqNMEYrRi1LIlboNCv6z1L48IDBLXV5hXvHws=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=qj+x9MbQYAtNQRRx2dVYjNXxmqyqE/QgcZ8aeXNiuBCZoJ+0KpMg/xb4aI9ppLs+WBjwvl4BOzhwqEGrHzZXSADX8uKfuvTNTbl1zFj1MlpQlBYY+79JO7If5dypOziOkL/201N4FwxV3mMjsQ5G/pk1x8rqlxCld+YsHqmLM3Y=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.137.89
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
 Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:ac52:3a54:2a84:d65a])
 	by laurent.telenet-ops.be with bizsmtp
-	id nRHE2B00H0LVNSS01RHE1J; Thu, 15 Feb 2024 14:17:15 +0100
+	id nRLh2B00F0LVNSS01RLhcS; Thu, 15 Feb 2024 14:20:41 +0100
 Received: from rox.of.borg ([192.168.97.57])
 	by ramsan.of.borg with esmtp (Exim 4.95)
 	(envelope-from <geert@linux-m68k.org>)
-	id 1rabbv-000gyU-CZ;
-	Thu, 15 Feb 2024 14:17:14 +0100
+	id 1rabfG-000gyf-6f;
+	Thu, 15 Feb 2024 14:20:41 +0100
 Received: from geert by rox.of.borg with local (Exim 4.95)
 	(envelope-from <geert@linux-m68k.org>)
-	id 1rabc2-00HZX2-OK;
-	Thu, 15 Feb 2024 14:17:14 +0100
+	id 1rabfN-00HZb3-G6;
+	Thu, 15 Feb 2024 14:20:41 +0100
 From: Geert Uytterhoeven <geert+renesas@glider.be>
 To: Matthias Brugger <matthias.bgg@gmail.com>,
 	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
@@ -47,9 +47,9 @@ Cc: linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH resend] arm64: dts: mediatek: mt8186: bpi-r3: Convert to sugar syntax
-Date: Thu, 15 Feb 2024 14:17:13 +0100
-Message-Id: <8c10c4bf701583d015506712ba9239dbc7547426.1708002920.git.geert+renesas@glider.be>
+Subject: [PATCH v2] arm64: dts: mediatek: mt8186: bpi-r3: Convert to sugar syntax
+Date: Thu, 15 Feb 2024 14:20:39 +0100
+Message-Id: <8c10c4bf701583d015506712ba9239dbc7547426.1708003159.git.geert+renesas@glider.be>
 X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -68,6 +68,11 @@ devicetree source files to sugar syntax, improving readability.
 Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
 No changes in generated dtbo.
+
+v2:
+  - Rebase on top of commit e630c7b0b6a69f66 ("arm64: dts: mediatek:
+    replace underscores in node names") in next-20240215.
+
 ---
  .../mt7986a-bananapi-bpi-r3-emmc.dtso         | 28 +++---
  .../mt7986a-bananapi-bpi-r3-nand.dtso         | 74 ++++++++-------
@@ -127,7 +132,7 @@ index 543c13385d6e3f82..12ec15e3188de082 100644
 +	#address-cells = <1>;
 +	#size-cells = <0>;
 +
-+	spi_nand: spi_nand@0 {
++	spi_nand: flash@0 {
 +		compatible = "spi-nand";
 +		reg = <0>;
 +		spi-max-frequency = <10000000>;
@@ -141,7 +146,7 @@ index 543c13385d6e3f82..12ec15e3188de082 100644
 +			compatible = "fixed-partitions";
  			#address-cells = <1>;
 -			#size-cells = <0>;
--			spi_nand: spi_nand@0 {
+-			spi_nand: flash@0 {
 -				compatible = "spi-nand";
 -				reg = <0>;
 -				spi-max-frequency = <10000000>;
