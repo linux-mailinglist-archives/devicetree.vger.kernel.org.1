@@ -1,280 +1,203 @@
-Return-Path: <devicetree+bounces-42204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29F32856D3C
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 20:02:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79983856D5E
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 20:09:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 57D131C2098E
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 19:02:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2FC50281C1D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 19:09:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43DD11386D4;
-	Thu, 15 Feb 2024 19:02:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09A7F139565;
+	Thu, 15 Feb 2024 19:09:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dQsaz+hA"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="qZlgAKXz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2056.outbound.protection.outlook.com [40.107.223.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B28613699A
-	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 19:02:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708023756; cv=none; b=a6UQQWYclf5TJPVhyVIVi2KvtphN7VdB3nGGargWA/c/be1+jAbjbQURIuhn3Brpht5UX6X/K3cNvVh98FCfdjXgXGBJLLflVh7rN9l/zHAJ2MFxbF+C74CEYTjZ/6cr+6QysGrqA4X78NHHYox5wxs0VTyyrNGsGbFfkTuzcw0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708023756; c=relaxed/simple;
-	bh=uRv/RoHUmRyyAx309YjPjU51VhE+9Mv+j5Ha4YmG7WA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=D1y6g9x6WeIfggs7z7ccar8BL7JnWPqJiDmIoZpqNaodOyL3EFPE8OF4xjn4WXeLNnZ5Eq/MnMd2FCU/4hiI1QJCsApe9O/8Imtr5qF/YUt8pOr0JxEi2sL0SWcYp8FueIOspy0bApWVmXYa/ODaupQiYPnGjkWE8DeqVd9OvFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dQsaz+hA; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5128812662eso1225676e87.0
-        for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 11:02:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708023752; x=1708628552; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WINM1CAiAfhoXZ192uGwEElhM4Prco8Dh6+uC1Zs1Sk=;
-        b=dQsaz+hACRpUOhGRDaF0YSkZ7dnJPWHSVgttbr1cZP6o7TAEmDb8yJ+XcxeFI5q4hQ
-         5lvCLZLeIS4mgv4I2GVPT2ZSB3lpBaP4mxoe6ScantM007aCoPOjkaM8G72ezNjAZTDk
-         zAxHHNaSgrq+dxZCZLd0rvllYoXiWwl6yYBE0zg51gp3hYN96UBXWJz0zdljACQKKX+j
-         WkvhCp41z0BA7R6rzLy3BY0/UvtyVCIm5dtqENo8np8OzVMRlq8kOQVpXw5cr5Kp3Md4
-         QKjNyFX+MPu5LJXu+8DL7K8fIEgEty1iWUSdYU2KcNWC7ZOFnMyB/aTk6DfyG4hl4iZ7
-         q3WQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708023752; x=1708628552;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WINM1CAiAfhoXZ192uGwEElhM4Prco8Dh6+uC1Zs1Sk=;
-        b=N9n+58wKZagTFWtke+f71QtApYlOQf+ylV2iocC6AA4Q+PGPGwz8CpFCDUX9MYlVym
-         hy8gpCnWeZdB56YE4vDPqMIBuf5hZiTHwH+nUl5uNiVJmGRlZHL8E85JXYX8XfSKaGDk
-         DQY+WkRMUuw4y/rhhWLlOtg273Jz0hcl7xVq02xG/JiRCGed7AAWzLYmOp++qA6spNeh
-         EYgBbkWNl2srtpItw+C5nJ0n0wyQq+6fnQXAQUkFMG9j9ivQc/xt+Q6o7YxC99MBQOm9
-         2UlN7Ym7MFiqVca2nPiQqjI6yosLAQUqAIShfjSQvxfX6G/D56nPzI5p/o8oHPu6Vvbj
-         Z7Fw==
-X-Forwarded-Encrypted: i=1; AJvYcCWPXarWkzp5OP6Zzvh6nK3qq9GhE0sB0sNhNAdGO6Ph5mGLgvcJHaGcrWdV0C1DPEjoUu4fgZPls6icO2el3E4mfZoGCPZXuXNDKQ==
-X-Gm-Message-State: AOJu0Yyu3X1T90n7nuY1oisULJUh8fZmq9XH0JjZhRbZ2mArJGPsmqzh
-	jxLaEAl8/55EKWNHCZ2DmB2lgg7E7tQ1oVqZ5yhLT/duq59IFJd47gfRN34T5nE=
-X-Google-Smtp-Source: AGHT+IGPISWatCsmdezcsFzOVFA1u++4PVNjsFb3qToyHec4nyciHsccN+lriRsa3TovwxGoo4rxVQ==
-X-Received: by 2002:a19:ca42:0:b0:511:66f0:8287 with SMTP id h2-20020a19ca42000000b0051166f08287mr2120743lfj.28.1708023752222;
-        Thu, 15 Feb 2024 11:02:32 -0800 (PST)
-Received: from [192.168.0.22] ([78.10.207.130])
-        by smtp.gmail.com with ESMTPSA id au2-20020a170907092200b00a3cf5450b28sm820024ejc.189.2024.02.15.11.02.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Feb 2024 11:02:31 -0800 (PST)
-Message-ID: <8c3d8fc3-2c1e-4ece-abb1-b427a909ad39@linaro.org>
-Date: Thu, 15 Feb 2024 20:02:29 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A79A3D6D;
+	Thu, 15 Feb 2024 19:09:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.56
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708024179; cv=fail; b=l3ikbXi7SIEWS2PujrJoIjKa3RCnPxvxHYXJFPCY66WYgu4HTtH5V8DW4K5EZ+IrjAxEp4CL5OSNmkZBg5i60b/9BGubObNtINqkeOEdDT6Fu0QnIympxv+LH22VltaUPTXYDR9n3wwsJIAhsCk7OC0PujYNXAIi0Sco2SiryQQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708024179; c=relaxed/simple;
+	bh=KBgkGLl0jmtJvG3QC8sF2XQOjCNjsF1eBNgFfM/2Ht4=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=Eetm5Tq1I97+I/tpKhEjI1nVMFpeJExUJqR4H8daOFZLeVWYxFYIghf2PewMTpB8Lb0WIral6NnpWzf4IGBWDch6a6C+odWTadQswNoTCanAdk5UMfETUisrz2nFCcUwqkhYpm0Ixsf+E0+1WYGT4f71h22VwWB+boCAPj+rZUU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=qZlgAKXz; arc=fail smtp.client-ip=40.107.223.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=U505/2x2pMjykhiQauxyC5+AKb+HkrWk5P/hliWV9Kw2ectARFDFketBz0zUB9y9l3r2F0uK8l8Vo1q2tEkhXGwM5UGLeY9qUvE0BtD5C3JSF6y5kECTQxZnc+XnDGssvPaUgZ1r5I5JwKeOYz6qtW5kF/Krab9tP6iTKqD6aRI1GHgWPoUXjEQf8KL0apSkfDJkUdCcvCLOwyDFxXr57b4qTvbbEAsQOwLozHp/r5ZvZ2K1Lait+wCl+xpUasugU3AYqghrwF28WHC83Cf3U/0S/V0ZadN/RgzB898qi2kWWVwsTeE/RSaYIbSPURmBbJFB+J3fjL9iWCpqnilnQA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=K83ALH1RqKUuPGPpBsUP4reB9oQULlWERr0oxvNxVRg=;
+ b=SWGNYmutonBUo+za49y7oRYdWi0nXA5sHb2AzMs556s/oCU8lmos3Z3XJqDzzpYo4dcRX3gdMU/FwpoU+rzeruE1hg1aOTRZ8Nt6d3UZH9L0K2Wxe7orG5lyTu98U0/hXHhcyloKUKIWgGx2xJaSQhokrvNuRPnCevjyZDAfB4KW8YMCawN3XraJevqTw4rHagaGRbzkk+xy5icY7NT/8u2csQPbkiO4HlQqKOLlhuVR5wGzIXY7xMqUyXNIZ+xNr4aEgbCYftAoCBEzPkepMo/eSFqeX+95y+E5RMH1Bf2RygynsM9KUjN5+WGc57h+OshWQ2eHwZJbi5K6K7/aSQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=K83ALH1RqKUuPGPpBsUP4reB9oQULlWERr0oxvNxVRg=;
+ b=qZlgAKXz5JNnmGFhnLw65UTtXuZ9JKhGSrX//GBn0zzHV8RBnEqG4q6P6KVTsFJ4Dhg5GFhzzsDbQK16jaRnSatoUOfBeyfxmMgm4/h0IQRx2srGVDDEkyphtSNUhmuz3SV+Ed7QcOx+5eRXqmRL0frZjza5tuHmNQMy+oMl1KC1b5OlYOAl1Kpwn1t+mkSycQdKCZO6RLGyvGhHiy9Qjobh7PoNLbZrWDk8wVg/d3/TpkbT//zVYZBPOf8SN6RrV3oAAPgdutvYW0YESH/jgVM+5erKiNvUvVEktVo3Go+tUKgj/6EeYf+FRqH8NhAeDCiO9ilm008U+tUA4Ha/hA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from PH8PR12MB6674.namprd12.prod.outlook.com (2603:10b6:510:1c1::18)
+ by BY5PR12MB4259.namprd12.prod.outlook.com (2603:10b6:a03:202::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.26; Thu, 15 Feb
+ 2024 19:09:35 +0000
+Received: from PH8PR12MB6674.namprd12.prod.outlook.com
+ ([fe80::ad63:96df:9a9a:83e4]) by PH8PR12MB6674.namprd12.prod.outlook.com
+ ([fe80::ad63:96df:9a9a:83e4%5]) with mapi id 15.20.7292.022; Thu, 15 Feb 2024
+ 19:09:35 +0000
+Message-ID: <77b41973-e021-471c-89ad-f8cb8752e278@nvidia.com>
+Date: Fri, 16 Feb 2024 00:39:23 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V16 13/13] PCI: tegra: Add Tegra194 PCIe support
+Content-Language: en-US
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, bhelgaas@google.com,
+ robh+dt@kernel.org, mark.rutland@arm.com, thierry.reding@gmail.com,
+ jonathanh@nvidia.com, Kishon Vijay Abraham I <kishon@kernel.org>,
+ catalin.marinas@arm.com, Will Deacon <will@kernel.org>,
+ jingoohan1@gmail.com, gustavo.pimentel@synopsys.com, digetx@gmail.com,
+ mperttunen@nvidia.com, linux-pci@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ kthota@nvidia.com, mmaddireddy@nvidia.com, sagar.tv@gmail.com
+References: <20240215160157.GA1291755@bhelgaas>
+From: Vidya Sagar <vidyas@nvidia.com>
+In-Reply-To: <20240215160157.GA1291755@bhelgaas>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MAXPR01CA0109.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a00:5d::27) To PH8PR12MB6674.namprd12.prod.outlook.com
+ (2603:10b6:510:1c1::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] spi: dt-bindings: add binding doc for spi-qpic-snand
-Content-Language: en-US
-To: Md Sadre Alam <quic_mdalam@quicinc.com>, andersson@kernel.org,
- konrad.dybcio@linaro.org, broonie@kernel.org, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
- manivannan.sadhasivam@linaro.org, linux-arm-msm@vger.kernel.org,
- linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org
-Cc: quic_srichara@quicinc.com, quic_varada@quicinc.com
-References: <20240215134856.1313239-1-quic_mdalam@quicinc.com>
- <20240215134856.1313239-2-quic_mdalam@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240215134856.1313239-2-quic_mdalam@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 15/02/2024 14:48, Md Sadre Alam wrote:
-> Add device-tree binding documentation for QCOM QPIC-SNAND-NAND Flash
-> Interface.
-> 
-
-A nit, subject: drop second/last, redundant "bindings". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-
-> Co-developed-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> Co-developed-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
-> ---
->  .../bindings/spi/qcom,spi-qpic-snand.yaml     | 82 +++++++++++++++++++
->  1 file changed, 82 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml b/Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml
-> new file mode 100644
-> index 000000000000..fa7484ce1319
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml
-
-Filename like compatible.
-
-> @@ -0,0 +1,82 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/spi/qcom,spi-qpic-snand.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm QPIC NAND controller
-> +
-> +maintainers:
-> +  - Md sadre Alam <quic_mdalam@quicinc.com>
-> +
-
-Provide description which will describe hardware.
-
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,ipq9574-snand
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 2
-> +    maxItems: 3
-
-You must document the items (could be sufficient in clock-names if the
-names are obvious).
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR12MB6674:EE_|BY5PR12MB4259:EE_
+X-MS-Office365-Filtering-Correlation-Id: bf71be81-adf7-4b10-c0ea-08dc2e59a594
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	xRZL4GgaxNmF+CYrjJ4xIjUhLZ3WLkhBSuAp8w8EoSDuP8j5Y2tRfDKcwnxSUc3R1AfW4kHnETIZYMAqZnA2/CebmtRrHC3Y9ZGf3X697VDH6cyxmwMjpkUjMNTKL8iVHT/PUWt7FfHXPTc7N8BN/89G/u0uUaaOw5EGBuNNURksdqYpJkQP+ohNCbHfKhUl0l618fNAVBT+sB6jvvcRcWBqPMtlK+7YKMhHDp+PLMK5JVa9qMcITSpIdI1+0tpANTcm//3W3OzQ6ExyKn3W4J65sRPSiww/3vK3bcrRm+nX8EGgOCrrRrkljRs1ma7qrYXQr5ZD4J1UVJfNd4w1dHcAl8sRT9jTME2myS+nUgd3InQCF4bs4sIm6UisZS9R6zaDRPJSQa4QesLYWauG17L3QdKaJiB1b2+EzVnGciW5NQWhuIY3d5y3sW19DGL33fCkLpVE/7qB37P3mwtm00rB8G1TX45/AGsZH8nIoxI9zRoXNi5Vhrf8c9lLSB75QGjcFxCgwkBGmTkrWUOpy757g4VmastJ97J6E8PUY7pwGUYQCaAb6J0f4ZW1WqJZ
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH8PR12MB6674.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(136003)(376002)(39860400002)(366004)(396003)(230922051799003)(230273577357003)(186009)(1800799012)(64100799003)(451199024)(36756003)(86362001)(31686004)(66556008)(2906002)(7416002)(66476007)(4326008)(6916009)(31696002)(8936002)(83380400001)(66946007)(5660300002)(8676002)(38100700002)(41300700001)(6506007)(316002)(6512007)(478600001)(26005)(6666004)(2616005)(53546011)(54906003)(6486002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?VFpiNmFmTSsyNXNxOVYrUXJuWjVqQ0xpL1JGMkFZS3F1T0FXc2paUk80Yjdk?=
+ =?utf-8?B?K1gwdEZtVS9aeUoyRXJYL20xalE0UUZyQzZWdGpLUE9CVTdoWXQzR2Fwb1Rq?=
+ =?utf-8?B?dGtTR2c5UlhBcVVjeTF2Rm4zR2tNVTJxUkZjK1ZnSWUyQkpNTFBkaWhacXlS?=
+ =?utf-8?B?SzE2aU5OSkhhblhQbTlUV1RQQUp2dHBTT3htSFlaeitGY2ZHVmFDcVVrQ3Yz?=
+ =?utf-8?B?eEFodC95N2pKSG9pRlNwSVhnRGxtek84cVJxSzVZOCs2RmNYdWlnb3NaN2pQ?=
+ =?utf-8?B?WTNFbXFJR01Ec015V3dIdE55QTd1OXZEUlg3dFZTeGJ3TExKQ3Q3WG5VZ3Zr?=
+ =?utf-8?B?MTdSbEtSeXhDZlEwRDNwZUwwcTZWc1ZHQjBhYjZrVnZ0QUlsNHgxK0dhQmxK?=
+ =?utf-8?B?Q3pxaC9sTnNwZktLRHcvQzhkbktLdnhPRFYydGN4RDhpYnYxSVpZcWsrZ2pV?=
+ =?utf-8?B?bkxKYi8vMG9NcWNsV0k2am1BVXFOQnE4S1VVMkFHelpSbFRJZG9LdEtpRU92?=
+ =?utf-8?B?VlhxNnlaRS9zTzQ2cnZBVC9WUk1ZOFZMQTBZYU1jUWUvOTN2QjJ0VEpZV0J4?=
+ =?utf-8?B?aUNTOEViM3hBZ0NjeFZqalNsZDErYktzdkRnRkhSQVV0cDdxZG1ucGRIM0Ix?=
+ =?utf-8?B?a3JBVDRvMDFML1dVeVkxVWpCMWhYYUtNcnVLeUszTTJWb0NiNmx4N0VyK3R1?=
+ =?utf-8?B?RHVFT3RPZUk5ZkxwbVQ5ZDJsNm12UjBOZ1Y4bGVNdStUMVJqekgwSVU3N2ht?=
+ =?utf-8?B?QUtMbFhCUVRoOGVLQlloRkxMdmU2NEwwR3pLaVdxUDl6d1BVT290allXRHZT?=
+ =?utf-8?B?NG5BVkRyY3Q5Nzd5VXZMamVjcDMvU210VTJvakZXUldYZEtBdXJ6Q2lhTGp0?=
+ =?utf-8?B?K2xNQ1B6UXQ4T1JiSEJwaGNwajBER1RMdGRUZDlZcGVKclNINk1VRWoyZEM3?=
+ =?utf-8?B?dENOdk1zZjJTVnBBdCtsWUZwZWxMTDFUY1k3ZmVWc2J1UEx5dnpVN1BQUm5u?=
+ =?utf-8?B?UW5weTBrbXMwZEhxRUZtdW9sSllsb2UvSG1kM1YvQmJ2cnJaaTRNUHNqWTYz?=
+ =?utf-8?B?SzE0UE1zc245UGRYNkRrS3dkY0pFSlRFT3NQdDRObTdrdVJ1ZzF6MnNZWDhs?=
+ =?utf-8?B?aTNmbExOYVJDYjVqUkplcmJtL1lNQVFHMjlOL21PakFzOGd1aExCOGltd3Y5?=
+ =?utf-8?B?NjNVczNKQktSY3p3bWtGcGFSaFplVEtmSnNyWWhrRlhXNGlvcjBXTFBQVmtF?=
+ =?utf-8?B?Q0Y5NlpBNnoyaUYvUVBHN09IMkF2Tm0wRTlob0Yzclh6YXkyR0FQVlBrR0k1?=
+ =?utf-8?B?bkNSMnUwem9aaU1yeTVRVHRlTDkzRjF5bSsrVXA3Z0ZsVGxrNHBIckwvQVln?=
+ =?utf-8?B?b002NVVVZkYvVStTd2E1TlFiN1FOY1hUT1Nra2lUL1A0azJ1UWlyclU4OXN5?=
+ =?utf-8?B?U25nUXZ0VHFsNGxPZTYveVgrVkdFZ0pYQWNYWWl5dVQ0QUhMbERDSHlQTkVD?=
+ =?utf-8?B?em94cVBCeVZzd28yNjRuRkJMaTFnZUwrMTNPWithWm9OdUtrQ3VrdU9WNWt3?=
+ =?utf-8?B?YlZIcjVpT01BMXR5OEZxbWNCN08rcVVaNllEMGlnamh6cXJyRVR1RXVYMER0?=
+ =?utf-8?B?TDk1M2R4THNoK3ZWVTcwMUNySEtrbUpCZ21NWk5aZ3k3MUpNRi92eUtRVXQv?=
+ =?utf-8?B?N0doalBkMVNBcDZHOHBOeHRIWGFXSnJHVmUxM0swQ1BnWkNQNy81NnY5MEds?=
+ =?utf-8?B?WTE4cW14cU8yMk1sRDRjWDVHNFNoQXd6cGZUdkVRT0JwbzYrUFlvQ0NzbHhu?=
+ =?utf-8?B?Rng0azNlVmJZQmRXTDlzT1pLeWEvL3g5dUNOMTVrbFVrZEszQjh4TndET3Aw?=
+ =?utf-8?B?VDNYRSsxOXBkUEp3YlhrUm1oRGM3c1p6QUJtWmJDYlFqNEtYMVBHTDBUdGlK?=
+ =?utf-8?B?Rm5RdjkrZUVRQjczZ0NEdkdlQy9lVUlXN1d4bUgvd2wwemhDRnRyMHZGZ3hU?=
+ =?utf-8?B?MDY0UFd0UjIrdXk4aUhYM3RjRm54M0ZLc3h3RzNsR0hHYkVEOURCSHlmQ2FG?=
+ =?utf-8?B?R203eHdzcmtXSVg5dzlQbko1MitobS90cERLd2U1YmJJUnhZUHZlL0J0ZzUz?=
+ =?utf-8?Q?eXsyM8U39Wn8N5VXNFUEymspH?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bf71be81-adf7-4b10-c0ea-08dc2e59a594
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR12MB6674.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Feb 2024 19:09:35.0251
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: /2HUjzGuoVu9sCshRNP/nHOO0d1oX6xuec/IjGFGpQLQngB6KEphSuagLdbbFLEGXvx0reOCIVYhTbO1cOajJA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4259
 
 
-Why the clocks are flexible? This given IPQ9574 has variable clock
-inputs? Please explain.
-
-> +
-> +  clock-names:
-> +    minItems: 2
-> +    maxItems: 3
-> +
-
-required goes here.
-
-> +allOf:
-> +  - $ref: /schemas/spi/spi-controller.yaml#
-
-
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,ipq9574-snand
-> +
-> +    then:
-> +      properties:
-> +        dmas:
-> +          items:
-> +            - description: tx DMA channel
-> +            - description: rx DMA channel
-> +            - description: cmd DMA channel
-> +
-> +        dma-names:
-> +          items:
-> +            - const: tx
-> +            - const: rx
-> +            - const: cmd
-
-No clue why it is here, move it to top level.
-
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,ipq9574-gcc.h>
-> +    qpic_nand: spi@79b0000 {
-
-Drop unused label
-
-> +        compatible = "qcom,ipq9574-snand";
-> +        reg = <0x1ac00000 0x800>;
-> +
-> +        clocks = <&gcc GCC_QPIC_CLK>,
-> +                 <&gcc GCC_QPIC_AHB_CLK>,
-> +                 <&gcc GCC_QPIC_IO_MACRO_CLK>;
-> +        clock-names = "core", "aon", "iom";
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        flash@0 {
-> +            compatible = "spi-nand";
-> +            reg = <0>;
-> +            #address-cells = <1>;
-> +            #size-cells = <1>;
-> +            nand-ecc-engine = <&qpic_nand>;
-> +            nand-ecc-strength = <4>;
-> +            nand-ecc-step-size = <512>;
-> +            };
-
-Fix indentation.
-
-> +        };
-
-Best regards,
-Krzysztof
-
+On 15-02-2024 21:31, Bjorn Helgaas wrote:
+> External email: Use caution opening links or attachments
+>
+>
+> On Thu, Feb 15, 2024 at 04:55:47PM +0530, Vidya Sagar wrote:
+>> On 15-02-2024 00:42, Bjorn Helgaas wrote:
+>>> Hi Vidya, question about ancient history:
+>>>
+>>> On Tue, Aug 13, 2019 at 05:06:27PM +0530, Vidya Sagar wrote:
+>>>> Add support for Synopsys DesignWare core IP based PCIe host controller
+>>>> present in Tegra194 SoC.
+>>>> ...
+>>>> +static int tegra_pcie_dw_host_init(struct pcie_port *pp)
+>>>> +{
+>>>> +     struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+>>>> +     struct tegra_pcie_dw *pcie = to_tegra_pcie(pci);
+>>>> +     u32 val, tmp, offset, speed;
+>>>> +
+>>>> +     tegra_pcie_prepare_host(pp);
+>>>> +
+>>>> +     if (dw_pcie_wait_for_link(pci)) {
+>>>> +             /*
+>>>> +              * There are some endpoints which can't get the link up if
+>>>> +              * root port has Data Link Feature (DLF) enabled.
+>>>> +              * Refer Spec rev 4.0 ver 1.0 sec 3.4.2 & 7.7.4 for more info
+>>>> +              * on Scaled Flow Control and DLF.
+>>>> +              * So, need to confirm that is indeed the case here and attempt
+>>>> +              * link up once again with DLF disabled.
+>>> This comment suggests that there's an issue with *Endpoints*, not an
+>>> issue with the Root Port.  If so, it seems like this problem could
+>>> occur with all Root Ports, not just Tegra194.  Do you remember any
+>>> details about this?
+>>>
+>>> I don't remember hearing about any similar issues, and this driver is
+>>> the only place PCI_EXT_CAP_ID_DLF is referenced, so maybe it is
+>>> actually something related to Tegra194?
+>> We noticed PCIe link-up issues with some endpoints. link-up at the physical
+>> layer level but NOT at the Data link layer level precisely. We further
+>> figured out that it is the DLFE DLLPs that the root port sends during the
+>> link up process which are causing the endpoints get confused and preventing
+>> them from sending the InitFC DLLPs leading to the link not being up at
+>> Data Link Layer level.
+> Do you happen to remember any of the endpoints that have issues?
+We observed this issue with an ASMedia USB controller card. Unfortunately,
+I didn't keep a record of the Vendor-ID and Device-ID of that card.
+>
+> Could save some painful debugging if we trip over this issue on other
+> systems.  We have seen a few cases where links wouldn't train at full
+> speed unless they trained at a lower speed first, e.g.,
+> imx6_pcie_start_link(), fu740_pcie_start_link().  I guess there are
+> probably lots of edge cases that can cause link failures.
+>
+> Bjorn
 
