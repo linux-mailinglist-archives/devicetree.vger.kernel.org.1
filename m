@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-41866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 708B4855B90
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 08:23:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D500855B9D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 08:25:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA9291F21F2D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 07:23:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 96BAA1F21E68
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 07:25:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91E5ADDCF;
-	Thu, 15 Feb 2024 07:23:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4E45D53F;
+	Thu, 15 Feb 2024 07:25:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="XcIyjK68"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="EWckWs5N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4481033CF
-	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 07:23:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BE34BA3F
+	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 07:25:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707981814; cv=none; b=f8rWnjKmI/D50w3NnALXfpS/tvqQGYWj9g6kPrI9tiOXHAvz1FT7l7nHL6bLV8UXIP1KN+c6uqYu4L83kJ7+TZEHuaveTB+6cgY1zrX2pifzb6kw+vDtUuxcdqILEOJsULXA243lKXBqo8sItjPk5Qpm9FIaRyePSKbEceh4yzM=
+	t=1707981945; cv=none; b=hrsjPfzIpLCRHevqWRZH27G3EB/M/PGP+ac3zln6a+EhFOZo3+FY68KG1wJKxcz7iyLIbYn0UDa5ComJlBjdVu0JeUrwvzUp54aOr68oFonx7g4gMRZKL4ayt3xqVvfecLQuAUs35EkZWvrLfNHZXJgnLT63yqLJbMgiMDQlcwk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707981814; c=relaxed/simple;
+	s=arc-20240116; t=1707981945; c=relaxed/simple;
 	bh=z698GAzx2SjZip44MgXj+QQQv6m+ThWhoR0dgUQId58=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PiOyZF0mT61+4kzzL5bHoidxzJFUK34Kc4EVz8GawEXB14rsLKRMcezQgBcM/iSU59pZFG1uUZNgPzBCl9MnnVjRokJhlC+0v4WkcZULvxIZfzXLGnSFUudFAM3SoOoWk7IVFMcSK7jsqZnvXbQpMvtkmUB5oLxmTc04E67XE+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=XcIyjK68; arc=none smtp.client-ip=209.85.208.175
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=m56T4QCk8ZGON55cyPMRPC1z5WkkfI91zcZTedkjrxnW4tvhUwEFMCDZylcsTTxEZLvkKqPKfa2fuHBmni0G8M472pBgW72oNNr5SuQk3YUCzaO29CMQVpQA4aYV5HFPlf+ct0kg11Qzm8bfUH3HF0Bk24OPsy4Be7nsEyaPe9w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=EWckWs5N; arc=none smtp.client-ip=209.85.221.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2d107900457so7693131fa.1
-        for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 23:23:30 -0800 (PST)
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-33cf91fc9easo271604f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 23:25:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1707981809; x=1708586609; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
+        d=tuxon.dev; s=google; t=1707981942; x=1708586742; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
         bh=B5j39bQM+ZSv0KF1DL/osRnC1kF9C4R9FA/78T8kPLk=;
-        b=XcIyjK68LtLnjhOwckArgxqJQL3fnKpwobRv8c1UqbQ4JfmUlRzwwHAo1XDucQrhXh
-         p40SESpYZfHIHJ9SNQ6/cMT5WSaWpJKKXOb5NBqTWSeLrttNLAZlKZwwfzpog3jLS0m4
-         SGsm1685GQRXxWpTTeLMcvsiGoa3KCG13bH+zoFrR2sT44koy4+VxhkJ9csw+9ic8/xb
-         wlQBb7hPs6V7c6iLC5hW4dpjniUovgWDv5t+XNW6yaIvx/wvSABL8/NsM/GRD/RGq+Gt
-         HmTScFC7R21XUfkS6RtZYI+nQuottZX1OFwdZ9+bHfm6JT/OtRDEL+vz7LEbUIUqfXEt
-         8Esw==
+        b=EWckWs5N+q+dMeehC7cK9VlGyIQoSEXUGfq9kmKvxTthLs7SKmce1b5gWXN8C0AA6e
+         pMIHDCZN4DsH7INKtiyuXQv1AJLTIdstU0sNp40TGwnj3ytPdPWqAeN4FeWcPgnhJ0Qr
+         2QpM6vsR7qu6sC+xziSG8doViesqpHvxts9f3hPFFBQGCBMcoL3rU/l8yXKTWx2aiZ6u
+         tA84job76bF+DIuQgjT5MmmRgi3xABrhzMCyOX4tzQBTuPy2DAlx8ZTBv5XQWgGkc3hW
+         HBNUVj68hAFVibxyJfjQMlDm49Kv925fLkT0RmPXMtysb9iL1jf1kKdMozcoBOr6RuF9
+         c40A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707981809; x=1708586609;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1707981942; x=1708586742;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
         bh=B5j39bQM+ZSv0KF1DL/osRnC1kF9C4R9FA/78T8kPLk=;
-        b=X0jTtBXoe+3Zjxynkh7NcHmQFNldiHgLtgKYEO+MWzkQRpsC2Ku8QYtDkvqpkwt+rm
-         voMU0JkFZJOrHyp6bVGTouPpn8VYfmKT89JFLqjjfvlyDnMDqsp/XbsKQC8FnPQEpBUX
-         sXh/5QYBnOdaEaXI6CZDfBAkQAGLXsdeF8I4qARJJDD9mBfGLq6nY4mP5mMRu/QxF4A0
-         S50EMYrqxWLYUaZljDFxFNUhMB4acqf/rGHHmbZi/W+qS80GZJO6oA4lYJGgCWCBhlx0
-         3BufrF5dr2UTed/D5kfyGxPNEv808sE7Z4dRPLuQVQStX3homj9tO+PStul+AX6TzVSI
-         F89w==
-X-Forwarded-Encrypted: i=1; AJvYcCVROWo1ry13UMF+hiyCggYB9zofHPPj5oLDZFiZZIBSVbydXfU+xWrhwbhavQqpt0Is44JYl1H+xow2a/ZVeo7GlDbUApux+DXdBg==
-X-Gm-Message-State: AOJu0Yx/lfmAj9NYFVTFvcmoEO6PH1FC57hef11N3WUyheh0td3Vw+Nb
-	3hOekH5lM1wNKptRuW8+A9BmchSMz7/cXJWrneJZuCNXrr5AoZfT8ETk3aCZy7g=
-X-Google-Smtp-Source: AGHT+IGXHb+0Z1Joaep8niCFInUiNo8NuldJAF+qLlv8gxIAEhkjjL4fZwcnw35WdmxR0HHYHNbbSA==
-X-Received: by 2002:a05:651c:1a0b:b0:2d2:f0c:623b with SMTP id by11-20020a05651c1a0b00b002d20f0c623bmr102224ljb.4.1707981809044;
-        Wed, 14 Feb 2024 23:23:29 -0800 (PST)
+        b=ZgYXSGS8s/LriB81c7mffGz2Y79MN3jr8Q04i6EfFWiaR7LNR02HmWfXkqUhhO8bAG
+         cr0EJ7T3WSDnxFqdavflf5ZzfJH3q0vD2TljzjJP3KXuualG92Y0SyL8iMuBbYYPlykw
+         ONj036yPmHgGAoogOQifxMjuxqHf0GoeFYhmt1Zmit+shDzgJpgP3Svncj7HimnYkVfa
+         HPWQoUC/jhveiVoj2DgiTZhLB6iBlUwnVHVnxen7QSXbmIUSdOcEDsFa8nLVzkXUe6te
+         VZKXTkRHabekcvSS447lMTmqAYGzuars2GTXcW6X1Uq8MCbzDYVzuv10vhO7uwikkWLt
+         Yd8w==
+X-Forwarded-Encrypted: i=1; AJvYcCVGVRMVbLvCy1vy79PobUgbe43oLe8YvPvbVJuwFqFIlYvqBuwaJVp3zrGsYGPmtsdwS3r8JUaZZCSzHxXAW17GKNFDlZ9ffG7XLQ==
+X-Gm-Message-State: AOJu0YwMKFZkTJiPPsaPCs/XUktmBn32Tsp6/osd6zVBfbeVgikaTh4U
+	EZq42elEM42IieXAjGq4XFPz0GsoWvVzVAkKskniuaVitJLvaJ7qCNqmE9KsNhs=
+X-Google-Smtp-Source: AGHT+IE09mK2YyrTjpuBmcTUYPOL3io/3JFYBM0zxy3mqIUUW7mApQMBN0LamYXevz9iEH0yXym0ig==
+X-Received: by 2002:a5d:544f:0:b0:33c:dda0:769f with SMTP id w15-20020a5d544f000000b0033cdda0769fmr599580wrv.31.1707981941698;
+        Wed, 14 Feb 2024 23:25:41 -0800 (PST)
 Received: from [192.168.50.4] ([82.78.167.20])
-        by smtp.gmail.com with ESMTPSA id fm12-20020a05600c0c0c00b0041209136d50sm1025017wmb.39.2024.02.14.23.23.27
+        by smtp.gmail.com with ESMTPSA id bj8-20020a0560001e0800b0033b3ca3a255sm872931wrb.19.2024.02.14.23.25.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Feb 2024 23:23:28 -0800 (PST)
-Message-ID: <e75c3dcd-ed8d-4026-8ac4-0eff209f3df5@tuxon.dev>
-Date: Thu, 15 Feb 2024 09:23:26 +0200
+        Wed, 14 Feb 2024 23:25:40 -0800 (PST)
+Message-ID: <58fe3ecd-5aa4-4164-abc3-206e0d6ccb26@tuxon.dev>
+Date: Thu, 15 Feb 2024 09:25:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,9 +76,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
 Subject: Re: [PATCH v2 3/3] ARM: dts: microchip: sama7g54_curiosity: Add
  initial device tree of the board
-Content-Language: en-US
 To: Mihai Sain <mihai.sain@microchip.com>, robh+dt@kernel.org,
  krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
  nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
@@ -87,7 +87,7 @@ To: Mihai Sain <mihai.sain@microchip.com>, robh+dt@kernel.org,
 Cc: cristian.birsan@microchip.com
 References: <20240214080348.7540-1-mihai.sain@microchip.com>
  <20240214080348.7540-4-mihai.sain@microchip.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
+Content-Language: en-US
 In-Reply-To: <20240214080348.7540-4-mihai.sain@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
