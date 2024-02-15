@@ -1,148 +1,130 @@
-Return-Path: <devicetree+bounces-41876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67AE6855C3C
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:20:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F041855C58
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 09:22:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E9691F24C64
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 08:20:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35962B2C958
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 08:21:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FEF213AEC;
-	Thu, 15 Feb 2024 08:18:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A40E13AC8;
+	Thu, 15 Feb 2024 08:19:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qwwcB3zS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F35017984
-	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 08:18:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9607913AC6
+	for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 08:19:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707985113; cv=none; b=uj4wyBdmejzAUNVlrv/JKQkmeBFYwST1JtxZ/wOT+6psJSZgdJ1Pa2+85i94OudFbWMrQVJ5ZdnBHGxsD64yU+FUVKzunEGSKUEUJDzN/B6vFefU5Z6CgBefglLCQhR6cuv4QqROdIokMn/1IdQe8Re14oT6FdEYGyWtlWSuBbA=
+	t=1707985173; cv=none; b=KVXVG1CIjgXxKL+ohA1WG2sPpdmRkfVmkFLVmK2kF4J8p4GTz95ZthyL4DTFxyoTOBOPVNd12muGE6dC7lhOOr1+lQZcSRrghOWIsIQEGQeLWmWooe6t/oQLFUBedV3A4rN0iYjHU0YiyjrOp0li00WpVHF+sxmV6jfsHuK7WnU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707985113; c=relaxed/simple;
-	bh=T2XuyeJ06MJPPCxU0//IIk7MVsi0C5XUfXUB6lx/2NI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KHExh3C5KzQ/goLb3aJ26mibNBcp3vCJtlcyDX3M8ZxLyRYlYPOkk8I5ygDjioRv2bRK33oeHRYQs06Haw3/NmosWtsCak3i08tfWIwbblxm9rFr1lxMo2jOJIkZA7hMnFRTq36GLzYO7b8lSVgeSEtWUHMFp+6pM0OIYYACRyc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1raWwN-0002wJ-5C; Thu, 15 Feb 2024 09:17:55 +0100
-Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1raWwG-000qaq-AJ; Thu, 15 Feb 2024 09:17:48 +0100
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1raWwG-009xxI-0d;
-	Thu, 15 Feb 2024 09:17:48 +0100
-Date: Thu, 15 Feb 2024 09:17:48 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Rob Herring <robh@kernel.org>,
-	Kory Maincent <kory.maincent@bootlin.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-	Dent Project <dentproject@linuxfoundation.org>
-Subject: Re: [PATCH net-next v3 14/17] dt-bindings: net: pse-pd: Add bindings
- for PD692x0 PSE controller
-Message-ID: <Zc3IrO_MXIdLXnEL@pengutronix.de>
-References: <20240208-feature_poe-v3-0-531d2674469e@bootlin.com>
- <20240208-feature_poe-v3-14-531d2674469e@bootlin.com>
- <20240209145727.GA3702230-robh@kernel.org>
- <ZciUQqjM4Z8Tc6Db@pengutronix.de>
- <618be4b1-c52c-4b8f-8818-1e4150867cad@lunn.ch>
+	s=arc-20240116; t=1707985173; c=relaxed/simple;
+	bh=BqII8sLl+bLQlyhO+D8CNbC1gFYjbsADqDSOC1kPc5w=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PykjQkqNu3cGZuUj2v2zLNqDBgr4scaxnauAJxSyetVnKwYBvl3RJBN+2IH7dEWUjb0AkpS5zGDBfAt4steetDeIgT4THlw5njO6Ujmtyqb9WMqPlxGguLTfHNMjvkAtnpKtftgrwkUGNhr09watCTYjR7bsKMEsMbut4WBFpYY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qwwcB3zS; arc=none smtp.client-ip=209.85.128.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-60790e62f90so6369977b3.1
+        for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 00:19:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707985169; x=1708589969; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=smEYS7WqwFSJ9Pd2kHyuKD+PL+fmgIBnH3NnS3BRkCE=;
+        b=qwwcB3zSPGM+jAkOvGTqQe7adNcInrAy+mDcI53w060De2POOq3/LibggB8peCCKhG
+         eNDhlLuH1E4ld2vtO7UkRkl/BozKUndgLDVK7xfj10+3mxymr8R6b9pgymHdqPfej3AY
+         M8WrklcbGML8gzfWDewm9ltYRvmVG5Gq7YkyRnpe/TDiqRhQkiZsgnt0HDpJVeZqo9FE
+         hfTHFOYOrr4lv2SmGOz76Ahmu9QHhrUf5BU8xb4lTu6wC8+jgcSOOokiJs2Z1A3uWWGe
+         UeW4ERjCi9FQHgPG4sv4YppD/KnJgOpnqnnoqnaxZ+6I/7+0GM/cbtS1LSSIlGSkR8Ye
+         Z4bg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707985169; x=1708589969;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=smEYS7WqwFSJ9Pd2kHyuKD+PL+fmgIBnH3NnS3BRkCE=;
+        b=stuQj/J3SsVSVfrbvceyEvDl333ixMtHcwu7ViI3Xpwfxpe972uEYLmpwhfqDgsXPl
+         5VCaevOqupmce8PywVJ9BcQkE4c58HavgnFB0hC6EkPyaG4525WrkpilFy6li29xlcgd
+         47atYSwmCOqvSDE84PABg9LSKDazK+JlhELdjcsfRBwIGfeE1kadMHqHO4URrQGNeUCS
+         ju2pIagDJmkJGwjqCnOnHh3uYeXWcrbDS9OK/TFjzWUPlLhshQ2/TrvnPF2eRaPycIBd
+         sslN1iCilggF5ND+5nzE+a9aXKeKLxqPiX7dU4245eyoicyZZLhFgzHcCriHLVWcyi08
+         Jcpg==
+X-Forwarded-Encrypted: i=1; AJvYcCURCk687kdrUwGtM0dnmWZwUdOkBniZk0TJgUsHkyNAZ5yYrYJSWxH8lqy+D14ft5BgXyYM3JYhoR2iy/MWC28/t/6AcH46RMswGA==
+X-Gm-Message-State: AOJu0YxqBE5bbNeSozoN4RBa8uNBTfzebLI40Onbkk/xXPsC9WvP+YYN
+	VeE0cVckhlw3TuNDuOKEkYPOINWRX2uzAZiLzjCmBXLRLx/gUr+wzqIIOobmY+bddei7K48Q0GN
+	ZbJUQWZMXsTQt89Od/pIubqDB54hkHhhxTXpUZQ==
+X-Google-Smtp-Source: AGHT+IFQ5xk0zng2QCwMIJqzsnAFQcVsqtYYUFMBaSsSK/qzjxvxnRcCnApdfjbw2VVm3Angga8cG50TFG1YC4IGHYo=
+X-Received: by 2002:a25:c581:0:b0:dc6:17d2:3b89 with SMTP id
+ v123-20020a25c581000000b00dc617d23b89mr889731ybe.61.1707985169569; Thu, 15
+ Feb 2024 00:19:29 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <618be4b1-c52c-4b8f-8818-1e4150867cad@lunn.ch>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20240213-msm8996-fix-ufs-v2-0-650758c26458@linaro.org>
+ <20240213-msm8996-fix-ufs-v2-3-650758c26458@linaro.org> <a0f7de54-7e6b-473e-94ac-bece804bd6e8@linaro.org>
+In-Reply-To: <a0f7de54-7e6b-473e-94ac-bece804bd6e8@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 15 Feb 2024 10:19:19 +0200
+Message-ID: <CAA8EJpqPpn43bNca9Ld_XtoBYJTTMXcMhHywU8E9CgkeQEbwow@mail.gmail.com>
+Subject: Re: [PATCH v2 3/6] arm64: dts: qcom: msm8996: specify UFS core_clk frequencies
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	Bjorn Andersson <andersson@kernel.org>, "James E.J. Bottomley" <jejb@linux.ibm.com>, 
+	"Martin K. Petersen" <martin.petersen@oracle.com>, Nitin Rawat <quic_nitirawa@quicinc.com>, 
+	Can Guo <quic_cang@quicinc.com>, 
+	Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>, 
+	Bart Van Assche <bvanassche@acm.org>, Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	linux-scsi@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Feb 14, 2024 at 06:41:54PM +0100, Andrew Lunn wrote:
-> > Alternative A and B Overview
-> > ----------------------------
-> > 
-> > - **Alternative A:** Utilizes the data-carrying pairs for power transmission in
-> >   10/100BaseT networks. The power delivery's polarity in this alternative can
-> >   vary based on the MDI (Medium Dependent Interface) or MDI-X (Medium Dependent
-> >   Interface Crossover) configuration.
-> > 
-> > - **Alternative B:** Delivers power over the spare pairs not used for data in
-> >   10/100BaseT networks. Unlike Alternative A, Alternative B's method separates
-> >   power from data lines within the cable. Though it is less influenced by data
-> >   transmission direction, Alternative B includes two configurations with
-> >   different polarities, known as variant X and variant S, to accommodate
-> >   different network requirements and device specifications.
-> 
-> Thanks for this documentation.
-> 
-> It might be worth pointing out that RJ-45 supports up to 4
-> pairs. However, 10/100BaseT only makes use of two pairs for data
-> transfer from the four. 1000BaseT and above make use of all four pairs
-> for data transfer. If you don't know this, it is not so obvious what
-> 'data-carrying pairs' and 'spare pairs' mean.
+On Wed, 14 Feb 2024 at 23:24, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+> On 13.02.2024 12:22, Dmitry Baryshkov wrote:
+> > Follow the example of other platforms and specify core_clk frequencies
+> > in the frequency table in addition to the core_clk_src frequencies. The
+> > driver should be setting the leaf frequency instead of some interim
+> > clock freq.
+> >
+> > Suggested-by: Nitin Rawat <quic_nitirawa@quicinc.com>
+> > Fixes: 57fc67ef0d35 ("arm64: dts: qcom: msm8996: Add ufs related nodes")
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> > index 80d83e01bb4d..401c6cce9fec 100644
+> > --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> > @@ -2072,7 +2072,7 @@ ufshc: ufshc@624000 {
+> >                               <&gcc GCC_UFS_RX_SYMBOL_0_CLK>;
+> >                       freq-table-hz =
+> >                               <100000000 200000000>,
+> > -                             <0 0>,
+> > +                             <100000000 200000000>,
+>
+> That's bus_clk, no?
 
-@Kory, can you please update it.
+No, it's a core_clk. The "core_clk_src" is removed in one of the next patches.
 
-> And what happens for 1000BaseT when all four pairs are in use?
+>
+> Konrad
+>
 
-Hm.. good question. I didn't found the answer in the spec. By combining all
-puzzle parts I assume, different Alternative configurations are designed
-to handle conflict between "PSE Physical Layer classification" and PHY
-autoneg.
-
-Here is how multi-pulse Physical Layer classification is done:
-https://img.electronicdesign.com/files/base/ebm/electronicdesign/image/2020/07/Figure_5.5f2094553a61c.png
-
-this is the source:
-https://www.electronicdesign.com/technologies/power/whitepaper/21137799/silicon-labs-90-w-power-over-ethernet-explained
-
-To avoid classification conflict with autoneg. Assuming, PHY on PD side
-will be not powered until classification is completed. The only source
-of pulses is the PHY on PSE side (if it is not under control of software
-on PSE side or Midspan PSE is used), so aneg pulses should be send on
-negative PoE pair? This all is just speculation, I would need to ask
-some expert or do testing.
-
-If this assumption is correct, PHY framework will need to know exact
-layout of MDI-X setting and/or silent PHY until PSE classification is done.
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+With best wishes
+Dmitry
 
