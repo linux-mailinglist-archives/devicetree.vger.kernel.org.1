@@ -1,79 +1,113 @@
-Return-Path: <devicetree+bounces-42213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F441856E09
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 20:50:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3559856E3A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 21:00:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 623D41C241A7
-	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 19:50:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FD52288830
+	for <lists+devicetree@lfdr.de>; Thu, 15 Feb 2024 20:00:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1B8C13AA44;
-	Thu, 15 Feb 2024 19:50:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A38913A87E;
+	Thu, 15 Feb 2024 19:59:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jmuka/BD"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="FC2rV3J7";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="vvEDjueY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA36013AA35;
-	Thu, 15 Feb 2024 19:50:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D66CE13959C;
+	Thu, 15 Feb 2024 19:59:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708026607; cv=none; b=WzXzj6/E5VoI7JSEtCrwN9avwqw6l8Cs1ubbD1GafUM6KVjljq3rIMtTa/9crrqu9W/PXxyNo+mm8/eUHfQ+gczWDm8ZwW5nCdpZncv5f+IxdozvioMCBMR7gUVWFFCtJg5rADsLIoscxlPvpUaWxi/C8PUnOLlv7idSpdKpJyM=
+	t=1708027192; cv=none; b=I6KCGWdcJKP3w7H7TSl59Mcf5kWnGlyqtiGZqs17a9CGwGMdsKfB+ZZaEmLXcLiUauCbhDb6gYmXjhnuPnjT11MyvmWfpTb1cv4hJ+SSwryD46E49fIjtQyVxFQTb8NGNF1POaEcLZ2QN/4X/iWr27QAp2qwvlb6Tbh6Zqnhacs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708026607; c=relaxed/simple;
-	bh=jDIZVjmxrgUu27lhO2P/zOKIwiJENod221wvbFXGcl8=;
-	h=Subject:From:In-Reply-To:References:Message-Id:Date:To:Cc; b=mlhXNCxZuZV5NJBgTWqIiplZiWN/eJ3Vw95wKuor8y7eIRr0hVd9O5J9v3hJTFwAhOail5jhHIhRH1IRb8fP810jTxCE0qZJF5u5F+nhLlVgnQchpMgk/lhTFtoXW1VwyTB/H5IqIRv2JU1zERvlZU0csOplyuaMJAXT/mbHNHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jmuka/BD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 5A100C43609;
-	Thu, 15 Feb 2024 19:50:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708026607;
-	bh=jDIZVjmxrgUu27lhO2P/zOKIwiJENod221wvbFXGcl8=;
-	h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
-	b=Jmuka/BD+sT+9hXwIG0LfNMV/TwOqeklYb8thXneq8yxleDzsLmuu7xUyPfwBQFxE
-	 htfU+7ICwXDjBAq7RBjuTC2QsM7tU6zRT1edxD8tQ9aFTyCacca6dR+Ii+aGGeP9q3
-	 RGHXFak7Q0V+RBfKxx5N1fjJPW420LaRn/1TrG6KGTwl5vWR27M+Of5f27Tv/45K0q
-	 hmOUW+oF9ZFXyCZiG9IE5bkWWBOk80RDaXCDLqTJ7jfw8wfy2lUdJ+wPzaW1q58Epz
-	 Gnnpg38fqjjxDOhYZE5ZcQ5xWGqu20rxSdpJsrkNo7+OzEHQcvVZxxGcrJdruUC1BL
-	 kwDH6R/fIITXg==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 3E9B5DCB6EC;
-	Thu, 15 Feb 2024 19:50:07 +0000 (UTC)
-Subject: Re: [GIT PULL] Devicetree fixes for v6.8
-From: pr-tracker-bot@kernel.org
-In-Reply-To: <20240215153248.GA181950-robh@kernel.org>
-References: <20240215153248.GA181950-robh@kernel.org>
-X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <20240215153248.GA181950-robh@kernel.org>
-X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.8-1
-X-PR-Tracked-Commit-Id: 4e06ec0774f5bebf10e27bc7a5ace4b48ae0fa56
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: 339e2fca02141ee74bd705b3d409aa81d9ca3d0a
-Message-Id: <170802660725.17476.10766418345866334930.pr-tracker-bot@kernel.org>
-Date: Thu, 15 Feb 2024 19:50:07 +0000
-To: Rob Herring <robh@kernel.org>
-Cc: Linus Torvalds <torvalds@linux-foundation.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+	s=arc-20240116; t=1708027192; c=relaxed/simple;
+	bh=L7bcSnkXrPvlWYl4fEOQIJjl5ykV3vORJAPl4RXnXTU=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=FM1fmTzTuw3fopIYHS0AsVUxX7b+ZXp6HCUd486s8vG/cC/n8sdvdzhUdJRchG85iHE3PxLWXTBkpAvLdNGyiwRtvVvVrb59ts/2PSud5udu5Uok7E5RwKP1eP4UCssYPYDO58Z9XfEgmSkGdjuhRweJIkaakkrH/Qb/h1WcxWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=FC2rV3J7; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=vvEDjueY; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1708027189;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=JSYfftfvnoNIEsV/zUwUyNXq3OsLbyrS3xmJdbEjgcg=;
+	b=FC2rV3J7iMT20bfmDpKIzYMB6ZmyLIA/IJRb4Tx8xL2Qxt1IsRvPEyD2xPtSipTMBYLgTr
+	7nxv5wFY8MllxiR/F0Y2y7blCZLBfc8c8+2e8CH87qyRxCNJZUgqLxj7LE+4e+3RRNOXHH
+	lkMZ8JrZZXYDs+HoHK4mDrwGYN3dga8dU/SJ3KSsZeCzs0mxe7rYGaOLqOcczSA8KaubWT
+	n1g+WSqIL5bnK7cZzxRg40w+MJ9a3WxFS1CtLqCZqSnQwUt6qT0pkRNFXqYwFNJRI+hQ19
+	3N5SN3FMJB8mwHBpH7Vqbb9IH7Hy+EPm8f/W6z4e/7UHow3CcU77GADiJE6xCA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1708027189;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=JSYfftfvnoNIEsV/zUwUyNXq3OsLbyrS3xmJdbEjgcg=;
+	b=vvEDjueYHLIdYonrN/q3kU2Ip6cwkYGmm05lIBYR4BpbPCEnN8wSz1ZvlaD2M3vGVpsr8f
+	7P1l5q83KTxAcAAg==
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Paul Walmsley <paul.walmsley@sifive.com>, Marc Zyngier <maz@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, =?utf-8?B?QmrDtnJuIFTDtnBlbA==?=
+ <bjorn@kernel.org>, Rob
+ Herring <robh+dt@kernel.org>, Atish Patra <atishp@atishpatra.org>, Andrew
+ Jones <ajones@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>,
+ Saravana Kannan <saravanak@google.com>, Anup Patel <anup@brainfault.org>,
+ linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
+ <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>, "Ahmed S.
+ Darwish" <darwi@linutronix.de>
+Subject: Re: [PATCH v12 00/25] Linux RISC-V AIA Support
+In-Reply-To: <CAK9=C2WsSSHgDF+7ruxx_QF0Lk+Dsx2F2Y-_NabnxrJ_qWhgGQ@mail.gmail.com>
+References: <20240127161753.114685-1-apatel@ventanamicro.com>
+ <CAK9=C2Vwtj2gZg-P73yLMxu0rPXQ3YrRRuxq6HcpHMXgs-jHaw@mail.gmail.com>
+ <87bk8ig6t2.ffs@tglx>
+ <CAK9=C2WsSSHgDF+7ruxx_QF0Lk+Dsx2F2Y-_NabnxrJ_qWhgGQ@mail.gmail.com>
+Date: Thu, 15 Feb 2024 20:59:48 +0100
+Message-ID: <87v86pcxcb.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-The pull request you sent on Thu, 15 Feb 2024 09:32:48 -0600:
+Anup!
 
-> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.8-1
+On Thu, Feb 15 2024 at 11:18, Anup Patel wrote:
+> On Thu, Feb 15, 2024 at 1:24=E2=80=AFAM Thomas Gleixner <tglx@linutronix.=
+de> wrote:
+>> Thanks for picking this up and driving it forward!
+>
+> Thanks Thomas, I will be sending v13 of this series next week.
+>
+> For the time being, I will carry the 13 infrastructure patches in
+> this series until they land in upstream Linux so that it is easier
+> for people to try this series.
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/339e2fca02141ee74bd705b3d409aa81d9ca3d0a
+I pushed out the lot on top of 6.8-rc4 (no other changes) to
 
-Thank you!
+     git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git irq/msi
 
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+with some minimal changes (DEVICE_IMS -> DEVICE_MSI, removal of an
+unused interface).
+
+I'm going over the rest of the series after I dealt with my other patch
+backlog.
+
+Thanks,
+
+        tglx
+
 
