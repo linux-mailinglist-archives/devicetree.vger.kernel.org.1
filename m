@@ -1,129 +1,164 @@
-Return-Path: <devicetree+bounces-42700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84CFE858352
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 18:02:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE8E7858372
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 18:06:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D3D61B2519D
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 17:02:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5EC8DB25D6B
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 17:06:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0A7D130E5A;
-	Fri, 16 Feb 2024 17:02:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBF1C131725;
+	Fri, 16 Feb 2024 17:05:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uN1sTWTU"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="SoC8NIqv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0AA21E53F;
-	Fri, 16 Feb 2024 17:02:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDE54130E4F;
+	Fri, 16 Feb 2024 17:05:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708102922; cv=none; b=g2igedJiBRojOAp6OO6a/mKUEGHefwuw7oGvWOAup6x9f1TXLAXpeDRuDlhhWhEDSLYJmVtQblyWUCPKaQaUUeh6fg7WODbv3/qWzO/6jkXdhtr+A6OCC4XFcgl4WOBT4z/JwEz1abyH8Md3ezCMrQg85wFzTI53enLSiG2pVKM=
+	t=1708103122; cv=none; b=VTFPHUugyQPBY4Vv147e0zWFwkjgP/ui0VqJUAPUMgDfITtziwWsYXGWUqpPlPAMJqCWfIXpXxUMk0fM6c12/W9Nek4LoI9CDfW8OzTPpYZyXTizuhY6eXJM1jMkWoz5faMdzVep0uk7LVw4BWQtVOvLbgcOJ+0oc2gDt75rDMo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708102922; c=relaxed/simple;
-	bh=YuIu18s9Bh9d8QimtdhANWmZFdUv3i48Yw7a1CA3luo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LqLK5JbI+xgkoSGamXM+eoAjQ37xpbawnNeHn1iI5LLhu3KcYSzTWFOfUzLZW17xPU0aGPI5/XN/GS88omPXf0Lx3b+g8HbHvzEz3z9o3FIa8/ObdO2NsMx94T5vnIecBStj3pKv1BVQtC8eBHMiQn0G+HJnB+8giIeJWdmn9Rc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uN1sTWTU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16213C433C7;
-	Fri, 16 Feb 2024 17:01:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708102922;
-	bh=YuIu18s9Bh9d8QimtdhANWmZFdUv3i48Yw7a1CA3luo=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=uN1sTWTUYDtixilsnghvCYoeZTgPFihWUTL3j37em/cvP9na6AvbyUoQIHxYpu6NT
-	 fahvQ84xFvbIxsszGFC2tjUeGM1ImLo1radmC9gRTUSdWq4Q0FPx26N3ytDVfDpzAI
-	 C/Ij6IYhmMuHVJGDOwNfXnMnqHzBMh1Yx2VAz2szfn/EiM6qSXKcUBTx4rXNStUBGx
-	 n7KLEo6NQShOsVa1Z9SGiTzaBLAhnHOZ1yA/qVNoO8wgJZsrJN4W3HRBWTFMdYjoeF
-	 wwXxSO3NXCJOQ1fWB9t8Lw+N/RKI3pjek3sDQUH7crppqwbB+t2e8dZA3pxTEYIOwV
-	 XX5I1hN49Zx3g==
-Date: Fri, 16 Feb 2024 17:01:49 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Mike Looijmans <mike.looijmans@topic.nl>
-Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Arnd Bergmann <arnd@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Liam Beguin <liambeguin@gmail.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Maksim Kiselev
- <bigunclemax@gmail.com>, Marcus Folkesson <marcus.folkesson@gmail.com>,
- Marius Cristea <marius.cristea@microchip.com>, Mark Brown
- <broonie@kernel.org>, Niklas Schnelle <schnelle@linux.ibm.com>, Okan Sahin
- <okan.sahin@analog.com>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] iio: adc: ti-ads1298: Add driver
-Message-ID: <20240216170149.040ff86b@jic23-huawei>
-In-Reply-To: <20240216153020.485201-2-mike.looijmans@topic.nl>
-References: <20240216153020.485201-1-mike.looijmans@topic.nl>
-	<1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.52058f93-4994-4138-8075-7b04acaef74b@emailsignatures365.codetwo.com>
-	<20240216153020.485201-2-mike.looijmans@topic.nl>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1708103122; c=relaxed/simple;
+	bh=Q0pJZKKbSrqejbsMqhljdiTJm9Rv4S7Yia7K5S2iN2U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=V4BzZGGuGACpfi8aQXjm8Lys6uOFX1Bof1x/ogrBuydjIoa7x+4zwu94KqnTdwxTerH88wtj9HkXz0REa+wB0o/Gl24fB6Saz9xCibE+2YZhy9T4MSETw4rt43yrk8QF0ow51m+iZKxrwnxSSyut1cdwl+Al/uag+eqUNBoMvuE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=SoC8NIqv; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1708103117;
+	bh=Q0pJZKKbSrqejbsMqhljdiTJm9Rv4S7Yia7K5S2iN2U=;
+	h=From:To:Cc:Subject:Date:From;
+	b=SoC8NIqvAqT3rzNDi7ninBlAIzCROdzElH+nzQOJ9tQzg4ydS+LuG03/X+AB63o/n
+	 oH2yQRdCHU6jMHf5rGN0ZR8bUO8lfNZJN/rMfKXuNoGwBk9Im7Qcxah8M4NRgq1uZQ
+	 8bTUEROFWFyhXgYYZJ9Ma0Gaiu3oN/6VqaIxjizRWwQ6aI+RmFrISxxwCzf5r6OOYs
+	 yaF+HtRmEUCw6qFFa9qNex2Aj6A1QhkDtUb7XTzwGALBW0owRh7ZVWyrYpXNZK4YUQ
+	 uvptypmQG87pl89fxjI/dUc79fq8/q+6YWHw66tpOv/oAR1RHYKq5u83Opz0qTq/VW
+	 CWH0UIF+f4u0g==
+Received: from jupiter.universe (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 3E8733782042;
+	Fri, 16 Feb 2024 17:05:17 +0000 (UTC)
+Received: by jupiter.universe (Postfix, from userid 1000)
+	id CFA674800CB; Fri, 16 Feb 2024 18:05:16 +0100 (CET)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Heiko Stuebner <heiko@sntech.de>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	linux-rockchip@lists.infradead.org,
+	linux-phy@lists.infradead.org
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Wang <frank.wang@rock-chips.com>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	kernel@collabora.com
+Subject: [PATCH v3 00/10] RK3588 USBDP support
+Date: Fri, 16 Feb 2024 18:01:15 +0100
+Message-ID: <20240216170514.75200-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Fri, 16 Feb 2024 16:30:20 +0100
-Mike Looijmans <mike.looijmans@topic.nl> wrote:
+Hi,
 
-> Skeleton driver for the TI ADS1298 medical ADC. This device is
-> typically used for ECG and similar measurements. Supports data
-> acquisition at configurable scale and sampling frequency.
-> 
-> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
-> 
-> ---
-> 
-> Changes in v5:
-> Derive the name from the chip ID register
-> Fail probe if the ID is unknown
+This adds Rockchip RK3588 USBDP PHY support, which is used for two of the three
+USB3 controllers in the RK3588 (the third one uses a different PHY, which is
+already supported). The USBDP PHY offers USB3 dual-role and DisplayPort. The
+driver and bindings being upstreamed contains the DP parts, but only USB3 has
+been tested by me (upstream does not yet have a DRM DP bridge driver for this
+platform).
 
-This is a fun corner when it comes to DT bindings where we may
-have fallback compatibles for parts introduced in the future.
-For those we are supposed to ignore ID registers and just
-assume they are correct (in IIO I tends to suggest we print
-a message to say we are carrying on despite not recognising the
-ID)  We could go half way here and assume the channel count
-can always be gotten from the register, but relax the family bit
-to allow families that aren't yet 'born'.
+What has been tested:
+ - USB3 Type A ports on Rock 5A, Rock 5B, EVB1
+ - USB Type C port on EVB1 in Host mode
 
-If we don't assume channel count, we would need to add explicit
-entries to the ID tables for each of the device supported.
+I did not yet include a patch to enable the Type-C from the Rock 5B, since that
+requires enabling proper support for the fusb302. Since the system is usually
+supplied via USB-C and without any battery backup, this easily results in
+system reset when the power-delivery negotiation happens. As this issue is
+independent from the USBDP PHY, I skipped enabling that port on Rock 5B for
+now.
 
-Anyhow, I have no problem leaving that as a problem for another day.
+You can find a branch with these patches here:
 
-> Interpret the number of channels (only tested the "8")
+https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/commits/rk3588-usbdp
 
-The way you've done this will not work if you want to add a timestamp
-(which is tricky in this device anyway) but for now it is fine.
+Changes since PATCHv2:
+ * https://lore.kernel.org/all/20240213163609.44930-1-sebastian.reichel@collabora.com/
+ * Drop patch 1+2 (GRF DT bindings got merged by Heiko Stübner)
+ * USBDP PHY DT binding: more spelling fixes
+ * USBDP PHY DT binding: add Reviewed-by from Conor Dooley
+ * USBDP PHY DT binding: specify 3 as maximum value for rockchip,dp-lane-mux items
+ * all patches: remove child nodes for usb3-port and dp-port and use PHY cell instead
+ * USBDP PHY driver: drop some header includes
+ * USBDP PHY driver: rework rk_udphy_grfreg_write to use FIELD_PREP_CONST
+ * USBDP PHY driver: add newline after break; in switch cases
+ * USBDP PHY driver: make some functions void
 
-I tweaked the order in kconfig and Makefile whilst applying.
-The relevant sections aren't in alphanumeric order as currently
-the TI parts with longer names come later. Having said that this
-fits better after ADS1100 than where you have it so I've moved
-it up to there.
+Changes since PATCHv1:
+ * https://lore.kernel.org/all/20240209181831.104687-1-sebastian.reichel@collabora.com/
+ * VO GRF DT binding: Collect Acked-by from Conor Dooley
+ * USB3 syscon DT binding: Collect Acked-by from Conor Dooley
+ * USBDP PHY DT binding: fix spelling
+ * USBDP PHY DT binding: add maxItems: 1 to gpios
+ * USBDP PHY driver: use rk_udphy_ prefix everywhere
+ * USBDP PHY DT addition: fix nodenames and property order
+ * USBDP PHY DT addition: fix position of the GRF nodes
+ * add new patches fixing existing USB2 PHY nodenames/property order
 
-However...
+Not changed:
+ * rockchip,dp-lane-mux: Why "mux" and not "map"?
+  - This is about muxing DP lanes vs USB3 lanes. I kept mux instead
+    of map, since that's used downstream and there does not seem to
+    be a good reason to diverge?
 
-  CHECK   drivers/iio/adc/ti-ads1298.c                                                                                                             
-drivers/iio/adc/ti-ads1298.c:424:13: warning: context imbalance in 'ads1298_rdata_unmark_busy' - wrong count at exit
-drivers/iio/adc/ti-ads1298.c:465:9: warning: context imbalance in 'ads1298_rdata_release_busy_or_restart' - wrong count at exit
-drivers/iio/adc/ti-ads1298.c:531:9: warning: context imbalance in 'ads1298_interrupt' - wrong count at exit
-  MODPOST Module.symvers                                                 
-sparse isn't happy (and I upgraded it to make sure I had anything new for guard() etc)
+-- Sebastian
 
-I think it is the missing context tracking referred to here:
-https://lore.kernel.org/linux-sparse/Zag2fYsyJDtDR7a6@google.com/
+Sebastian Reichel (10):
+  dt-bindings: phy: add rockchip usbdp combo phy document
+  phy: rockchip: add usbdp combo phy driver
+  arm64: defconfig: enable Rockchip Samsung USBDP PHY
+  arm64: dts: rockchip: fix usb2phy nodename for rk3588
+  arm64: dts: rockchip: reorder usb2phy properties for rk3588
+  arm64: dts: rockchip: add USBDP phys on rk3588
+  arm64: dts: rockchip: add USB3 DRD controllers on rk3588
+  arm64: dts: rockchip: add USB3 to rk3588-evb1
+  arm64: dts: rockchip: add upper USB3 port to rock-5a
+  arm64: dts: rockchip: add lower USB3 port to rock-5b
 
-Anyhow, looks like false positives so applied to the togreg branch of iio.git
-but first pushed out as testing to let 0-day take a look.
+ .../bindings/phy/phy-rockchip-usbdp.yaml      |  148 ++
+ .../boot/dts/rockchip/rk3588-evb1-v10.dts     |  143 ++
+ .../boot/dts/rockchip/rk3588-rock-5b.dts      |   17 +
+ arch/arm64/boot/dts/rockchip/rk3588.dtsi      |   72 +
+ .../boot/dts/rockchip/rk3588s-rock-5a.dts     |   18 +
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi     |  105 +-
+ arch/arm64/configs/defconfig                  |    1 +
+ drivers/phy/rockchip/Kconfig                  |   12 +
+ drivers/phy/rockchip/Makefile                 |    1 +
+ drivers/phy/rockchip/phy-rockchip-usbdp.c     | 1612 +++++++++++++++++
+ 10 files changed, 2119 insertions(+), 10 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml
+ create mode 100644 drivers/phy/rockchip/phy-rockchip-usbdp.c
 
-Thanks,
+-- 
+2.43.0
 
-Jonathan
 
