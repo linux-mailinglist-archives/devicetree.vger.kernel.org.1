@@ -1,342 +1,230 @@
-Return-Path: <devicetree+bounces-42498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72C048579E3
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 11:06:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6434857878
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 10:05:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 64E7B1C21266
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 10:06:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9299C285923
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 09:05:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BDBF1BDCD;
-	Fri, 16 Feb 2024 10:06:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D24011B970;
+	Fri, 16 Feb 2024 09:05:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="NfhGZJqI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [195.130.132.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A68E11C6A5
-	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 10:05:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.132.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 650351B978;
+	Fri, 16 Feb 2024 09:05:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708077962; cv=none; b=jYa9qXslFZeEXTm/bSxKpZOLq7ECdzmgUtLp5t5EJHn/KO4a3ygkhWkGiE9/MImZEu+b6UkfI5WDGb/CmjZ7JrEvb80V86WnUYqLe/4io461GWKdcUcYrVB0QAkfCKoIWUrhMrBW9CwC216xg1j2qxYBLJwJfZfaE0DZw+ROmq8=
+	t=1708074333; cv=none; b=V1dfyeb8CYRHYvno07OVku+bXyMIPC7Xz0kxNvtSKZ6farirWm7zm3xEZTxKxo7Zvh+Yru2f95n2SqNL6K1dbi60PLDlm0I1C2HFilyuX0HPDqAO8GvDlvIoiBBA3q/lSXRc4hcRhAfm7Rh9OT73FvkpaaLs5oRxjLPNHT9mnuU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708077962; c=relaxed/simple;
-	bh=Sor7uayMKLyh003ntunWII8dN5EntiR/Isx/hInivy8=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Iqw7I9jYSdp9/3wwSBCSKrJH0g4/qIfHzk7sS37J3u2BlMB2PNma1RtKllkuJ7P3whQM9EyNWZO//0whWDCtajJ3GVPUS2/ytMIFYmyFoKKgce2xOhSQr89DWKnjgTpi9u90c8C7HUvxzKF+kg+UZVRJbN7nDn0qgE2s+bnLU4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.132.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:bf7f:2a11:3845:9eb5])
-	by baptiste.telenet-ops.be with bizsmtp
-	id nm5u2B00P12mNhm01m5uGr; Fri, 16 Feb 2024 11:05:56 +0100
-Received: from rox.of.borg ([192.168.97.57])
-	by ramsan.of.borg with esmtp (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1rav6J-000kzM-7l;
-	Fri, 16 Feb 2024 11:05:54 +0100
-Received: from geert by rox.of.borg with local (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1ratzG-000HPo-Na;
-	Fri, 16 Feb 2024 09:54:26 +0100
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v3] arm64: dts: mediatek: mt7986a: bpi-r3: Convert to sugar syntax
-Date: Fri, 16 Feb 2024 09:54:25 +0100
-Message-Id: <1c9d161e5d519080321bb500e2898c5d100250e6.1708073597.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1708074333; c=relaxed/simple;
+	bh=b3i9lcb0CgqU/Tao29pcsoyVFjxM+a2TkJlbTzzBGVE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=SYIRxG9aIpiiIwJlgr+boVBAxBZd8cq422enOEPAQDxdXkeqSm4kCPQfHDmsyR+AlsS/I74L1UwHbR+NJ3p6uVUQBM72TCBgVAGJnAIPtWfmhf3IhejY06BEwpnJ8EYXXxdud27LwfEfeuGL9l3D6dmqZ3YCLpejkpWHQTCfK1w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=NfhGZJqI; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1708074330; x=1739610330;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=9vIOGZfDhKu9DGx5o5UYxS0vQjX/6Zu979oLg6n9Etg=;
+  b=NfhGZJqIdAixnWZJbLGuVmX0Ds3WOiW7B06rQtC2uF+MFvZ9rcDKkeP3
+   dT4UhbSibnZyyZ6xHK2Bb07boZVXa1AFGzqLb/Kv7Pq2aLJLM/gyr9muu
+   aHv0hwzF/AeWhz8yc5hwQE4DvAPvRCYvnuNBKt+b8hMy7Siuu+2hbrCyX
+   x6KGt6vkYYgNy4CL1yNH7mwDWphe34GEXgz8K5GU26oGOi6pj/2Pn2+0v
+   fKa2naKzpUmXxJiMgp6HYU6gQvHRGaO75JjOegLyuKUuv157oQ2gCHXRY
+   1kJIX6fvVR2w95Vpjl/teLCAwiN7eypmPik1JEBfKdGlBcjsabnJ4C+Ac
+   w==;
+X-IronPort-AV: E=Sophos;i="6.06,164,1705359600"; 
+   d="scan'208";a="35440531"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 16 Feb 2024 10:05:25 +0100
+Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.25])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 1BAE5280075;
+	Fri, 16 Feb 2024 10:05:25 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org
+Cc: marex@denx.de, frieder.schrempf@kontron.de, Lucas Stach <l.stach@pengutronix.de>, Adam Ford <aford173@gmail.com>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Philipp Zabel <p.zabel@pengutronix.de>, Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+  Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Liu Ying <victor.liu@nxp.com>, Ulf Hansson <ulf.hansson@linaro.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, linux-pm@vger.kernel.org, Adam Ford <aford173@gmail.com>
+Subject: Re: [PATCH V8 09/12] dt-bindings: display: imx: add binding for i.MX8MP HDMI TX
+Date: Fri, 16 Feb 2024 10:05:26 +0100
+Message-ID: <5916132.MhkbZ0Pkbq@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20240203165307.7806-10-aford173@gmail.com>
+References: <20240203165307.7806-1-aford173@gmail.com> <20240203165307.7806-10-aford173@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-Overlay syntactic sugar for generating target-path fragments is
-supported by the version of dtc supplied with the kernel since commit
-50aafd60898a8b3e ("scripts/dtc: Update to upstream version
-v1.4.6-21-g84e414b0b5bc").  Hence convert the Bananapi R3 overlay
-devicetree source files to sugar syntax, improving readability.
+Hi all,
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-No changes in generated dtbo.
+Am Samstag, 3. Februar 2024, 17:52:49 CET schrieb Adam Ford:
+> From: Lucas Stach <l.stach@pengutronix.de>
+>=20
+> The HDMI TX controller on the i.MX8MP SoC is a Synopsys designware IP
+> core with a little bit of SoC integration around it.
+>=20
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+>=20
+> ---
+> V3:  Change name and location to better idenfity as a bridge and
+>      HDMI 2.0a transmitter
+>=20
+>      Fix typos and feedback from Rob and added ports.
+> ---
+>  .../display/bridge/fsl,imx8mp-hdmi-tx.yaml    | 102 ++++++++++++++++++
+>  1 file changed, 102 insertions(+)
+>  create mode 100644
+> Documentation/devicetree/bindings/display/bridge/fsl,imx8mp-hdmi-tx.yaml
+>=20
+> diff --git
+> a/Documentation/devicetree/bindings/display/bridge/fsl,imx8mp-hdmi-tx.yaml
+> b/Documentation/devicetree/bindings/display/bridge/fsl,imx8mp-hdmi-tx.yaml
+> new file mode 100644
+> index 000000000000..3791c9f4ebab
+> --- /dev/null
+> +++
+> b/Documentation/devicetree/bindings/display/bridge/fsl,imx8mp-hdmi-tx.yaml
+> @@ -0,0 +1,102 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/fsl,imx8mp-hdmi-tx.yam=
+l#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale i.MX8MP DWC HDMI TX Encoder
+> +
+> +maintainers:
+> +  - Lucas Stach <l.stach@pengutronix.de>
+> +
+> +description:
+> +  The i.MX8MP HDMI transmitter is a Synopsys DesignWare
+> +  HDMI 2.0a TX controller IP.
+> +
+> +allOf:
+> +  - $ref: /schemas/display/bridge/synopsys,dw-hdmi.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,imx8mp-hdmi-tx
+> +
+> +  reg-io-width:
+> +    const: 1
+> +
+> +  clocks:
+> +    maxItems: 4
+> +
+> +  clock-names:
+> +    items:
+> +      - const: iahb
+> +      - const: isfr
+> +      - const: cec
+> +      - const: pix
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Parallel RGB input port
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: HDMI output port
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
 
-v3:
-  - Fix SoC part number,
+Is this really correct that port@1 is required? AFAICS this host already=20
+supports HPD and DDC by itself, so there is no need for a dedicated HDMI=20
+connector.
+With the current state of the drivers this output port is completely ignore=
+d=20
+anyway. Yet it works for a lot of people.
 
-v2:
-  - Rebase on top of commit e630c7b0b6a69f66 ("arm64: dts: mediatek:
-    replace underscores in node names") in next-20240215 and later.
----
- .../mt7986a-bananapi-bpi-r3-emmc.dtso         | 28 +++---
- .../mt7986a-bananapi-bpi-r3-nand.dtso         | 74 ++++++++-------
- .../mediatek/mt7986a-bananapi-bpi-r3-nor.dtso | 90 +++++++++----------
- .../mediatek/mt7986a-bananapi-bpi-r3-sd.dtso  | 16 ++--
- 4 files changed, 98 insertions(+), 110 deletions(-)
+Best regards,
+Alexander
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dtso b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dtso
-index 779dc6782bb1986f..047a8388811eb9c0 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dtso
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dtso
-@@ -9,21 +9,17 @@
- 
- / {
- 	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
--
--	fragment@0 {
--		target-path = "/soc/mmc@11230000";
--		__overlay__ {
--			bus-width = <8>;
--			max-frequency = <200000000>;
--			cap-mmc-highspeed;
--			mmc-hs200-1_8v;
--			mmc-hs400-1_8v;
--			hs400-ds-delay = <0x14014>;
--			non-removable;
--			no-sd;
--			no-sdio;
--			status = "okay";
--		};
--	};
- };
- 
-+&{/soc/mmc@11230000} {
-+	bus-width = <8>;
-+	max-frequency = <200000000>;
-+	cap-mmc-highspeed;
-+	mmc-hs200-1_8v;
-+	mmc-hs400-1_8v;
-+	hs400-ds-delay = <0x14014>;
-+	non-removable;
-+	no-sd;
-+	no-sdio;
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso
-index 543c13385d6e3f82..12ec15e3188de082 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso
-@@ -9,46 +9,44 @@
- 
- / {
- 	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
-+};
-+
-+&{/soc/spi@1100a000} {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	spi_nand: flash@0 {
-+		compatible = "spi-nand";
-+		reg = <0>;
-+		spi-max-frequency = <10000000>;
-+		spi-tx-buswidth = <4>;
-+		spi-rx-buswidth = <4>;
- 
--	fragment@0 {
--		target-path = "/soc/spi@1100a000";
--		__overlay__ {
-+		partitions {
-+			compatible = "fixed-partitions";
- 			#address-cells = <1>;
--			#size-cells = <0>;
--			spi_nand: flash@0 {
--				compatible = "spi-nand";
--				reg = <0>;
--				spi-max-frequency = <10000000>;
--				spi-tx-buswidth = <4>;
--				spi-rx-buswidth = <4>;
--
--				partitions {
--					compatible = "fixed-partitions";
--					#address-cells = <1>;
--					#size-cells = <1>;
--
--					partition@0 {
--						label = "bl2";
--						reg = <0x0 0x100000>;
--						read-only;
--					};
--
--					partition@100000 {
--						label = "reserved";
--						reg = <0x100000 0x280000>;
--					};
--
--					partition@380000 {
--						label = "fip";
--						reg = <0x380000 0x200000>;
--						read-only;
--					};
--
--					partition@580000 {
--						label = "ubi";
--						reg = <0x580000 0x7a80000>;
--					};
--				};
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				label = "bl2";
-+				reg = <0x0 0x100000>;
-+				read-only;
-+			};
-+
-+			partition@100000 {
-+				label = "reserved";
-+				reg = <0x100000 0x280000>;
-+			};
-+
-+			partition@380000 {
-+				label = "fip";
-+				reg = <0x380000 0x200000>;
-+				read-only;
-+			};
-+
-+			partition@580000 {
-+				label = "ubi";
-+				reg = <0x580000 0x7a80000>;
- 			};
- 		};
- 	};
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dtso b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dtso
-index e48881be4ed60c98..6a0d529b54aca5bd 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dtso
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dtso
-@@ -9,54 +9,52 @@
- 
- / {
- 	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
-+};
-+
-+&{/soc/spi@1100a000} {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
- 
--	fragment@0 {
--		target-path = "/soc/spi@1100a000";
--		__overlay__ {
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <10000000>;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
- 			#address-cells = <1>;
--			#size-cells = <0>;
--			flash@0 {
--				compatible = "jedec,spi-nor";
--				reg = <0>;
--				spi-max-frequency = <10000000>;
--
--				partitions {
--					compatible = "fixed-partitions";
--					#address-cells = <1>;
--					#size-cells = <1>;
--
--					partition@0 {
--						label = "bl2";
--						reg = <0x0 0x40000>;
--						read-only;
--					};
--
--					partition@40000 {
--						label = "u-boot-env";
--						reg = <0x40000 0x40000>;
--					};
--
--					partition@80000 {
--						label = "reserved2";
--						reg = <0x80000 0x80000>;
--					};
--
--					partition@100000 {
--						label = "fip";
--						reg = <0x100000 0x80000>;
--						read-only;
--					};
--
--					partition@180000 {
--						label = "recovery";
--						reg = <0x180000 0xa80000>;
--					};
--
--					partition@c00000 {
--						label = "fit";
--						reg = <0xc00000 0x1400000>;
--					};
--				};
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				label = "bl2";
-+				reg = <0x0 0x40000>;
-+				read-only;
-+			};
-+
-+			partition@40000 {
-+				label = "u-boot-env";
-+				reg = <0x40000 0x40000>;
-+			};
-+
-+			partition@80000 {
-+				label = "reserved2";
-+				reg = <0x80000 0x80000>;
-+			};
-+
-+			partition@100000 {
-+				label = "fip";
-+				reg = <0x100000 0x80000>;
-+				read-only;
-+			};
-+
-+			partition@180000 {
-+				label = "recovery";
-+				reg = <0x180000 0xa80000>;
-+			};
-+
-+			partition@c00000 {
-+				label = "fit";
-+				reg = <0xc00000 0x1400000>;
- 			};
- 		};
- 	};
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dtso b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dtso
-index f623bce075ce6ea4..d9e01967acc471b8 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dtso
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dtso
-@@ -9,15 +9,11 @@
- 
- / {
- 	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
--
--	fragment@0 {
--		target-path = "/soc/mmc@11230000";
--		__overlay__ {
--			bus-width = <4>;
--			max-frequency = <52000000>;
--			cap-sd-highspeed;
--			status = "okay";
--		};
--	};
- };
- 
-+&{/soc/mmc@11230000} {
-+	bus-width = <4>;
-+	max-frequency = <52000000>;
-+	cap-sd-highspeed;
-+	status = "okay";
-+};
--- 
-2.34.1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +  - power-domains
+> +  - ports
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/imx8mp-clock.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/power/imx8mp-power.h>
+> +
+> +    hdmi@32fd8000 {
+> +        compatible =3D "fsl,imx8mp-hdmi-tx";
+> +        reg =3D <0x32fd8000 0x7eff>;
+> +        interrupts =3D <0 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks =3D <&clk IMX8MP_CLK_HDMI_APB>,
+> +                 <&clk IMX8MP_CLK_HDMI_REF_266M>,
+> +                 <&clk IMX8MP_CLK_32K>,
+> +                 <&hdmi_tx_phy>;
+> +        clock-names =3D "iahb", "isfr", "cec", "pix";
+> +        power-domains =3D <&hdmi_blk_ctrl IMX8MP_HDMIBLK_PD_HDMI_TX>;
+> +        reg-io-width =3D <1>;
+> +        ports {
+> +           #address-cells =3D <1>;
+> +           #size-cells =3D <0>;
+> +           port@0 {
+> +             reg =3D <0>;
+> +
+> +             hdmi_tx_from_pvi: endpoint {
+> +               remote-endpoint =3D <&pvi_to_hdmi_tx>;
+> +             };
+> +          };
+> +
+> +          port@1 {
+> +            reg =3D <1>;
+> +              hdmi_tx_out: endpoint {
+> +                remote-endpoint =3D <&hdmi0_con>;
+> +              };
+> +          };
+> +        };
+> +    };
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
