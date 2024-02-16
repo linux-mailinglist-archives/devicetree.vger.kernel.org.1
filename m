@@ -1,75 +1,73 @@
-Return-Path: <devicetree+bounces-42594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A94D3857D83
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 14:19:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D99A857D86
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 14:20:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 064F1B24989
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 13:19:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D3FD1F24EB9
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 13:20:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69123129A73;
-	Fri, 16 Feb 2024 13:19:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04F45129A7A;
+	Fri, 16 Feb 2024 13:19:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rAk5dimz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rMCnRPQZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9D0854745
-	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 13:19:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F9B31292F2
+	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 13:19:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708089542; cv=none; b=kHmkTwTMeTRYZQLlc2ZmllWyMp039lg4ZXWEBpzsqFmjNRKq7J9/enn/k+ImqJc6Ari3VSEM8ERG6ZpzEgFrw8YeQpWQxr3/+ZD9br0pV8X1mSDfWCsRaW5+PgK3Nk54vkfiVSebrcjXEsd9tFTHnHP4Ax1VV7eJIq6JbJ2hsQs=
+	t=1708089597; cv=none; b=aIoQhzxeSAm3vUofNlBhA/IPBhHxwiziChreVVv6p6RtCme8wd+ost/GJEc12URTn1zL5Ga/d3xdSDzdL1EsAeUDy+fYKbOUCLNR7jIWr5emFzlk6gn6C0uu5XejElBQAllkTuQFPgycCrrr06kQCqSnej6TD6pTn3HLe+k++KY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708089542; c=relaxed/simple;
-	bh=idhDrPn1fC8OcTB4fZCkVTesIaeu5Ccx7qXgGxqoLfM=;
+	s=arc-20240116; t=1708089597; c=relaxed/simple;
+	bh=i8eBqyQ/9oscfbrdNdKSdvR5OiTasOQVaBAg8WONgSY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m/Qbk4Zjlld/5S4jMlvPpw0hlQQQgLSJPeUUTdoTdtt37JqG9JB/cjG7fFGPrFuH5EcV5rGBsLM+vINwAUp92efHbSTsCr7bb8WRXGmVrGIs4czRGhrMO4NnGm9CbeDSIW8l47ORKM80tl8/GYtx2JzlyvSHtu6MFhAzKuxsQRw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rAk5dimz; arc=none smtp.client-ip=209.85.218.53
+	 In-Reply-To:Content-Type; b=TNEEEzeheY0Qh7ORdyJSB4WimcU0b1HCsqMvwUFiYZhEREXFZ04JAdRLps/yOq/Io6H2gnYnkRbZFxTBHKsgcFZNFfqHa9qoNn9Sqjn6AprOuRsLre+ZSqKcPkK92dssNEJF239XdUBVRaudtb/KPm+hApXhydZxxSOySM5yPig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rMCnRPQZ; arc=none smtp.client-ip=209.85.167.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a28a6cef709so116133566b.1
-        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 05:19:00 -0800 (PST)
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5128d914604so1570544e87.3
+        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 05:19:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708089539; x=1708694339; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=YqPkGi1Ckk2ilGkqiEu1egy4lm+ky9IDPMaYxMTwoA8=;
-        b=rAk5dimz0UbEgoBCwPuIK2iZ4V1lTVACJOZ7RUTyWCddRXdL0z/EUbiDFOzausz5BS
-         /h/qV2Zdcho/Rqk/h+iRcz3JK1tljPcKclt1qQVh/HMAnzJxuKpd0rSmpRBZ/UOmm2Ff
-         sQm5tPZpaGr6wDZIqTb45jPo8EitT0G+lbae5nUfeEHq8TOuQWXL6TUDx55hjabeOvuR
-         FQG3RxR6ccxXfIxDmTv/98r3yxy+iTh1PI6e84wueHh+v7Pi0k5LFnBdiH/C/woLA/K7
-         SU5HteTgg/1LNB4o6i4uZQpGn2bghcucFdQ5PKTIrPla0wi6YR7xQrK88qa+s1VhuWSS
-         yF2g==
+        d=linaro.org; s=google; t=1708089594; x=1708694394; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Is3bKNpFvR0lDz0b4P31kTIBYTglhrvvnN+mPzW5vPI=;
+        b=rMCnRPQZ0VGjiRh2ZpDDqs3OJJF07eJkFIEs7C46N7R7/rCVn4z9Tg8Ooz7LpbVGCU
+         XOzC85h+FCc1fQhmD54PpwqZYQ45iUsmqr4/u3clvJTKJ6bwORpQX/Os3JuR86zkp9mK
+         U8hdtg7NH/ZKm96G2KTYQLFTT+BrFCApRPUwhmKmK75ZEkvIOh94aFOjJQ1NQU0dl4d4
+         pczfyJBaJTQBHYU7mXTdVfTOCIU3tJci6EyVhC/OvUwIzKJNh7k9OvS2G6uYo+/7SieI
+         /nphhOx9+SXYAN7VXzDpbWdyhGyVdcJ36B1XbIJTmLnS4Qx1xblP2+D8awZGfbtt6K2A
+         +YuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708089539; x=1708694339;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YqPkGi1Ckk2ilGkqiEu1egy4lm+ky9IDPMaYxMTwoA8=;
-        b=JJvrxPMxsSTMJ6DAjbUntbkh95ns0/+Jpc4QgQ9/XGyPYx1lEyDdTgPdO9+z+eq2RD
-         PFdmnDFZ621c79rRkZm7lNhlgAMVdmWWTeNdLIwEYKzT0+JY5WYq/zzDpxGDUEKzVEjv
-         Q4w2430F0PrilZU43Lh/4kzhsLpNj7QSbwWWXTG35malteQhCfUtCZOvOgJ6ee5Iu9i5
-         bzxdXgxBfq7RuOOixtZHz36VSBxZ0bZY1sS2TwZtNbiis2mBYaqqWXtK/0s0vvlWLNWo
-         0fpM7XmZ84VnPsnzIRzoytHBMsY4UZiasz8ViUoihCyQXUhnIi519PyYStl7Zf25fRby
-         IngA==
-X-Forwarded-Encrypted: i=1; AJvYcCVanaOQSaKVXiIaVz/vvhdhgH+lGreP3iXz44qk5kvFUy9GK2m+BHt20TaGlLvUsQVYKNvFwX94VqCQtWMJ/qeeuzEHxYo5y+VC/A==
-X-Gm-Message-State: AOJu0YzpWe08k7a4Hmhws9vk75SqnOvU2LIRvfjrueuFNVCVI5m9/t+M
-	82NIqP5YTHAeCJb8M0yx0njAnngWCveIc5mU3jj/FcsurdUJnmUtsJopKQrtot0=
-X-Google-Smtp-Source: AGHT+IFs5ve7Y1XhcF0efN5upWG0bZhryc87V0cOdTVL7O8S5hmQhf/Nz3mQyXcWS2/vmV6dx3w15g==
-X-Received: by 2002:a17:906:468a:b0:a3c:f318:551e with SMTP id a10-20020a170906468a00b00a3cf318551emr3815400ejr.3.1708089539063;
-        Fri, 16 Feb 2024 05:18:59 -0800 (PST)
+        d=1e100.net; s=20230601; t=1708089594; x=1708694394;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Is3bKNpFvR0lDz0b4P31kTIBYTglhrvvnN+mPzW5vPI=;
+        b=en+qzN2Yp9u04FyuRuFqxqQcGlVtiEbz7l1aqlWWfuSpUZyIh2aaBG5gFv/Yi3P5k+
+         ue/KHkBmbNbqSje7ZApA9cDm0qfL0e2DNpfSKHayZLGosgDtCyhmOCITy73Z31QCEis9
+         DL/Zv/KqQEjezV9ADX0UFXGRuzE+jeoHf+HGr+nJqzPM0ga6SFhzXvOP+tJKcBLIf/wR
+         383/dEghZ/US7yUU4dVxtxijQiMNqasMsEkc80rn1pyVgqE+a1CtiayNff6+NECaGSUS
+         NyjW3/qeErmoL4wWwe9tWHKxcnOzQXdpVlNOAwI7OwbprP2Tuvf1DnChlfMW/PiT1WWA
+         amUA==
+X-Gm-Message-State: AOJu0YzkF/x3AzCsvV/H1lc9RXQE0QGrh9e1Qsv8hA3fBWUeHBRb1L/j
+	yEf+m/M43Y6xzOZ8e6uuCIL9X2ifD1V8J3ki5IGPuaRWwn+c0eRBuojZI8DXj7s=
+X-Google-Smtp-Source: AGHT+IFGUabnstQVRh2TSa61uRKOGLU6s5CxHFMZqiJFUpNB6SWPY9XpYfBYIug/ncXXwpgdrCtnAw==
+X-Received: by 2002:a05:6512:344d:b0:511:5012:db7 with SMTP id j13-20020a056512344d00b0051150120db7mr3306528lfr.29.1708089594100;
+        Fri, 16 Feb 2024 05:19:54 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.207.130])
-        by smtp.gmail.com with ESMTPSA id vh2-20020a170907d38200b00a3de6cf49ebsm424848ejc.6.2024.02.16.05.18.57
+        by smtp.gmail.com with ESMTPSA id vh2-20020a170907d38200b00a3de6cf49ebsm424848ejc.6.2024.02.16.05.19.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Feb 2024 05:18:58 -0800 (PST)
-Message-ID: <67d6a1f1-3bd4-4367-a754-8972ab4dd2e7@linaro.org>
-Date: Fri, 16 Feb 2024 14:18:56 +0100
+        Fri, 16 Feb 2024 05:19:53 -0800 (PST)
+Message-ID: <7819c59a-a58d-4c50-bbc7-35b3f803aaae@linaro.org>
+Date: Fri, 16 Feb 2024 14:19:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,20 +75,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: clk: qcom: drop the SC7180 Modem
- subsystem clock controller
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, Sibi Sankar <quic_sibis@quicinc.com>
-References: <20240216-drop-sc7180-mss-v1-0-0a8dc8d71c0c@linaro.org>
- <20240216-drop-sc7180-mss-v1-2-0a8dc8d71c0c@linaro.org>
+Subject: Re: [PATCH 1/3] arm64: tegra: Add current monitors for Jetson Xavier
 Content-Language: en-US
+To: Jon Hunter <jonathanh@nvidia.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20240216122805.32529-1-jonathanh@nvidia.com>
+ <20240216122805.32529-2-jonathanh@nvidia.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -136,26 +128,39 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240216-drop-sc7180-mss-v1-2-0a8dc8d71c0c@linaro.org>
+In-Reply-To: <20240216122805.32529-2-jonathanh@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/02/2024 12:14, Dmitry Baryshkov wrote:
-> This clock controller has never been used in the DT files merged to the
-> kernel. According to Sibi, it only worked on the pre-production devices.
-> For the production devices this functionality has been moved to the
-> firmware.
+On 16/02/2024 13:28, Jon Hunter wrote:
+> Add the INA3221 current monitors that are present on the Jetson AGX
+> Xavier and Jetson Xavier NX boards.
 > 
-> Drop the bindings now after dropping the driver itself.
-> 
-> Cc: Sibi Sankar <quic_sibis@quicinc.com>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
 > ---
->  .../devicetree/bindings/clock/qcom,sc7180-mss.yaml | 61 ----------------------
->  1 file changed, 61 deletions(-)
+>  .../arm64/boot/dts/nvidia/tegra194-p2888.dtsi | 50 +++++++++++++++++++
+>  .../arm64/boot/dts/nvidia/tegra194-p3668.dtsi | 27 ++++++++++
+>  2 files changed, 77 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi b/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
+> index 5b59c1986e9b..7c57272af044 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
+> +++ b/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
+> @@ -53,6 +53,56 @@ memory-controller@2c00000 {
+>  			status = "okay";
+>  		};
+>  
+> +		i2c@c240000 {
+> +			status = "okay";
+> +
+> +			ina3221@40 {
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+power-sensor@
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
 Best regards,
 Krzysztof
