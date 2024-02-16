@@ -1,121 +1,114 @@
-Return-Path: <devicetree+bounces-42544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75802857B70
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 12:20:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95B7F857B77
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 12:21:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A61ED1C21DFA
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 11:20:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E86D1F24FB0
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 11:21:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5A7D60BAD;
-	Fri, 16 Feb 2024 11:20:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3198874E26;
+	Fri, 16 Feb 2024 11:21:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TdR48MJr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dxUdRPjl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11EA15C90F;
-	Fri, 16 Feb 2024 11:20:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 058E9745FC;
+	Fri, 16 Feb 2024 11:21:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708082412; cv=none; b=VRknWWnQZrGJjrsizwRPLnKJA5E+5YY6hj/oUCY/qyc7zH8OxmpOMQaq4LDp9qxN6gEGYcdDo9orn18gvtdyXokQ2y/Fr60k8JXN0DTRTBjF9vU0lZ29l79CqVPZX/rmoNacxzSR/WqWei2fYdqg9IgbfxmHILeJ4t78MJkW8VA=
+	t=1708082494; cv=none; b=ubLdG2jy0jwgRSRCA66Q5mY50Czhk/aDLZhHHV+kurQE5nvIzCTFhyCfYMsP7gpH2JX+j+DJswI/qLxG3BGMQ26cHIvNyo/DQtRVyIWUueR6X5qvzwdqlpdKvFsT2mW10dNyRAcL6htzQ08TP0K2zWVkWDtheqtL6mzdcTcQJsQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708082412; c=relaxed/simple;
-	bh=nkaCE6eCvGlgX7kiyuhw3auFPcpQnseOvbNalEBXKM0=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=A4j4tu6ZP20n8YugdqMk8OLqSUoAco7WnGA3/osjHxSwQTA0llk3dUUlFOiGq76ct56BkJ2eelF8t4N4fS/jhSFRU5mjBXsPv9+gL2sag1JEu6SnDOqPunno4cnU7UXGnIptunyE3zUk9RWOvyh/WwOaKj+savu8waH3uIAxWGQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TdR48MJr; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a3d484a58f6so241698266b.3;
-        Fri, 16 Feb 2024 03:20:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708082409; x=1708687209; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yCznbNgmC/uH8itI3jd4dc5ZdCgsBJRraVYhNu+kzY4=;
-        b=TdR48MJraT6KcWbrFIIlguA5RJGkAEie1G1uhrtzUGIWplkIK8e5HOzoxXmkG0sVxc
-         Efkmc9PBaILzxGcYD6cHA/BN03Da/8edr2n8fh5eJ5R1Lf6Wzg8QLI6EMbkT/7nhKtF1
-         w44cniUGSMG2I0q6QTYo37lcoHx4I0NGD/vLxAAG6huQtghKX/gE0abx5Cw3xyZBANVF
-         AVSxD5G0Voh57FT7k5U90OfZcFgX14aieTLDgV1/CofeHk5Edz5DHcojPJVLqh7XkN9U
-         y6emThfK1/XueffGJWii3YYUMMH8D5z6NJRwXhXA4aWiXCljNUHW4JvJcqvGnzDMpzUD
-         WFmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708082409; x=1708687209;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yCznbNgmC/uH8itI3jd4dc5ZdCgsBJRraVYhNu+kzY4=;
-        b=ZmyATvp8K6dW9dKzfOF2kURi1pO24bcL20ZyYEw8rDta6fPDgb44NsJzLBzSoffwic
-         7eFZJ3BROuJ6Q2vAymX/iHEahcYBl5clbDWEl3GrpTFz6h2OVIoRcJ+TKHqlRxjSaMo7
-         YYeQndbz3rXzqbTlfoIKJgqcBtlUPiNugTrF00BNlrv/Y/nXZd3s1BnYcViVO/tcrmM6
-         FeTPx9rmlKLUuCf2StP+95sWs4xX5xh3b4hK3GJ2groPqWQrE3RPUY4ENCecs/PwId5K
-         7P2GXkktBfCw2G5knn0uPRlsDTVEcTRs8VDmK2QVi0U3Bk4EkJcMwRRDYB2JCZDJcESJ
-         Kbmw==
-X-Forwarded-Encrypted: i=1; AJvYcCVaU2hCUuMumx/UXCtfke0HMBPnP9orwq370KyalGcwK2exnAUZeyZqnI0ewqLHCMBns8PJjSbBkHIbVqLATE083p4+HTCYsOaXyca/JKnLySv7VR2zA6wmRg96Jx8JGFrFXClqiLas3fTtZ7ED5KXuKedV/nJpQeKHrzBOLpIUxZnNbHdu
-X-Gm-Message-State: AOJu0Yzpz9zDug3GICYuUQ6HqO/C+XoDolWdSzxJRbRbC3Rkt/FRUgaB
-	bwUIEPBgZiZSYfHD8WUmIKB5s5pk+ayB9F5F2M7seb62iMaKCBcw
-X-Google-Smtp-Source: AGHT+IHPHegJqbyoyL1SyH5aHZfiqfe2a8Kk/Xmi79pqAV50OjKgbAr67Gj29oOtjPgW56iENz3wwg==
-X-Received: by 2002:a17:906:f250:b0:a3d:51c4:812c with SMTP id gy16-20020a170906f25000b00a3d51c4812cmr3302801ejb.11.1708082409050;
-        Fri, 16 Feb 2024 03:20:09 -0800 (PST)
-Received: from localhost (p200300e41f147f00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f14:7f00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id i11-20020a1709063c4b00b00a3dae5dc653sm1097417ejg.157.2024.02.16.03.20.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Feb 2024 03:20:08 -0800 (PST)
-From: Thierry Reding <thierry.reding@gmail.com>
-To: thierry.reding@gmail.com,
-	jonathanh@nvidia.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	p.zabel@pengutronix.de,
-	dmitry.osipenko@collabora.com,
-	ulf.hansson@linaro.org,
-	kkartik@nvidia.com,
-	cai.huoqing@linux.dev,
-	spatra@nvidia.com,
-	linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Petlozu Pravareshwar <petlozup@nvidia.com>
-Subject: Re: [PATCH V3 1/3] soc/tegra: pmc: Update address mapping sequence for PMC apertures
-Date: Fri, 16 Feb 2024 12:20:07 +0100
-Message-ID: <170808233530.197509.809812872766738307.b4-ty@nvidia.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240211171727.914595-1-petlozup@nvidia.com>
-References: <20240211171727.914595-1-petlozup@nvidia.com>
+	s=arc-20240116; t=1708082494; c=relaxed/simple;
+	bh=aVpk1bSJsLIq7ztumwPZSfYOkIuBqVCeY6+wAlHv8tU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qvaztnETwBIWYNVinHHm+6vfFmo2n4FPy+4aUwX7cOoxsWyax59TRz/bO4KgfheMjf88ZROwLIFxcLSQQUDzchDrcIoFYl8WT7tYb1joNPzsBw9Pb1DHR7RwB5obnLd5WTMigDuH9OAQjOKC+01xolNzJOnq6sjp8fRRK84856w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dxUdRPjl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B72EC433C7;
+	Fri, 16 Feb 2024 11:21:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708082493;
+	bh=aVpk1bSJsLIq7ztumwPZSfYOkIuBqVCeY6+wAlHv8tU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=dxUdRPjlGgS2WV0HpieRofNjFNwNkr5DCLeJJsV36UWRPPa1XH8SfdxP9PFx5sIno
+	 7MqecM3bmaY1RVdJirWs3eZMlIDj8WhSO39xbdlo6garDVsKQQnCjtFagFnFnJ3qZx
+	 Y81IdiZI2ER/H4uR7D0jjb/4OTFRk4qNmgE+3wMI1YoHmzvPVw3sM6WynQhgNUqPTu
+	 RzpbXuinXPUUzq5HxANuhVbESpMSHxQ2tGcZ1NZW4yoXzbLOK16HJQSfPyFE+8w+2p
+	 etxNVfxf4YDzcQIhrmnn9w6wwqqh2JWKhT8Q4ybG6Gb1kFf9lP/EUlv2dRb3WwEFdd
+	 6NnaeAv24+S+g==
+Date: Fri, 16 Feb 2024 11:21:20 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: puranjay12@gmail.com, lars@metafoo.de, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+ thomas.haemmerle@leica-geosystems.com
+Subject: Re: [RESEND PATCH 1/2] dt-bindings: iio: ti,tmp117: add vcc supply
+ binding
+Message-ID: <20240216112120.76a0c0ca@jic23-huawei>
+In-Reply-To: <20240216102820.1395815-1-m.felsch@pengutronix.de>
+References: <20240216102820.1395815-1-m.felsch@pengutronix.de>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-From: Thierry Reding <treding@nvidia.com>
+On Fri, 16 Feb 2024 11:28:19 +0100
+Marco Felsch <m.felsch@pengutronix.de> wrote:
 
-
-On Sun, 11 Feb 2024 17:17:25 +0000, Petlozu Pravareshwar wrote:
-> On Tegra SoCs prior to Tegra186, PMC has single address range only.
-> Starting from and after Tegra186, PMC has additional address ranges
-> apart from base address range. Currently in PMC driver, we try to
-> map these additional address ranges on all SoCs and if we fail then
-> we assume that the range is not valid for an SoC. This change makes
-> it more explicit on which address ranges are expected to be present
-> on which SoCs and maps the additional address ranges only on SoCs
-> from and after Tegra186.
+> From: Thomas Haemmerle <thomas.haemmerle@leica-geosystems.com>
 > 
-> [...]
+> Add the binding to specify the vcc supply. We can't make it required
+> since this would break the backward compatibility.
 
-Applied, thanks!
+Given convention for supplies like this is to make them required in
+the dt-binding to reflect that providing power is not optional (unlikely
+some other supplies that might not be wired up) and not worry about the
+fact that we happily provide dummy supplies for them if they aren't in a
+particular dts, it should be fine to make it required here.
 
-Best regards,
--- 
-Thierry Reding <treding@nvidia.com>
+Jonathan
+
+> 
+> Signed-off-by: Thomas Haemmerle <thomas.haemmerle@leica-geosystems.com>
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> ---
+> Resend since I forgot to add the DT maintainers
+> 
+>  .../devicetree/bindings/iio/temperature/ti,tmp117.yaml        | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml b/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
+> index 8c6d7735e875..cf7799c9734f 100644
+> --- a/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
+> +++ b/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
+> @@ -24,6 +24,9 @@ properties:
+>    reg:
+>      maxItems: 1
+>  
+> +  vcc-supply:
+> +    description: provide VCC power to the sensor.
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -39,5 +42,6 @@ examples:
+>          tmp117@48 {
+>               compatible = "ti,tmp117";
+>               reg = <0x48>;
+> +             vcc-supply = <&pmic_reg_3v3>;
+>          };
+>      };
+
 
