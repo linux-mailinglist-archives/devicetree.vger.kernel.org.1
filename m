@@ -1,180 +1,288 @@
-Return-Path: <devicetree+bounces-42761-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE1D0858681
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 21:09:42 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C783A858686
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 21:12:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E13A41C20975
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 20:09:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 20E2AB22508
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 20:12:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74B09137C52;
-	Fri, 16 Feb 2024 20:09:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3367138492;
+	Fri, 16 Feb 2024 20:12:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="Zkxkimc8"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="gbNTdydo";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="BpURH+0+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01olkn2030.outbound.protection.outlook.com [40.92.53.30])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86D08137C29;
-	Fri, 16 Feb 2024 20:09:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.53.30
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708114178; cv=fail; b=EAIDDr2KgsILBmunjLn1JsstwDZ2moRFpBNxAGMJLxC/S2ejOBnFcxfLHKysx7m483+YQ/fh+LVLSwP+LJHu90g0/BCMBXrHJeu58ufEm0X6xMhsZYTHKe8c/mACG1U5vwGdUqHB5aFxPHhzGNJgLGtvNbNd/Bqibryc6hIAua0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708114178; c=relaxed/simple;
-	bh=8fd2cPZ+uttj1DEcKpgua+yxCFcB83tYO55mwdA7zCE=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=BOR4+ANrz+ojWmYuktCECiU1YDb/+ftMKSjPEhmVzbIuP51fP2euzjTPHQE51zFTLuXYbn0gAfQLWyg9eNs7VhehIm9J3HJAdv8xPkHoJcBWCrjrOSsiDDjvGJMwqfNRvv66fb6+jnWSiVLRTOzmT6aImW5kGtdQdLn5OltjeVc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=Zkxkimc8; arc=fail smtp.client-ip=40.92.53.30
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JqtryGdGvHmlJsKakQpBTKLMgMW0ReYNvaY8pVQcfkggWZUZeuybVTi/i5qHPFhCHdPm45Nq7ZdYAl1jDB58PU3M4sCKz12678R7JuOTBK7iRxLJrqRsxlxl2UxMfJrxdUIkkMrwcqYGxUrwscQVrwvqWbrESxcHAE02IqQ67095CKJJ5b5lyMC/+c7wNAt7xh5kqxL1Jlm9ElOalDBZJNkmN12fUSXVkS+88tbhf05OoSTNrvZvg6GpOLx1v7iiQJyU3Ej7m1/uFWBBD79jT3LlsIzCuT/zR+Ik1WikJRT6gSTyAFBDMDTjDK/R5VlulmhkzLBLv6W+NxosEosVmw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xraofa5qdPYe6hn7aZn5JyWvggF2UnPsEIlszAEEvG4=;
- b=D505gInFHOKge7/JitbYZ0TgoOr7DHfsYA2cG1Wls6ghbVLEYg71QKxFHWasPUbQxIpnlrnn08v+htiLP0JjOuWjwz9uLxfSAA6Lda5E4VS8uUnh56IJwTweEPuqHGCuVXVaaWTOKA3DBeyJwZiZerjwXGsBXLKw4m6/NQ55uGYiYSu4smwpi79QH2OKBm3g583KBHq1FOmAnRoO2e/8gLq/Evdg4IVnzfNh4Alo9kbNveqKvrCgt++T/N30933l88BGzJ+kx3iN88bwo9VH0oJxtbCHTwLVoYhghgP80MNeQLnUymfttqtKrRIUfIT1pH25awmrYJezjI3HlxpxzQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xraofa5qdPYe6hn7aZn5JyWvggF2UnPsEIlszAEEvG4=;
- b=Zkxkimc8gFfLN0cBCeceRPOMgjx51azLBBoaCAWEdanKGkgch8qt5/h+5ahvoJXKiezoD5AXsJvSc+rjDJrPmLUOt2Z3oxATvhce8t/jBW2P8hyPRntaWDmA2MXPLo7wIDQdX5hjSE6Qxdj0EFRSvoTEGE2q7JpLcb1Gj3EyBdjGRD4i8biPWxotY+V2FWXAF2LYMEtLPyhDNpSZuY8hhXEFGVopyljLSaeG9nYctBC+pQ6nJ2VkquBb7gMY8tfBGl1SGN+blAilqe6tVE0yJXoeQzBdTqZqFkxINLGc7yasH8Q8kzdxNNMOc+wSAqF1e3X4FgcD1U2T71XZB53o7Q==
-Received: from SEZPR06MB6959.apcprd06.prod.outlook.com (2603:1096:101:1ed::14)
- by TY0PR06MB5658.apcprd06.prod.outlook.com (2603:1096:400:276::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.31; Fri, 16 Feb
- 2024 20:09:28 +0000
-Received: from SEZPR06MB6959.apcprd06.prod.outlook.com
- ([fe80::9a6b:d813:8f4b:cba1]) by SEZPR06MB6959.apcprd06.prod.outlook.com
- ([fe80::9a6b:d813:8f4b:cba1%4]) with mapi id 15.20.7292.029; Fri, 16 Feb 2024
- 20:09:27 +0000
-Message-ID:
- <SEZPR06MB6959A0CCF11F3E4FC956028A964C2@SEZPR06MB6959.apcprd06.prod.outlook.com>
-Date: Sat, 17 Feb 2024 04:09:22 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] net: hisi_femac: remove unused compatible strings
-Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>, Andrew Lunn <andrew@lunn.ch>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Yisen Zhuang <yisen.zhuang@huawei.com>, Salil Mehta
- <salil.mehta@huawei.com>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Yang Xiwen <forbidden405@foxmail.com>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240216-net-v1-0-e0ad972cda99@outlook.com>
- <20240216-net-v1-2-e0ad972cda99@outlook.com>
- <68c9477a-3940-4024-8c86-aa6106e8a210@linaro.org>
- <SEZPR06MB695938B228E762B9B53BAF2F964C2@SEZPR06MB6959.apcprd06.prod.outlook.com>
- <d77faffc-5bde-41f1-b6a2-ddd665c3ee08@linaro.org>
- <SEZPR06MB6959592677F8F2C79BC2FBB7964C2@SEZPR06MB6959.apcprd06.prod.outlook.com>
- <428581c5-48e5-4b89-8925-9847bd69dc70@lunn.ch>
- <20240216-pedometer-unselect-91abab6c5df0@spud>
-From: Yang Xiwen <forbidden405@outlook.com>
-In-Reply-To: <20240216-pedometer-unselect-91abab6c5df0@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN:
- [WtkOJIGNnA6uuwPl5W2XfCCkXZj3WU+0+dXuEopJCq8+QYReuMyJM7daaxD3zvp+FGNzNnG6JN0=]
-X-ClientProxiedBy: TYAPR01CA0214.jpnprd01.prod.outlook.com
- (2603:1096:404:29::34) To SEZPR06MB6959.apcprd06.prod.outlook.com
- (2603:1096:101:1ed::14)
-X-Microsoft-Original-Message-ID:
- <f9dd084a-6559-4453-bc74-5993c2f011d7@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CAD6131E5C;
+	Fri, 16 Feb 2024 20:12:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708114333; cv=none; b=Py7GM8JUWA0vGzLh1f1ZPC56AfgF8Ao6nt4QV4WPBHD0CRq46arSiEyQAdVcuxmNo93KWO768lTOPFu2l+ylOohuihmhgDytzeQCzF3NJZfwrQQmyUdPQPRR/8NHJmMCoNn0ItXGAicfgKLa2mBuurBtsGQ+vanNTgUJvE542nk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708114333; c=relaxed/simple;
+	bh=CS9fziBxwe+7011P3OXioKG7MNBGD/GypjYfCe0rofE=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=cgj4dx+DOZMI/8+XY93E4QV8bJKoK6uGzJrGaGgOMH0RPv1WQ8OBDBcM13zKVaOgm8V9D3zg1Gutf03JaUU/3hRch6eTWmSszUClYaIrYmvpKLH/HEG0fUCWr3XGJjLNONSD5FlYl29BkE9mKWjIrZ+fH2DTNDwQQ6bB4AM3FW0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=gbNTdydo; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=BpURH+0+; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1708114329;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=s+tB/kujNFZx/PbFJr0491oadBrKTzcZgAtTbdQTbqQ=;
+	b=gbNTdydo+jPjWAaDEyAIVo7CttcHnz19JfMZKu5oH7PExkQJzPI71koXdu1noRALZlkOA9
+	/2MPhKB7vMO2MKYpvk1ZBD1khMgYU5fLTc4M+F9C+RiIhHjElze2iYjA+07CMmXwA90E4O
+	Vuag8DCAud4DJ86TpQSXoD8Q/WXd082wKG2wCWhoTLLD5I9vxg/iPPWfSy69OycishX86U
+	EV+uwj9+q+Idj6HtIUM63U5FlztfVMe7J0x04FFKQ4GVTQWx1+kgwg7TRZ8dGLBrehBJbX
+	XfWE5SQ7mWqIfr/BpQK8efWD/8d+RsBjeTT+cAUuUlhdEedxYsSk/2RIzHvE1A==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1708114329;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=s+tB/kujNFZx/PbFJr0491oadBrKTzcZgAtTbdQTbqQ=;
+	b=BpURH+0+9HpxXJvYp/YzPs0YvtEwHXWZekkb6bcARTmdv7gkGdhnHCAgGCl6LOmuPrkxbt
+	7iAkQwkR1pdlTdAQ==
+To: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
+ <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>
+Cc: Marc Zyngier <maz@kernel.org>, =?utf-8?B?QmrDtnJuIFTDtnBlbA==?=
+ <bjorn@kernel.org>, Atish
+ Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>,
+ Sunil V L <sunilvl@ventanamicro.com>, Saravana Kannan
+ <saravanak@google.com>, Anup Patel <anup@brainfault.org>,
+ linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Anup Patel
+ <apatel@ventanamicro.com>
+Subject: Re: [PATCH v12 19/25] irqchip/riscv-imsic: Add device MSI domain
+ support for platform devices
+In-Reply-To: <20240127161753.114685-20-apatel@ventanamicro.com>
+References: <20240127161753.114685-1-apatel@ventanamicro.com>
+ <20240127161753.114685-20-apatel@ventanamicro.com>
+Date: Fri, 16 Feb 2024 21:12:08 +0100
+Message-ID: <87eddccgo7.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SEZPR06MB6959:EE_|TY0PR06MB5658:EE_
-X-MS-Office365-Filtering-Correlation-Id: 439020f5-e60d-4c93-27f8-08dc2f2b2d30
-X-MS-Exchange-SLBlob-MailProps:
-	dx7TrgQSB6c1cOtx239ZsHXxlFKPF+zuna/7fYIkKFSNkXQhzryTwyECZfJJxDhx1cCRIvtAKg7Uh+EzLWKBgVY682J5Ku3R/+9ml7dch0K6x37dNLOkeoTBFicMOlHeHjAtcPCZcPVfuCjMAV77GQytzPc+M9XKL69Ur64qyAFM0sxOnrZdNwiqtVNdFM5XBCgUu855o5EcPqiWpywZI84iQKIZC0OKXQ1govcJ5IiAK0F8NGmRoEVPMN1M1/CDwud5mtb4/Dsak0dE/N7KVf9gRLgPt9I7fiJMnKGu6iN7R5EX6u1jgTDQsm1hbGyu+lgG6RX0flj5/wFBj2fTUZVwfBAe2L/iV14LsT5yp9SNUZY0bxEy8PgyoLzLQYPW6IPAwTnzJFPxVBaufhDySF7WWPrhR6WGzSnvxuT9CIh7+I6WRe7FgMN8Jc2FgcY9bEh8nDfZESdiowOw/wtr/CU72dVJzrakeNN5cb0SweOjodnFy+GUmXz9ddCZa+5q47/SQeahXBaJfw1iPsLp3JsR9WsU0iTznRx4rcpUVCCgZ5g6ejdskfwcDYlpE4MKQ+bn0qOLsQwyiwHwFsQuFh5csUj3/oraLfiMWJO+zAlvh59NseV0CJZziobDvjZz996LBjwW2cli7FA0mt+vWWf+9Bv9tt633k62S8ZwqIGlIXgb+JH87o3JmNl0uiYM5e0WSdcbd+SVF42ZBL8mN/LZAHzSV3sFq7lLO5sHFjbYZ6DfBHKyinYoUG3YzkegbeOuRowU/78=
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	1qLa/EVJZyTVBH91nSQmb7ZjC6YcF6ee6wYWgVPs4Yb8XkFatu6jamD8KE0eUg42hL8xX/QebxAg17tYUv4GL5OlSORFL2hGoTapp0vx2eDyNCwVXCBBtCpUsqOhyu7LKc91csawxXjqpu/pzP9KQQnRPsAu3J5X6LHRcQdW5J5JfPgs4hZeJeJRflFM39SacowETttNN8aLOOv0GaCxm3jVzYD8jJnbfVYLBqHj02kfoSOkTAGRt1NLOsYZuwMVncko03e5Dh5PGsOnYY1MB2V1ciYOheRq5c2zpaeb0XvGGg7YYLLHGajjI3LOqvfUTkP0RoLCeU1mm+yIgf+1kvZBPUerT6PYf+Nn77R+2/7DBjLRjxzNED3lEjnNvwjyG72b0HwZknvc36YELCIgoqFxtpfOxTugX+Eh9VM9jHAL142h9EJcpaToj41w/yjx2IlY2+QuBYjr5sdg+jFyeu2EsugfVahq4tHjTFe/IFmKfxOiT+Xb0u4RTNMiaFx2paUnqylDQhYfmDhHIu15zLmCapKzpBs25B4GpLFCKfLCm8jmCn78JFXp8shPt61a
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?bHZvWjBPVVoyTUxvNkZxdDZVRVl0VFI1YU9aQWMyRjV5Y1BWNW9uUDVjdk9t?=
- =?utf-8?B?MmhIbVVyTVF0UjZNRkVqK1RpVG1YQUJKdHBxcldwck1jZnA3MTJRS0k5N0Z6?=
- =?utf-8?B?QTFISm8vS0xKNzQvaDh5bDRGRngxZ3QraDNwMytUeTl4ay9kY2R0ZTdLWGFY?=
- =?utf-8?B?UHJXdENxMUd1RTRoNGF2UWdkQVM2SG9aZ1BpUUdXZXJxV3MxcDM3TzBxVWdN?=
- =?utf-8?B?dGtWN1dvWlRBT0trbk4wZC9BUnI0MHdMUlhZUzRXQmwzK3BRQmwxdDRNdk4x?=
- =?utf-8?B?cGEwVkMyOFdEOTcrMEtlQmQ4RDk3aWRMS3lpTEdEVUlRZWUvd3FxS0VhalJh?=
- =?utf-8?B?aTFpYS9QS0xlems2Qy84UCs5bjVPZUVJQm8vblBySTJmMmpzWFdjdjFNMmV2?=
- =?utf-8?B?Q3JleFNpOFJNZ3ppVksxS01tNkxvWml5L3pVMHNSaW5NVHZjRDZhcnFRMCtK?=
- =?utf-8?B?aEgwM1JQWlV0dmNBaGZJL1VoWnBVY1NFMTJqYmZMQ2loQnp2S000NXVMdWNV?=
- =?utf-8?B?U21XTVE1NTh2SmRSN09wSlBRc1JDVUc0ZnJWelBsc2tHYWVCeFRSWnZLMkta?=
- =?utf-8?B?MXh4eTVyQlpkL0tBT3hBVEV4V0FVRHVHcVVHS25TNzJSY3ljRDcxekRzcjMz?=
- =?utf-8?B?UlNPc1lldVpxUTdYeFRWeVB4d3FhanUzQUVaUVo5ZnV1dlV4UkVxaFdmcmZD?=
- =?utf-8?B?clZIWmpnKzNLOXg1UGxJV2kyTk5tdU04dXRwV0NEMTM0cytMMFNUdGhFUEV0?=
- =?utf-8?B?Nmc3ekRxRmxxaHlPVFg4YnBCZG55OGtVa1VpbFpyK1BIY2ZpNlo4WmZNNHNr?=
- =?utf-8?B?MGJwMHl0UE1qVit1VHJGck5KY3J6eWpPb2VwQVQrMUlvWGlKRTBWWXk3Mkdw?=
- =?utf-8?B?NHBUc2FVQXczSlZPSVNQeEVtZzJxblViS0NuNEdQUGFsS0tEM0w1Ui8rK1NH?=
- =?utf-8?B?cUE2eTQvVjFldW9tc2djQjdtcEExYnlETVdycDUycnZWY2NqUWIyYW82UHY5?=
- =?utf-8?B?RmlOSG1nWTdDYzhkdDhFWHJJZERpd3hPT1phK3pJZlBxR0NEeGNpdXY5cSs2?=
- =?utf-8?B?TS9uOXFrWVRISkp1Q09YV0MwdXRqeURPR3VvbUI2Tzk1Wm9LSUNXRGk3Q0hh?=
- =?utf-8?B?VmF4OHFDdE5hSlk4ZnN4cERhbnBSUUcvaGxtTUxRZlhmL2ZtTzVLRzllTFUr?=
- =?utf-8?B?VVRPUFlHMnBqUWxCUnVOaEFLeDRYZkkrNEZ1OTlpUXNhTk5tYk5Bckc4RjJL?=
- =?utf-8?B?Mk9KWVpESjRBVGJ3OFQyQmlMQnRtc1JJZFBDSE00S2g3V3A4ZTdrSUlrUzU3?=
- =?utf-8?B?VUYxNkRzTGVOWEFKK0lrVDF6RHFrT1MyTVlWazB0b0FPdWY4TFN3RUJuYk9D?=
- =?utf-8?B?dThYOFNZZkhzcHhscU5sVXN4MW9raHFTNWZOKzBnSXNqTVB2REZsWERsUjZS?=
- =?utf-8?B?OVRNV2hrazRVdTBUYWpHdElHbFVpM1h2b0xVd0xvT2ozQlo5VVYwY3JwWXpD?=
- =?utf-8?B?cGtRRHlnQzhoV1JMZnFqMWhGTld2U3JoeHhKTWNwV1pjUVgxV2tkcEUyTHZD?=
- =?utf-8?B?VjR4aDVNYUhYM050UURDRk52YmlhNFFrVEpQUU9kdnBZeUhHOVlUZE9kVmg1?=
- =?utf-8?B?YXpaNTZMYlE5QjNTWVJrMEFLZWdubis5TllJWXJhMEpmQ0FqSE5XdmJWbTQr?=
- =?utf-8?B?M0d3SWVicmxFbjJydi8yUGNva1lsZU4xZDRBelFOOE5DbVduaWVUalhjajZJ?=
- =?utf-8?Q?S5gSkGjXK/G9X1CqFEfsD4uXcACU85Z08+/Y2mT?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 439020f5-e60d-4c93-27f8-08dc2f2b2d30
-X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB6959.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Feb 2024 20:09:26.9470
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR06MB5658
+Content-Type: text/plain
 
-On 2/17/2024 4:05 AM, Conor Dooley wrote:
-> On Fri, Feb 16, 2024 at 02:01:08PM +0100, Andrew Lunn wrote:
->>> For me, it's a bit lucky to find a (partially) working driver in mainline.
->>> It'll take me even more time if no mainline driver is available. In fact, i
->>> wrote the driver for mainline u-boot from scratch and it has been merged. So
->>> it's good to have this binding accepted unmodified, or i'll have to modify
->>> u-boot side driver code to keep them sync.
->> Sorry, but that is not how it works. If during review we decided it
->> needs to be modified, you will need to modify it.
->>
->> I would suggest you first mainstream bindings to the kernel, because
->> it has active DT maintainers how really care about bindings. Then get
->> is merged to u-boot.
-> Just to note, the U-Boot folk are currently working on a model where
-> they will be importing the kernel's dts files directly into their tree
-> along with the bindings. I think they're adding dtbs_check too.
-> Although that will be opt-in per board, it does point to an increased
-> desire for compliance there too, which is great.
+On Sat, Jan 27 2024 at 21:47, Anup Patel wrote:
+> +static int imsic_cpu_page_phys(unsigned int cpu,
+> +			       unsigned int guest_index,
+> +			       phys_addr_t *out_msi_pa)
+> +{
+> +	struct imsic_global_config *global;
+> +	struct imsic_local_config *local;
+> +
+> +	global = &imsic->global;
+> +	local = per_cpu_ptr(global->local, cpu);
+> +
+> +	if (BIT(global->guest_index_bits) <= guest_index)
+> +		return -EINVAL;
 
-Of course. I'll sync this stuff back to u-boot once this gets accepted 
-and merged. I begin working from u-boot simply because the Driver Model 
-of U-Boot is much simpler than Linux's. I wrote the driver for U-Boot 
-first to figure out how the hardware is working, then port it to Linux.
+As the callsite does not care about the return value, just make this
+function boolean and return true on success.
 
--- 
-Regards,
-Yang Xiwen
+> +	if (out_msi_pa)
+> +		*out_msi_pa = local->msi_pa +
+> +			      (guest_index * IMSIC_MMIO_PAGE_SZ);
+> +
+> +	return 0;
+> +}
+> +
+> +static void imsic_irq_mask(struct irq_data *d)
+> +{
+> +	imsic_vector_mask(irq_data_get_irq_chip_data(d));
+> +}
+> +
+> +static void imsic_irq_unmask(struct irq_data *d)
+> +{
+> +	imsic_vector_unmask(irq_data_get_irq_chip_data(d));
+> +}
+> +
+> +static int imsic_irq_retrigger(struct irq_data *d)
+> +{
+> +	struct imsic_vector *vec = irq_data_get_irq_chip_data(d);
+> +	struct imsic_local_config *local;
+> +
+> +	if (WARN_ON(vec == NULL))
+> +		return -ENOENT;
+> +
+> +	local = per_cpu_ptr(imsic->global.local, vec->cpu);
+> +	writel(vec->local_id, local->msi_va);
+> +	return 0;
+> +}
+> +
+> +static void imsic_irq_compose_vector_msg(struct imsic_vector *vec,
+> +					 struct msi_msg *msg)
+> +{
+> +	phys_addr_t msi_addr;
+> +	int err;
+> +
+> +	if (WARN_ON(vec == NULL))
+> +		return;
+> +
+> +	err = imsic_cpu_page_phys(vec->cpu, 0, &msi_addr);
+> +	if (WARN_ON(err))
+> +		return;
 
+	if (WARN_ON(!imsic_cpu_page_phys(...)))
+        	return
+Hmm?
+
+> +
+> +	msg->address_hi = upper_32_bits(msi_addr);
+> +	msg->address_lo = lower_32_bits(msi_addr);
+> +	msg->data = vec->local_id;
+> +}
+> +
+> +static void imsic_irq_compose_msg(struct irq_data *d, struct msi_msg *msg)
+> +{
+> +	imsic_irq_compose_vector_msg(irq_data_get_irq_chip_data(d), msg);
+> +}
+> +
+> +#ifdef CONFIG_SMP
+> +static void imsic_msi_update_msg(struct irq_data *d, struct imsic_vector *vec)
+> +{
+> +	struct msi_msg msg[2] = { [1] = { }, };
+> +
+> +	imsic_irq_compose_vector_msg(vec, msg);
+> +	irq_data_get_irq_chip(d)->irq_write_msi_msg(d, msg);
+> +}
+> +
+> +static int imsic_irq_set_affinity(struct irq_data *d,
+> +				  const struct cpumask *mask_val,
+> +				  bool force)
+> +{
+> +	struct imsic_vector *old_vec, *new_vec;
+> +	struct irq_data *pd = d->parent_data;
+> +
+> +	old_vec = irq_data_get_irq_chip_data(pd);
+> +	if (WARN_ON(old_vec == NULL))
+> +		return -ENOENT;
+> +
+> +	/* Get a new vector on the desired set of CPUs */
+> +	new_vec = imsic_vector_alloc(old_vec->hwirq, mask_val);
+> +	if (!new_vec)
+> +		return -ENOSPC;
+> +
+> +	/* If old vector belongs to the desired CPU then do nothing */
+> +	if (old_vec->cpu == new_vec->cpu) {
+> +		imsic_vector_free(new_vec);
+> +		return IRQ_SET_MASK_OK_DONE;
+> +	}
+
+You can spare that exercise by checking it before the allocation:
+
+        if (cpumask_test_cpu(old_vec->cpu, mask_val))
+		return IRQ_SET_MASK_OK_DONE;
+
+> +
+> +	/* Point device to the new vector */
+> +	imsic_msi_update_msg(d, new_vec);
+
+> +static int imsic_irq_domain_alloc(struct irq_domain *domain,
+> +				  unsigned int virq, unsigned int nr_irqs,
+> +				  void *args)
+> +{
+> +	struct imsic_vector *vec;
+> +	int hwirq;
+> +
+> +	/* Legacy-MSI or multi-MSI not supported yet. */
+
+What's legacy MSI in that context?
+
+> +	if (nr_irqs > 1)
+> +		return -ENOTSUPP;
+> +
+> +	hwirq = imsic_hwirq_alloc();
+> +	if (hwirq < 0)
+> +		return hwirq;
+> +
+> +	vec = imsic_vector_alloc(hwirq, cpu_online_mask);
+> +	if (!vec) {
+> +		imsic_hwirq_free(hwirq);
+> +		return -ENOSPC;
+> +	}
+> +
+> +	irq_domain_set_info(domain, virq, hwirq,
+> +			    &imsic_irq_base_chip, vec,
+> +			    handle_simple_irq, NULL, NULL);
+> +	irq_set_noprobe(virq);
+> +	irq_set_affinity(virq, cpu_online_mask);
+> +
+> +	/*
+> +	 * IMSIC does not implement irq_disable() so Linux interrupt
+> +	 * subsystem will take a lazy approach for disabling an IMSIC
+> +	 * interrupt. This means IMSIC interrupts are left unmasked
+> +	 * upon system suspend and interrupts are not processed
+> +	 * immediately upon system wake up. To tackle this, we disable
+> +	 * the lazy approach for all IMSIC interrupts.
+
+Why? Lazy works perfectly fine even w/o an irq_disable() callback.
+
+> +	 */
+> +	irq_set_status_flags(virq, IRQ_DISABLE_UNLAZY);
+
+> +
+> +#define MATCH_PLATFORM_MSI		BIT(DOMAIN_BUS_PLATFORM_MSI)
+
+You really love macro indirections :)
+
+> +static const struct msi_parent_ops imsic_msi_parent_ops = {
+> +	.supported_flags	= MSI_GENERIC_FLAGS_MASK,
+> +	.required_flags		= MSI_FLAG_USE_DEF_DOM_OPS |
+> +				  MSI_FLAG_USE_DEF_CHIP_OPS,
+> +	.bus_select_token	= DOMAIN_BUS_NEXUS,
+> +	.bus_select_mask	= MATCH_PLATFORM_MSI,
+> +	.init_dev_msi_info	= imsic_init_dev_msi_info,
+> +};
+> +
+> +int imsic_irqdomain_init(void)
+> +{
+> +	struct imsic_global_config *global;
+> +
+> +	if (!imsic || !imsic->fwnode) {
+> +		pr_err("early driver not probed\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	if (imsic->base_domain) {
+> +		pr_err("%pfwP: irq domain already created\n", imsic->fwnode);
+> +		return -ENODEV;
+> +	}
+> +
+> +	global = &imsic->global;
+
+Please move that assignment down to the usage site. Here it's just a
+distraction.
+
+> +	/* Create Base IRQ domain */
+> +	imsic->base_domain = irq_domain_create_tree(imsic->fwnode,
+> +					&imsic_base_domain_ops, imsic);
+> +	if (!imsic->base_domain) {
+> +		pr_err("%pfwP: failed to create IMSIC base domain\n",
+> +			imsic->fwnode);
+> +		return -ENOMEM;
+> +	}
+> +	imsic->base_domain->flags |= IRQ_DOMAIN_FLAG_MSI_PARENT;
+> +	imsic->base_domain->msi_parent_ops = &imsic_msi_parent_ops;
+
+Thanks,
+
+        tglx
 
