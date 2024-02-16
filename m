@@ -1,135 +1,116 @@
-Return-Path: <devicetree+bounces-42719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D62B08583F6
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 18:19:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1D5A85841B
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 18:28:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C99E1F2920B
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 17:19:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D5682859CE
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 17:28:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CD7A130E3D;
-	Fri, 16 Feb 2024 17:19:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94375131E2C;
+	Fri, 16 Feb 2024 17:28:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n0LjRmmr"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="z3il1sbo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DB9A130E2E;
-	Fri, 16 Feb 2024 17:19:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01142130E39;
+	Fri, 16 Feb 2024 17:28:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708103976; cv=none; b=OQqyLtfaSCkNKTnAnTvHMyvaJi+2Bgtaco5FD8ov+2dC6+LpQszxJT2oX/4istq8d95873TjmQtpmWic+hWUnWCxyDi3xdwuzeuZPocqohPybztTR91qJXC6PWDyuS737/ZmZMB4t3mbCuhrq/9c0xddyflO23onETLdQsbs//I=
+	t=1708104518; cv=none; b=XHEk7a7MTUVwh5F7rx40HpqcnfHjQAO8U27bO05JgBhD4qEfrYsaVlArnGq/U4elSs6IYsAAg3l6Q/818iWia+9Cgbgbck2QZF1aPle7sAcnzi+9+1+SGHBkTZTYmQQQjHb5svZ8B6FNN4qF4rlBFPXYKTt06cNmi0jsIL5UDeE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708103976; c=relaxed/simple;
-	bh=jajtT3fYHh89nUBt1oc4FBYREo5Q6SP3UVEpUB3mdy4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XgwyLfiWiJpQeoyXwy5rBUMfGWkUCwG/uVx8AEQ6nu1tAwJJDIiivDLv0Y2x03wGw+uloayFHkq+a46ENVPnGCzJzh8ntPNOW557hweugCHoCMe41u6/sGD9v86AJQfylI6sZ0Lp/gYBIEks8JurHPR1ITNsHQXaI2IHRuYMSTw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n0LjRmmr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46519C433F1;
-	Fri, 16 Feb 2024 17:19:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708103975;
-	bh=jajtT3fYHh89nUBt1oc4FBYREo5Q6SP3UVEpUB3mdy4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=n0LjRmmrxZpNVzyFYsGwbD2p2LVFKzK/EygU0fH5X81lxXU83MhmJtw7YY11T+2B8
-	 w+VDan533UAdx4NDrW7mkty+fbRZxfLmmS0QdpY3lcDpDnaJfKM/dtk/HKlu+wqUTU
-	 nJGYtVNdtePqCm5Sk1K8Lv6AhXjZFnoxAvLUuwTdGEAECQtquMC0AVmdXtWvnt92xh
-	 s5g9MWKeoVymdPNgdozymbdVy+i+VPygj5fgTbh0Kz7Eu6iiseEdh3zp3peKzTfZ43
-	 v2SzrAbPVxyASWWglWdBtB7tD3GgxC62grBFCHGKQSKvyiHR0EluWK29qTXj4CghR3
-	 IQQRHnrI5QJ6A==
-Date: Fri, 16 Feb 2024 17:19:21 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Mike Looijmans <mike.looijmans@topic.nl>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- devicetree@vger.kernel.org, linux-iio@vger.kernel.org, Arnd Bergmann
- <arnd@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Liam Beguin
- <liambeguin@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>, Maksim Kiselev
- <bigunclemax@gmail.com>, Marcus Folkesson <marcus.folkesson@gmail.com>,
- Marius Cristea <marius.cristea@microchip.com>, Mark Brown
- <broonie@kernel.org>, Niklas Schnelle <schnelle@linux.ibm.com>, Okan Sahin
- <okan.sahin@analog.com>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] iio: adc: ti-ads1298: Add driver
-Message-ID: <20240216171921.5a6b6b20@jic23-huawei>
-In-Reply-To: <fb7d41fc-328a-4ce1-88ad-5ce22ee158e4@topic.nl>
-References: <Zc-E3-MNe9dG9tdW@smile.fi.intel.com>
-	<fb7d41fc-328a-4ce1-88ad-5ce22ee158e4@topic.nl>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1708104518; c=relaxed/simple;
+	bh=aNVEXDiJi6VMChdVIAhoIHDD0mjExyyaV2pttYA54tM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OXEYQzPV0PVKpOM1rMPva9hZp7Jkaz0GawgLUm/qH9/3cxlzuMz6THLqtEmX6YCmCYFuIlQ3CvphD4azoosiezd4A02fsf9ehdaIj5SBvXF+VBRgP/jHMEnTG77tfQe3bp/VyrBXScT0BgTgK01kCiWuaqB901MFI7OZiDz4TxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=z3il1sbo; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=2o0piiHymx2o0AqbvBOlZhU2HWHRJd9hWUdKlncu1Wo=; b=z3
+	il1sboGebyF5ty+7v10SJ58TyYQXM/49dLz6nCS9zXdy9KG7vajiSHnIGQyYql2r52FBSAgx982wm
+	nSHfeaz9boeIdFAh7Ffv0v+aUity5zWjpVUiOyCkKIJAG0T6+xWPI3cnSs36n/JCxavkRbn4BPJOr
+	JBDcC7XKOE+4SH4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rb20l-00809r-J7; Fri, 16 Feb 2024 18:28:31 +0100
+Date: Fri, 16 Feb 2024 18:28:31 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Bastien Curutchet <bastien.curutchet@bootlin.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Herve Codina <herve.codina@bootlin.com>
+Subject: Re: [PATCH 1/2] dt-bindings: net: Add TI DP83640
+Message-ID: <68c3b805-5532-41dd-bcf3-ff3cb86f4acc@lunn.ch>
+References: <20240130085935.33722-1-bastien.curutchet@bootlin.com>
+ <20240130085935.33722-2-bastien.curutchet@bootlin.com>
+ <dc81a307-3541-47e2-9c72-d661e76889bf@lunn.ch>
+ <be23b24e-5de1-400d-84fa-cf5b25e72a19@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <be23b24e-5de1-400d-84fa-cf5b25e72a19@bootlin.com>
 
-On Fri, 16 Feb 2024 17:07:49 +0100
-Mike Looijmans <mike.looijmans@topic.nl> wrote:
+> > > +  ti,phy-control-frames:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    enum: [0, 1]
+> > > +    description: |
+> > > +      If present, enables or disables the PHY control frames.
+> > > +      PHY Control Frames support can also be strapped. If the strap pin is not
+> > > +      set correctly or not set at all then this can be used to configure it.
+> > > +       - 0     = PHY Control Frames disabled
+> > > +       - 1     = PHY Control Frames enabled
+> > > +       - unset = Configured by straps
+> > What is a control frame?
+> I'm not an expert on this but it seems that if the PHY's Serial Management
+> interface is not available, it is possible to build PCF (PHY Control Frame)
+> packets that will be passed to PHY through the MAC Transmit Data interface.
+> The
+> PHY is then able to intercept and interpret these packets. Enabling it
+> increases
+> the MII Transmit packet latency.
+> You'll find details in §5.4.6 of datasheet
+> [https://www.ti.com/lit/gpn/dp83640]
 
-> On 16-02-2024 16:53, Andy Shevchenko wrote:
-> 
-> ...
-> 
-> +       if (reset_gpio) {
-> +               /*
-> +                * Deassert reset now that clock and power are active.
-> +                * Minimum reset pulsewidth is 2 clock cycles.
-> +                */
-> +               udelay(ADS1298_CLOCKS_TO_USECS(2));
-> 
-> This is sleeping context and you are calling unsleeping function. I haven't
-> checked the macro implementation and I have no idea what is the maximum it may
-> give, but making code robust just use fsleep() call.
-> 
-> It'll actually delay for 1 us (the "clock" is ~2MHz). So fsleep will compile to udelay anyway, which is fine, fsleep might get smarter in future and this would then profit.
-> 
-> 
-> 
-> +               gpiod_set_value_cansleep(reset_gpio, 0);
-> +       } else {
-> +               ret = ads1298_write_cmd(priv, ADS1298_CMD_RESET);
-> +               if (ret)
-> +                       return dev_err_probe(dev, ret, "RESET failed\n");
-> +       }
-> +       /* Wait 18 clock cycles for reset command to complete */
-> +       udelay(ADS1298_CLOCKS_TO_USECS(18));
-> 
-> Ditto.
-> 
-> ...
-> 
-> 
-> If it's the only issue I think Jonathan can modify when applying
-> (no new patch version would be needed).
-> 
-> That'd be nice.
+Do you actually need this feature?
 
-ok.  As this is still the top of my tree I'll just tweak it.
+[Looks at data sheet]
 
-Does anyone else read fsleep as femtosecond sleep every time? :)
-Maybe computers will go that fast one day.
+Ah, so it allows you to access PHY registers by sending it commands in
+Ethernet frames. That should in theory be faster than MDIO. However,
+my experience with Ethernet switches which offer similar capabilities,
+it is often not faster, because of interrupt coalescing. 
 
-Jonathan
+Anyway, the serial management interface is the MDIO bus. You know this
+is available, because that is how the PHY driver it talking to the
+PHY! Also, i've not seen any code which implements sending commands to
+the PHY using Ethernet frames.
 
+So why not just hard code it in the driver to disable this feature?
 
-> 
-> 
-> --
-> Mike Looijmans
-> System Expert
-> 
-> TOPIC Embedded Products B.V.
-> Materiaalweg 4, 5681 RJ Best
-> The Netherlands
-> 
-> T: +31 (0) 499 33 69 69
-> E: mike.looijmans@topic.nl<mailto:mike.looijmans@topic.nl>
-> W: www.topic.nl<http://www.topic.nl>
-> 
-> 
-
+	Andrew
 
