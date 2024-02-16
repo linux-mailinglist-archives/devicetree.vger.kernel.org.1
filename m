@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-42308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 556368573A9
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 03:09:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8C298573AC
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 03:09:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E2C68B20CA1
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 02:09:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBE981C21424
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 02:09:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4C50DDD5;
-	Fri, 16 Feb 2024 02:09:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C297BEAFA;
+	Fri, 16 Feb 2024 02:09:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qIPU09j1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T3nJ1BYW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D471149DE5;
-	Fri, 16 Feb 2024 02:09:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9371ADF78;
+	Fri, 16 Feb 2024 02:09:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708049362; cv=none; b=J0PInsZOZ01e8d0PsrlUHK7OA9kW7EwmVPy8ja1rXMDPFsiRceCIfNPyDVre+Pou6JGlE6Ay87Fjx32qcCNsZ57H6QPXOihfd4aMm4CcGsXPh85eqeUqYA8nmUMb7LQamhSvczY2cjueHc+H5hh1aJK6Clon3sLDOwn2Q7SbGUk=
+	t=1708049365; cv=none; b=kMokT3WAi9G7CD5R3MVHec3Lx3cWLKhrA405HLaViuNVCrD7yBr23Xu4ResCIpX4yIB6wrDxjtsAtK4COQAK1aZixo1MEDnevPP0IVb9m2AthmnMs4iUVgPQe0L3pGKmzq7kiM8aYbEEQ/UZ5dKuBJDHSG9aHbbI75vSkRhCktw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708049362; c=relaxed/simple;
-	bh=1gaFKdJQ1rw2MsNtx4emD/DqXw2bcuzrZ1WKhGy7eMU=;
+	s=arc-20240116; t=1708049365; c=relaxed/simple;
+	bh=R6YaCx87OajfziAtKms75OZbQL7/Cg1LbkGn3m8IZcY=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=IPKvX5fxnOMbLazl9lOWKh0W+tXZMmYaQzGFKor9dp+dxEBxQMH7vWl31c30MlRMNFCfn48gt1tZtJzgUeXmDiWGlszj5ing+jVcA4uLEqGzVy2svQp7K3oApB932X+Mnzcxhdg5UvL8qI0TOZtrMdmRVZaxPL1Vunx6e96WQRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qIPU09j1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2673EC433F1;
-	Fri, 16 Feb 2024 02:09:22 +0000 (UTC)
+	 Message-Id:Subject; b=c8p+oQ7yo6AEV3r9dbJi2A+A21tBpNvihodG5egDr8eHOHLeIwolPi9SW7hInEgkejCtEfVOe0TNbVlpcJ8SBzdUckzlu5pIircRa1KlRKlQPD6keawLD0UX9L6VHzdmXz3EVcRlSy5UtXB5MrlFgxzAFqs7bYtsMNGCs1olJBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T3nJ1BYW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF687C433C7;
+	Fri, 16 Feb 2024 02:09:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708049362;
-	bh=1gaFKdJQ1rw2MsNtx4emD/DqXw2bcuzrZ1WKhGy7eMU=;
+	s=k20201202; t=1708049365;
+	bh=R6YaCx87OajfziAtKms75OZbQL7/Cg1LbkGn3m8IZcY=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=qIPU09j1RW1JMl7H3g4/paF0gs4RsKFyk14oQuD/ezF3Sq/FdhL8yQwywhnpAyGdt
-	 ffZC84wnXzYU5F4u28QeVIy30wZ1kWTBWELLVnWIXufObZ35xzRYrN2sLQQg+6FDZV
-	 3RQhXlx0CiJy5UR/g3nuNtqqSl99CKhYXUe13E7Oe4KXceG3M9wSCVMKYXtVDNvfJ9
-	 SrQo8GylFqKCwWqzmZkKGXfiAWQOHWJ+BtnncC+/+U9OWC8ONc7TN+SrB9VXX2sCQ5
-	 6q9uKvIXDEa+TB0zJ1ocmpaDDY0HaVrgfXXepPHY4e65Bt5ZqXSwbIBOFkbYOYDZ1M
-	 kB/iQLRUpvDXg==
-Date: Thu, 15 Feb 2024 20:09:21 -0600
+	b=T3nJ1BYW+Ox+ZMCSGe2a5xt2XlX2IJUNozev7jae2DIdfSssONLQa+7iLt/pcvDbh
+	 cmHEevaWAV/Ux1WVMTv1vPpdZ38pitGaIF61+ccyXLlA+HnCJw4A4bMJLZ4fJbPTy2
+	 s8XZE2spxUnOplgw76K87AaA8Ffdu3ZWy3WgnIvNttu72ltWV1GIJUbQCNMR1yRpd+
+	 GREhW+P7BFsOet5YNiX/QesGpwKPRC9BIJsmgRisxOWguIcx/yzqGvTqWbpXMFFLVF
+	 r4EfpUNrXlx2Jj+iPQk2UvUImue+pLXyWahrc5Ys9ER3uPtHxblMGUB0L+jKa8NwM6
+	 FGQiad/OoI87g==
+Date: Thu, 15 Feb 2024 20:09:23 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,34 +51,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: Rob Herring <robh@kernel.org>
-To: Umang Jain <umang.jain@ideasonboard.com>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>, 
+To: Yang Xiwen <forbidden405@outlook.com>
+Cc: Jakub Kicinski <kuba@kernel.org>, linux-kernel@vger.kernel.org, 
+ Paolo Abeni <pabeni@redhat.com>, Conor Dooley <conor+dt@kernel.org>, 
+ Yisen Zhuang <yisen.zhuang@huawei.com>, netdev@vger.kernel.org, 
+ Salil Mehta <salil.mehta@huawei.com>, devicetree@vger.kernel.org, 
+ "David S. Miller" <davem@davemloft.net>, Andrew Lunn <andrew@lunn.ch>, 
+ Yang Xiwen <forbidden405@foxmail.com>, Rob Herring <robh+dt@kernel.org>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, devicetree@vger.kernel.org, 
- Sascha Hauer <s.hauer@pengutronix.de>, linux-media@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- NXP Linux Team <linux-imx@nxp.com>, linux-arm-kernel@lists.infradead.org, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Kieran Bingham <kieran.bingham@ideasonboard.com>, 
- Fabio Estevam <festevam@gmail.com>, willl will <will@willwhang.com>, 
- Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <20240215204436.9194-2-umang.jain@ideasonboard.com>
-References: <20240215204436.9194-1-umang.jain@ideasonboard.com>
- <20240215204436.9194-2-umang.jain@ideasonboard.com>
-Message-Id: <170804935906.836524.16563023693485203536.robh@kernel.org>
-Subject: Re: [PATCH 1/2] media: dt-bindings: media: Add bindings for IMX283
+ Eric Dumazet <edumazet@google.com>, Russell King <linux@armlinux.org.uk>
+In-Reply-To: <20240216-net-v1-4-e0ad972cda99@outlook.com>
+References: <20240216-net-v1-0-e0ad972cda99@outlook.com>
+ <20240216-net-v1-4-e0ad972cda99@outlook.com>
+Message-Id: <170804935994.836701.6122628077585764606.robh@kernel.org>
+Subject: Re: [PATCH 4/6] dt-bindings: net: add hisilicon-femac
 
 
-On Fri, 16 Feb 2024 02:14:34 +0530, Umang Jain wrote:
-> - Add dt-bindings documentation for Sony IMX283 sensor driver
-> - Add MAINTAINERS entry for Sony IMX283 binding documentation
+On Fri, 16 Feb 2024 07:48:56 +0800, Yang Xiwen wrote:
+> This binding gets rewritten. Compared to previous txt based binding doc,
+> the following changes are made:
 > 
-> Signed-off-by: Umang Jain <umang.jain@ideasonboard.com>
+> - No "hisi-femac-v1/2" binding anymore
+> - Remove unused Hi3516 SoC, add Hi3798MV200
+> - add MDIO subnode
+> - add phy clock and reset
+> 
+> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
 > ---
->  .../bindings/media/i2c/sony,imx283.yaml       | 100 ++++++++++++++++++
->  MAINTAINERS                                   |   8 ++
->  2 files changed, 108 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx283.yaml
+>  .../devicetree/bindings/net/hisilicon-femac.yaml   | 125 +++++++++++++++++++++
+>  1 file changed, 125 insertions(+)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -87,12 +89,11 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/sony,imx283.example.dtb: camera@1a: 'vadd-supply', 'vdd1-supply', 'vdd2-supply' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/media/i2c/sony,imx283.yaml#
+Documentation/devicetree/bindings/net/hisilicon-femac.example.dtb: /example-0/ethernet@9c30000/mdio@1100: failed to match any schema with compatible: ['hisilicon,hisi-femac-mdio']
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240215204436.9194-2-umang.jain@ideasonboard.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240216-net-v1-4-e0ad972cda99@outlook.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
