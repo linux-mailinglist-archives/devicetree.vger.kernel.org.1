@@ -1,69 +1,78 @@
-Return-Path: <devicetree+bounces-42485-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42486-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A8C48579A7
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 11:00:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FB888579AE
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 11:01:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E41F1C2326A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 10:00:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2D9028B7B8
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 10:01:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D4392C6A4;
-	Fri, 16 Feb 2024 09:56:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D56CB1BDCE;
+	Fri, 16 Feb 2024 09:58:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="PQDdJ0g0"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="CcMs6WvF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 775E72C68D;
-	Fri, 16 Feb 2024 09:56:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27A821B812;
+	Fri, 16 Feb 2024 09:58:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708077381; cv=none; b=jmOjwh8ftRc20k7DJzZ7KxlP+piZPZdPnna0ZNFEwV8+gya3+GwzCVK/omUcQXCwOHZciYJ4n/sgKJx9Wr4W1XBFbI/iBiBUw44fMAqWD7kmCjJgf1Gjj+a5TKzmjYdhpB5PqXC1au6PKfjSJuLutu8eCPe2EpuXBgihQiADens=
+	t=1708077496; cv=none; b=B4XQXqp9re//dXZH2b3c356JosfoWIi8mGDXjSsPuoD+YPDmcm92rMd247l6nIPokiNMSp/Q9GaQ3VuvGGkdNDFx0XLiXSVcxvNGvYpJ8FQneZOodcGuq7FIKtqndjftwrcns7wkkgZHkUWt9XVUDHaAws5hZZcXg5D0wN8Tlpk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708077381; c=relaxed/simple;
-	bh=Ia/EeMxNOFHxbWUjhUliBdY0W0mfcl3fiQng0g4Ephg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=j7x9YKKwYL/9T/MR+sUv1YA4jJO5R6aMiSp1JIBgYu2rMwLNvrYHyRAk3BoJnC1YTWp5kq+G5cibDV0cYhL/mwilAYG1eRyZTTalKeEhSoC8y6ty43IntXtmWEEX+aqTUzX8dTcaOqsvP4g41mcBNGJxopxfcE9KGOinn83zUcQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=PQDdJ0g0; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pyrite.hamster-moth.ts.net (h175-177-049-156.catv02.itscom.jp [175.177.49.156])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3FE1C6B3;
-	Fri, 16 Feb 2024 10:56:10 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1708077374;
-	bh=Ia/EeMxNOFHxbWUjhUliBdY0W0mfcl3fiQng0g4Ephg=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=PQDdJ0g0Xz87VPF/G6ehXBcEsmJ2/7t1FQnkG8jHFalSifaKYFll54ZjpUboHDz87
-	 KghpH435VnkuJQ0Yhbmo50rCvHuaBrv++pzwQL7/LlRpnjGAkmNsfeBsv/IPNIxS8L
-	 FPTaC2P/7nM5fPRdO6HZt5m7cn8z2RFhRPD5/kEQ=
-From: Paul Elder <paul.elder@ideasonboard.com>
-To: linux-media@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org
-Cc: kieran.bingham@ideasonboard.com,
-	tomi.valkeinen@ideasonboard.com,
-	umang.jain@ideasonboard.com,
-	aford173@gmail.com,
-	Paul Elder <paul.elder@ideasonboard.com>,
-	Rob Herring <robh@kernel.org>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Dafna Hirschfeld <dafna@fastmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Rockchip SoC support),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v12 12/12] media: rkisp1: Add match data for i.MX8MP ISP
-Date: Fri, 16 Feb 2024 18:54:58 +0900
-Message-Id: <20240216095458.2919694-13-paul.elder@ideasonboard.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240216095458.2919694-1-paul.elder@ideasonboard.com>
-References: <20240216095458.2919694-1-paul.elder@ideasonboard.com>
+	s=arc-20240116; t=1708077496; c=relaxed/simple;
+	bh=Igmoy1QfrGqffoxw4riM61fuv9HSbbNYM74Sz4fxSTg=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Ehjn/huvL700jH9yVVmATBPz4HJy4VLaVfAGXjubx/5LFgOcIWy4y5Kf+hmxSrSTyisq9ws1VY9E8rhg0wDFQQZKh3JXyN2DT+QF0JvWcrWSK8Mvd0qQCVGqFjlrsWqwpAPgKFViPKzquyZcsJCie+jc5pVoSxih6Qhdf47pHZU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=CcMs6WvF; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: dfaecea2ccb111eea2298b7352fd921d-20240216
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=9E/UvhK5CSAsRCQgb1278nkWwKaiC3/rTLcvlSnjgNE=;
+	b=CcMs6WvF5d7loJMAWZtv51nKSvSl8fulQFJU5PZXS2zfL5CMi5Bm0AaKXoMqPQCFFKzkakF0SVxqg5iMI+d3myUQoc6dCZp1Ua3IjDfWKXPko/S+gJTUaJSmJkcw+D7Z8UQw8DGGeXpQ9qLAd1OSpkNmx791/6Xrl6bwTnncku0=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.37,REQID:599dcc33-084b-4862-ae1e-31e6349c55f2,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:6f543d0,CLOUDID:f49af583-8d4f-477b-89d2-1e3bdbef96d1,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: dfaecea2ccb111eea2298b7352fd921d-20240216
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+	(envelope-from <macpaul.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 447384518; Fri, 16 Feb 2024 17:58:02 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Fri, 16 Feb 2024 17:58:01 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Fri, 16 Feb 2024 17:58:01 +0800
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>
+CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>, MediaTek Chromebook Upstream
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai
+	<wenst@chromium.org>
+Subject: [PATCH] arm64: dts: mediatek: mt8395-genio-1200-evk: add u3port1 for xhci1
+Date: Fri, 16 Feb 2024 17:57:51 +0800
+Message-ID: <20240216095751.4937-1-macpaul.lin@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,64 +80,65 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-Add match data to the rkisp1 driver to match the i.MX8MP ISP.
+This patch fixes an issue where xhci1 was not functioning properly because
+the state and PHY settings were incorrect.
 
-Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-Tested-by: Adam Ford <aford173@gmail.com>
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+The introduction of the 'force-mode' property in the phy-mtk-tphy driver
+allows for the correct initialization of xhci1 by updating the Device Tree
+settings accordingly.
+
+The necessary fixup which added support for the 'force-mode' switch in the
+phy-mtk-tphy driver.
+commit 9b27303003f5 ("phy: mediatek: tphy: add support force phy mode switch")
+Link: https://lore.kernel.org/r/20231211025624.28991-2-chunfeng.yun@mediatek.com
+
+Prior to this fix, the system would exhibit the following probe failure messages
+for xhci1:
+  xhci-mtk 11290000.usb: supply vbus not found, using dummy regulator
+  xhci-mtk 11290000.usb: uwk - reg:0x400, version:104
+  xhci-mtk 11290000.usb: xHCI Host Controller
+  xhci-mtk 11290000.usb: new USB bus registered, assigned bus number 5
+  xhci-mtk 11290000.usb: clocks are not stable (0x1003d0f)
+  xhci-mtk 11290000.usb: can't setup: -110
+  xhci-mtk 11290000.usb: USB bus 5 deregistered
+  xhci-mtk: probe of 11290000.usb failed with error -110
+
+With the application of this dts fixup, the aforementioned initialization errors
+are resolved and xhci1 is working.
+
+Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
 ---
-Changes in v12:
-- move out adding the version enum
----
- .../platform/rockchip/rkisp1/rkisp1-dev.c     | 24 +++++++++++++++++++
- 1 file changed, 24 insertions(+)
+ arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c b/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c
-index 54a62487a4e8..a6b47f0af467 100644
---- a/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c
-+++ b/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c
-@@ -533,6 +533,26 @@ static const struct rkisp1_info rk3399_isp_info = {
- 		  | RKISP1_FEATURE_DUAL_CROP,
+diff --git a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
+index 7fc515a07c65..e0b9f2615c11 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
+@@ -854,6 +854,10 @@
+ 
+ &u3phy1 {
+ 	status = "okay";
++
++	u3port1: usb-phy@700 {
++		mediatek,force-mode;
++	};
  };
  
-+static const char * const imx8mp_isp_clks[] = {
-+	"isp",
-+	"hclk",
-+	"aclk",
-+};
-+
-+static const struct rkisp1_isr_data imx8mp_isp_isrs[] = {
-+	{ NULL, rkisp1_isr, BIT(RKISP1_IRQ_ISP) | BIT(RKISP1_IRQ_MI) },
-+};
-+
-+static const struct rkisp1_info imx8mp_isp_info = {
-+	.clks = imx8mp_isp_clks,
-+	.clk_size = ARRAY_SIZE(imx8mp_isp_clks),
-+	.isrs = imx8mp_isp_isrs,
-+	.isr_size = ARRAY_SIZE(imx8mp_isp_isrs),
-+	.isp_ver = RKISP1_V_IMX8MP,
-+	.features = RKISP1_FEATURE_MAIN_STRIDE
-+		  | RKISP1_FEATURE_DMA_34BIT,
-+};
-+
- static const struct of_device_id rkisp1_of_match[] = {
- 	{
- 		.compatible = "rockchip,px30-cif-isp",
-@@ -542,6 +562,10 @@ static const struct of_device_id rkisp1_of_match[] = {
- 		.compatible = "rockchip,rk3399-cif-isp",
- 		.data = &rk3399_isp_info,
- 	},
-+	{
-+		.compatible = "fsl,imx8mp-isp",
-+		.data = &imx8mp_isp_info,
-+	},
- 	{},
+ &u3phy2 {
+@@ -885,6 +889,8 @@
  };
- MODULE_DEVICE_TABLE(of, rkisp1_of_match);
+ 
+ &xhci1 {
++	phys = <&u2port1 PHY_TYPE_USB2>,
++	       <&u3port1 PHY_TYPE_USB3>;
+ 	vusb33-supply = <&mt6359_vusb_ldo_reg>;
+ 	status = "okay";
+ };
 -- 
-2.39.2
+2.18.0
 
 
