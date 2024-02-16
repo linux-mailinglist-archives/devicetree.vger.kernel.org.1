@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-42397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44C038576C9
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 08:25:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D87E38576CD
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 08:25:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 683631C218C5
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 07:25:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 80ADAB226DC
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 07:25:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E6F4168DD;
-	Fri, 16 Feb 2024 07:24:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F8C1168DA;
+	Fri, 16 Feb 2024 07:25:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DVhwxfTc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ygy2WXgg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6614A15E89
-	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 07:24:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87ECC15E8B
+	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 07:25:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708068291; cv=none; b=GHP0woQ0Y0sjAEkANTvzuilthlbto0qH74Mp5tjoAKD+6G87DlROGhz3xdnsFuPtlj6mHwMYolCub5QRkTWYHKwj2/VvC1Se6Npg/kRH7izuDXvU7nO5u12e7s06y5VtO7M7sSn1PCvDICzzrH6mZF0z/Fjl6UGloiKKT4+h8PA=
+	t=1708068316; cv=none; b=JNS3Q9Q21qHiGuOEUT0zp3xeYLbcbjt5FMy649nTKyE+nxZqn3xOGyzMOy+0t0w1PqGBb4wbYV3yH2SFBS7Pa7Ff289WjVtnpJHEW7llo61y1d4jZVcPV37UA57eVfhq5b0GaJ+luPFfrrkhVZE2aNdX8UCTU6m9mM+nFBBgF5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708068291; c=relaxed/simple;
-	bh=/SqVhQgpKI1E4RyEInDbXFAp8/tWhZz4DQurd8+5o88=;
+	s=arc-20240116; t=1708068316; c=relaxed/simple;
+	bh=/cnVbj9GdpkR52BgRsOLitm/QGQoZQ+n35gYY7OIlb8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bvf5p4/U9qr2Sn/pZgb6EkHtcCDhrlI4fnYy+QmrwFovm2sNVgjtEorYNgOJd4S6rSYmpaUIi/bCJr0aXwN4kFf8qCt1uDPFxl0myRVz0sA7d/m30PLBhE1gjlH8AtmKjhaWBk9r+S7Q7ctnlJgUnn2dehwFYG7DbFtz8xGTV6g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DVhwxfTc; arc=none smtp.client-ip=209.85.218.51
+	 In-Reply-To:Content-Type; b=aEcHri47O+400y3mfBfFwCe1LtZt/bYgew4s248RgHAxMxG+7IkGaJvJt8ZAsAfeT/Vhp/RUSV3XoLqSMXaaYELhqcUmCDdpyqDlRSnGEzF67nnELbwkwdBelu3+MBXwJhpAMaI6c3BY5AP5GXJhi43Kfe6gYSe+2FwfQb3KfbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ygy2WXgg; arc=none smtp.client-ip=209.85.218.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a3566c0309fso204221666b.1
-        for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 23:24:49 -0800 (PST)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a3d159220c7so54462666b.2
+        for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 23:25:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708068288; x=1708673088; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708068313; x=1708673113; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=TOq/eZHJxAkxfersOyBhj802ukljFhVCw6Zcj8NrWz4=;
-        b=DVhwxfTcA1rik4bxLQiiriwqkhW5TnkeQA8g5QgDHtdIIvlc7UJrZdTGuF0icytrlP
-         zI1XwT5dNbX+6tqOx902PqaVJbrbXDEz+Lu4UnT4erUoTn9rcK+y5NiGmZCRyZ1n4IRL
-         zcOM4CYpSjdohnLpFm7nhqd884XZ0OjROeOT4rhMgLLa3tbeMVrXKwXRacHqRGKCs+T+
-         UwGfEAnTrRQavbXJ88g4C+MjckmKht4ZP3oVMccoldwoRl7/iZ88xDvkvUBcn0BgZyIH
-         aXI8IeExyztoStSoEUdl1KcGK7mOZQzZaJYolwnDhBFvN7kPzX/oc3hxhM6sBfRZ+CnE
-         7gqg==
+        bh=aYbjWT30ofwbqua+qYMnFKWbLevPu8w88wWjhjhATDI=;
+        b=ygy2WXgglzpqGNu7pQjtl1q1t9QPezbA9QeilEBJ8I4doHdchj21C8g0PMXvWMyyMl
+         uBpfpdjOTV4WZnf0InoqW+JdbuYm+P8OR1t6r0ZWNZI7chUJpuACJTw+kwkrCNrHK9Rz
+         F+5uldOKc+SqULlluvCKZoMygh+973yN2u+ZEglQzqbTEPA/L6hdGn7gTqoZI1LtIMQ8
+         PHrkVGSjQK3WbvlXwKBwMHz92wO9u4ntTOA4bqmS3NjyeLLIBQGqquJ4B28zdJmzU7gu
+         9WhYqaDuG9FLeuFY3K98JotiqmFExWqwu1n3IT7V0iAGboopqrEq1S1d1LRKzrdt5PFp
+         Nqbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708068288; x=1708673088;
+        d=1e100.net; s=20230601; t=1708068313; x=1708673113;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TOq/eZHJxAkxfersOyBhj802ukljFhVCw6Zcj8NrWz4=;
-        b=NoK3xS+A7N1PU4tf2irdUiD8LYQsZZcv/Ay3mXCGFZhDkcUlu0huKhPlcKxx90y6M9
-         p9Nq/NmQ+ZORi+dzkIkCvfNkNi4Fzh41o2ciTV/7ppFJVUcY9LsRSeMFeF5F0eWDd3mf
-         +nj4YcW6JdES11RjbuCl6w6XoYZ2KLD5ubhGvMA39r0SUDv0UVjUhIuKXZw9JW4hFGuV
-         ZcPLR5FgvBBegTGAXhZt7spCGra4wLPfrROkYRfTZ57sp9cDpYB6vv7S5PU6O37ssCOa
-         qMfDE0OkVTq0PvUNrF346GL/xKhckmQ24xVE62URwxmmACs3tBQPkkssfvhzg1pr3gz/
-         ob4g==
-X-Forwarded-Encrypted: i=1; AJvYcCW3Vj+mT5krclUEp8GMd3vOtzU5ej67SBiJC59kdfnPNy9+ZSIRB7FOkVlCMXz/mLKk7xrUAI5TH/s+SUVDryaLXxUiQtnzf+E2lA==
-X-Gm-Message-State: AOJu0Yx6pAATb9VsipjC0S1Lo6e4shtEjZ9B6l49wJp2eDlHTxrqZ2sl
-	A6SFoHBUgM6cWTGmZQFe7cOs1s/InGdTi1wKaFNRZjfFWmQEB5YX9uYIcd7xs/w=
-X-Google-Smtp-Source: AGHT+IH00fY3pDmriKm0vafpOiv3E31lLLtOrIG6O+VhYiBAdSJd35VMyPu4aLiMDB27OTwGj1p2qQ==
-X-Received: by 2002:a17:907:119c:b0:a3d:4037:73e7 with SMTP id uz28-20020a170907119c00b00a3d403773e7mr2434396ejb.48.1708068287700;
-        Thu, 15 Feb 2024 23:24:47 -0800 (PST)
+        bh=aYbjWT30ofwbqua+qYMnFKWbLevPu8w88wWjhjhATDI=;
+        b=o9s626r8sAaM+mVbTwaOcIQcrJQ/A3wQrduhMo1ArmJuzAl46yiPCtK6dfugTpnpyC
+         NKfMCRhgQYrhSKM23XHxFqZWEWJblEnBEbsdxiv5weYT47LzkhNenYzi7P0K0Ez3EO7w
+         GlvPB69yKHiKF5hehhctnMep4yu7Khh5zxCrpDgN/YEhmRQGESoJ5uQ1lk4rlClDmBnF
+         cUEhaXq6mhtxngziIPj9ZiVSP2z4Ajoaqxf5/VYsCI11FxKTQUSfjxtZBMxsnNIzEmsP
+         uh6uZlUA4PcaFaBi6ZyFxw+1KJ9B4A8EjiU2fPoA8kcN32aWCngkKW82aUo5/625ip3T
+         Brig==
+X-Forwarded-Encrypted: i=1; AJvYcCWy6/ZnIFNvRu96ghezC9ePilayIMvhn6/k5Vrun18JKmT5J+OTuPXUi2f7a1bZcPqWvkLHbFBXx7NvqPAn9CwnvdJMvEsBivgBqg==
+X-Gm-Message-State: AOJu0YzYEWlZH/6XRMbomN9gIfbqie7DKW/UJIMBa+mjqXloTsUC5/37
+	iwIhtGvuuwjp1lRttAWOFOT+Swf9JnXsddEGcYl4r+cJaiN4Ebjm0rdCS7lXUvg=
+X-Google-Smtp-Source: AGHT+IEOKgEdm2YAw9A+2g49fJoY3aD9AEAEvKz/GpU56xD+vVKIsmcgiguj9pyCcvCrDv7Lq0/Ygw==
+X-Received: by 2002:a17:906:b0d9:b0:a36:5079:d6cb with SMTP id bk25-20020a170906b0d900b00a365079d6cbmr2828992ejb.56.1708068312945;
+        Thu, 15 Feb 2024 23:25:12 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.207.130])
-        by smtp.gmail.com with ESMTPSA id x22-20020a1709065ad600b00a3d68aad90dsm1282264ejs.97.2024.02.15.23.24.46
+        by smtp.gmail.com with ESMTPSA id x22-20020a1709065ad600b00a3d68aad90dsm1282264ejs.97.2024.02.15.23.25.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Feb 2024 23:24:47 -0800 (PST)
-Message-ID: <5cecd33c-7436-4b2a-84c2-8a28c87b26b3@linaro.org>
-Date: Fri, 16 Feb 2024 08:24:45 +0100
+        Thu, 15 Feb 2024 23:25:12 -0800 (PST)
+Message-ID: <7d684895-053b-4328-aef5-cf4a638eb8cc@linaro.org>
+Date: Fri, 16 Feb 2024 08:25:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,7 +76,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/6] dt-bindings: net: add hisilicon-femac
+Subject: Re: [PATCH 6/6] dt-bindings: net: hisilicon-femac-mdio: make clock
+ optional
 Content-Language: en-US
 To: forbidden405@outlook.com, Yisen Zhuang <yisen.zhuang@huawei.com>,
  Salil Mehta <salil.mehta@huawei.com>, "David S. Miller"
@@ -90,7 +91,7 @@ To: forbidden405@outlook.com, Yisen Zhuang <yisen.zhuang@huawei.com>,
 Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org
 References: <20240216-net-v1-0-e0ad972cda99@outlook.com>
- <20240216-net-v1-4-e0ad972cda99@outlook.com>
+ <20240216-net-v1-6-e0ad972cda99@outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -136,203 +137,16 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240216-net-v1-4-e0ad972cda99@outlook.com>
+In-Reply-To: <20240216-net-v1-6-e0ad972cda99@outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 16/02/2024 00:48, Yang Xiwen via B4 Relay wrote:
 > From: Yang Xiwen <forbidden405@outlook.com>
 > 
-> This binding gets rewritten. Compared to previous txt based binding doc,
-> the following changes are made:
-> 
-> - No "hisi-femac-v1/2" binding anymore
-> - Remove unused Hi3516 SoC, add Hi3798MV200
-> - add MDIO subnode
-> - add phy clock and reset
+> The clock is optional.
 
-I don't understand why conversion you make in two commits. Please
-perform proper conversion and then propose changes to the binding.
-
-> 
-> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
-> ---
->  .../devicetree/bindings/net/hisilicon-femac.yaml   | 125 +++++++++++++++++++++
->  1 file changed, 125 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/hisilicon-femac.yaml b/Documentation/devicetree/bindings/net/hisilicon-femac.yaml
-> new file mode 100644
-> index 000000000000..008127e148aa
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/hisilicon-femac.yaml
-
-Use compatible as filename.
-
-> @@ -0,0 +1,125 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/hisilicon-femac.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Hisilicon Fast Ethernet MAC controller
-> +
-> +maintainers:
-> +  - Yang Xiwen <forbidden405@foxmail.com>
-> +
-> +allOf:
-> +  - $ref: ethernet-controller.yaml
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - hisilicon,hi3798mv200-femac
-> +
-> +  reg:
-> +    minItems: 2
-> +    maxItems: 2
-> +    description: |
-> +      The first region is the MAC core register base and size.
-> +      The second region is the global MAC control register.
-
-Just items: - description: instead of all this.
-
-> +
-> +  ranges:
-> +    maxItems: 1
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 3
-
-Drop
-
-> +    maxItems: 3
-> +
-> +  clock-names:
-> +    items:
-> +      - const: mac
-> +      - const: macif
-> +      - const: phy
-> +
-> +  resets:
-> +    minItems: 2
-
-Drop
-
-> +    maxItems: 2
-> +
-> +  reset-names:
-> +    items:
-> +      - const: mac
-> +      - const: phy
-> +
-> +  hisilicon,phy-reset-delays-us:
-> +    minItems: 3
-> +    maxItems: 3
-> +    description: |
-> +      The 1st cell is reset pre-delay in micro seconds.
-> +      The 2nd cell is reset pulse in micro seconds.
-> +      The 3rd cell is reset post-delay in micro seconds.
-
-items:
- - description:
-
-Anyway, isn't this property of the phy?
-
-
-> +
-> +patternProperties:
-> +  '^mdio@[0-9a-f]+$':
-> +    type: object
-> +    description: See ./hisi-femac-mdio.txt
-
-No, please first convert other file and then reference it here.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - reset-names
-> +  - phy-connection-type
-> +  - phy-handle
-> +  - hisilicon,phy-reset-delays-us
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/histb-clock.h>
-> +
-> +    #ifndef HISTB_ETH0_PHY_CLK
-> +    #define HISTB_ETH0_PHY_CLK 0
-> +    #endif
-
-Drop these defines.
-
-> +    femac: ethernet@9c30000 {
-
-Drop label.
-
-> +        compatible = "hisilicon,hi3798mv200-femac";
-> +        reg = <0x9c30000 0x1000>, <0x9c31300 0x200>;
-> +        ranges = <0x0 0x9c30000 0x10000>;
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&crg HISTB_ETH0_MAC_CLK>,
-> +                 <&crg HISTB_ETH0_MACIF_CLK>,
-> +                 <&crg HISTB_ETH0_PHY_CLK>;
-> +        clock-names = "mac", "macif", "phy";
-> +        resets = <&crg 0xd0 3>, <&crg 0x388 4>;
-> +        reset-names = "mac", "phy";
-> +        phy-handle = <&fephy>;
-> +        phy-connection-type = "mii";
-> +        // To be filled by bootloader
-> +        mac-address = [00 00 00 00 00 00];
-> +        hisilicon,phy-reset-delays-us = <10000 10000 500000>;
-> +        status = "okay";
-
-Drop
-
-> +
-> +        mdio: mdio@1100 {
-
-Drop label
-
-> +            compatible = "hisilicon,hisi-femac-mdio";
-> +            reg = <0x1100 0x20>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            status = "okay";
-
-Drop
-
-> +
-> +            fephy: ethernet-phy@1 {
-
-Drop label
-
-
-> +                reg = <1>;
-> +                #phy-cells = <0>;
-> +            };
-> +        };
-> +    };
-> 
+Convert the bindings to DT schema instead, please.
 
 Best regards,
 Krzysztof
