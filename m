@@ -1,76 +1,78 @@
-Return-Path: <devicetree+bounces-42792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE9BF85879B
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 22:04:43 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E11F8587D8
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 22:17:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BFC91C265DC
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 21:04:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 30B7BB2A592
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 21:06:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D055E146004;
-	Fri, 16 Feb 2024 21:04:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 112CE145FE6;
+	Fri, 16 Feb 2024 21:05:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="09tYLByR";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="sTHsysm3"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="vvCnSUsi";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="fu5NEToU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3967F145B13;
-	Fri, 16 Feb 2024 21:04:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94030145B13;
+	Fri, 16 Feb 2024 21:05:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708117447; cv=none; b=XFagkPgZTvWKMx38WIufHi007H+N+g2CmhV48lSUq2S8UP/ua5/98uUBXLg8hsLvlYQO8QAtmqXe57wflGN8dlhlSfuX/pwkcD8XwWJRgPmpzfy9abRkoLml3Ty9Niky8/D4Tnr6e9YIVFXYvaMH1YadnSl307xsbRLN8JZyh40=
+	t=1708117540; cv=none; b=rI5FMrqcKESwna6xqkmW8XQ0bdwH7MgRNJm/w8gEFHtm0f40GUawnGIqRDuzvaAuI9dMb+BrjyOe+T8+zYiUrie6E5+0rwD/VSCT50KMDdODE6iJ3TxN0tgMbkBfP5WmRM48oH7rz6yCNDE7Zt8tSNa03NyapIyilYOFRuCSkWo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708117447; c=relaxed/simple;
-	bh=2HGv2SAPNP/8SNhuPL7jV7rNyYJBGuWopRtV7aLEqMM=;
+	s=arc-20240116; t=1708117540; c=relaxed/simple;
+	bh=KLCwIs9FDIf60u4E6KTsXRvqqc8rm9ZViDMx+qTLqs8=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=pkf9Ekz/V8TWMeNcNaXeYlx2twoDzdgLkEPulmX7DnhlzkcRUkwKyccTA0Xoc7i1gpsT4vzfrnoYpK8beDnez47dFB5eaLfPjUfN6YYe5I5HGivJwLMAu1srzLqS59YAPtCNyzZ2eH5i4y9N0R+M+WyKBSK/9Gl2jEnVXcbRZVE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=09tYLByR; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=sTHsysm3; arc=none smtp.client-ip=193.142.43.55
+	 MIME-Version:Content-Type; b=XCc5c6wqR6nXiN/OtXF+v8aBFj1B9cO+G8m6NeSwL+DBxFKP6foRc6cX9E2++KEgOkrcZ9Bp90QNFVi/Gio/pq5hZ3V9IiE+QOq0ZBmK7wbhTFt3/MzVLFbQ3Ur56amtFrEffOuZB4aotwKRBNkRbHanW5qpON+2CACf7FTQH0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=vvCnSUsi; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=fu5NEToU; arc=none smtp.client-ip=193.142.43.55
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
 From: Thomas Gleixner <tglx@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1708117444;
+	s=2020; t=1708117536;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=aPil28lXVu/5EuMTMJHAF2NuE7S20nDRKRUxcPw2x9A=;
-	b=09tYLByROgD3bDLYAoILh20drVnloPdm8qHaCVHSa8YslAkk+vHe5GCMRqEPgmXapRXwp7
-	haMLpBFhy7xqoxZcqtyf08Ob2ZjGCB9hHnx50L0qLeyomv7uwZvRwLH5+eCY0q2Kl3SlS8
-	wMobBVNcDkGtumiuGA36kP32BR/n7Od+jQT19U9Hk6sC/MdjnDn31ojtc+Xf3o707kLWlw
-	hJHDBj443oH4lxAbBirQ48SRQP4as2LG7Q3yN3yRzLeFpVFJFq5MfBoxZW7EXofWFsaCyK
-	Owe5hwIfmeW55ddNzU4jbNTyfHMS0Z8JV9K5LFqZln4wBoUDprmPjYu1DfgFbQ==
+	bh=NmEvoquY3BqSFZ0HDkxXKDAY9E0wZEnxUJmSLkCOtxg=;
+	b=vvCnSUsijtARAt8uts96ga74b3dHsnePNt2qBbmO253debzyKJ0adesDq/8mekvm+xz4iY
+	p8otEfvshT8dv0ifaktzky7cdRv7GSc36mgrG9tnvEBgBkR5ZvaLJaLAQMbZEaSuf3oFcF
+	JEEXzOt+8Q/GV1/ltyXEBYD7i03vvlkwlgPAc93+U9vhcvL42d7loSxyjm+sg5byhZawco
+	FENyHeFmGbTBr5CrXBxQQ+wzsYe/PRB9MywSnF9bQvqIneGPA4jcYsS6Tj8ZTMl7J3LOr3
+	QOXHu0jgflSoLqgg5DIk+cX9PgiH/EmK4cMxmW63+wpJf+6g7ozIRBRJkOVO6g==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1708117444;
+	s=2020e; t=1708117536;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=aPil28lXVu/5EuMTMJHAF2NuE7S20nDRKRUxcPw2x9A=;
-	b=sTHsysm3f+56VNyke1nWTeQXTpJX/RT7U3ejiMXUtOjW65iwO9Uv6f1hJoBVOWapBEc/Mk
-	3esMRQST3WxV1PBg==
-To: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
- <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>
-Cc: Marc Zyngier <maz@kernel.org>, =?utf-8?B?QmrDtnJuIFTDtnBlbA==?=
- <bjorn@kernel.org>, Atish
- Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>,
- Sunil V L <sunilvl@ventanamicro.com>, Saravana Kannan
- <saravanak@google.com>, Anup Patel <anup@brainfault.org>,
+	bh=NmEvoquY3BqSFZ0HDkxXKDAY9E0wZEnxUJmSLkCOtxg=;
+	b=fu5NEToUUytvGpRtCWSTHzGJsDi1/IFYPlFboW3xgF/5SAD3bEtn6TbczZv2JjWOw10Qma
+	1FWa28CpyIvTPVBg==
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Paul Walmsley <paul.walmsley@sifive.com>, Marc Zyngier <maz@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, =?utf-8?B?QmrDtnJuIFTDtnBlbA==?=
+ <bjorn@kernel.org>, Rob
+ Herring <robh+dt@kernel.org>, Atish Patra <atishp@atishpatra.org>, Andrew
+ Jones <ajones@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>,
+ Saravana Kannan <saravanak@google.com>, Anup Patel <anup@brainfault.org>,
  linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Anup Patel
- <apatel@ventanamicro.com>
-Subject: Re: [PATCH v12 23/25] irqchip/riscv-aplic: Add support for MSI-mode
-In-Reply-To: <20240127161753.114685-24-apatel@ventanamicro.com>
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
+ <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>, "Ahmed S.
+ Darwish" <darwi@linutronix.de>
+Subject: Re: [PATCH v12 00/25] Linux RISC-V AIA Support
+In-Reply-To: <87v86pcxcb.ffs@tglx>
 References: <20240127161753.114685-1-apatel@ventanamicro.com>
- <20240127161753.114685-24-apatel@ventanamicro.com>
-Date: Fri, 16 Feb 2024 22:04:03 +0100
-Message-ID: <8734tsce9o.ffs@tglx>
+ <CAK9=C2Vwtj2gZg-P73yLMxu0rPXQ3YrRRuxq6HcpHMXgs-jHaw@mail.gmail.com>
+ <87bk8ig6t2.ffs@tglx>
+ <CAK9=C2WsSSHgDF+7ruxx_QF0Lk+Dsx2F2Y-_NabnxrJ_qWhgGQ@mail.gmail.com>
+ <87v86pcxcb.ffs@tglx>
+Date: Fri, 16 Feb 2024 22:05:36 +0100
+Message-ID: <87zfw0azmn.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,45 +81,13 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain
 
-On Sat, Jan 27 2024 at 21:47, Anup Patel wrote:
-> We extend the existing APLIC irqchip driver to support MSI-mode for
-> RISC-V platforms having both wired interrupts and MSIs.
+Anup!
 
-We? Just s/We//
+On Thu, Feb 15 2024 at 20:59, Thomas Gleixner wrote:
+> I'm going over the rest of the series after I dealt with my other patch
+> backlog.
 
-> +
-> +static void aplic_msi_irq_unmask(struct irq_data *d)
-> +{
-> +	aplic_irq_unmask(d);
-> +	irq_chip_unmask_parent(d);
-> +}
-> +
-> +static void aplic_msi_irq_mask(struct irq_data *d)
-> +{
-> +	aplic_irq_mask(d);
-> +	irq_chip_mask_parent(d);
-> +}
-
-Again asymmetric vs. unmask()
-
-> +static void aplic_msi_irq_eoi(struct irq_data *d)
-> +{
-> +	struct aplic_priv *priv = irq_data_get_irq_chip_data(d);
-> +	u32 reg_off, reg_mask;
-> +
-> +	/*
-> +	 * EOI handling only required only for level-triggered
-> +	 * interrupts in APLIC MSI mode.
-> +	 */
-> +
-> +	reg_off = APLIC_CLRIP_BASE + ((d->hwirq / APLIC_IRQBITS_PER_REG) * 4);
-> +	reg_mask = BIT(d->hwirq % APLIC_IRQBITS_PER_REG);
-> +	switch (irqd_get_trigger_type(d)) {
-> +	case IRQ_TYPE_LEVEL_LOW:
-> +		if (!(readl(priv->regs + reg_off) & reg_mask))
-> +			writel(d->hwirq, priv->regs + APLIC_SETIPNUM_LE);
-
-A comment what this condition is for would be nice.
+Aside of the nitpicks I had, this looks pretty reasonable.
 
 Thanks,
 
