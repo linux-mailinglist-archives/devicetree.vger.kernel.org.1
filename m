@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-42439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFD91857880
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 10:07:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 860EB857888
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 10:08:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 549ACB20977
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 09:07:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7BB31F217AC
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 09:08:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EE8E1B812;
-	Fri, 16 Feb 2024 09:07:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0499D1B809;
+	Fri, 16 Feb 2024 09:08:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HpJvTVGu"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="utrj9bXM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C60CC168DE
-	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 09:07:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 774631B969
+	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 09:08:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708074438; cv=none; b=dX34HbEJDJHn+uBqGFrIXYWCl1FpqunVu8sWXxSfFqSXMSTTL4u6JS5cts95kfr2to9Z4mgz15F17UFf6AvFGptaUok/SskCNkYsCr12omPJfJCeX/WAM5J7QAE74HH2HFDS7YbMBYy3lQWMvyta/jC1uI3oouLXQkgd3qVxdcI=
+	t=1708074491; cv=none; b=h0rTtgXVGBSfGiPFjg8ciaz6sDae2mpVjLQ3SUWS2RUSlL9fVF2zGviIzmcrsH1Z0mDmxA99glO6HqBMDK14XZBjVmAupn8vJROCup+iRyzz5IFySAcYadkwvblJdaKSZxiXK8neC2niVgZlneysPu2F2B7BeI+qLuYDLUKEbiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708074438; c=relaxed/simple;
-	bh=T2ldxKEVL596wGHjU7kkHhvWD9KAge7N5vw8uGflx0k=;
+	s=arc-20240116; t=1708074491; c=relaxed/simple;
+	bh=oERm1l0ziZ/kArGwE/f98QL6u0Kyjehs1eDEGtkoX7Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bG/u0QUqE0wJp0HPXaC/X2I51LKJMte0/lakz8Fq9PWZ8h6hTu0XJZdaszhxWSf/T0lQnUP58/MUOn3MLCdR/fTiWB0BjIY9LnldPyXxq/d74v5aMTnwc6V8sVL1GpO7ilyhDhzsvli+3lhhW7/mPnIfhvg9D+ZDK0+xaJfDlKw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HpJvTVGu; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-563d696ce87so1207978a12.0
-        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 01:07:16 -0800 (PST)
+	 In-Reply-To:Content-Type; b=O/0gd/ZjZHX5AvfZeaxOFrv53HEKka+/M0vso9T50I0/BYY0ZV+vB/0B/d+AwQQr9MWN19GZpcDWwqNClsm25udNqhaT546YyrelxZHGao5X9AEODDBWxCcabd9uovcCGOgaqk5yvycaGiR0KK2gKS+FMXMDtdn280RQqnVrWFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=utrj9bXM; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-511acd26c2bso2580498e87.2
+        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 01:08:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708074435; x=1708679235; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1708074487; x=1708679287; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HamjRFBjQ2qVdicv3DULvaDT9cBo0qS+9hQ3Sknz2SQ=;
-        b=HpJvTVGuFtj7vGciOvESfO4PFyIK5nSmVkwgSXPfsjlvRliPl+Lo2NJLuXesn689be
-         D70bES9vyUzQEUEUjU/gJ1qPG3nZAjaNAp5SqRzSLATcyRxFO/LU77I41tzIX4dZBZTF
-         lIIaVgO0AnfKIGmK1LOPsyScC9E/rd6IZ0Kp0amvKusHCKDg7WfRRWBh7hNUpEk2cNYA
-         SOPUJEd0iThQhocU+lOPitY8q+UAZAI0FRXiNSPM2rm7TTjHWZ9S3WqnnP4F3ZKIekh2
-         9Bc0annRMxcpEtkT/kETP9ptsn/Hdr48LYaTi2PkwmuG9GiK1sAxocseSZGofD2rXn6z
-         FqzA==
+        bh=vA2DFFOFzcRyvxqcYVpsnM/x9YtF8fmooWYl5oGtBh0=;
+        b=utrj9bXMWNTLmIHcWDp4HIIw5cG8kY06kJr2XYOXj+cCQZSaqIjzqNJS7wEiunOOXX
+         LmPtqaVzBkAxwk3Z3LjiihgJ9YN1kItnHOob2Zl66XNYoRe2gq4TZ5IL4r5xCEAZY6/9
+         0IPmNvdANqW5mYYVCV9qJL4TA0jxo727u0qxT980HOJ54t98PPxdRjcla7TdiKdmaNmr
+         +vySs4pDylfG8wfscXJm0Gu9Z8HM2UN0lmBap/SGbWRfy1uoOkMBqgX18h9en+9bTzbw
+         h7sCMLziSvc1yhmNwko25+anmLK07i2ZBPNiQlOBtjWMV5se24jomPuHn5sUJ9O/xLW2
+         kB6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708074435; x=1708679235;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1708074487; x=1708679287;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HamjRFBjQ2qVdicv3DULvaDT9cBo0qS+9hQ3Sknz2SQ=;
-        b=ciLnVInN4abNZJWa93rqUrVKY3l07I6RZvPdqFdZm6JqrS2WE77oo5RRIyI+RnGqZ+
-         XxiL0UQaxqUhJdIdxkoblBbqdR0O3v7h/r66EnNEI1ZJw65vTD0/WnQUG1C5WilZip49
-         u3wiqhz7kvbfnWVL4sw5RX7+/BtzZSHlE0DTtQ/KDH5XNeyCs/AYA16z1JVNsU+TY5ya
-         bRlJnDJlaJrYqjEueddgShN8i+8cecZVICEmvDUDTzdRPHDjpr9897a0Ah2MhETtzNnl
-         g/65AGX+D5v9EPIm3G/e1UFGpRJIbwTTqgMo0xC24RgOz4cNONLtLUXHjbSUfOnUtw/w
-         uv5A==
-X-Forwarded-Encrypted: i=1; AJvYcCVyKrC5056zgslDgSVzXdkg04hSTZWqId/tS8JVWJXXJmrp9vazaN5xayHH2iDktrzH2fq7XDbn/F6chxZz4ATRXwUb1pHoYW9zKg==
-X-Gm-Message-State: AOJu0YzXjHAQ7gr8ZWt0E7IRYoHw5HNyZV0+2fum/zl1lIFGoCzQQe1M
-	a289Rm8sfriodeMYE1pgcFhEIEufMGMk253/BY95XLX2UDbTRGHTqhxkjbsJiJQ=
-X-Google-Smtp-Source: AGHT+IEUgSOOKDAi97LxXDelVgKRQxrSmqm2fmNwo6lm8ky2V+YruTn065g/aFweYnsmmRMFjV6nIg==
-X-Received: by 2002:a05:6402:4582:b0:55f:ce14:337a with SMTP id ig2-20020a056402458200b0055fce14337amr5964730edb.11.1708074434995;
-        Fri, 16 Feb 2024 01:07:14 -0800 (PST)
-Received: from [192.168.0.22] ([78.10.207.130])
-        by smtp.gmail.com with ESMTPSA id co26-20020a0564020c1a00b00563d213b017sm774881edb.44.2024.02.16.01.07.13
+        bh=vA2DFFOFzcRyvxqcYVpsnM/x9YtF8fmooWYl5oGtBh0=;
+        b=rwhr7W0pzIUirPkHLZF9bowJQRiZP7eg98Y/jrfesVSA8AFW06niDZUJTJ4RzQshxy
+         DLCmyyJfekXknSjQ+qiLvhYHcF1Gg2vzdVW67byjqkJuLwkeUoRAb7D7DTt7/5inF3E8
+         wwFgySQ8UWO3vRyRIfLTJzCrQNJIFmqzUrZ7uFWMdj04LlGViS9L8/4BgsHl1TltYPqr
+         aC2GO8cSmLDhAyNePdPL0KlIj6FrOaxifhQfzpun7Ai6EHhmWjQTGPcgpgNrP59uKmz8
+         kurk0nAlAv6vU88lN8n316j9V76B4wSIrwxOws9prCaI9TsXhEEQ2qOmAqLmTu8ip8eB
+         DmQw==
+X-Forwarded-Encrypted: i=1; AJvYcCX0SqYnu4KNn4COBkFWau/c5tuleUvB+dpMZxfP1OCXJb/0xs63nyFc7LvTxVooy8ChkRd2BWgooYtE3DguQmjoMlpElT1CK9AI5w==
+X-Gm-Message-State: AOJu0Yxa28kVcTp9nVBJaNC8xIRgpCWk7r5XHDAuE165WG2RXQwtUo2g
+	MUTA7RdpiM1S8dc7oboc/RB6GiHmWM732I9mWYt4LAWHvmYPB6EafKx1w/JOQPE=
+X-Google-Smtp-Source: AGHT+IGi+3vhNJtCp1mYtRx80UFnIA/8ta458vq75nKmQ6whOzZbmMoMt+v97FMnmJ6t/dByVPfZDw==
+X-Received: by 2002:a05:6512:124f:b0:512:8d8f:db7a with SMTP id fb15-20020a056512124f00b005128d8fdb7amr2294792lfb.65.1708074487376;
+        Fri, 16 Feb 2024 01:08:07 -0800 (PST)
+Received: from [192.168.1.70] ([84.102.31.43])
+        by smtp.gmail.com with ESMTPSA id f11-20020a0565123b0b00b005128ae41781sm462170lfv.253.2024.02.16.01.08.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Feb 2024 01:07:14 -0800 (PST)
-Message-ID: <23c7fee5-ed66-436b-bb1e-ca4cdc8d0a66@linaro.org>
-Date: Fri, 16 Feb 2024 10:07:12 +0100
+        Fri, 16 Feb 2024 01:08:06 -0800 (PST)
+Message-ID: <e13627e2-9d8f-437d-afe4-d8bfcade2f6a@baylibre.com>
+Date: Fri, 16 Feb 2024 10:08:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,102 +76,109 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: pwm: mediatek,mt2712: add compatible for
- MT7988
+Subject: Re: [RESEND PATCH v1 03/13] dt-bindings: mfd: ti,tps6594: Add TI
+ TPS65224 PMIC
 Content-Language: en-US
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
- Conor Dooley <conor@kernel.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- John Crispin <john@phrozen.org>, linux-pwm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20240213164633.25447-1-zajec5@gmail.com>
- <20240213-resource-evaluator-0754cfd5882d@spud>
- <d4391868-ddcd-4f66-b539-28d245fa83df@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <d4391868-ddcd-4f66-b539-28d245fa83df@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+To: Conor Dooley <conor@kernel.org>, Kevin Hilman <khilman@kernel.org>
+Cc: Bhargav Raviprakash <bhargav.r@ltts.com>, arnd@arndb.de,
+ broonie@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ gregkh@linuxfoundation.org, kristo@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, lee@kernel.org, lgirdwood@gmail.com,
+ linus.walleij@linaro.org, linux-arm-kernel@lists.infradead.org,
+ linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ m.nirmaladevi@ltts.com, nm@ti.com, robh+dt@kernel.org, vigneshr@ti.com
+References: <20240209-blitz-fidgety-78469aa80d6d@spud>
+ <20240214093106.86483-1-bhargav.r@ltts.com>
+ <20240214-galley-dweller-1e9872229d80@spud> <7hil2r5556.fsf@baylibre.com>
+ <20240214-depraved-unfunded-3f0b3d6bf3e2@spud>
+From: Julien Panis <jpanis@baylibre.com>
+In-Reply-To: <20240214-depraved-unfunded-3f0b3d6bf3e2@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 14/02/2024 07:34, Rafał Miłecki wrote:
-> On 13.02.2024 19:18, Conor Dooley wrote:
->> On Tue, Feb 13, 2024 at 05:46:32PM +0100, Rafał Miłecki wrote:
->>> From: Rafał Miłecki <rafal@milecki.pl>
->>>
->>> MT7988 has on-SoC controller that can control up to 8 PWMs.
+On 2/14/24 18:45, Conor Dooley wrote:
+> On Wed, Feb 14, 2024 at 09:26:13AM -0800, Kevin Hilman wrote:
+>> Conor Dooley <conor@kernel.org> writes:
+>>> On Wed, Feb 14, 2024 at 03:01:06PM +0530, Bhargav Raviprakash wrote:
+>>>> On Fri 2/9/2024 10:41 PM, Conor Dooley wrote:
+>>>>> On Thu, Feb 08, 2024 at 04:23:33PM +0530, Bhargav Raviprakash wrote:
+>>>>>> TPS65224 is a Power Management IC with 4 Buck regulators and 3 LDO
+>>>>>> regulators, it includes additional features like GPIOs, watchdog, ESMs
+>>>>>> (Error Signal Monitor), and PFSM (Pre-configurable Finite State Machine)
+>>>>>> managing the state of the device.
+>>>>>> TPS6594 and TPS65224 have significant functional overlap.
+>>>>> What does "significant functional overlap" mean? Does one implement a
+>>>>> compatible subset of the other? I assume the answer is no, given there
+>>>>> seems to be some core looking registers at different addresses.
+>>>> The intention behind “significant functional overlap” was meant to
+>>>> indicate a lot of the features between TPS6594 and TPS65224 overlap,
+>>>> while there are some features specific to TPS65224.
+>>>> There is compatibility between the PMIC register maps, I2C, PFSM,
+>>>> and other drivers even though there are some core registers at
+>>>> different addresses.
+>>>>
+>>>> Would it be more appropriate to say the 2 devices are compatible and have
+>>>> sufficient feature overlap rather than significant functional overlap?
+>>> If core registers are at different addresses, then it is unlikely that
+>>> these devices are compatible.
+>> That's not necessarily true.  Hardware designers can sometimes be
+>> creative. :)
+> Hence "unlikely" in my mail :)
+
+For tps6594 and tps65224, some core registers are at different adresses
+indeed, but the code is the same for both MFD I2C/SPI entry points. As an
+example, the way CRC is enabled is exactly the same, even if the bit that
+must be set belongs to different registers. tps65224 has more resources and
+it's as if HW designers had had to re-organize the way bits are distributed
+among the registers (due to a lack of space, so to speak).
+
+That said, if we consider that these devices are not compatible, what does it
+imply concretely for the next version ? Does that mean that:
+1) Only a new binding must be created, even if MFD drivers and most of child
+drivers will be re-used ? (then the binding would simply be duplicated, but
+the drivers would not)
+2) A new binding and new MFD drivers must be created, even if most of child
+drivers will be re-used ? (then the binding and MFD drivers would simply be
+duplicated, but the child drivers would not)
+3) A new binding and new drivers (MFD and child devices) must be created ?
+4) Anything else ?
+
+@Conor: I understand that it's not your problem. Anybody can answer, I just
+try to make things clear for the next version. :)
+
+Julien
+
+>
+>>> In this context, compatible means that existing software intended for
+>>> the 6594 would run without modification on the 65224, although maybe
+>>> only supporting a subset of features.  If that's not the case, then
+>>> the devices are not compatible.
+>> Compatible is a fuzzy term... so we need to get into the gray area.
 >>
->> I see a binding and a dts patch, but no driver patch, how come?
-> 
-> I believe that to avoid cross-trees patchsets (which are sometimes
-> tricky for maintainers) there are two ways of submiting such changes:
-> 1. dt-binding + driver; then (separately) DTS
-> 2. dt-binding + DTS; then (separately) driver
-> 
-> I chose later in this case as my personal priority right now is to deal
-> with all MediaTek DTS files.
-> 
-> Is that wrong or unacceptable?
-
-That was explained many, many times. For cases like driver+bindings+DTS,
-bindings go via driver subsystem, so they should be posted with driver
-patches.
-
-Feel free to include DTS at the end of series, unless you send to Greg
-or netdev.
-Better, also required for Greg and netdev, is to send DTS separately
-with lore links to the bindings.
-
-Best regards,
-Krzysztof
+>> What's going on here is that this new part is derivative in many
+>> signifcant (but not all) ways from an existing similar part.  When
+>> writing drivers for new, derivative parts, there's always a choice
+>> between 1) extending the existing driver (using a new compatible string
+>> & match table for the diffs) or 2) creating a new driver which will have
+>> a bunch of duplicated code.
+>>
+>> The first verion of this series[1] took the 2nd approach, but due to the
+>> significant functional (and feature) overlap, the recommendation was
+>> instead to take the "reuse" path to avoid signficant amounts of
+>> duplicated code.
+>>
+>> Of course, it's possible that while going down the "reuse" path, there
+>> may be a point where creating a separate driver for some aspects might
+>> make sense, but that needs to be justified.  Based on a quick glance of
+>> what I see in this series so far (I have not done a detailed review),
+>> the differences with the new device look to me like they can be handled
+>> with chip-specific data in a match table.
+> This is all nice information, but not really relevant here - this is a
+> binding patch, not a driver one & the conversation stemmed from me
+> making sure that a fallback compatible was not suitable. Whether or not
+> there are multiple drivers or not is someone else's problem!
+>
+> Thanks,
+> Conor.
 
 
