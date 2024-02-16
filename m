@@ -1,128 +1,246 @@
-Return-Path: <devicetree+bounces-42651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D81A6857F18
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 15:17:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27C12857F2D
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 15:22:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E9131F27D7D
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 14:17:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A397628CC21
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 14:22:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EEC212C811;
-	Fri, 16 Feb 2024 14:17:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE31412CD98;
+	Fri, 16 Feb 2024 14:22:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fwdihfz/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4EF812AAD9;
-	Fri, 16 Feb 2024 14:17:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE7E212CD83;
+	Fri, 16 Feb 2024 14:22:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708093043; cv=none; b=Bte5FLNe0WjHV0sKXnP5AKZmsZffr1oeLNjREMRX1F4NGZZkPIRTfU2abhnuH5eTg0isLlJOw8ii5rniG/pkZOKKgY+CC2kXMB2227ERHQWCaFn8/uFu9/qC1G5UI6pCAqcZJg6/h/b24eNrT3tjSNoWdjGsD0gG/H0yTksAVDM=
+	t=1708093333; cv=none; b=ICvOP+3MsZ9YitYytdnLhH+FLBA9iXFIAYkh0dBoWpkOKWULHVE5vvt6xvCDECkxzZnZ0QI0F3bvbyT6ZUsAAn+vhIaAZzBUqgZvOqr3vb8ZyFwoiVJvTg21OSRZLisfzDqXCpYJuC0jFIjOSahiTuvnVI5tXzgKme3LD5hwmrg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708093043; c=relaxed/simple;
-	bh=vnnX13x217W0dtrq5eN5tm48xaIUCso8yaskfIG6//g=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=W79VJdn/iB8pakyAtprWru0PHG478E+tbQyFgpqwPprOnUt9BNtTwX3EdQLiNt1D25q/k1YNckhphlwfiMxrBKAdQv9HYdvgfzgmPnmJYeFv83sZE+H6bEKYSfuB8/0kP+LV1gf80jr6CW0J+7dobVaFfIc807GWLIdm+3HEXsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-dcc4de7d901so1750265276.0;
-        Fri, 16 Feb 2024 06:17:21 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708093040; x=1708697840;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uKVA6eT9vMZObsICtCU8wuFH8FzY1FdTCqpK118q1IE=;
-        b=jeiZubz0wHT7KtCwHje/dmKYMH4ygfyWQ2hf4Y5ugqJkknctK9roCmReGGcybJHxKf
-         nxotCHVm0sUXogIzn4LMQ1TcIDohvGSzIdzavLe5StFUJTAsVD8DDjjW9rG5w//3b5NX
-         VsvXPtLFQBop/nk4X1xU1VqPlhvj7MdJFGs71Ygsn2QvuydiHdZqSt5VixuKobEFbyWw
-         PHxdS3rGYnFAGvtbVP+cCgaQMxkFLq2kPB0K59JyGVo0RftrIero+68w2ytV0AjtD88n
-         Echo95Gqx/UHAmoANz6YSFqOyGYs7jtP0u7VokijH3Rt3cFwTyb49vgEnG+eISC6p84S
-         kV4g==
-X-Forwarded-Encrypted: i=1; AJvYcCVggaW4V9dOKZs7Ytf/+SOuZzD8TKnLNZZYTPJ3bYCWmEiVNkyqUy6shGYXYKkpsTawIMM6Vmsyw38yFkEroAC+Rw7bTEyqffLiW9DLAds6fEv+VmNSClnNXHkxDd5mO6q0GP+5sm9akSZNqii1Of3UO81qct0OeeEnCpgDh/5JFcUjduL1CzQ1BoR+nXpCx5cfOyc8lMG5e86yQB44tgAWHK+zASVs
-X-Gm-Message-State: AOJu0YwUUHFRu7DxLoCUAgJF+AcpXrJjCa9Y6+AYX8SaJoGXFrzX0RvV
-	Gc+VF5H22NGnYfYr6HFM0pPsCy0DoaBNOudmiv5E7LtePRdyxWWrwM459RbMo5k=
-X-Google-Smtp-Source: AGHT+IG/Oru5dUhXk6y8B8iKzzYWbDCIUS8FnmkleBuV6MuMOU6dv7iExXsIBfeg9P1hSsSVNMwHHQ==
-X-Received: by 2002:a25:b048:0:b0:dc7:4859:6f1 with SMTP id e8-20020a25b048000000b00dc7485906f1mr4901047ybj.33.1708093040325;
-        Fri, 16 Feb 2024 06:17:20 -0800 (PST)
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
-        by smtp.gmail.com with ESMTPSA id 4-20020a250104000000b00dc7496891f1sm330044ybb.54.2024.02.16.06.17.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Feb 2024 06:17:20 -0800 (PST)
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-dcd7c526cc0so2237243276.1;
-        Fri, 16 Feb 2024 06:17:20 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUAZMpm5+ECPyUxMHqTOGgVvRP0Y/+Gj7KVNwTNrSke0AancPmMddxySziL+Km1qNsCVzX/l4loxRRt8mEakFhaBBLvEI/FjpGRwcymEU1rcQrjIROrppsn73VbCdt3dpBfAfNKb/e5QPx3/Sa/9QaobjrSvyIuHJasp3xf/Io69zMXMIPpDP1KtsgJeZ4ZQthQeiYxZaZbF5E0Uqdd5Td+Xq0c7E1F
-X-Received: by 2002:a25:b904:0:b0:dc7:8c3a:4e42 with SMTP id
- x4-20020a25b904000000b00dc78c3a4e42mr4580893ybj.30.1708093039976; Fri, 16 Feb
- 2024 06:17:19 -0800 (PST)
+	s=arc-20240116; t=1708093333; c=relaxed/simple;
+	bh=HXymfp/hU96BjBLudJYKnCA4h+2LE/AxnHEaK0Cx0eQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=P+3W21ybv6EUFqNHYz0r7TnkwNNELR7AYQJSpyzp0AMqxFT+tOIO+mdXpsWaMG6MQbD43NDUAsGxQ3wS5v1gJeQiiq1Q+seE1R9jeqUnd0wkx+jHNcByJStz9+XFjrL/KrM9BB32tXsQW0vbCrX/ajMoxeRaHuKbs9NTAlSbpl0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fwdihfz/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0937EC433F1;
+	Fri, 16 Feb 2024 14:22:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708093333;
+	bh=HXymfp/hU96BjBLudJYKnCA4h+2LE/AxnHEaK0Cx0eQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Fwdihfz/G4/F5XM9WY12E5FOjl3nqjZBR7z+DFTNWOoK3Uczavp/mN/EK3cl7A2gS
+	 HYyD97v/aal7IcLrX62zMsqd8+BrmJLjEPY5eTxEJOhdbVhu5965jWIl+TlwgRcqyJ
+	 9XaXskO5qdj8NF1RpLQYfG2cPa568K/kUt0ay8zrgTYGtrB78IlEirYfSmYNWUA5rR
+	 piBULvJX8MaDheSLg8lCC+tFhiDhof+Duy5ZSqs3RW2WMSof5xaigdjjrKwUBMABSq
+	 ngpK0cQw+x9cYlBpH8eEjv7VrbBk7wjuE6vXcjn5I8aNbl0mxBy2kJmqW5gjKWerBR
+	 O9ws1N4hTcNxw==
+Date: Fri, 16 Feb 2024 14:21:58 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Alisa-Dariana Roman <alisadariana@gmail.com>,
+ alexandru.tachici@analog.com, alisa.roman@analog.com, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ krzysztof.kozlowski@linaro.org, lars@metafoo.de, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, michael.hennerich@analog.com,
+ robh+dt@kernel.org, Nuno Sa <nuno.sa@analog.com>
+Subject: Re: [PATCH v3 5/5] iio: adc: ad7192: Add AD7194 support
+Message-ID: <20240216142158.30e96c53@jic23-huawei>
+In-Reply-To: <CAMknhBFp-4s+-D8kD9rh0-OCc3gBs3hFX1EZ9ZmOifQOyGgUug@mail.gmail.com>
+References: <20240208172459.280189-1-alisa.roman@analog.com>
+	<20240208172459.280189-6-alisa.roman@analog.com>
+	<CAMknhBHU6k8J_PLCmGYF48S1q3uXByiCwzcd+B3q3Cd-02CUow@mail.gmail.com>
+	<84546728-f0cb-4b38-a71c-e053b9b9278e@gmail.com>
+	<CAMknhBFp-4s+-D8kD9rh0-OCc3gBs3hFX1EZ9ZmOifQOyGgUug@mail.gmail.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240208124300.2740313-1-claudiu.beznea.uj@bp.renesas.com> <20240208124300.2740313-13-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20240208124300.2740313-13-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 16 Feb 2024 15:17:08 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdX3=KJ6=qOW__KxWisj7Fguwr=SdP7XGvFD+BKgZbRo9A@mail.gmail.com>
-Message-ID: <CAMuHMdX3=KJ6=qOW__KxWisj7Fguwr=SdP7XGvFD+BKgZbRo9A@mail.gmail.com>
-Subject: Re: [PATCH 12/17] arm64: dts: renesas: rzg3s-smarc-som: Guard the
- ethernet IRQ GPIOs with proper flags
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, magnus.damm@gmail.com, 
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi Claudiu,
+On Thu, 15 Feb 2024 11:13:19 -0600
+David Lechner <dlechner@baylibre.com> wrote:
 
-On Thu, Feb 8, 2024 at 1:44=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> w=
-rote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> Ethernet IRQ GPIOs are marked as gpio-hog. Thus, these GPIOs are requeste=
-d
-> at probe w/o considering if there are other peripherals that needs them.
-> The Ethernet IRQ GPIOs are shared w/ SDHI2. Selection b/w Ethernet and
-> SDHI2 is done through a hardware switch. To avoid scenarios where one wan=
-ts
-> to boot with SDHI2 support and some SDHI pins are not propertly configure=
-d
-> because of gpio-hog guard Ethernet IRQ GPIO with proper build flag.
->
-> Fixes: 932ff0c802c6 ("arm64: dts: renesas: rzg3s-smarc-som: Enable the Et=
-hernet interfaces")
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> On Thu, Feb 15, 2024 at 7:22=E2=80=AFAM Alisa-Dariana Roman
+> <alisadariana@gmail.com> wrote:
+> >
+> > Hello and thank you for the feedback!
+> >
+> > On 09.02.2024 00:27, David Lechner wrote: =20
+> > > On Thu, Feb 8, 2024 at 11:25=E2=80=AFAM Alisa-Dariana Roman
+> > > <alisadariana@gmail.com> wrote: =20
+> > >>
+> > >> Unlike the other AD719Xs, AD7194 has configurable differential
+> > >> channels. The default configuration for these channels can be changed
+> > >> from the devicetree. =20
+> >
+> > ...
+> > =20
+> > >>
+> > >> +static const struct iio_info ad7194_info =3D {
+> > >> +       .read_raw =3D ad7192_read_raw,
+> > >> +       .write_raw =3D ad7192_write_raw,
+> > >> +       .write_raw_get_fmt =3D ad7192_write_raw_get_fmt,
+> > >> +       .read_avail =3D ad7192_read_avail,
+> > >> +       .validate_trigger =3D ad_sd_validate_trigger,
+> > >> +       .update_scan_mode =3D ad7192_update_scan_mode,
+> > >> +}; =20
+> > >
+> > > Isn't this identical to ad7192_info and ad7195_info now that .attrs is
+> > > removed? It seems like we could consolidate here. =20
+> >
+> > Those are not exactly identical since: 92 has bridge switch attribute,
+> > 95 has bridge switch and ac excitation attributes and 94 has no custom
+> > attributes. I used a different info structure for 94 in order to avoid
+> > showing extra attributes.
+> > =20
+>=20
+> Ah, I see what you mean. I didn't look close enough at the other patch
+> removing one attribute to see that were still other attributes.
+>=20
+> > > =20
+> > >> +
+> > >>   static const struct iio_info ad7195_info =3D {
+> > >>          .read_raw =3D ad7192_read_raw,
+> > >>          .write_raw =3D ad7192_write_raw,
+> > >> @@ -1009,6 +1049,80 @@ static const struct iio_chan_spec ad7193_chan=
+nels[] =3D {
+> > >>          IIO_CHAN_SOFT_TIMESTAMP(14),
+> > >>   };
+> > >>
+> > >> +static struct iio_chan_spec ad7194_channels[] =3D {
+> > >> +       AD7193_DIFF_CHANNEL(0, 1, 2, 0x001),
+> > >> +       AD7193_DIFF_CHANNEL(1, 3, 4, 0x023),
+> > >> +       AD7193_DIFF_CHANNEL(2, 5, 6, 0x045),
+> > >> +       AD7193_DIFF_CHANNEL(3, 7, 8, 0x067),
+> > >> +       AD7193_DIFF_CHANNEL(4, 9, 10, 0x089),
+> > >> +       AD7193_DIFF_CHANNEL(5, 11, 12, 0x0AB),
+> > >> +       AD7193_DIFF_CHANNEL(6, 13, 14, 0x0CD),
+> > >> +       AD7193_DIFF_CHANNEL(7, 15, 16, 0x0EF),
+> > >> +       AD719x_TEMP_CHANNEL(8, AD7194_CH_TEMP),
+> > >> +       AD7193_CHANNEL(9, 1, AD7194_CH_AIN1),
+> > >> +       AD7193_CHANNEL(10, 2, AD7194_CH_AIN2),
+> > >> +       AD7193_CHANNEL(11, 3, AD7194_CH_AIN3),
+> > >> +       AD7193_CHANNEL(12, 4, AD7194_CH_AIN4),
+> > >> +       AD7193_CHANNEL(13, 5, AD7194_CH_AIN5),
+> > >> +       AD7193_CHANNEL(14, 6, AD7194_CH_AIN6),
+> > >> +       AD7193_CHANNEL(15, 7, AD7194_CH_AIN7),
+> > >> +       AD7193_CHANNEL(16, 8, AD7194_CH_AIN8),
+> > >> +       AD7193_CHANNEL(17, 9, AD7194_CH_AIN9),
+> > >> +       AD7193_CHANNEL(18, 10, AD7194_CH_AIN10),
+> > >> +       AD7193_CHANNEL(19, 11, AD7194_CH_AIN11),
+> > >> +       AD7193_CHANNEL(20, 12, AD7194_CH_AIN12),
+> > >> +       AD7193_CHANNEL(21, 13, AD7194_CH_AIN13),
+> > >> +       AD7193_CHANNEL(22, 14, AD7194_CH_AIN14),
+> > >> +       AD7193_CHANNEL(23, 15, AD7194_CH_AIN15),
+> > >> +       AD7193_CHANNEL(24, 16, AD7194_CH_AIN16), =20
+> > >
+> > > Shouldn't these be differential channels since they are
+> > > pseudo-differential inputs measuring the difference between AINx and
+> > > AINCOM?
+> > > =20
+> > >> +       IIO_CHAN_SOFT_TIMESTAMP(25),
+> > >> +}; =20
+> > >
+> > > i.e. like this (where AINCOM is voltage0 AINx is voltagex)
+> > >
+> > > static struct iio_chan_spec ad7194_channels[] =3D {
+> > >         AD7193_DIFF_CHANNEL(0, 1, 0, AD7194_CH_AIN1),
+> > >         AD7193_DIFF_CHANNEL(1, 2, 0, AD7194_CH_AIN2),
+> > >         AD7193_DIFF_CHANNEL(2, 3, 0, AD7194_CH_AIN3),
+> > >         AD7193_DIFF_CHANNEL(3, 4, 0, AD7194_CH_AIN4),
+> > >         AD7193_DIFF_CHANNEL(4, 5, 0, AD7194_CH_AIN5),
+> > >         AD7193_DIFF_CHANNEL(5, 6, 0, AD7194_CH_AIN6),
+> > >         AD7193_DIFF_CHANNEL(6, 7, 0, AD7194_CH_AIN7),
+> > >         AD7193_DIFF_CHANNEL(7, 8, 0, AD7194_CH_AIN8),
+> > >         AD7193_DIFF_CHANNEL(8, 9, 0, AD7194_CH_AIN9),
+> > >         AD7193_DIFF_CHANNEL(9, 10, 0, AD7194_CH_AIN10),
+> > >         AD7193_DIFF_CHANNEL(10, 11, 0, AD7194_CH_AIN11),
+> > >         AD7193_DIFF_CHANNEL(11, 12, 0, AD7194_CH_AIN12),
+> > >         AD7193_DIFF_CHANNEL(12, 13, 0, AD7194_CH_AIN13),
+> > >         AD7193_DIFF_CHANNEL(13, 14, 0, AD7194_CH_AIN14),
+> > >         AD7193_DIFF_CHANNEL(14, 15, 0, AD7194_CH_AIN15),
+> > >         AD7193_DIFF_CHANNEL(15, 16, 0, AD7194_CH_AIN16),
+> > >         AD719x_TEMP_CHANNEL(16, AD7194_CH_TEMP),
+> > >         IIO_CHAN_SOFT_TIMESTAMP(17),
+> > > };
+> > > =20
+> >
+> > I tried to follow the existing style of the driver: for each
+> > pseudo-differential channel(AINx - AINCOM) there is an iio channel like
+> > this in_voltagex_raw; and for each differential channel(AINx - AINy)
+> > there is an iio channel like this in_voltagex-in_voltagey_raw. AD7194
+> > has 16 pseudo-differential channels/8 fully differential channels so I
+> > thought the (AINx - AINCOM) channels should be static and only the 8
+> > differential ones could be configured by the user from the devicetree by
+> > choosing the input pins.
+> >
+> > The existing style of the driver, AD7192 has 4 pseudo differential
+> > channels and 2 (non configurable) differential channels:
+> > static const struct iio_chan_spec ad7192_channels[] =3D {
+> >         AD719x_DIFF_CHANNEL(0, 1, 2, AD7192_CH_AIN1P_AIN2M),
+> >         AD719x_DIFF_CHANNEL(1, 3, 4, AD7192_CH_AIN3P_AIN4M),
+> >         AD719x_TEMP_CHANNEL(2, AD7192_CH_TEMP),
+> >         AD719x_DIFF_CHANNEL(3, 2, 2, AD7192_CH_AIN2P_AIN2M),
+> >         AD719x_CHANNEL(4, 1, AD7192_CH_AIN1),
+> >         AD719x_CHANNEL(5, 2, AD7192_CH_AIN2),
+> >         AD719x_CHANNEL(6, 3, AD7192_CH_AIN3),
+> >         AD719x_CHANNEL(7, 4, AD7192_CH_AIN4),
+> >         IIO_CHAN_SOFT_TIMESTAMP(8),
+> > };
+> >
+> > Would it be better to respect the existing style or to do like you
+> > suggested and have a total of 16 differential channels that are
+> > configurable from the device tree? =20
+>=20
+> Looking at Table 20 in the AD7192 datasheet, I can see why AD7192 was
+> done this way since only certain combinations of inputs can be used
+> together. (Although I think indexes 4 to 7 should really be
+> differential because they are the difference between the input and
+> AINCOM which may not be GND, but it is probably too late to fix that.)
+Ground is never absolute anyway, but we could indeed be relative to somethi=
+ng
+that changes. Ah well - no one has asked for it on that part I guess
+so not important.
 
-Thanks for your patch! (which was well-hidden between non-fixes ;-)
+>=20
+> Tables 22, 23 and 24 in the AD7194 datasheet show that this chip is
+> much more configurable than AD7192 when it comes to assigning
+> channels. There are basically no restrictions on which inputs can be
+> used together. So I am still confident that my suggestion is the way
+> to go for AD7194. (Although I didn't actually try it on hardware, so
+> can't be 100% confident. But at least 90% confident :-p)
+You would have to define a channel number for aincom.  There is an explicit
+example in the datasheet of it being at 2.5V using a reference supply.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.9.
+I wonder what expectation here is.  Allways a reference regulator on that p=
+in, or
+an actually varying input?  Maybe in long term we want to support both
+options - so if aincom-supply is provided these are single ended with
+an offset, but if not they are differential channels between channel X and
+channel AINCOM.
 
-As Ethernet is enabled by default, I think there is no need to fast-track
-this for v6.8.
+Note though that this mode is described a pseudo differential which normally
+means a fixed voltage on the negative.
 
-Gr{oetje,eeting}s,
+So gut feeling from me is treat them as single ended and add an
+aincom-supply + the offsets that result if that is provided in DT and
+voltage from it is non 0.
 
-                        Geert
+What fun.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Jonathan
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+
+
 
