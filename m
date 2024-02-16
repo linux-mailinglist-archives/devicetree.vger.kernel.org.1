@@ -1,99 +1,135 @@
-Return-Path: <devicetree+bounces-42718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD5F58583E5
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 18:17:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D62B08583F6
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 18:19:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 86C27283401
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 17:17:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C99E1F2920B
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 17:19:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66B7B130E3D;
-	Fri, 16 Feb 2024 17:16:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CD7A130E3D;
+	Fri, 16 Feb 2024 17:19:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="4LoqQsbW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n0LjRmmr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50D9C1E53F;
-	Fri, 16 Feb 2024 17:16:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DB9A130E2E;
+	Fri, 16 Feb 2024 17:19:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708103810; cv=none; b=syUhZlItkmtED7m4c58JqHP0/4uBsvMD2AKRnka0Eoy92JiL/wJl+ZFuqI/1uevlKXus4rI+OoRyZqxe+EJCqmW97fQVkPBaNUHJR8eWJ7JAsN/ghnfIzqVzFoFLLvEnV0oRrfu8IytiiFPEXMqUorNF8v0inRBQgrPbeQl/WAc=
+	t=1708103976; cv=none; b=OQqyLtfaSCkNKTnAnTvHMyvaJi+2Bgtaco5FD8ov+2dC6+LpQszxJT2oX/4istq8d95873TjmQtpmWic+hWUnWCxyDi3xdwuzeuZPocqohPybztTR91qJXC6PWDyuS737/ZmZMB4t3mbCuhrq/9c0xddyflO23onETLdQsbs//I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708103810; c=relaxed/simple;
-	bh=3pfy3uw6X4A5yd7ITUWZQtrvTmTq4SidsDEt+RRdoz0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Rc4OOiOKr4p04QAZumePrFcGtytfk9aUPO+4HfC4wSa/sTCjKnCUf4peIpsgb9+Cr1aiir5DBTwR974AaFj0XcY7OoOdffLYbp8HR71+ujOz/aP2T1hq7QpYqpMkebOKr7wyIr2CLiqpR82Gy4mab1yiFu7brmmZLiqsKmqaJFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=4LoqQsbW; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=l9mYR212SPf+R9mwmI8TrJIzfSG5c5mRs1Qtd2wu1Xk=; b=4LoqQsbW0LUQvAGL26r5DYs7C2
-	N6jZG5oN0YVkqrD4JZ0CSnYCKKVwGtrc0DcawUGSO88B8jpSh7Un3PuVuROheCX/nDDBI8sRrZ6RV
-	RmMWNkhMQLn6JT1XnZx/JLj4Cw67ryxo7c6vCWV0s2ye1u3dw0cfpC3cgoZtLHjxC+7Y=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rb1pT-00805C-TI; Fri, 16 Feb 2024 18:16:51 +0100
-Date: Fri, 16 Feb 2024 18:16:51 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, netdev@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 2/8] clk: qcom: ipq5332: enable few nssnoc clocks in
- driver probe
-Message-ID: <9638a213-76a5-4a72-b6b2-018ae50305be@lunn.ch>
-References: <20240122-ipq5332-nsscc-v4-0-19fa30019770@quicinc.com>
- <20240122-ipq5332-nsscc-v4-2-19fa30019770@quicinc.com>
- <7a69a68d-44c2-4589-b286-466d2f2a0809@lunn.ch>
- <11fda059-3d8d-4030-922a-8fef16349a65@quicinc.com>
- <17e2400e-6881-4e9e-90c2-9c4f77a0d41d@lunn.ch>
- <8c9ee34c-a97b-4acf-a093-9ac2afc28d0e@quicinc.com>
+	s=arc-20240116; t=1708103976; c=relaxed/simple;
+	bh=jajtT3fYHh89nUBt1oc4FBYREo5Q6SP3UVEpUB3mdy4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=XgwyLfiWiJpQeoyXwy5rBUMfGWkUCwG/uVx8AEQ6nu1tAwJJDIiivDLv0Y2x03wGw+uloayFHkq+a46ENVPnGCzJzh8ntPNOW557hweugCHoCMe41u6/sGD9v86AJQfylI6sZ0Lp/gYBIEks8JurHPR1ITNsHQXaI2IHRuYMSTw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n0LjRmmr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46519C433F1;
+	Fri, 16 Feb 2024 17:19:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708103975;
+	bh=jajtT3fYHh89nUBt1oc4FBYREo5Q6SP3UVEpUB3mdy4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=n0LjRmmrxZpNVzyFYsGwbD2p2LVFKzK/EygU0fH5X81lxXU83MhmJtw7YY11T+2B8
+	 w+VDan533UAdx4NDrW7mkty+fbRZxfLmmS0QdpY3lcDpDnaJfKM/dtk/HKlu+wqUTU
+	 nJGYtVNdtePqCm5Sk1K8Lv6AhXjZFnoxAvLUuwTdGEAECQtquMC0AVmdXtWvnt92xh
+	 s5g9MWKeoVymdPNgdozymbdVy+i+VPygj5fgTbh0Kz7Eu6iiseEdh3zp3peKzTfZ43
+	 v2SzrAbPVxyASWWglWdBtB7tD3GgxC62grBFCHGKQSKvyiHR0EluWK29qTXj4CghR3
+	 IQQRHnrI5QJ6A==
+Date: Fri, 16 Feb 2024 17:19:21 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Mike Looijmans <mike.looijmans@topic.nl>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ devicetree@vger.kernel.org, linux-iio@vger.kernel.org, Arnd Bergmann
+ <arnd@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Liam Beguin
+ <liambeguin@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>, Maksim Kiselev
+ <bigunclemax@gmail.com>, Marcus Folkesson <marcus.folkesson@gmail.com>,
+ Marius Cristea <marius.cristea@microchip.com>, Mark Brown
+ <broonie@kernel.org>, Niklas Schnelle <schnelle@linux.ibm.com>, Okan Sahin
+ <okan.sahin@analog.com>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 2/2] iio: adc: ti-ads1298: Add driver
+Message-ID: <20240216171921.5a6b6b20@jic23-huawei>
+In-Reply-To: <fb7d41fc-328a-4ce1-88ad-5ce22ee158e4@topic.nl>
+References: <Zc-E3-MNe9dG9tdW@smile.fi.intel.com>
+	<fb7d41fc-328a-4ce1-88ad-5ce22ee158e4@topic.nl>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8c9ee34c-a97b-4acf-a093-9ac2afc28d0e@quicinc.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-> You can get the source at https://git.codelinaro.org/clo/qsdk/oss/boot/u-boot-2016/-/tree/NHSS.QSDK.12.2?ref_type=heads
+On Fri, 16 Feb 2024 17:07:49 +0100
+Mike Looijmans <mike.looijmans@topic.nl> wrote:
 
-Cool, thanks. But is it really u-boot from 2016?
-
-> Yeah agree with your comments.
+> On 16-02-2024 16:53, Andy Shevchenko wrote:
 > 
-> QSDK's u-boot enables the network support, so the required NSSCC clocks are
-> turned ON and left it in ON state. CCF tries to disables the unused NSSCC
-> clocks but system goes for reboot.
+> ...
 > 
-> Reason being, to access the NSSCC clocks, these GCC clocks
-> (gcc_snoc_nssnoc_clk, gcc_snoc_nssnoc_1_clk, gcc_nssnoc_nsscc_clk)
-> should be turned ON. But CCF disables these clocks as well due to the lack
-> of consumer.
+> +       if (reset_gpio) {
+> +               /*
+> +                * Deassert reset now that clock and power are active.
+> +                * Minimum reset pulsewidth is 2 clock cycles.
+> +                */
+> +               udelay(ADS1298_CLOCKS_TO_USECS(2));
+> 
+> This is sleeping context and you are calling unsleeping function. I haven't
+> checked the macro implementation and I have no idea what is the maximum it may
+> give, but making code robust just use fsleep() call.
+> 
+> It'll actually delay for 1 us (the "clock" is ~2MHz). So fsleep will compile to udelay anyway, which is fine, fsleep might get smarter in future and this would then profit.
+> 
+> 
+> 
+> +               gpiod_set_value_cansleep(reset_gpio, 0);
+> +       } else {
+> +               ret = ads1298_write_cmd(priv, ADS1298_CMD_RESET);
+> +               if (ret)
+> +                       return dev_err_probe(dev, ret, "RESET failed\n");
+> +       }
+> +       /* Wait 18 clock cycles for reset command to complete */
+> +       udelay(ADS1298_CLOCKS_TO_USECS(18));
+> 
+> Ditto.
+> 
+> ...
+> 
+> 
+> If it's the only issue I think Jonathan can modify when applying
+> (no new patch version would be needed).
+> 
+> That'd be nice.
 
-So there is your solution, make NSSCC a consumer of the clocks it
-actually consumes. If it needs these clocks, it should get and enable
-them.
+ok.  As this is still the top of my tree I'll just tweak it.
 
-	Andrew
+Does anyone else read fsleep as femtosecond sleep every time? :)
+Maybe computers will go that fast one day.
+
+Jonathan
+
+
+> 
+> 
+> --
+> Mike Looijmans
+> System Expert
+> 
+> TOPIC Embedded Products B.V.
+> Materiaalweg 4, 5681 RJ Best
+> The Netherlands
+> 
+> T: +31 (0) 499 33 69 69
+> E: mike.looijmans@topic.nl<mailto:mike.looijmans@topic.nl>
+> W: www.topic.nl<http://www.topic.nl>
+> 
+> 
+
 
