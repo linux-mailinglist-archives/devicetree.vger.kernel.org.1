@@ -1,119 +1,142 @@
-Return-Path: <devicetree+bounces-42522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BD11857A80
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 11:41:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21494857A86
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 11:43:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CDC001F2377E
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 10:41:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6B2FAB232AA
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 10:43:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFE8A524AE;
-	Fri, 16 Feb 2024 10:40:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 611A251C5B;
+	Fri, 16 Feb 2024 10:43:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="lz2U9uLV"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="GQEAbCVk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E297B1BDE6;
-	Fri, 16 Feb 2024 10:40:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 618DB1EA73;
+	Fri, 16 Feb 2024 10:43:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708080055; cv=none; b=QCcwYZgoDi+rS0Dbw27yn71v4ZlzzvbK7AYVvmbXOvIanDcRwbSz8XG0sdmucFHCjf6gqxGHyRQyP7ceg80uEJGUpKst9wkBCQP+qauatd7/BHxB2j7LVC/kDO4KVD5uZOwlFh3ax8spckPHcwHSoMk8c82NCFp1G7suY6fEXZU=
+	t=1708080186; cv=none; b=XpBnHInpwwY/X2YtdZo1t+HgaaKar7PBZToLi0o7UK6iaMVwK7mFAsKcyZNsIfotxiG39b7YiuDYYnAN2o2omlupH6DfK+/JwvN9IuCeWhO+2qkENQGVx+h9ztlQFM99dZ9tv7A1/l36edZKv4mI2hv1IDXA/AsIKqnCQa3FA9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708080055; c=relaxed/simple;
-	bh=4vCY6JZJluyOURcmliUjf8D4UGdWpWhqShAztx1q4U0=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
-	 References:In-Reply-To; b=l3fmVSntOxxdol43dk/rqUaCUxNuq8kAG57GVqsJn+mEHbbZ0Qga4jkNqbvQq2ONkYXjdqa7fR6SID31+j2tJCwf+2j5IpdS8POjx0LUe79PlKvaPdzXoKsC4OxM7DgQsVKTLNKaISgSofd3EksW65DHPLSVLTSVzNY6dJenE/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=lz2U9uLV; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 3A5F7C000A;
-	Fri, 16 Feb 2024 10:40:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1708080050;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=pW+H2/+M3nwxvUrdeb949EaUZPq3QzVW/JZ2LL5ih34=;
-	b=lz2U9uLVS3/HdJM1KiMEiUYoPgnBtLLrRboc8aNuca5J5CJu0LxWUJqVuayCZz+nR9Ueem
-	GJV80VRxBtCaNXb+RaZQzFs9VnINWRo7LxEGKea1LN+T5iiTAWeYwM1yVHh4eMOcWhzONe
-	I2fhfxZYlkk+hNNSIbQoJM5bSsSv/VEurY7+Z2pOjHGACRR2Jgv4naaUQuz9SGgpxBbJ5t
-	J27ZBToyYYAC2DSRAZowyPiTmeNOhTg73wSd4xiCwSTtH5AsOiSur6xqzkssVjeJs2Rcb9
-	VG5VdMHV6ulPW1rl2IMIj2P7PThpBSQ5Ct9nhZ0wDGw0WjvznvT9upEFnGxmXg==
+	s=arc-20240116; t=1708080186; c=relaxed/simple;
+	bh=dYt4+bsRVChAZxDRXVRdgR3p1sIvnLqzGOD4N6Srd2I=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ijtCfx1V+LFrqQM85KreB1vVhuDAuA6z5mihvX6WkRhDnlFwIrC7fq0LKO1o0hz0Vk7unt7k4Jrn6yJkhvcbJT/JVb4kyF38UeWoONy8bTFah593BW2KaUYxG7TQlKreptnCUaaGebdgc3+gIW+KqmJ11As/0woHz82Nk9Xz01w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=GQEAbCVk; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 765BF22533;
+	Fri, 16 Feb 2024 11:42:59 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1708080180;
+	bh=lILCCVDpv4TSePKRO4sehh2ym0PKUbFZyoHWNmTyAF8=; h=From:To:Subject;
+	b=GQEAbCVkfq1zUI6SODikNg5z3gVzvia8TQ0QbeYQGJJxNBrBm2PfaZBJrwb4D8n67
+	 fxrYYi9tprQzfpxXL/+hs2mECWq8tFriOxLTqRCyeUO2c7AEkXDo2CcxGLIdHDmz4B
+	 6HptLDaSba0lTQiobppeQRdvSsgxZ6iPdXYj4O8Iii04hjNvr9UdkC4ddBj64FWcFd
+	 b1+V7uv2BEXJfQbSTKeGDTgPrdhd7Sry6mq8ndO17g9XR1tExEjkJwGb+anFgacn9v
+	 Ath70p7kw2BQatrYXlBA8R76WArqhU4J4jW24PgYw+aqkEsLxxtm54Mdhb57kVYNXy
+	 MZlgaUTGKIApA==
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>
+Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Roland Hieber <rhi@pengutronix.de>,
+	Hiago De Franco <hiagofranco@gmail.com>
+Subject: [PATCH v1] ARM: dts: imx7: remove DSI port endpoints
+Date: Fri, 16 Feb 2024 11:42:55 +0100
+Message-Id: <20240216104255.21052-1-francesco@dolcini.it>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 16 Feb 2024 11:40:50 +0100
-Message-Id: <CZ6FUECKEX2B.36QWZZA5EYPI@bootlin.com>
-Cc: "Linus Walleij" <linus.walleij@linaro.org>, "Andi Shyti"
- <andi.shyti@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-mips@vger.kernel.org>, "Gregory Clement"
- <gregory.clement@bootlin.com>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Rob Herring"
- <robh@kernel.org>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH 02/13] dt-bindings: i2c: nomadik: add mobileye,eyeq5-i2c
- bindings and example
-X-Mailer: aerc 0.15.2
-References: <20240215-mbly-i2c-v1-0-19a336e91dca@bootlin.com>
- <20240215-mbly-i2c-v1-2-19a336e91dca@bootlin.com>
- <20240216022227.GA850600-robh@kernel.org>
- <CZ6FD7EHIJDT.32IEDVT9FG2GP@bootlin.com>
- <6effca50-29a4-43b9-86eb-310bd4e08e5c@linaro.org>
-In-Reply-To: <6effca50-29a4-43b9-86eb-310bd4e08e5c@linaro.org>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-Hello,
+From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-On Fri Feb 16, 2024 at 11:33 AM CET, Krzysztof Kozlowski wrote:
-> On 16/02/2024 11:18, Th=C3=A9o Lebrun wrote:
-> >=20
-> >>> +        mobileye,id:
-> >>> +          $ref: /schemas/types.yaml#/definitions/uint32
-> >>> +          description: Platform-wide controller ID (integer starting=
- from zero).
-> >>
-> >> instance indexes are a NAK. You can use i2cN aliases if you must.
-> >>
-> >> Why do you need it? To access OLB? If so, add cell args to the OLB=20
-> >> phandle instead.
-> >=20
-> > Why we do what we do: I2C controller must write a 2 bit value depending
-> > on the bus speed. All I2C controllers write into the same register.
->
-> Which register?  Your devices do not share IO address space.
+This fixes the display not working on colibri imx7, the driver fails to
+load with the following error:
 
-mobileye,olb is a prop with a phandle to a syscon. That syscon contains
-the register we are interested in.
+  mxsfb 30730000.lcdif: error -ENODEV: Cannot connect bridge
 
-The Linux code side of things is in the following patch. We use
-syscon_regmap_lookup_by_phandle().
+NXP i.MX7 LCDIF is connected to both the Parallel LCD Display and to a
+MIPI DSI IP block, currently it's not possible to describe the
+connection to both.
 
-   [PATCH 10/13] i2c: nomadik: support Mobileye EyeQ5 I2C controller
-   https://lore.kernel.org/lkml/20240215-mbly-i2c-v1-10-19a336e91dca@bootli=
-n.com/
+Remove the port endpoint from the SOC dtsi to prevent regressions, this
+would need to be defined on the board DTS.
 
-Thanks,
+Reported-by: Hiago De Franco <hiagofranco@gmail.com>
+Closes: https://lore.kernel.org/r/34yzygh3mbwpqr2re7nxmhyxy3s7qmqy4vhxvoyxnoguktriur@z66m7gvpqlia/
+Fixes: edbbae7fba49 ("ARM: dts: imx7: add MIPI-DSI support")
+Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+---
+ arch/arm/boot/dts/nxp/imx/imx7s.dtsi | 26 --------------------------
+ 1 file changed, 26 deletions(-)
 
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+diff --git a/arch/arm/boot/dts/nxp/imx/imx7s.dtsi b/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
+index ebf7befcc11e..9c81c6baa2d3 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
+@@ -834,16 +834,6 @@ lcdif: lcdif@30730000 {
+ 					<&clks IMX7D_LCDIF_PIXEL_ROOT_CLK>;
+ 				clock-names = "pix", "axi";
+ 				status = "disabled";
+-
+-				port {
+-					#address-cells = <1>;
+-					#size-cells = <0>;
+-
+-					lcdif_out_mipi_dsi: endpoint@0 {
+-						reg = <0>;
+-						remote-endpoint = <&mipi_dsi_in_lcdif>;
+-					};
+-				};
+ 			};
+ 
+ 			mipi_csi: mipi-csi@30750000 {
+@@ -895,22 +885,6 @@ mipi_dsi: dsi@30760000 {
+ 				samsung,esc-clock-frequency = <20000000>;
+ 				samsung,pll-clock-frequency = <24000000>;
+ 				status = "disabled";
+-
+-				ports {
+-					#address-cells = <1>;
+-					#size-cells = <0>;
+-
+-					port@0 {
+-						reg = <0>;
+-						#address-cells = <1>;
+-						#size-cells = <0>;
+-
+-						mipi_dsi_in_lcdif: endpoint@0 {
+-							reg = <0>;
+-							remote-endpoint = <&lcdif_out_mipi_dsi>;
+-						};
+-					};
+-				};
+ 			};
+ 		};
+ 
+-- 
+2.39.2
+
 
