@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-42819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94BDB8588F1
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 23:39:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F363E8588EB
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 23:38:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 97721B2B4C8
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 22:38:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31D0C1C20A21
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 22:38:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D64A314AD30;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D659014AD32;
 	Fri, 16 Feb 2024 22:37:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f++lCVl7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KIlkIdZV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8020C14AD10;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C2B914AD19;
 	Fri, 16 Feb 2024 22:37:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708123022; cv=none; b=oY0gilG/xf0znc5cnMPWOfAjfrBMVy32Isz9tb+zyBL/k5Vh7vVA1vZpib8m3gjjnAqUETnlRjVl+TSYdrIXLUWCatqliry6Wyh161Q1ue9hHxpPEaoQUD+8bx7JvSmvEKuSxr/fFLFlW01Eb2OUEpN533+TcMnprxHedrdD6Iw=
+	t=1708123022; cv=none; b=Jhq5PoO49rxntbT45eQfoHqZ34KhSSxlXdZ5pw+VcpncE/47wWi6ISdRMON9q3H3nMj0FQNStInfI1AgpaOjiE/7yVr6BGPkaoWwxIXIWv6nF8YBYOaIijgKDHhimSKsagfiKtrwCdvtPqra+qffCTzCE0JR7kG0EyjJLA9Tt8o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1708123022; c=relaxed/simple;
-	bh=p3O/rTbpZ8mvNEtwOodSEEupdVXpbmqLBGQRaauu05M=;
+	bh=pSvctDHxVCaAu+4cZjOT/I3a/3LHsGScFSRvh9RHyIQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=bGRJXSeE/KoDtlMQs2uQFobUotAxGmc0LIIe2TZIvqy+rd+mHVtFLG6DihGH/YT17vRsLOqwl3NtCi9dJOQEdb71jrK+QkgNIDB+6lAQLRA9gXab7stt4zp7bYWCAyfTHsLs72jXcUP17EnBl4npjlBwkw6BJ4uahnNYWdnaFVs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f++lCVl7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8CC4C43390;
-	Fri, 16 Feb 2024 22:37:01 +0000 (UTC)
+	 MIME-Version; b=NLI/8OG9DZFJgoU3hlLx3OkqLamVyPC8rYO/m1qFAg36CX1rqzXHnqFi9tbJSHnf6PDHKsvmXvEQ/RUWZ9Zdd/wurjdz1ufmZB/Oj8xEUs6vf4wlNvms35L6KG+n0dCGuiXJB09Rrkh7O2ELWLYBgqPBONMLq0L8ZvQOj25/1+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KIlkIdZV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0150DC433B2;
+	Fri, 16 Feb 2024 22:37:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1708123022;
-	bh=p3O/rTbpZ8mvNEtwOodSEEupdVXpbmqLBGQRaauu05M=;
+	bh=pSvctDHxVCaAu+4cZjOT/I3a/3LHsGScFSRvh9RHyIQ=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=f++lCVl7nkeABZ52wxsMUUKeH9d6unCWvkl604l2vGRyvjyIGwTS8K8N1WL1zQhus
-	 ww+DpnW1N8cgX4hlmVipDVf2Hk5gniS1SsNp97W5Ee5qmKGP21xJiA41wNfy1zZYZJ
-	 Sb1LwNiDmDWFyIQsO6SrUdNtlg8xQ2xueuwnPi/eEyCGaYqQKRx1ur3Zv7Iesxp0Aa
-	 7zcRyw4o9ltd5lU+i0tTGiYStZo0yE5AvjnS0Bb5CEzU1faOco1O//ec4S3xhpumtE
-	 iuffLguZiR8C4rg4w+dC0t7SzGv4kieppoXWZSD0fhGKMG/fsne+Ofuj0tFrBVvxrV
-	 lkpFF7Snwq6xQ==
+	b=KIlkIdZVYsGFndwc+i49nctXF2P6Sex1V3QebTY+frX2qx/HM8JPDu39KRb/iuvsx
+	 5E8H88kNy2MSh7SmKzy6SEWrdv+JrJmGi8+eSeMT3wQprW37wRGFIJOGfoGhlgADEk
+	 XiXnW6yjOigDWxY2/5+4OP3PmpwN9jEPJAaqsN6snVLQyw0haL1VrKGNa6ux6QyJ81
+	 K+UpXSyadiFBXvjlT7drMOZyfzarOnU2FJe9ljGzDGRMmnILUqz1NP9ObGVITDOtma
+	 OxQ7hPUwOrOdSWP9QX50EGr7K/keiTLV5kqGvdmiomqrgRj2/ybgDLgXD6kd905Fv7
+	 eVPbjjhuidsoA==
 Received: by mercury (Postfix, from userid 1000)
-	id B5DCD10633CD; Fri, 16 Feb 2024 23:36:56 +0100 (CET)
+	id BB93910633D5; Fri, 16 Feb 2024 23:36:56 +0100 (CET)
 From: Sebastian Reichel <sre@kernel.org>
 To: Sebastian Reichel <sre@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
@@ -60,9 +60,9 @@ Cc: Dong Aisheng <aisheng.dong@nxp.com>,
 	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 08/16] ARM: dts: imx6ull: fix pinctrl node name
-Date: Fri, 16 Feb 2024 23:34:27 +0100
-Message-ID: <20240216223654.1312880-9-sre@kernel.org>
+Subject: [PATCH v3 09/16] ARM: dts: imx6ul: Remove fsl,anatop from usbotg1
+Date: Fri, 16 Feb 2024 23:34:28 +0100
+Message-ID: <20240216223654.1312880-10-sre@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240216223654.1312880-1-sre@kernel.org>
 References: <20240216223654.1312880-1-sre@kernel.org>
@@ -74,27 +74,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-pinctrl node name must be either pinctrl or pinmux.
+fsl,anatop should only be added to the usbphy nodes.
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 Signed-off-by: Sebastian Reichel <sre@kernel.org>
 ---
- arch/arm/boot/dts/nxp/imx/imx6ull.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/nxp/imx/imx6ul.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ull.dtsi
-index 2bccd45e9fc2..8a1776067ecc 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ull.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull.dtsi
-@@ -75,7 +75,7 @@ rngb: rng@2284000 {
- 				clocks = <&clks IMX6UL_CLK_DUMMY>;
- 			};
- 
--			iomuxc_snvs: iomuxc-snvs@2290000 {
-+			iomuxc_snvs: pinctrl@2290000 {
- 				compatible = "fsl,imx6ull-iomuxc-snvs";
- 				reg = <0x02290000 0x4000>;
- 			};
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ul.dtsi
+index a27a7554c2e7..9eb4eee0c272 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6ul.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6ul.dtsi
+@@ -855,7 +855,6 @@ usbotg1: usb@2184000 {
+ 				clocks = <&clks IMX6UL_CLK_USBOH3>;
+ 				fsl,usbphy = <&usbphy1>;
+ 				fsl,usbmisc = <&usbmisc 0>;
+-				fsl,anatop = <&anatop>;
+ 				ahb-burst-config = <0x0>;
+ 				tx-burst-size-dword = <0x10>;
+ 				rx-burst-size-dword = <0x10>;
 -- 
 2.43.0
 
