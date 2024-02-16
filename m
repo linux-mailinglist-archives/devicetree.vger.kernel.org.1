@@ -1,156 +1,125 @@
-Return-Path: <devicetree+bounces-42790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A73F985878A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 22:02:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE9BF85879B
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 22:04:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D99491C222B3
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 21:02:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BFC91C265DC
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 21:04:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F7B81419A2;
-	Fri, 16 Feb 2024 21:02:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D055E146004;
+	Fri, 16 Feb 2024 21:04:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HWGva+Ah"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="09tYLByR";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="sTHsysm3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D119139595;
-	Fri, 16 Feb 2024 21:02:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3967F145B13;
+	Fri, 16 Feb 2024 21:04:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708117351; cv=none; b=HM7a0WogB+4q0sqeLwEhiOdSKqcNdbNa5JGlcHL0pG7SRpvxFCJI38dMYaxN5ZIx12M35xT4pa+iVJN18oXDSGHQH1p0TTTsZUAsNpU91AI+YfprT+X0QKKtTpNWdzhwarD5YhIVPeONXe3b9Dus/AxHLqkBb3WoG6E73mjJ8YY=
+	t=1708117447; cv=none; b=XFagkPgZTvWKMx38WIufHi007H+N+g2CmhV48lSUq2S8UP/ua5/98uUBXLg8hsLvlYQO8QAtmqXe57wflGN8dlhlSfuX/pwkcD8XwWJRgPmpzfy9abRkoLml3Ty9Niky8/D4Tnr6e9YIVFXYvaMH1YadnSl307xsbRLN8JZyh40=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708117351; c=relaxed/simple;
-	bh=7wSPhtESvVsFi3grbeSFiB3p/8T4CFcFBTX2JailsS8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Rp+DglkIwJQ+o+qMaGbLRvgY/jEF4+B8TvzA2EU2hDBktCeNj6giNuKHihAzW1c0PLCe9xtOeVGMX0zyDIzISokeq/FfsqiIHGCw3UrXQDJRiKj8Gkfrf5KhIN+aH3BMGs8NDrjZ6F8IPyJcP0yPVDihkRFGcTVgu81s5ew4XA4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HWGva+Ah; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id BD7C8C43330;
-	Fri, 16 Feb 2024 21:02:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708117350;
-	bh=7wSPhtESvVsFi3grbeSFiB3p/8T4CFcFBTX2JailsS8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=HWGva+AhgQgN3WM79d+JUUrTY0bdho4bZEb42ic2RFGDHqZmuLoDFn5ADWHyHSRPV
-	 hXyyRpq0Zc29v6A64/K+4xehE4mn31wqQbDxRQAPX9SAG7J+l/aBtxXQ/afhSPpaOS
-	 5Jp3TW9BkmMtJl7UyEYKC7V3hjGx4oRT6qhP3kGOeFvvYMJ/SERY/fblevvas6duBY
-	 LOaBuOwIsT9yXvwJkV6WnaU4KB9brhozNqxoBDakQ81BfVbTeRzECllnMA8aAznXxX
-	 7C0DfjQWph65+hRHIOLlyocC/D5Nrbr46ZoDAR1rCyRv4l9RWVrfYD/yqfulO8GDr5
-	 BmkTtD2vmE+og==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9E61FC48BF6;
-	Fri, 16 Feb 2024 21:02:30 +0000 (UTC)
-From: Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>
-Date: Sat, 17 Feb 2024 05:02:32 +0800
-Subject: [PATCH v3 4/4] dt-bindings: mmc: hisilicon,hi3798cv200-dw-mshc:
- rename to hisilicon,hi3798-dw-mshc
+	s=arc-20240116; t=1708117447; c=relaxed/simple;
+	bh=2HGv2SAPNP/8SNhuPL7jV7rNyYJBGuWopRtV7aLEqMM=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=pkf9Ekz/V8TWMeNcNaXeYlx2twoDzdgLkEPulmX7DnhlzkcRUkwKyccTA0Xoc7i1gpsT4vzfrnoYpK8beDnez47dFB5eaLfPjUfN6YYe5I5HGivJwLMAu1srzLqS59YAPtCNyzZ2eH5i4y9N0R+M+WyKBSK/9Gl2jEnVXcbRZVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=09tYLByR; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=sTHsysm3; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1708117444;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=aPil28lXVu/5EuMTMJHAF2NuE7S20nDRKRUxcPw2x9A=;
+	b=09tYLByROgD3bDLYAoILh20drVnloPdm8qHaCVHSa8YslAkk+vHe5GCMRqEPgmXapRXwp7
+	haMLpBFhy7xqoxZcqtyf08Ob2ZjGCB9hHnx50L0qLeyomv7uwZvRwLH5+eCY0q2Kl3SlS8
+	wMobBVNcDkGtumiuGA36kP32BR/n7Od+jQT19U9Hk6sC/MdjnDn31ojtc+Xf3o707kLWlw
+	hJHDBj443oH4lxAbBirQ48SRQP4as2LG7Q3yN3yRzLeFpVFJFq5MfBoxZW7EXofWFsaCyK
+	Owe5hwIfmeW55ddNzU4jbNTyfHMS0Z8JV9K5LFqZln4wBoUDprmPjYu1DfgFbQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1708117444;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=aPil28lXVu/5EuMTMJHAF2NuE7S20nDRKRUxcPw2x9A=;
+	b=sTHsysm3f+56VNyke1nWTeQXTpJX/RT7U3ejiMXUtOjW65iwO9Uv6f1hJoBVOWapBEc/Mk
+	3esMRQST3WxV1PBg==
+To: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
+ <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>
+Cc: Marc Zyngier <maz@kernel.org>, =?utf-8?B?QmrDtnJuIFTDtnBlbA==?=
+ <bjorn@kernel.org>, Atish
+ Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>,
+ Sunil V L <sunilvl@ventanamicro.com>, Saravana Kannan
+ <saravanak@google.com>, Anup Patel <anup@brainfault.org>,
+ linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Anup Patel
+ <apatel@ventanamicro.com>
+Subject: Re: [PATCH v12 23/25] irqchip/riscv-aplic: Add support for MSI-mode
+In-Reply-To: <20240127161753.114685-24-apatel@ventanamicro.com>
+References: <20240127161753.114685-1-apatel@ventanamicro.com>
+ <20240127161753.114685-24-apatel@ventanamicro.com>
+Date: Fri, 16 Feb 2024 22:04:03 +0100
+Message-ID: <8734tsce9o.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240217-b4-mmc-hi3798mv200-v3-4-f15464176947@outlook.com>
-References: <20240217-b4-mmc-hi3798mv200-v3-0-f15464176947@outlook.com>
-In-Reply-To: <20240217-b4-mmc-hi3798mv200-v3-0-f15464176947@outlook.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>, 
- Jaehoon Chung <jh80.chung@samsung.com>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Igor Opaniuk <igor.opaniuk@linaro.org>, 
- tianshuliang <tianshuliang@hisilicon.com>, David Yang <mmyangfl@gmail.com>, 
- linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org, 
- devicetree@vger.kernel.org, Yang Xiwen <forbidden405@outlook.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1708117349; l=2257;
- i=forbidden405@outlook.com; s=20230724; h=from:subject:message-id;
- bh=4kflwEv+WJmP2PPOQXUMuL9kHf3tVBCROKzZLHhxoCg=;
- b=De+GKfRljIWbAimat2RWpwDanhxiSTNmKJ/2FK/BfGDLvIyapvRs6Ka9et6HFD8QKfOqhoi1p
- YEL4HsJRGaJDvGo93lsCAaT86slCgcRumVlLqwlyYeFC/5ZuUgMpLKI
-X-Developer-Key: i=forbidden405@outlook.com; a=ed25519;
- pk=qOD5jhp891/Xzc+H/PZ8LWVSWE3O/XCQnAg+5vdU2IU=
-X-Endpoint-Received:
- by B4 Relay for forbidden405@outlook.com/20230724 with auth_id=67
-X-Original-From: Yang Xiwen <forbidden405@outlook.com>
-Reply-To: <forbidden405@outlook.com>
+Content-Type: text/plain
 
-From: Yang Xiwen <forbidden405@outlook.com>
+On Sat, Jan 27 2024 at 21:47, Anup Patel wrote:
+> We extend the existing APLIC irqchip driver to support MSI-mode for
+> RISC-V platforms having both wired interrupts and MSIs.
 
-Add binding and an extra property for Hi3798MV200 DWMMC specific extension.
+We? Just s/We//
 
-Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
----
- ...-dw-mshc.yaml => hisilicon,hi3798-dw-mshc.yaml} | 23 ++++++++++++++++++++--
- 1 file changed, 21 insertions(+), 2 deletions(-)
+> +
+> +static void aplic_msi_irq_unmask(struct irq_data *d)
+> +{
+> +	aplic_irq_unmask(d);
+> +	irq_chip_unmask_parent(d);
+> +}
+> +
+> +static void aplic_msi_irq_mask(struct irq_data *d)
+> +{
+> +	aplic_irq_mask(d);
+> +	irq_chip_mask_parent(d);
+> +}
 
-diff --git a/Documentation/devicetree/bindings/mmc/hisilicon,hi3798cv200-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/hisilicon,hi3798-dw-mshc.yaml
-similarity index 73%
-rename from Documentation/devicetree/bindings/mmc/hisilicon,hi3798cv200-dw-mshc.yaml
-rename to Documentation/devicetree/bindings/mmc/hisilicon,hi3798-dw-mshc.yaml
-index f3dc973cb490..26d7f4be965b 100644
---- a/Documentation/devicetree/bindings/mmc/hisilicon,hi3798cv200-dw-mshc.yaml
-+++ b/Documentation/devicetree/bindings/mmc/hisilicon,hi3798-dw-mshc.yaml
-@@ -1,10 +1,10 @@
- # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/mmc/hisilicon,hi3798cv200-dw-mshc.yaml#
-+$id: http://devicetree.org/schemas/mmc/hisilicon,hi3798-dw-mshc.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: Hisilicon Hi3798CV200 SoC specific extensions to the Synopsys DWMMC controller
-+title: Hisilicon HiSTB SoCs specific extensions to the Synopsys DWMMC controller
- 
- maintainers:
-   - Yang Xiwen <forbidden405@outlook.com>
-@@ -13,6 +13,7 @@ properties:
-   compatible:
-     enum:
-       - hisilicon,hi3798cv200-dw-mshc
-+      - hisilicon,hi3798mv200-dw-mshc
- 
-   reg:
-     maxItems: 1
-@@ -34,6 +35,12 @@ properties:
-       - const: ciu-sample
-       - const: ciu-drive
- 
-+  hisilicon,sap-dll-reg:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      A phandle points to the sample delay-locked-loop(DLL)
-+      syscon node, used for tuning.
-+
- required:
-   - compatible
-   - reg
-@@ -44,6 +51,18 @@ required:
- allOf:
-   - $ref: synopsys-dw-mshc-common.yaml#
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: hisilicon,hi3798mv200-dw-mshc
-+    then:
-+      required:
-+        - hisilicon,sap-dll-reg
-+    else:
-+      properties:
-+        hisilicon,sap-dll-reg: false
-+
- unevaluatedProperties: false
- 
- examples:
+Again asymmetric vs. unmask()
 
--- 
-2.43.0
+> +static void aplic_msi_irq_eoi(struct irq_data *d)
+> +{
+> +	struct aplic_priv *priv = irq_data_get_irq_chip_data(d);
+> +	u32 reg_off, reg_mask;
+> +
+> +	/*
+> +	 * EOI handling only required only for level-triggered
+> +	 * interrupts in APLIC MSI mode.
+> +	 */
+> +
+> +	reg_off = APLIC_CLRIP_BASE + ((d->hwirq / APLIC_IRQBITS_PER_REG) * 4);
+> +	reg_mask = BIT(d->hwirq % APLIC_IRQBITS_PER_REG);
+> +	switch (irqd_get_trigger_type(d)) {
+> +	case IRQ_TYPE_LEVEL_LOW:
+> +		if (!(readl(priv->regs + reg_off) & reg_mask))
+> +			writel(d->hwirq, priv->regs + APLIC_SETIPNUM_LE);
 
+A comment what this condition is for would be nice.
+
+Thanks,
+
+        tglx
 
