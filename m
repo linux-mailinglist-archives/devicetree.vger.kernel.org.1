@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-42610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D0DB857E1A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 14:53:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39F9D857E1E
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 14:54:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0DD1C1F25ACD
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 13:53:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA5191F25B2D
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 13:54:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 216A912BF28;
-	Fri, 16 Feb 2024 13:52:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C22D12BF17;
+	Fri, 16 Feb 2024 13:54:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VB1e4192"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HDGLgv9h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76B4612A17B
-	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 13:52:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0808312BEBB
+	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 13:54:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708091575; cv=none; b=uI6tq/uahsTioHU9gixwrwSJ35jaYYng/uHXFcO0VgxVbthCUDdfQ6y6eEagqy7FzatzGvVYIRB/YUJDd9OeOc/0r7DHLxxwbtDXQMBjSFygnY35z9XVZ1vcVfj3QHITImv3bQuSgbZHq0pUmNsH0WTf9C2/+LG6VsqhFWiXTuU=
+	t=1708091675; cv=none; b=I4cBqQvXAQQYXkArK3phx/hN2MfEMu1mtz1p8JoJ3xs3ndj+9zr3avfzSjeQj3YeKy+zXZglkcp3zYLx8eqlscXe/V4FXnOdEWYII6kwjfFbvcBD8+2sxq5/4wcRS3CFX/w4hly+Wg7UilwKYZhCEGHiYJWDqQMxplNGXPMleQ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708091575; c=relaxed/simple;
-	bh=xNpXVvKRPsTrj/Mzz8I8ejGA4UCfRcdLu0H+70btQTc=;
+	s=arc-20240116; t=1708091675; c=relaxed/simple;
+	bh=NhmCUNDgsWt5+ADVtF0uTbpvzwT1bgHvCHWDDbqVurE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HsmdNWeXexjSeDkLxPift4peQR9Ec4t8MJFyBz4M7AEfXqFQY2AHxCghiWiUTiXvtGGYVVb30kX9IkqNURrlRkJUqUcwn9sxspHfrt67/NSZ/vwo6DGILBSVWi3WWyY5LOCIxyRoge7DWp+0tUzTUe3ynHcGL8CiZOTZccsd+ks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VB1e4192; arc=none smtp.client-ip=209.85.161.41
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q+SIy0nfZQMbgyXm8jT5EwboamUDr+sJZLbyqDFLemCZbVHKaxAtGMf3SIbmw+EwqCg3ZQSTva95PhwbGpqoYdjG3pf41aQc9URiFTpcy97QD9EHxJt1UHMJ2OMfpCI/O3AooJcxXYvkCzvA9orNxNc75wq/HnSTBIbuAbSrOis=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HDGLgv9h; arc=none smtp.client-ip=209.85.214.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oo1-f41.google.com with SMTP id 006d021491bc7-59f7d59d3f1so915449eaf.1
-        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 05:52:53 -0800 (PST)
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-1d911c2103aso13466545ad.0
+        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 05:54:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708091572; x=1708696372; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708091673; x=1708696473; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=txRJIv35R09tUN5MfiS2GVQlI2ntTTEw/eVgWdiZrzQ=;
-        b=VB1e4192DhHmjWHMmAwglNGGolZVlxlUQr5OXTTZQEApPow8ftWl4DDNG13LNDrxqX
-         KRdQtp9kB0BMa+47bVxPjJbJzH9mNIvftz/vHjby7MEvDutnrmcYWcmrZGfeWVQEF+Is
-         vqZ2FYgsvbCZ5GSZDnCSIHGyMkmLNqrZEWQBmrLREZhl6JFj0qU1F9FFXMK1RKMFSc3B
-         BYuL/Mzy3WYwbIn3aBsNlHTiOkGTT8825RSYR4N8AuvA/xLzQWujuoh6gCpj+swJsW6M
-         +MV+dw3rn0PqmgKf1Zy7RxowZT+NBtIT+AOikLDPrmOX2GxkNuTVSWNzVuyp5gR3ekQW
-         uJNQ==
+        bh=WZ1AXsb/8YISAA45nMnA+ELNn4c9qOzlfcLWF36QQ1Q=;
+        b=HDGLgv9h9RMuL5A5VDizsU7+Ezvh0+umtj+FZVTNCpGMXas+R/puAOb7P/GSCI5yfw
+         QHdca3v08zziz9k6ss3Le0wUGKC6J30Fg8Fl/4fwXj+FXmpVW2RnjD5Wlj9Tj/uPi2Ip
+         VDNFjgRraPHHQJ4Xgb+gMpMixj9rmlUX6orPeg06Ehg+GbNDTa2d3Gbc/gHZUSGY4EiF
+         QtqQlpXfjuaklCXddNA0WUuPVyfgBhxvkOjScQYHwBBUMv0pmoR6fYL5mPVmThGKfLQm
+         E43DenKim0dmkk69tlrC88vrmbqZKjZvqIJgHmSxLszn5XDHAKXQ9qvTfut4d1vKHtsU
+         KvHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708091572; x=1708696372;
+        d=1e100.net; s=20230601; t=1708091673; x=1708696473;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=txRJIv35R09tUN5MfiS2GVQlI2ntTTEw/eVgWdiZrzQ=;
-        b=ZtfHfLwcFFiU+jIxqLHmwpdVV/2JCBfmAYdvFBKtdXdFWsvJtf60lDKRfNvoGzbNAp
-         WHzEcLxEUaEwb0+XpTJzZHYnEou4At0tFOUbwb3ylf6DJIBdJL/GRe4qoNoms40aafLa
-         v//HG+fJrENqV7qjhJcJpYss+mLDm8y52K32d0Iromncd7o5wTpEU7eE7QuaNyAMKX6z
-         TVM5DZGbgi6+0AySEka43uGZ0JrO4bBtBWpjC5lbxRmEOTCyjgAUck6n0iYpBQWDWyZ8
-         UCW83ig9M1ENDSL1ufPA+UZ/EGFT5jt5qxSsoNMR86dg+ib7PtcCCAZI18rW4cK4Pcjk
-         XUKA==
-X-Forwarded-Encrypted: i=1; AJvYcCUINSqFsgjKw3tgVfGDM7R81JHpApYAUVu4uHZtD2+2jgFYzn9Mj6LVTSgwOhS7ecuiVkfBK+M0SsE3AvBNZ1QC2Avs3C7alOUaPQ==
-X-Gm-Message-State: AOJu0YzF3j4kz9ehiKZDb38F9UYPVXZjNFNdWJ7eNG9fq+katRcfIjXP
-	VZrHGk/jTnEZb3ZwGbcdu2FNFo1yGMH33sOd/MZ03roT0JyyVBtZrCENtGAsgg==
-X-Google-Smtp-Source: AGHT+IHLmVvUWapv7oUFnRXFU043RYMQhKVtctMXsXagpqJTQfV8kTfz5kOQItDz9MAbIRUab45aoQ==
-X-Received: by 2002:a05:6358:9213:b0:179:ff:2486 with SMTP id d19-20020a056358921300b0017900ff2486mr5607719rwb.29.1708091572498;
-        Fri, 16 Feb 2024 05:52:52 -0800 (PST)
+        bh=WZ1AXsb/8YISAA45nMnA+ELNn4c9qOzlfcLWF36QQ1Q=;
+        b=UvdScSIiHAzYb4pfV+zq4jQWxPUuY/wCzaAzxn0tdZ+vCLaWgnCa0xuZ6Kqztrs0qM
+         Rx+NaSlul/iC1kol7WfHiT2Bl4ujC7HCwr2o+HRoQ3wublhM/j/bI4LSJ5XwU5hlEuQ8
+         Lk2khflWJzwKfRQR8m07K5atqIJKi/bU9djxL3KmqiwzSlR/bFPbxEAb0p+bhaLHNBcn
+         ns4qWy1ibxWM74FSqI5LYdcq4gv6EE+eRWJiVubbsKkztpdpnw1Hv935sNPhDu56qB5p
+         8x51HORtf30e7n5cdTMvpis2sUDnZh/MKa/yRAH+1/h4/DTQ3XRVIiKvOE6ym5gRCmAt
+         j4eg==
+X-Forwarded-Encrypted: i=1; AJvYcCV+Tx5x4TabYpWWQ3coLlmcDVusOBeRhRT5sQ4+0wEYgaaHlrPcwEh9g0Uam2X+zffDABIyow3UVDMONd33eRB1IT6WZG12ctsZIQ==
+X-Gm-Message-State: AOJu0Yy8I2nUZ2kjbspSAeq08VWa+HSYIBLsFJtTwLzyfqQTfRAWK5EK
+	rtb/npRuc5tYiz2v53OF6wFmRIrUmBuk4uuKfP9Eis3fXa2haXUiRixdno+pww==
+X-Google-Smtp-Source: AGHT+IG6Br18asjjyc6sQxw6JVym7Z2OCTsKAUJJzmDUZu4MebY4OOdpdvTZcZyMkQSZ2OYVxRzpSw==
+X-Received: by 2002:a17:902:f681:b0:1d9:bf07:7e64 with SMTP id l1-20020a170902f68100b001d9bf077e64mr6398835plg.59.1708091673171;
+        Fri, 16 Feb 2024 05:54:33 -0800 (PST)
 Received: from thinkpad ([120.138.12.48])
-        by smtp.gmail.com with ESMTPSA id p29-20020a63951d000000b005cfbdf71baasm3262550pgd.47.2024.02.16.05.52.47
+        by smtp.gmail.com with ESMTPSA id l12-20020a170903120c00b001db53ace011sm3010714plh.220.2024.02.16.05.54.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Feb 2024 05:52:52 -0800 (PST)
-Date: Fri, 16 Feb 2024 19:22:45 +0530
+        Fri, 16 Feb 2024 05:54:32 -0800 (PST)
+Date: Fri, 16 Feb 2024 19:24:27 +0530
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Cc: Bjorn Andersson <andersson@kernel.org>,
@@ -85,11 +85,10 @@ Cc: Bjorn Andersson <andersson@kernel.org>,
 	Bart Van Assche <bvanassche@acm.org>,
 	Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
 	linux-scsi@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/6] scsi: ufs: qcom: provide default cycles_in_1us
- value
-Message-ID: <20240216135245.GI2559@thinkpad>
+Subject: Re: [PATCH v2 2/6] arm64: dts: qcom: msm8996: unbreak UFS HCD support
+Message-ID: <20240216135427.GJ2559@thinkpad>
 References: <20240213-msm8996-fix-ufs-v2-0-650758c26458@linaro.org>
- <20240213-msm8996-fix-ufs-v2-1-650758c26458@linaro.org>
+ <20240213-msm8996-fix-ufs-v2-2-650758c26458@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,46 +98,42 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240213-msm8996-fix-ufs-v2-1-650758c26458@linaro.org>
+In-Reply-To: <20240213-msm8996-fix-ufs-v2-2-650758c26458@linaro.org>
 
-On Tue, Feb 13, 2024 at 01:22:17PM +0200, Dmitry Baryshkov wrote:
-> The MSM8996 DT doesn't provide frequency limits for the core_clk_unipro
-> clock, which results in miscalculation of the cycles_in_1us value.
-> Provide the backwards-compatible default to support existing MSM8996
-> DT files.
+On Tue, Feb 13, 2024 at 01:22:18PM +0200, Dmitry Baryshkov wrote:
+> Since the commit b4e13e1ae95e ("scsi: ufs: qcom: Add multiple frequency
+> support for MAX_CORE_CLK_1US_CYCLES") the Qualcomm UFS driver uses
+> core_clk_unipro values from frequency table to calculate cycles_in_1us.
+> The DT file for MSM8996  passed 0 HZ frequencies there, resulting in
+> broken UFS support on that platform. Fix the corresponding clock values
+> in the frequency table.
 > 
-> Fixes: b4e13e1ae95e ("scsi: ufs: qcom: Add multiple frequency support for MAX_CORE_CLK_1US_CYCLES")
-> Cc: Nitin Rawat <quic_nitirawa@quicinc.com>
+> Suggested-by: Nitin Rawat <quic_nitirawa@quicinc.com>
+> Fixes: 57fc67ef0d35 ("arm64: dts: qcom: msm8996: Add ufs related nodes")
 > Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
-CC stable list?
 
 Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
 - Mani
 
 > ---
->  drivers/ufs/host/ufs-qcom.c | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/drivers/ufs/host/ufs-qcom.c b/drivers/ufs/host/ufs-qcom.c
-> index 0aeaee1c564c..79f8cb377710 100644
-> --- a/drivers/ufs/host/ufs-qcom.c
-> +++ b/drivers/ufs/host/ufs-qcom.c
-> @@ -1210,8 +1210,10 @@ static int ufs_qcom_set_core_clk_ctrl(struct ufs_hba *hba, bool is_scale_up)
->  
->  	list_for_each_entry(clki, head, list) {
->  		if (!IS_ERR_OR_NULL(clki->clk) &&
-> -			!strcmp(clki->name, "core_clk_unipro")) {
-> -			if (is_scale_up)
-> +		    !strcmp(clki->name, "core_clk_unipro")) {
-> +			if (!clki->max_freq)
-> +				cycles_in_1us = 150; /* default for backwards compatibility */
-> +			else if (is_scale_up)
->  				cycles_in_1us = ceil(clki->max_freq, (1000 * 1000));
->  			else
->  				cycles_in_1us = ceil(clk_get_rate(clki->clk), (1000 * 1000));
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> index f6b6fdc12f44..80d83e01bb4d 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> @@ -2077,7 +2077,7 @@ ufshc: ufshc@624000 {
+>  				<0 0>,
+>  				<0 0>,
+>  				<150000000 300000000>,
+> -				<0 0>,
+> +				<75000000 150000000>,
+>  				<0 0>,
+>  				<0 0>,
+>  				<0 0>,
 > 
 > -- 
 > 2.39.2
