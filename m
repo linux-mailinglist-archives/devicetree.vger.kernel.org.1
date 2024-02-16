@@ -1,93 +1,69 @@
-Return-Path: <devicetree+bounces-42811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46A898588CA
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 23:35:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C157F8588E2
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 23:38:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 795F31C22FFE
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 22:35:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 38D2AB2B040
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 22:38:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B2AC14F9D7;
-	Fri, 16 Feb 2024 22:33:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12A7914A083;
+	Fri, 16 Feb 2024 22:37:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nPIKj6BG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ceGIhwRt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B85C914D44E
-	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 22:33:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF1DD14831E;
+	Fri, 16 Feb 2024 22:36:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708122783; cv=none; b=W0Bu1tbpjYl6UzoUl98F4AtUk3ImG3Hj8ATeQ1WcQ2vHpIQgMDl1VsdVzJjRuUlggY+NJzQVEwy/H89fyUiBc9ccxe/+X6tvv2tXEzpQezRONMic7waGbY2E1AaIOX0P0fbdRtDYyvNv2SQ7zRSaxHin7TNcSNW3j4jDnfcz9KA=
+	t=1708123020; cv=none; b=AJOAKTZDnBOJ1/RA2FcgBGwL6MneRDAQcK24Mes+2BZAzRhGffDSDjucwxkkfUOjxzp1KRxoIpP0oIyx2deSJOR0/g+ii7w+nXJeByMeIpQEnUo4wkZlKbV7bXinruU6wDgA3aMCh7hxkV0xicX8EWAfKXLcTjqEIXuQzxwPxaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708122783; c=relaxed/simple;
-	bh=IpYTwVvtbGsA5DUmVNUVd0AssLWUdtfSYxsrxvQPaCI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Z6+2saoesq36LGJJVRLhfLnP/OZZ0IamyePKfgqK5XuoiqU0UHP7pnUdWa5r5AyKcphH3TXv/G3z0UTfqoDrcHB2dEriFlgZINrEmCvYnp+nS1Q45huLOgzc6pb/2Kto5E6FYTAj/L5ZPZ1PAIoL2HmaOctCaecdnW4mZXezMA4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nPIKj6BG; arc=none smtp.client-ip=209.85.167.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-3c03d475b63so1632384b6e.2
-        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 14:33:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708122779; x=1708727579; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hqedr2Cf8uu/ojchTl0vqAT7pyl8JaYNxl2fhHgkUDU=;
-        b=nPIKj6BGNEUwUY5wJ8eHJsXcPeR/CmInExnkB3YDvRe/jjYn3X6y/XZx8IHOpEhMbS
-         7recHhiYEzRJNXlTZ8ze9xzsVqJV+XyJ0ZDLoaIENOpscbwdhoPawvClZ1NTe3xPC9Jm
-         TFdk8v8wmRLf6Ruus73Zzo76pqQmSmfPySh95IMiBiLy2VFqcv1k+vze42o+LbyRO8nV
-         IBjkd6coac2SVtMOyQZEgylqh/y5P19tNHZC0g1o2bSg+L/h0R9C0EJ/49LAPn27KHnQ
-         Qxz7OrLQvmprIckMPKAtMF03rKlS8xwL4wp0O+yM0jVv7sqZBKHts1tYRDRFUKxikp81
-         nh5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708122779; x=1708727579;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hqedr2Cf8uu/ojchTl0vqAT7pyl8JaYNxl2fhHgkUDU=;
-        b=Spnc4jBC6kuSMyySieZYzcfo1jd4H6n9idQjDmtkANleaG1mCReoQUVpuG/ovlTsZ1
-         wNY7FuLLcIQ2+u0ewiqNn2VPsMXfvUceLNz2HjF/AAW4rmlSgwHWRg3KYJI3Yn39WBSz
-         SwaFE0yyZaSN6kRnKqvg/jC+fxtjEvKkskZKUaY8zQwgjZCtayuVuQP5KYtEeQuL3bqM
-         +OMPVqDp7/DrxQMUCYN+m0vxTdCdeeHItnReSN8XiHP21KHxWWPHFn9M+IMMAZu8egiy
-         O3zKqiFDOeoN8KEE4FlT86NWyXv8kskzUrsGxxMS+uTr3wzZXVQeqcY+0k5ibkrTI2Dy
-         a4sw==
-X-Forwarded-Encrypted: i=1; AJvYcCWQUVtLnDPcM8kjv2gK2WRkiy9S4TwmlQZFLa8Nnjo0QX31CUipCB2coWekhE48ZQwZ+geX5699ZDhyDQZhINkSCbZF19JV8ytqXg==
-X-Gm-Message-State: AOJu0YzRXgUshmpmKy06fMsy3BUnJmHhXh+Upow/Q3w+SsMH1zIHEtRr
-	CLnV6wHI7eXwZPUFvv7pT8VoSe9dKLSuUutMSu5w49HoGWCG+CRdF0A4kUM80to=
-X-Google-Smtp-Source: AGHT+IG+ne10+UGzrxsIM3qTjARf9KX9TPUBRYEZ1G+65MMHUS0yyLw6vNMSFgUqvmX17ex/zLMMnw==
-X-Received: by 2002:a05:6808:3193:b0:3bf:f4b2:2164 with SMTP id cd19-20020a056808319300b003bff4b22164mr7924507oib.28.1708122779339;
-        Fri, 16 Feb 2024 14:32:59 -0800 (PST)
-Received: from localhost ([136.62.192.75])
-        by smtp.gmail.com with ESMTPSA id cr3-20020a056808368300b003bff074dd43sm126449oib.58.2024.02.16.14.32.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Feb 2024 14:32:59 -0800 (PST)
-From: Sam Protsenko <semen.protsenko@linaro.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Chanwoo Choi <cw00.choi@samsung.com>
-Cc: Alim Akhtar <alim.akhtar@samsung.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1708123020; c=relaxed/simple;
+	bh=eJIaDZ7rjnMFktwjotvFLcESURdj1UH+fKntueNKal8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=T/J6uQBJVG/+9z/5xQIZyz/YCVthOV2ieHVBUxU3CD14zX0/YVuYKbuUPScym7VrU6F1v/Y1zGYVhF+Rk8qMrOxvkxkPOT5BIIbAGF3Tm15X1mhDFVV7ng/5CZAtGURVtPJiJ3f/RDvpe9JcFBNZOccgkvRKO3J6fSra5c7m3IE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ceGIhwRt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EF0DC43390;
+	Fri, 16 Feb 2024 22:36:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708123019;
+	bh=eJIaDZ7rjnMFktwjotvFLcESURdj1UH+fKntueNKal8=;
+	h=From:To:Cc:Subject:Date:From;
+	b=ceGIhwRtCOjKE6/hp2iveWbcgQxDHInN0jP5U8DEPYIirqzCCKfx0/OSbieNF3NgV
+	 HVny9G3RyBYZry2mSh6uBbkk9f+fZm1L7kkCWSAEFpmmRf6BBeZm4mMgc1n1Hlu7cg
+	 Z2MX1sdkHnKw/y63QFZNxSupxOtAxCAjS0xd3dWTVfPRV+XWxJ1TrW4F4EtkNOWCBa
+	 7eJTCEuDqtFjnMFuydsP1jBq5FVkw45wfw+n9oUjQXxJg/SL51YfuRXTqBta21xzHT
+	 UsYkE630OnwHIGYvMHVXA0Typ3HqIqkiE2b/whKNCib4Tn4jZ7NHbNFpgodYcfhCDw
+	 XFNQUY5I3M/oQ==
+Received: by mercury (Postfix, from userid 1000)
+	id 890981061C38; Fri, 16 Feb 2024 23:36:56 +0100 (CET)
+From: Sebastian Reichel <sre@kernel.org>
+To: Sebastian Reichel <sre@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Tomasz Figa <tomasz.figa@gmail.com>,
-	linux-samsung-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>
+Cc: Dong Aisheng <aisheng.dong@nxp.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 16/16] arm64: dts: exynos: Add CPU clocks
-Date: Fri, 16 Feb 2024 16:32:45 -0600
-Message-Id: <20240216223245.12273-17-semen.protsenko@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240216223245.12273-1-semen.protsenko@linaro.org>
-References: <20240216223245.12273-1-semen.protsenko@linaro.org>
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: [PATCH v3 00/16] UNI-T UTi260B support
+Date: Fri, 16 Feb 2024 23:34:19 +0100
+Message-ID: <20240216223654.1312880-1-sre@kernel.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,66 +72,136 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Define CPU cluster 0 and CPU cluster 1 CMUs, which generate CPU clocks,
-and add corresponding CPU clocks to CPU nodes.
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
----
- arch/arm64/boot/dts/exynos/exynos850.dtsi | 26 +++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+Hi,
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos850.dtsi b/arch/arm64/boot/dts/exynos/exynos850.dtsi
-index 2ba67c3d0681..0706c8534ceb 100644
---- a/arch/arm64/boot/dts/exynos/exynos850.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos850.dtsi
-@@ -93,6 +93,8 @@ cpu0: cpu@0 {
- 			compatible = "arm,cortex-a55";
- 			reg = <0x0>;
- 			enable-method = "psci";
-+			clocks = <&cmu_cpucl0 CLK_CLUSTER0_SCLK>;
-+			clock-names = "cluster0_clk";
- 		};
- 		cpu1: cpu@1 {
- 			device_type = "cpu";
-@@ -117,6 +119,8 @@ cpu4: cpu@100 {
- 			compatible = "arm,cortex-a55";
- 			reg = <0x100>;
- 			enable-method = "psci";
-+			clocks = <&cmu_cpucl1 CLK_CLUSTER1_SCLK>;
-+			clock-names = "cluster1_clk";
- 		};
- 		cpu5: cpu@101 {
- 			device_type = "cpu";
-@@ -254,6 +258,28 @@ cmu_peri: clock-controller@10030000 {
- 				      "dout_peri_uart", "dout_peri_ip";
- 		};
- 
-+		cmu_cpucl1: clock-controller@10800000 {
-+			compatible = "samsung,exynos850-cmu-cpucl1";
-+			reg = <0x10800000 0x8000>;
-+			#clock-cells = <1>;
-+
-+			clocks = <&oscclk>, <&cmu_top CLK_DOUT_CPUCL1_SWITCH>,
-+				 <&cmu_top CLK_DOUT_CPUCL1_DBG>;
-+			clock-names = "oscclk", "dout_cpucl1_switch",
-+				      "dout_cpucl1_dbg";
-+		};
-+
-+		cmu_cpucl0: clock-controller@10900000 {
-+			compatible = "samsung,exynos850-cmu-cpucl0";
-+			reg = <0x10900000 0x8000>;
-+			#clock-cells = <1>;
-+
-+			clocks = <&oscclk>, <&cmu_top CLK_DOUT_CPUCL0_SWITCH>,
-+				 <&cmu_top CLK_DOUT_CPUCL0_DBG>;
-+			clock-names = "oscclk", "dout_cpucl0_switch",
-+				      "dout_cpucl0_dbg";
-+		};
-+
- 		cmu_g3d: clock-controller@11400000 {
- 			compatible = "samsung,exynos850-cmu-g3d";
- 			reg = <0x11400000 0x8000>;
+This adds adds support for the UNI-T UTi260B thermal camera, which is based
+on i.MX6ULL. Patches 1-14 clean up all warnings reported by CHECK_DTBS for
+i.MX6ULL (i.e. for an empty board). They are not specific to the UTi260B and
+in fact that machine has most of the IP handled by these patches marked as
+disabled. Then patches 15+16 introduce the vendor and board compatible DT
+bindings. Finally the last patches adds support for the thermal camera itself.
+
+The DT is based on reverse engineered information. More information about
+the device can be found in this presentation from Embedded Recipes 2023:
+
+ * https://embedded-recipes.org/2023/wp-content/uploads/2023/10/Running-FOSS-on-a-Thermal-Camera-Sebastian-Reichel-compressed.pdf
+ * https://www.youtube.com/watch?v=uvObsCG-Cqo
+
+I also prepared a branch with these patches (and a minimal kernel config)
+and published it here:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/sre/linux-misc.git/log/?h=uti260b-v3
+
+Changes since PATCHv2:
+ * https://lore.kernel.org/all/20240213010347.1075251-1-sre@kernel.org/
+  - drop fsl,imx-asrc YAML binding conversion (merged)
+  - collect a bunch of Reviewed-by/Acked-by tags
+  - weim DT binding: fix issue with requirements
+  - xnur-gpio -> xnur-gpios change: Improve patch long description
+
+Changes since PATCHv1:
+ * https://lore.kernel.org/all/20240210012114.489102-1-sre@kernel.org/
+  - uni-t,imx6ull-uti260b -> uni-t,uti260b
+  - add Acked-by for uni-t vendor prefix
+  - add Acked-by for HDMI audio index fix
+  - add Acked-by for LCDIF power-domain requirement drop
+  - anatop DT binding: Fixed indentation in example
+  - anatop DT binding: Described IRQs
+  - touchscreen DT binding: change tsc@ to touchscreen@ in example
+  - touchscreen DT binding: change xnur-gpio to xnur-gpios
+  - weim DT binding: drop acme,whatever example
+  - weim DT binding: use flash@ instead of nor@
+  - weim DT binding: update weim.txt reference in arcx,anybus-controller.txt
+  - weim DT binding: switch to memory-controller binding
+  - fsl,imx-asrc DT binding: fix ASoC patch subject prefix
+  - fsl,imx-asrc DT binding: add constraints
+  - add new patch fixing xnur-gpio(s) in all i.MX6UL board DT files
+  - add new patch fixing touchscreen nodename in i.MX6UL SoC DT file
+  - add new patch fixing weim nodename in all i.MX SoC DT files
+  - device DTS: use color/functions for the led
+  - device DTS: increase SPI speed
+  - device DTS: add comment for SD / eMMC node
+
+Unadressed feedback from PATCHv1:
+  - anatop phandle vs parent: technically it makes sense to just use the
+    parent, but this driver is only used by i.MX6. The current code makes
+	use of the phandle, so we cannot drop it because of backwards
+	compatibility. So I don't see a point in deprecating this property.
+  - touchscreen binding: I kept measure-delay-time and pre-charge-time
+    values in hex, since that is being used everywhere and the unit
+	is unknown. The values are directly written into HW registers and
+	the i.MX6UL TRM does not provide any hints about the unit. I do not
+	have an i.MX6UL device with a touchsreen, so I cannot test either.
+  - regulator name in DT: I did not rename the regulators to just
+    "regulator", since the nodename must be unique.
+
+Greetings,
+
+-- Sebastian
+
+Sebastian Reichel (16):
+  dt-bindings: pinctrl: fsl,imx6ul-pinctrl: convert to YAML
+  dt-bindings: bus: imx-weim: convert to YAML
+  dt-bindings: input: touchscreen: fsl,imx6ul-tsc convert to YAML
+  dt-bindings: soc: imx: fsl,imx-anatop: add binding
+  dt-bindings: soc: imx: fsl,imx-iomuxc-gpr: add imx6
+  dt-bindings: lcdif: Do not require power-domains for i.MX6ULL
+  dt-bindings: fsl-imx-sdma: fix HDMI audio index
+  ARM: dts: imx6ull: fix pinctrl node name
+  ARM: dts: imx6ul: Remove fsl,anatop from usbotg1
+  ARM: dts: imx6ul: add missing #thermal-sensor-cells
+  ARM: dts: nxp: imx6ul: xnur-gpio -> xnur-gpios
+  ARM: dts: nxp: imx6ul: fix touchscreen node name
+  ARM: dts: nxp: imx: fix weim node name
+  dt-bindings: vendor-prefixes: add UNI-T
+  dt-bindings: arm: add UNI-T UTi260B
+  ARM: dts: imx6ull-uti260b: Add board
+
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ .../devicetree/bindings/bus/imx-weim.txt      | 117 ----
+ .../bindings/display/fsl,lcdif.yaml           |   8 +-
+ .../devicetree/bindings/dma/fsl,imx-sdma.yaml |   3 +-
+ .../input/touchscreen/fsl,imx6ul-tsc.yaml     |  97 +++
+ .../bindings/input/touchscreen/imx6ul_tsc.txt |  38 --
+ .../fsl/fsl,imx-weim-peripherals.yaml         |  31 +
+ .../memory-controllers/fsl/fsl,imx-weim.yaml  | 203 +++++++
+ .../mc-peripheral-props.yaml                  |   1 +
+ .../bindings/pinctrl/fsl,imx6ul-pinctrl.txt   |  37 --
+ .../bindings/pinctrl/fsl,imx6ul-pinctrl.yaml  | 116 ++++
+ .../bindings/soc/imx/fsl,imx-anatop.yaml      | 128 ++++
+ .../bindings/soc/imx/fsl,imx-iomuxc-gpr.yaml  |  18 +-
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm/boot/dts/nxp/imx/Makefile            |   1 +
+ arch/arm/boot/dts/nxp/imx/imx1.dtsi           |   2 +-
+ arch/arm/boot/dts/nxp/imx/imx27.dtsi          |   2 +-
+ arch/arm/boot/dts/nxp/imx/imx31.dtsi          |   2 +-
+ arch/arm/boot/dts/nxp/imx/imx35.dtsi          |   2 +-
+ arch/arm/boot/dts/nxp/imx/imx51.dtsi          |   2 +-
+ arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi        |   2 +-
+ arch/arm/boot/dts/nxp/imx/imx6sl.dtsi         |   2 +-
+ arch/arm/boot/dts/nxp/imx/imx6sx.dtsi         |   2 +-
+ .../boot/dts/nxp/imx/imx6ul-14x14-evk.dtsi    |   2 +-
+ arch/arm/boot/dts/nxp/imx/imx6ul-geam.dts     |   2 +-
+ .../nxp/imx/imx6ul-imx6ull-opos6uldev.dtsi    |   2 +-
+ arch/arm/boot/dts/nxp/imx/imx6ul.dtsi         |   6 +-
+ .../boot/dts/nxp/imx/imx6ull-dhcom-som.dtsi   |   2 +-
+ arch/arm/boot/dts/nxp/imx/imx6ull-uti260b.dts | 572 ++++++++++++++++++
+ arch/arm/boot/dts/nxp/imx/imx6ull.dtsi        |   2 +-
+ .../fieldbus/arcx,anybus-controller.txt       |   2 +-
+ 31 files changed, 1195 insertions(+), 212 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/bus/imx-weim.txt
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/fsl,imx6ul-tsc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/imx6ul_tsc.txt
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/fsl/fsl,imx-weim-peripherals.yaml
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/fsl/fsl,imx-weim.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imx6ul-pinctrl.txt
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imx6ul-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6ull-uti260b.dts
+
 -- 
-2.39.2
+2.43.0
 
 
