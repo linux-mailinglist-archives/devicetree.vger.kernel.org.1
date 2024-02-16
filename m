@@ -1,163 +1,126 @@
-Return-Path: <devicetree+bounces-42547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42548-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E29E857B95
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 12:26:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94FA0857B9F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 12:29:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01641280DB9
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 11:26:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B9861F22EBC
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 11:29:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 152C777629;
-	Fri, 16 Feb 2024 11:26:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B795977629;
+	Fri, 16 Feb 2024 11:29:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KpBC6sPk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I5HOEDXs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55ED15812E
-	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 11:26:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BBEB627FF;
+	Fri, 16 Feb 2024 11:29:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708082779; cv=none; b=LG+FR37HeNFQt/NBXDFeLR4LukOrDwv50ITnvzdOFxveYGWNdewuNi3j/C9UIYSdruaow3Yep7Aj1YVc3zmJjAcxq/jyd47P5gn+dewLgrIK50fOEwL9H6qyuaApeqofF3JM5X+esDkNAEyqaLOts2IkMVNQKc8oIg7gdmkXqTs=
+	t=1708082964; cv=none; b=hTPYIz9HjRxXkBNmCjTKTqioNgr+NPiXkZwc4VkhxePKjLx97hCZ7XZIR41h7PDsuRIA4djmrsB+TPKc4k8nJKqL2DztN868OqNBDDPKctqp/ZHaMK+mQTJbgOhSj/a1xsFW6HvGCMlUlL4TtpUz8QvN+2+cmSLVMBPPvA0h2YE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708082779; c=relaxed/simple;
-	bh=VSg2zaM/mXLKcv5JSG9ghtR5f/4/gvsw/7eGL3jqXC0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Ttg5IUO36+P6D7ThEzWFgG4VJFXlW0x34fD2cKn5e548nzKzgjWCkwKnLlW0Tgcsmhn4N5YJ4HVDvh5EmqqBHqnTIrG1UUueLsTcsfQxI+TaJ4AFacQpBNrT0JyXh1KIaOOZEe3wf/mRkChqaNmoqd9B6EmAa8JjSJD8b8u3xms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KpBC6sPk; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a3122b70439so222566966b.3
-        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 03:26:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708082775; x=1708687575; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=93OYLg4q0oHjxuDIEvks7Wy0CY8KY785GXCxGC4pQbw=;
-        b=KpBC6sPkgliJqNfzyVmU7BYqFwd9Lxz6C3IyUbRPcZZ13DU0dKVHT++KSUhHEm9IiK
-         giHxoao3JzL5Em7EVhUaP7FZ36BWa+5pGMN6gcP9dqtLOHyitlg81s6sH+8hjUYX+VYy
-         +TlqlOSwJS6fPYhibi106vKpBV7vFzF74BV/sceWbSuXfCAwOaRFttYCGE4ZtwDu8O2d
-         0WccXPf85RLv55eD0yDr5YL+6LmSyH/KFmLS9vVv3Qgr92LPN9pi7g1G8QTf++SjvS8Q
-         dHJmsltnJ5de/vJDhl1aVk7pvOiyNmo5ihXBY0gtZLWAN+rQDrImpTf34EDQAJyL9P2W
-         8vRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708082775; x=1708687575;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=93OYLg4q0oHjxuDIEvks7Wy0CY8KY785GXCxGC4pQbw=;
-        b=sCyYCwdpV850SUtS9aSkJRgGYjmnEvrL3zb0i6fyCNia4TduXV+z9kbsb8fwsUloq0
-         rj9Mle62vjD7kZ+hSBPHeaM6nlWh/Q8Wi52M5dZ/yhRBnaxKakpmPe+7BabJ+Feya942
-         37iBC7OSro9aJkD2m5aRiPl/n0VIIWnp6YYzQraGun1h7qvGTwdO7TJgf1TYQ77GX5XY
-         7rR27YoPk/vvoVMpEUGdmLIf+5kOm9otJPmOaWhM3s70/4B4Uc9QtZI5oS4oiHkcdZaf
-         4Q4YEBXAtOU+4LoeTP4pMlmL3pFv+zbT3DJLyY/Mg/A2mDMYVybbx1Y9rbo0y/Mr5z9V
-         x4qg==
-X-Forwarded-Encrypted: i=1; AJvYcCXBh3tgDG3MIV1+XMbvSiUr4hT2QvFNyeXIHV6xoI5CtS8T4yDGHBRvEiu+PBYvqDB1dQ/v/7MBITmKd/M5e2f3D+yJraaOZdnmjA==
-X-Gm-Message-State: AOJu0YyRvondqtN7ytQqH6NiPzmiH/Sx+FaTAVNjG9EQ2JMNRXpMoMO+
-	ZqpfcvBeo2wj0+FIEZ+EYMtLsi7uGmnRO01rsOf5onkbRuFyKZQkLuHPnII5I14=
-X-Google-Smtp-Source: AGHT+IFGkXTiIVeO0kCYo/eseWcxXwAGaGEaJNstXMzh/oBCux1zMq7ACOjpZD7ZbdLmyF2om9iWiQ==
-X-Received: by 2002:a17:906:c457:b0:a3d:ed30:11c8 with SMTP id ck23-20020a170906c45700b00a3ded3011c8mr632398ejb.15.1708082775630;
-        Fri, 16 Feb 2024 03:26:15 -0800 (PST)
-Received: from [192.168.0.22] ([78.10.207.130])
-        by smtp.gmail.com with ESMTPSA id hw18-20020a170907a0d200b00a3c7fb8cc74sm1451156ejc.154.2024.02.16.03.26.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Feb 2024 03:26:15 -0800 (PST)
-Message-ID: <00d6a0d5-6787-4777-8fb2-dcad4304a724@linaro.org>
-Date: Fri, 16 Feb 2024 12:26:12 +0100
+	s=arc-20240116; t=1708082964; c=relaxed/simple;
+	bh=LaKs5DqAuKaU3encHBxSEltA7O1irPZqnTol1trVLEk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MClMKFJc4JqZBkk9+QuE+ACFQVRkywG/vCRFq0k58inlm2rNV+dZmaBLAkIqqP4+IIu7W3n3v06fPsF1h8JMwI9Qycjd+CoFF4+Dn5VCu8RhY1enl3+XnCmhEc0szHXMVaykKJJOfgEbCSfJRM7F0Wt/bfZK7zov6jfGmLyRGws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I5HOEDXs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68980C433B2;
+	Fri, 16 Feb 2024 11:29:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708082964;
+	bh=LaKs5DqAuKaU3encHBxSEltA7O1irPZqnTol1trVLEk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=I5HOEDXs4RGYSouKlxxc0vt7BLbZGIAj31GCowFh0QUM9Vk5PvFYU/luROXnSbWo3
+	 et5ArAltsZKlKwWWwB/uP+eDRd3i5VxvGQ1xNbTn7tzYVegk4CbuPzE6JRrJQEoHmW
+	 iOfLz0EoBtJGuTM0JaC0mDhSoD5IkVWYkCKrU4ceAUxprUNK7VB74KLkS0u2vbVhKx
+	 iONu4FBGFgdEKFSwsVEH27VY/VV+To12D6I5msl7cIEJ8vzs1H7REN7S3MYJIZWLOP
+	 lc69mS1uXXeJX99cNtgOlS0yy/PXlqiEfwIfHzqTyW6EVx6WT+qhvhHFNHKeroKfaU
+	 Ogb9QsWfW0F/A==
+Date: Fri, 16 Feb 2024 11:29:10 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: puranjay12@gmail.com, lars@metafoo.de, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+ thomas.haemmerle@leica-geosystems.com
+Subject: Re: [RESEND PATCH 2/2] iio: temperature: tmp117: add support for
+ vcc-supply
+Message-ID: <20240216112910.4059a09b@jic23-huawei>
+In-Reply-To: <20240216102820.1395815-2-m.felsch@pengutronix.de>
+References: <20240216102820.1395815-1-m.felsch@pengutronix.de>
+	<20240216102820.1395815-2-m.felsch@pengutronix.de>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: i3c: drop "master" node name suffix
-Content-Language: en-US
-To: Jeremy Kerr <jk@codeconstruct.com.au>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>,
- =?UTF-8?Q?Przemys=C5=82aw_Gaj?= <pgaj@cadence.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>,
- Conor Culhane <conor.culhane@silvaco.com>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- Dinh Nguyen <dinguyen@kernel.org>, Boris Brezillon <bbrezillon@kernel.org>,
- Nicolas Pitre <npitre@baylibre.com>, linux-i3c@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-References: <20240117075618.81932-1-krzysztof.kozlowski@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240117075618.81932-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 17/01/2024 08:56, Krzysztof Kozlowski wrote:
-> Drop the requirement of "-master" suffix in node names because:
-> 1. "Master" word is discouraged and MIPI Alliance renamed it to
->    "Controller".
-> 2. Some devices can operate in Controller (Master) or Target mode, thus
->    the name is not accurate in such cases.
-> 3. Other buses, like I2C controllers, use simple "i2c".
+On Fri, 16 Feb 2024 11:28:20 +0100
+Marco Felsch <m.felsch@pengutronix.de> wrote:
+
+> From: Thomas Haemmerle <thomas.haemmerle@leica-geosystems.com>
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Add support to specify the VCC supply which is required to power the
+> device.
+> 
+> Signed-off-by: Thomas Haemmerle <thomas.haemmerle@leica-geosystems.com>
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+
+Hi.
+
+With power supply enables, the question that normally comes up is whether
+the device takes significant time to become available after the power is
+turned on.
+
+I had a look at the datasheet but couldn't find clear language on
+how long we need to wait before the device is usable following power up.
+There is a number for reset of 1.5 msecs so I guess we could use that
+safely?
+
+Maybe no delay is fine for reading the device ID. I've no idea.
+Sometimes we start with no delay and only end up adding one later when
+people report issues.  We could do that here.
+
+Jonathan
+
 > ---
-
-Rob, can you pick this one up? It seems Alexandre did not take it.
-
-Best regards,
-Krzysztof
+> Resend since I forgot to add the DT maintainers
+> 
+>  drivers/iio/temperature/tmp117.c | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/drivers/iio/temperature/tmp117.c b/drivers/iio/temperature/tmp117.c
+> index 059953015ae7..69328066811a 100644
+> --- a/drivers/iio/temperature/tmp117.c
+> +++ b/drivers/iio/temperature/tmp117.c
+> @@ -17,6 +17,7 @@
+>  #include <linux/kernel.h>
+>  #include <linux/limits.h>
+>  #include <linux/property.h>
+> +#include <linux/regulator/consumer.h>
+>  
+>  #include <linux/iio/iio.h>
+>  
+> @@ -152,6 +153,10 @@ static int tmp117_probe(struct i2c_client *client)
+>  	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_WORD_DATA))
+>  		return -EOPNOTSUPP;
+>  
+> +	ret = devm_regulator_get_enable(&client->dev, "vcc");
+> +	if (ret)
+> +		return ret;
+> +
+>  	dev_id = i2c_smbus_read_word_swapped(client, TMP117_REG_DEVICE_ID);
+>  	if (dev_id < 0)
+>  		return dev_id;
 
 
