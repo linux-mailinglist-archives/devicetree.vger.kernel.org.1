@@ -1,180 +1,172 @@
-Return-Path: <devicetree+bounces-42714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0342D8583A3
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 18:11:49 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D24F48583B7
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 18:13:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82D9E1F24768
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 17:11:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2CC0FB27288
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 17:13:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ADD8132472;
-	Fri, 16 Feb 2024 17:11:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C97B71353F6;
+	Fri, 16 Feb 2024 17:11:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ehv+7/5f"
+	dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b="qjIK0WI6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E75D130E34;
-	Fri, 16 Feb 2024 17:11:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 339C61353E7
+	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 17:11:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708103467; cv=none; b=cMGnmOD+7dSN+lX6cxWYH1o9/0kUprK4Dz5SMtR517hmfWnSFY7Adsm5Sa9Fp6xq4tzaI1JfjTn9PGrgBUNIazV7oEKJvTtwPXD8ZettHtoCoHu7LjBXgplXmxGas2xS7GZ3adrNZdpQ3yMoMdOT9fXG5FA3gUIYfdkroMb/cWw=
+	t=1708103494; cv=none; b=qyw6qHn775XjGY5+iCoOSn8sn3YpLU0BWeKCsO3H6r38EFWKblXlwf8c+53Hx0E6dQMo5BTo6I5fsEI4CVRt7Stv5exuIEr4RSOSkRliu9SYK4fvg/f6zhy30W/i6pB0uscU8tMFuByc68BTenPj85sHmg/lg8XvUpp3xDJ8zX0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708103467; c=relaxed/simple;
-	bh=khoiFjUd4dcTUW8wesggwnEKbiZ4BO5mCPFbLHCUyGs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NDvro2Q4Zpjk6Gs3fsO/VD7J1wHh2o1NghHjkWfMFBA9j8HKgQ1H0StnKeiFlkEvP9+z5zGX0ddwL0ywvuvx2yeQFcTYRSm0QGrbTvP2yPu3cTKLC1AX+DddxIMEUFfQEwBLGHIqdtMgOEUfjfxjbLaPVqEueQf1lpTEr8CUN1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ehv+7/5f; arc=none smtp.client-ip=209.85.210.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-6da9c834646so2085725b3a.3;
-        Fri, 16 Feb 2024 09:11:05 -0800 (PST)
+	s=arc-20240116; t=1708103494; c=relaxed/simple;
+	bh=xjN1Txz0NRu+aYorD0V/0btXAZTtLNg0c38DLzxV7Y8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fBMSEJPMmgaXaaz2yjXrf9VIgIpaSG7rzfChK2az1dFZtdjw8FpNrZOguNHm6VWmT5sNOBfm1mWDC8oPv2mvUqEMYI7FigvBNf6mEFOlunezPCRwNUc4kUnEl4XUP1lP7hr9Lb77vK0iU9dyzglnbab1YXKMAHxBJjqj61wbLnQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org; spf=none smtp.mailfrom=brainfault.org; dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b=qjIK0WI6; arc=none smtp.client-ip=209.85.166.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=brainfault.org
+Received: by mail-il1-f171.google.com with SMTP id e9e14a558f8ab-3642281e4a6so2703495ab.2
+        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 09:11:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708103465; x=1708708265; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=kbU5Q7mwroDZ8CIL6V8jiBVhQYcx+nOogs7IaVh1Fqk=;
-        b=ehv+7/5f+8GnzROcLthPy92fL8MbBbRCo/QTEm+QbVKjv9Ek0N+twaeStL+GDfz1Fs
-         yzhK8uYnM+Qnhu+3beSXFoWLEvARUjeDUtbdPhMBqUuIONR2RvXLII9Ur6ufisAsNr2Q
-         o02dXS/A8pnEqevOmM7raKKoh0OfNKY/TCyfdYVfObgAW5wHfsqbjcfs4LfpshOberSK
-         a58En/8wfKv4Vp7fAUIeG4hj9Y3YRWqS+7P+Msx7LNWmm4ZhfUfaT0xeEEQI7eLs9DvS
-         aD/BBNZ607IGEaA3d3Jg3e390MKy4HRHStiep/VYC786KfFvn5G9gTI73dN/ioDkVTaW
-         XmOw==
+        d=brainfault-org.20230601.gappssmtp.com; s=20230601; t=1708103492; x=1708708292; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=havUKwIuQeWK4aYu8DNjs5scwGn6QvvJ9tZ1EDA7AU4=;
+        b=qjIK0WI6BMRxFfvwDqX8CyiSktGjxnchTLXvFuvFM50SO9VGc6oogg2SiMT/WCbSeN
+         uruxBlVZvibuavftiMZgd9ia1yV259xp2iVSXT7Ch5DUE5P+/mAk1WwDrkv9f8xagaD7
+         q+bQfXt7YqjWlG9KVJXhzUZVWlTfiOLQZgd8YV7jtP9TmBSh3roc+IZVCCQ5s4js2CSG
+         ofBoqZtEksQv8CMrKmrqsYj14st/EYQ83jnaqNWzgaT9TM7VHr5gBUSjww7gbifaYc64
+         W52Q8B2JVB9LXV+JFVF/5nnPqMorqB1SjuM2wj1A90xrk59mJOl9NiaT+J8Bde/4VpoJ
+         0+ZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708103465; x=1708708265;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kbU5Q7mwroDZ8CIL6V8jiBVhQYcx+nOogs7IaVh1Fqk=;
-        b=f2boUyEsgepNZubNCP+Os97fThiuk5SWd22pcaJJvilnq9z0Fvw5NHV7Xs6pM7ZkQn
-         7fvVuRXHMsz6a+hNtJeDQDuVpmOwFOC9iV8bBDEwxFEzxnguAvDeOazpOEKhYXWqwxYB
-         zx4JSBYAbV3LncaSedPCJCbVcCXuTLvf0N5ywXROrBGlFNVKa9DJPLfUZieyIALpTolA
-         afFczMX7FV6xQQGhyNIlM98pH5nzMuFiWz3tYXzhzm72Wo4fd/DXgVPMvaBScQtl5TfJ
-         eEiWbUOIopbJj1ObifiHNlu/Y0DA+Zc8q1NvkxWdQhkZ4j40Ui0c+0fSbebmMlU8jrui
-         RIXA==
-X-Forwarded-Encrypted: i=1; AJvYcCXEMnxK56GEEwLkHQD5voBOxbQ66spoREr2NK0svEllxoBykfDqIhsOSHywnEYGLqcUswMhAeO/3K1EtfbH7jbygeYeZGWtaBEaYZNovb2uuQxWS/PF2n+KMQIbyqckISws+HYFOwga5Q==
-X-Gm-Message-State: AOJu0Yzuo28PQwGQBpjMzv7vC4s3fI/OQkCrHJZ0zByNsCXtTu+hFo+9
-	TiDMDi6wgV5jQg2PFad0Oq6t0but5/U0sJykce9tDuhdo9yiCm9I+k8yFfDG
-X-Google-Smtp-Source: AGHT+IGpXPRsKXf8RvFRnaco7jjWeE++VILS9Oa+BWJuT+sagdYYoqYmeixBQxZlTq/7+f6ydqGlKQ==
-X-Received: by 2002:a05:6a21:3409:b0:19e:4ed7:127a with SMTP id yn9-20020a056a21340900b0019e4ed7127amr5997160pzb.46.1708103464655;
-        Fri, 16 Feb 2024 09:11:04 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id h6-20020a63c006000000b0059b2316be86sm147382pgg.46.2024.02.16.09.11.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Feb 2024 09:11:03 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <f0f523c3-7b1c-404a-89c3-0c7345001676@roeck-us.net>
-Date: Fri, 16 Feb 2024 09:11:02 -0800
+        d=1e100.net; s=20230601; t=1708103492; x=1708708292;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=havUKwIuQeWK4aYu8DNjs5scwGn6QvvJ9tZ1EDA7AU4=;
+        b=No8rKOm0aGgJ5RQQZkA4p96+XA1+MLQg63sddCB2Nlt0uMcQ3BC0HRB4lJBLvJGFBF
+         k08E4D5Jkr9NDVpbsvpLqt30CS63gkVL8FgtPAEUSfCNgs2W/SjZov05uyOSfMt2CjOw
+         MnlJ39dP5tP596yCQaRH0hAyyZXeDV1fzfDFJnbsFZLu9zjcw4X3qqbkc1iyqku6p0g/
+         C91wKrfD+kA0bOte2YRrqJwDacLg7mgpkJnBZgcBtmL7McTsXUTbTsxjyfjhLvJpF0gx
+         5TxipxA+x18FnJkU8dL5X2m0mC34WvSgmiiDd7dJibHa0YnzD++GLjQy5sc48zMNro1w
+         7PvA==
+X-Forwarded-Encrypted: i=1; AJvYcCXw7Gy/hYrYeW6M6Vo77kTB7xVshcCSYDVUSpKc7/ucBjHRE2KpWxHGFWIsgPt0y/G5hSQ9bjNsnln+ljpY2WR+0IiMXSLIoqnemQ==
+X-Gm-Message-State: AOJu0YxjHEQjHuHwe5arptZi0rPiVNYeptOlCS2Spldy6AfEzbyNV4hB
+	whDSbvQ6pdINdaPI/nr9v6D/mBRmeMDLo3MCbABsY+aanUAxTIA63wNRVlYVRMCZYJ+9wpt2qMn
+	l2hdZzterVb8mIPqgmEoG2BRiYb2lFRlA2VQ0QQ==
+X-Google-Smtp-Source: AGHT+IF3UAIIWYzEtaz8JDQbpsYiGjzgT5lx1iMPisr8gmFJym7YV9W/quLrJxzPRfygtku2OzFcTAaXVtDz1/yCGVc=
+X-Received: by 2002:a92:c5a6:0:b0:364:1984:f10f with SMTP id
+ r6-20020a92c5a6000000b003641984f10fmr4861690ilt.30.1708103492171; Fri, 16 Feb
+ 2024 09:11:32 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: add common properties with label
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
-References: <20240216-dt-bindings-hwmon-common-v1-0-3c2c24ff1260@linaro.org>
- <20240216-dt-bindings-hwmon-common-v1-1-3c2c24ff1260@linaro.org>
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20240216-dt-bindings-hwmon-common-v1-1-3c2c24ff1260@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240127161753.114685-1-apatel@ventanamicro.com>
+ <20240127161753.114685-15-apatel@ventanamicro.com> <87jzn4ctks.ffs@tglx>
+In-Reply-To: <87jzn4ctks.ffs@tglx>
+From: Anup Patel <anup@brainfault.org>
+Date: Fri, 16 Feb 2024 22:41:20 +0530
+Message-ID: <CAAhSdy2aeyJBcMVre12jGwU52oP9Z=1emB-bcYxygdR3QhP+6w@mail.gmail.com>
+Subject: Re: [PATCH v12 14/25] irqchip/sifive-plic: Convert PLIC driver into a
+ platform driver
+To: Thomas Gleixner <tglx@linutronix.de>
+Cc: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Marc Zyngier <maz@kernel.org>, =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>, 
+	Atish Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>, 
+	Sunil V L <sunilvl@ventanamicro.com>, Saravana Kannan <saravanak@google.com>, 
+	linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2/15/24 23:55, Krzysztof Kozlowski wrote:
-> Linux hwmon core code parses "label" property for each device, so add a
-> common schema for that.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Fri, Feb 16, 2024 at 9:03=E2=80=AFPM Thomas Gleixner <tglx@linutronix.de=
+> wrote:
+>
+> On Sat, Jan 27 2024 at 21:47, Anup Patel wrote:
+> > +     priv->irqdomain =3D irq_domain_create_linear(dev->fwnode, nr_irqs=
+ + 1,
+> > +                                                &plic_irqdomain_ops, p=
+riv);
+> > +     if (WARN_ON(!priv->irqdomain))
+> > +             return -ENOMEM;
+>
+> While some of the stuff is cleaned up by devm, the error handling in
+> this code looks pretty fragile as it leaves initialized contexts,
+> hardware state, chained handlers etc. around.
 
- From hwmon perspective:
+Sure, let me try to improve the error handling.
 
-Acked-by: Guenter Roeck <linux@roeck-us.net>
+>
+> The question is whether the system can actually boot or work at all if
+> any of this fails.
 
-> ---
->   .../devicetree/bindings/hwmon/hwmon-common.yaml          | 16 ++++++++++++++++
->   1 file changed, 16 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/hwmon-common.yaml b/Documentation/devicetree/bindings/hwmon/hwmon-common.yaml
-> new file mode 100644
-> index 000000000000..d83f4180f622
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/hwmon-common.yaml
-> @@ -0,0 +1,16 @@
-> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/hwmon-common.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Hardware Monitoring Devices Common Properties
-> +
-> +maintainers:
-> +  - Guenter Roeck <linux@roeck-us.net>
-> +
-> +properties:
-> +  label:
-> +    description: A descriptive name for this device.
-> +
+On platforms with PLIC, the PLIC only manages wired interrupts
+whereas IPIs are provided through SBI (firmware interface) so a
+system can actually continue and boot further without PLIC.
 
-Would it make sense to also add shunt-resistor-micro-ohms ?
+In fact, we do have a synthetic platform (namely QEMU spike)
+where there is no PLIC instance and Linux boots using SBI based
+polling console.
 
-Thanks,
-Guenter
+>
+> > +
+> >       /*
+> >        * We can have multiple PLIC instances so setup cpuhp state
+> > -      * and register syscore operations only when context handler
+> > -      * for current/boot CPU is present.
+> > +      * and register syscore operations only after context handlers
+> > +      * of all online CPUs are initialized.
+> >        */
+> > -     handler =3D this_cpu_ptr(&plic_handlers);
+> > -     if (handler->present && !plic_cpuhp_setup_done) {
+> > +     cpuhp_setup =3D true;
+> > +     for_each_online_cpu(cpu) {
+> > +             handler =3D per_cpu_ptr(&plic_handlers, cpu);
+> > +             if (!handler->present) {
+> > +                     cpuhp_setup =3D false;
+> > +                     break;
+> > +             }
+> > +     }
+> > +     if (cpuhp_setup) {
+> >               cpuhp_setup_state(CPUHP_AP_IRQ_SIFIVE_PLIC_STARTING,
+> >                                 "irqchip/sifive/plic:starting",
+> >                                 plic_starting_cpu, plic_dying_cpu);
+> >               register_syscore_ops(&plic_irq_syscore_ops);
+> > -             plic_cpuhp_setup_done =3D true;
+>
+> I don't think that removing the setup protection is correct.
+>
+> Assume you have maxcpus=3DN on the kernel command line, then the above
+> for_each_online_cpu() loop would result in cpuhp_setup =3D=3D true when t=
+he
+> instances for the not onlined CPUs are set up, no?
 
+A platform can have multiple PLIC instances where each PLIC
+instance targets a subset of HARTs (or CPUs).
+
+Previously (before this patch), we were probing PLIC very early so on
+a platform with multiple PLIC instances, we need to ensure that cpuhp
+setup is done only after PLIC context associated with boot CPU is
+initialized hence the plic_cpuhp_setup_done check.
+
+This patch converts PLIC driver into a platform driver so now PLIC
+instances are probed after all available CPUs are brought-up. In this
+case, the cpuhp setup must be done only after PLIC context of all
+available CPUs are initialized otherwise some of the CPUs crash
+in plic_starting_cpu() due to lack of PLIC context initialization.
+
+Regards,
+Anup
 
