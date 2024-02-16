@@ -1,269 +1,275 @@
-Return-Path: <devicetree+bounces-42670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42671-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3D0D858155
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 16:37:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AFC085815A
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 16:38:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4ACB3B234EC
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 15:37:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9FBDAB25ACA
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 15:38:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C7BB146016;
-	Fri, 16 Feb 2024 15:30:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79D141474B5;
+	Fri, 16 Feb 2024 15:30:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amazon.de header.i=@amazon.de header.b="gIva1+X6"
+	dkim=pass (2048-bit key) header.d=topic.nl header.i=@topic.nl header.b="SGeXpazo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-fw-33001.amazon.com (smtp-fw-33001.amazon.com [207.171.190.10])
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2138.outbound.protection.outlook.com [40.107.6.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50D89145B0C;
-	Fri, 16 Feb 2024 15:30:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.171.190.10
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708097418; cv=none; b=W+tpuClwCA0U67QSCysHspcAWbyTA9MRvnfI9sIifqfnEDy3aNzouskMHXmeF9pOgitTPL7Tc89eMFzntJmZh724YGXnIwIToybduA3kiVF+hr03ajo1j6MEBKL76J62ukqMDKTzNEao1A1JDt+v/YfT/Cj/n5YEf0H17D7b7hY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708097418; c=relaxed/simple;
-	bh=wVrW8kT4DejB28L712djWukexTnKvatq3YuM0neGVPs=;
-	h=From:To:CC:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=srSb+uIhiOjNjTZIo8ZATc+ZCsMlNZcTcNvNKkrc12gn3bHvWqD44O3JuXFGsVFISclDTLQvY6+MQ7iaoPcXaXTXu3lwv+0Q8uWipr9hWXbRzsWMa2MJ7i/q6ygn9HSd0WRZgyi/Sx5qNSnctUGOTQ7HvQ6nvTwI9tdg7Ycc88I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.de; spf=pass smtp.mailfrom=amazon.de; dkim=pass (1024-bit key) header.d=amazon.de header.i=@amazon.de header.b=gIva1+X6; arc=none smtp.client-ip=207.171.190.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.de; i=@amazon.de; q=dns/txt; s=amazon201209;
-  t=1708097416; x=1739633416;
-  h=from:to:cc:subject:in-reply-to:references:date:
-   message-id:mime-version;
-  bh=F/Eio/BjkBDvnj7lgXtt9GlxdtOY8F3NsfX7BbAdrZU=;
-  b=gIva1+X6I8wbrO8J3Wy5M92hbu8ewGk7/u6aTPMRrOoc+Xo0s0QHBjtJ
-   p6WvO8NPOBH6aFqFcZdPAi2tCSdRqbxDrpHBek15CSjb6GHPYjr560d6y
-   bDM625LdVfDNMCzaeFFnln0wDZ8elztftXlpDIYBA2ODvuUHQ9c9UJc1q
-   w=;
-X-IronPort-AV: E=Sophos;i="6.06,165,1705363200"; 
-   d="scan'208";a="327439017"
-Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev) ([10.43.8.6])
-  by smtp-border-fw-33001.sea14.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Feb 2024 15:29:52 +0000
-Received: from EX19MTAUWA002.ant.amazon.com [10.0.38.20:25817]
- by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.5.203:2525] with esmtp (Farcaster)
- id 745c92d6-d758-4d02-8839-5255b61b4613; Fri, 16 Feb 2024 15:29:51 +0000 (UTC)
-X-Farcaster-Flow-ID: 745c92d6-d758-4d02-8839-5255b61b4613
-Received: from EX19D020UWC001.ant.amazon.com (10.13.138.157) by
- EX19MTAUWA002.ant.amazon.com (10.250.64.202) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Fri, 16 Feb 2024 15:29:44 +0000
-Received: from EX19MTAUWC001.ant.amazon.com (10.250.64.145) by
- EX19D020UWC001.ant.amazon.com (10.13.138.157) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Fri, 16 Feb 2024 15:29:44 +0000
-Received: from dev-dsk-ptyadav-1c-37607b33.eu-west-1.amazon.com (10.15.11.255)
- by mail-relay.amazon.com (10.250.64.145) with Microsoft SMTP Server id
- 15.2.1118.40 via Frontend Transport; Fri, 16 Feb 2024 15:29:44 +0000
-Received: by dev-dsk-ptyadav-1c-37607b33.eu-west-1.amazon.com (Postfix, from userid 23027615)
-	id A785620CE8; Fri, 16 Feb 2024 16:29:43 +0100 (CET)
-From: Pratyush Yadav <ptyadav@amazon.de>
-To: Alexander Graf <graf@amazon.com>
-CC: <linux-kernel@vger.kernel.org>, <linux-trace-kernel@vger.kernel.org>,
-	<linux-mm@kvack.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <kexec@lists.infradead.org>,
-	<linux-doc@vger.kernel.org>, <x86@kernel.org>, Eric Biederman
-	<ebiederm@xmission.com>, "H . Peter Anvin" <hpa@zytor.com>, Andy Lutomirski
-	<luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Steven Rostedt
-	<rostedt@goodmis.org>, Andrew Morton <akpm@linux-foundation.org>, "Mark
- Rutland" <mark.rutland@arm.com>, Tom Lendacky <thomas.lendacky@amd.com>,
-	Ashish Kalra <ashish.kalra@amd.com>, James Gowans <jgowans@amazon.com>,
-	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>, <arnd@arndb.de>,
-	<pbonzini@redhat.com>, <madvenka@linux.microsoft.com>, Anthony Yznaga
-	<anthony.yznaga@oracle.com>, Usama Arif <usama.arif@bytedance.com>, "David
- Woodhouse" <dwmw@amazon.co.uk>, Benjamin Herrenschmidt
-	<benh@kernel.crashing.org>, Rob Herring <robh+dt@kernel.org>, "Krzysztof
- Kozlowski" <krzk@kernel.org>
-Subject: Re: [PATCH v3 00/17] kexec: Allow preservation of ftrace buffers
-In-Reply-To: <20240117144704.602-1-graf@amazon.com> (Alexander Graf's message
-	of "Wed, 17 Jan 2024 14:46:47 +0000")
-References: <20240117144704.602-1-graf@amazon.com>
-Date: Fri, 16 Feb 2024 16:29:43 +0100
-Message-ID: <mafs0zfw08m1k.fsf@amazon.de>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C61451474B3;
+	Fri, 16 Feb 2024 15:30:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.6.138
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708097448; cv=fail; b=Mx4IzB8Y/foNCE3FGa+V0x20KtA32B7qNoyE1f8vBda5PKFdBVEgkNS9p4M26CaLXNLoEsDXUTGn0Tal7m6F6KRwmHdBjBaLIoEC2+z2/YwV0kbcEDcdoxXg8BD9sefZxL6XZALwNxyAHmZZYS6zE/7VDUCMijrn73K4z/B7iYw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708097448; c=relaxed/simple;
+	bh=XW7RUxS2fFBK12nq9gpHr3ocUsd2z7/lo/yKrDOa3sg=;
+	h=From:To:CC:Subject:Date:Message-ID:Content-Type:MIME-Version:
+	 References; b=i1dc1x79c44JNLMVTynkRfYVkscbVziL5k0tdyHKDgNVcJ6WbIjqS8hcrQxmJZDMRuLWKogD/yxgjQQaV0b3b0kqAJ76vDI10gvgZSKSvjel7n2/4+YepG4Sg4j62t4zuIriWP2yTGJYLwTB/fGDR6Aojzzaft3NoLVLWfY5Qxg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=topic.nl; spf=pass smtp.mailfrom=topic.nl; dkim=pass (2048-bit key) header.d=topic.nl header.i=@topic.nl header.b=SGeXpazo; arc=fail smtp.client-ip=40.107.6.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=topic.nl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=topic.nl
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iDeqlufBZaz4s8TpS4DI33qReZG79T3zphfP78BaGYw1483wtZU+XZQSqpkmtRLGVKng26Cw+xp/iGn33o2JtTlyTDoBEV9mQRCt24HjH6r+Yx5jniOMeXVZ+Qhzg+fyIXDJ5hEkS+w+HnzKImLEInVrgnoFgc6I4q36qEHM/iK8cUzmkMwTjPDRNdFagQKW69zNWuq6ygXhddO8KSXjKydh3dMBrw/SITLOTu2tkBKv6Vv5u3MHPGUq4wQF4Y8TcHv7kmNXHL7wJ0hXBywvsFYvlXHqj1JptHBvQF5ZjbQqkLor0M3z7XHx4c0X3K7Muke7lRRVsIHXLiuPoYxYXg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9+3BwAXgOaFREP1ZBZj6WNbGzqnuCm0kgqS/W1k0CVs=;
+ b=dZJ2qwmwpSJyneSs6nDwY7g9Um58NyQ9wjDgci/36lR9fgkD0XTPma0fp61Orn+BCRradHr/2a9v4KP3gvATcdHGMZrN4DbjcXVt2K/3OWUIYzjtWP4sh4h6A0wxU0Tv4+8FLaodsCLhu03I9s8Ra/kh607LuapX554FQIy8xzAStSof5PKoRZYzwGY851WbR03ofDjkdl8lVVXi0tyT7ts6zjRVx/3xv45cYiXJ3CHb1v69SKMv/Bc0vzAU3LVam026E0/COnfJ8guPgKNl729jZAxVJyDAy/+H4354RhjSLBO8KOVOcg7I1iRvlYI1xngiakJkynx/mIy8dHk2/A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 20.93.157.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=topic.nl;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=topic.nl;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=topic.nl; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9+3BwAXgOaFREP1ZBZj6WNbGzqnuCm0kgqS/W1k0CVs=;
+ b=SGeXpazoXXrwBrOdMK22y6GM7AsXGvtA22R77ff3+4BxcbfOeqmJ2FcjsViH0y76vRirI6L/R0hy4Dlfp6pVzh5BTqtxg1sbbqfKHQB6XI9TA/Ezu7GCvCIiol48OYtQZwDGzkcj8NXA6wlD43wQtE7hXS+hF9xGSl/X01w2G8OSfh+cyYbSKCvSi/kHHiCqcfnb6ViiTmnAVsDZZgGYvJ+eY7erDSRTkIiI9X4cA50Iij8CWY4P5GCA7ZxFuoVNe5gWDZ2XmE4/vm9eDnyFto+YDpwtnA++6Dm89OPOxCYeZZtb2g43RhcUgw3ny95CxzhAnq1uvIhhic0m8qjx4w==
+Received: from AS8P251CA0023.EURP251.PROD.OUTLOOK.COM (2603:10a6:20b:2f2::12)
+ by AM7PR04MB7064.eurprd04.prod.outlook.com (2603:10a6:20b:118::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.31; Fri, 16 Feb
+ 2024 15:30:39 +0000
+Received: from AMS0EPF000001A9.eurprd05.prod.outlook.com
+ (2603:10a6:20b:2f2:cafe::fc) by AS8P251CA0023.outlook.office365.com
+ (2603:10a6:20b:2f2::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.26 via Frontend
+ Transport; Fri, 16 Feb 2024 15:30:39 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 20.93.157.195)
+ smtp.mailfrom=topic.nl; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=topic.nl;
+Received-SPF: Pass (protection.outlook.com: domain of topic.nl designates
+ 20.93.157.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=20.93.157.195; helo=westeu11-emailsignatures-cloud.codetwo.com;
+ pr=C
+Received: from westeu11-emailsignatures-cloud.codetwo.com (20.93.157.195) by
+ AMS0EPF000001A9.mail.protection.outlook.com (10.167.16.149) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7292.25 via Frontend Transport; Fri, 16 Feb 2024 15:30:39 +0000
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (104.47.51.232) by westeu11-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12) via SMTP; Fri, 16 Feb 2024 15:30:38 +0000
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=topic.nl;
+Received: from AS8PR04MB8644.eurprd04.prod.outlook.com (2603:10a6:20b:42b::12)
+ by DU2PR04MB9082.eurprd04.prod.outlook.com (2603:10a6:10:2f1::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.29; Fri, 16 Feb
+ 2024 15:30:34 +0000
+Received: from AS8PR04MB8644.eurprd04.prod.outlook.com
+ ([fe80::651a:dedd:945a:d1dd]) by AS8PR04MB8644.eurprd04.prod.outlook.com
+ ([fe80::651a:dedd:945a:d1dd%6]) with mapi id 15.20.7292.027; Fri, 16 Feb 2024
+ 15:30:31 +0000
+From: Mike Looijmans <mike.looijmans@topic.nl>
+To: devicetree@vger.kernel.org,
+	linux-iio@vger.kernel.org
+CC: Mike Looijmans <mike.looijmans@topic.nl>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v5 1/2] dt-bindings: iio: adc: ti-ads1298: Add bindings
+Date: Fri, 16 Feb 2024 16:30:19 +0100
+Message-ID: <20240216153020.485201-1-mike.looijmans@topic.nl>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-ClientProxiedBy: AM8P190CA0001.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:20b:219::6) To AS8PR04MB8644.eurprd04.prod.outlook.com
+ (2603:10a6:20b:42b::12)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+X-MS-TrafficTypeDiagnostic:
+	AS8PR04MB8644:EE_|DU2PR04MB9082:EE_|AMS0EPF000001A9:EE_|AM7PR04MB7064:EE_
+X-MS-Office365-Filtering-Correlation-Id: e7531b0c-34a8-4c4b-0892-08dc2f043ac1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original:
+ uRQR3SvSRJiwOwyEA6rO/Un3ePW+mz//sDejw1wZuJOi9Q+JOq7ldZHW4CgfUXtFtiWrwqjCIbvb38FVC/7gRWJV6PaABXGCvXugbtS8aiv+lxsuoikAMRZYYw6Py+5Ey4aNgxpsQqtKAOH+PAE+t9xlxaMtxfjOuFWyx/c54jbWqR4SYRDcZwi+rJDnbUUR4Gx1sUkJxeODCnU+OKYBr8ya+dLtL5ZG58uvo5OhqoDfEwEb2DMVooP9B7R03lsoEg0F8AgiKaW8WnVXrzMmsHmVzUKQE0ycVIl6bHCwFAWuel+Lb3VWFOdqkUzUfwfCJICWmeBq9FRG6zz0kXnW8DWHd7Klthal2CChkOjsBWFUS7q4geSCym/KN83ZDCmVxfDqmWWFncSGPmNXXJfEVlI4ps8bikQ6TGrtUXVJ57t8JyF//f2zJw1m0Dl89cON1N2cPJvy98nUaJTJxY/2uvHmwSS6nd91vTdJKb+v49FB12m0gdpzpefBZhWegBRpxmGMzS0aXzeo1Ft29Og3rr3G0Lgj/lbua8pgjwGpqHN16lCOwPKffijznDZ2yvgn5f5RyWUCdkZkwwkCnbqWvH8fd9b5FL/IWJYxpuMXNgk=
+X-Forefront-Antispam-Report-Untrusted:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8644.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(346002)(136003)(366004)(39830400003)(396003)(230922051799003)(230273577357003)(186009)(1800799012)(451199024)(64100799003)(2906002)(44832011)(5660300002)(316002)(6666004)(41300700001)(86362001)(66556008)(38100700002)(4326008)(478600001)(6506007)(8676002)(966005)(54906003)(66476007)(66946007)(6486002)(6512007)(8936002)(52116002)(1076003)(83380400001)(26005)(2616005)(38350700005)(36756003);DIR:OUT;SFP:1102;
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB9082
+X-CodeTwo-MessageID: 7ebd315a-6582-4260-8176-3b6d1b43b89b.20240216153038@westeu11-emailsignatures-cloud.codetwo.com
+X-CodeTwoProcessed: true
+References: <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.70c52742-e0f9-4db1-8f1b-864f11c71a24@emailsignatures365.codetwo.com>
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped:
+ AMS0EPF000001A9.eurprd05.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs:
+	ae3419e8-d4eb-4501-4a87-08dc2f04363c
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	kbX3ySGJq0fAip5OlJnKOyQ/dZGV2u6SGXfSGBo+ql0taUfh1kAOzvmHj0pqjvx9qYi/E2tEQ9J+fqQNMQAgDYdvtxwXev4HDuktBNyEyHfE95gJkxWtLt0Y1t3BZr9K1hCmo3fQsUKU146FbtS7Imcgv6DyW2AM5J6R0qBJcH33H8YzYxcqojBiV4qCylpKcg1EEoy73ZXPdtxooko0fhiTY6HZX7G+c8TeniVMmlUb0iuUsMYIURwtcaW1ZzLwzHJd9Q40ILdwBWmp6Ls5750j9ykT59sqsxexjCz9euDMHGjPoiZ4Zl89iu+fmvf+tP41P5EBsuY6qgaAvWZAQTvH8GhLYDHXaupQUbhv8jPk+PX2zyVwGMwQXnbZw0avjQJIp/OpofyovFJ+YZDoIqgEDY5YSroZzNW5OJGdbi1SYKiRkzYXcdu5bQ8T1oX573iEJD+HGMA4YyQ/5PaHCXTCjRWQqA5IXg3yCC+z5sD3GdKTTdBvZNHqAhby2KDL/d4eAJkbmKmmbejz8LXBj0fcEqfSDLVDXy/bNsVl2pOcNfvXOkMWVyT8wINNRiB1ionxJSGekaofV7vXmgXwxoWzL6q78mNkHzqHKnDnHslekt01ijKIeGkt+AMCryooJ3Wdla7rOzySZ18yO3hbHg==
+X-Forefront-Antispam-Report:
+	CIP:20.93.157.195;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:westeu11-emailsignatures-cloud.codetwo.com;PTR:westeu11-emailsignatures-cloud.codetwo.com;CAT:NONE;SFS:(13230031)(4636009)(396003)(136003)(39830400003)(346002)(376002)(230922051799003)(230273577357003)(82310400011)(186009)(64100799003)(451199024)(1800799012)(36860700004)(46966006)(44832011)(8936002)(4326008)(2906002)(41300700001)(8676002)(5660300002)(36756003)(7636003)(356005)(7596003)(54906003)(316002)(6512007)(478600001)(966005)(6486002)(26005)(2616005)(86362001)(6506007)(1076003)(336012)(15974865002)(6666004)(70206006)(70586007)(83380400001);DIR:OUT;SFP:1102;
+X-OriginatorOrg: topic.nl
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Feb 2024 15:30:39.1715
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e7531b0c-34a8-4c4b-0892-08dc2f043ac1
+X-MS-Exchange-CrossTenant-Id: 449607a5-3517-482d-8d16-41dd868cbda3
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=449607a5-3517-482d-8d16-41dd868cbda3;Ip=[20.93.157.195];Helo=[westeu11-emailsignatures-cloud.codetwo.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AMS0EPF000001A9.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB7064
 
-Hi Alex,
+Bindings for the TI ADS1298 medical ADC. This device is
+typically used for ECG and similar measurements. Supports data
+acquisition at configurable scale and sampling frequency.
 
-On Wed, Jan 17 2024, Alexander Graf wrote:
+The device has so many options for connecting stuff, at this
+point the bindings aren't nearly complete but partial bindings
+are better than no bindings at all.
 
-> Kexec today considers itself purely a boot loader: When we enter the new
-> kernel, any state the previous kernel left behind is irrelevant and the
-> new kernel reinitializes the system.
->
-> However, there are use cases where this mode of operation is not what we
-> actually want. In virtualization hosts for example, we want to use kexec
-> to update the host kernel while virtual machine memory stays untouched.
-> When we add device assignment to the mix, we also need to ensure that
-> IOMMU and VFIO states are untouched. If we add PCIe peer to peer DMA, we
-> need to do the same for the PCI subsystem. If we want to kexec while an
-> SEV-SNP enabled virtual machine is running, we need to preserve the VM
-> context pages and physical memory. See James' and my Linux Plumbers
-> Conference 2023 presentation for details:
+Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-I am working on handing userspace pages across kexec. This can be useful
-for applications with large in-memory state that can be time consuming
-to rebuild. If they can hand over their state over kexec, it allows for
-kernel upgrades with lower downtime. As a part of this problem, I have
-been looking at plugging all of this into CRIU [0] so I don't have to
-modify the applications to use this feature. I can just use CRIU to do
-the checkpoint and restore quickly over kexec.
+---
 
-I hacked together some patches for this (which are not yet polished
-enough to publish) and ended up implementing something like KHO in a
-much more crude way. I have since refactored my patches to use KHO and I
-find it quite useful. So thanks for working on this :-)
+(no changes since v2)
 
-It was easy enough to get KHO working with my patches though I had to
-look into your ftrace patches to get the whole picture. The
-documentation can be improved to show how it can be used from the
-driver/subsystem perspective. For example, I had to read your ftrace
-patches to figure out I should use kho_get_fdt(), or that I should
-register a notifier via kho_register_notifier(). I would be happy to
-contribute some documentation improvements.
+Changes in v2:
+Remove "clk" name
+Add datasheet and "incomplete" note
 
-Have you done any analysis on the performance or memory overhead? If
-yes, it would be nice to look at some data. I have some concerns with
-performance and memory overhead, especially for more fragmented memory
-but I don't yet have numbers to present you.
+ .../bindings/iio/adc/ti,ads1298.yaml          | 80 +++++++++++++++++++
+ 1 file changed, 80 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads1298.ya=
+ml
 
-[0] https://github.com/checkpoint-restore/criu
-
->
->   https://lpc.events/event/17/contributions/1485/
->
-> To start us on the journey to support all the use cases above, this
-> patch implements basic infrastructure to allow hand over of kernel state
-> across kexec (Kexec HandOver, aka KHO). As example target, we use ftrace:
-> With this patch set applied, you can read ftrace records from the
-> pre-kexec environment in your post-kexec one. This creates a very powerful
-> debugging and performance analysis tool for kexec. It's also slightly
-> easier to reason about than full blown VFIO state preservation.
->
-> == Alternatives ==
->
-> There are alternative approaches to (parts of) the problems above:
->
->   * Memory Pools [1] - preallocated persistent memory region + allocator
->   * PRMEM [2] - resizable persistent memory regions with fixed metadata
->                 pointer on the kernel command line + allocator
->   * Pkernfs [3] - preallocated file system for in-kernel data with fixed
->                   address location on the kernel command line
->   * PKRAM [4] - handover of user space pages using a fixed metadata page
->                 specified via command line
-
-FYI, you forgot to paste the links in v3 but I can find them from v2.
-
-From all these options, PKRAM seems somewhat useful for my use case but
-with CRIU it would need to copy all the application pages to the PKRAM
-FS and would need at least as much free memory as application memory.
-
-Instead, I have built a simple system that gives an API to userspace to
-hand over its pages and to request them back. It then keeps track of the
-PID and PA -> VA mappings (essentially a page table). This lets me keep
-the pages in-place and avoid needing lots of free memory or expensive
-copying. KHO plays a crucial role there in handing those pages and page
-tables across to the next kernel.
-
-The FDT format works fairly well for my use case. Since page tables are
-a stable data structure, I don't need to worry about their format
-changing between kernel versions and can directly pass them through.
-This might not be true for many other data structures so subsystems
-using those either need to serialize them to FDT or invent their own
-serialization formats.
-
-I also wonder how the "mem" array will work for more fragmented
-allocations. It might grow very large with lots of scattered elements. I
-wonder how both KHO's parsing and memblock will behave in this case. I
-have not yet tried stressing it so I can't say for myself.
-
->
-> All of the approaches above fundamentally have the same problem: They
-> require the administrator to explicitly carve out a physical memory
-> location because they have no mechanism outside of the kernel command
-> line to pass data (including memory reservations) between kexec'ing
-> kernels.
->
-> KHO provides that base foundation. We will determine later whether we
-> still need any of the approaches above for fast bulk memory handover of for
-> example IOMMU page tables. But IMHO they would all be users of KHO, with
-> KHO providing the foundational primitive to pass metadata and bulk memory
-> reservations as well as provide easy versioning for data.
->
-> == Overview ==
->
-> We introduce a metadata file that the kernels pass between each other. How
-> they pass it is architecture specific. The file's format is a Flattened
-> Device Tree (fdt) which has a generator and parser already included in
-> Linux. When the root user enables KHO through /sys/kernel/kho/active, the
-> kernel invokes callbacks to every driver that supports KHO to serialize
-> its state. When the actual kexec happens, the fdt is part of the image
-> set that we boot into. In addition, we keep a "scratch region" available
-> for kexec: A physically contiguous memory region that is guaranteed to
-> not have any memory that KHO would preserve.  The new kernel bootstraps
-> itself using the scratch region and sets all handed over memory as in use.
-> When drivers initialize that support KHO, they introspect the fdt and
-> recover their state from it. This includes memory reservations, where the
-> driver can either discard or claim reservations.
->
-> == Limitations ==
->
-> I currently only implemented file based kexec. The kernel interfaces
-> in the patch set are already in place to support user space kexec as well,
-> but I have not implemented it yet inside kexec tools.
->
-> == How to Use ==
->
-> To use the code, please boot the kernel with the "kho_scratch=" command
-> line parameter set: "kho_scratch=512M". KHO requires a scratch region.
->
-> Make sure to fill ftrace with contents that you want to observe after
-> kexec.  Then, before you invoke file based "kexec -l", activate KHO:
->
->   # echo 1 > /sys/kernel/kho/active
->   # kexec -l Image --initrd=initrd -s
->   # kexec -e
->
-> The new kernel will boot up and contain the previous kernel's trace
-> buffers in /sys/kernel/debug/tracing/trace.
->
-[...]
-
-Overall, I think KHO is quite useful and I would be happy to see it
-evolve and eventually make it into the kernel. It would certainly make
-my life a lot easier.
-
-Since I have used it in my patches, I have done some basic testing for
-it. Nothing fancy, just handed a few pages across. It works as
-advertised. For that,
-
-Tested-by: Pratyush Yadav <ptyadav@amazon.de>
-
--- 
-Regards,
-Pratyush Yadav
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1298.yaml b/Do=
+cumentation/devicetree/bindings/iio/adc/ti,ads1298.yaml
+new file mode 100644
+index 000000000000..bf5a43a81d59
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1298.yaml
+@@ -0,0 +1,80 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/adc/ti,ads1298.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments' ads1298 medical ADC chips
++
++description: |
++  Datasheet at: https://www.ti.com/product/ADS1298
++  Bindings for this chip aren't complete.
++
++maintainers:
++  - Mike Looijmans <mike.looijmans@topic.nl>
++
++properties:
++  compatible:
++    enum:
++      - ti,ads1298
++
++  reg:
++    maxItems: 1
++
++  spi-cpha: true
++
++  reset-gpios:
++    maxItems: 1
++
++  avdd-supply:
++    description:
++      Analog power supply, voltage between AVDD and AVSS. When providing a
++      symmetric +/- 2.5V, the regulator should report 5V.
++
++  vref-supply:
++    description:
++      Optional reference voltage. If omitted, internal reference is used,
++      which is 2.4V when analog supply is below 4.4V, 4V otherwise.
++
++  clocks:
++    description: Optional 2.048 MHz external source clock on CLK pin
++    maxItems: 1
++
++  interrupts:
++    description: Interrupt on DRDY pin, triggers on falling edge
++    maxItems: 1
++
++  label: true
++
++required:
++  - compatible
++  - reg
++  - avdd-supply
++  - interrupts
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    spi {
++        #address-cells =3D <1>;
++        #size-cells =3D <0>;
++
++        adc@1 {
++          reg =3D <1>;
++          compatible =3D "ti,ads1298";
++          label =3D "ads1298-1-ecg";
++          avdd-supply =3D <&reg_iso_5v_a>;
++          clocks =3D <&clk_ads1298>;
++          interrupt-parent =3D <&gpio0>;
++          interrupts =3D <78 IRQ_TYPE_EDGE_FALLING>;
++          spi-max-frequency =3D <20000000>;
++          spi-cpha;
++        };
++    };
++...
+--=20
+2.34.1
 
 
-
-Amazon Development Center Germany GmbH
-Krausenstr. 38
-10117 Berlin
-Geschaeftsfuehrung: Christian Schlaeger, Jonathan Weiss
-Eingetragen am Amtsgericht Charlottenburg unter HRB 149173 B
-Sitz: Berlin
-Ust-ID: DE 289 237 879
-
-
-
+Met vriendelijke groet / kind regards,=0A=
+=0A=
+Mike Looijmans=0A=
+System Expert=0A=
+=0A=
+=0A=
+TOPIC Embedded Products B.V.=0A=
+Materiaalweg 4, 5681 RJ Best=0A=
+The Netherlands=0A=
+=0A=
+T: +31 (0) 499 33 69 69=0A=
+E: mike.looijmans@topic.nl=0A=
+W: www.topic.nl=0A=
+=0A=
+Please consider the environment before printing this e-mail=0A=
 
