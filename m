@@ -1,189 +1,146 @@
-Return-Path: <devicetree+bounces-42682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72831858200
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 16:59:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63622858214
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 17:02:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C05D1C22892
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 15:59:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5D40DB22C44
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 16:02:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1D63130E5C;
-	Fri, 16 Feb 2024 15:57:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57DA912F58A;
+	Fri, 16 Feb 2024 16:01:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amazon.de header.i=@amazon.de header.b="INUCV6mq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="du12MZCc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-fw-33001.amazon.com (smtp-fw-33001.amazon.com [207.171.190.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8868C12C809;
-	Fri, 16 Feb 2024 15:57:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.171.190.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29AC012F39F;
+	Fri, 16 Feb 2024 16:01:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708099056; cv=none; b=Fr85swdryohF9xe/7biVaAARlqkeoUkSTv5Yz5GjkEVhKOxO7V0nCZMRGBGzFFiGazUpe3Lkael8ESTuAjVWaNdLRnYYUEvn9GdTjzTTjBeFE6vRCRV/TqX7fFMVnBfC506q2sQqAb9vRyhAyrKR0Ld+mvLcvzNOHMmf4wraV8A=
+	t=1708099317; cv=none; b=rnWc8Z4t3z6AOOO7xn4D8Bhs5VScp74O73VF9/q/wXZ/Zu2P4cOXz8MMTvZJtKdXl7ie7rUjJFwKoRge1jyg4xCOmeSs35To7kBm1xFfMPLMBTPzmKlg1L2yaJSh+5XhbvWZKbdHxV6AUisN6i5y1ZVo8k8f6c082cdfeUnBq6g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708099056; c=relaxed/simple;
-	bh=92zPtdd0rAFo21Fvita8bJaJeG+DPj1KURFAzjkg2QY=;
-	h=From:To:CC:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=Vt545GRyr3U7Ma/FVO5Kj9FTL4LUnjzQe5l3PsDe1tqFLzYmfuMuWw3XkOLrup3sXUPpNSykZoDPBZsuKgL3G5LJDJ9E7UxuLe4SZDBrGIGSEo1QaUDXKjzMLgmIjZ3t+TDtS0FZUjVeY6EtVCVPSskcsTWAsnZH/TY/L0Qomrg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.de; spf=pass smtp.mailfrom=amazon.de; dkim=pass (1024-bit key) header.d=amazon.de header.i=@amazon.de header.b=INUCV6mq; arc=none smtp.client-ip=207.171.190.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.de; i=@amazon.de; q=dns/txt; s=amazon201209;
-  t=1708099055; x=1739635055;
-  h=from:to:cc:subject:in-reply-to:references:date:
-   message-id:mime-version;
-  bh=ySlk5EP+5EPRFvPn7fKspQz+Y/lmLyPoeT8Lylq3p9Y=;
-  b=INUCV6mqjR9bApW5bPO0D8ZD37F1XaWRtO+wK3N12g+gRywP9XEtWK7q
-   ndTGY0ChLjMKu8+L1K953A1sZd20aXSOhg1LMfmMqY+yW1LdE/Wox4nkc
-   X5kIvTHlyqVnclXMUhgTxt3+hLdbhTBmhYh6uejjdrWjQlLrKrWTap/YR
-   E=;
-X-IronPort-AV: E=Sophos;i="6.06,165,1705363200"; 
-   d="scan'208";a="327444091"
-Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO smtpout.prod.us-east-1.prod.farcaster.email.amazon.dev) ([10.43.8.6])
-  by smtp-border-fw-33001.sea14.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Feb 2024 15:57:26 +0000
-Received: from EX19MTAUEC002.ant.amazon.com [10.0.0.204:20286]
- by smtpin.naws.us-east-1.prod.farcaster.email.amazon.dev [10.0.58.150:2525] with esmtp (Farcaster)
- id 5a50e3a4-7605-4a6b-bd7b-2201142338a7; Fri, 16 Feb 2024 15:57:25 +0000 (UTC)
-X-Farcaster-Flow-ID: 5a50e3a4-7605-4a6b-bd7b-2201142338a7
-Received: from EX19D008UEA002.ant.amazon.com (10.252.134.125) by
- EX19MTAUEC002.ant.amazon.com (10.252.135.253) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Fri, 16 Feb 2024 15:57:10 +0000
-Received: from EX19MTAUEA001.ant.amazon.com (10.252.134.203) by
- EX19D008UEA002.ant.amazon.com (10.252.134.125) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Fri, 16 Feb 2024 15:57:09 +0000
-Received: from dev-dsk-ptyadav-1c-37607b33.eu-west-1.amazon.com (10.15.11.255)
- by mail-relay.amazon.com (10.252.134.102) with Microsoft SMTP Server id
- 15.2.1118.40 via Frontend Transport; Fri, 16 Feb 2024 15:57:09 +0000
-Received: by dev-dsk-ptyadav-1c-37607b33.eu-west-1.amazon.com (Postfix, from userid 23027615)
-	id 4FB1420D21; Fri, 16 Feb 2024 16:57:09 +0100 (CET)
-From: Pratyush Yadav <ptyadav@amazon.de>
-To: Alexander Graf <graf@amazon.com>
-CC: <linux-kernel@vger.kernel.org>, <linux-trace-kernel@vger.kernel.org>,
-	<linux-mm@kvack.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <kexec@lists.infradead.org>,
-	<linux-doc@vger.kernel.org>, <x86@kernel.org>, Eric Biederman
-	<ebiederm@xmission.com>, "H . Peter Anvin" <hpa@zytor.com>, Andy Lutomirski
-	<luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Steven Rostedt
-	<rostedt@goodmis.org>, Andrew Morton <akpm@linux-foundation.org>, "Mark
- Rutland" <mark.rutland@arm.com>, Tom Lendacky <thomas.lendacky@amd.com>,
-	Ashish Kalra <ashish.kalra@amd.com>, James Gowans <jgowans@amazon.com>,
-	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>, <arnd@arndb.de>,
-	<pbonzini@redhat.com>, <madvenka@linux.microsoft.com>, Anthony Yznaga
-	<anthony.yznaga@oracle.com>, Usama Arif <usama.arif@bytedance.com>, "David
- Woodhouse" <dwmw@amazon.co.uk>, Benjamin Herrenschmidt
-	<benh@kernel.crashing.org>, Rob Herring <robh+dt@kernel.org>, "Krzysztof
- Kozlowski" <krzk@kernel.org>
-Subject: Re: [PATCH v3 04/17] kexec: Add KHO parsing support
-In-Reply-To: <20240117144704.602-5-graf@amazon.com> (Alexander Graf's message
-	of "Wed, 17 Jan 2024 14:46:51 +0000")
-References: <20240117144704.602-1-graf@amazon.com>
-	<20240117144704.602-5-graf@amazon.com>
-Date: Fri, 16 Feb 2024 16:57:09 +0100
-Message-ID: <mafs0eddc8kru.fsf@amazon.de>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+	s=arc-20240116; t=1708099317; c=relaxed/simple;
+	bh=ulmHmF5cD5oOk/vU3Fp+wOpcyv8389AhjaaESJZX2l0=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
+	 MIME-Version:Content-Type; b=lC2c9g7ktLe+LzRiICMo+6enOZDUrC7SWWzYnQX2pZFRA/W5q3kvxCE/2brKkGNmQW5AAVi+vSzn2dxm9X/ZnUrk+gdxDThuCT1GgW3aGr2ImZhr66dghR3fBRmsglBCi91VUtyQRFLnOV+2bxySE4Sk7qfQrx/qM+cuFPxs3dQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=du12MZCc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D767DC433F1;
+	Fri, 16 Feb 2024 16:01:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708099316;
+	bh=ulmHmF5cD5oOk/vU3Fp+wOpcyv8389AhjaaESJZX2l0=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=du12MZCc+hUEhyruKbxOOkV1IAKJ99fa+Joqd30VDg3C0Hvg2zGtPEs8FwD7KmT37
+	 mDVzCxevKrO0YCGDiUD8Ko9h3TYilXw2APfKUUwHf8x5vu6y7LK7+5zrsHnjJgNpJR
+	 s/VWu1D9MCwInZ96KSukzv2RbhdtoUWxJhftaMPTrh1SJmKdsHmO9/1kaXd5NbkPhj
+	 v9I8PcMIgzzZ0x+YuRQ5Umg9T9Q3yKL4WAduVdV72SHmwnR7lm91acGvgpkpB9J4MU
+	 65dkEurZGOfB1uvUKh9cNUnIK9MtD8Zh2MjROMwlms/53pJj1u87M9lYhV9YEQY/Nt
+	 96ul2C7snomwg==
+From: Kalle Valo <kvalo@kernel.org>
+To: <Ajay.Kathat@microchip.com>
+Cc: <alexis.lothore@bootlin.com>,  <davidm@egauge.net>,
+  <linux-wireless@vger.kernel.org>,  <claudiu.beznea@tuxon.dev>,
+  <thomas.petazzoni@bootlin.com>,  <linux-kernel@vger.kernel.org>,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH RFC] wifi: wilc1000: fix reset line assert/deassert
+ polarity
+References: <20240213-wilc_1000_reset_line-v1-1-e01da2b23fed@bootlin.com>
+	<2ff1c701f3443e1c612a81f4077b0280850f57c6.camel@egauge.net>
+	<081bce96-f485-414c-8051-e1c14271f8cc@bootlin.com>
+	<aac398e4-d870-4ba2-8877-b98afecb8d1b@microchip.com>
+Date: Fri, 16 Feb 2024 18:01:52 +0200
+In-Reply-To: <aac398e4-d870-4ba2-8877-b98afecb8d1b@microchip.com> (Ajay
+	Kathat's message of "Thu, 15 Feb 2024 04:35:46 +0000")
+Message-ID: <877cj4o0sv.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+(Adding devicetree list for comments)
 
-On Wed, Jan 17 2024, Alexander Graf wrote:
+<Ajay.Kathat@microchip.com> writes:
 
-> When we have a KHO kexec, we get a device tree, mem cache and scratch
-> region to populate the state of the system. Provide helper functions
-> that allow architecture code to easily handle memory reservations based
-> on them and give device drivers visibility into the KHO DT and memory
-> reservations so they can recover their own state.
+> On 2/13/24 09:58, Alexis Lothor=C3=A9 wrote:
+>>=20
+>> On 2/13/24 17:42, David Mosberger-Tang wrote:
+>>> On Tue, 2024-02-13 at 16:22 +0100, Alexis Lothor=C3=A9 wrote:
+>>>> When using a wilc1000 chip over a spi bus, users can optionally define=
+ a
+>>>> reset gpio and a chip enable gpio. The reset line of wilc1000 is active
+>>>> low, so to hold the chip in reset, a low (physical) value must be appl=
+ied.
+>>>>
+>>>> The corresponding device tree binding documentation was introduced by
+>>>> commit f31ee3c0a555 ("wilc1000: Document enable-gpios and reset-gpios
+>>>> properties") and correctly indicates that the reset line is an active-=
+low
+>>>> signal. However, the corresponding driver part, brought by commit
+>>>> ec031ac4792c ("wilc1000: Add reset/enable GPIO support to SPI driver")=
+, is
+>>>> misusing the gpiod APIs and apply an inverted logic when powering up/d=
+own
+>>>> the chip (for example, setting the reset line to a logic "1" during po=
+wer
+>>>> up, which in fact asserts the reset line when device tree describes the
+>>>> reset line as GPIO_ACTIVE_LOW).
+>>>
+>>> Note that commit ec031ac4792c is doing the right thing in regards to an
+>>> ACTIVE_LOW RESET pin and the binding documentation is consistent with t=
+hat code.
+>>>
+>>> It was later on that commit fcf690b0 flipped the RESET line polarity to=
+ treat it
+>>> as GPIO_ACTIVE_HIGH.  I never understood why that was done and, as you =
+noted, it
+>>> introduced in inconsistency with the binding documentation.
+>>=20
+>> Ah, you are right, and I was wrong citing your GPIOs patch as faulty
+>> (git-blaming too fast !), thanks for the clarification. I missed this pa=
+tch from
+>> Ajay (fcf690b0) flipping the reset logic. Maybe he had issues while miss=
+ing
+>> proper device tree configuration and then submitted this flip ?
 >
-> Signed-off-by: Alexander Graf <graf@amazon.com>
->
-> ---
->
-[...]
-> +/**
-> + * kho_return_mem - Notify the kernel that initially reserved memory is no
-> + * longer needed. When the last consumer of a page returns their mem, kho
-> + * returns the page to the buddy allocator as free page.
-> + */
-> +void kho_return_mem(const struct kho_mem *mem)
-> +{
-> +	uint64_t start_pfn, end_pfn, pfn;
-> +
-> +	start_pfn = PFN_DOWN(mem->addr);
-> +	end_pfn = PFN_UP(mem->addr + mem->len);
-> +
-> +	for (pfn = start_pfn; pfn < end_pfn; pfn++)
-> +		kho_return_pfn(pfn);
-> +}
-> +EXPORT_SYMBOL_GPL(kho_return_mem);
-> +
-> +static void kho_claim_pfn(ulong pfn)
-> +{
-> +	struct page *page = pfn_to_page(pfn);
-> +
-> +	WARN_ON(!page);
-> +	if (WARN_ON(page_count(page) != 1))
-> +		pr_err("Claimed non kho pfn %lx", pfn);
+> Indeed, it was done to align the code as per the DT entry suggested in
+> WILC1000/3000 porting guide[1 -page 18], which is already used by most
+> of the existing users. This change has impact on the users who are using
+> DT entry from porting guide. One approach is to retain the current code
+> and document this if needed.
 
-You do sanity checks but then never actually change anything on the
-page. kho_claim_mem()'s documentation says: "This function removes the
-reserved state for all pages that the mem spans". So this function
-should at the very least call ClearPageReserved().
+So if I'm understanding the situation correctly Microchip's porting
+guide[1] doesn't match with kernel.org documentation[2]? I'm not the
+expert here but from my point of view the issue is clear: the code needs
+to follow kernel.org documentation[2], not external documentation.
 
-Also, checking the page count is a very rough heuristic. There can be
-other non-KHO pages with page count == 1. Do you think it would make
-more sense to use one of the private pageflags bits to mark a page
-KHO-owned? If not, shouldn't you at least also check if the page is
-reserved?
+I'll add devicetree list so hopefully people there can comment also,
+full patch available in [3].
 
-> +}
-> +
-> +/**
-> + * kho_claim_mem - Notify the kernel that a handed over memory range is now in
-> + * use by a kernel subsystem and considered an allocated page. This function
-> + * removes the reserved state for all pages that the mem spans.
-> + */
-> +void *kho_claim_mem(const struct kho_mem *mem)
-> +{
-> +	u64 start_pfn, end_pfn, pfn;
-> +	void *va = __va(mem->addr);
-> +
-> +	start_pfn = PFN_DOWN(mem->addr);
-> +	end_pfn = PFN_UP(mem->addr + mem->len);
-> +
-> +	for (pfn = start_pfn; pfn < end_pfn; pfn++)
-> +		kho_claim_pfn(pfn);
-> +
-> +	return va;
-> +}
-> +EXPORT_SYMBOL_GPL(kho_claim_mem);
-> +
-[...]
-
---
-Regards,
-Pratyush Yadav
+Alexis, if there are no more comments I'm in favor submitting the revert
+you mentioned.
 
 
+[1] https://ww1.microchip.com/downloads/en/DeviceDoc/ATWILC1000-ATWILC3000-=
+ATWILC-Devices-Linux-Porting-Guide-User-Guide-DS70005329C.pdf
 
-Amazon Development Center Germany GmbH
-Krausenstr. 38
-10117 Berlin
-Geschaeftsfuehrung: Christian Schlaeger, Jonathan Weiss
-Eingetragen am Amtsgericht Charlottenburg unter HRB 149173 B
-Sitz: Berlin
-Ust-ID: DE 289 237 879
+[2] Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
 
+[3] https://patchwork.kernel.org/project/linux-wireless/patch/20240213-wilc=
+_1000_reset_line-v1-1-e01da2b23fed@bootlin.com/
 
+--=20
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
+hes
 
