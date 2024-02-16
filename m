@@ -1,146 +1,111 @@
-Return-Path: <devicetree+bounces-42683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42684-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63622858214
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 17:02:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40977858242
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 17:17:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5D40DB22C44
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 16:02:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 73BDD1C217CA
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 16:17:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57DA912F58A;
-	Fri, 16 Feb 2024 16:01:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0984812FB3C;
+	Fri, 16 Feb 2024 16:17:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="du12MZCc"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YLhZ8Urr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29AC012F39F;
-	Fri, 16 Feb 2024 16:01:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B19F12FB07;
+	Fri, 16 Feb 2024 16:17:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708099317; cv=none; b=rnWc8Z4t3z6AOOO7xn4D8Bhs5VScp74O73VF9/q/wXZ/Zu2P4cOXz8MMTvZJtKdXl7ie7rUjJFwKoRge1jyg4xCOmeSs35To7kBm1xFfMPLMBTPzmKlg1L2yaJSh+5XhbvWZKbdHxV6AUisN6i5y1ZVo8k8f6c082cdfeUnBq6g=
+	t=1708100271; cv=none; b=L5eYnczTvLLr7DkShFI5NPp2mY9MC21z9N2NJIgkgA2nxyOZGzEQL8FRpBCQCIy0omQdj9l258D//Tgnoh5Z7fjrAqLJGHFWbY3Xb3SMnIktNvQACftMxHv1cVErzWdHLYZcARpsEkm93qvi1so+g5GZDwMcACH4sBpW8Wv2esQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708099317; c=relaxed/simple;
-	bh=ulmHmF5cD5oOk/vU3Fp+wOpcyv8389AhjaaESJZX2l0=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
-	 MIME-Version:Content-Type; b=lC2c9g7ktLe+LzRiICMo+6enOZDUrC7SWWzYnQX2pZFRA/W5q3kvxCE/2brKkGNmQW5AAVi+vSzn2dxm9X/ZnUrk+gdxDThuCT1GgW3aGr2ImZhr66dghR3fBRmsglBCi91VUtyQRFLnOV+2bxySE4Sk7qfQrx/qM+cuFPxs3dQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=du12MZCc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D767DC433F1;
-	Fri, 16 Feb 2024 16:01:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708099316;
-	bh=ulmHmF5cD5oOk/vU3Fp+wOpcyv8389AhjaaESJZX2l0=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=du12MZCc+hUEhyruKbxOOkV1IAKJ99fa+Joqd30VDg3C0Hvg2zGtPEs8FwD7KmT37
-	 mDVzCxevKrO0YCGDiUD8Ko9h3TYilXw2APfKUUwHf8x5vu6y7LK7+5zrsHnjJgNpJR
-	 s/VWu1D9MCwInZ96KSukzv2RbhdtoUWxJhftaMPTrh1SJmKdsHmO9/1kaXd5NbkPhj
-	 v9I8PcMIgzzZ0x+YuRQ5Umg9T9Q3yKL4WAduVdV72SHmwnR7lm91acGvgpkpB9J4MU
-	 65dkEurZGOfB1uvUKh9cNUnIK9MtD8Zh2MjROMwlms/53pJj1u87M9lYhV9YEQY/Nt
-	 96ul2C7snomwg==
-From: Kalle Valo <kvalo@kernel.org>
-To: <Ajay.Kathat@microchip.com>
-Cc: <alexis.lothore@bootlin.com>,  <davidm@egauge.net>,
-  <linux-wireless@vger.kernel.org>,  <claudiu.beznea@tuxon.dev>,
-  <thomas.petazzoni@bootlin.com>,  <linux-kernel@vger.kernel.org>,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC] wifi: wilc1000: fix reset line assert/deassert
- polarity
-References: <20240213-wilc_1000_reset_line-v1-1-e01da2b23fed@bootlin.com>
-	<2ff1c701f3443e1c612a81f4077b0280850f57c6.camel@egauge.net>
-	<081bce96-f485-414c-8051-e1c14271f8cc@bootlin.com>
-	<aac398e4-d870-4ba2-8877-b98afecb8d1b@microchip.com>
-Date: Fri, 16 Feb 2024 18:01:52 +0200
-In-Reply-To: <aac398e4-d870-4ba2-8877-b98afecb8d1b@microchip.com> (Ajay
-	Kathat's message of "Thu, 15 Feb 2024 04:35:46 +0000")
-Message-ID: <877cj4o0sv.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=arc-20240116; t=1708100271; c=relaxed/simple;
+	bh=1wNdSjbg5tRh3dMTBmjtbbkcd3rSjBMoG/xSPJIZT1o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Tj/TTFMyETeMenF3GRzgz73Wqg+gnzXGQ92iLnVjeDQ4ba5IuhdlzhWCe7T34CIwMU7wYDfT1ML+X4vp9w8QxM+OG9mfeBEL9JSzXu1AOFrBiBF5lA8Yus+b40btWj14sQqLYwVf6FgDNU2G2RfCrS7fF0VVgrsehTKKCrH1dbc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YLhZ8Urr; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41GD3VNV002219;
+	Fri, 16 Feb 2024 16:17:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=B4eyMajiTRUV1N5hgCQ1JZM85SAd3ezHL/YInFjHpd4=; b=YL
+	hZ8UrrFO1p25b7bZ9BpKHg/JH/0ZE2O3HQpX1kMUY1EkyBa8AegeAmiBuxlzZoaI
+	dQw0MaSPXoevghgDc8QMogmjga0yuUqHCFWFG2FpMGsIdDAr/wRop/uPecQGFNXY
+	3JMSgNIMzFdvRmcrxiYLaqWpQ8ndUkYFNHmCoomOnxOvhshImtaruQucDZ2JzNK3
+	7D3mgTEqfG37kbGJS9kQz3a3HrRzMdMY3uqh6/WsbOjnbs6r6FviMxgQo6lah6kz
+	mjRUoioIuVxaZ/1EPSh/+agyGphX9d2RiDqk2Oa/gxaSqnQzp6Sdhrl4ayWS1Ohf
+	OnBKDnDjCkFzsWuqsYfw==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w9fkfc17a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 16 Feb 2024 16:17:40 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41GGHdUw010327
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 16 Feb 2024 16:17:39 GMT
+Received: from [10.226.59.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 16 Feb
+ 2024 08:17:38 -0800
+Message-ID: <640dcd49-394b-1cc0-8cce-01aaabc751b8@quicinc.com>
+Date: Fri, 16 Feb 2024 09:17:37 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH] dt-bindings: net: bluetooth: qualcomm: Fix bouncing
+ @codeaurora
+Content-Language: en-US
+To: <quic_bjorande@quicinc.com>, <marcel@holtmann.org>, <luiz.dentz@gmail.com>,
+        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <quic_bgodavar@quicinc.com>, <quic_rjliao@quicinc.com>
+CC: <linux-bluetooth@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20240202181122.4118105-1-quic_jhugo@quicinc.com>
+From: Jeffrey Hugo <quic_jhugo@quicinc.com>
+In-Reply-To: <20240202181122.4118105-1-quic_jhugo@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: kVbLdiVGyazhhJ7RiokAvXEoMV4iz0lg
+X-Proofpoint-GUID: kVbLdiVGyazhhJ7RiokAvXEoMV4iz0lg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-16_15,2024-02-16_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 malwarescore=0
+ adultscore=0 lowpriorityscore=0 impostorscore=0 mlxlogscore=489
+ spamscore=0 bulkscore=0 suspectscore=0 mlxscore=0 phishscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402160130
 
-(Adding devicetree list for comments)
+On 2/2/2024 11:11 AM, Jeffrey Hugo wrote:
+> The servers for the @codeaurora domain are long retired and any messages
+> sent there will bounce.  Update the maintainer addresses for this
+> binding to match the entries in .mailmap so that anyone looking in the
+> file for a contact will see a correct address.
+> 
+> Signed-off-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
 
-<Ajay.Kathat@microchip.com> writes:
+Rob, will you take this?  You seemed willing to take similar changes.
 
-> On 2/13/24 09:58, Alexis Lothor=C3=A9 wrote:
->>=20
->> On 2/13/24 17:42, David Mosberger-Tang wrote:
->>> On Tue, 2024-02-13 at 16:22 +0100, Alexis Lothor=C3=A9 wrote:
->>>> When using a wilc1000 chip over a spi bus, users can optionally define=
- a
->>>> reset gpio and a chip enable gpio. The reset line of wilc1000 is active
->>>> low, so to hold the chip in reset, a low (physical) value must be appl=
-ied.
->>>>
->>>> The corresponding device tree binding documentation was introduced by
->>>> commit f31ee3c0a555 ("wilc1000: Document enable-gpios and reset-gpios
->>>> properties") and correctly indicates that the reset line is an active-=
-low
->>>> signal. However, the corresponding driver part, brought by commit
->>>> ec031ac4792c ("wilc1000: Add reset/enable GPIO support to SPI driver")=
-, is
->>>> misusing the gpiod APIs and apply an inverted logic when powering up/d=
-own
->>>> the chip (for example, setting the reset line to a logic "1" during po=
-wer
->>>> up, which in fact asserts the reset line when device tree describes the
->>>> reset line as GPIO_ACTIVE_LOW).
->>>
->>> Note that commit ec031ac4792c is doing the right thing in regards to an
->>> ACTIVE_LOW RESET pin and the binding documentation is consistent with t=
-hat code.
->>>
->>> It was later on that commit fcf690b0 flipped the RESET line polarity to=
- treat it
->>> as GPIO_ACTIVE_HIGH.  I never understood why that was done and, as you =
-noted, it
->>> introduced in inconsistency with the binding documentation.
->>=20
->> Ah, you are right, and I was wrong citing your GPIOs patch as faulty
->> (git-blaming too fast !), thanks for the clarification. I missed this pa=
-tch from
->> Ajay (fcf690b0) flipping the reset logic. Maybe he had issues while miss=
-ing
->> proper device tree configuration and then submitted this flip ?
->
-> Indeed, it was done to align the code as per the DT entry suggested in
-> WILC1000/3000 porting guide[1 -page 18], which is already used by most
-> of the existing users. This change has impact on the users who are using
-> DT entry from porting guide. One approach is to retain the current code
-> and document this if needed.
-
-So if I'm understanding the situation correctly Microchip's porting
-guide[1] doesn't match with kernel.org documentation[2]? I'm not the
-expert here but from my point of view the issue is clear: the code needs
-to follow kernel.org documentation[2], not external documentation.
-
-I'll add devicetree list so hopefully people there can comment also,
-full patch available in [3].
-
-Alexis, if there are no more comments I'm in favor submitting the revert
-you mentioned.
-
-
-[1] https://ww1.microchip.com/downloads/en/DeviceDoc/ATWILC1000-ATWILC3000-=
-ATWILC-Devices-Linux-Porting-Guide-User-Guide-DS70005329C.pdf
-
-[2] Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
-
-[3] https://patchwork.kernel.org/project/linux-wireless/patch/20240213-wilc=
-_1000_reset_line-v1-1-e01da2b23fed@bootlin.com/
-
---=20
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
-hes
+-Jeff
 
