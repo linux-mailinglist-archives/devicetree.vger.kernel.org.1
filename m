@@ -1,129 +1,122 @@
-Return-Path: <devicetree+bounces-42738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA3C98584B9
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 19:01:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39DFD8584CA
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 19:04:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76D6A2844F0
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 18:00:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E84CE28474F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 18:04:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 772DF133439;
-	Fri, 16 Feb 2024 18:00:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F25191350ED;
+	Fri, 16 Feb 2024 18:04:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Xzqy8X/Y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kvkKXLas"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C82D412FB3F;
-	Fri, 16 Feb 2024 18:00:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9AD71350D5;
+	Fri, 16 Feb 2024 18:04:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708106456; cv=none; b=Dw8XgS+os8nwsOPFbcA2yq3qxP1mQ7QVQcbRp6+QTTSmE9mFUUL2OASnMQLmSMMzlstV8CicHIURjIH2uSw6UiYu7BlnNts9NhcXSch/L0Fi+KcsSQo5I6GXEbdXOjFkrkS+hzHaPaoZwkiGJxG8eLE4ENxKzG9ytcXGMFCK774=
+	t=1708106651; cv=none; b=Ul3kKtwm6Gtu1lOjYbUD6t77OAGLIYMoaMZJryPezTIKNy1B39faa5Fn2bogxmq+ww+Adzvp2MYjQEz46sT5FZiw5ZS50P+buBLjvmrTiP97AY90eQo7woGYL7MH71mhtRlXhgmASSqIIkHr1gsKZfZM7QAYEAGgmQbCEZC274s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708106456; c=relaxed/simple;
-	bh=ZAosGOA5suCb8SlRfj72vMGRr1ok4VubPM72huT6/Ww=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=alfIi5n3baCAVdQjExG0F+RietJuo9fhbEDUZIBzbpRbB/td4o2Mt+2CM62VTC8l7eTW4qR4xeASB/bjcB8JCyluBP8QYeTJDonrBNC8yMUpOSeyJyVau6e43PoQYg4tm2SeZJbXzw3bghsWb2bZ8IzETL56A3qxuxo9hL7ofu0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=Xzqy8X/Y; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41GFVavx008758;
-	Fri, 16 Feb 2024 19:00:26 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=jJ5ftO6qA0bAbkgyUfXtwPro3bnB89V6hMXoFA1fX/0=; b=Xz
-	qy8X/YaHt/8k33pAAt7aZRhVsgVFL3Me4tcPqydMkRXJNewjP8V4MmwnP63N82Au
-	jEZPPAyiTU0nbkgT9PBSMU+tHiHt879JqklHFkUSnV/2LSoTA1IRjmD49jbthIxQ
-	HMMowLqc67S9ONoxnIqhqltbXdtZ5jl5g8NPD7PlZsO8h/2aS36JNvqRC79CI+fQ
-	WtNuO6+MBb8Uby4QrRxGzK3YSXqa0dm3EQyovHV42YGiMMRNBb490h1KkBwVm2EJ
-	xSGNSf3CCO2c0OXjc7s8DuInLSFy2xAQreAKn8ZGtlK1P5RoowG/n0mucZIWZWf/
-	od4yDgDDQHFSe6PSvGEg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3wa124k49t-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 16 Feb 2024 19:00:26 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id D02CB40045;
-	Fri, 16 Feb 2024 19:00:21 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 535432951A1;
-	Fri, 16 Feb 2024 18:59:35 +0100 (CET)
-Received: from [10.201.22.200] (10.201.22.200) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 16 Feb
- 2024 18:59:34 +0100
-Message-ID: <90e6e7a2-97fd-41dc-bde9-43949168f9cd@foss.st.com>
-Date: Fri, 16 Feb 2024 18:59:33 +0100
+	s=arc-20240116; t=1708106651; c=relaxed/simple;
+	bh=4zAkwFBwhltmz4rki5uzbVVp2kIHfC3lppNg/ef2oWk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KOuPLKfF+sRbHiXirHfxpw5qKOZlAulk0A9F8JyXIxt7Do/stY0nGIv+EuHKRPmXipH7itadXUKa1OAA8NzAKWjXrA/09AxjFh/51TjASOZpwgp+9Av+quxOtUGN5k1UEiwOgaCxFozqyLZjByWqcLSQX2tQNnSURvnYAMWkS8M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kvkKXLas; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69298C433F1;
+	Fri, 16 Feb 2024 18:04:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708106651;
+	bh=4zAkwFBwhltmz4rki5uzbVVp2kIHfC3lppNg/ef2oWk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kvkKXLaspERoZLUmJ2GAqcBR63dKo2UQTuIIqNvBXjFHSMSZ7lF7RGFy5hsirkwOm
+	 0/GrwZWwgrkNDIIjE+5lwxVCQ1epEohR1N+PCIGaMupLm++hKwRuSA5D1GmW4R3/w7
+	 4DKCY4NIoRoIAOtjg12u/sDHyJ20lyFcq0Snwe/6sUYOdggh/KJDDe4MqhaUv8GiHG
+	 nlbxLgUTtnA6+DAjrkoVMOKEJx1j1K9sCxp5n6ImHZDiABHqXzx76ohxEAfgCoQ5pP
+	 RaVKxIO7N059zQSHEVe/mM00XqAWkB0uulSrjw1oQ1x0pTYfalg4reqJ39YGui342L
+	 KjkbtGqDm+xoA==
+Date: Fri, 16 Feb 2024 18:04:07 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Michael Walle <mwalle@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	devicetree@vger.kernel.org, Sean Wang <sean.wang@mediatek.com>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm64: mediatek: add Kontron
+ 3.5"-SBC-i1200
+Message-ID: <20240216-unsettled-polygraph-e55f7f2dba90@spud>
+References: <20240216163406.1050929-1-mwalle@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/12] Add MP25 FMC2 support
-Content-Language: en-US
-To: <miquel.raynal@bootlin.com>, <richard@nod.at>, <vigneshr@ti.com>,
-        <krzysztof.kozlowski@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <linux-mtd@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <devicetree@vger.kernel.org>
-References: <20240212174822.77734-1-christophe.kerello@foss.st.com>
-From: Christophe Kerello <christophe.kerello@foss.st.com>
-In-Reply-To: <20240212174822.77734-1-christophe.kerello@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-16_17,2024-02-16_01,2023-05-22_02
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="GfQPB3jyAyI//zwd"
+Content-Disposition: inline
+In-Reply-To: <20240216163406.1050929-1-mwalle@kernel.org>
 
 
+--GfQPB3jyAyI//zwd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 2/12/24 18:48, Christophe Kerello wrote:
-> Add MP25 SOC support in stm32_fmc2 drivers:
->   - Update stm32-fmc2-ebi driver to support FMC2 revision 2 and MP25 SOC.
->   - Update stm32_fmc2_nand driver to support FMC2 revision 2 and MP25 SOC.
-> 
+On Fri, Feb 16, 2024 at 05:34:05PM +0100, Michael Walle wrote:
+> Add the compatible string for the Kontron 3.5"-SBC-i1200 single board
+> computer.
+>=20
+> Signed-off-by: Michael Walle <mwalle@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/arm/mediatek.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Docume=
+ntation/devicetree/bindings/arm/mediatek.yaml
+> index 09f9ffd3ff7b..32896f91ea38 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> @@ -357,6 +357,12 @@ properties:
+>                - radxa,nio-12l
+>            - const: mediatek,mt8395
+>            - const: mediatek,mt8195
+> +      - description: Kontron 3.5"-SBC-i1200
+> +        items:
+> +          - enum:
+> +              - kontron,3-5-sbc-i1200
 
-Hi Miquel,
+This is a specific SBC, why the enum?
 
-Don't waste time reviewing this first patchset because I rewrote the 
-NAND part.
-Patch V2 will be sent next week.
+> +          - const: mediatek,mt8395
+> +          - const: mediatek,mt8195
+>        - items:
+>            - enum:
+>                - mediatek,mt8516-pumpkin
+> --=20
+> 2.39.2
+>=20
 
-Regards,
-Christophe Kerello.
+--GfQPB3jyAyI//zwd
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
-> Christophe Kerello (11):
->    dt-bindings: memory-controller: st,stm32: add MP25 support
->    memory: stm32-fmc2-ebi: add a platform data structure
->    memory: stm32-fmc2-ebi: add MP25 support
->    memory: stm32-fmc2-ebi: update the driver to support revision 2
->    memory: stm32-fmc2-ebi: add RIF support
->    memory: stm32-fmc2-ebi: add runtime PM support
->    dt-bindings: mtd: st,stm32: add MP25 support
->    mtd: rawnand: stm32_fmc2: use dma_get_slave_caps to get DMA max burst
->    mtd: rawnand: stm32_fmc2: add a platform data structure
->    mtd: rawnand: stm32_fmc2: add MP25 support
->    mtd: rawnand: stm32_fmc2: update the driver to support revision 2
-> 
-> Patrick Delaunay (1):
->    dt-bindings: memory-controller: st,stm32: add 'power-domains' property
-> 
->   .../memory-controllers/st,stm32-fmc2-ebi.yaml |   7 +-
->   .../bindings/mtd/st,stm32-fmc2-nand.yaml      |  58 ++-
->   drivers/memory/stm32-fmc2-ebi.c               | 445 ++++++++++++++++--
->   drivers/mtd/nand/raw/stm32_fmc2_nand.c        | 108 ++++-
->   4 files changed, 547 insertions(+), 71 deletions(-)
-> 
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZc+jlwAKCRB4tDGHoIJi
+0v0vAQD7OvJN5P3h8A9HqT3/JRs2VwVOUaNZR+gQQJVOUQzUwwD9F/fbds1vFdQs
+K+oS3OF8Gtsl66sx2RY48OfHJTuTawY=
+=a4sf
+-----END PGP SIGNATURE-----
+
+--GfQPB3jyAyI//zwd--
 
