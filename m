@@ -1,243 +1,187 @@
-Return-Path: <devicetree+bounces-42376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AF2A85761A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 07:47:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C0F4857651
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 07:58:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5186CB23C29
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 06:47:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3290B280FA2
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 06:58:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17B451401C;
-	Fri, 16 Feb 2024 06:47:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ACBD14A89;
+	Fri, 16 Feb 2024 06:58:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OFixQkYX"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="iHbupFZB";
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="mEJ7sJ2c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1D06EEAC;
-	Fri, 16 Feb 2024 06:47:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708066058; cv=none; b=amERx59PljaQidHEMd/WWsDq4U8BDFvqJ+KtKhNghlAJxY14ampTc0yu61lnGANrfWqHgbNiGjdEgxxCk3nSJJPSeljL2FfUkO683AgW8UTf6zLPc+qw7e478OjEA18e237FFHBgyF/Dkqd9mth47+H/2+w5338+L2wHmvHn3Uo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708066058; c=relaxed/simple;
-	bh=IaYS5krugxcWWLdlP3aNH0s2GExm1DY2BuiHt8XgCtM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L1DhMnTHmWQgKfm3HtkDwD8bb/qWCXjAUQG9PuC3e4d9u5MyIPmuRgJjDuEWFhpxtnhTBsaZrJGNgvmf9KQMQtLLbdHRisPv8/YlqTrdoAbtPzbSbFoBAvPxK7ZTXaXo8PrZ6PLcc5rSt9MGWIB/aa2WrIZAHxbq5XYZCqXTIPo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OFixQkYX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28845C433C7;
-	Fri, 16 Feb 2024 06:47:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708066057;
-	bh=IaYS5krugxcWWLdlP3aNH0s2GExm1DY2BuiHt8XgCtM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OFixQkYX/oFkmeTY9XozPfHlCyyrwGGiRn+t5Qo2SQB/M3BQWiTr6Gmi+2QULbQIP
-	 ZXyActqWf41o80jJ/+K/aXx3YrthzC4zot80y4ffZW05ZYxhXuJLS4Xb9d8m+4qWm4
-	 ZITMB1FHWB47wV/xS9bobtFeFdi8szGyjBCxLvwX6VopLmpkmGPqg/gMb4BR97pBwO
-	 HOXf7/oYuxZ+TR5Qjqc8l5ef/mmv6O4cZt7vWOFgPIOo42otWumPFAq/7INIlaVp+D
-	 lZvsWls0YcMYkkuRYs8lmSvHfHBp3g4mkjYpFRZt/hOfeHmFVZszks349e2vRiV7ZP
-	 PJ0kdCoTwZeEQ==
-Date: Fri, 16 Feb 2024 12:17:32 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	linux-rockchip@lists.infradead.org, linux-phy@lists.infradead.org,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Kever Yang <kever.yang@rock-chips.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, kernel@collabora.com,
-	Zhang Yubing <yubing.zhang@rock-chips.com>
-Subject: Re: [PATCH v2 04/12] phy: rockchip: add usbdp combo phy driver
-Message-ID: <Zc8FBJbMeLng9DjS@matsya>
-References: <20240213163609.44930-1-sebastian.reichel@collabora.com>
- <20240213163609.44930-5-sebastian.reichel@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31767FC01;
+	Fri, 16 Feb 2024 06:58:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=68.232.154.123
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708066701; cv=fail; b=mQVFTXVRuXnuvONXl6vM47/EB80UsVQQ6HinNIETKLzKY+FAC+jTYNbwRvR3/jZUPHVX39mDxHUuoAphM8Zf7b5H31lW7b8MZr7S85fhHVEtmKTAvC8C+L5l5MaAW4hIN65ugdZzEoPNhh+wuqAYZy44Rwcgpt5DDcXp0OTIy8M=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708066701; c=relaxed/simple;
+	bh=CC7t/Gk05SL9/dacteDGMwdajomf9PfHBUJ4VGHlywE=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=Gy/IPH5UuYkapsSR16NxOTH4WPmUi+VA9iyVMzrQ8tEYzgmpj+9n1dsKwcUOhxyrMWV91HhcBbrL1mU97PLmFZpA3xVyOvqsmgoTeXCAMdMy5G5ORviL+Bvwjel+gjCg8I1rZa4bgwfr+3BEqL6d3KROmTM91Ng08fifJtjkpqw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=iHbupFZB; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=mEJ7sJ2c; arc=fail smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1708066699; x=1739602699;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=CC7t/Gk05SL9/dacteDGMwdajomf9PfHBUJ4VGHlywE=;
+  b=iHbupFZBFYDLhq2vshOfNVZB8dqA9tklIrWrW1JWp40C3J5gSJNJHASY
+   Xti6vTVJHjyXHKqI0K0ggixUKlt4iAf0OOyp5FnHpEfcIym3vAqJCJbM8
+   qRF6HGqpF+w48lynf3D+6qp313zcDF9rvxx2ba6tP53yIiRuUPglkyR+V
+   bLT6rTVNBEo11C1ib3VyZTOZpDpaUWUSMswpXUMY4fcqdxq/sMbG/3u7L
+   wFGcSE2WKZN6gu6icSQ+tvgDbSXCJHfzEnGxvX0MeIO+z0uWNVa1qB6h3
+   pMgSWZdNZmJz5dB9YXT4gGYHXy/9+NX3oGur6XNzbDy2/tEQIG1RR/An1
+   g==;
+X-CSE-ConnectionGUID: PzXjFMCCSIacsRETbMjO9Q==
+X-CSE-MsgGUID: NSpveMM3QI2/ofg+eN9n0A==
+X-IronPort-AV: E=Sophos;i="6.06,163,1705388400"; 
+   d="scan'208";a="183606321"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 15 Feb 2024 23:58:17 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 15 Feb 2024 23:58:12 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (10.10.215.250)
+ by email.microchip.com (10.10.87.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Thu, 15 Feb 2024 23:58:12 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GbhZbUpiJJcCwMoX9zIUh5U8wD6N8dQVdo8aL9FMkB3U/cUM/KP6JXEK4Dw5e8QSc+Vcc3jdClT54UN2dXWqiNp+nmdskeM6ZZ14WBbOJ7YUO5uUmFiYSBXOFpTKFaXVD+eU8xt6XLj+SSRk82h5yfCq9UNKerRt5VI3hSyqTmVG2y+fB1grXykyOFBUH/55ORRWry6LRep59Zmgl/hzfXNahshYdPTiUpy6Yu8q4N0srbwcgE5YppjnLk3gh2M7oHRCB8JwtN/GEYrWXwcIIBANRjACnfkPBVHwxKmPpJwXerSbAEb+qOvSF5eK6m5JWFoPnCaLp1BXkIVwAdA7Hg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CC7t/Gk05SL9/dacteDGMwdajomf9PfHBUJ4VGHlywE=;
+ b=jzhy+vIJCnNxzUN9OBjMNlmmh+84t//1IiTy4fyNPGdImyYsuO1dmhGaPebEu3gDIRvJlae+Ez4Ybf1JDVgRpPKkEm05s2Xpa5vqow/zFG/qwYomXh1OnmOG0ThVGE2HGK7ZcIx8PnFivCDiGcA3RQZgVyt3mnBAtc0Pj3OLYEnYsOwjNT+IBRtlEULahWh6cAYneWiCpQ1Ff87nxCkAWJ4NgzTAjksjWW0Ns1hAFPqIwzXsQtrqTaHRU1b3SYMN4o0TQv6W+XggJdqTE7g5RDyohnRwVfEtwWVoW8DumUXLB7VirH09bH1WfGz0TzuO+VeVt94JypUeUy/IqhsBQg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CC7t/Gk05SL9/dacteDGMwdajomf9PfHBUJ4VGHlywE=;
+ b=mEJ7sJ2c6PEU/QNixwTjItEKIY3A14zzKQ081ekUMB5qJqEf5jfJD7UDSh5ary/txgxb6JrkpRZX5hXPMFsmSV7ChuCqXRK2W/nZOgbknXIukITUyudLOw8YPQYFWyIeX/R6KN2txFQAsXPdRJ1wzuKKe15lHW4ozl+ozE9gkxXMSR3FpUTgLtJfUNazRFew7mTsWT7kgSNz5m+kKTtcu5dIelNw32EjuF7g575Yzx8DzL1sTj4v3arfpRwjlrbg4/2bTuMxtsO40k6IJrqmS2nvvP7VDIG7M3t553uxAl6O/BVUN7hLOofTmpZD5tYzZdSBCePpJwyh9N4ScHE7wQ==
+Received: from PH8PR11MB6804.namprd11.prod.outlook.com (2603:10b6:510:1bc::6)
+ by DS0PR11MB8761.namprd11.prod.outlook.com (2603:10b6:8:1a1::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.31; Fri, 16 Feb
+ 2024 06:58:10 +0000
+Received: from PH8PR11MB6804.namprd11.prod.outlook.com
+ ([fe80::f267:b0f5:662:b562]) by PH8PR11MB6804.namprd11.prod.outlook.com
+ ([fe80::f267:b0f5:662:b562%4]) with mapi id 15.20.7270.036; Fri, 16 Feb 2024
+ 06:58:10 +0000
+From: <Mihai.Sain@microchip.com>
+To: <conor@kernel.org>
+CC: <claudiu.beznea@tuxon.dev>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<Nicolas.Ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+	<andre.przywara@arm.com>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<Cristian.Birsan@microchip.com>
+Subject: RE: [PATCH v3 2/3] ARM: dts: microchip: sama7g5: Add flexcom 10 node
+Thread-Topic: [PATCH v3 2/3] ARM: dts: microchip: sama7g5: Add flexcom 10 node
+Thread-Index: AQHaX++hqXMnmAeGjEig5SQwnML2drELoc4AgADpUQA=
+Date: Fri, 16 Feb 2024 06:58:10 +0000
+Message-ID: <PH8PR11MB6804E9353A8EEBD2B829D8B3824C2@PH8PR11MB6804.namprd11.prod.outlook.com>
+References: <20240215091524.14732-1-mihai.sain@microchip.com>
+ <20240215091524.14732-3-mihai.sain@microchip.com>
+ <20240215-lustily-flick-69cb48b123c3@spud>
+In-Reply-To: <20240215-lustily-flick-69cb48b123c3@spud>
+Accept-Language: en-GB, en-US, ro-RO
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH8PR11MB6804:EE_|DS0PR11MB8761:EE_
+x-ms-office365-filtering-correlation-id: aadb11a3-ba87-42f0-2fd2-08dc2ebca33f
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 5FsusZv2PSoUcgQinRO0dYxUFUgQWYMJpr29W2QBwU3gA6Kbv79QMoOST2v2SU8LPvfQaH2rWwi+r4/QwCmT+FWDDmQgSV+pXMQw9Hwh7Y/1KlzLYVQhUbGW7ECdzNRbacSUIevfrDI/VgnPqLC5kqNF1Bza1gdKGOeQTx927hniTAm/EwZmnAf+lOT1HAwBYLPiMSfCWzd7Ik9uKu5g/ionjy6Kt76ENmm8ahUcqMtjnezo3o2eu16u2IUvNw+r2RK1TpeuSuKrKe4sGCBuDPQaclr4iCEY78hiQtcnoumj9c9kNoGPFoDeoYshyRWSAzmfs7TYYibXLH1aNLew1cvddoQgmsMgwjMQxwI6XsH22GMef7Q6oWKRcbvTzTNIolWKy4LFgrPAkOtOEAo+KzIRj6BQFtItiM+RwDwmjSiyiq4ohjTWztE5p9mR4ttM6yVZAXzOV2zOw/sD36iZ+qKG6+MIGCFgUrhoOUpmI9LAJf8Ju4KVUPk9V/KPa1tG8aIc8+ElqO+kqY1X3wh6MIZHm5BH69BkwW0Idg6VATXG3cyb0el8UluuE4C6a1eGw8L2ozZG/Df2BcN87yM7vlXcdS7QSq0crGCJHOCC6gg+dUJU4kAFk0qN9MCTEFYOWx/rJzjd9ee8ZT1XvMMETw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH8PR11MB6804.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(346002)(136003)(39860400002)(376002)(396003)(230922051799003)(451199024)(1800799012)(186009)(64100799003)(86362001)(33656002)(122000001)(966005)(9686003)(6506007)(7696005)(478600001)(316002)(41300700001)(54906003)(71200400001)(26005)(107886003)(38070700009)(38100700002)(64756008)(66446008)(2906002)(66476007)(8676002)(4326008)(6916009)(66556008)(8936002)(4744005)(52536014)(7416002)(5660300002)(55016003)(66946007)(76116006);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?eTJIVFR3WURDK3Rmc0twUEN3VVZZMkRnS2NuMENLeHkrcFZ1YnlsbndxN1Rs?=
+ =?utf-8?B?aDlHRFc5RmlCdW1DNVlmRytnQXRkK3lORG5Nckw0VnBvWWxRazNOeGlLRitI?=
+ =?utf-8?B?V3FoUnEyVmlSaDh3UnBNRkpZNm9EeVhzQkVBcEFvcDNZR24rR2N4MC9sRFdY?=
+ =?utf-8?B?c0puT1h2eGdleWhsZXZ1MUc4bHdsSFltZWtsK1Z1aFRKdU4rUEFLMDhnL3VZ?=
+ =?utf-8?B?b1VQOHh5UmhmREpQVkkzZ3NxcFdrcnJaNWJ1a2x1bGZHc0JvYnZ3cGo4Ulpa?=
+ =?utf-8?B?UnJZaDNDSEZqRU5Qc2ZFV0pOWVVUUHRmSEJiNmxUL3ZNZ2t0bGtyejhaL0Ft?=
+ =?utf-8?B?QzB3S2NwUWFKZWRlVHZBcnc4dWtCSEFPc3NneXZuY0YwQlg0SG02NDVMTHBm?=
+ =?utf-8?B?MklFQzZ4MkdOY1BnL1ErQWpMMEhDQlZCVW40emp0M2lMelBnV0FYcHJlSHZo?=
+ =?utf-8?B?K0RCNUxwWFFGWGtWZlgvSHpvMmRuQlhpZzRxM1hZaE95S05ua1lRVlh6L1Fh?=
+ =?utf-8?B?RHFpNlUveWRlQXNMcEZJb3BNVXRBR3Z5ZERIUWtkSEZEVTNkbW1zNmdIeXYz?=
+ =?utf-8?B?cE9XWElBV1dNS1Uxd1R3TGNIOW5ZZ1JrNGFRYWFjdGZWdWFMWWpiaklacU15?=
+ =?utf-8?B?Q1l5QkNPdVRESk1UOFZXckJvcXJ0ZTQ2b1Vod2J2V09VN1pYTmQzZy91bHFM?=
+ =?utf-8?B?M2RoejRSRkJ5RndDdzRxY3dMTkNmQlZHR3dOMStUOVlXdjRsVC9hSTY1VEQ2?=
+ =?utf-8?B?VkhzUUl5MTBHU3Y2VXNwckxzcnVjVUtacGR6YXJFbTcva3BoNGt4MnNPNTFj?=
+ =?utf-8?B?bUhEVW1UMFQralRKaDVJT05Pd2NiWjRhMWY1bHNXZXBKMWRxMy9EbDN5T0I4?=
+ =?utf-8?B?OFhVT1ZROWpFUGw5VmtVSm9FdTRYd0ptc0pBenJSZXd3NEpqLzdxMkExU21l?=
+ =?utf-8?B?UzlYKytTK0FENyt5bGlDRlpqSnlFTlg4RU13OVpMb3BzY0laRzdXdElhYmgx?=
+ =?utf-8?B?b1ovaVdpcDdoZ0gwWkJ1Y3FWOUQ5WmtoYVE2N1lkVzhxNC9PYjVxdlR3MnNj?=
+ =?utf-8?B?SFNjaDdDNkt6OXJXdmlyVXZNVk9ubzN2Yk5haU9TRmpMN0pQRVZyeC9pR2Mr?=
+ =?utf-8?B?c05UNWxRZHJyNmpnLzJkUXo4amZOc0hSL2RrZU9yYVl5ZTFBN05hdmZGZEU5?=
+ =?utf-8?B?SXVQZS9nd3FmNTEzaUgrNXpCbEpqYTZSMjF3TlU5NmJBL1NZaFUvNk93dnNB?=
+ =?utf-8?B?MEdlYTN2WHNUZVozMWI5QklDNlYvY0grdDNaaHJMMkN4UnY2am9hTytOSDJF?=
+ =?utf-8?B?b0g5dEoxUVQzRUhhS3NES3NIK2ZuSDFzdGNrMlc5TlVmMXNPbzhOaTRGTSs0?=
+ =?utf-8?B?UWtXT0c1QUxUejFNUlZKalkvUDExMkFmekdLOXJZRHcvMm92UWtkSkRTai9N?=
+ =?utf-8?B?NDRrUi8yc1V2ZjV1R1JvWVZCVHQ3S2ZaSnNieGNYSkVaZ0NZR1ltN0hCR1Bm?=
+ =?utf-8?B?VmZ6ajhyT1lpVkJzekVseFdvc0RUZHg5MlpZeWdCekxoczlNditJZEYvUmJ4?=
+ =?utf-8?B?VXJWNnRzRDlvS0Y0dVRNVkl1SXMybTJXNmJTa0RTVlRxZk9FRTlWMzlSdjRz?=
+ =?utf-8?B?Z0tCeWdtcUI5L25Zb1dXSVhHOG10VWEzeWlXWUJINmRHdlh5RHU3M3hhTFVR?=
+ =?utf-8?B?eEE3a1o3eGdqaDZMV2VhbFAwU2VtVGZrdnlhMjIrdXhpalgxTE5JSjJtUlVw?=
+ =?utf-8?B?UXZrdlFCZk5aR01IaGMvU1VXazY1elFLb3IrY3dDNFQ5dVVzem9KcGYraUE4?=
+ =?utf-8?B?d0IzSjdQSDdJVGZ2THg5OStUVEQveGNRT0VTZmhmWXh3eVhIZDlZbFF5OElj?=
+ =?utf-8?B?d2pNMDlqenBOem9SN2wrWVZPUHRiNDB3WDVKNGZOT0lOeGZLK1FqTnlML0tz?=
+ =?utf-8?B?eTYxUU1GeVRMUzZhbXJPZGptejZtRFBncm0zUk1yZnpnclp5b1NQR2JPQTRJ?=
+ =?utf-8?B?T3BKdE05TFgvNmVkNFJaWGpPL25wcUQweloxcjVSUFBTZGNNV1VSZ3lTamRX?=
+ =?utf-8?B?QnJIUDVxVURGZjF1d1oxUHFPb1B1NjlqWWl6T2wzV3E3akV3Y0RVcWFNOEFk?=
+ =?utf-8?Q?Q9LGAmokgYInLpdA9VEPH0Dm9?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240213163609.44930-5-sebastian.reichel@collabora.com>
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB6804.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: aadb11a3-ba87-42f0-2fd2-08dc2ebca33f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Feb 2024 06:58:10.6724
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: C8ZVSjWXcskNVao7JNASMkIKTey8VWUWL8rWxkTe38+OV27rxj4852e9XlVppd0rAdP8DY+CKiSJJ++47sYRbR7xyOl3zUafVDIVD2yZpNI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB8761
 
-On 13-02-24, 17:32, Sebastian Reichel wrote:
-> This adds a new USBDP combo PHY with Samsung IP block driver.
-> 
-> The driver get lane mux and mapping info in 2 ways, supporting
-> DisplayPort alternate mode or parsing from DT. When parsing from DT,
-> the property "rockchip,dp-lane-mux" provide the DP mux and mapping
-> info. This is needed when the PHY is not used with TypeC Alt-Mode.
-> For example if the USB3 interface of the PHY is connected to a USB
-> Type A connector and the DP interface is connected to a DisplayPort
-> connector.
-> 
-> When do DP link training, need to set lane number, link rate, swing,
-> and pre-emphasis via PHY configure interface.
-> 
-> Co-developed-by: Heiko Stuebner <heiko@sntech.de>
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> Co-developed-by: Zhang Yubing <yubing.zhang@rock-chips.com>
-> Signed-off-by: Zhang Yubing <yubing.zhang@rock-chips.com>
-> Co-developed-by: Frank Wang <frank.wang@rock-chips.com>
-> Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> ---
->  drivers/phy/rockchip/Kconfig              |   12 +
->  drivers/phy/rockchip/Makefile             |    1 +
->  drivers/phy/rockchip/phy-rockchip-usbdp.c | 1639 +++++++++++++++++++++
->  3 files changed, 1652 insertions(+)
->  create mode 100644 drivers/phy/rockchip/phy-rockchip-usbdp.c
-> 
-> diff --git a/drivers/phy/rockchip/Kconfig b/drivers/phy/rockchip/Kconfig
-> index 94360fc96a6f..d21b458c1d18 100644
-> --- a/drivers/phy/rockchip/Kconfig
-> +++ b/drivers/phy/rockchip/Kconfig
-> @@ -107,3 +107,15 @@ config PHY_ROCKCHIP_USB
->  	select GENERIC_PHY
->  	help
->  	  Enable this to support the Rockchip USB 2.0 PHY.
-> +
-> +config PHY_ROCKCHIP_USBDP
-> +	tristate "Rockchip USBDP COMBO PHY Driver"
-> +	depends on ARCH_ROCKCHIP && OF
-> +	select GENERIC_PHY
-> +	select TYPEC
-> +	help
-> +	  Enable this to support the Rockchip USB3.0/DP combo PHY with
-> +	  Samsung IP block. This is required for USB3 support on RK3588.
-> +
-> +	  To compile this driver as a module, choose M here: the module
-> +	  will be called phy-rockchip-usbdp
-> diff --git a/drivers/phy/rockchip/Makefile b/drivers/phy/rockchip/Makefile
-> index 7eab129230d1..25d2e1355db7 100644
-> --- a/drivers/phy/rockchip/Makefile
-> +++ b/drivers/phy/rockchip/Makefile
-> @@ -11,3 +11,4 @@ obj-$(CONFIG_PHY_ROCKCHIP_PCIE)		+= phy-rockchip-pcie.o
->  obj-$(CONFIG_PHY_ROCKCHIP_SNPS_PCIE3)	+= phy-rockchip-snps-pcie3.o
->  obj-$(CONFIG_PHY_ROCKCHIP_TYPEC)	+= phy-rockchip-typec.o
->  obj-$(CONFIG_PHY_ROCKCHIP_USB)		+= phy-rockchip-usb.o
-> +obj-$(CONFIG_PHY_ROCKCHIP_USBDP)	+= phy-rockchip-usbdp.o
-> diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-> new file mode 100644
-> index 000000000000..8b1ace2aaa98
-> --- /dev/null
-> +++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-> @@ -0,0 +1,1639 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Rockchip USBDP Combo PHY with Samsung IP block driver
-> + *
-> + * Copyright (C) 2021 Rockchip Electronics Co., Ltd
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/bits.h>
-> +#include <linux/clk.h>
-> +#include <linux/clk-provider.h>
-> +#include <linux/delay.h>
-> +#include <linux/gpio.h>
-> +#include <linux/io.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/kernel.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/of.h>
-> +#include <linux/phy/phy.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/property.h>
-> +#include <linux/regmap.h>
-> +#include <linux/reset.h>
-> +#include <linux/usb/ch9.h>
-> +#include <linux/usb/typec_dp.h>
-> +#include <linux/usb/typec_mux.h>
-
-Thats a lot of headers, do you need all?
-
-> +static inline int rk_udphy_grfreg_write(struct regmap *base,
-> +					const struct rk_udphy_grf_reg *reg, bool en)
-> +{
-> +	u32 val, mask, tmp;
-> +
-> +	tmp = en ? reg->enable : reg->disable;
-> +	mask = GENMASK(reg->bitend, reg->bitstart);
-> +	val = (tmp << reg->bitstart) | (mask << BIT_WRITEABLE_SHIFT);
-
-Perhaps FIELD_PREP|GET for these?
-
-> +static int rk_udphy_dplane_get(struct rk_udphy *udphy)
-> +{
-> +	int dp_lanes;
-> +
-> +	switch (udphy->mode) {
-> +	case UDPHY_MODE_DP:
-> +		dp_lanes = 4;
-> +		break;
-
-empty line after break makes it more readable
-
-> +	case UDPHY_MODE_DP_USB:
-> +		dp_lanes = 2;
-> +		break;
-> +	case UDPHY_MODE_USB:
-> +		fallthrough;
-> +	default:
-> +		dp_lanes = 0;
-> +		break;
-> +	}
-> +
-> +	return dp_lanes;
-> +}
-> +
-> +static int rk_udphy_dplane_enable(struct rk_udphy *udphy, int dp_lanes)
-> +{
-> +	u32 val = 0;
-> +	int i;
-> +
-> +	for (i = 0; i < dp_lanes; i++)
-> +		val |= BIT(udphy->dp_lane_sel[i]);
-> +
-> +	regmap_update_bits(udphy->pma_regmap, CMN_LANE_MUX_AND_EN_OFFSET, CMN_DP_LANE_EN_ALL,
-> +			   FIELD_PREP(CMN_DP_LANE_EN_ALL, val));
-> +
-> +	if (!dp_lanes)
-> +		regmap_update_bits(udphy->pma_regmap, CMN_DP_RSTN_OFFSET,
-> +				   CMN_DP_CMN_RSTN, FIELD_PREP(CMN_DP_CMN_RSTN, 0x0));
-> +
-> +	return 0;
-
-there is no error generation in the fn, these kind of fn should really
-be not returning anything
-
-> +static int rk_udphy_usb3_phy_init(struct phy *phy)
-> +{
-> +	struct rk_udphy *udphy = phy_get_drvdata(phy);
-> +	int ret = 0;
-> +
-> +	mutex_lock(&udphy->mutex);
-> +	/* DP only or high-speed, disable U3 port */
-> +	if (!(udphy->mode & UDPHY_MODE_USB) || udphy->hs) {
-> +		rk_udphy_u3_port_disable(udphy, true);
-> +		goto unlock;
-
-no power up in that case?
-
-> +	}
-> +
-> +	ret = rk_udphy_power_on(udphy, UDPHY_MODE_USB);
-> +
-> +unlock:
-> +	mutex_unlock(&udphy->mutex);
-> +	return ret;
-> +}
--- 
-~Vinod
+PiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm0vYm9vdC9kdHMvbWljcm9jaGlwL3NhbWE3ZzUuZHRzaSBi
+L2FyY2gvYXJtL2Jvb3QvZHRzL21pY3JvY2hpcC9zYW1hN2c1LmR0c2kNCj4gaW5kZXggMjY5ZTBh
+M2NhMjY5Li5jMDMwYjMxODk4NWEgMTAwNjQ0DQo+IC0tLSBhL2FyY2gvYXJtL2Jvb3QvZHRzL21p
+Y3JvY2hpcC9zYW1hN2c1LmR0c2kNCj4gKysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvbWljcm9jaGlw
+L3NhbWE3ZzUuZHRzaQ0KPiBAQCAtOTU4LDYgKzk1OCwzMCBAQCBpMmM5OiBpMmNANjAwIHsNCj4g
+IAkJCX07DQo+ICAJCX07DQo+ICANCj4gKwkJZmx4MTA6IGZsZXhjb21AZTI4MjAwMDAgew0KPiAr
+CQkJY29tcGF0aWJsZSA9ICJhdG1lbCxzYW1hNWQyLWZsZXhjb20iOw0KDQpNeSBjb21tZW50IGhl
+cmUgd2FzIGlnbm9yZWQ6DQpodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvMjAyNDAyMTQtcm9i
+ZS1wcmVnbmFuY3ktYTFiMDU2YzlmZTE0QHNwdWQvDQoNClRoZSBTQU1BN0c1IGhhcyB0aGUgc2Ft
+ZSBmbGV4Y29tIGNvbnRyb2xsZXIgYXMgU0FNQTVEMiBNUFUuDQoNCmh0dHBzOi8vZ2l0aHViLmNv
+bS90b3J2YWxkcy9saW51eC9ibG9iL21hc3Rlci9kcml2ZXJzL21mZC9hdG1lbC1mbGV4Y29tLmMj
+TDgzDQpodHRwczovL2dpdGh1Yi5jb20vdG9ydmFsZHMvbGludXgvYmxvYi9tYXN0ZXIvRG9jdW1l
+bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21mZC9hdG1lbC1mbGV4Y29tLnR4dCNMOA0K
 
