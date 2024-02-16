@@ -1,107 +1,89 @@
-Return-Path: <devicetree+bounces-42575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86951857C9B
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 13:31:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFD39857CB7
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 13:35:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 989631C244DF
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 12:31:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 830E52891C2
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 12:35:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C1368005B;
-	Fri, 16 Feb 2024 12:31:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93CF8129A85;
+	Fri, 16 Feb 2024 12:35:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eJ57pPHO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GbvU/Ry5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F29218061F;
-	Fri, 16 Feb 2024 12:31:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65EC3129A77;
+	Fri, 16 Feb 2024 12:35:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708086664; cv=none; b=nNOuKgQmRX/eXAfFbHUtinRAe6GIS6MWLm8FXI556yZySoD5NSHAD3Kjd6a6kRWwcG39RtGa9RUrGnP1kUvUr7bsc49oMizc0cGmThQHdNL4N6CXAgJS1Mav1pSySLKr7YOqbVPoAO7MdnHFS6nzIpYad02nA5hvHyyRc3QMbts=
+	t=1708086909; cv=none; b=NXQ0ulMx0yBYn0krhiGhB/BGJ1KlvChhoxEQg3ZcUutj7tq6LVfdQ/pOmKLOXkDxJGtqvYyAjWLkS0lBoT+y+HcJqtVkqNxUfEHgiu0UJDFFf+UJm1nCSLq+J8DRVb4fw3G/prLbcEu5wtS+Zs9f4hJgsFL/s876Vno1S1zd0MM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708086664; c=relaxed/simple;
-	bh=fWCFoMtLRfMkNlc//mj7gnFsA5y423VmibMTNziBoc8=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=MulvblN7pe4x5avokUCrpiAcv9T/qvcGqEK8DDdx5o/8Vm1VHtMYbw7EyNXuJW1TUfwNTKE/v9ZHTAfgQS1R8HarMTyPDtcTZlUfAM2UzqOyQOifP7aHYGBK820keAiBsxSLwduNxwDvCMRIGJ6NwUNXCcmT1w3/zRvYj6z3b4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eJ57pPHO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44FE7C433F1;
-	Fri, 16 Feb 2024 12:31:03 +0000 (UTC)
+	s=arc-20240116; t=1708086909; c=relaxed/simple;
+	bh=riZV/gkwObqh/32FznqVlHkFGhQ6oMb4j7nisfi+Pj8=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=O6D4bN9k82Y3QzuRjURl54DixTOCjIXFaT9zybyTLATnCWAbj/2zqvsmtSshJQ2egbGRcEmxJISBfIkphjRGcfZ79fDm07HU9je7Mhh0ORprtl+U7t/SwgnZeSe8TZpeU2JC/NjA99CaJX0rJiyjk+1vDMldfMRd/gkbL+6qrGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GbvU/Ry5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23F96C43390;
+	Fri, 16 Feb 2024 12:35:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708086663;
-	bh=fWCFoMtLRfMkNlc//mj7gnFsA5y423VmibMTNziBoc8=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=eJ57pPHOH7NvZDeB8KaqTplTailpGRK+eSbGMukm6I1nyKdbprDOOxDgbDLIMfmpc
-	 v4rCgjTOvKdmSsf5MAkfyMJch+mWAMMXeW6b7/FOgJJxnOj8guSHGDj3jduhbunW+X
-	 hPAwNTdKZA/K7GfzoVJ9O1rDNsOMLcldHI+Fldss+KthA/nyi/Yt5PdcCQqO8hWKw6
-	 xic8RGvzZFJLJelTjifkbwxkiBpCThBmiUj+uNjAG6aoD3XFeAYhEHRyeKDrG5KyzM
-	 GhgTiP482jPjJZwy6V1CeLI9hi85JJnstsAbRZvrGb2o1tRu5hrHd6TD/qj3BUxo+G
-	 f/Gl4imDmsuvw==
-Date: Fri, 16 Feb 2024 06:31:02 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1708086909;
+	bh=riZV/gkwObqh/32FznqVlHkFGhQ6oMb4j7nisfi+Pj8=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=GbvU/Ry5/vrxGXr+/cJ3ce+0WWNod37nCHhivKlwvOvOdU5rB51aeeuNiEHWGi+8U
+	 TXcgT9qIiajvxhmUVcdq9QiyvNJO934lWk/dSBK1mHGl1qC52TivCDJiNA3gjEkbOK
+	 Jujz3PrRMuF3/zL1pp1CFwJdkmJu+dQ9Gl/6h22lnW0l/yY6H6QSrS+VpCo7YWm/bT
+	 lMZfmM73SdV1EKg7JQYCsf8aadyoODC1NHPcwbSRF0ag4mDj9WmJ+iT6fbdS4LMrnp
+	 OiHS+V5j/x/7KZw/4N6vqdOTXTkXo9IhSr0aJNQyCwXOneWWbM0qaL2814yyhoK2fU
+	 wEBhPlEo4mgjA==
+From: Vinod Koul <vkoul@kernel.org>
+To: Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Sean Wang <sean.wang@mediatek.com>, dmaengine@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
+In-Reply-To: <20240213063919.20196-1-zajec5@gmail.com>
+References: <20240213063919.20196-1-zajec5@gmail.com>
+Subject: Re: [PATCH] dt-bindings: dma: convert MediaTek High-Speed
+ controller to the json-schema
+Message-Id: <170808690375.369652.1439304081643409723.b4-ty@kernel.org>
+Date: Fri, 16 Feb 2024 18:05:03 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Yang Xiwen <forbidden405@outlook.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- David Yang <mmyangfl@gmail.com>, Jaehoon Chung <jh80.chung@samsung.com>, 
- Ulf Hansson <ulf.hansson@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, tianshuliang <tianshuliang@hisilicon.com>, 
- Igor Opaniuk <igor.opaniuk@linaro.org>
-In-Reply-To: <20240216-b4-mmc-hi3798mv200-v2-4-010d63e6a1d5@outlook.com>
-References: <20240216-b4-mmc-hi3798mv200-v2-0-010d63e6a1d5@outlook.com>
- <20240216-b4-mmc-hi3798mv200-v2-4-010d63e6a1d5@outlook.com>
-Message-Id: <170808665861.2530423.15497833321413187475.robh@kernel.org>
-Subject: Re: [PATCH v2 4/4] dt-bindings: mmc:
- hisilicon,hi3798cv200-dw-mshc: rename to hisilicon,hi3798-dw-mshc
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.12.3
 
 
-On Fri, 16 Feb 2024 18:38:02 +0800, Yang Xiwen wrote:
-> Add binding and an extra property for Hi3798MV200 DWMMC specific extension.
+On Tue, 13 Feb 2024 07:39:19 +0100, Rafał Miłecki wrote:
+> This helps validating DTS files. Introduced changes:
+> 1. Adjusted "reg" in example
+> 2. Added includes to example
 > 
-> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
-> ---
->  ...-dw-mshc.yaml => hisilicon,hi3798-dw-mshc.yaml} | 23 ++++++++++++++++++++--
->  1 file changed, 21 insertions(+), 2 deletions(-)
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Applied, thanks!
 
-yamllint warnings/errors:
+[1/1] dt-bindings: dma: convert MediaTek High-Speed controller to the json-schema
+      commit: fa3400504824944ec04bd3f236fd5ac57c099fd5
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mmc/hisilicon,hi3798-dw-mshc.yaml: properties:clock-names:items: 'oneOf' conditional failed, one must be fixed:
-	[{'const': 'ciu'}, {'const': 'biu'}, {'const': 'ciu-sample', 'description': 'card output sampling phase clock'}, {'const': 'ciu-drive', 'description': 'card input driving phase clock'}] is not of type 'object'
-	Additional properties are not allowed ('description' was unexpected)
-	from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
+Best regards,
+-- 
+~Vinod
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240216-b4-mmc-hi3798mv200-v2-4-010d63e6a1d5@outlook.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
 
 
