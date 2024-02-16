@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-42541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 053AF857B4B
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 12:15:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D79A857B50
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 12:15:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88DE71F2542D
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 11:15:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B6C01F25324
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 11:15:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1097759B60;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB81659B6E;
 	Fri, 16 Feb 2024 11:15:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZPm2TyXm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HcKXPtbn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D157559B52
-	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 11:15:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 313E459B42
+	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 11:15:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708082106; cv=none; b=HV/XDvgl5lgxFmIBLeAlOoAAoEonXUhtH+cDPxBIQ9l4VeunVD2GiR9ED7CHv2G/BSVSOXUJM10K94VrxzQhguAV17ySixZi28Iwy/iGtEu+J2aI5ZXOCVQz5gE5630WTVEQsuq6fSeB0xNKePuFm+yGFUlj3ohspnK1ss7vJUc=
+	t=1708082106; cv=none; b=ZXQpculS0R7tqTETPqzGw033ugAjrQiITlZ6T/WK3PQAkoGPKXveeLBWq4DoaIbY6As4dp+dCvVzPwD8Hg0yKcmbWnMzzknRoRaeqhnCHozPFsr2/Vnw1vPOY28q8RwUE4WZpvsLkciRNENz0A0uRESR/SrDrYBcWLGOGA1sMP0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1708082106; c=relaxed/simple;
-	bh=J+mKldSFm9UKu1yLjoJAonMWsZZQVr/73ut6LTxc4Wk=;
+	bh=yM4B0VhR2ZyFTPfWAEKWUVg6SZcpAA9Nr+YwCX34LyI=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=I+0EBGPQvY2Pq/grsZbFPzdvBxiUDvej7cLQx+puDGwo6BIjJI3MSWcSvJAsdextjJsQ1xHCvTjXz6eDm5MtmJ6QaclFf8HM92+xjfle2J1N2slqLJPdFdicqm8V1OlBKW8GrY4gR2r7ydnaCgpF8dTdu2RqOMdDUjtsDN7nAKg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZPm2TyXm; arc=none smtp.client-ip=209.85.167.44
+	 In-Reply-To:To:Cc; b=lUC+m5OZtBKuKMLJjTrkEtuHW9Cv+7VTsFzMx9jta2UlnnhvauOAo1N/gAEI0KHdXHy9b9bSAHveZKrJDdRg6cNoIkJTI6ABMkY9DFTYjERJtWL15sNth8A48bjZBhw2dww3QLzt9CjdyHCQaooNd1l1hPTnH4xxYW1fwxEHdWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HcKXPtbn; arc=none smtp.client-ip=209.85.167.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-50eac018059so2725834e87.0
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-51182ece518so2286324e87.3
         for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 03:15:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1708082102; x=1708686902; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=dWJHzoL2wVqlrwIIyuG2xQEWuKVgreBLdPc7KV4ZKiI=;
-        b=ZPm2TyXmvI83F6ZIldA8AyMv7lbgIRxvNSMPI/Q7U4DdyB77DW1XX+BlUToaq8L9FR
-         PP+4uAz/JjWiCcG1x9CjhtW2XTY/jsl/KDN2iwlEqsFvShTr53Q80XGxXJneGe+qJqmG
-         OqFj6LqEjDCZBENkAPPwCrEupP0UOe4l1+1PXzADw3+N+5SQdJBB0638DR5sGaiT2ANf
-         RS+9SiRFbTLgjWVz1AbsFyIXb2OTTTJeovA4ekyezVB0uvWB+50ovg+EekIsfTzFm7u+
-         5BKrrTjCA5VctlHwTrmIsuGBz5hXcGJrO3tO80LK3UGmmC3y+xQiqEbYIXPIHkbu8Du1
-         vsOA==
+        bh=DUgMys9cICLgxqIOovzi8G6eHIHr5srSA/v9QvAfrFg=;
+        b=HcKXPtbnQ1NQdbKRbh8B0xkZ+NM5fvdaYclCwn1j4U+s93bHmBArznSeybYoAJSqNu
+         RiuTbWueD9lDH4+zoxUjHYVcyh2ad8638oWv3NYR2YHNzdMAjWFhWoVLQFmP7jICchdT
+         gEv33T7oI80/6CQT4tGhY3KRP4rBUAhaPoE40nkqUxaYlwvr77YMHvrq9VJBsrBY778b
+         arTPv3vmS5MP1UVo6YOCn18HHJWtY96nq0TzBMhPvU2K6KSSlU82/IHHSMuuBZMUEEvb
+         rD3025k3lWB+Qmf/5Qh+Xp/XnEhCs6Om3Z9xAiYgIoz/oV0UO68pKPGi/wLdkJGjWCjs
+         nA2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1708082102; x=1708686902;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=dWJHzoL2wVqlrwIIyuG2xQEWuKVgreBLdPc7KV4ZKiI=;
-        b=Qb8kjKb1NxFCK6x33SPb5h2wlVAEGbdwAmvQXmkSSYqVEBeEg6xXmAtBQstaNBkMbO
-         PQfcSnm5ZLyOLOrTWmCD7C4/BD9ThZwxdZkSsf/kDU7WZ9SUtSnWGE+Rir9xI7ERxgN1
-         L+pM8hjxp8jlfSOap6Q56CDYRI+R/qzftxVea3T36a9JmV3hVWNYQyXyDvjHASU3FVId
-         AgEmiVqgCabf1cUMWVDaxVSDQgEDjgSO1H2+1ULUVq5NMd3WV7g44SUjF8LEAViBqbTd
-         cMxgf1oAv6PRsgRbcFmhmTYI1erpeW8Bx3Dhzj+bNhA0riavW94c8Vt2JECEYtSiir+6
-         t8ow==
-X-Forwarded-Encrypted: i=1; AJvYcCXVoLSxmRkJVzjpAUWXwy/nM+jLkISNxzcrt2PMvLcsk58DVccrlJtsk+SRSbcMVOvhMbBiilJStKcFZ09wFkAWMuYdX/+0DrNuRA==
-X-Gm-Message-State: AOJu0YyKLXwB4y1dN4kglAr4UkgsspDsJLC99AwIVYlpw6nY5QhPhmjs
-	OTrAOHgEvOd0HSGkFDftCiOIEFuJLSLvr0AhW8CzcEUEMH0cXkhUVxP8QPdoByc=
-X-Google-Smtp-Source: AGHT+IFt8z2wNiI2iDUev4KZaeAaVIwtBsDBrC2CeqmW+eTlRYV+TkxZWXcJNksiXaZkluX9PzVUVw==
-X-Received: by 2002:ac2:4c17:0:b0:511:879f:b12a with SMTP id t23-20020ac24c17000000b00511879fb12amr3002470lfq.43.1708082101716;
-        Fri, 16 Feb 2024 03:15:01 -0800 (PST)
+        bh=DUgMys9cICLgxqIOovzi8G6eHIHr5srSA/v9QvAfrFg=;
+        b=EabwcRr2N7MUuxMPX+hfYffrNrs/dIBnfrkKQp2XRLNsu6M2AdUy0aZcFlTGG4pMYx
+         L9E5rkbuKEdEwuCnlhmSqAnUbcCKMXfDNElHdINypuAmKzUPcomvaRSG+qGS6rSEKi3S
+         WV1Wm7MfXBtC+0SJvhRlAxm5dAR18ymP+x/VZlHelS1yNq6XyL4UB2VmwIjzFh159419
+         x1pLUEzgqgpkHoCLOh9batw1LU04c1dkBDpSjhNTBWLtQRTexP38bCEHZnlQ3VmbXRkF
+         0skPIzJJNRN2q6shWmjmtjNIncttQw7IKBXYX1IQpIjnCvzLBkvrCCcEzpTQk4vr95cH
+         xNnQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXDNoBP2lTflyMvjJEBzOxDlPtYS20ijDRyIVcAYFbE0C0zADIPHNs7YiVpWt1wgTB+g7rRDhHwpHbba8pzQpCCE1gH5C0tT0cwXw==
+X-Gm-Message-State: AOJu0Yz+Y10n3pk1SpjOz0THi0GQJFrEmbgATtqoaULUBBFsKgOUrGZN
+	V6IJGSaocUmU4VfDc2C3X/0WyauXUvAvvQ5JmCfnzJmZ/N5Zn7sr83HSm0/L1/4=
+X-Google-Smtp-Source: AGHT+IG7HmZHE2ZsKWOSvcHAEXT8LuBwudH4+K43CtYLnUccRWSpPzg8kdHWb5SA6e75D5tNTnjXdg==
+X-Received: by 2002:a05:6512:344d:b0:511:ae1b:eea9 with SMTP id j13-20020a056512344d00b00511ae1beea9mr2955947lfr.56.1708082102386;
+        Fri, 16 Feb 2024 03:15:02 -0800 (PST)
 Received: from umbar.lan ([192.130.178.91])
         by smtp.gmail.com with ESMTPSA id p2-20020a056512312200b005118eeb18b4sm573405lfd.45.2024.02.16.03.15.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Feb 2024 03:15:01 -0800 (PST)
+        Fri, 16 Feb 2024 03:15:02 -0800 (PST)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 16 Feb 2024 13:14:58 +0200
-Subject: [PATCH 1/2] clk: qcom: drop the SC7180 Modem subsystem clock
- driver
+Date: Fri, 16 Feb 2024 13:14:59 +0200
+Subject: [PATCH 2/2] dt-bindings: clk: qcom: drop the SC7180 Modem
+ subsystem clock controller
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,7 +79,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240216-drop-sc7180-mss-v1-1-0a8dc8d71c0c@linaro.org>
+Message-Id: <20240216-drop-sc7180-mss-v1-2-0a8dc8d71c0c@linaro.org>
 References: <20240216-drop-sc7180-mss-v1-0-0a8dc8d71c0c@linaro.org>
 In-Reply-To: <20240216-drop-sc7180-mss-v1-0-0a8dc8d71c0c@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -92,212 +92,99 @@ Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
  Sibi Sankar <quic_sibis@quicinc.com>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5550;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2332;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=J+mKldSFm9UKu1yLjoJAonMWsZZQVr/73ut6LTxc4Wk=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBlz0OzGIlESZi+Q8Iz8LizXMQyQc6lVVmbPRuwR
- Cx7tg07DpyJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZc9DswAKCRCLPIo+Aiko
- 1ZRvB/0dbfn2qnxB5t0PbWc7/qxLJLzGWR5YgqcNohQDHUOCC/lBBNsBGB4REmeu+ALCs8fV+//
- sbjqgMJKVOInvPRUe+0HwWaLQpPIiHNhAcNVxb89mUSdQA5ioqO4SeKbkATJ5KKy9cElqQJWe76
- bvtOZTJhKdFAD7IujyhwB7fUxLNanjSDaQIi/EnXEsIsE/N584X1Zw8GSv3/t7dk19lmftpc1UQ
- bGoD0Aa8qqoQz/guz5KdNdgEz6UaqW3UUfh8RciJw3gJRnmgo0WLMoEFp4ZbOQnv7YmDhkktIWu
- hZJgttJ+7EU/3OIvMXnPZGRHxMCdo2QLqsrbdPDfh1yifd3H
+ bh=yM4B0VhR2ZyFTPfWAEKWUVg6SZcpAA9Nr+YwCX34LyI=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBlz0O0zvRZcNKy8jiAUU/MWxzRSa+mJnvvysYa/
+ Gr0d7qjJrqJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZc9DtAAKCRCLPIo+Aiko
+ 1YlYB/93gE8WzFMydukrlZSg9wcHH83C8jLHU6EVGDT1Mj3xSy9Pz2HaB7LdgoCjf3TT0gHcOJ4
+ VEG/69viSW2ZnN5GOSZu5fvMDYynY3KoqZaInQuN3pZALyp6+dGJaI/4vsZXwsCaeTRhQBwdkVe
+ qT3pZmYF0C5jH1ztZkaVBFYhKPM2p0Urr9ZNil2ezdgCUPDs18rj6dd75X/m2j1TzJE8U3wGmX4
+ dGNGGu3nUGjVjXBr3muo4xXzPjixiBzjvjWqpUQpf0olm6vFu2/8w4kDNXzu080z93VEAjJQuRc
+ yEGheKkzlRcUM0bES/vgQT2fKmrrbgQHnBqlVaRvWB7a4/T5
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-This driver has never been used in the DT files merged to the kernel.
-According to Sibi, it only worked on the pre-production devices. For the
-production devices this functionality has been moved to the firmware.
+This clock controller has never been used in the DT files merged to the
+kernel. According to Sibi, it only worked on the pre-production devices.
+For the production devices this functionality has been moved to the
+firmware.
 
-Drop the driver to remove possible confusion.
+Drop the bindings now after dropping the driver itself.
 
 Cc: Sibi Sankar <quic_sibis@quicinc.com>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/clk/qcom/Kconfig      |  10 ---
- drivers/clk/qcom/Makefile     |   1 -
- drivers/clk/qcom/mss-sc7180.c | 140 ------------------------------------------
- 3 files changed, 151 deletions(-)
+ .../devicetree/bindings/clock/qcom,sc7180-mss.yaml | 61 ----------------------
+ 1 file changed, 61 deletions(-)
 
-diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-index 4580edbd13ea..8ab08e7b5b6c 100644
---- a/drivers/clk/qcom/Kconfig
-+++ b/drivers/clk/qcom/Kconfig
-@@ -635,16 +635,6 @@ config SC_LPASS_CORECC_7280
- 	  Say Y if you want to use LPASS clocks and power domains of the LPASS
- 	  core clock controller.
- 
--config SC_MSS_7180
--	tristate "SC7180 Modem Clock Controller"
--	depends on ARM64 || COMPILE_TEST
--	select SC_GCC_7180
--	help
--	  Support for the Modem Subsystem clock controller on Qualcomm
--	  Technologies, Inc on SC7180 devices.
--	  Say Y if you want to use the Modem branch clocks of the Modem
--	  subsystem clock controller to reset the MSS subsystem.
--
- config SC_VIDEOCC_7180
- 	tristate "SC7180 Video Clock Controller"
- 	depends on ARM64 || COMPILE_TEST
-diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
-index 1da65ca78e24..dec5b6db6860 100644
---- a/drivers/clk/qcom/Makefile
-+++ b/drivers/clk/qcom/Makefile
-@@ -91,7 +91,6 @@ obj-$(CONFIG_SC_LPASSCC_7280) += lpasscc-sc7280.o
- obj-$(CONFIG_SC_LPASSCC_8280XP) += lpasscc-sc8280xp.o
- obj-$(CONFIG_SC_LPASS_CORECC_7180) += lpasscorecc-sc7180.o
- obj-$(CONFIG_SC_LPASS_CORECC_7280) += lpasscorecc-sc7280.o lpassaudiocc-sc7280.o
--obj-$(CONFIG_SC_MSS_7180) += mss-sc7180.o
- obj-$(CONFIG_SC_VIDEOCC_7180) += videocc-sc7180.o
- obj-$(CONFIG_SC_VIDEOCC_7280) += videocc-sc7280.o
- obj-$(CONFIG_SDM_CAMCC_845) += camcc-sdm845.o
-diff --git a/drivers/clk/qcom/mss-sc7180.c b/drivers/clk/qcom/mss-sc7180.c
+diff --git a/Documentation/devicetree/bindings/clock/qcom,sc7180-mss.yaml b/Documentation/devicetree/bindings/clock/qcom,sc7180-mss.yaml
 deleted file mode 100644
-index d106bc65470e..000000000000
---- a/drivers/clk/qcom/mss-sc7180.c
+index 873a2f918bac..000000000000
+--- a/Documentation/devicetree/bindings/clock/qcom,sc7180-mss.yaml
 +++ /dev/null
-@@ -1,140 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0-only
--/*
-- * Copyright (c) 2020, The Linux Foundation. All rights reserved.
-- */
+@@ -1,61 +0,0 @@
+-# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+-%YAML 1.2
+----
+-$id: http://devicetree.org/schemas/clock/qcom,sc7180-mss.yaml#
+-$schema: http://devicetree.org/meta-schemas/core.yaml#
 -
--#include <linux/clk-provider.h>
--#include <linux/platform_device.h>
--#include <linux/module.h>
--#include <linux/pm_clock.h>
--#include <linux/pm_runtime.h>
--#include <linux/regmap.h>
+-title: Qualcomm Modem Clock Controller on SC7180
 -
--#include <dt-bindings/clock/qcom,mss-sc7180.h>
+-maintainers:
+-  - Taniya Das <quic_tdas@quicinc.com>
 -
--#include "clk-regmap.h"
--#include "clk-branch.h"
--#include "common.h"
+-description: |
+-  Qualcomm modem clock control module provides the clocks on SC7180.
 -
--static struct clk_branch mss_axi_nav_clk = {
--	.halt_reg = 0x20bc,
--	.halt_check = BRANCH_HALT,
--	.clkr = {
--		.enable_reg = 0x20bc,
--		.enable_mask = BIT(0),
--		.hw.init = &(struct clk_init_data){
--			.name = "mss_axi_nav_clk",
--			.parent_data = &(const struct clk_parent_data){
--				.fw_name = "gcc_mss_nav_axi",
--			},
--			.num_parents = 1,
--			.ops = &clk_branch2_ops,
--		},
--	},
--};
+-  See also:: include/dt-bindings/clock/qcom,mss-sc7180.h
 -
--static struct clk_branch mss_axi_crypto_clk = {
--	.halt_reg = 0x20cc,
--	.halt_check = BRANCH_HALT,
--	.clkr = {
--		.enable_reg = 0x20cc,
--		.enable_mask = BIT(0),
--		.hw.init = &(struct clk_init_data){
--			.name = "mss_axi_crypto_clk",
--			.parent_data = &(const struct clk_parent_data){
--				.fw_name = "gcc_mss_mfab_axis",
--			},
--			.num_parents = 1,
--			.ops = &clk_branch2_ops,
--		},
--	},
--};
+-properties:
+-  compatible:
+-    const: qcom,sc7180-mss
 -
--static const struct regmap_config mss_regmap_config = {
--	.reg_bits	= 32,
--	.reg_stride	= 4,
--	.val_bits	= 32,
--	.fast_io	= true,
--	.max_register	= 0x41aa0cc,
--};
+-  clocks:
+-    items:
+-      - description: gcc_mss_mfab_axi clock from GCC
+-      - description: gcc_mss_nav_axi clock from GCC
+-      - description: gcc_mss_cfg_ahb clock from GCC
 -
--static struct clk_regmap *mss_sc7180_clocks[] = {
--	[MSS_AXI_CRYPTO_CLK] = &mss_axi_crypto_clk.clkr,
--	[MSS_AXI_NAV_CLK] = &mss_axi_nav_clk.clkr,
--};
+-  clock-names:
+-    items:
+-      - const: gcc_mss_mfab_axis
+-      - const: gcc_mss_nav_axi
+-      - const: cfg_ahb
 -
--static const struct qcom_cc_desc mss_sc7180_desc = {
--	.config = &mss_regmap_config,
--	.clks = mss_sc7180_clocks,
--	.num_clks = ARRAY_SIZE(mss_sc7180_clocks),
--};
+-  '#clock-cells':
+-    const: 1
 -
--static int mss_sc7180_probe(struct platform_device *pdev)
--{
--	int ret;
+-  reg:
+-    maxItems: 1
 -
--	ret = devm_pm_runtime_enable(&pdev->dev);
--	if (ret)
--		return ret;
+-required:
+-  - compatible
+-  - reg
+-  - clocks
+-  - '#clock-cells'
 -
--	ret = devm_pm_clk_create(&pdev->dev);
--	if (ret)
--		return ret;
+-additionalProperties: false
 -
--	ret = pm_clk_add(&pdev->dev, "cfg_ahb");
--	if (ret < 0) {
--		dev_err(&pdev->dev, "failed to acquire iface clock\n");
--		return ret;
--	}
--
--	ret = pm_runtime_resume_and_get(&pdev->dev);
--	if (ret)
--		return ret;
--
--	ret = qcom_cc_probe(pdev, &mss_sc7180_desc);
--	if (ret < 0)
--		goto err_put_rpm;
--
--	pm_runtime_put(&pdev->dev);
--
--	return 0;
--
--err_put_rpm:
--	pm_runtime_put_sync(&pdev->dev);
--
--	return ret;
--}
--
--static const struct dev_pm_ops mss_sc7180_pm_ops = {
--	SET_RUNTIME_PM_OPS(pm_clk_suspend, pm_clk_resume, NULL)
--};
--
--static const struct of_device_id mss_sc7180_match_table[] = {
--	{ .compatible = "qcom,sc7180-mss" },
--	{ }
--};
--MODULE_DEVICE_TABLE(of, mss_sc7180_match_table);
--
--static struct platform_driver mss_sc7180_driver = {
--	.probe		= mss_sc7180_probe,
--	.driver		= {
--		.name		= "sc7180-mss",
--		.of_match_table = mss_sc7180_match_table,
--		.pm = &mss_sc7180_pm_ops,
--	},
--};
--
--static int __init mss_sc7180_init(void)
--{
--	return platform_driver_register(&mss_sc7180_driver);
--}
--subsys_initcall(mss_sc7180_init);
--
--static void __exit mss_sc7180_exit(void)
--{
--	platform_driver_unregister(&mss_sc7180_driver);
--}
--module_exit(mss_sc7180_exit);
--
--MODULE_DESCRIPTION("QTI MSS SC7180 Driver");
--MODULE_LICENSE("GPL v2");
+-examples:
+-  - |
+-    #include <dt-bindings/clock/qcom,gcc-sc7180.h>
+-    clock-controller@41a8000 {
+-      compatible = "qcom,sc7180-mss";
+-      reg = <0x041a8000 0x8000>;
+-      clocks = <&gcc GCC_MSS_MFAB_AXIS_CLK>,
+-               <&gcc GCC_MSS_NAV_AXI_CLK>,
+-               <&gcc GCC_MSS_CFG_AHB_CLK>;
+-      clock-names = "gcc_mss_mfab_axis",
+-                    "gcc_mss_nav_axi",
+-                    "cfg_ahb";
+-      #clock-cells = <1>;
+-    };
+-...
 
 -- 
 2.39.2
