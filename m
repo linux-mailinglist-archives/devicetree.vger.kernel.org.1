@@ -1,161 +1,274 @@
-Return-Path: <devicetree+bounces-42557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3D40857BD9
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 12:38:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EBB2857BEB
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 12:43:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4FC71C218F1
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 11:38:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 07CA21F272BC
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 11:43:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84BB677F39;
-	Fri, 16 Feb 2024 11:37:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 953E277F1C;
+	Fri, 16 Feb 2024 11:42:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XPBYIdpK"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="aCHzXmcI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BA0077F29;
-	Fri, 16 Feb 2024 11:37:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC0FB77F12;
+	Fri, 16 Feb 2024 11:42:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708083475; cv=none; b=IZDhRBSNOaDshjwveKK5GXbtwQ00gQiV3e/DjTiSOoy+WD5v8KmuORsDcelrin1t347w/c5tuLeW3bHG5DTWa+ogl4H68Iu8J0XlLWDav/ckK32ZEtlyq4F63EeKOSQUognhjFs+A4TBHaPLq3AFXA0dJtiWUGf8bVMRJh5wUY0=
+	t=1708083775; cv=none; b=QOCwvjiLNRVL+L5vhQIfKXVDs8WLPrmBDJelWksf+fz/0cSx+i1PNCtwkWMjzoHbNXRSm06SyjZi0eO7o4U5jlYEelVF0f+2pYItk+dges454WmRqbuTIimEFOqy2OJdOyMvX/Pp/TnuGTEs5kq9Bc4bO/++4gA2KZupXbi9+Cs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708083475; c=relaxed/simple;
-	bh=gqPEFDQHpu81vXVsnhzolpglZWQoqj+GnvzWjY5MgHo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=nXNVll2KGNbdQ4DEoMF+WLAWPtLsTfJqJPwtDYHC8GkSAFmJgaso7iftAEdyLBbANNnu7ZVY2M7e1T/O2rH3bHf3q2p8dY6TIh6bOCTavB2p6YG/9OB0tRtfVYVlgjkgrconJhl+gmtJnjGNKqbShL1Dri3o2Uy/u5XAzjFWKJY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XPBYIdpK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id BEB9FC433B2;
-	Fri, 16 Feb 2024 11:37:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708083474;
-	bh=gqPEFDQHpu81vXVsnhzolpglZWQoqj+GnvzWjY5MgHo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=XPBYIdpKGU+2ZmLx5+32gxHiCHvvO6IKmoSBmreMQZ1iorNrNEjj+efxAYMHb/F+g
-	 aHLtyI2Doop1MR9VU6VNI8wVfCuFHedyMU0e23dYMrJlk1R/A+u6MzZ2VT7CnWQ/pe
-	 iwySjZ5GHOjcwMuWgPlVzCKcZUFlbWHHLyBDziXElu8ym3WhTxcZt9fgGWmkTOH8/n
-	 EKcNDPD4jL3EMx13+n29GKw5lOBMhUX7Bb3TVrVIpIj6UiiLX6cYPrkpFaxP8tOxRZ
-	 a/rL3+3/I7DbYglyHpL2WJk/i7rbJU25BN6zVxjPAQ9zh3zAkhZxL0n3tRq0EctYKk
-	 DhOMPGKycjqtA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A98E3C48BF5;
-	Fri, 16 Feb 2024 11:37:54 +0000 (UTC)
-From: Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>
-Date: Fri, 16 Feb 2024 19:37:54 +0800
-Subject: [PATCH RFC 4/4] dt-binding: clock:
- hisilicon,clock-reset-controller: add Hi3798MV200 SoC support
+	s=arc-20240116; t=1708083775; c=relaxed/simple;
+	bh=ir/2Fmuw0p7JWNzUui20venQobUnV6OhWF5JMo4bd4M=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=RXcMoFwxxUwJnTFeA6C0UyUCvGegwVPfFh/iN89AkyDNA8IGLJTnKTQ8dU+QaODQI64CDJjQ9NkIGatWeq5YimxdEalDUxyUNnDE5foYXpIdSkRe6DaqhUaktC4fb6K+tqtDHuEfU/tl5lgZyfcUDrdNctCj74m0XKWq3tjUzB4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=aCHzXmcI; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1708083771; x=1739619771;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=MD8PpJdyDycq4idMKhBHf1v7B8Lage9uviizqG+a/uo=;
+  b=aCHzXmcIRYE5jUai2ns/GfF/4K7g5olCR6BVXq+cFaFS+4UIKNWsm1J2
+   pXTDiRr9H83quIe4rTeEDuL4dvDtEaXEiXHk3wIEQOjzRQoEMJho3ysGg
+   bPzHJn/SJzIuadO3pmFRpUB/cvsZ/nG7i9SKYG8jAcFhiM3kXZuMJCCMq
+   6uu6Y+NRHBxSQ0b3CouAepushe/uXMmN7nl6i2xV05jwCtnSRObHP7RIq
+   JKeY7UmHpPe399bi6rDjSPZ39c6PpQHeRpqMyD1JIT64+TOKZf6wf2hw+
+   LSIs1xA+FtfMUN5lZEIdYaOEh/W2Oj/ZkPC9nMwIz2smCWgB270pb8V+s
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.06,164,1705359600"; 
+   d="scan'208";a="35445169"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 16 Feb 2024 12:42:47 +0100
+Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.25])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 687E7280075;
+	Fri, 16 Feb 2024 12:42:47 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Adam Ford <aford173@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, marex@denx.de, frieder.schrempf@kontron.de, Lucas Stach <l.stach@pengutronix.de>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Philipp Zabel <p.zabel@pengutronix.de>, Vinod Koul <vkoul@kernel.org>, Kish
+ on Vijay Abraham I <kishon@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Liu Ying <victor.liu@nxp.com>, Ulf Hansson <ulf.hansson@linaro.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH V8 09/12] dt-bindings: display: imx: add binding for i.MX8MP HDMI TX
+Date: Fri, 16 Feb 2024 12:42:49 +0100
+Message-ID: <2184519.Mh6RI2rZIc@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <CAHCN7x+80iw0PWa4F4dMA=3RRaChNEO534LPACXd6FK0ndAHpw@mail.gmail.com>
+References: <20240203165307.7806-1-aford173@gmail.com> <5916132.MhkbZ0Pkbq@steina-w> <CAHCN7x+80iw0PWa4F4dMA=3RRaChNEO534LPACXd6FK0ndAHpw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240216-clk-mv200-v1-4-a29ace29e636@outlook.com>
-References: <20240216-clk-mv200-v1-0-a29ace29e636@outlook.com>
-In-Reply-To: <20240216-clk-mv200-v1-0-a29ace29e636@outlook.com>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: David Yang <mmyangfl@gmail.com>, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Yang Xiwen <forbidden405@outlook.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1708083473; l=2294;
- i=forbidden405@outlook.com; s=20230724; h=from:subject:message-id;
- bh=RxQshU93zhdnmZ2d/Il86mfOujovTqohz/PSfKt9R1k=;
- b=HeGs7bkTJR06qX5l+QDDNsx44/mocS0/PjmA9206O/LAGsmCIJOVNyiaJ6TNDvBIk1wiN9xRl
- zwHj4z36O6dD6EujUb+qIUvEc4k3PI1Fqfdmb6Q9aTIrSEMq8aW6n47
-X-Developer-Key: i=forbidden405@outlook.com; a=ed25519;
- pk=qOD5jhp891/Xzc+H/PZ8LWVSWE3O/XCQnAg+5vdU2IU=
-X-Endpoint-Received:
- by B4 Relay for forbidden405@outlook.com/20230724 with auth_id=67
-X-Original-From: Yang Xiwen <forbidden405@outlook.com>
-Reply-To: <forbidden405@outlook.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 
-From: Yang Xiwen <forbidden405@outlook.com>
+Am Freitag, 16. Februar 2024, 12:31:12 CET schrieb Adam Ford:
+> On Fri, Feb 16, 2024 at 3:05=E2=80=AFAM Alexander Stein
+>=20
+> <alexander.stein@ew.tq-group.com> wrote:
+> > Hi all,
+> >=20
+> > Am Samstag, 3. Februar 2024, 17:52:49 CET schrieb Adam Ford:
+> > > From: Lucas Stach <l.stach@pengutronix.de>
+> > >=20
+> > > The HDMI TX controller on the i.MX8MP SoC is a Synopsys designware IP
+> > > core with a little bit of SoC integration around it.
+> > >=20
+> > > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> > > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > >=20
+> > > ---
+> > > V3:  Change name and location to better idenfity as a bridge and
+> > >=20
+> > >      HDMI 2.0a transmitter
+> > >     =20
+> > >      Fix typos and feedback from Rob and added ports.
+> > >=20
+> > > ---
+> > >=20
+> > >  .../display/bridge/fsl,imx8mp-hdmi-tx.yaml    | 102 ++++++++++++++++=
+++
+> > >  1 file changed, 102 insertions(+)
+> > >  create mode 100644
+> > >=20
+> > > Documentation/devicetree/bindings/display/bridge/fsl,imx8mp-hdmi-tx.y=
+aml
+> > >=20
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/display/bridge/fsl,imx8mp-hdmi-tx=
+=2Eya
+> > > ml
+> > > b/Documentation/devicetree/bindings/display/bridge/fsl,imx8mp-hdmi-tx=
+=2Eya
+> > > ml
+> > > new file mode 100644
+> > > index 000000000000..3791c9f4ebab
+> > > --- /dev/null
+> > > +++
+> > > b/Documentation/devicetree/bindings/display/bridge/fsl,imx8mp-hdmi-tx=
+=2Eya
+> > > ml
+> > > @@ -0,0 +1,102 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id:
+> > > http://devicetree.org/schemas/display/bridge/fsl,imx8mp-hdmi-tx.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Freescale i.MX8MP DWC HDMI TX Encoder
+> > > +
+> > > +maintainers:
+> > > +  - Lucas Stach <l.stach@pengutronix.de>
+> > > +
+> > > +description:
+> > > +  The i.MX8MP HDMI transmitter is a Synopsys DesignWare
+> > > +  HDMI 2.0a TX controller IP.
+> > > +
+> > > +allOf:
+> > > +  - $ref: /schemas/display/bridge/synopsys,dw-hdmi.yaml#
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - fsl,imx8mp-hdmi-tx
+> > > +
+> > > +  reg-io-width:
+> > > +    const: 1
+> > > +
+> > > +  clocks:
+> > > +    maxItems: 4
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: iahb
+> > > +      - const: isfr
+> > > +      - const: cec
+> > > +      - const: pix
+> > > +
+> > > +  power-domains:
+> > > +    maxItems: 1
+> > > +
+> > > +  ports:
+> > > +    $ref: /schemas/graph.yaml#/properties/ports
+> > > +
+> > > +    properties:
+> > > +      port@0:
+> > > +        $ref: /schemas/graph.yaml#/properties/port
+> > > +        description: Parallel RGB input port
+> > > +
+> > > +      port@1:
+> > > +        $ref: /schemas/graph.yaml#/properties/port
+> > > +        description: HDMI output port
+> > > +
+> > > +    required:
+> > > +      - port@0
+> > > +      - port@1
+> >=20
+> > Is this really correct that port@1 is required? AFAICS this host already
+> > supports HPD and DDC by itself, so there is no need for a dedicated HDMI
+> > connector.
+> > With the current state of the drivers this output port is completely
+> > ignored anyway. Yet it works for a lot of people.
+>=20
+> One of the feedback responses Lucas got was that it was missing the
+> reference to the HDMI connector, so I added it as a response to that
+> feedback.  I have tried device trees with and without it, and it
+> doesn't impact anything, but It seems like there may be a requirement
+> for it.
 
-This SoC is similar to Hi3798CV200.
+Yes, I noticed as well. A specified connector is completely ignored.
+One reason is that dw_hdmi_plat_data.output_port is unsed in drivers/gpu/dr=
+m/
+bridge/imx/imx8mp-hdmi-tx.c. Another one is that without=20
+DRM_BRIDGE_ATTACH_NO_CONNECTOR support in drivers/gpu/drm/mxsfb/lcdif_drv.c=
+=20
+nothing changes.
 
-Also document the specific DLL regs and add an example for it.
+Best regards,
+Alexander
 
-Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
----
- .../clock/hisilicon,clock-reset-generator.yaml     | 36 ++++++++++++++++++++++
- 1 file changed, 36 insertions(+)
+> adam
+>=20
+> > Best regards,
+> > Alexander
+> >=20
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - clocks
+> > > +  - clock-names
+> > > +  - interrupts
+> > > +  - power-domains
+> > > +  - ports
+> > > +
+> > > +unevaluatedProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/clock/imx8mp-clock.h>
+> > > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > > +    #include <dt-bindings/power/imx8mp-power.h>
+> > > +
+> > > +    hdmi@32fd8000 {
+> > > +        compatible =3D "fsl,imx8mp-hdmi-tx";
+> > > +        reg =3D <0x32fd8000 0x7eff>;
+> > > +        interrupts =3D <0 IRQ_TYPE_LEVEL_HIGH>;
+> > > +        clocks =3D <&clk IMX8MP_CLK_HDMI_APB>,
+> > > +                 <&clk IMX8MP_CLK_HDMI_REF_266M>,
+> > > +                 <&clk IMX8MP_CLK_32K>,
+> > > +                 <&hdmi_tx_phy>;
+> > > +        clock-names =3D "iahb", "isfr", "cec", "pix";
+> > > +        power-domains =3D <&hdmi_blk_ctrl IMX8MP_HDMIBLK_PD_HDMI_TX>;
+> > > +        reg-io-width =3D <1>;
+> > > +        ports {
+> > > +           #address-cells =3D <1>;
+> > > +           #size-cells =3D <0>;
+> > > +           port@0 {
+> > > +             reg =3D <0>;
+> > > +
+> > > +             hdmi_tx_from_pvi: endpoint {
+> > > +               remote-endpoint =3D <&pvi_to_hdmi_tx>;
+> > > +             };
+> > > +          };
+> > > +
+> > > +          port@1 {
+> > > +            reg =3D <1>;
+> > > +              hdmi_tx_out: endpoint {
+> > > +                remote-endpoint =3D <&hdmi0_con>;
+> > > +              };
+> > > +          };
+> > > +        };
+> > > +    };
+> >=20
+> > --
+> > TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, =
+Germany
+> > Amtsgericht M=C3=BCnchen, HRB 105018
+> > Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan=
+ Schneider
+> > http://www.tq-group.com/
 
-diff --git a/Documentation/devicetree/bindings/clock/hisilicon,clock-reset-generator.yaml b/Documentation/devicetree/bindings/clock/hisilicon,clock-reset-generator.yaml
-index d37cd892473e..8ee844574eda 100644
---- a/Documentation/devicetree/bindings/clock/hisilicon,clock-reset-generator.yaml
-+++ b/Documentation/devicetree/bindings/clock/hisilicon,clock-reset-generator.yaml
-@@ -44,12 +44,17 @@ properties:
-           - hisilicon,hi3519-crg
-           - hisilicon,hi3798cv200-crg
-           - hisilicon,hi3798cv200-sysctrl
-+          - hisilicon,hi3798mv200-crg
-+          - hisilicon,hi3798mv200-sysctrl
-       - const: syscon
-       - const: simple-mfd
- 
-   reg:
-     maxItems: 1
- 
-+  ranges:
-+    maxItems: 1
-+
-   '#clock-cells':
-     const: 1
- 
-@@ -87,6 +92,12 @@ properties:
-     description: |
-       Reset controller for Hi3798CV200 GMAC module
- 
-+patternProperties:
-+  '.*-dll@[0-9a-f]+':
-+    type: object
-+    description: |
-+      eMMC/SD delay-locked-loop (DLL) register subnode
-+
- required:
-   - compatible
-   - '#clock-cells'
-@@ -137,3 +148,28 @@ examples:
-             #clock-cells = <1>;
-         };
-     };
-+  - |
-+    crg: clock-reset-controller@8a22000 {
-+        compatible = "hisilicon,hi3798mv200-crg", "syscon", "simple-mfd";
-+        reg = <0x8a22000 0x1000>;
-+        ranges = <0x0 0x8a22000 0x1000>;
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        #clock-cells = <1>;
-+        #reset-cells = <2>;
-+
-+        emmc_sap_dll: sap-dll@39c {
-+            compatible = "hisilicon,sdmmc-sap-dll", "syscon", "simple-mfd";
-+            reg = <0x39c 0x8>;
-+        };
-+
-+        sdio0_sap_dll: sap-dll@3a4 {
-+            compatible = "hisilicon,sdmmc-sap-dll", "syscon", "simple-mfd";
-+            reg = <0x3a4 0x8>;
-+        };
-+
-+        sdio1_sap_dll: sap-dll@3ac {
-+            compatible = "hisilicon,sdmmc-sap-dll", "syscon", "simple-mfd";
-+            reg = <0x3ac 0x8>;
-+        };
-+    };
 
--- 
-2.43.0
+=2D-=20
+TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
+any
+Amtsgericht M=C3=BCnchen, HRB 105018
+Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
+neider
+http://www.tq-group.com/
+
 
 
