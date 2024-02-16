@@ -1,126 +1,285 @@
-Return-Path: <devicetree+bounces-42657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5070C857FC3
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 15:51:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17797857FCD
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 15:54:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00C191F23057
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 14:51:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 186631C21BCB
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 14:54:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59BA012EBEE;
-	Fri, 16 Feb 2024 14:51:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C72BF12EBF9;
+	Fri, 16 Feb 2024 14:54:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ianPdFhS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CECF219E5;
-	Fri, 16 Feb 2024 14:51:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2B3612EBEE
+	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 14:54:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708095107; cv=none; b=LcboQtbwr7A/PdmcKOYuDMYWwSznPiY3yK+lAxmS7nEbi5kroea8z/owJZvHpQGieSNuyGAvoLUtSL4K0p4/Cy6+WP/ocBmffTfXENIAsfBs3Ss1bw3VII4agweoofzOutvNklrHp/LUEpdKCcMAp8G2HdKJykYyA5ZxSk9LgBI=
+	t=1708095265; cv=none; b=AYmfq5o/RQ4Y2xso0N1plnGFV0Xxhm4cj1ECr/Oi1C7fmKrxHbBZesuzmgilMWncfyPffSboERlrN1yDifexSdGCuCDi/4ufC3Yaa4t/c0tkMgg/NlBDaU+Me24ITaM5S09Bky2bB2W5QZprBPrO+gzqbMNlkuYIiWinWtqO0RA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708095107; c=relaxed/simple;
-	bh=8czbk8iwy6vP4LxBR8OEn7cNfRxBxJrhabrbxBZdNTQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JKrKWapIAKmmcdusF/GpG0cDU9Qmy66mI11QjVtDpmqXfiU5wuNIwXpgt35JTI8h1Ivn9FpycARTpTH4qdj4fxBnUL1wEN6R/fBmqbZpAbtW8JkqFWzgmDc7JfkryK8AInZdOPVeoPrWSUvzmgwFRRWm42JVSGcjmvthHCrf9K8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6077444cb51so23233127b3.1;
-        Fri, 16 Feb 2024 06:51:45 -0800 (PST)
+	s=arc-20240116; t=1708095265; c=relaxed/simple;
+	bh=+C8SQjHKPXwZr8+yfS37nIG2SloOZQAZQRlLo8MFMyQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=g8njCfR/v0LrSrZEceOANyvKLaard1DXU7P0niX466eKKJ9oV2ngCoMrWvvh8JlObx1zt4hIwbZNhb/fagqtQtSN1OUpAjTUiwgL8t9R64gqJP7uXOlUrzAcMduNRNtaSwbD8IkrVPd8k/gW2uXLQembt8VwveFn43mZeVNJapY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ianPdFhS; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-6da4a923b1bso1945596b3a.2
+        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 06:54:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708095263; x=1708700063; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=H5+UrxbRXLOQkrvNam9zPtYfUH7CmHJYGluAwCM/rwk=;
+        b=ianPdFhSVhzI9Th/fqAI3ShYYxPw20hycVzaslpZgLpP6SPLRSaW1mLsohvPFQsX59
+         I6cRHV+/MamW0t592fUjLVHFMQdPIOWXgIdmrD/BIYuYHMI0NJ9VvJdFva49s126fIe2
+         QDL3viwXpcYjygLeFhNrCNyreczL+2lXlMjGqk2YOOT9+KUmuYq9W9qkktJo0l5an08f
+         TEHdJgUyjYBOtvPU9H2yM/rIXeTejxAgFQeP2RMeuSpwmfzduitIka7AQk4qyYrWO2og
+         2WfOtiFyDnR604TTVhnbMS9btiGnPt6tcciuaJmHlP6G6fmsZXRNOt/j+l3CzP7kPxKH
+         WdSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708095104; x=1708699904;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Bi1rMJVKHc2i7qb67X3wzwJlW4alJIl8nCAU0KeiSSM=;
-        b=TAdPf4N2706cr19SjMhvMxzEI1X++z06jIjpKDcVNdBP6BzJKmn2Pja1dUZqAEvjG4
-         SSDko+/6Pv7skWt6gbcB/+eNspvAtmtZQiwOcLk+/4r3e3Dw+v6HilWaNm1o0d7Kbt4p
-         VEyQFzrXqweaSx23r23pJivIxDNdc4/1pzG7TBc0HbG4J+mn1JKPx4GLVBgdALrKSaW7
-         Gt5ZI6UzHPhhnbRSPPp/ZiELRTuUJC+7EqV0r5YmV6Jd3DkIMBxbxacd0TlO0tO8OxsT
-         vkv5+XVZlzCXOEFWg0yjFzPUUdx6RUHRADLGBHre4eDyzhZLSD43mDkOMF9HNRiF1bCh
-         QTcg==
-X-Forwarded-Encrypted: i=1; AJvYcCVy+xzL54MpFcbS2SLq2OUL/cqTr6unPpoh0Ahr3ACry8nPcV0/xPs9UjXvCqwwbUWL1LGOoA0oACitgF2/MuHgvMcHTtRKQmCQje42MhizYKDwSwu/1N3qTir/Ej5uE1txG6bez4Px5Y5Xjd9w
-X-Gm-Message-State: AOJu0YyUJB9x9PRXQSDWFStb5+mQj5cHm1Ugy/dRw+hIG3zSHD67tRvt
-	LDDdcTrDcuG+FHI7IPKCezG1nxd9bmwQCErpFFSfxZsKCxb2bFT8vslODL+WT2A=
-X-Google-Smtp-Source: AGHT+IFIpJMYaUarb9OQ3CugfbiRxAkxdV8vjj4PEsPAwUxV3HYuhTBY5fwjGb9kcFeAq3df++aw0A==
-X-Received: by 2002:a05:690c:4506:b0:607:b0d5:97c5 with SMTP id gt6-20020a05690c450600b00607b0d597c5mr4779229ywb.21.1708095103708;
-        Fri, 16 Feb 2024 06:51:43 -0800 (PST)
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
-        by smtp.gmail.com with ESMTPSA id i77-20020a819150000000b00607ffb7d340sm185824ywg.28.2024.02.16.06.51.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Feb 2024 06:51:43 -0800 (PST)
-Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-dbed179f0faso2304595276.1;
-        Fri, 16 Feb 2024 06:51:43 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUgvMGlI5YPW2O25GU1e6NbL+fhjOMmsdh9aGSCHXoFoxvD99FDsoQY2ToQPd5fmOEoARy6tNw8zAxC6Od5SaIlbCYqo7Au4TPSSSTIUtL2pGaPL+4CV6+6a7Is83jgq4HgxOxACRSYRxn1+ydf
-X-Received: by 2002:a25:e047:0:b0:dc6:ab85:ba89 with SMTP id
- x68-20020a25e047000000b00dc6ab85ba89mr3774029ybg.25.1708095103336; Fri, 16
- Feb 2024 06:51:43 -0800 (PST)
+        d=1e100.net; s=20230601; t=1708095263; x=1708700063;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=H5+UrxbRXLOQkrvNam9zPtYfUH7CmHJYGluAwCM/rwk=;
+        b=Qjjv4AB4+YTDkDBq2C44Eab4jJyVpBlUtMJaV1zi0bnyO6IvH37lGJpQCHgfd/hkPT
+         UWyi2zXZqXq+Nkb8H0obInmhdmhEWPiH9f3dy4QeRETK+aQX2eBgH7iy0Qkc6OiSbb1K
+         9vB0CGy3c/I1APK74kyDwwJvKQFTXwrKo299Q3kvzxfrARUhrmcr+NcK+aV0+qkCV/cm
+         kcaknD8nU+Cim9vgd9T2YBgRzRYce+pU0rozaDkzxuugWCv4NtwMPxwBpj35/0eKutEe
+         gbsCzpVSv3aViWM+/s0QdxogHvRONXJFdVRYVsn2ty4IOr3yI2Q45Xj9YsweZ0WmZcwA
+         s0Eg==
+X-Forwarded-Encrypted: i=1; AJvYcCUFjIinWCB9AE6MJNuaoeHgihFWo9UHbPxfWoSr/haRigpYkhgsGelSoCPay0l8mI6VpI+YSG7FE7zgANqpQ/gGqMepX6oL+cW3Ag==
+X-Gm-Message-State: AOJu0YzNlQCUHLFqCSb3M+dPBz9z6CLxa/5HHZgoX9JKQXD+LLsPw/3P
+	RDeL6AKyM7rVVekSpHlB5xnaMeEiHZ3uU8IEUn7A/GLbKeBj2YKX9EDNCDshAwPEkYCJ+8m5XB4
+	=
+X-Google-Smtp-Source: AGHT+IFebQpMSN10eafxcqxmHBhmZ61uYkmXBGgYKWbyPo+PGCqfnv3NuYzwqbuIh9R8Q1n23F0ayg==
+X-Received: by 2002:a05:6a00:3a81:b0:6e0:392b:c236 with SMTP id fk1-20020a056a003a8100b006e0392bc236mr4809601pfb.11.1708095263219;
+        Fri, 16 Feb 2024 06:54:23 -0800 (PST)
+Received: from thinkpad ([120.138.12.48])
+        by smtp.gmail.com with ESMTPSA id e11-20020a056a0000cb00b006e046085ee8sm21871pfj.174.2024.02.16.06.54.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Feb 2024 06:54:22 -0800 (PST)
+Date: Fri, 16 Feb 2024 20:24:16 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Johan Hovold <johan@kernel.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 00/10] arm64: dts: qcom: sc8280xp: enable GICv3 ITS for
+ PCIe
+Message-ID: <20240216145416.GA39963@thinkpad>
+References: <20240212165043.26961-1-johan+linaro@kernel.org>
+ <20240214063554.GC4618@thinkpad>
+ <ZcyfW4HSsES7GU-F@hovoldconsulting.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240213192340.2786430-1-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20240213192340.2786430-1-niklas.soderlund+renesas@ragnatech.se>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 16 Feb 2024 15:51:31 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVtRZAGq+yq2EoUPTRw6F=SDdG_3jwc9JdaPiux-M9o+Q@mail.gmail.com>
-Message-ID: <CAMuHMdVtRZAGq+yq2EoUPTRw6F=SDdG_3jwc9JdaPiux-M9o+Q@mail.gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: renesas: Document preferred compatible naming
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZcyfW4HSsES7GU-F@hovoldconsulting.com>
 
-Hi Niklas,
+On Wed, Feb 14, 2024 at 12:09:15PM +0100, Johan Hovold wrote:
+> On Wed, Feb 14, 2024 at 12:05:54PM +0530, Manivannan Sadhasivam wrote:
+> > On Mon, Feb 12, 2024 at 05:50:33PM +0100, Johan Hovold wrote:
+> > > This series addresses a few problems with the sc8280xp PCIe
+> > > implementation.
+> > > 
+> > > The DWC PCIe controller can either use its internal MSI controller or an
+> > > external one such as the GICv3 ITS. Enabling the latter allows for
+> > > assigning affinity to individual interrupts, but results in a large
+> > > amount of Correctable Errors being logged on both the Lenovo ThinkPad
+> > > X13s and the sc8280xp-crd reference design.
+> > > 
+> > > It turns out that these errors are always generated,
+> > 
+> > How did you confirm this?
+> 
+> You can see that error flags being set in the controller and endpoint,
+> for example, using lspci -vv:
+> 
+> 	CESta:  RxErr- BadTLP+ BadDLLP- Rollover- Timeout- AdvNonFatalErr-
+> 
 
-On Tue, Feb 13, 2024 at 8:23=E2=80=AFPM Niklas S=C3=B6derlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> Compatibles can come in two formats. Either "vendor,ip-soc" or
-> "vendor,soc-ip". Add a DT schema file documenting Renesas preferred
-> policy and enforcing it for all new compatibles, except few existing
-> patterns.
->
-> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
-se>
-> ---
-> * Changes since v2
-> - Improve the select so it matches on any compatible containing a
->   component specific Renesas value.
-> - Make the regexps more compact.
-> - Define MaxItems to allow the increased selection to work.
-> - Add rmobile and shmobile prefixes.
-> - I did not take Rob's ack from v2 as the schema changed a lot after
->   Geerts review.
+Okay.
 
-Thanks, works better now: "make dtbs_check" flags the addition of
-my bogus test properties to DTS.
-It doesn't flag my bogus test properties in actual DT bindings, but I guess
-that is expected behavior.
+> > > but for some yet to
+> > > be determined reason, the AER interrupts are never received when using
+> > > the internal MSI controller, which makes the link errors harder to
+> > > notice.
+> > 
+> > If you manually inject the errors using "aer-inject", are you not seeing the AER
+> > errors with internal MSI controller as well?
+> 
+> I haven't tried that, I'm just reporting that that piece of
+> functionality is currently broken and that that partly explains why the
+> ASPM problems went unnoticed.
+> 
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.9.
+I just gave it a shot and I could see the AER interrupts raised for correctable
+errors with internal MSI controller.
 
-Gr{oetje,eeting}s,
+Now I'm puzzled why this is not getting triggered by default. I'll check with
+the hardware team if they have any clue.
 
-                        Geert
+> > > On the X13s, there is a large number of errors generated when bringing
+> > > up the link on boot. This is related to the fact that UEFI firmware has
+> > > already enabled the Wi-Fi PCIe link at Gen2 speed and restarting the
+> > > link at Gen3 generates a massive amount of errors until the Wi-Fi
+> > > firmware is restarted.
+> > > 
+> > > A recent commit enabling ASPM on certain Qualcomm platforms introduced
+> > > further errors when using the Wi-Fi on the X13s as well as when
+> > > accessing the NVMe on the CRD. The exact reason for this has not yet
+> > > been identified, but disabling ASPM L0s makes the errors go away. This
+> > > could suggest that either the current ASPM implementation is incomplete
+> > > or that L0s is not supported with these devices.
+> > 
+> > What are those "further errors" you are seeing with ASPM enabled? Are those
+> > errors appear with GIC ITS or with internal MSI controller as well?
+> 
+> Further errors as in further correctable errors that are not related to
+> the errors seen when resetting the X13s Wi-Fi link at boot.
+> 
+> These show up, for example, when accessing the NVMe on the CRD or when
+> using the Wi-Fi on the X13s. These errors go away when L0s is disabled.
+> 
+> And yes, you see them with both the external and internal MSI controller
+> (in the latter case, by looking at the error flags mentioned above).
+>  
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Hmm.
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> > > Note that the X13s and CRD use the same Wi-Fi controller, but the errors
+> > > are only generated on the X13s. The NVMe controller on my X13s does not
+> > > support L0s so there are no issues there, unlike on the CRD which uses a
+> > > different controller. The modem on the CRD does not generate any errors,
+> > > but both the NVMe and modem keeps bouncing in and out of L0s/L1 also
+> > > when not used, which could indicate that there are bigger problems with
+> > > the ASPM implementation. I don't have a modem on my X13s so I have not
+> > > been able to test whether L0s causes an trouble there.
+> > > 
+> > > Enabling AER error reporting on sc8280xp could similarly also reveal
+> > > existing problems with the related sa8295p and sa8540p platforms as they
+> > > share the base dtsi.
+> > > 
+> > > The last four patches, marked as RFC, adds support for disabling ASPM
+> > > L0s in the devicetree and disables it selectively for the X13s Wi-Fi
+> > > and CRD NVMe. If it turns out that the Qualcomm PCIe implementation is
+> > > incomplete, we may need to disable ASPM (L0s) completely in the driver
+> > > instead.
+> > 
+> > If the device is not supporting L0s, then it as to be disabled in the device,
+> > not in the PCIe controller, no?
+> 
+> Well, we don't know yet where the problem lies, just that enabling L0s
+> results in a large number of correctable errors.
+> 
+> Until yesterday I had not seen any such errors for the Wi-Fi on the CRD,
+> which uses essentially the same ath11k controller, so there was no clear
+> indication that this was necessarily a problem with the devices either.
+> 
+
+I'll confirm the L0s compatibility with the hardware team.
+
+> > > Note that disabling ASPM L0s for the X13s Wi-Fi does not seem to have a
+> > > significant impact on the power consumption 
+> > > 
+> > > The DT bindings and PCI patch are expected to go through the PCI tree,
+> > > while Bjorn A takes the devicetree updates through the Qualcomm tree.
+> > 
+> > Since I took a stab at enabling the GIC ITS previously, I noticed that the NVMe
+> > performance got a slight dip. And that was one of the reasons (apart from AER
+> > errors) that I never submitted the patch.
+> > 
+> > Could you share the NVMe benchmark (fio) with this series?
+> 
+> Did you have any particular benchmark in mind?
+> 
+> I have run multiple fio benchmarks and while the results vary with the
+> parameters, the impact of switching to ITS (so that not all PCIe
+> interrupts are processed on CPU0) is generally favourable.
+> 
+> A raw sequential read shows no change in throughput on either the X13s
+> or the CRD even if for some reason this test performs really badly on
+> the X13s (i.e. regardless of which MSI controller is used):
+> 
+> 	crd-rseq-read:	IOPS=11.1k, BW=2764MiB/s (2898MB/s)(81.0GiB/30003msec)
+> 	X13s-rseq-read:	IOPS=508, BW=127MiB/s (134MB/s)(3841MiB/30169msec)
+> 
+> Another benchmark I've used against a mounted ext4 partition shows a 2x
+> improvement in throughput with ITS for sequential and random reads and
+> writes on the X13s:
+> 
+> 	seq-read:	IOPS=88.4k, BW=345MiB/s (362MB/s)(10.0GiB/29657msec)
+> 	rand-read:	IOPS=21.2k, BW=82.8MiB/s (86.8MB/s)(4967MiB/60001msec)
+> 	seq-write:	IOPS=162k, BW=632MiB/s (662MB/s)(10.0GiB/16213msec)
+> 	rand-write:	IOPS=142k, BW=555MiB/s (582MB/s)(10.0GiB/18439msec)
+> 	
+> while the results are essentially unchanged with a larger block size and
+> queue depth (32/2m instead of 4/4k):
+> 
+> 	seq-read:	IOPS=1095, BW=2191MiB/s (2298MB/s)(10.0GiB/4673msec)
+> 	rand-read:	IOPS=1020, BW=2041MiB/s (2140MB/s)(10.0GiB/5017msec)
+> 	seq-write:	IOPS=918, BW=1837MiB/s (1926MB/s)(10.0GiB/5574msec)
+> 	rand-write:	IOPS=826, BW=1653MiB/s (1734MB/s)(10.0GiB/6194msec)
+> 
+
+Ok, this looks promising. Long back when I tried the benchmark (seq & rand r/w),
+performance dropped slightly with GIC ITS. But looks like things have changed.
+
+> > > Johan Hovold (10):
+> > >   dt-bindings: PCI: qcom: Allow 'required-opps'
+> > >   dt-bindings: PCI: qcom: Do not require 'msi-map-mask'
+> > >   arm64: dts: qcom: sc8280xp: add missing PCIe minimum OPP
+> > >   arm64: dts: qcom: sc8280xp-crd: limit pcie4 link speed
+> > >   arm64: dts: qcom: sc8280xp-x13s: limit pcie4 link speed
+> > >   arm64: dts: qcom: sc8280xp: enable GICv3 ITS for PCIe
+> > 
+> > Is this patch based on the version I shared with you long back? If so, I'd
+> > expect to have some credit. If you came up with your own version, then ignore
+> > this comment.
+> 
+> No, this patch has beeen created and evaluated from scratch based on the
+> downstream direwolf dts, which has these five 'msi-map' properties. 
+> 
+> I debated whether I should base it on your version instead, but in the
+> end it would have a new commit message and only these properties from
+> the downstream dtsi would remain (you also removed existing properties
+> IIRC). So while it's certainly inspired by your work, this has been done
+> from scratch, including the testing.
+> 
+> If you prefer I can make this clear in the commit message, but adding a
+> Co-developed-by didn't seem quite right either as I did this work
+> without your involvement. But perhaps that would be better?
+> 
+
+Nah. As I said, if you have created the patch without basing on my version,
+then no credit is required. I just wanted to know since I shared the patch
+earlier.
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
