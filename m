@@ -1,176 +1,303 @@
-Return-Path: <devicetree+bounces-42425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F37D88577A8
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 09:28:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 630798577AF
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 09:29:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62CEC1F21410
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 08:28:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 364491F2017A
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 08:29:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ABF618AF9;
-	Fri, 16 Feb 2024 08:26:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E915917756;
+	Fri, 16 Feb 2024 08:29:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h7vxQ5xI"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="VgfCkYFm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01olkn2074.outbound.protection.outlook.com [40.92.53.74])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B96618B09
-	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 08:26:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708072007; cv=none; b=KEzBRuJzIyFg6JkPCsJxWPPHIiwuyXtiuaLQuhvSDpQLRcpuGWmpbtcA/7cPwW+C2hvA+nP3uj6DwkTG6UxPcuptvCJItoJuHOGoziO8Rw1WGDxVjC+CN9jx6qSJS1F3hhPOPnbhgQ2+D/njqI9zo/DMKvzzp31ZR5MhclCqRXI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708072007; c=relaxed/simple;
-	bh=d8ITzOV2En/D6OHhB7+vXjklnG93i0n5W26sz5HKW9M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=W52q6199QMWdfOoIgUGPGQvrdrcU9UmrSGKCwvxXVDPQ0htDT200sWvlvHJu91/jYzr2qqjQyThkW/Q1N/eAK1QwrgaknNYNC3ZtBvWoYLUZ6Ybm1hTG2EtGMunCsuQDRlgbq4ugp6I0LfAr5x090q82LqsTe8SINSLmNtnqQKY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=h7vxQ5xI; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-55a035669d5so2651576a12.2
-        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 00:26:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708072004; x=1708676804; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WAeqAPxibxxRq/h+JRwkxgNp/YZEgtvVqoDwz03RZEY=;
-        b=h7vxQ5xIT90O4qJGSpAq8dBq45eXn6kehv0luZWJS3SKY4yR7HV+Zk1pVIxvnz2c3Z
-         wQVfUUGWxjcWOopJBaUIN2Jkq73QpAHnShXugWz1JExalPKHgisUFAk4WWy1dpNxGsLC
-         HBdpYlnoQIzXKTC3u6Ad7LzKmPFzmW8e2VgvbykfRLzA0ci873WtGBQF89np/weir2GL
-         AV5JrhilFebuC9dONQxTBHUcqCsdvSc5DyrAVXQ5n6GgW65FdzRPWy5yxYiUFC9SZCV6
-         ZpaILuJL3U22vZdD5AKPLT3Mqha524Q/K0+lrLaoPlPgVUqXezcbIsjP+IZjVdFxAEZf
-         8HaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708072004; x=1708676804;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WAeqAPxibxxRq/h+JRwkxgNp/YZEgtvVqoDwz03RZEY=;
-        b=X+IJWdHxIr20oMgibpTMF1MWCPCrVo5zBrSAvmBKdUEJjRB5qM34K/UedP89VLx9x6
-         uEdCOBJj2l36qY7tQWHm0EXY/1YvWI7W9Wh96qmJe3m59CxdKkOsP7NhmWIXrVOYpDep
-         gtCLy/DjldVqbyUR54uJ/WRBVcjppxEU9JcayTpwKwYnw+6rbbnT+mGZ3R8AlbXO0JEv
-         Rc/QDEUoSXDJWgzN7R2XVkjP8+fcejBGFBdxG1xiYI3OkR7aE+p69cCjUi1NTA3EQjrY
-         KTS2mp9+v6jPcMj530yiIDsuS6d6Exom4bko+3JtCnTEBik0Bmz0Tfteq6yZf3gQPHRG
-         Q+Cw==
-X-Forwarded-Encrypted: i=1; AJvYcCUEUdPexQ+wAGAvrumR5JHlCcRF27C+Hqh3haBG3dG9ls35HNaKmtxI0GNU9xRJHuvTBegEc6gb06MZwm/GPnSSAp9MqiXWGXGfNg==
-X-Gm-Message-State: AOJu0YxqVufhTRW3KC+r42aI+wGS5OGMfTgxDY6Gah5Fa2WYJw5K3IPZ
-	JHPPVRfOJh0oi2mkTQNMOib6xbAYeKJ9nWrTXbbXWDNgxt1IjKXJaVZ1LQnF9gY=
-X-Google-Smtp-Source: AGHT+IHJTnxShsG5u7QLqZGNtK7dvkKWkY8/CjMheJRB68tWDN4021Cuiiw/3kxOQeAsYnSaEx+vKQ==
-X-Received: by 2002:a17:906:e4f:b0:a3d:63b:c43 with SMTP id q15-20020a1709060e4f00b00a3d063b0c43mr2789303eji.17.1708072004333;
-        Fri, 16 Feb 2024 00:26:44 -0800 (PST)
-Received: from [192.168.0.22] ([78.10.207.130])
-        by smtp.gmail.com with ESMTPSA id vu6-20020a170907a64600b00a3c5d10bcdbsm1310341ejc.114.2024.02.16.00.26.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Feb 2024 00:26:43 -0800 (PST)
-Message-ID: <d77faffc-5bde-41f1-b6a2-ddd665c3ee08@linaro.org>
-Date: Fri, 16 Feb 2024 09:26:42 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D7E91B807;
+	Fri, 16 Feb 2024 08:29:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.53.74
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708072173; cv=fail; b=L5Cz0Ufdu/dUJ17/YCZyusce5kKjxQeWHMpp6hqHtWeTcn+LSS/wVhe/DnQfM60CnTobPJTGGC/4RZARv2GCAMkDWsxArRLw1rZ/FGMjLJozF1mWMmrwr23nf00YWcx6M6Tzttw+S+d8aflAkTBRCcxHryD9JcMe/NudsAYaqpM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708072173; c=relaxed/simple;
+	bh=D1MLHaJa//BTk522v0WUDx6TK4G5k8tgd9ttppM1pU4=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=AEMYy9Q6d5NcMPTY39RIz/3EzbYr7jnMoI3lO20tZS/mKPx4/l9ZHwIScsl8R0bUWY+aClClm01bUQwdY/tJvxKPMRvr89GM68JS6t97vhPQCM2vNLRN2tEPiSxEs5KXwhiBLF2WE4jbm996z0sDfg5SDrsWTvbv4ggv73POBQg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=VgfCkYFm; arc=fail smtp.client-ip=40.92.53.74
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WBzqIVVYUaT70FxfcgFjVKXobjEcRkMos9N68xov+SG8bNPHmgV4RF4R1kI2/Ksj0w3nZxBF0SDJxwnndYN8t61hxekGn2bUJJ0ot+EzU8UdeP0A274dHXZLBcsf5FEUr6Ei/1hmi2RehhOQ5AhqJy3E8fGk+w3y1aaI/36b1pdcKGuntwUhmPv1IFCezwo1f5iWHQHsKYbRgv4cBzZ2pvULrP5SNUnY6tL8FqBMr+i4sYVo32Dwx5cwLW8UYMY8Rfvh8nli4Lmcsf9zwA1GI2cgbYSuX3onbCVd/e71ZqNMJP9wOm4xsOzTyUkf3tQum0w0jTuC7RAbWOmKXiiFxg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7rGG+KEC46WbF1ty3HMw16JaUqgAkiUx48menpsobuo=;
+ b=JBHNBmMcbz1ClyyJC21J9KWB/7rMCKGRUbOw6LXCZCnR0lMrbCb11QhpTtHE0t3OxKKF1NlrL6ZLgIXJ5/YWruZy1FadJTXgajuHVJCTP9BCDe2+7HBi0K286xxYOGc5BEFeQtfmGMm2xlGcSQcQzNAxIR75LTn8eU5wos7pxe8Gq2E5W5aOZlqDKgMUO0lhfMnN4cJjlxHEHyZnTtjUzXJg/8AQC6+HXNAS1V10VFOZE3q+nSq5/atePjQGuk8VW+ev/rXpD3gS/J+FmYVvh5SEndqePUFmim1AjawLoIWmCHsdI7YwSCKxo+IiFuC5oDuOt1CVoxObh2nqWwuGVg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7rGG+KEC46WbF1ty3HMw16JaUqgAkiUx48menpsobuo=;
+ b=VgfCkYFmkH0ide81aQW2eiC0EMGhTq87yynVIk0tsu46aLemgBgCOeNDnw2FsyHP0lLRE0jYRK8Bafa0ztNJrWgxoenHwe2C06Mul7gGM6/k87C/ujN4JwV8PaPcVpbeyAXOaDwk+O/OdKvbXEJ8LOI4Tujr5PNAEtbhLjVEV+y/lAX+LFKMdvVZ9PLyfNUt5Ayq72EK6RBjZLgwkFniqtSMSrRnhlEd41ItAsL03W7eGQpTEeO50DXQN5Yxh+z0T7hpXBJjt/qFPxmVytHnY4ZaCDI4h+aBKPJ/yQ34u5YyzlSRvpAZq6GK9dayXv8Q/8ivhsVgNeU+LKfD/Fzhpg==
+Received: from SEZPR06MB6959.apcprd06.prod.outlook.com (2603:1096:101:1ed::14)
+ by TYZPR06MB7040.apcprd06.prod.outlook.com (2603:1096:405:3e::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.31; Fri, 16 Feb
+ 2024 08:29:26 +0000
+Received: from SEZPR06MB6959.apcprd06.prod.outlook.com
+ ([fe80::9a6b:d813:8f4b:cba1]) by SEZPR06MB6959.apcprd06.prod.outlook.com
+ ([fe80::9a6b:d813:8f4b:cba1%4]) with mapi id 15.20.7292.026; Fri, 16 Feb 2024
+ 08:29:26 +0000
+Message-ID:
+ <SEZPR06MB69592A3F9737DFA6E0E9096C964C2@SEZPR06MB6959.apcprd06.prod.outlook.com>
+Date: Fri, 16 Feb 2024 16:29:24 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] dt-bindings: mmc: dw-mshc-hi3798cv200: rename to
+ dw-mshc-histb
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Jaehoon Chung
+ <jh80.chung@samsung.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Igor Opaniuk <igor.opaniuk@linaro.org>,
+ tianshuliang <tianshuliang@hisilicon.com>, David Yang <mmyangfl@gmail.com>,
+ linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240216-b4-mmc-hi3798mv200-v1-0-7d46db845ae6@outlook.com>
+ <20240216-b4-mmc-hi3798mv200-v1-3-7d46db845ae6@outlook.com>
+ <36450b1e-7a80-4d6b-9046-9a57b7c845e2@linaro.org>
+From: Yang Xiwen <forbidden405@outlook.com>
+In-Reply-To: <36450b1e-7a80-4d6b-9046-9a57b7c845e2@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TMN:
+ [Z3IgYi6snRVJArGFVJlXy3MtWgp2fO3maiXagXr4FxnoGdY7bvI+FD9nQIJzIJjFDHzWA35REy8=]
+X-ClientProxiedBy: TYCP286CA0347.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:405:7c::7) To SEZPR06MB6959.apcprd06.prod.outlook.com
+ (2603:1096:101:1ed::14)
+X-Microsoft-Original-Message-ID:
+ <2a06be09-477b-4199-ac00-85868f58977a@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] net: hisi_femac: remove unused compatible strings
-Content-Language: en-US
-To: Yang Xiwen <forbidden405@outlook.com>,
- Yisen Zhuang <yisen.zhuang@huawei.com>, Salil Mehta
- <salil.mehta@huawei.com>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Yang Xiwen <forbidden405@foxmail.com>,
- Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
- Russell King <linux@armlinux.org.uk>
-Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240216-net-v1-0-e0ad972cda99@outlook.com>
- <20240216-net-v1-2-e0ad972cda99@outlook.com>
- <68c9477a-3940-4024-8c86-aa6106e8a210@linaro.org>
- <SEZPR06MB695938B228E762B9B53BAF2F964C2@SEZPR06MB6959.apcprd06.prod.outlook.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <SEZPR06MB695938B228E762B9B53BAF2F964C2@SEZPR06MB6959.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SEZPR06MB6959:EE_|TYZPR06MB7040:EE_
+X-MS-Office365-Filtering-Correlation-Id: 028e5033-1518-490a-ad0b-08dc2ec96299
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	fUkFEJDbgU9/8KABWhhjeGzPDCk0sylqAujbkHz6hjlDSBmNvfE/EH3IBPdO64Hxpnbe2lHc646Wi84xNpQAhAHIkbmtdBt7gC/X40E6p3vVELLgJDO+Fq8BmorX70iMbE/X2XCnkudNwB9X3c1q7eznSYTHYappmNJwMYqM8ziS0neQe+TYNWUDbnxF4wmEmYH/6ALUDgcW4sCznkyoJXwrsjkV92Y4Zxfo36QyjhCO9BlYwQEcnkkWPaQ1VFlIA2LL61eXb/9W3oW87+tW3yMQr0t7FG1ecjAoVPVRXhTbZLAIZBU7HjtcHqPayj1jB3YUQ5kNCj16GoJ/KGKDHugQD5dtxpKVpraGedVASGBfaNLBDnA4yXtErzPIkSlJFDAM2V+c4y0q6H/VUD7Y9bzgCI3pwSYfd2HyDOqff7qTZ7i2XvNnPzm20kibHaVKOhp2JMbrGlSe2mCyBJamR2t5t/FwnPKmgqrSM+hr3H8pYBT09tkKTJtIMl1bD1zjEjRGVo3JwE0sDGtpfVC6BIIEy46pA7QqRg5vuYKpY7QWgUBPXkUowNWxb+W+bBMeTyt5scfyOoGZlsf+S7TqMmMlgEP+XBcVUNajsQOaXuA4Xyv3QMe5cWPkjF4AMMHOjDnsCx27UXDpyPN1JWYRrA==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?VmtlMWtqNVFGUFlIZVpuMjAwVXJMMk92ZDVBK1k5NURsYTk5R0J2RStJb0RG?=
+ =?utf-8?B?ZVk1Ulh0cXBGVGF3ZXNxVHQyVFlVUGdEQVA0M2pWdzFUc1ZjK01acTVHM3Rl?=
+ =?utf-8?B?Z0lPME0xdjYwNkJWYkttMnkyWXE1VDlQcE1Wem1MVHg1Nkkwdys4dHZzYXVQ?=
+ =?utf-8?B?VEx3T0pWWGxtdDRSSzZFaTEvVHdmNGtBUHJyb2dxRFR2VFZRN1F0Mk5MUWti?=
+ =?utf-8?B?ZEtTUFZnTXpTN0tXcDA3QXozRi9YNmZ3eENaUko5Z0xGdWkvS0N1YWZTaEZn?=
+ =?utf-8?B?cFVvWGI3YWdGTDBPS1ZqbEliMlNNMng4L2lTMUVKelVNRzlMTUd6WDhMcWY4?=
+ =?utf-8?B?VzRhMXJtek96Q285T21MYjdvc2lSZlovTnlnS1VOMnR0elNJUW5obnBON0hv?=
+ =?utf-8?B?U2RFbFByNnJJY3VMSkI2NW11NnJ4MzdDcXBnLzMwUStDbkxJamdoQTJYTDIz?=
+ =?utf-8?B?ME45TWxiZFhKbXh2d3BNMjhhZ29XMkpnODU1alI5Tk53NWF4eU90cW9BOXl5?=
+ =?utf-8?B?TVNlMnIzdVVQMGNVRVNsdlJtdFZDTHJLemRQdWtNU1BNNmt5cXhSWEFDbHlN?=
+ =?utf-8?B?VUZkRDNGRmdOVlVOUW5ONjBBeENaWm5xMkkzcysyeVdTNXVRVEVHVTYxVlQ5?=
+ =?utf-8?B?dDZ5OG96bTkvbXZ0MEZ4VVlWWCtxNEp3dnlnajd2VFJFMTcwYVlFaGovRE5W?=
+ =?utf-8?B?UXRpamJBQzNua2F5SVhCZVpvdDBaVDUrc1ltclJ1TFFQeDlSa2RNb2ZxcU5N?=
+ =?utf-8?B?Q2lxWVFQK09YK2w4bk1lY0Z0WmU4WGFwRmVML2UwMUFYeWw3WGhPV00vbllW?=
+ =?utf-8?B?Z3VkSDlYNGZMUVdtbXR6OHlNRVh0VUczOWliWEdkT2hYK3oxSjN0Q0VLWVFy?=
+ =?utf-8?B?MWNqNWpFa25sa3M3eXNlMnVQWDVQWm9IakkxdUNhZElnSU5Ob3hPUHZCWjgy?=
+ =?utf-8?B?Q2NsTHgxRzlYTGNKTjRrTGpiNDA0TDU0YjlWbjNvdHU0ZkR6NThkWDBRZkRT?=
+ =?utf-8?B?cU5YTzV2SmFkWVVUeUs4cHEydHYxeVZXaHR4SWIwVVVJc3MrMUhXTmhsL0h3?=
+ =?utf-8?B?cDNXc2FHMkU3cG9vL25rbEpJVUNBdEJwNXk1TkpqRU56K3RUUHBoRjB3ZlBx?=
+ =?utf-8?B?ck4zRE91MUdwYkE0aURQeGpHQTdpaFdFcE4vdGlxVkJrMy8rVmtveG8xVDBC?=
+ =?utf-8?B?YXY0VUZoeENyWjB1djB6eWlwSStSanpLZGZCM3g4bVdtWHA3WWhVeU9Lc2dL?=
+ =?utf-8?B?ZG5DZlM1ZktmS01sSHpZdE5DVHlxRUhmcXRsMmJaVWFBcEMrR1dEM2VMbk9l?=
+ =?utf-8?B?bXVWWXZKMFgyRGV4NVlHT3k1TmJKKzRBRkhYS1FmNm5MSXEyL3RRV0JIZyts?=
+ =?utf-8?B?SkxFU3ZJTThjZmRNc21ocThYVjYxbVQwTEczK3dzeVNtdjI1aWxjSFU1V0ZV?=
+ =?utf-8?B?bUhJU2J2aE5kOVdlSTUybmk5QzU0NkZ5QnJDVE0rTjl5UXBPMzZBZGNXUERw?=
+ =?utf-8?B?dE1Bb24vRHFkMC9wZXFROHgzMzUrOWRtRnI0SVdXZG9idy9pT3prZDR0dE9Q?=
+ =?utf-8?B?ZE5YV3lTT3B1N05IYXgzR3dSaWxFUTNMdDBDcEg5NjFjTWllQUdCNDZROElR?=
+ =?utf-8?B?Yjc0Si8xam5TbDFlMkFHc2s0K3k0NHVTdzkxN0E4TWNBVTZueGNLMW1pQ2Nh?=
+ =?utf-8?B?Z1lwOE9iU0NMY0J1VDkwUks4bUxOdDJnNFJ2aUhhZXlhTHgvMG5KU3FSZGVr?=
+ =?utf-8?Q?DCBIowGLzY1M3Iw9asPV+dq5tbRlBNYE03aBthH?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 028e5033-1518-490a-ad0b-08dc2ec96299
+X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB6959.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Feb 2024 08:29:25.8690
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR06MB7040
 
-On 16/02/2024 09:21, Yang Xiwen wrote:
-> On 2/16/2024 3:20 PM, Krzysztof Kozlowski wrote:
->> On 16/02/2024 00:48, Yang Xiwen via B4 Relay wrote:
->>> From: Yang Xiwen <forbidden405@outlook.com>
->>>
->>> These compatible strings are not found in any mainline dts, remove them.
->> That's not a real reason. What about all other users?
-> The people who want their devices being supported should post a working 
-> dts first. Having found the dts missing is strongly telling me that this 
+On 2/16/2024 4:21 PM, Krzysztof Kozlowski wrote:
+> On 15/02/2024 18:46, Yang Xiwen via B4 Relay wrote:
+>> From: Yang Xiwen <forbidden405@outlook.com>
+>>
+>> Add binding for Hi3798MV200 DWMMC specific extension.
+>>
+>> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+>> ---
+>>   ...hi3798cv200-dw-mshc.yaml => histb-dw-mshc.yaml} | 60 +++++++++++++++++++---
+>>   1 file changed, 52 insertions(+), 8 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mmc/hi3798cv200-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/histb-dw-mshc.yaml
+>> similarity index 57%
+>> rename from Documentation/devicetree/bindings/mmc/hi3798cv200-dw-mshc.yaml
+>> rename to Documentation/devicetree/bindings/mmc/histb-dw-mshc.yaml
+>> index 5db99cd94b90..d2f5b7bb7a58 100644
+>> --- a/Documentation/devicetree/bindings/mmc/hi3798cv200-dw-mshc.yaml
+>> +++ b/Documentation/devicetree/bindings/mmc/histb-dw-mshc.yaml
+>> @@ -1,11 +1,11 @@
+>>   # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>   %YAML 1.2
+>>   ---
+>> -$id: http://devicetree.org/schemas/mmc/hi3798cv200-dw-mshc.yaml#
+>> +$id: http://devicetree.org/schemas/mmc/histb-dw-mshc.yaml#
+> Really, one wrong filename into another...
+How about "hisilicon,dw-mshc.yaml"? I found rockchip using a similar 
+naming: "rockchip-dw-mshc.yaml"
+>
+>>   $schema: http://devicetree.org/meta-schemas/core.yaml#
+>>   
+>>   title:
+>> -  Hisilicon Hi3798CV200 SoC specific extensions to the Synopsys DWMMC controller
+>> +  Hisilicon HiSTB SoCs specific extensions to the Synopsys DWMMC controller
+>>   
+>>   maintainers:
+>>     - Yang Xiwen <forbidden405@outlook.com>
+>> @@ -14,16 +14,14 @@ description:
+>>     The Synopsys designware mobile storage host controller is used to interface
+>>     a SoC with storage medium such as eMMC or SD/MMC cards. This file documents
+>>     differences between the core Synopsys dw mshc controller properties described
+>> -  by synopsys-dw-mshc.txt and the properties used by the Hisilicon Hi3798CV200
+>> -  specific extensions to the Synopsys Designware Mobile Storage Host Controller.
+> Just drop this sentence in previous/conversion patch. It's useless.
+Will do in v2.
+>
+>> -
+>> -allOf:
+>> -  - $ref: synopsys-dw-mshc-common.yaml#
+> Put it in correct place in the first time. Don't needlessly shuffle the
+> code right after previous patch.
+Will fix in v2.
+>
+>
+>> +  by synopsys-dw-mshc.txt and the properties used by the Hisilicon HiSTB specific
+>> +  extensions to the Synopsys Designware Mobile Storage Host Controller.
+>>   
+>>   properties:
+>>     compatible:
+>>       enum:
+>>         - hisilicon,hi3798cv200-dw-mshc
+>> +      - hisilicon,hi3798mv200-dw-mshc
+>>   
+>>     reg:
+>>       maxItems: 1
+>> @@ -48,6 +46,12 @@ properties:
+>>         control the clock phases, "ciu-sample" is required for tuning
+>>         high speed modes.
+>>   
+>> +  hisilicon,sap-dll-reg:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description:
+>> +      A phandle points to the sample delay-locked-loop(DLL)
+>> +      syscon node, used for tuning.
+> Does hi3798cv200 have it?
+No it does not. Currently only hi3798mv200 has it (it's called himci 
+v300 in downstream, while cv200 is using himci v200).
+>
+>> +
+>>   required:
+>>     - compatible
+>>     - reg
+>> @@ -55,13 +59,25 @@ required:
+>>     - clocks
+>>     - clock-names
+>>   
+>> +allOf:
+>> +  - $ref: synopsys-dw-mshc-common.yaml#
+>> +
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const: hisilicon,hi3798mv200-dw-mshc
+>> +    then:
+>> +      required:
+>> +        - hisilicon,sap-dll-reg
+>> +
+>>   unevaluatedProperties: false
+>>   
+>>   examples:
+>>     - |
+>>       #include <dt-bindings/clock/histb-clock.h>
+>>       #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> -    emmc: mmc@9830000 {
+>> +    mmc@9830000 {
+> ???
+It's complaining about duplicated label when i added emmc label to both 
+nodes. I'll remove it in previous patch in v2.
+>>         compatible = "hisilicon,hi3798cv200-dw-mshc";
+>>         reg = <0x9830000 0x10000>;
+>>         interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+>> @@ -84,3 +100,31 @@ examples:
+>>         bus-width = <8>;
+>>         status = "okay";
+>>       };
+>> +  - |
+>> +    #include <dt-bindings/clock/histb-clock.h>
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    mmc@9830000 {
+>> +      compatible = "hisilicon,hi3798mv200-dw-mshc";
+> No need for new example.
+>
+>> +      reg = <0x9830000 0x10000>;
+>> +      interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+>> +      clocks = <&crg HISTB_MMC_CIU_CLK>,
+>> +               <&crg HISTB_MMC_BIU_CLK>,
+>> +               <&crg HISTB_MMC_SAMPLE_CLK>,
+>> +               <&crg HISTB_MMC_DRV_CLK>;
+>> +      clock-names = "ciu", "biu", "ciu-sample", "ciu-drive";
+>> +      resets = <&crg 0xa0 4>;
+>> +      reset-names = "reset";
+>> +      pinctrl-names = "default";
+>> +      pinctrl-0 = <&emmc_pins>;
+>> +      fifo-depth = <256>;
+>> +      clock-frequency = <50000000>;
+>> +      max-frequency = <150000000>;
+>> +      cap-mmc-highspeed;
+>> +      mmc-ddr-1_8v;
+>> +      mmc-hs200-1_8v;
+>> +      mmc-hs400-1_8v;
+>> +      non-removable;
+>> +      bus-width = <8>;
+>> +      hisilicon,sap-dll-reg = <&emmc_sap_dll_reg>;
+>> +      status = "okay";
+> No, really...
+The property "hisilicon,sap-dll-reg" is introduced in this patch, i want 
+to add an example for it here since the common dtsi will use this 
+binding and will be submitted when it gets ready.
+>
+>> +    };
+>>
+> Best regards,
+> Krzysztof
+>
 
-Considering how poor HiSilicon contributions were - in numbers and
-quality - that's kind of expected. :(
-
-
-> SoC(Hi3516) is orphan and EOL already. I can't even find it in git 
-> commit logs. I'll argue that the old binding is simply wrong, and does 
-> not describe the hardware properly. Who knows? Could anyone tell me if 
-> the driver is still working for Hi3516 or not? I'm very willing to keep 
-> the backward compatibility if someone can tell me the effort i paid to 
-> maintain the old binding really makes sense. But the only things i found 
-> in mainline kernel about Hi3516 is an CRG(clock) driver and this femac 
-> driver. And it's been 8 years since last update for this SoC.
-
-OK, that's fine with me, but please add parts of this explanation to the
-commit msg (SoC is EOL, driver looks buggy and might not even work,
-platform was upstreamed 8 years ago and no maintenance work happened on
-it, thus it looks abandoned etc.).
-
-Best regards,
-Krzysztof
+-- 
+Regards,
+Yang Xiwen
 
 
