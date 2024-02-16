@@ -1,184 +1,125 @@
-Return-Path: <devicetree+bounces-42440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 860EB857888
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 10:08:24 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0F4D8578A3
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 10:17:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7BB31F217AC
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 09:08:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4BDB0B21A23
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 09:17:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0499D1B809;
-	Fri, 16 Feb 2024 09:08:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CEB41B812;
+	Fri, 16 Feb 2024 09:17:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="utrj9bXM"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="I9OgeOob"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 774631B969
-	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 09:08:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AC2E1B941;
+	Fri, 16 Feb 2024 09:17:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708074491; cv=none; b=h0rTtgXVGBSfGiPFjg8ciaz6sDae2mpVjLQ3SUWS2RUSlL9fVF2zGviIzmcrsH1Z0mDmxA99glO6HqBMDK14XZBjVmAupn8vJROCup+iRyzz5IFySAcYadkwvblJdaKSZxiXK8neC2niVgZlneysPu2F2B7BeI+qLuYDLUKEbiU=
+	t=1708075027; cv=none; b=mopLckpfrn+iwJxqCJqmf8MlIz4K66wibN6/LIbbdJNLrDEwRcdCw35urToq8UKiDkJU+vX10V0i0t1jZ9xlkaoY1pCS3Wx2KT00xaPeBm8lSQLaOgXMKOaFFOAIL/2qDwZT0RDIiH6ZT74LyIAMjQAv2eKYhglRPahG4F1lg+o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708074491; c=relaxed/simple;
-	bh=oERm1l0ziZ/kArGwE/f98QL6u0Kyjehs1eDEGtkoX7Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=O/0gd/ZjZHX5AvfZeaxOFrv53HEKka+/M0vso9T50I0/BYY0ZV+vB/0B/d+AwQQr9MWN19GZpcDWwqNClsm25udNqhaT546YyrelxZHGao5X9AEODDBWxCcabd9uovcCGOgaqk5yvycaGiR0KK2gKS+FMXMDtdn280RQqnVrWFU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=utrj9bXM; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-511acd26c2bso2580498e87.2
-        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 01:08:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1708074487; x=1708679287; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vA2DFFOFzcRyvxqcYVpsnM/x9YtF8fmooWYl5oGtBh0=;
-        b=utrj9bXMWNTLmIHcWDp4HIIw5cG8kY06kJr2XYOXj+cCQZSaqIjzqNJS7wEiunOOXX
-         LmPtqaVzBkAxwk3Z3LjiihgJ9YN1kItnHOob2Zl66XNYoRe2gq4TZ5IL4r5xCEAZY6/9
-         0IPmNvdANqW5mYYVCV9qJL4TA0jxo727u0qxT980HOJ54t98PPxdRjcla7TdiKdmaNmr
-         +vySs4pDylfG8wfscXJm0Gu9Z8HM2UN0lmBap/SGbWRfy1uoOkMBqgX18h9en+9bTzbw
-         h7sCMLziSvc1yhmNwko25+anmLK07i2ZBPNiQlOBtjWMV5se24jomPuHn5sUJ9O/xLW2
-         kB6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708074487; x=1708679287;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vA2DFFOFzcRyvxqcYVpsnM/x9YtF8fmooWYl5oGtBh0=;
-        b=rwhr7W0pzIUirPkHLZF9bowJQRiZP7eg98Y/jrfesVSA8AFW06niDZUJTJ4RzQshxy
-         DLCmyyJfekXknSjQ+qiLvhYHcF1Gg2vzdVW67byjqkJuLwkeUoRAb7D7DTt7/5inF3E8
-         wwFgySQ8UWO3vRyRIfLTJzCrQNJIFmqzUrZ7uFWMdj04LlGViS9L8/4BgsHl1TltYPqr
-         aC2GO8cSmLDhAyNePdPL0KlIj6FrOaxifhQfzpun7Ai6EHhmWjQTGPcgpgNrP59uKmz8
-         kurk0nAlAv6vU88lN8n316j9V76B4wSIrwxOws9prCaI9TsXhEEQ2qOmAqLmTu8ip8eB
-         DmQw==
-X-Forwarded-Encrypted: i=1; AJvYcCX0SqYnu4KNn4COBkFWau/c5tuleUvB+dpMZxfP1OCXJb/0xs63nyFc7LvTxVooy8ChkRd2BWgooYtE3DguQmjoMlpElT1CK9AI5w==
-X-Gm-Message-State: AOJu0Yxa28kVcTp9nVBJaNC8xIRgpCWk7r5XHDAuE165WG2RXQwtUo2g
-	MUTA7RdpiM1S8dc7oboc/RB6GiHmWM732I9mWYt4LAWHvmYPB6EafKx1w/JOQPE=
-X-Google-Smtp-Source: AGHT+IGi+3vhNJtCp1mYtRx80UFnIA/8ta458vq75nKmQ6whOzZbmMoMt+v97FMnmJ6t/dByVPfZDw==
-X-Received: by 2002:a05:6512:124f:b0:512:8d8f:db7a with SMTP id fb15-20020a056512124f00b005128d8fdb7amr2294792lfb.65.1708074487376;
-        Fri, 16 Feb 2024 01:08:07 -0800 (PST)
-Received: from [192.168.1.70] ([84.102.31.43])
-        by smtp.gmail.com with ESMTPSA id f11-20020a0565123b0b00b005128ae41781sm462170lfv.253.2024.02.16.01.08.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Feb 2024 01:08:06 -0800 (PST)
-Message-ID: <e13627e2-9d8f-437d-afe4-d8bfcade2f6a@baylibre.com>
-Date: Fri, 16 Feb 2024 10:08:03 +0100
+	s=arc-20240116; t=1708075027; c=relaxed/simple;
+	bh=knQb6WdfHntiaYWe1pTnj/8jQXTGcQ1QPPfOu5SCjG0=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
+	 References:In-Reply-To; b=raQYZzYZpNZKlA8pc1pmM9QMC2xAPXiVXLjQIWFkSLK68VoljLpXKsUH2Vtimac0zpPA3fq0UB6cAiSbV/oejyO+TCapWrKSkopsZ9wYgiXaz9DxeUxRazhfm/+ZDJJbMij5HWi7WEVST2yoh37vENgdGaSym7Z9i2lSgiDPLKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=I9OgeOob; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 6E7B2E000C;
+	Fri, 16 Feb 2024 09:16:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1708075016;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=dQdI8Zrzs9kwj/PfuUOcwe/1YQf/eV/Bz9uqQisZoKk=;
+	b=I9OgeOobZzRaooIv6wdlB3NjJehUtglDnRE6VN/4DfqvdnnFZMCvv6RM2wLYVGlZ3oFrRc
+	GMl/fM4t/cMqlyDon/tfQK6c3SZmIH1SiwNn1dXN+bpaq6la3naR3OMZt45jhtQc3cXmuD
+	92n4tBheAXzxd1RdvazlCDealn3xvzW6d1ivDuXKVgsjenXyY9o3MGWwhh8lZ9EMp6bEsu
+	Nm0XhFN0TiUF/WQEO4D8OdKVi9ui2i0SVYvf2DTG+y0I88XhDtaCzL8Kxp1pkqnYSog1Uy
+	CktNJKi4ZZRbAv9cajIfsuq/4m+2LUu8JY3EksFepWeO4xLh1S6jfU8ZRSdOYg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND PATCH v1 03/13] dt-bindings: mfd: ti,tps6594: Add TI
- TPS65224 PMIC
-Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>, Kevin Hilman <khilman@kernel.org>
-Cc: Bhargav Raviprakash <bhargav.r@ltts.com>, arnd@arndb.de,
- broonie@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- gregkh@linuxfoundation.org, kristo@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, lee@kernel.org, lgirdwood@gmail.com,
- linus.walleij@linaro.org, linux-arm-kernel@lists.infradead.org,
- linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
- m.nirmaladevi@ltts.com, nm@ti.com, robh+dt@kernel.org, vigneshr@ti.com
-References: <20240209-blitz-fidgety-78469aa80d6d@spud>
- <20240214093106.86483-1-bhargav.r@ltts.com>
- <20240214-galley-dweller-1e9872229d80@spud> <7hil2r5556.fsf@baylibre.com>
- <20240214-depraved-unfunded-3f0b3d6bf3e2@spud>
-From: Julien Panis <jpanis@baylibre.com>
-In-Reply-To: <20240214-depraved-unfunded-3f0b3d6bf3e2@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 16 Feb 2024 10:16:54 +0100
+Message-Id: <CZ6E24VPJKJG.35LACFD6ZV5KE@bootlin.com>
+Cc: "Linus Walleij" <linus.walleij@linaro.org>, "Andi Shyti"
+ <andi.shyti@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-mips@vger.kernel.org>, "Gregory Clement"
+ <gregory.clement@bootlin.com>, "Vladimir Kondratiev"
+ <vladimir.kondratiev@mobileye.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>
+To: "Rob Herring" <robh@kernel.org>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH 01/13] dt-bindings: i2c: nomadik: add timeout-usecs
+ property bindings
+X-Mailer: aerc 0.15.2
+References: <20240215-mbly-i2c-v1-0-19a336e91dca@bootlin.com>
+ <20240215-mbly-i2c-v1-1-19a336e91dca@bootlin.com>
+ <20240216022704.GB850600-robh@kernel.org>
+In-Reply-To: <20240216022704.GB850600-robh@kernel.org>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On 2/14/24 18:45, Conor Dooley wrote:
-> On Wed, Feb 14, 2024 at 09:26:13AM -0800, Kevin Hilman wrote:
->> Conor Dooley <conor@kernel.org> writes:
->>> On Wed, Feb 14, 2024 at 03:01:06PM +0530, Bhargav Raviprakash wrote:
->>>> On Fri 2/9/2024 10:41 PM, Conor Dooley wrote:
->>>>> On Thu, Feb 08, 2024 at 04:23:33PM +0530, Bhargav Raviprakash wrote:
->>>>>> TPS65224 is a Power Management IC with 4 Buck regulators and 3 LDO
->>>>>> regulators, it includes additional features like GPIOs, watchdog, ESMs
->>>>>> (Error Signal Monitor), and PFSM (Pre-configurable Finite State Machine)
->>>>>> managing the state of the device.
->>>>>> TPS6594 and TPS65224 have significant functional overlap.
->>>>> What does "significant functional overlap" mean? Does one implement a
->>>>> compatible subset of the other? I assume the answer is no, given there
->>>>> seems to be some core looking registers at different addresses.
->>>> The intention behind “significant functional overlap” was meant to
->>>> indicate a lot of the features between TPS6594 and TPS65224 overlap,
->>>> while there are some features specific to TPS65224.
->>>> There is compatibility between the PMIC register maps, I2C, PFSM,
->>>> and other drivers even though there are some core registers at
->>>> different addresses.
->>>>
->>>> Would it be more appropriate to say the 2 devices are compatible and have
->>>> sufficient feature overlap rather than significant functional overlap?
->>> If core registers are at different addresses, then it is unlikely that
->>> these devices are compatible.
->> That's not necessarily true.  Hardware designers can sometimes be
->> creative. :)
-> Hence "unlikely" in my mail :)
+Hello,
 
-For tps6594 and tps65224, some core registers are at different adresses
-indeed, but the code is the same for both MFD I2C/SPI entry points. As an
-example, the way CRC is enabled is exactly the same, even if the bit that
-must be set belongs to different registers. tps65224 has more resources and
-it's as if HW designers had had to re-organize the way bits are distributed
-among the registers (due to a lack of space, so to speak).
-
-That said, if we consider that these devices are not compatible, what does it
-imply concretely for the next version ? Does that mean that:
-1) Only a new binding must be created, even if MFD drivers and most of child
-drivers will be re-used ? (then the binding would simply be duplicated, but
-the drivers would not)
-2) A new binding and new MFD drivers must be created, even if most of child
-drivers will be re-used ? (then the binding and MFD drivers would simply be
-duplicated, but the child drivers would not)
-3) A new binding and new drivers (MFD and child devices) must be created ?
-4) Anything else ?
-
-@Conor: I understand that it's not your problem. Anybody can answer, I just
-try to make things clear for the next version. :)
-
-Julien
-
+On Fri Feb 16, 2024 at 3:27 AM CET, Rob Herring wrote:
+> On Thu, Feb 15, 2024 at 05:52:08PM +0100, Th=C3=A9o Lebrun wrote:
+> > Expose I2C device timeout configuration from devicetree. Use =C2=B5s as=
+ time
+> > unit and express it in the name.
+> >=20
+> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+> > ---
+> >  Documentation/devicetree/bindings/i2c/st,nomadik-i2c.yaml | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/i2c/st,nomadik-i2c.yaml =
+b/Documentation/devicetree/bindings/i2c/st,nomadik-i2c.yaml
+> > index 16024415a4a7..e6b95e3765ac 100644
+> > --- a/Documentation/devicetree/bindings/i2c/st,nomadik-i2c.yaml
+> > +++ b/Documentation/devicetree/bindings/i2c/st,nomadik-i2c.yaml
+> > @@ -70,6 +70,10 @@ properties:
+> >      minimum: 1
+> >      maximum: 400000
+> > =20
+> > +  timeout-usecs:
 >
->>> In this context, compatible means that existing software intended for
->>> the 6594 would run without modification on the 65224, although maybe
->>> only supporting a subset of features.  If that's not the case, then
->>> the devices are not compatible.
->> Compatible is a fuzzy term... so we need to get into the gray area.
->>
->> What's going on here is that this new part is derivative in many
->> signifcant (but not all) ways from an existing similar part.  When
->> writing drivers for new, derivative parts, there's always a choice
->> between 1) extending the existing driver (using a new compatible string
->> & match table for the diffs) or 2) creating a new driver which will have
->> a bunch of duplicated code.
->>
->> The first verion of this series[1] took the 2nd approach, but due to the
->> significant functional (and feature) overlap, the recommendation was
->> instead to take the "reuse" path to avoid signficant amounts of
->> duplicated code.
->>
->> Of course, it's possible that while going down the "reuse" path, there
->> may be a point where creating a separate driver for some aspects might
->> make sense, but that needs to be justified.  Based on a quick glance of
->> what I see in this series so far (I have not done a detailed review),
->> the differences with the new device look to me like they can be handled
->> with chip-specific data in a match table.
-> This is all nice information, but not really relevant here - this is a
-> binding patch, not a driver one & the conversation stemmed from me
-> making sure that a fallback compatible was not suitable. Whether or not
-> there are multiple drivers or not is someone else's problem!
+> Use standard unit suffixes.
 >
-> Thanks,
-> Conor.
+> We already have at least 2 device specific timeout properties. This one=
+=20
+> should be common. That means you need to add it to i2c-controller.yaml=20
+> in dtschema. GH PR or patch to devicetree-spec list is fine.
 
+i2c-mpc (fsl,timeout) and i2c-gpio (i2c-gpio,timeout-ms). I agree this
+prop has no reason to be compatible-specific.
+
+Feedback from dt-bindings and I2C host maintainers would be useful: what
+should the property be named? Having the unit makes it self-descriptive,
+which sounds like a good idea to me. timeout-usecs, timeout-us, another
+option?
+
+Thanks,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
