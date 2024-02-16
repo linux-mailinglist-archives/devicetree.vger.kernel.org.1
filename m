@@ -1,190 +1,192 @@
-Return-Path: <devicetree+bounces-42615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E84D857E2C
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 14:56:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDF90857E4A
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 14:59:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F0112812B6
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 13:56:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F0A91C2091B
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 13:59:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36B2612C52D;
-	Fri, 16 Feb 2024 13:55:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ED5E12BF37;
+	Fri, 16 Feb 2024 13:58:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="qmqBO/9D"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="AK/3c6oD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01olkn2024.outbound.protection.outlook.com [40.92.52.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74C8712BF1B;
-	Fri, 16 Feb 2024 13:55:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708091752; cv=none; b=Rd6sIgVPxTGlDKcvb2tUJpORhZiZbca8EtDX3p12VWR+nT2Yhv8l2Jb0DLdcosMzbbsJCo4rBkF5VNumnz75yCAIPwWezCdGZeecOCxNfoTpkgdj10l7WumNh6juXuEW6kKfn90NO9fnCNIKvunUucOOiArOs1MjQbyinJJZ9fY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708091752; c=relaxed/simple;
-	bh=XYz1rPCO/pl409zYn8/NwIiH1CytMgN61xqsw1SrGmc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cp+JE4GTquAcpGaiHMEGklrUJvDeP+IUYP7VsjGduGUJ2ZgD5qdZSQ7fgQbk0lFAHQgeDRUZQyl+76AL8GHHvjJq8cFpDs4VQD4CsRt42LeeQTt5CeCtLmXwh5GW3qF0aUS4XeOS5RqBAn+1JPKqGD7+8YcVgkVEi416+lxLLKM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=qmqBO/9D; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41GDtiCo095624;
-	Fri, 16 Feb 2024 07:55:44 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1708091744;
-	bh=uTW/xCM8noa5bGfg4NZmPFvevjj/sJrMm1kJ3d4d4/E=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=qmqBO/9DrTdAMBEuzBcZLozxuzRKb8h9U52eekScjjtvfLR4FZ/sxGlB2yChMJPra
-	 XjWBLAUEKlMyRrLk2GbqU9KO2WSmUyXNR/Cl3bQN6ilh6p8tqglMai0Ov4tsI6za7U
-	 i/HssslPdXics8GXB4H1SzqzLbMRHNnfrpgyh6sQ=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41GDtiOU015343
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 16 Feb 2024 07:55:44 -0600
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 16
- Feb 2024 07:55:44 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 16 Feb 2024 07:55:44 -0600
-Received: from uda0490681.. ([10.24.69.142])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41GDtXrU127060;
-	Fri, 16 Feb 2024 07:55:41 -0600
-From: Vaishnav Achath <vaishnav.a@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <vaishnav.a@ti.com>, <u-kumar1@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-j722s-evm: Enable OSPI NOR support
-Date: Fri, 16 Feb 2024 19:25:33 +0530
-Message-ID: <20240216135533.904130-3-vaishnav.a@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240216135533.904130-1-vaishnav.a@ti.com>
-References: <20240216135533.904130-1-vaishnav.a@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7870512BF1D;
+	Fri, 16 Feb 2024 13:58:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.52.24
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708091913; cv=fail; b=u826tNShA9AYkJXpFj7+R2TxmWwu4pafqgqD0+REDECGu36ilddznCEQq5WLNNLr+BAH26apoyCAZWGSV+KLvLA31s7+2rSeGKqR7H71P9TJdgIBy3I6BH7I3axxZMR5ueoYjC1DdgfguK3x8s4JThxpXJDhVYC0kr99QxfEnsQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708091913; c=relaxed/simple;
+	bh=WoBwsrZ+R2ObDbtF4eWpXlYgv91KwJUHJHi3preXTMM=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=nohoFvEznj22YKPnN3Y5zcTmqg1t7Lj/aiDM60oqiDDXVtMHWQpKA7n6ipgGBYWuP2AmSbq9akKEbW3NHPENdThmD3ks8oUVRX3h9l3jBKoTTPQc4JYYt1XLSbcb8o9SZmnzEFOIwZFGRdz4KikW8rbKa9uZIJhbTPhIFgDrXf8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=AK/3c6oD; arc=fail smtp.client-ip=40.92.52.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=UVIFf3vf3fIOERquF80jHGoJcQ1P6+aRYtj5m0tK6zHwEBMQAhe+YdrdyUuHnaeO88fUMuKFhzxu/tWyo1WhIbPpLjKHtXXBNx3DNgZwGGx/wOp+cscx6f5BaO2jU9mdh69IJgRYPGZaBfyn3M4LU16ajQpUeGltxb+xSSWvaUNqBJu9WPRO2lKjrVFXQwhX0sTc77EOukYbXeUEEtZH/6to37RNRiE2K4j1Z50ZBAsPkrFlfIEoFC25K2FcmHo4DjE0uXHp8jWfxr1ErwQAa3MWdLXMjgSTb8IOGAUbGC8Ln2rwP2axatWNiFxEsC529LAwB2KO4tNP3gF4D+3uYQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=T+wdzkswL+zktvemtqTpBs+4mlLdJ++67Pk/7HXU02s=;
+ b=Ony1w+INBpFhUtem3UOTZdZKtiIuBOBqmvD956MNzQijeAjoH/XJ4KeyygtOLmnzBngBpiGwy7JhNqM6qY+lfmkgPfLy/+euBYMpvYGyvkp5Scz5jJ7TBwmLYk71cb4YN3taP/oWuczdbpexiazGAkVQtxnLIBtzPsd1CJvGgZ4fU5FtEjX2x7FX72hkQdndZOkmH1pRd9gWvLk077+G7qsQ9Lp8zLv9g0ly//p/0P60gMQbQ8zEUG8Diy3PIn1TxAnibsLXziQ4moaUeEMz+5LD0sw1Crrp2zpxm0vLGk4U4ksqj53hKL7txUlNsna6I4aV98kwvJckFb+NOPEwBg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=T+wdzkswL+zktvemtqTpBs+4mlLdJ++67Pk/7HXU02s=;
+ b=AK/3c6oDHL1Dd/rZ1dmahQiFu4lvnfQtyWpywfR5iVanuTpHEJ+ztMmun9gacYKq9fWju15JBCLFv+nLvGI1oR44sCgeuqqFGMtZynRPYM4HCXI9wN6LP5sYCuyb6t7KROUoRBGr2Wwxh5v1dUhv/7cboNSlJqw2f807THVS4BZVRDn9dtj5tMI6kGh4Nag9TY2jVH389VHjPRXGbeQ+0hawhGYH2jl03JbVOTM6NpSOkssKPBsD/OVCMFoR33bMEctGKXyNtBbHXzlDeWA87x78EyZFK8rNVBG5UeBx7eltpGEfTXqbF+qEjB0jZP489fjUGBODuHldkLSkdR7kWQ==
+Received: from SEZPR06MB6959.apcprd06.prod.outlook.com (2603:1096:101:1ed::14)
+ by TYSPR06MB7623.apcprd06.prod.outlook.com (2603:1096:405:bf::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.26; Fri, 16 Feb
+ 2024 13:58:26 +0000
+Received: from SEZPR06MB6959.apcprd06.prod.outlook.com
+ ([fe80::9a6b:d813:8f4b:cba1]) by SEZPR06MB6959.apcprd06.prod.outlook.com
+ ([fe80::9a6b:d813:8f4b:cba1%4]) with mapi id 15.20.7292.029; Fri, 16 Feb 2024
+ 13:58:26 +0000
+Message-ID:
+ <SEZPR06MB6959CF6875201BFFDC6EF4DD964C2@SEZPR06MB6959.apcprd06.prod.outlook.com>
+Date: Fri, 16 Feb 2024 21:58:21 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] net: hisilicon: add support for hisi_femac core on
+ Hi3798MV200
+Content-Language: en-US
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Yisen Zhuang <yisen.zhuang@huawei.com>,
+ Salil Mehta <salil.mehta@huawei.com>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Yang Xiwen <forbidden405@foxmail.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+ <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240216-net-v1-0-e0ad972cda99@outlook.com>
+ <20240216-net-v1-1-e0ad972cda99@outlook.com>
+ <c00dad08-00f5-41f0-861c-cb40593b49fd@lunn.ch>
+ <SEZPR06MB695972ECA5223EF5F81077BD964D2@SEZPR06MB6959.apcprd06.prod.outlook.com>
+ <f5453471-ed85-409c-a6a2-04c92e59a7fc@lunn.ch>
+From: Yang Xiwen <forbidden405@outlook.com>
+In-Reply-To: <f5453471-ed85-409c-a6a2-04c92e59a7fc@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TMN:
+ [J7tTsmLR4ZFtZdH/j72zLZUiht2pc6Dxgdcw0Lgp/gmR8JQIKUPe7ipCbHiXTY75SlStjQk186E=]
+X-ClientProxiedBy: TYCP286CA0202.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:385::10) To SEZPR06MB6959.apcprd06.prod.outlook.com
+ (2603:1096:101:1ed::14)
+X-Microsoft-Original-Message-ID:
+ <d015f940-2f4c-40ea-89d3-e1ca7a62cefe@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SEZPR06MB6959:EE_|TYSPR06MB7623:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9a837f0e-070c-4793-a00f-08dc2ef75882
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	tIj4BEmoMRYDCZUVMkw5BTtvyRpwbN5p1BCmI8Tpc5lE+d3iELskoWSpX21KOtb3OrJTAAOl9eff2+8Emk+LuQjhSANPYZEqG2v0gzzg9dZn71o2NELlP2lWZSJOV5GPrwMcRuYQPvafllA5pw0Q8xzlj6fFPoN3p4TcvG93hiNQr/ThAkw9RwZHssyXsolHtBPk0NG1hlUT4PuABHgvIbHv4qZQNte+4ihiF611kRmN6LbNSmSZbTV91yJdCOHEDOmbZVqE7S0d16BlWGau+u4nARsPTqKyrAwbT38bIGBoq9/0betdV9mknQtCjuqzZ+tTPq8GOv7R3EdG3Raip+iDaUN7G5Kk9ss9vvCM1iGLCq8UdjyQqa5tvQoA7LqCp7vsxm8FpP5CpFkLAGqTmSbCl+MFRCp5bLyYl29e4PnQ1ajZiLmejDKyqnnRlqnAZmn/FuYy9g7WpMxN38gcAkgAsIN8KatwogoopAJRkGEvKRiUTtqqa3RvGFPXm10rBmSMXg811+6udzC4icsCWnuwkjPohN/tyRPRkDYzinfPx2jUMjHq+YSA8zb3KDf6
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?dDNwdHc4TklDUTIxcmhseUhucUFCQ0dFb0V6NGN4UmYweU5MeFJvSTY2Um1M?=
+ =?utf-8?B?c0hlR1JPaGx1SmlmNmllUkcyTU1tcEtvblNlTm5TTkFLM0RpN3I4MFVjMSts?=
+ =?utf-8?B?SzA0WFIrYkV6Y0ZDUDhxRi95UDBTYmdwL296dHhRV3VKQXcrVnFEK0s3bjBm?=
+ =?utf-8?B?NTRKV1NBZEx5dWprdDdSa1RDM0dZSlR4L2R3MUVRUW9qS1c5RkFjSi9xcTY1?=
+ =?utf-8?B?MG5lbm84cVBlVERxWHd2K2JuM1NZM3E5cytEQ21xdmpHY1dGZkVEVkdYQ0cw?=
+ =?utf-8?B?cU54ZnFmcWdXM1Y4dkJENmlvNUpDQkNYeDVldFZ2WVV1TjNZNVY3eFpKRXpH?=
+ =?utf-8?B?d2drSDFoVU9Uc1o1dUdsZThXcXY1YnIzQit4bUU4bjVTVkhQdzYwK2tySGxH?=
+ =?utf-8?B?NlVSWThwbkpmdUdYQ2MzRFVJb3d6RkRLL3VGYXdZZmNDa21qV2NQWUtOcElX?=
+ =?utf-8?B?NXFSQ3VlYlZRSlVsVnRzV0xzZnlhY3RLZzA4c3hic0FuUXl3Q3ZKUHRKeFdn?=
+ =?utf-8?B?amZZOU5wdzYrWm9GVHhtREo1MEZaOEVMWDFrQUhxaEhLa1F3YjhuUzNzSWJI?=
+ =?utf-8?B?YTJxOXdCSDh5VXVTS1dYbldIZG1WalJKVHFUOHE3RElod0hwcVljTjZPZDVl?=
+ =?utf-8?B?QUgrNnpwaU1vbFNsT2pTcHVkYjBQMzgvWTR2ek9iNjJUTnYyVVRZQU1CUHBj?=
+ =?utf-8?B?SGJJdXY4L09KZHlmRTlmNFlqSEE2RnRhTjd4UGxKeUFiejc2ZWt6bmtVZzlD?=
+ =?utf-8?B?VUl6Vm4zSzZTTWFXWVRBclhSbFM4Q3FZRVFLczBCc3ppUUVxS0l3Y0xVL1Jm?=
+ =?utf-8?B?dktSODdhN1FFRGVhZ1RHQU5iNklXOWsrUzRCK0lYOEIrNjA1YU1zZ1VJcWNw?=
+ =?utf-8?B?YmR3OEQvOURJTVZmaGdpSXVPMXpOWVc0aTZ2T0JTOXFvK1BkS3JuclQvbWYy?=
+ =?utf-8?B?M2ZwZHgxemhHM3R1WDJpdnp4Y29vUnBTT3lYSmJQd2tGdzc3NkRyTzdCalFQ?=
+ =?utf-8?B?MTl0ZXI0ejQ5VnNKSElLcXF1cG50YjJCQWdaQ2VDd2ZpTzRmQVZlTEFyclc1?=
+ =?utf-8?B?elhaOUsrc1pjeERjcWhabURGd0psVlo5Ui9uVnlPSm1qVFBUZTNsYmdZSS9w?=
+ =?utf-8?B?M3YzWUhXS0V4cnVhWEtzQWwzK0o2bmxrYVJpZTRYZ2hsaWhKV2FPaTJ3YlRK?=
+ =?utf-8?B?UHdzMFpIYVkrZUhQM0pMZklvMzRISW0wR1F3VmdpZ04xTkkyVm1SRVpPTGZu?=
+ =?utf-8?B?MzRmQmRhLzFOeDRKOVlVbEFOZVJuenBDSUd4Qk44Snp1RElqM29LTi9QbENR?=
+ =?utf-8?B?eEdVU2FINzFRQ3EwNlpIbitkcGhjYTMyVUpvRUNseElWUTFMNVRqS2Yxb3I1?=
+ =?utf-8?B?eUFzb1h1cGpJbThCUlA4TDYvZ1VvbDV1b05mZ2hXeWVTSUQ1OXBVdVZuWk5z?=
+ =?utf-8?B?LzNRNzFvakRURzI3bGtheDFLUzdrcmxsNjVJZXRaMG5mSGs0bVdxQjRBTHUw?=
+ =?utf-8?B?TTQzTWt2ZDZ6ckVzeE0rSUlzVWVKaEVhNlI0dFMyQk9KeGtINFh5ZGZDZUlt?=
+ =?utf-8?B?dElFRHRLR0t3S1N2U2xieDBGNkNiMWpFVE1ySnJ0cHE2bG40dUh5d0J3ajlX?=
+ =?utf-8?B?VVM4Yk9BUHl2MEhDNmdGR29DRVppbFBMWkhrNFZ4dnR6cVlOUDJHbjJzU2J0?=
+ =?utf-8?B?a0paUWo1R1MwcFlxRGNMaUEzOTJMWnRxSVdiQk1LYjRKZTFDOFl2aVRCeWgw?=
+ =?utf-8?Q?L8nxWdzn9q4g5YSDzwkYtvvZdyA74H2fQ7c4Pxb?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9a837f0e-070c-4793-a00f-08dc2ef75882
+X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB6959.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Feb 2024 13:58:25.7960
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR06MB7623
 
-J722S EVM has S28HS512T 64 MiB Octal SPI NOR flash connected
-to the OSPI interface, add support for the flash and describe
-the partition information as per bootloader.
+On 2/16/2024 9:49 PM, Andrew Lunn wrote:
+> On Fri, Feb 16, 2024 at 07:59:19AM +0800, Yang Xiwen wrote:
+>> On 2/16/2024 7:57 AM, Andrew Lunn wrote:
+>>>> +	for (i = 0; i < CLK_NUM; i++) {
+>>>> +		priv->clks[i] = devm_clk_get_enabled(&pdev->dev, clk_strs[i]);
+>>>> +		if (IS_ERR(priv->clks[i])) {
+>>>> +			dev_err(dev, "failed to get enabled clk %s: %ld\n", clk_strs[i],
+>>>> +				PTR_ERR(priv->clks[i]));
+>>>> +			ret = -ENODEV;
+>>>> +			goto out_free_netdev;
+>>>> +		}
+>>> The clk API has devm_clk_bulk_ versions. Please take a look at them, and see
+>>> if it will simplify the code.
+>> I know this API, but it can't be used. We need to control clocks
+>> individually in reset procedure.
+> /**
+>   * struct clk_bulk_data - Data used for bulk clk operations.
+>   *
+>   * @id: clock consumer ID
+>   * @clk: struct clk * to store the associated clock
+>   *
+>   * The CLK APIs provide a series of clk_bulk_() API calls as
+>   * a convenience to consumers which require multiple clks.  This
+>   * structure is used to manage data for these calls.
+>   */
+> struct clk_bulk_data {
+> 	const char		*id;
+> 	struct clk		*clk;
+> };
+>
+> You pass the bulk API calls an array of this structure. After the get
+> has completed, you can access the individual clocks via the clk
+> pointer. So you can use the bulk API on probe and remove when you need
+> to operate on all three, and the single clk API for your reset handler
+> etc.
+seems okay. I'll implement this in next version.
+>
+>         Andrew
 
-Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 79 +++++++++++++++++++++++++
- 1 file changed, 79 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-index 9e12a6e9111f..b1c6499c0c9d 100644
---- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-@@ -169,6 +169,23 @@ J722S_IOPAD(0x015c, PIN_INPUT, 0) /* (AD25) MDIO0_MDIO */
- 		>;
- 	};
- 
-+	ospi0_pins_default: ospi0-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x0000, PIN_OUTPUT, 0) /* (P23) OSPI0_CLK */
-+			J722S_IOPAD(0x002c, PIN_OUTPUT, 0) /* (M25) OSPI0_CSn0 */
-+			J722S_IOPAD(0x000c, PIN_INPUT, 0) /* (L25) OSPI0_D0 */
-+			J722S_IOPAD(0x0010, PIN_INPUT, 0) /* (N24) OSPI0_D1 */
-+			J722S_IOPAD(0x0014, PIN_INPUT, 0) /* (N25) OSPI0_D2 */
-+			J722S_IOPAD(0x0018, PIN_INPUT, 0) /* (M24) OSPI0_D3 */
-+			J722S_IOPAD(0x001c, PIN_INPUT, 0) /* (N21) OSPI0_D4 */
-+			J722S_IOPAD(0x0020, PIN_INPUT, 0) /* (N22) OSPI0_D5 */
-+			J722S_IOPAD(0x0024, PIN_INPUT, 0) /* (P21) OSPI0_D6 */
-+			J722S_IOPAD(0x0028, PIN_INPUT, 0) /* (N20) OSPI0_D7 */
-+			J722S_IOPAD(0x0008, PIN_INPUT, 0) /* (P22) OSPI0_DQS */
-+		>;
-+		bootph-all;
-+	};
-+
- 	rgmii1_pins_default: rgmii1-default-pins {
- 		pinctrl-single,pins = <
- 			J722S_IOPAD(0x014c, PIN_INPUT, 0) /* (AC25) RGMII1_RD0 */
-@@ -290,6 +307,68 @@ exp1: gpio@23 {
- 	};
- };
- 
-+&ospi0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&ospi0_pins_default>;
-+	status = "okay";
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0x0>;
-+		spi-tx-bus-width = <8>;
-+		spi-rx-bus-width = <8>;
-+		spi-max-frequency = <25000000>;
-+		cdns,tshsl-ns = <60>;
-+		cdns,tsd2d-ns = <60>;
-+		cdns,tchsh-ns = <60>;
-+		cdns,tslch-ns = <60>;
-+		cdns,read-delay = <4>;
-+		bootph-all;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				label = "ospi.tiboot3";
-+				reg = <0x00 0x80000>;
-+			};
-+
-+			partition@80000 {
-+				label = "ospi.tispl";
-+				reg = <0x80000 0x200000>;
-+			};
-+
-+			partition@280000 {
-+				label = "ospi.u-boot";
-+				reg = <0x280000 0x400000>;
-+			};
-+
-+			partition@680000 {
-+				label = "ospi.env";
-+				reg = <0x680000 0x40000>;
-+			};
-+
-+			partition@6c0000 {
-+				label = "ospi.env.backup";
-+				reg = <0x6c0000 0x40000>;
-+			};
-+
-+			partition@800000 {
-+				label = "ospi.rootfs";
-+				reg = <0x800000 0x37c0000>;
-+			};
-+
-+			partition@3fc0000 {
-+				label = "ospi.phypattern";
-+				reg = <0x3fc0000 0x40000>;
-+			};
-+		};
-+	};
-+
-+};
-+
- &sdhci1 {
- 	/* SD/MMC */
- 	vmmc-supply = <&vdd_mmc1>;
 -- 
-2.34.1
+Regards,
+Yang Xiwen
 
 
