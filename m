@@ -1,88 +1,92 @@
-Return-Path: <devicetree+bounces-42427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 268738577B6
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 09:34:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B22EB8577D1
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 09:41:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E9525B20D7A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 08:34:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 27B46B23090
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 08:41:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D42C7F9DB;
-	Fri, 16 Feb 2024 08:34:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 618EA17BCC;
+	Fri, 16 Feb 2024 08:39:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="l4KxMFEa"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="HFtmRluR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01olkn2076.outbound.protection.outlook.com [40.92.53.76])
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01olkn2057.outbound.protection.outlook.com [40.92.53.57])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93DEB18AE0;
-	Fri, 16 Feb 2024 08:34:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.53.76
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 628F01BDD0;
+	Fri, 16 Feb 2024 08:39:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.53.57
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708072443; cv=fail; b=FHKZYuR0KFdtauv3AERX4Cpuq6FAZbMyVxcbb9Q+CYw0uZk/5DHFz9CXxS0CZwn0pD/IqsScMGM9zV/V23k75fNZPNTmgBaWrWy1Fr42ndtK8fAjDchZMxo3A+fOeZQShEirPjqmZCqJwCC7mkd9cVH6reZpXi8vE4Naqygi4e8=
+	t=1708072774; cv=fail; b=DiHDxkW4eXhtYp9jD8Pi7R7ZPPkLBNeJLEON5DoI6vbZM5PzMARnGs7o7GMA5qXw5gCW47P4eFpPQVZFBeoDXPCkgRDM/bvFXZDIOkOB5NdkV5WkPOFWH6IyrwJu8S/u9NBXwW/Pz5T/xJVGTHqj90IY2kLc43UmNRt+hZUVxgY=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708072443; c=relaxed/simple;
-	bh=RDuvQZH0mGbJc8bxJoIBfvp3AiOhL1zxDNmuXa3z86A=;
+	s=arc-20240116; t=1708072774; c=relaxed/simple;
+	bh=d8JVWNX0ggsY6msLg3Iica0QwhgvRxHXBgj/N/+MFkM=;
 	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=oijwd9E1PxktHExWAgwhCb+sViEBk52UFYJw3/vVn10SBXFljM4k61lvByUt/CcnB1qERLDVDIdKoqTMLFHvKm71bzIkTH66qrlT/l0VuZkmQzC6rGpEuFp2zdSBaZvleh3s8yUdnEJi+j1Bl3wtV0gWHia3xFtXZjghgb14+UM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=l4KxMFEa; arc=fail smtp.client-ip=40.92.53.76
+	 Content-Type:MIME-Version; b=Q1+UJzF9BtOGHUG/QbkCEdj+lY5fvCXXVpNOyaBxC7afiDDSqg3NFjclrVp0JUND4dnAsvDMkZI8QzAk7Fpwa+tGz/A2Z6W6Ioz+yXKfx9n5eAlICWmhSTg5zc4z1cDM1L+ofjHNGs6iZio5TawH/PUmEfzhkwsFrPNh6vsNJd8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=HFtmRluR; arc=fail smtp.client-ip=40.92.53.57
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Dl1Ur0YHNpF+MgA+uUMsNN+G8fco26TEe04gNiCf1FNv2XqLokwZkuPS42BiegJiAJvhmuFy95fw9xi1JVavywY62WHRHAdXfNlmjDToWXgPmSTiInD6zO9cBRcM5Nutq2ZUOLmWcjqXzSGkGqRCcWyfV8Mi0xgg+16PZc3phXfZzQYVnRyRjHzo5P78nJCpLR4qPJs9CJ/fmq9qUyBYmDz1yUPGlSYisD4AopHZGlNFSO540ADl3n7RtJVwSyxyucIPdxOMvLZAom9ghiPmx3eNbADc5Hyk3uTO4NGeh6Qeh7Pn/j0JacaEe8bj5VGy8aMdypeLLZfrpO7qqYOlbw==
+ b=TwAl3i5XRs6EOP9fuBRYblgDE8WzQ21g2nI9O+R361jZ+z2RGFEs7NNK4OcgUoxN8Gq7imZmhIdvOFRi21X6drsyCwTSYERxFgjP+vN8Jl7/n+LCSvC94vIomZjTXg/NPeBTBwmZ//Dwc3u9SB31XE7f347W3wBseC6FIPVw1yKzCFF9rAVgYK8+s74X9ovNLshMVYs2ZUU6UE132bG1MH9nlHMo4XYiUSyiTANvtNn7VaCPuc+IGS2mTooKrG1mRK77I0IZkmwhDXQQWJMjUiGlCePVCUnIyszZrqYA1uH4whLPA7qLR7oghKPXnOOdRxR+VHLDHkvsCJrUSugo0Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/ypJJxlabLJQBMwNzUyrk4GYxv1B2cKjaO4o8Sdrx/Y=;
- b=T1uBydFx06FPpaBgCPzyQJ7ya24+VBsa0s2NY6GVBPqforjJ7hsGI4ogb55pGNZVShHQQJVF+U+FWxGJ7hXB1OHTJG0iK+W2JdeOS2gW41HpWtQGDUiQ+DvXYH9z5i6JMj7rtyJohu8vZGzrSoUD9F1hnkqQAOFzo7s4jI8gi1kMAnCqolMkS5dnB7udcBPdd3jJ07bKR7RfJIr4KgoFq/CdZuWIijG0pI9CMqLB2D512Jgj0s4wFmFZPO/weTvo0e8RGhUDI4WLxj4zN/Tz3VA52vWkUAZqaC9FNpEKNWkECHmWszd0l3df+r6N+zxZf4L2+ckrFxtY8wKMHLCZBA==
+ bh=ZJG8XHS6OmFsv0RjzV4LyVJrVHZrj+PlftQRijh0jSc=;
+ b=h8v5CremqV4aYDyT2PAzpExUxbXQFDcdp8cOz81FO8vUdyOIqcW0ePlqJPRHmj2kpfRnu6ZKFkO8nCTF9yNoLjL7SW6cU2Lj/Uslso19BVqLU/wpZmiub9Uzm2Uz3W8+0acyEUeBBpcohMZPhXKPbY8/o03GIXmKTasxTu6OqMPwWj3dELHwHjv5ziwXcLKFnv3FSSe4Tauf0HaztB/dxQc6JbDHs27WBd0k7roUDcBI7uSQez2v3PAjbZ3zmuYzXwHOLuG9KkcEwgG+BGNpVIfPp706GzrpVIMHkm97lkKOdVCZ54llHAh3MMO6Y4xdMmP//+jHZIOsLbJIhjVtaQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
  dkim=none; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/ypJJxlabLJQBMwNzUyrk4GYxv1B2cKjaO4o8Sdrx/Y=;
- b=l4KxMFEa8LT0X6eltyxqRgP9GJK4J3hxr2OsiqdWp/pjeCQHOrPoEnGRoBTgoI4fhgGitvoLQGsG7C1PwrA2D74q6FJFe23NVrAIV3GxA42rO3TG+w10lTjCXwAwKk+SjHZwZ9PiyM/uxQrBnbpyVSDDGvru14oDJX4AsaLJuiw5QLGow0IdyL7M689WbqzNZrqjHRQeOzmPn5QHTIUI/J5fyGQzGgxasdp+gp7pCSYHULBdXUjAssGkaD6/XA36N/Njr++2nIoFQenXeTiem8nYznJO6qaHVK+BFdNZIDfgDzuJVw3iFYzAHW17DOzdQN+KHbLiupd348sTSxpHjw==
+ bh=ZJG8XHS6OmFsv0RjzV4LyVJrVHZrj+PlftQRijh0jSc=;
+ b=HFtmRluRFRulcu7v9YLK7yuNWMJoxlr5vEeU3WqK2UZ9wf509qBOXYgtNJ3LW3dLZadPo5i9ygOnaKxdO56z04m+ifEn8ilwfSn/73z1zbmQFHVQ7vlNguXWFSx0nUrkDz8uwKlbw/wufIooPUPn2F2gPSwwyO6pbOV3Euy6Gt/E6h6ub9921iWzzOxPRvCtM2HSYYM7dz0SCOr4KMdhKFBhIDKKppDuhIPjE6QJToWVw+8glw8SOvS8d0jS3fQ+osgaTd/G9obsETi0C0sYoFrYxqd0I4Yv+mbhFVhf0MovI+UEiRmjiQUDMQ0TAWnN2qibmim/VxSrnOMz3Io3WQ==
 Received: from SEZPR06MB6959.apcprd06.prod.outlook.com (2603:1096:101:1ed::14)
- by TYZPR06MB7040.apcprd06.prod.outlook.com (2603:1096:405:3e::5) with
+ by TYSPR06MB6441.apcprd06.prod.outlook.com (2603:1096:400:482::5) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.31; Fri, 16 Feb
- 2024 08:33:57 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.29; Fri, 16 Feb
+ 2024 08:39:27 +0000
 Received: from SEZPR06MB6959.apcprd06.prod.outlook.com
  ([fe80::9a6b:d813:8f4b:cba1]) by SEZPR06MB6959.apcprd06.prod.outlook.com
  ([fe80::9a6b:d813:8f4b:cba1%4]) with mapi id 15.20.7292.026; Fri, 16 Feb 2024
- 08:33:56 +0000
+ 08:39:27 +0000
 Message-ID:
- <SEZPR06MB69592C15DB486B3EAB9D7C7F964C2@SEZPR06MB6959.apcprd06.prod.outlook.com>
-Date: Fri, 16 Feb 2024 16:33:55 +0800
+ <SEZPR06MB6959592677F8F2C79BC2FBB7964C2@SEZPR06MB6959.apcprd06.prod.outlook.com>
+Date: Fri, 16 Feb 2024 16:39:25 +0800
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: mmc: dw-mshc-hi3798cv200: convert to
- YAML
+Subject: Re: [PATCH 2/6] net: hisi_femac: remove unused compatible strings
 Content-Language: en-US
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Ulf Hansson <ulf.hansson@linaro.org>, Jaehoon Chung
- <jh80.chung@samsung.com>, Rob Herring <robh+dt@kernel.org>,
+ Yisen Zhuang <yisen.zhuang@huawei.com>, Salil Mehta
+ <salil.mehta@huawei.com>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Igor Opaniuk <igor.opaniuk@linaro.org>,
- tianshuliang <tianshuliang@hisilicon.com>, David Yang <mmyangfl@gmail.com>,
- linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Yang Xiwen <forbidden405@foxmail.com>,
+ Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Russell King <linux@armlinux.org.uk>
+Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org
-References: <20240216-b4-mmc-hi3798mv200-v1-0-7d46db845ae6@outlook.com>
- <20240216-b4-mmc-hi3798mv200-v1-2-7d46db845ae6@outlook.com>
- <b6e9a7f3-1521-47f5-b0a1-b65e79e32495@linaro.org>
+References: <20240216-net-v1-0-e0ad972cda99@outlook.com>
+ <20240216-net-v1-2-e0ad972cda99@outlook.com>
+ <68c9477a-3940-4024-8c86-aa6106e8a210@linaro.org>
+ <SEZPR06MB695938B228E762B9B53BAF2F964C2@SEZPR06MB6959.apcprd06.prod.outlook.com>
+ <d77faffc-5bde-41f1-b6a2-ddd665c3ee08@linaro.org>
 From: Yang Xiwen <forbidden405@outlook.com>
-In-Reply-To: <b6e9a7f3-1521-47f5-b0a1-b65e79e32495@linaro.org>
+In-Reply-To: <d77faffc-5bde-41f1-b6a2-ddd665c3ee08@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-TMN: [MBjhzn2A4n6fWAyBqOlkzgHtM2HXuHTaMxnn0+4OkZxOSZeKJ6RWvUl8GyYRhTkw]
-X-ClientProxiedBy: TYAPR01CA0219.jpnprd01.prod.outlook.com
- (2603:1096:404:11e::15) To SEZPR06MB6959.apcprd06.prod.outlook.com
+X-TMN:
+ [aguYaheUdooiePObLZYS+j+UBB328r4eaULICheFwojzgSqjP0r6rrcc4DzwIpyfyn60rSr5HpA=]
+X-ClientProxiedBy: TYCPR01CA0151.jpnprd01.prod.outlook.com
+ (2603:1096:400:2b1::7) To SEZPR06MB6959.apcprd06.prod.outlook.com
  (2603:1096:101:1ed::14)
 X-Microsoft-Original-Message-ID:
- <1b8fceba-cefc-4f2e-b049-70dada650fd3@outlook.com>
+ <edc6a7b6-a52d-4ec1-ba90-31dc1f8d6023@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,170 +95,90 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SEZPR06MB6959:EE_|TYZPR06MB7040:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5c134280-8925-4319-33c9-08dc2eca03f2
+X-MS-TrafficTypeDiagnostic: SEZPR06MB6959:EE_|TYSPR06MB6441:EE_
+X-MS-Office365-Filtering-Correlation-Id: ec7cbe2a-6942-4750-a8b5-08dc2ecac8ce
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info:
-	aSC20hFYYg7l66oOCTrq+eQLpkgF0u7pXJq5TVAX3s0cyJh0voqGuxhvOoCppSW5t1KsiWOCLfRL62hnCHSYHuhHvv0EN6PqmS3gX2JY4wEMtLTeayjkknzMfFRSgYq0T7XGy9aJIXJLAIXgODLZrx5fzQMOtv6TzDxUMBOpbaZAPmAyY6JTQ2Ls11C6d7Z3faq2S387Xcheo1IrcwNMcV80OyYnnFDvCNdXAqq2UWCTS1ZoWV/5s25g4kvCYPlLyfAzrjbe6xDa4MJwbCO9dlZeRmlvcsiu5Vulkna2U0RqHkzG5bFhkn0tm0dM2JvGD8ZzwQTzZYxfdzcGcD3NkVdrb2IVwSLjPvn/9+/h9d56IzG684dJTqkDLH/lk9R8Ac7KlHt1UDfPD6wQpqRnW50jKRfgpHsqe/3WDbVgcR19pk0YNH0cQcWH+bLBk0thSn4Th4FVEtTN3MMMVZYSxc5Kk6p64kzDPDjJgFv9TGx3gpU3L7YFIXyPRO1vl9d/wcxdn2I9UkRShTVLS8nsuyPzANRpbG4M+MvFJ2NGbA90LShJv/q1G0TR+nX5rda7/hn2VzWgUX94CxGlRESvfdPpAOTp58pFs4HstI3j+bpm92MV+cPiWnLigvp4HEk4QhTMgmQofp9fWKHIvYfomA==
+	CDEfKGcTINjIobgrQuHgCxzOE44wChpdLrQagt8fqSy60QPyrkh2FgGsVhByXZupZaNhmp9hMbg04i+JEtkfz5MBw+MvF5P610/FMGvwJYrf5JWRx1XtwT2xpvqdX47pweR7/nZuQsV3+wUMNz4d5FHma/J32EwzfOBrXv5RkMA0sY0L+GxokHdQEaFMNAd0nRlqXhRfglZiWVInNbb/RgbxVtwK5JaLvF9rmlzUM21e8e4MZgEQkeDLurXqvHwPd/Rq/ikKEMHjytIdD+B7ykPO4e3o3Vk7yZ5KtzYIKAxxviqQb8tEq7u06BJhv97r8b1NC8k/VKZKaoIOlaTQ7fmi9Filw/+nRu60O9ZMkgWmFPeUkVFLdhPRjbC3zroGg5jNMR4qrJrIs0xyGnUu7W/D1pE342wt6Uj+IstGS/mqcahidVVu8MiDU+QvjdsAsrPjXpEDm+2tTBZfBs04VwUoSFt2NVhQ/JhgPD18A0n0CThDOp6rBvm8yyg8HF8emtmuuZB58DWq5k0jqYWCswJPXqu15jGgTjVBotGoNMwHU+0CKby5lNgZOt2rk3BE
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?U0FNcnpQK2U0eTBMcVdGSzhJcFJJQUFSRFZIWlNTMkhVeW1VMEFlcWJPQTRa?=
- =?utf-8?B?YUhwaURjNW9tNVdHYVUzQ0I4Q1BRQ1locmc4dXVYYW96d25vL2xQakNJTFE0?=
- =?utf-8?B?YWt0K3N6ekQ5UWVINDdqRjdZZGQvN1RIU0FEWGJkcjZYOXd2QnJUek54Y2J3?=
- =?utf-8?B?aHVGT0NiOGxPaUFuc1RvTkFxcVRVWXNEZXlBNHlsblYwQ1J3ZXZLMzV2NGFw?=
- =?utf-8?B?emdVbXZ3b2p1WUpwMkh4amE3Kzc0WWZ2U2xRS2FjS2Qyb0V1MGxOYlZ2bDhS?=
- =?utf-8?B?Ry95czVOSUtUVXNDSmllTUhmaElhQTJ0NmdGSmRjVXFlSXZpUWh0WFJja1Zz?=
- =?utf-8?B?a0xTb2pHSVE3T2UxanZSSktvZldweXZpVDcySFZiVGdscG9USkpIZ29nUlFP?=
- =?utf-8?B?cnYvaGVwSGxrQ0hHbzVyMDJYRUY0dmltMzVjOU5DdUl5SHlQTituVURuZjM5?=
- =?utf-8?B?Sko5VUhiemlXTUpCbmJPU2Fpc3RGNFA5R0RGOFJTSmpiVU9QQjAzM280OWdP?=
- =?utf-8?B?eElMZ2dFcGJVZjNKZ3VXOTR2Umxra0o2YlBHV1Fvajl2ZXNidVg5RE92RHI5?=
- =?utf-8?B?Qm9DbUI5OWlTK3ZTNWxqRnV6bHVqWHNPN29DL1dnVFhlcXA3eVV1VXo1dXBp?=
- =?utf-8?B?UWVmTjE1R1ZkN3lDSi9vZWJMUGV1Q3BUb3VqVHh2NjNTVmNNK2J2NXlCNVB2?=
- =?utf-8?B?WjZmSkMyQ3VTQVE2UmthN0tkQ2JtZTdrMEFlVU5ST0wzYjBEN2k1ZXZsaU1u?=
- =?utf-8?B?bk02RTBTVmNFOUQrZkZTWDJIeU04dUVHcU44U0I2N1Q4dUswY3ZpUXZ5WEpt?=
- =?utf-8?B?cjZUTkh2MjRtcUVtODRsM2R4Zk9nd0VETlB2MXUraFkwTlp2amltSnMvd1Vu?=
- =?utf-8?B?WUdIUTVMV3JZVUd1dUt6cElLOWtCSCtTT1k4cXpWcG5mRktJNC9kY25mMDUr?=
- =?utf-8?B?QTNCZ1EyYmpBSFowMlR4eG1tY0M5QnpVTlgvaGo2MmJGejVFL1NQbHdwRWFM?=
- =?utf-8?B?SHI5Tkx1aEdZVkk2WEFXQWx0elY3SkliVS9tOHFaeWtNek5JUlp3TmQ3dEJK?=
- =?utf-8?B?eDNiZXlCV3ZKWldYdWJUWXVjY0UzVkdmRzdBNkRteFc4VWNtcEJpUVlDbmUv?=
- =?utf-8?B?bkpVam8va0E3M3hEQkFvdjZ2ZVNMeHNhcUxxQ09JQUpjakJ4N3M1ZW5hM0ts?=
- =?utf-8?B?aVBjeVRSM3JWSElGQzBNa0gzeWhwRVRsbzE2YkRyRDRuTk9BeW16ZXREUFRJ?=
- =?utf-8?B?bHJQekY2UTBXdDdlZis5Y3VacDVFY2NEcnJiOFhtcjJTWnJIRUpicjhCZzNN?=
- =?utf-8?B?TFRNelNKSWc2Ylpqdm9ieTBtTVNhNklMSmViNTBMaHRNd3RMblY1cVBhMFB3?=
- =?utf-8?B?MThBVHV6c0l6bWNpbExOSHhuejhnbnBjSE0zOWJyTit0ZjZ4M2dreVp3STd6?=
- =?utf-8?B?MllnU2YyaGNDSDZCMlRJOEdzVUJtdTR3Vk9oanhPS0Y0akVLdHZLZitJQjZv?=
- =?utf-8?B?MXpCbGNlME56ekxCSDRBOHlwbDY3NXNEKzRQQWZuMTJOanlySHpCVmt5bk5Q?=
- =?utf-8?B?a1UwUFZHaHlDLzkrUHB4TjdhcXhyRXJLanQvdTVsRk1TSzNaUE9HRDVjSmZ1?=
- =?utf-8?B?b0wvcmorN3IxTGFvUVFZTGUweE1DMUEzajRDWGVLSTQxVU9OT2Zzd3gyQnVk?=
- =?utf-8?B?eDNreENHak0ySXJNckVBRDJiQTdVVU9YUWh2cjFrZ0xvQmYzTmZ1Y25HRitp?=
- =?utf-8?Q?Ksv9MzEVmx3FbeERYEAQ5E9Wz5CJ0/IE5yKUT86?=
+	=?utf-8?B?RlNXeCsrR2J2VUU1ZzJrZkZwZE9Eck1JT2FVUTB6VjNiUEgzRjZzUnRadTFw?=
+ =?utf-8?B?dENKcXJWZWoyNW85NU5OY3p1MURnOG1Va2w5ME1xa0w2UGwxL1AyT0crdWh1?=
+ =?utf-8?B?ZnVMNnJWVG02WE9tL3Iwdzhkb1FocUpvQUtNdVZ0TlpMT1ZDUHpBQXNhVkNB?=
+ =?utf-8?B?MmxlM2FudVpTZkk3R3BLbWJ1VVFMbDFYL3JwbSs0azhQMDNMTVFrTnc1bjVy?=
+ =?utf-8?B?U2o3MHY2VHdCRWhEMFRjVVJuYlZxNXpheERPckxaMXlhQkprZHU5anJuWUtv?=
+ =?utf-8?B?VW83cWtQWHlwbU9FTTZzbUFsTU1wY0lSVUFhOG5uZ0RCemw0bXh3U3d1eU1G?=
+ =?utf-8?B?Vnp5VC8waGJnMjhTbzFXUVJMV0lMU3FVOGdwZk5rbGh6L0N6TDhFZHg5VVB2?=
+ =?utf-8?B?ZExwQlRUV3oyKzgvNnNBa29TTHBQS3pRZ3JUL1M5djdkQ1kwZ2RRa2NBQm9I?=
+ =?utf-8?B?dmU0V3BVMGZnTXFscmRBaXBPelRWT2dNYmRmK1lVRXVSTDFwb3Fsc1NXVktu?=
+ =?utf-8?B?dW11a2lmbkJCbHhtR3VZOHE2K051TGFzVEIrN1JEN25LMStYQ3c2RFZBMkVC?=
+ =?utf-8?B?dEhCbGVtYVVQelc3R2h0cmtoSnZOaWVTbnc5MWJVTkRXSWZTT2VyK3NUdVJj?=
+ =?utf-8?B?YWd6Zzd6YktXbFZEbDBGdUhzaHREK0JyckZMR1M5UjZ1MTF3M3AzZEFPQkpU?=
+ =?utf-8?B?YmZET29mLy9XZkZGMHh0czk4SzVmWitxdmhUTFRVS2JLOU5HVHdGTklQOXBF?=
+ =?utf-8?B?NU0vUGd6S01KU2dHWHV4Y3R1ZTBVSTZKdDNOellWTUhEVnpHNWt6RWtYOTRr?=
+ =?utf-8?B?MkYraHM2eURhR3k2ODUyUjNQT1doYVoxWWFGbmF5amp2VHN3MlNvWEM0LzdJ?=
+ =?utf-8?B?YUw1R080RjEwTWErZk1TYzZaQ1ZIeXFkcXQyS2Q2S0JwS2UrUkc0V29HSUNw?=
+ =?utf-8?B?ZVMzQWFRNWFHdXV1ZUtBeG9aaVN6Q1NkSkhWeW5iWHRiKzJvZ25Na0NrOG1L?=
+ =?utf-8?B?ZDh6Y2kyNU1GbFViOGQvTEFmbjJlZi83UTh3WUVwUGJZRFZBNVQydHhiNlBp?=
+ =?utf-8?B?WWcwd2pLbVVteTZydmFYYkJtT3FtQ203Zlg4UFVDaEhmalFreG4yTGFqSm8y?=
+ =?utf-8?B?L3ZVMnFLU0pMQzk0SnM0Vk54eDMxSU44aHB1Y09ralRXL2dJZU1KdStFazBP?=
+ =?utf-8?B?eVRHWUVTcVdTOVgwekxPaEFHRExvcEg2VUtNelZ6Tzh2WW82NThLSHBjQWlL?=
+ =?utf-8?B?TnBEaDdjOGVzTlgzcFNNUThyTG1qSncyUWpDMlBsNmpXNVBVcnVKNCtaUjg5?=
+ =?utf-8?B?ekNwNzVYMGt5YTUzV3BXM2JuWFpDUzhleW5JcDA1K3dTYlBrdTE2OTF4OFpz?=
+ =?utf-8?B?bG9VZjk0ZENQTldZcS8zdWF0eFVCemlrSThVWGovMFJXUGJ1VWVXajhuUVVy?=
+ =?utf-8?B?Vkd0U1FJUEp1WWlXQ3g5Tm5GOS84MVd1NU80UHp3VFNBWmJZdFJ6cnAyWE9U?=
+ =?utf-8?B?SXlsQ0NnaXYweWx6NlJ3aEdlMmk4aFdJOWNrbHd1bTIvQzZXV0FmRVcxWmwx?=
+ =?utf-8?B?M0E1bHdObWY4UU9QaTQ0ZFlDdWNNLzVMRzRUVTR2Wkh1VGwrOXVzVFlZNzNj?=
+ =?utf-8?B?MlhEamhsaVBNR2w4aHRLalcwVyt3Q28ydW95c25za2Z3WjNXQnpEZFRhNk9U?=
+ =?utf-8?B?S2oraDV3dGJhazJmZFdReU5GVWVTNkdHSjVjSU1xSDVFR3RmSW5wN1lycEgv?=
+ =?utf-8?Q?pRbo/C1h4lPio6WLLFovyYU9MzAOhNZGZ8TvVKi?=
 X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c134280-8925-4319-33c9-08dc2eca03f2
+X-MS-Exchange-CrossTenant-Network-Message-Id: ec7cbe2a-6942-4750-a8b5-08dc2ecac8ce
 X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB6959.apcprd06.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Feb 2024 08:33:56.5515
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Feb 2024 08:39:26.8609
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
 X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
 	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR06MB7040
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR06MB6441
 
-On 2/16/2024 4:19 PM, Krzysztof Kozlowski wrote:
-> On 15/02/2024 18:46, Yang Xiwen via B4 Relay wrote:
->> From: Yang Xiwen <forbidden405@outlook.com>
->>
->> convert the legacy txt binding to modern YAML. No semantic change.
->>
->> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
->> ---
->
->> +++ b/Documentation/devicetree/bindings/mmc/hi3798cv200-dw-mshc.yaml
-> Filename like compatible.
->
->> @@ -0,0 +1,86 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mmc/hi3798cv200-dw-mshc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title:
->> +  Hisilicon Hi3798CV200 SoC specific extensions to the Synopsys DWMMC controller
-> One line please.
->
->> +
->> +maintainers:
->> +  - Yang Xiwen <forbidden405@outlook.com>
->> +
->> +description:
->> +  The Synopsys designware mobile storage host controller is used to interface
->> +  a SoC with storage medium such as eMMC or SD/MMC cards. This file documents
->> +  differences between the core Synopsys dw mshc controller properties described
->> +  by synopsys-dw-mshc.txt and the properties used by the Hisilicon Hi3798CV200
->> +  specific extensions to the Synopsys Designware Mobile Storage Host Controller.
->> +
->> +allOf:
->> +  - $ref: synopsys-dw-mshc-common.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - hisilicon,hi3798cv200-dw-mshc
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    minItems: 4
-> Drop minItems
->
->> +    maxItems: 4
->> +    description: A list of phandles for the clocks listed in clock-names
-> Drop description
->
->> +
->> +  clock-names:
->> +    items:
->> +      - const: ciu
->> +      - const: biu
->> +      - const: ciu-sample
->> +      - const: ciu-drive
->> +    description:
->> +      Apart from the clock-names "biu" and "ciu" two more clocks
->> +      "ciu-drive" and "ciu-sample" are added. They are used to
->> +      control the clock phases, "ciu-sample" is required for tuning
->> +      high speed modes.
-> Description should go to clocks: to individual items.
-Actually copied directly from rockchip-dw-mshc.yaml. Will fix in v2.
+On 2/16/2024 4:26 PM, Krzysztof Kozlowski wrote:
+> On 16/02/2024 09:21, Yang Xiwen wrote:
+>> On 2/16/2024 3:20 PM, Krzysztof Kozlowski wrote:
+>>> On 16/02/2024 00:48, Yang Xiwen via B4 Relay wrote:
+>>>> From: Yang Xiwen <forbidden405@outlook.com>
+>>>>
+>>>> These compatible strings are not found in any mainline dts, remove them.
+>>> That's not a real reason. What about all other users?
+>> The people who want their devices being supported should post a working
+>> dts first. Having found the dts missing is strongly telling me that this
+> Considering how poor HiSilicon contributions were - in numbers and
+> quality - that's kind of expected. :(
 >
 >
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +  - clocks
->> +  - clock-names
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/histb-clock.h>
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    emmc: mmc@9830000 {
-> Drop label
+>> SoC(Hi3516) is orphan and EOL already. I can't even find it in git
+>> commit logs. I'll argue that the old binding is simply wrong, and does
+>> not describe the hardware properly. Who knows? Could anyone tell me if
+>> the driver is still working for Hi3516 or not? I'm very willing to keep
+>> the backward compatibility if someone can tell me the effort i paid to
+>> maintain the old binding really makes sense. But the only things i found
+>> in mainline kernel about Hi3516 is an CRG(clock) driver and this femac
+>> driver. And it's been 8 years since last update for this SoC.
+> OK, that's fine with me, but please add parts of this explanation to the
+> commit msg (SoC is EOL, driver looks buggy and might not even work,
+> platform was upstreamed 8 years ago and no maintenance work happened on
+> it, thus it looks abandoned etc.).
+
+For me, it's a bit lucky to find a (partially) working driver in 
+mainline. It'll take me even more time if no mainline driver is 
+available. In fact, i wrote the driver for mainline u-boot from scratch 
+and it has been merged. So it's good to have this binding accepted 
+unmodified, or i'll have to modify u-boot side driver code to keep them 
+sync.
+
 >
->> +      compatible = "hisilicon,hi3798cv200-dw-mshc";
->> +      reg = <0x9830000 0x10000>;
->> +      interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
->> +      clocks = <&crg HISTB_MMC_CIU_CLK>,
->> +               <&crg HISTB_MMC_BIU_CLK>,
->> +               <&crg HISTB_MMC_SAMPLE_CLK>,
->> +               <&crg HISTB_MMC_DRV_CLK>;
->> +      clock-names = "ciu", "biu", "ciu-sample", "ciu-drive";
->> +      resets = <&crg 0xa0 4>;
->> +      reset-names = "reset";
->> +      pinctrl-names = "default";
->> +      pinctrl-0 = <&emmc_pins_1 &emmc_pins_2
->> +                   &emmc_pins_3 &emmc_pins_4>;
->> +      fifo-depth = <256>;
->> +      clock-frequency = <200000000>;
->> +      cap-mmc-highspeed;
->> +      mmc-ddr-1_8v;
->> +      mmc-hs200-1_8v;
->> +      non-removable;
->> +      bus-width = <8>;
->> +      status = "okay";
-> Drop
-Drop `status` property? Will fix in v2.
->
->> +    };
->>
 > Best regards,
 > Krzysztof
 >
