@@ -1,347 +1,183 @@
-Return-Path: <devicetree+bounces-42560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 509C3857BF9
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 12:45:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59D8C857C0A
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 12:48:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 411E61C2305F
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 11:45:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 32F7E1C2110A
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 11:48:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5A7D77F2A;
-	Fri, 16 Feb 2024 11:45:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C90677F29;
+	Fri, 16 Feb 2024 11:48:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VjhKYgWT"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="WQTqAlQE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0921453385;
-	Fri, 16 Feb 2024 11:45:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB7F553385;
+	Fri, 16 Feb 2024 11:48:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708083911; cv=none; b=PiY1yb7qUdHZgT9kfghzTR5O0OqLCNampft4ThuVI8svPFFcM6v1GdN+UtrRVbk8pUkOSq9bU8iVfgf7T7SG7s9KS2mZuizIrMpyQAElrcWWmpEDsPtJp6selFT5Qq4MrbC0AGt2ls0lEraken5PY3j1NybbWESK52BHVJMZ80E=
+	t=1708084093; cv=none; b=Y9XDmXgFMzPch6/teZo6cJXqwkzwwNJdD+FRGBwWf31QMUO52PYTsgIcmD6LlFLpAvCE+q/JmtmWg4/Eb0vPFx1do/4jZe8TLPJth92xd2SxQX/C3vZ9gwkikq3h1g9+w9d7waWk/KPyCgVur5FXCYed2gQq7chnVS8iCM1zrrk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708083911; c=relaxed/simple;
-	bh=mRBF7+w/UhoTbou2jml16IOzj0jHowaNlat8Mii96JE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ZH4GQ9Gig+ih8fR0M/dHx7SG+C9nZ9ljs9FFhkFQIqzKjLiqP0fzCAL53RCxoEWeRTD6BwR6QYKDsh/GXqnSDBUccvV9smN8YxG8LgZv1Bgwn4pIwv5bRr5kzg5pA79C18q4a1h/6Ljl/7CF0T6EVDrwg/gqJtJvdeVD2WiscSI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VjhKYgWT; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41GAdI1K010032;
-	Fri, 16 Feb 2024 11:44:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=FbhITBTJkpzDUA0S3Nn4DWF06crj1C5mUCjUAsD57SM=; b=Vj
-	hKYgWTGzzZoGTVdITxb6Fh6bhs+rCnYlqXoA6ENJYt3Ah3xSHrRBNyFD2NQ1IFH7
-	K7MZqhUuuTFm1u/FIjd3yNZAZQ0dDYV9np/BelPIIA6vZKYixBvYWUppNTpV1bW6
-	IqZE5sxg8rB6rA4vjyVuP8Ar2mOG9nbmjF8YVsrv6nE2AbkopcaeWWM4g+n9Nt6s
-	ZRQnAl1/9TLSyDogrMR9ZQiey6hNGT7MEa/Jnght1uCuBdvq5buwRcyfU/XmLQJP
-	5nG8MiCHcyoOfFhBSi4pM1ltuvHP7F0sqeXrXnr61b6vEP8cxMuaPcTB8dmNsd4s
-	eR3/eUqfJ0JjiAjh2TBA==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w9qbc1wg6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 16 Feb 2024 11:44:45 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41GBiio2011674
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 16 Feb 2024 11:44:44 GMT
-Received: from [10.218.16.59] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 16 Feb
- 2024 03:44:33 -0800
-Message-ID: <5dc98cf8-3146-400c-be2a-b0a1ec2368f7@quicinc.com>
-Date: Fri, 16 Feb 2024 17:14:33 +0530
+	s=arc-20240116; t=1708084093; c=relaxed/simple;
+	bh=RiaiDgSABZOcY6xfBFk/iAiLxZ+7gb0T/+DUHtFP25g=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VpeKrSeI0Bu7dXy6rzGRxz/sMFOD8dsfyuwLWWrX8m21P5cWGDCopEz0QuwBSk+TJYYGfGPPHRw2/kN7uFj3oX+ziYps20SjjUQCziiZj2pODMVEOt/94ZfxNwaMIX3X8Ulg7Fj94NnawsD+ZBbTzcLI5+gtHxcyE5QIPH0mVj8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=WQTqAlQE; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1708084090; x=1739620090;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=RiaiDgSABZOcY6xfBFk/iAiLxZ+7gb0T/+DUHtFP25g=;
+  b=WQTqAlQEW+vo71ubVNBKO7T6r0mbmcLgymPTGor5b4CYLM1ynHkPh6ZD
+   dEH0kBhYU64o55jLc7blHYpBAolg8YN04tSFPJODaGwlpOCqaP5gULbW2
+   G4h/HiXFV4jTklOQ7g2znkeJo+ktCNaNeCOiT2w2+MkuOORWmSa3KS7zl
+   NSellpPwNTRzOLYjYKeBv+HuDahWB4952oISuKBi9+3LPR5zKGQzxUpJ1
+   IbX5dROgs1MLwx81NTsDQ5wPo9Zu3nimoqKGHIeiz1rKEjAYvIlSx09eV
+   9Zi3zf6HxW7lDAFpkh36GWeEfecX7Jxpe5847ohjE2jprBjkh2jXT24rO
+   Q==;
+X-CSE-ConnectionGUID: VVL1m307SNuw0/i+Vt/wLA==
+X-CSE-MsgGUID: BLowQz8ZQJmWsAp3y5gI3w==
+X-IronPort-AV: E=Sophos;i="6.06,164,1705388400"; 
+   d="asc'?scan'208";a="17827216"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 16 Feb 2024 04:48:07 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 16 Feb 2024 04:47:47 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Fri, 16 Feb 2024 04:47:44 -0700
+Date: Fri, 16 Feb 2024 11:47:03 +0000
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Julien Panis <jpanis@baylibre.com>
+CC: Conor Dooley <conor@kernel.org>, Kevin Hilman <khilman@kernel.org>,
+	Bhargav Raviprakash <bhargav.r@ltts.com>, <arnd@arndb.de>,
+	<broonie@kernel.org>, <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+	<gregkh@linuxfoundation.org>, <kristo@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <lee@kernel.org>, <lgirdwood@gmail.com>,
+	<linus.walleij@linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<m.nirmaladevi@ltts.com>, <nm@ti.com>, <robh+dt@kernel.org>,
+	<vigneshr@ti.com>
+Subject: Re: [RESEND PATCH v1 03/13] dt-bindings: mfd: ti,tps6594: Add TI
+ TPS65224 PMIC
+Message-ID: <20240216-chimp-endowment-e4c241e8e466@wendy>
+References: <20240209-blitz-fidgety-78469aa80d6d@spud>
+ <20240214093106.86483-1-bhargav.r@ltts.com>
+ <20240214-galley-dweller-1e9872229d80@spud>
+ <7hil2r5556.fsf@baylibre.com>
+ <20240214-depraved-unfunded-3f0b3d6bf3e2@spud>
+ <e13627e2-9d8f-437d-afe4-d8bfcade2f6a@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] iio: adc: Add support for QCOM PMIC5 Gen3 ADC
-Content-Language: en-US
-To: Jonathan Cameron <jic23@kernel.org>
-CC: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <lee@kernel.org>,
-        <andriy.shevchenko@linux.intel.com>, <daniel.lezcano@linaro.org>,
-        <dmitry.baryshkov@linaro.org>, <lars@metafoo.de>, <luca@z3ntu.xyz>,
-        <marijn.suijten@somainline.org>, <agross@kernel.org>,
-        <sboyd@kernel.org>, <rafael@kernel.org>, <rui.zhang@intel.com>,
-        <lukasz.luba@arm.com>, <linus.walleij@linaro.org>,
-        <quic_subbaram@quicinc.com>, <quic_collinsd@quicinc.com>,
-        <quic_amelende@quicinc.com>, <quic_kamalw@quicinc.com>,
-        <kernel@quicinc.com>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-arm-msm-owner@vger.kernel.org>,
-        <linux-iio@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <cros-qcom-dts-watchers@chromium.org>
-References: <20231231171237.3322376-1-quic_jprakash@quicinc.com>
- <20231231171237.3322376-4-quic_jprakash@quicinc.com>
- <20240101175453.5807483a@jic23-huawei>
-From: Jishnu Prakash <quic_jprakash@quicinc.com>
-In-Reply-To: <20240101175453.5807483a@jic23-huawei>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 9Y1DnBZcC0CSA59oL9H_9bwEqTanH5RT
-X-Proofpoint-ORIG-GUID: 9Y1DnBZcC0CSA59oL9H_9bwEqTanH5RT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-16_09,2024-02-14_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxlogscore=999
- spamscore=0 adultscore=0 impostorscore=0 suspectscore=0 bulkscore=0
- malwarescore=0 phishscore=0 mlxscore=0 priorityscore=1501
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402160094
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="zk2oXzKpSp9IbgEb"
+Content-Disposition: inline
+In-Reply-To: <e13627e2-9d8f-437d-afe4-d8bfcade2f6a@baylibre.com>
 
-Hi Jonathan,
+--zk2oXzKpSp9IbgEb
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-(Resending this mail for tracking on mailing lists, as it got rejected 
-from lists the first time due to HTML)
+On Fri, Feb 16, 2024 at 10:08:03AM +0100, Julien Panis wrote:
+> On 2/14/24 18:45, Conor Dooley wrote:
+> > On Wed, Feb 14, 2024 at 09:26:13AM -0800, Kevin Hilman wrote:
+> > > Conor Dooley <conor@kernel.org> writes:
+> > > > On Wed, Feb 14, 2024 at 03:01:06PM +0530, Bhargav Raviprakash wrote:
+> > > > > On Fri 2/9/2024 10:41 PM, Conor Dooley wrote:
+> > > > > > On Thu, Feb 08, 2024 at 04:23:33PM +0530, Bhargav Raviprakash w=
+rote:
+> > > > > > > TPS65224 is a Power Management IC with 4 Buck regulators and =
+3 LDO
+> > > > > > > regulators, it includes additional features like GPIOs, watch=
+dog, ESMs
+> > > > > > > (Error Signal Monitor), and PFSM (Pre-configurable Finite Sta=
+te Machine)
+> > > > > > > managing the state of the device.
+> > > > > > > TPS6594 and TPS65224 have significant functional overlap.
+> > > > > > What does "significant functional overlap" mean? Does one imple=
+ment a
+> > > > > > compatible subset of the other? I assume the answer is no, give=
+n there
+> > > > > > seems to be some core looking registers at different addresses.
+> > > > > The intention behind =E2=80=9Csignificant functional overlap=E2=
+=80=9D was meant to
+> > > > > indicate a lot of the features between TPS6594 and TPS65224 overl=
+ap,
+> > > > > while there are some features specific to TPS65224.
+> > > > > There is compatibility between the PMIC register maps, I2C, PFSM,
+> > > > > and other drivers even though there are some core registers at
+> > > > > different addresses.
+> > > > >=20
+> > > > > Would it be more appropriate to say the 2 devices are compatible =
+and have
+> > > > > sufficient feature overlap rather than significant functional ove=
+rlap?
+> > > > If core registers are at different addresses, then it is unlikely t=
+hat
+> > > > these devices are compatible.
+> > > That's not necessarily true.  Hardware designers can sometimes be
+> > > creative. :)
+> > Hence "unlikely" in my mail :)
+>=20
+> For tps6594 and tps65224, some core registers are at different adresses
+> indeed, but the code is the same for both MFD I2C/SPI entry points. As an
+> example, the way CRC is enabled is exactly the same, even if the bit that
+> must be set belongs to different registers. tps65224 has more resources a=
+nd
+> it's as if HW designers had had to re-organize the way bits are distribut=
+ed
+> among the registers (due to a lack of space, so to speak).
+>=20
+> That said, if we consider that these devices are not compatible, what doe=
+s it
+> imply concretely for the next version ? Does that mean that:
+> 1) Only a new binding must be created, even if MFD drivers and most of ch=
+ild
+> drivers will be re-used ? (then the binding would simply be duplicated, b=
+ut
+> the drivers would not)
+> 2) A new binding and new MFD drivers must be created, even if most of chi=
+ld
+> drivers will be re-used ? (then the binding and MFD drivers would simply =
+be
+> duplicated, but the child drivers would not)
+> 3) A new binding and new drivers (MFD and child devices) must be created ?
+> 4) Anything else ?
 
-On 1/1/2024 11:24 PM, Jonathan Cameron wrote:
-> On Sun, 31 Dec 2023 22:42:37 +0530
-> Jishnu Prakash <quic_jprakash@quicinc.com> wrote:
-> 
->> The ADC architecture on PMIC5 Gen3 is similar to that on PMIC5 Gen2,
->> with all SW communication to ADC going through PMK8550 which
->> communicates with other PMICs through PBS.
->>
-
-
->> +
->> +	for (i = 0; i < adc->nchannels; i++) {
->> +		bool upper_set = false, lower_set = false;
->> +		int temp, offset;
->> +		u16 code = 0;
->> +
->> +		chan_prop = &adc->chan_props[i];
->> +		offset = chan_prop->tm_chan_index;
->> +
->> +		if (!chan_prop->adc_tm)
->> +			continue;
->> +
->> +		mutex_lock(&adc->lock);
->> +		if (chan_prop->sdam_index != sdam_index) {
-> 
-> Perhaps factor this block out as indent already high and adding scoped_guard would
-> make it worse.
-
-I don't think I can completely factor it out, as we need to update 
-several local variables here (sdam_index, tm_status, buf, also chan_prop 
-above), but I'll try to reduce it as much as possible.
-
-> 
->> +			sdam_index = chan_prop->sdam_index;
->> +			ret = adc5_gen3_read(adc, sdam_index, ADC5_GEN3_TM_HIGH_STS,
->> +					tm_status, 2);
->> +			if (ret) {
->> +				dev_err(adc->dev, "adc read TM status failed with %d\n", ret);
->> +				goto out;
->> +			}
-
-
->> +
->> +static void adc5_gen3_disable(void *data)
->> +{
->> +	struct adc5_chip *adc = data;
->> +	int i;
->> +
->> +	if (adc->n_tm_channels)
->> +		cancel_work_sync(&adc->tm_handler_work);
-> If this is required before the place where a simple
-> devm_request_irq() will result in the irqs being cleaned up
-> them register this callback earlier to avoid problems there.
-> 
-
-On checking again, it looks like I can just use devm_request_irq() and 
-avoid having to free irqs explicitly here and elsewhere. I'll  still 
-need to call cancel_work_sync() and I think you have also asked me to 
-keep this call in another comment below. I have another question for it 
-below.
-
->> +
->> +	for (i = 0; i < adc->num_sdams; i++)
->> +		free_irq(adc->base[i].irq, adc);
->> +
->> +	mutex_lock(&adc->lock);
->> +	/* Disable all available TM channels */
->> +	for (i = 0; i < adc->nchannels; i++) {
->> +		if (!adc->chan_props[i].adc_tm)
->> +			continue;
->> +		adc5_gen3_poll_wait_hs(adc, adc->chan_props[i].sdam_index);
->> +		_adc_tm5_gen3_disable_channel(&adc->chan_props[i]);
->> +	}
->> +
->> +	mutex_unlock(&adc->lock);
->> +}
-> 
-
-
->> +
->> +	prop->hw_settle_time = VADC_DEF_HW_SETTLE_TIME;
-> 
-> I'd prefer to see you has through the value that maps to this after qcom_adc5_hw_settle_time_from_dt
-> so then you can just set a default in value and call the rest of the code unconditionally.
-> Same for the cases that follow.
-
-I can remove the return check for fwnode_property_read_u32() as you 
-suggested, but I think we still need to keep the return check for 
-qcom_adc5_hw_settle_time_from_dt(), to check in case values unsupported 
-in this ADC HW are set in DT. Same for the other properties.
-
-> 
->> +	ret = fwnode_property_read_u32(fwnode, "qcom,hw-settle-time", &value);
->> +	if (!ret) {
->> +		ret = qcom_adc5_hw_settle_time_from_dt(value,
->> +						data->hw_settle_1);
->> +		if (ret < 0)
->> +			return dev_err_probe(dev, ret, "%#x invalid hw-settle-time %d us\n",
->> +				chan, value);
->> +		prop->hw_settle_time = ret;
->> +	}
->> +
-
-
->> +
->> +	chan_props = adc->chan_props;
->> +	adc->n_tm_channels = 0;
->> +	iio_chan = adc->iio_chans;
->> +	adc->data = device_get_match_data(adc->dev);
->> +	if (!adc->data)
->> +		adc->data = &adc5_gen3_data_pmic;
-> 
-> Why do you need a default?  Add a comment so we remember the reasoning.
-
-On second thought, this may not be needed, I'll remove this.
-
-> 
-> 
->> +
->> +	device_for_each_child_node(adc->dev, child) {
->> +		ret = adc5_gen3_get_fw_channel_data(adc, chan_props, child, adc->data);
->> +		if (ret < 0) {
-
-
->> +
->> +		ret = platform_get_irq_byname(pdev, adc->base[i].irq_name);
->> +		if (ret < 0) {
->> +			kfree(reg);
->> +			dev_err(dev, "Getting IRQ %d by name failed, ret = %d\n",
->> +					adc->base[i].irq, ret);
->> +			goto err_irq;
->> +		}
->> +		adc->base[i].irq = ret;
->> +
->> +		ret = request_irq(adc->base[i].irq, adc5_gen3_isr, 0, adc->base[i].irq_name, adc);
-> 
-> Don't mix devm and non dev calls.  And don't group up multiple things in one devm callback
-> as it almost always leads to bugs where for example only some irqs are allocated.
-
-I can replace request_irq() with devm_request_irq(). But when you say 
-not to group up multiple things in one devm callback, do you mean the 
-devm_add_action() callback I added below or something else right here?
+If they're not compatible the next version of this patch does not need
+to change, so option 4 I guess.
 
 
 
-> 
->> +		if (ret < 0) {
->> +			kfree(reg);
->> +			dev_err(dev, "Failed to request SDAM%d irq, ret = %d\n", i, ret);
->> +			goto err_irq;
->> +		}
->> +	}
->> +	kfree(reg);
-> 
-> I would factor out this code and allocation of reg so you can easily use scope
-> based cleanup (see linux/cleanup.h) to avoid the kfree(reg) entries that
-> make for awkward code flow.
-> 
+--zk2oXzKpSp9IbgEb
+Content-Type: application/pgp-signature; name="signature.asc"
 
-The kfrees are not really needed, I'll just use devm_kcalloc to allocate 
-memory for the "reg" variable. With this and devm_request_irq, I think a 
-scoped guard would not be needed here.
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZc9LNwAKCRB4tDGHoIJi
+0pedAPwIn8EzGb7CK85veeqxTab48XHAJBFZX5GiGXdXq9JL9AD/Uz/cmlDaU22C
+5UOMmufi3WxQg2fkU46lxarbGj0MvgQ=
+=vBKa
+-----END PGP SIGNATURE-----
 
-> 
-> 
->> +
->> +	ret = devm_add_action(dev, adc5_gen3_disable, adc);
-> As above, this action does multiple things. Also use devm_add_action_or_reset() to cleanup
-> if the devm registration fails without needing to do it manually.
-
-I'll change it to devm_add_action_or_reset(), but do you mean I should 
-call devm_add_action_or_reset() twice to register two separate callbacks 
-instead of just adc5_gen3_disable? Like one for calling 
-cancel_work_sync() alone and the other for the loop where we disable all 
-TM channels?
-
-
-> 
->> +	if (ret < 0) {
->> +		dev_err(dev, "failed to register adc disablement devm action, %d\n", ret);
->> +		goto err_irq;
->> +	}
->> +
-
-
->> +
->> +	if (adc->n_tm_channels)
->> +		INIT_WORK(&adc->tm_handler_work, tm_handler_work);
-> 
-> Until this init work seems unlikely you should be calling the cancel
-> work in gen3_disable()
-
-We are already calling cancel_work_sync() in adc5_gen3_disable....is 
-there any change needed?
-
-
-I'll address all your other comments in the next patchset.
-
-
-Thanks,
-
-Jishnu
-
-> 
-> 
->> +
->> +	indio_dev->name = pdev->name;
->> +	indio_dev->modes = INDIO_DIRECT_MODE;
->> +	indio_dev->info = &adc5_gen3_info;
->> +	indio_dev->channels = adc->iio_chans;
->> +	indio_dev->num_channels = adc->nchannels;
->> +
->> +	ret = devm_iio_device_register(dev, indio_dev);
->> +	if (!ret)
->> +		return 0;
-> Please keep error conditions as the out of line path.
-> 
-> 	if (ret)
-> 		goto err_irq;
-> 
-> 	return 0;
-> 
-> 
->> +
->> +err_irq:
->> +	for (i = 0; i < adc->num_sdams; i++)
->> +		free_irq(adc->base[i].irq, adc);
-> 
-> Already freed by a devm cleanup handler.
-> 
->> +
->> +	return ret;
->> +}
-> 
+--zk2oXzKpSp9IbgEb--
 
