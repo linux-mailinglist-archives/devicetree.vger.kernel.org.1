@@ -1,151 +1,145 @@
-Return-Path: <devicetree+bounces-42434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42435-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A64DB857835
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 09:57:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E3EC857849
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 10:00:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 39E771F23615
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 08:57:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 183B828A8F9
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 08:59:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6A651B809;
-	Fri, 16 Feb 2024 08:57:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D90FF19BBA;
+	Fri, 16 Feb 2024 08:58:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="By0CxpoX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CE571B7E2
-	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 08:57:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAA8F1BC31;
+	Fri, 16 Feb 2024 08:58:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708073827; cv=none; b=bX8vOHEx9LS5HSC953HuaW9aaUa7scmtcN+KJmykJwGj3xrjomTF881PyYD61I9Z04fIMDRNWZ/D4vvmD4/mQ6y3a/SM+Pe3+ZsAtoop/PDNNePwHS/uI4esNaphIByQfXvgWv09u9fX2yysxL2Q7yeDIdvHdqMXolCqDPNuqgw=
+	t=1708073919; cv=none; b=XyqaNTqcsYspObpD6dkmcI6EM4oiorhdVWWDW5eDzVWbqOYKDzdhdbeX1GGelDQr8xFipA56vl6HOxIBZwjN/ANFoRz8Jgq9uyVCGZfiwBLHWBllVXPvmh2OCjugmUXlpYiWSDlGL9i53o7nr4ZGVMJWlYmTcvJCiORy48PrgJc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708073827; c=relaxed/simple;
-	bh=F7SJEois+X8tz2gjrxqqrDEy5yeqY6GzZm2Rtgg54X8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YGjGt1ADzH69VPo8fyRPAkMmjkCMN9R9e3elBewktBjTEPsByaEfCtyB4DAkvWqf4iLw2Yxb2Pv1HjA5hTL1V3wvGuJHgL1UsUxHfrKBHPhGqu5wL0Rz219PPDi45zEs5x4/d5YYdnk8u3qk2UCCetnKM2o9ozp1/PG1UukTsiQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rau1c-0007VS-M6; Fri, 16 Feb 2024 09:56:52 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rau1b-0012eE-I9; Fri, 16 Feb 2024 09:56:51 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rau1b-005roU-1V;
-	Fri, 16 Feb 2024 09:56:51 +0100
-Date: Fri, 16 Feb 2024 09:56:51 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Conor Dooley <conor@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	John Crispin <john@phrozen.org>, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH 1/2] dt-bindings: pwm: mediatek,mt2712: add compatible
- for MT7988
-Message-ID: <crisnlcmsylgjbyikwj4it5oee46lrcneegt35rkh7f7irpjt4@au5h4owkl4s3>
-References: <20240213164633.25447-1-zajec5@gmail.com>
- <20240213-resource-evaluator-0754cfd5882d@spud>
- <d4391868-ddcd-4f66-b539-28d245fa83df@gmail.com>
- <e957b044-fe84-4b72-bdf1-cbc40c722019@collabora.com>
+	s=arc-20240116; t=1708073919; c=relaxed/simple;
+	bh=eEtVCkbL1zLpF1IuJ2P51hMpCC9ce5VcXTMVCrOozwE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=WrQdu1C1L5UeDkSkqXKhhyDd+1aeQGqMa2B/xKd/0irGpSOLnu5JF5X4kd5wB/HYgD8pELSFxLq3paitNcyR/p8bn64JsCPCgQLOHmWw4c9SrPxoRlUDI5nZXoRPPgTKwBMxeHGX2KJbrJFPqOoLMLyKb3bGYFHvvDDOPl3OXZ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=By0CxpoX; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 2C6FCFF802;
+	Fri, 16 Feb 2024 08:58:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1708073914;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=CiS06Ba9lRype48ky6kOoEGXIXSDOLtm/1ZqevNezdI=;
+	b=By0CxpoXwlqrQa7QSSS1EBd0TrZt65BWnSkr4Wu2tU2J8bmvJds7j8FGPEV6b1V7qImpKR
+	F47MRVR7q0Iqxj0rR9SfxvwRbMWAt77IIi3ZdAyLeYPGKSvH/ATcj17q1Y3MnzZWE9gbBN
+	T0LKqYZkJYBc+nBHLaSEipLnuBUXcuNk1paQikZzX3SHUnr6JSgHl42X+XgcZKIG9rfKi+
+	JwkzlGtlB1Ye+HU0cFWVy1VsZnmEpgroVBIdWJfHZfd229YJH0Z5WsH/1aXTiHr45w99oB
+	MJRkqBFcgy5XzDMr28umn6GWNDUufWG0LElKab4rT3ygvO7y07Ffe+GFnWLY1g==
+Date: Fri, 16 Feb 2024 09:58:29 +0100
+From: =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Luis Chamberlain
+ <mcgrof@kernel.org>, "David S. Miller" <davem@davemloft.net>, Jonathan
+ Corbet <corbet@lwn.net>, netdev@vger.kernel.org, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, Russell King <linux@armlinux.org.uk>,
+ devicetree@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Dent Project
+ <dentproject@linuxfoundation.org>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Frank Rowand <frowand.list@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Oleksij Rempel <o.rempel@pengutronix.de>, Russ Weight
+ <russ.weight@linux.dev>, Eric Dumazet <edumazet@google.com>, "Rafael J.
+ Wysocki" <rafael@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, Jakub Kicinski
+ <kuba@kernel.org>
+Subject: Re: [PATCH net-next v4 11/17] dt-bindings: net: pse-pd: Add another
+ way of describing several PSE PIs
+Message-ID: <20240216095829.44b8797f@kmaincent-XPS-13-7390>
+In-Reply-To: <20240216095616.3300aef3@kmaincent-XPS-13-7390>
+References: <20240215-feature_poe-v4-0-35bb4c23266c@bootlin.com>
+	<20240215-feature_poe-v4-11-35bb4c23266c@bootlin.com>
+	<170802277529.323906.8697693998570251856.robh@kernel.org>
+	<20240216095616.3300aef3@kmaincent-XPS-13-7390>
+Organization: bootlin
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="x6fer6asqpvyqikq"
-Content-Disposition: inline
-In-Reply-To: <e957b044-fe84-4b72-bdf1-cbc40c722019@collabora.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-
-
---x6fer6asqpvyqikq
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: kory.maincent@bootlin.com
 
-Hello,
+On Fri, 16 Feb 2024 09:56:16 +0100
+K=C3=B6ry Maincent <kory.maincent@bootlin.com> wrote:
 
-On Wed, Feb 14, 2024 at 10:27:54AM +0100, AngeloGioacchino Del Regno wrote:
-> Il 14/02/24 07:34, Rafa=C5=82 Mi=C5=82ecki ha scritto:
-> > On 13.02.2024 19:18, Conor Dooley wrote:
-> > > On Tue, Feb 13, 2024 at 05:46:32PM +0100, Rafa=C5=82 Mi=C5=82ecki wro=
-te:
-> > > > From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
-> > > >=20
-> > > > MT7988 has on-SoC controller that can control up to 8 PWMs.
+> On Thu, 15 Feb 2024 12:46:16 -0600
+> Rob Herring <robh@kernel.org> wrote:
+>=20
+> > On Thu, 15 Feb 2024 17:02:52 +0100, Kory Maincent wrote: =20
+> > > PSE PI setup may encompass multiple PSE controllers or auxiliary circ=
+uits
+> > > that collectively manage power delivery to one Ethernet port.
+> > > Such configurations might support a range of PoE standards and require
+> > > the capability to dynamically configure power delivery based on the
+> > > operational mode (e.g., PoE2 versus PoE4) or specific requirements of
+> > > connected devices. In these instances, a dedicated PSE PI node becomes
+> > > essential for accurately documenting the system architecture. This no=
+de
+> > > would serve to detail the interactions between different PSE controll=
+ers,
+> > > the support for various PoE modes, and any additional logic required =
+to
+> > > coordinate power delivery across the network infrastructure.
 > > >=20
-> > > I see a binding and a dts patch, but no driver patch, how come?
+> > > The old usage of "#pse-cells" is unsuficient as it carries only the P=
+SE PI
+> > > index information.
+> > >=20
+> > > This patch is sponsored by Dent Project <dentproject@linuxfoundation.=
+org>.
+> > >=20
+> > > Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+> > > ---
+> > >=20
+> > > Changes in v3:
+> > > - New patch
+> > >=20
+> > > Changes in v4:
+> > > - Remove $def
+> > > - Fix pairset-names item list
+> > > - Upgrade few properties description
+> > > - Update the commit message
+> > > ---
+> > >  .../bindings/net/pse-pd/pse-controller.yaml        | 84
+> > > +++++++++++++++++++++- 1 file changed, 81 insertions(+), 3 deletions(=
+-)
+> > >    =20
 > >=20
-> > I believe that to avoid cross-trees patchsets (which are sometimes
-> > tricky for maintainers) there are two ways of submiting such changes:
-> > 1. dt-binding + driver; then (separately) DTS
-> > 2. dt-binding + DTS; then (separately) driver
-> >=20
-> > I chose later in this case as my personal priority right now is to deal
-> > with all MediaTek DTS files.
-> >=20
-> > Is that wrong or unacceptable?
-> >=20
+> > My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_chec=
+k'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13): =20
 >=20
-> It's not wrong but it's partially unacceptable, at least on my side.
->=20
-> In my opinion (and I believe many do agree with me), sending the binding =
-along
-> with the driver is the right choice, and if you also want to include the =
-dts
-> that is also appreciated: series can go through multiple maintainers appl=
-ying
-> subsets - it's ok to do.
+> Weird, I don't get your errors even with dt-schema up to date.
+> Maybe I have version mismatch in other tools.
 
-Just to put in my 2 =C2=A2:
-My preference is to not avoid cross-trees patchsets and put all three
-patches in a single series. This combines the advantages of 1. and 2.
-Given this happens often enough this is something that the maintainers
-are used to handle just fine, so the cross-tree issue isn't problematic
-most of the time. The conflicts that sometimes arise with cross-tree
-patches aren't bad enough to out-weight having binding, driver and dts
-changes all together.
-
-Best regards
-Uwe
+Ah found it! I had yamllint not up to date.
+Sorry for the noise.
 
 --=20
-Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig         =
-   |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---x6fer6asqpvyqikq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmXPI1IACgkQj4D7WH0S
-/k50eggAl5AH/OVaXRqlBR+khwnAAggxgfwh/au8rZ5x8SWflhcLnzmbI5goBNP+
-QiVN6/885+APLBzrvTgeiEQAjlKGsc1Av9hy5x2gQy4U9rhPVikE3B8fE9pugDEr
-ZIhljDbUobwdsu08aGbAr2sggD9tI8eJDcssD9sOF6Gwn73LjYJ7AxYuph9MWHqJ
-Ztdiy+AjILaWSAq4jeCCmL6MFgXIGDq6Unb6w6lDFhAcjG6FKh09+gyjFkihNdsg
-Ib93vHAw+rnrzUfcHhmFNaIIiw5d5mediZDrLKqWXp5U10ipOhfocOoyFK3AqKVS
-9PS6i5I/jMerH5hRMqLY0+/3ZEjhlA==
-=TKTq
------END PGP SIGNATURE-----
-
---x6fer6asqpvyqikq--
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
