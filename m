@@ -1,147 +1,100 @@
-Return-Path: <devicetree+bounces-42406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF78A857716
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 08:56:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF76B857719
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 08:56:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E5361C214BB
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 07:56:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CFAF61C22388
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 07:56:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85AF017BD4;
-	Fri, 16 Feb 2024 07:55:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3256175BE;
+	Fri, 16 Feb 2024 07:56:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Pz82xz6F"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="U9dXKhdL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB3B117591
-	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 07:55:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCC721B28D;
+	Fri, 16 Feb 2024 07:56:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708070156; cv=none; b=ttIT/yjOcjJhVanId7hx2bkaAP/uwn5+JOFW/3U7Gji/lO5jK5W/yVIBLj4hvlpLhfSiKkzxwFLuGmofMj6wWd1BEo8FVNOOLReCtGjUHAaeQ5a2HU4gXOQqWlGKq60K48v/F0jmpv5BHVke6w/xKqRKbCJtfPt8CQ6USZNrS8w=
+	t=1708070173; cv=none; b=ZMOlTSV1v22ZwQvZtNUH1DF/r1UcSg1/ashYbS8jb1c2v+3wOYUy5HS3tFwAeXP2nvH8TgmC6s6GURyQE/F8dBZxebOJgrKW/aLaZh4D0sDu5Edxk10NF8OKstWpAysPk7AAnvW5YuGKPF4vzHwb4vHDARUeXssRm51OklUIQgo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708070156; c=relaxed/simple;
-	bh=ZVzrVy1/dsPXa4PwcU5c5D0CsNAw12gX/R30zzhgXlM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=UqGV2juFW+2QxgqlWKmlOE1tSYH07imaBVAKLaoHg1gylm8Ip8yL2lpERreSGwvfZSqSak4R6fL6qPZPCobhRCep6plLsgk50wAxSGP2mDmS7BCVH2VyXF5c90I21JOxOU4JyJOA8pbVVCqRxmyXHReD0VvKMWbg+Ymzs3gEROY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Pz82xz6F; arc=none smtp.client-ip=209.85.208.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-563c595f968so1465816a12.0
-        for <devicetree@vger.kernel.org>; Thu, 15 Feb 2024 23:55:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708070153; x=1708674953; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4woXQ1xn8Jnb6pq3jxwkjqjmVUPaNj/HjXqJl0aJYaQ=;
-        b=Pz82xz6Fy/Y5PzrJYFRkE7HQfEf0n7K2NiwL9Gp+ko9HTzmqxUDyiG5mz/btoGn4kS
-         kl7tiuRGLjHXQDOTWCSsCZkdPhZGtN8j61lJURpKHjiv5q9WL0BBYsxa8oPGdEQkEIMS
-         O2K0CZnPfmB8jPqsOEt1DbvQ/mf482gwdjjgwVJnlMG0yaL413oCiDLHhcX+eaOogF/i
-         RMTRZg506cgTAh+No1C1KBT8BzziPFgJHyiLxPCOoDv3NxPSh2sKKzWmvwCLIWPDwWH8
-         D8yEagpQc0lEFY67pjRO7BX6xrz/4CmL6hZCjB5oLcboxLOUzHsscL7nQGY8Wx0rirKV
-         Z/9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708070153; x=1708674953;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4woXQ1xn8Jnb6pq3jxwkjqjmVUPaNj/HjXqJl0aJYaQ=;
-        b=GNkIWiryRHj52MkYIoIo/l6RKTS34DXjDdkZMCPt9Kwye7d3JUfDHXRqII0lyBnWX0
-         wgCWcsZ/aWyH17WK1texrfSsTXu7ENnXXmpgnLbqQ85FZD9kvbyxeCo4bt6w4SLrp8vQ
-         7qJJoF8Jo/kNxNKUJd2AebcSShkD/tYcKfKFmXRx58/Tfop2TLFrpiyMr5GKgwwlkZ+P
-         u1EaWfWYNE+Gx5xxhvRXadrPkNL9lyCDGkImZ2IvUUkZtO/E4aFZTVNsC7daRItpKnNl
-         5h7BZNe5ZFEyCID03D4kWb3iLYBVLUmSseeVjWKQuhH2zgxUWJlwNcWNHQI8D8BljJ9k
-         8Qog==
-X-Forwarded-Encrypted: i=1; AJvYcCVKK+gs0cOcRa0+t8zjur3uYaDgRubnbL19yKneLv+lYz28N3JbBD7Aj9G3bf6uUPqBaz9HedV5cOSIXTb4Ez/OUI7FjsxZgWCayA==
-X-Gm-Message-State: AOJu0YxS96feQQD3d7Wrc7qyYqnrc5uQ+lDHOZbBFZaIzoKHKEK/pCQr
-	0BlRAClsoDqruX/BW6IAQb7ifIrX6a9pnWxeMeme58SQj4cpcoEN/y6nzy4z0gw=
-X-Google-Smtp-Source: AGHT+IFVGyleBT79P5or8proe5kFI+ATkmSb4+QBORhiqzXCsxM2pApjEt6JV6ZQp6Hf1YfvWRRFwA==
-X-Received: by 2002:a17:906:e28f:b0:a3d:8a86:a8fd with SMTP id gg15-20020a170906e28f00b00a3d8a86a8fdmr328626ejb.30.1708070153082;
-        Thu, 15 Feb 2024 23:55:53 -0800 (PST)
-Received: from [127.0.1.1] ([78.10.207.130])
-        by smtp.gmail.com with ESMTPSA id f23-20020a170906561700b00a3d828c54f1sm1300750ejq.135.2024.02.15.23.55.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Feb 2024 23:55:52 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Fri, 16 Feb 2024 08:55:47 +0100
-Subject: [PATCH 2/2] dt-bindings: hwmon: ti,ina2xx: use common hwmon schema
+	s=arc-20240116; t=1708070173; c=relaxed/simple;
+	bh=qXUTqja3YaUc/dnaHvA106gil4VvjPmGptv2zxlDzck=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KQInSwychc2FerG4jo6P2IAIShawClWhGVJnv96QaiEZaEHR5Rgr2vsFe5wIk/IM1d7WyohlwsXs+I2tXDkb6JLhl8xK8b/K+g1IOrocUnlQjyjAnt1C+zNHhRqLaaEBkbLUrAYFvAJ7C2ZWKxrflv4Es6QqdNq+7xjCr8vWtQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=U9dXKhdL; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 45E77240004;
+	Fri, 16 Feb 2024 07:56:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1708070169;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=26ksJFAWWRpQQPf57QDNWBsPe/lqnzGwrsfLlcE3f3Q=;
+	b=U9dXKhdLVJrXkAZSU0XGKcs/1iiRaqtUUNgRBWi67R5YyOZj6nR5SUO4EpThVqLHP/utZZ
+	zTQE0BP+2P5NsqlT/AEFNtmzyuhs7xTUcl3DuZkXaSXpkmzBOAM6AEp5fcFVdHqkYjTXTz
+	Slyay/s82umoccv6ddA5deZ2ttgOAlxBXGSsablidYrcTd6jrS8kQ8mluRShMrRs2mceDw
+	JttjJn4H/Ssk62qOZIvEw0HPmnqtCM9ePjAYw7fj/bxiD5jwelEWepjiOCmZDMMUG0AgMt
+	gfwQmKhM2nE1hDTO1nHwFSTMU6O5qow35z8eOsrxCDUFDZbNlpmA8mMfjUMlCA==
+Date: Fri, 16 Feb 2024 08:56:09 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Mihai.Sain@microchip.com
+Cc: conor@kernel.org, claudiu.beznea@tuxon.dev, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	Nicolas.Ferre@microchip.com, andre.przywara@arm.com,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Cristian.Birsan@microchip.com
+Subject: Re: [PATCH v3 2/3] ARM: dts: microchip: sama7g5: Add flexcom 10 node
+Message-ID: <20240216075609e58aeee4@mail.local>
+References: <20240215091524.14732-1-mihai.sain@microchip.com>
+ <20240215091524.14732-3-mihai.sain@microchip.com>
+ <20240215-lustily-flick-69cb48b123c3@spud>
+ <PH8PR11MB6804E9353A8EEBD2B829D8B3824C2@PH8PR11MB6804.namprd11.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240216-dt-bindings-hwmon-common-v1-2-3c2c24ff1260@linaro.org>
-References: <20240216-dt-bindings-hwmon-common-v1-0-3c2c24ff1260@linaro.org>
-In-Reply-To: <20240216-dt-bindings-hwmon-common-v1-0-3c2c24ff1260@linaro.org>
-To: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
- Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=982;
- i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=ZVzrVy1/dsPXa4PwcU5c5D0CsNAw12gX/R30zzhgXlM=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBlzxUE4J4/L7ZafIL3OBHnnbATlGtubCb7t6a0z
- CXacpF2haaJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZc8VBAAKCRDBN2bmhouD
- 18+zD/sHILZlIo2qTx/705U2YYDxyQVUEUdiSlYq1isRtDYIkEnPxDlSpWLvWA3lNhXrAOOCEUX
- Cw96TmyKiVq0Dui8aUwB5CFiYD3MBJjsO1h3w7kyb6ViswrguzxQKGFGgmgk/82OYCnoepwT3Cw
- /gbeQTuyHpllntn1nz1MDIUptm6KNvbv1oFNyyM75ECAKyLSo34t1lTmrLWY7bv1ReibVvF+d1h
- MMwZqku8OI0RCYvQmFqHR1bFSDx9Nrp502uRSrl80uFygayzg/e5qD6z2AqQqEgiiuxKbaj+5cD
- m/VFbTwZaaWwrPuA4seTAJVx9VeJM/E6sA/WLCSzijLrLY0W4kuV3Jof8iAd4v9CyEfopzeasFJ
- vBhJfSTCszXejzRquRM89XgB+kWTaRiQIB3Eqmv8E3J3wc0Ng+P1WOcRGQHHqmcJltA7/M38oq6
- TLP+m+joukkIxDuQk4uRgqLYN6hAGzH9eZ2VPtGdnPR2tACqPApj/0kF6ed3WC1JHWPHmOHwnM3
- Nc5dC2nD1kYLu7GYCqf7YXJQBS/kxEdThVt3n/pkAJcGwnt74FNB0YuD0heogg2eAiidawfEE2k
- ZSsRubA2fN3natXHMU9NKiOGsZulVpx3ulxQYXkKGzjmR6412jx49hna4B5Z3yQ1kvlAlzbvNPs
- 8gAg+ved86Oh1Wg==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
- fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <PH8PR11MB6804E9353A8EEBD2B829D8B3824C2@PH8PR11MB6804.namprd11.prod.outlook.com>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 
-Reference common hwmon schema which brings the "label" property.
+On 16/02/2024 06:58:10+0000, Mihai.Sain@microchip.com wrote:
+> > diff --git a/arch/arm/boot/dts/microchip/sama7g5.dtsi b/arch/arm/boot/dts/microchip/sama7g5.dtsi
+> > index 269e0a3ca269..c030b318985a 100644
+> > --- a/arch/arm/boot/dts/microchip/sama7g5.dtsi
+> > +++ b/arch/arm/boot/dts/microchip/sama7g5.dtsi
+> > @@ -958,6 +958,30 @@ i2c9: i2c@600 {
+> >  			};
+> >  		};
+> >  
+> > +		flx10: flexcom@e2820000 {
+> > +			compatible = "atmel,sama5d2-flexcom";
+> 
+> My comment here was ignored:
+> https://lore.kernel.org/all/20240214-robe-pregnancy-a1b056c9fe14@spud/
+> 
+> The SAMA7G5 has the same flexcom controller as SAMA5D2 MPU.
+> 
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Still, it needs its own compatible plus a fallback to
+atmel,sama5d2-flexcom
 
-diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-index a099bb71415e..df86c2c92037 100644
---- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-@@ -36,9 +36,6 @@ properties:
-   "#io-channel-cells":
-     const: 1
- 
--  label:
--    description: A descriptive name for this device.
--
-   shunt-resistor:
-     description:
-       Shunt resistor value in micro-Ohm.
-@@ -73,7 +70,10 @@ required:
-   - compatible
-   - reg
- 
--additionalProperties: false
-+allOf:
-+  - $ref: hwmon-common.yaml#
-+
-+unevaluatedProperties: false
- 
- examples:
-   - |
+> https://github.com/torvalds/linux/blob/master/drivers/mfd/atmel-flexcom.c#L83
+> https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/mfd/atmel-flexcom.txt#L8
 
 -- 
-2.34.1
-
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
