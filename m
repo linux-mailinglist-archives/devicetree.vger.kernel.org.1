@@ -1,116 +1,110 @@
-Return-Path: <devicetree+bounces-42596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42597-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD5B2857D89
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 14:20:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F616857D9E
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 14:23:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BDF091C2466E
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 13:20:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E44AE1F217B5
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 13:23:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5A321292F2;
-	Fri, 16 Feb 2024 13:20:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9697D12A15F;
+	Fri, 16 Feb 2024 13:23:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Jr0VUsRK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC8B3129A79
-	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 13:20:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 570811292C0;
+	Fri, 16 Feb 2024 13:23:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708089621; cv=none; b=i8HoVOnm3q7k+vslUShOl4FOWPOzF3Jhxh42qMNELcbsIGQT+g7UyCx9UhsvrZ4ZMdiBVOYkhx++iU9aGN812Dch0aCLhssGxUaUNhnvklfSXsRWwxPyRY7rp1LXtyYAgCXFoAtyXR5o7vggveCdfL8nbur4rwV/KqhtVeaP06M=
+	t=1708089803; cv=none; b=LenKCqSxYwR+Jmd93Mz7OxWLPMRXajVRO7fXENipZylZQcjbioOjISGOBy5fmd8ny17ynRHjQY6XcQcsL09hBoImaDsWAq46ykr5/WLs1f8kRsQ7AHRR7zny02NulT3N9lTaFOSP+mnBkWM7vTsce9gE5iU3PsoSiiAKntTNSXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708089621; c=relaxed/simple;
-	bh=LfHmheaX1gxHX3QcScZ7NgVdpG8pZqo68GDkffkktKk=;
+	s=arc-20240116; t=1708089803; c=relaxed/simple;
+	bh=yNQ47maJB06kRaj+kJ7yhxyB60a9jxG4VEfPnqmenu0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CEJFdOtJxScFPiFYryqQ5jzaeXD0fHxeP9ekqCri19nckQGaxDU2WFoAW+qfwijmaNLkVmKsr1eLAk+/DOKxCru//V1rIhZ6chdxtr/9GXiuTm/FOQtCZsRRYVqzBHNjHsMgyfg6onACgxD4skfXZhB2McLAOFiL4V79C8Texog=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1ray8H-0001hG-1V; Fri, 16 Feb 2024 14:20:01 +0100
-Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1ray8E-0015MK-Us; Fri, 16 Feb 2024 14:19:58 +0100
-Received: from pengutronix.de (unknown [172.20.34.65])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 7DF97290405;
-	Fri, 16 Feb 2024 13:19:58 +0000 (UTC)
-Date: Fri, 16 Feb 2024 14:19:57 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: "Goud, Srinivas" <srinivas.goud@amd.com>
-Cc: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>, 
-	Naga Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>, Wolfgang Grandegger <wg@grandegger.com>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, "Simek, Michal" <michal.simek@amd.com>, 
-	"linux-can@vger.kernel.org" <linux-can@vger.kernel.org>, "netdev@vger.kernel.org" <netdev@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: RE: [PATCH v8 0/3] Add ECC feature support to Tx and Rx FIFOs
- for Xilinx CAN Controller.
-Message-ID: <20240216-grapple-unwind-ee92af7b4b1d-mkl@pengutronix.de>
-References: <20240213-xilinx_ecc-v8-0-8d75f8b80771@pengutronix.de>
- <PH8PR12MB6675AAAC5D7A86D2CAA382D6E14D2@PH8PR12MB6675.namprd12.prod.outlook.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=I17KNW1oFsjkn0OiOocJ637HFSr7s4nnRh30zG59kpUCRbYbDkQy9xZ0JyqgfcKO8x14QOrTkDJkT9fMoSHoEmq8RoMFclIGVL7ImbPrpdyC6Gy6EYl+smH2zGHe6O8jQz69S8/iIRznKEOnA7wykqoWkINfLz4vaCNWlt832pQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Jr0VUsRK; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=w3M4oAZ4DS3UO3u36YB3/CxaaPZ2YrBpIFI0Wh30A8A=; b=Jr0VUsRK/IE1qd+RR0bfCqslUG
+	/AAontTXkjJGmQmM5wYdqZ84LRD3Cv01F10N+CG9BqseU/yglDZx9644msAASwczuNvpap8YpKiVp
+	9s4MfpLm1MVCEGLOG0a0bI2UhZrAyrqS6fLxDnJrmj7TX0+dC+IwFooMtbU2/vdeVDvY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rayBR-007yxp-SG; Fri, 16 Feb 2024 14:23:17 +0100
+Date: Fri, 16 Feb 2024 14:23:17 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: forbidden405@outlook.com
+Cc: Yisen Zhuang <yisen.zhuang@huawei.com>,
+	Salil Mehta <salil.mehta@huawei.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Yang Xiwen <forbidden405@foxmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/6] net: hisilicon: add support for hisi_femac core on
+ Hi3798MV200
+Message-ID: <d3ac4638-d0bf-4c6c-bccd-519ad1f4dc5e@lunn.ch>
+References: <20240216-net-v1-0-e0ad972cda99@outlook.com>
+ <20240216-net-v1-1-e0ad972cda99@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="vnqlg3uvjn2uzdnc"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <PH8PR12MB6675AAAC5D7A86D2CAA382D6E14D2@PH8PR12MB6675.namprd12.prod.outlook.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20240216-net-v1-1-e0ad972cda99@outlook.com>
 
+> +	// Register the optional MDIO bus
+> +	for_each_available_child_of_node(node, mdio_np) {
+> +		if (of_node_name_prefix(mdio_np, "mdio")) {
+> +			priv->mdio_pdev = of_platform_device_create(mdio_np, NULL, dev);
+> +			of_node_put(mdio_np);
+> +			if (!priv->mdio_pdev) {
+> +				dev_err(dev, "failed to register MDIO bus device\n");
+> +				goto out_free_netdev;
+> +			}
+> +			mdio_registered = true;
+> +			break;
+> +		}
+> +	}
+> +
+> +	if (!mdio_registered)
+> +		dev_warn(dev, "MDIO subnode notfound. This is usually a bug.\n");
 
---vnqlg3uvjn2uzdnc
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I don't understand the architecture of this device yet...
 
-On 15.02.2024 13:59:33, Goud, Srinivas wrote:
-> Thanks, tested with v8 changes, it is working fine.
+It seems like you have an integrated PHY? In the example, you used a
+phy-handle to bind the MAC to the PHY. So why is the MDIO bus
+optional?
 
-Thanks for testing,
-Marc
+Do the MII signals from the MAC also go to SoC pins, so you could use
+an external PHY? Is there a SERDES so you could connect to an SFP
+cage?
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+Also, do the MDIO pins go to SoC pins? Can the MDIO bus master be used
+to control external PHYs?
 
---vnqlg3uvjn2uzdnc
-Content-Type: application/pgp-signature; name="signature.asc"
+If everything is internal, fixed in silicon, no variation possible,
+you don't need to describe the MDIO bus in DT. The MAC driver can
+register it, and then get the PHY at the hard coded address it uses.
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmXPYPsACgkQKDiiPnot
-vG8xrggAlIv4YXPwzJA/DC6whBfwx82iIe0vk+luYLVA0uU0cbq4EdorElh0G0lr
-HUY/IaeZ8f3tMbKUozl9YKOmhdZNEtRvmej8XV/vNUT++lc1J//tVmgXOBNl+6F0
-SR1zS9a3xBQ0h7ouuLkfHLDcybxZK4ImEcBmj0s7oRnvTruZ5ZpfoxJZmv1toGb5
-YFk1r7KCh7IzvW3D/u+/lgIYkEA3Gk5ie9D5s/TuhmGmeiEd5u+LmoIOg/F4zPY+
-ISMoTWfEZniC6Y9QR3Rsb+XDvammBVCPglFX8Okz3fkLko8s8Cik/GbF17BLNMic
-MqWJu8mCGml9zQDFbhWqb78FQFY+sQ==
-=v4VS
------END PGP SIGNATURE-----
-
---vnqlg3uvjn2uzdnc--
+	 Andrew
 
