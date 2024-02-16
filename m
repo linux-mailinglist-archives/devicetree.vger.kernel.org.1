@@ -1,93 +1,115 @@
-Return-Path: <devicetree+bounces-42662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C9A6858065
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 16:14:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE1D4858110
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 16:31:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7EBFA1C226CB
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 15:14:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82E66281685
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 15:31:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBF5F12F596;
-	Fri, 16 Feb 2024 15:14:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E833212FB06;
+	Fri, 16 Feb 2024 15:21:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="iQo0M9TX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t8WSu/vW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2978D12F58E;
-	Fri, 16 Feb 2024 15:14:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD2212F588;
+	Fri, 16 Feb 2024 15:21:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708096443; cv=none; b=rSEcJSujusLll3RUAt82wl1jDnRtKf4fqHB7cisqpM+3DnaZvQALt/U36EU6cBT6acKN8d5RFtKg7DEvgUFyohH4P5MfQEQ7BGrwemVECbGhc4HZUZk8rlD+Xv/46rtD3LaJ/gtesko/SXgh62RQKmJkRy7Q0MbYDTRxVAdqD4I=
+	t=1708096887; cv=none; b=lI0Vjzxse7dFaTUvTDnGB6Xj50ibck8zL/dCDuYT5cb884K27RI5l0Qw0/HmkyY+fh9mAH/sGwlXAjYBEb4H5rO0WQTOIq8QspGuIskSFeDLEZk+zDDzgtH9vMSABTjZbzG2X7ePrif/ck4R+nm2uJe1JVdYAnymm42IWaVgNdc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708096443; c=relaxed/simple;
-	bh=BNsVDgqfv9dGmKX2WSwdTC2XUCyV/caGILyjWh5SUm0=;
-	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
-	 To:Date:Message-ID; b=Bq3xG5A6M2tY/Fj/OAk1gqC0PiatDi5R3mTWe/h0V3Ar27Xkd/DrvuBnLBXNq2aOWF4s45bHU7yiEcGzEHcCGPtplux6uUYdlgCE2AJvs6ZLF+6AjlOfRrBYmHvQnXOQoFpMh1NaFbamzOCfanmHq9c7XRT/uU6+IM9VLZ0Qz1k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=iQo0M9TX; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (aztw-30-b2-v4wan-166917-cust845.vm26.cable.virginm.net [82.37.23.78])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8F0296B3;
-	Fri, 16 Feb 2024 16:13:55 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1708096435;
-	bh=BNsVDgqfv9dGmKX2WSwdTC2XUCyV/caGILyjWh5SUm0=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=iQo0M9TXbL+nqTdXe8p6gxJ44yN+pPUawTlpP41WND/40BauT/lOphq9DnkP/Tawv
-	 FGTTYqAHhfN1dH74G29xCSEVuerpxoh7u7wS6/XcvmpF2YaiuCbsHGjJ4A+pdQp4RO
-	 Y+eCdn5bfy+mvvOxn8jBch9Uk+xKq+6PRGt+iUhg=
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1708096887; c=relaxed/simple;
+	bh=IxnSWTB2sBXQF0390u8a976PN+j85jvd6/lGGofC8VY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=durNq1Usy8ycXEIB5IyPqp8CBDhtm25OabWQ652YEgmKA+mooBCXQa4qp7HO/f+saKChORjlID/7mbxU3knRAJ60zWt3OfGg1iJNRG9gowP8EcD1xL/G7ahUlDcwnZbxsfdOTRWIKkGckf1KS8kEpqldJZ5vJbwphgAqn9b1AEI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t8WSu/vW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 46FDDC433C7;
+	Fri, 16 Feb 2024 15:21:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708096887;
+	bh=IxnSWTB2sBXQF0390u8a976PN+j85jvd6/lGGofC8VY=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=t8WSu/vWzA3RAuEKVApWeF6Dn0DnVniiHCrLWnfntoku88Vb4Y4mz6lsLI+iafxcj
+	 kWAwRes8UHJnyXfUA1go2QS5nTZP6X50jjefqD8QpTvzmWEXr8giiaAtac90S3vVZp
+	 Wa+71Tp7fjI90vI8iIOx0XTN102gI82qtTK7n7ca3hOE8BMkULDF6DCzlayADLyJ23
+	 0Yaq1kP+aujvX1aonwgNiC1nUsySQ1ZSNfPMx/ehkd416Iks+baHt9zkSeABW39DzP
+	 xAB4c9ySq2sGW/c8sYuaE+4AHfA6gzFlifDdF9nkZQS+ALJiqtjWKFXcqjv0RfYuLI
+	 gkB1Qdkr4YqXQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2CA8AC48260;
+	Fri, 16 Feb 2024 15:21:27 +0000 (UTC)
+From: Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>
+Subject: [PATCH RFC 0/4] phy: hisi-inno-phy: add support for
+ hi3798mv200-usb2-phy
+Date: Fri, 16 Feb 2024 23:21:00 +0800
+Message-Id: <20240216-inno-phy-v1-0-1ab912f0533f@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <Zc8ppr4mE8ZgVNUs@kekkonen.localdomain>
-References: <20240215204436.9194-1-umang.jain@ideasonboard.com> <20240215204436.9194-2-umang.jain@ideasonboard.com> <55d41858-b567-4e23-8d84-3af81b52d018@linaro.org> <Zc8ppr4mE8ZgVNUs@kekkonen.localdomain>
-Subject: Re: [PATCH 1/2] media: dt-bindings: media: Add bindings for IMX283
-From: Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc: Umang Jain <umang.jain@ideasonboard.com>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, Fabio Estevam <festevam@gmail.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, willl will <will@willwhang.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Sakari Ailus <sakari.ailus@linux.intel.com>
-Date: Fri, 16 Feb 2024 15:13:57 +0000
-Message-ID: <170809643706.2629073.1807694963113475412@ping.linuxembedded.co.uk>
-User-Agent: alot/0.10
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFx9z2UC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDI0Mz3cy8vHzdgoxK3USjFAtzozSzJHOTJCWg8oKi1LTMCrBR0UpBbs5
+ KsbW1AO6AnyJfAAAA
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Jiancheng Xue <xuejiancheng@hisilicon.com>, 
+ Pengcheng Li <lpc.li@hisilicon.com>, Shawn Guo <shawn.guo@linaro.org>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Kishon Vijay Abraham I <kishon@ti.com>, 
+ David Yang <mmyangfl@gmail.com>, Yang Xiwen <forbidden405@outlook.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1708096886; l=1304;
+ i=forbidden405@outlook.com; s=20230724; h=from:subject:message-id;
+ bh=IxnSWTB2sBXQF0390u8a976PN+j85jvd6/lGGofC8VY=;
+ b=jVZPCURmpgkvsGh4pmLptz411OscyhZfFOxAAmB4AKycoTJpCK24CwzaBAjfCCKBgjM8qYArr
+ uVTzXRcqYHvCIgzGWjYN3cP73jcSNBzIRH0pfkqv/yg6MlQsD8aC2Eo
+X-Developer-Key: i=forbidden405@outlook.com; a=ed25519;
+ pk=qOD5jhp891/Xzc+H/PZ8LWVSWE3O/XCQnAg+5vdU2IU=
+X-Endpoint-Received:
+ by B4 Relay for forbidden405@outlook.com/20230724 with auth_id=67
+X-Original-From: Yang Xiwen <forbidden405@outlook.com>
+Reply-To: <forbidden405@outlook.com>
 
-Quoting Sakari Ailus (2024-02-16 09:23:50)
-> Hi Krzysztof, Umang,
->=20
-> On Fri, Feb 16, 2024 at 09:03:49AM +0100, Krzysztof Kozlowski wrote:
-> > > +        properties:
-> > > +          data-lanes: true
-> >=20
-> > Provide constraints - which lanes/how many.
->=20
-> Very probably only the number matters on this device. Therefore minimum a=
-nd
-> maximum should suffice. (Or an enum. 3 is probably an invalid number of
-> lanes here, too.)
+This should be considered a dirty hack. The proper solution would be
+extracting write_reg logic to a separate regmap driver. Leaving only
+"write BIT(2) to address 0x6" to the PHY driver.
 
-I think we can only support 4 lanes here. I heard rumour that it 'might'
-be possible to support 2 lanes, but I haven't seen any documentation for
-that and I don't think it's likely expected to be supported.
+The initial commit is already doing things wrong. The following patches
+adding hi3798mv100 support is also very confusing. The name of the
+enumeration "PHY_TYPE_x" is very misleading as if it's the phy which is
+different across SoCs. But actually it's the bus (i.e. how to write to a
+given address) which is different, not the PHY.
 
---
-Kieran
+Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+---
+Yang Xiwen (4):
+      dt-binding: phy: hisi-inno-usb2: convert to YAML
+      phy: hisilicon: enable clocks for every ports
+      phy: hisi-inno-usb2: add support for direct MMIO
+      dt-binding: phy: hisi-inno-usb2: add compatible of hisilicon,hi3798mv200-usb2-phy
 
->=20
-> --=20
-> Kind regards,
->=20
-> Sakari Ailus
->=20
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+ .../bindings/phy/hisilicon,inno-usb2-phy.yaml      | 125 +++++++++++++++++++++
+ .../devicetree/bindings/phy/phy-hisi-inno-usb2.txt |  71 ------------
+ drivers/phy/hisilicon/phy-hisi-inno-usb2.c         |  57 ++++++----
+ 3 files changed, 161 insertions(+), 92 deletions(-)
+---
+base-commit: 8d3dea210042f54b952b481838c1e7dfc4ec751d
+change-id: 20240216-inno-phy-a2d872f6b74b
+
+Best regards,
+-- 
+Yang Xiwen <forbidden405@outlook.com>
+
 
