@@ -1,168 +1,197 @@
-Return-Path: <devicetree+bounces-42636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38C1C857EB9
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 15:08:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB661857EBB
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 15:08:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D07B1281363
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 14:08:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 458A21F2120B
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 14:08:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4524812C54D;
-	Fri, 16 Feb 2024 14:08:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50E5612C54F;
+	Fri, 16 Feb 2024 14:08:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JEJxSQkD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TemEtxZv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5314C12C522
-	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 14:08:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21CE959B5F;
+	Fri, 16 Feb 2024 14:08:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708092508; cv=none; b=JTsbVxMakeHoIMt5tFLCF3sG7aY6T1V/xo6a3/5qbm4uWUeVYXxO4I09JH4agQiGS+/WGrhyHFBGIhd3xBsHD8APPjRLUgag5FhzapjPU1bu3ZSMtMu+yNVIYcCUNOJbpUJsuLQpnS5yw731Ssvz4NdDYF50X09Qwi+kvYIW1GM=
+	t=1708092519; cv=none; b=cdwhpkZuYRatqSRMhFjzxwUKrGUKADNhgxZ5lNjc+OQtAYBZ8FpsH3EuWysCgnxDWV5N+DAAGMMVaSP7ZL16ZNKAgwA1MzGmA0od4N2ng1Lqb6/8+XH5QF23npOTEMWWFmLJILIY6dsVwsZrKm8TMgVWu9bB5gPFbEY1b+QCP3M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708092508; c=relaxed/simple;
-	bh=VWBsKuNrGY4MHfVRFud0fpjtMJD9nw9ddeYFNhkmHOs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ENHQxFXkdSaa5HwdEclBADaiWPt/NNsAoMWmGIAVwhHiTQCBxoOrvHW9DBE0qNUmNKmafDBLj0z5786zn82+/2UYB29VSH+lDENmwO9HLWSmdOxDPLl6uRSfoUa6w5lq2mv2l/wo4CpA+S3seVKsfeLMbry0d42eBh8jgnMlhdA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JEJxSQkD; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-1db5212e2f6so15243195ad.1
-        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 06:08:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708092504; x=1708697304; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=hDNGahqQJk0+PITO4aJ9GSNZ6MTNzgQKhJKA5SQZKi8=;
-        b=JEJxSQkDlBSxDwr2A8IeMR85T+g8S+1tDUy1Cfi6B1n1uwMyXmUDPZVF363lc/8gFI
-         OslOa/0P+EORrnKMizcJXnAhGbtxJXZnTKcM76Z8wEAlMW0VE7twP5CCp1n89bENMO4T
-         d1LYqv0oWvSogkJ/HTe8SKyDChlQkMLzwOgAR3WVLGurUSFuM9wwY2SnNVhhsrkT8MLp
-         +XiC7bxox//Im/muCdXrCO00Z+QLw1Nhg6IfVyEtZASLE3AL3jjAPuEBYK5QemohBx2L
-         ChwP9L6AFosAh1jCm+U769bytLrJZ16v3YF6u8MWKB0K9CxsKsMPgvEBuhYhCkJAHWZ6
-         TUeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708092504; x=1708697304;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hDNGahqQJk0+PITO4aJ9GSNZ6MTNzgQKhJKA5SQZKi8=;
-        b=As58KeqBgyV2IhuhR4v/+vJsXcVfDUNmYC1Rc/xD/pIQnjdPouS2/00isGyhdlCQLR
-         FG9+JNemnCo6sngp03MfMgOR2WOCpCfke73TPQ6Y0ZSdJw9GTOCfOEye8ZWtqSgRPYZY
-         Pzilm+C8FcgYZMMZf7oZG7KrM7TJkKhW0SyB+NZkf2o5gRbqu5W7hBjq3cXLmJOmaWvW
-         OuCRc97Jo33YCq+HIOUdiF5lA5OsEsqoNVbHHUWilPqY7tsHWRBNrFVskx+Qii9mATB5
-         i4VBnoTbZF3Dpbg7usTYnVG2UkTxcP9bD1/jo7ollkaA8IMpKb32gVtnt+Sxj1ssObNu
-         Xzbg==
-X-Forwarded-Encrypted: i=1; AJvYcCUG423TZMICn+y3EWABH7NV/DQao5kJccFQvv/px5bRAImqJyOuF7aKeI0Ccd6zw4yI3/81xGml9VFtXn4z25iis1rcPFUFTTr6jA==
-X-Gm-Message-State: AOJu0YxKI+r2tHEULLuRI7sQzpL1+0ASety1LNjjVYkJcyZEzlhSCPmz
-	jxO5Am7LPyZL08/AQU94iykx7cLVoGnP3bWz6qAGDXXYuC7HdRAd/xuP9YBsBA==
-X-Google-Smtp-Source: AGHT+IEJ67yKNp9ZCPVkUP0bhXP3swDJdkIjJCRgMu0wYsy757xU1RvqSe3sdhXohwWYryr7nTgkZQ==
-X-Received: by 2002:a17:902:7c8c:b0:1db:47bb:671b with SMTP id y12-20020a1709027c8c00b001db47bb671bmr9327518pll.19.1708092504602;
-        Fri, 16 Feb 2024 06:08:24 -0800 (PST)
-Received: from thinkpad ([120.138.12.48])
-        by smtp.gmail.com with ESMTPSA id jl21-20020a170903135500b001d8e41b3f95sm3036484plb.51.2024.02.16.06.08.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Feb 2024 06:08:24 -0800 (PST)
-Date: Fri, 16 Feb 2024 19:38:18 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	"James E.J. Bottomley" <jejb@linux.ibm.com>,
-	"Martin K. Petersen" <martin.petersen@oracle.com>,
-	Nitin Rawat <quic_nitirawa@quicinc.com>,
-	Can Guo <quic_cang@quicinc.com>,
-	Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Avri Altman <avri.altman@wdc.com>,
-	Bart Van Assche <bvanassche@acm.org>,
-	Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-scsi@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 6/6] arm64: dts: qcom: msm8996: drop source clock
- entries from the UFS node
-Message-ID: <20240216140818.GN2559@thinkpad>
-References: <20240213-msm8996-fix-ufs-v2-0-650758c26458@linaro.org>
- <20240213-msm8996-fix-ufs-v2-6-650758c26458@linaro.org>
+	s=arc-20240116; t=1708092519; c=relaxed/simple;
+	bh=URft1yFNooeHjgEuV5zJYSSsgebVw7/oaikTAzwc7HY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=fzDJe8gzJBdWxantCJJFbvqNNAUQnLAxr3F5g0eZUIJQaNW5Ycj7EoRuidv8cL81tnJBU0crkKZ/+bAk1aFTbNofrV9IrqE3LXb0Q+oe4hQ97ztQQMQ/kdy01e1Y2sU44N4gTjFOo8cq2ScDF0yMPMCly8Xten53y6FQhca60z4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TemEtxZv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54A7CC433F1;
+	Fri, 16 Feb 2024 14:08:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708092518;
+	bh=URft1yFNooeHjgEuV5zJYSSsgebVw7/oaikTAzwc7HY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=TemEtxZvXL3MtNaqtsE44bHlpFma7OYlRBd7d9HhpQx5e5uUjFuec2rr/BPGaoA9b
+	 qKXRUN1VIJlE6UV6N7Vg1HduKnWyHxBliIiw4js/LhN2C+p9mRd8zVSXOMyzH8uTs7
+	 kpuCoCP4a6qBIq6fvj+6OHq6Tori37riWp2JYLyXxO4CJT/uT0V44SYy6nDRMWNBOE
+	 YWrRYVOXsw9lxHEZIImnFdXSlf6XnMDCPguDceCO31PiMwFud7OXqqG80CIv3Rmi2U
+	 NndgxRpehHGvOMjozYXlP6JIhVGEpoFlE3Xifi9ix+QXgNAyLzecSNPWvXLWHiYR/i
+	 oy1DHzBsMpbhg==
+Date: Fri, 16 Feb 2024 14:08:26 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: linux-iio@vger.kernel.org, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Liam
+ Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: add ad7944 ADCs
+Message-ID: <20240216140826.58b3318d@jic23-huawei>
+In-Reply-To: <CAMknhBF8HKDftjBuwuA4GWUmn4j36Zut84d7xLKgZPDaiY87kA@mail.gmail.com>
+References: <20240206-ad7944-mainline-v1-0-bf115fa9474f@baylibre.com>
+	<20240206-ad7944-mainline-v1-1-bf115fa9474f@baylibre.com>
+	<20240210174022.7a0c7cdc@jic23-huawei>
+	<CAMknhBF8HKDftjBuwuA4GWUmn4j36Zut84d7xLKgZPDaiY87kA@mail.gmail.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240213-msm8996-fix-ufs-v2-6-650758c26458@linaro.org>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Tue, Feb 13, 2024 at 01:22:22PM +0200, Dmitry Baryshkov wrote:
-> There is no need to mention and/or to touch in any way the intermediate
-> (source) clocks. Drop them from MSM8996 UFSHCD schema, making it follow
-> the example lead by all other platforms.
+> > > +  adi,spi-mode:
+> > > +    $ref: /schemas/types.yaml#/definitions/string
+> > > +    enum: [ 3-wire, 4-wire, chain ]
+> > > +    default: 4-wire
+> > > +    description:
+> > > +      This chip can operate in a 3-wire mode where SDI is tied to VIO, a 4-wire
+> > > +      mode where SDI acts as the CS line, or a chain mode where SDI of one chip
+> > > +      is tied to the SDO of the next chip in the chain and the SDI of the last
+> > > +      chip in the chain is tied to GND.  
+> >
+> > there is a standard property in spi-controller.yaml for 3-wire. Does that cover
+> > the selection between 3-wire and 4-wire here?  Seems like this might behave
+> > differently from that (and so perhaps we shouldn't use 3-wire as the description
+> > to avoid confusion, normally 3-wire is a half duplex link I think).  
 > 
+> I used "3-wire" because that is what the datasheet calls it. But yes,
+> I see the potential for confusion here since this "3-wire" is
+> completely unrelated to the standard "spi-3wire" property.
+Maybe we fall back on a comment that says something like.
 
-Okay, here you are dropping the "core_clk_unipro_src" anyway. So my earlier
-comment can be ignored.
+"This is not the same as spi-3wire." :)
 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Whatever we end up with here, I'd like everyone to agree it's
+obviously different enough from existing SPI bindings that there won't
+be any confusion. 
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-
-- Mani
-
-> ---
->  arch/arm64/boot/dts/qcom/msm8996.dtsi | 6 ------
->  1 file changed, 6 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> index ce94e2af6bc5..f18d80a97bbf 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> @@ -2047,24 +2047,20 @@ ufshc: ufshc@624000 {
->  			power-domains = <&gcc UFS_GDSC>;
->  
->  			clock-names =
-> -				"core_clk_src",
->  				"core_clk",
->  				"bus_clk",
->  				"bus_aggr_clk",
->  				"iface_clk",
-> -				"core_clk_unipro_src",
->  				"core_clk_unipro",
->  				"core_clk_ice",
->  				"ref_clk",
->  				"tx_lane0_sync_clk",
->  				"rx_lane0_sync_clk";
->  			clocks =
-> -				<&gcc UFS_AXI_CLK_SRC>,
->  				<&gcc GCC_UFS_AXI_CLK>,
->  				<&gcc GCC_SYS_NOC_UFS_AXI_CLK>,
->  				<&gcc GCC_AGGRE2_UFS_AXI_CLK>,
->  				<&gcc GCC_UFS_AHB_CLK>,
-> -				<&gcc UFS_ICE_CORE_CLK_SRC>,
->  				<&gcc GCC_UFS_UNIPRO_CORE_CLK>,
->  				<&gcc GCC_UFS_ICE_CORE_CLK>,
->  				<&rpmcc RPM_SMD_LN_BB_CLK>,
-> @@ -2072,8 +2068,6 @@ ufshc: ufshc@624000 {
->  				<&gcc GCC_UFS_RX_SYMBOL_0_CLK>;
->  			freq-table-hz =
->  				<100000000 200000000>,
-> -				<100000000 200000000>,
-> -				<0 0>,
->  				<0 0>,
->  				<0 0>,
->  				<0 0>,
+> >
+> > Chain mode is more fun.  We've had that before and I'm trying to remember what
+> > the bindings look like. Devices like ad7280a do a different form of chaining.  
 > 
-> -- 
-> 2.39.2
-> 
+> If there isn't a clear precedent for how to write bindings for chained
+> devices, this may be something better left for when there is an actual
+> use case to be sure we get it right.
 
--- 
-மணிவண்ணன் சதாசிவம்
+Agreed.  Let us kick that into the future.
+
+> 
+> >
+> > Anyhow, main thing here is we need to be careful that the terms don't overlap
+> > with other possible interpretations.
+> >
+> > I think what this really means is:
+> >
+> > 3-wire - no chip select, exclusive use of the SPI bus (yuk)  
+> 
+> This can actually be done two ways. One where there is no CS and we
+> use cnv-gpios to control the conversion. The other is where CS of the
+> SPI controller is connected to the CNV pin on the ADC and cnv-gpios is
+> omitted. This requires very creative use of spi xfers to get the right
+> signal but does work.
+> 
+> In any case to achieve max sample rate these chips need to use this
+> "3-wire" mode and have exclusive use of the bus whether is is using
+> proper CS or not.
+> 
+> So maybe it would be more clear to split this one into two modes?
+> 3-wire with CS and 3-wire without CS?
+OK.
+
+I'm not sure if the standard SPI bindings have an option for
+CS tied active?  If so we should reuse that bit of [psson;e/
+
+> 
+> > 4-write - conventional SPI with CS  
+> 
+> Yes.
+> 
+> > chained - the 3 wire mode really but with some timing effects?  
+> 
+> Correct. With the exception that the SPI CS line can't be used in
+> chain mode (unless maybe if you had an inverted CS signal since the
+> CNV pin has to be high during the data transfer).
+> 
+> >
+> > Can we figure out if chained is going on at runtime?  
+> 
+> No. We would always need the devicetree to at least say how many chips
+> are in the chain. Also, in theory, each chip could have independent
+> supplies and therefore different reference voltages.
+That's one I think we only bother supporting when we actually see it.
+For previous chained devices I don't think we've ever needed to do
+it because they tend to be used for 'more of the same' rather than
+measuring different things.  Supplies so far have always been wired
+to single regulator (or single control anyway).
+
+
+> >
+> > If we are going to rule you supplying refin and ref supplies.  
+> 
+> Not sure what you mean here, but we can get rid of the adi,reference
+> property and just add a check to not allow both ref-supply and
+> refin-supply at the same time.
+
+I think that is simplest route.
+
+> 
+> >  
+> > > +
+> > > +  cnv-gpios:
+> > > +    description:
+> > > +      The Convert Input (CNV). This input has multiple functions. It initiates
+> > > +      the conversions and selects the SPI mode of the device (chain or CS). In
+> > > +      3-wire mode, this property is omitted if the CNV pin is connected to the
+> > > +      CS line of the SPI controller.
+> > > +    maxItems: 1  
+> >
+> > ah, that's exciting - so in 3-wire mode, we basically put the CS on a different pin...  
+> 
+> I explained this above already, but just to have it in context here as
+> well... In what the datasheet calls "3-wire" mode, we can either have
+> CS connected and no cnv-gpios or we can have no CS and have cnv-gpios
+> connected.
+> 
+> So the intention here was to make cnv-gpios required all other modes
+> but in 3-wire mode, make it optional.
+
+Seems reasonable. Thanks for the various explanations. This chip is just odd :)
+
+> 
+> 
+> >
+> > Mark, perhaps you can suggest how to handle this complex family of spi variants?
+> >
+> > Jonathan
+> >  
+
 
