@@ -1,110 +1,177 @@
-Return-Path: <devicetree+bounces-42597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F616857D9E
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 14:23:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 409FD857DA9
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 14:28:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E44AE1F217B5
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 13:23:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 73D711C23A7F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 13:28:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9697D12A15F;
-	Fri, 16 Feb 2024 13:23:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1801129A6F;
+	Fri, 16 Feb 2024 13:27:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Jr0VUsRK"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="IZaZNlZ6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 570811292C0;
-	Fri, 16 Feb 2024 13:23:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95FBB126F20;
+	Fri, 16 Feb 2024 13:27:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708089803; cv=none; b=LenKCqSxYwR+Jmd93Mz7OxWLPMRXajVRO7fXENipZylZQcjbioOjISGOBy5fmd8ny17ynRHjQY6XcQcsL09hBoImaDsWAq46ykr5/WLs1f8kRsQ7AHRR7zny02NulT3N9lTaFOSP+mnBkWM7vTsce9gE5iU3PsoSiiAKntTNSXc=
+	t=1708090076; cv=none; b=M8ECGxlp91uCc7PqhCDZ2LJmHJs9b39Eh9Fz3wvtg14ZiHIFhxFgjW4uJw4koI0dpc7qlh5bXg3gAadpwAKdjcfKKWinpp0maBooI4Gq81moBF+SMfnD8DER+rpGlTr2/qNzHjo5zP0ZFeDDxXxg5mcLPv5FM7tVsrMPaQksCW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708089803; c=relaxed/simple;
-	bh=yNQ47maJB06kRaj+kJ7yhxyB60a9jxG4VEfPnqmenu0=;
+	s=arc-20240116; t=1708090076; c=relaxed/simple;
+	bh=DVNKQM8UzoLFRwHdVCvWTrQftXuPdsVrLp5GhIq1hdQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I17KNW1oFsjkn0OiOocJ637HFSr7s4nnRh30zG59kpUCRbYbDkQy9xZ0JyqgfcKO8x14QOrTkDJkT9fMoSHoEmq8RoMFclIGVL7ImbPrpdyC6Gy6EYl+smH2zGHe6O8jQz69S8/iIRznKEOnA7wykqoWkINfLz4vaCNWlt832pQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Jr0VUsRK; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=w3M4oAZ4DS3UO3u36YB3/CxaaPZ2YrBpIFI0Wh30A8A=; b=Jr0VUsRK/IE1qd+RR0bfCqslUG
-	/AAontTXkjJGmQmM5wYdqZ84LRD3Cv01F10N+CG9BqseU/yglDZx9644msAASwczuNvpap8YpKiVp
-	9s4MfpLm1MVCEGLOG0a0bI2UhZrAyrqS6fLxDnJrmj7TX0+dC+IwFooMtbU2/vdeVDvY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rayBR-007yxp-SG; Fri, 16 Feb 2024 14:23:17 +0100
-Date: Fri, 16 Feb 2024 14:23:17 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: forbidden405@outlook.com
-Cc: Yisen Zhuang <yisen.zhuang@huawei.com>,
-	Salil Mehta <salil.mehta@huawei.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Yang Xiwen <forbidden405@foxmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/6] net: hisilicon: add support for hisi_femac core on
- Hi3798MV200
-Message-ID: <d3ac4638-d0bf-4c6c-bccd-519ad1f4dc5e@lunn.ch>
-References: <20240216-net-v1-0-e0ad972cda99@outlook.com>
- <20240216-net-v1-1-e0ad972cda99@outlook.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=RILRb6DgQ5elugWlfQD1r9jxUsLLIoLqRWFp8wPyDBZFhT/g7ym4P2rG5Y+g2mxxZQTxrLFVt6l0Dw0miEXHiAryFr1tPDZQ5qKWHpVHUCRVndx6PQhovtzAzPKv0+8lCV6/n0eICw6a+PGpDm3kzPZuJTumQwuD1b4ywi7ogQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=IZaZNlZ6; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (89-27-53-110.bb.dnainternet.fi [89.27.53.110])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 16E466B3;
+	Fri, 16 Feb 2024 14:27:47 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1708090067;
+	bh=DVNKQM8UzoLFRwHdVCvWTrQftXuPdsVrLp5GhIq1hdQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IZaZNlZ6uiKdIj0R95tBupynQmY8FIWAbLHlo37wQgSUDaQgV6elZgQ/tEsDjElLS
+	 LsOgSP8OXEdc1zxzT5VhDuPbp6EPb9eBVUSbisUmUMQ66uJnn0Tqj4fRM0WQT8tfUn
+	 tSXsPqNvEKzXRwIqlfGmCrz9s3hGRfP4RkkL1K1Q=
+Date: Fri, 16 Feb 2024 15:27:55 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Dan Scally <dan.scally@ideasonboard.com>
+Cc: Conor Dooley <conor@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	jacopo.mondi@ideasonboard.com, nayden.kanchev@arm.com,
+	robh+dt@kernel.org, mchehab@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com
+Subject: Re: [PATCH v2 2/5] dt-bindings: media: Add bindings for ARM mali-c55
+Message-ID: <20240216132755.GA20376@pendragon.ideasonboard.com>
+References: <20240214141906.245685-1-dan.scally@ideasonboard.com>
+ <20240214141906.245685-3-dan.scally@ideasonboard.com>
+ <20240214142825.GA7873@pendragon.ideasonboard.com>
+ <20240214-velcro-pushy-0cbd18b23361@spud>
+ <20240215110205.GD7873@pendragon.ideasonboard.com>
+ <e06b0792-187d-454b-aa62-d9c1e797df17@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240216-net-v1-1-e0ad972cda99@outlook.com>
+In-Reply-To: <e06b0792-187d-454b-aa62-d9c1e797df17@ideasonboard.com>
 
-> +	// Register the optional MDIO bus
-> +	for_each_available_child_of_node(node, mdio_np) {
-> +		if (of_node_name_prefix(mdio_np, "mdio")) {
-> +			priv->mdio_pdev = of_platform_device_create(mdio_np, NULL, dev);
-> +			of_node_put(mdio_np);
-> +			if (!priv->mdio_pdev) {
-> +				dev_err(dev, "failed to register MDIO bus device\n");
-> +				goto out_free_netdev;
-> +			}
-> +			mdio_registered = true;
-> +			break;
-> +		}
-> +	}
-> +
-> +	if (!mdio_registered)
-> +		dev_warn(dev, "MDIO subnode notfound. This is usually a bug.\n");
+On Fri, Feb 16, 2024 at 01:09:15PM +0000, Daniel Scally wrote:
+> On 15/02/2024 11:02, Laurent Pinchart wrote:
+> > On Wed, Feb 14, 2024 at 05:37:17PM +0000, Conor Dooley wrote:
+> >> On Wed, Feb 14, 2024 at 04:28:25PM +0200, Laurent Pinchart wrote:
+> >>> On Wed, Feb 14, 2024 at 02:19:03PM +0000, Daniel Scally wrote:
+> >>>> Add the yaml binding for ARM's Mali-C55 Image Signal Processor.
+> >>>>
+> >>>> Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
+> >>>> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+> >>>> ---
+> >>>> Changes in v2:
+> >>>>
+> >>>> 	- Added clocks information
+> >>>> 	- Fixed the warnings raised by Rob
+> >>>>
+> >>>>   .../bindings/media/arm,mali-c55.yaml          | 77 +++++++++++++++++++
+> >>>>   1 file changed, 77 insertions(+)
+> >>>>   create mode 100644 Documentation/devicetree/bindings/media/arm,mali-c55.yaml
+> >>>>
+> >>>> diff --git a/Documentation/devicetree/bindings/media/arm,mali-c55.yaml b/Documentation/devicetree/bindings/media/arm,mali-c55.yaml
+> >>>> new file mode 100644
+> >>>> index 000000000000..30038cfec3a4
+> >>>> --- /dev/null
+> >>>> +++ b/Documentation/devicetree/bindings/media/arm,mali-c55.yaml
+> >>>> @@ -0,0 +1,77 @@
+> >>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>>> +%YAML 1.2
+> >>>> +---
+> >>>> +$id: http://devicetree.org/schemas/media/arm,mali-c55.yaml#
+> >>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>>> +
+> >>>> +title: ARM Mali-C55 Image Signal Processor
+> >>>> +
+> >>>> +maintainers:
+> >>>> +  - Daniel Scally <dan.scally@ideasonboard.com>
+> >>>> +  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> >>>> +
+> >>>> +properties:
+> >>>> +  compatible:
+> >>>> +    const: arm,mali-c55
+> >>>> +
+> >>>> +  reg:
+> >>>> +    maxItems: 1
+> >>>> +
+> >>>> +  interrupts:
+> >>>> +    maxItems: 1
+> >>>> +
+> >>>> +  clocks:
+> >>>> +    items:
+> >>>> +      - description: ISP video clock
+> >>>
+> >>> I wonder if we need this clock. Granted, it's an input clock to the ISP,
+> >>> but it's part of the input video bus. I don't expect anyone would ever
+> >>> need to control it manually, it should be provided by the video source
+> >>> automatically.
+> >>
+> >> I'd say that if there's a clock controller providing this clock, even if
+> >> it is implicit in the video feed it's good to have here. Being able to
+> >> increment the refcount on that clock would be good, even if you don't
+> >> actually control it manually?
+> >
+> > I don't expect there would be a clock controller to directly reference
+> > in most cases. It depends a bit on where the clock domain crossing
+> > between the source (often a CSI-2 receiver) and the ISP is. If it's
+> > implemented in glue logic bundled with the ISP, which wouldn't be
+> > described in DT as a separate node, then there's a higher chance we'll
+> > have a clock controller for vclk. If it's implemented in the source,
+> > vclk will just come from the source, which won't be listed as a clock
+> > controller.
+> >
+> > One option would be to make this clock optional, by moving it to the end
+> > of the clocks list, and setting
+> >
+> > 	minItems: 2
+> > 	maxItems: 3
+> >
+> >>>> +      - description: ISP AXI clock
+> >>>> +      - description: ISP AHB-lite clock
+> >>>
+> >>> These two other clocks look good to me.
+> >>>
+> >>>> +
+> >>>> +  clock-names:
+> >>>> +    items:
+> >>>> +      - const: vclk
+> >>>> +      - const: aclk
+> >>>> +      - const: hclk
+> >>
+> >> Why not "video" "axi" "ahb-lite"? There's 3 useful letters between the
+> >> tree clock names you've provided - they're all clocks, so having "clk"
+> >> in them is just noise :)
+> >
+> > As far as I understand, the names proposed by Dan come directly from the
+> > IP core documentation.
+> 
+> This is the case, but I do take Conor's point that more descriptive names might be nicer - if I'm 
+> honest I just didn't think about it particularly given "Xclk" is such a common name for them 
+> already, but having been poked into thinking about it I do agree.
 
-I don't understand the architecture of this device yet...
+Isn't the usual practice in DT bindings is to name GPIOs, clocks and reset
+signals based on the hardware documentation ?
 
-It seems like you have an integrated PHY? In the example, you used a
-phy-handle to bind the MAC to the PHY. So why is the MDIO bus
-optional?
+-- 
+Regards,
 
-Do the MII signals from the MAC also go to SoC pins, so you could use
-an external PHY? Is there a SERDES so you could connect to an SFP
-cage?
-
-Also, do the MDIO pins go to SoC pins? Can the MDIO bus master be used
-to control external PHYs?
-
-If everything is internal, fixed in silicon, no variation possible,
-you don't need to describe the MDIO bus in DT. The MAC driver can
-register it, and then get the PHY at the hard coded address it uses.
-
-	 Andrew
+Laurent Pinchart
 
