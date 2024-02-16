@@ -1,243 +1,174 @@
-Return-Path: <devicetree+bounces-42448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96BCC8578F1
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 10:37:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90E0785790E
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 10:41:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BBE881C221B8
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 09:37:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 04E95B23906
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 09:41:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43F891BC23;
-	Fri, 16 Feb 2024 09:37:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3EAF1BC57;
+	Fri, 16 Feb 2024 09:41:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="uNUjB6Gw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TZB4RDXy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9006E1BDCE;
-	Fri, 16 Feb 2024 09:36:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE92A1BC3E
+	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 09:41:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708076221; cv=none; b=eV0JCAULSM1mhbCaIqS5UxKxmavdBg6ibDnnJLLgA7tGwZF12EvfCFvcuz+g37dyvY+KQUCkPnvLHgYfEc9/S7uoru7DsIz0wV695leTKqqCGR0n4gwqd6MkQKWls/9xn3dk1IrcFUI7pKAJJPfvo/TI+AorONVnJPbdfIHCzMc=
+	t=1708076510; cv=none; b=Y32DgPr/D5t9q7YGl9rSyGEbCwmL+bNmN/nuEZWhJH0x2QTZrXEprep8X08E0pXkOruEB+OIXAUlIYXRwQ4Nkgvqy1ub8FApcSKRZoa+QaBojuUaKkNzyCBx5ugq/NQv2tCu0655X5UI5mrJNOVAsEQ8nM/FRUXpsddmpFbuc8k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708076221; c=relaxed/simple;
-	bh=FqIG4hQ/2p90XglkBfcZ3NnAeisl+tmJAkWr6NZhF0Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YeaHNi2vczmQWIcfTaNgoPE68Zd1SaAh1ZR8kG5ys2a5nY5j8UaK/fq9EDn4ER86JGkZrD2ezugz6OJ5WWlDZ8dIFhNoM5EfMZ4sGV82CZuzDEt8ly4ZxUOvDqmSpWeQBo61pXQoX8Wzi0xpjGMNXGE8srl6q+X+208iQCz/zl0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=uNUjB6Gw; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (89-27-53-110.bb.dnainternet.fi [89.27.53.110])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id E8B746B3;
-	Fri, 16 Feb 2024 10:36:51 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1708076212;
-	bh=FqIG4hQ/2p90XglkBfcZ3NnAeisl+tmJAkWr6NZhF0Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uNUjB6Gw3OxkvkHlmGSI/pkrf1LZkc1jpT/X9oJcmmrO5PwnbIe8er7efnoLnnde4
-	 EJCR+DW8RAqM7mraBwyYb41PjGtQ2zQu7cWh/h/nBhV0w0TvfPG5Urbm3zm5QqRtJz
-	 JzCOTixie+sNZIGN5ZidIK9mD6GREBUJXuiNf14Q=
-Date: Fri, 16 Feb 2024 11:37:00 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
-	marex@denx.de, frieder.schrempf@kontron.de,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Adam Ford <aford173@gmail.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Liu Ying <victor.liu@nxp.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-	linux-pm@vger.kernel.org
-Subject: Re: [PATCH V8 09/12] dt-bindings: display: imx: add binding for
- i.MX8MP HDMI TX
-Message-ID: <20240216093700.GA10584@pendragon.ideasonboard.com>
-References: <20240203165307.7806-1-aford173@gmail.com>
- <20240203165307.7806-10-aford173@gmail.com>
- <5916132.MhkbZ0Pkbq@steina-w>
+	s=arc-20240116; t=1708076510; c=relaxed/simple;
+	bh=cJXJeTg2t1JcUIKkiUDU6sUwKALYCfSt6D2RB7ss0Ok=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oOs9uM+EaO4VZ99CeNF4xui9rNrvASCPAPRoQpL4d5APKLBH2KMGaC16698vtIfZKnQbTQX1fOING0a1O8TD2Bmu8pQ5ksFCzh6NjmTcNVr7FAhlRkoIepzdelWCYEZZkand1d5uJNPru+9XtEOgy9/7s6eLFzc5xpLB1L2po6s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TZB4RDXy; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a3dbc5d22c3so101720466b.1
+        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 01:41:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708076507; x=1708681307; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QqX4ARKUrghFsvwqYD8TypmhXkffUm0s/C+4tqYGXpk=;
+        b=TZB4RDXyhKWeEBmWH2Hg15facWR+y5PmIpYM7Q6MFB305hIgcqseld39eHT/eVH9Tz
+         L5FlvcfAbgZUc8qS/G67i5UvBSh2rSQcT8B0fKQ8+Z6DMVYlhE/Lf/Fn/mUTeYdNiPQz
+         znW/NFtO80Yo5NZUlUwwyq2oRExmMP7Hp0Ay/QG+8ub5/WncagHJmTMinnswOaNi/m3t
+         We1KDp2i8VQhHJwBhKa4BgxP9F5yroE1Dzr/+af1sWnoS+XnJYqzU0G3h0NaHvvu05J/
+         Hvqi+IX3hKcVZtGefYApyUY4oTFehUWCXeIl4Gkxv67XiM1SvUe2j82OkkTOqzXHGYDI
+         DCpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708076507; x=1708681307;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QqX4ARKUrghFsvwqYD8TypmhXkffUm0s/C+4tqYGXpk=;
+        b=q4HMlT7GiKo2S+jHV46ZoL0rnGuOCy22pIc7poMdTke0sjdynHpblPgUiGquN0MmSC
+         h6ZtZJy8zViZE2dB0bSb4tZdZ7ehi8R5uSRF08xVhPGGtBjnEq4OKndnTCsmGd6l3+MU
+         o5Z3oChLibawXSExesc7WCzMrb+TblwJMrbM5HXum4oLLP6qafjqgMNdDbBARfynwkEJ
+         e6Itrwo73BT93+Gl7Jdv89QeTuBLiH5qKV9NaVjyssPFsaYUp54597oRdPhCxdSfwmYz
+         H92SR458fHLE8UgojrjjhvJ1RlC/A3qqbm+Sem/zlZXsdxpOAXHewbIQCkgmI91YcXhZ
+         i4Hw==
+X-Forwarded-Encrypted: i=1; AJvYcCUXpf27DIVHBT/Ogs2GIdOxaBDpBkS1DAwDM1kApNeKCMKh+D0/WP6ZrLoLpEUdP8rOYCZvb0wEvvVEaL4nUueluPZAkUL1+Zjl+g==
+X-Gm-Message-State: AOJu0YyG7TELTB/aF5uuTvnyLPz6D+4SLoy0mgV9aXiSJbBGlobj0hOH
+	fDYhXBoiL/sR04r5MKvsrdlOsziBv5h7WtITe7PVWsDh3VtaZXK3iNvVOhZ97EE=
+X-Google-Smtp-Source: AGHT+IHHuv9Pw/7VCkD3kVMp6kqjsE4YkNk1ekGhK3q8rwqDHOpj506i6Qwh7EdzVbU49pLAFUeWLw==
+X-Received: by 2002:a17:906:f2d2:b0:a3d:b14d:4415 with SMTP id gz18-20020a170906f2d200b00a3db14d4415mr2420105ejb.10.1708076506947;
+        Fri, 16 Feb 2024 01:41:46 -0800 (PST)
+Received: from [192.168.0.22] ([78.10.207.130])
+        by smtp.gmail.com with ESMTPSA id br21-20020a170906d15500b00a3d64b37a35sm1380977ejb.137.2024.02.16.01.41.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Feb 2024 01:41:46 -0800 (PST)
+Message-ID: <018144fb-0736-4aff-9622-238f8a98f4e3@linaro.org>
+Date: Fri, 16 Feb 2024 10:41:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <5916132.MhkbZ0Pkbq@steina-w>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/6] dt-bindings: net: add hisilicon-femac
+Content-Language: en-US
+To: Yang Xiwen <forbidden405@outlook.com>,
+ Yisen Zhuang <yisen.zhuang@huawei.com>, Salil Mehta
+ <salil.mehta@huawei.com>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Yang Xiwen <forbidden405@foxmail.com>,
+ Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Russell King <linux@armlinux.org.uk>
+Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240216-net-v1-0-e0ad972cda99@outlook.com>
+ <20240216-net-v1-4-e0ad972cda99@outlook.com>
+ <5cecd33c-7436-4b2a-84c2-8a28c87b26b3@linaro.org>
+ <SEZPR06MB695956C782A434A63501CF89964C2@SEZPR06MB6959.apcprd06.prod.outlook.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <SEZPR06MB695956C782A434A63501CF89964C2@SEZPR06MB6959.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Feb 16, 2024 at 10:05:26AM +0100, Alexander Stein wrote:
-> Hi all,
-> 
-> Am Samstag, 3. Februar 2024, 17:52:49 CET schrieb Adam Ford:
-> > From: Lucas Stach <l.stach@pengutronix.de>
-> > 
-> > The HDMI TX controller on the i.MX8MP SoC is a Synopsys designware IP
-> > core with a little bit of SoC integration around it.
-> > 
-> > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
-> > 
-> > ---
-> > V3:  Change name and location to better idenfity as a bridge and
-> >      HDMI 2.0a transmitter
-> > 
-> >      Fix typos and feedback from Rob and added ports.
-> > ---
-> >  .../display/bridge/fsl,imx8mp-hdmi-tx.yaml    | 102 ++++++++++++++++++
-> >  1 file changed, 102 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/display/bridge/fsl,imx8mp-hdmi-tx.yaml
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/display/bridge/fsl,imx8mp-hdmi-tx.yaml
-> > b/Documentation/devicetree/bindings/display/bridge/fsl,imx8mp-hdmi-tx.yaml
-> > new file mode 100644
-> > index 000000000000..3791c9f4ebab
-> > --- /dev/null
-> > +++
-> > b/Documentation/devicetree/bindings/display/bridge/fsl,imx8mp-hdmi-tx.yaml
-> > @@ -0,0 +1,102 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/display/bridge/fsl,imx8mp-hdmi-tx.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Freescale i.MX8MP DWC HDMI TX Encoder
-> > +
-> > +maintainers:
-> > +  - Lucas Stach <l.stach@pengutronix.de>
-> > +
-> > +description:
-> > +  The i.MX8MP HDMI transmitter is a Synopsys DesignWare
-> > +  HDMI 2.0a TX controller IP.
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/display/bridge/synopsys,dw-hdmi.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - fsl,imx8mp-hdmi-tx
-> > +
-> > +  reg-io-width:
-> > +    const: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 4
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: iahb
-> > +      - const: isfr
-> > +      - const: cec
-> > +      - const: pix
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> > +  ports:
-> > +    $ref: /schemas/graph.yaml#/properties/ports
-> > +
-> > +    properties:
-> > +      port@0:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description: Parallel RGB input port
-> > +
-> > +      port@1:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description: HDMI output port
-> > +
-> > +    required:
-> > +      - port@0
-> > +      - port@1
-> 
-> Is this really correct that port@1 is required? AFAICS this host already 
-> supports HPD and DDC by itself, so there is no need for a dedicated HDMI 
-> connector.
+On 16/02/2024 10:36, Yang Xiwen wrote:
+>>
+>>> +    maxItems: 2
+>>> +
+>>> +  reset-names:
+>>> +    items:
+>>> +      - const: mac
+>>> +      - const: phy
+>>> +
+>>> +  hisilicon,phy-reset-delays-us:
+>>> +    minItems: 3
+>>> +    maxItems: 3
+>>> +    description: |
+>>> +      The 1st cell is reset pre-delay in micro seconds.
+>>> +      The 2nd cell is reset pulse in micro seconds.
+>>> +      The 3rd cell is reset post-delay in micro seconds.
+>> items:
+>>   - description:
+>>
+>> Anyway, isn't this property of the phy?
+> It ought to be. But it seems a bit hard to implement it like this.
 
-The chip has an HDMI output, so there's an output port.
+Why? You have phy node, so phy should know what to do.
 
-> With the current state of the drivers this output port is completely ignored 
-> anyway. Yet it works for a lot of people.
 
-DT bindings describe the hardware. From a DT point of view, tt's fine
-for drivers to ignore the port (that may or may not be true from a DRM
-point of view, but that's a separate discussion).
 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - clock-names
-> > +  - interrupts
-> > +  - power-domains
-> > +  - ports
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/imx8mp-clock.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    #include <dt-bindings/power/imx8mp-power.h>
-> > +
-> > +    hdmi@32fd8000 {
-> > +        compatible = "fsl,imx8mp-hdmi-tx";
-> > +        reg = <0x32fd8000 0x7eff>;
-> > +        interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-> > +        clocks = <&clk IMX8MP_CLK_HDMI_APB>,
-> > +                 <&clk IMX8MP_CLK_HDMI_REF_266M>,
-> > +                 <&clk IMX8MP_CLK_32K>,
-> > +                 <&hdmi_tx_phy>;
-> > +        clock-names = "iahb", "isfr", "cec", "pix";
-> > +        power-domains = <&hdmi_blk_ctrl IMX8MP_HDMIBLK_PD_HDMI_TX>;
-> > +        reg-io-width = <1>;
-> > +        ports {
-> > +           #address-cells = <1>;
-> > +           #size-cells = <0>;
-> > +           port@0 {
-> > +             reg = <0>;
-> > +
-> > +             hdmi_tx_from_pvi: endpoint {
-> > +               remote-endpoint = <&pvi_to_hdmi_tx>;
-> > +             };
-> > +          };
-> > +
-> > +          port@1 {
-> > +            reg = <1>;
-> > +              hdmi_tx_out: endpoint {
-> > +                remote-endpoint = <&hdmi0_con>;
-> > +              };
-> > +          };
-> > +        };
-> > +    };
+Best regards,
+Krzysztof
 
--- 
-Regards,
-
-Laurent Pinchart
 
