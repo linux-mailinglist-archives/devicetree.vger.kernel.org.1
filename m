@@ -1,100 +1,103 @@
-Return-Path: <devicetree+bounces-42566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B29DA857C2D
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 12:58:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FC3B857C45
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 13:04:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3C5E1C211E7
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 11:58:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 036131F23562
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 12:04:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FD3A77F3C;
-	Fri, 16 Feb 2024 11:58:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E609A78670;
+	Fri, 16 Feb 2024 12:04:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MzpqLh0y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ENf1xW2O"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07D4759169;
-	Fri, 16 Feb 2024 11:58:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B25EE2CCB4;
+	Fri, 16 Feb 2024 12:04:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708084689; cv=none; b=Q72BshkXtzF3rxJcm83S4QisfNfjKUIXQtUxKVVClb+CJMxv070XLvvKyXYvC4nlTKVQwEI2ri+ep07uF372guQqe31zpypimTrrN8ZM1x95dGdt70ZJP7q1R05F1O3oGCDn4IXqE3xUtQsAIyhHXrBIfex7D1G2kFSgG2QLjzU=
+	t=1708085041; cv=none; b=gjbLX4VnieR6SoCMYCLkxLnd/56eB9Dutc3lsXE6yl5VlrtafCRAhV9bspOyonFrR+NySuV5aHQqEt2t9Expr6/6Gcx6LQYARHVLwSY1AesxiMNNq6GGtJZbQF4d107pJ+dr0075QQaE+Q/TFqLNF/aupVmxvLoFeR5CqFqNyQ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708084689; c=relaxed/simple;
-	bh=02zB0ODjIh7Ni22bBy7tChA9AIJOF8lNxePQq8wnRdk=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=CqPkIzbJTbYgqRh9N4KFYIXKO7eKG3KZO2eApOTw9QZXVBQK79w9ISw1gHiRoUJqcM/NfnjQWL0gLv965pW6Tn2sfs0dt3oBP1DS4x6NyUZ5I4FUNxn6Yv0nMqBZKiS8tP3CC4Zp3H76E4rQykdR7fETF1Y95eHWQkxFB56Ju0I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MzpqLh0y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A69EC433F1;
-	Fri, 16 Feb 2024 11:58:02 +0000 (UTC)
+	s=arc-20240116; t=1708085041; c=relaxed/simple;
+	bh=PTQ7drOCFYR2XmjE20PfxIFEdOUFSjak+DYt3wb3o9U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=A4+Ihq5bS9Gm8U5fD/F5HRAn+7ibUzpT3uH+44J58FlbPdPfNstP8WchQ2OY5BzO/LJ5fi91Ib/N7RxF4yUNQwV01l4Z5dbLGVQwgOU5aPDuskhXfk1sD2EThHMlggLJ8z2lbKcTZ08hzFZcp8C1baJQAC6R2fSspvXww8CsSJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ENf1xW2O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 330F1C433F1;
+	Fri, 16 Feb 2024 12:04:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708084688;
-	bh=02zB0ODjIh7Ni22bBy7tChA9AIJOF8lNxePQq8wnRdk=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=MzpqLh0y6hKn3tTEciOdvs8P4G6Ht+gx34okHzjAp26dx0rimQLB7q5B0dVsk8cb3
-	 nzuRQMDVXTHpZkVv+pBuAnV5P4cPZD1fYeA+r+aX1nFay7F5a165rAU5JHQArPdCnT
-	 6/DwO42uGzbeBCyIwqwQmXb/x8cRtek0nPgK9LEkkvCvziju0tvOUxvufyzbESioLE
-	 jW6+nBJK6LgLsoVkl+/4KKR2N0xJRTb3Fx6CrVUrrSvec8zx4yKzpl5EClWigLa9ic
-	 p1uYWwlHYfYE85j6A2V7gNE0g8APT8xKyFlURWCtiKIBikItL6oKLfzoFyUNRguZoO
-	 VYwdQtDfV0bMw==
-From: Vinod Koul <vkoul@kernel.org>
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Johan Jonker <jbx6244@gmail.com>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Andy Yan <andy.yan@rock-chips.com>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Algea Cao <algea.cao@rock-chips.com>, 
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-phy@lists.infradead.org, kernel@collabora.com, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20240214-phy-hdptx-v4-0-e7974f46c1a7@collabora.com>
-References: <20240214-phy-hdptx-v4-0-e7974f46c1a7@collabora.com>
-Subject: Re: [PATCH v4 0/2] Add support for RK3588 HDMI/eDP Combo PHY
-Message-Id: <170808468224.352706.3107795890372449699.b4-ty@kernel.org>
-Date: Fri, 16 Feb 2024 17:28:02 +0530
+	s=k20201202; t=1708085041;
+	bh=PTQ7drOCFYR2XmjE20PfxIFEdOUFSjak+DYt3wb3o9U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ENf1xW2OgcNbljzsuHsPEhYwTKzsVzgBg4eRNA3QwsyDwto/DoeOhthzC5hFd3YcY
+	 bSDRt/wq2OUVgMwczv9bee0uGYiSKvimudWKE1/FbjNMSaAP2z/tZ/Iu2dxA19+0Kq
+	 peHCuMpufuc9pKv//UsD70WTtzO4rty9jb31/QINryu4P6UJCZp+YjITx3aProa3GH
+	 sXn/uadLXP3c1o3klh9kZovcG5324aDuvmT84F6M4BHxU8wnTt4RAJmIACH9dJHm7I
+	 S7L7tSQ/WyWM8Sa0QE7wMbG2aPItW1h+en9oiRVrLzRG2PXjBtAQsH1e+ui/LI4Xci
+	 JBMybJlrD+nPg==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1rawx7-000000007JX-2OIU;
+	Fri, 16 Feb 2024 13:04:25 +0100
+Date: Fri, 16 Feb 2024 13:04:25 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 04/10] arm64: dts: qcom: sc8280xp-crd: limit pcie4 link
+ speed
+Message-ID: <Zc9PSfah4ACuMYVm@hovoldconsulting.com>
+References: <20240212165043.26961-1-johan+linaro@kernel.org>
+ <20240212165043.26961-5-johan+linaro@kernel.org>
+ <a2323580-6515-4380-a7d8-fd25818e9092@linaro.org>
+ <Zc8K7iiK4YbnadtQ@hovoldconsulting.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Zc8K7iiK4YbnadtQ@hovoldconsulting.com>
 
-
-On Wed, 14 Feb 2024 13:45:35 +0200, Cristian Ciocaltea wrote:
-> Add driver and bindings to add initial support the Rockchip HDMI/eDP TX
-> Combo PHY found on RK3588 SoC.
+On Fri, Feb 16, 2024 at 08:12:46AM +0100, Johan Hovold wrote:
+> On Thu, Feb 15, 2024 at 09:47:01PM +0100, Konrad Dybcio wrote:
+> > On 12.02.2024 17:50, Johan Hovold wrote:
+> > > Limit the WiFi PCIe link speed to Gen2 speed (500 GB/s), which is the
+> > 
+> > MB/s
 > 
-> The PHY is based on a Samsung IP block and supports HDMI 2.1 TMDS, FRL
-> and eDP links.
+> Indeed, thanks for spotting that.
 > 
-> Please note that currently only the TMDS related functionality has been
-> implemented.  This has been tested on Radxa ROCK 5B and Rockchip EVB1
-> boards.
-> 
-> [...]
+> > > speed that Windows uses.
 
-Applied, thanks!
+> > Hm.. I'dve assumed it ships with a WLAN card that supports moving
+> > more bandwidth.. Is it always at gen2?
 
-[1/2] dt-bindings: phy: Add Rockchip HDMI/eDP Combo PHY schema
-      commit: 3312a0e8f64ec68db695224fcc7457e7292426eb
-[2/2] phy: rockchip: Add Samsung HDMI/eDP Combo PHY driver
-      commit: 553be2830c5f33308483e8118de748a2c69fe593
+> But yes, it seems we may be limiting the theoretical maximum data rate
+> for the wifi this way.
 
-Best regards,
--- 
-~Vinod
+It looks like the peak wifi speed for these chips is 3.6 Gbps, and it
+may be lower for the X13s (and in practice). So 500 MB/s should be more
+than enough.
 
+	https://www.qualcomm.com/products/technology/wi-fi/fastconnect/fastconnect-6900
 
+Johan
 
