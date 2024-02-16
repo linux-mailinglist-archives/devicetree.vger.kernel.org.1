@@ -1,150 +1,171 @@
-Return-Path: <devicetree+bounces-42365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 162BF857569
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 05:56:24 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E78F8575AC
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 06:36:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D39C1C21C98
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 04:56:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D3380B22496
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 05:36:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 404A110A14;
-	Fri, 16 Feb 2024 04:56:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F70C12E70;
+	Fri, 16 Feb 2024 05:36:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="y3dnoF9V"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="SsTNCG6z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45A8D10949;
-	Fri, 16 Feb 2024 04:56:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFBA128EC;
+	Fri, 16 Feb 2024 05:36:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708059379; cv=none; b=o1o5i7TpQPqidzo1vuAJsLYFWrQ4fTIJEPMiqQp66y2YhHaNC0rDjSPSl2m6oqflNdgUbBlXgGp0M6JVFV0AqO1owFNg0sX538at1jCswCF/xmi5e4KtCIYeSwdNU5+dBBuU5OF3qdgA+fpyeQ4vqaCXa6tBi6YaED/J93v3zds=
+	t=1708061806; cv=none; b=N3HRdqQdAtEFYvJUtYGizcneShQq7fqO0fdwzTuuit8nuwvgB5YQM/M7EJkWAPN0BXTT4rsOB0qfzEugGOk4teizvequm4gDmsDChA2Xmdb5wKAUZ00AC1QT1dVoZ+EYan3hzTS4elkXktS+wgeVrvivb2UYG3G7WcrhwOG2/aA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708059379; c=relaxed/simple;
-	bh=Ou/nvlq81aM0Pr2pbksSHMNjqsJyDRDF8w8n8nwXRT8=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IlzehRBt960ZknjgifEPrIGCgS8dLGVYxd1lUsZsWgH8EO+BqZAHpSuMc5LrZ9nZopM/k8AvE8WmQSBrUJ2gzcZdrpObkz3jrlpzAEgnX1sDALqf65QqXbS4cxyqTq68zxGyk88YzXz/rGWrApS3lRq70HSxLV7kbBChVdl/7+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=y3dnoF9V; arc=none smtp.client-ip=198.47.19.142
+	s=arc-20240116; t=1708061806; c=relaxed/simple;
+	bh=mRflPSxs4pLh6jh9HLk3XOJ5488O52HahU07Ty24MOs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=RszB09BS4xDTFpEJwvr6bJMQ1kGga7FaPh+h/WG+BXJlMPuwJi4s+EtSmzv+uNM+K5Bv9fsXz4uxnLjuL9NoJtNaSsx43KzcLFG5T3lJO7zTtjwOoreVWXWzZlWVNS8erwv+4SFymCX4HzBTQxWFk7MwNkWypgH5l1FQpycP+mI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=SsTNCG6z; arc=none smtp.client-ip=198.47.19.141
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41G4u3lW106116;
-	Thu, 15 Feb 2024 22:56:03 -0600
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41G5aCXF093423;
+	Thu, 15 Feb 2024 23:36:12 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1708059363;
-	bh=0BWZF9w9AsUu7G1y8eWnUvz158xOK51p3kZtdi4wJS4=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=y3dnoF9V9AmTPYiaQPSkH5chQBs5FvegnTAZjEqMBCqN96U7i0DH/nZi88aeFWsdk
-	 xPcJMwawLDZH+6rzzVkKLueGZKd6iAaSxp/cTwPoUlQHn6rMFvotf5unsrTEX0jpYE
-	 zsxNznPrX3Tdkck2XyAmZp9oQT+CAKkGo1Ziu6LQ=
+	s=ti-com-17Q1; t=1708061772;
+	bh=w4YhGTK+t27RaSNPXnZt3dIUmjnBjmFi3fc525Pd/Ok=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=SsTNCG6zI1H0UbO7K0MjzmdianYqMiZw566yUj8DUZo+NdirokPOgJt3Xv9BARR7z
+	 Ux+q0Ebp2Lii4BY01MzGfZCmHgpZjdoB0pDFw7SeVD3tCvKojz/pWzBHHSDac74/V+
+	 4SMXGVIwpZBlfjX/vJeqapP5voOfv/dk/oApZh9o=
 Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41G4u3JS014093
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41G5aCkG063356
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 15 Feb 2024 22:56:03 -0600
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE115.ent.ti.com
+	Thu, 15 Feb 2024 23:36:12 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE115.ent.ti.com
  (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
- Feb 2024 22:56:03 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ Feb 2024 23:36:12 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 15 Feb 2024 22:56:03 -0600
-Received: from localhost (uda0492258.dhcp.ti.com [172.24.227.9])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41G4u2QJ052968;
-	Thu, 15 Feb 2024 22:56:02 -0600
-Date: Fri, 16 Feb 2024 10:26:01 +0530
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: Peter Rosin <peda@axentia.se>, Andrew Davis <afd@ti.com>
-CC: Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <gregkh@linuxfoundation.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <c-vankar@ti.com>, <srk@ti.com>
-Subject: Re: [PATCH v5] arm64: dts: ti: k3-j784s4-main: Fix mux-reg-masks in
- serdes_ln_ctrl
-Message-ID: <4abe2bde-1171-4b77-b7bc-49491792a721@ti.com>
-References: <20240213080348.248916-1-s-vadapalli@ti.com>
- <1be60db1-f292-1074-5898-801380e1fb22@axentia.se>
- <af73545a-1746-4e14-a3f2-772d72e6ff97@ti.com>
+ Frontend Transport; Thu, 15 Feb 2024 23:36:12 -0600
+Received: from [172.24.227.94] (uda0132425.dhcp.ti.com [172.24.227.94])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41G5a6C9032963;
+	Thu, 15 Feb 2024 23:36:07 -0600
+Message-ID: <d2b6dcda-cd22-4163-bdf5-2bc4b8e276ea@ti.com>
+Date: Fri, 16 Feb 2024 11:06:05 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <af73545a-1746-4e14-a3f2-772d72e6ff97@ti.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] arm64: dts: ti: Add common1 register space for
+ AM62x, AM62A & AM65x SoCs
+Content-Language: en-US
+To: Devarsh Thakkar <devarsht@ti.com>, <jyri.sarha@iki.fi>,
+        <tomi.valkeinen@ideasonboard.com>, <airlied@gmail.com>,
+        <daniel@ffwll.ch>, <maarten.lankhorst@linux.intel.com>,
+        <mripard@kernel.org>, <tzimmermann@suse.de>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <nm@ti.com>, <kristo@kernel.org>
+CC: <praneeth@ti.com>, <a-bhatia1@ti.com>, <j-luthra@ti.com>
+References: <20240215115516.3157909-1-devarsht@ti.com>
+ <20240215115516.3157909-3-devarsht@ti.com>
+From: Vignesh Raghavendra <vigneshr@ti.com>
+In-Reply-To: <20240215115516.3157909-3-devarsht@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 24/02/13 11:08AM, Andrew Davis wrote:
-> On 2/13/24 3:19 AM, Peter Rosin wrote:
-> > Hi!
-> > 
-> > 2024-02-13 at 09:03, Siddharth Vadapalli wrote:
-> > > From: Chintan Vankar <c-vankar@ti.com>
-> > > 
-> > > Change offset in mux-reg-masks property for serdes_ln_ctrl node
-> > > since reg-mux property is used in compatible.
-> > > 
-> > > Fixes: 2765149273f4 ("mux: mmio: use reg property when parent device is not a syscon")
-> > > Signed-off-by: Chintan Vankar <c-vankar@ti.com>
-> > > Acked-by: Andrew Davis <afd@ti.com>
-> > > Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> > > ---
-...
 
-> > > +			mux-reg-masks = <0x0 0x3>, <0x4 0x3>, /* SERDES0 lane0/1 select */
-> > > +					<0x8 0x3>, <0xc 0x3>, /* SERDES0 lane2/3 select */
-> > > +					<0x10 0x3>, <0x14 0x3>, /* SERDES1 lane0/1 select */
-> > > +					<0x18 0x3>, <0x1c 0x3>, /* SERDES1 lane2/3 select */
-> > > +					<0x20 0x3>, <0x24 0x3>, /* SERDES2 lane0/1 select */
-> > > +					<0x28 0x3>, <0x2c 0x3>; /* SERDES2 lane2/3 select */
-> > >   			idle-states = <J784S4_SERDES0_LANE0_PCIE1_LANE0>,
-> > >   				      <J784S4_SERDES0_LANE1_PCIE1_LANE1>,
-> > >   				      <J784S4_SERDES0_LANE2_IP3_UNUSED>,
-> > 
-> > Ouch. I suspect there is a similar problem in
-> > arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi:
-> > 
-> > 
-> > 	fss: bus@47000000 {
-> > 		compatible = "simple-bus";
-> > 		reg = <0x0 0x47000000 0x0 0x100>;
-> > 		#address-cells = <2>;
-> > 		#size-cells = <2>;
-> > 		ranges;
-> > 
-> > 		hbmc_mux: mux-controller@47000004 {
-> > 			compatible = "reg-mux";
-> > 			reg = <0x00 0x47000004 0x00 0x2>;
-> > 			#mux-control-cells = <1>;
-> > -			mux-reg-masks = <0x4 0x2>; /* HBMC select */
-> > +			mux-reg-masks = <0x0 0x2>; /* HBMC select */
-> > 		};
-> > 
-> > Who knows what non-upstreamed devices and devicetrees are affected?
-> > I guess we need to revert 2765149273f4 ("mux: mmio: use reg property
-> > when parent device is not a syscon") unless someone sees a sane way
-> > to fix this.
+
+On 15/02/24 17:25, Devarsh Thakkar wrote:
+> This adds common1 register space for AM62x, AM62A and AM65x SoC's which are
+> using TI's Keystone display hardware and supporting it as described in
+> Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
 > 
-> There are only two in-tree nodes with "reg-mux" with a reg property: the
-> one this patch fixes, and the hbmc_mux you point out, both in TI devices.
-> I'd say it is safe to assume we are the only users, and our non-upstreamed
-> DTs depend on that patch, reverting it would cause more issues for
-> out-of-tree users than just fixing the two broken nodes above.
+> Fixes: 3618811657b3 ("arm64: dts: ti: k3-am62a-main: Add node for Display SubSystem (DSS)")
+> Fixes: 8ccc1073c7bb ("arm64: dts: ti: k3-am62-main: Add node for DSS")
+> Fixes: fc539b90eda2 ("arm64: dts: ti: am654: Add DSS node")
 
-Peter,
+This doesn't work. Patch wont apply cleanly to kernels before before
+AM62A was introduced.
 
-Is it alright for this patch to be merged, given Andrew's response above?
-The problem with "hbmc_mux" node that you pointed out above could be fixed
-by another patch. Please let me know.
+Please split this into 3 patches, one per SoC with appropriate Fixes: tag.
 
-Regards,
-Siddharth.
+> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+> Reviewed-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> ---
+> V2: Add common1 region for AM62A SoC too
+> V3: Add Fixes tag
+> V4: Add Reviewed-by
+> ---
+>  arch/arm64/boot/dts/ti/k3-am62-main.dtsi  | 5 +++--
+>  arch/arm64/boot/dts/ti/k3-am62a-main.dtsi | 5 +++--
+>  arch/arm64/boot/dts/ti/k3-am65-main.dtsi  | 5 +++--
+>  3 files changed, 9 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> index fe0cc4a9a501..8cee4d94cdd3 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> @@ -779,9 +779,10 @@ dss: dss@30200000 {
+>  		      <0x00 0x30207000 0x00 0x1000>, /* ovr1 */
+>  		      <0x00 0x30208000 0x00 0x1000>, /* ovr2 */
+>  		      <0x00 0x3020a000 0x00 0x1000>, /* vp1: Used for OLDI */
+> -		      <0x00 0x3020b000 0x00 0x1000>; /* vp2: Used as DPI Out */
+> +		      <0x00 0x3020b000 0x00 0x1000>, /* vp2: Used as DPI Out */
+> +		      <0x00 0x30201000 0x00 0x1000>; /* common1 */
+>  		reg-names = "common", "vidl1", "vid",
+> -			    "ovr1", "ovr2", "vp1", "vp2";
+> +			    "ovr1", "ovr2", "vp1", "vp2", "common1";
+>  		power-domains = <&k3_pds 186 TI_SCI_PD_EXCLUSIVE>;
+>  		clocks = <&k3_clks 186 6>,
+>  			 <&dss_vp1_clk>,
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+> index 972971159a62..f475daea548e 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+> @@ -994,9 +994,10 @@ dss: dss@30200000 {
+>  		      <0x00 0x30207000 0x00 0x1000>, /* ovr1 */
+>  		      <0x00 0x30208000 0x00 0x1000>, /* ovr2 */
+>  		      <0x00 0x3020a000 0x00 0x1000>, /* vp1: Tied OFF in the SoC */
+> -		      <0x00 0x3020b000 0x00 0x1000>; /* vp2: Used as DPI Out */
+> +		      <0x00 0x3020b000 0x00 0x1000>, /* vp2: Used as DPI Out */
+> +		      <0x00 0x30201000 0x00 0x1000>; /* common1 */
+>  		reg-names = "common", "vidl1", "vid",
+> -			    "ovr1", "ovr2", "vp1", "vp2";
+> +			    "ovr1", "ovr2", "vp1", "vp2", "common1";
+>  		power-domains = <&k3_pds 186 TI_SCI_PD_EXCLUSIVE>;
+>  		clocks = <&k3_clks 186 6>,
+>  			 <&k3_clks 186 0>,
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> index 07010d31350e..ff857117d719 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> @@ -991,9 +991,10 @@ dss: dss@4a00000 {
+>  		      <0x0 0x04a07000 0x0 0x1000>, /* ovr1 */
+>  		      <0x0 0x04a08000 0x0 0x1000>, /* ovr2 */
+>  		      <0x0 0x04a0a000 0x0 0x1000>, /* vp1 */
+> -		      <0x0 0x04a0b000 0x0 0x1000>; /* vp2 */
+> +		      <0x0 0x04a0b000 0x0 0x1000>, /* vp2 */
+> +		      <0x0 0x04a01000 0x0 0x1000>; /* common1 */
+>  		reg-names = "common", "vidl1", "vid",
+> -			"ovr1", "ovr2", "vp1", "vp2";
+> +			"ovr1", "ovr2", "vp1", "vp2", "common1";
+>  
+>  		ti,am65x-oldi-io-ctrl = <&dss_oldi_io_ctrl>;
+>  
+
+-- 
+Regards
+Vignesh
 
