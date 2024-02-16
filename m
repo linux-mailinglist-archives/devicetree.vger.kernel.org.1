@@ -1,86 +1,122 @@
-Return-Path: <devicetree+bounces-42577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD05F857CBB
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 13:36:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E693C857CE5
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 13:47:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9890A2894DE
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 12:36:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4ECFA1F2244F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 12:47:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D19B412AAD8;
-	Fri, 16 Feb 2024 12:35:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA02212881C;
+	Fri, 16 Feb 2024 12:47:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FXNVFE5W"
+	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="mx/s39uU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-0201.mail-europe.com (mail-0201.mail-europe.com [51.77.79.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A545112AACD;
-	Fri, 16 Feb 2024 12:35:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04E1658203;
+	Fri, 16 Feb 2024 12:47:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=51.77.79.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708086912; cv=none; b=K66tfj7/B75FUezMj6ktJtNJsRZ3xGaH2qaoCS1I0B9MFKrcvlzPZhSJ2WWgYz1bBTGzPlx+P7M56uKQdhYQ6cXzO3Eekn0aNU22ZQXvpH7FE7rsUNhx5ipVOlxMwN0SbMjKwBnJxC2EYOQdxUH4TaHBZ4tDw6uBLF4csqsKq1Q=
+	t=1708087650; cv=none; b=WEYhv5ZS1xfA8oV9JUGza+RZZu8C/rGJoMwHBqIII8W1Of84r1ZOLOCxCG8bKZpg1mSmNQxCkteUv/Q5VYA5/LkE3zTzCeCRdzOYgbjFNN62Xh5qQ//vBkxbI0tefrWPZxtQLzOK7vA5wVu16mp09W2+6JhOHbosnbZoNvQdaAA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708086912; c=relaxed/simple;
-	bh=UCRiDyTqdTBsdu54tzQMV73u+uOJTw/lzTO7cUztjsY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=WRmgL2J02zBsy88FMpvEIz/OC7NCP4JF4CeaTFuzEXlx1npKmEzdfb2XR7nzdHd84STNVzUjU91/AKuuItrKWEFXUAid5YeZZGIZzLBm2eJt5F1VeTGh/8127qARfOVYvsISM2mHSI52Zsvu/eFEJcMPnTggbTtyiyG8eNRN0Xs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FXNVFE5W; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A519DC43390;
-	Fri, 16 Feb 2024 12:35:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708086912;
-	bh=UCRiDyTqdTBsdu54tzQMV73u+uOJTw/lzTO7cUztjsY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=FXNVFE5WwTEsk8Bfhtzq5qn5xeME8qrv+hVulFLS3GE5ukWRdA7tF2IT855hoHMJT
-	 vL5CrYah9+d+uEWoTLI71TayZ+ZKRF4QKW03k2krROUYQ+sUYFUZRHqf7bwX0rTNeJ
-	 rwU+Rv756b4oXkW2qHQZVbb/jZkd7oEme++pRE3X9W9+QaTBJ8PRxsjIaCgb/ZJsB/
-	 UZ10e2hy2lDTP4MLxMPjnVhaJuu77QM27XCdPiSstoj5DDOyeiTd2ANl2hTNYbCx8B
-	 919xeiBPkw7tFpq1Swn4IbCE8vuompsTaw9+ZWQY1dFjg+X2uyeg0Wma9mWweYK2Nq
-	 64rluxBo9M0vg==
-From: Vinod Koul <vkoul@kernel.org>
-To: Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
- Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-renesas-soc@vger.kernel.org
-In-Reply-To: <96aad3b532ee401f19693e18038494f43ddb90e9.1707915609.git.geert+renesas@glider.be>
-References: <96aad3b532ee401f19693e18038494f43ddb90e9.1707915609.git.geert+renesas@glider.be>
-Subject: Re: [PATCH] dt-bindings: renesas,rcar-dmac: Add r8a779h0 support
-Message-Id: <170808690922.369652.2274140141441534554.b4-ty@kernel.org>
-Date: Fri, 16 Feb 2024 18:05:09 +0530
+	s=arc-20240116; t=1708087650; c=relaxed/simple;
+	bh=iusSZqsywZoAGHlkNH4CuV+VDegpKTa3oydf2OYat8Q=;
+	h=Date:To:From:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=u8fEJC0J9lOKz4N5wSVCs6smFEXatLDha4kVkjHdtxuSBQdcKdX6fXD4r61qeqceTehRT6rs+nxTUV7n/HoJctxqDEQAFCg2pmXlxGgfiH8cCCDrFBwIJQ8Js13O2O0XZzjHXhFiUM3QDcTvB9uWlNQBWAfn0gw/6T4S/wVs120=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=mx/s39uU; arc=none smtp.client-ip=51.77.79.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1708087630; x=1708346830;
+	bh=VfZEdqnF7VP+FLhYp67kYP6gCOw5onHI/KrjQrTFpjQ=;
+	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=mx/s39uUE4x3KNJKHQYVx93vDx7BuzrnqYlkGSeIqAhU/mABfzA+kaRoaciiCtOEc
+	 1xFU1vGbnP7zAT20U1f6dyWK9FEkWHMt60l2+T7KhioCz3dJdgOZdYMT6VLIr1ONe2
+	 lqD+bM8FO5xE/fQ9P5h8FkzT1EQWsEJjHputN4lMobGc/ZM/HdhtfhsiocegseITWp
+	 rOM9xV5IFeQLLjgcQNmpR+hy8M26Ak/1Q78llNCPFi7San5ub411p+lY8YdXYuuLEO
+	 2RkjBk/GuU0Zml1kMo8vd39qIafxqA7cD+h+dPSEJtzOGJkO2LJUFK0WovXi7HpoLf
+	 9O5puOSpiZvcw==
+Date: Fri, 16 Feb 2024 12:46:50 +0000
+To: linux-kernel@vger.kernel.org
+From: Raymond Hackley <raymondhackley@protonmail.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>, Nikita Travkin <nikita@trvn.ru>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, Joe Mason <buddyjojo06@outlook.com>
+Subject: [PATCH] arm64: dts: qcom: msm8916-samsung-fortuna/rossa: Add fuel gauge
+Message-ID: <20240216124639.24689-1-raymondhackley@protonmail.com>
+Feedback-ID: 49437091:user:proton
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.3
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
+From: Joe Mason <buddyjojo06@outlook.com>
 
-On Wed, 14 Feb 2024 14:00:34 +0100, Geert Uytterhoeven wrote:
-> Document support for the Direct Memory Access Controllers (DMAC) in the
-> Renesas R-Car V4M (R8A779H0) SoC.
-> 
-> Based on a patch in the BSP by Thanh Le.
-> 
-> 
+Like the Samsung Galaxy A3/A5, the Grand Prime/Core Prime uses a
+Richtek RT5033 PMIC as battery fuel gauge, charger, flash LED and for some
+regulators.
+For now, only add the fuel gauge/battery device to the device tree, so we
+can check the remaining battery percentage.
 
-Applied, thanks!
+The other RT5033 drivers need some more work first before they can be used
+properly.
 
-[1/1] dt-bindings: renesas,rcar-dmac: Add r8a779h0 support
-      commit: 35b78e2eef2d75c8722bf39d6bd1d89a8e21479e
+Signed-off-by: Joe Mason <buddyjojo06@outlook.com>
+[Raymond: Move to fortuna-common. Use interrupts-extended]
+Signed-off-by: Raymond Hackley <raymondhackley@protonmail.com>
+---
+ .../qcom/msm8916-samsung-fortuna-common.dtsi  | 21 +++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
-Best regards,
--- 
-~Vinod
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-fortuna-common.dtsi b=
+/arch/arm64/boot/dts/qcom/msm8916-samsung-fortuna-common.dtsi
+index 052024073f54..c2800ad2dd5b 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-samsung-fortuna-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-fortuna-common.dtsi
+@@ -80,6 +80,20 @@ muic: extcon@25 {
+ =09};
+ };
+=20
++&blsp_i2c4 {
++=09status =3D "okay";
++
++=09fuel-gauge@35 {
++=09=09compatible =3D "richtek,rt5033-battery";
++=09=09reg =3D <0x35>;
++
++=09=09interrupts-extended =3D <&tlmm 121 IRQ_TYPE_EDGE_FALLING>;
++
++=09=09pinctrl-0 =3D <&fg_alert_default>;
++=09=09pinctrl-names =3D "default";
++=09};
++};
++
+ &blsp_uart2 {
+ =09status =3D "okay";
+ };
+@@ -152,6 +166,13 @@ &wcnss_mem {
+ };
+=20
+ &tlmm {
++=09fg_alert_default: fg-alert-default-state {
++=09=09pins =3D "gpio121";
++=09=09function =3D "gpio";
++=09=09drive-strength =3D <2>;
++=09=09bias-disable;
++=09};
++
+ =09gpio_keys_default: gpio-keys-default-state {
+ =09=09pins =3D "gpio107", "gpio109";
+ =09=09function =3D "gpio";
+--=20
+2.39.2
 
 
 
