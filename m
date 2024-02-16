@@ -1,137 +1,166 @@
-Return-Path: <devicetree+bounces-42694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D924C858326
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 17:57:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C495785833E
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 18:01:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 69748B23F2C
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 16:57:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E27981F24171
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 17:01:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F78F130AFE;
-	Fri, 16 Feb 2024 16:57:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E73D130E29;
+	Fri, 16 Feb 2024 17:01:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ZF4rzskE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Y7RLDLsM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEAB9130E3E
-	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 16:57:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51839130E3A
+	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 17:01:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708102669; cv=none; b=SuICFn64kUmIRS7dYWx1JOnZ4Ed17S4B4DQJX0kxy4qaoiSW5XKwobvP+cwco4I4X2hhYPP7V9qGSUr51kDoaW3exyGYHTueUajJwKw7eLYwXmq/2E5nveZ7mHyn1osynKoBqgKKCBxfk7roNOSYLSD5RCML0iPI2jh+pEc6qvY=
+	t=1708102882; cv=none; b=rHj8AAEZXxxmvvGPMGvrk1Vg9vnVEB6tbFhQQIlt8XlMxGUbQIN98ES7yTwEJnh6jHcqudwhLGjaypgSLfLuJxOvjgU7awhNU75oQwjAtAZJdUTSHjj+y8KBAf5fFHjS+0pDDXFHpbpoK8nJpMLuKTrcbyW2g+5GbRBlzK0Utfg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708102669; c=relaxed/simple;
-	bh=f50Ux9IuBr7dCSB7nZOcygZHY/iK7N+6o1P9XTqmOcY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Cfaxey930agNDdUqK5vTFIf7MMLyZTAgznGrGQuyRv0JilftMDk/28y1AaYVW1zvMRhcnhq1xgnXwH4kpcbQgt5QFo5CVaSBGcGS60Rzst+OJyDtQw3cFUbfjYYjDil8YnR0CT/bD2RhqW1hfZ4rkTUkcs2mfAEI8dqEfGuENZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ZF4rzskE; arc=none smtp.client-ip=209.85.208.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2d11d17dddeso13432531fa.3
-        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 08:57:46 -0800 (PST)
+	s=arc-20240116; t=1708102882; c=relaxed/simple;
+	bh=0iFXpBAkOI5XFf8B+lBsw7By4yXHr24NnEal53Y4B9U=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=IZC7FxcOT3d8tMp8xsGo+H/d5GpvxIxyvgajOEyod3c4HwN8KpRfgIKpDZpHWSl35qD50xUkU2Dj4ALEGWXgObxILH9lv8S0eJIMXGdExaUpea4xsm2ex8MWZdf8F9+ws1uUU4/qJMWeueIUlKtl/HLXjZb/0orj8X8k6jZIJi0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Y7RLDLsM; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5620595f743so2935671a12.3
+        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 09:01:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1708102665; x=1708707465; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xvSr9zjWa7fQMP/UFKRcpAsYPoeiWv0Pm+Syuyc+j4w=;
-        b=ZF4rzskEfyiaDpkn7uapcfrsP7LrbjWoQyuJuKMTkIdJTd8TqZP8ZAgiebthxSCk8D
-         lam8TpBnIG57OJ6YxKBnYQOtCVgbu8iRe3YsPtrbK/KbgwFxazm2Cpokbi0te5AQbq+s
-         W+tX1CyMPkk23Kxw6CQAN6ML/eSibhD/YdWP0d0G4bPhmz4IpWXRiswgbSW5qc18baD8
-         GU71MW8uH64OfcmYe5LOF2I6VDor2WsyyUHg/v12DLuQVb5/GZ2nt1XC8ml5TWVoFDBd
-         dmQHjp3+IB47kgLq1cMSbpTLJczwczXXB3zdwMtr77Wws5OdumxQp40rGqNU4XRYLi0Z
-         /IDw==
+        d=linaro.org; s=google; t=1708102878; x=1708707678; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=p1UcFz1FGckNLw1XlmxhxjVgBjfCwoT7hcC1xOssOlI=;
+        b=Y7RLDLsMswlx1nHhJCT5o9/4rYKWBhVENA00Jip/VM8c3XCs896W8xJLA85UgfLovS
+         7kc28zDoli1oJsJVjjbAWhVKH/SuZ7xR39IUgl4+fSq6gUQcwv2M1chYTuAHaXz2J7Dd
+         nf5HHuV2dY5x2TPGuswgk1ED5qQzuaiL04hhIwqFG92LKkGfVZNnWh5x4Vd8NRbRfhXJ
+         5vcSAodkf/Zg8JgHzzntX+TegkF2OPCaKfjksX9GW/HeOLdloj37aBSfVyVnOLoRg4UO
+         GSMbrs6OoEXqJhjOt9/Nw4+G5oHthturtXcxB/1r8Z4Q+2Dsn0hpBBCLEIpH36wZ++SU
+         TB1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708102665; x=1708707465;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xvSr9zjWa7fQMP/UFKRcpAsYPoeiWv0Pm+Syuyc+j4w=;
-        b=X0oF2kFTpi38mu4JS10xVm0WtlHajOZW3mVGLnOELM+O18cYeI29QX+J3MBTwosiqO
-         q263xo/Hz1wXWvKNE9ibBowU5ipy1k6etMIN3a6BzJRnWfLvNRNU5zZDDiNDDnWVEaQX
-         w2DGIxDuCpqqgPxbdlXobSpVGrgK0pBp8BrLmxMuKZg3phGWvMvjyRrihfPhAqbDFJa/
-         IHqwlhYu6Higuc4eq8fiJVr6UlNhFplNGw8jnhLJTkC8Qtji1Ynad7gmsnhrDZsOjB1F
-         bJK4huJ9p8WzH2c+wio11JxsewGMJjGPbr9ZJnEs2ZXz+BWK1rlQK7WQJQSFgvod6mLs
-         mkdw==
-X-Forwarded-Encrypted: i=1; AJvYcCXmtYmIFe4VuADuAOfHGveF119orv1Kuc/77qqMhqDqGj07dh5gb7DiZizTk81pFH2rNjNFL+SkWGcjR7aGUzkSi2/kOsMz1YjW0A==
-X-Gm-Message-State: AOJu0YztJVDwvYtivHSd9Jx0nX+NOESGXpafbzI6IX1EA25eGbX5nmt6
-	Bq6VOgQ8lV3EaIYateJkV1FnYEKFjAEft39HEm/3LQyRDdDGsdEP0SxJvCtiy6h+bKAuWsE9MxL
-	xwOqFrbufUMjkyiVBxz/aH46FgqDlEb1E9O8Oog==
-X-Google-Smtp-Source: AGHT+IE6mpfUgny/NVj+ulwChjEqySrNgCFsvkorHDfu5dOig1qIFaY2Zg0Xp3aqVxFfMRZcUwx2C0EWj1Mp416o/6U=
-X-Received: by 2002:a2e:8812:0:b0:2d0:99b7:e68c with SMTP id
- x18-20020a2e8812000000b002d099b7e68cmr3178940ljh.15.1708102664765; Fri, 16
- Feb 2024 08:57:44 -0800 (PST)
+        d=1e100.net; s=20230601; t=1708102878; x=1708707678;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=p1UcFz1FGckNLw1XlmxhxjVgBjfCwoT7hcC1xOssOlI=;
+        b=K63bErj2V9Ns4MFtSGdXU5lyN+6JdAZG6YgwACWMzUS5YPfDQHq20CqGVS8eX0elJn
+         ZxsVVW37G5bPpa67ZgNpokPkOLNE2V84MBsXRrWhFyV1+hqkO6s9ETGn12lJ4i9lc9XP
+         8t3V84zJAELuvC2eL8HjMGMesqmBOU2viTu9uAh55g6R30w0vQEJfFedBQTolOYXDO+b
+         MS/5I8O5VWTD6Hh+BFGeSoD7G+wcwLcAex4c2m0d9rY44WSuBtiyEAZsvDg48WkctXEt
+         R+AqQS8I3bopqtuq5MEvDNEj0+A3Ijp1c6hUJUSoVbOnPiAfpRuJVPPzjyC4Xd555pbk
+         jy6g==
+X-Forwarded-Encrypted: i=1; AJvYcCWMVVkgGFlBRqnqXnOtWEv6sT8+uyq6blAwYcFvBTvxr2ga3zQ0kMPT881bnc3P2bzHplpBxW7redHhH3GRzgKJdBcMwqcnUdx02g==
+X-Gm-Message-State: AOJu0Yxk9h6VJDXt8jBmpV7/+fQWxeybAaN2gtyeRg5Vp+SEqknUtIBc
+	uEAMhjBq5kz34qo6p1S6KL0RzLSdkDQ4wLz3QrqyYn181bvssAU63XXioRWWB4c=
+X-Google-Smtp-Source: AGHT+IHKQOQB0YGj0ov9AvBSyG6g37XAlR8RWH9o87R5qxWdfqq2CXR/ocGh+Qm9/bbxo+8iSy3IAg==
+X-Received: by 2002:a05:6402:28f:b0:560:c951:57ba with SMTP id l15-20020a056402028f00b00560c95157bamr4631607edv.26.1708102878588;
+        Fri, 16 Feb 2024 09:01:18 -0800 (PST)
+Received: from [127.0.1.1] ([188.24.162.93])
+        by smtp.gmail.com with ESMTPSA id u20-20020aa7d894000000b00563a6c9fd71sm159706edq.16.2024.02.16.09.01.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Feb 2024 09:01:18 -0800 (PST)
+From: Abel Vesa <abel.vesa@linaro.org>
+Subject: [PATCH v3 0/4] drm/msm: Add display support for X1E80100
+Date: Fri, 16 Feb 2024 19:01:04 +0200
+Message-Id: <20240216-x1e80100-display-v3-0-28b1c33ac8c0@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240208172459.280189-1-alisa.roman@analog.com>
- <20240208172459.280189-6-alisa.roman@analog.com> <CAMknhBHU6k8J_PLCmGYF48S1q3uXByiCwzcd+B3q3Cd-02CUow@mail.gmail.com>
- <84546728-f0cb-4b38-a71c-e053b9b9278e@gmail.com> <CAMknhBFp-4s+-D8kD9rh0-OCc3gBs3hFX1EZ9ZmOifQOyGgUug@mail.gmail.com>
- <20240216142158.30e96c53@jic23-huawei>
-In-Reply-To: <20240216142158.30e96c53@jic23-huawei>
-From: David Lechner <dlechner@baylibre.com>
-Date: Fri, 16 Feb 2024 10:57:33 -0600
-Message-ID: <CAMknhBEtLR1QNEv6HhcW35jiGEkx=srzy41NXt8bJ=gokzoemw@mail.gmail.com>
-Subject: Re: [PATCH v3 5/5] iio: adc: ad7192: Add AD7194 support
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Alisa-Dariana Roman <alisadariana@gmail.com>, alexandru.tachici@analog.com, 
-	alisa.roman@analog.com, conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org, 
-	lars@metafoo.de, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	michael.hennerich@analog.com, robh+dt@kernel.org, 
-	Nuno Sa <nuno.sa@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANCUz2UC/22NQQ7CIBQFr9KwFvP5pYquvIdxAS20JAQaUNKm6
+ d2l3Rijy3nJm1lI0tHqRK7VQqLONtngC9SHirSD9L2mtitMELBmCIxOTAtgALSzaXRyppKfauQ
+ cQElDyk3JpKmK0rdDOfqXc2UcozZ22jv3R+HBpmeI857NbFu3AgeGl99CZhQodBetBDa8M3Bz1
+ ssYjiH2ZLNl/BiQ8T8GLIbWQKOkEGfe1F+GdV3fLEbD+QgBAAA=
+To: Rob Clark <robdclark@gmail.com>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2021; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=0iFXpBAkOI5XFf8B+lBsw7By4yXHr24NnEal53Y4B9U=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBlz5TSztKm9Y1ReskOBVpTZu0w//CBKZim1KNW8
+ Fk0rx9kfouJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZc+U0gAKCRAbX0TJAJUV
+ VlCMD/wJQ0F811zULMoG88tizqg5woFm+ExkHS4/mFScQnxjO+250VkA5TNSBM6eDMDqTEYM47x
+ Fe1ZqYKqiUvTfjFtiFv2tmdT/vUewNdtQBNNlhaW/3f5NG2E9/xONI03hY6Tf9lQHpEK8B5Q92i
+ peLKidNcBoXsOAfufe0rMntPTxGyGYtb3eAs5/N+S+bb17O+HabqxNqSmf2PBKQLLqbRxvc9Kzq
+ PMiLF0PkOc22GI7MObDQG7poVcrLMF0zcVaWrBrBO6feSCKlx7S770Szrki1hNi5xyakOuEj5ik
+ 7cTnPjvjqJyOqgoYot5JYIKc0BdiBhcOqDtXmTLa3pemCeg4eufj4ZflFg6ds5kzssC1M4lUOT7
+ WOC7klglnEEEL6zJxkOuvgLjUj64dQJXMoTm7a69k4xLU/MDRa3sZCJQKRbziF4PNFTjr8/DOCO
+ eerJ2dt/af/vs7Jwnz/buOATn+c4m7Uy+2P3fG6iWvLBZsB6+hUiiVv6ACpzLJTUTKlNG5n8Ma5
+ sNjNnsfp6ZpfdaQjabrJfus/PZ3jAcwhCagh+nLo/Hj+Su4QelJxhp68ajzoKF0OOBckjZIrRE9
+ aEQ36y1kFLJu7ATRCzJYHYuXxurcbZgAs8Zr4LOKDN2hmJwFRkmtNxgSuCXS5dePxFZbZUngk69
+ AMzRJnKXWtf0tWA==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-On Fri, Feb 16, 2024 at 8:22=E2=80=AFAM Jonathan Cameron <jic23@kernel.org>=
- wrote:
->
-> On Thu, 15 Feb 2024 11:13:19 -0600
-> David Lechner <dlechner@baylibre.com> wrote:
->
+This patchset adds support for display for X1E80100.
+The support for embedded DisplayPort on this platform will not
+be enabled using the connetor type from driver match data,
+but through some 'is-edp' property via DT. This subsequent work
+will be part of a separate patchset.
 
-...
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+Changes in v3:
+- Added Dmitry's R-b tag to the mdss patch
+- Swapped order of first two patches, as suggested by Rob
+- Added "additionalProperties: true" to all pattern properties in MDSS
+  schema
+- Link to v2: https://lore.kernel.org/r/20240214-x1e80100-display-v2-0-cf05ba887453@linaro.org
 
-> >
-> > Tables 22, 23 and 24 in the AD7194 datasheet show that this chip is
-> > much more configurable than AD7192 when it comes to assigning
-> > channels. There are basically no restrictions on which inputs can be
-> > used together. So I am still confident that my suggestion is the way
-> > to go for AD7194. (Although I didn't actually try it on hardware, so
-> > can't be 100% confident. But at least 90% confident :-p)
->
-> You would have to define a channel number for aincom.  There is an explic=
-it
-> example in the datasheet of it being at 2.5V using a reference supply.
->
-> I wonder what expectation here is.  Allways a reference regulator on that=
- pin, or
-> an actually varying input? Maybe in long term we want to support both
-> options - so if aincom-supply is provided these are single ended with
-> an offset, but if not they are differential channels between channel X an=
-d
-> channel AINCOM.
->
-> Note though that this mode is described a pseudo differential which norma=
-lly
-> means a fixed voltage on the negative.
->
-> So gut feeling from me is treat them as single ended and add an
-> aincom-supply + the offsets that result if that is provided in DT and
-> voltage from it is non 0.
+Changes in v2:
+- Dropped the 4th patch:
+  "drm/msm/dp: Try looking for link-frequencies into the port@0's endpoint first"
+- Fixed the qcom,x1e80100-mdss schema by including some missing headers
+  in the example
+- Added TODO comment for reg_bus_bw
+- Switched to SDMA features mask
+- Added Krzysztof's R-b tag to mdss schema patch
+- Added Dmitry's R-b tag to the dpu patch
+- Link to v1: https://lore.kernel.org/r/20240129-x1e80100-display-v1-0-0d9eb8254df0@linaro.org
 
-Calling AINCOM a supply doesn't sound right to me since usually this
-signal is coming somewhere external, i.e. you have a twisted pair
-connected to AIN1 and AINCOM going to some signal source that may be
-hot-pluggable and not known at compile time. As an example, if AINCOM
-was modeled as a supply, then we would have to change the device tree
-every time we changed the voltage offset on the signal generator while
-we are testing using an evaluation board.
+---
+Abel Vesa (4):
+      dt-bindings: display/msm: Document the DPU for X1E80100
+      dt-bindings: display/msm: Document MDSS on X1E80100
+      drm/msm: mdss: Add X1E80100 support
+      drm/msm/dpu: Add X1E80100 support
+
+ .../bindings/display/msm/qcom,sm8650-dpu.yaml      |   4 +-
+ .../bindings/display/msm/qcom,x1e80100-mdss.yaml   | 253 ++++++++++++
+ .../drm/msm/disp/dpu1/catalog/dpu_9_2_x1e80100.h   | 449 +++++++++++++++++++++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c     |   2 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h     |   1 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            |   1 +
+ drivers/gpu/drm/msm/msm_mdss.c                     |  13 +
+ 7 files changed, 722 insertions(+), 1 deletion(-)
+---
+base-commit: 85a96a047f413da4b663919a4ced39a4715c6835
+change-id: 20231201-x1e80100-display-a46324400baf
+
+Best regards,
+-- 
+Abel Vesa <abel.vesa@linaro.org>
+
 
