@@ -1,335 +1,134 @@
-Return-Path: <devicetree+bounces-42736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2354F8584A8
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 18:54:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99D878584B1
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 18:58:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8D94FB20EC4
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 17:54:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4FEF41F23332
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 17:58:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43EE4133404;
-	Fri, 16 Feb 2024 17:54:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B7701350D1;
+	Fri, 16 Feb 2024 17:58:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b="rrZf/b9j"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DMSBG9Bk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A89E913174F;
-	Fri, 16 Feb 2024 17:54:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.181.215.36
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E4701350C8;
+	Fri, 16 Feb 2024 17:58:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708106063; cv=none; b=b4DJ6g4fUaqwWuSj8Tf58w/A7dwzi0Uhmx/mpDqlaiLG4+I4HU1IPcaX3B715q4h+vHxLvkgvv0b863rc+JUtK8kA2GNSh4TdfU0TfMLmeg/KEsGiUFy17LBYN+kxQRpiaYvmDlyyQx+VmxlLdpkxLVjNHt0DaY309MjpUHlou4=
+	t=1708106287; cv=none; b=eymyXYp2sLjKaMQNOU5hf2GKAYn87mw+fFEFVsD4t+mcYWsGahgDbBgwmmTmBywetdtmJWLHxFKEoaPpPpcHp3DO+SzvyBPY1EBA+f7VUWyWMywvUoIwf/98hmf2ql9wy5v6oQyaat3bHpgAYD6AOKBRm95lV1ioUG1/c8/FfWE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708106063; c=relaxed/simple;
-	bh=PN3DC4gQo2sVUx2XL7DqLhJtEgEXa1SqlCzvj56NJ9w=;
+	s=arc-20240116; t=1708106287; c=relaxed/simple;
+	bh=TzxyUhzWqR9OGR0ur5lsWOcMoqjtLpMgsu+N/yqRV/w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b3t3C6t83tT1XhhsjCrCkhz4Q3K3qKhdijLw5RnUZsKihbs1eb1wxtFB/xXnETz6OCXZP4X/xZ75AschfNJwUukc9GGqLdv2PDmz/SevrWf79axrvJT4DdtWZfeoJgW0x5pq0NJDyNtHxEtyIw5aSa3CIU7v1d3M6hmkhf56JD8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz; spf=pass smtp.mailfrom=xff.cz; dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b=rrZf/b9j; arc=none smtp.client-ip=195.181.215.36
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xff.cz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-	t=1708106055; bh=PN3DC4gQo2sVUx2XL7DqLhJtEgEXa1SqlCzvj56NJ9w=;
-	h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-	b=rrZf/b9j/ERtjKNzyAc4v1uKL6M6Qmx6e7ouqA547c+GgRcv51NqZxCPVl+tC7TA/
-	 eG0ALfd4S+MskqU7JuMmIEQYvwF38/VgTSXPYMTg5NleCMPkrm4CX+uf3qkT+TEN4F
-	 Zc5v4ILJQUm+IhpF+Nbwmie3y7bI5jdPC8NK93/U=
-Date: Fri, 16 Feb 2024 18:54:15 +0100
-From: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andrey Skvortsov <andrej.skvortzov@gmail.com>, Icenowy Zheng <icenowy@aosc.io>, 
-	Dalton Durst <dalton@ubports.com>, Shoji Keita <awaittrot@shjk.jp>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] iio: magnetometer: add a driver for Voltafield
- AF8133J magnetometer
-Message-ID: <rjy24xzrwk7kp5pefbzeqlq3fcx2gihfsqozmyb2ueuf5hjhmf@ercw57qq5lyi>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>, 
-	Jonathan Cameron <jic23@kernel.org>, Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andrey Skvortsov <andrej.skvortzov@gmail.com>, Icenowy Zheng <icenowy@aosc.io>, 
-	Dalton Durst <dalton@ubports.com>, Shoji Keita <awaittrot@shjk.jp>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <20240212175410.3101973-1-megi@xff.cz>
- <20240212175410.3101973-4-megi@xff.cz>
- <20240214170136.00003a22@Huawei.com>
- <q2w6ll3dbr2pjcm3kuh2yckbgwk2er7k44uyq6hmdcdci4acek@htxdnogdpoza>
- <20240216153925.291e65e7@jic23-huawei>
+	 Content-Type:Content-Disposition:In-Reply-To; b=a/QZj2x3ZvsKWF2jIe5qlwhPQs9OS4yiKb5iUOzQp+GxCvNQW+QZF9sEXUNdmWHBVZpMu9CiL0nXiKKMNgJ/hjcCa3YXi54xjk8ZC8GShdvk1GwuqBHSJaa8FFUki9e6MjE70PMeA5duRbZ7+xtHWwsXFvZ7Diy31IAH+bCRA2E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DMSBG9Bk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5F1BC433C7;
+	Fri, 16 Feb 2024 17:58:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708106286;
+	bh=TzxyUhzWqR9OGR0ur5lsWOcMoqjtLpMgsu+N/yqRV/w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DMSBG9BkYIxFDjC5KmCPBFFdDDt88bpd723PEAupSkg0/l4CI/u1KJHRUAKZMHHVF
+	 82/WHm5v6nZVd3K1e8jwXwDOTrlml7lkrzn9pTd2ldCnFa2DF6eiJuxf1h3huaMWV2
+	 NiSulu/q0ZWuqy7qUpPCHt5SbrE27oyPe1e7z8t2F/s+zjnEnpAOpgzxYWG3hcAUyM
+	 Woq6/rNfkcJQz3NXOVy1mghaxKes9myS5GPleFUqJjvM2rL1NP6ffJvtOyLZ4SFaLu
+	 lrpcKGLF0FBZa57SjU6NnHQ7krfusuxiRQa7CJhWN6G0U07A7rtBD26/Taz6MFHzgz
+	 kz4kOk6JdhLaw==
+Date: Fri, 16 Feb 2024 11:58:03 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: quic_fenglinw@quicinc.com, kernel@quicinc.com, 
+	Andy Gross <agross@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: ipq6018: add #power-domain-cells for
+ gcc node
+Message-ID: <wged56grfp7qwvkd2gq4qbewzdevv23kz52vou2z2uh4ws7c3c@b6xigs2ca5oe>
+References: <20240104-gcc-docs-update-v1-1-127e4816b798@quicinc.com>
+ <CAA8EJprsGke9zZBy_x=YSxz7R1aSpx8r3ndjjXVVKhjKBxd=QQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240216153925.291e65e7@jic23-huawei>
+In-Reply-To: <CAA8EJprsGke9zZBy_x=YSxz7R1aSpx8r3ndjjXVVKhjKBxd=QQ@mail.gmail.com>
 
-On Fri, Feb 16, 2024 at 03:39:25PM +0000, Jonathan Cameron wrote:
-> On Wed, 14 Feb 2024 18:43:10 +0100
-> Ondřej Jirman <megi@xff.cz> wrote:
+On Thu, Jan 04, 2024 at 11:53:46AM +0200, Dmitry Baryshkov wrote:
+> On Thu, 4 Jan 2024 at 10:06, Fenglin Wu via B4 Relay
+> <devnull+quic_fenglinw.quicinc.com@kernel.org> wrote:
+> >
+> > From: Fenglin Wu <quic_fenglinw@quicinc.com>
+> >
+> > Property '#power-domain-cells' is required as per defined in qcom,gcc.yaml
+> > so add it for ipq6018 gcc device node to eliminate following warning in
+> > dtbs_check:
+> >
+> > arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dtb: gcc@1800000:
+> >         '#power-domain-cells' is a required property
+> > from schema $id: http://devicetree.org/schemas/clock/qcom,gcc-ipq6018.yaml#
 > 
-> > Hi Jonathan,
+> But ipq6018 doesn't implement GDSC support. So for the sake of fixing
+> the warning you are adding a bogus property.
 > 
-> Gah. Runtime pm always gives me a headache. I'd indeed misunderstood some
-> of what you are doing.
-> > 
-> > [...]
-> > 
-> > I did, it will not work as you suggest. It's implemented as for loop with
-> > condition, and the compiler will complain about fallthrough.
-> > 
-> > I can do:
-> > 
-> > 		scoped_guard(mutex, &data->mutex)
-> > 			return af8133j_set_scale(data, val, val2);
-> > 		return 0;
-> > 
-> > but it looks weirder at first glance, at least to my eye.
-> 
-> I agree that bit is less than ideal, but with your code it should also
-> get confused about whether ret is ever set.
-> 
-> 		scoped_guard(mutex, &data->mutex)
-> 			return ...
-> 		unreachable();
-> 
-> perhaps?  or just use a guard and add scope manually
-> 
-> 	case IIO_CHAN_INFO_SCALE: {
-> 		guard(mutex)(&data->mutex);
-> 
-> 		return af8133j_set_scale(...);
-> 	}
-> 
-> I'd go with this as the cleanest solution in this case.
 
-Yes, that looks much nicer. Thanks. :)
+The platform does indeed have two USB GDSCs, which you can see being
+referred to in gcc_ipq6018_probe().
 
-Though in the end I'll go with pushing the locking down to actual register
-access in the af8133j_set_scale() function, so that I don't lock around
-RPM disable/enable for no reason.
+But while this patch removes a warning, I think the proper solution
+would be to actually describe those GDSCs in the DeviceTree as well.
+Unfortunately this would imply the need to actually implement them in
+Linux as well.
 
-> 
-> > 
-> > > > +		return ret;
-> > > > +	default:
-> > > > +		return -EINVAL;
-> > > > +	}
-> > > > +}  
-> > >   
-> > > > +static void af8133j_power_down_action(void *ptr)
-> > > > +{
-> > > > +	struct af8133j_data *data = ptr;
-> > > > +	struct device *dev = &data->client->dev;
-> > > > +
-> > > > +	pm_runtime_disable(dev);  
-> > > You group together unwinding of calls that occur in very
-> > > different places in probe.  Don't do that as it leas
-> > > to disabling runtime pm having never enabled it
-> > > in some error paths.  That may be safe but if fails the
-> > > obviously correct test.  
-> > 
-> > This whole disable/enable dance is here so that pm_runtime_status_suspended can
-> > be trusted. Not for disabling PM during device remove or in error paths.
-> > 
-> > There's no imbalance here or problem with disabling PM when it's already
-> > disabled. Disable/enable is reference counted, and this function keeps the
-> > balance.
-> 
-> Whilst not buggy but I still want to be able to cleanly associate a given
-> bit of cleanup with what is being cleaned up.  That is the path to
-> maintainable code longer term.  Runtime PM does make a mess of doing this
-> but tends to have somewhat logical sets of calls that go together.
-> 
-> As long as we hold a reference, doesn't matter when we turn it on in probe()
-> Only the put_autosuspend has to come after we done talking to it.
-> 	
-> > 
-> > > So this is a good solution to the normal dance of turning power on
-> > > just to turn it off shortly afterwards.
-> > >   
-> > > > +		af8133j_power_down(data);
-> > > > +	pm_runtime_enable(dev);  
-> > > Why?  
-> > 
-> > See above. To keep the disable ref count balanced.
-> > 
-> > Looks like actual RPM disable already happened at this point a bit earlier in
-> > another callback registered via devm_pm_runtime_enable(). I guess this
-> > pm_runtime_enable()/pm_runtime_disable() guard can just be skipped, because RPM
-> > is already disabled thanks to reverse ordering of devm callbacks during device
-> > remove. So while this is safe, it's redundant at this point and call to 
-> > pm_runtime_status_suspended() is safe without this.
-> 
-> Yes, That's a side effect of only enabling it right at the end.
-> 
-> > 
-> > > > +}
-> > > > +
-> > > > +static int af8133j_probe(struct i2c_client *client)
-> > > > +{
-> > > > +	struct device *dev = &client->dev;
-> > > > +	struct af8133j_data *data;
-> > > > +	struct iio_dev *indio_dev;
-> > > > +	struct regmap *regmap;
-> > > > +	int ret, i;
-> > > > +
-> > > > +	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-> > > > +	if (!indio_dev)
-> > > > +		return -ENOMEM;
-> > > > +
-> > > > +	regmap = devm_regmap_init_i2c(client, &af8133j_regmap_config);
-> > > > +	if (IS_ERR(regmap))
-> > > > +		return dev_err_probe(dev, PTR_ERR(regmap),
-> > > > +				     "regmap initialization failed\n");
-> > > > +
-> > > > +	data = iio_priv(indio_dev);
-> > > > +	i2c_set_clientdata(client, indio_dev);
-> > > > +	data->client = client;
-> > > > +	data->regmap = regmap;
-> > > > +	data->range = AF8133J_REG_RANGE_12G;
-> > > > +	mutex_init(&data->mutex);
-> > > > +
-> > > > +	data->reset_gpiod = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-> > > > +	if (IS_ERR(data->reset_gpiod))
-> > > > +		return dev_err_probe(dev, PTR_ERR(data->reset_gpiod),
-> > > > +				     "Failed to get reset gpio\n");
-> > > > +
-> > > > +	for (i = 0; i < ARRAY_SIZE(af8133j_supply_names); i++)
-> > > > +		data->supplies[i].supply = af8133j_supply_names[i];
-> > > > +	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(data->supplies),
-> > > > +				      data->supplies);
-> > > > +	if (ret)
-> > > > +		return ret;
-> > > > +
-> > > > +	ret = iio_read_mount_matrix(dev, &data->orientation);
-> > > > +	if (ret)
-> > > > +		return dev_err_probe(dev, ret, "Failed to read mount matrix\n");
-> > > > +
-> > > > +	ret = af8133j_power_up(data);
-> > > > +	if (ret)
-> > > > +		return ret;
-> > > > +
-> > > > +	pm_runtime_set_active(dev);
-> > > > +
-> > > > +	ret = devm_add_action_or_reset(dev, af8133j_power_down_action, data);  
-> > > 
-> > > As mentioned above, this should only undo things done before this point.
-> > > So just the af8133j_power_down() I think.  
-> > 
-> > The callback doesn't do anything else but power down. It leaves everything
-> > else as is after it exits.
-> > 
-> > > > +	if (ret)
-> > > > +		return ret;
-> > > > +
-> > > > +	ret = af8133j_product_check(data);
-> > > > +	if (ret)
-> > > > +		return ret;
-> > > > +
-> > > > +	indio_dev->info = &af8133j_info;
-> > > > +	indio_dev->name = "af8133j";
-> > > > +	indio_dev->channels = af8133j_channels;
-> > > > +	indio_dev->num_channels = ARRAY_SIZE(af8133j_channels);
-> > > > +	indio_dev->modes = INDIO_DIRECT_MODE;
-> > > > +
-> > > > +	ret = devm_iio_triggered_buffer_setup(dev, indio_dev, NULL,
-> > > > +					      &af8133j_trigger_handler, NULL);
-> > > > +	if (ret < 0)
-> > > > +		return dev_err_probe(&client->dev, ret,
-> > > > +				     "Failed to setup iio triggered buffer\n");
-> > > > +
-> > > > +	ret = devm_iio_device_register(dev, indio_dev);
-> > > > +	if (ret)
-> > > > +		return dev_err_probe(dev, ret, "Failed to register iio device");
-> > > > +
-> > > > +	pm_runtime_get_noresume(dev);  
-> > >   
-> > > > +	pm_runtime_use_autosuspend(dev);
-> > > > +	pm_runtime_set_autosuspend_delay(dev, 500);
-> > > > +	ret = devm_pm_runtime_enable(dev);  
-> > > 
-> > > This already deals with pm_runtime_disable() so you shouldn't need do it manually.  
-> > 
-> > I'm not disabling RPM manually, it was just used as temporary guard to be able
-> > to read pm_runtime_status_suspended() safely.
-> 
-> I'd indeed misunderstood that. I forgot the oddity that runtime pm is effectively
-> reference counting in only one direction for enable / disable and the opposite
-> one for get and put.
-> 
-> pm_runtime_disable()
-> pm_runtime_disable()
-> pm_runtime_enable()
-> pm_runtime_enable()
-> pm_runtime_enable()
-> is fine, but
-> 
-> pm_runtime_enable()
-> pm_runtime_enable()
-> pm_runtime_disable()
-> pm_runtime_disable()
-> pm_runtime_enable()
-> is not.
-> 
-> Which makes sense when you realise it's all about ensuring it is off, but
-> never ensuring that it is turned on.
 
-Yeah. Enabling already enabled RPM is thankfully easier to catch though, due to
-a kernel warning:
+Alternatively, there exist a reason for not actually change the state of
+these GDSCs at runtime - i.e. the gcc driver is doing the right thing.
+But if so, this patch would be wrong...
 
-https://elixir.bootlin.com/linux/latest/source/drivers/base/power/runtime.c#L1494
+Regards,
+Bjorn
 
-Unbalanced disable is annoying though. Not sure why, but disable_depth even
-persists device unbind, so next rebinding will leave RPM disabled after probe.
-
-That is when doing this after intentionally make the driver disable RPM twice
-in remove callback:
-
-echo 4-001c > /sys/bus/i2c/drivers/af8133j/unbind
-echo 4-001c > /sys/bus/i2c/drivers/af8133j/bind
-
-(driver remove/probe gets called)
-
-Maybe it's due to RPM dependencies on parent device. Dunno. But it's a silent
-problem in this case.
-
-regards,
-	o.
-
+> >
+> > Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/ipq6018.dtsi | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> > index 39cd6b76b4c1..54914912d610 100644
+> > --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> > @@ -386,6 +386,7 @@ gcc: gcc@1800000 {
+> >                         reg = <0x0 0x01800000 0x0 0x80000>;
+> >                         clocks = <&xo>, <&sleep_clk>;
+> >                         clock-names = "xo", "sleep_clk";
+> > +                       #power-domain-cells = <1>;
+> >                         #clock-cells = <1>;
+> >                         #reset-cells = <1>;
+> >                 };
+> >
+> > ---
+> > base-commit: 17cb8a20bde66a520a2ca7aad1063e1ce7382240
+> > change-id: 20240103-gcc-docs-update-fa604579e468
+> >
+> > Best regards,
+> > --
+> > Fenglin Wu <quic_fenglinw@quicinc.com>
+> >
+> >
 > 
 > 
-> 
-> > 
-> > > Also you want to enable that before the devm_iio_device_register() to avoid
-> > > problems with it not being available as the userspace interfaces are used.
-> > >
-> > > So just move this up a few lines.  
-> > 
-> > Good idea, thanks.
-> > 
-> > kind regards,
-> > 	o.
-> > 
-> > > 
-> > >   
-> > > > +	if (ret)
-> > > > +		return ret;
-> > > > +
-> > > > +	pm_runtime_put_autosuspend(dev);
-> > > > +
-> > > > +	return 0;
-> > > > +}  
-> > >   
-> 
+> -- 
+> With best wishes
+> Dmitry
 
