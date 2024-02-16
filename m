@@ -1,107 +1,139 @@
-Return-Path: <devicetree+bounces-42785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 841D4858765
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 21:44:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 593F1858778
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 21:50:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 13DFAB274F2
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 20:44:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D3CEFB21791
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 20:50:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F5281468FE;
-	Fri, 16 Feb 2024 20:34:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5420137C5A;
+	Fri, 16 Feb 2024 20:50:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="wT4O/rqn"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="IHl9ORoC";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="UQZ1bO66"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D26813A88B
-	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 20:34:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CEF17E104;
+	Fri, 16 Feb 2024 20:50:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708115656; cv=none; b=g4kyICV6NnqKUz+kRcFloa78/p9xeW8PLu9XJdZFlcKXQSlKjMvXn4rSLYAL+FZvDX922aqs6T8DhyRmsmrvNcu/uEaqw7KicsCuiUUBlegymzqSFiMm5As//VBEhEXJSthqrLeCpQUAxIIkB4aAyATJ34UiLY1tXYqbT5xV9xU=
+	t=1708116614; cv=none; b=RgEyWzLrVWVcnkueaR4P5fHjAkpChsd8M+ffTBYPvHKQ549AYDoxZk+6Oa6WUMJe2IJzXn+oJvv0N10JETRu9sxFWpx7Wb2/Vi9cQkUFsSsioY//UNIF9U21LT9yXoa3dZIcVTJK90j6bdG0k06CiV2sWqJnf9AEJc/h0DMI990=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708115656; c=relaxed/simple;
-	bh=pq5F3XT3b3maOzXC0OSg22Jr/nnhiqkbRrjlg8Pw5WE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uX7+hjp01RcEEccFrdxJozege/qACm5TuVn18a4s+KseWjHvspg2CjG8T8rkSmkVRrn6zkjewm+xfCKFgCy0HDhO4M0djiufMfOhcdmp/ajXwtwGISc1bhhUqJxvkGiokNMvyKMUzT2GDVFNEWDOdBvSpJiJFm3HhciT2Xk1fTo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=wT4O/rqn; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2d109e82bd0so30003511fa.3
-        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 12:34:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1708115652; x=1708720452; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pq5F3XT3b3maOzXC0OSg22Jr/nnhiqkbRrjlg8Pw5WE=;
-        b=wT4O/rqnQnHYkJ+OGK4uqgSCbJ75ZT/GDd2HCyCTefVXNHoj0uatbby94nU7+APg2j
-         ojQU/L3tlblxeUBwyI8UTOxJLz/UXfluju5yXghvWXmLRa93IbeyD2Jnj8OpNcwZZL2R
-         baIiUZmzBd21QuTercEH+stdjzfDdrtvE9D+mJ0Ak2cn+5zlnciIZhWb1D8EjT/UaPt0
-         HY0g/McLnSQ1nV6i6Lh4JEr+ryvcAKe8ayNSnukVMGbI30FykULzn6EvAMpCrRDi1h1K
-         8h+AR7upzu08uwI+OblGmhQNGhhtqshXNCFQuacFDD7WfuCvrRch4sMmet29mECf+YT8
-         +Ypw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708115652; x=1708720452;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pq5F3XT3b3maOzXC0OSg22Jr/nnhiqkbRrjlg8Pw5WE=;
-        b=vJAZ85qBboUVfrkCX7/ZJMpARa5Q5ZUm0nPPPjiSWEVFzl389LR6xIWvLiTAUVgqbr
-         7kcZIK6F6dBqYFEUY0gNiThhaVUo/0elqd3JO5EpBr8T7ntM6qhtIlG4SzHJ200Rkkwj
-         3K1zjM0qDe1QvtHqG8ysNOCR5qakbUx6i0ovdAvrw8qmLMOut6chRYqNEpUOtpD2ypp+
-         3QnSHQ391hhPqhIkQncxt9Y2u685rQKKIv+r5n1VNj4YKyT1qC1l6IDkpujsTwqA07If
-         g5rjzDMb783IIhlYk4YANhN7J/jqC2poMw15JpHGIgClHd624xI+4VCR05URGdFFgBoY
-         BwzA==
-X-Forwarded-Encrypted: i=1; AJvYcCX5TR6UqkMDTDTVTxqMCpb7Mj5XBY1xE2/yrv2o3Ci01IhQn4oBa12EqyoVPMzNPK65iaeIjkeJYDWgfhwrdH2+fBUJ2u5ZpeIQMg==
-X-Gm-Message-State: AOJu0YwqoyellRQ0t8ZgZ7AomIwv7fUNqnktciuMwINJ2+mGxYsx314K
-	rgmLlo/pKpWSXtyoP7347oUdF+QshVTYHZqRtQusAQh6quQrCzCLXn+QhMPtLRgYQyHoqOVP6mR
-	rjQwQa5a8S3a7iSwKONePfsabuK87ZqLI9BgLMg==
-X-Google-Smtp-Source: AGHT+IHwHYpVzlRcp1qiboXEECylduunaBTGnGyNLKtqMnvOz1KUNJk4Xuwg2AY6zQSSCnxMnQ6+42b4qDDvaFHsTjQ=
-X-Received: by 2002:a2e:9198:0:b0:2d0:cfe6:4364 with SMTP id
- f24-20020a2e9198000000b002d0cfe64364mr4326730ljg.36.1708115652363; Fri, 16
- Feb 2024 12:34:12 -0800 (PST)
+	s=arc-20240116; t=1708116614; c=relaxed/simple;
+	bh=h3wIsXmqlT30Nejp9wNW9D81WtR4fDbq5xf7it79kko=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=uXG73n7Rlh7E250y1Jd/QNfQVcu188YTTX64/Q4Y+jLpK+S2qBrDy2GjlBx7LkRulCLvTmHy+Wxa/8Y5Igi8pL5ZRWn8YzXg/riKAJqtlw06g6Y8U8+7GjoQLKO44smz+K/gA+/+IJPZ4RK0OHw+aIjWWoRb4KA/7wgo0DmJIp4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=IHl9ORoC; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=UQZ1bO66; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1708116611;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/MiNcyV6cuA2bEaO9pcAB0n2lgB9jPzAIMw9Rcvipmc=;
+	b=IHl9ORoCzIXPoV6LABWoXZZeMThG96CoIBAQQ027SKATZEF6fDtWiZ+bTW4kAY8lPa27DL
+	Eo4oTrIMRPfMUn84ibsglx2TpDLUv3K0b85/SkLNV1z+KsIqNFC7n0oEiMVgIxu87uW7SM
+	gvkoKgs9jvUqkGi9yLTP7IWTTMRVxzGIMhqUE2sUzhakn9LAeuR0LULqYWkqRFEWvIasLv
+	EUrOGTu9obLyx99g44CXIknPz4XE1ItIo56xNMLgDlofUnnpx2GK7jbWIUKgbTBEzntOXN
+	hNXXARggoTtPidzCj/D3DyFrgc7uETU2mjLp+kb+XMhpRhqnHgMsYlzQq7YGSg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1708116611;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/MiNcyV6cuA2bEaO9pcAB0n2lgB9jPzAIMw9Rcvipmc=;
+	b=UQZ1bO66o3f1pXva2taPAXPSKlpKkqJV7Ezk94IO8xuYtdCOe4hdhfUQZY8wcsbasEmJJ8
+	cRHlhm4HLiyx/WCw==
+To: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
+ <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>
+Cc: Marc Zyngier <maz@kernel.org>, =?utf-8?B?QmrDtnJuIFTDtnBlbA==?=
+ <bjorn@kernel.org>, Atish
+ Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>,
+ Sunil V L <sunilvl@ventanamicro.com>, Saravana Kannan
+ <saravanak@google.com>, Anup Patel <anup@brainfault.org>,
+ linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Anup Patel
+ <apatel@ventanamicro.com>
+Subject: Re: [PATCH v12 22/25] irqchip: Add RISC-V advanced PLIC driver for
+ direct-mode
+In-Reply-To: <20240127161753.114685-23-apatel@ventanamicro.com>
+References: <20240127161753.114685-1-apatel@ventanamicro.com>
+ <20240127161753.114685-23-apatel@ventanamicro.com>
+Date: Fri, 16 Feb 2024 21:50:10 +0100
+Message-ID: <875xyocewt.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240110-ad7380-mainline-v4-0-93a1d96b50fa@baylibre.com> <20240110-ad7380-mainline-v4-2-93a1d96b50fa@baylibre.com>
-In-Reply-To: <20240110-ad7380-mainline-v4-2-93a1d96b50fa@baylibre.com>
-From: David Lechner <dlechner@baylibre.com>
-Date: Fri, 16 Feb 2024 14:34:01 -0600
-Message-ID: <CAMknhBGg0hHXrd3K92tgHHTnfbk7dLAMvtTSZff1P-C3=9nFaw@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] iio: adc: ad7380: new driver for AD7380 ADCs
-To: Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Hennerich <michael.hennerich@analog.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org, 
-	Stefan Popa <stefan.popa@analog.com>, devicetree@vger.kernel.org, 
-	Julien Stephan <jstephan@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 
-On Wed, Jan 10, 2024 at 2:29=E2=80=AFPM David Lechner <dlechner@baylibre.co=
-m> wrote:
->
-> This adds a new driver for the AD7380 family ADCs.
->
-> The driver currently implements basic support for the AD7380, AD7381,
-> AD7383, and AD7384 2-channel differential ADCs. Support for additional
-> single-ended and 4-channel chips that use the same register map as well
-> as additional features of the chip will be added in future patches.
->
+On Sat, Jan 27 2024 at 21:47, Anup Patel wrote:
+> +static int aplic_direct_irqdomain_translate(struct irq_domain *d,
+> +					 struct irq_fwspec *fwspec,
+> +					 unsigned long *hwirq,
+> +					 unsigned int *type)
 
-Hi Jonathan,
+Please align the arguments to the first argument of the first line and
+use the 100 characters, i.e.
 
-We have some additional features to add to this driver we are working
-on that look like they might affect userspace. Can we hold off on
-sending this one to Greg for 6.9? That way we will have more time to
-sort that out without having to worry about breaking userspace.
+static int aplic_direct_irqdomain_translate(struct irq_domain *d, struct irq_fwspec *fwspec,
+					    unsigned long *hwirq, unsigned int *type)
+{
+
+All over the place.
+
+> +{
+> +	struct aplic_priv *priv = d->host_data;
+> +
+> +	return aplic_irqdomain_translate(fwspec, priv->gsi_base,
+> +					 hwirq, type);
+> +}
+> +
+> +static int aplic_direct_irqdomain_alloc(struct irq_domain *domain,
+> +				     unsigned int virq, unsigned int nr_irqs,
+> +				     void *arg)
+> +{
+> +	int i, ret;
+> +	unsigned int type;
+> +	irq_hw_number_t hwirq;
+> +	struct irq_fwspec *fwspec = arg;
+> +	struct aplic_priv *priv = domain->host_data;
+> +	struct aplic_direct *direct =
+> +			container_of(priv, struct aplic_direct, priv);
+
+Variable ordering. Please make this consistent according to documentation.
+
+> +	ret = aplic_irqdomain_translate(fwspec, priv->gsi_base,
+> +					&hwirq, &type);
+> +	if (ret)
+> +		return ret;
+> +
+> +	for (i = 0; i < nr_irqs; i++) {
+> +		irq_domain_set_info(domain, virq + i, hwirq + i,
+> +				    &aplic_direct_chip, priv,
+> +				    handle_fasteoi_irq, NULL, NULL);
+> +		irq_set_affinity(virq + i, &direct->lmask);
+> +		/* See the reason described in aplic_msi_irqdomain_alloc() */
+
+I still have to understand that "reason". :)
+
+> +		irq_set_status_flags(virq + i, IRQ_DISABLE_UNLAZY);
+> +	}
+
+Thanks,
+
+        tglx
 
