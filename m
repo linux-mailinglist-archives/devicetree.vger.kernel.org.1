@@ -1,123 +1,189 @@
-Return-Path: <devicetree+bounces-42681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42682-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C517D8581E8
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 16:56:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72831858200
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 16:59:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81228283100
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 15:56:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C05D1C22892
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 15:59:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57CCA134CFA;
-	Fri, 16 Feb 2024 15:53:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1D63130E5C;
+	Fri, 16 Feb 2024 15:57:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ECy4aIFV"
+	dkim=pass (1024-bit key) header.d=amazon.de header.i=@amazon.de header.b="INUCV6mq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from smtp-fw-33001.amazon.com (smtp-fw-33001.amazon.com [207.171.190.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37ACB133298;
-	Fri, 16 Feb 2024 15:53:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8868C12C809;
+	Fri, 16 Feb 2024 15:57:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.171.190.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708098793; cv=none; b=Nd7K3ZMpMvPV9wd5DqEHyF7m8+omQAc6VCeRMGgqCZhKnXIgOKkCqPOK3UBxniCb2MFILHBUxGEtLKgS8tbeHbYoXeY7PFQu/7nW3kRnhd988wrBTxn6goWjmPaDmpaj3y3Y4/9tuM3TjWVKZ1pn5bVfPwz7dXex2iEwjos+xk4=
+	t=1708099056; cv=none; b=Fr85swdryohF9xe/7biVaAARlqkeoUkSTv5Yz5GjkEVhKOxO7V0nCZMRGBGzFFiGazUpe3Lkael8ESTuAjVWaNdLRnYYUEvn9GdTjzTTjBeFE6vRCRV/TqX7fFMVnBfC506q2sQqAb9vRyhAyrKR0Ld+mvLcvzNOHMmf4wraV8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708098793; c=relaxed/simple;
-	bh=ETzxVU5TL7u3yOgl+fq2bk8/qmTAeHHWvLXY1JVcMm4=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=n1uFory1NeEd1uYGixrpNO3hsUGPBJu/OgNUtnUFQNYVz1kASyspy9OQ3fSKy3bnVo9YiGY9dFt1o8N1LOMOVMZlNmmt4szxYtRh/ekO/w1rl6BetCxqV25r29HiFGB1wNxYnqS7We2XJyeewHOx3r2XbF8QnezxV6C+D6Wm0I0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ECy4aIFV; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1708098791; x=1739634791;
-  h=date:from:to:cc:subject:message-id:mime-version;
-  bh=ETzxVU5TL7u3yOgl+fq2bk8/qmTAeHHWvLXY1JVcMm4=;
-  b=ECy4aIFVWmkqCWBchhdtU24tWMJBGIzZtosancRfm0fzYAuzjt4yKyBF
-   Ifqwgldp3hbSW2oQbnJ2OhrGvi7iRJk5LpnactuBAGrHOZVBd70h/MJTr
-   RzpOPHsYWwhmUIhT+Y5e7oeV+f/fNsXjYMP9ztxlS02kCG4vHnpE7aCam
-   cPOFZJyU/ziSJpkMYhwbB9brwzynQ6Al9nT9v4xgnELlTt2V/zAwD91Lw
-   W6YUkooVcJQbirGlA1os/WQlvK29I7NBQLAsycEDqrLiqOZay7/1gKv9t
-   /CtX1UHWf6l766RnNYgMDUCnwIBRrfC8zZBho/eaMUyE5bmzgAoqZqIz1
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10986"; a="13630527"
-X-IronPort-AV: E=Sophos;i="6.06,165,1705392000"; 
-   d="scan'208";a="13630527"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Feb 2024 07:53:10 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10986"; a="935862609"
-X-IronPort-AV: E=Sophos;i="6.06,165,1705392000"; 
-   d="scan'208";a="935862609"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Feb 2024 07:53:06 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1rb0WN-000000055TF-2g31;
-	Fri, 16 Feb 2024 17:53:03 +0200
-Date: Fri, 16 Feb 2024 17:53:03 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Mike Looijmans <mike.looijmans@topic.nl>, devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Cc: Mike Looijmans <mike.looijmans@topic.nl>,
-	Arnd Bergmann <arnd@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Liam Beguin <liambeguin@gmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Maksim Kiselev <bigunclemax@gmail.com>,
-	Marcus Folkesson <marcus.folkesson@gmail.com>,
-	Marius Cristea <marius.cristea@microchip.com>,
-	Mark Brown <broonie@kernel.org>,
-	Niklas Schnelle <schnelle@linux.ibm.com>,
-	Okan Sahin <okan.sahin@analog.com>, linux-kernel@vger.kernel.org
-Subject: [PATCH v5 2/2] iio: adc: ti-ads1298: Add driver
-Message-ID: <Zc-E3-MNe9dG9tdW@smile.fi.intel.com>
+	s=arc-20240116; t=1708099056; c=relaxed/simple;
+	bh=92zPtdd0rAFo21Fvita8bJaJeG+DPj1KURFAzjkg2QY=;
+	h=From:To:CC:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=Vt545GRyr3U7Ma/FVO5Kj9FTL4LUnjzQe5l3PsDe1tqFLzYmfuMuWw3XkOLrup3sXUPpNSykZoDPBZsuKgL3G5LJDJ9E7UxuLe4SZDBrGIGSEo1QaUDXKjzMLgmIjZ3t+TDtS0FZUjVeY6EtVCVPSskcsTWAsnZH/TY/L0Qomrg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.de; spf=pass smtp.mailfrom=amazon.de; dkim=pass (1024-bit key) header.d=amazon.de header.i=@amazon.de header.b=INUCV6mq; arc=none smtp.client-ip=207.171.190.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.de; i=@amazon.de; q=dns/txt; s=amazon201209;
+  t=1708099055; x=1739635055;
+  h=from:to:cc:subject:in-reply-to:references:date:
+   message-id:mime-version;
+  bh=ySlk5EP+5EPRFvPn7fKspQz+Y/lmLyPoeT8Lylq3p9Y=;
+  b=INUCV6mqjR9bApW5bPO0D8ZD37F1XaWRtO+wK3N12g+gRywP9XEtWK7q
+   ndTGY0ChLjMKu8+L1K953A1sZd20aXSOhg1LMfmMqY+yW1LdE/Wox4nkc
+   X5kIvTHlyqVnclXMUhgTxt3+hLdbhTBmhYh6uejjdrWjQlLrKrWTap/YR
+   E=;
+X-IronPort-AV: E=Sophos;i="6.06,165,1705363200"; 
+   d="scan'208";a="327444091"
+Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO smtpout.prod.us-east-1.prod.farcaster.email.amazon.dev) ([10.43.8.6])
+  by smtp-border-fw-33001.sea14.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Feb 2024 15:57:26 +0000
+Received: from EX19MTAUEC002.ant.amazon.com [10.0.0.204:20286]
+ by smtpin.naws.us-east-1.prod.farcaster.email.amazon.dev [10.0.58.150:2525] with esmtp (Farcaster)
+ id 5a50e3a4-7605-4a6b-bd7b-2201142338a7; Fri, 16 Feb 2024 15:57:25 +0000 (UTC)
+X-Farcaster-Flow-ID: 5a50e3a4-7605-4a6b-bd7b-2201142338a7
+Received: from EX19D008UEA002.ant.amazon.com (10.252.134.125) by
+ EX19MTAUEC002.ant.amazon.com (10.252.135.253) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Fri, 16 Feb 2024 15:57:10 +0000
+Received: from EX19MTAUEA001.ant.amazon.com (10.252.134.203) by
+ EX19D008UEA002.ant.amazon.com (10.252.134.125) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Fri, 16 Feb 2024 15:57:09 +0000
+Received: from dev-dsk-ptyadav-1c-37607b33.eu-west-1.amazon.com (10.15.11.255)
+ by mail-relay.amazon.com (10.252.134.102) with Microsoft SMTP Server id
+ 15.2.1118.40 via Frontend Transport; Fri, 16 Feb 2024 15:57:09 +0000
+Received: by dev-dsk-ptyadav-1c-37607b33.eu-west-1.amazon.com (Postfix, from userid 23027615)
+	id 4FB1420D21; Fri, 16 Feb 2024 16:57:09 +0100 (CET)
+From: Pratyush Yadav <ptyadav@amazon.de>
+To: Alexander Graf <graf@amazon.com>
+CC: <linux-kernel@vger.kernel.org>, <linux-trace-kernel@vger.kernel.org>,
+	<linux-mm@kvack.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <kexec@lists.infradead.org>,
+	<linux-doc@vger.kernel.org>, <x86@kernel.org>, Eric Biederman
+	<ebiederm@xmission.com>, "H . Peter Anvin" <hpa@zytor.com>, Andy Lutomirski
+	<luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Steven Rostedt
+	<rostedt@goodmis.org>, Andrew Morton <akpm@linux-foundation.org>, "Mark
+ Rutland" <mark.rutland@arm.com>, Tom Lendacky <thomas.lendacky@amd.com>,
+	Ashish Kalra <ashish.kalra@amd.com>, James Gowans <jgowans@amazon.com>,
+	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>, <arnd@arndb.de>,
+	<pbonzini@redhat.com>, <madvenka@linux.microsoft.com>, Anthony Yznaga
+	<anthony.yznaga@oracle.com>, Usama Arif <usama.arif@bytedance.com>, "David
+ Woodhouse" <dwmw@amazon.co.uk>, Benjamin Herrenschmidt
+	<benh@kernel.crashing.org>, Rob Herring <robh+dt@kernel.org>, "Krzysztof
+ Kozlowski" <krzk@kernel.org>
+Subject: Re: [PATCH v3 04/17] kexec: Add KHO parsing support
+In-Reply-To: <20240117144704.602-5-graf@amazon.com> (Alexander Graf's message
+	of "Wed, 17 Jan 2024 14:46:51 +0000")
+References: <20240117144704.602-1-graf@amazon.com>
+	<20240117144704.602-5-graf@amazon.com>
+Date: Fri, 16 Feb 2024 16:57:09 +0100
+Message-ID: <mafs0eddc8kru.fsf@amazon.de>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain
 
-...
+Hi,
 
-+	if (reset_gpio) {
-+		/*
-+		 * Deassert reset now that clock and power are active.
-+		 * Minimum reset pulsewidth is 2 clock cycles.
-+		 */
-+		udelay(ADS1298_CLOCKS_TO_USECS(2));
+On Wed, Jan 17 2024, Alexander Graf wrote:
 
-This is sleeping context and you are calling unsleeping function. I haven't
-checked the macro implementation and I have no idea what is the maximum it may
-give, but making code robust just use fsleep() call.
+> When we have a KHO kexec, we get a device tree, mem cache and scratch
+> region to populate the state of the system. Provide helper functions
+> that allow architecture code to easily handle memory reservations based
+> on them and give device drivers visibility into the KHO DT and memory
+> reservations so they can recover their own state.
+>
+> Signed-off-by: Alexander Graf <graf@amazon.com>
+>
+> ---
+>
+[...]
+> +/**
+> + * kho_return_mem - Notify the kernel that initially reserved memory is no
+> + * longer needed. When the last consumer of a page returns their mem, kho
+> + * returns the page to the buddy allocator as free page.
+> + */
+> +void kho_return_mem(const struct kho_mem *mem)
+> +{
+> +	uint64_t start_pfn, end_pfn, pfn;
+> +
+> +	start_pfn = PFN_DOWN(mem->addr);
+> +	end_pfn = PFN_UP(mem->addr + mem->len);
+> +
+> +	for (pfn = start_pfn; pfn < end_pfn; pfn++)
+> +		kho_return_pfn(pfn);
+> +}
+> +EXPORT_SYMBOL_GPL(kho_return_mem);
+> +
+> +static void kho_claim_pfn(ulong pfn)
+> +{
+> +	struct page *page = pfn_to_page(pfn);
+> +
+> +	WARN_ON(!page);
+> +	if (WARN_ON(page_count(page) != 1))
+> +		pr_err("Claimed non kho pfn %lx", pfn);
 
-+		gpiod_set_value_cansleep(reset_gpio, 0);
-+	} else {
-+		ret = ads1298_write_cmd(priv, ADS1298_CMD_RESET);
-+		if (ret)
-+			return dev_err_probe(dev, ret, "RESET failed\n");
-+	}
-+	/* Wait 18 clock cycles for reset command to complete */
-+	udelay(ADS1298_CLOCKS_TO_USECS(18));
+You do sanity checks but then never actually change anything on the
+page. kho_claim_mem()'s documentation says: "This function removes the
+reserved state for all pages that the mem spans". So this function
+should at the very least call ClearPageReserved().
 
-Ditto.
+Also, checking the page count is a very rough heuristic. There can be
+other non-KHO pages with page count == 1. Do you think it would make
+more sense to use one of the private pageflags bits to mark a page
+KHO-owned? If not, shouldn't you at least also check if the page is
+reserved?
 
-...
+> +}
+> +
+> +/**
+> + * kho_claim_mem - Notify the kernel that a handed over memory range is now in
+> + * use by a kernel subsystem and considered an allocated page. This function
+> + * removes the reserved state for all pages that the mem spans.
+> + */
+> +void *kho_claim_mem(const struct kho_mem *mem)
+> +{
+> +	u64 start_pfn, end_pfn, pfn;
+> +	void *va = __va(mem->addr);
+> +
+> +	start_pfn = PFN_DOWN(mem->addr);
+> +	end_pfn = PFN_UP(mem->addr + mem->len);
+> +
+> +	for (pfn = start_pfn; pfn < end_pfn; pfn++)
+> +		kho_claim_pfn(pfn);
+> +
+> +	return va;
+> +}
+> +EXPORT_SYMBOL_GPL(kho_claim_mem);
+> +
+[...]
 
-If it's the only issue I think Jonathan can modify when applying
-(no new patch version would be needed).
+--
+Regards,
+Pratyush Yadav
 
--- 
-With Best Regards,
-Andy Shevchenko
+
+
+Amazon Development Center Germany GmbH
+Krausenstr. 38
+10117 Berlin
+Geschaeftsfuehrung: Christian Schlaeger, Jonathan Weiss
+Eingetragen am Amtsgericht Charlottenburg unter HRB 149173 B
+Sitz: Berlin
+Ust-ID: DE 289 237 879
+
 
 
 
