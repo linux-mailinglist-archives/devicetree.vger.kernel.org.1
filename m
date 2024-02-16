@@ -1,114 +1,342 @@
-Return-Path: <devicetree+bounces-42436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D246B857851
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 10:01:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72C048579E3
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 11:06:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2E0928A97F
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 09:01:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 64E7B1C21266
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 10:06:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0814218EAB;
-	Fri, 16 Feb 2024 09:01:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="qTNp52b6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BDBF1BDCD;
+	Fri, 16 Feb 2024 10:06:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [195.130.132.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABC7B1B815;
-	Fri, 16 Feb 2024 09:01:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A68E11C6A5
+	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 10:05:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.132.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708074083; cv=none; b=V+vocj7m7ltPHmWzsdEBXEE5h8zOgPpxFAaxJ0Mi7DLfXDQq9n2NlRlEpzHNz9dSEMCijfjuVyJW8JJUq9X8fIm7rY70e2M4aWbN1EI1FgOav+QYPymvRvyq7FS2HfeoLeXTYpdD75HCM7w/dJ6UJjLKXzR9SO9YdFniQ/h84t0=
+	t=1708077962; cv=none; b=jYa9qXslFZeEXTm/bSxKpZOLq7ECdzmgUtLp5t5EJHn/KO4a3ygkhWkGiE9/MImZEu+b6UkfI5WDGb/CmjZ7JrEvb80V86WnUYqLe/4io461GWKdcUcYrVB0QAkfCKoIWUrhMrBW9CwC216xg1j2qxYBLJwJfZfaE0DZw+ROmq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708074083; c=relaxed/simple;
-	bh=4VUvmXl2vQzyr22bW6omoNl/se8xyRB6W/s9RNs7f8M=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BOtXPzfa7djM5yKK83dIVyaDAcQRWfuJWA5Bg7d/gcNPROaA3uvQdbaFHjNYEGNjJb/xnPSJhoH+qHAwbj4dmYS+pP8SWPyzyWj/NVhRaP4ctqgXds7wJL5RSwesZs7e2koNIhM/BZlU/HQxm00d6n7guCGSVFbhaM6Geg7jUl4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=qTNp52b6; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1708074082; x=1739610082;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=4VUvmXl2vQzyr22bW6omoNl/se8xyRB6W/s9RNs7f8M=;
-  b=qTNp52b6k4G50gIfKyzMZJWYD9lwV0n5xQlNOmpUq2UuhJM/dGY/Mzxz
-   fSEC7gGWRCukVGJJ7OhwBWQtScf33z20pA71EV6JA2tLzE8YmVfFv6dyo
-   Spf8XnnmjqLELJvB1MwBIlc8588i1JG+gTfjJPTgdc7uFJ06Zxf4rhCSx
-   AzRJXI+4/qk/m/bNz1LzvYT1hzzkJNSm/J4j56oBFVcIu29C30v0d5N6J
-   Fhab3e8DSjsHOIM4Gv3b9ebWJqJueVtO+gImOqH4tuMYQUo5U801Kz9KA
-   jpda09E5s0Uz80/1DSUuH8axsK5sVI0cEt+J7vcfb+jSg0bBTLnibkPDc
-   A==;
-X-CSE-ConnectionGUID: V4AMy5vTSCGqR2VTSU2Ydg==
-X-CSE-MsgGUID: 1fB5pH1vRqWAptwi4dmqVw==
-X-IronPort-AV: E=Sophos;i="6.06,164,1705388400"; 
-   d="asc'?scan'208";a="247083940"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 16 Feb 2024 02:01:14 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 16 Feb 2024 02:00:38 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Fri, 16 Feb 2024 02:00:37 -0700
-Date: Fri, 16 Feb 2024 08:59:56 +0000
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Rob Herring <robh@kernel.org>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: vendor-prefixes: Add missing prefixes used
- in compatibles
-Message-ID: <20240216-percolate-wooing-b5e4f6814d15@wendy>
-References: <20240216025839.902288-1-robh@kernel.org>
+	s=arc-20240116; t=1708077962; c=relaxed/simple;
+	bh=Sor7uayMKLyh003ntunWII8dN5EntiR/Isx/hInivy8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Iqw7I9jYSdp9/3wwSBCSKrJH0g4/qIfHzk7sS37J3u2BlMB2PNma1RtKllkuJ7P3whQM9EyNWZO//0whWDCtajJ3GVPUS2/ytMIFYmyFoKKgce2xOhSQr89DWKnjgTpi9u90c8C7HUvxzKF+kg+UZVRJbN7nDn0qgE2s+bnLU4E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.132.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:bf7f:2a11:3845:9eb5])
+	by baptiste.telenet-ops.be with bizsmtp
+	id nm5u2B00P12mNhm01m5uGr; Fri, 16 Feb 2024 11:05:56 +0100
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1rav6J-000kzM-7l;
+	Fri, 16 Feb 2024 11:05:54 +0100
+Received: from geert by rox.of.borg with local (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1ratzG-000HPo-Na;
+	Fri, 16 Feb 2024 09:54:26 +0100
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-mediatek@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v3] arm64: dts: mediatek: mt7986a: bpi-r3: Convert to sugar syntax
+Date: Fri, 16 Feb 2024 09:54:25 +0100
+Message-Id: <1c9d161e5d519080321bb500e2898c5d100250e6.1708073597.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="kMsPZaCbowEcvdGt"
-Content-Disposition: inline
-In-Reply-To: <20240216025839.902288-1-robh@kernel.org>
+Content-Transfer-Encoding: 8bit
 
---kMsPZaCbowEcvdGt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Overlay syntactic sugar for generating target-path fragments is
+supported by the version of dtc supplied with the kernel since commit
+50aafd60898a8b3e ("scripts/dtc: Update to upstream version
+v1.4.6-21-g84e414b0b5bc").  Hence convert the Bananapi R3 overlay
+devicetree source files to sugar syntax, improving readability.
 
-On Thu, Feb 15, 2024 at 08:58:29PM -0600, Rob Herring wrote:
-> +  "^calao,.*":
-> +    description: CALAO Systems SAS
->    "^calaosystems,.*":
->      description: CALAO Systems SAS
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+No changes in generated dtbo.
 
-> +  "^IBM,.*":
-> +    description: International Business Machines (IBM)
->    "^ibm,.*":
->      description: International Business Machines (IBM)
+v3:
+  - Fix SoC part number,
 
-These ones add duplicates with no indication of which one is to be used
-going forward. Why not mark one as deprecated?
+v2:
+  - Rebase on top of commit e630c7b0b6a69f66 ("arm64: dts: mediatek:
+    replace underscores in node names") in next-20240215 and later.
+---
+ .../mt7986a-bananapi-bpi-r3-emmc.dtso         | 28 +++---
+ .../mt7986a-bananapi-bpi-r3-nand.dtso         | 74 ++++++++-------
+ .../mediatek/mt7986a-bananapi-bpi-r3-nor.dtso | 90 +++++++++----------
+ .../mediatek/mt7986a-bananapi-bpi-r3-sd.dtso  | 16 ++--
+ 4 files changed, 98 insertions(+), 110 deletions(-)
 
---kMsPZaCbowEcvdGt
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dtso b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dtso
+index 779dc6782bb1986f..047a8388811eb9c0 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dtso
++++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dtso
+@@ -9,21 +9,17 @@
+ 
+ / {
+ 	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
+-
+-	fragment@0 {
+-		target-path = "/soc/mmc@11230000";
+-		__overlay__ {
+-			bus-width = <8>;
+-			max-frequency = <200000000>;
+-			cap-mmc-highspeed;
+-			mmc-hs200-1_8v;
+-			mmc-hs400-1_8v;
+-			hs400-ds-delay = <0x14014>;
+-			non-removable;
+-			no-sd;
+-			no-sdio;
+-			status = "okay";
+-		};
+-	};
+ };
+ 
++&{/soc/mmc@11230000} {
++	bus-width = <8>;
++	max-frequency = <200000000>;
++	cap-mmc-highspeed;
++	mmc-hs200-1_8v;
++	mmc-hs400-1_8v;
++	hs400-ds-delay = <0x14014>;
++	non-removable;
++	no-sd;
++	no-sdio;
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso
+index 543c13385d6e3f82..12ec15e3188de082 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso
++++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso
+@@ -9,46 +9,44 @@
+ 
+ / {
+ 	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
++};
++
++&{/soc/spi@1100a000} {
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	spi_nand: flash@0 {
++		compatible = "spi-nand";
++		reg = <0>;
++		spi-max-frequency = <10000000>;
++		spi-tx-buswidth = <4>;
++		spi-rx-buswidth = <4>;
+ 
+-	fragment@0 {
+-		target-path = "/soc/spi@1100a000";
+-		__overlay__ {
++		partitions {
++			compatible = "fixed-partitions";
+ 			#address-cells = <1>;
+-			#size-cells = <0>;
+-			spi_nand: flash@0 {
+-				compatible = "spi-nand";
+-				reg = <0>;
+-				spi-max-frequency = <10000000>;
+-				spi-tx-buswidth = <4>;
+-				spi-rx-buswidth = <4>;
+-
+-				partitions {
+-					compatible = "fixed-partitions";
+-					#address-cells = <1>;
+-					#size-cells = <1>;
+-
+-					partition@0 {
+-						label = "bl2";
+-						reg = <0x0 0x100000>;
+-						read-only;
+-					};
+-
+-					partition@100000 {
+-						label = "reserved";
+-						reg = <0x100000 0x280000>;
+-					};
+-
+-					partition@380000 {
+-						label = "fip";
+-						reg = <0x380000 0x200000>;
+-						read-only;
+-					};
+-
+-					partition@580000 {
+-						label = "ubi";
+-						reg = <0x580000 0x7a80000>;
+-					};
+-				};
++			#size-cells = <1>;
++
++			partition@0 {
++				label = "bl2";
++				reg = <0x0 0x100000>;
++				read-only;
++			};
++
++			partition@100000 {
++				label = "reserved";
++				reg = <0x100000 0x280000>;
++			};
++
++			partition@380000 {
++				label = "fip";
++				reg = <0x380000 0x200000>;
++				read-only;
++			};
++
++			partition@580000 {
++				label = "ubi";
++				reg = <0x580000 0x7a80000>;
+ 			};
+ 		};
+ 	};
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dtso b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dtso
+index e48881be4ed60c98..6a0d529b54aca5bd 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dtso
++++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dtso
+@@ -9,54 +9,52 @@
+ 
+ / {
+ 	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
++};
++
++&{/soc/spi@1100a000} {
++	#address-cells = <1>;
++	#size-cells = <0>;
+ 
+-	fragment@0 {
+-		target-path = "/soc/spi@1100a000";
+-		__overlay__ {
++	flash@0 {
++		compatible = "jedec,spi-nor";
++		reg = <0>;
++		spi-max-frequency = <10000000>;
++
++		partitions {
++			compatible = "fixed-partitions";
+ 			#address-cells = <1>;
+-			#size-cells = <0>;
+-			flash@0 {
+-				compatible = "jedec,spi-nor";
+-				reg = <0>;
+-				spi-max-frequency = <10000000>;
+-
+-				partitions {
+-					compatible = "fixed-partitions";
+-					#address-cells = <1>;
+-					#size-cells = <1>;
+-
+-					partition@0 {
+-						label = "bl2";
+-						reg = <0x0 0x40000>;
+-						read-only;
+-					};
+-
+-					partition@40000 {
+-						label = "u-boot-env";
+-						reg = <0x40000 0x40000>;
+-					};
+-
+-					partition@80000 {
+-						label = "reserved2";
+-						reg = <0x80000 0x80000>;
+-					};
+-
+-					partition@100000 {
+-						label = "fip";
+-						reg = <0x100000 0x80000>;
+-						read-only;
+-					};
+-
+-					partition@180000 {
+-						label = "recovery";
+-						reg = <0x180000 0xa80000>;
+-					};
+-
+-					partition@c00000 {
+-						label = "fit";
+-						reg = <0xc00000 0x1400000>;
+-					};
+-				};
++			#size-cells = <1>;
++
++			partition@0 {
++				label = "bl2";
++				reg = <0x0 0x40000>;
++				read-only;
++			};
++
++			partition@40000 {
++				label = "u-boot-env";
++				reg = <0x40000 0x40000>;
++			};
++
++			partition@80000 {
++				label = "reserved2";
++				reg = <0x80000 0x80000>;
++			};
++
++			partition@100000 {
++				label = "fip";
++				reg = <0x100000 0x80000>;
++				read-only;
++			};
++
++			partition@180000 {
++				label = "recovery";
++				reg = <0x180000 0xa80000>;
++			};
++
++			partition@c00000 {
++				label = "fit";
++				reg = <0xc00000 0x1400000>;
+ 			};
+ 		};
+ 	};
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dtso b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dtso
+index f623bce075ce6ea4..d9e01967acc471b8 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dtso
++++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dtso
+@@ -9,15 +9,11 @@
+ 
+ / {
+ 	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
+-
+-	fragment@0 {
+-		target-path = "/soc/mmc@11230000";
+-		__overlay__ {
+-			bus-width = <4>;
+-			max-frequency = <52000000>;
+-			cap-sd-highspeed;
+-			status = "okay";
+-		};
+-	};
+ };
+ 
++&{/soc/mmc@11230000} {
++	bus-width = <4>;
++	max-frequency = <52000000>;
++	cap-sd-highspeed;
++	status = "okay";
++};
+-- 
+2.34.1
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZc8j/gAKCRB4tDGHoIJi
-0jHHAP9m6zejCzScXNn4O0yHvYY6eMVkEdaoEhiGysHZGMbaOQD/cXYqCtmf0bRt
-euQMpaEOCIxBgvycTmpAuYcfJH/Orwo=
-=qFDR
------END PGP SIGNATURE-----
-
---kMsPZaCbowEcvdGt--
 
