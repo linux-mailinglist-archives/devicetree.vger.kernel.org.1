@@ -1,243 +1,157 @@
-Return-Path: <devicetree+bounces-42429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42430-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A91A68577DD
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 09:46:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CB5E8577EB
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 09:48:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8603B28306B
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 08:46:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C995A282B1A
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 08:48:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 855BC18AF6;
-	Fri, 16 Feb 2024 08:41:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D0PUo7gj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB03718EBF;
+	Fri, 16 Feb 2024 08:44:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7C0B1C68C
-	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 08:41:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1412118645
+	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 08:44:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708072878; cv=none; b=mTo6MjJVQJJjUKiiYGZN9mbFmG1XDfYtHVH61XGqiwEUVbmyk5pe0+pwJXGF/ef1/Fcxof/m69+RSLxepfOm9NUrU6xKO154C4F4e30rBDmcrEniNf3OJEoOt+LPNn35jmUrrwnPUOCRehNDFpQeTX0dt9m+7XJjUuV7hKmV5wk=
+	t=1708073058; cv=none; b=CqNQOvxEQdn7m3/QMxs44K+mpVJIXSd4xpNoUxdzIO4kNk9zVP2jN7Dm9RCjW8fV8nvr4DMNfYtxyuYWO4xVQqFrtGwXp+ZGbxQVCQhfg56F53HuQfjemMCU3un7Z91wk+3bXpN6nbXC4cmqHQrrkXKY8d52TiZBx7VU+px8Dlk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708072878; c=relaxed/simple;
-	bh=yeAPzY7e7kL2l5cR9MSpRd3hP7jSlDo72LHJs57k6iM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YsBIgnUNYJtWmXJricgScn1oVvCCVSQgs3+Z9c32WQLP3XMCJiVHLw4F92ILxbUIFv/24hXKZyIUWfPkPaFQG4ooz+bi5jH7+sfEggu8Xg8hTvsw2IqOp0/eFuofb4AnCCuRotfi7a1B57lv5HY71t8bcxfjkN2QqnNXA1s+ET8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D0PUo7gj; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5118290fcd8so2154886e87.3
-        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 00:41:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708072875; x=1708677675; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dH/NWws6eSTpoEw+0q4ey+Se96RL2bWn+Y8RSTo49wI=;
-        b=D0PUo7gjdI9WOhlH+m5h8TIOvX3cQKsM4BxgRLtoQBFIVXq3GAJUEwXuvNqEBwynmE
-         1o2hwZwSXmDRvkfZ/R2q3iKPObr+f59MBPRhUMbwx5n6gKf80cErTaIMU8RYj01DfX6c
-         MxvwV5EocBrxpq7HUK3JhGyGF4OTjrFQ+61+BEGJki64wp4ULzUXHcINjJjRZX/eQ4KE
-         LoHdmf26wdp6vSth+/UBWd9lcBMVplsmJTUAi5IZA4lQpi3sF2HQT1eVy9LcyxrAICxV
-         ZlnOjbzKINyr+mto8tblrysVbhpUszXj+iQpR+EKAvd75IPN+4V4OmSs7TdI+a6zXdaE
-         30Kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708072875; x=1708677675;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dH/NWws6eSTpoEw+0q4ey+Se96RL2bWn+Y8RSTo49wI=;
-        b=egnXGvqJ5h3UAg1DqjM57tBZ1bSlmDcUhbuJzVcGjC66cC5fv6cEh9MyIkKzNaHHGc
-         U6jJJTvFeTdTszk+6j16WvCYNIU2UiA0vGOpSy+MGJNKJw9eCdFidCFqYC8YIJIiO1s4
-         iWa6kPNMW7h2F93u6F2Tsd0auDJm3fYTGAgb8iBuo0YVvcsIBpp37L8I+whPbH2HB6SK
-         1LIuoeJ5JvaCmtEf9uub+YCK2gBXLR0i1uvybXI/tWptGDsm/93qQK1ZJJ/LqIcfcQlx
-         76oqta7GpcO1s3BEx4Z4h45N6JPSd9CGTAnDcohBvEqdw/mdJjkO/ZB5zILxNK8Pey2y
-         Nq+g==
-X-Forwarded-Encrypted: i=1; AJvYcCWBd4KmZBCoL7fvzo5mQcck9hvA5+g6jZJHgI+l+KqV1rFyWEBpb5HW7ZxUaHy37x4ANdvUMBBfxltdvgExzVgRLexUfXIs5emJzw==
-X-Gm-Message-State: AOJu0YzQFiW10gqbOx0e1sJTnIPu4hF/5vSf7dNG3/W+drZ72ZHqYsT0
-	O5XbaXBjy309pcG4w3SY5+l5EiIYaKWWfSDNgergLBDQU4bls/zVDXNGEvEzvsk=
-X-Google-Smtp-Source: AGHT+IFEP/ilFZ9OxcCFH5jfdKLFWuNmUdyOvNIX/yeBqimBEj7bzmsupkQ0+3+Qn42FkTpLfq9i6A==
-X-Received: by 2002:a19:5e12:0:b0:511:97f6:83b with SMTP id s18-20020a195e12000000b0051197f6083bmr2468295lfb.61.1708072874738;
-        Fri, 16 Feb 2024 00:41:14 -0800 (PST)
-Received: from [192.168.0.22] ([78.10.207.130])
-        by smtp.gmail.com with ESMTPSA id h13-20020a50cdcd000000b0056400d02cc0sm111853edj.23.2024.02.16.00.41.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Feb 2024 00:41:14 -0800 (PST)
-Message-ID: <8abfeca7-cecf-4d36-856e-bebabd3f72d6@linaro.org>
-Date: Fri, 16 Feb 2024 09:41:13 +0100
+	s=arc-20240116; t=1708073058; c=relaxed/simple;
+	bh=HaC4Zn8Fqki6BSDMsVg1UgsS9LzaXRv9bV4wV3qoOtI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=c6G0BEGuYMXEFIsUtiCzGSqzX+F5Wz/SErux8mHpZfKb1RAkwPLyzHskAONsIQvahxUPA05u11KM4/ddyKp6/J11dKoQDhny5sN7ZoEQWuaTMgWImt+SNNIvgS7YQScMlxtEruEu3zP4HqVIa4T+US73FDUh/U0pTnvj5GMX/i4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1ratoz-0006gU-9X; Fri, 16 Feb 2024 09:43:49 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1ratox-0012d3-8w; Fri, 16 Feb 2024 09:43:47 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1ratox-005rTs-0Y;
+	Fri, 16 Feb 2024 09:43:47 +0100
+Date: Fri, 16 Feb 2024 09:43:47 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Lee Jones <lee@kernel.org>, sam@ravnborg.org, bbrezillon@kernel.org, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, 
+	daniel@ffwll.ch, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, 
+	claudiu.beznea@tuxon.dev, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, thierry.reding@gmail.com, 
+	linux-pwm@vger.kernel.org, Dharma Balasubiramani <dharma.b@microchip.com>, 
+	hari.prasathge@microchip.com, manikandan.m@microchip.com, 
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: (subset) [linux][PATCH v6 3/3] dt-bindings: mfd: atmel,hlcdc:
+ Convert to DT schema format
+Message-ID: <wkqqowh6ivn35d24n5ngdqno77wl7onrkdh43winac7bg7oekf@ykwhxujb4cjq>
+References: <20240202001733.91455-1-dharma.b@microchip.com>
+ <20240202001733.91455-4-dharma.b@microchip.com>
+ <170738899221.920003.15342446791449663430.b4-ty@kernel.org>
+ <cedecdb7-fe4a-42ea-9a11-faa82f84b57d@linaro.org>
+ <aamdttvdk3jmswvy3rw3debk3ouddkgjbs6xmixroe6kqakjw4@lnd5crcgoeyj>
+ <2e96c824-47e8-48bd-9e03-8c7390b02d24@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] dt-bindings: mmc: dw-mshc-hi3798cv200: rename to
- dw-mshc-histb
-Content-Language: en-US
-To: Yang Xiwen <forbidden405@outlook.com>,
- Ulf Hansson <ulf.hansson@linaro.org>, Jaehoon Chung
- <jh80.chung@samsung.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Igor Opaniuk <igor.opaniuk@linaro.org>,
- tianshuliang <tianshuliang@hisilicon.com>, David Yang <mmyangfl@gmail.com>,
- linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240216-b4-mmc-hi3798mv200-v1-0-7d46db845ae6@outlook.com>
- <20240216-b4-mmc-hi3798mv200-v1-3-7d46db845ae6@outlook.com>
- <36450b1e-7a80-4d6b-9046-9a57b7c845e2@linaro.org>
- <SEZPR06MB69592A3F9737DFA6E0E9096C964C2@SEZPR06MB6959.apcprd06.prod.outlook.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <SEZPR06MB69592A3F9737DFA6E0E9096C964C2@SEZPR06MB6959.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="cq33vkronfz22nrp"
+Content-Disposition: inline
+In-Reply-To: <2e96c824-47e8-48bd-9e03-8c7390b02d24@linaro.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 16/02/2024 09:29, Yang Xiwen wrote:
->>>     reg:
->>>       maxItems: 1
->>> @@ -48,6 +46,12 @@ properties:
->>>         control the clock phases, "ciu-sample" is required for tuning
->>>         high speed modes.
->>>   
->>> +  hisilicon,sap-dll-reg:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>> +    description:
->>> +      A phandle points to the sample delay-locked-loop(DLL)
->>> +      syscon node, used for tuning.
->> Does hi3798cv200 have it?
-> No it does not. Currently only hi3798mv200 has it (it's called himci 
-> v300 in downstream, while cv200 is using himci v200).
 
-then in your if:
-else:
-  properties:
-    hisilicon,sap-dll-reg: false
+--cq33vkronfz22nrp
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->>
->>> +
->>>   required:
->>>     - compatible
->>>     - reg
->>> @@ -55,13 +59,25 @@ required:
->>>     - clocks
->>>     - clock-names
->>>   
->>> +allOf:
->>> +  - $ref: synopsys-dw-mshc-common.yaml#
->>> +
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            const: hisilicon,hi3798mv200-dw-mshc
->>> +    then:
->>> +      required:
->>> +        - hisilicon,sap-dll-reg
->>> +
->>>   unevaluatedProperties: false
->>>   
->>>   examples:
->>>     - |
->>>       #include <dt-bindings/clock/histb-clock.h>
->>>       #include <dt-bindings/interrupt-controller/arm-gic.h>
->>> -    emmc: mmc@9830000 {
->>> +    mmc@9830000 {
->> ???
-> It's complaining about duplicated label when i added emmc label to both 
-> nodes. I'll remove it in previous patch in v2.
->>>         compatible = "hisilicon,hi3798cv200-dw-mshc";
->>>         reg = <0x9830000 0x10000>;
->>>         interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
->>> @@ -84,3 +100,31 @@ examples:
->>>         bus-width = <8>;
->>>         status = "okay";
->>>       };
->>> +  - |
->>> +    #include <dt-bindings/clock/histb-clock.h>
->>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>> +    mmc@9830000 {
->>> +      compatible = "hisilicon,hi3798mv200-dw-mshc";
->> No need for new example.
->>
->>> +      reg = <0x9830000 0x10000>;
->>> +      interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
->>> +      clocks = <&crg HISTB_MMC_CIU_CLK>,
->>> +               <&crg HISTB_MMC_BIU_CLK>,
->>> +               <&crg HISTB_MMC_SAMPLE_CLK>,
->>> +               <&crg HISTB_MMC_DRV_CLK>;
->>> +      clock-names = "ciu", "biu", "ciu-sample", "ciu-drive";
->>> +      resets = <&crg 0xa0 4>;
->>> +      reset-names = "reset";
->>> +      pinctrl-names = "default";
->>> +      pinctrl-0 = <&emmc_pins>;
->>> +      fifo-depth = <256>;
->>> +      clock-frequency = <50000000>;
->>> +      max-frequency = <150000000>;
->>> +      cap-mmc-highspeed;
->>> +      mmc-ddr-1_8v;
->>> +      mmc-hs200-1_8v;
->>> +      mmc-hs400-1_8v;
->>> +      non-removable;
->>> +      bus-width = <8>;
->>> +      hisilicon,sap-dll-reg = <&emmc_sap_dll_reg>;
->>> +      status = "okay";
->> No, really...
-> The property "hisilicon,sap-dll-reg" is introduced in this patch, i want 
-> to add an example for it here since the common dtsi will use this 
-> binding and will be submitted when it gets ready.
+Hello Krzysztof,
 
-One new property does not justify new example.
+On Thu, Feb 15, 2024 at 07:44:53PM +0100, Krzysztof Kozlowski wrote:
+> On 15/02/2024 11:02, Uwe Kleine-K=F6nig wrote:
+> > On Mon, Feb 12, 2024 at 11:23:02AM +0100, Krzysztof Kozlowski wrote:
+> >> On 08/02/2024 11:43, Lee Jones wrote:
+> >>> Applied, thanks!
+> >>>
+> >>> [3/3] dt-bindings: mfd: atmel,hlcdc: Convert to DT schema format
+> >>>       commit: cb946db1335b599ece363d33966bf653ed0fa58a
+> >>>
+> >>
+> >> Next is still failing.
+> >=20
+> > Failing in the sense of dtbs_check, right?
+>=20
+> No, bindings were failing. dt_binding_check. This must not fail, so kind
+> of bummer...
+>=20
+> >> Dharma,
+> >> You must explain and clearly mark dependencies between patches.
+> >>
+> >> Lee,
+> >> Can you pick up two previous patches as well?
+> >=20
+> > I applied the pwm patch now. If Lee wants to pick up this one via his
+> > tree that would be fine for me, too. If that's the case please tell me,
+> > then I'll drop it from my for-next branch again. Feel free to add
+> > my Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de> for pa=
+tch
+> > #2 then.
+>=20
+> At least next is happy.
 
-Best regards,
-Krzysztof
+The pwm binding is in next now (as
+0fa319a1427f7c8d0af4c255316624f7e6f649a0) but dt_binding_check still
+tells me (among others):
 
+	Documentation/devicetree/bindings/mfd/atmel,hlcdc.yaml:
+	Error in referenced schema matching $id: http://devicetree.org/schemas/dis=
+play/atmel/atmel,hlcdc-display-controller.yaml
+
+This is what you meant, right? This goes away as soon as the first patch
+(dt-bindings: display: convert Atmel's HLCDC to DT schema) is applied,
+too. So next isn't completely happy yet.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--cq33vkronfz22nrp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmXPIEIACgkQj4D7WH0S
+/k7oDQgAhBtX499THTMoh/0hUXU71eAA/S5lMq1KvNvT9NGWXU+/7etMKgUxdmNr
++BLVyxYYkJ9eb+PUQLvIcmXR8aZgx9z4YpXLb+WiGW7WimGfPI0Q/fLZY7BZrMLA
+DjakKBxO9u1oUP7acORjgZ4IAdYW2mny5U/LqVMnnWFafGcrX5UM4OumJZ7zTRn3
+P3ZwycYlZLErUa5tebQk1lIYeFRvm480U+ZGr/SCIjN4MFycMOr7bls0c+HztokP
+SoVVESp6bokSs0C7COdjZhZXacLybjMTCAer6b01jFRKhThwKNA63f+k2idvjEEI
+I6snuKjGUsWInVK5KQwDpuL5xFLOXw==
+=PMux
+-----END PGP SIGNATURE-----
+
+--cq33vkronfz22nrp--
 
