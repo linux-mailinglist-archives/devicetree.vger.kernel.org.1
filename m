@@ -1,161 +1,153 @@
-Return-Path: <devicetree+bounces-42590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42591-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58361857D5E
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 14:13:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5195857D6A
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 14:14:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB0A91F26C4E
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 13:13:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D2CF28879B
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 13:14:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E2D3129A64;
-	Fri, 16 Feb 2024 13:13:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82892129A68;
+	Fri, 16 Feb 2024 13:14:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GS5BaKqN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="T1HYX+iC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 238907869A;
-	Fri, 16 Feb 2024 13:13:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFDD21292D6
+	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 13:14:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708089185; cv=none; b=swTmDZRqkcV9o07xxGUadmobnCA24BpKVtDbbDauhlBFq7U7x0v51GofwPMF+N+bt8LTjTUiteJl+zVLdejHKLc4HZ4i2qABNrGlI94WelVlRWDrA3+Gx6T3GYAe6rT2wnhrGa2wLHzvAdmZ43oZ64fIE98zjDqvoTNQHMvcBPs=
+	t=1708089244; cv=none; b=b3tizWz2IYOZTWGErL6Jc/hHULDipz/Sml9JwBligl4qhgGw9PPKYuIkWaICP+eraOCxkdeVjPVXtgioAMZ4aHw9N5B9bhH8pggfj1psCO/UQG2+ZepIfBmHtp7SgxsV5/pT6nKyH1H4OulyDiCV5Vr1dpGQ/Tad0TpD9tiee1A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708089185; c=relaxed/simple;
-	bh=w7PxYeL2YJi5lLDMuxgVxDRatSZggnbIIYFFi/StyVM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rqjVew5IFDNVP5NQn31cOn71skeiHDxChDXH1O+It5hVc2k66oEx+p6k43fkXspmEou4IF1cMwm5ReRz9Us4ef49uQ0M0r019c3/dPasgU9HgxVWaDS2uHFuIzQ62I3Qk7IDj+aiF34ku+C1QnghF9GfzuIH2mq7Mjn92BpxgwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GS5BaKqN; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1708089183; x=1739625183;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=w7PxYeL2YJi5lLDMuxgVxDRatSZggnbIIYFFi/StyVM=;
-  b=GS5BaKqNgsQIZ3t5w+TgaKFsz651czMeXfIT6oy62qz1QijaP3uG9a/3
-   VxM8uM8zfL6nHDFhw1M24m7DdsHTPkhHQeIm1n63y+DZdqMl6Hxq7InUW
-   EFsAWI96wnhMrMzgWRH+vSLOsL2VRDimknejCPqMkFAHlVkCVNXhPmfu5
-   t23qNgPfOlsUY1rPF+wmf5gbnlyD8ORBXzErLvKaDB6jVj1x3CGL2YGTK
-   JtdVCpb8ZeWCI6bunxtbAa5oNpBTn5k2sNiB+1C+Q885pamSchC4CIRFL
-   WWE7Df8uAjbYvMTruSqqX07hXei2iR+WGyItGn1q75vQeV7UW2kZ6/TTt
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10985"; a="2083623"
-X-IronPort-AV: E=Sophos;i="6.06,164,1705392000"; 
-   d="scan'208";a="2083623"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Feb 2024 05:13:03 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,164,1705392000"; 
-   d="scan'208";a="3801537"
-Received: from lkp-server02.sh.intel.com (HELO 3c78fa4d504c) ([10.239.97.151])
-  by fmviesa009.fm.intel.com with ESMTP; 16 Feb 2024 05:12:58 -0800
-Received: from kbuild by 3c78fa4d504c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1ray1N-0001IA-17;
-	Fri, 16 Feb 2024 13:12:54 +0000
-Date: Fri, 16 Feb 2024 21:12:06 +0800
-From: kernel test robot <lkp@intel.com>
-To: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Yannick Fertre <yannick.fertre@foss.st.com>,
-	Philippe Cornu <philippe.cornu@foss.st.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>
-Cc: oe-kbuild-all@lists.linux.dev, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-Subject: Re: [PATCH v5 2/3] drm/stm: lvds: add new STM32 LVDS Display
- Interface Transmitter driver
-Message-ID: <202402162038.HP7VzIHX-lkp@intel.com>
-References: <20240206-lvds-v5-2-bd16797b0f09@foss.st.com>
+	s=arc-20240116; t=1708089244; c=relaxed/simple;
+	bh=nM9GaWKfFAoq+/qqTqmoUGUpnBAspUurESVzdl8uIJA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=W3Gl2sVi/cCK6FS1Ws0M91ObtOKQ+C/NyXvn7nawgwLUIkyy7nYnXLQl8StF/6blvz/YGsKw/Dm8r1ovV9Z+WeSPqytJLf36NdQp19+Yi+9FLlKiKJb+xIEqwsadPtjkvi/307GJo4cODo63WHGhPqpGBqxOEMbXkPyCeMV9RVw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=T1HYX+iC; arc=none smtp.client-ip=209.85.208.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-563cc707c7cso2395469a12.1
+        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 05:14:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708089241; x=1708694041; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EbSwL6nsTbc1tx6YWr9QAKsxz4e0BHcI/QIK8egHm0k=;
+        b=T1HYX+iCtloa46Igr34lbcbUv0drNzfeqWaAkZdVia8xMlEP3enQOFay5tCPggcSg6
+         ymOTuwUDlPMKE//PIt6bhDscjEYPuFi/wFdUo6UJi8ACQtAceRA7AioN504fgOt/PRES
+         JcqTIF4tuokvzcnxsHH8Yl4vzEynFVBs9J9sf+bJK8gunT6KVUrHIyk+rLmnXkXV8Kjz
+         3ib4ixeZsszhRJiBTJ+AALPHLbFvPp60x9SmsQWSC5RBCIWa8CccJjOW0iZYFj9i6QeU
+         0tVVLao50spda7olpgEzpkzYCJ52kJhDiQzeDrLvetGMNmPbYMZs39CQXFm1MCC3UAYr
+         6GpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708089241; x=1708694041;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EbSwL6nsTbc1tx6YWr9QAKsxz4e0BHcI/QIK8egHm0k=;
+        b=mD/UDg7enyZXReS5ynkUaYuB8m6Khkf3cgctx9Mbu+HhdLB5HVtEqaRyDWxGGeXej/
+         7z3r5Oyq1+3Ve0eFYzujiPtAGho6su4FsyXqHAjGUsq8P3AYvJrmX01mEq9zgt9b3HYs
+         IlGgaNHjI62gD0r50tssxPkK00eDDH2EUnWFuHnrNMWnUMTVa0HErAlynhm4AR3HYzWN
+         saEAx7Kco8nDOljHCz6WpT6l1HGAaKgJyxHjp7jPduFHx4mS3Jxqfq0TOFFeum9XtAS2
+         Sm/woDZCDu5gpB95rrEbP2hOsbYZ+y4t8DjkDCvVlLAERpAEPlXHlPzoU21b9TLDqm98
+         Fa6w==
+X-Forwarded-Encrypted: i=1; AJvYcCXwcxtLFinRK8HsEQpcER9ULvJV+q+j+C9wwP9jCSZy8Xnnqn5uuV9uruMlJkgxbYwmQrdTH5mGQcWKcQxrv1+q8PJpjNsOFAyEbw==
+X-Gm-Message-State: AOJu0YxCegdxDbi8hjr5tgoIQGBPjVEOeLLG1ezvtvVSR8mtK8+fuc0n
+	+ybUeuoBl/fGMzVZVHAFX+7aukiZLD0fM19YQGJtrc0bfbbwcsAc0+l1TZZgLTY=
+X-Google-Smtp-Source: AGHT+IEtxyXtiQBQSFUysXLDsk7ys/qDhXp0LyOf8hsqFZZ1LHheaM1oRROnTJZ7orzww/V6ue2T1g==
+X-Received: by 2002:a17:906:c10f:b0:a38:107a:94e9 with SMTP id do15-20020a170906c10f00b00a38107a94e9mr8542900ejc.2.1708089240874;
+        Fri, 16 Feb 2024 05:14:00 -0800 (PST)
+Received: from [192.168.192.135] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
+        by smtp.gmail.com with ESMTPSA id i26-20020a170906251a00b00a3ce36ce4f9sm1534655ejb.83.2024.02.16.05.13.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Feb 2024 05:14:00 -0800 (PST)
+Message-ID: <153daeb9-5a53-443c-a3eb-c2282c8c6a41@linaro.org>
+Date: Fri, 16 Feb 2024 14:13:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240206-lvds-v5-2-bd16797b0f09@foss.st.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] clk: qcom: drop the SC7180 Modem subsystem clock
+ driver
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, Sibi Sankar <quic_sibis@quicinc.com>,
+ Nikita Travkin <nikita@trvn.ru>
+References: <20240216-drop-sc7180-mss-v1-0-0a8dc8d71c0c@linaro.org>
+ <20240216-drop-sc7180-mss-v1-1-0a8dc8d71c0c@linaro.org>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240216-drop-sc7180-mss-v1-1-0a8dc8d71c0c@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Raphael,
+On 16.02.2024 12:14, Dmitry Baryshkov wrote:
+> This driver has never been used in the DT files merged to the kernel.
+> According to Sibi, it only worked on the pre-production devices. For the
+> production devices this functionality has been moved to the firmware.
+> 
+> Drop the driver to remove possible confusion.
+> 
+> Cc: Sibi Sankar <quic_sibis@quicinc.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
 
-kernel test robot noticed the following build warnings:
+Thanks for spotting this..
 
-[auto build test WARNING on bb3bc3eac316b7c388733e625cc2343131b69dee]
+It'd be worth to keep in mind this existed (+CC Nikita), as it may be
+useful for people tinkering with replacing TZ..
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Raphael-Gallais-Pou/dt-bindings-display-add-STM32-LVDS-device/20240206-194740
-base:   bb3bc3eac316b7c388733e625cc2343131b69dee
-patch link:    https://lore.kernel.org/r/20240206-lvds-v5-2-bd16797b0f09%40foss.st.com
-patch subject: [PATCH v5 2/3] drm/stm: lvds: add new STM32 LVDS Display Interface Transmitter driver
-config: arm-randconfig-r132-20240214 (https://download.01.org/0day-ci/archive/20240216/202402162038.HP7VzIHX-lkp@intel.com/config)
-compiler: clang version 15.0.7 (https://github.com/llvm/llvm-project.git 8dfdcc7b7bf66834a761bd8de445840ef68e4d1a)
-reproduce: (https://download.01.org/0day-ci/archive/20240216/202402162038.HP7VzIHX-lkp@intel.com/reproduce)
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202402162038.HP7VzIHX-lkp@intel.com/
+Konrad
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/gpu/drm/stm/lvds.c:318:17: sparse: sparse: symbol 'lvds_bitmap_jeida_rgb888' was not declared. Should it be static?
->> drivers/gpu/drm/stm/lvds.c:335:17: sparse: sparse: symbol 'lvds_bitmap_vesa_rgb888' was not declared. Should it be static?
-   drivers/gpu/drm/stm/lvds.c: note: in included file (through include/linux/mmzone.h, include/linux/gfp.h, include/linux/stackdepot.h, ...):
-   include/linux/page-flags.h:242:46: sparse: sparse: self-comparison always evaluates to false
-
-vim +/lvds_bitmap_jeida_rgb888 +318 drivers/gpu/drm/stm/lvds.c
-
-   308	
-   309	/*
-   310	 * Expected JEIDA-RGB888 data to be sent in LSB format
-   311	 *	    bit6 ............................bit0
-   312	 * CHAN0   {ONE, ONE, ZERO, ZERO, ZERO, ONE, ONE}
-   313	 * CHAN1   {G2,  R7,  R6,   R5,   R4,   R3,  R2}
-   314	 * CHAN2   {B3,  B2,  G7,   G6,   G5,   G4,  G3}
-   315	 * CHAN3   {DE,  VS,  HS,   B7,   B6,   B5,  B4}
-   316	 * CHAN4   {CE,  B1,  B0,   G1,   G0,   R1,  R0}
-   317	 */
- > 318	enum lvds_pixel lvds_bitmap_jeida_rgb888[5][7] = {
-   319		{ PIX_ONE, PIX_ONE, PIX_ZER, PIX_ZER, PIX_ZER, PIX_ONE, PIX_ONE },
-   320		{ PIX_G_2, PIX_R_7, PIX_R_6, PIX_R_5, PIX_R_4, PIX_R_3, PIX_R_2 },
-   321		{ PIX_B_3, PIX_B_2, PIX_G_7, PIX_G_6, PIX_G_5, PIX_G_4, PIX_G_3 },
-   322		{ PIX_D_E, PIX_V_S, PIX_H_S, PIX_B_7, PIX_B_6, PIX_B_5, PIX_B_4 },
-   323		{ PIX_C_E, PIX_B_1, PIX_B_0, PIX_G_1, PIX_G_0, PIX_R_1, PIX_R_0 }
-   324	};
-   325	
-   326	/*
-   327	 * Expected VESA-RGB888 data to be sent in LSB format
-   328	 *	    bit6 ............................bit0
-   329	 * CHAN0   {ONE, ONE, ZERO, ZERO, ZERO, ONE, ONE}
-   330	 * CHAN1   {G0,  R5,  R4,   R3,   R2,   R1,  R0}
-   331	 * CHAN2   {B1,  B0,  G5,   G4,   G3,   G2,  G1}
-   332	 * CHAN3   {DE,  VS,  HS,   B5,   B4,   B3,  B2}
-   333	 * CHAN4   {CE,  B7,  B6,   G7,   G6,   R7,  R6}
-   334	 */
- > 335	enum lvds_pixel lvds_bitmap_vesa_rgb888[5][7] = {
-   336		{ PIX_ONE, PIX_ONE, PIX_ZER, PIX_ZER, PIX_ZER, PIX_ONE, PIX_ONE },
-   337		{ PIX_G_0, PIX_R_5, PIX_R_4, PIX_R_3, PIX_R_2, PIX_R_1, PIX_R_0 },
-   338		{ PIX_B_1, PIX_B_0, PIX_G_5, PIX_G_4, PIX_G_3, PIX_G_2, PIX_G_1 },
-   339		{ PIX_D_E, PIX_V_S, PIX_H_S, PIX_B_5, PIX_B_4, PIX_B_3, PIX_B_2 },
-   340		{ PIX_C_E, PIX_B_7, PIX_B_6, PIX_G_7, PIX_G_6, PIX_R_7, PIX_R_6 }
-   341	};
-   342	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
