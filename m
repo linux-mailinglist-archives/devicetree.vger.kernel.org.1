@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-42409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C7FB85772B
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 09:02:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33119857744
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 09:16:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AEBA71C20294
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 08:02:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF692280FBA
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 08:16:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 462B717BDD;
-	Fri, 16 Feb 2024 08:00:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1C901C6B9;
+	Fri, 16 Feb 2024 08:00:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="C4KPOQhd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HDqnlch7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85CA718029
-	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 08:00:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A6EF1BC5E
+	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 08:00:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708070404; cv=none; b=Pp8pwGUEBqTYwZ9gUc1UyPRTI54eb5tfkJwwITa3EN1CRwp5TOhyTw6HB+OiAZcb4hp1gVMD3m3HcgCWa4xAI4Pc3z6Kvb1P7dfY8zzmIry/ke2/a+sNKjafNbRBMQngELcCwAshhuuO9Wg5UGrc8jarbOSNFif884QjWyFEVWE=
+	t=1708070449; cv=none; b=JKHdsMRpPUek022CbJ8GPWXzNHbKDjdMZM+VMj3V/88F2oIpKiyKvkEsMvB3uoTyiNA75ZgHXwl7nF+ZnMqNwOyitBaUBvZ5Xb7vj9DgzOHPfPt0hbAbwKJpouSpVsVB3WtLnaHTg0XkQuaU0S9LU3yZvgRneSj4Nn68j3uG7kI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708070404; c=relaxed/simple;
-	bh=7VNQY4VBdHaNt7VCbhfDojf+O3CY/ijnDrxHyqycB9s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UOakaxY3J/uadjdrcCVF2/e+DuEA7pVYext12bLAFCswE9c7RBhIoWqGI4Zn7voJz/blDS8wSEKc0E00UDjUSoqAHGYtUG/MUGSp7fpwaKBrQoo8AnKoOemmfb6Djjs7kvacSn2VtED/0f76djyPQ+x2Jw/97amrWBowSObxmUM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=C4KPOQhd; arc=none smtp.client-ip=209.85.218.50
+	s=arc-20240116; t=1708070449; c=relaxed/simple;
+	bh=nncceW1ifuGeCAQMt3+4gX5Q3Xj2JzTwmQjhbOP3fBY=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=aVNcmpPjTufUMmxqWaaNR8tVooq6vv4936cw4HRYisKc3wPlRt4ZuVp7TcqG+kNHUn5SSzlpat8t+hikMMj951YCUcgeKTod+5Q4M20irvmTKr/M4e7Jnj6hA55dtcIq4eiRgsMQ2pYlSASr/adP9Qn12Ko0iRJO12SlfrTaK4A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HDqnlch7; arc=none smtp.client-ip=209.85.218.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a3d6ea28d46so350878366b.1
-        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 00:00:02 -0800 (PST)
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a3d5e77cfbeso308400766b.0
+        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 00:00:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708070401; x=1708675201; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jZwRQvaLKAmsHzDqcK2w0RoorC1NNJ/xO/vFiVpk2gs=;
-        b=C4KPOQhdLBtD7Y8I0eYCfqCVfICVxjGO8zfdE//RRRVUS2cLEOOcIYA/l9FgQkD4ee
-         GIdCmUYiCzBiuLpixts6unJYMoYyj5Fi6EjSKqOxhmUwf3BpKzMmXa79twVUHcPjIUB4
-         3Kgd3VasJ2wqPMZlxEL0VT13wP9MZe5bl8M4sS2z02y/mY6vs9VXTYiEi/xuxrwYS+cG
-         QlYRZtjuQGi6rlFW5hzDEvsFGGawHduThX7rCT3BrlLD4j3fctbGgvR9UPYSDekAYkEw
-         /EYiHoLEDkMezyhloVnCsV61Uyc7Yx4jAhVwniAQd4xrOlvvj+CrL7CwVX7HXA+6sKDZ
-         5z1g==
+        d=linaro.org; s=google; t=1708070445; x=1708675245; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=DnxukvBZ9HILW+/bXi1xM6ASxCxRAyvkY/gDibCLZJQ=;
+        b=HDqnlch7xEPUDZsbkZW03tH3xjYNYxgwHiXmbzeAUpeQY7RoXQFLcwj8WykAgAklFw
+         JNiT6tMhdgt2gac6Tfs5BXKZBGf6ZIQLDZ+HHye23P/KFt9m/eTEu5edtlZldisRjaMi
+         WQ59HsdRgPXyWSNJcmmZ6hF8Fzn9uUq/zBOSn7ttztDTgQ0oUphq/encHHVJ8FoHVLI3
+         B+WgRH2Q7i1orn19Ja7vlY9i4SgjJeHYodZKJwZ3dcib4tmbjoKZZUWmUE2d4r5lE8qK
+         Wiz3QMt4whRAaMhm3v8gErHGJ/GZhBr3bZo/kz83M5si88Kf5FiYHIWp0MTeenZXybzE
+         Apsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708070401; x=1708675201;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jZwRQvaLKAmsHzDqcK2w0RoorC1NNJ/xO/vFiVpk2gs=;
-        b=BYevlCs1kf448rgYvDI8tVgHy90HNoiaUbJQagepc4w5iChcL04IHEe4Ce6VY1NwpL
-         bwRXmMC/V10B5PrTliDH2aHDAz11j4jv7hI5C2bb86kGz6y/nV9fdSAPV9RqOkvZLZMj
-         IoIAYd5qeMb3iz2gKg37S9DcfVutaAjWTrDsA5rser5e4Y/Dl7RNdcWTZ9yC8nEaV6yE
-         QJSCPbcZlZDtR9hsJTZXf4xUBamtqLOifo8o/6xw8iIx7eMIrvH8B4MIePnvOlDBGacI
-         Gf7ebFVeqeSVfQe+K0ay7Qu1zrTjpCM7KM0ldR765+VF5UCrgaAJTPKEbgJtSoq5CnJ+
-         oXHA==
-X-Forwarded-Encrypted: i=1; AJvYcCWqApLR1TmKdthwP09Sp339gnN8ITlrOPkYY3sJijPa2JgBPQOdNfeb7E7pvGh3hGMcCBEHDlzsMlcMF3S8Hi6ye5A1ByLDHZ2ZEg==
-X-Gm-Message-State: AOJu0Yz5dYnylqclPsiwMP8U8HtZvZ0K2/iFgJ/vw+JmIF7ETdJyuL/v
-	ODt1pX1Aqjcws+fwu4LdBJl+DT1ciFbYvA6FlF8Z+KHlTW1/hV4nWmHsgqWMCVM=
-X-Google-Smtp-Source: AGHT+IFP8xUE/nP1s5OBIrXrGtcRCSjOMJXyLsCICzNcsdXhl+PJxzD6L+dSnZINeRXwgO9q5pb5bQ==
-X-Received: by 2002:a17:906:f812:b0:a38:3eb1:40a1 with SMTP id kh18-20020a170906f81200b00a383eb140a1mr6471984ejb.26.1708070400808;
-        Fri, 16 Feb 2024 00:00:00 -0800 (PST)
+        d=1e100.net; s=20230601; t=1708070445; x=1708675245;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DnxukvBZ9HILW+/bXi1xM6ASxCxRAyvkY/gDibCLZJQ=;
+        b=dVV5l3BeE725X6FX1QF2EfGHtIj5JeoLmw+kuii7tPosvrhq5+5//QesIjnfpjWIRg
+         0l49gNEuKWB3YCeEhng6+EqjpyZlprRzh7LxoxoZc+3vBJLUeY1EJDy7bmu0jEdrippK
+         cwth5Ft9yDjWG9trYTEoSDL89bJymaa7EHi16Y0tKg0Z9lIMaNM4SrtrsvAoHAwSGYw8
+         y3EehJvTk3A5B70uneFcZwDHoctLQn4Ae2O2AoljuIcVqrTbD4w66eHlOZquNCeMsdU6
+         OZfsux4qTp6ydavvkG97Q9qc1KpJmDIF8dEUY9AKsLrPChZADSZ4BuvEaB9btVMONj+O
+         Be+g==
+X-Forwarded-Encrypted: i=1; AJvYcCVMTDGkKNht/B2TFg5m8ZNS3cjz0Wud2FvWmSRBVnMckvixlcrICHb+7CvB8QWXfnAfRJie2hsxXhTjJZ5PKL51PCN3uvyCaxPnNA==
+X-Gm-Message-State: AOJu0Yz6tyTCsplAMgwfDR15CxnwLzoa+k/IvB+APY41OvtebnxumqUa
+	4IB1XiWSlGLL/q5h6w16lXPgJDmGFJUbVByQdXVJPBGuGwqxOcIoEqceE90Xsx0=
+X-Google-Smtp-Source: AGHT+IFd57IEzcsF8PDqsk0R8qLsrAPvudXoL14T4EGGsWAoH+Rnn00j/J8MVf3C+e28sU/FudCSpw==
+X-Received: by 2002:a17:907:940f:b0:a3c:c13f:a1d9 with SMTP id dk15-20020a170907940f00b00a3cc13fa1d9mr7659320ejc.38.1708070444936;
+        Fri, 16 Feb 2024 00:00:44 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.207.130])
-        by smtp.gmail.com with ESMTPSA id r5-20020a1709062cc500b00a3d1580d702sm1296186ejr.185.2024.02.15.23.59.59
+        by smtp.gmail.com with ESMTPSA id r5-20020a1709062cc500b00a3d1580d702sm1296186ejr.185.2024.02.16.00.00.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Feb 2024 00:00:00 -0800 (PST)
-Message-ID: <42b7e3bb-a152-4ded-91f3-fb8043a7f413@linaro.org>
-Date: Fri, 16 Feb 2024 08:59:59 +0100
+        Fri, 16 Feb 2024 00:00:44 -0800 (PST)
+Message-ID: <ebd2be9f-fbad-4295-b74d-35647d08ee76@linaro.org>
+Date: Fri, 16 Feb 2024 09:00:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,9 +77,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 13/13] MIPS: mobileye: eyeq5: add resets to I2C
- controllers
+Subject: Re: [PATCH 03/13] dt-bindings: hwmon: lm75: add label property
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
  Linus Walleij <linus.walleij@linaro.org>, Andi Shyti
  <andi.shyti@kernel.org>, Rob Herring <robh+dt@kernel.org>,
@@ -90,10 +91,12 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
  linux-mips@vger.kernel.org, Gregory Clement <gregory.clement@bootlin.com>,
  Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
  Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, Jean Delvare
+ <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+ linux-hwmon@vger.kernel.org
 References: <20240215-mbly-i2c-v1-0-19a336e91dca@bootlin.com>
- <20240215-mbly-i2c-v1-13-19a336e91dca@bootlin.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ <20240215-mbly-i2c-v1-3-19a336e91dca@bootlin.com>
+ <3e541dd7-90d8-43d1-a5b5-260828ac2a86@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -138,19 +141,28 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240215-mbly-i2c-v1-13-19a336e91dca@bootlin.com>
+In-Reply-To: <3e541dd7-90d8-43d1-a5b5-260828ac2a86@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 15/02/2024 17:52, Théo Lebrun wrote:
-> Add resets properties to each I2C controller. This depends on the
-> reset-eyeq5 platform reset controller driver.
+On 16/02/2024 08:41, Krzysztof Kozlowski wrote:
+> On 15/02/2024 17:52, Théo Lebrun wrote:
+>> Declare optional label devicetree property. Show usage in one example
+>> with dummy name.
+>>
+>> To: Jean Delvare <jdelvare@suse.com>
+>> To: Guenter Roeck <linux@roeck-us.net>
+>> Cc: <linux-hwmon@vger.kernel.org>
+>> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+>> ---
 > 
-> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
-> ---
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
 
-This should be squashed with previous patch adding i2c controllers.
-Don't add incomplete nodes just to fix them in next patch.
+Although you might need to re-work this patch if this gets accepted:
+
+https://lore.kernel.org/linux-devicetree/20240216-dt-bindings-hwmon-common-v1-0-3c2c24ff1260@linaro.org/T/#m341d8f47ca5badd2637cd662fb331f144e16a54c
 
 Best regards,
 Krzysztof
