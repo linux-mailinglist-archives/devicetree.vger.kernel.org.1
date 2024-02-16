@@ -1,166 +1,153 @@
-Return-Path: <devicetree+bounces-42453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DDCB85791C
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 10:43:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F363785793A
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 10:49:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9168BB248B0
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 09:43:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 90FCEB233A5
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 09:49:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2652A1BC3C;
-	Fri, 16 Feb 2024 09:43:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A63371C68D;
+	Fri, 16 Feb 2024 09:49:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LnTfHmA8"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="T9ir6dnx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40AAE1C29E
-	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 09:43:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 739761BC26;
+	Fri, 16 Feb 2024 09:49:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708076586; cv=none; b=cn0u8bGtf57FKmWFmyDjJ9enV6LPBOEfnxQYu+QgWGcYQQuBZqQHLiXWDlV+ZGForL0hG/u34zgTTQVFfsl3W187pyfs/mZFRP+uogmkmdd5GXie41GCS3y08Qd0YFUgZm7Cva2L0Cbpsg4qTf4emPeKPIUpH1KbWUGBD5JkjTE=
+	t=1708076974; cv=none; b=Am0esGmXJOmk0eZFsP0owePZMiDnDMtEWr7sC8l91CqF+CEZ4H1sOxl6wqXFUyY2G3Gn09DgSWWQqmxfyDqWtA+Gg9OshMDBC25BmAUIJNEaxc5LzN4L2uUI1Xl9gICaJnpAGAPjQrpEb/hbL0TPkHcec3dWsU20BOeO7X+UOG4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708076586; c=relaxed/simple;
-	bh=erJbXgT6svUzCFGLPxEPNcIji7DFpwP5TtlqCfzm5O8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LeBeG5ZRTCiN1XJNbIDNIINUMfnwrU0cRgdVd8idnBRZl0KBYomfAE4i7wO17eoWEtSff3+NXIAHR0miAOo7mSsg3dYy8qUqWM+CpA0YrkaAhY5BcmW1UnliWs1VSGWC9H0uAdHwqwDPQTluWgBI2tpnGY6mUiUh7DZjFcXAR3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LnTfHmA8; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a3566c0309fso219309766b.1
-        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 01:43:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708076582; x=1708681382; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=50f7zKmZnRI9LrVHCKInlnIFfogg3BhO8mJWvUu8tZs=;
-        b=LnTfHmA8v5elccLMuK1io6WFMXhUNhTl5Z8kRNjwh4e1UalYqlLuccT7x2o098cC2o
-         D6fUULVTiRSRi5PgsxZDYQO5CwWE0v7jWQ2pAJiSoUwPi8YpiBd3Td0OtDG31VWeXy5z
-         6SW/Fef+czcSVvrt/6o1RfMuPlhi/UPPNm3HtJ/FM8tOBktD6P0vyO9n8K6TWV/eCuDp
-         Kax2tqwbAOcZEyVKTgp3dy8693eI3U6dpJ0QmdEEinpCTFRsGaXi5nrECnIVheiP8DSC
-         p5XsPZGQQzY+wqHow7C6jDGRuIXJd5sMtdQJVrZfxrAYKPaCOLuTzNzcE7zS3Vo+jwrs
-         SQRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708076582; x=1708681382;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=50f7zKmZnRI9LrVHCKInlnIFfogg3BhO8mJWvUu8tZs=;
-        b=aYAoqlMowbfwPl0RGwQxjpY9iNYreS+v+AIXG9D/0Qb7zOWvuu7BDObpSo/4gQ+7HR
-         MLnXxTM7Jy4/EANxxTniWl4XjJEbC//NeDDZhW2OmZqlNoxLnzUTKCbyWsNxFa1WJkCz
-         3k/TMPX1Y/hsK2U5duLrsRs3Ui2aiV6eol4HYE9+PJ2Ko3Qh0GJuWOV91At03dfBXOvG
-         clg2Gyn/ydqrFFn28rwjevJkYjSDmm9z34TdIeJDEzR48mcC/dX3OEy0prWAxp5V0GBu
-         7EWFfauqhoH0RcsQJfTvil9Ir9MF9ycVvaV1Egwiz/v2wLf+9/1SVw39xA06oKNkb/by
-         Xe7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXBr4aKyflS3gF6tMfyYLvXvxIehfuue3W+DI1ALyZOthxVfT0uJ+MvJi8DImUjGRaiolaDAtjm5QBCfKEv8FMlBjAm35F+feRUUg==
-X-Gm-Message-State: AOJu0Yx4oISrPBr6YHj5MlXUDZCucV9wfipImo2h//clIgOHmGLt9LR/
-	R7BlUGV8xTVLpYk+aUuRZ9sldnPFCgRz7EarVw5nu06wGiMQsDDaZBLd1GN/Jmc=
-X-Google-Smtp-Source: AGHT+IE1PPpt5WXjLMqsV+j10ORMRQbg86LRvVNhA6Wu9P6fc3uH1nDSTRPe/hwaqeL9gfQQqKyPDA==
-X-Received: by 2002:a17:906:9a8d:b0:a3d:5db0:120d with SMTP id ag13-20020a1709069a8d00b00a3d5db0120dmr3006253ejc.23.1708076582527;
-        Fri, 16 Feb 2024 01:43:02 -0800 (PST)
-Received: from [192.168.0.22] ([78.10.207.130])
-        by smtp.gmail.com with ESMTPSA id br21-20020a170906d15500b00a3d64b37a35sm1380977ejb.137.2024.02.16.01.43.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Feb 2024 01:43:02 -0800 (PST)
-Message-ID: <df33fe7c-8732-4e30-8e9e-0c74252c8c76@linaro.org>
-Date: Fri, 16 Feb 2024 10:43:00 +0100
+	s=arc-20240116; t=1708076974; c=relaxed/simple;
+	bh=vkcf7in+HHvF7wODXOGKQNfcfhTdMHKm+z/DnZUTeD0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=chY7s9KmqTJ4y2Tz5rEkbPIzQb12f4ipdKKuK34J0Io4HiF7YGselSMVS1ogWrVpbrZeEP/5SynMKyFDcKoJvTah4IuU3elNhEL+JdREVrs7nIDQ+pdGlMLgzVBK7DYQm9Vd4RcvNCJIvyhv7qnrvlEJWAYZ8ExSRnxI1kQoOz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=T9ir6dnx; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41G4ppm2024161;
+	Fri, 16 Feb 2024 10:49:04 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=z/h6EJe
+	qC1Av5YLNEHSAWiHso3gB+EOTqFg4TUwvKR0=; b=T9ir6dnxGhQ8vE+QMPws/4w
+	0pyqUjVl4F/LLgp09kkzahj1LF7hmg0CGJsCrhqjginRLSxsDS62+9etuHKChLHN
+	+jXd7+MZrqFAnGibzEfMVJ7cA2shGfmWDSBhy104TDpm1XJcf3q9NgD3RrYz9LSL
+	YGGD34Q4hFgDhDGzrq3SdJIsKljfZ0OM6NeyxXgiY4IKsUO4xkQdJ+T9BfmAJv/R
+	9Bu6o9UnaP9GjY4kRoE0OSV6yrlmqEAns4qgMISSUFlrEVrxqzOGOfYzxP/ZKkxj
+	jPE9eY6O0uqs+GNHmSMCEpn0A83pUH0ELq5UkRrfEES+vst7AINnduFxyTQ28CA=
+	=
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3wa126gy3f-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 16 Feb 2024 10:49:03 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 5D1B040045;
+	Fri, 16 Feb 2024 10:48:59 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 045F1237D6D;
+	Fri, 16 Feb 2024 10:48:17 +0100 (CET)
+Received: from localhost (10.201.20.114) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 16 Feb
+ 2024 10:48:16 +0100
+From: Antonio Borneo <antonio.borneo@foss.st.com>
+To: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre
+ Torgue <alexandre.torgue@foss.st.com>,
+        Catalin Marinas
+	<catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+CC: Antonio Borneo <antonio.borneo@foss.st.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH 00/12] irqchip/stm32-exti: add irq-map and STM32MP25 support
+Date: Fri, 16 Feb 2024 10:47:45 +0100
+Message-ID: <20240216094758.916722-1-antonio.borneo@foss.st.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/9] media: dt-bindings: Add Chameleon v3 framebuffer
-Content-Language: en-US
-To: =?UTF-8?Q?Pawe=C5=82_Anikiel?= <panikiel@google.com>,
- Rob Herring <robh@kernel.org>
-Cc: chromeos-krk-upstreaming@google.com, tzimmermann@suse.de,
- maarten.lankhorst@linux.intel.com, hverkuil-cisco@xs4all.nl,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- mchehab@kernel.org, ribalda@chromium.org, robh+dt@kernel.org,
- mripard@kernel.org, airlied@gmail.com, linux-media@vger.kernel.org,
- akpm@linux-foundation.org, dinguyen@kernel.org, devicetree@vger.kernel.org,
- daniel@ffwll.ch, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-References: <20240212131323.2162161-1-panikiel@google.com>
- <20240212131323.2162161-8-panikiel@google.com>
- <170774854498.294434.14234480400138512065.robh@kernel.org>
- <CAM5zL5qx1sw=NSWE7gv3E80MCMJ4=tvc44WDAnBrfsJ2qQB3iw@mail.gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAM5zL5qx1sw=NSWE7gv3E80MCMJ4=tvc44WDAnBrfsJ2qQB3iw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SAFCAS1NODE2.st.com (10.75.90.13) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-16_08,2024-02-14_01,2023-05-22_02
 
-On 12/02/2024 16:51, Paweł Anikiel wrote:
->>
->> If you already ran 'make dt_binding_check' and didn't see the above
->> error(s), then make sure 'yamllint' is installed and dt-schema is up to
->> date:
->>
->> pip3 install dtschema --upgrade
->>
->> Please check and re-submit after running the above command yourself. Note
->> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
->> your schema. However, it must be unset to test all examples with your schema.
->>
-> 
-> I was missing a '#include
-> <dt-bindings/interrupt-controller/arm-gic.h>' in the dt binding
-> example. I ran dt_binding_check after adding it and it reports no
-> errors. I will include the fix in v2.
+This series adds support for STM32MP25 to stm32-exti driver.
+The STM32MP25 includes two instances of the EXTI irq controller,
+each mapping their EXTI events to different GIC irq sets.
 
-Please test the patch before sending...
+In the current driver code, the mapping between events and irqs
+would require adding to the driver two new compatibles and two
+new mapping tables for this new SoC. This way of working starts
+showing it's limits; it doesn't scale and is not flexible.
 
-Best regards,
-Krzysztof
+This series introduces an optional nexus child node to the EXTI
+DT node. The nexus node provides the mapping between events and
+irqs through the standard "interrupt-map" property, thus moving
+in the DT the description of the HW connections between the EXTI
+and the GIC.
+Being the nexus child node optional, it guarantees the backward
+compatibility with all the existing DT for STM32MP1xx.
+Nevertheless the series updates and uniforms the existing DT by
+adding to them the nexus child node too.
+
+The DT node for the GIC of STM32MP25 is already upstream with:
+	#address-cells = <1>;
+This value needs to be updated to <2> because the SoC uses 64 bit
+addressing and the v2m child node of GIC requires 64 bit address
+too.
+This minor change to the GIC property "#address-cells" impacts
+the contents of the "interrupt-map" property.
+This series also anticipates the addition of the v2m child node
+to the GIC, thus avoiding any further rework.
+
+
+Antonio Borneo (11):
+  irqchip/stm32-exti: Fix minor indentation issue
+  dt-bindings: interrupt-controller: stm32-exti: Add irq nexus child
+    node
+  irqchip/stm32-exti: Map interrupts through interrupt nexus node
+  irqchip/stm32-exti: Convert driver to standard PM
+  irqchip/stm32-exti: Skip secure events
+  irqchip/stm32-exti: Mark events reserved with RIF configuration check
+  arm64: Kconfig.platforms: Enable STM32_EXTI for ARCH_STM32
+  ARM: dts: stm32: Use exti interrupt-map on stm32mp151
+  ARM: dts: stm32: Use exti interrupt-map on stm32mp131
+  arm64: dts: st: Add exti1 and exti2 nodes on stm32mp251
+  arm64: dts: st: Add interrupt parent to pinctrl on stm32mp251
+
+Christian Bruel (1):
+  arm64: dts: st: Add v2m to GIC node on stm32mp251
+
+ .../interrupt-controller/st,stm32-exti.yaml   |  42 ++++-
+ arch/arm/boot/dts/st/stm32mp131.dtsi          |  49 +++++-
+ arch/arm/boot/dts/st/stm32mp151.dtsi          |  51 ++++++
+ arch/arm64/Kconfig.platforms                  |   1 +
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        | 154 +++++++++++++++++-
+ drivers/irqchip/irq-stm32-exti.c              | 148 ++++++++++++-----
+ 6 files changed, 397 insertions(+), 48 deletions(-)
+
+
+base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
+-- 
+2.34.1
 
 
