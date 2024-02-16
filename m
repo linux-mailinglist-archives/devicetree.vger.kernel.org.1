@@ -1,171 +1,100 @@
-Return-Path: <devicetree+bounces-42567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73EF5857C31
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 12:58:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B29DA857C2D
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 12:58:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2CCB628333E
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 11:58:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3C5E1C211E7
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 11:58:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F99078B46;
-	Fri, 16 Feb 2024 11:58:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FD3A77F3C;
+	Fri, 16 Feb 2024 11:58:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="OiH94hbf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MzpqLh0y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2076.outbound.protection.outlook.com [40.107.94.76])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 881F17867D;
-	Fri, 16 Feb 2024 11:58:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.94.76
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708084692; cv=fail; b=gz+Va/L+V3PDr7AS/W+lLcROixwVO7Dqp8NXgnVyf/5oLGUs2E6FMiuAl44AjFbTycYtrvqoZTAiwwBzDzpqChj4yVhsiluuBvjNpJWlXs7MSVGXtnvxT6iIopw+ffsyLRCjJUWApymQ0nBGYoXN3pavnN3SxYnw+ww9p3/6NVY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708084692; c=relaxed/simple;
-	bh=7WdOwNBmOwSEMtOsDCEY0kRUmTq2W42tWvtUiYuxTNw=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=c5APDlppb+i2NWxpQyM3UN5l0jrrG2xegOqvDKN7T6V9BZAovjD405XCY5LCY0owM4GF27KgHpozrTbWdc1r2ZkWTIw/CnqZfYfo1v+8G4NZAxHEANqMoAbBuNqiR6WXjb5FARDpLpEBfy3Y6u9oMpUmSl4e+zM/QjrjqohCmK8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=OiH94hbf; arc=fail smtp.client-ip=40.107.94.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Lobd5kcSeTQpnq6f19r7catq0oBl4d9dN+SnR/KnsmJOLIFm9dpCYP4BU1XcO9bxVa3/KCHnBseAaBj3xaYryBiSpc9mXMa4zBRe51nRMhaVV9c/9OcVx+jHJFLzW8Jkz1yIX6D/ysprOFthWVtQW5vm4TgZssFIjU45DlZblaw94o9ANKcdbolsJWlzEKuBO4YyKnmVG1oTxZz+zvpREhKcmu6uLgPuO8Z1OsJTfQ6qbphBjsL/uznZAmwQ2CgP+wZutInlrm7k7HsrKO0CF++8SmwvbS6rkubsB8fi2KpI+QNJbqDj6nJL9YfC4I09Qm/U+cJSp8a9mVJ/ra9yIA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=T7utbgzg+5R6Dk+ohiwVaKDnQDnEoIKsimefw659DLw=;
- b=V3wY0aH0SzhS4AjMkCVFxlwmbbED+9BNk2MnJZ2uPIQREQ7v3hakYFzKzQlPYFT0WtNgyP7G+QlgNs8ywh9O58/LXIoRMmDkniBHHbzboSXI9Ugpjd3mtKAn7Jjz7HmuIbdbwovL8346mKMgWA3Xx1vWUsyguMkGlbNo/Q//KnOaW5HhUZZSdYHQuT8qnapvObrDBQrjR7IYa21bdxEWnMBMlLz83fafo0sNQrP0TzKO/ZiLe8DkDEzg5pCRRul9vMnQUW7xxkJrg38lXaLLuCH52T523/acpcoKcbMwkXb/oHxBdLTMRkCXwzzIussoQwU9uExyR736+2iGXsOAVA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=T7utbgzg+5R6Dk+ohiwVaKDnQDnEoIKsimefw659DLw=;
- b=OiH94hbfWYl2mH/zOiKgphcrAldEes7GCyYr3Zcgw+eQDJ7QVD6kderqk6/YvmwoWnVbTi233z8+siwucsnesUdGUfw3L5GFwB+0qi6OodJkVcduRbRSJg3sZu6O7joWg0OLVB9QXvsuTHh/O5h7GbcIUCY8mwgR2vHAd8yNfrQNlm9kJ8GcB3U5Tv2XQS2e+6DreJWoGXEVzPnwU6l2t8RQjtmqO+cktwdlIZFZlTEaj8aH8lQURL+c8gaAXOt4zL75DUJNqg6ixNpIT4pGPe0sma9A+RImI1AmlKZioMCpaH2cSQYkuTC6v6HD2HZegRW+vDEEPVy5OSXh1lAuMw==
-Received: from DS7PR06CA0008.namprd06.prod.outlook.com (2603:10b6:8:2a::15) by
- SA0PR12MB4351.namprd12.prod.outlook.com (2603:10b6:806:71::14) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7316.14; Fri, 16 Feb 2024 11:58:04 +0000
-Received: from CY4PEPF0000EE33.namprd05.prod.outlook.com
- (2603:10b6:8:2a:cafe::95) by DS7PR06CA0008.outlook.office365.com
- (2603:10b6:8:2a::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.26 via Frontend
- Transport; Fri, 16 Feb 2024 11:58:04 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- CY4PEPF0000EE33.mail.protection.outlook.com (10.167.242.39) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7292.25 via Frontend Transport; Fri, 16 Feb 2024 11:58:04 +0000
-Received: from rnnvmail204.nvidia.com (10.129.68.6) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Fri, 16 Feb
- 2024 03:57:56 -0800
-Received: from rnnvmail203.nvidia.com (10.129.68.9) by rnnvmail204.nvidia.com
- (10.129.68.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.12; Fri, 16 Feb
- 2024 03:57:56 -0800
-Received: from moonraker.nvidia.com (10.127.8.9) by mail.nvidia.com
- (10.129.68.9) with Microsoft SMTP Server id 15.2.1258.12 via Frontend
- Transport; Fri, 16 Feb 2024 03:57:54 -0800
-From: Jon Hunter <jonathanh@nvidia.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>
-CC: <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>, Jon Hunter
-	<jonathanh@nvidia.com>
-Subject: [PATCH] arm64: tegra: Fix Tegra234 MGBE power-domains
-Date: Fri, 16 Feb 2024 11:57:48 +0000
-Message-ID: <20240216115748.24845-1-jonathanh@nvidia.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07D4759169;
+	Fri, 16 Feb 2024 11:58:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708084689; cv=none; b=Q72BshkXtzF3rxJcm83S4QisfNfjKUIXQtUxKVVClb+CJMxv070XLvvKyXYvC4nlTKVQwEI2ri+ep07uF372guQqe31zpypimTrrN8ZM1x95dGdt70ZJP7q1R05F1O3oGCDn4IXqE3xUtQsAIyhHXrBIfex7D1G2kFSgG2QLjzU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708084689; c=relaxed/simple;
+	bh=02zB0ODjIh7Ni22bBy7tChA9AIJOF8lNxePQq8wnRdk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=CqPkIzbJTbYgqRh9N4KFYIXKO7eKG3KZO2eApOTw9QZXVBQK79w9ISw1gHiRoUJqcM/NfnjQWL0gLv965pW6Tn2sfs0dt3oBP1DS4x6NyUZ5I4FUNxn6Yv0nMqBZKiS8tP3CC4Zp3H76E4rQykdR7fETF1Y95eHWQkxFB56Ju0I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MzpqLh0y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A69EC433F1;
+	Fri, 16 Feb 2024 11:58:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708084688;
+	bh=02zB0ODjIh7Ni22bBy7tChA9AIJOF8lNxePQq8wnRdk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=MzpqLh0y6hKn3tTEciOdvs8P4G6Ht+gx34okHzjAp26dx0rimQLB7q5B0dVsk8cb3
+	 nzuRQMDVXTHpZkVv+pBuAnV5P4cPZD1fYeA+r+aX1nFay7F5a165rAU5JHQArPdCnT
+	 6/DwO42uGzbeBCyIwqwQmXb/x8cRtek0nPgK9LEkkvCvziju0tvOUxvufyzbESioLE
+	 jW6+nBJK6LgLsoVkl+/4KKR2N0xJRTb3Fx6CrVUrrSvec8zx4yKzpl5EClWigLa9ic
+	 p1uYWwlHYfYE85j6A2V7gNE0g8APT8xKyFlURWCtiKIBikItL6oKLfzoFyUNRguZoO
+	 VYwdQtDfV0bMw==
+From: Vinod Koul <vkoul@kernel.org>
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Johan Jonker <jbx6244@gmail.com>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Andy Yan <andy.yan@rock-chips.com>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Algea Cao <algea.cao@rock-chips.com>, 
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-phy@lists.infradead.org, kernel@collabora.com, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240214-phy-hdptx-v4-0-e7974f46c1a7@collabora.com>
+References: <20240214-phy-hdptx-v4-0-e7974f46c1a7@collabora.com>
+Subject: Re: [PATCH v4 0/2] Add support for RK3588 HDMI/eDP Combo PHY
+Message-Id: <170808468224.352706.3107795890372449699.b4-ty@kernel.org>
+Date: Fri, 16 Feb 2024 17:28:02 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE33:EE_|SA0PR12MB4351:EE_
-X-MS-Office365-Filtering-Correlation-Id: 107d4c85-415f-431c-f6ee-08dc2ee6886b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	Yff/zBfyUeLFuDjcvitIi9P99apDmQ7fCGksKGZ2BYC8rZXWU1eODZuGLhkDUG3o7l5K330167cQUG31xqx+7kWNwpjRJSEWjAthzdUvzp4LYvhsaG/3jUfhtzj2KFDdsbxJ0glaW/EjMIQQTITFX9X+1fMZCjHfz5VfEaasE+L0jwMiHKgDWzcZyXQo/aYU1sxY+svqJ5wO8KIXDXY1j9oMTgD/J/1pe9QD3SmPVdmSe+lmLgn4zMqoW/nCjE07xC+RXHMwoaZ3+mShFNzb0Z1I0cHblh2aMZ58DrzPkgWpl4GFBxtJOnpClIbT5D8Ch81oMZqs7mlul0izjx8StBj4WvMkut0MsMg9++801ucZen9bacOqqIMux+vSAiSz3N3j7+fOr1NCHcFeM5U+iom2G0UtvwNv+QvoMZYgoQvlklAl9dz2OKSCb8AIizVW5bLwswMu9OceCXVvlAG2YyikeVTMGfbyq3g30voKOnliZ0qFORc+FBNm9vzCYQREPviSIR2xi4bQWHuf8dl2t5Zmz5zfEs726xKqIdfO7UCZswmnwI6vzvsNSxHTiaKbd8FDM+Hi2uKaNtMgGaYKsqvgYiR0QDZ5XrWnVQiR4amW+r/CCDPkbO5UCGy2UuIneMGAuPJ5xP/mcnczkNeLstyIPH1VTYGGNkN7etun1WY=
-X-Forefront-Antispam-Report:
-	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230031)(4636009)(136003)(396003)(346002)(376002)(39860400002)(230922051799003)(36860700004)(186009)(82310400011)(451199024)(64100799003)(1800799012)(40470700004)(46966006)(2906002)(5660300002)(2616005)(8676002)(41300700001)(107886003)(1076003)(7636003)(356005)(110136005)(54906003)(6666004)(70206006)(316002)(4326008)(8936002)(7696005)(70586007)(82740400003)(426003)(26005)(86362001)(83380400001)(336012)(478600001)(36756003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Feb 2024 11:58:04.4494
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 107d4c85-415f-431c-f6ee-08dc2ee6886b
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CY4PEPF0000EE33.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4351
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.3
 
-The MGBE power-domains on Tegra234 are mapped to the MGBE controllers as
-follows:
 
- MGBE0 (0x68000000) --> Power-Domain MGBEB
- MGBE1 (0x69000000) --> Power-Domain MGBEC
- MGBE2 (0x6a000000) --> Power-Domain MGBED
+On Wed, 14 Feb 2024 13:45:35 +0200, Cristian Ciocaltea wrote:
+> Add driver and bindings to add initial support the Rockchip HDMI/eDP TX
+> Combo PHY found on RK3588 SoC.
+> 
+> The PHY is based on a Samsung IP block and supports HDMI 2.1 TMDS, FRL
+> and eDP links.
+> 
+> Please note that currently only the TMDS related functionality has been
+> implemented.  This has been tested on Radxa ROCK 5B and Rockchip EVB1
+> boards.
+> 
+> [...]
 
-Update the device-tree nodes for Tegra234 to correct this.
+Applied, thanks!
 
-Fixes: 610cdf3186bc ("arm64: tegra: Add MGBE nodes on Tegra234")
-Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra234.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+[1/2] dt-bindings: phy: Add Rockchip HDMI/eDP Combo PHY schema
+      commit: 3312a0e8f64ec68db695224fcc7457e7292426eb
+[2/2] phy: rockchip: Add Samsung HDMI/eDP Combo PHY driver
+      commit: 553be2830c5f33308483e8118de748a2c69fe593
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-index 3f16595d099c..d1bd328892af 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-@@ -1459,7 +1459,7 @@ ethernet@6800000 {
- 					<&mc TEGRA234_MEMORY_CLIENT_MGBEAWR &emc>;
- 			interconnect-names = "dma-mem", "write";
- 			iommus = <&smmu_niso0 TEGRA234_SID_MGBE>;
--			power-domains = <&bpmp TEGRA234_POWER_DOMAIN_MGBEA>;
-+			power-domains = <&bpmp TEGRA234_POWER_DOMAIN_MGBEB>;
- 			status = "disabled";
- 		};
- 
-@@ -1493,7 +1493,7 @@ ethernet@6900000 {
- 					<&mc TEGRA234_MEMORY_CLIENT_MGBEBWR &emc>;
- 			interconnect-names = "dma-mem", "write";
- 			iommus = <&smmu_niso0 TEGRA234_SID_MGBE_VF1>;
--			power-domains = <&bpmp TEGRA234_POWER_DOMAIN_MGBEB>;
-+			power-domains = <&bpmp TEGRA234_POWER_DOMAIN_MGBEC>;
- 			status = "disabled";
- 		};
- 
-@@ -1527,7 +1527,7 @@ ethernet@6a00000 {
- 					<&mc TEGRA234_MEMORY_CLIENT_MGBECWR &emc>;
- 			interconnect-names = "dma-mem", "write";
- 			iommus = <&smmu_niso0 TEGRA234_SID_MGBE_VF2>;
--			power-domains = <&bpmp TEGRA234_POWER_DOMAIN_MGBEC>;
-+			power-domains = <&bpmp TEGRA234_POWER_DOMAIN_MGBED>;
- 			status = "disabled";
- 		};
- 
+Best regards,
 -- 
-2.34.1
+~Vinod
+
 
 
