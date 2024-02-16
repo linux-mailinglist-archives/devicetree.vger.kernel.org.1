@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-42420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05188857782
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 09:22:58 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2B03857795
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 09:25:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD4262829DD
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 08:22:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C4E8BB21B2B
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 08:25:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F32F3175A9;
-	Fri, 16 Feb 2024 08:19:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 119E5179AF;
+	Fri, 16 Feb 2024 08:21:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eh931LIL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qLTEdWL2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E4D61BF20
-	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 08:19:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2201818B09
+	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 08:21:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708071562; cv=none; b=Ke5/IE9d25scYRmSgBlkWXTAgiKKFZwukvmx7d9rvEduHJ8YncPynakWtvXFhh4c0dWQzjFd1Fyzr8rLmJW/xdHnrcBlHq6PcjPfrSDkL2oiSILg47+m8kz863A+kh9gh1hLr/YVDJTN+GUfuptEwhxFd9CyzvQ3eme2LBN6VWw=
+	t=1708071679; cv=none; b=g7c/G4K08O9zzurgUeEpzy1WPn05t1S5aDjxCF6fxUaoNJvu56c/EurShzUyy29CCNLDl4DxlIAWDgHZYQviLwLg7YWKg80QLTjnT+uv29hAgEiBMqlUoePsadjApMFOQgt2KLNWHO4jSJU6WlWSE6FxPkLfqZzAQdRGtv3fwag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708071562; c=relaxed/simple;
-	bh=J/K+6S5mLwy5zjOVh0i7IzySh1T/EURkM2aXj5Infgg=;
+	s=arc-20240116; t=1708071679; c=relaxed/simple;
+	bh=wNvH8irpVIRGBM1PyLQ/DV1p5gcS7Gn8xxWO4Z4gyY0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SQY+52u2e8w7MbNi8x1cWDbnxc+9UIyNssqvI92tDHNWdEK55uGcqjsiGh1DzYT82/GALBhqISRaA9a5fPnGLzDfcKmoIuKWUdmy+oH84mCwAcSfn7UN92ysZ54mE6hlFC0W+LLTy91VIoPdEZNbh7Ufyzzm0kMDbya/J0faVZs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eh931LIL; arc=none smtp.client-ip=209.85.208.42
+	 In-Reply-To:Content-Type; b=IS9tmtoCp4JyxC3ueskC8DKXocxafnfnVlPaUHX/uGuNh+W5SgKWhi1CZGsWfBP3Dw4Me0QdG8q1xq7gjWli1ePTs1mpAwW4FvWg/7tiA3J5nFa4Hm1WkVlgB7v2mP/zcZ7S78TvqczisHjHYCo/GNTU/3wpDn5BOhGer7OiNA0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qLTEdWL2; arc=none smtp.client-ip=209.85.208.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-561f78f1ba1so1876220a12.0
-        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 00:19:19 -0800 (PST)
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-563cc707c7cso1882950a12.1
+        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 00:21:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708071558; x=1708676358; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708071675; x=1708676475; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=PRfj07k30BanivCyzMQ2y0qjStEMVI1FUkYTeu08x6w=;
-        b=eh931LIL/VBrhJ8z049OxBKFsCZpUD/4p23k1qZerTZB+X5PQa2XmTnkSQaG+nlXi2
-         kKEU6Z5RY4PmPGx2U2WqHiXTqlBo/M2QrGCRVPpdAt8LillmaLBg4h8cuGR7pc0Z8Gif
-         6+n4zkOTkKaGea5qXoenqYxig33P2UTgtcF7LvfZPLVsngF4mPmE/wmJX8S8V9RYxi8w
-         +nSuJPymua/QDyYmvSR2CKA8LM3Ot4bnRfX1nffrxvxWEzM8PRLM6XZqqciTrrKMXE97
-         BzC+cJR8z6emjBdcag32fMr5vQJHYFJQ1weu5b/KYrHrw7CG9BftS6iBMpwjxFIR2xHT
-         BjBg==
+        bh=BHQjCM3MJVOw9z8k4SHGf+NLiuXZ/198hcpHesrOvd0=;
+        b=qLTEdWL20yhzYw2xKZlYoRiugT/xod3sb4H3NkxRm+AISOyY6fzKZrlwRaSxp8WSby
+         NovXtneJhWHlxzr/RZgaalYZcaRfS7wN0qLll+7Ncj7KclX/nMI2qTRwAqRHi1SaLUox
+         aow/ulXMR84VY01oVOXxf7bqEbTjxW9sPsITBI2CYdLcbQFKUy5Jis0tSNT/iYgi+MFJ
+         OLz6Asf+yJcHjOVEHPJy58Skf7DKnjQmtQ+mwtJvWecWZREnZpdZPRNbHo7cJHlGY1Bc
+         HFiLzMU65qPxgT9s09J5sEDmELNW9lXScSdetwB/vM130yBmXjx4r6gWug5UBarqJhJt
+         5xgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708071558; x=1708676358;
+        d=1e100.net; s=20230601; t=1708071675; x=1708676475;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PRfj07k30BanivCyzMQ2y0qjStEMVI1FUkYTeu08x6w=;
-        b=ikX1fVktCWh1GJJIBPFGQt4p11CCIvSbaCR3CT1kiswBbsZWHcT2gv23YoAX9bARld
-         uHsduzoIqOwYap5uAjuSxkyvTvSJRJt2kEnQlrR2KZtcXSOhNp0G/i8MzfJtyXoc5bP1
-         ipzrqTjHl6fQYpqTbGUh0/MnKC54XM6eT6p3b13kXY7Mt6APCeRVcJBoUcUCTTe6ST2N
-         wLQ2fWMZg5CIxpUC+oe1W6xI9IYsC7Owar/FEYH6oQsin4U0P1HMeXjB/4JrSs73RUgn
-         9cuGWA7AfrmGhvhuGMHNQFvazDKGc3SXNIH45+dP5yhQ4XT7+dDG3J+PJnJMhiItuEgt
-         sGYA==
-X-Forwarded-Encrypted: i=1; AJvYcCXI6J/SyE56JHR/VWhmtEJWg25H/Xp/Ul5prM6aqDY0HhvLtgtmrvwtewtIthggUXE2WwtzJlKaPnwIU73tkKordPVE3e/9J+M83g==
-X-Gm-Message-State: AOJu0YxXPkT+85uB3H3m9hrDNpAH4PgbMVd+PpDerUerMvPI+uhaM8zn
-	W9dmt2O/plzkQxOU4Er71wPqgM1BavOCyNT+BDiInc0qDjZDW0PTFo9mDr5Y6Ro=
-X-Google-Smtp-Source: AGHT+IEmAfC18mHPnDSMCr+fpML1x8Xhcm7zdsm0aN9oQ0YnzYQfSNHIdy3lQ9mpkKDK5kOyK1bp6g==
-X-Received: by 2002:a05:6402:1491:b0:561:ae53:565 with SMTP id e17-20020a056402149100b00561ae530565mr3576966edv.32.1708071558144;
-        Fri, 16 Feb 2024 00:19:18 -0800 (PST)
+        bh=BHQjCM3MJVOw9z8k4SHGf+NLiuXZ/198hcpHesrOvd0=;
+        b=QYSwlbnkgXLl6s7/pGHg+tWLGnhLO7cs3L9QeB1Rx845oZFBpSdcuvXbyh/ejd+/Qm
+         47TybDKK/ix8UVyi23BXJ3sIP3R8m4XK9WGS0C25E/h4qGMEQqPwqc9MG4tLFrB5grC4
+         yE2JjU0yngsVgPjJ5S3nzCKHL5anTPVjOAgDcuigMWA2QooQfeKrz4kJ9KRAJRmdQNeS
+         +BdtTIxt+TO1EiiMvXkZJaxJfpb9Pl8FQSAgdp4jsxwvx69/OBva48Z+uN/44morOOO9
+         ytx+IOXqZVcep2aDP+GCq1CbanarbMzKkxs7Er7BEPR7KQZjm/0ITNQeE3x/OrBcZV5q
+         F5zQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV0WEB1fNIb+J5Ii0lrcaFVJxBeD1B3L45N5wPZOBas/dQSNuGOPvKWhiNH4CDd6L6rN9U9tknwZTUDOGbqvgpmhYEu5iwuN589XA==
+X-Gm-Message-State: AOJu0YxU0Ixt+ydmKp5JD9QeayvUlro3CdFSveMmI524cmRGK+JhLAYb
+	NBLHgQIz7BkUIbWeV9C4GmgqueVKL0jKR/BDjct/MtCCmzSEF7FKNYxeLC8p4pY=
+X-Google-Smtp-Source: AGHT+IH1Jfr/rQ1P5UV32a4Ha00bRrmflv3srEDsiA+9qsOqq+vnNMHgHuIPfy/dNY4jLcDdbsJGoQ==
+X-Received: by 2002:a05:6402:500f:b0:561:fc2:bec0 with SMTP id p15-20020a056402500f00b005610fc2bec0mr7425286eda.4.1708071675397;
+        Fri, 16 Feb 2024 00:21:15 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.207.130])
-        by smtp.gmail.com with ESMTPSA id ds14-20020a0564021cce00b00562af79fe8esm1305038edb.19.2024.02.16.00.19.17
+        by smtp.gmail.com with ESMTPSA id j22-20020aa7c0d6000000b0055f0b3ec5d8sm1287138edp.36.2024.02.16.00.21.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Feb 2024 00:19:17 -0800 (PST)
-Message-ID: <b6e9a7f3-1521-47f5-b0a1-b65e79e32495@linaro.org>
-Date: Fri, 16 Feb 2024 09:19:16 +0100
+        Fri, 16 Feb 2024 00:21:14 -0800 (PST)
+Message-ID: <36450b1e-7a80-4d6b-9046-9a57b7c845e2@linaro.org>
+Date: Fri, 16 Feb 2024 09:21:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,8 +76,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: mmc: dw-mshc-hi3798cv200: convert to
- YAML
+Subject: Re: [PATCH 3/3] dt-bindings: mmc: dw-mshc-hi3798cv200: rename to
+ dw-mshc-histb
 Content-Language: en-US
 To: forbidden405@outlook.com, Ulf Hansson <ulf.hansson@linaro.org>,
  Jaehoon Chung <jh80.chung@samsung.com>, Rob Herring <robh+dt@kernel.org>,
@@ -88,7 +88,7 @@ Cc: Igor Opaniuk <igor.opaniuk@linaro.org>,
  linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
  devicetree@vger.kernel.org
 References: <20240216-b4-mmc-hi3798mv200-v1-0-7d46db845ae6@outlook.com>
- <20240216-b4-mmc-hi3798mv200-v1-2-7d46db845ae6@outlook.com>
+ <20240216-b4-mmc-hi3798mv200-v1-3-7d46db845ae6@outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,105 +134,130 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240216-b4-mmc-hi3798mv200-v1-2-7d46db845ae6@outlook.com>
+In-Reply-To: <20240216-b4-mmc-hi3798mv200-v1-3-7d46db845ae6@outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 15/02/2024 18:46, Yang Xiwen via B4 Relay wrote:
 > From: Yang Xiwen <forbidden405@outlook.com>
 > 
-> convert the legacy txt binding to modern YAML. No semantic change.
+> Add binding for Hi3798MV200 DWMMC specific extension.
 > 
 > Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
 > ---
+>  ...hi3798cv200-dw-mshc.yaml => histb-dw-mshc.yaml} | 60 +++++++++++++++++++---
+>  1 file changed, 52 insertions(+), 8 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/hi3798cv200-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/histb-dw-mshc.yaml
+> similarity index 57%
+> rename from Documentation/devicetree/bindings/mmc/hi3798cv200-dw-mshc.yaml
+> rename to Documentation/devicetree/bindings/mmc/histb-dw-mshc.yaml
+> index 5db99cd94b90..d2f5b7bb7a58 100644
+> --- a/Documentation/devicetree/bindings/mmc/hi3798cv200-dw-mshc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/histb-dw-mshc.yaml
+> @@ -1,11 +1,11 @@
+>  # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>  %YAML 1.2
+>  ---
+> -$id: http://devicetree.org/schemas/mmc/hi3798cv200-dw-mshc.yaml#
+> +$id: http://devicetree.org/schemas/mmc/histb-dw-mshc.yaml#
+
+Really, one wrong filename into another...
+
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+>  title:
+> -  Hisilicon Hi3798CV200 SoC specific extensions to the Synopsys DWMMC controller
+> +  Hisilicon HiSTB SoCs specific extensions to the Synopsys DWMMC controller
+>  
+>  maintainers:
+>    - Yang Xiwen <forbidden405@outlook.com>
+> @@ -14,16 +14,14 @@ description:
+>    The Synopsys designware mobile storage host controller is used to interface
+>    a SoC with storage medium such as eMMC or SD/MMC cards. This file documents
+>    differences between the core Synopsys dw mshc controller properties described
+> -  by synopsys-dw-mshc.txt and the properties used by the Hisilicon Hi3798CV200
+> -  specific extensions to the Synopsys Designware Mobile Storage Host Controller.
+
+Just drop this sentence in previous/conversion patch. It's useless.
+
+> -
+> -allOf:
+> -  - $ref: synopsys-dw-mshc-common.yaml#
+
+Put it in correct place in the first time. Don't needlessly shuffle the
+code right after previous patch.
 
 
-> +++ b/Documentation/devicetree/bindings/mmc/hi3798cv200-dw-mshc.yaml
+> +  by synopsys-dw-mshc.txt and the properties used by the Hisilicon HiSTB specific
+> +  extensions to the Synopsys Designware Mobile Storage Host Controller.
+>  
+>  properties:
+>    compatible:
+>      enum:
+>        - hisilicon,hi3798cv200-dw-mshc
+> +      - hisilicon,hi3798mv200-dw-mshc
+>  
+>    reg:
+>      maxItems: 1
+> @@ -48,6 +46,12 @@ properties:
+>        control the clock phases, "ciu-sample" is required for tuning
+>        high speed modes.
+>  
+> +  hisilicon,sap-dll-reg:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      A phandle points to the sample delay-locked-loop(DLL)
+> +      syscon node, used for tuning.
 
-Filename like compatible.
+Does hi3798cv200 have it?
 
-> @@ -0,0 +1,86 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mmc/hi3798cv200-dw-mshc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title:
-> +  Hisilicon Hi3798CV200 SoC specific extensions to the Synopsys DWMMC controller
-
-One line please.
-
-> +
-> +maintainers:
-> +  - Yang Xiwen <forbidden405@outlook.com>
-> +
-> +description:
-> +  The Synopsys designware mobile storage host controller is used to interface
-> +  a SoC with storage medium such as eMMC or SD/MMC cards. This file documents
-> +  differences between the core Synopsys dw mshc controller properties described
-> +  by synopsys-dw-mshc.txt and the properties used by the Hisilicon Hi3798CV200
-> +  specific extensions to the Synopsys Designware Mobile Storage Host Controller.
-> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -55,13 +59,25 @@ required:
+>    - clocks
+>    - clock-names
+>  
 > +allOf:
 > +  - $ref: synopsys-dw-mshc-common.yaml#
 > +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - hisilicon,hi3798cv200-dw-mshc
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: hisilicon,hi3798mv200-dw-mshc
+> +    then:
+> +      required:
+> +        - hisilicon,sap-dll-reg
 > +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 4
+>  unevaluatedProperties: false
+>  
+>  examples:
+>    - |
+>      #include <dt-bindings/clock/histb-clock.h>
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+> -    emmc: mmc@9830000 {
+> +    mmc@9830000 {
 
-Drop minItems
+???
 
-> +    maxItems: 4
-> +    description: A list of phandles for the clocks listed in clock-names
-
-Drop description
-
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ciu
-> +      - const: biu
-> +      - const: ciu-sample
-> +      - const: ciu-drive
-> +    description:
-> +      Apart from the clock-names "biu" and "ciu" two more clocks
-> +      "ciu-drive" and "ciu-sample" are added. They are used to
-> +      control the clock phases, "ciu-sample" is required for tuning
-> +      high speed modes.
-
-Description should go to clocks: to individual items.
-
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
+>        compatible = "hisilicon,hi3798cv200-dw-mshc";
+>        reg = <0x9830000 0x10000>;
+>        interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+> @@ -84,3 +100,31 @@ examples:
+>        bus-width = <8>;
+>        status = "okay";
+>      };
 > +  - |
 > +    #include <dt-bindings/clock/histb-clock.h>
 > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    emmc: mmc@9830000 {
+> +    mmc@9830000 {
+> +      compatible = "hisilicon,hi3798mv200-dw-mshc";
 
-Drop label
+No need for new example.
 
-> +      compatible = "hisilicon,hi3798cv200-dw-mshc";
 > +      reg = <0x9830000 0x10000>;
 > +      interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
 > +      clocks = <&crg HISTB_MMC_CIU_CLK>,
@@ -243,18 +268,20 @@ Drop label
 > +      resets = <&crg 0xa0 4>;
 > +      reset-names = "reset";
 > +      pinctrl-names = "default";
-> +      pinctrl-0 = <&emmc_pins_1 &emmc_pins_2
-> +                   &emmc_pins_3 &emmc_pins_4>;
+> +      pinctrl-0 = <&emmc_pins>;
 > +      fifo-depth = <256>;
-> +      clock-frequency = <200000000>;
+> +      clock-frequency = <50000000>;
+> +      max-frequency = <150000000>;
 > +      cap-mmc-highspeed;
 > +      mmc-ddr-1_8v;
 > +      mmc-hs200-1_8v;
+> +      mmc-hs400-1_8v;
 > +      non-removable;
 > +      bus-width = <8>;
+> +      hisilicon,sap-dll-reg = <&emmc_sap_dll_reg>;
 > +      status = "okay";
 
-Drop
+No, really...
 
 > +    };
 > 
