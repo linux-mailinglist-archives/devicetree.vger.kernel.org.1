@@ -1,127 +1,134 @@
-Return-Path: <devicetree+bounces-42750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 847168585FB
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 20:08:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9B5E858609
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 20:14:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A4CA1F21C36
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 19:08:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26CFE1C21193
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 19:14:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3F0D135A49;
-	Fri, 16 Feb 2024 19:08:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95C18135A6C;
+	Fri, 16 Feb 2024 19:14:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AugAa9GC"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="eRZAH37A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9CB0433B0;
-	Fri, 16 Feb 2024 19:08:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D2781350F5;
+	Fri, 16 Feb 2024 19:14:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708110483; cv=none; b=SM3g6T5L7M8OrE6+1EBF0PEd6q9aq6UA1hgi0/EUDK+yB/WcUYFz1StMuFT1UVN+P5mnjh+/0L7P7KieXEQU+Sf1TZuwVYL/FSvEXIVY0gB+gXhvWtEKGNmw2mExmJ24vOOsUOSuGlYg8AXjhD+XLkwZ3VOctDXc7XfqS15n17g=
+	t=1708110884; cv=none; b=hB5hQNR5k+OP6SuFpxUUozoG4Hm4QZzNQH/kgepTcGNfk8gU5Ucp4j/kAE1RnniddSMD/vcYVvQFXD4oOOy5m8F8NRouTWa9NmaoXHFOll7MamJFFCF3++38yB8M/XGcKIz64r4wQ+oMkhMmPO3aC5mgb9l+bUipYmpsAiF9hjU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708110483; c=relaxed/simple;
-	bh=japET/leIP47UNLN6OC2SEbuPJH4MNioCZrfy5PbCok=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MP3NDWXL3fgw17YF2DIGBOKdt+oLnYgkIq5Eb+WJfXTL5YDWnfI+iH+PT6Sai+c/RtsmrmP10IX+ZYMcmlH7QHmLsDSwoE/l+ZQdNvtFTiHfMaMFfZm0689prSNS8se0LKmtpaVYgf+s2kpZ6mFB448fV1dY+m+bc2wj3wJCwsk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AugAa9GC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BD61C433C7;
-	Fri, 16 Feb 2024 19:08:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708110483;
-	bh=japET/leIP47UNLN6OC2SEbuPJH4MNioCZrfy5PbCok=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AugAa9GC2/T89VLJj71TRRt8u5SkQn/eFM4J3NtjVQk6RKptQjS/CbCZTPaSbWr7x
-	 SpKow+1LV2NRD9NVjX5aWmmbReIDntaiqdaLxsa+/hDsJkwUlflpqvPAYApCZiNRGo
-	 p6rlwPz4BdjkptjZzAjgNHVfytDMd9YxkNLL1yQCppJDL5fCCTtOCCGxMgfD0Lz01V
-	 y63x4RZIZKutHrYy3I5gQUtR6idObP6mzqamD+b2yTAk3pKuEgVer312G4LwMcwGLP
-	 n92rzlE0EC4M3MOoGMKz0oMNfQ1lO+bketbgMbInOUYA5pwm2QGYlTjA9S3i71wvr8
-	 xqGWVeY+sgFqg==
-Date: Fri, 16 Feb 2024 19:07:58 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Dan Scally <dan.scally@ideasonboard.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
-	nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com
-Subject: Re: [PATCH v2 2/5] dt-bindings: media: Add bindings for ARM mali-c55
-Message-ID: <20240216-caboose-poison-3052a4bb9eaf@spud>
-References: <20240214141906.245685-1-dan.scally@ideasonboard.com>
- <20240214141906.245685-3-dan.scally@ideasonboard.com>
- <20240214142825.GA7873@pendragon.ideasonboard.com>
- <20240214-velcro-pushy-0cbd18b23361@spud>
- <20240215110205.GD7873@pendragon.ideasonboard.com>
- <e06b0792-187d-454b-aa62-d9c1e797df17@ideasonboard.com>
- <20240216132755.GA20376@pendragon.ideasonboard.com>
- <f5e63a8b-fb6c-449f-8ec3-26aed5b11b95@ideasonboard.com>
+	s=arc-20240116; t=1708110884; c=relaxed/simple;
+	bh=4zMflq+VnJgh9gRKVNTl0SwwRf1h6nqBt8DpletaZ6Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JBqbgtgkg3eMYMdnuxYF5vEfZlVUGCTLVAdLH8Ahi7nk8SYxeBUsoQnecO7tyH5J392LnrboFtm699/eT5CVK4zJyHI34iLGBiar95LOu/A8SbQ+pmHh9gmVMda28uwKpoWZyyHwyOGl7MRERTHl6imH5jGwLIXJFfwnuUT2hrU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=eRZAH37A; arc=none smtp.client-ip=148.163.156.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0356517.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 41GIvbcd024238;
+	Fri, 16 Feb 2024 19:14:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=pp1;
+ bh=zHzGk21ehQO2Gz9UHv2mp3uNd6s22EkRBNEJ2cwKgMs=;
+ b=eRZAH37AovUOFRHpX7QfiJsSfNcnooPuz11yc0CsOfuwja1KzdWt+eL7ZcCkfAoTghy4
+ kKFHOYGfKFgg9IX/0Q0y4GH5V25ppi6AZnFvUCuOi+vsjHMnkZonatwzys5SscvM5kA2
+ 7Apx5C/qCrrPzDoz5jakK5W8tq1qaNapV1mCQ7WAG/lzAIvCsapohKrmauG5jkArIzYl
+ Rln3W5DLXFYUCgzEN+W7lW5zZYzpgihhUXeTp8a2mOCnyJZYiklEMdEmrXmMu24hurXH
+ OzY4q8cUW+m0eomO878ODgtelDHaYZFVJIVTXSHkS4hmKkGCy47icQbcqoJFBNacgBJD Dg== 
+Received: from ppma13.dal12v.mail.ibm.com (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3wadefrbcg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 16 Feb 2024 19:14:28 +0000
+Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma13.dal12v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 41GH76S9009896;
+	Fri, 16 Feb 2024 19:14:27 GMT
+Received: from smtprelay03.dal12v.mail.ibm.com ([172.16.1.5])
+	by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 3w6npmcw2v-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 16 Feb 2024 19:14:27 +0000
+Received: from smtpav06.dal12v.mail.ibm.com (smtpav06.dal12v.mail.ibm.com [10.241.53.105])
+	by smtprelay03.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 41GJEPXo18088662
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 16 Feb 2024 19:14:27 GMT
+Received: from smtpav06.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 0DA6558063;
+	Fri, 16 Feb 2024 19:14:25 +0000 (GMT)
+Received: from smtpav06.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id B668D58059;
+	Fri, 16 Feb 2024 19:14:24 +0000 (GMT)
+Received: from [9.61.14.18] (unknown [9.61.14.18])
+	by smtpav06.dal12v.mail.ibm.com (Postfix) with ESMTP;
+	Fri, 16 Feb 2024 19:14:24 +0000 (GMT)
+Message-ID: <8649af3d-c7f9-452b-a8c4-921fe5fa30f8@linux.ibm.com>
+Date: Fri, 16 Feb 2024 13:14:24 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="sfDhR62w4u8OGMHn"
-Content-Disposition: inline
-In-Reply-To: <f5e63a8b-fb6c-449f-8ec3-26aed5b11b95@ideasonboard.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 07/33] ARM: dts: aspeed: p10 and tacoma: Set FSI clock
+ frequency
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-fsi@lists.ozlabs.org
+Cc: linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        andi.shyti@kernel.org, alistair@popple.id.au, joel@jms.id.au,
+        jk@ozlabs.org, sboyd@kernel.org, mturquette@baylibre.com,
+        robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org
+References: <20240215220759.976998-1-eajames@linux.ibm.com>
+ <20240215220759.976998-8-eajames@linux.ibm.com>
+ <67ea1daa-72a5-4dc0-b766-34a99052dabb@linaro.org>
+Content-Language: en-US
+From: Eddie James <eajames@linux.ibm.com>
+In-Reply-To: <67ea1daa-72a5-4dc0-b766-34a99052dabb@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: Bx2ZZNL0ja3aqhyn6Hv2Kc-Wl4Xp_T5-
+X-Proofpoint-GUID: Bx2ZZNL0ja3aqhyn6Hv2Kc-Wl4Xp_T5-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-16_18,2024-02-16_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1011
+ malwarescore=0 mlxscore=0 suspectscore=0 adultscore=0 bulkscore=0
+ priorityscore=1501 spamscore=0 mlxlogscore=826 phishscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311290000 definitions=main-2402160149
 
 
---sfDhR62w4u8OGMHn
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 2/16/24 02:08, Krzysztof Kozlowski wrote:
+> On 15/02/2024 23:07, Eddie James wrote:
+>> Now that the driver doesn't hardcode the clock divider, set it
+>> in the device tree.
+>>
+>> Signed-off-by: Eddie James <eajames@linux.ibm.com>
+>> ---
+>>   arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts | 1 +
+>>   arch/arm/boot/dts/aspeed/ibm-power10-dual.dtsi     | 1 +
+>>   2 files changed, 2 insertions(+)
+> Please do not mix DTS patches with driver code. DTS goes to the end
+> because driver code CANNOT depend on it (there are exceptions but it was
+> not explained here).
 
-On Fri, Feb 16, 2024 at 02:45:31PM +0000, Dan Scally wrote:
 
-> > > > > > > +      - description: ISP AXI clock
-> > > > > > > +      - description: ISP AHB-lite clock
-> > > > > > These two other clocks look good to me.
-> > > > > >=20
-> > > > > > > +
-> > > > > > > +  clock-names:
-> > > > > > > +    items:
-> > > > > > > +      - const: vclk
-> > > > > > > +      - const: aclk
-> > > > > > > +      - const: hclk
-> > > > > Why not "video" "axi" "ahb-lite"? There's 3 useful letters betwee=
-n the
-> > > > > tree clock names you've provided - they're all clocks, so having =
-"clk"
-> > > > > in them is just noise :)
-> > > > As far as I understand, the names proposed by Dan come directly fro=
-m the
-> > > > IP core documentation.
-> > > This is the case, but I do take Conor's point that more descriptive n=
-ames might be nicer - if I'm
-> > > honest I just didn't think about it particularly given "Xclk" is such=
- a common name for them
-> > > already, but having been poked into thinking about it I do agree.
-> > Isn't the usual practice in DT bindings is to name GPIOs, clocks and re=
-set
-> > signals based on the hardware documentation ?
->=20
->=20
-> Ah - I don't know honestly. If that's so then yeah - these are the names =
-the documentation prescribes.
+Sure, I didn't realize. Thanks.
 
-If a direct doc match is what you're going for, then sure, keep it.
+Eddie
 
---sfDhR62w4u8OGMHn
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZc+yjgAKCRB4tDGHoIJi
-0olJAQD1XeyYvq7eUU1kc3RWmEQqYgrVam7innpr+WsdCIWbVwEA0W2MtdXieAk/
-YdhMBAB4FxEYyjLNPi8cV6v57dDMdA8=
-=7cwN
------END PGP SIGNATURE-----
-
---sfDhR62w4u8OGMHn--
+>
+> Best regards,
+> Krzysztof
+>
 
