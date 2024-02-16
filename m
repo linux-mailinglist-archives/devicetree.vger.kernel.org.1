@@ -1,147 +1,136 @@
-Return-Path: <devicetree+bounces-42679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B6958581A5
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 16:44:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37D2C8581B4
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 16:51:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E78212870C4
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 15:44:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 87037B219A3
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 15:51:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5219012F38D;
-	Fri, 16 Feb 2024 15:44:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1250C12F5AA;
+	Fri, 16 Feb 2024 15:51:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FB+uXG6s"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="skpgds00"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A312F12A158;
-	Fri, 16 Feb 2024 15:44:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D68961BDD8;
+	Fri, 16 Feb 2024 15:51:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708098286; cv=none; b=vDjIc+6Kb4yenvqgJNqr427r2/YzDDFgggVJ5RfHK9YkYSHOW7BRGg9w6bLbj6OX2HOWKxxZksRLeklogUb6178drF7SQol+V3bOsjEF2gmFvet2KYY298/5BVlHKtHUBmEnvtGsnpwFVv4SJmcgmvEYon5qQF7giwezBCKScws=
+	t=1708098662; cv=none; b=oU4prlxkN639DHAAKuzD+u52EIrmHuLkMjyku8iMxUpwG+2/MfQNE4386v1MQmCo/gWg6R37XXT/OhS8iAMmoiVDjkg0zsiqG+2qpC9XF9j68ZE16EjI+unVHUYJ+f8coXi2UATDpmygftRuWoE6eea/XNZTAeF2ij1thPwNOUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708098286; c=relaxed/simple;
-	bh=e4ljz734j8K5IeryaDf+QcV32Hc7o/1BPmaP92RLzYE=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=mPXvw9zsrgeQKhCk+7xd67ER23bfD0bDOlQ3pXuZxvbcNO88RlrMlns6ZuynaPtibmHHwhlvKviXYc9j9t6ndkj1e75ofSnI18M4IpvvL4lVXzMrR6IzQJKSkbeLUUT03XmPFi0sd4om7PxtXmbNyufhZK88bjdrp5GKycbwOAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FB+uXG6s; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 4AEE21C0006;
-	Fri, 16 Feb 2024 15:44:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1708098280;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=uLOKIfLa2Fcau86133DO8zv6SnmDWIf1Ivv0kU6coAI=;
-	b=FB+uXG6szCFB3RugpF1ZTfMUVw4QkzOfnYrqIos0AHclW+DR3KgszWL4UciL10wLj1nxoz
-	4uX1jPwDE64+9mE27wgjguQO3O62vz6T2SRYu18qtN50FZ+zcyECCiWfbeqlVBijZASUgA
-	1hdyH9Gj466bgdNxlnGbpi9ovUYBDWBeKC2TKY3J9Efm+CJ2Dog84RJ1CkVJL7afYYZstR
-	0ku+SzWVa5RLCWS/qoabYg/cjdwwCQxDtMT3cHGGZci+tKp3L1N/QmMHzB8PJZK+D2bueE
-	T6s3rf5+BTQZi8r+KICySJMzFoZuQmffr+TcWvOyHg/Q9mokoTP2ucoIDSRMjA==
-Message-ID: <be23b24e-5de1-400d-84fa-cf5b25e72a19@bootlin.com>
-Date: Fri, 16 Feb 2024 16:44:36 +0100
+	s=arc-20240116; t=1708098662; c=relaxed/simple;
+	bh=XqumZg0Xx6R1zZIUJu7IqknRri8yZSUgg2ag/nPL14I=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=iUjF8PR996W9W1ElPZcx9omx7DCZcDIWKzMt7+snZAOUhW+SHvKMFbyzkOT/6wx8NclHToM55Bi+Da5Qn3mxt1VaGIHd144J6dOeRC+7rRMiVpQAhm5rw3TCxDKMby9/oQM3oBbcsGFWzLIX3QHu6XK0A91FvlZBVBpfQRRpA3I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=skpgds00; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB479C433C7;
+	Fri, 16 Feb 2024 15:50:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708098661;
+	bh=XqumZg0Xx6R1zZIUJu7IqknRri8yZSUgg2ag/nPL14I=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=skpgds005HeZfnJM4/AXQU9lYuQcNubyIxR6+dlb+2BusjC/hA95dwI47l6nxndJc
+	 A8xVVij9W9Df2+aA8VWSX5/KNEmJrJHcvn/btb1KumrK1hC10aF99YRnNJJ4vj0AIV
+	 db224RP8P+p2sJs1diSnZp+o/Wp4UoWPOW0e/8tPApZA1/fA6imqjJDXWvzG8AU4Rr
+	 5WyCCfCvn9fq32nUcJLCxeqqgQooWJoCLavMSxw8zIXmmTGQhcGeRfeiYssa/ChOix
+	 XWZoLHW7+iZ/yNICznkPPbbOie8lVRseUJcPzNj1tEMTpugKvGLIZtFFduRFqlq26x
+	 xjmUpoh2r5S8Q==
+Date: Fri, 16 Feb 2024 15:50:48 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: puranjay12@gmail.com, lars@metafoo.de, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+ thomas.haemmerle@leica-geosystems.com
+Subject: Re: [RESEND PATCH 1/2] dt-bindings: iio: ti,tmp117: add vcc supply
+ binding
+Message-ID: <20240216155048.29b806a1@jic23-huawei>
+In-Reply-To: <20240216112348.pamc4c7yemuz3sjp@pengutronix.de>
+References: <20240216102820.1395815-1-m.felsch@pengutronix.de>
+	<20240216112120.76a0c0ca@jic23-huawei>
+	<20240216112348.pamc4c7yemuz3sjp@pengutronix.de>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Bastien Curutchet <bastien.curutchet@bootlin.com>
-Subject: Re: [PATCH 1/2] dt-bindings: net: Add TI DP83640
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Richard Cochran <richardcochran@gmail.com>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Herve Codina <herve.codina@bootlin.com>
-References: <20240130085935.33722-1-bastien.curutchet@bootlin.com>
- <20240130085935.33722-2-bastien.curutchet@bootlin.com>
- <dc81a307-3541-47e2-9c72-d661e76889bf@lunn.ch>
-Content-Language: en-US
-In-Reply-To: <dc81a307-3541-47e2-9c72-d661e76889bf@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: bastien.curutchet@bootlin.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi Andrew,
+On Fri, 16 Feb 2024 12:23:48 +0100
+Marco Felsch <m.felsch@pengutronix.de> wrote:
 
+> On 24-02-16, Jonathan Cameron wrote:
+> > On Fri, 16 Feb 2024 11:28:19 +0100
+> > Marco Felsch <m.felsch@pengutronix.de> wrote:
+> >   
+> > > From: Thomas Haemmerle <thomas.haemmerle@leica-geosystems.com>
+> > > 
+> > > Add the binding to specify the vcc supply. We can't make it required
+> > > since this would break the backward compatibility.  
+> > 
+> > Given convention for supplies like this is to make them required in
+> > the dt-binding to reflect that providing power is not optional (unlikely
+> > some other supplies that might not be wired up) and not worry about the
+> > fact that we happily provide dummy supplies for them if they aren't in a
+> > particular dts, it should be fine to make it required here.  
+> 
+> Will this fact apply to all dt-bindings? I'm asking because, there are
+> many bindings out there without having the -supply in place.
 
-Thank you for your feedback.
+Yes in theory - in practice it's noise to do it unless we have a reason
+to be touching the dt-binding anyway.  I don't plan to fix them up on
+mass.
 
-On 1/30/24 14:34, Andrew Lunn wrote:
->> +  ti,led-config:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    enum: [1, 2, 3]
->> +    description: |
->> +      If present, configures the LED Mode (values defined in
->> +      dt-bindings/net/ti-dp83640.h).
->> +      LED configuration can also be strapped. If the strap pin is not set
->> +      correctly or not set at all then this can be used to configure it.
->> +       - 1     = Mode 1
->> +        LED_LINK = ON for Good Link, OFF for No Link
->> +        LED_SPEED = ON in 100 Mb/s, OFF in 10 Mb/s
->> +        LED_ACT = ON for Activity, OFF for No Activity
->> +       - 2     = Mode 2
->> +        LED_LINK = ON for Good Link, BLINK for Activity
->> +        LED_SPEED = ON in 100 Mb/s, OFF in 10 Mb/s
->> +        LED_ACT = ON for Collision, OFF for No Collision
->> +       - 3     = Mode 3
->> +        LED_LINK = ON for Good Link, BLINK for Activity
->> +        LED_SPEED = ON in 100 Mb/s, OFF in 10 Mb/s
->> +        LED_ACT = ON for Full Duplex, OFF for Half Duplex
->> +       - unset = Configured by straps
-> Please look at have the Marvell PHY driver supports LEDs via
-> /sys/class/leds. Now we have a generic way to supports LEDs, DT
-> properties like this will not be accepted.
-Ok I'll use /sys/class/leds
->> +
->> +  ti,phy-control-frames:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    enum: [0, 1]
->> +    description: |
->> +      If present, enables or disables the PHY control frames.
->> +      PHY Control Frames support can also be strapped. If the strap pin is not
->> +      set correctly or not set at all then this can be used to configure it.
->> +       - 0     = PHY Control Frames disabled
->> +       - 1     = PHY Control Frames enabled
->> +       - unset = Configured by straps
-> What is a control frame?
-I'm not an expert on this but it seems that if the PHY's Serial Management
-interface is not available, it is possible to build PCF (PHY Control Frame)
-packets that will be passed to PHY through the MAC Transmit Data 
-interface. The
-PHY is then able to intercept and interpret these packets. Enabling it 
-increases
-the MII Transmit packet latency.
-You'll find details in §5.4.6 of datasheet 
-[https://www.ti.com/lit/gpn/dp83640]
->> +
->> +  ti,energy-detect-en:
->> +    $ref: /schemas/types.yaml#/definitions/flag
->> +    description: |
->> +      If present, Energy Detect Mode is enabled. If not present, Energy Detect
->> +      Mode is disabled. This feature can not be strapped.
-> Please use the phy tunable ETHTOOL_PHY_EDPD. There are a few examples
-> you can copy.
+Jonathan
 
-Ok I'll do that also, thank you.
-
-
-Best regards,
-
-Bastien
+> 
+> Regards,
+>   Marco
+> 
+> > 
+> > Jonathan
+> >   
+> > > 
+> > > Signed-off-by: Thomas Haemmerle <thomas.haemmerle@leica-geosystems.com>
+> > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > > ---
+> > > Resend since I forgot to add the DT maintainers
+> > > 
+> > >  .../devicetree/bindings/iio/temperature/ti,tmp117.yaml        | 4 ++++
+> > >  1 file changed, 4 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml b/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
+> > > index 8c6d7735e875..cf7799c9734f 100644
+> > > --- a/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
+> > > +++ b/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
+> > > @@ -24,6 +24,9 @@ properties:
+> > >    reg:
+> > >      maxItems: 1
+> > >  
+> > > +  vcc-supply:
+> > > +    description: provide VCC power to the sensor.
+> > > +
+> > >  required:
+> > >    - compatible
+> > >    - reg
+> > > @@ -39,5 +42,6 @@ examples:
+> > >          tmp117@48 {
+> > >               compatible = "ti,tmp117";
+> > >               reg = <0x48>;
+> > > +             vcc-supply = <&pmic_reg_3v3>;
+> > >          };
+> > >      };  
+> > 
+> >   
 
 
