@@ -1,172 +1,129 @@
-Return-Path: <devicetree+bounces-42715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D24F48583B7
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 18:13:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 769AD8583C1
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 18:14:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2CC0FB27288
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 17:13:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A90B71C2317B
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 17:14:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C97B71353F6;
-	Fri, 16 Feb 2024 17:11:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B94E2133426;
+	Fri, 16 Feb 2024 17:11:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b="qjIK0WI6"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="a4dtjq7r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 339C61353E7
-	for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 17:11:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2606D13340D;
+	Fri, 16 Feb 2024 17:11:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708103494; cv=none; b=qyw6qHn775XjGY5+iCoOSn8sn3YpLU0BWeKCsO3H6r38EFWKblXlwf8c+53Hx0E6dQMo5BTo6I5fsEI4CVRt7Stv5exuIEr4RSOSkRliu9SYK4fvg/f6zhy30W/i6pB0uscU8tMFuByc68BTenPj85sHmg/lg8XvUpp3xDJ8zX0=
+	t=1708103519; cv=none; b=RXr5ADxVkWLmfxw2cIo2K3u1N2DFYjX30B2yrzUY5uJhJZbhLMupa95L36XKuNn/4+ay2MZHJC2h3QH71JE5/316Hjb2HvcbNAKZxAgQp9Iv5qtWR+Di+UxdDllHCfLL70IjKGrT8LB1mKd8tXs5iS+dKB8Vwrb2H0PIVulTEiY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708103494; c=relaxed/simple;
-	bh=xjN1Txz0NRu+aYorD0V/0btXAZTtLNg0c38DLzxV7Y8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fBMSEJPMmgaXaaz2yjXrf9VIgIpaSG7rzfChK2az1dFZtdjw8FpNrZOguNHm6VWmT5sNOBfm1mWDC8oPv2mvUqEMYI7FigvBNf6mEFOlunezPCRwNUc4kUnEl4XUP1lP7hr9Lb77vK0iU9dyzglnbab1YXKMAHxBJjqj61wbLnQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org; spf=none smtp.mailfrom=brainfault.org; dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b=qjIK0WI6; arc=none smtp.client-ip=209.85.166.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=brainfault.org
-Received: by mail-il1-f171.google.com with SMTP id e9e14a558f8ab-3642281e4a6so2703495ab.2
-        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 09:11:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20230601.gappssmtp.com; s=20230601; t=1708103492; x=1708708292; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=havUKwIuQeWK4aYu8DNjs5scwGn6QvvJ9tZ1EDA7AU4=;
-        b=qjIK0WI6BMRxFfvwDqX8CyiSktGjxnchTLXvFuvFM50SO9VGc6oogg2SiMT/WCbSeN
-         uruxBlVZvibuavftiMZgd9ia1yV259xp2iVSXT7Ch5DUE5P+/mAk1WwDrkv9f8xagaD7
-         q+bQfXt7YqjWlG9KVJXhzUZVWlTfiOLQZgd8YV7jtP9TmBSh3roc+IZVCCQ5s4js2CSG
-         ofBoqZtEksQv8CMrKmrqsYj14st/EYQ83jnaqNWzgaT9TM7VHr5gBUSjww7gbifaYc64
-         W52Q8B2JVB9LXV+JFVF/5nnPqMorqB1SjuM2wj1A90xrk59mJOl9NiaT+J8Bde/4VpoJ
-         0+ZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708103492; x=1708708292;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=havUKwIuQeWK4aYu8DNjs5scwGn6QvvJ9tZ1EDA7AU4=;
-        b=No8rKOm0aGgJ5RQQZkA4p96+XA1+MLQg63sddCB2Nlt0uMcQ3BC0HRB4lJBLvJGFBF
-         k08E4D5Jkr9NDVpbsvpLqt30CS63gkVL8FgtPAEUSfCNgs2W/SjZov05uyOSfMt2CjOw
-         MnlJ39dP5tP596yCQaRH0hAyyZXeDV1fzfDFJnbsFZLu9zjcw4X3qqbkc1iyqku6p0g/
-         C91wKrfD+kA0bOte2YRrqJwDacLg7mgpkJnBZgcBtmL7McTsXUTbTsxjyfjhLvJpF0gx
-         5TxipxA+x18FnJkU8dL5X2m0mC34WvSgmiiDd7dJibHa0YnzD++GLjQy5sc48zMNro1w
-         7PvA==
-X-Forwarded-Encrypted: i=1; AJvYcCXw7Gy/hYrYeW6M6Vo77kTB7xVshcCSYDVUSpKc7/ucBjHRE2KpWxHGFWIsgPt0y/G5hSQ9bjNsnln+ljpY2WR+0IiMXSLIoqnemQ==
-X-Gm-Message-State: AOJu0YxjHEQjHuHwe5arptZi0rPiVNYeptOlCS2Spldy6AfEzbyNV4hB
-	whDSbvQ6pdINdaPI/nr9v6D/mBRmeMDLo3MCbABsY+aanUAxTIA63wNRVlYVRMCZYJ+9wpt2qMn
-	l2hdZzterVb8mIPqgmEoG2BRiYb2lFRlA2VQ0QQ==
-X-Google-Smtp-Source: AGHT+IF3UAIIWYzEtaz8JDQbpsYiGjzgT5lx1iMPisr8gmFJym7YV9W/quLrJxzPRfygtku2OzFcTAaXVtDz1/yCGVc=
-X-Received: by 2002:a92:c5a6:0:b0:364:1984:f10f with SMTP id
- r6-20020a92c5a6000000b003641984f10fmr4861690ilt.30.1708103492171; Fri, 16 Feb
- 2024 09:11:32 -0800 (PST)
+	s=arc-20240116; t=1708103519; c=relaxed/simple;
+	bh=/MFoTqyJXd01KvNV9TTovyv/By6QwAU0k3364teWeVk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ucmd6k+IKa/pd0mVz3UJjrliNNMYNnhheTAonoDTJqwNvGMFpDiVZ5QIZ3BuudoQMeHPZcapWRG5PqCk53Q+dUwu2nb6+An0Kf8OsgIRCJRw41cEZrK2vQBRJ4WR0shf4caNpdMNn/WhlZx5CYAcR0RavTu0Wl/Jnpf/3qG8zlk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=a4dtjq7r; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41GDo2C7030989;
+	Fri, 16 Feb 2024 17:11:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=dg/zPGeP0Rmv6bQsqB+01fU8yXB+lq5E8mUg0hoHaR8=; b=a4
+	dtjq7rKwiS0wXabK1LjiDEWBheHS4F1QaTMOTWU5HHgjFmSaMVHPLeKJSpOfKuqs
+	7lTH3gtx+9EN/uZNgwM73WRtEYI1kAzyb3OAF9894HpYmxdYngiQUNIcAwqKJ0H3
+	GqR9JA18YPaG+qktY4nkYCtU3urbd2UdyqbNYzXe1Ax3o4n6qcP8hwMXSweJPhIE
+	kogT9kZf/f9MwmO9vsscrpekm5/9t4kFCCziP3rLmZcCK61za/WaGC0xxMirKOaQ
+	17a5FeA52+2KaN95RXUql/zN0pBRXPC48OMj+KbGth71cdTesYeJ+DgutG36Uof6
+	N+m8fTrDzzpt6Pc2yIrw==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w9yta9eky-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 16 Feb 2024 17:11:54 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41GHBrb9012023
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 16 Feb 2024 17:11:53 GMT
+Received: from [10.226.59.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 16 Feb
+ 2024 09:11:52 -0800
+Message-ID: <90079dd5-e138-e271-3eb3-88ca7f7da657@quicinc.com>
+Date: Fri, 16 Feb 2024 10:11:51 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240127161753.114685-1-apatel@ventanamicro.com>
- <20240127161753.114685-15-apatel@ventanamicro.com> <87jzn4ctks.ffs@tglx>
-In-Reply-To: <87jzn4ctks.ffs@tglx>
-From: Anup Patel <anup@brainfault.org>
-Date: Fri, 16 Feb 2024 22:41:20 +0530
-Message-ID: <CAAhSdy2aeyJBcMVre12jGwU52oP9Z=1emB-bcYxygdR3QhP+6w@mail.gmail.com>
-Subject: Re: [PATCH v12 14/25] irqchip/sifive-plic: Convert PLIC driver into a
- platform driver
-To: Thomas Gleixner <tglx@linutronix.de>
-Cc: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Marc Zyngier <maz@kernel.org>, =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>, 
-	Atish Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>, 
-	Sunil V L <sunilvl@ventanamicro.com>, Saravana Kannan <saravanak@google.com>, 
-	linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH] dt-bindings: interconnect: qcom,rpmh: Fix bouncing
+ @codeaurora address
+Content-Language: en-US
+To: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <konrad.dybcio@linaro.org>,
+        <linux-pm@vger.kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <andersson@kernel.org>, <quic_okukatla@quicinc.com>,
+        <devicetree@vger.kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>
+References: <20240202181748.4124411-1-quic_jhugo@quicinc.com>
+ <170715826040.3958103.13885911803274019580.robh@kernel.org>
+ <aca58fb4-b9c8-1730-cff4-56a2d73bd235@quicinc.com>
+ <87dab0be-df4a-453d-86cc-61ce8e2b706f@kernel.org>
+From: Jeffrey Hugo <quic_jhugo@quicinc.com>
+In-Reply-To: <87dab0be-df4a-453d-86cc-61ce8e2b706f@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: diU7cgBQtU3nMKdUaRqztT2P-26KULp8
+X-Proofpoint-ORIG-GUID: diU7cgBQtU3nMKdUaRqztT2P-26KULp8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-16_16,2024-02-16_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ impostorscore=0 bulkscore=0 priorityscore=1501 adultscore=0 spamscore=0
+ phishscore=0 clxscore=1015 mlxscore=0 malwarescore=0 mlxlogscore=858
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402160137
 
-On Fri, Feb 16, 2024 at 9:03=E2=80=AFPM Thomas Gleixner <tglx@linutronix.de=
-> wrote:
->
-> On Sat, Jan 27 2024 at 21:47, Anup Patel wrote:
-> > +     priv->irqdomain =3D irq_domain_create_linear(dev->fwnode, nr_irqs=
- + 1,
-> > +                                                &plic_irqdomain_ops, p=
-riv);
-> > +     if (WARN_ON(!priv->irqdomain))
-> > +             return -ENOMEM;
->
-> While some of the stuff is cleaned up by devm, the error handling in
-> this code looks pretty fragile as it leaves initialized contexts,
-> hardware state, chained handlers etc. around.
+On 2/16/2024 10:08 AM, Georgi Djakov wrote:
+> On 16.02.24 18:19, Jeffrey Hugo wrote:
+>> On 2/5/2024 11:37 AM, Rob Herring wrote:
+>>>
+>>> On Fri, 02 Feb 2024 11:17:48 -0700, Jeffrey Hugo wrote:
+>>>> The servers for the @codeaurora domain have long been retired and any
+>>>> messages sent there will bounce.  Fix Odelu's address in the binding to
+>>>> match the .mailmap entry so that folks see the correct address when
+>>>> looking at the documentation.
+>>>>
+>>>> Signed-off-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
+>>>> ---
+>>>>   Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml | 2 +-
+>>>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>
+>>>
+>>> Acked-by: Rob Herring <robh@kernel.org>
+>>>
+>>
+>> Will you take this into your tree?
+> 
+> Hi Jeff,
+> 
+> I'll apply it.
 
-Sure, let me try to improve the error handling.
+Works for me.  Thanks!
 
->
-> The question is whether the system can actually boot or work at all if
-> any of this fails.
-
-On platforms with PLIC, the PLIC only manages wired interrupts
-whereas IPIs are provided through SBI (firmware interface) so a
-system can actually continue and boot further without PLIC.
-
-In fact, we do have a synthetic platform (namely QEMU spike)
-where there is no PLIC instance and Linux boots using SBI based
-polling console.
-
->
-> > +
-> >       /*
-> >        * We can have multiple PLIC instances so setup cpuhp state
-> > -      * and register syscore operations only when context handler
-> > -      * for current/boot CPU is present.
-> > +      * and register syscore operations only after context handlers
-> > +      * of all online CPUs are initialized.
-> >        */
-> > -     handler =3D this_cpu_ptr(&plic_handlers);
-> > -     if (handler->present && !plic_cpuhp_setup_done) {
-> > +     cpuhp_setup =3D true;
-> > +     for_each_online_cpu(cpu) {
-> > +             handler =3D per_cpu_ptr(&plic_handlers, cpu);
-> > +             if (!handler->present) {
-> > +                     cpuhp_setup =3D false;
-> > +                     break;
-> > +             }
-> > +     }
-> > +     if (cpuhp_setup) {
-> >               cpuhp_setup_state(CPUHP_AP_IRQ_SIFIVE_PLIC_STARTING,
-> >                                 "irqchip/sifive/plic:starting",
-> >                                 plic_starting_cpu, plic_dying_cpu);
-> >               register_syscore_ops(&plic_irq_syscore_ops);
-> > -             plic_cpuhp_setup_done =3D true;
->
-> I don't think that removing the setup protection is correct.
->
-> Assume you have maxcpus=3DN on the kernel command line, then the above
-> for_each_online_cpu() loop would result in cpuhp_setup =3D=3D true when t=
-he
-> instances for the not onlined CPUs are set up, no?
-
-A platform can have multiple PLIC instances where each PLIC
-instance targets a subset of HARTs (or CPUs).
-
-Previously (before this patch), we were probing PLIC very early so on
-a platform with multiple PLIC instances, we need to ensure that cpuhp
-setup is done only after PLIC context associated with boot CPU is
-initialized hence the plic_cpuhp_setup_done check.
-
-This patch converts PLIC driver into a platform driver so now PLIC
-instances are probed after all available CPUs are brought-up. In this
-case, the cpuhp setup must be done only after PLIC context of all
-available CPUs are initialized otherwise some of the CPUs crash
-in plic_starting_cpu() due to lack of PLIC context initialization.
-
-Regards,
-Anup
+-Jeff
 
