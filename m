@@ -1,127 +1,243 @@
-Return-Path: <devicetree+bounces-42375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BA0485760C
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 07:31:49 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AF2A85761A
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 07:47:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC9FE1C22024
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 06:31:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5186CB23C29
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 06:47:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 377EC13AEE;
-	Fri, 16 Feb 2024 06:31:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17B451401C;
+	Fri, 16 Feb 2024 06:47:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="S6ZSo4/3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OFixQkYX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F03A8C05;
-	Fri, 16 Feb 2024 06:31:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1D06EEAC;
+	Fri, 16 Feb 2024 06:47:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708065104; cv=none; b=W3AjPOFl5EJJkEQZ+lmMG6IEjoVI1xpczaBDI4cwIHPrXAdS0OxXHaI8Pb9Ton/AM5AajIRwPBUZwrSX+hwebnRwrnN6Epi+lKoDYJ4hO21XLrjnA4gt2A+2VJ1Wo2+rhsqrUevCojF/++wOf2oGCP5ylXDnJnIs/I/tyG/cdIE=
+	t=1708066058; cv=none; b=amERx59PljaQidHEMd/WWsDq4U8BDFvqJ+KtKhNghlAJxY14ampTc0yu61lnGANrfWqHgbNiGjdEgxxCk3nSJJPSeljL2FfUkO683AgW8UTf6zLPc+qw7e478OjEA18e237FFHBgyF/Dkqd9mth47+H/2+w5338+L2wHmvHn3Uo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708065104; c=relaxed/simple;
-	bh=HxAVdyWDicoKYG0jnt1F+soDboQQfJbyVwmTA3Jdp6s=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=i/66z+tumgucRESpkhBo6pldO84H47uMF1rafytZGby+fONS586TyGgkRmT57pN9ShgGZRO8u06/B/4O57hblaOduO4U7rTnLAF1URDbHvZlcH+rR1IqIH3S4Ozc1Hh4oEsR//sqv/bz85Hp3XEqmXN7z0Rw51Xl838ynjz7QHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=S6ZSo4/3; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41G6VZG7004212;
-	Fri, 16 Feb 2024 00:31:35 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1708065095;
-	bh=JO1djsgcc/AA1bUDnNIRAettyxfLzQegZEnJu34iTtQ=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=S6ZSo4/3WydV8PShQbE8OHhihY+xuINOBdF6A3G9OwZ/3BnX0YUXtdANABehie86M
-	 a/GSEhuSQDOG/ERrNg/GTdni1xZePGi64u7ZHiXlh8o+2/E4iiky60UJB71jiJ7eEF
-	 JBh3PbHWCkj/lfkQGoRLILUG4JjIuF//cWzR/qrI=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41G6VZDQ010637
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 16 Feb 2024 00:31:35 -0600
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 16
- Feb 2024 00:31:34 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 16 Feb 2024 00:31:35 -0600
-Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41G6VVxj051744;
-	Fri, 16 Feb 2024 00:31:32 -0600
-From: Vignesh Raghavendra <vigneshr@ti.com>
-To: <nm@ti.com>, <conor+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <kristo@kernel.org>, <robh+dt@kernel.org>,
-        Vaishnav Achath
-	<vaishnav.a@ti.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <u-kumar1@ti.com>, <j-choudhary@ti.com>
-Subject: Re: [PATCH v2 0/3] arm64: dts: ti: Introduce J722S SoC and EVM
-Date: Fri, 16 Feb 2024 12:01:29 +0530
-Message-ID: <170806504068.3877215.8092202742138440785.b4-ty@ti.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240206100608.127702-1-vaishnav.a@ti.com>
-References: <20240206100608.127702-1-vaishnav.a@ti.com>
+	s=arc-20240116; t=1708066058; c=relaxed/simple;
+	bh=IaYS5krugxcWWLdlP3aNH0s2GExm1DY2BuiHt8XgCtM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=L1DhMnTHmWQgKfm3HtkDwD8bb/qWCXjAUQG9PuC3e4d9u5MyIPmuRgJjDuEWFhpxtnhTBsaZrJGNgvmf9KQMQtLLbdHRisPv8/YlqTrdoAbtPzbSbFoBAvPxK7ZTXaXo8PrZ6PLcc5rSt9MGWIB/aa2WrIZAHxbq5XYZCqXTIPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OFixQkYX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28845C433C7;
+	Fri, 16 Feb 2024 06:47:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708066057;
+	bh=IaYS5krugxcWWLdlP3aNH0s2GExm1DY2BuiHt8XgCtM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OFixQkYX/oFkmeTY9XozPfHlCyyrwGGiRn+t5Qo2SQB/M3BQWiTr6Gmi+2QULbQIP
+	 ZXyActqWf41o80jJ/+K/aXx3YrthzC4zot80y4ffZW05ZYxhXuJLS4Xb9d8m+4qWm4
+	 ZITMB1FHWB47wV/xS9bobtFeFdi8szGyjBCxLvwX6VopLmpkmGPqg/gMb4BR97pBwO
+	 HOXf7/oYuxZ+TR5Qjqc8l5ef/mmv6O4cZt7vWOFgPIOo42otWumPFAq/7INIlaVp+D
+	 lZvsWls0YcMYkkuRYs8lmSvHfHBp3g4mkjYpFRZt/hOfeHmFVZszks349e2vRiV7ZP
+	 PJ0kdCoTwZeEQ==
+Date: Fri, 16 Feb 2024 12:17:32 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	linux-rockchip@lists.infradead.org, linux-phy@lists.infradead.org,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Wang <frank.wang@rock-chips.com>,
+	Kever Yang <kever.yang@rock-chips.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, kernel@collabora.com,
+	Zhang Yubing <yubing.zhang@rock-chips.com>
+Subject: Re: [PATCH v2 04/12] phy: rockchip: add usbdp combo phy driver
+Message-ID: <Zc8FBJbMeLng9DjS@matsya>
+References: <20240213163609.44930-1-sebastian.reichel@collabora.com>
+ <20240213163609.44930-5-sebastian.reichel@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240213163609.44930-5-sebastian.reichel@collabora.com>
 
-Hi Vaishnav Achath,
-
-On Tue, 06 Feb 2024 15:36:05 +0530, Vaishnav Achath wrote:
-> This series adds basic support for J722S family of SoCs. Also add
-> J722S EVM support with basic peripheral like MMC and UART.
+On 13-02-24, 17:32, Sebastian Reichel wrote:
+> This adds a new USBDP combo PHY with Samsung IP block driver.
 > 
-> TRM: https://www.ti.com/lit/zip/sprujb3
-> EVM Schematics: https://www.ti.com/lit/zip/sprr495
+> The driver get lane mux and mapping info in 2 ways, supporting
+> DisplayPort alternate mode or parsing from DT. When parsing from DT,
+> the property "rockchip,dp-lane-mux" provide the DP mux and mapping
+> info. This is needed when the PHY is not used with TypeC Alt-Mode.
+> For example if the USB3 interface of the PHY is connected to a USB
+> Type A connector and the DP interface is connected to a DisplayPort
+> connector.
 > 
-> Bootlog (6.8.0-rc3-next-20240206):
-> https://gist.github.com/vaishnavachath/23d859925277df9ccd628190e7c23371
+> When do DP link training, need to set lane number, link rate, swing,
+> and pre-emphasis via PHY configure interface.
 > 
-> [...]
+> Co-developed-by: Heiko Stuebner <heiko@sntech.de>
+> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> Co-developed-by: Zhang Yubing <yubing.zhang@rock-chips.com>
+> Signed-off-by: Zhang Yubing <yubing.zhang@rock-chips.com>
+> Co-developed-by: Frank Wang <frank.wang@rock-chips.com>
+> Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+>  drivers/phy/rockchip/Kconfig              |   12 +
+>  drivers/phy/rockchip/Makefile             |    1 +
+>  drivers/phy/rockchip/phy-rockchip-usbdp.c | 1639 +++++++++++++++++++++
+>  3 files changed, 1652 insertions(+)
+>  create mode 100644 drivers/phy/rockchip/phy-rockchip-usbdp.c
+> 
+> diff --git a/drivers/phy/rockchip/Kconfig b/drivers/phy/rockchip/Kconfig
+> index 94360fc96a6f..d21b458c1d18 100644
+> --- a/drivers/phy/rockchip/Kconfig
+> +++ b/drivers/phy/rockchip/Kconfig
+> @@ -107,3 +107,15 @@ config PHY_ROCKCHIP_USB
+>  	select GENERIC_PHY
+>  	help
+>  	  Enable this to support the Rockchip USB 2.0 PHY.
+> +
+> +config PHY_ROCKCHIP_USBDP
+> +	tristate "Rockchip USBDP COMBO PHY Driver"
+> +	depends on ARCH_ROCKCHIP && OF
+> +	select GENERIC_PHY
+> +	select TYPEC
+> +	help
+> +	  Enable this to support the Rockchip USB3.0/DP combo PHY with
+> +	  Samsung IP block. This is required for USB3 support on RK3588.
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called phy-rockchip-usbdp
+> diff --git a/drivers/phy/rockchip/Makefile b/drivers/phy/rockchip/Makefile
+> index 7eab129230d1..25d2e1355db7 100644
+> --- a/drivers/phy/rockchip/Makefile
+> +++ b/drivers/phy/rockchip/Makefile
+> @@ -11,3 +11,4 @@ obj-$(CONFIG_PHY_ROCKCHIP_PCIE)		+= phy-rockchip-pcie.o
+>  obj-$(CONFIG_PHY_ROCKCHIP_SNPS_PCIE3)	+= phy-rockchip-snps-pcie3.o
+>  obj-$(CONFIG_PHY_ROCKCHIP_TYPEC)	+= phy-rockchip-typec.o
+>  obj-$(CONFIG_PHY_ROCKCHIP_USB)		+= phy-rockchip-usb.o
+> +obj-$(CONFIG_PHY_ROCKCHIP_USBDP)	+= phy-rockchip-usbdp.o
+> diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rockchip/phy-rockchip-usbdp.c
+> new file mode 100644
+> index 000000000000..8b1ace2aaa98
+> --- /dev/null
+> +++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
+> @@ -0,0 +1,1639 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Rockchip USBDP Combo PHY with Samsung IP block driver
+> + *
+> + * Copyright (C) 2021 Rockchip Electronics Co., Ltd
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +#include <linux/clk.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/delay.h>
+> +#include <linux/gpio.h>
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/kernel.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/of.h>
+> +#include <linux/phy/phy.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/property.h>
+> +#include <linux/regmap.h>
+> +#include <linux/reset.h>
+> +#include <linux/usb/ch9.h>
+> +#include <linux/usb/typec_dp.h>
+> +#include <linux/usb/typec_mux.h>
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+Thats a lot of headers, do you need all?
 
-[1/3] dt-bindings: arm: ti: Add bindings for J722S SoCs
-      commit: de82585f62e08283572d385d0cd6b57893a99d1c
-[2/3] arm64: dts: ti: Introduce J722S family of SoCs
-      commit: ea55b9335ad81e32f2833c71b2dcb591792e54dd
-[3/3] arm64: dts: ti: Add support for TI J722S Evaluation Module
-      commit: 2f277dbe1a4ac40b1157ba3b2914d39f4040bbed
+> +static inline int rk_udphy_grfreg_write(struct regmap *base,
+> +					const struct rk_udphy_grf_reg *reg, bool en)
+> +{
+> +	u32 val, mask, tmp;
+> +
+> +	tmp = en ? reg->enable : reg->disable;
+> +	mask = GENMASK(reg->bitend, reg->bitstart);
+> +	val = (tmp << reg->bitstart) | (mask << BIT_WRITEABLE_SHIFT);
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Perhaps FIELD_PREP|GET for these?
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+> +static int rk_udphy_dplane_get(struct rk_udphy *udphy)
+> +{
+> +	int dp_lanes;
+> +
+> +	switch (udphy->mode) {
+> +	case UDPHY_MODE_DP:
+> +		dp_lanes = 4;
+> +		break;
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+empty line after break makes it more readable
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+> +	case UDPHY_MODE_DP_USB:
+> +		dp_lanes = 2;
+> +		break;
+> +	case UDPHY_MODE_USB:
+> +		fallthrough;
+> +	default:
+> +		dp_lanes = 0;
+> +		break;
+> +	}
+> +
+> +	return dp_lanes;
+> +}
+> +
+> +static int rk_udphy_dplane_enable(struct rk_udphy *udphy, int dp_lanes)
+> +{
+> +	u32 val = 0;
+> +	int i;
+> +
+> +	for (i = 0; i < dp_lanes; i++)
+> +		val |= BIT(udphy->dp_lane_sel[i]);
+> +
+> +	regmap_update_bits(udphy->pma_regmap, CMN_LANE_MUX_AND_EN_OFFSET, CMN_DP_LANE_EN_ALL,
+> +			   FIELD_PREP(CMN_DP_LANE_EN_ALL, val));
+> +
+> +	if (!dp_lanes)
+> +		regmap_update_bits(udphy->pma_regmap, CMN_DP_RSTN_OFFSET,
+> +				   CMN_DP_CMN_RSTN, FIELD_PREP(CMN_DP_CMN_RSTN, 0x0));
+> +
+> +	return 0;
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
---
-Vignesh
+there is no error generation in the fn, these kind of fn should really
+be not returning anything
 
+> +static int rk_udphy_usb3_phy_init(struct phy *phy)
+> +{
+> +	struct rk_udphy *udphy = phy_get_drvdata(phy);
+> +	int ret = 0;
+> +
+> +	mutex_lock(&udphy->mutex);
+> +	/* DP only or high-speed, disable U3 port */
+> +	if (!(udphy->mode & UDPHY_MODE_USB) || udphy->hs) {
+> +		rk_udphy_u3_port_disable(udphy, true);
+> +		goto unlock;
+
+no power up in that case?
+
+> +	}
+> +
+> +	ret = rk_udphy_power_on(udphy, UDPHY_MODE_USB);
+> +
+> +unlock:
+> +	mutex_unlock(&udphy->mutex);
+> +	return ret;
+> +}
+-- 
+~Vinod
 
