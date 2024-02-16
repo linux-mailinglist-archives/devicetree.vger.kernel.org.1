@@ -1,193 +1,192 @@
-Return-Path: <devicetree+bounces-42607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41EEE857DDE
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 14:41:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EE7B857DF5
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 14:45:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9B2A8B21EF5
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 13:41:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D3F3FB26526
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 13:45:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70EFB12B16E;
-	Fri, 16 Feb 2024 13:41:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F06B612BEA7;
+	Fri, 16 Feb 2024 13:45:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="SHiHTh0U"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GpmTDcqj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01olkn2086.outbound.protection.outlook.com [40.92.52.86])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A6BC12AADE;
-	Fri, 16 Feb 2024 13:41:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.52.86
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708090901; cv=fail; b=X9AbY3DEz8sdZ8stLlFQh55NutoLUqA2D2w4hLSPJWXmT7eD1dJor0nfD8hMO/1XE7ZQ1nvTNj7vbiLhiLyrhHoXUPHmzgy70MFCmksxfWvGWYEQFxWUgiIJZyiyWZv7JdeTX3XDI43qwXx48jakHpFKAaUnwd5ynRkMF2gVibw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708090901; c=relaxed/simple;
-	bh=JvoXsWnZUrfyJ/Mq4dljnJk06FX5lrarkIgZ1BX0g+o=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=rrVXGVELStrRkBJOuTBWzEuyK+Wxlckl0VSTuG2AXoNq00kfLN+rDyVYJ2fHs0F44fGzpZidy5kzalALZ8GhOlX5sDXdbLxI0eKBCP4ar32oT0YoQe/7nNGqxuv1KgPTVk9ldddcVieI5utNzLo3ZcNZSTaIcMpfq4qbH05OpKw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=SHiHTh0U; arc=fail smtp.client-ip=40.92.52.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PHuQCNTsqGAOLt2HlY5bIqLz8JYIytUAZcX6RgAl0fOnx5GqdQXkFahPhozIPHJzLiJ7VwvwqYsdm7lD0ncEkmv6S08IOsnXpM1QIXMpp+7JLkKmApvXvkjnIRSuCJor/j7eUfZeRXZTGsTxHQvAb9yFqTmLPSwytWAE9vqWrxA/9/utqMcZpJn5LeAgpdYKKls/wTGKh5OXkX4H66G4iZfpKskKTZIqVlq1vc7LnTtNeVNHxgILl8cMwvz7RfNrPS+xberitWPZZTrByGcYlt8uiWYAP9jhTsmWVvKqypNhe/EiT2GesFd5WWuL7lxNOIWZahn/wDFA6eQv/5JUgg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kAOacMmyYUAZp2HKi57ic9JDAMueGN2FrfYOyztnTAI=;
- b=WkBWIpCc9Gj5UCk7nKDnptDv4IHXq6fftdAp4cnAt+S33RQg2t0+xsePJSZrRYUiSLg2+LdUimyyxDeqeHMsl3UjFX0dPUpLLjr/mb7MSohAwamUqpGq2wU3UKcGaI9xvVEo4vH0hsMcvhuENF89D8R/G33zPChbzHcSxZK//RBP2ApOiqoplJKISfUmy6nrb5QcAE6EAE25UZsmeWgPFKWswIjYWml+0oFEXoHMQ11KGOW6p92MORX4pJeAEbeFKL5tOLmYRDv2MCbM/0NY57RRVNKqCTg6chwjxUQ51G2QYryJJRXH1fhqNeMZC+MZgWXcSmP6eFRArkJi3gat5Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kAOacMmyYUAZp2HKi57ic9JDAMueGN2FrfYOyztnTAI=;
- b=SHiHTh0UHkI7ip3nfL39MIBM7du7OeHr2hd+KkjlKibe31pO7DwgK6RDmgDqjPBNlaB//l9b/+DXNc7h4YApK2JdVzKVzu5SdljPxpOIgfevP7JcIV2uBBDarcjp7XKCLNublF2k63TBZoi+qjf46wNokjQmEomwl2Cq7s6eyaz9FPShjkaJv82stl46b/AAHbGj8w/iqop+KfOJbg6/S3jVE3WjAgPoUk5MUzjqtKXOuosRAKwh7ooLqbIz7qblz8ZzWVMd+CAqnB9icpdqESmXVJdpR6CPTaWA1zRw0L/FMyQB7USN6Y5yV1aRSeWaYyZkNx06QTV89NF07OOBAw==
-Received: from SEZPR06MB6959.apcprd06.prod.outlook.com (2603:1096:101:1ed::14)
- by TYZPR06MB6075.apcprd06.prod.outlook.com (2603:1096:400:33a::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.31; Fri, 16 Feb
- 2024 13:41:34 +0000
-Received: from SEZPR06MB6959.apcprd06.prod.outlook.com
- ([fe80::9a6b:d813:8f4b:cba1]) by SEZPR06MB6959.apcprd06.prod.outlook.com
- ([fe80::9a6b:d813:8f4b:cba1%4]) with mapi id 15.20.7292.029; Fri, 16 Feb 2024
- 13:41:34 +0000
-Message-ID:
- <SEZPR06MB69593E00C6A69AFAC61BF2BD964C2@SEZPR06MB6959.apcprd06.prod.outlook.com>
-Date: Fri, 16 Feb 2024 21:41:29 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] net: hisilicon: add support for hisi_femac core on
- Hi3798MV200
-Content-Language: en-US
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Yisen Zhuang <yisen.zhuang@huawei.com>,
- Salil Mehta <salil.mehta@huawei.com>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Yang Xiwen <forbidden405@foxmail.com>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240216-net-v1-0-e0ad972cda99@outlook.com>
- <20240216-net-v1-1-e0ad972cda99@outlook.com>
- <d3ac4638-d0bf-4c6c-bccd-519ad1f4dc5e@lunn.ch>
-From: Yang Xiwen <forbidden405@outlook.com>
-In-Reply-To: <d3ac4638-d0bf-4c6c-bccd-519ad1f4dc5e@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN: [1wpjFpmmUBGEHJvEiND0EKGpM/ma1q6XxaoUflPs0Pco2RQ8uxlRFvUdYT5HaW8g]
-X-ClientProxiedBy: TYCP286CA0087.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:2b3::18) To SEZPR06MB6959.apcprd06.prod.outlook.com
- (2603:1096:101:1ed::14)
-X-Microsoft-Original-Message-ID:
- <a10df8d0-6755-4041-bf1b-660b750f48ad@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7D092CCB4;
+	Fri, 16 Feb 2024 13:45:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708091149; cv=none; b=g+7hPuQTuS5JiyI3jQLxD4FyBVCG/nVMzuO6uPP2ogAAucP+2vSKttLNGqhcZW6nWXZb11Vuq7DE7WYBA+gBfjDeDT0de/5t9Hr+duIjA98yPhpPb98kj7ozCeB0zxdcknhoFTOGi+zA2P2aWHyAadazAdrohlh3O0efeFj3a58=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708091149; c=relaxed/simple;
+	bh=d9Bzh9P8NxtPjWqITn8rHulkcUgjn4uOxVfVyQ3u3AY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=HtqcYEqQ//g7fuoW/nK9K+vEHK3xeUg6DMS9ErVqk/mmGQ2ezHBcnGNwBaYTm0uhkdDgVjGZGe5EEehNHAl6xqr2On34suUT7c9DYtOG59Grd55j5eYjmZsprgHVhCG/Oap2o2nVVE2+ANTMAqY3gQrE6332vGhZfHFYQLQ/zSE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GpmTDcqj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B38DC433F1;
+	Fri, 16 Feb 2024 13:45:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708091149;
+	bh=d9Bzh9P8NxtPjWqITn8rHulkcUgjn4uOxVfVyQ3u3AY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=GpmTDcqj9c688tqKUSBEtMODmHp9u6pSgYAtlEIIZenR2XmqUY6kmwaVNdHa1+2e7
+	 daxDIDgnocfN0ZioFNSCnS30P18ZjAw5ffmdWSJcCJjOptRyfC8pac2ZW3Dv8/2RfQ
+	 Owe0hQ2B/wuNXzAC2ZzGUYZZP82bDa3RXQwrEkyDxqgdaVC4HO3rl4mdZ4/o+MTwE3
+	 qb4tlHqzDISQULefI8l96W7tUZedr/USj6WkenUnqmt7vzUHsxt/e5j720zqAZaIBQ
+	 qCQkCHgPMMR9HI54D5+J2dCssKrsEl6ty3oLO/5ZASiu8l2HeoT16O+ZsG3fyvtRXW
+	 yympsZqOAa95w==
+Date: Fri, 16 Feb 2024 13:45:31 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Jishnu Prakash <quic_jprakash@quicinc.com>
+Cc: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+ <conor+dt@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+ <lee@kernel.org>, <andriy.shevchenko@linux.intel.com>,
+ <daniel.lezcano@linaro.org>, <dmitry.baryshkov@linaro.org>,
+ <lars@metafoo.de>, <luca@z3ntu.xyz>, <marijn.suijten@somainline.org>,
+ <agross@kernel.org>, <sboyd@kernel.org>, <rafael@kernel.org>,
+ <rui.zhang@intel.com>, <lukasz.luba@arm.com>, <linus.walleij@linaro.org>,
+ <quic_subbaram@quicinc.com>, <quic_collinsd@quicinc.com>,
+ <quic_amelende@quicinc.com>, <quic_kamalw@quicinc.com>,
+ <kernel@quicinc.com>, <linux-kernel@vger.kernel.org>,
+ <linux-arm-msm@vger.kernel.org>, <linux-arm-msm-owner@vger.kernel.org>,
+ <linux-iio@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <cros-qcom-dts-watchers@chromium.org>
+Subject: Re: [PATCH v3 2/3] dt-bindings: iio: adc: Add support for QCOM
+ PMIC5 Gen3 ADC
+Message-ID: <20240216134531.159a9da8@jic23-huawei>
+In-Reply-To: <12723477-aee2-40bc-80f0-a86c16c98988@quicinc.com>
+References: <20231231171237.3322376-1-quic_jprakash@quicinc.com>
+	<20231231171237.3322376-3-quic_jprakash@quicinc.com>
+	<20240101180209.56e04267@jic23-huawei>
+	<12723477-aee2-40bc-80f0-a86c16c98988@quicinc.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SEZPR06MB6959:EE_|TYZPR06MB6075:EE_
-X-MS-Office365-Filtering-Correlation-Id: 11bc7fa3-81e0-4bc1-d47a-08dc2ef4fd45
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	eMQZtueMIEuUrFrwGdpSlVRqqyUJRCsRQvrhd/v1wJ/lOH8tteixDFhZlstcbnkZhnLEcq2HVw2YM320bJnfzwHKCZeUCMZ5R0KzSk9dM5z7BD7NKTRUB+zav0imgxbPFr/YJ4yrPra9ulmDe4iUxNwefo5mqzRehcyowTMeW5/3tcGrOLxDofGmNVMi9E9N27Is2kpLwDIecrGJRj8dbDYlslCHLtMcQyio/zth7d2KKsyUi4nIEXcUfqDhrqsDuGPMCsvcqBPkzyByZGUsJIkl6KmtkXc0Yniy/A1mGujewSEZTunlfQj4/5xZyA/7fMSqST8bsRAVpyRmgbs2TBeip5OqqZkkP38sZAPxepN8GixYh1KNYXQlifYwpMM7wQzguZRD5c+gmf5M8uSCi/DNL0Dz0LmtLGXFLHd8OF0imt3kS03OtZSNkuSuqgwJEMM0cp1JsmYB/yYn98+e5OZM+KG1r6NS34tKO/05MEA6SI8xoLikjbK22+oCgrt+xPAoTl4HJd64SxvAwg+6Ig82EO8t07F5ci/UYhOFfAr9JXJZ5XMcUSc3fYPGoBjv
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?QjBoTExEbTBicXdGS1JJUWhpbTFQZjlWcC84TitrUW8xTXBKaUljSXRCb28y?=
- =?utf-8?B?VldsNjFTeTBCU0JxZmJnWFNPemdYeGZGbUFod0h2eEIzbjNHbk0xN1ZQYmw3?=
- =?utf-8?B?bXVUK05nVmUrak9zVk9XZVdKU2pqZWhBMnFJbm1vOEdlenM5dVFETk9RWGFl?=
- =?utf-8?B?czhrMWUycHd4enp2T25VR0FEd2lTYlBlMElzbjBzMnFNOEpPZDJzWERvMkNT?=
- =?utf-8?B?R2Z0NG5VN2ZBZStXYlNUVW5lanRLVTNUeU16cEFIQnE3YldjRmdqeW13TXVO?=
- =?utf-8?B?ak1iV2RjdS9yNkhXaEhJYTA3aCtleTBTc3Q1eklzeGRvZ2hvaVNUN0VVTmFy?=
- =?utf-8?B?WEVLODdjT3l4TEZVa0ltbHUyRExOL0FBNXFzMGpvVVBHZnR3R0xnd2dNZHMw?=
- =?utf-8?B?aVdHVmdKKzBSeGlaQ0RGeU9kTDBnay96S2EzWHJRSkR3dGpSTW16RXQ5WG42?=
- =?utf-8?B?cWxleXdzUWplTUZvdTNIcTlma2YwOVN0VVV2R0crd3h2bkdteVZuL1RnY2t2?=
- =?utf-8?B?MUlnSEZ1SHQ0OUxuZVBJRDlUTjh0MDVHNHFrMHRoSHpRUXRHc0kvQ3VMT29p?=
- =?utf-8?B?WUFEVTljdlc0bFYzcy9TZzJiMWhnZnlINE9LSVlqcTRNTFhDdUd3UnpueEI1?=
- =?utf-8?B?QWFoZ2JRUHB1cHpQdEtsWitNbzZMZDY5cUFpa01jNTVJQXp0cnB5S1VCeGc2?=
- =?utf-8?B?dVlnZXZiRk1WSTBRaEluN1lpL2dySDROak0vVkdsTVF5TDdnOWVBOUFBUWds?=
- =?utf-8?B?RHd3MjV3U3RLeXh6TWRFYnc3RVJ0SnNUS2FlUFN2R1IxaEc4UmdYSG4xbEJJ?=
- =?utf-8?B?eXNuZ29VT2RWTS9mZjJFRGNOV2VWalgyN1hjTzNVRXUxUnJDU3g1UWhvYUVT?=
- =?utf-8?B?QUY4dk40WkQ0UXQ0UTh4ODVTTDYzbVovWXZ2T3BWOUVlZ0RoU2RsWDc4Q1ZG?=
- =?utf-8?B?bS9RVEU1aVNxaGhGNVRKRzRZOGpIb3Q5ZzhHSzhlc3VSZ216TkZldVpvMDVU?=
- =?utf-8?B?Uk1pRXBtU2FaY090cjc1b2tPK2RYUEpxK21CbDNUNGhzOHBueEtOVEhXMkk0?=
- =?utf-8?B?NzFRQXBvTEwrQkhWRDRHL3FOL2RzV3ppc0dnbnVVajBBTlJPTmlJQVExTVcx?=
- =?utf-8?B?TjN0RXdOU3E5cmErV1RTUm1TaGU2c0NnNlN1bDQzanpyT0hTTzI4UG1EaGhl?=
- =?utf-8?B?bnVLK1lUZlNYOU1TNzhoZTZaUE91SUhPcngrVDdaSWRxeG05WWxLODNPcVNw?=
- =?utf-8?B?eHlzWnFsSy9QUnhUTHFURC9ZcG5yM3JpNTJIZkR2MmpZLytEbHFQdFJUMGg4?=
- =?utf-8?B?TGpzNzBZRWhVaituYU5BbG9SWTNaNUFPNERqdWhycnBOOWZ2WWlhb0lxaFZM?=
- =?utf-8?B?M1lId1BzYU5vSEpUdWw0NWFXSlFNdGRNYkxWTlZsUUlsYTRhVlBBa2p4UEZj?=
- =?utf-8?B?THNXOTBnYisrbVgyQVozM1ZrT2RVdU9hOWtpdjJNUmFvR0NIak5JQXNDdnd0?=
- =?utf-8?B?TXdWL3JyQ1dmQXQyZWhYc0szWEM1Y0VOTWNEOUJ0WERnUGZtWDl0UGJYVFZk?=
- =?utf-8?B?SEdLV2lNWDlMYWhTeUErcjVkT0J1d0UvdEhMWThkT2krSHgyVngraXptakVP?=
- =?utf-8?B?dXM0OHI1QUV0T1NSNWV1aThzZWV0UkJNbHNnSWNRYUlsc3Zya203YUVSYUhV?=
- =?utf-8?B?TjBaSStuZi9UK2YzSmNaWkdRNndqWXNuVFhmM1hIcTlJdHVudldNY1A1Mldm?=
- =?utf-8?Q?UxTSQLysuRhkv5nM4p776RrIjUbWHgIDwuNv/65?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 11bc7fa3-81e0-4bc1-d47a-08dc2ef4fd45
-X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB6959.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Feb 2024 13:41:33.7015
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR06MB6075
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On 2/16/2024 9:23 PM, Andrew Lunn wrote:
->> +	// Register the optional MDIO bus
->> +	for_each_available_child_of_node(node, mdio_np) {
->> +		if (of_node_name_prefix(mdio_np, "mdio")) {
->> +			priv->mdio_pdev = of_platform_device_create(mdio_np, NULL, dev);
->> +			of_node_put(mdio_np);
->> +			if (!priv->mdio_pdev) {
->> +				dev_err(dev, "failed to register MDIO bus device\n");
->> +				goto out_free_netdev;
->> +			}
->> +			mdio_registered = true;
->> +			break;
->> +		}
->> +	}
->> +
->> +	if (!mdio_registered)
->> +		dev_warn(dev, "MDIO subnode notfound. This is usually a bug.\n");
-> I don't understand the architecture of this device yet...
->
-> It seems like you have an integrated PHY? In the example, you used a
-> phy-handle to bind the MAC to the PHY. So why is the MDIO bus
-> optional?
-Because the MAC can also support external PHY according to the 
-datasheet. Maybe some other SoCs didn't implement this internal PHY and 
-used an external PHY instead.
->
-> Do the MII signals from the MAC also go to SoC pins, so you could use
-> an external PHY? Is there a SERDES so you could connect to an SFP
-> cage?
-No. MII signals is not accessible outside of the SoC. The SoC only 
-exports FEPHY pins (i.e. RXN(P) and TXN(P)).
->
-> Also, do the MDIO pins go to SoC pins? Can the MDIO bus master be used
-> to control external PHYs?
-It can, but not for Hi3798MV200. The datasheet said it can use both 
-internal phy or external phy. But for Hi3798MV200, seems impossible.
->
-> If everything is internal, fixed in silicon, no variation possible,
-> you don't need to describe the MDIO bus in DT. The MAC driver can
-> register it, and then get the PHY at the hard coded address it uses.
->
-> 	 Andrew
+On Fri, 16 Feb 2024 16:09:38 +0530
+Jishnu Prakash <quic_jprakash@quicinc.com> wrote:
+
+> Hi Jonathan,
+> 
+> On 1/1/2024 11:32 PM, Jonathan Cameron wrote:
+> > On Sun, 31 Dec 2023 22:42:36 +0530
+> > Jishnu Prakash <quic_jprakash@quicinc.com> wrote:
+> >  
+> >> For the PMIC5-Gen3 type PMICs, ADC peripheral is present in HW for the  
+> 
+> >> +
+> >> +      label:
+> >> +        $ref: /schemas/types.yaml#/definitions/string
+> >> +        description: |
+> >> +            ADC input of the platform as seen in the schematics.
+> >> +            For thermistor inputs connected to generic AMUX or GPIO inputs
+> >> +            these can vary across platform for the same pins. Hence select
+> >> +            the platform schematics name for this channel.  
+> > defined in adc.yaml, so should just have a reference to that here.
+> >  
+> >> +
+> >> +      qcom,decimation:
+> >> +        $ref: /schemas/types.yaml#/definitions/uint32
+> >> +        description: |
+> >> +            This parameter is used to decrease ADC sampling rate.
+> >> +            Quicker measurements can be made by reducing decimation ratio.  
+> > Why is this in DT rather than as a userspace control?  
+> 
+> 
+> We don't intend this property to be something that can be controlled 
+> from userspace - if a client wants to read an ADC channel from 
+> userspace, we only intend to provide them the processed value, 
+> calculated with a fixed set of ADC properties mentioned in the 
+> corresponding channel node in DT.
+
+Why?  This is a way to control precision of an ADC channel read out.
+That's policy rather than dependent on the hardware.
+To be in DT we (mostly) need it to be related to the hardware configuration
+(i.e. what it is wired to etc).
 
 
--- 
-Regards,
-Yang Xiwen
+> 
+> 
+> >> +        enum: [ 85, 340, 1360 ]
+> >> +        default: 1360
+> >> +  
+> 
+> >> +
+> >> +      qcom,hw-settle-time:
+> >> +        $ref: /schemas/types.yaml#/definitions/uint32
+> >> +        description: |
+> >> +            Time between AMUX getting configured and the ADC starting
+> >> +            conversion. The 'hw_settle_time' is an index used from valid values
+> >> +            and programmed in hardware to achieve the hardware settling delay.
+> >> +        enum: [ 15, 100, 200, 300, 400, 500, 600, 700, 1000, 2000, 4000,
+> >> +                8000, 16000, 32000, 64000, 128000 ]
+> >> +        default: 15  
+> > only currently defined for muxes but we have settle-time-us which has benefit of
+> > providing the units (which are missing here from the description as well)
+> >  
+> >> +
+> >> +      qcom,avg-samples:
+> >> +        $ref: /schemas/types.yaml#/definitions/uint32
+> >> +        description: |
+> >> +            Number of samples to be used for measurement.
+> >> +            Averaging provides the option to obtain a single measurement
+> >> +            from the ADC that is an average of multiple samples. The value
+> >> +            selected is 2^(value).  
+> > Why is this in dt?  Why not just userspace control (in_voltageX_oversampling_ratio
+> >
+> > If it needs to be, we do have standard DT bindings for it in adc.yaml  
+> 
+> 
+> avg-samples is also something we don't want the client to modify from 
+> userspace. As for using adc.yaml, I think I could use settling-time-us 
+> and oversampling-ratio from it for the above two properties.
+
+Same as for above.  This is policy. If you want to control it that belongs
+in a udev script or similar, not the DT bindings.
+We tend to resist defining such policy in DT because it isn't a characteristic
+of the hardware and depending on the usecase userspace may have good reason
+to tweak the settings (or consumer drivers if you have those as sometimes
+these numbers are about getting a particular precision needed for what
+we are measuring to be useful for another driver).
+
+There is some legacy for this though as you point out. So that may be a
+strong enough argument for why we should make an exception this time.
+If so make that clear in the patch description.
+
+> 
+> However, Krzysztof has mentioned in another comment that I should put 
+> properties common to ADC5 Gen3 and older QCOM VADC devices in a common 
+> schema. If I now try replacing the existing qcom,hw-settle-time and 
+> qcom,avg-samples properties with settling-time-us and oversampling-ratio 
+> for older devices too, I would have to make several DT changes for 
+> existing devices...are you fine with this? Or should I just replace 
+> these two properties for ADC5 Gen3?
+
+If you change DT binding for older devices, you will need to maintain
+backwards compatibility.  It's fine to deprecate them in the binding
+docs etc, but not the driver (as there may be old DT on devices that
+can't be easily updated).
+
+> 
+> 
+> I'll address your other comments in the next patchset.
+> 
+> 
+> Thanks,
+> 
+> Jishnu
+> 
 
 
