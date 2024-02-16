@@ -1,63 +1,52 @@
-Return-Path: <devicetree+bounces-42678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CFA085819F
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 16:43:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B6958581A5
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 16:44:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36D222895D5
-	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 15:43:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E78212870C4
+	for <lists+devicetree@lfdr.de>; Fri, 16 Feb 2024 15:44:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CE1312EBFB;
-	Fri, 16 Feb 2024 15:43:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5219012F38D;
+	Fri, 16 Feb 2024 15:44:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="h8h2bYkC"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FB+uXG6s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5BC45465D;
-	Fri, 16 Feb 2024 15:43:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A312F12A158;
+	Fri, 16 Feb 2024 15:44:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708098219; cv=none; b=e2SPcVc/Atl+TVVE+w7guiCqLL19C3oKq+VUiKDTQYuqGVhzAI7EsqfOkj8hrfxwwi3IsQDsIDDxevAU+Vzm2qiLHS3vyR077pjVOx6gdGzHTUleflFmKoJJKQ9bUTe8Vqtkxo90noDwaKeYYJpIWkqWEx5EtkXqiP3e63VZAKY=
+	t=1708098286; cv=none; b=vDjIc+6Kb4yenvqgJNqr427r2/YzDDFgggVJ5RfHK9YkYSHOW7BRGg9w6bLbj6OX2HOWKxxZksRLeklogUb6178drF7SQol+V3bOsjEF2gmFvet2KYY298/5BVlHKtHUBmEnvtGsnpwFVv4SJmcgmvEYon5qQF7giwezBCKScws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708098219; c=relaxed/simple;
-	bh=Tc3AcWuA5+iVXsmy2J/ZZTnoqLhFQ1wG49YuwRB7wQ4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=EaWJB/zK4Ryz65K7DjVz+aCVJCHwDGSx6Bwq7fUer2lOZDxFFMnoSCK4ivFZRemDqmbATci8XVBuN241OLcdQVTL1Z6f4L54eDiLxM+hoss5RoJ33R8woReB2Vp4NpNiwmm9g7OQYHKTmsWFEAZNdbbCaQSuxIFU0/DfSWXZ2yU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=h8h2bYkC; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41GDbtS4011487;
-	Fri, 16 Feb 2024 15:43:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=/TClJqpS+bBvRR6l6kjde6YHarFGL/FBzIBPSKAJuFU=; b=h8
-	h2bYkCIh7hvXynXnyL5ltpS4Qc4WFGnjfggzmLwCP1+suiPjkCCWiGp0k+OC+BwE
-	rlZ0rdJnGQV15WB6KqFmoV2CU25o30GknvrMLzhdPuPusKRrH7/VRlx7uXxXTtKo
-	3s6HGQlBJEsc9T/Qcvas8R4BpEFGTDjCp6hCENoM6nt7gc4ycJeT8Jd3r8p3K0Sd
-	bYz3bPv6kC1nR/2aqQmnsO9IxzXoGlNxIbNAnb6Lu5YRmMrc7en0GSDHd+j01xTy
-	b7L+MhxVOWztPO5sqLvJ/Y7b5LkPRQ4f4nsivBp+scZUz69SqtzNMXajEaqelQEv
-	BUDeHcuoCRS2kvfvAvpA==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w9bfs4ckq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 16 Feb 2024 15:43:24 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41GFhNnQ001001
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 16 Feb 2024 15:43:23 GMT
-Received: from [10.216.32.60] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 16 Feb
- 2024 07:43:16 -0800
-Message-ID: <ea840faa-e628-4f2f-a7ea-aa222f58f820@quicinc.com>
-Date: Fri, 16 Feb 2024 21:13:11 +0530
+	s=arc-20240116; t=1708098286; c=relaxed/simple;
+	bh=e4ljz734j8K5IeryaDf+QcV32Hc7o/1BPmaP92RLzYE=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=mPXvw9zsrgeQKhCk+7xd67ER23bfD0bDOlQ3pXuZxvbcNO88RlrMlns6ZuynaPtibmHHwhlvKviXYc9j9t6ndkj1e75ofSnI18M4IpvvL4lVXzMrR6IzQJKSkbeLUUT03XmPFi0sd4om7PxtXmbNyufhZK88bjdrp5GKycbwOAw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FB+uXG6s; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 4AEE21C0006;
+	Fri, 16 Feb 2024 15:44:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1708098280;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=uLOKIfLa2Fcau86133DO8zv6SnmDWIf1Ivv0kU6coAI=;
+	b=FB+uXG6szCFB3RugpF1ZTfMUVw4QkzOfnYrqIos0AHclW+DR3KgszWL4UciL10wLj1nxoz
+	4uX1jPwDE64+9mE27wgjguQO3O62vz6T2SRYu18qtN50FZ+zcyECCiWfbeqlVBijZASUgA
+	1hdyH9Gj466bgdNxlnGbpi9ovUYBDWBeKC2TKY3J9Efm+CJ2Dog84RJ1CkVJL7afYYZstR
+	0ku+SzWVa5RLCWS/qoabYg/cjdwwCQxDtMT3cHGGZci+tKp3L1N/QmMHzB8PJZK+D2bueE
+	T6s3rf5+BTQZi8r+KICySJMzFoZuQmffr+TcWvOyHg/Q9mokoTP2ucoIDSRMjA==
+Message-ID: <be23b24e-5de1-400d-84fa-cf5b25e72a19@bootlin.com>
+Date: Fri, 16 Feb 2024 16:44:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,68 +54,94 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] arm64: dts: qcom: ipq9574: Disable eMMC node
+From: Bastien Curutchet <bastien.curutchet@bootlin.com>
+Subject: Re: [PATCH 1/2] dt-bindings: net: Add TI DP83640
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+ <linux@armlinux.org.uk>, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, Herve Codina <herve.codina@bootlin.com>
+References: <20240130085935.33722-1-bastien.curutchet@bootlin.com>
+ <20240130085935.33722-2-bastien.curutchet@bootlin.com>
+ <dc81a307-3541-47e2-9c72-d661e76889bf@lunn.ch>
 Content-Language: en-US
-To: Md Sadre Alam <quic_mdalam@quicinc.com>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <broonie@kernel.org>, <robh@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <miquel.raynal@bootlin.com>, <richard@nod.at>, <vigneshr@ti.com>,
-        <manivannan.sadhasivam@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mtd@lists.infradead.org>
-CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
-References: <20240215134856.1313239-1-quic_mdalam@quicinc.com>
- <20240215134856.1313239-6-quic_mdalam@quicinc.com>
-From: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-In-Reply-To: <20240215134856.1313239-6-quic_mdalam@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: BwJAlB4SoQosnOFzkFqSNVWefWffVrEn
-X-Proofpoint-GUID: BwJAlB4SoQosnOFzkFqSNVWefWffVrEn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-16_15,2024-02-16_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- bulkscore=0 phishscore=0 suspectscore=0 priorityscore=1501 spamscore=0
- clxscore=1015 adultscore=0 mlxscore=0 impostorscore=0 mlxlogscore=718
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402160126
+In-Reply-To: <dc81a307-3541-47e2-9c72-d661e76889bf@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: bastien.curutchet@bootlin.com
+
+Hi Andrew,
 
 
+Thank you for your feedback.
 
-On 2/15/2024 7:18 PM, Md Sadre Alam wrote:
-> Disable eMMC node for rdp433, since rdp433 default boot mode
-> is norplusnand.
-> 
-> Co-developed-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> Co-developed-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
+On 1/30/24 14:34, Andrew Lunn wrote:
+>> +  ti,led-config:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    enum: [1, 2, 3]
+>> +    description: |
+>> +      If present, configures the LED Mode (values defined in
+>> +      dt-bindings/net/ti-dp83640.h).
+>> +      LED configuration can also be strapped. If the strap pin is not set
+>> +      correctly or not set at all then this can be used to configure it.
+>> +       - 1     = Mode 1
+>> +        LED_LINK = ON for Good Link, OFF for No Link
+>> +        LED_SPEED = ON in 100 Mb/s, OFF in 10 Mb/s
+>> +        LED_ACT = ON for Activity, OFF for No Activity
+>> +       - 2     = Mode 2
+>> +        LED_LINK = ON for Good Link, BLINK for Activity
+>> +        LED_SPEED = ON in 100 Mb/s, OFF in 10 Mb/s
+>> +        LED_ACT = ON for Collision, OFF for No Collision
+>> +       - 3     = Mode 3
+>> +        LED_LINK = ON for Good Link, BLINK for Activity
+>> +        LED_SPEED = ON in 100 Mb/s, OFF in 10 Mb/s
+>> +        LED_ACT = ON for Full Duplex, OFF for Half Duplex
+>> +       - unset = Configured by straps
+> Please look at have the Marvell PHY driver supports LEDs via
+> /sys/class/leds. Now we have a generic way to supports LEDs, DT
+> properties like this will not be accepted.
+Ok I'll use /sys/class/leds
+>> +
+>> +  ti,phy-control-frames:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    enum: [0, 1]
+>> +    description: |
+>> +      If present, enables or disables the PHY control frames.
+>> +      PHY Control Frames support can also be strapped. If the strap pin is not
+>> +      set correctly or not set at all then this can be used to configure it.
+>> +       - 0     = PHY Control Frames disabled
+>> +       - 1     = PHY Control Frames enabled
+>> +       - unset = Configured by straps
+> What is a control frame?
+I'm not an expert on this but it seems that if the PHY's Serial Management
+interface is not available, it is possible to build PCF (PHY Control Frame)
+packets that will be passed to PHY through the MAC Transmit Data 
+interface. The
+PHY is then able to intercept and interpret these packets. Enabling it 
+increases
+the MII Transmit packet latency.
+You'll find details in §5.4.6 of datasheet 
+[https://www.ti.com/lit/gpn/dp83640]
+>> +
+>> +  ti,energy-detect-en:
+>> +    $ref: /schemas/types.yaml#/definitions/flag
+>> +    description: |
+>> +      If present, Energy Detect Mode is enabled. If not present, Energy Detect
+>> +      Mode is disabled. This feature can not be strapped.
+> Please use the phy tunable ETHTOOL_PHY_EDPD. There are a few examples
+> you can copy.
+
+Ok I'll do that also, thank you.
 
 
-Single line of change is developed by 3 authors?
+Best regards,
 
+Bastien
 
-> ---
->   arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-> index 1bb8d96c9a82..e33e7fafd695 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-> @@ -24,7 +24,7 @@ &sdhc_1 {
->   	mmc-hs400-enhanced-strobe;
->   	max-frequency = <384000000>;
->   	bus-width = <8>;
-> -	status = "okay";
-> +	status = "disabled";
->   };
->   
->   &tlmm {
 
