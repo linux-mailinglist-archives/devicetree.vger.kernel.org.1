@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-42912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66BD4858C2E
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 02:00:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2606F858C31
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 02:01:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1AECD28249D
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 01:00:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A89528396E
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 01:01:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B43581D546;
-	Sat, 17 Feb 2024 00:58:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C53E1AAB1;
+	Sat, 17 Feb 2024 00:58:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="UDAgnQu4"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="doaN3ZFq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
+Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7E521D55F
-	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 00:58:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70B621E88D
+	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 00:58:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708131514; cv=none; b=RPQz0fZyAnPTDo4Tdjpdq2eiXioJa2R/ONEV8h9Aw5eOuZ6//l5Lgz0FiRmne3XerRAWbq0T4lfevRJIZsVpxSV7g4/uAyVAP8xGteUYsJmbpAPW/mVYs/mur9pyL9FVTSAerhNTIJj2yv8CowuqFooxI1j2Vb+vKlYKYnaw9uY=
+	t=1708131517; cv=none; b=j+1z1h/nfK/eqlscu+BZlOg3Ybcu1uHM4GgiTeXsv3DAAYL7/1939qpSw/pCRYJSCaoergoeTH6By+DC0LUL7pDAAl0fcHehQXd1/WbLHyPv4SauHq/sge+09G02Vl+ddNmmPOlW3+7xCdWs765Dvl8kOzrwBMatsI8DRHzaRFg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708131514; c=relaxed/simple;
-	bh=x/pxMUbe83mK+v+gMOd6tZkDxRpLBvnfaivyX9/0rpM=;
+	s=arc-20240116; t=1708131517; c=relaxed/simple;
+	bh=ZkEzmULeXONmJmTlSVdM43i0xvCHwPJmXvRYjE51UxE=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KkK9Dd0gezUr1tLEr8s+ktUalh0T3UHCBelA53YJHUi7xWPpst5uGe8X/VN+2t2u4YX666XC4PQRfmdkfQC7w0l0GRu5GN/HxzpYsGrAfAAcwgCnGpbmxVdoPz5Ow/sBnOpKWnp1uMX24W3KJZ00R1AvYU01XSKQ8eNZ2rkZwRU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=UDAgnQu4; arc=none smtp.client-ip=209.85.166.173
+	 MIME-Version; b=jnOMopNvqOYW6EtH5P/lq1BPPwXqYH5TtgwX685SF8uf8HZeNZMbAcUPw+yB925+da3Hqe2mhnHaLkTtmGsd1qTCQHoue9+ceD3OhA/y9j7cl1NZUw0ndAMhVdFyqncvY/EVSaTv7F+oVpYczhuWZ8p6zKoQKXH8inG3wa/KQRk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=doaN3ZFq; arc=none smtp.client-ip=209.85.166.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-il1-f173.google.com with SMTP id e9e14a558f8ab-364f791a428so8148435ab.3
-        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 16:58:32 -0800 (PST)
+Received: by mail-io1-f45.google.com with SMTP id ca18e2360f4ac-7c47f06863bso96712839f.3
+        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 16:58:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1708131512; x=1708736312; darn=vger.kernel.org;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1708131514; x=1708736314; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=8yuqScAnZ2lAjzdM+wGDjNHf/qrm86EPmr1bz136zUM=;
-        b=UDAgnQu4HKtBi80GzYNkRGIwzwmS07DaaselPxOyHISdFaclPJVXWmixUxrqafV7RJ
-         ipVB0LvlNERttOmv4mFNTzMUAJMsUHOBiaPXJ8A65gTBL8Qmjr82WHR8DLDACS+0wiDw
-         1auyqJ2gJQugjFVCW0Yqb915W2KREBYadiJOT9UA57q7BrMxjn1MwyJveMRry0AwCQp4
-         WC0ZYBEYwWAjM8OuoBfJ5+f0FnBwqJW/8fA4hPcDfHICubPV3bAo3ktbTgkvizOU6IPf
-         Fe4Gq2VNs/R/5jJrIfqJ3HFnJ3rlyPuA5c+z7+BzvvP2NEs36DITEpjNt4m4JpphQe+V
-         e++g==
+        bh=zM1FhW7Qr3v0FtC5FiOLqFulLhlj/jL3zhy6p8GYU3U=;
+        b=doaN3ZFqN3DtDDU7dn+1l0cb7l95xbybca8oAT8r8UAmJrtoAPSHQu8PuMNCAS+SmE
+         Z3wKLQQ4SV64aGbTdxeZz72MzyHeeG8Kwm9ZTh99C/aZWWJdeDC5kKCGsX7RNwijxq/I
+         ky65dI8qsQDokzNWVAEnNAJno/lxthCmTx88xgzx8EC64Z4azp2HNLbPrItvHymI9rdF
+         H2agcA2NrGQMNt966twkhu+14SjfRFukwXtkJOCypWcO2orDbzIKxc4q6ywqiv3dqUN2
+         uTNX0xbhVpjbwkP1ipn1T+BMj7ChOv8Z7gcdZkq2WyKEmqzLVR4No/QtfrT7YtxMEQug
+         j2KQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708131512; x=1708736312;
+        d=1e100.net; s=20230601; t=1708131514; x=1708736314;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=8yuqScAnZ2lAjzdM+wGDjNHf/qrm86EPmr1bz136zUM=;
-        b=CXcE6Nx9bR7GUEP9YJ8KS8jKQvwgo1arkXkpUnmtuivbZ38m3BXBKTvrnUcrtUYz6t
-         CvPcKNAfXwtzdf4QtJaDcm19hWUeJRfSPSMhIOLb2o6L7GdW7TEec/xOtynIy4nRJiW2
-         etHPudToM0yXORecjq2JGRiLP6EVteRUWy3cXHBGH5TbC6zgu4hTxKW9nCkQXHksSqEx
-         ga/x/syCTVyy2eYckIbBf4t6geeQk1xIJJfAoXLDooYi4wgQ3LBhX8O+XCVXVP6WFk+2
-         D+oLiumxld6gFVg1tCQE4D974a1KUnd80nof6zrxyMayhRLbd9zrDT6kAuDMqglx+hqp
-         bSSA==
-X-Forwarded-Encrypted: i=1; AJvYcCU4bQC567Ea8RkDXqlycBjnCFx1NSIm80B6NsWCesDWtQ/rRQYeVNxeC8mKdwgqGA2kU4x4TIv85pJLUiZRPPRIJN81gl6asDSpYg==
-X-Gm-Message-State: AOJu0YzDiMu+0JT7tfHvVWkgLdivf86mrxADc+NW6PQoBmFe6rRbt7uT
-	CiS9GdOTVCOkyQkZAOe/j4V0YX05A1mE1qc6Tn/Vzr29giOi2WHUF/PK1mAzWrk=
-X-Google-Smtp-Source: AGHT+IHik4QrimZEc7Y58ACfRBjvwhbVJhwuT0U4/D/6aufYBPUmjg3iZ9kYnwtI0QZLKwXDyQ9OOw==
-X-Received: by 2002:a05:6e02:1069:b0:363:b362:a2bb with SMTP id q9-20020a056e02106900b00363b362a2bbmr5475068ilj.32.1708131512047;
-        Fri, 16 Feb 2024 16:58:32 -0800 (PST)
+        bh=zM1FhW7Qr3v0FtC5FiOLqFulLhlj/jL3zhy6p8GYU3U=;
+        b=cP1ppD4ZhwDjhwj2cPfTZ26JOi2O7PzYm4RDDTo9B0Qn9CrhiUyfVqy9SIwgx7XgtX
+         8G+/fw4Eo7ID6WkeTCJ/NzPqiYT3iaLtrlmdkZei5QO7wffNbitkkBAQYQdcSfxlX08x
+         AnNbFEwSHn0US0zq7ugXU0pJWJPZm23bwLRsCSGm2lTit7cqnIdFlEwXuE62sQOlTxDN
+         hvNGnwNbV7+8dBtVkEpj5PXu5LLLkQ+dnTfZK91IThwhogSsXtjaFhB9++vjr/2tSiPc
+         lB+jEFJ9yPq3/c9smLRwCMaXoUL3yPTMwOoKPbkvRQmyE/ULei1jkIAx2RZUUuv/Ygc8
+         Fi2w==
+X-Forwarded-Encrypted: i=1; AJvYcCUCeciD6r5Xm5zUsdH/jO1VPKyFUBLriPH5VIZzhVCuUnjoh45SljbWpNLpzyVySnWCM6RpSGShHSaRh1PaLrjat0w3+ScJGIRI8w==
+X-Gm-Message-State: AOJu0Yx/qqZK2pnrNCxadR7aRXioIzMAfHjO+cjA4VMAtBgm3bvp4KL5
+	NPVbZngLGcBTdKZZVIb9nkC/DKKrfi7LZCoAZWOe27fSILyefOPUU4RzB54W2pE=
+X-Google-Smtp-Source: AGHT+IG/18cu0XQrzjjkqrWO02cvxzc2sKclTHZn6KgjzARvIp50etYjTOykyTJQBV988xbbQes5Kw==
+X-Received: by 2002:a6b:7018:0:b0:7c4:2254:8e59 with SMTP id l24-20020a6b7018000000b007c422548e59mr6880303ioc.5.1708131514686;
+        Fri, 16 Feb 2024 16:58:34 -0800 (PST)
 Received: from atishp.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id d188-20020a6336c5000000b005dc89957e06sm487655pga.71.2024.02.16.16.58.29
+        by smtp.gmail.com with ESMTPSA id d188-20020a6336c5000000b005dc89957e06sm487655pga.71.2024.02.16.16.58.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Feb 2024 16:58:31 -0800 (PST)
+        Fri, 16 Feb 2024 16:58:34 -0800 (PST)
 From: Atish Patra <atishp@rivosinc.com>
 To: linux-kernel@vger.kernel.org
 Cc: Atish Patra <atishp@rivosinc.com>,
@@ -111,9 +111,9 @@ Cc: Atish Patra <atishp@rivosinc.com>,
 	Will Deacon <will@kernel.org>,
 	kaiwenxue1@gmail.com,
 	Yang Jihong <yangjihong1@huawei.com>
-Subject: [PATCH RFC 07/20] RISC-V: Add Ssccfg ISA extension definition and parsing
-Date: Fri, 16 Feb 2024 16:57:25 -0800
-Message-Id: <20240217005738.3744121-8-atishp@rivosinc.com>
+Subject: [PATCH RFC 08/20] dt-bindings: riscv: add Ssccfg ISA extension description
+Date: Fri, 16 Feb 2024 16:57:26 -0800
+Message-Id: <20240217005738.3744121-9-atishp@rivosinc.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240217005738.3744121-1-atishp@rivosinc.com>
 References: <20240217005738.3744121-1-atishp@rivosinc.com>
@@ -123,51 +123,46 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Ssccfg (‘Ss’ for Privileged architecture and Supervisor-level
-extension, ‘ccfg’ for Counter Configuration) provides access to
-delegated counters and new supervisor-level state.
-
-This patch just enables the definitions and enable parsing.
+Add description for the Ssccfg extension.
 
 Signed-off-by: Atish Patra <atishp@rivosinc.com>
 ---
- arch/riscv/include/asm/hwcap.h | 2 ++
- arch/riscv/kernel/cpufeature.c | 2 ++
- 2 files changed, 4 insertions(+)
+ .../devicetree/bindings/riscv/extensions.yaml       | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
-index 44df259cc815..5f4401e221ee 100644
---- a/arch/riscv/include/asm/hwcap.h
-+++ b/arch/riscv/include/asm/hwcap.h
-@@ -82,6 +82,8 @@
- #define RISCV_ISA_EXT_ZACAS		73
- #define RISCV_ISA_EXT_SSCSRIND		74
- #define RISCV_ISA_EXT_SMCSRIND		75
-+#define RISCV_ISA_EXT_SSCCFG            76
-+#define RISCV_ISA_EXT_SMCDELEG          77
+diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
+index 77a9f867e36b..15adeb60441b 100644
+--- a/Documentation/devicetree/bindings/riscv/extensions.yaml
++++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+@@ -128,6 +128,13 @@ properties:
+             changes to interrupts as frozen at commit ccbddab ("Merge pull
+             request #42 from riscv/jhauser-2023-RC4") of riscv-aia.
  
- #define RISCV_ISA_EXT_MAX		128
- #define RISCV_ISA_EXT_INVALID		U32_MAX
-diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-index 52ec88dfb004..77cc5dbd73bf 100644
---- a/arch/riscv/kernel/cpufeature.c
-+++ b/arch/riscv/kernel/cpufeature.c
-@@ -300,10 +300,12 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
- 	__RISCV_ISA_EXT_BUNDLE(zvksg, riscv_zvksg_bundled_exts),
- 	__RISCV_ISA_EXT_DATA(zvkt, RISCV_ISA_EXT_ZVKT),
- 	__RISCV_ISA_EXT_DATA(smaia, RISCV_ISA_EXT_SMAIA),
-+	__RISCV_ISA_EXT_DATA(smcdeleg, RISCV_ISA_EXT_SMCDELEG),
- 	__RISCV_ISA_EXT_DATA(smstateen, RISCV_ISA_EXT_SMSTATEEN),
- 	__RISCV_ISA_EXT_DATA(smcsrind, RISCV_ISA_EXT_SMCSRIND),
- 	__RISCV_ISA_EXT_DATA(ssaia, RISCV_ISA_EXT_SSAIA),
- 	__RISCV_ISA_EXT_DATA(sscsrind, RISCV_ISA_EXT_SSCSRIND),
-+	__RISCV_ISA_EXT_DATA(ssccfg, RISCV_ISA_EXT_SSCCFG),
- 	__RISCV_ISA_EXT_DATA(sscofpmf, RISCV_ISA_EXT_SSCOFPMF),
- 	__RISCV_ISA_EXT_DATA(sstc, RISCV_ISA_EXT_SSTC),
- 	__RISCV_ISA_EXT_DATA(svinval, RISCV_ISA_EXT_SVINVAL),
++	- const: smcdeleg
++	  description: |
++	    The standard Smcdeleg supervisor-level extension for the machine mode
++	    to delegate the hpmcounters to supvervisor mode so that they are
++	    directlyi accessible in the supervisor mode. This extension depend
++	    on Sscsrind, Zihpm, Zicntr extensions.
++
+         - const: smstateen
+           description: |
+             The standard Smstateen extension for controlling access to CSRs
+@@ -154,6 +161,12 @@ properties:
+             interrupt architecture for supervisor-mode-visible csr and
+             behavioural changes to interrupts as frozen at commit ccbddab
+             ("Merge pull request #42 from riscv/jhauser-2023-RC4") of riscv-aia.
++	- const: ssccfg
++	  description: |
++	    The standard Ssccfg supervisor-level extension for configuring
++            the delegated hpmcounters to be accessible directly in supervisor
++            mode. This extension depend on Sscsrind, Smcdeleg, Zihpm, Zicntr
++            extensions.
+ 
+         - const: sscofpmf
+           description: |
 -- 
 2.34.1
 
