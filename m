@@ -1,152 +1,156 @@
-Return-Path: <devicetree+bounces-42995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF79F858F1D
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 12:39:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5D1B858F4A
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 13:15:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E3EE1F21F74
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 11:39:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A3AC41C20C9F
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 12:15:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E92DE69DEA;
-	Sat, 17 Feb 2024 11:39:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vKD+yCmb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 555886A333;
+	Sat, 17 Feb 2024 12:15:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16E2B69DE7
-	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 11:39:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6BA86A330
+	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 12:15:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708169992; cv=none; b=ZLNHl+mLt2pIRy15rlcs3pFECes/yP9dfAP6iOu8KrQr4GiSUJZh5bxZZaoMifIa5sPF/VNqBvrn5XmTh11fpuGytiaxxiKkP9zmv+ksa3s2sFRZxkc+UiWvpPXO7FihRPyxBBAfO/ZukKpcEpeDKuuHe3G44CYc3GdR3y90vQQ=
+	t=1708172110; cv=none; b=PGXMXV7b0ouZEV+z4YvIoreL0J/c3fhwJMagvOdQtIiyhVgA/SdNw0T9FcSOhCqXaE2b7VJ9J1WRcdg4DIhDXxFNX2iN83fSE0mDu3XA1oU4TKqvRut1SxFEGCAucP2l4X8z7L0ohjtQNTvdi0gfvX9JARQzwXzn3KpPML4hMAI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708169992; c=relaxed/simple;
-	bh=vPvQg6T8DzaSAL66/xyHZth0xHwP9DWPS25PuK6+Z4Q=;
+	s=arc-20240116; t=1708172110; c=relaxed/simple;
+	bh=S2t8ZmWnf3+Vn3K2L7tspN0gX9dvNd1USxfVoDWBbZE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MGWoV7Z3LffjwmOpWlKQgca8WQRiLiH3YOYuWCJZ8vgTomFqYr1wfvM6HK76W8CNjTUfB5wUzgPp1bcHJN29Vdg2gzzFGNfhlBEBIuAmX7LcO9hdBbhs5OvEYjKCC7iJP6QKJrmtX5ier9X8RMcKmdZU3w886DlX/4urgny1ig8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vKD+yCmb; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-563f675be29so1619596a12.0
-        for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 03:39:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708169989; x=1708774789; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1C+Hkp9mF5Xdg3l0hgYcA9Z6irk/GvuEVb1RZfBg7lc=;
-        b=vKD+yCmbfxdngJtvVUYRvZxTNKXUoDYUBhmggjcFOcg88P6/fsifJIShS1Mh6qfRBn
-         742BIR1Yo2vEojK8rN13RhOnMBdRT8v1bUc76HRizQKFphMrOjn2m5C50BeWFc/qOWRg
-         31Eg5sF/uuHNFOG0ORuW7l1tpkkPr7WmIbwPC4ruHZO/5xsS4bu7qR+bRlZK+yxYAJQf
-         0nddt/nYoMPwCzOlZM/Xtq77fHnYPNMyl6vMx6Gz0qh1Oc1mYERNjvzN5SRB1MRL6AbX
-         t0FXXNBCcf2XYrY5CDJYtBPiLWTYwnYPMD0F2IdNmoffvVUxCXYxInRJ3PtxDTK1PsxD
-         fsNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708169989; x=1708774789;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1C+Hkp9mF5Xdg3l0hgYcA9Z6irk/GvuEVb1RZfBg7lc=;
-        b=SceJxd65uggDQJWzXddG4dZL3Px7r4oQKzZxE8reJ+l8U1w1LDE4HbEE2mpgnYWKGG
-         blv46DCgWO5qf6rNgeMkQIBl5MP1yLc0kRd1n/gETP2pAeLBIgnQNlctClu0YJtNMNVE
-         rA9zaTiEoctp+b4nQTekAP8BjS/8xGmDY/6QrObcaJfz3aLCB3Xsqf0t4MH9YsxdQZlw
-         oVCChe7p37P+uO+LM4MyN6JB/L+e1Wm2rb7pcV8BHl2jGr+j1ZVsaTAnG2dgVG0TvlJA
-         x9QSFlGeiUVg64JtVISqhZ7ig+gBgq+AhylUvt6w5IukXq6FpqVE4P+oBD3Qi0bqyw8U
-         gvXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWEi2yRxAaVo6wWhNPtsczKJ3RliA7Lc0WHILNzHcqmrVNieNzkIad8R6JX/MUluzL+sBdW3kv1zL5F7RS0glG2z7nMNk6avo+grA==
-X-Gm-Message-State: AOJu0Yxwc0pogTgOW6PLDCAMpiH/dV8gxbDxnFZ0PmnguxDh5UnbhH97
-	PRFyI0VAHrthpGvHQe8bBQ4g2xkfyENnDi39rCPqyII5zVwExprF1OUjbh13gy8=
-X-Google-Smtp-Source: AGHT+IHC8q9jk1V+NICBbpC1WNnMyrhtKdpmvofzMtMFylRK1DYfLGy8RvSLVqogHDYFEu79JIpj6g==
-X-Received: by 2002:aa7:d313:0:b0:564:2fbb:a869 with SMTP id p19-20020aa7d313000000b005642fbba869mr524179edq.38.1708169989449;
-        Sat, 17 Feb 2024 03:39:49 -0800 (PST)
-Received: from linaro.org ([188.24.162.93])
-        by smtp.gmail.com with ESMTPSA id ek23-20020a056402371700b0055edfb81384sm803108edb.60.2024.02.17.03.39.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Feb 2024 03:39:48 -0800 (PST)
-Date: Sat, 17 Feb 2024 13:39:46 +0200
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Sean Paul <sean@poorly.run>, Maxime Ripard <mripard@kernel.org>,
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=NJtslqCuDsbrOLaBLwaPy2jlCHOZN3HO3PSIRsDVFYlgwIZvg80JnK6ZmN02oJFgkJQlazlFvx7JThbeHrQKt7Crxw55FHGmK4VpWG7syXFa/sAO4uTFNgAlaVVvwcmONCd9F5l/wqZ6FQaCQMVCGZ1ema0wg2rZy8ucn3WgLw4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rbJaS-0000RV-Fa; Sat, 17 Feb 2024 13:14:32 +0100
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rbJaP-001GBa-EN; Sat, 17 Feb 2024 13:14:29 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rbJaP-00CwUe-15;
+	Sat, 17 Feb 2024 13:14:29 +0100
+Date: Sat, 17 Feb 2024 13:14:29 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	freedreno@lists.freedesktop.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	David Airlie <airlied@gmail.com>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	Rob Clark <robdclark@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v3 2/4] dt-bindings: display/msm: Document MDSS on
- X1E80100
-Message-ID: <ZdCbAjnga8HCMdYf@linaro.org>
-References: <20240216-x1e80100-display-v3-0-28b1c33ac8c0@linaro.org>
- <20240216-x1e80100-display-v3-2-28b1c33ac8c0@linaro.org>
- <170810832158.3497594.1997532394027797497.robh@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+	Dent Project <dentproject@linuxfoundation.org>
+Subject: Re: [PATCH net-next v4 14/17] dt-bindings: net: pse-pd: Add bindings
+ for PD692x0 PSE controller
+Message-ID: <ZdCjJcPbbBGYVtuo@pengutronix.de>
+References: <20240215-feature_poe-v4-0-35bb4c23266c@bootlin.com>
+ <20240215-feature_poe-v4-14-35bb4c23266c@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <170810832158.3497594.1997532394027797497.robh@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240215-feature_poe-v4-14-35bb4c23266c@bootlin.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 24-02-16 12:32:02, Rob Herring wrote:
+On Thu, Feb 15, 2024 at 05:02:55PM +0100, Kory Maincent wrote:
+> Add the PD692x0 I2C Power Sourcing Equipment controller device tree
+> bindings documentation.
 > 
-> On Fri, 16 Feb 2024 19:01:06 +0200, Abel Vesa wrote:
-> > Document the MDSS hardware found on the Qualcomm X1E80100 platform.
-> > 
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > ---
-> >  .../bindings/display/msm/qcom,x1e80100-mdss.yaml   | 253 +++++++++++++++++++++
-> >  1 file changed, 253 insertions(+)
-> > 
+> This patch is sponsored by Dent Project <dentproject@linuxfoundation.org>.
 > 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/display/msm/qcom,x1e80100-mdss.example.dts:24:18: fatal error: dt-bindings/clock/qcom,x1e80100-dispcc.h: No such file or directory
->    24 |         #include <dt-bindings/clock/qcom,x1e80100-dispcc.h>
->       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> compilation terminated.
-> make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/display/msm/qcom,x1e80100-mdss.example.dtb] Error 1
-> make[2]: *** Waiting for unfinished jobs....
-> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1428: dt_binding_check] Error 2
-> make: *** [Makefile:240: __sub-make] Error 2
-> 
+> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+> ---
+...
+> +        pse_pis {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          pse_pi0: pse_pi@0 {
+> +            reg = <0>;
+> +            #pse-cells = <0>;
+> +            pairset-names = "alternative-a", "alternative-b";
+> +            pairsets = <&phys0>, <&phys1>;
+> +          };
+> +          pse_pi1: pse_pi@1 {
+> +            reg = <1>;
+> +            #pse-cells = <0>;
+> +            pairset-names = "alternative-a";
+> +            pairsets = <&phys2>;
 
-These bindings headers are already in -next.
+According to latest discussions, PSE PI nodes will need some
+additional, board specific, information:
+- this controller do not implements polarity switching, we need to know
+  what polarity is implemented on this board. The 802.3 spec provide not
+  really consistent names for polarity configurations:
+  - Alternative A MDI-X
+  - Alternative A MDI
+  - Alternative B X
+  - Alternative B S
+  The board may implement one of polarity configurations per alternative
+  or have additional helpers to switch them without using PSE
+  controller.
+  Even if specification explicitly say:
+  "The PD shall be implemented to be insensitive to the polarity of the power
+   supply and shall be able to operate per the PD Mode A column and the PD
+   Mode B column in Table 33–13"
+  it is possible to find reports like this:
+  https://community.ui.com/questions/M5-cant-take-reversed-power-polarity-/d834d9a8-579d-4f08-80b1-623806cc5070
 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240216-x1e80100-display-v3-2-28b1c33ac8c0@linaro.org
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
-> 
+  Probably this kind of property is a good fit:
+  polarity-supported = "MDI-X", "MDI", "X", "S";
+
+- Except of polarity, we have alternative-b variant with direct or
+  phantom feeding (No idea if it is proper description). Theoretically, this
+  difference would affect electrical rating specifications.
+  For example direct path for alternate-b (10/100Mbit only), would have
+  higher rating as the path over coils/magnetics. Practically, vendors do not
+  make different ratings for this paths, so no need to care about it for now
+  until someone will be able to provide good reason.
+  Here is example of RJ45 connector with integrated magnetics with PoE support
+  where alternative-a feed over magnetics and alternative-b is feed directly:
+  https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=5-2337992-4&DocType=Customer+Drawing&DocLang=English&PartCntxt=5-2337992-4&DocFormat=pdf 
+
+  (the last topic is more an answer to my self and for archive :))
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
