@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-43036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DD49859013
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 15:27:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B7FB85901D
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 15:32:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD381282C63
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 14:27:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 086FD1F21C53
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 14:32:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F4977B3D0;
-	Sat, 17 Feb 2024 14:27:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A36B42A96;
+	Sat, 17 Feb 2024 14:32:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lbb1+j/n"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fMsdwxeF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 649707AE7B
-	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 14:27:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27EA081E
+	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 14:32:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708180063; cv=none; b=Y9YqbGbGufGWtc2Z/A2rjr9QrJ9ApHFr2qkN9dv4eZQuuQN+8O60bHXh+EZSAoXr/N6usiwdOG2mbFe1qg/ZIMdm6I4i3+PDXMacLwOIRYChoaGEh1hcoimtkGygXZ/wIu8R8nvXd20rzrdik68p7QZGIi2FU+xX+YCbXF97QcQ=
+	t=1708180336; cv=none; b=L53W8A9aHdzeeA/gUxn5wS6DtBxNdiQLipjVLVQCqHXL0iz3CErWFzC1ZZ0VVTNFGvNsjtXOWAmm33HP+ag6tLyDUQpbr9UmDctJBrO7jjd7BJVurRm107yvxbYd49J2wqsPHVRiKNHdBFqEt3m83BeF7P3eGek05ay/xGCuEOQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708180063; c=relaxed/simple;
-	bh=jRlINdbg4JEuPWhpxkKqWf4N327YRG2hSi66nO5K17s=;
+	s=arc-20240116; t=1708180336; c=relaxed/simple;
+	bh=JH2BJbUC8p9rzyAfRaxkjJtIvKq+V+0O0YUQN2Wqnx8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tLa+/vHB99Q0fRlaU+g3mSu+1kRE6/fcCC7YODq7WDzcEA0+QVJAB8jCWRrA/c6PeE/cAgsaEjuNEwKXthktWIggH+DEoOGg3i1j2HZJdvUu6TQuRQaY21sOoQzklK0mI6yAt+cNyrFOUwhdM4z50EyxKGQko8MVyA8jM1xWcMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lbb1+j/n; arc=none smtp.client-ip=209.85.208.42
+	 In-Reply-To:Content-Type; b=swo9kwSCINz4Olq5PpCUOj/kIX5hOgOb16qrz4jw4roDRoNZw+yEpvC9Br9Z7VqFh5D6Vr0zPsBIUMneXfdVNO+GJZlt6lT+darxy+5Dm9a1P9V+BMpW8P3AtA3LwFrLyVM6daZgLr0MOlkl2D35vLpi7sGigdAJYiCACatki+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fMsdwxeF; arc=none smtp.client-ip=209.85.218.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-563cb3ba9daso2597308a12.3
-        for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 06:27:41 -0800 (PST)
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a3dbc8426f3so183648366b.1
+        for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 06:32:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708180060; x=1708784860; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708180333; x=1708785133; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=o4kikdKHR3faZBL1guvZu0OzCu2qhiR5nbEAWGYdvts=;
-        b=lbb1+j/nEoe956gUP/K3J8NNgK+TRG5KeSgrKdR3AGGQ5lcod2uvQWSwsqqL2G0Pyc
-         eO9nz9aZ3e1ofJ3Hut4btGqXFmxJGWKmhlY1Vv45X+F9ykWCBxMFsyBxRWZnEiy3bOZk
-         Z7sp0DRqf/DPdJJMJyOxA+UT2f7VFE4CGto6RB+TFlFLvbbWPHv7Etl2ELmJvfYWDHAq
-         HENZSvdZXXzaJj4HlFIT6jQRYJvbbYbnZYRvbtfl/D1FNQlhvNBCkP66osjentFxyPfc
-         rkJvZ7Lr1twZR4HTiKD1s6z7Pcm+HTppsZ30/A9dKpgThEUpzwOT6lLIuoOSpIinykZJ
-         qlRg==
+        bh=RSNmyfW1+GrF91z+IHvlzjs+mSUvBVEEbhJ3txgTkRM=;
+        b=fMsdwxeFrLPBPaeOAcDZnpMzSljFgpakqTYNlohkngX9fXsdRktyWYu/RXGXj1Sg//
+         PQ5628L0Uv9iZ/u1V9bfLvtD+DeikiE65R5SulUy+gkuHZTUXSbI7cptOWWB2uv2n079
+         aE0irlFNiPUJ0jXn+urOrwHdhKGOBNlFTTaPKggmZFuYgLtG6/+7nr3tPtBmiZXu/Dvz
+         gsyIq0FRxM1dV9ygDCwkcUO2YaXGQcfijMYLnO/qfzp86CKlXfn0ei8ehKPje2TLKO8V
+         Byov1WoTHRNnSPINNHRWVqrpL53E4WXEfD7lsuWXRiHWe9T1uLUhO5vUCtCxFI8stFZ+
+         zRYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708180060; x=1708784860;
+        d=1e100.net; s=20230601; t=1708180333; x=1708785133;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=o4kikdKHR3faZBL1guvZu0OzCu2qhiR5nbEAWGYdvts=;
-        b=kCjEfbxodRIPkcaONSp/c9OX28i06gGR2eecTscnC3p3JNhScRZQg5w0qkpq+UbAqg
-         pzuaHK96T7um/nRZGAIk6YFSQFnD1o/zB2eaGj9Q6jlxgTJf14yyPex9bcXhDr48cw+p
-         s7WvWmmu6+2ibCpgTGGYqq1Cv+rexUBkCqNxgKMzR5+q+949cSOzBdzev0S9wmH3rGrh
-         TTa9cxYRU0yviEhfOpqPw15uIdPQPsK9S8V0JSlHZynENgxri6+4NJu9O+lRflox4Z2K
-         E1BEeD7LJGBFa7eQhH+m5kg40Ps0XfEVJ+tfovAMlNj+6HGhn+i1nWwNOsalPRppOWkQ
-         7yhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXuQF64DS+SQ2XSZU2DuxYaYKXE466EgBNO1xLq/8Sn4XtB9VU9nXXxs0N06RvUPfSI6zt7TD5e3vAYLWT/Uft1Er4dZyXZS9Ttcg==
-X-Gm-Message-State: AOJu0YxE9uWZoXInZK+5uiN8R7oReGxTTMR4vcROWhS9449RMjVuEHsu
-	pGM5ryKAB3b5fGBeYal5X8Z/WR1m7WXk0tRwafqpOnJscGGfD463AGxxsdcuHI4=
-X-Google-Smtp-Source: AGHT+IGmeY+dZXaraQ7KyLKFWeJGq+Bg5GuAIZMJjrZUIOpv6SD8HhcXxOfZOBSfGmN0pki5EmdiBA==
-X-Received: by 2002:a05:6402:120c:b0:560:e4d8:ccca with SMTP id c12-20020a056402120c00b00560e4d8cccamr5983617edw.28.1708180059791;
-        Sat, 17 Feb 2024 06:27:39 -0800 (PST)
+        bh=RSNmyfW1+GrF91z+IHvlzjs+mSUvBVEEbhJ3txgTkRM=;
+        b=L+zJc0r2Ds9HyorZhHjS1qAA2Mn30eiBwwkSyoZ+NW8d8Ro/XwzFIoto1oJ7oI/p/n
+         AMRdJziUu0EN5DuJjx4Mv1AHa+hiGLXLGypvs/V0DdA9UEt04fVRh850n7XpDTIYzzDA
+         lqKBgGtXZFMDqjGcNrvuVCOlUbD1ezFOKfbwhrfjTQ1JDHM93ZldooERwdMe8DjCEKKL
+         ygrjSrZ3MxUm1Cj1aDszxtp1zK5GfkfK/ucNjc7cRd71y6Gu/lEDPLdpLprwz1owDBcQ
+         Rw45irWeqISOLugswzgMIk/YV+owKSKJqhxKXlvBaNbEMeF55gkCQhDaDEbNvx6sl4Yy
+         jXww==
+X-Forwarded-Encrypted: i=1; AJvYcCUZkLrMkXXqiVftml48rwzmblBpQDyXu7c7c6Yq12aWfK9vljdSjqe8nROvoNfgQoy0Oohu9znGs135WAInQpA5JkE5wHRAMK2QZw==
+X-Gm-Message-State: AOJu0YzJ0mbjLzoqG4DfJw0XBV1+Gj907t95m6800Ur0LiTpa6TUUSsF
+	cyyMsvhhw3l6/i6BqPjapEYmAfY3lTt8SNYYbH4vRyh3X1nvZqnJ9AeEAlQ1DH0=
+X-Google-Smtp-Source: AGHT+IEHTPTKY/XIeJkkRZAe1uiHoV3OVu9/bNG2euicSLCo47n2vzzbLFkKN/YU4XpKxxNmY73JvQ==
+X-Received: by 2002:a17:907:bb8d:b0:a38:a6b2:b329 with SMTP id xo13-20020a170907bb8d00b00a38a6b2b329mr4507277ejc.8.1708180333463;
+        Sat, 17 Feb 2024 06:32:13 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.207.130])
-        by smtp.gmail.com with ESMTPSA id el14-20020a056402360e00b0055fba4996d9sm923053edb.71.2024.02.17.06.27.38
+        by smtp.gmail.com with ESMTPSA id y14-20020a170906448e00b00a379ef08ecbsm1028569ejo.74.2024.02.17.06.32.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 17 Feb 2024 06:27:39 -0800 (PST)
-Message-ID: <f84a4933-ce7a-4820-9b57-84a1549602ff@linaro.org>
-Date: Sat, 17 Feb 2024 15:27:38 +0100
+        Sat, 17 Feb 2024 06:32:13 -0800 (PST)
+Message-ID: <99df43cc-37fd-4f50-a086-2864a6545673@linaro.org>
+Date: Sat, 17 Feb 2024 15:32:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,20 +76,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: cpufreq: Add nvmem-cells for chip
- information
+Subject: Re: [PATCH v3 1/2] dt-bindings: clock: sophgo: Add top misc
+ controller of CV18XX/SG200X series SoC
 Content-Language: en-US
-To: Markus Schneider-Pargmann <msp@baylibre.com>,
- Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>, "Rafael J . Wysocki" <rafael@kernel.org>
-Cc: Andrew Davis <afd@ti.com>, Dhruva Gole <d-gole@ti.com>,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20240206145721.2418893-1-msp@baylibre.com>
- <20240206145721.2418893-2-msp@baylibre.com>
+To: Inochi Amaoto <inochiama@outlook.com>, Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Jisheng Zhang <jszhang@kernel.org>, Liu Gui <kenneth.liu@sophgo.com>,
+ Jingbao Qiu <qiujingbao.dlmu@gmail.com>, dlan@gentoo.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+References: <20240215151316.GA89268-robh@kernel.org>
+ <IA1PR20MB49533FE55F2A0D7FA0CD6949BB4D2@IA1PR20MB4953.namprd20.prod.outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -135,33 +135,66 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240206145721.2418893-2-msp@baylibre.com>
+In-Reply-To: <IA1PR20MB49533FE55F2A0D7FA0CD6949BB4D2@IA1PR20MB4953.namprd20.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/02/2024 15:57, Markus Schneider-Pargmann wrote:
-> Add nvmem-cells to describe chip information like chipvariant and
-> chipspeed. If nvmem-cells are used, the syscon property is not necessary
-> anymore.
+On 16/02/2024 00:56, Inochi Amaoto wrote:
+>> On Wed, Feb 14, 2024 at 02:33:14PM +0800, Inochi Amaoto wrote:
+>>> CV18XX/SG200X series SoCs have a special top misc system controller,
+>>> which provides register access for several devices. In addition to
+>>> register access, this system controller also contains some subdevices
+>>> (such as dmamux).
+>>>
+>>> Add bindings for top misc controller of CV18XX/SG200X series SoC.
+>>>
+>>> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+>>> ---
+>>>  .../soc/sophgo/sophgo,cv1800-top-syscon.yaml  | 40 +++++++++++++++++++
+>>>  1 file changed, 40 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800-top-syscon.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800-top-syscon.yaml b/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800-top-syscon.yaml
+>>> new file mode 100644
+>>> index 000000000000..619237532801
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800-top-syscon.yaml
+>>> @@ -0,0 +1,40 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/soc/sophgo/sophgo,cv1800-top-syscon.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Sophgo CV1800/SG2000 SoC top system controller
+>>> +
+>>> +maintainers:
+>>> +  - Inochi Amaoto <inochiama@outlook.com>
+>>> +
+>>> +description:
+>>> +  The Sophgo CV1800/SG2000 SoC top misc system controller provides
+>>> +  register access to configure related modules.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>> +      - const: sophgo,cv1800-top-syscon
+>>> +      - const: syscon
+>>> +      - const: simple-mfd
+>>
+>> You have to define child nodes to be a simple-mfd.
+>>
+>> You could drop it, but I now suspect your binding is incomplete.
+>>
+>> Rob
 > 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Acked-by: Andrew Davis <afd@ti.com>
-> ---
->  .../bindings/opp/operating-points-v2-ti-cpu.yaml | 16 +++++++++++++++-
->  1 file changed, 15 insertions(+), 1 deletion(-)
+> Hi Rob,
 > 
-> diff --git a/Documentation/devicetree/bindings/opp/operating-points-v2-ti-cpu.yaml b/Documentation/devicetree/bindings/opp/operating-points-v2-ti-cpu.yaml
-> index 02d1d2c17129..b1881a0834fe 100644
-> --- a/Documentation/devicetree/bindings/opp/operating-points-v2-ti-cpu.yaml
-> +++ b/Documentation/devicetree/bindings/opp/operating-points-v2-ti-cpu.yaml
-> @@ -34,6 +34,14 @@ properties:
->        points to syscon node representing the control module
->        register space of the SoC.
->  
-> +  nvmem-cells:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> I have a small questions: Can I drop "simple-mfd" and just add it
+> when the new subdevice is added? I know the binding is just a example,
 
-Why redefining the type?
+No, because bindings should be complete.
+
 
 Best regards,
 Krzysztof
