@@ -1,155 +1,226 @@
-Return-Path: <devicetree+bounces-42985-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42986-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 477E9858EC6
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 11:36:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E08D4858ED7
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 11:55:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79FB81C20AC2
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 10:36:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96C6A28209E
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 10:55:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A251C48CFF;
-	Sat, 17 Feb 2024 10:36:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A09AF54FAF;
+	Sat, 17 Feb 2024 10:55:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="ptSS6jaU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01olkn2082.outbound.protection.outlook.com [40.92.52.82])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8A842561C;
-	Sat, 17 Feb 2024 10:36:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708166212; cv=none; b=gwpMI5zfYDzZek3v3zH8SbKHdsi6OiE/xifvETBfTPjGVGvcYQBLpHAIhOcq/Euvn0g03jm2nX78mnmygviEbkQ9ZpQzYYOK5y3qBWVbDo6iBlPaYtPvX6bdl9yXzw6VG9LwSEa1Ec4jqy1F7q7CnhcKsWHE2XnDXQWWxyErkmY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708166212; c=relaxed/simple;
-	bh=ZVR8hDHjpLVM5b5FKvHzG7fTS1EYfdQFOAaGI1+undQ=;
-	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
-	 Message-ID:Subject; b=BOdwSKdu+Bj8fVWF33Ui+r8iTIUlnpZFyspO6sGzplktvdDi9n5Szx93aa8HNFk++YGK31KrX8abtaiyfwcQuv1di1OMBzFLWaVPUbQdJdcXYZdBlrjRp+RlRFpyAPDw1tahqSY6MId40XY2fiHV4SVUbcL5gKXA308CMZevn80=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-Received: from hamburger.collabora.co.uk (hamburger.collabora.co.uk [IPv6:2a01:4f8:1c1b:c794::1])
-	by madrid.collaboradmins.com (Postfix) with ESMTP id 2999A3780A0B;
-	Sat, 17 Feb 2024 10:36:47 +0000 (UTC)
-From: "Shreeya Patel" <shreeya.patel@collabora.com>
-In-Reply-To: <c8cb8fd4-a67d-4982-b1f8-6fedbb7e9a4f@linaro.org>
-Content-Type: text/plain; charset="utf-8"
-X-Forward: 127.0.0.1
-References: <20240216094922.257674-1-shreeya.patel@collabora.com>
- <20240216094922.257674-2-shreeya.patel@collabora.com>
- <237e690a-2f49-4046-b054-3a878eed6748@linaro.org>
- <30d2-65cf5980-3-2ec9f500@242931553>
- <0c2f4d92-afa9-46f1-844e-994bd45924ef@linaro.org>
- <1b9-65d08800-3-19290580@120474537> <c8cb8fd4-a67d-4982-b1f8-6fedbb7e9a4f@linaro.org>
-Date: Sat, 17 Feb 2024 10:36:46 +0000
-Cc: heiko@sntech.de, mchehab@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de, jose.abreu@synopsys.com, nelson.costa@synopsys.com, dmitry.osipenko@collabora.com, sebastian.reichel@collabora.com, shawn.wen@rock-chips.com, kernel@collabora.com, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-clk@vger.kernel.org, linux-dt@vger.kernel.org, linux-arm@lists.infradead.org
-To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CBA854F9D;
+	Sat, 17 Feb 2024 10:55:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.52.82
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708167304; cv=fail; b=f7ComsWpZG/LRhzX0dsmmrLFydVunx26EoZfX/3WuFy/humU3q/kQYS+w3CJoud04UanJyTTyn1Q/qZ6vEVT5uU8orJ7CwB8tsH133OGkfTojaxbXNE3km8qarS2FkCJo465yrq1kaFRNuDr6oH3Xucev+J7Tuf2ZzynLmTGVzk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708167304; c=relaxed/simple;
+	bh=s+fs2toF5ydGuZi4ZrJO8t0VlRUkWNDNASFhajJNVII=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=e7Pvx0uuksLK5+P89SbQXaG685ZNi6533CAe8CdR/0RPTmfcIiiGTXH2cBy6AVCSD7bMMcdtdTg7C89TFbI0O2wTRiTjkt6LRUPHJRVN4Ev4IiqWidqWcE+Xe3ivqqEdC1lbDXpXi8+1DJI3mSPSpJ8heRrC06BE4uwdt6N490Y=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=ptSS6jaU; arc=fail smtp.client-ip=40.92.52.82
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JIUk6WyP7AW+g5NXPtIDjikkdv8ALa+wh5OZYtw7RfgTMJkRKxsjWZtNAKPRgVhfu5xLG2EoKk05InRrJapDkhLDaiesJgP0Jf8cD3XDunE6lJWVQocfubXkFajxeNe+GywNmd/F++BSSlYy6y/miRSeOTcfBiO0VlrJRpkvK0gddhkJmM2y40GDfg9yWEpsTpGd8SsY7MxJ+tXRm3U876Shdmg1/BRZ8zfenikp5P8G+pn0i+EhxYFXZ5/ymK6O3y0ZUu4haoXKqJ4CKtYt2fzCX5rpc9hChXo8zOFFgQpQEy4n8eQk6KrO1Ny7O3GK6OrkjlTwd/2YRAJ999+w+A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=006XMk2+JqPsh4jUaxhbYljxwjoQO/qVRZkWLQqI11I=;
+ b=aBYbo6Yj1X68JRtJSAKCwlfBxK3Gan9p9yO0C1zpZB4Nor2zOGOOEzA17bUwJQ7U/7JbPHQyhslGZtz9GG5Y+bkjwzJtfAaFacmdSh2HdrzTU0UWjMujKUVLJ+X62S2mq6pZLhJWQqRG39IXuOAGAO43fJEmDVt9B9o8oUOv2m/Mv+hhAunolR6WMhVBVsj4/AzOqIxmwdTUUUy6J+WiQp7qGwGEfS3d5DWncNyQ5njSUq9DS4EIAWI1Hc8acVXTXbYlBICuNXx7h+0xvWOtXLcjgu6tw9Y3rdv4bubmLXwo+MJqEGecCM3HwHhgA7VzTo0y8nPMVUifkxRVycopRQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=006XMk2+JqPsh4jUaxhbYljxwjoQO/qVRZkWLQqI11I=;
+ b=ptSS6jaUUHs+bS4gRqTzs8yQqmRURM8M7SCvo+iioau9oHcubOrw3S5GuncwsDK3661qOS1bpEDTktWA0TsP4KJoCdiwCUwJZK1MO8U0OljYLBn+gh/ruqjFaGZaTkOe5Q3DQihYanLOJ5HRR57WKkbwvNh63glRQ4ipAW2lhGwPdgRcBzKoIvbmkrH4XsqipzJHQCCQcLVqGYrRIEU9oCviegJUYeXTCxS/SmacCs6nx22iogRC7fTsB+CVCMW5o1A8QTcyRyAaTOEpRtISMVydtns24zUpy0e6LHc6tK7SiC9A/Ld31gw52CXvhmH+gmi8Jkf3CSzPw6P6YtKH9A==
+Received: from SEZPR06MB6959.apcprd06.prod.outlook.com (2603:1096:101:1ed::14)
+ by TYZPR06MB4015.apcprd06.prod.outlook.com (2603:1096:400:28::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.39; Sat, 17 Feb
+ 2024 10:54:57 +0000
+Received: from SEZPR06MB6959.apcprd06.prod.outlook.com
+ ([fe80::9a6b:d813:8f4b:cba1]) by SEZPR06MB6959.apcprd06.prod.outlook.com
+ ([fe80::9a6b:d813:8f4b:cba1%4]) with mapi id 15.20.7292.029; Sat, 17 Feb 2024
+ 10:54:57 +0000
+Message-ID:
+ <SEZPR06MB695983231D04A2E1947AF61896532@SEZPR06MB6959.apcprd06.prod.outlook.com>
+Date: Sat, 17 Feb 2024 18:54:51 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 1/4] dt-binding: phy: hisi-inno-usb2: convert to YAML
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Jiancheng Xue <xuejiancheng@hisilicon.com>,
+ Pengcheng Li <lpc.li@hisilicon.com>, Shawn Guo <shawn.guo@linaro.org>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Kishon Vijay Abraham I <kishon@ti.com>,
+ David Yang <mmyangfl@gmail.com>
+References: <20240216-inno-phy-v1-0-1ab912f0533f@outlook.com>
+ <20240216-inno-phy-v1-1-1ab912f0533f@outlook.com>
+ <63b3eff6-49eb-46f3-a6d9-878eddf6de53@linaro.org>
+ <SEZPR06MB69593B898A42192D134B01A896532@SEZPR06MB6959.apcprd06.prod.outlook.com>
+ <dfecd473-dcc1-4977-901d-6c7bb615bc97@linaro.org>
+From: Yang Xiwen <forbidden405@outlook.com>
+In-Reply-To: <dfecd473-dcc1-4977-901d-6c7bb615bc97@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-TMN:
+ [IqiqGNqid1tLkGOdQaN89cEQ+BVwRyXWxYGJWuFu39eBYuhhmOCnso1iRMEoOhw8TFh7fGiPPK0=]
+X-ClientProxiedBy: TYAPR01CA0080.jpnprd01.prod.outlook.com
+ (2603:1096:404:2c::20) To SEZPR06MB6959.apcprd06.prod.outlook.com
+ (2603:1096:101:1ed::14)
+X-Microsoft-Original-Message-ID:
+ <23cbbf47-6234-4883-9660-15a667ac725f@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <1aae-65d08c00-1-625abd00@109408603>
-Subject: =?utf-8?q?Re=3A?= [PATCH 1/4] =?utf-8?q?clk=3A?==?utf-8?q?_rockchip=3A?=
- =?utf-8?q?_rst-rk3588=3A?= Add BIU reset
-User-Agent: SOGoMail 5.9.1
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SEZPR06MB6959:EE_|TYZPR06MB4015:EE_
+X-MS-Office365-Filtering-Correlation-Id: b170a110-85f4-404d-fc6f-08dc2fa6e16c
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	mnC3LzyfC8RN6UcZpQih9Oac3G8F+bKOaXAqZqTrdsvFbnzrWuPe8Pmf0DwW56X4Z3ccKqJVb4C1JvoAz1tx3JeVhK8VBHD6BWrf5lQEj9Ls2I7AMglYHxCFgwAPk9qXOZUQps0urXQiZBE0tAbFwS6QuvKXBuauV8tGslKFccjWokOWpQHhztOxFV2vajrJn66LzQFoF1DVkikzkEUM59EDAfHxW03udOLC3bwu52VBvIIemS4fk2YUIPjg0Fvu6myVFjZDD/jC8Sxv1jVoSZsMbUVEr2Mw+L6GLVhxMGsij90fU4FSsmBXHz4pElXd/qUIn8X0TENSAUIcGZD3tIpAiVaevTOEJaD9D3ZUfIGx7ERXOTrAExr6bOKKTakBHO91ebd1rQy6o9Pw4Xx+kqDZ35u2XU/XLXpHYqnzLkEpWZYKCNuupFpv7GMIH5o28F9S+KY1uvmsXUC/9CUqHUMmnkkYKblfk6pgUtdXxCvbsM2EVUX1TkMQg0AfcB7zBmnSANPlEUvUyCvGDO2/g5238yozXxRkzwqB5487kc611WhqIgm8KuA0kaQSUl+I
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?K2doS1hqU2t5bnR4eWNXalBtMGlKWmVFVjVZdkJUbkg3T2huZU9nWTBORHNq?=
+ =?utf-8?B?aU9ZZGFTYmlhTTdsTzhqQ0RxT1RxWFVxd3VGQTRpOVFydC8zaXZIVWRiN1ow?=
+ =?utf-8?B?WnhCbVpvU0duNGhMVVVDdFJpOHVGblhKWmpRZ2VybHlKYkc1V1Y3U2FtUlRS?=
+ =?utf-8?B?SUNsYXJsU2UxbDEyTzA1OXcrdFZqZ2c3SGdTK3VCYThuTXFsMzU3SDhFUWQ1?=
+ =?utf-8?B?K3pON0dmeWlzc3ZrVklYblVJcjBuS3gxNjBEYTBXSE9XazFYK01oYW0rKzA5?=
+ =?utf-8?B?SjlKNGFBUVlsWVMyWE1vTlZvaXZjd3ZBb1FlUTVPaEM4dHU1d3hvSnNkQ2ds?=
+ =?utf-8?B?RmJiY3pyK0FoTjZmT1A4MzlWbi9Tc3lOZldrSWJyNXhXU09IbTdWeXlHNUN5?=
+ =?utf-8?B?R1k1WC9CbWFSQ1ZVd0VDTlRUTEFlSDIxblRvTlJuU2RuaTI3d0RyL20rbHh4?=
+ =?utf-8?B?TVZqd3Mzcy8xYWY0dUR0eCtOc2ZHTE9zaTI5RDF4eW05ZFRIWWUrTHova2E2?=
+ =?utf-8?B?dlk4bWdLQStvUkNEMkkwaU0vaXRiTjQ4ZlU3ZkRpR3BPV0pYeU1YQzVIU1o2?=
+ =?utf-8?B?R096SWpYSGM4THRHMTlMUWNwVGZHR0FOTjNSMENQY2Nqc3Nxd3Z2L1A0aUxJ?=
+ =?utf-8?B?R2hPbEp3UlUyc0RpeGt1RFZaYm93azF3aGNPRmlEZFlIM1RiaXA2Mjg2WkQr?=
+ =?utf-8?B?NXM2ZVZwNkZTYVB5UENmcGpHT3Iyb2VseWx2b0VaOFhOdWMwWFZockxVbUJp?=
+ =?utf-8?B?U05EKzdFcXRnNjNZTHdUc2tYdUxmejZ6SnFpdTJjV1YrSHR0NDR2QXk2SXVQ?=
+ =?utf-8?B?TmV6dUs5djBOaEtXamUzVWwrcE04eHV5R1YvLzVadHJYQXA2SDdZQVg0enQr?=
+ =?utf-8?B?eUZSOU03dVZTSkk1bGpRMXh6a2VHZTRxZzUyQS9ER1p0NWJVVmVoWG5HWkNR?=
+ =?utf-8?B?dkFzQlRSOFZoVDNXSUFIeS9DV3BOVksySHFNVHBMamVGUGFacTI3ckxTSU8v?=
+ =?utf-8?B?d0JGd0lNU0QrMW5McC9KWjYveG95M2lHanJUb3NKYitxb1lYZkRpM29RRlpy?=
+ =?utf-8?B?YmJkU1hlSUdqZEppRjhXdUl2ejI1SmRidzN1THlRaXV1OEFXSmhwdmFGaWs1?=
+ =?utf-8?B?UFJmUjlGOHZMNWxyeTV6SGV5VENVVjVQajNGRE1Tc0t3N2Z2dGo1UjJwdlBp?=
+ =?utf-8?B?QnpqZEo4em5vR0tDb0p0eFJkdTlrZG50QWNMU1RXQmJab2hka3JUcjVOZEd4?=
+ =?utf-8?B?QU1YakQycWdrUzNZYXl2cElqdmdNMFBJNjgvVlJrUnFiZzJkaUtDNnhPNWRC?=
+ =?utf-8?B?MUNOZ2UvR3QrRWZLN0V4amRjRjJiWTZZOG9SZlBLMDk2RTlJZ09WWkZzTmt6?=
+ =?utf-8?B?T0szR0k0SmFIYjdLZkx6dkU5TzkwUmFaQnNnb3FDRDg3bTJGdisxbU5qZ2Jv?=
+ =?utf-8?B?L040UkJ4WWZQNXllbjRFZ1kvYmg4TlhGY3dUWHlpQTdOTjlDY05YdERiNUxT?=
+ =?utf-8?B?TytpaUNxU2FhR0laemRtTXRwWTgzS1hYUFc5ejh4SFNuVlQ1YSs4RWd4Tk9Q?=
+ =?utf-8?B?eG1SSUhtQUxPR1hpclM1OGdRb3VOR0MxRzlrc2xIZkM4VzRBQmMzVTJuaERE?=
+ =?utf-8?B?VHd5ZFVmV1FOVktJdXF2ajg3bTBKSUlPWnNDMDRtZjZGUS9wa3N4UkdPT1NF?=
+ =?utf-8?B?WklmanlQQndyanlIbjMvS0NldHlwUG50WkphbGhaVGFYQ2VzanhFSXdiTkIz?=
+ =?utf-8?Q?jUiCErj9dUDk+FGeySDmHKnjiSwUWSoRa1Wu49m?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b170a110-85f4-404d-fc6f-08dc2fa6e16c
+X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB6959.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2024 10:54:57.4350
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR06MB4015
 
-On Saturday, February 17, 2024 15:50 IST, Krzysztof Kozlowski <krzyszto=
-f.kozlowski@linaro.org> wrote:
+On 2/17/2024 6:29 PM, Krzysztof Kozlowski wrote:
+> On 17/02/2024 11:24, Yang Xiwen wrote:
+>
+>>>> +
+>>>> +examples:
+>>>> +  - |
+>>>> +    #include <dt-bindings/clock/histb-clock.h>
+>>>> +
+>>>> +    peripheral-controller@8a20000 {
+>>>> +        compatible = "hisilicon,hi3798cv200-perictrl", "syscon", "simple-mfd";
+>>>> +        reg = <0x8a20000 0x1000>;
+>>>> +        #address-cells = <1>;
+>>>> +        #size-cells = <1>;
+>>>> +        ranges = <0x0 0x8a20000 0x1000>;
+>>> Drop the node, not related to this binding. If this binding is supposed
+>>> to be part of other device in case of MFD devices or some tightly
+>>> coupled ones, then could be included in the example there.
+>> For CV200, this binding is supposed to be always inside the perictrl
+>> device. The PHY address space are accessed from a bus implemented by
+>> perictrl.
+> Every node is supposes to be somewhere in something, so with this logic
+> you would start from soc@. What's wrong in putting it in parent schema?
 
-> On 17/02/2024 11:18, Shreeya Patel wrote:
-> > On Saturday, February 17, 2024 13:47 IST, Krzysztof Kozlowski <krzy=
-sztof.kozlowski@linaro.org> wrote:
-> >=20
-> >> On 16/02/2024 13:48, Shreeya Patel wrote:
-> >>> On Friday, February 16, 2024 15:33 IST, Krzysztof Kozlowski <krzy=
-sztof.kozlowski@linaro.org> wrote:
-> >>>
-> >>>> On 16/02/2024 10:49, Shreeya Patel wrote:
-> >>>>> Export hdmirx=5Fbiu soft reset id which is required by the hdmi=
-rx controller.
-> >>>>>
-> >>>>> Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
-> >>>>> ---
-> >>>>>  drivers/clk/rockchip/rst-rk3588.c               | 1 +
-> >>>>>  include/dt-bindings/reset/rockchip,rk3588-cru.h | 2 ++
-> >>>>
-> >>>> Please run scripts/checkpatch.pl and fix reported warnings. Some
-> >>>> warnings can be ignored, but the code here looks like it needs a=
- fix.
-> >>>> Feel free to get in touch if the warning is not clear.
-> >>>>
-> >>>> Please do internal review. The internal Collabora review would t=
-ell you:
-> >>>> YOU MUST run checkpatch. Then you see errors, so why do you send=
- patch
-> >>>> with errors to the mailing list?
-> >>>>
-> >>>
-> >>> I am sorry but what errors are you talking about?
-> >>> I don't see any errors reported by checkpatch :-
-> >>>
-> >>> shreeya@shreeya:~/collabora/rd/rockchip/torvalds$ ./scripts/check=
-patch.pl hdmirx/0001-clk-rockchip-rst-rk3588-Add-BIU-reset.patch
-> >>> WARNING: DT binding docs and includes should be a separate patch.=
- See: Documentation/devicetree/bindings/submitting-patches.rst
-> >>
-> >> Here.
-> >>
-> >>>
-> >>> total: 0 errors, 1 warnings, 13 lines checked
-> >>>
-> >>> NOTE: For some of the reported defects, checkpatch may be able to
-> >>>       mechanically convert to the typical style using --fix or --=
-fix-inplace.
-> >>>
-> >>> hdmirx-v1-1602/0001-clk-rockchip-rst-rk3588-Add-BIU-reset.patch h=
-as style problems, please review.
-> >>>
-> >>> I see the above warning but that looks like a false positive to m=
-e.
-> >>
-> >> Why for your patch it would be false positive and for all others w=
-ould not?
-> >>
-> >=20
-> > OK, now I see what you meant. Since we are touching the include fil=
-e and C file together, this warning was generated.
-> > It was a bit confusing to interpret this as the warning also talks =
-about Documentation which we didn't touch at all.
->=20
-> Really, no documentation touching? Care to check the full path of the
-> files you are changing?
->=20
+When the ports reg property only has an dummy address (no size), it must 
+be inside the perictrl node, accessed from the bus implemented by perictrl.
 
-Well, I meant the dt-binding doc for rst-rk3588
+But when the ports has its own MMIO address space (mv200), it should be 
+located under a simple-bus node instead.
 
->=20
-> >=20
-> > Anyway, I will create two separate patches for this in v2.
->=20
-> I think rules cannot be clearer:
-> https://elixir.bootlin.com/linux/v6.8-rc4/source/Documentation/device=
-tree/bindings/submitting-patches.rst#L13
->=20
+So it's either:
 
-right, it was my mistake and I think after this nice and kind feedback,=
- I'll never make the same one again :)
+perictrl@8a20000 {
 
-Thanks,
-Shreeya Patel
+     usb2-phy@120: {
 
->=20
+         reg = <0x120 0x4>; // this is the register that controls writes 
+and reads to the phy, implemented by perictrl. (just like SPI/I2C)
+
+         phy@0: {
+
+             reg = <0>; // the reg is used as an index
+
+         };
+
+     };
+
+};
+
+or:
+
+soc@0 {
+
+     usb2-phy@f9865000 { // MMIO
+
+         reg = <0xf9865000 0x1000>
+
+         port0@0 {
+
+             reg = <0x0 0x400>; // used as MMIO address space
+
+         };
+
+     };
+
+};
+
+So here is why i include perictrl node in the example. If the ports are 
+not mmio, the phy must be under a perictrl node. Or if the ports has its 
+own address space, it should not be under a perictrl node, but rather an 
+simple-bus node.
+
+>
 > Best regards,
 > Krzysztof
->=20
-> =5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
-=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F
-> Kernel mailing list -- kernel@mailman.collabora.com
-> To unsubscribe send an email to kernel-leave@mailman.collabora.com
-> This list is managed by https://mailman.collabora.com
+>
+
+-- 
+Regards,
+Yang Xiwen
 
 
