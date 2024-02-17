@@ -1,140 +1,146 @@
-Return-Path: <devicetree+bounces-43043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEBE485903B
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 16:01:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30904859033
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 15:56:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A32F21F21E73
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 15:01:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC74F282E7A
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 14:55:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC74B7C0A3;
-	Sat, 17 Feb 2024 15:01:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10F727C0B6;
+	Sat, 17 Feb 2024 14:55:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CtrUsh6b"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O/YHpuC2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 744257B3D0;
-	Sat, 17 Feb 2024 15:01:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCD617C0B1;
+	Sat, 17 Feb 2024 14:55:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708182084; cv=none; b=hX2EO9niyacKZhh6gwaZ6pGAYdt0ESrwSxWAkfvnQtF0kSeDIl7Q/g28VyKQhRQ8FATaVRdIFOhnMshjqShb3LnHy8851dr2dYFS0tjUXNnmx1goAhwq91umhXyOJqADk4FxoqTtWNb1ecOA+8uY2rLTYl7EYgxxPQukry8xmGU=
+	t=1708181721; cv=none; b=jecpJpKWBQGMv2uX0l4MbT/PR98VA8bwL/TRbosatgJ/r2l5yp8/HWI0Ja49vr8Cb+AwNFi/pWnFSkaiKHZV1vyXngEPSVy9ZKlyf5rxtUGmY3miO6SW4smo9r0YeuWrJmJTTTqGEKXC+jr4i2rFkLiWaX5sAyEuXq4Yy0mU9Yw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708182084; c=relaxed/simple;
-	bh=IojVOTkkmUgO8R4R5BC+JvxU3MusAnoRWz5cmE/Gqjc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ROUHKwGG1uS7o5CcSzRkLZJni/Ly4zwLMsv7lflI9CxMqQZ3sYR9gBye91pM3SE3A2QwVlai3F2nNnQgBRllIilkPVBUttQyxGOsRw/XlfsYNO+EyrRLwMuLA6MLRTrWT0j9MmzSyavFXQI/PAJaqKKCGF21+kJ2EI8IRfpDgv4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CtrUsh6b; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AD4EC433F1;
-	Sat, 17 Feb 2024 15:01:22 +0000 (UTC)
+	s=arc-20240116; t=1708181721; c=relaxed/simple;
+	bh=eicC/VhgBa2S/q5nFbRXbBaIGih0GgZsqXc1V3c08P4=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=aqNtn0VwSvOV6PJqk65loQH0z9F/1DL5Ns9TiljGwvB9TXkypBZNkEF+1OmZyyOpqE3nQg6tbQfZlNZ5IPr7tS9Yv6p6cZT+qpBAhALSmk8b+5Hu2JqoJ8cPb87klLM1q1ZFYrRpARGZONrOtLu6QEFeuZrdr0pTyo5PLKdTWx0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O/YHpuC2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36CFFC433C7;
+	Sat, 17 Feb 2024 14:55:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708182083;
-	bh=IojVOTkkmUgO8R4R5BC+JvxU3MusAnoRWz5cmE/Gqjc=;
-	h=From:To:Cc:Subject:Date:From;
-	b=CtrUsh6bwVqhdBGdyOuDk0xtJef3k8N8vCn7a3CH5JXonVHQxfPDLMFYZdVsQDVWk
-	 +bjGkaUhzstRRxhqn8KOlfclvoHzFFGzo67TuaoxpU8lmWHjta9QxHjyN8o/C3jf0y
-	 PjMVYo4N6IeVR9dOnA/e47OtlC4ClvurnxM7fFTS6D0nfUzgLPukjzTlGm1O7ag76A
-	 lhj0tWdeUNi2x9yXHIeHYzB/mKh4DraVWbyGjO4sUL83gBliNF7T4BXhGmXzHVrEli
-	 ZU4VJRgjOqQiF9rXK/MXwDUC8+TcX1EnGeGiIYuYkoK0ndebkMu2qVS/x4TZ/z42ey
-	 OkyO12z0GoLKQ==
-From: Jisheng Zhang <jszhang@kernel.org>
-To: Ulf Hansson <ulf.hansson@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Adrian Hunter <adrian.hunter@intel.com>
-Cc: linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH RFC] riscv: dts: sophgo: add sdcard support for milkv duo
-Date: Sat, 17 Feb 2024 22:48:26 +0800
-Message-ID: <20240217144826.3944-1-jszhang@kernel.org>
-X-Mailer: git-send-email 2.43.0
+	s=k20201202; t=1708181720;
+	bh=eicC/VhgBa2S/q5nFbRXbBaIGih0GgZsqXc1V3c08P4=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=O/YHpuC2kz2pEhoUuVZ2WKjf/xjV7sQJFEkPbfkWo1i3eGjc+4J2Z6xxmuQu6mfLE
+	 bLg8T3invvo9JBAw52oj3l5YsJFVyxAoFrJ7z6AZa6K3/2+O6tuvj8DyU133t/uOZE
+	 oks60FNg1cDNgZTuu9h4YQhQpDvesSAnrNwJi30mWjqXa2HZbM6KMBjB/FZP9N4QC6
+	 6tp5NLsoh2ANFl7NVO01G08vPZhr67O7xwx8rTZkPmIbjTBkQFQ2u3rFp544/fGkoT
+	 bastFFM9vBhTBNgI54dxvQG+9V9Vh+h23lguaXhQfqlDUET8p5uCHbZV+Gqakkh+9H
+	 kfJR1/9mxSzFg==
+Date: Sat, 17 Feb 2024 08:55:19 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: Rob Herring <robh@kernel.org>
+To: Steven Niu <steven.niu.uj@renesas.com>
+Cc: krzysztof.kozlowski+dt@linaro.org, zbigniew.lukwinski@linux.intel.com, 
+ linux-i3c@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, robh+dt@kernel.org, 
+ alexandre.belloni@bootlin.com, conor+dt@kernel.org
+In-Reply-To: <20240217131412.4145506-1-steven.niu.uj@renesas.com>
+References: <20240217131412.4145506-1-steven.niu.uj@renesas.com>
+Message-Id: <170818171799.2302911.16070158638236981943.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: i3c-hub: Add Renesas RG3MxxB12A1 I3C
+ HUB
 
-Add sdhci dt node in SoC dtsi and enable it in milkv duo dts.
 
-Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
----
-Since cv1800b's clk support isn't in, this patch uses fixed dummy clk
-and just RFC, I will send formal patch after clk support is ready.
+On Sat, 17 Feb 2024 21:14:11 +0800, Steven Niu wrote:
+> Document the Renesas RG3MxxB12A1 I3C HUB.
+> 
+> Signed-off-by: Steven Niu <steven.niu.uj@renesas.com>
+> ---
+>  .../devicetree/bindings/i3c/i3c-hub.yaml      | 400 ++++++++++++++++++
+>  1 file changed, 400 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i3c/i3c-hub.yaml
+> 
 
- .../riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts |  8 ++++++++
- arch/riscv/boot/dts/sophgo/cv18xx.dtsi          | 17 +++++++++++++++++
- 2 files changed, 25 insertions(+)
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-diff --git a/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts b/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
-index 3af9e34b3bc7..94e64ddce8fa 100644
---- a/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
-+++ b/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
-@@ -33,6 +33,14 @@ &osc {
- 	clock-frequency = <25000000>;
- };
- 
-+&sdhci0 {
-+	status = "okay";
-+	bus-width = <4>;
-+	no-1-8-v;
-+	no-mmc;
-+	no-sdio;
-+};
-+
- &uart0 {
- 	status = "okay";
- };
-diff --git a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
-index 2d6f4a4b1e58..405f4ba18392 100644
---- a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
-@@ -4,6 +4,7 @@
-  * Copyright (C) 2023 Inochi Amaoto <inochiama@outlook.com>
-  */
- 
-+#include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- 
- / {
-@@ -45,6 +46,13 @@ osc: oscillator {
- 		#clock-cells = <0>;
- 	};
- 
-+	sdhci_clk: sdhci-clock {
-+		compatible = "fixed-clock";
-+		clock-frequency = <375000000>;
-+		clock-output-names = "sdhci_clk";
-+		#clock-cells = <0>;
-+	};
-+
- 	soc {
- 		compatible = "simple-bus";
- 		interrupt-parent = <&plic>;
-@@ -175,6 +183,15 @@ uart4: serial@41c0000 {
- 			status = "disabled";
- 		};
- 
-+		sdhci0: mmc@4310000 {
-+			compatible = "sophgo,cv1800b-dwcmshc";
-+			reg = <0x4310000 0x1000>;
-+			interrupts = <36 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&sdhci_clk>;
-+			clock-names = "core";
-+			status = "disabled";
-+		};
-+
- 		plic: interrupt-controller@70000000 {
- 			reg = <0x70000000 0x4000000>;
- 			interrupts-extended = <&cpu0_intc 11>, <&cpu0_intc 9>;
--- 
-2.43.0
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/i3c-hub.yaml: id: missing type definition
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/i3c-hub.yaml: id-cp1: missing type definition
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/i3c-hub.yaml: target-reg: missing type definition
+Documentation/devicetree/bindings/i3c/i3c-hub.example.dts:18.28-60.11: Warning (unit_address_vs_reg): /example-0/i3c-master@d040000: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/i3c/i3c-hub.example.dts:22.19-59.13: Warning (unit_address_vs_reg): /example-0/i3c-master@d040000/hub@0,0: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/i3c/i3c-hub.example.dts:38.27-42.15: Warning (unit_address_vs_reg): /example-0/i3c-master@d040000/hub@0,0/target-port@0: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/i3c/i3c-hub.example.dts:43.27-50.15: Warning (unit_address_vs_reg): /example-0/i3c-master@d040000/hub@0,0/target-port@1: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/i3c/i3c-hub.example.dts:46.26-49.17: Warning (unit_address_vs_reg): /example-0/i3c-master@d040000/hub@0,0/target-port@1/backend@0,0: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/i3c/i3c-hub.example.dts:51.27-54.15: Warning (unit_address_vs_reg): /example-0/i3c-master@d040000/hub@0,0/target-port@2: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/i3c/i3c-hub.example.dts:55.27-58.15: Warning (unit_address_vs_reg): /example-0/i3c-master@d040000/hub@0,0/target-port@3: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/i3c/i3c-hub.example.dts:78.28-124.11: Warning (unit_address_vs_reg): /example-1/i3c-master@d040000: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/i3c/i3c-hub.example.dts:102.27-106.15: Warning (unit_address_vs_reg): /example-1/i3c-master@d040000/hub@70,3C000000100/target-port@0: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/i3c/i3c-hub.example.dts:107.27-114.15: Warning (unit_address_vs_reg): /example-1/i3c-master@d040000/hub@70,3C000000100/target-port@1: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/i3c/i3c-hub.example.dts:110.26-113.17: Warning (unit_address_vs_reg): /example-1/i3c-master@d040000/hub@70,3C000000100/target-port@1/backend@0,0: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/i3c/i3c-hub.example.dts:115.27-118.15: Warning (unit_address_vs_reg): /example-1/i3c-master@d040000/hub@70,3C000000100/target-port@2: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/i3c/i3c-hub.example.dts:119.27-122.15: Warning (unit_address_vs_reg): /example-1/i3c-master@d040000/hub@70,3C000000100/target-port@3: node has a unit name, but no reg or ranges property
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/i3c-hub.example.dtb: i3c-master@d040000: #address-cells:0:0: 3 was expected
+	from schema $id: http://devicetree.org/schemas/i3c/i3c.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/i3c-hub.example.dtb: i3c-master@d040000: hub@0,0: 'reg' is a required property
+	from schema $id: http://devicetree.org/schemas/i3c/i3c.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/i3c-hub.example.dtb: hub@0,0: $nodename:0: 'hub@0,0' does not match '^i3c-master@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/i3c/i3c-hub.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/i3c-hub.example.dtb: hub@0,0: '#address-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/i3c/i3c-hub.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/i3c-hub.example.dtb: hub@0,0: '#size-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/i3c/i3c-hub.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/i3c-hub.example.dtb: hub@0,0: target-port@0: 'compatible' is a required property
+	from schema $id: http://devicetree.org/schemas/i3c/i3c-hub.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/i3c-hub.example.dtb: hub@0,0: target-port@0: 'reg' is a required property
+	from schema $id: http://devicetree.org/schemas/i3c/i3c-hub.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/i3c-hub.example.dtb: hub@0,0: target-port@1: 'compatible' is a required property
+	from schema $id: http://devicetree.org/schemas/i3c/i3c-hub.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/i3c-hub.example.dtb: hub@0,0: target-port@1: 'reg' is a required property
+	from schema $id: http://devicetree.org/schemas/i3c/i3c-hub.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/i3c-hub.example.dtb: hub@0,0: target-port@2: 'compatible' is a required property
+	from schema $id: http://devicetree.org/schemas/i3c/i3c-hub.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/i3c-hub.example.dtb: hub@0,0: target-port@2: 'reg' is a required property
+	from schema $id: http://devicetree.org/schemas/i3c/i3c-hub.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/i3c-hub.example.dtb: hub@0,0: target-port@3: 'compatible' is a required property
+	from schema $id: http://devicetree.org/schemas/i3c/i3c-hub.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/i3c-hub.example.dtb: hub@0,0: target-port@3: 'reg' is a required property
+	from schema $id: http://devicetree.org/schemas/i3c/i3c-hub.yaml#
+Documentation/devicetree/bindings/i3c/i3c-hub.example.dtb: /example-0/i3c-master@d040000/hub@0,0/target-port@1/backend@0,0: failed to match any schema with compatible: ['slave-mqueue']
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/i3c-hub.example.dtb: i3c-master@d040000: #address-cells:0:0: 3 was expected
+	from schema $id: http://devicetree.org/schemas/i3c/i3c.yaml#
+Documentation/devicetree/bindings/i3c/i3c-hub.example.dtb: /example-1/i3c-master@d040000/hub@70,3C000000100/target-port@1/backend@0,0: failed to match any schema with compatible: ['slave-mqueue']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240217131412.4145506-1-steven.niu.uj@renesas.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
