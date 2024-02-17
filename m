@@ -1,92 +1,91 @@
-Return-Path: <devicetree+bounces-43084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 219F185931B
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 23:04:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B606685938C
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 00:11:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2DE21F21DA3
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 22:04:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C709B1C21136
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 23:11:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 405E28062A;
-	Sat, 17 Feb 2024 22:03:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51DF07FBC2;
+	Sat, 17 Feb 2024 23:11:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X8F7nG4p"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ldZBVex4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4874180619;
-	Sat, 17 Feb 2024 22:03:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6624B7F7F6;
+	Sat, 17 Feb 2024 23:11:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708207431; cv=none; b=inNEmacYaxZsyHCt7wgyWROPTbUJvrX5NwgU53sw+tmB1xpvRRYbavRFF8iMJI3gaqlKXSXeJ0GRYz1+vW1lf46WHNb6N2Xkeuzenw4SLxvMca4vBR1MoYNhnt1ZZO/+T7F05vJ7U3gx8GS+2d2E8rbPqNOS0fWBJ/+zJVXk7GU=
+	t=1708211510; cv=none; b=Hif5VlGJwidLGe5BmevWLK2Y6/T+BQayoe2I+7HXZepE97HOGNGoQEXkGR8Iih8gOF6AhZiPJtOhrCe8myvQUFxJcm3uRk/99mwD/Sm5VJvivOL0FIg7cjWJ61XhG7ZHWp1WnDmmV/vQ45Y2JX/7euXu+F5hWFaL7FAydpoDdr0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708207431; c=relaxed/simple;
-	bh=bJMbBwrT+WhkUJ3j7dNm7o0p5T2uQRQJ2CSbo+C+NWQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=KwN08UwrDDTTQRAIvCOIshElefS/BwqlQB+14sD8qyGUhQI3/7y6BNjeD/SoPrFRG14xPQl0xRdppgv70B4UZvdnYnGJjEK7QNwe081+tOxJ62BEQ+kAGrvtxp8F0BWERz620dMQGdI7TPhaUCU531FHYDF2Ghs65K3MiOj4X+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X8F7nG4p; arc=none smtp.client-ip=209.85.208.178
+	s=arc-20240116; t=1708211510; c=relaxed/simple;
+	bh=PuY7CoHelqqxMR2WY2gwHQsUwUn4HmGDxqITqw8g0+4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=aJeCbAdf5E8JvlYBR2Xpi0m7CGr6516S38yOWe+Mmzp+pPu+80o5hJ6XksX/6LaqpaVpqOAH6AVgb8qloCGx12yUkCKtpaiPgSdKzRBG5f756VnD4oy5f2JfQLS4zoRM4J26kJH6wgc9Cn1xIHMZMUp7DNDcNWNIChi8rqPbFQs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ldZBVex4; arc=none smtp.client-ip=209.85.167.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2d21cdbc85bso20164941fa.2;
-        Sat, 17 Feb 2024 14:03:49 -0800 (PST)
+Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-3c031776e0cso1468688b6e.0;
+        Sat, 17 Feb 2024 15:11:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708207427; x=1708812227; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1aApdOnqEiLTFDlM0DEkECZ6pJ/nXDPDXWmDBeJDbWs=;
-        b=X8F7nG4pAN6O1sdFAKgH+AaZZro9wdWTQpRnyj8smMzFfTgM9bJtV2GVNrk1y6cI/Y
-         CB3AINfNPrmYkgUI4dH6bBWKePFxhJnxGMkTHb4rGrb91meFJDdjk2io7+1GCHQ6hyKx
-         61BVg325hswiopee78kCrUmxYfkGJMXkduZ0BXcVZDzaK58izk6hoq1p08iiQorTJUh7
-         /jTEg72C8cQtsSC6EbApQOsGXUxzjHe+ch5v6Zaf6pDftcH35Guloj+Pxbe9YIsK6RV2
-         uEqm/QWdFPGMignw1fLezn9AT2YckGvrs8iY43lcQazEmTu2Vpst5aOZHcU2fUo5qlIv
-         wsjg==
+        d=gmail.com; s=20230601; t=1708211506; x=1708816306; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UTpDENxTy13x+lQaGg96zVTVcyV5n3Aze00u7CsdzkA=;
+        b=ldZBVex4xOVTGVHt8Z4VWYxNKFpqcGvpDqBm4aDLFeMx3aQ5gW3ehPML6Dt8n1UgGA
+         /I4LGRwgKgNaCSlt9EocLzq96dqkh0VgK7pLr7Yr/4G4BTS/kba3mlJ8ivFYK4x/epY7
+         YZ5YuFaap743pt0Hm0r9L0yKeur3pKoc9/VgsKR81C3MKCRpv/qaNLplTaOUF7ATcvI5
+         rDYKLxXgIptyhZ37gO4Keq9gZ6gMHuAmUyJq3vZHVA3ih69ClYQv53qMiFJ2mbpQRHJ2
+         /x0fnmDRElJECGwJjXvSOLgicK/9a/5GTWqsf8XPTF26Jf4ZSZeqeygTvxkUpy22iT3W
+         FihA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708207427; x=1708812227;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1aApdOnqEiLTFDlM0DEkECZ6pJ/nXDPDXWmDBeJDbWs=;
-        b=sMBm9hBXc1R9+3/b51ECe6nDk01mXjy9P78gz+F/IHNRhTETbSApoeW3we1cMwSdqI
-         c/VBR7mJOlvVHePrdkDZP9QvD2CNMtF5oh+fQzEg4RzC39C49pBB21hMU7XoZW1rAb0l
-         n15Apltil49JHMLqYYe92LoBBft/K93kco2+fzfbMB02yjG0FpRPUyowY7vbv/8CiHm9
-         6YPDRRk++WN8qxKikxbhB6ouCJ6l/SonODhz4F8IFwwhjfDsPOzIk18eEnqqiwCktqO9
-         qLqZoEAkdbXbw+1GJivdB8SVrPicViCwf3bmtJ01rDMQv/lBN+AiovjYCjomHngvvarL
-         /i9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUI0D8sRW6AuV0kh+Tm+44bfNrydMumBI+caOXzi+9SwIqUBAjmpEpFsPvFnLKGAYLhp6OhQ27lSP9384b1shtDFXbG2otybZGsiKwVOWI8sHnybckKakPJu2x4YDZCqWdHbv3BYpiEKYviBjObNyz9UTz3SZkrnOqkExqkZkthAWdtxpVW
-X-Gm-Message-State: AOJu0YyQ0X0HVPbelpc/pkR2h6gIruaRgQWDOFlxRnRE4V6mbN+QEeMh
-	acdNO3N3OZb2umuWfLJzNzb7nW/x3yMD7VKQ5q+Ahpv5cIsJf5u1
-X-Google-Smtp-Source: AGHT+IHCMtS6+6PY3+RlRsAimgdxCMlkqh+ql4ZMQZgYBOGjXLhDbbfZ95KmDdtHrQy8+heZyfcoQg==
-X-Received: by 2002:a05:6512:3450:b0:512:9dee:44fe with SMTP id j16-20020a056512345000b005129dee44femr1911524lfr.26.1708207426996;
-        Sat, 17 Feb 2024 14:03:46 -0800 (PST)
-Received: from localhost.localdomain ([2a05:3580:f312:6c01:1b8f:2a1b:d18:1951])
-        by smtp.gmail.com with ESMTPSA id p19-20020a056512313300b00511936e2d61sm363836lfd.56.2024.02.17.14.03.46
+        d=1e100.net; s=20230601; t=1708211506; x=1708816306;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UTpDENxTy13x+lQaGg96zVTVcyV5n3Aze00u7CsdzkA=;
+        b=nnkSiiKJBEOoOp06390xSP0xAJe5tKU5xBzlmJRbVqRzTj27HLHN7r2xxF/OggcJW3
+         elpGs7IBnwpDlGd5HPwDOv7CdoUYQnE8HeM6NuPavLHirg7doXYWj3J1Rjw9X/l6loEe
+         bSTqE4TUdvhTrMC57oYlnmTd+YtfpVr8wIdrLImvbBJIwvza7TYRuLcasDU22S7UyU0q
+         muTjR0vHP81l38p5j9cfeddFYiznZsDvnanUnHiLFNd9xRbS2aAVBL6GTIokbl8FbtZz
+         ghTVj26MbFx4RdfzXYHRH1Y+6GgeD8YjYzoTRw+FTl3Wr1mL2KFevbcNhj4AKUibHhcW
+         sdWw==
+X-Forwarded-Encrypted: i=1; AJvYcCWJ5jgFo5El8BxCBSm7o+WjrO/QS+fdMM4Pk0LhsNK2/x34mMaZ0vH/8xtVKKjXrcGANr1wqj7lLtwl3UyYJDnr/lAiLE4Itnel6NSX5aUEdklOZPmaYLyfizyrqcOsa5Lxd+z+OszCqFxq9B/2m8E/WQBJdlQG1ltwF3EiVnNve9uocUc=
+X-Gm-Message-State: AOJu0Yy4K1dsML1EqPkOZmX2Ekv11MdcOMMsC86eCjQ8eyNa6UnFUWx4
+	2dNpRqAH7U9DAYnLeQ+4I5Qlvpqe9ELRoNSYOOt4l1x5ueJp3MLN
+X-Google-Smtp-Source: AGHT+IH3xtn5XaR26I2MvrkXUFytQJ/WmPbjn4uLt2QfC/qqbLozRjGEDlCdRW6MKpu235MF0H5fQw==
+X-Received: by 2002:a05:6808:2e87:b0:3c1:41fc:d012 with SMTP id gt7-20020a0568082e8700b003c141fcd012mr7150189oib.34.1708211506366;
+        Sat, 17 Feb 2024 15:11:46 -0800 (PST)
+Received: from localhost.localdomain ([174.95.13.129])
+        by smtp.gmail.com with ESMTPSA id lu8-20020a0562145a0800b0068cc837fa1asm1503506qvb.53.2024.02.17.15.11.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Feb 2024 14:03:46 -0800 (PST)
-From: Andrey Skvortsov <andrej.skvortzov@gmail.com>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Alain Volmat <alain.volmat@foss.st.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Sat, 17 Feb 2024 15:11:45 -0800 (PST)
+From: Abdel Alkuor <alkuor@gmail.com>
+To: Pavel Machek <pavel@ucw.cz>,
+	Lee Jones <lee@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-media@vger.kernel.org,
+	Abdel Alkuor <alkuor@gmail.com>,
+	=?UTF-8?q?Andr=C3=A9=20Apitzsch?= <git@apitzsch.eu>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+	ChiYuan Huang <cy_huang@richtek.com>,
+	Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+	Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+Cc: ChiaEn Wu <chiaen_wu@richtek.com>,
+	Alice Chen <alice_chen@richtek.com>,
+	linux-leds@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Cc: =?UTF-8?q?Ond=C5=99ej=20Jirman?= <megi@xff.cz>,
-	Pavel Machek <pavel@ucw.cz>,
-	Arnaud Ferraris <arnaud.ferraris@collabora.com>,
-	Andrey Skvortsov <andrej.skvortzov@gmail.com>
-Subject: [PATCH 2/2] media: gc2145: implement basic dvp bus support
-Date: Sun, 18 Feb 2024 01:03:08 +0300
-Message-ID: <20240217220308.594883-3-andrej.skvortzov@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240217220308.594883-1-andrej.skvortzov@gmail.com>
-References: <20240217220308.594883-1-andrej.skvortzov@gmail.com>
+Subject: [PATCH v2 1/2] dt-bindings: leds: Add NCP5623 multi-LED Controller
+Date: Sat, 17 Feb 2024 18:09:19 -0500
+Message-Id: <20240217230956.630522-1-alkuor@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,208 +94,125 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Tested on PinePhone with libcamera-based GNOME screenshot.
+NCP5623 is DC-DC multi-LED controller which can be used for RGB
+illumination or backlight LCD display.
 
-Signed-off-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
+Signed-off-by: Abdel Alkuor <alkuor@gmail.com>
 ---
- drivers/media/i2c/gc2145.c | 117 ++++++++++++++++++++++++++++---------
- 1 file changed, 90 insertions(+), 27 deletions(-)
+Changes in v2:
+ - Fix commit subject prefix
+ - drop | from the main description
+ - Use const in address reg
+ - Remove LEDs reg description
+ - Link to v1: https://lore.kernel.org/linux-kernel/20240208130115.GM689448@google.com/T/
 
-diff --git a/drivers/media/i2c/gc2145.c b/drivers/media/i2c/gc2145.c
-index bef7b0e056a8..9a70b8d504e1 100644
---- a/drivers/media/i2c/gc2145.c
-+++ b/drivers/media/i2c/gc2145.c
-@@ -39,6 +39,10 @@
- #define GC2145_REG_ANALOG_MODE1	CCI_REG8(0x17)
- #define GC2145_REG_OUTPUT_FMT	CCI_REG8(0x84)
- #define GC2145_REG_SYNC_MODE	CCI_REG8(0x86)
-+#define GC2145_SYNC_MODE_VSYNC_POL	BIT(0)
-+#define GC2145_SYNC_MODE_HSYNC_POL	BIT(1)
-+#define GC2145_SYNC_MODE_OPCLK_POL	BIT(2)
-+#define GC2145_SYNC_MODE_OPCLK_GATE	BIT(3)
- #define GC2145_SYNC_MODE_COL_SWITCH	BIT(4)
- #define GC2145_SYNC_MODE_ROW_SWITCH	BIT(5)
- #define GC2145_REG_BYPASS_MODE	CCI_REG8(0x89)
-@@ -53,6 +57,12 @@
- #define GC2145_REG_GLOBAL_GAIN	CCI_REG8(0xb0)
- #define GC2145_REG_CHIP_ID	CCI_REG16(0xf0)
- #define GC2145_REG_PAD_IO	CCI_REG8(0xf2)
-+#define GC2145_REG_PLL_MODE1	CCI_REG8(0xf7)
-+#define GC2145_REG_PLL_MODE2	CCI_REG8(0xf8)
-+#define GC2145_REG_CM_MODE	CCI_REG8(0xf9)
-+#define GC2145_REG_CLK_DIV_MODE	CCI_REG8(0xfa)
-+#define GC2145_REG_ANALOG_PWC	CCI_REG8(0xfc)
-+#define GC2145_REG_PAD_IO	CCI_REG8(0xf2)
- #define GC2145_REG_PAGE_SELECT	CCI_REG8(0xfe)
- /* Page 3 */
- #define GC2145_REG_DPHY_ANALOG_MODE1	CCI_REG8(0x01)
-@@ -598,6 +608,7 @@ struct gc2145 {
- 	struct v4l2_subdev sd;
- 	struct media_pad pad;
- 
-+	struct v4l2_fwnode_endpoint ep; /* the parsed DT endpoint info */
- 	struct regmap *regmap;
- 	struct clk *xclk;
- 
-@@ -612,6 +623,11 @@ struct gc2145 {
- 	const struct gc2145_mode *mode;
- };
- 
-+static inline bool gc2145_is_csi2(const struct gc2145 *gc2145)
-+{
-+	return gc2145->ep.bus_type == V4L2_MBUS_CSI2_DPHY;
-+}
+ .../bindings/leds/onnn,ncp5623.yaml           | 96 +++++++++++++++++++
+ 1 file changed, 96 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/onnn,ncp5623.yaml
+
+diff --git a/Documentation/devicetree/bindings/leds/onnn,ncp5623.yaml b/Documentation/devicetree/bindings/leds/onnn,ncp5623.yaml
+new file mode 100644
+index 000000000000..9c9f3a682ba2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/onnn,ncp5623.yaml
+@@ -0,0 +1,96 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/onnn,ncp5623.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- static inline struct gc2145 *to_gc2145(struct v4l2_subdev *_sd)
- {
- 	return container_of(_sd, struct gc2145, sd);
-@@ -773,6 +789,38 @@ static int gc2145_set_pad_format(struct v4l2_subdev *sd,
- 	return 0;
- }
- 
-+static int gc2145_config_dvp_mode(struct gc2145 *gc2145,
-+				   const struct gc2145_format *gc2145_format)
-+{
-+	int ret = 0;
-+	u64 sync_mode;
-+	int flags;
++title: ON Semiconductor NCP5623 multi-LED Driver
 +
-+	flags = gc2145->ep.bus.parallel.flags;
++maintainers:
++  - Abdel Alkuor <alkuor@gmail.com>
 +
-+	ret = cci_read(gc2145->regmap, GC2145_REG_SYNC_MODE, &sync_mode, NULL);
-+	if (ret)
-+		return ret;
++description:
++  NCP5623 Triple Output I2C Controlled LED Driver.
++  https://www.onsemi.com/pdf/datasheet/ncp5623-d.pdf
 +
-+	sync_mode &= ~(GC2145_SYNC_MODE_VSYNC_POL |
-+		       GC2145_SYNC_MODE_HSYNC_POL |
-+		       GC2145_SYNC_MODE_OPCLK_POL);
++properties:
++  compatible:
++    enum:
++      - onnn,ncp5623
 +
-+	if (flags & V4L2_MBUS_VSYNC_ACTIVE_LOW)
-+		sync_mode |= GC2145_SYNC_MODE_VSYNC_POL;
++  reg:
++    const: 0x38
 +
-+	if (flags & V4L2_MBUS_HSYNC_ACTIVE_LOW)
-+		sync_mode |= GC2145_SYNC_MODE_HSYNC_POL;
++  multi-led:
++    type: object
++    $ref: leds-class-multicolor.yaml#
++    unevaluatedProperties: false
 +
-+	if (flags & V4L2_MBUS_PCLK_SAMPLE_FALLING)
-+		sync_mode |= GC2145_SYNC_MODE_OPCLK_POL;
++    properties:
++      "#address-cells":
++        const: 1
 +
-+	cci_write(gc2145->regmap, GC2145_REG_SYNC_MODE, sync_mode, &ret);
-+	cci_write(gc2145->regmap, GC2145_REG_PAD_IO, 0x0f, &ret);
++      "#size-cells":
++        const: 0
 +
-+	return ret;
-+}
++    patternProperties:
++      "^led@[0-2]$":
++        type: object
++        $ref: common.yaml#
++        unevaluatedProperties: false
 +
- static const struct cci_reg_sequence gc2145_common_mipi_regs[] = {
- 	{GC2145_REG_PAGE_SELECT, 0x03},
- 	{GC2145_REG_DPHY_ANALOG_MODE1, GC2145_DPHY_MODE_PHY_CLK_EN |
-@@ -895,10 +943,13 @@ static int gc2145_start_streaming(struct gc2145 *gc2145,
- 		goto err_rpm_put;
- 	}
- 
--	/* Perform MIPI specific configuration */
--	ret = gc2145_config_mipi_mode(gc2145, gc2145_format);
-+	/* Perform interface specific configuration */
-+	if (gc2145_is_csi2(gc2145))
-+		ret = gc2145_config_mipi_mode(gc2145, gc2145_format);
-+	else
-+		ret = gc2145_config_dvp_mode(gc2145, gc2145_format);
- 	if (ret) {
--		dev_err(&client->dev, "%s failed to write mipi conf\n",
-+		dev_err(&client->dev, "%s failed to write interface conf\n",
- 			__func__);
- 		goto err_rpm_put;
- 	}
-@@ -924,6 +975,9 @@ static void gc2145_stop_streaming(struct gc2145 *gc2145)
- 			GC2145_CSI2_MODE_EN | GC2145_CSI2_MODE_MIPI_EN, 0,
- 			&ret);
- 	cci_write(gc2145->regmap, GC2145_REG_PAGE_SELECT, 0x00, &ret);
++        properties:
++          reg:
++            minimum: 0
++            maximum: 2
 +
-+	/* Disable dvp streaming */
-+	cci_write(gc2145->regmap, GC2145_REG_PAD_IO, 0x00, &ret);
- 	if (ret)
- 		dev_err(&client->dev, "%s failed to write regs\n", __func__);
- 
-@@ -1233,9 +1287,8 @@ static int gc2145_init_controls(struct gc2145 *gc2145)
- static int gc2145_check_hwcfg(struct device *dev)
- {
- 	struct fwnode_handle *endpoint;
--	struct v4l2_fwnode_endpoint ep_cfg = {
--		.bus_type = V4L2_MBUS_CSI2_DPHY
--	};
-+	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-+	struct gc2145 *gc2145 = to_gc2145(sd);
- 	int ret;
- 
- 	endpoint = fwnode_graph_get_next_endpoint(dev_fwnode(dev), NULL);
-@@ -1244,36 +1297,46 @@ static int gc2145_check_hwcfg(struct device *dev)
- 		return -EINVAL;
- 	}
- 
--	ret = v4l2_fwnode_endpoint_alloc_parse(endpoint, &ep_cfg);
-+	ret = v4l2_fwnode_endpoint_parse(endpoint, &gc2145->ep);
- 	fwnode_handle_put(endpoint);
- 	if (ret)
- 		return ret;
- 
--	/* Check the number of MIPI CSI2 data lanes */
--	if (ep_cfg.bus.mipi_csi2.num_data_lanes != 2) {
--		dev_err(dev, "only 2 data lanes are currently supported\n");
--		ret = -EINVAL;
--		goto out;
--	}
-+	switch (gc2145->ep.bus_type) {
-+	case V4L2_MBUS_CSI2_DPHY:
-+		/* Check the link frequency set in device tree */
-+		if (!gc2145->ep.nr_of_link_frequencies) {
-+			dev_err(dev, "link-frequencies property not found in DT\n");
-+			ret = -EINVAL;
-+			goto out;
-+		}
++        required:
++          - reg
++          - color
 +
-+		/* Check the number of MIPI CSI2 data lanes */
-+		if (gc2145->ep.bus.mipi_csi2.num_data_lanes != 2) {
-+			dev_err(dev, "only 2 data lanes are currently supported\n");
-+			ret = -EINVAL;
-+			goto out;
-+		}
++    required:
++      - "#address-cells"
++      - "#size-cells"
 +
-+		if (gc2145->ep.nr_of_link_frequencies != 3 ||
-+			gc2145->ep.link_frequencies[0] != GC2145_640_480_LINKFREQ ||
-+			gc2145->ep.link_frequencies[1] != GC2145_1280_720_LINKFREQ ||
-+			gc2145->ep.link_frequencies[2] != GC2145_1600_1200_LINKFREQ) {
-+			dev_err(dev, "Invalid link-frequencies provided\n");
-+			ret = -EINVAL;
-+			goto out;
-+		}
-+		break;
- 
--	/* Check the link frequency set in device tree */
--	if (!ep_cfg.nr_of_link_frequencies) {
--		dev_err(dev, "link-frequency property not found in DT\n");
-+	case V4L2_MBUS_PARALLEL:
-+		break;
-+	default:
-+		dev_err(dev, "unsupported bus type %u\n",
-+			gc2145->ep.bus_type);
- 		ret = -EINVAL;
- 		goto out;
- 	}
--
--	if (ep_cfg.nr_of_link_frequencies != 3 ||
--	    ep_cfg.link_frequencies[0] != GC2145_640_480_LINKFREQ ||
--	    ep_cfg.link_frequencies[1] != GC2145_1280_720_LINKFREQ ||
--	    ep_cfg.link_frequencies[2] != GC2145_1600_1200_LINKFREQ) {
--		dev_err(dev, "Invalid link-frequencies provided\n");
--		ret = -EINVAL;
--	}
--
- out:
--	v4l2_fwnode_endpoint_free(&ep_cfg);
--
- 	return ret;
- }
- 
++required:
++  - compatible
++  - reg
++  - multi-led
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/leds/common.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        led-controller@38 {
++            compatible = "onnn,ncp5623";
++            reg = <0x38>;
++
++            multi-led {
++                color = <LED_COLOR_ID_RGB>;
++
++                #address-cells = <1>;
++                #size-cells = <0>;
++
++                led@0 {
++                    reg = <0>;
++                    color = <LED_COLOR_ID_RED>;
++                };
++
++                led@1 {
++                    reg = <1>;
++                    color = <LED_COLOR_ID_GREEN>;
++                };
++
++                led@2 {
++                    reg = <2>;
++                    color = <LED_COLOR_ID_BLUE>;
++                };
++            };
++        };
++    };
 -- 
-2.43.0
+2.34.1
 
 
