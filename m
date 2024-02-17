@@ -1,247 +1,215 @@
-Return-Path: <devicetree+bounces-42925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42926-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63513858C70
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 02:06:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 858A2858C76
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 02:07:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1AA7E280DBD
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 01:06:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 08CA51F215A4
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 01:07:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 358A51C691;
-	Sat, 17 Feb 2024 00:59:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF639149DE8;
+	Sat, 17 Feb 2024 01:01:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="0ERtyIzF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q+TJZHRZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 700463C482
-	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 00:59:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF0C71CA8A
+	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 01:01:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708131549; cv=none; b=GjmxDs1oM6N1axdGtO71A4An6LuXobzOEfgX3avOi7gEPY4+S2wRA3XB0NN6jjiVnyIOZIC/Q/iGOTsdW08fKX6pp+xAj1Dl57B48+JXMkkhbUtuyn7Lrvq5PwPgKOZfF9EfYN3/Mgmpow9XjceGCM858Fw+PXdRLwuY82OwR1I=
+	t=1708131703; cv=none; b=Rj5PVPbEPOYQIAAq6G+pKRx5f2qtU+sZau3sBeZ12DJlwtysRmJuJH76B22Z4EN01XJXIMCnMA6fqY21VqvcHdNdE81ZU+qzuqkogOI/uKjOnen4OxxIJNFaJWsUFEXJjioCvrwb1pX3XgEnUDTPZN9QrKJkasxL2aRR1kOSK7M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708131549; c=relaxed/simple;
-	bh=osmo9iVSqMNbUFvao8pXhJqFdDiZLR1ciOsr86k36JI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=KHNr+7k8PSChRNtAGfhh17Px1VQoAm8EIGw00yz9rwjHfXIqDX0egFsMSup2PQwKEvnP91RZdbyHFOs7ehIpxODUGbqQtZFUq+xThna0cgDWo+BkiKfb3w/qKUkO1wlh2hBBlG+qQgxmpUot6P/5L5zscuzlX0xhvlGct91pEqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=0ERtyIzF; arc=none smtp.client-ip=209.85.166.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-io1-f43.google.com with SMTP id ca18e2360f4ac-7c4949a366fso95698139f.1
-        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 16:59:07 -0800 (PST)
+	s=arc-20240116; t=1708131703; c=relaxed/simple;
+	bh=3fOi1RpEFfGtHQFy2nY0FxbZDHwiclU4pVgSPHtzLqc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=r/CHQ8ltI7bWoFCMvVY0TlqGEq9ED4eBb+OVlXHRERmWinbzAyKyeTD5rqNM/OxnSHsrant6sEMHS6caGYL56ngr6eowpP355EsxLpdT0n1jbi4kiBfqvcMNUz3BKm5d07CH6Ta+xFo8svQWTV8q/dJfxzYBZ2V3Dxeo1BSi/Ek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q+TJZHRZ; arc=none smtp.client-ip=209.85.128.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-6080a3eecd4so5360057b3.2
+        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 17:01:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1708131546; x=1708736346; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Lkx6F3sDxrDVxzkfg/gwx98H53iZQ+xAtDorLNCTdGY=;
-        b=0ERtyIzFowQI/dqyFP48mX8Em31tjyRQilNnwthZnKVNBW5mdFHRbsqs2A7Hy8NxLF
-         PFhY/0fzaKLikY1tDpg24eiGYWHI37XE+BFuZQTFvNjw4BaCDjG1wKlZu0R8ljsHVWg8
-         rXw2v092r5WtQ5iVP9F0yccNVhtDkIxef62dRmY7O7VfEL8ZnyzCb+KtfqqSqLEtEHsa
-         X10ILu2ropeNaiOOyarjWBQqKiRsJsLvjGysWKeYLkf7qylVYvukl67+hO9jW6pRXbMo
-         E1dLqmL6a8c8G+w1KVtIDWzH1BWNwmYtHNpjIJU8wxJoTnXjgfY3LWy+9ZEOp16ISWG0
-         V1VQ==
+        d=linaro.org; s=google; t=1708131701; x=1708736501; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=HT931xXHpjEVVCsIg8ym8dsdNr3qjjA3Pmduj1s/d8k=;
+        b=q+TJZHRZVcjXo2+Ctqgxz+iV99kkYlBizvXr9x1eSwvJhHxcx675kKrCPUIkPDieWx
+         lDrnBbNXXY1Q6YHTAEg/ahkU5oUltX07dxpeWfrdowocayoYkvYMSSlJBhn4MDwOnVHk
+         jLpGlZ29m3f6+qTZHqNY8hjD2906b9WVKXkSED03owyUgdY5w5tKH5OeQuX2csG4nryZ
+         K5LuEkuSyr9fbUBAAQ+pXFl5ARaqqlQr3lr4iaw7EZwH6LF4en4kasOlh6xpt3OFaaXv
+         Ub/55xseomWQnyEXlW3o6VoV8pZUVxgQo5uAF7q9PL5lLbgJ+I40kG8cOwVfj9qhxIEZ
+         HrSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708131546; x=1708736346;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Lkx6F3sDxrDVxzkfg/gwx98H53iZQ+xAtDorLNCTdGY=;
-        b=iucQ6a/GoVf7KXvlpM2+dF2UiMH4GFWDwT9ybtOv2lRicVjl9oaBABUDv3qF/oV07l
-         yENRrwrYwX5MCRIb/Y2EfisPVkVjW+jknL/HLJ49IfyZJwxwgIZtFQ0iUzOXs3E9LhuB
-         eBZfmbTAhp0UUr/wO4xBxAufwvFx1JFFeXhf4/rRskySL3EFtoaqIxeYHi2MQxlTbbQx
-         8ePtkTwCeu372XPPDq8kDKJZrklLiWTx+S0Qvi/StvGUs/b20RBu5kjXrLlED+BRHEVS
-         pn0xgLQkYUs1fKrnL8LoZHRNMk2LKOTjx/fs4ddy7C7G6AqlPZe2HvICAomYvyoZbBLx
-         nqwg==
-X-Forwarded-Encrypted: i=1; AJvYcCXE9W2ZYqhg96XZkjVweCbnC0ZJyX9uKzdFLyVvhcOC7mjNZUy3BmcqsMRNha57z/cQyL4UZJDe79EIY6sPh5BBTIcSKpq8ryv56w==
-X-Gm-Message-State: AOJu0YzlT5Wdhu2+N8W9NGuOOY/OCPUwV/ozPFgecetz4HeYDROXdX8u
-	Zvh0zQ8HbZUunqZtxOTU365YPHIylqauth/1tgLcMWZAq1QwUMfCEQ4YTrnZ/lU=
-X-Google-Smtp-Source: AGHT+IEe3ejDyxspMJxarQru2mpOZGVU3gTQalogFZ4IV/qmTtJpwp0XG9IR02+mun9kkUrwLV3/Rw==
-X-Received: by 2002:a05:6602:2766:b0:7c4:9618:5fcb with SMTP id l6-20020a056602276600b007c496185fcbmr7195778ioe.8.1708131546705;
-        Fri, 16 Feb 2024 16:59:06 -0800 (PST)
-Received: from atishp.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id d188-20020a6336c5000000b005dc89957e06sm487655pga.71.2024.02.16.16.59.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Feb 2024 16:59:06 -0800 (PST)
-From: Atish Patra <atishp@rivosinc.com>
-To: linux-kernel@vger.kernel.org
-Cc: Atish Patra <atishp@rivosinc.com>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Alexandre Ghiti <alexghiti@rivosinc.com>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Anup Patel <anup@brainfault.org>,
-	Arnaldo Carvalho de Melo <acme@kernel.org>,
-	Atish Patra <atishp@atishpatra.org>,
-	Christian Brauner <brauner@kernel.org>,
-	=?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>,
-	Conor Dooley <conor@kernel.org>,
-	devicetree@vger.kernel.org,
-	Evan Green <evan@rivosinc.com>,
-	Guo Ren <guoren@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Ian Rogers <irogers@google.com>,
-	Ingo Molnar <mingo@redhat.com>,
-	James Clark <james.clark@arm.com>,
-	Jing Zhang <renyu.zj@linux.alibaba.com>,
-	Jiri Olsa <jolsa@kernel.org>,
-	Ji Sheng Teoh <jisheng.teoh@starfivetech.com>,
-	John Garry <john.g.garry@oracle.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Kan Liang <kan.liang@linux.intel.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	kvm-riscv@lists.infradead.org,
-	kvm@vger.kernel.org,
-	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
-	linux-doc@vger.kernel.org,
-	linux-perf-users@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	Mark Rutland <mark.rutland@arm.com>,
-	Namhyung Kim <namhyung@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Weilin Wang <weilin.wang@intel.com>,
-	Will Deacon <will@kernel.org>,
-	kaiwenxue1@gmail.com,
-	Yang Jihong <yangjihong1@huawei.com>
-Subject: [PATCH RFC 20/20] tools/perf: Detect if platform supports counter delegation
-Date: Fri, 16 Feb 2024 16:57:38 -0800
-Message-Id: <20240217005738.3744121-21-atishp@rivosinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240217005738.3744121-1-atishp@rivosinc.com>
-References: <20240217005738.3744121-1-atishp@rivosinc.com>
+        d=1e100.net; s=20230601; t=1708131701; x=1708736501;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HT931xXHpjEVVCsIg8ym8dsdNr3qjjA3Pmduj1s/d8k=;
+        b=VT3wYLnHPd+GgaG9wfNEwipTtoLKDMuzqb2Es3DySY39EwiUV3FG/HPQNo5fkw7B5F
+         KgKoKUcy4ozX7WuRYC4PcS7Sy+yoDgYraUkwvMTbCWoy8ql+kB7cKCkNFZIW7VVblm/8
+         t6C6LrjQR7Gz9OhT993/DN7JghnWEsTscmZ7KD/0yjyjGSrRE+SDhhIq3e9jcDKYYCqF
+         yasdPA6AkfgmmOEP9bk/ihB0jSe7+OiIL/ke6F+w5OmHRHvUHDn6q2J5reRdkHKPD04G
+         RMakwNSt5jKlZ1moyYN9p2IWf+yRm6Vf89HDCt/HsOFX/KJkkYNsqk3+xmlcgWGKJVkj
+         W1aQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXFxEuQaZSYw+4h/Scu8r5pgdU7cd4W6r0+W/k2yQ8e9LHtVk7kVCsuRINYfruNht+h2yIzRjNYzkbY72SeviQl5daXGmPR6Ru3pw==
+X-Gm-Message-State: AOJu0YzSRuJfszVALED5JccjN8qqEDEG9QtR6EayC1gtkB4SQHzyuSXi
+	0hneensHUslpRPAtN14Ok2q+ySdFns5SSn+pDEeta9XLSU0uhvORk4xF19WYHBH7iPcYMgR3I+F
+	w0Hm5AAmAdwyJksIxZGLWGFJkCRUNx1FkaMnaoQ==
+X-Google-Smtp-Source: AGHT+IFV8GlXxO0L+LPYuQ2jPN3/yZ2gKgHdpBVfLSqkAI6BM+J5M3u4PlGgMObe5C5CeFXhA6U4RiwdZf6XK1XP/os=
+X-Received: by 2002:a81:7b43:0:b0:605:a557:6b47 with SMTP id
+ w64-20020a817b43000000b00605a5576b47mr6835757ywc.12.1708131700957; Fri, 16
+ Feb 2024 17:01:40 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240213082724.1789096-1-quic_kriskura@quicinc.com>
+ <20240213082724.1789096-3-quic_kriskura@quicinc.com> <efbd57e8-6cbb-480e-b2d5-1d064a27b3a4@linaro.org>
+ <mko2tdjrc4fbpbuig7o4jbznzxr7y6fsw42synu6yur4qzjgtt@nd7eyojiruvd>
+ <1a033944-9361-4576-8807-35a68c1e8548@linaro.org> <bwy4gpmhjkrumow6yjas6rww3eqzjheondafoenyvh3ugsp7oo@6jlpt5cx6zty>
+In-Reply-To: <bwy4gpmhjkrumow6yjas6rww3eqzjheondafoenyvh3ugsp7oo@6jlpt5cx6zty>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Sat, 17 Feb 2024 03:01:29 +0200
+Message-ID: <CAA8EJppf+j6H8vPOrer1Oj6SuM=qHKXoBahtCaCr7an-cbpyOQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sa8295p: Enable tertiary
+ controller and its 4 USB ports
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Krishna Kurapati <quic_kriskura@quicinc.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, quic_ppratap@quicinc.com, 
+	quic_jackp@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 
-The perf tool currently remap the standard events to the encoding
-specified by the platform in the json file. We need that only if
-the counter delegation extension is present. Otherwise, SBI PMU
-interface is used which defines the encoding for all standard
-events.
+On Sat, 17 Feb 2024 at 01:33, Bjorn Andersson <andersson@kernel.org> wrote:
+>
+> On Thu, Feb 15, 2024 at 09:19:39AM +0100, Krzysztof Kozlowski wrote:
+> > On 15/02/2024 03:41, Bjorn Andersson wrote:
+> > > On Tue, Feb 13, 2024 at 09:39:51AM +0100, Krzysztof Kozlowski wrote:
+> > >> On 13/02/2024 09:27, Krishna Kurapati wrote:
+> > >>> Multiport USB controller (host-only) of SA8295 ADP has 4 Type-A ports
+> > >>> exposed for connecting peripherals. The VBUS to these peripherals is
+> > >>> provided by TPS2559QWDRCTQ1 regulators connected to these ports. Each
+> > >>> regulator has an enable pin controlled by PMM8540. Since these regulators
+> > >>> are GPIO controlled regulators, model them as fixed regulators and keep
+> > >>> them Always-On at boot since we are wakeup capable and we don't need to
+> > >>> turn them off on suspend. Also since we don't enter device mode, these
+> > >>> regulators can be kept on.
+> > >>>
+> > >>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> > >>> ---
+> > >>>  arch/arm64/boot/dts/qcom/sa8295p-adp.dts | 83 ++++++++++++++++++++++++
+> > >>>  1 file changed, 83 insertions(+)
+> > >>>
+> > >>> diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> > >>> index fd253942e5e5..49418843c214 100644
+> > >>> --- a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> > >>> +++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> > >>> @@ -9,6 +9,7 @@
+> > >>>  #include <dt-bindings/gpio/gpio.h>
+> > >>>  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+> > >>>  #include <dt-bindings/spmi/spmi.h>
+> > >>> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+> > >>>
+> > >>>  #include "sa8540p.dtsi"
+> > >>>  #include "sa8540p-pmics.dtsi"
+> > >>> @@ -108,6 +109,46 @@ edp3_connector_in: endpoint {
+> > >>>                   };
+> > >>>           };
+> > >>>   };
+> > >>> +
+> > >>> + regulator-usb2-vbus {
+> > >>> +         compatible = "regulator-fixed";
+> > >>> +         regulator-name = "USB2_VBUS";
+> > >>> +         gpio = <&pmm8540c_gpios 9 GPIO_ACTIVE_HIGH>;
+> > >>> +         pinctrl-0 = <&usb2_en>;
+> > >>> +         pinctrl-names = "default";
+> > >>> +         enable-active-high;
+> > >>> +         regulator-always-on;
+> > >>> + };
+> > >>> +
+> > >>> + regulator-usb3-vbus {
+> > >>> +         compatible = "regulator-fixed";
+> > >>> +         regulator-name = "USB3_VBUS";
+> > >>> +         gpio = <&pmm8540e_gpios 5 GPIO_ACTIVE_HIGH>;
+> > >>> +         pinctrl-0 = <&usb3_en>;
+> > >>> +         pinctrl-names = "default";
+> > >>> +         enable-active-high;
+> > >>> +         regulator-always-on;
+> > >>> + };
+> > >>> +
+> > >>> + regulator-usb4-vbus {
+> > >>> +         compatible = "regulator-fixed";
+> > >>> +         regulator-name = "USB4_VBUS";
+> > >>> +         gpio = <&pmm8540g_gpios 5 GPIO_ACTIVE_HIGH>;
+> > >>> +         pinctrl-0 = <&usb4_en>;
+> > >>> +         pinctrl-names = "default";
+> > >>> +         enable-active-high;
+> > >>> +         regulator-always-on;
+> > >>> + };
+> > >>> +
+> > >>> + regulator-usb5-vbus {
+> > >>> +         compatible = "regulator-fixed";
+> > >>> +         regulator-name = "USB5_VBUS";
+> > >>> +         gpio = <&pmm8540g_gpios 9 GPIO_ACTIVE_HIGH>;
+> > >>> +         pinctrl-0 = <&usb5_en>;
+> > >>> +         pinctrl-names = "default";
+> > >>> +         enable-active-high;
+> > >>> +         regulator-always-on;
+> > >>
+> > >> Why all these regulators are always on? If USB controller does not probe
+> > >> for any reason, why keeping them enabled? These must not be always-on,
+> > >> but instead used by connector as VBUS supply (or by whatever you have
+> > >> there for USB).
+> > >>
+> > >
+> > > I'm not too concerned about keeping the lights on in this scenario, but
+> > > if we can describe this properly let's do so (and let's do so on other
+> > > boards with connectors as well).
+> > >
+> > > We'd have a set of usb-a-connector nodes, that we can tie to the nodes
+> > > in the USB/phy, and the supply. But so far we've associated a connector
+> > > with a port manager, here we don't have one of those, so where would the
+> > > node reside and who should acquire and drive the vbus-supply?
+> >
+> > usb-connector binding has vbus-supply and its node could be top-level.
+>
+> Introducing usb-connector nodes toplevel, with vbus-supply sounds
+> reasonable. But to my knowledge there's today no way to acquire a
+> handle to that regulator, unless you have a struct device for the
+> connector node.
+>
+> > However don't some USB phys also take that regulator?
+> >
+>
+> I don't think it's appropriate to add the supply to any of the phys,
+> some of the connectors has 2 phys others has 1 phy.
+>
+> Representing the vbus in the connector but driving it from the phy
+> (we will need to figure out which one) sounds reasonable. We just need
+> to make sure this doesn't conflict with the fact that some TCPM
+> implementations also seems to drive vbus.
 
-The hwprobe mechanism can be used to detect the presence of these
-extensions and remap the encoding space only in that case.
+I think vbus can be toggled from the dwc3 controller itself rather
+than from the PHY.
 
-Signed-off-by: Atish Patra <atishp@rivosinc.com>
----
- tools/perf/arch/riscv/util/Build    |  1 +
- tools/perf/arch/riscv/util/evlist.c |  3 ++-
- tools/perf/arch/riscv/util/pmu.c    | 41 +++++++++++++++++++++++++++++
- tools/perf/arch/riscv/util/pmu.h    | 11 ++++++++
- 4 files changed, 55 insertions(+), 1 deletion(-)
- create mode 100644 tools/perf/arch/riscv/util/pmu.c
- create mode 100644 tools/perf/arch/riscv/util/pmu.h
+>
+>
+> I would like this to be properly modelled, but it seems reasonable to
+> punt that to the todo list for now.
 
-diff --git a/tools/perf/arch/riscv/util/Build b/tools/perf/arch/riscv/util/Build
-index b581fb3d8677..2358f0666e8d 100644
---- a/tools/perf/arch/riscv/util/Build
-+++ b/tools/perf/arch/riscv/util/Build
-@@ -1,6 +1,7 @@
- perf-y += perf_regs.o
- perf-y += header.o
- perf-y += evlist.o
-+perf-y += pmu.o
- 
- perf-$(CONFIG_DWARF) += dwarf-regs.o
- perf-$(CONFIG_LIBDW_DWARF_UNWIND) += unwind-libdw.o
-diff --git a/tools/perf/arch/riscv/util/evlist.c b/tools/perf/arch/riscv/util/evlist.c
-index 9ad287c6f396..aa7eef7280ca 100644
---- a/tools/perf/arch/riscv/util/evlist.c
-+++ b/tools/perf/arch/riscv/util/evlist.c
-@@ -6,6 +6,7 @@
- #include "util/parse-events.h"
- #include "util/event.h"
- #include "evsel.h"
-+#include "pmu.h"
- 
- static int pmu_update_cpu_stdevents_callback(const struct pmu_event *pe,
- 					     const struct pmu_events_table *table __maybe_unused,
-@@ -41,7 +42,7 @@ int arch_evlist__override_default_attrs(struct evlist *evlist, const char *pmu_n
- 							  "iTLB-load-misses"};
- 	unsigned int i, len = sizeof(overriden_event_arr) / sizeof(char *);
- 
--	if (!pmu)
-+	if (!pmu || !perf_pmu_riscv_cdeleg_present())
- 		return 0;
- 
- 	for (i = 0; i < len; i++) {
-diff --git a/tools/perf/arch/riscv/util/pmu.c b/tools/perf/arch/riscv/util/pmu.c
-new file mode 100644
-index 000000000000..79f0974e27f8
---- /dev/null
-+++ b/tools/perf/arch/riscv/util/pmu.c
-@@ -0,0 +1,41 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+/*
-+ * Copyright Rivos Inc 2024
-+ * Author(s): Atish Patra <atishp@rivosinc.com>
-+ */
-+
-+#include <string.h>
-+#include <stdio.h>
-+#include <asm/hwprobe.h>
-+#include <unistd.h>
-+#include <sys/syscall.h>
-+
-+#include "pmu.h"
-+
-+static bool counter_deleg_present;
-+
-+bool perf_pmu_riscv_cdeleg_present(void)
-+{
-+	return counter_deleg_present;
-+}
-+
-+void perf_pmu__arch_init(struct perf_pmu *pmu __maybe_unused)
-+{
-+	struct riscv_hwprobe isa_ext;
-+	int ret;
-+
-+	isa_ext.key = RISCV_HWPROBE_KEY_IMA_EXT_0;
-+
-+	ret = syscall(__NR_riscv_hwprobe, &isa_ext, 1, 0, NULL, 0);
-+	if (ret)
-+		return;
-+
-+	if (isa_ext.key < 0)
-+		return;
-+
-+	if ((isa_ext.value & RISCV_HWPROBE_EXT_SSCSRIND) &&
-+	    (isa_ext.value & RISCV_HWPROBE_EXT_SMCDELEG) &&
-+	    (isa_ext.value & RISCV_HWPROBE_EXT_SSCCFG))
-+		counter_deleg_present = true;
-+}
-diff --git a/tools/perf/arch/riscv/util/pmu.h b/tools/perf/arch/riscv/util/pmu.h
-new file mode 100644
-index 000000000000..21f33f7d323d
---- /dev/null
-+++ b/tools/perf/arch/riscv/util/pmu.h
-@@ -0,0 +1,11 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+
-+#ifndef __RISCV_UTIL_PMU_H
-+#define __RISCV_UTIL_PMU_H
-+
-+#include "../../../util/pmu.h"
-+
-+
-+bool perf_pmu_riscv_cdeleg_present(void);
-+
-+#endif
+
+
 -- 
-2.34.1
-
+With best wishes
+Dmitry
 
