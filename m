@@ -1,103 +1,125 @@
-Return-Path: <devicetree+bounces-42997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA744858F5D
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 13:42:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE656858F63
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 13:52:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60FFB1F22A9B
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 12:42:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52660283219
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 12:52:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB55E6A012;
-	Sat, 17 Feb 2024 12:42:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B6017A734;
+	Sat, 17 Feb 2024 12:52:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="cZm6w3+q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NCJqqLOL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1041487B4;
-	Sat, 17 Feb 2024 12:42:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED1997A724;
+	Sat, 17 Feb 2024 12:52:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708173750; cv=none; b=YH/c6khnjc7oUMHWfnsZ9UCSMIgEwS+cq1GPoBN+IGTHp/WL6w2Afs3KeU2Evqz4flsP4yAwkAXm25ynkBi70UCZT2t7ZnVlGRP8+FsVxPEvTV+UNX/9bECuvHahB2UrdA+uZb8LQA1cVHfYpczpTMMs6Reh0amM3sVZKaRpPw0=
+	t=1708174337; cv=none; b=RN4Y/PyTz+LyPeveOowWJ73o0j9DFwCot5VregBYyYw/QdI0dNlA80WbJZrFgT5pTCbs3HLmqMABETEvGS+U4nddmAwafeHdeiPq9QrCL9yxPx3jZoBQGSA/thbs5nutD8tQfyqNRclMbsV4oulUZjWxAhBTC/mA5orohLjzOZw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708173750; c=relaxed/simple;
-	bh=b3g8uEPS+3Ef3BYg2KSNVRp2AFWIwoooI5Kly5xpPZY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gPWnayKCFyzURg3oNbI7pXyHB8bP3Uwjk0lSqaK2yRL60UBM+2+KjwL4WaFL8hdji6o5WuydHBkqwRzkP+4tvNfrfIagm2WFH8W2N6Njh/QuQJ1k/pLudkRMMlQFiDlo7QYaIVWZCFYJbtm/U6BqDG2M0v4ngb6AdZQJjk9VaYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=cZm6w3+q; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 64E86FF802;
-	Sat, 17 Feb 2024 12:42:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1708173745;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ZQgQFC20iCOwYcRfjCRWjcJxj6kdRvb0sW/GpMA0iJA=;
-	b=cZm6w3+q/UHjIT1yNRcAtWgateZy+3L53YEsxa8c0kbbAEj7aWy5AFrxj6rry5XSn9IF1M
-	sT+b48pGm6Dbwqf7PWGXGB9DYyA8rgLo4Z6HcP3sO/cREYR0dfOL7IKM6jvRQHdZUQDLX8
-	dGvaU1z+9dq+Tdm0/WBz2I9WWXpSW8yE2NA8JLFV4oY0StaAUa8ZKw8Bi7lf1VpSEA6Gat
-	JJ3VGzSFbxSM5jVo5yPLcXMayJ++a4QX1PSgmntwv9QmTKJxOdD5lXyEufGFe0tT3Or9aH
-	VLy8fnI6yzSpUVkK3fUTy08Ni3w0cq4IbSrs3qkZJ27zPKvMZn2wxvPryuteOA==
-Date: Sat, 17 Feb 2024 13:42:23 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Jeremy Kerr <jk@codeconstruct.com.au>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	=?utf-8?Q?Przemys=C5=82aw?= Gaj <pgaj@cadence.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Conor Culhane <conor.culhane@silvaco.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Dinh Nguyen <dinguyen@kernel.org>,
-	Boris Brezillon <bbrezillon@kernel.org>,
-	Nicolas Pitre <npitre@baylibre.com>, linux-i3c@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: i3c: drop "master" node name suffix
-Message-ID: <2024021712422352187ad4@mail.local>
-References: <20240117075618.81932-1-krzysztof.kozlowski@linaro.org>
- <00d6a0d5-6787-4777-8fb2-dcad4304a724@linaro.org>
+	s=arc-20240116; t=1708174337; c=relaxed/simple;
+	bh=26asYT9Pch/6BET0RjGLiuk5j1AaaNkgzH3IDcRoKJQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Mj/lw19FwlE7wcBmgeX10JzlCrgDawvJz7gQq/cHnK8odFnJEyQyS7QY1FXh8HQAm6FSV1/F5AWonlygyc5cRtxDt7DO9R5xwC0vcrV4+iiWuCS5ZSByssk/+1YUqSoDbtUY4hJ4HA69ib+SFDqZD24fiWH3SYpr/04NTtxEKe8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NCJqqLOL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 84096C433F1;
+	Sat, 17 Feb 2024 12:52:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708174336;
+	bh=26asYT9Pch/6BET0RjGLiuk5j1AaaNkgzH3IDcRoKJQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=NCJqqLOLQ+zfr4eotRtrCXoVtGCykND8YYaIX8cBLA5s/LJMlrocZ+2I5FCeBdu8o
+	 2NnAN3FjI8nV6hZeoKikXERVLY2dCVLNUqrZnDjYZIdQa+TH9HjcWO6KZ2Zu5DD5cQ
+	 gEHVARtWFJ6ZyNhbdtfZ9FH7N3G+gbH6bE75JTzF3qLBKFHQycOXOcc9jZFr72IsD+
+	 npZiGmMaa2PEsFQspDp6HTdsaH5vvXN/hkwrzH98x8/Pt2Mpr3LreumBxaQv7C/y8d
+	 VJq2yjJrorwHLBnZtznSkpe8oAd6GQZc26RMNe7tjxXhEQMFZ+41sIEIdEFnHfty1I
+	 qaQeBJmNwlZ2g==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 68F20C48BC3;
+	Sat, 17 Feb 2024 12:52:16 +0000 (UTC)
+From: Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>
+Subject: [PATCH RFC v2 0/5] clk: hisilicon: add support for Hi3798MV200
+Date: Sat, 17 Feb 2024 20:52:05 +0800
+Message-Id: <20240217-clk-mv200-v2-0-b782e4eb66f7@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <00d6a0d5-6787-4777-8fb2-dcad4304a724@linaro.org>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPWr0GUC/22MywrCMBBFf6XM2kgylWBcCQU/wK10EcbRhj4iS
+ Q1Kyb8bsnZ57j2cDSIHxxFOzQaBk4vOLwVw1wANdnmycPfCgBIPEpUWNI1iTiilIDqS5dZoZgn
+ FfwV+uE9t3eB66aAv4+Di6sO39pOq159UUkIKi8YSo2Hd6rN/r5P34578DH3O+QeVpxlfqQAAA
+ A==
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: David Yang <mmyangfl@gmail.com>, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Yang Xiwen <forbidden405@outlook.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1708174332; l=2029;
+ i=forbidden405@outlook.com; s=20230724; h=from:subject:message-id;
+ bh=26asYT9Pch/6BET0RjGLiuk5j1AaaNkgzH3IDcRoKJQ=;
+ b=nAb9AVMdHX/f2z6emI9t8+7+o1w6aec07MJGqfIwL1KkyGN24rLI+xipHXWAwSujd6wAkehaT
+ LmxTY8U6EHqAw16+re/9sQioCZs9wNFOYgI4J4DnapxnjZuWOEZIpl8
+X-Developer-Key: i=forbidden405@outlook.com; a=ed25519;
+ pk=qOD5jhp891/Xzc+H/PZ8LWVSWE3O/XCQnAg+5vdU2IU=
+X-Endpoint-Received:
+ by B4 Relay for forbidden405@outlook.com/20230724 with auth_id=67
+X-Original-From: Yang Xiwen <forbidden405@outlook.com>
+Reply-To: <forbidden405@outlook.com>
 
-On 16/02/2024 12:26:12+0100, Krzysztof Kozlowski wrote:
-> On 17/01/2024 08:56, Krzysztof Kozlowski wrote:
-> > Drop the requirement of "-master" suffix in node names because:
-> > 1. "Master" word is discouraged and MIPI Alliance renamed it to
-> >    "Controller".
-> > 2. Some devices can operate in Controller (Master) or Target mode, thus
-> >    the name is not accurate in such cases.
-> > 3. Other buses, like I2C controllers, use simple "i2c".
-> > 
-> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > ---
-> 
-> Rob, can you pick this one up? It seems Alexandre did not take it.
-> 
+This SoC is similar to Hi3798CV200 with a few more clocks in CRG module.
 
-I'll take it but I don't think it is super urgent.
+Note this driver is still ongoing, many clocks are not registered in the
+driver now. Feedback is welcomed, especially from HiSilicon people.
 
+Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+---
+Changes in v2:
+- s/dt-binding/dt-bindings in commit logs: (Krzysztof Kozlowski)
+- fix bot error by adding "hisilicon,hisi-sdmmc-dll" to syscon.yaml (Rob
+  Herring)
+- hi3798mv200-crg: assign fixed rate parents to some gates
+- hi3798mv200-crg: s/ETH/FEMAC, add GMAC ctrl clock
+- Link to v1: https://lore.kernel.org/r/20240216-clk-mv200-v1-0-a29ace29e636@outlook.com
+
+---
+Yang Xiwen (5):
+      dt-bindings: clock: histb-clock: Add missing common clock and Hi3798MV200 specific clock definition
+      clk: hisilicon: add CRG driver for Hi3798MV200 SoC
+      dt-bindings: clock: merge all hisilicon clock bindings to hisilicon,clock-reset-generator
+      dt-bindings: mfd: syscon: Add hisilicon,sdmmc-sap-dll compatible
+      dt-bindings: clock: hisilicon,clock-reset-controller: add Hi3798MV200 SoC support
+
+ .../devicetree/bindings/clock/hi3660-clock.txt     |  47 ---
+ .../devicetree/bindings/clock/hi3670-clock.txt     |  43 --
+ .../devicetree/bindings/clock/hi6220-clock.txt     |  52 ---
+ .../devicetree/bindings/clock/hisi-crg.txt         |  50 ---
+ .../clock/hisilicon,clock-reset-generator.yaml     | 175 +++++++++
+ .../clock/hisilicon,hi3559av100-clock.yaml         |  59 ---
+ Documentation/devicetree/bindings/mfd/syscon.yaml  |   1 +
+ drivers/clk/hisilicon/Kconfig                      |   8 +
+ drivers/clk/hisilicon/Makefile                     |   1 +
+ drivers/clk/hisilicon/crg-hi3798mv200.c            | 436 +++++++++++++++++++++
+ include/dt-bindings/clock/histb-clock.h            |  21 +
+ 11 files changed, 642 insertions(+), 251 deletions(-)
+---
+base-commit: 8d3dea210042f54b952b481838c1e7dfc4ec751d
+change-id: 20240216-clk-mv200-cc8cae396ee0
+
+Best regards,
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Yang Xiwen <forbidden405@outlook.com>
+
 
