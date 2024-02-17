@@ -1,217 +1,315 @@
-Return-Path: <devicetree+bounces-42872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14F5E858AE7
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 01:15:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB492858C10
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 01:58:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 390691C2228D
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 00:15:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0AC831C2109D
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 00:58:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFC8451012;
-	Sat, 17 Feb 2024 00:11:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A773BA55;
+	Sat, 17 Feb 2024 00:58:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="FMwlWSke";
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="yGUwmfCi"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="OPrkRoIE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4881A3F9F7;
-	Sat, 17 Feb 2024 00:10:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=68.232.154.123
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708128660; cv=fail; b=jvY5qtCn/oLTZedLKGYSz+ApKR5UpHnsPOojKI9+2XLsI/x8WWUQ6MZiVoJIAX1/kQ5YRTHR/uvvjHwLDcWr2oti4lnj9y0ax7V0IMT0nPREKPyFS3GAvzp6Ru/ryoyC3gwfeozyfmxz+N9h8M0B1u5/CH+PGNkmDF5FNPYmbV0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708128660; c=relaxed/simple;
-	bh=wT+2yxOZj7ufhadY5QYlsF2l412TVp3F/FNC3Wdoo6k=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=BQpN8YGzrleVdnDzMDLsiKpR74ONKjgAjc2azCgshEsONB9dt7jCuTjRUEzJ8cgNDCubtlKapWXjVorTgkgMuF4eUylJolncUJH4GYx7FafORV4n9vrJsaQzMQCa44CF++sFYhTXlwEAYgOYKoLScDy3CtuQEL74HTDEck/eRAM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=FMwlWSke; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=yGUwmfCi; arc=fail smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1708128657; x=1739664657;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=wT+2yxOZj7ufhadY5QYlsF2l412TVp3F/FNC3Wdoo6k=;
-  b=FMwlWSkeuFtLDbrYTQGNqYEHHfPF9cFwNTvGK/1DM0oywh+n8Xs5T3pV
-   qZSk24P+KAUN4meqfXlak86wRcC8ufF9u5hXmi5RgnK2Q2lZC8Pjp7PUI
-   SI36pj8j82F3mvTR8oUrUxB/5dOacODTgqm2NOAiPecvSMUf3g9s4Wd7o
-   Yk/zOf8jgJlIQR4CH+rXDxceyykSlKgCsjl8//hzRAHTt0EOWPB48dyUW
-   zXuQN60Xa3lUM5Br/jHPXIWvesZbNuU1gYxI+aAy0eNo7qmZBvFAFwGTS
-   9X0IjCpA9qgSSGiJnWjGxy9ZnJDnN4794c3jDdMJV6qXMzUDyXyssT98p
-   g==;
-X-CSE-ConnectionGUID: YJPOFQWcTzS2AibtPnAdsg==
-X-CSE-MsgGUID: ng5Pmcg/S4iM6uDF7Gzdgg==
-X-IronPort-AV: E=Sophos;i="6.06,165,1705388400"; 
-   d="scan'208";a="16382798"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 16 Feb 2024 17:10:55 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 16 Feb 2024 17:10:50 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (10.10.215.250)
- by email.microchip.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Fri, 16 Feb 2024 17:10:49 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MAEk32TPgTkm3Fr9r7OQqKD0Uj7XfYIs5BBBNrY6Sh0GoFIikgFUtDx40o06mcO9BjAJUywlU1XscprFKiUUWQthjtqCCUI79AQ6/pZjUuJIjU+xTddh41TT+FnvXAtNH5BjkIdfUXpH6/x9AdxhzLGUVZKUucRdFRnDeBDOdeKHZ07vA1sW0v9YHe0MyTDgUme9Rc4p+OSSGDmDDpUuNIgSrzyGi8WpLIeRv9FFblwZMq+kmJY70Q4E9EXOw7xLR0OHzxGtzuiwwbGg0J4mWJ6B6euY7XTfgAsAxDUtxnrvNlgGykpRShKTTDuF9LRHZxL4bOk7vq+2jP4VoTDREg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wT+2yxOZj7ufhadY5QYlsF2l412TVp3F/FNC3Wdoo6k=;
- b=L5blWRsl1cnd0QPdb3GGi0j0bscM2sr+NvkowhzG4w6215PXezFPa2FXpuoWNm1Ks44XE0tG56+ZFx++apOm4/hwHpgiKAIdVHGEoyrG0/csdFEboBOVkJzkQGdUGYxoMyE6Y55ijHrBKXjqqfgIofx6AacRSgnUyhCnemr/mMk2fwVYqMM7Oq4DSwYMwDEBsn7BxXwGq4w0mSQMEKH9lYlpZi7A6kz4IQg5CQo0ZMAOY7m1fyrrl+MrW8SuEqNwSVH12T43Znk/jdXjdIzb+aslo1ImVY7pTdLAGbSXq2lkI1Q3zbLQy0iXhemd+DxyXZFFUeMtUKJStKOZ5pMJvg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wT+2yxOZj7ufhadY5QYlsF2l412TVp3F/FNC3Wdoo6k=;
- b=yGUwmfCi8nJeQmy1/FkX8f2nFZxy8t6e71KA4Ily9GPUuSlKc2eT4t71GjyiljtK4TbdeFoq/st7UerAO8/8oYYHrzGTyTz5d8yTIiJGn5Hw9CIhlOyPwX2H04vlREiyQg3HzvlrfW7YawdyQkq2nf5MAkcuMx+d0DTGv8uCuqj8+ZYSWEzUeGq0iLD3/A9J9Eo0JgSsuDSOc70RynXDKDjiXFSBovw2e8nfMr+p7BVTqV8xcpyEP+UHiLAxhjJrguLC9igLUUuocyvE7ZRds1VJsDGHozdq3pcOrXtwPuRbUjFEDbPiwRkoeFmEL3Xq4RL4y/kI8mZnGr9jJwjqew==
-Received: from PH0PR11MB5176.namprd11.prod.outlook.com (2603:10b6:510:3f::5)
- by CH0PR11MB8234.namprd11.prod.outlook.com (2603:10b6:610:190::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.31; Sat, 17 Feb
- 2024 00:10:46 +0000
-Received: from PH0PR11MB5176.namprd11.prod.outlook.com
- ([fe80::613:fb5:737:dae8]) by PH0PR11MB5176.namprd11.prod.outlook.com
- ([fe80::613:fb5:737:dae8%7]) with mapi id 15.20.7292.029; Sat, 17 Feb 2024
- 00:10:46 +0000
-From: <Ajay.Kathat@microchip.com>
-To: <kvalo@kernel.org>, <conor@kernel.org>
-CC: <alexis.lothore@bootlin.com>, <davidm@egauge.net>,
-	<linux-wireless@vger.kernel.org>, <claudiu.beznea@tuxon.dev>,
-	<thomas.petazzoni@bootlin.com>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>
-Subject: Re: [PATCH RFC] wifi: wilc1000: fix reset line assert/deassert
- polarity
-Thread-Topic: [PATCH RFC] wifi: wilc1000: fix reset line assert/deassert
- polarity
-Thread-Index: AQHaXpDVeUNEJsQx1Uu1SAoo0Dj95LEIegQAgAAEeACAAlVDgIACUiP6gAAOkgCAAAA+AIAAFH/ygABlLAA=
-Date: Sat, 17 Feb 2024 00:10:46 +0000
-Message-ID: <296bfe15-7e4e-4d67-b84f-bd9d9f1266e5@microchip.com>
-References: <20240213-wilc_1000_reset_line-v1-1-e01da2b23fed@bootlin.com>
- <2ff1c701f3443e1c612a81f4077b0280850f57c6.camel@egauge.net>
- <081bce96-f485-414c-8051-e1c14271f8cc@bootlin.com>
- <aac398e4-d870-4ba2-8877-b98afecb8d1b@microchip.com>
- <877cj4o0sv.fsf@kernel.org> <20240216-reckless-freedom-4768ce41e939@spud>
- <20240216-spinster-decade-e136ac3e72d0@spud> <87h6i8cmf5.fsf@kernel.org>
-In-Reply-To: <87h6i8cmf5.fsf@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-user-agent: Mozilla Thunderbird
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH0PR11MB5176:EE_|CH0PR11MB8234:EE_
-x-ms-office365-filtering-correlation-id: 1158729a-2982-4438-adb0-08dc2f4ce387
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: S24JpI7GE9YD5tZprTiEOt5UI71ce1KvNjgfgb1YA9xP4kzq0zSty7YL1pbSUaLrWmW/sZap1N4Qnt+bZOX7JUaqn3uw4M/FgiiZOR3iR6Vdxb0Pur9Pq1bC1C0qLwe8nn1tYdN1fzfTxrARw5MsVRZb4xK2Y/lpo9QW4ncBkxaBrS7Tdoo0Wikn38UpAGUY4QjBm+aVh1uvN/LnXlZcE2ts/FevDBsaY5MUQWn9Pgn9TY+ENVhc+eOBFUL99lkBPJlPUY3A4ps7gStIaM4E2TmodExyd09msek1HZMwVFIwaaxXTYvH97aMmHxtgLnqmmSFVSqGNtJLLr4EH2Zv6gqeaMtZBcnsIyj7XoRdcqyIHvNc943GZphHpg0kzsRCwjFx1qWndKE5EwJgfzdsVEjhsQWeIPVSqd1ATnbeaQedWHn5fZzg9aFUTxx9GcZSZrxenLFOrmKCBcd6l1q2oFCWrEtFMkWczNcXy/nhBzHBgZZPq2/iTwuGpgOofvfdii+HDnDX8yQUHQPEjcpWUO3M6E6Njysm0OYWEGntzlFs37oBP2b8sKOlxRSyeTjEBsVQNqFsl9P85yz8qsmOlahPcaInM/CcZk8V9Bs9oVHh3WLnFcQJCNvRbF34x4v4
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR11MB5176.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(346002)(396003)(366004)(136003)(376002)(230922051799003)(230273577357003)(64100799003)(1800799012)(186009)(451199024)(71200400001)(31686004)(86362001)(66446008)(76116006)(66476007)(2906002)(8676002)(8936002)(64756008)(66946007)(66556008)(4326008)(38100700002)(5660300002)(54906003)(53546011)(316002)(31696002)(6506007)(36756003)(122000001)(6486002)(478600001)(38070700009)(41300700001)(6512007)(110136005)(26005)(2616005)(83380400001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?K1RYTTNwU2F6T1FrS05uSXVySTlOeDBjQUpiV1RtOEJGTGY0SzJnTW5IOUdT?=
- =?utf-8?B?SWtNWWdtU05pNkRJY3JyWEhLNTZSWnVGREJacHhQeFZPbmdUM3Q3NGxOTGR5?=
- =?utf-8?B?SllRRnZ1MFpLbnlTMHFadE04QkxuQmM2Nk9FYVpmZ2kxTlJ1Mm54UFU3ZWxX?=
- =?utf-8?B?Tm1ETzcvZ3dnRUxFdGJNMGsrMlNGTE5IdWR0Ry9CSWNpcVdOZ2Z3emYxNmRU?=
- =?utf-8?B?aFlDZDBLb1JTUjJwbzAwb1BKTzNxRzBVR0NzWDFEVm1PWkt3R1lNMlA4eWVq?=
- =?utf-8?B?TG41QWwzQ0xuLzc3ZHhENnFua3dJOEF0TUs1S0ZXRmswblhIWmxGaFJCQkEw?=
- =?utf-8?B?cHE2eDRCaXVmTTUwbitLMTc3Ym1aUmI0ZnhaaVVTMWlib0JFMGNCVE9iTTEr?=
- =?utf-8?B?b0ZFc0NWZ1ducXY5YStyQ2FUb09ZQTNPUUdXWDJOUytLTUVXOGxvTUlJa2Vo?=
- =?utf-8?B?OUIyaHhlNjV0bWhvZFVTYnJUb0EzV1QzT0lYWG1HeFpDK3c5S3ovdkZCZnhH?=
- =?utf-8?B?aFloY0pnQkgvSGpoY0xTc1haNElrYnNNRkNFaVp1OTc3NWtmTUlHN0ZSM2U4?=
- =?utf-8?B?Sm1YOElMRU5kVU1xRjZHZ3ZvQ2plZG1qT0Z1dEREVytld3JkUkZzTk00UXFQ?=
- =?utf-8?B?RTZXVnNFYVhoZEllOExEcTkxbzczOS9EOGVUeDZUcXEwSW1KeUZtVnV2UU1D?=
- =?utf-8?B?eEdHd25lOU4vZFg1YjRiK2hJYXRqY2I4TytSb3NQdTZnRHBvL2ZjRG96S1Fz?=
- =?utf-8?B?VHhoTXJycEZKV2dNd01Cb2dCbG8wMWN4ZzdBVWliRmcxS2tLMGR2NDlCUjhy?=
- =?utf-8?B?VHZRcDg2QU9EUEltYnh0ZC9hdmh4MkdiSUJ5enlKb3o3VTNLaUhVQW94L241?=
- =?utf-8?B?OUY3QmJpUHBKOTlhU1JjVlJWa2NHZGZKb2lMUWROeDZzdGk3NVcvZFBONk1z?=
- =?utf-8?B?bStNVkJHbFcxbTFNc2tNbnZRaUJISlBNazFGNTdhL2JCdStRL2RqempqaElh?=
- =?utf-8?B?TDVpTFZ6djFLU3dhdjNyRzJRZ2dtVi9UV29aNlNNalJKNVlyaDNFM2pHWEdh?=
- =?utf-8?B?ZXA4WWhPenBUbjRVQ3Q4MU9nNkdQSDB5WTZZSWJacWZYQUM1bUh0bldlQm91?=
- =?utf-8?B?d0VtUGJzcENVR2lDOWxrNWgvc2JQc2pjSHo0SklGSmV0aGlUbEVMMDVLc0VW?=
- =?utf-8?B?bEFvSDUrTXZBOWc4YzN0M0Q0ektLL3J0emY2NWQ3cXNVMTZSK2Y5V3FQUytk?=
- =?utf-8?B?ZGlacG0zbjRQNGZQQkJFblJQbCtHeERvZmRSYWIwM1ZUdWlSN0xEYm9QRjcx?=
- =?utf-8?B?THl5L2huaHd2TzB2N0pyMHpjRHZOSW8wbjJlVVBETkpVZjdDVHlrOWdOcVNt?=
- =?utf-8?B?R1F3SGMrRVM3SWJ3R0dlUm0vb0NvbUVlTGtxYVVUZWJWaVoyRkN4c0JOcDB1?=
- =?utf-8?B?ZTVKK1l5QlNiNzZuMFAydDI4L0w5Ylh3T3R4WVArMllYMXBIaTRDUlZOalBI?=
- =?utf-8?B?UkF4aXhvYUJSU3VuNjlERFk1SENuMzd6SmRCa2lIYzZjdVNaYnZPMkpnQ3o1?=
- =?utf-8?B?c0hnYzdnNFd4TGd0YnFBT29oUEt2S1FWeG9wdkJqNi96UkZncTNjRktVWTM1?=
- =?utf-8?B?NUd1QzFPL1BZaVNkeEJTMkpEMjNRUHBqSmhhM3hQZk1EMUZ4emI4cmh5d3d3?=
- =?utf-8?B?QU5uRHovTHlMMnY0c3o1Y3BKcERzSDBiM2ZseW5IZitMajczTmkvZklOQ296?=
- =?utf-8?B?c1pLd0RYbm1PWWFmWEY4Z0phL0RUUWFCVEUzdkFzaWozemtBbHRUUnkxL1Q0?=
- =?utf-8?B?ak9PZ2t0U0dKeGRSN2EwTGVpcW1VUkV3eXJQbG9jSGJQZ3VZUkQ2M2gvemMv?=
- =?utf-8?B?SGwwbHc3SnJpRW9zZjNSTGc3ZFJrTnlCdlU0REpyU2pUeFk5ZG15S2hRQi9U?=
- =?utf-8?B?L0JYb3FtNXBaejBkd3BjQVBnRGQwWGZGL1NjZm5Zb2REZzFGclRicEF4dkZ4?=
- =?utf-8?B?bVNwaGFKY2taOVRDSDFGeG5rbC9EM25kU1I0czZwdmJTT0pEaDhVU1lrV0Rp?=
- =?utf-8?B?c0VCYUU4MURqLzFrWkJlUXVRRzN4TzVpNTJ3ZlhiMjI5WWk2UG1CZkJKZEJF?=
- =?utf-8?Q?23hbn7F+54Tew4xfT1Qn4zEJB?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <5C49540F361BE04DB9E00D6332289AFF@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C37B414F70
+	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 00:58:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.43
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708131497; cv=none; b=fJoZz1RrNW/n9cfK6i/RrULWFrz50W4Q7DQHWMObbV91eA7PE8qXvUBZ8xVQvAnWesBTqQWfYho01vjkRvGdia8D8Cazt5tn/xCn9k9Yy2wCN7E7nuPldo0KikByNXUeyc2ywfQieoDInSwN0ccq/jU03W/X7t+JSXjd0eyarpM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708131497; c=relaxed/simple;
+	bh=T/rm/p4zZLrZ8lUQrOICPzaapq/vW9EgZQVSXWVG5rw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=uf7a6PB+AzqK968XuaHtEypqnQ9ggpzkDiahmEG1+TFF6e8XrZIjnroI7aWKntMyPxk1xMcgL28yfUbwohjicslawVVHVnIVD3bT0jGLNBKbWwQQB+r7YJCejiRk7gLOknQ18SOjXXaEAkiOE8IbkKK9gcuA/uwocwnMlJy1Cc4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=OPrkRoIE; arc=none smtp.client-ip=209.85.161.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-59a802ab9fdso322601eaf.1
+        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 16:58:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1708131494; x=1708736294; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IzVo2l1UeODXlFr9ZspobMSeOz6FqRsDzZRtwqz0aks=;
+        b=OPrkRoIEKkCbQ4YuvXA/KDHVjR4g1oj2QRLXipeRksevCbLgIO8J+1WlN6T4pSgHYZ
+         Vi5gZH+89WqV3vpAHcshLk+4WPfIL5JHvq9c8Lkn2vrVDswj7d2Mzg777l276+8f02+h
+         CU6JPhzNg1Odohqi3nnEA/lPJjbKdzhn4gdmweF2UyeFFdtvpwjfiAo2LWp/H9sWy7GK
+         1S7PlaO2dqils+OSU6wOKKkgClBy2xxr2oyglgKUcbTajrX1SmpmwIzc4JkaXeciUByZ
+         BSPc9GBZw/q6CU8UIMIGh5s+5EDQ/7IKSyAyYj/Dtn+eAjWaAQUJGVuatk57oqfD/VL0
+         hQ8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708131494; x=1708736294;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IzVo2l1UeODXlFr9ZspobMSeOz6FqRsDzZRtwqz0aks=;
+        b=GshRzbmS5sLucBHeMi1SpHiMFLjfgMryZwdNis6GTwihZhdLEOcW04XHFvL6+sMk6f
+         sPOVxvSyY30bi8oOm4W61mDM+8zd4zmBh3l/um4/F9HOsCnh1NDtOSi6tC5K8+e+tnOM
+         rVaP/uSupVX09BYCm/Me3Re1YLoObdL/CfPtb7Z1dDBm2E2mGWFsO6Cw5PV2Co/DIYt8
+         spzXmfETsqLng8qi/LR/AVENd5C4VNQFrevmJsf1PgG0rCYzTHy0y8Ajue0Ao1QvKIWk
+         mVWXeuVKrf3M874WVF8vjj/0GAtGpMo366Y5FU+/CP/XBA5e4Xi5CaZenpB6A9lj4P+l
+         DFbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUouP3ZxgPTXxLRLuJgKnhqd2snDlocRgetWTWM3ijJa1CRwsFRHiSjYeYtU7wthTZzgQniGNbwgOHIHpqxg0+iI08DQjCZb7qeFg==
+X-Gm-Message-State: AOJu0YzSejQlb4wg/3C2qAlcOzzCauhd96DzNqIX2T405rVn+nGz207w
+	WHOc8r7sKa+1I4A1B2tZwGjz0aykY1Z+NBnqNo1IJKagXqcwJo4YA+isAyik2+o=
+X-Google-Smtp-Source: AGHT+IF2qj5VG2aWGKmy+Z/F9xqjxzKMZfdoF+ZXES4kZiPGRVxWB31P4WLI9MkML3OCwmckEUxPAA==
+X-Received: by 2002:a05:6358:659b:b0:178:fd13:d6e4 with SMTP id x27-20020a056358659b00b00178fd13d6e4mr7493295rwh.25.1708131493668;
+        Fri, 16 Feb 2024 16:58:13 -0800 (PST)
+Received: from atishp.ba.rivosinc.com ([64.71.180.162])
+        by smtp.gmail.com with ESMTPSA id d188-20020a6336c5000000b005dc89957e06sm487655pga.71.2024.02.16.16.58.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Feb 2024 16:58:13 -0800 (PST)
+From: Atish Patra <atishp@rivosinc.com>
+To: linux-kernel@vger.kernel.org
+Cc: Adrian Hunter <adrian.hunter@intel.com>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Alexandre Ghiti <alexghiti@rivosinc.com>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Anup Patel <anup@brainfault.org>,
+	Arnaldo Carvalho de Melo <acme@kernel.org>,
+	Atish Patra <atishp@atishpatra.org>,
+	Christian Brauner <brauner@kernel.org>,
+	=?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>,
+	Conor Dooley <conor@kernel.org>,
+	devicetree@vger.kernel.org,
+	Evan Green <evan@rivosinc.com>,
+	Guo Ren <guoren@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Ian Rogers <irogers@google.com>,
+	Ingo Molnar <mingo@redhat.com>,
+	James Clark <james.clark@arm.com>,
+	Jing Zhang <renyu.zj@linux.alibaba.com>,
+	Jiri Olsa <jolsa@kernel.org>,
+	Ji Sheng Teoh <jisheng.teoh@starfivetech.com>,
+	John Garry <john.g.garry@oracle.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Kan Liang <kan.liang@linux.intel.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	kvm-riscv@lists.infradead.org,
+	kvm@vger.kernel.org,
+	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
+	linux-doc@vger.kernel.org,
+	linux-perf-users@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Mark Rutland <mark.rutland@arm.com>,
+	Namhyung Kim <namhyung@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Weilin Wang <weilin.wang@intel.com>,
+	Will Deacon <will@kernel.org>,
+	kaiwenxue1@gmail.com,
+	Yang Jihong <yangjihong1@huawei.com>
+Subject: [PATCH RFC 00/20] Add Counter delegation ISA extension support 
+Date: Fri, 16 Feb 2024 16:57:18 -0800
+Message-Id: <20240217005738.3744121-1-atishp@rivosinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5176.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1158729a-2982-4438-adb0-08dc2f4ce387
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Feb 2024 00:10:46.0634
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: rhSz0cMtGfwMbkPc1WH6s/137tW2ckNNGcN7bm0s//MaVEED8R+RFOBOW4PyFLtcJ2F5oLQ7ofICuIOIlI7WFTTmoA1hsaBIDvWoZiLZcok=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB8234
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-T24gMi8xNi8yNCAxMTowNywgS2FsbGUgVmFsbyB3cm90ZToNCj4gRVhURVJOQUwgRU1BSUw6IERv
-IG5vdCBjbGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVubGVzcyB5b3Uga25vdyB0aGUg
-Y29udGVudCBpcyBzYWZlDQo+IA0KPiBDb25vciBEb29sZXkgPGNvbm9yQGtlcm5lbC5vcmc+IHdy
-aXRlczoNCj4gDQo+Pj4+IFNvIGlmIEknbSB1bmRlcnN0YW5kaW5nIHRoZSBzaXR1YXRpb24gY29y
-cmVjdGx5IE1pY3JvY2hpcCdzIHBvcnRpbmcNCj4+Pj4gZ3VpZGVbMV0gZG9lc24ndCBtYXRjaCB3
-aXRoIGtlcm5lbC5vcmcgZG9jdW1lbnRhdGlvblsyXT8gSSdtIG5vdCB0aGUNCj4+Pj4gZXhwZXJ0
-IGhlcmUgYnV0IGZyb20gbXkgcG9pbnQgb2YgdmlldyB0aGUgaXNzdWUgaXMgY2xlYXI6IHRoZSBj
-b2RlIG5lZWRzDQo+Pj4+IHRvIGZvbGxvdyBrZXJuZWwub3JnIGRvY3VtZW50YXRpb25bMl0sIG5v
-dCBleHRlcm5hbCBkb2N1bWVudGF0aW9uLg0KPj4+DQo+Pj4gTXkgcG9pbnQgb2YgdmlldyB3b3Vs
-ZCBkZWZpbml0ZWx5IGJlIHRoYXQgZHJpdmVycyBpbiB0aGUgbWFpbmxpbmUga2VybmVsDQo+Pj4g
-YWJzb2x1dGVseSBzaG91bGQgcmVzcGVjdCB0aGUgQUJJIGRlZmluZWQgaW4gdGhlIGR0LWJpbmRp
-bmcuIFdoYXQgYSB2ZW5kb3INCj4+PiBkZWNpZGVzIHRvIGRvIGluIHRoZWlyIG93biB0cmVlIEkg
-c3VwcG9zZSBpcyB0aGVpciBwcm9ibGVtLCBidXQgSSB3b3VsZA0KPj4+IGFkdm9jYXRlIHRoYXQg
-dmVuZG9yIGtlcm5lbHMgd291bGQgYWxzbyByZXNwZWN0IHRoZSBBQkkgZnJvbSBtYWlubGluZS4N
-Cj4+Pg0KPj4+IExvb2tpbmcgYSBiaXQgbW9yZSBjbG9zZWx5IGF0IHRoZSBwb3J0aW5nIGd1aWRl
-LCBpdCBjb250YWlucyBvdGhlcg0KPj4+IHByb3BlcnRpZXMgdGhhdCBhcmUgbm90IHByZXNlbnQg
-aW4gdGhlIGR0LWJpbmRpbmcgLSB1bmRvY3VtZW50ZWQNCj4+PiBjb21wYXRpYmxlcyBhbmQgYSBk
-aWZmZXJlbnQgZW5hYmxlIGdwaW8gcHJvcGVydHkgZm9yIGV4YW1wbGUuDQo+Pj4gSSBndWVzcyBp
-dCAoYW5kIHRoZSB2ZW5kb3IgdmVyc2lvbiBvZiB0aGUgZHJpdmVyKSBuZXZlciBnb3QgdXBkYXRl
-ZCB3aGVuDQo+Pj4gd2lsYzEwMDAgc3VwcG9ydGVkIGxhbmRlZCBpbiBtYWlubGluZT8NCj4+Pg0K
-Pj4+PiBJJ2xsIGFkZCBkZXZpY2V0cmVlIGxpc3Qgc28gaG9wZWZ1bGx5IHBlb3BsZSB0aGVyZSBj
-YW4gY29tbWVudCBhbHNvLA0KPj4+PiBmdWxsIHBhdGNoIGF2YWlsYWJsZSBpbiBbM10uDQo+Pj4+
-DQo+Pj4+IEFsZXhpcywgaWYgdGhlcmUgYXJlIG5vIG1vcmUgY29tbWVudHMgSSdtIGluIGZhdm9y
-IHN1Ym1pdHRpbmcgdGhlIHJldmVydA0KPj4+PiB5b3UgbWVudGlvbmVkLg0KPj4+DQo+Pj4gRnJv
-bSBhIGR0LWJpbmRpbmdzIHBvaW50IG9mIHZpZXcsIHRoZSBhZm9yZW1lbnRpb25lZCByZXZlcnQg
-c2VlbXMNCj4+PiBjb3JyZWN0IGFuZCB3b3VsZCBiZQ0KPj4+IEFja2VkLWJ5OiBDb25vciBEb29s
-ZXkgPGNvbm9yLmRvb2xleUBtaWNyb2NoaXAuY29tPg0KPj4NCj4+IE1heWJlIGFuIFItYiBpcyBt
-b3JlIHN1aXRhYmxlIGhlcmUsIHRvbyB1c2VkIHRvIGFja2luZyB0cml2aWFsIHBhdGNoZXMNCj4+
-IHRoYXQgYXJlIGR0IHJlbGF0ZWQuLg0KPiANCj4gT24gdGhlIGNvbnRyYXJ5LCBJIHRoaW5rIEFj
-a2VkLWJ5IGlzIHRoZSByaWdodCB0aGluZyBoZXJlIGFuZCBtYWtlcyBpdA0KPiBlYXNpZXIgZm9y
-IEFsZXhpcyBhbmQgbWUuIFRoYW5rcyENCg0KQWNrZWQtYnk6IEFqYXkgU2luZ2ggPGFqYXkua2F0
-aGF0QG1pY3JvY2hpcC5jb20+DQoNCkFncmVlLCB3ZSBjYW4gZ28gYWhlYWQgd2l0aCB0aGlzIHBh
-dGNoIHRvIG1ha2UgdGhlIGNvZGUgaW5saW5lIHdpdGgNCmtlcm5lbC5vcmcgZG9jdW1lbnRhdGlv
-bi4gSSBkb24ndCB0aGluayBhbnkgY2hhbmdlIGlzIHJlcXVpcmVkIGluDQpkdC1iaW5kaW5nIGRl
-ZmluaXRpb24gYWZ0ZXIgdGhpcyBwYXRjaC4gSG93ZXZlciBleHRlcm5hbCBkb2N1bWVudGF0aW9u
-DQp1cGRhdGUgaXMgbmVlZGVkIGFzIENvbm9yIGhhcyBhbHNvIHBvaW50ZWQgb3V0LCAgSSB3aWxs
-IGJlIHRha2luZyBjYXJlDQpvZiBpdC4NCg0KUmVnYXJkcywNCkFqYXkNCg==
+This series adds the counter delegation extension support. It is based on
+very early PoC work done by Kevin Xue and mostly rewritten after that.
+The counter delegation ISA extension(Smcdeleg/Ssccfg) actually depends
+on multiple ISA extensions.
+
+1. S[m|s]csrind : The indirect CSR extension[1] which defines additional
+   5 ([M|S|VS]IREG2-[M|S|VS]IREG6) register to address size limitation of
+   RISC-V CSR address space.
+2. Smstateen: The stateen bit[60] controls the access to the registers
+   indirectly via the above indirect registers.
+3. Smcdeleg/Ssccfg: The counter delegation extensions[2]
+
+The counter delegation extension allows Supervisor mode to program the
+hpmevent and hpmcounters directly without needing the assistance from the
+M-mode via SBI calls. This results in a faster perf profiling and very
+few traps. This extension also introduces a scountinhibit CSR which allows
+to stop/start any counter directly from the S-mode. As the counter
+delegation extension potentially can have more than 100 CSRs, the specification
+leverages the indirect CSR extension to save the precious CSR address range.
+
+Due to the dependency of these extensions, the following extensions must be
+enabled in qemu to use the counter delegation feature in S-mode.
+
+"smstateen=true,sscofpmf=true,ssccfg=true,smcdeleg=true,smcsrind=true,sscsrind=true"
+
+When we access the counters directly in S-mode, we also need to solve the
+following problems.
+
+1. Event to counter mapping
+2. Event encoding discovery
+
+The RISC-V ISA doesn't define any standard either for event encoding or the
+event to counter mapping rules.
+
+Until now, the SBI PMU implementation relies on device tree binding[3] to
+discover the event to counter mapping in RISC-V platform in the firmware. The
+SBI PMU specification[4] defines event encoding for standard perf events as well.
+Thus, the kernel can query the appropriate counter for an given event from the
+firmware.
+
+However, the kernel doesn't need any firmware interaction for hardware
+counters if counter delegation is available in the hardware. Thus, the driver
+needs to discover the above mappings/encodings by itself without any assistance
+from firmware. One of the options considered was to extend the PMU DT parsing
+support to kernel as well. However, that requires additional support in ACPI
+based system. It also needs more infrastructure in the virtualization as well.
+
+This patch series solves the above problem #1 by extending the perf tool in a
+way so that event json file can specify the counter constraints of each event
+and that can be passed to the driver to choose the best counter for a given
+event. The perf stat metric series[5] from Weilin already extend the perf tool
+to parse "Counter" property to specify the hardware counter restriction.
+I have included the patch from Weilin in this series for verification purposes
+only. I will rebase as that series evolves.
+
+This series extends that support by converting comma separated string to a
+bitmap. The counter constraint bitmap is passed to the perf driver via
+newly introduced "counterid_mask" property set in "config2". Even though, this
+is a generic perf tool change, this should not affect any other architecture
+if "counterid_mask" is not mapped. 
+
+@Weilin: Please let me know if there is a better way to solve the problem I
+described. 
+
+The problem #2 is solved by defining a architecture specific override function
+that will replace the perf standard event encoding with an encoding specified
+in the json file with the same event name. The alternate solution considered
+was to specify the encodings in the driver. However, these encodings are vendor
+specific in absence of an ISA guidelines and will become unmanageable with
+so many RISC-V vendors touching the driver for their encoding. 
+
+The override is only required when counter delegation is available in the
+platform which is detected at the runtime. The SBI PMU (current implementation)
+doesn't require any override as it defines the standard event encoding. The
+hwprobe syscall defined for RISC-V is used for this detection in this series.
+A sysfs based property can be explored to do the same but we may require
+hwprobe in future given the churn of extensions in RISC-V. That's why, I went
+with hwprobe. Let me know if anybody thinks that's a bad idea. 
+
+The perf tool also hook allows RISC-V ISA platform vendors to define their
+encoding for any standard perf or ISA event. I have tried to cover all the use
+cases that I am aware of (stat, record, top). Please let me know if I have
+missed any particular use case where architecture hook must be invoked. I am
+also open to any other idea to solve the above said problem.
+
+PATCH organization:
+PATCH 1 is from the perf metric series[5]
+PATCH 2-5 defines and implements the indirect CSR extension.
+PATCH 6-10 defines the other required ISA extensions.
+PATCH 11 just an overall restructure of the RISC-V PMU driver.
+PATCH 12-14 implements the counter delegation extension and new perf tool
+plumbings to solve #1 and #2.
+PATCH 15-16 improves the perf tool support to solve #1 and #2.
+PATCH 17 adds a perf json file for qemu virt machine.
+PATCH 18-20 adds hwprobe mechanism to enable perf to detect if platform supports
+delegation extensions.
+
+There is no change in process to run perf stat/record and will continue to work
+as it is as long as the relevant extensions have been enabled in Qemu.
+
+However, the perf tool needs to be recompiled with as it requires new kenrel
+headers.
+
+The Qemu patches can be found here:
+https://github.com/atishp04/qemu/tree/counter_delegation_rfc
+
+The opensbi patch can be found here:
+https://github.com/atishp04/opensbi/tree/counter_delegation_v1
+
+The Linux kernel patches can be found here:
+https://github.com/atishp04/linux/tree/counter_delegation_rfc
+
+[1] https://github.com/riscv/riscv-indirect-csr-access
+[2] https://github.com/riscv/riscv-smcdeleg-ssccfg
+[3] https://www.kernel.org/doc/Documentation/devicetree/bindings/perf/riscv%2Cpmu.yaml
+[4] https://github.com/riscv-non-isa/riscv-sbi-doc/blob/master/src/ext-pmu.adoc
+[5] https://lore.kernel.org/all/20240209031441.943012-4-weilin.wang@intel.com/
+
+Atish Patra (17):
+RISC-V: Add Sxcsrind ISA extension definition and parsing
+dt-bindings: riscv: add Sxcsrind ISA extension description
+RISC-V: Define indirect CSR access helpers
+RISC-V: Add Ssccfg ISA extension definition and parsing
+dt-bindings: riscv: add Ssccfg ISA extension description
+RISC-V: Add Smcntrpmf extension parsing
+dt-bindings: riscv: add Smcntrpmf ISA extension description
+RISC-V: perf: Restructure the SBI PMU code
+RISC-V: perf: Modify the counter discovery mechanism
+RISC-V: perf: Implement supervisor counter delegation support
+RISC-V: perf: Use config2 for event to counter mapping
+tools/perf: Add arch hooks to override perf standard events
+tools/perf: Pass the Counter constraint values in the pmu events
+perf: Add json file for virt machine supported events
+tools arch uapi: Sync the uinstd.h header file for RISC-V
+RISC-V: Add hwprobe support for Counter delegation extensions
+tools/perf: Detect if platform supports counter delegation
+
+Kaiwen Xue (2):
+RISC-V: Add Sxcsrind ISA extension CSR definitions
+RISC-V: Add Sscfg extension CSR definition
+
+Weilin Wang (1):
+perf pmu-events: Add functions in jevent.py to parse counter and event
+info for hardware aware grouping
+
+Documentation/arch/riscv/hwprobe.rst          |  10 +
+.../devicetree/bindings/riscv/extensions.yaml |  34 +
+MAINTAINERS                                   |   4 +-
+arch/riscv/include/asm/csr.h                  |  47 ++
+arch/riscv/include/asm/csr_ind.h              |  42 ++
+arch/riscv/include/asm/hwcap.h                |   5 +
+arch/riscv/include/asm/sbi.h                  |   2 +-
+arch/riscv/include/uapi/asm/hwprobe.h         |   4 +
+arch/riscv/kernel/cpufeature.c                |   5 +
+arch/riscv/kernel/sys_hwprobe.c               |   3 +
+arch/riscv/kvm/vcpu_pmu.c                     |   2 +-
+drivers/perf/Kconfig                          |  16 +-
+drivers/perf/Makefile                         |   4 +-
+.../perf/{riscv_pmu.c => riscv_pmu_common.c}  |   0
+.../perf/{riscv_pmu_sbi.c => riscv_pmu_dev.c} | 654 ++++++++++++++----
+include/linux/perf/riscv_pmu.h                |  13 +-
+tools/arch/riscv/include/uapi/asm/unistd.h    |  14 +-
+tools/perf/arch/riscv/util/Build              |   2 +
+tools/perf/arch/riscv/util/evlist.c           |  60 ++
+tools/perf/arch/riscv/util/pmu.c              |  41 ++
+tools/perf/arch/riscv/util/pmu.h              |  11 +
+tools/perf/builtin-record.c                   |   3 +
+tools/perf/builtin-stat.c                     |   2 +
+tools/perf/builtin-top.c                      |   3 +
+.../pmu-events/arch/riscv/arch-standard.json  |  10 +
+tools/perf/pmu-events/arch/riscv/mapfile.csv  |   1 +
+.../pmu-events/arch/riscv/qemu/virt/cpu.json  |  30 +
+.../arch/riscv/qemu/virt/firmware.json        |  68 ++
+tools/perf/pmu-events/jevents.py              | 186 ++++-
+tools/perf/pmu-events/pmu-events.h            |  25 +-
+tools/perf/util/evlist.c                      |   6 +
+tools/perf/util/evlist.h                      |   6 +
+32 files changed, 1167 insertions(+), 146 deletions(-)
+create mode 100644 arch/riscv/include/asm/csr_ind.h
+rename drivers/perf/{riscv_pmu.c => riscv_pmu_common.c} (100%)
+rename drivers/perf/{riscv_pmu_sbi.c => riscv_pmu_dev.c} (61%)
+create mode 100644 tools/perf/arch/riscv/util/evlist.c
+create mode 100644 tools/perf/arch/riscv/util/pmu.c
+create mode 100644 tools/perf/arch/riscv/util/pmu.h
+create mode 100644 tools/perf/pmu-events/arch/riscv/arch-standard.json
+create mode 100644 tools/perf/pmu-events/arch/riscv/qemu/virt/cpu.json
+create mode 100644 tools/perf/pmu-events/arch/riscv/qemu/virt/firmware.json
+
+--
+2.34.1
+
 
