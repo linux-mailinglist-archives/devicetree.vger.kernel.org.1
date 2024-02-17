@@ -1,206 +1,483 @@
-Return-Path: <devicetree+bounces-43070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49BE7859242
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 21:03:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CE518592B0
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 21:28:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7FAF7B2226C
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 20:03:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6C4D280EBE
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 20:28:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FE687E58F;
-	Sat, 17 Feb 2024 20:03:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFAE37E770;
+	Sat, 17 Feb 2024 20:28:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="F/IiSYaa"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="YLj98TrP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C1EF7E581;
-	Sat, 17 Feb 2024 20:03:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 888507E767
+	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 20:28:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708200192; cv=none; b=K10fpkDzqVFxeYJYvMxeiSabHM75TRCmLEkVZlv6InuQTfxY05tG0hdjPY1LZokHitHMI+GHAgW50WOHaon8z1zv+gN+ZYPu6WWGqapkg8A6LfYqmq4kDW95VcNiNuQkwNLmD7evJzQtKLyd1+Y0+favkVnz51ydikqOCLlNKD0=
+	t=1708201725; cv=none; b=o0+llmld9C0TxC1caKYjdtzvrLyjJLFXZLLUvPayd+DnHOhsA2wgV1APhe4iUvGJ/INDZ9waVYdldFvubM723PBeB0Ht2YmMgQRRrl1ULQom3yaRQqmP9PHGcUVxaCTypQJt7qdugSpcl4XT9mTerm5GBgkEkYK8AefBT6vTI+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708200192; c=relaxed/simple;
-	bh=657CVr7tfJs38s/e+riEk+9HfKOiiqg4XsfObmLlsco=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=l3rTffRrH3mP3lQT7BN/mQI+FNK3ryN6LVucpCly5s3+t2fHPV7o75woVcxQq7MbezM+FyuFnf3E+g3s6aNcH9dfvial6+sZpUo07BjjL6HabMKXTTcDc3QpPMAlELcIt0/1MJ0yM3ZuK3s8a/otg2wt6jgfsh2sPHTegKIM5vI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=F/IiSYaa; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41HK0vqP012879;
-	Sat, 17 Feb 2024 20:02:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=RoEi4O8xbtRc7rlAK2bkzLD3VTDSIZBvlHQgm7CqB4I=; b=F/
-	IiSYaa+61kDkR/B1A+0O7XDmgL0DNBQNJKTlCHeMOvoOFIE2v16kcwvpzZD2FDoY
-	1B2W/7ud5ob6R5TJx7sfnOWfgsNFFKjiD3pP4A7YdbRwDSpvcEuiLnX2eU8nYoVk
-	UfwyyBvfb1b+Rab/85w+j7C6QvvhPg2JArFJcR+8rO3L3ZiaDpLFdjo6ZbqEJVv4
-	EBBOFO2gevblf9AvkswAaGeLWI15bhn3t1n73BMxVfMBDIi6hkZqqUjWfLM+fu3a
-	wGlgNO1rHDqCziYU2VtpNTgUCAMIwsFSw+AsJNuUmG2gr4yImxcVQE8exIv43XQc
-	YA5vBVdhJMNgqYVaQ5Xg==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wam4q0yny-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 17 Feb 2024 20:02:39 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41HK2cCk026372
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 17 Feb 2024 20:02:38 GMT
-Received: from [10.110.11.212] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sat, 17 Feb
- 2024 12:02:36 -0800
-Message-ID: <c084edd6-22cf-49a4-9dac-75163a1f4088@quicinc.com>
-Date: Sat, 17 Feb 2024 12:02:35 -0800
+	s=arc-20240116; t=1708201725; c=relaxed/simple;
+	bh=fDVwmIS5hG50cQcU7rEpj4WlKe+b1sGiFYc33JEWIWY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=UL+ILX99rRvHkFzuSsr3dXT+7sZaVz53a9v1FD3lfQxGMS5EPahQ2Vh0znuJDlUg6Z3VgJVfp5VBmcpfsGQl7xprXVhgC6Wqi0UWjweFxhlDQ9ye+jQDVvmhyJ2h8aYK6snBzN/g7VBHr+Hh6isPD/RrsxpamkALcrjO48lCQBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=YLj98TrP; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-1db35934648so77315ad.1
+        for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 12:28:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1708201723; x=1708806523; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SqNdYBSTrysSd/mY90h7edFyNLz3VjuiVskFnKsffMU=;
+        b=YLj98TrPeAirA6n8aggqwfy/grmoTReXCeNr67XWiXPX3+JBK35f8MLTS6dJype2PQ
+         0LaTMG6AnDZ7xFuXFY3zNsKKyH29VVaFxUQz6zxN/5elSu3wjJRDxFac/4W6/qZEvBUx
+         5ciknkCeV3BxRNOybinqxib0q0180QMbTx/nCoRUqm9LOLEeY6EOSBqAqSU3L+sum+Oe
+         jNZKtC/3SqK2GlEY1QXcVXLXkrUSuwrVkvygYeNjHXnqFEAbeIbO2aPxKnsqGVqqaiCf
+         slZODiwu6F/ZbEZTYsT0/xKYsYs2H2vv5MZ0kOOUmQyUOOIqO5bUwYbXvhkMmCQwg8d/
+         IiSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708201723; x=1708806523;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SqNdYBSTrysSd/mY90h7edFyNLz3VjuiVskFnKsffMU=;
+        b=wakhQZaq4tyiJ9B5QT8vmNWF/8smB0Km1StGF6hqwDsZYfaIW58apuwE63unn8RNLM
+         uQUYGjsT7R8lOEs+ZuPL+qgQDyukdn8sbQRdHGM54qHjwq5oBXyoBzZZVSDem+FBRvZi
+         Q9duLJaLHiy6LTZ2/Fj7nIdHRbjdugasJZhqkIedZw1jI80L7ZHlN/VDUSjrFUpGXLq1
+         2ixModE9498mk1Os9hQoeGoK1d1TkRQWRpcO+tSYAd7bSkPDsUe/L8/GMmSQW2fufAX0
+         /D2QAWll7qUYAqxCC1ELOiMwUYup8IbU4kWJ7QwSy85f0zhVk+rUaiaBIz2zt/aqrlv6
+         FKPA==
+X-Forwarded-Encrypted: i=1; AJvYcCXcEpedDYPFcLFMltKBmOb135fNIt+rUxs3WbjyvO7LV5Y4lpe9nbc4idkk/74DiMP4TJoRg+JK69cnAr+muWCLTkyw7Q3bIIbnrA==
+X-Gm-Message-State: AOJu0YzQzMRyXBS9HIUgsATR4AoHv7X6hJfXwtzAc8SP3pNpb8sud3wx
+	wMCLYpQ0dJZpPx930ZL/fxXeADEpQwbTBXntRyiVFiGfUEG7Bwe4xqEqAl5nLbb/Oexj9iXRbJ3
+	M4gQlbUmgbHzXOU5MpniEZ5riDGrkDUZudLzT
+X-Google-Smtp-Source: AGHT+IGxD1PY0fb7FcS+w6rfznB2Q0PKCaeeqv793sQ84IY+Gop0LdUF+cz8vjhn2EAzzjPIRh+f40cW8rf83aQzVrQ=
+X-Received: by 2002:a17:902:cf4e:b0:1db:d064:5272 with SMTP id
+ e14-20020a170902cf4e00b001dbd0645272mr49999plg.23.1708201722232; Sat, 17 Feb
+ 2024 12:28:42 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 06/18] dt-bindings: new: wireless: describe the ath12k
- PCI module
-To: Bartosz Golaszewski <brgl@bgdev.pl>, Kalle Valo <kvalo@kernel.org>
-CC: Marcel Holtmann <marcel@holtmann.org>,
-        Luiz Augusto von Dentz
-	<luiz.dentz@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni
-	<pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
-	<broonie@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon
-	<will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-        Saravana Kannan
-	<saravanak@google.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Arnd
- Bergmann <arnd@arndb.de>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Marek
- Szyprowski <m.szyprowski@samsung.com>,
-        Alex Elder <elder@linaro.org>,
-        Srini
- Kandagatla <srinivas.kandagatla@linaro.org>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Manivannan
- Sadhasivam <mani@kernel.org>,
-        Lukas Wunner <lukas@wunner.de>,
-        Dmitry
- Baryshkov <dmitry.baryshkov@linaro.org>,
-        <linux-bluetooth@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-wireless@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-pci@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>,
-        Bartosz Golaszewski
-	<bartosz.golaszewski@linaro.org>
-References: <20240216203215.40870-1-brgl@bgdev.pl>
- <20240216203215.40870-7-brgl@bgdev.pl> <87cysvd2er.fsf@kernel.org>
- <CAMRc=Md10bNPswsLqdCmqzEmD+QmyZ+Eb4SUWknH-j5kK-speQ@mail.gmail.com>
-Content-Language: en-US
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <CAMRc=Md10bNPswsLqdCmqzEmD+QmyZ+Eb4SUWknH-j5kK-speQ@mail.gmail.com>
+References: <20240217005738.3744121-1-atishp@rivosinc.com>
+In-Reply-To: <20240217005738.3744121-1-atishp@rivosinc.com>
+From: Ian Rogers <irogers@google.com>
+Date: Sat, 17 Feb 2024 12:28:28 -0800
+Message-ID: <CAP-5=fXh79aeHZ-M4CqP_GkfOHw0-7Cc1YLLGEyW5pT7t8eGHw@mail.gmail.com>
+Subject: Re: [PATCH RFC 00/20] Add Counter delegation ISA extension support
+To: Atish Patra <atishp@rivosinc.com>
+Cc: linux-kernel@vger.kernel.org, Adrian Hunter <adrian.hunter@intel.com>, 
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
+	Alexandre Ghiti <alexghiti@rivosinc.com>, Andrew Jones <ajones@ventanamicro.com>, 
+	Anup Patel <anup@brainfault.org>, Arnaldo Carvalho de Melo <acme@kernel.org>, 
+	Atish Patra <atishp@atishpatra.org>, Christian Brauner <brauner@kernel.org>, 
+	=?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>, 
+	Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org, 
+	Evan Green <evan@rivosinc.com>, Guo Ren <guoren@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	Ingo Molnar <mingo@redhat.com>, James Clark <james.clark@arm.com>, 
+	Jing Zhang <renyu.zj@linux.alibaba.com>, Jiri Olsa <jolsa@kernel.org>, 
+	Ji Sheng Teoh <jisheng.teoh@starfivetech.com>, John Garry <john.g.garry@oracle.com>, 
+	Jonathan Corbet <corbet@lwn.net>, Kan Liang <kan.liang@linux.intel.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, kvm-riscv@lists.infradead.org, 
+	kvm@vger.kernel.org, Ley Foon Tan <leyfoon.tan@starfivetech.com>, 
+	linux-doc@vger.kernel.org, linux-perf-users@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, Mark Rutland <mark.rutland@arm.com>, 
+	Namhyung Kim <namhyung@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Peter Zijlstra <peterz@infradead.org>, 
+	Rob Herring <robh+dt@kernel.org>, Samuel Holland <samuel.holland@sifive.com>, 
+	Weilin Wang <weilin.wang@intel.com>, Will Deacon <will@kernel.org>, kaiwenxue1@gmail.com, 
+	Yang Jihong <yangjihong1@huawei.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: cfNhiVdKuQrXnHOS8wjzgI2PKgKw5PcM
-X-Proofpoint-GUID: cfNhiVdKuQrXnHOS8wjzgI2PKgKw5PcM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-17_18,2024-02-16_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 malwarescore=0 clxscore=1011 suspectscore=0 bulkscore=0
- spamscore=0 phishscore=0 mlxscore=0 lowpriorityscore=0 adultscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402170165
+Content-Transfer-Encoding: quoted-printable
 
-On 2/17/2024 10:30 AM, Bartosz Golaszewski wrote:
-> On Sat, Feb 17, 2024 at 7:35 AM Kalle Valo <kvalo@kernel.org> wrote:
->>
->> Bartosz Golaszewski <brgl@bgdev.pl> writes:
->>
->>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>>
->>> Add device-tree bindings for the ATH12K module found in the WCN7850
->>> package.
->>>
->>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>> ---
->>>  .../net/wireless/qcom,ath12k-pci.yaml         | 103 ++++++++++++++++++
->>>  1 file changed, 103 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/net/wireless/qcom,ath12k-pci.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-pci.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-pci.yaml
->>> new file mode 100644
->>> index 000000000000..063c576b99a0
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-pci.yaml
->>> @@ -0,0 +1,103 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +# Copyright (c) 2024 Linaro Limited
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/net/wireless/qcom,ath12k-pci.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Qualcomm Technologies ath12k wireless devices (PCIe)
->>> +
->>> +maintainers:
->>> +  - Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>
->> Jeff and me are the ath12k driver maintainers so shouldn't we listed
->> here as well?
->>
-> 
-> Sure will do. I also noticed the subject is wrong, should have been
-> "net" not "new".
-> 
-> Also, Jeff is not showing up for ath12k bindings in get_maintainer.pl.
-> You could consider adding an N: ath12k entry to MAINTAINERS.
-> 
-> Bartosz
-> 
->> Jeff, this reminds me that we should add you to qcom,ath10k.yaml,
->> qcom,ath11k-pci.yaml and qcom,ath11k.yaml as maintainer.
+On Fri, Feb 16, 2024 at 4:58=E2=80=AFPM Atish Patra <atishp@rivosinc.com> w=
+rote:
+>
+> This series adds the counter delegation extension support. It is based on
+> very early PoC work done by Kevin Xue and mostly rewritten after that.
+> The counter delegation ISA extension(Smcdeleg/Ssccfg) actually depends
+> on multiple ISA extensions.
+>
+> 1. S[m|s]csrind : The indirect CSR extension[1] which defines additional
+>    5 ([M|S|VS]IREG2-[M|S|VS]IREG6) register to address size limitation of
+>    RISC-V CSR address space.
+> 2. Smstateen: The stateen bit[60] controls the access to the registers
+>    indirectly via the above indirect registers.
+> 3. Smcdeleg/Ssccfg: The counter delegation extensions[2]
+>
+> The counter delegation extension allows Supervisor mode to program the
+> hpmevent and hpmcounters directly without needing the assistance from the
+> M-mode via SBI calls. This results in a faster perf profiling and very
+> few traps. This extension also introduces a scountinhibit CSR which allow=
+s
+> to stop/start any counter directly from the S-mode. As the counter
+> delegation extension potentially can have more than 100 CSRs, the specifi=
+cation
+> leverages the indirect CSR extension to save the precious CSR address ran=
+ge.
+>
+> Due to the dependency of these extensions, the following extensions must =
+be
+> enabled in qemu to use the counter delegation feature in S-mode.
+>
+> "smstateen=3Dtrue,sscofpmf=3Dtrue,ssccfg=3Dtrue,smcdeleg=3Dtrue,smcsrind=
+=3Dtrue,sscsrind=3Dtrue"
+>
+> When we access the counters directly in S-mode, we also need to solve the
+> following problems.
+>
+> 1. Event to counter mapping
+> 2. Event encoding discovery
+>
+> The RISC-V ISA doesn't define any standard either for event encoding or t=
+he
+> event to counter mapping rules.
+>
+> Until now, the SBI PMU implementation relies on device tree binding[3] to
+> discover the event to counter mapping in RISC-V platform in the firmware.=
+ The
+> SBI PMU specification[4] defines event encoding for standard perf events =
+as well.
+> Thus, the kernel can query the appropriate counter for an given event fro=
+m the
+> firmware.
+>
+> However, the kernel doesn't need any firmware interaction for hardware
+> counters if counter delegation is available in the hardware. Thus, the dr=
+iver
+> needs to discover the above mappings/encodings by itself without any assi=
+stance
+> from firmware. One of the options considered was to extend the PMU DT par=
+sing
+> support to kernel as well. However, that requires additional support in A=
+CPI
+> based system. It also needs more infrastructure in the virtualization as =
+well.
+>
+> This patch series solves the above problem #1 by extending the perf tool =
+in a
+> way so that event json file can specify the counter constraints of each e=
+vent
+> and that can be passed to the driver to choose the best counter for a giv=
+en
+> event. The perf stat metric series[5] from Weilin already extend the perf=
+ tool
+> to parse "Counter" property to specify the hardware counter restriction.
+> I have included the patch from Weilin in this series for verification pur=
+poses
+> only. I will rebase as that series evolves.
+>
+> This series extends that support by converting comma separated string to =
+a
+> bitmap. The counter constraint bitmap is passed to the perf driver via
+> newly introduced "counterid_mask" property set in "config2". Even though,=
+ this
+> is a generic perf tool change, this should not affect any other architect=
+ure
+> if "counterid_mask" is not mapped.
+>
+> @Weilin: Please let me know if there is a better way to solve the problem=
+ I
+> described.
+>
+> The problem #2 is solved by defining a architecture specific override fun=
+ction
+> that will replace the perf standard event encoding with an encoding speci=
+fied
+> in the json file with the same event name. The alternate solution conside=
+red
+> was to specify the encodings in the driver. However, these encodings are =
+vendor
+> specific in absence of an ISA guidelines and will become unmanageable wit=
+h
+> so many RISC-V vendors touching the driver for their encoding.
+>
+> The override is only required when counter delegation is available in the
+> platform which is detected at the runtime. The SBI PMU (current implement=
+ation)
+> doesn't require any override as it defines the standard event encoding. T=
+he
+> hwprobe syscall defined for RISC-V is used for this detection in this ser=
+ies.
+> A sysfs based property can be explored to do the same but we may require
+> hwprobe in future given the churn of extensions in RISC-V. That's why, I =
+went
+> with hwprobe. Let me know if anybody thinks that's a bad idea.
+>
+> The perf tool also hook allows RISC-V ISA platform vendors to define thei=
+r
+> encoding for any standard perf or ISA event. I have tried to cover all th=
+e use
+> cases that I am aware of (stat, record, top). Please let me know if I hav=
+e
+> missed any particular use case where architecture hook must be invoked. I=
+ am
+> also open to any other idea to solve the above said problem.
 
-OK, I'll update those files.
+Hi Atish,
 
-And looking at MAINTAINERS, in ath10 we have an explicit path:
-F:	Documentation/devicetree/bindings/net/wireless/qcom,ath10k.yaml
+Thank you for the work! I know how the perf tool discovers events is
+somewhat assumed knowledge, I thought I'd just go through it here and
+explain a difference that is landing in Linux 6.8, as well as recent
+heterogeneous/hybrid/big.little support changes, just so those who
+aren't up to speed can catch up for the sake of discussion on this
+approach - sorry for turning this into a longer email than it perhaps
+needs to be, and the historical take may lack accuracy that I
+apologize in advance for.
 
-And in ath11k we have an explicit path:
-F:	Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+The job of discovering events is to map a name like "cycles" into a
+set up for the perf_event_attr passed to perf_event_open. This sounds
+simple but "cycles" may be encoded differently for different PMUs on a
+heterogeneous system, it may also be an event on an accelerator like a
+GPU. So the first thing to recognize is that a name like "cycles" may
+map onto multiple struct perf_event_attr values. The behavior of how
+the perf tool does this lacks consistency, for example are all or just
+core PMUs considered, but this is deliberate for the sake of somewhat
+consistency by the tool over time. Perhaps in the future we'll
+change/fix this as things like accelerators dominate performance
+concerns.
 
-However the ath11k entry is missing:
-Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
+The next thing is that what "cycles" means has been evolving over
+Linux releases. Originally "cycles" was assumed to be a CPU event and
+there were other events like "page-faults" which were software events.
+In perf_event.h there are enums for the "type" of event (hardware,
+software, cache, etc.) and for the actual event itself - cycles is
+"config" value 0. In the code we tend to refer to this kind of
+encoding as legacy. An ability was added (maybe it was always there)
+to dynamically add PMUs and PMUs advertise the value for the struct
+perf_event_attr through sysfs in  "/sys/devices/<pmu name>/type". On
+x86 the performance core typically has a type matching the legacy
+hardware number, but on ARM this isn't the case. So that legacy events
+can work on heterogeneous/hybrid/big.little systems where there should
+be multiple PMUs (looking at most Android devices for misconfiguring
+this), there is an extended type field in the top 32-bits of the
+struct perf_event_attr config. The extended type means I want this
+legacy event type on the extended type PMU.
 
-So it looks like I have a few patches:
-- update my entries in MAINTAINERS to use my @kernel.org e-mail
-- add myself to the existing *ath1*k*.yaml files as a maintainer
-- update MAINTAINERS to replace F: *.yaml with N: ath1*k to match any
-related files, including the YAML files
+For non-legacy events there is a problem of how to map a name to a
+config value (I'll say singular config value but overtime it has
+actually become 4 64-bit values). The sysfs format directory
+"/sys/devices/<pmu name>/format" does this. The files in the format
+directory say that on x86 the event is encoded in the first byte of
+the config and the umask in the second byte. If there is an event like
+"assists.any" that has an event of 0xc1 and a umask of 7, then the
+perf tool knows to create a config value of 0x7c1 using the format
+encoding.
 
-/jeff
+To go from an event name like "cycles" to a format encoding there are
+two places to look, the first is "/sys/devices/<pmu name>/events/". In
+the events directory on x86 there is a "cpu-cycles" that contains
+"event=3D0x3c", i.e. a format style encoding. The second are the json
+files that are mapped to format style encodings for a specific cpuid
+by jevents.py. The easiest way to see the 2nd kind is to run "perf
+list --details":
+```
+...
+  assists.any
+      [Number of occurrences where a microcode assist is invoked by hardwar=
+e]
+       default_core/event=3D0xc1,period=3D0x186a3,umask=3D0x7/
+...
+```
+We can see there is a format style encoding that has been built into
+the perf tool.
+
+A place where ambiguity creeps in and is changing in Linux 6.8 is what
+to do when we have the same event in places like the legacy name,
+sysfs and the json? The behavior we have is:
+1) "perf stat -e cycles ..." - the event was specified without PMUs,
+it is assumed a legacy encoding on all core PMUs is preferred (note
+non-core PMUs that have a cycles event are ignored, but this wouldn't
+be the case if the event weren't a legacy event name)
+2) "perf stat -e cpu/cycles/" - the event was specified with a core
+PMU, prior to 6.8 (ie any current perf tool), a legacy encoding will
+be used. In 6.8 and after the json and sysfs encoding will have
+priority: https://lore.kernel.org/r/20231123042922.834425-1-irogers@google.=
+com
+3) "perf stat -e pmu/cycles/" - event was specified with a non-core
+PMU so a legacy encoding won't be considered, only json and sysfs.
+
+As I understand the problem you are trying to fix in the perf tool it
+is for behavior 1 above, this is because the PMU driver wants the
+legacy event encodings to be in json so it needn't discover them.
+Behaviors 2 and 3 already prefer json encodings that are built into
+the perf tool.
+
+So given behavior 1 is kind of weird, it considers different PMUs
+dependent on whether the event is legacy or not, it doesn't override
+with a sysfs/json event if one is present, why don't we look to change
+behavior 1 so that it is more like behaviors 2 and 3? I believe this
+gives you the ability to override legacy events you want. At the same
+time I'd like to also remove the "only core PMUs" assumption.
+
+What would this look like? Well in the current code we take a legacy
+event and then create a perf_event_attr for each core PMU:
+https://git.kernel.org/pub/scm/linux/kernel/git/perf/perf-tools-next.git/tr=
+ee/tools/perf/util/parse-events.c?h=3Dperf-tools-next#n1348
+We'd need to change this so that we wild card all the PMUs and
+consider the sysfs/json events first, which is what we already do
+here:
+https://git.kernel.org/pub/scm/linux/kernel/git/perf/perf-tools-next.git/tr=
+ee/tools/perf/util/parse-events.y?h=3Dperf-tools-next#n305
+with the sysfs/json fix up being here:
+https://git.kernel.org/pub/scm/linux/kernel/git/perf/perf-tools-next.git/tr=
+ee/tools/perf/util/parse-events.c?h=3Dperf-tools-next#n1016
+
+As with the 6.8 change to prioritize sysfs/json over legacy the
+largest part of this change will be updating all the test
+expectations. Wdyt?
+
+Things this patch series does that I don't like:
+ - hardcoding the expected CPU's PMU to "cpu", this should almost
+certainly be an iterator over all core PMU types. This allows core
+PMUs not to be called "cpu" and for heterogeneous configurations to
+work.
+ - doing things in an arch specific way. Test coverage is really hard
+and when something lives in arch directory we lose coverage unless we
+run on that machine type. Ugh, I'm just reminded that ARM
+heterogeneous is broken because of an arch override that doesn't
+consider >1 core PMU. Testing an ARM heterogenous PMU set up is hard
+but not doing so breaks people running Linux on M1 macs. Really we
+should just have PMU specific behaviors and the arch directory should
+disappear. This would also greatly help cross architecture work where
+you may record from perf on one architecture, but analyze the data on
+another.
+ - we've been moving to have perf and the json have less special
+architecture knowledge. Weilin's patches aside, we've added things
+like  "/sys/devices/<pmu name>/caps/slots" so that metrics can use
+"#slots" rather than hard coding the pipeline width in each metric. My
+hope for Weilin's patches is that we can make it less Intel specific
+and ultimately we may be able to advertise the specific features like
+number of fixed and generic counters via something like sysfs.
+However, the counters an event can go on is a property of the event so
+I see a need for the sysfs/json to add this.
+
+Congratulations if you got this far, sorry this email was so long. Thanks,
+Ian
+
+> PATCH organization:
+> PATCH 1 is from the perf metric series[5]
+> PATCH 2-5 defines and implements the indirect CSR extension.
+> PATCH 6-10 defines the other required ISA extensions.
+> PATCH 11 just an overall restructure of the RISC-V PMU driver.
+> PATCH 12-14 implements the counter delegation extension and new perf tool
+> plumbings to solve #1 and #2.
+> PATCH 15-16 improves the perf tool support to solve #1 and #2.
+> PATCH 17 adds a perf json file for qemu virt machine.
+> PATCH 18-20 adds hwprobe mechanism to enable perf to detect if platform s=
+upports
+> delegation extensions.
+>
+> There is no change in process to run perf stat/record and will continue t=
+o work
+> as it is as long as the relevant extensions have been enabled in Qemu.
+>
+> However, the perf tool needs to be recompiled with as it requires new ken=
+rel
+> headers.
+>
+> The Qemu patches can be found here:
+> https://github.com/atishp04/qemu/tree/counter_delegation_rfc
+>
+> The opensbi patch can be found here:
+> https://github.com/atishp04/opensbi/tree/counter_delegation_v1
+>
+> The Linux kernel patches can be found here:
+> https://github.com/atishp04/linux/tree/counter_delegation_rfc
+>
+> [1] https://github.com/riscv/riscv-indirect-csr-access
+> [2] https://github.com/riscv/riscv-smcdeleg-ssccfg
+> [3] https://www.kernel.org/doc/Documentation/devicetree/bindings/perf/ris=
+cv%2Cpmu.yaml
+> [4] https://github.com/riscv-non-isa/riscv-sbi-doc/blob/master/src/ext-pm=
+u.adoc
+> [5] https://lore.kernel.org/all/20240209031441.943012-4-weilin.wang@intel=
+.com/
+>
+> Atish Patra (17):
+> RISC-V: Add Sxcsrind ISA extension definition and parsing
+> dt-bindings: riscv: add Sxcsrind ISA extension description
+> RISC-V: Define indirect CSR access helpers
+> RISC-V: Add Ssccfg ISA extension definition and parsing
+> dt-bindings: riscv: add Ssccfg ISA extension description
+> RISC-V: Add Smcntrpmf extension parsing
+> dt-bindings: riscv: add Smcntrpmf ISA extension description
+> RISC-V: perf: Restructure the SBI PMU code
+> RISC-V: perf: Modify the counter discovery mechanism
+> RISC-V: perf: Implement supervisor counter delegation support
+> RISC-V: perf: Use config2 for event to counter mapping
+> tools/perf: Add arch hooks to override perf standard events
+> tools/perf: Pass the Counter constraint values in the pmu events
+> perf: Add json file for virt machine supported events
+> tools arch uapi: Sync the uinstd.h header file for RISC-V
+> RISC-V: Add hwprobe support for Counter delegation extensions
+> tools/perf: Detect if platform supports counter delegation
+>
+> Kaiwen Xue (2):
+> RISC-V: Add Sxcsrind ISA extension CSR definitions
+> RISC-V: Add Sscfg extension CSR definition
+>
+> Weilin Wang (1):
+> perf pmu-events: Add functions in jevent.py to parse counter and event
+> info for hardware aware grouping
+>
+> Documentation/arch/riscv/hwprobe.rst          |  10 +
+> .../devicetree/bindings/riscv/extensions.yaml |  34 +
+> MAINTAINERS                                   |   4 +-
+> arch/riscv/include/asm/csr.h                  |  47 ++
+> arch/riscv/include/asm/csr_ind.h              |  42 ++
+> arch/riscv/include/asm/hwcap.h                |   5 +
+> arch/riscv/include/asm/sbi.h                  |   2 +-
+> arch/riscv/include/uapi/asm/hwprobe.h         |   4 +
+> arch/riscv/kernel/cpufeature.c                |   5 +
+> arch/riscv/kernel/sys_hwprobe.c               |   3 +
+> arch/riscv/kvm/vcpu_pmu.c                     |   2 +-
+> drivers/perf/Kconfig                          |  16 +-
+> drivers/perf/Makefile                         |   4 +-
+> .../perf/{riscv_pmu.c =3D> riscv_pmu_common.c}  |   0
+> .../perf/{riscv_pmu_sbi.c =3D> riscv_pmu_dev.c} | 654 ++++++++++++++----
+> include/linux/perf/riscv_pmu.h                |  13 +-
+> tools/arch/riscv/include/uapi/asm/unistd.h    |  14 +-
+> tools/perf/arch/riscv/util/Build              |   2 +
+> tools/perf/arch/riscv/util/evlist.c           |  60 ++
+> tools/perf/arch/riscv/util/pmu.c              |  41 ++
+> tools/perf/arch/riscv/util/pmu.h              |  11 +
+> tools/perf/builtin-record.c                   |   3 +
+> tools/perf/builtin-stat.c                     |   2 +
+> tools/perf/builtin-top.c                      |   3 +
+> .../pmu-events/arch/riscv/arch-standard.json  |  10 +
+> tools/perf/pmu-events/arch/riscv/mapfile.csv  |   1 +
+> .../pmu-events/arch/riscv/qemu/virt/cpu.json  |  30 +
+> .../arch/riscv/qemu/virt/firmware.json        |  68 ++
+> tools/perf/pmu-events/jevents.py              | 186 ++++-
+> tools/perf/pmu-events/pmu-events.h            |  25 +-
+> tools/perf/util/evlist.c                      |   6 +
+> tools/perf/util/evlist.h                      |   6 +
+> 32 files changed, 1167 insertions(+), 146 deletions(-)
+> create mode 100644 arch/riscv/include/asm/csr_ind.h
+> rename drivers/perf/{riscv_pmu.c =3D> riscv_pmu_common.c} (100%)
+> rename drivers/perf/{riscv_pmu_sbi.c =3D> riscv_pmu_dev.c} (61%)
+> create mode 100644 tools/perf/arch/riscv/util/evlist.c
+> create mode 100644 tools/perf/arch/riscv/util/pmu.c
+> create mode 100644 tools/perf/arch/riscv/util/pmu.h
+> create mode 100644 tools/perf/pmu-events/arch/riscv/arch-standard.json
+> create mode 100644 tools/perf/pmu-events/arch/riscv/qemu/virt/cpu.json
+> create mode 100644 tools/perf/pmu-events/arch/riscv/qemu/virt/firmware.js=
+on
+>
+> --
+> 2.34.1
+>
 
