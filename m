@@ -1,156 +1,103 @@
-Return-Path: <devicetree+bounces-42996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5D1B858F4A
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 13:15:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA744858F5D
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 13:42:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A3AC41C20C9F
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 12:15:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60FFB1F22A9B
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 12:42:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 555886A333;
-	Sat, 17 Feb 2024 12:15:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB55E6A012;
+	Sat, 17 Feb 2024 12:42:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="cZm6w3+q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6BA86A330
-	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 12:15:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1041487B4;
+	Sat, 17 Feb 2024 12:42:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708172110; cv=none; b=PGXMXV7b0ouZEV+z4YvIoreL0J/c3fhwJMagvOdQtIiyhVgA/SdNw0T9FcSOhCqXaE2b7VJ9J1WRcdg4DIhDXxFNX2iN83fSE0mDu3XA1oU4TKqvRut1SxFEGCAucP2l4X8z7L0ohjtQNTvdi0gfvX9JARQzwXzn3KpPML4hMAI=
+	t=1708173750; cv=none; b=YH/c6khnjc7oUMHWfnsZ9UCSMIgEwS+cq1GPoBN+IGTHp/WL6w2Afs3KeU2Evqz4flsP4yAwkAXm25ynkBi70UCZT2t7ZnVlGRP8+FsVxPEvTV+UNX/9bECuvHahB2UrdA+uZb8LQA1cVHfYpczpTMMs6Reh0amM3sVZKaRpPw0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708172110; c=relaxed/simple;
-	bh=S2t8ZmWnf3+Vn3K2L7tspN0gX9dvNd1USxfVoDWBbZE=;
+	s=arc-20240116; t=1708173750; c=relaxed/simple;
+	bh=b3g8uEPS+3Ef3BYg2KSNVRp2AFWIwoooI5Kly5xpPZY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NJtslqCuDsbrOLaBLwaPy2jlCHOZN3HO3PSIRsDVFYlgwIZvg80JnK6ZmN02oJFgkJQlazlFvx7JThbeHrQKt7Crxw55FHGmK4VpWG7syXFa/sAO4uTFNgAlaVVvwcmONCd9F5l/wqZ6FQaCQMVCGZ1ema0wg2rZy8ucn3WgLw4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1rbJaS-0000RV-Fa; Sat, 17 Feb 2024 13:14:32 +0100
-Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1rbJaP-001GBa-EN; Sat, 17 Feb 2024 13:14:29 +0100
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1rbJaP-00CwUe-15;
-	Sat, 17 Feb 2024 13:14:29 +0100
-Date: Sat, 17 Feb 2024 13:14:29 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=gPWnayKCFyzURg3oNbI7pXyHB8bP3Uwjk0lSqaK2yRL60UBM+2+KjwL4WaFL8hdji6o5WuydHBkqwRzkP+4tvNfrfIagm2WFH8W2N6Njh/QuQJ1k/pLudkRMMlQFiDlo7QYaIVWZCFYJbtm/U6BqDG2M0v4ngb6AdZQJjk9VaYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=cZm6w3+q; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 64E86FF802;
+	Sat, 17 Feb 2024 12:42:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1708173745;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ZQgQFC20iCOwYcRfjCRWjcJxj6kdRvb0sW/GpMA0iJA=;
+	b=cZm6w3+q/UHjIT1yNRcAtWgateZy+3L53YEsxa8c0kbbAEj7aWy5AFrxj6rry5XSn9IF1M
+	sT+b48pGm6Dbwqf7PWGXGB9DYyA8rgLo4Z6HcP3sO/cREYR0dfOL7IKM6jvRQHdZUQDLX8
+	dGvaU1z+9dq+Tdm0/WBz2I9WWXpSW8yE2NA8JLFV4oY0StaAUa8ZKw8Bi7lf1VpSEA6Gat
+	JJ3VGzSFbxSM5jVo5yPLcXMayJ++a4QX1PSgmntwv9QmTKJxOdD5lXyEufGFe0tT3Or9aH
+	VLy8fnI6yzSpUVkK3fUTy08Ni3w0cq4IbSrs3qkZJ27zPKvMZn2wxvPryuteOA==
+Date: Sat, 17 Feb 2024 13:42:23 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Jeremy Kerr <jk@codeconstruct.com.au>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-	Dent Project <dentproject@linuxfoundation.org>
-Subject: Re: [PATCH net-next v4 14/17] dt-bindings: net: pse-pd: Add bindings
- for PD692x0 PSE controller
-Message-ID: <ZdCjJcPbbBGYVtuo@pengutronix.de>
-References: <20240215-feature_poe-v4-0-35bb4c23266c@bootlin.com>
- <20240215-feature_poe-v4-14-35bb4c23266c@bootlin.com>
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	=?utf-8?Q?Przemys=C5=82aw?= Gaj <pgaj@cadence.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Conor Culhane <conor.culhane@silvaco.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Dinh Nguyen <dinguyen@kernel.org>,
+	Boris Brezillon <bbrezillon@kernel.org>,
+	Nicolas Pitre <npitre@baylibre.com>, linux-i3c@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: i3c: drop "master" node name suffix
+Message-ID: <2024021712422352187ad4@mail.local>
+References: <20240117075618.81932-1-krzysztof.kozlowski@linaro.org>
+ <00d6a0d5-6787-4777-8fb2-dcad4304a724@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240215-feature_poe-v4-14-35bb4c23266c@bootlin.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <00d6a0d5-6787-4777-8fb2-dcad4304a724@linaro.org>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 
-On Thu, Feb 15, 2024 at 05:02:55PM +0100, Kory Maincent wrote:
-> Add the PD692x0 I2C Power Sourcing Equipment controller device tree
-> bindings documentation.
+On 16/02/2024 12:26:12+0100, Krzysztof Kozlowski wrote:
+> On 17/01/2024 08:56, Krzysztof Kozlowski wrote:
+> > Drop the requirement of "-master" suffix in node names because:
+> > 1. "Master" word is discouraged and MIPI Alliance renamed it to
+> >    "Controller".
+> > 2. Some devices can operate in Controller (Master) or Target mode, thus
+> >    the name is not accurate in such cases.
+> > 3. Other buses, like I2C controllers, use simple "i2c".
+> > 
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > ---
 > 
-> This patch is sponsored by Dent Project <dentproject@linuxfoundation.org>.
+> Rob, can you pick this one up? It seems Alexandre did not take it.
 > 
-> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
-> ---
-...
-> +        pse_pis {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          pse_pi0: pse_pi@0 {
-> +            reg = <0>;
-> +            #pse-cells = <0>;
-> +            pairset-names = "alternative-a", "alternative-b";
-> +            pairsets = <&phys0>, <&phys1>;
-> +          };
-> +          pse_pi1: pse_pi@1 {
-> +            reg = <1>;
-> +            #pse-cells = <0>;
-> +            pairset-names = "alternative-a";
-> +            pairsets = <&phys2>;
 
-According to latest discussions, PSE PI nodes will need some
-additional, board specific, information:
-- this controller do not implements polarity switching, we need to know
-  what polarity is implemented on this board. The 802.3 spec provide not
-  really consistent names for polarity configurations:
-  - Alternative A MDI-X
-  - Alternative A MDI
-  - Alternative B X
-  - Alternative B S
-  The board may implement one of polarity configurations per alternative
-  or have additional helpers to switch them without using PSE
-  controller.
-  Even if specification explicitly say:
-  "The PD shall be implemented to be insensitive to the polarity of the power
-   supply and shall be able to operate per the PD Mode A column and the PD
-   Mode B column in Table 33–13"
-  it is possible to find reports like this:
-  https://community.ui.com/questions/M5-cant-take-reversed-power-polarity-/d834d9a8-579d-4f08-80b1-623806cc5070
-
-  Probably this kind of property is a good fit:
-  polarity-supported = "MDI-X", "MDI", "X", "S";
-
-- Except of polarity, we have alternative-b variant with direct or
-  phantom feeding (No idea if it is proper description). Theoretically, this
-  difference would affect electrical rating specifications.
-  For example direct path for alternate-b (10/100Mbit only), would have
-  higher rating as the path over coils/magnetics. Practically, vendors do not
-  make different ratings for this paths, so no need to care about it for now
-  until someone will be able to provide good reason.
-  Here is example of RJ45 connector with integrated magnetics with PoE support
-  where alternative-a feed over magnetics and alternative-b is feed directly:
-  https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=5-2337992-4&DocType=Customer+Drawing&DocLang=English&PartCntxt=5-2337992-4&DocFormat=pdf 
-
-  (the last topic is more an answer to my self and for archive :))
+I'll take it but I don't think it is super urgent.
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
