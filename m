@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-42920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B33D858C5A
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 02:04:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9DD8858C5C
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 02:04:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F4D01C2107F
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 01:04:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE7A91C20999
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 01:04:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41CC514F61;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCF952D606;
 	Sat, 17 Feb 2024 00:58:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="doTD5fw0"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="IgB1jEAv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D69062D606
-	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 00:58:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E55652DF84
+	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 00:58:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708131538; cv=none; b=nt0sCkloW/YoSOeLZ3a232dEfuvr436+tA5PmTC1+M0PqZC4h+y+f6/gGyOCZBwGCAJQzE7W3zjjSMJwnUEBBpk4Ifd4FNzw99cK66JfS4Sj459MxGqtWR0kvy8CuhlTYxsjHpGi8axeB4I/cc1cdkiltYkZNCkyim5rN/err84=
+	t=1708131538; cv=none; b=e68tAxVVXihbJ+K/Gfbukq7TcElVq3ykjaGraXXL8aD0WnjmE1Ce4OXmZ10nTr4K69Z4CNrQdgjACe18Qfg7YGacwH2bhhRrDBfW7TdNw+/ZBhxVHWFSABDLbnOcokx0X89gp1MHj588tjzzYRm3ZiYM9qaRlTGGUx06Jz25yXI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1708131538; c=relaxed/simple;
-	bh=p7r/Fef2L33IhIiGMHD6kN+7Sih7HgKDJIIBtiTNBeQ=;
+	bh=54qScfthhEAuE+eosMKvOHGN/ixxPgbOd6VfF3jL3Tw=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=A+27JQtD2/kr5ZlWLv27+OauU83btM2OY3vLp5z53PYYQ8Z4vto1z4GPT+OYQs5xvpcPQNW2pc1N3iw0UeD8NCFSK6+/yNWlEmaYRWpdUtG+XUrrUvbSj4Q3ZKXaT+VLpi7Sg+NoafAM3G94lMI4V45b2F1z215+6Ue9dKrjBVg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=doTD5fw0; arc=none smtp.client-ip=209.85.161.46
+	 MIME-Version; b=nDpACyTMxassJ+2u/2TMaSZ4sC3BWkpo1Zm2JiYVE/xKqJG79ZlUC39Z7HazcQQDIc/PjekqGbqc72l+YpRRcLwoLA1SLvwD6vpjhJ8vNzEaGNN+8cXgS0ZXP10zZoc9GbYm8rRj7OVDCE7dRF3WNdMTx8eXTRpHT5HGd6MEsEk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=IgB1jEAv; arc=none smtp.client-ip=209.85.160.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-59d7cbf1279so1525087eaf.2
-        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 16:58:55 -0800 (PST)
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-204235d0913so985160fac.1
+        for <devicetree@vger.kernel.org>; Fri, 16 Feb 2024 16:58:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1708131535; x=1708736335; darn=vger.kernel.org;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1708131536; x=1708736336; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=EtMupTUIOKSWIiS3+KSauzncMWOa0iz/fT9+70O+xec=;
-        b=doTD5fw0eUiJjyCEadVvwUOLzW3kKyOdzzx0vyjifPicJdim+nu66pwzOsg8vw8cwA
-         hgOQyaR8NcW9Skug2tuvO9UtB/fQkYdztiSZDf1nvPltEy4rYtvh5Utex5YWpUQOZ/HR
-         t0KeoTeA5nSCOvLaYekDrk7EMt+9IFAAurCkTlBKc4VLhH3NAZ/6hKBWtxGVZm2LIxBD
-         zTSE+PqeaUeVWxKMAz0aQHPaZf1IRz1hGUNreI62BsylD5698bPXMBkz4j/9T6V4JyF0
-         WJXp8ZqScG5T6z6H8PiLZ9vBWRsuP8TBjOun1+/4iGgf3G63w9cuhl6TJgoTf+5mrDW+
-         y0Yg==
+        bh=UM8zssVewnxKekt4u8gJqVdaJ7ofC8o/V7nPW8x9v/k=;
+        b=IgB1jEAvE7iziKe+kiL4G5rklZhg3WbbRBBwz4ZZG025TosNvCatOhacEuCwYZbbDv
+         1/OIZ0YFWVO7/uytWcDkABOvZeIpc47ewmvGP51nsbyn5RcQteoyW3DPeETQr+BmZJ4/
+         h1RKcwHZEs2mEyB/rpYav+dk/Qv7CN43JjuOwG+5lRD9PEhuqTwoPZxzXz3oNbu1Whnb
+         Ao7T+RPeGC3Z/WDky5jnm8Qz7MdD9y78/JnrqYQgYkXMBZE/oav16ct1GHza/lJyVeJF
+         ZmCFbxTAEKMyt111fBvI4dS1xyrutETKjgC/h7vZ492YLeysf0CJ+edkROLAe8e1t3KP
+         XMcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708131535; x=1708736335;
+        d=1e100.net; s=20230601; t=1708131536; x=1708736336;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=EtMupTUIOKSWIiS3+KSauzncMWOa0iz/fT9+70O+xec=;
-        b=QgSz3C6jo+y7HGBnUSOKXrCvvJ2EeZ9UWm5B75pj/D3oAO0LBQskbBcFl8aSPKUpP+
-         T+TKG44ZCmpJMLwqtNYQ9ONpHjb6d+KjIOtDa2BDwpyZ7X2hH3PdNDOvAbHDhOG0tVzW
-         4G2QoxfSjgwDU0nxk4xur748yJ2uVAx6cNddRh0+v9o1AQpuMDyyj1cI77B0OvmEN0zs
-         njT9iFi0Yd0R8VB06ZozbjuRPuFlWB+Axv/NU/YKDm5Z/liQ33dwiWg/QrePmdvBqX+x
-         sCbuYe/flDXgRe2bct80yyI0JcDmy89y1Wpt6hoLJ01R3zRaZ9An+uQcJI9yQXs2q0ah
-         S4dA==
-X-Forwarded-Encrypted: i=1; AJvYcCWmAiXdxli7mWvoFCSgIaJjv9+VLv08mmEa6IBmo3Q+7NBGuci2YR8wBFu0Ok+QfvCAefmToiZb2jEruzgzhznte+ABfQJVLGow8w==
-X-Gm-Message-State: AOJu0YwJ937PT4KOtiTM45QE5FE3drMGPx29JE9z8bLxPFFBxjaesnbI
-	5eOfwPql+iX5ioIUlaeP52A4E4deUi8RvANeGLfpui5XzWnqaKx1CSr6g+bkU9Y=
-X-Google-Smtp-Source: AGHT+IGNbIUzWm0Nd5NFQVXMQHrTszP1TZWkXMNIGjnbL/tst4Vl5kEoxiI6rU6dM0tRW8yXxuE6PQ==
-X-Received: by 2002:a05:6358:2913:b0:177:afce:b12 with SMTP id y19-20020a056358291300b00177afce0b12mr6399019rwb.31.1708131533554;
-        Fri, 16 Feb 2024 16:58:53 -0800 (PST)
+        bh=UM8zssVewnxKekt4u8gJqVdaJ7ofC8o/V7nPW8x9v/k=;
+        b=Y7CPxlc+TtIC1LmQJvnK8KGSx7CnDSkG/loAhkySDy8YFhGmlh/eonQrCj4OJhri+L
+         1MAFyuAvou+aPmKJhTaEBEnIeTcIrVO49HTb9Xk1RK+ntNMDgz1qLffnfbKBZWw9N8g7
+         TkF9h2zleGNmsqf3XJrVnHsz4StRdw3oD95GvN6u77IHbFpd/YUDEwOThSl1GIKVzDbk
+         fqz+oMyLisXTywGjJn9HhGTktiBoNDzGRdvIHqLgq4e/mfDRSouFpnucIeTTIjjiWV9x
+         O/kMFczsD3jU8trI7ad/vxD7eDb7LVVxnKihKZX5vUci792FrfPfXf4poqoAp9MQsEmf
+         k5Wg==
+X-Forwarded-Encrypted: i=1; AJvYcCXZNSkmVf2tm2nzI0eajAfnmwRTOlFo0BbJagF+eYeJtmgPkky0kfC//nTbOvEShXvcRoUnB+73GgxD6wzvn0gApxbKzjCyYRTfBw==
+X-Gm-Message-State: AOJu0YzMBuFsQeaVhZ/E+CU/d8RDQB9noerzHp+nLmMn1gfY49+2sbO8
+	feJdwXO+AqcITqLXP5tb2t6Kyvx9S1kbF3ZBsFQc8VrOtThJMP3I4mSydD4wIJw=
+X-Google-Smtp-Source: AGHT+IHxQ/ohabidKPISMfSUq9m2exq/kzmKZJs/ZvDEyG8lUk4zXZLeanKyyRpfmzqm9XJNLg+WQw==
+X-Received: by 2002:a05:6870:d88d:b0:218:df68:87b2 with SMTP id oe13-20020a056870d88d00b00218df6887b2mr6753520oac.44.1708131536206;
+        Fri, 16 Feb 2024 16:58:56 -0800 (PST)
 Received: from atishp.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id d188-20020a6336c5000000b005dc89957e06sm487655pga.71.2024.02.16.16.58.51
+        by smtp.gmail.com with ESMTPSA id d188-20020a6336c5000000b005dc89957e06sm487655pga.71.2024.02.16.16.58.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Feb 2024 16:58:53 -0800 (PST)
+        Fri, 16 Feb 2024 16:58:55 -0800 (PST)
 From: Atish Patra <atishp@rivosinc.com>
 To: linux-kernel@vger.kernel.org
 Cc: Atish Patra <atishp@rivosinc.com>,
@@ -111,9 +111,9 @@ Cc: Atish Patra <atishp@rivosinc.com>,
 	Will Deacon <will@kernel.org>,
 	kaiwenxue1@gmail.com,
 	Yang Jihong <yangjihong1@huawei.com>
-Subject: [PATCH RFC 15/20] tools/perf: Add arch hooks to override perf standard events
-Date: Fri, 16 Feb 2024 16:57:33 -0800
-Message-Id: <20240217005738.3744121-16-atishp@rivosinc.com>
+Subject: [PATCH RFC 16/20] tools/perf: Pass the Counter constraint values in the pmu events
+Date: Fri, 16 Feb 2024 16:57:34 -0800
+Message-Id: <20240217005738.3744121-17-atishp@rivosinc.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240217005738.3744121-1-atishp@rivosinc.com>
 References: <20240217005738.3744121-1-atishp@rivosinc.com>
@@ -125,228 +125,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-RISC-V doesn't have any standard event encoding defined in the
-ISA. Cycle/instruction event is defined in the ISA but lack of
-event encoding allow vendors to choose their own encoding scheme.
-These events directly map to perf cycle/instruction events which
-gets decoded as per perf definitions. An arch hooks allows the
-RISC-V implementation to override the encodings if a vendor has
-specified the encodings via Json file at runtime.
+RISC-V doesn't have any standard event to counter mapping discovery
+mechanism in the ISA. The ISA defines 29 programmable counters and
+platforms can choose to implement any number of them and map any
+events to any counters. Thus, the perf tool need to inform the driver
+about the counter mapping of each events.
 
-The alternate solution would be define vendor specific encodings in
-the driver similar to other architectures. However, these will grow
-over time to become unmaintainable as the number of vendors in RISC-V
-can be huge.
+The current perf infrastructure only parses the 'Counter' constraints
+in metrics. This patch extends that to pass in the pmu events so that
+any driver can retrieve those values via perf attributes if defined
+accordingly.
 
 Signed-off-by: Atish Patra <atishp@rivosinc.com>
 ---
- tools/perf/arch/riscv/util/Build              |  1 +
- tools/perf/arch/riscv/util/evlist.c           | 59 +++++++++++++++++++
- tools/perf/builtin-record.c                   |  3 +
- tools/perf/builtin-stat.c                     |  2 +
- tools/perf/builtin-top.c                      |  3 +
- .../pmu-events/arch/riscv/arch-standard.json  | 10 ++++
- tools/perf/pmu-events/jevents.py              |  6 ++
- tools/perf/util/evlist.c                      |  6 ++
- tools/perf/util/evlist.h                      |  6 ++
- 9 files changed, 96 insertions(+)
- create mode 100644 tools/perf/arch/riscv/util/evlist.c
- create mode 100644 tools/perf/pmu-events/arch/riscv/arch-standard.json
+ tools/perf/pmu-events/jevents.py | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/tools/perf/arch/riscv/util/Build b/tools/perf/arch/riscv/util/Build
-index 603dbb5ae4dc..b581fb3d8677 100644
---- a/tools/perf/arch/riscv/util/Build
-+++ b/tools/perf/arch/riscv/util/Build
-@@ -1,5 +1,6 @@
- perf-y += perf_regs.o
- perf-y += header.o
-+perf-y += evlist.o
- 
- perf-$(CONFIG_DWARF) += dwarf-regs.o
- perf-$(CONFIG_LIBDW_DWARF_UNWIND) += unwind-libdw.o
-diff --git a/tools/perf/arch/riscv/util/evlist.c b/tools/perf/arch/riscv/util/evlist.c
-new file mode 100644
-index 000000000000..9ad287c6f396
---- /dev/null
-+++ b/tools/perf/arch/riscv/util/evlist.c
-@@ -0,0 +1,59 @@
-+// SPDX-License-Identifier: GPL-2.0
-+#include <stdio.h>
-+#include "util/pmu.h"
-+#include "util/pmus.h"
-+#include "util/evlist.h"
-+#include "util/parse-events.h"
-+#include "util/event.h"
-+#include "evsel.h"
-+
-+static int pmu_update_cpu_stdevents_callback(const struct pmu_event *pe,
-+					     const struct pmu_events_table *table __maybe_unused,
-+					     void *vdata)
-+{
-+	struct evsel *evsel = vdata;
-+	struct parse_events_terms terms;
-+	int err;
-+	struct perf_pmu *pmu = perf_pmus__find("cpu");
-+
-+	if (pe->event) {
-+		parse_events_terms__init(&terms);
-+		err = parse_events_terms(&terms, pe->event, NULL);
-+		if (err)
-+			goto out_free;
-+		err = perf_pmu__config_terms(pmu, &evsel->core.attr, &terms,
-+					     /*zero=*/true, /*err=*/NULL);
-+		if (err)
-+			goto out_free;
-+	}
-+
-+out_free:
-+	parse_events_terms__exit(&terms);
-+	return 0;
-+}
-+
-+int arch_evlist__override_default_attrs(struct evlist *evlist, const char *pmu_name)
-+{
-+	struct evsel *evsel;
-+	struct perf_pmu *pmu = perf_pmus__find(pmu_name);
-+	static const char *const overriden_event_arr[] = {"cycles", "instructions",
-+							  "dTLB-load-misses", "dTLB-store-misses",
-+							  "iTLB-load-misses"};
-+	unsigned int i, len = sizeof(overriden_event_arr) / sizeof(char *);
-+
-+	if (!pmu)
-+		return 0;
-+
-+	for (i = 0; i < len; i++) {
-+		if (perf_pmus__have_event(pmu_name, overriden_event_arr[i])) {
-+			evsel = evlist__find_evsel_by_str(evlist, overriden_event_arr[i]);
-+			if (!evsel)
-+				continue;
-+			pmu_events_table__find_event(pmu->events_table, pmu,
-+						     overriden_event_arr[i],
-+						     pmu_update_cpu_stdevents_callback, evsel);
-+		}
-+	}
-+
-+	return 0;
-+}
-diff --git a/tools/perf/builtin-record.c b/tools/perf/builtin-record.c
-index 86c910125172..305c2c030208 100644
---- a/tools/perf/builtin-record.c
-+++ b/tools/perf/builtin-record.c
-@@ -4152,6 +4152,9 @@ int cmd_record(int argc, const char **argv)
- 			goto out;
- 	}
- 
-+	if (arch_evlist__override_default_attrs(rec->evlist, "cpu"))
-+		goto out;
-+
- 	if (rec->opts.target.tid && !rec->opts.no_inherit_set)
- 		rec->opts.no_inherit = true;
- 
-diff --git a/tools/perf/builtin-stat.c b/tools/perf/builtin-stat.c
-index 5fe9abc6a524..a0feafc5be2c 100644
---- a/tools/perf/builtin-stat.c
-+++ b/tools/perf/builtin-stat.c
-@@ -2713,6 +2713,8 @@ int cmd_stat(int argc, const char **argv)
- 
- 	if (add_default_attributes())
- 		goto out;
-+	if (arch_evlist__override_default_attrs(evsel_list, "cpu"))
-+		goto out;
- 
- 	if (stat_config.cgroup_list) {
- 		if (nr_cgroups > 0) {
-diff --git a/tools/perf/builtin-top.c b/tools/perf/builtin-top.c
-index 5301d1badd43..7e268f239df0 100644
---- a/tools/perf/builtin-top.c
-+++ b/tools/perf/builtin-top.c
-@@ -1672,6 +1672,9 @@ int cmd_top(int argc, const char **argv)
- 			goto out_delete_evlist;
- 	}
- 
-+	if (arch_evlist__override_default_attrs(top.evlist, "cpu"))
-+		goto out_delete_evlist;
-+
- 	status = evswitch__init(&top.evswitch, top.evlist, stderr);
- 	if (status)
- 		goto out_delete_evlist;
-diff --git a/tools/perf/pmu-events/arch/riscv/arch-standard.json b/tools/perf/pmu-events/arch/riscv/arch-standard.json
-new file mode 100644
-index 000000000000..96e21f088558
---- /dev/null
-+++ b/tools/perf/pmu-events/arch/riscv/arch-standard.json
-@@ -0,0 +1,10 @@
-+[
-+  {
-+    "EventName": "cycles",
-+    "BriefDescription": "cycle executed"
-+  },
-+  {
-+    "EventName": "instructions",
-+    "BriefDescription": "instruction retired"
-+  }
-+]
 diff --git a/tools/perf/pmu-events/jevents.py b/tools/perf/pmu-events/jevents.py
-index 81e465a43c75..30934a490109 100755
+index 30934a490109..f1e320077695 100755
 --- a/tools/perf/pmu-events/jevents.py
 +++ b/tools/perf/pmu-events/jevents.py
-@@ -7,6 +7,7 @@ from functools import lru_cache
- import json
- import metric
- import os
-+import re
- import sys
- from typing import (Callable, Dict, Optional, Sequence, Set, Tuple)
- import collections
-@@ -388,6 +389,11 @@ class JsonEvent:
-     if arch_std:
-       if arch_std.lower() in _arch_std_events:
-         event = _arch_std_events[arch_std.lower()].event
-+        if eventcode:
-+          event = re.sub(r'event=\d+', f'event={llx(eventcode)}', event)
-+        if configcode:
-+          event = re.sub(r'config=\d+', f'event={llx(configcode)}', event)
-+
-         # Copy from the architecture standard event to self for undefined fields.
-         for attr, value in _arch_std_events[arch_std.lower()].__dict__.items():
-           if hasattr(self, attr) and not getattr(self, attr):
-diff --git a/tools/perf/util/evlist.c b/tools/perf/util/evlist.c
-index 55a300a0977b..f8a5640cf4fa 100644
---- a/tools/perf/util/evlist.c
-+++ b/tools/perf/util/evlist.c
-@@ -357,6 +357,12 @@ __weak int arch_evlist__add_default_attrs(struct evlist *evlist,
- 	return __evlist__add_default_attrs(evlist, attrs, nr_attrs);
- }
+@@ -278,6 +278,11 @@ class JsonEvent:
+         return fixed[name.lower()]
+       return event
  
-+__weak int arch_evlist__override_default_attrs(struct evlist *evlist __maybe_unused,
-+					       const char *pmu_name __maybe_unused)
-+{
-+	return 0;
-+}
++    def counter_list_to_bitmask(counterlist):
++      counter_ids = list(map(int, counterlist.split(',')))
++      bitmask = sum(1 << pos for pos in counter_ids)
++      return bitmask
 +
- struct evsel *evlist__find_tracepoint_by_id(struct evlist *evlist, int id)
- {
- 	struct evsel *evsel;
-diff --git a/tools/perf/util/evlist.h b/tools/perf/util/evlist.h
-index cb91dc9117a2..705b6643b558 100644
---- a/tools/perf/util/evlist.h
-+++ b/tools/perf/util/evlist.h
-@@ -109,9 +109,15 @@ int arch_evlist__add_default_attrs(struct evlist *evlist,
- 				   struct perf_event_attr *attrs,
- 				   size_t nr_attrs);
+     def unit_to_pmu(unit: str) -> Optional[str]:
+       """Convert a JSON Unit to Linux PMU name."""
+       if not unit:
+@@ -401,6 +406,10 @@ class JsonEvent:
+       else:
+         raise argparse.ArgumentTypeError('Cannot find arch std event:', arch_std)
  
++    if self.counter:
++      bitmask = counter_list_to_bitmask(self.counter)
++      event += f',counterid_mask={bitmask:#x}'
 +
- #define evlist__add_default_attrs(evlist, array) \
- 	arch_evlist__add_default_attrs(evlist, array, ARRAY_SIZE(array))
+     self.event = real_event(self.name, event)
  
-+int arch_evlist__override_default_attrs(struct evlist *evlist, const char *pmu_name);
-+
-+#define evlist__override_default_attrs(evlist, pmu_name) \
-+	arch_evlist__override_default_attrs(evlist, pmu_name)
-+
- int arch_evlist__cmp(const struct evsel *lhs, const struct evsel *rhs);
- 
- int evlist__add_dummy(struct evlist *evlist);
+   def __repr__(self) -> str:
 -- 
 2.34.1
 
