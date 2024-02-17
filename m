@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-42971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1563858E43
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 10:10:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D140C858E46
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 10:12:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5CB701F21C3D
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 09:10:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48CB81F21C23
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 09:12:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0208E10A34;
-	Sat, 17 Feb 2024 09:10:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C40E91CFB9;
+	Sat, 17 Feb 2024 09:12:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MS1cu9ct"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="A/PcGt3J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56CDE1CFB4
-	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 09:10:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CC2D1CFA8
+	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 09:12:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708161005; cv=none; b=p6WtcLKIE/X3UeT6915mHD9rb2OezCK6CNxmJs7ZwHkxjF/cg2Ceoq4bEht5BVrWPRQ+8fZRXRh8V5NdlUSLwsqcWD2RYdkFWHpRAH1fBGTc8SHFI+539NbuXNV7jzcvxY1s5cp0mlcblxF7sOsrj07DZvGPZ6BQqVPxfkOyhsY=
+	t=1708161146; cv=none; b=aZjeT/hdXCIqO48q2jlTEssVibf0tTgYRLG9Qy/rarjaCKoS+LHso0aYMGzELfjeQ7JX6ZwXkEdSHKfJBsymQjraRi8mLkj6nFFzFOYM8ONkf70Cd358xXw94RSVnaE0xnswgN+CgRxRQ+8SDO8vTQCUBVJ6iM50RDi7mtvYXHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708161005; c=relaxed/simple;
-	bh=EN1VAH6v1Opt5LMoULzU1VdY12qRp59oWejiiRhW+uQ=;
+	s=arc-20240116; t=1708161146; c=relaxed/simple;
+	bh=prVJvHyhXgji5NthwUUVJBStFDAQ9TsHMm3PrVdSd8A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kGjPvm8BuV7dkvzRLZSlgNmDqTunoiwGOYzVmheDU8x0VY+CF8Cvg89aAeCHmj7ewgk9dzUepJEKwvSVwPqxcB0n6MMEJw35MpBALsu4j5LZTdOpO8v7MW6Rlez9dTSKt++dCvkCPuz9Ta2DP/M2yK+7EHtQZG4pQ0/0RFpZzxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MS1cu9ct; arc=none smtp.client-ip=209.85.208.52
+	 In-Reply-To:Content-Type; b=NrIrXSUvaITtikkJJkhrbo4KobaS+L2aZqvQALGM7R9yW1v8xGI6p7VrFsQG4Lhu2H6fdePY4Htysog3ni9Hy/S1Q7IRaN+YhyxpxmnTeU+/yyxXWxrzhrPnz4xcq0JoTzoe8tN5KQ/CsLYoMlZRXQnhUeTCejoKVXZaWZt2LoQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=A/PcGt3J; arc=none smtp.client-ip=209.85.208.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-55f0b2c79cdso4489999a12.3
-        for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 01:10:00 -0800 (PST)
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-563d32ee33aso2268720a12.2
+        for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 01:12:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708160999; x=1708765799; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708161139; x=1708765939; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=grM+Hh3OEHfgYxcKYaDIFKM2iPilg2mZqTkblEBDEPA=;
-        b=MS1cu9ctE21tFGmBcbmX0g07JnCshit1nDcG4djoGdH97/wFQKDid+XcSq+SumfMEr
-         XN/x5tSTfKX5d6TTO+u16O2vMWDwgbNdLGRkTzh0xu8pEgPtQtaidOV4WQq2Dx61G/41
-         UciHYN1pji4ySjtUHUlXu4tfhlCle17Eh3HaNW8T0G8IfORR8U1Wup2PWUXvWxVUfIfw
-         68CC0bjaqx+gxVp/rpD+EvknfRdJN+KnlxT/LeJdXTnQxBpdSQBtHpZXi6wr16HPajhl
-         Dzrl2LSxuBEoQpm3iVRwmRhPdTJjoXOZhBZRczVb0aOtDjLF7CDFJIvkx97ASLSc0UC6
-         orBg==
+        bh=ljoOrlx2Axwigx70XpcEQ7WijCpxq6Ld3/uWv+eU/ig=;
+        b=A/PcGt3JtApO/I7pFqQiVTSNGNb51qBnfsi5htlUQ2aITHjTKg5e928AnVH61VgSx4
+         Q+in2HjrdDvA/PR9IfcaOp4kE0zaNJ/ZyU7FCJ6PqZu+HG5eMI7fFAtvRxu1TobWmeyA
+         vANsMenPIS5zonTD1FYDSR87xn8bziF66joW94ePNotpSgk7sr5sqRsiRdiO2aGWcF2j
+         mm6uD9vgPfJ4NSJUEiAs2ZwBRxs2BvmSsalB2jlkBRZU35fD6ooUN0E1R7x0pxtdEOAy
+         Ts1AV2bG+7Y6n115yHB+eH+t0huX9sIP0C3dJii9rzYqqZeu1qsqwPojwyK4iJklotLS
+         mKzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708160999; x=1708765799;
+        d=1e100.net; s=20230601; t=1708161139; x=1708765939;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=grM+Hh3OEHfgYxcKYaDIFKM2iPilg2mZqTkblEBDEPA=;
-        b=kG+7gb11Yq2EwdwKAP5V5+za9egZFsJnsSMpkVooXwJN95fWk58QQyDY/OiEJIsLzC
-         vWuQyykRlziE+8VUaNVX2PDRSzeSbQEy/9Gz9/bvbEd0o3lDhtIMqGQmjmzZQL0bokUe
-         XctsFyQgPvFWryromtShJA5KE2uoK0ExqsynGnkYNyWXo4p1dZzby7oagnqKX9vzdJIS
-         EXmfzf07tHqZeGZ9rMaQByykSm9u1jd95MqS9icfXFEhZpfBRjvFXoG0IfKsHqB8CvjE
-         9dq+vNuQm178FQeJRKAMk4zuMIKW5YqKlyra0Fl6SUmLaRZepMzSu+/am6nEdw1n2PLh
-         JFFA==
-X-Forwarded-Encrypted: i=1; AJvYcCX0HjnvuSGetT05h0P58AZ0OnrCFnjqGxrc+reDPRZJowk0AhgEH4q0d7SEvs1tN5BZAVMwzrBJsGaCj1MibHT4ls+HqUeNrvcwmQ==
-X-Gm-Message-State: AOJu0YxziLrFkIm34o7hp4sPTWtrmwLa5LtwpM+0+39A4VQ2+3DfVL5+
-	tpbkQgwfncZHCZHTyTo8uSCr7OEf0TMFUkQY7sHuTRk4Ph/egMN/yJSWh4LJ5Ik=
-X-Google-Smtp-Source: AGHT+IGmCpmknfNZYAI0KiLnL6RowT6ESctrkL1vpDjJ2pzGN+enJV5oFxQ2haHvp3b/ntai7sehQw==
-X-Received: by 2002:aa7:d355:0:b0:564:3231:bd09 with SMTP id m21-20020aa7d355000000b005643231bd09mr336914edr.13.1708160998689;
-        Sat, 17 Feb 2024 01:09:58 -0800 (PST)
+        bh=ljoOrlx2Axwigx70XpcEQ7WijCpxq6Ld3/uWv+eU/ig=;
+        b=PaEIz+Xk8EfcfOUMUMQUwfO6rs2ea8VOvyhbWqBqQyKe69JZGca7eKnvHEscGl40FC
+         A5QoYJHBxeAypfShSk5gZ114PtdR4KS1Abg/KPkb4orMMcD/KmzarlcUUWz3sEHiZSzF
+         cnbb73bxIsQP9sFwLITiz1osphEzK4aARzgLqmylm+ItdcBt5q/sRvaQoNWqNNAVkvDB
+         Y1QLSspcKqPLh2tc5iyLmeOLoGVCJy3xBhJZCsNGVOgZi0toUJPVjXChzrXOmtvQcRsj
+         dBkMokX2n5hy3jAtXyOi80GNgLw+PLXzPpvUSD7nTU10L5hmBCqn3EXKf8glixHp7PRw
+         ulqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXRE/Ut/XwM89A+ur9MC2oz/U5W6q5EosFLwzGxgAP0QrJ+gGSRAMFHwJCusLLVscgECl+yrCftRZnLKhsunaaeipF1Evl+MfbMJA==
+X-Gm-Message-State: AOJu0Yz7ykxUcr4vVYEZIq6ekJjy6KeBIDLSYL/ftb7X1bL08Yt+pVaF
+	e1wXq1QYuvs/uC5NSSvzUUebBxQyeIaLwapBPzzDGPpZ/RDDwgxXSUVd2KfNAog=
+X-Google-Smtp-Source: AGHT+IHaLoCjZL3dRqQt6XJR76FH4PWvXe4HLjWNYPGsJs456rnObKvnZQACffInIPZTYRvIYCjAvg==
+X-Received: by 2002:aa7:c646:0:b0:563:f889:24bd with SMTP id z6-20020aa7c646000000b00563f88924bdmr2280506edr.8.1708161139557;
+        Sat, 17 Feb 2024 01:12:19 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.207.130])
-        by smtp.gmail.com with ESMTPSA id ev24-20020a056402541800b0056163b46393sm729306edb.64.2024.02.17.01.09.57
+        by smtp.gmail.com with ESMTPSA id fd11-20020a056402388b00b0056104738371sm735066edb.65.2024.02.17.01.12.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 17 Feb 2024 01:09:58 -0800 (PST)
-Message-ID: <d655b72e-3094-4b6b-bee8-9677b7c987ce@linaro.org>
-Date: Sat, 17 Feb 2024 10:09:56 +0100
+        Sat, 17 Feb 2024 01:12:19 -0800 (PST)
+Message-ID: <7d7fc53f-1b5d-4f1f-a53f-f0863a79a79c@linaro.org>
+Date: Sat, 17 Feb 2024 10:12:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,7 +76,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/6] dt-bindings: cache: Add SiFive Extensible Cache
+Subject: Re: [PATCH v1 5/6] dt-bindings: cache: Add SiFive Private L2 Cache
  controller
 Content-Language: en-US
 To: Samuel Holland <samuel.holland@sifive.com>, Will Deacon
@@ -88,7 +88,7 @@ Cc: Palmer Dabbelt <palmer@dabbelt.com>, devicetree@vger.kernel.org,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  linux-arm-kernel@lists.infradead.org
 References: <20240216000837.1868917-1-samuel.holland@sifive.com>
- <20240216000837.1868917-4-samuel.holland@sifive.com>
+ <20240216000837.1868917-6-samuel.holland@sifive.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,132 +134,32 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240216000837.1868917-4-samuel.holland@sifive.com>
+In-Reply-To: <20240216000837.1868917-6-samuel.holland@sifive.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 16/02/2024 01:08, Samuel Holland wrote:
 > From: Eric Lin <eric.lin@sifive.com>
 > 
-> Add YAML DT binding documentation for the SiFive Extensible Cache
-> controller. The Extensible Cache controller interleaves cache blocks
-> across a number of heterogeneous independently-programmed slices. Each
-> slice contains an MMIO interface for configuration, cache maintenance,
-> error reporting, and performance monitoring.
+> Add YAML DT binding documentation for the SiFive Private L2 Cache
+> controller. Some functionality and the corresponding register bits were
+> removed in the sifive,pl2cache1 version of the hardware, which creates
+> the unusual situation where the newer hardware's compatible string is
+> the fallback for the older one.
 > 
-> +allOf:
-> +  - $ref: /schemas/cache-controller.yaml#
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - sifive,extensiblecache0
-> +
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: sifive,extensiblecache0
-> +      - const: cache
-> +
-> +  "#address-cells": true
+> Signed-off-by: Eric Lin <eric.lin@sifive.com>
+> Co-developed-by: Samuel Holland <samuel.holland@sifive.com>
+> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
+> ---
+> 
+> Changes in v1:
+>  - Add back select: clause to binding
+>  - Make sifive,pl2cache1 the fallback for sifive,pl2cache0
+>  - Fix the order of the reg property declaration
+>  - Document the sifive,perfmon-counters property
 
-const or enum: [1, 2], depending on the addressing you need here.
-
-> +  "#size-cells": true
-
-ditto
-
-> +  ranges: true
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  cache-block-size:
-> +    const: 64
-> +
-> +  cache-level: true
-
-5 is acceptable? I would argue this should be even const.
-
-> +  cache-sets: true
-> +  cache-size: true
-
-Some constraints on any of these?
-
-> +  cache-unified: true
-> +
-> +patternProperties:
-> +  "^cache-controller@[0-9a-f]+$":
-> +    type: object
-> +    additionalProperties: false
-
-What is this object supposed to represent? Add description.
-
-> +    properties:
-> +      reg:
-> +        maxItems: 1
-> +
-> +      cache-block-size:
-> +        const: 64
-> +
-> +      cache-sets: true
-> +      cache-size: true
-> +      cache-unified: true
-
-cache-level
-
-> +
-> +      sifive,bm-event-counters:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        default: 0
-> +        description: Number of bucket monitor registers in this slice
-> +
-> +      sifive,cache-ways:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description: Number of ways in this slice (independent of cache size)
-> +
-> +      sifive,perfmon-counters:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        default: 0
-> +        description: Number of PMU counter registers in this slice
-> +
-> +    required:
-> +      - reg
-> +      - cache-block-size
-> +      - cache-sets
-> +      - cache-size
-> +      - cache-unified
-> +      - sifive,cache-ways
-> +
-> +required:
-> +  - compatible
-> +  - ranges
-> +  - interrupts
-> +  - cache-block-size
-> +  - cache-level
-> +  - cache-sets
-> +  - cache-size
-> +  - cache-unified
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    cache-controller@30040000 {
-> +        compatible = "sifive,extensiblecache0", "cache";
-> +        ranges = <0x30040000 0x30040000 0x10000>;
-> +        interrupts = <0x4>;
-
-You use hex as interrupt numbers on your platforms?
-
-> +        cache-block-size = <0x40>;
-> +        cache-level = <3>;
-> +        cache-sets = <0x800>;
+This is no v1. Please implement entire feedback from previous v2, v3 or
+whatever it was and reference old posting or continue the numbering.
 
 Best regards,
 Krzysztof
