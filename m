@@ -1,208 +1,299 @@
-Return-Path: <devicetree+bounces-42979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0695858EAA
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 11:20:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FC3E858EB0
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 11:24:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DE027B20E8F
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 10:20:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD7211C20F92
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 10:24:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CEC51DDC9;
-	Sat, 17 Feb 2024 10:20:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 520F7200AC;
+	Sat, 17 Feb 2024 10:24:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AxuKwWga"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="M0SqRdso"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01olkn2030.outbound.protection.outlook.com [40.92.53.30])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29ADC200AD
-	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 10:20:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708165244; cv=none; b=FkYTmKj62+QDFKOw4A0J7Pj+Fu3Au9V/LWEyRs21D7X9ZUBUIWUFBnT1PA8fHXkqWN12sd5YoLl4sbi6OB4uEH17DB4WiOK4I8zuYr6bwlrBVDSPh6hUk6e9m2vWrN+bK0a+JS4C4+9ehcFJsaMIXXJh0FlZBsAI0NK2k6SruFo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708165244; c=relaxed/simple;
-	bh=VQjyUQKIbn7mEVA3FOH/WUj52SkVsMne6wvqLQBc6y8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=idaPfuAXFKFGGpPDfcDfcEqBxiENEb9ZQu2u9yZTNq6Uk+Q78/2WkGeKjlGTuEtBgC4cA5uBTg5p4MLiIvjpIIL2B9JE3yKAhvUIi+7QQ3gbkf6XFzdENP4YPRY7wq07ZzL4qzh79yo7tnedBIJrFdZ1e1CG/bctkmCL5WB5w9M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AxuKwWga; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-50eac018059so4091191e87.0
-        for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 02:20:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708165240; x=1708770040; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=s2HtFC7DBy8UXBSfjJEWGOAW/7YBWZq1oTJW9cuFiD8=;
-        b=AxuKwWga49La5SDuBH6Q3PRv/U00htGaWJzl3J0afWDO4l35rg+OculREa/DJOqnMR
-         SXxMdBPRa8C3UQPk9NO2v9bJnUQyBIqa/6oCGOoMl4Z7T7FKBSRiqMEbizOHhryPOsVK
-         Q0dS/4zLJASV0bMoPi7NkUJaS/GA4Ai4Ux3cGUEKNsmgCZIVxNNqbOIlMmPRVWzHcCde
-         gwRS47rXfr6uHXggRzjpQzcfyLI7Imj+K97QYQBFbxSfPHEdXw6/d/elUg45jvnJNJY8
-         chdnzD53v2vqW07kc7eJitf9K78xSVye95DgCy9t/T/AtkV2cO1t3dMvoMWtRktkxpBG
-         X7Kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708165240; x=1708770040;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=s2HtFC7DBy8UXBSfjJEWGOAW/7YBWZq1oTJW9cuFiD8=;
-        b=goWrhz3s2aeSA69JZYrJNKw0pNAaorgLvQB3p7XUPuBRlrmpiwcl4mtPc7ZgVs8J/i
-         6/krNgfIq1oKZCDByPNcy6z645eKqbGbSmPXX92tw4ZwRPXj2YothADBUwploHI9gSf4
-         NPGBPjnRktvXXXEKTRDNX5fLZoRWJv+cXD/04NeQmBAOH7uBreGFsqLFDewo2UX9Zt4X
-         9HGYPD7tzvnXaiqxImzjnxbGB1MtsuyFSaBLl4mJUGy7DU9R4uCBUe7fT3IGaNZhIOqR
-         yCZO4z5gqUx/zj8iH4dRpjPsWb5oTHqElP53Xcsjqexfu8Sg96UUECQ0Vt63/gfoyKsp
-         o6KQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWjaFwfSU3XpYjJ7KecF6pxazgYL3bwZ8fgtCX44Birw+CC6Hkmslx1xv3DeD7/nl5PhWTMUt5eOal/uwz9djLQVtbFy9c0PhmkXg==
-X-Gm-Message-State: AOJu0Yxwtt2EhqeHLh9PgNBcuRq0R6JLwa1MQ3UuSkpsxVUxh+vqR3LM
-	xdiGo9FQX4J9fdmwS4OVAB2EZKC3kTc9/IoaJuhqX9AsvBTGoiIDy9H7G9wcwI4=
-X-Google-Smtp-Source: AGHT+IGquEMz25c27Vj8Gouis+jAtB47ep+KUh3aTYNC/omQeZjhA/tjbci6BdSMco6nb5Jdb83Gdw==
-X-Received: by 2002:a19:ca42:0:b0:511:a100:b30d with SMTP id h2-20020a19ca42000000b00511a100b30dmr4502876lfj.56.1708165240313;
-        Sat, 17 Feb 2024 02:20:40 -0800 (PST)
-Received: from [192.168.0.22] ([78.10.207.130])
-        by smtp.gmail.com with ESMTPSA id m5-20020a1709061ec500b00a3d669a2055sm855029ejj.88.2024.02.17.02.20.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 17 Feb 2024 02:20:39 -0800 (PST)
-Message-ID: <c8cb8fd4-a67d-4982-b1f8-6fedbb7e9a4f@linaro.org>
-Date: Sat, 17 Feb 2024 11:20:38 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE42F1EB54;
+	Sat, 17 Feb 2024 10:24:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.53.30
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708165490; cv=fail; b=Z3hsXFrTr4ABOipMxgzNynzz3rqtssm2kRbp76wrbAsR4t+d1sGXmifp536DZAjD6XyulK4KLYHR3c4yXgc1uTNicLrnJHbwfflhwHHQOLczL+YV1igqQxCleGuqyhxwlya9afwjWGYrDO/BbTo5dBWV/Q5GQOd8AQ2fDSZXeFU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708165490; c=relaxed/simple;
+	bh=jcUDDkE0Bavd9CWy1Fz/1KDcDMtfYuGPELarqvA47+I=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=kQEjwe9gUluLreBAgwQ4yYC3RfrvAMDKPfZkF2LUCISEMKn2GQ8OPBaTQoWNnFKpo7nox4grOs3f05Oe3V/9dCW74BsN7pA9AkOwnAdKc3nB7of1hvxafV8OkfWoY1t3hIG5Rt3psA4kvrzSI1O7K8Fh2zGQ4ibPtoErwNqQEE4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=M0SqRdso; arc=fail smtp.client-ip=40.92.53.30
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nel80BYR4dB77SyBKlngF0I48thx001NRk3AjBkKa/VlgMoPRgYrqd47J7/VJXXyo1UfWoqihBJ1S9jkO5AzCDWgwvcGypQI6314G2biLNNjqHlgQ9K/Yelmfv80dOkjv4ro62suiwBITL1ZYblFzmyADm7nS6Z52uB7lnJplyhtVvSA9nsve9Na2R/9To2zTKLTx1m8jdwOOVbuBmEgCzLzyAQrq0oilxz5iI7Cy/yvV9WF2uaS1zS7wFnyVfSFryV9mMdB4luqKGzUQprvE3hXiXdC5MmKu0iOaRBUsHq4k6vlFBRGiIzDSF4WJVE6jRPT6Ftaj6G2YCv2yLMaTw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AGCy3TFRCrrMh3gg7fPZ0RdE7hHs3ZjVmoJqD36i1Mk=;
+ b=Uu1r+iiGBw6FiElODbo3b+5uhJGG1MqPxQEdUxu+q8rThfp//B6ziDXdE8KyJS8kyZvAEAhGJmMcu0snnQY7q0fHNH0AON6CMs23JMfbjNMYP2OWk4QkcgLI2ux8bioMBrwS0uOijUMxNH2DwBp6d3J4e0EzLx6iuDsGdIUftaou6aM3CUqtTomSPdIHV9EviSDbV2zyBW9wR2BbnF0ARas9LGQkirczB8l+t1EDWZIOOLsa9wJ9qTPyFEq3TJhScqAURc1S7AvJjr60wNzTTFH6ANPVnYmp7Isu675GewtLWMAHR/cMIrh0dCUFKcT/W1dbprXTsIUWdA/kGe6/Jw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AGCy3TFRCrrMh3gg7fPZ0RdE7hHs3ZjVmoJqD36i1Mk=;
+ b=M0SqRdsoRaXPhBgOLS+DdE6/lfRvtoOZ2ae0gz3GSNFZgH/isw4cHpSABKYUsKp5+bHOOu3TrLK9HJv+15248jezUSksJdfKuaUbnAv0UqE7rkLLUKio/w885dx5oTuO+bTuFuLbgWbwJQgA4IzFcTVWZKG8fQ5sxSAZLfltRCQIEivl2W6Xyq5XaMjz46UVVQR8vM+sOIjETw4VIEGHR2eGc51kuJa3z0cUhzk//fi5eBsjav/pVLeWnMcF83VvF5ZhrD3G/+NuioHK2Tw1d094sKR6RcYFTAoT8ciiGoxYTSjaCPy77d2xul7oF2yKMD1tyRqAxw9m4S9CP6eInQ==
+Received: from SEZPR06MB6959.apcprd06.prod.outlook.com (2603:1096:101:1ed::14)
+ by TYSPR06MB7453.apcprd06.prod.outlook.com (2603:1096:405:9e::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.32; Sat, 17 Feb
+ 2024 10:24:43 +0000
+Received: from SEZPR06MB6959.apcprd06.prod.outlook.com
+ ([fe80::9a6b:d813:8f4b:cba1]) by SEZPR06MB6959.apcprd06.prod.outlook.com
+ ([fe80::9a6b:d813:8f4b:cba1%4]) with mapi id 15.20.7292.029; Sat, 17 Feb 2024
+ 10:24:42 +0000
+Message-ID:
+ <SEZPR06MB69593B898A42192D134B01A896532@SEZPR06MB6959.apcprd06.prod.outlook.com>
+Date: Sat, 17 Feb 2024 18:24:37 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 1/4] dt-binding: phy: hisi-inno-usb2: convert to YAML
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Jiancheng Xue <xuejiancheng@hisilicon.com>,
+ Pengcheng Li <lpc.li@hisilicon.com>, Shawn Guo <shawn.guo@linaro.org>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Kishon Vijay Abraham I <kishon@ti.com>,
+ David Yang <mmyangfl@gmail.com>
+References: <20240216-inno-phy-v1-0-1ab912f0533f@outlook.com>
+ <20240216-inno-phy-v1-1-1ab912f0533f@outlook.com>
+ <63b3eff6-49eb-46f3-a6d9-878eddf6de53@linaro.org>
+From: Yang Xiwen <forbidden405@outlook.com>
+In-Reply-To: <63b3eff6-49eb-46f3-a6d9-878eddf6de53@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TMN:
+ [lWi/r41few19Dt5tQd6V+L54nd1Bq0rnksVvzUKwvKyT61qH+fuwO4Hcva5B8DyLCceX6AZ8DnI=]
+X-ClientProxiedBy: TYAPR01CA0206.jpnprd01.prod.outlook.com
+ (2603:1096:404:29::26) To SEZPR06MB6959.apcprd06.prod.outlook.com
+ (2603:1096:101:1ed::14)
+X-Microsoft-Original-Message-ID:
+ <192aece0-b577-47fb-a8d7-0837204c5501@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] clk: rockchip: rst-rk3588: Add BIU reset
-Content-Language: en-US
-To: Shreeya Patel <shreeya.patel@collabora.com>
-Cc: heiko@sntech.de, mchehab@kernel.org, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
- jose.abreu@synopsys.com, nelson.costa@synopsys.com,
- dmitry.osipenko@collabora.com, sebastian.reichel@collabora.com,
- shawn.wen@rock-chips.com, kernel@collabora.com,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-dt@vger.kernel.org, linux-arm@lists.infradead.org
-References: <20240216094922.257674-1-shreeya.patel@collabora.com>
- <20240216094922.257674-2-shreeya.patel@collabora.com>
- <237e690a-2f49-4046-b054-3a878eed6748@linaro.org>
- <30d2-65cf5980-3-2ec9f500@242931553>
- <0c2f4d92-afa9-46f1-844e-994bd45924ef@linaro.org>
- <1b9-65d08800-3-19290580@120474537>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <1b9-65d08800-3-19290580@120474537>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SEZPR06MB6959:EE_|TYSPR06MB7453:EE_
+X-MS-Office365-Filtering-Correlation-Id: 897d49e2-e78f-418e-5980-08dc2fa2a7bd
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	g371cUkJvfrjUZpsKGONc6ls6aE4dJoeJpUbTV99yPWFaptr8I8zjILkfq+fVuHsF0yug8PSK30ghWCWyacH+XdaCkOUl7SE55YxjFzAYgkge4XUOqeZtErqfA/bnIVZEs0sQ41ob+biYvnsy/rrrCBhytawBSUuV0CnbBKMOyVQFkVzEMlaO/3/M7K7S2vJCORAOKbg3jzDXaqe4CKNLlOOyymMfdspUb6vSM5X3JboXz+60yf48vnBSns1wVpHTvSTusTyt40PJYvVRws0xih14TCjXzri+1y82yQmcU0OwM2LUSqzYaHxDwK7iyPjgWy/wVdNX1C9Wy7W/246eXXysdMI5wIyx3XQzveDrp8tDYh8PlrVSvoke/oqZK6KcVk28jXc8FcyZeZtLwIqnCtfPvnKHxTqljNRZwoAt+YGjoem+XORu1NusAIKWqTq6iZv/b+DzPrtmU8TKO/2U0PN7zfi2zUsQHZAmz84rA1n68P73jzCLIQcEvtBWh4iPQM+m1bAn/ubmkMg4uTKVI7HI/wBxxRJWtzbnh+kwUM10/GsCjPje6Ok9PPHI3+pMFL6U9Ew50tqJ3I5ztw1QOP++1AEhZ1PK7/fJhxsnD6BiAtuj9weT/UP4P6LFctSkzGOP9lctyTBUr/KyDBXbQ==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?ZEVvLzU3Wi9DQVlMcWp1a09XT3lVU2Fuc2pEV2hBTUhaQ1ErYzlRc05nOGZt?=
+ =?utf-8?B?NnllT2RsaG9ZMkVMWFVlQUdTQ0EzcWpZK0g1NU5LQnNJMXVrQ1NzSjZBa0NS?=
+ =?utf-8?B?QktxQ2EvZU9HekI3ZjI5Wi9UTzhwMU1hNXk4YXN5V1JkV3d3WlZjR3pJSmtE?=
+ =?utf-8?B?cEE3TlFudFZ2cmRSL1RMOFM2NzV4RzMwc1V0Y0l2OUtxWU43S1FuSkIxQWwv?=
+ =?utf-8?B?NUgyQStGaUMyL2tIY0svZnhtSVRIOURadlBQK3VoeCt0VXhzSy9td1R1TE85?=
+ =?utf-8?B?S2dUay9WazJ4ekM2NVlkcVZsMzZGUHRrUXJYZDV5bGloaStJV3dYaTJVOHVs?=
+ =?utf-8?B?cTJSNWxWbWtaeFZqdFZRSjdBMkFoMk5QUEFST3cwVXZpRjNsb2VjcklBaGZF?=
+ =?utf-8?B?WHl4SXNGK2EwUlpMVVVEWi9iRm16UFFnYlZ2TVRFMW9nV041REFsZHlJclNy?=
+ =?utf-8?B?d3VaVGhxSUJVS3J5M2JzSmZnSTBMUUltU3lJMHlIUkVCd0NxWTJSRHRkNHk1?=
+ =?utf-8?B?a1l1SWJqVnRDdDRJQXhsZ1pmVWlpajZmZENIVGNreUliQURnN0NiZVFvcWwy?=
+ =?utf-8?B?L0tZZklZTEI1aU13YkZ1T0o3TVkzNW4yWjk1VjNqNE5FMkIwMy9NMmdudDJi?=
+ =?utf-8?B?SUQvZXJ6ei9jME9laDBIK1MyMHo0cGVlcHVzelRQTW9kMkN1dU52clRRWno4?=
+ =?utf-8?B?NzZEZmJQREdqSHVuYTBCM294M2ZYTlkxNjg4QUk4VXRmTHJ2SEJWdFczWkhz?=
+ =?utf-8?B?akxyUG0xTVFFZm5WaTVISmlCZ0hOcndlK3R5b1pmZGtUa085MnE5cmJQbnJ5?=
+ =?utf-8?B?ZmZzdVBMT0czcEpFdUE4dTFjVU1tbXlXeSt4YlJ6VTltUVJyR3J1NGVPWDdn?=
+ =?utf-8?B?Tzg0cVFDZU1Nb0M5WFVZNjRzN3BWWXlycTAwMThIZzVFRms2cG10dVE3dytW?=
+ =?utf-8?B?TzlrdmNzWDNPdkFic05BNTB2OUplVkpmN0l1WmJ2dEF1ZlZHM2NEWnprZG5x?=
+ =?utf-8?B?V3JhY3FvS3M1U0NPWWFsaXdzUEZxRnN2Y3BweWlWSEJVdkJJem01WWJWYm81?=
+ =?utf-8?B?enRwRnZjYWo0OTIvYnQ4V2t5TC8zM0krT2M0ZWhlY1gxMFBiYjFXRFZzaXM1?=
+ =?utf-8?B?ME9DWTI3K1hoaitHYTlzNytoc21xRFp5UFhwQUw0ZXpwK1NUYmxMbDhra2U4?=
+ =?utf-8?B?SStBS2JVNjZoQWs2UFg0dXNMU0d2TXhGQUMydi84cEVGZGFOOGVTSDhPT2xK?=
+ =?utf-8?B?Y1lESGJOenFUVVl4S01sNmVFY25BMmkvUDZibFV1RFc3TVh1VnFjVHAwNW5q?=
+ =?utf-8?B?M2dJbiszMUVVUVdaSjV5TGJlN2ZMcVJrT2o2N0NHODZJWEJEQnNjUjhHUTJE?=
+ =?utf-8?B?MlJRb0E4Zk41dldQRzZIUUdZbVlQQm1ubWRlSEMwb0lPVWRVVHB5Tloxbzk5?=
+ =?utf-8?B?TFJqQkRrT09RVStpOWptM1BJMWpxaCswd2QyK2FKNjNpTGxyazlvWFZ6MHFw?=
+ =?utf-8?B?aWplY01ENitBM0E3Y0J4WXN4ckE4SFhOZGFENW9nblJTeElOS1lVai84TnVU?=
+ =?utf-8?B?bGlZRGVCRHlRbzZFbDRNeFhueXJ3NHZRNXZMY3JORXRWWWs4Ymxsc1c0M0FS?=
+ =?utf-8?B?TGt1eHBzQVhRamU0VGsrYnpiSy9VVDlxYndtYzV3ZXZSNlNkT2IzRXZybHlC?=
+ =?utf-8?B?eDFLVWJvdGlJWHk4dlp1aWYyZmtwSlppQ2ZFL2VHU2NCTVFqcVJDcS9hZG5H?=
+ =?utf-8?Q?gK5vpqK0vhzKE6dLYWu2pVTSXlsanG9mMr1AOF1?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 897d49e2-e78f-418e-5980-08dc2fa2a7bd
+X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB6959.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2024 10:24:42.7184
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR06MB7453
 
-On 17/02/2024 11:18, Shreeya Patel wrote:
-> On Saturday, February 17, 2024 13:47 IST, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> 
->> On 16/02/2024 13:48, Shreeya Patel wrote:
->>> On Friday, February 16, 2024 15:33 IST, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->>>
->>>> On 16/02/2024 10:49, Shreeya Patel wrote:
->>>>> Export hdmirx_biu soft reset id which is required by the hdmirx controller.
->>>>>
->>>>> Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
->>>>> ---
->>>>>  drivers/clk/rockchip/rst-rk3588.c               | 1 +
->>>>>  include/dt-bindings/reset/rockchip,rk3588-cru.h | 2 ++
->>>>
->>>> Please run scripts/checkpatch.pl and fix reported warnings. Some
->>>> warnings can be ignored, but the code here looks like it needs a fix.
->>>> Feel free to get in touch if the warning is not clear.
->>>>
->>>> Please do internal review. The internal Collabora review would tell you:
->>>> YOU MUST run checkpatch. Then you see errors, so why do you send patch
->>>> with errors to the mailing list?
->>>>
->>>
->>> I am sorry but what errors are you talking about?
->>> I don't see any errors reported by checkpatch :-
->>>
->>> shreeya@shreeya:~/collabora/rd/rockchip/torvalds$ ./scripts/checkpatch.pl hdmirx/0001-clk-rockchip-rst-rk3588-Add-BIU-reset.patch
->>> WARNING: DT binding docs and includes should be a separate patch. See: Documentation/devicetree/bindings/submitting-patches.rst
+On 2/17/2024 6:14 PM, Krzysztof Kozlowski wrote:
+> On 16/02/2024 16:21, Yang Xiwen via B4 Relay wrote:
+>> From: Yang Xiwen <forbidden405@outlook.com>
 >>
->> Here.
+>> Also rename to hisilicon,inno-usb2-phy.yaml and add this name to
+>> compatible lists.
+> Please use subject prefixes matching the subsystem. You can get them for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching.
+Will fix in next version
+>
+>> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+>> ---
+>>   .../bindings/phy/hisilicon,inno-usb2-phy.yaml      | 115 +++++++++++++++++++++
+>>   .../devicetree/bindings/phy/phy-hisi-inno-usb2.txt |  71 -------------
+>>   2 files changed, 115 insertions(+), 71 deletions(-)
 >>
->>>
->>> total: 0 errors, 1 warnings, 13 lines checked
->>>
->>> NOTE: For some of the reported defects, checkpatch may be able to
->>>       mechanically convert to the typical style using --fix or --fix-inplace.
->>>
->>> hdmirx-v1-1602/0001-clk-rockchip-rst-rk3588-Add-BIU-reset.patch has style problems, please review.
->>>
->>> I see the above warning but that looks like a false positive to me.
->>
->> Why for your patch it would be false positive and for all others would not?
->>
-> 
-> OK, now I see what you meant. Since we are touching the include file and C file together, this warning was generated.
-> It was a bit confusing to interpret this as the warning also talks about Documentation which we didn't touch at all.
+>> diff --git a/Documentation/devicetree/bindings/phy/hisilicon,inno-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/hisilicon,inno-usb2-phy.yaml
+>> new file mode 100644
+>> index 000000000000..73256eee10f9
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/phy/hisilicon,inno-usb2-phy.yaml
+>> @@ -0,0 +1,115 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/phy/hisilicon,inno-usb2-phy.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: HiSilicon HiSTB SoCs INNO USB2 PHY device
+>> +
+>> +maintainers:
+>> +  - Yang Xiwen <forbidden405@outlook.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    minItems: 1
+> No, why? Compatibles must be fixed/constrained.
+>
+>> +    items:
+>> +      - enum:
+>> +          - hisilicon,hi3798cv200-usb2-phy
+>> +          - hisilicon,hi3798mv100-usb2-phy
+> This wasn't here before. Not explained in commit msg.
+The commit 3940ffc65492 ("phy: hisilicon: Add inno-usb2-phy driver for 
+Hi3798MV100") does not have dt-binding change commit along with. Will 
+explain this in commit log.
+>
+>> +      - const: hisilicon,inno-usb2-phy
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +    description: |
+> Do not need '|' unless you need to preserve formatting.
+>
+>> +      Should be the address space for PHY configuration register in peripheral
+>> +      controller, e.g. PERI_USB0 for USB 2.0 PHY01 on Hi3798CV200 SoC.
+>> +      Or direct MMIO address space.
+>> +
+>> +  '#address-cells':
+>> +    const: 1
+>> +
+>> +  '#size-cells':
+>> +    const: 0
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +    description: reference clock
+>> +
+>> +  resets:
+>> +    maxItems: 1
+>> +
+>> +patternProperties:
+>> +  'phy@[0-9a-f]+':
+>> +    type: object
+>> +    additionalProperties: false
+>> +    description: individual ports provided by INNO PHY
+>> +
+>> +    properties:
+>> +      reg:
+>> +        maxItems: 1
+>> +
+>> +      '#phy-cells':
+>> +        const: 0
+>> +
+>> +      resets:
+>> +        maxItems: 1
+>> +
+>> +    required: [reg, '#phy-cells', resets]
+> One item per line. Look at other bindings or example-schema.
+>
+>> +
+>> +required:
+>> +  - compatible
+>> +  - clocks
+>> +  - reg
+>> +  - '#address-cells'
+>> +  - '#size-cells'
+>> +  - resets
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/histb-clock.h>
+>> +
+>> +    peripheral-controller@8a20000 {
+>> +        compatible = "hisilicon,hi3798cv200-perictrl", "syscon", "simple-mfd";
+>> +        reg = <0x8a20000 0x1000>;
+>> +        #address-cells = <1>;
+>> +        #size-cells = <1>;
+>> +        ranges = <0x0 0x8a20000 0x1000>;
+> Drop the node, not related to this binding. If this binding is supposed
+> to be part of other device in case of MFD devices or some tightly
+> coupled ones, then could be included in the example there.
+For CV200, this binding is supposed to be always inside the perictrl 
+device. The PHY address space are accessed from a bus implemented by 
+perictrl.
+>
+>> +
+>> +        usb2-phy@120 {
+>> +            compatible = "hisilicon,hi3798cv200-usb2-phy";
+>> +            reg = <0x120 0x4>;
+>> +            clocks = <&crg HISTB_USB2_PHY1_REF_CLK>;
+>> +            resets = <&crg 0xbc 4>;
+>> +            #address-cells = <1>;
+>> +            #size-cells = <0>;
+>> +
+>> +            phy@0 {
+>> +                reg = <0>;
+>> +                #phy-cells = <0>;
+>> +                resets = <&crg 0xbc 8>;
+>> +            };
+>> +
+>> +            phy@1 {
+>> +                reg = <1>;
+>> +                #phy-cells = <0>;
+>> +                resets = <&crg 0xbc 9>;
+>> +            };
+>> +        };
+>> +
+>> +        usb2-phy@124 {
+>> +            compatible = "hisilicon,hi3798cv200-usb2-phy";
+> You can keep only one example, because they are basically the same.
+Will remove
+>
+>
+> Best regards,
+> Krzysztof
+>
 
-Really, no documentation touching? Care to check the full path of the
-files you are changing?
-
-
-> 
-> Anyway, I will create two separate patches for this in v2.
-
-I think rules cannot be clearer:
-https://elixir.bootlin.com/linux/v6.8-rc4/source/Documentation/devicetree/bindings/submitting-patches.rst#L13
-
-
-Best regards,
-Krzysztof
+-- 
+Regards,
+Yang Xiwen
 
 
