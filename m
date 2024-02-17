@@ -1,135 +1,190 @@
-Return-Path: <devicetree+bounces-43067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F77C8591EE
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 20:02:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D55A8591F4
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 20:09:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5BEB81C226E9
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 19:02:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECE21283B39
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 19:09:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C07337E10B;
-	Sat, 17 Feb 2024 19:02:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53B077E575;
+	Sat, 17 Feb 2024 19:09:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XkdgYNN9"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="t6aBFFOg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com [209.85.221.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 142AF6DCF5;
-	Sat, 17 Feb 2024 19:02:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83B737E567
+	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 19:09:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708196572; cv=none; b=OVFR4A3RemaiLuUm34SYMiV4I4ot7cGsyWM3RiTC5bcYB2jD71QTcNQvCdACmb5CfKX3FnnqzerFCCky1pdSKWp/pxblDIyYE9UFC3M7lDyzXgnipCcFqhvdm3CyK2slBxNgWThozOFD7rc5HLwcbKbHOKCHm+c+npxDMvHXfa8=
+	t=1708196962; cv=none; b=WYZYMqoXt4huV4PHt6pfGFcwhElUetoZ3Z/k/kKARYl/l0Y5k8WaU64oeEZ+HXmQ819R2i5YD4cEwYcjQL8OxRBx61gf24+KmZhga13Tbx2tSLqniUE3KRIc/LYrp/qBriz8IcO8PGDuubGM/ZDBJ/Rs5ALohWVQSYBowo+Qtv0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708196572; c=relaxed/simple;
-	bh=+gahNNXw/Pm22B5Zq6yjilwXg3lroxCbpY8aZXPC0Go=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=IhRe0AnBR/tCJHk+C/XLB7PwDDyiaZ2Y7hPdTMWMfD1QNiqT+71fuQux5/61wC9iVmOpQsJom5xXmE03QFIg3apo8JkGjNOl89teBJcZUpXdrjF5o9am+ggpU91qd9QMB5Vik7ZdzQ9dbB8J0LbmbRqNmsINOy9TZnN768TS5IM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XkdgYNN9; arc=none smtp.client-ip=209.85.208.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-563fe793e1cso1850319a12.3;
-        Sat, 17 Feb 2024 11:02:50 -0800 (PST)
+	s=arc-20240116; t=1708196962; c=relaxed/simple;
+	bh=mHUrGkPYsyhxxlsBdHCbeAqoSBC0CP7Nshe0XTvKC8w=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jgcK2289Xi59JrHTD0gMWK5My4+dMynEaXHTfAkd9c4eh+nNNUgvEmHCGmWN63waKmRQbmViixX7rKWkFYruk0ZYMBmzPdW9duqCZK2fSbSBMzEEfNhQPbDWEcCuwtK//nkdpr2K/OiEQSA3KFZDvsrnnydm2eSf2F6cUXqif20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=t6aBFFOg; arc=none smtp.client-ip=209.85.221.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-vk1-f175.google.com with SMTP id 71dfb90a1353d-4c857f1c18cso55470e0c.3
+        for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 11:09:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708196569; x=1708801369; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=4Lac2picLjLIoJIqmJ3jwHeZk9Y07zDWjhfc+5OdXmQ=;
-        b=XkdgYNN9oirm/pltqghFaJLCsjqh67q+7fB8kSa6US8bBSrDOzgmehcuOq3QT15hlj
-         Ru2MwBmFCnZaQzp2/GGXNDLZhIhUJB+nWUDbEr6+kKMyg+s2rKJh1yjky42QIY2u6a26
-         3NTRHs40aRa0E8SeHQwPaGmoJrEtBnaxYd2XRyPwwi7BE5kBFqpqj7vqpqyOMk8gF7WO
-         fyQEFLyBH3K8ZF/I7BYQpc6zLdjiCkNL46QcrxlIbIMAY6AI1reHsROvDurO7SFWHPNJ
-         XKOcPoRf0oNvKg/p8vNpne52iqS+W1/dK6KqHA9Z5ggY17P7J6tY3yi6JANGLvTzARZk
-         qyDg==
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1708196959; x=1708801759; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1Ez+Cdi6g3dY2Nbfzh/DEfLOxMJ0SyIO8GaFN/UW2ig=;
+        b=t6aBFFOgA66oyp+Hi6Uujb4ucrAPWFqrxWHw8ZSwIdCIjqhFbfgnY/o2jWOflxnfiV
+         qak9AeXEKYFNH8StbZSVM+p75mT3J4fUFNtuOIzTESlqVvCAm/s2Sxqev6cLm+XE4icd
+         VcZG/XqbawIPmwmMiCfwNaA+w6VO3o7ReTBuqFHhyWRHEkWg8PYhR1IqO75qKafCNKEa
+         N6OopR6nCwhKUgxBzTk2xgmihjHnLMGDzHNb6SXTZsL244FdPtmret7dzHQWvnCzqLQp
+         6+o7pnjZ2vmCcQlyjC6NqZXIjq2V+vQSvcKbB7u+Us604ONI44cN3ysM+M6wYO+pCtRB
+         l3Zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708196569; x=1708801369;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4Lac2picLjLIoJIqmJ3jwHeZk9Y07zDWjhfc+5OdXmQ=;
-        b=lQfTakS0X29Tgw90tuM/ruKKVwMnLaWYiS5/8NFdKNj+cdW9JLRNozZPKWCfhVSXZy
-         QhJe7pHfN3FfftXSra9ZIwCS+P1BMH1SuvXP384kEHrHy5f33txMK7y5GRtePO6usBq7
-         YMK7UwR66jjH/ixeC5jxtkkWPVvZdL/pkZHS00hj5vrXZVLYjwz5mHoj9hCcouYNG+zu
-         dxteiczJ2FCgizox47OAu3Mr1hC7QiPVXSgBvzrMEwJGX9RD7vGf+SD418Tz17CBU010
-         Lud0Qu7IhxIWvSQFnLVKNIS3UCK4GmAiIPMnO3Ekn3xP6T5XOvnEZAHwDvrijj3bt7qT
-         CNEw==
-X-Forwarded-Encrypted: i=1; AJvYcCU+S0JYXf9xNJA6HDfQDBQhXLgsEf4RhpNUhnOulRlbnY9tiV3sGQd2VnpT/2KjQvkrho83KNVRFMCH3Xu16ypdV+BxmPtaGBuNu9AtwRWTM+rV5ocHloBm2EY7twjJT9kUFIJyatUSdrlVJblVlQU=
-X-Gm-Message-State: AOJu0Yxjzg1T7kMwlt4LjfAADOpyF9NDnjzhqPCDNIIk0vcEGRkdxwPb
-	F4rOPERmWjymeVbEH/2e9xoWvs9R/I+QAAJ+0LWSEgJttFFVZhBC
-X-Google-Smtp-Source: AGHT+IHUnoow3gnSl7dZKjTAjZ7Dw6aAekHra1nJ9Oj47uNUjo4XtqFr1n7npYF8V87OvInYKn6TWw==
-X-Received: by 2002:a17:906:d0c8:b0:a3e:3810:9e43 with SMTP id bq8-20020a170906d0c800b00a3e38109e43mr804180ejb.21.1708196569247;
-        Sat, 17 Feb 2024 11:02:49 -0800 (PST)
-Received: from hex.my.domain (83.8.201.110.ipv4.supernova.orange.pl. [83.8.201.110])
-        by smtp.gmail.com with ESMTPSA id n26-20020a1709061d1a00b00a3e4ce615dfsm317769ejh.197.2024.02.17.11.02.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Feb 2024 11:02:48 -0800 (PST)
-From: Artur Weber <aweber.kernel@gmail.com>
-Date: Sat, 17 Feb 2024 20:02:47 +0100
-Subject: [PATCH] ARM: dts: exynos4212-tab3: limit usable memory range
+        d=1e100.net; s=20230601; t=1708196959; x=1708801759;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1Ez+Cdi6g3dY2Nbfzh/DEfLOxMJ0SyIO8GaFN/UW2ig=;
+        b=NPB+kxRNB7EsxCBl4v5MNccYwbmVdpZAxXk/goYNqmKHMoNovOX3mjPEK+T5HkY9Mg
+         uvamh2ietzwfjh/06DM2bd2qTX+iXh+2cnwNyhvGZ1ahsQu9M9C0hu6K5HLyTIjtc5p5
+         oIMzvOgf0fLey4Anri4xqoMcDPC7llGzxN8IYay2uNltWh6aBpnyQEcKYxa5SMqceb6F
+         +U6d/8Vy9iqzRuUFV0HZKOOT9YmMShUK4DNi4qcWxOULzpKtWuEESqbHmeiKYSnCZJYN
+         Kv3aGCotQSS2us5brnk4C8KPx+S+OzDdLTHGK63eTOmbe2XbjspwbtQ58uA9dLWQ3wIs
+         SLLA==
+X-Forwarded-Encrypted: i=1; AJvYcCWFSZkRg/p63lW/duQsxofGBblCc3+8mOnLIEZPq2foamC+Q0FvI6RMrMEz7dKoYgXjLeHnkwOxmg1wtfvEYtmU/fZV2d2D5E8BaA==
+X-Gm-Message-State: AOJu0Yxl1koZG1lGty6NGtJ5eMtXKnuLsdcbx0gwfdHlqImtN7Vohju9
+	Ia2ofAOnhq9WUmw0/NWsWcQR1tj5xqAyS915t+50XE3jWRwCFhf0ABJqzTQst7pYVtP8SLCxQyV
+	8ziNSUq+4LulMawCbpltJTKIvFH4ZYraDpeTaYQ==
+X-Google-Smtp-Source: AGHT+IH3Shnpaid7W3lEIMwMHXlQC60MXaDAqAi1jiC4M9FRxflkXYH/2cjpGpJq/yL/ljPvWt26+2tM/6Tzhki2Rkc=
+X-Received: by 2002:a05:6122:45a0:b0:4c1:149b:fd18 with SMTP id
+ de32-20020a05612245a000b004c1149bfd18mr9363330vkb.7.1708196959474; Sat, 17
+ Feb 2024 11:09:19 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240217-tab3-limit-usable-memory-range-v1-1-49cc9c86a5cc@gmail.com>
-X-B4-Tracking: v=1; b=H4sIANYC0WUC/x2N0QpAQBAAf0X7bMudK/Ir8nDcHlsO7SGSf3d5n
- JpmHogkTBGa7AGhkyOvSwKVZzBMdhkJ2SUGXWhTaFXhbvsSZw684xFtPxMGCqvcKL+tnPLe1m4
- wxkGKbEKer3/Qdu/7ARq6LKhwAAAA
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
- ~postmarketos/upstreaming@lists.sr.ht, 
- Artur Weber <aweber.kernel@gmail.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1708196568; l=1185;
- i=aweber.kernel@gmail.com; s=20231030; h=from:subject:message-id;
- bh=+gahNNXw/Pm22B5Zq6yjilwXg3lroxCbpY8aZXPC0Go=;
- b=tZNoBo5ZsG/QVrkuKO4TO2NXuvdUYWYw6UF8A7eAE5hPJ1Y/QjjwPuwqKIFnNtAwt2PAeHRPg
- plW6pTjZszjASx/zTH5uq7Vy023lVkJTaOTCyCzjWrOmFWRxugBbWAH
-X-Developer-Key: i=aweber.kernel@gmail.com; a=ed25519;
- pk=RhDBfWbJEHqDibXbhNEBAnc9FMkyznGxX/hwfhL8bv8=
+References: <20240216203215.40870-1-brgl@bgdev.pl> <20240216203215.40870-17-brgl@bgdev.pl>
+ <CAA8EJpo=LFcw8PbFRvGwd9nS5ECazOHiBMWRsqfEpY-v0iQLLA@mail.gmail.com>
+In-Reply-To: <CAA8EJpo=LFcw8PbFRvGwd9nS5ECazOHiBMWRsqfEpY-v0iQLLA@mail.gmail.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Sat, 17 Feb 2024 20:09:08 +0100
+Message-ID: <CAMRc=Mdsg5gDCKD-=ok=mfYJoFpUVpTGFUE+om+WPYvQOc0rzA@mail.gmail.com>
+Subject: Re: [PATCH v5 16/18] power: pwrseq: add a driver for the QCA6390 PMU module
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kalle Valo <kvalo@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Saravana Kannan <saravanak@google.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Arnd Bergmann <arnd@arndb.de>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Alex Elder <elder@linaro.org>, 
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Abel Vesa <abel.vesa@linaro.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Lukas Wunner <lukas@wunner.de>, linux-bluetooth@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-pci@vger.kernel.org, linux-pm@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The stock bootloader on the Samsung Galaxy Tab 3 8.0 provides an
-incorrect available memory range over ATAG_MEM. Limit the usable
-memory in the DTS to prevent it from doing so, without having to
-disable ATAG support.
+On Sat, Feb 17, 2024 at 12:17=E2=80=AFAM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On Fri, 16 Feb 2024 at 22:33, Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+> >
+> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >
+> > This adds the power sequencing driver for the QCA6390's PMU module. It
+> > uses the pwrseq subsystem and knows how to match the sequencer to the
+> > consumer device by verifying the relevant properties and DT layout.
+> >
+> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > ---
 
-Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
----
- arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+[snip]
 
-diff --git a/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi b/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
-index e5254e32aa8f..9bc05961577d 100644
---- a/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
-+++ b/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
-@@ -45,6 +45,12 @@ chosen {
- 		/* Default S-BOOT bootloader loads initramfs here */
- 		linux,initrd-start = <0x42000000>;
- 		linux,initrd-end = <0x42800000>;
-+
-+		/*
-+		 * Stock bootloader provides incorrect memory size in ATAG_MEM;
-+		 * override it here
-+		 */
-+		linux,usable-memory-range = <0x40000000 0x3fc00000>;
- 	};
- 
- 	firmware@204f000 {
+> > +
+> > +static const struct pwrseq_qca6390_vreg pwrseq_qca6390_vregs_common[] =
+=3D {
+> > +       {
+> > +               .name =3D "vddio",
+> > +               .load_uA =3D 20000,
+> > +       },
+> > +       {
+> > +               .name =3D "vddaon",
+> > +               .load_uA =3D 100000,
+> > +       },
+> > +       {
+> > +               .name =3D "vddpmu",
+> > +               .load_uA =3D 1250000,
+> > +       },
+> > +       {
+> > +               .name =3D "vddrfa0p95",
+> > +               .load_uA =3D 200000,
+> > +       },
+> > +       {
+> > +               .name =3D "vddrfa1p3",
+> > +               .load_uA =3D 400000,
+> > +       },
+> > +       {
+> > +               .name =3D "vddrfa1p9",
+> > +               .load_uA =3D 400000,
+> > +       },
+> > +};
+> > +
+> > +static const struct pwrseq_qca6390_vreg pwrseq_qca6390_vregs_wlan[] =
+=3D {
+> > +       {
+> > +               .name =3D "vddpcie1p3",
+> > +               .load_uA =3D 35000,
+> > +       },
+> > +       {
+> > +               .name =3D "vddpcie1p9",
+> > +               .load_uA =3D 15000,
+> > +       },
+> > +};
+>
+> I thought that we had discussed this already. According to the docs,
+> all PMU supplies should be powered on when the chip is being switched
+> on, no matter whether it is for the WiFi or for the BT.
+>
 
----
-base-commit: 0f1dd5e91e2ba3990143645faff2bcce2d99778e
-change-id: 20240217-tab3-limit-usable-memory-range-1d1ffa8dc44d
+I know, I mostly did it to make Bjorn happy because he was adamant we
+don't need the PCIe regulators for BT and when I checked, it does work
+in practice so I thought: whatever. But indeed, the docs say
+otherwise. Noted for v6.
 
-Best regards,
--- 
-Artur Weber <aweber.kernel@gmail.com>
+[snip]
 
+> > +
+> > +static const struct pwrseq_unit_data pwrseq_qca6390_bt_unit_data =3D {
+> > +       .name =3D "bluetooth-enable",
+> > +       .deps =3D pwrseq_qca6390_unit_deps,
+>
+> Can we call corresponding regulator_bulk functions from bt and wlan
+> enable/disable? This will save us from building the tree-like
+> structures (and possible loops inside that tree).
+>
+
+Can we? Sure, but the dependency graph (yeah, we should enforce it to
+be acyclic) is what makes this code future-proof and allows it to
+avoid repeating calls in different targets.
+
+[snip]
+
+Bart
 
