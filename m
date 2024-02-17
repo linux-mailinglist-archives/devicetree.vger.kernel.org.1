@@ -1,669 +1,206 @@
-Return-Path: <devicetree+bounces-43069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F1A4859213
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 20:28:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49BE7859242
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 21:03:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96FC11C21445
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 19:28:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7FAF7B2226C
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 20:03:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 588907E575;
-	Sat, 17 Feb 2024 19:28:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FE687E58F;
+	Sat, 17 Feb 2024 20:03:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b="0FpDTANX"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="F/IiSYaa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8BDC1CD1F;
-	Sat, 17 Feb 2024 19:28:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.181.215.36
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C1EF7E581;
+	Sat, 17 Feb 2024 20:03:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708198128; cv=none; b=K10J3on/TMwYdYSNbInztpH+Eavy9oh98b0cicf/IxnOUmdyfuuHfrtvpD5ejghrEV1sixC3qJqc6SLGyUuf0hA5RkVlMojLJ3lY8BcyXqPWhzFk27tCaqzzEl8sD6iy+/385aFUkmYBQWSFbH/mIrxnnTPih9gWHfG53qzrKSQ=
+	t=1708200192; cv=none; b=K10fpkDzqVFxeYJYvMxeiSabHM75TRCmLEkVZlv6InuQTfxY05tG0hdjPY1LZokHitHMI+GHAgW50WOHaon8z1zv+gN+ZYPu6WWGqapkg8A6LfYqmq4kDW95VcNiNuQkwNLmD7evJzQtKLyd1+Y0+favkVnz51ydikqOCLlNKD0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708198128; c=relaxed/simple;
-	bh=7c5rm6sj2n2lrExI64+FOu36oBPs0BohbY50X+fnif8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VvvpywZIuArx2VY7q6sD9a616k9/xvmxNMc7Kdjb64pl9yr4bv4cT/B+DR+hBxeGrz5dg3TPOxguzV8rH4y+zgvJ0KRU81RfFPMpPhTJcDuA08dRZgZ/KXnbfwqj65VLcmd63yhcDi3T5fufo3eE0yyuVZI3zMYt6kVu0ZWwRtE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz; spf=pass smtp.mailfrom=xff.cz; dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b=0FpDTANX; arc=none smtp.client-ip=195.181.215.36
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xff.cz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-	t=1708198122; bh=7c5rm6sj2n2lrExI64+FOu36oBPs0BohbY50X+fnif8=;
-	h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-	b=0FpDTANXCK1iLGF7b1xM4+qnDxusT1KjZbG2XGDN35lNY6nM8vMIztz0Ogc+NarL1
-	 I8+MIYsSIs4zkHn3tZm3zBCagKtKDm7Z+aQ18ntvpEYW2ClkKyEVDWfcZAVBmIQnlD
-	 QgWecHPG759xbAiQHaPiN1Birq/5msrpr1SyGUUo=
-Date: Sat, 17 Feb 2024 20:28:42 +0100
-From: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-To: Jonathan Cameron <jic23@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andrey Skvortsov <andrej.skvortzov@gmail.com>
-Cc: Icenowy Zheng <icenowy@aosc.io>, Dalton Durst <dalton@ubports.com>, 
-	Shoji Keita <awaittrot@shjk.jp>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/4] iio: magnetometer: add a driver for Voltafield
- AF8133J magnetometer
-Message-ID: <bul6syabdw353oqomcbdz75b56q5yjgslczbw7d6yxfkxvy3hn@3yz3yusfzrlo>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>, 
-	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Andrey Skvortsov <andrej.skvortzov@gmail.com>, 
-	Icenowy Zheng <icenowy@aosc.io>, Dalton Durst <dalton@ubports.com>, 
-	Shoji Keita <awaittrot@shjk.jp>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <20240216185008.1370618-1-megi@xff.cz>
- <20240216185008.1370618-4-megi@xff.cz>
+	s=arc-20240116; t=1708200192; c=relaxed/simple;
+	bh=657CVr7tfJs38s/e+riEk+9HfKOiiqg4XsfObmLlsco=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=l3rTffRrH3mP3lQT7BN/mQI+FNK3ryN6LVucpCly5s3+t2fHPV7o75woVcxQq7MbezM+FyuFnf3E+g3s6aNcH9dfvial6+sZpUo07BjjL6HabMKXTTcDc3QpPMAlELcIt0/1MJ0yM3ZuK3s8a/otg2wt6jgfsh2sPHTegKIM5vI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=F/IiSYaa; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41HK0vqP012879;
+	Sat, 17 Feb 2024 20:02:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=RoEi4O8xbtRc7rlAK2bkzLD3VTDSIZBvlHQgm7CqB4I=; b=F/
+	IiSYaa+61kDkR/B1A+0O7XDmgL0DNBQNJKTlCHeMOvoOFIE2v16kcwvpzZD2FDoY
+	1B2W/7ud5ob6R5TJx7sfnOWfgsNFFKjiD3pP4A7YdbRwDSpvcEuiLnX2eU8nYoVk
+	UfwyyBvfb1b+Rab/85w+j7C6QvvhPg2JArFJcR+8rO3L3ZiaDpLFdjo6ZbqEJVv4
+	EBBOFO2gevblf9AvkswAaGeLWI15bhn3t1n73BMxVfMBDIi6hkZqqUjWfLM+fu3a
+	wGlgNO1rHDqCziYU2VtpNTgUCAMIwsFSw+AsJNuUmG2gr4yImxcVQE8exIv43XQc
+	YA5vBVdhJMNgqYVaQ5Xg==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wam4q0yny-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 17 Feb 2024 20:02:39 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41HK2cCk026372
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 17 Feb 2024 20:02:38 GMT
+Received: from [10.110.11.212] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sat, 17 Feb
+ 2024 12:02:36 -0800
+Message-ID: <c084edd6-22cf-49a4-9dac-75163a1f4088@quicinc.com>
+Date: Sat, 17 Feb 2024 12:02:35 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 06/18] dt-bindings: new: wireless: describe the ath12k
+ PCI module
+To: Bartosz Golaszewski <brgl@bgdev.pl>, Kalle Valo <kvalo@kernel.org>
+CC: Marcel Holtmann <marcel@holtmann.org>,
+        Luiz Augusto von Dentz
+	<luiz.dentz@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric
+ Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni
+	<pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+	<broonie@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon
+	<will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+        Saravana Kannan
+	<saravanak@google.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Arnd
+ Bergmann <arnd@arndb.de>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Marek
+ Szyprowski <m.szyprowski@samsung.com>,
+        Alex Elder <elder@linaro.org>,
+        Srini
+ Kandagatla <srinivas.kandagatla@linaro.org>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Manivannan
+ Sadhasivam <mani@kernel.org>,
+        Lukas Wunner <lukas@wunner.de>,
+        Dmitry
+ Baryshkov <dmitry.baryshkov@linaro.org>,
+        <linux-bluetooth@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-wireless@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-pci@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>,
+        Bartosz Golaszewski
+	<bartosz.golaszewski@linaro.org>
+References: <20240216203215.40870-1-brgl@bgdev.pl>
+ <20240216203215.40870-7-brgl@bgdev.pl> <87cysvd2er.fsf@kernel.org>
+ <CAMRc=Md10bNPswsLqdCmqzEmD+QmyZ+Eb4SUWknH-j5kK-speQ@mail.gmail.com>
+Content-Language: en-US
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <CAMRc=Md10bNPswsLqdCmqzEmD+QmyZ+Eb4SUWknH-j5kK-speQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240216185008.1370618-4-megi@xff.cz>
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: cfNhiVdKuQrXnHOS8wjzgI2PKgKw5PcM
+X-Proofpoint-GUID: cfNhiVdKuQrXnHOS8wjzgI2PKgKw5PcM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-17_18,2024-02-16_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ impostorscore=0 malwarescore=0 clxscore=1011 suspectscore=0 bulkscore=0
+ spamscore=0 phishscore=0 mlxscore=0 lowpriorityscore=0 adultscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402170165
 
-On Fri, Feb 16, 2024 at 07:50:01PM +0100, megi xff wrote:
-> From: Icenowy Zheng <icenowy@aosc.io>
+On 2/17/2024 10:30 AM, Bartosz Golaszewski wrote:
+> On Sat, Feb 17, 2024 at 7:35 AM Kalle Valo <kvalo@kernel.org> wrote:
+>>
+>> Bartosz Golaszewski <brgl@bgdev.pl> writes:
+>>
+>>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>>
+>>> Add device-tree bindings for the ATH12K module found in the WCN7850
+>>> package.
+>>>
+>>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>> ---
+>>>  .../net/wireless/qcom,ath12k-pci.yaml         | 103 ++++++++++++++++++
+>>>  1 file changed, 103 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/net/wireless/qcom,ath12k-pci.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-pci.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-pci.yaml
+>>> new file mode 100644
+>>> index 000000000000..063c576b99a0
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-pci.yaml
+>>> @@ -0,0 +1,103 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +# Copyright (c) 2024 Linaro Limited
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/net/wireless/qcom,ath12k-pci.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Qualcomm Technologies ath12k wireless devices (PCIe)
+>>> +
+>>> +maintainers:
+>>> +  - Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>
+>> Jeff and me are the ath12k driver maintainers so shouldn't we listed
+>> here as well?
+>>
 > 
-> AF8133J is a simple I2C-connected magnetometer, without interrupts.
+> Sure will do. I also noticed the subject is wrong, should have been
+> "net" not "new".
 > 
-> Add a simple IIO driver for it.
+> Also, Jeff is not showing up for ath12k bindings in get_maintainer.pl.
+> You could consider adding an N: ath12k entry to MAINTAINERS.
 > 
-> Co-developed-by: Icenowy Zheng <icenowy@aosc.io>
-> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
-> Signed-off-by: Dalton Durst <dalton@ubports.com>
-> Signed-off-by: Shoji Keita <awaittrot@shjk.jp>
-> Co-developed-by: Ondrej Jirman <megi@xff.cz>
-> Signed-off-by: Ondrej Jirman <megi@xff.cz>
-> Reviewed-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
-> Tested-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
-> ---
->  drivers/iio/magnetometer/Kconfig   |  12 +
->  drivers/iio/magnetometer/Makefile  |   1 +
->  drivers/iio/magnetometer/af8133j.c | 524 +++++++++++++++++++++++++++++
->  3 files changed, 537 insertions(+)
->  create mode 100644 drivers/iio/magnetometer/af8133j.c
+> Bartosz
 > 
-> diff --git a/drivers/iio/magnetometer/Kconfig b/drivers/iio/magnetometer/Kconfig
-> index 38532d840f2a..cd2917d71904 100644
-> --- a/drivers/iio/magnetometer/Kconfig
-> +++ b/drivers/iio/magnetometer/Kconfig
-> @@ -6,6 +6,18 @@
->  
->  menu "Magnetometer sensors"
->  
-> +config AF8133J
-> +	tristate "Voltafield AF8133J 3-Axis Magnetometer"
-> +	depends on I2C
-> +	depends on OF
-> +	select REGMAP_I2C
-> +	help
-> +	  Say yes here to build support for Voltafield AF8133J I2C-based
-> +	  3-axis magnetometer chip.
-> +
-> +	  To compile this driver as a module, choose M here: the module
-> +	  will be called af8133j.
-> +
->  config AK8974
->  	tristate "Asahi Kasei AK8974 3-Axis Magnetometer"
->  	depends on I2C
-> diff --git a/drivers/iio/magnetometer/Makefile b/drivers/iio/magnetometer/Makefile
-> index b1c784ea71c8..ec5c46fbf999 100644
-> --- a/drivers/iio/magnetometer/Makefile
-> +++ b/drivers/iio/magnetometer/Makefile
-> @@ -4,6 +4,7 @@
->  #
->  
->  # When adding new entries keep the list in alphabetical order
-> +obj-$(CONFIG_AF8133J)	+= af8133j.o
->  obj-$(CONFIG_AK8974)	+= ak8974.o
->  obj-$(CONFIG_AK8975)	+= ak8975.o
->  obj-$(CONFIG_BMC150_MAGN) += bmc150_magn.o
-> diff --git a/drivers/iio/magnetometer/af8133j.c b/drivers/iio/magnetometer/af8133j.c
-> new file mode 100644
-> index 000000000000..fcb4f0a8e633
-> --- /dev/null
-> +++ b/drivers/iio/magnetometer/af8133j.c
-> @@ -0,0 +1,524 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * af8133j.c - Voltafield AF8133J magnetometer driver
-> + *
-> + * Copyright 2021 Icenowy Zheng <icenowy@aosc.io>
-> + * Copyright 2024 Ondřej Jirman <megi@xff.cz>
-> + */
-> +
-> +#include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/i2c.h>
-> +#include <linux/module.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/regmap.h>
-> +#include <linux/regulator/consumer.h>
-> +
-> +#include <linux/iio/iio.h>
-> +#include <linux/iio/trigger_consumer.h>
-> +#include <linux/iio/triggered_buffer.h>
-> +
-> +#define AF8133J_REG_OUT		0x03
-> +#define AF8133J_REG_PCODE	0x00
-> +#define AF8133J_REG_PCODE_VAL	0x5e
-> +#define AF8133J_REG_STATUS	0x02
-> +#define AF8133J_REG_STATUS_ACQ	BIT(0)
-> +#define AF8133J_REG_STATE	0x0a
-> +#define AF8133J_REG_STATE_STBY	0x00
-> +#define AF8133J_REG_STATE_WORK	0x01
-> +#define AF8133J_REG_RANGE	0x0b
-> +#define AF8133J_REG_RANGE_22G	0x12
-> +#define AF8133J_REG_RANGE_12G	0x34
-> +#define AF8133J_REG_SWR		0x11
-> +#define AF8133J_REG_SWR_PERFORM	0x81
-> +
-> +static const char * const af8133j_supply_names[] = {
-> +	"avdd",
-> +	"dvdd",
-> +};
-> +
-> +struct af8133j_data {
-> +	struct i2c_client *client;
-> +	struct regmap *regmap;
-> +	struct mutex mutex;
-> +	struct iio_mount_matrix orientation;
-> +
-> +	struct gpio_desc *reset_gpiod;
-> +	struct regulator_bulk_data supplies[ARRAY_SIZE(af8133j_supply_names)];
-> +
-> +	u8 range;
-> +};
-> +
-> +enum af8133j_axis {
-> +	AXIS_X = 0,
-> +	AXIS_Y,
-> +	AXIS_Z,
-> +};
-> +
-> +static struct iio_mount_matrix *
-> +af8133j_get_mount_matrix(struct iio_dev *indio_dev,
-> +			 const struct iio_chan_spec *chan)
-> +{
-> +	struct af8133j_data *data = iio_priv(indio_dev);
-> +
-> +	return &data->orientation;
-> +}
-> +
-> +static const struct iio_chan_spec_ext_info af8133j_ext_info[] = {
-> +	IIO_MOUNT_MATRIX(IIO_SHARED_BY_DIR, af8133j_get_mount_matrix),
-> +	{ }
-> +};
-> +
-> +#define AF8133J_CHANNEL(_si, _axis) { \
-> +	.type = IIO_MAGN, \
-> +	.modified = 1, \
-> +	.channel2 = IIO_MOD_ ## _axis, \
-> +	.address = AXIS_ ## _axis, \
-> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW), \
-> +	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE), \
-> +	.info_mask_shared_by_type_available = BIT(IIO_CHAN_INFO_SCALE), \
-> +	.ext_info = af8133j_ext_info, \
-> +	.scan_index = _si, \
-> +	.scan_type = { \
-> +		.sign = 's', \
-> +		.realbits = 16, \
-> +		.storagebits = 16, \
-> +		.endianness = IIO_LE, \
-> +	}, \
-> +}
-> +
-> +static const struct iio_chan_spec af8133j_channels[] = {
-> +	AF8133J_CHANNEL(0, X),
-> +	AF8133J_CHANNEL(1, Y),
-> +	AF8133J_CHANNEL(2, Z),
-> +	IIO_CHAN_SOFT_TIMESTAMP(3),
-> +};
-> +
-> +static int af8133j_product_check(struct af8133j_data *data)
-> +{
-> +	struct device *dev = &data->client->dev;
-> +	unsigned int val;
-> +	int ret;
-> +
-> +	ret = regmap_read(data->regmap, AF8133J_REG_PCODE, &val);
-> +	if (ret) {
-> +		dev_err(dev, "Error reading product code (%d)\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	if (val != AF8133J_REG_PCODE_VAL) {
-> +		dev_err(dev, "Invalid product code (0x%02x)\n", val);
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int af8133j_reset(struct af8133j_data *data)
-> +{
-> +	struct device *dev = &data->client->dev;
-> +	int ret;
-> +
-> +	if (data->reset_gpiod) {
-> +		/* If we have GPIO reset line, use it */
-> +		gpiod_set_value_cansleep(data->reset_gpiod, 1);
-> +		udelay(10);
-> +		gpiod_set_value_cansleep(data->reset_gpiod, 0);
-> +	} else {
-> +		/* Otherwise use software reset */
-> +		ret = regmap_write(data->regmap, AF8133J_REG_SWR,
-> +				   AF8133J_REG_SWR_PERFORM);
-> +		if (ret) {
-> +			dev_err(dev, "Failed to reset the chip\n");
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	/* Wait for reset to finish */
-> +	usleep_range(1000, 1100);
-> +
-> +	/* Restore range setting */
-> +	if (data->range == AF8133J_REG_RANGE_22G) {
-> +		ret = regmap_write(data->regmap, AF8133J_REG_RANGE, data->range);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void af8133j_power_down(struct af8133j_data *data)
-> +{
-> +	gpiod_set_value_cansleep(data->reset_gpiod, 1);
-> +	regulator_bulk_disable(ARRAY_SIZE(data->supplies), data->supplies);
-> +}
-> +
-> +static int af8133j_power_up(struct af8133j_data *data)
-> +{
-> +	struct device *dev = &data->client->dev;
-> +	int ret;
-> +
-> +	ret = regulator_bulk_enable(ARRAY_SIZE(data->supplies), data->supplies);
-> +	if (ret) {
-> +		dev_err(dev, "Could not enable regulators\n");
-> +		return ret;
-> +	}
-> +
-> +	gpiod_set_value_cansleep(data->reset_gpiod, 0);
-> +
-> +	/* Wait for power on reset */
-> +	usleep_range(15000, 16000);
-> +
-> +	ret = af8133j_reset(data);
-> +	if (ret) {
-> +		af8133j_power_down(data);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int af8133j_take_measurement(struct af8133j_data *data)
-> +{
-> +	unsigned int val;
-> +	int ret;
-> +
-> +	ret = regmap_write(data->regmap,
-> +			   AF8133J_REG_STATE, AF8133J_REG_STATE_WORK);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* The datasheet says "Mesaure Time <1.5ms" */
-> +	ret = regmap_read_poll_timeout(data->regmap, AF8133J_REG_STATUS, val,
-> +				       val & AF8133J_REG_STATUS_ACQ,
-> +				       500, 1500);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(data->regmap,
-> +			   AF8133J_REG_STATE, AF8133J_REG_STATE_STBY);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static int af8133j_read_measurement(struct af8133j_data *data, __le16 buf[3])
-> +{
-> +	struct device *dev = &data->client->dev;
-> +	int ret;
-> +
-> +	ret = pm_runtime_resume_and_get(dev);
-> +	if (ret) {
-> +		/*
-> +		 * Ignore EACCES because that happens when RPM is disabled
-> +		 * during system sleep, while userspace leave eg. hrtimer
-> +		 * trigger attached and IIO core keeps trying to do measurements.
-> +		 */
-> +		if (ret != -EACCES)
-> +			dev_err(dev, "Failed to power on (%d)\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	scoped_guard(mutex, &data->mutex) {
-> +		ret = af8133j_take_measurement(data);
-> +		if (ret)
-> +			goto out_rpm_put;
-> +
-> +		ret = regmap_bulk_read(data->regmap, AF8133J_REG_OUT,
-> +				       buf, sizeof(__le16) * 3);
-> +	}
-> +
-> +out_rpm_put:
-> +	pm_runtime_mark_last_busy(dev);
-> +	pm_runtime_put_autosuspend(dev);
-> +
-> +	return ret;
-> +}
-> +
-> +static const int af8133j_scales[][2] = {
-> +	[0] = { 0, 366210 }, // 12 gauss
-> +	[1] = { 0, 671386 }, // 22 gauss
-> +};
-> +
-> +static int af8133j_read_raw(struct iio_dev *indio_dev,
-> +			    struct iio_chan_spec const *chan, int *val,
-> +			    int *val2, long mask)
-> +{
-> +	struct af8133j_data *data = iio_priv(indio_dev);
-> +	__le16 buf[3];
-> +	int ret;
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_RAW:
-> +		ret = af8133j_read_measurement(data, buf);
-> +		if (ret)
-> +			return ret;
-> +
-> +		*val = sign_extend32(le16_to_cpu(buf[chan->address]),
-> +				     chan->scan_type.realbits - 1);
-> +		return IIO_VAL_INT;
-> +	case IIO_CHAN_INFO_SCALE:
-> +		*val = 0;
-> +
-> +		if (data->range == AF8133J_REG_RANGE_12G)
-> +			*val2 = af8133j_scales[0][1];
-> +		else
-> +			*val2 = af8133j_scales[1][1];
-> +
-> +		return IIO_VAL_INT_PLUS_NANO;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int af8133j_read_avail(struct iio_dev *indio_dev,
-> +			      struct iio_chan_spec const *chan,
-> +			      const int **vals, int *type, int *length,
-> +			      long mask)
-> +{
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_SCALE:
-> +		*vals = (const int *)af8133j_scales;
-> +		*length = ARRAY_SIZE(af8133j_scales) * 2;
-> +		*type = IIO_VAL_INT_PLUS_NANO;
-> +		return IIO_AVAIL_LIST;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int af8133j_set_scale(struct af8133j_data *data,
-> +			     unsigned int val, unsigned int val2)
-> +{
-> +	struct device *dev = &data->client->dev;
-> +	u8 range;
-> +	int ret = 0;
-> +
-> +	if (af8133j_scales[0][0] == val && af8133j_scales[0][1] == val2)
-> +		range = AF8133J_REG_RANGE_12G;
-> +	else if (af8133j_scales[1][0] == val && af8133j_scales[1][1] == val2)
-> +		range = AF8133J_REG_RANGE_22G;
-> +	else
-> +		return -EINVAL;
-> +
-> +	pm_runtime_disable(dev);
-> +
-> +	/*
-> +	 * When suspended, just store the new range to data->range to be
-> +	 * applied later during power up.
-> +	 */
-> +	if (!pm_runtime_status_suspended(dev))
-> +		scoped_guard(mutex, &data->mutex)
-> +			ret = regmap_write(data->regmap,
-> +					   AF8133J_REG_RANGE, range);
-> +
-> +	pm_runtime_enable(dev);
-> +
-> +	data->range = range;
-> +	return ret;
-> +}
-> +
-> +static int af8133j_write_raw(struct iio_dev *indio_dev,
-> +			     struct iio_chan_spec const *chan,
-> +			     int val, int val2, long mask)
-> +{
-> +	struct af8133j_data *data = iio_priv(indio_dev);
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_SCALE:
-> +		return af8133j_set_scale(data, val, val2);
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int af8133j_write_raw_get_fmt(struct iio_dev *indio_dev,
-> +				     struct iio_chan_spec const *chan,
-> +				     long mask)
-> +{
-> +	return IIO_VAL_INT_PLUS_NANO;
-> +}
-> +
-> +static const struct iio_info af8133j_info = {
-> +	.read_raw = af8133j_read_raw,
-> +	.read_avail = af8133j_read_avail,
-> +	.write_raw = af8133j_write_raw,
-> +	.write_raw_get_fmt = af8133j_write_raw_get_fmt,
-> +};
-> +
-> +static irqreturn_t af8133j_trigger_handler(int irq, void *p)
-> +{
-> +	struct iio_poll_func *pf = p;
-> +	struct iio_dev *indio_dev = pf->indio_dev;
-> +	struct af8133j_data *data = iio_priv(indio_dev);
-> +	s64 timestamp = iio_get_time_ns(indio_dev);
-> +	struct {
-> +		__le16 values[3];
-> +		s64 timestamp __aligned(8);
-> +	} sample;
-> +	int ret;
-> +
-> +	memset(&sample, 0, sizeof(sample));
-> +
-> +	ret = af8133j_read_measurement(data, sample.values);
-> +	if (ret)
-> +		goto out_done;
-> +
-> +	iio_push_to_buffers_with_timestamp(indio_dev, &sample, timestamp);
-> +
-> +out_done:
-> +	iio_trigger_notify_done(indio_dev->trig);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static const struct regmap_config af8133j_regmap_config = {
-> +	.name = "af8133j_regmap",
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.max_register = AF8133J_REG_SWR,
-> +	.cache_type = REGCACHE_NONE,
-> +};
-> +
-> +static void af8133j_power_down_action(void *ptr)
-> +{
-> +	struct af8133j_data *data = ptr;
-> +
-> +	if (!pm_runtime_status_suspended(&data->client->dev))
-> +		af8133j_power_down(data);
-> +}
-> +
-> +static int af8133j_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct af8133j_data *data;
-> +	struct iio_dev *indio_dev;
-> +	struct regmap *regmap;
-> +	int ret, i;
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	regmap = devm_regmap_init_i2c(client, &af8133j_regmap_config);
-> +	if (IS_ERR(regmap))
-> +		return dev_err_probe(dev, PTR_ERR(regmap),
-> +				     "regmap initialization failed\n");
-> +
-> +	data = iio_priv(indio_dev);
-> +	i2c_set_clientdata(client, indio_dev);
-> +	data->client = client;
-> +	data->regmap = regmap;
-> +	data->range = AF8133J_REG_RANGE_12G;
-> +	mutex_init(&data->mutex);
-> +
-> +	data->reset_gpiod = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(data->reset_gpiod))
-> +		return dev_err_probe(dev, PTR_ERR(data->reset_gpiod),
-> +				     "Failed to get reset gpio\n");
-> +
-> +	for (i = 0; i < ARRAY_SIZE(af8133j_supply_names); i++)
-> +		data->supplies[i].supply = af8133j_supply_names[i];
-> +	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(data->supplies),
-> +				      data->supplies);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = iio_read_mount_matrix(dev, &data->orientation);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to read mount matrix\n");
-> +
-> +	ret = af8133j_power_up(data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	pm_runtime_set_active(dev);
-> +
-> +	ret = devm_add_action_or_reset(dev, af8133j_power_down_action, data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = af8133j_product_check(data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	indio_dev->info = &af8133j_info;
-> +	indio_dev->name = "af8133j";
-> +	indio_dev->channels = af8133j_channels;
-> +	indio_dev->num_channels = ARRAY_SIZE(af8133j_channels);
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +
-> +	ret = devm_iio_triggered_buffer_setup(dev, indio_dev, NULL,
-> +					      &af8133j_trigger_handler, NULL);
-> +	if (ret)
-> +		return dev_err_probe(&client->dev, ret,
-> +				     "Failed to setup iio triggered buffer\n");
-> +
-> +	ret = devm_iio_device_register(dev, indio_dev);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to register iio device");
-> +
-> +	pm_runtime_get_noresume(dev);
-> +	pm_runtime_use_autosuspend(dev);
-> +	pm_runtime_set_autosuspend_delay(dev, 500);
-> +	ret = devm_pm_runtime_enable(dev);
-> +	if (ret)
-> +		return ret;
+>> Jeff, this reminds me that we should add you to qcom,ath10k.yaml,
+>> qcom,ath11k-pci.yaml and qcom,ath11k.yaml as maintainer.
 
-Ah, forgot to move this up. Oh, well. I'll send v4.
+OK, I'll update those files.
 
-kind regards,
-	o.
+And looking at MAINTAINERS, in ath10 we have an explicit path:
+F:	Documentation/devicetree/bindings/net/wireless/qcom,ath10k.yaml
 
-> +	pm_runtime_put_autosuspend(dev);
-> +
-> +	return 0;
-> +}
-> +
-> +static int af8133j_runtime_suspend(struct device *dev)
-> +{
-> +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
-> +	struct af8133j_data *data = iio_priv(indio_dev);
-> +
-> +	af8133j_power_down(data);
-> +
-> +	return 0;
-> +}
-> +
-> +static int af8133j_runtime_resume(struct device *dev)
-> +{
-> +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
-> +	struct af8133j_data *data = iio_priv(indio_dev);
-> +
-> +	return af8133j_power_up(data);
-> +}
-> +
-> +const struct dev_pm_ops af8133j_pm_ops = {
-> +	SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend, pm_runtime_force_resume)
-> +	RUNTIME_PM_OPS(af8133j_runtime_suspend, af8133j_runtime_resume, NULL)
-> +};
-> +
-> +static const struct of_device_id af8133j_of_match[] = {
-> +	{ .compatible = "voltafield,af8133j", },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, af8133j_of_match);
-> +
-> +static const struct i2c_device_id af8133j_id[] = {
-> +	{ "af8133j", 0 },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(i2c, af8133j_id);
-> +
-> +static struct i2c_driver af8133j_driver = {
-> +	.driver = {
-> +		.name = "af8133j",
-> +		.of_match_table = af8133j_of_match,
-> +		.pm = pm_ptr(&af8133j_pm_ops),
-> +	},
-> +	.probe = af8133j_probe,
-> +	.id_table = af8133j_id,
-> +};
-> +
-> +module_i2c_driver(af8133j_driver);
-> +
-> +MODULE_AUTHOR("Icenowy Zheng <icenowy@aosc.io>");
-> +MODULE_AUTHOR("Ondřej Jirman <megi@xff.cz>");
-> +MODULE_DESCRIPTION("Voltafield AF8133J magnetic sensor driver");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.43.0
-> 
+And in ath11k we have an explicit path:
+F:	Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+
+However the ath11k entry is missing:
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
+
+So it looks like I have a few patches:
+- update my entries in MAINTAINERS to use my @kernel.org e-mail
+- add myself to the existing *ath1*k*.yaml files as a maintainer
+- update MAINTAINERS to replace F: *.yaml with N: ath1*k to match any
+related files, including the YAML files
+
+/jeff
 
