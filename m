@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-42974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42975-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59157858E96
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 11:10:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13C13858E9D
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 11:14:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C76B21F2213C
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 10:10:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3851F1C20F92
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 10:14:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C8A01DA26;
-	Sat, 17 Feb 2024 10:09:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3930F1DDF8;
+	Sat, 17 Feb 2024 10:14:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LnM38muP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LYVDpNsA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A88E1D554
-	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 10:09:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0069D1DDEB
+	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 10:14:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708164594; cv=none; b=UMOnnKXkCc4Ta2vJ6PUhOewBYG6qmg9VwB8JBhADOWgc7s25pcxIKhdcb0M3HdTpEsw3246StR3CdZiwWywkxHcTtxN/lmk7Rf1zbNmchnLKERlSbK/rFl5CcMFrGV5U6vJg+zZ/HYYLXifx/jdoZf9qpn2PbbiP4qI3cUsMzFE=
+	t=1708164881; cv=none; b=lBCsWhsi/0v92vXKVhK+FDdXGMeJfb4YoboFineWXpS55JKrC6thdrdfuMsh/0WSJU21F7l0+3jna1Q+dPTrMCd46Mh0xC6yB4JwC2lH1FMYFWU4QZB0SvSrOvIPLP9p+C1td5zSgngcz8QrKmCPo/33jR2pbRv2E1K/Gh0Xvjo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708164594; c=relaxed/simple;
-	bh=TJsv/F2TQ5TYlDHV0iNebO2l7DVGJkdI+czZCvVOGS8=;
+	s=arc-20240116; t=1708164881; c=relaxed/simple;
+	bh=mGSOKd55U2HlX3t5UxUA1g68CZ8NU61xKE0MghXJTV0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gDYRcFtSLtmbun7boUDO+EUkq7fdHqVRIKCLxOEYEvkz5qb9lnImvzBltOVIJ+/zJz7ZSQ9V+Yy3rWhxiJJq/khL642kilJ3SjZAFHyFj82JRzeow5uVy5vYXJi7O38edhanXvPQFQh9kG9tCGIxfc7OXBLVOo2mHbvR2fMdrKs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LnM38muP; arc=none smtp.client-ip=209.85.218.51
+	 In-Reply-To:Content-Type; b=UscCoQq/BCg4Di7lrn9cmW0CAYFssMOZf92m30uJ7xlTj0KvGBz99UnPZ57cRoIClrZ1VctKr4V4P2NNWQeUchDF6/CmmIkv7LYR6iA470agl6pp2R0fl4zV9KFKRWOFHZSRZ1mPXxIjIrDjk4ilzg2qq+unu+zUbb0jLDFxky4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LYVDpNsA; arc=none smtp.client-ip=209.85.218.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a3e05775ab9so105210566b.2
-        for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 02:09:52 -0800 (PST)
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a3e21f579a0so38909866b.2
+        for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 02:14:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708164590; x=1708769390; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708164877; x=1708769677; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Kuue9t68w2WLZ8b1AL0+yxLWHYBW3bgJNX88GQnQoag=;
-        b=LnM38muPW/8R9uSWcVp+6enq2hr0SVjPz2slQk801qYGVY/9nB9/8dDCN439VuUe1O
-         wsVpxpRo+wUksMp6+TaOcc2nV6crJarFTLiDrnxREcGW7+1AjxsN/E8RRKq2s0YgpsNS
-         5Wevnjy5AwuTpqoNy/uaqrT8QwI82bgBayYTwnR6L9j+nYzfLp160WcTDyVstUMQfBYb
-         HiYitEflkIpXzRG30D+Y7eXHrxb1EHil8Q8dPHSqXdvy3LhyAxdYeleeu855y6ya1sTB
-         Ge/JpGTmQcp5j2c+01+awkLhLXe0gvIIHQIzllU5661dS9XcRu0wDzWKCjHES3FjZQbM
-         v4Eg==
+        bh=TmX3c956Tt9oKUJJoVHfcBlcjeQLXpG1CQfmSUgQxYI=;
+        b=LYVDpNsAhJNFE468RxO17B91QM0v6KXL6FXSIhduH9kxDCqIpA69Oxbqy+MblHX3gV
+         91vWahwlvuh8WLYl0pfKcW9Z56y/hbd/nOxWBpOKB/cAvZgYKR5CNHGtPYDphQ0LPjFK
+         4pG6txSG0TTDB9TeGxS8xPsXpa+o/VO3SwGD7PTdn5M1YRuMwpKJGzLcdebZBT3Qszxg
+         pqy33iDpXPX5xjecGMNbMVIdYjlUV9Hs8zJ86kvTN/WRbOpaSaHtduK1C7leFieSyh3D
+         R5LrMoKhlyqGVQVuLkg91ru8iAJ9sSIM6pE2p78NDUdtzFXoMrC9S8XF7a5PblP/rFVm
+         WoCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708164590; x=1708769390;
+        d=1e100.net; s=20230601; t=1708164877; x=1708769677;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Kuue9t68w2WLZ8b1AL0+yxLWHYBW3bgJNX88GQnQoag=;
-        b=ZSNsXdL1/mcnGBF1Fa04A4yTDushf+5NZebNIuIWML4Uku4TfAVKs4L8OkmMC29qzy
-         V/Eke4jnXIWzw3m/s+4BY+MyN/AxFbT0brBqCnj0eY+EXPiGs6paPPRynZpvj7HcX408
-         wjCPprhkziaVhHvZkjXnX+s1bRA4418TQrcTLLt2q6jRUuMYQ7b7W32pgRas/oh7acC7
-         1ZzS3046hPNwL7CMKtoQMruQwwDNmFanlS5Xlvsdhl4kakKaPkl506clGColMBZK1u/D
-         ZM0bToYnaz/Klm1tgcNi9Udq3oe0dWp/+Uc+W8Fbw+I6pfSQO3cj83GqhPecT95WS2z7
-         f40w==
-X-Forwarded-Encrypted: i=1; AJvYcCX0QU3LP3ggIYMgK3Jo6JcAeGzMBLC5/C0/i4xlnY7UoJpeoQXK03Ebe2+imeV8gbg6kknmj0/NtsbFWSgl9BUxSLnTUJ68Zp4GSA==
-X-Gm-Message-State: AOJu0Yz11v1ZelLBqINi9wUy3mgLKjbky9cSsNNT8xtmcqaOybfdCiZ8
-	w+aeezsf9KhIp7GRd2fZiPs+iHmEiZWkb+TSVIrO2O4/h+8Loa3+m5Btbv2QqPk=
-X-Google-Smtp-Source: AGHT+IF/5ZU/FzDNRXPp3L22MuSvR+etIB4vQ3N1+i9WLqr45JPBllRnRca34fK3ggJMoq7IIJtbJQ==
-X-Received: by 2002:a17:906:a40c:b0:a3e:28ae:9311 with SMTP id l12-20020a170906a40c00b00a3e28ae9311mr557003ejz.40.1708164590664;
-        Sat, 17 Feb 2024 02:09:50 -0800 (PST)
+        bh=TmX3c956Tt9oKUJJoVHfcBlcjeQLXpG1CQfmSUgQxYI=;
+        b=i855P0pTUzIF5Lzt14DhICohBB+o5YLTLoACzH2+lLbEQUVJ6zPR49sWkl7v6aRi4s
+         1qAqXM13cyQ9EehCrAX1JnnIYVUaHx2wEYswkZoz4S/LPTvlX9Td4BDEzszEav5+XvVn
+         N/EYko26Q1R5ZDWqc920z5YZAhyfFxNZ5csMRdDqzShGlNgCm56y7TssHldclbm5DQke
+         e/bs+T4rLcF0XVh5algoV3x3fSIX4chkzs6u7Uq3V3hKU4qxNfR8SmrLnLf7GZicrHA1
+         7c1CmkvDv57+M/xK6Wr/XDs9DpfxMQhtBibMP1xrtvXUB/u+oYvCHKQPUyc9uj0DI6ee
+         3q4w==
+X-Forwarded-Encrypted: i=1; AJvYcCWh/VdFkR/pXq2f2arhH3FX0Ns3EKBLzYWluuwd6LqmW0w8Frfz1MMhHVyYucvMKoEBxd/jZcvkFG5N0TIdSDEvgq5Ita3GYPrukg==
+X-Gm-Message-State: AOJu0Yyp4yHOgdlGhKUxp2PhdGL6oUdxCIHQteiHi06tjGAcWHQv/i+N
+	ViyuAbQwwKyhVPlatkSrYh5hAW2lNF9Y07DogZ7D2sVTdeC6HamW06zCayDVC2g=
+X-Google-Smtp-Source: AGHT+IGgN5iuJwUgNnlb59aZEIB6wFEx4gj/jgjcfdo0uE/3UyBiDlOaJ8FFaZgGUQsX4ZMBCrSNWQ==
+X-Received: by 2002:a17:906:d8db:b0:a3e:3d13:5b76 with SMTP id re27-20020a170906d8db00b00a3e3d135b76mr277257ejb.73.1708164877117;
+        Sat, 17 Feb 2024 02:14:37 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.207.130])
-        by smtp.gmail.com with ESMTPSA id xg11-20020a170907320b00b00a3d83cff358sm839206ejb.70.2024.02.17.02.09.49
+        by smtp.gmail.com with ESMTPSA id tl23-20020a170907c31700b00a3da5bf34absm846758ejc.207.2024.02.17.02.14.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 17 Feb 2024 02:09:50 -0800 (PST)
-Message-ID: <f4bb8f90-96cd-4121-bc88-6abaef68f4d1@linaro.org>
-Date: Sat, 17 Feb 2024 11:09:49 +0100
+        Sat, 17 Feb 2024 02:14:36 -0800 (PST)
+Message-ID: <63b3eff6-49eb-46f3-a6d9-878eddf6de53@linaro.org>
+Date: Sat, 17 Feb 2024 11:14:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,17 +76,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 1/4] dt-binding: clock: histb-clock: Add missing
- common clock and Hi3798MV200 specific clock definition
+Subject: Re: [PATCH RFC 1/4] dt-binding: phy: hisi-inno-usb2: convert to YAML
 Content-Language: en-US
-To: forbidden405@outlook.com, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: David Yang <mmyangfl@gmail.com>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240216-clk-mv200-v1-0-a29ace29e636@outlook.com>
- <20240216-clk-mv200-v1-1-a29ace29e636@outlook.com>
+To: forbidden405@outlook.com, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jiancheng Xue <xuejiancheng@hisilicon.com>,
+ Pengcheng Li <lpc.li@hisilicon.com>, Shawn Guo <shawn.guo@linaro.org>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Kishon Vijay Abraham I <kishon@ti.com>,
+ David Yang <mmyangfl@gmail.com>
+References: <20240216-inno-phy-v1-0-1ab912f0533f@outlook.com>
+ <20240216-inno-phy-v1-1-1ab912f0533f@outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -132,21 +134,155 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240216-clk-mv200-v1-1-a29ace29e636@outlook.com>
+In-Reply-To: <20240216-inno-phy-v1-1-1ab912f0533f@outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/02/2024 12:37, Yang Xiwen via B4 Relay wrote:
+On 16/02/2024 16:21, Yang Xiwen via B4 Relay wrote:
 > From: Yang Xiwen <forbidden405@outlook.com>
 > 
-> According to the datasheet, some clocks are missing, add their
-> definitions first.
-
-So now all your patches avoid our filters... no, fix your subjects.
+> Also rename to hisilicon,inno-usb2-phy.yaml and add this name to
+> compatible lists.
 
 Please use subject prefixes matching the subsystem. You can get them for
 example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
 your patch is touching.
+
+> 
+> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+> ---
+>  .../bindings/phy/hisilicon,inno-usb2-phy.yaml      | 115 +++++++++++++++++++++
+>  .../devicetree/bindings/phy/phy-hisi-inno-usb2.txt |  71 -------------
+>  2 files changed, 115 insertions(+), 71 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/hisilicon,inno-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/hisilicon,inno-usb2-phy.yaml
+> new file mode 100644
+> index 000000000000..73256eee10f9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/hisilicon,inno-usb2-phy.yaml
+> @@ -0,0 +1,115 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/hisilicon,inno-usb2-phy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: HiSilicon HiSTB SoCs INNO USB2 PHY device
+> +
+> +maintainers:
+> +  - Yang Xiwen <forbidden405@outlook.com>
+> +
+> +properties:
+> +  compatible:
+> +    minItems: 1
+
+No, why? Compatibles must be fixed/constrained.
+
+> +    items:
+> +      - enum:
+> +          - hisilicon,hi3798cv200-usb2-phy
+> +          - hisilicon,hi3798mv100-usb2-phy
+
+This wasn't here before. Not explained in commit msg.
+
+> +      - const: hisilicon,inno-usb2-phy
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +      Should be the address space for PHY configuration register in peripheral
+> +      controller, e.g. PERI_USB0 for USB 2.0 PHY01 on Hi3798CV200 SoC.
+> +      Or direct MMIO address space.
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +  clocks:
+> +    maxItems: 1
+> +    description: reference clock
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +patternProperties:
+> +  'phy@[0-9a-f]+':
+> +    type: object
+> +    additionalProperties: false
+> +    description: individual ports provided by INNO PHY
+> +
+> +    properties:
+> +      reg:
+> +        maxItems: 1
+> +
+> +      '#phy-cells':
+> +        const: 0
+> +
+> +      resets:
+> +        maxItems: 1
+> +
+> +    required: [reg, '#phy-cells', resets]
+
+One item per line. Look at other bindings or example-schema.
+
+> +
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - reg
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +  - resets
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/histb-clock.h>
+> +
+> +    peripheral-controller@8a20000 {
+> +        compatible = "hisilicon,hi3798cv200-perictrl", "syscon", "simple-mfd";
+> +        reg = <0x8a20000 0x1000>;
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +        ranges = <0x0 0x8a20000 0x1000>;
+
+Drop the node, not related to this binding. If this binding is supposed
+to be part of other device in case of MFD devices or some tightly
+coupled ones, then could be included in the example there.
+
+> +
+> +        usb2-phy@120 {
+> +            compatible = "hisilicon,hi3798cv200-usb2-phy";
+> +            reg = <0x120 0x4>;
+> +            clocks = <&crg HISTB_USB2_PHY1_REF_CLK>;
+> +            resets = <&crg 0xbc 4>;
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            phy@0 {
+> +                reg = <0>;
+> +                #phy-cells = <0>;
+> +                resets = <&crg 0xbc 8>;
+> +            };
+> +
+> +            phy@1 {
+> +                reg = <1>;
+> +                #phy-cells = <0>;
+> +                resets = <&crg 0xbc 9>;
+> +            };
+> +        };
+> +
+> +        usb2-phy@124 {
+> +            compatible = "hisilicon,hi3798cv200-usb2-phy";
+
+You can keep only one example, because they are basically the same.
+
 
 Best regards,
 Krzysztof
