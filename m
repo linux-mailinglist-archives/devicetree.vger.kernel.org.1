@@ -1,189 +1,164 @@
-Return-Path: <devicetree+bounces-43062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EFE78591B0
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 19:22:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 594D48591B5
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 19:31:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 163B41F21929
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 18:22:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7712B1C20A89
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 18:31:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 767597E10B;
-	Sat, 17 Feb 2024 18:22:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 994BF7CF2C;
+	Sat, 17 Feb 2024 18:30:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RPq12BBf"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="q+ZTbwOW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com [209.85.222.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62E9A7E107;
-	Sat, 17 Feb 2024 18:22:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF7CF4431
+	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 18:30:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708194169; cv=none; b=SXQJ06x+1S42W/mWe+CXj48/GuAn0xkBfvypejNFcas3YnDHHipyBdCALvqILbwWEXHykS/osFLYf6VfwkjxU+6betX9T+VLkRYqW8UCTLZmktp3Oex/+akpWv68WHJaG8zWFA67E3lbPzdZMLq0nBRgOrn3AZjSeWeM1tl0pqs=
+	t=1708194658; cv=none; b=KeJElH0nXstWGM9901z99Ej8RbbHdc+1PCeVkNgNOsfJ+stokmP0Is2duxIxMeXABZ1MbToBBF2tCf87bev1daO4aZy5hWDpWG5Z+UKCvOHFqaxOKq/q7OY621Nw1WpukZ2oDlischojB68IAdKCt7ARDcRQ4yhpy9FWBRW4xwg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708194169; c=relaxed/simple;
-	bh=8oifpfarV9J6Wvv+SArdQLyLIPIXjJtvpilJDp3o5xY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=d2OUUaeCf/mgXr+wagj5VNjMo2sYWQbXHnADSJb81g9uoxZu7x4nvK3Y3OkEdH9wl921YdAccP2Cp8/+Hm//pGb+vxzIEnM4MtjrGxT/GGUqE+oilfYoBlChs9yOkyS2dtcof7vuBm9EWdwvaAkGw7eTHSNiNkg2jjDpzGLznDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RPq12BBf; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5120ecfd75cso4267917e87.0;
-        Sat, 17 Feb 2024 10:22:45 -0800 (PST)
+	s=arc-20240116; t=1708194658; c=relaxed/simple;
+	bh=xTu4CwC01bOUIpKw1wk4DHay8JL9daGjNYWi0BvJoFk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=s2poYF6qlhfeMYYcQqgOZbifGs96TvRVX1jcnyGjiCGY3lQOtp+thntBIbReEfRmzNIaOCiCdA+nFmjl9DYugHAYFT3gJNlgzMjtZuJgKPDZ0Y7i6m0VUwoSP89rdPc+LqRYqgUw5yBqB5RLBbplSSjeXNoqfxn5EUOYPNg1TeU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=q+ZTbwOW; arc=none smtp.client-ip=209.85.222.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-7ce603b9051so937909241.2
+        for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 10:30:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708194164; x=1708798964; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Dovcf13yx7y8WE/3o6ZxD6mwwUIJXyS5E3nGvyjgRKw=;
-        b=RPq12BBf3Drt8NYv1CSOm1tP8T5jG5T1noI7UpOfVjIA7zgvCFEg0NYaytHaone9e/
-         1EFoa5Mk/Eqa6pG1epXTuAPQZC9Ugla0nteCqpqR+tqtyDY+0YOREOGTGUeAvJUqeIZH
-         mMk0FyFWmuoyI0gBNSnfnBiEFkcZNcrXGLJ8J5IWJt0IiUewFxdJo9/7yrvgq9IMzLyt
-         2YivJcE1/Wu4PxkRGRDU3AeXhz21+uVcC89B+rTYBkvJcvntwMcRmHh5VrurDfA2SjiM
-         Q9uabP4OZHja2roIajH7JYQruKdH9IMUDLdK+gDKmFxsdmSPi0X1Uj97DRcyRqyaqlyI
-         ZGgA==
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1708194655; x=1708799455; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JeWu4dlZldb0QpDIIyWPdxjS/RZoRXziwmFM0VAD7xY=;
+        b=q+ZTbwOWLrtB7LLK3P+2bWMpv7DfIvhgi/2egNQ4e52dlt56kAs4JbMUWCIypEPg3u
+         jaPViUylF4qtQbcTBTyT70G9+UdrSLhxKL21A/9s6yJsxSRyq8xTATGcF88R6HEN/kSI
+         FEcX1CQfyK4WEt+SUb+cFk+6mPzCSgU0ZIWA/kkH614YOW0bApp+lbnisuRUJID+UlaS
+         oOt0Z2o/J2lyYUVPrLC0B6EbShI40Z+7a/Fx8TFCEz+8kcxXF+2Zmg6PaMWL2HnIyTdI
+         P5Fq871GtTT8Z3hp9dz0flsuvXqyvv2rjvK5Pq1zsVljnHdz9MUClSO7sH1Y4x9CWtmk
+         ubmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708194164; x=1708798964;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Dovcf13yx7y8WE/3o6ZxD6mwwUIJXyS5E3nGvyjgRKw=;
-        b=xUZD8gr3cl2XPFGIHYrbQxA92IBdWQTU3N3lnLJgIz5/iM8KFz+R28xGMNWZ2ySeal
-         ct0gk5rvQJ7WeVn+SdkQmJzoTmbWiRHLXFhn+cIte2L3W+uH9pOL3YRJ/cAQBfAAmOdy
-         wyBuvR2fLIvwJtgBJE0nwbwdGv5r8ipNvZNCKvxZecKIj6bJvVwknJ1ggSgjUBS4JNOv
-         RN3dWEBSJrqHVNPx6iewAR4eeoPgr01qgBKT47/SIu6NM03Fp1HQT3NEid3uooqImnFU
-         rb62CnONCefVtejkxaxrpy3ZV47v0tuzjt3QVzVETKwr3y4bJO1As0/6GU4mFaj/qWjb
-         mUdw==
-X-Forwarded-Encrypted: i=1; AJvYcCW5mn+RWSGUme6+h1HRTkwFGlrIKEaHfNMSDS7gEdPeUqivhIH2jAb0RqFCX/f0oFDkB9/IZZMoD8zDLdNXXHWIjkGxTUF+LwC+o96Nu/V/tqNOByTHW4qk5ChNulTDDUCNWAvcAslTyIwzgWM3IzzN6GtCHA/niH6WS/3JBkZD7TbAWpTF7WQG1jEu
-X-Gm-Message-State: AOJu0YyDsaqqQvnyVLbK171efDGgECejl6xzv9qSSUgBakpZ5MNYhcZC
-	ovhnagdbV/w7kRlNWHBvvQij0/o+vGAlrcUo6qMTvNsUkcHQJAdEytUUVByj
-X-Google-Smtp-Source: AGHT+IFA9gLy0VjL49HWtcm3DCshExQ/nRE0roMCJYdiHrnptZHlUeEpYO5V+0rz/0w1MwdGSnujaQ==
-X-Received: by 2002:a19:6904:0:b0:511:6b24:ba46 with SMTP id e4-20020a196904000000b005116b24ba46mr4771705lfc.34.1708194163841;
-        Sat, 17 Feb 2024 10:22:43 -0800 (PST)
-Received: from hex.my.domain (83.8.201.110.ipv4.supernova.orange.pl. [83.8.201.110])
-        by smtp.gmail.com with ESMTPSA id p4-20020a05640243c400b00560c6ff443esm1058750edc.66.2024.02.17.10.22.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Feb 2024 10:22:43 -0800 (PST)
-From: Artur Weber <aweber.kernel@gmail.com>
-Date: Sat, 17 Feb 2024 19:22:40 +0100
-Subject: [PATCH] ARM: dts: exynos4412-*: decrease memory to account for
- unusable region
+        d=1e100.net; s=20230601; t=1708194655; x=1708799455;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JeWu4dlZldb0QpDIIyWPdxjS/RZoRXziwmFM0VAD7xY=;
+        b=FUCkz00V80BfH+San5SItH3l0eIBb+PnK1MtushIYMooTpIR1AI0rGKQIWZhKxpDtT
+         kyUCOMWSfjIYU1vswl7nh6sy0If0tkzookYKwmPXuWkRD1omU8grWAxnCTeSDcw3WUuO
+         PmobCvP9CAcuVM6QxFtgYUKqDCjI1qe68t109Eym3BiN6LsIEaHiu0dKAjFyiyty15QN
+         NVCFipvspyPFMN8TXonHi/J0/kGS+wCwj/7ueskjKfrqdYkwhMZPZ0Stzg+bJKnLph7m
+         zq49FmHPYXlI57h3BmXJByHvK3CRopGksyjyl7n4KSpoJd96CfqymNr4fyWiJ2w6gf07
+         iNFg==
+X-Forwarded-Encrypted: i=1; AJvYcCXEKSg+E7H/EYMD0G+mcJ+nXGliwyT2MZgWSkzIPin+JeQ5qU/dxRcgohfe9ZZxvetG8V0muX9yrWsO4peKWb946dNjNMK9sV80Tg==
+X-Gm-Message-State: AOJu0YykXLp++wd7iLE5eKD7gxacnKkA4B8CpbrDaHWqWE+3iQz6KTbm
+	T9ZEDt1D8YHk98CoLnlC67K8+5t1e0ls7SJmkAx73hsJbxgG2XjxeIhge1kLmUUAQLDAIaR4LRV
+	sRDc7FtLdTKpVYBC+QPqbN3+Dyy7NT9L4xYe0NA==
+X-Google-Smtp-Source: AGHT+IEGwogzVe3juwTbP5wzSPlB4FZp7n7jPtu9uTl+n1AS2iy9ckNua2af79j+lFRcSQmRv5yllrZrWuBKxrsF4JY=
+X-Received: by 2002:a05:6102:3a08:b0:46e:c752:16e7 with SMTP id
+ b8-20020a0561023a0800b0046ec75216e7mr8759486vsu.24.1708194655651; Sat, 17 Feb
+ 2024 10:30:55 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240217-exynos4-memsize-fix-v1-1-7858e9c5f844@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAG/50GUC/x2MSwqAMBDFriKzdkCLH/Qq4kLbp87CKh0QP3h3i
- 8sEkocUQaDUJg8FHKKy+Qh5mpBdBj+DxUUmk5kiM3nNOC+/acErVpUbPMnJzlo3Nhjr0lUUyz0
- g6v/a9e/7AfbELrllAAAA
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Henrik Grimler <henrik@grimler.se>, 
- =?utf-8?q?Martin_J=C3=BCcker?= <martin.juecker@gmail.com>, 
- Jack Knightly <J__A__K@hotmail.com>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, replicant@osuosl.org, 
- Artur Weber <aweber.kernel@gmail.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1708194162; l=3075;
- i=aweber.kernel@gmail.com; s=20231030; h=from:subject:message-id;
- bh=8oifpfarV9J6Wvv+SArdQLyLIPIXjJtvpilJDp3o5xY=;
- b=1fLMVp+k6r+NLxpjwtkrkl5xzZEBvgwcASiLsLI04vAxZIDYv6RqkfRVLBWBFQDbaxpvTZw9P
- OdR5+rinfu0DgUKACC2D5z46VIwXk2ph+yL1jjbWGUtfdQubndboTyS
-X-Developer-Key: i=aweber.kernel@gmail.com; a=ed25519;
- pk=RhDBfWbJEHqDibXbhNEBAnc9FMkyznGxX/hwfhL8bv8=
+References: <20240216203215.40870-1-brgl@bgdev.pl> <20240216203215.40870-7-brgl@bgdev.pl>
+ <87cysvd2er.fsf@kernel.org>
+In-Reply-To: <87cysvd2er.fsf@kernel.org>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Sat, 17 Feb 2024 19:30:44 +0100
+Message-ID: <CAMRc=Md10bNPswsLqdCmqzEmD+QmyZ+Eb4SUWknH-j5kK-speQ@mail.gmail.com>
+Subject: Re: [PATCH v5 06/18] dt-bindings: new: wireless: describe the ath12k
+ PCI module
+To: Kalle Valo <kvalo@kernel.org>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>, Marcel Holtmann <marcel@holtmann.org>, 
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, "David S . Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Saravana Kannan <saravanak@google.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Arnd Bergmann <arnd@arndb.de>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Alex Elder <elder@linaro.org>, 
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Abel Vesa <abel.vesa@linaro.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Lukas Wunner <lukas@wunner.de>, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, linux-bluetooth@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-pci@vger.kernel.org, linux-pm@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The last 4 MiB of RAM on those devices is likely used by trustzone
-firmware, and is unusable under Linux. Change the device tree memory
-node accordingly.
+On Sat, Feb 17, 2024 at 7:35=E2=80=AFAM Kalle Valo <kvalo@kernel.org> wrote=
+:
+>
+> Bartosz Golaszewski <brgl@bgdev.pl> writes:
+>
+> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >
+> > Add device-tree bindings for the ATH12K module found in the WCN7850
+> > package.
+> >
+> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > ---
+> >  .../net/wireless/qcom,ath12k-pci.yaml         | 103 ++++++++++++++++++
+> >  1 file changed, 103 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/net/wireless/qcom=
+,ath12k-pci.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath12k=
+-pci.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-pci.=
+yaml
+> > new file mode 100644
+> > index 000000000000..063c576b99a0
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-pci.ya=
+ml
+> > @@ -0,0 +1,103 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +# Copyright (c) 2024 Linaro Limited
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/net/wireless/qcom,ath12k-pci.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Qualcomm Technologies ath12k wireless devices (PCIe)
+> > +
+> > +maintainers:
+> > +  - Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>
+> Jeff and me are the ath12k driver maintainers so shouldn't we listed
+> here as well?
+>
 
-The proprietary bootloader (S-BOOT) passes these memory ranges through
-ATAG_MEM; this change allows us to have the correct memory ranges
-without relying on ATAG_MEM.
+Sure will do. I also noticed the subject is wrong, should have been
+"net" not "new".
 
-Tested-by: Henrik Grimler <henrik@grimler.se> # i9300, i9305
-Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
----
+Also, Jeff is not showing up for ath12k bindings in get_maintainer.pl.
+You could consider adding an N: ath12k entry to MAINTAINERS.
 
-This follows a similar fix implemented for the exynos5420-based
-Galaxy Tab boards:
-https://lore.kernel.org/all/20240130-galaxy-tab-s-cleanup-v1-3-d4e17857241d@grimler.se/
-...which in turn is inspired by another fix applied to exynos5422
-Odroid devices, 6591a02e17e6 ("ARM: dts: reduce total RAM by 22 MiB
-for exynos5422-odroidxu3"):
-https://lore.kernel.org/all/1421842972-25807-1-git-send-email-m.szyprowski@samsung.com/
----
- arch/arm/boot/dts/samsung/exynos4412-i9300.dts   | 2 +-
- arch/arm/boot/dts/samsung/exynos4412-i9305.dts   | 2 +-
- arch/arm/boot/dts/samsung/exynos4412-n710x.dts   | 2 +-
- arch/arm/boot/dts/samsung/exynos4412-p4note.dtsi | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
+Bartosz
 
-diff --git a/arch/arm/boot/dts/samsung/exynos4412-i9300.dts b/arch/arm/boot/dts/samsung/exynos4412-i9300.dts
-index 61aca5798f38..b79d456e976d 100644
---- a/arch/arm/boot/dts/samsung/exynos4412-i9300.dts
-+++ b/arch/arm/boot/dts/samsung/exynos4412-i9300.dts
-@@ -18,7 +18,7 @@ / {
- 
- 	memory@40000000 {
- 		device_type = "memory";
--		reg = <0x40000000 0x40000000>;
-+		reg = <0x40000000 0x3fc00000>;
- 	};
- };
- 
-diff --git a/arch/arm/boot/dts/samsung/exynos4412-i9305.dts b/arch/arm/boot/dts/samsung/exynos4412-i9305.dts
-index 77083f1a8273..1048ef5d9bc3 100644
---- a/arch/arm/boot/dts/samsung/exynos4412-i9305.dts
-+++ b/arch/arm/boot/dts/samsung/exynos4412-i9305.dts
-@@ -11,7 +11,7 @@ / {
- 
- 	memory@40000000 {
- 		device_type = "memory";
--		reg = <0x40000000 0x80000000>;
-+		reg = <0x40000000 0x7fc00000>;
- 	};
- };
- 
-diff --git a/arch/arm/boot/dts/samsung/exynos4412-n710x.dts b/arch/arm/boot/dts/samsung/exynos4412-n710x.dts
-index 0a151437fc73..eee1000dea92 100644
---- a/arch/arm/boot/dts/samsung/exynos4412-n710x.dts
-+++ b/arch/arm/boot/dts/samsung/exynos4412-n710x.dts
-@@ -9,7 +9,7 @@ / {
- 
- 	memory@40000000 {
- 		device_type = "memory";
--		reg = <0x40000000 0x80000000>;
-+		reg = <0x40000000 0x7fc00000>;
- 	};
- 
- 	/* bootargs are passed in by bootloader */
-diff --git a/arch/arm/boot/dts/samsung/exynos4412-p4note.dtsi b/arch/arm/boot/dts/samsung/exynos4412-p4note.dtsi
-index 0b89d5682f85..95fc63295860 100644
---- a/arch/arm/boot/dts/samsung/exynos4412-p4note.dtsi
-+++ b/arch/arm/boot/dts/samsung/exynos4412-p4note.dtsi
-@@ -23,7 +23,7 @@ / {
- 
- 	memory@40000000 {
- 		device_type = "memory";
--		reg = <0x40000000 0x80000000>;
-+		reg = <0x40000000 0x7fc00000>;
- 	};
- 
- 	aliases {
-
----
-base-commit: 0f1dd5e91e2ba3990143645faff2bcce2d99778e
-change-id: 20240217-exynos4-memsize-fix-dccdb9eb75d6
-
-Best regards,
--- 
-Artur Weber <aweber.kernel@gmail.com>
-
+> Jeff, this reminds me that we should add you to qcom,ath10k.yaml,
+> qcom,ath11k-pci.yaml and qcom,ath11k.yaml as maintainer.
+>
+> --
+> https://patchwork.kernel.org/project/linux-wireless/list/
+>
+> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpa=
+tches
 
