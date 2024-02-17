@@ -1,76 +1,74 @@
-Return-Path: <devicetree+bounces-42946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3491858DDE
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 09:12:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D42B4858DEA
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 09:18:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 403AD282DBF
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 08:12:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 04D6D1C2110A
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 08:18:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F0FF1CD20;
-	Sat, 17 Feb 2024 08:12:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE7691CD38;
+	Sat, 17 Feb 2024 08:17:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WVmbidhJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AWlU2Jb0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3F271BDC4
-	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 08:12:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA10C1CD26
+	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 08:17:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708157538; cv=none; b=KrtRU/KdH4RcBPwfc2jJefPmNK9k4GNFELm1znOWe71g1m6Oq7HuPsrLhQQy5/lzi1BcxtB7Tiwb9lEkIJuajC0T26tdrDcYZY52pah3+zrc0Z+M+jNUSVOqRHahaIvX+Jc2n5W44la+37Ktz80L2YtkRl7Wo173SkuLRRYdDBE=
+	t=1708157879; cv=none; b=t5aU24MvXicDWdVqw/4O9c+xxhDDima7BjO7ZWvSeYMyNgCaAy2jv9QPr/OcAmdd4rOsQq4Y4K8DvTNn/lpfqKEIP3uAIzx41mQIHInwHCZxFfcINDTIvDH+WRnvCQrJwgtJsXFaHntW1qYJ+Mxv/rVuxiWgWjBkxKfChmt9SX4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708157538; c=relaxed/simple;
-	bh=PouDAiA4uJ+8Iv7n3C7b6QC2IjK2H/d/DewLvqSJm3s=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=at3quFEMWgh8qFsS//+0Uel04VTYYtyZi2i9H/gT30IF6e/Qxrj50mqisV/vFCTLuqsnmuAatx9pb4YehiAxsxh4YnXaqWv8UyzYz64FB/rVhJC9nmnOWET9e2XYsEsim8ejzdXSvf5l84C3hsxwW8YbbWBNfqMZJhT9uticJnA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WVmbidhJ; arc=none smtp.client-ip=209.85.218.47
+	s=arc-20240116; t=1708157879; c=relaxed/simple;
+	bh=mZPD6pl61ru1tRN9uYvlKR/Si6aRgYiz1L+8pU5DljQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=C4sE/a4HGh2iJB4JT+RhLzOnZ8y4cMDcHQ4nI+suGGzBxzddO1ue2npUGby/Z2g5ByQE/BCfeSWFuwZWX7sD6KowO1wDtYBo19P0RkOqIZEVeLmsDtq84OjdOJq41D/VRPk2wSW8GRu1R3bs3RAKoGGddRkaY9DFQDSsqSsE9tM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AWlU2Jb0; arc=none smtp.client-ip=209.85.218.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a26f73732c5so236150966b.3
-        for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 00:12:16 -0800 (PST)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a3122b70439so326177266b.3
+        for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 00:17:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708157535; x=1708762335; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=d/JQEGfyvT8y4ZeeuamdC6GwTso9VWBGvazon31aTjE=;
-        b=WVmbidhJXrYolEAiJjijxenSrGkniyNAHxxjz0Prb6s1eq6kr/hUOpU5mP0SmZZJEm
-         U0iRIqXWuHM+755iVuKJoBaSayHPZWeXPOqu9/fgEmE37FZ4Ovuw9Opxgvrq3d2+bCpx
-         iMRcnpWjOLJiIMWVb+z2Tdox0yuHLbGsgUc0brVFCn2cyvLcjUp4qJp1tLOU4kDfjqwN
-         hMQTMV2zY9eB+WbgxdxlmhHvW2Y/H9UcAn3gNduUUcZkuTMPYOPYGMFgmLSa9PQBwFO0
-         yZZf3yq0XWqfYLf/ci78WUrIsmDGALhdhsmfIICmRA96Lws/hqratJ5GlEtrclYBTlAv
-         EB5w==
+        d=linaro.org; s=google; t=1708157876; x=1708762676; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CwPOpkqVqxfLP/r0/a1aV4i2KCiMxSxp2/IT7KltBkI=;
+        b=AWlU2Jb0Z/6dy0nQqWYHSGZRXExLezL5cpDcDs08FqkJsSD+49yBxp3OV4woxW08xE
+         BNM9hx3AZePfgs/2k/UjNDyWapKawmECzWQVC2te7fkFfVUkjg0H8qtgZ+MPNM6Zk4cO
+         eLm49as1MrIUFLARVkrBszKZgjAPYZcR+lUzVy7rBxozczdP3IQ0yRxQxfEoqGWFwNSv
+         4hD45Xi5nDxUCzyG8/xBvqDVEkDZfMq13MSn8U9Aboo36gjJidZeF/aCaPOytQtTzcTZ
+         GriTeU+FnJ5APxPlnQd4XfQgQJ4nicQ4w9tfBUw2ySzglfn82UxrE/73sKWBD3wL4VcZ
+         6fmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708157535; x=1708762335;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=d/JQEGfyvT8y4ZeeuamdC6GwTso9VWBGvazon31aTjE=;
-        b=q6mguSAwrVRVEizgHSo2ScqayC8NZn4Q4cDkafmKOeAUCBh/YlZvnjrHBHNvfpV6k/
-         qIpD7umupBZcGppbf1Yqvi7kbSYajGBdLXVN0azmKMr9xPA7T8OhpRah9l1hOv9FNfjg
-         T3wjjtDjnL+jRluqKDvGpsEfFpUF0WtcdTqwllnou28b1X4rDt2yI2Xywo1LArdm+ibh
-         +LHf3Y/LoveVjI5D89IIYgMoj/RWlVmSmKI4vBx3ICjycuKB7lYTQMpMVB0a4xfdodGo
-         3jPs0FxmfDhCLNLAZIDLOa0tT/3G8SOtqf/hlL5/ASgWPBO3mG8giet3M4bKf+w5gu+r
-         hgWw==
-X-Forwarded-Encrypted: i=1; AJvYcCXiIYUE8moD7iNdtAseOlMpC4bT6JbicvuDTRlux4SRrHaeoTZWHF4hbzQSpuYoFDzD+f/y0Hq10cyTeb0lvIl16IowPP0YtO+mEg==
-X-Gm-Message-State: AOJu0YzFgcyTGp1x/qPcfD+9zv5M8MV8tOGxlPnjxayX0Bbf4HpfxK7w
-	fic87/NE3gExfsrbEQOZ+9fRAjXTmHTgfvhPJpGrMBuU/MU8CI7eSTnl6w4vXWxr8hfdBplwbF2
-	T
-X-Google-Smtp-Source: AGHT+IHi6vWZKXGmg5jPrNzsRsV7p4M01S2eZ4PLZjPleafE3BG+Pf18EQjss7fHfx6InLi1MUVvvA==
-X-Received: by 2002:a17:906:6d4e:b0:a3d:ce2c:49ab with SMTP id a14-20020a1709066d4e00b00a3dce2c49abmr3123180ejt.64.1708157535211;
-        Sat, 17 Feb 2024 00:12:15 -0800 (PST)
+        d=1e100.net; s=20230601; t=1708157876; x=1708762676;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CwPOpkqVqxfLP/r0/a1aV4i2KCiMxSxp2/IT7KltBkI=;
+        b=Iw4ArEFjJiFK1ay+A9I87J4wHHvLquwEZrQM16YupSsWaMdyPtp8ec8/5XKxQwGUe2
+         Yzn+F2k3NojnGE1qxKyN21WD4i3JGwtqjUag2+jcalML5MWwdHZkdPUyUfqm+/3kKSXe
+         zF00XsYulzxHPw/gmPra2vMlw59baQu82HZuogjodXzAMo3dAZVS0quqdsQNYsX24fDr
+         XLfJljOnDSfo5RlrrJuHCiGaLFXtR7XHlsnQMBqE/VSLeI9yT/KEjVhnqxaEJjtZqwud
+         FyYKMjhPaANXlOa8uN3ZG6XHT9pfOVQIexP3b5mCncJEcxXJRqYkzJtltkY6AL884Ucs
+         2b5A==
+X-Forwarded-Encrypted: i=1; AJvYcCWCqTmDbJBA8fro1sxIZakbGqeEruNptB0BAa+EXuZ9BULNBN+j3DQCSQV+aPJsSlEZWHX7p0UGIwxAfbapQJtzYbq7khI4ptRVGg==
+X-Gm-Message-State: AOJu0YwB5Dtppi2irnpbj38a8y+SpAqehJHtggxc98Ka7XwvPpr+kcdn
+	AAN92hXha8LaaGZr9lVTiRQTlvRFW0LvrNktbtJP6xwsAfZRRv6Q234DkID9nMI=
+X-Google-Smtp-Source: AGHT+IGGyO604nMOa87jDhCkt+7xpP/CbQmeT7tQGtKi7mJxmegXZxtKs15Kc/7W6mnDxGwYMk+joA==
+X-Received: by 2002:a17:906:fb9a:b0:a3d:f468:74dc with SMTP id lr26-20020a170906fb9a00b00a3df46874dcmr2241626ejb.34.1708157876107;
+        Sat, 17 Feb 2024 00:17:56 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.207.130])
-        by smtp.gmail.com with ESMTPSA id fy6-20020a170906b7c600b00a3e2af0cd00sm245400ejb.113.2024.02.17.00.12.13
+        by smtp.gmail.com with ESMTPSA id th7-20020a1709078e0700b00a3e059c5c5fsm757086ejc.188.2024.02.17.00.17.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 17 Feb 2024 00:12:14 -0800 (PST)
-Message-ID: <ae0827d9-416c-4547-8882-44dbb46931fe@linaro.org>
-Date: Sat, 17 Feb 2024 09:12:12 +0100
+        Sat, 17 Feb 2024 00:17:55 -0800 (PST)
+Message-ID: <0c2f4d92-afa9-46f1-844e-994bd45924ef@linaro.org>
+Date: Sat, 17 Feb 2024 09:17:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,30 +76,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] dt-bindings: trivial-devices: Add qca,qca4024
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: =?UTF-8?Q?Pawe=C5=82_Owoc?= <frut3k7@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>, Robert Marko <robimarko@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
- Guenter Roeck <linux@roeck-us.net>, Peter Yin <peteryin.openbmc@gmail.com>,
- Patrick Rudolph <patrick.rudolph@9elements.com>,
- Michal Simek <michal.simek@amd.com>, Marek Vasut <marex@denx.de>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Bjorn Helgaas <bhelgaas@google.com>, Lukas Wunner <lukas@wunner.de>,
- Fabio Estevam <festevam@denx.de>,
- Alexander Stein <alexander.stein@ew.tq-group.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-spi@vger.kernel.org
-References: <ZcH9u7Vo2sFERIHJ@finisterre.sirena.org.uk>
- <20240207224546.44030-1-frut3k7@gmail.com>
- <20240207224546.44030-2-frut3k7@gmail.com>
- <cd8c2f79-2307-4ad8-90c7-747d40f14ede@linaro.org>
- <CAKEyCaAy9U_qQ=pXPYaGetEuuuVuoejxjKPrG92fBFauy1wwuw@mail.gmail.com>
- <263bb77f-b91d-4139-91a5-0ddeda0ece17@linaro.org>
- <CAKEyCaD=2Md8f=K0pfAFmSCQjL0PkBvAzG_g5Me-wpd5iv2rVw@mail.gmail.com>
- <18583e61-bc7e-47ef-ab2c-c669785dfd08@linaro.org>
+Subject: Re: [PATCH 1/4] clk: rockchip: rst-rk3588: Add BIU reset
 Content-Language: en-US
+To: Shreeya Patel <shreeya.patel@collabora.com>
+Cc: heiko@sntech.de, mchehab@kernel.org, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+ jose.abreu@synopsys.com, nelson.costa@synopsys.com,
+ dmitry.osipenko@collabora.com, sebastian.reichel@collabora.com,
+ shawn.wen@rock-chips.com, kernel@collabora.com,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-dt@vger.kernel.org, linux-arm@lists.infradead.org
+References: <20240216094922.257674-1-shreeya.patel@collabora.com>
+ <20240216094922.257674-2-shreeya.patel@collabora.com>
+ <237e690a-2f49-4046-b054-3a878eed6748@linaro.org>
+ <30d2-65cf5980-3-2ec9f500@242931553>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -146,23 +138,49 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <18583e61-bc7e-47ef-ab2c-c669785dfd08@linaro.org>
+In-Reply-To: <30d2-65cf5980-3-2ec9f500@242931553>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 16/02/2024 15:47, Krzysztof Kozlowski wrote:
-> On 16/02/2024 14:39, Paweł Owoc wrote:
->> To be clear, I don't want to add support for the QCA4024, I just want
->> to use this SoC with its own firmware connected to another SoC
->> (IPQ8072A) via spi.
+On 16/02/2024 13:48, Shreeya Patel wrote:
+> On Friday, February 16, 2024 15:33 IST, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 > 
-> I know and this does not change what I told you days ago: this is not a
-> trivial device, IMO. Please open the schematics or datasheet and check
-> its pins.
+>> On 16/02/2024 10:49, Shreeya Patel wrote:
+>>> Export hdmirx_biu soft reset id which is required by the hdmirx controller.
+>>>
+>>> Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
+>>> ---
+>>>  drivers/clk/rockchip/rst-rk3588.c               | 1 +
+>>>  include/dt-bindings/reset/rockchip,rk3588-cru.h | 2 ++
+>>
+>> Please run scripts/checkpatch.pl and fix reported warnings. Some
+>> warnings can be ignored, but the code here looks like it needs a fix.
+>> Feel free to get in touch if the warning is not clear.
+>>
+>> Please do internal review. The internal Collabora review would tell you:
+>> YOU MUST run checkpatch. Then you see errors, so why do you send patch
+>> with errors to the mailing list?
+>>
+> 
+> I am sorry but what errors are you talking about?
+> I don't see any errors reported by checkpatch :-
+> 
+> shreeya@shreeya:~/collabora/rd/rockchip/torvalds$ ./scripts/checkpatch.pl hdmirx/0001-clk-rockchip-rst-rk3588-Add-BIU-reset.patch
+> WARNING: DT binding docs and includes should be a separate patch. See: Documentation/devicetree/bindings/submitting-patches.rst
 
-To clarify: this is not a trivial, but "regular" device, so I expect
-standalone binding and at least some basic check whether devices has
-additional resources.
+Here.
+
+> 
+> total: 0 errors, 1 warnings, 13 lines checked
+> 
+> NOTE: For some of the reported defects, checkpatch may be able to
+>       mechanically convert to the typical style using --fix or --fix-inplace.
+> 
+> hdmirx-v1-1602/0001-clk-rockchip-rst-rk3588-Add-BIU-reset.patch has style problems, please review.
+> 
+> I see the above warning but that looks like a false positive to me.
+
+Why for your patch it would be false positive and for all others would not?
 
 Best regards,
 Krzysztof
