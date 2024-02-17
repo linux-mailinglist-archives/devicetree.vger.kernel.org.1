@@ -1,124 +1,100 @@
-Return-Path: <devicetree+bounces-42937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A878858CFA
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 03:33:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5946858D2B
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 05:40:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6136B283690
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 02:33:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2EFC01F22350
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 04:40:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EFA51C2A6;
-	Sat, 17 Feb 2024 02:33:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F1584A0A;
+	Sat, 17 Feb 2024 04:40:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TAdqEnNF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qY59KLK4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B6401BF38;
-	Sat, 17 Feb 2024 02:33:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 024581CA86;
+	Sat, 17 Feb 2024 04:40:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708137219; cv=none; b=Lp5ycs5obvBQxqQjwMTC24dF+uA+bxHogLs8KCjG6Zg+IXnvb8m80R3j1WM4kcDBX5ps40YXx4ou0WHBr2DtVxnl6xS0KbW2CZD7sSmQL3qaJ/Uc6woST5u75l1xSFPcWBIlgmaxIqd4b+3dOCBQkpzpaE50sNR7l4+gRPXzFI4=
+	t=1708144834; cv=none; b=tJrpfMwKFS3B/vgFohEjNDOWydVXnaojmRKfFmZFSWUOGtzhp4FmILTOhLzBLPUvJl5DPRz2DL+ggZ2QrQb94mvkQsi7K6RKrRQwbwTxNjw7b7GiicngoZcNTdEN2dYV3eSvtR23AHEo8WKDHACAo176/hweYiDAsjIl59R/7zE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708137219; c=relaxed/simple;
-	bh=haW+Geg9Bw9o5VNvbhSkBi54T3SIdZhLVbkvZSHVfug=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=PswhJY4oeBbpKj4AZBl/qlbryXA2FquNbEjAhrOxWd99Q3C58Hj88WOHKXZjk/1DUGb+xh3YK6LstDc29hu786uKF3kg31VvtlXXCFrppBroHB4x+uPLzmer9m70Py0TQWSrGJmXyvp3mkrUlVpmFWNoEWiSBGT678kL/hz/Lmc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TAdqEnNF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0062DC433C7;
-	Sat, 17 Feb 2024 02:33:39 +0000 (UTC)
+	s=arc-20240116; t=1708144834; c=relaxed/simple;
+	bh=LUJDC/VfEayPO/LNjl7p0MlBSOcC2kOdKtdoDYyCuiY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=SSZ1hYB5pn5kRMVvGTs92wARFVvvNId/eIvIvXmDh/LVg2Z+vkQUKsLAJfTl+PgOAQ72kr+VqseqiPvw6MtfCNvuCL9pLHwBdNqg+4UJpDz5JEVTNgDYm1utokPFeJevPyZJDf7RVHAkUMOpL0i0yFBKwoMA4CZG2kD8hO+HMlY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qY59KLK4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 7B524C433F1;
+	Sat, 17 Feb 2024 04:40:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708137219;
-	bh=haW+Geg9Bw9o5VNvbhSkBi54T3SIdZhLVbkvZSHVfug=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=TAdqEnNFcSJfD3bOPI1EINwJx7FszBiVIwFOA3zMEaTkObGLRoZjOTratYn0b5Nna
-	 yZfq/eY/nLs4qzPIKZ95OQQeGjSEySP3+ozJAt+oYBhtm82DoOZVXeMQsDo4X7hDmp
-	 N6FxBrhpr+h8Jd0Sn7oyVjyHAUXKLCjkSiHAnyfmS8BjHEDO7N6BqwS5eHCW6mT8EJ
-	 zrChd9I6JCiTMnmILWmQdOdy6Asx+wLWJCenXaEfEt9z1DU/bUxMqgtb6zGwl4pBdl
-	 QAJLMWDV2TuvtZ9Jm++JJzBIHs88GYcFNOoR2yVm17FRw7wzFc6SJhbnF8D+Xzm2+R
-	 6wwPzFNws8HGw==
-Date: Fri, 16 Feb 2024 20:33:38 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1708144833;
+	bh=LUJDC/VfEayPO/LNjl7p0MlBSOcC2kOdKtdoDYyCuiY=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=qY59KLK4H+KZVWQWakhsfsXav41jKBUuDbm/I2fYb9p/rvTTug5Xk5yv3pmbIKIWH
+	 zVHgzG56xc0iU4GE8KedLKYvOF8kI8u5ceuJG8j4xD5EiCDiF71GwDbLCD+BZ8lCf4
+	 dXSELR0nElsZ1ZsHcwEZ0HuPF8tpplJDTP8KtIqKNq7H8eiR/0dKbwTdiy8ofFukfw
+	 XjAQFzqpLDW2hoqzc0ahGnIAbzuvxOE6l8w4HGze0zKlZwoPhmLw6895sv0hGeqaYA
+	 /D+TZev/PftbuuPss7XIwsVTGBu2lQWoX6IFGe855n7nIgDmozfHts/Enx/I3FdzJg
+	 CbKXV/0Ok57qA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 61D0EC48BC3;
+	Sat, 17 Feb 2024 04:40:33 +0000 (UTC)
+From: Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>
+Subject: [PATCH 0/2] watchdog: sp805: add reset control support
+Date: Sat, 17 Feb 2024 12:40:33 +0800
+Message-Id: <20240217-hisi-wdt-v1-0-cdb9ddcab968@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Atish Patra <atishp@rivosinc.com>
-Cc: Guo Ren <guoren@kernel.org>, 
- Ji Sheng Teoh <jisheng.teoh@starfivetech.com>, 
- linux-perf-users@vger.kernel.org, Weilin Wang <weilin.wang@intel.com>, 
- Ian Rogers <irogers@google.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
- Heiko Stuebner <heiko@sntech.de>, Yang Jihong <yangjihong1@huawei.com>, 
- =?utf-8?q?Cl=C3=A9ment_L=C3=A9ger?= <cleger@rivosinc.com>, 
- kvm-riscv@lists.infradead.org, Evan Green <evan@rivosinc.com>, 
- Christian Brauner <brauner@kernel.org>, 
- John Garry <john.g.garry@oracle.com>, 
- Ley Foon Tan <leyfoon.tan@starfivetech.com>, 
- Namhyung Kim <namhyung@kernel.org>, Jiri Olsa <jolsa@kernel.org>, 
- Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
- Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>, 
- Andrew Jones <ajones@ventanamicro.com>, 
- Kan Liang <kan.liang@linux.intel.com>, 
- Arnaldo Carvalho de Melo <acme@kernel.org>, kvm@vger.kernel.org, 
- Alexandre Ghiti <alexghiti@rivosinc.com>, Jonathan Corbet <corbet@lwn.net>, 
- Anup Patel <anup@brainfault.org>, Atish Patra <atishp@atishpatra.org>, 
- Jing Zhang <renyu.zj@linux.alibaba.com>, 
- Peter Zijlstra <peterz@infradead.org>, linux-doc@vger.kernel.org, 
- Samuel Holland <samuel.holland@sifive.com>, 
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAME40GUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDI0Nz3QygEt3ylBJd4yRTI0tzw0QzU0tDJaDygqLUtMwKsFHRsbW1AAF
+ SbwlaAAAA
+To: Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Guenter Roeck <linux@roeck-us.net>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Rob Herring <robh+dt@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, kaiwenxue1@gmail.com, 
- Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
- James Clark <james.clark@arm.com>, Mark Rutland <mark.rutland@arm.com>, 
- linux-kernel@vger.kernel.org, Adrian Hunter <adrian.hunter@intel.com>
-In-Reply-To: <20240217005738.3744121-11-atishp@rivosinc.com>
-References: <20240217005738.3744121-1-atishp@rivosinc.com>
- <20240217005738.3744121-11-atishp@rivosinc.com>
-Message-Id: <170813721439.1034411.7264728567495824984.robh@kernel.org>
-Subject: Re: [PATCH RFC 10/20] dt-bindings: riscv: add Smcntrpmf ISA
- extension description
+ Conor Dooley <conor+dt@kernel.org>, Viresh Kumar <vireshk@kernel.org>
+Cc: linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Yang Xiwen <forbidden405@outlook.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1708144833; l=590;
+ i=forbidden405@outlook.com; s=20230724; h=from:subject:message-id;
+ bh=LUJDC/VfEayPO/LNjl7p0MlBSOcC2kOdKtdoDYyCuiY=;
+ b=0rqqZcArxThG2yX3Hq+rdGLGQsJvuKSoEyteZdrJRyKY14vkNn89yYUJ5TWBgd/TfYi+SFcIs
+ JTK/0/6wGJmCEg6DdJ/6ICqR6ZfE6wCIjivmGUiPNshX7xFWzwOt3oX
+X-Developer-Key: i=forbidden405@outlook.com; a=ed25519;
+ pk=qOD5jhp891/Xzc+H/PZ8LWVSWE3O/XCQnAg+5vdU2IU=
+X-Endpoint-Received:
+ by B4 Relay for forbidden405@outlook.com/20230724 with auth_id=67
+X-Original-From: Yang Xiwen <forbidden405@outlook.com>
+Reply-To: <forbidden405@outlook.com>
 
+Deassert the reset if it's available.
 
-On Fri, 16 Feb 2024 16:57:28 -0800, Atish Patra wrote:
-> Add the description for Smcntrpmf ISA extension
-> 
-> Signed-off-by: Atish Patra <atishp@rivosinc.com>
-> ---
->  Documentation/devicetree/bindings/riscv/extensions.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
+Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+---
+Yang Xiwen (2):
+      watchdog: sp805_wdt: deassert the reset if available
+      dt-binding: watchdog: arm,sp805: document the reset signal
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+ Documentation/devicetree/bindings/watchdog/arm,sp805.yaml | 6 ++++++
+ drivers/watchdog/sp805_wdt.c                              | 9 +++++++++
+ 2 files changed, 15 insertions(+)
+---
+base-commit: 8d3dea210042f54b952b481838c1e7dfc4ec751d
+change-id: 20240217-hisi-wdt-3b52971a6591
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240217005738.3744121-11-atishp@rivosinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+-- 
+Yang Xiwen <forbidden405@outlook.com>
 
 
