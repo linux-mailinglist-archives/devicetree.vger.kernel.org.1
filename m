@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-42969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2825858E35
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 09:59:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36B2B858E3C
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 10:00:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E38111C20FEC
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 08:59:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E18A0281ED5
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 09:00:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D242510A34;
-	Sat, 17 Feb 2024 08:59:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B59D1CFAC;
+	Sat, 17 Feb 2024 09:00:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yuyn5Zg5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HmbcUuGE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63F581CFB6
-	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 08:59:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C8F3149E06
+	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 09:00:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708160370; cv=none; b=NRiRZZJjZsI9dWDxpLtdbxs6RJ5PJKwgnGPSDuGDW5ZJtQb1YrGRmwvJkY6Ijcgnxc8SBkvGvAfqA+KzGQMNirO8EW4t99mkGTfu+SvyG9i+bdPY/fjn3enQoFTiFkebrqSTVEJq3U3y6V8G+S8RjnqZQ1+iTkVFbObYHcU7b0I=
+	t=1708160451; cv=none; b=mRaoAq6o+7GU9FE+zbOQYf6WIRTN+lsPGZ1effQkJ73Hm0xZuj8Ly7bp4xmRVnqh/VjM9AiKl/+aYo80XqwJaZ2dyJOsxOoROd5effvyADylwguhDJIru7c4D7NEdsG1EWlK8DQR+6y70S2a8t6RDWw167F4wJvxeo/yv42CcKs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708160370; c=relaxed/simple;
-	bh=8InsxmqfZQLd3ulUQG+LgYVSOGcEOWqATZfF/M1PPvA=;
+	s=arc-20240116; t=1708160451; c=relaxed/simple;
+	bh=85m9mFXdiU+sh7IE5Sj3DSmPH8OLVJBOUZpyG3YO9to=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Fb1Y6Q00gxnXw7uBAvIGajXwPde6fdx2ruj0mlkRSPsulAVOpKvCZhlJ10b/p3IqKqTlWf7nw8+ninfPt4tBcW/RokC/jOpx18G5S5IxlF/3RnxvptKrRs36vQShzTmD6cUOx244vgfD+nRaYs4+2TEEOpHzCVETlQkhePP7B2A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yuyn5Zg5; arc=none smtp.client-ip=209.85.208.44
+	 In-Reply-To:Content-Type; b=EKfwsoQFlo50PYKPuzssrRLhy4jH85sUlDVNE90JNOF+eLBj4txHwpp6DFG43wc/APYQa50y6ESjg8e0M7V0zZt2qr02+c1QV1XTXSanO+5ol9Rt55rdXvndql8SKXucKVnxVa2x62O0TvMsEKRFEr6IE8FasR7v3i9ECJdz+R0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HmbcUuGE; arc=none smtp.client-ip=209.85.208.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5611e54a92dso3750229a12.2
-        for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 00:59:25 -0800 (PST)
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-564372fb762so69431a12.0
+        for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 01:00:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708160364; x=1708765164; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708160444; x=1708765244; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=PPnF2UnPEK9IopO1lZfk/F+3jdw5LhE9uXdyHqBy+ZI=;
-        b=yuyn5Zg5lWDhujZrTKEC5HvpLrPXy5R7TbI1jP+W5X+QHy1jGFvsCXaM5rjSJHigRG
-         BSyuQON42dRNHCRe7QmnzL9E+B6psU/mCKCkCjuoEfJYkZwYKzTGlBqDPEq+yyMvHtcy
-         E5HxuWcvEbj+HSuIOOlR36qJ6WJrSRkpalxuSrcxRcNQhMJ6eWNQd32JIuXlzIXUV6o+
-         RQqXieeI7tlhQV5M+cQWR75RNtFezCbiGb9tgZ0ZkNSUZyUUUpId18LmuHLCNa41A/0M
-         DRc+/gT9ZSipbTGLbr4igJmX12RchCPsD9Om4yTjH96mKmNNFsJowsJ7Z36R+icziEb1
-         Rarg==
+        bh=GKzBi+LFAgyEuEjfDoXiyvKz1ydBsUvzpk3PjBvnaVg=;
+        b=HmbcUuGEbGwEiLaXDRR2v/8t14fVKlGS4433wvilY9vOaTSvrhqAKB1hxYDgtfGG5t
+         9gVpfno2gTqbZrC+t+bnLaeWfKRtAFJuIPWOZ6ZvLFgaF2VEOCC8N2NKWQVYR6zHdEqO
+         9U/MVwTfeSrvSLd6itRn5tviadV4jl1apcxLTtQC9CM0wPgwlHpBbeA9zFORfdMJEBco
+         cfEqQKbcggAtmlEReErxtcLSTlWsqrUp+z9ulcm73cZBFDunrREZd+YCUH0f8lwwFIUb
+         /Jg79uyAfw/BhvS0fL6mNc+6/6AqYSbFMxfqJSGzavcwS0sFEyKTi+iBw2OvxmUUzgJl
+         OLVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708160364; x=1708765164;
+        d=1e100.net; s=20230601; t=1708160444; x=1708765244;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PPnF2UnPEK9IopO1lZfk/F+3jdw5LhE9uXdyHqBy+ZI=;
-        b=ROKdUKs3Ke5bp8TccvO1KKwlhr/2Bszy9GCj46LSUmvI9AMfSp4Ppj6jyYpxitTwz5
-         uFYudamjhNLrFHRXqKLG47dvrceLVjwyTLnKEnSWb0Vmn3Tk90fgCJmSgaAgFVWjOR/i
-         sySEdRI3zZTASZ08AaBwTFieM0TGb7AuQZgkdX8C/TYk7eanOTj6nXX7dI+tcLy5e4HB
-         YQYlpyW1w34PVQqsYESiliVFusTdhQOsnJTPkCRMbjX+4VYhTdIciwlwy4AJL0vBMiHq
-         fwYq/c620K+fnLqT1DfqIooaXgdAZlllA+sHkoUHjzViuSnbCcNU5vHSPZKxBErPqi+s
-         roOA==
-X-Forwarded-Encrypted: i=1; AJvYcCWeX6lr5SVxjRQMu/RDkJmq+8gR01q6BX1A8Cv5rcLAo6ExI5Lzs2ocLPxRdBfeievqJeFbulyYHjin4AOiSNGkmUPqR6btAbSR0g==
-X-Gm-Message-State: AOJu0YwfZZg2PCN1BJ0/xIR6/yXqgbE9XruTYWJgt/lC3FgMOGgp9XCP
-	ft6bumbg+oSrlMsZJG3XqoGqrx85C0nCyd+DN7yVOGIu7J4ppSPQ9PKV21JeFoM=
-X-Google-Smtp-Source: AGHT+IEJJNi24rvq8c+17CsSj00wltExN6m9dkDzjM34Q4qlAqXsV2T+AbQAwFRXvvCQzFUQN/ZZ2g==
-X-Received: by 2002:aa7:d0d6:0:b0:564:1884:76be with SMTP id u22-20020aa7d0d6000000b00564188476bemr891326edo.39.1708160363803;
-        Sat, 17 Feb 2024 00:59:23 -0800 (PST)
+        bh=GKzBi+LFAgyEuEjfDoXiyvKz1ydBsUvzpk3PjBvnaVg=;
+        b=JybL3JhiVCHoBC7IixEMmtJLtfeVEgULs7ivs1EAX8aDb9+7ZuhpLkpqBt9rmeI+TF
+         p0BvOoV+iIheE3AaoDfcH8OqeO6VTTJMVsiPngGAoykrB6UcBQOOHponOHEskRa5Ijxl
+         6uHZY2WOhzF1h4T/R/hbl3VS+CMBijm0R7x7rQQQkvbb4AVQ8kJ56ixBLdEpqhqmGVot
+         8G++Iy1qVJUgFiaSahrp25llH7NcTjcBb3JYSG2zHQWrsjapCZ7vPF2hm9FJmbj1J7mk
+         c+w59M7f9c6HHozNR6QxyReZiqHAoRBCGVuaMQ0p41yjFc7mxQMrdtTc8fB8rL9SwzeG
+         WWcA==
+X-Forwarded-Encrypted: i=1; AJvYcCVVGWHfFiSI6Tt8XdwPWx90N6nxCAlsqO3OLCSU1krWL/BleRwYircXN+oH+Cdsic+VB+Py0MjinZus7KcRGvJTG7QC5zn0xkxVkg==
+X-Gm-Message-State: AOJu0Yx32wltHcAdeWGcHWJMv+Wdt5Ous1MFx9+hlTydPhjrC7jeRexC
+	9BG8gq6CBX85in/6jW/7mo5jUbjnSRKh+xat5BCexAzkx8eSb58uEKrNmVuIDrg=
+X-Google-Smtp-Source: AGHT+IEiIbXlJy7R34XiyyLCOxObbvRZ1l18Ghqcpq828SJHnmVu4XPlASav1BKQaKrbmgxgqnoETQ==
+X-Received: by 2002:aa7:d6d6:0:b0:564:3939:8153 with SMTP id x22-20020aa7d6d6000000b0056439398153mr10637edr.28.1708160443777;
+        Sat, 17 Feb 2024 01:00:43 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.207.130])
-        by smtp.gmail.com with ESMTPSA id e9-20020a50ec89000000b00563e425da56sm711139edr.85.2024.02.17.00.59.22
+        by smtp.gmail.com with ESMTPSA id e9-20020a50ec89000000b00563e425da56sm711139edr.85.2024.02.17.01.00.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 17 Feb 2024 00:59:23 -0800 (PST)
-Message-ID: <eee8e6f8-9efe-466e-9e5a-de5a9378ae71@linaro.org>
-Date: Sat, 17 Feb 2024 09:59:21 +0100
+        Sat, 17 Feb 2024 01:00:43 -0800 (PST)
+Message-ID: <eeb2331d-10e6-4902-91ba-85896a8f0ee1@linaro.org>
+Date: Sat, 17 Feb 2024 10:00:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,19 +76,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/4] dt-bindings: mmc: hisilicon,hi3798cv200-dw-mshc:
- rename to hisilicon,hi3798-dw-mshc
+Subject: Re: [PATCH v1 1/6] dt-bindings: cache: Document the
+ sifive,perfmon-counters property
 Content-Language: en-US
-To: forbidden405@outlook.com, Ulf Hansson <ulf.hansson@linaro.org>,
- Jaehoon Chung <jh80.chung@samsung.com>, Rob Herring <robh+dt@kernel.org>,
+To: Samuel Holland <samuel.holland@sifive.com>, Will Deacon
+ <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Eric Lin <eric.lin@sifive.com>, Conor Dooley <conor@kernel.org>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Paul Walmsley <paul.walmsley@sifive.com>,
+ linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Igor Opaniuk <igor.opaniuk@linaro.org>,
- tianshuliang <tianshuliang@hisilicon.com>, David Yang <mmyangfl@gmail.com>,
- linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240217-b4-mmc-hi3798mv200-v3-0-f15464176947@outlook.com>
- <20240217-b4-mmc-hi3798mv200-v3-4-f15464176947@outlook.com>
+ linux-arm-kernel@lists.infradead.org
+References: <20240216000837.1868917-1-samuel.holland@sifive.com>
+ <20240216000837.1868917-2-samuel.holland@sifive.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,33 +134,25 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240217-b4-mmc-hi3798mv200-v3-4-f15464176947@outlook.com>
+In-Reply-To: <20240216000837.1868917-2-samuel.holland@sifive.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/02/2024 22:02, Yang Xiwen via B4 Relay wrote:
-> From: Yang Xiwen <forbidden405@outlook.com>
+On 16/02/2024 01:08, Samuel Holland wrote:
+> The SiFive Composable Cache controller contains an optional PMU with a
+> configurable number of event counters. Document a property which
+
+Configurable in what context? By chip designers or by OS? Why this
+cannot be deduced from the compatible?
+
+> describes the number of available counters.
 > 
-> Add binding and an extra property for Hi3798MV200 DWMMC specific extension.
-> 
-> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
 > ---
->  ...-dw-mshc.yaml => hisilicon,hi3798-dw-mshc.yaml} | 23 ++++++++++++++++++++--
->  1 file changed, 21 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/hisilicon,hi3798cv200-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/hisilicon,hi3798-dw-mshc.yaml
-> similarity index 73%
-> rename from Documentation/devicetree/bindings/mmc/hisilicon,hi3798cv200-dw-mshc.yaml
-> rename to Documentation/devicetree/bindings/mmc/hisilicon,hi3798-dw-mshc.yaml
-
-Keep the old name, we don't need to rename the file for each new compatible.
-
-> index f3dc973cb490..26d7f4be965b 100644
-> --- a/Documentation/devicetree/bindings/mmc/hisilicon,hi3798cv200-dw-mshc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/hisilicon,hi3798-dw-mshc.yaml
-> @@ -1,10 +1,10 @@
->  # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->  %YAML 1.2
+>  Documentation/devicetree/bindings/cache/sifive,ccache0.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+>  
 
 Best regards,
 Krzysztof
