@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-42957-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24E1F858E12
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 09:26:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2C30858E15
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 09:28:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5749282F41
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 08:26:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 726D1282EB7
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 08:28:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 622E81CD23;
-	Sat, 17 Feb 2024 08:26:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48C0F1CD38;
+	Sat, 17 Feb 2024 08:28:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ed2fSRlI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Yo+HOmEy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 842C11CD38
-	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 08:26:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9590DDF51
+	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 08:28:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708158383; cv=none; b=TwOEV9UkVdFcJKWe9u/bYy4jS+uec5Ssv3fFn9DwWiYZQuiMkw7yhMN3UXjVxNWWguYZHDRjEKCDDUMVd3m0aUupmWZwVou2Z9G0vIg6zeGK81TrF0pr4mInYbedZYvn2KgWqk/X3OKdS22hWGxjyh2QXFlsuVnIZnl5EgP891k=
+	t=1708158499; cv=none; b=YBOUgsALovw7nJOOQ8BybMnY9YTFhL3bWDNKxTdxAb9kZI/UsPxtNYiMAp4JFqpgG3da5T/PeFXXGuSfuDHny2qjUAMPJanPuF52HeZWp3feH8pP0DGOA5Xo6/M3m8iQIKwxeqmBYNPown6URTOhNcAtOp5hQTIwXBEwlfnWwNI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708158383; c=relaxed/simple;
-	bh=gx6a5edxbT5bsU+TGBXVp/954ZAEGJsMFBWLUR/YTOU=;
+	s=arc-20240116; t=1708158499; c=relaxed/simple;
+	bh=fIxF4TYSDzMXrsN9oTg4mUN922eJ8cblIlUE7A2PSCU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MCxNbOieebgKvaix9E3CUMy7iHFsTXUSi5744JxlrxQ4kf06d6ITe6Lm/btY/O+Q8t0vHZZ3hKE5X8bFZgV8vEqiobx9lt9dr4nmpYQoVd9Sgoc1jumfuYeT/Y+aVIqA47vknJjVhdJdfBhYoudBcLkhytYh+9s0Zod/UUyRekk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ed2fSRlI; arc=none smtp.client-ip=209.85.218.49
+	 In-Reply-To:Content-Type; b=HoaQPbLEatc/j8kEccFurw4fHh0Lg/NepuUcMGNYRkJXQkxw00aLE3bniQyBWH9WgJzLHRJ6GPF3mcasbN+tZkMhMV6R+myAZUWdtLuR3dgQ3Gs61g2VMcTEDNjGbae4GDQvSr2olkNq1pCj2STTMCo2Ns3aQJBHmOx3aILj8OM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Yo+HOmEy; arc=none smtp.client-ip=209.85.208.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a26ed1e05c7so380169266b.2
-        for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 00:26:21 -0800 (PST)
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-55f0b2c79cdso4452928a12.3
+        for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 00:28:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708158380; x=1708763180; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708158496; x=1708763296; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=NgqfRlrvI7npTmu7xUZp6/bC7Hy4iB4qMNQqRvwmnc0=;
-        b=ed2fSRlIQ9pGcNY7w4fCmZiV60kAwy4CvyBEQtmWZ5rntG3ut9icoV09Pu/2UiZ14c
-         vSrrqLp3EljB76eS1ORPcFkkNLNpIYasBU5c2iPLT9SM7scG83AACfKJSNwcx8HgUkr5
-         hS/veXxolba0yMpnixRl6mAC90AUPzA1LcDzRRFJhD6df9A38l7kGf0pcekslMTMDSt2
-         jmPcr4gZn/JxfdUTt88OE5GC+VXb2WorXkuRHL1siBkL/s1qw+FnN7yKlgySCojtZiIl
-         V07WOFNmTLJrJSK3lWQ8Rqw/DAQDHNTgy/gBUlj2j3LkjYctFMSPaGw1dSAw/vkDzuVE
-         IJ5w==
+        bh=GnJB9+tNFtDOIThyu1yRvFoihAcunlS/UkM0G6MsB+Y=;
+        b=Yo+HOmEysZRyhscGwysSHoPPSh94APrsCcHT8KW8n7Dgp+R2lk/KkbhIce3nL+YEFr
+         awqPYe8eajCFrD2zQNVrkYUfFr/Ao3Fkm3d1G0lYDMLrh2ga1wrT/XmPmhE/rmXj9pCo
+         b6WyPVy+puUHhzWjRsTeQHvCxB10V/xwjZW03uroEtE2V1fEJkhWNBn09pSY4N1Qg5uX
+         JRcM18y1EWMY9ajGZGgXbVIM6NLeFfJ8LmU2EE8zde7OI+F+lBi9YhqSb6igyW/k6mE8
+         lJqfACQSNZbMGae1hbipJ593mK46eCd9T7b56GhqWWDdezQicRR3dhBOKTJhbuDXsh2U
+         FcXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708158380; x=1708763180;
+        d=1e100.net; s=20230601; t=1708158496; x=1708763296;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NgqfRlrvI7npTmu7xUZp6/bC7Hy4iB4qMNQqRvwmnc0=;
-        b=GhO6XCH4pjB4o9I1+s+Gllch+0/IMv+Rbizv27fzH5gxJXHN9S2ZvosKTx+V3VxpHp
-         daI0OD+xWpuv3uYnqFl0u4yL0afDNCR/nlXvgDstFkmaKiQ5hHj2wCbVgZP1TVZ3IzFR
-         oDj1JjN68zhgKG/RYkjz1wsJhDg8xnhDy9lYqHDKsotuGG3FJfDgbz3K42oX0udUGUD7
-         Fp+pVGPhQHOjCz6vCWjYO3yMT27DuxkVuL/zRGroJT0pJxHfeGrx9+1Tn91hiiFWGKps
-         O/GdIykDgwfQS/nn937LJcwo2jEvtjaxcCUP5OSZdpmkN6zl5Yr/vr3yvMzTbN+OYbgs
-         gGDg==
-X-Forwarded-Encrypted: i=1; AJvYcCXBeWSWr8DV/OA1bvsXRnCXsAQ+Yf8vPL/fPowp8TzVJFX+YdA/cNvP94G2gBvhOtN7hCbAX12y5bI3AWreUtcMcCOdW4k4599DKw==
-X-Gm-Message-State: AOJu0YxAtqEftbILjNEo8t4A+WUfFwT74/RXAn370puXBROEabtqWp4L
-	dB0g6LDGldXHtEdAFovLmgtZCHqqSLPGfM2Rr+OQmuCj74R3N+BPIi9lXcbmrtw=
-X-Google-Smtp-Source: AGHT+IHXM0ahWqSQ1c/R+HKkC1o1a+c9pA3X4VQztftU731Lcc4H4jfnC9a//q0eaq43fHbSK2TOWA==
-X-Received: by 2002:a17:906:ae54:b0:a3d:bccb:a202 with SMTP id lf20-20020a170906ae5400b00a3dbccba202mr3541215ejb.40.1708158379852;
-        Sat, 17 Feb 2024 00:26:19 -0800 (PST)
+        bh=GnJB9+tNFtDOIThyu1yRvFoihAcunlS/UkM0G6MsB+Y=;
+        b=QwVwDeOetdM+eZn016702WgD0Lb85HpIgAn5+18tHxtFMWzOKtLWzlRdAulg9AdmkR
+         m8olucjt72NqrCojm+fIglMf4ZsqVtcDSTLgAb+XHQcshJIenFwv98t4EO6ECw2ar5iX
+         mOHgFhVnmdHF3D9lV+UvztNYZTD3RgXP0laz/SSQUwr7sw7v2H0E4YAW85qAZEypEYKH
+         mn5caH06DYTr+QkEtre7VIO/oLEeIb4oHOvbJLaDWTXQdF4693xmRdSYo5qXsgwnV7xY
+         zoLkUaoihMYISWgDSDJl6d0ckLRdi8LBxXM1mXTyVD/amsNfkS2pLhdyhW41QVNLBgIK
+         LStA==
+X-Forwarded-Encrypted: i=1; AJvYcCWuci7VaYM8DUmxc9SK+XiyzRj+tQiSvilsmR/2imNboHM9wZLdwGWurAplZOUxikL/AHLabv+mFyNLxEEGQXq57Uvf/QNKDYEfcA==
+X-Gm-Message-State: AOJu0YybDnwhXqJ+xfk+zhECJvbniwE5ssLDR8Ttuy3/gr4fqmNlspwi
+	6RRu7PDMx3oPELODuCAz0puLIlDsWQyAx3jqPlEBRrPSdVeo3hEHWereNz51PVo=
+X-Google-Smtp-Source: AGHT+IH7IH1nMDlDu8cL67YnZs0Jvw7wxj0GDmtBH72UC6u/miDG7FHG/+YuVLwA7jKIIWKtKhq9MQ==
+X-Received: by 2002:a05:6402:387:b0:564:770:542 with SMTP id o7-20020a056402038700b0056407700542mr1646200edv.21.1708158496062;
+        Sat, 17 Feb 2024 00:28:16 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.207.130])
-        by smtp.gmail.com with ESMTPSA id cu3-20020a170906ba8300b00a3d014fa12esm763079ejd.196.2024.02.17.00.26.18
+        by smtp.gmail.com with ESMTPSA id b17-20020aa7d491000000b00563ffa219b5sm694923edr.97.2024.02.17.00.28.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 17 Feb 2024 00:26:19 -0800 (PST)
-Message-ID: <ebcfd49d-f810-4d9b-8cba-b55071fc7fa6@linaro.org>
-Date: Sat, 17 Feb 2024 09:26:18 +0100
+        Sat, 17 Feb 2024 00:28:15 -0800 (PST)
+Message-ID: <9584fd2d-97bd-4e1d-8f33-2c48c8c89aa0@linaro.org>
+Date: Sat, 17 Feb 2024 09:28:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,22 +76,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: rtc: zynqmp: Describe power-domains property
+Subject: Re: [PATCH] arm64: dts: sm8650: Add msi-map-mask for PCIe nodes
 Content-Language: en-US
-To: Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
- monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Conor Dooley <conor+dt@kernel.org>,
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh@kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "moderated list:ARM/ZYNQ ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" <linux-rtc@vger.kernel.org>
-References: <94726c90ff519185767475f672d70311472ea925.1708073513.git.michal.simek@amd.com>
- <5a81f16b-8ece-4263-b424-4dd6cd6e386f@linaro.org>
- <ed59671f-6e0b-45a2-bae7-38f7b4b7e625@amd.com>
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240216-sm8550-msi-map-fix-v1-1-b66d83ce48b7@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -137,33 +132,25 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ed59671f-6e0b-45a2-bae7-38f7b4b7e625@amd.com>
+In-Reply-To: <20240216-sm8550-msi-map-fix-v1-1-b66d83ce48b7@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/02/2024 10:42, Michal Simek wrote:
+On 16/02/2024 18:05, Manivannan Sadhasivam wrote:
+> "msi-map-mask" is a required property for all Qcom PCIe controllers as it
+> would allow all PCIe devices under a bus to share the same MSI identifier.
 > 
+> Without this property, each device has to use a separate MSI identifier
+> which is not possible due to platform limitations.
 > 
-> On 2/16/24 10:19, Krzysztof Kozlowski wrote:
->> On 16/02/2024 09:51, Michal Simek wrote:
->>> RTC has its own power domain on Xilinx Versal SOC that's why describe it as
->>> optional property.
->>>
->>> Signed-off-by: Michal Simek <michal.simek@amd.com>
->>> ---
->>>
->>>   Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml | 3 +++
->>>   1 file changed, 3 insertions(+)
->>>
->>
->> But Versal is not described in this binding, is it? I see only one
->> compatible.
+> Currently, this is not an issue since only one device is connected to the
+> bus on boards making use of this SoC.
 > 
-> It is the same IP only as is on zynqmp with own power rail.
+> Fixes: a33a532b3b1e ("arm64: dts: qcom: sm8650: Use GIC-ITS for PCIe0 and PCIe1")
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-Then you should have separate compatible, because they are not
-identical. It would also allow you to narrow the domains to versal and
-also require it (on versal).
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
