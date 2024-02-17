@@ -1,168 +1,152 @@
-Return-Path: <devicetree+bounces-42994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF4E2858EFC
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 12:06:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF79F858F1D
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 12:39:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 25B6FB216BC
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 11:06:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E3EE1F21F74
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 11:39:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A9D360DC3;
-	Sat, 17 Feb 2024 11:06:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E92DE69DEA;
+	Sat, 17 Feb 2024 11:39:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="KKXRGjpC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vKD+yCmb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01olkn2013.outbound.protection.outlook.com [40.92.107.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55A955916B;
-	Sat, 17 Feb 2024 11:06:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.107.13
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708168007; cv=fail; b=r2A9Qr3B6LfHPbilp7nQ2ZdoPBaRF3qQVKQ/q14ZJFE0iKkCR412vK5WZ7tjj3B2RDn+VvQJzvaAsEG+6ur0BGbhtaBbvSWiWpm38u0JU9NZ6f/Z0zY3ngJLhAaHishj9XJdc/LwmQF3gJeZKMSVQJD/XmVHl0Z5UO4qyiAq6lo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708168007; c=relaxed/simple;
-	bh=aAjfHWxwljUP6iRNioNuS8e6gs6zSTkbJpZCo8PI4AQ=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=RhSjIwz2BP4TcQARPxkNvDLWLbMOxYl1SZzciAmCj20kPgWGDFb42Qlj03HVmewKbakrwmMVUZ8Z82kFV4fcBNMpPpNwMIK+ddaYn7fRWy+YutbA6D8heEu8Eu51VPhB0hnXdiGHQJ4ukzfmORVhxJbIQGOroEDk5Umjor/kxxQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=KKXRGjpC; arc=fail smtp.client-ip=40.92.107.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZMcY0SCdj7u/x31DO6XfRYESYUfWBWitH5W6gUsfajQpbxun55Kybj48bRhaQ6X5dvwpSKaczXJyvq20TBx4AT36Sr5PrHWb5qQCF767FhIyjhMdw8XELf9I6dJs7PqU3hpp8UB29nykou++kcYVbK1AI/dWtbB4l6550Ok5scKD64XGSkVavurvgCNhzAQZb0CryQ1iUpO4SKhQIXVLokjewQ5btYBZGNUXFbvL/TY8cazmyBqkTaPCw0MOdwpkBy//egIsnnUf5PSmhJcbxfk8yyYWTv8siahrjSBW0uLWnb1kcWduN+Yu4t86iMlJiT2eO44w86mHGGulgWqnwg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MYab6ynoNw18HunuR9m+XjiPPLA9mN8lmDgzr+oI+vc=;
- b=h5x+ZgnqNBreutZcFNbOyvVlXMztowzucUvKH02QUSqqZRxLitSPYKC322kNWVQEWCTUfoWFnbi8V26B4FHT1uMYqSVt7nbFNBR3q4tx92es67xsu1rmItUKWIo08lJTMu0drJ5abyp/kxLXIEBb+GMrGnDFNcmNMJsqAa5XYWc1niXTBMVSwlZJmWwju9S8tRi5UhJ8bUJvEGZ2m0sVDnxRgbwS//4AsyBCSjfEG8F7vIoXcX66uccS5IdfHsVH7KNGMwULl48qRQg5k+8AJ83q+KW6ZrnGgThT1K3Gn/ra/NlRbjwKJm/ZMlI9MkBc3uCiespPyXG1Zieee5X8Hg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MYab6ynoNw18HunuR9m+XjiPPLA9mN8lmDgzr+oI+vc=;
- b=KKXRGjpCkchbzfTxMUK+etVpQVaGtj8nNIryR6HfZQgsYEcg600TVVA0iIrb6HLq8PcEqzU++tsotnHoWg4guCjvpCQ4EV1td3/qhlqRzo4jz1VeOMKWu68CSj6z3RgYVuA8xlLZUnQVKHcDp71ZTMDJRMmkCVUvQptgz1XfvkcSt2r3jsIzl7NlE9VWC3N4Ve7NgIRzdkw8rFsCetKLLk9HqBkfScuC6WH3FEKiDayRLYmO9HGV+WvamlDqPNUyBO8yP4L+rGl8+ldk0n7sPhihgz2GIL34Vpc2cWJPjztP5FTXxorgX+tWVj95R+QbQIaRXB3RyeIKPJxyx/pvVA==
-Received: from SEZPR06MB6959.apcprd06.prod.outlook.com (2603:1096:101:1ed::14)
- by KL1PR0601MB4467.apcprd06.prod.outlook.com (2603:1096:820:7d::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.31; Sat, 17 Feb
- 2024 11:06:39 +0000
-Received: from SEZPR06MB6959.apcprd06.prod.outlook.com
- ([fe80::9a6b:d813:8f4b:cba1]) by SEZPR06MB6959.apcprd06.prod.outlook.com
- ([fe80::9a6b:d813:8f4b:cba1%4]) with mapi id 15.20.7292.029; Sat, 17 Feb 2024
- 11:06:39 +0000
-Message-ID:
- <SEZPR06MB6959703F337B5A2540C56C4496532@SEZPR06MB6959.apcprd06.prod.outlook.com>
-Date: Sat, 17 Feb 2024 19:06:33 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 0/4] phy: hisi-inno-phy: add support for
- hi3798mv200-usb2-phy
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Jiancheng Xue <xuejiancheng@hisilicon.com>,
- Pengcheng Li <lpc.li@hisilicon.com>, Shawn Guo <shawn.guo@linaro.org>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Kishon Vijay Abraham I <kishon@ti.com>,
- David Yang <mmyangfl@gmail.com>
-References: <20240216-inno-phy-v1-0-1ab912f0533f@outlook.com>
- <dd1f1b28-4bde-4d40-8022-b57d201c70ee@linaro.org>
-From: Yang Xiwen <forbidden405@outlook.com>
-In-Reply-To: <dd1f1b28-4bde-4d40-8022-b57d201c70ee@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN:
- [ss7Xg1dj6xPxdu4FNqnL/Ldj7nm2qEhBZS9tKiz8bJ7q/vFquJCWk/itnuX6pVEwwxWgLq90gD4=]
-X-ClientProxiedBy: TYCP301CA0070.JPNP301.PROD.OUTLOOK.COM
- (2603:1096:405:7d::12) To SEZPR06MB6959.apcprd06.prod.outlook.com
- (2603:1096:101:1ed::14)
-X-Microsoft-Original-Message-ID:
- <4c0f651a-280a-4cd2-bf40-ce45458d71bb@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16E2B69DE7
+	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 11:39:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708169992; cv=none; b=ZLNHl+mLt2pIRy15rlcs3pFECes/yP9dfAP6iOu8KrQr4GiSUJZh5bxZZaoMifIa5sPF/VNqBvrn5XmTh11fpuGytiaxxiKkP9zmv+ksa3s2sFRZxkc+UiWvpPXO7FihRPyxBBAfO/ZukKpcEpeDKuuHe3G44CYc3GdR3y90vQQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708169992; c=relaxed/simple;
+	bh=vPvQg6T8DzaSAL66/xyHZth0xHwP9DWPS25PuK6+Z4Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MGWoV7Z3LffjwmOpWlKQgca8WQRiLiH3YOYuWCJZ8vgTomFqYr1wfvM6HK76W8CNjTUfB5wUzgPp1bcHJN29Vdg2gzzFGNfhlBEBIuAmX7LcO9hdBbhs5OvEYjKCC7iJP6QKJrmtX5ier9X8RMcKmdZU3w886DlX/4urgny1ig8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vKD+yCmb; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-563f675be29so1619596a12.0
+        for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 03:39:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708169989; x=1708774789; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=1C+Hkp9mF5Xdg3l0hgYcA9Z6irk/GvuEVb1RZfBg7lc=;
+        b=vKD+yCmbfxdngJtvVUYRvZxTNKXUoDYUBhmggjcFOcg88P6/fsifJIShS1Mh6qfRBn
+         742BIR1Yo2vEojK8rN13RhOnMBdRT8v1bUc76HRizQKFphMrOjn2m5C50BeWFc/qOWRg
+         31Eg5sF/uuHNFOG0ORuW7l1tpkkPr7WmIbwPC4ruHZO/5xsS4bu7qR+bRlZK+yxYAJQf
+         0nddt/nYoMPwCzOlZM/Xtq77fHnYPNMyl6vMx6Gz0qh1Oc1mYERNjvzN5SRB1MRL6AbX
+         t0FXXNBCcf2XYrY5CDJYtBPiLWTYwnYPMD0F2IdNmoffvVUxCXYxInRJ3PtxDTK1PsxD
+         fsNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708169989; x=1708774789;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1C+Hkp9mF5Xdg3l0hgYcA9Z6irk/GvuEVb1RZfBg7lc=;
+        b=SceJxd65uggDQJWzXddG4dZL3Px7r4oQKzZxE8reJ+l8U1w1LDE4HbEE2mpgnYWKGG
+         blv46DCgWO5qf6rNgeMkQIBl5MP1yLc0kRd1n/gETP2pAeLBIgnQNlctClu0YJtNMNVE
+         rA9zaTiEoctp+b4nQTekAP8BjS/8xGmDY/6QrObcaJfz3aLCB3Xsqf0t4MH9YsxdQZlw
+         oVCChe7p37P+uO+LM4MyN6JB/L+e1Wm2rb7pcV8BHl2jGr+j1ZVsaTAnG2dgVG0TvlJA
+         x9QSFlGeiUVg64JtVISqhZ7ig+gBgq+AhylUvt6w5IukXq6FpqVE4P+oBD3Qi0bqyw8U
+         gvXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWEi2yRxAaVo6wWhNPtsczKJ3RliA7Lc0WHILNzHcqmrVNieNzkIad8R6JX/MUluzL+sBdW3kv1zL5F7RS0glG2z7nMNk6avo+grA==
+X-Gm-Message-State: AOJu0Yxwc0pogTgOW6PLDCAMpiH/dV8gxbDxnFZ0PmnguxDh5UnbhH97
+	PRFyI0VAHrthpGvHQe8bBQ4g2xkfyENnDi39rCPqyII5zVwExprF1OUjbh13gy8=
+X-Google-Smtp-Source: AGHT+IHC8q9jk1V+NICBbpC1WNnMyrhtKdpmvofzMtMFylRK1DYfLGy8RvSLVqogHDYFEu79JIpj6g==
+X-Received: by 2002:aa7:d313:0:b0:564:2fbb:a869 with SMTP id p19-20020aa7d313000000b005642fbba869mr524179edq.38.1708169989449;
+        Sat, 17 Feb 2024 03:39:49 -0800 (PST)
+Received: from linaro.org ([188.24.162.93])
+        by smtp.gmail.com with ESMTPSA id ek23-20020a056402371700b0055edfb81384sm803108edb.60.2024.02.17.03.39.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 17 Feb 2024 03:39:48 -0800 (PST)
+Date: Sat, 17 Feb 2024 13:39:46 +0200
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Sean Paul <sean@poorly.run>, Maxime Ripard <mripard@kernel.org>,
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	Rob Herring <robh+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	freedreno@lists.freedesktop.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	David Airlie <airlied@gmail.com>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	Rob Clark <robdclark@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v3 2/4] dt-bindings: display/msm: Document MDSS on
+ X1E80100
+Message-ID: <ZdCbAjnga8HCMdYf@linaro.org>
+References: <20240216-x1e80100-display-v3-0-28b1c33ac8c0@linaro.org>
+ <20240216-x1e80100-display-v3-2-28b1c33ac8c0@linaro.org>
+ <170810832158.3497594.1997532394027797497.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SEZPR06MB6959:EE_|KL1PR0601MB4467:EE_
-X-MS-Office365-Filtering-Correlation-Id: ce662c16-89b5-46f9-6b2e-08dc2fa883a0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	ssILq5sKD2EFXrz1iZkSCyTlONNlianEBbvgg9HvsxuNa97Xgcs9iTkmX95/ezPMXsMiCCdckbyG+lCYpi3J+a0CwqWT4aoVe5CpT4tIbyLj4zkuz9MToBrDHEOKxNT6Zu4aCa9Oq+mQK+5wGaQiXJfQLflwNk3DeKj7oYnxiKClX7y6R3cLObbUVMx+MXzVCkZag0ZXl1MqNmMiCcXAwF2yfuB6ftx3bwvDHZ32Lwm6Eb/ydk/Kgx4nBN25TrGp2LmXuQWnUr9+GfD1cCzMetGsgp1G38o1BiYG24etTHsmHlzlOTdK3764WnVMOUbQ/+YshxG5g2brlAcjE0+7MoKmvdUi/o1wjc5w93WRu0j9aBALLrTp6w31cPiZHVUGMCZPBCMNBT7FZXnPIb/kTS1IbH0h9Bph5jkUfvHZatRtaU3LRWLzd6rmzBpH6qOF8nyugh33cLm060Fh+C0j6geOJwkVPjPQOQH+vIE9+UQ3owdt//44eZoXwbkNSpuexdVhM9bAaSF6FFloNvmEOqmEq39mYpBUeO1KvFROlwMC7D0uX0l2u8QVOGdGUdb4
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?aHVKS0lpajVvMnhaUk5wRUdmSUdYbklFN3VIQlJXOWRQVWlrTkg5S3d3T0Q0?=
- =?utf-8?B?NDBIQUEveE14Wm1NVkROTE9tU1l3SUttOE1CajV5VHpLSXR1ZHJiR3JRcEJy?=
- =?utf-8?B?c1Bpb2tQWW1EZG9Id3pFQVJqcXlXdW5reTlVOHAxdjBlMVZYUWM3ZHh1dmNF?=
- =?utf-8?B?R3lIR3A0bmZ1R1VUUVhHdUlDbkdzVVVFTWVMRmFUK2tMbmUyQ0NtdHhpbjRr?=
- =?utf-8?B?WXFZcUQ0VE43RTBoOFpJZFU0RlRHVmFTTWgycTVsOXVKeGZheHFsQmpDdEVZ?=
- =?utf-8?B?UDBhdUhsdmhkTUpwdm50YmZxSWNXOHJoRU5yem5xc3J6UzJtd3pFWEZKQnpx?=
- =?utf-8?B?TGd4Q2VKSWJlNWR6SzJZUk1xQi9LaVpOTkZqODlQakR4OHdlbHhZVis5WVRF?=
- =?utf-8?B?blRaa1ZsK1BBNU1iaFROalpPM3dha1cybzEyblkyejRqcE96UnFncEgxWjM2?=
- =?utf-8?B?UW8zSDZ1T1JScTR6amhWMmlNUVdEN1JVdUhSR3Z1OEVaeVhuekx2S0J1eC90?=
- =?utf-8?B?ckpKK1RERlBLT0UxU29NaFdXcjZhTlpEMGhEWGw2YmJZYWdobVpnVHVBbFcr?=
- =?utf-8?B?aHFPRzBsdms5WlB3alBKZ0NrcjFxK0c5QWN6eWZkejJDODNvc2ZRSy9uc0FK?=
- =?utf-8?B?Wmc0WTJwN1IwZ0M2SVNHUGpSaEdoQndPRG9STWZZRGhLMGorWlFza2VYYWY1?=
- =?utf-8?B?UEVsUzRPalR3VVJDV2Z3aHlXMG5LN0hWL0VKa280YjBCRUo1a1hOV3VSNDRY?=
- =?utf-8?B?cCswRm1QK0UzMmc4aTJ2ZHdCNGtrejBjMU50R2pLQkszUzY1T2IxZnhIaGE4?=
- =?utf-8?B?U0ZLUzJ6Yzl2VzRzbWR4UUVBWHVyYjVvM0grbHE5bXFHSVA5b2RsaVBxVlFQ?=
- =?utf-8?B?cnR3SGtNdExCNzFHVjFFUktjbldXTWJFd0dQb1ZpdEl1SkZTOGJqL0N1aDZH?=
- =?utf-8?B?VTJmbDM5UFRYV3gvS09DSnBrTzludjRZa08yYWNLWlVUV2FRZ2hpNkZCM0s3?=
- =?utf-8?B?dkROZFQrTnZYN2hRWENUSnhaam95a1FGVVpWaVNwS04xTnh6MDhvTVhMRTVQ?=
- =?utf-8?B?UWltNGFTR1pmeStZbWVoWThSa2RQbTR5dDQ2U1Z0K1ZxeWlCMUVYZ3dxeUQr?=
- =?utf-8?B?cTI4SzJsQk5wTjM0d0JYK1FrREhlMVBGTXBTcTFWVHZ3NFRnVkZXbGpHMjZy?=
- =?utf-8?B?dnRudkFuVm9VajVaME5Ec1BmdTVhK3MwcUtHYi80M2lTbDBGWDFWUVBQOXRH?=
- =?utf-8?B?Zk41c0JPOXpCYXN6dHIrNkFBNE54eDh0SFl6TVo1a3hrV1JhZVpMUWJSVGRo?=
- =?utf-8?B?aXlFWXQvQkozWmZRK3orT3Qxa0dRVW1JTzlrWDd4OVM0dlpYMFI3TWRwWmNz?=
- =?utf-8?B?TlNFTnQ5TGs4dkp3WUNobnZOYWFDZHJ5Qy92VU1iZ0YzOGplbDNmNWZxZ1hr?=
- =?utf-8?B?UzRWZW03NGsyZVltTG5KNldlanFwc0NUWkQ4aGp3cmQ5M2plYjdjdzB1ak9W?=
- =?utf-8?B?Y0FENHhwb2YwQUk2NCtqMkVyUVdEalJnbmdxdVpnMzdHWVBmNVNyaHBrMVYv?=
- =?utf-8?B?RDFZQ3BOd1JhK1d3d0ZBRlUwdHdWR1ZHNkFlVjdFWEFLNHJSOWl5WFlncmhk?=
- =?utf-8?B?R0V6WTBienpCQkt5bXlDR21mTUVQZ0hpc0wrdlFNTjRwcCtia1VXQjBuaVdU?=
- =?utf-8?B?MzAxeDZuZms0OE9aVGxNZU1XSmwvS1lOQ2cxSjF2WHVVUi9pQ3ZQUnBWNHU2?=
- =?utf-8?Q?hoinaf58fQWMCtxpf4nOAmDwBHudJRgQly1MYET?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ce662c16-89b5-46f9-6b2e-08dc2fa883a0
-X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB6959.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2024 11:06:39.0467
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR0601MB4467
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <170810832158.3497594.1997532394027797497.robh@kernel.org>
 
-On 2/17/2024 6:18 PM, Krzysztof Kozlowski wrote:
-> On 16/02/2024 16:21, Yang Xiwen via B4 Relay wrote:
->> This should be considered a dirty hack. The proper solution would be
->> extracting write_reg logic to a separate regmap driver. Leaving only
->> "write BIT(2) to address 0x6" to the PHY driver.
->>
->> The initial commit is already doing things wrong. The following patches
->> adding hi3798mv100 support is also very confusing. The name of the
->> enumeration "PHY_TYPE_x" is very misleading as if it's the phy which is
->> different across SoCs. But actually it's the bus (i.e. how to write to a
->> given address) which is different, not the PHY.
-> I have many bounces from your emails. Please do not Cc unrelated,
-> non-working hisilicon emails.
-All except one email addresses are added by `b4 prep --auto-to-cc`. 
-Anyway, i'll remove the email address that does not work in next version.
->
-> Best regards,
-> Krzysztof
->
+On 24-02-16 12:32:02, Rob Herring wrote:
+> 
+> On Fri, 16 Feb 2024 19:01:06 +0200, Abel Vesa wrote:
+> > Document the MDSS hardware found on the Qualcomm X1E80100 platform.
+> > 
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > ---
+> >  .../bindings/display/msm/qcom,x1e80100-mdss.yaml   | 253 +++++++++++++++++++++
+> >  1 file changed, 253 insertions(+)
+> > 
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/display/msm/qcom,x1e80100-mdss.example.dts:24:18: fatal error: dt-bindings/clock/qcom,x1e80100-dispcc.h: No such file or directory
+>    24 |         #include <dt-bindings/clock/qcom,x1e80100-dispcc.h>
+>       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> compilation terminated.
+> make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/display/msm/qcom,x1e80100-mdss.example.dtb] Error 1
+> make[2]: *** Waiting for unfinished jobs....
+> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1428: dt_binding_check] Error 2
+> make: *** [Makefile:240: __sub-make] Error 2
+> 
 
--- 
-Regards,
-Yang Xiwen
+These bindings headers are already in -next.
 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240216-x1e80100-display-v3-2-28b1c33ac8c0@linaro.org
+> 
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
+> 
 
