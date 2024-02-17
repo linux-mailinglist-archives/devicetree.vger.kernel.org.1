@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-42955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-42956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F19EC858E0B
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 09:22:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4E5B858E0E
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 09:25:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F0581F21C73
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 08:22:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 765A9282EC8
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 08:25:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E7D31CD26;
-	Sat, 17 Feb 2024 08:21:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D3EA1CF8A;
+	Sat, 17 Feb 2024 08:25:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YHwZCuTb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OwcZuJDQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E5841CD23
-	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 08:21:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91EB11CD16
+	for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 08:25:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708158111; cv=none; b=ON4elCaq7O4EXyKT/+IjdrR5kXB04Sog7PHmdOhqnGnT8Zh7pT8H2yXc/R8AkJClyFMMw0TKXhWqET7dZYZ4IKWHAJmxWQbBd97GLEiBpWsM3mxzAY6zLgf3ISx/nAEoAloulxNxurCbDtdQif9kwqO8mZLLna05tWgd3n9FuRg=
+	t=1708158307; cv=none; b=l3IsjQbFtmihTUJWODxuhnnATiuSjuXFMfSPMziu5Dh0gC/EjZ8HdrztreEjYg3gl5JuSNYCdzxv7aZfw9SFND9RAXR28WaJigh8MYkh7xowYdxeI29r6oN23YnNTXuqIzNY179doUP+0bID74PY2Hn8S+kwZp1AoB1E8eaph3o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708158111; c=relaxed/simple;
-	bh=+8tIJu/W6W8+SHTt6dYQlZODfyzp0yZovd2VchAdKs8=;
+	s=arc-20240116; t=1708158307; c=relaxed/simple;
+	bh=dfowKm22jL1oDacE72uZKauixuviw2LROG8o2jxLwgk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lWb61bEm7A8iWC+iu7hAkM/vdx+qHMmW7QZoEVGYW6ugLYw/ahjPKY4l8fbd5zfl48LUJ61ZKMaNFKvPXapWHKbMzeDFUlqf6/4EHnT6bsqvcv6jb1ztaEigq46pQWnawfyAmS8nfsx4FvRMcNnXf7moCTTZsgjyuxzp8+ZmHQE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YHwZCuTb; arc=none smtp.client-ip=209.85.218.52
+	 In-Reply-To:Content-Type; b=c2xu8Aoq0us9fBh+I2ii4Gg+NCKUjWPearAmlXuxeMiUAoZs/QinQeIZ18humzS1ATzME+NTqwJX6uSMx9vPpGhN+bpqWkj1Bl7r4DilRNxjju6xkw/val19bSsqdSJY/4XCKC88uUouUmMPa9ySvglcSpq+mMIcdsFSAVzYPqA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OwcZuJDQ; arc=none smtp.client-ip=209.85.208.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a30f7c9574eso374352666b.0
-        for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 00:21:49 -0800 (PST)
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-564372fb762so42175a12.0
+        for <devicetree@vger.kernel.org>; Sat, 17 Feb 2024 00:25:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708158107; x=1708762907; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708158304; x=1708763104; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=uQ8qUM7TW828c6lJYuqFoH4ycgiD3nGAtO0l0ReIXyA=;
-        b=YHwZCuTb+/uKMqyTL46ViV/xDyiColSXaBQnZaFff8L4PaXhBMxGBeUH0ifBTEyJGO
-         BbfsQTBULsah+o6fCznKFqYIAr0zwPRzgq1rj3N8d2O9LBLKx59omXjHSxnmCtnnkeoO
-         L86Qmd9g5F3FGrVQwK7ihVfZUCibB1opx+KUne0Ri0uFQ3gvk73HzPRU5vsbU2fU8zR0
-         1Pm/VPMRoMhMx7lHXR8VT0syoyQo00fAPmoGW5+xPclDwmBdD0SjUeQK+25UF38HkgPc
-         bZe3ghSmjl0l99xkcyfEQ0fhEeLs95JlGDYwJuAKKh3TA+e8qczVlF58K7XCNh0hIYhZ
-         4jJw==
+        bh=9bypr4+I03LVLPYMzCWUReiagB0AomTZPG6880A9org=;
+        b=OwcZuJDQrRBRoFEXzI3fEUYIgE724767RD/ihd32slyxiAjkHvzjqFmhQaW0AFMsYr
+         rNpTeZC/faNK5tweKrKVY/uod8A7zpnGOUPbJRKiFj9X9WThuq+V3NRU8XcbtK4rdCY+
+         mKZ/lSyKJ4ODQP6qd+g4l+LTXOWE9p45EacDHnox1iTE3rcMS5sef0llOGX4wwizn6Nw
+         M+lvH+o6ft7OuPIiE1wonOLm+nKbFnL1UqP2a+HcokEurJV5EIl3cJzFQBH6vph4aQjG
+         re9Vgi7fJpZa7EdKs/+r7JH9+uZ5bYT6DRTz5Qw8Q/cP7QtaSCcN8gy+0VqH2U3gqTaV
+         WRug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708158107; x=1708762907;
+        d=1e100.net; s=20230601; t=1708158304; x=1708763104;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uQ8qUM7TW828c6lJYuqFoH4ycgiD3nGAtO0l0ReIXyA=;
-        b=i/ideooM9/GMomNUT+cjXmUZCpkJ63J9zRBMiliEn6Rm+Hx4NZ2FgpwWfbHvUvyNq3
-         J4ntbeG2LKgXlOe0Tf/MPWA75zwb11PFxZPt6AIXpPI0HC8asoz8daKREA9yqbxuYdvi
-         cPhUVI9mwc37r74NwgCoE/2CMl02w1bi1nAHy9PS698CSKVGrCjsL+WGzv9ardYWV+nF
-         v6zdVrgSBNYH6RzG9LdrsFfP4LbKyZnPkG/u8n03AsAI8GXb98FrOQbwgi8DBqwaTKLz
-         8ewi+z+QD4d0eCb2yCPLQBUl3CVJ5sp5tTfS/073KxiWE+YA1j6cPx4hhMuJRa1lDxA2
-         07CA==
-X-Forwarded-Encrypted: i=1; AJvYcCVuiAzY9yGvifpnmG1Nk2/yYK9ESwG8Xoy8m28XTZbo0SYEEbUEkXd4YXcUUOoCKx8VGd6rkpOQJf/FUPL3o+dOLHYaO/TNFp7cGQ==
-X-Gm-Message-State: AOJu0Yxvz9UlEga7qiqYAIv5gV2xSNax1olGnbVHIbvD+bGkz4CqbeIt
-	DU+TOEJi5IMbjjGaz8ke+9BHOQV4puh0RZgaK8cW6WOc1qO1dIBvC5NpfDmB3lo=
-X-Google-Smtp-Source: AGHT+IFw0x90GqWPiYNblbzWp4eOaon/5Yuz23fJD+5iWuRy3pDvzLZNdcNebapJdhDnso+00t7Reg==
-X-Received: by 2002:a17:906:2450:b0:a3c:168f:8d12 with SMTP id a16-20020a170906245000b00a3c168f8d12mr4707542ejb.18.1708158107670;
-        Sat, 17 Feb 2024 00:21:47 -0800 (PST)
+        bh=9bypr4+I03LVLPYMzCWUReiagB0AomTZPG6880A9org=;
+        b=ZAwlMNJneHmnxuSKG9vWXgDxhUYBmWyg5c6KhRjjr1L7mJOw/51GQQEvS7mRIa7GcC
+         m70Z6Yig4Tt955iXbJ7z3EQHE9rhgWypWcQNNqbhXtDtGmBiAXGeoKv5l62UPrppu6JR
+         wL3UHWwlVZwtn6o1lDKFd6ESMe9aqbGrDg166Vg6ukxt9YYOGn+DlP7NxzCh2gZzVbQC
+         CQ4vn/MQzkNbVi5OXGQdl1HpAhtg7zA1uG03it7ZqX91VVBbGC8nwJPdjavrUqoRjviY
+         upsw764OYmQ7ENEd/RzOGjPGNYBAZgWiNMLnrBI3PIibmgWFBQhpC2Qv9sVYe8ERTYHz
+         VNKA==
+X-Forwarded-Encrypted: i=1; AJvYcCVQBrT7EIrTFIph3mN30IHXOl3X4IpruUjChJ071sgwvSPFMW8setK/tmuZsn5yhyi5Z62KEZ9n5g8k4aNEtWOSrR5nlFQ1kSHBsw==
+X-Gm-Message-State: AOJu0Yw5TJe4gO+6a7/Y7m1X/ezKONwSoDDpRv83VADzduj71Hr0yVbE
+	h4iAOfXI2BzvPVgpJztkWGBsbUEzgUOTPQdDJrcqdmHiixhDJClGbGP1vpWx7/E=
+X-Google-Smtp-Source: AGHT+IHDs36KqKnn4yFS3zjSh745G56nuB+z1H36+nmojixyor2w67IIUDOFLwO1BC6de1o+hF6JNg==
+X-Received: by 2002:a17:906:8412:b0:a36:c353:952e with SMTP id n18-20020a170906841200b00a36c353952emr4669911ejx.41.1708158304024;
+        Sat, 17 Feb 2024 00:25:04 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.207.130])
-        by smtp.gmail.com with ESMTPSA id s16-20020a17090699d000b00a36f9941d6dsm754950ejn.112.2024.02.17.00.21.46
+        by smtp.gmail.com with ESMTPSA id cu3-20020a170906ba8300b00a3d014fa12esm763079ejd.196.2024.02.17.00.25.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 17 Feb 2024 00:21:47 -0800 (PST)
-Message-ID: <b21d351f-68be-4bca-a327-c35591c55610@linaro.org>
-Date: Sat, 17 Feb 2024 09:21:46 +0100
+        Sat, 17 Feb 2024 00:25:03 -0800 (PST)
+Message-ID: <cf360cbf-7414-4024-8bdd-d2aba7f048b3@linaro.org>
+Date: Sat, 17 Feb 2024 09:25:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,17 +76,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: add common properties with label
+Subject: Re: [PATCH 02/13] dt-bindings: i2c: nomadik: add mobileye,eyeq5-i2c
+ bindings and example
 Content-Language: en-US
-To: Guenter Roeck <linux@roeck-us.net>, Jean Delvare <jdelvare@suse.com>,
- Rob Herring <robh@kernel.org>,
+To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Rob Herring <robh@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+ Andi Shyti <andi.shyti@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
-References: <20240216-dt-bindings-hwmon-common-v1-0-3c2c24ff1260@linaro.org>
- <20240216-dt-bindings-hwmon-common-v1-1-3c2c24ff1260@linaro.org>
- <f0f523c3-7b1c-404a-89c3-0c7345001676@roeck-us.net>
+ Conor Dooley <conor+dt@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-mips@vger.kernel.org, Gregory Clement <gregory.clement@bootlin.com>,
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+References: <20240215-mbly-i2c-v1-0-19a336e91dca@bootlin.com>
+ <20240215-mbly-i2c-v1-2-19a336e91dca@bootlin.com>
+ <20240216022227.GA850600-robh@kernel.org>
+ <CZ6FD7EHIJDT.32IEDVT9FG2GP@bootlin.com>
+ <6effca50-29a4-43b9-86eb-310bd4e08e5c@linaro.org>
+ <CZ6FUECKEX2B.36QWZZA5EYPI@bootlin.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -132,53 +143,36 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <f0f523c3-7b1c-404a-89c3-0c7345001676@roeck-us.net>
+In-Reply-To: <CZ6FUECKEX2B.36QWZZA5EYPI@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 16/02/2024 18:11, Guenter Roeck wrote:
-> On 2/15/24 23:55, Krzysztof Kozlowski wrote:
->> Linux hwmon core code parses "label" property for each device, so add a
->> common schema for that.
+On 16/02/2024 11:40, Théo Lebrun wrote:
+> Hello,
+> 
+> On Fri Feb 16, 2024 at 11:33 AM CET, Krzysztof Kozlowski wrote:
+>> On 16/02/2024 11:18, Théo Lebrun wrote:
+>>>
+>>>>> +        mobileye,id:
+>>>>> +          $ref: /schemas/types.yaml#/definitions/uint32
+>>>>> +          description: Platform-wide controller ID (integer starting from zero).
+>>>>
+>>>> instance indexes are a NAK. You can use i2cN aliases if you must.
+>>>>
+>>>> Why do you need it? To access OLB? If so, add cell args to the OLB 
+>>>> phandle instead.
+>>>
+>>> Why we do what we do: I2C controller must write a 2 bit value depending
+>>> on the bus speed. All I2C controllers write into the same register.
 >>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Which register?  Your devices do not share IO address space.
 > 
->  From hwmon perspective:
-> 
-> Acked-by: Guenter Roeck <linux@roeck-us.net>
-> 
->> ---
->>   .../devicetree/bindings/hwmon/hwmon-common.yaml          | 16 ++++++++++++++++
->>   1 file changed, 16 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/hwmon/hwmon-common.yaml b/Documentation/devicetree/bindings/hwmon/hwmon-common.yaml
->> new file mode 100644
->> index 000000000000..d83f4180f622
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/hwmon/hwmon-common.yaml
->> @@ -0,0 +1,16 @@
->> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/hwmon/hwmon-common.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Hardware Monitoring Devices Common Properties
->> +
->> +maintainers:
->> +  - Guenter Roeck <linux@roeck-us.net>
->> +
->> +properties:
->> +  label:
->> +    description: A descriptive name for this device.
->> +
-> 
-> Would it make sense to also add shunt-resistor-micro-ohms ?
+> mobileye,olb is a prop with a phandle to a syscon. That syscon contains
+> the register we are interested in.
 
-It's not present on many devices, I think, so it is also not parsed by
-hwmon core. I plan to add above $ref to hwmon-common to each hwmon
-binding, so this would mean all of them will get shunt-resistor. I would
-not add it, but I also don't mind if I am overruled.
+So exactly what Rob said... I don't understand why you have chosen to go
+with alias.
+
 
 Best regards,
 Krzysztof
