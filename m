@@ -1,130 +1,149 @@
-Return-Path: <devicetree+bounces-43049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 961998590A3
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 16:48:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A8E98590C5
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 17:10:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52CC1281DA5
-	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 15:48:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A74CA282D29
+	for <lists+devicetree@lfdr.de>; Sat, 17 Feb 2024 16:10:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E2BA7C0B0;
-	Sat, 17 Feb 2024 15:48:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1CAF7CF05;
+	Sat, 17 Feb 2024 16:10:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oai0G6qL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TnOKWYAv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFF777A735;
-	Sat, 17 Feb 2024 15:48:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8C88657BE;
+	Sat, 17 Feb 2024 16:10:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708184889; cv=none; b=WxGTzcF5oDs5kh3oEuN3IgqSCMeEhMQMN1nKGlo45W4gbwIFhdcwTRTXPRpQnWzX6BcGIG5HI4ulzWqzcsd9UFfEJzueZhS8dTXuJmF6T/Pm6jDgIxLO1wrkCvhsRNvNLarrNd/Ml9frqbAwEpMx28PeEnTb7qj3wLl6sUviGB4=
+	t=1708186217; cv=none; b=QhHKaVPBxf8A5SR5fE7k62dR7MnuvT1sbcyH+etIivWPOkF6zxxm0w2bev00mqpjlTf/EkPLh5+u70pH1R3tjuvSRpNr09fF3xEEwL6MQy4xVx/1Qi5uPSUVTXLvxRB6UCgsBS0yf7c7KHu7zDIMVkGaaya3WmFK7TaRw8ELUqM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708184889; c=relaxed/simple;
-	bh=n957lHva6zeenMJ+yyB11NqmI51yboi14R4UBuEZ4d4=;
+	s=arc-20240116; t=1708186217; c=relaxed/simple;
+	bh=jnnuiG2JA3w1jL3b+rX0XgYDDbHfBnfPxf8SR5AXRDY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=untcMPs61c7k1lphGrXn8VbBVg9kAPZIfDIYolFyKww7uwOzwx3RKw05QOVaAlAKZdsUUGZKTlph3jnDS9qvGZ5DQGMQE4eeDwIfuxAW/n7jXSkHscrB1GdeVN5oq3F1pYKL/JYiEEQ6MKlgGjoftEe5YrZDOM6Jxj1qml3VIXQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oai0G6qL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF36CC433F1;
-	Sat, 17 Feb 2024 15:48:07 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=UK61wsiE08w+SIfzPg7VTZbqbVRLd8Gt43qfDWq2lQPJ4LyvZgmXwF0VP1xvu4B2j4jtxTHMjEyjIJDGiE53tz2LGZKtEab5izCoSGr74Lk5/qHLm4G2GU4dIbR3iOdhWCsq98eOQW7LtaDLCxt8rw2kLYo7Fubc4+4cqpy0HWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TnOKWYAv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BDA1C433C7;
+	Sat, 17 Feb 2024 16:10:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708184888;
-	bh=n957lHva6zeenMJ+yyB11NqmI51yboi14R4UBuEZ4d4=;
+	s=k20201202; t=1708186217;
+	bh=jnnuiG2JA3w1jL3b+rX0XgYDDbHfBnfPxf8SR5AXRDY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oai0G6qLzbylNPvS6aAPc55ThgalhgPu1SYKajhqffmpQesjJ2OqsAP/JoGNo3voU
-	 TkrvaUuRD2SqntuJ/K01y5d1cfIh36BRU+bkXQuUhLqzj96BRf0TatZ/fIrmiHQBfy
-	 wbMriDgDmlonGvNa5Az+exOwOL+XPPfFp0HKXkzfMTjkjZ8WwpTEqHcf10aTAm5TR1
-	 Axyh29QvnrtErk40PPetNMIw+oj/HTCOjcH+PZHOTdLngCU2zbuqnsd5ZAYgaps59q
-	 PvIb4F6sN53mvYvb7dnp8pd86GrjiYbn0psSCl9KANB/lgGL9B553RwT3SLIshZL/e
-	 JlF0JcX0camYA==
-Date: Sat, 17 Feb 2024 15:48:05 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Marcel Holtmann <marcel@holtmann.org>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Alex Elder <elder@linaro.org>,
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Lukas Wunner <lukas@wunner.de>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-wireless@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v5 03/18] dt-bindings: regulator: describe the PMU module
- of the QCA6390 package
-Message-ID: <ZdDVNbjv60G9YUNy@finisterre.sirena.org.uk>
-References: <20240216203215.40870-1-brgl@bgdev.pl>
- <20240216203215.40870-4-brgl@bgdev.pl>
+	b=TnOKWYAvQgSl1jOt4DM2iJrH5X+Js5+PgWiKEnVlYkyFEcOmM+JKmfznrRVZwfyAK
+	 Oz3vZ/1OxKpjQaq/rW8w7wN3lEo97vJ9Ct+nfw7s/n8hlesL5z+Kgt5rl5WOZJBa+7
+	 7OLLZkb8L7JcqOFLv9w9YrYEAHeGHESslkwOidqQ0Kt2bX9UgaHCdfvLRucOPe58ms
+	 hhVS9SS2ZtbpMdwVXAE3KqsjIGxuDsBqj1VbEUlSukdW4Yy13JwqCbER2u1cuowApX
+	 AaXOwd9KR6JoD3Yi94cQSlP/4PipDzfjUm35sjSGTVR2l1AXW2lR2BEFuGvRg+foEK
+	 NuotaXNE7WJDQ==
+Date: Sat, 17 Feb 2024 23:57:14 +0800
+From: Jisheng Zhang <jszhang@kernel.org>
+To: AnnanLiu <annan.liu.xdu@outlook.com>
+Cc: chao.wei@sophgo.com, unicorn_wang@outlook.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] riscv: dts: sophgo: add watchdog dt node for CV1800
+Message-ID: <ZdDXWkibFjKvXJPe@xhacker>
+References: <DM6PR20MB2316366FC9ADCBC7B6E9C289AB7A2@DM6PR20MB2316.namprd20.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="XBBFEBnxsUybHGMW"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240216203215.40870-4-brgl@bgdev.pl>
-X-Cookie: You might have mail.
+In-Reply-To: <DM6PR20MB2316366FC9ADCBC7B6E9C289AB7A2@DM6PR20MB2316.namprd20.prod.outlook.com>
 
+On Thu, Jan 25, 2024 at 05:46:40PM +0800, AnnanLiu wrote:
+> Add the watchdog device tree node to cv1800 SoC.
+> 
+> Signed-off-by: AnnanLiu <annan.liu.xdu@outlook.com>
+> ---
+> This patch depends on the clk driver and reset driver.
+> Clk driver link:
+> https://lore.kernel.org/all/IA1PR20MB49539CDAD9A268CBF6CA184BBB9FA@IA1PR20MB4953.namprd20.prod.outlook.com/
+> Reset driver link:
+> https://lore.kernel.org/all/20231113005503.2423-1-jszhang@kernel.org/
 
---XBBFEBnxsUybHGMW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I will update reset series soon
 
-On Fri, Feb 16, 2024 at 09:32:00PM +0100, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->=20
-> The QCA6390 package contains discreet modules for WLAN and Bluetooth. They
-> are powered by the Power Management Unit (PMU) that takes inputs from the
-> host and provides LDO outputs. This document describes this module.
+> 
+> Changes since v1:
+> - Change the name of the watchdog from watchdog0 to watchdog.
+> - Change the status of watchdog.
+> v1 link:
+> https://lore.kernel.org/all/DM6PR20MB23160B8499CC2BFDAE6FCACDAB9EA@DM6PR20MB2316.namprd20.prod.outlook.com/
+> 
+> 
+>  arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts |  4 ++++
+>  arch/riscv/boot/dts/sophgo/cv1800b.dtsi          | 16 ++++++++++++++++
+>  2 files changed, 20 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts b/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
+> index 3af9e34b3bc7..75469161bfff 100644
+> --- a/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
+> +++ b/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
+> @@ -36,3 +36,7 @@ &osc {
+>  &uart0 {
+>  	status = "okay";
+>  };
+> +
+> +&watchdog {
+> +	status = "okay";
+> +};
+> diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> index aec6401a467b..03ca32cd37b6 100644
+> --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> +++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> @@ -1,6 +1,7 @@
+>  // SPDX-License-Identifier: (GPL-2.0 OR MIT)
+>  /*
+>   * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
+> + * Copyright (C) 2024 Annan Liu <annan.liu.xdu@outlook.com>
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
+No, I don't think every commit author needs to add this line.
 
---XBBFEBnxsUybHGMW
-Content-Type: application/pgp-signature; name="signature.asc"
+>   */
+>  
+>  #include <dt-bindings/interrupt-controller/irq.h>
+> @@ -103,6 +104,21 @@ uart4: serial@41c0000 {
+>  			status = "disabled";
+>  		};
+>  
+> +		watchdog: watchdog@3010000{
+> +			compatible = "snps,dw-wdt";
+> +			reg = <0x3010000 0x100>;
+> +			interrupts = <58 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&pclk>;
+> +			resets = <&rst RST_WDT>;
+> +			status = "disabled";
+> +		};
+> +
+> +		pclk: pclk {
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXQ1TQACgkQJNaLcl1U
-h9BBnwf+JhH7AG76SVpXm/3RKzqDWuvpMu1DUot/+e5n8hK2kqMFn55zOAN2HEwL
-bZLO+MD8fXjFjLXZQ+4K8xdooNenzvCyvfYuxE8RoyThkbheKCY+m8aQLTlik/R3
-euRIOevSUYqQhYY1q5z5bgAEC6RwQi0sAHYATTbhqBjNi/MogEbXje1VBfStNYEb
-tKWS7Yi/GPw22IXDH8PYurLmAXp9k65N8ajJX7pMcALn/uUvPQZT77TVLjZ4M9yp
-a+0SiBJypHB9nTzWsA89yCH97/kWFYzAoE54vUxuQB4N6l0XgDyTyQIzIJfuNg0F
-h5HG2zP3ZTX/v/CVQjc3Vp4maV3F5Q==
-=r2fB
------END PGP SIGNATURE-----
-
---XBBFEBnxsUybHGMW--
+what's this clk?
+> +			#clock-cells = <0>;
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <25000000>;
+> +		};
+> +
+>  		plic: interrupt-controller@70000000 {
+>  			compatible = "sophgo,cv1800b-plic", "thead,c900-plic";
+>  			reg = <0x70000000 0x4000000>;
+> -- 
+> 2.34.1
+> 
+> 
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
