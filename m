@@ -1,121 +1,128 @@
-Return-Path: <devicetree+bounces-43171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D579A8596B0
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 12:38:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D6C58596D1
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 13:03:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8915A1F2163E
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 11:38:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 528ED281A7E
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 12:03:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E78163125;
-	Sun, 18 Feb 2024 11:38:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8938E63506;
+	Sun, 18 Feb 2024 12:03:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mXqmIxBc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IHoNisqf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 108BA4F1E4;
-	Sun, 18 Feb 2024 11:38:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 600F16340F;
+	Sun, 18 Feb 2024 12:03:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708256307; cv=none; b=DGAICXhdQLkI/H+ZdB6EPo8XCgDQMt2LWTJkBjKxhPV9soStrWoJoU0pF5P/1/X4FXxkKmFla9pslQAulLB5ayy46rrSXpiHTT/zlYw0GDPrdMP9L8k9FY/aiIICZMM8CcnL0mcpjfAhky4zy1bWSFHKw/SlX6VS8r8zurVRqiw=
+	t=1708257788; cv=none; b=A9H+pMHrZXOFMDr4ANp6Bm5JobL5LBsBmBh6HvU9Npve02xLafvUkdJWyU6Aioz3kfpR9/TmjvqhuKY1RdWV/hMeGA9gYlBiXFHEvR3mJZWpbkzF75lJN5uVY+STenFVvsUCPR4ko9tOWz9IjFvIsrYFOtHvgovcXHuuzrfug8U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708256307; c=relaxed/simple;
-	bh=Yu8h4JGO4tvWj2cYo3vHd57h7Iq/HmaQfzIqjJHJ2oQ=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=CF2wgx0aTEReHZW7hf2nX/NFHK49G5U0Msa1YEVQuxy1WTk21trFzJJSkOGQ/VPEJWtbXgbt0k4vM/ZECEbubTXNp3SdnM3zbpy33UiiFUXhl9SzEdNbAmQOXsG9ZKuxy0P/yxfuNLLbwd9lb3zcIVer70apz7cmcXdJpb9TyAM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mXqmIxBc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66BEAC433F1;
-	Sun, 18 Feb 2024 11:38:26 +0000 (UTC)
+	s=arc-20240116; t=1708257788; c=relaxed/simple;
+	bh=y/WIW5qNdPD+SYYlidFaKT5euCg8gHN9F20TR9It0Y4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ob+Nw4qr3qIe4VpWKlKnqN5VsGzirj38IkvDDf0saQ5jWeewsDg6ZUvL+ggLhqlwpEBzmKWAyvjzodJEAg0F3Msb+ZFe8FqAOuF+W6S2ZAsSFZAz5zbu1NpmLm6f9UKeNOl7av4MdwnZgGq5/d/bvVV/pjtta/pSQaaSAnxpWi0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IHoNisqf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C9D8DC433F1;
+	Sun, 18 Feb 2024 12:03:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708256306;
-	bh=Yu8h4JGO4tvWj2cYo3vHd57h7Iq/HmaQfzIqjJHJ2oQ=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=mXqmIxBcOQLoCwpK3mPZA9iiIi38UIfAumw9D0uLF0iadMUxVbum01FiY+x5QZbkn
-	 E0u6/3gujGnMb0Unw1MLSRjy++Kb53T0suYolS6N38BXY4V062S843jbZ+kPVswi+f
-	 LXMOLKIy4wpqBov1yz0S93xPhVf84x1Mc61VTHhFO9zCZm+YSuVdIZoW5aoz1mmNiM
-	 b50Jxx9+HI4jv0zx9pQ2pRCLmDT/4zTRkMWfHYeT81rSAD+TU1mtuoDOrWgi5SsBqd
-	 H6NbjOtRNqc0SAg7aC8T6X3NU9t1SiznflfpyS1Kw3h9HJ8ScTx5tcZMu7qf2qH9Ta
-	 U4dQfBbmum3AQ==
-Date: Sun, 18 Feb 2024 05:38:25 -0600
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	s=k20201202; t=1708257787;
+	bh=y/WIW5qNdPD+SYYlidFaKT5euCg8gHN9F20TR9It0Y4=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=IHoNisqf+/F0cNor5jSXQrtJQXjzunUp9567BX5Upq5AQ5WdddiNI9GPjfNhoz/1c
+	 FNk1DnADCFIeVis0ZpBNQ2UnXj9EF1IXWtWhrbYU4nKoB3FJVftI+1O4o5xL6p6dmj
+	 48Hs6DINx2bA3yGOLefz3gTNyvqg9+6YzQ3IE0wV4Htg4OT994OxkJ/YSHi7a2iBzL
+	 n8RcvplPNJEVxDngxGqaPXf/sRA+YOFydxbAptZifzYJLJrVCklOCkKOvk0HNnLJLq
+	 IPYpTRNCBkX2pqox8WWPb7uw7OIqDQ3jqQJPeUzu9lVQYl9bTdw7BBaoyx0xZpOG+T
+	 bFjiFmwH1RAng==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AEA2CC48BF6;
+	Sun, 18 Feb 2024 12:03:07 +0000 (UTC)
+From: Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>
+Subject: [PATCH v2 0/3] arm64: dts: hi3798cv200: fix GICR size, add cache
+ info, maintenance irq and GICH, GICV spaces
+Date: Sun, 18 Feb 2024 20:02:49 +0800
+Message-Id: <20240218-cache-v2-0-1fd919e2bd3e@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Minda Chen <minda.chen@starfivetech.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, linux-riscv@lists.infradead.org, 
- Palmer Dabbelt <palmer@dabbelt.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Emil Renner Berthing <emil.renner.berthing@canonical.com>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Kevin Xie <kevin.xie@starfivetech.com>, 
- Daire McNamara <daire.mcnamara@microchip.com>, linux-pci@vger.kernel.org, 
- Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
- Albert Ou <aou@eecs.berkeley.edu>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Mason Huo <mason.huo@starfivetech.com>, Conor Dooley <conor@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-In-Reply-To: <20240218101921.113528-4-minda.chen@starfivetech.com>
-References: <20240218101921.113528-1-minda.chen@starfivetech.com>
- <20240218101921.113528-4-minda.chen@starfivetech.com>
-Message-Id: <170825630433.819611.4605889577951919175.robh@kernel.org>
-Subject: Re: [PATCH v15 19/23] dt-bindings: PCI: Add StarFive JH7110 PCIe
- controller
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOnx0WUC/13MQQ7CIBCF4as0sxYDEyzElfcwXeA4FaKWBirRN
+ Nxd7NLl//LyrZA5Bc5w7FZIXEIOcWqBuw7Iu+nGIlxbA0rUEpUV5MizUIrsZTSHvieE9p0Tj+G
+ 9OeehtQ95iemzsUX91n+hKCEFknTWaW2QzSm+lkeM9z3FJwy11i/5JAW5nAAAAA==
+To: Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Jiancheng Xue <xuejiancheng@hisilicon.com>, Alex Elder <elder@linaro.org>, 
+ Peter Griffin <peter.griffin@linaro.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Yang Xiwen <forbidden405@outlook.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1708257770; l=1715;
+ i=forbidden405@outlook.com; s=20230724; h=from:subject:message-id;
+ bh=y/WIW5qNdPD+SYYlidFaKT5euCg8gHN9F20TR9It0Y4=;
+ b=MaCi7riRn97ZX+LWscA01GTgPBnN1DBFlMZ5vlzWXAPis+uMoVXi78fazwJp8jeT1nYohx/Ew
+ buTXhOraUuhAJJjWYS5Uo7UbArdaGzmBYZYpnXKr+gJyV1YHkocPJdZ
+X-Developer-Key: i=forbidden405@outlook.com; a=ed25519;
+ pk=qOD5jhp891/Xzc+H/PZ8LWVSWE3O/XCQnAg+5vdU2IU=
+X-Endpoint-Received:
+ by B4 Relay for forbidden405@outlook.com/20230724 with auth_id=67
+X-Original-From: Yang Xiwen <forbidden405@outlook.com>
+Reply-To: <forbidden405@outlook.com>
 
+They are tested on a hi3798mv200 board in fact. Though the 2 SoCs are
+highly similar and the CPU should be the same. Still, Tested-by are
+welcomed.
 
-On Sun, 18 Feb 2024 18:19:17 +0800, Minda Chen wrote:
-> Add StarFive JH7110 SoC PCIe controller dt-bindings. JH7110 using PLDA
-> XpressRICH PCIe host controller IP.
-> 
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->  .../bindings/pci/starfive,jh7110-pcie.yaml    | 120 ++++++++++++++++++
->  1 file changed, 120 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
-> 
+The patchset fixes some warnings reported by the kernel during boot.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+The cache size info is from Processor_Datasheet_v2XX.pdf [1], Section
+2.2.1 Master Processor.
 
-yamllint warnings/errors:
+The cache line size and the set-associative info are from Cortex-A53
+Documentation [2]. Dts for other SoCs are also a good reference.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml:
-Error in referenced schema matching $id: http://devicetree.org/schemas/pci/plda,xpressrich3-axi-common.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.example.dtb: pcie@940000000: False schema does not allow {'compatible': ['starfive,jh7110-pcie'], 'reg': [[9, 1073741824, 0, 268435456], [0, 721420288, 0, 16777216]], 'reg-names': ['cfg', 'apb'], '#address-cells': [[3]], '#size-cells': [[2]], '#interrupt-cells': [[1]], 'device_type': ['pci'], 'ranges': [[2181038080, 0, 805306368, 0, 805306368, 0, 134217728], [3271557120, 9, 0, 9, 0, 0, 1073741824]], 'starfive,stg-syscon': [[4294967295]], 'bus-range': [[0, 255]], 'interrupts': [[56]], 'interrupt-map-mask': [[0, 0, 0, 7]], 'interrupt-map': [[0, 0, 0, 1, 2, 1], [0, 0, 0, 2, 2, 2], [0, 0, 0, 3, 2, 3], [0, 0, 0, 4, 2, 4]], 'msi-controller': True, 'clocks': [[4294967295, 86], [4294967295, 10], [4294967295, 8], [4294967295, 9]], 'clock-names': ['noc', 'tl', 'axi_mst0', 'apb'], 'resets': [[4294967295, 11], [4294967295, 12], [4294967295, 13], [4294967295, 14], [4294967295, 15], [4294967295, 16]], 
- 'perst-gpios': [[4294967295, 26, 1]], 'phys': [[4294967295]], 'interrupt-controller': {'#address-cells': [[0]], '#interrupt-cells': [[1]], 'interrupt-controller': True, 'phandle': [[2]]}, '$nodename': ['pcie@940000000']}
-	from schema $id: http://devicetree.org/schemas/pci/starfive,jh7110-pcie.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.example.dtb: pcie@940000000: Unevaluated properties are not allowed ('#address-cells', '#interrupt-cells', '#size-cells', 'bus-range', 'device_type', 'interrupt-controller', 'interrupt-map', 'interrupt-map-mask', 'interrupts', 'msi-controller', 'ranges', 'reg', 'reg-names' were unexpected)
-	from schema $id: http://devicetree.org/schemas/pci/starfive,jh7110-pcie.yaml#
+From the doc, we know L1 i-cache is 4-way assoc, L1 d-cache is 2-way
+assoc and L2 cache is 16-way assoc. Fill the dts props accordingly.
 
-doc reference errors (make refcheckdocs):
+Also, to use KVM's VGIC code, we need to add GICH, GICV and maintenance
+IRQ to the dts. They are added with verification.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240218101921.113528-4-minda.chen@starfivetech.com
+Dear maintainers, maybe consider Cc to stable too?
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+[1]: https://github.com/96boards/documentation/blob/master/enterprise/poplar/hardware-docs/Processor_Datasheet_v2XX.pdf
+[2]: https://developer.arm.com/documentation/ddi0500/j/Level-1-Memory-System
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+---
+Changes in v2:
+- arm64: dts: hi3798cv200: add GICH, GICV register spces and
+  maintainance IRQ.
+- Link to v1: https://lore.kernel.org/r/20240218-cache-v1-0-2c0a8a4472e7@outlook.com
 
-pip3 install dtschema --upgrade
+---
+Yang Xiwen (3):
+      arm64: dts: hi3798cv200: fix the size of GICR
+      arm64: dts: hi3798cv200: add GICH, GICV register space and irq
+      arm64: dts: hi3798cv200: add cache info
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+ arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi | 43 +++++++++++++++++++++++++-
+ 1 file changed, 42 insertions(+), 1 deletion(-)
+---
+base-commit: 8d3dea210042f54b952b481838c1e7dfc4ec751d
+change-id: 20240218-cache-11c8bf7566c2
+
+Best regards,
+-- 
+Yang Xiwen <forbidden405@outlook.com>
 
 
