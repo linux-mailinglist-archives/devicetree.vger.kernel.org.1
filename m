@@ -1,186 +1,161 @@
-Return-Path: <devicetree+bounces-43129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0E2C85951E
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 07:49:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA8F585957B
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 09:05:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 480D01F21B5C
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 06:49:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5F971C20BAE
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 08:05:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BD7A1A71B;
-	Sun, 18 Feb 2024 06:48:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A950EAC5;
+	Sun, 18 Feb 2024 08:05:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="iN5KI3Oz"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="enSBJw6Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2072.outbound.protection.outlook.com [40.107.21.72])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0171CE574;
-	Sun, 18 Feb 2024 06:48:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.72
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708238911; cv=fail; b=OMiiXBdOpJzzIcYCmZafl8X0fP8j/klP1XLN0bgCLEcUkeKCRXm+8QEXDcz4J12wLER0qmL6xpWY4HLaloQOsSoxfEhs34W2Hd2sEsuMnruj/NTJDien+U6//Sgyf8PzL4h0H6hQ+IHCpBB2qIlqPKRYpgvVdk03HeHUf558+GU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708238911; c=relaxed/simple;
-	bh=1OUZeDlN1amBP7+PYcW7CUkThMi2ZyzKUKprJgVUa7I=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=nXQ6BgAlByIALfZrASQh872E2fPx1iD0vkluRjH6kZEK6Xuk71qxQ1p7XFN881ffkyUaKKqSQeOnDEpSv7h8z9SqeWHjSHiQnH5M1ZkDREAYTz3TlfV2j5/503YFtyvBnoufJZ6aIHvy1XLRTiy0iGPavaKMlElzvgoW6uBVQTg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=iN5KI3Oz; arc=fail smtp.client-ip=40.107.21.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SYR96C5HTweasjullWnBP2scxec8xOCv6plsCr2/aTHgwMuoNnpTLnn2K9r8UtvHy5lU+YRi3gOQt8UiqzS9HaMjWALObPfwSEf0ECxrfCfhSfvyR8UOwcFDzexkoHJx+JQ86CAQ/bd4o6yttyEFj18VtyLotXgct9KqO6Mq6zJkDnJj8sBzxQTLTk4IsB3XA50yjgdIZWQC5gMqV+uW91/YL0rB34zFdFMeUIj68PuXTxIXHR0Yr8BLS9MYzQUhBLStRnu/0mqntMN5cFbFBH2JWQCzKi8WTydZRNpM+JsYBCeEU38mObsXF7bbSF4GByHngHSVdFxKQH24E4Q8sA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ptTIaebQcuxJRRqep4bFx/oKrRjiTx/N+usGnZnKIkQ=;
- b=IrW20uUW7JuAuL9G7JqeuN/lh7wJn0imousvQ+okD1e/XrfhKorFU6s+tDb2JORFu8zt6xJANR/lCyGealFBlQyk/EDUUzOdaXJber5306ofSJxL+1jAmLwn9nMeveTTZc4jgOtSh0d2UP4VK7ZrNQoT7rW8n7gBOxjoZaE385lBcy/HqN3iAWeV2fWXpWumgFT5ZK7gmAOG3MsqLeCK3YB3RhkPGBJnyODsNnQ84UQVa0NyrRlBuVLMLtrIEx0aEE7VPnJOOhfMPnO2+Zjm8OxeEvG9DHRnzzUiH55tg7TJx6/xH/xEcYnrqSYeLC83dc7zwuhLCBl8DSFzIgS9jQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ptTIaebQcuxJRRqep4bFx/oKrRjiTx/N+usGnZnKIkQ=;
- b=iN5KI3Oz8M+l6ctsa9OcJ1wdmH2/JtiezVbY/Aqj2/3SUiAiTcXZZWZB12Dl32w+kOlp1SoHAg5Ey5ziwdvEWbu+U6I9OMAAjaatOwf1M1T5DWlpN9AbVIHG9dBSw/XYxLO1xsIqyQRF0sjPSR0eDirJE/wr/LHXpHMZt7SBtp8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by DBBPR04MB8011.eurprd04.prod.outlook.com (2603:10a6:10:1ec::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.31; Sun, 18 Feb
- 2024 06:48:28 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::4ac3:3559:4200:38e1]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::4ac3:3559:4200:38e1%4]) with mapi id 15.20.7292.033; Sun, 18 Feb 2024
- 06:48:28 +0000
-From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Date: Sun, 18 Feb 2024 14:56:18 +0800
-Subject: [PATCH v7 6/6] mailbox: imx: support i.MX95 Generic/ELE/V2X MU
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240218-imx-mailbox-v7-6-8fb665eeae40@nxp.com>
-References: <20240218-imx-mailbox-v7-0-8fb665eeae40@nxp.com>
-In-Reply-To: <20240218-imx-mailbox-v7-0-8fb665eeae40@nxp.com>
-To: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>, 
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1708239387; l=1293;
- i=peng.fan@nxp.com; s=20230812; h=from:subject:message-id;
- bh=SPNe0FKcSKFv7bAkLa3HwYU4wd0uFOj0fhQIX1FNVn0=;
- b=Wxy9v56DpfosDiC5gFqmOX9x+gE4Ac0XOkwMkn+ZUPd437dRRPX5mVQbGQxZ5pwJj0ZjOz6a6
- CG/Hvha0jCaBqC4rXJ8UkMobx3OhtdtFANGKBLfiyrShEvyciHtdNIa
-X-Developer-Key: i=peng.fan@nxp.com; a=ed25519;
- pk=I4sJg7atIT1g63H7bb5lDRGR2gJW14RKDD0wFL8TT1g=
-X-ClientProxiedBy: SI1PR02CA0060.apcprd02.prod.outlook.com
- (2603:1096:4:1f5::17) To DU0PR04MB9417.eurprd04.prod.outlook.com
- (2603:10a6:10:358::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88091DDB8;
+	Sun, 18 Feb 2024 08:05:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708243554; cv=none; b=SxCng3/ejDxLyWvtAbjB06lWEkzcdE6RqDirKIsGGSDKawoVNGc8RmQSzQBMDdVWOz0f9o+PLpPWMyIH5j6ocHzHNiq9InlAOE4UqZIupjffQvuMr7wHLp6/njUmiWCUYXP1gIb6Srwdv/SZyysFNvJkjBqcfPjgc2da6UMzWiY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708243554; c=relaxed/simple;
+	bh=ttnZGnH/KEDMCu9kI5+L2dr0PEX11yWRxMG0Mkdt0AQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=m33UPgIuTx/Xgm0LfPi2V23jL3/akuToiCHZ8RqfnJTjng7A9ak692rkDZPJpo29j+QTKo9P3cdLjWO+dBA/rRxqUuox+fvmB+BDoxjhJr/R0dqpBDAVFIjd5TxWUQ80mhBcNUHOgtkFs94kiRiOyNJG28+6LsEB1tTZrwxAZ7M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=enSBJw6Y; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1708243552; x=1739779552;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ttnZGnH/KEDMCu9kI5+L2dr0PEX11yWRxMG0Mkdt0AQ=;
+  b=enSBJw6YmZZQELyM4/Hnsfl2eo2X4GBb+Ei+dzQlIs9NGkhOifNPSp7q
+   qRAMr/ky6WYuCBl4n1W0KIoeU8n/aQTL0q/YEArgdJFSQCF5TYX7xH2R9
+   8Eg9xw7qH168oWLMCf/ut2DF7NV4KkHl6lOPP4yJhtVuErLw6LjPqcgmu
+   zA9wE472PQSG/qYZLs+Do19CKZNDyIb8Szu3m3pjT12N4xNQ7Y/0WCGNZ
+   DD/ey3RcHDUe+blAFWyg3nlLhQ1ExQgKgVL5kGexfoJaMOsJ8/BhzIChC
+   8dKxdG1uWDPkO7RijInQROJv5sIUEjfZOwfzdjnH+8Umtr7EUG3cZvUVo
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10987"; a="6109381"
+X-IronPort-AV: E=Sophos;i="6.06,168,1705392000"; 
+   d="scan'208";a="6109381"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Feb 2024 00:05:51 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,168,1705392000"; 
+   d="scan'208";a="8904608"
+Received: from lkp-server02.sh.intel.com (HELO 3c78fa4d504c) ([10.239.97.151])
+  by orviesa004.jf.intel.com with ESMTP; 18 Feb 2024 00:05:46 -0800
+Received: from kbuild by 3c78fa4d504c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rbcAR-0002sq-05;
+	Sun, 18 Feb 2024 08:05:10 +0000
+Date: Sun, 18 Feb 2024 16:03:00 +0800
+From: kernel test robot <lkp@intel.com>
+To: Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Jaehoon Chung <jh80.chung@samsung.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, Igor Opaniuk <igor.opaniuk@linaro.org>,
+	tianshuliang <tianshuliang@hisilicon.com>,
+	David Yang <mmyangfl@gmail.com>, linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	Yang Xiwen <forbidden405@outlook.com>
+Subject: Re: [PATCH 1/3] mmc: dw_mmc: add support for hi3798mv200
+Message-ID: <202402181540.H4Ose96P-lkp@intel.com>
+References: <20240216-b4-mmc-hi3798mv200-v1-1-7d46db845ae6@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|DBBPR04MB8011:EE_
-X-MS-Office365-Filtering-Correlation-Id: c9b4369c-2ac7-4b61-456a-08dc304d9cfb
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	B89KesXKUyYVlqns/+14IfzOs0/kiKREEg0QKIFZIqzYuv7JhxBoeFIjz1vAfjSqGq6dn7wt7wFq2TiEdOysUPYsoBbmghLtI0Qtt4g2erDNsXiWh2U6cVYxbAtK5doTx8uojkqgfN8vcutuhtd2Znk/Hqb1Ltm5XnLfXri5L38HCtpu/w1xsJu4FUXBj1OsDSu3/w4OYAoDBi5Lzgntfeg+GF4VXd++SGSKDMnizq8sMr+Adn6X0J0pZwzGoshGkO1CrrJIGqdLCYQpL89Kb/pDG51zLPr4hDHdYCyrvuHkMCU5c2iVm5tih89mf2hteg9K5k8ze8aT9DE+x0vCVglqIa756lANOssjBujcf4reqEqanQ8P7ZALvh97jCjmtFqt4ckvK0lX3D+qtAWfRW0TvWrs9YCJP3nHIsWwAqatE7YxasWvop/7DY0RyPVauJfA2k1vfJImsbat/3FO3peYzCRfHNsSA8wajsT98awNyCYM2tJvYhKqNQ0F/16lQLxvyTn0XD1yuzkVSt5D+sIkgsCIMzld9TstU94fmpHQlVtsOb9iTMqdnElmlEQhfBccOj6FZ6rEKYKhyJH96S+Rwfp9h1hceBlVZPqIcqgwHHGeWTYIDvjR+7BCXRWVBFjSYoNkzbOcgXslQCme4w==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(39860400002)(136003)(346002)(376002)(396003)(230922051799003)(64100799003)(451199024)(186009)(1800799012)(5660300002)(66946007)(15650500001)(4326008)(2906002)(8936002)(7416002)(8676002)(66476007)(66556008)(86362001)(36756003)(921011)(38350700005)(478600001)(83380400001)(110136005)(9686003)(6666004)(6512007)(41300700001)(316002)(6506007)(26005)(52116002)(6486002)(38100700002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?UkNIRUF2ajFQcDBkS2cramNoa2FSWVNpNGVLSkxOU0lseGIrYWFqMzk4Mk9l?=
- =?utf-8?B?UGpzNmdhbHl3RWUwRnJ1VVhFSWJhbE1pZW9Cb3Nwa1lPNHR6Q2xkWUk4WDNy?=
- =?utf-8?B?bGJtUlgyRGRFN1NWMTczaWtPUGNrMlRudk56SHdHSDVvR3ZkbTRVUWZDMWtB?=
- =?utf-8?B?OW5pR1ZZQXp4SXk1RWdCc2R5TzNWSkd6S1YvU2svUlJ6dVd1TkZVTitnM3Jl?=
- =?utf-8?B?cm1UZnpBaXVBU1FTaGEwYktXL1F1UWF2ejJRamVjOHNDR0p2a3o3WEVrcjlo?=
- =?utf-8?B?STRLQU1BNHVnTjdubVBDTHB3dHF1SUNHWnVaNlZmYmxqY3Mzd2kzVlRzNGRJ?=
- =?utf-8?B?RHlwYUx5SFNhTnVBUHAxc21pVkZMazRLcDBCTE5vRHV2Mk1rVUpmamlTMWV6?=
- =?utf-8?B?ckZLTGZQUFNIcXlKVmlUd2dGcUtLTTNPdE5DUVI2NHp1UVQ3R2NpbU15VE1M?=
- =?utf-8?B?ZkdnaVNpd1hFVXVwWVFha1M4eDlsMW1kVFY0VCtoTnJpMFRvb3hQYnAzRllm?=
- =?utf-8?B?ZTJXZkxCNkR1dVZjZUdqY2FOZ1lrN2JmV255c2doVnNwV0tvclBCTlc1ZU9q?=
- =?utf-8?B?TytaMlRxL2JvcVZSWkl6M05PeS9ES0JzLzZJb0RZUVZQYkZ1QlNHcy8yTEI0?=
- =?utf-8?B?cjhObjFSOUlFTzg3OEV4LzJITUNmZ1BIeEphZEFacjFoS1hNWUx0ekJXV0tU?=
- =?utf-8?B?Q0RubzhOZjZPS0lIdkZLdWRTZGp3U3FFYmkrTUhDQ2NBL24xMlk3aEVrMVdq?=
- =?utf-8?B?cVJhbjRnZ1dnSDBERy8xYkxSb0tlaURTejNjY1Z4cFRycUV5QVdrMnpSY3Jv?=
- =?utf-8?B?RHJsT0JHQ0duSkoySlVZWm9nbkR4SG83UlRTeTg3R3hXbFBzazIydDN4bDR0?=
- =?utf-8?B?MzJYb1pJS05yZFArdGxZRy85bjFnZHZQUFplM1Nia3Vqanpwd3d1d0llT1hL?=
- =?utf-8?B?S2tVeG1PazJPejRGcTRjMExOaXlhc2s1Z05yanJ6SDdSY0xVMGhJSUF4MzVs?=
- =?utf-8?B?Z0JWNHg3dWlpRkdSdkh4SFNlQ3AvYjJZaVBSUVJicHUrRFdkKzJ1T3phUHZG?=
- =?utf-8?B?RmIrdGNqNmNYRXk2aFJMUDM5TTVOYm5tSkQxejlmKytlcnBuTFgyVmN3cFdL?=
- =?utf-8?B?dElTaXljYmxNUU9aZnBPRm91R2l5bUhla2Z1dXgxUG52b0Jhdkd5SVBYcjJE?=
- =?utf-8?B?WU54eEtqdUNwTE5CNllPWEQwdCtCUlpFSFdxSHVnRFRYUVBoTWFsM2FsOHJm?=
- =?utf-8?B?RkxJTXVkYnhYanRZdlFpLzQ3OGF0ZitxWXJvOXlnSENlWUZlZmFJRnlINks0?=
- =?utf-8?B?M3hxWTFXMkVNY2dDNjZxQmNYNkhCR1d4bWNqbmdvV0JjN3FTVStFWm5GcjU3?=
- =?utf-8?B?RS9EQUJWMlcwMXphelJWaVlBUXFMWDdmM2dwbzhraytIUXgwYVkyREZGWkpS?=
- =?utf-8?B?MXA5QnhoeTRHOCtXM2ZTQlcwbzQydjZwaDgydWV4Mm13Q3cwa3d2bEV3aVlh?=
- =?utf-8?B?R09JN2ZOQVBPSGJYNUFLNjJMTklNQnZhTHNlT0Y4SmQrS25SMGdja2IyS3pN?=
- =?utf-8?B?dFZtZ3dXMFBQVStqRVgwTU81d2JUR2tMS3dkMVRIZFdWVC9tN3FaUENTdTBy?=
- =?utf-8?B?eFZEV09rWDFVcGViOGwrWmxIK3pkNVN2aWkzZUNYU1JNQU1BZ3lDWEVqd1lQ?=
- =?utf-8?B?UFhvR0FGbFpjNExKa3JEQzFYM0xPcE5JT0lFN1g3a1dsZE52ZmVXWFpkZkda?=
- =?utf-8?B?YWJxRnhGQ0dUSFZmNXFlcFRXOEQ1WEhUbzdPNlN5WE5SMXd2UEJFckY2RUxE?=
- =?utf-8?B?VGkzSFhuaVdEMWk0UHFnZHMxLzFnNkRlN2hSQksyWEYyNFVTWVA1dUo0OG5B?=
- =?utf-8?B?cnJLNUZxcWlFNFA2aUxSazdoTmRRbW1ZazIwU05mVTBONXFwby9PcE1aU1py?=
- =?utf-8?B?WDlZS0tuTkZ2ZFVyRnZzaWZxMnc1V1hNTldQaXk1bnNIQUptZ0o0YittcWw0?=
- =?utf-8?B?cjdSWWtSbWhWMDVJWk85SXd3WFltY2p1ZUhQUWx6NVkwS2JleUlJblRXNDkz?=
- =?utf-8?B?dzNmUkFzTlhtNzkraWdmLzA2TFBJNEtXa21nNEZrTlNOSk5Sb29saURmajho?=
- =?utf-8?Q?mzIA6JrlQnzQ5qTh27zGzxkAC?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c9b4369c-2ac7-4b61-456a-08dc304d9cfb
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2024 06:48:28.4768
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hmXnWDxtOICrAH5dF/KH/rZFnByeEvO2MbhuaiWL5f/HRg9y73vvobla9GMIWzfBwgGtRY9tiYKxToqIA7Y52Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB8011
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240216-b4-mmc-hi3798mv200-v1-1-7d46db845ae6@outlook.com>
 
-From: Peng Fan <peng.fan@nxp.com>
+Hi Yang,
 
-Add i.MX95 Generic/ELE/V2X MU support, its register layout is same as
-i.MX8ULP, but the Parameter registers would show different
-TR/RR. Since the driver already supports get TR/RR from Parameter
-registers, not hardcoding the number, this patch just add
-the compatible entry to reuse i.MX8ULP S4 cfg data.
+kernel test robot noticed the following build errors:
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- drivers/mailbox/imx-mailbox.c | 3 +++
- 1 file changed, 3 insertions(+)
+[auto build test ERROR on 8d3dea210042f54b952b481838c1e7dfc4ec751d]
 
-diff --git a/drivers/mailbox/imx-mailbox.c b/drivers/mailbox/imx-mailbox.c
-index b36267591db2..5c1d09cad761 100644
---- a/drivers/mailbox/imx-mailbox.c
-+++ b/drivers/mailbox/imx-mailbox.c
-@@ -1035,6 +1035,9 @@ static const struct of_device_id imx_mu_dt_ids[] = {
- 	{ .compatible = "fsl,imx8ulp-mu", .data = &imx_mu_cfg_imx8ulp },
- 	{ .compatible = "fsl,imx8ulp-mu-s4", .data = &imx_mu_cfg_imx8ulp_s4 },
- 	{ .compatible = "fsl,imx93-mu-s4", .data = &imx_mu_cfg_imx93_s4 },
-+	{ .compatible = "fsl,imx95-mu", .data = &imx_mu_cfg_imx8ulp },
-+	{ .compatible = "fsl,imx95-mu-ele", .data = &imx_mu_cfg_imx8ulp_s4 },
-+	{ .compatible = "fsl,imx95-mu-v2x", .data = &imx_mu_cfg_imx8ulp_s4 },
- 	{ .compatible = "fsl,imx8-mu-scu", .data = &imx_mu_cfg_imx8_scu },
- 	{ .compatible = "fsl,imx8-mu-seco", .data = &imx_mu_cfg_imx8_seco },
- 	{ },
+url:    https://github.com/intel-lab-lkp/linux/commits/Yang-Xiwen-via-B4-Relay/mmc-dw_mmc-add-support-for-hi3798mv200/20240216-014744
+base:   8d3dea210042f54b952b481838c1e7dfc4ec751d
+patch link:    https://lore.kernel.org/r/20240216-b4-mmc-hi3798mv200-v1-1-7d46db845ae6%40outlook.com
+patch subject: [PATCH 1/3] mmc: dw_mmc: add support for hi3798mv200
+config: parisc-allyesconfig (https://download.01.org/0day-ci/archive/20240218/202402181540.H4Ose96P-lkp@intel.com/config)
+compiler: hppa-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240218/202402181540.H4Ose96P-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202402181540.H4Ose96P-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/mmc/host/dw_mmc-hi3798mv200.c: In function 'dw_mci_hi3798mv200_init':
+>> drivers/mmc/host/dw_mmc-hi3798mv200.c:178:36: error: passing argument 1 of 'mmc_of_parse_clk_phase' from incompatible pointer type [-Werror=incompatible-pointer-types]
+     178 |         mmc_of_parse_clk_phase(host->dev, &priv->phase_map);
+         |                                ~~~~^~~~~
+         |                                    |
+         |                                    struct device *
+   In file included from drivers/mmc/host/dw_mmc-hi3798mv200.c:11:
+   include/linux/mmc/host.h:542:46: note: expected 'struct mmc_host *' but argument is of type 'struct device *'
+     542 | void mmc_of_parse_clk_phase(struct mmc_host *host,
+         |                             ~~~~~~~~~~~~~~~~~^~~~
+   cc1: some warnings being treated as errors
+
+
+vim +/mmc_of_parse_clk_phase +178 drivers/mmc/host/dw_mmc-hi3798mv200.c
+
+   168	
+   169	static int dw_mci_hi3798mv200_init(struct dw_mci *host)
+   170	{
+   171		struct dw_mci_hi3798mv200_priv *priv;
+   172		struct device_node *np = host->dev->of_node;
+   173	
+   174		priv = devm_kzalloc(host->dev, sizeof(*priv), GFP_KERNEL);
+   175		if (!priv)
+   176			return -ENOMEM;
+   177	
+ > 178		mmc_of_parse_clk_phase(host->dev, &priv->phase_map);
+   179	
+   180		priv->sample_clk = devm_clk_get_enabled(host->dev, "ciu-sample");
+   181		if (IS_ERR(priv->sample_clk)) {
+   182			dev_err(host->dev, "failed to get enabled ciu-sample clock\n");
+   183			return PTR_ERR(priv->sample_clk);
+   184		}
+   185	
+   186		priv->drive_clk = devm_clk_get_enabled(host->dev, "ciu-drive");
+   187		if (IS_ERR(priv->drive_clk)) {
+   188			dev_err(host->dev, "failed to get enabled ciu-drive clock\n");
+   189			return PTR_ERR(priv->drive_clk);
+   190		}
+   191	
+   192		priv->sap_dll_reg = syscon_regmap_lookup_by_phandle(np, "hisilicon,sap-dll-reg");
+   193		if (IS_ERR(priv->sap_dll_reg)) {
+   194			dev_err(host->dev, "failed to get sap-dll-reg\n");
+   195			return PTR_ERR(priv->sap_dll_reg);
+   196		}
+   197	
+   198		host->priv = priv;
+   199		return 0;
+   200	}
+   201	
 
 -- 
-2.37.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
