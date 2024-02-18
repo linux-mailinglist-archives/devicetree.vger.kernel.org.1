@@ -1,287 +1,132 @@
-Return-Path: <devicetree+bounces-43232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0E6A859996
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 22:42:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 288918599A3
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 22:57:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76B44281606
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 21:42:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0143281666
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 21:57:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACE3474281;
-	Sun, 18 Feb 2024 21:42:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57F9574297;
+	Sun, 18 Feb 2024 21:57:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="vYbvfFVB"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="0fGCbgr6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0771773199
-	for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 21:41:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 281C773176
+	for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 21:57:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708292520; cv=none; b=lApMbycYYZmxh4jn6Lj8DdUcpd66Fa8HPfc4KAFK6Rdozee+FZzScuAZ6av5gBnvsSwKywEYkFdWNe5dRsIj72xrZYFAKFeFARv5YEiM8cv0KZ/prsrybzkwsRlukar0iufPWvcHUNWScchqD3xQIlQWFOsrUFoYvlGdfLnenSA=
+	t=1708293434; cv=none; b=AcZHwMJST6JfKTPuNm9VKsRLpzSCnt8RrdbnwzghUI7OZVDyIONjthlUqw/4hnwNgJTazoKyvbbqtABexRyme46XfYwaZPm0PYgu0+8oTajem6zALSz0et9GU3Yf353do0iA0zGmKzFYnmMNLqujYXkKJBZXHXQGrvP2l8jOvl8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708292520; c=relaxed/simple;
-	bh=fRSvPbQEP61Lvi6u9GOkwlXLP0rzehKkVehLRbWk06I=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=hxNBkpS98Welt4p24X3/jdtVvFp59OoudNTyUbAKRvb+vN/DJJlZjdhqtc+lD0qYQRMVsmUgSByyP+vB/2FPp3mFV7Lnc628U+A2MDwEJCXeNue28diNfdiV3ehNg+uRQRmX+mxozJLAU9GK1JQF+zza2txEMDjRsOza9G51s5k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=vYbvfFVB; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1708292511;
-	bh=fRSvPbQEP61Lvi6u9GOkwlXLP0rzehKkVehLRbWk06I=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=vYbvfFVBkcr14G+HRk7AefzraB9xXbSGvtKpAkvPeF+iCTTmHGPHlXpYOCJ5KbJUv
-	 JbDpquXccghxEkRZ8hK8VEdaUA0ClRioY8XvvP8E4wT6mk1OIyHCmXYE0lzePnJO3q
-	 aAxiwHHzhQsWmSYArVgMOaY4ZANpG89i1lNQGUg1qYpFGLIAVHXSGL5PXq1HsroJRB
-	 nY0jeVdrXJobr/VZzdKXswB8meXF+y7bHwgIVHByrRkhCea1hyrh/tGzMG7HKWuDGe
-	 0z5RZZJMRDUwZ0eLmQ4T81AmE4G1bE9F1QzR2qufXzjxfYhvLKlBskJbxAeTXdH5Qj
-	 Fgb3Ng8QEKyqQ==
-Received: from localhost.localdomain (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: bbrezillon)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id AFAD23782087;
-	Sun, 18 Feb 2024 21:41:49 +0000 (UTC)
-From: Boris Brezillon <boris.brezillon@collabora.com>
-To: dri-devel@lists.freedesktop.org
-Cc: Daniel Vetter <daniel@ffwll.ch>,
-	"Marty E . Plummer" <hanetzer@startmail.com>,
-	Rob Herring <robh@kernel.org>,
-	=?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>,
-	Nicolas Boichat <drinkcat@chromium.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Faith Ekstrand <faith.ekstrand@collabora.com>,
-	Daniel Stone <daniels@collabora.com>,
-	Liviu Dudau <Liviu.Dudau@arm.com>,
-	Steven Price <steven.price@arm.com>,
-	Robin Murphy <robin.murphy@arm.com>,
-	kernel@collabora.com,
-	Heiko Stuebner <heiko@sntech.de>,
-	Tatsuyuki Ishi <ishitatsuyuki@gmail.com>,
-	Chris Diamand <chris.diamand@foss.arm.com>,
-	Ketil Johnsen <ketil.johnsen@arm.com>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	Boris Brezillon <boris.brezillon@collabora.com>
-Subject: [PATCH v5 13/14] dt-bindings: gpu: mali-valhall-csf: Add support for Arm Mali CSF GPUs
-Date: Sun, 18 Feb 2024 22:41:27 +0100
-Message-ID: <20240218214131.3035480-14-boris.brezillon@collabora.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240218214131.3035480-1-boris.brezillon@collabora.com>
-References: <20240218214131.3035480-1-boris.brezillon@collabora.com>
+	s=arc-20240116; t=1708293434; c=relaxed/simple;
+	bh=qFFnYcQKuHjjtVyuFyTWh18ZDZIzroX9DFS+VvYuBbE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XAmvEkxTqn5tCyaB4qsVAxguC8H/fZ7Jxm1KfYNQobAow9EQQLWqqt+l6KgQaQt1srCRGP0I8ldTKOc4LmYZg3ROlKRgrHUzI+qt33YHT4by0vqvWnsSfTXtR9luEzPOXxxf6WWUQz43dUMHm7KE5vur4FUf3BPhUe3OZLkUheM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=0fGCbgr6; arc=none smtp.client-ip=209.85.167.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-3c0485fc8b8so3214679b6e.3
+        for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 13:57:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1708293431; x=1708898231; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7EJCFpj5Mq/l10cEhu/JuTwYp/22JDItkGAyCOUOiCA=;
+        b=0fGCbgr6Hqu5b8i8aNauvc1zxXHTe6mQbcpLxzSzMHh7++tLtlnSlGqUuwv7uwaS6f
+         l5hXUuZ7UfhVWF3t9AtbIl6gHEn8JY2kUqgZn5TNq9XZ7bi1d+bW4s2rFFdXBcqXxvCU
+         SxTvHRry8EaGjjBuKGkMtHa6Dj221+0+qgSqD4d/FVxWUfL7GURC+80KtBDQlt4kdVuf
+         1D3rBGB1LMAEoJg4zeQTJQJ41rGW3JGQZ7L0pNDUojguTL3iax/zfMINSmYmGbxMvVia
+         O+U3HzJf1EwdJRXJ0O3ncgNMHtNeA517eqgs45xVdY62Ev3F2q0bObo6N2VBGagIP4Hw
+         x+RA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708293431; x=1708898231;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7EJCFpj5Mq/l10cEhu/JuTwYp/22JDItkGAyCOUOiCA=;
+        b=VShLnpmU9qNuPvzNj8XTc30b2t4JylT9UVX+WxHbWjE0vFgalIEC8ZVRmnMy8oAX1k
+         1A5v/PTexRfeypkzmXOgyPk1UJR8wxPRT2ZZp2Ub1vqgt0lSToM42uY9ejmivGRvOWAd
+         Kpzoezu31G075v9IUTDgRrOagspJSsrfSYV75g1Agi+cLl21ftefzLtRf7whIvOXku/w
+         iLCIZD8qcERxfm9DqMhzbsg+nUYR8xLB/8VXmq6vlz7Kms92yKz1gHhOJwelODIA8r9X
+         Eswd9tm7d6BbQUgHhXrQDe0DQljn8znK/zRyhzFL+dfxX5Aj+ztuCHQHWQf2U5a+aVSp
+         SPpA==
+X-Forwarded-Encrypted: i=1; AJvYcCV3iQflw1GHzvjr4LD1/f7n/6JrOz+AsYsXExssJqR6/TjcEzgqA9Wu5jDoRvvyDUpS7Xv4yutojTPxWQPG4P/JkF552PXfR1sQ9A==
+X-Gm-Message-State: AOJu0Yy6cZ1sdOzPv7yDze2zYvJSwjLX16ydPJ3+Xj4QdiooO597ZYWL
+	fh/L6GLnLdHyKnHY440KyHaDbgNABr7CTqriM+gc57WQfBgUQMQ+HPleZHTK79E=
+X-Google-Smtp-Source: AGHT+IGHAd+EyyInpg/WIK5cXqp7bRUhKcmUIeqJqAnPgoTw25mUzovlZAYpWU5B3BmWer+kFxWViw==
+X-Received: by 2002:a05:6808:228e:b0:3c0:32c6:4e88 with SMTP id bo14-20020a056808228e00b003c032c64e88mr13167868oib.9.1708293431093;
+        Sun, 18 Feb 2024 13:57:11 -0800 (PST)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id a22-20020aca1a16000000b003bff3512781sm657610oia.50.2024.02.18.13.57.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 18 Feb 2024 13:57:10 -0800 (PST)
+Message-ID: <10b08086-ddfe-449c-97a3-22875d00025f@baylibre.com>
+Date: Sun, 18 Feb 2024 15:57:09 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] iio: adc: ad7380: new driver for AD7380 ADCs
+Content-Language: en-US
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Michael Hennerich <michael.hennerich@analog.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ linux-kernel@vger.kernel.org, Stefan Popa <stefan.popa@analog.com>,
+ devicetree@vger.kernel.org, Julien Stephan <jstephan@baylibre.com>
+References: <20240110-ad7380-mainline-v4-0-93a1d96b50fa@baylibre.com>
+ <20240110-ad7380-mainline-v4-2-93a1d96b50fa@baylibre.com>
+ <CAMknhBGg0hHXrd3K92tgHHTnfbk7dLAMvtTSZff1P-C3=9nFaw@mail.gmail.com>
+ <20240217162014.17033d64@jic23-huawei>
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20240217162014.17033d64@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-From: Liviu Dudau <liviu.dudau@arm.com>
+On 2/17/24 10:20 AM, Jonathan Cameron wrote:
+> On Fri, 16 Feb 2024 14:34:01 -0600
+> David Lechner <dlechner@baylibre.com> wrote:
+> 
+>> On Wed, Jan 10, 2024 at 2:29 PM David Lechner <dlechner@baylibre.com> wrote:
+>>>
+>>> This adds a new driver for the AD7380 family ADCs.
+>>>
+>>> The driver currently implements basic support for the AD7380, AD7381,
+>>> AD7383, and AD7384 2-channel differential ADCs. Support for additional
+>>> single-ended and 4-channel chips that use the same register map as well
+>>> as additional features of the chip will be added in future patches.
+>>>  
+>>
+>> Hi Jonathan,
+>>
+>> We have some additional features to add to this driver we are working
+>> on that look like they might affect userspace. Can we hold off on
+>> sending this one to Greg for 6.9? That way we will have more time to
+>> sort that out without having to worry about breaking userspace.
+> 
+> Ok. Hopefully rebasing my tree won't cause others too many downstream
+> problems. Generally I only do this if there is an invalid tag or similar
+> that must be fixed.  There is normally a window of a weekish
+> between me picking it up and pushing out for linux-next to pick up and
+> hopefully issues like this get spotted in that window.
+> Ah well, sometimes things don't work out how we would like them to.
+> 
+> Dropped the 3 patches (original driver and a fix) from the togreg branch.
+> 
 
-Arm has introduced a new v10 GPU architecture that replaces the Job Manager
-interface with a new Command Stream Frontend. It adds firmware driven
-command stream queues that can be used by kernel and user space to submit
-jobs to the GPU.
-
-Add the initial schema for the device tree that is based on support for
-RK3588 SoC. The minimum number of clocks is one for the IP, but on Rockchip
-platforms they will tend to expose the semi-independent clocks for better
-power management.
-
-v5:
-- Move the opp-table node under the gpu node
-
-v4:
-- Fix formatting issue
-
-v3:
-- Cleanup commit message to remove redundant text
-- Added opp-table property and re-ordered entries
-- Clarified power-domains and power-domain-names requirements for RK3588.
-- Cleaned up example
-
-Note: power-domains and power-domain-names requirements for other platforms
-are still work in progress, hence the bindings are left incomplete here.
-
-v2:
-- New commit
-
-Signed-off-by: Liviu Dudau <liviu.dudau@arm.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../bindings/gpu/arm,mali-valhall-csf.yaml    | 147 ++++++++++++++++++
- 1 file changed, 147 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
-
-diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
-new file mode 100644
-index 000000000000..a5b4e0021758
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
-@@ -0,0 +1,147 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpu/arm,mali-valhall-csf.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ARM Mali Valhall GPU
-+
-+maintainers:
-+  - Liviu Dudau <liviu.dudau@arm.com>
-+  - Boris Brezillon <boris.brezillon@collabora.com>
-+
-+properties:
-+  $nodename:
-+    pattern: '^gpu@[a-f0-9]+$'
-+
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - rockchip,rk3588-mali
-+          - const: arm,mali-valhall-csf   # Mali Valhall GPU model/revision is fully discoverable
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: Job interrupt
-+      - description: MMU interrupt
-+      - description: GPU interrupt
-+
-+  interrupt-names:
-+    items:
-+      - const: job
-+      - const: mmu
-+      - const: gpu
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 3
-+
-+  clock-names:
-+    minItems: 1
-+    items:
-+      - const: core
-+      - const: coregroup
-+      - const: stacks
-+
-+  mali-supply: true
-+
-+  operating-points-v2: true
-+  opp-table:
-+    type: object
-+
-+  power-domains:
-+    minItems: 1
-+    maxItems: 5
-+
-+  power-domain-names:
-+    minItems: 1
-+    maxItems: 5
-+
-+  sram-supply: true
-+
-+  "#cooling-cells":
-+    const: 2
-+
-+  dynamic-power-coefficient:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      A u32 value that represents the running time dynamic
-+      power coefficient in units of uW/MHz/V^2. The
-+      coefficient can either be calculated from power
-+      measurements or derived by analysis.
-+
-+      The dynamic power consumption of the GPU is
-+      proportional to the square of the Voltage (V) and
-+      the clock frequency (f). The coefficient is used to
-+      calculate the dynamic power as below -
-+
-+      Pdyn = dynamic-power-coefficient * V^2 * f
-+
-+      where voltage is in V, frequency is in MHz.
-+
-+  dma-coherent: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - mali-supply
-+
-+additionalProperties: false
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: rockchip,rk3588-mali
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 3
-+        power-domains:
-+          maxItems: 1
-+        power-domain-names: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/power/rk3588-power.h>
-+
-+    gpu: gpu@fb000000 {
-+        compatible = "rockchip,rk3588-mali", "arm,mali-valhall-csf";
-+        reg = <0xfb000000 0x200000>;
-+        interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH 0>,
-+                     <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH 0>,
-+                     <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH 0>;
-+        interrupt-names = "job", "mmu", "gpu";
-+        clock-names = "core", "coregroup", "stacks";
-+        clocks = <&cru CLK_GPU>, <&cru CLK_GPU_COREGROUP>,
-+                 <&cru CLK_GPU_STACKS>;
-+        power-domains = <&power RK3588_PD_GPU>;
-+        operating-points-v2 = <&gpu_opp_table>;
-+        mali-supply = <&vdd_gpu_s0>;
-+        sram-supply = <&vdd_gpu_mem_s0>;
-+
-+        gpu_opp_table: opp-table {
-+            compatible = "operating-points-v2";
-+            opp-300000000 {
-+                opp-hz = /bits/ 64 <300000000>;
-+                opp-microvolt = <675000 675000 850000>;
-+            };
-+            opp-400000000 {
-+                opp-hz = /bits/ 64 <400000000>;
-+                opp-microvolt = <675000 675000 850000>;
-+            };
-+        };
-+    };
-+
-+...
--- 
-2.43.0
+Thanks. I will keep the the one week window in mind if we have similar cases in the future.
 
 
