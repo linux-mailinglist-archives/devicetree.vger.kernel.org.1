@@ -1,245 +1,263 @@
-Return-Path: <devicetree+bounces-43208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CD548597AE
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 16:51:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 263268597D2
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 17:49:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 83A671F213B1
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 15:51:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D19442817D4
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 16:49:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A16556D1AF;
-	Sun, 18 Feb 2024 15:51:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="creLgihG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 033176EB50;
+	Sun, 18 Feb 2024 16:49:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DB44FBEA
-	for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 15:51:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.176
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB5136EB42;
+	Sun, 18 Feb 2024 16:49:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708271465; cv=none; b=tBBipbuhxN7C4ImTd/ROFUiCyp34SPij60EbCjQYmQvUPrgIuUXOZ8ccWz8y3fC8Jhk+dt9jLEz6DzhCU2QP0IjfG/4dTiY8SkiR8CEDr9aAkjYSZwHEZ5a5Nkl03Fkej9QIdqQC8k6BYPEJhzKbAgmb7SF2wXrwtY4dshFQl7w=
+	t=1708274946; cv=none; b=O77KGYnhqEOV+DIa8V6C8S61kmNZhnY3U43O2OdMqVTby+yV3AzLywT/7I4443iGpERDMLdaV5kOHJ48WjrroP4BxgqVClD2K4iiBmM8tAVfQe6teLrIdSf7XdgCutDNZ5zytzwvjbLtpz8qv/Mnk/QLI86TJuFVCmZFbdATimM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708271465; c=relaxed/simple;
-	bh=0ot/ijTVMDoaDLxuBI4Uj6rskkiPkMT9yVdc7KgsN1g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TMGZddrH+8DFODs8FGbCRsz9Q9EtFGFsKqIUiq7tRoh//BUCc328w3vKpecc2iLi+22d86skWIGS6CVvIsSiNsQzczzyEa2kLpU94ovKTyQuOGiB254iDq27qA5vOrZbb7aAzP84E2Ots39HWdmj4kPvX6sY8lW/++wuMD7OhXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=creLgihG; arc=none smtp.client-ip=209.85.167.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-3c1404d05bfso2145968b6e.3
-        for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 07:51:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1708271461; x=1708876261; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Idc8kDtuOgl4UHmKMS/zN8wguVju2Qvv8mSJbJg11b8=;
-        b=creLgihGapG02AuPiwadES7xo/RqF7l8ujvIOvyUrTu3v04H822Se02RnkTz2YjBRq
-         be/OWNNnRXb5+gw7pwql1vVl0IhyQupfCNWiutBrUmZWomxHlkmhnqZUirx5jdaACPrP
-         L/Ojq0As4Bw76D/WIbj71H3H/1LXQqnQwHpt3dEkR/cY0WBuKs3Sk7Aixf4LPK3LxNC6
-         Rt7y6zNDtm6WpWR8AUMBzsgE3824htxdhHSRa/xl5OB0WF664sG/TQHPJ0L5SAVRxtz9
-         lL4kiv96PXAP5SL9Q+ZQkr7tlZ0E55Oa4hvuqL0ZoroT9jLhruL2RLyJtIsyEFsSyfWs
-         7iKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708271461; x=1708876261;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Idc8kDtuOgl4UHmKMS/zN8wguVju2Qvv8mSJbJg11b8=;
-        b=EQ3IW0OfNjzJ08nSGvKOVg68BCnhDvaGKgrZsMEIq6vmHrzuUnX++yKKo5mu4JQXdd
-         QyewxXeekxz5SRAkwSeUzTTHBfRr60DAROyCzaZ6L9NQntO0kfQ94BRmnRFv6ds3tMtG
-         iT6w2cBYtPC9/WXF/KyYXtgxRcFZox/7vQ/y50PQmgbEKtY15m6QXq8PxOW2sT9tEczw
-         UelFCk+CwjftXr/phQfLOhepmnhlKNUVN45MJPrH6d1JupIn/LhxlDbcrwFfKypKCmfx
-         ZHf0LimqwfJW36egNtveMicfU5izu7JNEF0nexzmpCdixX3UMfdB9qht/KKKs9DlyGu2
-         XnzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVeWdOFdkbMRZoASEZIEqMAUoH63n8RAX4OPpuWLU3PfvDxb2gFa7Gt54O1GItICqSUw3h/k0PJ6r8BUUGoq9mbmfHr9a2YC0yhNw==
-X-Gm-Message-State: AOJu0YyhDzw3blDnY1klGBkIP+2PfOLClONeQgsvFQzCkUmpXFt6UaqN
-	v4ietC7/2EDZvSfZnfwzkN5BOEU0xugVdVLXOhWRA/mlVXq3w04wEr1yq1IDycE=
-X-Google-Smtp-Source: AGHT+IGjRnlgLzgomv6lW4SHDhuTS8wreb750yO93dETmAN5zA0BYgY7Hc8/Ofnz0yFKKnfSR5f2mQ==
-X-Received: by 2002:a05:6808:2f17:b0:3c0:39ed:4384 with SMTP id gu23-20020a0568082f1700b003c039ed4384mr14131122oib.20.1708271461437;
-        Sun, 18 Feb 2024 07:51:01 -0800 (PST)
-Received: from [100.64.0.1] ([170.85.8.176])
-        by smtp.gmail.com with ESMTPSA id kr19-20020a0562142b9300b0068f5565ba1asm1262117qvb.88.2024.02.18.07.51.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Feb 2024 07:51:01 -0800 (PST)
-Message-ID: <3c2f1c61-89b4-4103-ac45-a2a541de215e@sifive.com>
-Date: Sun, 18 Feb 2024 09:50:59 -0600
+	s=arc-20240116; t=1708274946; c=relaxed/simple;
+	bh=KQ0xu7tt8bUtJsCa0eXiLgFAsfmJyqiV93jB2TKQZD8=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=GZaiW+WRoXcuWcFcnLU4GGqgBPlQ0zs5tstQzm/hoYcHG5jM5TJP1CVG5YLmhtZ1D7qM+15w9tWagZQrRsP2L0taq2fgxClK1n6sxG1h1xMXgSIsejChyLoeX4tnBS37u0fUJs/A1lI4gmdu40+rFreMk9uLYNg6yQfJv7vrw9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-IronPort-AV: E=Sophos;i="6.06,168,1705330800"; 
+   d="scan'208";a="194312197"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 19 Feb 2024 01:48:57 +0900
+Received: from localhost.localdomain (unknown [10.226.92.34])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 5CAFC4004D08;
+	Mon, 19 Feb 2024 01:48:51 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Biju Das <biju.das.jz@bp.renesas.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	dri-devel@lists.freedesktop.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>,
+	Rob Herring <robh@kernel.org>
+Subject: [PATCH v17 1/5] dt-bindings: display: Document Renesas RZ/G2L DU bindings
+Date: Sun, 18 Feb 2024 16:48:36 +0000
+Message-Id: <20240218164840.57662-2-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240218164840.57662-1-biju.das.jz@bp.renesas.com>
+References: <20240218164840.57662-1-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/6] dt-bindings: cache: Add SiFive Extensible Cache
- controller
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Eric Lin <eric.lin@sifive.com>, Conor Dooley <conor@kernel.org>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Paul Walmsley <paul.walmsley@sifive.com>,
- linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-arm-kernel@lists.infradead.org
-References: <20240216000837.1868917-1-samuel.holland@sifive.com>
- <20240216000837.1868917-4-samuel.holland@sifive.com>
- <d655b72e-3094-4b6b-bee8-9677b7c987ce@linaro.org>
-From: Samuel Holland <samuel.holland@sifive.com>
-In-Reply-To: <d655b72e-3094-4b6b-bee8-9677b7c987ce@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Hi Krzysztof,
+The RZ/G2L LCD controller is composed of Frame Compression Processor
+(FCPVD), Video Signal Processor (VSPD), and Display Unit (DU).
 
-On 2024-02-17 3:09 AM, Krzysztof Kozlowski wrote:
-> On 16/02/2024 01:08, Samuel Holland wrote:
->> From: Eric Lin <eric.lin@sifive.com>
->>
->> Add YAML DT binding documentation for the SiFive Extensible Cache
->> controller. The Extensible Cache controller interleaves cache blocks
->> across a number of heterogeneous independently-programmed slices. Each
->> slice contains an MMIO interface for configuration, cache maintenance,
->> error reporting, and performance monitoring.
->>
->> +allOf:
->> +  - $ref: /schemas/cache-controller.yaml#
->> +
->> +select:
->> +  properties:
->> +    compatible:
->> +      contains:
->> +        enum:
->> +          - sifive,extensiblecache0
->> +
->> +  required:
->> +    - compatible
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - const: sifive,extensiblecache0
->> +      - const: cache
->> +
->> +  "#address-cells": true
-> 
-> const or enum: [1, 2], depending on the addressing you need here.
-> 
->> +  "#size-cells": true
-> 
-> ditto
-> 
->> +  ranges: true
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  cache-block-size:
->> +    const: 64
->> +
->> +  cache-level: true
-> 
-> 5 is acceptable? I would argue this should be even const.
-> 
->> +  cache-sets: true
->> +  cache-size: true
-> 
-> Some constraints on any of these?
+The DU module supports the following hardware features
+− Display Parallel Interface (DPI) and MIPI LINK Video Interface
+− Display timing master
+− Generates video timings
+− Selecting the polarity of output DCLK, HSYNC, VSYNC, and DE
+− Supports Progressive
+− Input data format (from VSPD): RGB888, RGB666
+− Output data format: same as Input data format
+− Supporting Full HD (1920 pixels x 1080 lines) for MIPI-DSI Output
+− Supporting WXGA (1280 pixels x 800 lines) for Parallel Output
 
-Thanks for the feedback. I will add the various constraints in v2, though some
-constraints will be somewhat loose as the topology is highly configurable.
+This patch documents the DU module found on RZ/G2L LCDC.
 
->> +  cache-unified: true
->> +
->> +patternProperties:
->> +  "^cache-controller@[0-9a-f]+$":
->> +    type: object
->> +    additionalProperties: false
-> 
-> What is this object supposed to represent? Add description.
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+---
+v16->v17:
+ * No change.
+v15->v16:
+ * No change.
+v14->v15:
+ * No change.
+v13->v14:
+ * No change.
+v12->v13:
+ * No change.
+v11->v12:
+ * Dropped quotes in ref handle for renesas,vsps property.
+ * Retained tags as it is trivial change.
+v10->v11:
+ * No change
+v9->v10:
+ * Added Rb tag from Laurent
+ * Updated the commit description.
+ * Updated description of the port by dropping the text "specified in
+   Documentation/devicetree/bindings/graph.txt."
+ * Dropped empty endpoint from example.
+v8->v9:
+ * No change
+v7->v8:
+ * No change
+v6->v7:
+ * No change
+v5->v6:
+ * No change.
+v4->v5:
+ * Added Rb tag from Rob.
+v3->v4:
+ * Changed compatible name from renesas,du-r9a07g044->renesas,r9a07g044-du
+ * started using same compatible for RZ/G2{L,LC}
+v3: New patch
+---
+ .../bindings/display/renesas,rzg2l-du.yaml    | 121 ++++++++++++++++++
+ 1 file changed, 121 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
 
-I will add a description in v2.
-
-This object represents a single slice of the cache. Requests from clients are
-interleaved between cache slices depending on the client, the address, etc.
-
-Since there is no strong relationship between client (i.e. CPU) and cache slice,
-the next-level-cache property must point to the top-level EC node, not a slice.
-
->> +    properties:
->> +      reg:
->> +        maxItems: 1
->> +
->> +      cache-block-size:
->> +        const: 64
->> +
->> +      cache-sets: true
->> +      cache-size: true
->> +      cache-unified: true
-> 
-> cache-level
-
-I will add this in v2. It seemed redundant since the value cannot differ between
-slices.
-
-Regards,
-Samuel
-
->> +
->> +      sifive,bm-event-counters:
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +        default: 0
->> +        description: Number of bucket monitor registers in this slice
->> +
->> +      sifive,cache-ways:
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +        description: Number of ways in this slice (independent of cache size)
->> +
->> +      sifive,perfmon-counters:
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +        default: 0
->> +        description: Number of PMU counter registers in this slice
->> +
->> +    required:
->> +      - reg
->> +      - cache-block-size
->> +      - cache-sets
->> +      - cache-size
->> +      - cache-unified
->> +      - sifive,cache-ways
->> +
->> +required:
->> +  - compatible
->> +  - ranges
->> +  - interrupts
->> +  - cache-block-size
->> +  - cache-level
->> +  - cache-sets
->> +  - cache-size
->> +  - cache-unified
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    cache-controller@30040000 {
->> +        compatible = "sifive,extensiblecache0", "cache";
->> +        ranges = <0x30040000 0x30040000 0x10000>;
->> +        interrupts = <0x4>;
-> 
-> You use hex as interrupt numbers on your platforms?
-> 
->> +        cache-block-size = <0x40>;
->> +        cache-level = <3>;
->> +        cache-sets = <0x800>;
-> 
-> Best regards,
-> Krzysztof
-> 
+diff --git a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+new file mode 100644
+index 000000000000..c0ad194c538d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+@@ -0,0 +1,121 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/renesas,rzg2l-du.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Renesas RZ/G2L Display Unit (DU)
++
++maintainers:
++  - Biju Das <biju.das.jz@bp.renesas.com>
++  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
++
++description: |
++  These DT bindings describe the Display Unit embedded in the Renesas RZ/G2L
++  and RZ/V2L SoCs.
++
++properties:
++  compatible:
++    enum:
++      - renesas,r9a07g044-du # RZ/G2{L,LC}
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: Main clock
++      - description: Register access clock
++      - description: Video clock
++
++  clock-names:
++    items:
++      - const: aclk
++      - const: pclk
++      - const: vclk
++
++  resets:
++    maxItems: 1
++
++  power-domains:
++    maxItems: 1
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++    description: |
++      The connections to the DU output video ports are modeled using the OF
++      graph bindings. The number of ports and their assignment are
++      model-dependent. Each port shall have a single endpoint.
++
++    patternProperties:
++      "^port@[0-1]$":
++        $ref: /schemas/graph.yaml#/properties/port
++        unevaluatedProperties: false
++
++    required:
++      - port@0
++
++    unevaluatedProperties: false
++
++  renesas,vsps:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    items:
++      items:
++        - description: phandle to VSP instance that serves the DU channel
++        - description: Channel index identifying the LIF instance in that VSP
++    description:
++      A list of phandle and channel index tuples to the VSPs that handle the
++      memory interfaces for the DU channels.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - resets
++  - power-domains
++  - ports
++  - renesas,vsps
++
++additionalProperties: false
++
++examples:
++  # RZ/G2L DU
++  - |
++    #include <dt-bindings/clock/r9a07g044-cpg.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    display@10890000 {
++        compatible = "renesas,r9a07g044-du";
++        reg = <0x10890000 0x10000>;
++        interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&cpg CPG_MOD R9A07G044_LCDC_CLK_A>,
++                 <&cpg CPG_MOD R9A07G044_LCDC_CLK_P>,
++                 <&cpg CPG_MOD R9A07G044_LCDC_CLK_D>;
++        clock-names = "aclk", "pclk", "vclk";
++        resets = <&cpg R9A07G044_LCDC_RESET_N>;
++        power-domains = <&cpg>;
++
++        renesas,vsps = <&vspd0 0>;
++
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            port@0 {
++                reg = <0>;
++                endpoint {
++                    remote-endpoint = <&dsi0_in>;
++                };
++            };
++            port@1 {
++                reg = <1>;
++            };
++        };
++    };
++
++...
+-- 
+2.25.1
 
 
