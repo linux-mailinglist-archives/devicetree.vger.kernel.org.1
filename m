@@ -1,176 +1,115 @@
-Return-Path: <devicetree+bounces-43226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FC0B85994F
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 21:44:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8104859962
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 21:58:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F2761F21341
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 20:44:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 48010B20B4C
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 20:58:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91F2C7318A;
-	Sun, 18 Feb 2024 20:43:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7195074281;
+	Sun, 18 Feb 2024 20:57:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="nrWuTgYJ"
+	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="oJDybTuh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4AD96D1AB;
-	Sun, 18 Feb 2024 20:43:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83E1F8C1A;
+	Sun, 18 Feb 2024 20:57:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708289038; cv=none; b=p34MuAz68QytKFE4PnAqY8yo8cQgPCPh2HVQkJdzZDFZiVm5/bB8D9NOAUrXPUNohTWhwdLisEWJxnjMfI6bbQVbH24KjBhMTaMpCZ+jusQJ9ThaAAo3bk1Ai6PGhPyYhx/c0oltZcQxwHqbUBAxyLiTvrUUcdaMw/ds2vlvClw=
+	t=1708289870; cv=none; b=kp8LQSxUWt1Ywz/TnwNwi2wCGhAfZQESqQmgm5fcsrrEDusfjRJLfbQ/NGd4z5G+Z8SR4sdmG0Ubf+8SovNix6L+KO04Jaak9xgQx5btMiZMfrtoeRtWqT5vMltVFTrzhRPn5ashkDgYZYmbEGtsFJZwznkov8hOPPUX8xpQLl4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708289038; c=relaxed/simple;
-	bh=u90wLGprkGpwaExqMaeqL6l7HK3cieRM+mZlNVWMJLE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=LiLRSEVkZwtekRwDyfUXcoV6adTOj0Rz5QE7hvPW1m2iE3rHKHzE4yfdpdRBDcUImyp06wBr+sYrW14cclabLk+8dmj9kuVJJT+X8dxFM9pZqb4RONuLPv8BFxiTmH/jMnl5YM0BsRgcs0xFZUrJw41SDmc/+5YPoerWtucT3hg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=nrWuTgYJ; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (89-27-53-110.bb.dnainternet.fi [89.27.53.110])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 77695975;
-	Sun, 18 Feb 2024 21:43:47 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1708289027;
-	bh=u90wLGprkGpwaExqMaeqL6l7HK3cieRM+mZlNVWMJLE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=nrWuTgYJoP5rJfqnLyekskV2aOFAOZ/aNXllar2d4UBSLiUWIGVs++/m4bUfDoDKi
-	 sgEc9/V3mluewtfV6VXLmtaJXS0MsD02Fq38MJUrWvIfojVqVcyx7faurzfguvHY29
-	 XZjGiS2krxycF7CuemHEAOR97ZlsW9+tA28nXXac=
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: linux-media@vger.kernel.org
-Cc: Paul Elder <paul.elder@ideasonboard.com>,
-	Adam Ford <aford173@gmail.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dafna Hirschfeld <dafna@fastmail.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Helen Koike <helen.koike@collabora.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org
-Subject: [PATCH v13 05/12] dt-bindings: media: rkisp1: Add i.MX8MP ISP to compatible
-Date: Sun, 18 Feb 2024 22:43:43 +0200
-Message-ID: <20240218204350.10916-6-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240218204350.10916-1-laurent.pinchart@ideasonboard.com>
-References: <20240218204350.10916-1-laurent.pinchart@ideasonboard.com>
+	s=arc-20240116; t=1708289870; c=relaxed/simple;
+	bh=gg9lJWHASR44HHvXtQri1Pkt7A1AFAQRzHCWHX4bYgM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hNy5pVgciaZark2ZBLsvdvwRw1rLt9tBKP0E7GOo7CIHOzW1Ie/neXsYRQlLdXchHbhjMKDTR8zLxRCPFWe3rbPd+s9ybKSXk5piw4jH4KSEcoJJ8krn4a/sHmImksUzhubpT/jVKfm3W2ux/Q4NKHkNUU7EBdQSHZzdT15dbhA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz; spf=pass smtp.mailfrom=z3ntu.xyz; dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b=oJDybTuh; arc=none smtp.client-ip=128.199.32.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=z3ntu.xyz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=s1;
+	t=1708289860; bh=gg9lJWHASR44HHvXtQri1Pkt7A1AFAQRzHCWHX4bYgM=;
+	h=From:Subject:Date:To:Cc;
+	b=oJDybTuhhVGhyT5XClQluwcmUDL/FF/xXG3lQOSlSai9GiaS+IEC1EfF23sufacO2
+	 78ZBmbuolQxwKsgLj1OYTYwvfW1+Hr1X3bsetTcPEziHyBpZRNOLT0YbmlFU8ZrVdb
+	 IDIr19zkxmEfHwJl/TdknQyfVql2QF7c/ae2SHEw=
+From: Luca Weiss <luca@z3ntu.xyz>
+Subject: [PATCH v2 0/3] Convert qcom,hfpll documentation to yaml + related
+ changes
+Date: Sun, 18 Feb 2024 21:57:24 +0100
+Message-Id: <20240218-hfpll-yaml-v2-0-31543e0d6261@z3ntu.xyz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADRv0mUC/22MTQrDIBgFrxK+dS3+RbCr3iNkIYlWwZqgqcQE7
+ 16bdeFtZuDNCUlHpxM8uhOizi65JTSgtw4mq8JLIzc3BoopI23ImtV7VNTbI0mFMLhZ0U/QDmv
+ Uxu1XbBgbW5e2JZarncnP/s1kgjBivZw5V1wTyZ8HC9vnvpcDxlrrF4Ink7WkAAAA
+To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Luca Weiss <luca@z3ntu.xyz>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1221; i=luca@z3ntu.xyz;
+ h=from:subject:message-id; bh=gg9lJWHASR44HHvXtQri1Pkt7A1AFAQRzHCWHX4bYgM=;
+ b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBl0m82P7odzZSC4lkYhivSeToHEzGiYMYFMiwXf
+ H6x0ie5UNiJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZdJvNgAKCRBy2EO4nU3X
+ Vn1DD/91y0Ipz7kusToi71Np3xBNR2T9HpsJdQpRkPTYRNO5ROlnaepifh4m2UH0IQQXDgcoFXA
+ A7M5zCMSiofbRjE1nITZjMl6WQPyiPVEXoa8IOphLZhMjUYrxaNlz3JVWb7bKZAeOTRD/ZUPjhc
+ Btn+pqHthOyl3QIUn17Uro7fNovfQbkM2rn59qaYaD8gGbLOf2cqip74ojB/Kp38rIdstvYul/9
+ dDNzTevs47Nvzf3ye2aWiytXicjMiCO51M44ccqxGUxGG9LZSfAZh65I0eOCf12ds+8RTmAcpBs
+ SoQPgZkWEQqFT/IOG3H/IpYmNzTpnbPJcZVdvy7+SvNsHb1zCngu/XIy0HOI+QYSQAoAvww5PUo
+ ly8SVUYxdlAx2DiIAjLEKALJrZhoG+JG+olKX8BnrsaB0SMb3KOqOEh767QlTY/vX7hvCmPk7KH
+ YR3MLQFUcOV5KN2JZ4RlS4Rhy04S3XlzR1+qez05fRTtneKTnTx4RZnZlTPWn/MPj8yAYq/TrJT
+ H/43jhMQF4kbx/Pf04rdSzrCqjXlw09dyST8nXKomyn0wpKRb4qIy2f9wyuzn+FYnzosBQKuay0
+ lx4iqmT/yHpIajq7CzyoMS1gGDTrXQCfsxdsq+ajGea+CdRlt8s0BDZj+HkS0zVPqslhpp3FgSX
+ HoOC/jWDlJdoIPA==
+X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
+ fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
 
-From: Paul Elder <paul.elder@ideasonboard.com>
+Finally touch the hfpll doc and convert it to yaml, and do some related
+changes along the way.
 
-The i.MX8MP ISP is compatbile with the rkisp1 driver. Add it to the list
-of compatible strings. While at it, expand on the description of the
-clocks to make it clear which clock in the i.MX8MP ISP they map to,
-based on the names from the datasheet.
-
-Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-Tested-by: Adam Ford <aford173@gmail.com>
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 ---
-Changes since v1:
+Changes in v2:
+- Drop APQ8064/IPQ8064/MSM8960 compatibles (Dmitry)
+- Update example to MSM8974 since IPQ8064 is dropped
+- Clean up dt binding description (Krzysztof)
+- Remove second example in docs (Krzysztof)
+- Try to clear up the text and content around deprecating qcom,hfpll
+- Link to v1: https://lore.kernel.org/r/20231231-hfpll-yaml-v1-0-359d44a4e194@z3ntu.xyz
 
-- Add fsl,blk-ctrl property
-- Make iommus, phys and phy-names conditional on compatible
 ---
- .../bindings/media/rockchip-isp1.yaml         | 37 ++++++++++++++++---
- 1 file changed, 31 insertions(+), 6 deletions(-)
+Luca Weiss (3):
+      dt-bindings: clock: qcom,hfpll: Convert to YAML
+      clk: qcom: hfpll: Add QCS404-specific compatible
+      arm64: dts: qcom: qcs404: Use qcs404-hfpll compatible for hfpll
 
-diff --git a/Documentation/devicetree/bindings/media/rockchip-isp1.yaml b/Documentation/devicetree/bindings/media/rockchip-isp1.yaml
-index afcaa427d48b..6be00aca4181 100644
---- a/Documentation/devicetree/bindings/media/rockchip-isp1.yaml
-+++ b/Documentation/devicetree/bindings/media/rockchip-isp1.yaml
-@@ -16,6 +16,7 @@ description: |
- properties:
-   compatible:
-     enum:
-+      - fsl,imx8mp-isp
-       - rockchip,px30-cif-isp
-       - rockchip,rk3399-cif-isp
- 
-@@ -36,9 +37,9 @@ properties:
-     minItems: 3
-     items:
-       # isp0 and isp1
--      - description: ISP clock
--      - description: ISP AXI clock
--      - description: ISP AHB clock
-+      - description: ISP clock (for imx8mp, clk)
-+      - description: ISP AXI clock (for imx8mp, m_hclk)
-+      - description: ISP AHB clock (for imx8mp, hclk)
-       # only for isp1
-       - description: ISP Pixel clock
- 
-@@ -52,6 +53,13 @@ properties:
-       # only for isp1
-       - const: pclk
- 
-+  fsl,blk-ctrl:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    maxItems: 1
-+    description:
-+      A phandle to the media block control for the ISP, followed by a cell
-+      containing the index of the gasket.
-+
-   iommus:
-     maxItems: 1
- 
-@@ -113,9 +121,6 @@ required:
-   - interrupts
-   - clocks
-   - clock-names
--  - iommus
--  - phys
--  - phy-names
-   - power-domains
-   - ports
- 
-@@ -143,6 +148,26 @@ allOf:
-       required:
-         - interrupt-names
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: fsl,imx8mp-isp
-+    then:
-+      properties:
-+        iommus: false
-+        phys: false
-+        phy-names: false
-+      required:
-+        - fsl,blk-ctrl
-+    else:
-+      properties:
-+        fsl,blk-ctrl: false
-+      required:
-+        - iommus
-+        - phys
-+        - phy-names
-+
- additionalProperties: false
- 
- examples:
+ .../devicetree/bindings/clock/qcom,hfpll.txt       | 63 --------------------
+ .../devicetree/bindings/clock/qcom,hfpll.yaml      | 69 ++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/qcs404.dtsi               |  2 +-
+ drivers/clk/qcom/hfpll.c                           |  6 +-
+ 4 files changed, 74 insertions(+), 66 deletions(-)
+---
+base-commit: 841c35169323cd833294798e58b9bf63fa4fa1de
+change-id: 20231231-hfpll-yaml-9266f012365c
+
+Best regards,
 -- 
-Regards,
-
-Laurent Pinchart
+Luca Weiss <luca@z3ntu.xyz>
 
 
