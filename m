@@ -1,71 +1,71 @@
-Return-Path: <devicetree+bounces-43203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43204-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4191F85978A
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 16:14:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D5B385978D
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 16:14:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4127281A06
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 15:14:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C273F1C20956
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 15:14:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8CEA6BFDF;
-	Sun, 18 Feb 2024 15:14:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3788B6D1C0;
+	Sun, 18 Feb 2024 15:14:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="GT+EQuZN"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="VM2aNk6R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 289A46BFA5
-	for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 15:14:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48CF56BFC2
+	for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 15:14:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708269243; cv=none; b=sqaTwKMmaKSSR6x8OPJ2FpiwccsI+3FBsWD0XVuIJmomjkicJlyLPlFV+0HqwgGuc8731sYhROjs7utZv2xLAZJLsmRFhXYSZrkiU3C970LvMW5P8U8oYa1mT2F/Izbf4uWE8vEZNi76jtqG02xe1MReul8ekBsym+dfxVYaoD8=
+	t=1708269245; cv=none; b=uG8XQsQOqaepRctHvQnwbGFekyVxt80hS1/cN3sMYC/5Orvh1TdeVNqGdWIAzXmGmjH8sgNauGL8QtLGuXYBp9q2ChH0wdea4dBJ13PIB1/Fw6NW4J3NhlHd+iIsKzpuvs1D6jyPAVjxbb6aL8lygcbOSoB/MmNZCK2bQV7S1uY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708269243; c=relaxed/simple;
-	bh=Gb8MOPQA8iHaNkDZvQvGMuyeyh0ktuw3AzkNkmj2+SQ=;
+	s=arc-20240116; t=1708269245; c=relaxed/simple;
+	bh=H/zv3C2CZW90tPZxYHeGW7zgfgaSRZPYhb1fQURgdAg=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Wxxof8FSNS57i0r1FK99H+xV2W4UCFaWbGj1uTkCiEqbcm/p74zun1NyZOlA/1TFxKzHtQ7wQEb9S9J2G59kq4TBNjcgja7rwXFCcI/pAWVwDLzkc3+1QvbKBajyTkZxFkKoHBkmNerkxYDsVfKthLF2dJFRn4ivQomUzllJzNU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=GT+EQuZN; arc=none smtp.client-ip=209.85.221.50
+	 MIME-Version; b=n37zXDCNUvBwGK9H1Yb0MKf4bNeRa66D4P2Uf6vyu1ze4SlBql+YdC6DCi/cscdB+OK9GHJ55MpGu5h5dHJnhXEci0WOYaKYbQ7IckQr9pzzueID6c3Rm7YSPeLBt2/De6/ju+EYKP31B6Pixl5+8O0nS/Ml9T1UbhLUttX+Rnk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=VM2aNk6R; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-33d509ab80eso2743f8f.3
-        for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 07:14:01 -0800 (PST)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-41264eca78bso1470885e9.2
+        for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 07:14:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1708269240; x=1708874040; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1708269241; x=1708874041; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=v3INayNM3vP9PiYuaZtLXnwcILE1ew0o01Gi3XQP/5Q=;
-        b=GT+EQuZNHSR7L7iu1c62gvDS5OkDdGUFQZ26LPYPxWUjPzVkMm8cPIqc6WW5XZCSPa
-         VOzEIypJGsaFnAOlfxCWltlZgp74qCjb+xUMso+Ou58nu+UuZn/1Z9fyEBouIcxqt33l
-         atF9XHcst9dGgzafIoQq7+tYI+SIcU+uvVkbRrjuPg8nmAHW7gqIqMoUWzq2ODqsiq9E
-         RbwC7vxdT8sXnNge6XgLIv/PMK9cNzX+0ahVscKSTIqBHNkqCa6Z1L0hQehB6zelO0hC
-         3uEXPlc8SdPSm2AZmqIfLWn4uNOqr/43EV3+OGy8YrtZxS9Hlf1ee0bs7kANSV9mj+a7
-         e2Tg==
+        bh=rUVUdAZbUjy9PIf6dchfSb+esF5ISu8GKcQonMOR4P4=;
+        b=VM2aNk6Ra1FZrytl2GO2hvpYVrHLrjrqiWXI060997d7qZvoDe0Jo38Szcg7sqx8n2
+         eKzofLTipHwJenKF8OM0ZJMi+kT8y1xTxaV3z6KR21x3f56eIvjk/RDWqKWzUGn3cacL
+         PfdLo7i8vVrCUdMcIzVltCN5kgJ6isOoYffX80oiB6wzXIyVeMOad9YM80nEjAgA7zrm
+         gmhA3esT7k/zxfxJUbvCAdyuDDmfMwngsyB/DvKBfLSL3Q/Bsk0fCMI6Q9QwWEYudjek
+         jqDj1BVW4lz1zvyapNnhGUxAC7cee0SkwOSqtXM6E42nHM01xxQ/gTpZ6GL2uRbTxtrM
+         Cabg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708269240; x=1708874040;
+        d=1e100.net; s=20230601; t=1708269241; x=1708874041;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=v3INayNM3vP9PiYuaZtLXnwcILE1ew0o01Gi3XQP/5Q=;
-        b=jHWPqk6fajmBtwNyWFDczvAcVmuE7WW+T+8NnLDhRERFqt46ClxMbOWoH7J3Y4KvQR
-         w+UJXklUMWoKXWyEU1kNmGmMqt/Ndl/VjtKRHvrTkWfB0zv1l5VVicU7zyq6hlYUuEok
-         dz2N2K//JCCVZndod8m4QM17dhlqknwxwgG4Ch/LmRzBy8ClpB5D0eU1oYOsP/SrGtM/
-         iH9Y6l6SfuRqKRNUXmYA6+jIpW6sZI5m8UOPqaZH48DV4q2jPyHHk9KhopggVmyNJNq4
-         B6INrJ2+uFnKyMeZA7hz/QpiNENaW8eA9FAyd8B9SHZHRWoPpgxb6rZEZwyCpY45MNiy
-         /+pw==
-X-Gm-Message-State: AOJu0YxdOOgzGfKCD8lyPZeBBoJv/4tJx1xH1ldUyDoANHcTXwOxgy/t
-	ShlunxPEycvdq0D69R7wD+2fhhbwPWECtYAC96/pBtmLuG7/OvfjfY1W7355M48=
-X-Google-Smtp-Source: AGHT+IF2GNQ1KecR5Q/WvCiqLqgcAqs5/zZPRwICkdDauhhHxyvX3MpY9XT2uYz4KToBXVsgCfaaQg==
-X-Received: by 2002:a5d:6da7:0:b0:33d:500c:d498 with SMTP id u7-20020a5d6da7000000b0033d500cd498mr118535wrs.64.1708269240595;
-        Sun, 18 Feb 2024 07:14:00 -0800 (PST)
+        bh=rUVUdAZbUjy9PIf6dchfSb+esF5ISu8GKcQonMOR4P4=;
+        b=rIA3v2UmIsBwaIt0P0se5j28Qqa/LFMfKbC0P3wcPLJPdIk5nctKnrx3naV1CUgpug
+         3MGRtbZhayAYzee0Vzz0s4lBVfecRDD+Vt0yMnchOFfPGbxylhrgFN+jy8pSE2slc0zq
+         E86ITWxSPtQ6/DlbUKCWomh0iH7QSEI4xQCZ6GdJrgPMxgDmxc2mEnnr8PpnNkg5dqjG
+         2zfxoNJLJoV4iN7PGy0FtVOzfHb3bL30znm7CaSSXStwv0KUKEx5Klhg4MOUNiGORhaL
+         50sfWU8XBodyP7S1oJvooqhhdDYgkybfZYrwIVb63w0yXqxZ9xDuY+eDAjj90oSac7sH
+         geoQ==
+X-Gm-Message-State: AOJu0YxGK8mGtYRjOKscsuozdOaa7EWP1K/5pzR+dHQoL1QKTQzm5VnU
+	VT2wN89s7eRES+Duwxjd9BDix3YnLxVq0563e3uw5D0jQb8esclW+7d7VW47B8M=
+X-Google-Smtp-Source: AGHT+IHPY/uYbUsFh8NAHBidCxBRlYJWKA3yPNIeNzU/Hvd+FQ/6eB1Ps/L+ZOzOynGdFvmYV+vBDQ==
+X-Received: by 2002:a05:600c:46d0:b0:410:3ffb:87dc with SMTP id q16-20020a05600c46d000b004103ffb87dcmr6994676wmo.35.1708269241669;
+        Sun, 18 Feb 2024 07:14:01 -0800 (PST)
 Received: from claudiu-X670E-Pro-RS.. ([82.78.167.20])
-        by smtp.gmail.com with ESMTPSA id bu19-20020a056000079300b0033d3d9447e3sm2150744wrb.83.2024.02.18.07.13.59
+        by smtp.gmail.com with ESMTPSA id bu19-20020a056000079300b0033d3d9447e3sm2150744wrb.83.2024.02.18.07.14.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Feb 2024 07:14:00 -0800 (PST)
+        Sun, 18 Feb 2024 07:14:01 -0800 (PST)
 From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
 To: robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
@@ -76,9 +76,9 @@ Cc: devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Subject: [PATCH 1/2] ARM: dts: microchip: sama7g5: align dmas to the opening '<'
-Date: Sun, 18 Feb 2024 17:13:52 +0200
-Message-Id: <20240218151353.3612621-2-claudiu.beznea@tuxon.dev>
+Subject: [PATCH 2/2] ARM: dts: microchip: sam9x60: align dmas to the opening '<'
+Date: Sun, 18 Feb 2024 17:13:53 +0200
+Message-Id: <20240218151353.3612621-3-claudiu.beznea@tuxon.dev>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20240218151353.3612621-1-claudiu.beznea@tuxon.dev>
 References: <20240218151353.3612621-1-claudiu.beznea@tuxon.dev>
@@ -97,85 +97,301 @@ line."
 
 Signed-off-by: Claudiu Beznea <claudiu.beznea@tuxon.dev>
 ---
- arch/arm/boot/dts/microchip/sama7g5.dtsi | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+ arch/arm/boot/dts/microchip/sam9x60.dtsi | 64 ++++++++++++------------
+ 1 file changed, 32 insertions(+), 32 deletions(-)
 
-diff --git a/arch/arm/boot/dts/microchip/sama7g5.dtsi b/arch/arm/boot/dts/microchip/sama7g5.dtsi
-index 269e0a3ca269..15227a870d34 100644
---- a/arch/arm/boot/dts/microchip/sama7g5.dtsi
-+++ b/arch/arm/boot/dts/microchip/sama7g5.dtsi
-@@ -714,7 +714,7 @@ uart0: serial@200 {
- 				clocks = <&pmc PMC_TYPE_PERIPHERAL 38>;
- 				clock-names = "usart";
- 				dmas = <&dma1 AT91_XDMAC_DT_PERID(6)>,
--					<&dma1 AT91_XDMAC_DT_PERID(5)>;
-+				       <&dma1 AT91_XDMAC_DT_PERID(5)>;
- 				dma-names = "tx", "rx";
- 				atmel,use-dma-rx;
- 				atmel,use-dma-tx;
-@@ -740,7 +740,7 @@ i2c1: i2c@600 {
- 				clocks = <&pmc PMC_TYPE_PERIPHERAL 39>;
- 				atmel,fifo-size = <32>;
- 				dmas = <&dma0 AT91_XDMAC_DT_PERID(8)>,
--					<&dma0 AT91_XDMAC_DT_PERID(7)>;
-+				       <&dma0 AT91_XDMAC_DT_PERID(7)>;
- 				dma-names = "tx", "rx";
- 				status = "disabled";
- 			};
-@@ -763,7 +763,7 @@ uart3: serial@200 {
- 				clocks = <&pmc PMC_TYPE_PERIPHERAL 41>;
- 				clock-names = "usart";
- 				dmas = <&dma1 AT91_XDMAC_DT_PERID(12)>,
--					<&dma1 AT91_XDMAC_DT_PERID(11)>;
-+				       <&dma1 AT91_XDMAC_DT_PERID(11)>;
- 				dma-names = "tx", "rx";
- 				atmel,use-dma-rx;
- 				atmel,use-dma-tx;
-@@ -807,7 +807,7 @@ uart4: serial@200 {
- 				clocks = <&pmc PMC_TYPE_PERIPHERAL 42>;
- 				clock-names = "usart";
- 				dmas = <&dma1 AT91_XDMAC_DT_PERID(14)>,
--					<&dma1 AT91_XDMAC_DT_PERID(13)>;
-+				       <&dma1 AT91_XDMAC_DT_PERID(13)>;
- 				dma-names = "tx", "rx";
- 				atmel,use-dma-rx;
- 				atmel,use-dma-tx;
-@@ -833,7 +833,7 @@ uart7: serial@200 {
- 				clocks = <&pmc PMC_TYPE_PERIPHERAL 45>;
- 				clock-names = "usart";
- 				dmas = <&dma1 AT91_XDMAC_DT_PERID(20)>,
--					<&dma1 AT91_XDMAC_DT_PERID(19)>;
-+				       <&dma1 AT91_XDMAC_DT_PERID(19)>;
- 				dma-names = "tx", "rx";
- 				atmel,use-dma-rx;
- 				atmel,use-dma-tx;
-@@ -928,7 +928,7 @@ i2c8: i2c@600 {
- 				clocks = <&pmc PMC_TYPE_PERIPHERAL 46>;
- 				atmel,fifo-size = <32>;
- 				dmas = <&dma0 AT91_XDMAC_DT_PERID(22)>,
--					<&dma0 AT91_XDMAC_DT_PERID(21)>;
-+				       <&dma0 AT91_XDMAC_DT_PERID(21)>;
- 				dma-names = "tx", "rx";
- 				status = "disabled";
- 			};
-@@ -952,7 +952,7 @@ i2c9: i2c@600 {
- 				clocks = <&pmc PMC_TYPE_PERIPHERAL 47>;
- 				atmel,fifo-size = <32>;
- 				dmas = <&dma0 AT91_XDMAC_DT_PERID(24)>,
--					<&dma0 AT91_XDMAC_DT_PERID(23)>;
-+				       <&dma0 AT91_XDMAC_DT_PERID(23)>;
- 				dma-names = "tx", "rx";
- 				status = "disabled";
- 			};
-@@ -977,7 +977,7 @@ spi11: spi@400 {
- 				#size-cells = <0>;
- 				atmel,fifo-size = <32>;
- 				dmas = <&dma0 AT91_XDMAC_DT_PERID(28)>,
--					    <&dma0 AT91_XDMAC_DT_PERID(27)>;
-+				       <&dma0 AT91_XDMAC_DT_PERID(27)>;
- 				dma-names = "tx", "rx";
- 				status = "disabled";
- 			};
+diff --git a/arch/arm/boot/dts/microchip/sam9x60.dtsi b/arch/arm/boot/dts/microchip/sam9x60.dtsi
+index 73d570a17269..291540e5d81e 100644
+--- a/arch/arm/boot/dts/microchip/sam9x60.dtsi
++++ b/arch/arm/boot/dts/microchip/sam9x60.dtsi
+@@ -179,7 +179,7 @@ uart4: serial@200 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(8))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(9))>;
+@@ -202,7 +202,7 @@ spi4: spi@400 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(8))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(9))>;
+@@ -220,7 +220,7 @@ i2c4: i2c@600 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(8))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(9))>;
+@@ -248,7 +248,7 @@ uart5: serial@200 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(10))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(11))>;
+@@ -271,7 +271,7 @@ spi5: spi@400 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(10))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(11))>;
+@@ -289,7 +289,7 @@ i2c5: i2c@600 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(10))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(11))>;
+@@ -377,7 +377,7 @@ uart11: serial@200 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(22))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(23))>;
+@@ -399,7 +399,7 @@ i2c11: i2c@600 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(22))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(23))>;
+@@ -426,7 +426,7 @@ uart12: serial@200 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(24))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(25))>;
+@@ -448,7 +448,7 @@ i2c12: i2c@600 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(24))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(25))>;
+@@ -583,7 +583,7 @@ uart6: serial@200 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(12))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(13))>;
+@@ -605,7 +605,7 @@ i2c6: i2c@600 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(12))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(13))>;
+@@ -632,7 +632,7 @@ uart7: serial@200 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(14))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(15))>;
+@@ -654,7 +654,7 @@ i2c7: i2c@600 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(14))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(15))>;
+@@ -681,7 +681,7 @@ uart8: serial@200 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(16))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(17))>;
+@@ -703,7 +703,7 @@ i2c8: i2c@600 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(16))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(17))>;
+@@ -730,7 +730,7 @@ uart0: serial@200 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(0))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(1))>;
+@@ -753,7 +753,7 @@ spi0: spi@400 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(0))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(1))>;
+@@ -771,7 +771,7 @@ i2c0: i2c@600 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(0))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(1))>;
+@@ -798,7 +798,7 @@ uart1: serial@200 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(2))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(3))>;
+@@ -821,7 +821,7 @@ spi1: spi@400 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(2))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(3))>;
+@@ -839,7 +839,7 @@ i2c1: i2c@600 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(2))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(3))>;
+@@ -866,7 +866,7 @@ uart2: serial@200 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(4))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(5))>;
+@@ -889,7 +889,7 @@ spi2: spi@400 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(4))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(5))>;
+@@ -907,7 +907,7 @@ i2c2: i2c@600 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(4))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(5))>;
+@@ -934,7 +934,7 @@ uart3: serial@200 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(6))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(7))>;
+@@ -957,7 +957,7 @@ spi3: spi@400 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(6))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(7))>;
+@@ -975,7 +975,7 @@ i2c3: i2c@600 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(6))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(7))>;
+@@ -1057,7 +1057,7 @@ uart9: serial@200 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(18))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(19))>;
+@@ -1079,7 +1079,7 @@ i2c9: i2c@600 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(18))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(19))>;
+@@ -1106,7 +1106,7 @@ uart10: serial@200 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(20))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(21))>;
+@@ -1128,7 +1128,7 @@ i2c10: i2c@600 {
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(20))>,
+-						<&dma0
++					       <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+ 						 AT91_XDMAC_DT_PER_IF(1) |
+ 						 AT91_XDMAC_DT_PERID(21))>;
 -- 
 2.39.2
 
