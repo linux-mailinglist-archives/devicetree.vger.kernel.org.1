@@ -1,117 +1,120 @@
-Return-Path: <devicetree+bounces-43148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43155-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B03D4859632
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 11:25:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97DEA859658
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 11:35:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4334A1F2196C
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 10:25:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B51AC1C20F22
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 10:35:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CB743715E;
-	Sun, 18 Feb 2024 10:25:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 241064CE0B;
+	Sun, 18 Feb 2024 10:35:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=grimler.se header.i=@grimler.se header.b="POmXrPzV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wwCnnCM2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-188.mta0.migadu.com (out-188.mta0.migadu.com [91.218.175.188])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E617D36B1C
-	for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 10:24:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.188
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9739623745
+	for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 10:35:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708251900; cv=none; b=aqIFjb9otdOsWXQTqYFLRuuL+6mNwwC3thm4lrzP/0a+w4G0FlaxEjj4uiF05ejrMlyO2iOaYT/y+qPEltc9N+KE2QV8LJnFJNM59UdtU7y1pEZRHfdp8tLBP4+lGewdmv9/TjddiEbRSZxpKzhMJ81FO08piXlslrOlnx4FRC8=
+	t=1708252504; cv=none; b=YqpKiL0Ynt+X9H69yLAWjUufZGkwxkCO8JH5Q6oIWA5lAsUDoKiCIKsVzPePXzGVGT1sjzc9VOwC7Gf/P3GdQKc0swuQ50T+qyRDCsUsViuTJLQAb0AKOtdAX5lgtbxK/VeNRrkBNU2UHeL8j2VQ5Ic12lsn/7KInHHzeIpdSfE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708251900; c=relaxed/simple;
-	bh=7T65f/Wd63Ks1lufnUN/PWkHZ5lS3y7W0WH/QysgGms=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O5JFgb3UwADIG5O3Q4Qxc5OZPhREQS2jx002US9+bqAdoNNRk7Jwz2vnMn3HmvKvDL+J7+C1iqgqmaN/gXsGCbIPr0t9Gn+q0FnIYC3SpqyYZohMMfTzMCMkUpjLZk9s9pE8W5wus0VxCnRYuxc+/Q6AZ46jMKEHbIf+WLj/mC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=grimler.se; spf=pass smtp.mailfrom=grimler.se; dkim=pass (1024-bit key) header.d=grimler.se header.i=@grimler.se header.b=POmXrPzV; arc=none smtp.client-ip=91.218.175.188
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=grimler.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=grimler.se
-Date: Sun, 18 Feb 2024 11:24:49 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=grimler.se; s=key1;
-	t=1708251893;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=5Q6gteFXLuw2xa9qiBWiKUaLv3oz6lEnepe4NxbB9Vs=;
-	b=POmXrPzVyqbX9+lwS3g3MVsM1gkzEC6PGkcdMmTbGjf5yrQqoVeEAEoDS4EJZiuikXJKfd
-	1vWGINMT2dD/TMkzn6/SakwIOj1swc3zbVfj/gXijUECLRdfA7pjr8CBm/Tb4DkQjDtQYi
-	OW/n+aog7oheGUfApsczc9y54aCsUcc=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Henrik Grimler <henrik@grimler.se>
-To: Artur Weber <aweber.kernel@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH] ARM: dts: exynos4212-tab3: limit usable memory range
-Message-ID: <20240218102449.GA7577@grimlerstat.localdomain>
-References: <20240217-tab3-limit-usable-memory-range-v1-1-49cc9c86a5cc@gmail.com>
+	s=arc-20240116; t=1708252504; c=relaxed/simple;
+	bh=TJFFmm0tNGYJ16tW2HX/PUySMw6vKw8xiB7Xdtc775k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FJFYLKhzlzZ3NOH3uyQrDg8L3/jJJJpR72Jg44vuOFJS91hZNnCneXsuY3PY3T1qQPXTU1AVY3W5MexkcLIUJO3Q0IRFkg4Hg26nBqaFfBfKpDg+EoJZillg5ctFhOr6lnnS/S12JGs1i8ZAxIg3ZApDYi+ssdl9MK+obvPd5LI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wwCnnCM2; arc=none smtp.client-ip=209.85.216.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-2995185dbbbso1054486a91.3
+        for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 02:35:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708252502; x=1708857302; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HuygbSf4UHd35+EXR11toQj5dF2p1THmwKG5xqllq/0=;
+        b=wwCnnCM23OD8k1jm/Grl/nUSgfuhZEHobTr3QSd011Mk+ObsiBPeQX3l3YE21H3q+j
+         Z1RLeqUJslHUTFaJkFsYNtD5ccMITQd1pjwnjyH06+yMB09+drjURnS7gfq+Mo88RwXh
+         kGgxwlNoZ4qJrPZiEfowRbNY5bPWJAfjfXw9GE0xS3cADndcO9JDq4iD73RPEhuHfHIe
+         qk733IoXcDhajHCqf/pTeRlhPPasY6v2EjujCpgFEVfOxyz1LDQOqaEe7C+rhG0IXhc3
+         eYec+dsZ69Ets3AibLzwcsHl/dvgzFgDpMqDRlsP5PQqYkJMuGBj4gnPNU+mKrt0U3hP
+         5RcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708252502; x=1708857302;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HuygbSf4UHd35+EXR11toQj5dF2p1THmwKG5xqllq/0=;
+        b=KvshQfvcI4lY1qblarT2Kg9pK1Rh65Ofn+qCBqKXtPr/S7iWos/QUChUR7pIa26JMm
+         ikC3KEZJ7YIJZQIjpPRbpzxUf9FaFJkfcAmf1lK0kOq/j+kwg2bqMNcRdDRzI0FwdtxZ
+         t59fP97W2rivNJ+RnYcCz6M3dQJcb03zGKxLDAAKIfld8Gc1eGhf3TDFOuU4q90nLDzH
+         /t9c3W1cpGuf8ECylCII9OjVGtLDI0b917quYO25Qxq8+FR2NuYrxdTGQLB3t+6krqxj
+         sIKxVR8Ptk1+lpCtRnVXnWlfH9XvfW/yLk1rUXt0UuA6B1S75a3Jd2A/kJcj1AqrMVsI
+         pDJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVPdzpwFWE2Oak06yyKgGrYvBu9fU8xDFaMh0f1u3qaue0hEMa433z1KavMPG19xAPjfd3M0WyIseXsuEqeX1p/lDPvB75ar8jjRA==
+X-Gm-Message-State: AOJu0YwOZA8HEWOEVQZ+6AyKXbuMfb+zfjIw4iQ+uij9aFAiZN4YkFOd
+	f3jZaanObaxf9uV+gMk6a/a5h4PZcNE9+WR07xb9G28GGajTFCGRYZpfp2e+kmI=
+X-Google-Smtp-Source: AGHT+IHXeXDIyPNdZ2RPZVYYlClPYmadYgfkCXRMpJ8r65aqMbKTZH34Y5qfPWSqEPa9fsE6BJsIIQ==
+X-Received: by 2002:a17:90a:b014:b0:299:6e88:7b6a with SMTP id x20-20020a17090ab01400b002996e887b6amr1432659pjq.36.1708252501761;
+        Sun, 18 Feb 2024 02:35:01 -0800 (PST)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id w19-20020a17090aea1300b002960e397891sm2172696pjy.1.2024.02.18.02.34.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 18 Feb 2024 02:35:01 -0800 (PST)
+Message-ID: <c7a8a0ff-2905-4253-bd8c-053d4a39d43f@linaro.org>
+Date: Sun, 18 Feb 2024 11:34:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240217-tab3-limit-usable-memory-range-v1-1-49cc9c86a5cc@gmail.com>
-X-Migadu-Flow: FLOW_OUT
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/3] clocksource: imx-sysctr: support i.MX95
+Content-Language: en-US
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bai Ping <ping.bai@nxp.com>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+ Marco Felsch <m.felsch@pengutronix.de>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20240205-imx-sysctr-v4-0-ca5a6e1552e7@nxp.com>
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20240205-imx-sysctr-v4-0-ca5a6e1552e7@nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Artur,
-
-On Sat, Feb 17, 2024 at 08:02:47PM +0100, Artur Weber wrote:
-> The stock bootloader on the Samsung Galaxy Tab 3 8.0 provides an
-> incorrect available memory range over ATAG_MEM. Limit the usable
-> memory in the DTS to prevent it from doing so, without having to
-> disable ATAG support.
+On 05/02/2024 04:17, Peng Fan (OSS) wrote:
+> i.MX95 System Counter module control register space is blocked
+> by SCMI firmware, so we use Read Register space to get the counter.
 > 
-> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+> V2:
+>    - imx95 is not compatible with the existing hardware, so add a
+>      seperate entry for i.MX95 in dt-binding.
+>    - Per Marco's comments, the global variables was removed except
+>      to_sysctr. And add a new TIMER_OF_DECLARE entry for i.MX95
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
->  arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi b/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
-> index e5254e32aa8f..9bc05961577d 100644
-> --- a/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
-> +++ b/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
-> @@ -45,6 +45,12 @@ chosen {
->  		/* Default S-BOOT bootloader loads initramfs here */
->  		linux,initrd-start = <0x42000000>;
->  		linux,initrd-end = <0x42800000>;
-> +
-> +		/*
-> +		 * Stock bootloader provides incorrect memory size in ATAG_MEM;
-> +		 * override it here
-> +		 */
-> +		linux,usable-memory-range = <0x40000000 0x3fc00000>;
 
-Maybe it would make sense to set the memory reg to
-<0x40000000 0x60000000> (1.5 GiB) and move the comment about last
-512(/516) MiB being weird/broken here instead.  It looks a bit weird
-that the memory range and usable-memory-range are identical, and device tree
-should describe hardware, which technically has 1.5 GiB RAM.
+Applied, thanks
 
-From a functional point of view it does not really matter, so in any case:
-Reviewed-by: Henrik Grimler <henrik@grimler.se>
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
->  	};
->  
->  	firmware@204f000 {
-> 
-> ---
-> base-commit: 0f1dd5e91e2ba3990143645faff2bcce2d99778e
-> change-id: 20240217-tab3-limit-usable-memory-range-1d1ffa8dc44d
-> 
-> Best regards,
-> -- 
-> Artur Weber <aweber.kernel@gmail.com>
-> 
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
+
 
