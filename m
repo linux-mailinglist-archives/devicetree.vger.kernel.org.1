@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-43215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D26D859896
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 19:35:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 234388598AD
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 19:52:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A58B2819C5
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 18:35:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8D9B3B210EE
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 18:52:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B944F6D1AB;
-	Sun, 18 Feb 2024 18:35:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 484886F082;
+	Sun, 18 Feb 2024 18:52:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Snso/58g"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Mh+xjTXW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E64E943140
-	for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 18:35:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AB5A22061
+	for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 18:52:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708281341; cv=none; b=mIewtC2I+EkFfRb4t33TRKQqPdfH5rqSG/prqXd0asDhX8vqewI+2b4oqm9ijtaPTOPlguSN5Z1XFJM0w7OR1UJvF3QAc/TeJM60rNoLLVjwwLHulhImZBk9jyMYR+08klgG2CMQDB4dm+F4HHY7kN1qm237nXt0mvqWh6udN5c=
+	t=1708282329; cv=none; b=M0GBVqCihrWWd4HU6S1hu/LvtiifirGG1Kei/wzha2tUqhmhboz0GQZwEkz6eAncov6DSsnHVGGEmqPHWQ46lnDlbrqbDORJ40B8ER971rKvDdB1xEyKJ9vR6KJeNyJV1+2Zm0YoeP02rohUCfEDwxXDuXsIaNh6sYDVvLiqKGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708281341; c=relaxed/simple;
-	bh=IELhMP2AeuGkk3hZA0BPNHxnwCFGw2GFPgU0FluDnk8=;
+	s=arc-20240116; t=1708282329; c=relaxed/simple;
+	bh=WIqJZbaPkUeaZ6fzw7naKrgrDKBnwdRF/57LdtYivCM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F7LLq4lk7D+hkE8bfXWyT/cbHwavt3q+q68l+UtTu9Iddn/hXoHS+gFLU2BZg1k5StEF1a8v8AxiPFC4ct7oA3qUiPE7Q/VT8YcKGp8C6Bg+mCcDnOAQfEC77FsN7Psr2IV6lCBJKJmnP6nTNLknguUq+41hAxHErJT2El8Emao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Snso/58g; arc=none smtp.client-ip=209.85.128.47
+	 In-Reply-To:Content-Type; b=ODLTY1W7tqUHUIRZsDC0Rr4+EjPdkkfjl2gJgsVz0+CYKUK5xIzoQOdD+pQpT7g5xOXnv2H2RDeua2sxZDEz9UlTVGUlL4D9fulY48Yee4//VtsBopxa567TVgul18hjn19azg99tiZ77c+TwWvOTeMjyXVgGdb2v96ixrcHKl0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Mh+xjTXW; arc=none smtp.client-ip=209.85.221.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-41265d2f7acso1549275e9.1
-        for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 10:35:39 -0800 (PST)
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-33d26da3e15so920335f8f.1
+        for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 10:52:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708281338; x=1708886138; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=HmhsdjiVydbji9/BcSZQ8XMnnQqt5AZTtEIoi8Kez+o=;
-        b=Snso/58gwtZ3uqEfEGIWf9bry0jm02h4kDenwQUu6FR3mSiQSk9SwNrR2ZZRk7AQUi
-         AQ7CnNowb5FInlDtIJ0s2o5DbRJqiOs16ZVSXbSMJHSJHXvxfVlC5LacriiCVR2YLXZ+
-         Si1uEDMxW0tI6yX7rxbuaXXdPW1O819f4NprROqx1G9m44byg2awZUJMhorMrKudEGlI
-         XVdLTBEPwWN+bFMXudbeO8Z9Il9ltCQQMt9vLgokdTR+v9rybIjon4WI1rPXzuGVeYYl
-         I5/M5tAHzij5He2ZnFHSYnp4eeAtRPRqUXkgpJoKeAerxnlZi/nwrHbaNYxqPgLYao6a
-         NtIQ==
+        d=linaro.org; s=google; t=1708282326; x=1708887126; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wNBEOVVb/rP1qaF97WrZeJwt+wEqX59IP8EY5F5M0uM=;
+        b=Mh+xjTXWVAWLomdgkOXG/7uHRYmHcrO6OItQW3iHb3terVhC9zlX+fnHZXqr7qC59k
+         XSC+46qZM5ipAPbabYEoM03fpb1y0jrQZxSIPMr+QtgkAZNxhnz4Lh7bNFsmcPBysVbn
+         hYj9M2aTv4f5UI/AYbVpg4OgVAUuQ10dAJeGY0XBxvtO6xUHkCj28wFYIze/G9vaTSQm
+         hpMzMGgGttCbrWh+lAgNMnSuoyFY+HyqmidmFzk9zNPGBxGq8PRXZaBzDbrwCsSXSSE5
+         NkfVG3YRdCDdK664XaYTbwQ+QgYQzy/Rqu73/X/zziq1+wekyhe7rUraoN/jVxUiTwNi
+         y9ZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708281338; x=1708886138;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HmhsdjiVydbji9/BcSZQ8XMnnQqt5AZTtEIoi8Kez+o=;
-        b=QtkzvbCcrHdbsYOCU5Ram4Lv5gtD0HIkArghJPqN+Xd4E2fD2m8JWDJgS7Hl3+UJhL
-         AtTjC5Ro4O16PoFpA8XB056SgyVK9HDCO9AFIIGgBXuKZ4Mfoz5iGmk/699xZdgZkMUM
-         xacoeZozCiwRrELr0DhUJMqRiqYXEUIbpYnCF77mfgk+O42opRY80GBNLiIKCX6kqqXJ
-         eo1Jc8/xHtLJlDyog5wfolFGJJpbyGnGr/d+JmsZUKVbP9XEyqyR5T/qH1uiJ/M85zYa
-         TTmEy15s3PGweqUrxkKbehd4VUAGXLQ3e2voUC6m5r2H/RLvYjX4ev2C1GIoa/3i6Gjo
-         JzFg==
-X-Forwarded-Encrypted: i=1; AJvYcCXVO7u3Yt/E6Ih1sbcP55fEUdchqLdXpicOABj9wH2LxpqZsrjp8UUYP4p64d7HQmUUhHX4TDhlYFld2EvVlpn+nyavGuuTveKFbw==
-X-Gm-Message-State: AOJu0YyJH8aPpYigFCRQrTnEG7TnAYD76a4kiilF0mYjybkP1kJQCkkH
-	mojGPdgm/2G89Ykyc3QGa0MRCcUHfqvpt1eUP6W18T4P8QM4L9o/4PIfVVteMuI=
-X-Google-Smtp-Source: AGHT+IEr8LrLo8rnwBtfp9cUd9o7aqVTJAIclLAIh7GyvHzXVGv0w8CZXc+tD91eJhchPQAPLNQW7w==
-X-Received: by 2002:a05:600c:3502:b0:412:aec:2cfa with SMTP id h2-20020a05600c350200b004120aec2cfamr8677926wmq.1.1708281338234;
-        Sun, 18 Feb 2024 10:35:38 -0800 (PST)
+        d=1e100.net; s=20230601; t=1708282326; x=1708887126;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wNBEOVVb/rP1qaF97WrZeJwt+wEqX59IP8EY5F5M0uM=;
+        b=BFtA26Ir3dToqhB17VwudMxCBBBDqHs/K+6DuSIkTZ7avaM1iLMVmiWmB3atfycmb8
+         dZ+UTLR/4bbmvyjYoRJN52dc4+yLTaku6zrcdCzCpXxLUKVgeYWL74Jhn0/JdrYuu7PO
+         dZJbcIWqXYFMDBzk6ULINEyOqZLmJL53m6e5yGVV3cD35yjzzPMnehmQ+pdnuKJXTpEH
+         pYpYbbetlJY7Um4R+IujcXAnMfQSg1GkT1kpeCPZfof0kguKkTIiG0GYKw2WDqKZOxYT
+         Q+rl+QfxMA+clBS/Zz5CK1pWwsjHAvc0u3YU06yKGVsM0aWfBjJoOmWSSjobWQDWioml
+         TIKA==
+X-Forwarded-Encrypted: i=1; AJvYcCUEUomU/GFfkHdH244iNlrD8cRy4ckT6Mjf9feuubvHxs/b2XDx1CZ52Ndl6DsfcB0NdnkNgtw+FmH9HLL3J9iTgHvfFl6+oG7QHg==
+X-Gm-Message-State: AOJu0YwrSmNkLwjTWV8IkUfpXCrc7inoBDBVn1nykUHm7KQ6VAeqDXxc
+	NFSklr3d7nuyN3Fcf75q8ggsUYXyaza7gOIQIbhMI7TokPV8sS96mo296YWXdxk=
+X-Google-Smtp-Source: AGHT+IEG1WdiR3eQwnrb//cEfiT0Sx0t9LAhVUuGI6WXwfKCIpNTnZnU9e9ScPsT8AfU5RS2bUrM7A==
+X-Received: by 2002:a5d:570b:0:b0:33d:47c6:24fe with SMTP id a11-20020a5d570b000000b0033d47c624femr1113697wrv.12.1708282325670;
+        Sun, 18 Feb 2024 10:52:05 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id l20-20020a05600c1d1400b0041256ab5becsm5990592wms.26.2024.02.18.10.35.36
+        by smtp.gmail.com with ESMTPSA id r8-20020adfe688000000b0033cf5094fcesm8026214wrm.36.2024.02.18.10.52.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Feb 2024 10:35:37 -0800 (PST)
-Message-ID: <6ac4005b-01e6-48c2-971e-d6a127134d13@linaro.org>
-Date: Sun, 18 Feb 2024 19:35:35 +0100
+        Sun, 18 Feb 2024 10:52:05 -0800 (PST)
+Message-ID: <d3a4c6f9-e24a-446c-acbf-75519f6782fb@linaro.org>
+Date: Sun, 18 Feb 2024 19:52:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,21 +76,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/6] dt-bindings: cache: Document the
- sifive,perfmon-counters property
-To: Samuel Holland <samuel.holland@sifive.com>, Will Deacon
- <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Eric Lin <eric.lin@sifive.com>, Conor Dooley <conor@kernel.org>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Paul Walmsley <paul.walmsley@sifive.com>,
- linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-arm-kernel@lists.infradead.org
-References: <20240216000837.1868917-1-samuel.holland@sifive.com>
- <20240216000837.1868917-2-samuel.holland@sifive.com>
- <eeb2331d-10e6-4902-91ba-85896a8f0ee1@linaro.org>
- <72221da1-4a1a-4947-a202-9de203032f5c@sifive.com>
+Subject: Re: [PATCH 1/2] dt-bindings: interconnect: Add Qualcomm SM7150 DT
+ bindings
 Content-Language: en-US
+To: Danila Tikhonov <danila@jiaxyga.com>, andersson@kernel.org,
+ konrad.dybcio@linaro.org, djakov@kernel.org, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240218183239.85319-1-danila@jiaxyga.com>
+ <20240218183239.85319-2-danila@jiaxyga.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -137,42 +131,62 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <72221da1-4a1a-4947-a202-9de203032f5c@sifive.com>
+In-Reply-To: <20240218183239.85319-2-danila@jiaxyga.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/02/2024 16:29, Samuel Holland wrote:
-> Hi Krzysztof,
+On 18/02/2024 19:32, Danila Tikhonov wrote:
+> The Qualcomm SM7150 platform has several bus fabrics that could be
+> controlled and tuned dynamically according to the bandwidth demand.
 > 
-> On 2024-02-17 3:00 AM, Krzysztof Kozlowski wrote:
->> On 16/02/2024 01:08, Samuel Holland wrote:
->>> The SiFive Composable Cache controller contains an optional PMU with a
->>> configurable number of event counters. Document a property which
->>
->> Configurable in what context? By chip designers or by OS? Why this
->> cannot be deduced from the compatible?
+> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+> ---
+>  .../interconnect/qcom,sm7150-rpmh.yaml        |  88 ++++++++++
+>  .../interconnect/qcom,sm7150-rpmh.h           | 150 ++++++++++++++++++
+>  2 files changed, 238 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sm7150-rpmh.yaml
+>  create mode 100644 include/dt-bindings/interconnect/qcom,sm7150-rpmh.h
 > 
-> This parameter is configurable by the chip designers.
-> 
-> The information certainly can be deduced from the SoC-specific compatible
-> string, but doing so makes the driver only work on that specific list of SoCs.
+> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,sm7150-rpmh.yaml b/Documentation/devicetree/bindings/interconnect/qcom,sm7150-rpmh.yaml
+> new file mode 100644
+> index 000000000000..604822ed4adc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interconnect/qcom,sm7150-rpmh.yaml
+> @@ -0,0 +1,88 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/interconnect/qcom,sm7150-rpmh.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm RPMh Network-On-Chip Interconnect on SM7150
+> +
+> +maintainers:
+> +  - Danila Tikhonov <danila@jiaxyga.com>
+> +
+> +description: |
+> +  RPMh interconnect providers support system bandwidth requirements through
+> +  RPMh hardware accelerators known as Bus Clock Manager (BCM).
+> +
+> +  See also:: include/dt-bindings/interconnect/qcom,sm7150-rpmh.h
+> +
+> +allOf:
+> +  - $ref: qcom,rpmh-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,sm7150-aggre1-noc
+> +      - qcom,sm7150-aggre2-noc
+> +      - qcom,sm7150-compute-noc
+> +      - qcom,sm7150-config-noc
+> +      - qcom,sm7150-dc-noc
+> +      - qcom,sm7150-gem-noc
+> +      - qcom,sm7150-mc-virt
+> +      - qcom,sm7150-mmss-noc
+> +      - qcom,sm7150-system-noc
 
-Usually that's exactly what's expected, so why here usual approach is wrong?
-
-> When provided via a property, the driver can work without changes on any SoC
-> that uses this IP block. (None of the SoCs currently listed in the binding
-
-Sorry, properties are not a work-around for missing compatibles.
-
-> contain a PMU, so there is no backward compatibility concern with adding the new
-> property.)
-> 
-> My understanding of the purpose of the SoC-specific compatible string is to
-> handle eventualities (silicon bugs, integration quirks, etc.), not to
-> intentionally limit the driver to a narrow list of hardware.
-
-Depends what is the hardware. For most of licensed blocks, the final
-design is the hardware so equals to its compatible.
+I don't see how you resolved the warning we talked about on IRC.
 
 Best regards,
 Krzysztof
