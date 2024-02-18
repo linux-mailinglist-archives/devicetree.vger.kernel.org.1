@@ -1,222 +1,134 @@
-Return-Path: <devicetree+bounces-43101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F28E885943D
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 03:52:49 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85F6E859449
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 04:11:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 673E01F21542
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 02:52:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 26B21B20A68
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 03:11:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BBA7A34;
-	Sun, 18 Feb 2024 02:52:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C64615C9;
+	Sun, 18 Feb 2024 03:10:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V5bxRjg5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f1HxYVWo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC6CE5677;
-	Sun, 18 Feb 2024 02:52:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6805E15C0;
+	Sun, 18 Feb 2024 03:10:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708224756; cv=none; b=SxicewdjO1mJadeTJdrNtUwfc149TEH+Bv82qjG1eHJzFZmue2B4f8qMlW08dCYiedJD2ECXyZHM3XpBdfY14eDNVLiL8Rpptc8aibf7Niywn4npita+2b2z9wZuGeDWhK0DxP28Kh6/wA/wAKKL4SvQsKvZANOSgmUf3EIxm5o=
+	t=1708225857; cv=none; b=JkSAQ4aNncRaGeJknAWi9ltP6tIcoa8UHIPCiGb7HbtcwrGc9lBFYuDoN31an92Y/8Tc3FQW13E8ays/Z2DQnwYTWtxQVoxMuYAshxM08dq4JqHP+OamlX7UpPbmocNZXCGfn4uMOgeVXYMNmH10EZeHsQU8GY6FpC1IHXJOktM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708224756; c=relaxed/simple;
-	bh=FePf3EyOVTsisp4gCWFACVV6RZHdDOhtdVjERgnF8VM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=lfgLZUlpzWKuA3veQYIlsdkW/O3pu9iwhK/EXEO7DVUSr6PrrlAxj+XnFgWHFsOGKO7f+vu+8xHw+OBgg8Akv+9gcfCPKgvKb+rSYAFaLjm9XVFUBlAyTmzWausBYsxtkducNdODLQDK47XXcKTnVMghCUm/guNg5tuKVkJTfMk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=V5bxRjg5; arc=none smtp.client-ip=209.85.210.54
+	s=arc-20240116; t=1708225857; c=relaxed/simple;
+	bh=/+4TlFWh8lKqTf1az0E4o7ZlHJHLJPmeg3PkaSltrH0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hpyo89bO26iXMDm3wvjYe+j1ddoYw0Nggiiyj2IX+Bl56ELS9oC/RHTUMWLcwmHgp5zVNpFD3qRyzorkQXzVDmGwveT8gA4tH2IeanbrUCTCsZME08gDp6CTphXpvhnaZPeXoDGX+rFpuDTcxifywhKzhwrHPlfeQ4HSRL6yZhA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f1HxYVWo; arc=none smtp.client-ip=209.85.218.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-6e2e6b405aaso1149259a34.3;
-        Sat, 17 Feb 2024 18:52:34 -0800 (PST)
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a3d6d160529so236935166b.0;
+        Sat, 17 Feb 2024 19:10:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708224754; x=1708829554; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1708225854; x=1708830654; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=l3n19RkNDdq8dbMgQjlCr52ofvg6XvVFhLZ4eyMaEeA=;
-        b=V5bxRjg5icsIEz9KlHXReDIXuom532qoIVtJDvwaqkaq9zgRBIjbAzWkA2bvBFE2QT
-         xg+/XZlnG5pSWCD6vu1UoNhT7ScyUi2PPlvc3K7anWAIVUi/bS6teL1m1WgSe+sj1HF2
-         OqCP1vI1Ej6zZ5zEx6++ixDFKo1uH5dQH8l7t+WnURVleoIHXCtLPLAaXcEJNQUv9NX6
-         tJ1CicPVIbnq6dMkA6hmSJzf2VLePZwvfv2mDdSvcKXoIFozPWwXLVtNiyzmFhmGQp41
-         WRPBihXbHb7ZFNSG3+L3jmlj8S9xF54p/7wY/leXw5RnW0VJGo0R1iEqRM7RdkQw7Kqw
-         wJiA==
+        bh=FnlDJkdNhI1kCGRl0tLw3fRINrAPP/RmkZJTxoIRS+g=;
+        b=f1HxYVWoAhTXT7OdyE0ANqLWciPYCxDBDgbz0pyZGzRT/beyhdCoy9lGdtJ3ExqsB2
+         dLrpI/87ZCNBG6HgWe0ZwWGAKs3XM8Vl239ICVf9yn3M6p3wk8pwEFFf5bpYjhkgAd9K
+         hKOfUb2zJf8fRrJvkSTTybB36Hm/Za8/ZBpet8kRJvIFs6GJq0PaVXaKDA+AxHzXH69V
+         cCO/ifhjQAMJMw7O/WO6hymwTLJfWpmASjRUiQxz3PG9Pd5NqWaIrE4nNBNrEuxn6CdB
+         ySUW2hTdEnGjJbkqjNx5wMpIEFUKFKE4u2qkoi07c2bWhuRKub3k+UYTaQHw/vqHSC3k
+         hdYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708224754; x=1708829554;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1708225854; x=1708830654;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=l3n19RkNDdq8dbMgQjlCr52ofvg6XvVFhLZ4eyMaEeA=;
-        b=ZWUjR9B4E6QtHzED6vpjIeUqIBS+9kkyY4EcudOaNal6/LTzo8YrL6W+mCFCDD03jP
-         qpQz9ssbK4u3SUDopWw/RLNsyt/xIaaniQcDTW85ZE/Tb4k80VYmAbGcf7IBErlLs2g9
-         IoLSGQHF3DwnALnVW/FBh+cstdMih0UZhD0JqMW7Z19kbkWQRxYlraR4cFSYmiKt2R4x
-         h0ufDAUaChdv+kj/XHm3qKPil4VVosSCMvS+K9n7gzjsd9WX/lNH+irW+/R8In40fONt
-         MJNBmKjtEHGVs3CJT+X0O6oL9j4eskWXKiZjzWvulgYZW2ouul3fehUX3Gxbe79HLLzi
-         /a6w==
-X-Forwarded-Encrypted: i=1; AJvYcCWn0ZTZroaNbLhdBc8UDKv1AyMDdzBbJUGj+g8v33YHWg+J4iJW6YD0tNsCfLHPOqmZMNUZx/j+k7/A8sxm0pI3g4bqIQi3DqNF5UxZW6YBtj3IqIpm2N+Hjo5lKbfAbOCG6zZhVpNObYb2tAaZV2OJQHmWBru+nkpKjm8Iux5CVmcFYw==
-X-Gm-Message-State: AOJu0YyhcTO6rDavHCcw72gt9Zb8vE0lwvZ5kSdIZ7bDMEYr1ATjVfUC
-	RTKX83f4QR0HdnxjC4PO8q1zE3Wb1tiVh9zfM8psGGuWIxw7ieHv
-X-Google-Smtp-Source: AGHT+IEeVIqfdYbflCRrTg3/7Jkh/cxWMWj69qHzmn3fE+cLdGKkNtKHAdwy21byuai9OMmNLmxB4w==
-X-Received: by 2002:a9d:6415:0:b0:6e2:e50b:7ac5 with SMTP id h21-20020a9d6415000000b006e2e50b7ac5mr8331462otl.17.1708224753896;
-        Sat, 17 Feb 2024 18:52:33 -0800 (PST)
-Received: from localhost.localdomain ([122.8.183.87])
-        by smtp.gmail.com with ESMTPSA id d7-20020a4a9187000000b0059d97d9f75fsm549603ooh.14.2024.02.17.18.52.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Feb 2024 18:52:33 -0800 (PST)
-From: Chen Wang <unicornxw@gmail.com>
-To: aou@eecs.berkeley.edu,
-	chao.wei@sophgo.com,
-	conor@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	mturquette@baylibre.com,
-	palmer@dabbelt.com,
-	paul.walmsley@sifive.com,
-	richardcochran@gmail.com,
-	robh+dt@kernel.org,
-	sboyd@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	haijiao.liu@sophgo.com,
-	xiaoguang.xing@sophgo.com,
-	guoren@kernel.org,
-	jszhang@kernel.org,
-	inochiama@outlook.com,
-	samuel.holland@sifive.com
-Cc: Chen Wang <unicorn_wang@outlook.com>
-Subject: [PATCH v10 5/5] riscv: dts: add clock generator for Sophgo SG2042 SoC
-Date: Sun, 18 Feb 2024 10:52:26 +0800
-Message-Id: <dc899c89e5c30e2267965f185b52d6dded4eb1ac.1708223519.git.unicorn_wang@outlook.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1708223519.git.unicorn_wang@outlook.com>
-References: <cover.1708223519.git.unicorn_wang@outlook.com>
+        bh=FnlDJkdNhI1kCGRl0tLw3fRINrAPP/RmkZJTxoIRS+g=;
+        b=GIP3rU6jQL0MPuCictA1MDMwiu66MWGlNW8/RgKKw2kk9j+HvI7mrFHdqRRVYjnSrv
+         OKYtnpdH1JTNYgBR3Q91miauEgEMns1EvMERAPVugHi1gFOs4EXCg4gvDuEzHcR9iFv/
+         DM3/lfM6871Cnem/3FQOP/Bu51wLNgt6Jl774rbw+CmUVpEaKWpRMPTZTJ6bcFwHATXl
+         xEQqk23hTM19ckQZYnVLHBqLQsNHg3nW30DKoW1GCmdcfGcvJoFU80XZnZVzjM6jeB1C
+         9Nd9nMBG0dAW9Nbmlypl7Kln1t9XcekEQ9TkBJwqZhr5zdFab2IJZ1ibq684QQdSjzFZ
+         p28g==
+X-Forwarded-Encrypted: i=1; AJvYcCUQP0CPk7WTzQkr7lwZHLCKzHHut3sGuhI0uZINX9MganEDuHtYfAA8KvNx+AjKYxQhCxI4Oc+fvkP5akF54iwURmh8xCSmueyb+YiVlFv90H+/3xuAK6c+TXsWLMOeg9N2Id6T65pb/w==
+X-Gm-Message-State: AOJu0YyTFXuYXq/DVR3/kiGgYNLZyeW/voli/w7LmPzd4HYXCUbyG0fO
+	g4/C108caNLemR7FMEC59nOaPLlDny6NJwTTEL6jIWCtX1Jku/uzE3sIYmh0KZh3k/IlLMvA+21
+	DL3vbmEqeIu6VnTTmK3CzefSWUQg=
+X-Google-Smtp-Source: AGHT+IG6q7s2A+bcCjOyvytvYGlG4/gO5k1DEYbRKOzeuRChC+WCxUsjSbelYM2wcwGqJRX2VDOq/Pv8uOaSbi0euEg=
+X-Received: by 2002:a17:906:ca56:b0:a38:9590:cde8 with SMTP id
+ jx22-20020a170906ca5600b00a389590cde8mr6974488ejb.73.1708225853615; Sat, 17
+ Feb 2024 19:10:53 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240201-imx-mailbox-v6-0-76f4f35b403e@nxp.com>
+ <PA4PR04MB941646795F4E19D1EC35134F88522@PA4PR04MB9416.eurprd04.prod.outlook.com>
+ <CABb+yY0aM9Dn3LPBqb11vU3Ln4bCCGOBXX77sF499cyb_sXiUA@mail.gmail.com> <DU0PR04MB94170454D64EF65E6774BEAB88522@DU0PR04MB9417.eurprd04.prod.outlook.com>
+In-Reply-To: <DU0PR04MB94170454D64EF65E6774BEAB88522@DU0PR04MB9417.eurprd04.prod.outlook.com>
+From: Jassi Brar <jassisinghbrar@gmail.com>
+Date: Sat, 17 Feb 2024 21:10:42 -0600
+Message-ID: <CABb+yY3U5GzvznLDU7pyA1ppfLT50MQKQ3YRXB3rYwr_QwcH-g@mail.gmail.com>
+Subject: Re: [PATCH v6 0/4] mailbox: imx: support i.MX95 ELE/V2X MU
+To: Peng Fan <peng.fan@nxp.com>
+Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Aisheng Dong <aisheng.dong@nxp.com>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, dl-linux-imx <linux-imx@nxp.com>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Chen Wang <unicorn_wang@outlook.com>
+On Sat, Feb 17, 2024 at 8:10=E2=80=AFPM Peng Fan <peng.fan@nxp.com> wrote:
+>
+> Hi Jassi,
+>
+> > Subject: Re: [PATCH v6 0/4] mailbox: imx: support i.MX95 ELE/V2X MU
+> >
+> > Hi Peng,
+> >
+> > On Sat, Feb 17, 2024 at 7:38=E2=80=AFPM Peng Fan <peng.fan@nxp.com> wro=
+te:
+> > >
+> > > Hi Jassi
+> > >
+> > > > Subject: [PATCH v6 0/4] mailbox: imx: support i.MX95 ELE/V2X MU
+> > > >
+> > > > - Add dt-bindings
+> > > > - i.MX95 ELE/V2X use same register layout as i.MX8ULP S4 MU, but
+> > > >   the TR/RR num is different. To make code reusable and not add too
+> > much
+> > > >   macros, add runtime detect number of TR and RR by reading PAR_OFF
+> > > >   registers.
+> > > > - Add i.MX95 ELE/V2X MU entry in driver
+> > >
+> > > Ping..
+> > >
+> > dt bindings and compatibles first need to be acked by dt maintainers.
+>
+> The bindings has been reviewed by Conor Dooley who listed as maintainer:
+> OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
+> M:      Rob Herring <robh+dt@kernel.org>
+> M:      Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> M:      Conor Dooley <conor+dt@kernel.org>
+>
+Ok, I didn't realise we have three maintainers now.
 
-Add clock generator node to device tree for SG2042, and enable clock for
-uart.
+I see no problem other than adding of_platform_populate() and
+compatibles in the same patch. They should be separate.
 
-Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
----
- .../boot/dts/sophgo/sg2042-milkv-pioneer.dts  | 12 +++++
- arch/riscv/boot/dts/sophgo/sg2042.dtsi        | 48 +++++++++++++++++++
- 2 files changed, 60 insertions(+)
-
-diff --git a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-index 49b4b9c2c101..80cb017974d8 100644
---- a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-+++ b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-@@ -14,6 +14,18 @@ chosen {
- 	};
- };
- 
-+&cgi_main {
-+	clock-frequency = <25000000>;
-+};
-+
-+&cgi_dpll0 {
-+	clock-frequency = <25000000>;
-+};
-+
-+&cgi_dpll1 {
-+	clock-frequency = <25000000>;
-+};
-+
- &uart0 {
- 	status = "okay";
- };
-diff --git a/arch/riscv/boot/dts/sophgo/sg2042.dtsi b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-index ead1cc35d88b..e70c43e2ccbe 100644
---- a/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-@@ -5,6 +5,9 @@
- 
- /dts-v1/;
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/clock/sophgo,sg2042-pll.h>
-+#include <dt-bindings/clock/sophgo,sg2042-rpgate.h>
-+#include <dt-bindings/clock/sophgo,sg2042-clkgen.h>
- 
- #include "sg2042-cpus.dtsi"
- 
-@@ -18,12 +21,54 @@ aliases {
- 		serial0 = &uart0;
- 	};
- 
-+	cgi_main: oscillator0 {
-+		compatible = "fixed-clock";
-+		clock-output-names = "cgi_main";
-+		#clock-cells = <0>;
-+	};
-+
-+	cgi_dpll0: oscillator1 {
-+		compatible = "fixed-clock";
-+		clock-output-names = "cgi_dpll0";
-+		#clock-cells = <0>;
-+	};
-+
-+	cgi_dpll1: oscillator2 {
-+		compatible = "fixed-clock";
-+		clock-output-names = "cgi_dpll1";
-+		#clock-cells = <0>;
-+	};
-+
- 	soc: soc {
- 		compatible = "simple-bus";
- 		#address-cells = <2>;
- 		#size-cells = <2>;
- 		ranges;
- 
-+		pllclk: clock-controller@70300100c0 {
-+			compatible = "sophgo,sg2042-pll";
-+			reg = <0x70 0x300100c0 0x0 0x40>;
-+			clocks = <&cgi_main>, <&cgi_dpll0>, <&cgi_dpll1>;
-+			#clock-cells = <1>;
-+		};
-+
-+		rpgate: clock-controller@7030010368 {
-+			compatible = "sophgo,sg2042-rpgate";
-+			reg = <0x70 0x30010368 0x0 0x98>;
-+			clocks = <&clkgen GATE_CLK_RP_CPU_NORMAL>;
-+			#clock-cells = <1>;
-+		};
-+
-+		clkgen: clock-controller@7030012000 {
-+			compatible = "sophgo,sg2042-clkgen";
-+			reg = <0x70 0x30012000 0x0 0x1000>;
-+			clocks = <&pllclk MPLL_CLK>,
-+				 <&pllclk FPLL_CLK>,
-+				 <&pllclk DPLL0_CLK>,
-+				 <&pllclk DPLL1_CLK>;
-+			#clock-cells = <1>;
-+		};
-+
- 		clint_mswi: interrupt-controller@7094000000 {
- 			compatible = "sophgo,sg2042-aclint-mswi", "thead,c900-aclint-mswi";
- 			reg = <0x00000070 0x94000000 0x00000000 0x00004000>;
-@@ -333,6 +378,9 @@ uart0: serial@7040000000 {
- 			interrupt-parent = <&intc>;
- 			interrupts = <112 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-frequency = <500000000>;
-+			clocks = <&clkgen GATE_CLK_UART_500M>,
-+				 <&clkgen GATE_CLK_APB_UART>;
-+			clock-names = "baudclk", "apb_pclk";
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "disabled";
--- 
-2.25.1
-
+cheers.
 
