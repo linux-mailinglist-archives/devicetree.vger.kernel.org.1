@@ -1,399 +1,108 @@
-Return-Path: <devicetree+bounces-43174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26DBD8596C1
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 12:53:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E28BD8596A1
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 12:20:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49D0E28150D
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 11:53:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7964928232E
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 11:20:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32E7B633E7;
-	Sun, 18 Feb 2024 11:53:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F96760EEB;
+	Sun, 18 Feb 2024 11:20:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="U/qPtr2l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2097.outbound.protection.partner.outlook.cn [139.219.17.97])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C34F633E8;
-	Sun, 18 Feb 2024 11:53:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.97
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708257232; cv=fail; b=Pz4Nytz5duSCqGl1PskSwcoVS3s3pGlnLdN+njryw/5xI0yclSyXIWgOU64Lc5dTJqQ1oJpa23dx55SWvbUA70pqaBxvnQsDBz4v9fqAvdG7EBhFZ5fMRLuw1d+JCqbbZl9n42+Q73RTDsNMM3IOVhbsGs7jGOueR+UO2xTOxys=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708257232; c=relaxed/simple;
-	bh=aetGwQfCj81DGzrZQokscKBANT6NK6uQQaYIaEMk9io=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Z79TktSTSDznENchNZzhRpjn6nTSgKOR0r3VyZUaV/SArVzmcPJgjHPSAz5KSW/7NEO1TspCgz+Oeyfkr/i+3Q6PZ0f/vAi1wP7LkabnG8ev/ProdgJuwVLqtdDV2wBz+6HvbsMiM2AjqqGIPQifgQAipXaGo0ckWUCrPLst008=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.97
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SCMy5E1q4e9LgOaSbr/zgosPcYStkhgPwpxJZ6KqULIavSs0Nh/xdEyEQs7DQaNk2k/kgae5m/3XZsKAP5SrzikWpwGgHlTf3pzUcFZb8L+RnYLbMzOxlTJMKm0ZOBDEdaeRRVcrtXCsy4jn251hrxNAviPhusOkpSeGhc3eStuQhz6Vuyl+rBdcOMgKCUz/ja/bLtrTFRfZZ7eoCFOzM/1t/x91IkZcG3FWi3ehk00HpoyNv9I6cvKX6a0lq8iizby8yVn/jYksrLbz4XrUQyzTau1O1VCowgv6F5c+TBHLSg0j7uYPUuMVELNA0mrPG5o0ga1R5zV2qD7QqkclUg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6mdPM9tc7+aMwCmMjqDwieu4Un85dfZDn1ub7cOMzuk=;
- b=lAVyN8rKo5jkBwCvcGdMa17V6s1kv5WFrlcgQneNLXKMzBZW/YFOtZug+JErcjl+8BFo9lh0e0mpSNbyNbCNFxE/ytr10BsZ7lfi8utT6ZuhJOAfyf4uu/c908sVeQ1aplwBSFnJx2EUroB5dw2FHWPBVG1NcmFry+B6fRUMXO7UA7DsLQ+cNgAKq5ux3QUrG3O+qa0inaY8zJN0BgSKEoPrYkudGx3MR65ahIYtmjiZ70wnXAAutgm/grWHyP3Ci8kXAS0PgSaKJzeUl17SMcKRSNL0s7JnJpaRKJMnzEzlKZE0TqLiaukcV1nuCmNwOoPEPF4q7JGmKrq4fFSZoQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:25::15) by SHXPR01MB0464.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:1d::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.50; Sun, 18 Feb
- 2024 10:19:31 +0000
-Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
- ([fe80::5a5a:fa59:15fd:63dc]) by
- SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn ([fe80::5a5a:fa59:15fd:63dc%3])
- with mapi id 15.20.7249.051; Sun, 18 Feb 2024 10:19:31 +0000
-From: Minda Chen <minda.chen@starfivetech.com>
-To: Conor Dooley <conor@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50FD64EB55;
+	Sun, 18 Feb 2024 11:20:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708255214; cv=none; b=rLQxqGFZkO0+6oZopkw0F5ah0NRlAwqx2RcvO4eBnCGr9hc3I+DhS7+DEA6gnhz/zsCusvKT65UMdDid4Jr4I1B0kWbMHOMEHyurFJe4HaUq03/F3gRNxquKJLz4MDLOD5gcZraIHauVpyCCQsDjUUdc/doOeatvnSsqZQNT2Tc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708255214; c=relaxed/simple;
+	bh=zqnW28S8Yxx5VQr6WVf7DEutvm+PvFJpi9jbywhz3oo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mPOoO4a17V3VAMSMYPw/TvHSIXLi+L8NkGxEWVsBx1lH6Svdd8Ak5FU+SQGHiAL3Ojttu8UXtl+bAEP+i/z2A48cVhEs8kQar2rrtMGfXBRlfa3li9V1GpucyXp/5xpQ9OVDCFcJErKpdqDiHDpQDXHHjeAoEUzaHEGrPsJp3Wc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=U/qPtr2l; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5129c8e651fso1761823e87.3;
+        Sun, 18 Feb 2024 03:20:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1708255210; x=1708860010; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=eTAPslvY13p4NzGhsLnW7/SPW/FSBPPIbk4inx6n6fA=;
+        b=U/qPtr2lvtm8Y6SMXdC5o3QdbAkYWBxL9Ud3Wh6h4d1GxfStHFpWze9vS7MPd8pDKy
+         KzSNhwpa4Pn/amGfBWwBtJmSWP+SyEBFxLWayN4zxVecNdg4VS6oSZDAPpt+ZVquZaOk
+         4iLpER+x4ujUoaChdDgdMJK+eG00xvs4OpzPsYO+02ghcwGK/BQVHMcqM/7gkc4mI8mW
+         Ou26VPq0WVVUkIE45ZR8xONlxbKLLnzN439O0OxfXPISI6C5PSFzP3w6Yk08bvdh1oGZ
+         sDw3d/qQVyivFg3Wyd4NY4oH0wO3rv08OdtTozIcYNLNxoS1IsI78iLOZIThF0ILBTtN
+         POPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708255210; x=1708860010;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eTAPslvY13p4NzGhsLnW7/SPW/FSBPPIbk4inx6n6fA=;
+        b=lwuy6y9BkbY1ZgOFdVHYqRkngUOhatTLHTTGYB2kh+Fm81rcxYwQcXvgClAYCvMHO2
+         ahNyieNQ9NsU5O1J2SunIy+kOgxAT+vMR9pwNFv4lG557nYQVFn3nRMWrPVKLMZHm162
+         Bo4Hy1z3toVRzd+CLFc2nMXx7pta9b+EPCA7v+Rs7I2G3KAwKfquNfegC+wN9TXrJfls
+         iqFEw9imMCauHiDLnXsDQbY9MJQsYCMpVhWpGWN4Rz0EROmSR3XdnqLeqNDRX+uHKWFK
+         B7qS2jbVubmzKN9/nsB4JtxKocPjw8hpnkZEa3s8Qp4HBpxyp5F6MTbVRIZ/t6Mwrw3b
+         OaRw==
+X-Forwarded-Encrypted: i=1; AJvYcCW/f3vB5KofzSrvh9wTpQsSTxzSK9ycQGRpp1wiiruvEngB1+t9GiHl8PTiO0u4zuDOV4UwcTQYa+qYPBPWvusgHcjKpmSIgdVzwuqf
+X-Gm-Message-State: AOJu0Yy5H3vMnOj0gARP5mzVOqiafT2NT8im3RtVZASfYgnf5y0S4jXO
+	p2xWvPKx5bffhykTPbeSKRZ3Hijm5YvR/TO0y9wizBA1e6oCjks3
+X-Google-Smtp-Source: AGHT+IGU3FwogvLK9Dsn9o6uvECcYP+s4KmRBN1wMYYeK+Xa3bpz+cCRwNNUFBq6Z04WlW7CKzBVyg==
+X-Received: by 2002:a19:2d16:0:b0:511:aae2:e5e8 with SMTP id k22-20020a192d16000000b00511aae2e5e8mr5883720lfj.52.1708255210162;
+        Sun, 18 Feb 2024 03:20:10 -0800 (PST)
+Received: from localhost.localdomain (dynamic-2a01-0c22-7b37-4900-0000-0000-0000-0e63.c22.pool.telefonica.de. [2a01:c22:7b37:4900::e63])
+        by smtp.googlemail.com with ESMTPSA id di25-20020a056402319900b0056401eb3766sm1675190edb.29.2024.02.18.03.20.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 18 Feb 2024 03:20:09 -0800 (PST)
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: linux-amlogic@lists.infradead.org
 Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-pci@vger.kernel.org,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Mason Huo <mason.huo@starfivetech.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Kevin Xie <kevin.xie@starfivetech.com>,
-	Minda Chen <minda.chen@starfivetech.com>
-Subject: [PATCH v15 18/23] PCI: plda: Add host init/deinit and map bus functions
-Date: Sun, 18 Feb 2024 18:19:16 +0800
-Message-Id: <20240218101921.113528-3-minda.chen@starfivetech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20240218101921.113528-1-minda.chen@starfivetech.com>
-References: <20240218101921.113528-1-minda.chen@starfivetech.com>
-Content-Type: text/plain
-X-ClientProxiedBy: NT0PR01CA0010.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c510::21) To SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:25::15)
+	neil.armstrong@linaro.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH v1 0/3] ARM: dts: amlogic: Three small binding check error fixes
+Date: Sun, 18 Feb 2024 12:19:56 +0100
+Message-ID: <20240218111959.1811676-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.43.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SHXPR01MB0863:EE_|SHXPR01MB0464:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7447f9cf-e240-49d4-fee4-08dc306b18e3
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	A1V8bAgzxu9MNWU3T9VrkaHj3kbutmbacuAlOtzQR4UKggWtBs/SK/HJU3J5xyTcbfJGjfdya4LuV1HxDEOUK/e61RFDGQRh2gEmgRhi+G7t90Jp4UpTcFPGnkjxlhtIArnWodi/RXPxqHpzxOm8tDQjR7gpLCprfsAkR2zdPbYRn/5bIDIQFysW23dHMKo6jfcg6ry2czzMwiIn0Ahp/F/B61OBGV8qQkROadeHNxD98pHfEmSN5fWC6qh62ELyZRnkjz+K/MfgS5DxvI8wh5IUcFRNs0KKVVqd7uDWBeG+ShlwhYZirgYWbyKxcfOT3AcGW2i80kCiyp5IcUjrT1tTRovza73rACZIcSwKpBd7PburkRgAc7WoaF/n5Cpau/cXZXGHL2iwABo8vp/pdVAz7YgNRY2+y+ZtOUHbJUtLnMsWeTa/WFvmKyhRBuOoiJ7Rskh3wAmQCF9IjHpg9CE8XSe2IsVSf/5ARse9WDQfHtuDWxDjMIT4OnIhWrBcSiLMQSNpyB9oEq2nBksfMxX3ZiU24uNpNWpUy7YomPa/eT6kR2xDnKacn1VD63qT
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(39830400003)(366004)(346002)(136003)(396003)(230922051799003)(1800799012)(451199024)(186009)(64100799003)(86362001)(83380400001)(40180700001)(40160700002)(38100700002)(36756003)(5660300002)(41320700001)(38350700005)(7416002)(2906002)(66946007)(4326008)(44832011)(54906003)(66476007)(41300700001)(8936002)(66556008)(8676002)(6666004)(52116002)(26005)(508600001)(110136005)(1076003)(107886003)(2616005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?T9vE2hvmpppMi4Vpekx+vyTcjFHl96aIOkg37/R8uTbLPgw1cO7pcNBVblhW?=
- =?us-ascii?Q?DdU8ZwaEruQGF9FVGoguWM1AbPl2fDX53mqmie7+NA2aEUcfF6y29InNw08/?=
- =?us-ascii?Q?B5poazzqFcucB6dCun061CXOXcisA86izkRpr1osdRFcXww452i1equIPZ8r?=
- =?us-ascii?Q?JVy4tPxSX8ksfPa5plUccjdNhxyDLsq+Tf+bNXk0l+U3h050AGLNT+gUfLvm?=
- =?us-ascii?Q?XAuJ8k8i35ggxb+BF4Enz1wb/cd+j7TH0m2R5BkV1JUFn1d63lMRdt9IwuAg?=
- =?us-ascii?Q?ZpE8r9d/EdMd1znhhpOWRWkNhh0hpPy+vJhk8+A1Tlfai3W+ajvqnWHry8AV?=
- =?us-ascii?Q?9HgsekVnsBKDjmUMDmMQ3yMyTIog/wZ0cWxOooLmrOIhFBp4voVQm85YgU8p?=
- =?us-ascii?Q?tyJFyCrZbKbd6j+DfLELp/fRmZTbAPuEyJvGVaw/bh7davDW27sbkBezQU5j?=
- =?us-ascii?Q?H2idpUS+BrDtxbEHLRXyecEeNhks0nAtiM4kZCxnxx/hEH4hWu6u6+vFo3yS?=
- =?us-ascii?Q?1fzsH330YSyE1LN8CdwLRDgStUTFTZh1ZEvaQ9QWdEX0S45j1NkYE7gKaywo?=
- =?us-ascii?Q?z0+Uh31nFXZ3PjwMkpiSbUvIA7wPWurZdPnSoAFOaYAKoAvE2pzQA6rUpdAn?=
- =?us-ascii?Q?BADVRPvfoam0baKVSysiaWMtmi4+0Hd0I64C8vziqUuJkG8LhnZovwXSsYal?=
- =?us-ascii?Q?SpNNjHAKc/QQLpS38bCUULEFknbYYny0TuKsPxtqOHxXHqyirv581ckSvFaA?=
- =?us-ascii?Q?xxI4sZIPpADEcB/09eW29vLkYN6yKiNlpuh/zpG43D7qgv6fmIzhXczbq0Wn?=
- =?us-ascii?Q?xpo0MwsU2srfMLzVv8wNmD41eydHNkoAodRuYpyH8z7BDL/i/UJ0fpKdR99k?=
- =?us-ascii?Q?V4cj8T9Opie1wgJG3tLbSXrw/vH1wBthZtzpjwc+jKU0vv4UuaLWsn9eThn6?=
- =?us-ascii?Q?PCQ6e/hbicbRcBQ1ltQdPZcXXxNjNUw5hXyW47CHtBkJgprhcZvReHj3DNop?=
- =?us-ascii?Q?mEsBZxOUeY3E02Yzt80KPRQYaXfbfDsCnYaYcNtbZBykLLHr3W4rqnOQGTLS?=
- =?us-ascii?Q?RIIS5+5cMlIDZx6YVispwRUNOlkappgBKM03jDo0tR4NPI7mpebcSkJf45yq?=
- =?us-ascii?Q?8zUmWqxSQeYAxX6OZxSZisO7Z04Kvg6pEsGppM2VVsER3OQe7DjEf8uq0yFF?=
- =?us-ascii?Q?gMEgwWfVjDE68EVN4TaqARpTiP1ee+vhNXcej7PSIZYuxEO3Hg4JnswoX5z9?=
- =?us-ascii?Q?PyeIpW7DB4tDrJn3pOokLzpNs6iubyZi1+JfxGU3j0p4xrzS9H0EH5rdk1Rt?=
- =?us-ascii?Q?y1PfhCGAdSYSDwq+wzBPhek7aimxvaEb4sVYro1uZLkKZxUZ8UWbll5NuZgR?=
- =?us-ascii?Q?CoWGmt5bPwt2lenxbMIdGvZKa4xfqGYpiJKI+LSHsSYE+dqaxQV1QqQU5fP1?=
- =?us-ascii?Q?r2ME/z0InK63p9jnKbRaRu7LWHSAFe3VT5our6LW2umErIhpFytb7pZZaCHH?=
- =?us-ascii?Q?JmXbiGQjVxc9YCCjjtA4uv3y6h72nLwUr6eKGmRjCc2F9c5kCd/eQDZBkAcG?=
- =?us-ascii?Q?Buj9+BuFpkXNBm0YnEPfgT8dU+Jdryqk9aMkAbdrdsdxL9QWAulNTULD2X/J?=
- =?us-ascii?Q?gA=3D=3D?=
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7447f9cf-e240-49d4-fee4-08dc306b18e3
-X-MS-Exchange-CrossTenant-AuthSource: SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2024 10:19:31.7983
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: a3XFTzdAwvS1DCguoHxpdJF4AWTG8Z/6S9a3m3M+lQH2AZCCys0ps2VCk4On4C/aoHODdK4t2Gtj4yrsTPVuIxsfg5I2Jsot0rTmPpd4mJk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SHXPR01MB0464
+Content-Transfer-Encoding: 8bit
 
-Add PLDA host plda_pcie_host_init()/plda_pcie_host_deinit() and map bus
-function. So vendor can use it to init PLDA PCIe host core.
+This series contains three small binding check fixes.
+Nothing functional was broken before, so no need to backpport any of
+these to -stable.
 
-Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-Reviewed-by: Mason Huo <mason.huo@starfivetech.com>
----
- drivers/pci/controller/plda/pcie-plda-host.c | 131 +++++++++++++++++--
- drivers/pci/controller/plda/pcie-plda.h      |  22 ++++
- 2 files changed, 139 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/pci/controller/plda/pcie-plda-host.c b/drivers/pci/controller/plda/pcie-plda-host.c
-index a040e7e5492f..a18923d7cea6 100644
---- a/drivers/pci/controller/plda/pcie-plda-host.c
-+++ b/drivers/pci/controller/plda/pcie-plda-host.c
-@@ -3,6 +3,7 @@
-  * PLDA PCIe XpressRich host controller driver
-  *
-  * Copyright (C) 2023 Microchip Co. Ltd
-+ *		      StarFive Co. Ltd
-  *
-  * Author: Daire McNamara <daire.mcnamara@microchip.com>
-  */
-@@ -15,6 +16,15 @@
- 
- #include "pcie-plda.h"
- 
-+void __iomem *plda_pcie_map_bus(struct pci_bus *bus, unsigned int devfn,
-+				int where)
-+{
-+	struct plda_pcie_rp *pcie = bus->sysdata;
-+
-+	return pcie->config_base + PCIE_ECAM_OFFSET(bus->number, devfn, where);
-+}
-+EXPORT_SYMBOL_GPL(plda_pcie_map_bus);
-+
- static void plda_handle_msi(struct irq_desc *desc)
- {
- 	struct plda_pcie_rp *port = irq_desc_get_handler_data(desc);
-@@ -420,9 +430,7 @@ int plda_init_interrupts(struct platform_device *pdev,
- 			 const struct plda_event *event)
- {
- 	struct device *dev = &pdev->dev;
--	int irq;
--	int intx_irq, msi_irq, event_irq;
--	int ret;
-+	int event_irq, ret;
- 	u32 i;
- 
- 	if (!port->event_ops)
-@@ -437,8 +445,8 @@ int plda_init_interrupts(struct platform_device *pdev,
- 		return ret;
- 	}
- 
--	irq = platform_get_irq(pdev, 0);
--	if (irq < 0)
-+	port->irq = platform_get_irq(pdev, 0);
-+	if (port->irq < 0)
- 		return -ENODEV;
- 
- 	for_each_set_bit(i, &port->events_bitmap, port->num_events) {
-@@ -461,26 +469,26 @@ int plda_init_interrupts(struct platform_device *pdev,
- 		}
- 	}
- 
--	intx_irq = irq_create_mapping(port->event_domain,
--				      event->intx_event);
--	if (!intx_irq) {
-+	port->intx_irq = irq_create_mapping(port->event_domain,
-+					    event->intx_event);
-+	if (!port->intx_irq) {
- 		dev_err(dev, "failed to map INTx interrupt\n");
- 		return -ENXIO;
- 	}
- 
- 	/* Plug the INTx chained handler */
--	irq_set_chained_handler_and_data(intx_irq, plda_handle_intx, port);
-+	irq_set_chained_handler_and_data(port->intx_irq, plda_handle_intx, port);
- 
--	msi_irq = irq_create_mapping(port->event_domain,
--				     event->msi_event);
--	if (!msi_irq)
-+	port->msi_irq = irq_create_mapping(port->event_domain,
-+					   event->msi_event);
-+	if (!port->msi_irq)
- 		return -ENXIO;
- 
- 	/* Plug the MSI chained handler */
--	irq_set_chained_handler_and_data(msi_irq, plda_handle_msi, port);
-+	irq_set_chained_handler_and_data(port->msi_irq, plda_handle_msi, port);
- 
- 	/* Plug the main event chained handler */
--	irq_set_chained_handler_and_data(irq, plda_handle_event, port);
-+	irq_set_chained_handler_and_data(port->irq, plda_handle_event, port);
- 
- 	return 0;
- }
-@@ -546,3 +554,98 @@ int plda_pcie_setup_iomems(struct pci_host_bridge *bridge,
- 	return 0;
- }
- EXPORT_SYMBOL_GPL(plda_pcie_setup_iomems);
-+
-+static void plda_pcie_irq_domain_deinit(struct plda_pcie_rp *pcie)
-+{
-+	irq_set_chained_handler_and_data(pcie->irq, NULL, NULL);
-+	irq_set_chained_handler_and_data(pcie->msi_irq, NULL, NULL);
-+	irq_set_chained_handler_and_data(pcie->intx_irq, NULL, NULL);
-+
-+	irq_domain_remove(pcie->msi.msi_domain);
-+	irq_domain_remove(pcie->msi.dev_domain);
-+
-+	irq_domain_remove(pcie->intx_domain);
-+	irq_domain_remove(pcie->event_domain);
-+}
-+
-+int plda_pcie_host_init(struct plda_pcie_rp *port, struct pci_ops *ops,
-+			const struct plda_event *plda_event)
-+{
-+	struct device *dev = port->dev;
-+	struct pci_host_bridge *bridge;
-+	struct platform_device *pdev = to_platform_device(dev);
-+	struct resource *cfg_res;
-+	int ret;
-+
-+	pdev = to_platform_device(dev);
-+
-+	port->bridge_addr =
-+		devm_platform_ioremap_resource_byname(pdev, "apb");
-+
-+	if (IS_ERR(port->bridge_addr))
-+		return dev_err_probe(dev, PTR_ERR(port->bridge_addr),
-+				     "failed to map reg memory\n");
-+
-+	cfg_res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "cfg");
-+	if (!cfg_res)
-+		return dev_err_probe(dev, -ENODEV,
-+				     "failed to get config memory\n");
-+
-+	port->config_base = devm_ioremap_resource(dev, cfg_res);
-+	if (IS_ERR(port->config_base))
-+		return dev_err_probe(dev, PTR_ERR(port->config_base),
-+				     "failed to map config memory\n");
-+
-+	bridge = devm_pci_alloc_host_bridge(dev, 0);
-+	if (!bridge)
-+		return dev_err_probe(dev, -ENOMEM,
-+				     "failed to alloc bridge\n");
-+
-+	if (port->host_ops && port->host_ops->host_init) {
-+		ret = port->host_ops->host_init(port);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	port->bridge = bridge;
-+	plda_pcie_setup_window(port->bridge_addr, 0, cfg_res->start, 0,
-+			       resource_size(cfg_res));
-+	plda_pcie_setup_iomems(bridge, port);
-+	plda_set_default_msi(&port->msi);
-+	ret = plda_init_interrupts(pdev, port, plda_event);
-+	if (ret)
-+		goto err_host;
-+
-+	/* Set default bus ops */
-+	bridge->ops = ops;
-+	bridge->sysdata = port;
-+
-+	ret = pci_host_probe(bridge);
-+	if (ret < 0) {
-+		dev_err_probe(dev, ret, "failed to probe pci host\n");
-+		goto err_probe;
-+	}
-+
-+	return ret;
-+
-+err_probe:
-+	plda_pcie_irq_domain_deinit(port);
-+err_host:
-+	if (port->host_ops && port->host_ops->host_deinit)
-+		port->host_ops->host_deinit(port);
-+
-+	return ret;
-+}
-+EXPORT_SYMBOL_GPL(plda_pcie_host_init);
-+
-+void plda_pcie_host_deinit(struct plda_pcie_rp *port)
-+{
-+	pci_stop_root_bus(port->bridge->bus);
-+	pci_remove_root_bus(port->bridge->bus);
-+
-+	plda_pcie_irq_domain_deinit(port);
-+
-+	if (port->host_ops && port->host_ops->host_deinit)
-+		port->host_ops->host_deinit(port);
-+}
-+EXPORT_SYMBOL_GPL(plda_pcie_host_deinit);
-diff --git a/drivers/pci/controller/plda/pcie-plda.h b/drivers/pci/controller/plda/pcie-plda.h
-index 443109d04d59..7b69891700a4 100644
---- a/drivers/pci/controller/plda/pcie-plda.h
-+++ b/drivers/pci/controller/plda/pcie-plda.h
-@@ -141,6 +141,11 @@ struct plda_event_ops {
- 	u32 (*get_events)(struct plda_pcie_rp *pcie);
- };
- 
-+struct plda_pcie_host_ops {
-+	int (*host_init)(struct plda_pcie_rp *pcie);
-+	void (*host_deinit)(struct plda_pcie_rp *pcie);
-+};
-+
- struct plda_msi {
- 	struct mutex lock;		/* Protect used bitmap */
- 	struct irq_domain *msi_domain;
-@@ -152,14 +157,20 @@ struct plda_msi {
- 
- struct plda_pcie_rp {
- 	struct device *dev;
-+	struct pci_host_bridge *bridge;
- 	struct irq_domain *intx_domain;
- 	struct irq_domain *event_domain;
- 	raw_spinlock_t lock;
- 	struct plda_msi msi;
- 	const struct plda_event_ops *event_ops;
- 	const struct irq_chip *event_irq_chip;
-+	const struct plda_pcie_host_ops *host_ops;
- 	void __iomem *bridge_addr;
-+	void __iomem *config_base;
- 	unsigned long events_bitmap;
-+	int irq;
-+	int msi_irq;
-+	int intx_irq;
- 	int num_events;
- };
- 
-@@ -170,6 +181,8 @@ struct plda_event {
- 	int msi_event;
- };
- 
-+void __iomem *plda_pcie_map_bus(struct pci_bus *bus, unsigned int devfn,
-+				int where);
- int plda_init_interrupts(struct platform_device *pdev,
- 			 struct plda_pcie_rp *port,
- 			 const struct plda_event *event);
-@@ -178,4 +191,13 @@ void plda_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
- 			    size_t size);
- int plda_pcie_setup_iomems(struct pci_host_bridge *bridge,
- 			   struct plda_pcie_rp *port);
-+int plda_pcie_host_init(struct plda_pcie_rp *port, struct pci_ops *ops,
-+			const struct plda_event *plda_event);
-+void plda_pcie_host_deinit(struct plda_pcie_rp *pcie);
-+
-+static inline void plda_set_default_msi(struct plda_msi *msi)
-+{
-+	msi->vector_phy = IMSI_ADDR;
-+	msi->num_vectors = PLDA_MAX_NUM_MSI_IRQS;
-+}
- #endif
+Martin Blumenstingl (3):
+  ARM: dts: meson: fix bus node names
+  ARM: dts: meson8: fix &hwrng node compatible string
+  ARM: dts: meson8b: fix &hwrng node compatible string
+
+ arch/arm/boot/dts/amlogic/meson.dtsi   | 6 +++---
+ arch/arm/boot/dts/amlogic/meson8.dtsi  | 1 -
+ arch/arm/boot/dts/amlogic/meson8b.dtsi | 1 -
+ 3 files changed, 3 insertions(+), 5 deletions(-)
+
 -- 
-2.17.1
+2.43.2
 
 
