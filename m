@@ -1,80 +1,73 @@
-Return-Path: <devicetree+bounces-43236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4A628599B7
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 23:12:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E24F58599D5
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 23:57:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A4851F2202E
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 22:12:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF12A1C20B07
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 22:57:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B58FE745CA;
-	Sun, 18 Feb 2024 22:12:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF74E65BCC;
+	Sun, 18 Feb 2024 22:57:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PyLuHxqh"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="aRpnIvVp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB9FF6F07C;
-	Sun, 18 Feb 2024 22:12:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 479021DFD6;
+	Sun, 18 Feb 2024 22:57:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708294328; cv=none; b=gB41pl97BlLmgoyhVNlf2x/YecO5SBNHu1gBkivhRJ+k2kb0TRXeMau489SJzVv/hz5bh07jT48WTUYnQd3z8d48ID9iGVXFsUZS2DT5NXucjeq8g6ytPqU3qUfbGlcH8RerB/ykbqs5re80AsVCwKtwakBdBiqFwLAfff0bnZM=
+	t=1708297055; cv=none; b=qklwzGlyyyMAm0H13L2Dp2ODL9o2pFPVAoqQDvlcG2pQNUWVEtHxq8zo0fGKdFqKcDSsExp6UWxknIOAhdXElCkIwB5TF080yZdMXOFfzomw6odmVKgwiHD+0iXyajV22VV5mGEGfzKXWvzxusHMwRk0nfqsDzzcif8p7dWv/vE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708294328; c=relaxed/simple;
-	bh=tnM0uTy98OwW8DDzCPMTha03h0Xip8yTOAu7yVZB99w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f98sVFZmGIzixuqN6Tj8DsIWjQEWRcC4dBXb8TxaLJwTjO4eDLU5PXpt1BsVfH2Ilf1MdXFdlALrSyOjN4SUsIfnSG5lf82kCMwtO+S9OISSHY7PljcGwjRR/Cfl/dVDM/N9tJJ1GSVcdNzSSv52vhGa+DyhkpMhag2iQNPOfT8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PyLuHxqh; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1708294327; x=1739830327;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=tnM0uTy98OwW8DDzCPMTha03h0Xip8yTOAu7yVZB99w=;
-  b=PyLuHxqheb1IA5QtGNVxyL1GGvxbFhuh84xRYtIVx7GIP3m48ConPzS6
-   dCLsCTJu4ECqB+b64C+3E07MEHBIFqTxXEmwkVh1z63/XLbemi/gkEPZ3
-   j9+uikqotjyea4pri0zeAJdl8HKh/1mNJ86KZVrXbMui622HtRzbrGyf9
-   ds4sfEX3X+430OVL0KvRwOxkEg3fA71qiscORnt3YF7Ym/IdPQjvJ0xYK
-   fPoRsc/HZlv3j4IilUlbdQ8gAMf6i+dAQyT+ojVog3of6XDcMErKtuZbC
-   LrgPzcJWQO3FDaqIoe+n0rSo228DAo/005JgXK7yTS+77lObEzJyZXbTi
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10988"; a="12990493"
-X-IronPort-AV: E=Sophos;i="6.06,169,1705392000"; 
-   d="scan'208";a="12990493"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Feb 2024 14:12:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,169,1705392000"; 
-   d="scan'208";a="4717299"
-Received: from lkp-server02.sh.intel.com (HELO 3c78fa4d504c) ([10.239.97.151])
-  by orviesa008.jf.intel.com with ESMTP; 18 Feb 2024 14:12:02 -0800
-Received: from kbuild by 3c78fa4d504c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rbpOB-0003KO-0o;
-	Sun, 18 Feb 2024 22:11:59 +0000
-Date: Mon, 19 Feb 2024 06:11:30 +0800
-From: kernel test robot <lkp@intel.com>
-To: Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Jaehoon Chung <jh80.chung@samsung.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Igor Opaniuk <igor.opaniuk@linaro.org>,
-	tianshuliang <tianshuliang@hisilicon.com>,
-	David Yang <mmyangfl@gmail.com>, linux-kernel@vger.kernel.org,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	Yang Xiwen <forbidden405@outlook.com>
-Subject: Re: [PATCH 1/3] mmc: dw_mmc: add support for hi3798mv200
-Message-ID: <202402190531.qUVUPNDD-lkp@intel.com>
-References: <20240216-b4-mmc-hi3798mv200-v1-1-7d46db845ae6@outlook.com>
+	s=arc-20240116; t=1708297055; c=relaxed/simple;
+	bh=5I5rcGzvvfKkYVxYcEj6Zhf7emlThUYxDOK9gE8vMP4=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lPQ0AdPRUiLOl3wBhF6LZOhox3rdoV86M9H3PU3Frq6k+ZXmIU5s1WC7Pc2XPQLkSt0E+vxg5v7TLbSXidnwdPd+qKmNJQkldlOz3ZzYKm3m8/1aQHomouL1l6Rh+EhglUsVbwNgwR2GBWMSeQBK5kI7rPvO1CB2hOuhQbK2OPs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=aRpnIvVp; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 4725EC0003;
+	Sun, 18 Feb 2024 22:57:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1708297044;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=+pq9/TozG0Ax/9t8pkN6j57YfUyG6l7IZWL75JNMOW8=;
+	b=aRpnIvVpZuOrja+9vi61c+YPFQpEeNKl08VTLi1/D9Yp67pX0qu+9cLwGoH2StmVH7M7dw
+	PY3u/RGrT9J+SIRvSvlo7/SrMU+WjdrQE4GO4HCZdhobF40THyc2kvK5EvwavdKFXuHq4W
+	I9TkNLztch13vUOicb52krzpUuFvlggx7LJ8JLXmmK7E+DagQFja2qG9abHUJE5eQ5oNJ9
+	V+9WBz2U6tO6axVoVC/nBR/Nq2xHQCt+sNYYl/WK/VVZmAZcPhms4GaG0f5MD4aaASFF1e
+	HX7Toqqv+lX88OtgP7ycJtIH4r9CdOkdDQ/wN6AIbx8yt9MXcu9R9cZUwAyPfw==
+Date: Sun, 18 Feb 2024 23:57:19 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Jeremy Kerr <jk@codeconstruct.com.au>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	=?utf-8?Q?Przemys=C5=82aw?= Gaj <pgaj@cadence.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Conor Culhane <conor.culhane@silvaco.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Dinh Nguyen <dinguyen@kernel.org>,
+	Boris Brezillon <bbrezillon@kernel.org>,
+	Nicolas Pitre <npitre@baylibre.com>, linux-i3c@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: (subset) [PATCH 1/3] dt-bindings: i3c: drop "master" node name
+ suffix
+Message-ID: <170829700336.822203.177392854952786485.b4-ty@bootlin.com>
+References: <20240117075618.81932-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,76 +76,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240216-b4-mmc-hi3798mv200-v1-1-7d46db845ae6@outlook.com>
+In-Reply-To: <20240117075618.81932-1-krzysztof.kozlowski@linaro.org>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 
-Hi Yang,
+On Wed, 17 Jan 2024 08:56:16 +0100, Krzysztof Kozlowski wrote:
+> Drop the requirement of "-master" suffix in node names because:
+> 1. "Master" word is discouraged and MIPI Alliance renamed it to
+>    "Controller".
+> 2. Some devices can operate in Controller (Master) or Target mode, thus
+>    the name is not accurate in such cases.
+> 3. Other buses, like I2C controllers, use simple "i2c".
+> 
+> [...]
 
-kernel test robot noticed the following build errors:
+Applied, thanks!
 
-[auto build test ERROR on 8d3dea210042f54b952b481838c1e7dfc4ec751d]
+[1/3] dt-bindings: i3c: drop "master" node name suffix
+      https://git.kernel.org/abelloni/c/c53611f2e27a
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Yang-Xiwen-via-B4-Relay/mmc-dw_mmc-add-support-for-hi3798mv200/20240216-014744
-base:   8d3dea210042f54b952b481838c1e7dfc4ec751d
-patch link:    https://lore.kernel.org/r/20240216-b4-mmc-hi3798mv200-v1-1-7d46db845ae6%40outlook.com
-patch subject: [PATCH 1/3] mmc: dw_mmc: add support for hi3798mv200
-config: powerpc-allyesconfig (https://download.01.org/0day-ci/archive/20240219/202402190531.qUVUPNDD-lkp@intel.com/config)
-compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project 36adfec155de366d722f2bac8ff9162289dcf06c)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240219/202402190531.qUVUPNDD-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202402190531.qUVUPNDD-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/mmc/host/dw_mmc-hi3798mv200.c:178:25: error: incompatible pointer types passing 'struct device *' to parameter of type 'struct mmc_host *' [-Werror,-Wincompatible-pointer-types]
-     178 |         mmc_of_parse_clk_phase(host->dev, &priv->phase_map);
-         |                                ^~~~~~~~~
-   include/linux/mmc/host.h:542:46: note: passing argument to parameter 'host' here
-     542 | void mmc_of_parse_clk_phase(struct mmc_host *host,
-         |                                              ^
-   1 error generated.
-
-
-vim +178 drivers/mmc/host/dw_mmc-hi3798mv200.c
-
-   168	
-   169	static int dw_mci_hi3798mv200_init(struct dw_mci *host)
-   170	{
-   171		struct dw_mci_hi3798mv200_priv *priv;
-   172		struct device_node *np = host->dev->of_node;
-   173	
-   174		priv = devm_kzalloc(host->dev, sizeof(*priv), GFP_KERNEL);
-   175		if (!priv)
-   176			return -ENOMEM;
-   177	
- > 178		mmc_of_parse_clk_phase(host->dev, &priv->phase_map);
-   179	
-   180		priv->sample_clk = devm_clk_get_enabled(host->dev, "ciu-sample");
-   181		if (IS_ERR(priv->sample_clk)) {
-   182			dev_err(host->dev, "failed to get enabled ciu-sample clock\n");
-   183			return PTR_ERR(priv->sample_clk);
-   184		}
-   185	
-   186		priv->drive_clk = devm_clk_get_enabled(host->dev, "ciu-drive");
-   187		if (IS_ERR(priv->drive_clk)) {
-   188			dev_err(host->dev, "failed to get enabled ciu-drive clock\n");
-   189			return PTR_ERR(priv->drive_clk);
-   190		}
-   191	
-   192		priv->sap_dll_reg = syscon_regmap_lookup_by_phandle(np, "hisilicon,sap-dll-reg");
-   193		if (IS_ERR(priv->sap_dll_reg)) {
-   194			dev_err(host->dev, "failed to get sap-dll-reg\n");
-   195			return PTR_ERR(priv->sap_dll_reg);
-   196		}
-   197	
-   198		host->priv = priv;
-   199		return 0;
-   200	}
-   201	
+Best regards,
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
