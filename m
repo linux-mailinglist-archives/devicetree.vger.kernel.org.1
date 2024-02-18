@@ -1,69 +1,71 @@
-Return-Path: <devicetree+bounces-43202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDEAB859789
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 16:14:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4191F85978A
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 16:14:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F0FA81C20A5A
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 15:14:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4127281A06
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 15:14:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A6026BFD2;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8CEA6BFDF;
 	Sun, 18 Feb 2024 15:14:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="pWqN+LGE"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="GT+EQuZN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66E9463126
-	for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 15:14:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 289A46BFA5
+	for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 15:14:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708269243; cv=none; b=CysiJ8J2SXN9P380kehOdTnLAhftfQeUNWXoajXeDUxBIsU7i2WPdQoRF9QIbKXzC72ESxPsIrUobkOIczqOt5eOF3bzKqNp2MTCvHmMxHyRFiyRLBhKevKCabGiJLufjkBVaRPZaZLv739E/tGATgxJkkPn6EzGM7Q3oTWTYIk=
+	t=1708269243; cv=none; b=sqaTwKMmaKSSR6x8OPJ2FpiwccsI+3FBsWD0XVuIJmomjkicJlyLPlFV+0HqwgGuc8731sYhROjs7utZv2xLAZJLsmRFhXYSZrkiU3C970LvMW5P8U8oYa1mT2F/Izbf4uWE8vEZNi76jtqG02xe1MReul8ekBsym+dfxVYaoD8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1708269243; c=relaxed/simple;
-	bh=2RIlqLb6lOMD1KN12T+mtMdZ8n+dOn+rgY+MsUEh6ug=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=e3lyp9mXILbKPp51F2r3DunA0rXMOTBBY+fsxGyGn1uVc9ZmIkiArLNNL1qWeo4FYSUcFWUJ9fbmu9+kYyadgjHehSgWXMHsYyDY3txwplZMZy7Hu/4m0icNw57mI2RAtOfmYDS5YOdpcIRa5q7N3o5asTFqxmvaENpVDrBPQEY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=pWqN+LGE; arc=none smtp.client-ip=209.85.208.179
+	bh=Gb8MOPQA8iHaNkDZvQvGMuyeyh0ktuw3AzkNkmj2+SQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=Wxxof8FSNS57i0r1FK99H+xV2W4UCFaWbGj1uTkCiEqbcm/p74zun1NyZOlA/1TFxKzHtQ7wQEb9S9J2G59kq4TBNjcgja7rwXFCcI/pAWVwDLzkc3+1QvbKBajyTkZxFkKoHBkmNerkxYDsVfKthLF2dJFRn4ivQomUzllJzNU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=GT+EQuZN; arc=none smtp.client-ip=209.85.221.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2d0a4e1789cso41599241fa.3
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-33d509ab80eso2743f8f.3
         for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 07:14:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1708269239; x=1708874039; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=CO56vYs8Z41/vI1Yt38AdTk/YbbFf9TKPY/0g1B0V7s=;
-        b=pWqN+LGEhmkHJmXsJdq22uep9IeoMne5ApIQZa6BcigN2KG1ScEgn9PLWDUp0cU/hs
-         DnJBoh3bWo1PGiSXRuH0CUAQSGuRkeu0xPBZOItQTpTneAa5RMtRfE830RP9hjAzyQWX
-         qBlfuMyQfgtKisMigFq15TPZlgs6idxhH2D++D1OF4gIPU4nwFLWZ39qBzMockFy193z
-         4cJB34y9nKhlwmrqS/WVY0Se8yER6o/f61veIlzVaPAHd8zaqVy1aTeMcm8O6+ezHAmk
-         R5TSq8Vjtq1Xagz5TsfaMZw3PZvhCJOgRceR+1/gbuEGMdK/LaqYr7yp4zXl2LmKGZ5V
-         A8KQ==
+        d=tuxon.dev; s=google; t=1708269240; x=1708874040; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=v3INayNM3vP9PiYuaZtLXnwcILE1ew0o01Gi3XQP/5Q=;
+        b=GT+EQuZNHSR7L7iu1c62gvDS5OkDdGUFQZ26LPYPxWUjPzVkMm8cPIqc6WW5XZCSPa
+         VOzEIypJGsaFnAOlfxCWltlZgp74qCjb+xUMso+Ou58nu+UuZn/1Z9fyEBouIcxqt33l
+         atF9XHcst9dGgzafIoQq7+tYI+SIcU+uvVkbRrjuPg8nmAHW7gqIqMoUWzq2ODqsiq9E
+         RbwC7vxdT8sXnNge6XgLIv/PMK9cNzX+0ahVscKSTIqBHNkqCa6Z1L0hQehB6zelO0hC
+         3uEXPlc8SdPSm2AZmqIfLWn4uNOqr/43EV3+OGy8YrtZxS9Hlf1ee0bs7kANSV9mj+a7
+         e2Tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708269239; x=1708874039;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CO56vYs8Z41/vI1Yt38AdTk/YbbFf9TKPY/0g1B0V7s=;
-        b=V0yxWXVzI/otNrvWFunQLLpiQSjnRrzvIX938bv1Hjj58Z79/Er1Z+MxwNFM5O8hs7
-         Wg9/zLfv5Cxz8QkMCn8n03hnGKKzBn0RTGYAOD2Kfi6r69t+Iwjx8A+a3rkDeYH0YeB1
-         ARSVJDTkBbPThy+EO0dHMl+rkvpE5wemJ5n7POqXccf/tScVp+iwysjofoHEMEPpsx4S
-         SQoRe8Ulqd2hWXTd97mG3mNTAtuH0yul5gY3pjuMzlPGlZ4AeszMZGTtMD6FOYugs10d
-         zE0lv+js6htX68uOvKRDBUS6jhcy+Jr1ptEOVSbepxadBv8N95rQMRyhl4BBwL4LcS+G
-         9ZGQ==
-X-Gm-Message-State: AOJu0YxDphoBV28D4HZ8IS4C9SoVrYZiJQfEZSxI2EMIqlnbZOrmHpWq
-	gHTk4tXZj0UVS/+OGSFsZTfVtj+JNGGf0ofizC/ZDGLg2QLr7wyo2dP8mEfxvIo=
-X-Google-Smtp-Source: AGHT+IGbTfCdD6l7YNLzxHRVZ3Lq7dABvgdcel/C4kTR/bFTGrSyBYIzMItjz8BjQvi+mjuH4un6hQ==
-X-Received: by 2002:a2e:8e82:0:b0:2d0:f6cd:8abc with SMTP id z2-20020a2e8e82000000b002d0f6cd8abcmr6031430ljk.12.1708269239473;
-        Sun, 18 Feb 2024 07:13:59 -0800 (PST)
+        d=1e100.net; s=20230601; t=1708269240; x=1708874040;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=v3INayNM3vP9PiYuaZtLXnwcILE1ew0o01Gi3XQP/5Q=;
+        b=jHWPqk6fajmBtwNyWFDczvAcVmuE7WW+T+8NnLDhRERFqt46ClxMbOWoH7J3Y4KvQR
+         w+UJXklUMWoKXWyEU1kNmGmMqt/Ndl/VjtKRHvrTkWfB0zv1l5VVicU7zyq6hlYUuEok
+         dz2N2K//JCCVZndod8m4QM17dhlqknwxwgG4Ch/LmRzBy8ClpB5D0eU1oYOsP/SrGtM/
+         iH9Y6l6SfuRqKRNUXmYA6+jIpW6sZI5m8UOPqaZH48DV4q2jPyHHk9KhopggVmyNJNq4
+         B6INrJ2+uFnKyMeZA7hz/QpiNENaW8eA9FAyd8B9SHZHRWoPpgxb6rZEZwyCpY45MNiy
+         /+pw==
+X-Gm-Message-State: AOJu0YxdOOgzGfKCD8lyPZeBBoJv/4tJx1xH1ldUyDoANHcTXwOxgy/t
+	ShlunxPEycvdq0D69R7wD+2fhhbwPWECtYAC96/pBtmLuG7/OvfjfY1W7355M48=
+X-Google-Smtp-Source: AGHT+IF2GNQ1KecR5Q/WvCiqLqgcAqs5/zZPRwICkdDauhhHxyvX3MpY9XT2uYz4KToBXVsgCfaaQg==
+X-Received: by 2002:a5d:6da7:0:b0:33d:500c:d498 with SMTP id u7-20020a5d6da7000000b0033d500cd498mr118535wrs.64.1708269240595;
+        Sun, 18 Feb 2024 07:14:00 -0800 (PST)
 Received: from claudiu-X670E-Pro-RS.. ([82.78.167.20])
-        by smtp.gmail.com with ESMTPSA id bu19-20020a056000079300b0033d3d9447e3sm2150744wrb.83.2024.02.18.07.13.58
+        by smtp.gmail.com with ESMTPSA id bu19-20020a056000079300b0033d3d9447e3sm2150744wrb.83.2024.02.18.07.13.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Feb 2024 07:13:59 -0800 (PST)
+        Sun, 18 Feb 2024 07:14:00 -0800 (PST)
 From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
 To: robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
@@ -74,10 +76,12 @@ Cc: devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Subject: [PATCH 0/2] ARM: dts: microchip: few DT cleanups
-Date: Sun, 18 Feb 2024 17:13:51 +0200
-Message-Id: <20240218151353.3612621-1-claudiu.beznea@tuxon.dev>
+Subject: [PATCH 1/2] ARM: dts: microchip: sama7g5: align dmas to the opening '<'
+Date: Sun, 18 Feb 2024 17:13:52 +0200
+Message-Id: <20240218151353.3612621-2-claudiu.beznea@tuxon.dev>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20240218151353.3612621-1-claudiu.beznea@tuxon.dev>
+References: <20240218151353.3612621-1-claudiu.beznea@tuxon.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,21 +90,92 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Hi,
+Align dmas to the opening '<' to comply with the dts coding style,
+indentation section, point 3: "For arrays spanning across lines, it is
+preferred to align the continued entries with opening < from the first
+line."
 
-Series adds minor cleanups for sam9x60 and sama7g5.
+Signed-off-by: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+---
+ arch/arm/boot/dts/microchip/sama7g5.dtsi | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-Thank you,
-Claudiu Beznea
-
-Claudiu Beznea (2):
-  ARM: dts: microchip: sama7g5: align dmas to opening '<'
-  ARM: dts: microchip: sam9x60: align dmas to opening '<'
-
- arch/arm/boot/dts/microchip/sam9x60.dtsi | 64 ++++++++++++------------
- arch/arm/boot/dts/microchip/sama7g5.dtsi | 16 +++---
- 2 files changed, 40 insertions(+), 40 deletions(-)
-
+diff --git a/arch/arm/boot/dts/microchip/sama7g5.dtsi b/arch/arm/boot/dts/microchip/sama7g5.dtsi
+index 269e0a3ca269..15227a870d34 100644
+--- a/arch/arm/boot/dts/microchip/sama7g5.dtsi
++++ b/arch/arm/boot/dts/microchip/sama7g5.dtsi
+@@ -714,7 +714,7 @@ uart0: serial@200 {
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 38>;
+ 				clock-names = "usart";
+ 				dmas = <&dma1 AT91_XDMAC_DT_PERID(6)>,
+-					<&dma1 AT91_XDMAC_DT_PERID(5)>;
++				       <&dma1 AT91_XDMAC_DT_PERID(5)>;
+ 				dma-names = "tx", "rx";
+ 				atmel,use-dma-rx;
+ 				atmel,use-dma-tx;
+@@ -740,7 +740,7 @@ i2c1: i2c@600 {
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 39>;
+ 				atmel,fifo-size = <32>;
+ 				dmas = <&dma0 AT91_XDMAC_DT_PERID(8)>,
+-					<&dma0 AT91_XDMAC_DT_PERID(7)>;
++				       <&dma0 AT91_XDMAC_DT_PERID(7)>;
+ 				dma-names = "tx", "rx";
+ 				status = "disabled";
+ 			};
+@@ -763,7 +763,7 @@ uart3: serial@200 {
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 41>;
+ 				clock-names = "usart";
+ 				dmas = <&dma1 AT91_XDMAC_DT_PERID(12)>,
+-					<&dma1 AT91_XDMAC_DT_PERID(11)>;
++				       <&dma1 AT91_XDMAC_DT_PERID(11)>;
+ 				dma-names = "tx", "rx";
+ 				atmel,use-dma-rx;
+ 				atmel,use-dma-tx;
+@@ -807,7 +807,7 @@ uart4: serial@200 {
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 42>;
+ 				clock-names = "usart";
+ 				dmas = <&dma1 AT91_XDMAC_DT_PERID(14)>,
+-					<&dma1 AT91_XDMAC_DT_PERID(13)>;
++				       <&dma1 AT91_XDMAC_DT_PERID(13)>;
+ 				dma-names = "tx", "rx";
+ 				atmel,use-dma-rx;
+ 				atmel,use-dma-tx;
+@@ -833,7 +833,7 @@ uart7: serial@200 {
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 45>;
+ 				clock-names = "usart";
+ 				dmas = <&dma1 AT91_XDMAC_DT_PERID(20)>,
+-					<&dma1 AT91_XDMAC_DT_PERID(19)>;
++				       <&dma1 AT91_XDMAC_DT_PERID(19)>;
+ 				dma-names = "tx", "rx";
+ 				atmel,use-dma-rx;
+ 				atmel,use-dma-tx;
+@@ -928,7 +928,7 @@ i2c8: i2c@600 {
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 46>;
+ 				atmel,fifo-size = <32>;
+ 				dmas = <&dma0 AT91_XDMAC_DT_PERID(22)>,
+-					<&dma0 AT91_XDMAC_DT_PERID(21)>;
++				       <&dma0 AT91_XDMAC_DT_PERID(21)>;
+ 				dma-names = "tx", "rx";
+ 				status = "disabled";
+ 			};
+@@ -952,7 +952,7 @@ i2c9: i2c@600 {
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 47>;
+ 				atmel,fifo-size = <32>;
+ 				dmas = <&dma0 AT91_XDMAC_DT_PERID(24)>,
+-					<&dma0 AT91_XDMAC_DT_PERID(23)>;
++				       <&dma0 AT91_XDMAC_DT_PERID(23)>;
+ 				dma-names = "tx", "rx";
+ 				status = "disabled";
+ 			};
+@@ -977,7 +977,7 @@ spi11: spi@400 {
+ 				#size-cells = <0>;
+ 				atmel,fifo-size = <32>;
+ 				dmas = <&dma0 AT91_XDMAC_DT_PERID(28)>,
+-					    <&dma0 AT91_XDMAC_DT_PERID(27)>;
++				       <&dma0 AT91_XDMAC_DT_PERID(27)>;
+ 				dma-names = "tx", "rx";
+ 				status = "disabled";
+ 			};
 -- 
 2.39.2
 
