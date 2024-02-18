@@ -1,194 +1,252 @@
-Return-Path: <devicetree+bounces-43094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CC0685940E
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 03:30:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A324C85942C
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 03:50:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 13D53B21645
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 02:30:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59E15282F47
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 02:50:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42C6E37E;
-	Sun, 18 Feb 2024 02:30:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96FA915C0;
+	Sun, 18 Feb 2024 02:50:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="but6+eIr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52BCE136A;
-	Sun, 18 Feb 2024 02:30:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF9FEA34;
+	Sun, 18 Feb 2024 02:50:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708223450; cv=none; b=TUolR3YT+nq2fUCQ7J8AnkqYg2+rB5HNaZ9nJM4cxhsxFnXcaRHnUvVmZI5p1QQM4lXE5dPhoWyjW3FQ1Ni1ASHHJznSk3IoX4W0xQxrMuhsinJYmC1+UCvsZrwVIeyDVY3cKhuf7CDBJxDk8IUvVz36iNeDJGaGY1HyM1Vcd6E=
+	t=1708224637; cv=none; b=KJfEE8uhN7M6+ovGYuB1puhIkhsGev+JJw8QonB86hdPyIgm9KioMwrCHRBi7gdgPPNtDfEnB+OjxUyXm119jAS8FvzpsPWPLcTDqedEKkl72BLIXI9w+4DIBTuOS1BN7jQCCUm7ZIKyss6FvVI9+YTbql1vC1PrKYD/qVy1kpc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708223450; c=relaxed/simple;
-	bh=iuYSgsm82GmOEjBo/CfBN7Oyn3THVKnRtiZmMIR38p8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dfB4gha62riC0M00PGFDtb+8ykHIUQ2mg7ZdOKhGPAWVak/W2QfZE1Uzp6//z87v7Ib95O4hE0vTYGk9JtwUSzvtKLnMWENeBnba7lCOzjGhgj7hlGu4G7uzFfX0PCTB4b1sBNtLauEeHbkdBbYgowN7j9f6M44dy7A7i0G9FUU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
-Received: from loongson.cn (unknown [112.20.108.61])
-	by gateway (Coremail) with SMTP id _____8CxmejTa9Fl3AwOAA--.18173S3;
-	Sun, 18 Feb 2024 10:30:43 +0800 (CST)
-Received: from [192.168.100.8] (unknown [112.20.108.61])
-	by localhost.localdomain (Coremail) with SMTP id AQAAf8BxnhPPa9FlJFU6AA--.28623S3;
-	Sun, 18 Feb 2024 10:30:41 +0800 (CST)
-Message-ID: <0b9c8709-432e-41f4-83f7-9f78ef46ef8f@loongson.cn>
-Date: Sun, 18 Feb 2024 10:30:39 +0800
+	s=arc-20240116; t=1708224637; c=relaxed/simple;
+	bh=csKVS05VZ1LdlT61/289CqczHlFQReN3S/4Vivuc8gU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=syupwjIwg4hZMLUKYewHxeMQHQRyhERuMQvFNlm0nXYYZrwLXyPjzBAiQ7oKVxiDluilnjO7ltICDijTl2gcnExcOMZqPdi8pw80cjPRt4GR0HZIVvNxvYyMfgVGGctBqkwRtbw4aGEpb+qMi0FK8Bta/LFn0DlxEq8dpTiHeVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=but6+eIr; arc=none smtp.client-ip=209.85.160.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-21e95f4ed73so283410fac.0;
+        Sat, 17 Feb 2024 18:50:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708224635; x=1708829435; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nAJ5ltGfAiLD6zWuVubqrGKYwXO9kCBenaTuBOXA/Uo=;
+        b=but6+eIrNl+hXx09Ge84/t4zeHz1Qj2l7GudrYQ/rVE2rbB/WT9Ipv7LenVCCebftj
+         N3tPOWwEKvhNaYSgAaosucbj9HUCzpF4QPkgUB2qvdrnpSdogIoGMBZp9DU2RFO3rvC2
+         XwLWWObIhezWcP3eoSSatD4j8Rpa2XZ/R/oW8DcvGoqZqjfTLYOINzrYlWsXnA71Aq5D
+         L0Eg3xdMlpZv1SZc0V2kAGsviPNBFPos2tJcHQFcQ0eWm+9eRe/maGGGOuX8JzVltVJ5
+         WMW5KSJZu+6LZJ8rcB01EenW9cDeO9Z+Tf5ESJtQnbVuo2v2NJDoXC/ymFRJS+Qh/trF
+         A5qw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708224635; x=1708829435;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nAJ5ltGfAiLD6zWuVubqrGKYwXO9kCBenaTuBOXA/Uo=;
+        b=If7aaIaik2RGHMCKrp/DvOqcXlHWejqZryG8+Xkbdxad3YU90Axj/QnBy1SjssqZyX
+         s/YvewlapJlHkxtiQ8nXME5KaDIVRnkFrSdwpiuYXwYcsbYJqv3oMFeI3qT3nOARLnLs
+         p25EOA+WCxMyz+18CZtCK6kbg29x3xKHc4NbGK4Zxu/lKVOFjfPdP7qjPeFz8iwtS/s6
+         Zq1O/AfWQh9mGDtCcGiJM6nDljnaPX5hejKM3o+Dfz7z5/YOisJY+vm+lPszhfpKzyhc
+         aXHGN42cpF2Bmt2aV4v3u7/TTMQRIByACIK6XtaYTHpqmYbCJONtJvr2imweV5HhY8EI
+         icow==
+X-Forwarded-Encrypted: i=1; AJvYcCWlG2Oqtf4U7HwgJ+qkxQJlgkXJS28W3ekpT3ybM9vBc9rYiZAwAUwVTNP+UZOyRJsQ70BjYJzE8Lq+45BtAY6dTSNizYsI8jA3MskDJMh3J/Kx0nsdF5Xytu1sDNdy9E89z+5car5xKjMtgDIoSzd92od37wX7s1rUzp/s84xHt+/6Ig==
+X-Gm-Message-State: AOJu0YwEjPArbri3L0Riw993ZoJ2HzGhnCKaM8e5Z9H5qIsRvXP2LLZ0
+	/yFSeGwAVSNnIEsMPQxNrF8KGrKlb36FX+jqxj2wgoFTgMPnJqH0
+X-Google-Smtp-Source: AGHT+IEZdWRSv6OyEylfT18OqTojeVi3763UrXEQaBYtIT8k8y19STYJnEqc1AWmgd13V+RGI5e++Q==
+X-Received: by 2002:a05:6870:440e:b0:219:aa92:a4de with SMTP id u14-20020a056870440e00b00219aa92a4demr10225680oah.21.1708224634539;
+        Sat, 17 Feb 2024 18:50:34 -0800 (PST)
+Received: from localhost.localdomain ([122.8.183.87])
+        by smtp.gmail.com with ESMTPSA id oz21-20020a056871789500b0021a12cae134sm745615oac.48.2024.02.17.18.50.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 17 Feb 2024 18:50:34 -0800 (PST)
+From: Chen Wang <unicornxw@gmail.com>
+To: aou@eecs.berkeley.edu,
+	chao.wei@sophgo.com,
+	conor@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	mturquette@baylibre.com,
+	palmer@dabbelt.com,
+	paul.walmsley@sifive.com,
+	richardcochran@gmail.com,
+	robh+dt@kernel.org,
+	sboyd@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	haijiao.liu@sophgo.com,
+	xiaoguang.xing@sophgo.com,
+	guoren@kernel.org,
+	jszhang@kernel.org,
+	inochiama@outlook.com,
+	samuel.holland@sifive.com
+Cc: Chen Wang <unicorn_wang@outlook.com>
+Subject: [PATCH v10 0/5] riscv: sophgo: add clock support for sg2042
+Date: Sun, 18 Feb 2024 10:50:25 +0800
+Message-Id: <cover.1708223519.git.unicorn_wang@outlook.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] docs: dt: Update overlay file extension
-To: Geert Uytterhoeven <geert+renesas@glider.be>, Andrew Davis <afd@ti.com>,
- Jonathan Corbet <corbet@lwn.net>, Alex Shi <alexs@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <5ac79104822cdce7a4caab87f14ce02477f85820.1707819511.git.geert+renesas@glider.be>
-Content-Language: en-US
-From: Yanteng Si <siyanteng@loongson.cn>
-In-Reply-To: <5ac79104822cdce7a4caab87f14ce02477f85820.1707819511.git.geert+renesas@glider.be>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:AQAAf8BxnhPPa9FlJFU6AA--.28623S3
-X-CM-SenderInfo: pvl1t0pwhqwqxorr0wxvrqhubq/
-X-Coremail-Antispam: 1Uk129KBj93XoW3Ar43XFWkGFWrKr1kGF47WrX_yoW7Xr47pF
-	13JF17XF17Jr17Ww1UJF1UJr1UAr1UJ3WUGr17Jr1ktr4Yyr15Jr1Utwn5JFyUJFy8AryU
-	JryUJFyUJr12k3XCm3ZEXasCq-sJn29KB7ZKAUJUUUU7529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUU9Kb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8JVWxJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_
-	Gr0_Gr1UM2kKe7AKxVWUXVWUAwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07AIYI
-	kI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUAVWU
-	twAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI48JMx
-	kF7I0En4kS14v26r126r1DMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4U
-	MxCIbckI1I0E14v26r1Y6r17MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI
-	0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE
-	14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw20EY4v20x
-	vaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVWU
-	JVW8JbIYCTnIWIevJa73UjIFyTuYvjxUcpBTUUUUU
 
+From: Chen Wang <unicorn_wang@outlook.com>
 
-在 2024/2/13 18:24, Geert Uytterhoeven 写道:
-> Building DTB overlays from .dts files is no longer supported.
-> Update the documentation to reflect this.
->
-> Fixes: 81d362732bac05f6 ("kbuild: Disallow DTB overlays to built from .dts named source files")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Reviewed-by: Yanteng Si <siyanteng@loongson.cn>
-
+This series adds clock controller support for sophgo sg2042.
 
 Thanks,
+Chen
 
-Yanteng
+---
 
-> ---
->   Documentation/devicetree/overlay-notes.rst           | 12 ++++++------
->   .../translations/zh_CN/devicetree/overlay-notes.rst  | 12 ++++++------
->   2 files changed, 12 insertions(+), 12 deletions(-)
->
-> diff --git a/Documentation/devicetree/overlay-notes.rst b/Documentation/devicetree/overlay-notes.rst
-> index e139f22b363e9f36..35e79242af9a928d 100644
-> --- a/Documentation/devicetree/overlay-notes.rst
-> +++ b/Documentation/devicetree/overlay-notes.rst
-> @@ -38,10 +38,10 @@ Lets take an example where we have a foo board with the following base tree::
->   	};
->       ---- foo.dts ---------------------------------------------------------------
->   
-> -The overlay bar.dts,
-> +The overlay bar.dtso,
->   ::
->   
-> -    ---- bar.dts - overlay target location by label ----------------------------
-> +    ---- bar.dtso - overlay target location by label ---------------------------
->   	/dts-v1/;
->   	/plugin/;
->   	&ocp {
-> @@ -51,7 +51,7 @@ The overlay bar.dts,
->   			... /* various properties and child nodes */
->   		};
->   	};
-> -    ---- bar.dts ---------------------------------------------------------------
-> +    ---- bar.dtso --------------------------------------------------------------
->   
->   when loaded (and resolved as described in [1]) should result in foo+bar.dts::
->   
-> @@ -88,9 +88,9 @@ in the base DT. In this case, the target path can be provided. The target
->   location by label syntax is preferred because the overlay can be applied to
->   any base DT containing the label, no matter where the label occurs in the DT.
->   
-> -The above bar.dts example modified to use target path syntax is::
-> +The above bar.dtso example modified to use target path syntax is::
->   
-> -    ---- bar.dts - overlay target location by explicit path --------------------
-> +    ---- bar.dtso - overlay target location by explicit path -------------------
->   	/dts-v1/;
->   	/plugin/;
->   	&{/ocp} {
-> @@ -100,7 +100,7 @@ The above bar.dts example modified to use target path syntax is::
->   			... /* various properties and child nodes */
->   		}
->   	};
-> -    ---- bar.dts ---------------------------------------------------------------
-> +    ---- bar.dtso --------------------------------------------------------------
->   
->   
->   Overlay in-kernel API
-> diff --git a/Documentation/translations/zh_CN/devicetree/overlay-notes.rst b/Documentation/translations/zh_CN/devicetree/overlay-notes.rst
-> index 43e3c0bc5a9f8235..ba5edd05dc1e7fd2 100644
-> --- a/Documentation/translations/zh_CN/devicetree/overlay-notes.rst
-> +++ b/Documentation/translations/zh_CN/devicetree/overlay-notes.rst
-> @@ -43,10 +43,10 @@ Documentation/devicetree/dynamic-resolution-notes.rst[1]的配套文档。
->   	};
->       ---- foo.dts ---------------------------------------------------------------
->   
-> -覆盖bar.dts,
-> +覆盖bar.dtso,
->   ::
->   
-> -    ---- bar.dts - 按标签覆盖目标位置 ----------------------------
-> +    ---- bar.dtso - 按标签覆盖目标位置 ---------------------------
->   	/dts-v1/;
->   	/插件/;
->   	&ocp {
-> @@ -56,7 +56,7 @@ Documentation/devicetree/dynamic-resolution-notes.rst[1]的配套文档。
->   			... /* 各种属性和子节点 */
->   		};
->   	};
-> -    ---- bar.dts ---------------------------------------------------------------
-> +    ---- bar.dtso --------------------------------------------------------------
->   
->   当加载（并按照[1]中描述的方式解决）时，应该产生foo+bar.dts::
->   
-> @@ -90,9 +90,9 @@ Documentation/devicetree/dynamic-resolution-notes.rst[1]的配套文档。
->   DT中的适当位置。在这种情况下，可以提供目标路径。通过标签的目标位置的语法是比
->   较好的，因为不管标签在DT中出现在哪里，覆盖都可以被应用到任何包含标签的基础DT上。
->   
-> -上面的bar.dts例子被修改为使用目标路径语法，即为::
-> +上面的bar.dtso例子被修改为使用目标路径语法，即为::
->   
-> -    ---- bar.dts - 通过明确的路径覆盖目标位置 --------------------
-> +    ---- bar.dtso - 通过明确的路径覆盖目标位置 -------------------
->   	/dts-v1/;
->   	/插件/;
->   	&{/ocp} {
-> @@ -102,7 +102,7 @@ DT中的适当位置。在这种情况下，可以提供目标路径。通过标
->   			... /* 各种外围设备和子节点 */
->   		}
->   	};
-> -    ---- bar.dts ---------------------------------------------------------------
-> +    ---- bar.dtso --------------------------------------------------------------
->   
->   
->   内核中关于覆盖的API
+Changes in v10:
+
+  The patch series is based on v6.8-rc4.
+
+  Add input clocks for rpgate & clkgen.
+
+Changes in v9:
+  The patch series is based on v6.8-rc2. You can simply review or test the
+  patches at the link [10].
+
+  From this version, drop the system-controller node due to there is no actual
+  device corresponding to it in IC design. SYS_CTRL is just a registers segment
+  defined on TRM for misc functions. Now three clock-controllers are defined for
+  SG2042, the control registers of the three clock-controllers are scattered in
+  different memory address spaces:
+  - the first one is for pll clocks;
+  - the second one is for gate clocks for RP subsystem;
+  - the third one is for div/mux, and gate clocks working for other subsystem
+    than RP subsystem.
+
+Changes in v8:
+  The patch series is based on v6.7. You can simply review or test the
+  patches at the link [9].
+  
+  In this version, the main change is to split one clock provider into two.
+  Strictly follow the hardware instructions, in the memoymap, the control
+  registers of some clocks are defined in the SYS_CTRL segment, and the
+  control registers of other clocks are defined in the CLOCK segment.
+  Therefore, the new design defines two clock controllers, one as a child
+  node of the system control and the other as an independent clock controller
+  node.
+
+  This modification involves a major modification to the binding files, so
+  the reviewed-by tags has been deleted.
+
+Changes in v7:
+  The patch series is based on v6.7. You can simply review or test the
+  patches at the link [8].
+  - fixed initval issue.
+  - fixed pll clk crash issue.
+  - fixed warning reported by <lkp@intel.com>
+  - code optimization as per review comments.
+  - code cleanup and style improvements as per review comments and checkpatch
+    with "--strict"
+
+Changes in v6:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [7].
+  - fixed some warnings/errors reported by kernel test robot <lkp@intel.com>.
+
+Changes in v5:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [6].
+  - dt-bindings: improved yaml, such as:
+    - add vendor prefix for system-ctrl property for clock generator.
+    - Add explanation for system-ctrl property.
+  - move sophgo,sg2042-clkgen.yaml to directly under clock folder.
+  - fixed bugs for driver Makefile/Kconfig
+  - continue cleaning-up debug print for driver code.
+
+Changes in v4:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [5].
+  - dt-bindings: fixed a dt_binding_check error.
+
+Changes in v3:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [3].
+  - DTS: don't use syscon but define sg2042 specific system control node. More
+    background info can read [4].
+  - Updating minor issues in dt-bindings as per input from reviews.
+
+Changes in v2:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [2].
+  - Squashed the patch adding clock definitions with the patch adding the
+    binding for the clock controller.
+  - Updating dt-binding for syscon, remove oneOf for property compatible;
+    define clock controller as child of syscon.
+  - DTS changes: merge sg2042-clock.dtsi into sg2042.dtsi; move clock-frequency
+    property of osc to board devicethree due to the oscillator is outside the
+    SoC.
+  - Fixed some bugs in driver code during testing, including removing warnings
+    for rv32_defconfig.
+  - Updated MAINTAINERS info.
+
+Changes in v1:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [1].
+
+Link: https://lore.kernel.org/linux-riscv/cover.1699879741.git.unicorn_wang@outlook.com/ [1]
+Link: https://lore.kernel.org/linux-riscv/cover.1701044106.git.unicorn_wang@outlook.com/ [2]
+Link: https://lore.kernel.org/linux-riscv/cover.1701691923.git.unicorn_wang@outlook.com/ [3]
+Link: https://lore.kernel.org/linux-riscv/MA0P287MB03329AE180378E1A2E034374FE82A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM/ [4]
+Link: https://lore.kernel.org/linux-riscv/cover.1701734442.git.unicorn_wang@outlook.com/ [5]
+Link: https://lore.kernel.org/linux-riscv/cover.1701938395.git.unicorn_wang@outlook.com/ [6]
+Link: https://lore.kernel.org/linux-riscv/cover.1701997033.git.unicorn_wang@outlook.com/ [7]
+Link: https://lore.kernel.org/linux-riscv/cover.1704694903.git.unicorn_wang@outlook.com/ [8]
+Link: https://lore.kernel.org/linux-riscv/cover.1705388518.git.unicorn_wang@outlook.com/ [9]
+Link: https://lore.kernel.org/linux-riscv/cover.1706854074.git.unicorn_wang@outlook.com/ [10]
+
+---
+
+Chen Wang (5):
+  dt-bindings: clock: sophgo: add pll clocks for SG2042
+  dt-bindings: clock: sophgo: add RP gate clocks for SG2042
+  dt-bindings: clock: sophgo: add clkgen for SG2042
+  clk: sophgo: Add SG2042 clock driver
+  riscv: dts: add clock generator for Sophgo SG2042 SoC
+
+ .../bindings/clock/sophgo,sg2042-clkgen.yaml  |   49 +
+ .../bindings/clock/sophgo,sg2042-pll.yaml     |   45 +
+ .../bindings/clock/sophgo,sg2042-rpgate.yaml  |   43 +
+ .../boot/dts/sophgo/sg2042-milkv-pioneer.dts  |   12 +
+ arch/riscv/boot/dts/sophgo/sg2042.dtsi        |   48 +
+ drivers/clk/Kconfig                           |    1 +
+ drivers/clk/Makefile                          |    1 +
+ drivers/clk/sophgo/Kconfig                    |    8 +
+ drivers/clk/sophgo/Makefile                   |    2 +
+ drivers/clk/sophgo/clk-sophgo-sg2042.c        | 1401 +++++++++++++++++
+ drivers/clk/sophgo/clk-sophgo-sg2042.h        |  233 +++
+ .../dt-bindings/clock/sophgo,sg2042-clkgen.h  |  111 ++
+ include/dt-bindings/clock/sophgo,sg2042-pll.h |   14 +
+ .../dt-bindings/clock/sophgo,sg2042-rpgate.h  |   58 +
+ 14 files changed, 2026 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/sophgo,sg2042-clkgen.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/sophgo,sg2042-pll.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/sophgo,sg2042-rpgate.yaml
+ create mode 100644 drivers/clk/sophgo/Kconfig
+ create mode 100644 drivers/clk/sophgo/Makefile
+ create mode 100644 drivers/clk/sophgo/clk-sophgo-sg2042.c
+ create mode 100644 drivers/clk/sophgo/clk-sophgo-sg2042.h
+ create mode 100644 include/dt-bindings/clock/sophgo,sg2042-clkgen.h
+ create mode 100644 include/dt-bindings/clock/sophgo,sg2042-pll.h
+ create mode 100644 include/dt-bindings/clock/sophgo,sg2042-rpgate.h
+
+
+base-commit: 841c35169323cd833294798e58b9bf63fa4fa1de
+-- 
+2.25.1
 
 
