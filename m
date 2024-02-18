@@ -1,132 +1,130 @@
-Return-Path: <devicetree+bounces-43233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 288918599A3
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 22:57:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 294CE8599AD
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 23:07:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0143281666
-	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 21:57:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C49E1C2096D
+	for <lists+devicetree@lfdr.de>; Sun, 18 Feb 2024 22:07:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57F9574297;
-	Sun, 18 Feb 2024 21:57:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 835FE745EC;
+	Sun, 18 Feb 2024 22:07:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="0fGCbgr6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mgJf9XqW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 281C773176
-	for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 21:57:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97B4274E35
+	for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 22:07:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708293434; cv=none; b=AcZHwMJST6JfKTPuNm9VKsRLpzSCnt8RrdbnwzghUI7OZVDyIONjthlUqw/4hnwNgJTazoKyvbbqtABexRyme46XfYwaZPm0PYgu0+8oTajem6zALSz0et9GU3Yf353do0iA0zGmKzFYnmMNLqujYXkKJBZXHXQGrvP2l8jOvl8=
+	t=1708294061; cv=none; b=NJru8Gr8H+JwSWW0HG23S78zmDjrkpXkaI94pvNEvlghFIbktLECNJtTqyRgFs2CoGijiDAdn3ki8v0m5q9rtxUXWepJZk0eSJkrs1VglAancDdm0EoEPOHJQ8ZsmVgKSmCUwf+qGqFVo2nU1aVVhhe2YHJEu7ivPfvxabLu/Do=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708293434; c=relaxed/simple;
-	bh=qFFnYcQKuHjjtVyuFyTWh18ZDZIzroX9DFS+VvYuBbE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XAmvEkxTqn5tCyaB4qsVAxguC8H/fZ7Jxm1KfYNQobAow9EQQLWqqt+l6KgQaQt1srCRGP0I8ldTKOc4LmYZg3ROlKRgrHUzI+qt33YHT4by0vqvWnsSfTXtR9luEzPOXxxf6WWUQz43dUMHm7KE5vur4FUf3BPhUe3OZLkUheM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=0fGCbgr6; arc=none smtp.client-ip=209.85.167.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-3c0485fc8b8so3214679b6e.3
-        for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 13:57:11 -0800 (PST)
+	s=arc-20240116; t=1708294061; c=relaxed/simple;
+	bh=noyT0NVbOw9JrKezMpMB75c/1hxZ5UzrFj4VHYRvb7M=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=bqq7Lu3uKzPMR9B7i84mSDDz7qgcspYBbozjrZnUMCTp8N1c4M4eo9okucL2ZK0cNq13TuXE/yI1pbmtQF37bdpagffbEQdlnrL6MQXlTsQKtL60SxLRmZdFavlgqSbeIZMmGLPFt2VBhp+llRdjsY8xqISA1HnyhYiNUDuR3B8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mgJf9XqW; arc=none smtp.client-ip=209.85.219.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-dcc80d6004bso3725180276.0
+        for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 14:07:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1708293431; x=1708898231; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7EJCFpj5Mq/l10cEhu/JuTwYp/22JDItkGAyCOUOiCA=;
-        b=0fGCbgr6Hqu5b8i8aNauvc1zxXHTe6mQbcpLxzSzMHh7++tLtlnSlGqUuwv7uwaS6f
-         l5hXUuZ7UfhVWF3t9AtbIl6gHEn8JY2kUqgZn5TNq9XZ7bi1d+bW4s2rFFdXBcqXxvCU
-         SxTvHRry8EaGjjBuKGkMtHa6Dj221+0+qgSqD4d/FVxWUfL7GURC+80KtBDQlt4kdVuf
-         1D3rBGB1LMAEoJg4zeQTJQJ41rGW3JGQZ7L0pNDUojguTL3iax/zfMINSmYmGbxMvVia
-         O+U3HzJf1EwdJRXJ0O3ncgNMHtNeA517eqgs45xVdY62Ev3F2q0bObo6N2VBGagIP4Hw
-         x+RA==
+        d=linaro.org; s=google; t=1708294045; x=1708898845; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=w/A2VqH3T77p5BaaLS4Ba0fiwlO0C0XzwKCCFd7AcBU=;
+        b=mgJf9XqWGUumAC+UNXonICacLre696tHk+hJsYaLF7sJ6x/bEtcK6DUC0/6nP3/IBg
+         qyfTzye5aMjFKYCAMX5XGbMCcbdWZPMvEV9zLzwlhV/0URrdFIHHKjB4vaoBD2gT/dgy
+         cGiivjyKiEzSzg/aDXSs8UX6S0/wbP2y02PntYndRAtU080d9vrshuVtt6pNVMVgSQVA
+         dgqlyvmfRTwt89cWHf8QnuOsx2EPp35CATQ9sa14ZCqgSQg8oFwTkvCAE+LtHqaBCcQ+
+         NG1Z2/Ld/PSm72h5uH21ddClzCzv8NsDRz/CsnE/QCwQkPrFFHFBYWsEWK/n3hKD6iAv
+         RO8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708293431; x=1708898231;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7EJCFpj5Mq/l10cEhu/JuTwYp/22JDItkGAyCOUOiCA=;
-        b=VShLnpmU9qNuPvzNj8XTc30b2t4JylT9UVX+WxHbWjE0vFgalIEC8ZVRmnMy8oAX1k
-         1A5v/PTexRfeypkzmXOgyPk1UJR8wxPRT2ZZp2Ub1vqgt0lSToM42uY9ejmivGRvOWAd
-         Kpzoezu31G075v9IUTDgRrOagspJSsrfSYV75g1Agi+cLl21ftefzLtRf7whIvOXku/w
-         iLCIZD8qcERxfm9DqMhzbsg+nUYR8xLB/8VXmq6vlz7Kms92yKz1gHhOJwelODIA8r9X
-         Eswd9tm7d6BbQUgHhXrQDe0DQljn8znK/zRyhzFL+dfxX5Aj+ztuCHQHWQf2U5a+aVSp
-         SPpA==
-X-Forwarded-Encrypted: i=1; AJvYcCV3iQflw1GHzvjr4LD1/f7n/6JrOz+AsYsXExssJqR6/TjcEzgqA9Wu5jDoRvvyDUpS7Xv4yutojTPxWQPG4P/JkF552PXfR1sQ9A==
-X-Gm-Message-State: AOJu0Yy6cZ1sdOzPv7yDze2zYvJSwjLX16ydPJ3+Xj4QdiooO597ZYWL
-	fh/L6GLnLdHyKnHY440KyHaDbgNABr7CTqriM+gc57WQfBgUQMQ+HPleZHTK79E=
-X-Google-Smtp-Source: AGHT+IGHAd+EyyInpg/WIK5cXqp7bRUhKcmUIeqJqAnPgoTw25mUzovlZAYpWU5B3BmWer+kFxWViw==
-X-Received: by 2002:a05:6808:228e:b0:3c0:32c6:4e88 with SMTP id bo14-20020a056808228e00b003c032c64e88mr13167868oib.9.1708293431093;
-        Sun, 18 Feb 2024 13:57:11 -0800 (PST)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id a22-20020aca1a16000000b003bff3512781sm657610oia.50.2024.02.18.13.57.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Feb 2024 13:57:10 -0800 (PST)
-Message-ID: <10b08086-ddfe-449c-97a3-22875d00025f@baylibre.com>
-Date: Sun, 18 Feb 2024 15:57:09 -0600
+        d=1e100.net; s=20230601; t=1708294045; x=1708898845;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=w/A2VqH3T77p5BaaLS4Ba0fiwlO0C0XzwKCCFd7AcBU=;
+        b=M5Ac7MW8jtqFTh2rYEPgJuAKCbW5HAjYhF0mDmnRsXVhhNL2xVd31YEccwPpDIg7y3
+         pzKgb8nrluW4cmXhixVIrq7WBmVsuT0YIL4Wi7cQQ1UpHoS8Uj2xof/ijZl1iOHURp/t
+         x+PeejnsmrKW56hVw3XywzIWu+uYkNxQDF2Be4SHOrDJYmTZntCFn0pT1n23ReHIVgfy
+         x9EgMQoMg5jEiqoBicnWjGblO68YYcEXmlot1OCDIfzWj47437fgVkyUokoJScYcN/8R
+         2yLEIH+MPUG1L46PqelzsmhIAOiROu5o/AnNb4gSs+kajhNL2sMHxUh7P9zIwRvadnl5
+         yVZA==
+X-Forwarded-Encrypted: i=1; AJvYcCUfY4qaDCwQ9326ZYthZfaSmxO1aVjX/LuRhM+Dl0BCV3gFGk+YTEiLrLTTip3e7H/m+e9EHauN7atjebEKFck9QoYPfsf3TEntFQ==
+X-Gm-Message-State: AOJu0YzF1BfocCq8OqWzHXywNejx/56b7dV2Wm1t4gLZQd6XEtXngFUQ
+	TKsbpFHvjxHh2+w6wzj2LXqJ/oknEBddgNI8mWeg6B3N1j68K6cI86fQI+ZFaAEPO23F2i7ix2E
+	pGSprFpuFSwz0iTJGAEkx8/HE8c7HvBo/A3nmOw==
+X-Google-Smtp-Source: AGHT+IELeLyIUJs5SAO08A3FKHyNU3pAuY4NxArUAv+xkFbNbCBUKbAWybGbjMfZ1EVD+aa6gQDaSPl5tjX9WAb5sEI=
+X-Received: by 2002:a0d:ca12:0:b0:607:84d9:9820 with SMTP id
+ m18-20020a0dca12000000b0060784d99820mr9366084ywd.24.1708294044760; Sun, 18
+ Feb 2024 14:07:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] iio: adc: ad7380: new driver for AD7380 ADCs
-Content-Language: en-US
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Michael Hennerich <michael.hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- linux-kernel@vger.kernel.org, Stefan Popa <stefan.popa@analog.com>,
- devicetree@vger.kernel.org, Julien Stephan <jstephan@baylibre.com>
-References: <20240110-ad7380-mainline-v4-0-93a1d96b50fa@baylibre.com>
- <20240110-ad7380-mainline-v4-2-93a1d96b50fa@baylibre.com>
- <CAMknhBGg0hHXrd3K92tgHHTnfbk7dLAMvtTSZff1P-C3=9nFaw@mail.gmail.com>
- <20240217162014.17033d64@jic23-huawei>
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20240217162014.17033d64@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240217163201.32989-1-danila@jiaxyga.com> <20240217163201.32989-4-danila@jiaxyga.com>
+ <6bf11ccd-ff08-369b-913f-277c189afb76@linaro.org> <b0b732b8-456a-4021-8277-cd51f01ead17@jiaxyga.com>
+ <44c669a0-3722-4a58-be78-0c91f0573ca1@linaro.org> <60728953-bdf0-4a06-a90a-d1191d41962b@jiaxyga.com>
+In-Reply-To: <60728953-bdf0-4a06-a90a-d1191d41962b@jiaxyga.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Mon, 19 Feb 2024 00:07:13 +0200
+Message-ID: <CAA8EJpqxoCwqOWuWe4B63swO_hvREhN2czOpe0wM5mt-FaWUgQ@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: pm6150: define USB-C related blocks
+To: Danila Tikhonov <danila@jiaxyga.com>
+Cc: "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, andersson@kernel.org, 
+	konrad.dybcio@linaro.org, lgirdwood@gmail.com, broonie@kernel.org, 
+	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	gregkh@linuxfoundation.org, quic_wcheng@quicinc.com, 
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-usb@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 2/17/24 10:20 AM, Jonathan Cameron wrote:
-> On Fri, 16 Feb 2024 14:34:01 -0600
-> David Lechner <dlechner@baylibre.com> wrote:
-> 
->> On Wed, Jan 10, 2024 at 2:29 PM David Lechner <dlechner@baylibre.com> wrote:
->>>
->>> This adds a new driver for the AD7380 family ADCs.
->>>
->>> The driver currently implements basic support for the AD7380, AD7381,
->>> AD7383, and AD7384 2-channel differential ADCs. Support for additional
->>> single-ended and 4-channel chips that use the same register map as well
->>> as additional features of the chip will be added in future patches.
->>>  
->>
->> Hi Jonathan,
->>
->> We have some additional features to add to this driver we are working
->> on that look like they might affect userspace. Can we hold off on
->> sending this one to Greg for 6.9? That way we will have more time to
->> sort that out without having to worry about breaking userspace.
-> 
-> Ok. Hopefully rebasing my tree won't cause others too many downstream
-> problems. Generally I only do this if there is an invalid tag or similar
-> that must be fixed.  There is normally a window of a weekish
-> between me picking it up and pushing out for linux-next to pick up and
-> hopefully issues like this get spotted in that window.
-> Ah well, sometimes things don't work out how we would like them to.
-> 
-> Dropped the 3 patches (original driver and a fix) from the togreg branch.
-> 
+On Sun, 18 Feb 2024 at 20:53, Danila Tikhonov <danila@jiaxyga.com> wrote:
+>
+> You are referring to Dmitry Baryshkov, as I see. But Dmitry has already
+> reviewed my patch (message above).
+> So it would be rude to change anything without his knowledge. Let's wait
+> for his answer.
 
-Thanks. I will keep the the one week window in mind if we have similar cases in the future.
+I missed this point, so please update the IRQ flags accordingly to
+PM8150B, as Bryan has pointed out.
 
+>
+> ---
+> Best wishes
+> Danila
+>
+> On 2/18/24 20:14, Bryan O'Donoghue wrote:
+> > On 18/02/2024 8:05 a.m., Danila Tikhonov wrote:
+> >> I know that some interrupts have both for PM8150B, but for PM6150 all
+> >> interrupts are rising.
+> >> Please look at the downstream kernel:
+> >> https://git.codelinaro.org/clo/la/kernel/msm-4.14/-/blob/187022f2721d584ac4ec92c0ac1af77da487521d/arch/arm64/boot/dts/qcom/pm6150.dtsi#L319
+> >>
+> >> https://git.codelinaro.org/clo/la/kernel/msm-4.14/-/blob/187022f2721d584ac4ec92c0ac1af77da487521d/arch/arm64/boot/dts/qcom/pm8150b.dtsi#L292
+> >>
+> >>
+> >
+> >
+> > Please take a look here, I think the same logic should apply to your
+> > patchset.
+> >
+> > https://www.spinics.net/lists/devicetree/msg665558.html
+> >
+> > ---
+> > bod
+>
+
+
+-- 
+With best wishes
+Dmitry
 
