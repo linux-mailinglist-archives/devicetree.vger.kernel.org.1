@@ -1,134 +1,131 @@
-Return-Path: <devicetree+bounces-43470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 938F785A6D8
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 16:05:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92ADF85A6FD
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 16:09:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4FB58281746
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 15:05:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4ED77285CFC
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 15:09:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07F9B381CE;
-	Mon, 19 Feb 2024 15:05:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99F7338F9F;
+	Mon, 19 Feb 2024 15:07:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="n9i6rkpa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HT++SGvD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 440A639840;
-	Mon, 19 Feb 2024 15:05:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68C3037701;
+	Mon, 19 Feb 2024 15:07:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708355111; cv=none; b=k50xypwXtgWhVzlO9vKiAWIj164oUGahMg4N8aHvf527BGADDrRbV3edPvVLkg1u9kDfA1HdstvUIwslOEac0/hQhNgD6uI0QbAnvoTZQCLpEc53qQqmZFxVVm6W8IPv67kr7vSe8DqFi16/5XNuILOgtFn3NejryysZy11y+e4=
+	t=1708355221; cv=none; b=KiYqrRNMXzFT/A/FtNH5/hvWvKeTGKi3qCMqC3DG26c99SpFNxxw7OLYSQuiJ49H28jrK0CTl8hk1k1iRrnzdrsu9Sa9ZooWZwYOc038vcWB/MvCgzebhPpCHnxsQtsX0IQgu0/Ri/PRFo12djTuIoIyLkUbBAcTw84HXSQ3A0Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708355111; c=relaxed/simple;
-	bh=mThBu7chpWRHZ/eEmh5Wi1fkqZBPlPjWw7asRBsccmY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=icJGv0PTNLnlSNLKLF3ubx7pep1HeTcvHms8zzpL5AVuRT5rgs2onGBFp4G4iSgaoP0vg4ajdSotIwc8zSettLLCVKt3hHxS6Ye9tqfYAdloUUd9fEnQTUUbDHBTaVp+kSDoE7edxy/0kLX8XPhYtMpDUieDd86532wUIoFFbBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=n9i6rkpa; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id F35642000F;
-	Mon, 19 Feb 2024 15:04:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1708355102;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=A3H20W4m5T0MQHito7PWJMgAUf170u+wnoIcj9CBeGs=;
-	b=n9i6rkparoEsMUZaj1NFUkTGHkUZ7366jnD14lM7yiQ3pzh3bu1sbcYIoVNTlfu+2weMpB
-	xX1e4XVRRX6kAZlviZvJSkWPy2siX37329J0hNYY68kmKGPtuUM3kHU9kATl00GGGnTZ/g
-	ap9p9bnTpu9X8TaJjHsV24PtarXqHgdyvXCnBTXKM6r1+D5vK8Ewoue0a+GgFqdjswCKm1
-	IztGNM9m3OkSpjikr65CczcFiaPfHr+nzwUor5QCFGruE0+L3RA15VHIMjQ+5rYQLfXX8G
-	Pq954+ZGwNbC/m0F6BgPHXQ8V3sxBeIGSXp0d6ZGEOK4rn+mNzX717XSSPEZWQ==
-Date: Mon, 19 Feb 2024 16:04:56 +0100
-From: =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Jonathan Corbet
- <corbet@lwn.net>, Luis Chamberlain <mcgrof@kernel.org>, Russ Weight
- <russ.weight@linux.dev>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Oleksij Rempel <o.rempel@pengutronix.de>, Mark Brown
- <broonie@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Andrew Lunn
- <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, devicetree@vger.kernel.org, Dent Project
- <dentproject@linuxfoundation.org>
-Subject: Re: [PATCH net-next v4 05/17] net: pse-pd: Introduce PSE types
- enumeration
-Message-ID: <20240219160456.0b5e8de3@kmaincent-XPS-13-7390>
-In-Reply-To: <20240216173638.4bb12af2@kernel.org>
-References: <20240215-feature_poe-v4-0-35bb4c23266c@bootlin.com>
-	<20240215-feature_poe-v4-5-35bb4c23266c@bootlin.com>
-	<20240215105846.6dd48886@kernel.org>
-	<20240216104211.2c11d1cc@kmaincent-XPS-13-7390>
-	<20240216173638.4bb12af2@kernel.org>
-Organization: bootlin
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1708355221; c=relaxed/simple;
+	bh=utfcqhg+6zII+yQBPRsJUw/zhNmlWQJxo5cBdL99Jgo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oZiIyT7hmnPmAI9yjl7zA8nW63nXX4VBWM+gGawe018Yt7JiRmfuOgaoLOx9qnAHlpbRAKa+xk6oBGXKSRxkgg2jPpRv7tV4iYv8K55Sol2E2+gYCGC20OC6Ym+enjWVTKNtSvevN2SMRGt5RQtoYv8hqdh0zy53p+BJQOUx+b0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HT++SGvD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 32152C433C7;
+	Mon, 19 Feb 2024 15:07:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708355221;
+	bh=utfcqhg+6zII+yQBPRsJUw/zhNmlWQJxo5cBdL99Jgo=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=HT++SGvDsxz8u4VkBNjnD9qaA4FZ+16ZmIttmZ4pI/gyVmxr2FcobkDuKqZNO/Qz2
+	 1bTbQhSeGEcshay3q8urzY6H4K3fbWL0wb3ZXYxmpiKRVkA7Rkqoq4fdZu/ILdEoeV
+	 ZD+yoTMNoG85h+6L+LipQuNRJ0+b6FtVuED2xuh89RVo0zCnYdq5D+LefHie/8M38+
+	 XbloGf+1KXqrCZjDSQ67+R4i69GjUpQ2JniSXYTixgVKwYkn0f5SnekzWvNSIaP/Ct
+	 BwrO2omdPNuV935qrmeJLytVvijNXN7I+o2VWMjleDwTKxr5VK6gwbv7PbICUw7/4i
+	 gYYni4SFZBHAw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1476BC48BC3;
+	Mon, 19 Feb 2024 15:07:01 +0000 (UTC)
+From: Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>
+Subject: [PATCH v3 0/3] arm64: dts: hi3798cv200: fix GICR size, add cache
+ info, maintenance irq and GICH, GICV spaces
+Date: Mon, 19 Feb 2024 23:05:25 +0800
+Message-Id: <20240219-cache-v3-0-a33c57534ae9@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: kory.maincent@bootlin.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADVu02UC/22Myw6CMBBFf8XM2prOgDxc+R/GRRkGaVRqWmw0h
+ H+3sNO4PDf3nAmCeCsBDpsJvEQbrBsSZNsNcG+GiyjbJgbSlGvCSrHhXhQiV01X7ouCCdL34aW
+ zr7VzOifubRidf6/ZiMv6W4iotCLWpjJ5XpKUR/ccb85dd+zusDQi/fUoedi1NdZCTZvJtzfP8
+ wc0A9KW1AAAAA==
+To: Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Jiancheng Xue <xuejiancheng@hisilicon.com>, Alex Elder <elder@linaro.org>, 
+ Peter Griffin <peter.griffin@linaro.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org, 
+ Yang Xiwen <forbidden405@outlook.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1708355220; l=1734;
+ i=forbidden405@outlook.com; s=20230724; h=from:subject:message-id;
+ bh=utfcqhg+6zII+yQBPRsJUw/zhNmlWQJxo5cBdL99Jgo=;
+ b=2PQbYA0iF6C0vZng2DScPn60GvXq/i3yJXMaSQS9RqK0McpsKIIUTJEWHyebhP70eiowmjzyT
+ ts1Cd5ksH14D6ALeqqux240ihttaargZG1Jx7lBJ7WdqYcjDbTAX6sQ
+X-Developer-Key: i=forbidden405@outlook.com; a=ed25519;
+ pk=qOD5jhp891/Xzc+H/PZ8LWVSWE3O/XCQnAg+5vdU2IU=
+X-Endpoint-Received:
+ by B4 Relay for forbidden405@outlook.com/20230724 with auth_id=67
+X-Original-From: Yang Xiwen <forbidden405@outlook.com>
+Reply-To: <forbidden405@outlook.com>
 
-On Fri, 16 Feb 2024 17:36:38 -0800
-Jakub Kicinski <kuba@kernel.org> wrote:
-> > > but why the separate header? Is it going to be used in other parts of
-> > > uAPI than just in ethtool?   =20
-> >=20
-> > We might use it in pse core if capabilities between PoE and PoDL differ=
- but
-> > I am not sure about it.
-> > Do you prefer to move it to ethtool header and add prefix ETHTOOL_ to t=
-he
-> > enum values? =20
->=20
-> I don't know enough to have an opinion :) Whatever you end up doing,
-> it's probably worth documenting the reason for the choice in the commit
-> message?
+The patchset fixes some warnings reported by the kernel during boot.
 
-Mmh, I am still not sure of the best choice on this. I think I will move it=
- to
-ethtool as you suggested.
+The cache size info is from Processor_Datasheet_v2XX.pdf [1], Section
+2.2.1 Master Processor.
 
-> > > > This patch is sponsored by Dent Project
-> > > > <dentproject@linuxfoundation.org>     =20
-> > >=20
-> > > side-note: no objections to the line but for accounting purposes
-> > > (i.e. when we generate development stats) we use the Author / From
-> > > line exclusively. So it'd be easier to compute stats of things funded
-> > > by Dent if you used:
-> > >=20
-> > > From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
-> > >=20
-> > > but that's entirely up to you :)   =20
-> >=20
-> > Does adding the line side to the SOB in the commit message is sufficien=
-t or
-> > should I modify the git send email config? =20
->=20
-> I think you can sed -i s/// the patches? When the From in the email
-> file doesn't match your git config IIUC git will include the from line
-> in the body and pick it up from them. IOW it will work. The scripts look
-> at git author so s-o-b won't do much.
+The cache line size and the set-associative info are from Cortex-A53
+Documentation [2].
 
-Ok, I will stick to the simple sentence then. ;)
-Thanks for the information!
+From the doc, it can be concluded that L1 i-cache is 4-way assoc, L1
+d-cache is 2-way assoc and L2 cache is 16-way assoc. Calculate the dts
+props accordingly.
 
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+Also, to use KVM's VGIC code, GICH, GICV registers spaces and maintenance
+IRQ are added to the dts with verification.
+
+[1]: https://github.com/96boards/documentation/blob/master/enterprise/poplar/hardware-docs/Processor_Datasheet_v2XX.pdf
+[2]: https://developer.arm.com/documentation/ddi0500/j/Level-1-Memory-System
+
+Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+---
+Changes in v3:
+- send patches to stable (Andrew Lunn)
+- rewrite the commit logs more formally (Andrew Lunn)
+- rename l2-cache0 to l2-cache (Krzysztof Kozlowski)
+- Link to v2: https://lore.kernel.org/r/20240218-cache-v2-0-1fd919e2bd3e@outlook.com
+
+Changes in v2:
+- arm64: dts: hi3798cv200: add GICH, GICV register spces and
+  maintainance IRQ.
+- Link to v1: https://lore.kernel.org/r/20240218-cache-v1-0-2c0a8a4472e7@outlook.com
+
+---
+Yang Xiwen (3):
+      arm64: dts: hi3798cv200: fix the size of GICR
+      arm64: dts: hi3798cv200: add GICH, GICV register space and irq
+      arm64: dts: hi3798cv200: add cache info
+
+ arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi | 43 +++++++++++++++++++++++++-
+ 1 file changed, 42 insertions(+), 1 deletion(-)
+---
+base-commit: 8d3dea210042f54b952b481838c1e7dfc4ec751d
+change-id: 20240218-cache-11c8bf7566c2
+
+Best regards,
+-- 
+Yang Xiwen <forbidden405@outlook.com>
+
 
