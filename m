@@ -1,109 +1,113 @@
-Return-Path: <devicetree+bounces-43462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A776285A6AC
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 15:57:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F13085A6AE
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 15:58:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47B701F20B53
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 14:57:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E949F1F215E9
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 14:58:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E5E1381C4;
-	Mon, 19 Feb 2024 14:57:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD1263839D;
+	Mon, 19 Feb 2024 14:57:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lGk0kNmg"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="Irf7rv7D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 194D637701
-	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 14:57:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E46A37704
+	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 14:57:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708354658; cv=none; b=Y4wKB1QyE95W8hDj1Iw+4dr0rLz0r5CDCX8AQhzEJiPJTp2q9OZ2bIOrKue09Anh9LHYh+RONj5iUf2gp5zy8prK+QM7WbsRsegZ6p1jhm8dDhPBCWOihvvUnFoVnX72DfK6CQEhohNkNlmGB1AkU+8anoeWl12JlgoTAQ/RhD0=
+	t=1708354664; cv=none; b=P7qdNLnT6FQLAJc+3javip9V41GylxkNTfc0TU+pZbRfYh7pt31TyFKpj7ywss0s2Qr9TZrXoQRxlb1Q6TVBILEeDPDB082n6sCoaExxbSYUCq77UCc1eLOcIQ16szpvB4MrlkLYYakX1RM08oGegPbYf1wF0Ku6ax/2HNUg7oA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708354658; c=relaxed/simple;
-	bh=9Na3wL8jpMpPVnEcaEj/4baqNdNNRN6TgavHTXFRdNo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MkmxOqZmx7dd0i+6kZoZYAr7T6tKTZveyRdob7UYxD698qdp+IVI0e2gqHHhvsWieauIUwm3ooso5O4uEd7SF6rr2rXXsHIuYGoP92IEYfOsVCroBC+t0jrhjtF5ajLipjdMAD/nwCRezyHbO9CbTZevlCgcNZ05E98eM8nDQZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lGk0kNmg; arc=none smtp.client-ip=209.85.128.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-6080beb19ddso20186197b3.1
-        for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 06:57:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708354654; x=1708959454; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Szw+QTMnTAcQAZlNeYyyrJj6KbWZ+5DPKy/5tGrWbDo=;
-        b=lGk0kNmg/HCwE8qj0FfX0zUNkQtmcJPtsHPfHE3hP1j8GVWuHsHZrY5nYfxr4/WfUv
-         niH4xUAwp/aiGKd8ECXeBkF73xsEThstkzGwYcwPCxvNK/c5MgVMvl3I6stqGGZk4hir
-         mZxvPMIhLLO+evQRa94UGcqjMsUBiz4jFAcg9Lyr36hDA2R0kplRxAe1BdRjVkTDmH1Z
-         cEkeyinC1Qeuz0Wr3cs3Hy40A77LOSx1HjzdueBI+CotM1iHZ0PLcXSul8QE6PTR7iqt
-         NZE0VRkum6DsDef6Q6JpSn9fiN7Q7svPZw7ZjAf1QhzuMhCRRpWI82NVDDx5GVmOs9sA
-         jUtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708354654; x=1708959454;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Szw+QTMnTAcQAZlNeYyyrJj6KbWZ+5DPKy/5tGrWbDo=;
-        b=mAjCulstQOb+G+cYc3qA8HaUPTqIvvw61J6TwK3pYYma9irfb3XqtPO4HvGKO7J7ia
-         WCdbAtEiNDZT5R5M+lWLRAa+UA0bliMwAivT0BsxJzRZRYrqiZbnCHzb73LxJck0XQt/
-         BxyJlUVK4Y1Artt0XhNI/NFQniurhgvxCgqWEUbR0YizxV22rD5OWYomCxypk5PAm6Ey
-         YgTLGAgMfjDJhgntWzSmmEmZAmYJCnqWA97iao8LyPPFbRnfJXDc/rOPOqfmvSHZbtR8
-         2rkWKkv6ZMSSS40S6Ynzs+WgXzjyAZs3Uv+aQC7i1XgUimrWVKb4SWVF1KD0LNGHBdAd
-         0nCg==
-X-Forwarded-Encrypted: i=1; AJvYcCW9Kv2C6IzYQrMAq41RXxG8ekdAf74nyggoZozoyc6bf2MGfAqfT3oeJDP8ookGL0WLSbZUVUtus/6C3sPiBTld5jHGkF7nEzFtXA==
-X-Gm-Message-State: AOJu0YzjucBIxxn5wBvgeeMYFQD9zrRJPD8Yf5LC84gsPvGuFeIOxof0
-	+aAcEPvOc+2cNm3HNDGBg2OcSnEYWaO+6kXLEp/xt7BIh9sYV/vljf5LzfAG09tN54GjGcD1rRx
-	xBPSYfeibJR9H0rbZ8kh5o9p/gcibndlTnsD9sw==
-X-Google-Smtp-Source: AGHT+IFwS+iE/0NQYgsx7qVKwDMppWGjVew2/XzNi/ojh9QbxDe0oOmgCSu0UPBrXtjFjsGyUMyo5ZWdgudhKw5Ujrs=
-X-Received: by 2002:a81:490e:0:b0:608:ba5:729d with SMTP id
- w14-20020a81490e000000b006080ba5729dmr6119664ywa.19.1708354653839; Mon, 19
- Feb 2024 06:57:33 -0800 (PST)
+	s=arc-20240116; t=1708354664; c=relaxed/simple;
+	bh=cgIJomylKJmw1MjPahqQrgtPvISDy/ZNJJQgBbz/i+g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TvmvDIQcIMbh7JlOfUIdH3DjPtJCxYvK6lE4BaTIQ62OtVM3RKmlIktAEfRrPOVCxmdI0zBS7UxstlbOVXC3PTCmZPAkSOLquYgYQqufEeUTvdmtQhpH5FyU1sfQ5sBMh+MsPtOq/tzm+Y/xcQIFl7SMsnkP+w+q2FDxxwTqS4Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=Irf7rv7D; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=cgIJ
+	omylKJmw1MjPahqQrgtPvISDy/ZNJJQgBbz/i+g=; b=Irf7rv7DGWTeVhnh58gs
+	nDHu/72YLxcaxh3jcyJDDvY14atEo23pSGsuUlfksCmP9NC5zho0POTQO5gkiX25
+	MNoJIHXNus4yf2jXBY7kPJV5vd7kLcE04CcvWLrcWKLVk/GmlwRl/dIWus141Dni
+	Fhla/bxt9qEFQov4i9YBdmTtSQ7LgxMVvEBf6vjiX9FpGq6dbmlpJfTAbt/wQiT2
+	wWVdIbdMaK/i+dfoiR3VDLyzaXOq8yjLTP5at3ClTm08lJ7CIOfZHUJ+c4XBD3m3
+	yCoHTKNoz2sxND2aEOHPH4CHGNJ8RcsD4AX7X69Z/agZusfHBK2Wn2MKcxnpvH4/
+	Fw==
+Received: (qmail 2952058 invoked from network); 19 Feb 2024 15:57:31 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 19 Feb 2024 15:57:31 +0100
+X-UD-Smtp-Session: l3s3148p1@+rAlUL0R6q0ujnsZ
+Date: Mon, 19 Feb 2024 15:57:31 +0100
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: memory: renesas,rpc-if: Document R-Car V4M
+ support
+Message-ID: <ZdNsW4T5W1UnUdns@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+References: <263d6626fd4fa51b175b5c7a53e6a363e2c91519.1708354280.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240219-topic-rb1_gpu-v1-0-d260fa854707@linaro.org> <20240219-topic-rb1_gpu-v1-7-d260fa854707@linaro.org>
-In-Reply-To: <20240219-topic-rb1_gpu-v1-7-d260fa854707@linaro.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 19 Feb 2024 16:57:23 +0200
-Message-ID: <CAA8EJprpZxCV-3xkE0OuGg4jHrHcb=EPKCi_wSy5viP7jVwPvg@mail.gmail.com>
-Subject: Re: [PATCH 7/8] arm64: dts: qcom: qcm2290: Add GPU nodes
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
-	Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Clark <robdclark@gmail.com>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, linux-arm-kernel@lists.infradead.org, 
-	iommu@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="hzv5DsbBMYz4I71I"
+Content-Disposition: inline
+In-Reply-To: <263d6626fd4fa51b175b5c7a53e6a363e2c91519.1708354280.git.geert+renesas@glider.be>
 
-On Mon, 19 Feb 2024 at 15:36, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->
-> Describe the GPU hardware on the QCM2290.
->
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/qcm2290.dtsi | 154 ++++++++++++++++++++++++++++++++++
->  1 file changed, 154 insertions(+)
->
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+--hzv5DsbBMYz4I71I
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
--- 
-With best wishes
-Dmitry
+On Mon, Feb 19, 2024 at 03:52:19PM +0100, Geert Uytterhoeven wrote:
+> Document support for the SPI Multi I/O Bus Controller (RPC-IF) in the
+> Renesas R-Car V4M (R8A779H0) SoC.
+>=20
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+
+
+--hzv5DsbBMYz4I71I
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmXTbFYACgkQFA3kzBSg
+KbZjPA//XSt9MiUijbg7tWB9z9bJAM7+4eH+4aR0U1kfcGkzsilox+wS+V8ji+YJ
+WXwbLcVwbQoqkZdTBgvxenPH0IoZ+kLZTlxzaR+1NEh53qcyXSdUg81FLZI70sLy
+a6UB/WPkNETRlCiDPFFTI9qhah1eXUVk4J0Oo1Z8BGW3T+IdRJPsPkVHlPiQfvnP
+Wu14/hreGS9tuy9g4X2o+hqWfyT5jgM1ynQ8vUBOm0HCtuDR9XjMn+w68qOOK0KL
+4fII6rxq2KLISvDSugwL42tIyBImlxbI/9d+cn2LJJOELoduJyQaaDJ1ww+jviHh
+P8h443iAEoOXH+Nm+VpQCGV61Je9zLG4M4JpoN9WjaakmOYXPD9ZamEk8f8dYhtI
+fIGp/Zr+9vm6n/POVt0VOQzcnMfsdtYRdBvN1WBmV8caW3dwFYSlpVbtnzPenxM0
+lrbmb4uOG030kizxWFOZv63grqj+S+3/N3xGi4k2PFTs43kK18p10sOxyMXz6UXa
+1FWKW5zfCg0MNI6KkGaTmOdoGKZDZ+q62V1Uoz9DQZV9XA73odudfIXZLRVJZgV+
+wk6LGrWW9PHH4fCp2L+AhtsuHL13d5pc250aXuF6dKbuV1GZ1uV3TvuavtUjYveW
+xRSROxUOUFrlj/z6wHo/QQkTUWAR6U6MTGMw9LGlBlngbLIfz0c=
+=JKAo
+-----END PGP SIGNATURE-----
+
+--hzv5DsbBMYz4I71I--
 
