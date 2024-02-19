@@ -1,50 +1,48 @@
-Return-Path: <devicetree+bounces-43633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC4CD85AF29
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 23:49:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6D7E85AE95
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 23:36:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 425791F2284E
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 22:49:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D67E282CB7
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 22:36:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7105F56B9D;
-	Mon, 19 Feb 2024 22:43:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB09C56754;
+	Mon, 19 Feb 2024 22:35:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=6tel.net header.i=@6tel.net header.b="o0kNILLx"
+	dkim=pass (1024-bit key) header.d=6tel.net header.i=@6tel.net header.b="FYiKSJXG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from forward206c.mail.yandex.net (forward206c.mail.yandex.net [178.154.239.215])
+Received: from forward500b.mail.yandex.net (forward500b.mail.yandex.net [178.154.239.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 267735381A;
-	Mon, 19 Feb 2024 22:43:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.215
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28E5453E30;
+	Mon, 19 Feb 2024 22:35:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708382595; cv=none; b=Q+neh+S+ZF/8aGb6CaOArEoPdy9my+VqSafxsH2mBdlBx9LppTXCmBi4JVeCDdXhtzoGCohYEPe3ndJ1GfIIxIIPg0XWmJ/2hnU/zAVbpH35/lhP0kXh7Z+YfvVLj8cvnTklSyMumxs8ODQrXQ00+ocqRGF2+Qzmv/hpcJBuF7w=
+	t=1708382124; cv=none; b=hYw4cle43ORPuBEPLDJQVBgQO9Xx1tD4myy9ot4wE+ne5hphT8BEhXodcwMEgKJ+AqbatUKoZNZT9TiRrOWyYBczZ0xzOLgoqgIPuh2OOFzqk4u6SzkbAuGlmUF0XkVbRHtAoK5rzQI6nPFRjFc8NSjney0pmBYUbKdxcYn/gAs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708382595; c=relaxed/simple;
-	bh=9gKp44U64vpDldG4mNOhjDG2liu6cXrXKG6GoC6eEP8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=D7p4bf1rbmMX74O69zWWChhgx4DVRVtgg8W8NhfXVphucD58MLjnx+HXjZrCffPYguvpGs9QGh4sinxX2uBGjZQb7BNWl2qKcecTsLsvzVysL/6ZeWLi1lHTmMxMWQutzcaY0utbo7vWTPo7okJq/vYDAgQrtM7kf+W0Mwge7gU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=6tel.net; spf=pass smtp.mailfrom=6tel.net; dkim=pass (1024-bit key) header.d=6tel.net header.i=@6tel.net header.b=o0kNILLx; arc=none smtp.client-ip=178.154.239.215
+	s=arc-20240116; t=1708382124; c=relaxed/simple;
+	bh=cqNV2H5DPBsI5yIoVfpztZpKuDCq6z+Mx1fB8+/HuLI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=SrR0J1gCW9OItOuZ5kwVOFmzLVeiQKt6FgcXsxLH5t71VI4hesRXmJXIrdf43qXdWWnOJq1B7kTWVVQp66j78f51qfLn6nqw5D3IZHAsodNZoq4BLaV8LVtz+5Rgyhh/ttT7Y65uqlq0dileUzuaI2JmBfBDUs3gnXTIY477WhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=6tel.net; spf=pass smtp.mailfrom=6tel.net; dkim=pass (1024-bit key) header.d=6tel.net header.i=@6tel.net header.b=FYiKSJXG; arc=none smtp.client-ip=178.154.239.144
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=6tel.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=6tel.net
-Received: from forward102b.mail.yandex.net (forward102b.mail.yandex.net [IPv6:2a02:6b8:c02:900:1:45:d181:d102])
-	by forward206c.mail.yandex.net (Yandex) with ESMTPS id E577763527;
-	Tue, 20 Feb 2024 01:35:16 +0300 (MSK)
 Received: from mail-nwsmtp-smtp-production-main-46.myt.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-46.myt.yp-c.yandex.net [IPv6:2a02:6b8:c12:3285:0:640:fd1e:0])
-	by forward102b.mail.yandex.net (Yandex) with ESMTPS id 819C160985;
-	Tue, 20 Feb 2024 01:35:08 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-46.myt.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id bYZIDNh7RSw0-E7KFyfSe;
-	Tue, 20 Feb 2024 01:35:07 +0300
+	by forward500b.mail.yandex.net (Yandex) with ESMTPS id 4F92B60FA4;
+	Tue, 20 Feb 2024 01:35:13 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-46.myt.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id bYZIDNh7RSw0-bdjyE56a;
+	Tue, 20 Feb 2024 01:35:12 +0300
 X-Yandex-Fwd: 1
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=6tel.net; s=mail;
-	t=1708382107; bh=iaUiCJngdlVa+OcnhANuHvIOXadWyrNnDfT/O58QDVA=;
-	h=Message-ID:Date:Cc:Subject:To:From;
-	b=o0kNILLxyr95zX+t/8ATgV+owzuxiS3YX8f0PqUSTtB47X0Ku8lwkEKd5Ok3MShsl
-	 fUU/6iYet1miI+Y9vvp79dhyiByywEWwjIwUIX2EzGCgpZFv7ZAlRfoUy2godheCi7
-	 YxmcDymUhNZYeN+HA4nLTkTdumVFkUZqaFY8x2I0=
+	t=1708382112; bh=+jlTY3lUMDLcDBT6kHcttIIlo3eB3VpO7B2awlfbckw=;
+	h=Message-ID:Date:In-Reply-To:Cc:Subject:References:To:From;
+	b=FYiKSJXGjnVnzFGiTxfpGkoPDQ4BfT4TbOqj9AnGSjVq3q3L3jhIHaBuMRE3CVVTW
+	 wJC5wUqgvRKOWEv3lz+Tg0elFIi5SUPjQUQAfVyM6gU/M+UkhqPGrJ5mrUyASCraL9
+	 bmDQjjyV2mgEKWXHIH9IQc0+Vdx9q3Ew4hOaeN14=
 Authentication-Results: mail-nwsmtp-smtp-production-main-46.myt.yp-c.yandex.net; dkim=pass header.i=@6tel.net
 From: efectn@6tel.net
 To: linux-rockchip@lists.infradead.org
@@ -57,10 +55,12 @@ Cc: devicetree@vger.kernel.org,
 	heiko@sntech.de,
 	sebastian.reichel@collabora.com,
 	Muhammed Efe Cetin <efectn@protonmail.com>
-Subject: [PATCH 1/9] arm64: dts: rockchip: Add cpu regulators and vcc5v0_sys to Khadas Edge 2
-Date: Tue, 20 Feb 2024 01:34:17 +0300
-Message-ID: <5a7bd2cd8703e51382abfc11242de59d45286477.1708381247.git.efectn@protonmail.com>
+Subject: [PATCH 2/9] arm64: dts: rockchip: Add PMIC to Khadas Edge 2
+Date: Tue, 20 Feb 2024 01:34:18 +0300
+Message-ID: <617faf64a68f5af560267d77fd23fc9fb23e6c88.1708381247.git.efectn@protonmail.com>
 X-Mailer: git-send-email 2.43.1
+In-Reply-To: <5a7bd2cd8703e51382abfc11242de59d45286477.1708381247.git.efectn@protonmail.com>
+References: <5a7bd2cd8703e51382abfc11242de59d45286477.1708381247.git.efectn@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,106 +71,366 @@ Content-Transfer-Encoding: 8bit
 
 From: Muhammed Efe Cetin <efectn@protonmail.com>
 
-This commit adds 5V fixed power regulator and CPU regulators to Khadas
-Edge 2.
+This commit adds PMIC to Khadas Edge 2 board.
 
 Signed-off-by: Muhammed Efe Cetin <efectn@protonmail.com>
 ---
- .../dts/rockchip/rk3588s-khadas-edge2.dts     | 81 +++++++++++++++++++
- 1 file changed, 81 insertions(+)
+ .../dts/rockchip/rk3588s-khadas-edge2.dts     | 335 ++++++++++++++++++
+ 1 file changed, 335 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts b/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts
-index f53e993c785e..1d1ce70a0f3a 100644
+index 1d1ce70a0f3a..b99d2b82c787 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts
 +++ b/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts
-@@ -17,6 +17,87 @@ aliases {
- 	chosen {
- 		stdout-path = "serial2:1500000n8";
+@@ -26,6 +26,16 @@ vcc5v0_sys: vcc5v0-sys-regulator {
+ 		regulator-min-microvolt = <5000000>;
+ 		regulator-max-microvolt = <5000000>;
  	};
 +
-+	vcc5v0_sys: vcc5v0-sys-regulator {
++	vcc_1v1_nldo_s3: vcc-1v1-nldo-s3-regulator {
 +		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_sys";
++		regulator-name = "vcc_1v1_nldo_s3";
 +		regulator-always-on;
 +		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+};
-+
-+&cpu_b0 {
-+	cpu-supply = <&vdd_cpu_big0_s0>;
-+};
-+
-+&cpu_b1 {
-+	cpu-supply = <&vdd_cpu_big0_s0>;
-+};
-+
-+&cpu_b2 {
-+	cpu-supply = <&vdd_cpu_big1_s0>;
-+};
-+
-+&cpu_b3 {
-+	cpu-supply = <&vdd_cpu_big1_s0>;
-+};
-+
-+&cpu_l0 {
-+	cpu-supply = <&vdd_cpu_lit_s0>;
-+};
-+
-+&cpu_l1 {
-+	cpu-supply = <&vdd_cpu_lit_s0>;
-+};
-+
-+&cpu_l2 {
-+	cpu-supply = <&vdd_cpu_lit_s0>;
-+};
-+
-+&cpu_l3 {
-+	cpu-supply = <&vdd_cpu_lit_s0>;
-+};
-+
-+&i2c0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c0m2_xfer>;
-+	status = "okay";
-+
-+	vdd_cpu_big0_s0: regulator@42 {
-+		compatible = "rockchip,rk8602";
-+		reg = <0x42>;
-+		fcs,suspend-voltage-selector = <1>;
-+		regulator-name = "vdd_cpu_big0_s0";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <550000>;
-+		regulator-max-microvolt = <1050000>;
-+		regulator-ramp-delay = <2300>;
++		regulator-min-microvolt = <1100000>;
++		regulator-max-microvolt = <1100000>;
 +		vin-supply = <&vcc5v0_sys>;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+
-+	vdd_cpu_big1_s0: regulator@43 {
-+		compatible = "rockchip,rk8603", "rockchip,rk8602";
-+		reg = <0x43>;
-+		fcs,suspend-voltage-selector = <1>;
-+		regulator-name = "vdd_cpu_big1_s0";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <550000>;
-+		regulator-max-microvolt = <1050000>;
-+		regulator-ramp-delay = <2300>;
-+		vin-supply = <&vcc5v0_sys>;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
 +	};
  };
  
- &sdhci {
+ &cpu_b0 {
+@@ -110,6 +120,331 @@ &sdhci {
+ 	status = "okay";
+ };
+ 
++&spi2 {
++	status = "okay";
++	assigned-clocks = <&cru CLK_SPI2>;
++	assigned-clock-rates = <200000000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&spi2m2_cs0 &spi2m2_pins>;
++	num-cs = <1>;
++
++	pmic@0 {
++		compatible = "rockchip,rk806";
++		spi-max-frequency = <1000000>;
++		reg = <0x0>;
++
++		interrupt-parent = <&gpio0>;
++		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&pmic_pins>, <&rk806_dvs1_null>,
++			    <&rk806_dvs2_null>, <&rk806_dvs3_null>;
++
++		system-power-controller;
++
++		vcc1-supply = <&vcc5v0_sys>;
++		vcc2-supply = <&vcc5v0_sys>;
++		vcc3-supply = <&vcc5v0_sys>;
++		vcc4-supply = <&vcc5v0_sys>;
++		vcc5-supply = <&vcc5v0_sys>;
++		vcc6-supply = <&vcc5v0_sys>;
++		vcc7-supply = <&vcc5v0_sys>;
++		vcc8-supply = <&vcc5v0_sys>;
++		vcc9-supply = <&vcc5v0_sys>;
++		vcc10-supply = <&vcc5v0_sys>;
++		vcc11-supply = <&vcc_2v0_pldo_s3>;
++		vcc12-supply = <&vcc5v0_sys>;
++		vcc13-supply = <&vcc_1v1_nldo_s3>;
++		vcc14-supply = <&vcc_1v1_nldo_s3>;
++		vcca-supply = <&vcc5v0_sys>;
++
++		gpio-controller;
++		#gpio-cells = <2>;
++
++		rk806_dvs1_null: dvs1-null-pins {
++			pins = "gpio_pwrctrl1";
++			function = "pin_fun0";
++		};
++
++		rk806_dvs2_null: dvs2-null-pins {
++			pins = "gpio_pwrctrl2";
++			function = "pin_fun0";
++		};
++
++		rk806_dvs3_null: dvs3-null-pins {
++			pins = "gpio_pwrctrl3";
++			function = "pin_fun0";
++		};
++
++		regulators {
++			vdd_gpu_s0: vdd_gpu_mem_s0: dcdc-reg1 {
++				regulator-boot-on;
++				regulator-min-microvolt = <550000>;
++				regulator-max-microvolt = <950000>;
++				regulator-ramp-delay = <12500>;
++				regulator-name = "vdd_gpu_s0";
++				regulator-enable-ramp-delay = <400>;
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vdd_cpu_lit_s0: vdd_cpu_lit_mem_s0: dcdc-reg2 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <550000>;
++				regulator-max-microvolt = <950000>;
++				regulator-ramp-delay = <12500>;
++				regulator-name = "vdd_cpu_lit_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vdd_log_s0: dcdc-reg3 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <675000>;
++				regulator-max-microvolt = <750000>;
++				regulator-ramp-delay = <12500>;
++				regulator-name = "vdd_log_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <750000>;
++				};
++			};
++
++			vdd_vdenc_s0: vdd_vdenc_mem_s0: dcdc-reg4 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <550000>;
++				regulator-max-microvolt = <950000>;
++				regulator-ramp-delay = <12500>;
++				regulator-name = "vdd_vdenc_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vdd_ddr_s0: dcdc-reg5 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <675000>;
++				regulator-max-microvolt = <900000>;
++				regulator-ramp-delay = <12500>;
++				regulator-name = "vdd_ddr_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <850000>;
++				};
++			};
++
++			vdd2_ddr_s3: dcdc-reg6 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-name = "vdd2_ddr_s3";
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++				};
++			};
++
++			vcc_2v0_pldo_s3: dcdc-reg7 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <2000000>;
++				regulator-max-microvolt = <2000000>;
++				regulator-ramp-delay = <12500>;
++				regulator-name = "vdd_2v0_pldo_s3";
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <2000000>;
++				};
++			};
++
++			vcc_3v3_s3: dcdc-reg8 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-name = "vcc_3v3_s3";
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <3300000>;
++				};
++			};
++
++			vddq_ddr_s0: dcdc-reg9 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-name = "vddq_ddr_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vcc_1v8_s3: dcdc-reg10 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-name = "vcc_1v8_s3";
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <1800000>;
++				};
++			};
++
++			avcc_1v8_s0: pldo-reg1 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-name = "avcc_1v8_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vcc_1v8_s0: pldo-reg2 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-name = "vcc_1v8_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <1800000>;
++				};
++			};
++
++			avdd_1v2_s0: pldo-reg3 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <1200000>;
++				regulator-max-microvolt = <1200000>;
++				regulator-name = "avdd_1v2_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vcc_3v3_s0: pldo-reg4 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-ramp-delay = <12500>;
++				regulator-name = "vcc_3v3_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vccio_sd_s0: pldo-reg5 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-ramp-delay = <12500>;
++				regulator-name = "vccio_sd_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			pldo6_s3: pldo-reg6 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-name = "pldo6_s3";
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <1800000>;
++				};
++			};
++
++			vdd_0v75_s3: nldo-reg1 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <750000>;
++				regulator-max-microvolt = <750000>;
++				regulator-name = "vdd_0v75_s3";
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <750000>;
++				};
++			};
++
++			vdd_ddr_pll_s0: nldo-reg2 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <850000>;
++				regulator-max-microvolt = <850000>;
++				regulator-name = "vdd_ddr_pll_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <850000>;
++				};
++			};
++
++			avdd_0v75_s0: nldo-reg3 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <750000>;
++				regulator-max-microvolt = <750000>;
++				regulator-name = "avdd_0v75_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vdd_0v85_s0: nldo-reg4 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <850000>;
++				regulator-max-microvolt = <850000>;
++				regulator-name = "vdd_0v85_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vdd_0v75_s0: nldo-reg5 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <750000>;
++				regulator-max-microvolt = <750000>;
++				regulator-name = "vdd_0v75_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++		};
++	};
++};
++
+ &uart2 {
+ 	pinctrl-0 = <&uart2m0_xfer>;
+ 	status = "okay";
 -- 
 2.43.1
 
