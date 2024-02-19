@@ -1,157 +1,154 @@
-Return-Path: <devicetree+bounces-43391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43392-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B9E685A3C6
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 13:49:25 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1109B85A3E8
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 13:54:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BBB87281597
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 12:49:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 47D3AB20D7C
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 12:54:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 134092E834;
-	Mon, 19 Feb 2024 12:49:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C4EC32C90;
+	Mon, 19 Feb 2024 12:54:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Dt8kmLMu"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="udQ3cv9J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com [209.85.222.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E00DF2D05D;
-	Mon, 19 Feb 2024 12:49:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF4BD31A61
+	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 12:54:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708346960; cv=none; b=XkaN1SL5mvUmgcxapmOVkLG8EXjxDbYSHXXXeQuNIFdf3369vY9JzJ2fb4xJDu65Fpm9esEdmDuvVbV/AR8XHKn3kDnAus5Te53nFtD0QDxnrkK4W25Qov+JNYtGx3jc9VeZ3BxwRJqMohAwlMuKkfYaOR8JKFEvA8YfPyW5dBY=
+	t=1708347251; cv=none; b=YX1Ia2O580xLDdH2DLCnIDHjkLeMCkHHWD8ugEb7lpyJGCMB8pdCp5gDDCtjX5xR/75AvzIur5zvS26spu4p4WhC8cq2YX2azU9qLctfZZduMWhlJlqN7DVY/W3vevjbP1LCx+hglUX8JI2RqkLS2aiFBTyPsNVPnkYVgRq10Sc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708346960; c=relaxed/simple;
-	bh=06p6ukdvxbrRf6/uOtqeOyeu+dw+dCTpr3YlazzJxlM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sXhb4mrnNbDFfnbSIOvInBXoxQDu2STrlNwnTJ0CtpdBbnqLALv/kDMReyFi4LXgFrszmG159T0LAaXPo/k340Tu31fofUa5EXMrmci0tiF3TBjeZbCti5OY8KC67f0ZkI+yya6Kq3g3z68dI93/1tyH/V1g1VqeqUVcva/3+Qs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Dt8kmLMu; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 336FB40006;
-	Mon, 19 Feb 2024 12:49:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1708346954;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=gJALkusf1cXf4p7M933GGzZIRRakiGBqKNoFoSjNoJY=;
-	b=Dt8kmLMuUKWq7J5kXL2nVlaTETvYXuskZRDGfU95wO2IHZ+Ppd4DsAGYhht5GaputNIkF2
-	Dr7TOaMh2TErh9ue2Stx5Eh1QhGz5Jc2f8u1eZaBjLKDv+qO3CliZ8t14wCP9Z1pX+UgTg
-	nA/jCP9JGV4tiKN3brQhVwVYPcdHOUSrIcUhBO4ec8jqK1FCw4bMIa1HMDEgNKtt45lLGv
-	B8RwL5ETqIHOs7pj/TylF4YGPwNUJz/y31jizxHbS5uTsYJkEPm9AHA5L6o2pP2OhodsFQ
-	4K3Aapf/caxS3vxsv3DA4bx8CT/8u6DQFJe8zzHOkm3DdbHmsbGHpgp+ekR0VA==
-Date: Mon, 19 Feb 2024 13:49:13 +0100
-From: Kamel Bouhara <kamel.bouhara@bootlin.com>
-To: SHUKLA Mamta Ramendra <mamta.shukla@leica-geosystems.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Henrik Rydberg <rydberg@bitmath.org>,
-	"linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	Marco Felsch <m.felsch@pengutronix.de>,
-	Jeff LaBundy <jeff@labundy.com>,
-	POPESCU Catalin <catalin.popescu@leica-geosystems.com>,
-	"mark.satterthwaite@touchnetix.com" <mark.satterthwaite@touchnetix.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>
-Subject: Re: [PATCH v8 3/3] Input: Add TouchNetix axiom i2c touchscreen driver
-Message-ID: <20240219124913.GA99571@tpx1.home>
-References: <20240219101221.129750-1-kamel.bouhara@bootlin.com>
- <20240219101221.129750-4-kamel.bouhara@bootlin.com>
- <e374d585-5acc-bbe0-ee1d-65f7abdb8f8d@leica-geosystems.com>
+	s=arc-20240116; t=1708347251; c=relaxed/simple;
+	bh=sVsdNaxDrQaT+5xLkuNNBvQ4+mZpUehI+ER8LAoDUdY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fTWo7w6r01pF9wJUMHymwOwYByzKqgOTFdVBIMxPZVbNgA+/6ggl0BvL2YvmTCkfi5Fi6vzlxR12Buk8veZKD/SzcgbAzArId+d/PcDoIHA7itV30pZC8Pzhg1Lej1k7AICQRusqkUbwLkSlEbHDnJ99aoBUtFZmWr63xlWj+Q4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=udQ3cv9J; arc=none smtp.client-ip=209.85.222.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-ua1-f46.google.com with SMTP id a1e0cc1a2514c-7d2e1832d4dso1395348241.2
+        for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 04:54:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1708347249; x=1708952049; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sVsdNaxDrQaT+5xLkuNNBvQ4+mZpUehI+ER8LAoDUdY=;
+        b=udQ3cv9JtqKeraoYuLqdfWfwCCI8IqdYdtHNz3famgOyfzEASJbnUbi9Ip4iBFsEfQ
+         Kl8HsjfC+7SkcF9V5ISgTbGDqgyoHJRrjgR0/PfVtTCIysmhpDAH+oe378A755J6JlXM
+         1r94W6myxOuaOuRiIVphSmifjG0c6dN6Ppy0iQ1WbUj5I9pPZilN2tTRygjbg9MKHk3d
+         pnM2uYsVw244oGzm9Y/8g4n35ljis+R+dRxgOYJIEg4XNhXjTDndDIcQhpEsUBMx+Bzb
+         /xqB9GlsDT2n1v4h5B+LoZr03fuAttuy4C4vf+rBZrpUOCRTZoFDTdRI05jcpekZ90R1
+         U54A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708347249; x=1708952049;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=sVsdNaxDrQaT+5xLkuNNBvQ4+mZpUehI+ER8LAoDUdY=;
+        b=dGsxhW8Yw9SKI2I1cx/2/gz2TFNHaKyCvlLzeubvahWaIBZToBRSkuWmmNavBQMl+0
+         t6dzk3XWBql1AkBc4Qnt1EtX44Y6+/MiwEZRkLaLHFbIMVYzwq7Nrg+05Aec4V5vFEci
+         2+UWFJRDJ6xkYCyw92kL8ATg0IG+oylqbEQU9EW+Bojyc+SaZBUS0MFRQ+NkuDUPMpEp
+         3QsN8CKpH3lG8p3Suc8F28Hg/z3DPEdX9+Dl58C8vQRzkhkwWrFdjSePuXVRpezSkVGU
+         B0XV8KsltT7Y73gdk17xcP2uW/umR//eSMPGvK6V8bNc64+g9x9hIOGV5Y6wwxm492Ol
+         dkSA==
+X-Forwarded-Encrypted: i=1; AJvYcCVBXssEr1fetCJsi5OM6fBgvXWlnIp8x4QS5MlGfC/SloHCAb48ygc5rTzVMFFUNKfupWxHWdOabbsSN3FRixkdw8k1CtZHERk69g==
+X-Gm-Message-State: AOJu0YwAbM/dk5bPVvsrWei5VWQGQ8kmIYnfN36IK6WQA55RuYJkDKEx
+	oy7Jf1YqBVrSjWMrXP7dT3A96uh0z6u+2MZ6HBJri+57UGiVOt1G4tN43heK8T/u9OhPLnmK00l
+	F/NdPHffsrXkjmrK+4kxEdxfLCP9UCP2iZlXAHw==
+X-Google-Smtp-Source: AGHT+IHxyvxbs8UNV+RvesaBK90xtZZfu2Xu6HFPB14T7Tm6G1AVsPn3zgxyvNAFZBNi1d1T6kkfRUxMA6fnOOW6aBY=
+X-Received: by 2002:a67:c902:0:b0:46d:2b65:aa16 with SMTP id
+ w2-20020a67c902000000b0046d2b65aa16mr6787860vsk.34.1708347248824; Mon, 19 Feb
+ 2024 04:54:08 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e374d585-5acc-bbe0-ee1d-65f7abdb8f8d@leica-geosystems.com>
-X-GND-Sasl: kamel.bouhara@bootlin.com
+References: <20240216203215.40870-1-brgl@bgdev.pl> <20240216203215.40870-4-brgl@bgdev.pl>
+ <ZdDVNbjv60G9YUNy@finisterre.sirena.org.uk> <CAMRc=Mf9Sro4kM_Jn8_v=cyO5PxCp6AnBdeS9XspqVDGKdA_Dg@mail.gmail.com>
+ <7c1327c0-d0ea-4797-a5fa-5844ba46bf53@linaro.org>
+In-Reply-To: <7c1327c0-d0ea-4797-a5fa-5844ba46bf53@linaro.org>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Mon, 19 Feb 2024 13:53:57 +0100
+Message-ID: <CAMRc=Me=3HhGc_yZuaEo1TsLbF2R=g+072185_PAh5GmAQ-M7w@mail.gmail.com>
+Subject: Re: [PATCH v5 03/18] dt-bindings: regulator: describe the PMU module
+ of the QCA6390 package
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Mark Brown <broonie@kernel.org>, Marcel Holtmann <marcel@holtmann.org>, 
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, "David S . Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Saravana Kannan <saravanak@google.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Arnd Bergmann <arnd@arndb.de>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Alex Elder <elder@linaro.org>, 
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Abel Vesa <abel.vesa@linaro.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Lukas Wunner <lukas@wunner.de>, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, linux-bluetooth@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-pci@vger.kernel.org, linux-pm@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Le Mon, Feb 19, 2024 at 10:58:22AM +0000, SHUKLA Mamta Ramendra a écrit :
+On Mon, Feb 19, 2024 at 8:32=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
+> On 17/02/2024 19:32, Bartosz Golaszewski wrote:
+> > On Sat, Feb 17, 2024 at 4:48=E2=80=AFPM Mark Brown <broonie@kernel.org>=
+ wrote:
+> >>
+> >> On Fri, Feb 16, 2024 at 09:32:00PM +0100, Bartosz Golaszewski wrote:
+> >>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >>>
+> >>> The QCA6390 package contains discreet modules for WLAN and Bluetooth.=
+ They
+> >>> are powered by the Power Management Unit (PMU) that takes inputs from=
+ the
+> >>> host and provides LDO outputs. This document describes this module.
+> >>
+> >> Please submit patches using subject lines reflecting the style for the
+> >> subsystem, this makes it easier for people to identify relevant patche=
+s.
+> >> Look at what existing commits in the area you're changing are doing an=
+d
+> >> make sure your subject lines visually resemble what they're doing.
+> >> There's no need to resubmit to fix this alone.
+> >
+> > Mark,
+> >
+> > This is quite vague, could you elaborate? I have no idea what is wrong
+> > with this patch.
 >
-> Hello Kamel,
-
-Hello,
-
-[...]
-
-> > +
-> > +/*
-> > + * Support function to axiom_process_u41_report.
-> > + * Generates input-subsystem events for every target.
-> > + * After calling this function the caller shall issue
-> > + * a Sync to the input sub-system.
-> > + */
-> > +static bool axiom_process_u41_report_target(struct axiom_data *ts,
-> > +                                           struct axiom_target_report *target)
-> > +{
-> > +       struct input_dev *input_dev = ts->input_dev;
-> > +       struct axiom_u41_target *target_prev_state;
-> > +       enum axiom_target_state current_state;
-> > +       int id;
-> > +
-> > +       /* Verify the target index */
-> > +       if (target->index >= AXIOM_U41_MAX_TARGETS) {
-> > +               dev_err(ts->dev, "Invalid target index! %u\n", target->index);
-> > +               return false;
-> > +       }
-> > +
-> > +       target_prev_state = &ts->targets[target->index];
-> > +
-> > +       current_state = AXIOM_TARGET_STATE_NOT_PRESENT;
-> > +
-> > +       if (target->present) {
-> > +               if (target->z >= 0)
-> > +                       current_state = AXIOM_TARGET_STATE_TOUCHING;
-> > +               else if (target->z > AXIOM_PROX_LEVEL && target->z < 0)
-> > +                       current_state = AXIOM_TARGET_STATE_HOVER;
-> > +               else if (target->z == AXIOM_PROX_LEVEL)
-> > +                       current_state = AXIOM_TARGET_STATE_PROX;
-> > +       }
-> > +
-> > +       if (target_prev_state->state == current_state &&
-> > +           target_prev_state->x == target->x &&
-> > +           target_prev_state->y == target->y &&
-> > +           target_prev_state->z == target->z)
-> > +               return false;
-> > +
-> > +       id = target->index;
-> > +
-> > +       dev_dbg(ts->dev, "U41 Target T%u, slot:%u present:%u, x:%u, y:%u, z:%d\n",
-> > +               target->index, slot, target->present,
-> > +               target->x, target->y, target->z);
+> Use subject prefixes matching the subsystem. You can get them for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching.
 >
-> This doesn't compile. You forgot to replace slot  with id.
->
->
-> -       dev_dbg(ts->dev, "U41 Target T%u, slot:%u present:%u, x:%u,
-> y:%u, z:%d\n",
-> -               target->index, slot, target->present,
-> +       dev_dbg(ts->dev, "U41 Target T%u, id:%u present:%u, x:%u, y:%u,
-> z:%d\n",
-> +               target->index, id, target->present,
+> Best regards,
+> Krzysztof
 >
 
-I don't know how I could missed this one :/ !
+Yes, I always do. And for Documentation/devicetree/bindings/regulator/
+the subjects are split 50:50 between "dt-bindings: regulator: ..." and
+"regulator: dt-bindings: ...". For Documentation/devicetree/bindings/
+it's overwhelmingly "dt-bindings: <subsystem>: ...". It's the first
+time someone wants me to send a DT bindings patch without
+"dt-bindings" coming first in the subject.
 
-Fixed thanks !
+I mean: I can do it alright but it's not stated anywhere explicitly.
 
---
-Kamel Bouhara, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+Bartosz
 
