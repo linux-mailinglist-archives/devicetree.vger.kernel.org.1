@@ -1,169 +1,117 @@
-Return-Path: <devicetree+bounces-43412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD38885A500
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 14:41:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 311CF85A512
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 14:47:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 796A81F246AC
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 13:41:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5EB9A1C21861
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 13:47:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 861503613E;
-	Mon, 19 Feb 2024 13:41:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 965FD364A9;
+	Mon, 19 Feb 2024 13:47:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="KKX55vGX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Jo8A4ADU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 930683612E;
-	Mon, 19 Feb 2024 13:41:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 138E63612C
+	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 13:47:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708350090; cv=none; b=pxz4X8VsQIngGHB7WlAf2p28WRt8vnQ6HVGEarqgGaeoQQ3CnkQRfhK8XhZdCJa9evcRjtEGAJ9tkSDfK+OhTKUbsOjtGaelAEQhHLTQmi+/xNKICnEwuwjd0QNClPEO4C88rCXVYRvWIMIBeiRG9qlArMEZTWJSj66WqLwz60Q=
+	t=1708350431; cv=none; b=iVF29MXQTI8sDDLKJN4+Q6ZTM5FI250/8ijWY1vn0HOAwWpk9QwjsKLphY3mZmsV2GRw/cneiP+a5kh0O6Sr+u7MW4d0NRLSqXbc4E1XG469LW0JbhGTlHV1mfRvsgU8+iurQAR42JBoMQgVKS022I8CNsOy+7mbQpgFlURwQOc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708350090; c=relaxed/simple;
-	bh=fGpvwIGy2LQRXThEEta3A8xVTtWdS4NNyyyJxz4ZWoE=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
-	 References:In-Reply-To; b=fZXVuQE6HelgQvZEoQj7x94ucU5+XcVMNR7lHM9D6W4ksirGhRL+UV4JSLTxA2DTIYbkRncOBu3nNJN+gespSYkQOLYjdHapRzVxu8sdv97bWs68OzuvrFARxivpyZkPWkJyb+/ptnBBLHBUKNYLVE2nQ9lCI0FZtEvb2h85MC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=KKX55vGX; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6892B40007;
-	Mon, 19 Feb 2024 13:41:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1708350085;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=npYRmHh0n3z51AZdDa3QZzAz5BYIy4ErQyiNWsy/7k8=;
-	b=KKX55vGXkgAsul0jJVBBh0WsHdH8Ty2o0BPwgXrX+pRSA/sZsj+tCny78oV9IMd9+Ypv8W
-	yZOLwdTULOXg6jjFRTUj6/M/B46V7Ub/8tc7aJHs2pPxMCGhUPYGUfPiDcVpgvsDkzMpgi
-	5xBswwSooElotlLj4fWUbsWevhqaY58Mws6Tur2cwC3A0wDMfqWg/b01Xpxrd1aLDQATo0
-	LJPXMx8Qw45HmDL1SUVlB8rPrDo5GRkU6oMayDC5RkmgYarbfNpaZ4logH21A3pmOChH6W
-	VyspoZjQqPJoVXA35x/79EEd5M/Ik5ProNlLxlZ21A5P6WVZVJKqaOp3tn1O0g==
+	s=arc-20240116; t=1708350431; c=relaxed/simple;
+	bh=xVULmkH+MvmGuLK6cHjXhoxBvhQTE6V+Cq5yQZH6Zec=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=bfuI0jfsI5XZ1O/CEa2T5HwLiN9C73DodyapwI3WSZCFzt3q4YqHVQEYlon4fwPEKA5KAymrQRhqZL2TdHUXA3SWhCdMg244Vgt4FET5JhuTjzGmCi8M/l5gQ00MC4PvovC1X10TEkDNen0qBDgFBgnnmCbmpz0IqDtkequGq2M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Jo8A4ADU; arc=none smtp.client-ip=209.85.219.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-dc74435c428so3936984276.2
+        for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 05:47:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708350429; x=1708955229; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iaP9PK7n/mX7mG7UuH28xuqrJj2zBGV+LtBPvpfW1yw=;
+        b=Jo8A4ADUpXJafSlxFXDAUsqSwTJYftjwV589GQu60N4L3IkYTmd/aQuE+61vNBWhYK
+         PNvOsqwrXDjz/46j1cnoo7bH4StVkXCIxtjcstygQ7iZ533m9IakXJXNepo6HnIosmMm
+         JjQnyCsOwfGhSp90FeGLJJdI44HRu46tz3eqoDmTt68w5rfeTl90iDIN+elF2q7j0vqD
+         6LMMZe5Xih1xpoeQbLrn5HWe9dILTUlICSPauBF/rvPGXDamOpcJT4trd+Br1dEJ5jRQ
+         fIBKwYxyrnCxzHVONGDc04Hce+n1FrVL+9GkwD0Fdxvhol+abnC6PEdnTvPGMIwLicmP
+         5KBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708350429; x=1708955229;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iaP9PK7n/mX7mG7UuH28xuqrJj2zBGV+LtBPvpfW1yw=;
+        b=Lf3s7eoVw4JXIYiDrZbV8Yrrv/XZCynp6e30jKJwrPIs8/DUBh4JxEGUX9XRPc3/Ws
+         /YRd22nXErO+Phar3gWHvj5vSG0x9Nc/+cgQk3LztmDHdssTD7TadrH8Ag2KVzwj9J+E
+         KeqAwn34L5RoQPlhudH8g0vdZra1clTUdGXBBcLdHBWIYTvIUYiDroiNF3HcyOAmwo+Z
+         FkNQlRvPoGXQp7lDLj03bY+x46YcWAFMZlgyVAaTSb4csorWgeKzBS5lot6oDXsKsAvX
+         w0M2+YilS+OmP4bg8iKm0/TGdd8k3t8b3YuzGcbg6/9rgQonybjU0/EasXkKHfqDAWPm
+         mEXw==
+X-Forwarded-Encrypted: i=1; AJvYcCXJFZAU03/97Vm7vsR9PqZDO+u64qaA6TjR0I+WTvcu/W0EDGVU8/RJ9g9xU6GZMv02L/9aJGP27/ws8KRNdbneJLvmMfrxVZay0Q==
+X-Gm-Message-State: AOJu0YxqqJ/pcUZBvxNvUQAIqgSY+2ZlfhHPE9LxCZwGE0Qbw6fVtU/Z
+	PZEtfRjwR35jKXRrVy7LHB9M0IH5iwo+WGVG6miV4jJbCIpf4iASD+eZO02yBecGRSa2sD29iQC
+	FC/Vu7wBZt0wmv1Y/3E7E9yCD1VZms26WgoCR+A==
+X-Google-Smtp-Source: AGHT+IGFkA+JVZ1SqL6APIWMHJF1AvLD9iQNHaoGcRhOb+a/WJrMoDKbp9N/E7uTsOENDZxaYigmC6uwWBhCHX74uEg=
+X-Received: by 2002:a25:a064:0:b0:dcc:a446:553 with SMTP id
+ x91-20020a25a064000000b00dcca4460553mr10159671ybh.57.1708350429007; Mon, 19
+ Feb 2024 05:47:09 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <ZdC_g3U4l0CJIWzh@xhacker> <CAJM55Z-t9e8L2_iFfdbCDpOzi7UxQao6-L6VU_W9OGBciJ46bA@mail.gmail.com>
+In-Reply-To: <CAJM55Z-t9e8L2_iFfdbCDpOzi7UxQao6-L6VU_W9OGBciJ46bA@mail.gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 19 Feb 2024 14:46:57 +0100
+Message-ID: <CACRpkdbkfWByoo+i57rr3w7QCyCgbiTbP6e_kT3ZNkiSeYUEoQ@mail.gmail.com>
+Subject: Re: commit f34fd6ee1be8 breaks current dwapb gpio DT users
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: Jisheng Zhang <jszhang@kernel.org>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 19 Feb 2024 14:41:24 +0100
-Message-Id: <CZ93KAA53F8G.38AUM6RZGUYY7@bootlin.com>
-Cc: "Linus Walleij" <linus.walleij@linaro.org>, "Andi Shyti"
- <andi.shyti@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-mips@vger.kernel.org>, "Gregory Clement"
- <gregory.clement@bootlin.com>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Rob Herring"
- <robh@kernel.org>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH 02/13] dt-bindings: i2c: nomadik: add mobileye,eyeq5-i2c
- bindings and example
-X-Mailer: aerc 0.15.2
-References: <20240215-mbly-i2c-v1-0-19a336e91dca@bootlin.com>
- <20240215-mbly-i2c-v1-2-19a336e91dca@bootlin.com>
- <20240216022227.GA850600-robh@kernel.org>
- <CZ6FD7EHIJDT.32IEDVT9FG2GP@bootlin.com>
- <6effca50-29a4-43b9-86eb-310bd4e08e5c@linaro.org>
- <CZ6FUECKEX2B.36QWZZA5EYPI@bootlin.com>
- <cf360cbf-7414-4024-8bdd-d2aba7f048b3@linaro.org>
-In-Reply-To: <cf360cbf-7414-4024-8bdd-d2aba7f048b3@linaro.org>
-X-GND-Sasl: theo.lebrun@bootlin.com
 
-Hello,
+On Sat, Feb 17, 2024 at 6:44=E2=80=AFPM Emil Renner Berthing
+<emil.renner.berthing@canonical.com> wrote:
 
-On Sat Feb 17, 2024 at 9:25 AM CET, Krzysztof Kozlowski wrote:
-> On 16/02/2024 11:40, Th=C3=A9o Lebrun wrote:
-> > On Fri Feb 16, 2024 at 11:33 AM CET, Krzysztof Kozlowski wrote:
-> >> On 16/02/2024 11:18, Th=C3=A9o Lebrun wrote:
-> >>>
-> >>>>> +        mobileye,id:
-> >>>>> +          $ref: /schemas/types.yaml#/definitions/uint32
-> >>>>> +          description: Platform-wide controller ID (integer starti=
-ng from zero).
-> >>>>
-> >>>> instance indexes are a NAK. You can use i2cN aliases if you must.
-> >>>>
-> >>>> Why do you need it? To access OLB? If so, add cell args to the OLB=
-=20
-> >>>> phandle instead.
-> >>>
-> >>> Why we do what we do: I2C controller must write a 2 bit value dependi=
-ng
-> >>> on the bus speed. All I2C controllers write into the same register.
-> >>
-> >> Which register?  Your devices do not share IO address space.
-> >=20
-> > mobileye,olb is a prop with a phandle to a syscon. That syscon contains
-> > the register we are interested in.
->
-> So exactly what Rob said... I don't understand why you have chosen to go
-> with alias.
+> --- a/drivers/gpio/gpiolib.c
+> +++ b/drivers/gpio/gpiolib.c
+> @@ -2042,6 +2042,11 @@ EXPORT_SYMBOL_GPL(gpiochip_generic_free);
+>  int gpiochip_generic_config(struct gpio_chip *gc, unsigned int offset,
+>                             unsigned long config)
+>  {
+> +#ifdef CONFIG_PINCTRL
 
-I had misunderstood Rob's original message. Now that I've done some
-tests to use cells I get what was meant. I'd have a follow-up question.
-What should the cells contain? I see two options:
+Please do this:
 
- - phandle + I2C controller global index (from 0 thru 4). Then Linux
-   (or other) driver know how to map that index to register + mask
-   combo. ie:
+if (IS_ENABLED(CONFIG_PINCTRL) && list_empty(&gc->gpiodev->pin_ranges))
+...
 
-      i2c2: i2c@500000 {
-         compatible =3D "mobileye,eyeq5-i2c", "arm,primecell";
-         reg =3D <0 0x500000 0x0 0x1000>;
-         /* ... */
-         mobileye,olb =3D <&olb 2>;
-      };
+The ifdef is so ugly.
 
- - phandle + register offset + mask. ie:
+> +       if (list_empty(&gc->gpiodev->pin_ranges))
+> +               return -ENOTSUPP;
+> +#endif
 
-      i2c2: i2c@500000 {
-         compatible =3D "mobileye,eyeq5-i2c", "arm,primecell";
-         reg =3D <0 0x500000 0x0 0x1000>;
-         /* ... */
-         mobileye,olb =3D <&olb 0xB8 0x300>; /* phandle + offset + mask */
-      };
+That looks like a reasonable fix, I try to wrap my head around if it
+would affect
+any users but can't figure it out, we have to test.
 
-I would have guessed the second approach was frown upon as DT aren't
-meant to contain iomem offsets. However I'm seeing quite a few drivers
-using this approach, and no driver doing the first approach. Maybe my
-instinct isn't leading me the right way.
+Can you please send it as a proper patch? With the above fixed:
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-See those bindings that use the second approach. They were found because
-their drivers use the syscon_regmap_lookup_by_phandle_args() function
-call. I've added the file creation date to highlight recent bindings
-(that hopefully are closer to the right way).
- - phy/starfive,jh7110-pcie-phy.yaml    2023-06-29T15:51:12+08:00
- - usb/starfive,jh7110-usb.yaml         2023-05-18T19:27:48+08:00
- - net/starfive,jh7110-dwmac.yaml       2023-04-17T18:02:49+08:00
- - phy/qcom,sc8280xp-qmp-pcie-phy.yaml  2022-11-05T15:59:34+01:00
- - sound/snps,designware-i2s.yaml       2022-07-01T20:22:49+01:00
- - pinctrl/canaan,k210-fpioa.yaml       2020-12-13T22:50:44+09:00
- - media/ti,cal.yaml                    2019-11-12T15:53:47+01:00
-
-I know looking at existing drivers/bindings isn't the right way, but I
-have no other frame of reference. That's why I'm asking for guidance on
-this one.
-
-Thanks,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
-------------------------------------------------------------------------
-
+Yours,
+Linus Walleij
 
