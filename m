@@ -1,163 +1,186 @@
-Return-Path: <devicetree+bounces-43380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C28D785A318
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 13:23:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A462085A329
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 13:27:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E32731C21687
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 12:23:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 06B011F223D7
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 12:27:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 161592DF84;
-	Mon, 19 Feb 2024 12:23:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 649D22D605;
+	Mon, 19 Feb 2024 12:27:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="Y9NlYGWh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="taKnRuL1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com [209.85.222.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 547862D046
-	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 12:23:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2843B21103;
+	Mon, 19 Feb 2024 12:27:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708345406; cv=none; b=bjaL6LrWhHjoON1uNrQdTawLw0eXOSRfuoRHORifeQiS/tBRwIruvH3+vrUKiOd0ztMuaHMv47heijM9g955HPR37rTDJLP4EI3rtrxyeGZqDSDZ02kpQjvdUySaU7zCe3EqZrUQjvkCp05mMb+zGYDgSUrAhZKvgtN+Ura7TQQ=
+	t=1708345640; cv=none; b=YRMaWyfc8YN5i0R0VIcquD+NdrBIfssBNj3RPHtiJDgb8TlxgLvkaVDYOVqlCKRlkc9SJmtR/FUigmA1aCBJgzfaTsKUGLGvJhQNGZ6CVnS4i7Kq3cpBJ3w4KGeqJF8WtyJYEwgmn8bla7YawotWK3r5lQPLz9l606P1mk0zjks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708345406; c=relaxed/simple;
-	bh=JCaGChRGUNtrESJTd6AhgRt3rpjjekNlziPebDsi98o=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XlKeTH+cN9AvRTYamjkJQc2is+YoUkxsKYesLCePlb3JvZCl0s+HpW2ktQVaGBVGQacphlAExH8K7WEMfyfuWobBBq8qgnZTnx4fDnrw4Hisz/b5DApYswaFv3scciMgfhOx0o9fmLDAZ3Xz9KHtU2UYaov5ys57CMe3s53uFWU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=Y9NlYGWh; arc=none smtp.client-ip=209.85.222.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-7d2a67daa25so2471773241.0
-        for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 04:23:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1708345403; x=1708950203; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JCaGChRGUNtrESJTd6AhgRt3rpjjekNlziPebDsi98o=;
-        b=Y9NlYGWhWXkn0m0UTUk43shbgdS0/so9hJzHIpupXqdzTz+Xmpnd/lMlQ5V/72NxJj
-         hmye7oYrHu+8uYbVw8xeaTMnGHu1fMF0ECSFvG21TlGjTsTE5qt8cDdfb4t3wsuYDdvm
-         mBmyjQUDltAfhwFVKD3szLn3HAJmwxAa2ezYFgP7OaANFLxUZGQTZ/gNH+02HKGQRlsc
-         YWNcuan5Ok2mF7fYx7B1tYDgEVm/Y8gW9yxUtTMCLD+ygZpfNkpkd8tRMr0AtjqTthx7
-         2bt3Fyv79se0/xjXCgYB4oak2AORYv8e9hq56azN1/nneY5J2XEFL1VkPWshqDoD8wDM
-         8OFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708345403; x=1708950203;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JCaGChRGUNtrESJTd6AhgRt3rpjjekNlziPebDsi98o=;
-        b=bKUWQvUrbd8MlVNk0OM7sDI9P2zzy7hgQoLX3YIcfvYafBzidkg6b5SazL7Fwkn5IJ
-         /wskOVY1OUqRIQFPe2UVi6oeeDnRDxrBRbtxEE1VzZ7+9sAtO1tH9KaELsgv5tYFd3W+
-         8+O73QQ3DoowU/1pa4akZvHZFtJwGEVSdq2EG65wjIVg4bAmKS8tdXP4Emiyu2OIVUej
-         LZg2Yb7cgLjLL5G/A9mQ4m8AlCdOD+Gq1WsKbbuNvcDyc1V28+mLu/+GsbBS1i5N7Syf
-         4eaE7zblLc+EPTIcBj2PfMwjDaZ3Vm541nkfMGV916HGRXZO4jVgAKPxfVPeqVtoGNQU
-         MXMA==
-X-Forwarded-Encrypted: i=1; AJvYcCXjO9l9FKwQDAX3IoxYNxNJuHu0khsPJ9FcUkCnYCmTDVSfmeOYwrbMPWLWzdbGER1qpwXhNM30duD90+CwMtEH4f+CYSkFLNhCRA==
-X-Gm-Message-State: AOJu0YxN0OPeogh4N2EzSM5Adc0DL+j7OVpVCYkvKh2xGi4bYg5xnhXX
-	fj6rQTuVok/mmdQSHa7WBHtjbWsveHA5BUP3lcUzabpvOqRWZrxl0qLr2KGxd+pFLI4sYGB3QkT
-	IM5o0XiH7pUURxlEDpqebU+3TWchhBFYXC6Lzwg==
-X-Google-Smtp-Source: AGHT+IF8QcDgkljiNMmo2vfxi+b1NQ85UHBOseDQ8gS3vMihHH6Kd8r7v4M2Q6MY2/Fw/swZFGL2ynq5zcQX6aZeYGo=
-X-Received: by 2002:a05:6102:1142:b0:470:54fa:b37b with SMTP id
- j2-20020a056102114200b0047054fab37bmr1527000vsg.35.1708345403354; Mon, 19 Feb
- 2024 04:23:23 -0800 (PST)
+	s=arc-20240116; t=1708345640; c=relaxed/simple;
+	bh=wjZw+mWJBR/kGq3Uc+1DZLRkxqifdShqnWAT4YCy3W8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PnV+35/l1FdPhDJ7/lp6B0vg5LKhTFtrbkrICSvjcDtSpkdXDcubGy3AzLS5n3FZnxENgbfmYfGV3lyZjl7XqE9462jyeElEtGHN/zNSjSwjv8HJtn84POh7Rttl5Fo6M9hWcuL4/hUDq/dqISKCrqopo8mXGrERiiFdo+DM4ng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=taKnRuL1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE9CFC433F1;
+	Mon, 19 Feb 2024 12:27:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708345639;
+	bh=wjZw+mWJBR/kGq3Uc+1DZLRkxqifdShqnWAT4YCy3W8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=taKnRuL1BdTEPmcAkix1YrJfWe0NSXrx1QPP3+hwp0hsKkylMuo4/QMRgZnrlM5qH
+	 FLbKpFGDGbfVykoqDJ3b/2XtdUe5KdgI0khlGlGIl481RFuL1gJn4y7EAJWoOfNADk
+	 VXTacMjtmP6iUsMIw1dwzV1xTNWdUzQDDYkyNIk7NjcZx3+ogVSy0Va+i6whO04BFW
+	 vs5kgZ6YGRESnLD0S/wzTDYo94fZ5PKDxCzsV8Uokdh+zRgjXDTgA3ad2Lte+Jg+f3
+	 jQDEkIOBAaPhL3Z3waxc7PaZ78gvjI6jr7SC9qOo8iH7KvZ7MVaV29xO9yXg9piKNQ
+	 yQ2KCXuit0Hyw==
+Message-ID: <956ebf94-62ef-4e67-893e-86586a980883@kernel.org>
+Date: Mon, 19 Feb 2024 13:27:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240216203215.40870-1-brgl@bgdev.pl> <CAA8EJppt4-L1RyDeG=1SbbzkTDhLkGcmAbZQeY0S6wGnBbFbvw@mail.gmail.com>
- <e4cddd9f-9d76-43b7-9091-413f923d27f2@linaro.org> <CAA8EJpp6+2w65o2Bfcr44tE_ircMoON6hvGgyWfvFuh3HamoSQ@mail.gmail.com>
- <4d2a6f16-bb48-4d4e-b8fd-7e4b14563ffa@linaro.org> <CAA8EJpq=iyOfYzNATRbpqfBaYSdJV1Ao5t2ewLK+wY+vEaFYAQ@mail.gmail.com>
-In-Reply-To: <CAA8EJpq=iyOfYzNATRbpqfBaYSdJV1Ao5t2ewLK+wY+vEaFYAQ@mail.gmail.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Mon, 19 Feb 2024 13:23:12 +0100
-Message-ID: <CAMRc=Mfnpusf+mb-CB5S8_p7QwVW6owekC5KcQF0qrR=iOQ=oA@mail.gmail.com>
-Subject: Re: [PATCH v5 00/18] power: sequencing: implement the subsystem and
- add first users
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: neil.armstrong@linaro.org, Marcel Holtmann <marcel@holtmann.org>, 
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, "David S . Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Saravana Kannan <saravanak@google.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Arnd Bergmann <arnd@arndb.de>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Alex Elder <elder@linaro.org>, 
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Abel Vesa <abel.vesa@linaro.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Lukas Wunner <lukas@wunner.de>, linux-bluetooth@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-pci@vger.kernel.org, linux-pm@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] mmc: dw_mmc: add support for hi3798mv200
+Content-Language: en-US
+To: Yang Xiwen <forbidden405@outlook.com>, kernel test robot <lkp@intel.com>,
+ Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Jaehoon Chung
+ <jh80.chung@samsung.com>, Rob Herring <robh+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, Igor Opaniuk <igor.opaniuk@linaro.org>,
+ tianshuliang <tianshuliang@hisilicon.com>, David Yang <mmyangfl@gmail.com>,
+ linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240216-b4-mmc-hi3798mv200-v1-1-7d46db845ae6@outlook.com>
+ <202402181540.H4Ose96P-lkp@intel.com>
+ <SEZPR06MB695945299705B6E8BF0E326296522@SEZPR06MB6959.apcprd06.prod.outlook.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <SEZPR06MB695945299705B6E8BF0E326296522@SEZPR06MB6959.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Feb 19, 2024 at 11:26=E2=80=AFAM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
+On 18/02/2024 09:21, Yang Xiwen wrote:
+> On 2/18/2024 4:03 PM, kernel test robot wrote:
+>> Hi Yang,
+>>
+>> kernel test robot noticed the following build errors:
+>>
+>> [auto build test ERROR on 8d3dea210042f54b952b481838c1e7dfc4ec751d]
+>>
+>> url:    https://github.com/intel-lab-lkp/linux/commits/Yang-Xiwen-via-B4-Relay/mmc-dw_mmc-add-support-for-hi3798mv200/20240216-014744
+>> base:   8d3dea210042f54b952b481838c1e7dfc4ec751d
+>> patch link:    https://lore.kernel.org/r/20240216-b4-mmc-hi3798mv200-v1-1-7d46db845ae6%40outlook.com
+>> patch subject: [PATCH 1/3] mmc: dw_mmc: add support for hi3798mv200
+>> config: parisc-allyesconfig (https://download.01.org/0day-ci/archive/20240218/202402181540.H4Ose96P-lkp@intel.com/config)
+>> compiler: hppa-linux-gcc (GCC) 13.2.0
+>> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240218/202402181540.H4Ose96P-lkp@intel.com/reproduce)
+>>
+>> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+>> the same patch/commit), kindly add following tags
+>> | Reported-by: kernel test robot <lkp@intel.com>
+>> | Closes: https://lore.kernel.org/oe-kbuild-all/202402181540.H4Ose96P-lkp@intel.com/
+>>
+>> All errors (new ones prefixed by >>):
+>>
+>>     drivers/mmc/host/dw_mmc-hi3798mv200.c: In function 'dw_mci_hi3798mv200_init':
+>>>> drivers/mmc/host/dw_mmc-hi3798mv200.c:178:36: error: passing argument 1 of 'mmc_of_parse_clk_phase' from incompatible pointer type [-Werror=incompatible-pointer-types]
+>>       178 |         mmc_of_parse_clk_phase(host->dev, &priv->phase_map);
+>>           |                                ~~~~^~~~~
+>>           |                                    |
+>>           |                                    struct device *
+>>     In file included from drivers/mmc/host/dw_mmc-hi3798mv200.c:11:
+>>     include/linux/mmc/host.h:542:46: note: expected 'struct mmc_host *' but argument is of type 'struct device *'
+>>       542 | void mmc_of_parse_clk_phase(struct mmc_host *host,
+>>           |                             ~~~~~~~~~~~~~~~~~^~~~
+>>     cc1: some warnings being treated as errors
+>>
+>>
+>> vim +/mmc_of_parse_clk_phase +178 drivers/mmc/host/dw_mmc-hi3798mv200.c
+>>
+>>     168	
+>>     169	static int dw_mci_hi3798mv200_init(struct dw_mci *host)
+>>     170	{
+>>     171		struct dw_mci_hi3798mv200_priv *priv;
+>>     172		struct device_node *np = host->dev->of_node;
+>>     173	
+>>     174		priv = devm_kzalloc(host->dev, sizeof(*priv), GFP_KERNEL);
+>>     175		if (!priv)
+>>     176			return -ENOMEM;
+>>     177	
+>>   > 178		mmc_of_parse_clk_phase(host->dev, &priv->phase_map);
+> 
+> Please note that this patch is depending on another patch[1].
+> 
+> [1]: 
+> https://lore.kernel.org/linux-mmc/ae876e697ba16ba2925ec217c6b4e3d8ffea4ab3.camel@codeconstruct.com.au/T/#t
+> 
 
-[snip]
+You did not provide any links to dependencies in cover letter nor in
+patch changelog. You included on purpose, which is nice and correct, the
+base commit:
 
-> > >>>>
-> > >>>> For WCN7850 we hide the existence of the PMU as modeling it is sim=
-ply not
-> > >>>> necessary. The BT and WLAN devices on the device-tree are represen=
-ted as
-> > >>>> consuming the inputs (relevant to the functionality of each) of th=
-e PMU
-> > >>>> directly.
-> > >>>
-> > >>> We are describing the hardware. From the hardware point of view, th=
-ere
-> > >>> is a PMU. I think at some point we would really like to describe al=
-l
-> > >>> Qualcomm/Atheros WiFI+BT units using this PMU approach, including t=
-he
-> > >>> older ath10k units present on RB3 (WCN3990) and db820c (QCA6174).
-> > >>
-> > >> While I agree with older WiFi+BT units, I don't think it's needed fo=
-r
-> > >> WCN7850 since BT+WiFi are now designed to be fully independent and P=
-MU is
-> > >> transparent.
-> > >
-> > > I don't see any significant difference between WCN6750/WCN6855 and
-> > > WCN7850 from the PMU / power up point of view. Could you please point
-> > > me to the difference?
-> > >
-> >
-> > The WCN7850 datasheet clearly states there's not contraint on the WLAN_=
-EN
-> > and BT_EN ordering and the only requirement is to have all input regula=
-tors
-> > up before pulling up WLAN_EN and/or BT_EN.
-> >
-> > This makes the PMU transparent and BT and WLAN can be described as inde=
-pendent.
->
-> From the hardware perspective, there is a PMU. It has several LDOs. So
-> the device tree should have the same style as the previous
-> generations.
->
+	base-commit: 8d3dea210042f54b952b481838c1e7dfc4ec751d
 
-My thinking was this: yes, there is a PMU but describing it has no
-benefit (unlike QCA6x90). If we do describe, then we'll end up having
-to use pwrseq here despite it not being needed because now we won't be
-able to just get regulators from WLAN/BT drivers directly.
+which does not include above commit apparently.
 
-So I also vote for keeping it this way. Let's go into the package
-detail only if it's required.
+How anyone can guess it and test your patches?
 
-Bartosz
+Please send with proper dependencies marked.
+
+Best regards,
+Krzysztof
+
 
