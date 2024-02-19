@@ -1,217 +1,148 @@
-Return-Path: <devicetree+bounces-43555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE6B385ABB3
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 20:01:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D56C985ABCE
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 20:13:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 34373B20F16
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 19:01:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BE9628529A
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 19:13:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B919482FC;
-	Mon, 19 Feb 2024 19:01:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92F1350264;
+	Mon, 19 Feb 2024 19:13:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="uCf0Rvna"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="po788f8/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01olkn2039.outbound.protection.outlook.com [40.92.107.39])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D3EA4A3B;
-	Mon, 19 Feb 2024 19:01:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.107.39
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708369273; cv=fail; b=DYr5P1TcJvbtfUdIxD9LGINRap54X/T50UQsJ6wR8c7w64yyd3p6TDktF+vjKxdCodsWRdecCGUdZJ5S4U9IiGqw+W0d2L4mS951UyvspmFIFPBG3qR6gvR6J0VokI3EX+hVrbmn1LEgjIuKzYkhoQMpWQT8BlaZjSiDubIUtRE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708369273; c=relaxed/simple;
-	bh=m+jD4VJrgh/I6NvT/cQchiPSU28PxG7awbxj4X9lul4=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=p/Lyj/73Nf0j1VwnvwlLlYogsz/WI9uX7DuBrhnYE6rmEkViJq0ZoHKCOGwJGftJXnlZgGvfDtAf0OAMQNdla7AWiwtA9TINkkGze96nHL60OyilR5S6MfgLSv/fK1Td+wX5AjAzT5fjjAzxPCymDHZNbxo9GLyZT5vqUWExO1Q=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=uCf0Rvna; arc=fail smtp.client-ip=40.92.107.39
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=V+DiJeBpS786B+6IX+1Y59rB0fJ1JI2968LetxffDPvZOcsep4hStq8mCmsdKwSPc5OE6U9Pml5SHHyyhmaDj1INlzo5Ya9ovurfklhKnmUxi8v4EZGpFxmz/RsTyVb/Cfb4WMzrIXe7bJT6DylIXotHuwSL5SX8XBaZ6c+wPTSMn/MiCw84vJk3j9PPNAoQ+L3ov2vu1Bnny2qsjP32K+r0UyedKkUjGAArUwTEKeLSgYhXIT6iJed+/obZH9ueSofJroa0Dgesq0Ov5idry2ERODPl4o03uQcW5LQfLFkajyRi2WdkNppdgf1ev3u+wdSKWZ3Ay0GQe8JmTb4qsw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=No44qGWYmmB7ubfRHNTkkzYMc8a5Es3lBkS7Ywd1ISU=;
- b=L/yFYIwbZOjdl1JkC0AO9ccCR3XLeLELtLRa8CQoxXEhy7usA2flvltfEOfJMjZmnHryLJj4tbmDyBbntNEL6YeBZYx+IyKb+OULg8k5gQYSc0CJf1sWSxNYe5vjnBcnyqWZ4ZXivn6LV0yY7pLzCbfOnOBlquvJU0Hz7Oz73/ukQm3qmgm9FvcuL6YlywaScoXdWKYGkqg2/TUJEyFz0useBEBCQ6Iv+Tv0eTTtsxkwq/8Xa/4ID1RBx73ZwckKtAbz+7Lb9d75pLgY1fgteIrr+3CDi/cyd6CNhP3HOTkjc+/NqUkDvk+n5njDB9d2e5nvYohHXoXKG6VRa4CamQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=No44qGWYmmB7ubfRHNTkkzYMc8a5Es3lBkS7Ywd1ISU=;
- b=uCf0RvnazwpF+Qgf3Q+KRXEzDMG6vwF/pT1JNwVEHd3wdS6FtbtmqZPMzsw628k1cDAPwJp3NY2BD3WJYPz9DiE+kLsVmTYUNqSv4EIy7IPZD+wDTCMaDuGBirF4QlTLiLRJzxbwt2LnPNh2vH4fp8PPA4neotXP4fkngsRseP8u7TLeiVGRJij4c3L+lOoH/TlrQ87RqxwIo5w4BJ2VBfH5BMk1asZCq6fIlILhTz62Vd3Zx8tE/3y0RHQEC8ruLJd6Gk8C2upOI/eLz2D2LC7kBGx+iSdpSaPr/1WfTjwimyVLaFjSEUCr4e/fRCPRsdOmSybqaMb+AiFrl8No4A==
-Received: from SEZPR06MB6959.apcprd06.prod.outlook.com (2603:1096:101:1ed::14)
- by SI2PR06MB5017.apcprd06.prod.outlook.com (2603:1096:4:1a1::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.32; Mon, 19 Feb
- 2024 19:01:06 +0000
-Received: from SEZPR06MB6959.apcprd06.prod.outlook.com
- ([fe80::53da:a8a:83cb:b9ad]) by SEZPR06MB6959.apcprd06.prod.outlook.com
- ([fe80::53da:a8a:83cb:b9ad%4]) with mapi id 15.20.7292.036; Mon, 19 Feb 2024
- 19:01:05 +0000
-Message-ID:
- <SEZPR06MB6959D4BEC90745D94BF02BF596512@SEZPR06MB6959.apcprd06.prod.outlook.com>
-Date: Tue, 20 Feb 2024 03:00:58 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] watchdog: sp805_wdt: deassert the reset if
- available
-Content-Language: en-US
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org,
- krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
- linux-watchdog@vger.kernel.org, linux@roeck-us.net, p.zabel@pengutronix.de,
- robh+dt@kernel.org, vireshk@kernel.org, wim@linux-watchdog.org
-References: <20240220-hisi-wdt-v2-0-63edc4965b4c@outlook.com>
- <20240220-hisi-wdt-v2-1-63edc4965b4c@outlook.com>
- <534b62dc-3874-407f-a5c9-f67d366107dc@wanadoo.fr>
-From: Yang Xiwen <forbidden405@outlook.com>
-In-Reply-To: <534b62dc-3874-407f-a5c9-f67d366107dc@wanadoo.fr>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-TMN:
- [xT1gUfdEglZt2ZQOFd6TkfIQ0E7cRjH3zSrZBrcYGmiFXu9VKgkY7HmLukmxRESraPGTrC4hxr0=]
-X-ClientProxiedBy: TYXPR01CA0043.jpnprd01.prod.outlook.com
- (2603:1096:403:a::13) To SEZPR06MB6959.apcprd06.prod.outlook.com
- (2603:1096:101:1ed::14)
-X-Microsoft-Original-Message-ID:
- <bcdd48f8-39d8-4606-b223-0938f139e5e7@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C10F45C04
+	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 19:13:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708370030; cv=none; b=UjIMZUN7M4xTj+U3GbaOqAV2aiA/RnxvLVy5uv//RkHnXZgF1y0gAcp1gQC4+GLmK3UYUGu4snTGwAt7I8WW2P9tD4YiissN8+RANQ+9r4muyux03gBuspQQy0LO/vrYcIQx0kNzDGTF3SdusJozXKyRUKQKb8bfGRJV9sZ/rFY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708370030; c=relaxed/simple;
+	bh=6eisWDm4LZWmGOH+OzqLp8spW6idnvtgSOrHuuYZFBI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IpdByXb22xcbWslrhdr/7d0eTFzhHQejLj8v2v4G28C98zQNdQ3kmGso2u25yT3xg4Y4kF+zV9BQkv9zEFzdJLP/Hz2N99CK5QwHnBDyIJrdK454ekG6FtIgcKnPXWfh7IAtKQJp05obLQNjFMY3GmdhdNbJgtbFhzGm5cQrmXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=po788f8/; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2d23d301452so14777681fa.1
+        for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 11:13:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1708370027; x=1708974827; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=csS8H22FayrstR0dzfkJS68NFu6zUIzIumHSfC39WBs=;
+        b=po788f8/fNdaIU26zjOYxRqMTG9kuFwvmBcqrw9R6l8Y8qvQylvTLk+fpf1tNyl7Zs
+         0QxCCVNhHvpDJm2B4WkQn4W4D17l0JErN4b12PX5uVMiffO7FJnhEjGIOEfDY6A4BNjV
+         qAPe7KLknHCe6Hc2dbV18kB0khvQ4o6PapnXYAHiLYwrcqd3LR/LAWlrzrEWQiWdQTPz
+         +Xab6tXSkD999qfSC3+S8zOkbwiUd6sZxsSfCq5+QKTevYOWtgQpGD+C1tJaHCSBD7U2
+         7eagpe30UDr4jTuuHYq8VjMgRp+SMTRKdq0zWRpf7arxFUWD7ytiiEZ0jWEeoo1mrIxw
+         5fYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708370027; x=1708974827;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=csS8H22FayrstR0dzfkJS68NFu6zUIzIumHSfC39WBs=;
+        b=QoefOuGoiEc1GnSL68Qr+2ED9PWBhS8DAXHIElITbhQov8kXpi28mMSsjIRze83l3F
+         SEpN91KU5XgnGti+FDS4WRhLXxiM3V+5n0plZ/3oDdrW86L8/KlM7HUdGSy1Elxkt1hk
+         iQEvusvLmqiVlMNZ82jLX338BPCyTBNQXjnDEbLjH2HYy0qLTrDef3YYwMECpayKCmAy
+         YyDtA8ydewvG3SbrQoHz7zaBWWzpwPcisM5OFwNbcMNf7i0riMKNp8dG3UMR2OvoDKLr
+         DrTxRVS2UQYIiYbdeY/w7jXqwhjuiSalOwSmCUMZHLAdjJMT1+RZQ3tzqd5S8QEaxchH
+         yY4w==
+X-Forwarded-Encrypted: i=1; AJvYcCUvxOnK01J4M1vGdGCi8UXYW4ndg+5mfc9fd3GGMguO5KffWYWhrZlKFh+3jCXCQ9ycaLprzsw1Q4UwceVr5rfiPn0EBbX9fwqhvw==
+X-Gm-Message-State: AOJu0Yyk3nIw4+fNHgWN+6AfIQSnZ8MozbnuGalxG30/iWahcKO6phBY
+	Ko3mJb8jHQeRrPEwnxy3ajR0BIqqU69FMsXju/cIk0OKVPd96uVaVjpsA3EBWws8/636UmDI1N1
+	QSeJ8batPy8kxadjit78/p3r4TOFy1Fs+rcndog==
+X-Google-Smtp-Source: AGHT+IHbq/rDn6jxtClwjRc65peUUfpaYcvy+EKHprzAkBgAfUpS2zbcXtPOpk0oAi9MtZwbl3N6G3rbsPaA8/7kS7I=
+X-Received: by 2002:a2e:b6c6:0:b0:2d2:3a89:b97b with SMTP id
+ m6-20020a2eb6c6000000b002d23a89b97bmr1993750ljo.24.1708370026492; Mon, 19 Feb
+ 2024 11:13:46 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SEZPR06MB6959:EE_|SI2PR06MB5017:EE_
-X-MS-Office365-Filtering-Correlation-Id: 07401a23-5638-4970-48b0-08dc317d1edb
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	BFv5O4dqvWtqgT/TLFOIsvoxdjhITefjVAW9SzBfCdHSpPAOwAXV44+rjL1vk1fq93QfHhCnPQyDqo+OE3B1FGgQ3Nmhl1pCJvKDgN/tG1oYhKdiVrNxeoLuBszaGkK4U3D5CUqOHLwSfosAqJQFV4NgGn4UJ1dwixNxPDweuSa5Z5J49jEyzR/Wwb+Rnpk8etJrEVNYD6NKkt8H34ly1hBSKWF0k8xqXSEthJtQazhNUACuVWZgWBM+ztZpWF5O6OCrYo7bEggRFQwafw8eRQpElapUWRsYuxPPV7mRfZUZOOfX8Gd3meVtUjsLhAb+V7o2f+s2Tcw5nlvc7ANQT2YqsAEfDljVtNlgjoqweicAA8qMmNXtZEvCikbGCwo77JPqIHqudHuLHPRlnC+DKvLMvclLPRYCo/m/qiWWDMoPd/wPBcF2VmDf0D6hdGwuEhiK25RZ1ZEa3wM/iSM9Aa7PDt6sgqvX8/K0LoqDb35V34WTzDM5GIHzupaFEyJehypAhxBtfHesJT0kxzrqhCzsVjExPq7Bo7UfQIjcUdGUXm4bnHjHEan3ElYbNsJ4
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?dHNTcW1ZaXowYm9KV2ZxZW5DOG1ud0hoQXFybmcxZWVOWWxVY3ZWdjI2b2gr?=
- =?utf-8?B?N1Y3QkFzOXdwdkhJQnhocEMyT1VMNEFyMFd5cnRBNnV2SjZXWmY4OVl2ZUJ1?=
- =?utf-8?B?SzlIc1FmSTlwY0ZQRlBRUkhUT2VkcjJYYk1URHp2Mlg2OTBxY2QyYk53Z2lr?=
- =?utf-8?B?VytFbnZsOERmK2czWmg4dVJwWjgxeWt4ZXk1Um8wSHpKenRSY1lnbWFjRDZx?=
- =?utf-8?B?QXdlQnNZdktUTytzcDNIaUlrVVhqQmFvZ0ppbVZrbjFoVVRDdk5OM1B4Y2Zx?=
- =?utf-8?B?S1lCQk1mM29BdFhxZDNpSWd4cDV1WlFzemdiK3JscEdiNTl6Rm80ZG5hOUhH?=
- =?utf-8?B?L0U4bGZMOEhGOUJaUzZMZk9sV09qWFpaY21haVV5WjZkR053UW5uRmdQK0ly?=
- =?utf-8?B?Z0xnV3crUjJwZWhXcjhLMXBrazJCTDgxcWx1YkNOdWVIcmVsRWYxdTlpaTVa?=
- =?utf-8?B?bmlLUzhyTU9UOS9Dc054S0pKZGNmTjEvc1N5YWtzdWtDK1BlZ2pJTUhjTzEr?=
- =?utf-8?B?eDdlOEp4WVM1TkE5ZWpjSnJQYWRxUlFmYU5wWjVMdmNNTXB4bFlJY0NJUEJJ?=
- =?utf-8?B?NjZ2Z3cxd0J3RTU1U1hjUXRQS2VUWWxqL3EydkxEVCsyZk45Q0dpTXF2QnBo?=
- =?utf-8?B?QTMvdk1xeXFRU3JWQWt1YXYrcGUzL1hYZE9sK0NDQXo5QUltUTFaUDhIQUpU?=
- =?utf-8?B?K3o5VmhtOGxYMXNUTDY3dHd1Y2U1eE5iWkJoOXBzdGhnRjRpSDZBRjRzUGho?=
- =?utf-8?B?eDFVRTQ5QUp5c3dMK2lmSXBURmhqUmR4bUk3ZzRoNmtqVG44bk9oZU1ndmxh?=
- =?utf-8?B?NVRGcy9kUlZlWmZ5c0pMbzNxWEtRNkhad1VjckNOb1FaMjNIekRIUFR1dkFZ?=
- =?utf-8?B?cDF4L1ZvZWc4K2xJRGJ0ZXMyNlE2blJtbHZxYlJ3U0JtRGxOOHhzRVpyWm9H?=
- =?utf-8?B?Wmw1dC9pdEhFWHBuV0w3aFU0YjlNSWlaWVRzak9aTk14U0E4SDVoNmFBRUpP?=
- =?utf-8?B?NHNDRHVlUDl3Sm5qenNUY1hmSXJBNDRkTXlvZnRCUk9meDNVVTNJMWt5Umtw?=
- =?utf-8?B?cmVXeWlHT00wcGVKSERBSUJNTVU3YTh4NmV6WWtiSHFIWFRaTEdlbnp0dzNU?=
- =?utf-8?B?bTNLdXlBd3VjSEhVNGxjUWdVM3FxYkViYld2RzBTekJDVTBOR09Wc1NVOXVz?=
- =?utf-8?B?M2hXNlhtcmgxK3BTTzEyN3dxU1JTcmZKTlBZWVVTalRHOXFhZkRpSjRuaW1V?=
- =?utf-8?B?K1N4ZXJWTGhHOFBmMUlULzVnaE9UbW8wb2ZKS0VDZk9tTENUblg0QVZSdm9n?=
- =?utf-8?B?TWloNnJMQStDdU1SRzA1c0hGTXdPYVUvaXZEN1NaZmxwTXFkMEZNbnJvcWJD?=
- =?utf-8?B?M1NiZjNWdzU4a1VsVXpNYXVvcGVzVnBvckxFeW5zUE9zeUdqTUUyTWpoT1ZD?=
- =?utf-8?B?YVpGckFuaE5LQ1Z3YThVK21QVUN5ZkE0a3EyT2M0V1pxTUFmRTBZZDhuTjkw?=
- =?utf-8?B?KytlSUpxWUtGUThHeW1lcGRhaFFZRWx1a1ovR0ZERW5kVjlmNjVpcGxlY2V5?=
- =?utf-8?B?VE9PVGt1a1NVS1lsWmhuWnhITFpzb1B4dGR1V05SeHo4THJ3cng4SmZEMEtE?=
- =?utf-8?B?eFh1cVBzWWRxUDNyYllNL2lvK2tlOVo4bDRoTVZsZGxsVEozckR5TFN6ODBx?=
- =?utf-8?B?YTBqVS9GS21NU21wWmhRcHo3Wk4yVWNmMlFnSU8za1FMZ2I3eUFMb0VOUmY4?=
- =?utf-8?Q?NnxZoHfBQntBsevSqTIFsKbTgyOdGbwVIgYaBdC?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 07401a23-5638-4970-48b0-08dc317d1edb
-X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB6959.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2024 19:01:05.5089
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI2PR06MB5017
+References: <20240216-ad7944-mainline-v2-0-7eb69651e592@baylibre.com> <20240216-ad7944-mainline-v2-2-7eb69651e592@baylibre.com>
+In-Reply-To: <20240216-ad7944-mainline-v2-2-7eb69651e592@baylibre.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Mon, 19 Feb 2024 13:13:35 -0600
+Message-ID: <CAMknhBH2Pqa9xpPxnTCxJegVTbOG-QDeJA4YrQUPfj+hfSs73A@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] iio: adc: ad7944: add driver for AD7944/AD7985/AD7986
+To: linux-iio@vger.kernel.org
+Cc: Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2/20/2024 2:22 AM, Christophe JAILLET wrote:
-> Le 19/02/2024 à 19:14, Yang Xiwen via B4 Relay a écrit :
->> From: Yang Xiwen <forbidden405-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.org>
->>
->> According to the datasheet, the core has an WDOGRESn input signal that
->> needs to be deasserted before being operational. Implement it in the
->> driver.
->>
->> Signed-off-by: Yang Xiwen 
->> <forbidden405-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.org>
->> ---
->>   drivers/watchdog/sp805_wdt.c | 9 +++++++++
->>   1 file changed, 9 insertions(+)
->>
->> diff --git a/drivers/watchdog/sp805_wdt.c b/drivers/watchdog/sp805_wdt.c
->> index 2756ed54ca3d..b4bcfdeb39e6 100644
->> --- a/drivers/watchdog/sp805_wdt.c
->> +++ b/drivers/watchdog/sp805_wdt.c
->> @@ -25,6 +25,7 @@
->>   #include <linux/moduleparam.h>
->>   #include <linux/pm.h>
->>   #include <linux/property.h>
->> +#include <linux/reset.h>
->>   #include <linux/slab.h>
->>   #include <linux/spinlock.h>
->>   #include <linux/types.h>
->> @@ -59,6 +60,7 @@
->>    * @lock: spin lock protecting dev structure and io access
->>    * @base: base address of wdt
->>    * @clk: (optional) clock structure of wdt
->> + * @rst: (optional) reset control signal of wdt
->>    * @rate: (optional) clock rate when provided via properties
->>    * @adev: amba device structure of wdt
->>    * @status: current status of wdt
->> @@ -69,6 +71,7 @@ struct sp805_wdt {
->>       spinlock_t            lock;
->>       void __iomem            *base;
->>       struct clk            *clk;
->> +    struct reset_control        *rst;
->>       u64                rate;
->>       struct amba_device        *adev;
->>       unsigned int            load_val;
->> @@ -264,6 +267,12 @@ sp805_wdt_probe(struct amba_device *adev, const 
->> struct amba_id *id)
->>           return -ENODEV;
->>       }
->>   +    wdt->rst = devm_reset_control_get_optional(&adev->dev, NULL);
->> +    if (IS_ERR(wdt->rst))
->> +        return dev_err_probe(&adev->dev, PTR_ERR(wdt->rst), "Can not 
->> get reset\n");
->> +
->> +    reset_control_deassert(wdt->rst);
->> +
->
-> Hi,
->
-> Is a corresponding reset_control_assert() needed in the remove function?
+On Fri, Feb 16, 2024 at 1:47=E2=80=AFPM David Lechner <dlechner@baylibre.co=
+m> wrote:
 
-I don't think it makes much sense. Many drivers in kernel does not 
-reassert the resets in their driver's remove callback too.
+...
 
-Maybe it can save some power. But since it's already disabled in control 
-register. Can't say it's too much.
+> +
+> +#define AD7944_DEFINE_CHIP_INFO(_name, _t, _bits, _sign)               \
+> +static const struct ad7944_chip_info _name##_chip_info =3D {            =
+ \
+> +       .name =3D #_name,                                                =
+ \
+> +       .t =3D &_t##_timing_spec,                                        =
+ \
+> +       .channels =3D {                                                  =
+ \
+> +               {                                                       \
+> +                       .type =3D IIO_VOLTAGE,                           =
+ \
+> +                       .indexed =3D 1,                                  =
+ \
+> +                       .differential =3D 1,                             =
+ \
+> +                       .channel =3D 0,                                  =
+ \
+> +                       .channel2 =3D 1,                                 =
+ \
+> +                       .scan_index =3D 0,                               =
+ \
+> +                       .scan_type.sign =3D _sign,                       =
+ \
+> +                       .scan_type.realbits =3D _bits,                   =
+ \
+> +                       .scan_type.storagebits =3D _bits > 16 ? 32 : 16, =
+ \
+> +                       .scan_type.endianness =3D IIO_CPU,               =
+ \
+> +                       .info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW)   =
+ \
+> +                                       | BIT(IIO_CHAN_INFO_SCALE),     \
+> +               },                                                      \
+> +               IIO_CHAN_SOFT_TIMESTAMP(1),                             \
+> +       },                                                              \
+> +}
+> +
+> +AD7944_DEFINE_CHIP_INFO(ad7944, ad7944, 14, 'u');
+> +AD7944_DEFINE_CHIP_INFO(ad7985, ad7944, 16, 'u');
+> +AD7944_DEFINE_CHIP_INFO(ad7986, ad7986, 18, 's');
 
->
-> CJ
->
->>       wdt->adev = adev;
->>       wdt->wdd.info = &wdt_info;
->>       wdt->wdd.ops = &wdt_ops;
->>
->
+Now that I have been enlightened [1] about pseudo-differntial inputs,
+I'm thinking that AD7944 and AD7985 should not have the .differential
+=3D 1 flag set since they are pseudo-differential inputs with a ground
+sense on the negative input (and no extra supply needed since it is
+always ground). Does that sound right?
 
--- 
-Regards,
-Yang Xiwen
+AD7986 is true differential though, so should be correct already.
 
+[1]: https://lore.kernel.org/linux-iio/CAMknhBF5mAsN1c-194Qwa5oKmqKzef2khXn=
+qA1cSdKpWHKWp0w@mail.gmail.com/
 
