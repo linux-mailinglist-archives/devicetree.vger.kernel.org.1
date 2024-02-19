@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-43518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0409485A98F
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 18:04:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7761C85A993
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 18:04:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE5B0286B12
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 17:04:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CF291C23B7E
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 17:04:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C216345948;
-	Mon, 19 Feb 2024 17:03:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E86674644C;
+	Mon, 19 Feb 2024 17:03:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="a+fQZK10"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aLyvLS4b"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0765544C6E;
-	Mon, 19 Feb 2024 17:03:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5BB0446D0;
+	Mon, 19 Feb 2024 17:03:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708362231; cv=none; b=HfqdSTxN4/FpP630lmyLNQ8lQjDvrdypQodoTzXovRVXc0HphCtKP1QBF4RS1ixN92I0rvPP4uUCivRpdHLK8FsZjWDpsAKIzdHjEmLQZK35atxlKVS4cL1zfxHkcsd/JHY9njNxhPncdYCKqH57asFUb/jY1jR78thd1+s/ehc=
+	t=1708362232; cv=none; b=WZTmMCXroFDr4SMr62REn2x2pgSnghSWtBa4CDarkfb1RubQ3yFsK8bRQPXYQdzOLhJYGoGUoTuGRUqIoEn39R/rb/mKz1EK4mAEIDuwkZDj0RAEnHZt3eh3yYx0LZDKjB1a1anQlnfCFcXccBWdWvjkiWQ6sN7tu/NNNpuDw9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708362231; c=relaxed/simple;
-	bh=XdwgCH4GhJq64BzVy3/gUxYOZMQMDnBvonE+oyY5QFA=;
+	s=arc-20240116; t=1708362232; c=relaxed/simple;
+	bh=2V6K2WvRgilQJzTyY5J8rzEpLbmO3v/oZJMKcEItRHM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=YCdHpO36Lao23MzhFYctWA2hQh55jpPi417entZ3uKazYGn+IX7LOWF6NKHQpbzw2nlF742xnJt61vJppZVbHcCtjvnCGOyjjdvQLzZDBBlK3GLKf5Pqf+uE8/1l3fEGnig6l2PPQ4wKg1PzEJhu0+2cJnMK6htmtOEdY+3vqQY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=a+fQZK10; arc=none smtp.client-ip=198.175.65.17
+	 MIME-Version; b=pir6BP3NM2a0/xFsehlyPfEK7Y/6pgMkNN8hw3ljJuMWcRJIt8iLPuF8J0fElznd4UysUaPe015ghYG2I5KPwksxHtGDRx5mYi+HhxywG+7keD52A4XqEA16zQjir9chc1QZfpfpBb2uYjAY0l7J6c2XYoeYHRLr4zvltCemdjU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aLyvLS4b; arc=none smtp.client-ip=198.175.65.17
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
@@ -36,27 +36,27 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   t=1708362230; x=1739898230;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=XdwgCH4GhJq64BzVy3/gUxYOZMQMDnBvonE+oyY5QFA=;
-  b=a+fQZK10x3uD8kcrI+5RoIJ6vqMWSAKTtrYNgH37cubZMVwDuZKSvOsu
-   3KeWZFmmRkPotP1j6bC0n/M1i+TTXMypMq8Kdx3utbWSErtBCkJzvRtVM
-   +NGmSezVgmk8hyCPdMWrxcKm0jbmdNdW5EjjRbUMtOTG83Bc9mj4g+xJ4
-   Z8V8mjKSxFkr6qphxAbC4pSOx/dtUgyUDyLZYwPp/QodBudqYvtoV1nhA
-   Cy5KTHg0MxW1/Lk8vLgrzm8nR2N2KFP2YEqKZsLwxTeeIgyybP+b2vqRz
-   5tbwaov5P3OiTt4bm4bNTbdi815vFzCYn2HfJe9olrAXg/MZV8Mw4Cuw8
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10989"; a="2577427"
+  bh=2V6K2WvRgilQJzTyY5J8rzEpLbmO3v/oZJMKcEItRHM=;
+  b=aLyvLS4bqrI8xOWRlUbrNiiKVrniNmO2Xtahk89YWh6Cnofh6jZ+wq9m
+   gyi7/gIwWQdp/QEuO3fAgC5uzECCOhZtpdqZJLTOBaJqVGWGgFfo++E7/
+   7Ad7Soi/gVLRc7YemOAvs5x1yYXH3jYu9WLbhYxMErafsM+U505xpR5xA
+   MJeG6tP60LzAM+YfRAxnzd0NzQwIyQ0sEoQpgfm1ZLUH7SN17XbxIjyvt
+   VvK5V9q8uVCtiPEL9x1WrPPP6niZyJpd0Tbv7yaIheGAyi8DG+0iNPgs+
+   2tNarAb+rfAhYC6DfaDDI1r5vKBopou7glhJF0I+VMXcXvSXUEEfIMEu0
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10989"; a="2577414"
 X-IronPort-AV: E=Sophos;i="6.06,170,1705392000"; 
-   d="scan'208";a="2577427"
+   d="scan'208";a="2577414"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Feb 2024 09:03:49 -0800
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Feb 2024 09:03:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10989"; a="936315371"
+X-IronPort-AV: E=McAfee;i="6600,9927,10989"; a="936315356"
 X-IronPort-AV: E=Sophos;i="6.06,170,1705392000"; 
-   d="scan'208";a="936315371"
+   d="scan'208";a="936315356"
 Received: from black.fi.intel.com ([10.237.72.28])
-  by fmsmga001.fm.intel.com with ESMTP; 19 Feb 2024 09:03:46 -0800
+  by fmsmga001.fm.intel.com with ESMTP; 19 Feb 2024 09:03:42 -0800
 Received: by black.fi.intel.com (Postfix, from userid 1003)
-	id 947E71063; Mon, 19 Feb 2024 19:03:41 +0200 (EET)
+	id 2E9AD2A6; Mon, 19 Feb 2024 19:03:41 +0200 (EET)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
@@ -69,9 +69,9 @@ Cc: Andy Shevchenko <andy@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Robin van der Gracht <robin@protonic.nl>,
 	Paul Burton <paulburton@kernel.org>
-Subject: [PATCH v3 9/9] auxdisplay: Add driver for MAX695x 7-segment LED controllers
-Date: Mon, 19 Feb 2024 18:58:08 +0200
-Message-ID: <20240219170337.2161754-10-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v3 1/9] auxdisplay: linedisp: Group display drivers together
+Date: Mon, 19 Feb 2024 18:58:00 +0200
+Message-ID: <20240219170337.2161754-2-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.43.0.rc1.1.gbec44491f096
 In-Reply-To: <20240219170337.2161754-1-andriy.shevchenko@linux.intel.com>
 References: <20240219170337.2161754-1-andriy.shevchenko@linux.intel.com>
@@ -83,253 +83,392 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add initial driver for the MAX6958 and MAX6959 7-segment LED
-controllers.
+For better usability group the display drivers together in Kconfig
+and Makefile. With this we will have the following sections:
+  - Character LCD
+  - Samsung KS0108 LCD controller
+  - Single character line display
+  - Character LCD with non-conforming interface
 
+While at it, drop redundant 'default n' entries.
+
+Tested-by: Geert Uytterhoeven <geert@linux-m68k.org>
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
- drivers/auxdisplay/Kconfig   |  14 +++
- drivers/auxdisplay/Makefile  |   1 +
- drivers/auxdisplay/max6959.c | 194 +++++++++++++++++++++++++++++++++++
- 3 files changed, 209 insertions(+)
- create mode 100644 drivers/auxdisplay/max6959.c
+ drivers/auxdisplay/Kconfig  | 296 +++++++++++++++++++-----------------
+ drivers/auxdisplay/Makefile |  15 +-
+ 2 files changed, 163 insertions(+), 148 deletions(-)
 
 diff --git a/drivers/auxdisplay/Kconfig b/drivers/auxdisplay/Kconfig
-index 109ac253d160..bc295ede3c2c 100644
+index d944d5298eca..109ac253d160 100644
 --- a/drivers/auxdisplay/Kconfig
 +++ b/drivers/auxdisplay/Kconfig
-@@ -59,6 +59,20 @@ config LCD2S
+@@ -16,6 +16,9 @@ menuconfig AUXDISPLAY
+ 
+ if AUXDISPLAY
+ 
++#
++# Character LCD section
++#
+ config CHARLCD
+ 	tristate "Character LCD core support" if COMPILE_TEST
+ 	help
+@@ -25,12 +28,6 @@ config CHARLCD
+ 	  This is some character LCD core interface that multiple drivers can
+ 	  use.
+ 
+-config LINEDISP
+-	tristate "Character line display core support" if COMPILE_TEST
+-	help
+-	  This is the core support for single-line character displays, to be
+-	  selected by drivers that use it.
+-
+ config HD44780_COMMON
+ 	tristate "Common functions for HD44780 (and compatibles) LCD displays" if COMPILE_TEST
+ 	select CHARLCD
+@@ -52,131 +49,6 @@ config HD44780
+ 	  kernel and started at boot.
+ 	  If you don't understand what all this is about, say N.
+ 
+-config KS0108
+-	tristate "KS0108 LCD Controller"
+-	depends on PARPORT_PC
+-	default n
+-	help
+-	  If you have a LCD controlled by one or more KS0108
+-	  controllers, say Y. You will need also another more specific
+-	  driver for your LCD.
+-
+-	  Depends on Parallel Port support. If you say Y at
+-	  parport, you will be able to compile this as a module (M)
+-	  and built-in as well (Y).
+-
+-	  To compile this as a module, choose M here:
+-	  the module will be called ks0108.
+-
+-	  If unsure, say N.
+-
+-config KS0108_PORT
+-	hex "Parallel port where the LCD is connected"
+-	depends on KS0108
+-	default 0x378
+-	help
+-	  The address of the parallel port where the LCD is connected.
+-
+-	  The first  standard parallel port address is 0x378.
+-	  The second standard parallel port address is 0x278.
+-	  The third  standard parallel port address is 0x3BC.
+-
+-	  You can specify a different address if you need.
+-
+-	  If you don't know what I'm talking about, load the parport module,
+-	  and execute "dmesg" or "cat /proc/ioports". You can see there how
+-	  many parallel ports are present and which address each one has.
+-
+-	  Usually you only need to use 0x378.
+-
+-	  If you compile this as a module, you can still override this
+-	  using the module parameters.
+-
+-config KS0108_DELAY
+-	int "Delay between each control writing (microseconds)"
+-	depends on KS0108
+-	default "2"
+-	help
+-	  Amount of time the ks0108 should wait between each control write
+-	  to the parallel port.
+-
+-	  If your LCD seems to miss random writings, increment this.
+-
+-	  If you don't know what I'm talking about, ignore it.
+-
+-	  If you compile this as a module, you can still override this
+-	  value using the module parameters.
+-
+-config CFAG12864B
+-	tristate "CFAG12864B LCD"
+-	depends on X86
+-	depends on FB
+-	depends on KS0108
+-	select FB_SYSMEM_HELPERS
+-	default n
+-	help
+-	  If you have a Crystalfontz 128x64 2-color LCD, cfag12864b Series,
+-	  say Y. You also need the ks0108 LCD Controller driver.
+-
+-	  For help about how to wire your LCD to the parallel port,
+-	  check Documentation/admin-guide/auxdisplay/cfag12864b.rst
+-
+-	  Depends on the x86 arch and the framebuffer support.
+-
+-	  The LCD framebuffer driver can be attached to a console.
+-	  It will work fine. However, you can't attach it to the fbdev driver
+-	  of the xorg server.
+-
+-	  To compile this as a module, choose M here:
+-	  the modules will be called cfag12864b and cfag12864bfb.
+-
+-	  If unsure, say N.
+-
+-config CFAG12864B_RATE
+-	int "Refresh rate (hertz)"
+-	depends on CFAG12864B
+-	default "20"
+-	help
+-	  Refresh rate of the LCD.
+-
+-	  As the LCD is not memory mapped, the driver has to make the work by
+-	  software. This means you should be careful setting this value higher.
+-	  If your CPUs are really slow or you feel the system is slowed down,
+-	  decrease the value.
+-
+-	  Be careful modifying this value to a very high value:
+-	  You can freeze the computer, or the LCD maybe can't draw as fast as you
+-	  are requesting.
+-
+-	  If you don't know what I'm talking about, ignore it.
+-
+-	  If you compile this as a module, you can still override this
+-	  value using the module parameters.
+-
+-config IMG_ASCII_LCD
+-	tristate "Imagination Technologies ASCII LCD Display"
+-	depends on HAS_IOMEM
+-	default y if MIPS_MALTA
+-	select MFD_SYSCON
+-	select LINEDISP
+-	help
+-	  Enable this to support the simple ASCII LCD displays found on
+-	  development boards such as the MIPS Boston, MIPS Malta & MIPS SEAD3
+-	  from Imagination Technologies.
+-
+-config HT16K33
+-	tristate "Holtek Ht16K33 LED controller with keyscan"
+-	depends on FB && I2C && INPUT
+-	select FB_SYSMEM_HELPERS
+-	select INPUT_MATRIXKMAP
+-	select FB_BACKLIGHT
+-	select NEW_LEDS
+-	select LEDS_CLASS
+-	select LINEDISP
+-	help
+-	  Say yes here to add support for Holtek HT16K33, RAM mapping 16*8
+-	  LED controller driver with keyscan.
+-
+ config LCD2S
+ 	tristate "lcd2s 20x4 character display over I2C console"
+ 	depends on I2C
+@@ -187,16 +59,6 @@ config LCD2S
  	  is a simple single color character display. You have to connect it
  	  to an I2C bus.
  
-+config MAX6959
-+	tristate "Maxim MAX6958/6959 7-segment LED controller"
-+	depends on I2C
-+	select REGMAP_I2C
-+	select LINEDISP
-+	help
-+	  If you say yes here you get support for the following Maxim chips
-+	  (I2C 7-segment LED display controller):
-+	  - MAX6958
-+	  - MAX6959 (input support)
-+
-+	  This driver can also be built as a module. If so, the module
-+	  will be called max6959.
-+
+-config ARM_CHARLCD
+-	bool "ARM Ltd. Character LCD Driver"
+-	depends on PLAT_VERSATILE
+-	help
+-	  This is a driver for the character LCD found on the ARM Ltd.
+-	  Versatile and RealView Platform Baseboards. It doesn't do
+-	  very much more than display the text "ARM Linux" on the first
+-	  line and the Linux version on the second line, but that's
+-	  still useful.
+-
  menuconfig PARPORT_PANEL
  	tristate "Parallel port LCD/Keypad Panel support"
  	depends on PARPORT
+@@ -455,7 +317,6 @@ endif # PARPORT_PANEL
+ config PANEL_CHANGE_MESSAGE
+ 	bool "Change LCD initialization message ?"
+ 	depends on CHARLCD
+-	default "n"
+ 	help
+ 	  This allows you to replace the boot message indicating the kernel version
+ 	  and the driver version with a custom message. This is useful on appliances
+@@ -504,8 +365,159 @@ choice
+ 
+ endchoice
+ 
++#
++# Samsung KS0108 LCD controller section
++#
++config KS0108
++	tristate "KS0108 LCD Controller"
++	depends on PARPORT_PC
++	help
++	  If you have a LCD controlled by one or more KS0108
++	  controllers, say Y. You will need also another more specific
++	  driver for your LCD.
++
++	  Depends on Parallel Port support. If you say Y at
++	  parport, you will be able to compile this as a module (M)
++	  and built-in as well (Y).
++
++	  To compile this as a module, choose M here:
++	  the module will be called ks0108.
++
++	  If unsure, say N.
++
++config KS0108_PORT
++	hex "Parallel port where the LCD is connected"
++	depends on KS0108
++	default 0x378
++	help
++	  The address of the parallel port where the LCD is connected.
++
++	  The first  standard parallel port address is 0x378.
++	  The second standard parallel port address is 0x278.
++	  The third  standard parallel port address is 0x3BC.
++
++	  You can specify a different address if you need.
++
++	  If you don't know what I'm talking about, load the parport module,
++	  and execute "dmesg" or "cat /proc/ioports". You can see there how
++	  many parallel ports are present and which address each one has.
++
++	  Usually you only need to use 0x378.
++
++	  If you compile this as a module, you can still override this
++	  using the module parameters.
++
++config KS0108_DELAY
++	int "Delay between each control writing (microseconds)"
++	depends on KS0108
++	default "2"
++	help
++	  Amount of time the ks0108 should wait between each control write
++	  to the parallel port.
++
++	  If your LCD seems to miss random writings, increment this.
++
++	  If you don't know what I'm talking about, ignore it.
++
++	  If you compile this as a module, you can still override this
++	  value using the module parameters.
++
++config CFAG12864B
++	tristate "CFAG12864B LCD"
++	depends on X86
++	depends on FB
++	depends on KS0108
++	select FB_SYSMEM_HELPERS
++	help
++	  If you have a Crystalfontz 128x64 2-color LCD, cfag12864b Series,
++	  say Y. You also need the ks0108 LCD Controller driver.
++
++	  For help about how to wire your LCD to the parallel port,
++	  check Documentation/admin-guide/auxdisplay/cfag12864b.rst
++
++	  Depends on the x86 arch and the framebuffer support.
++
++	  The LCD framebuffer driver can be attached to a console.
++	  It will work fine. However, you can't attach it to the fbdev driver
++	  of the xorg server.
++
++	  To compile this as a module, choose M here:
++	  the modules will be called cfag12864b and cfag12864bfb.
++
++	  If unsure, say N.
++
++config CFAG12864B_RATE
++	int "Refresh rate (hertz)"
++	depends on CFAG12864B
++	default "20"
++	help
++	  Refresh rate of the LCD.
++
++	  As the LCD is not memory mapped, the driver has to make the work by
++	  software. This means you should be careful setting this value higher.
++	  If your CPUs are really slow or you feel the system is slowed down,
++	  decrease the value.
++
++	  Be careful modifying this value to a very high value:
++	  You can freeze the computer, or the LCD maybe can't draw as fast as you
++	  are requesting.
++
++	  If you don't know what I'm talking about, ignore it.
++
++	  If you compile this as a module, you can still override this
++	  value using the module parameters.
++
++#
++# Single character line display section
++#
++config LINEDISP
++	tristate "Character line display core support" if COMPILE_TEST
++	help
++	  This is the core support for single-line character displays, to be
++	  selected by drivers that use it.
++
++config IMG_ASCII_LCD
++	tristate "Imagination Technologies ASCII LCD Display"
++	depends on HAS_IOMEM
++	default y if MIPS_MALTA
++	select MFD_SYSCON
++	select LINEDISP
++	help
++	  Enable this to support the simple ASCII LCD displays found on
++	  development boards such as the MIPS Boston, MIPS Malta & MIPS SEAD3
++	  from Imagination Technologies.
++
++config HT16K33
++	tristate "Holtek Ht16K33 LED controller with keyscan"
++	depends on FB && I2C && INPUT
++	select FB_SYSMEM_HELPERS
++	select INPUT_MATRIXKMAP
++	select FB_BACKLIGHT
++	select NEW_LEDS
++	select LEDS_CLASS
++	select LINEDISP
++	help
++	  Say yes here to add support for Holtek HT16K33, RAM mapping 16*8
++	  LED controller driver with keyscan.
++
++#
++# Character LCD with non-conforming interface section
++#
++config ARM_CHARLCD
++	bool "ARM Ltd. Character LCD Driver"
++	depends on PLAT_VERSATILE
++	help
++	  This is a driver for the character LCD found on the ARM Ltd.
++	  Versatile and RealView Platform Baseboards. It doesn't do
++	  very much more than display the text "ARM Linux" on the first
++	  line and the Linux version on the second line, but that's
++	  still useful.
++
+ endif # AUXDISPLAY
+ 
++#
++# Deprecated options
++#
+ config PANEL
+ 	tristate "Parallel port LCD/Keypad Panel support (OLD OPTION)"
+ 	depends on PARPORT
 diff --git a/drivers/auxdisplay/Makefile b/drivers/auxdisplay/Makefile
-index 9197ea34e2d6..9718aedf6ee2 100644
+index 6968ed4d3f0a..9197ea34e2d6 100644
 --- a/drivers/auxdisplay/Makefile
 +++ b/drivers/auxdisplay/Makefile
-@@ -15,5 +15,6 @@ obj-$(CONFIG_CFAG12864B)	+= cfag12864b.o cfag12864bfb.o
- obj-$(CONFIG_LINEDISP)		+= line-display.o
- obj-$(CONFIG_IMG_ASCII_LCD)	+= img-ascii-lcd.o
- obj-$(CONFIG_HT16K33)		+= ht16k33.o
-+obj-$(CONFIG_MAX6959)		+= max6959.o
+@@ -5,12 +5,15 @@
  
- obj-$(CONFIG_ARM_CHARLCD)	+= arm-charlcd.o
-diff --git a/drivers/auxdisplay/max6959.c b/drivers/auxdisplay/max6959.c
-new file mode 100644
-index 000000000000..5519c014bd29
---- /dev/null
-+++ b/drivers/auxdisplay/max6959.c
-@@ -0,0 +1,194 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * MAX6958/6959 7-segment LED display controller
-+ * Datasheet:
-+ * https://www.analog.com/media/en/technical-documentation/data-sheets/MAX6958-MAX6959.pdf
-+ *
-+ * Copyright (c) 2024, Intel Corporation.
-+ * Author: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-+ */
-+#include <linux/array_size.h>
-+#include <linux/bitrev.h>
-+#include <linux/bits.h>
-+#include <linux/container_of.h>
-+#include <linux/err.h>
-+#include <linux/i2c.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/pm.h>
-+#include <linux/regmap.h>
-+#include <linux/slab.h>
-+#include <linux/types.h>
-+#include <linux/workqueue.h>
+ obj-$(CONFIG_CHARLCD)		+= charlcd.o
+ obj-$(CONFIG_HD44780_COMMON)	+= hd44780_common.o
+-obj-$(CONFIG_ARM_CHARLCD)	+= arm-charlcd.o
++obj-$(CONFIG_HD44780)		+= hd44780.o
++obj-$(CONFIG_LCD2S)		+= lcd2s.o
++obj-$(CONFIG_PARPORT_PANEL)	+= panel.o
 +
-+#include <linux/map_to_7segment.h>
+ obj-$(CONFIG_KS0108)		+= ks0108.o
+ obj-$(CONFIG_CFAG12864B)	+= cfag12864b.o cfag12864bfb.o
+-obj-$(CONFIG_IMG_ASCII_LCD)	+= img-ascii-lcd.o
+-obj-$(CONFIG_HD44780)		+= hd44780.o
+-obj-$(CONFIG_HT16K33)		+= ht16k33.o
+-obj-$(CONFIG_PARPORT_PANEL)	+= panel.o
+-obj-$(CONFIG_LCD2S)		+= lcd2s.o
 +
-+#include "line-display.h"
+ obj-$(CONFIG_LINEDISP)		+= line-display.o
++obj-$(CONFIG_IMG_ASCII_LCD)	+= img-ascii-lcd.o
++obj-$(CONFIG_HT16K33)		+= ht16k33.o
 +
-+/* Registers */
-+#define REG_DECODE_MODE			0x01
-+#define REG_INTENSITY			0x02
-+#define REG_SCAN_LIMIT			0x03
-+#define REG_CONFIGURATION		0x04
-+#define REG_CONFIGURATION_S_BIT		BIT(0)
-+
-+#define REG_DIGIT(x)			(0x20 + (x))
-+#define REG_DIGIT0			0x20
-+#define REG_DIGIT1			0x21
-+#define REG_DIGIT2			0x22
-+#define REG_DIGIT3			0x23
-+
-+#define REG_SEGMENTS			0x24
-+#define REG_MAX				REG_SEGMENTS
-+
-+struct max6959_priv {
-+	struct linedisp linedisp;
-+	struct delayed_work work;
-+	struct regmap *regmap;
-+};
-+
-+static void max6959_disp_update(struct work_struct *work)
-+{
-+	struct max6959_priv *priv = container_of(work, struct max6959_priv, work.work);
-+	struct linedisp *linedisp = &priv->linedisp;
-+	struct linedisp_map *map = linedisp->map;
-+	char *s = linedisp->buf;
-+	u8 buf[4];
-+
-+	/* Map segments according to datasheet */
-+	buf[0] = bitrev8(map_to_seg7(&map->map.seg7, *s++)) >> 1;
-+	buf[1] = bitrev8(map_to_seg7(&map->map.seg7, *s++)) >> 1;
-+	buf[2] = bitrev8(map_to_seg7(&map->map.seg7, *s++)) >> 1;
-+	buf[3] = bitrev8(map_to_seg7(&map->map.seg7, *s++)) >> 1;
-+
-+	regmap_bulk_write(priv->regmap, REG_DIGIT(0), buf, ARRAY_SIZE(buf));
-+}
-+
-+static int max6959_linedisp_get_map_type(struct linedisp *linedisp)
-+{
-+	struct max6959_priv *priv = container_of(linedisp, struct max6959_priv, linedisp);
-+
-+	INIT_DELAYED_WORK(&priv->work, max6959_disp_update);
-+	return LINEDISP_MAP_SEG7;
-+}
-+
-+static void max6959_linedisp_update(struct linedisp *linedisp)
-+{
-+	struct max6959_priv *priv = container_of(linedisp, struct max6959_priv, linedisp);
-+
-+	schedule_delayed_work(&priv->work, 0);
-+}
-+
-+static const struct linedisp_ops max6959_linedisp_ops = {
-+	.get_map_type = max6959_linedisp_get_map_type,
-+	.update = max6959_linedisp_update,
-+};
-+
-+static int max6959_enable(struct max6959_priv *priv, bool enable)
-+{
-+	u8 mask = REG_CONFIGURATION_S_BIT;
-+	u8 value = enable ? mask : 0;
-+
-+	return regmap_update_bits(priv->regmap, REG_CONFIGURATION, mask, value);
-+}
-+
-+static void max6959_power_off(void *priv)
-+{
-+	max6959_enable(priv, false);
-+}
-+
-+static int max6959_power_on(struct max6959_priv *priv)
-+{
-+	struct device *dev = regmap_get_device(priv->regmap);
-+	int ret;
-+
-+	ret = max6959_enable(priv, true);
-+	if (ret)
-+		return ret;
-+
-+	return devm_add_action_or_reset(dev, max6959_power_off, priv);
-+}
-+
-+static const struct regmap_config max6959_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+
-+	.max_register = REG_MAX,
-+	.cache_type = REGCACHE_MAPLE,
-+};
-+
-+static int max6959_i2c_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct max6959_priv *priv;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->regmap = devm_regmap_init_i2c(client, &max6959_regmap_config);
-+	if (IS_ERR(priv->regmap))
-+		return PTR_ERR(priv->regmap);
-+
-+	ret = max6959_power_on(priv);
-+	if (ret)
-+		return ret;
-+
-+	ret = linedisp_register(&priv->linedisp, dev, 4, &max6959_linedisp_ops);
-+	if (ret)
-+		return ret;
-+
-+	i2c_set_clientdata(client, priv);
-+
-+	return 0;
-+}
-+
-+static void max6959_i2c_remove(struct i2c_client *client)
-+{
-+	struct max6959_priv *priv = i2c_get_clientdata(client);
-+
-+	cancel_delayed_work_sync(&priv->work);
-+	linedisp_unregister(&priv->linedisp);
-+}
-+
-+static int max6959_suspend(struct device *dev)
-+{
-+	return max6959_enable(dev_get_drvdata(dev), false);
-+}
-+
-+static int max6959_resume(struct device *dev)
-+{
-+	return max6959_enable(dev_get_drvdata(dev), true);
-+}
-+
-+static DEFINE_SIMPLE_DEV_PM_OPS(max6959_pm_ops, max6959_suspend, max6959_resume);
-+
-+static const struct i2c_device_id max6959_i2c_id[] = {
-+	{ "max6959" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, max6959_i2c_id);
-+
-+static const struct of_device_id max6959_of_table[] = {
-+	{ .compatible = "maxim,max6959" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, max6959_of_table);
-+
-+static struct i2c_driver max6959_i2c_driver = {
-+	.driver = {
-+		.name = "max6959",
-+		.pm = pm_sleep_ptr(&max6959_pm_ops),
-+		.of_match_table = max6959_of_table,
-+	},
-+	.probe = max6959_i2c_probe,
-+	.remove = max6959_i2c_remove,
-+	.id_table = max6959_i2c_id,
-+};
-+module_i2c_driver(max6959_i2c_driver);
-+
-+MODULE_DESCRIPTION("MAX6958/6959 7-segment LED controller");
-+MODULE_AUTHOR("Andy Shevchenko <andriy.shevchenko@linux.intel.com>");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS(LINEDISP);
++obj-$(CONFIG_ARM_CHARLCD)	+= arm-charlcd.o
 -- 
 2.43.0.rc1.1.gbec44491f096
 
