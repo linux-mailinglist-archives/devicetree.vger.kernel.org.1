@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-43342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C057085A086
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 11:07:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3908285A091
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 11:09:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75B941F22A45
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 10:07:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B8471C21847
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 10:09:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61934241E1;
-	Mon, 19 Feb 2024 10:07:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B82F0241E1;
+	Mon, 19 Feb 2024 10:09:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="roMbp9l4"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="r6c/Z9IP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7AF825601;
-	Mon, 19 Feb 2024 10:07:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0859428DA0;
+	Mon, 19 Feb 2024 10:09:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708337249; cv=none; b=WHWtf7KnVMK5zZjaD8p/VLICk76gORSwqu5R+wtCA0GPjYwJ3FpB2Xgcydy/ubGqgu+QHv1P2xHYTmoUgMBqkYS87REYgVxgx0F/MjlUfWgFKBd3ityHhL6xBlc4eFfS1pud1Rf3VMuPGxIv8YKGyZZYuGyeKZYSS0laJdpN2hw=
+	t=1708337374; cv=none; b=UzGFUssaLeu97NIcycawVUvbwkD+pyMU2/mCa6U7EQL61AcHnbWmM1rR+7p1c+jbDSuXwsjuZSiG4Doda6htacJTRZlCYTzV4CkmhVpCu/YP+vKwiKnP2o3MUOQoCXoR0cI2xPvyeVdjg4c2k1o8R7s0SFFYuj+baSMQQCPVGt8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708337249; c=relaxed/simple;
-	bh=am4RhiD/FxNhL3HLfhI49lqlwjcS8S6GwDUUEW8SpzA=;
+	s=arc-20240116; t=1708337374; c=relaxed/simple;
+	bh=ZzvLHqzbOzNqgDJELQJkkjJLEqLzCR/eZD/cAnNXkH4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KMh83Dxx/MdaYcv2sYnjQaEagz59KTxwbuqwHLYtctiWXLYQoSA/oXRsaRYjABqciaSHDCN142hLtf7xxtwTH925OBP1/zYT882gfu/FqMQnO3r9mrIODj5noSFlrEaiyBw9wq/4/xJ9OPMOpB+QxIlaLH45jSypV+YL4qHytvI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=roMbp9l4; arc=none smtp.client-ip=46.235.227.194
+	 In-Reply-To:Content-Type; b=EPeUvRv3/KF+1HOhFXS+58WXcaVJWt+5BKVdgrzlEKICTMRecXm5yTJNixrdR/iMYQ1B+cEoiXgQIQVD8+VJMZTsRV/TnSpAeZfWD4O5+3hKxNXGp81RC55FySNu4Nih1G1pd4D+JSfb7LfO/AIqeaRGraPRXOEkgUxQTWhUnso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=r6c/Z9IP; arc=none smtp.client-ip=46.235.227.194
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1708337246;
-	bh=am4RhiD/FxNhL3HLfhI49lqlwjcS8S6GwDUUEW8SpzA=;
+	s=mail; t=1708337371;
+	bh=ZzvLHqzbOzNqgDJELQJkkjJLEqLzCR/eZD/cAnNXkH4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=roMbp9l49OJOpROD48oGAD38RS1uRNs6pN+0W1yv3jOIExs8smXlzqAyxN7hltckj
-	 DhY008fWzU6Z8jydVKOVB6WG0i99EODJOHC4b41eI6J1TUqU6VKToGlBJnzVMG3hNq
-	 TQzAoUdR/CQXAwuff8KXJxNZ8kJg0NQYGPHfV3T04toPx7f08ClzrwwMh9BteqLpO/
-	 A+yt4guoJ/NJT26sbgRZNrw+g//ATmKcGpN4XQ0P14KT0FlTmiS+3KMJlBiQSujnnQ
-	 HR0XX0wTlwdDrYFUdx+dKdpnjA0x/F+saXK6BOvHHP5dEb4c/8Lo96vC2oHErgvlKv
-	 4FlOlMA9beDAQ==
+	b=r6c/Z9IP1/y6EccSA3Cxc1flHaLxKndVJnkO75I1X/sbu1OjORcs0/81F88zlEdAR
+	 uRFANdb7fNU3mruOeEnktSB8zXZnr3LWjPggn/r/dYc+E76lTZ9r1x3Qw/MjK7pg51
+	 jN+j5N0ndQ2EopJJyeOqO177V7WXfMuHs6Bxgl9wr0anFrtSgVnFkrkErSRgxPMX+x
+	 ECaO04ddI0GctmreaQvTrrz5f7cSZIjBBfOGzeVFZDKkJ29j5eeZUqJJ+/vfal4frA
+	 v56/CjTyqXXDhi1yp85FWZTC9RmU6Kr5VihvsUui2Rq0SWoue82qn3PHjByHAfs2nk
+	 K6Tfrmqxdq48g==
 Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 4D5883781FF7;
-	Mon, 19 Feb 2024 10:07:25 +0000 (UTC)
-Message-ID: <9cc4fc3f-d697-4e51-a629-9f581dc3c35b@collabora.com>
-Date: Mon, 19 Feb 2024 11:07:24 +0100
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 402D13781FD9;
+	Mon, 19 Feb 2024 10:09:30 +0000 (UTC)
+Message-ID: <3d98486e-f0cd-4930-8e97-4a09f1ad0aa2@collabora.com>
+Date: Mon, 19 Feb 2024 11:09:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,88 +57,33 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm64: mediatek: add Kontron
- 3.5"-SBC-i1200
+Subject: Re: [PATCH] dt-bindings: ata: convert MediaTek controller to the
+ json-schema
 Content-Language: en-US
-To: Michael Walle <mwalle@kernel.org>, Rob Herring <robh@kernel.org>,
+To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+ Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>,
+ Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-Cc: devicetree@vger.kernel.org, Sean Wang <sean.wang@mediatek.com>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, Chen-Yu Tsai <wenst@chromium.org>
-References: <20240219084456.1075445-1-mwalle@kernel.org>
- <ed3530f0-227a-47f2-938c-28eba90dd6eb@collabora.com>
- <CZ8YCQETS7LL.1BLJJZNCLV7DT@kernel.org>
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+ Ryder Lee <ryder.lee@mediatek.com>, linux-ide@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20240213074747.26151-1-zajec5@gmail.com>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <CZ8YCQETS7LL.1BLJJZNCLV7DT@kernel.org>
+In-Reply-To: <20240213074747.26151-1-zajec5@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Il 19/02/24 10:36, Michael Walle ha scritto:
-> On Mon Feb 19, 2024 at 10:23 AM CET, AngeloGioacchino Del Regno wrote:
->> Il 19/02/24 09:44, Michael Walle ha scritto:
->>> Add the compatible string for the Kontron 3.5"-SBC-i1200 single board
->>> computer.
->>>
->>> Signed-off-by: Michael Walle <mwalle@kernel.org>
->>> ---
->>> v2:
->>>    - convert enum to const as there is only one specific board
->>>
->>>    Documentation/devicetree/bindings/arm/mediatek.yaml | 5 +++++
->>>    1 file changed, 5 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
->>> index 09f9ffd3ff7b..add167d8b8da 100644
->>> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
->>> @@ -357,6 +357,11 @@ properties:
->>>                  - radxa,nio-12l
->>>              - const: mediatek,mt8395
->>>              - const: mediatek,mt8195
->>> +      - description: Kontron 3.5"-SBC-i1200
->>> +        items:
->>> +          - const: kontron,3-5-sbc-i1200
->>> +          - const: mediatek,mt8395
->>> +          - const: mediatek,mt8195
->>>          - items:
->>>              - enum:
->>>                  - mediatek,mt8516-pumpkin
->>
->> I understand that you took inspiration from the Google Chromebooks entries, but
->> those are separated only because they've got "a bunch of revisions".
->>
+Il 13/02/24 08:47, Rafał Miłecki ha scritto:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> I don't really care about the description. It's just the way I've
-> done it in the past. And in this file, there is also google,burnet,
-> google,cozmo, google,damu, without any further revs.
+> This helps validating DTS files.
 > 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
-Yeah, I have to check why it is like this - as in - if there's any real reason for
-those to be like that... otherwise I wouldn't mind cleaning 'em all up.
-
-Whatever - that's not on you, and completely irrelevant to this specific patch,
-so don't worry about the cleanup of the other entries.
-
->> For machines that don't have a billion compatible strings, I would suggest to
->> add the compatible under a single big entry: like this, the binding is (imo) a
->> bit more readable .. and cleaner.
->>
->> Eventually, the machine name is in the devicetree so we're not losing any kind
->> of information anyway... :-)
->>
->>         - items:
->>             - enum:
->>                 - kontron,3-5-sbc-i1200
->>                 - mediatek,mt8395-evk
->>                 - radxa,nio-12l
->>             - const: mediatek,mt8395
->>             - const: mediatek,mt8195
-> 
-> Ack. I'll give you some time to look at the actual DTS before
-> posting a new version.
-> 
-> -michael
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
 
 
