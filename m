@@ -1,148 +1,138 @@
-Return-Path: <devicetree+bounces-43335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43336-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61D9D85A017
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 10:45:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3047B85A023
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 10:49:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0376D1F22807
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 09:45:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C3C6B1F22937
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 09:48:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3B4924A09;
-	Mon, 19 Feb 2024 09:45:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 517C724B34;
+	Mon, 19 Feb 2024 09:48:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="ZfZOs1ye"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="A+CKEvVI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29D352421E
-	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 09:45:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF95E24B2C;
+	Mon, 19 Feb 2024 09:48:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708335952; cv=none; b=pMF6mEczHwpQn8mv91BYBoWs2maaXqNz4JbGwpCi7z1G14XbAGvyYSpqWrFuZdPQojMr8HyMtGdfDjZof84AHcRpKLTwOgXOxSRdH38H9LPBocQNhjM8CmEEI8ZaCDx47uclUO2YSMa9dr6tN3yKwfti5sdqQ0PxsMDooU5+BBE=
+	t=1708336138; cv=none; b=EJ9YYb/vQJFCBPre3Yt+Jwu21nXbG8dHNMY+kZxC60IT8icldP3I5pCZn/mwKMIopK3S2bUQq8LRgmEB6MI7KZDo+B3LW7tGzd+f0mIESzGI7t6m9Wce9YfE08ccsgZ14fnWQ/g8FyxAy8oveClgssAnyilOIKwz00FTMwHJyf8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708335952; c=relaxed/simple;
-	bh=N9nunNqolWoHQ9jtyYVDUhqU0wlAtz5/DFbjp/E6MEY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=moe7jOcoWYsn0WQvlTdN2C7m3JAoueB0W8s6sEDr+SxhJALK6dn51BJWYgxaBTWn/oDTv8Y3QEcdGmFvdRFByp5a3cWXcIJ6G/bfna7mPcxGeOlPiZAZt9MDL1aehbhMPzH0/DKZvJLc3gdZSuXXfkF1Nv6pLi38n4Q5M83XBys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=ZfZOs1ye; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2d228a132acso24734531fa.0
-        for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 01:45:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1708335949; x=1708940749; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=naVcereUeVbO3/kpmJac5B2YT7rfwRkVivtJPUxX/Ps=;
-        b=ZfZOs1yepMZ/+X74bNyoNknK8IFMGlFouNR323sArMSPje3AkgsUcXuSFCsHCNc5z8
-         SeBav1xcuNb6bi4na7K9OhlbC7cRclvbKvX9t8a7H3TkyTPSLQaBuWh9auLvIBhvtsIt
-         Q9hXvgvoIFYPi4wqv8Oc0YNA51yifVJth7F2HansNJJ5Al6kY9AMo5J3V1Gwz4QQY2TO
-         oEaa1LLBdbFt2xnJ9MXs5khE4ENge/EjMeFhfwiIm6QRT+0x68oqElubsBX0/dkBuWVB
-         ThoHyuUWKBIKjNgsJXAw5jLcLNY78PWw0xKO0US3u0nEXPRc8Syyl6DHaQMq1kn930Ca
-         zWeg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708335949; x=1708940749;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=naVcereUeVbO3/kpmJac5B2YT7rfwRkVivtJPUxX/Ps=;
-        b=Ip658sfyyIDOAO3GWuS0LZUKar5yoMiiKDfJsx58yEotxDUNO6bHp6aYyRxhmN6Xy2
-         kKinWLZ2FehE4wfCH6CIRDYYLaQ81Fe/ZwdQ2zRbxtSUdI9ba6/NvSj+75kw4624MCar
-         WxoBjUkKHW9GZMqC97EL41AzVtgB8rDjjJXxHRgTEpx7V1mrHtnhipxpmNnYzjbGcQ7+
-         4CSX5hRpvf1MVENMEhDdjZNlmQW56gBJtu1BN4G/+Q6ENglfc0/iFLL81DArfwXy0YTM
-         +sYVgCap7sb21OAoZ/DooFSXvwspQjDSL2dz76ktfxOmFMe2aLQ/Yo4KwFjYEgaIK8UN
-         TIFw==
-X-Forwarded-Encrypted: i=1; AJvYcCVOEmlGPLxv7HmXrbYueta/T0AcyJ/7uWh+t1UNjtt/wMQFUGJbs2egzGrtS5g22bKnhlFr1MX7OfaniuE2zE55YqDe3dNOfzNS8A==
-X-Gm-Message-State: AOJu0YzUfmGG9xxjOHYqbPAyNVA2+LsZZzz9BJtSud7cxqBUCF21AXnm
-	AI9K9hSGFq7Wa9ar2mkjdfGAO/OIEbsR7H7lhL58+0TlnFtTi8LIuZHFff0ATEU5aeA117Z6tlh
-	XlXxd2hkD1iwepiHtpTyu86Iyfhy/Czje49eFmA==
-X-Google-Smtp-Source: AGHT+IGAijWJ2t6HYaGF6pJu0Y9VzBy2gwT9CAw6PjDoQnuVNOtC7X4VHfZDfslwVbPV/P3tZbkNIq5o09aA55e5Vhc=
-X-Received: by 2002:a2e:a49a:0:b0:2d2:4315:4d8b with SMTP id
- h26-20020a2ea49a000000b002d243154d8bmr194214lji.2.1708335949088; Mon, 19 Feb
- 2024 01:45:49 -0800 (PST)
+	s=arc-20240116; t=1708336138; c=relaxed/simple;
+	bh=evgpaaD5YWF/NgxUotDyDIZio7JSN3VGvWsj49vaKqw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=TQtMQiuoya6P3awbWbpyXeC4i0RfMxh+r2Odt3lbOna5V8FNy5oM/L4a8tgw+JWnUrfNvlIKJWZNZ9VNXHCQdTPZelNMAtoS3uAlcFp5Q6/HjwO9DZd+FdANrEkLlhznJ7cR36jsBHijvwVEBwvtw5LrE/yzjL86TEgXnl7ZRcE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=A+CKEvVI; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41J4exqM030321;
+	Mon, 19 Feb 2024 09:48:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=SVEu8MZ3e8dW0QHAXGwR0a6sVaNeklP/z/RmXLz5IUs=; b=A+
+	CKEvVIaa8ho3rxF1rvOPVSOyvm+vyBAxUJ+eAo2/DEXrucnypl3KD6+IAsOh5M0C
+	UFozvQedhgwXadehkIHmKsaro0ny3kqAdN9imHt94DTWtZPphgb4gOo9MmOWmX64
+	spIv+BmTh33eRU/VNd/Jl6pnW7zRLyH4f1vu82t3HkzE0ehKuCxh93Sb2+8a650q
+	AnzyCnD6wBAgc6cyQr71NzBHRDdrf1lRpockXtU8nRudmLtUVBo+ZMNep6T4xQ+u
+	ZRThmilgPqZ9ORzhNyuVtpAHBIeI8J7Mif4QBoeKg3nYOC4JpsNvhSJl2X793WP1
+	Zpeh3+X/3ypwSdJV9fWQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wan17kd4f-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 19 Feb 2024 09:48:43 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41J9mgxh025919
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 19 Feb 2024 09:48:42 GMT
+Received: from [10.214.82.119] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 19 Feb
+ 2024 01:48:39 -0800
+Message-ID: <7acbf41b-1618-4746-aa1d-e6b700994a03@quicinc.com>
+Date: Mon, 19 Feb 2024 15:18:36 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240127161753.114685-1-apatel@ventanamicro.com>
- <20240127161753.114685-24-apatel@ventanamicro.com> <8734tsce9o.ffs@tglx>
-In-Reply-To: <8734tsce9o.ffs@tglx>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Mon, 19 Feb 2024 15:15:37 +0530
-Message-ID: <CAK9=C2Vf63ZcETD-ja33tK11XARz+y5hg1dqjGP-bZTW-XNWHg@mail.gmail.com>
-Subject: Re: [PATCH v12 23/25] irqchip/riscv-aplic: Add support for MSI-mode
-To: Thomas Gleixner <tglx@linutronix.de>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Marc Zyngier <maz@kernel.org>, =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>, 
-	Atish Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>, 
-	Sunil V L <sunilvl@ventanamicro.com>, Saravana Kannan <saravanak@google.com>, 
-	Anup Patel <anup@brainfault.org>, linux-riscv@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/2] Add interconnect support for SM7150 SoC
+To: Danila Tikhonov <danila@jiaxyga.com>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <djakov@kernel.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20240218183239.85319-1-danila@jiaxyga.com>
+Content-Language: en-US
+From: Naman Jain <quic_namajain@quicinc.com>
+In-Reply-To: <20240218183239.85319-1-danila@jiaxyga.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: loa4WZeOn44LUvK-4Bqq6_kSfedh7lrW
+X-Proofpoint-GUID: loa4WZeOn44LUvK-4Bqq6_kSfedh7lrW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-19_06,2024-02-16_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 mlxscore=0
+ spamscore=0 phishscore=0 bulkscore=0 adultscore=0 priorityscore=1501
+ lowpriorityscore=0 suspectscore=0 malwarescore=0 impostorscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402190073
 
-On Sat, Feb 17, 2024 at 2:34=E2=80=AFAM Thomas Gleixner <tglx@linutronix.de=
-> wrote:
->
-> On Sat, Jan 27 2024 at 21:47, Anup Patel wrote:
-> > We extend the existing APLIC irqchip driver to support MSI-mode for
-> > RISC-V platforms having both wired interrupts and MSIs.
->
-> We? Just s/We//
+On 2/19/2024 12:02 AM, Danila Tikhonov wrote:
+> Add dtbindings and driver support for the Qualcomm SM7150 SoC.
 
-Okay, I will update.
+Nitpick.
+s/dtbindings/dt-bindings
 
->
-> > +
-> > +static void aplic_msi_irq_unmask(struct irq_data *d)
-> > +{
-> > +     aplic_irq_unmask(d);
-> > +     irq_chip_unmask_parent(d);
-> > +}
-> > +
-> > +static void aplic_msi_irq_mask(struct irq_data *d)
-> > +{
-> > +     aplic_irq_mask(d);
-> > +     irq_chip_mask_parent(d);
-> > +}
->
-> Again asymmetric vs. unmask()
-
-Okay, I will update.
-
->
-> > +static void aplic_msi_irq_eoi(struct irq_data *d)
-> > +{
-> > +     struct aplic_priv *priv =3D irq_data_get_irq_chip_data(d);
-> > +     u32 reg_off, reg_mask;
-> > +
-> > +     /*
-> > +      * EOI handling only required only for level-triggered
-> > +      * interrupts in APLIC MSI mode.
-> > +      */
-> > +
-> > +     reg_off =3D APLIC_CLRIP_BASE + ((d->hwirq / APLIC_IRQBITS_PER_REG=
-) * 4);
-> > +     reg_mask =3D BIT(d->hwirq % APLIC_IRQBITS_PER_REG);
-> > +     switch (irqd_get_trigger_type(d)) {
-> > +     case IRQ_TYPE_LEVEL_LOW:
-> > +             if (!(readl(priv->regs + reg_off) & reg_mask))
-> > +                     writel(d->hwirq, priv->regs + APLIC_SETIPNUM_LE);
->
-> A comment what this condition is for would be nice.
-
-Okay, I will add a comment about the condition.
+Please add that you are adding this support for Interconnect driver. Its
+there in Subject of this patch, but reading above line gives wrong
+impression.
 
 Regards,
-Anup
+Naman Jain
+
+> 
+> To: Bjorn Andersson <andersson@kernel.org>
+> To: Konrad Dybcio <konrad.dybcio@linaro.org>
+> To: Georgi Djakov <djakov@kernel.org>
+> To: Rob Herring <robh@kernel.org>
+> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> To: Conor Dooley <conor+dt@kernel.org>
+> Cc: linux-arm-msm@vger.kernel.org
+> Cc: linux-pm@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+> 
+> Danila Tikhonov (2):
+>    dt-bindings: interconnect: Add Qualcomm SM7150 DT bindings
+>    interconnect: qcom: Add SM7150 driver support
+> 
+>   .../interconnect/qcom,sm7150-rpmh.yaml        |   88 +
+>   drivers/interconnect/qcom/Kconfig             |    9 +
+>   drivers/interconnect/qcom/Makefile            |    2 +
+>   drivers/interconnect/qcom/sm7150.c            | 1753 +++++++++++++++++
+>   drivers/interconnect/qcom/sm7150.h            |  140 ++
+>   .../interconnect/qcom,sm7150-rpmh.h           |  150 ++
+>   6 files changed, 2142 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sm7150-rpmh.yaml
+>   create mode 100644 drivers/interconnect/qcom/sm7150.c
+>   create mode 100644 drivers/interconnect/qcom/sm7150.h
+>   create mode 100644 include/dt-bindings/interconnect/qcom,sm7150-rpmh.h
+> 
+
 
