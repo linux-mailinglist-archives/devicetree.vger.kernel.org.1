@@ -1,327 +1,111 @@
-Return-Path: <devicetree+bounces-43369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95AF185A1F2
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 12:29:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B891A85A229
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 12:40:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CEF51F236DE
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 11:29:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 59E21B2515A
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 11:40:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7386C2C1AA;
-	Mon, 19 Feb 2024 11:29:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A6242C68C;
+	Mon, 19 Feb 2024 11:39:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="xi9exg7z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51AB628DD2;
-	Mon, 19 Feb 2024 11:29:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACEA02C1AF;
+	Mon, 19 Feb 2024 11:39:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708342186; cv=none; b=kn7E8LmHBoyjPDocDZTNSvC3eK+VrAcLeKxI8pKcCiVK9aURdFYyCvLoP+HjPBZtF6gzcUJRTNZYxmIyKxLsIHZB0z4Zr2aRJWa7knoNfR+4Ricl7AqU/oW/5UunV2rcPXo+C+BaoUEyebOUqEucMP7Wun5q9/vgohuMj1cmrds=
+	t=1708342786; cv=none; b=A9FhHJrVGKoHfFXqR22yAFm9clcv+2IYKAuO5/Va7nAqkBoKJximVhEYJO3pZSBfTTNv19QoxjcriYZglnXkpGli4vdg/Xlxy6Y57VTuCoYkmeOJlhsuq81yQjl2dsfSr5NfO5Iwu00VtlA0HPhM3JQgpu4JdKrlc/l0TAeOMF8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708342186; c=relaxed/simple;
-	bh=HtptTPvpVJO8kxtozUPX1/krZ7r9liSkZp3ztBArrxY=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZBzSjQhpuscHsZwAsTNrQjSS/wglbX5XDRDRknY4wDtd3VPX26gc4WRhwVogk20JvfvLXMK0csNdmuao18iCTsbJt819ve+ubG0IZ/cojKP67/MJ/JmxG7r9UO1naIp70frooqCa4yIIDi5Jq7PU8LBEaH0VLcicec4JE8vcCO0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.31])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4TdgFL3jr9z6JB6R;
-	Mon, 19 Feb 2024 19:25:26 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id 7131C14138F;
-	Mon, 19 Feb 2024 19:29:40 +0800 (CST)
-Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 19 Feb
- 2024 11:29:39 +0000
-Date: Mon, 19 Feb 2024 11:29:38 +0000
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Samuel Holland <samuel.holland@sifive.com>
-CC: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, "Eric
- Lin" <eric.lin@sifive.com>, Conor Dooley <conor@kernel.org>, Palmer Dabbelt
-	<palmer@dabbelt.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
-	<linux-riscv@lists.infradead.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v1 2/6] drivers/perf: Add SiFive Composable Cache PMU
- driver
-Message-ID: <20240219112938.00002654@Huawei.com>
-In-Reply-To: <20240216000837.1868917-3-samuel.holland@sifive.com>
-References: <20240216000837.1868917-1-samuel.holland@sifive.com>
-	<20240216000837.1868917-3-samuel.holland@sifive.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1708342786; c=relaxed/simple;
+	bh=DmjgrXbc5RyWYMQbmKGxTVR82C4mgVXY1F8lsRBw/UM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=TuIVlxwZiC50N3+cjhO4TzF+bVCl4YHVlC5OWtQCez4uqyN3F1QSPY+6bxzGC8ODG/1L0I+UCLnwq7rRhu4qMDQC8UzVfIBGdEyLFQbqDgU5BBoYai9toov+ZoECfkv7Msc8CRcy2Yi4DLEnChCCjacGvGkBfxYyfvVm8Lp/c/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=xi9exg7z; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41J70b8s022274;
+	Mon, 19 Feb 2024 12:39:05 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=A2iKM+c
+	tRFPHqEUaV0TEOpjjyA+onvGcSY21gTvpe0o=; b=xi9exg7zgmS+kl9oPoXo1uz
+	GLLo/6xv9gxvNLvKRi50SEs0uKiUw1xE/HOAdUYXOOyclI/v8Dy6VkXBEFsp15rd
+	kPoqfqkVQPvDSxDgYjeYznRM+kYRZjYWMijh/MN+idvkCherP6a4T9IxX9mkmVdx
+	UuNYTTkAg4NrY3Ni2yVExkySBL5kGFFYDDdXTSJse7V7NyzFw933oXmZ2ta2/N+O
+	oEKDCh3gE/sCY99EGG+a9Fv8mohHYiTvNaJFr0cAHwmav6MTllBMpTbh1ysqGrZD
+	MS07/tjJru9EIf5WnfRkAszFOdUQJp8DbeGsg2914wl6iPTEA+Jc/XzsMIqR9Zg=
+	=
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3wb8mnm4du-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 19 Feb 2024 12:39:05 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 71C5F4002D;
+	Mon, 19 Feb 2024 12:39:00 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2BCFB25AEE7;
+	Mon, 19 Feb 2024 12:38:29 +0100 (CET)
+Received: from localhost (10.201.22.242) by SHFDAG1NODE3.st.com (10.75.129.71)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 19 Feb
+ 2024 12:38:28 +0100
+From: Thomas Bourgoin <thomas.bourgoin@foss.st.com>
+To: Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>
+CC: Thomas Bourgoin <thomas.bourgoin@foss.st.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/3] Enable the CRC and CRYP IP on STM32MP135F-DK board.
+Date: Mon, 19 Feb 2024 12:37:42 +0100
+Message-ID: <20240219113745.92538-1-thomas.bourgoin@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-19_08,2024-02-16_01,2023-05-22_02
 
-On Thu, 15 Feb 2024 16:08:14 -0800
-Samuel Holland <samuel.holland@sifive.com> wrote:
+Enable the CRC and CRYP internal peripherals on STM32MP135F-DK board.
 
-> From: Eric Lin <eric.lin@sifive.com>
-> 
-> Add a driver for the PMU found in the SiFive Composable Cache
-> controller. This PMU provides a configurable number of counters and a
-> variety of events. Events are grouped into sets. Each counter can count
-> events from only one set at a time; however, it can count any number of
-> events within that set simultaneously. The PMU hardware does not provide
-> an overflow interrupt or a way to atomically control groups of counters.
-> 
-> Some events can be filtered further by client ID (e.g. CPU or external
-> DMA master). That functionality is not supported by this driver.
-> 
-> This driver further assumes that a single Composable Cache instance is
-> shared by all CPUs in the system.
-> 
-> Example usage:
-> 
-> $ perf stat -a -e sifive_ccache_pmu/inner_acquire_block_btot/,
-> 		  sifive_ccache_pmu/inner_acquire_block_hit/,
-> 		  sifive_ccache_pmu/inner_acquire_block_ntob/ ls
-> 
->  Performance counter stats for 'system wide':
-> 
->                542      sifive_ccache_pmu/inner_acquire_block_btot/
->              22081      sifive_ccache_pmu/inner_acquire_block_hit/
->              22006      sifive_ccache_pmu/inner_acquire_block_ntob/
-> 
->        0.064672432 seconds time elapsed
-> 
-> Example using numeric event selectors:
-> 
-> $ perf stat -a -e sifive_ccache_pmu/event=0x10001/,
-> 		  sifive_ccache_pmu/event=0x2002/,
-> 		  sifive_ccache_pmu/event=0x4001/ ls
-> 
->  Performance counter stats for 'system wide':
-> 
->                478      sifive_ccache_pmu/event=0x10001/
->               4717      sifive_ccache_pmu/event=0x2002/
->              44966      sifive_ccache_pmu/event=0x4001/
-> 
->        0.111027326 seconds time elapsed
-> 
-> Signed-off-by: Eric Lin <eric.lin@sifive.com>
-> Co-developed-by: Samuel Holland <samuel.holland@sifive.com>
-> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
+The first 2 patches adds the node crc1 in file stm32mp131.dtsi and
+enables it for the board stm32mp135f-dk.
+The last patch of the patchset enables the node cryp for the board
+stm32mp135f-dk.
 
+Lionel Debieve (2):
+  ARM: dts: stm32: add CRC on stm32mp131
+  ARM: dts: stm32: enable CRC on stm32mp135f-dk
 
-Hi Samuel,
+Thomas Bourgoin (1):
+  ARM: dts: stm32: enable crypto accelerator on stm32mp135f-dk
 
-A few comments inline.
+ arch/arm/boot/dts/st/stm32mp131.dtsi    | 7 +++++++
+ arch/arm/boot/dts/st/stm32mp135f-dk.dts | 8 ++++++++
+ 2 files changed, 15 insertions(+)
 
-> diff --git a/drivers/perf/sifive_ccache_pmu.c b/drivers/perf/sifive_ccache_pmu.c
-> new file mode 100644
-> index 000000000000..8c9ef0d09f48
-> --- /dev/null
-> +++ b/drivers/perf/sifive_ccache_pmu.c
-
-
-> +
-> +#define to_ccache_pmu(p) (container_of(p, struct sifive_ccache_pmu, pmu))
-> +
-> +#ifndef readq
-> +static inline u64 readq(void __iomem *addr)
-> +{
-> +	return readl(addr) | (((u64)readl(addr + 4)) << 32);
-> +}
-> +#endif
-> +
-> +#ifndef writeq
-> +static inline void writeq(u64 v, void __iomem *addr)
-> +{
-> +	writel(lower_32_bits(v), addr);
-> +	writel(upper_32_bits(v), addr + 4);
-
-Include io-64-nonatomic-lo-hi.h 
-and you shouldn't need these.
-
-> +}
-> +#endif
-
-
-> +
-> +/*
-> + * pmu->stop: stop the counter
-> + */
-> +static void sifive_ccache_pmu_stop(struct perf_event *event, int flags)
-> +{
-> +	struct hw_perf_event *hwc = &event->hw;
-> +
-> +	if (hwc->state & PERF_HES_STOPPED)
-> +		return;
-> +
-> +	/* Disable this counter to count events */
-> +	writeq(0, (void *)hwc->config_base);
-
-Not going to give address space warnings as writeq expects
-__iomem?
-
-> +	sifive_ccache_pmu_read(event);
-> +
-> +	hwc->state = PERF_HES_STOPPED | PERF_HES_UPTODATE;
-> +}
-
-
-
-> +/*
-> + * pmu->del: delete the event from the PMU
-Why use multi line comments?
-> + */
-> +static void sifive_ccache_pmu_del(struct perf_event *event, int flags)
-> +{
-> +	struct sifive_ccache_pmu *ccache_pmu = to_ccache_pmu(event->pmu);
-> +	struct hw_perf_event *hwc = &event->hw;
-> +	int idx = hwc->idx;
-> +
-> +	/* Stop and release this counter */
-> +	sifive_ccache_pmu_stop(event, PERF_EF_UPDATE);
-> +
-> +	ccache_pmu->events[idx] = NULL;
-> +	clear_bit(idx, ccache_pmu->used_mask);
-> +
-> +	perf_event_update_userpage(event);
-> +}
-> +
-> +/*
-> + * Driver initialization
-
-Probably drop generic code organization comments like this.
-They just rot over time and provide little benefit.
-
-> + */
-
-...
-
-> +
-> +static int sifive_ccache_pmu_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct sifive_ccache_pmu *ccache_pmu;
-> +	u32 n_counters;
-> +	int ret;
-> +
-> +	/* Instances without a sifive,perfmon-counters property do not contain a PMU */
-> +	ret = device_property_read_u32(dev, "sifive,perfmon-counters", &n_counters);
-> +	if (ret || !n_counters)
-> +		return -ENODEV;
-if (ret)
-	return ret;
-
-	if (!n_counters)
-		return -ENODEV;
-
-In general don't eat potentially useful return codes.
-
-> +
-> +	ccache_pmu = devm_kzalloc(dev, struct_size(ccache_pmu, events, n_counters), GFP_KERNEL);
-> +	if (!ccache_pmu)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, ccache_pmu);
-> +
-> +	ccache_pmu->pmu = (struct pmu) {
-> +		.parent		= dev,
-> +		.attr_groups	= sifive_ccache_pmu_attr_grps,
-> +		.capabilities	= PERF_PMU_CAP_NO_EXCLUDE | PERF_PMU_CAP_NO_INTERRUPT,
-> +		.task_ctx_nr	= perf_invalid_context,
-> +		.event_init	= sifive_ccache_pmu_event_init,
-> +		.add		= sifive_ccache_pmu_add,
-> +		.del		= sifive_ccache_pmu_del,
-> +		.start		= sifive_ccache_pmu_start,
-> +		.stop		= sifive_ccache_pmu_stop,
-> +		.read		= sifive_ccache_pmu_read,
-> +	};
-> +	ccache_pmu->cpu = nr_cpu_ids;
-> +	ccache_pmu->n_counters = n_counters;
-> +
-> +	ccache_pmu->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(ccache_pmu->base))
-> +		return PTR_ERR(ccache_pmu->base);
-> +
-> +	sifive_ccache_pmu_hw_init(ccache_pmu);
-> +
-> +	ret = cpuhp_state_add_instance(CPUHP_AP_PERF_RISCV_SIFIVE_CCACHE_ONLINE, &ccache_pmu->node);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to add CPU hotplug instance\n");
-
-you could use devm_add_action_or_reset() and trivial callback to unwind this in remove + error
-paths automatically.  Slight simplification of code, though may end up a line or two longer.
-
-Do the same for perf_pmu_unregister() and you can get rid of remove entirely.
-
-> +
-> +	ret = perf_pmu_register(&ccache_pmu->pmu, "sifive_ccache_pmu", -1);
-> +	if (ret) {
-> +		dev_err_probe(dev, ret, "Failed to register PMU\n");
-> +		goto err_remove_instance;
-> +	}
-> +
-> +	return 0;
-> +
-> +err_remove_instance:
-> +	cpuhp_state_remove_instance(CPUHP_AP_PERF_RISCV_SIFIVE_CCACHE_ONLINE, &ccache_pmu->node);
-> +
-> +	return ret;
-> +}
-> +
-> +static void sifive_ccache_pmu_remove(struct platform_device *pdev)
-> +{
-> +	struct sifive_ccache_pmu *ccache_pmu = platform_get_drvdata(pdev);
-> +
-> +	perf_pmu_unregister(&ccache_pmu->pmu);
-> +	cpuhp_state_remove_instance(CPUHP_AP_PERF_RISCV_SIFIVE_CCACHE_ONLINE, &ccache_pmu->node);
-> +}
-> +
-> +static const struct of_device_id sifive_ccache_pmu_of_match[] = {
-> +	{ .compatible = "sifive,ccache0" },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, sifive_ccache_pmu_of_match);
-> +
-> +static struct platform_driver sifive_ccache_pmu_driver = {
-> +	.probe	= sifive_ccache_pmu_probe,
-> +	.remove_new	= sifive_ccache_pmu_remove,
-
-Is this actually aligning anything in a useful fashion?
-I'd just use a single space instead and not bother. The alignment tends to
-just end up broken and provides little readability advantage.
-
-
-> +	.driver	= {
-> +		.name		= "sifive_ccache_pmu",
-> +		.of_match_table	= sifive_ccache_pmu_of_match,
-> +	},
-> +};
-
-> diff --git a/include/linux/cpuhotplug.h b/include/linux/cpuhotplug.h
-> index 172d0a743e5d..be6361fdc8ba 100644
-> --- a/include/linux/cpuhotplug.h
-> +++ b/include/linux/cpuhotplug.h
-> @@ -230,6 +230,7 @@ enum cpuhp_state {
->  	CPUHP_AP_PERF_POWERPC_TRACE_IMC_ONLINE,
->  	CPUHP_AP_PERF_POWERPC_HV_24x7_ONLINE,
->  	CPUHP_AP_PERF_POWERPC_HV_GPCI_ONLINE,
-> +	CPUHP_AP_PERF_RISCV_SIFIVE_CCACHE_ONLINE,
-
-Not sure, but can you get away with CPUHP_AP_ONLINE_DYN ?
-Nicer to avoid adding more entries to this list if that is suitable here.
-
->  	CPUHP_AP_PERF_CSKY_ONLINE,
->  	CPUHP_AP_WATCHDOG_ONLINE,
->  	CPUHP_AP_WORKQUEUE_ONLINE,
+--
+2.25.1
 
 
