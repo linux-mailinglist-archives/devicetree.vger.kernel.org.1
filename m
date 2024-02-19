@@ -1,250 +1,125 @@
-Return-Path: <devicetree+bounces-43378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5146585A23A
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 12:41:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15B1585A25D
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 12:47:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A079CB25D3D
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 11:41:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 48AC71C20DEC
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 11:47:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0439E2C691;
-	Mon, 19 Feb 2024 11:40:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 640F62C6B0;
+	Mon, 19 Feb 2024 11:46:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Qv4ADKVb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93D532D042;
-	Mon, 19 Feb 2024 11:40:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6D3C2AD39;
+	Mon, 19 Feb 2024 11:46:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708342846; cv=none; b=NH3yF/5CHLtvukGyBQSY3d82JKtSOr9YQ7N+g9U0XMxQO00DCtFKHvD4qF+mCuRxzBcMr34jENfyo4CSm3PkoUmaLGUkyW2A5TtgSpYNkw0UZHZySkmHRnwbgqwpUl179PE+trqcBQjL10/qehOW6y/RsfEpf9z/sUQMcSI34OE=
+	t=1708343200; cv=none; b=aFgxviiiG0E0OR4gaRB6DdibLuHRYjb8iNQgWW5QtpsQNft6DxYyAMVMZK6HgbmFDZBW2Ser0bn+UX5rVoO9dySHlVhczjOK3RhASU1y/Y6nTqPWAwQT7sS7zmRan+99nvoefPd452qcDzCoEKAYeqGfdTF96qjkF0sMpLDmhvQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708342846; c=relaxed/simple;
-	bh=wtnUCMoy6Ba42qC7WybR773SJiEU7M1UPM3rydODRKA=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Lqz0I878u40vUJ3hJ5DWLlFUJkDuimuQXgKRUEePxXpUXwEx3UvqhxVRWTIKrolpOgqgdMUUx6QPxp5QuAc4GYFSQK4jLVuYRB4Dnji/eWuMmq/gI/utDmZSXycLChS1kRlV2vfAT/LQNy7a0XFet2oteMKNT25X0yhu+YNksmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.31])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4TdgV25WX9z6JB5f;
-	Mon, 19 Feb 2024 19:36:26 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id AF983140DEA;
-	Mon, 19 Feb 2024 19:40:40 +0800 (CST)
-Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 19 Feb
- 2024 11:40:40 +0000
-Date: Mon, 19 Feb 2024 11:40:39 +0000
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Samuel Holland <samuel.holland@sifive.com>
-CC: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, "Eric
- Lin" <eric.lin@sifive.com>, Conor Dooley <conor@kernel.org>, Palmer Dabbelt
-	<palmer@dabbelt.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
-	<linux-riscv@lists.infradead.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v1 4/6] drivers/perf: Add SiFive Extensible Cache PMU
- driver
-Message-ID: <20240219114039.00004a86@Huawei.com>
-In-Reply-To: <20240216000837.1868917-5-samuel.holland@sifive.com>
-References: <20240216000837.1868917-1-samuel.holland@sifive.com>
-	<20240216000837.1868917-5-samuel.holland@sifive.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1708343200; c=relaxed/simple;
+	bh=Ctoe8tbX5PWTk94jouBCJwWWO1XDyt0qRZhUXobJClY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=U6qwwUirkb3PGdNXJbP/uHP3r7IJMA+IllSyxdnJV1Tx4E9qkPkKxuFCzgrVe1bCvxJF6ygP2mGGkT4Suso/+HqdZz9/R+MEAmqUJ9LrYfwhYlR3v3UpPaLsgT5vzJM5PmGT4ZBoE8ZY7S1Hw/iaG3QUXcX9ed0VOBwqeGk3mRw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Qv4ADKVb; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-1db8f32cae5so5877405ad.1;
+        Mon, 19 Feb 2024 03:46:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708343198; x=1708947998; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=C9Xi9Ryp0c6Uxee29pPnUVNIEZkdMvXtNoeHuLsPL8g=;
+        b=Qv4ADKVbw/6krylanLJF1PW6OiFzuRehQ5DjxDc9ZShUBKIb8TiIXYIH46oxXfrp7A
+         b7pvqvTlz+GIlY9EhpktsjDRomJl9yJZCIsrp+etK7JFtLoFhcMLmYxpKo3/goWxa+cW
+         PcsbJw6KICygxMtFkz/PDrhflKyISHNQC47N13+vyT5VcMDiHXC2U1Ho1Md3fK34ONeD
+         kRlVe/YrmRIVwj9OLyiT6ehZJ2OviBJOtdT5Nx4Ic+0X0O8COMUstnAUqLyWFC7mLNsT
+         j2e14cdkc6uvIj9XHSjJUnhsPRUQZNf+p5y1fnDE45FYhoclVFFBFCnoZGZh+FYHe2++
+         sHCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708343198; x=1708947998;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=C9Xi9Ryp0c6Uxee29pPnUVNIEZkdMvXtNoeHuLsPL8g=;
+        b=elRycfkDRmeUPv2A8djUNY1Urdy0+RVBsAnnKlrCNNMefYybRf9K7Z5vec0bH5lTX8
+         uvZXgCiilPUw+6+R4lqAAjn9UvCm/NJq8pV+QLsYAUGqrJTTFaSxgtr81A22uE4FI+/p
+         fSqsRZ8BeZQVbCngmJSieWs3E+9KWACENy5f+4FiZuyNAmJh350O2qtReJx4mJslegTC
+         KA0jc4mzzZi0P/wZUk+Byb7rbkpeeebHh1eHv3mWDWGZ0L5rlqW8itzeT7AiNuChNdmJ
+         AvNcqIAN6j9LUO9KyLaHUIxw0f3RwbM1aD7goObuAjX3yUgK+UKszbeTX2N+4bEy9Sgh
+         h5fw==
+X-Forwarded-Encrypted: i=1; AJvYcCUkLlmhgtZ+1HZAGveDW80fJTAWN+kYoVjFOjsCRxlcGXrVYs0/Op+pMyoPHQiYmOcTDGeOq2k6s1ItvqZh0X2V3jXpHK6uKpJVwnhRWTJBTCBBUwIN3xF6pMFqapPSp+fdHBcK
+X-Gm-Message-State: AOJu0Yz4AR+9pU2im7x+hc51m7fBYQrNYL8s56oVuc4LQz9hP5i38zSB
+	DUYCf6l5k/Dz6IjJA9PJ4+CjGHeAnhnhz6G57qnYOedax/Gxl0GJNdNG1gag5RkxySDxE/QQx3E
+	E+BqEB4Ih1MHG4nG4H9YHVjw0i80=
+X-Google-Smtp-Source: AGHT+IHwXZAW/5cbiaeDOrhS8iR9yQpUlWIA5gpaTaWAAG4Iqt3GcR/yI/k1/F3G9ORC8Aq+JVj7403n3VQejHCu7PA=
+X-Received: by 2002:a17:90a:1307:b0:298:b4da:f90e with SMTP id
+ h7-20020a17090a130700b00298b4daf90emr7830229pja.1.1708343198085; Mon, 19 Feb
+ 2024 03:46:38 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+References: <20240104124952.1975160-1-festevam@gmail.com> <170483575880.3250905.813888197504018809.robh@kernel.org>
+In-Reply-To: <170483575880.3250905.813888197504018809.robh@kernel.org>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Mon, 19 Feb 2024 08:46:27 -0300
+Message-ID: <CAOMZO5BPVe-is8Xvk3-YUZSupmLNj17pKE=wCveknV7LhUReRA@mail.gmail.com>
+Subject: Re: [PATCH v4] dt-bindings: thermal: qoriq-thermal: Adjust
+ fsl,tmu-range min/maxItems
+To: Rob Herring <robh@kernel.org>, daniel.lezcano@linaro.org
+Cc: robh+dt@kernel.org, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	Fabio Estevam <festevam@denx.de>, conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 15 Feb 2024 16:08:16 -0800
-Samuel Holland <samuel.holland@sifive.com> wrote:
+Hi Daniel,
 
-> From: Eric Lin <eric.lin@sifive.com>
-> 
-> Add a driver for the PMU found in the SiFive Extensible Cache
-> controller. This PMU provides a configurable number of counters and a
-> variety of events. Events are grouped into sets. Each counter can count
-> events from only one set at a time; however, it can count any number of
-> events within that set simultaneously. The PMU hardware does not provide
-> an overflow interrupt.
-> 
-> The counter inhibit register is used to atomically start/stop/read a
-> group of counters so their values can be usefully compared.
-> 
-> Some events can be filtered further by client ID (e.g. CPU or external
-> DMA master). That functionality is not supported by this driver.
-> 
-> This driver further assumes that a single Extensible Cache instance is
-> shared by all CPUs in the system.
-> 
-> Example usage:
-> 
-> $ perf stat -e sifive_ecache_pmu/inner_rd_request/,
-> 	       sifive_ecache_pmu/inner_wr_request/,
-> 	       sifive_ecache_pmu/inner_rd_request_hit/,
-> 	       sifive_ecache_pmu/inner_wr_request_hit/ ls
-> 
->  Performance counter stats for 'system wide':
-> 
->             148001      sifive_ecache_pmu/inner_rd_request/
->             121064      sifive_ecache_pmu/inner_wr_request/
->             113124      sifive_ecache_pmu/inner_rd_request_hit/
->             120860      sifive_ecache_pmu/inner_wr_request_hit/
-> 
->        0.010643962 seconds time elapsed
-> 
-> Example combining the read/write events together within each counter:
-> 
-> $ perf stat -e sifive_ecache_pmu/event=0x601/,
-> 	       sifive_ecache_pmu/event=0xc001/ ls
-> 
->  Performance counter stats for 'system wide':
-> 
->             262619      sifive_ecache_pmu/event=0x601/
->             224533      sifive_ecache_pmu/event=0xc001/
-> 
->        0.009794808 seconds time elapsed
-> 
-> Signed-off-by: Eric Lin <eric.lin@sifive.com>
-> Co-developed-by: Samuel Holland <samuel.holland@sifive.com>
-> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
+On Tue, Jan 9, 2024 at 6:29=E2=80=AFPM Rob Herring <robh@kernel.org> wrote:
+>
+>
+> On Thu, 04 Jan 2024 09:49:52 -0300, Fabio Estevam wrote:
+> > From: Fabio Estevam <festevam@denx.de>
+> >
+> > The number of fsl,tmu-range entries vary among the several NXP SoCs.
+> >
+> > - lx2160a has two fsl,tmu-range entries  (fsl,qoriq-tmu compatible)
+> > - imx8mq has four fsl,tmu-range entries. (fsl,imx8mq-tmu compatible)
+> > - imx93 has seven fsl,tmu-range entries. (fsl,qoriq-tmu compatible)
+> >
+> > Change minItems and maxItems accordingly.
+> >
+> > This fixes the following schema warning:
+> >
+> > imx93-11x11-evk.dtb: tmu@44482000: fsl,tmu-range: 'oneOf' conditional f=
+ailed, one must be fixed:
+> >         [2147483866, 2147483881, 2147483906, 2147483946, 2147484006, 21=
+47484071, 2147484086] is too long
+> >
+> > Signed-off-by: Fabio Estevam <festevam@denx.de>
+> > ---
+> > Changes since v3:
+> > - Rebased against next-20240104.
+> > - Do as suggested by Rob:
+> > "So short term, I'd just leave things such that they don't warn or just
+> > drop the conditional."
+> >
+> >  Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> >
+>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-
-Hi Samuel,
-
-Some comments inline. Note this is a driver by review so not very
-thorough!
-
-Jonathan
-
-> +
-> +static u64 read_counter(const struct sifive_ecache_pmu *ecache_pmu, const struct hw_perf_event *hwc)
-> +{
-> +	u64 value = 0;
-> +
-> +	for (int i = 0; i < ecache_pmu->n_slices; i++) {
-> +		void __iomem *base = ecache_pmu->slice[i].base;
-> +
-> +		value += readq(base + hwc->event_base);
-Feels like this summing should be a userspace problem.
-Knowing about slice imbalance is often useful (depending on the
-micro architecture obviously!)
-
-
-> +	}
-> +
-> +	return value;
-> +}
-
-
-
-> +
-> +static int sifive_ecache_pmu_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *ecache_node = dev_of_node(dev);
-> +	struct sifive_ecache_pmu *ecache_pmu;
-> +	struct device_node *slice_node;
-> +	u32 slice_counters;
-> +	int n_slices, ret;
-> +	int i = 0;
-> +
-> +	n_slices = of_get_available_child_count(ecache_node);
-fwnode_get_available_child_count(dev_fwnode(&pdev->dev));
-
-Not sure why there isn't yet a device version of this (IIRC anyway).
-
-> +	if (!n_slices)
-> +		return -ENODEV;
-> +
-> +	ecache_pmu = devm_kzalloc(dev, struct_size(ecache_pmu, slice, n_slices), GFP_KERNEL);
-> +	if (!ecache_pmu)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, ecache_pmu);
-> +
-> +	ecache_pmu->pmu = (struct pmu) {
-> +		.parent		= dev,
-> +		.attr_groups	= sifive_ecache_pmu_attr_grps,
-> +		.capabilities	= PERF_PMU_CAP_NO_EXCLUDE | PERF_PMU_CAP_NO_INTERRUPT,
-> +		.task_ctx_nr	= perf_invalid_context,
-> +		.event_init	= sifive_ecache_pmu_event_init,
-> +		.add		= sifive_ecache_pmu_add,
-> +		.del		= sifive_ecache_pmu_del,
-> +		.start		= sifive_ecache_pmu_start,
-> +		.stop		= sifive_ecache_pmu_stop,
-> +		.read		= sifive_ecache_pmu_read,
-> +		.start_txn	= sifive_ecache_pmu_start_txn,
-> +		.commit_txn	= sifive_ecache_pmu_commit_txn,
-> +		.cancel_txn	= sifive_ecache_pmu_cancel_txn,
-> +	};
-> +	ecache_pmu->cpu = nr_cpu_ids;
-> +	ecache_pmu->n_counters = ECACHE_PMU_MAX_COUNTERS;
-> +	ecache_pmu->n_slices = n_slices;
-> +
-> +	for_each_available_child_of_node(ecache_node, slice_node) {
-device_for_each_child_node() (generic handlers only provide the available version btw
-which is non obvious from naming)
-
-> +		struct sifive_ecache_pmu_slice *slice = &ecache_pmu->slice[i++];
-> +
-> +		slice->base = devm_of_iomap(dev, slice_node, 0, NULL);
-> +		if (IS_ERR(slice->base))
-Leaked slice_node
-
-FWIW https://lore.kernel.org/linux-iio/20240217164249.921878-1-jic23@kernel.org/
-adds device_for_each_child_node_scoped() which deals with this stuff using
-cleanup.h magic.
-
-
-> +			return PTR_ERR(slice->base);
-> +
-> +		/* Get number of counters from slice node */
-> +		ret = of_property_read_u32(slice_node, "sifive,perfmon-counters", &slice_counters);
-Not sure on what perf maintainers want, but I'd go with
-device_property_read etc as in the previous driver.
-
-> +		if (ret)
-leaked slice_node
-
-> +			return dev_err_probe(dev, ret,
-> +					     "Slice %pOF missing sifive,perfmon-counters property\n",
-> +					     slice_node);
-> +
-> +		ecache_pmu->n_counters = min_t(u32, slice_counters, ecache_pmu->n_counters);
-> +	}
-> +
-> +	sifive_ecache_pmu_hw_init(ecache_pmu);
-> +
-> +	ret = cpuhp_state_add_instance(CPUHP_AP_PERF_RISCV_SIFIVE_ECACHE_ONLINE, &ecache_pmu->node);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to add CPU hotplug instance\n");
-> +
-> +	ret = perf_pmu_register(&ecache_pmu->pmu, "sifive_ecache_pmu", -1);
-> +	if (ret) {
-> +		dev_err_probe(dev, ret, "Failed to register PMU\n");
-> +		goto err_remove_instance;
-Comments from other review apply here as well so if you agree apply them in both drivers.
-
-> +	}
-> +
-> +	return 0;
-> +
-> +err_remove_instance:
-> +	cpuhp_state_remove_instance(CPUHP_AP_PERF_RISCV_SIFIVE_ECACHE_ONLINE, &ecache_pmu->node);
-> +
-> +	return ret;
-> +}
+Could you please apply this one?
 
