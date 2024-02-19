@@ -1,255 +1,131 @@
-Return-Path: <devicetree+bounces-43513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAB7E85A8FE
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 17:34:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88DB785A98A
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 18:04:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9E851C212D0
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 16:34:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F96E2861F5
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 17:03:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F71D3F8DA;
-	Mon, 19 Feb 2024 16:34:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E4F9446BC;
+	Mon, 19 Feb 2024 17:03:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="XlHQKobR"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MDHvQHBB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B4083CF56
-	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 16:33:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB80744391;
+	Mon, 19 Feb 2024 17:03:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708360442; cv=none; b=WIot3XzL/7gp1/TXwV9OM/e4r6aMqHsnSFY/6BFnOe5bkPLxXKzIr1cnm5hv6yy6hA5+InTwZlzFpSiCJ1/uh8ac0rJvTppRF1PDMiYv+kOT5gmel6jM77VXsbl0iy48Jpw0UXJRzQNPN/sM75fK9y/TiycCbcEO3isdDDbKiO0=
+	t=1708362229; cv=none; b=DOprOZXTlEsdktxwqtABzu/b3VxWbeRF5eIsyKD8JOk4Q/Ubq+uOHsu5JLKeELJN7E75zYzk3S1QQJd5ln7mWzw0TPJepN5APIWo+gwqTwrzylTD/qqzn9pfge4ZZz3aj6GrGTH3HG7K1u/0SPNqLk8+kV3zer68atvDrkiDwdc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708360442; c=relaxed/simple;
-	bh=dtEUK5nfkYBZ+1Dam3EkwQrUU5nGP6eib7rtxh2Rl1g=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=t1JNAo6fw5VjZcOUYKvz8GgX2TaPz36rdLxeyXpNsBuHFHbXd4WZ8KOq6IQhvAkHy3pp2T1PBjyD2ItLR+BBzSkmMxOVsx65mVuOMnIQX4z6BfLvDfYtHdeNu/rURTBqf6Or8TSMtfSVEbsh686POokMHN1m1Wor4pEwhAhReYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=XlHQKobR; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2d208be133bso43913321fa.2
-        for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 08:33:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1708360437; x=1708965237; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wMor+uCXiNhCQItjarLKiZlTj6kgrpxeMD49cd/TJbU=;
-        b=XlHQKobRyXx9OsoUiAzMz+q7lFwrF5xqM08skwXloy4G6Rq/8HjoIlvFwhj0knPphR
-         VfSWtKOiKnDuZWpRYzsLmK2gcldWAV4pKj/xMZd9VjYJIImrL/jCobJwl510saeFjR8e
-         6qF2F1iHi5uYlX8wL9N3U/AGuJNQPcWJ2aJeqehsQaIh5CEV5Wnkc5RGgtteubDl3Gnt
-         8Ndhw0pGT1b7rS1v+Y/4v0rX83CGwby7NUGFw/qOQQh/pGlzdDggHB1TtwokjWaA7beW
-         g/ITgumDYMHrsrMCGOHysG/zV4jpo3hx87v9UEO2Qf510l2TFHPsZCzMA1JV48Ub/sGO
-         alyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708360437; x=1708965237;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wMor+uCXiNhCQItjarLKiZlTj6kgrpxeMD49cd/TJbU=;
-        b=L1CZYe427+lYi682pmPpUQV/CAh/+QCOWJQ5lja/B4wv5tTjS7rKmO3Dmmi6JWDg3q
-         9jfJ9UCu/N0SCci7xxP2jiAZXj0qawxxr+YQ9Vch77H20ezZuXuumEEIrFVfUSly14qQ
-         ODtgAn4JRXH/7GmdNI+afY+cX0J4qr8YL3TOz6sctQx5eiWF1CmjoKnGVrGoz/CuSqej
-         6rDmqVG0pbD5Ht/MOAGj1izlFg0ea/n0+ASvMrXoe1UpMkrY6KSSkQcoFXvtLLdUnHf9
-         eaZ9mamo1A1OzIRdfdcCeM2AqW6bkHDf/RD8RmUT4innmL2CTLDuIAOdzRXHWHAZy3XX
-         blqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX4dVkDfWjprIeN1/XC5Z4XiNjjHOWkHmbj6PD9+GtOYdk1+hYtnBhUM44sWAyODv1WswlUpDzZPhVLd5Kl3IrrOP6xwFQLUSgneQ==
-X-Gm-Message-State: AOJu0YwEE1ZYyM4xZAlFyICEak6zsqVoh0hxcSuSnjQoqdWALjN41mLe
-	w2il0nShBcGDkHiNxVfdBRGboTlC6kY1dG9fz4mAuo2BZw7s81C+5qc38SVcVnQ/HuvSet9qXo4
-	RQsSIw4/F7d/Sb4f4/j+nAYT4QaOYZmQ3TZLK1g==
-X-Google-Smtp-Source: AGHT+IEjXtBOOeJ5ul8UbN04mgev81Ow0VDcOsDJAh8YI3oXNPhH78X3hvkf4ZhBzKYh+VVkKq9PHi9oPDLGpGORa38=
-X-Received: by 2002:a2e:a9a1:0:b0:2d2:231d:8521 with SMTP id
- x33-20020a2ea9a1000000b002d2231d8521mr6004464ljq.15.1708360436382; Mon, 19
- Feb 2024 08:33:56 -0800 (PST)
+	s=arc-20240116; t=1708362229; c=relaxed/simple;
+	bh=kDh4WLiNwWNPYGC9OYUv0pS6W7fpqiiqCez/hH4DIYQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=eHV/KUShLU43JJQV64M/XDKWVjBGVq3VsQ94YdFTTGmEa75Vcy3JMOORoiE8b8JYNT9SkoHjmc+pftIDg/o107c3RKLq5IVFa022eN2J0YJFjKKytC9HSFcbql20QT1phLpBZ214DK4J0tl5hooK4V8od+px/gNatXQkLVmMZZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MDHvQHBB; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1708362228; x=1739898228;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=kDh4WLiNwWNPYGC9OYUv0pS6W7fpqiiqCez/hH4DIYQ=;
+  b=MDHvQHBBNpH1X/+C8jZQ7BxRKujyONPZhRbvOvFE2zTmvIQo4LjL6yW+
+   HFUAbplS2GDqScxeY0mZ92QQK+yukQyUJ0jhPTt4eTJh9259SkLsMk1dR
+   Glvj3N9gr+xzPAcHjI0z78pVwWSMM6cyR6V+54xGLr7t0CuI0Jaj4bYvE
+   yhehBweD3tgtC4Mufl+zmOPE7WdPqje2E28S6OB7WmAVoCgrVspeijUOs
+   sKR/6y3p59cCyNE9ghhkdFArXeefDqosJ74sGrexjA9e2qAKysJx5bkOa
+   sDCOQx7Xs6Ly3hCBftPPRbCRkI1WD8hGB63m19wwza0/2lUXDdfR3FgyK
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10989"; a="2577400"
+X-IronPort-AV: E=Sophos;i="6.06,170,1705392000"; 
+   d="scan'208";a="2577400"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Feb 2024 09:03:45 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10989"; a="936315352"
+X-IronPort-AV: E=Sophos;i="6.06,170,1705392000"; 
+   d="scan'208";a="936315352"
+Received: from black.fi.intel.com ([10.237.72.28])
+  by fmsmga001.fm.intel.com with ESMTP; 19 Feb 2024 09:03:42 -0800
+Received: by black.fi.intel.com (Postfix, from userid 1003)
+	id 1E99D2CB; Mon, 19 Feb 2024 19:03:41 +0200 (EET)
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Andy Shevchenko <andy@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Robin van der Gracht <robin@protonic.nl>,
+	Paul Burton <paulburton@kernel.org>
+Subject: [PATCH v3 0/9] auxdisplay: linedisp: Clean up and add new driver
+Date: Mon, 19 Feb 2024 18:57:59 +0200
+Message-ID: <20240219170337.2161754-1-andriy.shevchenko@linux.intel.com>
+X-Mailer: git-send-email 2.43.0.rc1.1.gbec44491f096
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240208172459.280189-1-alisa.roman@analog.com>
- <20240208172459.280189-6-alisa.roman@analog.com> <CAMknhBHU6k8J_PLCmGYF48S1q3uXByiCwzcd+B3q3Cd-02CUow@mail.gmail.com>
- <84546728-f0cb-4b38-a71c-e053b9b9278e@gmail.com> <CAMknhBFp-4s+-D8kD9rh0-OCc3gBs3hFX1EZ9ZmOifQOyGgUug@mail.gmail.com>
-In-Reply-To: <CAMknhBFp-4s+-D8kD9rh0-OCc3gBs3hFX1EZ9ZmOifQOyGgUug@mail.gmail.com>
-From: David Lechner <dlechner@baylibre.com>
-Date: Mon, 19 Feb 2024 10:33:45 -0600
-Message-ID: <CAMknhBEtz_fSR8gaT_ew5Tk-Q5r7WjbW6q8GqHG7EFN4WZcDhg@mail.gmail.com>
-Subject: Re: [PATCH v3 5/5] iio: adc: ad7192: Add AD7194 support
-To: Alisa-Dariana Roman <alisadariana@gmail.com>
-Cc: alexandru.tachici@analog.com, alisa.roman@analog.com, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, jic23@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org, 
-	lars@metafoo.de, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	michael.hennerich@analog.com, robh+dt@kernel.org, 
-	Nuno Sa <nuno.sa@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Thu, Feb 15, 2024 at 11:13=E2=80=AFAM David Lechner <dlechner@baylibre.c=
-om> wrote:
->
-> On Thu, Feb 15, 2024 at 7:22=E2=80=AFAM Alisa-Dariana Roman
-> <alisadariana@gmail.com> wrote:
-> >
-> > Hello and thank you for the feedback!
-> >
-> > On 09.02.2024 00:27, David Lechner wrote:
-> > > On Thu, Feb 8, 2024 at 11:25=E2=80=AFAM Alisa-Dariana Roman
-> > > <alisadariana@gmail.com> wrote:
-> > >>
-> > >> Unlike the other AD719Xs, AD7194 has configurable differential
-> > >> channels. The default configuration for these channels can be change=
-d
-> > >> from the devicetree.
-> >
-> > ...
-> >
-> > >>
-> > >> +static const struct iio_info ad7194_info =3D {
-> > >> +       .read_raw =3D ad7192_read_raw,
-> > >> +       .write_raw =3D ad7192_write_raw,
-> > >> +       .write_raw_get_fmt =3D ad7192_write_raw_get_fmt,
-> > >> +       .read_avail =3D ad7192_read_avail,
-> > >> +       .validate_trigger =3D ad_sd_validate_trigger,
-> > >> +       .update_scan_mode =3D ad7192_update_scan_mode,
-> > >> +};
-> > >
-> > > Isn't this identical to ad7192_info and ad7195_info now that .attrs i=
-s
-> > > removed? It seems like we could consolidate here.
-> >
-> > Those are not exactly identical since: 92 has bridge switch attribute,
-> > 95 has bridge switch and ac excitation attributes and 94 has no custom
-> > attributes. I used a different info structure for 94 in order to avoid
-> > showing extra attributes.
-> >
->
-> Ah, I see what you mean. I didn't look close enough at the other patch
-> removing one attribute to see that were still other attributes.
->
-> > >
-> > >> +
-> > >>   static const struct iio_info ad7195_info =3D {
-> > >>          .read_raw =3D ad7192_read_raw,
-> > >>          .write_raw =3D ad7192_write_raw,
-> > >> @@ -1009,6 +1049,80 @@ static const struct iio_chan_spec ad7193_chan=
-nels[] =3D {
-> > >>          IIO_CHAN_SOFT_TIMESTAMP(14),
-> > >>   };
-> > >>
-> > >> +static struct iio_chan_spec ad7194_channels[] =3D {
-> > >> +       AD7193_DIFF_CHANNEL(0, 1, 2, 0x001),
-> > >> +       AD7193_DIFF_CHANNEL(1, 3, 4, 0x023),
-> > >> +       AD7193_DIFF_CHANNEL(2, 5, 6, 0x045),
-> > >> +       AD7193_DIFF_CHANNEL(3, 7, 8, 0x067),
-> > >> +       AD7193_DIFF_CHANNEL(4, 9, 10, 0x089),
-> > >> +       AD7193_DIFF_CHANNEL(5, 11, 12, 0x0AB),
-> > >> +       AD7193_DIFF_CHANNEL(6, 13, 14, 0x0CD),
-> > >> +       AD7193_DIFF_CHANNEL(7, 15, 16, 0x0EF),
-> > >> +       AD719x_TEMP_CHANNEL(8, AD7194_CH_TEMP),
-> > >> +       AD7193_CHANNEL(9, 1, AD7194_CH_AIN1),
-> > >> +       AD7193_CHANNEL(10, 2, AD7194_CH_AIN2),
-> > >> +       AD7193_CHANNEL(11, 3, AD7194_CH_AIN3),
-> > >> +       AD7193_CHANNEL(12, 4, AD7194_CH_AIN4),
-> > >> +       AD7193_CHANNEL(13, 5, AD7194_CH_AIN5),
-> > >> +       AD7193_CHANNEL(14, 6, AD7194_CH_AIN6),
-> > >> +       AD7193_CHANNEL(15, 7, AD7194_CH_AIN7),
-> > >> +       AD7193_CHANNEL(16, 8, AD7194_CH_AIN8),
-> > >> +       AD7193_CHANNEL(17, 9, AD7194_CH_AIN9),
-> > >> +       AD7193_CHANNEL(18, 10, AD7194_CH_AIN10),
-> > >> +       AD7193_CHANNEL(19, 11, AD7194_CH_AIN11),
-> > >> +       AD7193_CHANNEL(20, 12, AD7194_CH_AIN12),
-> > >> +       AD7193_CHANNEL(21, 13, AD7194_CH_AIN13),
-> > >> +       AD7193_CHANNEL(22, 14, AD7194_CH_AIN14),
-> > >> +       AD7193_CHANNEL(23, 15, AD7194_CH_AIN15),
-> > >> +       AD7193_CHANNEL(24, 16, AD7194_CH_AIN16),
-> > >
-> > > Shouldn't these be differential channels since they are
-> > > pseudo-differential inputs measuring the difference between AINx and
-> > > AINCOM?
-> > >
-> > >> +       IIO_CHAN_SOFT_TIMESTAMP(25),
-> > >> +};
-> > >
-> > > i.e. like this (where AINCOM is voltage0 AINx is voltagex)
-> > >
-> > > static struct iio_chan_spec ad7194_channels[] =3D {
-> > >         AD7193_DIFF_CHANNEL(0, 1, 0, AD7194_CH_AIN1),
-> > >         AD7193_DIFF_CHANNEL(1, 2, 0, AD7194_CH_AIN2),
-> > >         AD7193_DIFF_CHANNEL(2, 3, 0, AD7194_CH_AIN3),
-> > >         AD7193_DIFF_CHANNEL(3, 4, 0, AD7194_CH_AIN4),
-> > >         AD7193_DIFF_CHANNEL(4, 5, 0, AD7194_CH_AIN5),
-> > >         AD7193_DIFF_CHANNEL(5, 6, 0, AD7194_CH_AIN6),
-> > >         AD7193_DIFF_CHANNEL(6, 7, 0, AD7194_CH_AIN7),
-> > >         AD7193_DIFF_CHANNEL(7, 8, 0, AD7194_CH_AIN8),
-> > >         AD7193_DIFF_CHANNEL(8, 9, 0, AD7194_CH_AIN9),
-> > >         AD7193_DIFF_CHANNEL(9, 10, 0, AD7194_CH_AIN10),
-> > >         AD7193_DIFF_CHANNEL(10, 11, 0, AD7194_CH_AIN11),
-> > >         AD7193_DIFF_CHANNEL(11, 12, 0, AD7194_CH_AIN12),
-> > >         AD7193_DIFF_CHANNEL(12, 13, 0, AD7194_CH_AIN13),
-> > >         AD7193_DIFF_CHANNEL(13, 14, 0, AD7194_CH_AIN14),
-> > >         AD7193_DIFF_CHANNEL(14, 15, 0, AD7194_CH_AIN15),
-> > >         AD7193_DIFF_CHANNEL(15, 16, 0, AD7194_CH_AIN16),
-> > >         AD719x_TEMP_CHANNEL(16, AD7194_CH_TEMP),
-> > >         IIO_CHAN_SOFT_TIMESTAMP(17),
-> > > };
-> > >
-> >
-> > I tried to follow the existing style of the driver: for each
-> > pseudo-differential channel(AINx - AINCOM) there is an iio channel like
-> > this in_voltagex_raw; and for each differential channel(AINx - AINy)
-> > there is an iio channel like this in_voltagex-in_voltagey_raw. AD7194
-> > has 16 pseudo-differential channels/8 fully differential channels so I
-> > thought the (AINx - AINCOM) channels should be static and only the 8
-> > differential ones could be configured by the user from the devicetree b=
-y
-> > choosing the input pins.
-> >
-> > The existing style of the driver, AD7192 has 4 pseudo differential
-> > channels and 2 (non configurable) differential channels:
-> > static const struct iio_chan_spec ad7192_channels[] =3D {
-> >         AD719x_DIFF_CHANNEL(0, 1, 2, AD7192_CH_AIN1P_AIN2M),
-> >         AD719x_DIFF_CHANNEL(1, 3, 4, AD7192_CH_AIN3P_AIN4M),
-> >         AD719x_TEMP_CHANNEL(2, AD7192_CH_TEMP),
-> >         AD719x_DIFF_CHANNEL(3, 2, 2, AD7192_CH_AIN2P_AIN2M),
-> >         AD719x_CHANNEL(4, 1, AD7192_CH_AIN1),
-> >         AD719x_CHANNEL(5, 2, AD7192_CH_AIN2),
-> >         AD719x_CHANNEL(6, 3, AD7192_CH_AIN3),
-> >         AD719x_CHANNEL(7, 4, AD7192_CH_AIN4),
-> >         IIO_CHAN_SOFT_TIMESTAMP(8),
-> > };
-> >
-> > Would it be better to respect the existing style or to do like you
-> > suggested and have a total of 16 differential channels that are
-> > configurable from the device tree?
+Add a new initial driver for Maxim MAX6958/6959 chips.
+While developing that driver I realised that there is a lot
+of duplication between ht16k33 and a new one. Hence set of
+cleanups and refactorings.
 
+Note, the new driver has minimum support of the hardware and
+I have plans to cover more features in the future.
 
-Now that we have it sorted that AINCOM should be a supply, it does
-sound like we should more closely follow the pattern from AD7192. But
-to cover every possible programmable combination of AINx to AINy, we
-would need 256 differential channels (16 * 16) in addition to the
-other channels. Realistically, we probably don't need that many
-though. Since I see that AD7192 has a differential channel where uses
-AIN2 for both + and - I guess having 16 differential channels that are
-configured via device tree would be enough to allow all 16 AINx inputs
-to be used this way. Is there a use case where the same AINx would be
-assigned to multiple channels at the same time?
+In v3:
+- dropped applied patches
+- fixed compilation error (Geert)
+- dragging back and force added memory allocation for the character buffer
+- dropped 'with keyscan' in new driver (Geert)
+- rephrased a bit description in DT bindings for new driver (Geert)
+- added tags to the (almost) unchanged patches (Geert, Krzysztof, Robin)
 
->
-> Looking at Table 20 in the AD7192 datasheet, I can see why AD7192 was
-> done this way since only certain combinations of inputs can be used
-> together. (Although I think indexes 4 to 7 should really be
-> differential because they are the difference between the input and
-> AINCOM which may not be GND, but it is probably too late to fix that.)
->
-> Tables 22, 23 and 24 in the AD7194 datasheet show that this chip is
-> much more configurable than AD7192 when it comes to assigning
-> channels. There are basically no restrictions on which inputs can be
-> used together. So I am still confident that my suggestion is the way
-> to go for AD7194. (Although I didn't actually try it on hardware, so
-> can't be 100% confident. But at least 90% confident :-p)
+In v2:
+- updated DT bindings to follow specifications and requirements (Krzysztof)
+- unified return code variable (err everywhere)
+- left patches 10 and 13 untouched, we may amend later on (Robin)
+
+Andy Shevchenko (9):
+  auxdisplay: linedisp: Group display drivers together
+  auxdisplay: linedisp: Allocate buffer for the string
+  auxdisplay: ht16k33: Add default to switch-cases
+  auxdisplay: ht16k33: Move ht16k33_linedisp_ops down
+  auxdisplay: ht16k33: Define a few helper macros
+  auxdisplay: ht16k33: Switch to use line display character mapping
+  auxdisplay: ht16k33: Drop struct ht16k33_seg
+  dt-bindings: auxdisplay: Add Maxim MAX6958/6959
+  auxdisplay: Add driver for MAX695x 7-segment LED controllers
+
+ .../bindings/auxdisplay/maxim,max6959.yaml    |  44 +++
+ drivers/auxdisplay/Kconfig                    | 306 ++++++++++--------
+ drivers/auxdisplay/Makefile                   |  16 +-
+ drivers/auxdisplay/ht16k33.c                  | 177 ++++------
+ drivers/auxdisplay/img-ascii-lcd.c            |  17 +-
+ drivers/auxdisplay/line-display.c             |  11 +-
+ drivers/auxdisplay/line-display.h             |   3 +-
+ drivers/auxdisplay/max6959.c                  | 194 +++++++++++
+ 8 files changed, 496 insertions(+), 272 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/auxdisplay/maxim,max6959.yaml
+ create mode 100644 drivers/auxdisplay/max6959.c
+
+-- 
+2.43.0.rc1.1.gbec44491f096
+
 
