@@ -1,76 +1,75 @@
-Return-Path: <devicetree+bounces-43300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08D5A859E70
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 09:36:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D1B7859E7D
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 09:37:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2D5FFB21608
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 08:36:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 902041C21A9F
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 08:37:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5757A1D6A6;
-	Mon, 19 Feb 2024 08:36:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 023D9200D6;
+	Mon, 19 Feb 2024 08:37:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZOE+9gg6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HeibHX57"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5941E22307
-	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 08:36:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55C382232C
+	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 08:37:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708331809; cv=none; b=sCaHJcW1zmIRV2Gl62n1Iw7dVtPRvuf+w3Hq3lOxdrfscB1n5skgdOuamwxy96dZRb/jVrqHgJ30VNyU8Y+jJyEEcJG5AhLt0HQn2h8xnl2BlflIKezuHij9DqdYFOZ9y6ItbtkKuVPPQDK2S2UkjikqTacfPRIaQDLpmz+N2IU=
+	t=1708331861; cv=none; b=LIzAHlwCvhc63KcPaOBPU0SMR9CAsQci0RkcBs0UISwqTdYUvu2mup/xAWFwBbARei5J0JLgEL6Vq5C54aogD0lGMmhYzBNkpyeZ4YheXocPgI71YfqH/R4oTaYzX50ZhC8vSATjPN2kJCYCgv7Y10PvchEH2+45KwC1hxx7isM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708331809; c=relaxed/simple;
-	bh=sGqXoy8qn0fL36LzY9Ib6FKPWFCHugzeSHrYM28JcUM=;
+	s=arc-20240116; t=1708331861; c=relaxed/simple;
+	bh=6wXm00HoFVeR77N0uDWT2cDT8fh9HFeGMbTDCNTzj2w=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=CxHxLY0MVAWW3s1/pbAq6zoosInmpYVaMv9PNQtz2MGhK0PE+oyTtnBS5vhkKRLNT3A1X8geSdwNb2mMJyz0ft2ocs3dXgrDoPaHHgxP0UMfP9TcD/sTEOwTTUTEzrT4BZFi995MzvwO8Uzg+1K5dXKtORfkR9VKTkRv4niEdjQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZOE+9gg6; arc=none smtp.client-ip=209.85.128.42
+	 In-Reply-To:Content-Type; b=W5zNgp5PpjsmkoPOKkyS7FSTQepqynHWbz4IB5V0ByVzIdDtlpVjY+iATpErbPeK1yZp3ZkaiyMoRheF8ZHyPtQmv2f9cFWUujKH8B3NG0gTQDBcvVP/P8RMqTULzEGrS4Px6fBiB99Mp8ggRpNRRfu98MIx5jY9QpKU5QxstNw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HeibHX57; arc=none smtp.client-ip=209.85.167.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-41269e079e3so801105e9.1
-        for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 00:36:47 -0800 (PST)
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5120ecfd75cso5785527e87.0
+        for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 00:37:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708331806; x=1708936606; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708331858; x=1708936658; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=q7P/OAc7Evr5FDjQX4GvBQWaS03fCMTdV1e5S55Ss+A=;
-        b=ZOE+9gg6/KaSRcsDY3He76lhJ64ehQjdtRY6vx77q2TDOQX+FuxkWQBBKQLJvpQscI
-         5n7PpVI6aj7Qhxm3kDZBq3QvoCmNTVmXXRgdS9NfisuKmFvG62KS09DSeaQwCQKgBRT1
-         0RQEPSlcivj8jOLn3GtIDNPEyTmp3g8RXsZTDCwQTrY4xmzmMZpG98oswdaiZoN307XL
-         Dxj19DykBzYKcxJhoS0sF7Lj4oJBqOHhLjk1+LApkEHlCvtOhTzY7IoR6Hfr1zhctrli
-         bkMcPls7nsKWkGRXqzPnHBEz0slzDnqx0gw6HVPfw1KHQsknSW+UOYuWjFVFWAROn5eW
-         E1QQ==
+        bh=Ot3mhi97s6/9aZCMB2riyQgz1wZSt/7mTvF+Ozc5gEg=;
+        b=HeibHX57ZbzdWfO8x/+RholsIKv4DerpwdB2y52hOZuqCMJBOY/xgIVWFDyE7K3yEQ
+         eupDC7OQkMUOyzzZHPh8e5bIhnKUB7UrFT0xuKB3XjDl2X2C9oAGxkp7yDXii75/aG0z
+         LMD0qmj2A7bV5FJ8q13TjoY1fcoV0CWkzTFNPcxkZ6wJZamYEQSJGyKgHQRXLpWRLHZo
+         uaghqT4RP6nevua2ntMkjl7claETu8WQ7EtB3eF7hPyCrURFp9Q0yR5PlZUTvv3gPWSQ
+         UcBUKiBVLW/GAUdXeSjQSk0ChehDiBURlBzNt6GDG10C9O7HLCZVpaKITv7g9CcOoMoa
+         wcrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708331806; x=1708936606;
+        d=1e100.net; s=20230601; t=1708331858; x=1708936658;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=q7P/OAc7Evr5FDjQX4GvBQWaS03fCMTdV1e5S55Ss+A=;
-        b=wmNQbmMqKa+q5kXWqjsEdFr2b+eEs5g4kBccwYqLDCsWnPIkpsH6Lj4jUkbuRb4DJg
-         bGE5BdIULiiIBqjUNp/z8b+UiFMxVDeCZ59vX4Cdh2X3U4wjelcLg2LzyU4kZDur4cRZ
-         iJ9SMUHE0Ugm/ibwbartsfDskfd9H23xufJaDxAhet3ZQbvs4SY7LZLp5Xrmz1uO2H3X
-         yw7XW7PEwW84rZx5Wc7Isf7DWe74VtZbALHxJ+n+zSj/bUkAhyW6VfCicfkeIRKdZcYU
-         yXm9WLIlJdRFhis+DE9piWvFYfSqt4jXcRKFtKG7LdnZvWfcwOYSkq7hG/OF3farZCSb
-         /0rA==
-X-Forwarded-Encrypted: i=1; AJvYcCU2wzb/6oorWo4BN1KgvQ1/M2uYY+UpWh0G9PRIASdn9Y4JgrjdNiKUQ3jUnFTiABzf7lAQfMANJyyxyuwfSZ8rNtbXsizR5UGssQ==
-X-Gm-Message-State: AOJu0YwusXHSuyOKOCDeiYl6EXdpxhCqgZiV8Lt0GjX6Tunx2gjSnve2
-	ZE/F+S8JW2Gx99GNxySRPCKGJMCtBNZv70aFpSQ+KQ+pdCt8k5v0vdeVSMAJ7fw=
-X-Google-Smtp-Source: AGHT+IHNZOkec6o6o+9C1SPAUFr1YKayqNHIW2bLtDJRj1fba4Jet9+45Xj6ZKfmMaIBpuUgOJYjmQ==
-X-Received: by 2002:a05:600c:4f83:b0:411:fbfa:959f with SMTP id n3-20020a05600c4f8300b00411fbfa959fmr8433387wmq.27.1708331805696;
-        Mon, 19 Feb 2024 00:36:45 -0800 (PST)
+        bh=Ot3mhi97s6/9aZCMB2riyQgz1wZSt/7mTvF+Ozc5gEg=;
+        b=rc7eBQIB14Xhj/Vt3+cMlNn6nSr3P/XO2sdTACQH91h4JR5s0ruDz9lj5kp4/4dRfg
+         uHp65vqBVivcdLxtsZEl9jmYN1QgbgwDlRNWWyN4W/NgOjuZNYsFktdE8nEM/BLoLHxP
+         ElcCMpx2f7+K4EUBn1T/okZr2LXLA2VEjFmL3LAjJViyndREnIXGzm0LvWpGwUSXg6UK
+         MhNPf0RyLnVxsx6d1gUmGu7lSTLOG48zCQoe/SK23JFwPJTa8ilZJwnVMzczt9hmGRjb
+         i02qeoRusSDGhG9lOP3AaLcqaO0NAv0HP8C0ArsfvDyTMTsmKWYE5Qt2u259spKnVOxN
+         pYXg==
+X-Gm-Message-State: AOJu0Ywtq4ojdZJwoQMrxafRPMzeHpM3knoyd4ns14E3BAH3ppM3yj/v
+	4U4WtPel39ytKiWBILTirvYnJDc3SLnKCirdzg3lBYdswhWUdlrvI9tSocKovI4=
+X-Google-Smtp-Source: AGHT+IGB2EfGRcnx45+mLUJnUMRu9qt4x4481hQ1u7jhQm5TGGPwPbM1n8o7wqWntRV0wH74bmP/xg==
+X-Received: by 2002:a19:f815:0:b0:512:aae7:d79a with SMTP id a21-20020a19f815000000b00512aae7d79amr2161561lff.27.1708331858584;
+        Mon, 19 Feb 2024 00:37:38 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:9470:c6e0:c87a:fa9f? ([2a01:e0a:982:cbb0:9470:c6e0:c87a:fa9f])
-        by smtp.gmail.com with ESMTPSA id g19-20020a7bc4d3000000b004126101915esm4868608wmk.4.2024.02.19.00.36.44
+        by smtp.gmail.com with ESMTPSA id g19-20020a7bc4d3000000b004126101915esm4868608wmk.4.2024.02.19.00.37.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Feb 2024 00:36:45 -0800 (PST)
-Message-ID: <475dd166-6590-4a76-b076-a878c784ae31@linaro.org>
-Date: Mon, 19 Feb 2024 09:36:44 +0100
+        Mon, 19 Feb 2024 00:37:38 -0800 (PST)
+Message-ID: <f1dd75d3-d86b-447a-8a76-73da7d14c936@linaro.org>
+Date: Mon, 19 Feb 2024 09:37:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,19 +77,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
+From: neil.armstrong@linaro.org
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [DMARC error][DKIM error] [PATCH 0/5] soc: amlogic: add new
- meson-gx-socinfo-sm driver
+Subject: Re: [PATCH v1 0/3] ARM: dts: amlogic: Three small binding check error
+ fixes
 Content-Language: en-US, fr
-To: Dmitry Rokosov <ddrokosov@salutedevices.com>
-Cc: Viacheslav Bocharov <adeep@lexina.in>,
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20231122125643.1717160-1-adeep@lexina.in>
- <20240216074716.a33hrvl5xnpm7aep@CAB-WSD-L081021>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+References: <20240218111959.1811676-1-martin.blumenstingl@googlemail.com>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -116,121 +113,26 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <20240216074716.a33hrvl5xnpm7aep@CAB-WSD-L081021>
+In-Reply-To: <20240218111959.1811676-1-martin.blumenstingl@googlemail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 16/02/2024 08:47, Dmitry Rokosov wrote:
-> Hello Neil,
-> 
-> May I put in my two cents on this patch series?
-> 
-> There appears to be a misunderstanding regarding the terminology used.
-> Allow me to clarify my perspective.
-> 
-> The original Amlogic chipid has the following format:
-> 
->      4 bytes      12 bytes
->      +-------+-------------------+
->      |       |                   |
->      | CPUID | SOC SERIAL NUMBER |
->      |       |                   |
->      +-------+-------------------+
->      0                          15
+On 18/02/2024 12:19, Martin Blumenstingl wrote:
+> This series contains three small binding check fixes.
+> Nothing functional was broken before, so no need to backpport any of
+> these to -stable.
 > 
 > 
-> In the current uboot [1] and kernel [2] upstream, only the SOC SERIAL
-> NUMBER bytes are read from efuse OTP storage (and it isn't swapped, as
-> Amlogic reference code does [3]). We refer to these bytes as "serial".
+> Martin Blumenstingl (3):
+>    ARM: dts: meson: fix bus node names
+>    ARM: dts: meson8: fix &hwrng node compatible string
+>    ARM: dts: meson8b: fix &hwrng node compatible string
 > 
-> The original chipid value is utilized in several algorithms (for
-> example, in the Amlogic boot protocols), making it crucial to have the
-> ability to read the original chipid value as intended by the vendor.
-> 
-> In my opinion, we should align our naming terminology as follows:
->      - "chipid" - Represents the complete Amlogic SoC ID, includes
->                   "cpuid" and "serial"
->      - "serial" - 12 byte unique SoC number, identifying particular die
-> 
-> We strongly believe that this patch series is essential and are highly interested in seeing it applied to the upstream linux-amlogic, for the following reasons:
->      - We use chipid for device identification in our boards
->      - The Amlogic boot protocols utilize the full version of chipid
->        (ADNL, Optimus). As I mentioned in the IRC, we are preparing a
->        patch series for uboot incorporating them.
->      - in OPTEE: for generation of SSK (Secure Storage Key) [4]
->      - RPMB: for generation of RPMB key, further provisioned into RPMB
->        controller (thus particular SoC is bound to particular eMMC
-> 
-> Therefore, I propose that we rename "soc_id" in the Viacheslav patch
-> series to "chipid" and subsequently port this patch series to uboot.
-> 
-> What are your thoughts on this matter?
-
-I'm perfectly fine with that, but I don't like the shared functions, the only
-shared stuff are the soc id tables, the shared functions is not important enough
-to be shared.
-
-Neil
-
-> 
-> Links:
-> [1] - https://elixir.bootlin.com/u-boot/v2024.01/source/arch/arm/mach-meson/sm.c#L84
-> [2] - https://elixir.bootlin.com/linux/v6.7.4/source/drivers/firmware/meson/meson_sm.c#L268
-> [3] - https://github.com/CoreELEC/u-boot/blob/3efc85a8370796bcec3bcadcdecec9aed973f4a9/arch/arm/mach-meson/g12a/bl31_apis.c#L398-L417
-> [4] - https://github.com/OP-TEE/optee_os/blob/5df2a985b2ffd0b6f1107f12ca2a88203bf31328/core/tee/tee_fs_key_manager.c#L152
-> 
-> On Wed, Nov 22, 2023 at 03:56:38PM +0300, Viacheslav Bocharov wrote:
->> The Amlogic Meson SoC Secure Monitor implements a call to retrieve an
->> unique SoC ID starting from the GX Family and all new families.
->> But GX-family chips (e.g. GXB, GXL and newer) supports also 128-bit
->> chip ID. 128-bit chip ID consists 32-bit SoC version and 96-bit OTP data.
->>
->> This is the second attempt to publish data from the Amlogic secure monitor
->> chipid call. After discussions with Neil Armstrong, it was decided to
->> publish the chipid call results through the soc driver. Since
->> soc_device_match cannot wait for the soc driver to load, and the secure
->> monitor calls in turn depend on the sm driver, it was necessary to create
->> a new driver rather than expand an existing one.
->>
->> In the patches, in addition to writing the driver:
->> - convert commonly used structures and functions of the meson-gx-socinfo
->> driver to a header file.
->> - transfer the chipid sm call constants to a header file (perhaps they
->> need renaming?).
->> - add secure-monitor references for amlogic,meson-gx-ao-secure sections
->> in dts files of the a1, axg, g12, gx families.
->>
->> Viacheslav Bocharov (5):
->>    soc: amlogic: meson-gx-socinfo: move common code to header file
->>    soc: amlogic: meson-gx-socinfo: move common code to exported function
->>    firmware: meson_sm: move common definitions to header file
->>    soc: amlogic: Add Amlogic secure-monitor SoC Information driver
->>    arm64: dts: meson: add dts links to secure-monitor for soc driver in
->>      a1, axg, gx, g12
->>
->>   arch/arm64/boot/dts/amlogic/meson-a1.dtsi     |   1 +
->>   arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |   1 +
->>   .../boot/dts/amlogic/meson-g12-common.dtsi    |   1 +
->>   arch/arm64/boot/dts/amlogic/meson-gx.dtsi     |   1 +
->>   drivers/firmware/meson/meson_sm.c             |   4 -
->>   drivers/soc/amlogic/Kconfig                   |  10 +
->>   drivers/soc/amlogic/Makefile                  |   1 +
->>   .../soc/amlogic/meson-gx-socinfo-internal.h   | 102 ++++++++++
->>   drivers/soc/amlogic/meson-gx-socinfo-sm.c     | 178 ++++++++++++++++++
->>   drivers/soc/amlogic/meson-gx-socinfo.c        | 106 ++---------
->>   include/linux/firmware/meson/meson_sm.h       |   4 +
->>   11 files changed, 317 insertions(+), 92 deletions(-)
->>   create mode 100644 drivers/soc/amlogic/meson-gx-socinfo-internal.h
->>   create mode 100644 drivers/soc/amlogic/meson-gx-socinfo-sm.c
->>
->> -- 
->> 2.34.1
->>
->>
->> _______________________________________________
->> linux-amlogic mailing list
->> linux-amlogic@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+>   arch/arm/boot/dts/amlogic/meson.dtsi   | 6 +++---
+>   arch/arm/boot/dts/amlogic/meson8.dtsi  | 1 -
+>   arch/arm/boot/dts/amlogic/meson8b.dtsi | 1 -
+>   3 files changed, 3 insertions(+), 5 deletions(-)
 > 
 
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
