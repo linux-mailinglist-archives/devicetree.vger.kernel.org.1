@@ -1,287 +1,343 @@
-Return-Path: <devicetree+bounces-43243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6867859B7C
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 06:00:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92D6E859B40
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 05:10:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76E1B28185A
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 05:00:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0AD471F2103B
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 04:10:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9793B1CD1C;
-	Mon, 19 Feb 2024 05:00:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F0CD79D1;
+	Mon, 19 Feb 2024 04:10:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="aoAEwim7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2121.outbound.protection.partner.outlook.cn [139.219.17.121])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84F8B28F7;
-	Mon, 19 Feb 2024 05:00:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.121
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708318823; cv=fail; b=l9EeYj+EA6am23gXiKMg/S3zfzwFEI9XpkiQs75ho6PCdGrKjaLIwEqIKfMnLVEAmPXElhpJc1S/06g/1EIdJ+kFlpL2F7wMXQ7NoCjJRDPrh+RlTppiJaljsm0bqU3FGalzcpzKESrfaK7le/4Lax/4F1qZ+ERDFczhkkt4AMs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708318823; c=relaxed/simple;
-	bh=mjv6HIUOfGkwSuoDmhWh1tayN/1Y7pMomHm9lm4ISeQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=U+DuyIrFM4HGJVQNziEcS7pPg4MkAzwieGA1u3eZEoO0Kt4BE7WtuT/sD0U53SjkOgFV1wrIXZZTiz1KBna6kI6gCy2rSlJ0Dt+yftz2Kxe+kMiTJdq6X3M6s4Sv//N9MjWr7u+Me6Rqdw2Na7hYcsMT2DgKR2wrC+640JYKeQs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.121
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Bdf9pyM5MvAVSfJ1R2WxZnTCvWzUtErkwo3KHN4S1FVYUZdAvmp2UtYl56HUQYxA2DfJ9DMY+Dt6nTC+mn6owWEU2Z7khU9sEH4TEcIEqgYJH7eKtySNzwxyEqZAuPm3FCwrtZXRzba2O24zMucQYSnQ2NuD92GH1fMizwO9OQwiHcjsyvh63CweZpOrVlVo5r8VbA1VlD4H154IhC9cZE3VzMjteQIhf6zP9N93LqDkolTwyEXfzCgwOwtnegaJ6fbWrkhG1PH5wktMn/FY/yEMQetu2BlT8JLlXsz9T/XIY0eG3DNymIdxgruImyof8B3Yqci0pGHaQxuZJs/3vw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gWiVTDcDCc8gvbe3WMo+WgFGdZhkOntSuRCk5fEPzzw=;
- b=Z6QDsBq+HgUmwU5K7HKy5Fl393S79EjpIk/OOj9Ccuxv8DRp7shAf9HXzYVW1XdaDZXx93874syvB0FTRxkDhqFkIaTCaEyrGa2MPKRWtmCnPEJ+9q0dHN6PQnhw7nqhy8xszea8xgyZ5HgBCjs43lnRgDrxdZwOEsDgc2E87E+s6QO8MYvR6/sbObfm5UP8ifSrm+JJ7zJ3IsCQEQTSWwU3rjVXbcJpmOtNHCn7hB3g4eATbmj0yq5y1kbCeYNekp6lfQzkxvBJh1XSgT+zwP5egMD8a7L3YQfhYF1pkOAvHQkuzPAlhdn56DmYRObwmKZRidQWd9nbBf5XxP/xUA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-Received: from SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:25::10) by SHXPR01MB0623.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:1d::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.47; Mon, 19 Feb
- 2024 03:27:48 +0000
-Received: from SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn
- ([fe80::b0af:4c9d:2058:a344]) by
- SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn ([fe80::b0af:4c9d:2058:a344%6])
- with mapi id 15.20.7249.041; Mon, 19 Feb 2024 03:27:48 +0000
-From: Changhuang Liang <changhuang.liang@starfivetech.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>
-Cc: Jack Zhu <jack.zhu@starfivetech.com>,
-	Changhuang Liang <changhuang.liang@starfivetech.com>,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: [v3] riscv: dts: starfive: jh7110: Add camera subsystem nodes
-Date: Sun, 18 Feb 2024 19:27:41 -0800
-Message-Id: <20240219032741.18387-1-changhuang.liang@starfivetech.com>
-X-Mailer: git-send-email 2.25.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SHXPR01CA0021.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:1b::30) To SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:25::10)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 656306AC0
+	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 04:10:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708315851; cv=none; b=YzuphDzQhBxjlXiHgp+zrJYH/fZ2w/AXwgL5EAq8mtiPPVLNyKKWrd+Kif48ZypjddP3PDf/M31L5TKXLuRE1V1rrqKmExQxDvCFFJMDhO6FTOAoeQt5zm6utoQhCx+/qAJGH90ZoeI5MtkaDhx7bX9xWgy0rVk74CWdu+oVatw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708315851; c=relaxed/simple;
+	bh=MNiOlQwCxdQTE2LkxWa35Suj5p4Uq7+niJe+XPHvMAU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=C9VA9Qqtguzc1L9uL9CPFBs/fvDI8tdTR+Zf3IV9Xmrjc2AJZ0a2IO08iYYHwdg0SNJut97ojBYSNUWoqG/Iqd4em+FcHfbUStnqbouJGZU3926hHbC+JGy9NrnlCtFux78y14V4fxU2i99hdlqRU+ZJ9N1GGI6OkqQyybzmGAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=aoAEwim7; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5129c8e651fso2142520e87.3
+        for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 20:10:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1708315847; x=1708920647; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oSJX0E0lGzgCklhLOPs9/5otZxCSMrkz3Hl3lgIz64Q=;
+        b=aoAEwim7td430AdJpC47nVT8B7QEsJ9lw709zXR8G9xvuUNTGuV/B4oPl63zf8VA9V
+         drzhlI0DKmMhZ06YVJrLLTw3z9aGSyWnMeXQxti7ZlIRRRSyv2b5JuJtsBCuhA7YL17G
+         jtfqTOIASFs8A0AOoHagYJz6Tnn3k5AiLd40QjCms0ZhwR/PhV2O5iooscYKSh0nxp8h
+         B6NVWYP1ACacRwsXU8jRdfjMJCcfLHh6CQwmMgrzuCpGGkQAgaklBuMy2ksHI6ZL3rT6
+         vp6MP3DFQ+kS5gfGJ1ozHrhV5GVuJm1zEuYV8KRYXzXZHSEbUkb/bEHT89TRTJ9g84Km
+         fKSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708315847; x=1708920647;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oSJX0E0lGzgCklhLOPs9/5otZxCSMrkz3Hl3lgIz64Q=;
+        b=rjsFGx0nk/TORgn8mhRyr4XIuHeCWKu7YC7mEZb0uoceymDhJKFzgZc6dQRyjITkQl
+         YkRAF01IOkBvs9nsXgfGaQ6nkAJxGF11R1DQnqdT7moDbgJSMGp1oqYHCffG+FRssTbN
+         iq2toiV2HAdEEhui8E58BXXe1VtE3DTapOQrcYc4w9/5uS7EsU+imI6ouyZLg7Ahjhvp
+         TFhEEv4AAtZzexfesGSiryyos1T5OpUBjYChiqZ8rELZiRHPZKs8b2uLMPtCYkqjD+9n
+         b7uAMkWQOLPu/VC6DYm4yrZX208TtD/wlubL/SrTTtnrYJoOd58Oicd7W1yppxhr4l6Z
+         o9+g==
+X-Forwarded-Encrypted: i=1; AJvYcCWN0c1sLGtxk68xB6zc3GS8zfzObkOeo7Db2WtwWVKtvRKwGW36M/6MTQCtyesrK6fZT9UPiwbre6ZkbsKZpZdOXGHex1zq+xK3Ew==
+X-Gm-Message-State: AOJu0Yz5lMAWkVzRfLgoE8WuC8ufjXvupKQkDj+W4u/tieGPLrOyvNfn
+	MDZNRlgMdN7ZL4x3FUG4rB68m11qWWNxx6/eFWLzbhkmcBtlR/uITLxQulCYtIg07mK4DCG0Bq1
+	reJ9FE+frnU3ovvFdcHhJqvTyUxQCivN8E6D3yQ==
+X-Google-Smtp-Source: AGHT+IFXrBDhOps8+KLoDpgDGX0zeotDQUgEkGspEQp4WsWHRxO/1h8/vRFqOVdSq4bjng+KktDbQ+TtxJII0xh78w0=
+X-Received: by 2002:a05:6512:3e14:b0:512:b932:7913 with SMTP id
+ i20-20020a0565123e1400b00512b9327913mr252592lfv.41.1708315847272; Sun, 18 Feb
+ 2024 20:10:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SHXPR01MB0671:EE_|SHXPR01MB0623:EE_
-X-MS-Office365-Filtering-Correlation-Id: bc0d8f27-f8b9-4da8-ffb5-08dc30fabf01
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	VbRVG26ZP3emFPEUBIQ/xWGZeAWbwLPlHvKzmOi9BBDIahl9+7GAA1euOOO6flP0mGEFiMpqBv5Q3gMNTxGlbVeuYZV7KcvIvM7PSVMvfYhUW1O8YT2O7sFZyhtWEPeQQvq6PPDB2KwiU7wIcpSxh7b1C/4AglDlhGEHZDfwQKLhKZxIDSIb03nGkwiUOBzD1lY1GMxlPEZSKFDr/ssnebt/qMVITGlS7K26Q2zG+iU04GR4UDR9nOidJn9iOR+csLpgTGoV0Vrxo9Pyx6g2bJe4twXnkRSpQx9KnO+Rb43WvJxWV/RA0DDVM7E1H7Sx+12pBzYcUTU66OFg6KJqljbbEM22oXGOz7MobhV4z1jCt8Rx4+TvR1h0Ym7tvKvvMCLShReT74l+AndLE5RyHqTfsCj3xhaDwhouVl2yANudIKND3a+zJMHAkVXI911JGSVh+Bp8P5k0zBPZNCvgrR/WgHK5IUZSIStFk0MJgY9xgQ+oHs+BgPxqf0y5HtHAJeYcam5PQattibMF8Nu1+v2/P09LmSjwT//CEe8IOeR82t696M8Z3jbI3XHSUckQ
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(136003)(366004)(39830400003)(346002)(396003)(230922051799003)(64100799003)(451199024)(1800799012)(186009)(7416002)(5660300002)(2906002)(44832011)(41320700001)(38350700005)(2616005)(36756003)(40180700001)(1076003)(26005)(508600001)(52116002)(40160700002)(38100700002)(83380400001)(86362001)(8676002)(4326008)(66946007)(66556008)(8936002)(66476007)(41300700001)(110136005)(54906003)(6666004);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?0yI4TFsH/6QwNcdQ8FKSyeiQjczEfjpZFxD9h6r2M/g8AOtFknkiIwvqWfz6?=
- =?us-ascii?Q?nERasLVF2d8UbJGt/gYAEymfR/Rb8LVDayfzyIrYMbWS3y22uLlq1PQqeE3A?=
- =?us-ascii?Q?7SfwC3LFI1IcF+Qxoicinq4iq7B7Jnai9t5TmnBchDpu0v/XFk8pMKKcVh9B?=
- =?us-ascii?Q?qsNYws9HkjaZgjzmpYpc2QsBUBQAgRgULoQ01F73MfX5l8LHdvWZz1SBRoZW?=
- =?us-ascii?Q?irX4+7msmz8UKKb7BNjuT/Dvh2iv8sK6txyHHhLbDCNkStMG/R+F3EvojiZ1?=
- =?us-ascii?Q?/nciO0Vm+j82GID+2/3UCOURpdMqU23DmlyhaQrNKvA5hz5v9Y1tP2kRUzoa?=
- =?us-ascii?Q?mP6rtqvX1ufYsyZUsT5Lp5FtaCgFDe0XNBCUJllbX14CkSbjUaXjqvDW8UB6?=
- =?us-ascii?Q?i4D5KF4VWC7DQNlgHzMG0/7MxbEjjoLq1JDTIwrtSFn0NDReam0cAu3fm5pa?=
- =?us-ascii?Q?Fxy24eTTSRyS+PrPmJzSmhHZ/dmBej0yJy3k+qJUI6SSyYAqAB0qZA53NdbG?=
- =?us-ascii?Q?o6TWHlMMQJ3iT2C7ng+2nwbW6qNP6bb8Gf3HmQKdh5Yb1PeL675B3ro14b23?=
- =?us-ascii?Q?WRzhJvGFHcYZ/ctySZpROKvN8ft+/vZ+jZlX3+2yp0Q/MVPQT/CqKIzgOWdM?=
- =?us-ascii?Q?3h7ISaFTUw4jOEcanBeUeitSde/bprPQAzrxBxFRN1FA4nDWxjdWr7J99OQu?=
- =?us-ascii?Q?wFEll378+y+EFFH/pTklKcc744b4ZYAFNQmcA36WsydW8INkpaF78DZmAx0Z?=
- =?us-ascii?Q?RPOtOr9h7OLOM3FEuZIiJLEWGSyecypgvk0ptL4dsYiFYbU9mn5trHxzJO8G?=
- =?us-ascii?Q?0AuuxIwPDhAGdcAtlag3K23AVBmHxjuuk0vV+W55nxswRcsVK13rgrq0y+dL?=
- =?us-ascii?Q?dd1hHbA/qlxBfgaeVAtU+OyWplBroCObcIGfkYf0qzbdrkE9TP95wKXGv0Xj?=
- =?us-ascii?Q?SbPphFoAa3HFbchwP6IvjqFr/o85aau72TRFuRRP3RwuVyliZbwOEnFNAzuf?=
- =?us-ascii?Q?mh2pxqk/f/mFSoeCeTXc3RU7FGjI/NAbz2EPbgDcXAVEc28IsHt8IhEjSEyL?=
- =?us-ascii?Q?V5rLulXwRkOOx01k9y6ey7n1ncelaRVzDa9rs3BqadI4IS3ZjUJt/DCQJDix?=
- =?us-ascii?Q?TherEGZJ6Mi1SO0TPmOMjfoJ/gGTsZOd9d1StgMbKWcHsV+yC+KyxSUxs7V8?=
- =?us-ascii?Q?DnGwFLCfJz0uKS0iZoX5NZ3Ki+PzFc7wvw2qDjDNZSSn1KQSxrStapcm/XKp?=
- =?us-ascii?Q?fWI+a7zyQrIcoCtc5IPnEIGvpYR1S0QNL4OcttbkgEJvBm4UW2fI04Zu7t0r?=
- =?us-ascii?Q?kjuzgq2JJPpH+RQJA3T/vXxXyOgQ8gByQ/xZtDUb3NNvYoMttKZ9uyu8yP2E?=
- =?us-ascii?Q?fIT5/lOy6efP/DgSUcmOqJsGuxMOXkvD4vNGDxJrgrZO3XsOAZyTW/W87bAn?=
- =?us-ascii?Q?L3yEMCpAwzxToVmIgxDjjWCjZGmG7ctO0MdwXQpIvVkigw76/GFqIu1QzxYP?=
- =?us-ascii?Q?qaYfmjjvgRMvmqsaJLRm7IMwX1s30NCZtJb/nA/ZgctOCtW1ai1yVxFY2pCJ?=
- =?us-ascii?Q?w29P0/ksV55GTjw/iIRtgrLd1ofg94brQzC6XPcgLtAdqdVWI7ED12Ua9YUm?=
- =?us-ascii?Q?t4s98xcsF/q8I3zDGEglE6U=3D?=
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bc0d8f27-f8b9-4da8-ffb5-08dc30fabf01
-X-MS-Exchange-CrossTenant-AuthSource: SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2024 03:27:48.5347
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +zrwS6fvvO0Ze5OLm3FcZmoql3xzvmKDlp+Irm526TiHW3LBwx0AcMIrNqqDUzdBPGIWyXnuoj+cwLD8THov4ZOBnL0Dd57wtkl7zXq745rrMNl42IzFaWF9t46+4O3J
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SHXPR01MB0623
+References: <20240127161753.114685-1-apatel@ventanamicro.com>
+ <20240127161753.114685-20-apatel@ventanamicro.com> <87eddccgo7.ffs@tglx>
+In-Reply-To: <87eddccgo7.ffs@tglx>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Mon, 19 Feb 2024 09:40:35 +0530
+Message-ID: <CAK9=C2VK-sOtyhxnDH83WwMNQbetC-zLssZdYG399pBghU+yUw@mail.gmail.com>
+Subject: Re: [PATCH v12 19/25] irqchip/riscv-imsic: Add device MSI domain
+ support for platform devices
+To: Thomas Gleixner <tglx@linutronix.de>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Marc Zyngier <maz@kernel.org>, =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>, 
+	Atish Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>, 
+	Sunil V L <sunilvl@ventanamicro.com>, Saravana Kannan <saravanak@google.com>, 
+	Anup Patel <anup@brainfault.org>, linux-riscv@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add camera subsystem nodes for the StarFive JH7110 SoC. They contain the
-dphy-rx, csi2rx, camss nodes.
+On Sat, Feb 17, 2024 at 1:42=E2=80=AFAM Thomas Gleixner <tglx@linutronix.de=
+> wrote:
+>
+> On Sat, Jan 27 2024 at 21:47, Anup Patel wrote:
+> > +static int imsic_cpu_page_phys(unsigned int cpu,
+> > +                            unsigned int guest_index,
+> > +                            phys_addr_t *out_msi_pa)
+> > +{
+> > +     struct imsic_global_config *global;
+> > +     struct imsic_local_config *local;
+> > +
+> > +     global =3D &imsic->global;
+> > +     local =3D per_cpu_ptr(global->local, cpu);
+> > +
+> > +     if (BIT(global->guest_index_bits) <=3D guest_index)
+> > +             return -EINVAL;
+>
+> As the callsite does not care about the return value, just make this
+> function boolean and return true on success.
 
-Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
----
- .../jh7110-starfive-visionfive-2.dtsi         | 49 ++++++++++++++
- arch/riscv/boot/dts/starfive/jh7110.dtsi      | 67 +++++++++++++++++++
- 2 files changed, 116 insertions(+)
+Okay, I will update.
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index b89e9791efa7..737ee97a3577 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -125,6 +125,55 @@ &tdm_ext {
- 	clock-frequency = <49152000>;
- };
+>
+> > +     if (out_msi_pa)
+> > +             *out_msi_pa =3D local->msi_pa +
+> > +                           (guest_index * IMSIC_MMIO_PAGE_SZ);
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static void imsic_irq_mask(struct irq_data *d)
+> > +{
+> > +     imsic_vector_mask(irq_data_get_irq_chip_data(d));
+> > +}
+> > +
+> > +static void imsic_irq_unmask(struct irq_data *d)
+> > +{
+> > +     imsic_vector_unmask(irq_data_get_irq_chip_data(d));
+> > +}
+> > +
+> > +static int imsic_irq_retrigger(struct irq_data *d)
+> > +{
+> > +     struct imsic_vector *vec =3D irq_data_get_irq_chip_data(d);
+> > +     struct imsic_local_config *local;
+> > +
+> > +     if (WARN_ON(vec =3D=3D NULL))
+> > +             return -ENOENT;
+> > +
+> > +     local =3D per_cpu_ptr(imsic->global.local, vec->cpu);
+> > +     writel(vec->local_id, local->msi_va);
+> > +     return 0;
+> > +}
+> > +
+> > +static void imsic_irq_compose_vector_msg(struct imsic_vector *vec,
+> > +                                      struct msi_msg *msg)
+> > +{
+> > +     phys_addr_t msi_addr;
+> > +     int err;
+> > +
+> > +     if (WARN_ON(vec =3D=3D NULL))
+> > +             return;
+> > +
+> > +     err =3D imsic_cpu_page_phys(vec->cpu, 0, &msi_addr);
+> > +     if (WARN_ON(err))
+> > +             return;
+>
+>         if (WARN_ON(!imsic_cpu_page_phys(...)))
+>                 return
+> Hmm?
 
-+&camss {
-+	assigned-clocks = <&ispcrg JH7110_ISPCLK_DOM4_APB_FUNC>,
-+			  <&ispcrg JH7110_ISPCLK_MIPI_RX0_PXL>;
-+	assigned-clock-rates = <49500000>, <198000000>;
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			camss_from_csi2rx: endpoint {
-+				remote-endpoint = <&csi2rx_to_camss>;
-+			};
-+		};
-+	};
-+};
-+
-+&csi2rx {
-+	assigned-clocks = <&ispcrg JH7110_ISPCLK_VIN_SYS>;
-+	assigned-clock-rates = <297000000>;
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+
-+			/* remote MIPI sensor endpoint */
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			csi2rx_to_camss: endpoint {
-+				remote-endpoint = <&camss_from_csi2rx>;
-+			};
-+		};
-+	};
-+};
-+
- &gmac0 {
- 	phy-handle = <&phy0>;
- 	phy-mode = "rgmii-id";
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index 45213cdf50dc..6ea1c3f5dded 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -1104,6 +1104,32 @@ pwrc: power-controller@17030000 {
- 			#power-domain-cells = <1>;
- 		};
+Okay, I will update like you suggested.
 
-+		csi2rx: csi@19800000 {
-+			compatible = "starfive,jh7110-csi2rx", "cdns,csi2rx";
-+			reg = <0x0 0x19800000 0x0 0x10000>;
-+			clocks = <&ispcrg JH7110_ISPCLK_VIN_SYS>,
-+				 <&ispcrg JH7110_ISPCLK_VIN_APB>,
-+				 <&ispcrg JH7110_ISPCLK_VIN_PIXEL_IF0>,
-+				 <&ispcrg JH7110_ISPCLK_VIN_PIXEL_IF1>,
-+				 <&ispcrg JH7110_ISPCLK_VIN_PIXEL_IF2>,
-+				 <&ispcrg JH7110_ISPCLK_VIN_PIXEL_IF3>;
-+			clock-names = "sys_clk", "p_clk",
-+				      "pixel_if0_clk", "pixel_if1_clk",
-+				      "pixel_if2_clk", "pixel_if3_clk";
-+			resets = <&ispcrg JH7110_ISPRST_VIN_SYS>,
-+				 <&ispcrg JH7110_ISPRST_VIN_APB>,
-+				 <&ispcrg JH7110_ISPRST_VIN_PIXEL_IF0>,
-+				 <&ispcrg JH7110_ISPRST_VIN_PIXEL_IF1>,
-+				 <&ispcrg JH7110_ISPRST_VIN_PIXEL_IF2>,
-+				 <&ispcrg JH7110_ISPRST_VIN_PIXEL_IF3>;
-+			reset-names = "sys", "reg_bank",
-+				      "pixel_if0", "pixel_if1",
-+				      "pixel_if2", "pixel_if3";
-+			phys = <&csi_phy>;
-+			phy-names = "dphy";
-+			status = "disabled";
-+		};
-+
- 		ispcrg: clock-controller@19810000 {
- 			compatible = "starfive,jh7110-ispcrg";
- 			reg = <0x0 0x19810000 0x0 0x10000>;
-@@ -1121,6 +1147,47 @@ ispcrg: clock-controller@19810000 {
- 			power-domains = <&pwrc JH7110_PD_ISP>;
- 		};
+>
+> > +
+> > +     msg->address_hi =3D upper_32_bits(msi_addr);
+> > +     msg->address_lo =3D lower_32_bits(msi_addr);
+> > +     msg->data =3D vec->local_id;
+> > +}
+> > +
+> > +static void imsic_irq_compose_msg(struct irq_data *d, struct msi_msg *=
+msg)
+> > +{
+> > +     imsic_irq_compose_vector_msg(irq_data_get_irq_chip_data(d), msg);
+> > +}
+> > +
+> > +#ifdef CONFIG_SMP
+> > +static void imsic_msi_update_msg(struct irq_data *d, struct imsic_vect=
+or *vec)
+> > +{
+> > +     struct msi_msg msg[2] =3D { [1] =3D { }, };
+> > +
+> > +     imsic_irq_compose_vector_msg(vec, msg);
+> > +     irq_data_get_irq_chip(d)->irq_write_msi_msg(d, msg);
+> > +}
+> > +
+> > +static int imsic_irq_set_affinity(struct irq_data *d,
+> > +                               const struct cpumask *mask_val,
+> > +                               bool force)
+> > +{
+> > +     struct imsic_vector *old_vec, *new_vec;
+> > +     struct irq_data *pd =3D d->parent_data;
+> > +
+> > +     old_vec =3D irq_data_get_irq_chip_data(pd);
+> > +     if (WARN_ON(old_vec =3D=3D NULL))
+> > +             return -ENOENT;
+> > +
+> > +     /* Get a new vector on the desired set of CPUs */
+> > +     new_vec =3D imsic_vector_alloc(old_vec->hwirq, mask_val);
+> > +     if (!new_vec)
+> > +             return -ENOSPC;
+> > +
+> > +     /* If old vector belongs to the desired CPU then do nothing */
+> > +     if (old_vec->cpu =3D=3D new_vec->cpu) {
+> > +             imsic_vector_free(new_vec);
+> > +             return IRQ_SET_MASK_OK_DONE;
+> > +     }
+>
+> You can spare that exercise by checking it before the allocation:
+>
+>         if (cpumask_test_cpu(old_vec->cpu, mask_val))
+>                 return IRQ_SET_MASK_OK_DONE;
 
-+		csi_phy: phy@19820000 {
-+			compatible = "starfive,jh7110-dphy-rx";
-+			reg = <0x0 0x19820000 0x0 0x10000>;
-+			clocks = <&ispcrg JH7110_ISPCLK_M31DPHY_CFG_IN>,
-+				 <&ispcrg JH7110_ISPCLK_M31DPHY_REF_IN>,
-+				 <&ispcrg JH7110_ISPCLK_M31DPHY_TX_ESC_LAN0>;
-+			clock-names = "cfg", "ref", "tx";
-+			resets = <&ispcrg JH7110_ISPRST_M31DPHY_HW>,
-+				 <&ispcrg JH7110_ISPRST_M31DPHY_B09_AON>;
-+			power-domains = <&aon_syscon JH7110_AON_PD_DPHY_RX>;
-+			#phy-cells = <0>;
-+		};
-+
-+		camss: isp@19840000 {
-+			compatible = "starfive,jh7110-camss";
-+			reg = <0x0 0x19840000 0x0 0x10000>,
-+			      <0x0 0x19870000 0x0 0x30000>;
-+			reg-names = "syscon", "isp";
-+			clocks = <&ispcrg JH7110_ISPCLK_DOM4_APB_FUNC>,
-+				 <&ispcrg JH7110_ISPCLK_ISPV2_TOP_WRAPPER_C>,
-+				 <&ispcrg JH7110_ISPCLK_DVP_INV>,
-+				 <&ispcrg JH7110_ISPCLK_VIN_P_AXI_WR>,
-+				 <&ispcrg JH7110_ISPCLK_MIPI_RX0_PXL>,
-+				 <&syscrg JH7110_SYSCLK_ISP_TOP_CORE>,
-+				 <&syscrg JH7110_SYSCLK_ISP_TOP_AXI>;
-+			clock-names = "apb_func", "wrapper_clk_c", "dvp_inv",
-+				      "axiwr", "mipi_rx0_pxl", "ispcore_2x",
-+				      "isp_axi";
-+			resets = <&ispcrg JH7110_ISPRST_ISPV2_TOP_WRAPPER_P>,
-+				 <&ispcrg JH7110_ISPRST_ISPV2_TOP_WRAPPER_C>,
-+				 <&ispcrg JH7110_ISPRST_VIN_P_AXI_RD>,
-+				 <&ispcrg JH7110_ISPRST_VIN_P_AXI_WR>,
-+				 <&syscrg JH7110_SYSRST_ISP_TOP>,
-+				 <&syscrg JH7110_SYSRST_ISP_TOP_AXI>;
-+			reset-names = "wrapper_p", "wrapper_c", "axird",
-+				      "axiwr", "isp_top_n", "isp_top_axi";
-+			power-domains = <&pwrc JH7110_PD_ISP>;
-+			interrupts = <92>, <87>, <90>, <88>;
-+			status = "disabled";
-+		};
-+
- 		voutcrg: clock-controller@295c0000 {
- 			compatible = "starfive,jh7110-voutcrg";
- 			reg = <0x0 0x295c0000 0x0 0x10000>;
---
-2.25.1
+Okay, I will update.
+
+>
+> > +
+> > +     /* Point device to the new vector */
+> > +     imsic_msi_update_msg(d, new_vec);
+>
+> > +static int imsic_irq_domain_alloc(struct irq_domain *domain,
+> > +                               unsigned int virq, unsigned int nr_irqs=
+,
+> > +                               void *args)
+> > +{
+> > +     struct imsic_vector *vec;
+> > +     int hwirq;
+> > +
+> > +     /* Legacy-MSI or multi-MSI not supported yet. */
+>
+> What's legacy MSI in that context?
+
+The legacy-MSI is the MSI support in PCI v2.2 where
+number of MSIs allocated by device were either 1, 2, 4,
+8, 16, or 32 and the data written is <data_word> + <irqnum>.
+
+>
+> > +     if (nr_irqs > 1)
+> > +             return -ENOTSUPP;
+> > +
+> > +     hwirq =3D imsic_hwirq_alloc();
+> > +     if (hwirq < 0)
+> > +             return hwirq;
+> > +
+> > +     vec =3D imsic_vector_alloc(hwirq, cpu_online_mask);
+> > +     if (!vec) {
+> > +             imsic_hwirq_free(hwirq);
+> > +             return -ENOSPC;
+> > +     }
+> > +
+> > +     irq_domain_set_info(domain, virq, hwirq,
+> > +                         &imsic_irq_base_chip, vec,
+> > +                         handle_simple_irq, NULL, NULL);
+> > +     irq_set_noprobe(virq);
+> > +     irq_set_affinity(virq, cpu_online_mask);
+> > +
+> > +     /*
+> > +      * IMSIC does not implement irq_disable() so Linux interrupt
+> > +      * subsystem will take a lazy approach for disabling an IMSIC
+> > +      * interrupt. This means IMSIC interrupts are left unmasked
+> > +      * upon system suspend and interrupts are not processed
+> > +      * immediately upon system wake up. To tackle this, we disable
+> > +      * the lazy approach for all IMSIC interrupts.
+>
+> Why? Lazy works perfectly fine even w/o an irq_disable() callback.
+
+This was suggested by SiFive folks. I am also not sure why we
+need this. For now, I will drop this and bring it back as a separate
+patch if required.
+
+>
+> > +      */
+> > +     irq_set_status_flags(virq, IRQ_DISABLE_UNLAZY);
+>
+> > +
+> > +#define MATCH_PLATFORM_MSI           BIT(DOMAIN_BUS_PLATFORM_MSI)
+>
+> You really love macro indirections :)
+
+This is to be consistent with MATCH_PCI_MSI introduced by the
+subsequent patch.
+
+Also, this is inspired from your ARM GIC patches.
+https://lore.kernel.org/linux-arm-kernel/20221121140049.038269899@linutroni=
+x.de/
+https://lore.kernel.org/linux-arm-kernel/20221121140049.112451419@linutroni=
+x.de/
+https://lore.kernel.org/linux-arm-kernel/20221121140049.237988384@linutroni=
+x.de/
+https://lore.kernel.org/linux-arm-kernel/20221121140049.941784867@linutroni=
+x.de/
+
+>
+> > +static const struct msi_parent_ops imsic_msi_parent_ops =3D {
+> > +     .supported_flags        =3D MSI_GENERIC_FLAGS_MASK,
+> > +     .required_flags         =3D MSI_FLAG_USE_DEF_DOM_OPS |
+> > +                               MSI_FLAG_USE_DEF_CHIP_OPS,
+> > +     .bus_select_token       =3D DOMAIN_BUS_NEXUS,
+> > +     .bus_select_mask        =3D MATCH_PLATFORM_MSI,
+> > +     .init_dev_msi_info      =3D imsic_init_dev_msi_info,
+> > +};
+> > +
+> > +int imsic_irqdomain_init(void)
+> > +{
+> > +     struct imsic_global_config *global;
+> > +
+> > +     if (!imsic || !imsic->fwnode) {
+> > +             pr_err("early driver not probed\n");
+> > +             return -ENODEV;
+> > +     }
+> > +
+> > +     if (imsic->base_domain) {
+> > +             pr_err("%pfwP: irq domain already created\n", imsic->fwno=
+de);
+> > +             return -ENODEV;
+> > +     }
+> > +
+> > +     global =3D &imsic->global;
+>
+> Please move that assignment down to the usage site. Here it's just a
+> distraction.
+
+Okay, I will update.
+
+>
+> > +     /* Create Base IRQ domain */
+> > +     imsic->base_domain =3D irq_domain_create_tree(imsic->fwnode,
+> > +                                     &imsic_base_domain_ops, imsic);
+> > +     if (!imsic->base_domain) {
+> > +             pr_err("%pfwP: failed to create IMSIC base domain\n",
+> > +                     imsic->fwnode);
+> > +             return -ENOMEM;
+> > +     }
+> > +     imsic->base_domain->flags |=3D IRQ_DOMAIN_FLAG_MSI_PARENT;
+> > +     imsic->base_domain->msi_parent_ops =3D &imsic_msi_parent_ops;
+>
+
+Regards,
+Anup
 
