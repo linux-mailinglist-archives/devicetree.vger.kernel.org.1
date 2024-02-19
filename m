@@ -1,116 +1,211 @@
-Return-Path: <devicetree+bounces-43455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2A3985A675
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 15:53:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98AD385A67C
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 15:53:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E2F72835CA
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 14:53:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BDF241C21E21
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 14:53:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E51E374FF;
-	Mon, 19 Feb 2024 14:53:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8BF837708;
+	Mon, 19 Feb 2024 14:53:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DqDohTbf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wPoO9OlU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98A012E419
-	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 14:53:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 601B8376E5
+	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 14:53:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708354409; cv=none; b=nuyg47tvAHhTOX4Dl+CNISi0pPZdDAdupdDa77YkU8UBpZuXaiDtgrAnGw0ZPsWJhv3S+fUaGK6KVRBjSFm250xLqM11ifTTUfPKEUBuX+GQ7iOeGLfQtgRC7GuQWOAoUfD364XxlJAvkNFEqvEsS62jhzxUF1qWLk3i4jm2J4M=
+	t=1708354429; cv=none; b=QALdlyotPrYqrRTYNCbfJx6XBrHmNIuEENkNowvhPpwLNuNSzVmyFxuLfh2HM19bAPPyIahTjr7hZ9ZoCfaZgZb0G+DZERQnayFMjDu5SFXUqyCbwoZEfU6ODNfhz6ImD93v82OxyluGzZrLU2/qNwMLBQvXv2y8frhcH8azo9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708354409; c=relaxed/simple;
-	bh=zMctZEwS487clYI69wTjBZbHwKLOIJfqLcoi9P7jP1k=;
+	s=arc-20240116; t=1708354429; c=relaxed/simple;
+	bh=A4nq5x7Ib9yQ12vGKrkxl7Fvyza54Vi2OAWKmupXEmU=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=lZ28vgWCJwkHq/Wd+iPkBJ2rnqY7PDUqWBTJou2sb+Q/kiT3s1ZQNEGB94mefsAGv/VEvSocO6/Zb0g8aNV0sMbbAdz5S52bQcLphromF8bETu+sYuiTOhk+rRCDUCxapVvAp7LVtMulRU4TxTGIZ+ZyQQ6z80x2zAilWX3DVFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DqDohTbf; arc=none smtp.client-ip=209.85.219.175
+	 To:Cc:Content-Type; b=IURDGDTuKHMV5jrKXpJQkY5jpAtaesoNtdynTA6hSsHHMZZppW4he2bVWXWHZLenN0m6jNpisrgHdoEjaw3sw2lPnaDef9rVzkHdBZjg7QoRJaz/s0MqdOGtADAQjwwU8rsvYYDfYUW/LKaN//F1aFpABPjmEZUeM6PyNx9sUQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wPoO9OlU; arc=none smtp.client-ip=209.85.219.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-dc745927098so3836361276.3
-        for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 06:53:27 -0800 (PST)
+Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-dc6d24737d7so3738746276.0
+        for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 06:53:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708354406; x=1708959206; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zMctZEwS487clYI69wTjBZbHwKLOIJfqLcoi9P7jP1k=;
-        b=DqDohTbfO9dq3v2fymtmMv0A7OPJ2Mnc1HXqKmScqdsCV1QikH7VM3HAmsuFcdtZA2
-         bTJvPadbXostf5R1og7+VmVurwlfdPFR0ynt51b9nSrdqRPUGAxOlVMAPbQgOMu3DeLG
-         NtoSDCu8jjCZkkpf4A4b42qMzP4gIoPAzBKge5G4laxVAo3jO+Y341Yc+OAcr2e1/iUa
-         jTAOXC9wNzXdK+ZhYa3ihcwv9aFJwBBJ1aw33sKvOe6k9qyNWliCFfaN158fWqxku7b3
-         8RbmXke7NnQsEymwBK+WxeBgo+4qIU4ltDvAsVORbL5u2FJ953mkF05FrckueNRuxoHO
-         r75g==
+        d=linaro.org; s=google; t=1708354426; x=1708959226; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=uHNd0ZyJA4gTbxBaC9YDXwkG/RiI5KMLPKGCG7+Wzlo=;
+        b=wPoO9OlUVufnAf15roXstTKVzMAu1tMpxJ9G7/TfjFY+zenB/R5GIxdFNmUPiTBQQc
+         hZ6TTce2WQZs0gTrX/tD3FURpVVNgXQsW3qGCbFsRmYmFhS8thhbcz+fceb9nXx1zsD5
+         Zr9RSbKWq8X60QPHrKGCAEyRp0pzgYkUfG7z5axKU+bzIoUkZzkyQG8rnf2LnQhRL7OV
+         IRSMFmxxruv4xTnrHEkT0ybTOKD/GKLAYxShmC3DeXKifv2J0jgD27Oy35/GAITsNXCy
+         ajw43y1MenblC4WRwNMEhfJpwR1bShRS4HeLwRbyslzuYStTD8/wseZeH92JO5jLhnPJ
+         /ofA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708354406; x=1708959206;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zMctZEwS487clYI69wTjBZbHwKLOIJfqLcoi9P7jP1k=;
-        b=tM8tFJDdVWlxAHn8d1i9zIs66kp8wMZn0dVy6eI+vfalV/vMqiMcKCSu0ucr+ykv8Z
-         F8RNMzZxZCM23kTzY7JiXLhXTmkUezJJ4SFLjO8lacDLlnWNvaBehbmyKUVwZkoJ+EGq
-         J99dCFPhmfEweVqzuc6Qi35xvUbbt0bPiC+Pff2zJAM3jRj1EfvjYmW8SMQBooPzimpi
-         tqzKztkdymxvfXG/cR/SSZlzuoqpHh+kJrnQlwuiwoOd90AaXRjxPV5QXmBxur21b8O3
-         pX7k0RJpmp0LPoL8kUJSW15WYbLRtcNEBAB8VgIw8Yf2m5WlCVQRHaBlWqyOTb8EInV3
-         1xRw==
-X-Forwarded-Encrypted: i=1; AJvYcCWWR2lllMwLSBeDmPgzJ9ZsqtbMMC+oE4u4n1HMtY+80r/1WJy2F+TgxjEfY9f7nK0JtQ5TPmBo29H91fzlp6TeFcXKul9N3AKEdQ==
-X-Gm-Message-State: AOJu0YyEX7CiblfCWpCkWj3GKi9xItjv5sqCh3S+75vHcfWvZZxA/tpi
-	uVgz5nmPcmZUXDiV/z3y622MBJ++XO9aJx+/PvBGWhj7cPs5QLZoruEWUqBOGkB4IJkyLtVBAzP
-	lBSBEIjg+RBkXq9tn7fb1/PT28OdrHvGkrZ8j0g==
-X-Google-Smtp-Source: AGHT+IFjLqSGFbIDvH5cX7ed0opXwPcuJwCD0Xc+ptPIjerX33CSAOO/7gjxJZTJd7jLjzTB0GTLbynGAuFaWNVORRQ=
-X-Received: by 2002:a05:6902:2405:b0:dc7:47b7:9053 with SMTP id
- dr5-20020a056902240500b00dc747b79053mr12979596ybb.15.1708354406642; Mon, 19
- Feb 2024 06:53:26 -0800 (PST)
+        d=1e100.net; s=20230601; t=1708354426; x=1708959226;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uHNd0ZyJA4gTbxBaC9YDXwkG/RiI5KMLPKGCG7+Wzlo=;
+        b=u1BM//YDxaILHOOHoF+16nYiq38mq7qMtndhqeHESimFttRuLrWVXS9dD50zE4L/dV
+         T4Zdyu/B1UfAentLW3laPR8CqtVh9HHH7dCMDkzC9H3c2detUUmz25UvAzaTUvdKUrzx
+         +1t8BJqvYUyUGotNfqkoYgqzXwhwT+t7UaGZdA59KOCu/aM1RwovFJGHj5lD+RKJ2yDF
+         qLjH2JNZeeZeDxFeMc79+yNJYU47cgaIR1ZvIyv9wQrX4Zu+O8sNqpLqnGpZn2Y0xIzR
+         wWc8mMh52WMZ5G4C84s1+A6hQ52BUgR/lcGFewy87aNRt5ocyvd/pp56Bu0TzabfeYJs
+         LVmQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUuBa7CejcMy9fVEV728ZVIFFGYmxpC1Es/XTEUh+NGNxxCnLcP4fuIb9zUl9r5zigIiL0ROGZJOftZjjb+IliSUv5n7Ih160FUMw==
+X-Gm-Message-State: AOJu0YxciGynB2jqIav3jhgd2YCc3zywMzvi++dCPDee7Wxyi3DLK3KY
+	UlL1k2tOZ5ueD82m/BLToQMquKkjL8RqTRcSFUyKFrCdp8jWHuynCOJGmeNR26HqR43Un5xfbDp
+	6mSqOS1WfflpGGcWy9/pX0/fa6Iz5jfwhFYm49w==
+X-Google-Smtp-Source: AGHT+IHY/le6C7LNc0DIav/5O65P9EcFeh1YIyPzIjc+EV5s2EcaI1Ea6U5pWMuSdfWLBVIgW0qC8w2mR4a/yKRxOBo=
+X-Received: by 2002:a81:5287:0:b0:607:9d63:f5f5 with SMTP id
+ g129-20020a815287000000b006079d63f5f5mr12422677ywb.12.1708354426245; Mon, 19
+ Feb 2024 06:53:46 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240215-mbly-i2c-v1-0-19a336e91dca@bootlin.com>
- <20240215-mbly-i2c-v1-8-19a336e91dca@bootlin.com> <CACRpkdbuTX50syD0CMFcZXBmAHw4nwpcSc-C1OOUQEA9WHqCwA@mail.gmail.com>
- <CZ94S0SE0WFN.1RS0SY3KNMWQQ@bootlin.com>
-In-Reply-To: <CZ94S0SE0WFN.1RS0SY3KNMWQQ@bootlin.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 19 Feb 2024 15:53:15 +0100
-Message-ID: <CACRpkdaVCOB_C45KTEtuoZRwb66x1saGHN3A_ZpY7T=a8YtV+Q@mail.gmail.com>
-Subject: Re: [PATCH 08/13] i2c: nomadik: replace jiffies by ktime for FIFO
- flushing timeout
-To: =?UTF-8?B?VGjDqW8gTGVicnVu?= <theo.lebrun@bootlin.com>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+References: <20240219-topic-rb1_gpu-v1-0-d260fa854707@linaro.org> <20240219-topic-rb1_gpu-v1-3-d260fa854707@linaro.org>
+In-Reply-To: <20240219-topic-rb1_gpu-v1-3-d260fa854707@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Mon, 19 Feb 2024 16:53:35 +0200
+Message-ID: <CAA8EJpq8XvQm9B3RZq9PNMqA5VAqKUyVn5qt8-WEYMQMWniDZA@mail.gmail.com>
+Subject: Re: [PATCH 3/8] clk: qcom: clk-alpha-pll: Add HUAYRA_2290 support
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
+	Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, linux-arm-kernel@lists.infradead.org, 
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org, 
-	Gregory Clement <gregory.clement@bootlin.com>, 
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+	Bjorn Andersson <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Clark <robdclark@gmail.com>, 
+	Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, linux-arm-kernel@lists.infradead.org, 
+	iommu@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Feb 19, 2024 at 3:38=E2=80=AFPM Th=C3=A9o Lebrun <theo.lebrun@bootl=
-in.com> wrote:
-
-> Somewhat related to this patch: while writing it, I noticed the total
-> timeout of flush_i2c_fifo() is 10 times the timeout. Without this
-> series, this means 10*200ms of busywaiting!
+On Mon, 19 Feb 2024 at 15:36, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
 >
-> If you have an opinion on a more sensible option for this I could add a
-> patch to my V2. I don't know enough to pick a sensible value.
+> Commit 134b55b7e19f ("clk: qcom: support Huayra type Alpha PLL")
+> introduced an entry to the alpha offsets array, but diving into QCM2290
+> downstream and some documentation, it turned out that the name Huayra
+> apparently has been used quite liberally across many chips, even with
+> noticeably different hardware.
 >
-> I'm unsure if it makes sense that the timeout of flush_i2c_fifo() is a
-> multiple of the transfer timeout. Does it make sense that those two
-> timeouts are correlated?
+> Introduce another set of offsets and a new configure function for the
+> Huayra PLL found on QCM2290. This is required e.g. for the consumers
+> of GPUCC_PLL0 to properly start.
+>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  drivers/clk/qcom/clk-alpha-pll.c | 45 ++++++++++++++++++++++++++++++++++++++++
+>  drivers/clk/qcom/clk-alpha-pll.h |  3 +++
+>  2 files changed, 48 insertions(+)
+>
+> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
+> index 8a412ef47e16..61b5abd13782 100644
+> --- a/drivers/clk/qcom/clk-alpha-pll.c
+> +++ b/drivers/clk/qcom/clk-alpha-pll.c
+> @@ -244,6 +244,19 @@ const u8 clk_alpha_pll_regs[][PLL_OFF_MAX_REGS] = {
+>                 [PLL_OFF_OPMODE] = 0x30,
+>                 [PLL_OFF_STATUS] = 0x3c,
+>         },
+> +       [CLK_ALPHA_PLL_TYPE_HUAYRA_2290] =  {
+> +               [PLL_OFF_L_VAL] = 0x04,
+> +               [PLL_OFF_ALPHA_VAL] = 0x08,
+> +               [PLL_OFF_USER_CTL] = 0x0c,
+> +               [PLL_OFF_CONFIG_CTL] = 0x10,
+> +               [PLL_OFF_CONFIG_CTL_U] = 0x14,
+> +               [PLL_OFF_CONFIG_CTL_U1] = 0x18,
+> +               [PLL_OFF_TEST_CTL] = 0x1c,
+> +               [PLL_OFF_TEST_CTL_U] = 0x20,
+> +               [PLL_OFF_TEST_CTL_U1] = 0x24,
+> +               [PLL_OFF_OPMODE] = 0x28,
+> +               [PLL_OFF_STATUS] = 0x38,
+> +       },
 
-I have a *vague* memory of the timeouts for flushing needing to be longer
-but I might be mistaken. This is probably a Srinidhi or even Sachin questio=
-n...
-Sadly I don't have their current mail addresses.
+Can you please move them next to the standard huayra PLL regs?
 
-Yours,
-Linus Walleij
+>  };
+>  EXPORT_SYMBOL_GPL(clk_alpha_pll_regs);
+>
+> @@ -779,6 +792,38 @@ static long clk_alpha_pll_round_rate(struct clk_hw *hw, unsigned long rate,
+>         return clamp(rate, min_freq, max_freq);
+>  }
+>
+> +void clk_huayra_2290_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+> +                                  const struct alpha_pll_config *config)
+> +{
+> +       clk_alpha_pll_write_config(regmap, PLL_CONFIG_CTL(pll), config->config_ctl_val);
+> +       clk_alpha_pll_write_config(regmap, PLL_CONFIG_CTL_U(pll), config->config_ctl_hi_val);
+> +       clk_alpha_pll_write_config(regmap, PLL_CONFIG_CTL_U1(pll), config->config_ctl_hi1_val);
+> +       clk_alpha_pll_write_config(regmap, PLL_TEST_CTL(pll), config->test_ctl_val);
+> +       clk_alpha_pll_write_config(regmap, PLL_TEST_CTL_U(pll), config->test_ctl_hi_val);
+> +       clk_alpha_pll_write_config(regmap, PLL_TEST_CTL_U1(pll), config->test_ctl_hi1_val);
+> +       clk_alpha_pll_write_config(regmap, PLL_L_VAL(pll), config->l);
+> +       clk_alpha_pll_write_config(regmap, PLL_ALPHA_VAL(pll), config->alpha);
+> +       clk_alpha_pll_write_config(regmap, PLL_USER_CTL(pll), config->user_ctl_val);
+> +
+> +       /* Set PLL_BYPASSNL */
+> +       regmap_update_bits(regmap, PLL_MODE(pll), PLL_BYPASSNL, PLL_BYPASSNL);
+> +
+> +       /* Wait 5 us between setting BYPASS and deasserting reset */
+> +       mb();
+> +       udelay(5);
+> +
+> +       /* Take PLL out from reset state */
+> +       regmap_update_bits(regmap, PLL_MODE(pll), PLL_RESET_N, PLL_RESET_N);
+> +
+> +       /* Wait 50us for PLL_LOCK_DET bit to go high */
+> +       mb();
+> +       usleep_range(50, 55);
+> +
+> +       /* Enable PLL output */
+> +       regmap_update_bits(regmap, PLL_MODE(pll), PLL_OUTCTRL, PLL_OUTCTRL);
+> +}
+> +EXPORT_SYMBOL(clk_huayra_2290_pll_configure);
+> +
+>  static unsigned long
+>  alpha_huayra_pll_calc_rate(u64 prate, u32 l, u32 a)
+>  {
+> diff --git a/drivers/clk/qcom/clk-alpha-pll.h b/drivers/clk/qcom/clk-alpha-pll.h
+> index fb6d50263bb9..91d3d6f19eae 100644
+> --- a/drivers/clk/qcom/clk-alpha-pll.h
+> +++ b/drivers/clk/qcom/clk-alpha-pll.h
+> @@ -29,6 +29,7 @@ enum {
+>         CLK_ALPHA_PLL_TYPE_BRAMMO_EVO,
+>         CLK_ALPHA_PLL_TYPE_STROMER,
+>         CLK_ALPHA_PLL_TYPE_STROMER_PLUS,
+> +       CLK_ALPHA_PLL_TYPE_HUAYRA_2290,
+
+Also next to standard huayra PLL, please.
+
+>         CLK_ALPHA_PLL_TYPE_MAX,
+>  };
+>
+> @@ -191,6 +192,8 @@ extern const struct clk_ops clk_alpha_pll_rivian_evo_ops;
+>
+>  void clk_alpha_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+>                              const struct alpha_pll_config *config);
+> +void clk_huayra_2290_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+> +                                  const struct alpha_pll_config *config);
+>  void clk_fabia_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+>                                 const struct alpha_pll_config *config);
+>  void clk_trion_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+>
+> --
+> 2.43.2
+>
+
+
+-- 
+With best wishes
+Dmitry
 
