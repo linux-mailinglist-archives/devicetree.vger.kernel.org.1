@@ -1,210 +1,136 @@
-Return-Path: <devicetree+bounces-43477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F56185A745
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 16:21:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 790CB85A756
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 16:27:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05CD12833EF
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 15:21:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34FCA284318
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 15:27:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AD9338398;
-	Mon, 19 Feb 2024 15:21:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E85B1383A4;
+	Mon, 19 Feb 2024 15:27:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FDOOKXa5"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="OM3d6rri"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD38B38384;
-	Mon, 19 Feb 2024 15:21:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4B6F3838A
+	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 15:27:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708356094; cv=none; b=eZlpjfSsQedcBuEgp7i1v/beeP5WBgvQa/yU/bcb2LDRf4GLuqxMErsuPyGtCY9oU4JtF163CHfegDu5KV7bnuewA7bBUk6ucM1+CUYHKc0NAW2eUcnXdPcgbs2YC1SQgAQmdP2JP6dAdZAYtMCF0EEYRuIY8VTawljjwVZbOvA=
+	t=1708356441; cv=none; b=mLT5m9CxfZVMjaENHeTwDlGdmivTO5rrN5nBUzHK+cYntM+04PS4nEEzpp87gyVGu2UQDTYmU9aZojMNYUtu2J/hDfHVmB+tO+Is3+Bc8pTKQw8j6bObBsVdIkyV1G+qHQQrE5SEEW0+g1pu24vrk8lE82S2vrsq8Z7kCgC2yYM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708356094; c=relaxed/simple;
-	bh=kWjDFBWNyukDqiqilRrkk/NPz9Qf4ovSHkLaWG4pOcs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GVF4Z2B4blDtgXx0oYiveVVINxukdyAR5C9xBiF/hAf+Xc3RIvNngsTdu8qkvvLYruXbSh5O9t4xKgFkS7D/+b33fPkdlP6Hemru/yQ3dmHrgTB+RvB+xTKzJSCHQvtRt4EWJeDb8MB9cnnmirlSuYuXQntDFQcVmpiYYAEBpMo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FDOOKXa5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A20DBC433C7;
-	Mon, 19 Feb 2024 15:21:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708356094;
-	bh=kWjDFBWNyukDqiqilRrkk/NPz9Qf4ovSHkLaWG4pOcs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FDOOKXa5BKBH1ElXgKDSx2ks+y9Xel5+lS491Zq86zliaMN6GLKy3Llxnvk0DTd61
-	 PR0g4s6crii1spGlwXzoMqPtpGsMYkooXxLbyqe5evvoin9UgVhSpGWuB2fwVTzbVf
-	 l1oR9b1TEdrL8JggZ6WGfStnHxQovjg3sTK+wmG6TMhtR5xbVeOhcPr51RugyVpRW2
-	 WvQsM9SHsHgou/6vWLHdYFxK/41/OyriI6nQdOJKXi1c2gePTO43p87SJrzKJMPoeT
-	 Yq/FHUWfkf88gl56AJwAelvNdaGENye+7n9iBS59u/so9RPbd+swKW+vbjiJCGhNjO
-	 tNV7qxMXasfiA==
-Date: Mon, 19 Feb 2024 16:21:26 +0100
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: bhelgaas@google.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	festevam@gmail.com, helgaas@kernel.org, hongxing.zhu@nxp.com,
-	imx@lists.linux.dev, kernel@pengutronix.de,
-	krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
-	kw@linux.com, l.stach@pengutronix.de,
-	linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	manivannan.sadhasivam@linaro.org, robh@kernel.org,
-	s.hauer@pengutronix.de, shawnguo@kernel.org
-Subject: Re: [PATCH v10 00/14] PCI: imx6: Clean up and add imx95 pci support
-Message-ID: <ZdNx9op+MhzF5FNB@lpieralisi>
-References: <20240205173335.1120469-1-Frank.Li@nxp.com>
- <ZdNvsdao8jbB/52L@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1708356441; c=relaxed/simple;
+	bh=djGmhPOvcq9/W1rxe5JJwBiih+Q1MkZoP16CGSmuCPA=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GlE+9vzWkUch7TT2qTTSz5nZUKNcP3kGI5LNzi4EbigXk6xGAOgOH7i0+d5mpGT6SHTK5xlyygtUg/h+aDxX3faDvnQQGDd+96OzUq6iwdw8nQwqm39OBAHgN8ukZuIogqUtOtVLiwaW87leb6AAcDPraWinEXQvqBLhtxOD2Q8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=OM3d6rri; arc=none smtp.client-ip=185.125.188.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id B5FC240CBD
+	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 15:27:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1708356430;
+	bh=z13zQfen5PSic1cbaLHezaNJrnjHHexIGsaUa4HOjMU=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=OM3d6rri8VznFPhNITT04nJy9SSdy23B9Bw6/NfYq1r0zBWBvS1kfhlItIXgndH8u
+	 sUM1pi1s65X5/rgPDXTzQZiYjhUMDCkAQ2GI6Wo9ZEX+N52aVSOJunJUMC4hTUtN8c
+	 nKBjLOHnpMkI/VwADxgRDaLlNdqbjDaYHhCXicPbr7tXN8by7ewmgdEVYMC6ELc11r
+	 yHIvYKD7izVqAwYSfGEA85c4AaZIAb3RzE8IyP7KYojLa4NG7nBk0AdA0nxF1g6V4J
+	 fZLCExL83m0wZarbZRnDHwWgHJ2V03FxrN4Q+fHr/fTLI4Bbk5PwBzkdZLkbtsDGpL
+	 4xKOh2C++ZIcA==
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-42dbfd1fe8cso57371061cf.1
+        for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 07:27:10 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708356429; x=1708961229;
+        h=content-transfer-encoding:cc:to:subject:message-id:date
+         :mime-version:references:in-reply-to:from:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=z13zQfen5PSic1cbaLHezaNJrnjHHexIGsaUa4HOjMU=;
+        b=hk4QVt26WlVTBftnQ8htKZRvH8eoqFDsn68EDJVySvN+pWEvop7dXPq4Kgs4allrtd
+         kSmlulyuRtGAfqa0q9eQg1HlNrTwaOcwLIZJD954tfS1kT3QSr2L2z41TvTWlE6D7G6n
+         d8taD6kmC5kObxXJCZGSg1TEpA5CccwEC6FEunAZcHrd13fAomXSOi9syzGE9LnU9Iko
+         Tzz00FBbuV6E6hlFjTZSKkohDVRIv+Opp3J+iezR3azSUurvcTnL6+ZnJew4WycNb2xW
+         BsxE64AEsezhP1GHMzgdnhFJkDQYQjkWL5kPnQaCftih1qSPl3aKRpGtRoH7hwzA3Cwk
+         un0A==
+X-Forwarded-Encrypted: i=1; AJvYcCWR4+s+mPsRVuyGZcvbFz9FtbZ1BhxQwe6mxvv3qrwc2O6o/0vfFeYGStJ5IDzKOxh4vhIQ2Vh2suLKRm8Bk0AhS0I/Y+p7c/EhSw==
+X-Gm-Message-State: AOJu0Yy2Qkhbho/EKEl5oVQvuL5SrjuqnUYfkElgjM/l74gwc90b3QIY
+	g4OxIs0tMYkgGt+55axj8dQIbdT8zGkEJ1Fp0IljPM7WmE8FtxqROoeb6KK34HKnf6GyysG72Y9
+	jaOPHgaVI8bxzu6FxEFfZtAn3mJUNLkP0JZZ8FP9TukEhGLtE+X+YQoDoN3uOQt4DuE9KZyHj/U
+	LYJfp9ThbdZ3AUNPZ/Rbdd5T+y9iQCGHWEnRex31hjKXGtKNq/4wAKQLR01w==
+X-Received: by 2002:ac8:5f4b:0:b0:42c:51fb:4dd3 with SMTP id y11-20020ac85f4b000000b0042c51fb4dd3mr15231535qta.3.1708356429574;
+        Mon, 19 Feb 2024 07:27:09 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHfOvuXhXroNvyMuh8cslUW24quliLM3pW8Lnp0rVnhqXxT2/Q9A4igAn3xd8RWbT/DgE7Dv8c0GASdgeP08PI=
+X-Received: by 2002:ac8:5f4b:0:b0:42c:51fb:4dd3 with SMTP id
+ y11-20020ac85f4b000000b0042c51fb4dd3mr15231513qta.3.1708356429216; Mon, 19
+ Feb 2024 07:27:09 -0800 (PST)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 19 Feb 2024 07:27:08 -0800
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <CACRpkdbkfWByoo+i57rr3w7QCyCgbiTbP6e_kT3ZNkiSeYUEoQ@mail.gmail.com>
+References: <ZdC_g3U4l0CJIWzh@xhacker> <CAJM55Z-t9e8L2_iFfdbCDpOzi7UxQao6-L6VU_W9OGBciJ46bA@mail.gmail.com>
+ <CACRpkdbkfWByoo+i57rr3w7QCyCgbiTbP6e_kT3ZNkiSeYUEoQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZdNvsdao8jbB/52L@lizhi-Precision-Tower-5810>
+Mime-Version: 1.0
+Date: Mon, 19 Feb 2024 07:27:08 -0800
+Message-ID: <CAJM55Z_EDuWQAsXmJaOE8QRxFB=GvGvEFzQcaHdu=8mPHDJFGw@mail.gmail.com>
+Subject: Re: commit f34fd6ee1be8 breaks current dwapb gpio DT users
+To: Linus Walleij <linus.walleij@linaro.org>, 
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: Jisheng Zhang <jszhang@kernel.org>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Feb 19, 2024 at 10:11:45AM -0500, Frank Li wrote:
-> On Mon, Feb 05, 2024 at 12:33:21PM -0500, Frank Li wrote:
-> > first 6 patches use drvdata: flags to simplify some switch-case code.
-> > Improve maintaince and easy to read code.
-> > 
-> 
-> @Lorenzo Pieralisi:
-> 
-> 	Do you have chance to look other patches?
+Linus Walleij wrote:
+> On Sat, Feb 17, 2024 at 6:44=E2=80=AFPM Emil Renner Berthing
+> <emil.renner.berthing@canonical.com> wrote:
+>
+> > --- a/drivers/gpio/gpiolib.c
+> > +++ b/drivers/gpio/gpiolib.c
+> > @@ -2042,6 +2042,11 @@ EXPORT_SYMBOL_GPL(gpiochip_generic_free);
+> >  int gpiochip_generic_config(struct gpio_chip *gc, unsigned int offset,
+> >                             unsigned long config)
+> >  {
+> > +#ifdef CONFIG_PINCTRL
+>
+> Please do this:
+>
+> if (IS_ENABLED(CONFIG_PINCTRL) && list_empty(&gc->gpiodev->pin_ranges))
+> ...
+>
+> The ifdef is so ugly.
 
-Yes, they are fine.
+I agree, but I'm not sure it will work in this case since the pin_ranges
+member is only there when CONFIG_PINCTRL=3Dy. That would also explain why
+gpiochip_generic_request() and gpiochip_generic_free() use ifdefs.
 
-> 	Mani's apply EP side change. 
-> 	'PCI: imx6: Add iMX95 Endpoint (EP) support' need be rebased. 
+>
+> > +       if (list_empty(&gc->gpiodev->pin_ranges))
+> > +               return -ENOTSUPP;
+> > +#endif
+>
+> That looks like a reasonable fix, I try to wrap my head around if it
+> would affect
+> any users but can't figure it out, we have to test.
+>
+> Can you please send it as a proper patch? With the above fixed:
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-What does that mean ? I think it is best to pull the series in a single
-branch if there are not any dependencies on other branches.
+Will do, thanks!
 
-Thanks,
-Lorenzo
-
-> Frank
-> 
-> > Then add imx95 basic pci host function.
-> > 
-> > follow two patch do endpoint code clean up.
-> > Then add imx95 basic endpont function.
-> > 
-> > Compared with v2, added EP function support and some fixes,  please change
-> > notes at each patches.
-> > 
-> > Change from v9 to v10
-> > - remove two patches:
-> > >   dt-bindings: imx6q-pcie: Add linux,pci-domain as required for iMX8MQ
-> > >   PCI: imx6: Using "linux,pci-domain" as slot ID
-> > it is not good solution to fixed hardcode check to get controller id.
-> > Will see better solution later.
-> > 
-> > dt-binding pass pcie node:
-> > 
-> > pcie0: pcie@4c300000 {
-> >                         compatible = "fsl,imx95-pcie";
-> >                         reg = <0 0x4c300000 0 0x40000>,
-> >                                 <0 0x4c360000 0 0x10000>,
-> >                                 <0 0x4c340000 0 0x20000>,
-> >                                 <0 0x60100000 0 0xfe00000>;
-> >                         reg-names = "dbi", "atu", "app", "config";
-> >                         #address-cells = <3>;
-> >                         #size-cells = <2>;
-> >                         device_type = "pci";
-> >                         linux,pci-domain = <0>;
-> >                         bus-range = <0x00 0xff>;
-> >                         ranges = <0x81000000 0x0 0x00000000 0x0 0x6ff00000 0 0x00100000>,
-> >                                  <0x82000000 0x0 0x10000000 0x9 0x10000000 0 0x10000000>;
-> >                         num-lanes = <1>;
-> >                         num-viewport = <8>;
-> >                         interrupts = <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>;
-> >                         interrupt-names = "msi";
-> >                         #interrupt-cells = <1>;
-> >                         interrupt-map-mask = <0 0 0 0x7>;
-> >                         interrupt-map = <0 0 0 1 &gic 0 0 GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
-> >                                         <0 0 0 2 &gic 0 0 GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>,
-> >                                         <0 0 0 3 &gic 0 0 GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
-> >                                         <0 0 0 4 &gic 0 0 GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>;
-> >                         fsl,max-link-speed = <3>;
-> >                         clocks = <&scmi_clk IMX95_CLK_HSIO>,
-> >                                  <&scmi_clk IMX95_CLK_HSIOPLL>,
-> >                                  <&scmi_clk IMX95_CLK_HSIOPLL_VCO>,
-> >                                  <&scmi_clk IMX95_CLK_HSIOPCIEAUX>;
-> >                         clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux";
-> >                         assigned-clocks =<&scmi_clk IMX95_CLK_HSIOPLL_VCO>,
-> >                                          <&scmi_clk IMX95_CLK_HSIOPLL>,
-> >                                          <&scmi_clk IMX95_CLK_HSIOPCIEAUX>;
-> >                         assigned-clock-rates = <3600000000>, <100000000>, <10000000>;
-> >                         assigned-clock-parents = <0>, <0>,
-> >                                                  <&scmi_clk IMX95_CLK_SYSPLL1_PFD1_DIV2>;
-> >                         power-domains = <&scmi_devpd IMX95_PD_HSIO_TOP>;
-> >                         /* 0x30~0x37 stream id for pci0 */
-> >                         /*
-> >                          * iommu-map = <0x000 &apps_smmu 0x30 0x1>,
-> >                          * <0x100 &apps_smmu 0x31 0x1>;
-> >                          */
-> >                         status = "disabled";
-> >                 };
-> > 
-> > pcie1: pcie-ep@4c380000 {
-> >                         compatible = "fsl,imx95-pcie-ep";
-> >                         reg = <0 0x4c380000 0 0x20000>,
-> >                               <0 0x4c3e0000 0 0x1000>,
-> >                               <0 0x4c3a0000 0 0x1000>,
-> >                               <0 0x4c3c0000 0 0x10000>,
-> >                               <0 0x4c3f0000 0 0x10000>,
-> >                               <0xa 0 1 0>;
-> >                         reg-names = "dbi", "atu", "dbi2", "app", "dma", "addr_space";
-> >                         interrupts = <GIC_SPI 317 IRQ_TYPE_LEVEL_HIGH>;
-> >                         interrupt-names = "dma";
-> >                         fsl,max-link-speed = <3>;
-> >                         clocks = <&scmi_clk IMX95_CLK_HSIO>,
-> >                                  <&scmi_clk IMX95_CLK_HSIOPLL>,
-> >                                  <&scmi_clk IMX95_CLK_HSIOPLL_VCO>,
-> >                                  <&scmi_clk IMX95_CLK_HSIOPCIEAUX>;
-> >                         clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux";
-> >                         assigned-clocks =<&scmi_clk IMX95_CLK_HSIOPLL_VCO>,
-> >                                          <&scmi_clk IMX95_CLK_HSIOPLL>,
-> >                                          <&scmi_clk IMX95_CLK_HSIOPCIEAUX>;
-> >                         assigned-clock-rates = <3600000000>, <100000000>, <10000000>;
-> >                         assigned-clock-parents = <0>, <0>,
-> >                                                  <&scmi_clk IMX95_CLK_SYSPLL1_PFD1_DIV2>;
-> >                         power-domains = <&scmi_devpd IMX95_PD_HSIO_TOP>;
-> >                         status = "disabled";
-> >                 };
-> > 
-> > Frank Li (13):
-> >   PCI: imx6: Simplify clock handling by using clk_bulk*() function
-> >   PCI: imx6: Simplify phy handling by using IMX6_PCIE_FLAG_HAS_PHYDRV
-> >   PCI: imx6: Simplify reset handling by using by using
-> >     *_FLAG_HAS_*_RESET
-> >   PCI: imx6: Simplify ltssm_enable() by using ltssm_off and ltssm_mask
-> >   PCI: imx6: Simplify configure_type() by using mode_off and mode_mask
-> >   PCI: imx6: Simplify switch-case logic by involve init_phy callback
-> >   dt-bindings: imx6q-pcie: Clean up irrationality clocks check
-> >   dt-bindings: imx6q-pcie: Restruct reg and reg-name
-> >   PCI: imx6: Add iMX95 PCIe Root Complex support
-> >   PCI: imx6: Clean up get addr_space code
-> >   PCI: imx6: Add epc_features in imx6_pcie_drvdata
-> >   dt-bindings: imx6q-pcie: Add iMX95 pcie endpoint compatible string
-> >   PCI: imx6: Add iMX95 Endpoint (EP) support
-> > 
-> > Richard Zhu (1):
-> >   dt-bindings: imx6q-pcie: Add imx95 pcie compatible string
-> > 
-> >  .../bindings/pci/fsl,imx6q-pcie-common.yaml   |  17 +-
-> >  .../bindings/pci/fsl,imx6q-pcie-ep.yaml       |  46 +-
-> >  .../bindings/pci/fsl,imx6q-pcie.yaml          |  49 +-
-> >  drivers/pci/controller/dwc/pci-imx6.c         | 634 ++++++++++--------
-> >  4 files changed, 436 insertions(+), 310 deletions(-)
-> > 
-> > -- 
-> > 2.34.1
-> > 
+/Emil
 
