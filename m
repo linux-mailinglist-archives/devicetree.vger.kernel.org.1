@@ -1,65 +1,69 @@
-Return-Path: <devicetree+bounces-43565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76F7085AC1A
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 20:35:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5841185AC3C
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 20:46:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CAE00280E6F
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 19:35:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE4B31F21279
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 19:46:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 191F950A87;
-	Mon, 19 Feb 2024 19:35:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D79C50A60;
+	Mon, 19 Feb 2024 19:44:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y0zK2vNX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MDk5bPv5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E270650A6D;
-	Mon, 19 Feb 2024 19:35:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CE6156B81;
+	Mon, 19 Feb 2024 19:44:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708371330; cv=none; b=RJ2Z9qzTvmCjPcaUyKMbdxx477WZGHorG6m+j8laq8Id82YyhkFUzWA3NrsXx4r3LphTNNdHEwF1QGjFKACdHCaPQu96wTa58InDvhIRi/fJVG+/uQRCTy2atFzRq9+OCLpBXGXr5eiun1EvjQdhA0WG4AJ1QY6guIETUtCdI/4=
+	t=1708371886; cv=none; b=lVZM9ZcSCZc1h1/NYqCxnJgiFSdgf3tcMIaXoagXsB6TNStbdhP9m4KRBy+MnBDX40Bt763BB6RhWp9U+oAzlj5oYaAOP2d2YTqoVb8kgUsbZf9ORvbmb57wth9aCvNN0m/l8CLX1FxY4KSbe2EFzs3IMLkHv9oaZT5FdDWROyg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708371330; c=relaxed/simple;
-	bh=MtHBN20Imk6FyQFVnXsyakVvR6vcvLdw4T3spvloVPs=;
+	s=arc-20240116; t=1708371886; c=relaxed/simple;
+	bh=ud1M5tHGoLyKMt1LKZdUby9qBHvA4AvbqrgIKz12Ak0=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Z1cfGAB/gkYg70tFuEcwPosoilmT0DAV0G/V4ZwDkxV14SetqwPKwlW3OJJLFnPmjUgP/HoWAJ8o6e9JYFYW1096U9b0NgNbNOzv7i9tRa0tUy6pldr9KsvwphUHaAyN3ztp0m43kIk8YAwdKVRJ2h/jiomnBIbkb1KIu5oALYA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y0zK2vNX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27EF1C43390;
-	Mon, 19 Feb 2024 19:35:23 +0000 (UTC)
+	 MIME-Version:Content-Type; b=MZz+PJDf2KAGQOOXeFQ+3xppmqLJPujj19N2Ca+nh8ZRM0bTuq4ltBg281rMwudbk8IdVw++h0EOc2w97FhJ3qlkHCaICAAmYm/3ZlULqPqwY9G85nKj+iS+tYR72Cvr/KCFzFhZyXBWcOjmd5GSEYTV/uPYVm4bhQ1QTYmXpiU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MDk5bPv5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E04BEC4166C;
+	Mon, 19 Feb 2024 19:44:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708371329;
-	bh=MtHBN20Imk6FyQFVnXsyakVvR6vcvLdw4T3spvloVPs=;
+	s=k20201202; t=1708371885;
+	bh=ud1M5tHGoLyKMt1LKZdUby9qBHvA4AvbqrgIKz12Ak0=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Y0zK2vNXyC6JWeO5a3LlTiYGO0k+Su4tGV/xFCDF9CAPAO3PgahUr0OgjJdKYrLZf
-	 gnoPuI90yww8I6Fl+xKmJHyLBrZnFnaNgpSoyL6sLQiaCxbAlgQT2K6RUiEF3u7peR
-	 /5/44MSQJPL57KsDHksBRQ7JziVRPesJQm99HsJxRGKcmNfjrlVm07tXCIC4lxbv70
-	 N0SDdaByDCk8ZO+duEiMx/TCSFbzkzUvo5HLNZCfBx+Lk3+NhCI4QE7rOm2h+7Tf4Y
-	 sCrkRd3qCCs226hDlVxFOhOqaFBj8t67zC1eWNL8VvYPYZQ4XJPYtJ7WNEv8qZS+99
-	 vv16OXYPnfCdQ==
-Date: Mon, 19 Feb 2024 19:35:12 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Mike Looijmans <mike.looijmans@topic.nl>, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Lee Jones
- <lee@kernel.org>, Liam Beguin <liambeguin@gmail.com>, Liam Girdwood
- <lgirdwood@gmail.com>, Maksim Kiselev <bigunclemax@gmail.com>, Marcus
- Folkesson <marcus.folkesson@gmail.com>, Marius Cristea
- <marius.cristea@microchip.com>, Mark Brown <broonie@kernel.org>, Niklas
- Schnelle <schnelle@linux.ibm.com>, Okan Sahin <okan.sahin@analog.com>,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] iio: adc: ti-ads1298: Add driver
-Message-ID: <20240219193512.2ff8455c@jic23-huawei>
-In-Reply-To: <ZdNJTTy3j90mL8CJ@smile.fi.intel.com>
-References: <20240219065026.578517-1-mike.looijmans@topic.nl>
-	<1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.ec4cd694-3b45-4b64-9a96-fc1ccc42fc68@emailsignatures365.codetwo.com>
-	<20240219065026.578517-2-mike.looijmans@topic.nl>
-	<ZdNJTTy3j90mL8CJ@smile.fi.intel.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	b=MDk5bPv53i7xa4DJ/jwSYizHplgkE2DCSVVC9NNjIO38ExWaJuUUKELahXc0PWYjm
+	 cp0aVB38pO2AluEL/P2pINi7OaC74oisp2H/ZB11jNIAYVhiPyY3I9IFuOTT59fhgG
+	 PajJlUvCgs2vHOn9nMYjiJ5tpu3aIh2xBxkz0V5scgn5/hPMAnGUsgQyh2CZCHE3Dp
+	 QC6iXPAipQZ2nh2wzDxM0M8faZxnmSF6ciyjwlLIYvvT0XjoJlMPycmP1+ObtGhLSF
+	 hIsMwPSo6SK56NRyad58cJaCEEdQcGwA8uj/vtNPE8RsOctQBMQqeLpG1i/aQWrSCq
+	 YWydfDpUPSw7A==
+Date: Mon, 19 Feb 2024 11:44:43 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Ulf Hansson
+ <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Wei
+ Fang <wei.fang@nxp.com>, Shenwei Wang <shenwei.wang@nxp.com>, Clark Wang
+ <xiaoning.wang@nxp.com>, "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+ linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, imx@lists.linux.dev
+Subject: Re: [PATCH v2 2/4] dt-bindings: net: fec: add iommus property
+Message-ID: <20240219114443.777fc3b3@kernel.org>
+In-Reply-To: <668c1511-4ee6-4fad-9b7e-7783b6853988@linaro.org>
+References: <20240201-8qm_smmu-v2-0-3d12a80201a3@nxp.com>
+	<20240201-8qm_smmu-v2-2-3d12a80201a3@nxp.com>
+	<49dbd0a2-a4b9-4c05-bb10-44f267672374@linaro.org>
+	<Zc+2EitZrVzLsA03@lizhi-Precision-Tower-5810>
+	<668c1511-4ee6-4fad-9b7e-7783b6853988@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,18 +73,12 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Mon, 19 Feb 2024 14:27:57 +0200
-Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-
-> On Mon, Feb 19, 2024 at 07:50:26AM +0100, Mike Looijmans wrote:
-> > Skeleton driver for the TI ADS1298 medical ADC. This device is
-> > typically used for ECG and similar measurements. Supports data
-> > acquisition at configurable scale and sampling frequency.  
+On Sat, 17 Feb 2024 09:18:33 +0100 Krzysztof Kozlowski wrote:
+> >> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>  
+> > 
+> > Other 3 patches already been linux-next. Who will pick this one?  
 > 
-> This version seems good enough,
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> 
+> Resend it to net-next (with proper title).
 
-I fixed up the PTR_ERR() thing directly on the tree and added Andy's
-RB whilst there.
+I happened to notice the discussion, let me take the v2. Thanks!
 
