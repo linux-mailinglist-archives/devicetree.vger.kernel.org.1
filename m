@@ -1,121 +1,113 @@
-Return-Path: <devicetree+bounces-43588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5794185AD6E
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 21:46:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E79985AD82
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 22:06:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6FA5EB26175
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 20:46:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56FB52871A2
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 21:06:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A628D524B8;
-	Mon, 19 Feb 2024 20:46:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 088BE537E3;
+	Mon, 19 Feb 2024 21:06:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="j5iAxmQE"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="cIM5NyNN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18D50482C3;
-	Mon, 19 Feb 2024 20:46:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B3381F18D;
+	Mon, 19 Feb 2024 21:06:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708375595; cv=none; b=nbOxQMeIodzrD/eWbtYTWMBYj9dNSI1GkLOJbEvHWrnNp3pIQ7at7djHTpmaKXZ16tnSefSbZj35NLNQC0SAWRr1KS2nbMdS8a5sLVnQYMIFoqhiQRXfhWF72B92swNbitfiMMwDjk+DzvfGEHSzhNLNS6FpM8fPAuhKk4F3BdQ=
+	t=1708376764; cv=none; b=jzcqHFc+rGXAzdWLeoevqZgT3lkA8FVEeEEMoxqLlUZJBVio4nD+I9PEctmCpgT/P0OvEFJXkPNcLKBOgv84zbEVoN8WUykstJ+4POv2/e/UdmTrk7k1kyu/TfZvvu5mJDbqpLVmnc/stv2lXn3y5YvUL5TcZVUfV1aRLOC/rqc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708375595; c=relaxed/simple;
-	bh=d4IYYZx35WXgEpuH5iqpmxV6a4CGdc4bKaNsMSXujIM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gGl9jGvdEs2PmdGR1b71f9ITM5i1mWSbMqp3jOYGgAUYWT9Nw1cPqg/ilWw2nFJpJRAlakr79HB+n8QjDxZEDH2Y/41MAVfK9CA7ZpRRLEmXeJbAl3Lu2toPfZWyln5yxI1MLr4ATGUd13Qo6JC5y1UTWAMw10VUj1OAKSTGpYg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=j5iAxmQE; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1708375592;
-	bh=d4IYYZx35WXgEpuH5iqpmxV6a4CGdc4bKaNsMSXujIM=;
-	h=From:To:Cc:Subject:Date:From;
-	b=j5iAxmQEx2EbCc4DjL8AoNWvrZUqN5Zh6n/TsbU2LDVTgiEWTq7FY4uXEyhiUWjtP
-	 Xyj+dimvLZFu6QeXPel8L+KGwnjpnfbdG1Lo057aUfGWDw6LNj5v8W0zrmF0LS+2Eq
-	 wm4X2dCEzXbq5ucDR2cmdn6M016ojtvTliUtbi79gecKSz30P7ZyAWSsRIwZJYGBNF
-	 BkcWe71oXlcWODWlMj3rQnefbIZF+dWb4qX53TBT05KPQb1+CSt2Fb9uoyn2wWyu5+
-	 /JOQY+/U2JrGhQ5g64/S8dHiopgaAw/eNx3q8QuZAo3aP3p+9hnMBfyzk9z+DyR9u5
-	 oXk8NSpmG1GAw==
-Received: from localhost (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 22DD63782080;
-	Mon, 19 Feb 2024 20:46:32 +0000 (UTC)
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-To: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1708376764; c=relaxed/simple;
+	bh=KU4nGP7iEFzvC/1hs1YWVpyHfJhGdPFeSmJ8xNlLcWc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uaam/PdTHgGELq65WQ9y3k/DATIcyDd2nj5KWSfV1o6PW8sUBNnI00b1+xEq0avxo6hwcwPNoDL2J5EgDt3/iH2exSLyO9MIFJECIHKuhYwU3fFd7xxbHrwO5PP9deK8mQ1d7y9ejuLcAu7Rdb7Ge6ECc0y6k2O2k6gnevhhl5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=cIM5NyNN; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=ZOgxDgXjl4qwjPPUdr5tiry2hRdBim87LYWDSoqsvk4=; b=cIM5NyNNeWDim+UZ1Gwx6XfcEH
+	f0PKlkovpQVxnvG2cREypNR88n5pUmtf9z7rqlwmUm6Mlq2lLbQ9zCs6uJBmddp0ZLAtOKLHBpDys
+	Vh42aXe2ZCWSM/85RhEWepKUYNcpWuWbkn3S0mf1V8/O8/nCFQDdXzMRVaC8HXRF18zg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rcApd-008EUS-9d; Mon, 19 Feb 2024 22:05:45 +0100
+Date: Mon, 19 Feb 2024 22:05:45 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Yang Xiwen <forbidden405@outlook.com>
+Cc: Yisen Zhuang <yisen.zhuang@huawei.com>,
+	Salil Mehta <salil.mehta@huawei.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	kernel@collabora.com
-Subject: [PATCH] arm64: dts: rockchip: Add HDMI0 PHY to rk3588
-Date: Mon, 19 Feb 2024 22:46:25 +0200
-Message-ID: <20240219204626.284399-1-cristian.ciocaltea@collabora.com>
-X-Mailer: git-send-email 2.43.2
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v3 3/6] net: hisilicon: add support for
+ hisi_femac core on Hi3798MV200
+Message-ID: <5572f4dd-dcf2-42ec-99c8-51bf4d1f28ba@lunn.ch>
+References: <20240220-net-v3-0-b68e5b75e765@outlook.com>
+ <20240220-net-v3-3-b68e5b75e765@outlook.com>
+ <29fc21f0-0e46-4d0f-8d4b-c4dbd1689c55@lunn.ch>
+ <SEZPR06MB695901E7D4BEABE1B6F319D096512@SEZPR06MB6959.apcprd06.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <SEZPR06MB695901E7D4BEABE1B6F319D096512@SEZPR06MB6959.apcprd06.prod.outlook.com>
 
-Add DT nodes for HDMI0 PHY and related syscon found on RK3588 SoC.
+On Tue, Feb 20, 2024 at 04:14:36AM +0800, Yang Xiwen wrote:
+> On 2/20/2024 4:03 AM, Andrew Lunn wrote:
+> > > Note it's unable to put the MDIO bus node outside of MAC controller
+> > > (i.e. at the same level in the parent bus node). Because we need to
+> > > control all clocks and resets in FEMAC driver due to the phy reset
+> > > procedure. So the clocks can't be assigned to MDIO bus device, which is
+> > > an essential resource for the MDIO bus to work.
+> > What PHY driver is being used? If there a specific PHY driver for this
+> > hardware? Does it implement soft reset?
+> 
+> I'm using generic PHY driver.
+> 
+> It implements IEEE C22 standard. So there is a soft reset in BMCR register.
+> 
+> > 
+> > I'm wondering if you can skip hardware reset of the PHY and only do a
+> > software reset.
+> 
+> There must be someone to deassert the hardware reset control signal for the
+> PHY. We can't rely on the boot loader to do that. And here even we choose to
+> skip the hardware reset procedure, the sequence of deasserting the reset
+> signals is also very important. (i.e. first PHY, then MAC and MACIF).
+> Opposite to the normal sequence. (we normally first register MAC driver, and
+> then PHY).
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+There are a few MACs which require the PHY to provide a clock to the
+MAC before they can use their DMA engine. The PHY provides typically a
+25MHz clock, which is used to driver the DMA. So long as you don't
+touch the DMA, you can access other parts of the MAC before the PHY is
+generating the clock.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-index 36b1b7acfe6a..3a15a30543c3 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-@@ -586,6 +586,11 @@ u2phy3_host: host-port {
- 		};
- 	};
- 
-+	hdptxphy0_grf: syscon@fd5e0000 {
-+		compatible = "rockchip,rk3588-hdptxphy-grf", "syscon";
-+		reg = <0x0 0xfd5e0000 0x0 0x100>;
-+	};
-+
- 	ioc: syscon@fd5f0000 {
- 		compatible = "rockchip,rk3588-ioc", "syscon";
- 		reg = <0x0 0xfd5f0000 0x0 0x10000>;
-@@ -2360,6 +2365,22 @@ dmac2: dma-controller@fed10000 {
- 		#dma-cells = <1>;
- 	};
- 
-+	hdptxphy_hdmi0: phy@fed60000 {
-+		compatible = "rockchip,rk3588-hdptx-phy";
-+		reg = <0x0 0xfed60000 0x0 0x2000>;
-+		clocks = <&cru CLK_USB2PHY_HDPTXRXPHY_REF>, <&cru PCLK_HDPTX0>;
-+		clock-names = "ref", "apb";
-+		#phy-cells = <0>;
-+		resets = <&cru SRST_HDPTX0>, <&cru SRST_P_HDPTX0>,
-+			 <&cru SRST_HDPTX0_INIT>, <&cru SRST_HDPTX0_CMN>,
-+			 <&cru SRST_HDPTX0_LANE>, <&cru SRST_HDPTX0_ROPLL>,
-+			 <&cru SRST_HDPTX0_LCPLL>;
-+		reset-names = "phy", "apb", "init", "cmn", "lane", "ropll",
-+			      "lcpll";
-+		rockchip,grf = <&hdptxphy0_grf>;
-+		status = "disabled";
-+	};
-+
- 	combphy0_ps: phy@fee00000 {
- 		compatible = "rockchip,rk3588-naneng-combphy";
- 		reg = <0x0 0xfee00000 0x0 0x100>;
--- 
-2.43.2
+So it might be possible to take the MAC and MACIF out of reset, then
+create the MDIO bus, probe the PHY, take it out of reset so its
+generating the clock, and then complete the rest of the MAC setup.
+
+	Andrew
 
 
