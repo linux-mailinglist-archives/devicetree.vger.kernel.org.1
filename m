@@ -1,227 +1,198 @@
-Return-Path: <devicetree+bounces-43305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35E46859E9F
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 09:45:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13A9A859EC1
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 09:50:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A4481F238DD
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 08:45:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 38C611C22196
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 08:50:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABD4E219E9;
-	Mon, 19 Feb 2024 08:45:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="iOd2OBnz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00D1D2377A;
+	Mon, 19 Feb 2024 08:49:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3A3C21370;
-	Mon, 19 Feb 2024 08:45:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C10122619;
+	Mon, 19 Feb 2024 08:49:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708332325; cv=none; b=ljci86xsiAOfViNx3LoTkXbqcbCTyH0K0r04lM7w7SK9ARJb3war8/TQeyO6UjdvMqt0d7vkCGQX0ZHu8eiLYbvZO/mjEhjczAoclHidfQ2pOU2/GtXzq3NcdmCB4CeH6UQ2J0GwkkkBIcKkhofV4fPMAdaQ8HOixf6UWONhqI0=
+	t=1708332550; cv=none; b=AvfXxQL4Ug8oYfJ8ubxGcj389F8nz0m7tKcCGkMkuGzAAnkfLiLpxXmesqqk+dkvrFHBlkNzrRdAp7rcZhtf5S+Yh+Sm5TY5358KO6cKYv21YP2vfKOCCMicz92AUE7xpqxSqYMl5OkFfJE4W0yLB/lgRPSLvY1m9gMqd6+P7Y8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708332325; c=relaxed/simple;
-	bh=yTyq5HVqD68ZHoJqSQH4smsgkysmaYF8yO4VU1EUgOI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=tIg5OHCUetqzA62gcmnU/1EGIj6DgWR3/DgHgoAz0aRN8ZJrvxfDO/kSlhRHN/CZ8yCIhnlEyP9R6+/pC5S4mV3sGIMzcarEpkQWqoI0e7ucVJI6IChe/yISNuMQ549lQ11SmKaIGv9Zh2QIaHV3DMKOXbeDOQ4ZFwQ6EvzDDvQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=iOd2OBnz; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41J8jHI9074519;
-	Mon, 19 Feb 2024 02:45:17 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1708332317;
-	bh=gBx73SbThhLhzHaPEm7VuV3dcLJv+5C5qVmFZgIk4Dw=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=iOd2OBnzMHnZc/ivZK39reGagmYzZX6SmBl9qPKOBJ8Rb0zu6peLVrze9mjjt2Oo0
-	 E/6OasvFl23FU+wp/ziqnFNE4DXIL+jiwkR54LPy23CbbWFmknyhcBcYANrE/FrhWI
-	 D2+aMBgM3fIorE1qEZM9vmR/R+YkXipFSSdY+hL0=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41J8jHCD008808
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 19 Feb 2024 02:45:17 -0600
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 19
- Feb 2024 02:45:16 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 19 Feb 2024 02:45:16 -0600
-Received: from [172.24.20.156] (lt5cd2489kgj.dhcp.ti.com [172.24.20.156])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41J8jBCX113610;
-	Mon, 19 Feb 2024 02:45:12 -0600
-Message-ID: <64726f87-a909-4f85-93b5-e12c9a83e251@ti.com>
-Date: Mon, 19 Feb 2024 14:15:10 +0530
+	s=arc-20240116; t=1708332550; c=relaxed/simple;
+	bh=RjDKfILXb40j2Cpnf4ME6MMUhFxxBWNmtqaomKkvvI0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lkBFarnLPYa41tVAYFt6TrazLrKa1w9WRSHmVTUnHdGYZHOWcB3gBHXykWJRMWD2khsGMrpDgbMWuL5SLU7NZy1amBiU+OGI6IFsITAAGvRV0w5qROqGlMZ2eYl4XVvskAcLIEVOPC64s+TZt3yOj2AKjMxtlyg+zWS6s9rB5gs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-6084c93f80eso1385647b3.3;
+        Mon, 19 Feb 2024 00:49:08 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708332546; x=1708937346;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=PTdtRAbjyGCzCQegMpo3kd+/+HCaaACEQW/D0yb7/D4=;
+        b=dUYu+2Pju5/hsFLt5GyTIScfOmrOBYBm8w1SnI7ySptCN5Dh04fyGjVOIluOI4TpQB
+         xOuXPiWdKDIgQicsY1gqmC8Em00GipCzB3+vsy87SdNOjAO9YEtK0c6hxJnam7UHLhE5
+         J27hXK2uMa9+reDmsFNLPbz/9BR/T878PyV7wpAha08ka/qeSX3wsf2e7aiX4B8xqEeX
+         FbX88ZbauDr+jzaAS6nUv8T4APnqCFM/m7xYVdTun0nUX+xsYyN4xSMnDmQK28qjHtUg
+         WCggGR5fgKsEBuPuepkRyJ3d1l7w/M9PU8DbeC1s2UXKpXvtllNnyDd5B035NBI8LU+j
+         1yTg==
+X-Forwarded-Encrypted: i=1; AJvYcCWbSv7QvWngRBz1Q/gUzS4xiHKHvwcuv5aNsWFUfQ/0yOYqhpRJ303hc0yVpSGPX616FAQgivXOCiN5jGdYGpD2PDQQDn0MWaTBjj1j+Ip7E5MF76ubuXuslNVePdqvQxg5mv7HN/XCpAy3t2wEv1oL4DijsgCog+hLNTcA48xGy5C1wbHqcwbIXJ9N9WP1Hpj356joQf3IY2IarTY+NnprjpWrR1ck
+X-Gm-Message-State: AOJu0YwgzKskVqnjnneWVfGktwGXfgQuoUgPBz5Uamld29keBYSjEf+A
+	/gElbjFrYxsPyuu6PBdbJmf6KIy7pOxNhaE+Jm//GI+PinSTQDrZxXOFT8Pe1zs=
+X-Google-Smtp-Source: AGHT+IEXvfLNDRihTseLNe40xN7P42NeVedN7+2fShY9NhqErXAy11qGnpzHoZp0L6gUI3tRR1e5jg==
+X-Received: by 2002:a0d:cb8d:0:b0:608:1cf8:bfc1 with SMTP id n135-20020a0dcb8d000000b006081cf8bfc1mr4033002ywd.41.1708332546312;
+        Mon, 19 Feb 2024 00:49:06 -0800 (PST)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
+        by smtp.gmail.com with ESMTPSA id b1-20020a0dd901000000b005ffa352a84fsm1532120ywe.21.2024.02.19.00.49.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Feb 2024 00:49:06 -0800 (PST)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-608245e549fso9515247b3.1;
+        Mon, 19 Feb 2024 00:49:06 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWfZracA1pCHPIVKpGKmWryvuLuLucaE0zDhEYAij9TvPNWSFxJaq/jJ0G1bzL48pe2jtPcDEs3UezWQuFCDNxTPTOhWrUoM3HChFDK+0O5RpJPbDqhGxTlPl3CTxCK9EpsXqwrGcQrI4Yu8FCeLaIEXt88Y/BR/GOX0u0oWZ+84hwW3oFJMO+Qw0ILvRE5k7Xmp5hqWY9IdIIMr+Pn3iKXkv8YB/jp
+X-Received: by 2002:a05:690c:a16:b0:608:28a9:5cfb with SMTP id
+ cg22-20020a05690c0a1600b0060828a95cfbmr2721260ywb.16.1708332545819; Mon, 19
+ Feb 2024 00:49:05 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-j722s-evm: Enable OSPI NOR support
-Content-Language: en-US
-To: Vaishnav Achath <vaishnav.a@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <s-vadapalli@ti.com>
-References: <20240216135533.904130-1-vaishnav.a@ti.com>
- <20240216135533.904130-3-vaishnav.a@ti.com>
- <0ca01a1b-8956-40dd-8286-77276e021633@ti.com>
- <09853939-e623-42f1-bf80-1938161d1136@ti.com>
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <09853939-e623-42f1-bf80-1938161d1136@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20240208124300.2740313-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240208124300.2740313-8-claudiu.beznea.uj@bp.renesas.com>
+ <CAMuHMdWdJ9jN9-cko2zSoqSS0acbwYB77aBWvenJHMrFTXhdWg@mail.gmail.com> <4098873b-a7e7-4c88-9af2-01f3c76424ab@tuxon.dev>
+In-Reply-To: <4098873b-a7e7-4c88-9af2-01f3c76424ab@tuxon.dev>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 19 Feb 2024 09:48:53 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdX0HDK2w1N-k_R9ud_CVotRgAd2CjOoHTsWkSE_Rb7zyQ@mail.gmail.com>
+Message-ID: <CAMuHMdX0HDK2w1N-k_R9ud_CVotRgAd2CjOoHTsWkSE_Rb7zyQ@mail.gmail.com>
+Subject: Re: [PATCH 07/17] clk: renesas: rzg2l: Extend power domain support
+To: claudiu beznea <claudiu.beznea@tuxon.dev>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, magnus.damm@gmail.com, 
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Vaishnav
+Hi Claudiu,
 
-On 2/19/2024 1:53 PM, Vaishnav Achath wrote:
-> Hi Udit,
+On Mon, Feb 19, 2024 at 9:24=E2=80=AFAM claudiu beznea <claudiu.beznea@tuxo=
+n.dev> wrote:
+> On 16.02.2024 16:08, Geert Uytterhoeven wrote:
+> > On Thu, Feb 8, 2024 at 1:44=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.de=
+v> wrote:
+> >> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >>
+> >> RZ/{G2L, V2L, G3S}-based CPG versions have support for saving extra
+> >> power when clocks are disabled by activating module standby. This is d=
+one
+> >> through MSTOP-specific registers that are part of CPG. Each individual
+> >> module has one or more bits associated with one MSTOP register (see ta=
+ble
+> >> "Registers for Module Standby Mode" from HW manuals). Hardware manual
+> >> associates modules' clocks with one or more MSTOP bits. There are 3 ma=
+ppings
+> >> available (identified by researching RZ/G2L, RZ/G3S, RZ/V2L HW manuals=
+):
+> >>
+> >> case 1: N clocks mapped to N MSTOP bits (with N=3D{0, ..., X})
+> >> case 2: N clocks mapped to 1 MSTOP bit  (with N=3D{0, ..., X})
+> >> case 3: N clocks mapped to M MSTOP bits (with N=3D{0, ..., X}, M=3D{0,=
+ ..., Y})
+> >>
+> >> Case 3 has been currently identified on RZ/V2L for the VCPL4 module.
+> >>
+> >> To cover all three cases, the individual platform drivers will provide=
+ to
+> >> clock driver MSTOP register offset and associated bits in this registe=
+r
+> >> as a bitmask and the clock driver will apply this bitmask to proper
+> >> MSTOP register.
+> >>
+> >> Apart from MSTOP support, RZ/G3S can save more power by powering down =
+the
+> >> individual IPs (after MSTOP has been set) if proper bits in
+> >> CPG_PWRDN_IP{1,2} registers are set.
+> >>
+> >> The MSTOP and IP power down support were implemented through power
+> >> domains. Platform-specific clock drivers will register an array of
+> >> type struct rzg2l_cpg_pm_domain_init_data, which will be used to
+> >> instantiate properly the power domains.
+> >>
+> >> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >
+> > Thanks for your patch!
+> >
+> >> --- a/drivers/clk/renesas/rzg2l-cpg.c
+> >> +++ b/drivers/clk/renesas/rzg2l-cpg.c
+> >> @@ -1559,9 +1556,34 @@ static bool rzg2l_cpg_is_pm_clk(struct rzg2l_cp=
+g_priv *priv,
+> >>         return true;
+> >>  }
+> [ ... ]
 >
-> On 19/02/24 11:25, Kumar, Udit wrote:
->> Hi Vaishnav
->>
->> On 2/16/2024 7:25 PM, Vaishnav Achath wrote:
->>> J722S EVM has S28HS512T 64 MiB Octal SPI NOR flash connected
->>> to the OSPI interface, add support for the flash and describe
->>> the partition information as per bootloader.
->>>
->>> Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
->>> ---
->>>   arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 79 
->>> +++++++++++++++++++++++++
->>>   1 file changed, 79 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts 
->>> b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
->>> index 9e12a6e9111f..b1c6499c0c9d 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
->>> +++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
->>> @@ -169,6 +169,23 @@ J722S_IOPAD(0x015c, PIN_INPUT, 0) /* (AD25) 
->>> MDIO0_MDIO */
->>>           >;
->>>       };
->>> +    ospi0_pins_default: ospi0-default-pins {
->>> +        pinctrl-single,pins = <
->>> +            J722S_IOPAD(0x0000, PIN_OUTPUT, 0) /* (P23) OSPI0_CLK */
->>> +            J722S_IOPAD(0x002c, PIN_OUTPUT, 0) /* (M25) OSPI0_CSn0 */
->>> +            J722S_IOPAD(0x000c, PIN_INPUT, 0) /* (L25) OSPI0_D0 */
->>> +            J722S_IOPAD(0x0010, PIN_INPUT, 0) /* (N24) OSPI0_D1 */
->>> +            J722S_IOPAD(0x0014, PIN_INPUT, 0) /* (N25) OSPI0_D2 */
->>> +            J722S_IOPAD(0x0018, PIN_INPUT, 0) /* (M24) OSPI0_D3 */
->>> +            J722S_IOPAD(0x001c, PIN_INPUT, 0) /* (N21) OSPI0_D4 */
->>> +            J722S_IOPAD(0x0020, PIN_INPUT, 0) /* (N22) OSPI0_D5 */
->>> +            J722S_IOPAD(0x0024, PIN_INPUT, 0) /* (P21) OSPI0_D6 */
->>> +            J722S_IOPAD(0x0028, PIN_INPUT, 0) /* (N20) OSPI0_D7 */
->>> +            J722S_IOPAD(0x0008, PIN_INPUT, 0) /* (P22) OSPI0_DQS */
->>
->>
->> Could you check, Pin name in comments
->>
->> For example, Schematic says L22 is for OSPI0_DQS , but comments says P22
->>
->> However offsets are good .
+> >
+> >> @@ -234,6 +246,54 @@ struct rzg2l_reset {
+> >>  #define DEF_RST(_id, _off, _bit)       \
+> >>         DEF_RST_MON(_id, _off, _bit, -1)
+> >>
+> >> +/**
+> >> + * struct rzg2l_cpg_pm_domain_conf - PM domain configuration data str=
+ucture
+> >> + * @mstop: MSTOP configuration (MSB =3D register offset, LSB =3D bitm=
+ask)
+> >> + * @pwrdn: PWRDN configuration (MSB =3D register offset, LSB =3D regi=
+ster bit)
+> >> + */
+> >> +struct rzg2l_cpg_pm_domain_conf {
+> >> +       u32 mstop;
+> >> +       u32 pwrdn;
+> >
+> > Why not
+> >
+> >     u16 mstop_off;
+> >     u16 mstop_mask;
+> >     u16 pwrdn_off;
+> >     u16 pwrdn_mask;
+> >
+> > so you can drop the MSTOP*() and PWRDN*() macros below?
 >
-> Thanks for the review, I will fix this in the next revision.
->
->>
->>> +        >;
->>> +        bootph-all;
->>> +    };
->>> +
->>>       rgmii1_pins_default: rgmii1-default-pins {
->>>           pinctrl-single,pins = <
->>>               J722S_IOPAD(0x014c, PIN_INPUT, 0) /* (AC25) RGMII1_RD0 */
->>> @@ -290,6 +307,68 @@ exp1: gpio@23 {
->>>       };
->>>   };
->>> +&ospi0 {
->>> +    pinctrl-names = "default";
->>> +    pinctrl-0 = <&ospi0_pins_default>;
->>> +    status = "okay";
->>> +
->>> +    flash@0 {
->>> +        compatible = "jedec,spi-nor";
->>> +        reg = <0x0>;
->>> +        spi-tx-bus-width = <8>;
->>> +        spi-rx-bus-width = <8>;
->>> +        spi-max-frequency = <25000000>;
->>> +        cdns,tshsl-ns = <60>;
->>> +        cdns,tsd2d-ns = <60>;
->>> +        cdns,tchsh-ns = <60>;
->>> +        cdns,tslch-ns = <60>;
->>> +        cdns,read-delay = <4>;
->>> +        bootph-all;
->>> +
->>> +        partitions {
->>> +            compatible = "fixed-partitions";
->>> +            #address-cells = <1>;
->>> +            #size-cells = <1>;
->>> +
->>> +            partition@0 {
->>> +                label = "ospi.tiboot3";
->>> +                reg = <0x00 0x80000>;
->>> +            };
->>
->>
->> I suggest to keep 1MB to accommodate future size increase
->>
->
-> For J722S, the maximum loadable SPL size is 0x7e000, images larger 
-> than these cannot be loaded by ROM, increasing the size here will not 
-> give any benefit, planning to keep as-is if there are no objections.
->
-If ROM is limiting size here, then no need to increase this
+> I did it like this to align with the already existing approach for this
+> kind of things available in this driver. I can do it as you proposed.
 
+The other fields do not align nicely with byte or word boundaries.
 
-> Thanks and Regards,
-> Vaishnav
->
->>> +
->>> +            partition@80000 {
->>> +                label = "ospi.tispl";
->>> +                reg = <0x80000 0x200000>;
->>> +            };
->>> +
->>> +            partition@280000 {
->>> +                label = "ospi.u-boot";
->>> +                reg = <0x280000 0x400000>;
->>> +            };
->>> +
->>> +            partition@680000 {
->>> +                label = "ospi.env";
->>> +                reg = <0x680000 0x40000>;
->>> +            };
->>> +
->>> +            partition@6c0000 {
->>> +                label = "ospi.env.backup";
->>> +                reg = <0x6c0000 0x40000>;
->>> +            };
->>> +
->>> +            partition@800000 {
->>> +                label = "ospi.rootfs";
->>> +                reg = <0x800000 0x37c0000>;
->>> +            };
->>> +
->>> +            partition@3fc0000 {
->>> +                label = "ospi.phypattern";
->>> +                reg = <0x3fc0000 0x40000>;
->>> +            };
->>> +        };
->>> +    };
->>> +
->>> +};
->>> +
->>>   &sdhci1 {
->>>       /* SD/MMC */
->>>       vmmc-supply = <&vdd_mmc1>;
+I can see the value of the MSTOP(name, bitmask) and
+PWRDN(name, bitmask) macros, but I'd rather get rid of the *_MASK()
+and *_OFF() variants.
+
+> For the rest of your comments on this patch: I agree and will adjust the
+> patch in the next version.
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
