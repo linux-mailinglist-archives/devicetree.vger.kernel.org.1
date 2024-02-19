@@ -1,160 +1,186 @@
-Return-Path: <devicetree+bounces-43358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13E0085A109
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 11:32:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1ACC85A112
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 11:35:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8D3E7B207D2
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 10:32:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 923C228360E
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 10:35:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CFAB2134A;
-	Mon, 19 Feb 2024 10:32:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA23828DA0;
+	Mon, 19 Feb 2024 10:35:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="ZhMJkIDa"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="Bfc8z3RI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3126A21103
-	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 10:32:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D66E32577B
+	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 10:35:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708338747; cv=none; b=idciknSjjui+cpRb69Oa6S27Rcp54/8nrLoTo8WO9czDRC9c58WSUhjjnehHS/B3a4GQlzJ+gFdWQIgtvPdoXlmRdLKXWdURgxzOr2ZBb6uLV5UbqEL9HagjOTtZ5qQ1KkWzga+S/Y3jYomQWoo4OYSmhkhbYK2jot+zjUjZ19w=
+	t=1708338904; cv=none; b=K0GSILnxcH1S7FxcZTAPppt3PIsCYGW0strxZ03sEZEgYF6iau9pmMx1R0YVItSc+47zUlWK7oXcRk99z9fCHJYQlYBLG2566nuvhe7T4P8EejbjqKD/hpj3Ee7+IVHLPUxaqp0BcgDGOijohfKTDZl90jtyFUo/wnCo10qWByQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708338747; c=relaxed/simple;
-	bh=lzbmDbyLgGOXIgpo1wVS8JJdJ3HwZU7g2kzqQJevbec=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Lh0ZvY10ZsrRIRrH7yNPmvOOavJok0znUWxnqXbowuw4wMxvXxAaUUAyixyNiTKA/RPQkcJya/2bquU2K1PiSl+2qtKNuMU4CacCmsJI8Fhs1OruaC/mSUTM+UGsEqNZ5FVcjKf5Jkg6ITxNodaLvZiV/o8DB9qx1YzXAnguYJQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=ZhMJkIDa; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-41243d19ecaso19671305e9.3
-        for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 02:32:23 -0800 (PST)
+	s=arc-20240116; t=1708338904; c=relaxed/simple;
+	bh=n8tu26m3oZK1YFNyaBGqTJIbWfF/4wYBs1xQMVZxbFE=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
+	 References:In-Reply-To; b=OEZNFbnoizRqQc30cdWUzCdu2YsWOBrV4OsyPYDmH1Xx7kkS65VPLPYStPxoL9QYb8ebbR9vc5VGL1q7Y96aHDgDSOdrV6Tw4SlBIKM45nChq40u9gln7vARsQW8i/moclCM7oqBe0B79l3Nuvs+aiSQ95pmA7QBjQQ8RdkG1TY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=Bfc8z3RI; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4125ea5d913so10947415e9.2
+        for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 02:35:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1708338742; x=1708943542; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2zw7/XBaMc7MFJFGgdoFUnkBYvbNQYnhQTaj8fjHTmo=;
-        b=ZhMJkIDa5NKmpyLKZA2O2nd1tADmHYPSjMiENsONCRcK75S4uMWGpDnHkGXVj2iUXM
-         Na3SnkBQf79AVSzD1Kdgr1Zy+88UfUsBzdfL5hPRbG91Qfxi9mA0+ax6yHVbjuIqo5zA
-         +rXfxjepowTVacfvLP6LNuDCGOQqIMsu8R5JS/uEJtmyFGEjb+j2QfKi8c+QV6Xlc1rJ
-         R9GKQow24JDnF50olDxCkl2e9uGWPX3Ne2TcYWxZP3tgWd3aNw4VJSyMo6ok+/y02z1c
-         HxXxH5kHmbA5wKhqLPkPA+sM0tryEnSt0lhAUUcbTueEAK4nkbwG47VuQeAFOB728zmS
-         bj8w==
+        d=fairphone.com; s=fair; t=1708338901; x=1708943701; darn=vger.kernel.org;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=m9ycbsLi0t9h8MohDsd9HPsQxAwjcag+LQ7Zzd41prA=;
+        b=Bfc8z3RID2cBNkA8O+sFxhwbRU0mp80SX52j90Hx+owpxIg0eMOJDqXTuowCV7nugm
+         ziRuSPT1h2YPzOHwYW3J1eVo+jWWEmfq7mCsQNk4hlFyXbdzF5bDFI71E0i8nTTFmJ8p
+         iaJbG0diCxIPe01hbcB0dI4yw8CcKyaPf1BegNZ6ATIe4Ghldansgn9BMlO1oiTeWNXL
+         zapFwMaBxB4vaKV9ZvqCRxZxbwlor9ViZ3uxycIYkMBYCTtPvope+kK9qe5eaTjM/Ogy
+         XowbRjPg+xP3vK82d8noqvsYkS56O6T4VNLa7fl/WqDa0/GJS/Xt9eV+JDY3n4TGKJdO
+         WZFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708338742; x=1708943542;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2zw7/XBaMc7MFJFGgdoFUnkBYvbNQYnhQTaj8fjHTmo=;
-        b=ks6Q7vfc2m+eNZPn7O8/ft0Fo0HPLv/FTPOSgjqh892e6sizL0MsD24qjvaGYMUmQd
-         IbvyDybmPrTVa/d0icXYvSy8i7mx6YzvNadu36MrOXpvKcdOCX1z8T9FYXXcq8Cm4LlO
-         6e/ySnaMZA7x4Mp3TPtS0kVxRbL2YXa7+yMGSgLiI5JuIQjZWbZXhVFql+DJSb1LMeDl
-         DhDjrOWX9D3ddTjwQNv0aoq/5lkkPSImw3V7XjGE1vj3FSpjbelAybEBzc0mstvfsueX
-         w+EN/2WSNnqJsq25bA5rWIuVd30xhqv6cj/K46B1R6CP5weC0Ww9gzVNhTo22hlaIZQ1
-         A5wg==
-X-Gm-Message-State: AOJu0Yydma4pjWJ5kdm1txhG8PbeTbcBSqCm99TUtp+jYHgQjGzxTYIv
-	qSJHvzrE3adEuae8LXzz8wCpxf5S44AFBT8GfMhQMxmdNw/p0hOV7usVkodkxhcBqJMVCTkD8AA
-	x
-X-Google-Smtp-Source: AGHT+IFE0+9Jgnkp9agPS6QS2SGbk0FJ5Z7jOlUjDlyXqIACVcPCVM4Buec+LPfJXA2IUTX71GturA==
-X-Received: by 2002:a5d:5148:0:b0:33d:374f:83e9 with SMTP id u8-20020a5d5148000000b0033d374f83e9mr3497049wrt.45.1708338742405;
-        Mon, 19 Feb 2024 02:32:22 -0800 (PST)
-Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id ay5-20020a5d6f05000000b0033d1ef15821sm9563900wrb.25.2024.02.19.02.32.21
+        d=1e100.net; s=20230601; t=1708338901; x=1708943701;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=m9ycbsLi0t9h8MohDsd9HPsQxAwjcag+LQ7Zzd41prA=;
+        b=mtdsIgmh75sSgziUBB5KiI6Usw+siuh+cDctK1Nhe8H8uHWLXZ3eXcKGsBPKPvjwo9
+         RuBTGun5HFyUlbnvOc3LCPXi1xOIXnk7TQOYwteuECEjj2hFVaZbuPTLN/SDzTN9MA6g
+         A+kCW6kI9I8pdDkH8+GvcjNbxXEVyVi7Oafutx2CwEPdipeBkdg2y0ZsR2Jve26kQ7WB
+         J1X0bN3hfDmYtv15z72MRmMNggWyTa+GnPcsY2a9KkjrBUlV0KYbFq0KOtBRWBIH2mVi
+         4A88I8/YvLR4ARXDS9OzjuJg9SCfiEDOFfdUvkIyUULRCRaCKcCrrKa56S+ilugKUe9O
+         nQcA==
+X-Forwarded-Encrypted: i=1; AJvYcCUcg3Tgi1vUi3bP0WZ5vHHkadDAwALxh54XO1V7JUcioXCuukm2OUoEubF47ouP9KkWE12rLH3nG3pnQ/qj50FUj79QytQmdiW9BA==
+X-Gm-Message-State: AOJu0YyN/WUcBza1wGmtvPIPaQ+xHd263N9cgoyR7MyzmqH1QQXRe2zE
+	ZJwPCjC2IrH3ECjjyKR7dpzx2aEMaPVDdi9HgQvibN4q9wytvp702Kzi8c6YURU=
+X-Google-Smtp-Source: AGHT+IFjPAJ4fuhpSh/fhJtskqrhKDQ+QhWZsMMC2miAFTn6NQtrqQAj36thD2JD/ura21aD9NsYcw==
+X-Received: by 2002:a05:600c:1911:b0:411:f94b:379e with SMTP id j17-20020a05600c191100b00411f94b379emr9207828wmq.27.1708338901286;
+        Mon, 19 Feb 2024 02:35:01 -0800 (PST)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id p11-20020a05600c1d8b00b004126a0dfd11sm677563wms.29.2024.02.19.02.35.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Feb 2024 02:32:22 -0800 (PST)
-Message-ID: <15fcafb2-4b4a-40a1-8ef5-ee3aef9b3b9d@freebox.fr>
-Date: Mon, 19 Feb 2024 11:32:21 +0100
+        Mon, 19 Feb 2024 02:35:01 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/4] arm64: dts: amlogic: add fbx8am DT overlays
-Content-Language: en-US
-To: DT <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>,
- AML <linux-amlogic@lists.infradead.org>
-References: <07f7a695-18a0-4211-82e9-b1e2c7166969@freebox.fr>
- <79ba726d-d02c-44b9-b6f6-59b17ba9755c@freebox.fr>
- <54b4e810-754e-481a-bbc8-984f859b116d@linaro.org>
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <54b4e810-754e-481a-bbc8-984f859b116d@linaro.org>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Date: Mon, 19 Feb 2024 11:35:00 +0100
+Message-Id: <CZ8ZLKN072K5.1WRT68QL5IUSZ@fairphone.com>
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Bjorn Andersson" <andersson@kernel.org>
+Cc: "Stephan Gerhold" <stephan@gerhold.net>, "Andy Gross"
+ <agross@kernel.org>, "Konrad Dybcio" <konrad.dybcio@linaro.org>, "Thara
+ Gopinath" <thara.gopinath@gmail.com>, "Herbert Xu"
+ <herbert@gondor.apana.org.au>, "David S. Miller" <davem@davemloft.net>,
+ "Rob Herring" <robh+dt@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Bhupesh Sharma" <bhupesh.sharma@linaro.org>,
+ <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+ <linux-crypto@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm6350: Add Crypto Engine
+X-Mailer: aerc 0.15.2
+References: <20240105-sm6350-qce-v1-0-416e5c7319ac@fairphone.com>
+ <20240105-sm6350-qce-v1-2-416e5c7319ac@fairphone.com>
+ <ZZguvdJTyVgfxm4D@gerhold.net> <CZ6FYZLGWT3K.ZBHYDQ7TDN4B@fairphone.com>
+ <pbjbhnj4opt57xswk7jfg2h2wjdv3onmg4ukxn22tsjjsnknxv@m5gy44kkbvvl>
+In-Reply-To: <pbjbhnj4opt57xswk7jfg2h2wjdv3onmg4ukxn22tsjjsnknxv@m5gy44kkbvvl>
 
-On 14/02/2024 10:47, Neil Armstrong wrote:
-
-> On 13/02/2024 18:14, Marc Gonzalez wrote:
+On Fri Feb 16, 2024 at 7:09 PM CET, Bjorn Andersson wrote:
+> On Fri, Feb 16, 2024 at 11:46:49AM +0100, Luca Weiss wrote:
+> > On Fri Jan 5, 2024 at 5:30 PM CET, Stephan Gerhold wrote:
+> > > On Fri, Jan 05, 2024 at 05:15:44PM +0100, Luca Weiss wrote:
+> > > > Add crypto engine (CE) and CE BAM related nodes and definitions for=
+ this
+> > > > SoC.
+> > > >=20
+> > > > For reference:
+> > > >=20
+> > > >   [    2.297419] qcrypto 1dfa000.crypto: Crypto device found, versi=
+on 5.5.1
+> > > >=20
+> > > > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> > > > ---
+> > > >  arch/arm64/boot/dts/qcom/sm6350.dtsi | 31 ++++++++++++++++++++++++=
++++++++
+> > > >  1 file changed, 31 insertions(+)
+> > > >=20
+> > > > diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot=
+/dts/qcom/sm6350.dtsi
+> > > > index 8fd6f4d03490..516aadbb16bb 100644
+> > > > --- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
+> > > > +++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+> > > > @@ -1212,6 +1212,37 @@ ufs_mem_phy_lanes: phy@1d87400 {
+> > > >  			};
+> > > >  		};
+> > > > =20
+> > > > +		cryptobam: dma-controller@1dc4000 {
+> > > > +			compatible =3D "qcom,bam-v1.7.4", "qcom,bam-v1.7.0";
+> > > > +			reg =3D <0 0x01dc4000 0 0x24000>;
+> > > > +			interrupts =3D <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
+> > > > +			#dma-cells =3D <1>;
+> > > > +			qcom,ee =3D <0>;
+> > > > +			qcom,controlled-remotely;
+> > > > +			num-channels =3D <16>;
+> > > > +			qcom,num-ees =3D <4>;
+> > > > +			iommus =3D <&apps_smmu 0x432 0x0000>,
+> > > > +				 <&apps_smmu 0x438 0x0001>,
+> > > > +				 <&apps_smmu 0x43f 0x0000>,
+> > > > +				 <&apps_smmu 0x426 0x0011>,
+> > > > +				 <&apps_smmu 0x436 0x0011>;
+> > >
+> > > The last two lines look equivalent to me: 0x436 & ~0x0011 =3D 0x426.
+> >=20
+> > I don't understand the IOMMU SID + mask really, but I think I've seen
+> > somewhere before like here that TZ can be a bit picky with the SIDs?
+> >=20
+> > https://lore.kernel.org/linux-arm-msm/opqdrmyj3y64nqqqmakjydn5rkspizufy=
+eavm7ec7c7ufqz4wk@ey2a7bq3shfj/
+> > https://lore.kernel.org/linux-arm-msm/11b5db69-49f5-4d7b-81c9-687d66a5c=
+b0d@linaro.org/
+> >=20
+> > I don't quite want to risk having some obscure use case breaking becaus=
+e
+> > we cleaned up the dts ;)
+> >=20
+> > But if you're more sure than me that it won't break, let me know!
+> >=20
+> > >
+> > > It's also a bit weird that the mask has one more digit than the strea=
+m
+> > > ID. And ordered numerically (by stream ID, first number) it would be =
+a
+> > > bit easier to read. :-)
+> >=20
+> > Sorting them is no problem, can do that for v2.
+> >=20
 >
->> Add support for two variants of the fbx8am board.
->>
->> Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
->> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
->> ---
->>   arch/arm64/boot/dts/amlogic/Makefile                       |  6 ++++++
->>   arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso    | 35 ++++++++++++++++++++++++++++++++++
->>   arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso | 25 ++++++++++++++++++++++++
->>   3 files changed, 66 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
->> index cc8b34bd583d8..1ab160bf928ae 100644
->> --- a/arch/arm64/boot/dts/amlogic/Makefile
->> +++ b/arch/arm64/boot/dts/amlogic/Makefile
->> @@ -8,6 +8,8 @@ dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j100.dtb
->>   dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j110-rev-2.dtb
->>   dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j110-rev-3.dtb
->>   dtb-$(CONFIG_ARCH_MESON) += meson-axg-s400.dtb
->> +dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am-brcm.dtb
->> +dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am-realtek.dtb
->>   dtb-$(CONFIG_ARCH_MESON) += meson-g12a-radxa-zero.dtb
->>   dtb-$(CONFIG_ARCH_MESON) += meson-g12a-sei510.dtb
->>   dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
->> @@ -80,3 +82,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
->>   dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
->>   dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air-gbit.dtb
->>   dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air.dtb
->> +
->> +# Overlays
->> +meson-g12a-fbx8am-brcm-dtbs	:= meson-g12a-fbx8am.dtb meson-g12a-fbx8am-brcm.dtbo
->> +meson-g12a-fbx8am-realtek-dtbs	:= meson-g12a-fbx8am.dtb meson-g12a-fbx8am-realtek.dtbo
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
->> new file mode 100644
->> index 0000000000000..ed79809b15859
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
->> @@ -0,0 +1,35 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +// Copyright (c) 2024 Freebox SAS
->> +
->> +/dts-v1/;
->> +/plugin/;
->> +
->> +#include <dt-bindings/gpio/gpio.h>
->> +#include <dt-bindings/gpio/meson-g12a-gpio.h>
->> +
->> +/ {
->> +	compatible = "freebox,fbx8am-brcm", "freebox,fbx8am", "amlogic,g12a";
-> 
-> This looks fine but I'm unsure if those new compatible should be documented or not,
-> since they are in an overlay
+> Where you able to do this? I don't see a v2 in my inbox, am I just
+> searching poorly?
 
-Rob, Krzysztof, Conor,
-
-Just want to make sure this was done "right".
-
-Is it acceptable for an overlay (DTSO) to define a more specific compatible prop?
+Only sent v2 some minutes ago, didn't have any more time on Friday.
 
 Regards
+Luca
 
+>
+> Regards,
+> Bjorn
+>
+> > >
+> > > Thanks,
+> > > Stephan
+> >=20
 
 
