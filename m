@@ -1,185 +1,117 @@
-Return-Path: <devicetree+bounces-43509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D4A485A8AD
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 17:20:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2870B85A8D3
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 17:23:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54757285F85
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 16:20:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC08D1F211D9
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 16:23:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7C573DBA7;
-	Mon, 19 Feb 2024 16:19:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0B323BB3B;
+	Mon, 19 Feb 2024 16:23:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ih+JfgFS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QBdlZSZ3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38EF43DBAA
-	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 16:19:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE9FB3C082;
+	Mon, 19 Feb 2024 16:23:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708359578; cv=none; b=bCG74hm0xdbGivf9fcWHUWJ/3bdA/+FrRlrbbCqcaFV7f+MHsHMtN83BLAuGrTEeXXFmjbMmXq+L4BVnG0IrXsL85gOVkwu/5aSuW24kM/GLMWzxdyGACZ9VgUKYfpFyu4nNl6apFjcY8X7pa6Pkg4RVBxRybeI/4fV+cH15+jk=
+	t=1708359829; cv=none; b=eOA1Kc6THdeYaR6KPj+CyCMTc+MIyRr3lnEQrkG1LMdHkpGL0qT8Yf0CPewgOygohnmSKTHyl/PtVVyD6x/jOdR10akeFmgAXumcV1TzfjYmJr1c9h+DD5Q+fX0uaD7Q8IEqhu7AC1z71l2PHpP4RLiSIq1fggy3LIiBvycVbE0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708359578; c=relaxed/simple;
-	bh=DClpZ40MTNZHw3nDv4Skbkwxx8Xmy6FQUZVUNGGsU3Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lOO79y/WIA5e/2tTrN8gAc1eBG/PdSJBQUE/zF41+Wl5m7a9gygsrcSN60RnrY9HPab2hRkumNu03aBUSQI+A83ozjm/+LW6RoHHuWdvUgCUBM7h7CrrPUR9DlAT6MLXqJp5mL6Cq60aSLnar0nfTN1vU3iney9MgH9pNFUWaQ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ih+JfgFS; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-512b3b04995so1118219e87.3
-        for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 08:19:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708359574; x=1708964374; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6DL+oqveQWECDpgQ0VTAyFOqMlMmDEOhr/BFaSUzMz4=;
-        b=ih+JfgFSlVEiauNs3n9sy8CkSLP130Y0cxpporXtM3wSKwtnHaPEUvQcyUe8jY1Jaq
-         AjjFW5IfI7ml2HkjjvNaq0VW8ICwS76+Q/s1AfxpHWdIrf3BF3pCJQJDhG/1/cXDHAs/
-         iVZi5bX/lD3BzMfOrMvIQnHLiuUZ9cs28lxS4AOqyLTnW07VvxStuGWYMPCzVDYgXtz6
-         LIu5efGkmPePwzXHIp9ZruOB4q2w4DME60HIGkxdJxaS2DHGJ5pyhOfLrlk41lvG64It
-         mhR4XTTdStdtFgMHHW9+ODCwCtxHytPfcW+drYuP6nzhOVPm12ireqvyXLX42zRDgklH
-         h0AQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708359574; x=1708964374;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6DL+oqveQWECDpgQ0VTAyFOqMlMmDEOhr/BFaSUzMz4=;
-        b=ZtEzjXTK1gaDf43ljnNWujAlEpCVeicwQEHtqPu0HMvoqXkBh5eGZbhLWYDEUV685s
-         0njnWiGlhDfIVYkgzCzMhxNcx7J4iCoG8ZRy/SCI1ougfmP8AilS77jnrDhhjnf4VLlH
-         qUZA1fDWVr5m4mg8ED3sroQIjOrc/CpjlbeYjBcVPEia+7cqjtsd3+2XeJ76ErmPh6LZ
-         sCiNmlgSBPi7cjymB2z6JGF4m3iudoDg0ltW4tfji1GriHwtj7F+YYGnhD5SaEGkeObr
-         576U5j3WgA5If7FFNZzJfIQlMU1WNJm3plmXPRlT81mOYD2s/Vm00kPt95pLSdkmSoEB
-         fVXg==
-X-Forwarded-Encrypted: i=1; AJvYcCVe2L47Og3ce/wrfQjDBVpA1/V8Kbw4Of/4zacakY3hUts7Cg2DrrOl0etYEPmyLlKMAtfvpH9FdIQvvtUv84YYeRkTRJ0MSkQUWA==
-X-Gm-Message-State: AOJu0YwtE+XvS4jl4fGuUuJXCk27yHSZahSfwTH/0+WqDEaHPpE5lbsg
-	dtD+FwutSsNCmc71XTKW1fN1GxBkeENwjbpJT+aiDPytHryk1xQW/rlEW/4Hkgo=
-X-Google-Smtp-Source: AGHT+IFQ2opSuuYTmsOjzFMhCC39iWUgy5X+Db8xLWS/jtRskILGyDr5ahl6E2lb7e15xXUgcbrbRA==
-X-Received: by 2002:ac2:546c:0:b0:511:6a0b:1035 with SMTP id e12-20020ac2546c000000b005116a0b1035mr7874145lfn.17.1708359574198;
-        Mon, 19 Feb 2024 08:19:34 -0800 (PST)
-Received: from [192.168.192.135] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
-        by smtp.gmail.com with ESMTPSA id u6-20020a170906408600b00a3e70fec6a0sm1708761ejj.171.2024.02.19.08.19.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Feb 2024 08:19:33 -0800 (PST)
-Message-ID: <c78db7e1-65b5-4276-bb77-d43b1e22fd84@linaro.org>
-Date: Mon, 19 Feb 2024 17:19:28 +0100
+	s=arc-20240116; t=1708359829; c=relaxed/simple;
+	bh=3TaEMNwc1sACneFvya4ZgRhN24IEHV8XP900tswpqOU=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=eBy01xf0a/TfRRtjM9AcomSXViPrIHoyPLkIxor6/bwVbyZN0n9+45c6/QZepdUmMZQiQ75hMg66p4GUFwKTBw0862rhf9Q+SDdt8/fC7aL7HNhG4Fcg3IT8elYiwF8q98cF7/vOuZUCWA84+ieeO60vwDgkHTmBkvPzmgelaAE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QBdlZSZ3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05658C433F1;
+	Mon, 19 Feb 2024 16:23:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708359829;
+	bh=3TaEMNwc1sACneFvya4ZgRhN24IEHV8XP900tswpqOU=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=QBdlZSZ3/jh0t5RrjsMfWFAd8OECarSKuRBgKWCIQv31MZqKChPKwlLazCFZ6T5YF
+	 11dFD41YY33Ki3ZhTy1Fm9jBmArtxi6RFa1CNWMIXi6UAwQ2SdXMa+z1ywpv09ft7k
+	 KLe3SSwhuNW9+be6rm08IdoICuoFiL80aajLLOhFXRl9VTXIBISnWcMFsvsMVSLLl1
+	 GqQ4HKDme3x5BnRP1cFQ5hKxssAG3Mtad+D4jxQfbqIBIw3WwHP5WuU8NP8ZDCknFm
+	 4Jd8yPc9k4v8bp9oAmqLwIzqFQKs/0ygQUKo1d5aHTcgcLdKT/nLNj3UgoU/j5i4eT
+	 d2D+cmXBcT90g==
+From: Mark Brown <broonie@kernel.org>
+To: andersson@kernel.org, konrad.dybcio@linaro.org, lgirdwood@gmail.com, 
+ robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+ bryan.odonoghue@linaro.org, gregkh@linuxfoundation.org, 
+ quic_wcheng@quicinc.com, Danila Tikhonov <danila@jiaxyga.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-usb@vger.kernel.org
+In-Reply-To: <20240217163201.32989-1-danila@jiaxyga.com>
+References: <20240217163201.32989-1-danila@jiaxyga.com>
+Subject: Re: (subset) [PATCH 0/3] arm64: dts: qcom: pm6150: Add typec
+ support for PM6150
+Message-Id: <170835982675.1195521.16416838868807847765.b4-ty@kernel.org>
+Date: Mon, 19 Feb 2024 16:23:46 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/8] clk: qcom: clk-alpha-pll: Add HUAYRA_2290 support
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org
-References: <20240219-topic-rb1_gpu-v1-0-d260fa854707@linaro.org>
- <20240219-topic-rb1_gpu-v1-3-d260fa854707@linaro.org>
- <CAA8EJpq8XvQm9B3RZq9PNMqA5VAqKUyVn5qt8-WEYMQMWniDZA@mail.gmail.com>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <CAA8EJpq8XvQm9B3RZq9PNMqA5VAqKUyVn5qt8-WEYMQMWniDZA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-a684c
 
-On 19.02.2024 15:53, Dmitry Baryshkov wrote:
-> On Mon, 19 Feb 2024 at 15:36, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->>
->> Commit 134b55b7e19f ("clk: qcom: support Huayra type Alpha PLL")
->> introduced an entry to the alpha offsets array, but diving into QCM2290
->> downstream and some documentation, it turned out that the name Huayra
->> apparently has been used quite liberally across many chips, even with
->> noticeably different hardware.
->>
->> Introduce another set of offsets and a new configure function for the
->> Huayra PLL found on QCM2290. This is required e.g. for the consumers
->> of GPUCC_PLL0 to properly start.
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>  drivers/clk/qcom/clk-alpha-pll.c | 45 ++++++++++++++++++++++++++++++++++++++++
->>  drivers/clk/qcom/clk-alpha-pll.h |  3 +++
->>  2 files changed, 48 insertions(+)
->>
->> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
->> index 8a412ef47e16..61b5abd13782 100644
->> --- a/drivers/clk/qcom/clk-alpha-pll.c
->> +++ b/drivers/clk/qcom/clk-alpha-pll.c
->> @@ -244,6 +244,19 @@ const u8 clk_alpha_pll_regs[][PLL_OFF_MAX_REGS] = {
->>                 [PLL_OFF_OPMODE] = 0x30,
->>                 [PLL_OFF_STATUS] = 0x3c,
->>         },
->> +       [CLK_ALPHA_PLL_TYPE_HUAYRA_2290] =  {
->> +               [PLL_OFF_L_VAL] = 0x04,
->> +               [PLL_OFF_ALPHA_VAL] = 0x08,
->> +               [PLL_OFF_USER_CTL] = 0x0c,
->> +               [PLL_OFF_CONFIG_CTL] = 0x10,
->> +               [PLL_OFF_CONFIG_CTL_U] = 0x14,
->> +               [PLL_OFF_CONFIG_CTL_U1] = 0x18,
->> +               [PLL_OFF_TEST_CTL] = 0x1c,
->> +               [PLL_OFF_TEST_CTL_U] = 0x20,
->> +               [PLL_OFF_TEST_CTL_U1] = 0x24,
->> +               [PLL_OFF_OPMODE] = 0x28,
->> +               [PLL_OFF_STATUS] = 0x38,
->> +       },
+On Sat, 17 Feb 2024 19:31:58 +0300, Danila Tikhonov wrote:
+> This series adds typec support for PM6150. Was tested on SM7150
+> (xiaomi-surya).
 > 
-> Can you please move them next to the standard huayra PLL regs?
+> To: Bjorn Andersson <andersson@kernel.org>
+> To: Konrad Dybcio <konrad.dybcio@linaro.org>
+> To: Liam Girdwood <lgirdwood@gmail.com>
+> To: Mark Brown <broonie@kernel.org>
+> To: Rob Herring <robh@kernel.org>
+> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> To: Conor Dooley <conor+dt@kernel.org>
+> To: "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
+> To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> To: Wesley Cheng <quic_wcheng@quicinc.com>
+> Cc: linux-arm-msm@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-usb@vger.kernel.org
+> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+> 
+> [...]
 
-Sure, no prob
+Applied to
 
-Konrad
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+
+Thanks!
+
+[1/3] dt-bindings: regulator: qcom,usb-vbus-regulator: Add PM6150 compatible
+      commit: ec29a4d9b7c7329afc61e7932cb91e9b292b2b74
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
