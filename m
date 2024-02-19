@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-43604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43606-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA93385ADCE
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 22:36:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4520985ADD5
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 22:37:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 49D5FB21F74
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 21:36:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B81721F2690E
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 21:37:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 670465478B;
-	Mon, 19 Feb 2024 21:36:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9349722083;
+	Mon, 19 Feb 2024 21:37:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KfxpBBrb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ix1lpdx7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8A2953E3B
-	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 21:36:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBA1155E46
+	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 21:37:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708378579; cv=none; b=UQsjXtxP9U99fjIoKFkG2ofvwyscN4+f9REMnGO2jrIyeUcEKZ7qiyzkT5X335IxHHRRGmZEjMpCKgKPUHH+d51GOePVxxwr3InNpViM5INwwXa+q1evOKkdBt7Yxnq0VClzuxjxjgN3hqapAOCi4J38uxUqSLfAjraqkC5XLxs=
+	t=1708378644; cv=none; b=aVikFEMzPWNmVDdhFwGBwaR5WAqqe1GPVJ/guMVhY3oibDMQ6XkcZ9gwztr40y8Ir23bYzzF/PdSOnDtu7wv40h5D8KT62QG68uxWYRG3v609PGQjGWeHj/+HvreMfJXhuAb+bPvfL1bdh7u8wJ0Fp/5y55bRQL4mj1MDQ+Ld90=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708378579; c=relaxed/simple;
-	bh=ApsOWJ3jkstacs0zcMND68koTCs9SQ0dWb0tIhGo/Uo=;
+	s=arc-20240116; t=1708378644; c=relaxed/simple;
+	bh=TKn2TrIuEVPU93U+6nZajsCQi17cj8SdYFtBCLMFPfU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QUBz5AO4CBiXRDUVqDVtrUOEdbGlk4QrJZNRShZuhQA7i5ck9MO3etHaVpjd6PnfmeE8jiJv5J8POeOOIxRkOLWQd2U9I7gyMgDX8tvIkIebkSoVOa+AUy3JRDNoEQmCCE1YTFEFfZmJv5EJwMM3JGX724uJZYYRQgIqkn+AEps=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KfxpBBrb; arc=none smtp.client-ip=209.85.128.49
+	 In-Reply-To:Content-Type; b=W70Mk9afJCIdreZWUS8e/Xn6tFSMdF9oQL0mZcuR4bY/TZaSqlvATu2df/7IO6rTvaqMe0Eigug9+ew+PVFfraFuD13D85Rr/WWXbU2M5+XLxnB8b6n6gVM+MoJ76P9ognNdj1+0KxyTwN2zMU6d9d0psZ+innwXW9A88HDrZyo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ix1lpdx7; arc=none smtp.client-ip=209.85.208.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4126126f4f4so13872105e9.0
-        for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 13:36:17 -0800 (PST)
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2d220ad10b3so36378251fa.1
+        for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 13:37:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708378576; x=1708983376; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708378641; x=1708983441; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=R06udoZ4ifxSXzb7dMDxGcaCCvaZFWo0gyuILJaLPqw=;
-        b=KfxpBBrbgL2BbM+kpQxdeCa2GN56phj2T+KtAW9OSNzbUyiNx6lOi5pS4uHdWXwjd0
-         CIGAXVUlzXJVx/8DY9sYJ76s87hqNmXggvveweCXSa95AykL8Zqxl25wWJpz4t2ZAJIN
-         LoW+3G2vifH8IHWs0WkVenj29VDERzSPuURWgeZ74i7FR5K0w+Iq7a22emiZR19Qzhbn
-         rBTA6SkFIwpp3Z23njBmFpTYIwiKOFMQjUUjGpLlhNDVpuRRlPSujK2U8zVf3A+VYmap
-         2RiMRB2pwj4L5IA4KiaIYB7kwfUu/NXFpfw21bpdkrysykoDGzdhc9MkOdwzpXIxQFRl
-         oJLQ==
+        bh=Kiwyw9WX7QB6j1OI0/JCJDw1jGKOzumcYj5mvbxIKlI=;
+        b=ix1lpdx7g0vJf3ZKcLFwbdgJa3kNpp0PEphQ2iZOmX8tJLqK4JQMwRMbc1hYAH8Fja
+         KVJ/Fg/CWhRvVuluumgUmgBoB0EyqucoUOctb8nwF6WiDny161hy1psXkoKJepmAlcIk
+         bwaW/KrI9qcODbC3oMSVyn2grVZSSvXm4tEd42CVkqkxviXlv8A+JsRUbZjQLEZ9O0bj
+         X+WbCn4/CkIR3HrYlGd49ojmaDudWIaF8Cc+e23r8sNGaLrfkTLCIP6EDTC8mk1+q66t
+         BZsMQ7osjWltLErYznEu3rvYLnIlMLQF0GdqJAbjjefZvxNkhKRF8ZkoHLMmrqWCxvrk
+         LP4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708378576; x=1708983376;
+        d=1e100.net; s=20230601; t=1708378641; x=1708983441;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=R06udoZ4ifxSXzb7dMDxGcaCCvaZFWo0gyuILJaLPqw=;
-        b=cEVOn3uqZtx+IhkxPNGb9nBJ+oQNWgqG6ZjlsGP+twjhjXgbnhOdZn+qhyUXE5pgR1
-         e4DSSlJU8ggOQYHaDd4Kagew99rBcV7qzGVe62Eev0ZtMNVsYOwPn3flBDWcufZmZ3g9
-         mlvjjkOKQ1yC+xL6I8vyjmN4ly7pJEGL6UHm6SBNmKFBvwAgIAJrss/IWbdkEIc1Hjt+
-         wMbfib9lqo83vm3Xp2QmOYNkWWfOk6hkSkSkEt464I54wl+Z+UWnbXUat3fjfodCs4LP
-         n0NmpS9nLF+zpvDhc0Jx+m3TUeRDdAyPUGA3kI6mVFLveWOHvHi/Ds4AoGmwMvzM951y
-         GoXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUIWoMlN7dHS9QUBoyYjMkxEYMRspSy5AVdUird7sLVs9cfbJRjPxnMcrp3DQ2ZKjHe67fNmHH/USvzgmoqhB8XoMHGdT0dJrc7mw==
-X-Gm-Message-State: AOJu0YwY8Z8lYUS14pXfx1C/ICY7+dGLnEK1inDGGQWzNYDMpVxO416j
-	0FKjVgMGT4W2Ao28zZRZuLVtVG8mgAS6DB/jwjJA0K5lUybfWmk+J24qc/DCwrM=
-X-Google-Smtp-Source: AGHT+IEmigqjD+n5FNTREsubOD/WT1LmSdp16Naxg+dPt07CwZozbADCFs3AwNl6sp9yTRwxjMg6dQ==
-X-Received: by 2002:a05:600c:4f83:b0:412:1b2a:d17c with SMTP id n3-20020a05600c4f8300b004121b2ad17cmr9790323wmq.41.1708378576083;
-        Mon, 19 Feb 2024 13:36:16 -0800 (PST)
+        bh=Kiwyw9WX7QB6j1OI0/JCJDw1jGKOzumcYj5mvbxIKlI=;
+        b=oMJG4+aszNAt6p3qy52zKDXpp1GlZSX491xeJ9JjIvTM3TsnRe9P8cfAFzg/NUkSlP
+         eKwlH0GE0p/6UiIgX2DxJNMlLXhPBRGvh0PawAEmQ/CF2l0msTz7VijgZvfFq5iBhkr9
+         F0ZSVrOy7+yuz6jnLj9nPoPq/cxVJKX/Pxp6wiC9eYfubzvc5Vni0herLit3fz/s50JG
+         W983fGEkqPZNzDPLk+/tQY1jYxewzaGRTmHHVs0VZtDB8Qq//TcsaAqBLpp4dRt+qhFT
+         obmx6LYWffu20D1zdipoJGIKQouEszTnjolcvxtqbueAPYz5m/mVtYEaw6KV2lM7FJsK
+         RaFw==
+X-Forwarded-Encrypted: i=1; AJvYcCXsM+4iLQAG/zy6LRDVdIX53BE3oaOQ2c8ZU9BXoHFpkRt52JIWFZ0fXHVac2vbB6MohV5W6ZhD7hjEfbKquGPWgp/cjNLojP1YVQ==
+X-Gm-Message-State: AOJu0YyahU4NCywabl43czGWxn1VlI3TbZsL8t/argM2luSPpwjdIXLt
+	NdhHVGOQsBg0aCTkEoZnoTmUpYx5hCRq0zPLmPY0DCgDcUGyrWKdocqzcn/xYLc=
+X-Google-Smtp-Source: AGHT+IFLvDieckfxWuMTSZsG6r5J9pLX9Da+hCOAlK8PQHUs4f0CF8+gngV48Lho/TBsm8wYOzHKVA==
+X-Received: by 2002:a05:651c:7a1:b0:2d2:2e2f:97f6 with SMTP id g33-20020a05651c07a100b002d22e2f97f6mr3596965lje.50.1708378640861;
+        Mon, 19 Feb 2024 13:37:20 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id dn23-20020a05600c655700b0040fafd84095sm12314551wmb.41.2024.02.19.13.36.14
+        by smtp.gmail.com with ESMTPSA id dn23-20020a05600c655700b0040fafd84095sm12314551wmb.41.2024.02.19.13.37.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Feb 2024 13:36:15 -0800 (PST)
-Message-ID: <5169eb03-a27f-4948-a175-50bba4e78f06@linaro.org>
-Date: Mon, 19 Feb 2024 22:36:14 +0100
+        Mon, 19 Feb 2024 13:37:20 -0800 (PST)
+Message-ID: <6f3f22f6-f659-494d-963c-544cf5f44adc@linaro.org>
+Date: Mon, 19 Feb 2024 22:37:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,8 +90,8 @@ Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
  David Yang <mmyangfl@gmail.com>
 References: <20240220-inno-phy-v3-0-893cdf8633b4@outlook.com>
  <20240220-inno-phy-v3-1-893cdf8633b4@outlook.com>
- <1ed26e53-9f92-47a8-857d-777da512ee12@linaro.org>
- <SEZPR06MB69599A79CA066DAEC73BCEF796512@SEZPR06MB6959.apcprd06.prod.outlook.com>
+ <62221084-247c-4a0b-a030-e12cb2931411@linaro.org>
+ <SEZPR06MB6959AAB6B43F3E1F5E1C526596512@SEZPR06MB6959.apcprd06.prod.outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -137,12 +137,12 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <SEZPR06MB69599A79CA066DAEC73BCEF796512@SEZPR06MB6959.apcprd06.prod.outlook.com>
+In-Reply-To: <SEZPR06MB6959AAB6B43F3E1F5E1C526596512@SEZPR06MB6959.apcprd06.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/02/2024 22:33, Yang Xiwen wrote:
-> On 2/20/2024 5:30 AM, Krzysztof Kozlowski wrote:
+On 19/02/2024 22:35, Yang Xiwen wrote:
+> On 2/20/2024 5:32 AM, Krzysztof Kozlowski wrote:
 >> On 19/02/2024 22:27, Yang Xiwen via B4 Relay wrote:
 >>> From: Yang Xiwen <forbidden405@outlook.com>
 >>>
@@ -153,13 +153,47 @@ On 19/02/2024 22:33, Yang Xiwen wrote:
 >>> compatible lists.
 >>>
 >>> Fixes: 3940ffc65492 ("phy: hisilicon: Add inno-usb2-phy driver for Hi3798MV100")
->> I don't understand what is the bug being fixed here. Binding being in
->> TXT is not a bug.
-> This commit adds the compatible "hisilicon,hi3798mv100-usb2-phy" to the 
-> driver, but binding change is left alone.
+>>> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+>>> ---
+>>>   .../bindings/phy/hisilicon,inno-usb2-phy.yaml      | 95 ++++++++++++++++++++++
+>>>   .../devicetree/bindings/phy/phy-hisi-inno-usb2.txt | 71 ----------------
+>>>   2 files changed, 95 insertions(+), 71 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/phy/hisilicon,inno-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/hisilicon,inno-usb2-phy.yaml
+>>> new file mode 100644
+>>> index 000000000000..1b57e0396209
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/phy/hisilicon,inno-usb2-phy.yaml
+>>> @@ -0,0 +1,95 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/phy/hisilicon,inno-usb2-phy.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: HiSilicon HiSTB SoCs INNO USB2 PHY device
+>>> +
+>>> +maintainers:
+>>> +  - Yang Xiwen <forbidden405@outlook.com>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>> +      - enum:
+>>> +          - hisilicon,hi3798cv200-usb2-phy
+>>> +          - hisilicon,hi3798mv100-usb2-phy
+>>> +      - const: hisilicon,inno-usb2-phy
+>> According to your driver hisilicon,hi3798mv100-usb2-phy and
+>> hisilicon,inno-usb2-phy are not compatible.
+> Ah, i didn't pay too much attention to that. I should remove the entry 
+> for hisilicon,inno-usb2-phy in the driver. Sorry for that.
 
-Then this patch is not a correct fix. It does something else then adding
-missing compatible. Remember that one commit is one logical change.
+We don't talk here about driver, although I used the driver as proof or
+argument, because I don't have access to hardware datasheet (and no
+intention to look there).
+
+What I claim is these are not compatible, so respond to this argument,
+not some other one.
 
 Best regards,
 Krzysztof
