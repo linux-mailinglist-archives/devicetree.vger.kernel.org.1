@@ -1,114 +1,149 @@
-Return-Path: <devicetree+bounces-43568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 318CB85AC57
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 20:50:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6621C85AC70
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 20:53:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB96228426B
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 19:50:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 06B72B24871
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 19:52:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E549F53E30;
-	Mon, 19 Feb 2024 19:47:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16F88524A5;
+	Mon, 19 Feb 2024 19:49:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="XLmyjSXV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QCcwxNIG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D83B053E27
-	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 19:47:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CB265822D;
+	Mon, 19 Feb 2024 19:49:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708372038; cv=none; b=Dz97SN/7AfsuT8VZs3jvOr545yaVn66Sh6wk2dBCdsw1y9CxbGCsqVwR1oAoO/eBMAnCWQeFnW32+J0/zQycuIzenqD0XFLwd3H9SpFXg2+OgFDEImCN3q5iKWXOpYz9knuBBI4w+NENkMvT5pcPBwj0A7b8qPXBgQKfaHSyyDo=
+	t=1708372191; cv=none; b=f+jbpaEnIKOEy5i9gtTykLpa1eP1dC17TX6A/BKQrlxedS6id3rgZGGj42o38jFOimfTs9nivoifzWXhO+QiV5JSTXekuLv1xXt2cWhFt0WLX4Ldu79SEAXlRMtOkq9LNiad9wZIA7SQI5sUhpEBDTbx4x4X9+N1WqDjdUB+a5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708372038; c=relaxed/simple;
-	bh=DUEcOGJ/rk/h3tWGjgVTrpMETTt0JGs4Wy0hdmAe7hc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IwkF3yHSYXL2NvvLGtkvxr+JPowXDBLcZPjwx+dqgqDeNAY83OkZUqRH9vRS0RXtOx46Sm4WJBjpJvRi7xDDYHjesHJYs78CYthLkDVgckUY4TwWEbfUnaCLSqQQQ44YoVWb/ii23ZGEz9qxaiR94eLq8gl8OK91YBLueBdN/NI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=XLmyjSXV; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2d2305589a2so26392901fa.1
-        for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 11:47:16 -0800 (PST)
+	s=arc-20240116; t=1708372191; c=relaxed/simple;
+	bh=2BFGhy1GoGAZQrg+qot76orHOK5E0hhM9ZPKjpWs0L0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gnh5UEbRb6T3YqkM5nY/pcGsmPgf855BUDHbK8VrGsPQuAa3CYikS3vOXxFLY6s8DBWaI0ojL2iQFYbLOAqCbyVew1BmkZMcVMDUrOPiXg4ky4C81PW8byo7x6phj3vHD6RpWHSXSOpStRrQAkyQDVBBXlkK11rgS/Mkxv/tO5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QCcwxNIG; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2d22b8c6e0dso29294761fa.2;
+        Mon, 19 Feb 2024 11:49:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1708372035; x=1708976835; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DUEcOGJ/rk/h3tWGjgVTrpMETTt0JGs4Wy0hdmAe7hc=;
-        b=XLmyjSXVo+QrZsw56/6y5wko9M58YoqckmwPn7YSTnJ/wx3/+LSB05Ry8C67muEgAn
-         OSsjHKYvLcBbwIm+e399HA5BszIw5pfaJSIl+Ytmj4z1Z3V+3tyGLOydXaOThogoIN5D
-         RGTBfPSy8u5LOp5PBxalDAGEvB+XiFv/pW2ZxbQVFLhVmA9icDJn4PsJV4McbvOPtOlN
-         mSbLDBxE9q2d9HZ6Lc1bHmwhStHXAa3n56ngTYxuoPhIg6gjQ+jSWWTP0ttZlo3E0QM4
-         jSHXRu2CMe8NO5BIxeJOfZevdGQOXv5H+9tTze39y/fkMOMpCfrnE+8EzNZef6TePogp
-         yuEw==
+        d=gmail.com; s=20230601; t=1708372188; x=1708976988; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=j+Mxj6oL3njy7wYXA6Pewj5A5hfEOxX2yUvAWo5Ne8Y=;
+        b=QCcwxNIGTB7hAr5jM8+nlA13qyCz7fi/DIt9SzF0EPOK9N1V5VnNC6HYmBTi23N1vO
+         4BpiDr76lg7K3ucRS4yBHnIAH4ZbiRU6RAr0mWaUWtOmQbQwGIXhuhRNXk+VIcS6wQJn
+         MDsU9lXoRDPvAhHPer5K7RnCaMEDEj5r8MfHbyVeCKeEBFLLuBBeGbi5k/uOkkmPIfzc
+         dUnLv7Xds80aSitjv8/xeqIyDWBXitFH0GPy1fRGPujgrvXSJCYJpMBntF8mrYQ+djKK
+         v2QRphZnloiiX02qD75JhAqSYGH5VllvOkqPDDNY6N4A4weZ7JxuUfFfGW7OTh+Ir1UY
+         DNOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708372035; x=1708976835;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DUEcOGJ/rk/h3tWGjgVTrpMETTt0JGs4Wy0hdmAe7hc=;
-        b=gsJxWbdJuQ7VNduy+Od0dEZiwjWNzlIzH2nZQloRGFlPkYnV4if+0m1FFZvRNi9Sg+
-         7h+NiR7FSM6fZ+vTWX+0nL2LLBpGqQ//fiwyN3TKOxByWa+56jw0ICI4hsgDr8pGYeWb
-         E42VJ4f4pdOCjxK2Iez0HG7sF2kdKJwr1J2QpX6J7TT6KHo3QLYdKxFwFCfl/KfxuB4e
-         f3OqQdIMBxjxplSVDuocZngzamhfj4ESTuScf2fSxKUSx2OJgwYDMiocBbKWE+SYfRUA
-         +U3WNsDmsnc+tV8PQ0QziySIGpQb3aGLGoGbrNHtdnEnX/Daoq62tA+r02yzyx7cN0uW
-         7j6A==
-X-Forwarded-Encrypted: i=1; AJvYcCUxw0s611L5DXE/58LRTrrESFqJVfCd7G9uZAkfhvdNnRLkmYs5K1UzZ7MzVo7GSbESiDdq68r8Lt8HXtbDeGHD+uS3ZmMHcaLPPg==
-X-Gm-Message-State: AOJu0Yy5feBBqIJLvHch6uTCJqEKjuQL9RQfiNBAN8EYlFvVxgU33wY3
-	Gaj3Mr2TBXDzh0FQ8DXadJgD8mLamxKchsOTMFIDrTAXm/lh10AlNSbTwp4pwRgNEMx3uVIm1Wl
-	GlUomR/wpvn06LNbrbHaPv3XiEZpOopyNSnVzkw==
-X-Google-Smtp-Source: AGHT+IHE5s1bWp7Lf0AEexy1WLGcMX0Xnpkd5+kSp3lWcLT3lfjbcJg3I29Wo+/9DZEaxxVZN3gD4R3V3ERbgvjwPck=
-X-Received: by 2002:a2e:7202:0:b0:2d2:3a8e:e2b4 with SMTP id
- n2-20020a2e7202000000b002d23a8ee2b4mr2113220ljc.42.1708372034915; Mon, 19 Feb
- 2024 11:47:14 -0800 (PST)
+        d=1e100.net; s=20230601; t=1708372188; x=1708976988;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=j+Mxj6oL3njy7wYXA6Pewj5A5hfEOxX2yUvAWo5Ne8Y=;
+        b=AoD2bZMfIZEdsbTo9/zyePhjYqhQNemxIlvatQw1w5as6Ve73CuAsrp89qNcLUgBDF
+         qamz+sRurVwyxD6Vi6RXq6CYXci3mULwr7Ky2W7vgWXXVg8a2anqSpjqQxwARbcD9dS8
+         6mt8VSQ8uTpgaQUukt45T1fGlmYVRt6YVupXpzpKV+IrmJF6j1c4iXqyBTf8KyaMlziG
+         nrmzIieLE5BAUYqbQyqKRpyAn7S66vme7OifNpOubSbsVa0qTywQxWptSqj4EFWfSZQX
+         JT2nkgEaRbaBJrjz35bDczNjTqd2ST0y6b6DCL6qGnI4DC+7mG4La5jMpdkaDM9gMDcI
+         WUOw==
+X-Forwarded-Encrypted: i=1; AJvYcCVJqj9v2LDU0DOkllAe9NQca/6DvUA5+5Q7ewMvrvn4y4IX+5xcRklatHeuL7Ak9WtKHN6DsFZg9Pf94deTmemlGvvOnCL6p5KP8krwZS2GNWufiexmiSKiksV4pOnIPuMqLwzD8yy975/jPRZmiP8=
+X-Gm-Message-State: AOJu0YwPXQM6IBOFJBz1bzHhDCXieB+fIq9XxolM+6Hzbdh+NpgI+Kww
+	r1yq6qOFSzSk3TSbv8273FvdivqFqZmI9YppSt7sA1J0Pd4y4iLM
+X-Google-Smtp-Source: AGHT+IFih7GdrQAufuteLL8qMR0G4/2b7CwVADm2kPBGSrjoEY1liwkNr8A7UP7zROTWMCWm0iPUfA==
+X-Received: by 2002:a05:651c:b21:b0:2d2:35e6:7a7f with SMTP id b33-20020a05651c0b2100b002d235e67a7fmr3898833ljr.0.1708372188047;
+        Mon, 19 Feb 2024 11:49:48 -0800 (PST)
+Received: from [192.168.50.244] (83.8.201.110.ipv4.supernova.orange.pl. [83.8.201.110])
+        by smtp.gmail.com with ESMTPSA id d5-20020aa7c1c5000000b00564775edd4esm1224313edp.35.2024.02.19.11.49.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Feb 2024 11:49:47 -0800 (PST)
+Message-ID: <c2fde69d-48c2-446f-ac56-876651c06b51@gmail.com>
+Date: Mon, 19 Feb 2024 20:49:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240110-ad7380-mainline-v4-0-93a1d96b50fa@baylibre.com> <20240110-ad7380-mainline-v4-2-93a1d96b50fa@baylibre.com>
-In-Reply-To: <20240110-ad7380-mainline-v4-2-93a1d96b50fa@baylibre.com>
-From: David Lechner <dlechner@baylibre.com>
-Date: Mon, 19 Feb 2024 13:47:03 -0600
-Message-ID: <CAMknhBGkUP2Tdze5Fa_0qTcCP_OgcTxtczKYZiH1icfuTAEe+g@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] iio: adc: ad7380: new driver for AD7380 ADCs
-To: linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Cameron <jic23@kernel.org>, Michael Hennerich <michael.hennerich@analog.com>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org, 
-	Stefan Popa <stefan.popa@analog.com>, Julien Stephan <jstephan@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: exynos4212-tab3: limit usable memory range
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht
+References: <20240217-tab3-limit-usable-memory-range-v1-1-49cc9c86a5cc@gmail.com>
+ <15ab6aa6-fb30-4970-9c50-546afb933e03@linaro.org>
+Content-Language: en-US
+From: Artur Weber <aweber.kernel@gmail.com>
+In-Reply-To: <15ab6aa6-fb30-4970-9c50-546afb933e03@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jan 10, 2024 at 2:29=E2=80=AFPM David Lechner <dlechner@baylibre.co=
-m> wrote:
+On 19.02.2024 08:44, Krzysztof Kozlowski wrote:
+> On 17/02/2024 20:02, Artur Weber wrote:
+>> The stock bootloader on the Samsung Galaxy Tab 3 8.0 provides an
+>> incorrect available memory range over ATAG_MEM. Limit the usable
+>> memory in the DTS to prevent it from doing so, without having to
+>> disable ATAG support.
+>>
+>> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+>> ---
+>>   arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi | 6 ++++++
+>>   1 file changed, 6 insertions(+)
+>>
+>> diff --git a/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi b/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
+>> index e5254e32aa8f..9bc05961577d 100644
+>> --- a/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
+>> +++ b/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
+>> @@ -45,6 +45,12 @@ chosen {
+>>   		/* Default S-BOOT bootloader loads initramfs here */
+>>   		linux,initrd-start = <0x42000000>;
+>>   		linux,initrd-end = <0x42800000>;
+>> +
+>> +		/*
+>> +		 * Stock bootloader provides incorrect memory size in ATAG_MEM;
+>> +		 * override it here
+>> +		 */
+>> +		linux,usable-memory-range = <0x40000000 0x3fc00000>;
+> 
+> Applied and dropped:
+>   chosen: linux,usable-memory-range:0: [4611686019496935424] is too short
 
-...
+This seems to be a binding issue; the DT schema expects a 64-bit memory 
+address and size, and doesn't allow a 32-bit range. I've tested the DTS 
+on my device and this property seems to be handled fine, so I think this 
+should allow 32-bit values as well.
 
-> +
-> +/* fully differential */
-> +DEFINE_AD7380_DIFFERENTIAL_2_CHANNEL(ad7380_channels, 16);
-> +DEFINE_AD7380_DIFFERENTIAL_2_CHANNEL(ad7381_channels, 14);
-> +/* pseudo differential */
-> +DEFINE_AD7380_DIFFERENTIAL_2_CHANNEL(ad7383_channels, 16);
-> +DEFINE_AD7380_DIFFERENTIAL_2_CHANNEL(ad7384_channels, 14);
-> +
+I've opened a PR[1] against devicetree-org/dt-schema (where the schema 
+for the chosen node is stored) to try and fix this. If my approach is 
+incorrect, feel free to comment there as well.
 
-Similar question to [1] in light of [2]: Since AD7383 and AD7384 are
-pseudo-differential, should we handle them differently? I.e. add
-aina-supply and ainb-supply DT properties for the negative inputs
-(typically a V_REF / 2 supply) and remove the differential flag from
-the channel spec.
+Best regards
+Artur
 
-[1]: https://lore.kernel.org/linux-iio/CAMknhBH2Pqa9xpPxnTCxJegVTbOG-QDeJA4=
-YrQUPfj+hfSs73A@mail.gmail.com/
-[2]: https://lore.kernel.org/linux-iio/CAMknhBF5mAsN1c-194Qwa5oKmqKzef2khXn=
-qA1cSdKpWHKWp0w@mail.gmail.com/
+[1] https://github.com/devicetree-org/dt-schema/pull/128
+
+> 
+> Does not look you tested the bindings.
+> 
+> Please observe that we have dedicated subsystem profile since a release:
+> https://www.kernel.org/doc/html/latest/process/maintainers.html#arm-samsung-s3c-s5p-and-exynos-arm-architectures
+> 
+> Best regards,
+> Krzysztof
+> 
+
 
