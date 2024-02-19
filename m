@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-43271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCA16859CEB
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 08:32:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F1C4859CFF
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 08:34:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FF381F22B7B
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 07:32:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 621471C21B02
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 07:34:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79FC7208D9;
-	Mon, 19 Feb 2024 07:32:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D3FE20DFF;
+	Mon, 19 Feb 2024 07:34:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="V3X0jKtF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XX8wxhsH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82A7120DDF
-	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 07:32:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBC4A20DD8
+	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 07:34:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708327933; cv=none; b=iBZrq7Wdlb6ZEHi/6uGpOt+ydtFZraIeNi4/d9XjrRcIVQj5Vxa4tJ38gOx8Ze+Di40IaIXsUx0oscOYvE68o4YpCxyckbQaSUF5mxFkWPXSb/iFvW4bLryCxgfvgfwzKYSAyQQzJ8Kq4qWD16rIk5F4NcPopzUmGOeyH6q8GIQ=
+	t=1708328059; cv=none; b=djl7xs4G7ptS1hiMu+bjnZ1Y7+EB7q8OibFnzmkvWlT87RJ9OP6TnjkBqRvSDG2fCLg7lpSYu/KrqwL9LziDz9FJJgqZNeJbywDhssm5hmjc1Ioc1uTN8ZZUO9YF8Y9xZ2wo67gs/KABEtIIvboOGRDcO8ELchWkwm3enE8+lac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708327933; c=relaxed/simple;
-	bh=HDUahAo4QH9ZVi5DBKH41Wf2VQ+rtcVyYDHMwZHr2jk=;
+	s=arc-20240116; t=1708328059; c=relaxed/simple;
+	bh=krkCfySZSkroyGR6IAkJme4Tqg0Cs5e39JCBndl9dII=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rMT1pQyH6NilQyeevOCqDDtx0cGqL7WNvX0HlKvIT4N6TKjQ2SAw/47Y3l3qbrggWea/whXOsC53ftvrmT++04VFwZJUFtciKxLz+Yrb8/GpPByPmVkjkecnBFRablIpdnDk7sGYf05LKlnTBqWJowaBwHntyquMLcrnETB/0PM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=V3X0jKtF; arc=none smtp.client-ip=209.85.128.43
+	 In-Reply-To:Content-Type; b=CrWaDN+AlL2cZl4ArrlWjcu8JCdvpVWNjO9Riz3mXOdfENTdLjc5t3HqDbllfql0GtcPkA71xs/hiIGyiMdjmRmpD22O8tA5m88s1fqQ2Yj6e+bzQa5AOhBPhj9/20h47z4xkPCiCNr3yCGyTrrE5ScBFw1qKygeIbO9melRiyE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XX8wxhsH; arc=none smtp.client-ip=209.85.128.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-41262e0475bso6591165e9.3
-        for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 23:32:11 -0800 (PST)
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4125df8f347so10187685e9.3
+        for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 23:34:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708327930; x=1708932730; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708328055; x=1708932855; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=P3XX5oDu8CsXaJPlV/5mtPhF1sBBxPC7pSxfaDNRlYY=;
-        b=V3X0jKtFQdfJKs3E8KO0fThhoBfatjbrsSanSKjt7HLLwqBBQysAo7fzRj5s8y7oUh
-         HiGmWQn1YL/0E7hdPP5zDa3XNWF9dUn8Ewmo+E3OB5MI6E76W7q50XDC9euq/gbqjebI
-         ZOFYPSQlYyTe02O97tp/OzJJ2q0wNEHEvyJ5WNgsuJjWZktNvk9u4UMuZ8BtsWGA0ISq
-         QgWJvFU+MEEE8fSNvPzko9Q3kU0GJiOAkqqv8QQmUt/10a6o6ExExPxW23XF/PQb8KHF
-         WFrfVqjpQTH+a3pa9aAbTNx0iVo3RRXfGM6Ux6oJfTrY/JqvedqtiNnDhS/hbuL5F41f
-         1IvA==
+        bh=xfYKjQlB3cTR/VJt7JP21CmTYzoHEEFMBY9a1YgsyAo=;
+        b=XX8wxhsHCzhZh6PK5Ycd2YjgnWTP1cvNkhhxWB6xKtCl8PI7bSLUfSJEoP/4ko97m3
+         NjsburrZAT2cIchEHK93HVVuvJQsxaGJyVT4DTSC1USupAQI0vQaUlvoHsHSV5bZaAzu
+         bsW5V59EW3FQYfobZorZoH1JMpmHppFfuNuUhmMY2dj7u7vUyL8o5pAKxZaWm1q6QY+g
+         bfj7rOAMF/310mnvogNqLwl5t2WnB0CJbUsilvW6fV1TnU+roXxFOSiPwYVxq02GAjZQ
+         rJFuySBlNiHeg8ergHKRSfAP88/hoCuXE9RCRCl31e9WptPKmYAnJjS4z7q/YVpx/YSI
+         ilgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708327930; x=1708932730;
+        d=1e100.net; s=20230601; t=1708328055; x=1708932855;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=P3XX5oDu8CsXaJPlV/5mtPhF1sBBxPC7pSxfaDNRlYY=;
-        b=utLd5Wr8GzO5LfGHLmqOU0/6+XNayHjr29wJXuW5b3estXZdck5GQjU36rO3TqKnP1
-         GeL6hUrupo9r4i5Bi76izRLkf67X66evuAzkKPXhPp58O5bO1tDly5D+/MvghmxinGhe
-         A/W2HXa+iIR/AILYygM0kMohpQ8iRwJM9ladPXO6GXy20K8jrNt7gC2Q+6kI6z+Q3P5f
-         WnBQrcAvZvKzJ4lWm22LQPjxMUyUyCSk7QSOsreKFFQgUchw6uqgfHCKGRmvEeV5FtC1
-         rseMxzxYh+ffLyZFjwKO+Bq1SdXczsKHXOi10yowj1b698umNvTSfwWjfuLPXOflvhVi
-         /uYg==
-X-Forwarded-Encrypted: i=1; AJvYcCW/6S+tOBAGoOuMShp83dz9RCLuP/row6kP/QEMFQ8tKUoosO6liDdpPAfq4tFeVMOsFR9NnJZgU2TUFPQAlEgvIbz0PF8Uo4EdSQ==
-X-Gm-Message-State: AOJu0Yxj53Z2uSrNKpDlIYXyStuTF21GQCZuPHy/MC+qmW878CGTRrvw
-	ZIIDEEoNYrLEA/i2NZJYySR7sOb2ZYYaiJZhNz5HKo7rCuq2gefEqDgI5Ew74Ao=
-X-Google-Smtp-Source: AGHT+IEQ5HeU1c0x8Sc85iUjJff++RVtsEsaB1kPAvEr0FvJQUSu+G0Zhh1eYqg5MwToC8y8gsuF3g==
-X-Received: by 2002:a05:600c:4fc9:b0:412:5652:2875 with SMTP id o9-20020a05600c4fc900b0041256522875mr5434109wmq.17.1708327929998;
-        Sun, 18 Feb 2024 23:32:09 -0800 (PST)
+        bh=xfYKjQlB3cTR/VJt7JP21CmTYzoHEEFMBY9a1YgsyAo=;
+        b=h3VMDBS7SaNSSYMcu/5ZmE+FJLSKoQjaS7wqQuB+PTA9yr+gxZnczhYhSFUbFu7bEC
+         zJEMflFqCMDZjQKQMEPF71pyq9QANHPU6PKsZvfrLEiiPvTMWCb0WlYI9EKHqHE8tRsY
+         VbkhN2NQwDPPtCNPWn5mzER4Xg5YjN6nu8CJsmBjPEL//JG8r001cItN0QYFc4AOuZb8
+         WtDMUACjPfRGjWzVByryK27xaACU7ldSSyOiNPjDf6q9LpWHmPaqzdRrXPSm38JM966i
+         TTL1eRcpATN9X4TrdiHYDhsY8naUZtgpAkU8BZE00NAYtgn36G9JIO585nLhtY0LreGO
+         FDbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXo4/rqLb+3ZJPEu/Ma1VUskbBuH1YMMUmLbfq7m24yjjGP2lAVERVQbz2fekm4Cybw5udQkikKDtMhvq5FSvV+12euNGxBgg7RVQ==
+X-Gm-Message-State: AOJu0Yw8951enNHdfo2n4RTt/1Awe+ZPOuL4BcXWJ0DP/QvqAiPT4+F5
+	fCo65FFJEx65yuFojMuA3rNALaEi/vQ+49fPzsG4Mptk0WUy+Q0UbkwXXTepQRA=
+X-Google-Smtp-Source: AGHT+IEY4IXUUaJrDQ/A3fyk8ahV8A9JPF6sLtLwu5zuCAycDgcK9b/PJNWgzPznWAFvTfOJ9+QdWg==
+X-Received: by 2002:a05:600c:a3a3:b0:412:415a:43ac with SMTP id hn35-20020a05600ca3a300b00412415a43acmr5919941wmb.15.1708328055247;
+        Sun, 18 Feb 2024 23:34:15 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id f19-20020a05600c155300b00411ff030f06sm10764513wmg.9.2024.02.18.23.32.07
+        by smtp.gmail.com with ESMTPSA id jv14-20020a05600c570e00b0040fe3147babsm10640011wmb.0.2024.02.18.23.34.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Feb 2024 23:32:09 -0800 (PST)
-Message-ID: <7c1327c0-d0ea-4797-a5fa-5844ba46bf53@linaro.org>
-Date: Mon, 19 Feb 2024 08:32:07 +0100
+        Sun, 18 Feb 2024 23:34:14 -0800 (PST)
+Message-ID: <55770080-9b27-4e04-a78e-7a7e508f37c2@linaro.org>
+Date: Mon, 19 Feb 2024 08:34:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,9 +79,8 @@ User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v5 03/18] dt-bindings: regulator: describe the PMU module
  of the QCA6390 package
 Content-Language: en-US
-To: Bartosz Golaszewski <brgl@bgdev.pl>, Mark Brown <broonie@kernel.org>
-Cc: Marcel Holtmann <marcel@holtmann.org>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+To: Bartosz Golaszewski <brgl@bgdev.pl>, Marcel Holtmann
+ <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
  "David S . Miller" <davem@davemloft.net>, Eric Dumazet
  <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
  Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
@@ -89,9 +88,9 @@ Cc: Marcel Holtmann <marcel@holtmann.org>,
  Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
  Bjorn Andersson <andersson@kernel.org>,
  Konrad Dybcio <konrad.dybcio@linaro.org>, Liam Girdwood
- <lgirdwood@gmail.com>, Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Saravana Kannan <saravanak@google.com>,
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Saravana Kannan <saravanak@google.com>,
  Geert Uytterhoeven <geert+renesas@glider.be>, Arnd Bergmann <arnd@arndb.de>,
  Neil Armstrong <neil.armstrong@linaro.org>,
  Marek Szyprowski <m.szyprowski@samsung.com>, Alex Elder <elder@linaro.org>,
@@ -99,8 +98,8 @@ Cc: Marcel Holtmann <marcel@holtmann.org>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Abel Vesa <abel.vesa@linaro.org>, Manivannan Sadhasivam <mani@kernel.org>,
  Lukas Wunner <lukas@wunner.de>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-wireless@vger.kernel.org, linux-arm-msm@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
@@ -108,8 +107,6 @@ Cc: Marcel Holtmann <marcel@holtmann.org>,
  Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 References: <20240216203215.40870-1-brgl@bgdev.pl>
  <20240216203215.40870-4-brgl@bgdev.pl>
- <ZdDVNbjv60G9YUNy@finisterre.sirena.org.uk>
- <CAMRc=Mf9Sro4kM_Jn8_v=cyO5PxCp6AnBdeS9XspqVDGKdA_Dg@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -155,34 +152,28 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAMRc=Mf9Sro4kM_Jn8_v=cyO5PxCp6AnBdeS9XspqVDGKdA_Dg@mail.gmail.com>
+In-Reply-To: <20240216203215.40870-4-brgl@bgdev.pl>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 17/02/2024 19:32, Bartosz Golaszewski wrote:
-> On Sat, Feb 17, 2024 at 4:48 PM Mark Brown <broonie@kernel.org> wrote:
->>
->> On Fri, Feb 16, 2024 at 09:32:00PM +0100, Bartosz Golaszewski wrote:
->>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>>
->>> The QCA6390 package contains discreet modules for WLAN and Bluetooth. They
->>> are powered by the Power Management Unit (PMU) that takes inputs from the
->>> host and provides LDO outputs. This document describes this module.
->>
->> Please submit patches using subject lines reflecting the style for the
->> subsystem, this makes it easier for people to identify relevant patches.
->> Look at what existing commits in the area you're changing are doing and
->> make sure your subject lines visually resemble what they're doing.
->> There's no need to resubmit to fix this alone.
+On 16/02/2024 21:32, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> Mark,
+> The QCA6390 package contains discreet modules for WLAN and Bluetooth. They
+> are powered by the Power Management Unit (PMU) that takes inputs from the
+> host and provides LDO outputs. This document describes this module.
 > 
-> This is quite vague, could you elaborate? I have no idea what is wrong
-> with this patch.
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> ---
+>  .../bindings/regulator/qcom,qca6390-pmu.yaml  | 166 ++++++++++++++++++
+>  1 file changed, 166 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/qcom,qca6390-pmu.yaml
+> 
 
-Use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching.
+This matches our internal discussions and how we see the QCA6390 power
+handling based on datasheet.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
