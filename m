@@ -1,131 +1,107 @@
-Return-Path: <devicetree+bounces-43546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FDD785AA7F
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 19:03:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F9F785AAAA
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 19:14:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 058F5282E5F
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 18:03:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4AA8E28354A
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 18:14:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DDF647A72;
-	Mon, 19 Feb 2024 18:03:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D77A347F7E;
+	Mon, 19 Feb 2024 18:14:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qfqY9KQ2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DriiqdOZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE4543BB38;
-	Mon, 19 Feb 2024 18:03:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8CD346B9F;
+	Mon, 19 Feb 2024 18:14:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708365797; cv=none; b=OkkR24XqeowG8mZTYEsDwV5YrIo4CvruhQ1f7RJ3XHQ9bTknx6q67cg2xKV4B6YX0wjK1FlvLJ5jQIItDa0EaFA5MfjaJJMAUhCRd6B2c/+rl6s+fC/qdwXV67x84H3/IAtFPl5MNqJLTMfdMQftwIHuB9t4aL7glst0VpOPEfk=
+	t=1708366465; cv=none; b=ErBjg2Z7/tFEAhIr4nYr0ffwC3K2U8oaddqOfyuAz27BljIgtWDW6X1X9LhYIWLRAsqncYDOiAxBdTzvpjU5RTDLD2j6OAg+l/MPECkwkCFr13T7DSZjcYp77T4r5tHY9FZIeVCU6L8X9BfXFoSlgno10e4jkitZbd2xfIL1Bdo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708365797; c=relaxed/simple;
-	bh=fN+7T2/ux9us6GFbiDO1by9SUDxjo7ndhirheQxhNXg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bepM8ERrso06Ez8EGnkVmhsOiCF3QnebYpn6K4GKvFiTFmIgV7ZIjNqkrJDhbWBu3YdWbM6kDz9Gs8pFBZzZdvmDMboTUbj9JbQCx+m4gsfj6Aal8f2pfcRwxjk+LqjbnZZaEqBJB2CAw5hkgpEYaVNgldl9kWD2yL8nU8r6jng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qfqY9KQ2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C34AC433C7;
-	Mon, 19 Feb 2024 18:03:07 +0000 (UTC)
+	s=arc-20240116; t=1708366465; c=relaxed/simple;
+	bh=3p90HdXjRYqaF/dwaJSI6JIUSflQuajrLtO/CzXAHow=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=sljBUYF5qN6PSATM+DbamtzuvcWgdhibzoCC4nz0CYtSJTV/3mba8vHNJGvZfW/UHZO/t7g5W6OvggryNxonkD8IlP473PFsFydWLqXZ+ak3fqCigzGE5T2Qi9hZbrJO650nd3iREyE63jo/dTQsNNXAG5ygSFxwSiyMyWCv05c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DriiqdOZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6928FC433C7;
+	Mon, 19 Feb 2024 18:14:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708365796;
-	bh=fN+7T2/ux9us6GFbiDO1by9SUDxjo7ndhirheQxhNXg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qfqY9KQ2bRFKYwmsH0uzlhQyYe3wi0lQtfF7J8Or2LPWCBwIxdtqUsol0P/TlsPNu
-	 f1BUTTd8v03NxJR9Z0g7YY2jn/DzGiBkgj+7joJ6q0wQtM6sPhewKU/xHuu6GCZQ5p
-	 rWMW75ggpoPmQYwiqKmNBEC/RAyW+ATsoH4mYNfSDWRVO257rLekRm9FP+wh+Lr01m
-	 +9uQfeHQK7NEMIUsbHpl36G6qlB/KqsksKYBm7o8VDBvj9+I6LpLyMFPbXdCoV06v0
-	 MSXnA/g8Yq91VWXrESrD1xa+CDhVggBP5/3ZKsVL1zs/FWwOqOL/YAHcB0w11B4cCO
-	 p6B0OBYRWtBFA==
-Date: Mon, 19 Feb 2024 18:03:03 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Marcel Holtmann <marcel@holtmann.org>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Alex Elder <elder@linaro.org>,
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Lukas Wunner <lukas@wunner.de>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-wireless@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v5 09/18] arm64: dts: qcom: qrb5165-rb5: model the PMU of
- the QCA6391
-Message-ID: <48164f18-34d0-4053-a416-2bb63aaae74b@sirena.org.uk>
-References: <20240216203215.40870-1-brgl@bgdev.pl>
- <20240216203215.40870-10-brgl@bgdev.pl>
+	s=k20201202; t=1708366465;
+	bh=3p90HdXjRYqaF/dwaJSI6JIUSflQuajrLtO/CzXAHow=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=DriiqdOZJx7EDXvA7xtliPDhs/8oKgC8Y+MNqeSGCzkh2lUq/k2EvQ0bCuNf8nwgB
+	 QvcI2WksBTZS0PQObt9S/jIwf9+zcLPD58p5T2ZLJnaiYA/W32O8bSHmAvSIxrCrwq
+	 Z/aijtMrG5fPtae0GDiiPtN37AiZVshFzsdViqfTqwHwGWMdOa/2/Sg83vWwqKHKir
+	 qq2oCyHVLmyUBHhoStIHmXlfx+cD1pLeyykEv3zkE6YB+RZn1yuDvx8tDdBawvkLK5
+	 iKKHMCPEXuhgVnNFt63vWCqEzwCOHlK0u/FY+GNp+VnhvuwjLVhARh7Udpjkgh+iM7
+	 12tw1qGjLM9Mg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 480A7C48BF8;
+	Mon, 19 Feb 2024 18:14:25 +0000 (UTC)
+From: Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>
+Subject: [PATCH v2 0/2] watchdog: sp805: add reset control support
+Date: Tue, 20 Feb 2024 02:14:24 +0800
+Message-Id: <20240220-hisi-wdt-v2-0-63edc4965b4c@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="6Ec75K1sOfBNW6oj"
-Content-Disposition: inline
-In-Reply-To: <20240216203215.40870-10-brgl@bgdev.pl>
-X-Cookie: Kleeneness is next to Godelness.
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAICa02UC/22MSw7CIBQAr9K8tRhA20pX3sN0wU9L1D4DiJqGu
+ /vs2uVMJrNA8jH4BEOzQPQlpIAzgdw0YCc9XzwLjhgkl3suRc8mStjLZbYzrVS90F2rBFD+iP4
+ c3uvqNBJTmDF+1nMRP/tnUgTjzDqjnLPaqO5wxGe+IV63Fu8w1lq/k5lSPqIAAAA=
+To: Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Guenter Roeck <linux@roeck-us.net>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Viresh Kumar <vireshk@kernel.org>
+Cc: linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Yang Xiwen <forbidden405@outlook.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1708366465; l=825;
+ i=forbidden405@outlook.com; s=20230724; h=from:subject:message-id;
+ bh=3p90HdXjRYqaF/dwaJSI6JIUSflQuajrLtO/CzXAHow=;
+ b=NY9tsSJ4I1KQNgp+4GHYAc0+8hARqMhSN/cqcCnZLV6CXiW8r+zNewLjP58YJ0cUqEk40u7cD
+ Con8Y6VpnijAo3L23KyUzMSeGccNOoyrvkinvy/mlYNpfGz63CNGWh9
+X-Developer-Key: i=forbidden405@outlook.com; a=ed25519;
+ pk=qOD5jhp891/Xzc+H/PZ8LWVSWE3O/XCQnAg+5vdU2IU=
+X-Endpoint-Received:
+ by B4 Relay for forbidden405@outlook.com/20230724 with auth_id=67
+X-Original-From: Yang Xiwen <forbidden405@outlook.com>
+Reply-To: <forbidden405@outlook.com>
 
+Deassert the reset if it's available.
 
---6Ec75K1sOfBNW6oj
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+---
+Changes in v2:
+- commit log: dt-binding->dt-bindings (Krzysztof Kozlowski)
+- binding: remove "|", join two lines. (Krzysztof Kozlowski)
+- Link to v1: https://lore.kernel.org/r/20240217-hisi-wdt-v1-0-cdb9ddcab968@outlook.com
 
-On Fri, Feb 16, 2024 at 09:32:06PM +0100, Bartosz Golaszewski wrote:
+---
+Yang Xiwen (2):
+      watchdog: sp805_wdt: deassert the reset if available
+      dt-bindings: watchdog: arm,sp805: document the reset signal
 
-> +			vreg_pmu_aon_0p59: ldo1 {
-> +				regulator-name = "vreg_pmu_aon_0p59";
-> +				regulator-min-microvolt = <540000>;
-> +				regulator-max-microvolt = <840000>;
-> +			};
+ Documentation/devicetree/bindings/watchdog/arm,sp805.yaml | 5 +++++
+ drivers/watchdog/sp805_wdt.c                              | 9 +++++++++
+ 2 files changed, 14 insertions(+)
+---
+base-commit: 8d3dea210042f54b952b481838c1e7dfc4ec751d
+change-id: 20240217-hisi-wdt-3b52971a6591
 
-That's a *very* wide voltage range for a supply that's got a name ending
-in _0_p59 which sounds a lot like it should be fixed at 0.59V.
-Similarly for a bunch of the other supplies, and I'm not seeing any
-evidence that the consumers do any voltage changes here?  There doesn't
-appear to be any logic here, I'm not convinced these are validated or
-safe constraints.
+Best regards,
+-- 
+Yang Xiwen <forbidden405@outlook.com>
 
---6Ec75K1sOfBNW6oj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXTl9YACgkQJNaLcl1U
-h9AVgQf/Zstl1AGU01IOsCVbEoRgtQnUVnvdCJmcKksR0WQRA9Ez7ZgGXt2kYGCV
-fJfjGIuSto9RcICB8ifx7MrgId9TmPvp9N9Duh87hY01bzM7kmk/pXX7HMBJlU4T
-c6IC7feW5hVtwO7i+xWu4xEjmtGtBPcyhkNuN5x/niH5MHtFqqsBsd7GKz36dJL0
-Ow7999ejPBXXTJSWrIUHN2SQyPmr/06rondsVSlNct8OVA/sjIjPtv7z/642ETwR
-QgVxlgM46BBusYa9IzPbpnE60VsWiecTGBALHtpwtM83iSdQhNnoNJf1l1khPwsp
-za6sxl3vD4FWj+gFYkh1oMTuE/Jp1g==
-=WZdq
------END PGP SIGNATURE-----
-
---6Ec75K1sOfBNW6oj--
 
