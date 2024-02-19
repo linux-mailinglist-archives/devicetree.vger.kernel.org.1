@@ -1,118 +1,154 @@
-Return-Path: <devicetree+bounces-43242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30649859B6C
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 05:41:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0B87859B9B
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 06:16:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D1D4F1F21934
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 04:41:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6031528195A
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 05:16:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F11901CA98;
-	Mon, 19 Feb 2024 04:41:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B758B20308;
+	Mon, 19 Feb 2024 05:15:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="RJCXF6o2"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LaZ1jS7u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 469133C26
-	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 04:41:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4D7F200BA;
+	Mon, 19 Feb 2024 05:15:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708317685; cv=none; b=f0prF1nBHRzZ8OsiQ3qpZYFORWK6+9EmdjidhdWEjOO+1GEhYv5w8JGyS+FzcJOr76BdSDC44VHlqlj5WpD1sp3Czal0IzUfUTaEUNMUZuVjTarmWZ/+IjnqR1LJwk2+PNlinRi6ZsTjzoa3AVg0bVVP2sonXiutz5iFkpABsF0=
+	t=1708319709; cv=none; b=AYPePpfAN74ZUtZFrOANFxAWBqu6GlHXre+i7AqVxTMuahD67/LzPXBanKMlkrHYWnao7tpiPWMXQRwRLrvpaG3USklavbxa9JJSDGxc2noyRLajyKiTDhz1G9wRJcZdREBxorEV4WtS3MC1/XTpwSCvFAOLUdAOfoc56YaIhAM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708317685; c=relaxed/simple;
-	bh=4LdoFdA4gax5ChDVZdlPxcKkkWuMB45j9OVz8iTB44I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LM1yctBVDWFfLqvAU6iiVkiYAH4Xt29P30Ibia+M0L4T9Wma3q490/UCKfrjeIuZHj0LXF2Xzqf+jpGXZI+1hwhhqgnBm1ayX6Bo2M0XR+CUjP6KyiEAJHxtpPUDO664mATblL1L4QuhORfRkkkPgNSSEArVbPDbL+RO1XIOjVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=RJCXF6o2; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2d23114b19dso11424551fa.3
-        for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 20:41:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1708317682; x=1708922482; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=970f2/ePHEzTAJOzsFgotpGi303T4B4dyp5tQNQW5ic=;
-        b=RJCXF6o25SnTpbVoCECtzr0EkrHO09ZOOG7PuLoufT7dUva1R+R11M6bBjsWEPP7Mt
-         Wxdw7loJuGc2jtX23k1NeMwJmPwwKJPwiuA/F2H4iWz3fen4wtRSYpbXqLrj0Mj11V9w
-         YrM5uZJyrxUr6JP4FPiHBkLwtD1x3BbhHe2VTgp6YReiCEiSfxFKzVJyq2Z8HoxARGUs
-         3Eh3syPa6jZbUdCHsfS4ZTDXjX0uX1Yvbs6NrW/6HX/A6FVjYKtCHBQ6bL6EiPkcJtjv
-         Q3X2MEJM4sncNP6MNBdgopGpIfdQ/uMjtV+XOUiZd4Jjvr8I7ia2g8wp6Txz9oI1mfG8
-         plsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708317682; x=1708922482;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=970f2/ePHEzTAJOzsFgotpGi303T4B4dyp5tQNQW5ic=;
-        b=SL6DuCU4xi5qXqHuac4TWDDGlaIFBTvyiPcqam1ODWvzNzAnN9OXxrHPcjYBcj8aSM
-         mzkBN64mAlxAAMZpE/JLeqg13DPUBAVY2BhHgwKofiGO6F0OYNFPPc9bfEa1Y4xMSvR2
-         fAYzVxa1AAW2s4/uMPzyb1YI2cSennQN6Yxrb1VnqrVj4CQ6msLEL6oi/CSipD75XNap
-         jb16LZedUUI4/wRxTy+xgTE20vKSuFnkXAlaOtFLJw8NyoYM7sZ21xSFmTygZgRLzuOD
-         S26CekxKa/P21WoeFindNGvGBZe281tdk4AQHxQ0W1hMEBySTFXKbqKOF5E4GvkgTkhM
-         wbyQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWcYNL3vKbRIylkNVdsYb8Bdx2gomIdioGz3TWPXaisCIjaCvn362iwSONjaql+JZJF53smo3ydDwVouFy4NWZI9BpfwDACY2fA2w==
-X-Gm-Message-State: AOJu0YxhYgoGkVU2oeGcmuovm1X/YgNTCXFIB3CulRismMUE0Y+bGbh/
-	TJ1HMOfU0GMlAQhpQT3Z08oRwOs2Hp80yKfSvh8FnfH3YGrcTMTSu1+AMoeq2G7iwRCZ3Yf87wH
-	jnc2dlV2fgB3hAakf8ij8tKL+yfpsfslZRAojLA==
-X-Google-Smtp-Source: AGHT+IHwZTbHuAg+JP9/Rm67wr4lAFmZwAADwZGC3to+Jiv/TLN1rLbaG+V+unxjUP+XSKzsjocLxuGb6f+9UVQ0Xxk=
-X-Received: by 2002:a2e:3801:0:b0:2d2:2b77:43a8 with SMTP id
- f1-20020a2e3801000000b002d22b7743a8mr4474665lja.14.1708317682305; Sun, 18 Feb
- 2024 20:41:22 -0800 (PST)
+	s=arc-20240116; t=1708319709; c=relaxed/simple;
+	bh=vgTnlbikClzVzfy0RRZAEyEVyAKBisA5MaYhnDsUA3E=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=Tm5Fyh615jc42+tS9YO11B1eqAOVreAMUHx5oI2Sy5VoBtLknhHjyDht1QzB1JMkGgIZYFtoJ9H1dEu/Mi1S5ao3g8QnsZg8KMVrteJrE4UqtClXoMbvmY+t98eo+PzMpRO/i/Xl0JTZYoCdlnxNOKMdOD4MayZbXSdy2i3MAYY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LaZ1jS7u; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41J4DkCe007159;
+	Mon, 19 Feb 2024 05:15:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id; s=qcppdkim1; bh=bszPaqpe15iy
+	YLqgD3PQ79AynqzwEbCvxtyaIuKDJrY=; b=LaZ1jS7uyylB9JcDYmmklw1DSlUB
+	gLvC8yBv6uuLDLAEARIpoba4gFyEP6l7mZrKxOMSIawWXw5D5mfJaS73p6IA2GZ9
+	1xB0sXJ22mSQJrE7cBmYCX1PHsXP3NOrVPpkVwAyiJsJojFQeoOYeySEppE8o8oJ
+	GkrJb72MOCmbDPDVewBflrjDQtbKfD93ueYwXlcTNIvhjXnB4mjmniuHZrfnOWjx
+	pJTNrssJAKUhgZm1Uf0NQiTilR8nylehsbsxqIemlJuiUmWIUQ37MsSY3gK8xAaQ
+	Vs7fGzQ5EKijbWiJ/jkpB78fb8XovMbEPIr6j5xvfrX2Ocfn0/jQzDBOJw==
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3waj5sb0du-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 19 Feb 2024 05:15:03 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 41J5ExQq011098;
+	Mon, 19 Feb 2024 05:14:59 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3wanvkdwbq-1;
+	Mon, 19 Feb 2024 05:14:59 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 41J5Ex8D011093;
+	Mon, 19 Feb 2024 05:14:59 GMT
+Received: from hu-maiyas-hyd.qualcomm.com (hu-vdadhani-hyd.qualcomm.com [10.213.106.28])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 41J5EwAh011092;
+	Mon, 19 Feb 2024 05:14:59 +0000
+Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 4047106)
+	id E50225001D7; Mon, 19 Feb 2024 10:44:57 +0530 (+0530)
+From: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+To: andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, manivannan.sadhasivam@linaro.org
+Cc: quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com,
+        quic_cchiluve@quicinc.com, Viken Dadhaniya <quic_vdadhani@quicinc.com>
+Subject: [PATCH v4] arm64: dts: qcom: sc7280: add slimbus DT node
+Date: Mon, 19 Feb 2024 10:44:55 +0530
+Message-Id: <20240219051455.25927-1-quic_vdadhani@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 8vnnBlxNPgGTB4YX8vo7AdBz6akIbYw0
+X-Proofpoint-ORIG-GUID: 8vnnBlxNPgGTB4YX8vo7AdBz6akIbYw0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-19_02,2024-02-16_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 suspectscore=0
+ mlxlogscore=595 bulkscore=0 clxscore=1015 impostorscore=0 mlxscore=0
+ priorityscore=1501 malwarescore=0 spamscore=0 adultscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402190037
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20240127161753.114685-1-apatel@ventanamicro.com>
- <20240127161753.114685-21-apatel@ventanamicro.com> <87bk8gcgjz.ffs@tglx>
-In-Reply-To: <87bk8gcgjz.ffs@tglx>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Mon, 19 Feb 2024 10:11:10 +0530
-Message-ID: <CAK9=C2XUre1A0+x7VjE2DvfTb5YxXgT7EHd-wKQQwJUhOOQNdw@mail.gmail.com>
-Subject: Re: [PATCH v12 20/25] irqchip/riscv-imsic: Add device MSI domain
- support for PCI devices
-To: Thomas Gleixner <tglx@linutronix.de>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Marc Zyngier <maz@kernel.org>, =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>, 
-	Atish Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>, 
-	Sunil V L <sunilvl@ventanamicro.com>, Saravana Kannan <saravanak@google.com>, 
-	Anup Patel <anup@brainfault.org>, linux-riscv@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Sat, Feb 17, 2024 at 1:44=E2=80=AFAM Thomas Gleixner <tglx@linutronix.de=
-> wrote:
->
-> On Sat, Jan 27 2024 at 21:47, Anup Patel wrote:
-> > +#ifdef CONFIG_RISCV_IMSIC_PCI
-> > +
-> > +static void imsic_pci_mask_irq(struct irq_data *d)
-> > +{
-> > +     pci_msi_mask_irq(d);
-> > +     irq_chip_mask_parent(d);
-> > +}
-> > +
-> > +static void imsic_pci_unmask_irq(struct irq_data *d)
-> > +{
-> > +     pci_msi_unmask_irq(d);
-> > +     irq_chip_unmask_parent(d);
->
-> That's asymmetric vs. mask().
+Populate the DTSI node for slimbus instance to be
+used by bluetooth FM audio case.
 
-Yes, this needs to be symmetric vs mask(). I will update.
+Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+---
+v3 -> v4:
+- Correct email address for linux-arm-msm.
 
-Regards,
-Anup
+v2 -> v3:
+- Fix patch title by adding "PATCH" string.
+- Update commit log.
+
+v1 -> v2:
+- change 0x0 -> 0 to reg property.
+- reorder the DT property.
+- change node tag slim_msm to slim.
+---
+---
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 581818676a4c..1d6afde915aa 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -2672,6 +2672,31 @@
+ 			status = "disabled";
+ 		};
+ 
++		slimbam: dma-controller@3a84000 {
++			compatible = "qcom,bam-v1.7.0";
++			reg = <0 0x03a84000 0 0x20000>;
++			interrupts = <GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>;
++			#dma-cells = <1>;
++			qcom,controlled-remotely;
++			num-channels  = <31>;
++			qcom,ee = <1>;
++			qcom,num-ees = <2>;
++			iommus = <&apps_smmu 0x1826 0x0>;
++			status = "disabled";
++		};
++
++		slim: slim-ngd@3ac0000 {
++			compatible = "qcom,slim-ngd-v1.5.0";
++			reg = <0 0x03ac0000 0 0x2c000>;
++			interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>;
++			dmas = <&slimbam 3>, <&slimbam 4>;
++			dma-names = "rx", "tx";
++			iommus = <&apps_smmu 0x1826 0x0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			status = "disabled";
++		};
++
+ 		lpass_hm: clock-controller@3c00000 {
+ 			compatible = "qcom,sc7280-lpasshm";
+ 			reg = <0 0x03c00000 0 0x28>;
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+of Code Aurora Forum, hosted by The Linux Foundation
+
 
