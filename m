@@ -1,127 +1,143 @@
-Return-Path: <devicetree+bounces-43279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11D7F859DBB
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 09:02:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B01AC859DC3
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 09:02:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 443F61C20E2C
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 08:02:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E35621C221A3
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 08:02:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E17023777;
-	Mon, 19 Feb 2024 07:57:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCB8024B24;
+	Mon, 19 Feb 2024 07:57:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="VVl8JQpi"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="T3uRSW0Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com [209.85.217.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FFB724A0A
-	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 07:57:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25C4624A06;
+	Mon, 19 Feb 2024 07:57:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708329430; cv=none; b=QXO8SqeaWm7/AdREgdxnGiPGhy0/TSDLYIUI0LYxox1YNRZXk1IJF5vUAPcAVIonKIRQzhPNSFYSKcmLz0hKMeekWbrzP7CBYfH6lryXbP6I/BbLiJZwEuTPKzEHkyXfxk6y6EVBQCoccJeaxIsNSEs5rHH+RZc9OiFqfAgoVKU=
+	t=1708329473; cv=none; b=rryjjTXSMHjMSstOUKcRVejR5T4uwrvmxNtLHXLsruPSIb7LCOtX8i+4+uACISSqJSGfYXr8sgDVtF9dnJmHjzaTaH7uDqIZnxwPVk7oHHfK6HyV7dsztZ6Bo6fvcLI+/jYSQeUPDenXfcxSdJ61uUgMeGqAVQzLRTfQm3fd7SQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708329430; c=relaxed/simple;
-	bh=Oey3ZN4EIWUJzNAo3Boteeg+KwnzJ3oRelbiZ+NcSGs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rfNKy8caznDmOlZ2dB6/hS5kuB66ExcSehxAERxfVm4Cm4s1JID7wyJxt3IROZR71eJVYU7w2W8mU3p5kZuAP8+u/aUulvn7ySOl89ynXvRQJ53QL6xsEV/QD+mYiyHfDn3425RjigexYamJObvb21K2BdHMeO3r8HCG7xRWsWU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=VVl8JQpi; arc=none smtp.client-ip=209.85.217.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-vs1-f45.google.com with SMTP id ada2fe7eead31-4705496ac55so58954137.3
-        for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 23:57:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1708329428; x=1708934228; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Oey3ZN4EIWUJzNAo3Boteeg+KwnzJ3oRelbiZ+NcSGs=;
-        b=VVl8JQpietD6ymCw8P666kr9JYEJOP/6jeXxWYk9wcv7MiDlOZHDq7j78X8ip5RtIL
-         oGOg9zYfQV0Sd4wVp+AvOhyd1zR/usG2RKVc8dc9MV8tXFrH2CeZQ0YWWa9evUyQJQ/s
-         drcPWv7qhkki+1T1yyXOIwpaLakGZoChRSfvzccCuQY3XjVtz7jCXViDDBb1vrPa2K8Y
-         +EcJXvaxSF6pM2Uk9/oetGyr/zPuk4PGPok/1+mdFuioVNYGLnilS9zjbbOY1YFcZHCB
-         B15hP2Ev/V3gsUF7j4dhNYeKiiKrTNge27kTORfRqqI7x30iJgnGqpsogtpL9MH66rbC
-         tBxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708329428; x=1708934228;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Oey3ZN4EIWUJzNAo3Boteeg+KwnzJ3oRelbiZ+NcSGs=;
-        b=GKVP2WrigzhupV5u2/vOmQhtL4hg9JAaSrYfzSI3fAb0gxD7UWUEVq8VZZ3ThBYWZP
-         gkMGuerJ1y5xN1qSXSgqCVP3qH0x+aZpcpqzKkTMBph5PqV12cH25ypFpA/wimp1Inde
-         C0bL1hCf+LJQHGJhw+Lclo/Il72kvKIRZDGF+andp3IWUQ0ixrfrto5ZvUOWWvKIllHi
-         N2h+mZYzHP7vZO7782T7huy5y7hTbWRFRB3lCArzXX4s+ef/3qMR/YDOMRY8Jb/jX4AG
-         WzIUzvoKBad6teaJn8zWNmkr0P0udVvselvamQGqFRg/doPMGnsNUOses8G9fMXnQzqP
-         ji7w==
-X-Forwarded-Encrypted: i=1; AJvYcCVJKKcbIQsirfyNm2VpIh+ctADn8VmXCE7+OiP2zB3NMO7ekZfFLppVjltd+brYmYhG+hHRk1THY48HcpzyXO7EuTiDt5QdsAqjmA==
-X-Gm-Message-State: AOJu0YwM4uyq51V5Dk2ZN7IxteOyxZmzX4vXoBQt6FYLAd2bLqWYJB2G
-	bhr+CYTifGUN7HK/MPLIMFoRHazwoR/9aPP17BfugfDmGGS4A3ch/iU91GWapJhyJbWrjpCWB/a
-	g50DJWKdr2DG66cNiyCjoSLG1vWu7nhjRT596EA==
-X-Google-Smtp-Source: AGHT+IGkQijUvXHSNfPb2HxhHlZq4HKDdG92W7zvsTAzBpVd1PSmvpJBFeiTOYN7sqVAKs/Q5f+Y2wj1Qp78qPvhlpQ=
-X-Received: by 2002:a05:6102:409:b0:470:4cfa:c814 with SMTP id
- d9-20020a056102040900b004704cfac814mr2022895vsq.24.1708329428140; Sun, 18 Feb
- 2024 23:57:08 -0800 (PST)
+	s=arc-20240116; t=1708329473; c=relaxed/simple;
+	bh=N2RkZrodmWyz4vz0qln61OM6p79VpeMwDDBrrUeGnBY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZvB6f2uzBu7cwDv8wsWuZre9lsauVOBj688AuC9EohU+gSo7MiaPdm3CBSJR5UrTnbx2ct4J0TaF5h2lLCzBmZZPxpQVLTsPiejZeij+Urk2sgw+gtfH2G1ZXjhlHpwxQx2jd/w21vWWF+6W9eDUyd2CxboT+Cp+P4sIv7D115M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=T3uRSW0Y; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41J4exjq030321;
+	Mon, 19 Feb 2024 07:57:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=2gPaOks
+	5XaolXUxqAHGacsRovinPywfLsxiCbRDVFTU=; b=T3uRSW0YBpSfoBt2Sf7tIrg
+	Z6+3EzQvxqDOJyHGRVZwi5eS3CPw/gr/ea2ce0F0L4kLdnCaPrCtBS+80GOlraRo
+	0eAur/k/jqUe++T4oAn2tQFZa9hmAaIzRIslnRnFBrkhX2jgHLVL/wesfJBOUVbB
+	po19FmpfHvaHqADbV4A0Uc3FROtEoQaDWdcCdX6CrshcjruV+a0t5lV4HH74y+Eo
+	2AdYK6P9BZumlfjDcALWvIT2LguBqIEYjC1JL1Gm+vRoO1PnZmoh5QREeIjjK9zd
+	9EnAyxCuG6C6B4ZXgiXWtjt0QyLC572tR4QuC49XB4q/FGJtkpefxj0lPH6BeiQ=
+	=
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wan17k68v-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 19 Feb 2024 07:57:47 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41J7vX2l012589
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 19 Feb 2024 07:57:33 GMT
+Received: from hu-kriskura-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Sun, 18 Feb 2024 23:57:30 -0800
+From: Krishna Kurapati <quic_kriskura@quicinc.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_ppratap@quicinc.com>,
+        <quic_jackp@quicinc.com>, Krishna Kurapati <quic_kriskura@quicinc.com>
+Subject: [PATCH] arm64: dts: qcom: sc8280xp: Add missing hs_phy_irq in USB nodes
+Date: Mon, 19 Feb 2024 13:27:20 +0530
+Message-ID: <20240219075720.640529-1-quic_kriskura@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240216203215.40870-1-brgl@bgdev.pl> <20240216203215.40870-3-brgl@bgdev.pl>
- <71e9a57e-8be3-4213-9822-45dfc5eb7ceb@linaro.org>
-In-Reply-To: <71e9a57e-8be3-4213-9822-45dfc5eb7ceb@linaro.org>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Mon, 19 Feb 2024 08:56:57 +0100
-Message-ID: <CAMRc=Md1PzoZFDWHWRufktmMiBE0Dp7eYhecpwuaS3AW-Y_g=w@mail.gmail.com>
-Subject: Re: [PATCH v5 02/18] arm64: defconfig: enable ath12k as a module
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kalle Valo <kvalo@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Saravana Kannan <saravanak@google.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Arnd Bergmann <arnd@arndb.de>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Alex Elder <elder@linaro.org>, 
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Abel Vesa <abel.vesa@linaro.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Lukas Wunner <lukas@wunner.de>, 
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, linux-bluetooth@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-pci@vger.kernel.org, linux-pm@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: RjMFkSsBJN1JbHHkvJpCJ_9tGkHBOPuW
+X-Proofpoint-GUID: RjMFkSsBJN1JbHHkvJpCJ_9tGkHBOPuW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-19_05,2024-02-16_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
+ spamscore=0 phishscore=0 bulkscore=0 adultscore=0 priorityscore=1501
+ lowpriorityscore=0 suspectscore=0 malwarescore=0 impostorscore=0
+ mlxlogscore=485 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402190059
 
-On Mon, Feb 19, 2024 at 8:31=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 16/02/2024 21:31, Bartosz Golaszewski wrote:
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >
-> > Build the ath12k driver as a module for arm64 default config.
->
-> This we see from the diff. Please tell us "why", e.g. "Board foo with
-> Qualcomm baz uses it."
->
-> Also this should not be in these series. It only makes the
-> power-sequencing patchset bigger, without any real reason.
->
->
-> Best regards,
-> Krzysztof
->
+Recent binding update [1] indicates that there are hs_phy_irq
+present in primary and secondary usb controllers of sc8280xp.
 
-Got it, I will resend it separately.
+Add the missing hs_phy_irq for these controllers. Since the driver
+doesn't use this interrupt, this change has been only compile
+tested.
 
-Bart
+[1]: https://lore.kernel.org/all/20231227091951.685-2-quic_kriskura@quicinc.com/
+
+Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+index a5b194813079..62e2b99915af 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+@@ -3361,10 +3361,12 @@ usb_0: usb@a6f8800 {
+ 			assigned-clock-rates = <19200000>, <200000000>;
+ 
+ 			interrupts-extended = <&intc GIC_SPI 804 IRQ_TYPE_LEVEL_HIGH>,
++					      <&intc GIC_SPI 805 IRQ_TYPE_LEVEL_HIGH>,
+ 					      <&pdc 14 IRQ_TYPE_EDGE_BOTH>,
+ 					      <&pdc 15 IRQ_TYPE_EDGE_BOTH>,
+ 					      <&pdc 138 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "pwr_event",
++					  "hs_phy_irq",
+ 					  "dp_hs_phy_irq",
+ 					  "dm_hs_phy_irq",
+ 					  "ss_phy_irq";
+@@ -3421,10 +3423,12 @@ usb_1: usb@a8f8800 {
+ 			assigned-clock-rates = <19200000>, <200000000>;
+ 
+ 			interrupts-extended = <&intc GIC_SPI 811 IRQ_TYPE_LEVEL_HIGH>,
++					      <&intc GIC_SPI 790 IRQ_TYPE_LEVEL_HIGH>,
+ 					      <&pdc 12 IRQ_TYPE_EDGE_BOTH>,
+ 					      <&pdc 13 IRQ_TYPE_EDGE_BOTH>,
+ 					      <&pdc 136 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "pwr_event",
++					  "hs_phy_irq",
+ 					  "dp_hs_phy_irq",
+ 					  "dm_hs_phy_irq",
+ 					  "ss_phy_irq";
+-- 
+2.34.1
+
 
