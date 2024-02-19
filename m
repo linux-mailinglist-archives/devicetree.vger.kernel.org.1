@@ -1,148 +1,184 @@
-Return-Path: <devicetree+bounces-43525-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43526-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A50185A9C6
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 18:19:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FD6985A9EA
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 18:27:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 181F128697E
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 17:19:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B46362894B7
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 17:27:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9F5C44C92;
-	Mon, 19 Feb 2024 17:19:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDA6445956;
+	Mon, 19 Feb 2024 17:26:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="Q9MvrLQz"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="c0MveooC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2074.outbound.protection.outlook.com [40.107.93.74])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62C8D446B8
-	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 17:18:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708363141; cv=none; b=NtZaUgskwag5ckJBtuapGKpDOwLz4ByKmlMR7nD/euYZkiyTp7WCwJrZe6Q5A1rdaEkSJ+cmSxldsgrXeFbRRY3hiwolt2Gp7X6kRNgdQ9OYVfPfX+M84qT0ip23KqreIfjcOuyzl4NB+/d1qAn1i+WtUqBOhPoHGKxQ2UkCJI0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708363141; c=relaxed/simple;
-	bh=iTLM3uRb+Do/AiNS0Xb0HJmwMZOJkgfTuotbr0kn9go=;
-	h=Message-ID:Date:MIME-Version:To:Cc:From:Subject:Content-Type; b=KBKd/IMnUw5UGwB1iR++6GmJSwdgNzwgOQHqT8CdYCTyrBRqK8iCuR++yNOLsecGCXy52HxnuBviW6cQi8R0DB4id5crAoxW2GXSgZMGuRsktyT+sq1wPKKYabM61k4NJrRfFFBxj3jMITT3iWNyo2VYpBKlwGTY5rs/IeCjekg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=Q9MvrLQz; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-41268a88cdaso6295095e9.2
-        for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 09:18:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1708363137; x=1708967937; darn=vger.kernel.org;
-        h=content-transfer-encoding:subject:from:cc:to:content-language
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5U9UMku/CkX7+3OIheqbJbG1G4XMMn+BnJs98wrGs/M=;
-        b=Q9MvrLQzzNHNQf3ohItSiMw4xmxRIlZI9SMgudEUBgOEIxOlCh4ZLKlLCmZVkracjL
-         adiK6AyrnA6K/sd09whYTE741hqQLUEvNUOTO1yiHLz87NBf6cMkBqyEeG5nxv7rp1hi
-         Z3/gJ0Q/stqixMozQt4WDsBh/kOepk2+Yne4/lH1ahT+EGCzIwTw3Un23CiEwbZwCuuY
-         s2ul96gPltO5t2LH9Z5UzmYdiAxsTol+aS9QvGOWJ8lgR7LVq7RIMUG5FevVJWmkLwyG
-         5FWXM9FV5ZZ69l4a3vNKYNNzJeL7iD9jVy50WfB6W+rzG7aiONU+9EuY0up3DHkEr1Gk
-         0R4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708363137; x=1708967937;
-        h=content-transfer-encoding:subject:from:cc:to:content-language
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=5U9UMku/CkX7+3OIheqbJbG1G4XMMn+BnJs98wrGs/M=;
-        b=xDYfmhwlC6GYFOeka2r5Mn7HV0OOmUVX3pma8rq3PnXjk+mlGua8ixC6Li0++T3ZU9
-         CCgUwt19iSTJujmoeBoTP6Y6pcufUCiyCRIQsxU/pusr3Ow51Rv0nXth+856XNkLxuc4
-         aVzIoMDVkv78tNnWFA+foQdXswa2hQ02jA0zeCWsy70T8QTzEX3EhMv4cCpF2xd0kDqv
-         jWDw6nsRsH4LFldgddBAHGgWJdgyz8a6byUwFuMb6THG5KfiKYWh/Q/nJr6NVPfVt8FV
-         v4mwgGIj3kX7EUAh2mMCWTCyVHysd9E5BN+MQcU/SVU2Ed43xf1eZkm5v2xwyjQMPubp
-         d3kA==
-X-Gm-Message-State: AOJu0YysZwMZdlhkbhPIPSFdgDdg4GUHJ3uOvDZKMFLHV/yLwixavLx6
-	/N3Wz60sAm9lfdi/z2tFTrprj4VT8YAevpZEgeAxUhyhbArh5yaKfiKpDyyEAwqB9+SV1e8roEh
-	JYbA=
-X-Google-Smtp-Source: AGHT+IHUfkwhEny4pldBlneSMSVOBEZmWmmqdtsOXfySiNrUjDQ+DcKurzgbN5N5Pgk90iwYbshmbQ==
-X-Received: by 2002:adf:ed81:0:b0:33d:3553:d395 with SMTP id c1-20020adfed81000000b0033d3553d395mr3619328wro.15.1708363136742;
-        Mon, 19 Feb 2024 09:18:56 -0800 (PST)
-Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id g1-20020a056000118100b00337d5cd0d8asm10847459wrx.90.2024.02.19.09.18.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Feb 2024 09:18:56 -0800 (PST)
-Message-ID: <0843621b-386b-4173-9e3c-9538cdb4641d@freebox.fr>
-Date: Mon, 19 Feb 2024 18:18:55 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26FAD482C0;
+	Mon, 19 Feb 2024 17:26:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.93.74
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708363568; cv=fail; b=CcAKBk75J5793THMnnd+MizHH7T3CuGCwLiih/iagtRG8g4k1WAQdYMPwvHDRR8HakFFWNZeMGzu3otkSFhFdXDfOZmKXGrPkRGvzQtD2OU7ZeF6Kp26mE0mcoM13zj3FoCODBoakHvBYTru8qic9LXikoJXJ0QkawZNoQpaBgQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708363568; c=relaxed/simple;
+	bh=6eqcNqMIN3hhMhS9nrdbSBMfZW/xBNN9fKEBNaaApjc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=S8x8tXbASN8eF9j/+8+wXelmLOD24GK2spG0i+hnwWOC46hk0ruNuZ3MiX9dQxJkGUL5UTnA3bIBvmUdm9kdGccjxdbGOUdCr+feUmB5VXjIkc2Hne6U5MVz91O/fSSjOlE1FCHlbGxfubHWGGj9VEtSLC3lRUCVYpMXprEVCSM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=c0MveooC; arc=fail smtp.client-ip=40.107.93.74
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Y//XYKgf2FfIDhDcbXBkT33NZuSXWKtaghmUtJ512ZcjI0ryIOe+83GgdvNBAcRAWmUr8ve+5cpR3wYl+nL4FaVCf6Bm5XlQ6jKoW9wikdc6wnEWVYt33v4ZeN9F52xZISNtKB+M083n9bzzHNYOKHLulRaONTv/VsFL8HQogNfnO61zICwfrNC40w++n6A1Esai0FaXxYcayCbI8FCUwXLenMXiSZKQjyLGUv0lXSffNUqCDMAZA3LmsZw+rJ7GiAfoOm/xPGCxrIl7G9bWafTQZFG1emk0Ba8QHk28oO2oc2U1QstwwrjEouiMWxOZ97f4TWp168mUUbDOMNSF0Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=irmUWWBwz5LD6tafzqLlC1pSCXCF6FsXn1OzaSGMaQk=;
+ b=h8HWozvGr6zn3v8n2yD6p1gXtE1U3r0JPvW9eF1NHnqeHldkIrp1BAqTr/XpzbV0d0aHahRGi+TpgxpBlUi1XxoCXVukgbdwTiLjz1wXfr8IAYK8UGULfQgRxG8AmUXV5E3J7BNVfBr8Kvby6Wz3jLWj+NO2DsATpVSp1vS6FP7WPAVaDTl/goOVJbRH80Q39bO3mah5qAehmkrw4YRlpnVAb7oFfhhzgIoLaNiUpjbXMuy5mCk8fmjWI1ymwJ25xda/sDc94RCtCWJ4DiDssglE3N/F3hRoU8GvIOI9suYf1YigdjY/XiMvVPtdCPlvUj72CFlfhptIGQsObjsSkA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=gondor.apana.org.au
+ smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
+ header.from=nvidia.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=irmUWWBwz5LD6tafzqLlC1pSCXCF6FsXn1OzaSGMaQk=;
+ b=c0MveooCarkvU6iU1r+bvmfV2dLz3AYoOgYmo/PWI/k/w57y9e7v+K+La1an5gQwSlGCIAxRqqWO1zb0g92N+ShzfFkXEyCwvl0qqD2zXzrlby0qbQuGqhji5tDozAVGq8eggVqOjfD1+eYbeKpu9vDVRm4WkDcQI8tIx3Xru8QRBR2vxFExqKSHtXFlnnIDzCRobCVu5Eq6RYrGUv0tQmsZUStTDqoWaeKEyo+iawY+SWF4uqJxqJ6GiY3N87lI5ZMGgraAIA4+tV6GA7j+T0bYnJsZ+txxCzk5w3D7Vk8ZyfT4KSqRpUNn+2BMEcGkiD9MPcf7EItNn3yVHZMplg==
+Received: from SJ0PR03CA0111.namprd03.prod.outlook.com (2603:10b6:a03:333::26)
+ by SA0PR12MB4461.namprd12.prod.outlook.com (2603:10b6:806:9c::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.19; Mon, 19 Feb
+ 2024 17:26:04 +0000
+Received: from SJ5PEPF000001C9.namprd05.prod.outlook.com
+ (2603:10b6:a03:333:cafe::b7) by SJ0PR03CA0111.outlook.office365.com
+ (2603:10b6:a03:333::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.37 via Frontend
+ Transport; Mon, 19 Feb 2024 17:26:04 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ SJ5PEPF000001C9.mail.protection.outlook.com (10.167.242.37) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7292.25 via Frontend Transport; Mon, 19 Feb 2024 17:26:03 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Mon, 19 Feb
+ 2024 09:25:45 -0800
+Received: from rnnvmail202.nvidia.com (10.129.68.7) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.12; Mon, 19 Feb
+ 2024 09:25:44 -0800
+Received: from BUILDSERVER-IO-L4T.nvidia.com (10.127.8.14) by mail.nvidia.com
+ (10.129.68.7) with Microsoft SMTP Server id 15.2.1258.12 via Frontend
+ Transport; Mon, 19 Feb 2024 09:25:40 -0800
+From: Akhil R <akhilrajeev@nvidia.com>
+To: <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+	<catalin.marinas@arm.com>, <will@kernel.org>, <mperttunen@nvidia.com>,
+	<linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<krzk@kernel.org>
+CC: Akhil R <akhilrajeev@nvidia.com>
+Subject: [PATCH v5 0/5] Add Tegra Security Engine driver
+Date: Mon, 19 Feb 2024 22:55:25 +0530
+Message-ID: <20240219172530.20517-1-akhilrajeev@nvidia.com>
+X-Mailer: git-send-email 2.17.1
+X-NVConfidentiality: public
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: DT <devicetree@vger.kernel.org>, linux-media
- <linux-media@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>
-Cc: Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Bryan O Donoghue <bryan.odonoghue@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Pierre-Hugues Husson <phh@phh.me>
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-Subject: [RFC WIP PATCH] venus: add qcom,no-low-power property
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001C9:EE_|SA0PR12MB4461:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0e4c12ac-1780-4b8b-c01c-08dc316fd96a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	kvfTDLc3RRyMU/stZxQuR8ulc8zXEAp7UDHVWGlgmtWXxKjnpnnc3UkjF6jeMNQNzHWe65OzdFyM9s04PfMaBb9GZ6uwjow0oQBEbiLzGw/Q5OvHY9NyRCA2x3zFxK/9Bo7JzRuFVHO3bopwOdfcoBGBuqlQj52pBttp/5r37GpLvG8xighU8Pw/dB2h8X1Fgeyv1It1xfwMZ+1AQ0kVAEGq7JymbGrmO6e9v4WaiNPLER+yMXe8xTLBfQ9+65WorXzNg+W25SZW5vqGT7qFBsa9PUriOSJSP/697J6POyU7IR0TZp4zzfSIp6kBu6x4z0pgTXtymIt9a95QyrpGJQsabwXI/TgLJzabef24QnfUYwISSkAoYrxFmIdsAzcZdrmDodqCG9F5tUmbGHXSRiA1evVqPG35emjx0oEqcT0Jl4ugyeV5RHIuFeQ9g6WsDN81ESof+4ZfBZhUZelhqjYoOK6v/dMBxancrnk/V5ZSXRvtp03eIzreRAR7rHR1HFoW6TuQPSZe3UHk/68OYlIAH2evm1rmo7PMTGzIKjU6QLs4PEPaQ+bI589nUnuTM7ffkI1tiP1CPBoTW9BFcu5tvOgvOglpPf5W5lmais0A6hl/gmxM9T6RtwYOvH/cnz9gMrrqgcADLBfWj8ey8vfAJAlt9XwTSnn6nVX34quNv4dp1EZxuDwWe+nGEddC
+X-Forefront-Antispam-Report:
+	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230031)(230273577357003)(36860700004)(46966006)(40470700004)(921011);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2024 17:26:03.5894
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0e4c12ac-1780-4b8b-c01c-08dc316fd96a
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ5PEPF000001C9.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4461
 
-From: Pierre-Hugues Husson <phhusson@freebox.fr>
+Add support for Tegra Security Engine which can accelerates various
+crypto algorithms. The Engine has two separate instances within for
+AES and HASH algorithms respectively.
 
-On our msm8998-based device, calling venus_sys_set_power_control()
-breaks playback. Since the vendor kernel never calls it, we assume
-it should not be called for this device/FW combo.
+The driver registers two crypto engines - one for AES and another for
+HASH algorithms and these operate independently and both uses the host1x
+bus. Additionally, it provides  hardware-assisted key protection for up to
+15 symmetric keys which it can use for the cipher operations.
 
-Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
-Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
----
-TODO in v2: split the patch in 2
-Is "qcom,no-low-power" a proper name for the property?
-Is a boolean property the right approach?
----
- .../devicetree/bindings/media/qcom,venus-common.yaml     | 3 +++
- drivers/media/platform/qcom/venus/hfi_venus.c            | 9 +++++----
- 2 files changed, 8 insertions(+), 4 deletions(-)
+v4->v5:
+* Move copy/paste of intermediate results in export()/import() to
+  'update()' callback
+v3->v4:
+* Remove unused header in bindings doc.
+* Update commit message in host1x change.
+* Fix test bot warning.
+v2->v3:
+* Update compatible in driver and device trees.
+* Remove extra new lines and symbols in binding doc.
+v1->v2:
+* Update probe errors with 'dev_err_probe'.
+* Clean up function prototypes and redundant prints.
+* Remove readl/writel wrappers.
+* Fix test bot warnings.
 
-diff --git a/Documentation/devicetree/bindings/media/qcom,venus-common.yaml b/Documentation/devicetree/bindings/media/qcom,venus-common.yaml
-index 3153d91f9d18a..69cb16dc4852c 100644
---- a/Documentation/devicetree/bindings/media/qcom,venus-common.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,venus-common.yaml
-@@ -62,6 +62,9 @@ properties:
-     required:
-       - iommus
- 
-+  qcom,no-low-power:
-+    type: boolean
-+
- required:
-   - reg
-   - clocks
-diff --git a/drivers/media/platform/qcom/venus/hfi_venus.c b/drivers/media/platform/qcom/venus/hfi_venus.c
-index f9437b6412b91..2cd85a8cd837e 100644
---- a/drivers/media/platform/qcom/venus/hfi_venus.c
-+++ b/drivers/media/platform/qcom/venus/hfi_venus.c
-@@ -945,10 +945,11 @@ static int venus_sys_set_default_properties(struct venus_hfi_device *hdev)
- 			dev_warn(dev, "setting idle response ON failed (%d)\n", ret);
- 	}
- 
--	ret = venus_sys_set_power_control(hdev, venus_fw_low_power_mode);
--	if (ret)
--		dev_warn(dev, "setting hw power collapse ON failed (%d)\n",
--			 ret);
-+	if (!of_property_read_bool(dev->of_node, "qcom,no-low-power")) {
-+		ret = venus_sys_set_power_control(hdev, venus_fw_low_power_mode);
-+		if (ret)
-+			dev_warn(dev, "setting hw power collapse ON failed (%d)\n", ret);
-+	}
- 
- 	/* For specific venus core, it is mandatory to set the UBWC configuration */
- 	if (res->ubwc_conf) {
+Akhil R (5):
+  dt-bindings: crypto: Add Tegra Security Engine
+  gpu: host1x: Add Tegra SE to SID table
+  crypto: tegra: Add Tegra Security Engine driver
+  arm64: defconfig: Enable Tegra Security Engine
+  arm64: tegra: Add Tegra Security Engine DT nodes
+
+ .../crypto/nvidia,tegra234-se-aes.yaml        |   52 +
+ .../crypto/nvidia,tegra234-se-hash.yaml       |   52 +
+ MAINTAINERS                                   |    5 +
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi      |   16 +
+ arch/arm64/configs/defconfig                  |    1 +
+ drivers/crypto/Kconfig                        |    8 +
+ drivers/crypto/Makefile                       |    1 +
+ drivers/crypto/tegra/Makefile                 |    9 +
+ drivers/crypto/tegra/tegra-se-aes.c           | 1932 +++++++++++++++++
+ drivers/crypto/tegra/tegra-se-hash.c          | 1048 +++++++++
+ drivers/crypto/tegra/tegra-se-key.c           |  156 ++
+ drivers/crypto/tegra/tegra-se-main.c          |  439 ++++
+ drivers/crypto/tegra/tegra-se.h               |  569 +++++
+ drivers/gpu/host1x/dev.c                      |   24 +
+ 14 files changed, 4312 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/crypto/nvidia,tegra234-se-aes.yaml
+ create mode 100644 Documentation/devicetree/bindings/crypto/nvidia,tegra234-se-hash.yaml
+ create mode 100644 drivers/crypto/tegra/Makefile
+ create mode 100644 drivers/crypto/tegra/tegra-se-aes.c
+ create mode 100644 drivers/crypto/tegra/tegra-se-hash.c
+ create mode 100644 drivers/crypto/tegra/tegra-se-key.c
+ create mode 100644 drivers/crypto/tegra/tegra-se-main.c
+ create mode 100644 drivers/crypto/tegra/tegra-se.h
+
 -- 
-2.34.1
+2.17.1
+
 
