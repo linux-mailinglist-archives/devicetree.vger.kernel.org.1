@@ -1,149 +1,91 @@
-Return-Path: <devicetree+bounces-43332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43333-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5740859FCC
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 10:37:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C095B859FD1
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 10:38:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4CA71C21197
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 09:37:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60ED31F2132D
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 09:38:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 119BC23772;
-	Mon, 19 Feb 2024 09:36:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CECEB2376D;
+	Mon, 19 Feb 2024 09:38:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="crbNLM/4"
+	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="ODAyBUXC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE43E2562E;
-	Mon, 19 Feb 2024 09:36:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4670223755;
+	Mon, 19 Feb 2024 09:38:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708335392; cv=none; b=TjV3NmPx5iZxe4bXfDihMmJnN3zRi3tvCuzE7jFGG2EdowJA3j2bWrBJYScpoCWOcYY0RDFnW07ADMuayVTKTxtOO9tsJlCQ2zzlNq6kDMAAfZM0+eYTEnhP+HEJU6EGFS/FPEzm+ybJ7T2J2nGmh56y3TJN+6aUsHYufvxF7D0=
+	t=1708335494; cv=none; b=IWPG89Cx5/Ot59DLgMgn/F5bbXYhi3unC5dFyc8mw39pG80U3eQ0UL1Pxrd+2Y7uw3aMUEf3+4KBO+X5J6fPoX+GSLk+RmcQnD8o7SMzIYogL4qINVANzMZ6PxqCNRfzeGIAgEyjJ+WLZnvl1IbgMEBpiBuNMcYZO5KdgEp3C10=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708335392; c=relaxed/simple;
-	bh=2JEkX46Vp/cBAVVvgsgHoF/zxvBsYbJKJ4rTHU/s2hk=;
-	h=Content-Type:Date:Message-Id:From:To:Subject:Cc:References:
-	 In-Reply-To; b=PyIWgaL+ThLGi19K+xsyf+WPFrANijjwAhQ/TXwoSSGei/2FtLgQw85nVAU8ry890VE2SYGN34VbYv4R9Bb6VR1s7lSh+INK6XA7Fx2/Q6yhaOpkwAWrsqzspU2vpcllAdEN7Naq3xnL6Z+WmUqy/F9Jgd+pc/Ee5rGvvovfIEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=crbNLM/4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA76DC433F1;
-	Mon, 19 Feb 2024 09:36:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708335391;
-	bh=2JEkX46Vp/cBAVVvgsgHoF/zxvBsYbJKJ4rTHU/s2hk=;
-	h=Date:From:To:Subject:Cc:References:In-Reply-To:From;
-	b=crbNLM/4l3WxOMO/z1NI5uM/uMSLp3JKrA1HesJ67bumXJ9OewEOn/oK7qGTbh/Cx
-	 0MM5bHgbYQkGSbKzWTVhwTCMgD0EVbcfbjtXcG38PpFP+Jj/CQ4XFeGgcos2YTn08Q
-	 xx7ZlwO0es5Pb936IJuNIXmLiqlMmgq8m/NoXFw0BhtowiQByycV0WreEjKwzfILek
-	 5u3cVT4CLanHf1GdCmbYmTvdJcEjW5Kk1U0AutY8cz7O7dDQeUaVrLF1eegt+n7ilk
-	 2ogtUwa2kqam0bgJT99sOLYI3e/7AYi6wbDRd6zSQFYvc7sVKVfnmcBfRUmpLLgDKl
-	 xcyF5LzNi6Bsg==
-Content-Type: multipart/signed;
- boundary=5b911bf665d2ea492c216b90f01b24b10ab08eb643d157bdd14da66d2129;
- micalg=pgp-sha256; protocol="application/pgp-signature"
-Date: Mon, 19 Feb 2024 10:36:26 +0100
-Message-Id: <CZ8YCQETS7LL.1BLJJZNCLV7DT@kernel.org>
-From: "Michael Walle" <mwalle@kernel.org>
-To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>,
- "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Matthias Brugger" <matthias.bgg@gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm64: mediatek: add Kontron
- 3.5"-SBC-i1200
-Cc: <devicetree@vger.kernel.org>, "Sean Wang" <sean.wang@mediatek.com>,
- <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-mediatek@lists.infradead.org>
-X-Mailer: aerc 0.16.0
-References: <20240219084456.1075445-1-mwalle@kernel.org>
- <ed3530f0-227a-47f2-938c-28eba90dd6eb@collabora.com>
-In-Reply-To: <ed3530f0-227a-47f2-938c-28eba90dd6eb@collabora.com>
+	s=arc-20240116; t=1708335494; c=relaxed/simple;
+	bh=JZqE/ySqdsMfEywlr++2U8VqDqwCtrbDoFfqyNfv9TQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YMCKObKzYFbuaVJycY0rhWzzD4C/jXBx9yjstC0UNi3eSOFJbBSZllm8CZbFzGWAAo5gyrdJmKlJO0SKLMdr3tmCrRU+YhRCP//Dao0xDaKrPF4j5fz0sSVSmQmASmmZIRu/3lRrkBTxV0VgVxDUXhC5FolcAwfPzE30VVfdRF8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com; spf=pass smtp.mailfrom=arinc9.com; dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b=ODAyBUXC; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arinc9.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 3CDB3E0006;
+	Mon, 19 Feb 2024 09:38:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
+	t=1708335490;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=tfpHxAcfl5M2NGtp+kneEgWWO1Zl5+LXLY73+P7UT5k=;
+	b=ODAyBUXCl8yQM4qTctmYz70QQOi5vgZlS7TgpsCPz4ZPW3x3rTfBGhu+qm1C/jqljcwmos
+	EoSsPdac6aGzYaSr4RCnI7/QC5DClNMsUTVE+A6cSzrg1voGInI3zKPwOT1OwrEcalroOp
+	3Y0LT4Rx67IuRoFximD6UPR8heZIkCY/4WFGSZCSaGNt9WYnwP/U1ogOCEkD4ng58NI5rN
+	l6kCnrTmPG1E93HfRifzEu+hCRHws03Agn9GZSalFPHS5vpkRqlOfeKzCS8RqGBAML4LHT
+	PvZFSIGXfLKKKKpEj4y5TMU04hxBci0P5z/5zmP6b+cBZ2L/aD+HD+O1awftWA==
+Message-ID: <27b9f494-b824-46b8-9028-23e2ed1ff0f9@arinc9.com>
+Date: Mon, 19 Feb 2024 12:38:05 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: {mt7622,mt7986}: add port@5 as CPU port
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Frank Wunderlich <frank-w@public-files.de>, mithat.guner@xeront.com,
+ erkin.bozoglu@xeront.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20230918074938.79796-1-arinc.unal@arinc9.com>
+ <5d582382-9a31-4a95-bc81-01d99dde0a6e@arinc9.com>
+ <2795a056-eac2-491b-bcb5-52bf4a331c07@collabora.com>
+Content-Language: en-US
+From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <2795a056-eac2-491b-bcb5-52bf4a331c07@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: arinc.unal@arinc9.com
 
---5b911bf665d2ea492c216b90f01b24b10ab08eb643d157bdd14da66d2129
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+On 19.02.2024 12:17, AngeloGioacchino Del Regno wrote:
+> Il 18/02/24 11:52, Arınç ÜNAL ha scritto:
+>> Matthias, please apply this patch.
+>>
+>> Arınç
+> 
+> Please split this by SoC and resend as two patches.
+> 
+> If you can resend fast enough, I can apply the patches for 6.9.
 
-On Mon Feb 19, 2024 at 10:23 AM CET, AngeloGioacchino Del Regno wrote:
-> Il 19/02/24 09:44, Michael Walle ha scritto:
-> > Add the compatible string for the Kontron 3.5"-SBC-i1200 single board
-> > computer.
-> >=20
-> > Signed-off-by: Michael Walle <mwalle@kernel.org>
-> > ---
-> > v2:
-> >   - convert enum to const as there is only one specific board
-> >=20
-> >   Documentation/devicetree/bindings/arm/mediatek.yaml | 5 +++++
-> >   1 file changed, 5 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Docu=
-mentation/devicetree/bindings/arm/mediatek.yaml
-> > index 09f9ffd3ff7b..add167d8b8da 100644
-> > --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> > @@ -357,6 +357,11 @@ properties:
-> >                 - radxa,nio-12l
-> >             - const: mediatek,mt8395
-> >             - const: mediatek,mt8195
-> > +      - description: Kontron 3.5"-SBC-i1200
-> > +        items:
-> > +          - const: kontron,3-5-sbc-i1200
-> > +          - const: mediatek,mt8395
-> > +          - const: mediatek,mt8195
-> >         - items:
-> >             - enum:
-> >                 - mediatek,mt8516-pumpkin
->
-> I understand that you took inspiration from the Google Chromebooks entrie=
-s, but
-> those are separated only because they've got "a bunch of revisions".
->
+Done.
 
-I don't really care about the description. It's just the way I've
-done it in the past. And in this file, there is also google,burnet,
-google,cozmo, google,damu, without any further revs.
+https://lore.kernel.org/linux-mediatek/20240219-for-mediatek-v1-0-7078f23eab82@arinc9.com/
 
-> For machines that don't have a billion compatible strings, I would sugges=
-t to
-> add the compatible under a single big entry: like this, the binding is (i=
-mo) a
-> bit more readable .. and cleaner.
->
-> Eventually, the machine name is in the devicetree so we're not losing any=
- kind
-> of information anyway... :-)
->
->        - items:
->            - enum:
->                - kontron,3-5-sbc-i1200
->                - mediatek,mt8395-evk
->                - radxa,nio-12l
->            - const: mediatek,mt8395
->            - const: mediatek,mt8195
-
-Ack. I'll give you some time to look at the actual DTS before
-posting a new version.
-
--michael
-
---5b911bf665d2ea492c216b90f01b24b10ab08eb643d157bdd14da66d2129
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iIgEABYIADAWIQQCnWSOYTtih6UXaxvNyh2jtWxG+wUCZdMhGhIcbXdhbGxlQGtl
-cm5lbC5vcmcACgkQzcodo7VsRvs3fgEAlFQCpxkpEfzEqfjyl3YucexQcUbd1+Lj
-0DJqee5gUp0BAP0BDmrnoWc+fCp5T7L07BNNJRAC7wDWhSUbmgvyBvEF
-=mwoc
------END PGP SIGNATURE-----
-
---5b911bf665d2ea492c216b90f01b24b10ab08eb643d157bdd14da66d2129--
+Arınç
 
