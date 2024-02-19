@@ -1,128 +1,118 @@
-Return-Path: <devicetree+bounces-43241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6BB3859B5C
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 05:23:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 30649859B6C
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 05:41:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C6391F217DC
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 04:23:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D1D4F1F21934
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 04:41:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D565D8F5A;
-	Mon, 19 Feb 2024 04:23:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F11901CA98;
+	Mon, 19 Feb 2024 04:41:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="cdf4Yrh2"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="RJCXF6o2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A067FBFA;
-	Mon, 19 Feb 2024 04:23:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 469133C26
+	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 04:41:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708316586; cv=none; b=ZYpMcd4DY1K2Em84uvSpsUvZZKMwSy33Z8L6842fQv+dXEw1RAw9m2ZsTt2DqTqXx3Q1HUOZm9hbjB2q7DIYGJfo6H4S1vPdL5nCP9YzaTwg5UcOJMh4UzgoXencyITNDQAtqEYu1Y04Q3A2B76Kc7RStmX5nSR5Kpi5iK3ePVs=
+	t=1708317685; cv=none; b=f0prF1nBHRzZ8OsiQ3qpZYFORWK6+9EmdjidhdWEjOO+1GEhYv5w8JGyS+FzcJOr76BdSDC44VHlqlj5WpD1sp3Czal0IzUfUTaEUNMUZuVjTarmWZ/+IjnqR1LJwk2+PNlinRi6ZsTjzoa3AVg0bVVP2sonXiutz5iFkpABsF0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708316586; c=relaxed/simple;
-	bh=5DFmnihUuoK8BqdPhuRxH5vmbYynV/5WlY/vetuvZBI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=EtCxOmr2fyUhE8DHf9KLxyX0et5N0Q2l4mII4WaGfZsExShw8d/4rhvK6h+xyw4/X5VjdBSSr+69eqL24w0lxOmjqVkDx4dCYHhYEats78boU8UMhMj2vbBUUkQTF92iiEZ7NXGWQvFr5sVpRJXUSPunc5ljfT3QbaVyCuWwl44=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=cdf4Yrh2; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41J4MPrS026144;
-	Sun, 18 Feb 2024 22:22:25 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1708316545;
-	bh=5DFmnihUuoK8BqdPhuRxH5vmbYynV/5WlY/vetuvZBI=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=cdf4Yrh2SGmdXF2pwv3rN2HwMG6RC96dR0f0Qp2ZIaYL8dlLBNXMoy/Mn5Qvhc4Bk
-	 SiV54RxMI3B5ZpejAq3FGAzQHKdSv71QD7HTlHFknCAhoGoxdAjkQ77w3O0hwqwNMi
-	 UP9bf2iy/bNIX4GE667hIXzALBFwyr1PGwohPkXc=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41J4MPf4010989
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sun, 18 Feb 2024 22:22:25 -0600
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 18
- Feb 2024 22:22:25 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 18 Feb 2024 22:22:25 -0600
-Received: from [172.24.227.94] (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41J4MJvf018270;
-	Sun, 18 Feb 2024 22:22:20 -0600
-Message-ID: <bd93e51b-70ec-4cd4-88a3-1c79a0e3c75f@ti.com>
-Date: Mon, 19 Feb 2024 09:52:18 +0530
+	s=arc-20240116; t=1708317685; c=relaxed/simple;
+	bh=4LdoFdA4gax5ChDVZdlPxcKkkWuMB45j9OVz8iTB44I=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LM1yctBVDWFfLqvAU6iiVkiYAH4Xt29P30Ibia+M0L4T9Wma3q490/UCKfrjeIuZHj0LXF2Xzqf+jpGXZI+1hwhhqgnBm1ayX6Bo2M0XR+CUjP6KyiEAJHxtpPUDO664mATblL1L4QuhORfRkkkPgNSSEArVbPDbL+RO1XIOjVw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=RJCXF6o2; arc=none smtp.client-ip=209.85.208.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2d23114b19dso11424551fa.3
+        for <devicetree@vger.kernel.org>; Sun, 18 Feb 2024 20:41:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1708317682; x=1708922482; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=970f2/ePHEzTAJOzsFgotpGi303T4B4dyp5tQNQW5ic=;
+        b=RJCXF6o25SnTpbVoCECtzr0EkrHO09ZOOG7PuLoufT7dUva1R+R11M6bBjsWEPP7Mt
+         Wxdw7loJuGc2jtX23k1NeMwJmPwwKJPwiuA/F2H4iWz3fen4wtRSYpbXqLrj0Mj11V9w
+         YrM5uZJyrxUr6JP4FPiHBkLwtD1x3BbhHe2VTgp6YReiCEiSfxFKzVJyq2Z8HoxARGUs
+         3Eh3syPa6jZbUdCHsfS4ZTDXjX0uX1Yvbs6NrW/6HX/A6FVjYKtCHBQ6bL6EiPkcJtjv
+         Q3X2MEJM4sncNP6MNBdgopGpIfdQ/uMjtV+XOUiZd4Jjvr8I7ia2g8wp6Txz9oI1mfG8
+         plsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708317682; x=1708922482;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=970f2/ePHEzTAJOzsFgotpGi303T4B4dyp5tQNQW5ic=;
+        b=SL6DuCU4xi5qXqHuac4TWDDGlaIFBTvyiPcqam1ODWvzNzAnN9OXxrHPcjYBcj8aSM
+         mzkBN64mAlxAAMZpE/JLeqg13DPUBAVY2BhHgwKofiGO6F0OYNFPPc9bfEa1Y4xMSvR2
+         fAYzVxa1AAW2s4/uMPzyb1YI2cSennQN6Yxrb1VnqrVj4CQ6msLEL6oi/CSipD75XNap
+         jb16LZedUUI4/wRxTy+xgTE20vKSuFnkXAlaOtFLJw8NyoYM7sZ21xSFmTygZgRLzuOD
+         S26CekxKa/P21WoeFindNGvGBZe281tdk4AQHxQ0W1hMEBySTFXKbqKOF5E4GvkgTkhM
+         wbyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWcYNL3vKbRIylkNVdsYb8Bdx2gomIdioGz3TWPXaisCIjaCvn362iwSONjaql+JZJF53smo3ydDwVouFy4NWZI9BpfwDACY2fA2w==
+X-Gm-Message-State: AOJu0YxhYgoGkVU2oeGcmuovm1X/YgNTCXFIB3CulRismMUE0Y+bGbh/
+	TJ1HMOfU0GMlAQhpQT3Z08oRwOs2Hp80yKfSvh8FnfH3YGrcTMTSu1+AMoeq2G7iwRCZ3Yf87wH
+	jnc2dlV2fgB3hAakf8ij8tKL+yfpsfslZRAojLA==
+X-Google-Smtp-Source: AGHT+IHwZTbHuAg+JP9/Rm67wr4lAFmZwAADwZGC3to+Jiv/TLN1rLbaG+V+unxjUP+XSKzsjocLxuGb6f+9UVQ0Xxk=
+X-Received: by 2002:a2e:3801:0:b0:2d2:2b77:43a8 with SMTP id
+ f1-20020a2e3801000000b002d22b7743a8mr4474665lja.14.1708317682305; Sun, 18 Feb
+ 2024 20:41:22 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/5] arm64: dts: add description for solidrun am642 som
- and hummingboard evb
-Content-Language: en-US
-To: Josua Mayer <josua@solid-run.com>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo
-	<kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni
-	<alexandre.belloni@bootlin.com>
-CC: Yazan Shhady <yazan.shhady@solid-run.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski@linaro.org>,
-        Suman Anna <s-anna@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        MD Danish Anwar
-	<danishanwar@ti.com>, Andrew Davis <afd@ti.com>
-References: <20240211-add-am64-som-v5-0-790ed7121249@solid-run.com>
- <8aa96c66-d054-4b33-8972-f9faf2e84482@ti.com>
- <c37af45e-def1-4a97-ae01-e00e5b22eb23@solid-run.com>
-From: Vignesh Raghavendra <vigneshr@ti.com>
-In-Reply-To: <c37af45e-def1-4a97-ae01-e00e5b22eb23@solid-run.com>
+References: <20240127161753.114685-1-apatel@ventanamicro.com>
+ <20240127161753.114685-21-apatel@ventanamicro.com> <87bk8gcgjz.ffs@tglx>
+In-Reply-To: <87bk8gcgjz.ffs@tglx>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Mon, 19 Feb 2024 10:11:10 +0530
+Message-ID: <CAK9=C2XUre1A0+x7VjE2DvfTb5YxXgT7EHd-wKQQwJUhOOQNdw@mail.gmail.com>
+Subject: Re: [PATCH v12 20/25] irqchip/riscv-imsic: Add device MSI domain
+ support for PCI devices
+To: Thomas Gleixner <tglx@linutronix.de>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Marc Zyngier <maz@kernel.org>, =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>, 
+	Atish Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>, 
+	Sunil V L <sunilvl@ventanamicro.com>, Saravana Kannan <saravanak@google.com>, 
+	Anup Patel <anup@brainfault.org>, linux-riscv@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Sat, Feb 17, 2024 at 1:44=E2=80=AFAM Thomas Gleixner <tglx@linutronix.de=
+> wrote:
+>
+> On Sat, Jan 27 2024 at 21:47, Anup Patel wrote:
+> > +#ifdef CONFIG_RISCV_IMSIC_PCI
+> > +
+> > +static void imsic_pci_mask_irq(struct irq_data *d)
+> > +{
+> > +     pci_msi_mask_irq(d);
+> > +     irq_chip_mask_parent(d);
+> > +}
+> > +
+> > +static void imsic_pci_unmask_irq(struct irq_data *d)
+> > +{
+> > +     pci_msi_unmask_irq(d);
+> > +     irq_chip_unmask_parent(d);
+>
+> That's asymmetric vs. mask().
 
-On 18/02/24 19:48, Josua Mayer wrote:
-> Am 13.02.24 um 07:12 schrieb Vignesh Raghavendra:
->> Hi
->>
->> [...]
->>
->> On 11/02/24 20:37, Josua Mayer wrote:
->>> ---
->>> Josua Mayer (4):
->>>        dt-bindings: arm: ti: Add bindings for SolidRun AM642
->>> HummingBoard-T
+Yes, this needs to be symmetric vs mask(). I will update.
 
-This goes via TI K3 arch tree
-
->>
->>>        dt-bindings: rtc: abx80x: convert to yaml
->>>        dt-bindings: iio: humidity: hdc20x0: add optional interrupts
->>> property
->>>        dt-bindings: mtd: spi-nor: add optional interrupts property
->> 2/5 needs to go via RTC subsystem tree. Could you split it out into its
->> own series when you respin
-> Only rtc, or should I split out the other two as well?
-
-Split others too. RTC, IIO and SPI-NOR related bindings should go via
-respective trees. Please post them individually to appropriate lists.
-
-Regards
-Vignesh
+Regards,
+Anup
 
