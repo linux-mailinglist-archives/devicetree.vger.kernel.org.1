@@ -1,254 +1,146 @@
-Return-Path: <devicetree+bounces-43558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3D8585ABFC
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 20:31:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BEEE85AC08
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 20:34:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 019561C216FE
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 19:31:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E5561C217AC
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 19:34:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2B8950A62;
-	Mon, 19 Feb 2024 19:31:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 345DC50A87;
+	Mon, 19 Feb 2024 19:34:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oMwfb1Vf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gyd1pS54"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A501A44C9C;
-	Mon, 19 Feb 2024 19:31:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 067D450A6C;
+	Mon, 19 Feb 2024 19:34:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708371065; cv=none; b=rLMr1bFDY86nFDG3n730NruDv8/0Fk+PgJftfCOVHw3XLRPlza1+nDT6w5AgYBL4kk9a+Qf128yMIT6Axh0dDJ8F+SizfBUQ0B4R3tq3dSaomYrUFCcX4n41jBuOYp2WmhhHbE4qjSEjkFQ4pUMwfQdsqGONPI4a1U9hRkSjInc=
+	t=1708371253; cv=none; b=LhvISgpG0eT0S0eFicpqF7YDHy83Mm02/FeFqGGuykCmt14Z3sCchOHvtGfNseDpowloIe5CzlXdbb4O8wStqirp061d+WrcL3Vae06mp/XFSRVIGMLkJVo4uBZc0pAsD3a9zxPBt+M0t0MFjWeoMjf7nPJLdoSDESOO/IZG8q0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708371065; c=relaxed/simple;
-	bh=aCehUjfWEY7bQPfSj3Tb0qCMOgqCa/Po76xaUWvsbVE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bCUs9b2XTGz0eW8I3q3CPd9fEx28GySL4AQw8ouIcv53EMr2y8FWMi8AwljKoYkaFdjnfMF8gPOFa/zoGxCzH2KMYjZ8crGxPc1OBZK3hkTBofSaMy2QL/R+k7vtUpjN/fdz8sD4Gy3Y6lVPYkYaHXHCjT+Y7uBQNu+1tOeutOE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oMwfb1Vf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0477AC433C7;
-	Mon, 19 Feb 2024 19:30:59 +0000 (UTC)
+	s=arc-20240116; t=1708371253; c=relaxed/simple;
+	bh=VBBzZL1sbQUWX8s7W+Rxhwa/GFzhUokChjTCd2OPvZs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=fH4stJq/g2xcteTway5IC/cgfdK3DPd1D0olbCVU7jMPO1FGYVu7yFAWORuFSWpLcYGODxKuGQc4S4WdlskI84bppBmZSwtyfRb5vU1H+A3uOOAbeqbycg3Civnfih5FdeUbgoTOiY6TyaIzfvBTGmjYIllEnkbPXfhjxa7SzPA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gyd1pS54; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 9AF07C433F1;
+	Mon, 19 Feb 2024 19:34:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708371065;
-	bh=aCehUjfWEY7bQPfSj3Tb0qCMOgqCa/Po76xaUWvsbVE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=oMwfb1VfyFP9Q1/vl+7kNcmfMzYqLM2mJo8IHs0U530Cq47PFKM0HjHQNDlV7IafK
-	 4xTiqqn8xk8NCvLT/dXZV9FV6QpE1rqZpmBeBrjs1h+ixkYRlNHPCkvac65xWWNANp
-	 XKDKTzoPN7exX5iQGJAjA1crnJ51a/nUPKxfa883BfVwdWzJb6wrormyRPp3nlX7kx
-	 /BxzGA/JrPibw+Ft5bKmzdU00ml4Doso/p/Jppug6k4HV8g436nbT6RdvKpbeUP31h
-	 A/6QpTps3kbQwLwi3Y8rfjDVQLyEt/4sRJg/mEBZgxo6AhXz5mYQ0PRQrpo/SyHI1t
-	 Rt+pqwsoI/uoQ==
-Date: Mon, 19 Feb 2024 19:30:48 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Alisa-Dariana Roman <alisadariana@gmail.com>,
- alexandru.tachici@analog.com, alisa.roman@analog.com, conor+dt@kernel.org,
- devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
- krzysztof.kozlowski@linaro.org, lars@metafoo.de, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, michael.hennerich@analog.com,
- robh+dt@kernel.org, Nuno Sa <nuno.sa@analog.com>
-Subject: Re: [PATCH v3 5/5] iio: adc: ad7192: Add AD7194 support
-Message-ID: <20240219193048.32ecd88b@jic23-huawei>
-In-Reply-To: <CAMknhBEtz_fSR8gaT_ew5Tk-Q5r7WjbW6q8GqHG7EFN4WZcDhg@mail.gmail.com>
-References: <20240208172459.280189-1-alisa.roman@analog.com>
-	<20240208172459.280189-6-alisa.roman@analog.com>
-	<CAMknhBHU6k8J_PLCmGYF48S1q3uXByiCwzcd+B3q3Cd-02CUow@mail.gmail.com>
-	<84546728-f0cb-4b38-a71c-e053b9b9278e@gmail.com>
-	<CAMknhBFp-4s+-D8kD9rh0-OCc3gBs3hFX1EZ9ZmOifQOyGgUug@mail.gmail.com>
-	<CAMknhBEtz_fSR8gaT_ew5Tk-Q5r7WjbW6q8GqHG7EFN4WZcDhg@mail.gmail.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=k20201202; t=1708371252;
+	bh=VBBzZL1sbQUWX8s7W+Rxhwa/GFzhUokChjTCd2OPvZs=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=Gyd1pS549pPnd7m/NFFPI/ymrM9JzvQASr1cE7le5VovrX7iDzvOLbdq224OgmzuZ
+	 f0g5Ons4BLlyB1vfPpn+hXKeJdRrIGRC6YUDMbQxjzSR2P9IYTjg3G7joDpZa2a1z4
+	 zDt1k2/uDfMGALUnI9I5jqTOjpW2lQ2OBfhBDCoAUC58Y2AalQAegzoZveIVxYDa3p
+	 1ZsblBg7QGS7noQiL0SYTqCj2LtSK97IdK6NXm6bh8LUtULqFaO0lC8F0Hg+aio2gk
+	 7XBnY+IChaBEH4VVw2x/XVLl2NWmxm0A6w7lTgMLrSBeTtFBzEXAcXTyo33KDa2Aik
+	 Gz3Rp2Yb3v8Yw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7AE30C48BF8;
+	Mon, 19 Feb 2024 19:34:12 +0000 (UTC)
+From: Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>
+Subject: [PATCH v5 0/5] mmc: add hi3798mv200 specific extensions of DWMMC
+Date: Tue, 20 Feb 2024 03:34:11 +0800
+Message-Id: <20240220-b4-mmc-hi3798mv200-v5-0-f506c55f8e43@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADOt02UC/4XOwcrCMAzA8VeRnq00adpunnwP8bAtnSs6K5sWR
+ fbudnr5PhQ8/gP5JQ8x+iH4UawXDzH4FMYQTznMciGarjrtvQycW6BCUoAga5J938guaFcWfUK
+ lZGWcVp5bQGxEXjwPvg23F7rd5e7CeInD/XUjwTx9cwj2G5dAKumYLNcFmcrbTbxejjEeVk3sx
+ Qwm/I1gRhQottrbCth8Ivov4r4iOiMtGLIEzpbkPhH6jdD8Sctc1kyF0fgfmabpCVjDUCaFAQA
+ A
+To: Ulf Hansson <ulf.hansson@linaro.org>, 
+ Jaehoon Chung <jh80.chung@samsung.com>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Igor Opaniuk <igor.opaniuk@linaro.org>, 
+ tianshuliang <tianshuliang@hisilicon.com>, David Yang <mmyangfl@gmail.com>, 
+ linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org, 
+ devicetree@vger.kernel.org, Yang Xiwen <forbidden405@outlook.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1708371252; l=2929;
+ i=forbidden405@outlook.com; s=20230724; h=from:subject:message-id;
+ bh=VBBzZL1sbQUWX8s7W+Rxhwa/GFzhUokChjTCd2OPvZs=;
+ b=n5seOJpVgcXJiNOqTira+AGmCcejJ0L9aGwGMx/FnEmrUqbYiOLwRaAR/f3DjVoRtGUAiVQqs
+ IuS4i0xor2GDzp3eAtduPhhKV5D+NFAOYRJ9QETNFFKUrGIZe/G3drr
+X-Developer-Key: i=forbidden405@outlook.com; a=ed25519;
+ pk=qOD5jhp891/Xzc+H/PZ8LWVSWE3O/XCQnAg+5vdU2IU=
+X-Endpoint-Received:
+ by B4 Relay for forbidden405@outlook.com/20230724 with auth_id=67
+X-Original-From: Yang Xiwen <forbidden405@outlook.com>
+Reply-To: <forbidden405@outlook.com>
 
-On Mon, 19 Feb 2024 10:33:45 -0600
-David Lechner <dlechner@baylibre.com> wrote:
+it's modified from hi3798cv200 driver, but quite a lot of code gets
+rewritten because of the hardware differences. Actually cv200 DWMMC core
+is called HIMCIV200 while mv200 DWMMC core is called HIMCIV300 in
+downstream.
 
-> On Thu, Feb 15, 2024 at 11:13=E2=80=AFAM David Lechner <dlechner@baylibre=
-.com> wrote:
-> >
-> > On Thu, Feb 15, 2024 at 7:22=E2=80=AFAM Alisa-Dariana Roman
-> > <alisadariana@gmail.com> wrote: =20
-> > >
-> > > Hello and thank you for the feedback!
-> > >
-> > > On 09.02.2024 00:27, David Lechner wrote: =20
-> > > > On Thu, Feb 8, 2024 at 11:25=E2=80=AFAM Alisa-Dariana Roman
-> > > > <alisadariana@gmail.com> wrote: =20
-> > > >>
-> > > >> Unlike the other AD719Xs, AD7194 has configurable differential
-> > > >> channels. The default configuration for these channels can be chan=
-ged
-> > > >> from the devicetree. =20
-> > >
-> > > ...
-> > > =20
-> > > >>
-> > > >> +static const struct iio_info ad7194_info =3D {
-> > > >> +       .read_raw =3D ad7192_read_raw,
-> > > >> +       .write_raw =3D ad7192_write_raw,
-> > > >> +       .write_raw_get_fmt =3D ad7192_write_raw_get_fmt,
-> > > >> +       .read_avail =3D ad7192_read_avail,
-> > > >> +       .validate_trigger =3D ad_sd_validate_trigger,
-> > > >> +       .update_scan_mode =3D ad7192_update_scan_mode,
-> > > >> +}; =20
-> > > >
-> > > > Isn't this identical to ad7192_info and ad7195_info now that .attrs=
- is
-> > > > removed? It seems like we could consolidate here. =20
-> > >
-> > > Those are not exactly identical since: 92 has bridge switch attribute,
-> > > 95 has bridge switch and ac excitation attributes and 94 has no custom
-> > > attributes. I used a different info structure for 94 in order to avoid
-> > > showing extra attributes.
-> > > =20
-> >
-> > Ah, I see what you mean. I didn't look close enough at the other patch
-> > removing one attribute to see that were still other attributes.
-> > =20
-> > > > =20
-> > > >> +
-> > > >>   static const struct iio_info ad7195_info =3D {
-> > > >>          .read_raw =3D ad7192_read_raw,
-> > > >>          .write_raw =3D ad7192_write_raw,
-> > > >> @@ -1009,6 +1049,80 @@ static const struct iio_chan_spec ad7193_ch=
-annels[] =3D {
-> > > >>          IIO_CHAN_SOFT_TIMESTAMP(14),
-> > > >>   };
-> > > >>
-> > > >> +static struct iio_chan_spec ad7194_channels[] =3D {
-> > > >> +       AD7193_DIFF_CHANNEL(0, 1, 2, 0x001),
-> > > >> +       AD7193_DIFF_CHANNEL(1, 3, 4, 0x023),
-> > > >> +       AD7193_DIFF_CHANNEL(2, 5, 6, 0x045),
-> > > >> +       AD7193_DIFF_CHANNEL(3, 7, 8, 0x067),
-> > > >> +       AD7193_DIFF_CHANNEL(4, 9, 10, 0x089),
-> > > >> +       AD7193_DIFF_CHANNEL(5, 11, 12, 0x0AB),
-> > > >> +       AD7193_DIFF_CHANNEL(6, 13, 14, 0x0CD),
-> > > >> +       AD7193_DIFF_CHANNEL(7, 15, 16, 0x0EF),
-> > > >> +       AD719x_TEMP_CHANNEL(8, AD7194_CH_TEMP),
-> > > >> +       AD7193_CHANNEL(9, 1, AD7194_CH_AIN1),
-> > > >> +       AD7193_CHANNEL(10, 2, AD7194_CH_AIN2),
-> > > >> +       AD7193_CHANNEL(11, 3, AD7194_CH_AIN3),
-> > > >> +       AD7193_CHANNEL(12, 4, AD7194_CH_AIN4),
-> > > >> +       AD7193_CHANNEL(13, 5, AD7194_CH_AIN5),
-> > > >> +       AD7193_CHANNEL(14, 6, AD7194_CH_AIN6),
-> > > >> +       AD7193_CHANNEL(15, 7, AD7194_CH_AIN7),
-> > > >> +       AD7193_CHANNEL(16, 8, AD7194_CH_AIN8),
-> > > >> +       AD7193_CHANNEL(17, 9, AD7194_CH_AIN9),
-> > > >> +       AD7193_CHANNEL(18, 10, AD7194_CH_AIN10),
-> > > >> +       AD7193_CHANNEL(19, 11, AD7194_CH_AIN11),
-> > > >> +       AD7193_CHANNEL(20, 12, AD7194_CH_AIN12),
-> > > >> +       AD7193_CHANNEL(21, 13, AD7194_CH_AIN13),
-> > > >> +       AD7193_CHANNEL(22, 14, AD7194_CH_AIN14),
-> > > >> +       AD7193_CHANNEL(23, 15, AD7194_CH_AIN15),
-> > > >> +       AD7193_CHANNEL(24, 16, AD7194_CH_AIN16), =20
-> > > >
-> > > > Shouldn't these be differential channels since they are
-> > > > pseudo-differential inputs measuring the difference between AINx and
-> > > > AINCOM?
-> > > > =20
-> > > >> +       IIO_CHAN_SOFT_TIMESTAMP(25),
-> > > >> +}; =20
-> > > >
-> > > > i.e. like this (where AINCOM is voltage0 AINx is voltagex)
-> > > >
-> > > > static struct iio_chan_spec ad7194_channels[] =3D {
-> > > >         AD7193_DIFF_CHANNEL(0, 1, 0, AD7194_CH_AIN1),
-> > > >         AD7193_DIFF_CHANNEL(1, 2, 0, AD7194_CH_AIN2),
-> > > >         AD7193_DIFF_CHANNEL(2, 3, 0, AD7194_CH_AIN3),
-> > > >         AD7193_DIFF_CHANNEL(3, 4, 0, AD7194_CH_AIN4),
-> > > >         AD7193_DIFF_CHANNEL(4, 5, 0, AD7194_CH_AIN5),
-> > > >         AD7193_DIFF_CHANNEL(5, 6, 0, AD7194_CH_AIN6),
-> > > >         AD7193_DIFF_CHANNEL(6, 7, 0, AD7194_CH_AIN7),
-> > > >         AD7193_DIFF_CHANNEL(7, 8, 0, AD7194_CH_AIN8),
-> > > >         AD7193_DIFF_CHANNEL(8, 9, 0, AD7194_CH_AIN9),
-> > > >         AD7193_DIFF_CHANNEL(9, 10, 0, AD7194_CH_AIN10),
-> > > >         AD7193_DIFF_CHANNEL(10, 11, 0, AD7194_CH_AIN11),
-> > > >         AD7193_DIFF_CHANNEL(11, 12, 0, AD7194_CH_AIN12),
-> > > >         AD7193_DIFF_CHANNEL(12, 13, 0, AD7194_CH_AIN13),
-> > > >         AD7193_DIFF_CHANNEL(13, 14, 0, AD7194_CH_AIN14),
-> > > >         AD7193_DIFF_CHANNEL(14, 15, 0, AD7194_CH_AIN15),
-> > > >         AD7193_DIFF_CHANNEL(15, 16, 0, AD7194_CH_AIN16),
-> > > >         AD719x_TEMP_CHANNEL(16, AD7194_CH_TEMP),
-> > > >         IIO_CHAN_SOFT_TIMESTAMP(17),
-> > > > };
-> > > > =20
-> > >
-> > > I tried to follow the existing style of the driver: for each
-> > > pseudo-differential channel(AINx - AINCOM) there is an iio channel li=
-ke
-> > > this in_voltagex_raw; and for each differential channel(AINx - AINy)
-> > > there is an iio channel like this in_voltagex-in_voltagey_raw. AD7194
-> > > has 16 pseudo-differential channels/8 fully differential channels so I
-> > > thought the (AINx - AINCOM) channels should be static and only the 8
-> > > differential ones could be configured by the user from the devicetree=
- by
-> > > choosing the input pins.
-> > >
-> > > The existing style of the driver, AD7192 has 4 pseudo differential
-> > > channels and 2 (non configurable) differential channels:
-> > > static const struct iio_chan_spec ad7192_channels[] =3D {
-> > >         AD719x_DIFF_CHANNEL(0, 1, 2, AD7192_CH_AIN1P_AIN2M),
-> > >         AD719x_DIFF_CHANNEL(1, 3, 4, AD7192_CH_AIN3P_AIN4M),
-> > >         AD719x_TEMP_CHANNEL(2, AD7192_CH_TEMP),
-> > >         AD719x_DIFF_CHANNEL(3, 2, 2, AD7192_CH_AIN2P_AIN2M),
-> > >         AD719x_CHANNEL(4, 1, AD7192_CH_AIN1),
-> > >         AD719x_CHANNEL(5, 2, AD7192_CH_AIN2),
-> > >         AD719x_CHANNEL(6, 3, AD7192_CH_AIN3),
-> > >         AD719x_CHANNEL(7, 4, AD7192_CH_AIN4),
-> > >         IIO_CHAN_SOFT_TIMESTAMP(8),
-> > > };
-> > >
-> > > Would it be better to respect the existing style or to do like you
-> > > suggested and have a total of 16 differential channels that are
-> > > configurable from the device tree? =20
->=20
->=20
-> Now that we have it sorted that AINCOM should be a supply, it does
-> sound like we should more closely follow the pattern from AD7192. But
-> to cover every possible programmable combination of AINx to AINy, we
-> would need 256 differential channels (16 * 16) in addition to the
-> other channels. Realistically, we probably don't need that many
-> though. Since I see that AD7192 has a differential channel where uses
-> AIN2 for both + and - I guess having 16 differential channels that are
-> configured via device tree would be enough to allow all 16 AINx inputs
-> to be used this way. Is there a use case where the same AINx would be
-> assigned to multiple channels at the same time?
+Pending on:
+[PATCH] mmc: host: replace 1st argument to struct device * for mmc_of_parse_clk_phase():
+	https://lore.kernel.org/all/20240215-mmc_phase-v1-1-f27644ee13e4@outlook.com/
 
-If there are very large numbers of options, common solution is to
-move to dynamic assignment and channel nodes so DT specifies what is
-wired.  In theory we then allow all combinations at the same time but
-rely on common sense to restrict it.  I don't suggest channel nodes
-for most drivers because it adds complexity and a few unwired channels
-being exposed is rarely a problem (mostly people buy the right sized ADC).
-For cases like this though it can reduce things to a manageable level.
+Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+---
+Changes in v5:
+- pick the dependant patch: https://lore.kernel.org/all/20240215-mmc_phase-v1-1-f27644ee13e4@outlook.com/
+  to fix the bot build error.
+- edit the semantic meaning of hisilicon,sap-dll-reg property (Rob Herring)
+  The suggestion is from the CRG driver side:
+  https://lore.kernel.org/all/20240218205741.GA1561527-robh@kernel.org/
+- Link to v4: https://lore.kernel.org/r/20240217-b4-mmc-hi3798mv200-v4-0-0fdd9bd48532@outlook.com
 
-Also little purpose in supporting 1-2 and 2-1 which can simplify things
-somewhat. However that can also be left unconstrained on assumption
-common sense will be exercised in the DT.
+Changes in v4:
+- rename dw_mmc-hi3798 back to hi3798cv200 - Suggested by Krzysztof Kozlowski.
+- add r-bs to patch 1 and 2 - Reviewed by Krzysztof Kozlowski.
+- Link to v3: https://lore.kernel.org/r/20240217-b4-mmc-hi3798mv200-v3-0-f15464176947@outlook.com
 
+Changes in v3:
+- dw_mmc-hi3798: fix bot error (Rob Herring)
+- Link to v2: https://lore.kernel.org/r/20240216-b4-mmc-hi3798mv200-v2-0-010d63e6a1d5@outlook.com
 
->=20
-> >
-> > Looking at Table 20 in the AD7192 datasheet, I can see why AD7192 was
-> > done this way since only certain combinations of inputs can be used
-> > together. (Although I think indexes 4 to 7 should really be
-> > differential because they are the difference between the input and
-> > AINCOM which may not be GND, but it is probably too late to fix that.)
-> >
-> > Tables 22, 23 and 24 in the AD7194 datasheet show that this chip is
-> > much more configurable than AD7192 when it comes to assigning
-> > channels. There are basically no restrictions on which inputs can be
-> > used together. So I am still confident that my suggestion is the way
-> > to go for AD7194. (Although I didn't actually try it on hardware, so
-> > can't be 100% confident. But at least 90% confident :-p) =20
+Changes in v2:
+- dw_mmc-hi3798mv200: use dev_err_probe() helper - Suggested by Krzysztof Kozlowski.
+- dw_mmc-hi3798mv200: add missing err=0;
+- dw_mmc-hi3798c(m)v200: remove unused MODULE_ALIAS() - Suggested by Krzysztof Kozlowski.
+- binding: rename the binding, a lot of tweaks suggested by Krzysztof Kozlowski.
+- Link to v1: https://lore.kernel.org/r/20240216-b4-mmc-hi3798mv200-v1-0-7d46db845ae6@outlook.com
+
+---
+Yang Xiwen (5):
+      mmc: host: replace 1st argument to struct device * for mmc_of_parse_clk_phase()
+      mmc: dw_mmc-hi3798cv200: remove MODULE_ALIAS()
+      mmc: dw_mmc: add support for hi3798mv200
+      dt-bindings: mmc: dw-mshc-hi3798cv200: convert to YAML
+      dt-bindings: mmc: hisilicon,hi3798cv200-dw-mshc: add Hi3798MV200 binding
+
+ .../bindings/mmc/hi3798cv200-dw-mshc.txt           |  40 ----
+ .../mmc/hisilicon,hi3798cv200-dw-mshc.yaml         |  97 +++++++++
+ drivers/mmc/core/host.c                            |   4 +-
+ drivers/mmc/host/Kconfig                           |   9 +
+ drivers/mmc/host/Makefile                          |   1 +
+ drivers/mmc/host/dw_mmc-hi3798cv200.c              |   1 -
+ drivers/mmc/host/dw_mmc-hi3798mv200.c              | 239 +++++++++++++++++++++
+ drivers/mmc/host/sdhci-of-aspeed.c                 |   2 +-
+ include/linux/mmc/host.h                           |   2 +-
+ 9 files changed, 349 insertions(+), 46 deletions(-)
+---
+base-commit: 8d3dea210042f54b952b481838c1e7dfc4ec751d
+change-id: 20240121-b4-mmc-hi3798mv200-a5730edf122c
+
+Best regards,
+-- 
+Yang Xiwen <forbidden405@outlook.com>
 
 
