@@ -1,115 +1,287 @@
-Return-Path: <devicetree+bounces-43239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43243-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AFF5859AD9
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 03:57:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6867859B7C
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 06:00:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DAEE1C20EBD
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 02:57:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76E1B28185A
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 05:00:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBF0D2107;
-	Mon, 19 Feb 2024 02:57:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="QBTww7cr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9793B1CD1C;
+	Mon, 19 Feb 2024 05:00:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2121.outbound.protection.partner.outlook.cn [139.219.17.121])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8529E1FDB
-	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 02:57:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708311436; cv=none; b=dTO9+69Mx9Cyr1fVv+jCG6iGOKYvWQcVH0cacrBBYFUfcmvSst88eUeCtkpuuQ3PwQiRqV1ix2xideCHrPXNfoavKI8r4okVFLz0A1O26JOoUxKkCCadt8a0dwQum3X/ejhBiUuCIpidVmJzhLzQsza7KAR2bW9ojZYAdAVFsq0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708311436; c=relaxed/simple;
-	bh=/sT628QU7hhhOgu/cwt/DOFforB7kkTOr1NUg6K+gJ0=;
-	h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=dR9QqNz3WynDjZWnpApNerKUhBaeArp1YgvTo5MNxiyFBGanjDKo/DJGRiFOV1TWHbEIUaR6CJgp/qyvwP8YAax4S1hZAApLjiCt80KgUGLTgRGeuz4CBgiCBxgYU7kCBjcs2qkDQuGuZCJTd83SEkHmKsNTZuRoYr9wAdFgXn8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=QBTww7cr; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 3C72A2C0270;
-	Mon, 19 Feb 2024 15:51:58 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1708311118;
-	bh=/sT628QU7hhhOgu/cwt/DOFforB7kkTOr1NUg6K+gJ0=;
-	h=From:To:Subject:Date:References:In-Reply-To:From;
-	b=QBTww7cryoBEcwLYtR6q5ueAEMVVHO9gaxqHKqynPL4t6Pn5apTeWv+hO4QSRl8iK
-	 zdvXwPjZdIj3SF9pQ4gAcCgfmiiv2SLbO6QLgE2tg+yfDc14LgRqtP1HGUrQyCIyrN
-	 580U7SGWXEo7xynot121kxFct1zrEHzYypnBVuT7mtOupZ5YcVReYSUE546tvTCGhI
-	 RplUvB6YkDP/gURV6XFUVoG6he6jbnTHR70aTkudprxmOr2Jw6dK/mVTkg1EcQxrFE
-	 28CahbBREBl+uutmJEcC2jHEMkWEvgqyQA05wKD6NI2N7+D3XhS1Om50SHs4fOfWEV
-	 i8p8Oo2G/Oq6Q==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B65d2c24e0001>; Mon, 19 Feb 2024 15:51:58 +1300
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Mon, 19 Feb 2024 15:51:57 +1300
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1118.040; Mon, 19 Feb 2024 15:51:57 +1300
-From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>, Alessandro Zummo
-	<a.zummo@towertech.it>, Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	"Jean Delvare" <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
-	"linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>
-Subject: Re: [PATCH v9 2/2] rtc: max31335: add driver support
-Thread-Topic: [PATCH v9 2/2] rtc: max31335: add driver support
-Thread-Index: AQHaYt6aqhqsMvt9rUeZpcrpI3oGpA==
-Date: Mon, 19 Feb 2024 02:51:57 +0000
-Message-ID: <1a51a8ac-e2a6-4054-b91d-c860913b7385@alliedtelesis.co.nz>
-References: <20231120120114.48657-1-antoniu.miclaus@analog.com>
- <20231120120114.48657-2-antoniu.miclaus@analog.com>
-In-Reply-To: <20231120120114.48657-2-antoniu.miclaus@analog.com>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <6D9684104BB159439CC41F4F009C1578@atlnz.lc>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84F8B28F7;
+	Mon, 19 Feb 2024 05:00:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.121
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708318823; cv=fail; b=l9EeYj+EA6am23gXiKMg/S3zfzwFEI9XpkiQs75ho6PCdGrKjaLIwEqIKfMnLVEAmPXElhpJc1S/06g/1EIdJ+kFlpL2F7wMXQ7NoCjJRDPrh+RlTppiJaljsm0bqU3FGalzcpzKESrfaK7le/4Lax/4F1qZ+ERDFczhkkt4AMs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708318823; c=relaxed/simple;
+	bh=mjv6HIUOfGkwSuoDmhWh1tayN/1Y7pMomHm9lm4ISeQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=U+DuyIrFM4HGJVQNziEcS7pPg4MkAzwieGA1u3eZEoO0Kt4BE7WtuT/sD0U53SjkOgFV1wrIXZZTiz1KBna6kI6gCy2rSlJ0Dt+yftz2Kxe+kMiTJdq6X3M6s4Sv//N9MjWr7u+Me6Rqdw2Na7hYcsMT2DgKR2wrC+640JYKeQs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.121
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Bdf9pyM5MvAVSfJ1R2WxZnTCvWzUtErkwo3KHN4S1FVYUZdAvmp2UtYl56HUQYxA2DfJ9DMY+Dt6nTC+mn6owWEU2Z7khU9sEH4TEcIEqgYJH7eKtySNzwxyEqZAuPm3FCwrtZXRzba2O24zMucQYSnQ2NuD92GH1fMizwO9OQwiHcjsyvh63CweZpOrVlVo5r8VbA1VlD4H154IhC9cZE3VzMjteQIhf6zP9N93LqDkolTwyEXfzCgwOwtnegaJ6fbWrkhG1PH5wktMn/FY/yEMQetu2BlT8JLlXsz9T/XIY0eG3DNymIdxgruImyof8B3Yqci0pGHaQxuZJs/3vw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gWiVTDcDCc8gvbe3WMo+WgFGdZhkOntSuRCk5fEPzzw=;
+ b=Z6QDsBq+HgUmwU5K7HKy5Fl393S79EjpIk/OOj9Ccuxv8DRp7shAf9HXzYVW1XdaDZXx93874syvB0FTRxkDhqFkIaTCaEyrGa2MPKRWtmCnPEJ+9q0dHN6PQnhw7nqhy8xszea8xgyZ5HgBCjs43lnRgDrxdZwOEsDgc2E87E+s6QO8MYvR6/sbObfm5UP8ifSrm+JJ7zJ3IsCQEQTSWwU3rjVXbcJpmOtNHCn7hB3g4eATbmj0yq5y1kbCeYNekp6lfQzkxvBJh1XSgT+zwP5egMD8a7L3YQfhYF1pkOAvHQkuzPAlhdn56DmYRObwmKZRidQWd9nbBf5XxP/xUA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+Received: from SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:25::10) by SHXPR01MB0623.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:1d::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.47; Mon, 19 Feb
+ 2024 03:27:48 +0000
+Received: from SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn
+ ([fe80::b0af:4c9d:2058:a344]) by
+ SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn ([fe80::b0af:4c9d:2058:a344%6])
+ with mapi id 15.20.7249.041; Mon, 19 Feb 2024 03:27:48 +0000
+From: Changhuang Liang <changhuang.liang@starfivetech.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>
+Cc: Jack Zhu <jack.zhu@starfivetech.com>,
+	Changhuang Liang <changhuang.liang@starfivetech.com>,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: [v3] riscv: dts: starfive: jh7110: Add camera subsystem nodes
+Date: Sun, 18 Feb 2024 19:27:41 -0800
+Message-Id: <20240219032741.18387-1-changhuang.liang@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SHXPR01CA0021.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:1b::30) To SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:25::10)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=BKkQr0QG c=1 sm=1 tr=0 ts=65d2c24e a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=k7vzHIieQBIA:10 a=_jlGtV7tAAAA:8 a=gAnH3GRIAAAA:8 a=FVfxCX4UZNgzJca5yKQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=nlm17XC03S6CtCLSeiRr:22 a=oVHKYsEdi7-vN-J5QA_j:22
-X-SEG-SpamProfiler-Score: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SHXPR01MB0671:EE_|SHXPR01MB0623:EE_
+X-MS-Office365-Filtering-Correlation-Id: bc0d8f27-f8b9-4da8-ffb5-08dc30fabf01
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	VbRVG26ZP3emFPEUBIQ/xWGZeAWbwLPlHvKzmOi9BBDIahl9+7GAA1euOOO6flP0mGEFiMpqBv5Q3gMNTxGlbVeuYZV7KcvIvM7PSVMvfYhUW1O8YT2O7sFZyhtWEPeQQvq6PPDB2KwiU7wIcpSxh7b1C/4AglDlhGEHZDfwQKLhKZxIDSIb03nGkwiUOBzD1lY1GMxlPEZSKFDr/ssnebt/qMVITGlS7K26Q2zG+iU04GR4UDR9nOidJn9iOR+csLpgTGoV0Vrxo9Pyx6g2bJe4twXnkRSpQx9KnO+Rb43WvJxWV/RA0DDVM7E1H7Sx+12pBzYcUTU66OFg6KJqljbbEM22oXGOz7MobhV4z1jCt8Rx4+TvR1h0Ym7tvKvvMCLShReT74l+AndLE5RyHqTfsCj3xhaDwhouVl2yANudIKND3a+zJMHAkVXI911JGSVh+Bp8P5k0zBPZNCvgrR/WgHK5IUZSIStFk0MJgY9xgQ+oHs+BgPxqf0y5HtHAJeYcam5PQattibMF8Nu1+v2/P09LmSjwT//CEe8IOeR82t696M8Z3jbI3XHSUckQ
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(136003)(366004)(39830400003)(346002)(396003)(230922051799003)(64100799003)(451199024)(1800799012)(186009)(7416002)(5660300002)(2906002)(44832011)(41320700001)(38350700005)(2616005)(36756003)(40180700001)(1076003)(26005)(508600001)(52116002)(40160700002)(38100700002)(83380400001)(86362001)(8676002)(4326008)(66946007)(66556008)(8936002)(66476007)(41300700001)(110136005)(54906003)(6666004);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?0yI4TFsH/6QwNcdQ8FKSyeiQjczEfjpZFxD9h6r2M/g8AOtFknkiIwvqWfz6?=
+ =?us-ascii?Q?nERasLVF2d8UbJGt/gYAEymfR/Rb8LVDayfzyIrYMbWS3y22uLlq1PQqeE3A?=
+ =?us-ascii?Q?7SfwC3LFI1IcF+Qxoicinq4iq7B7Jnai9t5TmnBchDpu0v/XFk8pMKKcVh9B?=
+ =?us-ascii?Q?qsNYws9HkjaZgjzmpYpc2QsBUBQAgRgULoQ01F73MfX5l8LHdvWZz1SBRoZW?=
+ =?us-ascii?Q?irX4+7msmz8UKKb7BNjuT/Dvh2iv8sK6txyHHhLbDCNkStMG/R+F3EvojiZ1?=
+ =?us-ascii?Q?/nciO0Vm+j82GID+2/3UCOURpdMqU23DmlyhaQrNKvA5hz5v9Y1tP2kRUzoa?=
+ =?us-ascii?Q?mP6rtqvX1ufYsyZUsT5Lp5FtaCgFDe0XNBCUJllbX14CkSbjUaXjqvDW8UB6?=
+ =?us-ascii?Q?i4D5KF4VWC7DQNlgHzMG0/7MxbEjjoLq1JDTIwrtSFn0NDReam0cAu3fm5pa?=
+ =?us-ascii?Q?Fxy24eTTSRyS+PrPmJzSmhHZ/dmBej0yJy3k+qJUI6SSyYAqAB0qZA53NdbG?=
+ =?us-ascii?Q?o6TWHlMMQJ3iT2C7ng+2nwbW6qNP6bb8Gf3HmQKdh5Yb1PeL675B3ro14b23?=
+ =?us-ascii?Q?WRzhJvGFHcYZ/ctySZpROKvN8ft+/vZ+jZlX3+2yp0Q/MVPQT/CqKIzgOWdM?=
+ =?us-ascii?Q?3h7ISaFTUw4jOEcanBeUeitSde/bprPQAzrxBxFRN1FA4nDWxjdWr7J99OQu?=
+ =?us-ascii?Q?wFEll378+y+EFFH/pTklKcc744b4ZYAFNQmcA36WsydW8INkpaF78DZmAx0Z?=
+ =?us-ascii?Q?RPOtOr9h7OLOM3FEuZIiJLEWGSyecypgvk0ptL4dsYiFYbU9mn5trHxzJO8G?=
+ =?us-ascii?Q?0AuuxIwPDhAGdcAtlag3K23AVBmHxjuuk0vV+W55nxswRcsVK13rgrq0y+dL?=
+ =?us-ascii?Q?dd1hHbA/qlxBfgaeVAtU+OyWplBroCObcIGfkYf0qzbdrkE9TP95wKXGv0Xj?=
+ =?us-ascii?Q?SbPphFoAa3HFbchwP6IvjqFr/o85aau72TRFuRRP3RwuVyliZbwOEnFNAzuf?=
+ =?us-ascii?Q?mh2pxqk/f/mFSoeCeTXc3RU7FGjI/NAbz2EPbgDcXAVEc28IsHt8IhEjSEyL?=
+ =?us-ascii?Q?V5rLulXwRkOOx01k9y6ey7n1ncelaRVzDa9rs3BqadI4IS3ZjUJt/DCQJDix?=
+ =?us-ascii?Q?TherEGZJ6Mi1SO0TPmOMjfoJ/gGTsZOd9d1StgMbKWcHsV+yC+KyxSUxs7V8?=
+ =?us-ascii?Q?DnGwFLCfJz0uKS0iZoX5NZ3Ki+PzFc7wvw2qDjDNZSSn1KQSxrStapcm/XKp?=
+ =?us-ascii?Q?fWI+a7zyQrIcoCtc5IPnEIGvpYR1S0QNL4OcttbkgEJvBm4UW2fI04Zu7t0r?=
+ =?us-ascii?Q?kjuzgq2JJPpH+RQJA3T/vXxXyOgQ8gByQ/xZtDUb3NNvYoMttKZ9uyu8yP2E?=
+ =?us-ascii?Q?fIT5/lOy6efP/DgSUcmOqJsGuxMOXkvD4vNGDxJrgrZO3XsOAZyTW/W87bAn?=
+ =?us-ascii?Q?L3yEMCpAwzxToVmIgxDjjWCjZGmG7ctO0MdwXQpIvVkigw76/GFqIu1QzxYP?=
+ =?us-ascii?Q?qaYfmjjvgRMvmqsaJLRm7IMwX1s30NCZtJb/nA/ZgctOCtW1ai1yVxFY2pCJ?=
+ =?us-ascii?Q?w29P0/ksV55GTjw/iIRtgrLd1ofg94brQzC6XPcgLtAdqdVWI7ED12Ua9YUm?=
+ =?us-ascii?Q?t4s98xcsF/q8I3zDGEglE6U=3D?=
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bc0d8f27-f8b9-4da8-ffb5-08dc30fabf01
+X-MS-Exchange-CrossTenant-AuthSource: SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2024 03:27:48.5347
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +zrwS6fvvO0Ze5OLm3FcZmoql3xzvmKDlp+Irm526TiHW3LBwx0AcMIrNqqDUzdBPGIWyXnuoj+cwLD8THov4ZOBnL0Dd57wtkl7zXq745rrMNl42IzFaWF9t46+4O3J
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SHXPR01MB0623
 
-SGkgQWxsLA0KDQpJJ20gbG9va2luZyBhdCBmb2xkaW5nIHRoaXMgaW50byB0aGUgcmVzdCBvZiB0
-aGUgbWF4MzEzeHggc3VwcG9ydCAoYnV0IA0KSSdsbCBzdGljayB3aXRoIHRoZSBtYXgzMTMzNSBu
-YW1lIHNpbmNlIHRoYXQncyBsYW5kZWQpIGFuZCBJIG5vdGljZWQgYSANCnByb2JsZW0uDQoNCk9u
-IDIxLzExLzIzIDAxOjAwLCBBbnRvbml1IE1pY2xhdXMgd3JvdGU6DQo+IFJUQyBkcml2ZXIgZm9y
-IE1BWDMxMzM1IMKxMnBwbSBBdXRvbW90aXZlIFJlYWwtVGltZSBDbG9jayB3aXRoDQo+IEludGVn
-cmF0ZWQgTUVNUyBSZXNvbmF0b3IuDQo+DQo+IFJldmlld2VkLWJ5OiBHdWVudGVyIFJvZWNrIDxs
-aW51eEByb2Vjay11cy5uZXQ+DQo+IFNpZ25lZC1vZmYtYnk6IEFudG9uaXUgTWljbGF1cyA8YW50
-b25pdS5taWNsYXVzQGFuYWxvZy5jb20+DQo8c25pcD4NCj4gKw0KPiArc3RhdGljIGJvb2wgbWF4
-MzEzMzVfdm9sYXRpbGVfcmVnKHN0cnVjdCBkZXZpY2UgKmRldiwgdW5zaWduZWQgaW50IHJlZykN
-Cj4gK3sNCj4gKwkvKiB0aW1lIGtlZXBpbmcgcmVnaXN0ZXJzICovDQo+ICsJaWYgKHJlZyA+PSBN
-QVgzMTMzNV9TRUNPTkRTICYmDQo+ICsJICAgIHJlZyA8IE1BWDMxMzM1X1NFQ09ORFMgKyBNQVgz
-MTMzNV9USU1FX1NJWkUpDQo+ICsJCXJldHVybiB0cnVlOw0KPiArDQo+ICsJLyogaW50ZXJydXB0
-IHN0YXR1cyByZWdpc3RlciAqLw0KPiArCWlmIChyZWcgPT0gTUFYMzEzMzVfSU5UX0VOMV9BMUlF
-KQ0KPiArCQlyZXR1cm4gdHJ1ZTsNClByZXN1bWFibHkgdGhpcyBzaG91bGQgYmUgc29tZXRoaW5n
-IGVsc2UgYXMgTUFYMzEzMzVfSU5UX0VOMV9BMUlFIGlzIGEgDQpiaXRmaWVsZCBvZmZzZXQgbm90
-IGEgcmVnaXN0ZXIuwqAgQmFzZWQgb24gdGhlIG90aGVyIGNoaXBzIEknbSBndWVzc2luZyANCnRo
-aXMgc2hvdWxkIGJlIGByZWcgPT0gTUFYMzEzMzVfU1RBVFVTMWAuIEknbGwgdHJ5IHRvIGluY29y
-cG9yYXRlIGEgZml4IA0KaW50byBteSB1cGRhdGUgYnV0IHNvbWVvbmUgbWlnaHQgd2FudCB0byBm
-aXggaXQgdXAgZm9yIHN0YWJsZS4NCj4gKw0KPiArCS8qIHRlbXBlcmF0dXJlIHJlZ2lzdGVycyAq
-Lw0KPiArCWlmIChyZWcgPT0gTUFYMzEzMzVfVEVNUF9EQVRBX01TQiB8fCBNQVgzMTMzNV9URU1Q
-X0RBVEFfTFNCKQ0KPiArCQlyZXR1cm4gdHJ1ZTsNCj4gKw0KPiArCXJldHVybiBmYWxzZTsNCj4g
-K30NCj4gKw0K
+Add camera subsystem nodes for the StarFive JH7110 SoC. They contain the
+dphy-rx, csi2rx, camss nodes.
+
+Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+---
+ .../jh7110-starfive-visionfive-2.dtsi         | 49 ++++++++++++++
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      | 67 +++++++++++++++++++
+ 2 files changed, 116 insertions(+)
+
+diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+index b89e9791efa7..737ee97a3577 100644
+--- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
++++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+@@ -125,6 +125,55 @@ &tdm_ext {
+ 	clock-frequency = <49152000>;
+ };
+
++&camss {
++	assigned-clocks = <&ispcrg JH7110_ISPCLK_DOM4_APB_FUNC>,
++			  <&ispcrg JH7110_ISPCLK_MIPI_RX0_PXL>;
++	assigned-clock-rates = <49500000>, <198000000>;
++	status = "okay";
++
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++		};
++
++		port@1 {
++			reg = <1>;
++
++			camss_from_csi2rx: endpoint {
++				remote-endpoint = <&csi2rx_to_camss>;
++			};
++		};
++	};
++};
++
++&csi2rx {
++	assigned-clocks = <&ispcrg JH7110_ISPCLK_VIN_SYS>;
++	assigned-clock-rates = <297000000>;
++	status = "okay";
++
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++
++			/* remote MIPI sensor endpoint */
++		};
++
++		port@1 {
++			reg = <1>;
++
++			csi2rx_to_camss: endpoint {
++				remote-endpoint = <&camss_from_csi2rx>;
++			};
++		};
++	};
++};
++
+ &gmac0 {
+ 	phy-handle = <&phy0>;
+ 	phy-mode = "rgmii-id";
+diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+index 45213cdf50dc..6ea1c3f5dded 100644
+--- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
++++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+@@ -1104,6 +1104,32 @@ pwrc: power-controller@17030000 {
+ 			#power-domain-cells = <1>;
+ 		};
+
++		csi2rx: csi@19800000 {
++			compatible = "starfive,jh7110-csi2rx", "cdns,csi2rx";
++			reg = <0x0 0x19800000 0x0 0x10000>;
++			clocks = <&ispcrg JH7110_ISPCLK_VIN_SYS>,
++				 <&ispcrg JH7110_ISPCLK_VIN_APB>,
++				 <&ispcrg JH7110_ISPCLK_VIN_PIXEL_IF0>,
++				 <&ispcrg JH7110_ISPCLK_VIN_PIXEL_IF1>,
++				 <&ispcrg JH7110_ISPCLK_VIN_PIXEL_IF2>,
++				 <&ispcrg JH7110_ISPCLK_VIN_PIXEL_IF3>;
++			clock-names = "sys_clk", "p_clk",
++				      "pixel_if0_clk", "pixel_if1_clk",
++				      "pixel_if2_clk", "pixel_if3_clk";
++			resets = <&ispcrg JH7110_ISPRST_VIN_SYS>,
++				 <&ispcrg JH7110_ISPRST_VIN_APB>,
++				 <&ispcrg JH7110_ISPRST_VIN_PIXEL_IF0>,
++				 <&ispcrg JH7110_ISPRST_VIN_PIXEL_IF1>,
++				 <&ispcrg JH7110_ISPRST_VIN_PIXEL_IF2>,
++				 <&ispcrg JH7110_ISPRST_VIN_PIXEL_IF3>;
++			reset-names = "sys", "reg_bank",
++				      "pixel_if0", "pixel_if1",
++				      "pixel_if2", "pixel_if3";
++			phys = <&csi_phy>;
++			phy-names = "dphy";
++			status = "disabled";
++		};
++
+ 		ispcrg: clock-controller@19810000 {
+ 			compatible = "starfive,jh7110-ispcrg";
+ 			reg = <0x0 0x19810000 0x0 0x10000>;
+@@ -1121,6 +1147,47 @@ ispcrg: clock-controller@19810000 {
+ 			power-domains = <&pwrc JH7110_PD_ISP>;
+ 		};
+
++		csi_phy: phy@19820000 {
++			compatible = "starfive,jh7110-dphy-rx";
++			reg = <0x0 0x19820000 0x0 0x10000>;
++			clocks = <&ispcrg JH7110_ISPCLK_M31DPHY_CFG_IN>,
++				 <&ispcrg JH7110_ISPCLK_M31DPHY_REF_IN>,
++				 <&ispcrg JH7110_ISPCLK_M31DPHY_TX_ESC_LAN0>;
++			clock-names = "cfg", "ref", "tx";
++			resets = <&ispcrg JH7110_ISPRST_M31DPHY_HW>,
++				 <&ispcrg JH7110_ISPRST_M31DPHY_B09_AON>;
++			power-domains = <&aon_syscon JH7110_AON_PD_DPHY_RX>;
++			#phy-cells = <0>;
++		};
++
++		camss: isp@19840000 {
++			compatible = "starfive,jh7110-camss";
++			reg = <0x0 0x19840000 0x0 0x10000>,
++			      <0x0 0x19870000 0x0 0x30000>;
++			reg-names = "syscon", "isp";
++			clocks = <&ispcrg JH7110_ISPCLK_DOM4_APB_FUNC>,
++				 <&ispcrg JH7110_ISPCLK_ISPV2_TOP_WRAPPER_C>,
++				 <&ispcrg JH7110_ISPCLK_DVP_INV>,
++				 <&ispcrg JH7110_ISPCLK_VIN_P_AXI_WR>,
++				 <&ispcrg JH7110_ISPCLK_MIPI_RX0_PXL>,
++				 <&syscrg JH7110_SYSCLK_ISP_TOP_CORE>,
++				 <&syscrg JH7110_SYSCLK_ISP_TOP_AXI>;
++			clock-names = "apb_func", "wrapper_clk_c", "dvp_inv",
++				      "axiwr", "mipi_rx0_pxl", "ispcore_2x",
++				      "isp_axi";
++			resets = <&ispcrg JH7110_ISPRST_ISPV2_TOP_WRAPPER_P>,
++				 <&ispcrg JH7110_ISPRST_ISPV2_TOP_WRAPPER_C>,
++				 <&ispcrg JH7110_ISPRST_VIN_P_AXI_RD>,
++				 <&ispcrg JH7110_ISPRST_VIN_P_AXI_WR>,
++				 <&syscrg JH7110_SYSRST_ISP_TOP>,
++				 <&syscrg JH7110_SYSRST_ISP_TOP_AXI>;
++			reset-names = "wrapper_p", "wrapper_c", "axird",
++				      "axiwr", "isp_top_n", "isp_top_axi";
++			power-domains = <&pwrc JH7110_PD_ISP>;
++			interrupts = <92>, <87>, <90>, <88>;
++			status = "disabled";
++		};
++
+ 		voutcrg: clock-controller@295c0000 {
+ 			compatible = "starfive,jh7110-voutcrg";
+ 			reg = <0x0 0x295c0000 0x0 0x10000>;
+--
+2.25.1
 
