@@ -1,96 +1,125 @@
-Return-Path: <devicetree+bounces-43388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A573C85A38E
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 13:36:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFBDE85A398
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 13:38:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4505B1F23043
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 12:36:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6BD31F217D0
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 12:38:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F4F72E407;
-	Mon, 19 Feb 2024 12:36:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C58F2E652;
+	Mon, 19 Feb 2024 12:38:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="lDzM2UQC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WIJ3kPhZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8A8C3306B;
-	Mon, 19 Feb 2024 12:36:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BD962E644;
+	Mon, 19 Feb 2024 12:38:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708346182; cv=none; b=IA6RRt7vMQEW2yTMvqr0MfiYH2d5Uyu9lXfYlVVaTzpITpnpPeZUNevnLRWhyK35ZWSxQSbpS12djlHkwgiw40gkQksLfxoo8V/QG9rGm1gHHwET0C/HekK+JCZMW/3thROtap5btaShqqAgOPuZppNRQEL0PcjBISeXu8N1nQI=
+	t=1708346301; cv=none; b=cuTq5hpUygisTOXZj21UVh9CTCiwLkpFWyUVusrNg1KQHhZKvLyj5CVTvU/BfF19r6Ji3yG82Bo5RmqMVb5NXG7//nygPYGKEUfm8rhfusj+hkwjQ4ZhlKUlQBhyBkwPPcHRJbDU3mpNIrKCW1bHHnz08E1KRLbBli3WIezq9TU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708346182; c=relaxed/simple;
-	bh=Z+VCUj+P51+feGqkafHO97lvAdT97kUE6BEl9CA8Xe0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Gz5wHVB+ZQL8ZSBm4+AC7QKyZt1u274dWCRZ299lFFehlJmrosZjiJtnV3kH34bQilMIVOWe3aL1CZ9g2jUs9pEVtdAl44Lf4KDBEk3Y2dLhH2qx/wdovCfFKLvfr5/dN3kbxSd8+BVjvvje8rzCl8y145W5HjBsKOZJAOus4Zs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=lDzM2UQC; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1708346179;
-	bh=Z+VCUj+P51+feGqkafHO97lvAdT97kUE6BEl9CA8Xe0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=lDzM2UQCSH6Ufq0AHo74hyY0MFzQA7epV1lt440ufl8Vip3qViDWLHImekeeW03PN
-	 TijyF6ZxLxrzvQWmCZS49OJ8oMCppaH0EdBjGtGmilFOphp5GK72v+5NVDFqhUOgjn
-	 9cXgM6sOBcO5EG7ITbKuyc+fdWGyfN1+rzoU/UHa6xs5h+01HdpufXRsLpkQ7JSQcT
-	 8R/nPGiTVh6THJJOtxTSA3sAhHITzlkAFpIeqjlEWCw1DsWuLO/ygLY7DgFRZLSLx1
-	 iN1NyvBPKD374LG5z5+qUD605z+oFMcRZ6sdERFQFu3D8ycY7uu6ZeReok6F9CIQQ4
-	 HYsVddxq+7Tsw==
-Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 7478937820C1;
-	Mon, 19 Feb 2024 12:36:18 +0000 (UTC)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: Rob Herring <robh+dt@kernel.org>,
+	s=arc-20240116; t=1708346301; c=relaxed/simple;
+	bh=2tY2MZjkFTTdw1DjZNPEnmqZhflzeeQAO/A2N+2m5pY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XP7bE9vhyzu4hA3GZ6feM/mRsBxlgtYtsVl2BmNPycCi+fiKXBf+V3GiZ84p7rKGzI+iLDCqOwFc2JDedDgLzoJN050/yyJtuy1gW392lkCAZvGPEemBs2Z8F3urD369TdlXtLG+6bQJQpM4y84/x+FLxf0TuVJMrRAoL4OrENU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WIJ3kPhZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AF95C433C7;
+	Mon, 19 Feb 2024 12:38:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708346300;
+	bh=2tY2MZjkFTTdw1DjZNPEnmqZhflzeeQAO/A2N+2m5pY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WIJ3kPhZFfFWJQsqCAUgP3SYF7pexh2h3cTq1B1TScLDQJKsHiH3xn5yGNkbByzoz
+	 qtuJtysq3MOhCOnD324DOo7J3GCAqLHQ/u2M7oIwzcLsjlzqYQXyN2AKTTJHeKCbhg
+	 3Qh1zuU2nRm2RUL/vYX75FOxgzuKspXx+XZaKAuyq66AM0uDUms1PlNa4Q1qzzR8Pz
+	 FsHcyJbyCOY5ZeGjA4qHvnL9jawRW7/ZvImwH8yIL4fRJ0rDHbeQjmmh7Ir7dy9usq
+	 Jryb+IFM0fg4qGGgg5wAJ2CjI32jkmf1udSE+bFoNqrPvDGskMXbEspH4/8N6Q8nHw
+	 3rb6vN7chyMCg==
+Date: Mon, 19 Feb 2024 18:08:08 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Viresh Kumar <viresh.kumar@linaro.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Krishna chaitanya chundru <quic_krichai@quicinc.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Hsin-Te Yuan <yuanhsinte@chromium.org>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Hsin-Te Yuan <yuanhsinte@google.com>
-Subject: Re: [PATCH v3] arm64: dts: mt8195-cherry-tomato: change watchdog reset boot flow
-Date: Mon, 19 Feb 2024 13:36:14 +0100
-Message-ID: <170834614185.140678.1878504560854372421.b4-ty@collabora.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240124-send-upstream-v3-1-5097c9862a73@chromium.org>
-References: <20240124-send-upstream-v3-1-5097c9862a73@chromium.org>
+	Rob Herring <robh+dt@kernel.org>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Brian Masney <bmasney@redhat.com>,
+	Georgi Djakov <djakov@kernel.org>, linux-arm-msm@vger.kernel.org,
+	vireshk@kernel.org, quic_vbadigan@quicinc.com,
+	quic_skananth@quicinc.com, quic_nitegupt@quicinc.com,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 5/6] arm64: dts: qcom: sm8450: Add opp table support
+ to PCIe
+Message-ID: <20240219123808.GB3281@thinkpad>
+References: <20240130071449.GG32821@thinkpad>
+ <20240130083619.lqbj47fl7aa5j3k5@vireshk-i7>
+ <20240130094804.GD83288@thinkpad>
+ <20240130095508.zgufudflizrpxqhy@vireshk-i7>
+ <20240130131625.GA2554@thinkpad>
+ <20240131052335.6nqpmccgr64voque@vireshk-i7>
+ <610d5d7c-ec8d-42f1-81a2-1376b8a1a43f@linaro.org>
+ <20240202073334.mkabgezwxn3qe7iy@vireshk-i7>
+ <8a7b63a8-0583-43cf-9876-8a964c8b77ee@linaro.org>
+ <20240219102834.x22ggazkmzppsdxc@vireshk-i7>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240219102834.x22ggazkmzppsdxc@vireshk-i7>
 
-On Wed, 24 Jan 2024 07:51:57 +0000, Hsin-Te Yuan wrote:
-> The external output reset signal was originally disabled and sent from
-> firmware. However, an unfixed bug in the firmware on tomato prevents
-> the signal from being sent, causing the device to fail to boot. To fix
-> this, enable external output reset signal to allow the device to reboot
-> normally.
+On Mon, Feb 19, 2024 at 03:58:34PM +0530, Viresh Kumar wrote:
+> On 09-02-24, 22:14, Konrad Dybcio wrote:
+> > On 2.02.2024 08:33, Viresh Kumar wrote:
+> > > On 01-02-24, 15:45, Konrad Dybcio wrote:
+> > >> I'm lukewarm on this.
+> > >>
+> > >> A *lot* of hardware has more complex requirements than "x MBps at y MHz",
+> > >> especially when performance counters come into the picture for dynamic
+> > >> bw management.
+> > >>
+> > >> OPP tables can't really handle this properly.
+> > > 
+> > > There was a similar concern for voltages earlier on and we added the capability
+> > > of adjusting the voltage for OPPs in the OPP core. Maybe something similar can
+> > > be done here ?
+> > > 
+> > I really don't think it's fitting.. At any moment the device may require any
+> > bandwidth value between 0 and MAX_BW_PER_LINK_GEN * LINK_WIDTH..
 > 
+> Okay, I leave it up to you guys to decide on how you want to do it. I still
+> believe getting the information via DT is the right thing, but maybe I still
+> don't understand the problem fully.
 > 
-> [...]
 
-Applied to v6.8-next/dts64, thanks!
+I argued for a different issue, but what Konrad pointed out is not a valid
+concern to me. The driver may only require _fixed_ bandwidth between 0 and
+(MAX_BW_PER_LINK_GEN * LINK_WIDTH) and DT can pass those bandwidth values.
 
-[1/1] arm64: dts: mt8195-cherry-tomato: change watchdog reset boot flow
-      https://git.kernel.org/mediatek/c/ef569d5d
+Chaitanya pointed out that this may end up with long entries in DT once the PCIe
+Gen versions start to increase (current Qcom platforms support upto Gen 4 only).
+But that shouldn't be a real concern if we look at what DT has to provide.
 
-Cheers,
-Angelo
+- Mani
 
+-- 
+மணிவண்ணன் சதாசிவம்
 
