@@ -1,204 +1,204 @@
-Return-Path: <devicetree+bounces-43253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43254-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CB73859BBC
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 06:41:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A167859BC6
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 06:55:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADDAC2826DE
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 05:41:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5A031F2263E
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 05:55:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EFA71CFBF;
-	Mon, 19 Feb 2024 05:41:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B1231F951;
+	Mon, 19 Feb 2024 05:55:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E4vojcHJ"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Tj+LMdnD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF17D33C0;
-	Mon, 19 Feb 2024 05:41:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DE9433C0;
+	Mon, 19 Feb 2024 05:55:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708321291; cv=none; b=XEr9AkYIcOvTR8ppD/pzlh6sczH2WBouRpwaZXSywqcsQpAHKAdmk9XohczP0w9eIVVDCsM8OfV0UUFPliDcRdhDcg/pjBb0F7uU2EWPLydbcViboDemTYPMliCrzxwSxvK4lH4TUQROZ2W+DQLxJMsEF/PufkARUSJOwdtGp7g=
+	t=1708322149; cv=none; b=RY9aPhLagsw2Nf/GXOHFH1nKhpogEi1FifpjtWTSJS19XxnntQuLLmL1RIBvS6pXR32s/KY+d7DA8U4RSNw7mQ28JBlKZKM0DHjOSxHDuO6nVbjrlZBxHtjrvx89ADeBGaGymgo2FdGjlIiw57eky63NNULhsz0W2PU6C5AxmlM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708321291; c=relaxed/simple;
-	bh=8mEJQgrUvxiuH5nR2L9KBll39m4IslQHc7+DMvdhRgo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JZPHgQ690gpS7sS7Q33PybAdJLF4823LkacsKi/vLHS9D3/49tU2G/bD/Vq6E49X79I2BtJzS8iaOX7azclolIeqzg7SCTMXr+ixlSuOvkNbP5gGnSKauUxrwbYp+5Ky0cKMRMxhtA2I/eSezD4tsaBk1PQMm3n4xWuCcTgHr9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E4vojcHJ; arc=none smtp.client-ip=209.85.167.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f175.google.com with SMTP id 5614622812f47-3c135913200so1787268b6e.1;
-        Sun, 18 Feb 2024 21:41:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708321289; x=1708926089; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=dINrekbO9OyEoiamG9kRG6vqUkZ7GX4ftWbHSVqA3UE=;
-        b=E4vojcHJZ5PqM1yqD1gV4IEfBX/D1V1bATJ6P/MCdAZAG+8jjy6gDmzo+kX4SZWkNg
-         A/aSQzKrsdTpFHp6m1rH7shfPa3V4DAFu5tNnjcosKUGW5aftBQNMbfRNg5eqwfKJTG9
-         0jqK2OwLoAt5G2B/e9AKEpvlLE+gomaiGJyndUgVxkWjVD8ajhou1X4vMT8vwGAeqPvt
-         QCNo/K958qRVgp0sU9VhMX4qmRKDOsrTy7gg+FJ7rQ+fElHlMTpLZGL2cJxkYhx0XlX5
-         cL03IBSmhuNibSruZRZSd2oqQ3BxSTqP/p2flHzvCJyk0y/7eCUWef9yZExP1fxhOubm
-         RrKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708321289; x=1708926089;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dINrekbO9OyEoiamG9kRG6vqUkZ7GX4ftWbHSVqA3UE=;
-        b=Q4z0rRbeMX/nundMSoeekWw/Zs8Vpq6A76oDVtd0U1T2O1zExefPaWNkWYUYJ4Xte5
-         jXZckCPraAgHI0iBSGvB/eUDNMni0pmgzujlQ0KNNh5j2zh/oQL4Ioht7Y4aGJxsu1Hw
-         Vi222RnvTGFuORYFDoEV98UiAAFVf6gN5dcglICY05FbWQuPc9DDUMnDAExT2IXX/wWY
-         UCZ+yy+Ze5JxzftPgUSV9Rrxe6FNxqRGrMyOreSdcKDNE1hmtPparTMD/mnK6Zxv+E0J
-         qoQPS4bnFBBUsW/ksEczx64lfTkFs2qENCrxwpdoNxltfGx2YCzPmvWS3HxBobzobqw0
-         KgAg==
-X-Forwarded-Encrypted: i=1; AJvYcCUPu/c27LsKiHmviFkI90ZAqAMIfuxEYNVXPvom5nb9FfX9+1OizGInEmEX6z+lytLI/iNVr6u9haxwXsOVMxy4/IOXbms9BxOmF/LkiCtBO5SgxH1E6fa4azEeoV28mGrgRcZFk9ApDvbf75DPQMScQD7Gphjv9kx3/eGBOoiB6tQPlsKGL1Ok
-X-Gm-Message-State: AOJu0Yz7F3BdlmvBDJigaFXSigz7opWcWGbQj+cV3q2sNIGktzY4hJ3t
-	SrgytYZsmvbuWxNXmfr30nQFAlZvBeL2Da8pJnxxf+r0kZhzYVCWJ/JoWdhJ5lrS1angLcPKOzd
-	RaAZM3cyuDoZF6UoRwhJQBYz3zEc=
-X-Google-Smtp-Source: AGHT+IH240GseuofeGUUGoETnTg17gf1crOfxs6ekv2X5XnZiWsZ5Hl1SqxYsjbhiiDRX63D86bTP4RysYJCr6YOiQI=
-X-Received: by 2002:a05:6870:f154:b0:21e:9c76:9578 with SMTP id
- l20-20020a056870f15400b0021e9c769578mr5200551oac.21.1708321288855; Sun, 18
- Feb 2024 21:41:28 -0800 (PST)
+	s=arc-20240116; t=1708322149; c=relaxed/simple;
+	bh=kqS+eZftSx4sIClKNOVzzYPgpZBOuze/EHjy6Xbuk/w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=YbKv4Ddh+XnYVVP8tBGEzEvcEWSZt5Y+90AoBGPPUzXJd8f90HEEP5f2CRGXep4bE9VSQ95EHHtt/WpnlLQoyirXm4FVQ08mCRoWUOaGmFnhgWLgU5nFP95OQFCJGIpsj8DrR/iL3kwJBaoZdJXa3oE2O03tW3pkSH1PHaAbc60=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Tj+LMdnD; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41J5tWsW012920;
+	Sun, 18 Feb 2024 23:55:32 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1708322132;
+	bh=JLu3cR3Rq0C0/l0UjUXLHLU/TL0qcZO1fpe3DiWw7Ro=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=Tj+LMdnDlfiG4Z0KQ4IdWsDw4JGtxWRegUrysk6kXSR4ly0SKqk0xcpo68JS0DpN4
+	 ShWS6sewKWBsq6mPjW0xttRgkfFanJKs+OS2URfYz+b2HDN6N5Kfo21WsV4imh2JnH
+	 yeKYCVvCnKufI6YAO6ufaN2n79ZSUGubKTwXEuYg=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41J5tWHM009778
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sun, 18 Feb 2024 23:55:32 -0600
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 18
+ Feb 2024 23:55:32 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sun, 18 Feb 2024 23:55:32 -0600
+Received: from [172.24.20.156] (lt5cd2489kgj.dhcp.ti.com [172.24.20.156])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41J5tRZE123575;
+	Sun, 18 Feb 2024 23:55:28 -0600
+Message-ID: <0ca01a1b-8956-40dd-8286-77276e021633@ti.com>
+Date: Mon, 19 Feb 2024 11:25:27 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <ZdDUlGdqH7Qv3SDu@standask-GA-A55M-S2HP>
-In-Reply-To: <ZdDUlGdqH7Qv3SDu@standask-GA-A55M-S2HP>
-From: Chunyan Zhang <zhang.lyra@gmail.com>
-Date: Mon, 19 Feb 2024 13:40:52 +0800
-Message-ID: <CAAfSe-sTARE6pr3g-vQ2MuaSLhWg8_bNhMcfosYjFxrAikwHHg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: watchdog: sprd,sp9860-wdt: convert to YAML
-To: Stanislav Jakubek <stano.jakubek@gmail.com>
-Cc: Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>, 
-	Baolin Wang <baolin.wang7@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, 
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-j722s-evm: Enable OSPI NOR support
+To: Vaishnav Achath <vaishnav.a@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <s-vadapalli@ti.com>
+References: <20240216135533.904130-1-vaishnav.a@ti.com>
+ <20240216135533.904130-3-vaishnav.a@ti.com>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20240216135533.904130-3-vaishnav.a@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Sat, 17 Feb 2024 at 23:45, Stanislav Jakubek <stano.jakubek@gmail.com> wrote:
+Hi Vaishnav
+
+On 2/16/2024 7:25 PM, Vaishnav Achath wrote:
+> J722S EVM has S28HS512T 64 MiB Octal SPI NOR flash connected
+> to the OSPI interface, add support for the flash and describe
+> the partition information as per bootloader.
 >
-> Convert Spreadtrum SP9860 watchdog timer bindings to DT schema.
-> Adjust file name to match compatible.
->
-> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
-
-Thanks for the patch.
-
-Acked-by: Chunyan Zhang <zhang.lyra@gmail.com>
-
+> Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
 > ---
->  .../bindings/watchdog/sprd,sp9860-wdt.yaml    | 64 +++++++++++++++++++
->  .../devicetree/bindings/watchdog/sprd-wdt.txt | 19 ------
->  2 files changed, 64 insertions(+), 19 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/watchdog/sprd,sp9860-wdt.yaml
->  delete mode 100644 Documentation/devicetree/bindings/watchdog/sprd-wdt.txt
+>   arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 79 +++++++++++++++++++++++++
+>   1 file changed, 79 insertions(+)
 >
-> diff --git a/Documentation/devicetree/bindings/watchdog/sprd,sp9860-wdt.yaml b/Documentation/devicetree/bindings/watchdog/sprd,sp9860-wdt.yaml
-> new file mode 100644
-> index 000000000000..730d9a3a3cc5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/sprd,sp9860-wdt.yaml
-> @@ -0,0 +1,64 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/watchdog/sprd,sp9860-wdt.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+> index 9e12a6e9111f..b1c6499c0c9d 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+> @@ -169,6 +169,23 @@ J722S_IOPAD(0x015c, PIN_INPUT, 0) /* (AD25) MDIO0_MDIO */
+>   		>;
+>   	};
+>   
+> +	ospi0_pins_default: ospi0-default-pins {
+> +		pinctrl-single,pins = <
+> +			J722S_IOPAD(0x0000, PIN_OUTPUT, 0) /* (P23) OSPI0_CLK */
+> +			J722S_IOPAD(0x002c, PIN_OUTPUT, 0) /* (M25) OSPI0_CSn0 */
+> +			J722S_IOPAD(0x000c, PIN_INPUT, 0) /* (L25) OSPI0_D0 */
+> +			J722S_IOPAD(0x0010, PIN_INPUT, 0) /* (N24) OSPI0_D1 */
+> +			J722S_IOPAD(0x0014, PIN_INPUT, 0) /* (N25) OSPI0_D2 */
+> +			J722S_IOPAD(0x0018, PIN_INPUT, 0) /* (M24) OSPI0_D3 */
+> +			J722S_IOPAD(0x001c, PIN_INPUT, 0) /* (N21) OSPI0_D4 */
+> +			J722S_IOPAD(0x0020, PIN_INPUT, 0) /* (N22) OSPI0_D5 */
+> +			J722S_IOPAD(0x0024, PIN_INPUT, 0) /* (P21) OSPI0_D6 */
+> +			J722S_IOPAD(0x0028, PIN_INPUT, 0) /* (N20) OSPI0_D7 */
+> +			J722S_IOPAD(0x0008, PIN_INPUT, 0) /* (P22) OSPI0_DQS */
+
+
+Could you check, Pin name in comments
+
+For example, Schematic says L22 is for OSPI0_DQS , but comments says P22
+
+However offsets are good .
+
+> +		>;
+> +		bootph-all;
+> +	};
 > +
-> +title: Spreadtrum SP9860 watchdog timer
+>   	rgmii1_pins_default: rgmii1-default-pins {
+>   		pinctrl-single,pins = <
+>   			J722S_IOPAD(0x014c, PIN_INPUT, 0) /* (AC25) RGMII1_RD0 */
+> @@ -290,6 +307,68 @@ exp1: gpio@23 {
+>   	};
+>   };
+>   
+> +&ospi0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&ospi0_pins_default>;
+> +	status = "okay";
 > +
-> +maintainers:
-> +  - Orson Zhai <orsonzhai@gmail.com>
-> +  - Baolin Wang <baolin.wang7@gmail.com>
-> +  - Chunyan Zhang <zhang.lyra@gmail.com>
+> +	flash@0 {
+> +		compatible = "jedec,spi-nor";
+> +		reg = <0x0>;
+> +		spi-tx-bus-width = <8>;
+> +		spi-rx-bus-width = <8>;
+> +		spi-max-frequency = <25000000>;
+> +		cdns,tshsl-ns = <60>;
+> +		cdns,tsd2d-ns = <60>;
+> +		cdns,tchsh-ns = <60>;
+> +		cdns,tslch-ns = <60>;
+> +		cdns,read-delay = <4>;
+> +		bootph-all;
 > +
-> +allOf:
-> +  - $ref: watchdog.yaml#
+> +		partitions {
+> +			compatible = "fixed-partitions";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
 > +
-> +properties:
-> +  compatible:
-> +    const: sprd,sp9860-wdt
+> +			partition@0 {
+> +				label = "ospi.tiboot3";
+> +				reg = <0x00 0x80000>;
+> +			};
+
+
+I suggest to keep 1MB to accommodate future size increase
+
 > +
-> +  reg:
-> +    maxItems: 1
+> +			partition@80000 {
+> +				label = "ospi.tispl";
+> +				reg = <0x80000 0x200000>;
+> +			};
 > +
-> +  interrupts:
-> +    maxItems: 1
+> +			partition@280000 {
+> +				label = "ospi.u-boot";
+> +				reg = <0x280000 0x400000>;
+> +			};
 > +
-> +  clocks:
-> +    maxItems: 2
+> +			partition@680000 {
+> +				label = "ospi.env";
+> +				reg = <0x680000 0x40000>;
+> +			};
 > +
-> +  clock-names:
-> +    items:
-> +      - const: enable
-> +      - const: rtc_enable
+> +			partition@6c0000 {
+> +				label = "ospi.env.backup";
+> +				reg = <0x6c0000 0x40000>;
+> +			};
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - timeout-sec
+> +			partition@800000 {
+> +				label = "ospi.rootfs";
+> +				reg = <0x800000 0x37c0000>;
+> +			};
 > +
-> +unevaluatedProperties: false
+> +			partition@3fc0000 {
+> +				label = "ospi.phypattern";
+> +				reg = <0x3fc0000 0x40000>;
+> +			};
+> +		};
+> +	};
 > +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/sprd,sc9860-clk.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +};
 > +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        watchdog@40310000 {
-> +            compatible = "sprd,sp9860-wdt";
-> +            reg = <0 0x40310000 0 0x1000>;
-> +            interrupts = <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
-> +            clocks = <&aon_gate CLK_APCPU_WDG_EB>, <&aon_gate CLK_AP_WDG_RTC_EB>;
-> +            clock-names = "enable", "rtc_enable";
-> +            timeout-sec = <12>;
-> +        };
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/watchdog/sprd-wdt.txt b/Documentation/devicetree/bindings/watchdog/sprd-wdt.txt
-> deleted file mode 100644
-> index aeaf3e0caf47..000000000000
-> --- a/Documentation/devicetree/bindings/watchdog/sprd-wdt.txt
-> +++ /dev/null
-> @@ -1,19 +0,0 @@
-> -Spreadtrum SoCs Watchdog timer
-> -
-> -Required properties:
-> -- compatible : Should be "sprd,sp9860-wdt".
-> -- reg : Specifies base physical address and size of the registers.
-> -- interrupts : Exactly one interrupt specifier.
-> -- timeout-sec : Contain the default watchdog timeout in seconds.
-> -- clock-names : Contain the input clock names.
-> -- clocks : Phandles to input clocks.
-> -
-> -Example:
-> -       watchdog: watchdog@40310000 {
-> -               compatible = "sprd,sp9860-wdt";
-> -               reg = <0 0x40310000 0 0x1000>;
-> -               interrupts = <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
-> -               timeout-sec = <12>;
-> -               clock-names = "enable", "rtc_enable";
-> -               clocks = <&clk_aon_apb_gates1 8>, <&clk_aon_apb_rtc_gates 9>;
-> -       };
-> --
-> 2.34.1
->
+>   &sdhci1 {
+>   	/* SD/MMC */
+>   	vmmc-supply = <&vdd_mmc1>;
 
