@@ -1,187 +1,179 @@
-Return-Path: <devicetree+bounces-43386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43387-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A975385A375
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 13:33:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAE3685A389
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 13:35:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 98179B24619
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 12:33:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 21AF8B255DB
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 12:35:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D0BA23741;
-	Mon, 19 Feb 2024 12:31:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6DEF2E835;
+	Mon, 19 Feb 2024 12:34:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="iqHkd/7k"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mvepqIaD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2045.outbound.protection.outlook.com [40.107.94.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D62BE2D022;
-	Mon, 19 Feb 2024 12:31:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.94.45
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708345882; cv=fail; b=rpo/NoPo1ggLQp0ktHBNeiSAUwBda/meBIppZp7Z9VFeqYHdmZ6H2C4gtHJi2TmFz6BGVmlkv0RAYwLGfYR0jzmis2kscVyRWb9iYnDs7eE0paT9U8k8rGDIpan8Ghv3/WB9z8tbrKNC5T+9fD9tPPzn3+lVwvXBDBtSb1arXWQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708345882; c=relaxed/simple;
-	bh=xefr/56g47nxrGa1T7yeHMvOeKl6f9BSJyFcAvE02hU=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=qKztFa+AGZTNIEdd5WJVUrd7t58UJ4b9MsyYM7OpUANmRudfGd+24CpKodzhEuP+O65paB6gC28etNeovmICXHzkgwa7/hStkdHWPWMBHrU6yLDrJuG6GOi/2vlX4GAauJf0kjFy6hfScOBn9MKi1eldEzpGHu1QUJYAuHBNZbQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=iqHkd/7k; arc=fail smtp.client-ip=40.107.94.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Z0pRuAnI1LuUZS1h7Mkl1zKC8VFGp85UbNV5J44aEImKDspiIpSDFHwEzLU9+OF5TecGj0o9kZAAWSsRRUbtGPW5nJEkjtSFs7lyo4BvYRjzFgpAEki5bakEjVPXIyHuMEz81RbnoT1tEFd4eUruPe5FoH8VOaUxN0yej1ycCcBRptcf3L9P+PoWZIWzUrsbzfjMpR3SpCrHUTggTa4P0MYGvlC7B1Z7FlIcIDaBy6NO/UAEUpcrwkC/OsEhUfDlnsRyzUYtff1pdQRDUG7oV2VZdu/Ml5RFIrl9+ES/neqKqug+gZx2lnIfrXsX1W5Qk/d5YLomy9gNpl9dPzc/Tg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZPrnSrMGMXjZ+WlVDDyT/ICFeuj1qDObSBr9GB0M0PE=;
- b=XKxeQGP50oiFrJrak/fkeqpOo/ezMtl0tmW2POvhPAnMyNA1SMVK1b33QzRGvdz4rYZUCizCLIKrdzgS6Iqx/xR3PCCtZaEfqr4+e7+sIPVGcSYeLB0PG8wSQETjlDLFiwKgZHpdKR/z+Gl0GssuKgK0vlLGvvL2/4ItUwFj2NVGikFXKlSCLUc+SvouwXzGgc7arxg6aSZcZUADQ/L/eZakhXFBZjK8fRvRUmZI4TDihCQ+utg20sTdabiyFCaUyhC/WiGL4UrUlKG3SPQT34+Ez4xZOxwcRyqBp5WVYqlHGQbXHy/Ok9ozm8su1o529p/M+dSmV7dccsoh4MzGPw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZPrnSrMGMXjZ+WlVDDyT/ICFeuj1qDObSBr9GB0M0PE=;
- b=iqHkd/7kWp/yQHb2KzhnsoyvUN0tNiQxCphX/HWRqNUwNxVDgoGy7cbrg4PXfiJk0HeCkIRxGzPGCWnzbSZ5MUpYLLDIkxRL8vEJy4oSXKVFLcPy0FlgCs1aI/A1Ud/u2iq9aVpPegxO87ec7uOAPi6ljGoBRDqed/mSc75T8sWq8gqS2uXJr8+FwV4wWf2cf5drLPkncM4VNdRhkBwK9p89CieVn8GyHPtvKzydoff6/t1v6OKQRmCg1dtBpf+zVHcrmPttklI0ezKMcFGvjC0R/X2/oMOLnaO/9+jhFkL0gs45aYQNx1WBwpfbW2pYxkvhyp7/RZ2fVpWYjLCOlw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
- SA1PR12MB9003.namprd12.prod.outlook.com (2603:10b6:806:389::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.19; Mon, 19 Feb
- 2024 12:31:18 +0000
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::a98d:ee51:7f8:7df1]) by CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::a98d:ee51:7f8:7df1%4]) with mapi id 15.20.7316.016; Mon, 19 Feb 2024
- 12:31:18 +0000
-Message-ID: <26fac116-d44c-48a0-8cd5-b08ff8bd521e@nvidia.com>
-Date: Mon, 19 Feb 2024 12:31:16 +0000
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] arm64: tegra: Add current monitors for Jetson Xavier
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20240216122805.32529-1-jonathanh@nvidia.com>
- <20240216122805.32529-2-jonathanh@nvidia.com>
- <7819c59a-a58d-4c50-bbc7-35b3f803aaae@linaro.org>
-From: Jon Hunter <jonathanh@nvidia.com>
-In-Reply-To: <7819c59a-a58d-4c50-bbc7-35b3f803aaae@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO4P123CA0408.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:189::17) To CO6PR12MB5444.namprd12.prod.outlook.com
- (2603:10b6:5:35e::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D2F4364D9
+	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 12:34:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708346044; cv=none; b=LInuHYtPZCEj4zOiZ9jiFpOois2i7H8JtHVAP6mtAdILP2aWY3uowfqFs+NOhQBx8Qa+UDbjC3PVtC2nGxdNYH1nPT3zNTeFirZ4E42JPjEavMzpgoKFjM1SQ0YUKzZiOwAe1LbT6H/pn2WXTcwuI4pOT2uU38pQrpoU8zMrDCw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708346044; c=relaxed/simple;
+	bh=EfyswbkjFGsreX6zvvh/xGLIF699ZsioDWGcgzOacl8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RQH/EAvm7kfzEngYvX3/74BOGXHKy8nD6If03qFiakZBk8B4xV48wdxiPJtkG2hIVX8HDhv06ospD1w6gwFRGDh77pdxOeJTE9UfGEDIAENFJSGV91kTee349QzNjPdQiLExR1vlIkW+QSNPye2E8CW3PiU4wlRyfFoVPuy0vEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mvepqIaD; arc=none smtp.client-ip=209.85.219.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-dc6d24737d7so3603104276.0
+        for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 04:34:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708346042; x=1708950842; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EfyswbkjFGsreX6zvvh/xGLIF699ZsioDWGcgzOacl8=;
+        b=mvepqIaDXiiTuQyHQdt6Ejh9kUwuKgHBeVQRlLu8/H48EeQfl3hvu5sk+pwj5BXtq/
+         dO2RN/phpSedke6qYTOEVwqg0CYP7ljij3Fva+oq7Ze0z1rMPk505oMqZykkzSPvh7w9
+         QC6VQUwv4kdryl/yAbkLRX+wxPIcqeCo6+HMuDsqT4m/3WCcZB5SuVifhS0yNcpKEd/j
+         QRwdVFja6m6s2UD/aHJIRM5qIigFh4PWHitlfgHWjaQje+pTJl/O18uOxTqE2r0ZYK41
+         sQm6f/TlIZpcNu4gtj7N5O+Zpo1ko7c5UCyY9m5lHefaYS97lOWkYNwQDzUPTzx2KbBw
+         DmOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708346042; x=1708950842;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EfyswbkjFGsreX6zvvh/xGLIF699ZsioDWGcgzOacl8=;
+        b=EmvjEqHXsPVy3JiJ3rkytECsC00+hfiNDB9YvbE3kDiCNYcNM5ARmplKHWELB7pie5
+         J0OdIgSUZbtDiWadKv4qmtUwx0Qnokk62b8rNw6plehZU8bley0oT7KM21CtbZjfZY8b
+         adQpSxnZav4+yV4ck6sUogkciV0mPW6LuqFZbOJMKyLb35oDC7UUIjMoQ7KoOtAWYoTS
+         WraEiMCbJmPJum3ldFhMqUHbAL7ot3LR1hTexYyDuuGlNEcBR0zHPgjqx4efin3ZUUXG
+         FUMyWgg1QWD25Hkt8hIMJl/LdZXeQvaDLW9pYqQbBLcbCBz+VX816KOJWaHZMVO/NLtK
+         Pmqw==
+X-Forwarded-Encrypted: i=1; AJvYcCUCGHnhM4mmp7MYH3HtM71BltfY0v8UCsVUUGMFHNVVSDArxIXGmphNDAiohRhRCJzIROWkQoKWguM87Rs+fb+mKAo9TIm2zJ6ACg==
+X-Gm-Message-State: AOJu0YydNruC5AFPEGr4lo8S7vKAwQ0mioBxHLkfq2Ala+NJfwLgtDXn
+	rNG3qV1mWTqY78aEGImVBwBqDq8GF+PCG/rVG5MAw1EJeiXTK5K3h44JAqCwl5KuSael9cX7M0d
+	7PHQBVzyHVze7mSMesXf4c6ZSDr7cQJMck+Y1PQ==
+X-Google-Smtp-Source: AGHT+IFW8hhd6M3At62V/9wLITSoPMQHLrtCAz5Offi/bXn5seDzbGyDiAZKXHo0tEWEDjfOFoAQhZeOCTlFpOff0gM=
+X-Received: by 2002:a25:adc9:0:b0:dcd:63f8:ba32 with SMTP id
+ d9-20020a25adc9000000b00dcd63f8ba32mr10169009ybe.65.1708346037293; Mon, 19
+ Feb 2024 04:33:57 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|SA1PR12MB9003:EE_
-X-MS-Office365-Filtering-Correlation-Id: 19978fd6-316e-4577-c519-08dc3146abd2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	DAJTxo+YjumzAjJ92a0Afz/jAELI+7CxnAFJYO1/yh/2I1wau9PB9AQKyTr6KpJqQwQcNdFXm+K9XdPZNPZfJPUyHCThdmQYDAgDMnqLmNRua2SmAOdfB12RHh8bFFvvs5gQqX8TaMyk7ff6/HB9EBoXZq+24Wszw8asF1j6W7+m8mi0ayBcObuVxfKNKqxYejRf+b2Vcro3BkcdYHLSLsUtR4VKUQ4aj/NDGj1ntUrnKE5/NkmrpZtTIGcBQ1ee9hLjYs7KhDgpvHM/pFvll9KgOOjR8zIuEah4VoHepv/1zrcHzuXOyiwIvK2TGsIjIgzz4SRQC/5PtsXhDLWnn/NNAJKGzD9BGqEdpsGIZWIYYmTjncclxYmeibv9LCPhpdne4GS56CimRV5yWn7nzMVxHKI2uYJLTyBsXWZAJU/V1QdXXIO7n/5AKnxyx44Pk+CiVq3tS3iAYRyM7IuTqdKnjAxCokbfmkBdRK5Zw/qtcsYjv2e7UZ3yAOGNM5K7NEYKEKI262/xTBikL4lnOuPc1VuahUoSHjHTxQm3QQ7dxO9O47m6/Z4E8TvsA5T5
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?VmN4bFBZVVJEZFBxUmp5QmZ4bERzeGN4VkxwWHVSNHNaMW1PT2JzOEV0SWhJ?=
- =?utf-8?B?WHVra1IwRjZBU1lSQmo3cmVuQklYY2dMakRwZFhDNFF4K2tqdEFtRndFZ1Rr?=
- =?utf-8?B?Tk1tY1JuZFB6VjZzVnVkVXZLc05ZaTdnZlZwUnVUL2ltZkFyQitiaVJhUi96?=
- =?utf-8?B?d3FyZVRlT0IyU3Awb3NyOXdCWHB5UC9OZGhBYjRVczJGdVZtb3F0QTdXdWZk?=
- =?utf-8?B?VlBqK0dSTGJaN294K0VpR2tUalgwcEVWVHpSeEJEQ0hMZ1FOaVVWTEJrUGIz?=
- =?utf-8?B?VWxKWSt1TmpOOWpvbUlpNUlHNW1qS0h6ZmV6aUdjYWoyeUFFT3p5cHdnUWtD?=
- =?utf-8?B?L0FZSXk5aTVqUnBxVFljajlYN0V0YVBqQ05wOHZDSzlXazdkUnNJRlZtQ3Av?=
- =?utf-8?B?bjR0M1ZaRkFoMEJrdnRCdXh3WFkyNjVEZmc4bGZqMitrMVBqdlR4Q1pwWk1V?=
- =?utf-8?B?RmowM0oyaU9yd2E5ZmdLc0tEUDJZYUtYMVdSdlcvOFBtcG1ZQ1pVUXRLYzNZ?=
- =?utf-8?B?c0hXdmhuN21ydUJXMUx5RDQ1SHNTUm5JNXlOMndWTzlxOWd0N2pRS2EraUZX?=
- =?utf-8?B?aUx4eVdVNFNjTkxqeDJrallmWndWZkcrc2o1UWhMUVZ0dEo3WnhYZzhVYjds?=
- =?utf-8?B?SmtOUnhNYk9Vd1BTSnVITW8wMGRZa0JIWElmSTZKTkoybWdjd3o4MVNldllO?=
- =?utf-8?B?YVhDVllHWjVWcVZPU2JoS3hiY2ZkWElMbDE2d2tGNXVJejlyemYwYWdJMHN4?=
- =?utf-8?B?RE1pRWpQd0dCWUFmQytob1hyNnVXOURRY1FnQzNYb0pad3pFaHY3bWJUL2hN?=
- =?utf-8?B?MHNJcGYxbTkzRGxGa0t5QS9UYWVpZ0h3MkZSbHRiTXEvRklWSXRiUWlhZDRa?=
- =?utf-8?B?a2hIUis4a2RhYVNsM29UNkp4WXZRWFg4ZUwzVU82ZnpnamJxMlVsRU5GT2RS?=
- =?utf-8?B?YzBZOFlwUjExTzhpQ0I3U3k2TndnSndERzI2QURxbEtiZVZzZDdSeTZBeWdN?=
- =?utf-8?B?R0ZrTjdKb3BFZFBJTlFKcTJZMXBwT2hMOE9GMXU4VUN6Q0RlQ092dEJpUHp4?=
- =?utf-8?B?cE5XZldDTS9wZ0luU0szdWtEZDZiZUtjbXJSdnJMbzN1Qlp5amZqTmN6dmow?=
- =?utf-8?B?SE9TNEYyNENOZnpzR2pMb1RKVjZJYm5rMnR1UmtvZDU2MlhKc0l2OU5DeTdl?=
- =?utf-8?B?VkY3NVZxcTZZZFVLWm1sVGFDUjNRMmhtRnpRV2VHam44TXJuTCs2VlFzdDBs?=
- =?utf-8?B?dnZaVlhvYUNLRHFvZnRSZEJBekZkY1I4TmJxcThQM3g0QTRaYVA1RlBIaVN5?=
- =?utf-8?B?eEVnTHZGczRRWVZ4ckFKbVB2cVFTNHpTRjFxTVJsWnJaRnNmTW1ldHZnVSti?=
- =?utf-8?B?VzZCWnJjRGpWOTB3VzFRdTVnYUNRdExDcFdVTklFWHFMcjlVM2FIMGlKL3hE?=
- =?utf-8?B?dXIwMVlMcEd3RFU1ay9kOHJpd0dEU3hWU3F6SmVEWDhFTzdCMEIxN3pYVm95?=
- =?utf-8?B?Zm5UUElKVWZ5Y2pUcEhpTjRrRU9BdmFXdTN3dDNhZXpKT2d4SjNwVXNrRkUy?=
- =?utf-8?B?eFNnUnViaDNWNUhCNjBwcFNyTkhTM0MyNmx5eVhyY0ZoOU9rS1djN1UrL2xI?=
- =?utf-8?B?Z0t2U0xHeXBabFZXa1VJRmdsUXdPVkN4K2F1ajF0RitpU0hYenlsTHZ5ZnQ0?=
- =?utf-8?B?LzBqTXp1TG5wbnBIdzUzOTAyb1BkZ2prdWI0OVZaRW9YRFdxWTFENDFXRmV0?=
- =?utf-8?B?cjYzQTFlWFFrSzcveGpmRTBQVFNSSjc1Vkc1bURRbTBCMllJUHVPaHNGK0pl?=
- =?utf-8?B?ZEYwWXJ3TjY3TjdFNjFwY3duYWlKMjhTSEpZRkw1Y25yS3FPMDVTY3F0TkNM?=
- =?utf-8?B?NWxNQWdodVRMSDZzSm1USTdXU1F2eEs4R0N3UHlBenJoMW1VRFd2YXBlTVF1?=
- =?utf-8?B?VHk1ZVZERmJ3aWxxZ0lKNEE5UEJ4dVpvbWhNRmxHdXNoTUJBTzd0ZlZHMm1l?=
- =?utf-8?B?Ull2U2VjOUZsYTRvVG5sUERGYjV1UklUVEpMUlJuOTNEd3Y3VjM0VjJxMlE0?=
- =?utf-8?B?eGUybGlUL0paQzYxMXg4dGx3Rmw2WXZZNEoxaHVJYjA1amMxZmdkTlYvVDg5?=
- =?utf-8?B?SHdhYVdvRDd3SmljVXUrMnpVdkpnUlpUbXVSYjhzeDBHWkpGaEJzVXB2SCti?=
- =?utf-8?B?YTR1eSs5TVprVm02ajRJeStpRkxwZFJUeExibVdOekZVTWRpQWloclV0N2pp?=
- =?utf-8?B?NjE0VWlsTDNXOWJJMTY5TlgrY2dBPT0=?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 19978fd6-316e-4577-c519-08dc3146abd2
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2024 12:31:18.2143
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mFhLKslU+3TK8iBgscRuK1xjvo+ITdDCtRasJWb8AUJgioTrNv1szb24Zjg48SZ+euGpHqHTvs3JSo/GE8pTuw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB9003
+References: <20240216203215.40870-1-brgl@bgdev.pl> <CAA8EJppt4-L1RyDeG=1SbbzkTDhLkGcmAbZQeY0S6wGnBbFbvw@mail.gmail.com>
+ <e4cddd9f-9d76-43b7-9091-413f923d27f2@linaro.org> <CAA8EJpp6+2w65o2Bfcr44tE_ircMoON6hvGgyWfvFuh3HamoSQ@mail.gmail.com>
+ <4d2a6f16-bb48-4d4e-b8fd-7e4b14563ffa@linaro.org> <CAA8EJpq=iyOfYzNATRbpqfBaYSdJV1Ao5t2ewLK+wY+vEaFYAQ@mail.gmail.com>
+ <CAMRc=Mfnpusf+mb-CB5S8_p7QwVW6owekC5KcQF0qrR=iOQ=oA@mail.gmail.com>
+In-Reply-To: <CAMRc=Mfnpusf+mb-CB5S8_p7QwVW6owekC5KcQF0qrR=iOQ=oA@mail.gmail.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Mon, 19 Feb 2024 14:33:46 +0200
+Message-ID: <CAA8EJppY7VTrDz3-FMZh2qHoU+JSGUjCVEi5x=OZgNVxQLm3eQ@mail.gmail.com>
+Subject: Re: [PATCH v5 00/18] power: sequencing: implement the subsystem and
+ add first users
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: neil.armstrong@linaro.org, Marcel Holtmann <marcel@holtmann.org>, 
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, "David S . Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Saravana Kannan <saravanak@google.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Arnd Bergmann <arnd@arndb.de>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Alex Elder <elder@linaro.org>, 
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Abel Vesa <abel.vesa@linaro.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Lukas Wunner <lukas@wunner.de>, linux-bluetooth@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-pci@vger.kernel.org, linux-pm@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, 19 Feb 2024 at 14:23, Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+>
+> On Mon, Feb 19, 2024 at 11:26=E2=80=AFAM Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
+> >
+>
+> [snip]
+>
+> > > >>>>
+> > > >>>> For WCN7850 we hide the existence of the PMU as modeling it is s=
+imply not
+> > > >>>> necessary. The BT and WLAN devices on the device-tree are repres=
+ented as
+> > > >>>> consuming the inputs (relevant to the functionality of each) of =
+the PMU
+> > > >>>> directly.
+> > > >>>
+> > > >>> We are describing the hardware. From the hardware point of view, =
+there
+> > > >>> is a PMU. I think at some point we would really like to describe =
+all
+> > > >>> Qualcomm/Atheros WiFI+BT units using this PMU approach, including=
+ the
+> > > >>> older ath10k units present on RB3 (WCN3990) and db820c (QCA6174).
+> > > >>
+> > > >> While I agree with older WiFi+BT units, I don't think it's needed =
+for
+> > > >> WCN7850 since BT+WiFi are now designed to be fully independent and=
+ PMU is
+> > > >> transparent.
+> > > >
+> > > > I don't see any significant difference between WCN6750/WCN6855 and
+> > > > WCN7850 from the PMU / power up point of view. Could you please poi=
+nt
+> > > > me to the difference?
+> > > >
+> > >
+> > > The WCN7850 datasheet clearly states there's not contraint on the WLA=
+N_EN
+> > > and BT_EN ordering and the only requirement is to have all input regu=
+lators
+> > > up before pulling up WLAN_EN and/or BT_EN.
+> > >
+> > > This makes the PMU transparent and BT and WLAN can be described as in=
+dependent.
+> >
+> > From the hardware perspective, there is a PMU. It has several LDOs. So
+> > the device tree should have the same style as the previous
+> > generations.
+> >
+>
+> My thinking was this: yes, there is a PMU but describing it has no
+> benefit (unlike QCA6x90). If we do describe, then we'll end up having
+> to use pwrseq here despite it not being needed because now we won't be
+> able to just get regulators from WLAN/BT drivers directly.
+>
+> So I also vote for keeping it this way. Let's go into the package
+> detail only if it's required.
+
+The WiFi / BT parts are not powered up by the board regulators. They
+are powered up by the PSU. So we are not describing it in the accurate
+way.
+
+Moreover, I think we definitely want to move BT driver to use only the
+pwrseq power up method. Doing it in the other way results in the code
+duplication and possible issues because of the regulator / pwrseq
+taking different code paths.
 
 
-On 16/02/2024 13:19, Krzysztof Kozlowski wrote:
-> On 16/02/2024 13:28, Jon Hunter wrote:
->> Add the INA3221 current monitors that are present on the Jetson AGX
->> Xavier and Jetson Xavier NX boards.
->>
->> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
->> ---
->>   .../arm64/boot/dts/nvidia/tegra194-p2888.dtsi | 50 +++++++++++++++++++
->>   .../arm64/boot/dts/nvidia/tegra194-p3668.dtsi | 27 ++++++++++
->>   2 files changed, 77 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi b/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
->> index 5b59c1986e9b..7c57272af044 100644
->> --- a/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
->> +++ b/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
->> @@ -53,6 +53,56 @@ memory-controller@2c00000 {
->>   			status = "okay";
->>   		};
->>   
->> +		i2c@c240000 {
->> +			status = "okay";
->> +
->> +			ina3221@40 {
-> 
-> 
-> power-sensor@
-> 
-> Node names should be generic. See also an explanation and list of
-> examples (not exhaustive) in DT specification:
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-I will correct this.
-
-Thanks
-Jon
-
--- 
-nvpublic
+--=20
+With best wishes
+Dmitry
 
