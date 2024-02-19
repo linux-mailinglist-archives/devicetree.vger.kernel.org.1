@@ -1,207 +1,152 @@
-Return-Path: <devicetree+bounces-43489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EECA85A791
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 16:37:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5829785A7B7
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 16:44:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0AEB9B2439C
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 15:37:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C06261F23499
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 15:44:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B0E739AF2;
-	Mon, 19 Feb 2024 15:37:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86F3038F98;
+	Mon, 19 Feb 2024 15:44:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="X4tEdKw3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1F9439ACD;
-	Mon, 19 Feb 2024 15:37:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com [209.85.217.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC09F38F9F
+	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 15:44:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708357027; cv=none; b=fdWuB7KMHLamsV70rryA342A4T1kKOfIc+1KtnHgZDRh6A3P8gGT+4mNmCuvVjoCZ+WyFr+OZvk4ExrHn3E4jgyePnVy+3iqK7jovmm+LZXpUaISp1+K5WVF7SF39GH2bNMi0sLsrZAsOSOVjBLYc56cLbSAW276U1UK/yYma3U=
+	t=1708357475; cv=none; b=VG65lZ2+vSQBMSc88mBxge+XvzDQdlO7oA/y6VEr2lnPhdyobL1IGHRHo9RlCL//zj3Jt8WkM7IlxfuBHp50/50Nh55G4s5zq/ThDrI0bDirfLoBByIoqumiOIHv8xh4MckfLT+nEUIFnfu1kj4Ayfx3pz53hcyvoz8jimSb6ag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708357027; c=relaxed/simple;
-	bh=Gmzvb4Oj+rwwQF3iqA0q4qFEPfFHRGUTBVsixYAeU1o=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=SfbtbsUWzB1euLA1KVOlxHvP60cW9RkqrJyFYz7WqHgCnTx3BB7zITp6If6ROh/CLvULqStSoC8cKS0AdsbMsRhvmwcwR6BtR/cj/R6lXZNfIve26PWYfuVxz6UDX1YOD2xnAvsSsJOYL39pufHzvucBq2BKHs9g+V5wuvTM5Vc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E7DCD1042;
-	Mon, 19 Feb 2024 07:37:44 -0800 (PST)
-Received: from donnerap.arm.com (donnerap.manchester.arm.com [10.32.100.28])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B4C1B3F762;
-	Mon, 19 Feb 2024 07:37:02 -0800 (PST)
-From: Andre Przywara <andre.przywara@arm.com>
-To: Vasily Khoruzhick <anarsoul@gmail.com>,
-	Yangtao Li <tiny.windzz@gmail.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>
-Cc: "Rafael J . Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>,
-	Lukasz Luba <lukasz.luba@arm.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Martin Botka <martin.botka@somainline.org>,
-	Maksim Kiselev <bigunclemax@gmail.com>,
-	Bob McChesney <bob@electricworry.net>,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev
-Subject: [PATCH v5 7/7] arm64: dts: allwinner: h616: Add thermal sensor and zones
-Date: Mon, 19 Feb 2024 15:36:39 +0000
-Message-Id: <20240219153639.179814-8-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240219153639.179814-1-andre.przywara@arm.com>
-References: <20240219153639.179814-1-andre.przywara@arm.com>
+	s=arc-20240116; t=1708357475; c=relaxed/simple;
+	bh=scapKyQRwA19QJoXyDPy0Su1Y5BbkWzjljaaLXpiXXg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CFQIEtGGLGlqQ0ss/8MybjDFzT47hqpzs8eIYQoYvvof6BYoKir2Ik8MkwMUp0iBmpgblvjdnG447dGXNWM+N73u2Uo3BKULwnI4M8mkM1K8HK9gReWYs8K8eRBlJbMTarnEPIVJy1I8Z7B7gURRUgziz8Pn5YQ2phHv+BF3w6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=X4tEdKw3; arc=none smtp.client-ip=209.85.217.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-4705496ac55so179526137.3
+        for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 07:44:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1708357473; x=1708962273; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZD/EM3SyhaILUHJgKgYH13JzV9F9I9A7ZoCf0KZhH9M=;
+        b=X4tEdKw3zgChjbs7FYEQhueR+CG+alJQ1fBTOjk7mS5PnSc+sA4tk/6oKch+YhDd1h
+         Rt5wHZw4mcrSS13qQU7UyWvvYBPCQ7qcxmxVObviCiSmIpDdtMouH6WiV9Un1vCSliDo
+         O3s4s3J7cjjnO5kTJeJJBqHFrx6viUFAl+BMiGuvt5bqz+hmvA85tT9IlNNeGE7b1mmn
+         aKTvcfVYPxOdhWl6EaYZW1QZ73IQjQQ5sXOAZrdMgZu9a+58vPPbPSFIBW++RTT4LErl
+         gZopxM7B33iunfoleUO+fzFKWCImrGHbQurfvznCQhD4Vpi9KQrgiLPl23vStx7syPL/
+         ABLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708357473; x=1708962273;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZD/EM3SyhaILUHJgKgYH13JzV9F9I9A7ZoCf0KZhH9M=;
+        b=qU1kVDOP/ymQBARgj5th86YTBVk02MCHU5WZht9Rs1q3Sj1hC447ewWbsb4Sz0cjcR
+         pyjejZOqspXQAKO//XKdQir3M3TjdmT5av5bAA81WxmGEzhJ7YduHPsdUxSDCfb5hosf
+         yHMPRO1xHrHVYnXLDUrax1YWVcmZIAP4NILBgFNxQHIdb3LTWd2id7ttavYeqE2ql3UR
+         MysRCXpqBPqtWEV/QHGWWkTxE5CmXVRvqasrM023RBTAbY+ZENZ8oETV7xROMjTAv+NS
+         lQwddQgMW0ohd7KcHi2CGQKBttO8hRAL62mQXX0SuO8IMwC/I5Ffp9XTHtv8DHIFS1QZ
+         u19A==
+X-Forwarded-Encrypted: i=1; AJvYcCX6w3Mmdt15ngyeue4iNTLZq6z1ZUHcIygsVMmGPpqvBk6oXTgja2gpQLFhSPOVt3WnR2WPjP117BLXPU4Rr0B42ULYuc8xw+OIQQ==
+X-Gm-Message-State: AOJu0YzYAOTY2AF4vkyXFSY0ujKHbQMgdRI9bJVdQeQGuYjrWOH8VuyI
+	Rs+jTrO4hW9yZXk148NrLs+H/zvTdtuo8pxU1Ww+FmiC4WvTn4ThbSejfV8VObVafCQY+fIV9Yn
+	6Qdo9q3nAkC0hUzyIwbcpn2zpOE2jpRqVd+Ig0w==
+X-Google-Smtp-Source: AGHT+IHcxeUZmxVYxUCGPtgB71dVPhAzF5DX1jSu8thYPPJY2f3JUx8PESy61uq6Kvu9hlkEpogZD227xE24GoTJoBg=
+X-Received: by 2002:a05:6102:3679:b0:470:574e:9766 with SMTP id
+ bg25-20020a056102367900b00470574e9766mr2196509vsb.12.1708357471314; Mon, 19
+ Feb 2024 07:44:31 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240214-mbly-gpio-v1-0-f88c0ccf372b@bootlin.com>
+In-Reply-To: <20240214-mbly-gpio-v1-0-f88c0ccf372b@bootlin.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Mon, 19 Feb 2024 16:44:20 +0100
+Message-ID: <CAMRc=MfLXCDXBiKKuEPZRjNoNiFN+gvhu+GjZkZ1SQuF1s4=UQ@mail.gmail.com>
+Subject: Re: [PATCH 00/23] Rework Nomadik GPIO to add Mobileye EyeQ5 support
+To: =?UTF-8?B?VGjDqW8gTGVicnVu?= <theo.lebrun@bootlin.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mips@vger.kernel.org, Gregory CLEMENT <gregory.clement@bootlin.com>, 
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Martin Botka <martin.botka@somainline.org>
+On Wed, Feb 14, 2024 at 5:24=E2=80=AFPM Th=C3=A9o Lebrun <theo.lebrun@bootl=
+in.com> wrote:
+>
+> Hi,
+>
+> This patch series reworks the Nomadik GPIO driver to bring it up to date
+> to current kernel standards. We then add Mobileye EyeQ5 support that
+> uses the same IP block but with limited functionality. We also add
+> features required by our newly supported platform:
+>
+>  - Dynamic GPIO ID allocation;
+>  - Make clock optional;
+>  - Shared IRQ (usecase: EyeQ5 has two banks using the same IRQ);
+>  - Handle variadic GPIO counts (usecase: EyeQ5 has <32 GPIOs per bank);
+>  - Grab optional reset at probe (usecase: EyeQ5 has a reset available).
+>
+> This GPIO platform driver was previously declared & registered inside
+> drivers/pinctrl/nomadik/pinctrl-nomadik.c, side-by-side with the
+> pinctrl driver. Both are tightly integrated, mostly for muxing reasons.
+> Now that gpio-nomadik is used for another platform, we loosen the
+> relationship. The behavior should not change on already supported
+> hardware but I do not have Nomadik hardware to test for that.
+>
 
-There are four thermal sensors:
-- CPU
-- GPU
-- VE
-- DRAM
+I hope Linus can leave his Tested-by under this series then.
 
-Add the thermal sensor configuration and the thermal zones.
+> We have some dependencies, kept neatly to the end. Those are:
+> - The base platform support series from Gr=C3=A9gory [1]. This relates to=
+ the
+>   last four patches (20 thru 23), ie defconfig and devicetree.
+> - The OLB syscon support series [0]. It provides reset and pinctrl nodes
+>   inside the devicetree. This relates to the last two patches (22 and
+>   23), ie resets and gpio-ranges DT props. GPIO works fine without it
+>   if patches 22 and 23 are dropped.
+>
+> This has been tested on the EyeQ5 hardware, with the two parent series
+> applied. It also works fine without the OLB syscon series when our last
+> two patches are removed. It has been built on both Arm defconfigs that
+> rely on pinctrl-nomadik: nhk8815_defconfig and u8500_defconfig. I don't
+> have any Nomadik hardware to test though.
+>
+> Have a nice day,
+> Th=C3=A9o
+>
 
-Signed-off-by: Martin Botka <martin.botka@somainline.org>
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- .../arm64/boot/dts/allwinner/sun50i-h616.dtsi | 88 +++++++++++++++++++
- 1 file changed, 88 insertions(+)
+Are you targeting the GPIO branch with this or pinctrl? I guess GPIO
+so I'll need Linus' Acks under the pinctrl patches.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-index 12ffabc79bcde..7c7d7c285505c 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-@@ -9,6 +9,7 @@
- #include <dt-bindings/clock/sun6i-rtc.h>
- #include <dt-bindings/reset/sun50i-h616-ccu.h>
- #include <dt-bindings/reset/sun50i-h6-r-ccu.h>
-+#include <dt-bindings/thermal/thermal.h>
- 
- / {
- 	interrupt-parent = <&gic>;
-@@ -138,6 +139,10 @@ sid: efuse@3006000 {
- 			reg = <0x03006000 0x1000>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-+
-+			ths_calibration: thermal-sensor-calibration@14 {
-+				reg = <0x14 0x8>;
-+			};
- 		};
- 
- 		watchdog: watchdog@30090a0 {
-@@ -517,6 +522,19 @@ mdio0: mdio {
- 			};
- 		};
- 
-+		ths: thermal-sensor@5070400 {
-+			compatible = "allwinner,sun50i-h616-ths";
-+			reg = <0x05070400 0x400>;
-+			interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_THS>;
-+			clock-names = "bus";
-+			resets = <&ccu RST_BUS_THS>;
-+			nvmem-cells = <&ths_calibration>;
-+			nvmem-cell-names = "calibration";
-+			allwinner,sram = <&syscon>;
-+			#thermal-sensor-cells = <1>;
-+		};
-+
- 		usbotg: usb@5100000 {
- 			compatible = "allwinner,sun50i-h616-musb",
- 				     "allwinner,sun8i-h3-musb";
-@@ -761,4 +779,74 @@ r_rsb: rsb@7083000 {
- 			#size-cells = <0>;
- 		};
- 	};
-+
-+	thermal-zones {
-+		cpu-thermal {
-+			polling-delay-passive = <500>;
-+			polling-delay = <1000>;
-+			thermal-sensors = <&ths 2>;
-+			sustainable-power = <1000>;
-+
-+			trips {
-+				cpu_threshold: cpu-trip-0 {
-+					temperature = <60000>;
-+					type = "passive";
-+					hysteresis = <0>;
-+				};
-+				cpu_target: cpu-trip-1 {
-+					temperature = <70000>;
-+					type = "passive";
-+					hysteresis = <0>;
-+				};
-+				cpu_critical: cpu-trip-2 {
-+					temperature = <110000>;
-+					type = "critical";
-+					hysteresis = <0>;
-+				};
-+			};
-+		};
-+
-+		gpu-thermal {
-+			polling-delay-passive = <500>;
-+			polling-delay = <1000>;
-+			thermal-sensors = <&ths 0>;
-+			sustainable-power = <1100>;
-+
-+			trips {
-+				gpu_temp_critical: gpu-trip-0 {
-+					temperature = <110000>;
-+					type = "critical";
-+					hysteresis = <0>;
-+				};
-+			};
-+		};
-+
-+		ve-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&ths 1>;
-+
-+			trips {
-+				ve_temp_critical: ve-trip-0 {
-+					temperature = <110000>;
-+					type = "critical";
-+					hysteresis = <0>;
-+				};
-+			};
-+		};
-+
-+		ddr-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&ths 3>;
-+
-+			trips {
-+				ddr_temp_critical: ddr-trip-0 {
-+					temperature = <110000>;
-+					type = "critical";
-+					hysteresis = <0>;
-+				};
-+			};
-+		};
-+	};
- };
--- 
-2.25.1
+> [0]: https://lore.kernel.org/lkml/20240212-mbly-clk-v6-0-c46fa1f93839@boo=
+tlin.com/
+> [1]: https://lore.kernel.org/lkml/20240205153503.574468-1-gregory.clement=
+@bootlin.com/
 
+Please advise the relevant maintainers that they should provide an
+immutable branch for these series once they're queued in their
+respective trees.
+
+Bart
+
+[snip]
 
