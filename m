@@ -1,157 +1,87 @@
-Return-Path: <devicetree+bounces-43580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D9C985ACB8
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 21:00:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C491885ACC2
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 21:04:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2F186B248D4
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 20:00:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 02DEC1C23AC8
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 20:04:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46196535B9;
-	Mon, 19 Feb 2024 19:59:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34B5E51C3B;
+	Mon, 19 Feb 2024 20:03:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T45+FMhR"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ZdAaJRaG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D96E535AA;
-	Mon, 19 Feb 2024 19:59:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42F63171B1;
+	Mon, 19 Feb 2024 20:03:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708372797; cv=none; b=khX1RLajPfHcVZLvL6AXr3N3VW41tIVsn69fGnPiW4kuU7Fb7MltNey6Tth9glYtisI2egrGx2gnChmITfgQiidhKhweAQNfeTq5hklHDo9APbKUngECRQ3gPlO+Br+Hcx737xItXedBssIbfFuX3lmUslkP1iq19mYkJP1dfc4=
+	t=1708373035; cv=none; b=k1MCSJLW8ZjVS+sidebay5OUMg8dhOgkT9Y8jgdgArEqjSveP4MJbD1U0Ao+uPLqhgcLD4Q/mZDNe4uHFy0cQaGsxngF+1bcQSnLwk1tvBkVtCNO645Jiiuokj0SLJcZNN5ad3cORzo1UgSPuHhjfkq0GqxeacKuV7KBsSsSPXg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708372797; c=relaxed/simple;
-	bh=V7d3FUHDHjaNVIGYicTJg7/TYe1drwX4p1eQCSxDewU=;
+	s=arc-20240116; t=1708373035; c=relaxed/simple;
+	bh=Q6YX/nSHF4SXTGacODXfDERzSEGJdnmUdA5aLHPu76Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UEkUdzFfjg/A48XyX4qZ9hiot+D8QSaaebNav2umvx3rtsFIohZKU/SIAjecWaLa04OxYmGoX5pkoSYnSKBc9hcG/B/WJBWk0y95apqMssFSWxNuLL7URzHgXiVS1gdaBMTS7gvMxTJqmxHu45xn9oc25tHI8bmUnvR8I2I+RB8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T45+FMhR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88CC0C433C7;
-	Mon, 19 Feb 2024 19:59:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708372796;
-	bh=V7d3FUHDHjaNVIGYicTJg7/TYe1drwX4p1eQCSxDewU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=T45+FMhRUYku0IayKkrM4fevhsmPoINGwzAQ9OuvUumK7yoDAV0cFQPSR/JcJDNn6
-	 IH86pdnnzsLO36yg9DvE/hK7dOZdenbuAKHEeg7OE2f+zxYFLmduoDZWzOGylGlVnZ
-	 hoZoC5s4uP59yejL+WA87fY9xoX0np9crzdCKJA5yIqCoqjmyOKHS5oPLcM09Bb3BI
-	 tHtxC/ShPCBum7nM440EwXfy4XGKPa6Nf0ATZqLhlndytiG9amoUQaXq+Oc2LvR9/l
-	 KFDaKUBuG237eYDJ8O8YsLz3vgf0BC2UAqhKruifhPeeCoSZcvsGjOs3/8Y+Y8knzI
-	 waWE8KNaC6a5A==
-Date: Mon, 19 Feb 2024 19:59:46 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Marcel Holtmann <marcel@holtmann.org>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	"David S . Miller" <davem@davemloft.net>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=hphvVitcdkcLxp9in6NTC4G7T4mK7UE5MNfF7K5tEY0J67CDSqZSFTtZvhqoDgMHR+orA+B1hypg6/KU7Uoglk6v/JglFouwr5nCKkneNjalEB01W9tKrqeCd5HIFRFJ7cmVtFakhFqbVzEMLLNQM0qilMWIPRATayRnXdZEjNk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=ZdAaJRaG; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=b3vT0nj23S7kHYz1QGiFYSw/NcYxj4aBnJ8NurX22FU=; b=ZdAaJRaGQbRxNrO/+Xdsmr4dAx
+	WqYljqcOZJCp/xKXCpmOtEYHPB8XI1PqLcLPQvyXk6Oc2wm3xCkDWfLd2zInMBj8hBYIgKPLSgjkc
+	Wsv8Vcu0H/ojbimN41axCR0dSavCT2HpOJWOcgHfhR2dCh3/dQz/b52XotOJ1x2KxG2w=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rc9rd-008EF1-Bf; Mon, 19 Feb 2024 21:03:45 +0100
+Date: Mon, 19 Feb 2024 21:03:45 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: forbidden405@outlook.com
+Cc: Yisen Zhuang <yisen.zhuang@huawei.com>,
+	Salil Mehta <salil.mehta@huawei.com>,
+	"David S. Miller" <davem@davemloft.net>,
 	Eric Dumazet <edumazet@google.com>,
 	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Alex Elder <elder@linaro.org>,
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Lukas Wunner <lukas@wunner.de>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-wireless@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v5 09/18] arm64: dts: qcom: qrb5165-rb5: model the PMU of
- the QCA6391
-Message-ID: <8e392aed-b5f7-486b-b5c0-5568e13796ec@sirena.org.uk>
-References: <20240216203215.40870-1-brgl@bgdev.pl>
- <20240216203215.40870-10-brgl@bgdev.pl>
- <48164f18-34d0-4053-a416-2bb63aaae74b@sirena.org.uk>
- <CAMRc=Md7ymMTmF1OkydewF5C32jDNy0V+su7pcJPHKto6VLjLg@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v3 3/6] net: hisilicon: add support for
+ hisi_femac core on Hi3798MV200
+Message-ID: <29fc21f0-0e46-4d0f-8d4b-c4dbd1689c55@lunn.ch>
+References: <20240220-net-v3-0-b68e5b75e765@outlook.com>
+ <20240220-net-v3-3-b68e5b75e765@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="emYsqvRPUjKAiXsY"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAMRc=Md7ymMTmF1OkydewF5C32jDNy0V+su7pcJPHKto6VLjLg@mail.gmail.com>
-X-Cookie: Kleeneness is next to Godelness.
+In-Reply-To: <20240220-net-v3-3-b68e5b75e765@outlook.com>
 
+> Note it's unable to put the MDIO bus node outside of MAC controller
+> (i.e. at the same level in the parent bus node). Because we need to
+> control all clocks and resets in FEMAC driver due to the phy reset
+> procedure. So the clocks can't be assigned to MDIO bus device, which is
+> an essential resource for the MDIO bus to work.
 
---emYsqvRPUjKAiXsY
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+What PHY driver is being used? If there a specific PHY driver for this
+hardware? Does it implement soft reset?
 
-On Mon, Feb 19, 2024 at 07:48:20PM +0100, Bartosz Golaszewski wrote:
-> On Mon, Feb 19, 2024 at 7:03=E2=80=AFPM Mark Brown <broonie@kernel.org> w=
-rote:
-> > On Fri, Feb 16, 2024 at 09:32:06PM +0100, Bartosz Golaszewski wrote:
+I'm wondering if you can skip hardware reset of the PHY and only do a
+software reset.
 
-> > > +                     vreg_pmu_aon_0p59: ldo1 {
-> > > +                             regulator-name =3D "vreg_pmu_aon_0p59";
-> > > +                             regulator-min-microvolt =3D <540000>;
-> > > +                             regulator-max-microvolt =3D <840000>;
-> > > +                     };
-
-> > That's a *very* wide voltage range for a supply that's got a name ending
-> > in _0_p59 which sounds a lot like it should be fixed at 0.59V.
-> > Similarly for a bunch of the other supplies, and I'm not seeing any
-> > evidence that the consumers do any voltage changes here?  There doesn't
-> > appear to be any logic here, I'm not convinced these are validated or
-> > safe constraints.
-
-> No, the users don't request any regulators (or rather: software
-> representations thereof) because - as per the cover letter - no
-> regulators are created by the PMU driver. This is what is physically
-> on the board - as the schematics and the datasheet define it. I took
-
-The above makes no sense.  How can constraints be "what is physically on
-the board", particularly variable constrants when there isn't even a
-consumer?  What values are you taking from which documentation? =20
-
-The cover letter and binding both claimed (buried after large amounts of
-changelog) that these PMUs were exposing regulators to consumers and the
-DTS puports to do exactly that...
-
-> the values from the docs verbatim. In C, we create a power sequencing
-> provider which doesn't use the regulator framework at all.
-
-For something that doesn't use the regulator framework at all what
-appears to be a provider in patch 16 ("power: pwrseq: add a driver for
-the QCA6390 PMU module") seems to have a lot of regualtor API calls?
-
---emYsqvRPUjKAiXsY
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXTszEACgkQJNaLcl1U
-h9Cnngf+IYF9pPUvDAr0+9oD3KtUt4+wAyqpvCYd3QuvT98XgcKtkxuBF8yVrn3o
-LceeY91qW8Y/CLz4ZXDqVdWCd1bOtiU48jYXX29ZuQciuXy20B+0LuJ8hkYSkAUk
-JZplf/496WYrFs/92k/NhBU5djkuEGpxjp+LD+0mGJT3RJphr59zb8ToDh3Fi3Xo
-9Vw/tkd7v+/tZY7g+OJsbnSi1/WHnHYepYRh9O5eO7CYRsHw1sHELt2X5s+wQKv7
-rB+MB9piVE3Vjuys5hjODJMTFg5eZJix6jHU+9xKA5FxezF9mo1Yan6MceBP4ZBK
-IU9LsWWcwWsnu9mgk5kBM58ddzUI/A==
-=aUMd
------END PGP SIGNATURE-----
-
---emYsqvRPUjKAiXsY--
+	Andrew
 
