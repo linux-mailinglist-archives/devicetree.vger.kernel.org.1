@@ -1,247 +1,277 @@
-Return-Path: <devicetree+bounces-43464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B1E185A6BD
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 16:01:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4120085A6C9
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 16:03:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AC989B2187F
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 15:01:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C102A1F21256
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 15:03:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 947903771C;
-	Mon, 19 Feb 2024 15:01:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34D9537716;
+	Mon, 19 Feb 2024 15:03:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m4vTzgp4"
+	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="BGiu843C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2102.outbound.protection.outlook.com [40.107.22.102])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0FEF37708
-	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 15:01:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708354891; cv=none; b=TDqt51RCpEiYz/ktbKjQlvtXT1jAIsStdjh0gtZGIFKCysazFIW7NPhPxOxIjucp5mYx4WITu1n5js6J/gCBUHLTSuW7aADeOypW5YWepTI9tvNUes/4gWUZ8xtpKeJwhEfvG14/+qhHsSgMUl3GPHJ2J6upQ1wAzKoZJk7V2/Q=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708354891; c=relaxed/simple;
-	bh=aJSHj9HniTFFT8SjDNG5w7VAxxQZAl9isd1Hc/vf8go=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TIuts9FzllIYdyiK/ntC2GvXBFrxffm1BincD6n9dqbnDGyw4lPJgSB1+ESrmZbQCESLV4x4zVPnLz+Tt9XfUeiaUothGmZpxeB6SORvoDT2PhcAyW3aAvzjfWzcVj1OWOQYpMxA0MgQ5pwvNBvBGbqCypZDxm+blSlJSL9ay/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m4vTzgp4; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-512b69f6c22so826852e87.2
-        for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 07:01:29 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48EF22E821;
+	Mon, 19 Feb 2024 15:03:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.102
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708355026; cv=fail; b=FwalaNbL1V0K2bX23rIsnJruA8MNvKlkuLOPF2sw6+9VdELILt36aW8bFmbJJxQ6uK14NN3hP4JTs4Ean7DKmxn1t7zQXiFYE2MNAA3uMmbPZ0JlAvtzHtXaR2mVM2IRtK0c9anBegaKjjoaJ/QjJBeP4PZSfofOGI/d1/jw8P8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708355026; c=relaxed/simple;
+	bh=fCctOwpnkyTuLNa7f07oP9d/0hYlNqvUCfFB0917xV8=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=fdrAJ0pCX5gvdos84lA5/W4KaVGzsucQi6zwKgY+uzN3RbJ+yq+hZaxqT5c5fI0g4OnKap0NF8dEv+nmjsJbR1SlmZ5CYebL5OzF2d4mxPl9fR/GX8ZmrL3eN1+8etcNiUpUUq6a1f91wkQC0uCX5arPNWRCMCSDpWrBs4IXN7U=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com; spf=pass smtp.mailfrom=solid-run.com; dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b=BGiu843C; arc=fail smtp.client-ip=40.107.22.102
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=solid-run.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=amtcXoHFaLeubnBRkoUtbvOSw7rtPdi2RrfFEMrP5FSEd6XJhD3+KXI9NOIrVYyh0LRSEAlePGIkj8wWgE7EpzYTvY1UhXUmALZvXRpR8v8anoG5dxYrx3HwYXjllGytp23EWjmHZRtwYnMXGAMUozp9oSrPDBn6ygApQn3zXiMTw6dQgWJsBfFPoaxcqGYYhTgV1dJk5/m7PEfx5hidnfYiyQvLMalg7rKT7TJTEem1TBCeqIdBZF0Am42iREEXFhcGtemvKhAhfdX3/mCfaG9y1jUPVYWeUEUj2I3i8VN5UyuXTBWI2TC0aAL/lLe1YYXt9INjdkOTAWqiP28fvg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fbLIjY/YZhjt6WogzwwhA4LQPHdBIt60t8wcE+X95P8=;
+ b=U7BQQRgeKjJGtGbcaApxPfHgjd7xcOMamSZp7LcFOnxHMxWrTsmy/ADqGqXPyvadgd7DVoS4G4N+mcIrxESqJyliA3YQZxIXcPUif173PXvx//RVtinBbLv13GSd3HxonP2dfmab1YqKvKPGbVBfDJVRVYF9566+mn1jGWQmRMV6uAhEWYSTWRTOxbsUQlS2VltJXoU2bbjSQ9UtqFN0JMMGSGCb75H1nXoWOhHzyZFkY+iDvraT0/gIUnpEdU56dbfvG6qy50b8tb1ChG8sQlbkFIlLMb5vcGvAMk9mtTjrOgHFSTnmXzyxMkm0b9T61BPlE75ivSfxjMMrgSDUbw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=solid-run.com; dmarc=pass action=none
+ header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708354888; x=1708959688; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Fyijmgv5Xc4qQW7NoJwHILZpg0h1x8EzSZbjwL/lNv4=;
-        b=m4vTzgp47AOCFEdLQKQxMk7QxGa3ImA3QUtkjrLgDTdUCJTd2SrPOZLaFEWnLttnOw
-         TxS8RefLO5o6seFte09/ANegznVTsDnAi18G/D2Zoy/g/IDjaZa7q9w8oVl4YJnG1YIs
-         QUx4EIwg6kYoK0S3Cakg8x1154LbfHA6rDvHezxcSlGY4FxXgb3qHT0T7oJRNUK9oX/J
-         Mqn6L/rNCW9HBKscT5WdAA0YMlaj2YVw4LRo2VHpcoSuBtDxPssRlOPCKS8J9/lhO7lE
-         uTzVq/S2PBh8WY3B02eLmeSzCLNXHCQ1fFyHKVlVj1cZwttcIwl08uscEpeXQdyLXgwt
-         oTsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708354888; x=1708959688;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Fyijmgv5Xc4qQW7NoJwHILZpg0h1x8EzSZbjwL/lNv4=;
-        b=IDrv0gyU/cb5c5M4EiPo4WSYjsDFflSUBEhVoKsOw36mjd2shc4zVoE11PAAnRvDUL
-         hrP8US0IUt7V4Ned0WjB4jbJLlLs3082L41Zakj6jRv5Qz1iKjUF0bhzHi3qqKSygzes
-         hMTaAa/gF86+zjN81r0snZy/DuVk/B9LtHHCplhn0Hm82YnkjUAeo3wWCta+luzLpgb5
-         HcQHcL9PYxiomXkppJaJUe7j9L81EspsrbZqDbXvloxjAqAXYCJmymGDn0Bs8BgVZEZA
-         MqsIzYUNGLfQ9bGI+OniCyEpGnE3C2J9yAbBBT2sH29zxtN+I4Pj1ovY7hatONIBoVpT
-         nbIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXUCj5vhxabUAr4GrRcDmDvssVYQE0RuE368OGdP1KZINcPMi1YOtkZO++WdVu9JOUeIJ9AZeR0tIWGU3mChN48OAJE7oG4TQunFQ==
-X-Gm-Message-State: AOJu0YyJRT1hTeJFsPuA2Fo5vhlFYxUIxgoSXXKwUN8JeoHTMij3cS7f
-	8nLhK4hkkaNH2ot+80Zu2NImbuNQNlN6/HgiLcopijIpLeIUOs2O1YaKsmm3ybA=
-X-Google-Smtp-Source: AGHT+IEDIsdQG1UPM3EDDLCecc5t85EINjACXNa3VncuUkRCHIvhrLnC9PhHvBMOJnz+odgxDTjuCw==
-X-Received: by 2002:a05:6512:2385:b0:512:a9af:8c5e with SMTP id c5-20020a056512238500b00512a9af8c5emr5129683lfv.8.1708354887871;
-        Mon, 19 Feb 2024 07:01:27 -0800 (PST)
-Received: from [192.168.192.135] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
-        by smtp.gmail.com with ESMTPSA id ek23-20020a056402371700b0055edfb81384sm2716963edb.60.2024.02.19.07.01.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Feb 2024 07:01:27 -0800 (PST)
-Message-ID: <d212b700-aedb-4653-80e4-36320b33e51e@linaro.org>
-Date: Mon, 19 Feb 2024 16:01:23 +0100
+ d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fbLIjY/YZhjt6WogzwwhA4LQPHdBIt60t8wcE+X95P8=;
+ b=BGiu843CdGkgNFudRGivHbevBNQcaQq+x9+LHqlXIHppfFmKydbluy5T47COucPiOLrL3emtxpgD4zBR274rBxr4ORwJagtu3G2nM/KJsdXSjWwDpImxO753sw1ACoz/jQzCAb+sz8+zrZqBAg/ke0WwtNBP/zruhNoJexh8K6s=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=solid-run.com;
+Received: from AM9PR04MB7586.eurprd04.prod.outlook.com (2603:10a6:20b:2d5::17)
+ by DB9PR04MB8431.eurprd04.prod.outlook.com (2603:10a6:10:24e::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.39; Mon, 19 Feb
+ 2024 15:03:40 +0000
+Received: from AM9PR04MB7586.eurprd04.prod.outlook.com
+ ([fe80::3b94:f607:ebe1:7d6c]) by AM9PR04MB7586.eurprd04.prod.outlook.com
+ ([fe80::3b94:f607:ebe1:7d6c%7]) with mapi id 15.20.7292.036; Mon, 19 Feb 2024
+ 15:03:40 +0000
+From: Josua Mayer <josua@solid-run.com>
+Subject: [PATCH v7 0/4] arm64: dts: add description for solidrun am642 som
+ and hummingboard evb
+Date: Mon, 19 Feb 2024 16:02:59 +0100
+Message-Id: <20240219-add-am64-som-v7-0-0e6e95b0a05d@solid-run.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKNt02UC/33Q0UrFMAwG4Fc59NpKk7br5pXvIV50beopuE1WL
+ cph727OAXGW4U3gT8hHyEUUWjMV8XC6iJVqLnmZObi7kwhnP7+QzJGzQIVGgQLpY5R+6owsyyQ
+ teAjeOIpJC155Wynlzxv39Mz5nMv7sn7d9ArX7g+k/0IVpJIxekgDovOUHsvymqNcP+b7sEzii
+ lXcAYANgAyA7i2aLhjswxGgfwEuDaAZwGR4pKNVNBwB5j/AMGBTPwL6ZMnBEWB3ADTPrJYBNyi
+ KDhDQHF7Q7YH2go6B0Q4URxxDH3QLbNv2DbtbC1vxAQAA
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Yazan Shhady <yazan.shhady@solid-run.com>, 
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Josua Mayer <josua@solid-run.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Suman Anna <s-anna@ti.com>, Grygorii Strashko <grygorii.strashko@ti.com>, 
+ MD Danish Anwar <danishanwar@ti.com>
+X-Mailer: b4 0.13.0
+X-ClientProxiedBy: TL2P290CA0016.ISRP290.PROD.OUTLOOK.COM
+ (2603:1096:950:3::18) To AM9PR04MB7586.eurprd04.prod.outlook.com
+ (2603:10a6:20b:2d5::17)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/8] clk: qcom: clk-alpha-pll: Add HUAYRA_2290 support
-Content-Language: en-US
-To: Andrew Halaney <ahalaney@redhat.com>
-Cc: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org
-References: <20240219-topic-rb1_gpu-v1-0-d260fa854707@linaro.org>
- <20240219-topic-rb1_gpu-v1-3-d260fa854707@linaro.org>
- <u7beg6ui3i6nxoaulc3o7ghfkvcsy46ps53k3jynrurdwn6o7o@ppyqoz4jsotc>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <u7beg6ui3i6nxoaulc3o7ghfkvcsy46ps53k3jynrurdwn6o7o@ppyqoz4jsotc>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM9PR04MB7586:EE_|DB9PR04MB8431:EE_
+X-MS-Office365-Filtering-Correlation-Id: 82127d71-995d-42e5-1a2a-08dc315bf51d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	Lmk2xJY/ILPfzIpXlKCnEm29lNK/SY882MUryrs87LxNnweMpm5/15nHn3tB5Cr1LHkKTRfHY6pLU1fnMogAeo5iWAD882k1/z783sgzpbeBrMqVvzlf6EdYuNi32M2QsB0ZREIWDUj7JLM1JQZ0p9l7N9hDdYns/dgjiDqunIhuwMKDAiEH0e7B+wRnyVfQhs767UxQeMD2d1HqfhLSgPcKPLqmwJXMvuGk6UZA3finlcQY/qJBUTI3nY9Kl6EcLLvP63Qzqb97T1IM4/Nhl0GvJoePAg0zCqHunqKO6KXLgD8hTOk9v7/j/HOi8ZSvYPsQpfgjglxRe3gQwaen0wyhHallpcb5cMF/dBYTwBnLnELzmr57Wvk+ER9HWpiXXuEGc2j/e2cdNWdsiyPqwmlOiBvwDWzXGJ+c3GN542pi/yF7c+gPB5Di5DlLG9sNI8/PuGyTYqH69uhYdPLCl5DastJSyOlm6gzUpEhUqtan8Nikev2NxYeRu/WjBggbXMlOFZdkr4XUB+79fZA1w1+xhyBkFvwfq0F8lUX1E3M7qNHFNoCNMqk+Eo4rFQ5wCRdf5svsMGNrikFCNtytReGZGsF0rxe22Kor5k5KPEc=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB7586.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(230273577357003)(38350700005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?UE45L09jRWMyYlU5d3lFMXI1dDFRRDZ0NDZ6c0JVZmlpL2ZVZnRBMnRQdmtU?=
+ =?utf-8?B?RlVuOTJPSUh0OFNyckpUbEFQVEtUYytSS2JqOXFnZWRrRGV4T2JsVVV3K1Ew?=
+ =?utf-8?B?N2NiZXdkZmZTWFA2SFZabElta0hGMUovditnc2QybFBIZnpUd1d5b2IwVzI2?=
+ =?utf-8?B?aEI0alFLSkpoeVpoWWZQLzVERVlPTFV4dVFsUmZKeFhEcmhCTGFRRS9lZzFk?=
+ =?utf-8?B?M3lvbUthbHdrS09sRlJ6dFJoRWt6OEFWWkVYSFhlUnRxRTh3NEJia2QrT1pj?=
+ =?utf-8?B?OFNoZHJpUTVtSEhOb3ZIQkRSZE53R2U1NVMrTSs5Yk9Cc2E4alF2K3B5dGVG?=
+ =?utf-8?B?L1NzbFNJUlh3enFlRUREMWoxY2RxS1NlbDY4WkNZMnlnZ2liTjdrSG9TQUVk?=
+ =?utf-8?B?WDZqSDd6SExpZ0RXVTFlQmp0MG9xelNZZmtlNXFteXduNkFia2xsTGdacGlU?=
+ =?utf-8?B?V2JZV1Qzem1SeFJQdTBlNXhVY3VjSGRBdDVCUFRlSmxwVVZjM256eGZhdFFt?=
+ =?utf-8?B?cTh5bENKUFZMVlFlQVhuSkc1cWlGSWRFUCtUOUpRdmc4S0x0WnpMNWNkSlp0?=
+ =?utf-8?B?bk9sMExwcEs5TE0wbWtnT1R1TUhNWTFLNWlCRmJBZWl1SlFHQWxUWnJwNURX?=
+ =?utf-8?B?Skx0YmxVUDFLcVI5ZDVndDBnR0tnSVZ6UWRwMldiSzVUcmpZSDBkeEdMaTdY?=
+ =?utf-8?B?Y1l1Q2RZeEdEUklwYU9VQzVLTDBzSEFOcXBSenNxRXd1WE1JaVJBTGN3NWhE?=
+ =?utf-8?B?TTM1WXkxc3ZBQU9sNGVDUC9DNkZjK1ZwM1VkaE85SVM4M3RNVlpiY0VYcUh6?=
+ =?utf-8?B?eTdXZHdETUI3V3M0SEw0NThTemxHU0JLclZKeHJkaU1aTXI5WE1maVVkZFdp?=
+ =?utf-8?B?ZzNIeWthd1haRWNxVHJ0VkxoZm0wWjBidDFkQnprTGs4VlVsN3gxN3BleXRr?=
+ =?utf-8?B?cFBtdVNYRkRXWU5YLzFwOUtPcU5IR1diTkxrQktUZ0puaXFaVjB3cFE3Mk5E?=
+ =?utf-8?B?ZFpEMVBRaGNxY05GM2h2MnJZTFZMYXBaTVVNdFhDWXh1Y1YxZnpZdXBkZ2po?=
+ =?utf-8?B?VHhUb2RweVR2OVJWNnQwbWR2c1hDK0thb1pWZ3BwK2dRT3dsTDFvU3ZGa1pk?=
+ =?utf-8?B?TWJVRXhvRC96MVJmYkNSR0xGMm1oRGJWNE54MXZFbGJVZWxIVVlBY0JNY2RV?=
+ =?utf-8?B?WTVlRVlGWVFPUSt6YkxEZ2o0WEtpZ2t5L2hFdWROdDVxeEs2TC9DMWgxbjVU?=
+ =?utf-8?B?RDVtM2NTdVkxSGkwd0MwMU1EOHhSTk5CQnVwWXJ6UEJLVDMyVFFrOXYyTFlm?=
+ =?utf-8?B?MjdCazFyb2hKVldsRlpsSk51UENoTjB5WUowYWxFbEplcm5la1Z2amx2R0lC?=
+ =?utf-8?B?b0F4azdqckVRYkVwY2l3Qjc3b3JkYkFGWHJ6R2hYbUFuNVQvUkhRS0EzYS82?=
+ =?utf-8?B?elNXeGp3eGt0N1FGTzRmUTFjYkcyRXZ0MU9BK2pDTCtaWTRTU2lWcDZYTW5i?=
+ =?utf-8?B?WHNxcVNFZFc2RVcyR1FnMUUyWDlzVmFoM09BdjMwZFJXQzVWdEs3TWNCR2Zz?=
+ =?utf-8?B?Umt3cld6Qkt2Q2pWbnpTQTBZQmRNWE9mMnhQMUVvUFhSSEs4TzZyQ2U1Tlhs?=
+ =?utf-8?B?OGRwU2lIRUlmZXZsWlUvSERwNDNpa3BoZnlncUprWUNyZ2dvbDBpd2Rrd0dX?=
+ =?utf-8?B?WWZ5amxQMGc4Q0JnNm9NdGlSdW94S1dSVzNOeG94ME1ITGJmVmQ5eG5CS1JL?=
+ =?utf-8?B?dkg0WGhvMVJqdE9sVWc0bUNUN3Y1d3JvU1ZQMjAxYzdESWhYK2FUaFZHbk8y?=
+ =?utf-8?B?amhVaWE1VUVUUGhncEZHSTJRcVJ3d0FqbXFadGdOYVV6dElXVU9iK09ETlZi?=
+ =?utf-8?B?dmVUSVNWcFV5YUVKYUF0bXFvNkIwK0h1dUdpRVRULzIyWUxlVDNBbVVvelM1?=
+ =?utf-8?B?cFpPd0NLMWRlOCs4YzBnNGthdUZtQUNHT1cxRFlUOFhsWklaYU1TSHBVbENH?=
+ =?utf-8?B?bENRSEJ1WTlGanU5cDM3K2owRXk3OGxpZ3o3dkZkYktranprd2dyZWMrZ1lw?=
+ =?utf-8?B?WmdXSm5pV0VJbzVkbVpPS1lqMXk1bjlDMkVmMmNYalhFelUzVVFaZlQxbzNv?=
+ =?utf-8?Q?ebhi3sN0PXRI8j1YAso9ZoSpc?=
+X-OriginatorOrg: solid-run.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 82127d71-995d-42e5-1a2a-08dc315bf51d
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB7586.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2024 15:03:40.4929
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: E9WMuLyuvpbneZ//EiU1g3l2ompSJ0zgssPvl7Gzg60427zUkijOLed/wGOhzGiy2fUw4NAS+8LEN69u9jAz1A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8431
 
-On 19.02.2024 15:54, Andrew Halaney wrote:
-> On Mon, Feb 19, 2024 at 02:35:48PM +0100, Konrad Dybcio wrote:
->> Commit 134b55b7e19f ("clk: qcom: support Huayra type Alpha PLL")
->> introduced an entry to the alpha offsets array, but diving into QCM2290
->> downstream and some documentation, it turned out that the name Huayra
->> apparently has been used quite liberally across many chips, even with
->> noticeably different hardware.
->>
->> Introduce another set of offsets and a new configure function for the
->> Huayra PLL found on QCM2290. This is required e.g. for the consumers
->> of GPUCC_PLL0 to properly start.
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>  drivers/clk/qcom/clk-alpha-pll.c | 45 ++++++++++++++++++++++++++++++++++++++++
->>  drivers/clk/qcom/clk-alpha-pll.h |  3 +++
->>  2 files changed, 48 insertions(+)
->>
->> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
->> index 8a412ef47e16..61b5abd13782 100644
->> --- a/drivers/clk/qcom/clk-alpha-pll.c
->> +++ b/drivers/clk/qcom/clk-alpha-pll.c
->> @@ -244,6 +244,19 @@ const u8 clk_alpha_pll_regs[][PLL_OFF_MAX_REGS] = {
->>  		[PLL_OFF_OPMODE] = 0x30,
->>  		[PLL_OFF_STATUS] = 0x3c,
->>  	},
->> +	[CLK_ALPHA_PLL_TYPE_HUAYRA_2290] =  {
->> +		[PLL_OFF_L_VAL] = 0x04,
->> +		[PLL_OFF_ALPHA_VAL] = 0x08,
->> +		[PLL_OFF_USER_CTL] = 0x0c,
->> +		[PLL_OFF_CONFIG_CTL] = 0x10,
->> +		[PLL_OFF_CONFIG_CTL_U] = 0x14,
->> +		[PLL_OFF_CONFIG_CTL_U1] = 0x18,
->> +		[PLL_OFF_TEST_CTL] = 0x1c,
->> +		[PLL_OFF_TEST_CTL_U] = 0x20,
->> +		[PLL_OFF_TEST_CTL_U1] = 0x24,
->> +		[PLL_OFF_OPMODE] = 0x28,
->> +		[PLL_OFF_STATUS] = 0x38,
->> +	},
->>  };
->>  EXPORT_SYMBOL_GPL(clk_alpha_pll_regs);
->>  
->> @@ -779,6 +792,38 @@ static long clk_alpha_pll_round_rate(struct clk_hw *hw, unsigned long rate,
->>  	return clamp(rate, min_freq, max_freq);
->>  }
->>  
->> +void clk_huayra_2290_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
->> +				   const struct alpha_pll_config *config)
->> +{
->> +	clk_alpha_pll_write_config(regmap, PLL_CONFIG_CTL(pll), config->config_ctl_val);
->> +	clk_alpha_pll_write_config(regmap, PLL_CONFIG_CTL_U(pll), config->config_ctl_hi_val);
->> +	clk_alpha_pll_write_config(regmap, PLL_CONFIG_CTL_U1(pll), config->config_ctl_hi1_val);
->> +	clk_alpha_pll_write_config(regmap, PLL_TEST_CTL(pll), config->test_ctl_val);
->> +	clk_alpha_pll_write_config(regmap, PLL_TEST_CTL_U(pll), config->test_ctl_hi_val);
->> +	clk_alpha_pll_write_config(regmap, PLL_TEST_CTL_U1(pll), config->test_ctl_hi1_val);
->> +	clk_alpha_pll_write_config(regmap, PLL_L_VAL(pll), config->l);
->> +	clk_alpha_pll_write_config(regmap, PLL_ALPHA_VAL(pll), config->alpha);
->> +	clk_alpha_pll_write_config(regmap, PLL_USER_CTL(pll), config->user_ctl_val);
->> +
->> +	/* Set PLL_BYPASSNL */
->> +	regmap_update_bits(regmap, PLL_MODE(pll), PLL_BYPASSNL, PLL_BYPASSNL);
->> +
->> +	/* Wait 5 us between setting BYPASS and deasserting reset */
->> +	mb();
->> +	udelay(5);
->> +
->> +	/* Take PLL out from reset state */
->> +	regmap_update_bits(regmap, PLL_MODE(pll), PLL_RESET_N, PLL_RESET_N);
->> +
->> +	/* Wait 50us for PLL_LOCK_DET bit to go high */
->> +	mb();
->> +	usleep_range(50, 55);
-> 
-> I *think* you'd want to use a read to ensure your write goes through
-> prior to your sleep... from memory-barriers.txt:
-> 
-> 	5. A readX() by a CPU thread from the peripheral will complete before
-> 	   any subsequent delay() loop can begin execution on the same thread.
-> 	   This ensures that two MMIO register writes by the CPU to a peripheral
-> 	   will arrive at least 1us apart if the first write is immediately read
-> 	   back with readX() and udelay(1) is called prior to the second
-> 	   writeX():
-> 
-> 		writel(42, DEVICE_REGISTER_0); // Arrives at the device...
-> 		readl(DEVICE_REGISTER_0);
-> 		udelay(1);
-> 		writel(42, DEVICE_REGISTER_1); // ...at least 1us before this.
-> 
-> also https://youtu.be/i6DayghhA8Q?si=7lp0be35q1HRmlnV&t=1677
-> for more references on this topic.
+This series adds DT bindings and dts descriptions for SolidRun AM642
+based SoM and Hummingboard EVB.
 
-I mentioned this feels very iffy in the cover letter, but it's a combination
-of two things:
+Additionally a commit from downstream vendor kernel are included,
+enhancing support for pru based ethernet.
+I wasn't sure how to properly annotate it in commit description /
+signed-off area ...:
 
-1. i followed what qualcomm downstream code did
+1. add description for "Industrial Ethernet Peripherals" (IEP) to am64
+   https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/commit/arch/arm64/boot/dts/ti/k3-am64-main.dtsi?h=ti-linux-6.1.y-cicd&id=5afb73d82a014b59462162d960b350b8c58e5ae6
+   IEP is already supported in-tree by a driver, and used in
+   k3-am65-main.dtsi.
 
-2. qualcomm downstream code is not known for being always correct
+To avoid introducing new dtbs_check errors, respective patches were
+submitted via rtc, mtd and iio trees.
 
+Only one error remains which is common to all k3-am64:
 
+- 'mux-controller' does not match any of the regexes
 
-I suppose a readback would be the correct solution, but then it should be
-done for all similar calls in this driver.
+To: Nishanth Menon <nm@ti.com>
+To: Vignesh Raghavendra <vigneshr@ti.com>
+To: Tero Kristo <kristo@kernel.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Conor Dooley <conor+dt@kernel.org>
+Cc: Yazan Shhady <yazan.shhady@solid-run.com>
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Josua Mayer <josua@solid-run.com>
 
-Although this code has shipped in literally hundreds of millions of devices
-and it didn't explode badly :P (i'm not defending it, though)
+Changes in v7:
+- split rtc, iio, mtd bindings to go via respective trees:
+  - iio: https://lore.kernel.org/r/20240219-iio-hdc20x0-interrupt-binding-v7-1-c8ffb39c3768@solid-run.com
+  - mtd: https://lore.kernel.org/r/20240219-mtd-flash-interrupt-binding-v7-1-206e30a656fa@solid-run.com
+  - rtc: https://lore.kernel.org/r/20240219-rtc-abracon-convert-bindings-v7-1-aca4fc3b8cec@solid-run.com
+- Link to v6: https://lore.kernel.org/r/20240212-add-am64-som-v6-0-b59edb2bc8c3@solid-run.com
 
-Konrad
+Changes in v6:
+- renamed pinctrl nodes to *-default-pins
+  (reported by Vignesh Raghavendra <vigneshr@ti.com>)
+  (dropped Reviewed-by: Andrew Davis <afd@ti.com> because all the rename)
+- removed tabs from pinctrl comments to shorten lines
+- updated humidity sensor yaml with interrupts property
+- updated spi-nor flash yaml with interrupts property
+- Link to v5: https://lore.kernel.org/r/20240211-add-am64-som-v5-0-790ed7121249@solid-run.com
+
+Changes in v5:
+- abracon,abx80x.yaml:
+  - reworded 'compatible' description
+  - removed $ref to interrupts.yaml
+  - nested example in fake i2c
+  - changed maintainer to rtc list
+  (reported by Conor Dooley <conor@kernel.org>)
+- patch 4/5 dts:
+  - re-added status properties for sdhci nodes
+    k3-am64-main.dtsi has been changed in-tree since v1
+    such that sdhci nodes are explicitly status disabled now.
+  - picked up reviewed-by
+  (reported by Andrew Davis <afd@ti.com>)
+- Link to v4: https://lore.kernel.org/r/20240202-add-am64-som-v4-0-5f8b12af5e71@solid-run.com
+
+Changes in v4:
+- abracon,abx80x.yaml: fixed dtc error in example irq reference
+- Link to v3: https://lore.kernel.org/r/20240202-add-am64-som-v3-0-2f44023d50e9@solid-run.com
+
+Changes in v3:
+- removed lots more status properties, double-checked against soc dtsi
+  (reported by Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>)
+  (reported by Andrew Davis <afd@ti.com>)
+- removed intentionally-disabled pcie node from dts
+- rewrote yaml bindings to use enum instead of anyof+const+description
+  (reported by Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>)
+- abracon yaml
+  - added missing maintainer
+  - added diode type property type
+  - added example
+  (reported by Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>)
+  - added reference to /schemas/interrupts.yaml#
+- use generic name for pru ethernet controller node
+  (reported by Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>)
+- removed unnamed dmas from pru ethernet controller node
+- moved pcie/usb3 features to dtb overlays
+- Link to v2: https://lore.kernel.org/r/20240112-add-am64-som-v2-0-1385246c428c@solid-run.com
+
+Changes in v2:
+- reordered patchset to drop separate patch adding iep handle to som
+- moved dtbs_check warnings to cover letter
+- converted abracon abx80x rtc bindings to yaml
+- updated dts:
+  - remove unnecessary status properties
+  - changed non-generic node names
+  - use color property for led descriptions,
+    they have no default function on evaluation board
+  - drop earlycon bootargs from chosen node
+  (reported by Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>)
+- converted charger node to comment, part not assembled, has no bindings
+- picked up acked-by on board bindings patch
+- Link to v1: https://lore.kernel.org/r/20240103-add-am64-som-v1-0-dda1f9227aef@solid-run.com
+
+---
+Josua Mayer (3):
+      dt-bindings: arm: ti: Add bindings for SolidRun AM642 HummingBoard-T
+      arm64: dts: add description for solidrun am642 som and evaluation board
+      arm64: dts: ti: hummingboard-t: add overlays for m.2 pci-e and usb-3
+
+Suman Anna (1):
+      arm64: dts: ti: k3-am64-main: Add ICSSG IEP nodes
+
+ Documentation/devicetree/bindings/arm/ti/k3.yaml   |   7 +
+ arch/arm64/boot/dts/ti/Makefile                    |   7 +
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi           |  24 +
+ .../boot/dts/ti/k3-am642-hummingboard-t-pcie.dtso  |  45 ++
+ .../boot/dts/ti/k3-am642-hummingboard-t-usb3.dtso  |  44 ++
+ arch/arm64/boot/dts/ti/k3-am642-hummingboard-t.dts | 292 ++++++++++
+ arch/arm64/boot/dts/ti/k3-am642-sr-som.dtsi        | 594 +++++++++++++++++++++
+ 7 files changed, 1013 insertions(+)
+---
+base-commit: 83d0ff463b50d2395e05339a34e35d14ba82043f
+change-id: 20240101-add-am64-som-51a1ca47edf3
+
+Best regards,
+-- 
+Josua Mayer <josua@solid-run.com>
+
 
