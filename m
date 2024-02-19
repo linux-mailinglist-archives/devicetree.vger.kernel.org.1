@@ -1,390 +1,269 @@
-Return-Path: <devicetree+bounces-43338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80B9285A031
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 10:50:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9FFA85A008
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 10:43:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37B0E282222
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 09:50:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C257280FE2
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 09:43:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFEAB2560C;
-	Mon, 19 Feb 2024 09:50:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1793C2556C;
+	Mon, 19 Feb 2024 09:42:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=oltmanns.dev header.i=@oltmanns.dev header.b="X/3HKccS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OAV6CbRe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 873ED24A19;
-	Mon, 19 Feb 2024 09:50:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0E6025108
+	for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 09:42:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708336233; cv=none; b=C+MG7OcHbBN12h2SX1Zm2XFf+/SYWKplNydnB9+lGneM1wcqsig7YDzOArHyv3tVyA52MNMbH5c/lntoUjeAtFHihSP4C+tjso5ay8HzFQ/+KgGU3bowTpcVGh+l2k9vNBeAKKXZuCGk65yc+eOJ1r9372GEr/eoltwUBHiVOVg=
+	t=1708335765; cv=none; b=t/y8dH9v4Ij1GOEX690AaBrxv4jxf8aVD3IzuKG4Q/zmVVYFNPDI1+wM95tSogWHwZsTkR653fhbwHiRNFsZwTaxHyM+pOrxw9MzUq3ChcaEhCQALL/EIopR0RR9H9/F41h51EsL6fXUD6A868xt3Pd5a3Ery6TFqSycTB/z91M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708336233; c=relaxed/simple;
-	bh=VKQK21EKMbxn915tXtRUbgIOEsLQMb18VRES7PgR+TE=;
-	h=References:From:To:Cc:Subject:In-reply-to:Date:Message-ID:
-	 MIME-Version:Content-Type; b=U+nKwy/kS8YV/m2nuiEXeEynqup3QSsmOvGAHR70+I0wVnGYORvhvDf659MNXM8HI8a8QcbE39LBa+Yp/HOQROsF3gfPQppkePp+zxo87j/N0bCmk76RZOdMiQTzTcwvwT6j7P+xuhDzd/3Ugc4Olr3Kq1nb48TRNVayPF14RAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oltmanns.dev; spf=pass smtp.mailfrom=oltmanns.dev; dkim=pass (2048-bit key) header.d=oltmanns.dev header.i=@oltmanns.dev header.b=X/3HKccS; arc=none smtp.client-ip=80.241.56.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oltmanns.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oltmanns.dev
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4TdcxT5hb6z9sZH;
-	Mon, 19 Feb 2024 10:41:33 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oltmanns.dev;
-	s=MBO0001; t=1708335693;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=doZUdmkE8gcAaDePJY3w6dTirs9rrKDL9kH/AR+ydsY=;
-	b=X/3HKccSZgUn6ULcE9BtF2OwLKM1jeE1MSxbU0Ltx5g/hj5GZYJ6te6QBp7GDIxb8O8Ihu
-	ODcDaa5P0BPMG8+DHdpdkO2l+jwlylTB+l0iELPe0ZuiROoGL6znzu/LpcBDd8i1waplWU
-	MtOETbuHV0TDmRV3s4wjz37nYZkSbj+Dul2U212y+QYf+cTG/wwV6LnltKw/TsuV3yRB6C
-	aDAU2mU1G0uzNC65acEQ3sbRTcZrbBq0YDmEkPUOnuc5TUvUw81EWmnLkaXtx2esDqeAn0
-	mWGOkG/HjNxGM33D+WKOrEVn0jdYc5trTHyXGfZhhgOBezO3VyHbwfYF9dgS5g==
-References: <20240205-pinephone-pll-fixes-v2-0-96a46a2d8c9b@oltmanns.dev>
- <jzl3mlzk4j7qvgcedvipgale5nhinznefodrnaehwsqfnseiwc@7zzlxd4dpueh>
- <bgyyemyi4shj3spo6qy4icvk56nrp5sihnzqurnozqdyktwugc@ikurx4ojoxpi>
- <87wmrbxckj.fsf@oltmanns.dev>
- <s7uslavg5gzqzzdetwcushcknwe3nuicmqhfhb7gbapzxx2npy@srjc252uinqv>
-From: Frank Oltmanns <frank@oltmanns.dev>
-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
- <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Guido
- =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>, Purism Kernel Team
- <kernel@puri.sm>, Neil
- Armstrong <neil.armstrong@linaro.org>, Jessica Zhang
- <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David
- Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/6] Pinephone video out fixes (flipping between two
- frames)
-In-reply-to: <s7uslavg5gzqzzdetwcushcknwe3nuicmqhfhb7gbapzxx2npy@srjc252uinqv>
-Date: Mon, 19 Feb 2024 10:41:19 +0100
-Message-ID: <87r0h8n64g.fsf@oltmanns.dev>
+	s=arc-20240116; t=1708335765; c=relaxed/simple;
+	bh=X8w7qaPKtinHDZjF5H+rGNDsPK0DugLEiwZmVKW48OU=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=NVnnR4smlt3jeOqPzZ3gXheGBJoXAc6w4DQ2MDolmJQjS9aps90QHjb/7hrXCPq0dhLW49vNwG/8GsX7PUMyz92L4pwAejheLmq8L0+z2xUFFe15dMZMZYoJ1gjCVYynkRTReLKv6ekCu5ftejZE6PBOY0y0jPeHKHi5t6jcLDk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OAV6CbRe; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4125cf71eecso11276165e9.1
+        for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 01:42:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708335761; x=1708940561; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vbycw2c2h8YYWAo75A5nc8ijiR5Amsqr6B7bz/qk71A=;
+        b=OAV6CbReOML3q2Ic9GEAz1c2Fe+Q8APdzyHNjq5uZ/7O2X48HsWMUOqR6JkihimdgK
+         1jYrME1GqHgglTLhG8myfIBvq/jKybFMxCVdTHrgSKalD3BJkXL9Qr1JizosWOMFcveM
+         cw6+M4Bl4LeWGkJkLt4RGnmmTasNYTGYJBRzTfjqeoBJg277NHiXBoGHA38eLfUoIC6z
+         MMsRcDOQKeqFKDyTOJZKgUZyTfnZfomEgT/VdEAYtJ0BBIjh1YQ8aObX4siNDKROPZve
+         9n8LVJF2VAuAn6uk5eRi3GjbQD9yB7z6Q9XIgZh2GD7a7wrQDWsX71Oqy0BpNGs7z/pM
+         qlmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708335761; x=1708940561;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=vbycw2c2h8YYWAo75A5nc8ijiR5Amsqr6B7bz/qk71A=;
+        b=XUxBz0Mb4Z8VUfGrkMf6qhvsyuCbLmQYjJnI3A8wHb0sDejoEddNG++uNFxdkPTMQS
+         AEbnObjXcR4a1UlcASicUakEwprCWfATbTOeMxFL4JSAQuvK7OZsf00s2yrFelGsVRce
+         LiXWG6Edy1ReXUA/E5cpmSPOMrwyNKB72aXk+LYd+KpTVWWS0ZzT2cnjXuIiVxms6rn2
+         Gp5EPv/c9JtGs8tfbxfXuXLSnA3araYk6CL0pHGTE/XFeMcGN9awe+s2CdqdB5vd/pYp
+         4JKzAqmkKwpNWDJicuDzqBvMqI1ts7ii55xRxEE3mHPrj8zme5YWu94vV8rkpf3K1Om4
+         ZeKA==
+X-Forwarded-Encrypted: i=1; AJvYcCUod1LwEfGrlnm52XdzRl/zg8iF+pBKxANjIKDLvU+bTA2dodEFFP3QetwABHW11cn+xU+QlWfyVoDMTkNukAulPDz3XuX7TLr5Gg==
+X-Gm-Message-State: AOJu0YzhrSZ+kvFGSU/k86s51hvhn/K4/84xI2Nc1U3FiwCr3yJh8x4W
+	1kFsmuuLZto2w0WpsB4JtDpVlgsCAlScH+0li6Cr4aeOvL3PqBdadilPoXRZTsg=
+X-Google-Smtp-Source: AGHT+IEaDPCR8uUdx0sRdbD2siOvMIF/SdMjOkjwLxWoEY2uhR+PzppCD9xsvyNY3eTuCS0GeOwQIQ==
+X-Received: by 2002:a05:600c:a42:b0:411:50aa:110d with SMTP id c2-20020a05600c0a4200b0041150aa110dmr9142123wmq.21.1708335761107;
+        Mon, 19 Feb 2024 01:42:41 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:9470:c6e0:c87a:fa9f? ([2a01:e0a:982:cbb0:9470:c6e0:c87a:fa9f])
+        by smtp.gmail.com with ESMTPSA id m20-20020a05600c281400b0041214ff06cesm10690182wmb.42.2024.02.19.01.42.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Feb 2024 01:42:40 -0800 (PST)
+Message-ID: <4d2a6f16-bb48-4d4e-b8fd-7e4b14563ffa@linaro.org>
+Date: Mon, 19 Feb 2024 10:42:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v5 00/18] power: sequencing: implement the subsystem and
+ add first users
+Content-Language: en-US, fr
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Marcel Holtmann
+ <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Saravana Kannan <saravanak@google.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>, Arnd Bergmann <arnd@arndb.de>,
+ Marek Szyprowski <m.szyprowski@samsung.com>, Alex Elder <elder@linaro.org>,
+ Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Abel Vesa <abel.vesa@linaro.org>, Manivannan Sadhasivam <mani@kernel.org>,
+ Lukas Wunner <lukas@wunner.de>, linux-bluetooth@vger.kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-pci@vger.kernel.org, linux-pm@vger.kernel.org,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20240216203215.40870-1-brgl@bgdev.pl>
+ <CAA8EJppt4-L1RyDeG=1SbbzkTDhLkGcmAbZQeY0S6wGnBbFbvw@mail.gmail.com>
+ <e4cddd9f-9d76-43b7-9091-413f923d27f2@linaro.org>
+ <CAA8EJpp6+2w65o2Bfcr44tE_ircMoON6hvGgyWfvFuh3HamoSQ@mail.gmail.com>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <CAA8EJpp6+2w65o2Bfcr44tE_ircMoON6hvGgyWfvFuh3HamoSQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Ond=C5=99ej,
-
-On 2024-02-11 at 20:25:29 +0100, Ond=C5=99ej Jirman <megi@xff.cz> wrote:
-> Hi Frank,
->
-> On Sun, Feb 11, 2024 at 04:09:16PM +0100, Frank Oltmanns wrote:
->> Hi Ond=C5=99ej,
+On 19/02/2024 10:22, Dmitry Baryshkov wrote:
+> On Mon, 19 Feb 2024 at 10:14, Neil Armstrong <neil.armstrong@linaro.org> wrote:
 >>
->> On 2024-02-05 at 17:02:00 +0100, Ond=C5=99ej Jirman <megi@xff.cz> wrote:
->> > On Mon, Feb 05, 2024 at 04:54:07PM +0100, Ond=C5=99ej Jirman wrote:
->> >> On Mon, Feb 05, 2024 at 04:22:23PM +0100, Frank Oltmanns wrote:
->> >>
->> >> [...]
->> >>
->> >> Also sunxi-ng clk driver does apply NM factors at once to PLL_GPU clo=
-ck,
->> >> which can cause sudden frequency increase beyond intended output freq=
-uency,
->> >> because division is applied immediately while multiplication is refle=
-cted
->> >> slowly.
->> >>
->> >> Eg. if you're changing divider from 7 to 1, you can get a sudden 7x o=
-utput
->> >> frequency spike, before PLL VCO manages to lower the frequency throug=
-h N clk
->> >> divider feedback loop and lock on again. This can mess up whatever's =
-connected
->> >> to the output quite badly.
->> >>
->> >> You'd have to put logging on kernel writes to PLL_GPU register to see=
- what
->> >> is written in there and if divider is lowered significantly on some G=
-PU
->> >> devfreq frequency transitions.
+>> On 18/02/2024 13:53, Dmitry Baryshkov wrote:
+>>> On Fri, 16 Feb 2024 at 22:33, Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+>>>>
+>>>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>>>
+>>>> First, I'd like to apologize for the somewhat chaotic previous iterations
+>>>> of this series and improper versioning which was rightfully pointed out
+>>>> to me. I figured that the scope changed so much that it didn't make sense
+>>>> to consider previous submissions part of the same series as the original
+>>>> RFC but others thought otherwise so this one becomes v5 and I'll keep the
+>>>> versioning going forward.
+>>>>
+>>>> This is the summary of the work so far:
+>>>>
+>>>> v1: Original RFC:
+>>>>
+>>>> https://lore.kernel.org/lkml/20240104130123.37115-1-brgl@bgdev.pl/T/
+>>>>
+>>>> v2: First real patch series (should have been PATCH v2) adding what I
+>>>>       referred to back then as PCI power sequencing:
+>>>>
+>>>> https://lore.kernel.org/linux-arm-kernel/2024021413-grumbling-unlivable-c145@gregkh/T/
+>>>>
+>>>> v3: RFC for the DT representation of the PMU supplying the WLAN and BT
+>>>>       modules inside the QCA6391 package (was largely separate from the
+>>>>       series but probably should have been called PATCH or RFC v3):
+>>>>
+>>>> https://lore.kernel.org/all/CAMRc=Mc+GNoi57eTQg71DXkQKjdaoAmCpB=h2ndEpGnmdhVV-Q@mail.gmail.com/T/
+>>>>
+>>>> v4: Second attempt at the full series with changed scope (introduction of
+>>>>       the pwrseq subsystem, should have been RFC v4)
+>>>>
+>>>> https://lore.kernel.org/lkml/20240201155532.49707-1-brgl@bgdev.pl/T/
+>>>>
+>>>> ===
+>>>>
+>>>> With that out of the way, I'd like to get down to explaining the two
+>>>> problems I'm trying to solve.
+>>>>
+>>>> Problem statement #1: Dynamic bus chicken-and-egg problem.
+>>>>
+>>>> Certain on-board PCI devices need to be powered up before they are can be
+>>>> detected but their PCI drivers won't get bound until the device is
+>>>> powered-up so enabling the relevant resources in the PCI device driver
+>>>> itself is impossible.
+>>>>
+>>>> Problem statement #2: Sharing inter-dependent resources between devices.
+>>>>
+>>>> Certain devices that use separate drivers (often on different busses)
+>>>> share resources (regulators, clocks, etc.). Typically these resources
+>>>> are reference-counted but in some cases there are additional interactions
+>>>> between them to consider, for example specific power-up sequence timings.
+>>>>
+>>>> ===
+>>>>
+>>>> The reason for tackling both of these problems in a single series is the
+>>>> fact the the platform I'm working on - Qualcomm RB5 - deals with both and
+>>>> both need to be addressed in order to enable WLAN and Bluetooth support
+>>>> upstream.
+>>>>
+>>>> The on-board WLAN/BT package - QCA6391 - has a Power Management Unit that
+>>>> takes inputs from the host and exposes LDO outputs consumed by the BT and
+>>>> WLAN modules which can be powered-up and down independently. However
+>>>> a delay of 100ms must be respected between enabling the BT- and
+>>>> WLAN-enable GPIOs[*].
+>>>>
+>>>> ===
+>>>>
+>>>> This series is logically split into several sections. I'll go
+>>>> patch-by-patch and explain each step.
+>>>>
+>>>> Patch 1/18:
+>>>>
+>>>> This is a commit taken from the list by Jonathan Cameron that adds
+>>>> a __free() helper for OF nodes. Not strictly related to the series but
+>>>> until said commit ends in next, I need to carry it with this series.
+>>>>
+>>>> Patch 2/18:
+>>>>
+>>>> This enables the ath12k PCI module in arm64 defconfig as Qualcomm sm8650
+>>>> and sm8550 reference platforms use it in the WCN7850 module.
+>>>>
+>>>> Patches 3/18-6/18:
+>>>>
+>>>> These contain all relevant DT bindings changes. We add new documents for
+>>>> the QCA6390 PMU and ATH12K devices as well as extend the bindings for the
+>>>> Qualcomm Bluetooth and ATH11K modules with regulators used by them in
+>>>> QCA6390.
+>>>>
+>>>> Patches 7/18-9/18:
+>>>>
+>>>> These contain changes to device-tree sources for the three platforms we
+>>>> work with in this series. As the WCN7850 module doesn't require any
+>>>> specific timings introducing dependencies between the Bluetooth and WLAN
+>>>> modules, while the QCA6390 does, we take two different approaches to how
+>>>> me model them in DT.
+>>>>
+>>>> For WCN7850 we hide the existence of the PMU as modeling it is simply not
+>>>> necessary. The BT and WLAN devices on the device-tree are represented as
+>>>> consuming the inputs (relevant to the functionality of each) of the PMU
+>>>> directly.
+>>>
+>>> We are describing the hardware. From the hardware point of view, there
+>>> is a PMU. I think at some point we would really like to describe all
+>>> Qualcomm/Atheros WiFI+BT units using this PMU approach, including the
+>>> older ath10k units present on RB3 (WCN3990) and db820c (QCA6174).
 >>
->> By looking at the clocks in clk_summary in debugfs, the rate of PLL-GPU
->> always matches the rate of the GPU (at least at 120, 312, and 432 MHz).
->> This is further underlined by the fact, that none of the rates can be
->> achieved by integer dividing one of the other rates. sunxi-ng would
->> only favor a different rate for pll-gpu than the one that is requested
->> for the gpu, if pll-gpu is already running at a rate such that there
->> exists an M =E2=88=88 {1, 2, 3, 4, 5, 6, 7, 8}, where
->>   rate of pll-gpu / M =3D requested gpu rate
->> or if the requested rate could not be reached directly by pll-gpu. Both
->> is not the case for the rates in question (120, 192, 312, and 432 MHz).
->>
->> This means that the following divisor/multipliers are used by sunxi-ng's
->> ccu_nm:
->> N =3D  5, M =3D 1 for 120 MHz (min value without PATCH 6)
->> N =3D  8, M =3D 1 for 192 MHz (min value after applying PATCH 6)
->> N =3D 13, M =3D 1 for 312 MHz
->> N =3D 18, M =3D 1 for 432 MHz
->>
->> So, with or without PATCH 6, the divider stays constant and it's only
->> the multiplier that changes. This means, there should be no unexpected
->> frequency spikes, right?
->
-> Maybe. Thanks for giving it a try. There may still be other kinds of glit=
-ches
-> even if the divisor stays the same. It all depends how the register updat=
-e is
-> implemented in the PLL block. It's hard to say. I guess, unless Allwinner
-> guarantees glitchless output from a given PLL when changing its parameter=
-s,
-> you can't rely on the output being clean during changes.
->
->> >> It's also unclear what happens when FRAC_CLK_OUT or PLL_MODE_SEL chan=
-ges.
->>
->> Those are not changed once the clock is initialized. The bug however
->> occurs hours or days after booting. IMO, this makes it unlikely that this
->> could be the culprit.
->>
->> >> Maybe not much because M is supposed to be set to 1, but you still ne=
-ed to
->> >> care when enabling fractional mode, and setting M to 1 because that's=
- exactly
->> >> the bad scenario if M was previously higher than 1.
->> >>
->> >> It's tricky.
->> >>
->> >> Having GPU module clock gated during PLL config changes may help! You=
- can
->> >> do that without locking yourself out, unlike with the CPU PLL.
->> >>
->> >> There's a gate enable bit for it at GPU_CLK_REG.SCLK_GATING. (page 12=
-2)
->>
->> The GPU should already be properly gated:
->> https://elixir.bootlin.com/linux/v6.7.4/source/drivers/clk/sunxi-ng/ccu-=
-sun50i-a64.c#L599
->
-> How so? That's just clock declaration. How does it guarantee the clock to=
- the
-> module is gated during parent PLL configuration changes?
->
+>> While I agree with older WiFi+BT units, I don't think it's needed for
+>> WCN7850 since BT+WiFi are now designed to be fully independent and PMU is
+>> transparent.
+> 
+> I don't see any significant difference between WCN6750/WCN6855 and
+> WCN7850 from the PMU / power up point of view. Could you please point
+> me to the difference?
+> 
 
-You're of course right.
+The WCN7850 datasheet clearly states there's not contraint on the WLAN_EN
+and BT_EN ordering and the only requirement is to have all input regulators
+up before pulling up WLAN_EN and/or BT_EN.
 
-I now tried using a similar approach like the one for changes for on
-PLL-CPU. It's using a notifier to connect the CPU to the 24 MHz
-oscillator and, after PLL-CPU is at its new rate, connecting it back to
-PLL-CPU.
+This makes the PMU transparent and BT and WLAN can be described as independent.
 
-For the GPU my approach was to disable the GPU prior to changing
-PLL-GPU's rate and then re-enabling it, once the rate change is
-complete. I think, that's what you were proposing, right?
-
-Unfortunately, this results in a frozen phone even more quickly.
-
-Below is my code. Again, it doesn't solve the problem, but maybe
-somebody can spot what I'm doing wrong.
-
-Best regards,
-  Frank
-
-diff --git a/drivers/clk/sunxi-ng/ccu-sun50i-a64.c b/drivers/clk/sunxi-ng/c=
-cu-sun50i-a64.c
-index d68bdf7dd342..74538259d67a 100644
---- a/drivers/clk/sunxi-ng/ccu-sun50i-a64.c
-+++ b/drivers/clk/sunxi-ng/ccu-sun50i-a64.c
-@@ -977,6 +977,11 @@ static struct ccu_rate_reset_nb sun50i_a64_pll_video0_=
-reset_tcon0_nb =3D {
-
- #define CCU_MIPI_DSI_CLK 0x168
-
-+static struct ccu_div_nb sun50i_a64_gpu_nb =3D {
-+	.common		=3D &gpu_clk.common,
-+	.delay_us	=3D 1, /* ??? */
-+};
-+
- static int sun50i_a64_ccu_probe(struct platform_device *pdev)
- {
- 	void __iomem *reg;
-@@ -1025,6 +1030,10 @@ static int sun50i_a64_ccu_probe(struct platform_devi=
-ce *pdev)
- 	sun50i_a64_pll_video0_reset_tcon0_nb.target_clk =3D tcon0_clk.common.hw.c=
-lk;
- 	ccu_rate_reset_notifier_register(&sun50i_a64_pll_video0_reset_tcon0_nb);
-
-+	/* Gate then ungate GPU on PLL-GPU changes */
-+	ccu_div_notifier_register(pll_gpu_clk.common.hw.clk,
-+				  &sun50i_a64_gpu_nb);
-+
- 	return 0;
- }
-
-diff --git a/drivers/clk/sunxi-ng/ccu_div.c b/drivers/clk/sunxi-ng/ccu_div.c
-index cb10a3ea23f9..83813c54fb2f 100644
---- a/drivers/clk/sunxi-ng/ccu_div.c
-+++ b/drivers/clk/sunxi-ng/ccu_div.c
-@@ -4,7 +4,9 @@
-  * Maxime Ripard <maxime.ripard@free-electrons.com>
-  */
-
-+#include <linux/clk.h>
- #include <linux/clk-provider.h>
-+#include <linux/delay.h>
- #include <linux/io.h>
-
- #include "ccu_gate.h"
-@@ -142,3 +144,37 @@ const struct clk_ops ccu_div_ops =3D {
- 	.set_rate	=3D ccu_div_set_rate,
- };
- EXPORT_SYMBOL_NS_GPL(ccu_div_ops, SUNXI_CCU);
-+
-+static int ccu_div_notifier_cb(struct notifier_block *nb,
-+			       unsigned long event, void *data)
-+{
-+	struct ccu_div_nb *div_nb =3D to_ccu_div_nb(nb);
-+
-+	if (event =3D=3D PRE_RATE_CHANGE) {
-+		div_nb->original_enable =3D ccu_div_is_enabled(&div_nb->common->hw);
-+		if (div_nb->original_enable) {
-+			ccu_div_disable(&div_nb->common->hw);
-+			udelay(div_nb->delay_us);
-+		}
-+	} else if (event =3D=3D POST_RATE_CHANGE) {
-+		if (div_nb->original_enable) {
-+			ccu_div_enable(&div_nb->common->hw);
-+			udelay(div_nb->delay_us);
-+		}
-+	}
-+
-+	return NOTIFY_OK;
-+}
-+
-+int ccu_div_notifier_register(struct clk *clk, struct ccu_div_nb *div_nb)
-+{
-+	div_nb->clk_nb.notifier_call =3D ccu_div_notifier_cb;
-+
-+	return clk_notifier_register(clk, &div_nb->clk_nb);
-+}
-diff --git a/drivers/clk/sunxi-ng/ccu_div.h b/drivers/clk/sunxi-ng/ccu_div.h
-index 90d49ee8e0cc..e096c7be5dca 100644
---- a/drivers/clk/sunxi-ng/ccu_div.h
-+++ b/drivers/clk/sunxi-ng/ccu_div.h
-@@ -283,4 +283,16 @@ static inline struct ccu_div *hw_to_ccu_div(struct clk=
-_hw *hw)
-
- extern const struct clk_ops ccu_div_ops;
-
-+struct ccu_div_nb {
-+	struct notifier_block	clk_nb;
-+	struct ccu_common	*common;
-+
-+	u32	delay_us;	/* us to wait after changing parent rate */
-+	int	original_enable;/* This is set by the notifier callback */
-+};
-+
-+#define to_ccu_div_nb(_nb) container_of(_nb, struct ccu_div_nb, clk_nb)
-+
-+int ccu_div_notifier_register(struct clk *clk, struct ccu_div_nb *mux_nb);
-+
- #endif /* _CCU_DIV_H_ */
-
-
-
->
-> CLK_SET_RATE_PARENT only gates output on re-parenting, not on parent rate=
- changes,
-> according to the header:
->
->   https://elixir.bootlin.com/linux/v6.7.4/source/include/linux/clk-provid=
-er.h#L19
->
-> You'd need perhaps CLK_SET_RATE_GATE *and* still verify that it actually =
-works
-> as expected via some tracing of gpu clock enable/disable/set_rate and pll=
--gpu
-> set_rate. CLK_SET_RATE_GATE seems confusingly docummented:
->
->   https://elixir.bootlin.com/linux/v6.7.4/source/drivers/clk/clk.c#L1034
->
-> so I don't particularly trust it does exaclty what the header claims and =
-what
-> would be needed to test the theory that gating gpu clock during rate chan=
-ge
-> might help.
->
-> kind regards,
-> 	o.
->
->> Thank you for your detailed proposal! It was insightful to read. But
->> while those were all great ideas, they have all already been taken care
->> of. I'm fresh out of ideas again (except for pinning the GPU rate).
->>
->> Again, thank you so much,
->>   Frank
->>
->> >>
->> >> Kind regards,
->> >> 	o.
->> >>
->> >> > I very much appreciate your feedback!
->> >> >
->> >> > [1] https://gitlab.com/postmarketOS/pmaports/-/issues/805
->> >> >
->> >> > Signed-off-by: Frank Oltmanns <frank@oltmanns.dev>
->> >> > ---
->> >> > Changes in v2:
->> >> > - dts: Increase minimum GPU frequency to 192 MHz.
->> >> > - nkm and a64: Add minimum and maximum rate for PLL-MIPI.
->> >> > - nkm: Use the same approach for skipping invalid rates in
->> >> >   ccu_nkm_find_best() as in ccu_nkm_find_best_with_parent_adj().
->> >> > - nkm: Improve names for ratio struct members and hence get rid of
->> >> >   describing comments.
->> >> > - nkm and a64: Correct description in the commit messages: M/N <=3D=
- 3
->> >> > - Remove patches for nm as they were not needed.
->> >> > - st7703: Rework the commit message to cover more background for the
->> >> >   change.
->> >> > - Link to v1: https://lore.kernel.org/r/20231218-pinephone-pll-fixe=
-s-v1-0-e238b6ed6dc1@oltmanns.dev
->> >> >
->> >> > ---
->> >> > Frank Oltmanns (6):
->> >> >       clk: sunxi-ng: nkm: Support constraints on m/n ratio and pare=
-nt rate
->> >> >       clk: sunxi-ng: a64: Add constraints on PLL-MIPI's n/m ratio a=
-nd parent rate
->> >> >       clk: sunxi-ng: nkm: Support minimum and maximum rate
->> >> >       clk: sunxi-ng: a64: Set minimum and maximum rate for PLL-MIPI
->> >> >       drm/panel: st7703: Drive XBD599 panel at higher clock rate
->> >> >       arm64: dts: allwinner: a64: Fix minimum GPU OPP rate
->> >> >
->> >> >  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi |  4 ++--
->> >> >  drivers/clk/sunxi-ng/ccu-sun50i-a64.c         | 14 +++++++----
->> >> >  drivers/clk/sunxi-ng/ccu_nkm.c                | 34 +++++++++++++++=
-++++++++++++
->> >> >  drivers/clk/sunxi-ng/ccu_nkm.h                |  4 ++++
->> >> >  drivers/gpu/drm/panel/panel-sitronix-st7703.c | 14 +++++------
->> >> >  5 files changed, 56 insertions(+), 14 deletions(-)
->> >> > ---
->> >> > base-commit: 059c53e877ca6e723e10490c27c1487a63e66efe
->> >> > change-id: 20231218-pinephone-pll-fixes-0ccdfde273e4
->> >> >
->> >> > Best regards,
->> >> > --
->> >> > Frank Oltmanns <frank@oltmanns.dev>
->> >> >
+Neil
 
