@@ -1,84 +1,141 @@
-Return-Path: <devicetree+bounces-43566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5841185AC3C
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 20:46:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2873385AC54
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 20:50:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE4B31F21279
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 19:46:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BB2911F237CE
+	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 19:50:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D79C50A60;
-	Mon, 19 Feb 2024 19:44:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 136C851009;
+	Mon, 19 Feb 2024 19:47:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MDk5bPv5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m5i4Vepy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CE6156B81;
-	Mon, 19 Feb 2024 19:44:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD6C33BB38;
+	Mon, 19 Feb 2024 19:47:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708371886; cv=none; b=lVZM9ZcSCZc1h1/NYqCxnJgiFSdgf3tcMIaXoagXsB6TNStbdhP9m4KRBy+MnBDX40Bt763BB6RhWp9U+oAzlj5oYaAOP2d2YTqoVb8kgUsbZf9ORvbmb57wth9aCvNN0m/l8CLX1FxY4KSbe2EFzs3IMLkHv9oaZT5FdDWROyg=
+	t=1708372026; cv=none; b=M6HXZBVQQ6A1WrmiOhSn6+tAY/zKRJBukWO+o4ehDfPTha5MWsz+lfGawBolPxYi9dHLaSuBpQ9G8B/EMz1XKy7zeUUytP3OIODsPFxV0wlMJIfbAz+f5W/314YG5uw4HF0FlV5UwRX+sgJMXYa0qMd2wl5btArs193prpIjfU4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708371886; c=relaxed/simple;
-	bh=ud1M5tHGoLyKMt1LKZdUby9qBHvA4AvbqrgIKz12Ak0=;
+	s=arc-20240116; t=1708372026; c=relaxed/simple;
+	bh=gvbVxu3Tkn/zt+/cAheDgKN/hcXG3/Wj1mBdGg9U0mA=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MZz+PJDf2KAGQOOXeFQ+3xppmqLJPujj19N2Ca+nh8ZRM0bTuq4ltBg281rMwudbk8IdVw++h0EOc2w97FhJ3qlkHCaICAAmYm/3ZlULqPqwY9G85nKj+iS+tYR72Cvr/KCFzFhZyXBWcOjmd5GSEYTV/uPYVm4bhQ1QTYmXpiU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MDk5bPv5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E04BEC4166C;
-	Mon, 19 Feb 2024 19:44:44 +0000 (UTC)
+	 MIME-Version:Content-Type; b=TZhRR9kATntNu3hNPso22XqsjiZ+DkyHy51QmnNeb5xcMBQL+x5srcbl1qlrNmmzRuXTR82MLNNIOFuBGb7wcdyyduyMBMjwwLPqyfgeJ3+D7VqftxhPCz+rZ7jA466Ln3/uF25vb24i1/tNwKwt2PoR+mkvB6Ar4FOso7koMv0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m5i4Vepy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1044DC43390;
+	Mon, 19 Feb 2024 19:47:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708371885;
-	bh=ud1M5tHGoLyKMt1LKZdUby9qBHvA4AvbqrgIKz12Ak0=;
+	s=k20201202; t=1708372025;
+	bh=gvbVxu3Tkn/zt+/cAheDgKN/hcXG3/Wj1mBdGg9U0mA=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=MDk5bPv53i7xa4DJ/jwSYizHplgkE2DCSVVC9NNjIO38ExWaJuUUKELahXc0PWYjm
-	 cp0aVB38pO2AluEL/P2pINi7OaC74oisp2H/ZB11jNIAYVhiPyY3I9IFuOTT59fhgG
-	 PajJlUvCgs2vHOn9nMYjiJ5tpu3aIh2xBxkz0V5scgn5/hPMAnGUsgQyh2CZCHE3Dp
-	 QC6iXPAipQZ2nh2wzDxM0M8faZxnmSF6ciyjwlLIYvvT0XjoJlMPycmP1+ObtGhLSF
-	 hIsMwPSo6SK56NRyad58cJaCEEdQcGwA8uj/vtNPE8RsOctQBMQqeLpG1i/aQWrSCq
-	 YWydfDpUPSw7A==
-Date: Mon, 19 Feb 2024 11:44:43 -0800
-From: Jakub Kicinski <kuba@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Ulf Hansson
- <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+	b=m5i4Vepy3iEzKWlrejsEZO23FUuiQY9nFKRTmcnaxlLq0YyBQScagsfKH+tKNDgB4
+	 nd+qDGv2hkDXylHBr0dWEzsutsLlasrS3/GLTETmHGORdYe3xp5BkGMGTURkzkFIob
+	 Cb1WOqJnmFqn+rOQF3ElEqEZ+egd8QYO9ERswZtMjRFg1RisOqMKr5eiycfPjIHjPP
+	 XlwLsI4AhKdFVkICa6MaijFO32Rs+iGMOQ5wFCNdJ2nM9qiwJKIoMuL6j1GdWRsO+6
+	 E6piO8NiZBGvlkPk0lxrjlbXcIDCO+f+nuIQQ3c37DJssawEx8JU0yP9RoX99YovxR
+	 K0A0W/LnWMwYg==
+Date: Mon, 19 Feb 2024 19:46:50 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: linux-iio@vger.kernel.org, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
  Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Wei
- Fang <wei.fang@nxp.com>, Shenwei Wang <shenwei.wang@nxp.com>, Clark Wang
- <xiaoning.wang@nxp.com>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org, imx@lists.linux.dev
-Subject: Re: [PATCH v2 2/4] dt-bindings: net: fec: add iommus property
-Message-ID: <20240219114443.777fc3b3@kernel.org>
-In-Reply-To: <668c1511-4ee6-4fad-9b7e-7783b6853988@linaro.org>
-References: <20240201-8qm_smmu-v2-0-3d12a80201a3@nxp.com>
-	<20240201-8qm_smmu-v2-2-3d12a80201a3@nxp.com>
-	<49dbd0a2-a4b9-4c05-bb10-44f267672374@linaro.org>
-	<Zc+2EitZrVzLsA03@lizhi-Precision-Tower-5810>
-	<668c1511-4ee6-4fad-9b7e-7783b6853988@linaro.org>
+ <conor+dt@kernel.org>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Liam
+ Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] iio: adc: ad7944: add driver for
+ AD7944/AD7985/AD7986
+Message-ID: <20240219194650.3e14c877@jic23-huawei>
+In-Reply-To: <CAMknhBH2Pqa9xpPxnTCxJegVTbOG-QDeJA4YrQUPfj+hfSs73A@mail.gmail.com>
+References: <20240216-ad7944-mainline-v2-0-7eb69651e592@baylibre.com>
+	<20240216-ad7944-mainline-v2-2-7eb69651e592@baylibre.com>
+	<CAMknhBH2Pqa9xpPxnTCxJegVTbOG-QDeJA4YrQUPfj+hfSs73A@mail.gmail.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, 17 Feb 2024 09:18:33 +0100 Krzysztof Kozlowski wrote:
-> >> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>  
-> > 
-> > Other 3 patches already been linux-next. Who will pick this one?  
-> 
-> Resend it to net-next (with proper title).
+On Mon, 19 Feb 2024 13:13:35 -0600
+David Lechner <dlechner@baylibre.com> wrote:
 
-I happened to notice the discussion, let me take the v2. Thanks!
+> On Fri, Feb 16, 2024 at 1:47=E2=80=AFPM David Lechner <dlechner@baylibre.=
+com> wrote:
+>=20
+> ...
+>=20
+> > +
+> > +#define AD7944_DEFINE_CHIP_INFO(_name, _t, _bits, _sign)              =
+ \
+> > +static const struct ad7944_chip_info _name##_chip_info =3D {          =
+   \
+> > +       .name =3D #_name,                                              =
+   \
+> > +       .t =3D &_t##_timing_spec,                                      =
+   \
+> > +       .channels =3D {                                                =
+   \
+> > +               {                                                      =
+ \
+> > +                       .type =3D IIO_VOLTAGE,                         =
+   \
+> > +                       .indexed =3D 1,                                =
+   \
+> > +                       .differential =3D 1,                           =
+   \
+> > +                       .channel =3D 0,                                =
+   \
+> > +                       .channel2 =3D 1,                               =
+   \
+> > +                       .scan_index =3D 0,                             =
+   \
+> > +                       .scan_type.sign =3D _sign,                     =
+   \
+> > +                       .scan_type.realbits =3D _bits,                 =
+   \
+> > +                       .scan_type.storagebits =3D _bits > 16 ? 32 : 16=
+,  \
+> > +                       .scan_type.endianness =3D IIO_CPU,             =
+   \
+> > +                       .info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) =
+   \
+> > +                                       | BIT(IIO_CHAN_INFO_SCALE),    =
+ \
+> > +               },                                                     =
+ \
+> > +               IIO_CHAN_SOFT_TIMESTAMP(1),                            =
+ \
+> > +       },                                                             =
+ \
+> > +}
+> > +
+> > +AD7944_DEFINE_CHIP_INFO(ad7944, ad7944, 14, 'u');
+> > +AD7944_DEFINE_CHIP_INFO(ad7985, ad7944, 16, 'u');
+> > +AD7944_DEFINE_CHIP_INFO(ad7986, ad7986, 18, 's'); =20
+>=20
+> Now that I have been enlightened [1] about pseudo-differntial inputs,
+> I'm thinking that AD7944 and AD7985 should not have the .differential
+> =3D 1 flag set since they are pseudo-differential inputs with a ground
+> sense on the negative input (and no extra supply needed since it is
+> always ground). Does that sound right?
+
+yes
+
+>=20
+> AD7986 is true differential though, so should be correct already.
+>=20
+> [1]: https://lore.kernel.org/linux-iio/CAMknhBF5mAsN1c-194Qwa5oKmqKzef2kh=
+XnqA1cSdKpWHKWp0w@mail.gmail.com/
+
 
