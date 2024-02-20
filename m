@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-44076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A4C885C85F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 22:21:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B26B85C89C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 22:23:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DA451C2232D
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 21:21:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8DD3B1C20B47
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 21:23:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7DD4151CF0;
-	Tue, 20 Feb 2024 21:21:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC085151CD8;
+	Tue, 20 Feb 2024 21:23:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kJ6oHUQB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="n22EjbEK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 314C31509BC
-	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 21:21:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 024312DF9F
+	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 21:23:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708464072; cv=none; b=Dx/2FK5AYHt1x1WzFwRf/HptHWaB52oKcs3eXEovMbAzevUDwM9JHnsiAERkQEAeBb0DsH60kfgVSdSVVXRoitqen5BVype0ieGTo+DVdPK4ZfCI3sSKXl9kVq76Zjey0W0iZNOxBotAjh6olaWhbQyx3bBe9jTe3mxwsFkcncU=
+	t=1708464230; cv=none; b=fgJWSixIoyCZZRkx6APWp9jzSWJLd8Yl7+z5OTJIRMNjWV8nKsBcFQxTmVmVwnszeig2QggC3IFvimpMTqiCZ1/f5Qg73gLp/KUg6JsSdKTpeu/eehPo1w2oyo9Aro9/lQsimFpQreYO8puQ1WtdExmulu4v6WXbMZumVxinBJo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708464072; c=relaxed/simple;
-	bh=QIb79S8dEXh8LFbr/l1y4IqwiNhKYcYdvIOdGbZPR10=;
+	s=arc-20240116; t=1708464230; c=relaxed/simple;
+	bh=rI8vpSht0L7BzqoOkCoHJkGo2xBc6I6x6gxOL3k6wgw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fmpyrqgQC/iiLOszIzMUyUtJrFLKFeoUyqk7ESiZHq9WJLg2oB5UPU+JLtF8HO1sX+0uS6Ec0Usp2YFU1Aufg4HBiyCAA8VTSZR0NqyNJE+oWQfAlEOOzJRjgo1nAuaVL5uwpBerA2ZawHR9D4/hbMCs17sGjZnFQCn25vIfqvk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kJ6oHUQB; arc=none smtp.client-ip=209.85.167.53
+	 In-Reply-To:Content-Type; b=FYwoW1TVDspYQBlQJ1j1EPkbQpfZ5Ni1sd1gtfQWfjFpX7yc+Kil4Xlss5OBhwFyU3Ko078LHpb1wNnvvkyI27c1BoSb2C05jQJJVKwm9SmL3qOMGH21cVoLtM25Vfc8hgXBm1Cxs5VJYupaHhiVQN4qpJVirXpiKQqtxHDr0Z0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=n22EjbEK; arc=none smtp.client-ip=209.85.167.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-512bde3d197so2484813e87.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 13:21:10 -0800 (PST)
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5129e5b8cecso4960486e87.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 13:23:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708464069; x=1709068869; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=aewqZFQqAR8f8P67ZzKs5ZfSe1DqicHVEuGcz5XnehA=;
-        b=kJ6oHUQBobYzdU7nmQFkM3o1PTzoD/1gWwOCvaCiuaShekcaWW64iGJ+G9nrY2rEXR
-         ty/VqImKjaPAXIHGh2hBywNFMUNF37eHSug1XHzVLgjEuUPekwwFHi70nlxVG97wMkg/
-         bq2pXuDPqDRpW+M4DRfa28qEVuwOVDtOvfgzl9ZKQAyxbnHpK0dxu2/pXFU1zwhFfArn
-         IV/xkFys5PLZw2jigIjJCYO/DoTEXCkVImGCVNfGn7SAims0skOmVCLUvgVcn3LRdSxf
-         kg/K6oybXpR6nWqv1J9MO5bZGveHi56Hr9fJ+/e0AVRuBXvjK+ot0MI1492XMKc69zwQ
-         kEuQ==
+        d=linaro.org; s=google; t=1708464227; x=1709069027; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BQN1gJBuYdnaMz2lZP1Vhemjh7XxE9ird9ZL5Hi+qmE=;
+        b=n22EjbEKamPeEGz1Pcflg43NBAolA9jtaRWB3mt2vTH8yKyCWZ55WPT6bX91NAQMxI
+         VEVlj8lwGKbuyQ3CRYNopd1mvlFTtwe9bgKKwfLcUb4bCl00cudvhOaglggODIHsCmU+
+         zg5n6tLdwBwZZ/53gE6iSBRtITJkkeqyC/3roof4fKGQIDr4N5T3wD8Bbu+lkbo0mWVn
+         +pnYeiaNr/EMb2qoG8xXcEZdMDJ0Pcih/Ip+ckqt9i8LcxiJlwBu03JPYxHINE4OJwf9
+         h/sMT40Lla1zd+SY6KijEY1stvQhfaOz2z9CW6jVVdEitB3on/nV/J7m8yrnEfZCuLEu
+         VdGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708464069; x=1709068869;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aewqZFQqAR8f8P67ZzKs5ZfSe1DqicHVEuGcz5XnehA=;
-        b=oDQosMLpdwaaqSQbUzsWADLjhvgwNUoXbrllzOEZ/mmXbeIbgWSJ4VrbPvYnxc6l8b
-         p24ljvB95wyAIP+ghVy6aHRuGg2u7YmPule/ZIgFRHWGIWqKo4tPPVfZBT2BV6/Br8kZ
-         TCp7QgJyvMaUVivTNN89S0hq2BstJQW1SEsaT3K4tV8V+KhasXVfqWEqo41r4VuQwkGs
-         WUo2IIhlmD/EGCDOZ1+ZF2pHkI6oWyca8y1Wjom/wPEGhscZ+/Kyd+IIhkvBw7u0Fb/B
-         ajfKgqI+upIsbe/fy89LcAo7KAYB314zdcwonxbMv4pqZ0XWa2fAkUkFMIkcQV/DQO+/
-         47AA==
-X-Forwarded-Encrypted: i=1; AJvYcCXisqcOJZ8Sw4PXBpnesgI8qiOEO5d9Q1S+FWhrG4G1lfJ9EQIrtNsMICIibDqxtFBGN7fo54fxS7JZRR5uaJU9rXKDGlhnjaoZ6Q==
-X-Gm-Message-State: AOJu0YyMOQ/883/jnplcwOe89t5w943zYyRBWI0S2G4WKyWWle5Xluyx
-	OjP7ndCqE+QJ6mtn4reUa5RM/IfR/Z1CABrl+iug7OoisD2Qazg6iVP03Tq0AeU=
-X-Google-Smtp-Source: AGHT+IE7oxGB2v2CxKN0KBUsYoVrLWeS67J9KHU2sgtn9zhSwTZSLaGf6S53k3pQEILvmz2pBWcsQg==
-X-Received: by 2002:a05:6512:48b:b0:512:b85e:9831 with SMTP id v11-20020a056512048b00b00512b85e9831mr3472902lfq.36.1708464069273;
-        Tue, 20 Feb 2024 13:21:09 -0800 (PST)
+        d=1e100.net; s=20230601; t=1708464227; x=1709069027;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BQN1gJBuYdnaMz2lZP1Vhemjh7XxE9ird9ZL5Hi+qmE=;
+        b=e1aQHdn5q4JcJXy688uLqpICDiKvWnc2ZuaNHXc5vZeIvrGsdyq9FiM3VN2m+VR9w5
+         OMTwr/xBwTTS2OOG1Ei9vLAQDydGGnUSnAGle90e1br4rtKw0JLmAb+L22YK2ZEncHTx
+         TI6LZ57GgnDbodtEjzIIRD/nmra40PRbxmbd/sPWTRPl6OvoK/i0HrLzaFpwtV+yxX/K
+         9hZu0cGhuXi2tC8VOm/+2jKlFC3aHW4JRjD9O50S9i2M4Eyw8bAK7mL+S3YEqppbAb2P
+         FOq1FtO2ChRPWyyn1v8awgKFN0eJbdXpb1Ugl3aHjvYAwnOge4kgVSHa/BmKy17dI7wR
+         uB9g==
+X-Forwarded-Encrypted: i=1; AJvYcCWLyIF+xRtEFYY6lZBjr0H39nXF/ul9GO/89byNFdvkH7p+xYakQ1aqLYHG66xoaSx4bonbazMlgtZVOIn7V4priyLJeFJ3969MoQ==
+X-Gm-Message-State: AOJu0YztkMTQRGWDMq4AuWyvyXj3udD4nKNAtiuiTtyC19/UZBGYlen/
+	sL7jrPzevBUxgX9zUNs4LctqPq5oV41xJ1hJvY3/XMnOv5Fu61JzDYV9272oSdc=
+X-Google-Smtp-Source: AGHT+IGUGRVWsh1lOrSwTwSBnK+MNgr79zGnGLrlETgeDUz79QjMadUApjmPNi/qsoaLXat8TR3+ew==
+X-Received: by 2002:a19:e003:0:b0:512:bf99:7d80 with SMTP id x3-20020a19e003000000b00512bf997d80mr2723866lfg.1.1708464227159;
+        Tue, 20 Feb 2024 13:23:47 -0800 (PST)
 Received: from [192.168.192.135] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
-        by smtp.gmail.com with ESMTPSA id q23-20020ac24a77000000b00512b25729bdsm972840lfp.31.2024.02.20.13.21.05
+        by smtp.gmail.com with ESMTPSA id i29-20020ac25b5d000000b005118a6de76esm1407778lfp.162.2024.02.20.13.23.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Feb 2024 13:21:08 -0800 (PST)
-Message-ID: <17bbd9ae-0282-430e-947b-e6fb08c53af7@linaro.org>
-Date: Tue, 20 Feb 2024 22:21:04 +0100
+        Tue, 20 Feb 2024 13:23:46 -0800 (PST)
+Message-ID: <c87d715a-d6fe-4ccd-adc5-d98d4837a120@linaro.org>
+Date: Tue, 20 Feb 2024 22:23:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,39 +76,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 14/18] PCI/pwrctl: add a power control driver for
- WCN7850
-To: Mark Brown <broonie@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Marcel Holtmann <marcel@holtmann.org>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Saravana Kannan <saravanak@google.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>, Arnd Bergmann <arnd@arndb.de>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>, Alex Elder <elder@linaro.org>,
- Srini Kandagatla <srinivas.kandagatla@linaro.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Abel Vesa <abel.vesa@linaro.org>, Manivannan Sadhasivam <mani@kernel.org>,
- Lukas Wunner <lukas@wunner.de>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
- linux-pm@vger.kernel.org,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20240216203215.40870-1-brgl@bgdev.pl>
- <20240216203215.40870-15-brgl@bgdev.pl>
- <d5d603dc-ec66-4e21-aa41-3b25557f1fb7@sirena.org.uk>
- <CAMRc=MeUjKPS3ANE6=7WZ3kbbGAdyE8HeXFN=75Jp-pVyBaWrQ@mail.gmail.com>
- <ea08a286-ff53-4d58-ae41-38cca151508c@sirena.org.uk>
+Subject: Re: [PATCH] arm64: dts: qcom: sm6115: fix USB PHY configuration
 Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Clark <robdclark@gmail.com>,
+ Sean Paul <sean@poorly.run>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Stephen Boyd <swboyd@chromium.org>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org
+References: <20240220173104.3052778-1-dmitry.baryshkov@linaro.org>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -146,42 +125,22 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <ea08a286-ff53-4d58-ae41-38cca151508c@sirena.org.uk>
+In-Reply-To: <20240220173104.3052778-1-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 20.02.2024 13:47, Mark Brown wrote:
-> On Tue, Feb 20, 2024 at 12:22:42PM +0100, Bartosz Golaszewski wrote:
->> On Mon, Feb 19, 2024 at 6:50 PM Mark Brown <broonie@kernel.org> wrote:
->>> On Fri, Feb 16, 2024 at 09:32:11PM +0100, Bartosz Golaszewski wrote:
+On 20.02.2024 18:31, Dmitry Baryshkov wrote:
+> The patch adding Type-C support for sm6115 was misapplied. All the
+> orientation switch configuration ended up at the UFS PHY node instead of
+> the USB PHY node. Move the data bits to the correct place.
 > 
->>>> +static struct pci_pwrctl_wcn7850_vreg pci_pwrctl_wcn7850_vregs[] = {
->>>> +     {
->>>> +             .name = "vdd",
->>>> +             .load_uA = 16000,
->>>> +     },
-> 
->>> I know a bunch of the QC stuff includes these load numbers but are they
->>> actually doing anything constructive?  It keeps coming up that they're
->>> causing a bunch of work and it's not clear that they have any great
->>> effect on modern systems.
-> 
->> Yes, we have what is called a high-power mode and a low-power mode in
->> regulators and these values are used to determine which one to use.
-> 
-> Are you *sure* this actually happens (and that the regulators don't
-> figure it out by themselves), especially given that the consumers are
-> just specifying the load once rather than varying it dynamically at
-> runtime which is supposed to be the use case for this API?  This API is
-> intended to be used dynamically, if the regulator always needs to be in
-> a particular mode just configure that statically.
+> Fixes: a06a2f12f9e2 ("arm64: dts: qcom: qrb4210-rb2: enable USB-C port handling")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
 
-*AFAIU*
+So that's why UFS stopped working and I couldn't for the life of
+me guess why..
 
-The regulators aggregate the requested current (there may be
-multiple consumers) and then it's decided if it's high enough
-to jump into HPM.
 
 Konrad
-
 
