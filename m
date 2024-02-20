@@ -1,274 +1,187 @@
-Return-Path: <devicetree+bounces-43953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43954-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 621C585BF36
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 15:57:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2554585BF6F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 16:07:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7465FB227AF
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 14:57:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 530AD1C208C4
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 15:07:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB8A371B4D;
-	Tue, 20 Feb 2024 14:57:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="fAEBhUGy"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5506D73197;
+	Tue, 20 Feb 2024 15:07:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01olkn2065.outbound.protection.outlook.com [40.92.52.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E822C6F53C;
-	Tue, 20 Feb 2024 14:57:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.52.65
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708441039; cv=fail; b=GZG3Wa+IKr1Onnbwi8rqdh8G6LG4hvNGUDRiNZepRH5u1GU9uselvKj78UpnkZtroJYSiRH8sqLfk9vwYe7VQpqznDNfM0uhnuw1inYzHynBe9YAO9GfrLJ+adDg3WaOak9qxbgxcEHs1VqEUKjcUXHfDUQil4i1+1y7iyG3SB8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708441039; c=relaxed/simple;
-	bh=0dV0o2GEDnlWMT/YqHZsv9iV6huXK9I/mgAl3274FWo=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=o9n8i0xTVwVdGOfWLvcMySYVnenVhPnV5Q1z41n9by8qg6f78HJQUNgdxZiOpQehviD7zjf3kfAjTy2+XyV+9AouYmpu8HFl62EH4AQcZqf/uQMyz81Rhl2/9EmaJHAD+BoNzE7sONYeXcyBBzUfDZOVk7Ft7BhAyX4DadjcT/A=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=fAEBhUGy; arc=fail smtp.client-ip=40.92.52.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bmRswL0gkbsv/ZJZx8T3NWzNYu6FPq0UUWR3y8WIZjhhNXu4S7nO1yoci5B98jNVcLiSv8L1gxMCm1KuE7g1K+MWsRxhhI5XSvdfPJpfLdAkbi1WhsD0x0rA4bhN7izNp0J6AxXbM7D116LdUkiQ5JR9S+twgPsPK/76vZTgAt2hWB0KfXqHVXkathqoBxcuxdmLC2C4O3LTG9awPqrCd+8fs/RGEE2nIeiPPzE673PtIxX7weYoY48qykl+wsGNJ3AKa5tURea0zm+HtNgTw0QCYsDYIg41uf8d59VOmBJgZ012NNbUPjLOSzz+EU7kvWPG4PwQpM86UWQMyxgSTA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=on+q6omrZIA0FBW2dndMuhZyoAnmFamtB1/ZXt+x+5E=;
- b=EMXcLWZPnG0Fka8lBQtZcNcEAePcNWUql9mON2iCL+EJVePZcB+YEpwWZbtfVCxWZqJzXuVM9blwhR4G2PwDPflfILKcdMhNmDGp7RVOvzQyrTWWzsW43944kneh5y8du8mHyOWZeS9T8GtMkuoCb+q/WBpJxteEU7qbSQXAUnDDId7LB7oXESiqfeFgBpGRK9D/p0y0Z0NTUIEbDUpO+o2xN2ixMbv8rfa6/FmQW2cjiyNyAq2uQUI0ti720X/3mFLTLGrTLcN5Q+Vzi1YG0o8Msv2MLlYBElqfHaZr4ghfDPI6uPtDFgsXfONPdeIJZO0PLpdnxWrVTiXRS+XmNg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=on+q6omrZIA0FBW2dndMuhZyoAnmFamtB1/ZXt+x+5E=;
- b=fAEBhUGyDlQwj54iw2Y2XLNo/5vu2iV0eqcjEp/Fmu7fx3xan9IjMNYuJ+OZnxR43McnnXKC9n7uA9FQE9EH4DIfPAgCkPrj70MDh2LpgBu/Covq0QqXRa0pMOxr9HqI3uUqtrVq0CYRUoLkFq6FeEr8vJ/+o66ufh3o6drTVEPy8zahOE3Go4c2IOpXqt3AO7gZ+9xP5rVqh4SMCZabtiVA821DE+M9nROGQB3FcG2MK9er0nYEdE0OBJmffleYFDEwqk80Z43uIijG17dNmnzMXa50YhkLmb2WdOFNKnMaa103qQokRQ7QYXZS2Sp/6iGasCaxGbEEQI4WZJM2tw==
-Received: from SEZPR06MB6959.apcprd06.prod.outlook.com (2603:1096:101:1ed::14)
- by SEZPR06MB7363.apcprd06.prod.outlook.com (2603:1096:101:254::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.39; Tue, 20 Feb
- 2024 14:57:10 +0000
-Received: from SEZPR06MB6959.apcprd06.prod.outlook.com
- ([fe80::53da:a8a:83cb:b9ad]) by SEZPR06MB6959.apcprd06.prod.outlook.com
- ([fe80::53da:a8a:83cb:b9ad%4]) with mapi id 15.20.7292.036; Tue, 20 Feb 2024
- 14:57:10 +0000
-Message-ID:
- <SEZPR06MB695992D70F6002F7568B6D9A96502@SEZPR06MB6959.apcprd06.prod.outlook.com>
-Date: Tue, 20 Feb 2024 22:57:06 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v3 3/6] net: hisilicon: add support for
- hisi_femac core on Hi3798MV200
-Content-Language: en-US
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>,
- Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>
-Cc: Yisen Zhuang <yisen.zhuang@huawei.com>,
- Salil Mehta <salil.mehta@huawei.com>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Simon Horman <horms@kernel.org>
-References: <20240220-net-v3-0-b68e5b75e765@outlook.com>
- <20240220-net-v3-3-b68e5b75e765@outlook.com>
- <20240220154737.705c33e5@device-28.home>
-From: Yang Xiwen <forbidden405@outlook.com>
-In-Reply-To: <20240220154737.705c33e5@device-28.home>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN: [V1VpcjzCMQNMWgVsXNmC8vJgZFvYVLTq2elQKYTUF9UM+z/FKFHC1EPt/J8rEpAA]
-X-ClientProxiedBy: TYAPR01CA0066.jpnprd01.prod.outlook.com
- (2603:1096:404:2b::30) To SEZPR06MB6959.apcprd06.prod.outlook.com
- (2603:1096:101:1ed::14)
-X-Microsoft-Original-Message-ID:
- <366a6322-6456-401a-abee-29a116a3c59b@outlook.com>
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A68E467E91;
+	Tue, 20 Feb 2024 15:07:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708441662; cv=none; b=tRn0QuAIO4YSbXY0u2Zf99MCeOYuKYn2i7o7ac0N+ZMR3+cxU45fbFDJBAYVfYqioZgCvdiPjiX/eChh4kk3jiRw/CcYjR5thxFMynbOac+FBI40bpIqvkf+SDlbWTMmwhoy7mAcZljE2zLqVlryshm5cwTIEMkiwD/PVCik3Cg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708441662; c=relaxed/simple;
+	bh=I2jhKDuObvGJdDaIlPFqcuRI52gRZjbpYQq0Xx/YBXk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TT4NX5jXhPAaE5pja9OkJyY71sgrKMGhBRxlhBzsne+eKlZR1AJvUXcwJ2CJ71AzLH8vZ2V6m2xgVh5AunPGQ93xKcowqsTmdzJF+uKcXEf21I1J2dWuj6elwxyfHWeiH1xHxXaVRNfPKDEX3dPjzthH2cTRs9JsWRD5cRcvmTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 07B3FFEC;
+	Tue, 20 Feb 2024 07:08:18 -0800 (PST)
+Received: from pluto (unknown [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 85EA93F73F;
+	Tue, 20 Feb 2024 07:07:36 -0800 (PST)
+Date: Tue, 20 Feb 2024 15:07:34 +0000
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: Sibi Sankar <quic_sibis@quicinc.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, sudeep.holla@arm.com,
+	andersson@kernel.org, konrad.dybcio@linaro.org,
+	jassisinghbrar@gmail.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	quic_rgottimu@quicinc.com, quic_kshivnan@quicinc.com,
+	conor+dt@kernel.org, Amir Vajid <avajid@quicinc.com>
+Subject: Re: [RFC 4/7] soc: qcom: Utilize qcom scmi vendor protocol for bus
+ dvfs
+Message-ID: <ZdTANrUZuN_UZW9j@pluto>
+References: <20240117173458.2312669-1-quic_sibis@quicinc.com>
+ <20240117173458.2312669-5-quic_sibis@quicinc.com>
+ <CAA8EJpr8qLZ8Y7PjU05ZoxSHWOf=q-KtM+s-tnR5X2t96rFWhw@mail.gmail.com>
+ <0adaa065-3883-ebfe-8259-05ebdbd821eb@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SEZPR06MB6959:EE_|SEZPR06MB7363:EE_
-X-MS-Office365-Filtering-Correlation-Id: be08d998-e2e4-412f-f8aa-08dc322436ce
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	lYIw/cd5HoTs2YhWzrAmeQTAsVn1DmnOk92u4FcIL3I/OefUqrzSxrZpHQ9GSANoa7Cb0DZwjJwJ74LcwX6gtdc3v//zixIe6tkUoxbUicS4XuH3QYqmQ09fTqfx3eiHW50BUjSA8p2r/dWStmrismFm5AVGYr4QADRpmPhExz4CoSjTbOKBqarbZSlyiwvtbrVqRCJRM3IskZRrPw5gkLETVnj8/5gA2m6fklyRhm800+ZfgjeCu5IAiQelZ4aX/540qY42GJcqNymYB8zNee+5IP+TnoZqEnf7OvioBAqyKYhhn8yxPyo+6N0tC2Xp0sS9VMMGvAhW3IQb7z7kXpZGhyg2mid77P+HxBZeVmU3L+qRV9EDfFv3i2cGpF8zZvlXuzzzBnFuiD8AWZAEo6KyDGctuVF9Haq6oKgDBUgXuTQoVq/HKOeWG+II/NKssrrGiBnk3gK2zczIHR6CWaLuvP6xLMsG73RhmkDTsZUDKqjXoMdNdYSzADKcQOF/Gr0N2Sbn76k0bRH6l/tgWEhZRHaoLD9w4jqvUM+MKa2kCh8TX9n0wyhWbVPE3GkG
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?OC9neldta1dwWjNXSEwvdjE1UmJydjEydkxEZU10UTJiMS8zUW43SlJna1hi?=
- =?utf-8?B?YW5yeW5wQnhGYTEvQUM2NStRVlByQlZvN1B6bXg5S0RQMmU3ZnkxRldmTlIx?=
- =?utf-8?B?RXlEVUluL0xOaDZWZ0NtU2Z5dkRGVTJvbnI4L1BlTGRna0ppTFNVa3N4TzEx?=
- =?utf-8?B?dEY2K040UjFDY3dITkhRb0xnajBtaTF2OTZOMFdoVklISHh6TXJlM3hnQXNh?=
- =?utf-8?B?VUZ6aDJGaUVjQ0o0UEdDeldzVUxyR0ZqdjVYYkNVTDhqM21nYU1NaGt0TTVa?=
- =?utf-8?B?ajdaYzNudDdnQUNkdk5iU3lWTGFyY2xKSmh4c3o0UWdrTUVDS3lqcjhabDkv?=
- =?utf-8?B?cFJ1N05WUm9RcGhqSEloMkhwanBaWkJ3cGk4Z2JyZE1RSnhyWnFxTUF1R2JN?=
- =?utf-8?B?S3lQMjJId2ZBOEEyV1hkTEFLVVZ1d1AzdWozd1B4SWRTL1dUcklqc1RObTJR?=
- =?utf-8?B?SFBaVkhZRmRMSEMwTWpjb3h3N3IvWkhxdk5FNGZabmVqTTRaT2hMdlFKZXJy?=
- =?utf-8?B?MW9RdGxNQUJ5S2xYajdJNVd6endZL1Ixa3R1MEJtVk5BT0szaXRQV0txVlU5?=
- =?utf-8?B?cFNkYXZXc09Vek5UQW04UktsV2F2NElEYXcreVZvWmFHQjNxUzNyR3NpRGZh?=
- =?utf-8?B?by9BM2VRL0xMekJmQy9mVHd1QVVIN014dVJVNFQwWFlpbXorcnRIMmZNeG1j?=
- =?utf-8?B?UzROdG1ValhtWjJYS3JiSFBVbTU2Y0dpTWFTeUI1RnYxQnhubUVMSmk4bG4r?=
- =?utf-8?B?bFNoTy9Ud2YxbTREZVFObTBJUUVhMW9Oa29vNWFCNE5ORTFjamhoVk1nRVkz?=
- =?utf-8?B?R0dITGxINDVaUm53MEFWbVY0dW04aWR4UEVxb1MzYmYxZGZoc0RpaE5MYUNG?=
- =?utf-8?B?dEhHQ1Y4Rys1eG5qbVNkQnNSZko0VlhvRUg3eXRwVzJicjJaVHZLcWhyaVky?=
- =?utf-8?B?RlByeU9MSDROZVZBd2xvZFJUcjNqN0VmOXU0YU1kejdSNjVBL29qMEd4aHpX?=
- =?utf-8?B?YkczdUw1eSs1cW1mY0FHdzFUQ1gwbDE4NlRZOWsweExURnlSeDgyWG1jcUhY?=
- =?utf-8?B?SlI0YXd1NE4vaGN4SDFBbkZjY0RFWFlDb3FpTXB6NTgrY1AyeXlNNG14bHZl?=
- =?utf-8?B?eDFTTVRyUERpRDVBV2JoWUlFSlY4WGF2amlLRU13SkdtZldzRUlZS3JDNWZn?=
- =?utf-8?B?czZFendXMXlKa2E4ditPUG96QUhic1QxVS9uV1RoeXRwckF0MDlQbDNHZW5O?=
- =?utf-8?B?Y2RrbGZRTGZEK0QxKzd4azMzeUVubGNRTElLazVXQ2JBT2tZeExzdnFpS3Bk?=
- =?utf-8?B?YWV4enVaNDZDTEFieVZaZDlXNkFhY2dPV1pTWGgvbUhmcGttTFU3a2d2NUpO?=
- =?utf-8?B?UTNNSk0wVUU2NEZZTmdDekFRT0g1cFJBQ2JBRjlUbFcrQ3VPOGJXcFN4VWJB?=
- =?utf-8?B?TDc3bHN6a0wwWDNTVFhkbkVUam9VdXNPdFVLa0QreEs1TVArcmFhQm1wb2tO?=
- =?utf-8?B?VGVmRkdzbTRubUtqZ29GMzRVV0hjZEZMRFhnQVZ0UGpPZXlYNTFWaFc2dGdo?=
- =?utf-8?B?eVBhMGE1NHVmM1k2T1RaR0wyQ1pIWTNLaGJTbmV5aUkzTjdIWm5pSGRjQThp?=
- =?utf-8?B?UysyWXhndkdFV3JQeGZLU01CdkxmSlJYSms1bmpjWEluTUJHVFJSUDNTcHMv?=
- =?utf-8?B?VzNoVnJDY291RlJZQ1NUZXRTcFFOQ24yR1lGTWRPcjlPYmRIOGRkMDlLamNU?=
- =?utf-8?Q?yX6ViS9w8CNfYD7G2csHKcfHCYOG023boLSa3O0?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: be08d998-e2e4-412f-f8aa-08dc322436ce
-X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB6959.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2024 14:57:10.1115
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR06MB7363
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0adaa065-3883-ebfe-8259-05ebdbd821eb@quicinc.com>
 
-On 2/20/2024 10:47 PM, Maxime Chevallier wrote:
-> Hello,
->
-> On Tue, 20 Feb 2024 03:57:38 +0800
-> Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>
-> wrote:
->
->> From: Yang Xiwen <forbidden405@outlook.com>
->>
->> Register the sub MDIO bus if it is found. Also implement the internal
->> PHY reset procedure as needed.
->>
->> Note it's unable to put the MDIO bus node outside of MAC controller
->> (i.e. at the same level in the parent bus node). Because we need to
->> control all clocks and resets in FEMAC driver due to the phy reset
->> procedure. So the clocks can't be assigned to MDIO bus device, which is
->> an essential resource for the MDIO bus to work.
->>
->> No backward compatibility is maintained since the only existing
->> user(Hi3516DV300) has not received any updates from HiSilicon for about
->> 8 years already. And till today, no mainline dts for this SoC is found.
->> It seems unlikely that there are still existing mainline Hi3516DV300
->> users. The effort to maintain the old binding seems gain a little.
->>
->> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
-> Besides what Andrew and Simon already mentionned, I have a few other
-> small comments :
->
-> [...]
->
->> @@ -797,23 +816,22 @@ static int hisi_femac_drv_probe(struct platform_device *pdev)
->>   		goto out_free_netdev;
->>   	}
->>   
->> -	priv->clk = devm_clk_get(&pdev->dev, NULL);
->> -	if (IS_ERR(priv->clk)) {
->> -		dev_err(dev, "failed to get clk\n");
->> -		ret = -ENODEV;
->> +	ret = devm_clk_bulk_get_all(&pdev->dev, &priv->clks);
->> +	if (ret < 0 || ret != CLK_NUM) {
->> +		dev_err(dev, "failed to get clk bulk: %d\n", ret);
->>   		goto out_free_netdev;
->>   	}
->>   
->> -	ret = clk_prepare_enable(priv->clk);
->> +	ret = clk_bulk_prepare_enable(CLK_NUM, priv->clks);
->>   	if (ret) {
->> -		dev_err(dev, "failed to enable clk %d\n", ret);
->> +		dev_err(dev, "failed to enable clk bulk: %d\n", ret);
->>   		goto out_free_netdev;
->>   	}
->>   
->>   	priv->mac_rst = devm_reset_control_get(dev, "mac");
->>   	if (IS_ERR(priv->mac_rst)) {
->>   		ret = PTR_ERR(priv->mac_rst);
->> -		goto out_disable_clk;
->> +		goto out_free_netdev;
-> When you return here (or even later), you are missing a call to
-> "clk_bulk_disable_unprepare" in the cleanup path
+On Mon, Feb 12, 2024 at 03:54:27PM +0530, Sibi Sankar wrote:
+> 
+> 
+> On 1/18/24 02:11, Dmitry Baryshkov wrote:
+> > On Wed, 17 Jan 2024 at 19:36, Sibi Sankar <quic_sibis@quicinc.com> wrote:
 
+Hi,
 
-I didn't notice that. Originally i'm using devm_clk_get_enabled() so 
-it's not needed.
+I'll comment this patch fully, just a remark down below about this
+mail-thread.
 
+> > > 
+> > > From: Shivnandan Kumar <quic_kshivnan@quicinc.com>
+> > > 
+> > > This patch introduces a client driver that interacts with the SCMI QCOM
+> > 
+> > git grep This.patch Documentation/process/
+> > 
+> > > vendor protocol and passes on the required tuneables to start various
+> > > features running on the SCMI controller.
+> > 
+> > Is there any word about the 'memlat'? No. Unless one  reads into the
+> > patch, one can not come up with the idea of what is being introduced.
+> 
+> ack, will fix it in the re-spin.
+> 
+> > 
+> > > 
+> > > Signed-off-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
+> > > Co-developed-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
+> > > Signed-off-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
+> > > Co-developed-by: Amir Vajid <avajid@quicinc.com>
+> > > Signed-off-by: Amir Vajid <avajid@quicinc.com>
+> > > Co-developed-by: Sibi Sankar <quic_sibis@quicinc.com>
+> > > Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> > > ---
+> > >   drivers/soc/qcom/Kconfig            |  10 +
+> > >   drivers/soc/qcom/Makefile           |   1 +
+> > >   drivers/soc/qcom/qcom_scmi_client.c | 486 ++++++++++++++++++++++++++++
+> > 
+> > Should it go to drivers/firmware/arm_scmi instead? Or maybe to drivers/devfreq?
+> 
+> I don't think it should go into arm_scmi unless Sudeep wants it there.
+> As for drivers/devfreq, I would have moved it there if this driver
+> benfitted being classified as a devfreq device. We can't use any of
+> the available governors on it and the tuneables appear way too custom.
+> These are the reasons why I placed it in drivers/soc/qcom instead.
+> 
 
-Maybe we can add a devm_clk_bulk_get_prepared_enabled() API to clk 
-framework too.
+I think we used to host a couple of generic SCMI driver related to
+standard protocols but they have been moved out of driver/firmware/arm_scmi
+into the related subsystem...not sure if Sudeep thinks otherwise but I
+suppose we want to host only SCMI drivers that are clearly lacking a
+place where to stay...
 
+> > 
+> > >   3 files changed, 497 insertions(+)
+> > >   create mode 100644 drivers/soc/qcom/qcom_scmi_client.c
+ 
+ [snip]
 
->
->>   	}
->>   	hisi_femac_core_reset(priv);
->>   
->> @@ -826,15 +844,34 @@ static int hisi_femac_drv_probe(struct platform_device *pdev)
->>   						 priv->phy_reset_delays,
->>   						 DELAYS_NUM);
->>   		if (ret)
->> -			goto out_disable_clk;
->> +			goto out_free_netdev;
->>   		hisi_femac_phy_reset(priv);
->>   	}
->>   
->> +	// Register the optional MDIO bus
-> I think this comment style should be avoided, in favor of C-style
-> comments ( /* blabla */ )
+> > > +static int configure_cpucp_mon(struct scmi_memlat_info *info, int memory_index, int monitor_index)
+> > > +{
+> > > +       const struct qcom_scmi_vendor_ops *ops = info->ops;
+> > > +       struct scmi_memory_info *memory = info->memory[memory_index];
+> > > +       struct scmi_monitor_info *monitor = memory->monitor[monitor_index];
+> > > +       struct scalar_param_msg scalar_msg;
+> > > +       struct map_param_msg map_msg;
+> > > +       struct node_msg msg;
+> > > +       int ret;
+> > > +       int i;
+> > > +
+> > > +       msg.cpumask = monitor->mask;
+> > > +       msg.hw_type = memory->hw_type;
+> > > +       msg.mon_type = monitor->mon_type;
+> > > +       msg.mon_idx = monitor->mon_idx;
+> > > +       strscpy(msg.mon_name, monitor->mon_name, sizeof(msg.mon_name));
+> > > +       ret = ops->set_param(info->ph, &msg, MEMLAT_ALGO_STR, MEMLAT_SET_MONITOR, sizeof(msg));
+> > > +       if (ret < 0) {
+> > > +               pr_err("Failed to configure monitor %s\n", monitor->mon_name);
+> > > +               return ret;
+> > > +       }
+> > > +
+> > > +       scalar_msg.hw_type = memory->hw_type;
+> > > +       scalar_msg.mon_idx = monitor->mon_idx;
+> > > +       scalar_msg.val = monitor->ipm_ceil;
+> > > +       ret = ops->set_param(info->ph, &scalar_msg, MEMLAT_ALGO_STR, MEMLAT_IPM_CEIL,
+> > > +                            sizeof(scalar_msg));
+> > > +       if (ret < 0) {
+> > > +               pr_err("Failed to set ipm ceil for %s\n", monitor->mon_name);
+> > > +               return ret;
+> > > +       }
+> > > +
+> > > +       map_msg.hw_type = memory->hw_type;
+> > > +       map_msg.mon_idx = monitor->mon_idx;
+> > > +       map_msg.nr_rows = monitor->freq_map_len;
+> > > +       for (i = 0; i < monitor->freq_map_len; i++) {
+> > > +               map_msg.tbl[i].v1 = monitor->freq_map[i].cpufreq_mhz;
+> > > +               map_msg.tbl[i].v2 = monitor->freq_map[i].memfreq_khz / 1000;
+> > > +       }
+> > 
+> > So this table goes 1:1 to the firmware? Is it going to be the same for
+> > all versions of the SoC? If so, it might be better to turn it into the
+> > static data inside the driver. If it doesn't change, there is no need
+> > to put it to DT.
+> 
+> The table does go directly to the firmware but obviously varies across
+> SoCs. Also since it's a SCMI client driver we don't have a way to
+> distinguish between SoCs based on compatibles. So it made more sense to
+> move it to the device tree instead.
+> 
 
+Well, the SCMI fw running the server DOES know where it is running right ?
 
-Will fix in next release.
+So, if you have multiple fixed config tables to feed into the firmware
+that vary based on the SoC you are running on, you could add an SCMI command
+to your QCOM SCMI vendor protocol and expose a related operation in ops to get
+the actual SoC model, so that you can embed the tableS in the driver here (as
+suggested) and then choose at runtime which one to use based on the reported
+platform...this is clearly config stuff (sa said by others) so it just
+does not belong to DT descriptions. 
 
-
->
->> +	for_each_available_child_of_node(node, mdio_np) {
->> +		if (of_node_name_prefix(mdio_np, "mdio")) {
->> +			priv->mdio_pdev = of_platform_device_create(mdio_np, NULL, dev);
->> +			of_node_put(mdio_np);
->> +			if (!priv->mdio_pdev) {
->> +				dev_err(dev, "failed to register MDIO bus device\n");
->> +				ret = -ENODEV;
->> +				goto out_free_netdev;
->> +			}
->> +			mdio_registered = true;
->> +			break;
->> +		}
->> +		of_node_put(mdio_np);
->> +	}
->> +
->> +	if (!mdio_registered)
->> +		dev_warn(dev, "MDIO subnode not found. This is usually a bug.\n");
->> +
->>   	phy = of_phy_get_and_connect(ndev, node, hisi_femac_adjust_link);
->>   	if (!phy) {
->>   		dev_err(dev, "connect to PHY failed!\n");
->>   		ret = -ENODEV;
->> -		goto out_disable_clk;
->> +		goto out_unregister_mdio_bus;
->>   	}
->>   
->>   	phy_attached_print(phy, "phy_id=0x%.8lx, phy_mode=%s\n",
-> Thanks,
->
-> Maxime
-
-
--- 
-Regards,
-Yang Xiwen
-
+Thanks,
+Cristian
 
