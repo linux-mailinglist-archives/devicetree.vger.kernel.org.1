@@ -1,258 +1,197 @@
-Return-Path: <devicetree+bounces-44067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99FEB85C60B
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 21:48:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B55E85C61D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 21:54:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 791181C211A6
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 20:48:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8CFF81F23912
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 20:54:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B2B814F9C8;
-	Tue, 20 Feb 2024 20:48:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E8BD1509BD;
+	Tue, 20 Feb 2024 20:54:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AQeWLIMO"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="P2HhyoOz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CA3B1FDB;
-	Tue, 20 Feb 2024 20:48:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C124B14AD12
+	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 20:54:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708462094; cv=none; b=D6G4WriPWCU2g6BT7wQ/y2rJQ6xbhdlLxIHQyNCRl/aYsj8uiwDysHSEYthNWMGcnH99KhiZTabpwEuNk+FTPHvI/OV/Q7nsf7goHh/FYLfn2jcU9xxgqioXo7dFs9615EUm6r3TVqRd6RJE+knqmZGjGIS8eC9XEhfnQLmrSWs=
+	t=1708462466; cv=none; b=HWtfbaN1XEHE4qBdEK14ZrG4e4JlD4JS+hqbsp+DI9TCuhH8R0xxIdx9iYqM35eoWxyaf0+HQzCaLduQeJgWMwSRqx2C4U4N7Uxk4of22KhnXqmrxA7Iyy7LTFjEH/JD3W661x6zZ05VQF8MkqJumnm/FgXYNe4bkGLbpf5EdM4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708462094; c=relaxed/simple;
-	bh=j0ysc+Du9hkfIMh8HUnhXGfu34k2JquJQ3Y/AbVNJPQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KF5pJBHs0uskZRVsYqUpeltyAyhVnKSiK8BlcKnP+Hg7GcspbtH2FB4qL+cvaGuBDX0ulrTwwus7XUc6+JUf/73jedbJtOCl1mWLMrAOyhEBegIxF3LNxe3f8ZltvTOioy4uLVIHGXuvqNry5FNsmXPDauSXwpX0+500OyuWpg0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AQeWLIMO; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-511976c126dso7260989e87.1;
-        Tue, 20 Feb 2024 12:48:11 -0800 (PST)
+	s=arc-20240116; t=1708462466; c=relaxed/simple;
+	bh=Yi0rtUqZLJm2S6u03a6Dmkff761MDSWQIxTDSQNuYdE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hvCwlixradsKhttoXMNBtxPnVRoZEp2obzIcpdHiRK/Ap6S7/Uw2JIObk/bqTBnEP3WRfb9kkLw3ghCl2WnRXkn4dOUs9qMJncXI9NrQuIHxfmPbiE+7fi2d4kq1EEBAondXzCcYAzyRYJUlg1OH4NlEwTiwjw/H2+Z13deP7nY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=P2HhyoOz; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-512b25893c9so3252680e87.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 12:54:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708462089; x=1709066889; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=exlHopiBCxUlDxBa3rdzATJoG3CThCTdOcxqsDekfXg=;
-        b=AQeWLIMO4LTWpoUlNgc/j+uWHu2u+qqK7LPMJLOKG2zSpI2xydQ+Oa1gF74feO8ueb
-         C32N/MBYdMxoA6SJ/33HGbbJuJxJMB0FhipLzaGntHujqj3ebMVsQRlhtIOzjezrDqPL
-         5EBODQuLOVJQK6B0yTQ7vUa77tLAybD5gWnKbuN9PyFkc5E29M/CA62fo2srzHE+Rht3
-         okBocDMg+PRy4FOcC/fEbj9Y/GVsL0do7SuQGEBTwWWg6XIC/FA3sNIPtW99HmKQQ+2O
-         mw1ze3syiD3ZkTxpvDyHS/P5qZUxzjIQmqgzo39y9ZqffxU+uua0ael0lww4w9IG1VtV
-         KKZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708462089; x=1709066889;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1708462462; x=1709067262; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=exlHopiBCxUlDxBa3rdzATJoG3CThCTdOcxqsDekfXg=;
-        b=b0yUPcXVPOWVMMpePGkOUmRiiB1HmHOyUGKnSdLPRGSgEm5nRlEFfSbw2FTNR9LjrP
-         Wx+3DQ1Pfv+Qa/necNeuaAE5SGNxju57ozGcGBeR3PHWwzAiSZSUDZMyRVAuw2ZVgAvt
-         mFPFJ8MaFbh/AUQDwOR5ERF+IXINWkxP4xW+EOgEqEqItLjVnIxdVn0sPkRFOYjj9XH4
-         vNLOwiM5qnrd4xgeJcyn2SZh2Cp9oNssgzyfkUpslve9u89ZnujG3F0aD10nA2iAWEDJ
-         GeYVszeO/U8nLFkjZestyuJ8JTZbqfN6uq2N1I5kg7l0sCm75UjfbeAVMkFFPOhfxccy
-         tIGg==
-X-Forwarded-Encrypted: i=1; AJvYcCUI/DNo9r1yyfet4YP9K71ExiaGqIWnPcQEBvqYQYHPBTl2nodn5scRWw+lCQfAgB+EYzki02ndltTr2dNd7RFeCkjLXtoDGIBNzpZjC169i2uUgPuGmfgRVF8D4tSO/yEQUouumUrAqxT6szX2nEF29iK31UkWO88Ct+XtwKX/FTeb9ocN
-X-Gm-Message-State: AOJu0Yxgfsfdp1nGJ84FVGg9wBI4/le75WB9hDE0z/LenL8Z/WX6TI3w
-	upqOTB4rP4FCkvX3OvOAD4qezZpYLzH2kulVv1ZpEnOqISgCwHkZ
-X-Google-Smtp-Source: AGHT+IE73qiEzH0d1j0hNf9G9egIYVPu4qy5uKnmXliXp4xtPPtk7+MSFbxE1v7/YuaZgPUsxO/vNg==
-X-Received: by 2002:a05:6512:3e05:b0:512:8811:5d8f with SMTP id i5-20020a0565123e0500b0051288115d8fmr12474041lfv.65.1708462089249;
-        Tue, 20 Feb 2024 12:48:09 -0800 (PST)
-Received: from mehdi-archlinux ([2a02:8109:aa27:2d00::d069])
-        by smtp.gmail.com with ESMTPSA id r21-20020a50d695000000b00563f3ee5003sm4180759edi.91.2024.02.20.12.48.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Feb 2024 12:48:08 -0800 (PST)
-Date: Tue, 20 Feb 2024 21:48:06 +0100
-From: Mehdi Djait <mehdi.djait.k@gmail.com>
-To: Sakari Ailus <sakari.ailus@iki.fi>
-Cc: mchehab@kernel.org, heiko@sntech.de, hverkuil-cisco@xs4all.nl,
-	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-	conor+dt@kernel.org, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com,
-	maxime.chevallier@bootlin.com, paul.kocialkowski@bootlin.com,
-	michael.riesch@wolfvision.net, laurent.pinchart@ideasonboard.com,
-	Mehdi Djait <mehdi.djait@bootlin.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [RESEND Patch v13 1/3] media: dt-bindings: media: add bindings
- for Rockchip CIF
-Message-ID: <ZdUQBl5pkFg2i1iu@mehdi-archlinux>
-References: <cover.1707677804.git.mehdi.djait.k@gmail.com>
- <13deb8c5cb58e08c1b47decd112b51e8e0b6c4dc.1707677804.git.mehdi.djait.k@gmail.com>
- <Zcta6hhSio67ahKs@valkosipuli.retiisi.eu>
- <ZdTbilKCsMFcjz64@mehdi-archlinux>
- <ZdT97Szv3yYG9Xbb@valkosipuli.retiisi.eu>
+        bh=jyh9FR/LCnL9UHf/YvsJlGBxSygyQQc/DzYerA/eUFA=;
+        b=P2HhyoOzqDJnE/Y9Kp4LbRwJniYfxSYfnuKrMCkUjU7WJTvr9S+LS+/wJSUhqRXiFB
+         Tt6YhgakC0FwtiO38IQF7jExcdNUwVBRtbi4o5moscJax1HnT1tybfnc4AUIy5JSSMnQ
+         C4BZ/uIkIWXgKkVI4fJi5D5RbI4INhnU8nZK3EFyzOmwqWYcTmPghry8dzdS+YJmW4+N
+         3M7VwYawEO+u5oiBoC2ev0ouFnIWeBGt+fb0/wBqzT/Po4RjNOf9KqVt6P8jX4gN0Ioj
+         W/vuoi8SeoF6B9G6A3r1ig0HtoFALXKogb3OvOnI2poUqkdVPDwv42gkK1p8GW2YngVI
+         yQjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708462462; x=1709067262;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jyh9FR/LCnL9UHf/YvsJlGBxSygyQQc/DzYerA/eUFA=;
+        b=H7Pqx6R5baC8T4t4NsXQpu/XTeg6z3bJkXwCgJE8uLUbYLjWkrJ05EsIwG3RKxKViz
+         JQjU5c04VDkZmJU12DIkkDbxI0BnlajjBhy3VHJKdournrAr5R1N945k49elWA5X6lml
+         ayfxvP8kVJxH7x2nTayJJv06RnkolW6SUL/rmWkAEi0wnx/XMUFeqiqibo7CbViAgAcV
+         5c5ZDVSruSzCqxJyrTrbbVyDKlz50nVXe2uHUrk8W9RB4WsRPjhgS1j9ez83mq8xgo9X
+         Zs2fJKgMOf87swECs2R59gFJ7wpYaaeTYwe6jcPIZ1Z1QSwzocNFc3qQZFhWRzCvvLBc
+         4vEA==
+X-Forwarded-Encrypted: i=1; AJvYcCVFabzY8VIUGAcbvqiyq9XNjj4FA7A/0PoDKAeQIdsMQAEJosxcEATe71No+Nsxsiys1EbW2MDSw2UutfZf6Zpwr8TD0m0hHxiuiw==
+X-Gm-Message-State: AOJu0Yz2HcmUs2aNSB+VuGmmkSAcVGz/3AJR8kQoR9fj8SZI2lX+fhUY
+	adh3WabDGXiysEUz0PDtTRhNZREcWt592UeKvEIjuDtZZKEorbr7Ic9IXBHDP7H8jnp++6EzYAP
+	KKis8xXpiBSbRjyBYVqvsbrsqY4ocl+NKSsd3FQ==
+X-Google-Smtp-Source: AGHT+IHZqlcVgt+ktb4ViHXtjGE0NSdsEiIKRla1wDkZQzzWbmG1Zgv7ZNzPVhE7Wq2SOamQcI56TcuJ7km+1hUpqHA=
+X-Received: by 2002:a05:6512:1321:b0:512:bd65:860a with SMTP id
+ x33-20020a056512132100b00512bd65860amr5309051lfu.5.1708462462005; Tue, 20 Feb
+ 2024 12:54:22 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZdT97Szv3yYG9Xbb@valkosipuli.retiisi.eu>
+References: <20240220094344.17556-1-mitrutzceclan@gmail.com>
+In-Reply-To: <20240220094344.17556-1-mitrutzceclan@gmail.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Tue, 20 Feb 2024 14:54:10 -0600
+Message-ID: <CAMknhBEZ7Y1Yx=wJGnfvYWGKPLas3pbCyY+sN8vrBzdkYO-A4w@mail.gmail.com>
+Subject: Re: [PATCH v13 1/3] dt-bindings: adc: add AD7173
+To: Dumitru Ceclan <mitrutzceclan@gmail.com>
+Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org, 
+	linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, 
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Walle <michael@walle.cc>, Andy Shevchenko <andy.shevchenko@gmail.com>, 
+	Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu <chiaen_wu@richtek.com>, 
+	Niklas Schnelle <schnelle@linux.ibm.com>, =?UTF-8?Q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>, 
+	Mike Looijmans <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>, 
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>, Ceclan Dumitru <dumitru.ceclan@analog.com>, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Sakari,
+On Tue, Feb 20, 2024 at 3:43=E2=80=AFAM Dumitru Ceclan <mitrutzceclan@gmail=
+.com> wrote:
+>
 
-On Tue, Feb 20, 2024 at 07:30:53PM +0000, Sakari Ailus wrote:
-> Hi Mehdi,
-> 
-> On Tue, Feb 20, 2024 at 06:04:10PM +0100, Mehdi Djait wrote:
-> > Hi Sakari,
-> > 
-> > Thank you for the review.
-> 
-> You're welcome!
-> 
-> > 
-> > On Tue, Feb 13, 2024 at 12:04:58PM +0000, Sakari Ailus wrote:
-> > > Hi Mehdi,
-> > > 
-> > > Thanks for the patchset.
-> > > 
-> > > On Sun, Feb 11, 2024 at 08:03:30PM +0100, Mehdi Djait wrote:
-> > > > From: Mehdi Djait <mehdi.djait@bootlin.com>
-> > > > 
-> > > > Add a documentation for the Rockchip Camera Interface binding.
-> > > > 
-> > > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> > > > Reviewed-by: Michael Riesch <michael.riesch@wolfvision.net>
-> > > > Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
-> > > > Signed-off-by: Mehdi Djait <mehdi.djait.k@gmail.com>
-> > > > ---
-> > > >  .../bindings/media/rockchip,px30-vip.yaml     | 123 ++++++++++++++++++
-> > > >  1 file changed, 123 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml b/Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..6af4a9b6774a
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml
-> > > > @@ -0,0 +1,123 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/media/rockchip,px30-vip.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Rockchip Camera Interface (CIF)
-> > > > +
-> > > > +maintainers:
-> > > > +  - Mehdi Djait <mehdi.djait@bootlin.com>
-> > > > +
-> > > > +description:
-> > > > +  CIF is a camera interface present on some Rockchip SoCs. It receives the data
-> > > > +  from Camera sensor or CCIR656 encoder and transfers it into system main memory
-> > > > +  by AXI bus.
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    const: rockchip,px30-vip
-> > > > +
-> > > > +  reg:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  interrupts:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  clocks:
-> > > > +    items:
-> > > > +      - description: ACLK
-> > > > +      - description: HCLK
-> > > > +      - description: PCLK
-> > > > +
-> > > > +  clock-names:
-> > > > +    items:
-> > > > +      - const: aclk
-> > > > +      - const: hclk
-> > > > +      - const: pclk
-> > > > +
-> > > > +  resets:
-> > > > +    items:
-> > > > +      - description: AXI
-> > > > +      - description: AHB
-> > > > +      - description: PCLK IN
-> > > > +
-> > > > +  reset-names:
-> > > > +    items:
-> > > > +      - const: axi
-> > > > +      - const: ahb
-> > > > +      - const: pclkin
-> > > > +
-> > > > +  power-domains:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  ports:
-> > > > +    $ref: /schemas/graph.yaml#/properties/ports
-> > > > +
-> > > > +    properties:
-> > > > +      port@0:
-> > > > +        $ref: /schemas/graph.yaml#/$defs/port-base
-> > > > +        unevaluatedProperties: false
-> > > > +        description: input port on the parallel interface
-> > > > +
-> > > > +        properties:
-> > > > +          endpoint:
-> > > > +            $ref: video-interfaces.yaml#
-> > > > +            unevaluatedProperties: false
-> > > > +
-> > > > +            properties:
-> > > > +              bus-type:
-> > > > +                enum: [5, 6]
-> > > > +
-> > > > +            required:
-> > > > +              - bus-type
-> > > 
-> > > What about the vsync-active, hsync-active and data-active properties?
-> > > Aren't they relevant for this device? Are there default values? This should
-> > > be part of the bindings for the device, shouldn't it?
-> > > 
-> > 
-> > From what I gathered from the Rockchip PX30 TRM and the other
-> > available documents from Rockchip, I will add the following:
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml b/Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml
-> > index 6af4a9b6774a..6920b0cb0507 100644
-> > --- a/Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml
-> > +++ b/Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml
-> > @@ -69,6 +69,14 @@ properties:
-> >                bus-type:
-> >                  enum: [5, 6]
-> >  
-> > +              hsync-active:
-> > +                enum: [0, 1]
-> > +                default: 1
-> > +
-> > +              vsync-active:
-> > +                enum: [0, 1]
-> > +                default: 0
-> 
-> I'd use the same default for both, whether it's 0 or 1.
-> 
+...
 
-Is this supposed to be the default value HIGH or LOW if it is not
-configured by the driver ? because the manual states the following:
+> +
+> +  avdd-supply:
+> +    description: Avdd supply, can be used as reference for conversion.
+> +                 This supply is referenced to AVSS, voltage specified he=
+re
+> +                 represens (AVDD - AVSS).
 
-HREF_POL
-Href input polarity:
-1'b0 : high active
-1'b1 : low active
-RESET VALUE: 0x0
+The datasheets call this AVDD1, not AVDD. Would be nice to use the
+correct name to avoid ambiguity.
 
-VSYNC_POL
-Vsync input polarity:
-1'b0 : low active
-1'b1 : high active
-RESET VALUE: 0x0
+Also check spelling `represents` above and below.
 
-And that's why I chose 1 for hsync and 0 for vsync
+> +
+> +  avdd2-supply:
+> +    description: Avdd2 supply, used as the input to the internal voltage=
+ regulator.
+> +                 This supply is referenced to AVSS, voltage specified he=
+re
+> +                 represens (AVDD2 - AVSS).
+> +
+> +  iovdd-supply:
+> +    description: iovdd supply, used for the chip digital interface.
+> +
+> +  clocks:
+> +    maxItems: 1
+> +    description: |
 
---
-Kind Regards
-Mehdi Djait
+Don't need `|` here.
+
+> +      Optional external clock source. Can include one clock source: exte=
+rnal
+> +      clock or external crystal.
+> +
+> +  clock-names:
+> +    enum:
+> +      - ext-clk
+> +      - xtal
+> +
+> +  '#clock-cells':
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^channel@[0-9a-f]$":
+> +    type: object
+> +    $ref: adc.yaml
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        minimum: 0
+> +        maximum: 15
+
+Parts ending in -2 only have four channels.
+
+> +
+> +      diff-channels:
+> +        items:
+> +          minimum: 0
+> +          maximum: 31
+> +
+
+Are we missing `bipolar: true` here? (since we have
+unevaluatedProperties: false)
+
+> +      adi,reference-select:
+> +        description: |
+> +          Select the reference source to use when converting on
+> +          the specific channel. Valid values are:
+> +          vref       : REF+  /REF=E2=88=92
+> +          vref2      : REF2+ /REF2=E2=88=92
+> +          refout-avss: REFOUT/AVSS (Internal reference)
+> +          avdd       : AVDD  /AVSS
+> +
+> +          External reference ref2 only available on ad7173-8.
+> +          If not specified, internal reference used.
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        enum:
+> +          - vref
+> +          - vref2
+> +          - refout-avss
+> +          - avdd
+> +        default: refout-avss
+> +
+> +    required:
+> +      - reg
+> +      - diff-channels
+> +
+> +required:
+> +  - compatible
+> +  - reg
+
+Aren't the various power supplies supposed to be required?
+
+- avdd-supply
+- avdd2-supply
+- iovdd-supply
 
