@@ -1,245 +1,163 @@
-Return-Path: <devicetree+bounces-43643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1014F85B001
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 01:22:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CD7A85B00F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 01:42:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 78579B22111
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 00:22:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A6D11F2260C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 00:42:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C228815C4;
-	Tue, 20 Feb 2024 00:21:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A891B23A2;
+	Tue, 20 Feb 2024 00:42:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iDngcxln"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UlpJj0tg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C93D54A26;
-	Tue, 20 Feb 2024 00:21:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E4494C63;
+	Tue, 20 Feb 2024 00:42:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708388512; cv=none; b=ZypuM9SdtKI3yqTrvsLsHRpjvMiXr/m4OGy8GZuUaLEXWPsTbBmBXIP9WkaRySycjv4Dg9GXA2j6dtgwQxM6nU1jLP5J06twbelesa1RPdQZH626gBagoDLc01gqORZsx04oYh5A7alpK8Dlvq2NZdYe/3oMKnSA71haJhVq0DE=
+	t=1708389728; cv=none; b=P6NRkTCmpReaSsQ4pCoLWp05H1rjfO3GdvmdDWAVWcWrmRtajiieqyad7q4KoSqCjJrFfd5V1Ye0IqbfCsUr12te/LVa0QiT7LuIf0brU5vQYPDq60QHN+u9myiyTN1ggRXDJ5PvWUJb4HMhefZew+8NIee0ZqnI5rCgnhh3X/0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708388512; c=relaxed/simple;
-	bh=yWL9+crD7ozhyXtdUplwtrHE2vBN684Ax3/F37eopcU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uTCBKScG0mG6snBwyuDXP5xz8lHQGVDqRZLsY02jCNBvAnCuL0qMhnMZHAVMYrVm8AUyPXP9StaQDSoGmVJnSf11w7Eah+FPOqzpwLA7LTuh4ma14OCGvcT0x/xBn5sRLzBwji8jeZCcsOowCuNHCMWyDK/cT7Ypk8rDbjRsei4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iDngcxln; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1708388511; x=1739924511;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=yWL9+crD7ozhyXtdUplwtrHE2vBN684Ax3/F37eopcU=;
-  b=iDngcxlnvSgFvUUI4rzM3/XsvscI/XLG3L7O/PEdALdcRfezqVGlL2gM
-   qdYr/i9v8ElsajKat9u3VDi3pjsPIQjbx6fm6itwM+CeoeiXuCVZ6n8Dg
-   Tnm4LDdY5l5iA0PJwjenCjd/aPRLm7DNEmASU/deGCWLAYeLgvbAq+ZF2
-   J+MXOwkNIUmStgj5fkTuaKHI1yTBlSqFXYJvLgUMQ6USaLy6gPjl4y2At
-   4DQkjsfU8NhkZHVJ7LWIrclQyIumUkUZCrpZghflcY4Q3X2aYDS7tSIEb
-   cDzqr3Yq3z9/DM8WT+Va3c6GVVFV879n4D52uDJZDl+Luqiul/rYRPxk4
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10989"; a="13875035"
-X-IronPort-AV: E=Sophos;i="6.06,171,1705392000"; 
-   d="scan'208";a="13875035"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Feb 2024 16:21:50 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,171,1705392000"; 
-   d="scan'208";a="4996627"
-Received: from lkp-server02.sh.intel.com (HELO 3c78fa4d504c) ([10.239.97.151])
-  by orviesa008.jf.intel.com with ESMTP; 19 Feb 2024 16:21:45 -0800
-Received: from kbuild by 3c78fa4d504c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rcDtG-00049W-0k;
-	Tue, 20 Feb 2024 00:21:42 +0000
-Date: Tue, 20 Feb 2024 08:20:39 +0800
-From: kernel test robot <lkp@intel.com>
-To: Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Marco Felsch <m.felsch@pengutronix.de>,
-	Jeff LaBundy <jeff@labundy.com>
-Cc: oe-kbuild-all@lists.linux.dev, catalin.popescu@leica-geosystems.com,
-	mark.satterthwaite@touchnetix.com,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	bsp-development.geo@leica-geosystems.com,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>
-Subject: Re: [PATCH v8 3/3] Input: Add TouchNetix axiom i2c touchscreen driver
-Message-ID: <202402200849.ABf6sZnr-lkp@intel.com>
-References: <20240219101221.129750-4-kamel.bouhara@bootlin.com>
+	s=arc-20240116; t=1708389728; c=relaxed/simple;
+	bh=isFZRqU/QindhA8jyP52Q3TJRY3mvK6OJTgs+zYmt+0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=fY2g3jGnqpb15z8VRqXuJjbOuLXQNTX4J4tsjmWJhNqp5Nfcpl6gfSKjMyndS3et39cCD2mqP8TEOu74sOyiAvUCpaYps/phW5CvsxJZivOX9/HfzPmEXxgq7uNiTedak5NNbagLmBlt/XnD8lWicnCr4jsJo3gEerJBU5FtHNw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UlpJj0tg; arc=none smtp.client-ip=209.85.215.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-53fbf2c42bfso3267612a12.3;
+        Mon, 19 Feb 2024 16:42:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708389726; x=1708994526; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Z6VN1Brni0/Tp50Gu9RGeDhBJRhZhzjZgGi+3xEXJ7I=;
+        b=UlpJj0tgLEC7f3/c67lM74JJj764shqJLvEmLfr6xeRX3ee/YopxHwCe1hJaNXEQjy
+         r93ryF0yknEYI22WdlSEfpg/bhZqwUP5xZOonYeBkfMT98gFw/xVCJg7o+znCb9mDVl7
+         2wmU5iLoH8yt6O1Qv22tu7c4Pidyeb7wwmapf72MXXBuKHflYf5QgMNf9oJdJ3WBLOtM
+         W2Rf+AtyuwcRBIUKCTbRD252FLzpjeCOtSoXkBpDeuYD4CpcOkKWN9xovEzrwIO+2HGS
+         xJVo6I+WuC50rR0QFWppEvmLA63ONTJKe8xthiMCjxExtNoCw0wPCYZYDBt/MTw+g6ww
+         3J4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708389726; x=1708994526;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Z6VN1Brni0/Tp50Gu9RGeDhBJRhZhzjZgGi+3xEXJ7I=;
+        b=VUl1c7nRRzoIwW0Q1GE125pVb5lScc7gNKc0YqM55mRusRZqQoWb0X+xFbSJWOn9oB
+         takM6Mh1rgXTUEkZNzw3klwjh8nNx7ON6Juh53CUWvevydBsth30hJkodpISLFpfxB98
+         ei4Yk76wO3HuHSpfTaVN+HdoGow/QN555ZeVDX4joUJfVe7khTOlZhJFHIWn+P6ZrxOz
+         CaLU9oF/0S8/mnyMW7nUzVrEqdnS/7Ht/tO3iwaDICEXrjQp7KrD7nsCARmIxWpABq/5
+         RlD/CPS5gDc74A5F37ctkNjFTu4W06AFfGS1t6jr68Bl/FR4PHSEWqbGO+MkSBJ1KXII
+         yZaA==
+X-Forwarded-Encrypted: i=1; AJvYcCUT2iBs7d+LXBdpHJqpWvAOhQa9hxhdMk77ZD9G09sjXEz0UryYnU4XfUi2Ye/qgauJdEk1esYV0KhxqRXmeQuvewgbEHQvZWwrv6EwrCHIm2QpqvQebiJAF4dBsNrDP5X3LpWq14B/G+tl7xKj/A2opDCYyQVq1KTPX1Qy17R1Z3rrBg0=
+X-Gm-Message-State: AOJu0YzYp0gp99s4/AiDAKt5OulSy4rSukh2hUDzxRakqrvFS2dBMvZu
+	PsRP+3XrWhW8OsP5/wARfPnnCc/TxqX7t49/OeuHCqOKhK01LGGU
+X-Google-Smtp-Source: AGHT+IEHM69vGr3cgZ5j3CjQTgkbjwl8XjDEf2FDav5T0t4zSLwrW2rKbP3r/aS5Wva2ajffTEXvTQ==
+X-Received: by 2002:a05:6a21:3182:b0:1a0:8578:fa97 with SMTP id za2-20020a056a21318200b001a08578fa97mr15579743pzb.48.1708389726256;
+        Mon, 19 Feb 2024 16:42:06 -0800 (PST)
+Received: from a28aa0606c51.. (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id cz3-20020a17090ad44300b00299bf19e872sm1831393pjb.44.2024.02.19.16.42.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Feb 2024 16:42:05 -0800 (PST)
+From: Jacky Huang <ychuang570808@gmail.com>
+To: linus.walleij@linaro.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de,
+	j.neuschaefer@gmx.net
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	ychuang3@nuvoton.com,
+	schung@nuvoton.com
+Subject: [PATCH v5 0/4] Add support for nuvoton ma35d1 pin control
+Date: Tue, 20 Feb 2024 00:41:55 +0000
+Message-Id: <20240220004159.1580108-1-ychuang570808@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240219101221.129750-4-kamel.bouhara@bootlin.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Kamel,
+From: Jacky Huang <ychuang3@nuvoton.com>
 
-kernel test robot noticed the following build errors:
+This patch series adds the pin control and GPIO driver for the nuvoton ma35d1
+ARMv8 SoC. It includes DT binding documentation, the ma35d1 pin control driver,
+and device tree updates.
 
-[auto build test ERROR on dtor-input/next]
-[also build test ERROR on dtor-input/for-linus robh/for-next krzk-dt/for-next linus/master v6.8-rc5 next-20240219]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+This pin control driver has been tested on the ma35d1 som board with Linux 6.8-rc5	.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Kamel-Bouhara/dt-bindings-vendor-prefixes-Add-TouchNetix-AS/20240219-181550
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
-patch link:    https://lore.kernel.org/r/20240219101221.129750-4-kamel.bouhara%40bootlin.com
-patch subject: [PATCH v8 3/3] Input: Add TouchNetix axiom i2c touchscreen driver
-config: i386-buildonly-randconfig-002-20240220 (https://download.01.org/0day-ci/archive/20240220/202402200849.ABf6sZnr-lkp@intel.com/config)
-compiler: gcc-7 (Ubuntu 7.5.0-6ubuntu2) 7.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240220/202402200849.ABf6sZnr-lkp@intel.com/reproduce)
+v5:
+  - Update the pinctrl driver header file pinctrl-ma35.h
+    - Include platform_device.h to fix compile issues.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202402200849.ABf6sZnr-lkp@intel.com/
+v4:
+  - Update the pinctrl driver Kconfig
+    - Add depends to CONFIG_PINCTRL_MA35D1 to prevent compilation errors.
+  - Update the pinctrl driver
+    - Utilize devm_kcalloc() instead of devm_kzalloc().
+    - Employ ARRAY_SIZE() instead of sizeof()/sizeof().
 
-All errors (new ones prefixed by >>):
+v3:
+  - Update DTS and YAML files
+    - Corrected the unit address of nodes gpioa ~ gpion.
+    - Removed the invalid "pin-default" node.
+    - Removed the phandle entry from "nuvoton,pins".
+  - Update pinctrl driver
+    - Fixed the Kconfig by using "depend on" instead of "if".
+    - Removed unused #include of header files.
+    - Utilized immutable irq_chip instead of dynamic irq_chip.
+    - Replaced ma35_dt_free_map() with pinconf_generic_dt_free_map().
+    - Implemented other minor fixes as suggested by the reviewer.
 
-   In file included from include/linux/device.h:15:0,
-                    from drivers/input/touchscreen/touchnetix_axiom.c:17:
-   drivers/input/touchscreen/touchnetix_axiom.c: In function 'axiom_process_u41_report_target':
->> drivers/input/touchscreen/touchnetix_axiom.c:332:18: error: 'slot' undeclared (first use in this function); did you mean 'sget'?
-      target->index, slot, target->present,
-                     ^
-   include/linux/dev_printk.h:129:34: note: in definition of macro 'dev_printk'
-      _dev_printk(level, dev, fmt, ##__VA_ARGS__);  \
-                                     ^~~~~~~~~~~
-   drivers/input/touchscreen/touchnetix_axiom.c:331:2: note: in expansion of macro 'dev_dbg'
-     dev_dbg(ts->dev, "U41 Target T%u, slot:%u present:%u, x:%u, y:%u, z:%d\n",
-     ^~~~~~~
-   drivers/input/touchscreen/touchnetix_axiom.c:332:18: note: each undeclared identifier is reported only once for each function it appears in
-      target->index, slot, target->present,
-                     ^
-   include/linux/dev_printk.h:129:34: note: in definition of macro 'dev_printk'
-      _dev_printk(level, dev, fmt, ##__VA_ARGS__);  \
-                                     ^~~~~~~~~~~
-   drivers/input/touchscreen/touchnetix_axiom.c:331:2: note: in expansion of macro 'dev_dbg'
-     dev_dbg(ts->dev, "U41 Target T%u, slot:%u present:%u, x:%u, y:%u, z:%d\n",
-     ^~~~~~~
+v2:
+  - Update nuvoton,ma35d1-pinctrl.yaml
+    - Update the 'nuvoton,pins' to follow the style of rockchip pinctrl approch.
+    - Use power-source to indicate the pin voltage selection which follow the
+      realtek pinctrl approch.
+    - Instead of integer, use drive-strength-microamp to specify the real driving
+      strength capability of IO pins.
+  - Update ma35d1 pinctrl driver
+    - Add I/O drive strength lookup table for translating device tree setting
+      into control register.
+  - Remove ma35d1-pinfunc.h which is unused after update definition of 'nuvoton,pins'.
 
 
-vim +332 drivers/input/touchscreen/touchnetix_axiom.c
+Jacky Huang (4):
+  dt-bindings: reset: Add syscon to nuvoton ma35d1 system-management
+    node
+  dt-bindings: pinctrl: Document nuvoton ma35d1 pin control
+  arm64: dts: nuvoton: Add pinctrl support for ma35d1
+  pinctrl: nuvoton: Add ma35d1 pinctrl and GPIO driver
 
-   289	
-   290	/*
-   291	 * Support function to axiom_process_u41_report.
-   292	 * Generates input-subsystem events for every target.
-   293	 * After calling this function the caller shall issue
-   294	 * a Sync to the input sub-system.
-   295	 */
-   296	static bool axiom_process_u41_report_target(struct axiom_data *ts,
-   297						    struct axiom_target_report *target)
-   298	{
-   299		struct input_dev *input_dev = ts->input_dev;
-   300		struct axiom_u41_target *target_prev_state;
-   301		enum axiom_target_state current_state;
-   302		int id;
-   303	
-   304		/* Verify the target index */
-   305		if (target->index >= AXIOM_U41_MAX_TARGETS) {
-   306			dev_err(ts->dev, "Invalid target index! %u\n", target->index);
-   307			return false;
-   308		}
-   309	
-   310		target_prev_state = &ts->targets[target->index];
-   311	
-   312		current_state = AXIOM_TARGET_STATE_NOT_PRESENT;
-   313	
-   314		if (target->present) {
-   315			if (target->z >= 0)
-   316				current_state = AXIOM_TARGET_STATE_TOUCHING;
-   317			else if (target->z > AXIOM_PROX_LEVEL && target->z < 0)
-   318				current_state = AXIOM_TARGET_STATE_HOVER;
-   319			else if (target->z == AXIOM_PROX_LEVEL)
-   320				current_state = AXIOM_TARGET_STATE_PROX;
-   321		}
-   322	
-   323		if (target_prev_state->state == current_state &&
-   324		    target_prev_state->x == target->x &&
-   325		    target_prev_state->y == target->y &&
-   326		    target_prev_state->z == target->z)
-   327			return false;
-   328	
-   329		id = target->index;
-   330	
-   331		dev_dbg(ts->dev, "U41 Target T%u, slot:%u present:%u, x:%u, y:%u, z:%d\n",
- > 332			target->index, slot, target->present,
-   333			target->x, target->y, target->z);
-   334	
-   335		switch (current_state) {
-   336		case AXIOM_TARGET_STATE_NOT_PRESENT:
-   337		case AXIOM_TARGET_STATE_PROX:
-   338			if (!target_prev_state->insert)
-   339				break;
-   340			target_prev_state->insert = false;
-   341	
-   342			if (!id)
-   343				input_report_key(input_dev, BTN_TOUCH, 0);
-   344	
-   345			input_mt_report_slot_inactive(input_dev);
-   346			/*
-   347			 * make sure the previous coordinates are
-   348			 * all off screen when the finger comes back
-   349			 */
-   350			target->x = 65535;
-   351			target->y = 65535;
-   352			target->z = AXIOM_PROX_LEVEL;
-   353			break;
-   354		case AXIOM_TARGET_STATE_HOVER:
-   355		case AXIOM_TARGET_STATE_TOUCHING:
-   356			target_prev_state->insert = true;
-   357			input_report_abs(input_dev, ABS_MT_TRACKING_ID, id);
-   358			input_report_abs(input_dev, ABS_MT_POSITION_X, target->x);
-   359			input_report_abs(input_dev, ABS_MT_POSITION_Y, target->y);
-   360	
-   361			if (current_state == AXIOM_TARGET_STATE_TOUCHING) {
-   362				input_report_abs(input_dev, ABS_MT_DISTANCE, 0);
-   363				input_report_abs(input_dev, ABS_DISTANCE, 0);
-   364				input_report_abs(input_dev, ABS_MT_PRESSURE, target->z);
-   365				input_report_abs(input_dev, ABS_PRESSURE, target->z);
-   366			} else {
-   367				input_report_abs(input_dev, ABS_MT_DISTANCE, -target->z);
-   368				input_report_abs(input_dev, ABS_DISTANCE, -target->z);
-   369				input_report_abs(input_dev, ABS_MT_PRESSURE, 0);
-   370				input_report_abs(input_dev, ABS_PRESSURE, 0);
-   371			}
-   372	
-   373			if (!id)
-   374				input_report_key(input_dev, BTN_TOUCH, (current_state ==
-   375						 AXIOM_TARGET_STATE_TOUCHING));
-   376			break;
-   377		default:
-   378			break;
-   379		}
-   380	
-   381		target_prev_state->state = current_state;
-   382		target_prev_state->x = target->x;
-   383		target_prev_state->y = target->y;
-   384		target_prev_state->z = target->z;
-   385	
-   386		return true;
-   387	}
-   388	
+ .../pinctrl/nuvoton,ma35d1-pinctrl.yaml       |  163 ++
+ .../bindings/reset/nuvoton,ma35d1-reset.yaml  |    3 +-
+ .../boot/dts/nuvoton/ma35d1-iot-512m.dts      |   80 +-
+ .../boot/dts/nuvoton/ma35d1-som-256m.dts      |   83 +-
+ arch/arm64/boot/dts/nuvoton/ma35d1.dtsi       |  150 +-
+ drivers/pinctrl/nuvoton/Kconfig               |   19 +
+ drivers/pinctrl/nuvoton/Makefile              |    2 +
+ drivers/pinctrl/nuvoton/pinctrl-ma35.c        | 1211 +++++++++++
+ drivers/pinctrl/nuvoton/pinctrl-ma35.h        |   51 +
+ drivers/pinctrl/nuvoton/pinctrl-ma35d1.c      | 1797 +++++++++++++++++
+ 10 files changed, 3549 insertions(+), 10 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nuvoton,ma35d1-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/nuvoton/pinctrl-ma35.c
+ create mode 100644 drivers/pinctrl/nuvoton/pinctrl-ma35.h
+ create mode 100644 drivers/pinctrl/nuvoton/pinctrl-ma35d1.c
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
