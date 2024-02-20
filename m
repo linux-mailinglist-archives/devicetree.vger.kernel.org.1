@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-43922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 034A185BDF9
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 15:01:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89CB685BE02
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 15:03:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 366141C215D7
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 14:00:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BBFD1C21483
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 14:03:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACE7A6A8A4;
-	Tue, 20 Feb 2024 14:00:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 073066A8B7;
+	Tue, 20 Feb 2024 14:03:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mRZoJifw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cUjaVRij"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2B8C6A351
-	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 14:00:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C93C6A35E
+	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 14:03:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708437654; cv=none; b=YoDsMvy5Pw2BrreQMyYxRl5bn8gKAkz09Fiyi3RnVRdNDrZfllCnZ4khTsVHa1PXd6vV9igNG9V9k5PVxM89tD7nHkdq28jSJehAemoHMakg5p+6VqQSaAPTgZHsYwmCCKUEI5IG2GcXT8u5m1oovBpd84BpGO/ugIan+GafsO0=
+	t=1708437814; cv=none; b=pvtB/aLLy4C/k75bIQidSdrRUPMm5Qhgbs8MIEnt2BQ/Ki5ptYXFcd4kPZhYei82lEAFA29/3UrxrNB+lZwTrfKinJ/+dfEdOu6SBGas98I0fYGPW5bT1c5Tx5o4Ndc1hvWtBjj7mAdam2KOpFP8HE8g3gaNksl4T4pz4bYwzFY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708437654; c=relaxed/simple;
-	bh=yIavGtyBVHQhwYxocbKlHQfDHDHgZOv5J9ExqtIQ0og=;
+	s=arc-20240116; t=1708437814; c=relaxed/simple;
+	bh=YIgXLQrn14CWmrZfowaGPAblUiVDzjmJHLps35gqblg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=py389+KId6VBUU2aNP3BSzPaYx01h+wU5ZSyytqU45SVNiJF8W7LCDvU1Cof4nJ2n8WVGdar/PFARTdlcSZGJUpuuYje8vxuoYjxLMFMC/Fq+6ckrT9ed/4/WiiUoWLaIq5CuNSB7egEP73+T4jt+iIMtXE/QCQhybQi5k5F1Nk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mRZoJifw; arc=none smtp.client-ip=209.85.208.180
+	 Content-Type:Content-Disposition:In-Reply-To; b=KSuQpuIHs8F7NYuWpgBeVXvcVO3JEMZxzzcIxprO8u64wqpcK7Ja09R7vpVX/4F0ZbHy/AptvrZdQwUMDuKH4uJdmdgulCy02YnzksOoF2/4TRBuHynImDe1U+RgG61CokBBCAXEKYUZgR+dPtkgG3ot90S07fkcg5dRD9zjY+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cUjaVRij; arc=none smtp.client-ip=209.85.128.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2d243797703so19201381fa.3
-        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 06:00:52 -0800 (PST)
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-41271096976so2443875e9.2
+        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 06:03:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708437651; x=1709042451; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708437811; x=1709042611; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=yIavGtyBVHQhwYxocbKlHQfDHDHgZOv5J9ExqtIQ0og=;
-        b=mRZoJifwVwTGd+0ntdKE33Zb9jzmcWjeV/lxBsfPyFWZYqtytI7rZ16bFKVibTJQe2
-         hNE5QqSj8R30rVki/7gV6YWl1fh+RDRrsMIv8D77cTRzDGtXw+DF6EahyiqHVPLcYpwX
-         Wg0H4Am93nmtABmrW2Kkp+PuQ12BbjleE9oKAdua39x9RLD931SWs+Umr7N4Jws06332
-         e7Sd1tgCJbkxr/32up3Y4/BviJk5FkWxre1b7AUEDeB8lngX4RCNB33w/ChXZmVcxbG3
-         irNS2JFykSbkwC33y+hF3TyXeOzCxabIFhyuJ96KFYU2ogInpvpQALB9CN6Wrk1WffPU
-         9UFg==
+        bh=YIgXLQrn14CWmrZfowaGPAblUiVDzjmJHLps35gqblg=;
+        b=cUjaVRijlpkAuZyhcMvypRAMfKh2/AQw6/z8dfGU7S2aO72BL7k0f6E5CaYlHdrC7i
+         B5CeBHk+oa3ThzoraBFbcmkWTASt2jDG/xQfkEbsNY7/2PpSgo8FDQUwpz1UGr3BLCGi
+         JhClBUX8agY7V1P7/BOgo1JPNBoYWeyRDHbrTYAX8LDPQAX6usUAQ5m8/iFMprUTpf3E
+         wOhSCzJJwSskJXqK2N7ncSWGbe5gZxpCg/L/e4mkOTgnzmmF+K3NHJ/3ouXJ/XTr/KWF
+         r1HTvLz8oUsTsUAUxMiVbfiXxMmV6grWDrCRk6pHLPodfxLEtzHXifwBPX8429XnZ+Gj
+         NbaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708437651; x=1709042451;
+        d=1e100.net; s=20230601; t=1708437811; x=1709042611;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=yIavGtyBVHQhwYxocbKlHQfDHDHgZOv5J9ExqtIQ0og=;
-        b=cJ1kE+wYuCju1TlkhG32iOFx/SyaNyAnmNWZ+D3iwZAwmkIgNhitzl1v9fkx4KQpO3
-         ziKrFI0CJ3ee8fujqVJazmYwCL0HZgjogmtOsBdJA/jPI3YUgduFVF9IOdnaIc1QBmnG
-         wM7mIxjw7FG7fan7d9fNnrxh0CLd0ey0vqylKwABYdrOl3ZFhqt0i2dRyydOOsaUCg7z
-         HjxqfB2EQJVWmeAQprdWRYPJ9ELS59/y/imH+QzRRuS/caMSCzXIf/EZ7rn5W10+O+ge
-         gUh3Ba+r6n3cftXp+Ep7kk4eoA+JJMW1kgcUf7zag5DMr42hwVbDJ0hiwmOYb0RjOsFP
-         Sezg==
-X-Forwarded-Encrypted: i=1; AJvYcCUn28iqv5RcojZSk8g3bVLscUL7/FwqsogN9VysHz5BP/fM132Q6JcN6g7I3HiEKNvqxL+t+y23TIeb5FP3uPETKLqaknIep/Fq1Q==
-X-Gm-Message-State: AOJu0YzDlRWuLC0drOnPNrgZDxex8KDQOXdPYnwPRZPGomE1Cc0rdHi8
-	QWkQVT7o738uI1C/zQ6I+8f1DwCFOoAeDp0AgcBs88whsS3uL5XBZhehMlbWH4A=
-X-Google-Smtp-Source: AGHT+IFnMr7pgPZVpX97ZGZLJplTKGBJmAizHUWbgJVoD43o8CV/7GPFehR+pR53bgpnnhwAyZG3rQ==
-X-Received: by 2002:a2e:b0fa:0:b0:2d2:3028:2bcc with SMTP id h26-20020a2eb0fa000000b002d230282bccmr5159754ljl.47.1708437650764;
-        Tue, 20 Feb 2024 06:00:50 -0800 (PST)
+        bh=YIgXLQrn14CWmrZfowaGPAblUiVDzjmJHLps35gqblg=;
+        b=EgDgZA9NLO1t20dA8F6X/QStEiL11hmBt5hBLlYLldaIyeTwb8jBcO1U6Rfl82vMTY
+         oTujFNd7JtE9edRdz/ry3csPheuPpJiB2p12uW16GfCxfeAZm1uudpCJQMmMO5etqFJZ
+         DbS2ppoF4/UQeHHUj/sgVhMZwiTd8GKhHPWZgZw3MRs1i2kZOUtuhZ8iDCcoXowhmvJI
+         KdkVy52sWMP0etnUJE2ovGlrHwbAFzO2+tiqEtGkI8DUtTItNQPGO43fVE7ZbDNPX8gs
+         EAxIUIdli5TYPHsmElWonKZ85yZ87AHV3w3k78uEIule2hEKndg6Ww9ksc9ECAtGy5Yg
+         cZ0Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWziQe311vCH8yVepGpboCxm4yezxyHaKDQ1AVa4zHxzSqIuVOIAUMlq/VdA9pRuddlZx8V8MGrMmUiHmrrZl1T/DJTD1QPWT/UoQ==
+X-Gm-Message-State: AOJu0Yzdlci5rqWaT0WMeIq7ifo28MZcFQAoKPuM5sbI/5jCR84ZBFR3
+	IW+G/3PcNa0zwfvAMZTbzHXaxYUt/4OHYCtUzxVPzds10IQreMFzw9SQJ3FoATA=
+X-Google-Smtp-Source: AGHT+IG6vkgZ+8zSvP2/8Ap20RRDORuDhGSZX+BUAp6ws2+0Tc+tQb9sjACW+5haOxYS7Odl/DVhmQ==
+X-Received: by 2002:a05:600c:1553:b0:40e:d30b:6129 with SMTP id f19-20020a05600c155300b0040ed30b6129mr11941148wmg.13.1708437811534;
+        Tue, 20 Feb 2024 06:03:31 -0800 (PST)
 Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
-        by smtp.gmail.com with ESMTPSA id o8-20020a05600c510800b004105528c61fsm15006473wms.35.2024.02.20.06.00.49
+        by smtp.gmail.com with ESMTPSA id bj29-20020a0560001e1d00b0033d5c454f03sm4888305wrb.114.2024.02.20.06.03.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Feb 2024 06:00:50 -0800 (PST)
-Date: Tue, 20 Feb 2024 14:00:47 +0000
+        Tue, 20 Feb 2024 06:03:31 -0800 (PST)
+Date: Tue, 20 Feb 2024 14:03:29 +0000
 From: Daniel Thompson <daniel.thompson@linaro.org>
 To: Luca Weiss <luca@z3ntu.xyz>
 Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
@@ -83,11 +83,11 @@ Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
 	dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
 	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/4] backlight: lm3630a: Initialize backlight_properties
- on init
-Message-ID: <20240220140047.GD6716@aspen.lan>
+Subject: Re: [PATCH 2/4] backlight: lm3630a: Don't set bl->props.brightness
+ in get_brightness
+Message-ID: <20240220140329.GE6716@aspen.lan>
 References: <20240220-lm3630a-fixups-v1-0-9ca62f7e4a33@z3ntu.xyz>
- <20240220-lm3630a-fixups-v1-1-9ca62f7e4a33@z3ntu.xyz>
+ <20240220-lm3630a-fixups-v1-2-9ca62f7e4a33@z3ntu.xyz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,11 +96,15 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240220-lm3630a-fixups-v1-1-9ca62f7e4a33@z3ntu.xyz>
+In-Reply-To: <20240220-lm3630a-fixups-v1-2-9ca62f7e4a33@z3ntu.xyz>
 
-On Tue, Feb 20, 2024 at 12:11:19AM +0100, Luca Weiss wrote:
-> The backlight_properties struct should be initialized to zero before
-> using, otherwise there will be some random values in the struct.
+On Tue, Feb 20, 2024 at 12:11:20AM +0100, Luca Weiss wrote:
+> There's no need to set bl->props.brightness, the get_brightness function
+> is just supposed to return the current brightness and not touch the
+> struct.
+>
+> With that done we can also remove the 'goto out' and just return the
+> value.
 >
 > Fixes: 0c2a665a648e ("backlight: add Backlight driver for lm3630 chip")
 > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
