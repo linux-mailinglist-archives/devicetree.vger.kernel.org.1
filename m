@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-43778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40E7D85B873
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 11:01:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5D8D85B87D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 11:03:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2EB61F25E50
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 10:01:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A39831C20E17
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 10:03:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EA6C5FEF9;
-	Tue, 20 Feb 2024 10:01:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F25B60BBD;
+	Tue, 20 Feb 2024 10:03:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M8OAo4Lg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Pb7JZOqN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18EE5612C9
-	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 10:01:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70D9D60881
+	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 10:03:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708423308; cv=none; b=bF+Kf2K9gv4XJtki7AJM5tNmeFEPIBF8+sgqQBPwt+EoeJnmNgrYaNhV1Sc3kOZX6dhQSjC1evMeZ4VkVPSAf2/mXBNLeOnb1ad7ePCUIizx9+IKGYNtqJuP0wRi8TWySsc00kygj9RRKiVfVAwKskaExO8EScoIN2YCeMXJdHo=
+	t=1708423418; cv=none; b=CiqGgP7dY1+JBSBe2byG0G2yNbmVhXcRiNuiKujoYVFUX13qrFJZBOaalo8ZjLh9PnWkr3FFc5KykzKM7rAwF3eHJFokz9BrB9vLiIdQidSW3MAAaxSg2S1dQCgAsSgPIxRkkr3aiFSXCzw3ngqfZbYTSeCrdSG/wdCVQB8//Nw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708423308; c=relaxed/simple;
-	bh=g7CNBVuYpRafyq2kggyWRq8oq8extUdMpaHLD9844uM=;
+	s=arc-20240116; t=1708423418; c=relaxed/simple;
+	bh=fCVM9fIx+QlZSaT2+jH9KFDPXgF5LsvTXo9cBJsA8E0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JK+sCvFO2tdF0yAR5VdOkux92p1utimgR3fzCvRgS1pray4MM9GwBPrnHlmWtCFN4WFpG9Mi37xcRtXX3PWOtzgMKCVsUjLkyUb/+yezy3qZXUpQzFAyfL6y85qQO1PM27SbUbFCNz5d3jIcU/jc3g9gFVxdmk5LrjtVOHnev9k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=M8OAo4Lg; arc=none smtp.client-ip=209.85.167.41
+	 In-Reply-To:Content-Type; b=HTHM0ayl94l6Msq6GnxNGE3Ct9ZO5ayTAgn94nVFEYve+88DO17chL5IOpSfzfO7XFfJgQ6ElXzn5+jLAwV2oKOiUCyhlgkAwFtVZQpjlTIl5dcUUSz/xbXTPFv6eFOOkEveJ1XqhTpSlnOAtzATl0GqDz6YziK7muA3+4lzLP8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Pb7JZOqN; arc=none smtp.client-ip=209.85.208.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-512b3b04995so2055456e87.3
-        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 02:01:45 -0800 (PST)
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2d094bc2244so72545991fa.1
+        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 02:03:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708423304; x=1709028104; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708423414; x=1709028214; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ggp/kKDUoEQak3ZEjckeJCKOSJSXt76vc0O59mn16VM=;
-        b=M8OAo4Lgmhrkcu+ehahl/tXFwwRnUvk9JaD8+wAxrFMBfMKvKTo0NdiMVgiA0bYnII
-         4IH3rpVCZIk5Bs5owLOht3xVAfY/izLBiXQsIn9vSJnrQU+c/Qcmm48yFR79wAbl6apa
-         gFjtkrRldtG6hppBWckuSz8hMpTQCpV9iFkKdb2cEXZK7dDjFi7vHhRRGzNdu4XLEbxc
-         EDL3GsavpMZ5wXFShs/w6hEA6tb8CofmL1Vxogcjgd4XxWTTrKFJSdOTS796GX6cQbFQ
-         bQma9+BXME8eOljSap6o0sbNfAuH3ANQ9LB7EjBzQ6jMrbtn6gArmPSWivZCApIW9y3n
-         YLcQ==
+        bh=tPnQexsRXJiNv+6Xh39SXpzjoFxV7a2HocmDFObIvII=;
+        b=Pb7JZOqNa+pJ6vsEO8h9GCP0FzOaqg61z74o0UvCeWgd3cWv2SW2eqPhrS1IifrU+s
+         8MMTV0+L3+nMUeSrx3D2xLoG+FQZbq2/CUXS53NxayX69NSaualUv36kSmWBcUt3Yt2/
+         PoNIv3KEJEOQiJ+3viXGCSmiMInK6bllWc2sQbY9qdWPwekb5tLG+NleW7ZAXgF1k3Js
+         AuZGCJsu8PAIR6fZ92AEVjQeZ6hr5agKwSwbT5NNvKlAh9oxkGQmqKYyFVhgrTwtSsCb
+         SZC0cXDmorLcq5++Kc0UU9tRjwZXL6VrDQrJjUR0d+wvWcx/I4jVKC7YP7nvn9LEvxJb
+         Gtdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708423304; x=1709028104;
+        d=1e100.net; s=20230601; t=1708423414; x=1709028214;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ggp/kKDUoEQak3ZEjckeJCKOSJSXt76vc0O59mn16VM=;
-        b=QcMTHnzuQUKaze8MrXBV/4DfhGgkqmUmfkXwoyBeQLpBv+F4yqZlhKo1hrEE8eOcD3
-         oD85xwQRKHs7Qo4h81ZeORzuaJAKkbHfFtcJIoj5KE2QXHEjLdAKnhdswHDhRue8G0FQ
-         KQxCQEIrvgnEPC6+X2EQWQiPmbDl/kXMEc4ZLJxOxBLp75/8xFbbwMzUbCxksrRXe9yB
-         OlFR2q1BUo4E++YV3XYNkP5ng78sSJhLHbTZJ0Wvud4ymxn7fnuAuCv/QSQrHcw/DDz7
-         6gcw3dBCuiOfTtPpWGE/V1VuKZSnbA4RMwuvL9JROTvnUe97W6XOYd/X89o5PH1YH2n1
-         BmZw==
-X-Forwarded-Encrypted: i=1; AJvYcCXE4SdUdTuiqub8dJnYFAvS3WCErGV5882yo/Ri3bL1/x+dLteYEr1aqWap1VDk81m2GQ/8oBZ8dB/pzuT3Ts0NXjMIAFaiLOfKcg==
-X-Gm-Message-State: AOJu0YwdIQFzgBPJYnyfBxSVzhqsuHYLm8WeYg4jlJihDkBHpDsTf8Su
-	+j0w6RKn7fFm2h5FUP53r2rrihPXG1AX6fmuTxPfBsKfiVGQekBVrlPbK5O679U=
-X-Google-Smtp-Source: AGHT+IGD8mn8jn1AWhQhMcgxsjJFxlnlOWqY+CESrDpuZ/vXpFd9OzitMTysH9GCquG5N9V4JRnevg==
-X-Received: by 2002:a05:6512:1192:b0:512:8aeb:aaa8 with SMTP id g18-20020a056512119200b005128aebaaa8mr11055024lfr.49.1708423304193;
-        Tue, 20 Feb 2024 02:01:44 -0800 (PST)
+        bh=tPnQexsRXJiNv+6Xh39SXpzjoFxV7a2HocmDFObIvII=;
+        b=gfl62xPGcFWY0JLU9gYJznNNojItBXQ3963sUql90s55AyWkCypWoaxWpKelM2Dh0P
+         UpXlOfi3DJiy9nDLa1rJbWEF1E9g1bx8Ikxp+FLwBnPs4A/9DCBTZa9zl6sepUcM+rNN
+         pMygGJ1vN5D0jtqpcrrEQo3Sc8KoDM0DleYuAa0MKo8nSw7AmdaSxqE6abVzvJi27C7P
+         7MPKr6f9HU9eFMmTDPGDGYrIrtw4XMr2HRIR7JaaNLPeRZ07UVMNQ0Qx1BNVewf00kcF
+         Pi8XwPPK0ekH55NaXUGBiVF1x0KMU8YsyqxNCntAFfmNOAI0VruFds4IQqrKLu70SMco
+         JiJA==
+X-Forwarded-Encrypted: i=1; AJvYcCXOrKiNp3bYWgLnxDXX9cxHad2L0TQS/8tUoso264t9G0ktUWX2vj3C6d+ZPtzcHtuHsd3swQa3qVoCtAe2zp7kJeZC5Z+qg2JBNA==
+X-Gm-Message-State: AOJu0YxkOmaTZzbd5bnqNKvk4bQaje6TaENm7bz08GfL0WiXQcAl9FB/
+	4wLdy2nRDzS0vKcKdxUAKzJYGUWmlPP8yiQYl963a4RBokUirWI2vNafobCLtkU=
+X-Google-Smtp-Source: AGHT+IEPY4diBzcZEzsnFr0+2CA8TYPIUOfHX7OUpwZ6ThGMdcjalTAKRrYBdcY2wLvk0txXManmkw==
+X-Received: by 2002:a05:651c:b2b:b0:2d2:2fb3:38f9 with SMTP id b43-20020a05651c0b2b00b002d22fb338f9mr6147863ljr.13.1708423414559;
+        Tue, 20 Feb 2024 02:03:34 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id jl22-20020a05600c6a9600b0041069adbd87sm13859729wmb.21.2024.02.20.02.01.42
+        by smtp.gmail.com with ESMTPSA id az19-20020adfe193000000b0033d6ff7f9edsm839756wrb.95.2024.02.20.02.03.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Feb 2024 02:01:43 -0800 (PST)
-Message-ID: <95cafd69-de6d-497f-b3d6-b6d7a8a3b795@linaro.org>
-Date: Tue, 20 Feb 2024 11:01:42 +0100
+        Tue, 20 Feb 2024 02:03:34 -0800 (PST)
+Message-ID: <466c26b0-e7e0-4feb-bf37-be2af7136300@linaro.org>
+Date: Tue, 20 Feb 2024 11:03:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,19 +76,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/4] arm64: dts: amlogic: add fbx8am DT overlays
+Subject: Re: [PATCH v2 1/2] dt-bindings: leds: Add NCP5623 multi-LED
+ Controller
 Content-Language: en-US
-To: Marc Gonzalez <mgonzalez@freebox.fr>, DT <devicetree@vger.kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
+To: Abdel Alkuor <alkuor@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+ Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>,
- AML <linux-amlogic@lists.infradead.org>
-References: <07f7a695-18a0-4211-82e9-b1e2c7166969@freebox.fr>
- <79ba726d-d02c-44b9-b6f6-59b17ba9755c@freebox.fr>
- <54b4e810-754e-481a-bbc8-984f859b116d@linaro.org>
- <15fcafb2-4b4a-40a1-8ef5-ee3aef9b3b9d@freebox.fr>
+ Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Andr=C3=A9_Apitzsch?=
+ <git@apitzsch.eu>, Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+ ChiYuan Huang <cy_huang@richtek.com>, Lukas Bulwahn
+ <lukas.bulwahn@gmail.com>, Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+Cc: ChiaEn Wu <chiaen_wu@richtek.com>, Alice Chen <alice_chen@richtek.com>,
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240217230956.630522-1-alkuor@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,84 +135,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <15fcafb2-4b4a-40a1-8ef5-ee3aef9b3b9d@freebox.fr>
+In-Reply-To: <20240217230956.630522-1-alkuor@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/02/2024 11:32, Marc Gonzalez wrote:
-> On 14/02/2024 10:47, Neil Armstrong wrote:
+On 18/02/2024 00:09, Abdel Alkuor wrote:
+> NCP5623 is DC-DC multi-LED controller which can be used for RGB
+> illumination or backlight LCD display.
 > 
->> On 13/02/2024 18:14, Marc Gonzalez wrote:
->>
->>> Add support for two variants of the fbx8am board.
->>>
->>> Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
->>> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
->>> ---
->>>   arch/arm64/boot/dts/amlogic/Makefile                       |  6 ++++++
->>>   arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso    | 35 ++++++++++++++++++++++++++++++++++
->>>   arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso | 25 ++++++++++++++++++++++++
->>>   3 files changed, 66 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
->>> index cc8b34bd583d8..1ab160bf928ae 100644
->>> --- a/arch/arm64/boot/dts/amlogic/Makefile
->>> +++ b/arch/arm64/boot/dts/amlogic/Makefile
->>> @@ -8,6 +8,8 @@ dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j100.dtb
->>>   dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j110-rev-2.dtb
->>>   dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j110-rev-3.dtb
->>>   dtb-$(CONFIG_ARCH_MESON) += meson-axg-s400.dtb
->>> +dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am-brcm.dtb
->>> +dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am-realtek.dtb
->>>   dtb-$(CONFIG_ARCH_MESON) += meson-g12a-radxa-zero.dtb
->>>   dtb-$(CONFIG_ARCH_MESON) += meson-g12a-sei510.dtb
->>>   dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
->>> @@ -80,3 +82,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
->>>   dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
->>>   dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air-gbit.dtb
->>>   dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air.dtb
->>> +
->>> +# Overlays
->>> +meson-g12a-fbx8am-brcm-dtbs	:= meson-g12a-fbx8am.dtb meson-g12a-fbx8am-brcm.dtbo
->>> +meson-g12a-fbx8am-realtek-dtbs	:= meson-g12a-fbx8am.dtb meson-g12a-fbx8am-realtek.dtbo
->>> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
->>> new file mode 100644
->>> index 0000000000000..ed79809b15859
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
->>> @@ -0,0 +1,35 @@
->>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->>> +// Copyright (c) 2024 Freebox SAS
->>> +
->>> +/dts-v1/;
->>> +/plugin/;
->>> +
->>> +#include <dt-bindings/gpio/gpio.h>
->>> +#include <dt-bindings/gpio/meson-g12a-gpio.h>
->>> +
->>> +/ {
->>> +	compatible = "freebox,fbx8am-brcm", "freebox,fbx8am", "amlogic,g12a";
->>
->> This looks fine but I'm unsure if those new compatible should be documented or not,
->> since they are in an overlay
+> Signed-off-by: Abdel Alkuor <alkuor@gmail.com>
+> ---
 
-All compatibles in entire Linux source code shall be documented, so
-please document any new ones appearing in overlays.
-
-> 
-> Rob, Krzysztof, Conor,
-> 
-> Just want to make sure this was done "right".
-> 
-> Is it acceptable for an overlay (DTSO) to define a more specific compatible prop?
-
-I think it is fine and some DTSO already do it. User-space might want to
-identify that specific overlay is applied or not. Of course this will
-not work when multiple overlays are applied and each changes compatible,
-thus I would say this is in general specific to particular cases of
-exclusive overlays. In such case, why not making it new board DTS?
-
-If this is not exclusive overlay, then new compatible looks wrong.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
