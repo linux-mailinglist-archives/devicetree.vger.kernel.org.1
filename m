@@ -1,190 +1,117 @@
-Return-Path: <devicetree+bounces-44039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C408885C450
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 20:09:53 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7DCD85C461
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 20:11:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 00C861C23B8F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 19:09:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6F6EDB24E17
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 19:11:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61F57135A7F;
-	Tue, 20 Feb 2024 19:09:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5622A1353E0;
+	Tue, 20 Feb 2024 19:10:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="xH4Vlx+I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="STAoQTDO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out162-62-58-216.mail.qq.com (out162-62-58-216.mail.qq.com [162.62.58.216])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4D0F78688;
-	Tue, 20 Feb 2024 19:09:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.58.216
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A66412838D;
+	Tue, 20 Feb 2024 19:10:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708456180; cv=none; b=AjT/Qls9TKKOJyoDODlpmO3Rm+Qz+GwXN9ZgjDN98PYF1qHxdTO3POrK088EEhGq9jprBJxbERAQ70D7LRgMpEggX7YifhKczp6QQbVxKwIDbLLeKlCldizMB58J0z0AXHIcrz/FK6NgupUSyRcBU+wl2+C++IwKRyh3Q9jkyMc=
+	t=1708456244; cv=none; b=bdBFCtNObWt5c9Gel4/nIOvf6TGJ8kOzkVbLj/rCvT8C5U6G3GsLAgeZutSZm/gIGVO1bh5Ft4lS4PijyYdRwWM7gWwPcRtf51t+BQK7OEAxHCKV2hthNbLF9l7Y+a+9IiQ9hMYkrpfaTBw/LBgNvQKxNz/wfAwGq7rGWSmN784=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708456180; c=relaxed/simple;
-	bh=dmi97ihsQHR136LdoSFWmyMDV0XkN33gpSpTyXrBFj4=;
-	h=Message-ID:From:To:Cc:Subject:Date:In-Reply-To:References:
-	 MIME-Version; b=L2yg/8F80C8NUAzx0BNkXCmQV13ZkMqd5EeEJi1n2X1Erc2jpehfT70bn6k1wfqKrNGLrHt99NOgdv5CleXeUYrGHpPSpi8RN24LDxq/l3O9MJWJYTWhw4tQfGKVu4qUD4MYieeCv/xpeAf2F+D/PqUkCiuFi1KaIasoVxGdObM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=xH4Vlx+I; arc=none smtp.client-ip=162.62.58.216
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1708455872; bh=pFI8FnzNKc7+k3g3nC6wduGRD05uGcNCchPjmG7qSZQ=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=xH4Vlx+Iw1qBWB6+s8znzfa+isssUZmB+StD6rZKsVelT6ZDRVtSJ19bj65HuqGpx
-	 Usq7bhzKhMOLO2Du9Ed3b15Btq8xMF10SuSytGaQL3harArxxQrGm+atQPw5N185Wt
-	 7bt8rDXMOHFCdLB5pgUgfoXh8ugEkNovzBppR7eQ=
-Received: from cyy-pc.lan ([240e:379:2240:ef00:159c:db93:bdcd:c9c6])
-	by newxmesmtplogicsvrszc5-1.qq.com (NewEsmtp) with SMTP
-	id 11B84C23; Wed, 21 Feb 2024 03:04:27 +0800
-X-QQ-mid: xmsmtpt1708455867tqokz8oa2
-Message-ID: <tencent_C9E0DAC75884B0346EF2250A5E68673BA20A@qq.com>
-X-QQ-XMAILINFO: NiDupExshEc70XaZcuHgb8zjvf3CU1GVRuohbIeat/MxFt3rjbDuW0+/qs/vNI
-	 brFaK+gI/D/pbti3ER5TG6xRXTKOUWNd9FPRoxKGvovkb30i0zGP6AjYCtkTefdNvZwOBEOM6wYu
-	 ZcoxioPhd7iwsUHf/g/WhPgrQZc1nTjSNwHW1UCeQo6zXWO3v5mmX5TEpbByeSawtIYkfWCHzrWx
-	 ApKUmp36gVV+dR5Tu5gqOZdhVtn7y8ei3V+DxRoQ9tiAtYWq6LGsKJ8iCOqOQt/VIlSqb6zbYaRt
-	 ClzLW/bkWzJYC7juZOP3zHWUjDj0SpCKnx7sJgLzJ3rRK3v7d51WW+6YNiBzw2rY7XOk6gXhaAqp
-	 U92TOemu2sPUobqYSutBxT7vc2IGO5uDIV7gSLmm3cJdNwP5XbngCGxZxvzBrWe7d9/rh417HpGV
-	 /7DiTJK+VH/Rf9lpx2xgo0PP3N736whsCCja4B8f7KIb339SNLesD4et4+9yRY+ZK47Ivcmmrfct
-	 qNjHDKOjg5n3XC+Hbvy6LRkd6QtOf3lFDEadGDY+Jydg0lqMS9IYwxBclw+Pw6E8SSRJHAGwADBt
-	 +klC+wtdaqHn089ymz6GyY824nSTJWIxW/uK83mTYrCmbxujPIkjU81Qmvk9ruNBYNYE06S9O5rT
-	 0eqCXfb9f3BHhg1GZQ71bFPYJEBBl7UmSIa+qz435Hh9QAdkB4FsE4iO9JQnhraigg1q9nm7NMb7
-	 ZHcGPYIJ6HAEZqw1T3RADbj1An7bqZ/k5ogRNouk9f1oKKkJulKeckLpfxSQ/qFgkT7VHwF1I8oE
-	 XGfoKXAO0Y6TBytuSsNhSBaDVE6GdDp7nelwB+MnywgPQeTz56gkh9plZgTD4sBcVhTxo0PoUJmz
-	 cD/1AQwMANrzY4LbAE32IKPm3luCliRZSc1H2CrckUXb/5yZcPGkWOUjo8tnT7XcK7615nfTFPgQ
-	 8uncXOXFsPjydH3WWWFpIttl3xFTtcWLxuWhWPNaRVYtAejZVLHtNYjxlvQh+PeRXhu3t9V6TKry
-	 e6rZ4yNz+lnStBmh+PbBdo2R02HGQ=
-X-QQ-XMRINFO: MSVp+SPm3vtS1Vd6Y4Mggwc=
-From: Yangyu Chen <cyy@cyyself.name>
-To: linux-riscv@lists.infradead.org
-Cc: Paul Walmsley <paul.walmsley@sifive.com>,
+	s=arc-20240116; t=1708456244; c=relaxed/simple;
+	bh=EFe3zrWR0LWM1ZcyrsqjHTnnESZFaVS5VCYSop5F4Uc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mHUYN2HbadX2c+VtS8Rt9TipR34oYZgI9IN6dnvwBbbLsnvwWwiSHlKrfeSSTLYo+fD9F23SAyTBNSF3LxX/i8S7BNhVU7icdjFucfAgn0JfroeCeeuR0zz7ywkkH/bvm1gt+oqNhWJVfNXxQyRBusl1eO2+NxGdhKEFiVFjoPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=STAoQTDO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00A23C433C7;
+	Tue, 20 Feb 2024 19:10:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708456243;
+	bh=EFe3zrWR0LWM1ZcyrsqjHTnnESZFaVS5VCYSop5F4Uc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=STAoQTDOpl9BLSR1MZMUXajWDDxXaE72uD0vlU/+O/v1Jm3Y+5jz2QdLWDNQmovnI
+	 Rz0JrLOjKJrUw6ux+KxWzOTkp9MrOqj2VhuUEt6TQdMvb6InRbptZWHzKrOS/KKNzk
+	 bg/qJ2s1qSexFpZCJFUZno3h0TrwnU9mawV6a6IeuKtYiWsT0ntYGbdg3MiSvRVE76
+	 OwMWaGbbXkiAPmlwdNngC9AF1mR5YAeHiaTJeLXBfDw4Wo005H26gTXIn7K2R1lylG
+	 A0z5HqW9BUXFVKcRwXLkqe2T5MMoQDj0CIVJgNVLlGzWqdtiW/PfTs+W/1GhTUBy62
+	 hXXLnqPVa8zGg==
+Date: Tue, 20 Feb 2024 19:10:37 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Alex Soo <yuklin.soo@starfivetech.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Hal Feng <hal.feng@starfivetech.com>,
+	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
+	Jianlong Huang <jianlong.huang@starfivetech.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Drew Fustini <drew@beagleboard.org>, linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Paul Walmsley <paul.walmsley@sifive.com>,
 	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Conor Dooley <conor@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Rob Herring <robh+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	Yangyu Chen <cyy@cyyself.name>
-Subject: [RFC PATCH 1/1] riscv: dts: Allow BUILTIN_DTB for all socs
-Date: Wed, 21 Feb 2024 03:03:57 +0800
-X-OQ-MSGID: <20240220190357.3391307-1-cyy@cyyself.name>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <tencent_AB625442CC1BCFF86E04D7B5891C43719109@qq.com>
-References: <tencent_AB625442CC1BCFF86E04D7B5891C43719109@qq.com>
+	Albert Ou <aou@eecs.berkeley.edu>
+Subject: Re: [RFC PATCH v2 1/6] dt-bindings: pinctrl: starfive: Add JH8100
+ pinctrl
+Message-ID: <20240220-bottling-reverence-e0ee08f48ccc@spud>
+References: <20240220064246.467216-1-yuklin.soo@starfivetech.com>
+ <20240220064246.467216-2-yuklin.soo@starfivetech.com>
+ <1a11cee2-2ef1-4ce0-8cc1-63c6cc97863f@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="tADB2NrbVw9jbyhp"
+Content-Disposition: inline
+In-Reply-To: <1a11cee2-2ef1-4ce0-8cc1-63c6cc97863f@linaro.org>
 
-The BUILTIN_DTB kernel feature on RISC-V only works on K210 SoC only. This
-patch moved this configuration to entire riscv.
 
-Signed-off-by: Yangyu Chen <cyy@cyyself.name>
----
- arch/riscv/Kconfig                  | 16 ++++++++++++++-
- arch/riscv/Kconfig.socs             | 32 -----------------------------
- arch/riscv/boot/dts/Makefile        |  2 +-
- arch/riscv/boot/dts/canaan/Makefile |  2 --
- 4 files changed, 16 insertions(+), 36 deletions(-)
+--tADB2NrbVw9jbyhp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-index b49016bb5077..23d501561e64 100644
---- a/arch/riscv/Kconfig
-+++ b/arch/riscv/Kconfig
-@@ -996,7 +996,21 @@ config RISCV_ISA_FALLBACK
- config BUILTIN_DTB
- 	bool "Built-in device tree"
- 	depends on OF && NONPORTABLE
--	default y if XIP_KERNEL
-+	default y if XIP_KERNEL || SOC_CANAAN
-+	help
-+	  Build a device tree into the Linux image.
-+	  This option should be selected if no bootloader is being used.
-+	  If unsure, say Y.
-+
-+
-+config BUILTIN_DTB_SOURCE
-+	string "Built-in device tree source"
-+	depends on BUILTIN_DTB
-+	default "canaan/k210_generic" if SOC_CANAAN
-+	help
-+	  DTS file path (without suffix, relative to arch/riscv/boot/dts)
-+	  for the DTS file that will be used to produce the DTB linked into the
-+	  kernel.
- 
- endmenu # "Boot options"
- 
-diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
-index e08e91c49abe..623de5f8a208 100644
---- a/arch/riscv/Kconfig.socs
-+++ b/arch/riscv/Kconfig.socs
-@@ -84,36 +84,4 @@ config SOC_CANAAN
- 	help
- 	  This enables support for Canaan Kendryte K210 SoC platform hardware.
- 
--if ARCH_CANAAN
--
--config ARCH_CANAAN_K210_DTB_BUILTIN
--	def_bool SOC_CANAAN_K210_DTB_BUILTIN
--
--config SOC_CANAAN_K210_DTB_BUILTIN
--	bool "Builtin device tree for the Canaan Kendryte K210"
--	depends on ARCH_CANAAN
--	default y
--	select OF
--	select BUILTIN_DTB
--	help
--	  Build a device tree for the Kendryte K210 into the Linux image.
--	  This option should be selected if no bootloader is being used.
--	  If unsure, say Y.
--
--config ARCH_CANAAN_K210_DTB_SOURCE
--	string
--	default SOC_CANAAN_K210_DTB_SOURCE
--
--config SOC_CANAAN_K210_DTB_SOURCE
--	string "Source file for the Canaan Kendryte K210 builtin DTB"
--	depends on ARCH_CANAAN
--	depends on ARCH_CANAAN_K210_DTB_BUILTIN
--	default "k210_generic"
--	help
--	  Base name (without suffix, relative to arch/riscv/boot/dts/canaan)
--	  for the DTS file that will be used to produce the DTB linked into the
--	  kernel.
--
--endif # ARCH_CANAAN
--
- endmenu # "SoC selection"
-diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Makefile
-index 72030fd727af..318239d9423b 100644
---- a/arch/riscv/boot/dts/Makefile
-+++ b/arch/riscv/boot/dts/Makefile
-@@ -8,4 +8,4 @@ subdir-y += sophgo
- subdir-y += starfive
- subdir-y += thead
- 
--obj-$(CONFIG_BUILTIN_DTB) := $(addsuffix /, $(subdir-y))
-+obj-$(CONFIG_BUILTIN_DTB) := $(addsuffix .dtb.o, $(CONFIG_BUILTIN_DTB_SOURCE))
-\ No newline at end of file
-diff --git a/arch/riscv/boot/dts/canaan/Makefile b/arch/riscv/boot/dts/canaan/Makefile
-index 520623264c87..987d1f0c41f0 100644
---- a/arch/riscv/boot/dts/canaan/Makefile
-+++ b/arch/riscv/boot/dts/canaan/Makefile
-@@ -5,5 +5,3 @@ dtb-$(CONFIG_ARCH_CANAAN) += sipeed_maix_bit.dtb
- dtb-$(CONFIG_ARCH_CANAAN) += sipeed_maix_dock.dtb
- dtb-$(CONFIG_ARCH_CANAAN) += sipeed_maix_go.dtb
- dtb-$(CONFIG_ARCH_CANAAN) += sipeed_maixduino.dtb
--
--obj-$(CONFIG_ARCH_CANAAN_K210_DTB_BUILTIN) += $(addsuffix .dtb.o, $(CONFIG_ARCH_CANAAN_K210_DTB_SOURCE))
--- 
-2.43.0
+On Tue, Feb 20, 2024 at 09:11:43AM +0100, Krzysztof Kozlowski wrote:
+> On 20/02/2024 07:42, Alex Soo wrote:
+> > Add documentation and header file for JH8100 pinctrl driver.
+> >=20
+> > Signed-off-by: Alex Soo <yuklin.soo@starfivetech.com>
+> > ---
+>=20
+>=20
+> RFC? Why isn't this patch ready for review?
 
+The TL;DR is that Emil and I didn't want to apply the dts patches to
+support a platform that hadn't actually been taped out yet.=20
+For an SoC in that state, at least the bindings for, clock and pinctrl
+could be subject to changes before tapeou. I think putting RFC on those
+patches is a good idea, but of course the rationale should be mentioned.
+
+Cheers,
+Conor.
+
+--tADB2NrbVw9jbyhp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdT5LQAKCRB4tDGHoIJi
+0q4/AP9aepRkgGMwUZFmvYfa5PLBEmZ95b0tJEUr42AOOQptlQEAvcfTGWd32hy5
+EqoPPciZYk30PuQQ68mEvIHOaYAqnwE=
+=gvQL
+-----END PGP SIGNATURE-----
+
+--tADB2NrbVw9jbyhp--
 
