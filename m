@@ -1,74 +1,73 @@
-Return-Path: <devicetree+bounces-43846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43847-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13BC585BAB4
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 12:36:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35DE585BABE
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 12:38:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 484B71F20EF1
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 11:36:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4E711F218E3
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 11:38:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D794D66B4E;
-	Tue, 20 Feb 2024 11:36:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ECEB66B4F;
+	Tue, 20 Feb 2024 11:37:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kDkaSRPd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DBahXR/D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18C98664A5
-	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 11:36:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E32B69949
+	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 11:37:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708428984; cv=none; b=e4vamowwDGnbw9FqYOJSkVffiUpmOuESKz11DtSksaB6u2MNm0YsQbdaqf2FFEKrPrG7G1k76LZaMrJ0bK+s5k4SMqjZwjHHf6S6VLEnFEc6UM2EUDN8NFBl6TBus8/T/Swuu5q2J8YSGOLNSKuueKRB8J19lQRiQU/vApt9NCE=
+	t=1708429071; cv=none; b=EHo1L1ycIp10M4IciL4477mGRFdC/vNxyo05LKIZw6I7Bm5UX/HyTTTkbzXkAGeI6kx9sj85ksFGU7OJZx1kHiXTjaHPjWQ1JqU0taol1l7/w10xN9kuSmGuRMKqChCpspZKxTl7qD5w2kGV2ibScaB16Qp0t5uGjRUBhH3HQI4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708428984; c=relaxed/simple;
-	bh=bQNTQQftu8hT132BY8z//CNRib7r0FxwOl65wzmeJTQ=;
+	s=arc-20240116; t=1708429071; c=relaxed/simple;
+	bh=aCqm7zmGGwbfZRL15nYhI/q/NZRSI/X4Jngq4sAu76c=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gPUQUFxodf0YYl0z6A5ULxCvqO/UFpqVgArf7hPNs/o/0F3NW+YfivpvVPV5h63jcCdHXwv0inNTRKd6DF7yXy0muZglqQnZaiY+mjsRZyUjUE6mM0DdMXv7DDAe4NPYRTZ27wTJZUzsymUCgaGIKYIjklRW34ehcyE6g/N+UrM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kDkaSRPd; arc=none smtp.client-ip=209.85.208.41
+	 In-Reply-To:Content-Type; b=oCliW9yo/80XRrL0n8PuF/+bdff9GZ1fwE48cxtt4BBO33NwmehJXlFOGcR3I99sTp7m5hbDyt+Q0vbbFF4xI5BvfSB/Z4ycpaQ3hSJ9FCyr1/ElEpxoh1pFd1VJdCcIoxGwcezSy8NpswpNZhsl79KwZ6YBAYKjKvxNAf8HeJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DBahXR/D; arc=none smtp.client-ip=209.85.208.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5643eccad0bso3839042a12.1
-        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 03:36:22 -0800 (PST)
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5648d92919dso2500418a12.1
+        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 03:37:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708428981; x=1709033781; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708429068; x=1709033868; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8vEYNIyU29gTWgK7RPlJP8ywD5d82+QI8BUp/J+t4jU=;
-        b=kDkaSRPdvVnThko2wb0oSjYuO4H170I0k8cSHkGYcGAteq0dlidJpasqJTE9Grhun1
-         0G8m2JgHMrh31wyHLAxSjGwugUU5PKZ9XBpsHNMpO3tadanaypzXIuLr0MerpiQHaF5P
-         wa6R4bMe0paXNfEIBlEsLkR/CSFLEAkj/e2+YNM1so5qWcXJheXf7XBYLpAs6YmTAin5
-         /Jz1sQuU5WUGnUJRuCOKsQIAoX2svv5zliKidfG07s0kebJPNec9tcl0zOPff/TS9NgH
-         gnXaHBaeJugO3IURzpa5Rj+rI1HUGngWI2LoIXQxbqTQFh8Y+ric9CMRdmJXoVLr3Soi
-         Muyg==
+        bh=mMy/+tyqqxFBTAjRn0JPSAGjq/uZ/OhPdcX+w/Bl/V0=;
+        b=DBahXR/DDCU/bUtXD4dXCNveRJHS0uUu6r/KNjgzxstNktrpLzlg42FPg5Hp1SWFzv
+         lvGXkP53sCVoyFAy2rxeB/bjx3xxV8Clhm3TyBHgWIQjklUTGp/EIeMzUQq7YfnT6RAa
+         2fVTcO4LsTwxpj81wqWm2qwzGM7zluTO50DOm/VA8oNcqh6lUDZK1RUOGOWO+uRu5VV/
+         mKRGUWAsvS+q2oChzVDYqXpTiz09IAwkJN3Ooh86bzx/KKwPMMdM+ekfEi7KIvDsCS+k
+         9XP42uNZeQNIPtOmYYkMfLBUzqvZSOtTGD2U/6+uSwdcDsxoz2/ApainZ0xa060LSgaz
+         EZuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708428981; x=1709033781;
+        d=1e100.net; s=20230601; t=1708429068; x=1709033868;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8vEYNIyU29gTWgK7RPlJP8ywD5d82+QI8BUp/J+t4jU=;
-        b=YAlpJ1JZJyCsJehOhIqKZTquti5fQpKRnoSZORsZgsxqUy164V++PW0iOtzz6oXCEy
-         vulfn3JzF2pHocmyj39uB9vKtcI5htLteIQuaAu3H+cPlENG1y+QvoT+Q7paKZbI18O5
-         ooWKPEVumgT2Yi9xu/8JqToNsCXCLQHjmIKHhT14dIr68kQLeptK07qCfYvraXqdpGXp
-         nk0f1PgcWYtSHqjF84/bKOqrMwadWrZgjCXcxuhqgYoUbV1VApboSTKI0AnTZQqOWYCw
-         1Pb7gekauMqv/XgfoAYOqHKczTRG+NHfhxNzT87CgwaFT15yQ5AWB3E7Z+MuTduMxrqP
-         gBWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUb+1c5gUF2cGvCOexPFSHKZ65PAQ17O5sGb6wg7mJMSk73PxnTudgwxA3CDwST8S1gKdCSwi9VN2YB4trb36nDQFKudgv+G2ubyg==
-X-Gm-Message-State: AOJu0YzJGFC2udSfikgmF67QST+4eJ4z7xYRBYzrF8PP8L61ycRzPYQ1
-	vRJXohojqEw7jY/ntbUnyYY+1E0NrM/MNJ3FLc1JF1r8CNKnmYgu+8i9cfEDRwk=
-X-Google-Smtp-Source: AGHT+IGpyxJ/bl0eqpL2sckEecGp2IRFB53crVZKhLoZSHuacr+gQOzDmFq8EUEwV19XeGHyJABCBw==
-X-Received: by 2002:a05:6402:334:b0:563:d32f:5441 with SMTP id q20-20020a056402033400b00563d32f5441mr7885607edw.3.1708428981479;
-        Tue, 20 Feb 2024 03:36:21 -0800 (PST)
+        bh=mMy/+tyqqxFBTAjRn0JPSAGjq/uZ/OhPdcX+w/Bl/V0=;
+        b=OHQKBIie2vM3Ni1EbRRKDRTJ1P+K6ZJzr3RxlpAx5k9Iw1lCh6kPCBff1qXh7WQwcH
+         F+vEjtcK0LtjDT4HklLefcro6aiREgCZKiNiCQLoXBb4braIvqfLmVQkIPbjIQdwKa4A
+         fO3dUln04uUedN3NpASuU0KBPxjBcLJ4Us23Lp3kP5n9wY+2gXWXAroPPcIBwWRHehyg
+         CDsxmRM6GfUSWPzud6om59ciT1EtcG2BVfrlBakk4QpYph7y8lmF+QGU572fYwU6xS2I
+         dGuJn9zSS4HlfsMernnx2g0WLJJsjzQiWdCWWE75LW4N4Hi0Iqv7xOSPklD6aLOLMQQ5
+         QX0g==
+X-Gm-Message-State: AOJu0YzcTrSrLTwlqF4RAvaytlTePnzBx3g2Zuu3lonSgF0HYYpWSAVR
+	HhUfTnUcFLpmbR14h4PGvEQp1hzT7ll8YQjSHI+QUm1eWPKiLO8zUkYGdgmZvgk=
+X-Google-Smtp-Source: AGHT+IHxHZ7aaKdCIyzehZkgTGXYKIrhGtf9UcNgP1hoLqjXEnOBrasVQo0/L+RbgqjbdS+Ba5oaiA==
+X-Received: by 2002:aa7:c90b:0:b0:564:a9ca:1c41 with SMTP id b11-20020aa7c90b000000b00564a9ca1c41mr1901125edt.6.1708429068400;
+        Tue, 20 Feb 2024 03:37:48 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id e10-20020a50ec8a000000b00564d6840976sm234387edr.80.2024.02.20.03.36.19
+        by smtp.gmail.com with ESMTPSA id e10-20020a50ec8a000000b00564d6840976sm234387edr.80.2024.02.20.03.37.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Feb 2024 03:36:21 -0800 (PST)
-Message-ID: <454a7e8d-70f5-4bf5-a3f1-bf9e42672c4c@linaro.org>
-Date: Tue, 20 Feb 2024 12:36:18 +0100
+        Tue, 20 Feb 2024 03:37:48 -0800 (PST)
+Message-ID: <10fe67af-0572-4faa-91c6-fce9c8f9dc92@linaro.org>
+Date: Tue, 20 Feb 2024 12:37:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,20 +75,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/5] Add QPIC SPI NAND driver
+Subject: Re: [RFC WIP PATCH] venus: add qcom,no-low-power property
 Content-Language: en-US
-To: Md Sadre Alam <quic_mdalam@quicinc.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: andersson@kernel.org, konrad.dybcio@linaro.org, broonie@kernel.org,
- robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
- linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mtd@lists.infradead.org, quic_srichara@quicinc.com,
- quic_varada@quicinc.com
-References: <20240215134856.1313239-1-quic_mdalam@quicinc.com>
- <20240219130412.GC3281@thinkpad>
- <3ad2909d-4ac3-fff3-739d-b12a3408fa0f@quicinc.com>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Marc Gonzalez <mgonzalez@freebox.fr>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: DT <devicetree@vger.kernel.org>, linux-media
+ <linux-media@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>,
+ Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Pierre-Hugues Husson <phh@phh.me>
+References: <0843621b-386b-4173-9e3c-9538cdb4641d@freebox.fr>
+ <f6e68756-72a1-4c32-968d-3d6adaa153c9@linaro.org>
+ <CAA8EJpq=G21h87W69_4U-BZ=Sa5VEs15Y-zE-G5x9VxVx4qjsA@mail.gmail.com>
+ <81dc6452-4039-4eb4-92ba-df248215fca2@linaro.org>
+ <b8325dbf-67c5-4898-bc23-ff093ae6e14a@freebox.fr>
+ <87db77f7-fda4-4cf7-adfd-8545c40c3365@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -135,44 +141,57 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <3ad2909d-4ac3-fff3-739d-b12a3408fa0f@quicinc.com>
+In-Reply-To: <87db77f7-fda4-4cf7-adfd-8545c40c3365@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/02/2024 12:32, Md Sadre Alam wrote:
-> 
-> 
-> On 2/19/2024 6:34 PM, Manivannan Sadhasivam wrote:
->> On Thu, Feb 15, 2024 at 07:18:51PM +0530, Md Sadre Alam wrote:
->>> This series of patches will add initial supports
->>> for QPIC SPI NAND driver.
->>>
->>> Currently this driver support following commands
->>>
->>> -- RESET
->>> -- READ ID
->>> -- BLOCK ERASE
->>> -- PAGE READ
->>> -- PAGE WRITE
->>> -- GET FEATURE
->>> -- SET FEATURE
->>> -- BAD BLOCK CHECK
->>>
->>> This driver has been tested with dd command with read/write page
->>> with multiple file size 1MiB, 10MiB,40MiB etc.
->>> Also tested with "mtd" command like mtd erase, mtd write, mtd verify etc.
->>>
+On 20/02/2024 12:21, Bryan O'Donoghue wrote:
+> On 20/02/2024 10:56 a.m., Marc Gonzalez wrote:
+>> On 19/02/2024 20:24, Bryan O'Donoghue wrote:
 >>
->> This is not the first version isn't it? Where is the changelog describing what
->> has changed since then?
+>>> On 19/02/2024 5:44 p.m., Dmitry Baryshkov wrote:
+>>>
+>>>> On Mon, 19 Feb 2024 at 19:29, Konrad Dybcio wrote:
+>>>>>
+>>>>> On 19.02.2024 18:18, Marc Gonzalez wrote:
+>>>>>
+>>>>>> On our msm8998-based device, calling venus_sys_set_power_control()
+>>>>>> breaks playback. Since the vendor kernel never calls it, we assume
+>>>>>> it should not be called for this device/FW combo.
+>>>>>
+>>>>> FWIW, this is also broken on other SoCs.. 8280/8350 and 6115
+>>>>> to name a couple.
+>>>>
+>>>> Then let's just disable it until it gets unbroken?
+>>>
+>>> Its functional on most of our upstream stuff though, why switch if off
+>>> unless necessary ?
+>>>
+>>> Maybe it should be an opt-in instead of an opt-out, TBH my own feeling
+>>> is its better to minimize the amount of work and opt as per the proposed
+>>> patch.
+>>>
+>>> Perhaps the qcom vidc team can give insights on 8280xp and 8350 when we
+>>> come to tackling new HFI6XX and later SoCs ...
+>>
+>> I was wondering if the chosen property name might cause issues later...
+>>
+>> Thinking "qcom,no-low-power" might be a bit too general?
+>> Perhaps would need to mention venus somewhere in the name,
+>> to limit this to the video decoder?
+>>
+>> Regards
+>>
 > 
->    The earlier patch was the RFC for design review only.
+> Yep, the word venus should probably appear in the property name.
 
-RFC is state of patch, not version. This is v2 then.
+This is RFC, so I am ignoring it, but just in case before you send v2
+with the same:
 
-These RFC postings are really becoming mess. Some people make multiple
-RFCs and then post v1 hiding entire previous history... And why even
-bother with calling it RFC?
+You described the desired Linux feature or behavior, not the actual
+hardware. The bindings are about the latter, so instead you need to
+rephrase the property and its description to match actual hardware
+capabilities/features/configuration etc.
 
 Best regards,
 Krzysztof
