@@ -1,63 +1,74 @@
-Return-Path: <devicetree+bounces-43769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57A2185B828
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 10:50:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2C1D85B833
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 10:51:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0FB77284D5D
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 09:50:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA627282FD3
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 09:51:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B2F8604DD;
-	Tue, 20 Feb 2024 09:47:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AAE060ECC;
+	Tue, 20 Feb 2024 09:50:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Pt9P0viO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S0k2SM1Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1B6467E62;
-	Tue, 20 Feb 2024 09:47:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64FD060264
+	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 09:50:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708422441; cv=none; b=Dg8mZAIPL7wZuSg0nfKxlO5faVMygypur3e4H+yW0GmJaIP8yGUijU5P0SX1rC37jZQ0JtPlR+qiAE7GdVqZ10lmKbfOR4fb1i1YZ2xfMziAS1RkNYjtRWBQp+NoKuUWSCs3HGzUf6syl/6fzl59iTB3cfUfHYkbIvHeLYbBBqI=
+	t=1708422605; cv=none; b=kxTS/AmRoGTd44kHwLbcRHTd6Z2JY3s/k6Iz8FgdC6nB7rMc0VqjgxokGYe21WJ5VvBD60oANy2u67Kgflrb5jvIrKkjWesJymA+tPiApM1cq3gquYlFvBgzvay4SS5ilrAF3a1IQNOMSZgcsOo+jP8mWThFciJMX57925kWrYo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708422441; c=relaxed/simple;
-	bh=KesIi6Q8HPaFY4Ookna0XyPXTx7dEbSq0mOPhInm6GQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=F8LkbKF+xknkixI62XKODrVO+i6YAiaCOPvMH7bej4b6mwpIQTbzn2LnBaIpk+/q2k+cTNwIRQMzP8nY8eLdJqu88TroL6mrwGBde9eYGEY7nenpTLQdEWtrT3/qQhlycNikMiNFHVf+c8JyAkVlVv+yke3BrT/B6YoQ5Er2AcA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Pt9P0viO; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41K67Ymj007432;
-	Tue, 20 Feb 2024 09:47:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=PB46TtqBgvtRnJYtKHiJGTbbNaJF2LMInwNIkcF5WvY=; b=Pt
-	9P0viOQInx3OmgE/nGbSm8TiqgulsDDfLKM+9GKBbNZ6gmmLFBj18KE4ANOD1ysY
-	Q5JXacrTNXP2kdLbB+mkiTxCS9Y803O++X1oSHvVUyod0gMvRQvk/shy+HOXeoOr
-	jHuJ1uwpBvRevHl1EFyFUxvDZNrs0l4OYe6xR8gPafSQ5HsOACdVBFyKgobG8vER
-	CV0X6OH+knB0kcKs/YHWaGbv42KYVldJATlyZ6cS5z8j21O7ECmYwHRBHdJCn4Mj
-	iWVLmjkIrzgHn7vb82/j9+BmEulQipJsDviRtUG5b+e8OB7dNdgmYBYt+FlN03EC
-	gAm39zt403hJgP4p5iGg==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wcnbd8hgv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 20 Feb 2024 09:47:14 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41K9kvWx024927
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 20 Feb 2024 09:46:57 GMT
-Received: from [10.233.21.53] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 20 Feb
- 2024 01:46:52 -0800
-Message-ID: <56f7cafb-38fe-44e3-9a2d-1d3edcde9fcc@quicinc.com>
-Date: Tue, 20 Feb 2024 17:46:49 +0800
+	s=arc-20240116; t=1708422605; c=relaxed/simple;
+	bh=lsQhrl07NU9DvhxC+y0Qv1a0Ty3WWDaIUaM1Cq0PIfs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uvlbFRpyJoLhPPTC9AdLpfAHInux8dY66isUUT+p+whPXAdPdCxrDbbmMU2CldyPsC3ty5RJgKPZPzQhYVKMRaeZ+6lLNX1CbfvMKgk1TFpMdcn4RQ1bNKP+9PYyboRf4BtS1lNFoRNpGSLyjzv7+p5EpVAtNWBOzHR277HuzHE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=S0k2SM1Z; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-33d4c0b198aso970847f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 01:50:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708422602; x=1709027402; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UiakybdHbx8rY7NnuZZDYCRnrnocjLmFHQX/4uXHnW0=;
+        b=S0k2SM1Z5lY6rRgU0kB5ZH7QNEJ+xwl/+Rr6nHN28swL47UZJbGec87WJFEcCLNM/d
+         /JC7WomDg3d5yxlsmvuUQ282t+iYYLFa7saUDX0VGus6FNKdQdF9J+scPdBBzKRFKnKM
+         EDgWyDkaA/hfhcgfrQ3TbiRf6KNZp1R05fxRp3JydZe1wMZAnRZAEjpYODxkGmtxrEeS
+         3lT4MfWRQG/vh7kPrKE7nKmtfyGljuL3uXk7HSwx7l6aqZXK6UKYsyVBM2HUS291wxtk
+         Jz9UDuherpHHl6AEPzCN8ZUI+rMg7ranLRlg31XTLoSw5sDcX5NTicUwwfhpbavgwO+t
+         DNNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708422602; x=1709027402;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UiakybdHbx8rY7NnuZZDYCRnrnocjLmFHQX/4uXHnW0=;
+        b=Xl/58T0oyKIXJk+8e1PceYhhTW7/0jxhASlIxnbdF1zw1ariXLiixV5hgaLR3b3lD+
+         RazJ121qlksPQU9xifTbJ4y+NvB4vJ2yiy0ie9tQCKcKMFOiv/LnmEVXW3whApiruYqf
+         YX98DnJqSJLqbBepGoks6QVjcH1kR21mwRpjjEs9/+i9A/Q8uIyxwiQzkgmeRJBPxGLw
+         BXoHQKnF5dx2VNDNbGrLGo/qg7hlsMa/Gj3KciAeIi+7o1DhyvHDJN3cZKmrZVjI9HHi
+         NcOZbTisOgrsxu6Amr0O052zOYa8VC9LEuLlS+4z3IzoqLIW08ookdMrM6v85I3No/cx
+         20LQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUxEEGRx6lOKZyMZy2ARX6L/JyQuLpopRwgiQ8bbhjFnaEl0ZXvJR8YnjXT3HGD7/MqHLmXdTurZQpHY73390l4vJbnxqomgnEoRQ==
+X-Gm-Message-State: AOJu0Yx3490EoyEAKMrROx5e520SfGF+VdtgWTwF4LMtmJhCjZe5xCuX
+	b5NJ15E4eJX7r+0x61ZWFl+sfMft20VlHdxRZT/pGdUpfcLgee28S8eeY3+RYVs=
+X-Google-Smtp-Source: AGHT+IE0aDSPjWECdAQ7HrYvb5CxiRvQrtXOKiRy5SNiUVy0PGuLwKURzvzfKJiYt9bm15vacoJflA==
+X-Received: by 2002:a5d:6912:0:b0:33d:2629:c518 with SMTP id t18-20020a5d6912000000b0033d2629c518mr5819994wru.64.1708422601761;
+        Tue, 20 Feb 2024 01:50:01 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.116])
+        by smtp.gmail.com with ESMTPSA id n16-20020a5d4010000000b0033b888a0a63sm13016570wrp.0.2024.02.20.01.50.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Feb 2024 01:50:01 -0800 (PST)
+Message-ID: <37116892-bb59-4c40-85e2-8e1b4bc96b5f@linaro.org>
+Date: Tue, 20 Feb 2024 10:49:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,88 +76,137 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 1/6] dt-bindings: arm: qcom: Document sm8650p soc and
- AIM500 AIoT board
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <kernel@quicinc.com>
-References: <20240205115721.1195336-1-quic_jingyw@quicinc.com>
- <20240205115721.1195336-2-quic_jingyw@quicinc.com>
- <2fa4d857-7262-40df-a842-56945ecffb81@linaro.org>
- <441ffff2-81a8-4b53-b15b-5ac6375d65c3@quicinc.com>
- <56da3332-deb5-4fff-ad58-664bbea0dc73@linaro.org>
+Subject: Re: [PATCH 02/13] dt-bindings: i2c: nomadik: add mobileye,eyeq5-i2c
+ bindings and example
 Content-Language: en-US
-From: Jingyi Wang <quic_jingyw@quicinc.com>
-In-Reply-To: <56da3332-deb5-4fff-ad58-664bbea0dc73@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: YdeqbxKmCFN_KINRzN1ctmAw7TtsFSMq
-X-Proofpoint-ORIG-GUID: YdeqbxKmCFN_KINRzN1ctmAw7TtsFSMq
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-20_06,2024-02-19_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=888 clxscore=1015
- priorityscore=1501 malwarescore=0 bulkscore=0 impostorscore=0 mlxscore=0
- lowpriorityscore=0 phishscore=0 suspectscore=0 adultscore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2401310000
- definitions=main-2402200070
+To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Rob Herring <robh@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+ Andi Shyti <andi.shyti@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-mips@vger.kernel.org, Gregory Clement <gregory.clement@bootlin.com>,
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+References: <20240215-mbly-i2c-v1-0-19a336e91dca@bootlin.com>
+ <20240215-mbly-i2c-v1-2-19a336e91dca@bootlin.com>
+ <20240216022227.GA850600-robh@kernel.org>
+ <CZ6FD7EHIJDT.32IEDVT9FG2GP@bootlin.com>
+ <6effca50-29a4-43b9-86eb-310bd4e08e5c@linaro.org>
+ <CZ6FUECKEX2B.36QWZZA5EYPI@bootlin.com>
+ <cf360cbf-7414-4024-8bdd-d2aba7f048b3@linaro.org>
+ <CZ93KAA53F8G.38AUM6RZGUYY7@bootlin.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <CZ93KAA53F8G.38AUM6RZGUYY7@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Krzysztof,
-
-On 2/20/2024 5:43 PM, Krzysztof Kozlowski wrote:
-> On 20/02/2024 09:55, Jingyi Wang wrote:
->>
->> Hi Krzysztof,
->>
->> On 2/5/2024 8:33 PM, Krzysztof Kozlowski wrote:
->>> On 05/02/2024 12:57, Jingyi Wang wrote:
->>>> Document Qualcomm SM8650P SoC and AIM500 AIoT board.
->>>
->>> Please describe shortly what is SM8650P and what are the differences
->>> with SM8650.
->>>
+On 19/02/2024 14:41, Théo Lebrun wrote:
+> Hello,
+> 
+> On Sat Feb 17, 2024 at 9:25 AM CET, Krzysztof Kozlowski wrote:
+>> On 16/02/2024 11:40, Théo Lebrun wrote:
+>>> On Fri Feb 16, 2024 at 11:33 AM CET, Krzysztof Kozlowski wrote:
+>>>> On 16/02/2024 11:18, Théo Lebrun wrote:
+>>>>>
+>>>>>>> +        mobileye,id:
+>>>>>>> +          $ref: /schemas/types.yaml#/definitions/uint32
+>>>>>>> +          description: Platform-wide controller ID (integer starting from zero).
+>>>>>>
+>>>>>> instance indexes are a NAK. You can use i2cN aliases if you must.
+>>>>>>
+>>>>>> Why do you need it? To access OLB? If so, add cell args to the OLB 
+>>>>>> phandle instead.
+>>>>>
+>>>>> Why we do what we do: I2C controller must write a 2 bit value depending
+>>>>> on the bus speed. All I2C controllers write into the same register.
 >>>>
->>>> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
->>>> ---
->>>>  Documentation/devicetree/bindings/arm/qcom.yaml | 9 +++++++++
->>>>  1 file changed, 9 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
->>>> index 1999a5f2f254..e87ceb42853b 100644
->>>> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
->>>> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
->>>> @@ -88,11 +88,13 @@ description: |
->>>>          sm8450
->>>>          sm8550
->>>>          sm8650
->>>> +        sm8650p
->>>>          x1e80100
->>>>  
->>>>    The 'board' element must be one of the following strings:
->>>>  
->>>>          adp
->>>> +        aim500-aiot
+>>>> Which register?  Your devices do not share IO address space.
 >>>
->>> Drop this line.
->>>
->> drop this line will cause fail dt binding check failure, any suggestion on that?
+>>> mobileye,olb is a prop with a phandle to a syscon. That syscon contains
+>>> the register we are interested in.
+>>
+>> So exactly what Rob said... I don't understand why you have chosen to go
+>> with alias.
 > 
-> Really? How?
+> I had misunderstood Rob's original message. Now that I've done some
+> tests to use cells I get what was meant. I'd have a follow-up question.
+> What should the cells contain? I see two options:
 > 
+>  - phandle + I2C controller global index (from 0 thru 4). Then Linux
+>    (or other) driver know how to map that index to register + mask
+>    combo. ie:
 > 
+>       i2c2: i2c@500000 {
+>          compatible = "mobileye,eyeq5-i2c", "arm,primecell";
+>          reg = <0 0x500000 0x0 0x1000>;
+>          /* ... */
+>          mobileye,olb = <&olb 2>;
+>       };
 > 
-> Best regards,
-> Krzysztof
+>  - phandle + register offset + mask. ie:
 > 
-Sorry I made some mistakes, have just checked that remove this should be fine.
+>       i2c2: i2c@500000 {
+>          compatible = "mobileye,eyeq5-i2c", "arm,primecell";
+>          reg = <0 0x500000 0x0 0x1000>;
+>          /* ... */
+>          mobileye,olb = <&olb 0xB8 0x300>; /* phandle + offset + mask */
+>       };
 
-Thanks,
-Jingyi 
+Whichever works for your current and possibly future needs and hardware,
+because property should have one meaning. It's anyway specific to the
+property. Second option is quite popular. Please design it for entire
+hardware, not for this one particular case.
+
+Best regards,
+Krzysztof
+
 
