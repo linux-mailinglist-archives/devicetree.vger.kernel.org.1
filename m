@@ -1,156 +1,109 @@
-Return-Path: <devicetree+bounces-43955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC0F885BFB6
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 16:19:58 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14CB885C001
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 16:34:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE1221C21474
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 15:19:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9107DB23DDA
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 15:34:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EB8F76021;
-	Tue, 20 Feb 2024 15:19:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31B02762C0;
+	Tue, 20 Feb 2024 15:33:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OYbUOILk"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="d9eKCE+8";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="QNGwaX1v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8E3A71B57;
-	Tue, 20 Feb 2024 15:19:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C35CD6A35B
+	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 15:33:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708442394; cv=none; b=smZUXEZxClzETf6naAYRRMOcwchbzdthGrviGY5gwVWvXni3+tf+Gr9j8suAPhQFyQyE4hHzGU7ipF9xRWu8zdAKc+qZxnTTtKkaZc+unqxCIIEwfnB4k0bhxfS9Fne5PNp3Idi6yUwJwUrqf750xtFlhBMk7B2rJz/de7Eyvfk=
+	t=1708443226; cv=none; b=KwZCfIuc3/PFj/DhBLuwJe7D8yWj3sU/P2JyEmK8mrdBWtgvdzeLRcEnx+8EeUsQBQDyNjojZBaOeIZl1FpZUXBD80WSKPawqPjkHVm7q+JT+6W50aclEWNzIL98pDA4tRTCZY0NVdm8OKtmarrj2F7oh+OalWvoslXj7aJ154g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708442394; c=relaxed/simple;
-	bh=MVpAxKMaoHyl+tjsX4STMfRQZ/gZH1SX3lmaukbkocQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bwWfy7OYKp16VgVDq89Ms170BQOy2pODmW48QZ/RFH04zBYUPLk7yiCqAYKm4ad3lD4RnxTHiKSdTm9rEGTJZYw7NlFQOfZtG5kDu6YIJcGSe0hfCAhG28zBegFpeEh56bzKQRsX+9ciiWW1X+58t0RdIgJDnI6vNCoB32cM4OE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OYbUOILk; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a3e75e30d36so420692366b.1;
-        Tue, 20 Feb 2024 07:19:52 -0800 (PST)
+	s=arc-20240116; t=1708443226; c=relaxed/simple;
+	bh=FfloKBvnP9kHx3pPCTkgUY8s4R/k+vV2YtDWrd2R7Tc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=SZmYddit9RHJA+xOEj1kISm2kiyql6eAXPYto+509l/JLRz8WcnU2oxKvoHZK6gHyE/jnkNZJpIeiPjsrJwmpD1YOGCXXecUbQz/U02GOf3OArYjbk6qLYoocVg9X+tqD3rcaEIzxW/f2QRjQha3QejAjYwBus8Yy365F3S3HYw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=d9eKCE+8; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=QNGwaX1v reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708442391; x=1709047191; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=k6V+rVntGm0bOfQX7UIre1kuKHlkaeQH5c/FoECJBeI=;
-        b=OYbUOILkyG2eQO/tekDpJ/uqTxrvR1sMH19AKNolVjuO/3og/VMBrkTGF/HHudob+f
-         6/6z3a7SWBLWN88xB+a+GvHY+xMWUdhdqTHBRoVxg+7hNd3y2MtCAxPmigdd9C8WHKyS
-         bGJZcznALJu6fs0QjCzmRLYxW82pQd9W+dY9mMRLs/1M2ixJn393+SXFs3ssNIBm7Ybv
-         8bCd6u3HE+tensWlE64E2ls6+Y+m/doFQ4kGL+aYMf/Ym/eHDqKUcXMlDGuLixTb1ckD
-         9C7ux/q2/aJ8hRm5eQjT6/UTDBhTU2p7Qo+iAoTj8vH6BqO9o9NjSctSGRDcODtfmUb2
-         d6pg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708442391; x=1709047191;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=k6V+rVntGm0bOfQX7UIre1kuKHlkaeQH5c/FoECJBeI=;
-        b=HTOBNAI8k3Yo45pKNzIsvlDbT0KAK4t7x273y8DxUfIPkDhahRTlFgwuqZvkSa9Wj3
-         YcTqlNcRxvM7byBO+W7wgdmkreQLUxDZBsxNhzBOX2Kk4wrqkjeEvQv2SrIKlnksTeqa
-         PbQZg8VJfla5vS4ulBmC2IkwZR7Tq61XBJymjskkrndRwt8y8ojnlwGQ7myf/D6hfvxe
-         29bxzttCUVrrk1EQUxE1G/Pz/cnOGN1WEJy++IUhrJTiEAY9NLcIUTj4VuaBkdRQsqvO
-         nKYfzI+Wc0yWqpQezaDVn0vuPsbCG3zPM6YRIb1HivusHF1Q3aQ0gFjO5GklGEMxRp2u
-         Dxug==
-X-Forwarded-Encrypted: i=1; AJvYcCVk5rwVxora0sfyKXELDZShkwfGL+3sPSqT983+SIvzm0ADKJbDy3VShVq3WkONzWK6bcFCYvlxEXmlGZNlJDKq1iBOPBZv34bN6C2u9PPz8Md6Aj0v2+VxB6ALOfKccUcTo46vmICZoBS78iFrP3abwkVHKUCmuOvZI4qR+sy1QCEB2VtO
-X-Gm-Message-State: AOJu0YwjvBo59dxPcKPJPCrqP+LtgItgLyTmVKnXiQOhEN9Fww6hm84/
-	V8o3AJXBXUa+XUdMDprZNOhEy0wbvlFQSv+AEC9LZfkvlOxVSrOIN+4drTOLy/UFJHvFgSYAPJO
-	M30s6mWO1fUpgA34Iv6cOV9Gj18U=
-X-Google-Smtp-Source: AGHT+IHBktehyWtuPC8JEh2f3v6ZPaKc7tieXF4JIjb1uKLdxCvS6Vf9PHPXLkJ7d4YELA+8vPBi/rm2rEx/UyXknd0=
-X-Received: by 2002:a17:906:fa87:b0:a3e:c6de:e5ae with SMTP id
- lt7-20020a170906fa8700b00a3ec6dee5aemr4612713ejb.0.1708442390911; Tue, 20 Feb
- 2024 07:19:50 -0800 (PST)
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1708443223; x=1739979223;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=iAuX2fzOb1vf0Ro0yp5QNzOrS7A1gLgkbir/x4atIjg=;
+  b=d9eKCE+8g2QrRHb1I1MIAuTnmqGd6QivlwN60nFPHFht1hpogFneODsi
+   JjKhhpb+4VmpVdTR/vu2Al90uMEhFP+KNszdkp4WnyMZAmYLOE4L34/7H
+   RNd6gYuKhDgJxVltkqKPV0dVQ6zxKiYXiu6fHIxz6oUHhunMFpmFCf68X
+   2qPmBM04OUHy+64Lth8C2rA4Y2j9qhCNgkERES5/2gfctZogjxnjK6DuP
+   abQ5HSr+OiCYhP2VAtrYZa6pw6yONm3P4awHDcj3KOnTvKeGXtkpf6SGP
+   nkor9irBMZvYBSWeqpIzjtz2f5x8SZcs9/imqBkSEGdUKlm6AqKX6y2qM
+   w==;
+X-IronPort-AV: E=Sophos;i="6.06,174,1705359600"; 
+   d="scan'208";a="35504021"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 20 Feb 2024 16:33:40 +0100
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A038B16F071;
+	Tue, 20 Feb 2024 16:33:35 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1708443216; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=iAuX2fzOb1vf0Ro0yp5QNzOrS7A1gLgkbir/x4atIjg=;
+	b=QNGwaX1vdZYowI95e691hf0xwAIxk6zfcr57+WJdmGK1eSXsl/LBmuxBJ+v+E1CE07ykme
+	TdpPQYGWFsGo8CMEYiS+ux70Qdu/UAvW7somIeU2Yn0yLGOZL6H3hd/1b5Dskm/eqiUWFQ
+	rLnotgkcEpWMDyAwCjqesG5YDTwKFOy4rMKW4iyjsdJBJnHEHfLSbqjSnS+AG820ifq8Ar
+	BBwDm/to8hmBtMxDY5ys434wFkUsNy9bQl+ynR2cc95vNF2kOD4jsD8y+uXE1kCkbZq42F
+	tYLrp6t3GvgcmjVHwy8RmmEw4SJdADoNV03PZ6fO0tdVi4HQagMRNOt69UTH0Q==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	linux@ew.tq-group.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/2] arm64: dts: imx8mq: tqma8mq-mba8mx: Add missing USB vbus supply
+Date: Tue, 20 Feb 2024 16:33:33 +0100
+Message-Id: <20240220153334.2624873-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240220012540.10607-1-zhi.mao@mediatek.com> <20240220012540.10607-3-zhi.mao@mediatek.com>
-In-Reply-To: <20240220012540.10607-3-zhi.mao@mediatek.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Tue, 20 Feb 2024 17:19:14 +0200
-Message-ID: <CAHp75Vfbc0jE43Z-trFRnFdT5SxvJN+w2x7hS4vHuF5M2kTXgg@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] media: i2c: Add GC08A3 image sensor driver
-To: Zhi Mao <zhi.mao@mediatek.com>
-Cc: mchehab@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	sakari.ailus@linux.intel.com, laurent.pinchart@ideasonboard.com, 
-	shengnan.wang@mediatek.com, yaya.chang@mediatek.com, 10572168@qq.com, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com, yunkec@chromium.org, 
-	conor+dt@kernel.org, matthias.bgg@gmail.com, 
-	angelogioacchino.delregno@collabora.com, jacopo.mondi@ideasonboard.com, 
-	hverkuil-cisco@xs4all.nl, heiko@sntech.de, jernej.skrabec@gmail.com, 
-	macromorgan@hotmail.com, linus.walleij@linaro.org, hdegoede@redhat.com, 
-	tomi.valkeinen@ideasonboard.com, gerald.loacker@wolfvision.net, 
-	bingbu.cao@intel.com, dan.scally@ideasonboard.com, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Tue, Feb 20, 2024 at 3:47=E2=80=AFAM Zhi Mao <zhi.mao@mediatek.com> wrot=
-e:
->
-> Add a V4L2 sub-device driver for Galaxycore GC08A3 image sensor.
+VBUS 5V is statically provided to both USB host and on-bard USB-hub.
 
-...
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-> +#include <asm/unaligned.h>
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts b/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts
+index b2e17d4f335eb..0165f3a259853 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts
+@@ -160,6 +160,7 @@ &usb_dwc3_0 {
+ };
+ 
+ &usb3_phy1 {
++	vbus-supply = <&reg_hub_vbus>;
+ 	status = "okay";
+ };
+ 
+-- 
+2.34.1
 
-Usually asm/* go after linux/*
-
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/i2c.h>
-> +#include <linux/module.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/regulator/consumer.h>
-
-This looks semi-random.
-For example, _at least_ the array_size.h, bits.h, container_of.h,
-device.h, err.h, mod_devicetable.h, property.h, types.h are missing,
-Please, use IWYU principle.
-
-...
-
-> +#define GC08A3_DEFAULT_CLK_FREQ 24000000
-
-HZ_PER_MHZ ?
-
-...
-
-> +#define GC08A3_SLEEP_US  2000
-
-USEC_PER_MSEC ?
-
-...
-
-> +static const s64 gc08a3_link_freq_menu_items[] =3D {
-> +       336000000ULL,
-> +       207000000ULL,
-
-HZ_PER_MHZ ?
-
-> +};
-
-...
-
-> +static const struct dev_pm_ops gc08a3_pm_ops =3D {
-> +       SET_RUNTIME_PM_OPS(gc08a3_power_off, gc08a3_power_on, NULL)
-> +};
-
-> +               .pm =3D &gc08a3_pm_ops,
-
-Use new PM macros (pm_ptr() and friends).
-
---=20
-With Best Regards,
-Andy Shevchenko
 
