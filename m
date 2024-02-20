@@ -1,105 +1,196 @@
-Return-Path: <devicetree+bounces-44033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6808085C373
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 19:12:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8F5F85C3B6
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 19:41:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 003401F227F4
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 18:12:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 79B76B21F53
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 18:41:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7334779F8;
-	Tue, 20 Feb 2024 18:12:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E96F712FB38;
+	Tue, 20 Feb 2024 18:41:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M3pmgEoL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I6yoiswL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E2FE762EC;
-	Tue, 20 Feb 2024 18:12:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA2FA12F5AA;
+	Tue, 20 Feb 2024 18:41:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708452760; cv=none; b=ooOhSXb3JKcP+xDlnXFbpvc2zCfAjrJQshR9MzvvtskW2QEs90qswfSjW5doPfbxJnWba3j1boAy+5/ES1gRS7w4R+UKbgVtoneEs74f7y+dpsujfh3ChH8OXK1zDW/fa5O8J0TQElixzGO+P1AKw66By0yQz5Fo73DVIF/q0I0=
+	t=1708454471; cv=none; b=jK2kfH6Gy2azKb8Qo7v2ITcr0Ra4Od1VxAb5jtlsufLdjf2zsWMp/2bOBs7jA2JIxdJn4XXCcpmgkhaemndtAMKBNZABBoNQ76hGGN6R52oFVcnhtRuNXPqfbz1Yk+fkrfNWjkJ4JlhcOCTF+MuBSjKa5v7P2k6Y4KWN+rDU1hU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708452760; c=relaxed/simple;
-	bh=dhawpZTrANv0JFsuVpeapW+tVzNPo9GSiWB+4tW8h84=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
-	 References:In-Reply-To; b=rXC9P2PNiEleQTgjzi/6I3fK5PaI8lAjUeNcnQ0KO/gluFmxy/mwkBwkKkG3idSuiw37mdla03QHXQJYPRenBkXBaMyxJQyT5Wwnc0BiSTE7R7lcHDTI7FP3Fx5kbO4YDexU2qeUvKvRp1HHJAt0H5XU7YZNfOyOPpp/kXJ/PFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M3pmgEoL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74316C433C7;
-	Tue, 20 Feb 2024 18:12:38 +0000 (UTC)
+	s=arc-20240116; t=1708454471; c=relaxed/simple;
+	bh=15wVNh60n0mKgmlzygAoNpmkEvxBvaqNjKfNeAsjQ4w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ueb46aWJ3x00zNeV1FVSzKmGyY6RPudqvvngIULgg11YRZoJ7mvp7JoxtY/LYQj23h86zQ3wiG9nRurKXOZTiVNkypuNuzyZlWYIi6JxStYH7skOlAkvKdpymXP0TusQxUw8W0CRCGqHZ48DKo5E3cVzf6+VQ6eUGe7tBVj4kpk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I6yoiswL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4B2AC433F1;
+	Tue, 20 Feb 2024 18:41:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708452760;
-	bh=dhawpZTrANv0JFsuVpeapW+tVzNPo9GSiWB+4tW8h84=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=M3pmgEoLcwb/ahgOEvhq0P/XHyzkbxD+b0rbPYoIjx3caUXBdvyBknj8QXFtphibH
-	 6SfTXgLcPPxFDAADeEzSTR3IPFGX8XIo6OX/oNqKzA4r1/3XqEa82FTxXRKj569S46
-	 fVxZ9Z9Lg8M80tN/3LzOf3xHCv+KWwPphbA+/aVW7CeJDs/oNZqHxIokDJILgpxK+A
-	 Ww6mvxE4CI7fi/QoKwQRHjOXA/ZAWt8HIkbcGNY9IEirwGCK+3i0UfHDDI8KZga/l5
-	 WCHHui/5SQ2bz8iKJwvDOK0gCua0+Z05wZeReDrgIruILiorw1Qe24WFc/R7rZNLhY
-	 +D9WovKUznYSA==
+	s=k20201202; t=1708454471;
+	bh=15wVNh60n0mKgmlzygAoNpmkEvxBvaqNjKfNeAsjQ4w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=I6yoiswLuwvRkTOyHtca4QBI0nxQq61xnDFGgF7WkbRQhu0MCSk8+YurXOGrdIiMl
+	 3d5XPZ2nvg4A7VQjpqyNT995DJFhhfoW2gQKyrdhURCr+NNitthjAHKDQRccYbqH1B
+	 /t9BEYBB+YUfEE87SvH+CPIhYMKMy6KWPiDinKDiyTU7f5dB/o6FU4Q/7xt9V12D88
+	 SVpDh/lkadi34h2cIfqSiewK74H6QYjNthXd5VwPI4r5TazIMDnqQbrBuo5BECsrxi
+	 gj0kd9p7/av53ieW5iBv48Xs/P8gZcj/EXu/1tZYkg9+JSk7Ofg4lON/xG1wSFGDu7
+	 IU94Fw4NbtDbg==
+Date: Tue, 20 Feb 2024 18:41:06 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Nikita Travkin <nikita@trvn.ru>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	cros-qcom-dts-watchers@chromium.org, Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: power: supply: Add Acer Aspire 1 EC
+Message-ID: <20240220-splinter-jackpot-ac1571af5b2d@spud>
+References: <20240220-aspire1-ec-v3-0-02cb139a4931@trvn.ru>
+ <20240220-aspire1-ec-v3-1-02cb139a4931@trvn.ru>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="NyfVgNR6xsvZmS5r"
+Content-Disposition: inline
+In-Reply-To: <20240220-aspire1-ec-v3-1-02cb139a4931@trvn.ru>
+
+
+--NyfVgNR6xsvZmS5r
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 20 Feb 2024 18:12:36 +0000
-Message-Id: <CZA3YHCSBQK1.F170HT9T3WG3@seitikki>
-Subject: Re: [PATCH v2 0/4] Add missing TPM compatible strings
-From: "Jarkko Sakkinen" <jarkko@kernel.org>
-To: "Jarkko Sakkinen" <jarkko@kernel.org>, "Lukas Wunner" <lukas@wunner.de>,
- <robh@kernel.org>
-Cc: <devicetree@vger.kernel.org>, <linux-integrity@vger.kernel.org>, "Peter
- Huewe" <peterhuewe@gmx.de>, "Jason Gunthorpe" <jgg@ziepe.ca>
-X-Mailer: aerc 0.15.2
-References: <cover.1705140898.git.lukas@wunner.de>
- <20240220105536.GA4555@wunner.de> <CZA3STK007KM.2GLEAARLXBLBH@seitikki>
- <CZA3VUBEAZH6.27GXSQ9FDIIA6@seitikki>
-In-Reply-To: <CZA3VUBEAZH6.27GXSQ9FDIIA6@seitikki>
 
-On Tue Feb 20, 2024 at 6:09 PM UTC, Jarkko Sakkinen wrote:
-> On Tue Feb 20, 2024 at 6:06 PM UTC, Jarkko Sakkinen wrote:
-> > On Tue Feb 20, 2024 at 10:55 AM UTC, Lukas Wunner wrote:
-> > > Dear Jarkko,
-> > >
-> > > since v6.8-rc6 is approaching and the end of this cycle is thus in si=
-ght,
-> > > please do not forget to merge this series:
-> > >
-> > > https://lore.kernel.org/all/cover.1705140898.git.lukas@wunner.de/
-> > >
-> > > All 4 patches have a Reviewed-by from you and patch 1 has an Acked-by
-> > > from Rob.
-> > >
-> > > Thanks,
-> > >
-> > > Lukas
-> >
-> > Thanks for reminding!
-> >
-> > Since this patch set only has DT changes and zero actual TPM driver
-> > changes, I think it would be better if Rob picked this.
-> >
-> > Rob, what you think?
-> >
-> > I'm good either way but need to check.
->
-> Ah, sorry I was looking at wrong lore link (had multiple tabs open).
->
-> I will definitely pick this despite one DT patch. Rob, please ignore.
->
-> Sorry for causing confusion.
+Rob,
 
-OK, should be good now:
+On Tue, Feb 20, 2024 at 04:57:12PM +0500, Nikita Travkin wrote:
+> Add binding for the EC found in the Acer Aspire 1 laptop.
+>=20
+> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+> ---
+>  .../bindings/power/supply/acer,aspire1-ec.yaml     | 69 ++++++++++++++++=
+++++++
+>  1 file changed, 69 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/power/supply/acer,aspire1-=
+ec.yaml b/Documentation/devicetree/bindings/power/supply/acer,aspire1-ec.ya=
+ml
+> new file mode 100644
+> index 000000000000..984cf19cf806
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/supply/acer,aspire1-ec.yaml
+> @@ -0,0 +1,69 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/supply/acer,aspire1-ec.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Acer Aspire 1 Embedded Controller
+> +
+> +maintainers:
+> +  - Nikita Travkin <nikita@trvn.ru>
+> +
+> +description:
+> +  The Acer Aspire 1 laptop uses an embedded controller to control battery
+> +  and charging as well as to provide a set of misc features such as the
+> +  laptop lid status and HPD events for the USB Type-C DP alt mode.
+> +
+> +properties:
+> +  compatible:
+> +    const: acer,aspire1-ec
+> +
+> +  reg:
+> +    const: 0x76
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  acer,fn-selects-media-keys:
+> +    description: Configure the keyboard layout to invert the Fn key.
+> +      By default the function row of the keyboard inputs media keys
+> +      (i.e Vol-Up) when Fn is not pressed. With this option set, pressing
+> +      the key without Fn would input function keys (i.e. F11). The
+> +      firmware may choose to add this property when user selects the fn
+> +      mode in the firmware setup utility.
+> +    type: boolean
 
-https://git.kernel.org/pub/scm/linux/kernel/git/jarkko/linux-tpmdd.git/log/=
-?h=3Dnext
+We both had some comments on this property, and Nikita tried to follow
+up on yours (which was much more substantive than mine) but got no
+response:
+https://lore.kernel.org/all/20231214220210.GA988134-robh@kernel.org/
 
-BR, Jarkko
+Reading what you said, I'm not entirely sure what you were looking for,
+my guess is that you were wanted something controllable from userspace,
+but I'm not sure how you figured that should work where the firmware
+alone is able to control this.
+
+Cheers,
+Conor.
+
+> +
+> +  connector:
+> +    $ref: /schemas/connector/usb-connector.yaml#
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |+
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        embedded-controller@76 {
+> +            compatible =3D "acer,aspire1-ec";
+> +            reg =3D <0x76>;
+> +
+> +            interrupts-extended =3D <&tlmm 30 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +            connector {
+> +                compatible =3D "usb-c-connector";
+> +
+> +                port {
+> +                    ec_dp_in: endpoint {
+> +                        remote-endpoint =3D <&mdss_dp_out>;
+> +                    };
+> +                };
+> +            };
+> +        };
+> +    };
+>=20
+> --=20
+> 2.43.0
+>=20
+
+--NyfVgNR6xsvZmS5r
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdTyQgAKCRB4tDGHoIJi
+0uv6AP9Hs2QQv/YYHGYhhHhpqKqfT4EvP4wIJ2I3XnFPTLp7TAEAlyyHmfzBrCjD
+AgFzbLCEjTAQEJtMRKbH3EJ7Q9jMRwk=
+=2TYU
+-----END PGP SIGNATURE-----
+
+--NyfVgNR6xsvZmS5r--
 
