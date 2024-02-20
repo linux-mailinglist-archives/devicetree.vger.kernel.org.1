@@ -1,146 +1,166 @@
-Return-Path: <devicetree+bounces-43891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E30085BC8E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 13:48:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 492B785BCB1
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 13:59:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 543D2281796
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 12:48:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73A8828213C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 12:59:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E8F269D20;
-	Tue, 20 Feb 2024 12:47:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73AA169E0D;
+	Tue, 20 Feb 2024 12:59:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O+70rKxC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Bk/m0D0d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31D89482FA;
-	Tue, 20 Feb 2024 12:47:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D8BB69DFF
+	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 12:59:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708433279; cv=none; b=SgiSZnYTQFrCgJUet+d/Td4HLRll7FM3Q8+TF0DeENcrUOQgO/p/8B3EIZzBJ9o5VPzYnoBrP9mHgCp37p4437xOzJuml7tFTw+NtiPct8mwuejDpr/NZeCmRigzIdpAWcGf3ufM3GqhF1BU34girSZuWAs8aK3YxMcfeoX9Bas=
+	t=1708433980; cv=none; b=k5Xo8Rqarn7bTgVNr+ba96oTdf0RbzwaLcjjTOEph5umJJnz00duEvarrhuM9eabF64/XidUaJfbMVhKxCRBeW1+JCO8JbAwmEJ6ORHRwpIZyiSsLu8Nhhjbcs5v1luPRAJ/mwyGOx8R2ncDEXsiYFuOt1xi0NIY53+rcgWIz80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708433279; c=relaxed/simple;
-	bh=ViefJugypi9Weib1Uaokne/i9seCAk+ZC9k+nnoVcWg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=enLCj+eUSP5TOx+bEoLMQG+hF3q7+nNHGkL/E1BCT54YYJ0ANFxY7FNOl4nub2lO5mtpoxSH9+X+PZIW/CAyB5kIPm3f7N6y+MeEwpq2QVYnNb03CZ/f8JFI7xGJ8KYTWEEsPQtqirIlkpFGRA+8dym6LVL+hyMvnlHO83vMQlc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O+70rKxC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EF8AC433C7;
-	Tue, 20 Feb 2024 12:47:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708433278;
-	bh=ViefJugypi9Weib1Uaokne/i9seCAk+ZC9k+nnoVcWg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=O+70rKxC/6pwXD95cIIDMA1V+jnd/1+CGcXC46So93DH3Xkfgy1cC8BWRR3qI4542
-	 kCHuo10Mnf3HQionPq2GoeJHytdnySZN+AtXrVQy7+ULywO7SE8Z3CUfiJ8NRj1Ywd
-	 z7mhQpiMcCcX40rL7NcE6M0QXbOPdV03WEInkMea6IY5d/oCerFF4v6U7n7ekmm2u2
-	 QpqT8/H1cFo+jxS7xEUsTnd2m+nfD2Tamm1ILj4nnQhRbMCeNhB4jl4Y2W3k5YORzJ
-	 UTeGrLpyNukJdQCdQuzVaR5Vu6MU4U2KSZ2E7pwDn9cfOhwfnPepW50PFYspCXupGX
-	 9bF65zzZydcSA==
-Date: Tue, 20 Feb 2024 12:47:48 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Marcel Holtmann <marcel@holtmann.org>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Alex Elder <elder@linaro.org>,
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Lukas Wunner <lukas@wunner.de>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-wireless@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v5 14/18] PCI/pwrctl: add a power control driver for
- WCN7850
-Message-ID: <ea08a286-ff53-4d58-ae41-38cca151508c@sirena.org.uk>
-References: <20240216203215.40870-1-brgl@bgdev.pl>
- <20240216203215.40870-15-brgl@bgdev.pl>
- <d5d603dc-ec66-4e21-aa41-3b25557f1fb7@sirena.org.uk>
- <CAMRc=MeUjKPS3ANE6=7WZ3kbbGAdyE8HeXFN=75Jp-pVyBaWrQ@mail.gmail.com>
+	s=arc-20240116; t=1708433980; c=relaxed/simple;
+	bh=4kaUomWdFKTMnYewnlbW8ksZWZl5gVePGgFlT/90Ucw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=agyc3l/yMrt7cEizz3QU4LDygn0miFraDaMQHo5HUql4jobR8bJj5991yZ5C7JOxaoYWxVCCgK+pwYUJFmJr+hB4f1ckdEt8n/CFdfB6tEeHS9Qmy8yrABIrlR99nug59f2SFiwocpDuo9w4auQx2A1ZSGexs8vf32x7MQ50YkA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Bk/m0D0d; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a3e6f79e83dso307501166b.2
+        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 04:59:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708433977; x=1709038777; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=s+jWLQZPWAIdbIYTCxMRCQCGWqDgnyzVf1WiIb5Hkco=;
+        b=Bk/m0D0d8fm4dHw9cb3+N+vFHYm0B3oSOJ6anw+aVu9gmsg5FKTY+eSAkAP3Zl/0vR
+         vSo+6FRO7AAnTYKcN7i6eCQedj7KbZ7xd6UuIZTTNmrOEquHZE3B8TNQhuMBQrOi7XO6
+         p8iBg2lmMqo6PDQjrvf2kcxzePMvEXxQN7PgxVy8hO5oXqqh3lc9G9r5JzEB9SNrfR4q
+         eJAh5CU/CCvHyhTcGoRwen1xcCcOdZ27L9HOlwZ7WaNsbYOg7EQQWJzu8v1ZjhcqNv5C
+         4eeRa5rOzUs/A4rDWDxnMJgjzjuMttxXSvIvQe750u0kFyopC5sF5fg21nGxQ9xXyCGY
+         S1NA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708433977; x=1709038777;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=s+jWLQZPWAIdbIYTCxMRCQCGWqDgnyzVf1WiIb5Hkco=;
+        b=VL7aJIS3oxtRZgqYcJbWrHitK1SYGPVW0wsQ2j1WtYLtM4KJUnd7YhryGXqlkBqAPm
+         m6fvG72Zl8AJgMQuoMd2kF5eQIZ8vtrtB//DnDz0SJh5CwUexDm4uCBNvTMbe3fLvGSl
+         yfQCRyU3+quMxTUJz9/XW9zTlwxyDBb7Ykyg5XDoFAnCWBzHXWwFCe54GYxj3bOiiQqP
+         OAUDGTJ+4NthvZ6XP5GHcBtdJh3JQXt+kWH4wq+TaNUwYfa//kOTAUQjuOJxU6BbgF82
+         qqxcRg2iiwno2TznvdjAB6Sw2bsNoJJuydluAvcUxFeq8tnIMc1XLjfW6jRTS2tB4725
+         PmUg==
+X-Forwarded-Encrypted: i=1; AJvYcCX8XV4EutX66m3gqp2k/2ShuFR3+fASHeGIqUvB/VYwEoyoNe9BR2Vh2fEu9UwmPjvuQx63zQbwMSh0KJVViebAVaux6uIWX7bAVQ==
+X-Gm-Message-State: AOJu0YwIeUqbML/K17b67Kj6z5j3bEudXYpJLBBrYNOQQWx2FB+2JHfm
+	hKTzX8tSykA5X+eHOKqcLl6c4423IaX83cuPFdqmKu8Sv50rB37vT/0gnSbsN8o=
+X-Google-Smtp-Source: AGHT+IGlmYaZY8dt7KP0Glwqbfa+qcbUIyMwpyJuJ1u3Zgl/t2BTHzGE3BEksImNAO5ykN7Wg/l3HA==
+X-Received: by 2002:a17:906:bc8d:b0:a3e:6628:f70f with SMTP id lv13-20020a170906bc8d00b00a3e6628f70fmr3998963ejb.55.1708433976812;
+        Tue, 20 Feb 2024 04:59:36 -0800 (PST)
+Received: from [127.0.1.1] ([188.24.162.93])
+        by smtp.gmail.com with ESMTPSA id rf23-20020a1709076a1700b00a3ce36ce4f9sm3948802ejc.83.2024.02.20.04.59.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Feb 2024 04:59:36 -0800 (PST)
+From: Abel Vesa <abel.vesa@linaro.org>
+Subject: [PATCH RFC v4 0/4] spmi: pmic-arb: Add support for multiple buses
+Date: Tue, 20 Feb 2024 14:59:20 +0200
+Message-Id: <20240220-spmi-multi-master-support-v4-0-dc813c878ba8@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="g16doyZ3qKVdSFBl"
-Content-Disposition: inline
-In-Reply-To: <CAMRc=MeUjKPS3ANE6=7WZ3kbbGAdyE8HeXFN=75Jp-pVyBaWrQ@mail.gmail.com>
-X-Cookie: E = MC ** 2 +- 3db
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACii1GUC/43OzQrCMAwH8FeRno2kH1rnSRB8AK/iod3SrTDX0
+ c6hyN7dspMiiJfAPyG/5MkSRU+J7RZPFmn0yYcuB7VcsLIxXU3gq5yZQKFQoIbUXz1cb+2Qq0k
+ DRUi3vg9xgK0URqOyWheW5f0+kvP32T6z0/HALrnZ+DSE+JjvjXwe/UGPHBBKWmsnkZfaVfvWd
+ yaGVYj1zI7ijeLyFyWAg5WWo5BiU+Dmi5LvlPpFyfwVWkNIDpUz7oOapukF2ag4j14BAAA=
+To: Stephen Boyd <sboyd@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Johan Hovold <johan@kernel.org>, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
+ Abel Vesa <abel.vesa@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2213; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=4kaUomWdFKTMnYewnlbW8ksZWZl5gVePGgFlT/90Ucw=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBl1KIuXSH5UMGSA81CQbo8VMYCmVJwJzeoi106z
+ O0yLBTZvWGJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZdSiLgAKCRAbX0TJAJUV
+ Vh64D/9KA3g4aKNkyzLJfGpz/zWGhefbVTp3yqRNrZP4g+nMZkOm5oo1rqX1Y1a/QjaVijo7p8g
+ 870BF7ezB/UvwM6jfLZdWwDcKnJaHxHFKMVXYCMqlZVCgK6HokTp9ITYiOk4Q72F28jvFPgWvm2
+ RbZKjI1hSDDnp9Yn7PsDS4c7BAOkJU/piefh/Krltgjs4jVTjKi7oa9TU8jh4+oTuerOL35nvxc
+ p8yAcD/zxVBqv9IVpseLSjE0baZ7xV5pArTf3RKt6fisEcL0pC9adRLs98gKWIgmnC72s1TCwFu
+ QnX+uwTntjlp43v+ufmFp43XJbjj4mncJC0H4Yi/ek3OCPSnfuh1owkE2iHe/6IJznVsVbgDtdN
+ sIzz9xE0dsqpbRQexP4gZODy6YYpBGCzIXRC69dNwb3WpXc0wboBU9lRikNfLR0g5cBbNX3lLiV
+ BzRG+qAWvbpNwdfc1//7zt0zjQmY9f64QTiYyEAQ9NA+6Svm0J1F8JJ5eo/7XNz3X5GDxmyd0Eb
+ iVTWRKg+9HyVSWbMZmFWf2j8jfO1nK03PjhD0htQEiJhwdFhEVSt+D/2AT6ooPErrbLRkYv6aCx
+ fPVWABAGmCxlZqxyry7WbfWKWNzVW/dt2oeD25MOMYQ44LFSWGOSMbC12mRiVWQ9WYjMIztQ+8e
+ bBLylOZoBR4fGcg==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
+This RFC prepares for and adds support for 2 buses, which is supported
+in HW starting with version 7. Until now, none of the currently
+supported platforms in upstream have used the second bus. The X1E80100
+platform, on the other hand, needs the second bus for the USB2.0 to work
+as there are 3 SMB2360 PMICs which provide eUSB2 repeaters and they are
+all found on the second bus.
 
---g16doyZ3qKVdSFBl
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+Changes in v4:
+- Fixed comment above pmic_arb_init_apid_v7 by dropping the extra "bus" word
+- Swicthed to devm_platform_ioremap_resource_byname for obsrvr and chnls.
+  The core remains with platform_get_resource_byname as we need the core size.
+- Dropped comment from probe related to the need of platform_get_resource_byname
+  as it not true anymore.
+- Dropped the qcom,bus-id optional property.
+- Link to v3: https://lore.kernel.org/r/20240214-spmi-multi-master-support-v3-0-0bae0ef04faf@linaro.org
 
-On Tue, Feb 20, 2024 at 12:22:42PM +0100, Bartosz Golaszewski wrote:
-> On Mon, Feb 19, 2024 at 6:50=E2=80=AFPM Mark Brown <broonie@kernel.org> w=
-rote:
-> > On Fri, Feb 16, 2024 at 09:32:11PM +0100, Bartosz Golaszewski wrote:
+Changes in v3:
+- Split the change into 3 separate patches. First 2 patches are moving
+  apid init and core resources into version specific ops. Third one is
+  adding the support for 2 buses and dedicated compatible.
+- Added separate bindings patch
+- Link to v2: https://lore.kernel.org/r/20240213-spmi-multi-master-support-v2-1-b3b102326906@linaro.org
 
-> > > +static struct pci_pwrctl_wcn7850_vreg pci_pwrctl_wcn7850_vregs[] =3D=
- {
-> > > +     {
-> > > +             .name =3D "vdd",
-> > > +             .load_uA =3D 16000,
-> > > +     },
+Changes in v2:
+- Reworked it so that it registers a spmi controller for each bus
+  rather than relying on the generic framework to pass on the bus
+  (master) id.
+- Link to v1: https://lore.kernel.org/r/20240207-spmi-multi-master-support-v1-0-ce57f301c7fd@linaro.org
 
-> > I know a bunch of the QC stuff includes these load numbers but are they
-> > actually doing anything constructive?  It keeps coming up that they're
-> > causing a bunch of work and it's not clear that they have any great
-> > effect on modern systems.
+---
+Abel Vesa (4):
+      dt-bindings: spmi: Add PMIC ARB v7 schema
+      spmi: pmic-arb: Make the APID init a version operation
+      spmi: pmic-arb: Make core resources acquiring a version operation
+      spmi: pmic-arb: Add multi bus support
 
-> Yes, we have what is called a high-power mode and a low-power mode in
-> regulators and these values are used to determine which one to use.
+ .../bindings/spmi/qcom,spmi-pmic-arb-v7.yaml       | 119 +++
+ drivers/spmi/spmi-pmic-arb.c                       | 951 +++++++++++++--------
+ 2 files changed, 700 insertions(+), 370 deletions(-)
+---
+base-commit: 2d5c7b7eb345249cb34d42cbc2b97b4c57ea944e
+change-id: 20240207-spmi-multi-master-support-832a704b779b
 
-Are you *sure* this actually happens (and that the regulators don't
-figure it out by themselves), especially given that the consumers are
-just specifying the load once rather than varying it dynamically at
-runtime which is supposed to be the use case for this API?  This API is
-intended to be used dynamically, if the regulator always needs to be in
-a particular mode just configure that statically.
+Best regards,
+-- 
+Abel Vesa <abel.vesa@linaro.org>
 
---g16doyZ3qKVdSFBl
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXUn3MACgkQJNaLcl1U
-h9Coegf/cTLhALjTXQxrUSAhLhbbWi2aaHJ5OUWXQhSYshGlFNvzP1TpP2FeROeb
-YSX+KygQ7NlKk/LLQsU/f6IKcmlMVTO2M+gFe02zg3SiufZoJDPEmx9sqGAjE1gu
-9MlGnfmzhg1wv2nFAsqol7OpYRmGiFWwItzkh+0gcGzM1Z0dofVRz+b7iJ/D1l8k
-BmsnAqWMd6ePiTeyyZD1b2vwbIPLNYLDq0T3iL3ubP8H0tf1HkDXZCLW26RgabHJ
-uNqpcRzG+kxblNPuDu8G3w7SfLPcOQ8YjLJhiKm9ADl7Wktqh+Lx/Z0EWJBwYi+2
-gt31H+Otddbe7zUMgos8YlMmD1oumQ==
-=gJLX
------END PGP SIGNATURE-----
-
---g16doyZ3qKVdSFBl--
 
