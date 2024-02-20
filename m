@@ -1,213 +1,161 @@
-Return-Path: <devicetree+bounces-43933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C5B085BE2D
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 15:09:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0359E85BE34
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 15:10:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA9AB284590
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 14:09:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 852111F2401D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 14:10:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 775AD6A8D5;
-	Tue, 20 Feb 2024 14:07:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2629C6EB6D;
+	Tue, 20 Feb 2024 14:08:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="Ko5dDD+x"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yvmjUdRt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01olkn2071.outbound.protection.outlook.com [40.92.107.71])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E37369D0D;
-	Tue, 20 Feb 2024 14:06:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.107.71
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708438020; cv=fail; b=j4+avhGIYVBUJXFrRJpqlVpIJucD1Qx/VDwxNhPVuZ39WKNjkJlxz5FNYmc83rPa/RTWowRbw19BATVGOEV65fEVjhOKOWVGsfYZj9jxjiQcck3CE+TO5eVdwUKQv0FNBQpTHjaRx70pYWKbTEwMQcI+qQHKQjHHCDgtEpd88ww=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708438020; c=relaxed/simple;
-	bh=4mLskrfR+uaiNfeTrMMg5bcnIT4OHOgm1y2941aBHNY=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=Sf/cbfqNzdYSiyyBIBg2G+0N49EbrrQuUiBdv6+E0QS668irkDRV56BH5zn0DSalGAG4oSwQf1aXU8yK60xyq53upZ+C8Jz//x+N1GcN7Sv1JwgNCRPX0a4ar7NCM+TxJ5C0Rq0rTPJ9QQS7QDwkxOF7DzrTMthNE8egTpHoeOc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=Ko5dDD+x; arc=fail smtp.client-ip=40.92.107.71
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=B8rLCYhv2M0yoTw2zU6eSevhkQEZrtv8dMGKQ8QdrgzSTT6baqK9WdKfKnBe92uwF7yThqqqs2hPtX+bKKgE1GdVnafp+gTWVSjsXNjhHQlYqYFOUpZZjKoSS6zmSTY5u4/yXqAu/6bsnziacuKcGa1rb3g6yYbyuKp3jywasNBp4viZOYagKMOCXbiZwVrTfBn1qqY37l6an5Dnq4WbZPD6vPnj2WbEu/l5MqIvPlvKFePq122j6jqQS6Jnn+ITabSRvknTz5Qy2jJoFavJ4J93MkULTfseHEOnrXcQKNZpnsvcnkEsobd4wF9lM4TGy15bKmJQDf3kumbua5vzSw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oXXWqHHfB/J9gTzI6qfC5SyY8Kcp+ZSokUn6VRBhFUA=;
- b=MnHA+k6qkB1GpfqKsmRLZi6N9Rcr+FeRHBeLkR4XoUtkeGD4JS5sJALO89+++N2GcKDBPcO/LUp6s/KF6D+kwtgWJqaRFP9wVu8tH7glkJRGYTtd5aO1A9HCP1vS0w8GsGClJ+rUC84AOSRs4YNPvYFXkDB8B+KBrWojxjrN6lzkczFFft691N0l5wn8H0ZxMEXwQxlYdn45nLuJsSmewfMt6ndaJI1Y1Bdpok9EHAW82hlMi7HiTLotbBB31/a86D/XS3lnZ7jZxiSCi2bhIyKQD0sPXQZS6BbpiCqiQH7BKBJVHLAFYvMBY3SEFF/0uJ9Bp5w9tbxlln/C9aJ7fQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oXXWqHHfB/J9gTzI6qfC5SyY8Kcp+ZSokUn6VRBhFUA=;
- b=Ko5dDD+xXCKW0CTfUGXtsiDqEgdZD3b5a/5QE+xE9OJn5Ag4Rt7icrR3CDw/1ypZoHDlTX1lN17J6ann1wjgYRYKRcw6oMea0OvNjjvGVe9yapyQ0EBCBkDac3xjpGVBMNqiXYIU5FxkejHJ0LzowO0N9X4sBxgqfKYQOE0gCKbms6/yggvpz3kHJkiZSNNC56X26nfEW5bVh55Dy0sRVE2TbQiSe6Rp+woWP7q83GwLypCm8qAdPfTKcaPj2/Ed7vnQV2B5ZuN2F4TIx9kuaAlQlzwbJFNWaA6NwOKvboRRyHuN9CVwHk7VRJzK9WIAXCf8OybzdbwhlwHFWRTZbg==
-Received: from SEZPR06MB6959.apcprd06.prod.outlook.com (2603:1096:101:1ed::14)
- by KL1PR0601MB4308.apcprd06.prod.outlook.com (2603:1096:820:6c::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.39; Tue, 20 Feb
- 2024 14:06:51 +0000
-Received: from SEZPR06MB6959.apcprd06.prod.outlook.com
- ([fe80::53da:a8a:83cb:b9ad]) by SEZPR06MB6959.apcprd06.prod.outlook.com
- ([fe80::53da:a8a:83cb:b9ad%4]) with mapi id 15.20.7292.036; Tue, 20 Feb 2024
- 14:06:51 +0000
-Message-ID:
- <SEZPR06MB6959456E59D84C15F0C1B88396502@SEZPR06MB6959.apcprd06.prod.outlook.com>
-Date: Tue, 20 Feb 2024 22:06:45 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v2 1/5] dt-bindings: clock: histb-clock: Add missing
- common clock and Hi3798MV200 specific clock definition
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: David Yang <mmyangfl@gmail.com>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240217-clk-mv200-v2-0-b782e4eb66f7@outlook.com>
- <20240217-clk-mv200-v2-1-b782e4eb66f7@outlook.com>
- <875b706f-801a-4a4c-8806-411a67c5a5e7@linaro.org>
-From: Yang Xiwen <forbidden405@outlook.com>
-In-Reply-To: <875b706f-801a-4a4c-8806-411a67c5a5e7@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN: [tn8y/u+QRvkIZNpt7l6pj8o2Au1Bn+ProamVa+PVLSRKYBUFms3Ncg7e0t8YKq3P]
-X-ClientProxiedBy: TYCP301CA0064.JPNP301.PROD.OUTLOOK.COM
- (2603:1096:405:7d::16) To SEZPR06MB6959.apcprd06.prod.outlook.com
- (2603:1096:101:1ed::14)
-X-Microsoft-Original-Message-ID:
- <e83e3faf-3ff0-4467-8408-b08e54ac773c@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24C7E6D1D2
+	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 14:07:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708438082; cv=none; b=BXNCcgWvWpgJsFX94OCIUKdYw3J1SrPJUub4TDb6/ly9VCkgxq1aOch7t5ycCJHZyOtBUUaMKrRpHR4A3LdPM9hYajt4uc4ph8tndV0QcDRdibY9g0+ZcT1ArNI5jjOrsIiCeX6XCCeHg96xTgZjH7kFjX33WrhvT1h0c8l+C3E=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708438082; c=relaxed/simple;
+	bh=5oaeW/V0LDGVm1ZQQ73YcEjzNaiTcy6WpefpawYWA1E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DMLfLmf+l5FUvcMy0F9ipmIrlKYuRnDjuZ/6S6KyrhpWnLj5C6ypgEr+0ljvDR+MGDucDOhuBPufneieujVt770y9wYk1Gz3hEYCpnn7SWk9gSG6TdHtVK84mGbAwvcwjohh89ZJZTmPtXQ6NpwC2fyQrrU6JKdE7CcJglzrmSA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yvmjUdRt; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a2a17f3217aso725888466b.2
+        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 06:07:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708438078; x=1709042878; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=DSMyX8FZ9wn9s6dszFNVxl4SdqcyAmoAGLVwPyba9iE=;
+        b=yvmjUdRtTnIQVUXJRArmx3rrtQq/wwJ8+icFWUDPfCBBS4mjNo9peX5jijDZW4MdIP
+         xXwdWk4+/zs4XvDxt2wu7ELzHHKs/F4KJkQSFP85C+i52SENCQG1rWIskORac1NCh8qZ
+         t4TbYncFQDoE+snQkIJWZanNzpVPo2gctuzxngvMzz/VstSZsVsNs857YV9rI3AnXbsx
+         TD1EoHGX2BfpkBHsrx1ubE1h04XmTc4jkwreR7Qeg+k4lbHRYeA8j3Pkb6gj3KRaYGpv
+         NjQZoOKO7gSqsF/GOtQyosCl1QpyToQY21VgQIM2nSSSVsN622tVMibCaJJ3VXJqf82m
+         7neQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708438078; x=1709042878;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DSMyX8FZ9wn9s6dszFNVxl4SdqcyAmoAGLVwPyba9iE=;
+        b=V4KkuiNjhYDfBuw52V345mswU+FADUFy/9uqYCgIZ0TxjxjIulSE0jwzanyuwcilXu
+         UBcNcSAM1GmXfJXlOlH+T0AO1yYMGLG2udZrKZ7sfq7xHnYOXpQcxv/j51Fa5ZDoTJLf
+         FNYiVAuq8tTwB/m4wBNwZFbNYaIWiVrZkHrQe87jnIQHADYWyC6fY0stNRQ1U5kxAwag
+         GxJvYrmRTglZ4xxN5uiAq9w+psaXEivrKaxjljgs/BR77VRiSu7dkYeKAg4W2BHvHSBH
+         pxu+YWAHbVT/MuRVDUvZZQqOeWYlNbYZkvqRAFlZDhrkSXseLOM5oyBNrjuTpI7baMlH
+         Cyrg==
+X-Forwarded-Encrypted: i=1; AJvYcCW53wgCsXIKeGIl3S6l5h2tMqZDvsY5l1nqLqmZ1nbHIijq6c8DXZCfgFgYar6UvttYYajM3kdKWgcTX+sStlcbErQK8fBNZTq/3w==
+X-Gm-Message-State: AOJu0YwAe2aItiBbvUjnNV24JKn3B1SjYlIdf3TOHks5ISSQMJz/dCzy
+	CuXX5BLMQ0G3deDfffiqwEW7l393lpn70733OqICqsO8uKy5ag8bczysaJtlfsw=
+X-Google-Smtp-Source: AGHT+IH7KpLxnQBbQwJdCvCCTzsuWiXSt3e1ClIEjTyKYfW88fPzUAcb5CjerS4ur6N409QduSLclw==
+X-Received: by 2002:a17:906:48cc:b0:a3e:6501:339d with SMTP id d12-20020a17090648cc00b00a3e6501339dmr4686923ejt.61.1708438078395;
+        Tue, 20 Feb 2024 06:07:58 -0800 (PST)
+Received: from [192.168.192.135] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
+        by smtp.gmail.com with ESMTPSA id vo5-20020a170907a80500b00a3d559c6113sm3974635ejc.204.2024.02.20.06.07.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Feb 2024 06:07:58 -0800 (PST)
+Message-ID: <738dcf0e-57fe-4123-af83-be91d8166420@linaro.org>
+Date: Tue, 20 Feb 2024 15:07:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SEZPR06MB6959:EE_|KL1PR0601MB4308:EE_
-X-MS-Office365-Filtering-Correlation-Id: a7cc4acd-8b23-46b4-a279-08dc321d2f5b
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	RttOD51mK8tJsXHB8WnThFmYIVydte+ExoqjzqZ+5H93lPmY0ydls6MdRHL9qW1nZWRXd5A1MT6W8pFDhoSJHTEii6fdJ/FOYXSzkqcg0wAwJUNrQ27a00qcXfk6Elo2V4hC9zgcCbjtS/Z8MPyXKumSXkbus33ZErr6FzeDuufiQ6ouplk5hqdpJSTmZmUfTSblymkn9Q4ntAF29yq3L8CR56g8rbDFQUJ7v1dWMMG18wTfWnB5Wj6hBKrG1m4qB4ZVu4pznO67se8osrlg36vUXMiq4MWNiR/9xMoND/rmn2SumeWDFdKE2CoR6Tdf5KMLUYTcP5QnX87txIKeTIl/v14ggvRL8kIFb6Q4bduFWWbDxvl54fknL0ucCLn5gzL+oyVnrhuIFTDFAATTFHjx/wdm0PCnngEuoXA1YcAwez5lP7x60Ejfu5xqkLDyxzT3aPTSu1Haw5yvDpHqeWvOVrlp1R/wI0Skc3nlPg9GYirDRWOVQ6TcDD/6LEUhIHBOZdB2eOL1VYYPkcd2DAvsWhXMIAjEVvnTzrPgaIo/PBO/Yqi/z5ITSYJ1qzeZ
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?NVJ0MHAzRGh5RmpaNWlIUWs1MmdmYnJHRHNQRkJuTVBFTTMrZkQ4ZzNUd0pt?=
- =?utf-8?B?MlBFdm9TZ0NTWkxEZEdMdXhiRFhlZURLV2E1eThZaGljMWhDajdpT0w4TWR1?=
- =?utf-8?B?TEZPMFA2MFFCWG9LcWpEVEtJM0tCQnFrcVFpYWc2RW1vd3puYnYxRG9Kdis3?=
- =?utf-8?B?WVl2YlVwSW1obmZkQWFkOEJBZVNCQzF2eStOU3ZSRDFvZTBYbmJsektZdUs5?=
- =?utf-8?B?YVUrYXNuRGVoWjRYNnBjZnYwbE94ZFoxTkx2QjB2MzlmZ20rQldIS1I1ZTNu?=
- =?utf-8?B?VFNxRzd2WklYNnR2Uk1iQk02M1FzSi80b1drMFhxR2JyekYvR2E0UlVmaFpz?=
- =?utf-8?B?bWlyd1o3dkZka214c3YzdUlrUWhPQWZ1ZFNYcy9vVzgvb1Bzckx1clNHU3ZH?=
- =?utf-8?B?R2tXOURnSG1uajhyWWE4VU1ud09selZRa09NTFp6cTNaeHJjUUtseTZSTE8x?=
- =?utf-8?B?cDI1d0JzNk1NdVpFVWhHRUljT3o4MSs1T0U3d3RKUWcyM2hDWDA4V3FXd2Nw?=
- =?utf-8?B?VFlmQ2RPNDZkYlp0TjVoSm54ZVZ4amU1ZGZjWm9reDFEdWwyb3pTZUFCSHl0?=
- =?utf-8?B?V0hoMWsyeWFuaGZRS1RoMFY0QWYwakRlT3pTQUI0VTBnRHMvK09LcE1LYVVu?=
- =?utf-8?B?NkxiY0p3Qk5UbkhXYkx5Q0d0MmRpSlhWcWdUOEpGK2RJNEJ0UFRDUGx1UGYw?=
- =?utf-8?B?SlRpWWZvdi9KRU54VVJRM2Y1ajRpTC9wUTlhaEtFRHhXcVU0NFZNU2xjNzdz?=
- =?utf-8?B?NFJrNHIranVOVTFYeXdGRVJBNHNMbkErMWlxYXppVkhiYW5kcHpWZTVLL25u?=
- =?utf-8?B?YlhaUXZselduRnRQV1VCY3JVV2NpVmpwVk80L1pLaHovckt4RUpUS1l2dTNa?=
- =?utf-8?B?a3dHVTloT1ZHZ2JVNmtodm13aFgyb1g0blpiZWtMYURQLzJHZUtoQ3pjODFT?=
- =?utf-8?B?bWdKL29wQUlzRDRTeHBWaFJuVldVbHVtUGlsYkh6TWplakg5WUt4WU0xQlJL?=
- =?utf-8?B?YlJGKzE1WndweE5Jd1FyNmtlRnJaRC9QV0xhMmR3M3FnVW5RWHNGQUgvN3B5?=
- =?utf-8?B?d05SSHgwSXZvTEpDdVVERy9mV0pMSHFNZDc0am1VRDVzTmZXdEl3TVNyNEZm?=
- =?utf-8?B?eFZMWmZ4d3VGOXBoWXBjUmJJLzB1alhjZ1Z6K05Rb21rV05UUHRqMmd6VUps?=
- =?utf-8?B?NVdYOEhQb3lXSUtIeFFWYis3cDkwM284MnRST0ZZd0kwT0E4anJMeExRUjhL?=
- =?utf-8?B?dEhKK0hJYWs2MEdJMndRK0NSV3dqTUZDS3c3aU40WDVXclRTYVNFSGFCNjdY?=
- =?utf-8?B?SFNxK1JROW0ySXZvekF6OVB0SmU1V2hTT1BjNzFkd0F5U29MQ0YyRW5iR0hx?=
- =?utf-8?B?VHhHQU5ZblRkRnc2OHNqaVlLbkFrNE1vdE1MeVpQWCtmMlA2bUxJODBMMVpY?=
- =?utf-8?B?VnJwaWJ0RnBWQml4cEdCcUJKZ3ZMb3hRSVdlb2tIZnFLTEllVGFUZWRpcDhz?=
- =?utf-8?B?dnBieXhNaGpsbXo4bEd2WXlHcGFwZjd3eGo3bHhWWkIvNXJRcjhkRVpNeVNv?=
- =?utf-8?B?UEdOZnRFSXRXUk9LVHVRMHdYVi8vSmF1WnZWNmNXNXA3OUlGM2plckhsZUd4?=
- =?utf-8?B?eDRDN3JUTjlpVnMvTUNxY0p2SCt0NFhFZUNhV2ZzYXlzaTdzb3VwZDJYWG04?=
- =?utf-8?B?aUZUbW5Ba2VGcGVCQWF3NDEyZUpsd3hhLzZlNk4ydTFQU2hDTGZhemhhcE1v?=
- =?utf-8?Q?pMaFGkHSzBHuLPKgFMg9Zuf7KEmU+LsM8b+5nWq?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a7cc4acd-8b23-46b4-a279-08dc321d2f5b
-X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB6959.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2024 14:06:51.1248
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR0601MB4308
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] backlight: lm3630a: Initialize backlight_properties
+ on init
+To: Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org, Lee Jones <lee@kernel.org>,
+ Daniel Thompson <daniel.thompson@linaro.org>,
+ Jingoo Han <jingoohan1@gmail.com>, Helge Deller <deller@gmx.de>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ "G.Shark Jeong" <gshark.jeong@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Maximilian Weigand <mweigand@mweigand.net>
+Cc: dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240220-lm3630a-fixups-v1-0-9ca62f7e4a33@z3ntu.xyz>
+ <20240220-lm3630a-fixups-v1-1-9ca62f7e4a33@z3ntu.xyz>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240220-lm3630a-fixups-v1-1-9ca62f7e4a33@z3ntu.xyz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 2/20/2024 6:10 PM, Krzysztof Kozlowski wrote:
-> On 17/02/2024 13:52, Yang Xiwen via B4 Relay wrote:
->> From: Yang Xiwen <forbidden405@outlook.com>
->>
->> According to the datasheet, some clocks are missing, add their
->> definitions first.
->>
->> Some aliases for hi3798mv200 are also introduced.
->>
->> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
->> ---
->>   include/dt-bindings/clock/histb-clock.h | 21 +++++++++++++++++++++
->>   1 file changed, 21 insertions(+)
->>
->> diff --git a/include/dt-bindings/clock/histb-clock.h b/include/dt-bindings/clock/histb-clock.h
->> index e64e5770ada6..68a53053586a 100644
->> --- a/include/dt-bindings/clock/histb-clock.h
->> +++ b/include/dt-bindings/clock/histb-clock.h
->> @@ -58,6 +58,27 @@
->>   #define HISTB_USB3_UTMI_CLK1		48
->>   #define HISTB_USB3_PIPE_CLK1		49
->>   #define HISTB_USB3_SUSPEND_CLK1		50
->> +#define HISTB_SDIO1_BIU_CLK		51
->> +#define HISTB_SDIO1_CIU_CLK		52
->> +#define HISTB_SDIO1_DRV_CLK		53
->> +#define HISTB_SDIO1_SAMPLE_CLK		54
->> +#define HISTB_ETH0_PHY_CLK		55
->> +#define HISTB_ETH1_PHY_CLK		56
->> +#define HISTB_WDG0_CLK			57
->> +#define HISTB_USB2_UTMI0_CLK		HISTB_USB2_UTMI_CLK
-> Why? It's anyway placed oddly, the entries are ordered by number/value.
+On 20.02.2024 00:11, Luca Weiss wrote:
+> The backlight_properties struct should be initialized to zero before
+> using, otherwise there will be some random values in the struct.
+> 
+> Fixes: 0c2a665a648e ("backlight: add Backlight driver for lm3630 chip")
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> ---
+>  drivers/video/backlight/lm3630a_bl.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/video/backlight/lm3630a_bl.c b/drivers/video/backlight/lm3630a_bl.c
+> index a3412c936ca2..8e275275b808 100644
+> --- a/drivers/video/backlight/lm3630a_bl.c
+> +++ b/drivers/video/backlight/lm3630a_bl.c
+> @@ -343,6 +343,7 @@ static int lm3630a_backlight_register(struct lm3630a_chip *pchip)
+>  	struct backlight_properties props;
+>  	const char *label;
+>  
+> +	memset(&props, 0, sizeof(struct backlight_properties));
 
+You can zero-initialize it instead
 
-So this is somewhat broken at the beginning. It named after 
-histb-clock.h but actually they are all clocks for Hi3798CV200 SoC. For 
-Hi3798MV200(also a HiSTB SoC), there is one additional UTMI clock.
-
-
-What solution do you prefer? rename UTMI_CLK to UTMI0_CLK, add UTMI1_CLK 
-after it and increment all the indexes after it? Then the diff would be 
-very ugly.
-
-
->
->> +#define HISTB_USB2_UTMI1_CLK		58
->> +#define HISTB_USB3_REF_CLK		59
->> +#define HISTB_USB3_GM_CLK		60
->> +#define HISTB_USB3_GS_CLK		61
->> +
->> +/* Hi3798MV200 specific clocks */
->> +
->> +// reuse clocks of histb
-> Don't mix comment styles.
->
->> +#define HI3798MV200_GMAC_CLK		HISTB_ETH0_MAC_CLK
->> +#define HI3798MV200_GMACIF_CLK		HISTB_ETH0_MACIF_CLK
->> +#define HI3798MV200_FEMAC_CLK		HISTB_ETH1_MAC_CLK
->> +#define HI3798MV200_FEMACIF_CLK		HISTB_ETH1_MACIF_CLK
->> +#define HI3798MV200_FEPHY_CLK		HISTB_ETH1_PHY_CLK
-> I don't understand what do you want to achieve here. Clock IDs start
-> from 0 or 1.
->
->
->
-> Best regards,
-> Krzysztof
->
-
--- 
-Regards,
-Yang Xiwen
-
+Konrad
 
