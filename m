@@ -1,169 +1,146 @@
-Return-Path: <devicetree+bounces-43890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35A7B85BC47
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 13:34:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E30085BC8E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 13:48:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E054A284432
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 12:34:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 543D2281796
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 12:48:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74DE25A4DE;
-	Tue, 20 Feb 2024 12:34:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E8F269D20;
+	Tue, 20 Feb 2024 12:47:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="o9dVyzXJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O+70rKxC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DF5B69941
-	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 12:34:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31D89482FA;
+	Tue, 20 Feb 2024 12:47:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708432459; cv=none; b=WfYcTNPSwfL+4MrKYWZ32qGWUwoOO+IphHzrELMbRpx8/s3Ne253vs3L5fxpq1mBjZTI7dZemLQTSvcEqe9WO9Timyh2zYu3EZOxoEYJ/h9UqpOM5Q26XNwc4nCnVNaJJWCTw0l4J6tuZ1YCwTHA76Kr90cx/hqmGU7qAyV3M5w=
+	t=1708433279; cv=none; b=SgiSZnYTQFrCgJUet+d/Td4HLRll7FM3Q8+TF0DeENcrUOQgO/p/8B3EIZzBJ9o5VPzYnoBrP9mHgCp37p4437xOzJuml7tFTw+NtiPct8mwuejDpr/NZeCmRigzIdpAWcGf3ufM3GqhF1BU34girSZuWAs8aK3YxMcfeoX9Bas=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708432459; c=relaxed/simple;
-	bh=MGIqUV2CI+UKZ3CA2T3javXRBNfXHeAugjBsCrGhZlA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XsL6MGa6ke+ipBPYwBKNi3WovijiGiY2TkT5jD8v4BNiT3jn3//zt0dy3CqnxGhdN9EzHlyAf+8cltam+wG3uVYfPpVfqq8nS/2WPTPzoS6c6cZXCSu65hmg606vl0UIa8LVV+4IZuSC7hoRMaAJJjgMf0bmnqoj6SLFgFcaZYA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=o9dVyzXJ; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-412700a7207so3163485e9.2
-        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 04:34:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1708432455; x=1709037255; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ua3KO8MgOVGzzJ9O1MDgx7OJCCp+9jL6JZTa/Xsyo18=;
-        b=o9dVyzXJ/46kmTf7VPuDXsh0qSs18b3Lvy+SFtKL3PyAitmIobJMtmRv1PuIjx/t2z
-         BmJlaWXCmerNvswJEf4R9S2NTrdy+qHdk7T44XM8qoahm/4THe/EGbaScffS0jRNo1g/
-         tpdezRM4CgBrmUVLDUjh+l3yDj1/ZAPWeJY35yGaVjSD3zi4xUsxS1Z88hqfnnOKIJsm
-         RP2x0e2YgWVXLQmNclX1PaQT52ljlZ+yYlvwz8bQMlqYqJoDT7bnFQtVVQ1TeJnviFuA
-         PEh8cpTz2U3shBfHugG6b1ukmPd85QfO4X9HXV7PZdSyUI2RqFjiN/8RLbmCa29ivO49
-         z6NQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708432455; x=1709037255;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ua3KO8MgOVGzzJ9O1MDgx7OJCCp+9jL6JZTa/Xsyo18=;
-        b=lqzE6w3lPLkxybiSNyhnThkw1Vg0m9t78m23AIcjrE11YXRiwEpufVdh+aJif2ttPs
-         UKnwoW5X3DUICbbhbBD1QO9rPo/X1IJZSkMj/fOz4HWZefeyYvh4OBLHbp4Wo1A/wd/8
-         S8Tmz8ywYIB9onoheIMI8ckRJ1d+SBKgJgktpiGEKTPSKI5jyqQCd2Hqh72nka+NzVZJ
-         OqILBGxddXuy1YtYptWwymBOVcLccp0peIjldevQb1vQxs0MHc6WI1Zp+zN55TAryTam
-         nLbipZHp1O5cazqONFf7G5HJXQ+tQ7xh97yMJu2gZ/XTArUn1whzVg2PqddkFXu26KgS
-         fjUQ==
-X-Gm-Message-State: AOJu0YxMWpLF/nSnNFwq98anPJGnUQXf9lNspejdGG5YInZCUKh89XTZ
-	X43YPGQ5w3RzXsAjxREDhFW92E2VuMXuqztUDHhlPPI+KXq8WD1S2f/9eO9fpos=
-X-Google-Smtp-Source: AGHT+IEj8Nz2mWcue7qr/FDIPFVjs/qOJzU/FyY35CbGThswb1cSYoppPgfhE++jXBFH189u94TX6Q==
-X-Received: by 2002:a05:600c:4f0d:b0:412:107d:cd6c with SMTP id l13-20020a05600c4f0d00b00412107dcd6cmr11000210wmq.28.1708432455483;
-        Tue, 20 Feb 2024 04:34:15 -0800 (PST)
-Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id o20-20020a05600c4fd400b00412590eee7csm11460164wmq.10.2024.02.20.04.34.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Feb 2024 04:34:15 -0800 (PST)
-Message-ID: <6342e92d-eed0-45c2-8f04-3779aa2e521d@freebox.fr>
-Date: Tue, 20 Feb 2024 13:34:14 +0100
+	s=arc-20240116; t=1708433279; c=relaxed/simple;
+	bh=ViefJugypi9Weib1Uaokne/i9seCAk+ZC9k+nnoVcWg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=enLCj+eUSP5TOx+bEoLMQG+hF3q7+nNHGkL/E1BCT54YYJ0ANFxY7FNOl4nub2lO5mtpoxSH9+X+PZIW/CAyB5kIPm3f7N6y+MeEwpq2QVYnNb03CZ/f8JFI7xGJ8KYTWEEsPQtqirIlkpFGRA+8dym6LVL+hyMvnlHO83vMQlc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O+70rKxC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EF8AC433C7;
+	Tue, 20 Feb 2024 12:47:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708433278;
+	bh=ViefJugypi9Weib1Uaokne/i9seCAk+ZC9k+nnoVcWg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=O+70rKxC/6pwXD95cIIDMA1V+jnd/1+CGcXC46So93DH3Xkfgy1cC8BWRR3qI4542
+	 kCHuo10Mnf3HQionPq2GoeJHytdnySZN+AtXrVQy7+ULywO7SE8Z3CUfiJ8NRj1Ywd
+	 z7mhQpiMcCcX40rL7NcE6M0QXbOPdV03WEInkMea6IY5d/oCerFF4v6U7n7ekmm2u2
+	 QpqT8/H1cFo+jxS7xEUsTnd2m+nfD2Tamm1ILj4nnQhRbMCeNhB4jl4Y2W3k5YORzJ
+	 UTeGrLpyNukJdQCdQuzVaR5Vu6MU4U2KSZ2E7pwDn9cfOhwfnPepW50PFYspCXupGX
+	 9bF65zzZydcSA==
+Date: Tue, 20 Feb 2024 12:47:48 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Alex Elder <elder@linaro.org>,
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Abel Vesa <abel.vesa@linaro.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Lukas Wunner <lukas@wunner.de>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-wireless@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH v5 14/18] PCI/pwrctl: add a power control driver for
+ WCN7850
+Message-ID: <ea08a286-ff53-4d58-ae41-38cca151508c@sirena.org.uk>
+References: <20240216203215.40870-1-brgl@bgdev.pl>
+ <20240216203215.40870-15-brgl@bgdev.pl>
+ <d5d603dc-ec66-4e21-aa41-3b25557f1fb7@sirena.org.uk>
+ <CAMRc=MeUjKPS3ANE6=7WZ3kbbGAdyE8HeXFN=75Jp-pVyBaWrQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC WIP PATCH] venus: add qcom,no-low-power property
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: DT <devicetree@vger.kernel.org>, linux-media
- <linux-media@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>,
- Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Pierre-Hugues Husson <phh@phh.me>
-References: <0843621b-386b-4173-9e3c-9538cdb4641d@freebox.fr>
- <f6e68756-72a1-4c32-968d-3d6adaa153c9@linaro.org>
- <CAA8EJpq=G21h87W69_4U-BZ=Sa5VEs15Y-zE-G5x9VxVx4qjsA@mail.gmail.com>
- <81dc6452-4039-4eb4-92ba-df248215fca2@linaro.org>
- <b8325dbf-67c5-4898-bc23-ff093ae6e14a@freebox.fr>
- <87db77f7-fda4-4cf7-adfd-8545c40c3365@linaro.org>
- <10fe67af-0572-4faa-91c6-fce9c8f9dc92@linaro.org>
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <10fe67af-0572-4faa-91c6-fce9c8f9dc92@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="g16doyZ3qKVdSFBl"
+Content-Disposition: inline
+In-Reply-To: <CAMRc=MeUjKPS3ANE6=7WZ3kbbGAdyE8HeXFN=75Jp-pVyBaWrQ@mail.gmail.com>
+X-Cookie: E = MC ** 2 +- 3db
 
-On 20/02/2024 12:37, Krzysztof Kozlowski wrote:
 
-> On 20/02/2024 12:21, Bryan O'Donoghue wrote:
->
->> On 20/02/2024 10:56 a.m., Marc Gonzalez wrote:
->>
->>> On 19/02/2024 20:24, Bryan O'Donoghue wrote:
->>>
->>>> On 19/02/2024 5:44 p.m., Dmitry Baryshkov wrote:
->>>>
->>>>> On Mon, 19 Feb 2024 at 19:29, Konrad Dybcio wrote:
->>>>>>
->>>>>> On 19.02.2024 18:18, Marc Gonzalez wrote:
->>>>>>
->>>>>>> On our msm8998-based device, calling venus_sys_set_power_control()
->>>>>>> breaks playback. Since the vendor kernel never calls it, we assume
->>>>>>> it should not be called for this device/FW combo.
->>>>>>
->>>>>> FWIW, this is also broken on other SoCs.. 8280/8350 and 6115
->>>>>> to name a couple.
->>>>>
->>>>> Then let's just disable it until it gets unbroken?
->>>>
->>>> Its functional on most of our upstream stuff though, why switch if off
->>>> unless necessary ?
->>>>
->>>> Maybe it should be an opt-in instead of an opt-out, TBH my own feeling
->>>> is its better to minimize the amount of work and opt as per the proposed
->>>> patch.
->>>>
->>>> Perhaps the qcom vidc team can give insights on 8280xp and 8350 when we
->>>> come to tackling new HFI6XX and later SoCs ...
->>>
->>> I was wondering if the chosen property name might cause issues later...
->>>
->>> Thinking "qcom,no-low-power" might be a bit too general?
->>> Perhaps would need to mention venus somewhere in the name,
->>> to limit this to the video decoder?
->>
->> Yep, the word venus should probably appear in the property name.
-> 
-> This is RFC, so I am ignoring it, but just in case before you send v2
-> with the same:
-> 
-> You described the desired Linux feature or behavior, not the actual
-> hardware. The bindings are about the latter, so instead you need to
-> rephrase the property and its description to match actual hardware
-> capabilities/features/configuration etc.
+--g16doyZ3qKVdSFBl
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I added the RFC tag explicitly because I was hoping for the DT folks
-and msm maintainers to comment on the property name ;)
+On Tue, Feb 20, 2024 at 12:22:42PM +0100, Bartosz Golaszewski wrote:
+> On Mon, Feb 19, 2024 at 6:50=E2=80=AFPM Mark Brown <broonie@kernel.org> w=
+rote:
+> > On Fri, Feb 16, 2024 at 09:32:11PM +0100, Bartosz Golaszewski wrote:
 
-Thanks for your comment!
+> > > +static struct pci_pwrctl_wcn7850_vreg pci_pwrctl_wcn7850_vregs[] =3D=
+ {
+> > > +     {
+> > > +             .name =3D "vdd",
+> > > +             .load_uA =3D 16000,
+> > > +     },
 
-Here's the proposal for v2:
+> > I know a bunch of the QC stuff includes these load numbers but are they
+> > actually doing anything constructive?  It keeps coming up that they're
+> > causing a bunch of work and it's not clear that they have any great
+> > effect on modern systems.
 
-qcom,venus-broken-low-power-mode
+> Yes, we have what is called a high-power mode and a low-power mode in
+> regulators and these values are used to determine which one to use.
 
-Description:
-This property is defined for devices where playback does not work
-when the video decoder is in low power mode.
+Are you *sure* this actually happens (and that the regulators don't
+figure it out by themselves), especially given that the consumers are
+just specifying the load once rather than varying it dynamically at
+runtime which is supposed to be the use case for this API?  This API is
+intended to be used dynamically, if the regulator always needs to be in
+a particular mode just configure that statically.
 
-Regards
+--g16doyZ3qKVdSFBl
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXUn3MACgkQJNaLcl1U
+h9Coegf/cTLhALjTXQxrUSAhLhbbWi2aaHJ5OUWXQhSYshGlFNvzP1TpP2FeROeb
+YSX+KygQ7NlKk/LLQsU/f6IKcmlMVTO2M+gFe02zg3SiufZoJDPEmx9sqGAjE1gu
+9MlGnfmzhg1wv2nFAsqol7OpYRmGiFWwItzkh+0gcGzM1Z0dofVRz+b7iJ/D1l8k
+BmsnAqWMd6ePiTeyyZD1b2vwbIPLNYLDq0T3iL3ubP8H0tf1HkDXZCLW26RgabHJ
+uNqpcRzG+kxblNPuDu8G3w7SfLPcOQ8YjLJhiKm9ADl7Wktqh+Lx/Z0EWJBwYi+2
+gt31H+Otddbe7zUMgos8YlMmD1oumQ==
+=gJLX
+-----END PGP SIGNATURE-----
+
+--g16doyZ3qKVdSFBl--
 
