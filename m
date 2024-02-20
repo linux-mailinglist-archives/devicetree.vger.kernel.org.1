@@ -1,222 +1,118 @@
-Return-Path: <devicetree+bounces-43967-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43968-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B744F85C09E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 17:04:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F21485C0B1
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 17:06:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA6231C22E00
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 16:04:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 233D11F248AD
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 16:06:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8988F762F4;
-	Tue, 20 Feb 2024 16:03:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17BFB768E4;
+	Tue, 20 Feb 2024 16:04:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="qOrBtrY9";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Ed8r3oaW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Dzit3AHY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4E45768E1
-	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 16:03:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB932762DA;
+	Tue, 20 Feb 2024 16:04:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708445030; cv=none; b=twPMW00eeRcMZc/BX1cPotf40Vezka1Xem5H+3X7DY1h/8NegKCLXADSL4j6iwHHqly9Z9CeCCQcxFGAKM09FfCr5fWcn7p1Zd/GCR9WpvADzk4cdWm1kYWMZaZ1d/ZGBtrhNqthBfCxqCGbX3tIornmT3sNeQ+mpbOac5pgm7Q=
+	t=1708445088; cv=none; b=r3QTpxepRSxGf5rRynaxcrkvsl3zJgl921UC8xGs236ZgqrU11PrmT/yEouoLC142knW7pH5bhy98bnTaxtPNero+VevH3UT9H4UG7qFWgdoMjMOo8BW8XAk+g+RdG7MXh/QgF3umNr4ds03nQXr5nfJjomirx7eLNDRJ2Vvu4o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708445030; c=relaxed/simple;
-	bh=bzrRT6CwuibZyyv1Hvyjaf7NS93l9NFQ47QRnS7ENLw=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=aDrtoei6Z5T+PKy6vvZovMVyZD0FAnO85sziEbCTViW5yCcAlwtntErRQoSs8QLUVO88y8bNbMgTzG8NMB7dZWeY1PFa6/fNKxC/oGK8/UoY3rRDBq+fqGuDlvv6I0oacwoelEM8gWy3VgiWdF0U2v35HKbXUlVe0LneiYIb7jk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=qOrBtrY9; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Ed8r3oaW reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1708445026; x=1739981026;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=+mjv86uyuqBFCZgF8ms0aaYPzTllCKKiHhNHhZt8xds=;
-  b=qOrBtrY9bAA6K64OvLVdHrHqQ4OIMnqk/1yPX+1DxTVh+nqr9QdYF1bv
-   EvFVmieImWigoE9k8lrTWAg1YrUYKrSybHwEW4FaZ32kYih6tOyw0hCuy
-   8fcEOKUEtJuT2o+ozC8e4jvUB9BICFXE8ZDjwwI3DXn/W79/LBzsgipiz
-   fY0STEywKxMTqqC1Bv9uPR3p4qvdFOP7INVahh4DArXgHkgC4Ixq0/0wk
-   xMP3SRHiMQ1decJaOYT846XFqw2OLyYDd+AAlcak+IeKomjJfxBWxOw5r
-   i2sUcMXeOKJN4Sj4V8vaTminiSYfOAGHFfAuOIiYk2dLf09+dFMKERmfv
-   g==;
-X-IronPort-AV: E=Sophos;i="6.06,174,1705359600"; 
-   d="scan'208";a="35504561"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 20 Feb 2024 17:03:43 +0100
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E998816F4F8;
-	Tue, 20 Feb 2024 17:03:38 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1708445019; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding; bh=+mjv86uyuqBFCZgF8ms0aaYPzTllCKKiHhNHhZt8xds=;
-	b=Ed8r3oaW0WVfQ477GjZo9iNg2t7xPT9lRzfLUuNhfEmFZfuCGw8/y080lDidmWFp7b5Jpd
-	WjagkbUSCrv8Ib7qkcwiZPDHcw+UNYCjhMEWjigkMcknV3VdqdRF5pqwchXSkbK9HA/8vJ
-	kXDx+cxn/4rcGRrUMdXmzoZSLlu5QJ24R/4ga6sh1GVQ7nApOgUkuSGEZTLP0ED2luQ0dn
-	25XH3u8URJy0M8IhrLFsGm3a+lClItrS6c+8H/5XiuzjCP2Fnq6vqOOS4lmJCMm41VEEkE
-	rA7FhWL+mdP32LYZpT3Fl96V8ZG1w7MBUCy1Ok4XghzbQwOvpvxFf992MoR4/Q==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux@ew.tq-group.com
-Subject: [PATCH 1/1] arm64: dts: imx8mn: tqma8mqnl-mba8mx: Add USB DR overlay
-Date: Tue, 20 Feb 2024 17:03:37 +0100
-Message-Id: <20240220160338.2683715-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1708445088; c=relaxed/simple;
+	bh=J1fK6jslfQkZJzg2jPwQHSC+4w+Ux+DicAEu9djZk9U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mdIkSlbILHRrUeZqZ87Y2ofL+VEjdQSC2YSxe1ZVBUjZc6Msm2HAZK0rd5p6SiKDR0ml8kgvuUMNpi8xUEX0IDDzL20bz1SP5Ja/APVMNH0PFChk9k29h8By8m26/QqxFfZK8EyTkv55LlPPKb8tataKF+DhEu5sS7xbw4uop7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dzit3AHY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 628B4C4166A;
+	Tue, 20 Feb 2024 16:04:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708445087;
+	bh=J1fK6jslfQkZJzg2jPwQHSC+4w+Ux+DicAEu9djZk9U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Dzit3AHYBMTM6EIcb3NGyAl04AmdWlCHyErY2wZxASbuJz5+G7g5emqHdd/RtULNB
+	 IS12FBFzONThiujilhranlioF0I31opt503RIvWlbjanS2xIR3pt5BZ0JLp0EfV0OZ
+	 g6rJOt04kvLmtjC3jC3CMOnmiktLrM2JrZgtEelfFg6J981McJzPAqwgRxI8BK+R8/
+	 Sjj6i3+w12GI/5p1PJKSdeYYwvQhdtLma6+fYhXmCsBkHcDppUTGYKYwqKU8274CTx
+	 QbvCMA/UMTEL/6XbOtUsFJOIlPiUAi2j7BZHLWALRdLLsTrEGWguzI2eZknQ/nt1/f
+	 bpzmFfHNJDRPQ==
+Date: Tue, 20 Feb 2024 16:04:40 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Md Sadre Alam <quic_mdalam@quicinc.com>
+Cc: andersson@kernel.org, konrad.dybcio@linaro.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+	manivannan.sadhasivam@linaro.org, linux-arm-msm@vger.kernel.org,
+	linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+	quic_srichara@quicinc.com, quic_varada@quicinc.com
+Subject: Re: [PATCH 3/5] spi: spi-qpic: Add qpic spi nand driver support
+Message-ID: <8422fb6a-edd4-4911-89b7-2974c197981b@sirena.org.uk>
+References: <20240215134856.1313239-1-quic_mdalam@quicinc.com>
+ <20240215134856.1313239-4-quic_mdalam@quicinc.com>
+ <21dde665-54b4-48e4-b963-1008ac890df3@sirena.org.uk>
+ <4a0e51cf-d29a-5843-9c61-1d31a9721a3d@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="kjXP74qJYK0BefO/"
+Content-Disposition: inline
+In-Reply-To: <4a0e51cf-d29a-5843-9c61-1d31a9721a3d@quicinc.com>
+X-Cookie: E = MC ** 2 +- 3db
 
-imx8mn has only one USB interface. The platform supports using as USB host
-(default), or switch to USB DR using this overlay.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm64/boot/dts/freescale/Makefile        |  2 +
- .../imx8mn-tqma8mqnl-mba8mx-usbotg.dtso       | 64 +++++++++++++++++++
- .../dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts |  5 +-
- arch/arm64/boot/dts/freescale/mba8mx.dtsi     |  2 +-
- 4 files changed, 69 insertions(+), 4 deletions(-)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx-usbotg.dtso
+--kjXP74qJYK0BefO/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index fa0ed4f0c9b71..7c2410bad5bac 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -134,7 +134,9 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mn-var-som-symphony.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-venice-gw7902.dtb
- 
- imx8mn-tqma8mqnl-mba8mx-lvds-tm070jvhg33-dtbs += imx8mn-tqma8mqnl-mba8mx.dtb imx8mn-tqma8mqnl-mba8mx-lvds-tm070jvhg33.dtbo
-+imx8mn-tqma8mqnl-mba8mx-usbotg-dtbs += imx8mn-tqma8mqnl-mba8mx.dtb imx8mn-tqma8mqnl-mba8mx-usbotg.dtbo
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-tqma8mqnl-mba8mx-lvds-tm070jvhg33.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mn-tqma8mqnl-mba8mx-usbotg.dtb
- 
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-beacon-kit.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-data-modul-edm-sbc.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx-usbotg.dtso b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx-usbotg.dtso
-new file mode 100644
-index 0000000000000..96db07fc9bece
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx-usbotg.dtso
-@@ -0,0 +1,64 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
-+/*
-+ * Copyright (c) 2022-2024 TQ-Systems GmbH <linux@ew.tq-group.com>,
-+ * D-82229 Seefeld, Germany.
-+ * Author: Alexander Stein
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+#include "imx8mn-pinfunc.h"
-+
-+&{/} {
-+	connector {
-+		compatible = "gpio-usb-b-connector", "usb-b-connector";
-+		type = "micro";
-+		label = "X19";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_usb1_connector>;
-+		id-gpios = <&gpio1 10 GPIO_ACTIVE_HIGH>;
-+
-+		port {
-+			usb_dr_connector: endpoint {
-+				remote-endpoint = <&usb1_drd_sw>;
-+			};
-+		};
-+	};
-+};
-+
-+&rst_usb_hub_hog {
-+	output-low;
-+};
-+
-+&sel_usb_hub_hog {
-+	output-low;
-+};
-+
-+&usbotg1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usbotg>;
-+	dr_mode = "otg";
-+	srp-disable;
-+	hnp-disable;
-+	adp-disable;
-+	power-active-high;
-+	/delete-property/ disable-over-current;
-+	over-current-active-low;
-+	usb-role-switch;
-+	status = "okay";
-+
-+	port {
-+		usb1_drd_sw: endpoint {
-+			remote-endpoint = <&usb_dr_connector>;
-+		};
-+	};
-+};
-+
-+&iomuxc {
-+	pinctrl_usb1_connector: usb1-connectorgrp {
-+		fsl,pins = <MX8MN_IOMUXC_GPIO1_IO10_GPIO1_IO10		0x1c0>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
-index 5b682dd907578..ca388705ec396 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
-@@ -41,7 +41,7 @@ &gpio2 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_usb0hub_sel>;
- 
--	sel-usb-hub-hog {
-+	sel_usb_hub_hog: sel-usb-hub-hog {
- 		gpio-hog;
- 		gpios = <1 GPIO_ACTIVE_HIGH>;
- 		output-high;
-@@ -202,8 +202,7 @@ pinctrl_usb0hub_sel: usb0hub-selgrp {
- 
- 	pinctrl_usbotg: usbotggrp {
- 		fsl,pins = <MX8MN_IOMUXC_GPIO1_IO12_USB1_OTG_PWR	0x84>,
--			   <MX8MN_IOMUXC_GPIO1_IO13_USB1_OTG_OC		0x84>,
--			   <MX8MN_IOMUXC_GPIO1_IO10_USB1_OTG_ID		0x1C4>;
-+			   <MX8MN_IOMUXC_GPIO1_IO13_USB1_OTG_OC		0x84>;
- 	};
- 
- 	pinctrl_usdhc2: usdhc2grp {
-diff --git a/arch/arm64/boot/dts/freescale/mba8mx.dtsi b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-index c82af672d1834..427467df42bfa 100644
---- a/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-@@ -219,7 +219,7 @@ boot-cfg-oe-hog {
- 			line-name = "BOOT_CFG_OE#";
- 		};
- 
--		rst-usb-hub-hog {
-+		rst_usb_hub_hog: rst-usb-hub-hog {
- 			gpio-hog;
- 			gpios = <13 0>;
- 			output-high;
--- 
-2.34.1
+On Tue, Feb 20, 2024 at 05:24:43PM +0530, Md Sadre Alam wrote:
+> On 2/15/2024 7:44 PM, Mark Brown wrote:
+> > On Thu, Feb 15, 2024 at 07:18:54PM +0530, Md Sadre Alam wrote:
 
+> > > +	if (op->cmd.opcode == SPINAND_READID) {
+> > > +		snandc->buf_count = 4;
+> > > +		read_reg_dma(snandc, NAND_READ_ID, 1, NAND_BAM_NEXT_SGL);
+> > > +
+> > > +		ret = submit_descs(snandc);
+> > > +		if (ret)
+> > > +			dev_err(snandc->dev, "failure in submitting descriptor for readid\n");
+> > > +
+> > > +		nandc_read_buffer_sync(snandc, true);
+> > > +		memcpy(op->data.buf.in, snandc->reg_read_buf, snandc->buf_count);
+
+> > These memcpy()s don't seem great, why aren't we just reading directly
+> > into the output buffer?
+
+>   This reg_read_buf is being used in common API so that it will be used by both
+>   serial nand as well raw nand, so I can't directly use the output buffer since
+>   internally CW mechanism I have to maintain in common API.
+
+We have control over all the source code in the kernel so if there's
+problems with the internal interfaces we can improve them.
+
+--kjXP74qJYK0BefO/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXUzZcACgkQJNaLcl1U
+h9Ae6wf+Oq59OwYseL/VBULc5zFT+JBaAz+wC7NoE0Cl+JBwS9ar0CwNuWUQD6Ra
+9Thdvn0Xmqk4vySveo4DKrtjIjai/iU87ZwjrMnDE5jVf+/m+n+h0YCfMSeA1qlY
+WjqgbYKTJRpm9YfJitc6FuNjUnnww2cljwtvT1V6gLbHFmPtG+70m/RKRin6FJlL
+JtVaTkjbHlUrwWANzGfylsAIeyz6q9BDDhN+q+7GkkLV/vUtuZiCeVHszJ8EwjUf
+HpLkY1r/MGbpENGuqo9iiFOlSGHLhyrB83CGZ8e+hB0EiONvKPZqu+mB3wdnRLiF
+oxAaV4xJrFzQNVDCHiDQXmHOhFCXhA==
+=tp1U
+-----END PGP SIGNATURE-----
+
+--kjXP74qJYK0BefO/--
 
