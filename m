@@ -1,202 +1,149 @@
-Return-Path: <devicetree+bounces-43916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E014485BDC8
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 14:55:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC20785BDDD
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 14:56:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 45F34B24BDB
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 13:54:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EDFF31C21F58
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 13:56:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D74486BB42;
-	Tue, 20 Feb 2024 13:53:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BD866A359;
+	Tue, 20 Feb 2024 13:55:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FZOA8OeG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hr9Oo1/j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 422D673165;
-	Tue, 20 Feb 2024 13:53:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF42B6A351;
+	Tue, 20 Feb 2024 13:55:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708437213; cv=none; b=BOo+Qj6vkwM99CrIAwkzeYxV2Fh/URw7KHJwqruswDdoDFtxyf5CrmwC1NasJmZoRhK38wWkg0UmGhtAI3PMxXyWfm2BEKlDr7wqEDtg66gASUzA4Uc4Bs1wnl4unE+AYUQAFaWvM1PqcYv3IrRS7s8SQO0AvfYxw7pFDpmbpdo=
+	t=1708437318; cv=none; b=MSS783cWrFGip1Msd3LGb86g29HI3Mg3ijVZ8Kxow4jkyV0UQ30BuxaFqwO/eTk5lfFe+u7U9IVKb7ZNCoUuXBfQRxiI53ncAgF8d7AA78q6FbM3LNh3Joc73nKlFwWmCbcTtH+8lQrpvfzpNOqXPGkgk2LV9UneCwLiFw2fv3w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708437213; c=relaxed/simple;
-	bh=MKVStnTEU2LSXevhm2uyuLuxpac7BUpgFO9DAXqk3rY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=G90n9UeK3KgQO44Ah9+sy0oJuyKYKht2YX0l/DWyUPD+bihwmInmAodx/hi9gwWEeMOLKMvFaMqsKUVoP3+XnQx+mYTAGcO+uWC0xlY320NUU8mMlmvfVV3UKKOJ3nJheoicpBb89NXsU+NjUzkYet7RmVBxxNJCUqKXR8g/RzY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=FZOA8OeG; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41K884ll024023;
-	Tue, 20 Feb 2024 13:53:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=UaYhP3+GC6vM/TvkgF3lPBBN6jmDGfiKR//qNasxKnk=; b=FZ
-	OA8OeGY7M9nlRnHzbHP5hVdjxsDTFHU1K6SlrAQtb/Oq7TUrsu8GXnNcoSTzQ1Xf
-	yAI7s5xu/MXRHVuEX2sG0CJmhZWmErCXvaheUd2gikPxX11EpvqBoGxeeYDmiS3X
-	/T3nSvBiXbOY1WP39ttrIqLRdCVB4UhN/IcXDkV42xPeDCIWyac28bX8YgdiXGkO
-	M9L+lqoGM7eGAJl+pccZc5pCMhJRKIlyEwNkZv4FIq80vwqGkr5q+/jFNe3vbtdf
-	mF9zODpMkCCkCscQowiYIvpRfG7xg6qSSPp6x2frBQG8SAY4xr9X83j1t8eACIyn
-	LZR8u2MsDcc/jnK3ryyA==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wcmqp92d6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 20 Feb 2024 13:53:23 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41KDrMA3023412
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 20 Feb 2024 13:53:22 GMT
-Received: from [10.216.7.17] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 20 Feb
- 2024 05:53:18 -0800
-Message-ID: <a8c5b27c-47a9-044a-78e8-51c67acf19a6@quicinc.com>
-Date: Tue, 20 Feb 2024 19:23:14 +0530
+	s=arc-20240116; t=1708437318; c=relaxed/simple;
+	bh=8YnGjvzKa113QUkH5s6sw06FvhJW/phsnrHheYilx8c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sSI8GUkE/qNuCOcjxRqD63Cj0fPc6DYV0idQ58P3vzto/RVdp9ExGgQxkkLHDsTm8uDrpB3bh3cOFqlK3Q2MPvE5GoiIaYXK8PXXh63q6h0IYsNRwCQFKV8Jd/HlQte3LTYyvT8OE6JpTvxKtXrMqtIq3p8/6xoysojjIyRhJXE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hr9Oo1/j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69139C433C7;
+	Tue, 20 Feb 2024 13:55:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708437317;
+	bh=8YnGjvzKa113QUkH5s6sw06FvhJW/phsnrHheYilx8c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hr9Oo1/j4JEobgRky8HGIzxdyV4q3xownd5IQWW36y9N4d1D8PAGUv47/9RUt8JvD
+	 5krmDY3Rt5Wks6psU1BSYZCjaNfQL3MBpTak2amSuE4CM4R95MRXubOg8bPX0x/4Ug
+	 BQkY5xF3B91AdXuodd8nGjsLdCIoinY3J7P9JJTPR+u8GiBrkygDiBhExpIm9REd19
+	 Td1bkmwV5PVknDul2hwkGmbsHMYvsYbTdB7BS6Q9CNlRVEOBMvQmzfAJU6RCN638io
+	 cZa0F/mzqeCtT9DM6s9X+RG69H6iFFVSTYL354xPsAr0Q4AIwJKz2MZc8nDtZ0eAvk
+	 DORZb/gj2YDXg==
+Date: Tue, 20 Feb 2024 13:55:12 +0000
+From: Simon Horman <horms@kernel.org>
+To: forbidden405@outlook.com
+Cc: Yisen Zhuang <yisen.zhuang@huawei.com>,
+	Salil Mehta <salil.mehta@huawei.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v3 3/6] net: hisilicon: add support for
+ hisi_femac core on Hi3798MV200
+Message-ID: <20240220135512.GN40273@kernel.org>
+References: <20240220-net-v3-0-b68e5b75e765@outlook.com>
+ <20240220-net-v3-3-b68e5b75e765@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [RFC WIP PATCH] venus: add qcom,no-low-power property
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Marc Gonzalez
-	<mgonzalez@freebox.fr>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Dmitry
- Baryshkov <dmitry.baryshkov@linaro.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>
-CC: DT <devicetree@vger.kernel.org>,
-        linux-media
-	<linux-media@vger.kernel.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        Stanimir
- Varbanov <stanimir.k.varbanov@gmail.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob
- Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Pierre-Hugues Husson <phh@phh.me>
-References: <0843621b-386b-4173-9e3c-9538cdb4641d@freebox.fr>
- <f6e68756-72a1-4c32-968d-3d6adaa153c9@linaro.org>
- <CAA8EJpq=G21h87W69_4U-BZ=Sa5VEs15Y-zE-G5x9VxVx4qjsA@mail.gmail.com>
- <81dc6452-4039-4eb4-92ba-df248215fca2@linaro.org>
- <b8325dbf-67c5-4898-bc23-ff093ae6e14a@freebox.fr>
- <87db77f7-fda4-4cf7-adfd-8545c40c3365@linaro.org>
- <10fe67af-0572-4faa-91c6-fce9c8f9dc92@linaro.org>
- <6342e92d-eed0-45c2-8f04-3779aa2e521d@freebox.fr>
- <4ab95e87-c912-469b-b8d4-be0cf0e4710b@linaro.org>
-Content-Language: en-US
-From: Vikash Garodia <quic_vgarodia@quicinc.com>
-In-Reply-To: <4ab95e87-c912-469b-b8d4-be0cf0e4710b@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: smi-yHFIgc65JDyxww9lXVxwZiyWaC_b
-X-Proofpoint-ORIG-GUID: smi-yHFIgc65JDyxww9lXVxwZiyWaC_b
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-20_06,2024-02-20_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
- spamscore=0 mlxlogscore=999 adultscore=0 mlxscore=0 malwarescore=0
- priorityscore=1501 impostorscore=0 clxscore=1011 lowpriorityscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402200100
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240220-net-v3-3-b68e5b75e765@outlook.com>
 
-Hi,
-
-On 2/20/2024 6:57 PM, Krzysztof Kozlowski wrote:
-> On 20/02/2024 13:34, Marc Gonzalez wrote:
->> On 20/02/2024 12:37, Krzysztof Kozlowski wrote:
->>
->>> On 20/02/2024 12:21, Bryan O'Donoghue wrote:
->>>
->>>> On 20/02/2024 10:56 a.m., Marc Gonzalez wrote:
->>>>
->>>>> On 19/02/2024 20:24, Bryan O'Donoghue wrote:
->>>>>
->>>>>> On 19/02/2024 5:44 p.m., Dmitry Baryshkov wrote:
->>>>>>
->>>>>>> On Mon, 19 Feb 2024 at 19:29, Konrad Dybcio wrote:
->>>>>>>>
->>>>>>>> On 19.02.2024 18:18, Marc Gonzalez wrote:
->>>>>>>>
->>>>>>>>> On our msm8998-based device, calling venus_sys_set_power_control()
->>>>>>>>> breaks playback. Since the vendor kernel never calls it, we assume
->>>>>>>>> it should not be called for this device/FW combo.
->>>>>>>>
->>>>>>>> FWIW, this is also broken on other SoCs.. 8280/8350 and 6115
->>>>>>>> to name a couple.
->>>>>>>
->>>>>>> Then let's just disable it until it gets unbroken?
->>>>>>
->>>>>> Its functional on most of our upstream stuff though, why switch if off
->>>>>> unless necessary ?
->>>>>>
->>>>>> Maybe it should be an opt-in instead of an opt-out, TBH my own feeling
->>>>>> is its better to minimize the amount of work and opt as per the proposed
->>>>>> patch.
->>>>>>
->>>>>> Perhaps the qcom vidc team can give insights on 8280xp and 8350 when we
->>>>>> come to tackling new HFI6XX and later SoCs ...
->>>>>
->>>>> I was wondering if the chosen property name might cause issues later...
->>>>>
->>>>> Thinking "qcom,no-low-power" might be a bit too general?
->>>>> Perhaps would need to mention venus somewhere in the name,
->>>>> to limit this to the video decoder?
->>>>
->>>> Yep, the word venus should probably appear in the property name.
->>>
->>> This is RFC, so I am ignoring it, but just in case before you send v2
->>> with the same:
->>>
->>> You described the desired Linux feature or behavior, not the actual
->>> hardware. The bindings are about the latter, so instead you need to
->>> rephrase the property and its description to match actual hardware
->>> capabilities/features/configuration etc.
->>
->> I added the RFC tag explicitly because I was hoping for the DT folks
->> and msm maintainers to comment on the property name ;)
+On Tue, Feb 20, 2024 at 03:57:38AM +0800, Yang Xiwen via B4 Relay wrote:
+> From: Yang Xiwen <forbidden405@outlook.com>
 > 
-> And for the PATCH we would not comment? RFC means not ready and you
-> gather opinion before doing more work. Some maintainers ignore entirely
-> RFC patches.
+> Register the sub MDIO bus if it is found. Also implement the internal
+> PHY reset procedure as needed.
 > 
->>
->> Thanks for your comment!
->>
->> Here's the proposal for v2:
->>
->> qcom,venus-broken-low-power-mode
->>
->> Description:
->> This property is defined for devices where playback does not work
->> when the video decoder is in low power mode.
+> Note it's unable to put the MDIO bus node outside of MAC controller
+> (i.e. at the same level in the parent bus node). Because we need to
+> control all clocks and resets in FEMAC driver due to the phy reset
+> procedure. So the clocks can't be assigned to MDIO bus device, which is
+> an essential resource for the MDIO bus to work.
 > 
-> Would be nice to know what's broken but if that's tricky to get, then
-> sounds fine.
+> No backward compatibility is maintained since the only existing
+> user(Hi3516DV300) has not received any updates from HiSilicon for about
+> 8 years already. And till today, no mainline dts for this SoC is found.
+> It seems unlikely that there are still existing mainline Hi3516DV300
+> users. The effort to maintain the old binding seems gain a little.
+> 
+> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+> ---
+>  drivers/net/ethernet/hisilicon/hisi_femac.c | 77 +++++++++++++++++++++++------
+>  1 file changed, 61 insertions(+), 16 deletions(-)
+> 
+> diff --git a/drivers/net/ethernet/hisilicon/hisi_femac.c b/drivers/net/ethernet/hisilicon/hisi_femac.c
 
-msm8998 supports configuring the VCodec (venus core0) GDSC in HW power control
-mode. Could you please check and confirm if the driver is configuring only the
-VCodec GDSC and not the venus GDSC. Look for the attribute
-"qcom,support-hw-trigger" in vendor dt file.
+...
 
-Regards,
-Vikash
+> @@ -826,15 +844,34 @@ static int hisi_femac_drv_probe(struct platform_device *pdev)
+>  						 priv->phy_reset_delays,
+>  						 DELAYS_NUM);
+>  		if (ret)
+> -			goto out_disable_clk;
+> +			goto out_free_netdev;
+>  		hisi_femac_phy_reset(priv);
+>  	}
+>  
+> +	// Register the optional MDIO bus
+> +	for_each_available_child_of_node(node, mdio_np) {
+> +		if (of_node_name_prefix(mdio_np, "mdio")) {
+> +			priv->mdio_pdev = of_platform_device_create(mdio_np, NULL, dev);
+> +			of_node_put(mdio_np);
+> +			if (!priv->mdio_pdev) {
+> +				dev_err(dev, "failed to register MDIO bus device\n");
+> +				ret = -ENODEV;
+> +				goto out_free_netdev;
+> +			}
+> +			mdio_registered = true;
+> +			break;
+> +		}
+> +		of_node_put(mdio_np);
+
+Sorry for not noticing this earlier.
+
+I think that of_node_put() only needs to be called in the
+case of terminating the loop (via break, goto, return, etc...).
+But should not be called otherwise (when the loop cycles) as
+for_each_available_child_of_node() calls of_node_put().
+
+Flagged by Coccinelle.
+
+> +	}
+> +
+> +	if (!mdio_registered)
+> +		dev_warn(dev, "MDIO subnode not found. This is usually a bug.\n");
+> +
+>  	phy = of_phy_get_and_connect(ndev, node, hisi_femac_adjust_link);
+>  	if (!phy) {
+>  		dev_err(dev, "connect to PHY failed!\n");
+>  		ret = -ENODEV;
+> -		goto out_disable_clk;
+> +		goto out_unregister_mdio_bus;
+>  	}
+>  
+>  	phy_attached_print(phy, "phy_id=0x%.8lx, phy_mode=%s\n",
+
+...
 
