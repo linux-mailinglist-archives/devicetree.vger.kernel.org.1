@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-43777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EB9085B865
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 10:58:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40E7D85B873
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 11:01:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B185B1F2A167
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 09:58:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2EB61F25E50
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 10:01:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D335D605A5;
-	Tue, 20 Feb 2024 09:58:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EA6C5FEF9;
+	Tue, 20 Feb 2024 10:01:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="beKRwFPs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M8OAo4Lg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 367EF5FEF9
-	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 09:58:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18EE5612C9
+	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 10:01:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708423094; cv=none; b=m391FaPA+uYODLd0NUOrcJMrCdQAy/UUEssIU3ADqzvRdvATdBGDxqInrtztFTkbjzRQobzp/OyErsB/6sAasrJkrbObScOldvojVIP8Uv2lLmwNTtfWzaHyVPTk8Q2Y2/BIsW3xQ+MCVASN6AExVihI3wzx9LMoozHH3stnyt4=
+	t=1708423308; cv=none; b=bF+Kf2K9gv4XJtki7AJM5tNmeFEPIBF8+sgqQBPwt+EoeJnmNgrYaNhV1Sc3kOZX6dhQSjC1evMeZ4VkVPSAf2/mXBNLeOnb1ad7ePCUIizx9+IKGYNtqJuP0wRi8TWySsc00kygj9RRKiVfVAwKskaExO8EScoIN2YCeMXJdHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708423094; c=relaxed/simple;
-	bh=+gRp43XeVkVAfmUDwzivAnm0Su9Ue6WrHdgxdkYVlak=;
+	s=arc-20240116; t=1708423308; c=relaxed/simple;
+	bh=g7CNBVuYpRafyq2kggyWRq8oq8extUdMpaHLD9844uM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f+mQNmW+Hxt23jPavESdowa/ADZv5zkMPiHZAtonRwnMnKUamEyZXuuA7mz6q2j5pu/vCdzFja9TLQkQk407a1Fktd7tqiAnOAGggClUdDNEfPHe/1L+UdttLStE5NOHDARr940qtLM92SA9FlE5JSvovBI37fz/ckgi3UJbT+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=beKRwFPs; arc=none smtp.client-ip=209.85.128.50
+	 In-Reply-To:Content-Type; b=JK+sCvFO2tdF0yAR5VdOkux92p1utimgR3fzCvRgS1pray4MM9GwBPrnHlmWtCFN4WFpG9Mi37xcRtXX3PWOtzgMKCVsUjLkyUb/+yezy3qZXUpQzFAyfL6y85qQO1PM27SbUbFCNz5d3jIcU/jc3g9gFVxdmk5LrjtVOHnev9k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=M8OAo4Lg; arc=none smtp.client-ip=209.85.167.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4126fe50a1cso2278755e9.3
-        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 01:58:13 -0800 (PST)
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-512b3b04995so2055456e87.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 02:01:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708423091; x=1709027891; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708423304; x=1709028104; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Y/pai/+OueDVWC5hfhOAlBHg0AqnkN8XZw/XolvEu4A=;
-        b=beKRwFPseEE3G0cqKYQgqk7/zMzYRSEvCF487FEzdOr3Fh11T1B98+LSjY2taAzIyq
-         NeaOFuDamoElVKj8kmJmC3KU20ghmD/R1DH1eM6HJ0Z85E3PP6g4899wtqg0nO/Rzr2M
-         8eZ1i1A/JrIfWXPjpa22ASU69xA+/bUVQCrDk8coZsHUjXvfPiBncAi3FxP3s1IWs6cU
-         0AJxFIV+/9WKOBsv7rFNATl+3KzyrVqUiMVk5/B1TG/iIieInpp6ATA5ym+YT2SJ+3hj
-         Ai2wNZiIbatgU44CsMbj2i9ogrz4F9gM1BZ15DIPN++nhpAgMjuRCng8r3ENYZYYsYsR
-         R//w==
+        bh=ggp/kKDUoEQak3ZEjckeJCKOSJSXt76vc0O59mn16VM=;
+        b=M8OAo4Lgmhrkcu+ehahl/tXFwwRnUvk9JaD8+wAxrFMBfMKvKTo0NdiMVgiA0bYnII
+         4IH3rpVCZIk5Bs5owLOht3xVAfY/izLBiXQsIn9vSJnrQU+c/Qcmm48yFR79wAbl6apa
+         gFjtkrRldtG6hppBWckuSz8hMpTQCpV9iFkKdb2cEXZK7dDjFi7vHhRRGzNdu4XLEbxc
+         EDL3GsavpMZ5wXFShs/w6hEA6tb8CofmL1Vxogcjgd4XxWTTrKFJSdOTS796GX6cQbFQ
+         bQma9+BXME8eOljSap6o0sbNfAuH3ANQ9LB7EjBzQ6jMrbtn6gArmPSWivZCApIW9y3n
+         YLcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708423091; x=1709027891;
+        d=1e100.net; s=20230601; t=1708423304; x=1709028104;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y/pai/+OueDVWC5hfhOAlBHg0AqnkN8XZw/XolvEu4A=;
-        b=oNAo9kMj6TuKYe8IH0269IrIOo7Dnq0htep8o8AU59BVaEbSIcwzwcbiMhERt7kSWu
-         k2Z7PffsueLX3w//CFDvdNk1Pbc2IKkNEFHnshTm388eYMWoOppxLoN0VlcqFbKfO2Eg
-         5jd/VDqgS5B+2xTqdPIxpMLY2I0Oxx87S3RXm44T1lOgUjCeGR5xd4uQ7XZkoMLLHYm+
-         KpmqRyJGiGcOSriYBOWie8bvcnCTqw+IaRyEdOXQXV04FEUc6QkDCghjJf0jDxfhC65v
-         eU5DBhpv8s77q7ObaCNZJrcazkTGN9zNXMrGTwxjvcBiJ8oO3VLvIRTMSQOt3JNaZq3L
-         RYuA==
-X-Forwarded-Encrypted: i=1; AJvYcCWe+WpuYHZBPeq/yNJSzBF2kD0kh4VnkTMWsqqHz400EnuVEl3LMFE4Vv1h/aLLO2fJD2EOEmd77hpIwKFkmlWPlt3Komg3jeKZJg==
-X-Gm-Message-State: AOJu0Yxh/a0PdqTMV1g3YH09OYht+L33OcgrlB0xP/JOmbvFSueSpDKC
-	U6vldafTJuoM5gW0i+WFLe5+JLgW8E7AHLFHgGTZXFxPy26YH4NJ1yoBTBVMuyQ=
-X-Google-Smtp-Source: AGHT+IHGTz+mDwoOneKoZjNXTmxIGMJxj+A8RBwLfurpithNs1ljgFjEWXocwuBXrRaXmiSBmDrDEA==
-X-Received: by 2002:a05:600c:4691:b0:412:f24:560a with SMTP id p17-20020a05600c469100b004120f24560amr11136898wmo.11.1708423091639;
-        Tue, 20 Feb 2024 01:58:11 -0800 (PST)
+        bh=ggp/kKDUoEQak3ZEjckeJCKOSJSXt76vc0O59mn16VM=;
+        b=QcMTHnzuQUKaze8MrXBV/4DfhGgkqmUmfkXwoyBeQLpBv+F4yqZlhKo1hrEE8eOcD3
+         oD85xwQRKHs7Qo4h81ZeORzuaJAKkbHfFtcJIoj5KE2QXHEjLdAKnhdswHDhRue8G0FQ
+         KQxCQEIrvgnEPC6+X2EQWQiPmbDl/kXMEc4ZLJxOxBLp75/8xFbbwMzUbCxksrRXe9yB
+         OlFR2q1BUo4E++YV3XYNkP5ng78sSJhLHbTZJ0Wvud4ymxn7fnuAuCv/QSQrHcw/DDz7
+         6gcw3dBCuiOfTtPpWGE/V1VuKZSnbA4RMwuvL9JROTvnUe97W6XOYd/X89o5PH1YH2n1
+         BmZw==
+X-Forwarded-Encrypted: i=1; AJvYcCXE4SdUdTuiqub8dJnYFAvS3WCErGV5882yo/Ri3bL1/x+dLteYEr1aqWap1VDk81m2GQ/8oBZ8dB/pzuT3Ts0NXjMIAFaiLOfKcg==
+X-Gm-Message-State: AOJu0YwdIQFzgBPJYnyfBxSVzhqsuHYLm8WeYg4jlJihDkBHpDsTf8Su
+	+j0w6RKn7fFm2h5FUP53r2rrihPXG1AX6fmuTxPfBsKfiVGQekBVrlPbK5O679U=
+X-Google-Smtp-Source: AGHT+IGD8mn8jn1AWhQhMcgxsjJFxlnlOWqY+CESrDpuZ/vXpFd9OzitMTysH9GCquG5N9V4JRnevg==
+X-Received: by 2002:a05:6512:1192:b0:512:8aeb:aaa8 with SMTP id g18-20020a056512119200b005128aebaaa8mr11055024lfr.49.1708423304193;
+        Tue, 20 Feb 2024 02:01:44 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id g19-20020a7bc4d3000000b004126101915esm8246700wmk.4.2024.02.20.01.58.09
+        by smtp.gmail.com with ESMTPSA id jl22-20020a05600c6a9600b0041069adbd87sm13859729wmb.21.2024.02.20.02.01.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Feb 2024 01:58:11 -0800 (PST)
-Message-ID: <37f8ab01-05b8-4727-a96e-c37227107fcb@linaro.org>
-Date: Tue, 20 Feb 2024 10:58:09 +0100
+        Tue, 20 Feb 2024 02:01:43 -0800 (PST)
+Message-ID: <95cafd69-de6d-497f-b3d6-b6d7a8a3b795@linaro.org>
+Date: Tue, 20 Feb 2024 11:01:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,25 +76,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] dt-bindings: display/msm: Document the DPU for
- X1E80100
+Subject: Re: [PATCH v3 4/4] arm64: dts: amlogic: add fbx8am DT overlays
 Content-Language: en-US
-To: Abel Vesa <abel.vesa@linaro.org>, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+To: Marc Gonzalez <mgonzalez@freebox.fr>, DT <devicetree@vger.kernel.org>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240216-x1e80100-display-v3-0-28b1c33ac8c0@linaro.org>
- <20240216-x1e80100-display-v3-1-28b1c33ac8c0@linaro.org>
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>,
+ AML <linux-amlogic@lists.infradead.org>
+References: <07f7a695-18a0-4211-82e9-b1e2c7166969@freebox.fr>
+ <79ba726d-d02c-44b9-b6f6-59b17ba9755c@freebox.fr>
+ <54b4e810-754e-481a-bbc8-984f859b116d@linaro.org>
+ <15fcafb2-4b4a-40a1-8ef5-ee3aef9b3b9d@freebox.fr>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -140,17 +134,84 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240216-x1e80100-display-v3-1-28b1c33ac8c0@linaro.org>
+In-Reply-To: <15fcafb2-4b4a-40a1-8ef5-ee3aef9b3b9d@freebox.fr>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/02/2024 18:01, Abel Vesa wrote:
-> Document the DPU for Qualcomm X1E80100 platform in the SM8650 schema, as
-> they are similar.
+On 19/02/2024 11:32, Marc Gonzalez wrote:
+> On 14/02/2024 10:47, Neil Armstrong wrote:
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+>> On 13/02/2024 18:14, Marc Gonzalez wrote:
+>>
+>>> Add support for two variants of the fbx8am board.
+>>>
+>>> Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
+>>> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+>>> ---
+>>>   arch/arm64/boot/dts/amlogic/Makefile                       |  6 ++++++
+>>>   arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso    | 35 ++++++++++++++++++++++++++++++++++
+>>>   arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso | 25 ++++++++++++++++++++++++
+>>>   3 files changed, 66 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+>>> index cc8b34bd583d8..1ab160bf928ae 100644
+>>> --- a/arch/arm64/boot/dts/amlogic/Makefile
+>>> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+>>> @@ -8,6 +8,8 @@ dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j100.dtb
+>>>   dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j110-rev-2.dtb
+>>>   dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j110-rev-3.dtb
+>>>   dtb-$(CONFIG_ARCH_MESON) += meson-axg-s400.dtb
+>>> +dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am-brcm.dtb
+>>> +dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am-realtek.dtb
+>>>   dtb-$(CONFIG_ARCH_MESON) += meson-g12a-radxa-zero.dtb
+>>>   dtb-$(CONFIG_ARCH_MESON) += meson-g12a-sei510.dtb
+>>>   dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
+>>> @@ -80,3 +82,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
+>>>   dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
+>>>   dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air-gbit.dtb
+>>>   dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air.dtb
+>>> +
+>>> +# Overlays
+>>> +meson-g12a-fbx8am-brcm-dtbs	:= meson-g12a-fbx8am.dtb meson-g12a-fbx8am-brcm.dtbo
+>>> +meson-g12a-fbx8am-realtek-dtbs	:= meson-g12a-fbx8am.dtb meson-g12a-fbx8am-realtek.dtbo
+>>> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
+>>> new file mode 100644
+>>> index 0000000000000..ed79809b15859
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
+>>> @@ -0,0 +1,35 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>>> +// Copyright (c) 2024 Freebox SAS
+>>> +
+>>> +/dts-v1/;
+>>> +/plugin/;
+>>> +
+>>> +#include <dt-bindings/gpio/gpio.h>
+>>> +#include <dt-bindings/gpio/meson-g12a-gpio.h>
+>>> +
+>>> +/ {
+>>> +	compatible = "freebox,fbx8am-brcm", "freebox,fbx8am", "amlogic,g12a";
+>>
+>> This looks fine but I'm unsure if those new compatible should be documented or not,
+>> since they are in an overlay
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+All compatibles in entire Linux source code shall be documented, so
+please document any new ones appearing in overlays.
+
+> 
+> Rob, Krzysztof, Conor,
+> 
+> Just want to make sure this was done "right".
+> 
+> Is it acceptable for an overlay (DTSO) to define a more specific compatible prop?
+
+I think it is fine and some DTSO already do it. User-space might want to
+identify that specific overlay is applied or not. Of course this will
+not work when multiple overlays are applied and each changes compatible,
+thus I would say this is in general specific to particular cases of
+exclusive overlays. In such case, why not making it new board DTS?
+
+If this is not exclusive overlay, then new compatible looks wrong.
 
 Best regards,
 Krzysztof
