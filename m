@@ -1,240 +1,210 @@
-Return-Path: <devicetree+bounces-43672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C3D985B15B
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 04:29:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 377CC85B17E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 04:34:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0682E282DF8
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 03:29:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA7471F2159B
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 03:34:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDEA64643B;
-	Tue, 20 Feb 2024 03:28:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F7514597A;
+	Tue, 20 Feb 2024 03:34:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QJL1krAJ"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="rj+EVLFp";
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="vZrculrL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D767C45009;
-	Tue, 20 Feb 2024 03:28:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708399734; cv=none; b=XVOE6mzG5/yimUuTVwE7yF2PZVnjz81Yl0Am9nTlD42F39gy7VFF6VY3LPeipd6P9LsslqEX675g54yOXHiFjx54qJP6guLbxDxN8xlJ1rYr4v9HpiwfAHNH95fXuBZhNvd8CKwrORCfbi4sxZvveBPwmGh9ccykcmnUw7BuVBk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708399734; c=relaxed/simple;
-	bh=BQlHpa273SuRCqvblXi5OnaVTNFf5TN8Nfvq3Uk5gu4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jvwRQoex6r9eio7dGvZNM5hRlDSXkCBSni0jg4ZcN0z9bYywBXaYHviAZxcpkTpUoIj98hzry4ENHrIrW782qFsFl3EuG2ZkNGABBCUhQ3ZhHEiyZ0VuQijT2TUc3jUNO5Odenr5DiUgmJcUOYk+dz5u+41PlU3eK1Xw+w0C0nU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=QJL1krAJ; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED7844A3F;
+	Tue, 20 Feb 2024 03:34:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=68.232.153.233
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708400073; cv=fail; b=HlU/NwE26HGykRMspdZxrSKrlfCSVi9tbhtvHAQyGaMC7xtAMJjoApbtfuWhBwbZIFH9+8ydz723niGdFpLIE6gbAWoYpwPBERnol94O5jq0RYpdGKRg+O6S0dtpjw3fvbZLOpCdwChNA7uNp7d+1cbOxsSjpQEUIoo7QpmdE9o=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708400073; c=relaxed/simple;
+	bh=ijX3fv5HMN4LBAnNRRE9Ji/lgDM3sRPVs/OGytjA8oY=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=A//cnQrQbDuI8CxvwnYLHl71vFEzkz7N4a068atw4ooetn4jQJse+wLwEVhauddESuJKLEO/fGyQ3JtAVKwDc5LZZqp9RoCYH4eH3eGH2Xclp6DP/QVnE602WVz4hcU8SUiCXXvS2wNfuRE3WffxtteRlSIaExHhizAe4Gq+gAc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=rj+EVLFp; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=vZrculrL; arc=fail smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1708399732; x=1739935732;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=BQlHpa273SuRCqvblXi5OnaVTNFf5TN8Nfvq3Uk5gu4=;
-  b=QJL1krAJhE1LBYg2JHUwfmylUQy81N6H4ECaBlCm83P3S9HO74Ugrs0b
-   hx4ivp6Ux8QWX5BybcC1MpymthWU8vpgEDiq9SRUQx3ZmfMQ3C0peW/vm
-   +rXAnPN/xffs8e21V76jnLsPautP3r1SJKSMzyzr8MKel28lo2b6CGw3m
-   ymaGzQbbKtNLp3nOhRbuPYQb1RzUcvTxTvF4LWgNNxY/9bI+1/iGFTO0t
-   +/xF9rErn+T3KZQDcTd2JMBK123zn3oGcGJzie7Lb4YbUYW0+mcMKc9qz
-   pY7EqnKYYtOA17KsNPa0dgkOtORdy7V/+JnENHRvNZ9hc1IR4tmCJBtmH
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10989"; a="2351346"
-X-IronPort-AV: E=Sophos;i="6.06,171,1705392000"; 
-   d="scan'208";a="2351346"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Feb 2024 19:28:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10989"; a="936382961"
-X-IronPort-AV: E=Sophos;i="6.06,171,1705392000"; 
-   d="scan'208";a="936382961"
-Received: from lkp-server02.sh.intel.com (HELO 3c78fa4d504c) ([10.239.97.151])
-  by fmsmga001.fm.intel.com with ESMTP; 19 Feb 2024 19:28:46 -0800
-Received: from kbuild by 3c78fa4d504c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rcGoG-0004EC-1z;
-	Tue, 20 Feb 2024 03:28:44 +0000
-Date: Tue, 20 Feb 2024 11:28:43 +0800
-From: kernel test robot <lkp@intel.com>
-To: Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Marco Felsch <m.felsch@pengutronix.de>,
-	Jeff LaBundy <jeff@labundy.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	catalin.popescu@leica-geosystems.com,
-	mark.satterthwaite@touchnetix.com,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	bsp-development.geo@leica-geosystems.com,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>
-Subject: Re: [PATCH v8 3/3] Input: Add TouchNetix axiom i2c touchscreen driver
-Message-ID: <202402201157.BKo97uWl-lkp@intel.com>
-References: <20240219101221.129750-4-kamel.bouhara@bootlin.com>
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1708400071; x=1739936071;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=ijX3fv5HMN4LBAnNRRE9Ji/lgDM3sRPVs/OGytjA8oY=;
+  b=rj+EVLFpnNEte595/Wz3cKg9s80rVOYpguIgrqg+JLN7EpKosJTrqmj1
+   dZtx2jF+d3bEte4FmyHESetX0t1FugOme/ljASsxFCrddyk7GWeHTluhn
+   +jYauwSGnKX+Lz56b/7m5ZdtVIVZNo/ZVruACmSS3I/4IsgTImJQey7aT
+   IC/SyygbWBPzF8uUkVcm4QNWIj6vHtA0nq6GJIEmwqxg/51KBxQYWvJ+V
+   IITeDQ4IABaf0hHe8h0suu/ktJR15vf0L1cUO6QXd9RU/ITXdgaaafPNt
+   KH1drFeu2dzeIqAs0IDtTsrWmQ+YlS1JxJjbr5xQ31m7AkIXSqANoTk2n
+   w==;
+X-CSE-ConnectionGUID: G2wgUZJLRfiErdABW/Ff/A==
+X-CSE-MsgGUID: qvhxMW0ASqGJtexkSyaknw==
+X-IronPort-AV: E=Sophos;i="6.06,171,1705388400"; 
+   d="scan'208";a="247242155"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 19 Feb 2024 20:34:28 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 19 Feb 2024 20:34:18 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (10.10.215.250)
+ by email.microchip.com (10.10.87.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Mon, 19 Feb 2024 20:34:18 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WZ8ciaktrceKZ/wMJ5hM5ghmUGGD/kN4i+A/3S+ZoywAkd0SRti4GbzgnZantRjJXUK+LPFcsLaO5DMBohKbQpZiHC00WPW5ajWz+AgNUJ0JXBDKrhFQF8TFhSxD7fbRXNWrGsboNpXkWQR57HOc2aI8JY5nTC7NDob+eOrXV4qHVFU9WPajAENa6fbRgYYcQLqz1YCj1tVkme3Piu57/JWkX0njdPfc8xWpfi9BqEzXWggqdLhM/WWfFxZfE2kSnmOOJs+0z5KXX3oUL/uXdts3Wri9VG7Oon2B+CFw07L22s9ugMKuKTHyGDCOiV4qT3ulO+LJEl5GdbvhqUgt9g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ijX3fv5HMN4LBAnNRRE9Ji/lgDM3sRPVs/OGytjA8oY=;
+ b=VY79EeCGKTVipu9wOfrmeLsCmmDhoa9tD2IU/sneGEJK1CD0DSb6Z/ppcr+TxBFRVYwo3UQj/BfURwj4NKHp6d9yYIliMfSN2oLD5br0M+AXbrjSB1qhY3za31Bii0tyrJVLR5r8nDzrDRQ4IzSlKKU1v3Mo6QFnLednaz0wTeErjans14zsJGW5eASG6ebY/nobNwswIXolGa1Efvkf1nCrE7WwYg/DJ3hD0NtL1YtDLJwU8LyivkwtsC3li1WX5pJCod9VCJ4+1dmnSXuV+hXAZbG5RKn+7giWc5F2/r0RviQvrkKnh4/Fps4IR4MLAeVuMnNN2eey99yzNMjQsA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ijX3fv5HMN4LBAnNRRE9Ji/lgDM3sRPVs/OGytjA8oY=;
+ b=vZrculrLOZxAUH1oRMRRsVYjaMUrIsE61bIVYeNXvURLsBPuabQWLaaF9S6XWGl2aUC6SaGbmwh0zE0rJrZ82QYqnhgzF32uUMV9VpJwh8zezikGkNhyEaTFNx35mdKyqyOwderMO08HcfEQzqx1xg1GhVi4WjC34c9oJHAN6Xm4GFkq3XkOA3cGEWMAlMp2V8N/1cLBLqh/JIxG6KxICwNf6kItFQYNLH1+UoGJiAyu6t49ojgiSnToQpOcHYsZKTs9/yVZVWSTc4nH2Jzs+NSjOqEWDNTSA0asCHxO+X7Xtn2uNiE+e8oa3n2La5VS9Tv6PGt7h011IG2YDVF9KQ==
+Received: from PH7PR11MB6451.namprd11.prod.outlook.com (2603:10b6:510:1f4::16)
+ by PH0PR11MB4775.namprd11.prod.outlook.com (2603:10b6:510:34::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.31; Tue, 20 Feb
+ 2024 03:34:16 +0000
+Received: from PH7PR11MB6451.namprd11.prod.outlook.com
+ ([fe80::80b9:80a3:e88a:57ee]) by PH7PR11MB6451.namprd11.prod.outlook.com
+ ([fe80::80b9:80a3:e88a:57ee%3]) with mapi id 15.20.7270.036; Tue, 20 Feb 2024
+ 03:34:16 +0000
+From: <Dharma.B@microchip.com>
+To: <krzysztof.kozlowski@linaro.org>, <lee@kernel.org>, <sam@ravnborg.org>,
+	<bbrezillon@kernel.org>, <maarten.lankhorst@linux.intel.com>,
+	<mripard@kernel.org>, <tzimmermann@suse.de>, <airlied@gmail.com>,
+	<daniel@ffwll.ch>, <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <Nicolas.Ferre@microchip.com>,
+	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
+	<dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<thierry.reding@gmail.com>, <u.kleine-koenig@pengutronix.de>,
+	<linux-pwm@vger.kernel.org>
+CC: <Hari.PrasathGE@microchip.com>, <Manikandan.M@microchip.com>,
+	<Conor.Dooley@microchip.com>
+Subject: Re: (subset) [linux][PATCH v6 3/3] dt-bindings: mfd: atmel,hlcdc:
+ Convert to DT schema format
+Thread-Topic: (subset) [linux][PATCH v6 3/3] dt-bindings: mfd: atmel,hlcdc:
+ Convert to DT schema format
+Thread-Index: AQHaVW1agMCd01Ttxk+iqd3BnnFM67EATF8AgAZDsACADCB0AA==
+Date: Tue, 20 Feb 2024 03:34:16 +0000
+Message-ID: <ffd43756-b24e-4f19-be33-0e33047ad70c@microchip.com>
+References: <20240202001733.91455-1-dharma.b@microchip.com>
+ <20240202001733.91455-4-dharma.b@microchip.com>
+ <170738899221.920003.15342446791449663430.b4-ty@kernel.org>
+ <cedecdb7-fe4a-42ea-9a11-faa82f84b57d@linaro.org>
+In-Reply-To: <cedecdb7-fe4a-42ea-9a11-faa82f84b57d@linaro.org>
+Accept-Language: en-GB, en-US
+Content-Language: en-GB
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH7PR11MB6451:EE_|PH0PR11MB4775:EE_
+x-ms-office365-filtering-correlation-id: 9ad023f9-b020-4df6-a614-08dc31c4d0df
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 8Zbml+Z+95kL/GLmShgakba+7h6M5iHDg3RcGhZH+26HqXIhlfTyavcTD9B7TXmOM+GI4POYOyBBaZ7GXVqWbm9cP/quy7EyvJfzIZv+AyrwT8TjR7WvVzx/GX1z72KqBDC5BGlNvQ8jAaE0o0xmzEK8hRXA/Yu2zwn7MrbTkLjvnPk7zyhE0yOJi4SA1ikuBszghut9jRQB2JxIL+N3pSxnwjmQoEmsS0V3GT0gp5WTfEHDwnZg6sOr7mUzrl3dZBmWUiz5HgzFvWpMLA/krwg8MkdaB5y9yN8WEn4DlsTudZS9/8VBQ5FEXjYPHYVvB1uDW8qKYQWhA3MhDQNuiK4ordS2XQw4zcYBc0iGrX2zb1g/eNmEafJ4QMd5CR4JsBQVO5WBjl+OjmpTKnVg4mJI/BPHx7gRUxJTkz+CiYr+k/ibTKOQ65qpI7nKrzxq1gcqxIN9PxhMzBEQPP07WZzgey/Dpdef/EhN3aFo9dQx3lGX4fyiC9Q5Nr4EU8pDPGIzaJ0FUsqJDH8hrF988pVkhsLMRq+ip5a0QsiADHjl3v7QGUHCtivUNGLYOFnZ5NL5x2fVlqObomfgfqTJNUPSgwfTU0zim1CSpOUFFIhjY6qYmZK9twhaq2pWh6WgOwx+sLZ3IWdd4vCr/9mE8w==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR11MB6451.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(230273577357003)(921011)(38070700009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?L0dYOTN0ZVlla0RnVjhZQThTK3pvUGRFYmNKVjI3YkpaSDlBUHlHTm1GZkhP?=
+ =?utf-8?B?VXdWS01sc1lkUkFBRDhHM2FiSmJVN29SS2dSMlRkWTlnMDRYQ3pGVWhtYVpl?=
+ =?utf-8?B?Y3ErczNHK2owUTF1bEFOYlZBUzZKaU9BWDd4RE5takR6d3BlRUxROG5ua0du?=
+ =?utf-8?B?N1h5L0xFS256VmQ2ZWRLTUJGbklzVzJlZUJZa2IxRUwwaWJ4S1NhTjd3Y1Vi?=
+ =?utf-8?B?bSs5eG41QXBhTkFkYnJkY0gzWEplaHRMQXZNK1pYSG11dS90T2hGdEJLQklZ?=
+ =?utf-8?B?ZEdoaE42dE5OSnVOQUFZVUZ5eVNRNlR5ZDBzYVJRZFZVZzV1Mkc2WGpOQzNv?=
+ =?utf-8?B?T2lzTXRtaEQzemZIVnNEUzYzczBNand1bTViUHdvVDBxaDgrb2lHNjFGU3hB?=
+ =?utf-8?B?RlVRdWxPNFhSaXNpWW9ZK0dvb1AxZjhRMHFLWndwTzNuMnUvYlZNSE5iWkZ0?=
+ =?utf-8?B?cXhYY2g2a1RjVE5tRnRCRGl4a3VNZk55TkpqSEJBMlpLU2EzaHEvT0lHQWpX?=
+ =?utf-8?B?ZWNxZTFneWVaMjl6UEErY1p2M2VIakF6alIrVU4yTWt5V0FUN0FyRmMwVU1U?=
+ =?utf-8?B?RHptM3ppeDdjRlQwSGJLWUk5YUNySEhBSmlPd0R6c0hORHJqdGJwSENibnFS?=
+ =?utf-8?B?bm1iUUZrbVEyTDJXTmE2T0JSWXlONlB0dUd4ZW9LbVU2ajE4UzNOQk0xSEQ3?=
+ =?utf-8?B?OXFsdnVNQTBIQzVxRFVMdFZNNjh3WlFiY25QVVB2VEZFMlp6RktFQzBYdEph?=
+ =?utf-8?B?UWRmWG9POGxOVFgwb0NXMHJNakRZRU9aSm1HVnRadDZGRktUUjR2ZnJMbllG?=
+ =?utf-8?B?Q2hBWUtZUy9oaXh6YzJTZWx0SFk4dWNYUTFHSnZtYXZiTjJIWVhqRWVZQW1D?=
+ =?utf-8?B?SmRkcS9aQ1N0c0V3M08zTHUrcFdaNll0NW1KM0d2MnF4MFVBMEFlcXB0V0RT?=
+ =?utf-8?B?SVhDWml4Q2p5b3lic2xsZjVva21RUmF6bFlRQmhVNE1rMVJxcjBmTlFBT1ZR?=
+ =?utf-8?B?blBzQ0RJZkpXcjUrM2YrMG1pSVR5ZkIzVUMwZXNReGdCM0taRU1hQmMwVEk2?=
+ =?utf-8?B?R1ZyZEFiUHlDVUhzdFZiUDYxTDNhUjdNaU16NnZhNkpxMUpYY3hwbDhMdE5C?=
+ =?utf-8?B?WTRRUTlRSVMvSitwU1dKMEdMTTJXbzF4T1VKeG5GQjNiV1ZsMks4Z2g5dFdL?=
+ =?utf-8?B?amVJNFBHWjJ4cHBZUDd6SFBUYWJOUlR4SFNqTDFVenpucENsVHlRRFdFVXJs?=
+ =?utf-8?B?TlF6UThNMnZ4UWVZSUIrbWJobDNENDJqYkZ2eHNyNlBqZlpLT2w5cmpqRVVX?=
+ =?utf-8?B?citpYnp1aW53WGVGV2YzMWM4dkVPNUxTRmxROWVWL2dYVTcxbzY3dEtkR01n?=
+ =?utf-8?B?bVdrUG9lRzQzS090dDJzTmJpRWN5V1VSd0pVOS95cndTN1B5NG1tbnFVa3dv?=
+ =?utf-8?B?ckdKQVNlUXBEYmxqa2VEand1UUgvb0RwOXlid1M0MWxoOUlJWU1Sdks4NUFu?=
+ =?utf-8?B?RG9nZEQ4YUptL0N5aFN3NEF5MmpxcmM1SjVYNDJpNEVhU3FUcDFnQ0ZiSGRv?=
+ =?utf-8?B?QkRiREFBa05TU2tueUxvY2JreWF3L3pkdGtIZG9EZTA2L1crSzZCTFFlc21P?=
+ =?utf-8?B?d0dta3M0eXdveUpjNWh5ck56TG1seGR4eC9keGZPcC9KRE0xTWJJbEZONGJi?=
+ =?utf-8?B?bXo4c2NTL2c3QW4rYzdZcWpPVEFGeUZnajZ5QlVLQmlwNy9ncVlDcU1WeXF1?=
+ =?utf-8?B?d1M5NTQrYzFEU2ppR3drTDZtdUtER0V3L3o5WkhuSFI1LzdkWG9XS28rdGpZ?=
+ =?utf-8?B?YmFaOG1DV2hPTTZQWXAvN1NBbnRVYVk3YnBBRTk1MTVIRTR5NkxTaHA5amc1?=
+ =?utf-8?B?Sy9ERzI0cWlaaUx4cTVSeUhPZ3ludjZqaVg3cVQyaW4wamM1QTJWRzZRSEVP?=
+ =?utf-8?B?YTJhN0tpd1QxdVl6ZTU5MmNsUWN5Qzk5Mm04N2llWCthd2paVEJnOW8rK2JI?=
+ =?utf-8?B?NWVQNDByQmNzc2paYnpDWGxDcGc0ZEdtTWZVS2ZCYmdjYzV6cEV1STV2V3NI?=
+ =?utf-8?B?L0M3V2lVb25vZE9ieVJwcVRDc0N3TDNrMmVvenZ6QzB6Mm5UdGtOSFZLRVdS?=
+ =?utf-8?Q?aJJqWpaw0BUvliOqNFjD4KmnM?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <D8BFBA99F99BD5479C01B154B72ACAAE@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240219101221.129750-4-kamel.bouhara@bootlin.com>
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6451.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9ad023f9-b020-4df6-a614-08dc31c4d0df
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Feb 2024 03:34:16.7392
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: rnPXYEvbPI+Ij0wtGYnaaFS996Lyy6H3B85FgbF/uF7ZBvOs8sbsRn613E1UbHuOGO8KTkoyvhq+Amtv9VDPWw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4775
 
-Hi Kamel,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on dtor-input/next]
-[also build test ERROR on dtor-input/for-linus robh/for-next krzk-dt/for-next linus/master v6.8-rc5 next-20240219]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Kamel-Bouhara/dt-bindings-vendor-prefixes-Add-TouchNetix-AS/20240219-181550
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
-patch link:    https://lore.kernel.org/r/20240219101221.129750-4-kamel.bouhara%40bootlin.com
-patch subject: [PATCH v8 3/3] Input: Add TouchNetix axiom i2c touchscreen driver
-config: arm64-randconfig-002-20240220 (https://download.01.org/0day-ci/archive/20240220/202402201157.BKo97uWl-lkp@intel.com/config)
-compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project 36adfec155de366d722f2bac8ff9162289dcf06c)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240220/202402201157.BKo97uWl-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202402201157.BKo97uWl-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/input/touchscreen/touchnetix_axiom.c:332:18: error: use of undeclared identifier 'slot'; did you mean 'sget'?
-     332 |                 target->index, slot, target->present,
-         |                                ^~~~
-         |                                sget
-   include/linux/dev_printk.h:163:47: note: expanded from macro 'dev_dbg'
-     163 |                 dev_printk(KERN_DEBUG, dev, dev_fmt(fmt), ##__VA_ARGS__); \
-         |                                                             ^
-   include/linux/dev_printk.h:129:34: note: expanded from macro 'dev_printk'
-     129 |                 _dev_printk(level, dev, fmt, ##__VA_ARGS__);            \
-         |                                                ^
-   include/linux/fs.h:2272:21: note: 'sget' declared here
-    2272 | struct super_block *sget(struct file_system_type *type,
-         |                     ^
-   1 error generated.
-
-
-vim +332 drivers/input/touchscreen/touchnetix_axiom.c
-
-   289	
-   290	/*
-   291	 * Support function to axiom_process_u41_report.
-   292	 * Generates input-subsystem events for every target.
-   293	 * After calling this function the caller shall issue
-   294	 * a Sync to the input sub-system.
-   295	 */
-   296	static bool axiom_process_u41_report_target(struct axiom_data *ts,
-   297						    struct axiom_target_report *target)
-   298	{
-   299		struct input_dev *input_dev = ts->input_dev;
-   300		struct axiom_u41_target *target_prev_state;
-   301		enum axiom_target_state current_state;
-   302		int id;
-   303	
-   304		/* Verify the target index */
-   305		if (target->index >= AXIOM_U41_MAX_TARGETS) {
-   306			dev_err(ts->dev, "Invalid target index! %u\n", target->index);
-   307			return false;
-   308		}
-   309	
-   310		target_prev_state = &ts->targets[target->index];
-   311	
-   312		current_state = AXIOM_TARGET_STATE_NOT_PRESENT;
-   313	
-   314		if (target->present) {
-   315			if (target->z >= 0)
-   316				current_state = AXIOM_TARGET_STATE_TOUCHING;
-   317			else if (target->z > AXIOM_PROX_LEVEL && target->z < 0)
-   318				current_state = AXIOM_TARGET_STATE_HOVER;
-   319			else if (target->z == AXIOM_PROX_LEVEL)
-   320				current_state = AXIOM_TARGET_STATE_PROX;
-   321		}
-   322	
-   323		if (target_prev_state->state == current_state &&
-   324		    target_prev_state->x == target->x &&
-   325		    target_prev_state->y == target->y &&
-   326		    target_prev_state->z == target->z)
-   327			return false;
-   328	
-   329		id = target->index;
-   330	
-   331		dev_dbg(ts->dev, "U41 Target T%u, slot:%u present:%u, x:%u, y:%u, z:%d\n",
- > 332			target->index, slot, target->present,
-   333			target->x, target->y, target->z);
-   334	
-   335		switch (current_state) {
-   336		case AXIOM_TARGET_STATE_NOT_PRESENT:
-   337		case AXIOM_TARGET_STATE_PROX:
-   338			if (!target_prev_state->insert)
-   339				break;
-   340			target_prev_state->insert = false;
-   341	
-   342			if (!id)
-   343				input_report_key(input_dev, BTN_TOUCH, 0);
-   344	
-   345			input_mt_report_slot_inactive(input_dev);
-   346			/*
-   347			 * make sure the previous coordinates are
-   348			 * all off screen when the finger comes back
-   349			 */
-   350			target->x = 65535;
-   351			target->y = 65535;
-   352			target->z = AXIOM_PROX_LEVEL;
-   353			break;
-   354		case AXIOM_TARGET_STATE_HOVER:
-   355		case AXIOM_TARGET_STATE_TOUCHING:
-   356			target_prev_state->insert = true;
-   357			input_report_abs(input_dev, ABS_MT_TRACKING_ID, id);
-   358			input_report_abs(input_dev, ABS_MT_POSITION_X, target->x);
-   359			input_report_abs(input_dev, ABS_MT_POSITION_Y, target->y);
-   360	
-   361			if (current_state == AXIOM_TARGET_STATE_TOUCHING) {
-   362				input_report_abs(input_dev, ABS_MT_DISTANCE, 0);
-   363				input_report_abs(input_dev, ABS_DISTANCE, 0);
-   364				input_report_abs(input_dev, ABS_MT_PRESSURE, target->z);
-   365				input_report_abs(input_dev, ABS_PRESSURE, target->z);
-   366			} else {
-   367				input_report_abs(input_dev, ABS_MT_DISTANCE, -target->z);
-   368				input_report_abs(input_dev, ABS_DISTANCE, -target->z);
-   369				input_report_abs(input_dev, ABS_MT_PRESSURE, 0);
-   370				input_report_abs(input_dev, ABS_PRESSURE, 0);
-   371			}
-   372	
-   373			if (!id)
-   374				input_report_key(input_dev, BTN_TOUCH, (current_state ==
-   375						 AXIOM_TARGET_STATE_TOUCHING));
-   376			break;
-   377		default:
-   378			break;
-   379		}
-   380	
-   381		target_prev_state->state = current_state;
-   382		target_prev_state->x = target->x;
-   383		target_prev_state->y = target->y;
-   384		target_prev_state->z = target->z;
-   385	
-   386		return true;
-   387	}
-   388	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+SGkgS3J6eXN6dG9mLA0KDQpPbiAxMi8wMi8yNCAzOjUzIHBtLCBLcnp5c3p0b2YgS296bG93c2tp
+IHdyb3RlOg0KPiBFWFRFUk5BTCBFTUFJTDogRG8gbm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0
+YWNobWVudHMgdW5sZXNzIHlvdSBrbm93IHRoZSBjb250ZW50IGlzIHNhZmUNCj4gDQo+IE9uIDA4
+LzAyLzIwMjQgMTE6NDMsIExlZSBKb25lcyB3cm90ZToNCj4+IE9uIEZyaSwgMDIgRmViIDIwMjQg
+MDU6NDc6MzMgKzA1MzAsIERoYXJtYSBCYWxhc3ViaXJhbWFuaSB3cm90ZToNCj4+PiBDb252ZXJ0
+IHRoZSBhdG1lbCxobGNkYyBiaW5kaW5nIHRvIERUIHNjaGVtYSBmb3JtYXQuDQo+Pj4NCj4+PiBB
+bGlnbiBjbG9ja3MgYW5kIGNsb2NrLW5hbWVzIHByb3BlcnRpZXMgdG8gY2xlYXJseSBpbmRpY2F0
+ZSB0aGF0IHRoZSBMQ0QNCj4+PiBjb250cm9sbGVyIGV4cGVjdHMgbHZkc19wbGxfY2xrIHdoZW4g
+aW50ZXJmYWNlZCB3aXRoIHRoZSBsdmRzIGRpc3BsYXkuIFRoaXMNCj4+PiBhbGlnbm1lbnQgd2l0
+aCB0aGUgc3BlY2lmaWMgaGFyZHdhcmUgcmVxdWlyZW1lbnRzIGVuc3VyZXMgYWNjdXJhdGUgZGV2
+aWNlIHRyZWUNCj4+PiBjb25maWd1cmF0aW9uIGZvciBzeXN0ZW1zIHV0aWxpemluZyB0aGUgSExD
+REMgSVAuDQo+Pj4NCj4+PiBbLi4uXQ0KPj4NCj4+IEFwcGxpZWQsIHRoYW5rcyENCj4+DQo+PiBb
+My8zXSBkdC1iaW5kaW5nczogbWZkOiBhdG1lbCxobGNkYzogQ29udmVydCB0byBEVCBzY2hlbWEg
+Zm9ybWF0DQo+PiAgICAgICAgY29tbWl0OiBjYjk0NmRiMTMzNWI1OTllY2UzNjNkMzM5NjZiZjY1
+M2VkMGZhNThhDQo+Pg0KPiANCj4gTmV4dCBpcyBzdGlsbCBmYWlsaW5nLg0KPiANCj4gRGhhcm1h
+LA0KPiBZb3UgbXVzdCBleHBsYWluIGFuZCBjbGVhcmx5IG1hcmsgZGVwZW5kZW5jaWVzIGJldHdl
+ZW4gcGF0Y2hlcy4NCg0KSSBzaW5jZXJlbHkgYXBvbG9naXplIGZvciBhbnkgY29uZnVzaW9uIGNh
+dXNlZCBieSB0aGUgb3ZlcnNpZ2h0LiBJIGhhdmUgDQpvcmdhbml6ZWQgdGhlIHBhdGNoZXMgYWNj
+b3JkaW5nIHRvIHRoZWlyIGRlcGVuZGVuY2llcyBpbiB0aGUgcGF0Y2ggDQpzZXJpZXMsIGJ1dCB1
+bmZvcnR1bmF0ZWx5LCBJIG5lZ2xlY3RlZCB0byBleHBsaWNpdGx5IG1lbnRpb24gdGhlc2UgDQpk
+ZXBlbmRlbmNpZXMuIEkgdW5kZXJzdGFuZCB0aGUgaW1wb3J0YW5jZSBvZiBjbGVhciBjb21tdW5p
+Y2F0aW9uIGluIG91ciANCmNvbGxhYm9yYXRpdmUgZWZmb3J0cy4gUGxlYXNlIGZlZWwgZnJlZSB0
+byBwcm92aWRlIGd1aWRhbmNlIG9uIGhvdyBJIGNhbiANCmFzc2lzdCB5b3UgZnVydGhlciBpbiBy
+ZXNvbHZpbmcgdGhpcyBtYXR0ZXIuDQoNCj4gDQo+IExlZSwNCj4gQ2FuIHlvdSBwaWNrIHVwIHR3
+byBwcmV2aW91cyBwYXRjaGVzIGFzIHdlbGw/DQo+IA0KPiBCZXN0IHJlZ2FyZHMsDQo+IEtyenlz
+enRvZg0KPiANCg0KLS0gDQpXaXRoIEJlc3QgUmVnYXJkcywNCkRoYXJtYSBCLg0KDQo=
 
