@@ -1,120 +1,117 @@
-Return-Path: <devicetree+bounces-44061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D079B85C561
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 21:04:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E13DE85C584
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 21:07:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 60AE6B20DC5
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 20:04:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1EF131C222DA
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 20:07:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 326AF14A4E4;
-	Tue, 20 Feb 2024 20:03:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CBAE14A4E2;
+	Tue, 20 Feb 2024 20:07:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="aYQmsEOw";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="0bZpy8Uc"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="y7A1TlMQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C72E14A4E1;
-	Tue, 20 Feb 2024 20:03:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C995137C41
+	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 20:07:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708459431; cv=none; b=oiQo835m5sE9QPTnsurhpjH8zGPYbHeEBf1ip8OfW/N0DkLcnXwg5Rfp4nv+0DfBwLywGlEbnuGUsmDn/x0M28/hRsg5AXO/F40c4l7NWCLsssnLPQ4zqltVfn6utRvCzrQ/dJYE3fFKeYhz9TKcOtUtItZ3v77PjJaw1YS4m5M=
+	t=1708459658; cv=none; b=Eg+/X/mm0O68OEmN6vNcv1nFpIFP9sj/gDRuQ3ppm1VHTOAGhQTdGGJ+OfrkpiwhN4d8M4AL05UxAvmGdexNrw37eZWLloClbLi63Q9WkV2tmn440NhPnVxLKobll+z7rtKkdncaCGphKbM/lX6x0g/foXb1PqUJDhB33VNZ6gg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708459431; c=relaxed/simple;
-	bh=RGYI1C/SB4NfKZcUVQLWJNCPAbpYUuYgeLGtJ3F3BJY=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=Vx9kLN0KSA+DXsFFWF2hgyfWnDXDydrUqSxxC8OmVy5Zm5mU6sw9c1IH9iZYc2OW/HKoCwfGq3Jy1aKs++3teANjJcMpdqlfrEg+Eu37u2xtViO4UI9uejuK7q06fA+EpRWRCrOFvvCnp9gBAWwASX1zK13Qju/Nkz+MUOM5NEc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=aYQmsEOw; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=0bZpy8Uc; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1708459424;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=jJRsPsyZ6zDS1QWFQN2wLBFM6mS+0QImDjTMgSPiL7I=;
-	b=aYQmsEOwQopLCUpYpAQuDyrIpn/ZjclA2riggfw0WWir8TT6NmiPQZJzpeC9YRHKgp0rWt
-	k9TQyzVThpxVBDmox2nnESsknS5oTRd4VzFt0IU9vtyq1EJQHNR2c8XYNJ501UxxiXHAvM
-	kXdsE5fN2sy9MVO94uyCUiwX4v8h1pq6bevWl8yrwk+XqoCaj9mBmXHCJGdlZPtLIuvqLX
-	3q+Zma5P0XbwLUpcToklgoNTEsCISC+ORpEWQc1gQ0abV9ucGF0qXfXXUnwwqsBvpXZvEQ
-	4wLIzGkKNOg+Vur2e3RHi5rEfoxeWqrJBnwmSEj0b/eNkGMG09MxRmsKO7Z1XQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1708459424;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=jJRsPsyZ6zDS1QWFQN2wLBFM6mS+0QImDjTMgSPiL7I=;
-	b=0bZpy8Ucv4te6DfmhFa1QQKyXrhJJterh1+UZ0hC/H+1QXta7TTSsn4wIZdFftqnZDB7KQ
-	v4NtqSu0q+WZZFDw==
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
- <paul.walmsley@sifive.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
- <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>, Marc Zyngier
- <maz@kernel.org>, =?utf-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>,
- Atish Patra
- <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>, Sunil V L
- <sunilvl@ventanamicro.com>, Saravana Kannan <saravanak@google.com>, Anup
- Patel <anup@brainfault.org>, linux-riscv@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH v13 08/13] irqchip/riscv-imsic: Add device MSI domain
- support for PCI devices
-In-Reply-To: <CAK9=C2UgYpVtjFZ4NLzOCP6f3LQ=Fx7kPMywwQyFiNMcKmPyLw@mail.gmail.com>
-References: <20240220060718.823229-1-apatel@ventanamicro.com>
- <20240220060718.823229-9-apatel@ventanamicro.com> <8734tni7h3.ffs@tglx>
- <CAK9=C2UgYpVtjFZ4NLzOCP6f3LQ=Fx7kPMywwQyFiNMcKmPyLw@mail.gmail.com>
-Date: Tue, 20 Feb 2024 21:03:43 +0100
-Message-ID: <87jzmyhpi8.ffs@tglx>
+	s=arc-20240116; t=1708459658; c=relaxed/simple;
+	bh=5rCYzkQFVFIHAf9a7O0phsyRdMzbC6SiF2iVZeHA5bo=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=Nbir4IzL4vZDGZnjyc/N3Xbql2Iob/u/q6pMAooSELQG3fyHwLrwdlY7gB1iKwxT2Hjq/BPASEZna+oksMMQ7cnAoSuymD2ZcjOBxtOsyg6umkAMGnHdBV+5sXIYOAjAjNCwJCNsMY+mtYAFDlxXtDlfTwwZbkoOPQPS685b/5k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=y7A1TlMQ; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 8C4532C0220;
+	Wed, 21 Feb 2024 09:07:27 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1708459647;
+	bh=5rCYzkQFVFIHAf9a7O0phsyRdMzbC6SiF2iVZeHA5bo=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+	b=y7A1TlMQPEsD8C+7VTDZm7HIBwpym8rB5VlkwrsJhGU3SIcyS17rLmpUuIhDJw44/
+	 1Z8Pr7fhRh/1qahEzTem3RXPHsPeTUvt3Mg/PhznFBp8DpAh/lk9Bfdd761xqpfLLq
+	 388Zd7/Ibvt74cUWWtbFqar/CwTf4kPbV/jxXoxbtvbDl0AoQatikP0Vke9wF7vKsA
+	 3wSbjynms8Duk17f48Pyav5HI+DieTsWJUzMgXhCPdUaOU+5wced5KazfEwvljkE0X
+	 dSFhCWnBF9ehWBrAJLn/p7K7GqEOgSSjrjCdHbJTJVrXY/10ENkzVebXaJwcD4pP5C
+	 adDb7amMX/KRA==
+Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B65d5067f0001>; Wed, 21 Feb 2024 09:07:27 +1300
+Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) by
+ svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 21 Feb 2024 09:07:27 +1300
+Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
+ svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
+ 15.02.1118.040; Wed, 21 Feb 2024 09:07:27 +1300
+From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To: Guenter Roeck <linux@roeck-us.net>, "antoniu.miclaus@analog.com"
+	<antoniu.miclaus@analog.com>, "alexandre.belloni@bootlin.com"
+	<alexandre.belloni@bootlin.com>, "robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "jdelvare@suse.com"
+	<jdelvare@suse.com>
+CC: "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>, "Zeynep
+ Arslanbenzer" <Zeynep.Arslanbenzer@analog.com>
+Subject: Re: [PATCH v7 1/2] drivers: rtc: add max313xx series rtc driver
+Thread-Topic: [PATCH v7 1/2] drivers: rtc: add max313xx series rtc driver
+Thread-Index: AQHaY4GQvEfO48xYrkysKF0fEIRwDbESyOEAgAAHBgA=
+Date: Tue, 20 Feb 2024 20:07:27 +0000
+Message-ID: <08d0ac81-8e14-459d-a71e-34392d833371@alliedtelesis.co.nz>
+References: <20240219221827.3821415-1-chris.packham@alliedtelesis.co.nz>
+ <20240219221827.3821415-2-chris.packham@alliedtelesis.co.nz>
+ <9281dd01-d20e-4eed-96ae-6aa63c9eb678@roeck-us.net>
+In-Reply-To: <9281dd01-d20e-4eed-96ae-6aa63c9eb678@roeck-us.net>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <E7FA6D8E21F0B14CB99E42D8EDAFF80C@atlnz.lc>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=BKkQr0QG c=1 sm=1 tr=0 ts=65d5067f a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=k7vzHIieQBIA:10 a=gAnH3GRIAAAA:8 a=Y7msoDIFLYruvLPsntIA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=oVHKYsEdi7-vN-J5QA_j:22
+X-SEG-SpamProfiler-Score: 0
 
-On Tue, Feb 20 2024 at 22:51, Anup Patel wrote:
-
-> On Tue, Feb 20, 2024 at 7:05=E2=80=AFPM Thomas Gleixner <tglx@linutronix.=
-de> wrote:
->>
->> On Tue, Feb 20 2024 at 11:37, Anup Patel wrote:
->> >  static bool imsic_init_dev_msi_info(struct device *dev,
->> >                                   struct irq_domain *domain,
->> >                                   struct irq_domain *real_parent,
->> > @@ -218,6 +241,7 @@ static bool imsic_init_dev_msi_info(struct device =
-*dev,
->> >
->> >       /* MSI parent domain specific settings */
->> >       switch (real_parent->bus_token) {
->> > +     case DOMAIN_BUS_PCI_MSI:
->>
->>         case DOMAIN_BUS_PCI_DEVICE_MSIX:
->>
->> ?
->
-> Actually, the DOMAIN_BUS_PCI_MSI is not needed because
-> the real parent domain is always the IMSIC base irq_domain
-> so DOMAIN_BUS_NEXUS is sufficient.
-
-Indeed. Obviously I can't read.
-
-> Better to just drop DOMAIN_BUS_PCI_MSI from this switch case ?
-
-Yes. I actually would be a bug if that ends up as the real parent
-domain.
-
-Thanks,
-
-       tglx
+T24gMjEvMDIvMjQgMDg6NDIsIEd1ZW50ZXIgUm9lY2sgd3JvdGU6DQo+IE9uIDIvMTkvMjQgMTQ6
+MTgsIENocmlzIFBhY2toYW0gd3JvdGU6DQo+PiBGcm9tOiBJYnJhaGltIFRpbGtpIDxJYnJhaGlt
+LlRpbGtpQGFuYWxvZy5jb20+DQo+Pg0KPj4gQWRkaW5nIHN1cHBvcnQgZm9yIEFuYWxvZyBEZXZp
+Y2VzIE1BWDMxM1hYIHNlcmllcyBSVENzLg0KPj4NCj4NCj4gQWRkaW5nIC0+IEFkZA0KPg0KPiBU
+aGUgc3ViamVjdCBzaG91bGQgcmVhbGx5IGJlIHNvbWV0aGluZyBsaWtlICJydGM6IG1heDMxMzM1
+OiBBZGQgc3VwcG9ydA0KPiBmb3IgYWRkaXRpb25hbCBjaGlwcyIsIHdpdGggZGV0YWlscyBpbiB0
+aGUgcGF0Y2ggZGVzY3JpcHRpb24uDQoNCkFjay4NCg0KPiBBbGwgdGhvc2UgKGluIG15IG9waW5p
+b24gdW5uZWNlc3NhcnkpIGZ1bmN0aW9uLCBkYXRhIHN0cnVjdHVyZSwNCj4gYW5kIHZhcmlhYmxl
+IHJlbmFtZXMgbWFrZXMgaXQgcmVhbGx5IGRpZmZpY3VsdCB0byByZXZpZXcgdGhlIGNvZGUuDQo+
+IEkgZG9uJ3Qgc2VlIHRoZSBwb2ludCBvZiB0aGF0LCBzbyBwbGVhc2UgZG9uJ3QgZXhwZWN0IGFu
+eSBmdXJ0aGVyDQo+IGZlZWRiYWNrIGFib3V0IHRoZSBod21vbiBjaGFuZ2VzIGZyb20gbWUuIA0K
+DQpTb3JyeSBhYm91dCB0aGF0LiBJbiByZWFsaXR5IHdoYXQgaGFwcGVuZWQgaXMgdGhhdCBzb21l
+b25lIHN0YXJ0ZWQgDQp0cnlpbmcgdG8gYWRkIHN1cHBvcnQgZm9yIHRoZSByYW5nZSB0aGVuIHRo
+ZXkgbGVmdCBBbmFsb2cgRGV2aWNlcyB3aXRoIA0KdGhlIHBhdGNoIHN0aWxsIGluIGZsaWdodC4g
+SW4gdGhlIG1lYW4gdGltZSBzb21lb25lIGVsc2UgZnJvbSBBRCBsYW5kZWQgDQphIGRyaXZlciBm
+b3IgYSBzaW5nbGUgdmFyaWFudCAod2l0aCBubyBwdWJsaWMgZGF0YXNoZWV0KS4gSSdtIGxlZnQg
+DQp0cnlpbmcgdG8gcGljayB1cCB0aGUgcGllY2VzLg0KDQpUaGlzIGlzIGVmZmVjdGl2ZWx5IHRo
+ZSBvcmlnaW5hbCBtYXgzMTN4eCBzZXJpZXMgcGF0Y2ggd2l0aCB0aGUgbWF4MzEzMzUgDQpjaGFu
+Z2VzIGluY29ycG9yYXRlZCBhcyBiZXN0IEkgY2FuLiBJIGNhbiBwcm9iYWJseSByZW5hbWUgbW9y
+ZSB0aGluZ3Mgc28gDQp0aGVyZSBpcyBsZXNzIGRlbHRhIGFnYWluc3QgdGhlIG1heDMxMzM1IGRy
+aXZlci4NCg0KPiBUaGFua3MsDQo+IEd1ZW50ZXINCj4=
 
