@@ -1,100 +1,89 @@
-Return-Path: <devicetree+bounces-44029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D323285C34E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 19:05:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 814AF85C359
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 19:07:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BECB7B23CB2
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 18:05:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 11DBAB251E5
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 18:07:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D514779F2;
-	Tue, 20 Feb 2024 18:05:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A808C77A01;
+	Tue, 20 Feb 2024 18:06:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RBGAJPDE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BEvbezhE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5952576C70;
-	Tue, 20 Feb 2024 18:05:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80C657602B;
+	Tue, 20 Feb 2024 18:06:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708452331; cv=none; b=usJMsYqbXPBCb7NakvReyX/m9X1VCtl7CxhNaGQ42t0YklxkpNJ4TLUFg+1Rq8y73sK2kMt0mieCOGUZhLdK25nI1MfW1jHxaW9h8s+lk/IUWWj5qw0tx7ZPG+oVsEDXCSaN07h1N03xgB7Pi+0FqmCn7x1PAcOeNwpqBFbB5zA=
+	t=1708452407; cv=none; b=pyB1AaTswo85dspyrO9jsgGsaf0rygIeD+/YoOI5uUi48vB/qa7pnthr0DoYw56qbLLHBNKP9zdsLZhD0k4NpcKbmF2l/x87wFwHFytOMTWRjANwF69IGLkssTTM5wb/gl4aQ8LmKJl3oBZLHH18PZnDKRX6me13/2BBnOvIHT8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708452331; c=relaxed/simple;
-	bh=xY01WNSDg+fB4b3tzgDPOlMr8YfAE3F7j2PbUEDxlHs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jLUpRgCiIac9snN4G0mDzG+WCA/oikblj1afwXOHZquYwGHwJv5RtlMCtgJqeOOPR5za20o1ANP65tCBEVBvj/ZkEET9qCTgSDGdzCKRc7eovyP/shl/FWXabDJI6TpEwHPYxsZxmiiOWPnWorL1CNi8X/n4QWi7H/kYkbCdRo4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RBGAJPDE; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1708452330; x=1739988330;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=xY01WNSDg+fB4b3tzgDPOlMr8YfAE3F7j2PbUEDxlHs=;
-  b=RBGAJPDExE66AXm4VwLxSBREE2jFUrJ+vbvROsJga32ZyMDT/cWl2Iqe
-   fyA0BP5f01toMMUc5PPWUddLy2p7GVwR+7m6k2GD08PLjnJW4QaG5Qd6M
-   I+HDm2RNLlUG6NzjZ5IJ/pIW/E84Gwuq9x9cRNVFB/N60AMTdkz6SQZeT
-   luoNDCRWo3bHuX00cmXklJQb5Ju7X5e+UJB/a9jrpNsDsg2sJ54tqny1E
-   lYoF5kSll9jceGu36K/C33OdYD5ROcvSq+tPaKnRh2Dm3r+DO7Gv1ianE
-   H4k9UOLfqFrgmw1u2Tk/0mrhZgZj1EY5CORNHHf8dgZtogiqKKdk3nYqA
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10990"; a="3037655"
-X-IronPort-AV: E=Sophos;i="6.06,174,1705392000"; 
-   d="scan'208";a="3037655"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2024 10:05:30 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10990"; a="913118980"
-X-IronPort-AV: E=Sophos;i="6.06,174,1705392000"; 
-   d="scan'208";a="913118980"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2024 10:05:27 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1rcUUe-000000069WL-3Ueo;
-	Tue, 20 Feb 2024 20:05:24 +0200
-Date: Tue, 20 Feb 2024 20:05:24 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Robin van der Gracht <robin@protonic.nl>,
-	Paul Burton <paulburton@kernel.org>
-Subject: Re: [PATCH v3 5/9] auxdisplay: ht16k33: Define a few helper macros
-Message-ID: <ZdTp5LQOTpL5ke96@smile.fi.intel.com>
-References: <20240219170337.2161754-1-andriy.shevchenko@linux.intel.com>
- <20240219170337.2161754-6-andriy.shevchenko@linux.intel.com>
+	s=arc-20240116; t=1708452407; c=relaxed/simple;
+	bh=LPrpXLHqe4UXA0SOtgNgHEqOcj7pbqm/Xyphpzkf9dM=;
+	h=Mime-Version:Content-Type:Date:Cc:Subject:From:To:Message-Id:
+	 References:In-Reply-To; b=ITcpVnuME/FFIUQZrwV8zS6m9f2q9Hm/Uylm4zwpCQrqvMwD4ow/hk15SFQSVwegZwx5NWsEWD0ARxJWwUY3AFos/H9+j1YLW7cFAGnjydqLfNlAtZmGBYoME49XiBhr4G3252bGvj5VMeXabkeXsOJEMEt0wefVKlVxz1VGH/U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BEvbezhE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA2EDC433F1;
+	Tue, 20 Feb 2024 18:06:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708452407;
+	bh=LPrpXLHqe4UXA0SOtgNgHEqOcj7pbqm/Xyphpzkf9dM=;
+	h=Date:Cc:Subject:From:To:References:In-Reply-To:From;
+	b=BEvbezhETqlvoxDBJw9bdtOnfRq7BrDJSgwLa/uGfUBset97h0us+8Moi79OonQVc
+	 kyFptyKrvran1ntHrwaOveQ+OqA+2xaFxa9PSM+9seEqfxMAoKgSNvOPFy404+LLRQ
+	 5UC42AUSrDSvWGuqYMW2UGmSOBk3TFWc4mFfpueZOaUJYxKnctja3CTI+nk+o12mOl
+	 5NRF3jG0jPAv+X+5AUiyH5rJcVgfwTBnQL/CuI+znUqZyFJpeSZmk1lPlrO50aynpP
+	 EgAYeJhlFq5fZ350ADoXV3Q8CM4DQFBmzOJNIArkvAgYtH+2dbbciLltOpLtsCZMj5
+	 OHFJH0+51EHMA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240219170337.2161754-6-andriy.shevchenko@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 20 Feb 2024 18:06:44 +0000
+Cc: <devicetree@vger.kernel.org>, <linux-integrity@vger.kernel.org>, "Peter
+ Huewe" <peterhuewe@gmx.de>, "Jason Gunthorpe" <jgg@ziepe.ca>
+Subject: Re: [PATCH v2 0/4] Add missing TPM compatible strings
+From: "Jarkko Sakkinen" <jarkko@kernel.org>
+To: "Lukas Wunner" <lukas@wunner.de>, <robh@kernel.org>
+Message-Id: <CZA3STK007KM.2GLEAARLXBLBH@seitikki>
+X-Mailer: aerc 0.15.2
+References: <cover.1705140898.git.lukas@wunner.de>
+ <20240220105536.GA4555@wunner.de>
+In-Reply-To: <20240220105536.GA4555@wunner.de>
 
-On Mon, Feb 19, 2024 at 06:58:04PM +0200, Andy Shevchenko wrote:
-> Define a few helper macros — wrappers on contaoner_of)() — for easier
+On Tue Feb 20, 2024 at 10:55 AM UTC, Lukas Wunner wrote:
+> Dear Jarkko,
+>
+> since v6.8-rc6 is approaching and the end of this cycle is thus in sight,
+> please do not forget to merge this series:
+>
+> https://lore.kernel.org/all/cover.1705140898.git.lukas@wunner.de/
+>
+> All 4 patches have a Reviewed-by from you and patch 1 has an Acked-by
+> from Rob.
+>
+> Thanks,
+>
+> Lukas
 
-I have fixed 'container_of()' above locally.
+Thanks for reminding!
 
-> maintenance in the future. While at it, include missing container_of.h.
+Since this patch set only has DT changes and zero actual TPM driver
+changes, I think it would be better if Rob picked this.
 
--- 
-With Best Regards,
-Andy Shevchenko
+Rob, what you think?
 
+I'm good either way but need to check.
 
+BR, Jarkko
 
