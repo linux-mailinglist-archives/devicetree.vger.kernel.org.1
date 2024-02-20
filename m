@@ -1,123 +1,164 @@
-Return-Path: <devicetree+bounces-44046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 010D385C476
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 20:15:58 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98F6C85C487
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 20:21:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE63B28755E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 19:15:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01766B21B1B
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 19:21:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2FA514A0B3;
-	Tue, 20 Feb 2024 19:15:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D00C81353EA;
+	Tue, 20 Feb 2024 19:21:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ux+UTVk7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="avH2Kmj6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AAD714601B;
-	Tue, 20 Feb 2024 19:15:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FBA5612D7;
+	Tue, 20 Feb 2024 19:21:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708456537; cv=none; b=tl3FBFlY/Lb1xbRgAwCjUQheS/1Y8Cr1yL3JLtUVudOjd3+DF9ofDHmXJ/hVXeG8CCTM+vavu7X5J52FtiDG6dNm3hscsWZzDCgIU4PXBGD16UyEmC4eabsqy8riBr05tk8nCFkrlWKgZfPZkzqjpSl+EYdiLGH2EXTZyUWs0yc=
+	t=1708456868; cv=none; b=iWbdHBrKqrFQZZrGJwnLBnTWk5qVQ2aDXyQDkswU7/Hk+dPq2X7LZpFMe1DCfVDvVYWeqgPqrMjAZ0MpcDICPlHLGDef4viSnKk/RIF5v3L8+bCPQmkGLap0q772hQQwEXahXEuHo3Yps9o9+Ul6Fhh9TV5sC9ygT5whLkk+68c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708456537; c=relaxed/simple;
-	bh=dUB1UDXSY5z3r20NPmKrZdHjdk9LMwIBMzwlqax6N0I=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=NErNpqJOAkONmvPdoOzK7rDzZf2aSC4dw47E0R7U9i8qP3/oADgMGUV0eskrg9/yPP2guihfsAq7qWKWyLRJn9tsrbxau4UHfnKLQ7wZKaVi4T/ALmg/b82fL19M0FzFaBGcly+CMbQTFwa2v1v3RqJ9eN9dhhBAswNmo45uxck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ux+UTVk7; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41KJFFZ4060174;
-	Tue, 20 Feb 2024 13:15:15 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1708456515;
-	bh=A9O7elDCRHdeS/qHgmyGZcRY0zsc0DhaO7nfioofgu4=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=ux+UTVk7FzC44OD9oaJOOmNq+HhwgbzZ1X6ANdCbiR5Ofut7WI/ekVBCBqQjlPueY
-	 dwsrh6KczLbJuVLaviQCAIyvNe+WCTlAAk3SAABDod4BrXzXgLDRs709sXHIPONb91
-	 kC2bJuCZANw3rxA5vHoa4qMNPZTUKKCzv8g11h3o=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41KJFFhC023415
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 20 Feb 2024 13:15:15 -0600
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 20
- Feb 2024 13:15:15 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 20 Feb 2024 13:15:14 -0600
-Received: from udba0500997.dhcp.ti.com (udba0500997.dhcp.ti.com [128.247.81.249])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41KJEKoR051513;
-	Tue, 20 Feb 2024 13:15:14 -0600
-From: Brandon Brnich <b-brnich@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon
-	<will@kernel.org>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Geert
- Uytterhoeven <geert+renesas@glider.be>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Konrad
- Dybcio <konrad.dybcio@linaro.org>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>,
-        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?=
-	<nfraprado@collabora.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Darren Etheridge <detheridge@ti.com>
-CC: Andrew Davis <afd@ti.com>, Brandon Brnich <b-brnich@ti.com>
-Subject: [PATCH v5 4/4] arm64: defconfig: Enable Wave5 Video Encoder/Decoder
-Date: Tue, 20 Feb 2024 13:14:13 -0600
-Message-ID: <20240220191413.3355007-5-b-brnich@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240220191413.3355007-1-b-brnich@ti.com>
-References: <20240220191413.3355007-1-b-brnich@ti.com>
+	s=arc-20240116; t=1708456868; c=relaxed/simple;
+	bh=/8B+SVqWi9/8HEqD87v2d6g2SFTWC7Ca3KdPMEZ4hJA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PVJ3+Rr+aVTqtkVtlFllYHrNYmklUeZtLeq+1QIRkDI7EBwn7omcpWVyHH03gFrMatfP9OuKrkxNnNgV6kKjq93UugnALm/mj+jK9fzd+QyKt1+zMGnWVZOU6GuqxD3Lbct1xzKHSovBvLe/AwKZ7rug9JOiIdhOCcWZvKMMDCI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=avH2Kmj6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C468C433F1;
+	Tue, 20 Feb 2024 19:21:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708456868;
+	bh=/8B+SVqWi9/8HEqD87v2d6g2SFTWC7Ca3KdPMEZ4hJA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=avH2Kmj6V6pPV3DJYLy/6Q6Fd8qpMmAZnbeSs6qPatt2gZe4JKwM9xm9ttLszoNkB
+	 9i4jdv+jycnTa7sHbthKxGgaT0jpiDsrGp/epBZQ7YvDqAzp2Mt97GcbXzN7/eKG+u
+	 BmAdO32WMEtMlKvrmDdTDxuAO8sXnGdiOZea2GRhniwwh9+9blCYB7KlxP5Cx6lVkj
+	 bVaq+vnjJwv4G7+e5ESyZooi67F4ghdUGfFy3XCSef93zHAwuIi62lKMYjuWTa0TYZ
+	 21HWhEl3eBL8AVemu1ZbKIPItCpEdXtHA7bsGYd+KUrHMpCa0ZZ/I2l8z9WMsIBU8x
+	 uW8uMD1xBonwQ==
+Date: Tue, 20 Feb 2024 19:21:03 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: antoniu.miclaus@analog.com, alexandre.belloni@bootlin.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, jdelvare@suse.com, linux@roeck-us.net,
+	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+	Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+	Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
+Subject: Re: [PATCH v7 2/2] dt-bindings: rtc: add max313xx RTCs
+Message-ID: <20240220-unified-payback-13b0964c8c29@spud>
+References: <20240219221827.3821415-1-chris.packham@alliedtelesis.co.nz>
+ <20240219221827.3821415-3-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Lr0x75LRIzBUufR/"
+Content-Disposition: inline
+In-Reply-To: <20240219221827.3821415-3-chris.packham@alliedtelesis.co.nz>
 
-Enable Wave521c video decoder/encoder driver on all TI K3 platforms that
-contain the IP.
 
-Signed-off-by: Brandon Brnich <b-brnich@ti.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+--Lr0x75LRIzBUufR/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index e6cf3e5d63c3..6fe4f2da4aca 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -795,6 +795,7 @@ CONFIG_V4L_MEM2MEM_DRIVERS=y
- CONFIG_VIDEO_CADENCE_CSI2RX=m
- CONFIG_VIDEO_MEDIATEK_JPEG=m
- CONFIG_VIDEO_MEDIATEK_VCODEC=m
-+CONFIG_VIDEO_WAVE_VPU=m
- CONFIG_VIDEO_IMX7_CSI=m
- CONFIG_VIDEO_IMX_MIPI_CSIS=m
- CONFIG_VIDEO_IMX8_ISI=m
--- 
-2.34.1
+Hey Chris,
 
+On Tue, Feb 20, 2024 at 11:18:24AM +1300, Chris Packham wrote:
+> From: Ibrahim Tilki <Ibrahim.Tilki@analog.com>
+>=20
+> Add devicetree binding documentation for Analog Devices MAX313XX RTCs.
+> This combines the new models with the existing max31335 binding.
+>=20
+> Signed-off-by: Ibrahim Tilki <Ibrahim.Tilki@analog.com>
+> Signed-off-by: Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> ---
+>  .../devicetree/bindings/rtc/adi,max31335.yaml |  70 --------
+>  .../devicetree/bindings/rtc/adi,max313xx.yaml | 167 ++++++++++++++++++
+
+There's no need to do this rename. Having the filename matching one of
+the compatibles is our preference.
+
+In addition, it makes it difficult to see what your actual additions are
+here. Fortunately, applying the patch locally allows me to use colour
+moved and all that jazz, so I can see that the underlying changes to the
+file actually look pretty good.
+
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        rtc@68 {
+> +            reg =3D <0x68>;
+> +            compatible =3D "adi,max31329";
+> +            clocks =3D <&clkin>;
+> +            interrupt-parent =3D <&gpio>;
+> +            interrupts =3D <26 IRQ_TYPE_EDGE_FALLING>;
+> +            aux-voltage-chargeable =3D <1>;
+> +            trickle-resistor-ohms =3D <6000>;
+> +            adi,tc-diode =3D "schottky";
+> +        };
+> +    };
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        rtc@68 {
+> +            compatible =3D "adi,max31335";
+> +            reg =3D <0x68>;
+> +            pinctrl-0 =3D <&rtc_nint_pins>;
+> +            interrupts-extended =3D <&gpio1 16 IRQ_TYPE_LEVEL_HIGH>;
+> +            aux-voltage-chargeable =3D <1>;
+> +            trickle-resistor-ohms =3D <6000>;
+> +            adi,tc-diode =3D "schottky";
+> +        };
+> +    };
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        rtc@68 {
+> +            reg =3D <0x68>;
+> +            compatible =3D "adi,max31331";
+> +            #clock-cells =3D <0>;
+> +        };
+> +    };
+
+The one thing I do want the comment on is the number of examples.
+I don't really see what we gain from having 3 - I'd roll the clock
+provider example into with one of the other ones I think.
+
+Cheers,
+Conor.
+
+--Lr0x75LRIzBUufR/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdT7ngAKCRB4tDGHoIJi
+0gcVAQCUm3UGEM+Z/9EWoRiY+5d63k/n2Hnz9XUiLW/AZJehEwEArBjG41/eCY1Z
+LV4ymimhjQsiORRNpOuiTwJItdYREgY=
+=hOoo
+-----END PGP SIGNATURE-----
+
+--Lr0x75LRIzBUufR/--
 
