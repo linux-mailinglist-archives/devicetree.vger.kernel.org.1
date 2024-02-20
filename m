@@ -1,118 +1,181 @@
-Return-Path: <devicetree+bounces-43698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B012585B2B8
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 07:12:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A163985B2CC
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 07:18:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E34321C20359
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 06:12:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C61DE1C21ECD
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 06:18:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2B6954FA0;
-	Tue, 20 Feb 2024 06:12:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04A0D57879;
+	Tue, 20 Feb 2024 06:18:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="O/RcjSY9"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="VIQ850wd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49DAD58207
-	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 06:12:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3455257872;
+	Tue, 20 Feb 2024 06:18:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708409544; cv=none; b=AKmxHa1fvyvcExnANSFEk+JxOPAtetLS2dK5cyUmi5z0MzmOZW8YlMZDIhkKT4WBdoiRH65HuGCHgHTBMw9Lhm8VkYDWzqki175ITEvedvWYk94bOnaRxHCgMoXzc4R98IE0kpUAndMuY+MGz/6WU9RIzkjOs+a6/MoMo6MHTE8=
+	t=1708409903; cv=none; b=mMHiQ5GgEedy+qzApKOc5WAdxJa9CbdsPaiibfSq4j7YpVII0ktBj3SZ6ICM1O4fRfroFj4nSpv5XflNMZpREGxxNorj1pjnHFXEIGfG/oVDn/xv6SPORmzJBsE4N+v4Ng368RF7nUic9fTJcv7tqs3EMRncT3wW4/In2zxZ440=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708409544; c=relaxed/simple;
-	bh=YwxziMJHXX2W98fYvbTdPERYnB552e6dw+lv8Xxeaik=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dwwbd3kEui+Go9Tt/9E8Zd54Ol32vMni6eCf6BWBCmaQuIpoh5k0XmBQtnTM7NbBfdvEKU0Gu1vwtbgTvz1jEEh3MJwXaPub0WnocVSABgij1JoWXvO6teptakk4rSaMBPzAiFEbMnnGjfbKtwjcgrifm72pkKN2BB1HTi7jgB4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=O/RcjSY9; arc=none smtp.client-ip=209.85.208.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2d0a4e1789cso60600151fa.3
-        for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 22:12:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1708409541; x=1709014341; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=45sEQuqSChb4TFdk2aFCbPunV2X7Zp2Ggfs8QlVxLCE=;
-        b=O/RcjSY94OAL/Y9ZG6azBiEDoKYTLLN7PUZejAf3JPSFl0t5fd7dv+4EXsrnH0jqp/
-         1YlYt0dNzU5gpnoQ9TzYxmpE4uX2Qg//pc5EEf1wtcYMUMRx05c1DsXew/Y30iA77mXX
-         b99Z0LLzvUKtFVCw1cI28DsJ3Xzp6mAE2rjpdnWNNUAbcvYBc9e+BzYNyzYbkQGoEPzn
-         So/axWQ5Y8KY2hBMqbc6xxHpOIZ/gTgA71ltfMFjgB6Dm2M/Kx6IZSWfo2Vba+uR1Dfj
-         vwcrDmxcV0jQrxVGZD+fGLUpD512Oa5Mv13J+3+4ba8K8kZeSOhIhdsMJkMwIwJoZVaJ
-         nVmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708409541; x=1709014341;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=45sEQuqSChb4TFdk2aFCbPunV2X7Zp2Ggfs8QlVxLCE=;
-        b=O8hefIvtnEKHBARGRCc6gC73jibOJ6xFhxcxvLadPYqtKeaNCuYTTybiWp7l38yi21
-         ONX6RqDZOtiUepzJhnPGtmWPfhwsYicggXhdql6lcIMLnlRHLkONRT4hbYg/v7iq+V7t
-         OwjlHkxoLxTiQpoI+EovWqjGK415KpNvRwPQvPbR1ZRI7N1r9duNh23Fjs8/6u96FNjb
-         EVwoW72pASyH87VFy8xxE+UhZIaVAPcOqCRzorZTLro16g/ngB/hfrdXA4bWwNAberz2
-         S9Pa9++bZPg0PMHwc2ODfQygVF3qP6Q1k7Jsj0UJ7RaFn4D5ysumj41lcCh2RuKjlsUV
-         Qdjw==
-X-Forwarded-Encrypted: i=1; AJvYcCUO5wRpg2zqDoQZgq1Ahg5Edk+3f7K+IgCB27b01zQKMi5/mOYbxRJjRbe9i8n4pWlu4LWt7SRs+hEUxesh92TJGUHdxnKTIdHKqA==
-X-Gm-Message-State: AOJu0YzBCv3kjL5ESniauOJRojKk6iN8klMfVoF2BEHetCRqR48CPBhq
-	N2r2wB5gdoqvKyPOemhSOmnOaC8XPQzC6N8rA1WzDNserTJMeduefBNO6R1gtIeP7J3a2eV8KYb
-	k+he30tlKI3RtkuSv1JxrRkPzy7pTYPVR9jNLrQ==
-X-Google-Smtp-Source: AGHT+IHMJBI/oMtcWEZVPK92GP05YnjcAeWF8XgBIuxDTLOi4XZzV5Qx4HMrS5IUdIaPjB4EYUfB3IKgxGQZLGSs3mQ=
-X-Received: by 2002:a2e:b8c8:0:b0:2d2:bd9:f100 with SMTP id
- s8-20020a2eb8c8000000b002d20bd9f100mr10605944ljp.20.1708409541306; Mon, 19
- Feb 2024 22:12:21 -0800 (PST)
+	s=arc-20240116; t=1708409903; c=relaxed/simple;
+	bh=gUkAM6nsKOBeB/7flYRVfw0/0Og27VQ7Th+iZ9+JC4A=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=bQYiHW6P8fnNkrBqFz8NsJePIOEQo+a+JZkDLLfpvPadc25CT/dJTpAARnJilPm2xaVaIboftKnAckn/sWXtyDMVBPUHjYl+2tvlbYcWBfj6RLZwQyzcLd8Ry+mqVn5DxRVt9TKohkrTt5oTYzIcYAiq5IbHY/gXztd2RtopfVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=VIQ850wd; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41K6ICAg113559;
+	Tue, 20 Feb 2024 00:18:12 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1708409892;
+	bh=g7Dcxd60svvnzRjWgQoJnsZXePx8JG9B86EVg8kSl3Q=;
+	h=From:Subject:Date:To:CC;
+	b=VIQ850wdpavWpnGXS9T5nm1JZbc8Z7vppzHrhAK7nfa0v0YC/HNgOx3V5xJBqjFIu
+	 KCEstYxNqkCZZEMk593TWktaETuODFcr+VeRhkISBqyz/O7MfJS+x12/cIHsMAPxKF
+	 51Ii8jGPHibdneeWuKP0U4yqONkOOiOTNJqDNCEM=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41K6ICOY024613
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 20 Feb 2024 00:18:12 -0600
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 20
+ Feb 2024 00:18:11 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 20 Feb 2024 00:18:11 -0600
+Received: from localhost (jluthra.dhcp.ti.com [172.24.227.217])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41K6IBST120842;
+	Tue, 20 Feb 2024 00:18:11 -0600
+From: Jai Luthra <j-luthra@ti.com>
+Subject: [PATCH v2 0/4] arm64: dts: ti: Enable camera for SK-AM62P
+Date: Tue, 20 Feb 2024 11:48:01 +0530
+Message-ID: <20240220-am62p_csi-v2-0-3e71d9945571@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240127161753.114685-1-apatel@ventanamicro.com>
- <CAK9=C2Vwtj2gZg-P73yLMxu0rPXQ3YrRRuxq6HcpHMXgs-jHaw@mail.gmail.com>
- <87bk8ig6t2.ffs@tglx> <CAK9=C2WsSSHgDF+7ruxx_QF0Lk+Dsx2F2Y-_NabnxrJ_qWhgGQ@mail.gmail.com>
- <87v86pcxcb.ffs@tglx> <87zfw0azmn.ffs@tglx>
-In-Reply-To: <87zfw0azmn.ffs@tglx>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Tue, 20 Feb 2024 11:42:09 +0530
-Message-ID: <CAK9=C2W3cv0yd0faMrKjKwmSjGQ4zVVMkcbr=PtxJ1K0sn=SLQ@mail.gmail.com>
-Subject: Re: [PATCH v12 00/25] Linux RISC-V AIA Support
-To: Thomas Gleixner <tglx@linutronix.de>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>, Marc Zyngier <maz@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, Atish Patra <atishp@atishpatra.org>, 
-	Andrew Jones <ajones@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Saravana Kannan <saravanak@google.com>, Anup Patel <anup@brainfault.org>, 
-	linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Conor Dooley <conor+dt@kernel.org>, "Ahmed S. Darwish" <darwi@linutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABlE1GUC/22MQQ7CIBAAv9LsWQzQBsWT/zBNA9vV7qGlgYZoG
+ v4u9uxxJpPZIVFkSnBrdoiUOXFYKuhTAzi55UWCx8qgpe6klkq42eh1wMTCGzuqS9UGHdR+jfT
+ k9/F69JUnTluIn2Od1c/+u2QlpMBr670lR76z943PGGboSylfdVr4c58AAAA=
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
+        Bryan Brattlof <bb@ti.com>, Dhruva Gole <d-gole@ti.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Vaishnav Achath <vaishnav.a@ti.com>,
+        Devarsh
+ Thakkar <devarsht@ti.com>, Aradhya Bhatia <a-bhatia1@ti.com>,
+        Jai Luthra
+	<j-luthra@ti.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3007; i=j-luthra@ti.com;
+ h=from:subject:message-id; bh=gUkAM6nsKOBeB/7flYRVfw0/0Og27VQ7Th+iZ9+JC4A=;
+ b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBl1EQadO1sYYSqtxpuYr7Tz17PTyN8ncMS3FwYd
+ CAxSL4GtsuJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZdREGgAKCRBD3pH5JJpx
+ Ra6wD/sFdvVqR4nPdQ8E0UpHJZO6SU2UMr8O3EUuhqF6EUe4OwI+vibOGk2L1bF5VJxfFEUrvum
+ 3DsWh/jVcfsmKnRgIcu4UGkVXTJ+LPioltaKxvavRVlSC+BAjnobupeSC6TdhoUigdC91PN0fg5
+ MrIsOzYYTf2H2c+gmeJSTWw8/5n++uklIePCnutQe9obZfRBEeC+EcC+YM5xwwDWwpSvaFRzwSk
+ 0lDWYoOYVILIU73oHHiIm1xRMAR7OZE04t9kzVS6OIwQm0FnqARYmIaUViU+syes9cm7kt5SXsB
+ 87DRFF730xLe4IVSaHegGw7tZGCHFON68RsGq+sEdhVCtGFxJLWa1U+X59RHFNSfnVYue5mljeg
+ K65ES5C+uKzKqpszvTF6Ljmjk2Pn/UDAD2yC6agReu3V/GwpPprY4gCxgRTozTyciyvUcSKb7ez
+ Sma4xp4bvp+3RoHRda1hzP966CF/nHIPfWFsnnmQannkuxjLBHdiW4sqJpigPlcr4YY7/Xq692w
+ fQ1iUxyURPeKbBr9BwsKvJSrTBo9Atrm3hshG8/S51dQXWE4INRrlNWdobwHcFRqWtkw7EGJt/Y
+ uolwcMnOQyhxlMfD7NcBGcYqgcvxjRRZn3vE3VdgTsR6XFMTRcXPsLqwLmMuAztqR4P3gDMUfPp
+ lTaVx7DoDDLL6uA==
+X-Developer-Key: i=j-luthra@ti.com; a=openpgp;
+ fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Sat, Feb 17, 2024 at 2:35=E2=80=AFAM Thomas Gleixner <tglx@linutronix.de=
-> wrote:
->
-> Anup!
->
-> On Thu, Feb 15 2024 at 20:59, Thomas Gleixner wrote:
-> > I'm going over the rest of the series after I dealt with my other patch
-> > backlog.
->
-> Aside of the nitpicks I had, this looks pretty reasonable.
+This series enables support for camera sensors using CSI-RX ports on
+AM62P family of SoCs.
 
-Thanks for your review.
+Particularly, it enables OV5640 and IMX219 sensors via the 22-pin FFC
+CSI-RX connector on SK-AM62P [1] using the existing common overlays for
+SK-AM62* family of boards.
 
-I have sent v13 series. Please have a look.
+Capture test:
+https://gist.github.com/jailuthra/11f3383ccc0902b9db90d806222597a3
 
-Regards,
-Anup
+[1]: https://www.ti.com/tool/SK-AM62P-LP
 
->
-> Thanks,
->
->         tglx
+Signed-off-by: Jai Luthra <j-luthra@ti.com>
+---
+Changes in v2:
+- Rebase on top of ti-k3-dts-next
+- Fix commit description of PATCH 3/4 to specify we are keeping the nodes
+  disabled
+- Link to v1: https://lore.kernel.org/r/20240201-am62p_csi-v1-0-c83bb9eaeb49@ti.com
+
+Range-diff from v1:
+
+1:  646c0b26cee4 ! 1:  61c395edcfd3 arm64: dts: ti: k3-am62p: Fix memory ranges for DMSS
+    @@ Commit message
+         to enable programming the interrupts correctly.
+
+         Fixes: 29075cc09f43 ("arm64: dts: ti: Introduce AM62P5 family of SoCs")
+    +    Reviewed-by: Vaishnav Achath <vaishnav.a@ti.com>
+         Signed-off-by: Jai Luthra <j-luthra@ti.com>
+
+      ## arch/arm64/boot/dts/ti/k3-am62p.dtsi ##
+2:  5d6c41db44e3 ! 2:  2720ce668bf9 arm64: dts: ti: k3-am62p: Add DMASS1 for CSI
+    @@ Commit message
+         On AM62P, CSI-RX uses a dedicated BCDMA instance (DMASS1) for
+         transferring captured camera frames to DDR, so enable it.
+
+    +    Reviewed-by: Vaishnav Achath <vaishnav.a@ti.com>
+         Signed-off-by: Jai Luthra <j-luthra@ti.com>
+
+      ## arch/arm64/boot/dts/ti/k3-am62p-main.dtsi ##
+3:  2896237c1ad1 ! 3:  9853acf0bc6f arm64: dts: ti: k3-am62p: Add nodes for CSI-RX
+    @@ Commit message
+
+         AM62P supports image capture via the MIPI CSI-2 protocol, it uses three
+         IPs to achieve this: Cadence DPHY, Cadence CSI-RX, and TI's pixelgrabber
+    -    wrapper on top. Enable all of these IPs in the devicetree.
+    +    wrapper on top. Add nodes for these IPs in the devicetree, and keep them
+    +    disabled here, so these may be enabled by the sensor overlays.
+
+    +    Reviewed-by: Vaishnav Achath <vaishnav.a@ti.com>
+         Signed-off-by: Jai Luthra <j-luthra@ti.com>
+
+      ## arch/arm64/boot/dts/ti/k3-am62p-main.dtsi ##
+4:  7a82f73e345d < -:  ------------ arm64: dts: ti: Enable overlays for SK-AM62P
+-:  ------------ > 4:  1a5e859dec12 arm64: dts: ti: Enable overlays for SK-AM62P
+
+---
+Jai Luthra (4):
+      arm64: dts: ti: k3-am62p: Fix memory ranges for DMSS
+      arm64: dts: ti: k3-am62p: Add DMASS1 for CSI
+      arm64: dts: ti: k3-am62p: Add nodes for CSI-RX
+      arm64: dts: ti: Enable overlays for SK-AM62P
+
+ arch/arm64/boot/dts/ti/Makefile           | 10 ++++
+ arch/arm64/boot/dts/ti/k3-am62p-main.dtsi | 98 +++++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62p.dtsi      |  2 +-
+ 3 files changed, 109 insertions(+), 1 deletion(-)
+---
+base-commit: 0f9eb43f009091501dd0c68232aa6530ba0e0185
+change-id: 20240201-am62p_csi-b69d172406ca
+
+Best regards,
+-- 
+Jai Luthra <j-luthra@ti.com>
+
 
