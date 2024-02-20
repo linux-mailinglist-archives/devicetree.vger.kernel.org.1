@@ -1,103 +1,176 @@
-Return-Path: <devicetree+bounces-43746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4195085B767
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 10:28:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C4F085B78E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 10:32:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E017AB22FDF
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 09:28:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF8431C21911
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 09:32:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1905F60DF8;
-	Tue, 20 Feb 2024 09:28:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 634A95FDB2;
+	Tue, 20 Feb 2024 09:32:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="a7OWtSYW";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="4JzeQRiQ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="O5K+c4Vo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 904165FDCC;
-	Tue, 20 Feb 2024 09:28:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D78BB5F480;
+	Tue, 20 Feb 2024 09:32:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708421286; cv=none; b=MG4qL4n4ogOQuuAOzkbv7wo0OQ9bPmmAsKlZJkRKU+Et1izvjHuzT0/aoP+iac7VlxWkWLXdi7dsXAH+k+9CkVGOcsjJ+VMvl1jUHZp+m6cljfu85G97fSJ37bNH7gQ5k7AsiMr82QCmzOQpF+cH1HJRRE30IjxpFgiqQwbscx8=
+	t=1708421540; cv=none; b=pT2W4XeA/RgXcIFgPn4P2j59jbWHGUVf2tF73wHyj2WRd+ipT7F4FAMkaXPyXnf8dtG9x9PRSlHJU7d2U2gnJ6r4IcLs7C8pFe208wwruljJldC+9ZbxiZB1VSHsed5Htp2YBzKkEqWS+gqvWGF0DqYdmKMfDFkaWSqS57+LJ4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708421286; c=relaxed/simple;
-	bh=xbCMaT+ablExRVFmyzTzsHg1dEx1miGZfzRPaob+1OQ=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=gSWgHS9W5uIywXVlhdBx4tVXM9xbfeDcQRTOC99oP+nkoCFPHC/7khuoXblM+NmWEIiPcQu6J+4QGEZWGi27p+jyFVUux7h+Rb/UJtyXl2sT7TkPTDAfhNyLJECivSX2gcKoSe5g+GPZogiUYCbtK4Fk/c1J5pUw8M71uX2Yq1k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=a7OWtSYW; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=4JzeQRiQ; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1708421282;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=R6CpMnesPhZeNYa5GMfDIrbJkajmTM0m01p5Zn8iWA8=;
-	b=a7OWtSYW3DSkbDbTDAMCiQZJmhoCy8AyLzmTWeCbtAPBeNeUYEG02OUdWLpv/oNlyMxGzg
-	eWws7F8PJzw7gwM9JX1WUueyECgZMU90qf61H3CHqZoQSmDk+hB1/8DZsResiaXJX1WT5G
-	C0gWcgp9om533GJkmGXodcl4p7S+5KcleMn/WmtwYC5lfQdUNi+oDAzva4j9rP1UkFg2X9
-	QznSTbQXQ0fxfXRua7J0QUKMCUFABFcTebIDRJ2FRJsWfvNrZTG8jb0p8E8AuWHpIc8KDW
-	e1XpQD5ZfIKXfQkzTy922sekYgiajkeVzWoYLt9omBTp4TaYcyIIZ2uhGoz0hw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1708421282;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=R6CpMnesPhZeNYa5GMfDIrbJkajmTM0m01p5Zn8iWA8=;
-	b=4JzeQRiQ07VSCsteczn4s7AiUEjGAV7v/flNhT1Ey7GksgvRtbZQk0LH+t1akJBQMtqEG6
-	yxD6w2S8Op3wboDQ==
-To: Changhuang Liang <changhuang.liang@starfivetech.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Leyfoon Tan <leyfoon.tan@starfivetech.com>, Jack Zhu
- <jack.zhu@starfivetech.com>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
- <devicetree@vger.kernel.org>
-Subject: Re: =?utf-8?B?5Zue5aSNOg==?= [PATCH v2 2/2] irqchip: Add StarFive
- external interrupt
- controller
-In-Reply-To: <SHXPR01MB0671BD046F6E3F3A215414A6F252A@SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn>
-References: <20240130055843.216342-1-changhuang.liang@starfivetech.com>
- <20240130055843.216342-3-changhuang.liang@starfivetech.com>
- <87cyt0ivn3.ffs@tglx>
- <SHXPR01MB0671BD046F6E3F3A215414A6F252A@SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn>
-Date: Tue, 20 Feb 2024 10:28:02 +0100
-Message-ID: <87o7cbiixp.ffs@tglx>
+	s=arc-20240116; t=1708421540; c=relaxed/simple;
+	bh=3nwtz/G2kMU3HJP/BL1fcvkdH1IJYB8dTOMqm0RhrTQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Rv3z8zyqMa4GEi0dBtNN07pkGK+iurcuhLFgE5KpVFfxHBN1SXB3iR0tFDs0m92rfoC5DQ9eKXOsXj2N1gT+5WvR2MsBC91vOF6VAj4ZbW4fJEfSsjM8n702jjLeYD50PRiNkcsi8V3AqZfLpMvA/TrnJktxBJnr1zmlp9tY+mQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=O5K+c4Vo; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41K47St2001024;
+	Tue, 20 Feb 2024 09:32:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=lZ5zwfLJm/Xp4JWcbeEaCx0YtxmVfhVd6zx37LLu5X4=; b=O5
+	K+c4VoOw0/wFlDgHVLp86XhRvdHiJItngQ4HBW/BVYCJh0IwVnopco8eKEvS5xqO
+	6KQHfn8SUNr96zeBbQAHarvT3iqwpmacacbT/26orjVX9eo9+LIbbf9p9+aM5cHF
+	Ni4xCHEdWhpMCyts+9WJUMTSnF/wkxgPA7d5Weu8jHKa2kMRugEFwQefRMQoYpuy
+	eKxNMtYBQTGIXWLmFPppuR59BrFAZDl6HQhXuL9THbYqebBfMXqPrxZ6bFx/mp99
+	X/wSN9n5GaSVbbd4N1T0gepHeAinBZJoHUPq1AiEzJA2Zl92+ysPOatD/LwOvK5r
+	w8L9yFxEvtnTYSC7cb6A==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wcmqp8jau-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 20 Feb 2024 09:32:15 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41K9VnwV007613
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 20 Feb 2024 09:31:49 GMT
+Received: from [10.233.21.53] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 20 Feb
+ 2024 01:31:43 -0800
+Message-ID: <9f2df575-ca45-4cfc-9010-691f0e799bcf@quicinc.com>
+Date: Tue, 20 Feb 2024 17:31:41 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 1/6] dt-bindings: arm: qcom: Document sm8650p soc and
+ AIM500 AIoT board
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <kernel@quicinc.com>
+References: <20240205115721.1195336-1-quic_jingyw@quicinc.com>
+ <20240205115721.1195336-2-quic_jingyw@quicinc.com>
+ <2fa4d857-7262-40df-a842-56945ecffb81@linaro.org>
+ <441ffff2-81a8-4b53-b15b-5ac6375d65c3@quicinc.com>
+ <CAA8EJpra8UjWzWArQQg3Cq3m7WLo4Shnsj=EOhb50Yh46bOh7w@mail.gmail.com>
+From: Jingyi Wang <quic_jingyw@quicinc.com>
+In-Reply-To: <CAA8EJpra8UjWzWArQQg3Cq3m7WLo4Shnsj=EOhb50Yh46bOh7w@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: d-QiMM4IplYQwUcsruZiyywewSYjle4q
+X-Proofpoint-ORIG-GUID: d-QiMM4IplYQwUcsruZiyywewSYjle4q
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-20_06,2024-02-19_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
+ spamscore=0 mlxlogscore=954 adultscore=0 mlxscore=0 malwarescore=0
+ priorityscore=1501 impostorscore=0 clxscore=1015 lowpriorityscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402200068
 
-On Sun, Feb 18 2024 at 02:36, Changhuang Liang wrote:
->> On Mon, Jan 29 2024 at 21:58, Changhuang Liang wrote:
-> [...]
->> > +static void starfive_intc_mod(struct starfive_irq_chip *irqc, u32
->> > +reg, u32 mask, u32 data) {
->> > +	u32 value;
->> > +
->> > +	value = ioread32(irqc->base + reg) & ~mask;
->> > +	data &= mask;
->> 
->> Why?
->> 
->
-> If I want to update the reg  GENMASK(7, 4)  to value 5, the data I
-> will pass in 5 << 4
+Hi Krzysztof & Dmitry 
 
-All call sites pass a single bit to set/clear, right? So this GENMASK
-argument does not make sense at all.
+On 2/20/2024 5:06 PM, Dmitry Baryshkov wrote:
+> On Tue, 20 Feb 2024 at 11:00, Jingyi Wang <quic_jingyw@quicinc.com> wrote:
+>>
+>>
+>> Hi Krzysztof,
+>>
+>> On 2/5/2024 8:33 PM, Krzysztof Kozlowski wrote:
+>>> On 05/02/2024 12:57, Jingyi Wang wrote:
+>>>> Document Qualcomm SM8650P SoC and AIM500 AIoT board.
+>>>
+>>> Please describe shortly what is SM8650P and what are the differences
+>>> with SM8650.
+>>>
 
+sm8650p has same base functions as sm8650 without modem-RF system.
+Will update the description.
+
+>>>>
+>>>> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
+>>>> ---
+>>>>  Documentation/devicetree/bindings/arm/qcom.yaml | 9 +++++++++
+>>>>  1 file changed, 9 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+>>>> index 1999a5f2f254..e87ceb42853b 100644
+>>>> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+>>>> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+>>>> @@ -88,11 +88,13 @@ description: |
+>>>>          sm8450
+>>>>          sm8550
+>>>>          sm8650
+>>>> +        sm8650p
+>>>>          x1e80100
+>>>>
+>>>>    The 'board' element must be one of the following strings:
+>>>>
+>>>>          adp
+>>>> +        aim500-aiot
+>>>
+>>> Drop this line.
+>>>
+>> drop this line will cause fail dt binding check failure, any suggestion on that?
+> 
+> It will not, it is just a free-form text
+> 
+will drop that.
+>>>>          cdp
+>>>>          dragonboard
+>>>>          idp
+>>>> @@ -1051,6 +1053,13 @@ properties:
+>>>>                - qcom,sm8650-qrd
+>>>>            - const: qcom,sm8650
+>>>>
+>>>> +      - items:
+>>>> +          - enum:
+>>>> +              - qcom,sm8650p-aim500-aiot
+>>>> +          - const: qcom,sm8650p-aim500
+>>>> +          - const: qcom,sm8650p
+>>>> +          - const: qcom,sm8650
+>>>
+>>>
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>>
+>> Thanks,
+>> Jingyi
+>>
+> 
+> 
 Thanks,
-
-        tglx
+Jingyi
 
