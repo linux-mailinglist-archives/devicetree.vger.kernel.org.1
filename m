@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-43779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5D8D85B87D
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 11:03:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64C9285B883
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 11:05:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A39831C20E17
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 10:03:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88F8F1C22558
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 10:05:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F25B60BBD;
-	Tue, 20 Feb 2024 10:03:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF14E5FEF9;
+	Tue, 20 Feb 2024 10:05:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Pb7JZOqN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nbGT405i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70D9D60881
-	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 10:03:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB49960EFF
+	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 10:05:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708423418; cv=none; b=CiqGgP7dY1+JBSBe2byG0G2yNbmVhXcRiNuiKujoYVFUX13qrFJZBOaalo8ZjLh9PnWkr3FFc5KykzKM7rAwF3eHJFokz9BrB9vLiIdQidSW3MAAaxSg2S1dQCgAsSgPIxRkkr3aiFSXCzw3ngqfZbYTSeCrdSG/wdCVQB8//Nw=
+	t=1708423502; cv=none; b=E9WRWvPn2WTnu7E4nKfjD9KU2/Tj4wm9QNeoFghKewKKnH8DEavhw8NPD65Ufa2IpfnhGut7KqnRoqaVP3TdAcn1vj2AN2aFSCr30o0g4x4OivYsZ/X4464Y02LXVI1b/zzseFh94oeyZR+EGU2XCaH8vq5Dt7rMnvzy+0oHxOA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708423418; c=relaxed/simple;
-	bh=fCVM9fIx+QlZSaT2+jH9KFDPXgF5LsvTXo9cBJsA8E0=;
+	s=arc-20240116; t=1708423502; c=relaxed/simple;
+	bh=gsK8vgFelfWvH/U1cQWGZkQASE4C01azb+x3KRMQ1Ow=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HTHM0ayl94l6Msq6GnxNGE3Ct9ZO5ayTAgn94nVFEYve+88DO17chL5IOpSfzfO7XFfJgQ6ElXzn5+jLAwV2oKOiUCyhlgkAwFtVZQpjlTIl5dcUUSz/xbXTPFv6eFOOkEveJ1XqhTpSlnOAtzATl0GqDz6YziK7muA3+4lzLP8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Pb7JZOqN; arc=none smtp.client-ip=209.85.208.173
+	 In-Reply-To:Content-Type; b=P6M8bHsba0Gw2XjF9PXsUuUiCI0crXZLR807gnY9nmPwH8qXcPIowaJBb3BPMYKPLu19Q5paVQAunblB0pERahdIPzLrUQFTNQ05a4At9dLVrrrT4q8knEDsj2P3cWQ683MWZ/Uy/Nya6xQw2TePToglnn1y2A3wJuHxJBrvtz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nbGT405i; arc=none smtp.client-ip=209.85.221.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2d094bc2244so72545991fa.1
-        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 02:03:36 -0800 (PST)
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-33d509ab80eso851882f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 02:05:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708423414; x=1709028214; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708423499; x=1709028299; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=tPnQexsRXJiNv+6Xh39SXpzjoFxV7a2HocmDFObIvII=;
-        b=Pb7JZOqNa+pJ6vsEO8h9GCP0FzOaqg61z74o0UvCeWgd3cWv2SW2eqPhrS1IifrU+s
-         8MMTV0+L3+nMUeSrx3D2xLoG+FQZbq2/CUXS53NxayX69NSaualUv36kSmWBcUt3Yt2/
-         PoNIv3KEJEOQiJ+3viXGCSmiMInK6bllWc2sQbY9qdWPwekb5tLG+NleW7ZAXgF1k3Js
-         AuZGCJsu8PAIR6fZ92AEVjQeZ6hr5agKwSwbT5NNvKlAh9oxkGQmqKYyFVhgrTwtSsCb
-         SZC0cXDmorLcq5++Kc0UU9tRjwZXL6VrDQrJjUR0d+wvWcx/I4jVKC7YP7nvn9LEvxJb
-         Gtdw==
+        bh=E0Sxw1ohgrgB/cmpWq+TrB7sg9DZHiS+1mpFiVBUnXA=;
+        b=nbGT405iA5yR8W4ATZ6qSdFuevNGWH6qv4exroeQ8po/PBt4osEz43mGpyleIYPzGS
+         Y2/u2ztiNafOepXft3lqWfx0d1fFRIFQzYBKq60GCTioumuVEgXJCwjABfAZOVrpcu2+
+         RGpqiJ1T5VoRQoVN1fRF5DwMF3K1sd24FxM9JW1K7u/7w/GLozqj1TEYL4Lr6+bg8oZq
+         EhhYe1oHyYHJ/PMVvgbQWIMcq0gz5rj6CTESCXx8q/91p4AF0gPu1N71dMz+7wYhHAIy
+         jX5mosUTyRGyHwM+/PJb7+uYZXlniUVAcqQ1CeqYn0IxwE5XxawCmD44Vs4ZVI7iNNN1
+         aFsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708423414; x=1709028214;
+        d=1e100.net; s=20230601; t=1708423499; x=1709028299;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tPnQexsRXJiNv+6Xh39SXpzjoFxV7a2HocmDFObIvII=;
-        b=gfl62xPGcFWY0JLU9gYJznNNojItBXQ3963sUql90s55AyWkCypWoaxWpKelM2Dh0P
-         UpXlOfi3DJiy9nDLa1rJbWEF1E9g1bx8Ikxp+FLwBnPs4A/9DCBTZa9zl6sepUcM+rNN
-         pMygGJ1vN5D0jtqpcrrEQo3Sc8KoDM0DleYuAa0MKo8nSw7AmdaSxqE6abVzvJi27C7P
-         7MPKr6f9HU9eFMmTDPGDGYrIrtw4XMr2HRIR7JaaNLPeRZ07UVMNQ0Qx1BNVewf00kcF
-         Pi8XwPPK0ekH55NaXUGBiVF1x0KMU8YsyqxNCntAFfmNOAI0VruFds4IQqrKLu70SMco
-         JiJA==
-X-Forwarded-Encrypted: i=1; AJvYcCXOrKiNp3bYWgLnxDXX9cxHad2L0TQS/8tUoso264t9G0ktUWX2vj3C6d+ZPtzcHtuHsd3swQa3qVoCtAe2zp7kJeZC5Z+qg2JBNA==
-X-Gm-Message-State: AOJu0YxkOmaTZzbd5bnqNKvk4bQaje6TaENm7bz08GfL0WiXQcAl9FB/
-	4wLdy2nRDzS0vKcKdxUAKzJYGUWmlPP8yiQYl963a4RBokUirWI2vNafobCLtkU=
-X-Google-Smtp-Source: AGHT+IEPY4diBzcZEzsnFr0+2CA8TYPIUOfHX7OUpwZ6ThGMdcjalTAKRrYBdcY2wLvk0txXManmkw==
-X-Received: by 2002:a05:651c:b2b:b0:2d2:2fb3:38f9 with SMTP id b43-20020a05651c0b2b00b002d22fb338f9mr6147863ljr.13.1708423414559;
-        Tue, 20 Feb 2024 02:03:34 -0800 (PST)
+        bh=E0Sxw1ohgrgB/cmpWq+TrB7sg9DZHiS+1mpFiVBUnXA=;
+        b=NC4lPC5bKugetZtd03AKxG6flp9QLHXIjCz1kQgq6e4UJG1W0YqxAwymwfIL/72jXa
+         GBqIqUM9UsZB1DdCGEQ7e71Q+M3cPWpP0I1Nng9oiKRnMtomnwi/RWJ34CVbyFOuDgpm
+         zLpFMHPHqSJy01Jl8t0sXWUfd7LCaWOlmSuNYiF5XqYlwp+YZRbDbmximWUE6KG9erar
+         iGc9Nq2TOP3clDjPQPteZVboi8rShjs8imQiTsHPqoLLaBoHAC6jCM0FFMy7DaLuARzq
+         Q4L8HNwNgbTQ+ATZHGpCA9WnQ/L0T/KGZXgYbZycE0UBqFGPFR57m07Hkra4mSAO1oA3
+         7Esg==
+X-Forwarded-Encrypted: i=1; AJvYcCXKKs/QutJiCkEcHlz0TrjdrO1XLerG7kX/FQiY4UB5EODapa37PnetU7PnDclVOCO616ctTb/nCJ3gHGNpvtUHfrfMPcll0RxQwA==
+X-Gm-Message-State: AOJu0Yza4w/Tr89Gxd9d5PpIZZ9X/UQ6jJxo/XHi6K+ebssdr46be0Td
+	t6xQyv9SHG7c9ZqY2OdOxWCUCzW6a0lPQr5Q8i8b/E11bPUF7H05qYS4A3QtYz176HNPDo+16A4
+	o
+X-Google-Smtp-Source: AGHT+IFbsjf+brRhIB/D79zZm8o5okEkG2X/0cpSQ9+80cS8wsRiE/QEjPXpjshCvyclMf9vRTMENA==
+X-Received: by 2002:adf:f743:0:b0:33d:161c:40ea with SMTP id z3-20020adff743000000b0033d161c40eamr8609640wrp.49.1708423499006;
+        Tue, 20 Feb 2024 02:04:59 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id az19-20020adfe193000000b0033d6ff7f9edsm839756wrb.95.2024.02.20.02.03.32
+        by smtp.gmail.com with ESMTPSA id az19-20020adfe193000000b0033d6ff7f9edsm839756wrb.95.2024.02.20.02.04.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Feb 2024 02:03:34 -0800 (PST)
-Message-ID: <466c26b0-e7e0-4feb-bf37-be2af7136300@linaro.org>
-Date: Tue, 20 Feb 2024 11:03:32 +0100
+        Tue, 20 Feb 2024 02:04:58 -0800 (PST)
+Message-ID: <9dec3232-070d-4a83-8c99-ca87ffddc1c4@linaro.org>
+Date: Tue, 20 Feb 2024 11:04:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,20 +77,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: leds: Add NCP5623 multi-LED
- Controller
+Subject: Re: [PATCH 1/2] dt-bindings: media: i2c: add galaxycore,gc2145 DVP
+ bus support
 Content-Language: en-US
-To: Abdel Alkuor <alkuor@gmail.com>, Pavel Machek <pavel@ucw.cz>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Andr=C3=A9_Apitzsch?=
- <git@apitzsch.eu>, Jacek Anaszewski <jacek.anaszewski@gmail.com>,
- ChiYuan Huang <cy_huang@richtek.com>, Lukas Bulwahn
- <lukas.bulwahn@gmail.com>, Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-Cc: ChiaEn Wu <chiaen_wu@richtek.com>, Alice Chen <alice_chen@richtek.com>,
- linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+To: Andrey Skvortsov <andrej.skvortzov@gmail.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Alain Volmat <alain.volmat@foss.st.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20240217230956.630522-1-alkuor@gmail.com>
+Cc: =?UTF-8?Q?Ond=C5=99ej_Jirman?= <megi@xff.cz>, Pavel Machek
+ <pavel@ucw.cz>, Arnaud Ferraris <arnaud.ferraris@collabora.com>
+References: <20240217220308.594883-1-andrej.skvortzov@gmail.com>
+ <20240217220308.594883-2-andrej.skvortzov@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -135,18 +137,20 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240217230956.630522-1-alkuor@gmail.com>
+In-Reply-To: <20240217220308.594883-2-andrej.skvortzov@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/02/2024 00:09, Abdel Alkuor wrote:
-> NCP5623 is DC-DC multi-LED controller which can be used for RGB
-> illumination or backlight LCD display.
+On 17/02/2024 23:03, Andrey Skvortsov wrote:
+> Don't require link-frequencies like it's done for ov5640, that
+> supports both CSI-2 and DVP. And v4l2_fwnode_endpoint_alloc_parse
+> ignores link-frequencies property for DVP endpoint. It's used only for
+> CSI-2 endpoints
 > 
-> Signed-off-by: Abdel Alkuor <alkuor@gmail.com>
+> Signed-off-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
 > ---
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
