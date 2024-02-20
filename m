@@ -1,237 +1,245 @@
-Return-Path: <devicetree+bounces-43642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6C6A85AFDE
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 00:45:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1014F85B001
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 01:22:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1753B1C22AC7
-	for <lists+devicetree@lfdr.de>; Mon, 19 Feb 2024 23:45:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 78579B22111
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 00:22:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA88556B86;
-	Mon, 19 Feb 2024 23:45:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C228815C4;
+	Tue, 20 Feb 2024 00:21:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="djz+7muT"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iDngcxln"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22CAD56B7F;
-	Mon, 19 Feb 2024 23:45:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C93D54A26;
+	Tue, 20 Feb 2024 00:21:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708386308; cv=none; b=NZquHmKhIW6MhQBqqMm89JpQou+7fwhdAcEYiSJ+DSh0lhBmuwSGCsDlfRfgzQXkxMEIpKcuMmu611ac5al4EpTYVdkKJ7j1vtmuNgmeFsQJgfFpD/UzEFdeNPFO0KJKP/mn3xVsAcoHYRQmcQ0LR6JbfrX7NU3XVRdXR70VIrk=
+	t=1708388512; cv=none; b=ZypuM9SdtKI3yqTrvsLsHRpjvMiXr/m4OGy8GZuUaLEXWPsTbBmBXIP9WkaRySycjv4Dg9GXA2j6dtgwQxM6nU1jLP5J06twbelesa1RPdQZH626gBagoDLc01gqORZsx04oYh5A7alpK8Dlvq2NZdYe/3oMKnSA71haJhVq0DE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708386308; c=relaxed/simple;
-	bh=lFFtbhACJmztPPpr3pxi0hEjHTFow84caBqcjZJj8og=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=iLvAHebfgHeX/4rhocx7R/BNH6FZ/DN9KFGzYiNni77JMbTSnzmXUOlZpSuYBvlYpdRqSnox/CSezgzTgoc/tkfmfJ2SBu00WuAOigKUCoPk8fAOn88OxBbV86izbVsl293sG377znlGGZhxp4NMKBc0/6UzwUpOxNFcyaFG5fU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=djz+7muT; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-1dba94f9201so29530575ad.0;
-        Mon, 19 Feb 2024 15:45:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708386306; x=1708991106; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4HwRlWfaCNPwM9GD0tDSwVZojM3ImHfFlaKA9xUSN8o=;
-        b=djz+7muTDp/Fg5r40hkyvSNKb1zzNATD1hpFaSjv57aU4L1ZMcnSmVoWycXmpT19Ig
-         wt7k1uZQ6b9by/Q5GNDJjhLOZVOCLLFMCXA8ZBbFXHMDFen6nriSHNCc+ttIEdz2NmyY
-         yaDPK1s2eCray7HQujq1cgoTLlz91JlZs2FGmTkfHh60z66J9QeKBIaySSNHA9TbP4DH
-         WyZ6RwaeEBgupgUj1gbkJG2K1NyNFJ7JYHlO2hQkDWtoOGJ4yt2VnLnso1LKZCAo0eUy
-         Sn5Qmba8CTOFRDPjecFbNcN3mSOV0Auhb/M63iW/GrA594gZcsac2AVaAq2JqPBtdClH
-         Bw1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708386306; x=1708991106;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4HwRlWfaCNPwM9GD0tDSwVZojM3ImHfFlaKA9xUSN8o=;
-        b=fHp7I/wwQpjaY/g1gzQV5IMX24BOD1RqxLY4sfA4XvRBxbyaD5sW7121jGe8HnPvzw
-         3ccrWEn9x557gDoXLIOEOaoj1CvUCyN5hsWcKOlJGyeHlp5lRyNTm5sElItqqkrpjllh
-         XKYnxGwhBPKUpX1BuHmFDZtlwC610oL5RGtDtHdwBf5xWyOaloyfRSq4Pwv4N1i7xp6X
-         bfthe8ZAh3cs/n0+K2HrvB4j6ZXfYhtJLLD4D4LPS6U6PUqxomFvi8bwnWZlizestFun
-         Kcfymk4ON3FgSXW2ZUmIHyppk1NeBxP+ZBxvCSl770Ew5RFzN3VSX9tLz+0dpRHACY05
-         Ri7A==
-X-Forwarded-Encrypted: i=1; AJvYcCXJRwcYi8zNk9hXXgQ1Ww0mPu6tWHO72UxsU/lw16qScne7h6Jdwthzb1tp6yTlEwil6UBNHn/kraXkuNfoDD+DA0GhpZ3pTVjKGEdHm1o2iTp3xIT/4C1rHrfy5TU4RGCNWece29/BYQ==
-X-Gm-Message-State: AOJu0YzfDRV4Qh3b1qm+XwQtVcYbqQs+Xl5KsJnc+2Rgd5qnXyV3Na+A
-	Z94MOHATiH6XGcIDFWS8Qb0sXuLsB48jjXE5UeZM5BtOJja/8N/rt4kenWTzhsM=
-X-Google-Smtp-Source: AGHT+IGqnWwAjyCSoltIVO84hnuEhpGtrjqY10JbapIt9XKWcr/SbDKXvxDVFKvIFfU9XF9iAGy4qQ==
-X-Received: by 2002:a17:902:b944:b0:1d9:893f:cd06 with SMTP id h4-20020a170902b94400b001d9893fcd06mr12525368pls.60.1708386305530;
-        Mon, 19 Feb 2024 15:45:05 -0800 (PST)
-Received: from tresc054937.tre-sc.gov.br ([2804:c:204:200:2be:43ff:febc:c2fb])
-        by smtp.gmail.com with ESMTPSA id h4-20020a170902eec400b001db7ed7ac34sm4903477plb.297.2024.02.19.15.45.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Feb 2024 15:45:04 -0800 (PST)
-From: Luiz Angelo Daros de Luca <luizluca@gmail.com>
-Date: Mon, 19 Feb 2024 20:44:42 -0300
-Subject: [PATCH net-next v4 3/3] net: dsa: realtek: support reset
- controller
+	s=arc-20240116; t=1708388512; c=relaxed/simple;
+	bh=yWL9+crD7ozhyXtdUplwtrHE2vBN684Ax3/F37eopcU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uTCBKScG0mG6snBwyuDXP5xz8lHQGVDqRZLsY02jCNBvAnCuL0qMhnMZHAVMYrVm8AUyPXP9StaQDSoGmVJnSf11w7Eah+FPOqzpwLA7LTuh4ma14OCGvcT0x/xBn5sRLzBwji8jeZCcsOowCuNHCMWyDK/cT7Ypk8rDbjRsei4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iDngcxln; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1708388511; x=1739924511;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=yWL9+crD7ozhyXtdUplwtrHE2vBN684Ax3/F37eopcU=;
+  b=iDngcxlnvSgFvUUI4rzM3/XsvscI/XLG3L7O/PEdALdcRfezqVGlL2gM
+   qdYr/i9v8ElsajKat9u3VDi3pjsPIQjbx6fm6itwM+CeoeiXuCVZ6n8Dg
+   Tnm4LDdY5l5iA0PJwjenCjd/aPRLm7DNEmASU/deGCWLAYeLgvbAq+ZF2
+   J+MXOwkNIUmStgj5fkTuaKHI1yTBlSqFXYJvLgUMQ6USaLy6gPjl4y2At
+   4DQkjsfU8NhkZHVJ7LWIrclQyIumUkUZCrpZghflcY4Q3X2aYDS7tSIEb
+   cDzqr3Yq3z9/DM8WT+Va3c6GVVFV879n4D52uDJZDl+Luqiul/rYRPxk4
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10989"; a="13875035"
+X-IronPort-AV: E=Sophos;i="6.06,171,1705392000"; 
+   d="scan'208";a="13875035"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Feb 2024 16:21:50 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,171,1705392000"; 
+   d="scan'208";a="4996627"
+Received: from lkp-server02.sh.intel.com (HELO 3c78fa4d504c) ([10.239.97.151])
+  by orviesa008.jf.intel.com with ESMTP; 19 Feb 2024 16:21:45 -0800
+Received: from kbuild by 3c78fa4d504c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rcDtG-00049W-0k;
+	Tue, 20 Feb 2024 00:21:42 +0000
+Date: Tue, 20 Feb 2024 08:20:39 +0800
+From: kernel test robot <lkp@intel.com>
+To: Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Jeff LaBundy <jeff@labundy.com>
+Cc: oe-kbuild-all@lists.linux.dev, catalin.popescu@leica-geosystems.com,
+	mark.satterthwaite@touchnetix.com,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	bsp-development.geo@leica-geosystems.com,
+	Kamel Bouhara <kamel.bouhara@bootlin.com>
+Subject: Re: [PATCH v8 3/3] Input: Add TouchNetix axiom i2c touchscreen driver
+Message-ID: <202402200849.ABf6sZnr-lkp@intel.com>
+References: <20240219101221.129750-4-kamel.bouhara@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240219-realtek-reset-v4-3-858b82a29503@gmail.com>
-References: <20240219-realtek-reset-v4-0-858b82a29503@gmail.com>
-In-Reply-To: <20240219-realtek-reset-v4-0-858b82a29503@gmail.com>
-To: Linus Walleij <linus.walleij@linaro.org>, 
- =?utf-8?q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>, 
- Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>, 
- Vladimir Oltean <olteanv@gmail.com>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Luiz Angelo Daros de Luca <luizluca@gmail.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4280; i=luizluca@gmail.com;
- h=from:subject:message-id; bh=lFFtbhACJmztPPpr3pxi0hEjHTFow84caBqcjZJj8og=;
- b=owEBbQGS/pANAwAIAbsR27rRBztWAcsmYgBl0+ft1uzi91WMpRJ3ECBz5sXwj5Hc/Mhg4KxC1
- KliBUhSIwKJATMEAAEIAB0WIQQRByhHhc1bOhL6L/i7Edu60Qc7VgUCZdPn7QAKCRC7Edu60Qc7
- VueGB/4k7dGr5BUWCt+XUMcKX+WhyEhLtmzbmJ3IJ/MRp94Fn0aSfzon/UmfQ7CuFbKXFZHCje5
- ro/vvNzWM1G74FKhdQs0mI64GlBfsO1XV29tikEEaMzfEQEOIKVybAi0AqA8g7plQCfG3ZN8hIZ
- LLdhFstkENlRyjqUcwHkE0KLTyFuYUv2nrk3FZztwuQXQjZ4DbE/jRyPQyWeaGTL9ntG7w8qwui
- PbNKSdX0KWILvEh8UCOghaMrYBE3NBCldf1hNphLYJNNj0rS2mky80N6bZLGs3NghGX59a+wG+Q
- AL3cZR3aRGKUgsnKmicYNyLHAJYXkhxwDx2lJ+sAlpyhuone
-X-Developer-Key: i=luizluca@gmail.com; a=openpgp;
- fpr=1107284785CD5B3A12FA2FF8BB11DBBAD1073B56
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240219101221.129750-4-kamel.bouhara@bootlin.com>
 
-Add support for resetting the device using a reset controller,
-complementing the existing GPIO reset functionality (reset-gpios).
+Hi Kamel,
 
-Although the reset is optional and the driver performs a soft reset
-during setup, if the initial reset pin state was asserted, the driver
-will not detect the device until the reset is deasserted.
+kernel test robot noticed the following build errors:
 
-Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
----
- drivers/net/dsa/realtek/realtek.h |  2 ++
- drivers/net/dsa/realtek/rtl83xx.c | 46 ++++++++++++++++++++++++++++++++++-----
- drivers/net/dsa/realtek/rtl83xx.h |  2 ++
- 3 files changed, 45 insertions(+), 5 deletions(-)
+[auto build test ERROR on dtor-input/next]
+[also build test ERROR on dtor-input/for-linus robh/for-next krzk-dt/for-next linus/master v6.8-rc5 next-20240219]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/drivers/net/dsa/realtek/realtek.h b/drivers/net/dsa/realtek/realtek.h
-index b80bfde1ad04..e0b1aa01337b 100644
---- a/drivers/net/dsa/realtek/realtek.h
-+++ b/drivers/net/dsa/realtek/realtek.h
-@@ -12,6 +12,7 @@
- #include <linux/platform_device.h>
- #include <linux/gpio/consumer.h>
- #include <net/dsa.h>
-+#include <linux/reset.h>
- 
- #define REALTEK_HW_STOP_DELAY		25	/* msecs */
- #define REALTEK_HW_START_DELAY		100	/* msecs */
-@@ -48,6 +49,7 @@ struct rtl8366_vlan_4k {
- 
- struct realtek_priv {
- 	struct device		*dev;
-+	struct reset_control    *reset_ctl;
- 	struct gpio_desc	*reset;
- 	struct gpio_desc	*mdc;
- 	struct gpio_desc	*mdio;
-diff --git a/drivers/net/dsa/realtek/rtl83xx.c b/drivers/net/dsa/realtek/rtl83xx.c
-index 801873754df2..8262ec5032a4 100644
---- a/drivers/net/dsa/realtek/rtl83xx.c
-+++ b/drivers/net/dsa/realtek/rtl83xx.c
-@@ -184,6 +184,13 @@ rtl83xx_probe(struct device *dev,
- 						    "realtek,disable-leds");
- 
- 	/* TODO: if power is software controlled, set up any regulators here */
-+	priv->reset_ctl = devm_reset_control_get_optional(dev, NULL);
-+	if (IS_ERR(priv->reset_ctl)) {
-+		ret = PTR_ERR(priv->reset_ctl);
-+		dev_err_probe(dev, ret, "failed to get reset control\n");
-+		return ERR_CAST(priv->reset_ctl);
-+	}
-+
- 	priv->reset = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LOW);
- 	if (IS_ERR(priv->reset)) {
- 		dev_err(dev, "failed to get RESET GPIO\n");
-@@ -192,11 +199,11 @@ rtl83xx_probe(struct device *dev,
- 
- 	dev_set_drvdata(dev, priv);
- 
--	if (priv->reset) {
--		gpiod_set_value(priv->reset, 1);
-+	if (priv->reset_ctl || priv->reset) {
-+		rtl83xx_reset_assert(priv);
- 		dev_dbg(dev, "asserted RESET\n");
- 		msleep(REALTEK_HW_STOP_DELAY);
--		gpiod_set_value(priv->reset, 0);
-+		rtl83xx_reset_deassert(priv);
- 		msleep(REALTEK_HW_START_DELAY);
- 		dev_dbg(dev, "deasserted RESET\n");
- 	}
-@@ -292,11 +299,40 @@ EXPORT_SYMBOL_NS_GPL(rtl83xx_shutdown, REALTEK_DSA);
- void rtl83xx_remove(struct realtek_priv *priv)
- {
- 	/* leave the device reset asserted */
--	if (priv->reset)
--		gpiod_set_value(priv->reset, 1);
-+	rtl83xx_reset_assert(priv);
- }
- EXPORT_SYMBOL_NS_GPL(rtl83xx_remove, REALTEK_DSA);
- 
-+void rtl83xx_reset_assert(struct realtek_priv *priv)
-+{
-+	int ret;
-+
-+	ret = reset_control_assert(priv->reset_ctl);
-+	if (!ret)
-+		return;
-+
-+	dev_warn(priv->dev,
-+		 "Failed to assert the switch reset control: %pe\n",
-+		 ERR_PTR(ret));
-+
-+	gpiod_set_value(priv->reset, true);
-+}
-+
-+void rtl83xx_reset_deassert(struct realtek_priv *priv)
-+{
-+	int ret;
-+
-+	ret = reset_control_deassert(priv->reset_ctl);
-+	if (!ret)
-+		return;
-+
-+	dev_warn(priv->dev,
-+		 "Failed to deassert the switch reset control: %pe\n",
-+		 ERR_PTR(ret));
-+
-+	gpiod_set_value(priv->reset, false);
-+}
-+
- MODULE_AUTHOR("Luiz Angelo Daros de Luca <luizluca@gmail.com>");
- MODULE_AUTHOR("Linus Walleij <linus.walleij@linaro.org>");
- MODULE_DESCRIPTION("Realtek DSA switches common module");
-diff --git a/drivers/net/dsa/realtek/rtl83xx.h b/drivers/net/dsa/realtek/rtl83xx.h
-index 0ddff33df6b0..c8a0ff8fd75e 100644
---- a/drivers/net/dsa/realtek/rtl83xx.h
-+++ b/drivers/net/dsa/realtek/rtl83xx.h
-@@ -18,5 +18,7 @@ int rtl83xx_register_switch(struct realtek_priv *priv);
- void rtl83xx_unregister_switch(struct realtek_priv *priv);
- void rtl83xx_shutdown(struct realtek_priv *priv);
- void rtl83xx_remove(struct realtek_priv *priv);
-+void rtl83xx_reset_assert(struct realtek_priv *priv);
-+void rtl83xx_reset_deassert(struct realtek_priv *priv);
- 
- #endif /* _RTL83XX_H */
+url:    https://github.com/intel-lab-lkp/linux/commits/Kamel-Bouhara/dt-bindings-vendor-prefixes-Add-TouchNetix-AS/20240219-181550
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
+patch link:    https://lore.kernel.org/r/20240219101221.129750-4-kamel.bouhara%40bootlin.com
+patch subject: [PATCH v8 3/3] Input: Add TouchNetix axiom i2c touchscreen driver
+config: i386-buildonly-randconfig-002-20240220 (https://download.01.org/0day-ci/archive/20240220/202402200849.ABf6sZnr-lkp@intel.com/config)
+compiler: gcc-7 (Ubuntu 7.5.0-6ubuntu2) 7.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240220/202402200849.ABf6sZnr-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202402200849.ABf6sZnr-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from include/linux/device.h:15:0,
+                    from drivers/input/touchscreen/touchnetix_axiom.c:17:
+   drivers/input/touchscreen/touchnetix_axiom.c: In function 'axiom_process_u41_report_target':
+>> drivers/input/touchscreen/touchnetix_axiom.c:332:18: error: 'slot' undeclared (first use in this function); did you mean 'sget'?
+      target->index, slot, target->present,
+                     ^
+   include/linux/dev_printk.h:129:34: note: in definition of macro 'dev_printk'
+      _dev_printk(level, dev, fmt, ##__VA_ARGS__);  \
+                                     ^~~~~~~~~~~
+   drivers/input/touchscreen/touchnetix_axiom.c:331:2: note: in expansion of macro 'dev_dbg'
+     dev_dbg(ts->dev, "U41 Target T%u, slot:%u present:%u, x:%u, y:%u, z:%d\n",
+     ^~~~~~~
+   drivers/input/touchscreen/touchnetix_axiom.c:332:18: note: each undeclared identifier is reported only once for each function it appears in
+      target->index, slot, target->present,
+                     ^
+   include/linux/dev_printk.h:129:34: note: in definition of macro 'dev_printk'
+      _dev_printk(level, dev, fmt, ##__VA_ARGS__);  \
+                                     ^~~~~~~~~~~
+   drivers/input/touchscreen/touchnetix_axiom.c:331:2: note: in expansion of macro 'dev_dbg'
+     dev_dbg(ts->dev, "U41 Target T%u, slot:%u present:%u, x:%u, y:%u, z:%d\n",
+     ^~~~~~~
+
+
+vim +332 drivers/input/touchscreen/touchnetix_axiom.c
+
+   289	
+   290	/*
+   291	 * Support function to axiom_process_u41_report.
+   292	 * Generates input-subsystem events for every target.
+   293	 * After calling this function the caller shall issue
+   294	 * a Sync to the input sub-system.
+   295	 */
+   296	static bool axiom_process_u41_report_target(struct axiom_data *ts,
+   297						    struct axiom_target_report *target)
+   298	{
+   299		struct input_dev *input_dev = ts->input_dev;
+   300		struct axiom_u41_target *target_prev_state;
+   301		enum axiom_target_state current_state;
+   302		int id;
+   303	
+   304		/* Verify the target index */
+   305		if (target->index >= AXIOM_U41_MAX_TARGETS) {
+   306			dev_err(ts->dev, "Invalid target index! %u\n", target->index);
+   307			return false;
+   308		}
+   309	
+   310		target_prev_state = &ts->targets[target->index];
+   311	
+   312		current_state = AXIOM_TARGET_STATE_NOT_PRESENT;
+   313	
+   314		if (target->present) {
+   315			if (target->z >= 0)
+   316				current_state = AXIOM_TARGET_STATE_TOUCHING;
+   317			else if (target->z > AXIOM_PROX_LEVEL && target->z < 0)
+   318				current_state = AXIOM_TARGET_STATE_HOVER;
+   319			else if (target->z == AXIOM_PROX_LEVEL)
+   320				current_state = AXIOM_TARGET_STATE_PROX;
+   321		}
+   322	
+   323		if (target_prev_state->state == current_state &&
+   324		    target_prev_state->x == target->x &&
+   325		    target_prev_state->y == target->y &&
+   326		    target_prev_state->z == target->z)
+   327			return false;
+   328	
+   329		id = target->index;
+   330	
+   331		dev_dbg(ts->dev, "U41 Target T%u, slot:%u present:%u, x:%u, y:%u, z:%d\n",
+ > 332			target->index, slot, target->present,
+   333			target->x, target->y, target->z);
+   334	
+   335		switch (current_state) {
+   336		case AXIOM_TARGET_STATE_NOT_PRESENT:
+   337		case AXIOM_TARGET_STATE_PROX:
+   338			if (!target_prev_state->insert)
+   339				break;
+   340			target_prev_state->insert = false;
+   341	
+   342			if (!id)
+   343				input_report_key(input_dev, BTN_TOUCH, 0);
+   344	
+   345			input_mt_report_slot_inactive(input_dev);
+   346			/*
+   347			 * make sure the previous coordinates are
+   348			 * all off screen when the finger comes back
+   349			 */
+   350			target->x = 65535;
+   351			target->y = 65535;
+   352			target->z = AXIOM_PROX_LEVEL;
+   353			break;
+   354		case AXIOM_TARGET_STATE_HOVER:
+   355		case AXIOM_TARGET_STATE_TOUCHING:
+   356			target_prev_state->insert = true;
+   357			input_report_abs(input_dev, ABS_MT_TRACKING_ID, id);
+   358			input_report_abs(input_dev, ABS_MT_POSITION_X, target->x);
+   359			input_report_abs(input_dev, ABS_MT_POSITION_Y, target->y);
+   360	
+   361			if (current_state == AXIOM_TARGET_STATE_TOUCHING) {
+   362				input_report_abs(input_dev, ABS_MT_DISTANCE, 0);
+   363				input_report_abs(input_dev, ABS_DISTANCE, 0);
+   364				input_report_abs(input_dev, ABS_MT_PRESSURE, target->z);
+   365				input_report_abs(input_dev, ABS_PRESSURE, target->z);
+   366			} else {
+   367				input_report_abs(input_dev, ABS_MT_DISTANCE, -target->z);
+   368				input_report_abs(input_dev, ABS_DISTANCE, -target->z);
+   369				input_report_abs(input_dev, ABS_MT_PRESSURE, 0);
+   370				input_report_abs(input_dev, ABS_PRESSURE, 0);
+   371			}
+   372	
+   373			if (!id)
+   374				input_report_key(input_dev, BTN_TOUCH, (current_state ==
+   375						 AXIOM_TARGET_STATE_TOUCHING));
+   376			break;
+   377		default:
+   378			break;
+   379		}
+   380	
+   381		target_prev_state->state = current_state;
+   382		target_prev_state->x = target->x;
+   383		target_prev_state->y = target->y;
+   384		target_prev_state->z = target->z;
+   385	
+   386		return true;
+   387	}
+   388	
 
 -- 
-2.43.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
