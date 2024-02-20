@@ -1,171 +1,143 @@
-Return-Path: <devicetree+bounces-43840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A8E985BA23
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 12:16:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C099A85BA3C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 12:21:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9013F1F218BB
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 11:16:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 611E11F25644
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 11:21:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C24D664BC;
-	Tue, 20 Feb 2024 11:16:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30771664C6;
+	Tue, 20 Feb 2024 11:21:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="iDGtm6aD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LEk8YPZy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com [209.85.222.51])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F40E664B4
-	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 11:16:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 740B8664B4
+	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 11:21:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708427785; cv=none; b=pSmRGii6gnmhpMSEd/yRlwCS2ifpkZJv1ZUsuKVtLh9KLqRF/DrpAZ5QedFTDz6zWksEb0XaZldH6s36/yZ1jqiE9fCvcDEADIIAHnqsibzzO4h6gnNSeagy86Ai7ZyUg8lY3O0lb2GcLIj6zYADfRdmW8AXLvQsxiIcpx5+4G4=
+	t=1708428072; cv=none; b=a0qME1b/u1BMoGYdezhUGbzkoyyr/PKnCvMn1yruTJpOiL1Tkd2UzfsWDBIaLVUxq+cPYOxSMsN1nf1HEXx+P+ql5Hoy3QRi3DVBbs+VaNyU9I0NM8crY0h8EqaIC00i+w+q+vj03mSWTGawjR7Pn+zEusX/2+kMqeLUzATIzYo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708427785; c=relaxed/simple;
-	bh=0XEVX7reUloJJ0HXCmKNanytjESGdOW7twiOSY0z6jI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=lOLkw6HtGMebscwzl+/1lDWqTrfcV+el+eHy/er/MeqaKW7qb8Eff318YHVyOoO4TxFxtYF6tVOvVoiihIa7ltDlHiwl7FDvBT8ivg8mNAFQYYf+HtUvR4ICMjQGdr8LaZRt3HhzYOPx6Q8JWIwuchlg4uBHOhYUGJM4M8eTsl0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=iDGtm6aD; arc=none smtp.client-ip=209.85.222.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-7d6a85586e3so2513118241.2
-        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 03:16:23 -0800 (PST)
+	s=arc-20240116; t=1708428072; c=relaxed/simple;
+	bh=y2cTHdbhs+jP0V9l7RAJIUV6y6Yy4DW5bJt20AokuGg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TfGuEjKP63kq2PcMwuFoqK8/FG6OkYp0wBpYEnpHe9CPzsefw+7eCsZr1r/lnj8cySLbnUJw8mlkI8hixmm5n1ObEOORaXCcmMcD8aKw0YOopfuh68tIDnlXmDUJGdhSca0NUiJkkGylbqyh4SFioW57c5GfLGN7M6hwvff+xdI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LEk8YPZy; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4126d65ace3so5175015e9.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 03:21:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1708427782; x=1709032582; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/TGQQf9QVaNxe+P/ET43bTj+OwzYLCPf9zjW80RckT8=;
-        b=iDGtm6aDQFMcDmVljb+fXB1UkYRGIUzBmDrTWX9JQOVFyeXsgoLl4wS9utqR9RV71f
-         T+8WHTK/iwqEgTvdFhQudDhLfT4UzAX9vI/v8NGmdEsUnUPLq2PxHkN3IvBa2OGOPVGy
-         LLNkNuWZEubob9k5MyrOgCf2GRn6NzxhmvgqGcfhyV5jQlXdpXjJroxrzwveUbhdM2Ay
-         otnH9ivwaAR4c8tL84tYyfYHWLmNTDYIFluzKDDitHIJ8viijOpjl5JUOLopdC4YTshI
-         RfL7ZXx7mldMdMT3nwydmjVrhK0J1aVXrd/e25JWwSUdFclB4zHERRvw/ru6KwedJ/Ig
-         scfg==
+        d=linaro.org; s=google; t=1708428069; x=1709032869; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KnrvsBqw7QbtpacZxecYVdwct8vCTDyR5tnhTxKnDkI=;
+        b=LEk8YPZyLGaFY8XqmsQsHiNRQZ0BLHCIgMKUPOkbgigjjCvKxi2l8jgLmguSiSW2Qo
+         ufVyD1BFisTQV+GeZUxHDVspdo1lV3MxpZSDkSa/rJEphhIpPy44qPsrjmQf2h0RqNJK
+         s/PBlhIPbtJCfX/BwzN5UvX8oZuRdnJp+/dNIGb+N6TPr9i2KmvMXrikH3b45fshd0j6
+         QRoyEIlO3M9/W0J3HhOnvNiD9J5z0Vs0/ohiJvbmsowaM8r/cHLUpqN54ZUjd7+r5z9P
+         8P5MlJkqPRn4vzWG9NTS2JK3487UIhUgghXnuTLPNThKI08IIzlJU1XEvqGn7Ftjp0Kw
+         VMzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708427782; x=1709032582;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/TGQQf9QVaNxe+P/ET43bTj+OwzYLCPf9zjW80RckT8=;
-        b=awc1YAu42kcHKxnBnhaXO4EJ/Ngp/PjGIYlX0i24/s/XUF9hwEzcbpXRsEBrjmsnZO
-         LZKneWfV4rO2MVrUm6f0et9+WYjQb6COfoNflxdtwPZJgKwCgUteVcLP+wFWmlb2Qwpx
-         B68SN7ap5kyvZ8gw0UqC/XmgZ5gF91/h6Ylq7obVSPK2Rrf2n+xxN5HLdxu6ct3B2L2J
-         pISOkYhJYkmZ+bC7cmjRwn0wnTh1ZEDFS7EXOMusZFYMupMJGol8W5NDxaxCID4mEeM+
-         KsVAjhMldmn5+qAGUCxsqHHNAmNlDP+jn9DQnkBnlu5FYQwaRgmdLgwLn8k0VbSXdEHl
-         AvEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUmBXPHpLICBueFKa+8iiEFeXcWPe/gSswCL+PzmL8brruS7JM4tEuNgSbqhV9k/+aKDEtXd45XdLr7wKfgHjusBto5MxiK/ct51g==
-X-Gm-Message-State: AOJu0YyzSlMI3x6D5W44MYw44+6OHcHxFAwQZVC/+Mo4Gnp3hZCUDbgQ
-	0FW2mm40gHRdW5ky7ASOFZT6T8P95X6lDfWFjDx6pzREgU2REvZHtEF1LKeJzzXKZ/l6zvTVpi/
-	K0PvA8yd5b/tVn/sn4DLq88xtcDvppZ5zjKXxww==
-X-Google-Smtp-Source: AGHT+IF0CN7Ryol7qmamq7DrWXyYZkwvZgbPRNHrR3nczqiDKiEYYS7aZK8HtFSbIhrDgqTa7oMs3VHOgqV6taESy9U=
-X-Received: by 2002:a05:6102:1610:b0:470:51ab:3e46 with SMTP id
- cu16-20020a056102161000b0047051ab3e46mr5334654vsb.30.1708427781847; Tue, 20
- Feb 2024 03:16:21 -0800 (PST)
+        d=1e100.net; s=20230601; t=1708428069; x=1709032869;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KnrvsBqw7QbtpacZxecYVdwct8vCTDyR5tnhTxKnDkI=;
+        b=aFItI3CsSl8mAjZ1fihSZ03i7j3GWIDCbUtW/E73gqGRf/0wQQIqybo0rtrmfR8Yzr
+         PixQh0SBXMlRwwUu1okuDljbAOxb0PKxg8bJMR7W2eptsmNhwT0I/cC2/gjUaaTQgQRy
+         r23N+bf+GjBCAOk6GOyR/y9eLPYu7lMf9dzvNT+z/jP+kU7fr6zqs75eT1oY40kh1g/K
+         QIG7i1vqAnZV9ZP9SBwPMHIl2fFPoiCrL/WspJ/4E8bWAgyLUCDfwlwkS8hgaRcDXK2j
+         DZBMcTkgfMcDLhsxmO0lfbcOdYMos56itRw7unntStwJaZmbx45PcRw8kUsi/+tmJT2y
+         gqcA==
+X-Gm-Message-State: AOJu0YzyD2XC9L/cKI7kfGRTDyzWFlMSRPvgYLwnNTc3wGYu9ZuXpXWs
+	xvEHWlSbnMe6FvCeh2CA9fGAiNa1Oy/NE2RaYxzCZzx7xEZ2SZQiH/RmRGp2ARo=
+X-Google-Smtp-Source: AGHT+IFPZI6mIvGokJt1X4VUEHcuPhIk2yyf27bMhmEMYYX9mw53cNbqyZDIkb1WvUBZVhkhJjcrdg==
+X-Received: by 2002:adf:e10f:0:b0:33d:509c:5692 with SMTP id t15-20020adfe10f000000b0033d509c5692mr3941935wrz.31.1708428068775;
+        Tue, 20 Feb 2024 03:21:08 -0800 (PST)
+Received: from [192.168.232.100] (31-187-2-170.dynamic.upc.ie. [31.187.2.170])
+        by smtp.gmail.com with ESMTPSA id b17-20020a05600010d100b0033ce1ef4e7asm13108972wrx.13.2024.02.20.03.21.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Feb 2024 03:21:08 -0800 (PST)
+Message-ID: <87db77f7-fda4-4cf7-adfd-8545c40c3365@linaro.org>
+Date: Tue, 20 Feb 2024 11:21:05 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240216203215.40870-1-brgl@bgdev.pl> <20240216203215.40870-10-brgl@bgdev.pl>
- <48164f18-34d0-4053-a416-2bb63aaae74b@sirena.org.uk> <CAMRc=Md7ymMTmF1OkydewF5C32jDNy0V+su7pcJPHKto6VLjLg@mail.gmail.com>
- <8e392aed-b5f7-486b-b5c0-5568e13796ec@sirena.org.uk>
-In-Reply-To: <8e392aed-b5f7-486b-b5c0-5568e13796ec@sirena.org.uk>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Tue, 20 Feb 2024 12:16:10 +0100
-Message-ID: <CAMRc=MeAXEyV47nDO_WPQqEQxSYFWTrwVPAtLghkfONj56FGVA@mail.gmail.com>
-Subject: Re: [PATCH v5 09/18] arm64: dts: qcom: qrb5165-rb5: model the PMU of
- the QCA6391
-To: Mark Brown <broonie@kernel.org>
-Cc: Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kalle Valo <kvalo@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Saravana Kannan <saravanak@google.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Arnd Bergmann <arnd@arndb.de>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Marek Szyprowski <m.szyprowski@samsung.com>, 
-	Alex Elder <elder@linaro.org>, Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Abel Vesa <abel.vesa@linaro.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Lukas Wunner <lukas@wunner.de>, 
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, linux-bluetooth@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-pci@vger.kernel.org, linux-pm@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC WIP PATCH] venus: add qcom,no-low-power property
+Content-Language: en-US
+To: Marc Gonzalez <mgonzalez@freebox.fr>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: DT <devicetree@vger.kernel.org>, linux-media
+ <linux-media@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>,
+ Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Pierre-Hugues Husson <phh@phh.me>
+References: <0843621b-386b-4173-9e3c-9538cdb4641d@freebox.fr>
+ <f6e68756-72a1-4c32-968d-3d6adaa153c9@linaro.org>
+ <CAA8EJpq=G21h87W69_4U-BZ=Sa5VEs15Y-zE-G5x9VxVx4qjsA@mail.gmail.com>
+ <81dc6452-4039-4eb4-92ba-df248215fca2@linaro.org>
+ <b8325dbf-67c5-4898-bc23-ff093ae6e14a@freebox.fr>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <b8325dbf-67c5-4898-bc23-ff093ae6e14a@freebox.fr>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Feb 19, 2024 at 8:59=E2=80=AFPM Mark Brown <broonie@kernel.org> wro=
-te:
->
-> On Mon, Feb 19, 2024 at 07:48:20PM +0100, Bartosz Golaszewski wrote:
-> > On Mon, Feb 19, 2024 at 7:03=E2=80=AFPM Mark Brown <broonie@kernel.org>=
- wrote:
-> > > On Fri, Feb 16, 2024 at 09:32:06PM +0100, Bartosz Golaszewski wrote:
->
-> > > > +                     vreg_pmu_aon_0p59: ldo1 {
-> > > > +                             regulator-name =3D "vreg_pmu_aon_0p59=
-";
-> > > > +                             regulator-min-microvolt =3D <540000>;
-> > > > +                             regulator-max-microvolt =3D <840000>;
-> > > > +                     };
->
-> > > That's a *very* wide voltage range for a supply that's got a name end=
-ing
+On 20/02/2024 10:56 a.m., Marc Gonzalez wrote:
+> On 19/02/2024 20:24, Bryan O'Donoghue wrote:
+> 
+>> On 19/02/2024 5:44 p.m., Dmitry Baryshkov wrote:
+>>
+>>> On Mon, 19 Feb 2024 at 19:29, Konrad Dybcio wrote:
+>>>>
+>>>> On 19.02.2024 18:18, Marc Gonzalez wrote:
+>>>>
+>>>>> On our msm8998-based device, calling venus_sys_set_power_control()
+>>>>> breaks playback. Since the vendor kernel never calls it, we assume
+>>>>> it should not be called for this device/FW combo.
+>>>>
+>>>> FWIW, this is also broken on other SoCs.. 8280/8350 and 6115
+>>>> to name a couple.
+>>>
+>>> Then let's just disable it until it gets unbroken?
+>>
+>> Its functional on most of our upstream stuff though, why switch if off
+>> unless necessary ?
+>>
+>> Maybe it should be an opt-in instead of an opt-out, TBH my own feeling
+>> is its better to minimize the amount of work and opt as per the proposed
+>> patch.
+>>
+>> Perhaps the qcom vidc team can give insights on 8280xp and 8350 when we
+>> come to tackling new HFI6XX and later SoCs ...
+> 
+> I was wondering if the chosen property name might cause issues later...
+> 
+> Thinking "qcom,no-low-power" might be a bit too general?
+> Perhaps would need to mention venus somewhere in the name,
+> to limit this to the video decoder?
+> 
+> Regards
+> 
 
-Because it's an error, it should have been 640000. Thanks for spotting it.
+Yep, the word venus should probably appear in the property name.
 
-> > > in _0_p59 which sounds a lot like it should be fixed at 0.59V.
-> > > Similarly for a bunch of the other supplies, and I'm not seeing any
-> > > evidence that the consumers do any voltage changes here?  There doesn=
-'t
-> > > appear to be any logic here, I'm not convinced these are validated or
-> > > safe constraints.
->
-> > No, the users don't request any regulators (or rather: software
-> > representations thereof) because - as per the cover letter - no
-> > regulators are created by the PMU driver. This is what is physically
-> > on the board - as the schematics and the datasheet define it. I took
->
-> The above makes no sense.  How can constraints be "what is physically on
-> the board", particularly variable constrants when there isn't even a
-> consumer?  What values are you taking from which documentation?
->
-
-The operating conditions for PMU outputs. I took them from a
-confidential datasheet. There's a table for input constraints and
-possible output values.
-
-And what do you mean by there not being any consumers? The WLAN and BT
-*are* the consumers.
-
-> The cover letter and binding both claimed (buried after large amounts of
-> changelog) that these PMUs were exposing regulators to consumers and the
-> DTS puports to do exactly that...
->
-
-Yes, but I'm not sure what the question is.
-
-> > the values from the docs verbatim. In C, we create a power sequencing
-> > provider which doesn't use the regulator framework at all.
->
-> For something that doesn't use the regulator framework at all what
-> appears to be a provider in patch 16 ("power: pwrseq: add a driver for
-> the QCA6390 PMU module") seems to have a lot of regualtor API calls?
-
-This driver is a power sequencing *provider* but also a regulator
-*consumer*. It gets regulators from the host and exposes a power
-sequencer to *its* consumers (WLAN and BT). On DT it exposes
-regulators (LDO outputs of the PMU) but we don't instantiate them in
-C.
-
-Bart
+---
+bod
 
