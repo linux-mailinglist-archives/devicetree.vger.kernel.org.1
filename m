@@ -1,94 +1,100 @@
-Return-Path: <devicetree+bounces-44028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3D5885C332
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 18:58:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D323285C34E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 19:05:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D4D8A1C2254D
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 17:58:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BECB7B23CB2
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 18:05:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93F117994A;
-	Tue, 20 Feb 2024 17:57:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D514779F2;
+	Tue, 20 Feb 2024 18:05:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uGVobPUq"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RBGAJPDE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 650FA79946;
-	Tue, 20 Feb 2024 17:57:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5952576C70;
+	Tue, 20 Feb 2024 18:05:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708451875; cv=none; b=p3YR6UNBhq2AbWs2OgpFOLXW7zzwCY++arKUnwxXqTe6OkB5mX+rtDeHnTJWuN/vVklo1N2YZVHYMLkqIx8fphSnMXbafs8cBRccoHBLpeb4R+KIY3T40KF9ZKKmRqhrNzqKANWMP2OYVQvL0rOVNVWhwwV1y6Lj8xhVDDTdT9w=
+	t=1708452331; cv=none; b=usJMsYqbXPBCb7NakvReyX/m9X1VCtl7CxhNaGQ42t0YklxkpNJ4TLUFg+1Rq8y73sK2kMt0mieCOGUZhLdK25nI1MfW1jHxaW9h8s+lk/IUWWj5qw0tx7ZPG+oVsEDXCSaN07h1N03xgB7Pi+0FqmCn7x1PAcOeNwpqBFbB5zA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708451875; c=relaxed/simple;
-	bh=uKy3sTr5g9ci0vwBtcTYLrTdctL2mlAjDUwRWGepWO4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=meN1b6mGEoWokLnVg3VdhIYk3mhfOoYGyW0Y8bISPGL+Am7mtq++DzULffwXCsTyBmFtOClMIzTOBWlsFcNg3exDkSNbMzUAjZAPLcFfWhsHWvaLpiXk6TjtTsyu92Cl9SPKPaaDUj9J6w9LacqAZaKMVztEudzBxYvvcVUKFds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uGVobPUq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5EA4C43142;
-	Tue, 20 Feb 2024 17:57:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708451874;
-	bh=uKy3sTr5g9ci0vwBtcTYLrTdctL2mlAjDUwRWGepWO4=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=uGVobPUqpbH/UKS/B93+yIQwYG8jwEyF+fbuguNEJPZMBYoHeJxubmbolOhHIKEAL
-	 K126ElOemlEzJjfGeZaE0xIgu3TtJzk9e12yFqJiWyKdvBFKv/3w8ek+t4MiOtcRyL
-	 SD1jO8gyStEDlb/Wct5ckqYNIHUE5eP/NEoqq7O4iEGtlUxHueAD67XznYcNRnGB3X
-	 mQOjzG9U9dMq5DO6U6y66jp7R8YctzgCIsCGgDEr1BPZKZ7NM+r7ny7Vxf4nZtuP0q
-	 LmuAs8GCPvc5HNDJ1P8J9Q68apm6HO4jOfwsgDK/RsrQFAEgjxyeOdEjU4ftDEYAIC
-	 hlshxB54dqOxA==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Andy Gross <agross@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
+	s=arc-20240116; t=1708452331; c=relaxed/simple;
+	bh=xY01WNSDg+fB4b3tzgDPOlMr8YfAE3F7j2PbUEDxlHs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jLUpRgCiIac9snN4G0mDzG+WCA/oikblj1afwXOHZquYwGHwJv5RtlMCtgJqeOOPR5za20o1ANP65tCBEVBvj/ZkEET9qCTgSDGdzCKRc7eovyP/shl/FWXabDJI6TpEwHPYxsZxmiiOWPnWorL1CNi8X/n4QWi7H/kYkbCdRo4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RBGAJPDE; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1708452330; x=1739988330;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=xY01WNSDg+fB4b3tzgDPOlMr8YfAE3F7j2PbUEDxlHs=;
+  b=RBGAJPDExE66AXm4VwLxSBREE2jFUrJ+vbvROsJga32ZyMDT/cWl2Iqe
+   fyA0BP5f01toMMUc5PPWUddLy2p7GVwR+7m6k2GD08PLjnJW4QaG5Qd6M
+   I+HDm2RNLlUG6NzjZ5IJ/pIW/E84Gwuq9x9cRNVFB/N60AMTdkz6SQZeT
+   luoNDCRWo3bHuX00cmXklJQb5Ju7X5e+UJB/a9jrpNsDsg2sJ54tqny1E
+   lYoF5kSll9jceGu36K/C33OdYD5ROcvSq+tPaKnRh2Dm3r+DO7Gv1ianE
+   H4k9UOLfqFrgmw1u2Tk/0mrhZgZj1EY5CORNHHf8dgZtogiqKKdk3nYqA
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10990"; a="3037655"
+X-IronPort-AV: E=Sophos;i="6.06,174,1705392000"; 
+   d="scan'208";a="3037655"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2024 10:05:30 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10990"; a="913118980"
+X-IronPort-AV: E=Sophos;i="6.06,174,1705392000"; 
+   d="scan'208";a="913118980"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2024 10:05:27 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1rcUUe-000000069WL-3Ueo;
+	Tue, 20 Feb 2024 20:05:24 +0200
+Date: Tue, 20 Feb 2024 20:05:24 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Stefan Hansson <newbyte@postmarketos.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht,
-	phone-devel@vger.kernel.org
-Subject: Re: [PATCH v5 0/4] Add samsung-matisselte and common matisse dtsi
-Date: Tue, 20 Feb 2024 11:57:43 -0600
-Message-ID: <170845186082.159943.18098881377160683439.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231031140337.49291-1-newbyte@postmarketos.org>
-References: <20231031140337.49291-1-newbyte@postmarketos.org>
+	Robin van der Gracht <robin@protonic.nl>,
+	Paul Burton <paulburton@kernel.org>
+Subject: Re: [PATCH v3 5/9] auxdisplay: ht16k33: Define a few helper macros
+Message-ID: <ZdTp5LQOTpL5ke96@smile.fi.intel.com>
+References: <20240219170337.2161754-1-andriy.shevchenko@linux.intel.com>
+ <20240219170337.2161754-6-andriy.shevchenko@linux.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240219170337.2161754-6-andriy.shevchenko@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
+On Mon, Feb 19, 2024 at 06:58:04PM +0200, Andy Shevchenko wrote:
+> Define a few helper macros — wrappers on contaoner_of)() — for easier
 
-On Tue, 31 Oct 2023 15:00:54 +0100, Stefan Hansson wrote:
-> This series adds a common samsung-matisse dtsi and reworks
-> samsung-matisse-wifi to use it, and introduces samsung-matisselte. I
-> choose matisselte over matisse-lte as this is how most other devices
-> (klte, s3ve3g) do it and it is the codename that Samsung gave the
-> device. See individual commits for more information.
-> 
+I have fixed 'container_of()' above locally.
 
-Applied, thanks!
+> maintenance in the future. While at it, include missing container_of.h.
 
-[1/4] ARM: dts: qcom: samsung-matisse-common: Add initial common device tree
-      (no commit info)
-[2/4] dt-bindings: arm: qcom: Add Samsung Galaxy Tab 4 10.1 LTE
-      commit: 2a478a521876d9daea016be3e9513a67871169b5
-[3/4] ARM: dts: qcom: Add support for Samsung Galaxy Tab 4 10.1 LTE (SM-T535)
-      (no commit info)
-[4/4] ARM: dts: qcom: samsung-matisse-common: Add UART
-      (no commit info)
-
-Best regards,
 -- 
-Bjorn Andersson <andersson@kernel.org>
+With Best Regards,
+Andy Shevchenko
+
+
 
