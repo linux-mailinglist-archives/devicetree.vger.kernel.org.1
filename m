@@ -1,140 +1,102 @@
-Return-Path: <devicetree+bounces-44059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11D0A85C50E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 20:43:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8613685C522
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 20:47:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6EC71F251FD
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 19:43:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1680EB25469
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 19:47:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C01A1386B1;
-	Tue, 20 Feb 2024 19:43:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDFB114A0B6;
+	Tue, 20 Feb 2024 19:47:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oCStGpKy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DA521474A8;
-	Tue, 20 Feb 2024 19:43:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B197C36135;
+	Tue, 20 Feb 2024 19:47:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708458225; cv=none; b=ka9rGYOg1hKtEtHNu2peDIvXyI0eOyDwOyLZko6vHWgu1faMsqDx5lw/koX1p8hmooxFpYJ3sSxgKIopRTwyWz0uIHMtVzPjzgjTHoOtzvJXU7es3Bg8rRMFtauGMDUaSLI8ptltM54kXwX5bv9yNWfct6tf1gC5TkKkFRCNTxI=
+	t=1708458432; cv=none; b=sD8tUCRwvtENPD1k19TemjpyxsGuFcKPJuzhKXXmBfdlNDItm3AA522NIZsvRT0yVKDb/StFRveJwTGKr4c6aockcPQAFFa0pPSLBF8ynUAwixdgY7UNk6Jx++X8RaEg61eg89LxXr/+ByDrX4dSKso2IZl4KM6lY17BvNy5y5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708458225; c=relaxed/simple;
-	bh=3vr/BylHpXBS7rL/y9/mGwL07CaqDpFte7jacl3IzYI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=IwBsLe5JamfS8ZnkapqoUnzomHS482xB7mQIOITNMNApPAcftrZ+Oar2XJ6OrFB6jWSHIHfXmMWbdRb2zrD1bJHlZ+HSTNv2kBnzpVdI0OOQaYDmoXSii8hJczRWEAsXwXSiLVwZOHLiOX9ObNOjFiOMAxfCtaEFwX8OhcwCj80=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-IronPort-AV: E=Sophos;i="6.06,174,1705330800"; 
-   d="scan'208";a="194620723"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 21 Feb 2024 04:43:36 +0900
-Received: from localhost.localdomain (unknown [10.226.92.246])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id A1EF440031D1;
-	Wed, 21 Feb 2024 04:43:31 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Thierry Reding <thierry.reding@gmail.com>,
+	s=arc-20240116; t=1708458432; c=relaxed/simple;
+	bh=1KiS+U4NNT/mwNoBNJ7E4oCUd/6Lzcv1jcGa7+zX+Vg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=a5rKySNfULmYywDyACGfz7qzKSvjJndaHom8m5a8STNguAE++fWgBKQI6fwiavGZMDn+FfXhoiEiMUUNpMKVIh//e96/O6hN41EIEe3fQs5dPXKgJD9iSJD7h1u+ZYXGZGmExmnvjdtwtvAakynEDGEPiNIDI2GD/0gJflN1tH4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oCStGpKy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB893C433F1;
+	Tue, 20 Feb 2024 19:47:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708458432;
+	bh=1KiS+U4NNT/mwNoBNJ7E4oCUd/6Lzcv1jcGa7+zX+Vg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oCStGpKyprAazJxn0xJT7SpatIrasVkTuxPqf5bGDO8klHUhTy+LkvcfqhpDAIU+E
+	 Pi00Fq6nJ1FQWsSHrp/hmBlnxf6Xd0WHN+8fLsiE1ztai154YOZ6B0EWFmvsv2SL5r
+	 9ClVxPzJcv1EIEaReBaUA3fVisEt1mMD6oaly5q6ztRAMWOCkSvkJ8gBo5aS3LPpVB
+	 OJUSexXEcLR17q74kIhLp3ZL63KDtyNMaLOgNTqvcSaDS/r2NYaByhx8f8KxgmeDre
+	 Rav/PUuB3tWB7omnjX4YilFxFDibRERnfx2HaJ+oPNWdeXLVzwe/CeT6a9HsJ/VHc2
+	 JqWtq6zLrJxFQ==
+Date: Tue, 20 Feb 2024 19:47:07 +0000
+From: Conor Dooley <conor@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: linux-iio@vger.kernel.org,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>,
-	Rob Herring <robh@kernel.org>
-Subject: [PATCH v18 2/4] dt-bindings: pwm: rzg2l-gpt: Document renesas,poegs property
-Date: Tue, 20 Feb 2024 19:43:16 +0000
-Message-Id: <20240220194318.672443-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240220194318.672443-1-biju.das.jz@bp.renesas.com>
-References: <20240220194318.672443-1-biju.das.jz@bp.renesas.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: add ad7944 ADCs
+Message-ID: <20240220-tamper-feed-0622f9441cfe@spud>
+References: <20240216-ad7944-mainline-v2-0-7eb69651e592@baylibre.com>
+ <20240216-ad7944-mainline-v2-1-7eb69651e592@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="39pzYbsQtZHaU+Tb"
+Content-Disposition: inline
+In-Reply-To: <20240216-ad7944-mainline-v2-1-7eb69651e592@baylibre.com>
 
-RZ/G2L GPT IP supports output pin disable function by dead time
-error and detecting short-circuits between output pins.
 
-Add documentation for the optional property renesas,poegs to
-link a pair of GPT IOs with POEG.
+--39pzYbsQtZHaU+Tb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-v17->v18:
- * No change.
-v16->v17:
- * No change.
-v15->v16:
- * No change.
-v14->v15:
- * No change.
-v3->v14:
- * Add Rb tag from Rob.
- * Moved the patch from series[1] to here.
- [1] https://lore.kernel.org/linux-renesas-soc/20221215205843.4074504-1-biju.das.jz@bp.renesas.com/T/#t
-v2->v3:
- * Moved minItems/MaxItems one level up.
-v1->v2:
- * removed quotes from ref
- * Added maxItems and minItems for renesas,poegs property
- * Added enums for gpt index
----
- .../bindings/pwm/renesas,rzg2l-gpt.yaml       | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
+On Fri, Feb 16, 2024 at 01:46:18PM -0600, David Lechner wrote:
+> This adds a new binding for the Analog Devices, Inc. AD7944, AD7985, and
+> AD7986 ADCs.
 
-diff --git a/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-index d9374144d82d..957cf28b2c4c 100644
---- a/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-+++ b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-@@ -245,6 +245,28 @@ properties:
-   resets:
-     maxItems: 1
- 
-+  renesas,poegs:
-+    minItems: 1
-+    maxItems: 8
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    items:
-+      items:
-+        - description: phandle to POEG instance that serves the output disable
-+        - enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
-+          description: |
-+            An index identifying pair of GPT channels.
-+              <0> : GPT channels 0 and 1
-+              <1> : GPT channels 2 and 3
-+              <2> : GPT channels 4 and 5
-+              <3> : GPT channels 6 and 7
-+              <4> : GPT channels 8 and 9
-+              <5> : GPT channels 10 and 11
-+              <6> : GPT channels 12 and 13
-+              <7> : GPT channels 14 and 15
-+    description:
-+      A list of phandle and channel index pair tuples to the POEGs that handle the
-+      output disable for the GPT channels.
-+
- required:
-   - compatible
-   - reg
-@@ -375,4 +397,5 @@ examples:
-         power-domains = <&cpg>;
-         resets = <&cpg R9A07G044_GPT_RST_C>;
-         #pwm-cells = <2>;
-+        renesas,poegs = <&poeggd 4>;
-     };
--- 
-2.25.1
+I think this binding is overall pretty well written, especially
+considering the interproperty dependencies.
 
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+
+--39pzYbsQtZHaU+Tb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdUBuwAKCRB4tDGHoIJi
+0uuWAQDLngt5pz4PlV2W01fTD2fS7srtxqDPBPGnF6sXp+nKUwEAuL1m1J9Am2Th
+iGA+hrTy6KEwjZqWfj7mHiqM/QpsFQg=
+=VP88
+-----END PGP SIGNATURE-----
+
+--39pzYbsQtZHaU+Tb--
 
