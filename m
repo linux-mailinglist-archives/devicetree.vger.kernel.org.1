@@ -1,263 +1,188 @@
-Return-Path: <devicetree+bounces-43950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9618385BF09
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 15:45:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC34585BF0F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 15:47:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E991286299
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 14:45:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AAE171C232FA
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 14:47:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16C5D73192;
-	Tue, 20 Feb 2024 14:45:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9516E6BB3A;
+	Tue, 20 Feb 2024 14:47:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="o4C03gON"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="gikVLEP+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9938F6DCE4
-	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 14:45:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AEF51C2E;
+	Tue, 20 Feb 2024 14:47:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708440329; cv=none; b=TcJFFi6B7KYsHg/TSKr5P7RzZwO+AH84fF23i7hZjcOgaWUhxScbn+/vpHwAntFLhlJABmuFirRmWdwJPzAGuwMtEMV4Jeaevb+xpSc0V0LH1JmgGP4vwl41Y5gKuMAm9cpf28i91dFk718j6++sv4kzl7/YcusIxUZmQ2GgZp0=
+	t=1708440472; cv=none; b=md0RGqSa7MTHgPZiJi0pAiZKHxTUFvyfHXNTHJ0joiPED1h6HbSPemf85YfssmwL6Cth3nYKNQoGJy9qcI9fevxfQf3Z/6GvUp7NrCLsS5SvqRqSci1kxnUj1UgB9/CsC6/LBK/vvhzG4vQmU/iu95c4E69OdSRTNMCe9gujWOA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708440329; c=relaxed/simple;
-	bh=A63ilqUJMtWkVrkY3kMcW2Zj7+eMUqb5kFpoSNXVvMQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gHcGS8lbcc88FvVsmvhOyKEODJZ1n67IgYcewrSEi0DU/QjSLurMOS8ksjBtRngm4odiHSE9l7Gl8AG4I2Ail4vWomXf91tYb+mF17Gqlpn+JNq9MoepfIHXBBbSwgG2L9wcwL9YNlKAPN2bqhOvvPD7jZP2F10vvo56krKbEUI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=o4C03gON; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-33d44d78e5fso1018061f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 06:45:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1708440324; x=1709045124; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NUXcnT00673NcGdHtou2jJv3e4wQxRzutyRaaRsM2Rg=;
-        b=o4C03gONJbuzCMNowamR8ScA/T2wPnQHSeR+ikrnhmy0+pY6W2OJl659R+yAmk/owq
-         vKuce773V8h4pg0q7EiOIiKW0dvtkIJz9ApDA1eXyavRjOGerZmo5C1YqYIw1Un134R/
-         8Jb35JzB8ZKvhqpUDuz99+azb2NXzOOtBSmziY47tP11vlWbQaAU3PAmQvPQpeeNg1/u
-         3S6NyKl7Jeowvfxb0UYTDtd6RizHT/WCJYo+r/GDTU1RxfAecHHHaVxm1JFCVEqoPyYc
-         GJzeJUKcz4F0N1ZvfsWnxDL7LSpH4ncmETAeueLo616Ya9fOQemAWaCZCmoUAJrvNRGS
-         qvlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708440324; x=1709045124;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NUXcnT00673NcGdHtou2jJv3e4wQxRzutyRaaRsM2Rg=;
-        b=q240gt+WclQkG7OtA6Qb9JdKwMrRcmrSGKPPZ3PnJz8w5OV/bzaACD9Aft/0vKdNHZ
-         e/ZiWMzTp9jmnNedaDkQXHiNj05DaP9/mNBzkVHbUyJ29g6UDaR1YHDwnIccfSltTYTa
-         muY285N1gd7Y9W2Bd725dkq5IXSB+Zg4vzZNPtglyaIgLpAEtnGKs7schGy4/8bJtXNE
-         UPZa+nSuV/NEq27Md1UAqs2Wypea1XkjramjK0lJ2TYjCTxgMOHQ8Mjx3f++LQ/Pvave
-         BNiNlFBGGzk3hLMeIGSGGy2BuzeiCmK4HFYkucpBeiysHGEW3mKHqxtx/mdqg9Cu/XTd
-         aGfQ==
-X-Gm-Message-State: AOJu0Yy2D3wyiITp6MSFM055ExmyUlmHV6T1+L7roP0HSdUgkQauXpXO
-	RlJ1LH/CVBIjMjB3bsMGCtf8FGM4ZiBVzJ1SuYt9QwVyYdppquUPm8p/cP7eYfs=
-X-Google-Smtp-Source: AGHT+IHo6SnecQrz2iYJgIxfZnnvcjFOdJtQ98Rc5/M5iDKmtEgPHjn7WaSRQnmKLNnKS94kJkr8ng==
-X-Received: by 2002:a05:6000:1f89:b0:33d:4bc3:e786 with SMTP id bw9-20020a0560001f8900b0033d4bc3e786mr5610884wrb.23.1708440323936;
-        Tue, 20 Feb 2024 06:45:23 -0800 (PST)
-Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id z2-20020a5d4c82000000b0033d07edbaa6sm13770908wrs.110.2024.02.20.06.45.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Feb 2024 06:45:23 -0800 (PST)
-Message-ID: <c6a9c20e-02d3-4334-badd-2efe5be9ce7e@freebox.fr>
-Date: Tue, 20 Feb 2024 15:45:22 +0100
+	s=arc-20240116; t=1708440472; c=relaxed/simple;
+	bh=gfGgS0BzBQ6bVw6tXUZ63VUQ3Xzy7xsSK9nGxoKfb3E=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=We3AcFeMPlLtMXHb1CDUJyosRnuh+/z9fKhKGzZ/IPCbbDdNOLp+6MxqmFPYzj+vfNBio/fr1wYi5jDU/PVq5VJJkcfFWmOx284Zr76gK2xHdRv/J3gXY1KuYF01fS8aLiBxjpsYtb0YRUrdroan+Heyat82fCvDzRKv11p/eRo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=gikVLEP+; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id CA1FA6000E;
+	Tue, 20 Feb 2024 14:47:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1708440462;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=yglFL5fFdcHpFnlQNpb6idsgAtkWcjOqPbPFvmeXUII=;
+	b=gikVLEP+Bz3vz7gJOxqJOr1kSy6d9Ij/c/ToLre8ieQ17PtiwyVxhmvnMiFZPP5Bcab87Z
+	E3AcT1vditl6ZgkEkVyPzztEL/gUuYf/aEOHH7HckTxIbfR0c/I3wNkzyeNeVURvaj44ab
+	BR8JQLpwCKOsRzFGYdh1xwiO6pTb5SFy5NtQcnjvk4hx13PjZH6O5zdoiSlQQyI6gDvKjz
+	qbIZoqThtTwASk3nZ8irmUDqroGIi7y3Akqbn68/dBj8WZEGZO/ul/UHQHU/tE1KHZgZrs
+	j/MZ8/8G5gFp+I4H9+jEAJuQAGCYSL4ozbXuljSor7wMAs92ix4P0VeJ/R1eaA==
+Date: Tue, 20 Feb 2024 15:47:37 +0100
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+To: Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>
+Cc: <forbidden405@outlook.com>, Yisen Zhuang <yisen.zhuang@huawei.com>,
+ Salil Mehta <salil.mehta@huawei.com>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+ <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Simon Horman
+ <horms@kernel.org>
+Subject: Re: [PATCH net-next v3 3/6] net: hisilicon: add support for
+ hisi_femac core on Hi3798MV200
+Message-ID: <20240220154737.705c33e5@device-28.home>
+In-Reply-To: <20240220-net-v3-3-b68e5b75e765@outlook.com>
+References: <20240220-net-v3-0-b68e5b75e765@outlook.com>
+	<20240220-net-v3-3-b68e5b75e765@outlook.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC WIP PATCH] venus: add qcom,no-low-power property
-Content-Language: en-US
-To: Vikash Garodia <quic_vgarodia@quicinc.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: DT <devicetree@vger.kernel.org>, linux-media
- <linux-media@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>,
- Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Pierre-Hugues Husson <phh@phh.me>
-References: <0843621b-386b-4173-9e3c-9538cdb4641d@freebox.fr>
- <f6e68756-72a1-4c32-968d-3d6adaa153c9@linaro.org>
- <CAA8EJpq=G21h87W69_4U-BZ=Sa5VEs15Y-zE-G5x9VxVx4qjsA@mail.gmail.com>
- <81dc6452-4039-4eb4-92ba-df248215fca2@linaro.org>
- <b8325dbf-67c5-4898-bc23-ff093ae6e14a@freebox.fr>
- <87db77f7-fda4-4cf7-adfd-8545c40c3365@linaro.org>
- <10fe67af-0572-4faa-91c6-fce9c8f9dc92@linaro.org>
- <6342e92d-eed0-45c2-8f04-3779aa2e521d@freebox.fr>
- <4ab95e87-c912-469b-b8d4-be0cf0e4710b@linaro.org>
- <a8c5b27c-47a9-044a-78e8-51c67acf19a6@quicinc.com>
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <a8c5b27c-47a9-044a-78e8-51c67acf19a6@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
+X-GND-Sasl: maxime.chevallier@bootlin.com
 
-On 20/02/2024 14:53, Vikash Garodia wrote:
+Hello,
 
-> On 2/20/2024 6:57 PM, Krzysztof Kozlowski wrote:
->
->> On 20/02/2024 13:34, Marc Gonzalez wrote:
->>
->>> Here's the proposal for v2:
->>>
->>> qcom,venus-broken-low-power-mode
->>>
->>> Description:
->>> This property is defined for devices where playback does not work
->>> when the video decoder is in low power mode.
->>
->> Would be nice to know what's broken but if that's tricky to get, then
->> sounds fine.
+On Tue, 20 Feb 2024 03:57:38 +0800
+Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>
+wrote:
+
+> From: Yang Xiwen <forbidden405@outlook.com>
 > 
-> msm8998 supports configuring the VCodec (venus core0) GDSC in HW power control
-> mode. Could you please check and confirm if the driver is configuring only the
-> VCodec GDSC and not the venus GDSC. Look for the attribute
-> "qcom,support-hw-trigger" in vendor dt file.
+> Register the sub MDIO bus if it is found. Also implement the internal
+> PHY reset procedure as needed.
+> 
+> Note it's unable to put the MDIO bus node outside of MAC controller
+> (i.e. at the same level in the parent bus node). Because we need to
+> control all clocks and resets in FEMAC driver due to the phy reset
+> procedure. So the clocks can't be assigned to MDIO bus device, which is
+> an essential resource for the MDIO bus to work.
+> 
+> No backward compatibility is maintained since the only existing
+> user(Hi3516DV300) has not received any updates from HiSilicon for about
+> 8 years already. And till today, no mainline dts for this SoC is found.
+> It seems unlikely that there are still existing mainline Hi3516DV300
+> users. The effort to maintain the old binding seems gain a little.
+> 
+> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
 
-[ Vendor DTS for easy reference: ]
-[ https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blob/caf_migration/kernel.lnx.4.4.r38-rel/arch/arm/boot/dts/qcom/msm8998.dtsi ]
+Besides what Andrew and Simon already mentionned, I have a few other
+small comments :
 
-In the queue, we have a patch enabling the Venus Decoder (VDEC) in mainline.
-(It is using the previously proposed "qcom,no-low-power" mechanism, but that
-might not be necessary, if I understand correctly?)
+[...]
 
+> @@ -797,23 +816,22 @@ static int hisi_femac_drv_probe(struct platform_device *pdev)
+>  		goto out_free_netdev;
+>  	}
+>  
+> -	priv->clk = devm_clk_get(&pdev->dev, NULL);
+> -	if (IS_ERR(priv->clk)) {
+> -		dev_err(dev, "failed to get clk\n");
+> -		ret = -ENODEV;
+> +	ret = devm_clk_bulk_get_all(&pdev->dev, &priv->clks);
+> +	if (ret < 0 || ret != CLK_NUM) {
+> +		dev_err(dev, "failed to get clk bulk: %d\n", ret);
+>  		goto out_free_netdev;
+>  	}
+>  
+> -	ret = clk_prepare_enable(priv->clk);
+> +	ret = clk_bulk_prepare_enable(CLK_NUM, priv->clks);
+>  	if (ret) {
+> -		dev_err(dev, "failed to enable clk %d\n", ret);
+> +		dev_err(dev, "failed to enable clk bulk: %d\n", ret);
+>  		goto out_free_netdev;
+>  	}
+>  
+>  	priv->mac_rst = devm_reset_control_get(dev, "mac");
+>  	if (IS_ERR(priv->mac_rst)) {
+>  		ret = PTR_ERR(priv->mac_rst);
+> -		goto out_disable_clk;
+> +		goto out_free_netdev;
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index 2793cc22d381a..5084191be1446 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -3000,6 +3000,56 @@ mdss_dsi1_phy: phy@c996400 {
- 			};
- 		};
- 
-+		venus: video-codec@cc00000 {
-+			compatible = "qcom,msm8998-venus";
-+			reg = <0x0cc00000 0xff000>;
-+			interrupts = <GIC_SPI 287 IRQ_TYPE_LEVEL_HIGH>;
-+			power-domains = <&mmcc VIDEO_TOP_GDSC>;
-+			clocks = <&mmcc VIDEO_CORE_CLK>,
-+				 <&mmcc VIDEO_AHB_CLK>,
-+				 <&mmcc VIDEO_AXI_CLK>,
-+				 <&mmcc VIDEO_MAXI_CLK>;
-+			clock-names = "core", "iface", "bus", "mbus";
-+			iommus = <&mmss_smmu 0x400>,
-+				 <&mmss_smmu 0x401>,
-+				 <&mmss_smmu 0x40a>,
-+				 <&mmss_smmu 0x407>,
-+				 <&mmss_smmu 0x40e>,
-+				 <&mmss_smmu 0x40f>,
-+				 <&mmss_smmu 0x408>,
-+				 <&mmss_smmu 0x409>,
-+				 <&mmss_smmu 0x40b>,
-+				 <&mmss_smmu 0x40c>,
-+				 <&mmss_smmu 0x40d>,
-+				 <&mmss_smmu 0x410>,
-+				 <&mmss_smmu 0x411>,
-+				 <&mmss_smmu 0x421>,
-+				 <&mmss_smmu 0x428>,
-+				 <&mmss_smmu 0x429>,
-+				 <&mmss_smmu 0x42b>,
-+				 <&mmss_smmu 0x42c>,
-+				 <&mmss_smmu 0x42d>,
-+				 <&mmss_smmu 0x411>,
-+				 <&mmss_smmu 0x431>;
-+			memory-region = <&venus_mem>;
-+			status = "disabled";
-+			qcom,no-low-power; /*** WORK AROUND LOW-POWER ISSUE ***/
-+
-+			video-decoder {
-+				compatible = "venus-decoder";
-+				clocks = <&mmcc VIDEO_SUBCORE0_CLK>;
-+				clock-names = "core";
-+				power-domains = <&mmcc VIDEO_SUBCORE0_GDSC>;
-+			};
-+
-+			video-encoder {
-+				compatible = "venus-encoder";
-+				clocks = <&mmcc VIDEO_SUBCORE1_CLK>;
-+				clock-names = "core";
-+				power-domains = <&mmcc VIDEO_SUBCORE1_GDSC>;
-+			};
-+		};
-+
- 		mmss_smmu: iommu@cd00000 {
- 			compatible = "qcom,msm8998-smmu-v2", "qcom,smmu-v2";
- 			reg = <0x0cd00000 0x40000>;
-diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
-index a712dd4f02a5b..ad1705e510312 100644
---- a/drivers/media/platform/qcom/venus/core.c
-+++ b/drivers/media/platform/qcom/venus/core.c
-@@ -585,6 +585,43 @@ static const struct venus_resources msm8996_res = {
- 	.fwname = "qcom/venus-4.2/venus.mbn",
- };
- 
-+static const struct freq_tbl msm8998_freq_table[] = {
-+	{ 1944000, 520000000 },	/* 4k UHD @ 60 (decode only) */
-+	{  972000, 520000000 },	/* 4k UHD @ 30 */
-+	{  489600, 346666667 },	/* 1080p @ 60 */
-+	{  244800, 150000000 },	/* 1080p @ 30 */
-+	{  108000,  75000000 },	/* 720p @ 30 */
-+};
-+
-+static const struct reg_val msm8998_reg_preset[] = {
-+    { 0x80124, 0x00000003 },
-+    { 0x80550, 0x01111111 },
-+    { 0x80560, 0x01111111 },
-+    { 0x80568, 0x01111111 },
-+    { 0x80570, 0x01111111 },
-+    { 0x80580, 0x01111111 },
-+    { 0xe2010, 0x00000000 },
-+};
-+
-+static const struct venus_resources msm8998_res = {
-+	.freq_tbl = msm8998_freq_table,
-+	.freq_tbl_size = ARRAY_SIZE(msm8998_freq_table),
-+	.reg_tbl = msm8998_reg_preset,
-+	.reg_tbl_size = ARRAY_SIZE(msm8998_reg_preset),
-+	.clks = {"core", "iface", "bus", "mbus"},
-+	.clks_num = 4,
-+	.vcodec0_clks = { "core" },
-+	.vcodec1_clks = { "core" },
-+	.vcodec_clks_num = 1,
-+	.max_load = 2563200,
-+	.hfi_version = HFI_VERSION_3XX,
-+	.vmem_id = VIDC_RESOURCE_NONE,
-+	.vmem_size = 0,
-+	.vmem_addr = 0,
-+	.dma_mask = 0xddc00000 - 1,
-+	.fwname = "qcom/venus-4.4/venus.mbn",
-+};
-+
- static const struct freq_tbl sdm660_freq_table[] = {
- 	{ 979200, 518400000 },
- 	{ 489600, 441600000 },
-@@ -891,6 +928,7 @@ static const struct venus_resources sc7280_res = {
- static const struct of_device_id venus_dt_match[] = {
- 	{ .compatible = "qcom,msm8916-venus", .data = &msm8916_res, },
- 	{ .compatible = "qcom,msm8996-venus", .data = &msm8996_res, },
-+	{ .compatible = "qcom,msm8998-venus", .data = &msm8998_res, },
- 	{ .compatible = "qcom,sdm660-venus", .data = &sdm660_res, },
- 	{ .compatible = "qcom,sdm845-venus", .data = &sdm845_res, },
- 	{ .compatible = "qcom,sdm845-venus-v2", .data = &sdm845_res_v2, },
+When you return here (or even later), you are missing a call to
+"clk_bulk_disable_unprepare" in the cleanup path
 
+>  	}
+>  	hisi_femac_core_reset(priv);
+>  
+> @@ -826,15 +844,34 @@ static int hisi_femac_drv_probe(struct platform_device *pdev)
+>  						 priv->phy_reset_delays,
+>  						 DELAYS_NUM);
+>  		if (ret)
+> -			goto out_disable_clk;
+> +			goto out_free_netdev;
+>  		hisi_femac_phy_reset(priv);
+>  	}
+>  
+> +	// Register the optional MDIO bus
 
+I think this comment style should be avoided, in favor of C-style
+comments ( /* blabla */ )
 
-@Vikash, are you saying that perhaps the DTS for video-codec@cc00000
-needs to be written slightly differently?
+> +	for_each_available_child_of_node(node, mdio_np) {
+> +		if (of_node_name_prefix(mdio_np, "mdio")) {
+> +			priv->mdio_pdev = of_platform_device_create(mdio_np, NULL, dev);
+> +			of_node_put(mdio_np);
+> +			if (!priv->mdio_pdev) {
+> +				dev_err(dev, "failed to register MDIO bus device\n");
+> +				ret = -ENODEV;
+> +				goto out_free_netdev;
+> +			}
+> +			mdio_registered = true;
+> +			break;
+> +		}
+> +		of_node_put(mdio_np);
+> +	}
+> +
+> +	if (!mdio_registered)
+> +		dev_warn(dev, "MDIO subnode not found. This is usually a bug.\n");
+> +
+>  	phy = of_phy_get_and_connect(ndev, node, hisi_femac_adjust_link);
+>  	if (!phy) {
+>  		dev_err(dev, "connect to PHY failed!\n");
+>  		ret = -ENODEV;
+> -		goto out_disable_clk;
+> +		goto out_unregister_mdio_bus;
+>  	}
+>  
+>  	phy_attached_print(phy, "phy_id=0x%.8lx, phy_mode=%s\n",
 
-Regards
+Thanks,
 
+Maxime
 
