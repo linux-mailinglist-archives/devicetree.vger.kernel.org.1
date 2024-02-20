@@ -1,189 +1,217 @@
-Return-Path: <devicetree+bounces-43822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FE5E85B981
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 11:50:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89DD385B98F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 11:52:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C969E1F23FE3
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 10:50:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03B3A1F218C9
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 10:52:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC2C764AB3;
-	Tue, 20 Feb 2024 10:50:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0291E64CF5;
+	Tue, 20 Feb 2024 10:52:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="pWxHRG1w"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="Rn5vXNPc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2074.outbound.protection.outlook.com [40.107.220.74])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DFC436AF9;
-	Tue, 20 Feb 2024 10:50:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708426219; cv=none; b=A+NVphEVpjYRti9z6sRKXB36P3hIa4wlKq2jOin2EUr0W+8nuEINo/H9IrtIy5UCZv50TZ44jvwTW5pZ8AWFpT1JgTbsfL6M/IroleH7cG9KDy6U6z18TfqKJSpUi0G6shlKgkBE817ExPMcqRxO0nlnCSIa1i2LQDehDmkAE+Y=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708426219; c=relaxed/simple;
-	bh=PVebVozWoa/PAo9loZJChZrJxtFO7WgfreChaECuNbw=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=NfQHJpNIS31aFOLcoDGP4IVPfBSvC1HiClGDGOpq8AQ7MTfde4whJ2gtkwZZ0siPy+DYmJoI73xWTX8tWujoS/oYAJZQ172gSTXbiqDd3T5cLR42DVYQl+5UjMRGwdYxMl9rtQrGLxwFKoup9YpxqDodjhyvOrH7FqpO0ujdR4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=pWxHRG1w; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41KAoBuV034941;
-	Tue, 20 Feb 2024 04:50:11 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1708426211;
-	bh=QXZ73JTTX/zdchsdeR2TnxIpFTrtTuU8Uz9+cq87qCM=;
-	h=From:To:CC:Subject:Date;
-	b=pWxHRG1wyswFo4QItfHfdlZrR34o5fCdh3Koum+NrKy9AQbbNGaFBh8NKUtStKmKs
-	 z32qugNScMDpoFoosKRcy3ctBLwXNBdFzHTqkOhUpTYRq3JimxMcOTIlw1t3yqRd22
-	 A5cvu7JS2mIGcY6UhZGfHdKc06q0wITK+AmyQDPg=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41KAoBrC009179
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 20 Feb 2024 04:50:11 -0600
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 20
- Feb 2024 04:50:11 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 20 Feb 2024 04:50:11 -0600
-Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [172.24.227.9])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41KAo7Rd101122;
-	Tue, 20 Feb 2024 04:50:08 -0600
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-j721e-evm-pcie0-ep: Extend overlay for PCIE1 in EP Mode
-Date: Tue, 20 Feb 2024 16:20:06 +0530
-Message-ID: <20240220105006.1056824-1-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3F6264A80;
+	Tue, 20 Feb 2024 10:51:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.220.74
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708426321; cv=fail; b=ScERMmVv+cb+uz0GVZzSGzxVC6d73LDMXYMAWN2v9UhdzM7lVQq8z3sv6pBu85HdDYqZUHBNWElFHetmuUehaJhA7rQOMiE+5loNB7tAO8ULn4evzcMKtB3OUgsT96w6XRAqUZqbMTzTEf23tHdgKT+TctUxbUa+eRBMpEU8h3c=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708426321; c=relaxed/simple;
+	bh=UnuLSRAzU1fv8HFUS/nYyFQsCNjpYapCFMZkC8qDgv8=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=oIKVt3r+hHwT6WBndKjRTWTyCFKepPM0WDcIn3bI57xdc+5//0rPvlofXcdD1Jx0pNEYqcW8/hGjY1UWHcQgJ8JS4eAZdrvrCdrwnx6J+cr8E6W5gi2nZETpeaLxs+zpmTvIrC2gt1ri4m/zfpaYJ6Z5nd26Q3BjZMyQo2vBvSY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=Rn5vXNPc; arc=fail smtp.client-ip=40.107.220.74
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XgKcVojOUwwrp7WUUKXr4HJaD8UVaMSeN7g8mu9Dm0n/D0jDmqm7AR20l9gHbFpCC1kJzJz91yOMxFZIkkR7YzoOo26H2sO7uM3u3oiAzSnPrMx/hLBa6vUh8ISr2SrRfTwo6J6eAQtTfU3FiuZx6kVp5l8dNG0zGDkyNm9OvWEXXbuHC+RQf3+HBfad0xXSjgEcDcT6Unmqem2HUsglqCqMYWd5at7LBIl56R8KJIT108pY0BN6IxYRLsZIeX0JE1aIoI/cxya/cI5cbWSMjZqKMXoXjtpc29QHvhJBnLlsjrM3s1lc5mVQL61O0Q2BEEGYZlpyWGkJhrwF6QGegg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=e5Bod2J9Mqu0N5RimJ/vdIA/RXbhRlIKtWnOwprHC24=;
+ b=lWJ9Wc1gjfAZwkSN0dXWuSZsCXe44lRhOvXF+apUrUPeJGa7UJYabBydP7iL9i6PPpDj0s/QnVuVjjHJq2tJfy6L00e7uWCIC1vYdsdqR4VwFU/rwrpERT3YBezavRQlqmMWHSiIX/nZLcwIamKEN0JTNdjSS9PfwlgbDr2ZcpqJMZLlkFFtImRjqj+Fj+SxZJeSiJ2pGDRxOOGTUgo1JvRI5eEvGhMoR5HdIU4E+RsK8uhHjMZj2qCvI3aHb92r5w0M/09xSi3AothAGxh2qjARgnyg/36LEhDnUUf4+Ifh7pjskQWJLo4OP5ypqtDWkzPG0TK8yPO0Idm56FGbig==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=e5Bod2J9Mqu0N5RimJ/vdIA/RXbhRlIKtWnOwprHC24=;
+ b=Rn5vXNPcQeaXCK/7+KtBWwtTP/Kez6/u8osLY3Pqt+4x+vQpJc+zXxChYAE3lRCRRS2gxooQC1MWjSwZeDBbqa7ZkyF4PZGn9dt3jK0qPAXQYSTeaPGZZ1hj4I2dvA45xjrdOrDuXnmoZOWP14dg+TtJCrry2LklRCCx9+NBOlw=
+Received: from DM6PR12MB4465.namprd12.prod.outlook.com (2603:10b6:5:28f::17)
+ by IA1PR12MB9064.namprd12.prod.outlook.com (2603:10b6:208:3a8::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.17; Tue, 20 Feb
+ 2024 10:51:57 +0000
+Received: from DM6PR12MB4465.namprd12.prod.outlook.com
+ ([fe80::3d54:20fd:bfee:7fc6]) by DM6PR12MB4465.namprd12.prod.outlook.com
+ ([fe80::3d54:20fd:bfee:7fc6%4]) with mapi id 15.20.7316.018; Tue, 20 Feb 2024
+ 10:51:57 +0000
+From: "Buddhabhatti, Jay" <jay.buddhabhatti@amd.com>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>, "Simek, Michal"
+	<michal.simek@amd.com>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"monstr@monstr.eu" <monstr@monstr.eu>, "michal.simek@xilinx.com"
+	<michal.simek@xilinx.com>, "git@xilinx.com" <git@xilinx.com>, Conor Dooley
+	<conor+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh@kernel.org>, "open
+ list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+	<devicetree@vger.kernel.org>, "moderated list:ARM/ZYNQ ARCHITECTURE"
+	<linux-arm-kernel@lists.infradead.org>, "open list:REAL TIME CLOCK (RTC)
+ SUBSYSTEM" <linux-rtc@vger.kernel.org>
+Subject: RE: [PATCH] dt-bindings: rtc: zynqmp: Describe power-domains property
+Thread-Topic: [PATCH] dt-bindings: rtc: zynqmp: Describe power-domains
+ property
+Thread-Index: AQHaY+ZmsRZsdu8zXkqO0n0tzvdoobETDdZQ
+Date: Tue, 20 Feb 2024 10:51:57 +0000
+Message-ID:
+ <DM6PR12MB4465FAF7AB3F9CE15FAC6C879D502@DM6PR12MB4465.namprd12.prod.outlook.com>
+References: <202402192019160b9c4120@mail.local>
+In-Reply-To: <202402192019160b9c4120@mail.local>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM6PR12MB4465:EE_|IA1PR12MB9064:EE_
+x-ms-office365-filtering-correlation-id: 8fdd2701-0b31-4568-0ed9-08dc3201f54d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ GOPsAMXFUnwlK0gocFjQKsyKpFnrj9fuvmbyqR9X2awjcO4TFjQy74KBPcirRM1seo60oD2A7kwy/K3YWlMkHbbTqnHCA4rhaq4IJ2Lw5MizJnyLqc2EgMyZly4EINB2k+L6MbyNVoRiSzOjjR1wyA7hCP23D8iFr/agVpSu4XrHhdORvE+0nX5hOgXvC3Tl8leMHTtvN0QBR7uc95x+JPRsf2Ao5ILpsbCUAyDmZS1w3gDddJTGJIH5CRfP593Bncprucx8hy83gT5D9d7XLPerPsbLyRAZRoGrPP0amMAF+C0GZLWOQyto8bPzsqvSBoX/VmdyB9RpE7LC/olmB4CBREqT/kF+1z5/jbaPd/8UcS7KiKKAQf8+OQSz/N/TtTZgutSDq2d8OVPBFVm1WdCArL1RZaI5VzBSgklJRwoR5XrKulqZOs7uTuhdxGO/PtUrfvuAAM87m+8jr/0ZcMcYurePVhPq88tJtXEqbK8S3l09Qfyn4UO28P8DQWglSNjWgNoyVzdJwK/xdSFVCuH7BfNVrYbosGIwhZoJUoVOxgiDvwAXITRRk/4Iy2PEp9ANQfUzwce6k4AWCp6qsqfHNSJ1peg51xgFdCLtY5I=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR12MB4465.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(38070700009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?IUZvNUk99KzoegISlhA5OP77sRz4ERaffjNUZ4TKtp+P1CfKuL2MY2ElJIdH?=
+ =?us-ascii?Q?xA6v0FAJwk045qzCp8DUpXrgbUg35pGgV3bCZobAGcbNjRHyDhFnYntbgm+C?=
+ =?us-ascii?Q?dfMosuv7bmk5rJdjEqn6/MoXhohZyVhSaqPfTy0hWw75ZjkAY/9YhjWmHrJ1?=
+ =?us-ascii?Q?eUZdHyvcRGozsKHkn7GzvqPzGyCAr3OSrUV3XwBTmIFWFJGU/2xSk+0CKJfw?=
+ =?us-ascii?Q?leN8dDf4UcsgNSxMkeCbsocd2F4Haz1KB+lV2DiEMDjVuBQ9xl2iy0l3ZWKS?=
+ =?us-ascii?Q?JTad1RiTm+O+2F/owGLrUC/Qg15KgojgdFk7pnl7bcjE7qZ3ZE9cdasD1U59?=
+ =?us-ascii?Q?wLeYqF78mmmcm+FU9gqnFEhLyPeK210Kto45FKHCsZdk6Vn1nko+tYX2Bm6K?=
+ =?us-ascii?Q?ORsmhExfr5WwhWbnB6v5oSdw8Ik80HdWjQfOdp3IMec6WyEh/ASD5ezE1oJP?=
+ =?us-ascii?Q?kLTSKWv8MSEfiz0UTcLAK2+QQadrO2F/8KdXvr4mMYsF5D/YOSRXhPxf521n?=
+ =?us-ascii?Q?dgwKr3hagGbr3L3o0rx5H2hKRCNkbNAt6SX9lPhOotVqAfpBJ0zA7oUEFj6c?=
+ =?us-ascii?Q?W5OCzhsEIcEbJwwchtQHy+cMR1E09bsvQxVO5+wHLTf0ybOLH2EeZICR1EmZ?=
+ =?us-ascii?Q?IxD3Kb4rP+Dux5fqIx8sYdQ/41O9qeOW7javFP7QvMWqfgTvjtsJHNqYTwGh?=
+ =?us-ascii?Q?PX7RZYPW1OqpoRNcC2wFejbaaIYFy47lPvsHMK/TDsecRuqrsd/Cs9BrCUGT?=
+ =?us-ascii?Q?DGtZEGm/ksnbxSF8lGDvBepCxOOenplDAnscG7PDLDDNpwR4t9vVDkBf192w?=
+ =?us-ascii?Q?E03liYK/66cKutUT7CMNvLQ0Z7fIcNyaducGKmEEOzNBkizF+Va8z1Dg7AaE?=
+ =?us-ascii?Q?/FicUjx0xV5eGO3h+wGbFG7jbpZm61wDQc1RwHj1KSY6MrHHyVJPYEkB2JfU?=
+ =?us-ascii?Q?yknN3VuoxTYxAwW5EKRL8Knp1IS/AImm63xdeenkBkd3GPdn2ST1Gqz6N1bh?=
+ =?us-ascii?Q?89wrpEopKYmXZJPL1JD0NESv9Glqtde48QhDZPcKHTWTu2IA3DsinMitHR6D?=
+ =?us-ascii?Q?fqaDcFkQoFhnwbuPray2elhQiOEad9FhUkEvtaUCKvi3oejftO1Ds0Kn+KgT?=
+ =?us-ascii?Q?SxEE9xDNmkXw4xroWbNtLy/9VVqSDx5IEafgqeQ28BMkXEqye3FrKuzre6Bd?=
+ =?us-ascii?Q?frs0MDbjFGa59VzyyCNSMZ7QJzqxLZXpuyuhBxO9jWJGLZqdYx9G36JccjOP?=
+ =?us-ascii?Q?lUahVonrko5fa6Z3Xbb3AHEkRazpJFHBxBcp1/8/QtkQjZv3PjcoYuIBi8cQ?=
+ =?us-ascii?Q?PkZ5VX09HT6ZC+PKh6c+QSp26419p05B424ddE3nVlDX1sNB0HIHgmMnw3N7?=
+ =?us-ascii?Q?bxLk2uRBUzsaevqHr5pzckKfKFVDKlczACt8n4FbZzG7te7dOkph+f7ZcmYo?=
+ =?us-ascii?Q?++7cmV3iYI42pwZRL2aFehiM3iCOf0ror2aYq9Pgpl+lpfcPjWxzngPXuVfu?=
+ =?us-ascii?Q?Yf5Kyhv5fHDb/z15/2/6I7hI18r/U6soCFL7rU00llwKzrm2SGrpDCrhOXyk?=
+ =?us-ascii?Q?T5zTeUYXMXDRFO5dxjc=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB4465.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8fdd2701-0b31-4568-0ed9-08dc3201f54d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Feb 2024 10:51:57.1190
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 0hcgKYXxqGR8R0vyz/x8dyrkHhcJaug/X7p27WbAVVQ/i1/9G1tHwPWoMJfN6yZG/r3dmNFl4M26GW/RexUHZg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB9064
 
-Update the existing overlay which configures PCIE0 instance of PCIe on
-J721E-EVM in Endpoint mode of operation, in order to configure PCIE1
-instance of PCIe as well in Endpoint mode of operation. Hence, change the
-name of the overlay to reflect its updated functionality.
+Hi Alexandre,
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
+> -----Original Message-----
+> From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> Sent: Tuesday, February 20, 2024 1:49 AM
+> To: Simek, Michal <michal.simek@amd.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>; linux-
+> kernel@vger.kernel.org; monstr@monstr.eu; michal.simek@xilinx.com;
+> git@xilinx.com; Conor Dooley <conor+dt@kernel.org>; Krzysztof Kozlowski
+> <krzysztof.kozlowski+dt@linaro.org>; Rob Herring <robh@kernel.org>; open
+> list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
+> <devicetree@vger.kernel.org>; moderated list:ARM/ZYNQ ARCHITECTURE
+> <linux-arm-kernel@lists.infradead.org>; open list:REAL TIME CLOCK (RTC)
+> SUBSYSTEM <linux-rtc@vger.kernel.org>
+> Subject: Re: [PATCH] dt-bindings: rtc: zynqmp: Describe power-domains
+> property
+>=20
+> On 19/02/2024 14:11:50+0100, Michal Simek wrote:
+> >
+> >
+> > On 2/17/24 09:26, Krzysztof Kozlowski wrote:
+> > > On 16/02/2024 10:42, Michal Simek wrote:
+> > > >
+> > > >
+> > > > On 2/16/24 10:19, Krzysztof Kozlowski wrote:
+> > > > > On 16/02/2024 09:51, Michal Simek wrote:
+> > > > > > RTC has its own power domain on Xilinx Versal SOC that's why
+> > > > > > describe it as optional property.
+> > > > > >
+> > > > > > Signed-off-by: Michal Simek <michal.simek@amd.com>
+> > > > > > ---
+> > > > > >
+> > > > > >    Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml |=
+ 3
+> +++
+> > > > > >    1 file changed, 3 insertions(+)
+> > > > > >
+> > > > >
+> > > > > But Versal is not described in this binding, is it? I see only
+> > > > > one compatible.
+> > > >
+> > > > It is the same IP only as is on zynqmp with own power rail.
+> > >
+> > > Then you should have separate compatible, because they are not
+> > > identical. It would also allow you to narrow the domains to versal
+> > > and also require it (on versal).
+> >
+> > I can double check with HW guys but I am quite sure IP itself is
+> > exactly the same. What it is different is that there is own power
+> > domain to it (not shared one as is in zynqmp case).
+> >
+> > Also Linux is non secure sw and if secure firmware won't allow to
+> > change setting of it it can't be required. I am just saying that Linux
+> > doesn't need to be owner of any power domain that's why it shouldn't
+> > be required property.
+>=20
+> I guess because the integration is different, you still need a differente
+> compatible so you can forbid the property on non-Versal.
 
-Hello,
+[Jay] RTC has its own power domain in case of Versal and ZynqMP both that w=
+e double check it.
 
-This patch is based on linux-next tagged next-20240220.
-
-Regards,
-Siddharth.
-
- arch/arm64/boot/dts/ti/Makefile               |  8 ++---
- ....dtso => k3-j721e-evm-pcie0-pcie1-ep.dtso} | 30 +++++++++++++++++--
- 2 files changed, 32 insertions(+), 6 deletions(-)
- rename arch/arm64/boot/dts/ti/{k3-j721e-evm-pcie0-ep.dtso => k3-j721e-evm-pcie0-pcie1-ep.dtso} (60%)
-
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index d601c52ab181..c7c9508e3980 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -75,7 +75,7 @@ k3-j721e-evm-dtbs := k3-j721e-common-proc-board.dtb k3-j721e-evm-quad-port-eth-e
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-beagleboneai64.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm-gesi-exp-board.dtbo
--dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm-pcie0-ep.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm-pcie0-pcie1-ep.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk-csi2-dual-imx219.dtbo
- 
-@@ -126,8 +126,8 @@ k3-am68-sk-base-board-csi2-dual-imx219-dtbs := k3-am68-sk-base-board.dtb \
- 	k3-j721e-sk-csi2-dual-imx219.dtbo
- k3-am69-sk-csi2-dual-imx219-dtbs := k3-am69-sk.dtb \
- 	k3-j721e-sk-csi2-dual-imx219.dtbo
--k3-j721e-evm-pcie0-ep-dtbs := k3-j721e-common-proc-board.dtb \
--	k3-j721e-evm-pcie0-ep.dtbo
-+k3-j721e-evm-pcie0-pcie1-ep-dtbs := k3-j721e-common-proc-board.dtb \
-+	k3-j721e-evm-pcie0-pcie1-ep.dtbo
- k3-j721e-sk-csi2-dual-imx219-dtbs := k3-j721e-sk.dtb \
- 	k3-j721e-sk-csi2-dual-imx219.dtbo
- k3-j721s2-evm-pcie1-ep-dtbs := k3-j721s2-common-proc-board.dtb \
-@@ -147,7 +147,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
- 	k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
- 	k3-am68-sk-base-board-csi2-dual-imx219-dtbs \
- 	k3-am69-sk-csi2-dual-imx219-dtbs \
--	k3-j721e-evm-pcie0-ep.dtb \
-+	k3-j721e-evm-pcie0-pcie1-ep.dtb \
- 	k3-j721e-sk-csi2-dual-imx219-dtbs \
- 	k3-j721s2-evm-pcie1-ep.dtb
- 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso b/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-pcie1-ep.dtso
-similarity index 60%
-rename from arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso
-rename to arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-pcie1-ep.dtso
-index 4062709d6579..5eaf304e3102 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-pcie1-ep.dtso
-@@ -1,7 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0-only OR MIT
- /**
-- * DT Overlay for enabling PCIE0 instance in Endpoint Configuration with the
-- * J7 common processor board.
-+ * DT Overlay for enabling PCIE0 and PCIE1 instances in Endpoint Configuration
-+ * with the J7 common processor board.
-  *
-  * J7 Common Processor Board Product Link: https://www.ti.com/tool/J721EXCPXEVM
-  *
-@@ -24,6 +24,10 @@ &pcie0_rc {
- 	status = "disabled";
- };
- 
-+&pcie1_rc {
-+	status = "disabled";
-+};
-+
- &cbass_main {
- 	#address-cells = <2>;
- 	#size-cells = <2>;
-@@ -50,4 +54,26 @@ pcie0_ep: pcie-ep@2900000 {
- 		phys = <&serdes0_pcie_link>;
- 		phy-names = "pcie-phy";
- 	};
-+
-+	pcie1_ep: pcie-ep@2910000 {
-+		compatible = "ti,j721e-pcie-ep";
-+		reg = <0x00 0x02910000 0x00 0x1000>,
-+		      <0x00 0x02917000 0x00 0x400>,
-+		      <0x00 0x0d800000 0x00 0x00800000>,
-+		      <0x00 0x18000000 0x00 0x08000000>;
-+		reg-names = "intd_cfg", "user_cfg", "reg", "mem";
-+		interrupt-names = "link_state";
-+		interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
-+		ti,syscon-pcie-ctrl = <&scm_conf 0x4074>;
-+		max-link-speed = <3>;
-+		num-lanes = <2>;
-+		power-domains = <&k3_pds 240 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 240 1>;
-+		clock-names = "fck";
-+		max-functions = /bits/ 8 <6>;
-+		max-virtual-functions = /bits/ 8 <4 4 4 4 0 0>;
-+		dma-coherent;
-+		phys = <&serdes1_pcie_link>;
-+		phy-names = "pcie-phy";
-+	};
- };
--- 
-2.34.1
+Thanks,
+Jay
+>=20
+> >
+> > Thanks,
+> > Michal
+>=20
+> --
+> Alexandre Belloni, co-owner and COO, Bootlin Embedded Linux and Kernel
+> engineering https://bootlin.com
 
 
