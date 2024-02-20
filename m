@@ -1,140 +1,111 @@
-Return-Path: <devicetree+bounces-43838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2035E85BA06
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 12:11:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D56A485BA1F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 12:16:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF6F228591A
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 11:11:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93316283536
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 11:16:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3026667C61;
-	Tue, 20 Feb 2024 11:11:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16F74664AB;
+	Tue, 20 Feb 2024 11:16:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="RKYZaPEJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CaN2fh/i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E9E467C45;
-	Tue, 20 Feb 2024 11:10:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEAAC604A9;
+	Tue, 20 Feb 2024 11:16:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708427461; cv=none; b=jZOee6QQzxXvjw9g4IByYkP0fZOagQIi83ddoHhwyhsWIJeUJxX7ljR/dny9LtAIUSDB2flUZoLr10mFdgcDH+zmvLjqcB8AAlkTP8XR+6vFtYsDkMPwTQYkK+G6ijCLyTZZ1lwhDS1AE8/zPs27XcN2rkytfdq4DClvL1Vwf+8=
+	t=1708427764; cv=none; b=ipKS+0ow/DL6CytI47ORwDilUmAjhHUesaYQVfA0+m7ptLwCq+UEq8ztwmhUM1zko9+LlO24Re0/VW05wHjM+8AtofBpjdN3nV3o5PwLN6IHMjXMZlYgMvc8JTO4eytkSif+erH68u3v4w7RQ19wWupkweyPZi7XdXG8PUr21a8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708427461; c=relaxed/simple;
-	bh=SORknAyK89FTpPMUYDIygldtRacLzHgxp/VDNZfKqJY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Pq3pI8mV6JOKKi8JE4jnvuWrEAox7oCPbV2dIUHEqhaarbl665BPh1++dRzH06xNGBdky1Lzeno1su7g2H7xlJWZLvLA+WuXkf+/MBrTmpHb2syIMKyzK9VtcPEzluCQugaVxx+pViJ4sF7tnGlZfRMIPfxgUbui68JmEgk/g/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=RKYZaPEJ; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPA id 4906C1BF209;
-	Tue, 20 Feb 2024 11:10:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1708427456;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=eFeqAc0viLZubDduFEQRtTQhhOqlv7YIdJ9vqQOHsWs=;
-	b=RKYZaPEJC+YwyWaq+Vd6q3jwz1J1O+djnucz/L2Nc/pCdc+LpnnqKGweCyYqqab0hxw/zo
-	llSi0TCWhhLFGQUF7veRhkz1jHCHvkbEdeFIk6M2w8FDQnn45TApkJifS/7WcX729LnMM4
-	RmQnIqzu+OARccUzXZasSo8HtO5/z5roV8ztrMgx1HneWTrD3kRc+8NJd9bABDhLwochuR
-	+H3HG11tkb74Ei4sWNoxk+sxr0WeVyBecQim9ytbovIkEeYXqXwwjJdb8J85gmfnSo9YIF
-	OoUGO+0QjNoKtbzy10C7CpDmQfPdQQWLk3zFktun/qPy2Ast6p9au2TwSEcEXw==
-From: Herve Codina <herve.codina@bootlin.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Wolfram Sang <wsa@kernel.org>,
-	Mark Brown <broonie@kernel.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Rob Herring <robh@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Herve Codina <herve.codina@bootlin.com>,
-	stable@vger.kernel.org
-Subject: [PATCH 2/2] of: property: fw_devlink: Fix links to supplier when created from phandles
-Date: Tue, 20 Feb 2024 12:10:37 +0100
-Message-ID: <20240220111044.133776-3-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240220111044.133776-1-herve.codina@bootlin.com>
-References: <20240220111044.133776-1-herve.codina@bootlin.com>
+	s=arc-20240116; t=1708427764; c=relaxed/simple;
+	bh=b3Q8EgeZzo8W7wf2Dwybt5IsYpM0CIbjVQaLGahQYeE=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=CwV4ysz2Zg4E8x0QGl/Oz+FUa9r34fAHQq52bXSfC9XjhAvW/QmO/INhFtNh9RnrQ2PKFE1ZTynXIIlRQVQ9nvcJlEJ1DvUJ0pFkrpxmHE5SM7dfIgx01KyOfLafffyj1c9/J+OtteyIxoW2yUPajmy9vNkPUJ3sHYBQajjx3qE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CaN2fh/i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F740C433C7;
+	Tue, 20 Feb 2024 11:16:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708427763;
+	bh=b3Q8EgeZzo8W7wf2Dwybt5IsYpM0CIbjVQaLGahQYeE=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=CaN2fh/ih+BYJIL5Ws+1+IwLVaYYExR7VKCj+S0U7o8mQSiMFCjIaJBr9RQiJHNba
+	 ENC16mJKyGByugLr4Rw72c9dZ/Cp0zjOk1slGQHrVViUhiF/nVuTj4wEwXdMT7y2vY
+	 Cgs3UzXf2q02/ld2Q78ujip4Shr8I4ExoAam969vmSe93IVhQNza4kebbDAkiwgl1x
+	 xAO60ToVjNJ9WG2BqsaNP6DdLc+FubLMNIGlCeIhXS5WsbVm9dVM3vFgYBQCgi5gfP
+	 COEmcJBS4d7YMaRIZgGHJuScS0DHqh33Oden2MMCyka2EHFVhkrFjbCATPIQCq1d++
+	 5kMhwYjofqNrg==
+Date: Tue, 20 Feb 2024 05:16:02 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+From: Rob Herring <robh@kernel.org>
+To: Inochi Amaoto <inochiama@outlook.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Rob Herring <robh+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, 
+ Jingbao Qiu <qiujingbao.dlmu@gmail.com>, Vinod Koul <vkoul@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, dmaengine@vger.kernel.org, 
+ dlan@gentoo.org, Jisheng Zhang <jszhang@kernel.org>, 
+ Liu Gui <kenneth.liu@sophgo.com>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: 
+ <PH7PR20MB4962823548BE1CB8E225ED09BB502@PH7PR20MB4962.namprd20.prod.outlook.com>
+References: <PH7PR20MB49624130A5D0B71599D76358BB502@PH7PR20MB4962.namprd20.prod.outlook.com>
+ <PH7PR20MB4962823548BE1CB8E225ED09BB502@PH7PR20MB4962.namprd20.prod.outlook.com>
+Message-Id: <170842776103.2697493.3548601402716430308.robh@kernel.org>
+Subject: Re: [PATCH 2/4] dt-bindings: clock: sophgo: Add top misc
+ controller of CV18XX/SG200X series SoC
 
-Since commit 1a50d9403fb9 ("treewide: Fix probing of devices in DT
-overlays"), when using device-tree overlays, the FWNODE_FLAG_NOT_DEVICE
-is set on each overlay nodes. This flag is cleared when a struct device
-is actually created for the DT node.
-Also, when a device is created, the device DT node is parsed for known
-phandle and devlinks consumer/supplier links are created between the
-device (consumer) and the devices referenced by phandles (suppliers).
-As these supplier device can have a struct device not already created,
-the FWNODE_FLAG_NOT_DEVICE can be set for suppliers and leads the
-devlink supplier point to the device's parent instead of the device
-itself.
 
-Avoid this situation clearing the supplier FWNODE_FLAG_NOT_DEVICE just
-before the devlink creation if a device is supposed to be created and
-handled later in the process.
+On Tue, 20 Feb 2024 18:20:29 +0800, Inochi Amaoto wrote:
+> CV18XX/SG200X series SoCs have a special top misc system controller,
+> which provides register access for several devices. In addition to
+> register access, this system controller also contains some subdevices
+> (such as dmamux).
+> 
+> Add bindings for top misc controller of CV18XX/SG200X series SoC.
+> 
+> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+> ---
+>  .../soc/sophgo/sophgo,cv1800-top-syscon.yaml  | 48 +++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800-top-syscon.yaml
+> 
 
-Fixes: 1a50d9403fb9 ("treewide: Fix probing of devices in DT overlays")
-Cc: <stable@vger.kernel.org>
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
----
- drivers/of/property.c | 16 +++++++++++++++-
- 1 file changed, 15 insertions(+), 1 deletion(-)
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 641a40cf5cf3..ff5cac477dbe 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1097,6 +1097,7 @@ static void of_link_to_phandle(struct device_node *con_np,
- 			      struct device_node *sup_np)
- {
- 	struct device_node *tmp_np = of_node_get(sup_np);
-+	struct fwnode_handle *sup_fwnode;
- 
- 	/* Check that sup_np and its ancestors are available. */
- 	while (tmp_np) {
-@@ -1113,7 +1114,20 @@ static void of_link_to_phandle(struct device_node *con_np,
- 		tmp_np = of_get_next_parent(tmp_np);
- 	}
- 
--	fwnode_link_add(of_fwnode_handle(con_np), of_fwnode_handle(sup_np));
-+	/*
-+	 * In case of overlays, the fwnode are added with FWNODE_FLAG_NOT_DEVICE
-+	 * flag set. A node can have a phandle that references an other node
-+	 * added by the overlay.
-+	 * Clear the supplier's FWNODE_FLAG_NOT_DEVICE so that fw_devlink links
-+	 * to this supplier instead of linking to its parent.
-+	 */
-+	sup_fwnode = of_fwnode_handle(sup_np);
-+	if (sup_fwnode->flags & FWNODE_FLAG_NOT_DEVICE) {
-+		if (of_property_present(sup_np, "compatible") &&
-+		    of_device_is_available(sup_np))
-+			sup_fwnode->flags &= ~FWNODE_FLAG_NOT_DEVICE;
-+	}
-+	fwnode_link_add(of_fwnode_handle(con_np), sup_fwnode);
- }
- 
- /**
--- 
-2.43.0
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800-top-syscon.example.dtb: /example-0/syscon@3000000/dma-router: failed to match any schema with compatible: ['sophgo,cv1800-dmamux']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/PH7PR20MB4962823548BE1CB8E225ED09BB502@PH7PR20MB4962.namprd20.prod.outlook.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
