@@ -1,197 +1,157 @@
-Return-Path: <devicetree+bounces-44068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B55E85C61D
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 21:54:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1897085C79A
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 22:14:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8CFF81F23912
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 20:54:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 67A5BB20F9E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 21:14:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E8BD1509BD;
-	Tue, 20 Feb 2024 20:54:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8812F14AD15;
+	Tue, 20 Feb 2024 21:14:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="P2HhyoOz"
+	dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="Q535Xm4t";
+	dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="pBreeP0U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.167])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C124B14AD12
-	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 20:54:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708462466; cv=none; b=HWtfbaN1XEHE4qBdEK14ZrG4e4JlD4JS+hqbsp+DI9TCuhH8R0xxIdx9iYqM35eoWxyaf0+HQzCaLduQeJgWMwSRqx2C4U4N7Uxk4of22KhnXqmrxA7Iyy7LTFjEH/JD3W661x6zZ05VQF8MkqJumnm/FgXYNe4bkGLbpf5EdM4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708462466; c=relaxed/simple;
-	bh=Yi0rtUqZLJm2S6u03a6Dmkff761MDSWQIxTDSQNuYdE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hvCwlixradsKhttoXMNBtxPnVRoZEp2obzIcpdHiRK/Ap6S7/Uw2JIObk/bqTBnEP3WRfb9kkLw3ghCl2WnRXkn4dOUs9qMJncXI9NrQuIHxfmPbiE+7fi2d4kq1EEBAondXzCcYAzyRYJUlg1OH4NlEwTiwjw/H2+Z13deP7nY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=P2HhyoOz; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-512b25893c9so3252680e87.3
-        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 12:54:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1708462462; x=1709067262; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jyh9FR/LCnL9UHf/YvsJlGBxSygyQQc/DzYerA/eUFA=;
-        b=P2HhyoOzqDJnE/Y9Kp4LbRwJniYfxSYfnuKrMCkUjU7WJTvr9S+LS+/wJSUhqRXiFB
-         Tt6YhgakC0FwtiO38IQF7jExcdNUwVBRtbi4o5moscJax1HnT1tybfnc4AUIy5JSSMnQ
-         C4BZ/uIkIWXgKkVI4fJi5D5RbI4INhnU8nZK3EFyzOmwqWYcTmPghry8dzdS+YJmW4+N
-         3M7VwYawEO+u5oiBoC2ev0ouFnIWeBGt+fb0/wBqzT/Po4RjNOf9KqVt6P8jX4gN0Ioj
-         W/vuoi8SeoF6B9G6A3r1ig0HtoFALXKogb3OvOnI2poUqkdVPDwv42gkK1p8GW2YngVI
-         yQjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708462462; x=1709067262;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jyh9FR/LCnL9UHf/YvsJlGBxSygyQQc/DzYerA/eUFA=;
-        b=H7Pqx6R5baC8T4t4NsXQpu/XTeg6z3bJkXwCgJE8uLUbYLjWkrJ05EsIwG3RKxKViz
-         JQjU5c04VDkZmJU12DIkkDbxI0BnlajjBhy3VHJKdournrAr5R1N945k49elWA5X6lml
-         ayfxvP8kVJxH7x2nTayJJv06RnkolW6SUL/rmWkAEi0wnx/XMUFeqiqibo7CbViAgAcV
-         5c5ZDVSruSzCqxJyrTrbbVyDKlz50nVXe2uHUrk8W9RB4WsRPjhgS1j9ez83mq8xgo9X
-         Zs2fJKgMOf87swECs2R59gFJ7wpYaaeTYwe6jcPIZ1Z1QSwzocNFc3qQZFhWRzCvvLBc
-         4vEA==
-X-Forwarded-Encrypted: i=1; AJvYcCVFabzY8VIUGAcbvqiyq9XNjj4FA7A/0PoDKAeQIdsMQAEJosxcEATe71No+Nsxsiys1EbW2MDSw2UutfZf6Zpwr8TD0m0hHxiuiw==
-X-Gm-Message-State: AOJu0Yz2HcmUs2aNSB+VuGmmkSAcVGz/3AJR8kQoR9fj8SZI2lX+fhUY
-	adh3WabDGXiysEUz0PDtTRhNZREcWt592UeKvEIjuDtZZKEorbr7Ic9IXBHDP7H8jnp++6EzYAP
-	KKis8xXpiBSbRjyBYVqvsbrsqY4ocl+NKSsd3FQ==
-X-Google-Smtp-Source: AGHT+IHZqlcVgt+ktb4ViHXtjGE0NSdsEiIKRla1wDkZQzzWbmG1Zgv7ZNzPVhE7Wq2SOamQcI56TcuJ7km+1hUpqHA=
-X-Received: by 2002:a05:6512:1321:b0:512:bd65:860a with SMTP id
- x33-20020a056512132100b00512bd65860amr5309051lfu.5.1708462462005; Tue, 20 Feb
- 2024 12:54:22 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87E8D14AD12;
+	Tue, 20 Feb 2024 21:14:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=81.169.146.167
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708463675; cv=pass; b=RK8o9Z15Z49A8PCiJOPAK7AaXueHpMypg1jE3l/g6b5QS8Dh35zQS+ER3eah1NKz1qyvYp6CrKo14TW7XhXxQ7uTDPz4qlMh5fV8l2dbiHPElLLFH9OU1+6RknPPA+NLsM6k/uX3hEOytwRhybyekl8s5SnLFW9oWGwnOL/hvTQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708463675; c=relaxed/simple;
+	bh=X3J4ARYDuq8zRwmpQAaANCvJXxo+4umvAejM38B22Hw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rwccNXiDebGLfp7kEpasBy2n9C9M5kBPp9yv51vsMCgmQ8rzlRRGJRLEobCv/oJL8GKZ5uc2YMje/ztXe8RODTOP30983eQPSphhob18QBKNha6dJVeyxUI79i8UReIbaU1/d1WgSWmoyKrmEgH6X3x3LrVuXbKmgH/JbUHoPAc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gerhold.net; spf=none smtp.mailfrom=gerhold.net; dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b=Q535Xm4t; dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b=pBreeP0U; arc=pass smtp.client-ip=81.169.146.167
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gerhold.net
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=gerhold.net
+ARC-Seal: i=1; a=rsa-sha256; t=1708463490; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=LPGn+YhJnYqJbBnUG87PLh08wsn72zSTaPXIRALL8/uuKYce5vybDt1IEBQURoHoSN
+    vxqkMIt0Nk8BeG53iWgdlMJ7tAnC6YJ1VoGvIhdJ3wLHDFv/Hw7Ha7wyF/vHxYa/ATRc
+    osmUr7iNBzu2aJRPEL6mAOTBcX2gZEckolDfZH6wn6vigLSonjTOwy6zpVKEFmYBii0M
+    81XpcJOCzQcVGUOzR8Bv+0FDzi49lsFFR85HsJLH+MIw06NkQgzj5qxscLyFL9/Ajf1R
+    wdfeIld2J1vuQ4vTGyfSWxXavjXH05TmFWqAlijsEmUHk2DOvS06l79Q/02TI1rSVCiF
+    7Y4A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1708463490;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=+KeCXYbcuLeR/MEjiDTunidvdG+aFAeAfY2cXn0dLD4=;
+    b=d+mLUoTEtX9GuY66VzTpvwFN+DEp92+ApZeXC7cEOBZJ/kBFGU2PaYvS6BcRcIcBH9
+    eTVONOXMuTtoACl8OWi2nLWmmZNuTVwNL/hhORdGDWro3JDK6NUQLPe9l4JA2wIUmFxf
+    FXE0s8ZLhyeCT2vZzzbllaxYJkONd0P5MqqQSlq6NN0WoDG57LWlqCTwHU2xjdfKFlrt
+    v5NehSwCLqiJN6ryyXMGu/1LGrpUGT6MclfQC9+0lbAAAY+w81R8Y113/zhKZx+OrdEc
+    yzWe6niEBeLcazv31LzsSafWUHObwsq0fXc0bIHvKLbfeyk6URWcp+5+cxdcCBC27SgD
+    IHKQ==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1708463490;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=+KeCXYbcuLeR/MEjiDTunidvdG+aFAeAfY2cXn0dLD4=;
+    b=Q535Xm4tqxL5UiiUdicDzNHhW4Jp2gpmLfOqUjpz6V9YYP+aUzXFrs5GXCUi6A2i2O
+    Sf0tdRHfi98xFtnvKeXx0rNRYpoJ1dvSufU5jGav/Kgx3hXp51TH5MoyC0wT0gStK8rJ
+    fmxQj7lS1JrxboM9YrxNKUFPZoiO4D1vvBimk3YJ/wpNU3yNg47N8wRlJHHiQ1TISQJK
+    I2W/Ql5cZHHLb1HkvTYvRX/UxVGfNmckD2fuzPYWolrFWTe8e+645pOATi0a7sHqrx2y
+    u3e7rrmJtLjZqs/P5ryUNu7R2uxM9wZAPWQytSlT82Ag9xtXMPE0jpvo60NAX4dlPOoM
+    n/5A==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1708463490;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=+KeCXYbcuLeR/MEjiDTunidvdG+aFAeAfY2cXn0dLD4=;
+    b=pBreeP0UmPbOTbT5viwl4/qYwt075u/hHtscbgzbwiC9X0qiVquJzGkVdCHLItHgQi
+    hmtN06ZhfTqN9/r9nLBw==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8Z+P1A=="
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 49.11.2 SBL|AUTH)
+    with ESMTPSA id ze34f101KLBTSLu
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Tue, 20 Feb 2024 22:11:29 +0100 (CET)
+Date: Tue, 20 Feb 2024 22:11:24 +0100
+From: Stephan Gerhold <stephan@gerhold.net>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: arm: qcom: drop the superfluous device
+ compatibility schema
+Message-ID: <ZdUVfHa5SvoWbc-Z@gerhold.net>
+References: <20240204-qcom-drop-compat-v1-1-69d6cd92aa0e@linaro.org>
+ <ZcijFk9GcgtVoXoV@gerhold.net>
+ <CAA8EJprKfMGTAtaMm1YoioRLDOtjXQ4XGm8geURB5WVXdYUK0A@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240220094344.17556-1-mitrutzceclan@gmail.com>
-In-Reply-To: <20240220094344.17556-1-mitrutzceclan@gmail.com>
-From: David Lechner <dlechner@baylibre.com>
-Date: Tue, 20 Feb 2024 14:54:10 -0600
-Message-ID: <CAMknhBEZ7Y1Yx=wJGnfvYWGKPLas3pbCyY+sN8vrBzdkYO-A4w@mail.gmail.com>
-Subject: Re: [PATCH v13 1/3] dt-bindings: adc: add AD7173
-To: Dumitru Ceclan <mitrutzceclan@gmail.com>
-Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org, 
-	linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, 
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Walle <michael@walle.cc>, Andy Shevchenko <andy.shevchenko@gmail.com>, 
-	Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu <chiaen_wu@richtek.com>, 
-	Niklas Schnelle <schnelle@linux.ibm.com>, =?UTF-8?Q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>, 
-	Mike Looijmans <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>, 
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>, Ceclan Dumitru <dumitru.ceclan@analog.com>, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAA8EJprKfMGTAtaMm1YoioRLDOtjXQ4XGm8geURB5WVXdYUK0A@mail.gmail.com>
+Content-Transfer-Encoding: 7bit
 
-On Tue, Feb 20, 2024 at 3:43=E2=80=AFAM Dumitru Ceclan <mitrutzceclan@gmail=
-.com> wrote:
->
+On Tue, Feb 20, 2024 at 11:11:15AM +0200, Dmitry Baryshkov wrote:
+> On Sun, 11 Feb 2024 at 12:36, Stephan Gerhold <stephan@gerhold.net> wrote:
+> > On Sun, Feb 04, 2024 at 06:56:35PM +0200, Dmitry Baryshkov wrote:
+> > > The idea impressed in the commit b32e592d3c28 ("devicetree: bindings:
+> > > Document qcom board compatible format") never got actually adopted. As
+> > > can be seen from the existing board DT files, no device actually used
+> > > the PMIC / foundry / version parts of the compatible string. Drop this
+> > > compatibility string description to avoid possible confusion and keep
+> > > just the generic terms and the SoC list.
+> > >
+> > > Fixes: b32e592d3c28 ("devicetree: bindings: Document qcom board compatible format")
+> >
+> > FWIW: It's not correct that no device uses the version parts of the
+> > compatible string. There are actually two boards documented in qcom.yaml
+> > that follow this scheme:
+> >
+> >   compatible = "qcom,msm8916-mtp", "qcom,msm8916-mtp/1", "qcom,msm8916";
+> >   compatible = "longcheer,l8150", "qcom,msm8916-v1-qrd/9-v1", "qcom,msm8916";
+> >
+> > I don't think anyone is actively relying on those, though. I guess we
+> > can just ignore them or even remove them.
+> 
+> Excuse me for the long delay. As it was you who added the
+> longcheer-l8150 support, does it require any of the msm-id options or
+> dtbTool (original or modified) processing?
+> If it can work with no additional tags, we can drop these compatibility strings.
+> 
 
-...
+I think we added it back then to allow booting mainline with the
+original bootloader. Together with the "skales" dtbTool (used to be at
+https://source.codeaurora.org/quic/kernel/skales) the compatible does
+result in a correct QCDT that is accepted by the bootloader.
 
-> +
-> +  avdd-supply:
-> +    description: Avdd supply, can be used as reference for conversion.
-> +                 This supply is referenced to AVSS, voltage specified he=
-re
-> +                 represens (AVDD - AVSS).
+I doubt anyone still uses this way of booting nowadays. In postmarketOS
+we strongly recommend everyone to boot MSM8916 devices using lk2nd [1]
+which supports plain appended DTB without special properties and other
+more reliable forms of DTB selection. I have not tested booting mainline
+with the original bootloader for many years.
 
-The datasheets call this AVDD1, not AVDD. Would be nice to use the
-correct name to avoid ambiguity.
+Dropping the extra compatible would be fine for me. Personally I don't
+consider booting via weird/broken bootloaders worth supporting (at least
+if better workarounds exist). Having to boot with "custom" bootloaders
+tends to be a somewhat subjective topic though so others might disagree.
 
-Also check spelling `represents` above and below.
+Thanks,
+Stephan
 
-> +
-> +  avdd2-supply:
-> +    description: Avdd2 supply, used as the input to the internal voltage=
- regulator.
-> +                 This supply is referenced to AVSS, voltage specified he=
-re
-> +                 represens (AVDD2 - AVSS).
-> +
-> +  iovdd-supply:
-> +    description: iovdd supply, used for the chip digital interface.
-> +
-> +  clocks:
-> +    maxItems: 1
-> +    description: |
-
-Don't need `|` here.
-
-> +      Optional external clock source. Can include one clock source: exte=
-rnal
-> +      clock or external crystal.
-> +
-> +  clock-names:
-> +    enum:
-> +      - ext-clk
-> +      - xtal
-> +
-> +  '#clock-cells':
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^channel@[0-9a-f]$":
-> +    type: object
-> +    $ref: adc.yaml
-> +    unevaluatedProperties: false
-> +
-> +    properties:
-> +      reg:
-> +        minimum: 0
-> +        maximum: 15
-
-Parts ending in -2 only have four channels.
-
-> +
-> +      diff-channels:
-> +        items:
-> +          minimum: 0
-> +          maximum: 31
-> +
-
-Are we missing `bipolar: true` here? (since we have
-unevaluatedProperties: false)
-
-> +      adi,reference-select:
-> +        description: |
-> +          Select the reference source to use when converting on
-> +          the specific channel. Valid values are:
-> +          vref       : REF+  /REF=E2=88=92
-> +          vref2      : REF2+ /REF2=E2=88=92
-> +          refout-avss: REFOUT/AVSS (Internal reference)
-> +          avdd       : AVDD  /AVSS
-> +
-> +          External reference ref2 only available on ad7173-8.
-> +          If not specified, internal reference used.
-> +        $ref: /schemas/types.yaml#/definitions/string
-> +        enum:
-> +          - vref
-> +          - vref2
-> +          - refout-avss
-> +          - avdd
-> +        default: refout-avss
-> +
-> +    required:
-> +      - reg
-> +      - diff-channels
-> +
-> +required:
-> +  - compatible
-> +  - reg
-
-Aren't the various power supplies supposed to be required?
-
-- avdd-supply
-- avdd2-supply
-- iovdd-supply
+[1]: https://github.com/msm8916-mainline/lk2nd
 
