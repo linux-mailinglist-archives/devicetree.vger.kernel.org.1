@@ -1,192 +1,256 @@
-Return-Path: <devicetree+bounces-43884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 768BB85BBED
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 13:23:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38D1F85BC1E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 13:29:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EEA741F22AD5
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 12:23:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A39DE1F2320E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 12:29:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EB7C67E83;
-	Tue, 20 Feb 2024 12:23:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09ADC6997A;
+	Tue, 20 Feb 2024 12:28:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mZa37MV8"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="V7i8i2ko"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A2725B1F9;
-	Tue, 20 Feb 2024 12:22:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 544E769968;
+	Tue, 20 Feb 2024 12:28:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708431781; cv=none; b=GusdRHCNSsnHSEX6OhHCc32fk4vPSeLO2Mk5PQEg0LlzjNAWzmYm10jeY7rjQdyKFFIziRopGXH/UIjIFVLkQUMp5SRUpiSifQ7O307DLydtv6HH1zfFbXLxbHYsWIuTPIWKPpf74SjibPWThqbR7pWm4Np8gdLMIz+VkGf0fDU=
+	t=1708432134; cv=none; b=p0dF14MmawUThV/F1prAguOvxu0G3jB2Y/txOg2y3gta5hIKEdkUOPijg+4E511fJBdy3jgrftoXGIzofEU4Kngdi51WK2G2sQGdWdyGl5uOgiIUbU4/0CICVY72o5NVQwyktBHNtMDZ4MCMRBX20notYiGmv0j1y0VGb9dqHXA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708431781; c=relaxed/simple;
-	bh=xqTSVgfznTksrbz5QT8iopPyYXLCy7wv5bGIEH4MSb4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pWF9dMJI5CPkLfZ/GsmILiXqvR72I73FIQfSVSFlJiXINh2DDMApocsFF6hQtBqYKGmMEr7rTCLyi2YhZK0Aom+3H2L59OfSjBOKvfHeYYo3tYH1PRw76e8PkQ4cEU6cwCadqeaCaNEPQIjRs9zzD/aGc/+55WB8VG4rIM7BlTU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mZa37MV8; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2d23d301452so23902261fa.1;
-        Tue, 20 Feb 2024 04:22:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708431777; x=1709036577; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=9QwagbwsopEqnSDcxYcEzfKPag+Slzzzgw7BDLAReYI=;
-        b=mZa37MV8dXtcpzxexmWiNeacxxRmFSphd1O8jqdjxAobwJ6h7WsPusbHKi7zWa9keq
-         K2RpsK2XWYk5kRG6SMaSwXXuouZkMqsh26VZ3qrrnxBcQGeakTY9EtAsZK8P8TwljfbI
-         FS7X+Ynl3x5LVm5FXkPLwacYdRdh8NROK+qyR/BTQflhGi1YQG0WJpdMPzdwlfDuWFtV
-         +6rFIX+z3rZLITJbFOavXPfOXTWEYEqswi7UyiQg+NCkeL5dPvOFKrcn4l6uejHuJR/u
-         XaYZ1SLaEFEgkur+TP0EXKydiE0r9j4bk7LhbZmdM91ItxxyGfssJ8cQA5hc4HTJpCaC
-         P/Ug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708431777; x=1709036577;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9QwagbwsopEqnSDcxYcEzfKPag+Slzzzgw7BDLAReYI=;
-        b=c5hNk+UR1L8ViyClWRjN+K/jhvhNvDhfC2Vu1HWtngqsKlFvX0MTdRInp/ctoUyRLd
-         SzIZ0fJUAD4ImxA0bT/L8HwW+BiU+iO7y/N9hWmPZcemvnXUzQpc6GlM1cA5OKDuAHA6
-         znuS3mDHXou6t/KKnacWt/ZrZpooVzaZsQzeGzyAX80VTh8aVzR3aMbC8D/wCVimw4x/
-         A2ViTBNRsaoSHBx/r+RfMTcR/P+JznFfJvXde+SxXWgXzQhSqx7NEp3V2S5Zp1UfPS3i
-         IQdW4hkK5iLijjR6GaEifm18RK0+dN718y9PgmowKqVOzsc2PAaNqZEgGD1C1rkc/sBO
-         w0oQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV+7g0dreECzsgD/L2ze0jHUiNw/LPgnvzRSB17XiBUAnQdVPVN4gScAYV48KJBp8xxvxH48qw33HegC4zMBMcCOxrqbfQ1gh3HK0ZW7sFWlp/OzNTEu9eN1zyGwDRJLIUgxmg2QB6EU3DT6XhnOpMP0jCRVghrSkxvzwSVBOKBHQ==
-X-Gm-Message-State: AOJu0YwxOkIwBVSBDXnSOzwfmKdDEiYF9nFkiU9L+8lkI4lVMujyEAv6
-	gwQYn1mhoamQMBEmg4JbfWHW6LbiFTEABbmYcGnu52ygPvJhA3yz/tnmzi8270HUNIrUuXuS0Rk
-	eDcyHpimr2ccm5/X72gZX5qa86Js=
-X-Google-Smtp-Source: AGHT+IGXmsc5+QDVXYHuToO9jG/rogV7vVtEygW/qf5y8ysTBc+VvU2gsXLZr7JFxuoJCvMlUp3juBNxPPSSzGwknq8=
-X-Received: by 2002:a2e:b0d8:0:b0:2d0:ca39:5fb8 with SMTP id
- g24-20020a2eb0d8000000b002d0ca395fb8mr8934370ljl.53.1708431777125; Tue, 20
- Feb 2024 04:22:57 -0800 (PST)
+	s=arc-20240116; t=1708432134; c=relaxed/simple;
+	bh=9hC48CFGOI+zH+J/OnR3D9Cvj+eSSX+d271pEsg8oYE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=JTQRFwAnRmSVKXDtRg+21dNhDmTY6N8hicVvAOT3CCXI/gMbT3uYPEyXOSADhCJZFciB1TVY+NwA42T7Q3wYNsU4HkC08DHILidFajcvNfFtGfrZ+cVwrtFIH+XFqyJozYxp4KmUzUJsHnA4b6o3JGpsmOXHWfDEfkgpbkEmdtg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=V7i8i2ko; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41K5laxu005396;
+	Tue, 20 Feb 2024 12:28:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=g28R+uJawHAgWOgBmwhyNrp8WnEMlRZ+lOB3MV0yd50=; b=V7
+	i8i2ko3gpKbqmbgIStQ7+rg1mEXmv0vXkgwdKevULxE80JN6lQQp9ejBf+OR7UX1
+	mnxNAM5B2xZSt7Fsu2ku6aKWNB21rPkchyYfKHrhPACJJzGH9jRbQQ/kENIYSKS5
+	/yc8MQequPiJxA9OBdnGPsCspMqr7aa5Xr6TVAnuTe+uORZB8Uxfna8o5Bxvh43q
+	hBwXPbi1vjZpdamOFBgW9ZXeRzMBWgvjGntg4fqwC660NcEmDeKmslxS3zm8FmLj
+	DKDQ1sfa4512fQnZuRIPSwvo5bxmXS8wT+f//1ntgJtwQOZGlW5nGhZLyMACQCCG
+	TJEvonc9iT4xReU7e05A==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wcmqp8wm3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 20 Feb 2024 12:28:43 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41KCSgcB013993
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 20 Feb 2024 12:28:42 GMT
+Received: from [10.216.16.129] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 20 Feb
+ 2024 04:28:36 -0800
+Message-ID: <196fe404-ad88-27da-9fd2-e717355be520@quicinc.com>
+Date: Tue, 20 Feb 2024 17:58:32 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240219-realtek-reset-v4-0-858b82a29503@gmail.com>
- <20240219-realtek-reset-v4-3-858b82a29503@gmail.com> <lvt7su5mmf7b3w4gbxd6vlt25klsyziuuaznfzjy7d4oxz46qx@4dzc4cgmfkbc>
-In-Reply-To: <lvt7su5mmf7b3w4gbxd6vlt25klsyziuuaznfzjy7d4oxz46qx@4dzc4cgmfkbc>
-From: Luiz Angelo Daros de Luca <luizluca@gmail.com>
-Date: Tue, 20 Feb 2024 09:22:44 -0300
-Message-ID: <CAJq09z5ak_S3iFnGw+rw0JQwoxf=x69=Ync3Xg5AQ0hx_tsGXg@mail.gmail.com>
-Subject: Re: [PATCH net-next v4 3/3] net: dsa: realtek: support reset controller
-To: =?UTF-8?Q?Alvin_=C5=A0ipraga?= <ALSI@bang-olufsen.dk>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Andrew Lunn <andrew@lunn.ch>, 
-	Florian Fainelli <f.fainelli@gmail.com>, Vladimir Oltean <olteanv@gmail.com>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, "netdev@vger.kernel.org" <netdev@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH 1/5] spi: dt-bindings: add binding doc for spi-qpic-snand
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <broonie@kernel.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <miquel.raynal@bootlin.com>, <richard@nod.at>, <vigneshr@ti.com>,
+        <manivannan.sadhasivam@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-mtd@lists.infradead.org>
+CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
+References: <20240215134856.1313239-1-quic_mdalam@quicinc.com>
+ <20240215134856.1313239-2-quic_mdalam@quicinc.com>
+ <8c3d8fc3-2c1e-4ece-abb1-b427a909ad39@linaro.org>
+From: Md Sadre Alam <quic_mdalam@quicinc.com>
+In-Reply-To: <8c3d8fc3-2c1e-4ece-abb1-b427a909ad39@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 5-uOaEB-mW3eyFykmLRc0U2UUciV0rZr
+X-Proofpoint-ORIG-GUID: 5-uOaEB-mW3eyFykmLRc0U2UUciV0rZr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-20_06,2024-02-20_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
+ spamscore=0 mlxlogscore=999 adultscore=0 mlxscore=0 malwarescore=0
+ priorityscore=1501 impostorscore=0 clxscore=1015 lowpriorityscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402200090
 
-Hi Alvin,
 
-> On Mon, Feb 19, 2024 at 08:44:42PM -0300, Luiz Angelo Daros de Luca wrote:
-> > +void rtl83xx_reset_assert(struct realtek_priv *priv)
-> > +{
-> > +     int ret;
-> > +
-> > +     ret = reset_control_assert(priv->reset_ctl);
-> > +     if (!ret)
-> > +             return;
->
-> If priv->reset_ctl is NULL - i.e. if no DT property is specified - then
-> this will always return early and the GPIO will not be asserted.
 
-I made a mistake. I should be
+On 2/16/2024 12:32 AM, Krzysztof Kozlowski wrote:
+> On 15/02/2024 14:48, Md Sadre Alam wrote:
+>> Add device-tree binding documentation for QCOM QPIC-SNAND-NAND Flash
+>> Interface.
+>>
+> 
+> A nit, subject: drop second/last, redundant "bindings". The
+> "dt-bindings" prefix is already stating that these are bindings.
+> See also:
+> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+Ok
+> 
+>> Co-developed-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>> Co-developed-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+>> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+>> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
+>> ---
+>>   .../bindings/spi/qcom,spi-qpic-snand.yaml     | 82 +++++++++++++++++++
+>>   1 file changed, 82 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml b/Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml
+>> new file mode 100644
+>> index 000000000000..fa7484ce1319
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml
+> 
+> Filename like compatible.
+Ok
+> 
+>> @@ -0,0 +1,82 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/spi/qcom,spi-qpic-snand.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm QPIC NAND controller
+>> +
+>> +maintainers:
+>> +  - Md sadre Alam <quic_mdalam@quicinc.com>
+>> +
+> 
+> Provide description which will describe hardware.
+Ok
+> 
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - qcom,ipq9574-snand
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    minItems: 2
+>> +    maxItems: 3
+> 
+> You must document the items (could be sufficient in clock-names if the
+> names are obvious).
+Ok
+> 
+> 
+> Why the clocks are flexible? This given IPQ9574 has variable clock
+> inputs? Please explain.
 
-if (ret) {
-          dev_warn...
-}
-
-not returning on error (as you suggested below).
-
-I was sure I was doing just that... I was surprised to see it as it
-is.  I'll recheck my branch with all the integrated changes. It passed
-my tests as when reset is missed, it normally does not matter. Thanks
-for the catch.
-
->
-> > +
-> > +     dev_warn(priv->dev,
-> > +              "Failed to assert the switch reset control: %pe\n",
-> > +              ERR_PTR(ret));
->
-> You only log an error if the reset controller assert fails, but not if
-> the GPIO assert fails. Why the unequal treatment?
-
-Because it does not return a value. There is no way to tell if it failed.
-
->
-> I suggest keeping it simple:
->
-> void rtl83xx_reset_assert(struct realtek_priv *priv)
-> {
->   int ret;
->
->   ret = reset_control_assert(priv->reset_ctl);
->   if (ret)
->     dev_warn(priv->dev, "failed to assert reset control: %d\n", ret);
->
->   ret = gpiod_set_value(priv->reset, false);
->   if (ret)
->     dev_warn(priv->dev, "failed to assert reset GPIO: %d\n", ret);
-> }
->
-> or even drop the warnings altogether.
->
-> > +
-> > +     gpiod_set_value(priv->reset, true);
-> > +}
-> > +
-> > +void rtl83xx_reset_deassert(struct realtek_priv *priv)
-> > +{
-> > +     int ret;
-> > +
-> > +     ret = reset_control_deassert(priv->reset_ctl);
-> > +     if (!ret)
-> > +             return;
-> > +
-> > +     dev_warn(priv->dev,
-> > +              "Failed to deassert the switch reset control: %pe\n",
-> > +              ERR_PTR(ret));
-> > +
-> > +     gpiod_set_value(priv->reset, false);
-> > +}
->
-> Same comments apply to this function. Just deassert both.
->
-> > +
-> >  MODULE_AUTHOR("Luiz Angelo Daros de Luca <luizluca@gmail.com>");
-> >  MODULE_AUTHOR("Linus Walleij <linus.walleij@linaro.org>");
-> >  MODULE_DESCRIPTION("Realtek DSA switches common module");
-> > diff --git a/drivers/net/dsa/realtek/rtl83xx.h b/drivers/net/dsa/realtek/rtl83xx.h
-> > index 0ddff33df6b0..c8a0ff8fd75e 100644
-> > --- a/drivers/net/dsa/realtek/rtl83xx.h
-> > +++ b/drivers/net/dsa/realtek/rtl83xx.h
-> > @@ -18,5 +18,7 @@ int rtl83xx_register_switch(struct realtek_priv *priv);
-> >  void rtl83xx_unregister_switch(struct realtek_priv *priv);
-> >  void rtl83xx_shutdown(struct realtek_priv *priv);
-> >  void rtl83xx_remove(struct realtek_priv *priv);
-> > +void rtl83xx_reset_assert(struct realtek_priv *priv);
-> > +void rtl83xx_reset_deassert(struct realtek_priv *priv);
-> >
-> >  #endif /* _RTL83XX_H */
-> >
-> > --
-> > 2.43.0
-> >
-
-Regards,
-
-Luiz
+  I have checked Hardware Spec. and clocks are fixed in IPQ9574. Will fix in next
+  patch.
+> 
+>> +
+>> +  clock-names:
+>> +    minItems: 2
+>> +    maxItems: 3
+>> +
+> 
+> required goes here.
+Ok
+> 
+>> +allOf:
+>> +  - $ref: /schemas/spi/spi-controller.yaml#
+> 
+> 
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - qcom,ipq9574-snand
+>> +
+>> +    then:
+>> +      properties:
+>> +        dmas:
+>> +          items:
+>> +            - description: tx DMA channel
+>> +            - description: rx DMA channel
+>> +            - description: cmd DMA channel
+>> +
+>> +        dma-names:
+>> +          items:
+>> +            - const: tx
+>> +            - const: rx
+>> +            - const: cmd
+> 
+> No clue why it is here, move it to top level.
+Ok
+> 
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/qcom,ipq9574-gcc.h>
+>> +    qpic_nand: spi@79b0000 {
+> 
+> Drop unused label
+Ok
+> 
+>> +        compatible = "qcom,ipq9574-snand";
+>> +        reg = <0x1ac00000 0x800>;
+>> +
+>> +        clocks = <&gcc GCC_QPIC_CLK>,
+>> +                 <&gcc GCC_QPIC_AHB_CLK>,
+>> +                 <&gcc GCC_QPIC_IO_MACRO_CLK>;
+>> +        clock-names = "core", "aon", "iom";
+>> +
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +
+>> +        flash@0 {
+>> +            compatible = "spi-nand";
+>> +            reg = <0>;
+>> +            #address-cells = <1>;
+>> +            #size-cells = <1>;
+>> +            nand-ecc-engine = <&qpic_nand>;
+>> +            nand-ecc-strength = <4>;
+>> +            nand-ecc-step-size = <512>;
+>> +            };
+> 
+> Fix indentation.
+Ok
+> 
+>> +        };
+> 
+> Best regards,
+> Krzysztof
+> 
 
