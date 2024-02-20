@@ -1,84 +1,65 @@
-Return-Path: <devicetree+bounces-43679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CE0A85B203
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 05:53:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BFCD85B240
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 06:29:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 218AB28428D
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 04:53:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 204201F2306A
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 05:29:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EE9756B85;
-	Tue, 20 Feb 2024 04:53:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E67156B7A;
+	Tue, 20 Feb 2024 05:29:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="mIylj/W+"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="DOAq8eUO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A83F433D0
-	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 04:52:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A837845942;
+	Tue, 20 Feb 2024 05:29:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708404792; cv=none; b=VyqMnck/0NhbDCFs6y8ctjvB1JvGkCSv9WdzS3Zq1xE6qGzFeWmCByGb54i5e3Q18A9CYU98Y69hzOWEZ82sGNT5vL0hRV4ihkSca2N0rb3NMpDAlZg7LdOhNQeAnZKVEcgs53HrJ+wkN8l9qJ8ynLAuS0bRzozuPCrzdudGoPE=
+	t=1708406992; cv=none; b=r5uRJ8FDWXBKG3gUGhGlyM49k4smmLa9ZkVyo+QaxZQMj6DiV7etaAXUTjBteHLOh2yIUMEqTYgkgPfViO/O40oaU23Z8+kX1CVDaFhQ44QAoKnjM1mQpkh5/951Vo4190lQGrnBPo1moiUxxVrWJLJyO+3iMHOBVDFy25khEHU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708404792; c=relaxed/simple;
-	bh=ADCAk1mIgKohl/Q0QHjOnasOarQxELrz69enL6WnCtg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=aNuCheJFuTQJ6KT/p4LKjoaN1BOJAY/NdwhZAgtYCmLpMZFaQXYzeyJKdtryOZON5w/HJHlCWMQoxXOs+QKp7PLMurwEc0zEqVdcTfrfpcQV4cNrT0/TL323oNxGDmYMZLjFT4sSfSmB+IYKC2iWoNYzL1nunACDH7NkDGHOPgs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=mIylj/W+; arc=none smtp.client-ip=209.85.161.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-58e256505f7so3176270eaf.3
-        for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 20:52:32 -0800 (PST)
+	s=arc-20240116; t=1708406992; c=relaxed/simple;
+	bh=QR0gzyGs5YxERaIsCIv49dWaMmIr1bZHcHw0GqqHo9s=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=pVjJhtoN5AStqycQKAH9LY8pwVfuQ7wMvOGlgUHrPns+uTZjFD3bw4Vrfeotsl2C5t5zlcyK6ch4sTdzes7Kd8sR7Vrk4B9E67h9DbuRlO4+p233QGZJtPcMAXfLN2sLAMhMhZhbZQRqktjHPe70aNkiIAZhnATSTQgoieNQIik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=DOAq8eUO; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+Received: from localhost.localdomain (203-57-212-238.dyn.iinet.net.au [203.57.212.238])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 742FA20016;
+	Tue, 20 Feb 2024 13:29:43 +0800 (AWST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1708404752; x=1709009552; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=wEnWFvpVwL0bdWz+IBfoCYMDbYA8+qUk/22nOyu5FrY=;
-        b=mIylj/W+Ogy/0dNN0f0AfU1yb9+7dIh0EIprtjHx+1aZPb+a3XfU7AzjlbkDAdiR8x
-         6RAUDfCrSOcs7vdhWsjZJ+Fm2q6PBvHmk9itkHTiJMSsQ+pP4ZpYSfeq3CeNm76A+kjn
-         o2ubSCKjIIVK+FCY+6NIaMgD8jpi/GGCgRs7Q=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708404752; x=1709009552;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wEnWFvpVwL0bdWz+IBfoCYMDbYA8+qUk/22nOyu5FrY=;
-        b=vMSWKWK0zCtm9rRVdidLzwKiD4SSX9ysicw2F2rsB+oPZULrX5iYy2Biymo3EYRUmJ
-         lyqBiWQPfvNDH1t1G3vxIT087QlECclY7nPEy3u4rnzhW0wUFbMTv3IroHx6tk8aD8tL
-         jSY2DpVZcXnF0WxuFn7YAL0MVY1pAIxPSvmrSmEb3uSWrCUjtQQE7y5x3JVp7pMw715Z
-         xyRYYJJo1oPAQA44juHEzlFdm82V9yJ8tsGzjEnk1vuGX7DBsr+ZPf5y6pGXoTqxB8Bq
-         N9830L5EseyxWNw12cDxnGHm8EHsV/WXc9hzZDCh5rfwVCMw/lLVz5uexSP9BQfzNX0/
-         iryQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUj8EqmxHSV2aW8NKpA9iInoJOc4xb9xIfq80+yjtnYwpYofIEXUThqZaJSVGQoHcLnQ2wEMFPkr50Bjr8FtQq6fd8W5D/wzFqCbQ==
-X-Gm-Message-State: AOJu0YwK8NT3zgnWqKFpHpbRuAGmSxeLQo5Y7a0at9VfyuX2BZve/aAo
-	AdUQpLScV54u8z2CO3wwZTd+WOgez2I2e3/Wk8PFb8jOp8dXtmMSx0ybp71Z3Q==
-X-Google-Smtp-Source: AGHT+IFX35Pxh2gV06oKGBT3gRp2DPUqRIZN6FqPB3FFoylV6KErBkkKsREubooXeFlW0B/hlkJPxg==
-X-Received: by 2002:a05:6358:881:b0:17a:d84e:c106 with SMTP id m1-20020a056358088100b0017ad84ec106mr14365647rwj.5.1708404752252;
-        Mon, 19 Feb 2024 20:52:32 -0800 (PST)
-Received: from localhost (175.199.125.34.bc.googleusercontent.com. [34.125.199.175])
-        by smtp.gmail.com with UTF8SMTPSA id qn11-20020a17090b3d4b00b00298f88c3e48sm6176611pjb.11.2024.02.19.20.52.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Feb 2024 20:52:31 -0800 (PST)
-From: Stephen Boyd <swboyd@chromium.org>
-To: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: linux-kernel@vger.kernel.org,
-	patches@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	chrome-platform@lists.linux.dev,
-	Douglas Anderson <dianders@chromium.org>,
-	Pin-yen Lin <treapking@chromium.org>,
+	d=codeconstruct.com.au; s=2022a; t=1708406987;
+	bh=RC+oSMc6iDLJYtt5j6GYdiwaUC7wlQ9/FczjAjFGTtg=;
+	h=From:To:Cc:Subject:Date;
+	b=DOAq8eUOhVDC3JkA/XECAtxXT0bve2h4h7mwzy+tyYDIGJ8DBd6hTv1vZ8Moj8Ezi
+	 kQKsB4NClwz4XCG2/Wv/jkaT1JEMOdfi91VZBNB8jb7/g8hYe1HFpBb/vPhFum2y+B
+	 aAZl2fmdEzpGH8X2F/eOIDaK1QquMaFXWfQ1D1lqXRogtZtEbApemW4R6f8wkD/mCa
+	 KIpbgj8LfZUZz5ZctXeeYQGj7BQAtsMcl4DvJj5eQrlaIQPZQSbzAdbju++7h2nSs9
+	 I1X5rRY5vuKyyRYhcenrQJXUI/IpfofMtMbawRvSAYViNNyFVMcAc5zDhMfQT9C37T
+	 nk8ealb94C4Tg==
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: linus.walleij@linaro.org,
+	brgl@bgdev.pl
+Cc: Andrew Jeffery <andrew@codeconstruct.com.au>,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	joel@jms.id.au,
 	linux-gpio@vger.kernel.org,
-	Lee Jones <lee@kernel.org>,
-	Benson Leung <bleung@chromium.org>,
-	Guenter Roeck <groeck@chromium.org>
-Subject: [PATCH v2] gpio: Add ChromeOS EC GPIO driver
-Date: Mon, 19 Feb 2024 20:52:27 -0800
-Message-ID: <20240220045230.2852640-1-swboyd@chromium.org>
-X-Mailer: git-send-email 2.44.0.rc0.258.g7320e95886-goog
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: gpio: Convert Aspeed binding to YAML schema
+Date: Tue, 20 Feb 2024 15:59:18 +1030
+Message-Id: <20240220052918.742793-1-andrew@codeconstruct.com.au>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,286 +68,138 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The ChromeOS embedded controller (EC) supports setting the state of
-GPIOs when the system is unlocked, and getting the state of GPIOs in all
-cases. The GPIOs are on the EC itself, so the EC acts similar to a GPIO
-expander. Add a driver to get and set the GPIOs on the EC through the
-host command interface.
+Squash warnings such as:
 
-Cc: Lee Jones <lee@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Benson Leung <bleung@chromium.org>
-Cc: Guenter Roeck <groeck@chromium.org>
-Cc: <linux-gpio@vger.kernel.org>
-Cc: <chrome-platform@lists.linux.dev>
-Cc: Pin-yen Lin <treapking@chromium.org>
-Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+```
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-galaxy100.dtb: /ahb/apb@1e600000/gpio@1e780000: failed to match any schema with compatible: ['aspeed,ast2400-gpio']
+```
+
+Signed-off-by: Andrew Jeffery <andrew@codeconstruct.com.au>
 ---
+ .../bindings/gpio/aspeed,ast2400-gpio.yaml    | 64 +++++++++++++++++++
+ .../devicetree/bindings/gpio/gpio-aspeed.txt  | 39 -----------
+ 2 files changed, 64 insertions(+), 39 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/gpio/aspeed,ast2400-gpio.yaml
+ delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-aspeed.txt
 
-Changes from v1 (https://lore.kernel.org/r/20240210070934.2549994-3-swboyd@chromium.org):
- * Remove headers that aren't used or necessary
- * Make the device an mfd_cell instead of child node in DT
- * Remove the devicetable because there's no compatible anymore
- * Prefix line names with "EC:" to avoid conflicts
-
- drivers/gpio/Kconfig        |  10 ++
- drivers/gpio/Makefile       |   1 +
- drivers/gpio/gpio-cros-ec.c | 209 ++++++++++++++++++++++++++++++++++++
- 3 files changed, 220 insertions(+)
- create mode 100644 drivers/gpio/gpio-cros-ec.c
-
-diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-index 1301cec94f12..f6792c814e84 100644
---- a/drivers/gpio/Kconfig
-+++ b/drivers/gpio/Kconfig
-@@ -1240,6 +1240,16 @@ config GPIO_BD9571MWV
- 	  This driver can also be built as a module. If so, the module
- 	  will be called gpio-bd9571mwv.
- 
-+config GPIO_CROS_EC
-+	tristate "ChromeOS EC GPIO support"
-+	depends on CROS_EC
-+	help
-+	  GPIO driver for the ChromeOS Embedded Controller (EC). GPIOs
-+	  cannot be set unless the system is unlocked.
-+
-+	  This driver can also be built as a module. If so, the module
-+	  will be called gpio-cros-ec.
-+
- config GPIO_CRYSTAL_COVE
- 	tristate "GPIO support for Crystal Cove PMIC"
- 	depends on (X86 || COMPILE_TEST) && INTEL_SOC_PMIC
-diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-index 9e40af196aae..7ae4d81de1df 100644
---- a/drivers/gpio/Makefile
-+++ b/drivers/gpio/Makefile
-@@ -46,6 +46,7 @@ obj-$(CONFIG_GPIO_BT8XX)		+= gpio-bt8xx.o
- obj-$(CONFIG_GPIO_CADENCE)		+= gpio-cadence.o
- obj-$(CONFIG_GPIO_CLPS711X)		+= gpio-clps711x.o
- obj-$(CONFIG_GPIO_SNPS_CREG)		+= gpio-creg-snps.o
-+obj-$(CONFIG_GPIO_CROS_EC)		+= gpio-cros-ec.o
- obj-$(CONFIG_GPIO_CRYSTAL_COVE)		+= gpio-crystalcove.o
- obj-$(CONFIG_GPIO_CS5535)		+= gpio-cs5535.o
- obj-$(CONFIG_GPIO_DA9052)		+= gpio-da9052.o
-diff --git a/drivers/gpio/gpio-cros-ec.c b/drivers/gpio/gpio-cros-ec.c
+diff --git a/Documentation/devicetree/bindings/gpio/aspeed,ast2400-gpio.yaml b/Documentation/devicetree/bindings/gpio/aspeed,ast2400-gpio.yaml
 new file mode 100644
-index 000000000000..842e1c060414
+index 000000000000..353c7620013f
 --- /dev/null
-+++ b/drivers/gpio/gpio-cros-ec.c
-@@ -0,0 +1,209 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright 2024 Google LLC
-+ *
-+ * This driver provides the ability to control GPIOs on the Chrome OS EC.
-+ * There isn't any direction control, and setting values on GPIOs is only
-+ * possible when the system is unlocked.
-+ */
++++ b/Documentation/devicetree/bindings/gpio/aspeed,ast2400-gpio.yaml
+@@ -0,0 +1,64 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+#include <linux/bitops.h>
-+#include <linux/device.h>
-+#include <linux/errno.h>
-+#include <linux/gpio/driver.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/platform_data/cros_ec_commands.h>
-+#include <linux/platform_data/cros_ec_proto.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/slab.h>
++title: Aspeed GPIO controller
 +
-+/* Prefix all names to avoid collisions with EC <-> AP nets */
-+static const char cros_ec_gpio_prefix[] = "EC:";
++maintainers:
++  - Andrew Jeffery <andrew@codeconstruct.com.au>
 +
-+/* Setting gpios is only supported when the system is unlocked */
-+static void cros_ec_gpio_set(struct gpio_chip *gc, unsigned int gpio, int val)
-+{
-+	const char *name = gc->names[gpio] + strlen(cros_ec_gpio_prefix);
-+	struct cros_ec_device *cros_ec = gpiochip_get_data(gc);
-+	struct ec_params_gpio_set params = {
-+		.val = val,
-+	};
-+	int ret;
-+	ssize_t copied;
++allOf:
++  - $ref: /schemas/gpio/gpio.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: aspeed,ast2600-gpio
++    then:
++      required:
++        - ngpios
 +
-+	copied = strscpy(params.name, name, sizeof(params.name));
-+	if (copied < 0)
-+		return;
++properties:
++  compatible:
++    enum:
++      - aspeed,ast2400-gpio
++      - aspeed,ast2500-gpio
++      - aspeed,ast2600-gpio
 +
-+	ret = cros_ec_cmd(cros_ec, 0, EC_CMD_GPIO_SET, &params,
-+			  sizeof(params), NULL, 0);
-+	if (ret < 0)
-+		dev_err(gc->parent, "error setting gpio%d (%s) on EC: %d\n", gpio, name, ret);
-+}
++  reg:
++    maxItems: 1
 +
-+static int cros_ec_gpio_get(struct gpio_chip *gc, unsigned int gpio)
-+{
-+	const char *name = gc->names[gpio] + strlen(cros_ec_gpio_prefix);
-+	struct cros_ec_device *cros_ec = gpiochip_get_data(gc);
-+	struct ec_params_gpio_get params;
-+	struct ec_response_gpio_get response;
-+	int ret;
-+	ssize_t copied;
++  clocks:
++    maxItems: 1
++    description: The clock to use for debounce timings
 +
-+	copied = strscpy(params.name, name, sizeof(params.name));
-+	if (copied < 0)
-+		return -EINVAL;
++  interrupts:
++    maxItems: 1
 +
-+	ret = cros_ec_cmd(cros_ec, 0, EC_CMD_GPIO_GET, &params,
-+			  sizeof(params), &response, sizeof(response));
-+	if (ret < 0) {
-+		dev_err(gc->parent, "error getting gpio%d (%s) on EC: %d\n", gpio, name, ret);
-+		return ret;
-+	}
++  interrupt-controller: true
 +
-+	return response.val;
-+}
++  "#interrupt-cells":
++    const: 2
 +
-+#define CROS_EC_GPIO_INPUT         BIT(8)
-+#define CROS_EC_GPIO_OUTPUT        BIT(9)
++required:
++  - compatible
++  - reg
++  - interrupts
++  - interrupt-controller
++  - "#gpio-cells"
++  - gpio-controller
 +
-+static int cros_ec_gpio_get_direction(struct gpio_chip *gc, unsigned int gpio)
-+{
-+	const char *name = gc->names[gpio] + strlen(cros_ec_gpio_prefix);
-+	struct cros_ec_device *cros_ec = gpiochip_get_data(gc);
-+	struct ec_params_gpio_get_v1 params = {
-+		.subcmd = EC_GPIO_GET_INFO,
-+		.get_info.index = gpio,
-+	};
-+	struct ec_response_gpio_get_v1 response;
-+	int ret;
++unevaluatedProperties: false
 +
-+	ret = cros_ec_cmd(cros_ec, 1, EC_CMD_GPIO_GET, &params,
-+			  sizeof(params), &response, sizeof(response));
-+	if (ret < 0) {
-+		dev_err(gc->parent, "error getting direction of gpio%d (%s) on EC: %d\n", gpio, name, ret);
-+		return ret;
-+	}
-+
-+	if (response.get_info.flags & CROS_EC_GPIO_INPUT)
-+		return GPIO_LINE_DIRECTION_IN;
-+
-+	if (response.get_info.flags & CROS_EC_GPIO_OUTPUT)
-+		return GPIO_LINE_DIRECTION_OUT;
-+
-+	return -EINVAL;
-+}
-+
-+/* Query EC for all gpio line names */
-+static int cros_ec_gpio_init_names(struct cros_ec_device *cros_ec, struct gpio_chip *gc)
-+{
-+	struct ec_params_gpio_get_v1 params = {
-+		.subcmd = EC_GPIO_GET_INFO,
-+	};
-+	struct ec_response_gpio_get_v1 response;
-+	int ret, i;
-+	/* EC may not NUL terminate */
-+	size_t name_len = strlen(cros_ec_gpio_prefix) + sizeof(response.get_info.name) + 1;
-+	ssize_t copied;
-+	const char **names;
-+	char *str;
-+
-+	names = devm_kcalloc(gc->parent, gc->ngpio, sizeof(*names), GFP_KERNEL);
-+	if (!names)
-+		return -ENOMEM;
-+	gc->names = names;
-+
-+	str = devm_kcalloc(gc->parent, gc->ngpio, name_len, GFP_KERNEL);
-+	if (!str)
-+		return -ENOMEM;
-+
-+	/* Get gpio line names one at a time */
-+	for (i = 0; i < gc->ngpio; i++) {
-+		params.get_info.index = i;
-+		ret = cros_ec_cmd(cros_ec, 1, EC_CMD_GPIO_GET, &params,
-+				  sizeof(params), &response, sizeof(response));
-+		if (ret < 0) {
-+			dev_err_probe(gc->parent, ret, "error getting gpio%d info\n", i);
-+			return ret;
-+		}
-+
-+		names[i] = str;
-+		copied = scnprintf(str, name_len, "%s%s", cros_ec_gpio_prefix,
-+				   response.get_info.name);
-+		if (copied < 0)
-+			return copied;
-+
-+		str += copied + 1;
-+	}
-+
-+	return 0;
-+}
-+
-+/* Query EC for number of gpios */
-+static int cros_ec_gpio_ngpios(struct cros_ec_device *cros_ec)
-+{
-+	struct ec_params_gpio_get_v1 params = {
-+		.subcmd = EC_GPIO_GET_COUNT,
-+	};
-+	struct ec_response_gpio_get_v1 response;
-+	int ret;
-+
-+	ret = cros_ec_cmd(cros_ec, 1, EC_CMD_GPIO_GET, &params,
-+			  sizeof(params), &response, sizeof(response));
-+	if (ret < 0)
-+		return ret;
-+
-+	return response.get_count.val;
-+}
-+
-+static int cros_ec_gpio_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device *parent = dev->parent;
-+	struct cros_ec_dev *ec_dev = dev_get_drvdata(parent);
-+	struct cros_ec_device *cros_ec = ec_dev->ec_dev;
-+	struct gpio_chip *gc;
-+	int ngpios;
-+	int ret;
-+
-+	/* Use the fwnode from the protocol device, e.g. cros-ec-spi */
-+	device_set_node(dev, dev_fwnode(cros_ec->dev));
-+
-+	ngpios = cros_ec_gpio_ngpios(cros_ec);
-+	if (ngpios < 0) {
-+		dev_err_probe(dev, ngpios, "error getting gpio count\n");
-+		return ngpios;
-+	}
-+
-+	gc = devm_kzalloc(dev, sizeof(*gc), GFP_KERNEL);
-+	if (!gc)
-+		return -ENOMEM;
-+
-+	gc->ngpio = ngpios;
-+	gc->parent = dev;
-+	ret = cros_ec_gpio_init_names(cros_ec, gc);
-+	if (ret)
-+		return ret;
-+
-+	gc->can_sleep = true;
-+	gc->label = dev_name(dev);
-+	gc->base = -1;
-+	gc->set = cros_ec_gpio_set;
-+	gc->get = cros_ec_gpio_get;
-+	gc->get_direction = cros_ec_gpio_get_direction;
-+
-+	return devm_gpiochip_add_data(dev, gc, cros_ec);
-+}
-+
-+static struct platform_driver cros_ec_gpio_driver = {
-+	.probe = cros_ec_gpio_probe,
-+	.driver = {
-+		.name = "cros-ec-gpio",
-+	},
-+};
-+module_platform_driver(cros_ec_gpio_driver);
-+
-+MODULE_DESCRIPTION("ChromeOS EC GPIO Driver");
-+MODULE_LICENSE("GPL");
++examples:
++  - |
++    gpio@1e780000 {
++        compatible = "aspeed,ast2400-gpio";
++        reg = <0x1e780000 0x1000>;
++        interrupts = <20>;
++        interrupt-controller;
++        #gpio-cells = <2>;
++        gpio-controller;
++    };
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-aspeed.txt b/Documentation/devicetree/bindings/gpio/gpio-aspeed.txt
+deleted file mode 100644
+index b2033fc3a71a..000000000000
+--- a/Documentation/devicetree/bindings/gpio/gpio-aspeed.txt
++++ /dev/null
+@@ -1,39 +0,0 @@
+-Aspeed GPIO controller Device Tree Bindings
+--------------------------------------------
+-
+-Required properties:
+-- compatible		: Either "aspeed,ast2400-gpio", "aspeed,ast2500-gpio",
+-					or "aspeed,ast2600-gpio".
+-
+-- #gpio-cells 		: Should be two
+-			  - First cell is the GPIO line number
+-			  - Second cell is used to specify optional
+-			    parameters (unused)
+-
+-- reg			: Address and length of the register set for the device
+-- gpio-controller	: Marks the device node as a GPIO controller.
+-- interrupts		: Interrupt specifier (see interrupt bindings for
+-			  details)
+-- interrupt-controller	: Mark the GPIO controller as an interrupt-controller
+-
+-Optional properties:
+-
+-- clocks		: A phandle to the clock to use for debounce timings
+-- ngpios		: Number of GPIOs controlled by this controller. Should	be set
+-				  when there are multiple GPIO controllers on a SoC (ast2600).
+-
+-The gpio and interrupt properties are further described in their respective
+-bindings documentation:
+-
+-- Documentation/devicetree/bindings/gpio/gpio.txt
+-- Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
+-
+-  Example:
+-	gpio@1e780000 {
+-		#gpio-cells = <2>;
+-		compatible = "aspeed,ast2400-gpio";
+-		gpio-controller;
+-		interrupts = <20>;
+-		reg = <0x1e780000 0x1000>;
+-		interrupt-controller;
+-	};
 
 base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
 -- 
-https://chromeos.dev
+2.39.2
 
 
