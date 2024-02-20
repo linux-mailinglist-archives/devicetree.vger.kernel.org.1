@@ -1,62 +1,70 @@
-Return-Path: <devicetree+bounces-44034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8F5F85C3B6
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 19:41:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D00185C3FA
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 19:52:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 79B76B21F53
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 18:41:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 39029284B0A
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 18:52:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E96F712FB38;
-	Tue, 20 Feb 2024 18:41:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCE9612AAFC;
+	Tue, 20 Feb 2024 18:52:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I6yoiswL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OeNPi9sX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA2FA12F5AA;
-	Tue, 20 Feb 2024 18:41:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BD867867A;
+	Tue, 20 Feb 2024 18:52:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708454471; cv=none; b=jK2kfH6Gy2azKb8Qo7v2ITcr0Ra4Od1VxAb5jtlsufLdjf2zsWMp/2bOBs7jA2JIxdJn4XXCcpmgkhaemndtAMKBNZABBoNQ76hGGN6R52oFVcnhtRuNXPqfbz1Yk+fkrfNWjkJ4JlhcOCTF+MuBSjKa5v7P2k6Y4KWN+rDU1hU=
+	t=1708455164; cv=none; b=LNPevMSDbVAgGQqKW0xMjKKKVxRFFUer5sh+gUWqAuH32flEboYSRNj1/Dxn0pSfbTnyvOQHiVqZnSh5wreWZb8z/hHIrqC4XL2diCLdBNcPLfeYXT5KSMY9QMWW6AKxvaKoa5gL/f4zK5P2Zd+ShQClkKRO6NyjYz8H8FgYN/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708454471; c=relaxed/simple;
-	bh=15wVNh60n0mKgmlzygAoNpmkEvxBvaqNjKfNeAsjQ4w=;
+	s=arc-20240116; t=1708455164; c=relaxed/simple;
+	bh=hIyvGKECNml8BOk3Zh1T6U7K5fqanwk9IvN5YMXzbIQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ueb46aWJ3x00zNeV1FVSzKmGyY6RPudqvvngIULgg11YRZoJ7mvp7JoxtY/LYQj23h86zQ3wiG9nRurKXOZTiVNkypuNuzyZlWYIi6JxStYH7skOlAkvKdpymXP0TusQxUw8W0CRCGqHZ48DKo5E3cVzf6+VQ6eUGe7tBVj4kpk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I6yoiswL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4B2AC433F1;
-	Tue, 20 Feb 2024 18:41:08 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Xp0B9SV3tGioXM+TGBXC2qLv5btI/TlXhEcdQb4GsSK7TNJ9y4v9gchrwhwAozUZAJw9yGwN2YiZ0fF/p0TrinwlPkMckeObmtS7CqvlYdvzJ4hJXhL3YAkU8r6OSJJ4F+Vz0ThrChYjzXoQZVxBDv8ZXQJd10dz6YjCE0kfdOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OeNPi9sX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90FBEC433C7;
+	Tue, 20 Feb 2024 18:52:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708454471;
-	bh=15wVNh60n0mKgmlzygAoNpmkEvxBvaqNjKfNeAsjQ4w=;
+	s=k20201202; t=1708455164;
+	bh=hIyvGKECNml8BOk3Zh1T6U7K5fqanwk9IvN5YMXzbIQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=I6yoiswLuwvRkTOyHtca4QBI0nxQq61xnDFGgF7WkbRQhu0MCSk8+YurXOGrdIiMl
-	 3d5XPZ2nvg4A7VQjpqyNT995DJFhhfoW2gQKyrdhURCr+NNitthjAHKDQRccYbqH1B
-	 /t9BEYBB+YUfEE87SvH+CPIhYMKMy6KWPiDinKDiyTU7f5dB/o6FU4Q/7xt9V12D88
-	 SVpDh/lkadi34h2cIfqSiewK74H6QYjNthXd5VwPI4r5TazIMDnqQbrBuo5BECsrxi
-	 gj0kd9p7/av53ieW5iBv48Xs/P8gZcj/EXu/1tZYkg9+JSk7Ofg4lON/xG1wSFGDu7
-	 IU94Fw4NbtDbg==
-Date: Tue, 20 Feb 2024 18:41:06 +0000
+	b=OeNPi9sXybX+V1U26X7t5BRpgQ6ca6bckj/2dKyfdOYKyEBOjZWRIevkTFQZWrFTe
+	 FlaefYoUwRCw9A4+vyKiRL6NzRMVO0ZVE800T/M2q24cFVsYtULdz/UYozjVGxEcVH
+	 /a8AVPi/OVA91z8z2GLMvzuF2Ug++UFHTn2YavxgF4PQgrK0w/OPyFoyRaqFVboJ31
+	 d8kYUP2SlgMU+MzKpYhJ2fYfUm6eFGJ0N++kFliphJsPGpXI7jsD7XzIAwC2EPmkMX
+	 h84J9NmoGUJcqdTJUVFtj9cPBhZAdei9RLxnWZXpbIYUwuAXmiOCYzlXlSXbrFt5JZ
+	 UiMM3itax2/xA==
+Date: Tue, 20 Feb 2024 18:52:37 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Nikita Travkin <nikita@trvn.ru>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To: Dumitru Ceclan <mitrutzceclan@gmail.com>
+Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org,
+	linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org, Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: power: supply: Add Acer Aspire 1 EC
-Message-ID: <20240220-splinter-jackpot-ac1571af5b2d@spud>
-References: <20240220-aspire1-ec-v3-0-02cb139a4931@trvn.ru>
- <20240220-aspire1-ec-v3-1-02cb139a4931@trvn.ru>
+	Michael Walle <michael@walle.cc>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu <chiaen_wu@richtek.com>,
+	Niklas Schnelle <schnelle@linux.ibm.com>,
+	Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
+	Mike Looijmans <mike.looijmans@topic.nl>,
+	Haibo Chen <haibo.chen@nxp.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	David Lechner <dlechner@baylibre.com>,
+	Ceclan Dumitru <dumitru.ceclan@analog.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v13 1/3] dt-bindings: adc: add AD7173
+Message-ID: <20240220-outmost-flavoring-b2593160de91@spud>
+References: <20240220094344.17556-1-mitrutzceclan@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,133 +72,63 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="NyfVgNR6xsvZmS5r"
+	protocol="application/pgp-signature"; boundary="vLHcLCfBcKKsyixC"
 Content-Disposition: inline
-In-Reply-To: <20240220-aspire1-ec-v3-1-02cb139a4931@trvn.ru>
+In-Reply-To: <20240220094344.17556-1-mitrutzceclan@gmail.com>
 
 
---NyfVgNR6xsvZmS5r
+--vLHcLCfBcKKsyixC
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Rob,
+On Tue, Feb 20, 2024 at 11:43:38AM +0200, Dumitru Ceclan wrote:
 
-On Tue, Feb 20, 2024 at 04:57:12PM +0500, Nikita Travkin wrote:
-> Add binding for the EC found in the Acer Aspire 1 laptop.
->=20
-> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
-> ---
->  .../bindings/power/supply/acer,aspire1-ec.yaml     | 69 ++++++++++++++++=
-++++++
->  1 file changed, 69 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/power/supply/acer,aspire1-=
-ec.yaml b/Documentation/devicetree/bindings/power/supply/acer,aspire1-ec.ya=
-ml
-> new file mode 100644
-> index 000000000000..984cf19cf806
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/supply/acer,aspire1-ec.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/supply/acer,aspire1-ec.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Acer Aspire 1 Embedded Controller
-> +
-> +maintainers:
-> +  - Nikita Travkin <nikita@trvn.ru>
-> +
-> +description:
-> +  The Acer Aspire 1 laptop uses an embedded controller to control battery
-> +  and charging as well as to provide a set of misc features such as the
-> +  laptop lid status and HPD events for the USB Type-C DP alt mode.
-> +
-> +properties:
-> +  compatible:
-> +    const: acer,aspire1-ec
-> +
-> +  reg:
-> +    const: 0x76
-> +
 > +  interrupts:
-> +    maxItems: 1
+> +    minItems: 1
+> +    description: |
+
 > +
-> +  acer,fn-selects-media-keys:
-> +    description: Configure the keyboard layout to invert the Fn key.
-> +      By default the function row of the keyboard inputs media keys
-> +      (i.e Vol-Up) when Fn is not pressed. With this option set, pressing
-> +      the key without Fn would input function keys (i.e. F11). The
-> +      firmware may choose to add this property when user selects the fn
-> +      mode in the firmware setup utility.
-> +    type: boolean
+> +  interrupt-names:
+> +    minItems: 1
+> +    items:
+> +      - const: rdy
+> +      - const: err
 
-We both had some comments on this property, and Nikita tried to follow
-up on yours (which was much more substantive than mine) but got no
-response:
-https://lore.kernel.org/all/20231214220210.GA988134-robh@kernel.org/
+I noticed that for minItems == 1, the rdy interrupt is required and err
+is the optional one.
 
-Reading what you said, I'm not entirely sure what you were looking for,
-my guess is that you were wanted something controllable from userspace,
-but I'm not sure how you figured that should work where the firmware
-alone is able to control this.
+With that in mind, you can simplify the interrupts description so that
+it describes the interrupts separately:
+
+  interrupts:
+    minItems:
+    items:
+      - description:
+          Ready: multiplexed with SPI data out. While SPI CS is low,
+          can be used to indicate the completion of a conversion.
+
+      - description:
+          Error: The three error bits in the status register (ADC_ERROR, CRC_ERROR,
+          and REG_ERROR) are OR'ed, inverted, and mapped to the ERROR pin. Therefore,
+          the ERROR pin indicates that an error has occurred.
+
+Otherwise, I think everything has been sorted out?
+
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
 Cheers,
 Conor.
 
-> +
-> +  connector:
-> +    $ref: /schemas/connector/usb-connector.yaml#
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |+
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        embedded-controller@76 {
-> +            compatible =3D "acer,aspire1-ec";
-> +            reg =3D <0x76>;
-> +
-> +            interrupts-extended =3D <&tlmm 30 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +            connector {
-> +                compatible =3D "usb-c-connector";
-> +
-> +                port {
-> +                    ec_dp_in: endpoint {
-> +                        remote-endpoint =3D <&mdss_dp_out>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
->=20
-> --=20
-> 2.43.0
->=20
-
---NyfVgNR6xsvZmS5r
+--vLHcLCfBcKKsyixC
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdTyQgAKCRB4tDGHoIJi
-0uv6AP9Hs2QQv/YYHGYhhHhpqKqfT4EvP4wIJ2I3XnFPTLp7TAEAlyyHmfzBrCjD
-AgFzbLCEjTAQEJtMRKbH3EJ7Q9jMRwk=
-=2TYU
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdT09QAKCRB4tDGHoIJi
+0pbnAPwOogZk7FYWbEiQymCF9QbGN2aePmxNXySm/bbh5Ae6MwD7BBgqXRFfmPWm
+pUBnH3bEbmLCIOA+mYKHA5Nq/zsZ5gw=
+=b/7e
 -----END PGP SIGNATURE-----
 
---NyfVgNR6xsvZmS5r--
+--vLHcLCfBcKKsyixC--
 
