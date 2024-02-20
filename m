@@ -1,174 +1,187 @@
-Return-Path: <devicetree+bounces-44075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44076-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C21E185C7B2
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 22:15:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A4C885C85F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 22:21:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 75D0E2834A5
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 21:15:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DA451C2232D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 21:21:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AD4E153507;
-	Tue, 20 Feb 2024 21:15:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7DD4151CF0;
+	Tue, 20 Feb 2024 21:21:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rqi8mqQ/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kJ6oHUQB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6E05151CD6;
-	Tue, 20 Feb 2024 21:15:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 314C31509BC
+	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 21:21:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708463707; cv=none; b=NGEosVWls/a3BIivJvXYWNdV1fmnqoUJFvXXavkqccGAOPNiYFWUgGT079Qc56nJ8h1l8N1IEH/Jv/ubmGpxX1cE+w/SOJuGVvRV5aAFLeBLCEoaSIPwcs+nhHXT2ql0jRqGVbQJOYlfd7AA7xrHPoRqbOMUSVcjuVL1O3q9Z8Y=
+	t=1708464072; cv=none; b=Dx/2FK5AYHt1x1WzFwRf/HptHWaB52oKcs3eXEovMbAzevUDwM9JHnsiAERkQEAeBb0DsH60kfgVSdSVVXRoitqen5BVype0ieGTo+DVdPK4ZfCI3sSKXl9kVq76Zjey0W0iZNOxBotAjh6olaWhbQyx3bBe9jTe3mxwsFkcncU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708463707; c=relaxed/simple;
-	bh=PfgqwBzwcDb+91qumay33JWHJ7BTVWpHM3HbGeClp7I=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=q38fhipNm0iu+OcLsC6GAoEMeP6+JUd3ocOAO3T/zPraLeEskYBiH2BaGggX7R4F8FOc7++1Y7HAXcsGpNhj1FL5IVAQnYGw31LrM/4/AKCpDcqdBkUqnXyzhQa5l28kGen2ZubO3ecDoDQ1BKA+e4UDLJQggFAs/Pn7niVkVK0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rqi8mqQ/; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-564f1876a2fso182525a12.3;
-        Tue, 20 Feb 2024 13:15:05 -0800 (PST)
+	s=arc-20240116; t=1708464072; c=relaxed/simple;
+	bh=QIb79S8dEXh8LFbr/l1y4IqwiNhKYcYdvIOdGbZPR10=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fmpyrqgQC/iiLOszIzMUyUtJrFLKFeoUyqk7ESiZHq9WJLg2oB5UPU+JLtF8HO1sX+0uS6Ec0Usp2YFU1Aufg4HBiyCAA8VTSZR0NqyNJE+oWQfAlEOOzJRjgo1nAuaVL5uwpBerA2ZawHR9D4/hbMCs17sGjZnFQCn25vIfqvk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kJ6oHUQB; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-512bde3d197so2484813e87.0
+        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 13:21:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708463703; x=1709068503; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rpz65CgEKeFqCseDG6nHrCx/ipraX250PSOWkqJO8E4=;
-        b=Rqi8mqQ/Bx0R4GUvFuKSZy/e6YC3oycmtsUMu4dcj3ZYmbKfRlKvN88AdRZ+FKHdO7
-         3ZZm+s6OT8L9BUKUugHaURCrqCOYrTD6UibQ0NJ0BM8yStHTuHV/GFBFfo44RFyNwA+J
-         ZSxZKPTOhV/uMidRpLWfiDELiYwNI5wn36bpOx8a2gHvcUXrOWXTDLqYG06Hnw2mxvka
-         gq5QrF6eVC9fK36pBv6gzAyicMm8Qu6OqP7xrHjILf/mv0C2XVlLZ/JG43PrBX9VCdiO
-         7OozmmEtQWfdCbzXJBEecEHu3WlqM2qsNUM4aJhFZRFTwJP8c9hlAOIs4h9hhnZauRhE
-         n52g==
+        d=linaro.org; s=google; t=1708464069; x=1709068869; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=aewqZFQqAR8f8P67ZzKs5ZfSe1DqicHVEuGcz5XnehA=;
+        b=kJ6oHUQBobYzdU7nmQFkM3o1PTzoD/1gWwOCvaCiuaShekcaWW64iGJ+G9nrY2rEXR
+         ty/VqImKjaPAXIHGh2hBywNFMUNF37eHSug1XHzVLgjEuUPekwwFHi70nlxVG97wMkg/
+         bq2pXuDPqDRpW+M4DRfa28qEVuwOVDtOvfgzl9ZKQAyxbnHpK0dxu2/pXFU1zwhFfArn
+         IV/xkFys5PLZw2jigIjJCYO/DoTEXCkVImGCVNfGn7SAims0skOmVCLUvgVcn3LRdSxf
+         kg/K6oybXpR6nWqv1J9MO5bZGveHi56Hr9fJ+/e0AVRuBXvjK+ot0MI1492XMKc69zwQ
+         kEuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708463703; x=1709068503;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rpz65CgEKeFqCseDG6nHrCx/ipraX250PSOWkqJO8E4=;
-        b=D2ALL7PgOj9PNuFrnH9Nw7w1lvcHJM7vumlh1He8mZbFZrzfAtWemt15BzE1sffPDW
-         3U962m67enUlo0r2mZ5wl/X5ReZjuNYv0Hm+plU4XNQWbW+NPoW4LGLg6GCnfPwhBTbM
-         SxcegicXA0b5BZSi8ITWV5XQcV8gUbZ3ATiRps2xMnoeg5EBf1pte37R2dLCrbPfSivp
-         Yb1WwDfnHMgKiFon2tMeSclo7y0sWpQrV0UEz0C/g1J41edwhHkPbBj3ToKMQZlXw+tc
-         cVXSl6eOaSX+90L5pBMIF/CAz7xgvrwb2ZNJehT9pRA3VKtJCCSYKlbPPbEqF2I/0uw1
-         Eh4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVGlRNb05i7jzZ5IS8PM1EROQYqfE6KP84m0kHV7Yb/GHNlgwEnK+YW4TROzA6HZZ8NIhYXSBoNQn8hzr/rAIE1hIOjxgctFJUx/K3LFvcjIflJ4i1ErwfDVCim9Cm6pkT3eBlNJi1RIBANNDCqObydaTEOw6CVZMHamkXjkGHRjICk/A==
-X-Gm-Message-State: AOJu0Ywqm7gkgEh4Y8bJx1VBf9icum7zvvy543h+UuYNXirKtZtWYE7F
-	y+RW+jslZN2xJBYTa991aFdgPw4wRZNGHBaj2rjNdJAOPa/mD3QZMX1qNyaLW5I1AA==
-X-Google-Smtp-Source: AGHT+IFM2A45QUCqPCimobrtQz/hB59OTos8oA4Jt5gqJ5JnmUHY8EDJ3AGFYAq1Y1/Q0CUXezxtUw==
-X-Received: by 2002:aa7:d997:0:b0:564:71d1:6cbd with SMTP id u23-20020aa7d997000000b0056471d16cbdmr4697858eds.14.1708463703514;
-        Tue, 20 Feb 2024 13:15:03 -0800 (PST)
-Received: from [127.0.1.1] (2a02-8389-41cf-e200-d60d-797f-077b-a805.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:d60d:797f:77b:a805])
-        by smtp.gmail.com with ESMTPSA id fj21-20020a0564022b9500b00564da28dfe2sm538137edb.19.2024.02.20.13.15.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Feb 2024 13:15:03 -0800 (PST)
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Date: Tue, 20 Feb 2024 22:14:58 +0100
-Subject: [PATCH 4/4] iio: humidity: hdc3020: add reset management
+        d=1e100.net; s=20230601; t=1708464069; x=1709068869;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aewqZFQqAR8f8P67ZzKs5ZfSe1DqicHVEuGcz5XnehA=;
+        b=oDQosMLpdwaaqSQbUzsWADLjhvgwNUoXbrllzOEZ/mmXbeIbgWSJ4VrbPvYnxc6l8b
+         p24ljvB95wyAIP+ghVy6aHRuGg2u7YmPule/ZIgFRHWGIWqKo4tPPVfZBT2BV6/Br8kZ
+         TCp7QgJyvMaUVivTNN89S0hq2BstJQW1SEsaT3K4tV8V+KhasXVfqWEqo41r4VuQwkGs
+         WUo2IIhlmD/EGCDOZ1+ZF2pHkI6oWyca8y1Wjom/wPEGhscZ+/Kyd+IIhkvBw7u0Fb/B
+         ajfKgqI+upIsbe/fy89LcAo7KAYB314zdcwonxbMv4pqZ0XWa2fAkUkFMIkcQV/DQO+/
+         47AA==
+X-Forwarded-Encrypted: i=1; AJvYcCXisqcOJZ8Sw4PXBpnesgI8qiOEO5d9Q1S+FWhrG4G1lfJ9EQIrtNsMICIibDqxtFBGN7fo54fxS7JZRR5uaJU9rXKDGlhnjaoZ6Q==
+X-Gm-Message-State: AOJu0YyMOQ/883/jnplcwOe89t5w943zYyRBWI0S2G4WKyWWle5Xluyx
+	OjP7ndCqE+QJ6mtn4reUa5RM/IfR/Z1CABrl+iug7OoisD2Qazg6iVP03Tq0AeU=
+X-Google-Smtp-Source: AGHT+IE7oxGB2v2CxKN0KBUsYoVrLWeS67J9KHU2sgtn9zhSwTZSLaGf6S53k3pQEILvmz2pBWcsQg==
+X-Received: by 2002:a05:6512:48b:b0:512:b85e:9831 with SMTP id v11-20020a056512048b00b00512b85e9831mr3472902lfq.36.1708464069273;
+        Tue, 20 Feb 2024 13:21:09 -0800 (PST)
+Received: from [192.168.192.135] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
+        by smtp.gmail.com with ESMTPSA id q23-20020ac24a77000000b00512b25729bdsm972840lfp.31.2024.02.20.13.21.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Feb 2024 13:21:08 -0800 (PST)
+Message-ID: <17bbd9ae-0282-430e-947b-e6fb08c53af7@linaro.org>
+Date: Tue, 20 Feb 2024 22:21:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240220-hdc3020-pm-v1-4-d8e60dbe79e9@gmail.com>
-References: <20240220-hdc3020-pm-v1-0-d8e60dbe79e9@gmail.com>
-In-Reply-To: <20240220-hdc3020-pm-v1-0-d8e60dbe79e9@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, Li peiyu <579lpy@gmail.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
- devicetree@vger.kernel.org, 
- Javier Carrasco <javier.carrasco.cruz@gmail.com>
-X-Mailer: b4 0.14-dev-8b532
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1708463696; l=2241;
- i=javier.carrasco.cruz@gmail.com; s=20230509; h=from:subject:message-id;
- bh=PfgqwBzwcDb+91qumay33JWHJ7BTVWpHM3HbGeClp7I=;
- b=54ovICHbb8pco+EjzIxuBxnPtD3cYYN+SBpBLC2Tnc5vCDXBBIlegBTCEeG0TC9xqxDvX0IsL
- NArRKsDJhrIAUau1dSTjETtzBA75FnxjpacxAPgfJrlDKmPMv9tGgYa
-X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
- pk=tIGJV7M+tCizagNijF0eGMBGcOsPD+0cWGfKjl4h6K8=
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 14/18] PCI/pwrctl: add a power control driver for
+ WCN7850
+To: Mark Brown <broonie@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Marcel Holtmann <marcel@holtmann.org>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Saravana Kannan <saravanak@google.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>, Arnd Bergmann <arnd@arndb.de>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>, Alex Elder <elder@linaro.org>,
+ Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Abel Vesa <abel.vesa@linaro.org>, Manivannan Sadhasivam <mani@kernel.org>,
+ Lukas Wunner <lukas@wunner.de>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+ linux-pm@vger.kernel.org,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20240216203215.40870-1-brgl@bgdev.pl>
+ <20240216203215.40870-15-brgl@bgdev.pl>
+ <d5d603dc-ec66-4e21-aa41-3b25557f1fb7@sirena.org.uk>
+ <CAMRc=MeUjKPS3ANE6=7WZ3kbbGAdyE8HeXFN=75Jp-pVyBaWrQ@mail.gmail.com>
+ <ea08a286-ff53-4d58-ae41-38cca151508c@sirena.org.uk>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <ea08a286-ff53-4d58-ae41-38cca151508c@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-The HDC3020 provides an active low reset signal that must be handled if
-connected. Asserting this signal turns the device into Trigger-on Demand
-measurement mode, reducing its power consumption when no measurements
-are required like in low-power modes.
+On 20.02.2024 13:47, Mark Brown wrote:
+> On Tue, Feb 20, 2024 at 12:22:42PM +0100, Bartosz Golaszewski wrote:
+>> On Mon, Feb 19, 2024 at 6:50 PM Mark Brown <broonie@kernel.org> wrote:
+>>> On Fri, Feb 16, 2024 at 09:32:11PM +0100, Bartosz Golaszewski wrote:
+> 
+>>>> +static struct pci_pwrctl_wcn7850_vreg pci_pwrctl_wcn7850_vregs[] = {
+>>>> +     {
+>>>> +             .name = "vdd",
+>>>> +             .load_uA = 16000,
+>>>> +     },
+> 
+>>> I know a bunch of the QC stuff includes these load numbers but are they
+>>> actually doing anything constructive?  It keeps coming up that they're
+>>> causing a bunch of work and it's not clear that they have any great
+>>> effect on modern systems.
+> 
+>> Yes, we have what is called a high-power mode and a low-power mode in
+>> regulators and these values are used to determine which one to use.
+> 
+> Are you *sure* this actually happens (and that the regulators don't
+> figure it out by themselves), especially given that the consumers are
+> just specifying the load once rather than varying it dynamically at
+> runtime which is supposed to be the use case for this API?  This API is
+> intended to be used dynamically, if the regulator always needs to be in
+> a particular mode just configure that statically.
 
-According to the datasheet, the longest "Reset Ready" is 3 ms, which is
-only taken into account if the reset signal is defined.
+*AFAIU*
 
-Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
----
- drivers/iio/humidity/hdc3020.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+The regulators aggregate the requested current (there may be
+multiple consumers) and then it's decided if it's high enough
+to jump into HPM.
 
-diff --git a/drivers/iio/humidity/hdc3020.c b/drivers/iio/humidity/hdc3020.c
-index 0da5c5c41cd2..bd2f57a7eedc 100644
---- a/drivers/iio/humidity/hdc3020.c
-+++ b/drivers/iio/humidity/hdc3020.c
-@@ -15,6 +15,7 @@
- #include <linux/cleanup.h>
- #include <linux/crc8.h>
- #include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/i2c.h>
- #include <linux/init.h>
- #include <linux/interrupt.h>
-@@ -70,6 +71,7 @@
- 
- struct hdc3020_data {
- 	struct i2c_client *client;
-+	struct gpio_desc *reset_gpio;
- 	struct regulator *vdd_supply;
- 	/*
- 	 * Ensure that the sensor configuration (currently only heater is
-@@ -564,6 +566,11 @@ static int hdc3020_power_on(struct hdc3020_data *data)
- 
- 	fsleep(5000);
- 
-+	if (data->reset_gpio) {
-+		gpiod_set_value_cansleep(data->reset_gpio, 0);
-+		fsleep(3000);
-+	}
-+
- 	if (data->client->irq) {
- 		/*
- 		 * The alert output is activated by default upon power up,
-@@ -581,6 +588,9 @@ static int hdc3020_power_off(struct hdc3020_data *data)
- {
- 	hdc3020_exec_cmd(data, HDC3020_EXIT_AUTO);
- 
-+	if (data->reset_gpio)
-+		gpiod_set_value_cansleep(data->reset_gpio, 1);
-+
- 	return regulator_disable(data->vdd_supply);
- }
- 
-@@ -621,6 +631,12 @@ static int hdc3020_probe(struct i2c_client *client)
- 		return dev_err_probe(&client->dev, PTR_ERR(data->vdd_supply),
- 				     "Unable to get VDD regulator\n");
- 
-+	data->reset_gpio = devm_gpiod_get_optional(&client->dev, "reset",
-+						   GPIOD_OUT_HIGH);
-+	if (IS_ERR(data->reset_gpio))
-+		return dev_err_probe(&client->dev, PTR_ERR(data->reset_gpio),
-+				     "Cannot get reset GPIO\n");
-+
- 	hdc3020_power_on(data);
- 
- 	if (client->irq) {
-
--- 
-2.40.1
+Konrad
 
 
