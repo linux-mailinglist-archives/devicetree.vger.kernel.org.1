@@ -1,102 +1,120 @@
-Return-Path: <devicetree+bounces-44060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8613685C522
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 20:47:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D079B85C561
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 21:04:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1680EB25469
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 19:47:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 60AE6B20DC5
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 20:04:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDFB114A0B6;
-	Tue, 20 Feb 2024 19:47:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 326AF14A4E4;
+	Tue, 20 Feb 2024 20:03:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oCStGpKy"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="aYQmsEOw";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="0bZpy8Uc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B197C36135;
-	Tue, 20 Feb 2024 19:47:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C72E14A4E1;
+	Tue, 20 Feb 2024 20:03:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708458432; cv=none; b=sD8tUCRwvtENPD1k19TemjpyxsGuFcKPJuzhKXXmBfdlNDItm3AA522NIZsvRT0yVKDb/StFRveJwTGKr4c6aockcPQAFFa0pPSLBF8ynUAwixdgY7UNk6Jx++X8RaEg61eg89LxXr/+ByDrX4dSKso2IZl4KM6lY17BvNy5y5A=
+	t=1708459431; cv=none; b=oiQo835m5sE9QPTnsurhpjH8zGPYbHeEBf1ip8OfW/N0DkLcnXwg5Rfp4nv+0DfBwLywGlEbnuGUsmDn/x0M28/hRsg5AXO/F40c4l7NWCLsssnLPQ4zqltVfn6utRvCzrQ/dJYE3fFKeYhz9TKcOtUtItZ3v77PjJaw1YS4m5M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708458432; c=relaxed/simple;
-	bh=1KiS+U4NNT/mwNoBNJ7E4oCUd/6Lzcv1jcGa7+zX+Vg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a5rKySNfULmYywDyACGfz7qzKSvjJndaHom8m5a8STNguAE++fWgBKQI6fwiavGZMDn+FfXhoiEiMUUNpMKVIh//e96/O6hN41EIEe3fQs5dPXKgJD9iSJD7h1u+ZYXGZGmExmnvjdtwtvAakynEDGEPiNIDI2GD/0gJflN1tH4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oCStGpKy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB893C433F1;
-	Tue, 20 Feb 2024 19:47:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708458432;
-	bh=1KiS+U4NNT/mwNoBNJ7E4oCUd/6Lzcv1jcGa7+zX+Vg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oCStGpKyprAazJxn0xJT7SpatIrasVkTuxPqf5bGDO8klHUhTy+LkvcfqhpDAIU+E
-	 Pi00Fq6nJ1FQWsSHrp/hmBlnxf6Xd0WHN+8fLsiE1ztai154YOZ6B0EWFmvsv2SL5r
-	 9ClVxPzJcv1EIEaReBaUA3fVisEt1mMD6oaly5q6ztRAMWOCkSvkJ8gBo5aS3LPpVB
-	 OJUSexXEcLR17q74kIhLp3ZL63KDtyNMaLOgNTqvcSaDS/r2NYaByhx8f8KxgmeDre
-	 Rav/PUuB3tWB7omnjX4YilFxFDibRERnfx2HaJ+oPNWdeXLVzwe/CeT6a9HsJ/VHc2
-	 JqWtq6zLrJxFQ==
-Date: Tue, 20 Feb 2024 19:47:07 +0000
-From: Conor Dooley <conor@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: linux-iio@vger.kernel.org,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: add ad7944 ADCs
-Message-ID: <20240220-tamper-feed-0622f9441cfe@spud>
-References: <20240216-ad7944-mainline-v2-0-7eb69651e592@baylibre.com>
- <20240216-ad7944-mainline-v2-1-7eb69651e592@baylibre.com>
+	s=arc-20240116; t=1708459431; c=relaxed/simple;
+	bh=RGYI1C/SB4NfKZcUVQLWJNCPAbpYUuYgeLGtJ3F3BJY=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=Vx9kLN0KSA+DXsFFWF2hgyfWnDXDydrUqSxxC8OmVy5Zm5mU6sw9c1IH9iZYc2OW/HKoCwfGq3Jy1aKs++3teANjJcMpdqlfrEg+Eu37u2xtViO4UI9uejuK7q06fA+EpRWRCrOFvvCnp9gBAWwASX1zK13Qju/Nkz+MUOM5NEc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=aYQmsEOw; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=0bZpy8Uc; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1708459424;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=jJRsPsyZ6zDS1QWFQN2wLBFM6mS+0QImDjTMgSPiL7I=;
+	b=aYQmsEOwQopLCUpYpAQuDyrIpn/ZjclA2riggfw0WWir8TT6NmiPQZJzpeC9YRHKgp0rWt
+	k9TQyzVThpxVBDmox2nnESsknS5oTRd4VzFt0IU9vtyq1EJQHNR2c8XYNJ501UxxiXHAvM
+	kXdsE5fN2sy9MVO94uyCUiwX4v8h1pq6bevWl8yrwk+XqoCaj9mBmXHCJGdlZPtLIuvqLX
+	3q+Zma5P0XbwLUpcToklgoNTEsCISC+ORpEWQc1gQ0abV9ucGF0qXfXXUnwwqsBvpXZvEQ
+	4wLIzGkKNOg+Vur2e3RHi5rEfoxeWqrJBnwmSEj0b/eNkGMG09MxRmsKO7Z1XQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1708459424;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=jJRsPsyZ6zDS1QWFQN2wLBFM6mS+0QImDjTMgSPiL7I=;
+	b=0bZpy8Ucv4te6DfmhFa1QQKyXrhJJterh1+UZ0hC/H+1QXta7TTSsn4wIZdFftqnZDB7KQ
+	v4NtqSu0q+WZZFDw==
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
+ <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>, Marc Zyngier
+ <maz@kernel.org>, =?utf-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>,
+ Atish Patra
+ <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>, Sunil V L
+ <sunilvl@ventanamicro.com>, Saravana Kannan <saravanak@google.com>, Anup
+ Patel <anup@brainfault.org>, linux-riscv@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH v13 08/13] irqchip/riscv-imsic: Add device MSI domain
+ support for PCI devices
+In-Reply-To: <CAK9=C2UgYpVtjFZ4NLzOCP6f3LQ=Fx7kPMywwQyFiNMcKmPyLw@mail.gmail.com>
+References: <20240220060718.823229-1-apatel@ventanamicro.com>
+ <20240220060718.823229-9-apatel@ventanamicro.com> <8734tni7h3.ffs@tglx>
+ <CAK9=C2UgYpVtjFZ4NLzOCP6f3LQ=Fx7kPMywwQyFiNMcKmPyLw@mail.gmail.com>
+Date: Tue, 20 Feb 2024 21:03:43 +0100
+Message-ID: <87jzmyhpi8.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="39pzYbsQtZHaU+Tb"
-Content-Disposition: inline
-In-Reply-To: <20240216-ad7944-mainline-v2-1-7eb69651e592@baylibre.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Feb 20 2024 at 22:51, Anup Patel wrote:
 
---39pzYbsQtZHaU+Tb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> On Tue, Feb 20, 2024 at 7:05=E2=80=AFPM Thomas Gleixner <tglx@linutronix.=
+de> wrote:
+>>
+>> On Tue, Feb 20 2024 at 11:37, Anup Patel wrote:
+>> >  static bool imsic_init_dev_msi_info(struct device *dev,
+>> >                                   struct irq_domain *domain,
+>> >                                   struct irq_domain *real_parent,
+>> > @@ -218,6 +241,7 @@ static bool imsic_init_dev_msi_info(struct device =
+*dev,
+>> >
+>> >       /* MSI parent domain specific settings */
+>> >       switch (real_parent->bus_token) {
+>> > +     case DOMAIN_BUS_PCI_MSI:
+>>
+>>         case DOMAIN_BUS_PCI_DEVICE_MSIX:
+>>
+>> ?
+>
+> Actually, the DOMAIN_BUS_PCI_MSI is not needed because
+> the real parent domain is always the IMSIC base irq_domain
+> so DOMAIN_BUS_NEXUS is sufficient.
 
-On Fri, Feb 16, 2024 at 01:46:18PM -0600, David Lechner wrote:
-> This adds a new binding for the Analog Devices, Inc. AD7944, AD7985, and
-> AD7986 ADCs.
+Indeed. Obviously I can't read.
 
-I think this binding is overall pretty well written, especially
-considering the interproperty dependencies.
+> Better to just drop DOMAIN_BUS_PCI_MSI from this switch case ?
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Yes. I actually would be a bug if that ends up as the real parent
+domain.
 
-Cheers,
-Conor.
+Thanks,
 
-
---39pzYbsQtZHaU+Tb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdUBuwAKCRB4tDGHoIJi
-0uuWAQDLngt5pz4PlV2W01fTD2fS7srtxqDPBPGnF6sXp+nKUwEAuL1m1J9Am2Th
-iGA+hrTy6KEwjZqWfj7mHiqM/QpsFQg=
-=VP88
------END PGP SIGNATURE-----
-
---39pzYbsQtZHaU+Tb--
+       tglx
 
