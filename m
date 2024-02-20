@@ -1,65 +1,93 @@
-Return-Path: <devicetree+bounces-43921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC20785BDDD
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 14:56:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 034A185BDF9
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 15:01:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EDFF31C21F58
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 13:56:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 366141C215D7
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 14:00:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BD866A359;
-	Tue, 20 Feb 2024 13:55:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACE7A6A8A4;
+	Tue, 20 Feb 2024 14:00:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hr9Oo1/j"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mRZoJifw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF42B6A351;
-	Tue, 20 Feb 2024 13:55:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2B8C6A351
+	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 14:00:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708437318; cv=none; b=MSS783cWrFGip1Msd3LGb86g29HI3Mg3ijVZ8Kxow4jkyV0UQ30BuxaFqwO/eTk5lfFe+u7U9IVKb7ZNCoUuXBfQRxiI53ncAgF8d7AA78q6FbM3LNh3Joc73nKlFwWmCbcTtH+8lQrpvfzpNOqXPGkgk2LV9UneCwLiFw2fv3w=
+	t=1708437654; cv=none; b=YoDsMvy5Pw2BrreQMyYxRl5bn8gKAkz09Fiyi3RnVRdNDrZfllCnZ4khTsVHa1PXd6vV9igNG9V9k5PVxM89tD7nHkdq28jSJehAemoHMakg5p+6VqQSaAPTgZHsYwmCCKUEI5IG2GcXT8u5m1oovBpd84BpGO/ugIan+GafsO0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708437318; c=relaxed/simple;
-	bh=8YnGjvzKa113QUkH5s6sw06FvhJW/phsnrHheYilx8c=;
+	s=arc-20240116; t=1708437654; c=relaxed/simple;
+	bh=yIavGtyBVHQhwYxocbKlHQfDHDHgZOv5J9ExqtIQ0og=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sSI8GUkE/qNuCOcjxRqD63Cj0fPc6DYV0idQ58P3vzto/RVdp9ExGgQxkkLHDsTm8uDrpB3bh3cOFqlK3Q2MPvE5GoiIaYXK8PXXh63q6h0IYsNRwCQFKV8Jd/HlQte3LTYyvT8OE6JpTvxKtXrMqtIq3p8/6xoysojjIyRhJXE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hr9Oo1/j; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69139C433C7;
-	Tue, 20 Feb 2024 13:55:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708437317;
-	bh=8YnGjvzKa113QUkH5s6sw06FvhJW/phsnrHheYilx8c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hr9Oo1/j4JEobgRky8HGIzxdyV4q3xownd5IQWW36y9N4d1D8PAGUv47/9RUt8JvD
-	 5krmDY3Rt5Wks6psU1BSYZCjaNfQL3MBpTak2amSuE4CM4R95MRXubOg8bPX0x/4Ug
-	 BQkY5xF3B91AdXuodd8nGjsLdCIoinY3J7P9JJTPR+u8GiBrkygDiBhExpIm9REd19
-	 Td1bkmwV5PVknDul2hwkGmbsHMYvsYbTdB7BS6Q9CNlRVEOBMvQmzfAJU6RCN638io
-	 cZa0F/mzqeCtT9DM6s9X+RG69H6iFFVSTYL354xPsAr0Q4AIwJKz2MZc8nDtZ0eAvk
-	 DORZb/gj2YDXg==
-Date: Tue, 20 Feb 2024 13:55:12 +0000
-From: Simon Horman <horms@kernel.org>
-To: forbidden405@outlook.com
-Cc: Yisen Zhuang <yisen.zhuang@huawei.com>,
-	Salil Mehta <salil.mehta@huawei.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=py389+KId6VBUU2aNP3BSzPaYx01h+wU5ZSyytqU45SVNiJF8W7LCDvU1Cof4nJ2n8WVGdar/PFARTdlcSZGJUpuuYje8vxuoYjxLMFMC/Fq+6ckrT9ed/4/WiiUoWLaIq5CuNSB7egEP73+T4jt+iIMtXE/QCQhybQi5k5F1Nk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mRZoJifw; arc=none smtp.client-ip=209.85.208.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2d243797703so19201381fa.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 06:00:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708437651; x=1709042451; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=yIavGtyBVHQhwYxocbKlHQfDHDHgZOv5J9ExqtIQ0og=;
+        b=mRZoJifwVwTGd+0ntdKE33Zb9jzmcWjeV/lxBsfPyFWZYqtytI7rZ16bFKVibTJQe2
+         hNE5QqSj8R30rVki/7gV6YWl1fh+RDRrsMIv8D77cTRzDGtXw+DF6EahyiqHVPLcYpwX
+         Wg0H4Am93nmtABmrW2Kkp+PuQ12BbjleE9oKAdua39x9RLD931SWs+Umr7N4Jws06332
+         e7Sd1tgCJbkxr/32up3Y4/BviJk5FkWxre1b7AUEDeB8lngX4RCNB33w/ChXZmVcxbG3
+         irNS2JFykSbkwC33y+hF3TyXeOzCxabIFhyuJ96KFYU2ogInpvpQALB9CN6Wrk1WffPU
+         9UFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708437651; x=1709042451;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yIavGtyBVHQhwYxocbKlHQfDHDHgZOv5J9ExqtIQ0og=;
+        b=cJ1kE+wYuCju1TlkhG32iOFx/SyaNyAnmNWZ+D3iwZAwmkIgNhitzl1v9fkx4KQpO3
+         ziKrFI0CJ3ee8fujqVJazmYwCL0HZgjogmtOsBdJA/jPI3YUgduFVF9IOdnaIc1QBmnG
+         wM7mIxjw7FG7fan7d9fNnrxh0CLd0ey0vqylKwABYdrOl3ZFhqt0i2dRyydOOsaUCg7z
+         HjxqfB2EQJVWmeAQprdWRYPJ9ELS59/y/imH+QzRRuS/caMSCzXIf/EZ7rn5W10+O+ge
+         gUh3Ba+r6n3cftXp+Ep7kk4eoA+JJMW1kgcUf7zag5DMr42hwVbDJ0hiwmOYb0RjOsFP
+         Sezg==
+X-Forwarded-Encrypted: i=1; AJvYcCUn28iqv5RcojZSk8g3bVLscUL7/FwqsogN9VysHz5BP/fM132Q6JcN6g7I3HiEKNvqxL+t+y23TIeb5FP3uPETKLqaknIep/Fq1Q==
+X-Gm-Message-State: AOJu0YzDlRWuLC0drOnPNrgZDxex8KDQOXdPYnwPRZPGomE1Cc0rdHi8
+	QWkQVT7o738uI1C/zQ6I+8f1DwCFOoAeDp0AgcBs88whsS3uL5XBZhehMlbWH4A=
+X-Google-Smtp-Source: AGHT+IFnMr7pgPZVpX97ZGZLJplTKGBJmAizHUWbgJVoD43o8CV/7GPFehR+pR53bgpnnhwAyZG3rQ==
+X-Received: by 2002:a2e:b0fa:0:b0:2d2:3028:2bcc with SMTP id h26-20020a2eb0fa000000b002d230282bccmr5159754ljl.47.1708437650764;
+        Tue, 20 Feb 2024 06:00:50 -0800 (PST)
+Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
+        by smtp.gmail.com with ESMTPSA id o8-20020a05600c510800b004105528c61fsm15006473wms.35.2024.02.20.06.00.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Feb 2024 06:00:50 -0800 (PST)
+Date: Tue, 20 Feb 2024 14:00:47 +0000
+From: Daniel Thompson <daniel.thompson@linaro.org>
+To: Luca Weiss <luca@z3ntu.xyz>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+	Lee Jones <lee@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
+	Helge Deller <deller@gmx.de>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	"G.Shark Jeong" <gshark.jeong@gmail.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v3 3/6] net: hisilicon: add support for
- hisi_femac core on Hi3798MV200
-Message-ID: <20240220135512.GN40273@kernel.org>
-References: <20240220-net-v3-0-b68e5b75e765@outlook.com>
- <20240220-net-v3-3-b68e5b75e765@outlook.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Maximilian Weigand <mweigand@mweigand.net>,
+	dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/4] backlight: lm3630a: Initialize backlight_properties
+ on init
+Message-ID: <20240220140047.GD6716@aspen.lan>
+References: <20240220-lm3630a-fixups-v1-0-9ca62f7e4a33@z3ntu.xyz>
+ <20240220-lm3630a-fixups-v1-1-9ca62f7e4a33@z3ntu.xyz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,82 +96,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240220-net-v3-3-b68e5b75e765@outlook.com>
+In-Reply-To: <20240220-lm3630a-fixups-v1-1-9ca62f7e4a33@z3ntu.xyz>
 
-On Tue, Feb 20, 2024 at 03:57:38AM +0800, Yang Xiwen via B4 Relay wrote:
-> From: Yang Xiwen <forbidden405@outlook.com>
-> 
-> Register the sub MDIO bus if it is found. Also implement the internal
-> PHY reset procedure as needed.
-> 
-> Note it's unable to put the MDIO bus node outside of MAC controller
-> (i.e. at the same level in the parent bus node). Because we need to
-> control all clocks and resets in FEMAC driver due to the phy reset
-> procedure. So the clocks can't be assigned to MDIO bus device, which is
-> an essential resource for the MDIO bus to work.
-> 
-> No backward compatibility is maintained since the only existing
-> user(Hi3516DV300) has not received any updates from HiSilicon for about
-> 8 years already. And till today, no mainline dts for this SoC is found.
-> It seems unlikely that there are still existing mainline Hi3516DV300
-> users. The effort to maintain the old binding seems gain a little.
-> 
-> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
-> ---
->  drivers/net/ethernet/hisilicon/hisi_femac.c | 77 +++++++++++++++++++++++------
->  1 file changed, 61 insertions(+), 16 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/hisilicon/hisi_femac.c b/drivers/net/ethernet/hisilicon/hisi_femac.c
+On Tue, Feb 20, 2024 at 12:11:19AM +0100, Luca Weiss wrote:
+> The backlight_properties struct should be initialized to zero before
+> using, otherwise there will be some random values in the struct.
+>
+> Fixes: 0c2a665a648e ("backlight: add Backlight driver for lm3630 chip")
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 
-...
+Reviewed-by: Daniel Thompson <daniel.thompson@linaro.org>
 
-> @@ -826,15 +844,34 @@ static int hisi_femac_drv_probe(struct platform_device *pdev)
->  						 priv->phy_reset_delays,
->  						 DELAYS_NUM);
->  		if (ret)
-> -			goto out_disable_clk;
-> +			goto out_free_netdev;
->  		hisi_femac_phy_reset(priv);
->  	}
->  
-> +	// Register the optional MDIO bus
-> +	for_each_available_child_of_node(node, mdio_np) {
-> +		if (of_node_name_prefix(mdio_np, "mdio")) {
-> +			priv->mdio_pdev = of_platform_device_create(mdio_np, NULL, dev);
-> +			of_node_put(mdio_np);
-> +			if (!priv->mdio_pdev) {
-> +				dev_err(dev, "failed to register MDIO bus device\n");
-> +				ret = -ENODEV;
-> +				goto out_free_netdev;
-> +			}
-> +			mdio_registered = true;
-> +			break;
-> +		}
-> +		of_node_put(mdio_np);
 
-Sorry for not noticing this earlier.
-
-I think that of_node_put() only needs to be called in the
-case of terminating the loop (via break, goto, return, etc...).
-But should not be called otherwise (when the loop cycles) as
-for_each_available_child_of_node() calls of_node_put().
-
-Flagged by Coccinelle.
-
-> +	}
-> +
-> +	if (!mdio_registered)
-> +		dev_warn(dev, "MDIO subnode not found. This is usually a bug.\n");
-> +
->  	phy = of_phy_get_and_connect(ndev, node, hisi_femac_adjust_link);
->  	if (!phy) {
->  		dev_err(dev, "connect to PHY failed!\n");
->  		ret = -ENODEV;
-> -		goto out_disable_clk;
-> +		goto out_unregister_mdio_bus;
->  	}
->  
->  	phy_attached_print(phy, "phy_id=0x%.8lx, phy_mode=%s\n",
-
-...
+Daniel.
 
