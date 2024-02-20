@@ -1,229 +1,230 @@
-Return-Path: <devicetree+bounces-43704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8339F85B2E6
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 07:28:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A87E85B345
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 07:58:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B1A1F1C22003
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 06:28:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DBC21C20D6E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 06:58:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80B4959151;
-	Tue, 20 Feb 2024 06:28:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="M6hcCK90"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07CDB5A0E0;
+	Tue, 20 Feb 2024 06:58:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2090.outbound.protection.partner.outlook.cn [139.219.17.90])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B273459149;
-	Tue, 20 Feb 2024 06:28:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708410532; cv=none; b=HwG7b+B5W8sB66xN6738t2v0Yb4PLE8Dz6awpaWkJd/J0XgFbn7vBh7kXqJi0YxuDmEZ5LlGOtJ3lr5mPhfdieYDqhyw7ADKrLa25KZdN6gZ77XG9v9xQ8rYiL8OFn5taB+Yq2Vb5xduchPTiVDfiBP70AfFd7M6Hdjyc+vw4Yw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708410532; c=relaxed/simple;
-	bh=ccVrK2Iff7tTq28JNYp1XntXvVJ1uoYZCUCr1EVZB68=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Yr7P/mO6bW3YQqGCp3njBkYArvJfqrJxxr5hbWYRrMLwhWJDi96dJwZkzrEs8/GMUs3cVMQgvtU4FNgEOnHWxyt4q8N8YgerafOjC82gBW4JePLhLlOmEUwglXHyYic71EQtvdKznx3zGdeW8Kzs8YkfG3DhblEExFz98TKXoAQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=M6hcCK90; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41K10CfG021178;
-	Tue, 20 Feb 2024 06:28:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=Xd2HlGPjlW3lnWzmcbx40LZsSwC7XGHf2iTmpoAjFfg=; b=M6
-	hcCK90UJshfW5GkD+Hy2EYg+AsBe+3yMRXMHJaZZtufY1Zu3FUEC2xSSYfutZlEV
-	7gOl7fkrkWtViNVds6v1lwNRFR+7KbIhLjkhTWhh20OuWhDEVgJmVcBlxgEvMvHA
-	YTnsmV8JoeYnSM8XnUUsplxRltlFp/SZg4eIZ4rTb78PxrVZDdaTuimBBIESfWMT
-	3FiyyDzufDgUPMfZTvL8CcE58z50rQ2OzOx4a8f5JjctBWqYBIHx5FUWiIvvi2fx
-	vlT3F67kH6ObMhNGhoxBElYQDlE+2TtQBvxWTSN1g8o+dT1o40WzWWPcb6p/nBek
-	ZcyMliMx3FNcxGOv80uA==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wc54b20w1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 20 Feb 2024 06:28:39 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41K6ScY7005432
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 20 Feb 2024 06:28:38 GMT
-Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 19 Feb
- 2024 22:28:35 -0800
-Message-ID: <a44a435c-e52d-4ee5-b05e-9f43a071c479@quicinc.com>
-Date: Tue, 20 Feb 2024 14:28:32 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6556B56B74;
+	Tue, 20 Feb 2024 06:58:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.90
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708412285; cv=fail; b=aX9Z8awNQxrVZR56TjRBLDhyEhRb6zggNJf5V0wmmH0+qGedwk74+h7kPrS3t4iRZ6Qvg01AwCagXVFst3fFvl9AC6Igzkz7NQ5sslJtyZl3Qfu17J2TzfxdTRubIQikHg+GamfXilBHn5EZI7uOnrR6ooJMBPtj3Rei8wnau6I=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708412285; c=relaxed/simple;
+	bh=eMHSZ961nLkrD8qwRFGle46FCzfkfbYwv7pNklaGgKg=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=px7z/XwAs3W9dALqjkbpNFwRDeznjOqOJ3G4QcKzFScngZmoQ9KaqNN3cxZCRGC88NGF0/E3TpA38QWogiEi6c7kMhD5eAuYuryv96r9ahhVitsZT1kkYmgbC3ne6RX7n1qKYc9zm+rzWr4T1dthkzvjRliPsitSnE6vxYs25BM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.90
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=X9ZrIZJZgSkDR8kNzLMDCQE813kmWHHkgvysqKvap2FzMAdUubxQyVudk0lRTpG7gSakCdvsvtQVc+AZSGzmnHfBILkmAFMQBqjPH3ctjTyVRaRqtHn2ADODlHjT6YTWleYQVPsPwMTo7JFx0kF0LU58dVF61vmn1u7bZnRp5eyC7tmV6vw93dGnnQspTHlDbMXU2liNUHkBGJvRXcmu44K6HTOQM+XryYzHre+pB9OCgUO5WM4DwiH8bqS+p9WASYjFTVUiOhOhMOP9Cn6s+OomueGgAu2bBHzef6huXMsj0CCw/csDXJj1pLGHfWRLdRJ3NQGDsqlNjFjd5/Ip1w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PNay858DEqOto1OV6uEx+DFqa4hargxwgIGRAUUBh7M=;
+ b=YwJm9im6sLnvQ38+jAlpI6hp0IpFFyfHyAmqAslSwBcyj1xM7pLXG8VHpccVTSQivH5faTtwjPBK52Au+NxxhuA7ECgOTdZpKSOU8fHemuPZe6qO8ausZONM0r5ZYIi3eYRbhXOsIBQaANVKMaZvDuz/vo5NLMbUJzhzuIDCOmcdFfvALMhfIWgf4x4YCx0pHwFswp9Addy59JYou44H1k+aYsZF7/+XKWmfs84iEijMmVXvfFJdFI6AvFzQEyuZ7+eA2cEqQGBgL0+iG1kg8ZvAgFmIDuUnuszELzBIjwp5PlDpLjA6PZix7jxHzlflcj1ReKwcxKG/0VvCH+weHA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+Received: from ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:1b::9) by ZQ0PR01MB1239.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:1c::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.47; Tue, 20 Feb
+ 2024 06:42:58 +0000
+Received: from ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn
+ ([fe80::9d68:58f1:62cc:f1d3]) by
+ ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn ([fe80::9d68:58f1:62cc:f1d3%4])
+ with mapi id 15.20.7270.047; Tue, 20 Feb 2024 06:42:58 +0000
+From: Alex Soo <yuklin.soo@starfivetech.com>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Hal Feng <hal.feng@starfivetech.com>,
+	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
+	Jianlong Huang <jianlong.huang@starfivetech.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Drew Fustini <drew@beagleboard.org>
+Cc: linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alex Soo <yuklin.soo@starfivetech.com>
+Subject: [RFC PATCH v2 0/6] Add Pinctrl driver for Starfive JH8100 SoC 
+Date: Tue, 20 Feb 2024 14:42:40 +0800
+Message-ID: <20240220064246.467216-1-yuklin.soo@starfivetech.com>
+X-Mailer: git-send-email 2.43.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BJXPR01CA0055.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c211:12::22) To ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:1b::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] mm: memblock: avoid to create memmap for memblock nomap
- regions
-Content-Language: en-US
-To: Mike Rapoport <rppt@kernel.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>
-CC: Vijayanand Jitta <quic_vjitta@quicinc.com>, <karahmed@amazon.de>,
-        <qperret@google.com>, <robh@kernel.org>, <akpm@linux-foundation.org>,
-        <linux-mm@kvack.org>, <linux-kernel@vger.kernel.org>,
-        <robh+dt@kernel.org>, <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>
-References: <YlW2TO0O8qDHpkGW@kernel.org>
- <7b18bea8-b996-601d-f490-cb8aadfffa1b@quicinc.com>
- <YnQBKPWtPa87y4NA@kernel.org>
- <42f28e7b-c001-7d01-1eb6-fe963491898e@quicinc.com>
- <Ynj+M9cRm6zdCMMi@kernel.org>
- <22aca197-8d18-2c9e-b3c4-f6fdc893ceb1@quicinc.com>
- <Yu1t8TpXT1f372v/@kernel.org>
- <76cb3b37-5887-404f-95b7-10a22a7ba65b@quicinc.com>
- <ZcxvKvSfJv6L2O9e@kernel.org>
- <CAA8EJpqpGN6yzd5pUs06aax=L5wDwPK6aM6R2X784y7ot+P-aQ@mail.gmail.com>
- <ZcyEzHva7pq-3Zav@kernel.org>
-From: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>
-In-Reply-To: <ZcyEzHva7pq-3Zav@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: skF8QPo9vkm3DYIUS7msQOzdc31ACWQj
-X-Proofpoint-ORIG-GUID: skF8QPo9vkm3DYIUS7msQOzdc31ACWQj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-20_05,2024-02-19_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- phishscore=0 clxscore=1011 malwarescore=0 spamscore=0 mlxscore=0
- suspectscore=0 mlxlogscore=999 impostorscore=0 lowpriorityscore=0
- bulkscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402200045
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: ZQ0PR01MB1302:EE_|ZQ0PR01MB1239:EE_
+X-MS-Office365-Filtering-Correlation-Id: 99166286-12d1-4211-5891-08dc31df2cba
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	9bkdC+0U+SPSjCr9fq4BH2VANAODssPv5ELSrgTWF/tqj1D5bhHAF6Kos/tTI8JffaL6Htkr7NyqOIpgY+bL4kCbUw1QIkpsq6XEbtpKPx+T3I6cYHpxZF1T6EMeBBqkHfle1++GGb0Wtols0Ur00U3UTjM+30Mk8YdYxGOa+/lLECsuINBRL6KkV3+Xv5ks9O9O8lo6SwIX/i4dn6b/fcihxWoQ2ooW4Dkf1D4rzfaOR2iGDS0zdIvOhqFBlQNET1jUxH/KPa3GR+3tPRadPGu3XeFe0PxWSSaWYpbAcFytjn7weCdKQQHtFR18TgtAfOdiKaYvecNODNHrXURDldWhcfeHFcKtLiucnULVwzqoRokCVDchLyM23Km8txaye081DZS+AePSOP/cxWOtv0ojWm0V9CVQmeTibwdo7/zFWnLq94OUJwDBGHzKEV4s26IA8YyNW8G9Kmjb1qCPQ0fpZQDKaRP1TlM/pPDa4JZ9pv9tTCE3RCoYkCFKFX0RtGELDbrTO7hknB+8HeG3+8BxNsEZjW5X+R+abOAOPsULTbjd+hpHTwCD/ETZt+NHM0rCnZyaArtSEblG72bk4w==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(38350700005)(921011);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?ca6zGGuZIlXy3TW1P8qgDvPm7sgMrMFzaqffgaZlOjwLc0Ky4CAsyImBHmod?=
+ =?us-ascii?Q?WTp5pBmBXm/vgxJUfb7huPR1fMAd2npJTIJ/Uir2hQ7fDOYAF5fNU3rJObcF?=
+ =?us-ascii?Q?D49JwJ2xVOW9rf4rAf7AS1FIDjtt/TLxqDwYoVRfJqGRo82PYOLd1xck4OUC?=
+ =?us-ascii?Q?tNLWxopw52Hqk7/1Lsfdv9ThC2YOjA1o2a4tB9FJSwRSoKEXr1aUoVeiAvNR?=
+ =?us-ascii?Q?hbS2y4meTTKbIyuXY33CzCTiYjz5L9wer3WnUwwfgVBTqpAt9jJ6U+rLO5M5?=
+ =?us-ascii?Q?1zdLHI9AnjE+0cleCT37yx1GAi2uMA0wDPKg7oJHLRoHgn6Ei+1ZND5NsSG4?=
+ =?us-ascii?Q?GT5+G1hxV5a192W4+uKLXW3HFxAsrqg/NLegYkIZi9ARQLC1K4KJ9bUsJxpV?=
+ =?us-ascii?Q?S3B4YarsUY9/3ciNdgQtdixnf7dKteXvgHXxLwfEEQZWr0sxhLU1aHdLjrSo?=
+ =?us-ascii?Q?J5CqOmpA06UTD1FnMLOjne7PVjvzkfVrfOV2jg6ycdgHWRRioHQwN4r6/Qk9?=
+ =?us-ascii?Q?RP3EYDZVfDCEiiPqZ/FLwp3a3y3xqEH/2wuCNS3rfFTZzaAYFF1sKG7PiNkI?=
+ =?us-ascii?Q?MkKhesaOA6flL9Wx+xEJAqBSUa/KmP2i4ZuussbINbXyoMO/sKDMg6hzNq0a?=
+ =?us-ascii?Q?FIi1Uz7TdoE8VoBL3TDjU3clrkFVn1u2SwK4XHTq9iltMsTbfeY9YNFRg+n5?=
+ =?us-ascii?Q?5bG3IwETQTx4yAMDlXu+wzXfGaFtfzdhNyoXeMkUi+J+H4P5uVFxZj0UCdwJ?=
+ =?us-ascii?Q?5IlYML2S4L6om/fhJIkyQZYa81CFEdWGQALnDCu4VVSEoSVmsCAMofDttkqn?=
+ =?us-ascii?Q?eYCCTdOQnm4bQxTAZyHpcKt3wagYmO6navLePsPOBUINwxUPi+8j5zGQPa0E?=
+ =?us-ascii?Q?9cY0gmcqjfLmGOQ/jaoSwXY/ZxbANSDYKo8Onw//cfcxL5/4kElM2tK+Oj/P?=
+ =?us-ascii?Q?+X5kH+J8Mp4/B3qEmUqdHwUpRcqEhAHQmWEw72Mfj+C9FW4owwApn6k0oXu7?=
+ =?us-ascii?Q?SsYOb/sItL8xZK5l6bT03VT3xqIjt5BilhdKlIjsc2/Fo8xExOmJnkOvS4wj?=
+ =?us-ascii?Q?rIEPBXlsxPcSlRoojhutQTSrWHWoreFroKMgtzF0GO5kFjfsiPjL2bWn95jB?=
+ =?us-ascii?Q?Pu/9+GpIWzG3y9H/uhdbq7mFzl28jWzGl1ZBQyT3kd722o+38RafRVqimzbw?=
+ =?us-ascii?Q?Kc06yLAbIx7ZXk1wisfuJpojuyrZWm5ZqMn0QkJyky2gEvvUHuJQAn1p4FTs?=
+ =?us-ascii?Q?qOqZQc8a3aqIlxLf5jftpL9Tx8b8ygSKkTb4mkPUiOGPks0aJFg6J6RbneEU?=
+ =?us-ascii?Q?cv2DC3YfetH7GIE9XZ8NIGSZ/ijyN4FhGMc3WJchH1pz3jhg5+wxAgU6UHTc?=
+ =?us-ascii?Q?cql43lkppYGivm/kRj+Q7n/pixyfcfnode7v5Tqt+MWE+WM3+6ChBExnJJvj?=
+ =?us-ascii?Q?3l79/2C6Ca4Fg1q4bCYf9/WBjHbkyjnIYrcCgIERrJJ0pEmdi2NU/Eq14dQS?=
+ =?us-ascii?Q?q2QVSF7jQo+24aND01V41krLtr+KnCbk7jm4XLtMsIhw+POsIg4sYKZHEXME?=
+ =?us-ascii?Q?9gO8xHFzTdu7x0nVMxc4EfGXNzalvwiTSWbDwFKACAiWq+aoK6Ddf6fBtKvc?=
+ =?us-ascii?Q?jQ=3D=3D?=
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 99166286-12d1-4211-5891-08dc31df2cba
+X-MS-Exchange-CrossTenant-AuthSource: ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2024 06:42:57.9794
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6dHUIpVLF8ZDtuBjTARuNuNo72vb4+yQp1K3DMQfCXOY9iVs+SNQu3/LeOvyxlFlYSxqu93eqkV4qA3V1LEEP4eRpWHTZWo0K6yjDVxudqg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ0PR01MB1239
 
+Starfive JH8100 SoC consists of 4 pinctrl domains - sys_east,
+sys_west, sys_gmac, and aon. This patch series adds pinctrl
+drivers for these 4 pinctrl domains and this patch series is
+depending on the JH8100 base patch series in [1] and [2].
+The relevant dt-binding documentation for each pinctrl domain has
+been updated accordingly.
 
+[1] https://lore.kernel.org/lkml/20231201121410.95298-1-jeeheng.sia@starfivetech.com/
+[2] https://lore.kernel.org/lkml/20231206115000.295825-1-jeeheng.sia@starfivetech.com/
 
-On 2/14/2024 5:15 PM, Mike Rapoport wrote:
-> On Wed, Feb 14, 2024 at 10:11:40AM +0200, Dmitry Baryshkov wrote:
->> On Wed, 14 Feb 2024 at 09:44, Mike Rapoport <rppt@kernel.org> wrote:
->>>
->>> On Thu, Feb 08, 2024 at 02:37:25PM +0800, Aiqun Yu (Maria) wrote:
->>>>
->>>> On 8/6/2022 3:22 AM, Mike Rapoport wrote:
->>>>> Hi Vijay,
->>>>>
->>>>> On Wed, Aug 03, 2022 at 04:27:33PM +0530, Vijayanand Jitta wrote:
->>>>>>
->>>>>> On 5/9/2022 5:12 PM, Mike Rapoport wrote:
->>>>>>> On Mon, May 09, 2022 at 04:37:30PM +0530, Faiyaz Mohammed wrote:
->>>>>>>>
->>>>>>>> On 5/5/2022 10:24 PM, Mike Rapoport wrote:
->>>>>>>>> On Thu, May 05, 2022 at 08:46:15PM +0530, Faiyaz Mohammed wrote:
->>>>>>>>>> On 4/12/2022 10:56 PM, Mike Rapoport wrote:
->>>>>>>>>>> On Tue, Apr 12, 2022 at 12:39:32AM +0530, Faiyaz Mohammed wrote:
->>>>>>>>>>>> This 'commit 86588296acbf ("fdt: Properly handle "no-map" field in the
->>>>>>>>>>>> memory region")' is keeping the no-map regions in memblock.memory with
->>>>>>>>>>>> MEMBLOCK_NOMAP flag set to use no-map memory for EFI using memblock api's,
->>>>>>>>>>>> but during the initialization sparse_init mark all memblock.memory as
->>>>>>>>>>>> present using for_each_mem_pfn_range, which is creating the memmap for
->>>>>>>>>>>> no-map memblock regions. To avoid it skiping the memblock.memory regions
->>>>>>>>>>>> set with MEMBLOCK_NOMAP set and with this change we will be able to save
->>>>>>>>>>>> ~11MB memory for ~612MB carve out.
->>>>>>>>>>> The MEMBLOCK_NOMAP is very fragile and caused a lot of issues already. I
->>>>>>>>>>> really don't like the idea if adding more implicit assumptions about how
->>>>>>>>>>> NOMAP memory may or may not be used in a generic iterator function.
->>>>>>>>>> Sorry for delayed response.
->>>>>>>>>> Yes, it is possible that implicit assumption can create
->>>>>>>>>> misunderstanding. How about adding command line option and control the
->>>>>>>>>> no-map region in fdt.c driver, to decide whether to keep "no-map" region
->>>>>>>>>> with NOMAP flag or remove?. Something like below
->>>>>>>>> I really don't like memblock_remove() for such cases.
->>>>>>>>> Pretending there is a hole when there is an actual DRAM makes things really
->>>>>>>>> hairy when it comes to memory map and page allocator initialization.
->>>>>>>>> You wouldn't want to trade system stability and random memory corruptions
->>>>>>>>> for 11M of "saved" memory.
->>>>>>>>
->>>>>>>> Creating memory map for holes memory is adding 11MB overhead which is
->>>>>>>> huge on low memory target and same time 11MB memory saving is good enough
->>>>>>>> on low memory target.
->>>>>>>>
->>>>>>>> Or we can have separate list of NOMAP like reserved?.
->>>>>>>>
->>>>>>>> Any other suggestion to address this issue?.
->>>>>>>
->>>>>>> Make your firmware to report the memory that Linux cannot use as a hole,
->>>>>>> i.e. _not_ report it as memory.
->>>>>>
->>>>>> Thanks, Mike for the comments.
->>>>>>
->>>>>> Few concerns with this approach.
->>>>>>
->>>>>> 1) One concern is, even if firmware doesn't report these regions as
->>>>>> memory, we would need addresses for these to be part of device tree so
->>>>>> that the clients would be able to get these addresses. Otherwise there
->>>>>> is no way for client to know these addresses.
->>>>>>
->>>>>> 2) This would also add a dependency on firmware to be able to pass these
->>>>>> regions not as memory, though we know that these regions would be used
->>>>>> by the clients. Isn't it better to have such control within the kernel ?
->>>>>
->>>>> If it is memory that is used by the kernel it should be reported as memory
->>>>> and have the memory map.
->>>>> If this is a hole in the memory layout from the kernel perspective, then
->>>>> kernel should not bother with this memory.
->>>> Hi Mike,
->>>>
->>>> We've put effort on bootloader side to implement the similar suggestion of
->>>> os bootloader to convey the reserved memory by omit the hole from
->>>> /memory@0{reg=[]} directly.
->>>> While there is a concern from device tree spec perspective, link [1]: "A
->>>> memory device node is required for all devicetrees and describes the
->>>> physical memory layout for the system. "
->>>> Do you have any idea on this pls?
->>>
->>> I'm not sure I understand your concern. Isn't there a /memory node that
->>> describes the memory available to Linux in your devicetree?
->>
->> That was the question. It looks like your opinion on /memory was that
->> it describes "memory available to Linux", while device tree spec
->> defines it as "physical memory layout".
->   
-> I suggested a workaround that will allow to save memory map for the
-> carveout.
-> The memory map is a run time description of the physical memory layout and
-> core mm relies on availability of struct page for every physical frame.
-> Having only partial memory map will lead to subtle bugs and crashes, so
-> it's not an option.
-Any idea of a formal solution for this case?
-It is a real use case for the commercial device. Memory saving is always 
-a good topic for commercial devices. So for a total 128MB memory, ~60MB 
-for kernel total available memory, and ~1M free memory saving is 
-important from OEM point of view.
+---
 
-There are 3 types of memory:
-1. used by firmware and not available to kernel at any time.
-Either struct page can be avoided by kernel. Or bootloader not pass this 
-part of physical memory was discussed here.
-Any good ideas?
-2. shared by firmware/subsystem, and can be read/write access by kernel.
-Just as it is now. Struct page can be allocated inside kernel and also 
-reserved memory for this.
-3. freely used by kernel.
-Just as it is now.
-> 
->>>> [1] https://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter3-devicenodes.rst
->>
->> -- 
->> With best wishes
->> Dmitry
-> 
+Changes in v2:
+- Add "(always-on)" to document title to clarify acronym AON.
+- Replace "drive-strength" by "drive-strength-microamp".
+- Update "slew-rate" property in sys-east, sys-west, and aon document.
+- remove redundant "bindings" from commit subject and message.
+- Change regular expression "-[0-9]+$"  to "-grp$" to standardize client
+  node names to end with suffix "-grp" instead of "-<numerical _number>".
+- Use 4 spaces indentation for DTS examples.
+- Update DTS examples in sys-east, sys-west, and aon document with client
+  driver pinmuxing.
+- Remove redundant syscon and gmac macros from dt-binding header file.
+- Remove redundant register macros from dt-binding header file.
+- Add "wakeup-gpios" and "wakeup-source" to aon document.
+- Add "gpio-line-names" to sys-east and sys-west document.
+- Update the description of syscon register usage in each document.
+- Update sys-gmac and aon document with information of GMAC voltage.
+  reference syscon and GMAC pad syscon.
+- Fix the pinctrl device nodes compatible string too long issue.
+- Move all common codes from subdrivers to the main driver.
+- Change the commit log to "add main and sys_east driver" to indicate
+  the commit of both main and sys-east driver.
+- Turn pin_to_hwirq macro to a static inline function to hide gpio
+  internal detail, and also, for easier code readability.
+- Change "JH8100_PADCFG_BIAS" to "JH8100_PADCFG_BIAS_MASK".
+- Change "#define JH8100_PADCFG_DS_4MA   BIT(1)" to
+  #define JH8100_PADCFG_DS_4MA   (1U << 1)".
+- Replace "jh8100_gpio_request" by "pinctrl_gpio_request".
+- Replace "jh8100_gpio_free" by "pinctrl_gpio_free".
+- Replace "jh8100_gpio_set_config" by "gpiochip_generic_config".
+- Use irq_print_chip function to display irqchip name to user space.
+- Use girq to represent GPIO interrupt controller.
+- Update code to ensure wakeup-gpios is always an input line.
+- Remove the jh8100_gpio_add_pin_ranges function and use gpio-ranges
+  in device tree to provide information for GPIO core to add pin range
+  for each pinctrl.
+- Change "StarFive GPIO chip registered" to "StarFive JH8100 GPIO chip
+  registered".
+
+---
+Alex Soo (6):
+  dt-bindings: pinctrl: starfive: Add JH8100 pinctrl
+  pinctrl: starfive: jh8100: add main and sys_east driver
+  pinctrl: starfive: jh8100: add pinctrl driver for sys_west domain
+  pinctrl: starfive: jh8100: add pinctrl driver for sys_gmac domain
+  pinctrl: starfive: jh8100: add pinctrl driver for AON domain
+  riscv: dts: starfive: jh8100: add pinctrl device tree nodes
+
+ .../pinctrl/starfive,jh8100-aon-pinctrl.yaml  |  261 ++++
+ .../starfive,jh8100-sys-east-pinctrl.yaml     |  223 ++++
+ .../starfive,jh8100-sys-gmac-pinctrl.yaml     |  163 +++
+ .../starfive,jh8100-sys-west-pinctrl.yaml     |  220 +++
+ MAINTAINERS                                   |    7 +
+ arch/riscv/boot/dts/starfive/jh8100-evb.dts   |    5 +
+ arch/riscv/boot/dts/starfive/jh8100-pinfunc.h |  418 ++++++
+ arch/riscv/boot/dts/starfive/jh8100.dtsi      |   47 +
+ drivers/pinctrl/starfive/Kconfig              |   59 +
+ drivers/pinctrl/starfive/Makefile             |    6 +
+ .../starfive/pinctrl-starfive-jh8100-aon.c    |  154 +++
+ .../pinctrl-starfive-jh8100-sys-east.c        |  224 ++++
+ .../pinctrl-starfive-jh8100-sys-gmac.c        |   93 ++
+ .../pinctrl-starfive-jh8100-sys-west.c        |  168 +++
+ .../starfive/pinctrl-starfive-jh8100.c        | 1181 +++++++++++++++++
+ .../starfive/pinctrl-starfive-jh8100.h        |  105 ++
+ .../pinctrl/starfive,jh8100-pinctrl.h         |  103 ++
+ 17 files changed, 3437 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/starfive,jh8100-aon-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/starfive,jh8100-sys-east-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/starfive,jh8100-sys-gmac-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/starfive,jh8100-sys-west-pinctrl.yaml
+ create mode 100644 arch/riscv/boot/dts/starfive/jh8100-pinfunc.h
+ create mode 100644 drivers/pinctrl/starfive/pinctrl-starfive-jh8100-aon.c
+ create mode 100644 drivers/pinctrl/starfive/pinctrl-starfive-jh8100-sys-east.c
+ create mode 100644 drivers/pinctrl/starfive/pinctrl-starfive-jh8100-sys-gmac.c
+ create mode 100644 drivers/pinctrl/starfive/pinctrl-starfive-jh8100-sys-west.c
+ create mode 100644 drivers/pinctrl/starfive/pinctrl-starfive-jh8100.c
+ create mode 100644 drivers/pinctrl/starfive/pinctrl-starfive-jh8100.h
+ create mode 100644 include/dt-bindings/pinctrl/starfive,jh8100-pinctrl.h
 
 -- 
-Thx and BRs,
-Aiqun(Maria) Yu
+2.43.0
+
 
