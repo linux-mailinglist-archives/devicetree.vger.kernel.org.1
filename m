@@ -1,73 +1,74 @@
-Return-Path: <devicetree+bounces-43847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35DE585BABE
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 12:38:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0525085BACB
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 12:42:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4E711F218E3
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 11:38:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 28E731C21ACC
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 11:42:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ECEB66B4F;
-	Tue, 20 Feb 2024 11:37:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C745467754;
+	Tue, 20 Feb 2024 11:42:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DBahXR/D"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jNuhW8dX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E32B69949
-	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 11:37:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC54165E04
+	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 11:41:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708429071; cv=none; b=EHo1L1ycIp10M4IciL4477mGRFdC/vNxyo05LKIZw6I7Bm5UX/HyTTTkbzXkAGeI6kx9sj85ksFGU7OJZx1kHiXTjaHPjWQ1JqU0taol1l7/w10xN9kuSmGuRMKqChCpspZKxTl7qD5w2kGV2ibScaB16Qp0t5uGjRUBhH3HQI4=
+	t=1708429320; cv=none; b=BHP0zxYaTRqjr1PwTgOskcvXvcfaUSyDGU5HLmhVlsPi9RMaIcZDOG3xg3aejb3zikkG/VSkerYh6eLH6VT1ZYgjSxE/KLsPvj5C/WtlCc3aMMiVPLpYOAP592kllSn+PDEiSF/gqTzP41ZSHzj6tygnK9s2SPKRI3m8keI7jro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708429071; c=relaxed/simple;
-	bh=aCqm7zmGGwbfZRL15nYhI/q/NZRSI/X4Jngq4sAu76c=;
+	s=arc-20240116; t=1708429320; c=relaxed/simple;
+	bh=07vhUlZzzQQe6hC9s5mP3ELa3vbii3u8ZF3kCqTPA7Q=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oCliW9yo/80XRrL0n8PuF/+bdff9GZ1fwE48cxtt4BBO33NwmehJXlFOGcR3I99sTp7m5hbDyt+Q0vbbFF4xI5BvfSB/Z4ycpaQ3hSJ9FCyr1/ElEpxoh1pFd1VJdCcIoxGwcezSy8NpswpNZhsl79KwZ6YBAYKjKvxNAf8HeJU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DBahXR/D; arc=none smtp.client-ip=209.85.208.52
+	 In-Reply-To:Content-Type; b=JRDR6SatZlyvaezw48RQfh1xd53it2jZH0g/3Q6ZskhxbgKt7svpdT0LvqdSKeIhxIA1/tvILc9I5pYOcAiIKigy7P8h0LvMdZY+OTeJOKPn7NVfXM1URqouKLp655t3ABh0lSBQVW7KDgVZGJ/sVNXEPtLAwh9N+rqwhmtTJrs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jNuhW8dX; arc=none smtp.client-ip=209.85.208.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5648d92919dso2500418a12.1
-        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 03:37:49 -0800 (PST)
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2d109e82bd0so70730241fa.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 03:41:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708429068; x=1709033868; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708429317; x=1709034117; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=mMy/+tyqqxFBTAjRn0JPSAGjq/uZ/OhPdcX+w/Bl/V0=;
-        b=DBahXR/DDCU/bUtXD4dXCNveRJHS0uUu6r/KNjgzxstNktrpLzlg42FPg5Hp1SWFzv
-         lvGXkP53sCVoyFAy2rxeB/bjx3xxV8Clhm3TyBHgWIQjklUTGp/EIeMzUQq7YfnT6RAa
-         2fVTcO4LsTwxpj81wqWm2qwzGM7zluTO50DOm/VA8oNcqh6lUDZK1RUOGOWO+uRu5VV/
-         mKRGUWAsvS+q2oChzVDYqXpTiz09IAwkJN3Ooh86bzx/KKwPMMdM+ekfEi7KIvDsCS+k
-         9XP42uNZeQNIPtOmYYkMfLBUzqvZSOtTGD2U/6+uSwdcDsxoz2/ApainZ0xa060LSgaz
-         EZuA==
+        bh=9J9gv981elm4Fd66m9fg/wZTGDz7xrs+dihVcv+w61U=;
+        b=jNuhW8dXJLuMC8ni1+Cr1aXhEJny36vVtL1URIWiAOulGamxadH7wMkhMy7/mr5yU+
+         QzduP2FwMub3qs6tNV4H1ijKXu2FbzdbRL5spAtjTTCbdRdgK4+V/DOA+ZD8iRQfIzEj
+         5T8qrQRjSAqIUbhIchDHCUbQxZ4KVc2Jv3y4BfXX6l4LIlRYjXZh4F+mbxt/zCxI+mOp
+         9uBu9ahAOwzFQL0N1Mg3607DCSx0fLueiR4GXewI5TvoIgnOH/FqFQCcv/DVVO9lV/Pw
+         B0nX4qvalJFQqEFFtWnog5yAn58QeoNpMOJ3gUc1S1MTGKXkMhBwy41rBxlphBNFItqg
+         6qtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708429068; x=1709033868;
+        d=1e100.net; s=20230601; t=1708429317; x=1709034117;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mMy/+tyqqxFBTAjRn0JPSAGjq/uZ/OhPdcX+w/Bl/V0=;
-        b=OHQKBIie2vM3Ni1EbRRKDRTJ1P+K6ZJzr3RxlpAx5k9Iw1lCh6kPCBff1qXh7WQwcH
-         F+vEjtcK0LtjDT4HklLefcro6aiREgCZKiNiCQLoXBb4braIvqfLmVQkIPbjIQdwKa4A
-         fO3dUln04uUedN3NpASuU0KBPxjBcLJ4Us23Lp3kP5n9wY+2gXWXAroPPcIBwWRHehyg
-         CDsxmRM6GfUSWPzud6om59ciT1EtcG2BVfrlBakk4QpYph7y8lmF+QGU572fYwU6xS2I
-         dGuJn9zSS4HlfsMernnx2g0WLJJsjzQiWdCWWE75LW4N4Hi0Iqv7xOSPklD6aLOLMQQ5
-         QX0g==
-X-Gm-Message-State: AOJu0YzcTrSrLTwlqF4RAvaytlTePnzBx3g2Zuu3lonSgF0HYYpWSAVR
-	HhUfTnUcFLpmbR14h4PGvEQp1hzT7ll8YQjSHI+QUm1eWPKiLO8zUkYGdgmZvgk=
-X-Google-Smtp-Source: AGHT+IHxHZ7aaKdCIyzehZkgTGXYKIrhGtf9UcNgP1hoLqjXEnOBrasVQo0/L+RbgqjbdS+Ba5oaiA==
-X-Received: by 2002:aa7:c90b:0:b0:564:a9ca:1c41 with SMTP id b11-20020aa7c90b000000b00564a9ca1c41mr1901125edt.6.1708429068400;
-        Tue, 20 Feb 2024 03:37:48 -0800 (PST)
+        bh=9J9gv981elm4Fd66m9fg/wZTGDz7xrs+dihVcv+w61U=;
+        b=Er2SyU7vRjZyxD0zx4HPLGM3sHj0g//E5LyZHzYr/Eeth+lCMEbeHNXrcHQE8xq00z
+         p++nVAhMNACaLCqwx1PVZ4u6baXJxKtcNiL/hoXCF8SnsLbWWPYz9Sq3SzCQ6xKv0IFe
+         NrB3x3Agd9yusazyk+ZNpxIEncA/II+EAiaw2myo50cmHsfdybUgeROjkSxZRjiwwVgB
+         1e8ctCZmd3tDfEsDFN/Yyyuj2oixn6ITsSOyeXnjTabWYcF0E0s2QSGWsHPk1TR4CukW
+         XO6jTS4F4wv3CqOYXcI47oT3EAfXrekNywGEqqq1LbLaUfdyCIsZjhtnNnGAygZnYPj4
+         H6hg==
+X-Forwarded-Encrypted: i=1; AJvYcCWRQD3EMqxKuSzyXH8UXRwd1qub+miYuZBvnlUJgwyvElbAabDuktJONgKZiyq/oWWuSixIJ29JLTdLC4UhksEeVSDZPe93amB6tw==
+X-Gm-Message-State: AOJu0Yw4OC0aJ/uprLH1NSjEMq4JHFBImLUZe0KSB+ttZckAwLO8LPA2
+	tEjrfFAj51fcf521Zt4ftKUJ6AmwKiHXeiRU77IM3r1Q3XXEl9RAyUI7SyENcGM=
+X-Google-Smtp-Source: AGHT+IFUQvaY0OdaOh15fAs6s35jjCrzlsk5A/Ryckie3o7N51ipQgngErmVVAJ1N6CY6X66LraSEQ==
+X-Received: by 2002:ac2:5e66:0:b0:512:bdd7:a932 with SMTP id a6-20020ac25e66000000b00512bdd7a932mr2334062lfr.8.1708429316854;
+        Tue, 20 Feb 2024 03:41:56 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id e10-20020a50ec8a000000b00564d6840976sm234387edr.80.2024.02.20.03.37.46
+        by smtp.gmail.com with ESMTPSA id t5-20020a056402240500b0056394d0e989sm3586620eda.76.2024.02.20.03.41.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Feb 2024 03:37:48 -0800 (PST)
-Message-ID: <10fe67af-0572-4faa-91c6-fce9c8f9dc92@linaro.org>
-Date: Tue, 20 Feb 2024 12:37:46 +0100
+        Tue, 20 Feb 2024 03:41:56 -0800 (PST)
+Message-ID: <bf4ce87a-51ab-49e1-ac70-c463d8008a62@linaro.org>
+Date: Tue, 20 Feb 2024 12:41:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,27 +76,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC WIP PATCH] venus: add qcom,no-low-power property
+Subject: Re: [PATCH RFC v3 1/5] dt-bindings: phy: hisi-inno-usb2: convert to
+ YAML
 Content-Language: en-US
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Marc Gonzalez <mgonzalez@freebox.fr>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: DT <devicetree@vger.kernel.org>, linux-media
- <linux-media@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>,
- Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+To: Yang Xiwen <forbidden405@outlook.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
  <robh+dt@kernel.org>, Krzysztof Kozlowski
  <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Pierre-Hugues Husson <phh@phh.me>
-References: <0843621b-386b-4173-9e3c-9538cdb4641d@freebox.fr>
- <f6e68756-72a1-4c32-968d-3d6adaa153c9@linaro.org>
- <CAA8EJpq=G21h87W69_4U-BZ=Sa5VEs15Y-zE-G5x9VxVx4qjsA@mail.gmail.com>
- <81dc6452-4039-4eb4-92ba-df248215fca2@linaro.org>
- <b8325dbf-67c5-4898-bc23-ff093ae6e14a@freebox.fr>
- <87db77f7-fda4-4cf7-adfd-8545c40c3365@linaro.org>
+ Jiancheng Xue <xuejiancheng@hisilicon.com>, Shawn Guo
+ <shawn.guo@linaro.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Kishon Vijay Abraham I <kishon@ti.com>,
+ David Yang <mmyangfl@gmail.com>
+References: <20240220-inno-phy-v3-0-893cdf8633b4@outlook.com>
+ <20240220-inno-phy-v3-1-893cdf8633b4@outlook.com>
+ <62221084-247c-4a0b-a030-e12cb2931411@linaro.org>
+ <SEZPR06MB6959AAB6B43F3E1F5E1C526596512@SEZPR06MB6959.apcprd06.prod.outlook.com>
+ <6f3f22f6-f659-494d-963c-544cf5f44adc@linaro.org>
+ <SEZPR06MB69592FACB1EF1B9FEDA89E5996512@SEZPR06MB6959.apcprd06.prod.outlook.com>
+ <9a5e9363-79eb-416c-89ae-c826062350b5@linaro.org>
+ <SEZPR06MB69594A5036F122CE6C14043C96502@SEZPR06MB6959.apcprd06.prod.outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -141,57 +141,136 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <87db77f7-fda4-4cf7-adfd-8545c40c3365@linaro.org>
+In-Reply-To: <SEZPR06MB69594A5036F122CE6C14043C96502@SEZPR06MB6959.apcprd06.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/02/2024 12:21, Bryan O'Donoghue wrote:
-> On 20/02/2024 10:56 a.m., Marc Gonzalez wrote:
->> On 19/02/2024 20:24, Bryan O'Donoghue wrote:
->>
->>> On 19/02/2024 5:44 p.m., Dmitry Baryshkov wrote:
->>>
->>>> On Mon, 19 Feb 2024 at 19:29, Konrad Dybcio wrote:
->>>>>
->>>>> On 19.02.2024 18:18, Marc Gonzalez wrote:
->>>>>
->>>>>> On our msm8998-based device, calling venus_sys_set_power_control()
->>>>>> breaks playback. Since the vendor kernel never calls it, we assume
->>>>>> it should not be called for this device/FW combo.
->>>>>
->>>>> FWIW, this is also broken on other SoCs.. 8280/8350 and 6115
->>>>> to name a couple.
+On 20/02/2024 11:40, Yang Xiwen wrote:
+> On 2/20/2024 4:16 PM, Krzysztof Kozlowski wrote:
+>> On 19/02/2024 22:49, Yang Xiwen wrote:
+>>> On 2/20/2024 5:37 AM, Krzysztof Kozlowski wrote:
+>>>> On 19/02/2024 22:35, Yang Xiwen wrote:
+>>>>> On 2/20/2024 5:32 AM, Krzysztof Kozlowski wrote:
+>>>>>> On 19/02/2024 22:27, Yang Xiwen via B4 Relay wrote:
+>>>>>>> From: Yang Xiwen <forbidden405@outlook.com>
+>>>>>>>
+>>>>>>> Add missing compatible "hisilicon,hi3798mv100-usb2-phy" to compatible
+>>>>>>> list due to prior driver change.
+>>>>>>>
+>>>>>>> Also rename to hisilicon,inno-usb2-phy.yaml and add this name to
+>>>>>>> compatible lists.
+>>>>>>>
+>>>>>>> Fixes: 3940ffc65492 ("phy: hisilicon: Add inno-usb2-phy driver for Hi3798MV100")
+>>>>>>> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+>>>>>>> ---
+>>>>>>>     .../bindings/phy/hisilicon,inno-usb2-phy.yaml      | 95 ++++++++++++++++++++++
+>>>>>>>     .../devicetree/bindings/phy/phy-hisi-inno-usb2.txt | 71 ----------------
+>>>>>>>     2 files changed, 95 insertions(+), 71 deletions(-)
+>>>>>>>
+>>>>>>> diff --git a/Documentation/devicetree/bindings/phy/hisilicon,inno-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/hisilicon,inno-usb2-phy.yaml
+>>>>>>> new file mode 100644
+>>>>>>> index 000000000000..1b57e0396209
+>>>>>>> --- /dev/null
+>>>>>>> +++ b/Documentation/devicetree/bindings/phy/hisilicon,inno-usb2-phy.yaml
+>>>>>>> @@ -0,0 +1,95 @@
+>>>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>>>> +%YAML 1.2
+>>>>>>> +---
+>>>>>>> +$id: http://devicetree.org/schemas/phy/hisilicon,inno-usb2-phy.yaml#
+>>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>>>> +
+>>>>>>> +title: HiSilicon HiSTB SoCs INNO USB2 PHY device
+>>>>>>> +
+>>>>>>> +maintainers:
+>>>>>>> +  - Yang Xiwen <forbidden405@outlook.com>
+>>>>>>> +
+>>>>>>> +properties:
+>>>>>>> +  compatible:
+>>>>>>> +    items:
+>>>>>>> +      - enum:
+>>>>>>> +          - hisilicon,hi3798cv200-usb2-phy
+>>>>>>> +          - hisilicon,hi3798mv100-usb2-phy
+>>>>>>> +      - const: hisilicon,inno-usb2-phy
+>>>>>> According to your driver hisilicon,hi3798mv100-usb2-phy and
+>>>>>> hisilicon,inno-usb2-phy are not compatible.
+>>>>> Ah, i didn't pay too much attention to that. I should remove the entry
+>>>>> for hisilicon,inno-usb2-phy in the driver. Sorry for that.
+>>>> We don't talk here about driver, although I used the driver as proof or
+>>>> argument, because I don't have access to hardware datasheet (and no
+>>>> intention to look there).
 >>>>
->>>> Then let's just disable it until it gets unbroken?
->>>
->>> Its functional on most of our upstream stuff though, why switch if off
->>> unless necessary ?
->>>
->>> Maybe it should be an opt-in instead of an opt-out, TBH my own feeling
->>> is its better to minimize the amount of work and opt as per the proposed
->>> patch.
->>>
->>> Perhaps the qcom vidc team can give insights on 8280xp and 8350 when we
->>> come to tackling new HFI6XX and later SoCs ...
+>>>> What I claim is these are not compatible, so respond to this argument,
+>>>> not some other one.
+>>> Why not? Of course they are compatible. All 3 SoCs are using
+>> Why? Because...
 >>
->> I was wondering if the chosen property name might cause issues later...
+>>> inno-usb2-phy. The only difference here is the method to access the
+>> ... here! Different programming interface means not compatible.
 >>
->> Thinking "qcom,no-low-power" might be a bit too general?
->> Perhaps would need to mention venus somewhere in the name,
->> to limit this to the video decoder?
+>> Please provide instead any argument that they are compatible, in the
+>> meaning of Devicetree of course. You are claiming inno-usb2-phy  can be
+>> used for hi3798mv100 and it will work fine?
 >>
->> Regards
+>>> registers. They are all enabled by `writing BIT(2) to address 0x6`. In
+>>> the cover letter, I said the driver is actually doing things wrong.
+>> Cover letter does not matter, I don't even read them. Your commits matter.
 >>
+>>> Especially the commit adding PHY_TYPE enums, the name is confusing and
+>>> conveys the wrong info. It's not PHY which are not compatible, it's the
+>>> bus. I'll fix the driver, but still the PHY hardwares are compatible
+>>> between these 3 SoCs.
+>> Provide any argument.
 > 
-> Yep, the word venus should probably appear in the property name.
+> Just take a look at the driver. hisi_inno_phy_write_reg() is the 
+> function that differs between different models. But for all of them, 
+> hisi_inno_phy_setup() is the same.
+> 
+> 
+> hisi_inno_phy_write_reg() should be moved to a separate bus driver. It's 
+> bus-related, not phy. PHY driver should not care how to access the bus, 
 
-This is RFC, so I am ignoring it, but just in case before you send v2
-with the same:
+So drivers are compatible or hardware? We talk about hardware, not
+drivers...
 
-You described the desired Linux feature or behavior, not the actual
-hardware. The bindings are about the latter, so instead you need to
-rephrase the property and its description to match actual hardware
-capabilities/features/configuration etc.
+> but the bus driver should. The PHY driver only needs to use regmap_* 
+> APIs to "write BIT(2) to addr 6".
+
+Different programming interface, so not compatible.
+
+> 
+> 
+> For mv100 and cv200, the PHY master bus interface is attached to the 
+> perictrl core in SoC (though the perictrl core provides slightly 
+> different register offsets to access the PHY bus). For mv200, it is 
+> directly attached to AHB/APB system bus so we don't need to put it under 
+> a perictrl node anymore. So here, clearly it's the bus the PHY attached 
+
+Different programming interface, so not compatible.
+
+> to which is different, not the PHY itself.
+> 
+> 
+> That's why i say the driver is wrong from the beginning. It's mixing PHY 
+
+
+I don't care. We do not talk about drivers.
+
+> driver and bus driver together but they ought to be different. PHY is 
+> always compatible, but the bus is not.
+
+Do you understand what does it mean "compatible" in DT?
+
+> 
+> 
+> The correct fix should be moving hisi_inno_phy_write_reg() to a new bus 
+> driver and migrating to regmap_* APIs in PHY driver. But i'll have to 
+
+Don't care. Driver stuff.
+
+> write a new driver for that, which i try to avoid (it takes too much 
+> time!). So i said clearly in the cover-letter this should be considered 
+> a hack.
+
 
 Best regards,
 Krzysztof
