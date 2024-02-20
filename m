@@ -1,175 +1,112 @@
-Return-Path: <devicetree+bounces-44020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88BFB85C2AF
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 18:31:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71B8185C2FC
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 18:51:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 449CA281D4A
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 17:31:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2753628316E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 17:51:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECAE576C98;
-	Tue, 20 Feb 2024 17:31:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 428AE76C9A;
+	Tue, 20 Feb 2024 17:51:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JedIzxc6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tr49YR9j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1C9876C70
-	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 17:31:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A50E56757;
+	Tue, 20 Feb 2024 17:51:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708450268; cv=none; b=TkXPlyh8YqflsPn1vGlUr+ofs7E1xP6DpCLemdZ3GMkWcfjGIHvUjBPQqDoUjnKy6xNonoMS0aP30Rd4PmLA5nUuZTzaStwaPhj6F16BWUowey8DlQup2YZ3IcZCBYA/76NMutW9tEbkmeJ0nTwiLhPZ1f2uDLxpr9Rv9G7pZng=
+	t=1708451502; cv=none; b=tqMuPLtK0pxtdvLnAF602qtAYdE/XJkDXOQ/d+lAK1YG0b1gpKZUwFUuWjkl1aH3d9h60imxmmznkcwrHqH6+IHFHCI3mPM6qKR7Gcv79fgAqU91Is7A3JVq6I6MCN4nGhn/FfF/U81R51/fxSVmkMIZM21Y52ToVqS1C7iK73c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708450268; c=relaxed/simple;
-	bh=hx02bMWjni/BIqa32HymRwKbgZ45Y6W5eQY/go1X1so=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=b/sdk/v5mWQg5cXiQxZ0eanjefumY5j3tWAY/J3MsvXY8GkFbSwAs/gmBYxZC/H+y/y5fhSgrtASON/ZAUMPGvECnYmNi7yG8sYP34SxQY1opiAndIQQ1bhCK0jhzLzdPDUVFCsC9n9eMivCG3o1Ojfq0VdLzI8vi+VFAxdwia8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JedIzxc6; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2d0e520362cso58177021fa.2
-        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 09:31:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708450265; x=1709055065; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=XTun3sjeHoZPuUA68W/Q0xsVB+hQlqb+IVl/9LKFQL8=;
-        b=JedIzxc6avduODqdN4l3+h2poUwvi23qo7blM/3G8CfmVlxmTyajuAEUyoeBytg6Jv
-         7/C8nZ9ZEL7z9tZjIUl9QtTAFBI9t2oXEGW7NbfHp2Hyn3XJWNYUShevgVH7LR1H4FuT
-         Y4n1Gd4KYN9I5oneyi5CMqtLDRgT4rxe/pcOi+1e4L0A4FhXyg4y7EYMAEFVkld8xTbl
-         hSWC7UDU7hc0uqDoYHhh5jxBaBBaAEi9UdZ29Nv5c0S1f2xbuDEVS+QoqbWBvRK06w+C
-         fd7iozZ1DeffrBnAaYdr0XOQHw2Z2Mtmn8oDGLkMnR2+DKgMkMlO6UGltdI0PN0gFfrt
-         86RQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708450265; x=1709055065;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XTun3sjeHoZPuUA68W/Q0xsVB+hQlqb+IVl/9LKFQL8=;
-        b=EDAj5Rjx9ogu8zkpr0n2mswCvxb6NLWukSXN8jI2ag589v1UROTW+AAM29zJSbIPgh
-         wKxXVX5fbhhgMkIMLfqNCmdf2B6gYhg80U1Dstloyy0sTMwfW1NUZPoAnj9ZfocwtxzI
-         J0tOK2R2ERlLHbY+mYinWamdTJ0XkqMALbMs0vtrHk9nqd91jwe/K+SenD+1I8GWQurE
-         psf3yvzC2besETpSt1Idp54OkExTmr/BTHeRKov/t7ajuz8fNGpAh3GnDZjR0nemK5YJ
-         Rsc59UX4licT497lSODwPctv9ajLZr8RjwRfikLWAtZvBcNIY6PDoiQoA2Yax9n4Q8zQ
-         ieEA==
-X-Forwarded-Encrypted: i=1; AJvYcCX0+nFG4GoFnZPE/A2XxN5Z7jZvdfA0WpC4fVTcE7KxhrHBVOjB2sQOpVrd/bU4fFJ9lncqvXuvXSZfCvd3aK89lp1Mtu7YDIchag==
-X-Gm-Message-State: AOJu0Yw2pms2/A0jiSeWgYu3u568fez3DS0EZcjV1PiLj6JOfKMK4cO7
-	b8rbn1oPbC3jZaBzYXaRRGk7KJiJ/4cvY99iu96p+3eEBZ2zgv+TC+scaNHl9jY=
-X-Google-Smtp-Source: AGHT+IF6Im9KKVZF6BrPLUUt83T7OwbOQ3FD2cFzceJ+n1jrzoKNH62XjIkgG0CkuvB6WON7bbYxkQ==
-X-Received: by 2002:a2e:9e10:0:b0:2d0:e331:8d2d with SMTP id e16-20020a2e9e10000000b002d0e3318d2dmr10769775ljk.37.1708450265047;
-        Tue, 20 Feb 2024 09:31:05 -0800 (PST)
-Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id w4-20020a2e9584000000b002cdf4797fb7sm1585042ljh.125.2024.02.20.09.31.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Feb 2024 09:31:04 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Clark <robdclark@gmail.com>,
-	Sean Paul <sean@poorly.run>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Stephen Boyd <swboyd@chromium.org>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	freedreno@lists.freedesktop.org
-Subject: [PATCH] arm64: dts: qcom: sm6115: fix USB PHY configuration
-Date: Tue, 20 Feb 2024 19:31:04 +0200
-Message-Id: <20240220173104.3052778-1-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.2
+	s=arc-20240116; t=1708451502; c=relaxed/simple;
+	bh=ipWP10K/HfpSzlfSlOZDuLMC0hDifnL7binX1XavI0s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TbGi/uqVfznzuewdDfx1NnillmXzOh3+TNaZqmnZbdoZvRkB7OxchPMpDShlwI5g4vVGtiaWeuCCi50fPeIyggfpHyHG/ITyiuW4j0Pce53OFBWd8mGSS+2Gpr9NynLaNuBBJRtDvJcFsRGwoVdv/Alqmgxala0ObOatRw7v9sw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tr49YR9j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37321C433F1;
+	Tue, 20 Feb 2024 17:51:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708451501;
+	bh=ipWP10K/HfpSzlfSlOZDuLMC0hDifnL7binX1XavI0s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tr49YR9jVQpw7hn4LgYtdl0jKYVmEpAXdseUslXBDmkRPTa8j0Wm6tPWjZVeB2fkA
+	 AATlfsNlVCWZub1gVP1Kx6nTbvM0+crcisFsso9Vfw3YgqhIvPVabJ+/eZeQFQlCcZ
+	 Hj3cIXvlZf+qhwKVg4Tn1d7lHY1ZvyCziKeNal9f7OGYvTpjV93Ax+8Ofw/5TrQLi8
+	 5O/QPfisrGyw7C47RrVBM4sQidCJsfpuc3hKTYUpKZXFwF+y+By8OXVpEcgmZfwzgV
+	 Fy2aRUwWu5g+I0WgZeMw6e4VqxZShzYTr/rVEzAZ8Zk1QEQllIZFZF/L0sPIa3ik8y
+	 0jJy6WWWRKWWQ==
+Date: Tue, 20 Feb 2024 17:51:37 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: vendor-prefixes: Add missing prefixes used
+ in compatibles
+Message-ID: <20240220-colonial-shame-e217e4399184@spud>
+References: <20240216025839.902288-1-robh@kernel.org>
+ <20240216-percolate-wooing-b5e4f6814d15@wendy>
+ <20240220163845.GA3606739-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Op5Lv64OwLhiFXti"
+Content-Disposition: inline
+In-Reply-To: <20240220163845.GA3606739-robh@kernel.org>
 
-The patch adding Type-C support for sm6115 was misapplied. All the
-orientation switch configuration ended up at the UFS PHY node instead of
-the USB PHY node. Move the data bits to the correct place.
 
-Fixes: a06a2f12f9e2 ("arm64: dts: qcom: qrb4210-rb2: enable USB-C port handling")
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm6115.dtsi | 42 ++++++++++++++--------------
- 1 file changed, 21 insertions(+), 21 deletions(-)
+--Op5Lv64OwLhiFXti
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-index ee65ab073ba6..b344f6f6d556 100644
---- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-@@ -884,10 +884,31 @@ usb_qmpphy: phy@1615000 {
- 			clock-output-names = "usb3_phy_pipe_clk_src";
- 
- 			#phy-cells = <0>;
-+			orientation-switch;
- 
- 			qcom,tcsr-reg = <&tcsr_regs 0xb244>;
- 
- 			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					usb_qmpphy_out: endpoint {
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					usb_qmpphy_usb_ss_in: endpoint {
-+						remote-endpoint = <&usb_dwc3_ss>;
-+					};
-+				};
-+			};
- 		};
- 
- 		system_noc: interconnect@1880000 {
-@@ -1213,29 +1234,8 @@ ufs_mem_phy: phy@4807000 {
- 			reset-names = "ufsphy";
- 
- 			#phy-cells = <0>;
--			orientation-switch;
- 
- 			status = "disabled";
--
--			ports {
--				#address-cells = <1>;
--				#size-cells = <0>;
--
--				port@0 {
--					reg = <0>;
--
--					usb_qmpphy_out: endpoint {
--					};
--				};
--
--				port@1 {
--					reg = <1>;
--
--					usb_qmpphy_usb_ss_in: endpoint {
--						remote-endpoint = <&usb_dwc3_ss>;
--					};
--				};
--			};
- 		};
- 
- 		gpi_dma0: dma-controller@4a00000 {
--- 
-2.39.2
+On Tue, Feb 20, 2024 at 09:38:45AM -0700, Rob Herring wrote:
+> On Fri, Feb 16, 2024 at 08:59:56AM +0000, Conor Dooley wrote:
+> > On Thu, Feb 15, 2024 at 08:58:29PM -0600, Rob Herring wrote:
+> > > +  "^calao,.*":
+> > > +    description: CALAO Systems SAS
+> > >    "^calaosystems,.*":
+> > >      description: CALAO Systems SAS
+> >=20
+> > > +  "^IBM,.*":
+> > > +    description: International Business Machines (IBM)
+> > >    "^ibm,.*":
+> > >      description: International Business Machines (IBM)
+> >=20
+> > These ones add duplicates with no indication of which one is to be used
+> > going forward. Why not mark one as deprecated?
+>=20
+> Because I couldn't decide which... It's a mixture with no clear pattern=
+=20
+> of on what or when each one is used. Power is kind of special.
 
+ That might be true for ibm, but is it true for calao systems?
+ The website appears to now be something to do with Korean gambling, but
+ the twitter remains and looks to have produced arm sbcs:
+ https://twitter.com/calaosystems?lang=3Den
+
+
+--Op5Lv64OwLhiFXti
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdTmqQAKCRB4tDGHoIJi
+0rK9AP9UPY2lpoQmDV8rySqGu4D55Bl//O7Iy08Nq5mymAk9HwD/ShHiNt3QSh9C
+CtkHeVxAhCDsc7v36fa08UvSAk/uOAo=
+=VlKx
+-----END PGP SIGNATURE-----
+
+--Op5Lv64OwLhiFXti--
 
