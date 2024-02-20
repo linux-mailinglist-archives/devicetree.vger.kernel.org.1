@@ -1,128 +1,119 @@
-Return-Path: <devicetree+bounces-43785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75EFE85B89A
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 11:09:00 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3674685B8AA
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 11:12:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB353282BEE
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 10:08:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BD8ECB2988D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 10:10:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EFD960DEC;
-	Tue, 20 Feb 2024 10:08:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E300660DEC;
+	Tue, 20 Feb 2024 10:09:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tdlkta8K"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="WUT0Kd4b";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="rIuXTH/Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C34CE62148;
-	Tue, 20 Feb 2024 10:08:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62B965FEF9;
+	Tue, 20 Feb 2024 10:09:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708423707; cv=none; b=jEtR8j9pbIpl2Wqh+r+9XFsbeCUnIquqmsS3pC7oZeqLvb4a7QHV0b25kq45Q/3TxJHwtXbtD95eXCMZghQNs+KYZDlVY2XFYCSWL+t46ury3uIp9ubW2P4Xz+iWWbBMLJflz8SiT95iW7Gqkd+/515juJGki0dsrKFGiIRhQnM=
+	t=1708423790; cv=none; b=GJZR5wj2PKQmgLodFQ3R5cwcg9ak3VDb/i3IzKfaUfNJxTL8oziOCRBY4Y5oykQe0BA3/qp8nI4hEL6lftAYSTgg6lU7yuuvqj1AG9Yqko31xBCnaXXWK3wSOCUG6Jahg3gcoCPWsqL2fCz5SDJ9zBeJUCwejg6+oqSjcl9dMl4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708423707; c=relaxed/simple;
-	bh=ZiVDo9VjxqacGWKKWwvnL3dNkMzx/y7612DJv1ebiD0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YDx8VkQXto2mzObkAxiwwSxdH02fbcF01PaqTkGer40SgH7hst3yicM3TOFI+yUtKmkEaEf3yjkAbMlsSN2OexWRDfLnhy9uaPhsrqSYC2Z4pxP3rcsvmHSY/+NZZVtK3m15pq81VbfliZBBO6zGYRYicWXFDd6dKu7xhyVnLOQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tdlkta8K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C41E9C433C7;
-	Tue, 20 Feb 2024 10:08:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708423705;
-	bh=ZiVDo9VjxqacGWKKWwvnL3dNkMzx/y7612DJv1ebiD0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tdlkta8KkwOy+GdYSnGEFJ/ZYtpmteSlrZ8NRw4lId6hdGN496C+J3poq6SKFJvKf
-	 SkIc/LqK4NdAi0wULLCrdC4V8UYCRnHrEYALqzh7Dw8cMNRqm4jF9ysgNFlQRjjohl
-	 alVl7OvWrtNAXlHN8FBxjJ7DL0DpeOiRkz/UYkWAp3M4HW7qAlVpPkAdbIgXzVcZLa
-	 OdHj3Wisz1zx8erSKfbJN+QdNF0wB76HcuKshYmaSbeVytUgKGyXBm+nySVP4d5AHf
-	 xZky2Nxt3SpIgc3jwCr8tQP1W3hjnhIKXkZz3NZ4aTAyCs1grTSP3OG2zWP1qJiyUR
-	 RbiubdGag3n3w==
-Date: Tue, 20 Feb 2024 11:08:17 +0100
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Niklas Cassel <cassel@kernel.org>
-Cc: Frank Li <Frank.li@nxp.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	bhelgaas@google.com, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, festevam@gmail.com, helgaas@kernel.org,
-	hongxing.zhu@nxp.com, imx@lists.linux.dev, kernel@pengutronix.de,
-	krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
-	kw@linux.com, l.stach@pengutronix.de,
-	linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	robh@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org
-Subject: Re: [PATCH v10 00/14] PCI: imx6: Clean up and add imx95 pci support
-Message-ID: <ZdR6EUOv6hzLEmUa@lpieralisi>
-References: <20240205173335.1120469-1-Frank.Li@nxp.com>
- <ZdNvsdao8jbB/52L@lizhi-Precision-Tower-5810>
- <20240219161208.GE3281@thinkpad>
- <ZdN/OyNpw0Xa7qXG@lizhi-Precision-Tower-5810>
- <ZdR2FRQ9Fe8hhK9I@x1-carbon>
+	s=arc-20240116; t=1708423790; c=relaxed/simple;
+	bh=SKDBLf19ZwBjB9Kg6QLdB6aoS3B96CLloFbgW0h61Bc=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=Fc13q70wj5T17AhIu60d8Upz1DNZClnjE+jk8ihVlGHcHmYs7hu2fV44D+Z62v2NZWdjz8MtV3FTZiNDYFzJ638eGW3TjhLzW6mkAkI0QgckzBz5CIWM/9W3+n08N+x/5WombtKkLYQ8+qW/hNK/JQ5MzT5v4gRWxS2oRE7LRCw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=WUT0Kd4b; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=rIuXTH/Y; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1708423787;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=MhBSXu8UlJHcF5aUEqeIcG7LmDKhw95uTgaS8fEGB8k=;
+	b=WUT0Kd4brEuI8t9EDd+lbh3h6YT1uDRxkmUIBMWc5pQ91+6vl2Zby12PIn9L8diIrPPWVl
+	U5wQEbjWeOh4ARIC878VRZRAhd2PR+1tXvrlKRfTupb0hLo5X/35iYqV6A2U2tzVisfGVG
+	jSGT5RdjODsGj3HFAZMOG+YFo8ax2cFMy7eIzyWgI0eAtF6XcU9HVdADNF4E/Y6jJYHdg5
+	9yONABFFtC48hsP2HeiVVQptfB+96DIO0A5tQqlbeB64Bob/NHc9COElSARQDP1iwAvm3x
+	W9bgt3efrUGVjBqIr+y/MroKQNyA3RBv1HFi0Leb2uZuF8Qts7ZKhBne2wJQlA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1708423787;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=MhBSXu8UlJHcF5aUEqeIcG7LmDKhw95uTgaS8fEGB8k=;
+	b=rIuXTH/YrKRubdPDWMPYcEOauyFagFe9PjZjHHwCY3oI/7gg2yfcjHdXKVAlJQtmzAySY3
+	ZpdYN5yKrT80+sDg==
+To: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
+ <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>
+Cc: Marc Zyngier <maz@kernel.org>, =?utf-8?B?QmrDtnJuIFTDtnBlbA==?=
+ <bjorn@kernel.org>, Atish
+ Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>,
+ Sunil V L <sunilvl@ventanamicro.com>, Saravana Kannan
+ <saravanak@google.com>, Anup Patel <anup@brainfault.org>,
+ linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Anup Patel
+ <apatel@ventanamicro.com>
+Subject: Re: [PATCH v13 01/13] irqchip/sifive-plic: Convert PLIC driver into
+ a platform driver
+In-Reply-To: <20240220060718.823229-2-apatel@ventanamicro.com>
+References: <20240220060718.823229-1-apatel@ventanamicro.com>
+ <20240220060718.823229-2-apatel@ventanamicro.com>
+Date: Tue, 20 Feb 2024 11:09:47 +0100
+Message-ID: <87il2jih04.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZdR2FRQ9Fe8hhK9I@x1-carbon>
+Content-Type: text/plain
 
-On Tue, Feb 20, 2024 at 10:51:17AM +0100, Niklas Cassel wrote:
-> On Mon, Feb 19, 2024 at 11:18:03AM -0500, Frank Li wrote:
-> > On Mon, Feb 19, 2024 at 09:42:08PM +0530, Manivannan Sadhasivam wrote:
-> > > On Mon, Feb 19, 2024 at 10:11:45AM -0500, Frank Li wrote:
-> > > > On Mon, Feb 05, 2024 at 12:33:21PM -0500, Frank Li wrote:
-> > > > > first 6 patches use drvdata: flags to simplify some switch-case code.
-> > > > > Improve maintaince and easy to read code.
-> > > > > 
-> > > > 
-> > > > @Lorenzo Pieralisi:
-> > > > 
-> > > > 	Do you have chance to look other patches?
-> > > > 	Mani's apply EP side change. 
-> > > 
-> > > Even though the controller is for the endpoint, it is still a controller
-> > > driver. So all the patches should go through Lorenzo.
-> > > 
-> > > I only merge patches under drivers/pci/endpoint. Hope this clarifies.
-> > 
-> > Sorry. It confused everyone. My means was that Mani applied Niklas Cassel's
-> > patches, which cause my 14th patch build failure.
-> 
-> Hello Frank,
-> 
-> Patch 14, which adds this:
-> 
-> +static const struct pci_epc_features imx95_pcie_epc_features = {
-> +       .msi_capable = true,
-> +       .bar_fixed_size[1] = SZ_64K,
-> +       .align = SZ_4K,
-> +};
-> 
-> 
-> Should, after rebasing on Mani's pci/endpoint branch, instead look like this:
-> 
-> +static const struct pci_epc_features imx95_pcie_epc_features = {
-> +       .msi_capable = true,
-> +       .bar[BAR_1] = { .type = BAR_FIXED, .fixed_size = SZ_64K, },
-> +       .align = SZ_4K,
-> +};
-> 
-> 
-> > 
-> > I asked if I need update my 14th patch or applied 1-13 only. 
-> 
-> I see, you want the maintainers to apply 1-13, and simply drop patch 14
-> instead of you sending out a rebased series.
-> 
-> I assume that the maintainers will be fine with your suggested approach.
+On Tue, Feb 20 2024 at 11:37, Anup Patel wrote:
+> The PLIC driver does not require very early initialization so let
+> us convert it into a platform driver.
 
-If patch 14 has no dependencies on 1-13 yes; if it does we need to
-coordinate the merge between branches in the PCI tree.
+s/let us convert/convert/
 
-Lorenzo
+Please us passive voice and imperative mood all over the changelogs. No
+we/us, let....
+
+> As part of the conversion, the PLIC probing undergoes the following
+> changes:
+> 1. Use dev_info(), dev_err() and dev_warn() instead of pr_info(),
+>    pr_err() and pr_warn()
+> 2. Use devm_xyz() APIs wherever applicable
+> 3. PLIC is now probed after CPUs are brought-up so we have to
+>    setup cpuhp state after context handler of all online CPUs
+>    are initialized otherwise we see crash on multi-socket systems
+
+This patch is really doing too many things at once, which makes it hard
+to review. Can you split this into digestable pieces please?
+
+>  		if (unlikely(err))
+> -			pr_warn_ratelimited("can't find mapping for hwirq %lu\n",
+> +			dev_warn_ratelimited(handler->priv->dev,
+> +					"can't find mapping for hwirq %lu\n",
+>  					hwirq);
+
+Nit. Please use brackets around the condition. See:
+
+https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#bracket-rules
+
+for reasoning.
+
+Thanks,
+
+        tglx
 
