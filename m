@@ -1,165 +1,106 @@
-Return-Path: <devicetree+bounces-43818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F32BB85B971
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 11:46:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF06485B977
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 11:47:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A42D283CAF
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 10:46:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E293D1C229C4
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 10:47:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACC366351C;
-	Tue, 20 Feb 2024 10:46:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NNlB6rSJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B74D76351C;
+	Tue, 20 Feb 2024 10:47:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA00860EE5;
-	Tue, 20 Feb 2024 10:46:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3406C55E76;
+	Tue, 20 Feb 2024 10:47:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708425992; cv=none; b=UFxYaO84ZQmLIJqhIDu75TaO0cDOAEJB1hYZFk8G7bZ3Oj1jMFG8whpY1CJLSN5BHEYr4Xe95hqMejsk5shnXFEFlNOgIJuXxhvtLlp4GtYNyfC/jBc9OKgbxpYN39McnoAUJoN/uYCYILmGZjJDEI3eid9ATR1wRVBcKl/475c=
+	t=1708426061; cv=none; b=qh+nU+vJt24dbjX6l3eaK+dm0drt9I4IcBEZk9jV0CUdoYVKetE4eR9pcfE5LCb0nd5tnBGcOPc61mNuicQrRy2dFOyDgzOaTotSxekuezWje90F9hifH5mYQqe8BDqrXd/33KzNITyo0JOa02nhkSsP/Lvq3WyzhdTPKJTyc58=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708425992; c=relaxed/simple;
-	bh=0BaN5b0acVSXjoKH/PRX1OeiSJgeM2rOSR57jqkTsVM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uF/KpdMrD/TLZCTbPbXC3ceXHopKRNwCnqTY+4iSN8c2aq/ldslGeHWiUrd0LfZCgHa85ZZ26FrqbSKjRK+glfypSB4mZbGNUQ+qtdfAsr21sFEQipEQxX+p4U5UY7T1Kty8xqg8UIBldSQscWoMg8udg5mfSJUyLuJc8q/DnzY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NNlB6rSJ; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1708425991; x=1739961991;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=0BaN5b0acVSXjoKH/PRX1OeiSJgeM2rOSR57jqkTsVM=;
-  b=NNlB6rSJRKEh1gmrp7B5V6h6S0AM+jRriwaIMIwVkeZKbJHphly6ybXD
-   0mhz9jjMeE2Kl84RfIE4vVG/ESX3YyYwUFJsFQtZFnlBs/CRS6f04EavY
-   4fOn1u/K+6ankqUyQu/QtKvyFqxAlOmOdz3sgaA+NqxSCJCX+UD+5d7eL
-   CplcfkUu9mhSV52fq3T3fotzFo7zNh5CyiaAXOUprHR6jlAmoqh+ypB+b
-   sEh/P55a6LMOte1oGUWxSAPahFzIInoAS5yi6sS67ByCOMCXAVMctLGV2
-   upRUdzJCWS+FijwfA9d0NhUiotKDUzmhC8WIWdvmdLFHtNsnbPG68KaMp
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10989"; a="6339045"
-X-IronPort-AV: E=Sophos;i="6.06,172,1705392000"; 
-   d="scan'208";a="6339045"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2024 02:46:30 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,172,1705392000"; 
-   d="scan'208";a="35505682"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2024 02:46:27 -0800
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id CC1C011F7E1;
-	Tue, 20 Feb 2024 12:46:23 +0200 (EET)
-Date: Tue, 20 Feb 2024 10:46:23 +0000
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Andrey Skvortsov <andrej.skvortzov@gmail.com>
-Cc: Alain Volmat <alain.volmat@foss.st.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	=?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
-	Pavel Machek <pavel@ucw.cz>,
-	Arnaud Ferraris <arnaud.ferraris@collabora.com>
-Subject: Re: [PATCH 1/2] dt-bindings: media: i2c: add galaxycore,gc2145 DVP
- bus support
-Message-ID: <ZdSC_xulFQ84TtLT@kekkonen.localdomain>
-References: <20240217220308.594883-1-andrej.skvortzov@gmail.com>
- <20240217220308.594883-2-andrej.skvortzov@gmail.com>
+	s=arc-20240116; t=1708426061; c=relaxed/simple;
+	bh=qeKyOcAB2a7P1dc+ulTKGb+hal0PNglXC6IwaDI7WgA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Zr3yh+lzzx65HvNsBdAr2XDDw1HN2hd1tuMFA3WcKa24TN8cCLYg76YRCYxA2SnhPiJLIMlcn3+IGlvbW6Bq4Yy6iMvqHpnZ3xr/BBsEgUQrTv4UqaXyUAU78YmCPylerp7FLbnf/w8rtqF2q6XN0sD24H2jaX1rkJGUE2zCu7c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-dcc80d6006aso4016651276.0;
+        Tue, 20 Feb 2024 02:47:40 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708426058; x=1709030858;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2F11qoeMVZ6lOGaCvnmObEimhhy0mHqE7z15UHEfzZI=;
+        b=STL2ZU951biAn26LWcIrLTrdlXGRNMMV81S950Zn4EAT1cTZ0QFo7KKGnOMdlJWlmm
+         z7GRxENklDvdv5EsL+bz2pl/zwMI6yWGzP0R0aN9DX+b3lbKKZ3KpvRc2IptZNGbjEUt
+         ITaMaSWxA0rdRxxnzJCMuRjDeGgPI3LicrqYttQmKK6yrgD9ZNn0mxQSBCgUmpXUgcnE
+         E0KdY+J9mF2yiBm1ISHvnSc767dfDnj/OZic3R0oPvZZziS9MmOPR5Cyf7VW2PvDnN5E
+         f+3FVO9cVL8QayWrZPtXYy8Bbg6r/2G9wipoeAMXo3hsvwQLAwdALG3GlbnTgRjj7IQ9
+         0Bww==
+X-Forwarded-Encrypted: i=1; AJvYcCU+teE5X4fsrAFYqdCQTbPbtpx+6dI4AusLcOrS8VJu+QH19B9zmtUdGG/kjWLFmynx3PszmAhsCxRdFqzsPsu6Xc6BotvYGuLHmCpl0uEesQxSzM8qSaHMZPhJIgfuLYGWFQx83v/Vr1/ceol2jZEOQArJvy/JpbbIgGR850XfSuVGUtq5W6IcWw==
+X-Gm-Message-State: AOJu0YxaYKsOsMjFoUaxtzmDxGzGieGZk5bX/3vUcEGm9DuA2N3hH3Jf
+	qoVa8qOQyXyrbZPqfoOvkZnApy+EwB5pxzHtGWBreC6S3TNFNrtZCkxs8fve9IA=
+X-Google-Smtp-Source: AGHT+IEAfd/cZv2gOZIcaN13tdd4F0BmfcMqFL/dO5HkU+YnDgoGKlocZ7ny+XKgjXP45igSQYdg7g==
+X-Received: by 2002:a05:690c:4448:b0:608:bcb:b43a with SMTP id gq8-20020a05690c444800b006080bcbb43amr10583870ywb.8.1708426058609;
+        Tue, 20 Feb 2024 02:47:38 -0800 (PST)
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
+        by smtp.gmail.com with ESMTPSA id u128-20020a818486000000b0060853d574aasm485998ywf.84.2024.02.20.02.47.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Feb 2024 02:47:38 -0800 (PST)
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-dbed0710c74so3294278276.1;
+        Tue, 20 Feb 2024 02:47:38 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUOEHg7wauNxUHbP3yi5/drKDyiCk5WpdU5ksMs6t/1JqQmZTuZyuMAPASvK+8iw2MJMokXS8e0VYTZdJgPNI67qawCqozyWELFyqRzq/zqU9rNF+exOOLPYXJxEKhLKpr4cCuHLw7MQmLb9wEAH2nP41x12PpnMXPP2NADTj6P5HLwlOiohMby/w==
+X-Received: by 2002:a05:6902:2412:b0:dc6:d6f6:cc13 with SMTP id
+ dr18-20020a056902241200b00dc6d6f6cc13mr15681921ybb.20.1708426058329; Tue, 20
+ Feb 2024 02:47:38 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240217220308.594883-2-andrej.skvortzov@gmail.com>
+References: <cover.1706264667.git.geert+renesas@glider.be>
+In-Reply-To: <cover.1706264667.git.geert+renesas@glider.be>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 20 Feb 2024 11:47:26 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdU_nqywH5LiTYeXQz+2PCKY1gEZpyYFat7yuQ4WuF90UA@mail.gmail.com>
+Message-ID: <CAMuHMdU_nqywH5LiTYeXQz+2PCKY1gEZpyYFat7yuQ4WuF90UA@mail.gmail.com>
+Subject: Re: [PATCH 00/14] pinctrl: renesas: Add support for R-Car V4M
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Andrey,
+On Fri, Jan 26, 2024 at 11:57=E2=80=AFAM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
+> This patch series adds pin control support for the R-Car V4M (R8A779H0)
+> SoC.
+>
+> Some, but not all, of this has been tested on the Gray Hawk Single
+> development board.
 
-Thanks for the patchset.
+Thanks, queuing in renesas-pinctrl for v6.9.
 
-On Sun, Feb 18, 2024 at 01:03:07AM +0300, Andrey Skvortsov wrote:
-> Don't require link-frequencies like it's done for ov5640, that
-> supports both CSI-2 and DVP. And v4l2_fwnode_endpoint_alloc_parse
-> ignores link-frequencies property for DVP endpoint. It's used only for
-> CSI-2 endpoints
-> 
-> Signed-off-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
-> ---
->  .../bindings/media/i2c/galaxycore,gc2145.yaml | 33 +++++++++++++++++--
->  1 file changed, 30 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/galaxycore,gc2145.yaml b/Documentation/devicetree/bindings/media/i2c/galaxycore,gc2145.yaml
-> index 1726ecca4c77..fb376b9d0f2a 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/galaxycore,gc2145.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/galaxycore,gc2145.yaml
-> @@ -61,9 +61,6 @@ properties:
->          properties:
->            link-frequencies: true
->  
-> -        required:
-> -          - link-frequencies
+Gr{oetje,eeting}s,
 
-That seems like a bad idea to me.
+                        Geert
 
-While for parallel interface it may not be often important, for CSI-2 it
-should stay.
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-> -
->      required:
->        - endpoint
->  
-> @@ -110,4 +107,34 @@ examples:
->          };
->      };
->  
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        camera@3c {
-> +            compatible = "galaxycore,gc2145";
-> +            reg = <0x3c>;
-> +            clocks = <&clk_ext_camera>;
-> +            iovdd-supply = <&scmi_v3v3_sw>;
-> +            avdd-supply = <&scmi_v3v3_sw>;
-> +            dvdd-supply = <&scmi_v3v3_sw>;
-> +            powerdown-gpios = <&mcp23017 3 (GPIO_ACTIVE_LOW | GPIO_PUSH_PULL)>;
-> +            reset-gpios = <&mcp23017 4 (GPIO_ACTIVE_LOW | GPIO_PUSH_PULL)>;
-> +
-> +            port {
-> +                endpoint {
-> +                    remote-endpoint = <&parallel_from_gc2145>;
-> +                    bus-width = <8>;
-> +                    hsync-active = <1>;
-> +                    vsync-active = <1>;
-> +                    data-active = <1>;
-> +                    pclk-sample = <1>;
-
-Are there defaults for these if there are no such properties?
-
-> +                };
-> +            };
-> +        };
-> +    };
-> +
->  ...
-
--- 
-Regards,
-
-Sakari Ailus
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
