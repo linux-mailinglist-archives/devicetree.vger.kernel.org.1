@@ -1,168 +1,142 @@
-Return-Path: <devicetree+bounces-43904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67C1F85BD2F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 14:31:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1168885BD3A
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 14:32:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18C591F22E03
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 13:31:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D3B71C22341
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 13:32:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D464F6A32B;
-	Tue, 20 Feb 2024 13:31:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D02C6A32B;
+	Tue, 20 Feb 2024 13:32:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fCdvBwJ5"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="zMPFh9lT";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="cBJ5dQD1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97A24482FA;
-	Tue, 20 Feb 2024 13:31:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AD456A03B;
+	Tue, 20 Feb 2024 13:32:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708435896; cv=none; b=rybErF8g4CkykPPfXF0iH8CweThjayXN+sU6YW2Yw70lgsFQ5C7dtthqawFMhRgEN8Nv5jnzx1uk7q7kPh1NZXKiQO1gpfCgeWldK8M73W7iIccsAKv92Z6qSpkAr5daSVw2FmOvjygLzIn9J9iCnu5sMA46EFryx6S2/8opk4Q=
+	t=1708435950; cv=none; b=Aa1yMDXEeC6V+AnmQmrbX9n0q0bdT5ysd3xTTwe5YE/hEjmBEjk0Dv0tebB0Pljzk3yEktg7Dl9JyFzRm652dkcSKPhKkRpRTJ3DktIttVo+SEF01DJTNRo8SXZDpJF2i7Z2dw8lZTpHpCzIEFTsX3oXHZrfTCO3rFWVDpfD/zE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708435896; c=relaxed/simple;
-	bh=Om4nwbIVaGL4qkTV+9XeVJq/OQVsY234eiAuH2YW+nA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UWy3iEk1/trh9YC4xQNo1I8REKCgcucBwh6oKz8LTJK/cYjauPsb0Yl9gCgEf9qmiD8+nVdjqy0R9FzgqaUYy9RVedF8tc/JomMAw2pCCUVnz18KU+dlkNOHg5vn9UQmTts0XuYm/+sU2d+tzRx/DUiHpgZ6vHkP1IUjBU47kR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fCdvBwJ5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6216C433F1;
-	Tue, 20 Feb 2024 13:31:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708435896;
-	bh=Om4nwbIVaGL4qkTV+9XeVJq/OQVsY234eiAuH2YW+nA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fCdvBwJ5g4P6QCqmo1jWb+twkXRB9GwNdPKu+6MMASAH79965qHZD0Lb53JKBWrBo
-	 AYAxQPNBQWSXDGupFhdKQ8xuMy7Tr0aisE2OiPHTyLXgSh6cYNkkEi8e9I2nxhrt+B
-	 cG/FoxwOPcckd8n699VEJnUiCmBJtwEDyFiGv6AMhQuQsqhgWoMnpDfYIrb+BPFVkv
-	 KUaoNRnP2s2EQIVLlRbkHTtMU/CO+jDpAkVOztMbQDCEsQdXqWtyuKORe1JTiVor4K
-	 tYnDdmXiE6o3CKmABeogdmMXU9db4lIIl8r71H0YoZ1s+0bh5wKp+9QbjIkO0vy5Z7
-	 Vxy1qGz+v569A==
-Date: Tue, 20 Feb 2024 13:31:25 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Marcel Holtmann <marcel@holtmann.org>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Alex Elder <elder@linaro.org>,
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Lukas Wunner <lukas@wunner.de>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-wireless@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v5 09/18] arm64: dts: qcom: qrb5165-rb5: model the PMU of
- the QCA6391
-Message-ID: <5a3f5e1b-8162-4619-a10b-d4711afe533b@sirena.org.uk>
-References: <20240216203215.40870-1-brgl@bgdev.pl>
- <20240216203215.40870-10-brgl@bgdev.pl>
- <48164f18-34d0-4053-a416-2bb63aaae74b@sirena.org.uk>
- <CAMRc=Md7ymMTmF1OkydewF5C32jDNy0V+su7pcJPHKto6VLjLg@mail.gmail.com>
- <8e392aed-b5f7-486b-b5c0-5568e13796ec@sirena.org.uk>
- <CAMRc=MeAXEyV47nDO_WPQqEQxSYFWTrwVPAtLghkfONj56FGVA@mail.gmail.com>
+	s=arc-20240116; t=1708435950; c=relaxed/simple;
+	bh=qzi/UizA5c9QmFUDxzPrTmigiUQLZR5cRjUJ97AA0iE=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=AiQ+GWI7hjb8ps48xZErzI2a5Z42759Ly+wFsy5NVAYH29N/eJeP/NOvvnuez1FzwFDOjLZKYPI0sAfwQzZcQhW3+eSBRh3jJ2GOb2hsDbjv8ENbCSq9xpNdlA8jR4JPz6HeF4zDL3p4/pvIlcKmN97rbuu5uOT0nlt5TjHT9Ms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=zMPFh9lT; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=cBJ5dQD1; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1708435947;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=nOnU4WzHsviBX/18xdq2+f5ceg73dYPZPqI4JOjdiVs=;
+	b=zMPFh9lTXbL9VEGqZpNKX44wj0tcvXxI2s3z/FtNoX4KGUdv/UNtEZcuOZsNzCB+dFR8LM
+	Bu0vTpFKOh5BcqW1+Wwm6sfazAkJHgrLUWbvcDXw6FT2yaGpPtqU2xjvR9ocI9A+IJ+ADX
+	ZDYO2bwmCoMokPWYfr4axHj4Z9PstMT89FkfJjdJQER8n6SFyM6sJiWrKv8BMaoH+N9Ffy
+	vVbIlUj52BCXP2XCOdC2HlhPaoqar+/QvyFiIlvxrtEdTGWIF3BCHhG6GlaH6c15Kl9GZJ
+	DcrRA1nNb53VCJFBXlICgHFEyXMX4Fgy4Y4xyRofjzJS0CzIHzNE6t6bucEvkw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1708435947;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=nOnU4WzHsviBX/18xdq2+f5ceg73dYPZPqI4JOjdiVs=;
+	b=cBJ5dQD19d4JkjP6smlml7Jvc4g/wZEyf/D7Z6rn7b0SmVP9aQxKoYXfJbz0KFx4hkC1RR
+	QjsDXKDdHYW1XgCg==
+To: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
+ <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>
+Cc: Marc Zyngier <maz@kernel.org>, =?utf-8?B?QmrDtnJuIFTDtnBlbA==?=
+ <bjorn@kernel.org>, Atish
+ Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>,
+ Sunil V L <sunilvl@ventanamicro.com>, Saravana Kannan
+ <saravanak@google.com>, Anup Patel <anup@brainfault.org>,
+ linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Anup Patel
+ <apatel@ventanamicro.com>
+Subject: Re: [PATCH v13 07/13] irqchip/riscv-imsic: Add device MSI domain
+ support for platform devices
+In-Reply-To: <20240220060718.823229-8-apatel@ventanamicro.com>
+References: <20240220060718.823229-1-apatel@ventanamicro.com>
+ <20240220060718.823229-8-apatel@ventanamicro.com>
+Date: Tue, 20 Feb 2024 14:32:27 +0100
+Message-ID: <875xyji7mc.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="WgMc8yUhf91ALlog"
-Content-Disposition: inline
-In-Reply-To: <CAMRc=MeAXEyV47nDO_WPQqEQxSYFWTrwVPAtLghkfONj56FGVA@mail.gmail.com>
-X-Cookie: E = MC ** 2 +- 3db
+Content-Type: text/plain
 
+On Tue, Feb 20 2024 at 11:37, Anup Patel wrote:
+> +#ifdef CONFIG_SMP
+> +static void imsic_msi_update_msg(struct irq_data *d, struct imsic_vector *vec)
+> +{
+> +	struct msi_msg msg[2] = { [1] = { }, };
 
---WgMc8yUhf91ALlog
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+That's a weird initializer and why do you need an array here?
 
-On Tue, Feb 20, 2024 at 12:16:10PM +0100, Bartosz Golaszewski wrote:
-> On Mon, Feb 19, 2024 at 8:59=E2=80=AFPM Mark Brown <broonie@kernel.org> w=
-rote:
-> > On Mon, Feb 19, 2024 at 07:48:20PM +0100, Bartosz Golaszewski wrote:
+       struct msi_msg msg = { };
 
-> > > No, the users don't request any regulators (or rather: software
-> > > representations thereof) because - as per the cover letter - no
-> > > regulators are created by the PMU driver. This is what is physically
-> > > on the board - as the schematics and the datasheet define it. I took
+Should be sufficient, no?
 
-> > The above makes no sense.  How can constraints be "what is physically on
-> > the board", particularly variable constrants when there isn't even a
-> > consumer?  What values are you taking from which documentation?
+> +
+> +	imsic_irq_compose_vector_msg(vec, msg);
+> +	irq_data_get_irq_chip(d)->irq_write_msi_msg(d, msg);
+> +}
 
-> The operating conditions for PMU outputs. I took them from a
-> confidential datasheet. There's a table for input constraints and
-> possible output values.
+> +static int imsic_irq_domain_alloc(struct irq_domain *domain, unsigned int virq,
+> +				  unsigned int nr_irqs, void *args)
+> +{
+> +	struct imsic_vector *vec;
+> +
+> +	/* Legacy-MSI or multi-MSI not supported yet. */
 
-That sounds like you're just putting the maximum range of voltages that
-the PMU can output in there.  This is a fundamental misunderstanding of
-what the constraints are for, the constraints exist to specify what is
-safe on a specific board which will in essentially all cases be much
-more restricted.  The regulator driver should describe whatever the PMU
-can support by itself, the constraints whatever is actually safe and
-functional on the specific board.
+Coming back to my earlier question:
 
-> And what do you mean by there not being any consumers? The WLAN and BT
-> *are* the consumers.
+>> What's legacy MSI in that context?
+>
+> The legacy-MSI is the MSI support in PCI v2.2 where
+> number of MSIs allocated by device were either 1, 2, 4,
+> 8, 16, or 32 and the data written is <data_word> + <irqnum>.
 
-There are no drivers that bind to the regulators and vary the voltages
-at runtime.
+You talk about PCI/MSI, where more than one vector is named
+multi-MSI. Contrary to the modern v3.0 variant which is PCI/MSI-X.
 
-> > > the values from the docs verbatim. In C, we create a power sequencing
-> > > provider which doesn't use the regulator framework at all.
+So this should be "Multi-MSI is not supported yet", no?
 
-> > For something that doesn't use the regulator framework at all what
-> > appears to be a provider in patch 16 ("power: pwrseq: add a driver for
-> > the QCA6390 PMU module") seems to have a lot of regualtor API calls?
+> +	if (nr_irqs > 1)
+> +		return -ENOTSUPP;
+> +
+> +	vec = imsic_vector_alloc(virq, cpu_online_mask);
+> +	if (!vec)
+> +		return -ENOSPC;
+> +
+> +	irq_domain_set_info(domain, virq, virq,
+> +			    &imsic_irq_base_chip, vec,
+> +			    handle_simple_irq, NULL, NULL);
 
-> This driver is a power sequencing *provider* but also a regulator
-> *consumer*. It gets regulators from the host and exposes a power
-> sequencer to *its* consumers (WLAN and BT). On DT it exposes
-> regulators (LDO outputs of the PMU) but we don't instantiate them in
-> C.
+Please utilize the 100 characters.
 
-Right, which sounds a lot like being a user of the regualtor framework.
+> +	irq_set_noprobe(virq);
+> +	irq_set_affinity(virq, cpu_online_mask);
+> +
+> +	return 0;
+> +}
 
---WgMc8yUhf91ALlog
-Content-Type: application/pgp-signature; name="signature.asc"
+Thanks,
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXUqa0ACgkQJNaLcl1U
-h9B24wf+Lz2wjf7I6W3InKvWNmGf3yUaGumEqSnMFkL3stpkvgqYLbA8ReYHbIUT
-79XKO978Mxiz1EmV4P5JJlLodwosB8KwgRLoP9jJBJuUmza9tplD5bE7e7T0+aQy
-HhywB2qi8aAR11BzU3hSdONfTa32ME+bcqKqAmRf3LORwIYvgdMDmqmuaqUToQfe
-m/9kN5kWczPASPOUb7WfF+78lEvBZmRZZNQ+gaYiMgIkY8vrxWgQjeLASfIIMPwt
-v72d6hMS/cdZEVFON8Lz7La1SJdqpFl4jjIiehjedX9tHoSddFDUbowQaUspH7zh
-8LY9xVabmnUn+13LLE2JwgbELkPl+g==
-=taRx
------END PGP SIGNATURE-----
-
---WgMc8yUhf91ALlog--
+        tglx
 
