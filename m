@@ -1,187 +1,156 @@
-Return-Path: <devicetree+bounces-43954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2554585BF6F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 16:07:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC0F885BFB6
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 16:19:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 530AD1C208C4
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 15:07:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE1221C21474
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 15:19:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5506D73197;
-	Tue, 20 Feb 2024 15:07:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EB8F76021;
+	Tue, 20 Feb 2024 15:19:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OYbUOILk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A68E467E91;
-	Tue, 20 Feb 2024 15:07:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8E3A71B57;
+	Tue, 20 Feb 2024 15:19:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708441662; cv=none; b=tRn0QuAIO4YSbXY0u2Zf99MCeOYuKYn2i7o7ac0N+ZMR3+cxU45fbFDJBAYVfYqioZgCvdiPjiX/eChh4kk3jiRw/CcYjR5thxFMynbOac+FBI40bpIqvkf+SDlbWTMmwhoy7mAcZljE2zLqVlryshm5cwTIEMkiwD/PVCik3Cg=
+	t=1708442394; cv=none; b=smZUXEZxClzETf6naAYRRMOcwchbzdthGrviGY5gwVWvXni3+tf+Gr9j8suAPhQFyQyE4hHzGU7ipF9xRWu8zdAKc+qZxnTTtKkaZc+unqxCIIEwfnB4k0bhxfS9Fne5PNp3Idi6yUwJwUrqf750xtFlhBMk7B2rJz/de7Eyvfk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708441662; c=relaxed/simple;
-	bh=I2jhKDuObvGJdDaIlPFqcuRI52gRZjbpYQq0Xx/YBXk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TT4NX5jXhPAaE5pja9OkJyY71sgrKMGhBRxlhBzsne+eKlZR1AJvUXcwJ2CJ71AzLH8vZ2V6m2xgVh5AunPGQ93xKcowqsTmdzJF+uKcXEf21I1J2dWuj6elwxyfHWeiH1xHxXaVRNfPKDEX3dPjzthH2cTRs9JsWRD5cRcvmTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 07B3FFEC;
-	Tue, 20 Feb 2024 07:08:18 -0800 (PST)
-Received: from pluto (unknown [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 85EA93F73F;
-	Tue, 20 Feb 2024 07:07:36 -0800 (PST)
-Date: Tue, 20 Feb 2024 15:07:34 +0000
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: Sibi Sankar <quic_sibis@quicinc.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, sudeep.holla@arm.com,
-	andersson@kernel.org, konrad.dybcio@linaro.org,
-	jassisinghbrar@gmail.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	quic_rgottimu@quicinc.com, quic_kshivnan@quicinc.com,
-	conor+dt@kernel.org, Amir Vajid <avajid@quicinc.com>
-Subject: Re: [RFC 4/7] soc: qcom: Utilize qcom scmi vendor protocol for bus
- dvfs
-Message-ID: <ZdTANrUZuN_UZW9j@pluto>
-References: <20240117173458.2312669-1-quic_sibis@quicinc.com>
- <20240117173458.2312669-5-quic_sibis@quicinc.com>
- <CAA8EJpr8qLZ8Y7PjU05ZoxSHWOf=q-KtM+s-tnR5X2t96rFWhw@mail.gmail.com>
- <0adaa065-3883-ebfe-8259-05ebdbd821eb@quicinc.com>
+	s=arc-20240116; t=1708442394; c=relaxed/simple;
+	bh=MVpAxKMaoHyl+tjsX4STMfRQZ/gZH1SX3lmaukbkocQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=bwWfy7OYKp16VgVDq89Ms170BQOy2pODmW48QZ/RFH04zBYUPLk7yiCqAYKm4ad3lD4RnxTHiKSdTm9rEGTJZYw7NlFQOfZtG5kDu6YIJcGSe0hfCAhG28zBegFpeEh56bzKQRsX+9ciiWW1X+58t0RdIgJDnI6vNCoB32cM4OE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OYbUOILk; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a3e75e30d36so420692366b.1;
+        Tue, 20 Feb 2024 07:19:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708442391; x=1709047191; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=k6V+rVntGm0bOfQX7UIre1kuKHlkaeQH5c/FoECJBeI=;
+        b=OYbUOILkyG2eQO/tekDpJ/uqTxrvR1sMH19AKNolVjuO/3og/VMBrkTGF/HHudob+f
+         6/6z3a7SWBLWN88xB+a+GvHY+xMWUdhdqTHBRoVxg+7hNd3y2MtCAxPmigdd9C8WHKyS
+         bGJZcznALJu6fs0QjCzmRLYxW82pQd9W+dY9mMRLs/1M2ixJn393+SXFs3ssNIBm7Ybv
+         8bCd6u3HE+tensWlE64E2ls6+Y+m/doFQ4kGL+aYMf/Ym/eHDqKUcXMlDGuLixTb1ckD
+         9C7ux/q2/aJ8hRm5eQjT6/UTDBhTU2p7Qo+iAoTj8vH6BqO9o9NjSctSGRDcODtfmUb2
+         d6pg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708442391; x=1709047191;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=k6V+rVntGm0bOfQX7UIre1kuKHlkaeQH5c/FoECJBeI=;
+        b=HTOBNAI8k3Yo45pKNzIsvlDbT0KAK4t7x273y8DxUfIPkDhahRTlFgwuqZvkSa9Wj3
+         YcTqlNcRxvM7byBO+W7wgdmkreQLUxDZBsxNhzBOX2Kk4wrqkjeEvQv2SrIKlnksTeqa
+         PbQZg8VJfla5vS4ulBmC2IkwZR7Tq61XBJymjskkrndRwt8y8ojnlwGQ7myf/D6hfvxe
+         29bxzttCUVrrk1EQUxE1G/Pz/cnOGN1WEJy++IUhrJTiEAY9NLcIUTj4VuaBkdRQsqvO
+         nKYfzI+Wc0yWqpQezaDVn0vuPsbCG3zPM6YRIb1HivusHF1Q3aQ0gFjO5GklGEMxRp2u
+         Dxug==
+X-Forwarded-Encrypted: i=1; AJvYcCVk5rwVxora0sfyKXELDZShkwfGL+3sPSqT983+SIvzm0ADKJbDy3VShVq3WkONzWK6bcFCYvlxEXmlGZNlJDKq1iBOPBZv34bN6C2u9PPz8Md6Aj0v2+VxB6ALOfKccUcTo46vmICZoBS78iFrP3abwkVHKUCmuOvZI4qR+sy1QCEB2VtO
+X-Gm-Message-State: AOJu0YwjvBo59dxPcKPJPCrqP+LtgItgLyTmVKnXiQOhEN9Fww6hm84/
+	V8o3AJXBXUa+XUdMDprZNOhEy0wbvlFQSv+AEC9LZfkvlOxVSrOIN+4drTOLy/UFJHvFgSYAPJO
+	M30s6mWO1fUpgA34Iv6cOV9Gj18U=
+X-Google-Smtp-Source: AGHT+IHBktehyWtuPC8JEh2f3v6ZPaKc7tieXF4JIjb1uKLdxCvS6Vf9PHPXLkJ7d4YELA+8vPBi/rm2rEx/UyXknd0=
+X-Received: by 2002:a17:906:fa87:b0:a3e:c6de:e5ae with SMTP id
+ lt7-20020a170906fa8700b00a3ec6dee5aemr4612713ejb.0.1708442390911; Tue, 20 Feb
+ 2024 07:19:50 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0adaa065-3883-ebfe-8259-05ebdbd821eb@quicinc.com>
+References: <20240220012540.10607-1-zhi.mao@mediatek.com> <20240220012540.10607-3-zhi.mao@mediatek.com>
+In-Reply-To: <20240220012540.10607-3-zhi.mao@mediatek.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 20 Feb 2024 17:19:14 +0200
+Message-ID: <CAHp75Vfbc0jE43Z-trFRnFdT5SxvJN+w2x7hS4vHuF5M2kTXgg@mail.gmail.com>
+Subject: Re: [PATCH v5 2/2] media: i2c: Add GC08A3 image sensor driver
+To: Zhi Mao <zhi.mao@mediatek.com>
+Cc: mchehab@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	sakari.ailus@linux.intel.com, laurent.pinchart@ideasonboard.com, 
+	shengnan.wang@mediatek.com, yaya.chang@mediatek.com, 10572168@qq.com, 
+	Project_Global_Chrome_Upstream_Group@mediatek.com, yunkec@chromium.org, 
+	conor+dt@kernel.org, matthias.bgg@gmail.com, 
+	angelogioacchino.delregno@collabora.com, jacopo.mondi@ideasonboard.com, 
+	hverkuil-cisco@xs4all.nl, heiko@sntech.de, jernej.skrabec@gmail.com, 
+	macromorgan@hotmail.com, linus.walleij@linaro.org, hdegoede@redhat.com, 
+	tomi.valkeinen@ideasonboard.com, gerald.loacker@wolfvision.net, 
+	bingbu.cao@intel.com, dan.scally@ideasonboard.com, 
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Feb 12, 2024 at 03:54:27PM +0530, Sibi Sankar wrote:
-> 
-> 
-> On 1/18/24 02:11, Dmitry Baryshkov wrote:
-> > On Wed, 17 Jan 2024 at 19:36, Sibi Sankar <quic_sibis@quicinc.com> wrote:
+On Tue, Feb 20, 2024 at 3:47=E2=80=AFAM Zhi Mao <zhi.mao@mediatek.com> wrot=
+e:
+>
+> Add a V4L2 sub-device driver for Galaxycore GC08A3 image sensor.
 
-Hi,
+...
 
-I'll comment this patch fully, just a remark down below about this
-mail-thread.
+> +#include <asm/unaligned.h>
 
-> > > 
-> > > From: Shivnandan Kumar <quic_kshivnan@quicinc.com>
-> > > 
-> > > This patch introduces a client driver that interacts with the SCMI QCOM
-> > 
-> > git grep This.patch Documentation/process/
-> > 
-> > > vendor protocol and passes on the required tuneables to start various
-> > > features running on the SCMI controller.
-> > 
-> > Is there any word about the 'memlat'? No. Unless one  reads into the
-> > patch, one can not come up with the idea of what is being introduced.
-> 
-> ack, will fix it in the re-spin.
-> 
-> > 
-> > > 
-> > > Signed-off-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
-> > > Co-developed-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
-> > > Signed-off-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
-> > > Co-developed-by: Amir Vajid <avajid@quicinc.com>
-> > > Signed-off-by: Amir Vajid <avajid@quicinc.com>
-> > > Co-developed-by: Sibi Sankar <quic_sibis@quicinc.com>
-> > > Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> > > ---
-> > >   drivers/soc/qcom/Kconfig            |  10 +
-> > >   drivers/soc/qcom/Makefile           |   1 +
-> > >   drivers/soc/qcom/qcom_scmi_client.c | 486 ++++++++++++++++++++++++++++
-> > 
-> > Should it go to drivers/firmware/arm_scmi instead? Or maybe to drivers/devfreq?
-> 
-> I don't think it should go into arm_scmi unless Sudeep wants it there.
-> As for drivers/devfreq, I would have moved it there if this driver
-> benfitted being classified as a devfreq device. We can't use any of
-> the available governors on it and the tuneables appear way too custom.
-> These are the reasons why I placed it in drivers/soc/qcom instead.
-> 
+Usually asm/* go after linux/*
 
-I think we used to host a couple of generic SCMI driver related to
-standard protocols but they have been moved out of driver/firmware/arm_scmi
-into the related subsystem...not sure if Sudeep thinks otherwise but I
-suppose we want to host only SCMI drivers that are clearly lacking a
-place where to stay...
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/regulator/consumer.h>
 
-> > 
-> > >   3 files changed, 497 insertions(+)
-> > >   create mode 100644 drivers/soc/qcom/qcom_scmi_client.c
- 
- [snip]
+This looks semi-random.
+For example, _at least_ the array_size.h, bits.h, container_of.h,
+device.h, err.h, mod_devicetable.h, property.h, types.h are missing,
+Please, use IWYU principle.
 
-> > > +static int configure_cpucp_mon(struct scmi_memlat_info *info, int memory_index, int monitor_index)
-> > > +{
-> > > +       const struct qcom_scmi_vendor_ops *ops = info->ops;
-> > > +       struct scmi_memory_info *memory = info->memory[memory_index];
-> > > +       struct scmi_monitor_info *monitor = memory->monitor[monitor_index];
-> > > +       struct scalar_param_msg scalar_msg;
-> > > +       struct map_param_msg map_msg;
-> > > +       struct node_msg msg;
-> > > +       int ret;
-> > > +       int i;
-> > > +
-> > > +       msg.cpumask = monitor->mask;
-> > > +       msg.hw_type = memory->hw_type;
-> > > +       msg.mon_type = monitor->mon_type;
-> > > +       msg.mon_idx = monitor->mon_idx;
-> > > +       strscpy(msg.mon_name, monitor->mon_name, sizeof(msg.mon_name));
-> > > +       ret = ops->set_param(info->ph, &msg, MEMLAT_ALGO_STR, MEMLAT_SET_MONITOR, sizeof(msg));
-> > > +       if (ret < 0) {
-> > > +               pr_err("Failed to configure monitor %s\n", monitor->mon_name);
-> > > +               return ret;
-> > > +       }
-> > > +
-> > > +       scalar_msg.hw_type = memory->hw_type;
-> > > +       scalar_msg.mon_idx = monitor->mon_idx;
-> > > +       scalar_msg.val = monitor->ipm_ceil;
-> > > +       ret = ops->set_param(info->ph, &scalar_msg, MEMLAT_ALGO_STR, MEMLAT_IPM_CEIL,
-> > > +                            sizeof(scalar_msg));
-> > > +       if (ret < 0) {
-> > > +               pr_err("Failed to set ipm ceil for %s\n", monitor->mon_name);
-> > > +               return ret;
-> > > +       }
-> > > +
-> > > +       map_msg.hw_type = memory->hw_type;
-> > > +       map_msg.mon_idx = monitor->mon_idx;
-> > > +       map_msg.nr_rows = monitor->freq_map_len;
-> > > +       for (i = 0; i < monitor->freq_map_len; i++) {
-> > > +               map_msg.tbl[i].v1 = monitor->freq_map[i].cpufreq_mhz;
-> > > +               map_msg.tbl[i].v2 = monitor->freq_map[i].memfreq_khz / 1000;
-> > > +       }
-> > 
-> > So this table goes 1:1 to the firmware? Is it going to be the same for
-> > all versions of the SoC? If so, it might be better to turn it into the
-> > static data inside the driver. If it doesn't change, there is no need
-> > to put it to DT.
-> 
-> The table does go directly to the firmware but obviously varies across
-> SoCs. Also since it's a SCMI client driver we don't have a way to
-> distinguish between SoCs based on compatibles. So it made more sense to
-> move it to the device tree instead.
-> 
+...
 
-Well, the SCMI fw running the server DOES know where it is running right ?
+> +#define GC08A3_DEFAULT_CLK_FREQ 24000000
 
-So, if you have multiple fixed config tables to feed into the firmware
-that vary based on the SoC you are running on, you could add an SCMI command
-to your QCOM SCMI vendor protocol and expose a related operation in ops to get
-the actual SoC model, so that you can embed the tableS in the driver here (as
-suggested) and then choose at runtime which one to use based on the reported
-platform...this is clearly config stuff (sa said by others) so it just
-does not belong to DT descriptions. 
+HZ_PER_MHZ ?
 
-Thanks,
-Cristian
+...
+
+> +#define GC08A3_SLEEP_US  2000
+
+USEC_PER_MSEC ?
+
+...
+
+> +static const s64 gc08a3_link_freq_menu_items[] =3D {
+> +       336000000ULL,
+> +       207000000ULL,
+
+HZ_PER_MHZ ?
+
+> +};
+
+...
+
+> +static const struct dev_pm_ops gc08a3_pm_ops =3D {
+> +       SET_RUNTIME_PM_OPS(gc08a3_power_off, gc08a3_power_on, NULL)
+> +};
+
+> +               .pm =3D &gc08a3_pm_ops,
+
+Use new PM macros (pm_ptr() and friends).
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
