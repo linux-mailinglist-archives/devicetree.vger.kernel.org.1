@@ -1,154 +1,104 @@
-Return-Path: <devicetree+bounces-43732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2D2185B588
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 09:39:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31E3E85B5A2
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 09:42:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F9BE2800FA
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 08:39:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C73EBB21360
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 08:42:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0D8D5CDF5;
-	Tue, 20 Feb 2024 08:39:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 538295CDEE;
+	Tue, 20 Feb 2024 08:42:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AvRrnv1v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 219AA5CDD8
-	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 08:39:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22C585A0E9;
+	Tue, 20 Feb 2024 08:42:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708418371; cv=none; b=MoOVoQ6ItNw95Snp+9NN+y9VexY4J2n7QT3efoYlGcZgWk8QLs+CzCIPlUkeZGW3ixQIcg4tMMu9ehY8SNTxtZKp1qd8HXr6WjW4/0GT5b9yLOWuyJsyqxosIl2fuLQu7mjQeaTf4DWbIqH7ciqy3NzAzV9QSJNXvbCY3pyZ9ec=
+	t=1708418540; cv=none; b=HwBMrZAN0bgCLqBZCelZBsEZ20u/EGgYyJoe3rPwpvi0W1ykJBYabHZOMUddQKLO65YLP00KUO3/ni4dhiWj+QIyqIoz1f2F4Pv/HmZv32a5+YAExSgIHEfa3ntJvLQo5gJa6lUGPE+p3KF19ISnfZltjJv5xmfOEQRFP0Bp7to=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708418371; c=relaxed/simple;
-	bh=WCIgc8FmZR2G8VtM8HPhX6ovI0R5QT9omQjCWGJo+1U=;
+	s=arc-20240116; t=1708418540; c=relaxed/simple;
+	bh=Fs5/rbAElEAfIede4OYqsYTavZtu15762Va+NBHML18=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Nh0VtRw1r3OF+SEsYXLxShHgTaVFByDsJYwPZSVcsz4wXfHCoL0JDmZQlqB08puxcY8tOscdi1n/l4OzaOk1rVzE/tnhJQ5ZCPx2LC2QZT6lZN7c20wYwXXmI/0BYR6oA/znWbmsE2a5H7QGO2qy8gk/ENZwkX6jPlIuCG4RLzQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rcLeg-00082X-Iy; Tue, 20 Feb 2024 09:39:10 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rcLef-001oAI-4n; Tue, 20 Feb 2024 09:39:09 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rcLef-008LlF-08;
-	Tue, 20 Feb 2024 09:39:09 +0100
-Date: Tue, 20 Feb 2024 09:39:08 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Lee Jones <lee@kernel.org>, Sam Ravnborg <sam@ravnborg.org>, 
-	Boris Brezillon <bbrezillon@kernel.org>
-Cc: Dharma.B@microchip.com, krzysztof.kozlowski@linaro.org, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, 
-	daniel@ffwll.ch, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com, 
-	claudiu.beznea@tuxon.dev, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, thierry.reding@gmail.com, 
-	linux-pwm@vger.kernel.org, Hari.PrasathGE@microchip.com, Manikandan.M@microchip.com, 
-	Conor.Dooley@microchip.com
-Subject: Re: (subset) [linux][PATCH v6 3/3] dt-bindings: mfd: atmel,hlcdc:
- Convert to DT schema format
-Message-ID: <qywehfpajronx457jzaxpynjnae6wpl5uvswetr6nrtmmcm5wl@7rl5jfqsofzn>
-References: <20240202001733.91455-1-dharma.b@microchip.com>
- <20240202001733.91455-4-dharma.b@microchip.com>
- <170738899221.920003.15342446791449663430.b4-ty@kernel.org>
- <cedecdb7-fe4a-42ea-9a11-faa82f84b57d@linaro.org>
- <ffd43756-b24e-4f19-be33-0e33047ad70c@microchip.com>
- <20240220082026.GG10170@google.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=HVi/cP5PJESzQk3rTZ6SJEIxw4asrqH/VdWfS3B5f5vUdDXBFACTW6at7ORpKnzsScvMTHcaqg3F3yOm6iMhF+sUH/pSpMOEfpzHXPLw/EvHNlvfJ9RP4AyouQx/BJicmPRriSWDE7Z7UUF4B+71d47w9K4yZCvo1laFyBAN9/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AvRrnv1v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DF5DC433C7;
+	Tue, 20 Feb 2024 08:42:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708418539;
+	bh=Fs5/rbAElEAfIede4OYqsYTavZtu15762Va+NBHML18=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AvRrnv1vaO93pL8t5tolzacV6QkJ59bPs4hD2Oh/AGFUEGpUHPZ2TLteoVYjFuHgx
+	 5jt7uNUw7sPxHv9WGZZU5yzeJafRq1X2P/0TBG4j92vGh0JRDGOZ8upVaR87ftJTkA
+	 wS3odx0BJfSZgokJd3vuQcWQQFGh11enM1Y3g0coMcDaBLRQ96Xflv8vv/Qm9MU0Aa
+	 JIp/2pQMYb408hVpSvdcKwWhXUvV2g3Nsw0TnZbBJnYoJjsrO7iX6UBiKM7b2RzbWp
+	 3vh8bLHoLl4Tg/M561+cjBR191qh3PeIuOnEcsD4AVuc+fHO72v1+GRy9kguEXYIx1
+	 Yi+wn4GUT5D3Q==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1rcLhh-000000002hC-1gp8;
+	Tue, 20 Feb 2024 09:42:18 +0100
+Date: Tue, 20 Feb 2024 09:42:17 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 02/10] dt-bindings: PCI: qcom: Do not require
+ 'msi-map-mask'
+Message-ID: <ZdRl6fzEOQqkXqLt@hovoldconsulting.com>
+References: <20240212165043.26961-1-johan+linaro@kernel.org>
+ <20240212165043.26961-3-johan+linaro@kernel.org>
+ <e396cf20-8598-4437-b635-09a4a737a772@linaro.org>
+ <Zcy4Atjmb6-wofCL@hovoldconsulting.com>
+ <59bd6e54-0d5d-4e1a-818a-475a96c223ff@linaro.org>
+ <20240216165406.GD39963@thinkpad>
+ <ZdRXpQnbDbojlMkV@hovoldconsulting.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="qejo3o7k6h2mp3hz"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240220082026.GG10170@google.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <ZdRXpQnbDbojlMkV@hovoldconsulting.com>
 
+On Tue, Feb 20, 2024 at 08:41:25AM +0100, Johan Hovold wrote:
+> On Fri, Feb 16, 2024 at 10:24:06PM +0530, Manivannan Sadhasivam wrote:
 
---qejo3o7k6h2mp3hz
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> > msi-map-mask is definitely needed as it would allow all the devices under the
+> > same bus to reuse the MSI identifier. Currently, excluding this property will
+> > not cause any issue since there is a single device under each bus. But we cannot
+> > assume that is going to be the case on all boards.
+> 
+> Are you saying that there is never a use case for an identity mapping?
+> Just on Qualcomm hardware or in general?
+> 
+> It looks like we have a fairly large number of mainline devicetrees that
+> do use an identity mapping here (i.e. do not specify 'msi-map-mask') and
+> the binding document also has an explicit example of this.
+> 
+> 	Documentation/devicetree/bindings/pci/pci-msi.txt
 
-Hello,
+The above should have said "linear mapping" as the msi-base is not
+always identical to the rid-base, but you get the point.
 
-On Tue, Feb 20, 2024 at 08:20:26AM +0000, Lee Jones wrote:
-> On Tue, 20 Feb 2024, Dharma.B@microchip.com wrote:
-> > On 12/02/24 3:53 pm, Krzysztof Kozlowski wrote:
-> > > On 08/02/2024 11:43, Lee Jones wrote:
-> > >> On Fri, 02 Feb 2024 05:47:33 +0530, Dharma Balasubiramani wrote:
-> > >>> Convert the atmel,hlcdc binding to DT schema format.
-> > >>>
-> > >>> Align clocks and clock-names properties to clearly indicate that th=
-e LCD
-> > >>> controller expects lvds_pll_clk when interfaced with the lvds displ=
-ay. This
-> > >>> alignment with the specific hardware requirements ensures accurate =
-device tree
-> > >>> configuration for systems utilizing the HLCDC IP.
-> > >>>
-> > >>> [...]
-> > >>
-> > >> Applied, thanks!
-> > >>
-> > >> [3/3] dt-bindings: mfd: atmel,hlcdc: Convert to DT schema format
-> > >>        commit: cb946db1335b599ece363d33966bf653ed0fa58a
-> > >>
-> > >=20
-> > > Next is still failing.
->
-> If this continues to be an issue, I can just remove the commit.
-
-The missing part in next is that patch 1 isn't included. So the options
-are:
-
- a) Someone (dri or dt folks?) merges patch 1
-    This fixes the state in next, though some commits stay around that
-    fail dt_binding_check
-
- b) Someone (mfd or dt?) merges all 3 patches in one go and the two
-    patches already applied are dropped.
-    This makes dt_binding_check happy for all revs.
-
-For me a) is good enough, but I guess the dri people are not aware there
-is something to do for them?! Would be nice if Sam or Boris commented.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---qejo3o7k6h2mp3hz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmXUZSwACgkQj4D7WH0S
-/k7RwggAn5k8z+bYxn2HgADIEc6MbdHU9mSeQkIedBDJ7eKUR9WZ1pe+Srnu1tVr
-WrbdWq3sSF9lnSbmq+jH/W6Rp2m1T/8d17EqgmBblQM31IHwt/aJO6y0Ey3qrE91
-tF3NOvg4sDPwl0E+WSKOSl0fk9Qk0zhL161D6FREDGwt2KAZ5MKIxYvIobYDLHmb
-sqKfYhfHR7r3FfhvtPTkWrTdhasrsrxNY1Jkff8UuznodekV+O6j5UaQyLCZRzRS
-+kw+V/q9YQW1PdpNX8GuUYeArlXwco8mSS3iVm7KbAJDg20lGumcEJGr9u8WRB3d
-pduGmFRvTTV/J2sLRDjAX4oijX45fA==
-=2XIV
------END PGP SIGNATURE-----
-
---qejo3o7k6h2mp3hz--
+Johan
 
