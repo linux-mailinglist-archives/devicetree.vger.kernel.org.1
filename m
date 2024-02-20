@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-43776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF7DF85B85E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 10:57:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EB9085B865
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 10:58:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9769A2865ED
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 09:57:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B185B1F2A167
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 09:58:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C08E660276;
-	Tue, 20 Feb 2024 09:56:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D335D605A5;
+	Tue, 20 Feb 2024 09:58:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zs7QG4kg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="beKRwFPs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1D1F64A82
-	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 09:56:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 367EF5FEF9
+	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 09:58:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708423019; cv=none; b=AODlP/q1WRqwjkL3wImkVZHne3KZyh3GNY2wDsq2D/PCRLm8SNTBj/OUVP31iMFD2dslAyMCy4bYKRE0nNTT6aDoEtx25bAHwKJ0e3mBYTJVJZkN2PuvwHBSaX+3ysNlp6yrXy7bEWFoEmsteqHvccMkyUfyS9dbH5tT6Xj7zt0=
+	t=1708423094; cv=none; b=m391FaPA+uYODLd0NUOrcJMrCdQAy/UUEssIU3ADqzvRdvATdBGDxqInrtztFTkbjzRQobzp/OyErsB/6sAasrJkrbObScOldvojVIP8Uv2lLmwNTtfWzaHyVPTk8Q2Y2/BIsW3xQ+MCVASN6AExVihI3wzx9LMoozHH3stnyt4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708423019; c=relaxed/simple;
-	bh=yG/VW4Jk2pkiyeA54GU4OWEv+P8a7Cc2N8Ij7u2cUwU=;
+	s=arc-20240116; t=1708423094; c=relaxed/simple;
+	bh=+gRp43XeVkVAfmUDwzivAnm0Su9Ue6WrHdgxdkYVlak=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZDMe0CstEUx9WQe8zFdk0SbVWvTJSwvCIv2BKI71teApW7brv5dzqhmQUwM9iWKDGMq/PopmogPZR2+x00HQPOj6gFQggzjLX/yR4uL7CqJKYkdupqofyyXn1DTydLK5jVmbcSgfOWkLV7badKXhdqANjXykSpLYnqPO/v0v2Ig=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zs7QG4kg; arc=none smtp.client-ip=209.85.208.172
+	 In-Reply-To:Content-Type; b=f+mQNmW+Hxt23jPavESdowa/ADZv5zkMPiHZAtonRwnMnKUamEyZXuuA7mz6q2j5pu/vCdzFja9TLQkQk407a1Fktd7tqiAnOAGggClUdDNEfPHe/1L+UdttLStE5NOHDARr940qtLM92SA9FlE5JSvovBI37fz/ckgi3UJbT+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=beKRwFPs; arc=none smtp.client-ip=209.85.128.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2d24a727f78so4749271fa.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 01:56:57 -0800 (PST)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4126fe50a1cso2278755e9.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 01:58:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708423016; x=1709027816; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708423091; x=1709027891; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=mud0FbZ4sMRBYCOa+MDmHundvVoizhjI8J/7NPROOXY=;
-        b=zs7QG4kgEcTAmyVkOooOlKRuWv9c/Q3zJfIAC0sDRBgCjtn40qSTW5oJPv1vT2NTjc
-         9UO1J0ec7239KvI9hfwynJHi+O1sGDEtC7yZT2D/3E2Io3YEIhKeU9OKnkrvxV/Ap3LW
-         lFDd6IFsFHRYns68nvNfTkj9qvBG1ePT/uA+gGJUGzp5P1Cat+NjB65KXp5I4dFbT+wV
-         46HzciEYej1YWVPHglyuABK5JGQgXxmk9MtqaiEENVvhKqW0EW72/+WsBZD2798fuiGj
-         koJ+x62lXaficOC6ENN2UmQs02zr412uc4RSy/ZVz9tOHuN0/nw5sfDl1cFX/QMRNB17
-         nZNQ==
+        bh=Y/pai/+OueDVWC5hfhOAlBHg0AqnkN8XZw/XolvEu4A=;
+        b=beKRwFPseEE3G0cqKYQgqk7/zMzYRSEvCF487FEzdOr3Fh11T1B98+LSjY2taAzIyq
+         NeaOFuDamoElVKj8kmJmC3KU20ghmD/R1DH1eM6HJ0Z85E3PP6g4899wtqg0nO/Rzr2M
+         8eZ1i1A/JrIfWXPjpa22ASU69xA+/bUVQCrDk8coZsHUjXvfPiBncAi3FxP3s1IWs6cU
+         0AJxFIV+/9WKOBsv7rFNATl+3KzyrVqUiMVk5/B1TG/iIieInpp6ATA5ym+YT2SJ+3hj
+         Ai2wNZiIbatgU44CsMbj2i9ogrz4F9gM1BZ15DIPN++nhpAgMjuRCng8r3ENYZYYsYsR
+         R//w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708423016; x=1709027816;
+        d=1e100.net; s=20230601; t=1708423091; x=1709027891;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mud0FbZ4sMRBYCOa+MDmHundvVoizhjI8J/7NPROOXY=;
-        b=SWjEtpVJBcboY9PHgI9mAB+XbotLt1jIDZz4V96MdOK/rbD09kXg0rx7Z3omj959v8
-         L+5rFdHKTuPXbvvgS9j87RifGyhEcCY7DAudQMDXcxMFo1vQib6NCNW8PfVsvAwTccRt
-         V2sEISqxYs5VcY7sli0m6DexoJ4PzlcJkmATmLu5RcJFbEdCABc57fbsSWy/W6R2n4U2
-         WXPuALUNhWJPicTC0TNcDLgnGY5zeXC0kESopyjkTy7GirsX8GsJ8spGx8i1FyVP36rK
-         czyT1sIJpETsUuXdOYcnjoyyNViOUWlSdN0QfBflVGLhatWrQMKFEQ6usSkWqVKvJO1w
-         f0Mw==
-X-Forwarded-Encrypted: i=1; AJvYcCVqU+mCccql1sf11IvvNAKFfXO1NeY2EAHP+WnWwmqHdTcUpsQKeBCKphzzdczQCjAtkoORtca5JUjI9TffpQOYANU5Zcna1LnQhg==
-X-Gm-Message-State: AOJu0YxgoY2kLt/6hndxKaKPkVL5HauWXJsjteaCUxy7lyxi9wmTWUGx
-	ghkf2Cu7lUlzHscST+oNWZV9Du+0DcikkvWXnmTyVt/F4qiNYCMBd2kMKcDq6DAVVRD5RXk9yoT
-	W
-X-Google-Smtp-Source: AGHT+IHqyfA90aCSCsVS/Fd2bSJL6rSiOtcYy7igGzOSbAfb2c7V9pA/ieTa5EPAQokxpzaQn/0tCA==
-X-Received: by 2002:a2e:b5ce:0:b0:2d2:31e5:103b with SMTP id g14-20020a2eb5ce000000b002d231e5103bmr5622176ljn.17.1708423016314;
-        Tue, 20 Feb 2024 01:56:56 -0800 (PST)
+        bh=Y/pai/+OueDVWC5hfhOAlBHg0AqnkN8XZw/XolvEu4A=;
+        b=oNAo9kMj6TuKYe8IH0269IrIOo7Dnq0htep8o8AU59BVaEbSIcwzwcbiMhERt7kSWu
+         k2Z7PffsueLX3w//CFDvdNk1Pbc2IKkNEFHnshTm388eYMWoOppxLoN0VlcqFbKfO2Eg
+         5jd/VDqgS5B+2xTqdPIxpMLY2I0Oxx87S3RXm44T1lOgUjCeGR5xd4uQ7XZkoMLLHYm+
+         KpmqRyJGiGcOSriYBOWie8bvcnCTqw+IaRyEdOXQXV04FEUc6QkDCghjJf0jDxfhC65v
+         eU5DBhpv8s77q7ObaCNZJrcazkTGN9zNXMrGTwxjvcBiJ8oO3VLvIRTMSQOt3JNaZq3L
+         RYuA==
+X-Forwarded-Encrypted: i=1; AJvYcCWe+WpuYHZBPeq/yNJSzBF2kD0kh4VnkTMWsqqHz400EnuVEl3LMFE4Vv1h/aLLO2fJD2EOEmd77hpIwKFkmlWPlt3Komg3jeKZJg==
+X-Gm-Message-State: AOJu0Yxh/a0PdqTMV1g3YH09OYht+L33OcgrlB0xP/JOmbvFSueSpDKC
+	U6vldafTJuoM5gW0i+WFLe5+JLgW8E7AHLFHgGTZXFxPy26YH4NJ1yoBTBVMuyQ=
+X-Google-Smtp-Source: AGHT+IHGTz+mDwoOneKoZjNXTmxIGMJxj+A8RBwLfurpithNs1ljgFjEWXocwuBXrRaXmiSBmDrDEA==
+X-Received: by 2002:a05:600c:4691:b0:412:f24:560a with SMTP id p17-20020a05600c469100b004120f24560amr11136898wmo.11.1708423091639;
+        Tue, 20 Feb 2024 01:58:11 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id g19-20020a7bc4d3000000b004126101915esm8246700wmk.4.2024.02.20.01.56.54
+        by smtp.gmail.com with ESMTPSA id g19-20020a7bc4d3000000b004126101915esm8246700wmk.4.2024.02.20.01.58.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Feb 2024 01:56:55 -0800 (PST)
-Message-ID: <fea964af-4ae8-46ed-a12f-d9d2849e25a7@linaro.org>
-Date: Tue, 20 Feb 2024 10:56:54 +0100
+        Tue, 20 Feb 2024 01:58:11 -0800 (PST)
+Message-ID: <37f8ab01-05b8-4727-a96e-c37227107fcb@linaro.org>
+Date: Tue, 20 Feb 2024 10:58:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,15 +76,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: memory-controller: st,stm32: add MP25
- support
+Subject: Re: [PATCH v3 1/4] dt-bindings: display/msm: Document the DPU for
+ X1E80100
 Content-Language: en-US
-To: Christophe Kerello <christophe.kerello@foss.st.com>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- devicetree@vger.kernel.org
-References: <20240219140202.85680-1-christophe.kerello@foss.st.com>
- <20240219140202.85680-2-christophe.kerello@foss.st.com>
+To: Abel Vesa <abel.vesa@linaro.org>, Rob Clark <robdclark@gmail.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240216-x1e80100-display-v3-0-28b1c33ac8c0@linaro.org>
+ <20240216-x1e80100-display-v3-1-28b1c33ac8c0@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -131,24 +140,17 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240219140202.85680-2-christophe.kerello@foss.st.com>
+In-Reply-To: <20240216-x1e80100-display-v3-1-28b1c33ac8c0@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/02/2024 15:01, Christophe Kerello wrote:
-> Add a new compatible string to support MP25 SoC.
+On 16/02/2024 18:01, Abel Vesa wrote:
+> Document the DPU for Qualcomm X1E80100 platform in the SM8650 schema, as
+> they are similar.
 > 
-> On MP1 SoC, RNB signal (NAND controller signal) and NWAIT signal (PSRAM
-> controller signal) have been integrated together in the SoC. That means
-> that the NAND controller and the PSRAM controller (if the signal is
-> used) can not be used at the same time. On MP25 SoC, the 2 signals can
-> be used outside the SoC, so there is no more restrictions.
-> 
-> MP1 SoC also embeds revision 1.1 of the FMC2 IP when MP25 SoC embeds
-> revision 2.0 of the FMC2 IP.
-> 
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
