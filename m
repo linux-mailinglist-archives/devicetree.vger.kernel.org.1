@@ -1,197 +1,595 @@
-Return-Path: <devicetree+bounces-43970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2836085C0E0
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 17:14:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C818785C0F7
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 17:19:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91AA41F22DAC
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 16:14:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FB0E2845E5
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 16:19:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9616D763FE;
-	Tue, 20 Feb 2024 16:13:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ncMU7V5n"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CD02762C5;
+	Tue, 20 Feb 2024 16:19:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F89F762E8
-	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 16:13:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C67C8763E0;
+	Tue, 20 Feb 2024 16:19:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708445631; cv=none; b=tlSd3jVcwe3fyRLykmSEgnvu5598FKX20DH2oVpxbL1bm+X7H5pCf7ut6dLiFaIWYh1nJvYTFhN4myXllvPh/9qzZKVENk02zRl6CdQjB8+DpIqbONcfhqvq26qNPIiOa13tS4wy7r7a+0xYnRqRSg4ef41jL2hvXbbfZaKvAJ4=
+	t=1708445950; cv=none; b=GBj07tUuVhZtz4mRBX1TUUgRFNgt0jfJ59youxqk1Gq/RWpW4o9hUrzPrLgbFZzYg4aK2DvD4IP8Cyd45hm0Bavr4+YgTJmh5IYgMZ5R/Pwdj2Ql5LEw1yNnrvwYI+XSB3LzNj4pyt2sItje9WPii1Q/94AXt4tTct4DvurP5JM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708445631; c=relaxed/simple;
-	bh=Py4SHR0JRtNjuKnJIDJC/OkQJeCpeC7w+tzz5P4+1TI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RSV49tC3srmKYvIzv7J1hc17feuVmzZ3oXj7XjicPOCLNFconsnPgp6hWicYZqkPTDvmzI/y0IuxjYz0oEfE6YaYSeApplNYmFxAb/mHeoSPT2zHBR2cZ1dLScNFcCJAhLYDgbCG1MYQ5XYPRwLzsE//kRNyw0CGXLvdEWeuOz4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ncMU7V5n; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-512cca90f38so438317e87.2
-        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 08:13:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708445627; x=1709050427; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=bXG0XHTZiid+f46cKfZFqP+lrSSpkVyuCCK9YrvG0NQ=;
-        b=ncMU7V5nLlrDyQlQscwWYjXlI+fJAKSMcejQndhRcKJzLbKskcJ3LGNF7A3cxA4SRW
-         o+TcgnVEUQ24/t3160xKwuW3hKKYjkk7uK0G5JOX1YP5I+INS2qzK3ed4S8bI7/Z4Yd5
-         8801Y2mTzVslS4Qpdg8n5+fDQrIU0CKQ/hxpjXpMb66iFI/99yMoHfn2l4lRjJw/3dOm
-         3sFSgJ09WA79szkgSnclQRK/8yDifDzqUiYtoksww+lB5AwBuTRnGi1kK3zWfjJVsoS8
-         re47h4JyB/gYV1DcsgLqUdUX8lXgcqv+lMsWrIzsZgtrbwc0L6PGcVE9A34HGTo+43hB
-         9vtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708445627; x=1709050427;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bXG0XHTZiid+f46cKfZFqP+lrSSpkVyuCCK9YrvG0NQ=;
-        b=L5t3xyWprb2jKxqLFh/eSK4jrAEXhZt/wkpqd5knyP0rXxx3xnFuCUV+suAOoWKcTN
-         QEuHc22vKe5zNwFpqi0wfl8AKLuLxH3ODAwqK9r2YePhpdEazsj+4h3mH7yb2ZU/vjTh
-         12x9zDyUlXVQXbwSS+DQ/4pjOdTzGu/xAlmsZa4fvkqsxrn+zFjpMtpYAjXiAuA7R4sw
-         CTldijZERTmnjym1DatnQzbH3qDKgofUPr9r59WMQkDKiRudYxVunbF494tp/m4NrBko
-         vW986tHzDi6DpyFXacHiM2QfPa1UwCVYYapDnnnVzXjM2tMbeJ7T4Mi2GgiQYUDA42IF
-         9kRA==
-X-Forwarded-Encrypted: i=1; AJvYcCVVZAsvRog/VjVD7SLOvXNqB8ahfi/4688L3Vh6J3SDdHZ8WpLUnugEvk78/TCpO3SKSdbZiUDBxIj+x1j6NlN4mNJ0tqpGFltZMQ==
-X-Gm-Message-State: AOJu0Yy004mG7UIU/Zqfy2vsGP+fNA/ebFTdHSEWgOQMKhJKXyljymjA
-	Gtb/TEGGrGYkw8MFifE8t8Lj93s4PFH+idSKCNXcBeBFQwSjSG3/XG6VYjcUw2M=
-X-Google-Smtp-Source: AGHT+IF/u8KL9TZyoyWWqkbwgkWIME7QC2uuZcdoq/jqS+c8Y2JL5Ry0BdQxgTi+tvYSwJRE0AoiIA==
-X-Received: by 2002:a05:6512:ba1:b0:512:bda4:bf47 with SMTP id b33-20020a0565120ba100b00512bda4bf47mr3504129lfv.4.1708445626650;
-        Tue, 20 Feb 2024 08:13:46 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id ek23-20020a056402371700b0055edfb81384sm3700656edb.60.2024.02.20.08.13.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Feb 2024 08:13:46 -0800 (PST)
-Message-ID: <90e0dc10-8514-4827-998f-15b4d45d874e@linaro.org>
-Date: Tue, 20 Feb 2024 17:13:44 +0100
+	s=arc-20240116; t=1708445950; c=relaxed/simple;
+	bh=Kbs5ShNMiGtmIUVdQbCngo+ZeLV8wkZ+tvoPL+DmafM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SVm8OfAfsIPuz3K5ZSEn/9vd33fpKfYncKbh2HyyLQeFiBmdGeUQ3IycHd9XfVFOMRR7p85bjaM3wIE2tK3mNK+PaLLPrXkHdbWCNMIQuaGp6kq8OMeIzwf/VQwibPVJgpxfaBTt5umC4QfMds1T7Fvm07kzzOYRoa7B1+6rKe8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EB65AFEC;
+	Tue, 20 Feb 2024 08:19:45 -0800 (PST)
+Received: from pluto (unknown [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E523E3F762;
+	Tue, 20 Feb 2024 08:19:04 -0800 (PST)
+Date: Tue, 20 Feb 2024 16:19:02 +0000
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: Sibi Sankar <quic_sibis@quicinc.com>
+Cc: sudeep.holla@arm.com, andersson@kernel.org, konrad.dybcio@linaro.org,
+	jassisinghbrar@gmail.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	quic_rgottimu@quicinc.com, quic_kshivnan@quicinc.com,
+	conor+dt@kernel.org, Amir Vajid <avajid@quicinc.com>
+Subject: Re: [RFC 4/7] soc: qcom: Utilize qcom scmi vendor protocol for bus
+ dvfs
+Message-ID: <ZdTQ9ur3XpNVlduo@pluto>
+References: <20240117173458.2312669-1-quic_sibis@quicinc.com>
+ <20240117173458.2312669-5-quic_sibis@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v2 1/5] dt-bindings: clock: histb-clock: Add missing
- common clock and Hi3798MV200 specific clock definition
-To: Yang Xiwen <forbidden405@outlook.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: David Yang <mmyangfl@gmail.com>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240217-clk-mv200-v2-0-b782e4eb66f7@outlook.com>
- <20240217-clk-mv200-v2-1-b782e4eb66f7@outlook.com>
- <875b706f-801a-4a4c-8806-411a67c5a5e7@linaro.org>
- <SEZPR06MB6959456E59D84C15F0C1B88396502@SEZPR06MB6959.apcprd06.prod.outlook.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <SEZPR06MB6959456E59D84C15F0C1B88396502@SEZPR06MB6959.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240117173458.2312669-5-quic_sibis@quicinc.com>
 
-On 20/02/2024 15:06, Yang Xiwen wrote:
-> On 2/20/2024 6:10 PM, Krzysztof Kozlowski wrote:
->> On 17/02/2024 13:52, Yang Xiwen via B4 Relay wrote:
->>> From: Yang Xiwen <forbidden405@outlook.com>
->>>
->>> According to the datasheet, some clocks are missing, add their
->>> definitions first.
->>>
->>> Some aliases for hi3798mv200 are also introduced.
->>>
->>> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
->>> ---
->>>   include/dt-bindings/clock/histb-clock.h | 21 +++++++++++++++++++++
->>>   1 file changed, 21 insertions(+)
->>>
->>> diff --git a/include/dt-bindings/clock/histb-clock.h b/include/dt-bindings/clock/histb-clock.h
->>> index e64e5770ada6..68a53053586a 100644
->>> --- a/include/dt-bindings/clock/histb-clock.h
->>> +++ b/include/dt-bindings/clock/histb-clock.h
->>> @@ -58,6 +58,27 @@
->>>   #define HISTB_USB3_UTMI_CLK1		48
->>>   #define HISTB_USB3_PIPE_CLK1		49
->>>   #define HISTB_USB3_SUSPEND_CLK1		50
->>> +#define HISTB_SDIO1_BIU_CLK		51
->>> +#define HISTB_SDIO1_CIU_CLK		52
->>> +#define HISTB_SDIO1_DRV_CLK		53
->>> +#define HISTB_SDIO1_SAMPLE_CLK		54
->>> +#define HISTB_ETH0_PHY_CLK		55
->>> +#define HISTB_ETH1_PHY_CLK		56
->>> +#define HISTB_WDG0_CLK			57
->>> +#define HISTB_USB2_UTMI0_CLK		HISTB_USB2_UTMI_CLK
->> Why? It's anyway placed oddly, the entries are ordered by number/value.
+On Wed, Jan 17, 2024 at 11:04:55PM +0530, Sibi Sankar wrote:
+> From: Shivnandan Kumar <quic_kshivnan@quicinc.com>
+
+Hi
+
 > 
+> This patch introduces a client driver that interacts with the SCMI QCOM
+> vendor protocol and passes on the required tuneables to start various
+> features running on the SCMI controller.
 > 
-> So this is somewhat broken at the beginning. It named after 
-> histb-clock.h but actually they are all clocks for Hi3798CV200 SoC. For 
-> Hi3798MV200(also a HiSTB SoC), there is one additional UTMI clock.
+> Signed-off-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
+> Co-developed-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
+> Signed-off-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
+> Co-developed-by: Amir Vajid <avajid@quicinc.com>
+> Signed-off-by: Amir Vajid <avajid@quicinc.com>
+> Co-developed-by: Sibi Sankar <quic_sibis@quicinc.com>
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> ---
+>  drivers/soc/qcom/Kconfig            |  10 +
+>  drivers/soc/qcom/Makefile           |   1 +
+>  drivers/soc/qcom/qcom_scmi_client.c | 486 ++++++++++++++++++++++++++++
+>  3 files changed, 497 insertions(+)
+>  create mode 100644 drivers/soc/qcom/qcom_scmi_client.c
 > 
-> 
-> What solution do you prefer? rename UTMI_CLK to UTMI0_CLK, add UTMI1_CLK 
-> after it and increment all the indexes after it? Then the diff would be 
-> very ugly.
+> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
+> index c6ca4de42586..1530558aebfb 100644
+> --- a/drivers/soc/qcom/Kconfig
+> +++ b/drivers/soc/qcom/Kconfig
+> @@ -264,6 +264,16 @@ config QCOM_ICC_BWMON
+>  	  the fixed bandwidth votes from cpufreq (CPU nodes) thus achieve high
+>  	  memory throughput even with lower CPU frequencies.
+>  
+> +config QCOM_SCMI_CLIENT
+> +	tristate "Qualcomm Technologies Inc. SCMI client driver"
+> +	depends on QCOM_SCMI_VENDOR_PROTOCOL || COMPILE_TEST
+> +	default n
+> +	help
+> +	  SCMI client driver registers for SCMI QCOM vendor protocol.
+> +
+> +	  This driver interacts with the vendor protocol and passes on the required
+> +	  tuneables to start various features running on the SCMI controller.
+> +
+>  config QCOM_INLINE_CRYPTO_ENGINE
+>  	tristate
+>  	select QCOM_SCM
+> diff --git a/drivers/soc/qcom/Makefile b/drivers/soc/qcom/Makefile
+> index 05b3d54e8dc9..c2a51293c886 100644
+> --- a/drivers/soc/qcom/Makefile
+> +++ b/drivers/soc/qcom/Makefile
+> @@ -32,5 +32,6 @@ obj-$(CONFIG_QCOM_APR) += apr.o
+>  obj-$(CONFIG_QCOM_LLCC) += llcc-qcom.o
+>  obj-$(CONFIG_QCOM_KRYO_L2_ACCESSORS) +=	kryo-l2-accessors.o
+>  obj-$(CONFIG_QCOM_ICC_BWMON)	+= icc-bwmon.o
+> +obj-$(CONFIG_QCOM_SCMI_CLIENT)	+= qcom_scmi_client.o
+>  qcom_ice-objs			+= ice.o
+>  obj-$(CONFIG_QCOM_INLINE_CRYPTO_ENGINE)	+= qcom_ice.o
+> diff --git a/drivers/soc/qcom/qcom_scmi_client.c b/drivers/soc/qcom/qcom_scmi_client.c
+> new file mode 100644
+> index 000000000000..418aa7900496
+> --- /dev/null
+> +++ b/drivers/soc/qcom/qcom_scmi_client.c
+> @@ -0,0 +1,486 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2024, The Linux Foundation. All rights reserved.
+> + */
+> +
+> +#include <linux/cpu.h>
+> +#include <linux/err.h>
+> +#include <linux/errno.h>
+> +#include <linux/init.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/qcom_scmi_vendor.h>
+> +#include <linux/scmi_protocol.h>
+> +
+> +#define MAX_MEMORY_TYPES	3
+> +#define MEMLAT_ALGO_STR		0x74616C6D656D /* "memlat" */
+> +#define INVALID_IDX		0xFF
+> +#define MAX_NAME_LEN		20
+> +#define MAX_MAP_ENTRIES		6
+> +#define MAX_MONITOR_CNT		4
+> +#define SCMI_VENDOR_MSG_START	3
+> +#define SCMI_VENDOR_MSG_MODULE_START	16
+> +
+> +enum scmi_memlat_protocol_cmd {
+> +	MEMLAT_SET_LOG_LEVEL = SCMI_VENDOR_MSG_START,
+> +	MEMLAT_FLUSH_LOGBUF,
+> +	MEMLAT_SET_MEM_GROUP = SCMI_VENDOR_MSG_MODULE_START,
+> +	MEMLAT_SET_MONITOR,
+> +	MEMLAT_SET_COMMON_EV_MAP,
+> +	MEMLAT_SET_GRP_EV_MAP,
+> +	MEMLAT_ADAPTIVE_LOW_FREQ,
+> +	MEMLAT_ADAPTIVE_HIGH_FREQ,
+> +	MEMLAT_GET_ADAPTIVE_CUR_FREQ,
+> +	MEMLAT_IPM_CEIL,
+> +	MEMLAT_FE_STALL_FLOOR,
+> +	MEMLAT_BE_STALL_FLOOR,
+> +	MEMLAT_WB_PCT,
+> +	MEMLAT_IPM_FILTER,
+> +	MEMLAT_FREQ_SCALE_PCT,
+> +	MEMLAT_FREQ_SCALE_CEIL_MHZ,
+> +	MEMLAT_FREQ_SCALE_FLOOR_MHZ,
+> +	MEMLAT_SAMPLE_MS,
+> +	MEMLAT_MON_FREQ_MAP,
+> +	MEMLAT_SET_MIN_FREQ,
+> +	MEMLAT_SET_MAX_FREQ,
+> +	MEMLAT_GET_CUR_FREQ,
+> +	MEMLAT_START_TIMER,
+> +	MEMLAT_STOP_TIMER,
+> +	MEMLAT_GET_TIMESTAMP,
+> +	MEMLAT_MAX_MSG
+> +};
 
-I still don't understand what is the problem you are trying to solve
-here. Your commit msg says add missing ID, but that ID -
-HISTB_USB2_UTMI_CLK - is already there.
+So the reason why you can have just a single qualcomm vendor SCMI protocol is
+that it really implements and expose just a couple of set/get generic commands
+and exposes a few related ops so that you can piggyback any kind of real messages
+into this new sort of transport layer and at the end the full final message payloads
+are built here in the client driver...and any future further QC SCMI client driver
+will implement its own set of payloads for different protocols.
 
-I also do not get why there is a need to rename anything.
+Seems a bit odd to me (but certainly a creative way to abuse the SCMI stack), anyway
+I have personally nothing against it, if you are happy with this design, but the spec
+says that the protocol messages have to be little endian-encoded so I suppose that you
+should, down below, define your smuggled (:P) payloads with __le32 & friends and use
+the proper helpers to be sure that the values tranferred are properly interpreted, from
+the endianess point-of-view, on both sides of the channel.
 
+...but Sudeep could think differently...I would wait for his feedback...
 
+> +
+> +struct map_table {
+> +	u16 v1;
+> +	u16 v2;
+> +};
+> +
+> +struct map_param_msg {
+> +	u32 hw_type;
+> +	u32 mon_idx;
+> +	u32 nr_rows;
+> +	struct map_table tbl[MAX_MAP_ENTRIES];
+> +} __packed;
+> +
+> +struct node_msg {
+> +	u32 cpumask;
+> +	u32 hw_type;
+> +	u32 mon_type;
+> +	u32 mon_idx;
+> +	char mon_name[MAX_NAME_LEN];
+> +};
+> +
+> +struct scalar_param_msg {
+> +	u32 hw_type;
+> +	u32 mon_idx;
+> +	u32 val;
+> +};
+> +
+> +enum common_ev_idx {
+> +	INST_IDX,
+> +	CYC_IDX,
+> +	FE_STALL_IDX,
+> +	BE_STALL_IDX,
+> +	NUM_COMMON_EVS
+> +};
+> +
+> +enum grp_ev_idx {
+> +	MISS_IDX,
+> +	WB_IDX,
+> +	ACC_IDX,
+> +	NUM_GRP_EVS
+> +};
+> +
+> +#define EV_CPU_CYCLES		0
+> +#define EV_INST_RETIRED		2
+> +#define EV_L2_D_RFILL		5
+> +
+> +struct ev_map_msg {
+> +	u32 num_evs;
+> +	u32 hw_type;
+> +	u32 cid[NUM_COMMON_EVS];
+> +};
+> +
+> +struct cpufreq_memfreq_map {
+> +	unsigned int			cpufreq_mhz;
+> +	unsigned int			memfreq_khz;
+> +};
+> +
+> +struct scmi_monitor_info {
+> +	struct cpufreq_memfreq_map *freq_map;
+> +	char mon_name[MAX_NAME_LEN];
+> +	u32 mon_idx;
+> +	u32 mon_type;
+> +	u32 ipm_ceil;
+> +	u32 mask;
+> +	u32 freq_map_len;
+> +};
+> +
+> +struct scmi_memory_info {
+> +	struct scmi_monitor_info *monitor[MAX_MONITOR_CNT];
+> +	u32 hw_type;
+> +	int monitor_cnt;
+> +	u32 min_freq;
+> +	u32 max_freq;
+> +};
+> +
+> +struct scmi_memlat_info {
+> +	struct scmi_protocol_handle *ph;
+> +	const struct qcom_scmi_vendor_ops *ops;
+> +	struct scmi_memory_info *memory[MAX_MEMORY_TYPES];
+> +	int memory_cnt;
+> +};
+> +
+> +static int get_mask(struct device_node *np, u32 *mask)
+> +{
+> +	struct device_node *dev_phandle;
+> +	struct device *cpu_dev;
+> +	int cpu, i = 0;
+> +	int ret = -ENODEV;
+> +
+> +	dev_phandle = of_parse_phandle(np, "qcom,cpulist", i++);
+> +	while (dev_phandle) {
+> +		for_each_possible_cpu(cpu) {
+> +			cpu_dev = get_cpu_device(cpu);
+> +			if (cpu_dev && cpu_dev->of_node == dev_phandle) {
+> +				*mask |= BIT(cpu);
+> +				ret = 0;
+> +				break;
+> +			}
+> +		}
+> +		dev_phandle = of_parse_phandle(np, "qcom,cpulist", i++);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static struct cpufreq_memfreq_map *init_cpufreq_memfreq_map(struct device *dev,
+> +							    struct device_node *of_node,
+> +							    u32 *cnt)
+> +{
+> +	int len, nf, i, j;
+> +	u32 data;
+> +	struct cpufreq_memfreq_map *tbl;
+> +	int ret;
+> +
+> +	if (!of_find_property(of_node, "qcom,cpufreq-memfreq-tbl", &len))
+> +		return NULL;
+> +	len /= sizeof(data);
+> +
+> +	if (len % 2 || len == 0)
+> +		return NULL;
+> +	nf = len / 2;
+> +
+> +	tbl = devm_kzalloc(dev, (nf + 1) * sizeof(struct cpufreq_memfreq_map),
+> +			   GFP_KERNEL);
+> +	if (!tbl)
+> +		return NULL;
+> +
+> +	for (i = 0, j = 0; i < nf; i++, j += 2) {
+> +		ret = of_property_read_u32_index(of_node, "qcom,cpufreq-memfreq-tbl",
+> +						 j, &data);
+> +		if (ret < 0)
+> +			return NULL;
 
-Best regards,
-Krzysztof
+Bailing out here and down below you are not releasing the devm_
+allocated memory AND what is worst is that the caller of this function
+does not check either for a NULL return value (see below)
 
+> +		tbl[i].cpufreq_mhz = data / 1000;
+> +
+> +		ret = of_property_read_u32_index(of_node, "qcom,cpufreq-memfreq-tbl",
+> +						 j + 1, &data);
+> +		if (ret < 0)
+> +			return NULL;
+> +
+
+Ditto.
+
+> +		tbl[i].memfreq_khz = data;
+> +		pr_debug("Entry%d CPU:%u, Mem:%u\n", i, tbl[i].cpufreq_mhz,
+> +			 tbl[i].memfreq_khz);
+> +	}
+> +	*cnt = nf;
+> +	tbl[i].cpufreq_mhz = 0;
+> +
+> +	return tbl;
+> +}
+> +
+> +static int process_scmi_memlat_of_node(struct scmi_device *sdev, struct scmi_memlat_info *info)
+> +{
+> +	struct device_node *memlat_np, *memory_np, *monitor_np;
+> +	struct scmi_memory_info *memory;
+> +	struct scmi_monitor_info *monitor;
+> +	int ret = 0, i = 0, j;
+> +	u32 memfreq[2];
+> +
+> +	of_node_get(sdev->handle->dev->of_node);
+> +	memlat_np = of_find_node_by_name(sdev->handle->dev->of_node, "memlat");
+> +
+> +	info->memory_cnt = of_get_child_count(memlat_np);
+> +	if (info->memory_cnt <= 0)
+> +		pr_err("No memory nodes present\n");
+> +
+> +	for_each_child_of_node(memlat_np, memory_np) {
+> +		memory = devm_kzalloc(&sdev->dev, sizeof(*memory), GFP_KERNEL);
+> +		if (!memory) {
+> +			ret = -ENOMEM;
+> +			goto err;
+> +		}
+> +
+> +		ret = of_property_read_u32(memory_np, "reg", &memory->hw_type);
+> +		if (ret) {
+No devm_free see below.
+> +			pr_err("Failed to read memory type\n");
+> +			goto err;
+> +		}
+> +
+> +		memory->monitor_cnt = of_get_child_count(memory_np);
+> +		if (memory->monitor_cnt <= 0) {
+> +			pr_err("No monitor nodes present\n");
+> +			ret = -EINVAL;
+No devm_free see below.
+> +			goto err;
+> +		}
+> +
+> +		ret = of_property_read_u32_array(memory_np, "freq-table-khz", memfreq, 2);
+> +		if (ret && (ret != -EINVAL)) {
+> +			pr_err("Failed to read min/max freq %d\n", ret);
+No devm_free see below.
+> +			goto err;
+> +		}
+> +
+> +		memory->min_freq = memfreq[0];
+> +		memory->max_freq = memfreq[1];
+> +		info->memory[i] = memory;
+> +		j = 0;
+> +		i++;
+> +
+> +		for_each_child_of_node(memory_np, monitor_np) {
+> +			monitor = devm_kzalloc(&sdev->dev, sizeof(*monitor), GFP_KERNEL);
+> +			if (!monitor) {
+> +				ret = -ENOMEM;
+No devm_free see below.
+> +				goto err;
+> +			}
+> +
+> +			monitor->mon_type = (of_property_read_bool(monitor_np, "qcom,compute-mon")) ? 1 : 0;
+> +			monitor->ipm_ceil = (of_property_read_bool(monitor_np, "qcom,compute-mon")) ? 0 : 20000000;
+> +
+> +			if (get_mask(monitor_np, &monitor->mask)) {
+> +				pr_err("Failed to populate cpu mask %d\n", ret);
+No devm_free see below.
+> +				goto err;
+> +			}
+> +
+> +			monitor->freq_map = init_cpufreq_memfreq_map(&sdev->dev, monitor_np,
+> +								     &monitor->freq_map_len);
+
+Return can be NULL here and it is not checked, but seems to me that is
+then accessed without any NULL-check....
+
+> +			snprintf(monitor->mon_name, MAX_NAME_LEN, "monitor-%d", j);
+> +			monitor->mon_idx = j;
+> +
+> +			memory->monitor[j] = monitor;
+> +			j++;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +
+> +err:
+> +	of_node_put(memlat_np);
+> +
+
+Here you bailout with an -ENOMEM or other errors but without releasing devm_
+allocated stuff AND in the caller of this you carry on despite any error and
+you neither did release this memory in the caller, so this unused mem-areas
+will be eventually freed only on driver removal.
+
+> +	return ret;
+> +}
+> +
+> +static int configure_cpucp_common_events(struct scmi_memlat_info *info)
+> +{
+> +	const struct qcom_scmi_vendor_ops *ops = info->ops;
+> +	u8 ev_map[NUM_COMMON_EVS];
+> +	struct ev_map_msg msg;
+> +	int ret;
+> +
+> +	memset(ev_map, 0xFF, NUM_COMMON_EVS);
+> +
+> +	msg.num_evs = NUM_COMMON_EVS;
+> +	msg.hw_type = INVALID_IDX;
+> +	msg.cid[INST_IDX] = EV_INST_RETIRED;
+> +	msg.cid[CYC_IDX] = EV_CPU_CYCLES;
+> +	msg.cid[FE_STALL_IDX] = INVALID_IDX;
+> +	msg.cid[BE_STALL_IDX] = INVALID_IDX;
+> +
+> +	ret = ops->set_param(info->ph, &msg, MEMLAT_ALGO_STR, MEMLAT_SET_COMMON_EV_MAP,
+> +			     sizeof(msg));
+> +	return ret;
+> +}
+> +
+> +static int configure_cpucp_grp(struct scmi_memlat_info *info, int memory_index)
+> +{
+> +	const struct qcom_scmi_vendor_ops *ops = info->ops;
+> +	struct scmi_memory_info *memory = info->memory[memory_index];
+> +	struct ev_map_msg ev_msg;
+> +	u8 ev_map[NUM_GRP_EVS];
+> +	struct node_msg msg;
+> +	int ret;
+> +
+> +	msg.cpumask = 0;
+> +	msg.hw_type = memory->hw_type;
+> +	msg.mon_type = 0;
+> +	msg.mon_idx = 0;
+> +	ret = ops->set_param(info->ph, &msg, MEMLAT_ALGO_STR, MEMLAT_SET_MEM_GROUP, sizeof(msg));
+> +	if (ret < 0) {
+> +		pr_err("Failed to configure mem type %d\n", memory->hw_type);
+> +		return ret;
+> +	}
+> +
+> +	memset(ev_map, 0xFF, NUM_GRP_EVS);
+> +	ev_msg.num_evs = NUM_GRP_EVS;
+> +	ev_msg.hw_type = memory->hw_type;
+> +	ev_msg.cid[MISS_IDX] = EV_L2_D_RFILL;
+> +	ev_msg.cid[WB_IDX] = INVALID_IDX;
+> +	ev_msg.cid[ACC_IDX] = INVALID_IDX;
+> +	ret = ops->set_param(info->ph, &ev_msg, MEMLAT_ALGO_STR, MEMLAT_SET_GRP_EV_MAP,
+> +			     sizeof(ev_msg));
+> +	if (ret < 0) {
+> +		pr_err("Failed to configure event map for mem type %d\n", memory->hw_type);
+> +		return ret;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static int configure_cpucp_mon(struct scmi_memlat_info *info, int memory_index, int monitor_index)
+> +{
+> +	const struct qcom_scmi_vendor_ops *ops = info->ops;
+> +	struct scmi_memory_info *memory = info->memory[memory_index];
+> +	struct scmi_monitor_info *monitor = memory->monitor[monitor_index];
+> +	struct scalar_param_msg scalar_msg;
+> +	struct map_param_msg map_msg;
+> +	struct node_msg msg;
+> +	int ret;
+> +	int i;
+> +
+> +	msg.cpumask = monitor->mask;
+> +	msg.hw_type = memory->hw_type;
+> +	msg.mon_type = monitor->mon_type;
+> +	msg.mon_idx = monitor->mon_idx;
+> +	strscpy(msg.mon_name, monitor->mon_name, sizeof(msg.mon_name));
+> +	ret = ops->set_param(info->ph, &msg, MEMLAT_ALGO_STR, MEMLAT_SET_MONITOR, sizeof(msg));
+> +	if (ret < 0) {
+> +		pr_err("Failed to configure monitor %s\n", monitor->mon_name);
+> +		return ret;
+> +	}
+> +
+> +	scalar_msg.hw_type = memory->hw_type;
+> +	scalar_msg.mon_idx = monitor->mon_idx;
+> +	scalar_msg.val = monitor->ipm_ceil;
+> +	ret = ops->set_param(info->ph, &scalar_msg, MEMLAT_ALGO_STR, MEMLAT_IPM_CEIL,
+> +			     sizeof(scalar_msg));
+> +	if (ret < 0) {
+> +		pr_err("Failed to set ipm ceil for %s\n", monitor->mon_name);
+> +		return ret;
+> +	}
+> +
+> +	map_msg.hw_type = memory->hw_type;
+> +	map_msg.mon_idx = monitor->mon_idx;
+> +	map_msg.nr_rows = monitor->freq_map_len;
+> +	for (i = 0; i < monitor->freq_map_len; i++) {
+> +		map_msg.tbl[i].v1 = monitor->freq_map[i].cpufreq_mhz;
+> +		map_msg.tbl[i].v2 = monitor->freq_map[i].memfreq_khz / 1000;
+> +	}
+> +	ret = ops->set_param(info->ph, &map_msg, MEMLAT_ALGO_STR, MEMLAT_MON_FREQ_MAP,
+> +			     sizeof(map_msg));
+> +	if (ret < 0) {
+> +		pr_err("Failed to configure freq_map for %s\n", monitor->mon_name);
+> +		return ret;
+> +	}
+> +
+> +	scalar_msg.hw_type = memory->hw_type;
+> +	scalar_msg.mon_idx = monitor->mon_idx;
+> +	scalar_msg.val = memory->min_freq;
+> +	ret = ops->set_param(info->ph, &scalar_msg, MEMLAT_ALGO_STR, MEMLAT_SET_MIN_FREQ,
+> +			     sizeof(scalar_msg));
+> +	if (ret < 0) {
+> +		pr_err("Failed to set min_freq for %s\n", monitor->mon_name);
+> +		return ret;
+> +	}
+> +
+> +	scalar_msg.hw_type = memory->hw_type;
+> +	scalar_msg.mon_idx = monitor->mon_idx;
+> +	scalar_msg.val = memory->max_freq;
+> +	ret = ops->set_param(info->ph, &scalar_msg, MEMLAT_ALGO_STR, MEMLAT_SET_MAX_FREQ,
+> +			     sizeof(scalar_msg));
+> +	if (ret < 0)
+> +		pr_err("Failed to set max_freq for %s\n", monitor->mon_name);
+> +
+> +	return ret;
+> +}
+> +
+> +static int cpucp_memlat_init(struct scmi_device *sdev)
+> +{
+> +	const struct scmi_handle *handle = sdev->handle;
+> +	const struct qcom_scmi_vendor_ops *ops;
+> +	struct scmi_protocol_handle *ph;
+> +	struct scmi_memlat_info *info;
+> +	u32 cpucp_sample_ms = 8;
+> +	int ret, i, j;
+> +
+> +	if (!handle)
+> +		return -ENODEV;
+> +
+> +	ops = handle->devm_protocol_get(sdev, QCOM_SCMI_VENDOR_PROTOCOL, &ph);
+> +	if (IS_ERR(ops))
+> +		return PTR_ERR(ops);
+> +
+> +	info = devm_kzalloc(&sdev->dev, sizeof(*info), GFP_KERNEL);
+> +	if (!info)
+> +		return -ENOMEM;
+> +
+> +	ret = process_scmi_memlat_of_node(sdev, info);
+> +	if (ret)
+> +		pr_err("Failed to configure common events: %d\n", ret);
+
+Carry on without cleaning up stuff allocated by process_scmi_memlat_of_node()
+
+Thanks,
+Cristian
 
