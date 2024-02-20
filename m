@@ -1,142 +1,160 @@
-Return-Path: <devicetree+bounces-43843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EE5085BA7C
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 12:25:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AFA385BAA5
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 12:33:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CBAFDB23D22
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 11:25:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8F9FEB225AD
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 11:33:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AAA1664B9;
-	Tue, 20 Feb 2024 11:25:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71F39664D7;
+	Tue, 20 Feb 2024 11:33:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bv74XP7c"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="M6mlcGeG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61EAE664B6;
-	Tue, 20 Feb 2024 11:25:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1A6D5B66C;
+	Tue, 20 Feb 2024 11:33:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708428312; cv=none; b=MzI5PYChNrYmD6TLZgeV4OYBLOw+/UMU0IE940bEBKnoi8xX5X99IfAOVu8hJTA81SY8qynI+0FLs4ydW8wIoJX9f/DV0uLGwKHk1/KYUO5tgQT6sAFzm5pHwSoAPakmJNgUPE/kmuRL5qQ2iSfq0mDwunqD6tHBqQ9CP7LEEvA=
+	t=1708428789; cv=none; b=lc57Frr4RkAMRHLRcmsHhyRK+cnKj8SMOGnu4nLLQStKHbx9DpB0QWVaZpNhV5pj8FHJq0XeKunsf8EJbvkYXlcOPvjMbYVKrSuzppfFqgkl+e1jDZ881WfJLCdyhUGFrv9h7n/tgQGLAaRimMF8xrFY8U5KvVfAtQwc0a06QSw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708428312; c=relaxed/simple;
-	bh=Qef5zR9DD0pWV9mmgDrABJ5aM2SgvsE5CkAUKzwETas=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZbTQE+xIkdYdSnkvRh+NS/C0Kj0zVcD1XC+Ly6kj1FeHe4GIhtAFotEp7Qr58xiBflNoOA1HVcetM4zSZlzeu3plIosAXugwJlZyek6eVo8Rg1sarGjPj5W0pGx/nf8YC0Ks8Ze29SzxtvQSDWVyZJePu+NTkZVYkUbddK2rkiE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bv74XP7c; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5645efb2942so3905163a12.1;
-        Tue, 20 Feb 2024 03:25:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708428308; x=1709033108; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uxDjqCDFPq7eOMPwPmbnpfEUfnNCy3lfoA1kp9cT9L8=;
-        b=Bv74XP7cWgbprLtuAshr4ZdFCiDnjJEVlxiLKgp5DwtmWlKM/ugwsMwZQx5/HyrlIm
-         IYyEXTCuTroVnwlEsFnSkfoWZ5mP28D9YBQGbzy2dYJGgAe227TwJ8kX16tYY3RRwADi
-         6Q+UrpAxgBbMjh7fVfLhAcEwKR+42sWdwpGa2tbzFDfusmtDR/xZ3pZA8BBQ+TGCbIEN
-         X4o5DmmlyUMz7QAV/yncGUK5NyzodfygGYgc+7cg42Iaab64Si+YXC5V+FwwKdQylvs+
-         fNmS3mrW4HtO0fal5Rp7NBq7817go2zwUKV7NAPDyM1Zg/ob//ARAol5n9XJfm+wPyWx
-         D9wQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708428308; x=1709033108;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uxDjqCDFPq7eOMPwPmbnpfEUfnNCy3lfoA1kp9cT9L8=;
-        b=AsLFapbOsN07QW0P6jURiXtZmPmjquYG+IsKHoPKOmjzaEIYKgwMQvpLs4SSOstKNa
-         UvsL86XBq4KLDfzKXMcQ5ZmY73qegS9EptsGCEQcbmzsOQjQ7Lui8zfpoD3leAem/EeP
-         Ex2u5PjnYr8oGy/4PFW7/2RHeviq7hcSURzTwtf9zYIFF0VqZPTgPX0Ox3Btc60P4PsW
-         AjmGKGOWCspn7Ak4z8owruaByK9UroHxccjye47RPRbtY9VLZxQ+xZ11Bn86GUt2Rwmm
-         FBjU/RQuTnNqWHhfm2AD2ZhQwCDu3h7k5vk390IMOP6+3UAMv2nLWJA8OZbhT9E4Geok
-         CbtA==
-X-Forwarded-Encrypted: i=1; AJvYcCV+zW2YtzxJZaxvlKmwsWIj55tLbjmnh6mc5YHbeAO1SSW2qwIHmKtzKRBsJz2t8I7XKnKpDjFGA9TvVm6DoxpyXlSGGu3nsukJ2ds/qjd3CX4Qv8eNsQyBudy4kO9amIaSe9ek2jYotXrOuaL6ZRXETSADrYd6En6oLH0KbIXSgZ1VwpSRD2Rb4/4b1Yrl7WFnpYgEHc2scj4FQUBbdAw=
-X-Gm-Message-State: AOJu0YwcVZH7EAKjYIidKBaBbufVVBr/hKhsc8tnUS78hI5zweabiuoW
-	5JS0eBYA5npqHL7HW0YxArD2yswPLaBOrdJV6zC1oW7zYKB7XM85
-X-Google-Smtp-Source: AGHT+IGexDIdRflMxl1rXB5LbCLGRtGw1tfgK9Jvc2wNTJ4RBCdKz1jc7usLDMjAAQp08iRFKLMRzA==
-X-Received: by 2002:aa7:c896:0:b0:564:21fd:270e with SMTP id p22-20020aa7c896000000b0056421fd270emr7809883eds.14.1708428308215;
-        Tue, 20 Feb 2024 03:25:08 -0800 (PST)
-Received: from [172.25.98.130] ([5.2.194.157])
-        by smtp.gmail.com with ESMTPSA id q29-20020a50cc9d000000b00563a3ff30basm3815361edi.59.2024.02.20.03.25.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Feb 2024 03:25:07 -0800 (PST)
-Message-ID: <3bc2c1c6-726a-4751-ae81-4d8336619025@gmail.com>
-Date: Tue, 20 Feb 2024 13:25:05 +0200
+	s=arc-20240116; t=1708428789; c=relaxed/simple;
+	bh=nu5ywiYaSjFjgFyE5Qqnc33gPSlkptZflEOVTZMX7GY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=crLG5u5xSiMaeK9hCQKQNt6dT4MVO2UEPQikQLaayyfhkET4AE5Nx1RrgY7ouc3QNlWuBE/SPffNPPNBEVQj1vAOEVpwLd2WlrbnwtwTrSVbb2OOpX596esW5MzhcXEZ3zDaZVS1eVyu0XJuIp/Pz/LvAgTFwbmcAAeRIhekWU8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=M6mlcGeG; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41KAApqN025688;
+	Tue, 20 Feb 2024 11:32:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=CuAAaIpyHcdXRL6GRG/AMq7g/D+YIAJuhwyqTbufseo=; b=M6
+	mlcGeGRuSih/K/mEhOa9t5ijxezOCTaiVwHctk2bDCx4opbRz0SsOnyymZO9MGmE
+	81QuAEYqf6K3GLhNMcwLDYvJ1YD99BmQDeuKrOQheT/d6vcxXxJg+VZVoqUWfQdO
+	psuYLwGZyYfvBoWLHKHbwjAwe+bLcrKGVoTE3bL8HtLKTV+U4ti4yTU+4cRmiCVi
+	j+3GpLYWQBeE804lk7qLC2d4EwSS2iur78wgNnmrxG3Cyna8Cb8KakM5LhdHNMzp
+	CHC2WSS21U5UF9LU237b7zer5wox+lcoe8VzNF4QshdIVuXIMXIgajUs/iQEp4Ok
+	/8rr6NtoRGOIN6uy6JLg==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wct3d0504-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 20 Feb 2024 11:32:49 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41KBWm4W026534
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 20 Feb 2024 11:32:48 GMT
+Received: from [10.216.16.129] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 20 Feb
+ 2024 03:32:43 -0800
+Message-ID: <3ad2909d-4ac3-fff3-739d-b12a3408fa0f@quicinc.com>
+Date: Tue, 20 Feb 2024 17:02:40 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 3/3] iio: adc: ad7173: add AD7173 driver
-To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>
-Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org,
- linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Michael Walle <michael@walle.cc>,
- Andy Shevchenko <andy.shevchenko@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
- ChiaEn Wu <chiaen_wu@richtek.com>, Niklas Schnelle <schnelle@linux.ibm.com>,
- =?UTF-8?Q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
- Mike Looijmans <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>,
- Hugo Villeneuve <hvilleneuve@dimonoff.com>,
- David Lechner <dlechner@baylibre.com>,
- Ceclan Dumitru <dumitru.ceclan@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240220094344.17556-1-mitrutzceclan@gmail.com>
- <20240220094344.17556-3-mitrutzceclan@gmail.com>
- <6af326b1bf24faea652b4549ff5db24b96ee80c5.camel@gmail.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH 0/5] Add QPIC SPI NAND driver
 Content-Language: en-US
-From: Ceclan Dumitru <mitrutzceclan@gmail.com>
-In-Reply-To: <6af326b1bf24faea652b4549ff5db24b96ee80c5.camel@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+CC: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <broonie@kernel.org>,
+        <robh@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <miquel.raynal@bootlin.com>, <richard@nod.at>,
+        <vigneshr@ti.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
+        <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
+References: <20240215134856.1313239-1-quic_mdalam@quicinc.com>
+ <20240219130412.GC3281@thinkpad>
+From: Md Sadre Alam <quic_mdalam@quicinc.com>
+In-Reply-To: <20240219130412.GC3281@thinkpad>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: D3u3QcuM8VBH9Rtw3Kb75Ur5-gaB298t
+X-Proofpoint-GUID: D3u3QcuM8VBH9Rtw3Kb75Ur5-gaB298t
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-20_06,2024-02-20_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ mlxscore=0 spamscore=0 mlxlogscore=999 bulkscore=0 clxscore=1015
+ adultscore=0 impostorscore=0 malwarescore=0 lowpriorityscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402200083
 
 
 
-On 2/20/24 12:38, Nuno Sá wrote:
-> On Tue, 2024-02-20 at 11:43 +0200, Dumitru Ceclan wrote:
-
-...
-
-> 
->> +};
+On 2/19/2024 6:34 PM, Manivannan Sadhasivam wrote:
+> On Thu, Feb 15, 2024 at 07:18:51PM +0530, Md Sadre Alam wrote:
+>> This series of patches will add initial supports
+>> for QPIC SPI NAND driver.
 >>
->> +	indio_dev->name = st->info->name;
->> +	indio_dev->modes = INDIO_DIRECT_MODE;
->> +	indio_dev->info = &ad7173_info;
->> +
->> +	spi->mode = SPI_MODE_3;
->> +
+>> Currently this driver support following commands
+>>
+>> -- RESET
+>> -- READ ID
+>> -- BLOCK ERASE
+>> -- PAGE READ
+>> -- PAGE WRITE
+>> -- GET FEATURE
+>> -- SET FEATURE
+>> -- BAD BLOCK CHECK
+>>
+>> This driver has been tested with dd command with read/write page
+>> with multiple file size 1MiB, 10MiB,40MiB etc.
+>> Also tested with "mtd" command like mtd erase, mtd write, mtd verify etc.
+>>
 > 
-> I don't think we need the above. We should just enforce it to SPI_CPOL| SPI_CPHA in
-> the bindings [2].
->
-> [2]: https://elixir.bootlin.com/linux/latest/source/Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml#L45
+> This is not the first version isn't it? Where is the changelog describing what
+> has changed since then?
 
-Rob Herring V1:
-
-"""
-> +  required:
-> +    - compatible
-> +    - reg
-> +    - interrupts
-> +    - spi-cpol
-> +    - spi-cpha
-
-If the device(s) are not configurable, then you shouldn't need these 2
-properties. The driver can hardcode the correct setting.
-"""
-
-ref:
-https://lore.kernel.org/linux-iio/20230810205107.GA1136590-robh@kernel.org/
-
+   The earlier patch was the RFC for design review only.
+> 
+> - Mani
+> 
+>> Need help to test these all patches on SDX65 and SDX75 platform.
+>>
+>> Md Sadre Alam (5):
+>>    spi: dt-bindings: add binding doc for spi-qpic-snand
+>>    drivers: mtd: nand: Add qpic_common API file
+>>    spi: spi-qpic: Add qpic spi nand driver support
+>>    arm64: dts: qcom: ipq9574: Add SPI nand support
+>>    arm64: dts: qcom: ipq9574: Disable eMMC node
+>>
+>>   .../bindings/spi/qcom,spi-qpic-snand.yaml     |   82 ++
+>>   .../boot/dts/qcom/ipq9574-rdp-common.dtsi     |   43 +
+>>   arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts   |    2 +-
+>>   arch/arm64/boot/dts/qcom/ipq9574.dtsi         |   27 +
+>>   drivers/mtd/nand/Makefile                     |    1 +
+>>   drivers/mtd/nand/qpic_common.c                |  794 +++++++++++
+>>   drivers/mtd/nand/raw/qcom_nandc.c             | 1226 +----------------
+>>   drivers/spi/Kconfig                           |    9 +
+>>   drivers/spi/Makefile                          |    1 +
+>>   drivers/spi/spi-qpic-snand.c                  | 1025 ++++++++++++++
+>>   include/linux/mtd/nand-qpic-common.h          |  548 ++++++++
+>>   11 files changed, 2547 insertions(+), 1211 deletions(-)
+>>   create mode 100644 Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml
+>>   create mode 100644 drivers/mtd/nand/qpic_common.c
+>>   create mode 100644 drivers/spi/spi-qpic-snand.c
+>>   create mode 100644 include/linux/mtd/nand-qpic-common.h
+>>
+>> -- 
+>> 2.34.1
+>>
+> 
 
