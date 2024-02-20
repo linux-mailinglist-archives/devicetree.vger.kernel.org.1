@@ -1,309 +1,189 @@
-Return-Path: <devicetree+bounces-43821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25E3485B97D
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 11:48:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FE5E85B981
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 11:50:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 722BC2864F4
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 10:48:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C969E1F23FE3
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 10:50:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B12FD63CAC;
-	Tue, 20 Feb 2024 10:48:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC2C764AB3;
+	Tue, 20 Feb 2024 10:50:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="pWxHRG1w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BE2765BB1
-	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 10:48:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DFC436AF9;
+	Tue, 20 Feb 2024 10:50:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708426092; cv=none; b=r2NtyT1R2YkKfQmFrFZAwqnR2PDj+Q5tYwpT2pdRgsBbQC4UllcybzbdehFQEDTvf6Xgu/kJOcYLIjHzj/oFqZE8yREJ1Iq/BN35T3C59ZU5qOXiplDO/7BXu61GKmerLZ2vRecq9nHXf5FF6SUDQAPwB0dYT3a+dALS7415A7E=
+	t=1708426219; cv=none; b=A+NVphEVpjYRti9z6sRKXB36P3hIa4wlKq2jOin2EUr0W+8nuEINo/H9IrtIy5UCZv50TZ44jvwTW5pZ8AWFpT1JgTbsfL6M/IroleH7cG9KDy6U6z18TfqKJSpUi0G6shlKgkBE817ExPMcqRxO0nlnCSIa1i2LQDehDmkAE+Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708426092; c=relaxed/simple;
-	bh=mDXVF315yM8Tt+rLIMijaJ8JhnLc3Rvn5gHC0Rz9hc4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CWKMA+f4oifmfxW8nU4t6FM/r50liufZH+Q/drYz8h4SH2bMuUI31OLENe2X6jq9t3ZmDlwVsHo4knUw3iXFsms2eRNLdqhHdgPn3BJ34QQcKiDH7UbIjxebn177xA5ZDi83yqu/IwT9SZteV1oS5HCvQzvK1fnM+7qIaj4XA/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rcNfM-0000FW-IK; Tue, 20 Feb 2024 11:48:00 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rcNfK-001pIp-7S; Tue, 20 Feb 2024 11:47:58 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rcNfK-008PTy-0S;
-	Tue, 20 Feb 2024 11:47:58 +0100
-Date: Tue, 20 Feb 2024 11:47:58 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com, 
-	aou@eecs.berkeley.edu, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, dlan@gentoo.org, 
-	inochiama@outlook.com
-Subject: Re: [PATCH v2 2/2] pwm: sophgo: add pwm support for Sophgo CV1800 SoC
-Message-ID: <54cwiddo4rsfgryxcgrniauwu2jqfynatmw5i7fzssbxm7txbp@cydhntyrls4p>
-References: <20240212121729.1086718-1-qiujingbao.dlmu@gmail.com>
- <20240212121729.1086718-3-qiujingbao.dlmu@gmail.com>
+	s=arc-20240116; t=1708426219; c=relaxed/simple;
+	bh=PVebVozWoa/PAo9loZJChZrJxtFO7WgfreChaECuNbw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=NfQHJpNIS31aFOLcoDGP4IVPfBSvC1HiClGDGOpq8AQ7MTfde4whJ2gtkwZZ0siPy+DYmJoI73xWTX8tWujoS/oYAJZQ172gSTXbiqDd3T5cLR42DVYQl+5UjMRGwdYxMl9rtQrGLxwFKoup9YpxqDodjhyvOrH7FqpO0ujdR4o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=pWxHRG1w; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41KAoBuV034941;
+	Tue, 20 Feb 2024 04:50:11 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1708426211;
+	bh=QXZ73JTTX/zdchsdeR2TnxIpFTrtTuU8Uz9+cq87qCM=;
+	h=From:To:CC:Subject:Date;
+	b=pWxHRG1wyswFo4QItfHfdlZrR34o5fCdh3Koum+NrKy9AQbbNGaFBh8NKUtStKmKs
+	 z32qugNScMDpoFoosKRcy3ctBLwXNBdFzHTqkOhUpTYRq3JimxMcOTIlw1t3yqRd22
+	 A5cvu7JS2mIGcY6UhZGfHdKc06q0wITK+AmyQDPg=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41KAoBrC009179
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 20 Feb 2024 04:50:11 -0600
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 20
+ Feb 2024 04:50:11 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 20 Feb 2024 04:50:11 -0600
+Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [172.24.227.9])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41KAo7Rd101122;
+	Tue, 20 Feb 2024 04:50:08 -0600
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-j721e-evm-pcie0-ep: Extend overlay for PCIE1 in EP Mode
+Date: Tue, 20 Feb 2024 16:20:06 +0530
+Message-ID: <20240220105006.1056824-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="cjk7gu26xrxspefg"
-Content-Disposition: inline
-In-Reply-To: <20240212121729.1086718-3-qiujingbao.dlmu@gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+Update the existing overlay which configures PCIE0 instance of PCIe on
+J721E-EVM in Endpoint mode of operation, in order to configure PCIE1
+instance of PCIe as well in Endpoint mode of operation. Hence, change the
+name of the overlay to reflect its updated functionality.
 
---cjk7gu26xrxspefg
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+---
 
 Hello,
 
-On Mon, Feb 12, 2024 at 08:17:29PM +0800, Jingbao Qiu wrote:
-> Implement the PWM driver for CV1800.
->=20
-> Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-> ---
->  drivers/pwm/Kconfig      |  10 ++
->  drivers/pwm/Makefile     |   1 +
->  drivers/pwm/pwm-cv1800.c | 248 +++++++++++++++++++++++++++++++++++++++
->  3 files changed, 259 insertions(+)
->  create mode 100644 drivers/pwm/pwm-cv1800.c
->=20
-> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> index 4b956d661755..455f07af94f7 100644
-> --- a/drivers/pwm/Kconfig
-> +++ b/drivers/pwm/Kconfig
-> @@ -186,6 +186,16 @@ config PWM_CROS_EC
->  	  PWM driver for exposing a PWM attached to the ChromeOS Embedded
->  	  Controller.
-> =20
-> +config PWM_CV1800
-> +	tristate "Sophgo CV1800 PWM driver"
-> +	depends on ARCH_SOPHGO || COMPILE_TEST
-> +	help
-> +	  Generic PWM framework driver for the Sophgo CV1800 series
-> +	  SoCs.
-> +
-> +	  To compile this driver as a module, build the dependecies
-> +	  as modules, this will be called pwm-cv1800.
-> +
->  config PWM_DWC_CORE
->  	tristate
->  	depends on HAS_IOMEM
-> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-> index c5ec9e168ee7..6c3c4a07a316 100644
-> --- a/drivers/pwm/Makefile
-> +++ b/drivers/pwm/Makefile
-> @@ -15,6 +15,7 @@ obj-$(CONFIG_PWM_CLK)		+=3D pwm-clk.o
->  obj-$(CONFIG_PWM_CLPS711X)	+=3D pwm-clps711x.o
->  obj-$(CONFIG_PWM_CRC)		+=3D pwm-crc.o
->  obj-$(CONFIG_PWM_CROS_EC)	+=3D pwm-cros-ec.o
-> +obj-$(CONFIG_PWM_CV1800)	+=3D pwm-cv1800.o
->  obj-$(CONFIG_PWM_DWC_CORE)	+=3D pwm-dwc-core.o
->  obj-$(CONFIG_PWM_DWC)		+=3D pwm-dwc.o
->  obj-$(CONFIG_PWM_EP93XX)	+=3D pwm-ep93xx.o
-> diff --git a/drivers/pwm/pwm-cv1800.c b/drivers/pwm/pwm-cv1800.c
-> new file mode 100644
-> index 000000000000..3d7f2ff3a6c2
-> --- /dev/null
-> +++ b/drivers/pwm/pwm-cv1800.c
-> @@ -0,0 +1,248 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * pwm-cv1800.c: PWM driver for Sophgo cv1800
-> + *
-> + * Author: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-> + *
-> + * Limitations:
-> + * - It output low when PWM channel disabled.
-> + * - This pwm device supports dynamic loading of PWM parameters. When PW=
-MSTART
-> + *   is written from 0 to 1, the register value (HLPERIODn, PERIODn) wil=
-l be
-> + *   temporarily stored inside the PWM. If you want to dynamically chang=
-e the
-> + *   waveform during PWM output, after writing the new value to HLPERIOD=
-n and
-> + *   PERIODn, write 1 and then 0 to PWMUPDATE[n] to make the new value e=
-ffective.
-> + * - Supports up to Rate/2 output, and the lowest is about Rate/(2^30-1).
-> + * - By setting HLPERIODn to 0, can produce 100% duty cycle.
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pwm.h>
-> +#include <linux/regmap.h>
-> +
-> +#define PWM_CV1800_HLPERIOD_BASE       0x00
-> +#define PWM_CV1800_PERIOD_BASE         0x04
-> +#define PWM_CV1800_PWM_CV1800_POLARITY 0x40
-> +#define PWM_CV1800_START               0x44
-> +#define PWM_CV1800_DONE                0x48
-> +#define PWM_CV1800_UPDATE              0x4c
-> +#define PWM_CV1800_OE                  0xd0
-> +#define PWM_CV1800_HLPERIOD_SHIFT      0x08
-> +#define PWM_CV1800_PERIOD_SHIFT        0x08
-> +
-> +#define PWM_CV1800_HLPERIOD(n)         \
-> +	(PWM_CV1800_HLPERIOD_BASE + ((n) * PWM_CV1800_HLPERIOD_SHIFT))
-> +#define PWM_CV1800_PERIOD(n)           \
-> +	(PWM_CV1800_PERIOD_BASE + ((n) * PWM_CV1800_PERIOD_SHIFT))
+This patch is based on linux-next tagged next-20240220.
 
-I would have used a plain 0x08 instead of PWM_CV1800_HLPERIOD_SHIFT and
-PWM_CV1800_PERIOD_SHIFT.
+Regards,
+Siddharth.
 
-> +#define PWM_CV1800_UPDATE_MASK(n) (BIT(0) << (n))
-> +#define PWM_CV1800_OE_MASK(n)     (BIT(0) << (n))
-> +#define PWM_CV1800_START_MASK(n)  (BIT(0) << (n))
-> +
-> +#define PWM_CV1800_MAXPERIOD      (BIT(30) - 1)
-> +#define PWM_CV1800_MINPERIOD      BIT(1)
-> +#define PWM_CV1800_MINHLPERIOD    BIT(0)
-> +#define PWM_CV1800_PERIOD_RESET   BIT(1)
-> +#define PWM_CV1800_HLPERIOD_RESET BIT(0)
-> +#define PWM_CV1800_REG_DISABLE    0x0U
-> +#define PWM_CV1800_REG_ENABLE(n)  (BIT(0) << (n))
-> +
-> +struct cv1800_pwm {
-> +	struct pwm_chip chip;
-> +	struct regmap *map;
-> +	struct clk *clk;
-> +	unsigned long clk_rate;
-> +};
-> +
-> +static const struct regmap_config cv1800_pwm_regmap_config =3D {
-> +	.reg_bits =3D 32,
-> +	.val_bits =3D 32,
-> +	.reg_stride =3D 4,
-> +};
-> +
-> +static inline struct cv1800_pwm *to_cv1800_pwm_dev(struct pwm_chip *chip)
-> +{
-> +	return container_of(chip, struct cv1800_pwm, chip);
+ arch/arm64/boot/dts/ti/Makefile               |  8 ++---
+ ....dtso => k3-j721e-evm-pcie0-pcie1-ep.dtso} | 30 +++++++++++++++++--
+ 2 files changed, 32 insertions(+), 6 deletions(-)
+ rename arch/arm64/boot/dts/ti/{k3-j721e-evm-pcie0-ep.dtso => k3-j721e-evm-pcie0-pcie1-ep.dtso} (60%)
 
-Please rework the driver to use pwmchip_alloc(). See
-https://lore.kernel.org/linux-pwm/a37a167364366b6cbe2dd299dce02731706213b2.=
-1707900770.git.u.kleine-koenig@pengutronix.de/T/#u
-for a simple example for such a rework.
+diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+index d601c52ab181..c7c9508e3980 100644
+--- a/arch/arm64/boot/dts/ti/Makefile
++++ b/arch/arm64/boot/dts/ti/Makefile
+@@ -75,7 +75,7 @@ k3-j721e-evm-dtbs := k3-j721e-common-proc-board.dtb k3-j721e-evm-quad-port-eth-e
+ dtb-$(CONFIG_ARCH_K3) += k3-j721e-beagleboneai64.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm-gesi-exp-board.dtbo
+-dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm-pcie0-ep.dtbo
++dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm-pcie0-pcie1-ep.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk-csi2-dual-imx219.dtbo
+ 
+@@ -126,8 +126,8 @@ k3-am68-sk-base-board-csi2-dual-imx219-dtbs := k3-am68-sk-base-board.dtb \
+ 	k3-j721e-sk-csi2-dual-imx219.dtbo
+ k3-am69-sk-csi2-dual-imx219-dtbs := k3-am69-sk.dtb \
+ 	k3-j721e-sk-csi2-dual-imx219.dtbo
+-k3-j721e-evm-pcie0-ep-dtbs := k3-j721e-common-proc-board.dtb \
+-	k3-j721e-evm-pcie0-ep.dtbo
++k3-j721e-evm-pcie0-pcie1-ep-dtbs := k3-j721e-common-proc-board.dtb \
++	k3-j721e-evm-pcie0-pcie1-ep.dtbo
+ k3-j721e-sk-csi2-dual-imx219-dtbs := k3-j721e-sk.dtb \
+ 	k3-j721e-sk-csi2-dual-imx219.dtbo
+ k3-j721s2-evm-pcie1-ep-dtbs := k3-j721s2-common-proc-board.dtb \
+@@ -147,7 +147,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
+ 	k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
+ 	k3-am68-sk-base-board-csi2-dual-imx219-dtbs \
+ 	k3-am69-sk-csi2-dual-imx219-dtbs \
+-	k3-j721e-evm-pcie0-ep.dtb \
++	k3-j721e-evm-pcie0-pcie1-ep.dtb \
+ 	k3-j721e-sk-csi2-dual-imx219-dtbs \
+ 	k3-j721s2-evm-pcie1-ep.dtb
+ 
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso b/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-pcie1-ep.dtso
+similarity index 60%
+rename from arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso
+rename to arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-pcie1-ep.dtso
+index 4062709d6579..5eaf304e3102 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso
++++ b/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-pcie1-ep.dtso
+@@ -1,7 +1,7 @@
+ // SPDX-License-Identifier: GPL-2.0-only OR MIT
+ /**
+- * DT Overlay for enabling PCIE0 instance in Endpoint Configuration with the
+- * J7 common processor board.
++ * DT Overlay for enabling PCIE0 and PCIE1 instances in Endpoint Configuration
++ * with the J7 common processor board.
+  *
+  * J7 Common Processor Board Product Link: https://www.ti.com/tool/J721EXCPXEVM
+  *
+@@ -24,6 +24,10 @@ &pcie0_rc {
+ 	status = "disabled";
+ };
+ 
++&pcie1_rc {
++	status = "disabled";
++};
++
+ &cbass_main {
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+@@ -50,4 +54,26 @@ pcie0_ep: pcie-ep@2900000 {
+ 		phys = <&serdes0_pcie_link>;
+ 		phy-names = "pcie-phy";
+ 	};
++
++	pcie1_ep: pcie-ep@2910000 {
++		compatible = "ti,j721e-pcie-ep";
++		reg = <0x00 0x02910000 0x00 0x1000>,
++		      <0x00 0x02917000 0x00 0x400>,
++		      <0x00 0x0d800000 0x00 0x00800000>,
++		      <0x00 0x18000000 0x00 0x08000000>;
++		reg-names = "intd_cfg", "user_cfg", "reg", "mem";
++		interrupt-names = "link_state";
++		interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
++		ti,syscon-pcie-ctrl = <&scm_conf 0x4074>;
++		max-link-speed = <3>;
++		num-lanes = <2>;
++		power-domains = <&k3_pds 240 TI_SCI_PD_EXCLUSIVE>;
++		clocks = <&k3_clks 240 1>;
++		clock-names = "fck";
++		max-functions = /bits/ 8 <6>;
++		max-virtual-functions = /bits/ 8 <4 4 4 4 0 0>;
++		dma-coherent;
++		phys = <&serdes1_pcie_link>;
++		phy-names = "pcie-phy";
++	};
+ };
+-- 
+2.34.1
 
-> +}
-> +
-> +static int cv1800_pwm_enable(struct pwm_chip *chip, struct pwm_device *p=
-wm,
-> +			     bool enable)
-> +{
-> +	struct cv1800_pwm *priv =3D to_cv1800_pwm_dev(chip);
-> +	u32 pwm_enable;
-> +
-> +	regmap_read(priv->map, PWM_CV1800_START, &pwm_enable);
-> +	pwm_enable &=3D PWM_CV1800_START_MASK(pwm->hwpwm);
-> +
-> +	/*
-> +	 * If the parameters are changed during runtime, Register needs
-> +	 * to be updated to take effect.
-> +	 */
-> +	if (pwm_enable && enable) {
-> +		regmap_update_bits(priv->map, PWM_CV1800_UPDATE,
-> +				   PWM_CV1800_UPDATE_MASK(pwm->hwpwm),
-> +				   PWM_CV1800_REG_ENABLE(pwm->hwpwm));
-> +		regmap_update_bits(priv->map, PWM_CV1800_UPDATE,
-> +				   PWM_CV1800_UPDATE_MASK(pwm->hwpwm),
-> +				   PWM_CV1800_REG_DISABLE);
-> +	} else if (!pwm_enable && enable) {
-> +		regmap_update_bits(priv->map, PWM_CV1800_OE,
-> +				   PWM_CV1800_OE_MASK(pwm->hwpwm),
-> +				   PWM_CV1800_REG_ENABLE(pwm->hwpwm));
-> +		regmap_update_bits(priv->map, PWM_CV1800_START,
-> +				   PWM_CV1800_START_MASK(pwm->hwpwm),
-> +				   PWM_CV1800_REG_ENABLE(pwm->hwpwm));
-> +	} else if (pwm_enable && !enable) {
-> +		regmap_update_bits(priv->map, PWM_CV1800_OE,
-> +				   PWM_CV1800_OE_MASK(pwm->hwpwm),
-> +				   PWM_CV1800_REG_DISABLE);
-> +		regmap_update_bits(priv->map, PWM_CV1800_START,
-> +				   PWM_CV1800_START_MASK(pwm->hwpwm),
-> +				   PWM_CV1800_REG_DISABLE);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int cv1800_pwm_apply(struct pwm_chip *chip, struct pwm_device *pw=
-m,
-> +			    const struct pwm_state *state)
-> +{
-> +	struct cv1800_pwm *priv =3D to_cv1800_pwm_dev(chip);
-> +	u32 period_val, hlperiod_val;
-> +	u64 tem;
-> +
-> +	if (state->polarity !=3D PWM_POLARITY_NORMAL)
-> +		return -EINVAL;
-> +
-> +	tem =3D mul_u64_u64_div_u64(state->period, priv->clk_rate, NSEC_PER_SEC=
-);
-> +	if (tem > PWM_CV1800_MAXPERIOD || tem < PWM_CV1800_MINPERIOD)
-> +		return -EINVAL;
-
-Please use:
-
-	if (tem < PWM_CV1800_MINPERIOD)
-		return -EINVAL
-	if (tem > PWM_CV1800_MAXPERIOD)
-		tem =3D PWM_CV1800_MAXPERIOD;
-
-> +	period_val =3D (u32)tem;
-> +
-> +	tem =3D mul_u64_u64_div_u64(state->period - state->duty_cycle,
-> +				  priv->clk_rate, NSEC_PER_SEC);
-
-Given that you're supposed to configure the biggest duty_cycle not
-bigger than the requested value, you have to round up here.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---cjk7gu26xrxspefg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmXUg10ACgkQj4D7WH0S
-/k41lggAljRXqWa2Xerk5/sOtzrwKao8H0XqZCZfI2VNVmcyFqID9ZqatZxvnWkE
-/BIq+00xygUSmlupdxeaRxbWcuKQ7VsFiq0ulhiwNgbWgYw1QykdXV+ukxF5eNsp
-OWq8+m4S3/ueQIF2GfLq9Pcp6csmBCaQxWH28P4IMO6cyrlB7Rx7ZhRIBuKj9iUf
-BZTsNfSV7g35JQZRlBic0+Bt0zNCYS9UkAhK6dKddgUZ9TapBsm5+pqnSjjl7ZEY
-cMHcpIYdMqgzMo1nmlIo2SgW4e8Mue3H5We1SR/Li4szk/DcESHVNZKGG7XHuDYL
-g565r7uqbftADQuMQ+aLRn6gFjPcnw==
-=qwpP
------END PGP SIGNATURE-----
-
---cjk7gu26xrxspefg--
 
