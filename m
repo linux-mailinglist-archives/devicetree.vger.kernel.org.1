@@ -1,164 +1,124 @@
-Return-Path: <devicetree+bounces-44047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98F6C85C487
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 20:21:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08ADA85C48F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 20:23:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01766B21B1B
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 19:21:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39C8E1C217E5
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 19:23:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D00C81353EA;
-	Tue, 20 Feb 2024 19:21:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBF681474A8;
+	Tue, 20 Feb 2024 19:22:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="avH2Kmj6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P2j8/i97"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FBA5612D7;
-	Tue, 20 Feb 2024 19:21:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B4CF1353EA;
+	Tue, 20 Feb 2024 19:22:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708456868; cv=none; b=iWbdHBrKqrFQZZrGJwnLBnTWk5qVQ2aDXyQDkswU7/Hk+dPq2X7LZpFMe1DCfVDvVYWeqgPqrMjAZ0MpcDICPlHLGDef4viSnKk/RIF5v3L8+bCPQmkGLap0q772hQQwEXahXEuHo3Yps9o9+Ul6Fhh9TV5sC9ygT5whLkk+68c=
+	t=1708456955; cv=none; b=EGnMZ+CRecTprxRnDr1PWlR7rxaFJ0IvMUL9O5Xkl17QnBSsqiDRMSkentNSXwx71u8f0O1pD1zeee3YGZU6wNBhqLsbeY2vT0kJ8w7zjoyqlBAj14m8XxtIQMDmwu9rnCQ8G4+Zw+rwQXPRnyOxw58hmlJH4L2CJxiZTFXlsBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708456868; c=relaxed/simple;
-	bh=/8B+SVqWi9/8HEqD87v2d6g2SFTWC7Ca3KdPMEZ4hJA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PVJ3+Rr+aVTqtkVtlFllYHrNYmklUeZtLeq+1QIRkDI7EBwn7omcpWVyHH03gFrMatfP9OuKrkxNnNgV6kKjq93UugnALm/mj+jK9fzd+QyKt1+zMGnWVZOU6GuqxD3Lbct1xzKHSovBvLe/AwKZ7rug9JOiIdhOCcWZvKMMDCI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=avH2Kmj6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C468C433F1;
-	Tue, 20 Feb 2024 19:21:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708456868;
-	bh=/8B+SVqWi9/8HEqD87v2d6g2SFTWC7Ca3KdPMEZ4hJA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=avH2Kmj6V6pPV3DJYLy/6Q6Fd8qpMmAZnbeSs6qPatt2gZe4JKwM9xm9ttLszoNkB
-	 9i4jdv+jycnTa7sHbthKxGgaT0jpiDsrGp/epBZQ7YvDqAzp2Mt97GcbXzN7/eKG+u
-	 BmAdO32WMEtMlKvrmDdTDxuAO8sXnGdiOZea2GRhniwwh9+9blCYB7KlxP5Cx6lVkj
-	 bVaq+vnjJwv4G7+e5ESyZooi67F4ghdUGfFy3XCSef93zHAwuIi62lKMYjuWTa0TYZ
-	 21HWhEl3eBL8AVemu1ZbKIPItCpEdXtHA7bsGYd+KUrHMpCa0ZZ/I2l8z9WMsIBU8x
-	 uW8uMD1xBonwQ==
-Date: Tue, 20 Feb 2024 19:21:03 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: antoniu.miclaus@analog.com, alexandre.belloni@bootlin.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, jdelvare@suse.com, linux@roeck-us.net,
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-	Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-	Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
-Subject: Re: [PATCH v7 2/2] dt-bindings: rtc: add max313xx RTCs
-Message-ID: <20240220-unified-payback-13b0964c8c29@spud>
-References: <20240219221827.3821415-1-chris.packham@alliedtelesis.co.nz>
- <20240219221827.3821415-3-chris.packham@alliedtelesis.co.nz>
+	s=arc-20240116; t=1708456955; c=relaxed/simple;
+	bh=iETYLic/GnoHZMrLLtBPhdaUdXYC0To+q4lhTtjXdgE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=LphuXy1VZ2Czdtqwl1lQIWflcJBMMyujPg3qGccJaK9lga6Rb4ICL8+N3DLV9merr6Y/5n196jv+W74PQJHelkPH84ZKzkHIm6V0qWOSHqQyPQtF/NZh/Euv32Widp+SLCCLzz0Y6AUgmFOmeyP3vR2jtwTA2uzVHMZtBD9gQC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P2j8/i97; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-41241f64c6bso34389645e9.0;
+        Tue, 20 Feb 2024 11:22:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708456952; x=1709061752; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vr4WFlS9/GiUzUgyJ2V+G5bwrUNZLQw/Jx2ML4aaFjk=;
+        b=P2j8/i97yq9HxvAc3oD4gMpkwdeyRlOZq/Mrw3n+nmQELd6lNuXFfi/l2gestaaxBN
+         B85lBJbUz+K9JdMhLwu1jXvv8N9XP6OhWSlyqohK29f0r1IAqDk0pe6i7qgdtD6UP+PR
+         cgdWxwMOuxID1mXT0GTgzagQtkur4lT86jHO1+RtSYyS7uW+EW9kXoru3TYM0YBeNwV1
+         3tbTk6ZTfD+l/sPkDD9171dHki9mKfN6fT4qFEKlkYWQL8Aw/X3qa9pqcrugGMkSiT+a
+         qkWZgEhelZWDkhDPKtfKfu3eUpwlMGRggxFLl7OEHyxs7IqPoN/Rt2Pq3fF82fuO202r
+         Cw8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708456952; x=1709061752;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vr4WFlS9/GiUzUgyJ2V+G5bwrUNZLQw/Jx2ML4aaFjk=;
+        b=UG+WyOqr2tFkqsysHxe1MnhQ5wXmuYUJAmXSe+I/aW8WHULibL4SMSvtEuVHpi5VYB
+         nrEsOIUYvZ+bZndBozfVm07FPbBm8waRSX538K9mfBKMWB684ioovkApu/wdjA0WBk94
+         FSROg4SxkPXlpJD4aPEu9qy18tTuhd/g7smdu5khxyk7lAJqx7mtTkSPxby6WCtvy/Wj
+         qpJLM8YXWL7R2r+vsmBHiSA4/ieo+McKdLSh+zvBKps17VPSwKm1bLM+ZPawTeEOkBsD
+         ruunRgnBkbRb+oecXZ0Bf7Nd2ABxBf5wYFiN8ViDjed/nOniJK4uONPRXzrPTdLKlmO3
+         8sXw==
+X-Forwarded-Encrypted: i=1; AJvYcCWwIh/s9nXmHOhINQWllF/huf168bdS7yp1YbUWxqtPcpx13TwBVrid6ElDRaVqmVuGrfXb9H7LcnSGuovdnvT79J06o6Z7vNKKoZ5BXikhmlEIJYz1Ovk+q1Rbx6uJpXXPcukTbBvCuWTkU2+xjR6K9SAgj4r+Z794In/XMgTRhTgykw==
+X-Gm-Message-State: AOJu0YzVivLlrOKQqdcguE0xiG3UrtoOSrLJn1bFhWqgDGyYN3C20/69
+	k6yU+W2EjRvQTbXTNo3SJhph25hyNi1Bg12aNSZxXa4SeLs9cq4GeIhAEzQ9K6U=
+X-Google-Smtp-Source: AGHT+IFZQREKFQJmcdKI/Yhn1UaRjKV+UzDWjPGCC+Re35EsAMnplszDN1boVkaacvaHa6v3pZOvoQ==
+X-Received: by 2002:a5d:6811:0:b0:33d:374f:83f1 with SMTP id w17-20020a5d6811000000b0033d374f83f1mr6373789wru.43.1708456952254;
+        Tue, 20 Feb 2024 11:22:32 -0800 (PST)
+Received: from [192.168.20.102] (57657817.catv.pool.telekom.hu. [87.101.120.23])
+        by smtp.googlemail.com with ESMTPSA id ba20-20020a0560001c1400b0033d640c8942sm3942265wrb.10.2024.02.20.11.22.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Feb 2024 11:22:31 -0800 (PST)
+From: Gabor Juhos <j4g8y7@gmail.com>
+Date: Tue, 20 Feb 2024 20:22:18 +0100
+Subject: [PATCH] dt-bindings: usb: qcom,dwc3: fix a typo in interrupts'
+ description
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Lr0x75LRIzBUufR/"
-Content-Disposition: inline
-In-Reply-To: <20240219221827.3821415-3-chris.packham@alliedtelesis.co.nz>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240220-dt-bindins-qcom-dwc3-fix-typo-v1-1-742bf6e49641@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAOn71GUC/x3MQQqDMBBA0avIrDuQTC3SXkW6SDMTnYWJJqIW8
+ e4NXT4+/BOKZJUCr+aELJsWTbHC3hrwo4uDoHI1kKHWEBnkFT8aWWPBxacJefd3DHrg+p0T2kf
+ obPskxy5AfcxZavv/+/d1/QBCwZXqbwAAAA==
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Gabor Juhos <j4g8y7@gmail.com>
+X-Mailer: b4 0.12.3
 
+The correct interrupt name is 'hs_phy_irq' not 'hs_phY_irq'.
 
---Lr0x75LRIzBUufR/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Gabor Juhos <j4g8y7@gmail.com>
+---
+ Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Hey Chris,
+diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+index 63d150b216c5..38a3404ec71b 100644
+--- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
++++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+@@ -102,7 +102,7 @@ properties:
+     description: |
+       Different types of interrupts are used based on HS PHY used on target:
+         - pwr_event: Used for wakeup based on other power events.
+-        - hs_phY_irq: Apart from DP/DM/QUSB2 PHY interrupts, there is
++        - hs_phy_irq: Apart from DP/DM/QUSB2 PHY interrupts, there is
+                        hs_phy_irq which is not triggered by default and its
+                        functionality is mutually exclusive to that of
+                        {dp/dm}_hs_phy_irq and qusb2_phy_irq.
 
-On Tue, Feb 20, 2024 at 11:18:24AM +1300, Chris Packham wrote:
-> From: Ibrahim Tilki <Ibrahim.Tilki@analog.com>
->=20
-> Add devicetree binding documentation for Analog Devices MAX313XX RTCs.
-> This combines the new models with the existing max31335 binding.
->=20
-> Signed-off-by: Ibrahim Tilki <Ibrahim.Tilki@analog.com>
-> Signed-off-by: Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> ---
->  .../devicetree/bindings/rtc/adi,max31335.yaml |  70 --------
->  .../devicetree/bindings/rtc/adi,max313xx.yaml | 167 ++++++++++++++++++
+---
+base-commit: b401b621758e46812da61fa58a67c3fd8d91de0d
+change-id: 20240220-dt-bindins-qcom-dwc3-fix-typo-15f71492adaf
 
-There's no need to do this rename. Having the filename matching one of
-the compatibles is our preference.
+Best regards,
+-- 
+Gabor Juhos <j4g8y7@gmail.com>
 
-In addition, it makes it difficult to see what your actual additions are
-here. Fortunately, applying the patch locally allows me to use colour
-moved and all that jazz, so I can see that the underlying changes to the
-file actually look pretty good.
-
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        rtc@68 {
-> +            reg =3D <0x68>;
-> +            compatible =3D "adi,max31329";
-> +            clocks =3D <&clkin>;
-> +            interrupt-parent =3D <&gpio>;
-> +            interrupts =3D <26 IRQ_TYPE_EDGE_FALLING>;
-> +            aux-voltage-chargeable =3D <1>;
-> +            trickle-resistor-ohms =3D <6000>;
-> +            adi,tc-diode =3D "schottky";
-> +        };
-> +    };
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        rtc@68 {
-> +            compatible =3D "adi,max31335";
-> +            reg =3D <0x68>;
-> +            pinctrl-0 =3D <&rtc_nint_pins>;
-> +            interrupts-extended =3D <&gpio1 16 IRQ_TYPE_LEVEL_HIGH>;
-> +            aux-voltage-chargeable =3D <1>;
-> +            trickle-resistor-ohms =3D <6000>;
-> +            adi,tc-diode =3D "schottky";
-> +        };
-> +    };
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        rtc@68 {
-> +            reg =3D <0x68>;
-> +            compatible =3D "adi,max31331";
-> +            #clock-cells =3D <0>;
-> +        };
-> +    };
-
-The one thing I do want the comment on is the number of examples.
-I don't really see what we gain from having 3 - I'd roll the clock
-provider example into with one of the other ones I think.
-
-Cheers,
-Conor.
-
---Lr0x75LRIzBUufR/
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdT7ngAKCRB4tDGHoIJi
-0gcVAQCUm3UGEM+Z/9EWoRiY+5d63k/n2Hnz9XUiLW/AZJehEwEArBjG41/eCY1Z
-LV4ymimhjQsiORRNpOuiTwJItdYREgY=
-=hOoo
------END PGP SIGNATURE-----
-
---Lr0x75LRIzBUufR/--
 
