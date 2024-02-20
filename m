@@ -1,145 +1,372 @@
-Return-Path: <devicetree+bounces-43678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-43679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9078485B1CD
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 05:03:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CE0A85B203
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 05:53:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CEA3282BA7
-	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 04:03:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 218AB28428D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Feb 2024 04:53:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7BB3535B4;
-	Tue, 20 Feb 2024 04:03:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EE9756B85;
+	Tue, 20 Feb 2024 04:53:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="GGD68i5t"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="mIylj/W+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 163DC5577E;
-	Tue, 20 Feb 2024 04:03:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A83F433D0
+	for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 04:52:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708401828; cv=none; b=hRpMOLDMOIfM4QEonY9OKnirHPzhdObhiQzT/gx9IS8KCKeQgUWnIT733+doAmYDb6NHCPUqO2d3zc4ndHV1su4vaKfdxmjo+L+nXU6MFLoeqD+z3Y/+p+dxJ+IHZSSu/BO1o82+uegePazUr2MYgrXIYbC7+ilpwff0xiKBWvI=
+	t=1708404792; cv=none; b=VyqMnck/0NhbDCFs6y8ctjvB1JvGkCSv9WdzS3Zq1xE6qGzFeWmCByGb54i5e3Q18A9CYU98Y69hzOWEZ82sGNT5vL0hRV4ihkSca2N0rb3NMpDAlZg7LdOhNQeAnZKVEcgs53HrJ+wkN8l9qJ8ynLAuS0bRzozuPCrzdudGoPE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708401828; c=relaxed/simple;
-	bh=IVIzkcVbOkPWz7ortT2t4T3hWJ3PaAF5jKVTkV8Afwk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=O/2es3ym2XeXCUSm/d6esxdzLPWb4u7u9u3zf6NQmTKISvB5c0DCIo9vyQCjPr6yG8cHEouA3KpRy6vz0p4x+2JLFJv2xx7YhPV8JL8FBmefRPKsnqDs32r3RvcKvxxi/15iZJWt4Q3qqx+NYEjsTDxm72sAWrW8eP3qHVOv4ig=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=GGD68i5t; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41K43N31076875;
-	Mon, 19 Feb 2024 22:03:23 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1708401803;
-	bh=crnutHHUYH/0PHILJfzZc4/J5v3/2KFIL0jgBpVroak=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=GGD68i5tfpwUx0FRd18RieRmJMnE0s7TfBCpR8J3pcOwh7PA3gHKAhQgZlTaAh8vw
-	 EGI3wUPgRr10jagulji1ylowICYxLlOwyleiyK0M5a7QqG0BJn98A/9gFtdQIA1RNm
-	 /RALaXrdoxHXx8WNDqTMRjGeNeWomZZV5VWqTYXM=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41K43NA9035427
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 19 Feb 2024 22:03:23 -0600
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 19
- Feb 2024 22:03:23 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 19 Feb 2024 22:03:23 -0600
-Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41K43JfC068689;
-	Mon, 19 Feb 2024 22:03:20 -0600
-From: Vignesh Raghavendra <vigneshr@ti.com>
-To: Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Judith Mendez <jm@ti.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Wadim Egorov
-	<w.egorov@phytec.de>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: Re: [PATCH v3 0/9] Fix MMC properties on Sitara K3 devices
-Date: Tue, 20 Feb 2024 09:33:17 +0530
-Message-ID: <170834878955.3471454.11267750873554490606.b4-ty@ti.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240213235701.2438513-1-jm@ti.com>
-References: <20240213235701.2438513-1-jm@ti.com>
+	s=arc-20240116; t=1708404792; c=relaxed/simple;
+	bh=ADCAk1mIgKohl/Q0QHjOnasOarQxELrz69enL6WnCtg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=aNuCheJFuTQJ6KT/p4LKjoaN1BOJAY/NdwhZAgtYCmLpMZFaQXYzeyJKdtryOZON5w/HJHlCWMQoxXOs+QKp7PLMurwEc0zEqVdcTfrfpcQV4cNrT0/TL323oNxGDmYMZLjFT4sSfSmB+IYKC2iWoNYzL1nunACDH7NkDGHOPgs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=mIylj/W+; arc=none smtp.client-ip=209.85.161.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-58e256505f7so3176270eaf.3
+        for <devicetree@vger.kernel.org>; Mon, 19 Feb 2024 20:52:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1708404752; x=1709009552; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wEnWFvpVwL0bdWz+IBfoCYMDbYA8+qUk/22nOyu5FrY=;
+        b=mIylj/W+Ogy/0dNN0f0AfU1yb9+7dIh0EIprtjHx+1aZPb+a3XfU7AzjlbkDAdiR8x
+         6RAUDfCrSOcs7vdhWsjZJ+Fm2q6PBvHmk9itkHTiJMSsQ+pP4ZpYSfeq3CeNm76A+kjn
+         o2ubSCKjIIVK+FCY+6NIaMgD8jpi/GGCgRs7Q=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708404752; x=1709009552;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wEnWFvpVwL0bdWz+IBfoCYMDbYA8+qUk/22nOyu5FrY=;
+        b=vMSWKWK0zCtm9rRVdidLzwKiD4SSX9ysicw2F2rsB+oPZULrX5iYy2Biymo3EYRUmJ
+         lyqBiWQPfvNDH1t1G3vxIT087QlECclY7nPEy3u4rnzhW0wUFbMTv3IroHx6tk8aD8tL
+         jSY2DpVZcXnF0WxuFn7YAL0MVY1pAIxPSvmrSmEb3uSWrCUjtQQE7y5x3JVp7pMw715Z
+         xyRYYJJo1oPAQA44juHEzlFdm82V9yJ8tsGzjEnk1vuGX7DBsr+ZPf5y6pGXoTqxB8Bq
+         N9830L5EseyxWNw12cDxnGHm8EHsV/WXc9hzZDCh5rfwVCMw/lLVz5uexSP9BQfzNX0/
+         iryQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUj8EqmxHSV2aW8NKpA9iInoJOc4xb9xIfq80+yjtnYwpYofIEXUThqZaJSVGQoHcLnQ2wEMFPkr50Bjr8FtQq6fd8W5D/wzFqCbQ==
+X-Gm-Message-State: AOJu0YwK8NT3zgnWqKFpHpbRuAGmSxeLQo5Y7a0at9VfyuX2BZve/aAo
+	AdUQpLScV54u8z2CO3wwZTd+WOgez2I2e3/Wk8PFb8jOp8dXtmMSx0ybp71Z3Q==
+X-Google-Smtp-Source: AGHT+IFX35Pxh2gV06oKGBT3gRp2DPUqRIZN6FqPB3FFoylV6KErBkkKsREubooXeFlW0B/hlkJPxg==
+X-Received: by 2002:a05:6358:881:b0:17a:d84e:c106 with SMTP id m1-20020a056358088100b0017ad84ec106mr14365647rwj.5.1708404752252;
+        Mon, 19 Feb 2024 20:52:32 -0800 (PST)
+Received: from localhost (175.199.125.34.bc.googleusercontent.com. [34.125.199.175])
+        by smtp.gmail.com with UTF8SMTPSA id qn11-20020a17090b3d4b00b00298f88c3e48sm6176611pjb.11.2024.02.19.20.52.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Feb 2024 20:52:31 -0800 (PST)
+From: Stephen Boyd <swboyd@chromium.org>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-kernel@vger.kernel.org,
+	patches@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	chrome-platform@lists.linux.dev,
+	Douglas Anderson <dianders@chromium.org>,
+	Pin-yen Lin <treapking@chromium.org>,
+	linux-gpio@vger.kernel.org,
+	Lee Jones <lee@kernel.org>,
+	Benson Leung <bleung@chromium.org>,
+	Guenter Roeck <groeck@chromium.org>
+Subject: [PATCH v2] gpio: Add ChromeOS EC GPIO driver
+Date: Mon, 19 Feb 2024 20:52:27 -0800
+Message-ID: <20240220045230.2852640-1-swboyd@chromium.org>
+X-Mailer: git-send-email 2.44.0.rc0.258.g7320e95886-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Judith Mendez,
+The ChromeOS embedded controller (EC) supports setting the state of
+GPIOs when the system is unlocked, and getting the state of GPIOs in all
+cases. The GPIOs are on the EC itself, so the EC acts similar to a GPIO
+expander. Add a driver to get and set the GPIOs on the EC through the
+host command interface.
 
-On Tue, 13 Feb 2024 17:56:52 -0600, Judith Mendez wrote:
-> This patch series aims to fix and update MMC nodes for TI
-> Sitara K3 devices with the following changes.
-> 
-> The series introduces sdhci0 and sdhci2 nodes and enables
-> eMMC for AM62ax platform.
-> 
-> Also introduce fixes for MMC ITAP/OTAP values for AM64x
-> platform according to device datasheet [0], and add ITAP/
-> OTAP values for AM62p to enable the highest timing possible
-> for MMC0 and MMC1, according to device datasheet [1].
-> 
-> [...]
+Cc: Lee Jones <lee@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Benson Leung <bleung@chromium.org>
+Cc: Guenter Roeck <groeck@chromium.org>
+Cc: <linux-gpio@vger.kernel.org>
+Cc: <chrome-platform@lists.linux.dev>
+Cc: Pin-yen Lin <treapking@chromium.org>
+Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+---
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+Changes from v1 (https://lore.kernel.org/r/20240210070934.2549994-3-swboyd@chromium.org):
+ * Remove headers that aren't used or necessary
+ * Make the device an mfd_cell instead of child node in DT
+ * Remove the devicetable because there's no compatible anymore
+ * Prefix line names with "EC:" to avoid conflicts
 
-[1/9] arm64: dts: ti: k3-am62a-main: Add sdhci0 instance
-      commit: d3ae4e8d8b6ac0db82264c5576daa260cac3d536
-[2/9] arm64: dts: ti: k3-am62a-main: Add sdhci2 instance
-      commit: feb5d68cec77b6783f4febb8c91c1b1caa8b4924
-[3/9] arm64: dts: ti: k3-am62a7-sk: Enable eMMC support
-      commit: e041ec6e86e7dbc49f5245ace6f3b965bb7c26f7
-[4/9] arm64: dts: ti: k3-am64-main: Fix ITAP/OTAP values for MMC
-      commit: 379c7752bbd0e81654544a896dd19c19ebb6faba
-[5/9] arm64: dts: ti: k3-am62p: Add ITAP/OTAP values for MMC
-      commit: 37f28165518f7df2ed085e4481dade9c262b593b
-[6/9] arm64: dts: ti: k3-am6*: Remove DLL properties for soft PHYs
-      commit: eea929f0e0e3f83d2c027b1e60630deb50df4494
-[7/9] arm64: dts: ti: k3-am6*: Fix ti,clkbuf-sel property in MMC nodes
-      commit: 2812d23ade3d614b451bff5d63d29a31b92d8859
-[8/9] arm64: dts: ti: k3-am6*: Fix bus-width property in MMC nodes
-      commit: 0ae3113a46a64266f19fdc9753d5e3a6748fc594
-[9/9] arm64: dts: ti: k3-am6*: Add bootph-all property in MMC node
-      commit: 5f0e6ce354f61092182b79d177585bd7310f12a2
+ drivers/gpio/Kconfig        |  10 ++
+ drivers/gpio/Makefile       |   1 +
+ drivers/gpio/gpio-cros-ec.c | 209 ++++++++++++++++++++++++++++++++++++
+ 3 files changed, 220 insertions(+)
+ create mode 100644 drivers/gpio/gpio-cros-ec.c
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
+index 1301cec94f12..f6792c814e84 100644
+--- a/drivers/gpio/Kconfig
++++ b/drivers/gpio/Kconfig
+@@ -1240,6 +1240,16 @@ config GPIO_BD9571MWV
+ 	  This driver can also be built as a module. If so, the module
+ 	  will be called gpio-bd9571mwv.
+ 
++config GPIO_CROS_EC
++	tristate "ChromeOS EC GPIO support"
++	depends on CROS_EC
++	help
++	  GPIO driver for the ChromeOS Embedded Controller (EC). GPIOs
++	  cannot be set unless the system is unlocked.
++
++	  This driver can also be built as a module. If so, the module
++	  will be called gpio-cros-ec.
++
+ config GPIO_CRYSTAL_COVE
+ 	tristate "GPIO support for Crystal Cove PMIC"
+ 	depends on (X86 || COMPILE_TEST) && INTEL_SOC_PMIC
+diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
+index 9e40af196aae..7ae4d81de1df 100644
+--- a/drivers/gpio/Makefile
++++ b/drivers/gpio/Makefile
+@@ -46,6 +46,7 @@ obj-$(CONFIG_GPIO_BT8XX)		+= gpio-bt8xx.o
+ obj-$(CONFIG_GPIO_CADENCE)		+= gpio-cadence.o
+ obj-$(CONFIG_GPIO_CLPS711X)		+= gpio-clps711x.o
+ obj-$(CONFIG_GPIO_SNPS_CREG)		+= gpio-creg-snps.o
++obj-$(CONFIG_GPIO_CROS_EC)		+= gpio-cros-ec.o
+ obj-$(CONFIG_GPIO_CRYSTAL_COVE)		+= gpio-crystalcove.o
+ obj-$(CONFIG_GPIO_CS5535)		+= gpio-cs5535.o
+ obj-$(CONFIG_GPIO_DA9052)		+= gpio-da9052.o
+diff --git a/drivers/gpio/gpio-cros-ec.c b/drivers/gpio/gpio-cros-ec.c
+new file mode 100644
+index 000000000000..842e1c060414
+--- /dev/null
++++ b/drivers/gpio/gpio-cros-ec.c
+@@ -0,0 +1,209 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Copyright 2024 Google LLC
++ *
++ * This driver provides the ability to control GPIOs on the Chrome OS EC.
++ * There isn't any direction control, and setting values on GPIOs is only
++ * possible when the system is unlocked.
++ */
++
++#include <linux/bitops.h>
++#include <linux/device.h>
++#include <linux/errno.h>
++#include <linux/gpio/driver.h>
++#include <linux/kernel.h>
++#include <linux/module.h>
++#include <linux/platform_data/cros_ec_commands.h>
++#include <linux/platform_data/cros_ec_proto.h>
++#include <linux/platform_device.h>
++#include <linux/property.h>
++#include <linux/slab.h>
++
++/* Prefix all names to avoid collisions with EC <-> AP nets */
++static const char cros_ec_gpio_prefix[] = "EC:";
++
++/* Setting gpios is only supported when the system is unlocked */
++static void cros_ec_gpio_set(struct gpio_chip *gc, unsigned int gpio, int val)
++{
++	const char *name = gc->names[gpio] + strlen(cros_ec_gpio_prefix);
++	struct cros_ec_device *cros_ec = gpiochip_get_data(gc);
++	struct ec_params_gpio_set params = {
++		.val = val,
++	};
++	int ret;
++	ssize_t copied;
++
++	copied = strscpy(params.name, name, sizeof(params.name));
++	if (copied < 0)
++		return;
++
++	ret = cros_ec_cmd(cros_ec, 0, EC_CMD_GPIO_SET, &params,
++			  sizeof(params), NULL, 0);
++	if (ret < 0)
++		dev_err(gc->parent, "error setting gpio%d (%s) on EC: %d\n", gpio, name, ret);
++}
++
++static int cros_ec_gpio_get(struct gpio_chip *gc, unsigned int gpio)
++{
++	const char *name = gc->names[gpio] + strlen(cros_ec_gpio_prefix);
++	struct cros_ec_device *cros_ec = gpiochip_get_data(gc);
++	struct ec_params_gpio_get params;
++	struct ec_response_gpio_get response;
++	int ret;
++	ssize_t copied;
++
++	copied = strscpy(params.name, name, sizeof(params.name));
++	if (copied < 0)
++		return -EINVAL;
++
++	ret = cros_ec_cmd(cros_ec, 0, EC_CMD_GPIO_GET, &params,
++			  sizeof(params), &response, sizeof(response));
++	if (ret < 0) {
++		dev_err(gc->parent, "error getting gpio%d (%s) on EC: %d\n", gpio, name, ret);
++		return ret;
++	}
++
++	return response.val;
++}
++
++#define CROS_EC_GPIO_INPUT         BIT(8)
++#define CROS_EC_GPIO_OUTPUT        BIT(9)
++
++static int cros_ec_gpio_get_direction(struct gpio_chip *gc, unsigned int gpio)
++{
++	const char *name = gc->names[gpio] + strlen(cros_ec_gpio_prefix);
++	struct cros_ec_device *cros_ec = gpiochip_get_data(gc);
++	struct ec_params_gpio_get_v1 params = {
++		.subcmd = EC_GPIO_GET_INFO,
++		.get_info.index = gpio,
++	};
++	struct ec_response_gpio_get_v1 response;
++	int ret;
++
++	ret = cros_ec_cmd(cros_ec, 1, EC_CMD_GPIO_GET, &params,
++			  sizeof(params), &response, sizeof(response));
++	if (ret < 0) {
++		dev_err(gc->parent, "error getting direction of gpio%d (%s) on EC: %d\n", gpio, name, ret);
++		return ret;
++	}
++
++	if (response.get_info.flags & CROS_EC_GPIO_INPUT)
++		return GPIO_LINE_DIRECTION_IN;
++
++	if (response.get_info.flags & CROS_EC_GPIO_OUTPUT)
++		return GPIO_LINE_DIRECTION_OUT;
++
++	return -EINVAL;
++}
++
++/* Query EC for all gpio line names */
++static int cros_ec_gpio_init_names(struct cros_ec_device *cros_ec, struct gpio_chip *gc)
++{
++	struct ec_params_gpio_get_v1 params = {
++		.subcmd = EC_GPIO_GET_INFO,
++	};
++	struct ec_response_gpio_get_v1 response;
++	int ret, i;
++	/* EC may not NUL terminate */
++	size_t name_len = strlen(cros_ec_gpio_prefix) + sizeof(response.get_info.name) + 1;
++	ssize_t copied;
++	const char **names;
++	char *str;
++
++	names = devm_kcalloc(gc->parent, gc->ngpio, sizeof(*names), GFP_KERNEL);
++	if (!names)
++		return -ENOMEM;
++	gc->names = names;
++
++	str = devm_kcalloc(gc->parent, gc->ngpio, name_len, GFP_KERNEL);
++	if (!str)
++		return -ENOMEM;
++
++	/* Get gpio line names one at a time */
++	for (i = 0; i < gc->ngpio; i++) {
++		params.get_info.index = i;
++		ret = cros_ec_cmd(cros_ec, 1, EC_CMD_GPIO_GET, &params,
++				  sizeof(params), &response, sizeof(response));
++		if (ret < 0) {
++			dev_err_probe(gc->parent, ret, "error getting gpio%d info\n", i);
++			return ret;
++		}
++
++		names[i] = str;
++		copied = scnprintf(str, name_len, "%s%s", cros_ec_gpio_prefix,
++				   response.get_info.name);
++		if (copied < 0)
++			return copied;
++
++		str += copied + 1;
++	}
++
++	return 0;
++}
++
++/* Query EC for number of gpios */
++static int cros_ec_gpio_ngpios(struct cros_ec_device *cros_ec)
++{
++	struct ec_params_gpio_get_v1 params = {
++		.subcmd = EC_GPIO_GET_COUNT,
++	};
++	struct ec_response_gpio_get_v1 response;
++	int ret;
++
++	ret = cros_ec_cmd(cros_ec, 1, EC_CMD_GPIO_GET, &params,
++			  sizeof(params), &response, sizeof(response));
++	if (ret < 0)
++		return ret;
++
++	return response.get_count.val;
++}
++
++static int cros_ec_gpio_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct device *parent = dev->parent;
++	struct cros_ec_dev *ec_dev = dev_get_drvdata(parent);
++	struct cros_ec_device *cros_ec = ec_dev->ec_dev;
++	struct gpio_chip *gc;
++	int ngpios;
++	int ret;
++
++	/* Use the fwnode from the protocol device, e.g. cros-ec-spi */
++	device_set_node(dev, dev_fwnode(cros_ec->dev));
++
++	ngpios = cros_ec_gpio_ngpios(cros_ec);
++	if (ngpios < 0) {
++		dev_err_probe(dev, ngpios, "error getting gpio count\n");
++		return ngpios;
++	}
++
++	gc = devm_kzalloc(dev, sizeof(*gc), GFP_KERNEL);
++	if (!gc)
++		return -ENOMEM;
++
++	gc->ngpio = ngpios;
++	gc->parent = dev;
++	ret = cros_ec_gpio_init_names(cros_ec, gc);
++	if (ret)
++		return ret;
++
++	gc->can_sleep = true;
++	gc->label = dev_name(dev);
++	gc->base = -1;
++	gc->set = cros_ec_gpio_set;
++	gc->get = cros_ec_gpio_get;
++	gc->get_direction = cros_ec_gpio_get_direction;
++
++	return devm_gpiochip_add_data(dev, gc, cros_ec);
++}
++
++static struct platform_driver cros_ec_gpio_driver = {
++	.probe = cros_ec_gpio_probe,
++	.driver = {
++		.name = "cros-ec-gpio",
++	},
++};
++module_platform_driver(cros_ec_gpio_driver);
++
++MODULE_DESCRIPTION("ChromeOS EC GPIO Driver");
++MODULE_LICENSE("GPL");
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
---
-Vignesh
+base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
+-- 
+https://chromeos.dev
 
 
