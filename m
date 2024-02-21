@@ -1,277 +1,129 @@
-Return-Path: <devicetree+bounces-44491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FF7885E75F
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 20:37:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47C9485E764
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 20:39:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CBF501F236C2
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 19:37:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A29C1C24DD6
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 19:39:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7E0486645;
-	Wed, 21 Feb 2024 19:36:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D7EE86139;
+	Wed, 21 Feb 2024 19:39:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u7W79RKB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QV4kJ7oS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F67385C7C
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 19:36:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7093785954;
+	Wed, 21 Feb 2024 19:39:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708544213; cv=none; b=Umx4ZOQVQoKFiErmAhqQb/Y/dG9jDf+nRytRWEJPy7C2YAtb5QrxYQ+p4oFznma5SJVEenPEW7RHPIxHTvpVIqvX0EgeMAGpXQtx+9wg15Vzh36kltIi9dJwdFw/4x4A+xK5sP1361HP/Wm8ekscDoBgr1YdWLrvyRvhyBfAxu0=
+	t=1708544355; cv=none; b=IIcW/Ev9wRfwdZtdJtSlQXfNCzOGhvy3yiahgDelzVmUCHJBCxGlbdwVJJP8apv1zspPpwLjIfVmZf9B2YB61dBmSeYk2HE0y0X/hhuZJMqFlnhGBxFm6FSI7JqnvsIjntu1YHxe6ZbmAkl4bUI/74txPHcgOTFF33ubggKrjDA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708544213; c=relaxed/simple;
-	bh=eV8KAdCq546PLUu5EHILB1FlUk/5D6xqO6K8+ATuJRk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DjhngjtN/TOziHRezmHuaa7sNyQ+Qk02OX8NEsMR09DE62SYfKShwpepdnE5c4OPIfYTGvkSMIgs2a5+es2dE0GYeHudoVWx8WoAwdJzWA7qhGjzkAgVdkmxyYd7SW5kfrwP/oflrFvkLVG2ClHwf5cqPf6RTi/tRhw3Fqynm+0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u7W79RKB; arc=none smtp.client-ip=209.85.128.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-607fc3e69adso61399897b3.0
-        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 11:36:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708544210; x=1709149010; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ww0To1dp+AHUBLp6rp2jOb2P+DD7/I49Wgp5bodshls=;
-        b=u7W79RKBLtsgCnc0flAkFFQjlNIqxSAjY5e/tyZWGtgpaeWNePfbPUT/5PyeQQy0Vg
-         gMawdvc7NuNL2qna8LFqr8OoYCxlSNbNchQtxc3gKCQnpM8KzZTDoxG+ZCRoumx8fg4j
-         vKGy5yVlHdC3r+q+1lbXf6/AKkrc6XdgPPT4Oau/33l1pCJ4mHeG9ggcN+S0sGO/uTFy
-         /ELHrXy7VM8kS5kqWWcrWM+OFMoy4XImpDOMhQdVzhnDxCfEUBzYSYwlcZlita1tX0h2
-         SfTk+p/6UAKzYhFDtfufqjxWXM5/MmPhZnFMzEwtxFhINIZUpdEyguFQ+tIB9o3u9ule
-         6gjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708544210; x=1709149010;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ww0To1dp+AHUBLp6rp2jOb2P+DD7/I49Wgp5bodshls=;
-        b=A1p8qmy4Svzyk24nuUTyLDSm6ZEbv17L9bcqyI3OSkxwdBjwOFQydhS3h7/1O97JDC
-         lgcNJDslsr2ZYCzfTqpL6ycDOJjjqAsUT3LQ/XDZ9Sx5xuEUCmj1yuSsNOtJ4S8k5a8e
-         j8+BShb4DKZu/lqVaw1Be/pgGZ8DNqDRMNhbBbb8qTKJj/gUcW5JeS5OlpPzzEUwrsQN
-         J1sZJGolYQzB9pKGqjSh6V3rb8aQ3jaj0fBSt0PjaAAf8NZoMyRDwDyx8dYgEaNRvAjU
-         XaEHl2cWVzmKy+QfHBJBTq5mLqx5bFF1JffUndWIc0YmDA3ePsyz/H0WBvvDTu3puZw3
-         LLPg==
-X-Forwarded-Encrypted: i=1; AJvYcCUSwslhiQR1kClMSuaDB4KeEUEH4DeJvvmyCqQwaMEwNXcreHDA5TaPbBb0OfuCjC6siQfV+2R9tVXE1RtF7fvY4bcqDvHOIuwsqQ==
-X-Gm-Message-State: AOJu0Ywlolif5II56cXSh3vg+y7qMkbkPtc2uPssptCh+fcXSNuNNK9w
-	rJ2DJD208qVqwimaAF3XkYKbxKV9ycNXlYp4QVe+S2jwgpwswc6AbejPPDNyAN7wqu3th9ByqFa
-	OyZR+fM7U3ZP/hoKIjxMw4R2pOiN+f0illicCEw==
-X-Google-Smtp-Source: AGHT+IGCZPDCa1Hzfo+KEBVcL7TsTR0Ad/nA9/EpiWdmACh0Xp2HAj3m3ZyLtUAY4auzZzhlgNjzo05jt7jYW0MAWUM=
-X-Received: by 2002:a81:8d51:0:b0:608:8b1e:cee with SMTP id
- w17-20020a818d51000000b006088b1e0ceemr1805668ywj.25.1708544210048; Wed, 21
- Feb 2024 11:36:50 -0800 (PST)
+	s=arc-20240116; t=1708544355; c=relaxed/simple;
+	bh=jpjoy9Fsa6//vmMr82XAl99quOukD/lr0ooCOOk0MCI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CmhJS7L7b51Cal4PgBM986VT4RAJFSION6TfJ2Esz6sQeOOXEkwBjl2oIoiJ5qxM04SifDFBoghXtqia/Jp/bcouJ1PdmAjBlXtX0AapB5+F22IDNY3KxTnMkL3VTuXNLaOVNeRRkv6wm8v7BCvcdY2YaEShNJ7Noaycpp1ZdZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QV4kJ7oS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DDFFC433F1;
+	Wed, 21 Feb 2024 19:39:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708544355;
+	bh=jpjoy9Fsa6//vmMr82XAl99quOukD/lr0ooCOOk0MCI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QV4kJ7oSZqHBFzHeaGSRz0SBLAECwgsglXFHHqcnwn9fttT/26VU2chgTducZEQOB
+	 yv94ChGVuehslh8yjnBL2gnt4qojlWuUXEeJuK3Ujbjj5GnK9r3wwgxjRmzutpgDn0
+	 E6hcXqO2rnXU+NJsU70UXVTG25Yv1veO26XlxxlYToKrIzYUmsiDCy7wsZMzO5L1Xo
+	 QKQjjY30FHe65H4EyDkjl0LngoPhF2nr0reQBR3bBMCxHeBTq9kRFwDiSy9Pi5mJp4
+	 PSgyM28KNCZg7VhD6JKkNcy8hc+9b82m2clGcP2y3LYiK+z1yPOKH6prZoFSCcc07b
+	 0rPttK8lRbXtQ==
+Date: Wed, 21 Feb 2024 19:39:08 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Alex Soo <yuklin.soo@starfivetech.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Hal Feng <hal.feng@starfivetech.com>,
+	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
+	Jianlong Huang <jianlong.huang@starfivetech.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Drew Fustini <drew@beagleboard.org>, linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>
+Subject: Re: [RFC PATCH v2 1/6] dt-bindings: pinctrl: starfive: Add JH8100
+ pinctrl
+Message-ID: <20240221-overstep-degrading-f0aec67f1221@spud>
+References: <20240220064246.467216-1-yuklin.soo@starfivetech.com>
+ <20240220064246.467216-2-yuklin.soo@starfivetech.com>
+ <1a11cee2-2ef1-4ce0-8cc1-63c6cc97863f@linaro.org>
+ <20240220-bottling-reverence-e0ee08f48ccc@spud>
+ <cafccf8d-b8f7-44cb-bc41-3c7a908fd1e4@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240214-mbly-gpio-v1-0-f88c0ccf372b@bootlin.com>
- <20240214-mbly-gpio-v1-18-f88c0ccf372b@bootlin.com> <CACRpkdYLBGsphNkmWyPXQZvFaO2hHGHGTMt1eqz-HAa2k5F3bg@mail.gmail.com>
- <CZAW47LJHQVD.1Z9GFT8UENYXT@bootlin.com>
-In-Reply-To: <CZAW47LJHQVD.1Z9GFT8UENYXT@bootlin.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 21 Feb 2024 20:36:39 +0100
-Message-ID: <CACRpkdZQ9LEqKvugDCMEXPPLMCUJ-f9rYQOpmsSEJhtW0zjNsg@mail.gmail.com>
-Subject: Re: [PATCH 18/23] gpio: nomadik: support mobileye,eyeq5-gpio
-To: =?UTF-8?B?VGjDqW8gTGVicnVu?= <theo.lebrun@bootlin.com>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mips@vger.kernel.org, Gregory CLEMENT <gregory.clement@bootlin.com>, 
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="oW1W+eroT4GxNUCm"
+Content-Disposition: inline
+In-Reply-To: <cafccf8d-b8f7-44cb-bc41-3c7a908fd1e4@linaro.org>
+
+
+--oW1W+eroT4GxNUCm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 21, 2024 at 5:16=E2=80=AFPM Th=C3=A9o Lebrun <theo.lebrun@bootl=
-in.com> wrote:
+On Wed, Feb 21, 2024 at 08:24:26AM +0100, Krzysztof Kozlowski wrote:
+> On 20/02/2024 20:10, Conor Dooley wrote:
+> > On Tue, Feb 20, 2024 at 09:11:43AM +0100, Krzysztof Kozlowski wrote:
+> >> On 20/02/2024 07:42, Alex Soo wrote:
+> >>> Add documentation and header file for JH8100 pinctrl driver.
+> >>>
+> >>> Signed-off-by: Alex Soo <yuklin.soo@starfivetech.com>
+> >>> ---
+> >>
+> >>
+> >> RFC? Why isn't this patch ready for review?
+> >=20
+> > The TL;DR is that Emil and I didn't want to apply the dts patches to
+> > support a platform that hadn't actually been taped out yet.=20
+> > For an SoC in that state, at least the bindings for, clock and pinctrl
+> > could be subject to changes before tapeou. I think putting RFC on those
+> > patches is a good idea, but of course the rationale should be mentioned.
+>=20
+> That would be useful information. We also could mark some bindings
+> unstable and accept breaking ABI under certain conditions, like that it
+> is early work without users for long time.
 
-> > Trying to figure it out...
->
-> Can I help in the debugging process?
+I don't want to discourage a vendor that's clearly doing a good job of
+working on things before they've even taped things out, which is why I
+suggested sending clocks/pinctrl as RFC until things are finalised.
+I'm not sure what a good way to mention this in the bindings would be,
+particularly for clock/pinctrl definitions where things could change
+"behind the back" of a user - I'm thinking things like U-Boot here.
 
-Nah, I found it :)
+--oW1W+eroT4GxNUCm
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> Reading the code once again I'd guess
-> of_device_get_match_data(&gpio_pdev->dev) could be the root cause. We
-> are accessing match data for the GPIO device while probing the pinctrl
-> device. Maybe something isn't initialised properly yet? The rest looks
-> rather harmless, I've checked all conditional expressions.
+-----BEGIN PGP SIGNATURE-----
 
-Yep spot on. The nmk_gpio_populate_chip() is sometimes called from
-the pinctrl driver before the gpio probe() has been called, so the match
-data is NULL and we crash.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdZRXAAKCRB4tDGHoIJi
+0pHsAPsEyp2tYcjX2nSqPkPh9K+5WEkawzPSKZ3xZfBdBTNjeAEA2DQTPxP4sxi5
+G4gYhkpSkY1LV81h9yz8W2TnAykKewY=
+=Lo+3
+-----END PGP SIGNATURE-----
 
-This looks like it does for historical reasons and there could be better
-ways to fix it now that Saravana Kannan has fixed up the probe ordering
-code.
-
-The following is one way to fix it for now using device_is_compatible()
-(illustrating some other changes I did as well):
-
-diff --git a/drivers/gpio/gpio-nomadik.c b/drivers/gpio/gpio-nomadik.c
-index 21bb6d6363fc..11071a982ebb 100644
---- a/drivers/gpio/gpio-nomadik.c
-+++ b/drivers/gpio/gpio-nomadik.c
-@@ -27,6 +27,7 @@
- #include <linux/of_platform.h>
- #include <linux/pinctrl/pinctrl.h>
- #include <linux/platform_device.h>
-+#include <linux/property.h>
- #include <linux/reset.h>
- #include <linux/seq_file.h>
- #include <linux/types.h>
-@@ -37,15 +38,13 @@
- static DEFINE_SPINLOCK(nmk_gpio_slpm_lock);
- #endif
-
--#define NMK_GPIO_FLAG_QUIRK_MBLY    BIT(0)
--
- void __nmk_gpio_set_slpm(struct nmk_gpio_chip *nmk_chip, unsigned int offs=
-et,
-              enum nmk_gpio_slpm mode)
- {
-     u32 slpm;
-
-     /* We should NOT have been called. */
--    if (WARN_ON(nmk_chip->quirk_mbly))
-+    if (WARN_ON(nmk_chip->is_mobileye_soc))
-         return;
-
-     slpm =3D readl(nmk_chip->addr + NMK_GPIO_SLPC);
-@@ -105,7 +104,7 @@ static void __nmk_gpio_irq_modify(struct
-nmk_gpio_chip *nmk_chip,
-         fimscval =3D &nmk_chip->fimsc;
-     } else  {
-         /* We should NOT have been called. */
--        if (WARN_ON(nmk_chip->quirk_mbly))
-+        if (WARN_ON(nmk_chip->is_mobileye_soc))
-             return;
-         rimscreg =3D NMK_GPIO_RWIMSC;
-         fimscreg =3D NMK_GPIO_FWIMSC;
-@@ -134,7 +133,7 @@ static void __nmk_gpio_set_wake(struct
-nmk_gpio_chip *nmk_chip,
-                 int offset, bool on)
- {
-     /* We should NOT have been called. */
--    if (WARN_ON(nmk_chip->quirk_mbly))
-+    if (WARN_ON(nmk_chip->is_mobileye_soc))
-         return;
-
-     /*
-@@ -161,7 +160,7 @@ static void nmk_gpio_irq_maskunmask(struct
-nmk_gpio_chip *nmk_chip,
-
-     __nmk_gpio_irq_modify(nmk_chip, d->hwirq, NORMAL, enable);
-
--    if (!nmk_chip->quirk_mbly && !(nmk_chip->real_wake & BIT(d->hwirq)))
-+    if (!nmk_chip->is_mobileye_soc && !(nmk_chip->real_wake & BIT(d->hwirq=
-)))
-         __nmk_gpio_set_wake(nmk_chip, d->hwirq, enable);
-
-     spin_unlock(&nmk_chip->lock);
-@@ -194,7 +193,7 @@ static int nmk_gpio_irq_set_wake(struct irq_data
-*d, unsigned int on)
-     unsigned long flags;
-
-     /* Handler is registered in all cases. */
--    if (nmk_chip->quirk_mbly)
-+    if (nmk_chip->is_mobileye_soc)
-         return -ENXIO;
-
-     clk_enable(nmk_chip->clk);
-@@ -235,7 +234,7 @@ static int nmk_gpio_irq_set_type(struct irq_data
-*d, unsigned int type)
-     if (enabled)
-         __nmk_gpio_irq_modify(nmk_chip, d->hwirq, NORMAL, false);
-
--    if (!nmk_chip->quirk_mbly && (enabled || wake))
-+    if (!nmk_chip->is_mobileye_soc && (enabled || wake))
-         __nmk_gpio_irq_modify(nmk_chip, d->hwirq, WAKE, false);
-
-     nmk_chip->edge_rising &=3D ~BIT(d->hwirq);
-@@ -249,7 +248,7 @@ static int nmk_gpio_irq_set_type(struct irq_data
-*d, unsigned int type)
-     if (enabled)
-         __nmk_gpio_irq_modify(nmk_chip, d->hwirq, NORMAL, true);
-
--    if (!nmk_chip->quirk_mbly && (enabled || wake))
-+    if (!nmk_chip->is_mobileye_soc && (enabled || wake))
-         __nmk_gpio_irq_modify(nmk_chip, d->hwirq, WAKE, true);
-
-     spin_unlock_irqrestore(&nmk_chip->lock, flags);
-@@ -383,7 +382,7 @@ static int nmk_gpio_get_mode(struct nmk_gpio_chip
-*nmk_chip, int offset)
-     u32 afunc, bfunc;
-
-     /* We don't support modes. */
--    if (nmk_chip->quirk_mbly)
-+    if (nmk_chip->is_mobileye_soc)
-         return NMK_GPIO_ALT_GPIO;
-
-     clk_enable(nmk_chip->clk);
-@@ -517,7 +516,6 @@ struct nmk_gpio_chip
-*nmk_gpio_populate_chip(struct device_node *np,
-     struct resource *res;
-     struct clk *clk;
-     void __iomem *base;
--    uintptr_t flags;
-     u32 id, ngpio;
-
-     gpio_pdev =3D of_find_device_by_node(np);
-@@ -551,8 +549,7 @@ struct nmk_gpio_chip
-*nmk_gpio_populate_chip(struct device_node *np,
-         dev_dbg(&pdev->dev, "populate: using default ngpio (%d)\n", ngpio)=
-;
-     }
-
--    flags =3D (uintptr_t)of_device_get_match_data(&gpio_pdev->dev);
--    nmk_chip->quirk_mbly =3D !!(flags & NMK_GPIO_FLAG_QUIRK_MBLY);
-+    nmk_chip->is_mobileye_soc =3D device_is_compatible(&gpio_pdev->dev,
-"mobileye,eyeq5-gpio");
-     nmk_chip->bank =3D id;
-     chip =3D &nmk_chip->chip;
-     chip->base =3D -1;
-@@ -667,7 +664,7 @@ static int nmk_gpio_probe(struct platform_device *pdev)
-         return ret;
-     }
-
--    if (!nmk_chip->quirk_mbly) {
-+    if (!nmk_chip->is_mobileye_soc) {
-         clk_enable(nmk_chip->clk);
-         nmk_chip->lowemi =3D readl_relaxed(nmk_chip->addr + NMK_GPIO_LOWEM=
-I);
-         clk_disable(nmk_chip->clk);
-@@ -690,7 +687,6 @@ static const struct of_device_id nmk_gpio_match[] =3D {
-     },
-     {
-         .compatible =3D "mobileye,eyeq5-gpio",
--        .data =3D (void*)NMK_GPIO_FLAG_QUIRK_MBLY,
-     },
-     {}
- };
-diff --git a/include/linux/gpio/gpio-nomadik.h
-b/include/linux/gpio/gpio-nomadik.h
-index 8d0134dd3771..ede16cdaa920 100644
---- a/include/linux/gpio/gpio-nomadik.h
-+++ b/include/linux/gpio/gpio-nomadik.h
-@@ -51,6 +51,7 @@ enum nmk_gpio_slpm {
-
- struct nmk_gpio_chip {
-     struct gpio_chip chip;
-+    bool is_mobileye_soc;
-     void __iomem *addr;
-     struct clk *clk;
-     unsigned int bank;
-
-Yours,
-Linus Walleij
+--oW1W+eroT4GxNUCm--
 
