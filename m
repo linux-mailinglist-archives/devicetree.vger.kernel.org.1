@@ -1,313 +1,155 @@
-Return-Path: <devicetree+bounces-44169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44171-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A458685CF79
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 06:16:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83D0885CF8E
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 06:26:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1766F1F216F4
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 05:16:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EEC73B22B33
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 05:26:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8982C39ADD;
-	Wed, 21 Feb 2024 05:16:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79C1639FC0;
+	Wed, 21 Feb 2024 05:26:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="jeFiq0M/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WMz2/Gzf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1D213A1B1;
-	Wed, 21 Feb 2024 05:16:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98308A35
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 05:26:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708492592; cv=none; b=DnXE46jPwNjBa52NpJVHYBDbBTXgCb9bzNr8XjhDNUQVbwf+cdpwNozSQ0LkQBYVyctvEEP3W+zcgmdVzToEQDgwzQuhDN564AUKR/YbItjrRiuOdhywMr3CLPK42kvFU8/lxU3zQkIKQy35uaGmluC7Wo9/3ncI2YSJSg2BM18=
+	t=1708493178; cv=none; b=Sk71J8ypl6yNreUpVkkFj2vp2d3wEgpHofrqsxiljd6XRZfnph6lEb8JYuI8c6zwuT5Fzt8ykEmNO+T/ELoKxrzQO13iDpVYjWoa2mo1raYtuLGY26YQA+7jA61bHlSMoUPqsBR5lmZuke8ylf6kxULVKcxE1SXNvs0MGRPPUqE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708492592; c=relaxed/simple;
-	bh=2ZjIrnbwIpb+fww2CpPMLUrrocLPj5CUKbpRQWn0xpM=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YeOqaX7Wfz3fSv7isFs9vNhMSWwChVz/DvmVxVrKcaifH9BMEvsjujS/+wj03eLUmwGAuGO/8yCyv0i/9u4XDjRUmLQ44odfdCcxySHVwtek/rqyXfyjNrcYuyhxD/nVYqW0xsQHKXLOyVEojxoDK+VsYsPS6gAEXKjBCY5MYJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=jeFiq0M/; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41L5FgdG038084;
-	Tue, 20 Feb 2024 23:15:42 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1708492542;
-	bh=QxbKr5gBnaz6mPSCGuV3xXpqR+xkbpPgEdv40Axcm3g=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=jeFiq0M/5fjYlA505s160xwpdvvtW+urKZg9Tv6i4P6f8mxsrMwzsvlLXC/dhplhS
-	 h9nQGtoFwzI+dsZBuQeIYgnjrhdXqk5G0QzGrUNdUz6ysvTerkrBwOjhk6aDnm+gxn
-	 Idq4Ui+b5gLKVmW7mnzh0zVc4o+IDGpIJ9yrxaGk=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41L5Fg6Z069020
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 20 Feb 2024 23:15:42 -0600
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 20
- Feb 2024 23:15:41 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 20 Feb 2024 23:15:41 -0600
-Received: from LT5CG31242FY.dhcp.ti.com (lt5cg31242fy.dhcp.ti.com [10.85.14.246])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41L5F59x108039;
-	Tue, 20 Feb 2024 23:15:34 -0600
-From: Shenghao Ding <shenghao-ding@ti.com>
-To: <linux-kernel@vger.kernel.org>
-CC: <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <perex@perex.cz>, <tiwai@suse.com>, <13916275206@139.com>,
-        <mohit.chawla@ti.com>, <soyer@irl.hu>, <jkhuang3@ti.com>,
-        <tiwai@suse.de>, <pdjuandi@ti.com>, <manisha.agrawal@ti.com>,
-        <s-hari@ti.com>, <aviel@ti.com>, <hnagalla@ti.com>, <praneeth@ti.com>,
-        Shenghao Ding <shenghao-ding@ti.com>
-Subject: [PATCH v5 4/4] ASoc: dt-bindings: PCM6240: Add initial DT binding
-Date: Wed, 21 Feb 2024 13:15:00 +0800
-Message-ID: <20240221051501.627-4-shenghao-ding@ti.com>
-X-Mailer: git-send-email 2.33.0.windows.2
-In-Reply-To: <20240221051501.627-1-shenghao-ding@ti.com>
-References: <20240221051501.627-1-shenghao-ding@ti.com>
+	s=arc-20240116; t=1708493178; c=relaxed/simple;
+	bh=rJCs/lTuNqz4lwNq2Iu1h8tZDBoOnXv0chyWC70/1xM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FL1qdXzTpgJx9ZMB/6Y0WVJ95RRi3wAoqj9cC0tpaz+EeuI+yLQDxOezXtxspDehMCbJvK9gf+ac0NbH276f9V0NsUYJDTquRmDf7t+IclhsHfAyNNOsTQ87clrHn1raRll873zS5DF27wyIHEIT0UMN8xNS2e0z6DIBzP2qdYQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WMz2/Gzf; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-1d746856d85so40256315ad.0
+        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 21:26:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708493176; x=1709097976; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=MTWJcnG98aeovE0bc5/gXqjs0hZE7lI82YidLyMzmGo=;
+        b=WMz2/Gzf8oUkHP6Q4O53Qjo4NpZUTNc4SnSY1pfeZ/XB21WTpUehriMIN1H6c1VzBY
+         STBufiGEFhTdlzMfgsTFjavCyxhWGmD6BgfThNpYK81cN9bm+b9lSsBknYsyThjKxCG2
+         z9Nd+jxDi2T03wqHPk2Yvv3Lo43L9ZhDGCRUs+XVYaA/Jsq/lrh0bA/WmsTdoyQHSael
+         ozplBZfRAAqWZxq41ZSA5PkSySo7uX4It1a3UZ6SFEBcNKs6J4Tl+lCssJjfnK+/TPAm
+         83nXVXki/xVJnXVX6VvvpPfzBCKXD+z9tI1NNtJPudSmiRPd/hOSHDuFPamC73YCefEh
+         yQkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708493176; x=1709097976;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MTWJcnG98aeovE0bc5/gXqjs0hZE7lI82YidLyMzmGo=;
+        b=i9ieNFJ0Lukh9iq+CKQnRdkLqTXwA6cjvhVcFVDTiBLu8JA9RbcHzS40H2aFBPaLmO
+         vQCeCImqeI973q21YIxIJzkNIoOOu8cPMvBvHywoAVyBCsjC/jH8acLbhF3bBQhgE40p
+         UJfPix9FyZfj3aM3Mm+daoPwQ72Us6QVMJ1n0nFKfhigrP6WpyFeyy/qrg7FSq5gUmXw
+         llnz1vWxyU0h0i01J51ZHQeKikkKfiR6Xujja0AmVVjb/K6bX1XOw1lqGrD4howvjJi8
+         kKR017i8lK9yzQrm3hUjctwbFAxY47W/YKUEqLsgcmPceFHJWyDkaFhNhUPyf5KX/7xJ
+         qXpQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVXznQpoQBePfweje6iivzv7LCiMoO26kgQVH+7Ns0+3XoiO3FzzBDEsbW+gSpMYgAG4CO+mK5DeaYna097Mclr8VtFhjKLJwlT4A==
+X-Gm-Message-State: AOJu0YxQ86lz9dXm20VvG+xkOrfXrq10D231evaly3RgLedyLmiYNhBi
+	rdrbIUOc9M91e+y+iEZNBgOdR9rRLBG1ZJ/XOEeOnx059R1eeZ79pwh6MdCMSQ==
+X-Google-Smtp-Source: AGHT+IHuplcoWMw4r0gDZZn2ICKSFcQ8PLjle78E1d6SCAd4YVLTBAnWH4POCADFW4B7pRAQwvjENQ==
+X-Received: by 2002:a17:902:c3c4:b0:1db:cb13:10f1 with SMTP id j4-20020a170902c3c400b001dbcb1310f1mr9654097plj.19.1708493175961;
+        Tue, 20 Feb 2024 21:26:15 -0800 (PST)
+Received: from thinkpad ([117.207.28.224])
+        by smtp.gmail.com with ESMTPSA id p11-20020a170902bd0b00b001dc35e04b02sm95905pls.32.2024.02.20.21.26.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Feb 2024 21:26:15 -0800 (PST)
+Date: Wed, 21 Feb 2024 10:56:07 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Johan Hovold <johan@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 02/10] dt-bindings: PCI: qcom: Do not require
+ 'msi-map-mask'
+Message-ID: <20240221052607.GB11693@thinkpad>
+References: <20240212165043.26961-1-johan+linaro@kernel.org>
+ <20240212165043.26961-3-johan+linaro@kernel.org>
+ <e396cf20-8598-4437-b635-09a4a737a772@linaro.org>
+ <Zcy4Atjmb6-wofCL@hovoldconsulting.com>
+ <59bd6e54-0d5d-4e1a-818a-475a96c223ff@linaro.org>
+ <20240216165406.GD39963@thinkpad>
+ <ZdRXpQnbDbojlMkV@hovoldconsulting.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <ZdRXpQnbDbojlMkV@hovoldconsulting.com>
 
-PCM6240 family chips are popular among audio customers, in spite of only a
-portion of the functionality of codec, such as ADC or DAC, and so on, for
-different Specifications, range from Personal Electric to Automotive
-Electric, even some professional fields. Yet their audio performance is far
-superior to the codec's, and cost is lower than codec, and much easier to
-program than codec.
+On Tue, Feb 20, 2024 at 08:41:25AM +0100, Johan Hovold wrote:
+> On Fri, Feb 16, 2024 at 10:24:06PM +0530, Manivannan Sadhasivam wrote:
+> > On Wed, Feb 14, 2024 at 02:38:57PM +0100, Krzysztof Kozlowski wrote:
+> > > On 14/02/2024 13:54, Johan Hovold wrote:
+> > > > On Wed, Feb 14, 2024 at 01:01:20PM +0100, Krzysztof Kozlowski wrote:
+> > > >> On 12/02/2024 17:50, Johan Hovold wrote:
+> > > >>> Whether the 'msi-map-mask' property is needed or not depends on how the
+> > > >>> MSI interrupts are mapped and it should therefore not be described as
+> > > >>> required.
+> > > >>
+> > > >> I could imagine that on all devices the interrupts are mapped in a way
+> > > >> you need to provide msi-map-mask. IOW, can there be a Qualcomm platform
+> > > >> without msi-map-mask?
+> > > > 
+> > > > I don't have access to the documentation so I'll leave that for you guys
+> > > > to determine. I do note that the downstream DT does not use it and that
+> > > > we have a new devicetree in linux-next which also does not have it:
+> > > > 
+> > > > 	https://lore.kernel.org/r/20240125-topic-sm8650-upstream-pcie-its-v1-1-cb506deeb43e@linaro.org
+> > > > 
+> > > > But at least the latter looks like an omission that should be fixed.
+> > > 
+> > > Hm, either that or the mask for sm8450 was not needed as well. Anyway,
+> > > thanks for explanation, appreciated!
+> > 
+> > msi-map-mask is definitely needed as it would allow all the devices under the
+> > same bus to reuse the MSI identifier. Currently, excluding this property will
+> > not cause any issue since there is a single device under each bus. But we cannot
+> > assume that is going to be the case on all boards.
+> 
+> Are you saying that there is never a use case for an identity mapping?
+> Just on Qualcomm hardware or in general?
+> 
+> It looks like we have a fairly large number of mainline devicetrees that
+> do use an identity mapping here (i.e. do not specify 'msi-map-mask') and
+> the binding document also has an explicit example of this.
+> 
+> 	Documentation/devicetree/bindings/pci/pci-msi.txt
 
-Signed-off-by: Shenghao Ding <shenghao-ding@ti.com>
+I don't know how other platforms supposed to work without this property for more
+than one devices. Maybe they were not tested enough?
 
----
-Change in v5:
- - Rewrite the subject to match something similar to other commits.
- - And none of them are compatible with something.
- - minItems, then maxItems.
- - Drop reset-gpios description
- - Remove the repeated reg descriptions and reg constraints.
- - Drop redundant spaces.
- - Add missing line breaks between blocks and additionalProperties.
- - Correct compatibility issue on adc6120 and pcm6240.
- - All these chips have only a portion of the functionality of codec,
-   such as ADC or DAC, and so on, but their audio performance is far
-   superior to the codec's, and cost is lower than codec, and much easier
-   to program than codec. Simply one or two register settings can enable
-   them to work. Init for these chips are hardware reset or software reset.
-   As to some audio filter params for internal filters, it is up to the
-   special user cases, which can be saved into the bin file. The default
-   value also can work well.
- - Add blank line before reg.
- - remove unneeded items and if branches.
- - Add missing compatible devices, such as adc6120, etc.
- - Add necessary people into the list for DTS review
- - correct misaligned.
- - simplify the compatibility
- - Add sound-name-prefix
----
- .../devicetree/bindings/sound/ti,pcm6240.yaml | 180 ++++++++++++++++++
- 1 file changed, 180 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/ti,pcm6240.yaml
+But for sure, Qcom SoCs require either per device MSI identifier or
+msi-map-mask.
 
-diff --git a/Documentation/devicetree/bindings/sound/ti,pcm6240.yaml b/Documentation/devicetree/bindings/sound/ti,pcm6240.yaml
-new file mode 100644
-index 000000000000..48af498dd0e1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/ti,pcm6240.yaml
-@@ -0,0 +1,180 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2022 - 2024 Texas Instruments Incorporated
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/ti,pcm6240.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments PCM6240 Family Audio ADC/DAC
-+
-+maintainers:
-+  - Shenghao Ding <shenghao-ding@ti.com>
-+
-+description: |
-+  The PCM6240 Family is a big family of Audio ADC/DAC for
-+  different Specifications, range from Personal Electric
-+  to Automotive Electric, even some professional fields.
-+
-+  Specifications about the audio chip can be found at:
-+    https://www.ti.com/lit/gpn/tlv320adc3120
-+    https://www.ti.com/lit/gpn/tlv320adc5120
-+    https://www.ti.com/lit/gpn/tlv320adc6120
-+    https://www.ti.com/lit/gpn/dix4192
-+    https://www.ti.com/lit/gpn/pcm1690
-+    https://www.ti.com/lit/gpn/pcm3120-q1
-+    https://www.ti.com/lit/gpn/pcm3140-q1
-+    https://www.ti.com/lit/gpn/pcm5120-q1
-+    https://www.ti.com/lit/gpn/pcm6120-q1
-+    https://www.ti.com/lit/gpn/pcm6260-q1
-+    https://www.ti.com/lit/gpn/pcm9211
-+    https://www.ti.com/lit/gpn/pcmd3140
-+    https://www.ti.com/lit/gpn/pcmd3180
-+    https://www.ti.com/lit/gpn/taa5212
-+    https://www.ti.com/lit/gpn/tad5212
-+
-+properties:
-+  compatible:
-+    description: |
-+      ti,adc3120: Stereo-channel, 768-kHz, Burr-Brown™ audio analog-to-
-+      digital converter (ADC) with 106-dB SNR.
-+
-+      ti,adc5120: 2-Channel, 768-kHz, Burr-Brown™ Audio ADC with 120-dB SNR.
-+
-+      ti,adc6120: Stereo-channel, 768-kHz, Burr-Brown™ audio analog-to-
-+      digital converter (ADC) with 123-dB SNR.
-+
-+      ti,dix4192: 216-kHz digital audio converter with Quad-Channel In
-+      and One-Channel Out.
-+
-+      ti,pcm1690: Automotive Catalog 113dB SNR 8-Channel Audio DAC with
-+      Differential Outputs.
-+
-+      ti,pcm3120: Automotive, stereo, 106-dB SNR, 768-kHz, low-power
-+      software-controlled audio ADC.
-+
-+      ti,pcm3140: Automotive, Quad-Channel, 768-kHz, Burr-Brown™ Audio ADC
-+      with 106-dB SNR.
-+
-+      ti,pcm5120: Automotive, stereo, 120-dB SNR, 768-kHz, low-power
-+      software-controlled audio ADC.
-+
-+      ti,pcm5140: Automotive, Quad-Channel, 768-kHz, Burr-Brown™ Audio ADC
-+      with 120-dB SNR.
-+
-+      ti,pcm6120: Automotive, stereo, 123-dB SNR, 768-kHz, low-power
-+      software-controlled audio ADC.
-+
-+      ti,pcm6140: Automotive, Quad-Channel, 768-kHz, Burr-Brown™ Audio ADC
-+      with 123-dB SNR.
-+
-+      ti,pcm6240: Automotive 4-ch audio ADC with integrated programmable mic
-+      bias, boost and input diagnostics.
-+
-+      ti,pcm6260: Automotive 6-ch audio ADC with integrated programmable mic
-+      bias, boost and input diagnostics.
-+
-+      ti,pcm9211: 216-kHz digital audio converter With Stereo ADC and
-+      Routing.
-+
-+      ti,pcmd3140: Four-channel PDM-input to TDM or I2S output converter.
-+
-+      ti,pcmd3180: Eight-channel pulse-density-modulation input to TDM or
-+      I2S output converter.
-+
-+      ti,taa5212: Low-power high-performance stereo audio ADC with 118-dB
-+      dynamic range.
-+
-+      ti,tad5212: Low-power stereo audio DAC with 120-dB dynamic range.
-+    oneOf:
-+      - items:
-+          - enum:
-+              - ti,adc3120
-+              - ti,adc5120
-+              - ti,pcm3120
-+              - ti,pcm5120
-+              - ti,pcm6120
-+          - const: ti,adc6120
-+      - items:
-+          - enum:
-+              - ti,pcmd512x
-+              - ti,pcm9211
-+              - ti,taa5212
-+              - ti,tad5212
-+          - const: ti,adc6120
-+      - items:
-+          - enum:
-+              - ti,pcm3140
-+              - ti,pcm5140
-+              - ti,dix4192
-+              - ti,pcm6140
-+              - ti,pcm6260
-+          - const: ti,pcm6240
-+      - items:
-+          - enum:
-+              - ti,pcmd3140
-+              - ti,pcmd3180
-+              - ti,pcm1690
-+              - ti,taa5412
-+              - ti,tad5412
-+          - const: ti,pcm6240
-+      - enum:
-+          - ti,adc6120
-+          - ti,pcm6240
-+
-+  reg:
-+    description:
-+      I2C address, in multiple pcmdevices case, all the i2c address
-+      aggregate as one Audio Device to support multiple audio slots.
-+    minItems: 1
-+    maxItems: 4
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+    description:
-+      Invalid only for ti,pcm1690 because of no INT pin.
-+
-+  sound-name-prefix: true
-+
-+  '#sound-dai-cells':
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ti,pcm1690
-+    then:
-+      properties:
-+        interrupts: false
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+   #include <dt-bindings/gpio/gpio.h>
-+   i2c {
-+     /* example for two devices with interrupt support */
-+     #address-cells = <1>;
-+     #size-cells = <0>;
-+     pcm6240: audio-codec@48 {
-+       compatible = "ti,pcm6240";
-+       reg = <0x48>, /* primary-device */
-+             <0x4b>; /* secondary-device */
-+       sound-name-prefix = "PCMDEV";
-+       #sound-dai-cells = <0>;
-+       reset-gpios = <&gpio1 10 GPIO_ACTIVE_HIGH>;
-+       interrupt-parent = <&gpio1>;
-+       interrupts = <15>;
-+     };
-+   };
-+...
+- Mani
+
 -- 
-2.34.1
-
+மணிவண்ணன் சதாசிவம்
 
