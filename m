@@ -1,214 +1,171 @@
-Return-Path: <devicetree+bounces-44141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B97185CE2B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 03:42:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1B7C85CEDB
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 04:42:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA27B1F2386D
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 02:42:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53A86282F8E
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 03:42:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0202F2837B;
-	Wed, 21 Feb 2024 02:41:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27FDB38FB2;
+	Wed, 21 Feb 2024 03:42:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Y5grKhT/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Sv0z104y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AF402B9C6;
-	Wed, 21 Feb 2024 02:41:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 622D638FBC
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 03:42:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708483303; cv=none; b=kZNWUPPgymEYaIlarNhpKBy3RqyBeBscCmZKVOg8kYJE/mHZvpFhbVI898Hsnu95hTvNzkaOVYzqytEje0FcMpF/MkxvFC9E523JnxUvt8EbmmnI6jrqFD9UzANzNuGF8gCgiBOYaGLf6PMq0HJfZWR/nBeqFiJOs6FeZA2Jo54=
+	t=1708486929; cv=none; b=e7t/82nEQ3mFimW4fFBm2A+NBQFcySQlUbvVmyoHMyFgJ5+W5iaUJVpJOB+vdY4R4vhFAdfOEbQJQp6xh5eD1nrps0OjHhPXRL+NzS5qnOEDsCl851n6OuF5gptcfVfwvt00BkC7Z6SfTiBUYKCWNk196XZdgFHWRWr1PtQKpyQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708483303; c=relaxed/simple;
-	bh=uNsZHg2GHYvf4LqOn/3+x3c6GRm6+b8jtP7o1Z0qWsc=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=qf3fzbECRQRUGwqsmNZqdGbeSgyTxJSQR5IOmFVNCDYMOtyDIvrzJn1/JzCTUVGPU3F8TgLH7EPUz0ibcZNaJtE4DEx2LkM80E6LHGMbJDJ66Xec9sxvJ7V46LE66+s0altf5CzUKU6ANXCkT5HDwCL7T1SAUVfp12Ntm/bT10M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Y5grKhT/; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-Received: from [192.168.68.112] (ppp14-2-85-8.adl-apt-pir-bras31.tpg.internode.on.net [14.2.85.8])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 5459D20184;
-	Wed, 21 Feb 2024 10:41:36 +0800 (AWST)
+	s=arc-20240116; t=1708486929; c=relaxed/simple;
+	bh=7t1TKV9oHfbtypKrfVlUmm8Y14s1NVoXY+RaFYePMs8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=EixgnfMW5AD9mQVixSiBKujAxDhZwv+JdFBnrPKrKSdljTi8GUVo6E3khZyQg2e8Di7fMrebSNoUbTUrxESn4wIcQpZZCZb3FtHv7o2hwQ2Rs+l2gpGFBLBNqcsNyQ2A3SeOL2QUpOUU60S77ORRbfwqE/2psQp8ofC6wzxGt/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Sv0z104y; arc=none smtp.client-ip=209.85.210.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-6e08dd0fa0bso5290328b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 19:42:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1708483298;
-	bh=i30tH1Ja0ZXVCudrf3PesBOg0hw/OSVcL1FWavEO4jI=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=Y5grKhT/tF0diY/VUxBXx4FN3msX2l1/VU2VbGaHBcbd95wusYTx58qbginFcaWdC
-	 G9cvzahU/eRJnSi6osDKRYFrAgAGnCqUHoCfoobsO+r84qs3yR5ae63XvzRafVmhpY
-	 ic5NC87lLFT9fBZdfjBdlm5x17brSbH/nwTK6ru92fbsLItwtUNnFWbINuXBZdjZFK
-	 NWIwXZ/u8LSYweLwt9pKUG4hss4zUQ5eRaeAmke/68G6g+ZY5kit/9AViBQpS4HEtX
-	 d35pjRJ7BQNFDkkTxxOXI85htwDkNLsqVP1LTtfLjLSg+OD/BMLpjfzvmayjQs0rpb
-	 9Pper7XHXuqZg==
-Message-ID: <18dfd5f2eff5049fa5e3a098490dc601cf146f96.camel@codeconstruct.com.au>
-Subject: Re: [PATCH] dt-bindings: gpio: Convert Aspeed binding to YAML schema
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	linus.walleij@linaro.org, brgl@bgdev.pl
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org,  joel@jms.id.au, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org,  linux-kernel@vger.kernel.org
-Date: Wed, 21 Feb 2024 13:11:35 +1030
-In-Reply-To: <0d1dd262-b6dd-4d71-9239-8b0aec8cceff@linaro.org>
-References: <20240220052918.742793-1-andrew@codeconstruct.com.au>
-	 <0d1dd262-b6dd-4d71-9239-8b0aec8cceff@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+        d=linaro.org; s=google; t=1708486927; x=1709091727; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=DVVF7vEIGZjBCotuFgH2PrLCENJOK4nkNStjqD2FIg8=;
+        b=Sv0z104yV5iiLDTHrjqhYY1AVFnEsGLc9G1ckPFQDYEhQCfZ1PglsE1GIf1Iv1s2Ze
+         fX8lbgVpk6jGnLXrnmSdkkLsrEG2Mmqf74hImp6AWQwvEfNdoibG8e1gLrETH5KDIowb
+         mqKRXDhi8XADs+/8GuAzyQmcFK6AEWAuPB+lUdJg8C88+9DRPrxZCVcmkS0zZ2woPPBy
+         6XvCjwvqY6vnyCWaXInHP8nt9yUGKqSE8feJ2Yp16UTWtmAgnE3gG7yJZUPKKCFTZ6pU
+         kRm+fpg1mkfMenxfjZnFAX2stVCoz0Wy4+PWDJtCT0GCUYYYGLVtIJCKdx6bt66hB2t0
+         xuOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708486927; x=1709091727;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DVVF7vEIGZjBCotuFgH2PrLCENJOK4nkNStjqD2FIg8=;
+        b=uWChfWNFlZA+WTxidGstkalDPrWSygzaCo/3+ZF4o1WgwC6cfxyosj1c5Pe2+HKAe6
+         g5sp6PXNyzQcyuNInuNczPFbgw2BmZKjE+HUPsedtMFhcJ6qHZRXnYjSL6MdQuuMgCbg
+         Fxgtb64aLXHniOMmxf+evTqbKWCCPSzMeZfIy3/jYxwce/5cfv175Gl/Sw7xTIXYbi6Q
+         pmbgjT0Ed/HNCHIVeZKolC2qYwNfCK8Zw1zY87ytAr/eyhMm2MzoDZmpvIME2S3j/pXA
+         cx/1gPflj71SCw+6kzcfJ1w4bmklXMAk+d8wNYsQ8SCjAJdTCPRE0JVD2Z9LgVV3RmmN
+         aRqg==
+X-Forwarded-Encrypted: i=1; AJvYcCVZSjlS4lRiSirZCqYgqONDos74ugRkLzXU/tGEjSt3VEDZDKNvXLwADhzpm+J+taADanuDcm2uY58DJ7PnnzSjXWPzoO/780tn1A==
+X-Gm-Message-State: AOJu0YwTDSS+OriefPEDugok8pyFbPEXdEUihb+srgUt4Mp6Yxc0DDh4
+	w3YMelpOBke9ib4Utft2TCffVc9XBn53JmTqMu25PM6DVXlCJ6zjmtvhZ8cLDQ==
+X-Google-Smtp-Source: AGHT+IGUeZg4H3ajQRtyeguNhF3HLUxBqN21FPYXX7Rb32pX7UsBIXBun8gTAU5CAAuwES+jOws8Qw==
+X-Received: by 2002:a05:6a00:180d:b0:6e4:68fa:f1f9 with SMTP id y13-20020a056a00180d00b006e468faf1f9mr8625869pfa.2.1708486926609;
+        Tue, 20 Feb 2024 19:42:06 -0800 (PST)
+Received: from [127.0.1.1] ([117.207.28.224])
+        by smtp.gmail.com with ESMTPSA id o23-20020a056a001b5700b006e466369645sm4436231pfv.132.2024.02.20.19.42.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Feb 2024 19:42:05 -0800 (PST)
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 00/21] Add PCIe bridge node in DT for Qcom SoCs
+Date: Wed, 21 Feb 2024 09:11:46 +0530
+Message-Id: <20240221-pcie-qcom-bridge-dts-v1-0-6c6df0f9450d@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPpw1WUC/x2MQQqAIBAAvxJ7bkG3iOgr0SF1qz2kpRFB+Pek4
+ zDMvJA4CicYqhci35Ik+AK6rsBus18ZxRUGUtQqIo2HFcbThh1NFFe8uxKavrHKadO1ZKCkR+R
+ Fnn87Tjl/cL0lwGYAAAA=
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3470;
+ i=manivannan.sadhasivam@linaro.org; h=from:subject:message-id;
+ bh=7t1TKV9oHfbtypKrfVlUmm8Y14s1NVoXY+RaFYePMs8=;
+ b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBl1XEEYatcc8RMyWl8SiVwWPQdvD40KPKZCCb++
+ +YlZMuarcSJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCZdVxBAAKCRBVnxHm/pHO
+ 9Wa1B/4t8wor+IpWnGsAKtfPraFtKhtykFbOPAduWKydRWAIHMDbFk/F2ZO80V3f6UHLNziP+Nx
+ Mti7xN+w6n524Z8wv8YQc2W+u85wGRfWeyaDVrn0BCLWNvpOHycleiwE/H4ZEOqI9bHrXawwJe3
+ F/7cMJ/sxHPMY25An+6rXejMeHXqssR3lfkhWaSI1dMCADypgCct+ijD6ABy1ZtOj/vvrUxM52N
+ ZwDucCBS1vJcYmDWCvdftMCD8zRp5dsHXBg7bxeBfBAMKOVXD/9gwr6Q1krNQns2Wh76NUdSJZT
+ Js8Exxh2EIv2N5apNdCalkG9I0bDnL7x2zNWnUk51+7GgJaP
+X-Developer-Key: i=manivannan.sadhasivam@linaro.org; a=openpgp;
+ fpr=C668AEC3C3188E4C611465E7488550E901166008
 
-Hi Krzysztof, thanks for the feedback.
+On Qcom SoCs, the PCIe host bridge is connected to a single PCIe bridge
+for each controller instance. Hence, this series adds a DT node for the
+PCIe bridges across all SoCs.
 
-On Tue, 2024-02-20 at 09:27 +0100, Krzysztof Kozlowski wrote:
-> > On 20/02/2024 06:29, Andrew Jeffery wrote:
-> > > > Squash warnings such as:
-> > > >=20
-> >=20
-> > Missing subject prefix: aspeed,ast2400-gpio
-> >=20
-> >=20
-> > > > ```
-> > > > arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-galaxy100.dtb: /ahb/ap=
-b@1e600000/gpio@1e780000: failed to match any schema with compatible: ['asp=
-eed,ast2400-gpio']
-> > > > ```
-> > > >=20
-> > > > Signed-off-by: Andrew Jeffery <andrew@codeconstruct.com.au>
-> >=20
-> > Thank you for your patch. There is something to discuss/improve.
-> >=20
-> >=20
-> > > > ---
-> > > >  .../bindings/gpio/aspeed,ast2400-gpio.yaml    | 64 +++++++++++++++=
-++++
-> > > >  .../devicetree/bindings/gpio/gpio-aspeed.txt  | 39 -----------
-> > > >  2 files changed, 64 insertions(+), 39 deletions(-)
-> > > >  create mode 100644 Documentation/devicetree/bindings/gpio/aspeed,a=
-st2400-gpio.yaml
-> > > >  delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-asp=
-eed.txt
-> > > >=20
-> > > > diff --git a/Documentation/devicetree/bindings/gpio/aspeed,ast2400-=
-gpio.yaml b/Documentation/devicetree/bindings/gpio/aspeed,ast2400-gpio.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..353c7620013f
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/gpio/aspeed,ast2400-gpio.ya=
-ml
-> > > > @@ -0,0 +1,64 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Aspeed GPIO controller
-> > > > +
-> > > > +maintainers:
-> > > > +  - Andrew Jeffery <andrew@codeconstruct.com.au>
-> > > > +
-> > > > +allOf:
-> > > > +  - $ref: /schemas/gpio/gpio.yaml#
-> >=20
-> > From where did you take it? None of the bindings have such code. Start
-> > from recent bindings in given category when writing new ones.
+There is no functionality change with this series, but the PCIe bridge
+representation in DT will be necessary to add the DT node for the client
+devices like the one proposed in power sequencing series [1].
 
-I didn't take it from anywhere so much as try to apply some reasoning
-via the commentary in the example at [1]. Maybe I could have fought
-that approach by contrasting what I wrote to a wider set of existing
-binding documents (I did look at some and obviously didn't find
-anything similar).
+- Mani
 
-Anyway reflecting on the misunderstanding, is the ref unnecessary
-because the gpio binding sets `select: true`[2] and so is applied to
-the node regardless?
+[1] https://lore.kernel.org/linux-arm-msm/20240216203215.40870-8-brgl@bgdev.pl/
 
-[1]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tre=
-e/Documentation/devicetree/bindings/example-schema.yaml?h=3Dv6.7#n238
-[2]: https://github.com/devicetree-org/dt-schema/blob/v2023.11/dtschema/sch=
-emas/gpio/gpio.yaml#L12
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+---
+Manivannan Sadhasivam (21):
+      arm64: dts: qcom: sm8250: Add PCIe bridge node
+      arm64: dts: qcom: sdm845: Add PCIe bridge node
+      arm64: dts: qcom: sm8150: Add PCIe bridge node
+      arm64: dts: qcom: sm8350: Add PCIe bridge node
+      arm64: dts: qcom: sm8450: Add PCIe bridge node
+      arm64: dts: qcom: sm8550: Add PCIe bridge node
+      arm64: dts: qcom: sm8650: Add PCIe bridge node
+      arm64: dts: qcom: sa8775p: Add PCIe bridge node
+      arm64: dts: qcom: sc8280xp: Add PCIe bridge node
+      arm64: dts: qcom: msm8998: Add PCIe bridge node
+      arm64: dts: qcom: sc7280: Add PCIe bridge node
+      arm64: dts: qcom: qcs404: Add PCIe bridge node
+      arm64: dts: qcom: sc8180x: Add PCIe bridge node
+      arm64: dts: qcom: msm8996: Add PCIe bridge node
+      arm64: dts: qcom: ipq8074: Add PCIe bridge node
+      arm64: dts: qcom: ipq6018: Add PCIe bridge node
+      ARM: dts: qcom: ipq8064: Add PCIe bridge node
+      ARM: dts: qcom: ipq4019: Add PCIe bridge node
+      ARM: dts: qcom: apq8064: Add PCIe bridge node
+      ARM: dts: qcom: sdx55: Add PCIe bridge node
+      arm64: dts: qcom: sm8650: Use "pcie" as the node name instead of "pci"
 
-> >=20
-> > Please drop it.
+ arch/arm/boot/dts/qcom/qcom-apq8064.dtsi           | 10 ++++++
+ arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi           | 10 ++++++
+ arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi           | 30 ++++++++++++++++
+ arch/arm/boot/dts/qcom/qcom-sdx55.dtsi             | 10 ++++++
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi              | 10 ++++++
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi              | 20 +++++++++++
+ arch/arm64/boot/dts/qcom/msm8996.dtsi              | 30 ++++++++++++++++
+ arch/arm64/boot/dts/qcom/msm8998.dtsi              | 10 ++++++
+ arch/arm64/boot/dts/qcom/qcs404.dtsi               | 10 ++++++
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi              | 20 +++++++++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               | 10 ++++++
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi              | 40 ++++++++++++++++++++++
+ .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts     |  8 -----
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi             | 40 ++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sdm845.dtsi               | 20 +++++++++++
+ arch/arm64/boot/dts/qcom/sm8150.dtsi               | 20 +++++++++++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi               | 30 ++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8350.dtsi               | 20 +++++++++++
+ arch/arm64/boot/dts/qcom/sm8450.dtsi               | 20 +++++++++++
+ arch/arm64/boot/dts/qcom/sm8550.dtsi               | 20 +++++++++++
+ arch/arm64/boot/dts/qcom/sm8650.dtsi               | 24 +++++++++++--
+ 21 files changed, 402 insertions(+), 10 deletions(-)
+---
+base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
+change-id: 20240221-pcie-qcom-bridge-dts-b83c0d1b642b
 
-Ack.
-
-> >=20
-> > > > +  - if:
-> > > > +      properties:
-> > > > +        compatible:
-> > > > +          contains:
-> > > > +            const: aspeed,ast2600-gpio
-> > > > +    then:
-> > > > +      required:
-> > > > +        - ngpios
-> >=20
-> > Please put entire allOf: after required: block. That's the convention
-> > when it has something more than $ref, because we still want the most
-> > important parts at the top of the file.
-
-Ack.
-
-> >=20
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    enum:
-> > > > +      - aspeed,ast2400-gpio
-> > > > +      - aspeed,ast2500-gpio
-> > > > +      - aspeed,ast2600-gpio
-> > > > +
-> > > > +  reg:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  clocks:
-> > > > +    maxItems: 1
-> > > > +    description: The clock to use for debounce timings
-> > > > +
-> > > > +  interrupts:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  interrupt-controller: true
-> > > > +
-> > > > +  "#interrupt-cells":
-> > > > +    const: 2
-> > > > +
-> >=20
-> > ngpios with some constraints
-
-Is this just with regard to the constraints I have under allOf above?
-Or something further (constrain the values of ngpios for the various
-controllers across the Aspeed SoCs)?
-
-Maybe I'll look at some more of the existing bindings for this as
-well...
-
-> >=20
-> > > > +required:
-> > > > +  - compatible
-> > > > +  - reg
-> > > > +  - interrupts
-> > > > +  - interrupt-controller
-> > > > +  - "#gpio-cells"
-> > > > +  - gpio-controller
-> > > > +
-> > > > +unevaluatedProperties: false
-> >=20
-> > Instead additionalProperties: false.
-
-Ack - this is the same misunderstanding as the gpio schema ref
-discussed above.
-
-Andrew
+Best regards,
+-- 
+Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
 
