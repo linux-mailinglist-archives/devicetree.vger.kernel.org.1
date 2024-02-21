@@ -1,127 +1,116 @@
-Return-Path: <devicetree+bounces-44356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8080885DB0B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 14:37:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACFCC85DB3F
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 14:38:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A43691C20D44
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 13:37:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D2DB1F226CF
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 13:38:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FFD07C08B;
-	Wed, 21 Feb 2024 13:36:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94A436F074;
+	Wed, 21 Feb 2024 13:38:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="be4nUlCE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mN4Anb93"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C13B06EB77
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 13:36:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D86723C2F
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 13:38:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708522567; cv=none; b=MpurIKFIb7UvgP/eFYm59GOvgxGOgVrjibslYMS8AUbJwJ+LeFwu1MqeZlybNzhcNbIsLkyLAP0ifbAdUIttTO2qIGXnBWpiQStRiuPK/FxcjXmisLqZHcVQsxXUNAoq94j5b+NrADDQWsn8ayFE388eXM0q0iTD9pk6b/09MK0=
+	t=1708522720; cv=none; b=ZD59dI70kIH7J9Z81QhEnwzh317Xk31D/98YHdT44z4urJWJE83GVwBws2SpRX9qOnqUXEHpOpS4hCzXWHhEWp0mF64ttSzwo8nS4IEGi7YTvm4KjGiV/9JdvAG11bB2Vhac+4S566kCnI+LGsa2hbnQuvIkW9FOop5fAu+1MX4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708522567; c=relaxed/simple;
-	bh=ulH7hnX2Ka/tGtvJe1+k7ag+F+iUxmyXMwzC4BFf4Qs=;
+	s=arc-20240116; t=1708522720; c=relaxed/simple;
+	bh=ph2UbQgsrbuCfnh/AmINSm2tHoGX/U8LJgWyPisUXjU=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Wd3Nt+Ebi0Qb2p0lk7gjM15lfQa5Ss9gR8hRwHpX0vaIh+aiRGRtxJC5yb6vjQyjmMqDbLOrjhmnC2E0vMhjjLpMfgqWDwhzCQayQA/aHgskps1CioxopZEw5e4NCsfLl+PeG38bBRcnlWUyFVQ8Oo6zk8xAnfkSDOAXa+qJpDk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=be4nUlCE; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2d220ad10b3so59742751fa.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 05:36:05 -0800 (PST)
+	 To:Cc:Content-Type; b=OF/DUBCkqfVP+Wol/q6vYL8Sj/si4GYMIVxkS49Qbo5VfnQbC2h6tiBt9L/mIT57+zanX5TQRBICvSOH1qB9b3h+RJgGZymMSSC5tfINVBcx9+Uy0D7LA3jNrmQVIaVw/oSy/CG6ZdqcNLOBq4YkETDzSVKqzwchxYOBqAUgoBo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mN4Anb93; arc=none smtp.client-ip=209.85.219.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-dcdb210cb6aso7365213276.2
+        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 05:38:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1708522564; x=1709127364; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708522717; x=1709127517; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=iZa1EUK27qQ8Ow9XjJUdv9AmKUGFVXbnGB6joJ/bp7Q=;
-        b=be4nUlCEObteBzdd/JkodxVu/bQP3WStHVl6wQDW6xunOPPW8Ax0CPUOVbtNglusH/
-         XACgZI+NpCQx/dxW+nPWVpttDVo9fYHs0OeSoGpaTezaQ91cNeFyX/mQEryqdci0OYct
-         Cq2T6qvKm2gQCH3Lmq6ittUp9qwgXhsgeBx1AJn/RKSMGDlUe9uMq1rAQ2ViwscKb+GM
-         63IswkfGzCT1lMp9NLtY8VoupaSURUTVarPxYQR49e/ukp06owAmO4ZCwpmqHZ1yhzrU
-         s1wO2GqFK0nd1ABxG5rRlp+AgucctbuMV1k7g1Jkr8aFPXJqx5U5z4rRD1k0gZN/Ypop
-         TS4A==
+        bh=ph2UbQgsrbuCfnh/AmINSm2tHoGX/U8LJgWyPisUXjU=;
+        b=mN4Anb93TyOuMCHkH2B+0+jOratxIs0faqE6FYvN2AK5/qA5eyJ8A6bVX7hLpyztas
+         KjwwFNlqUA1CILCqeQ2CmYGSbvod0HAccRXn6sWolw9/m1uXyvaSoz/m60xzep9zFmeu
+         Jub4BYZvfiYqjcD1/6YRWOph5pW2T3T9Id0DdtmZx+QC1MW9r6bo+ov/veqB6PMLIWmB
+         mP+LhIHiWKLuRaee6rXky7yYrQuMvR+RKOV8X2x4h3FQ+PjNGsfRKhkRpaPEtoZPaIIN
+         caH1RmeYoXp2DMICeE1O6C/2fQM85uhJt6gtj2A+LPdCHhOMsGT6RTFRK7bny04CohjX
+         CAEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708522564; x=1709127364;
+        d=1e100.net; s=20230601; t=1708522717; x=1709127517;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=iZa1EUK27qQ8Ow9XjJUdv9AmKUGFVXbnGB6joJ/bp7Q=;
-        b=T8MVSDg/xlw9/IZnG2ltv0VjgYwKAzz8onnkZmDZuvNoZCS3iu8ojOf6Xqnk+X6QPL
-         ZxfBrRY8uYY3m20cvNARKioozwxtmtVZxVNkEM1YdemQvmpgvMxkewnYNoA4XqVEBUcA
-         ncqdifCJyorbBmIy52EQuiqmcpFpfUgJ5/jH3jUc3CuthDkbWEO+ht/jQh7Gza0/yLZo
-         IHYSmkX2Yg65kS7T0pNl29Z151Hh6+8od/ubBWjFWaKBIJQQ5m4FyuCEeQOmmqLL3tH6
-         7SWzregpvD1T4Klgbk/2wmFkMaAl4zgTPYFcA5LIMY6txZQmcOahEELFmPM76/FLi0Cc
-         YZ1A==
-X-Forwarded-Encrypted: i=1; AJvYcCXfVeWOJOeJVoPy6g/us0hz6ly3Uu4zq88ZAUyC7wZR6ns7vN1W/VEAnp9ys637Jg4ZYxGwswfUKDvXuzhpsNn+b4O/p6UvNLX3KQ==
-X-Gm-Message-State: AOJu0Yy2hnN/cbu6U3AGRkZd9prKkph6IgRLi6MWw1R3b3zJusJt+YOS
-	UCvZ2XIgT1Qzk74kkN+0CCYsbHxdMnAfOnznRpnUjeGVzkr4LQ9GdLWPNU89pm67CrwShQhDOta
-	heUS+KZ/AyoP1BcGOauUrWF3BuW8Ul3kL8JYzeg==
-X-Google-Smtp-Source: AGHT+IH8PbfqK4LbbkaSU1nojq4bUVMOQpkZmRdtlm1F7WODSQlRTVfG1+cQD421y+B/I3PNrpXgs8sPl3SY+UGKWfs=
-X-Received: by 2002:a2e:86d0:0:b0:2d2:3d1c:148f with SMTP id
- n16-20020a2e86d0000000b002d23d1c148fmr5452288ljj.42.1708522563808; Wed, 21
- Feb 2024 05:36:03 -0800 (PST)
+        bh=ph2UbQgsrbuCfnh/AmINSm2tHoGX/U8LJgWyPisUXjU=;
+        b=Vb2cLK7xR58ASLIFuNTSX5wTMstXt6Ylonk3EEP8JnAoD8ZdENSbq6+xIOKClDNBtG
+         8ZhIWd3oSwhLHDobrpu52l7XaNClZMDWxht/sxMi2oQSk1vLUYKD3rpvjvuSR3/xGTaB
+         lWk00QfI0lJhB0W1/4rfjtHRdd6W8dl/5AcgB4YtC/HI+rLNfT4oqwDNxjDjIAB/UZAR
+         9rlW9EAfeuOu9mzo1g1MB4eEMowR0ZA1ewHw3l3GW83ddB73DS+BR68DqakSiR7g8rnx
+         J4T12dFIxmuO5PUG0Xr654DYl7SkW/XCdLJRfbRsZOb5T5bMXbtOTtP1dPjWZxOoCVk2
+         w0lQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWsTAKyzI1Ar4G8IxmjBS6Dhj2LSoXHXBdAiJo58lU2EmSfCAckRasZrbef3SvABP9v8Duna3RUrQRco8vedFSQcNjNpqDauijD2A==
+X-Gm-Message-State: AOJu0YxT68c4yblZ3Y6MFzGuN0NYXikdmsTuc/VDoy8JPm12wP8xP4JE
+	2RlAKPKqndKOfi2N7htC00L3Vfo46PoVc3r4nxo4cuquDffkd0Y9F6mTEjAUvh7mijdy0fSlNP/
+	9i5Md65M5yORyEYCcIvMDSIDzsn757XOASLHnAwq976mQ4bo8
+X-Google-Smtp-Source: AGHT+IF2OkLRDdLse8vRcitJs8gTndLo8D9Y6JeTVVYt2QhVtGqFzHLke4WYR6iZMGxv/F5qvwz1XhINpDDxRT+71EA=
+X-Received: by 2002:a25:ab06:0:b0:dc2:2e01:4ff0 with SMTP id
+ u6-20020a25ab06000000b00dc22e014ff0mr15988542ybi.45.1708522716910; Wed, 21
+ Feb 2024 05:38:36 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240220060718.823229-1-apatel@ventanamicro.com>
- <20240220060718.823229-3-apatel@ventanamicro.com> <87frxnigxk.ffs@tglx>
-In-Reply-To: <87frxnigxk.ffs@tglx>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Wed, 21 Feb 2024 19:05:52 +0530
-Message-ID: <CAK9=C2VFksO054kVVHkrBRyZqte8Q4Gpup97VhLBRDCbOyQdqQ@mail.gmail.com>
-Subject: Re: [PATCH v13 02/13] irqchip/sifive-plic: Improve locking safety by
- using irqsave/irqrestore
-To: Thomas Gleixner <tglx@linutronix.de>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+References: <20240212-mbly-clk-v6-0-c46fa1f93839@bootlin.com> <20240212-mbly-clk-v6-5-c46fa1f93839@bootlin.com>
+In-Reply-To: <20240212-mbly-clk-v6-5-c46fa1f93839@bootlin.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 21 Feb 2024 14:38:25 +0100
+Message-ID: <CACRpkdYNe=2w10uB1mUgs2Lgg1TRiSF=bOa45OH5Lcz6+G6FEg@mail.gmail.com>
+Subject: Re: [PATCH v6 05/13] dt-bindings: pinctrl: mobileye,eyeq5-pinctrl:
+ add bindings
+To: =?UTF-8?B?VGjDqW8gTGVicnVu?= <theo.lebrun@bootlin.com>
+Cc: Gregory CLEMENT <gregory.clement@bootlin.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
 	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Marc Zyngier <maz@kernel.org>, =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>, 
-	Atish Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>, 
-	Sunil V L <sunilvl@ventanamicro.com>, Saravana Kannan <saravanak@google.com>, 
-	Anup Patel <anup@brainfault.org>, linux-riscv@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, 
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, linux-mips@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-gpio@vger.kernel.org, 
+	Rob Herring <robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Feb 20, 2024 at 3:41=E2=80=AFPM Thomas Gleixner <tglx@linutronix.de=
-> wrote:
->
-> On Tue, Feb 20 2024 at 11:37, Anup Patel wrote:
-> > Now that PLIC driver is probed as a regular platform driver, the lock
-> > dependency validator complains about the safety of handler->enable_lock
-> > usage:
-> >
-> > [    0.956775]  Possible interrupt unsafe locking scenario:
-> >
-> > [    0.956998]        CPU0                    CPU1
-> > [    0.957247]        ----                    ----
-> > [    0.957439]   lock(&handler->enable_lock);
-> > [    0.957607]                                local_irq_disable();
-> > [    0.957793]                                lock(&irq_desc_lock_class=
-);
-> > [    0.958021]                                lock(&handler->enable_loc=
-k);
-> > [    0.958246]   <Interrupt>
-> > [    0.958342]     lock(&irq_desc_lock_class);
-> > [    0.958501]
-> >                 *** DEADLOCK ***
-> >
-> > To address above, let's use raw_spin_lock_irqsave/unlock_irqrestore()
-> > instead of raw_spin_lock/unlock().
->
-> s/let's//
+On Mon, Feb 12, 2024 at 2:44=E2=80=AFPM Th=C3=A9o Lebrun <theo.lebrun@bootl=
+in.com> wrote:
 
-Okay, I will update.
+> Add dt-schema type bindings for the Mobileye EyeQ5 pin controller.
+>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
 
-Regards,
-Anup
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+
+I tried to just apply the pin control patches to the pin control tree, but =
+I
+can't because of all collisions in MAINTAINERS.
+
+If you move all MAINTAINERS business to the SoC-wide patch I can
+apply the pin control stuff directly, but maybe you wanna keep the
+series together and merge on an all-or-nothing basis?
+
+Yours,
+Linus Walleij
 
