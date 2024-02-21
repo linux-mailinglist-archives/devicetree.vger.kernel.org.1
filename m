@@ -1,200 +1,167 @@
-Return-Path: <devicetree+bounces-44285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1EE085D5C0
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 11:39:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFD8585D5C7
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 11:39:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 276521F23D73
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 10:39:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4973A281F45
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 10:39:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCF6D4C87;
-	Wed, 21 Feb 2024 10:38:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9332B36AFB;
+	Wed, 21 Feb 2024 10:39:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="oCJEdybu"
+	dkim=pass (2048-bit key) header.d=oltmanns.dev header.i=@oltmanns.dev header.b="NVUrtqwk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CCB05228;
-	Wed, 21 Feb 2024 10:38:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81C533EA89;
+	Wed, 21 Feb 2024 10:39:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708511935; cv=none; b=gSkL8BdBDqufc/h3SvpeH5EdErITomAi7xm7SfifW3MjTxhJEjay9iPnRy23osw9uCLGL5KXrmtT7DkIJbkZ4Y3rfSNt4GSPdwFCmkFgIvK3v2X467lb3Qk5T3KC5HyK1jlKUvhoqDBhUDcBaCfLvfI7dbBpLSW4xnCmkKmma7g=
+	t=1708511944; cv=none; b=btukBm1I69ugESYaI8ulyj+rYYohEc0baGJxy5LuyoME8GpRqbtkuiVczmGrgxmWEs6GhotO/zmK6Rg2jZlIJoG+wD2gFCFYz/VTbCXvZ1KXCyHOAJO0HKRAPiE0Jcp8i9qtcATBNECd1ue+jaem29pUB8aACh1LO/Exlv0+pbM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708511935; c=relaxed/simple;
-	bh=nLif9cPksOec0uY6ZKcQ/m571IwMSv06xDWhdi4HLKM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=kOG8g+V8dH2FFKnFxBwX0RrrUhIc85DQVC8rdNLOL9V2pSEddneplprUuvdG2LOh+6ETsmYTq4ZFg1csGsGqutxB1W5dN91kGxq7sWrmBhB5SEVd5hBji09Z5JO2a9+JMjy5vLfrYcweKX+m5iTpMWTdrOt7+Sb7mGTbuU5BNfQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=oCJEdybu; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41L4KGUU022184;
-	Wed, 21 Feb 2024 10:38:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=eQgXE2HnmbPldfjmzZ6CFMqQA6IzURGK0LKsk3Uwytk=; b=oC
-	JEdybuG4yDwR8lC0k0V9/xCaW7eXwbUpjaKNGjcsEX2EtaAd1W04EKaW7jORpOg2
-	5fHfokyeh1egbqECKsNdXtvEdUYV9/Ib0Cocl71MRwXOKw9AhOiLzTaPveO91Vf4
-	VyJ+978Hy6ADgVMzaOpGV4BYZhszozcnU7h+7RvNWopFDnE+/AVFM1zpuipv1I1B
-	BNCu4amNUWq6Glpm2yJiw71HXe2GovPXLM6Rk4LfMr7VBneZyuENUOr9YL4sSTZP
-	S0bEO7Ue6NtygCBq2RZYKoGj5QAPtWpu6E5I0Zr0f9/UhHsg+TZXfrgSBzF1izPz
-	wogjVPkp/wZmRRoIHC1Q==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wd22rhnrm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Feb 2024 10:38:40 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41LAcd7P030110
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Feb 2024 10:38:39 GMT
-Received: from [10.216.62.93] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 21 Feb
- 2024 02:38:33 -0800
-Message-ID: <6035a0d2-f784-c55d-acd5-aa3ffc470246@quicinc.com>
-Date: Wed, 21 Feb 2024 16:08:30 +0530
+	s=arc-20240116; t=1708511944; c=relaxed/simple;
+	bh=3T2LRJtiW3mZfk/PunFIogOMmmkLZ7ysF+8gTpzPau4=;
+	h=References:From:To:Cc:Subject:In-reply-to:Date:Message-ID:
+	 MIME-Version:Content-Type; b=MX3HsSVlcOCgZIdiWlVw02fCfHwRFcQS7USH4BbbFzXwzq9xLmNtpBI4AHS824CMdH44eOQEG2bakBfL9AlD1NeBaTZ408pe2AqFNlxphuaU5Ygm3J9v/yHnRIxJ4h6JWcbXX4yoWCviyrdW2CRqB6/zI9N56GV2uHObueNU1uY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oltmanns.dev; spf=pass smtp.mailfrom=oltmanns.dev; dkim=pass (2048-bit key) header.d=oltmanns.dev header.i=@oltmanns.dev header.b=NVUrtqwk; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oltmanns.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oltmanns.dev
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4Tft6g64Lkz9tln;
+	Wed, 21 Feb 2024 11:38:51 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oltmanns.dev;
+	s=MBO0001; t=1708511931;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=VOqX0GOQZZOiGD9BoiPl4P99i5/2V8G3vmiVhpwmjpo=;
+	b=NVUrtqwknw/O3TZyiGfvfpG0IBx7JJpeIshlUGI/ALrW+famIowinN8F9Ti3bU4Kb+DskP
+	y775xaFPKAqf07Z9jufvCZ/AuUTAM4pXCgmXlgUugQZxZI4mmfx/4UJIb3CWj7JIytAhQg
+	l3cMMRBSKwmkaUjCkZVPwc9QSZ0W96DsujRbPvrZTUclXWsJ2NVejTPx9Ud7DDCgLM69Gb
+	4oAYCyVx0a/ZfDI7wBynT1H/fvIHe24aB5hJFSRro6uKd6bhUTPnwEiiZrZqz68LsxqWry
+	p64VobbPssd93ohFph+mesCr7BNyXCE5h4LrsNcuswhXvQdIQyv57qnfdnQpWw==
+References: <20240205-pinephone-pll-fixes-v2-0-96a46a2d8c9b@oltmanns.dev>
+ <20240205-pinephone-pll-fixes-v2-3-96a46a2d8c9b@oltmanns.dev>
+From: Frank Oltmanns <frank@oltmanns.dev>
+To: Jernej Skrabec <jernej.skrabec@gmail.com>, Maxime Ripard
+ <mripard@kernel.org>, Diego Roversi <diegor@tiscali.it>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Samuel Holland
+ <samuel@sholland.org>, Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>,
+ Purism Kernel Team
+ <kernel@puri.sm>, Ondrej Jirman <megi@xff.cz>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>,
+ Sam Ravnborg <sam@ravnborg.org>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter
+ <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/6] clk: sunxi-ng: nkm: Support minimum and maximum
+ rate
+In-reply-to: <20240205-pinephone-pll-fixes-v2-3-96a46a2d8c9b@oltmanns.dev>
+Date: Wed, 21 Feb 2024 11:38:39 +0100
+Message-ID: <8734tmhzkg.fsf@oltmanns.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH 2/5] drivers: mtd: nand: Add qpic_common API file
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <broonie@kernel.org>,
-        <robh@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <miquel.raynal@bootlin.com>, <richard@nod.at>,
-        <vigneshr@ti.com>, <manivannan.sadhasivam@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mtd@lists.infradead.org>, <quic_srichara@quicinc.com>,
-        <quic_varada@quicinc.com>
-References: <20240215134856.1313239-1-quic_mdalam@quicinc.com>
- <20240215134856.1313239-3-quic_mdalam@quicinc.com>
- <CAA8EJpquDwDg+OrZKeJrTWEtokCF7uyHMyzCFK2etSsDip8_6Q@mail.gmail.com>
- <c574c9ab-0a47-2dc8-9ddd-c08f1b770d7e@quicinc.com>
- <CAA8EJprkwv0QstJTveM+06DbMjgBCEVBRhBb5i2QM6LxmmCQug@mail.gmail.com>
-From: Md Sadre Alam <quic_mdalam@quicinc.com>
-In-Reply-To: <CAA8EJprkwv0QstJTveM+06DbMjgBCEVBRhBb5i2QM6LxmmCQug@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: PW6hze-lDCO-9iz0EAnxMZPpRzq_s9t4
-X-Proofpoint-GUID: PW6hze-lDCO-9iz0EAnxMZPpRzq_s9t4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-20_06,2024-02-20_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
- priorityscore=1501 phishscore=0 impostorscore=0 bulkscore=0 mlxscore=0
- lowpriorityscore=0 spamscore=0 mlxlogscore=900 malwarescore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2402210082
+Content-Type: text/plain
+X-Rspamd-Queue-Id: 4Tft6g64Lkz9tln
 
+Hi Jernej,
+hi Maxime,
 
+On 2024-02-05 at 16:22:26 +0100, Frank Oltmanns <frank@oltmanns.dev> wrote:
+> According to the Allwinner User Manual, the Allwinner A64 requires
+> PLL-MIPI to run at 500MHz-1.4GHz. Add support for that to ccu_nkm.
 
-On 2/20/2024 9:37 PM, Dmitry Baryshkov wrote:
-> On Tue, 20 Feb 2024 at 17:59, Md Sadre Alam <quic_mdalam@quicinc.com> wrote:
->>
->>
->>
->> On 2/15/2024 8:30 PM, Dmitry Baryshkov wrote:
->>> On Thu, 15 Feb 2024 at 15:53, Md Sadre Alam <quic_mdalam@quicinc.com> wrote:
->>>>
->>>> Add qpic_common.c file which hold all the common
->>>> qpic APIs which will be used by both qpic raw nand
->>>> driver and qpic spi nand driver.
->>>>
->>>> Co-developed-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->>>> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->>>> Co-developed-by: Varadarajan Narayanan <quic_varada@quicinc.com>
->>>> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
->>>> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
->>>> ---
->>>>    drivers/mtd/nand/Makefile            |    1 +
->>>>    drivers/mtd/nand/qpic_common.c       |  786 +++++++++++++++++
->>>>    drivers/mtd/nand/raw/qcom_nandc.c    | 1226 +-------------------------
->>>>    include/linux/mtd/nand-qpic-common.h |  488 ++++++++++
->>>>    4 files changed, 1291 insertions(+), 1210 deletions(-)
->>>>    create mode 100644 drivers/mtd/nand/qpic_common.c
->>>>    create mode 100644 include/linux/mtd/nand-qpic-common.h
->>>>
->>>> diff --git a/drivers/mtd/nand/Makefile b/drivers/mtd/nand/Makefile
->>>> index 19e1291ac4d5..131707a41293 100644
->>>> --- a/drivers/mtd/nand/Makefile
->>>> +++ b/drivers/mtd/nand/Makefile
->>>> @@ -12,3 +12,4 @@ nandcore-$(CONFIG_MTD_NAND_ECC) += ecc.o
->>>>    nandcore-$(CONFIG_MTD_NAND_ECC_SW_HAMMING) += ecc-sw-hamming.o
->>>>    nandcore-$(CONFIG_MTD_NAND_ECC_SW_BCH) += ecc-sw-bch.o
->>>>    nandcore-$(CONFIG_MTD_NAND_ECC_MXIC) += ecc-mxic.o
->>>> +obj-y += qpic_common.o
->>>> diff --git a/drivers/mtd/nand/qpic_common.c b/drivers/mtd/nand/qpic_common.c
->>>> new file mode 100644
->>>> index 000000000000..4d74ba888028
->>>> --- /dev/null
->>>> +++ b/drivers/mtd/nand/qpic_common.c
->>>> @@ -0,0 +1,786 @@
->>>> +// SPDX-License-Identifier: GPL-2.0
->>>> +/*
->>>> + * QPIC Controller common API file.
->>>> + * Copyright (C) 2023  Qualcomm Inc.
->>>> + * Authors:    Md sadre Alam           <quic_mdalam@quicinc.com>
->>>> + *             Sricharan R             <quic_srichara@quicinc.com>
->>>> + *             Varadarajan Narayanan   <quic_varada@quicinc.com>
->>>
->>> This is a bit of an exaggeration. You are moving code, not writing new
->>> code. Please retain the existing copyrights for the moved code.
->> Ok
->>>
->>>> + *
->>>> + */
->>>> +
->>>> +#include <linux/mtd/nand-qpic-common.h>
->>>> +
->>>> +struct qcom_nand_controller *
->>>> +get_qcom_nand_controller(struct nand_chip *chip)
->>>> +{
->>>> +       return container_of(chip->controller, struct qcom_nand_controller,
->>>> +                           controller);
->>>> +}
->>>> +EXPORT_SYMBOL(get_qcom_nand_controller);
->>>
->>> NAK for adding functions to the global export namespace without a
->>> proper driver-specific prefix.
->> Ok, will fix in next patch
->>>
->>> Also, a bunch of the code here seems not so well thought. It was fine
->>> for an internal interface, but it doesn't look so good as a common
->>> wrapper. Please consider defining a sensible common code module
->>> interface instead.
->>
->>    QPIC controller will support both raw NAND as well Serial nand interface.
->>    This common API file was the part of raw NAND driver , since for serial
->>    nand most of the APIs from raw nand driver will be re-used that's why i
->>    have created this common API file, so that QPIC serial nand driver
->>    drivers/spi/spi-qpic-snand.c and QPIC raw NAND driver
->>    drivers/mtd/nand/raw/qcom_nandc.c can used these common APIs.
->>
->>    Could you please suggest how I should handle this in batter way.
-> 
-> Yes. Start by designing common accessor functions that form a
-> sufficient and complete API to access the hardware functionality. A
-> set of functions blindly moved from the existing driver usually do not
-> make such an API, because usually nobody cares enough about the driver
-> internals. It should be something that external user (NAND, SPI, etc)
-> can use without looking into the actual implementation of these
-> functions.
-  Thanks for suggestion. Will make the Common API more generic and
-  post in next patch.
-> 
+I should point out that limiting PLL-MIPI also fixes a regression
+that was introduced in 6.5, specifically
+ca1170b69968233b34d26432245eddf7d265186b "clk: sunxi-ng: a64: force
+select PLL_MIPI in TCON0 mux". This has been bisected and reported by
+Diego [1].
+
+I don't know the procedure (yet), but probably the fix (if and when
+accepted) should be backported at least to 6.6 (first broken LTS), 6.7
+(stable), and 6.8 (next stable).
+
+My suggestion:
+ - In V3 of this series, I will reorder the patches, so that what is now
+   PATCH 3 and 4 becomes 1 and 2 respectively, so that they can be
+   applied to 6.6 more easily.
+ - Maxime, IIUC you requested some refactoring for handling the rate
+   limits [2]. I propose, we use my current proposal as-is, and I will
+   do a follow-up series for the refactoring.
+
+Please let me know how you would like me to proceed.
+
+Thanks,
+  Frank
+
+[1]: https://groups.google.com/g/linux-sunxi/c/Rh-Uqqa66bw
+[2]: https://lore.kernel.org/all/exb2lvjcozak5fayrgyenrd3ntii4jfxgvqork4klyz5pky2aq@dj2zyw5su6pv/
+
+>
+> Signed-off-by: Frank Oltmanns <frank@oltmanns.dev>
+> ---
+>  drivers/clk/sunxi-ng/ccu_nkm.c | 13 +++++++++++++
+>  drivers/clk/sunxi-ng/ccu_nkm.h |  2 ++
+>  2 files changed, 15 insertions(+)
+>
+> diff --git a/drivers/clk/sunxi-ng/ccu_nkm.c b/drivers/clk/sunxi-ng/ccu_nkm.c
+> index 1168d894d636..7d135908d6e0 100644
+> --- a/drivers/clk/sunxi-ng/ccu_nkm.c
+> +++ b/drivers/clk/sunxi-ng/ccu_nkm.c
+> @@ -181,6 +181,12 @@ static unsigned long ccu_nkm_round_rate(struct ccu_mux_internal *mux,
+>  	if (nkm->common.features & CCU_FEATURE_FIXED_POSTDIV)
+>  		rate *= nkm->fixed_post_div;
+>
+> +	if (nkm->min_rate && rate < nkm->min_rate)
+> +		rate = nkm->min_rate;
+> +
+> +	if (nkm->max_rate && rate > nkm->max_rate)
+> +		rate = nkm->max_rate;
+> +
+>  	if (!clk_hw_can_set_rate_parent(&nkm->common.hw))
+>  		rate = ccu_nkm_find_best(*parent_rate, rate, &_nkm, &nkm->common);
+>  	else
+> @@ -220,6 +226,13 @@ static int ccu_nkm_set_rate(struct clk_hw *hw, unsigned long rate,
+>  	_nkm.min_m = 1;
+>  	_nkm.max_m = nkm->m.max ?: 1 << nkm->m.width;
+>
+> +
+> +	if (nkm->min_rate && rate < nkm->min_rate)
+> +		rate = nkm->min_rate;
+> +
+> +	if (nkm->max_rate && rate > nkm->max_rate)
+> +		rate = nkm->max_rate;
+> +
+>  	ccu_nkm_find_best(parent_rate, rate, &_nkm, &nkm->common);
+>
+>  	spin_lock_irqsave(nkm->common.lock, flags);
+> diff --git a/drivers/clk/sunxi-ng/ccu_nkm.h b/drivers/clk/sunxi-ng/ccu_nkm.h
+> index c409212ee40e..358a9df6b6a0 100644
+> --- a/drivers/clk/sunxi-ng/ccu_nkm.h
+> +++ b/drivers/clk/sunxi-ng/ccu_nkm.h
+> @@ -27,6 +27,8 @@ struct ccu_nkm {
+>  	struct ccu_mux_internal	mux;
+>
+>  	unsigned int		fixed_post_div;
+> +	unsigned long		min_rate;
+> +	unsigned long		max_rate;
+>  	unsigned long		max_m_n_ratio;
+>  	unsigned long		min_parent_m_ratio;
 
