@@ -1,113 +1,100 @@
-Return-Path: <devicetree+bounces-44448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3025C85E4B1
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 18:38:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EEFB85E4C6
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 18:43:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF10A284EAB
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 17:38:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4999F286911
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 17:43:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5C9083CC7;
-	Wed, 21 Feb 2024 17:37:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="xLEbcmth";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="xQf2fTtB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E24D183CD7;
+	Wed, 21 Feb 2024 17:43:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4287A7FBD5;
-	Wed, 21 Feb 2024 17:37:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E2D581737
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 17:43:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708537079; cv=none; b=K87cQMLJhIUzZ9fgY3NF9FbkylUVfYbPdTWPGxY8pxCaZ7pBT/EJUASLEUXAOfp3D3jAc92Ic3WuZIufBv1tdVkFq2SuCw88bGkQSPbe2mYG9M3STFLheX+F5RCDaDajJW/6XYm174q1ASUMsxLLdqh6t1krzs80dEgWm17Hs3U=
+	t=1708537405; cv=none; b=SclC4s9kz4Qm+h+JpzaoI3mU8wFXhQ3G2JKSasknWY8ZiXes6jMgy+NOKy/t7O0IEv1l6i2fdEQkdpB5gjlLDRUb1S/cacyBpQBa2qlGeFpZ2GrAOzi3VmQ7bI9cOkKkSzvNptTnM7a4tBpOJgvx4Scl2yqFcenFelY2KQqmDwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708537079; c=relaxed/simple;
-	bh=RSJEdvZKXkX3yGEIkS9DaCnaNb3HO5rM3mqCc71lxT8=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=eeI7Wqgn8ZwpQ6CCdsOo+v7m1gXmE6Os3P1cxe04Xsu95O88qGmChvB55xf+CPCBVXM9FyzhUOEeiKo9+cr0fkQQGIfMWIiDMzslSYdX5Utjp3Ou+gkAsAjV4E84qRBTZBmwVooEL5H7W5j88sK0gAGqIguyBTqWByaoRtZY9FU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=xLEbcmth; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=xQf2fTtB; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1708537076;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=rNP/pSU4Q89ArPZAYOkavXsZq7rBfQprq8vBcMveDTI=;
-	b=xLEbcmthFRfBygzZ69VL2DG/D0gBYdP2sN2Lgb8itqPYkU2o1cKTqlQ9JHvN9mWqw1vFEf
-	5FkMFYZDTJoe/BqGdmY+A/NaVuf49L514Y+kGdUneY5FIX7EdlE+mxfgfQL6NcEvHMEyVP
-	2HB9Gn75wHE39/Iwnc1QGEr5A1Kfae8HlwjYAnOAaDb+b+VUsA/OW74yWiGP70IqnV1ZHv
-	a+N6AfJAhsWBDCo/gUomai03e6H9G5Reh2aU0g6h/C72VAEZ8mi23zSDyTBOlbqj2aieJc
-	aD845IESs2nX6iPzvlHCMqUdWfI4i7/NQsWtjRWTJMeXzGaj00flY4bLm/gQVg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1708537076;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=rNP/pSU4Q89ArPZAYOkavXsZq7rBfQprq8vBcMveDTI=;
-	b=xQf2fTtB4GWLnzNERvE/GFUF0GEltMGR9pYEU1fe90JMgmi5FmXkeB6Xdj5dZJ0u1y5IjA
-	4I/r2JPMR/kcPXAg==
-To: Changhuang Liang <changhuang.liang@starfivetech.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Ley Foon Tan <leyfoon.tan@starfivetech.com>, Jack Zhu
- <jack.zhu@starfivetech.com>, Changhuang Liang
- <changhuang.liang@starfivetech.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] irqchip: Add StarFive external interrupt controller
-In-Reply-To: <20240221022647.5297-3-changhuang.liang@starfivetech.com>
-References: <20240221022647.5297-1-changhuang.liang@starfivetech.com>
- <20240221022647.5297-3-changhuang.liang@starfivetech.com>
-Date: Wed, 21 Feb 2024 18:37:56 +0100
-Message-ID: <87ttm1g1l7.ffs@tglx>
+	s=arc-20240116; t=1708537405; c=relaxed/simple;
+	bh=x1whNrwYpej7zBfBOVkC3JBgqGT5iobnkHLXgVKm50M=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=eTnUWCcyJGBlbvz3eJNZjwo41K9meL/9V6ivcqH4bO6j0OYdAoVRWzeJQd6uEUxJLh/4vyB/3GpLeCqM9F9cLSbBPEqFDYLtsmQM4PqsbjoOP1wrpoQbcOR2eg32St9vx2eTXQ5BttUg4iD+W01QukhChpkWE/vuaSMV+gzN1CQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <m.felsch@pengutronix.de>)
+	id 1rcqcd-0001Z2-FM; Wed, 21 Feb 2024 18:43:07 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: jic23@kernel.org,
+	lars@metafoo.de,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	hns@goldelico.com
+Cc: linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	kernel@pengutronix.de
+Subject: [PATCH] dt-bindings: iio: gyroscope: bosch,bmg160: add spi-max-frequency binding
+Date: Wed, 21 Feb 2024 18:43:05 +0100
+Message-Id: <20240221174305.3423039-1-m.felsch@pengutronix.de>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
+X-SA-Exim-Mail-From: m.felsch@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Tue, Feb 20 2024 at 18:26, Changhuang Liang wrote:
-> +static void starfive_intc_unmask(struct irq_data *d)
-> +{
-> +	struct starfive_irq_chip *irqc = irq_data_get_irq_chip_data(d);
-> +	unsigned long flags;
-> +
-> +	raw_spin_lock_irqsave(&irqc->lock, flags);
+Make use of the common spi-peripheral-props.yaml to pull in the common
+spi device properties and limit the spi-max-frequency to 10 MHz as this
+is the max. frequency if VDDIO >= 1.62V.
 
-This does not need the _irqsave() variant as this is guaranteed to be
-called with interrupts disabled from the core code.
+Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+---
+ .../devicetree/bindings/iio/gyroscope/bosch,bmg160.yaml   | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-> +	starfive_intc_bit_clear(irqc, STARFIVE_INTC_SRC0_MASK, BIT(d->hwirq));
-> +	raw_spin_unlock_irqrestore(&irqc->lock, flags);
-> +}
+diff --git a/Documentation/devicetree/bindings/iio/gyroscope/bosch,bmg160.yaml b/Documentation/devicetree/bindings/iio/gyroscope/bosch,bmg160.yaml
+index 1414ba9977c1..3c6fe74af0b8 100644
+--- a/Documentation/devicetree/bindings/iio/gyroscope/bosch,bmg160.yaml
++++ b/Documentation/devicetree/bindings/iio/gyroscope/bosch,bmg160.yaml
+@@ -22,6 +22,9 @@ properties:
+   vdd-supply: true
+   vddio-supply: true
+ 
++  spi-max-frequency:
++    maximum: 10000000
++
+   interrupts:
+     minItems: 1
+     maxItems: 2
+@@ -33,7 +36,10 @@ required:
+   - compatible
+   - reg
+ 
+-additionalProperties: false
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+-- 
+2.39.2
 
-> +	chained_irq_enter(chip, desc);
-> +
-> +	value = ioread32(irqc->base + STARFIVE_INTC_SRC0_INT);
-> +	while (value) {
-> +		hwirq = ffs(value) - 1;
-> +
-> +		generic_handle_domain_irq(irqc->domain, hwirq);
-> +
-> +		starfive_intc_bit_set(irqc, STARFIVE_INTC_SRC0_CLEAR, BIT(hwirq));
-> +		starfive_intc_bit_clear(irqc, STARFIVE_INTC_SRC0_CLEAR, BIT(hwirq));
-> +
-> +		clear_bit(hwirq, &value);
-
-As this is a local variable you really don't want to have the atomic
-variant for clearing the bit. __clear_bit() is your friend.
-
-Other than those nitpicks this looks good.
-
-Thanks,
-
-        tglx
 
