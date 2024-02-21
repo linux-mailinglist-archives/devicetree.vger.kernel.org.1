@@ -1,234 +1,161 @@
-Return-Path: <devicetree+bounces-44120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 496FA85CCB9
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 01:32:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F8FD85CCC2
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 01:37:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC9B91F2242B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 00:31:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0EAD41F22B16
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 00:37:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50BAF382;
-	Wed, 21 Feb 2024 00:31:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B6B2A40;
+	Wed, 21 Feb 2024 00:37:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="Ki3mi+OK"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="gbC0Kwna"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ADC317D2
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 00:31:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CCD7382;
+	Wed, 21 Feb 2024 00:37:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.152.168
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708475515; cv=none; b=hy2hrbBo4oM5WqEGFkqW+DGn+Mxl9e6n0SR/ymPjZ9oZPAhQGn9AAlbrUzMDuXtoFmYU5PArbC57D1DdVW8xAI74Ae4d7tivYnYRIj0pOYgLEFeZHL9ok84bLtWHK+nSIsv5w/L7WNwMLD1d4sU2S1t0D7JFJXo0g856NBbae9k=
+	t=1708475832; cv=none; b=H6PMZoBHs+mlvfFctmE2MJpgfM8O87HfhtNb+mkCy6JCz0r//OgaPQ9TekbAmpTFzFueHVIPzzxtqGsTDhWE4wIzjGbBPF4alT+4hlSDuTrh4bX0xNnDZzOH18FWS1osQTRW3TWa8nPP8cW71JJhjRSbXHGSU1C1Jaz3+m8HZ2o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708475515; c=relaxed/simple;
-	bh=oEfNL4tE07y7w1Cmhhj91MRxhD+otlhB/ycPnq17d8Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=k906fXv1fyEx1acTOSE7WBVCkG8E5/5UcSN/82N8vniyhSZYk4OJ5fvTfyqllHcAzU2XWauVVXSasqcP0pDlRO0UfLq4DeVvrNSiwBLgi0W9vgCZ3v4jmcGKoZuoQmUnDuwbBTyut9EP/HDXVPJKxzWNhjhyDoo4lDXLvtL8rVA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=Ki3mi+OK; arc=none smtp.client-ip=209.85.160.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f175.google.com with SMTP id d75a77b69052e-42e2507c6e1so57491cf.1
-        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 16:31:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1708475512; x=1709080312; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HY1MEqwVBFNvgQus62YTgnAdchYfLB+wlYNRdSj4IDg=;
-        b=Ki3mi+OKEiq5jt7jPTdHx8f8Ssx/6cs985OyOJ3rIC2W3WBL25RMpw+J5H42U1VGJf
-         EY5hbctdtH6ypq95BLakeinFueRf7XXdtGV5L1viUxgmE+eUQVI2GPn0/E3bsrHeqq/9
-         LAx+ZNKlbAqeWIZsECrHAwtBHPvqF6nXweGAqxgv6s0Ou2jVfXa7JunwlZMAcdz60jU7
-         ZRiAj9ouITgrv2HscDKFI/3yfE3c7RyCb5Jp6d/8JUxFgG6CK1mZDJdpZsVaOquvWn1R
-         BvA9bL03Y1D3ZIY0+PofOIeVZEk2cI+1YrrII26oRTLQbsIoWRoQJ0aMO7BJu2WPWEoP
-         acFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708475512; x=1709080312;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HY1MEqwVBFNvgQus62YTgnAdchYfLB+wlYNRdSj4IDg=;
-        b=kF9yuYic6oI5pxqSJkD1pB+M/hYUMpYsifEVMA0rFnbcj2ne5yqvvAhg42oUPkpq0c
-         nlDJNA5UP1yqoIu9DSqTYTbNoUXVcfvJg29wZzvlBFvmUSOSrBdC3i7OgzKWNSIf/TT/
-         u13voyXvjvgGGEDr6OMzkydQz5iUZGVZW8nN9fgyr8n7uCoGfF/ZXOqDnL3GOIsm9M9i
-         x1y/sQd3M2gFB2Zuk2CZD/Rp4UrB3/7qgWeIFs/ByV3IGzyzeqcO9En27ASlK0TWPAiI
-         TclebKj5dtDLUAxEEIsfMBphSOcQvuSTM/Bl5IFMn+Ms8JbE4YHfwwLHJ4kDH3KK+20H
-         TpAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVAs3vDKcScKWdK9Dul7xUDhyNlU2538ZtPJNvL6OjDaCdsZT7hJFz/RwBo4fuab0/PJIWiiSMPpLaynNmQ7AYoLCjYxfzxevV1Rg==
-X-Gm-Message-State: AOJu0Yyli54NmEQ6YYlefWEzyWtKM+47K68ZuqJewoiNSbkbfCaPbo3y
-	Kgubv82TzBfwilkbvrPEZW/TroCpne6COGmuOnO6DR1rX7OpJpN7tkBqJb7yWj3zFeZAFg/J2QU
-	qabaeuLQAFFY3f+6OzRFTLatd+cKMHbgLdcHU
-X-Google-Smtp-Source: AGHT+IHs1lgFcCWQVw2AN7L05dXovmHCo9vKz+rDhTMW/KOTmTLGal8gv6AfgRcHOi7DW6r0HcEsbvf4zkKE5DJEkuQ=
-X-Received: by 2002:ac8:744e:0:b0:42e:3233:4924 with SMTP id
- h14-20020ac8744e000000b0042e32334924mr98006qtr.26.1708475512008; Tue, 20 Feb
- 2024 16:31:52 -0800 (PST)
+	s=arc-20240116; t=1708475832; c=relaxed/simple;
+	bh=91vPJWlnZVDet0XGzSn3DzWM9AvlDm8ttFqMlvsC+Q0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ECLrbyTsW9MfBSVR7ViP+yc6/OozlDmSMhtv8YmG95Kbj5EVphPGE+UgMMtuy61vL6I6wjC61EPOPgEYo3ywMtGBCgTGaAVji0zZGZj/a6W0+GUlQXr/Am/kA0f++lDSUgHoY66CXLf7iOkwQTvjFJ9UF8sNo/hfePtxAms9sQ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=gbC0Kwna; arc=none smtp.client-ip=67.231.152.168
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+	by mx0b-001ae601.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41KJ9Z7V019642;
+	Tue, 20 Feb 2024 18:36:51 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=PODMain02222019; bh=s
+	wGS3tF8r8sCT12JNgqL8wiyDmY5PAOIcOAFyP2CjYA=; b=gbC0KwnaZ9BS6WGi1
+	A83TllxBgMKQsTrgdrcAQqOEFjkwDc2UV8xEr+A14PwZMm+LcechcuawP9zVBlUr
+	O8uv0Xpa+pyipzPvngNR5f1j3Rx03VvEzi1dxXgAHl0WaxPEWOdBNwwVzf+eNJbX
+	/bEA+O9JlzH1J/YqmrZnHvKhVDP/Jjpajzp8MCbrG/gzqe4CTSBgukw4YbLapbRE
+	Wi0xmP9Ka2EOIsMwYi1E/NRjFM3fe6c8WgiZwZIHmUjktKkPDn0YvkfUZ5qXzsRF
+	BLiPgNg6Ww0cJqWlZXW2D51rZZQnAs2CAe9n5yeI4XCbVwSjJO1Lx3LqiYPjS04A
+	JhLEA==
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3wd205gaw1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 20 Feb 2024 18:36:51 -0600 (CST)
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 21 Feb
+ 2024 00:36:49 +0000
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ ediex01.ad.cirrus.com (198.61.84.80) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40 via Frontend Transport; Wed, 21 Feb 2024 00:36:49 +0000
+Received: from aus-sw-rshr002.ad.cirrus.com (aus-sw-rshr002.ad.cirrus.com [141.131.145.53])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTP id 266EC820246;
+	Wed, 21 Feb 2024 00:36:48 +0000 (UTC)
+From: James Ogletree <jogletre@opensource.cirrus.com>
+To: <dmitry.torokhov@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <lee@kernel.org>, <broonie@kernel.org>, <jeff@labundy.com>
+CC: <patches@opensource.cirrus.com>, <linux-sound@vger.kernel.org>,
+        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        James Ogletree
+	<jogletre@opensource.cirrus.com>
+Subject: [PATCH v8 0/5] Add support for CS40L50
+Date: Wed, 21 Feb 2024 00:36:25 +0000
+Message-ID: <20240221003630.2535938-1-jogletre@opensource.cirrus.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231130174126.688486-1-herve.codina@bootlin.com> <20231130174126.688486-2-herve.codina@bootlin.com>
-In-Reply-To: <20231130174126.688486-2-herve.codina@bootlin.com>
-From: Saravana Kannan <saravanak@google.com>
-Date: Tue, 20 Feb 2024 16:31:13 -0800
-Message-ID: <CAGETcx9uP86EHyKJNifBMd23oCsA+KpMa+e36wJEEnHDve+Avg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] driver core: Introduce device_link_wait_removal()
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Lizhi Hou <lizhi.hou@amd.com>, Max Zhen <max.zhen@amd.com>, 
-	Sonal Santan <sonal.santan@amd.com>, Stefano Stabellini <stefano.stabellini@xilinx.com>, 
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>, 
-	Horatiu Vultur <horatiu.vultur@microchip.com>, 
-	Steen Hegelund <steen.hegelund@microchip.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-ORIG-GUID: oXZOXe1ayXO6JmhtWae58eSKrypIRFrM
+X-Proofpoint-GUID: oXZOXe1ayXO6JmhtWae58eSKrypIRFrM
+X-Proofpoint-Spam-Reason: safe
 
-On Thu, Nov 30, 2023 at 9:41=E2=80=AFAM Herve Codina <herve.codina@bootlin.=
-com> wrote:
->
-> The commit 80dd33cf72d1 ("drivers: base: Fix device link removal")
-> introduces a workqueue to release the consumer and supplier devices used
-> in the devlink.
-> In the job queued, devices are release and in turn, when all the
-> references to these devices are dropped, the release function of the
-> device itself is called.
->
-> Nothing is present to provide some synchronisation with this workqueue
-> in order to ensure that all ongoing releasing operations are done and
-> so, some other operations can be started safely.
->
-> For instance, in the following sequence:
->   1) of_platform_depopulate()
->   2) of_overlay_remove()
->
-> During the step 1, devices are released and related devlinks are removed
-> (jobs pushed in the workqueue).
-> During the step 2, OF nodes are destroyed but, without any
-> synchronisation with devlink removal jobs, of_overlay_remove() can raise
-> warnings related to missing of_node_put():
->   ERROR: memory leak, expected refcount 1 instead of 2
->
-> Indeed, the missing of_node_put() call is going to be done, too late,
-> from the workqueue job execution.
->
-> Introduce device_link_wait_removal() to offer a way to synchronize
-> operations waiting for the end of devlink removals (i.e. end of
-> workqueue jobs).
-> Also, as a flushing operation is done on the workqueue, the workqueue
-> used is moved from a system-wide workqueue to a local one.
+Changes in v8:
+- set_sysclk() -> set_bclk_ratio()
+- Added ID table to codec driver
+- Style improvements
+- Fixed ordering of new write sequence operations
 
-Thanks for the bug report and fix. Sorry again about the delay in
-reviewing the changes.
+Changes in v7:
+- Fixed sparse warning
+- Moved write sequences to private data structure
+- Logical and style improvements in write sequence interface
 
-Please add Fixes tag for 80dd33cf72d1.
+Changes in v6:
+- Updated write sequencer interface to be control-name based
+- Fixed a race condition and non-handling of repeats in playback callback
+- Stylistic and logical improvements all around
 
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> ---
->  drivers/base/core.c    | 26 +++++++++++++++++++++++---
->  include/linux/device.h |  1 +
->  2 files changed, 24 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/base/core.c b/drivers/base/core.c
-> index ac026187ac6a..2e102a77758c 100644
-> --- a/drivers/base/core.c
-> +++ b/drivers/base/core.c
-> @@ -44,6 +44,7 @@ static bool fw_devlink_is_permissive(void);
->  static void __fw_devlink_link_to_consumers(struct device *dev);
->  static bool fw_devlink_drv_reg_done;
->  static bool fw_devlink_best_effort;
-> +static struct workqueue_struct *fw_devlink_wq;
->
->  /**
->   * __fwnode_link_add - Create a link between two fwnode_handles.
-> @@ -530,12 +531,26 @@ static void devlink_dev_release(struct device *dev)
->         /*
->          * It may take a while to complete this work because of the SRCU
->          * synchronization in device_link_release_fn() and if the consume=
-r or
-> -        * supplier devices get deleted when it runs, so put it into the =
-"long"
-> -        * workqueue.
-> +        * supplier devices get deleted when it runs, so put it into the
-> +        * dedicated workqueue.
->          */
-> -       queue_work(system_long_wq, &link->rm_work);
-> +       queue_work(fw_devlink_wq, &link->rm_work);
+Changes in v5:
+- Added a codec sub-device to support I2S streaming
+- Moved write sequencer code from cirrus_haptics to cs_dsp
+- Reverted cirrus_haptics library; future Cirrus input
+  drivers will export and utilize cs40l50_vibra functions
+- Added more comments
+- Many small stylistic and logical improvements
 
-This has nothing to do with fw_devlink. fw_devlink is just triggering
-the issue in device links. You can hit this bug without fw_devlink too.
-So call this device_link_wq since it's consistent with device_link_* APIs.
+Changes in v4:
+- Moved from Input to MFD
+- Moved common Cirrus haptic functions to a library
+- Incorporated runtime PM framework
+- Many style improvements
 
->  }
->
-> +/**
-> + * device_link_wait_removal - Wait for ongoing devlink removal jobs to t=
-erminate
-> + */
-> +void device_link_wait_removal(void)
-> +{
-> +       /*
-> +        * devlink removal jobs are queued in the dedicated work queue.
-> +        * To be sure that all removal jobs are terminated, ensure that a=
-ny
-> +        * scheduled work has run to completion.
-> +        */
-> +       drain_workqueue(fw_devlink_wq);
+Changes in v3:
+- YAML formatting corrections
+- Fixed typo in MAINTAINERS
+- Used generic node name "haptic-driver"
+- Fixed probe error code paths
+- Switched to "sizeof(*)"
+- Removed tree reference in MAINTAINERS
 
-Is there a reason this needs to be drain_workqueu() instead of
-flush_workqueue(). Drain is a stronger guarantee than we need in this
-case. All we are trying to make sure is that all the device link
-remove work queued so far have completed.
+Changes in v2:
+- Fixed checkpatch warnings
 
-> +}
-> +EXPORT_SYMBOL_GPL(device_link_wait_removal);
-> +
->  static struct class devlink_class =3D {
->         .name =3D "devlink",
->         .dev_groups =3D devlink_groups,
-> @@ -4085,9 +4100,14 @@ int __init devices_init(void)
->         sysfs_dev_char_kobj =3D kobject_create_and_add("char", dev_kobj);
->         if (!sysfs_dev_char_kobj)
->                 goto char_kobj_err;
-> +       fw_devlink_wq =3D alloc_workqueue("fw_devlink_wq", 0, 0);
-> +       if (!fw_devlink_wq)
+James Ogletree (5):
+  firmware: cs_dsp: Add write sequencer interface
+  dt-bindings: input: cirrus,cs40l50: Add initial DT binding
+  mfd: cs40l50: Add support for CS40L50 core driver
+  Input: cs40l50 - Add support for the CS40L50 haptic driver
+  ASoC: cs40l50: Support I2S streaming to CS40L50
 
-Fix the name appropriately here too please.
+ .../bindings/input/cirrus,cs40l50.yaml        |  70 +++
+ MAINTAINERS                                   |  12 +
+ drivers/firmware/cirrus/cs_dsp.c              | 265 ++++++++
+ drivers/input/misc/Kconfig                    |  10 +
+ drivers/input/misc/Makefile                   |   1 +
+ drivers/input/misc/cs40l50-vibra.c            | 575 ++++++++++++++++++
+ drivers/mfd/Kconfig                           |  30 +
+ drivers/mfd/Makefile                          |   4 +
+ drivers/mfd/cs40l50-core.c                    | 531 ++++++++++++++++
+ drivers/mfd/cs40l50-i2c.c                     |  69 +++
+ drivers/mfd/cs40l50-spi.c                     |  69 +++
+ include/linux/firmware/cirrus/cs_dsp.h        |  28 +
+ include/linux/mfd/cs40l50.h                   | 142 +++++
+ sound/soc/codecs/Kconfig                      |  11 +
+ sound/soc/codecs/Makefile                     |   2 +
+ sound/soc/codecs/cs40l50-codec.c              | 307 ++++++++++
+ 16 files changed, 2126 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/cirrus,cs40l50.yaml
+ create mode 100644 drivers/input/misc/cs40l50-vibra.c
+ create mode 100644 drivers/mfd/cs40l50-core.c
+ create mode 100644 drivers/mfd/cs40l50-i2c.c
+ create mode 100644 drivers/mfd/cs40l50-spi.c
+ create mode 100644 include/linux/mfd/cs40l50.h
+ create mode 100644 sound/soc/codecs/cs40l50-codec.c
 
-Thanks,
-Saravana
+-- 
+2.25.1
 
-
-> +               goto wq_err;
->
->         return 0;
->
-> + wq_err:
-> +       kobject_put(sysfs_dev_char_kobj);
->   char_kobj_err:
->         kobject_put(sysfs_dev_block_kobj);
->   block_kobj_err:
-> diff --git a/include/linux/device.h b/include/linux/device.h
-> index 2b093e62907a..c26f4b3df2bd 100644
-> --- a/include/linux/device.h
-> +++ b/include/linux/device.h
-> @@ -1250,6 +1250,7 @@ void device_link_del(struct device_link *link);
->  void device_link_remove(void *consumer, struct device *supplier);
->  void device_links_supplier_sync_state_pause(void);
->  void device_links_supplier_sync_state_resume(void);
-> +void device_link_wait_removal(void);
->
->  /* Create alias, so I can be autoloaded. */
->  #define MODULE_ALIAS_CHARDEV(major,minor) \
-> --
-> 2.42.0
->
->
 
