@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-44401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D07185E0A3
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 16:12:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EB8C85E0A8
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 16:12:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 420DF283420
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 15:12:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 796A6B26A78
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 15:12:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 225A08061A;
-	Wed, 21 Feb 2024 15:12:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5981D80BFD;
+	Wed, 21 Feb 2024 15:12:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="yYxDp5ff"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="lOlMupNp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0666480036
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 15:12:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADE078004A
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 15:12:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708528334; cv=none; b=aPOtBm4bHd09pUrxdmgsHCQN5A3iRNxHa1ZzYEdxTclKA2gJnvyfdw0gj3kAxHVVdRL+gZf6DOziX4Mo+gb2H6OsMqIlDKNugBK6sd+s7pS0XoaIDQXsxY9bJN4oWXV2E73jh0FLGC2ORRgqgWHrEVbGVexhvyT9fhmYXH9MRAA=
+	t=1708528335; cv=none; b=GhW9L1WRVUFOn/fWE4JgIwH9jl93yH7y7yn0la6dAjXP+y+uCKvGvFRtUkGKiPnoJpXkrQ7NhsA8ywmQr5wiNXLhCMsSvRcX+nhJREFxz4TgvFwYQJCwy0i46mJjur/2fi3nEPZXldBz+g6Fo27FZzEU0m233U3qsjd6h/T2g5U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708528334; c=relaxed/simple;
-	bh=ruExk+3EVLbRjE0gQXVzGZ8dGRhGxHdE9Mjc5UHJiCU=;
+	s=arc-20240116; t=1708528335; c=relaxed/simple;
+	bh=MdLPv7HkKaZwwZh1xD8A4aluOJVBj8VBH2qLxu3qrcM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=pB+wH7cMzI9Zk6Ow5XlR91JWp1tY52zBKOs2k4BI+k5D8N9+uKJPJ2tLMXAn92XPC/EcvGdHLNpZRiYx0dsuPIzPTxgA26dS8PxoKH8Lku2jgFLyUz8ZQr20/iNecKfFx6hUuhjR5zp8Cp5ZpzfT6kAVUJCcSInBu5fVBIZ1w88=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=yYxDp5ff; arc=none smtp.client-ip=209.85.128.45
+	 MIME-Version; b=IQOWzEB3hAC5ATYSVlix9RxB7HCFvS8GhZ479ECuBlPHpl7SZAhj24JqB7vLqk+oJllVG2cPUx90EH7TMl7NDJ0eKxhJPpUj2MHWEcAsb9t7NlC6yg6poa0b5L6YfbYYe3DMhm+Ej7iz7qEBolyli5raIF40HO4E2wSaGnGmxDo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=lOlMupNp; arc=none smtp.client-ip=209.85.128.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4127706e48cso4533285e9.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 07:12:11 -0800 (PST)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4127190ad83so11074285e9.0
+        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 07:12:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1708528330; x=1709133130; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1708528331; x=1709133131; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=phRSbqPQtjTITh3A7Rz+mg0BFNfzjESlEJDyy2/XwFI=;
-        b=yYxDp5ff4Hqy+ezd2nJg8Ja09q2SVxpsFpm3ZodcV1MCjrXQWiG/BlcmS+kXYinUd+
-         Lmf8yr3x32VnzuOPx+jRXwQ9d4GJ9AbgmTXDDz5E9AFBi9oFkPnS187i3mvR1zr25Fp+
-         hsDYetOHPEKQsVeNydjKnpfHG7QXdKHDl7WUrmKzUJxmXby1dORC/kkSfjexieoSw98T
-         dD6oYOkG7xRgB+OnT4wMNgFLRmYqglw+8LxTj7fb+tOO1o2/oTAKeWxRnmSJ4DuZIreX
-         xYdwV/2+JORlgXxg7Y6ES9oQc1T7s1Um2v2s57uIxgr6i/20xKNnwgPFqzMQ+74PJlsU
-         kv1w==
+        bh=CDzlDzZQlyRp4tHPz70HDG/j2aqF8PDbUcJLYunNGlE=;
+        b=lOlMupNpPEEBV1aMgYLpSCAOVrP+T9sekfvcpMz/FsTLddbeVskSLEVAB7kbpN33n8
+         LqP2OouNwG6pwemH5N18NaDevENBmn2CyQqwF0vWSo3uBTHlL9xC9yZQg07/lNJeQJg4
+         XwU4g/sgOR1nTZkGg4Q2kuXN929gFUN7q8yT8GIo+eJ3SyQNbFt37e1OHkK5aKECCAyf
+         Fjiraf2ioKRncX1m4ERiyQNA5391SL/CzOZL970/+ZK7sFjMazx+F3JPDLBcDG/7bnU3
+         AeaMfR8k8cym3ufg7d4qC555rrcig9ACwNHCSq++EflUtLI1YFrMR6mmcL8e3jqUPo+P
+         NgYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708528330; x=1709133130;
+        d=1e100.net; s=20230601; t=1708528331; x=1709133131;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=phRSbqPQtjTITh3A7Rz+mg0BFNfzjESlEJDyy2/XwFI=;
-        b=n3zHwPCF0DlLuB7YtEhTeVsjguQZgmVFGP/rLhSpKgru/uwPPEw91TSilU6sNTJan+
-         bKvgPazZ2iRB9c0UP3nYqeRrpeWEDbMxixM5FSPUQk3Ngve2QXnCx5XoNLWpdUZFJ/Yk
-         yB4i3Sh1FWQdCgKZKFNc4CRPExPbDj+gYk4vVLeVhE2TY2Yn4t4OgSoh3lp7FuEZAfO/
-         Mi0UeF1yw6f0uywA0cqkX/G8keCCuI2ATz7zUTGvq1xBMF2o9UYJbOc1LAj+uxWoxi+3
-         m6LGwEF/q2Dc8wuZ568EneUO5zvF6WtAkr0Wely93gZndVKpTJOJhG3AKZqFxvxCMT2e
-         MbZw==
-X-Forwarded-Encrypted: i=1; AJvYcCWbOfRk96pvNdxRI5zD6li0MlGFuKcJ5QTlKOE9iYg+43xz6pNYMfyRDhdo3eunZ8b0Y1D5Q5wOWwKc4QoJQy4MYVt/2iGi5xur/w==
-X-Gm-Message-State: AOJu0YysiIVj2oPqMvF9YKOeiJb2+3NtTgIbXuYU0wNT59RlNNjljFFC
-	aNBCXKbXDMGlNDXSMVewxP+pnraon64udbz1QNQ6QGluFEtWMR1Y2611tyNVKfQ=
-X-Google-Smtp-Source: AGHT+IEeRU4MfkeafbqILY5kXFWxrlUsTufKp1YAOEcBHiEhDE6BI4BT3nlSA0stwDgg/5oJv/ywgw==
-X-Received: by 2002:a05:600c:4747:b0:412:71af:8af5 with SMTP id w7-20020a05600c474700b0041271af8af5mr2971550wmo.16.1708528330296;
-        Wed, 21 Feb 2024 07:12:10 -0800 (PST)
+        bh=CDzlDzZQlyRp4tHPz70HDG/j2aqF8PDbUcJLYunNGlE=;
+        b=OKP1f6V8SpFzP4he683YCThNLGapqZPDKPtltyGzvOfDIub4MzdFbcm+OVSxpGi1b+
+         mHc67f0/O7fAIItl68usgqVvKBmnsOOZSOkZys060oZz1n81RJH/5n0Abuh/5WWRo1Z0
+         ZnzqIk5vLogxvkgUj+FNMC85SP6swbvCMB6dT5US9YXMvYKiaDtVZa7ZPXEbFlUV99yr
+         qDbRsBZVwvx1Z7sYd3uYiGJsG5rxasCuAbUvhEJ89yf0b+44XWnSH0jvfbbhMnjE/jtY
+         CDD6NGYx5jtwahId1mQiBga8odAL8gRkEY3kZJRaex9SGW9Lgx9pJFk3s+U7AjBhK17L
+         HVaQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXPeHZTYsLKlGHzMoKIMsdpyPOcZDctwBRf2DwiNVLAS0bHT6Lg41GR3mN0FjBnjiXzf1PlIS1o8gRZAYkUWl9LrjPpAdnT8PSQgw==
+X-Gm-Message-State: AOJu0YzNOsGCLscLv5z6pGqH420jasnQiFl8A3zX7EukqT2F6FQ02Yk4
+	MREzCF+QjZhucq+uHM1TiGhO3VIQsk66hoZye5J9dXxN94RwyVWgUNYal940YEM=
+X-Google-Smtp-Source: AGHT+IFVjoug76sKUiM3bxfin/b2jHTnn52j44PDi+C4u8iMcyLosuU5W9Kxm6Kr7b2Go6+sQkLLSQ==
+X-Received: by 2002:a05:600c:45d3:b0:410:2d72:63b3 with SMTP id s19-20020a05600c45d300b004102d7263b3mr13477876wmo.23.1708528331144;
+        Wed, 21 Feb 2024 07:12:11 -0800 (PST)
 Received: from toaster.lan ([2a01:e0a:3c5:5fb1:1b1a:d907:d735:9f9e])
-        by smtp.googlemail.com with ESMTPSA id bg22-20020a05600c3c9600b0040fc56712e8sm18725342wmb.17.2024.02.21.07.12.09
+        by smtp.googlemail.com with ESMTPSA id bg22-20020a05600c3c9600b0040fc56712e8sm18725342wmb.17.2024.02.21.07.12.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Feb 2024 07:12:09 -0800 (PST)
+        Wed, 21 Feb 2024 07:12:10 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
@@ -80,9 +80,9 @@ Cc: Jerome Brunet <jbrunet@baylibre.com>,
 	linux-amlogic@lists.infradead.org,
 	linux-pwm@vger.kernel.org,
 	JunYi Zhao <junyi.zhao@amlogic.com>
-Subject: [PATCH v5 3/5] pwm: meson: generalize 4 inputs clock on meson8 pwm type
-Date: Wed, 21 Feb 2024 16:11:49 +0100
-Message-ID: <20240221151154.26452-4-jbrunet@baylibre.com>
+Subject: [PATCH v5 4/5] pwm: meson: don't carry internal clock elements around
+Date: Wed, 21 Feb 2024 16:11:50 +0100
+Message-ID: <20240221151154.26452-5-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240221151154.26452-1-jbrunet@baylibre.com>
 References: <20240221151154.26452-1-jbrunet@baylibre.com>
@@ -95,134 +95,146 @@ MIME-Version: 1.0
 X-Patchwork-Bot: notify
 Content-Transfer-Encoding: 8bit
 
-Meson8 pwm type always has 4 input clocks. Some inputs may be grounded,
-like in the AO domain of some SoCs.
+Pointers to the internal clock elements of the PWM are useless
+after probe. There is no need to carry this around in the device
+data.
 
-Drop the parent number parameter and make this is constant.
-This is also done to make the addition of generic meson8 compatible easier.
+Rework the clock registration to let devres deal with it
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/pwm/pwm-meson.c | 53 +++++++++--------------------------------
- 1 file changed, 11 insertions(+), 42 deletions(-)
+ drivers/pwm/pwm-meson.c | 73 ++++++++++++++++++++++-------------------
+ 1 file changed, 40 insertions(+), 33 deletions(-)
 
 diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-index 40a5b64c26f5..a02fdbc61256 100644
+index a02fdbc61256..fe61335d87d0 100644
 --- a/drivers/pwm/pwm-meson.c
 +++ b/drivers/pwm/pwm-meson.c
-@@ -60,7 +60,7 @@
- #define MISC_A_EN		BIT(0)
- 
- #define MESON_NUM_PWMS		2
--#define MESON_MAX_MUX_PARENTS	4
-+#define MESON_NUM_MUX_PARENTS	4
- 
- static struct meson_pwm_channel_data {
- 	u8		reg_offset;
-@@ -97,8 +97,7 @@ struct meson_pwm_channel {
- };
- 
- struct meson_pwm_data {
--	const char * const *parent_names;
--	unsigned int num_parents;
-+	const char *const parent_names[MESON_NUM_MUX_PARENTS];
- };
- 
- struct meson_pwm {
-@@ -339,62 +338,32 @@ static const struct pwm_ops meson_pwm_ops = {
- 	.get_state = meson_pwm_get_state,
- };
- 
--static const char * const pwm_meson8b_parent_names[] = {
--	"xtal", NULL, "fclk_div4", "fclk_div3"
--};
--
- static const struct meson_pwm_data pwm_meson8b_data = {
--	.parent_names = pwm_meson8b_parent_names,
--	.num_parents = ARRAY_SIZE(pwm_meson8b_parent_names),
-+	.parent_names = { "xtal", NULL, "fclk_div4", "fclk_div3" },
- };
- 
- /*
-  * Only the 2 first inputs of the GXBB AO PWMs are valid
-  * The last 2 are grounded
-  */
--static const char * const pwm_gxbb_ao_parent_names[] = {
--	"xtal", "clk81"
--};
--
- static const struct meson_pwm_data pwm_gxbb_ao_data = {
--	.parent_names = pwm_gxbb_ao_parent_names,
--	.num_parents = ARRAY_SIZE(pwm_gxbb_ao_parent_names),
--};
--
--static const char * const pwm_axg_ee_parent_names[] = {
--	"xtal", "fclk_div5", "fclk_div4", "fclk_div3"
-+	.parent_names = { "xtal", "clk81", NULL, NULL },
- };
- 
- static const struct meson_pwm_data pwm_axg_ee_data = {
--	.parent_names = pwm_axg_ee_parent_names,
--	.num_parents = ARRAY_SIZE(pwm_axg_ee_parent_names),
--};
--
--static const char * const pwm_axg_ao_parent_names[] = {
--	"xtal", "axg_ao_clk81", "fclk_div4", "fclk_div5"
-+	.parent_names = { "xtal", "fclk_div5", "fclk_div4", "fclk_div3" },
- };
- 
- static const struct meson_pwm_data pwm_axg_ao_data = {
--	.parent_names = pwm_axg_ao_parent_names,
--	.num_parents = ARRAY_SIZE(pwm_axg_ao_parent_names),
--};
--
--static const char * const pwm_g12a_ao_ab_parent_names[] = {
--	"xtal", "g12a_ao_clk81", "fclk_div4", "fclk_div5"
-+	.parent_names = { "xtal", "axg_ao_clk81", "fclk_div4", "fclk_div5" },
- };
- 
- static const struct meson_pwm_data pwm_g12a_ao_ab_data = {
--	.parent_names = pwm_g12a_ao_ab_parent_names,
--	.num_parents = ARRAY_SIZE(pwm_g12a_ao_ab_parent_names),
--};
--
--static const char * const pwm_g12a_ao_cd_parent_names[] = {
--	"xtal", "g12a_ao_clk81",
-+	.parent_names = { "xtal", "g12a_ao_clk81", "fclk_div4", "fclk_div5" },
- };
- 
- static const struct meson_pwm_data pwm_g12a_ao_cd_data = {
--	.parent_names = pwm_g12a_ao_cd_parent_names,
--	.num_parents = ARRAY_SIZE(pwm_g12a_ao_cd_parent_names),
-+	.parent_names = { "xtal", "g12a_ao_clk81", NULL, NULL },
- };
- 
- static const struct of_device_id meson_pwm_matches[] = {
-@@ -437,13 +406,13 @@ MODULE_DEVICE_TABLE(of, meson_pwm_matches);
- static int meson_pwm_init_channels(struct pwm_chip *chip)
- {
- 	struct meson_pwm *meson = to_meson_pwm(chip);
--	struct clk_parent_data mux_parent_data[MESON_MAX_MUX_PARENTS] = {};
-+	struct clk_parent_data mux_parent_data[MESON_NUM_MUX_PARENTS] = {};
- 	struct device *dev = pwmchip_parent(chip);
- 	unsigned int i;
- 	char name[255];
- 	int err;
- 
--	for (i = 0; i < meson->data->num_parents; i++) {
-+	for (i = 0; i < MESON_NUM_MUX_PARENTS; i++) {
- 		mux_parent_data[i].index = -1;
- 		mux_parent_data[i].name = meson->data->parent_names[i];
+@@ -85,14 +85,17 @@ static struct meson_pwm_channel_data {
  	}
-@@ -459,7 +428,7 @@ static int meson_pwm_init_channels(struct pwm_chip *chip)
- 		init.ops = &clk_mux_ops;
- 		init.flags = 0;
- 		init.parent_data = mux_parent_data;
--		init.num_parents = meson->data->num_parents;
-+		init.num_parents = MESON_NUM_MUX_PARENTS;
+ };
  
- 		channel->mux.reg = meson->base + REG_MISC_AB;
- 		channel->mux.shift =
++struct meson8b_pwm_clocks {
++	struct clk_divider div;
++	struct clk_gate gate;
++	struct clk_mux mux;
++};
++
+ struct meson_pwm_channel {
+ 	unsigned long rate;
+ 	unsigned int hi;
+ 	unsigned int lo;
+ 
+-	struct clk_mux mux;
+-	struct clk_divider div;
+-	struct clk_gate gate;
+ 	struct clk *clk;
+ };
+ 
+@@ -419,9 +422,14 @@ static int meson_pwm_init_channels(struct pwm_chip *chip)
+ 
+ 	for (i = 0; i < chip->npwm; i++) {
+ 		struct meson_pwm_channel *channel = &meson->channels[i];
+-		struct clk_parent_data div_parent = {}, gate_parent = {};
++		struct clk_parent_data pdata = {};
++		struct meson8b_pwm_clocks *clks;
+ 		struct clk_init_data init = {};
+ 
++		clks = devm_kzalloc(dev, sizeof(*clks), GFP_KERNEL);
++		if (!clks)
++			return -ENOMEM;
++
+ 		snprintf(name, sizeof(name), "%s#mux%u", dev_name(dev), i);
+ 
+ 		init.name = name;
+@@ -430,16 +438,15 @@ static int meson_pwm_init_channels(struct pwm_chip *chip)
+ 		init.parent_data = mux_parent_data;
+ 		init.num_parents = MESON_NUM_MUX_PARENTS;
+ 
+-		channel->mux.reg = meson->base + REG_MISC_AB;
+-		channel->mux.shift =
+-				meson_pwm_per_channel_data[i].clk_sel_shift;
+-		channel->mux.mask = MISC_CLK_SEL_MASK;
+-		channel->mux.flags = 0;
+-		channel->mux.lock = &meson->lock;
+-		channel->mux.table = NULL;
+-		channel->mux.hw.init = &init;
++		clks->mux.reg = meson->base + REG_MISC_AB;
++		clks->mux.shift = meson_pwm_per_channel_data[i].clk_sel_shift;
++		clks->mux.mask = MISC_CLK_SEL_MASK;
++		clks->mux.flags = 0;
++		clks->mux.lock = &meson->lock;
++		clks->mux.table = NULL;
++		clks->mux.hw.init = &init;
+ 
+-		err = devm_clk_hw_register(dev, &channel->mux.hw);
++		err = devm_clk_hw_register(dev, &clks->mux.hw);
+ 		if (err)
+ 			return dev_err_probe(dev, err,
+ 					     "failed to register %s\n", name);
+@@ -449,19 +456,19 @@ static int meson_pwm_init_channels(struct pwm_chip *chip)
+ 		init.name = name;
+ 		init.ops = &clk_divider_ops;
+ 		init.flags = CLK_SET_RATE_PARENT;
+-		div_parent.index = -1;
+-		div_parent.hw = &channel->mux.hw;
+-		init.parent_data = &div_parent;
++		pdata.index = -1;
++		pdata.hw = &clks->mux.hw;
++		init.parent_data = &pdata;
+ 		init.num_parents = 1;
+ 
+-		channel->div.reg = meson->base + REG_MISC_AB;
+-		channel->div.shift = meson_pwm_per_channel_data[i].clk_div_shift;
+-		channel->div.width = MISC_CLK_DIV_WIDTH;
+-		channel->div.hw.init = &init;
+-		channel->div.flags = 0;
+-		channel->div.lock = &meson->lock;
++		clks->div.reg = meson->base + REG_MISC_AB;
++		clks->div.shift = meson_pwm_per_channel_data[i].clk_div_shift;
++		clks->div.width = MISC_CLK_DIV_WIDTH;
++		clks->div.hw.init = &init;
++		clks->div.flags = 0;
++		clks->div.lock = &meson->lock;
+ 
+-		err = devm_clk_hw_register(dev, &channel->div.hw);
++		err = devm_clk_hw_register(dev, &clks->div.hw);
+ 		if (err)
+ 			return dev_err_probe(dev, err,
+ 					     "failed to register %s\n", name);
+@@ -471,22 +478,22 @@ static int meson_pwm_init_channels(struct pwm_chip *chip)
+ 		init.name = name;
+ 		init.ops = &clk_gate_ops;
+ 		init.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED;
+-		gate_parent.index = -1;
+-		gate_parent.hw = &channel->div.hw;
+-		init.parent_data = &gate_parent;
++		pdata.index = -1;
++		pdata.hw = &clks->div.hw;
++		init.parent_data = &pdata;
+ 		init.num_parents = 1;
+ 
+-		channel->gate.reg = meson->base + REG_MISC_AB;
+-		channel->gate.bit_idx = meson_pwm_per_channel_data[i].clk_en_shift;
+-		channel->gate.hw.init = &init;
+-		channel->gate.flags = 0;
+-		channel->gate.lock = &meson->lock;
++		clks->gate.reg = meson->base + REG_MISC_AB;
++		clks->gate.bit_idx = meson_pwm_per_channel_data[i].clk_en_shift;
++		clks->gate.hw.init = &init;
++		clks->gate.flags = 0;
++		clks->gate.lock = &meson->lock;
+ 
+-		err = devm_clk_hw_register(dev, &channel->gate.hw);
++		err = devm_clk_hw_register(dev, &clks->gate.hw);
+ 		if (err)
+ 			return dev_err_probe(dev, err, "failed to register %s\n", name);
+ 
+-		channel->clk = devm_clk_hw_get_clk(dev, &channel->gate.hw, NULL);
++		channel->clk = devm_clk_hw_get_clk(dev, &clks->gate.hw, NULL);
+ 		if (IS_ERR(channel->clk))
+ 			return dev_err_probe(dev, PTR_ERR(channel->clk),
+ 					     "failed to register %s\n", name);
 -- 
 2.43.0
 
