@@ -1,140 +1,306 @@
-Return-Path: <devicetree+bounces-44344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D747685D8C1
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 14:05:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 258D785D8F8
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 14:13:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 782B11F243F6
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 13:05:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 496391C22D60
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 13:13:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35F896A327;
-	Wed, 21 Feb 2024 13:04:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78C6F69D2D;
+	Wed, 21 Feb 2024 13:13:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h44mdi4X"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HjWDYUHC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64DE04F885
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 13:04:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BA7053816;
+	Wed, 21 Feb 2024 13:13:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708520685; cv=none; b=Qekfc9OqPnIxiimmbJPu/zK34nmGvKfNHZW/CJTQdWt5X/Uh8u7h9CmylAO+vIHSQDcjPpnaWNk4sSDzdMkULmwVMMlwvhMKtcujFQZOMPxD4wQyrizna2VBl8k4bgEh8WqnRrlMIYOY2laxi3Ssmw3TajW9SYIPxEXL4dAthdY=
+	t=1708521183; cv=none; b=Xu3sFtCHFGXg/2Z+GRgcYP9kKWLXOxDpgzsvW1GwIt6ZGWbRQYp6tAQfaaA6gO9+GkdBCFAxzvkl6/J7uPiqre2pGj8/aaX52P/O4DMvLbRbQIChX9iegKGCt9zqZBAYMDr569yIZXMBqihWG7pmJGRWUxChinGmTFoKhRdNMAA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708520685; c=relaxed/simple;
-	bh=TCLTQOaE9W3yz6211b4jg2MbG6D93HJgYpElaCnIFns=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=WpUGyRPwrg8tdFGVZN9NOWlrtrvIPysAXBdp2r2oblCSo6pesa+sShdc8djST47DHh+L+t5di8LAWLvGaK5u9BS69pSEi2thV5vaakRriK7ScZFSrOdcaWrF3TlrLijGoKh9Js7/nijoce0ua+SeA4oU+lqLs5NFXUfAnCm9qzY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=h44mdi4X; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-563cb3ba9daso6736202a12.3
-        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 05:04:43 -0800 (PST)
+	s=arc-20240116; t=1708521183; c=relaxed/simple;
+	bh=KunTxxna1aiCdY/QesGCilJ5cAZGaSIJTXU8hotw8PI=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=mmWg72d7adjh55oJa6mld3X38BfWh0uIlzB/EVpZOg5Erc2u4rmTaII8jVX+TjESwL5kheOPsV+Vfq2mehJf8ai3FpM/NLLtej5KPvsdeC0HEOV9ZfAqbzcuMd4KhGTUKmTkZRZ2ntsnNB77AkNApQQU8TMxKAQHMr04BxZBSqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HjWDYUHC; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a3566c0309fso789726366b.1;
+        Wed, 21 Feb 2024 05:13:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708520682; x=1709125482; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WxgDZls4oUJUrfVi7cjKLWFxpNjiKDYYhQmE5hDFALM=;
-        b=h44mdi4XsbKa7YqAdVZbKHY66yJ7lzSxQqYjIzSSWj9rWd4HHvcLcS1hT8jJaXZI4x
-         +WDvlVwJNeRTXBYz7wvEok5GwWDoAuznhxBIRWd69Q8TFGiD7+Pz7aAaTH6JFIEzJrL/
-         oKFTs/5PIUZ69fhMe5RMSfrJ+XuLxX4w/Y28gAH6MwFGji/ZdfXxt+x8q/m5WcWHSkwg
-         UQ8ST30gnRwLfaclJt6kys5s/BLczqsGCno51rWgrrkvOUUhlwiUTcJ4O6QJT8KO0WF6
-         +g0qiU3euwq5p3bIU2wGfdMBsUVZq8/40H5EDxrDueQM8CIlIPHvrAzdyMFZ+FC6mgax
-         xQ+Q==
+        d=gmail.com; s=20230601; t=1708521180; x=1709125980; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=DGiW/+uERhIOL2iU6zJc45gx4LT9deQYjGR/s3besiM=;
+        b=HjWDYUHCbfNh93o72Vqumx8vROVWiXg4IOav7noX3HkF+t/Yim+h/o0JVvBgouB3T5
+         J4yEycYgbM5nJQt/GCTTs8iuXzKooBYGgRUeIAEwcIDoZX4sxhRJO08C64orF/Ru7XHQ
+         9R965iPmLGrOS/85Ip6Y1WY/+qZ2GgZ8azepxlLx7VCZCq6Rm3RvQuPXYyRCbaJsuaIn
+         7pgoTWTO/No7K4YQCMqo9r4U7xyzf2SgsHAHVgM4Qf/90M3sCevESd7gKHy1fd+ctnCi
+         w1UYHZYuIRdUz+NcO8R95CggETnDVQy18bkHizlhaYxq3hB8Cj7MBU7NnRc7mHjXY5xq
+         OKyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708520682; x=1709125482;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WxgDZls4oUJUrfVi7cjKLWFxpNjiKDYYhQmE5hDFALM=;
-        b=K5EqQsOvCEI8oas0rFU9pwQ8h7He8svVpcmb+cEPTH2SdtUx/tL2I02FTr/zAoBRVG
-         TWb31zVdo4hsIsdCwGH3C2aiJwLbDk0S5FGC2qd+ksmFjX8YAHQcxwDAouhUC1mKwhk5
-         g6A/RVxP9K3m3cNVOGTeb0k/fnmKKOOOcSqzgbFZ0/3+NI40wRINfHmvSDvNtqhI0Yso
-         54f0Q0fTE3hmC/nccFG9cEJnSPDXO+I8RBcu5ELkqLm1GJCFKmY/3yvCAHk0M+uRDdn2
-         bkYRvq5wJzeXPcZ/x6eUyJ/ccFTKAHcxeuHHJLWaFTeuvDzFubDzdErCYIvD/DEBNUjt
-         H4hg==
-X-Forwarded-Encrypted: i=1; AJvYcCVIrUDRT7q+bwzji3ldmoaPo277lLgA4WbBChNZZiHeFi/8EwpUi0CMCLhIhBsNFBA8nNeyj0AucNQzzhqsOUHGYWqbfhB87Y+94w==
-X-Gm-Message-State: AOJu0YxxzWUrRnwLitsGfe6uQzTrQ+EWp8KbfitF3diLUNnJInxcuiT8
-	qExTcFQpfZPLkKz6HLfO1A+bSQwEePFM8yGGTqE5Oy20EJ/OshtCGj7F529vUQ0=
-X-Google-Smtp-Source: AGHT+IEAEPWJ1mFf71gKzasgIivGVKz42nRKGPTpX0UseeihBEBXEU+IR2sAhnd+n52/Hnqa/Hb/7Q==
-X-Received: by 2002:aa7:d996:0:b0:565:10cd:835 with SMTP id u22-20020aa7d996000000b0056510cd0835mr565438eds.28.1708520681789;
-        Wed, 21 Feb 2024 05:04:41 -0800 (PST)
-Received: from [127.0.1.1] ([188.24.162.93])
-        by smtp.gmail.com with ESMTPSA id a20-20020a50ff14000000b0056459eafc0asm1356178edu.17.2024.02.21.05.04.40
+        d=1e100.net; s=20230601; t=1708521180; x=1709125980;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DGiW/+uERhIOL2iU6zJc45gx4LT9deQYjGR/s3besiM=;
+        b=eVJBC3bqwq1hsraURWBEqVjkC9sb/z/yv5QCjsGtb0CTniYVJ6W236fmmKoqiwiLll
+         3hzLsv4cZ73rGHq5bFVxm6cK13nfARGC5/eAZrzUDDKoVx4s+CIhAkbLJg060j8m55Ia
+         v8bRE1ZkrztDDDswz8YdXe3qWEpDyhcmX8oD7u16hHnHijr14uF2crjGf/sjAzxQtjSV
+         5Ejmt/keusvHyDDxtszOpy0XoFZm7W9p5stRQMT6muU/j+xInYBO0LEGA5gQTB3PCrRP
+         ENcaQWxi7He107tk3N2h2hegUOhxtLBREvH/T7g3d4xU8rQ5LMspvSZ0N7hwzdv1hUfy
+         Q62Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUEd7PGTIju0hz4HbU85FmEqRhb6CgglyB+4WTncQU0RxKylk27xa9uo+uJClESTh9iwdzWGyFQ/tdTEu33K7VZxtb6jsfpOpFsHLW2glOzWBohWDLgoUW+EH1nVsKGsVbkE4dWw0M0j7bTFsv0lGdacCEvXzMnsgzuMBj3ad8hiRdVYg==
+X-Gm-Message-State: AOJu0YzR8FkVRPTphPOnOXH6ZJxK2c0Flat5cLHwQ4pV6EynzR4U6mHc
+	pNheDPSFs3As0UYMq7tbkbGZHtQ9FBXYOkCItanLUUzA68bGHFmG
+X-Google-Smtp-Source: AGHT+IE563IydXRsYWsSc8T4NQLOzAxnuYOFLbTP/CB0Gl8VNY1LxSSY0clwcJY3Gz6AYomSPpKtPA==
+X-Received: by 2002:a17:906:1d14:b0:a3d:ce2c:b06a with SMTP id n20-20020a1709061d1400b00a3dce2cb06amr10714233ejh.22.1708521179456;
+        Wed, 21 Feb 2024 05:12:59 -0800 (PST)
+Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
+        by smtp.gmail.com with ESMTPSA id r12-20020a170906704c00b00a3d932d8fa7sm4979551ejj.183.2024.02.21.05.12.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Feb 2024 05:04:41 -0800 (PST)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Wed, 21 Feb 2024 15:04:26 +0200
-Subject: [PATCH v2 2/2] arm64: dts: qcom: sm8650: Fix SPMI channels size
+        Wed, 21 Feb 2024 05:12:59 -0800 (PST)
+Message-ID: <c3c66cff6b712ff38fa56af0c99d8956974a7b6c.camel@gmail.com>
+Subject: Re: [PATCH v5 3/5] iio: amplifiers: hmc425a: move conversion logic
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Dumitru Ceclan <mitrutzceclan@gmail.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Jonathan Cameron
+ <jic23@kernel.org>,  Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Ceclan Dumitru <dumitru.ceclan@analog.com>
+Date: Wed, 21 Feb 2024 14:12:58 +0100
+In-Reply-To: <20240220153553.2432-2-mitrutzceclan@gmail.com>
+References: <20240220153553.2432-1-mitrutzceclan@gmail.com>
+	 <20240220153553.2432-2-mitrutzceclan@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240221-dts-qcom-sm8550-fix-spmi-chnls-size-v2-2-72b5efd9dc4f@linaro.org>
-References: <20240221-dts-qcom-sm8550-fix-spmi-chnls-size-v2-0-72b5efd9dc4f@linaro.org>
-In-Reply-To: <20240221-dts-qcom-sm8550-fix-spmi-chnls-size-v2-0-72b5efd9dc4f@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1266; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=TCLTQOaE9W3yz6211b4jg2MbG6D93HJgYpElaCnIFns=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBl1fTlmlDBAoOi4a1wTc8T3FnmjKuvTzlq2nrYy
- rhqMq1fj6uJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZdX05QAKCRAbX0TJAJUV
- VpA0D/4l0Oe/tUNbtyU8rcwKmCq+ssGWNqDLo7ea9NnG8LdMDxyxaMmMs7lxyyAAx0r+YjOV5Vr
- xfERDmmzlZ3yHQo7of2nckeL0HG77oSyd1uRCuED8BVFBZyzZB833mIcqCLvU2Q1ugX1kXLznmf
- 4Yj0l8zl+zucNarlSaG1JsXslH/O1K15L/aLHWUE12NFo316/hwUWPZ2SHk8LucDiFsbqvgbQCI
- Z/xyNMvtVGtCmhm+Fi+1J5Kg3Zdn7SB86ksTLFLo67uoVzYFA8HYgAy3+X0MEdPYzgUb8Fi6ZM2
- IamM7HKvMurdE84T6NOI3ry3Gkn/XMnTflObdemMqlXubJHMpt/sji+Gs5Eh0HADpOvrSenmErv
- p4z10ipZsRDl3pi/BQzwUEquXkvLrY7f0RE2EmTmZyBReT9aloro6bLZkVUb19XBIjh4/N+q5HO
- 0s/VAkSL5FNsEyutDm0LQRO0h/Gdk1XXBa/GAKF/CACXiTdSMurZC+Yb8U2s0wtp7nXFYUbTpxD
- QSXt6q2Ox1HuIxoOFvDKuem0r+yoCXuLMDnQf+HlJYWhHFhv1eIwO8gfA2lKTFgTjLWdZ2J7+RK
- Ei13iXAVlr/FMxZXoRS6JMsaW7X2i0aGwuqxIg5Xy8rY6gBSqvnpxkJpHqqpLqruEC92wlOh/eU
- 5+m7R6llTySyc2Q==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-The actual size of the channels registers region is 4MB, according to the
-documentation. This issue was not caught until now because the driver was
-supposed to allow same regions being mapped multiple times for supporting
-multiple buses. Thie driver is using platform_get_resource_byname() and
-devm_ioremap() towards that purpose, which intentionally avoids
-devm_request_mem_region() altogether.
+On Tue, 2024-02-20 at 17:34 +0200, Dumitru Ceclan wrote:
+> Move gain-dB<->code conversion logic from read_raw and write_raw to
+> chip_info callbacks.
+>=20
+> Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
+> ---
 
-Fixes: 10e024671295 ("arm64: dts: qcom: sm8650: add interconnect dependent device nodes")
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+Reviewed-by: Nuno Sa <nuno.sa@analog.com>
+
+> =C2=A0drivers/iio/amplifiers/hmc425a.c | 126 ++++++++++++++++++++--------=
 ---
- arch/arm64/boot/dts/qcom/sm8650.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index d488b3b3265e..260eda81b743 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -3747,7 +3747,7 @@ sram@c3f0000 {
- 		spmi_bus: spmi@c400000 {
- 			compatible = "qcom,spmi-pmic-arb";
- 			reg = <0 0x0c400000 0 0x3000>,
--			      <0 0x0c500000 0 0x4000000>,
-+			      <0 0x0c500000 0 0x400000>,
- 			      <0 0x0c440000 0 0x80000>,
- 			      <0 0x0c4c0000 0 0x20000>,
- 			      <0 0x0c42d000 0 0x4000>;
-
--- 
-2.34.1
+> =C2=A01 file changed, 83 insertions(+), 43 deletions(-)
+>=20
+> diff --git a/drivers/iio/amplifiers/hmc425a.c b/drivers/iio/amplifiers/hm=
+c425a.c
+> index ed4d72922696..13e018a59637 100644
+> --- a/drivers/iio/amplifiers/hmc425a.c
+> +++ b/drivers/iio/amplifiers/hmc425a.c
+> @@ -34,6 +34,9 @@ struct hmc425a_chip_info {
+> =C2=A0	int				gain_min;
+> =C2=A0	int				gain_max;
+> =C2=A0	int				default_gain;
+> +
+> +	int				(*gain_dB_to_code)(int gain, int *code);
+> +	int				(*code_to_gain_dB)(int code, int *val, int
+> *val2);
+> =C2=A0};
+> =C2=A0
+> =C2=A0struct hmc425a_state {
+> @@ -44,6 +47,74 @@ struct hmc425a_state {
+> =C2=A0	u32	gain;
+> =C2=A0};
+> =C2=A0
+> +static int gain_dB_to_code(struct hmc425a_state *st, int val, int val2, =
+int *code)
+> +{
+> +	struct hmc425a_chip_info *inf =3D st->chip_info;
+> +	int gain;
+> +
+> +	if (val < 0)
+> +		gain =3D (val * 1000) - (val2 / 1000);
+> +	else
+> +		gain =3D (val * 1000) + (val2 / 1000);
+> +
+> +	if (gain > inf->gain_max || gain < inf->gain_min)
+> +		return -EINVAL;
+> +
+> +	return st->chip_info->gain_dB_to_code(gain, code);
+> +}
+> +
+> +static int hmc425a_gain_dB_to_code(int gain, int *code)
+> +{
+> +	*code =3D ~((abs(gain) / 500) & 0x3F);
+> +	return 0;
+> +}
+> +
+> +static int hmc540s_gain_dB_to_code(int gain, int *code)
+> +{
+> +	*code =3D ~((abs(gain) / 1000) & 0xF);
+> +	return 0;
+> +}
+> +
+> +static int adrf5740_gain_dB_to_code(int gain, int *code)
+> +{
+> +	int temp =3D (abs(gain) / 2000) & 0xF;
+> +
+> +	/* Bit [0-3]: 2dB 4dB 8dB 8dB */
+> +	*code =3D temp & BIT(3) ? temp | BIT(2) : temp;
+> +	return 0;
+> +}
+> +
+> +static int code_to_gain_dB(struct hmc425a_state *st, int *val, int *val2=
+)
+> +{
+> +	return st->chip_info->code_to_gain_dB(st->gain, val, val2);
+> +}
+> +
+> +static int hmc425a_code_to_gain_dB(int code, int *val, int *val2)
+> +{
+> +	*val =3D (~code * -500) / 1000;
+> +	*val2 =3D ((~code * -500) % 1000) * 1000;
+> +	return 0;
+> +}
+> +
+> +static int hmc540s_code_to_gain_dB(int code, int *val, int *val2)
+> +{
+> +	*val =3D (~code * -1000) / 1000;
+> +	*val2 =3D ((~code * -1000) % 1000) * 1000;
+> +	return 0;
+> +}
+> +
+> +static int adrf5740_code_to_gain_dB(int code, int *val, int *val2)
+> +{
+> +	/*
+> +	 * Bit [0-3]: 2dB 4dB 8dB 8dB
+> +	 * When BIT(3) is set, unset BIT(2) and use 3 as double the place value
+> +	 */
+> +	code =3D code & BIT(3) ? code & ~BIT(2) : code;
+> +	*val =3D (code * -2000) / 1000;
+> +	*val2 =3D ((code * -2000) % 1000) * 1000;
+> +	return 0;
+> +}
+> +
+> =C2=A0static int hmc425a_write(struct iio_dev *indio_dev, u32 value)
+> =C2=A0{
+> =C2=A0	struct hmc425a_state *st =3D iio_priv(indio_dev);
+> @@ -61,30 +132,14 @@ static int hmc425a_read_raw(struct iio_dev *indio_de=
+v,
+> =C2=A0			=C2=A0=C2=A0=C2=A0 int *val2, long m)
+> =C2=A0{
+> =C2=A0	struct hmc425a_state *st =3D iio_priv(indio_dev);
+> -	int code, gain =3D 0;
+> =C2=A0	int ret;
+> =C2=A0
+> =C2=A0	mutex_lock(&st->lock);
+> =C2=A0	switch (m) {
+> =C2=A0	case IIO_CHAN_INFO_HARDWAREGAIN:
+> -		code =3D st->gain;
+> -
+> -		switch (st->type) {
+> -		case ID_HMC425A:
+> -			gain =3D ~code * -500;
+> -			break;
+> -		case ID_HMC540S:
+> -			gain =3D ~code * -1000;
+> +		ret =3D code_to_gain_dB(st, val, val2);
+> +		if (ret)
+> =C2=A0			break;
+> -		case ID_ADRF5740:
+> -			code =3D code & BIT(3) ? code & ~BIT(2) : code;
+> -			gain =3D code * -2000;
+> -			break;
+> -		}
+> -
+> -		*val =3D gain / 1000;
+> -		*val2 =3D (gain % 1000) * 1000;
+> -
+> =C2=A0		ret =3D IIO_VAL_INT_PLUS_MICRO_DB;
+> =C2=A0		break;
+> =C2=A0	default:
+> @@ -100,36 +155,15 @@ static int hmc425a_write_raw(struct iio_dev *indio_=
+dev,
+> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 int val2, long mask)
+> =C2=A0{
+> =C2=A0	struct hmc425a_state *st =3D iio_priv(indio_dev);
+> -	struct hmc425a_chip_info *inf =3D st->chip_info;
+> -	int code =3D 0, gain;
+> -	int ret;
+> -
+> -	if (val < 0)
+> -		gain =3D (val * 1000) - (val2 / 1000);
+> -	else
+> -		gain =3D (val * 1000) + (val2 / 1000);
+> -
+> -	if (gain > inf->gain_max || gain < inf->gain_min)
+> -		return -EINVAL;
+> -
+> -	switch (st->type) {
+> -	case ID_HMC425A:
+> -		code =3D ~((abs(gain) / 500) & 0x3F);
+> -		break;
+> -	case ID_HMC540S:
+> -		code =3D ~((abs(gain) / 1000) & 0xF);
+> -		break;
+> -	case ID_ADRF5740:
+> -		code =3D (abs(gain) / 2000) & 0xF;
+> -		code =3D code & BIT(3) ? code | BIT(2) : code;
+> -		break;
+> -	}
+> +	int code =3D 0, ret;
+> =C2=A0
+> =C2=A0	mutex_lock(&st->lock);
+> =C2=A0	switch (mask) {
+> =C2=A0	case IIO_CHAN_INFO_HARDWAREGAIN:
+> +		ret =3D gain_dB_to_code(st, val, val2, &code);
+> +		if (ret)
+> +			break;
+> =C2=A0		st->gain =3D code;
+> -
+> =C2=A0		ret =3D hmc425a_write(indio_dev, st->gain);
+> =C2=A0		break;
+> =C2=A0	default:
+> @@ -189,6 +223,8 @@ static struct hmc425a_chip_info hmc425a_chip_info_tbl=
+[] =3D {
+> =C2=A0		.gain_min =3D -31500,
+> =C2=A0		.gain_max =3D 0,
+> =C2=A0		.default_gain =3D -0x40, /* set default gain -31.5db*/
+> +		.gain_dB_to_code =3D hmc425a_gain_dB_to_code,
+> +		.code_to_gain_dB =3D hmc425a_code_to_gain_dB,
+> =C2=A0	},
+> =C2=A0	[ID_HMC540S] =3D {
+> =C2=A0		.name =3D "hmc540s",
+> @@ -198,6 +234,8 @@ static struct hmc425a_chip_info hmc425a_chip_info_tbl=
+[] =3D {
+> =C2=A0		.gain_min =3D -15000,
+> =C2=A0		.gain_max =3D 0,
+> =C2=A0		.default_gain =3D -0x10, /* set default gain -15.0db*/
+> +		.gain_dB_to_code =3D hmc540s_gain_dB_to_code,
+> +		.code_to_gain_dB =3D hmc540s_code_to_gain_dB,
+> =C2=A0	},
+> =C2=A0	[ID_ADRF5740] =3D {
+> =C2=A0		.name =3D "adrf5740",
+> @@ -207,6 +245,8 @@ static struct hmc425a_chip_info hmc425a_chip_info_tbl=
+[] =3D {
+> =C2=A0		.gain_min =3D -22000,
+> =C2=A0		.gain_max =3D 0,
+> =C2=A0		.default_gain =3D 0xF, /* set default gain -22.0db*/
+> +		.gain_dB_to_code =3D adrf5740_gain_dB_to_code,
+> +		.code_to_gain_dB =3D adrf5740_code_to_gain_dB,
+> =C2=A0	},
+> =C2=A0};
+> =C2=A0
 
 
