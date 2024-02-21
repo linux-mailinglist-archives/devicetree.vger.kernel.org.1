@@ -1,158 +1,96 @@
-Return-Path: <devicetree+bounces-44299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44300-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B31D585D678
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 12:09:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D71B85D695
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 12:14:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 282D91F23A50
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 11:09:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16BE6284D50
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 11:14:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 945223EA87;
-	Wed, 21 Feb 2024 11:08:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HwzAQSho"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4029D3F8E0;
+	Wed, 21 Feb 2024 11:14:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E91163DB92;
-	Wed, 21 Feb 2024 11:08:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A47833FB21
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 11:14:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708513738; cv=none; b=YLCuUteexl2A39M01X3UMEZbER78IYeeVubu05wDjxsbRzM/BdY6/SIDNRTfnvB8nocVp5ZJq3fhXYs6oaQG/2drImMAMlqKtu9ItQkTHpQJzNk+Eoq/QOJkJASZ5pLsnAnt0fwymWCTfTCiADWxaXJHQy4ENEVhL/3WvpShXyE=
+	t=1708514093; cv=none; b=Lzm99juJKyF4AbI126LyEVcDtPcRU/6wvV0Y/H2wd6if5l3N171J9CJo6sD7AYhuf4LynsxlJstLI9VbobOx81i7dhA4YGTQ2zuX35V4am8CCzbtUfWE9g5HPjYQvOo7usl6BxH3rMmPaPaZW61pF7YG+/Dy2G3t6UE16qJRJQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708513738; c=relaxed/simple;
-	bh=Ilpl6qDn+BLmGfDkj3wZmJu260s+TcYOBxBljvMnFdQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=GOyU9VPI7R6BUQiM/KoyyXGvlmG/XRjv3MIZjcvGBBKazCVen4et4jbIjZ1fekjkcOASc3etorhcOGS7v7yg2F/Y8ztmRRKy0LEst1jUu4RfmvAYAs+MleC/01nAQorJPsINplz4de/lHGDph967GXIumK8gI4aalMm5+b4Y1Ig=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=HwzAQSho; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41LB0hP2010690;
-	Wed, 21 Feb 2024 11:08:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=EojJ00F9rrvDlSEynFkxvpGQqZFHkGbZulob50tdVok=; b=Hw
-	zAQShoa0IxjzkJnpE4X/s9Ts4WS4t4r6fLx2zo4Sf8xUls51DvKLxuKjBb3orqdc
-	ZNEOLnrEM4XFpUV1ymWJEzfIqCy5CG2rhw0qV6aVCpaKcWQLMbRw/bTCFkgyIqTW
-	F8PLklMZNMC3z0DeinYB0MdKzmsMOyZyMbPNtyHZZ+t+x1No6nQbpih1Alj9FZ9c
-	ZsuHlThBOHTO3lQrbhPr/zfUmhrXNWG3fL+scFAgKeKSynP32TmI19MshaXYLpBR
-	q70Ngpu8hgbMc4+S0GK+F+mohtpW+s0UYFeWUJ20kEAcNbXNlvY6OB7Jf0UoI1ki
-	BelFtF5YQ1ZBOdmIIVVQ==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wdfx4g0jh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Feb 2024 11:08:43 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41LB8hC7016562
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Feb 2024 11:08:43 GMT
-Received: from [10.216.62.93] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 21 Feb
- 2024 03:08:37 -0800
-Message-ID: <3a044447-375f-8f5d-1d4e-b421ed0a2c1f@quicinc.com>
-Date: Wed, 21 Feb 2024 16:38:34 +0530
+	s=arc-20240116; t=1708514093; c=relaxed/simple;
+	bh=j/UrxbqGXjMApeAYrsxmXtVgP8/WQvYKxK+3jW73fp0=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=S4fxuAl8zM4nh129DQ8yB6Kcl/Ny5BH3kGsjziaCyOGIrZ8BCPKYJItRz6rOB0r8nDRHzjNc/O4pPnnaqYb0OfWXdixZBS5Jq7mrg/GflZ47yMCJoNJZ3QIFkF6GIL9B1OGBKDdvfJ8gUliZuWz+3sXnobC3sbNQv1QVz/RJ0WM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rckYo-0006Z1-G5; Wed, 21 Feb 2024 12:14:46 +0100
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rckYl-0021lP-6U; Wed, 21 Feb 2024 12:14:43 +0100
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rckYl-0005JE-0O;
+	Wed, 21 Feb 2024 12:14:43 +0100
+Message-ID: <6aeef5bcc9ce007bdd3312f6b96ffb06655ae909.camel@pengutronix.de>
+Subject: Re: [PATCH v3 0/4] riscv: sophgo: add reset support for SG2042
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
+ chao.wei@sophgo.com,  conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ palmer@dabbelt.com,  paul.walmsley@sifive.com, robh+dt@kernel.org,
+ devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org,  haijiao.liu@sophgo.com,
+ xiaoguang.xing@sophgo.com, guoren@kernel.org,  jszhang@kernel.org,
+ inochiama@outlook.com
+Cc: Chen Wang <unicorn_wang@outlook.com>
+Date: Wed, 21 Feb 2024 12:14:43 +0100
+In-Reply-To: <cover.1706577450.git.unicorn_wang@outlook.com>
+References: <cover.1706577450.git.unicorn_wang@outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH 0/5] Add QPIC SPI NAND driver
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "Manivannan
- Sadhasivam" <manivannan.sadhasivam@linaro.org>
-CC: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <broonie@kernel.org>,
-        <robh@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <miquel.raynal@bootlin.com>, <richard@nod.at>,
-        <vigneshr@ti.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
-        <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
-References: <20240215134856.1313239-1-quic_mdalam@quicinc.com>
- <20240219130412.GC3281@thinkpad>
- <3ad2909d-4ac3-fff3-739d-b12a3408fa0f@quicinc.com>
- <454a7e8d-70f5-4bf5-a3f1-bf9e42672c4c@linaro.org>
- <bfa0edb7-02fd-42dd-2235-0ea34f362515@quicinc.com>
- <d9a49d77-32b1-45d1-b110-5e66155abad3@linaro.org>
-From: Md Sadre Alam <quic_mdalam@quicinc.com>
-In-Reply-To: <d9a49d77-32b1-45d1-b110-5e66155abad3@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: heR9Ezb94gQFaWmjyfV8D6KObvJhplbf
-X-Proofpoint-GUID: heR9Ezb94gQFaWmjyfV8D6KObvJhplbf
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-20_06,2024-02-21_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 bulkscore=0
- mlxlogscore=815 clxscore=1015 mlxscore=0 malwarescore=0 impostorscore=0
- priorityscore=1501 phishscore=0 spamscore=0 lowpriorityscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2402210086
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+
+On Tue, 30 Jan 2024 09:49:08 +0800, Chen Wang wrote:
+> From: Chen Wang <unicorn_wang@outlook.com>
+>=20
+> This series adds reset controller support for Sophgo SG2042 using
+> reset-simple driver.
+>=20
+> Thanks,
+> Chen
+>=20
+> [...]
+
+Applied patches 1-2 to reset/next, thanks!
+
+[1/4] dt-bindings: reset: sophgo: support SG2042
+      https://git.pengutronix.de/cgit/pza/linux/commit/?id=3D41197eb5f993
+[2/4] reset: simple: add support for Sophgo SG2042
+      https://git.pengutronix.de/cgit/pza/linux/commit/?id=3Da6166a4da5e4
+
+regards
+Philipp
 
 
-
-On 2/21/2024 4:31 PM, Krzysztof Kozlowski wrote:
-> On 21/02/2024 11:34, Md Sadre Alam wrote:
->>
->>
->> On 2/20/2024 5:06 PM, Krzysztof Kozlowski wrote:
->>> On 20/02/2024 12:32, Md Sadre Alam wrote:
->>>>
->>>>
->>>> On 2/19/2024 6:34 PM, Manivannan Sadhasivam wrote:
->>>>> On Thu, Feb 15, 2024 at 07:18:51PM +0530, Md Sadre Alam wrote:
->>>>>> This series of patches will add initial supports
->>>>>> for QPIC SPI NAND driver.
->>>>>>
->>>>>> Currently this driver support following commands
->>>>>>
->>>>>> -- RESET
->>>>>> -- READ ID
->>>>>> -- BLOCK ERASE
->>>>>> -- PAGE READ
->>>>>> -- PAGE WRITE
->>>>>> -- GET FEATURE
->>>>>> -- SET FEATURE
->>>>>> -- BAD BLOCK CHECK
->>>>>>
->>>>>> This driver has been tested with dd command with read/write page
->>>>>> with multiple file size 1MiB, 10MiB,40MiB etc.
->>>>>> Also tested with "mtd" command like mtd erase, mtd write, mtd verify etc.
->>>>>>
->>>>>
->>>>> This is not the first version isn't it? Where is the changelog describing what
->>>>> has changed since then?
->>>>
->>>>      The earlier patch was the RFC for design review only.
->>>
->>> RFC is state of patch, not version. This is v2 then.
->>>
->>> These RFC postings are really becoming mess. Some people make multiple
->>> RFCs and then post v1 hiding entire previous history... And why even
->>> bother with calling it RFC?
->>
->>    Sorry, I was not aware of this. Shall I post the next one as V3
->>    and add references to the RFC patch and this patch in the cover
->>    letter of V3?
-> 
-> Yes, like with every posting.
-Thank you.
-> 
-> Best regards,
-> Krzysztof
-> 
 
