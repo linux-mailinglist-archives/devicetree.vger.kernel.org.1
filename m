@@ -1,199 +1,136 @@
-Return-Path: <devicetree+bounces-44443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43A5685E3C4
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 17:53:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0DB885E3DA
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 17:58:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED42A283D7D
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 16:53:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C10D283724
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 16:58:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D728682D97;
-	Wed, 21 Feb 2024 16:53:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF12C839E5;
+	Wed, 21 Feb 2024 16:58:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="cuVz+nsr"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="SfJ0k8TL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83BCE82D7B;
-	Wed, 21 Feb 2024 16:53:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAE7C82D99;
+	Wed, 21 Feb 2024 16:58:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708534406; cv=none; b=PH9RmglEpdbGV2Q+DHotdLhscjtJ5PFL9hxukADrNL7Rrq+gXB8IsCpQS6dC/7ORUsdL5rymV+fSCJhOK07DDigq/a4yUwyPdc8H0avsVVxrBye8dKOiPbvvibMJj6p2K6IHpb+DiaqDGtnFSDWpJt/ylvsnx3Imvo9K4Iv8BWk=
+	t=1708534698; cv=none; b=cMNgn2I/LfhA41dGSfwsYBnY8L8AwTTUyd+8b1Gzo2lsLtgiS7Nve2FWtwdZ45Rxity2ffWd7zF7VO4VoDpFRqUTHU/+IUuXcmn5+Kfu/2PcRdVCZniMAqXY/z16xNTOj0LOyR5gWHURrgodWfgyeyH/ojBr2A1E5bmEoKDRb5w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708534406; c=relaxed/simple;
-	bh=TTQ1doLzdpWsvm11itbyYFS24byaEDHmKqetfhZEnrA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=W+twxQzTQQOInXz/g8fwTVu8wbW4VTHtThEodpGx5BZPel9HsSinnuAK0mNj3iWglnSxaQfEh0Y75laJBBfX76ncOeIYnGL1a6/todrTUiA0LAuQZmsL40lAQZgHUvDscThtHk1wWHm0i9equx3FSiUWb8l3ZpV1Blb0nz+R4Y8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=cuVz+nsr; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41LGrF5c111758;
-	Wed, 21 Feb 2024 10:53:15 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1708534395;
-	bh=N52cOwBX2hZh18Hr3wGyow7igCwW2LIHlxO5yXnuMQY=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=cuVz+nsrDulnWjzObnBSTJUUH4YrZajGs/l+5hXj2D6MBrKhoO5Op/u5rTf0prhk3
-	 KCfksj76ku9WZu1s+tZPmEqsUD66F7wJLTQArxt9Wn9FVZaDhjFkRt5fYBaJ/mAvP7
-	 BJcWK1xr3dMPOBHuYKd39DwXOLsi1nqGnE/09hO4=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41LGrFwd051916
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 21 Feb 2024 10:53:15 -0600
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 21
- Feb 2024 10:53:15 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 21 Feb 2024 10:53:15 -0600
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41LGrEm6040094;
-	Wed, 21 Feb 2024 10:53:14 -0600
-Message-ID: <415ee6d4-fe26-4582-80f3-9b503d308fdf@ti.com>
-Date: Wed, 21 Feb 2024 10:53:14 -0600
+	s=arc-20240116; t=1708534698; c=relaxed/simple;
+	bh=wty1BLxtNSbJqrHVxaApJzAOEfZH1zGeAlvur02vYvI=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
+	 References:In-Reply-To; b=kThnPf+sQpn4+haKgkZ6CYnyBlgxOB6Ej7q1FS+TmYCGoYxlePcHjVnggyAt1dljoRdNGcL3xRspFJMWYzDNb3wgkminYuOaAhUvta6uzA00QU4I1BoZEOamslW4sSCggoRUATPTzBQnTRw5zPzAZcvYB6udNs0Bv3Le/NGNDCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=SfJ0k8TL; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 635216000C;
+	Wed, 21 Feb 2024 16:58:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1708534694;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=wty1BLxtNSbJqrHVxaApJzAOEfZH1zGeAlvur02vYvI=;
+	b=SfJ0k8TLbTGFe6vYyZiRNzhgl7QOjFdxgoS6K+byz3NEqavL3nTTuDDhrg3ngPUhK3anxM
+	6KzhhiLlqKkNS1JagCdArjvU2lSR1DuzKGWLYlsvRNlv5G6vMUvkHqxHNW6Js++uVze4LH
+	5Gi6LGEM3pwpq53tW63VvZoIbmx0hf4vH2UMT+91JnWUNM8rKJvbo9GhGuzbtggd9DXR52
+	8Fk5vtUDsHzsigFox75xnFxUjnEZywaEKh5SX2euXoCrw6pNFw12B1317QGh8zgV+NPEqH
+	YZl7UBNflE8i9AaSwJ6FlhnYKvLArPDe5L7bi/DxQD+9VcvWL9afKVHjmuq6fA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: k3-j721e-evm-pcie0-ep: Extend overlay for
- PCIE1 in EP Mode
-Content-Language: en-US
-To: Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>
-References: <20240220105006.1056824-1-s-vadapalli@ti.com>
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20240220105006.1056824-1-s-vadapalli@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 21 Feb 2024 17:58:13 +0100
+Message-Id: <CZAX02IL1N1J.2GQR9D73GLRZB@bootlin.com>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH 01/13] dt-bindings: i2c: nomadik: add timeout-usecs
+ property bindings
+Cc: "Rob Herring" <robh@kernel.org>, "Andi Shyti" <andi.shyti@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-mips@vger.kernel.org>, "Gregory Clement"
+ <gregory.clement@bootlin.com>, "Vladimir Kondratiev"
+ <vladimir.kondratiev@mobileye.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>
+To: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, "Linus Walleij"
+ <linus.walleij@linaro.org>
+X-Mailer: aerc 0.15.2
+References: <20240215-mbly-i2c-v1-0-19a336e91dca@bootlin.com>
+ <20240215-mbly-i2c-v1-1-19a336e91dca@bootlin.com>
+ <20240216022704.GB850600-robh@kernel.org>
+ <CZ6E24VPJKJG.35LACFD6ZV5KE@bootlin.com>
+ <CACRpkdZZhhzg5SY7U5dv_OfLEVejRFom4V9nCfkQXunAw1ZXSw@mail.gmail.com>
+ <CZ94LGRSF9KN.15ZO1VRMIQVR8@bootlin.com>
+In-Reply-To: <CZ94LGRSF9KN.15ZO1VRMIQVR8@bootlin.com>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On 2/20/24 4:50 AM, Siddharth Vadapalli wrote:
-> Update the existing overlay which configures PCIE0 instance of PCIe on
-> J721E-EVM in Endpoint mode of operation, in order to configure PCIE1
-> instance of PCIe as well in Endpoint mode of operation. Hence, change the
-> name of the overlay to reflect its updated functionality.
-> 
+Hello,
 
-What if I only want PCIe0 to be in EP mode? Why not make a separate
-DTBO for PCIe1, that way I can have one in EP and the other in RC,
-and mix and match as needed.
+On Mon Feb 19, 2024 at 3:29 PM CET, Th=C3=A9o Lebrun wrote:
+> On Mon Feb 19, 2024 at 3:06 PM CET, Linus Walleij wrote:
+> > On Fri, Feb 16, 2024 at 10:16=E2=80=AFAM Th=C3=A9o Lebrun <theo.lebrun@=
+bootlin.com> wrote:
+> > > i2c-mpc (fsl,timeout) and i2c-gpio (i2c-gpio,timeout-ms). I agree thi=
+s
+> > > prop has no reason to be compatible-specific.
+> > >
+> > > Feedback from dt-bindings and I2C host maintainers would be useful: w=
+hat
+> > > should the property be named? Having the unit makes it self-descripti=
+ve,
+> > > which sounds like a good idea to me. timeout-usecs, timeout-us, anoth=
+er
+> > > option?
+> >
+> > Use i2c-transfer-timeout-ms in my opinion, so it us crystal clear
+> > what that property is for.
+>
+> Using =C2=B5s (microseconds) would be OK? I'm not sure yet about the exac=
+t
+> timeout desired but a one millisecond granularity might not be enough
+> for the Mobileye usecase.
+>
+> Expect incoming patches to use the I2C controller in Fast Mode Plus
+> (1Mbps) and High Speed Mode (3.4Mbps). Gotta go fast!
+>
+> > As Rob mentioned this isn't in the kernel schemas but in dtschema, so
+> > you need to patch this:
+> > https://github.com/robherring/dt-schema
+>
+> Indeed. The other question if we do microseconds is the
+> suffix: -us, -usecs, -microseconds, etc? I picked -usecs for my v1, but
+> a grep tells me I am the only user of this suffix. -us is much more
+> common.
+>
+> BTW i2c-controller.yaml already has a =C2=B5s timeout:
+> i2c-scl-clk-low-timeout-us
 
-Andrew
+Note: I've sent a draft patch to dt-schema. See:
+https://github.com/devicetree-org/dt-schema/pull/129
 
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> ---
-> 
-> Hello,
-> 
-> This patch is based on linux-next tagged next-20240220.
-> 
-> Regards,
-> Siddharth.
-> 
->   arch/arm64/boot/dts/ti/Makefile               |  8 ++---
->   ....dtso => k3-j721e-evm-pcie0-pcie1-ep.dtso} | 30 +++++++++++++++++--
->   2 files changed, 32 insertions(+), 6 deletions(-)
->   rename arch/arm64/boot/dts/ti/{k3-j721e-evm-pcie0-ep.dtso => k3-j721e-evm-pcie0-pcie1-ep.dtso} (60%)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index d601c52ab181..c7c9508e3980 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -75,7 +75,7 @@ k3-j721e-evm-dtbs := k3-j721e-common-proc-board.dtb k3-j721e-evm-quad-port-eth-e
->   dtb-$(CONFIG_ARCH_K3) += k3-j721e-beagleboneai64.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm-gesi-exp-board.dtbo
-> -dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm-pcie0-ep.dtbo
-> +dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm-pcie0-pcie1-ep.dtbo
->   dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk-csi2-dual-imx219.dtbo
->   
-> @@ -126,8 +126,8 @@ k3-am68-sk-base-board-csi2-dual-imx219-dtbs := k3-am68-sk-base-board.dtb \
->   	k3-j721e-sk-csi2-dual-imx219.dtbo
->   k3-am69-sk-csi2-dual-imx219-dtbs := k3-am69-sk.dtb \
->   	k3-j721e-sk-csi2-dual-imx219.dtbo
-> -k3-j721e-evm-pcie0-ep-dtbs := k3-j721e-common-proc-board.dtb \
-> -	k3-j721e-evm-pcie0-ep.dtbo
-> +k3-j721e-evm-pcie0-pcie1-ep-dtbs := k3-j721e-common-proc-board.dtb \
-> +	k3-j721e-evm-pcie0-pcie1-ep.dtbo
->   k3-j721e-sk-csi2-dual-imx219-dtbs := k3-j721e-sk.dtb \
->   	k3-j721e-sk-csi2-dual-imx219.dtbo
->   k3-j721s2-evm-pcie1-ep-dtbs := k3-j721s2-common-proc-board.dtb \
-> @@ -147,7 +147,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
->   	k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
->   	k3-am68-sk-base-board-csi2-dual-imx219-dtbs \
->   	k3-am69-sk-csi2-dual-imx219-dtbs \
-> -	k3-j721e-evm-pcie0-ep.dtb \
-> +	k3-j721e-evm-pcie0-pcie1-ep.dtb \
->   	k3-j721e-sk-csi2-dual-imx219-dtbs \
->   	k3-j721s2-evm-pcie1-ep.dtb
->   
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso b/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-pcie1-ep.dtso
-> similarity index 60%
-> rename from arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso
-> rename to arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-pcie1-ep.dtso
-> index 4062709d6579..5eaf304e3102 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-pcie1-ep.dtso
-> @@ -1,7 +1,7 @@
->   // SPDX-License-Identifier: GPL-2.0-only OR MIT
->   /**
-> - * DT Overlay for enabling PCIE0 instance in Endpoint Configuration with the
-> - * J7 common processor board.
-> + * DT Overlay for enabling PCIE0 and PCIE1 instances in Endpoint Configuration
-> + * with the J7 common processor board.
->    *
->    * J7 Common Processor Board Product Link: https://www.ti.com/tool/J721EXCPXEVM
->    *
-> @@ -24,6 +24,10 @@ &pcie0_rc {
->   	status = "disabled";
->   };
->   
-> +&pcie1_rc {
-> +	status = "disabled";
-> +};
-> +
->   &cbass_main {
->   	#address-cells = <2>;
->   	#size-cells = <2>;
-> @@ -50,4 +54,26 @@ pcie0_ep: pcie-ep@2900000 {
->   		phys = <&serdes0_pcie_link>;
->   		phy-names = "pcie-phy";
->   	};
-> +
-> +	pcie1_ep: pcie-ep@2910000 {
-> +		compatible = "ti,j721e-pcie-ep";
-> +		reg = <0x00 0x02910000 0x00 0x1000>,
-> +		      <0x00 0x02917000 0x00 0x400>,
-> +		      <0x00 0x0d800000 0x00 0x00800000>,
-> +		      <0x00 0x18000000 0x00 0x08000000>;
-> +		reg-names = "intd_cfg", "user_cfg", "reg", "mem";
-> +		interrupt-names = "link_state";
-> +		interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
-> +		ti,syscon-pcie-ctrl = <&scm_conf 0x4074>;
-> +		max-link-speed = <3>;
-> +		num-lanes = <2>;
-> +		power-domains = <&k3_pds 240 TI_SCI_PD_EXCLUSIVE>;
-> +		clocks = <&k3_clks 240 1>;
-> +		clock-names = "fck";
-> +		max-functions = /bits/ 8 <6>;
-> +		max-virtual-functions = /bits/ 8 <4 4 4 4 0 0>;
-> +		dma-coherent;
-> +		phys = <&serdes1_pcie_link>;
-> +		phy-names = "pcie-phy";
-> +	};
->   };
+Feedback from I2C maintainers would confirm or infirm that this goes in
+the right direction.
+
+Thanks,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
