@@ -1,57 +1,61 @@
-Return-Path: <devicetree+bounces-44478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A2B385E6BC
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 19:55:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EC4D85E6D4
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 20:02:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3AD65B267D0
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 18:55:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6512285E70
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 19:02:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D4C58593D;
-	Wed, 21 Feb 2024 18:55:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFB148593E;
+	Wed, 21 Feb 2024 19:02:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JL4f1MhE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W0GKN4uz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2002985926;
-	Wed, 21 Feb 2024 18:54:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8810769DE5;
+	Wed, 21 Feb 2024 19:02:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708541700; cv=none; b=GX3Hgr51uT1pGN7nUU/iTAh1fTIjb+kF4tWS2uPhulLBW8EkpqMPhL9MmkJR9rag2Jos9922R17sz4au1dXnuDaD6PbPnD/u+rIZVW/YRR4J/mODg9j1nL/VseXKzQveX/20XeA1Dfw9N6FRLpyKkCgoxGe5sLqVZB8MpDFu91g=
+	t=1708542165; cv=none; b=oNsbQ5hOBmeZBnUZ6hI5CqjJxpbvrEuol2lZoag+stIlXhbdhLr7LBO2HdKzG1BWQ6i0MhJKyCJVVNg7bPR2g+sBftTPaD4cxNrv4imk8Eal02OvK9vsZ6fm90dU/p7zMfyaCp5eTvaHwvyKr9lfCZtdnSWaUZ0IuBAnPdkJKb8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708541700; c=relaxed/simple;
-	bh=Jh0l9s/OaCV3bCuHry8sm0OOyqREosn9JrZQ9umrq7Y=;
+	s=arc-20240116; t=1708542165; c=relaxed/simple;
+	bh=Kq56kAG03QGNn+CX3JoT3D4J50nG3wBXsto8joaj6nA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c0OA1XXgYlzqEFasC3zZcc8DK8iA8mEV264viZ2wgDx2Of2My8Yemb4KH0kKyp5y1KQOd8g0g1tcMHwKS+j29hPypKy7IJwktg1XGWWoe0j3IXAAS00hdiNmJZRhukP0Q1tKMtw8Dl7gTHXPQoAvmm9PeLngq1E2rp0/Lj0qmBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JL4f1MhE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27454C433F1;
-	Wed, 21 Feb 2024 18:54:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=c6Y4oz5WqoqzNHJW0hzxX/bc8jCfvcP9pBxS0cK55adEVkY1lUvHP+wTOe37ni6/MMiyqyOlJMhOHn7fPIAcp9968+DfHcv489jK4Kze5QKrtTO7oqzmcTIedlAqUrQhKpXPBK8+GhtBnQkyZk4uBHpbuZWrZI27vyBMDlzMu6M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W0GKN4uz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD80AC433C7;
+	Wed, 21 Feb 2024 19:02:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708541699;
-	bh=Jh0l9s/OaCV3bCuHry8sm0OOyqREosn9JrZQ9umrq7Y=;
+	s=k20201202; t=1708542164;
+	bh=Kq56kAG03QGNn+CX3JoT3D4J50nG3wBXsto8joaj6nA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JL4f1MhE9m1YXkzejJB5OF1kGPwFEykYLL1M/7+97FQgC+jq4QFKX48DFP/S0mf7n
-	 MfJghzF9K/8iKnp0ciL+XJa2goHThVZvq+w2r7HZdBLw4EtGnnOvl35UZ7VAvMkdfM
-	 qvjmQsdDpKoMBhClfDcc69oUoom7ndnkx1XBRDNfO9GYYc0KQvBUHzqrQcIU9mXArW
-	 hwXpl/PzgYTU34J4eV1YIlA4MTQYDSCpW1kh7+FhGZ0U/ntMLHcroTymfugEv79JBn
-	 +3szynYfd1Zaylc9o1KYoGyDMZgDGLc4VDIp/KUBnj+zYV/8b764Bz1j45uOZwOpd1
-	 aazsaavG9dNmw==
-Date: Wed, 21 Feb 2024 18:54:54 +0000
+	b=W0GKN4uzj/+puIOtsCFZuLrHJTzQ0jyTBfwk23twnDP9l6LLMEt0g1HJpcz5Ai13s
+	 t383J/cZ8fQM4ntz6Paz/Y4EnD4j6RbyqnBi4/jPnaH6Be6iBJjFW+kf5sDZxNVADn
+	 7GUyC44M1Bl6GDGo2v2DVoAtmZAU9BdV9kg76H92SrbM2UPqIto0x6H3WWFU5NvA4h
+	 fpY5G95mIX/QimLAWQsW9N8Mg+Cjb2vJV2S1kPMT69H++A4UofxxstphFuUdF6zrL7
+	 H2ibVLF8FqygO9iv3+9rHdmGhdyAO59ZTdXuTmhNj2/ihmv44lWrzbX9tG0TzLdccq
+	 a77NM5l6jjb/Q==
+Date: Wed, 21 Feb 2024 19:02:38 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	denis.ciocca@st.com, linus.walleij@linaro.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH] dt-bindings: iio: st-sensors: Add IIS2MDC magnetometer
-Message-ID: <20240221-undecided-union-4078db711693@spud>
-References: <20240221175810.3581399-1-m.felsch@pengutronix.de>
+To: Michael Walle <mwalle@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	devicetree@vger.kernel.org, Sean Wang <sean.wang@mediatek.com>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm64: mediatek: add Kontron
+ 3.5"-SBC-i1200
+Message-ID: <20240221-trance-handheld-59c5066aeca6@spud>
+References: <20240221155905.1217340-1-mwalle@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,58 +63,64 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ULmJpzOTRNdVIOBt"
+	protocol="application/pgp-signature"; boundary="vjJZp3HexdVYJTnL"
 Content-Disposition: inline
-In-Reply-To: <20240221175810.3581399-1-m.felsch@pengutronix.de>
+In-Reply-To: <20240221155905.1217340-1-mwalle@kernel.org>
 
 
---ULmJpzOTRNdVIOBt
+--vjJZp3HexdVYJTnL
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 21, 2024 at 06:58:10PM +0100, Marco Felsch wrote:
-> Add the iis2mdc magnetometer support which is equivalent to the lis2mdl.
+On Wed, Feb 21, 2024 at 04:59:04PM +0100, Michael Walle wrote:
+> Add the compatible string for the Kontron 3.5"-SBC-i1200 single board
+> computer.
 >=20
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> ---
->  Documentation/devicetree/bindings/iio/st,st-sensors.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml b/D=
-ocumentation/devicetree/bindings/iio/st,st-sensors.yaml
-> index fff7e3d83a02..ee593c8bbb65 100644
-> --- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-> +++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-> @@ -64,6 +64,7 @@ properties:
->            - st,lsm9ds0-gyro
->        - description: STMicroelectronics Magnetometers
->          enum:
-> +          - st,iis2mdc
+> Signed-off-by: Michael Walle <mwalle@kernel.org>
 
-Without a fallback compatible to the equivilent device, how does a
-driver bind to this device?
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
 Cheers,
 Conor.
 
->            - st,lis2mdl
->            - st,lis3mdl-magn
->            - st,lsm303agr-magn
+> ---
+> v3:
+>  - drop description and add to mt8395 existing entry
+>=20
+> v2:
+>  - convert enum to const as there is only one specific board
+> ---
+>  Documentation/devicetree/bindings/arm/mediatek.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Docume=
+ntation/devicetree/bindings/arm/mediatek.yaml
+> index 09f9ffd3ff7b..29ebe1f9c1d2 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> @@ -353,6 +353,7 @@ properties:
+>            - const: mediatek,mt8365
+>        - items:
+>            - enum:
+> +              - kontron,3-5-sbc-i1200
+>                - mediatek,mt8395-evk
+>                - radxa,nio-12l
+>            - const: mediatek,mt8395
 > --=20
 > 2.39.2
 >=20
 
---ULmJpzOTRNdVIOBt
+--vjJZp3HexdVYJTnL
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdZG/gAKCRB4tDGHoIJi
-0u+ZAP9Zr+6N1XZjes/rf+rNJqpgfQs8owLck2P23SipRZVnXAEAr0zKQ7xJNxz0
-MpFoROjvKA9vwOuXthDy41hZuXC6ngk=
-=gf8S
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdZIzgAKCRB4tDGHoIJi
+0hdYAPsEFG/2oLEhg2asBC0ZJ9IOZ+gngGyXIlvYt2JvKSi4xgEA+D+t9lQSCW7p
+Fgg/S4QdArJbqce3ktlR/KlQUrx6SAw=
+=8mZJ
 -----END PGP SIGNATURE-----
 
---ULmJpzOTRNdVIOBt--
+--vjJZp3HexdVYJTnL--
 
