@@ -1,192 +1,157 @@
-Return-Path: <devicetree+bounces-44297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACBE685D654
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 12:02:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2040D85D66B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 12:04:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D85D11C2267E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 11:02:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 497931C229D7
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 11:04:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D13CD3E47C;
-	Wed, 21 Feb 2024 11:01:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DEAD3E49B;
+	Wed, 21 Feb 2024 11:04:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="l9r7C64o"
+	dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b="smYDr6/n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from meesny.iki.fi (meesny.iki.fi [195.140.195.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 263DF3E481
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 11:01:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708513288; cv=none; b=S1XZjSAXj7L66EWhpCd7XHzQgWM4Xblg5rFPVlhbhOSKd6JY5ei1V3HHIEA+r1+z+5LKmdAytUH14w7u5ix8Xlpp3omNy4RsJKn5qLOTUpx5jPzv5TmWK/924gT/O4GisdAWHI2NXiSVwdBwCf4y/BIv6XGj8Wjn0OTiv1cn/RU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708513288; c=relaxed/simple;
-	bh=8Pqi2OvYHkdbbzOZoaZOwv6BUpCoATH4Y3bMmVwaWIY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rBKPLdDcH3r5/+JUeQw+VbKqwPv6PsgSGUo4BmAUyw6tqytGFEd3EkD56ugd44PVDk1DZ81nzy5FjO8Li0DQwBN3xqmDrGDGRvKOZ7OE/ZAzmAnQIOrx9BE0lgVW130xoaJSmd8GEvb8iQQ3Y2N7a49wW8LPfmEr/6f4o3y+lMw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=l9r7C64o; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5650065ff86so688603a12.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 03:01:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708513285; x=1709118085; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=m2pkJbBBVU7OxhHun8X03GydiaahosMvy5Ph96bySx0=;
-        b=l9r7C64ol2749jhgkmYYmYtTU3G0tOsl3Qfxkb1vaerB+bCdb9kZFUwkjWxkAM7L4i
-         jSwJ7bcw8pvkhR0e7fqV8AzGgCrxi61OnWCnPI9ObEeMIYLe2vKdlyZy8g5TZcZy+ExT
-         45o6xzbYNWFCfG6CFD/tBsn+L1tBQ1Ba2bTb0M3VwE5fjqo8LgAX0AqwgqlbWSlCF5Xm
-         4dy8EcceStsIOG4sa4dNqqx7UoeCMWkhHThNKbyb3qyrBYP500Qr7WH3cQ8Fx+8/q643
-         7rwvoF3R3jTMeFOrA7NQ4tbdjesBxjEdlyJeHEWOd1MGrk4QDyIFvhhpjrV1XmcnGbJh
-         kqDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708513285; x=1709118085;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=m2pkJbBBVU7OxhHun8X03GydiaahosMvy5Ph96bySx0=;
-        b=VB5reK+XxngB+nm8xhPZjS4R6+BJtWqc0ElZAvKDU748RfuVc9n4z9Bnku0Brh+yfg
-         Qp13d13+8onpWfaxH+8DWArn6NrUGZtXBmWzL+tNxQcKpi4PZqT33Y9zp6/Cu1VREkeH
-         4JIcNDIxWvlWo4adfYymgsNFnIY5W22BEkwLAZYmXDx8I2LdTo7T5L+BiR+Ex2R0MBLW
-         EaY2z1pysS/4eeLfruocC40fI0CouUPKOjvYlizWk9tc8PgLN4i9Zo2yr08CR2OZphJI
-         xH6yZO66mMN3DNL7D4ff2emVByYU1NadxLAOAJmqRkH2eKFL3kw/oGzwgtgF93+72aJJ
-         /sQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW3BJpsH02bQLyieYIPJO9ByblfGEYB9GHqGKs0j8hjp68xlp1KicWWLfLnbc0VKgfPp1wpQOI+D+9Ddsdz/uVihXZhycmKw976Uw==
-X-Gm-Message-State: AOJu0YwE8MD5NyaInIbn6eGWMLS+BI+8YSc+sriQpRMRIuOQN0EAGzQY
-	FWzr9hE5XrlI3hdsTyCGTJWd+9qRnc3x4DZ3anNNwbiiBXWAGghGOTuUbYYtwPo=
-X-Google-Smtp-Source: AGHT+IGKFQfxxh8f92W176IqOsPZLnlvo1236gn/NcK4osUoufn8tePgwwNQB8Vjdhu3+BPGeKco8w==
-X-Received: by 2002:a05:6402:e8d:b0:561:ea0:e234 with SMTP id h13-20020a0564020e8d00b005610ea0e234mr20258262eda.16.1708513285522;
-        Wed, 21 Feb 2024 03:01:25 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id i23-20020a05640200d700b005648745b23bsm2429714edu.90.2024.02.21.03.01.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Feb 2024 03:01:25 -0800 (PST)
-Message-ID: <d9a49d77-32b1-45d1-b110-5e66155abad3@linaro.org>
-Date: Wed, 21 Feb 2024 12:01:22 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FB99523D;
+	Wed, 21 Feb 2024 11:04:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=195.140.195.201
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708513450; cv=pass; b=g2xGib6FMuGzoOUtbtEhMx2a3TeDLDLub/sJUDt7oW1hXlNEn1iwnqHObVsMrAy2bFctEFGGmtKh8Lub4En17YDp/wb5ECqNJ3PLBKndXAW7uAwYs6KQnmgAmPJRyNNpVyp0m1x5Xs29kUUGXq2eNzXYaNYchWbc+306wNdVGQU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708513450; c=relaxed/simple;
+	bh=rtlDGn0L2qfmAFjQSQW5Jgc5ZYLnl1rCo0+bj014TNg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hP+x0N/lvc9meZuStKWqBqJygwoGKPBVIUhOcW86tCZzY4azHaTxi4xnfAFB0F/Ej7wAicL29QUoCPqolByZpSKSwmRXnu0FLU37VGOumDu2w4Fsd/umNK1kLXf5Y9SMpuDjgJ9TJDHa834WqgrpL/QyKQhrYDrV7wh+7ppGdzc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b=smYDr6/n; arc=pass smtp.client-ip=195.140.195.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
+Received: from hillosipuli.retiisi.eu (2a00-1190-d1dd-0-c641-1eff-feae-163c.v6.cust.suomicom.net [IPv6:2a00:1190:d1dd:0:c641:1eff:feae:163c])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sailus)
+	by meesny.iki.fi (Postfix) with ESMTPSA id 4Tftgn688wzyVn;
+	Wed, 21 Feb 2024 13:04:05 +0200 (EET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
+	t=1708513445;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=EG2HxwcbqWIH33ppNrbAfpfTSGk1WUofkhCL91CbaS8=;
+	b=smYDr6/nQt09D2u1w0hMnKiYe8qcML8iJE08YhvRWFiI/U242roEkMx+GL6ZZUXy4bhRyY
+	r5DUgD2+AHQusPC42qn2vOS94+4wa89wU0u32rPOjNxHKGNOVfF0Hhyk47SxVTs2qYyQVb
+	fYN81Ncry4xC8R5B0qGPtvG1P137dyM=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=meesny; t=1708513445;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=EG2HxwcbqWIH33ppNrbAfpfTSGk1WUofkhCL91CbaS8=;
+	b=LSNtxpQErUjwKnPOJOg621QXNvlvKZbCEcq5FsqzwSXfzPyOiEdEZ35VqmBreF8tkhMJfZ
+	YXLvqjwFezyg946tfsvWGKEw5PGBfep0HhoZoj3EYEaDoaUdLogxklpP0TQD3Bw7sD1Bth
+	FbbVeR8OChkbYAcFBk9fzmSoSMniARw=
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Seal: i=1; s=meesny; d=iki.fi; t=1708513445; a=rsa-sha256; cv=none;
+	b=SaOCbokch7GfO1SCxcRag7ngGcpjtNJGy+FfIYSgcWg3nqukrtbgnXYiM79u71gXV2QNEg
+	IfJIbtTpdu5Ml6fehc+XSIxweqG32HSaFNyMUIe7t4JGRd84CSw3hHl1NpfNc1K8CmkRQZ
+	l8tu4+g8uTP8rGRlcTFABo/TXez7QJo=
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 504DE634C93;
+	Wed, 21 Feb 2024 13:04:05 +0200 (EET)
+Date: Wed, 21 Feb 2024 11:04:05 +0000
+From: Sakari Ailus <sakari.ailus@iki.fi>
+To: Julien Massot <julien.massot@collabora.com>
+Cc: linux-media@vger.kernel.org, kernel@collabora.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	mchehab@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Subject: Re: [PATCH v3 3/4] media: i2c: add MAX96717 driver
+Message-ID: <ZdXYpc2csVnhtZH9@valkosipuli.retiisi.eu>
+References: <20240111130349.2776699-1-julien.massot@collabora.com>
+ <20240111130349.2776699-4-julien.massot@collabora.com>
+ <ZcZEQyCb2FBsmbsK@valkosipuli.retiisi.eu>
+ <e09ea4d3-361a-4892-a098-98de8da80e65@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/5] Add QPIC SPI NAND driver
-Content-Language: en-US
-To: Md Sadre Alam <quic_mdalam@quicinc.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: andersson@kernel.org, konrad.dybcio@linaro.org, broonie@kernel.org,
- robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
- linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mtd@lists.infradead.org, quic_srichara@quicinc.com,
- quic_varada@quicinc.com
-References: <20240215134856.1313239-1-quic_mdalam@quicinc.com>
- <20240219130412.GC3281@thinkpad>
- <3ad2909d-4ac3-fff3-739d-b12a3408fa0f@quicinc.com>
- <454a7e8d-70f5-4bf5-a3f1-bf9e42672c4c@linaro.org>
- <bfa0edb7-02fd-42dd-2235-0ea34f362515@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <bfa0edb7-02fd-42dd-2235-0ea34f362515@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e09ea4d3-361a-4892-a098-98de8da80e65@collabora.com>
 
-On 21/02/2024 11:34, Md Sadre Alam wrote:
+Hi Julien,
+
+On Wed, Feb 21, 2024 at 11:34:38AM +0100, Julien Massot wrote:
+> Hi Sakari,
 > 
+> On 2/9/24 16:26, Sakari Ailus wrote:
+> > Hi Julien,
+> > 
+> > On Thu, Jan 11, 2024 at 02:03:48PM +0100, Julien Massot wrote:
+> > > This driver handle the MAX96717 serializer in tunnel mode.
+> > > All incoming CSI traffic will be tunneled through the GMSL2
+> > > link.
+> > > 
+> > > Signed-off-by: Julien Massot <julien.massot@collabora.com>
+> > > ---
+> > > Change since v2:
+> > >   - Use CCI helpers instead of recoding register access
+> > >   - add missing bitfield header
+> > > ---
+> > >   MAINTAINERS                  |   7 +
+> > >   drivers/media/i2c/Kconfig    |  13 +
+> > >   drivers/media/i2c/Makefile   |   1 +
+> > >   drivers/media/i2c/max96717.c | 956 +++++++++++++++++++++++++++++++++++
+> > >   4 files changed, 977 insertions(+)
+> > >   create mode 100644 drivers/media/i2c/max96717.c
+> > > 
+> > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > index 675e5d63a25b..a64a7932fe76 100644
+> > > --- a/MAINTAINERS
+> > > +++ b/MAINTAINERS
+> > > @@ -13039,6 +13039,13 @@ S:	Maintained
+> > >   F:	Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
+> > >   F:	drivers/staging/media/max96712/max96712.c
+> > > +MAX96717 GMSL2 SERIALIZER DRIVER
+> > > +M:	Julien Massot <julien.massot@collabora.com>
+> > > +L:	linux-media@vger.kernel.org
+> > > +S:	Maintained
+> > > +F:	Documentation/devicetree/bindings/media/i2c/maxim,max96717f.yaml
+> > 
+> > What's that "f" for? It's in bindings but not in the name of the driver.
+> > Not a typo I suppose? :-)
 > 
-> On 2/20/2024 5:06 PM, Krzysztof Kozlowski wrote:
->> On 20/02/2024 12:32, Md Sadre Alam wrote:
->>>
->>>
->>> On 2/19/2024 6:34 PM, Manivannan Sadhasivam wrote:
->>>> On Thu, Feb 15, 2024 at 07:18:51PM +0530, Md Sadre Alam wrote:
->>>>> This series of patches will add initial supports
->>>>> for QPIC SPI NAND driver.
->>>>>
->>>>> Currently this driver support following commands
->>>>>
->>>>> -- RESET
->>>>> -- READ ID
->>>>> -- BLOCK ERASE
->>>>> -- PAGE READ
->>>>> -- PAGE WRITE
->>>>> -- GET FEATURE
->>>>> -- SET FEATURE
->>>>> -- BAD BLOCK CHECK
->>>>>
->>>>> This driver has been tested with dd command with read/write page
->>>>> with multiple file size 1MiB, 10MiB,40MiB etc.
->>>>> Also tested with "mtd" command like mtd erase, mtd write, mtd verify etc.
->>>>>
->>>>
->>>> This is not the first version isn't it? Where is the changelog describing what
->>>> has changed since then?
->>>
->>>     The earlier patch was the RFC for design review only.
->>
->> RFC is state of patch, not version. This is v2 then.
->>
->> These RFC postings are really becoming mess. Some people make multiple
->> RFCs and then post v1 hiding entire previous history... And why even
->> bother with calling it RFC?
+> Indeed that's not a typo, the Maxim's GMSL2 chips are available under
+> multiple
+> variants:
+> - MAX96717 which supports GMSL link speed 6 and 3Gbps and CSI lanes up to
+> 2.5Gbps
+> - MAX96717K which supports GMSL link speed 6 and 3Gbps and CSI lanes up to
+> 1.5Gbps
+> - MAX96717F which only supports GMSL link speed 3Gbps and CSI lanes up to
+> 2.5Gbps
 > 
->   Sorry, I was not aware of this. Shall I post the next one as V3
->   and add references to the RFC patch and this patch in the cover
->   letter of V3?
+> They have the same register mapping, so we should be able to add support for
+> the other variants in the future.
 
-Yes, like with every posting.
+I think you should probably do this for the bindings, too. I'd thus drop
+"f" from the file name.
 
-Best regards,
-Krzysztof
+-- 
+Regards,
 
+Sakari Ailus
 
