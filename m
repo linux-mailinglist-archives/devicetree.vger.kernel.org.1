@@ -1,123 +1,224 @@
-Return-Path: <devicetree+bounces-44243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86E0A85D2D1
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 09:49:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A15085D2DA
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 09:51:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4198A285CF9
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 08:49:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A981D1F235B4
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 08:51:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70DF33C6AB;
-	Wed, 21 Feb 2024 08:49:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 166E23C6BC;
+	Wed, 21 Feb 2024 08:51:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Kmu0AQNn"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="RAIbUh6v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2BA43C46A
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 08:49:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20D5A3B793;
+	Wed, 21 Feb 2024 08:51:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708505363; cv=none; b=tAbe8nbInnzutY7ekfRMW4sHa2m3Y9OwyzaKAszXSDNVoJgVMuNWzopdaMmpQ6HKL9wcoVi++TZiufz9vQLpfWufe+7p0zyGLYuwd5nAlsv/zDwvCIf+fyHCVLzxsVFX9+24jsNb4L/jMA3fae6Jai2VH84moFI60jsfkq1ITn8=
+	t=1708505504; cv=none; b=Ul2kZSw0edmbRtFpGVNwaXgTGD0td83a+wIbXSW1KM3ZAAM9Er1Q/Y/qKwT2TisnpBjbC5+eYMuBnZW+VcfX0WYsZGASDGAJRg9K9tqvdXEqpbfF0yZtUNh9XKbgxq2kb0h5cnO69AjmCJ2PMRq2SruLiGQQdT4PW4hOCg00dCk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708505363; c=relaxed/simple;
-	bh=XkuaRxJkQSF/7nCet1D50bgwrru3r4Ru5QgZ3T7rMRk=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Smvum6gVVjkTfQ4zeZA53Dnb/cVAzqtZsAZ/9D0yvXzYvWk06F6FG7W5rL2i8YUqBGS+Kf/gVjcM8P/amfCj47G59pxTWuWNeSbj/Y8d4wVMMh7e4Ci2uiWYwXNzMMEBkpybdm82ocYjFTPmkD3AXis6Qi1SWDiE/QecSSPQacA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Kmu0AQNn; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-33d18931a94so309240f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 00:49:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708505360; x=1709110160; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YoxlnSr09FiTnNUULYo8MqJGBOYUjcsnJwXawkN7t8I=;
-        b=Kmu0AQNnPrxTB1P2eFKjhq2RVz6r19AYR9ToSkU8QYdkGcxB7o+Z2RSLau+n1NF7Ur
-         8qGvdwvwB0ezE0aFuX0BZW3sw5rH/Mr1wV8kPofVF5OHv546PaPQxc7U+vTn2R+G7Ukh
-         kODLmJvdMhys6SxQjtxRh/jaUeBIhfpOHZztUbjpJvHSV/zhchnTF5eR+0ISPZF/ilkX
-         9akv3lI7ihpByOONLcc1eTQOtHHOT2vdTtdSeoGSTgfmiYVQGu9B6j6xUrjHQHb8vtkP
-         etSDrqWj1N9neS3RjnkpZQjaUVMEyPhdYFhB9Vc/o4dlTfIoKJXRMOdhSYDAMXPhZyRa
-         T30g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708505360; x=1709110160;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YoxlnSr09FiTnNUULYo8MqJGBOYUjcsnJwXawkN7t8I=;
-        b=ZtPKqVbprTq3e7Y3EMDS2Vhb7tOeXJHfO6Pi6fz/mYiVaf4aniNUeMtT7MF4qzujXp
-         2XzZ76TwdBUttAD/HFAfp734lCls2TLdfRql2Diu0snlkxTo30SumiWHUf+X7qwTxTpK
-         VRPNC0RXSyc7blQ9zL6UYZ6ypLasDu1MY493JL4J5AvNJEiYN6P1b+3HjBiaOG4HsmxE
-         kOl1he3YUodcTUzB3oyB5zHSepVqkktlHECC590Mn70MS4751S3rNZjIKFkIrWAyxleN
-         VuXE3kJSzsmW9zGXNcBAuoQ2PS7o5UlJSARNwWRnTPCOL+PGmJnXKrNoYrMwbesYkx/l
-         CpVg==
-X-Forwarded-Encrypted: i=1; AJvYcCUOerWmHpaTz4MboBh282NMPqe5gha7c4YKYRkKnl4kNttn7CmrDEjbsND/qZNAeyit6bACwqkuC2TD4hCUzWCBKmSiOTxd/rdraw==
-X-Gm-Message-State: AOJu0YxYLKF5TjtMgbBQyGE+SjYBTVyaz9hL+eRMj0ujA4pqwzW0TWkv
-	0gBlQ3thmA0XzIrGdDGJ4bU6XlZFUYzVitnqB2cXqDKk8TuFhQwrtWu4BCexNyw=
-X-Google-Smtp-Source: AGHT+IEYXaFsyWPoCNiRz2bRIoyKm0rY4vIfEIf3/J0g3R3wtKXdfDmy+z1iSFxfi1joiLdRoyM12A==
-X-Received: by 2002:a5d:584f:0:b0:33d:7afa:fb0b with SMTP id i15-20020a5d584f000000b0033d7afafb0bmr1114431wrf.15.1708505359939;
-        Wed, 21 Feb 2024 00:49:19 -0800 (PST)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id ci3-20020a5d5d83000000b0033cf2063052sm16119296wrb.111.2024.02.21.00.49.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Feb 2024 00:49:19 -0800 (PST)
-Message-ID: <ce571a9f-fe6c-4131-ab3b-cba39f537ab7@linaro.org>
-Date: Wed, 21 Feb 2024 09:49:18 +0100
+	s=arc-20240116; t=1708505504; c=relaxed/simple;
+	bh=U2xKP1+FG6hj5j28nPiVq6aHy746t6BeNF5UKoKkyV8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dtggKT19aFmdAkU2EjX7avjsNWpdLy9Mw2xIQzAAy0ZJpErLjMx/3+Z6SunwVibIWFRDVSb2gyJPwDWUg9MYophUavRlr3d82zTuodpdGnpV2PlM1axjVVcNHk9zfkrqR7ugDI3eo889s0wliyWcbZy+9ZJwfVB+HxSukqqzGeE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=RAIbUh6v; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 27C72FF80B;
+	Wed, 21 Feb 2024 08:51:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1708505499;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ewzG+Or2vfRP7XY3UgnYiV6tCm6wiDunEr+A5LjqZBQ=;
+	b=RAIbUh6vKDDmDDi8DhhbecTdObckBkSaotTDLNFMSD82+GpZQdPnFTyNUG+9KoWw2eerM/
+	/KzfjFYFy8tJWWuB07pnVGxNJ+s7e+5WemC2q958COberQ25Lbhhl908SPRWIMHpI2GRJ8
+	IqHX/pUtpRBLIVh54jA5WgWfBa4BGHCnhA2bBv42Mx+85G98nHILJQqlxSvSxzlndZVKNX
+	cIAErcPer/aV9iFka3EthukZq8c+/WRF7QmAT3LvE7fCSl08mXL3I4nn/lUEjjEFBjZqDh
+	Wg9rAYmFU+VleC4c0cRVHniAv+vguQ2qrYH1Djvive0dYkFjWQWZ1nnkcX9z8g==
+Date: Wed, 21 Feb 2024 09:51:37 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Saravana Kannan <saravanak@google.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Frank Rowand
+ <frowand.list@gmail.com>, Shawn Guo <shawnguo@kernel.org>, Wolfram Sang
+ <wsa@kernel.org>, Mark Brown <broonie@kernel.org>, Geert Uytterhoeven
+ <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, stable@vger.kernel.org, Android Kernel Team
+ <kernel-team@android.com>
+Subject: Re: [PATCH 2/2] of: property: fw_devlink: Fix links to supplier
+ when created from phandles
+Message-ID: <20240221095137.616d2aaa@bootlin.com>
+In-Reply-To: <CAGETcx_xkVJn1NvCmztAv13N-7ZGqZ+KfkFg-Xn__skEBiYtHw@mail.gmail.com>
+References: <20240220111044.133776-1-herve.codina@bootlin.com>
+	<20240220111044.133776-3-herve.codina@bootlin.com>
+	<CAGETcx_xkVJn1NvCmztAv13N-7ZGqZ+KfkFg-Xn__skEBiYtHw@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/3] clocksource: imx-sysctr: support i.MX95
-Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Bai Ping <ping.bai@nxp.com>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- Marco Felsch <m.felsch@pengutronix.de>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
-References: <20240126-imx-sysctr-v3-0-33fe801d5f31@nxp.com>
- <225c8489-0b81-402b-987a-09a46349c10d@linaro.org>
-In-Reply-To: <225c8489-0b81-402b-987a-09a46349c10d@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-On 21/02/2024 09:47, Daniel Lezcano wrote:
-> On 26/01/2024 08:09, Peng Fan (OSS) wrote:
->> i.MX95 System Counter module control register space is blocked
->> by SCMI firmware, so we use Read Register space to get the counter.
->>
->> V2:
->>    - imx95 is not compatible with the existing hardware, so add a
->>      seperate entry for i.MX95 in dt-binding.
->>    - Per Marco's comments, the global variables was removed except
->>      to_sysctr. And add a new TIMER_OF_DECLARE entry for i.MX95
->>
->> Signed-off-by: Peng Fan <peng.fan@nxp.com>
->> ---
+Hi Saravana,
+
+On Tue, 20 Feb 2024 18:40:40 -0800
+Saravana Kannan <saravanak@google.com> wrote:
+
+> On Tue, Feb 20, 2024 at 3:10 AM Herve Codina <herve.codina@bootlin.com> wrote:
+> >
+> > Since commit 1a50d9403fb9 ("treewide: Fix probing of devices in DT
+> > overlays"), when using device-tree overlays, the FWNODE_FLAG_NOT_DEVICE
+> > is set on each overlay nodes. This flag is cleared when a struct device
+> > is actually created for the DT node.
+> > Also, when a device is created, the device DT node is parsed for known
+> > phandle and devlinks consumer/supplier links are created between the
+> > device (consumer) and the devices referenced by phandles (suppliers).
+> > As these supplier device can have a struct device not already created,
+> > the FWNODE_FLAG_NOT_DEVICE can be set for suppliers and leads the
+> > devlink supplier point to the device's parent instead of the device
+> > itself.
+> >
+> > Avoid this situation clearing the supplier FWNODE_FLAG_NOT_DEVICE just
+> > before the devlink creation if a device is supposed to be created and
+> > handled later in the process.
+> >
+> > Fixes: 1a50d9403fb9 ("treewide: Fix probing of devices in DT overlays")
+> > Cc: <stable@vger.kernel.org>
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > ---
+> >  drivers/of/property.c | 16 +++++++++++++++-
+> >  1 file changed, 15 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > index 641a40cf5cf3..ff5cac477dbe 100644
+> > --- a/drivers/of/property.c
+> > +++ b/drivers/of/property.c
+> > @@ -1097,6 +1097,7 @@ static void of_link_to_phandle(struct device_node *con_np,
+> >                               struct device_node *sup_np)
+> >  {
+> >         struct device_node *tmp_np = of_node_get(sup_np);
+> > +       struct fwnode_handle *sup_fwnode;
+> >
+> >         /* Check that sup_np and its ancestors are available. */
+> >         while (tmp_np) {
+> > @@ -1113,7 +1114,20 @@ static void of_link_to_phandle(struct device_node *con_np,
+> >                 tmp_np = of_get_next_parent(tmp_np);
+> >         }
+> >
+> > -       fwnode_link_add(of_fwnode_handle(con_np), of_fwnode_handle(sup_np));
+> > +       /*
+> > +        * In case of overlays, the fwnode are added with FWNODE_FLAG_NOT_DEVICE
+> > +        * flag set. A node can have a phandle that references an other node
+> > +        * added by the overlay.
+> > +        * Clear the supplier's FWNODE_FLAG_NOT_DEVICE so that fw_devlink links
+> > +        * to this supplier instead of linking to its parent.
+> > +        */
+> > +       sup_fwnode = of_fwnode_handle(sup_np);
+> > +       if (sup_fwnode->flags & FWNODE_FLAG_NOT_DEVICE) {
+> > +               if (of_property_present(sup_np, "compatible") &&
+> > +                   of_device_is_available(sup_np))
+> > +                       sup_fwnode->flags &= ~FWNODE_FLAG_NOT_DEVICE;
+> > +       }
+> > +       fwnode_link_add(of_fwnode_handle(con_np), sup_fwnode);  
 > 
-> Applied, thanks
+> Nack.
+> 
+> of_link_to_phandle() doesn't care about any of the fwnode flags. It
+> just creates links between the consumer and supplier nodes. Don't add
+> more intelligence into it please. Also, "compatible" doesn't really
+> guarantee device creation and you can have devices created out of
+> nodes with no compatible property. I finally managed to get away from
+> looking for the "compatible" property. So, let's not add back a
+> dependency on that property please.
+> 
+> Can you please give a real example where you are hitting this? I have
+> some thoughts on solutions, but I want to understand the issue fully
+> before I make suggestions.
+> 
 
-Never mind, I did a confusion with another series. V4 is actually applied.
+I detected the issue with this overlay:
+--- 8< ---
+&{/}
+{
+	reg_dock_sys_3v3: regulator-dock-sys-3v3 {
+		compatible = "regulator-fixed";
+		regulator-name = "DOCK_SYS_3V3";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		gpios = <&tca6424_dock_1 5 GPIO_ACTIVE_HIGH>; // DOCK_SYS3V3_EN
+		enable-active-high;
+		regulator-always-on;
+	};
+};
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+&i2c5 {
+	tca6424_dock_1: gpio@22 {
+		compatible = "ti,tca6424";
+		reg = <0x22>;
+		gpio-controller;
+		#gpio-cells = <2>;
+		interrupt-parent = <&gpio4>;
+		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
+		interrupt-controller;
+		#interrupt-cells = <2>;
+		vcc-supply = <&reg_dock_ctrl_3v3>;
+	};
+};
+--- 8< ---
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+The regulator uses a gpio.
+The supplier for the regulator was not the gpio chip (gpio@22) but the i2c bus.
 
+I first tried to clear always the flag in of_link_to_phandle() without any check
+to a "compatible" string and in that case, I broke pinctrl.
+
+All devices were waiting for the pinctrl they used (child of pinctrl device
+node) even if the pinctrl driver was bound to the device.
+
+For pinctrl, the DT structure looks like the following:
+--- 8< ---
+{
+	...
+	pinctrl@1234 {
+		reg = <1234>;
+		compatible = "vendor,chip";
+
+		pinctrl_some_device: grp {
+			fsl,pins = < ... >;
+		};
+	};
+
+	some_device@4567 {
+		compablile = "foo,bar";
+		reg = <4567>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_some_device>;
+		...
+	};
+};
+--- 8< ---
+		
+In that case the link related to pinctrl for some_device needs to be to the
+'pinctrl_some_device' node parent (i.e. the pinctrl@1234 node).
+
+
+Best regards,
+Hervé
 
