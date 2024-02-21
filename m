@@ -1,61 +1,57 @@
-Return-Path: <devicetree+bounces-44479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EC4D85E6D4
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 20:02:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9CC785E6DB
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 20:04:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6512285E70
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 19:02:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 841C3288648
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 19:04:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFB148593E;
-	Wed, 21 Feb 2024 19:02:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10A8385950;
+	Wed, 21 Feb 2024 19:04:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W0GKN4uz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jRYPf2p1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8810769DE5;
-	Wed, 21 Feb 2024 19:02:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDF8A83CDF;
+	Wed, 21 Feb 2024 19:04:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708542165; cv=none; b=oNsbQ5hOBmeZBnUZ6hI5CqjJxpbvrEuol2lZoag+stIlXhbdhLr7LBO2HdKzG1BWQ6i0MhJKyCJVVNg7bPR2g+sBftTPaD4cxNrv4imk8Eal02OvK9vsZ6fm90dU/p7zMfyaCp5eTvaHwvyKr9lfCZtdnSWaUZ0IuBAnPdkJKb8=
+	t=1708542279; cv=none; b=uSHiqUvbv4iJiCsV6kmTVb6WOXGYm9SWNQNR2GwtleqLkn0ckndlhohoOMRcO9clYPT90BAMA8wTJeQtoC/qMLFjAbZFdfZoarDozTwsHOjHPp9X09kTyp/x+Lc6CYlwLkZUFDcy6dkdyDJ6iifOxjla/MaNMno/JSP8/qcwVx8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708542165; c=relaxed/simple;
-	bh=Kq56kAG03QGNn+CX3JoT3D4J50nG3wBXsto8joaj6nA=;
+	s=arc-20240116; t=1708542279; c=relaxed/simple;
+	bh=NJr0kU4HKd9Cq5dTKxpS+QwQd1RVnuBn72URxt0AwCw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c6Y4oz5WqoqzNHJW0hzxX/bc8jCfvcP9pBxS0cK55adEVkY1lUvHP+wTOe37ni6/MMiyqyOlJMhOHn7fPIAcp9968+DfHcv489jK4Kze5QKrtTO7oqzmcTIedlAqUrQhKpXPBK8+GhtBnQkyZk4uBHpbuZWrZI27vyBMDlzMu6M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W0GKN4uz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD80AC433C7;
-	Wed, 21 Feb 2024 19:02:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=gMKJeFDnw6A0LFye8XaGiVYKB7IYE/uMI0LjrYZ9YyNP6HQDoxzpqL2qi4qYx3welU8MQroJv51Jo3QTFBovLJ6rJc2KpZnl0x52WgeCv8fxJPTeazWfYM9KWP228Xd763FbIM9zTR+yFqVidnOEnNtrWebwJ5ZuKdrFllHrw1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jRYPf2p1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07104C433C7;
+	Wed, 21 Feb 2024 19:04:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708542164;
-	bh=Kq56kAG03QGNn+CX3JoT3D4J50nG3wBXsto8joaj6nA=;
+	s=k20201202; t=1708542278;
+	bh=NJr0kU4HKd9Cq5dTKxpS+QwQd1RVnuBn72URxt0AwCw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=W0GKN4uzj/+puIOtsCFZuLrHJTzQ0jyTBfwk23twnDP9l6LLMEt0g1HJpcz5Ai13s
-	 t383J/cZ8fQM4ntz6Paz/Y4EnD4j6RbyqnBi4/jPnaH6Be6iBJjFW+kf5sDZxNVADn
-	 7GUyC44M1Bl6GDGo2v2DVoAtmZAU9BdV9kg76H92SrbM2UPqIto0x6H3WWFU5NvA4h
-	 fpY5G95mIX/QimLAWQsW9N8Mg+Cjb2vJV2S1kPMT69H++A4UofxxstphFuUdF6zrL7
-	 H2ibVLF8FqygO9iv3+9rHdmGhdyAO59ZTdXuTmhNj2/ihmv44lWrzbX9tG0TzLdccq
-	 a77NM5l6jjb/Q==
-Date: Wed, 21 Feb 2024 19:02:38 +0000
+	b=jRYPf2p1tJeQLUMXYTaypEyvaqBBZWQmXCMhlz1/QnRdZznHmPSVZhdu8LgmmygrR
+	 GqmkWycomOB+8/QB6T4cSOcRfYSIhMsvCT8TgAxhR+ksxI9vXoYCfxC4Si+HC6110w
+	 uBeqeB4mUZ1eW4Uw/dlvOn0hbgtStNKfyE65l1f3Cy7vJFuu8ofJYyKzNEIVTgnpVe
+	 vs/cMdDskjIuKbFQ6Kofhv1VDfkAN8BNmSMr+LYeULq5f6IEbW8w6/4jfyEnkIG38Y
+	 BYbZO9Wabb6uSs9kSl2Ne8hAilKOmQZe8c/kAzpmNGsVWpvvlBYXX+m+hFOR2ZHrZu
+	 dUslM4cJgD8MQ==
+Date: Wed, 21 Feb 2024 19:04:34 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Michael Walle <mwalle@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	devicetree@vger.kernel.org, Sean Wang <sean.wang@mediatek.com>,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm64: mediatek: add Kontron
- 3.5"-SBC-i1200
-Message-ID: <20240221-trance-handheld-59c5066aeca6@spud>
-References: <20240221155905.1217340-1-mwalle@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, Zev Weiss <zev@bewilderbeest.net>
+Subject: Re: [PATCH] dt-bindings: hwmon: nuvoton,nct6775: Add compatible
+ value for NCT6799
+Message-ID: <20240221-profound-static-6a027433f3b1@spud>
+References: <20240221155158.2234898-1-linux@roeck-us.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,21 +59,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="vjJZp3HexdVYJTnL"
+	protocol="application/pgp-signature"; boundary="kQlp8ugGV5PK/iEO"
 Content-Disposition: inline
-In-Reply-To: <20240221155905.1217340-1-mwalle@kernel.org>
+In-Reply-To: <20240221155158.2234898-1-linux@roeck-us.net>
 
 
---vjJZp3HexdVYJTnL
+--kQlp8ugGV5PK/iEO
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 21, 2024 at 04:59:04PM +0100, Michael Walle wrote:
-> Add the compatible string for the Kontron 3.5"-SBC-i1200 single board
-> computer.
+On Wed, Feb 21, 2024 at 07:51:58AM -0800, Guenter Roeck wrote:
+> While NCT6799 is mostly compatible to NCT6798, it needs a separate
+> compatible entry because it is not completely compatible and does
+> require chip specific code in the driver.
 >=20
-> Signed-off-by: Michael Walle <mwalle@kernel.org>
+> Signed-off-by: Guenter Roeck <linux@roeck-us.net>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
@@ -85,42 +82,36 @@ Cheers,
 Conor.
 
 > ---
-> v3:
->  - drop description and add to mt8395 existing entry
->=20
-> v2:
->  - convert enum to const as there is only one specific board
-> ---
->  Documentation/devicetree/bindings/arm/mediatek.yaml | 1 +
+>  Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml | 1 +
 >  1 file changed, 1 insertion(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Docume=
-ntation/devicetree/bindings/arm/mediatek.yaml
-> index 09f9ffd3ff7b..29ebe1f9c1d2 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> @@ -353,6 +353,7 @@ properties:
->            - const: mediatek,mt8365
->        - items:
->            - enum:
-> +              - kontron,3-5-sbc-i1200
->                - mediatek,mt8395-evk
->                - radxa,nio-12l
->            - const: mediatek,mt8395
+> diff --git a/Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml=
+ b/Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml
+> index 358b262431fc..e3db642878d4 100644
+> --- a/Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml
+> @@ -25,6 +25,7 @@ properties:
+>        - nuvoton,nct6796
+>        - nuvoton,nct6797
+>        - nuvoton,nct6798
+> +      - nuvoton,nct6799
+> =20
+>    reg:
+>      maxItems: 1
 > --=20
 > 2.39.2
 >=20
 
---vjJZp3HexdVYJTnL
+--kQlp8ugGV5PK/iEO
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdZIzgAKCRB4tDGHoIJi
-0hdYAPsEFG/2oLEhg2asBC0ZJ9IOZ+gngGyXIlvYt2JvKSi4xgEA+D+t9lQSCW7p
-Fgg/S4QdArJbqce3ktlR/KlQUrx6SAw=
-=8mZJ
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdZJQgAKCRB4tDGHoIJi
+0u83AP41nrxwD6RprpM4m8EkrzvmoWcDp7un159ipgYova/QhQEA6Il8rLcecH7f
+cu5how/Rq4vFVXEKZXF9KN3ItEigCAY=
+=7e1D
 -----END PGP SIGNATURE-----
 
---vjJZp3HexdVYJTnL--
+--kQlp8ugGV5PK/iEO--
 
