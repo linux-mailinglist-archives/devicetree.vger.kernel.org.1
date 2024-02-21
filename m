@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-44268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F032285D53B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 11:11:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBBB285D541
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 11:12:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB3CE282D62
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 10:11:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71E28281B1C
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 10:12:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62DBA3D995;
-	Wed, 21 Feb 2024 10:11:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E80323D3A8;
+	Wed, 21 Feb 2024 10:12:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Du87FHdk"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="5TfZlSyA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF6703EA8B;
-	Wed, 21 Feb 2024 10:11:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ECD53CF68;
+	Wed, 21 Feb 2024 10:12:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708510279; cv=none; b=XJdoEFD2Ti9YfSgjRFyJ3Wlz0L7i8WNzBCmrV3S6ZTrdVULlLHNTB+Fz/lDJbOUeCGMV5TK8EjAvxvVWjHlJ/LySMrmSqb6Bi2ENOcowEzO+Vf8/Rc5Fs+Y5QDpjcbZ9a7t1mCio2Zw05Zhobqh3qVHaGFIl7faLykEpjkN3ILE=
+	t=1708510366; cv=none; b=HepaNMjB4ZcQwmy5IPrfWY+aBXPR/a/zmlAZKn5h2f+8Q+scRuXuP8bZ09QSAQjBD7uO7Ou/SxgBNN0HGLCPqD7gix3zSePWN37x2uFY7Hz9aga9k0rWkZqzr87hmlu7vz/n0ejbhaA3SEuZJOPNFp8YP3jld+NluxZg1Ca2eXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708510279; c=relaxed/simple;
-	bh=PQ4awJ6u0XbeOr9tOY44kUabcmxQpFzwRQS1dKIQKTE=;
+	s=arc-20240116; t=1708510366; c=relaxed/simple;
+	bh=oC+jcIYHSc5x4O62YHQVIizn+j678uC6MmEDPXx4YMo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ldekg0O+C0C58FEzqr53tLKvMjIuvsIT2ApLQ9yR7uSnZRtjJ8SdzHn/tfFAdTGn4cy66EyuR3PDwRUg4p0hrVebR3JdRZepHuTGa4TZ9cOyQS4MQm32uNPEd0lRyFxR0TteY8R6u4zHGrAnQMppDhltPqSjPGhZ1eW59qmmdOI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Du87FHdk; arc=none smtp.client-ip=46.235.227.194
+	 In-Reply-To:Content-Type; b=h2yZWk562d5EwdrCvBT0rMtTLSqP91dFjVCxX20Q97RL7bHcIV3qe5GlT+tzETZbDQNfk9L+g1sxdR4PrOXXax6nbmKDOXZhOoejK6faz71STFNudSXZ2gWiFd1RkpaucRTgjkwh/TCNt7IMQFn5vD54rrDJuKft9wBO7/HChTQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=5TfZlSyA; arc=none smtp.client-ip=46.235.227.194
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1708510276;
-	bh=PQ4awJ6u0XbeOr9tOY44kUabcmxQpFzwRQS1dKIQKTE=;
+	s=mail; t=1708510363;
+	bh=oC+jcIYHSc5x4O62YHQVIizn+j678uC6MmEDPXx4YMo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Du87FHdkJ/XW+3K5x6dd3zCH92Bw9hgZVorVoMzH/4EegYAWh1H67UQNi9rUtSotL
-	 NPqVL6lW0d2iIHN8/OKwf9RR2fB8tIkDSHQCERSzVpxYIcn7ktN5Kw80mmkw8oTKsX
-	 NxaeSqV+LWm+fslV/0TURzqVr8hwuab/Y+NObBfOqwxljwaDKIyN5bPg17Oh4XVKEc
-	 vmcZPgwQ5N7Jai2SIamTtxJG7OBb2wFv8enNqwoyByFsoaU587dkvS+4bJozzhY+SG
-	 u6cE4QRUurQhRTJOG0mZB3lX/r20xyHmE9oEG22E5GLnJbi3l2Ji9N80dhIOKgM/US
-	 7M3mC2oINYOvQ==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	b=5TfZlSyAXlXFW3yVsCdpRGR8hryIUivUj5Y7GzXP2DMznawBuAznD6xMyCQFFeBP5
+	 KN1aoq9QyRvawCKj8Uk8foiujmLVnYkohGCr8NvKH78AVwdr/bjbIhWgCovoVKj99/
+	 ZEbOvc4bew84BrN26w9z+Oja1qjAhtW/rVWPKyD1F2FBi+3MrcJsYm8l+qC84M7t7K
+	 hYk6mypKtxHxl26tJhtOiZOcMbO1R+Z16Gch960iQ/ZZYH4qPuXuTAiIp4TZg+D3Yw
+	 2VCIpk+SZwrc6Z9S8tUMwVGHrDbSw/HG/0LKmd3pfsGFouM03qIUEVNx2UtdZbRCzm
+	 1PX6WEulNvsjQ==
+Received: from [100.74.67.65] (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id BB8FD378107C;
-	Wed, 21 Feb 2024 10:11:14 +0000 (UTC)
-Message-ID: <2fdf724e-4994-4873-971a-56c19b9fc471@collabora.com>
-Date: Wed, 21 Feb 2024 11:11:14 +0100
+	(Authenticated sender: jmassot)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 2230F378107C;
+	Wed, 21 Feb 2024 10:12:43 +0000 (UTC)
+Message-ID: <c6e51f24-93f6-4b87-9977-71a7a22cc68a@collabora.com>
+Date: Wed, 21 Feb 2024 11:12:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,145 +57,213 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] arm64: dts: mediatek: Add Cudy WR3000 V1
+Subject: Re: [PATCH v3 1/4] dt-bindings: media: add Maxim MAX96717F GMSL2
+ Serializer
 Content-Language: en-US
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Chen-Yu Tsai <wenst@chromium.org>, Hsin-Yi Wang <hsinyi@chromium.org>,
- =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
- Heiko Stuebner <heiko.stuebner@cherry.de>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Chris Morgan <macromorgan@hotmail.com>,
- Linus Walleij <linus.walleij@linaro.org>, Sean Wang
- <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-kernel@vger.kernel.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>
-References: <20240221073524.20947-1-zajec5@gmail.com>
- <20240221073524.20947-5-zajec5@gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20240221073524.20947-5-zajec5@gmail.com>
+To: Sakari Ailus <sakari.ailus@iki.fi>
+Cc: linux-media@vger.kernel.org, kernel@collabora.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ mchehab@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org
+References: <20240111130349.2776699-1-julien.massot@collabora.com>
+ <20240111130349.2776699-2-julien.massot@collabora.com>
+ <ZcXwQA3IiDu1etH1@valkosipuli.retiisi.eu>
+From: Julien Massot <julien.massot@collabora.com>
+In-Reply-To: <ZcXwQA3IiDu1etH1@valkosipuli.retiisi.eu>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-Il 21/02/24 08:35, Rafał Miłecki ha scritto:
-> From: Rafał Miłecki <rafal@milecki.pl>
+Hi Sakari,
+
+On 2/9/24 10:28, Sakari Ailus wrote:
+> Hi Julien,
 > 
-> Cudy WR3000 V1 is an MT7981B (AKA Filogic 820) based wireless router. It
-> has 256 MiB of RAM, some LEDs & buttons and (not described yet) 4
-> Ethernet ports.
+> On Thu, Jan 11, 2024 at 02:03:46PM +0100, Julien Massot wrote:
+>> Add DT bindings for Maxim MAX96717F GMSL2 Serializer.
+>>
+>> Signed-off-by: Julien Massot <julien.massot@collabora.com>
+>> ---
+>> Change since v2:
+>>   - remove reg description
+>>   - add data lanes min/maxItems
+>>   - Use generic node name
+>>
+>> ---
+>>   .../bindings/media/i2c/maxim,max96717f.yaml   | 147 ++++++++++++++++++
+>>   1 file changed, 147 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/media/i2c/maxim,max96717f.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max96717f.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max96717f.yaml
+>> new file mode 100644
+>> index 000000000000..f31517b1dbc8
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max96717f.yaml
+>> @@ -0,0 +1,147 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +# Copyright (C) 2024 Collabora Ltd.
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/media/i2c/maxim,max96717f.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: MAX96717 CSI-2 to GMSL2 Serializer
+>> +
+>> +maintainers:
+>> +  - Julien Massot <julien.massot@collabora.com>
+>> +
+>> +description: |
+>> +  The MAX96717F serializer converts MIPI CSI-2 D-PHY or C-PHY formatted input
 > 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
->   arch/arm64/boot/dts/mediatek/Makefile         |  1 +
->   .../dts/mediatek/mt7981b-cudy-wr3000-v1.dts   | 74 +++++++++++++++++++
->   2 files changed, 75 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dts
+> Presumably this will need to be configured on the device? You should thus
+> require the bus-type property in the endpoint.
+
+Yes I will add the bus-type propery
+
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-> index 37b4ca3a87c9..96da4ad640aa 100644
-> --- a/arch/arm64/boot/dts/mediatek/Makefile
-> +++ b/arch/arm64/boot/dts/mediatek/Makefile
-> @@ -8,6 +8,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-evb.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-x20-dev.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-rfb1.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-bananapi-bpi-r64.dtb
-> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt7981b-cudy-wr3000-v1.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7981b-xiaomi-ax3000t.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-acelink-ew-7886cax.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3.dtb
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dts b/arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dts
-> new file mode 100644
-> index 000000000000..cb36a089518a
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dts
-> @@ -0,0 +1,74 @@
-> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
-> +
-> +/dts-v1/;
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/leds/common.h>
-> +
-> +#include "mt7981b.dtsi"
-> +
-> +/ {
-> +	compatible = "cudy,wr3000-v1", "mediatek,mt7981b";
-> +	model = "Cudy WR3000 V1";
-> +
-> +	memory@40000000 {
-> +		reg = <0 0x40000000 0 0x10000000>;
-> +		device_type = "memory";
-> +	};
-> +
-> +	keys {
-> +		compatible = "gpio-keys";
-> +
-> +		key-wps {
-> +			label = "WPS";
-> +			gpios = <&pio 0 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_WPS_BUTTON>;
-> +		};
-> +
-> +		key-reset {
-> +			label = "RESET";
-> +			gpios = <&pio 1 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_RESTART>;
-> +		};
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		led-0 {
-> +			function = LED_FUNCTION_WAN;
-> +			color = <LED_COLOR_ID_BLUE>;
-> +			gpios = <&pio 5 GPIO_ACTIVE_LOW>;
+>> +  into GMSL2 serial outputs. The device allows the GMSL2 link to
+>> +  simultaneously transmit bidirectional control-channel data while forward
+>> +  video transmissions are in progress. The MAX96717F can connect to one
+>> +  remotely located deserializer using industry-standard coax or STP
+>> +  interconnects. The device cans operate in pixel or tunnel mode. In pixel mode
+>> +  the MAX96717F can select the MIPI datatype, while the tunnel mode forward all the MIPI
+>> +  data received by the serializer.
+>> +  The MAX96717F supports Reference Over Reverse (channel),
+>> +  to generate a clock output for the sensor from the GMSL reverse channel.
+>> +
+>> +  The GMSL2 serial link operates at a fixed rate of 3Gbps in the
+>> +  forward direction and 187.5Mbps in the reverse direction.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: maxim,max96717f
+>> +
+>> +  '#gpio-cells':
+>> +    const: 2
+>> +    description:
+>> +      First cell is the GPIO pin number, second cell is the flags. The GPIO pin
+>> +      number must be in range of [0, 10].
+>> +
+>> +  gpio-controller: true
+>> +
+>> +  '#clock-cells':
+>> +    const: 0
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  ports:
+>> +    $ref: /schemas/graph.yaml#/properties/ports
+>> +
+>> +    properties:
+>> +      port@0:
+>> +        $ref: /schemas/graph.yaml#/$defs/port-base
+>> +        unevaluatedProperties: false
+>> +        description: CSI-2 Input port
+>> +
+>> +        properties:
+>> +          endpoint:
+>> +            $ref: /schemas/media/video-interfaces.yaml#
+>> +            unevaluatedProperties: false
+>> +
+>> +            properties:
+>> +              data-lanes:
+>> +                minItems: 1
+>> +                maxItems: 4
+>> +
+>> +            required:
+>> +              - data-lanes
+>> +
+>> +      port@1:
+>> +        $ref: /schemas/graph.yaml#/properties/port
+>> +        unevaluatedProperties: false
+>> +        description: GMSL Output port
+>> +
+>> +    required:
+>> +      - port@1
+>> +
+>> +  i2c-gate:
+>> +    $ref: /schemas/i2c/i2c-controller.yaml
+>> +    unevaluatedProperties: false
+>> +    description: |
+> 
+> I think you can remove ' |'.
+Ok
 
-Can we please order those properties alphabetically, as it doesn't impact
-on human readability in any way?
-Just a nitpick, anyway.
+> 
+>> +      The MAX96717F will forward the I2C requests from the
+>> +      incoming GMSL2 link. Therefore, it supports an i2c-gate
+>> +      subnode to configure a sensor.
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - ports
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/gpio/gpio.h>
+>> +    #include <dt-bindings/media/video-interfaces.h>
+>> +
+>> +    i2c {
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +        serializer: serializer@40 {
+>> +            compatible = "maxim,max96717f";
+>> +            reg = <0x40>;
+>> +            gpio-controller;
+>> +            #gpio-cells = <2>;
+>> +            #clock-cells = <0>;
+>> +
+>> +            ports {
+>> +                #address-cells = <1>;
+>> +                #size-cells = <0>;
+>> +
+>> +                port@0 {
+>> +                    reg = <0>;
+>> +                    max96717f_csi_in: endpoint {
+>> +                        data-lanes = <1 2 3 4>;
+>> +                        remote-endpoint = <&sensor_out>;
+>> +                    };
+>> +                };
+>> +
+>> +                port@1 {
+>> +                    reg = <1>;
+>> +                    max96917f_gmsl_out: endpoint {
+>> +                        remote-endpoint = <&deser_gmsl_in>;
+>> +                    };
+>> +                };
+>> +            };
+>> +
+>> +            i2c-gate {
+>> +                #address-cells = <1>;
+>> +                #size-cells = <0>;
+>> +                sensor@10 {
+>> +                    compatible = "st,st-vgxy61";
+>> +                    reg = <0x10>;
+>> +                    reset-gpios = <&serializer 0 GPIO_ACTIVE_LOW>;
+>> +                    clocks = <&serializer>;
+>> +                    VCORE-supply = <&v1v2>;
+>> +                    VDDIO-supply = <&v1v8>;
+>> +                    VANA-supply = <&v2v8>;
+>> +                    port {
+>> +                        sensor_out: endpoint {
+>> +                            data-lanes = <1 2 3 4>;
+>> +                            remote-endpoint = <&max96717f_csi_in>;
+>> +                        };
+>> +                    };
+>> +                };
+>> +            };
+>> +        };
+>> +    };
+>> +...
+> 
 
-color = <LED_COLOR_ID_BLUE>;
-function = LED_FUNCTION_WAN;
-gpios = <&pio 5 GPIO_ACTIVE_LOW>;
-
-> +		};
-> +
-> +		led-1 {
-> +			function = LED_FUNCTION_WLAN_2GHZ;
-> +			color = <LED_COLOR_ID_BLUE>;
-> +			gpios = <&pio 6 GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		led-2 {
-> +			function = LED_FUNCTION_WLAN_5GHZ;
-> +			color = <LED_COLOR_ID_BLUE>;
-> +			gpios = <&pio 7 GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		led-3 {
-> +			function = LED_FUNCTION_LAN;
-> +			color = <LED_COLOR_ID_BLUE>;
-> +			gpios = <&pio 9 GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		led-4 {
-> +			function = LED_FUNCTION_STATUS;
-> +			color = <LED_COLOR_ID_BLUE>;
-> +			gpios = <&pio 10 GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		led-5 {
-> +			function = "online";
-
-Uhm, what does "online" mean?
-
-Are you sure that you can't use any of the LED_FUNCTION_XXX standard definitions?
-
-Cheers,
-Angelo
-
+-- 
+Julien Massot
+Senior Software Engineer
+Collabora Ltd.
+Platinum Building, St John's Innovation Park, Cambridge CB4 0DS, UK
+Registered in England & Wales, no. 5513718
 
