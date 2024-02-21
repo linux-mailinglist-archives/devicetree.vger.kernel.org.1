@@ -1,121 +1,151 @@
-Return-Path: <devicetree+bounces-44514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5835585EC8A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 00:08:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90C7685ECB3
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 00:19:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 131C5283681
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 23:08:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 543092842EA
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 23:19:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 531E886AFA;
-	Wed, 21 Feb 2024 23:08:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80FE5129A99;
+	Wed, 21 Feb 2024 23:19:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LJ907JAM"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="THqXg8nE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A861B81752
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 23:08:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D56F08663D;
+	Wed, 21 Feb 2024 23:19:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708556884; cv=none; b=KNW4U+iiIqHu1HIJQCyjXeZC3uMygQXCBbL8r7HtqUBX7o4pBh1J//Mx4XiOKWMLJCmatS3OrDf22IcwNsE1NPCLu7+qLJxMfn1JaxSikq7vvgGfNVNVLz/hPgqM4c+Z6quf9ERDB3Wt8unu4KXi862NsOZeyfdsVqe59++uzMs=
+	t=1708557568; cv=none; b=knmLHfvRJy0WeEKVmwFx6aZ3i5m6VxkXWdZjcoshQK21sSLO3WmNRh5cf07Zf9Dnxg7qxAPHJGCGUzdDZR2Ht1x0RWwIl0zGIo4JVJeNuVd66t0FmAMwsoSvUMN+jaP9pn6vDHxeew/Bdwndi1coO4ie9akZI0C8tDSdkeDIvEA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708556884; c=relaxed/simple;
-	bh=lVVt4cd6uaVryAH57NfvJaB+/vJBBdplCM95n6hzzPI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BXD7gCSh8oaRu4cBcLdYVSbS+Hn8JjD7bwexL/lsnitub/ntLf43dY0HG8xy2xqAGHKJvdyJqJCVG0+DVGZ3VkNmt66B/mugo6wjsj7qFmH34Eb5cp0DLK2bXvGpDW6/uQMa7bEHZ6ozG5FWWwCGCd33NB7b+3Qp/s+TsHtXJ1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LJ907JAM; arc=none smtp.client-ip=209.85.219.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-dc6d24737d7so6566991276.0
-        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 15:08:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708556881; x=1709161681; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kYBbmRXDC5OSdjJgBE1Q6+6CYsK20VTrcWQxbaA18DI=;
-        b=LJ907JAM0KZ3rh+wX/0fGafmuf+VI8G8mlYpSpCEbJ3D73rwPzzznxccPb6Q3Efh/p
-         4Gh9RK/mWNrHsUzncuC+Rbr7HlRc95FVleY6x1+9Cwt/e6wRD13xxLQbv/Ke/I5Z5+Wd
-         tLg7ruRbFD9qaom30VkhQ0LcINRX+sfrGJjIGju7BAemEoOU7xOOrcV0+JRsjEHl7Wcd
-         OJzYqY6oOZl3jOmPdHIw82a70AkyzMYufmpbkeJcJO/F12KThYvKCoBO1HBLRu+LqUnV
-         i4H5Yr2V9GX8XCeRJStmk7Sg5GMzxdXtlVOUWZeovAOpZ/FR3RQJi3BaMAarqAokWni8
-         rQew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708556881; x=1709161681;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kYBbmRXDC5OSdjJgBE1Q6+6CYsK20VTrcWQxbaA18DI=;
-        b=rg6wQUTNdbIfDjqid10aAT0/nKcRTEkVX2tCqYu9nbFFpELpQCHNjxAvJaFcOnBPKj
-         Xou1wLMtgFU/CWSBiYuzza/uPMABjTr3WsA3pr/mQViPlFcbSxsTr2L5OSI0VWKwWvI4
-         rkdbMgV9FTuJVrxBsaefpLVbjHSukwWzyAQAkyDXeq9jTWKgdtPhFKSX+xiOoui6d9Nk
-         2kMoY4Y00nHfaYNajuCUd6vQGEAB6BFWnPQvHE8JaSZL170a8TmCZKZJK/fSzmtXa3ws
-         XRshWf5z9fZEaCjOzI5ThHf8jRUAc65QQu6J3MogR6TNapOdGivOAX/Mp8c0U2wG/33T
-         zGAA==
-X-Forwarded-Encrypted: i=1; AJvYcCV5eOMTS1pL6pNzWlg8+zoKGFhQ3iHJc3f8yFZ+I9w3/gMK2W/MbTjYTzUyo88vw1qphn89KySKDIFOEXwZJUiED31VWUil+Onrmg==
-X-Gm-Message-State: AOJu0YwA/nwVcESSp3QpbavwC81FTeEAe0QIQTSzt08/XcpaQ5kwwlDm
-	G208vdQkmsMiA6yvQPrwOPpr/xkJgPq/5iFyOjmHkW+yI1KsBDbdJZVszv5pp2HEBYOpbKI9B9W
-	7v7uKN/pEEbNZf/ffrqEyTo4bjp4wzbu2DYk9aA==
-X-Google-Smtp-Source: AGHT+IELSuez3wnkWzi8gUjXrk1ECFLfUvg+ZkAvG67cVdS+sTX65l5nPJGAnEdTxvcHLOGMpEqSWoalBsmdwXNDC2c=
-X-Received: by 2002:a5b:f06:0:b0:dc6:8534:bb06 with SMTP id
- x6-20020a5b0f06000000b00dc68534bb06mr807288ybr.17.1708556881671; Wed, 21 Feb
- 2024 15:08:01 -0800 (PST)
+	s=arc-20240116; t=1708557568; c=relaxed/simple;
+	bh=UawKxY/wNEpZe/K6ZSBOrWoORz1ZeMn1m4HSMFS0WhU=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=bJgqVDmFlIyTn2U9J2LNAH2F08HsHoKvtiE+F5TVicSL9sxYC+orK+lrZWSPTZYryhMLZQPzJQlnAZeSxqHRO1a+4WtR/WLHMuh+8fiT8e1jORkkYaGcMFJqa5cA8BIC/8Rlw0BfQq3+h/k7xNNpr3kngHDRsTat9JUyjiWjDpI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=THqXg8nE; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41LNEoYG028626;
+	Wed, 21 Feb 2024 23:19:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:subject:date:message-id:mime-version:content-type
+	:content-transfer-encoding:to:cc; s=qcppdkim1; bh=CelsGDIFSPLJqy
+	fTWpBCJuduVZTYRQTelZocddmgQHE=; b=THqXg8nE2G+HwdHynohBH/K53Zm95a
+	L3p8ffLBH29wrdHUk4cScjB8uYh/dS/oDKncmYlTa0pBNdzDFJ3zTwhNZneTpzq+
+	ppEeu1N7yd7WYzj8o6XU8Av/lq9Uv7XSrspjrJfsDdT+5KMPDF19XI9hEaEnd/6M
+	PrB0+KgUHKe7pdzboJ7eq9ERLjXFrs9ly+dt3yOPX/spFodD27Os3qvtVeHkB9qN
+	1ZhJ3pJ9WVWCuPBY13K1flu4EiMgFqyou1xFJT3HBCgLRJVUO7936i8C8zoTKq4P
+	bseTt6ONdybGVXpA0z55EngPsgcUSIYAF3rRvjxA7Pc/RBZkZIEbcdsg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wdfx4hmpv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 21 Feb 2024 23:19:14 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41LNJDok020290
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 21 Feb 2024 23:19:13 GMT
+Received: from [169.254.0.1] (10.49.16.6) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 21 Feb
+ 2024 15:19:13 -0800
+From: Bjorn Andersson <quic_bjorande@quicinc.com>
+Subject: [PATCH 0/9] arm64: dts: qcom: qcs6490-rb3gen2: Enable two displays
+Date: Wed, 21 Feb 2024 15:19:08 -0800
+Message-ID: <20240221-rb3gen2-dp-connector-v1-0-dc0964ef7d96@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240216223245.12273-1-semen.protsenko@linaro.org> <29090d97-9118-4765-a4fd-3bbe271a39bd@linaro.org>
-In-Reply-To: <29090d97-9118-4765-a4fd-3bbe271a39bd@linaro.org>
-From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Wed, 21 Feb 2024 17:07:50 -0600
-Message-ID: <CAPLW+4kmoCoqO=+zXbVw7VsGc-VB2At91ZnJfyTDRtVFmN4aiQ@mail.gmail.com>
-Subject: Re: [PATCH 00/16] clk: samsung: Add CPU clocks for Exynos850
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Tomasz Figa <tomasz.figa@gmail.com>, linux-samsung-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOyE1mUC/x3MQQqEMAxA0atI1hOo0YV6FXExbVPNJpVUhgHp3
+ S0u3+L/GwqbcIGlu8H4J0WyNvSfDsLx1Z1RYjOQo9GRm9H8sLMSxhNDVuVwZUMfY/LTTCmRg5a
+ exkn+73bdan0AX5LCMGYAAAA=
+To: Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar
+	<quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        <cros-qcom-dts-watchers@chromium.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Bjorn Andersson <quic_bjorande@quicinc.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1708557553; l=1606;
+ i=quic_bjorande@quicinc.com; s=20230915; h=from:subject:message-id;
+ bh=UawKxY/wNEpZe/K6ZSBOrWoORz1ZeMn1m4HSMFS0WhU=;
+ b=VgHOPv2y0TUisMlKhdQwzFNj5emloYz3HorglSQbNjzyMT9whYMj6lmIabHBG2z6g66EgDik7
+ LYpk2ossgV5CnDvwjylGFbmrNVdkMoKcSOFYoQ3jE1FCHk+GxvdbYh9
+X-Developer-Key: i=quic_bjorande@quicinc.com; a=ed25519;
+ pk=VkhObtljigy9k0ZUIE1Mvr0Y+E1dgBEH9WoLQnUtbIM=
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: V37K1f2kbY2gyjU0XptpF_1ASXcal3l1
+X-Proofpoint-GUID: V37K1f2kbY2gyjU0XptpF_1ASXcal3l1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-21_09,2024-02-21_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 bulkscore=0
+ mlxlogscore=544 clxscore=1011 mlxscore=0 malwarescore=0 impostorscore=0
+ priorityscore=1501 phishscore=0 spamscore=0 lowpriorityscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2402210184
 
-On Tue, Feb 20, 2024 at 5:07=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 16/02/2024 23:32, Sam Protsenko wrote:
-> > The series implements CPU clock support for Exynos850, adds CPU CMUs to
-> > the clock driver and enables those in dts. This is the first step
-> > towards cpufreq implementation.
-> >
-> > The breakup by patch:
-> >
-> >   * Patch 01: Add bindings
-> >   * Patches 02..12: Prepare clk-cpu.c for Exynos850 support
-> >   * Patch 13: Add Exynos850 support
-> >   * Patch 14: Init PLLs to be in manual mode
-> >   * Patch 15: Add CPU CMUs in Exynos850 clock driver
-> >   * Patch 16: Add CPU CMUs and clocks in Exynos850 dtsi
->
-> This crossed the threshold for a patch bomb, which is in general fine
-> for me, but then please put v2 changelog in each patch's changelog. If
-> the patch did not change, annotate it as well. It's not possible to keep
-> jumping between cover letter and individual patches.
->
+RB3Gen2 is capable of producing DisplayPort output on a dedicated
+mini-DP connector and USB Type-C.
 
-The above list is not a change log, I just tried to show that patches
-02..12 are cleanups. I'll reword this in v2 to make it less confusing.
-And as usual I'll keep the changelog for each patch separately. Thanks
-for the review!
+Utilize Abel's work for DP vs eDP selection to allow configuring both
+controllers in DP-mode, then enable the two output paths.
 
-> Best regards,
-> Krzysztof
->
+Tested by driving fbcon to 4k@60 + 4k@30 concurrently.
+
+Depends on https://lore.kernel.org/linux-arm-msm/20240220-x1e80100-display-v4-0-971afd9de861@linaro.org/
+
+Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+---
+Bjorn Andersson (9):
+      drm/msm/dp: Add DP support to combo instance in SC7280
+      arm64: dts: qcom: sc7280: Make eDP/DP controller default DP
+      arm64: dts: qcom: sc7280: Enable MDP turbo mode
+      arm64: dts: qcom: qcs6490-rb3gen2: Add DP output
+      arm64: dts: qcom: qcs6490-rb3gen2: Enable adsp and cdsp
+      arm64: dts: qcom: qcs6490-rb3gen2: Enable USB role switching
+      arm64: dts: qcom: qcs6490-rb3gen2: Introduce USB redriver
+      arm64: dts: qcom: qcs6490-rb3gen2: Enable USB Type-C display
+      arm64: defconfig: Enable sc7280 display and gpu clock controllers
+
+ arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 154 ++++++++++++++++++++++++++-
+ arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi   |   2 +
+ arch/arm64/boot/dts/qcom/sc7280.dtsi         |   7 +-
+ arch/arm64/configs/defconfig                 |   2 +
+ drivers/gpu/drm/msm/dp/dp_display.c          |   9 +-
+ 5 files changed, 170 insertions(+), 4 deletions(-)
+---
+base-commit: aba508318eec7acad2373296279d6447fd35f83f
+change-id: 20240209-rb3gen2-dp-connector-bddfb892ff20
+
+Best regards,
+-- 
+Bjorn Andersson <quic_bjorande@quicinc.com>
+
 
