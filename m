@@ -1,143 +1,127 @@
-Return-Path: <devicetree+bounces-44346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D3B785D92E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 14:15:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE4B985D95B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 14:17:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F2FF1C2238B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 13:15:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 670621F21565
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 13:17:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35A0C763F3;
-	Wed, 21 Feb 2024 13:15:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A94C762E5;
+	Wed, 21 Feb 2024 13:17:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OqyGWigy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89DD06E2DF
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 13:15:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F396E29AB;
+	Wed, 21 Feb 2024 13:17:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708521324; cv=none; b=UA2ZVw55xlE54Swd1J9OJnRR7M3OMIGtAeby96yJxGKS4Oo2QPMt8hP+P/byFLmytu19Xe2ftTdsDvCbaLd/9pOv29D47ywAWchCiVzexzY7tMnmPzDiEjiubEapu8xH0PcM9k/twwjDLkAlcoC6ZK1pC2G1hi5gp+JjJ1Eu+58=
+	t=1708521447; cv=none; b=CYXMPEC6xF7gKYqjkQKYZyGn8ymhF5qrvHI+rS7feEwT0FeynW/A9Psz35QAdLk+xoDc24khdGGC5W9BAAmCzNViYkIZpWbRUgBVx2+VmHRly2tr1a/YA1CHh7UEHrlTGDk+vrvvPC6SJI+2oLyopOGqYc1LB5E1nBGAcnvzD50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708521324; c=relaxed/simple;
-	bh=nPne4q7JlWz3mcWsYUNx4f2M8e4DzRnR7m7tEam7xpg=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=h2UutP6JudOYtk3oTxQfhdG41Y50Y4DyQNoNokfR+ywpd3gAac7fktbUslBs04j7qHZOlwCcCZGR7MwuFOVgrgvgJQ3urPri1Scz8n3z7lgo1R4Ec5Yf3E4rhUW87x3WMFk2luvHHqboSIpC3jr0/vbEzmRw+CWuUkuYF5qr1Ro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rcmR4-0001CI-QA; Wed, 21 Feb 2024 14:14:54 +0100
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rcmR1-00237N-FS; Wed, 21 Feb 2024 14:14:51 +0100
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rcmR1-0008xE-1G;
-	Wed, 21 Feb 2024 14:14:51 +0100
-Message-ID: <d203819f09749f0ff9e08a80471b7fed3dad67a8.camel@pengutronix.de>
-Subject: Re: [PATCH v14 3/3] hwmon: (aspeed-g6-pwm-tacho): Support for
- ASPEED g6 PWM/Fan tach
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Billy Tsai <billy_tsai@aspeedtech.com>, jdelvare@suse.com, 
- linux@roeck-us.net, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
- conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
- corbet@lwn.net,  u.kleine-koenig@pengutronix.de,
- naresh.solanki@9elements.com,  linux-hwmon@vger.kernel.org,
- devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org,  linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org,  linux-pwm@vger.kernel.org,
- BMC-SW@aspeedtech.com, patrick@stwcx.xyz
-Date: Wed, 21 Feb 2024 14:14:51 +0100
-In-Reply-To: <20240221104025.1306227-4-billy_tsai@aspeedtech.com>
-References: <20240221104025.1306227-1-billy_tsai@aspeedtech.com>
-	 <20240221104025.1306227-4-billy_tsai@aspeedtech.com>
+	s=arc-20240116; t=1708521447; c=relaxed/simple;
+	bh=8weXbsTiZXDl7Df+7SFv5Hv/18BWCIk0oX6HwXJCWWA=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=eJD9/dowASPwT2FdixbDjjEWOdeZok3PJG+hSA7yAfZlT0Mc5d6aBwj5bpFbjDgainY0JEt0P9ZuQfMXlnipycz3YuqulW34zsG0ODS09FkbHd02Rbd4YmLkmoPobgVLwq4mKgYa2Ntei/N05AFxoeF34fodMJCqY7Sd1L1Ls/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OqyGWigy; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-512bc0e8ce1so3675257e87.0;
+        Wed, 21 Feb 2024 05:17:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708521443; x=1709126243; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=/VbOc4RnNw4E7FyceOF8PbK4TjGH9qC/rWBexDcUoYM=;
+        b=OqyGWigy0iM8de93b+aCzktsZ97KcDcGYOSmCBaEoZmd/zZ/Pw9aqd6HsP3Y47XiuB
+         EYz/2EIlOw4YsQrTgGQC8z9jMHNTS0BZZ0czF4LRhNw3sc3Zn4UeUXAmnfAiMy3bHL6f
+         mqNzwCuEz7xgiXqEq4BSRi4kL5qYvn2lrETTeon+n8w97D3ryVoXlP3ivEPxaKxzb6hE
+         lXREzit+iOHbird+JxzZjCutVygX0DdOUgSemLUTZ+e0kXJRS9yCuHTTPPmbPiSmi2dL
+         7qEyX1Q5bcAfAMy7HFf6iSvTkDMHMhjeRe5yeMQcDXas89AKnjvetukFutPVPCeBJoEj
+         1Pew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708521443; x=1709126243;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/VbOc4RnNw4E7FyceOF8PbK4TjGH9qC/rWBexDcUoYM=;
+        b=PKSOA+3Tey2ye5rCyAQI4ks4S0XhIA7C8H/aSeWUDSQGeJUykFy14i9Vjh8kVxUzq/
+         D+z2mSpfOdN9nXWseeae74LKJl8eJK56wywmdv1xmPKCeBxbyNF4pLwlBy6e2+updWNA
+         trohehGaJGkzEuQrWjXb3jAfEG7FnPlenEJKawmlJRN/u3fRSsAa8deeQdEuTsWaEMkO
+         RZRexF24ykcGNMqrfH8mDyeNWc2IEzFJCcnkbwsbNx6ELdGpHUJlY3mZc9zBnT/Ob88W
+         YAEtBN5kX75Vkhi/CYQ5cWKwfREtHjjKLK8C5QghQtUpf+mgTe4uGOkoHK7UKyUFHAST
+         d62w==
+X-Forwarded-Encrypted: i=1; AJvYcCVi+wNxkghKBCwaBc4oHHcPiD1lazVSHAY8EUeS6k1Knm7mSrISD4apYB68/Bfec3jJw7fsHaSEogDdGT8wLh9WIhEieqKxboz9ElRCB4zxh4E11thQhQBny6A0IOSG8qdVZNf+QhV0N0BNywoF1ybjs4a9cY+y7hw/VYn24YVBKu3VBg==
+X-Gm-Message-State: AOJu0YxLCHvPHjvnNaT3Zsid7AZNtzLGy4ErjcuJ5p0zMcu+iMP5ZWqs
+	KN3tToRuhtiwjMCWeTONqkN/lC7KCkyRwGOL62sx4VJNCpxoeltTrPDgS3ZDkimd8w==
+X-Google-Smtp-Source: AGHT+IEY6xWfntBRZepcpRiVs4IGWFN0HX34/r/c6/QHCM2YoFA/Ni3yp0hUiC+5hl9fpYTIvPRqgQ==
+X-Received: by 2002:a05:6512:3c9d:b0:511:9d36:18a8 with SMTP id h29-20020a0565123c9d00b005119d3618a8mr14661653lfv.2.1708521442728;
+        Wed, 21 Feb 2024 05:17:22 -0800 (PST)
+Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
+        by smtp.gmail.com with ESMTPSA id p15-20020a170906140f00b00a3d2f55bc2esm4978855ejc.161.2024.02.21.05.17.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Feb 2024 05:17:22 -0800 (PST)
+Message-ID: <94f7e7f2568d0d70055954f628b2bd56cbe78d9b.camel@gmail.com>
+Subject: Re: [PATCH v5 4/5] iio: amplifiers: hmc425a: use pointers in match
+ table
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Dumitru Ceclan <mitrutzceclan@gmail.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Jonathan Cameron
+ <jic23@kernel.org>,  Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Ceclan Dumitru <dumitru.ceclan@analog.com>
+Date: Wed, 21 Feb 2024 14:17:22 +0100
+In-Reply-To: <20240220153553.2432-4-mitrutzceclan@gmail.com>
+References: <20240220153553.2432-1-mitrutzceclan@gmail.com>
+	 <20240220153553.2432-4-mitrutzceclan@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Mi, 2024-02-21 at 18:40 +0800, Billy Tsai wrote:
-> The driver support two functions: PWM and Tachometer. The PWM feature can
-> handle up to 16 output ports, while the Tachometer can monitor to up to 1=
-6
-> input ports as well. This driver implements them by exposing two kernel
-> subsystems: PWM and HWMON. The PWM subsystem can be utilized alongside
-> existing drivers for controlling elements such as fans (pwm-fan.c),
-> beepers (pwm-beeper.c) and so on. Through the HWMON subsystem, the driver
-> provides sysfs interfaces for fan.
+On Tue, 2024-02-20 at 17:34 +0200, Dumitru Ceclan wrote:
+> Change the match table to use pointers instead of device ids.
+> Remove type from state as it is not used anymore.
 >=20
-> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+> Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
 > ---
->  Documentation/hwmon/aspeed-g6-pwm-tach.rst |  26 +
->  Documentation/hwmon/index.rst              |   1 +
->  drivers/hwmon/Kconfig                      |  11 +
->  drivers/hwmon/Makefile                     |   1 +
->  drivers/hwmon/aspeed-g6-pwm-tach.c         | 549 +++++++++++++++++++++
->  5 files changed, 588 insertions(+)
->  create mode 100644 Documentation/hwmon/aspeed-g6-pwm-tach.rst
->  create mode 100644 drivers/hwmon/aspeed-g6-pwm-tach.c
+
+One comment (Jonathan might be able to address that while applying)... With=
+ that:
+
+Reviewed-by: Nuno Sa <nuno.sa@analog.com>
+
+> =C2=A0drivers/iio/amplifiers/hmc425a.c | 29 +++++++++++++++--------------
+> =C2=A01 file changed, 15 insertions(+), 14 deletions(-)
 >=20
-[...]
-> diff --git a/drivers/hwmon/aspeed-g6-pwm-tach.c b/drivers/hwmon/aspeed-g6=
--pwm-tach.c
-> new file mode 100644
-> index 000000000000..597b3b019d49
-> --- /dev/null
-> +++ b/drivers/hwmon/aspeed-g6-pwm-tach.c
-> @@ -0,0 +1,549 @@
-[...]
-> +static void aspeed_pwm_tach_reset_assert(void *data)
-> +{
-> +	struct reset_control *rst =3D data;
-> +
-> +	reset_control_assert(rst);
-> +}
-> +
-> +static int aspeed_pwm_tach_probe(struct platform_device *pdev)
-> +{
-[...]
-> +	priv->reset =3D devm_reset_control_get_exclusive(dev, NULL);
-> +	if (IS_ERR(priv->reset))
-> +		return dev_err_probe(dev, PTR_ERR(priv->reset),
-> +				     "Couldn't get reset control\n");
-> +
-> +	ret =3D reset_control_deassert(priv->reset);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "Couldn't deassert reset control\n");
-> +	ret =3D devm_add_action_or_reset(dev, aspeed_pwm_tach_reset_assert,
-> +				       priv->reset);
-[...]
-> +}
-> +
-> +static int aspeed_pwm_tach_remove(struct platform_device *pdev)
-> +{
-> +	struct aspeed_pwm_tach_data *priv =3D platform_get_drvdata(pdev);
-> +
-> +	reset_control_assert(priv->reset);
+> diff --git a/drivers/iio/amplifiers/hmc425a.c b/drivers/iio/amplifiers/hm=
+c425a.c
+> index 13e018a59637..77872e2dfdfe 100644
+> --- a/drivers/iio/amplifiers/hmc425a.c
+> +++ b/drivers/iio/amplifiers/hmc425a.c
+> @@ -41,15 +41,14 @@ struct hmc425a_chip_info {
+> =C2=A0
+> =C2=A0struct hmc425a_state {
+> =C2=A0	struct	mutex lock; /* protect sensor state */
+> -	struct	hmc425a_chip_info *chip_info;
+> +	const struct	hmc425a_chip_info *chip_info;
 
-This is already done by aspeed_pwm_tach_reset_assert(), looks like
-aspeed_pwm_tach_remove() can be removed. With that, priv->reset can
-become a local variable in aspeed_pwm_tach_probe().
+Since you're doing this, I believe you should also constify hmc425a_chip_in=
+fo_tbl[]
+and mention it in the commit message.
 
-regards
-Philipp
+- Nuno S=C3=A1
+
 
