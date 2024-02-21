@@ -1,166 +1,160 @@
-Return-Path: <devicetree+bounces-44317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62F8885D787
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 13:00:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6D0985D7A1
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 13:05:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CE0B0B20C64
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 12:00:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EACFC1C226F6
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 12:05:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E51CB4CB3D;
-	Wed, 21 Feb 2024 12:00:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E9104D9ED;
+	Wed, 21 Feb 2024 12:04:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="bgTCUzn9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn2044.outbound.protection.outlook.com [40.92.103.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CB3545C07
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 12:00:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708516844; cv=none; b=CBaNbj/M5BuMidF57ASJm3x/oOzzkHcp8CJi6eyUMcRF8kLO8o7jF0LQfzUdxdI0G2dmTcsrX32SJoKxC3HpK3EVgyePQCKt/P4oz8q61cSB37Jlp+6bh+quR7YY0x5WHPe3AZcGNFz2KWrrXsjO6oP/YoymM3ho6YIkH32MTao=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708516844; c=relaxed/simple;
-	bh=2+UX+kaYx6D1K2QYMIDl553xTn5OQ0uFsYztVdwDLLc=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Fn7PzBjrfBDCDmCs2qMkDcm3ytmPt0jdJAcwvzgoI/yq6PWPHoQ71bzRbLO2evGWRQiH8gDzY16mXGOH1kMQmRwFRQDEIG0/t9VeOdWrXxcrmvntOFapyy3OgU3IFV9fUsXDVoy2vqfrF3SzHalBs/JRbXfZbWNm7I93GCUoeZk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rclHD-0005u4-DT; Wed, 21 Feb 2024 13:00:39 +0100
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rclHC-0021xW-JH; Wed, 21 Feb 2024 13:00:38 +0100
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rclHC-0006a8-1i;
-	Wed, 21 Feb 2024 13:00:38 +0100
-Message-ID: <ddecea158d5ea0cd2d682f8f9577ee0c78a755d9.camel@pengutronix.de>
-Subject: Re: [PATCH v2 1/2] watchdog: sp805_wdt: deassert the reset if
- available
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Yang Xiwen <forbidden405@outlook.com>, Christophe JAILLET
-	 <christophe.jaillet@wanadoo.fr>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org, 
-	linux-watchdog@vger.kernel.org, linux@roeck-us.net, robh+dt@kernel.org, 
-	vireshk@kernel.org, wim@linux-watchdog.org
-Date: Wed, 21 Feb 2024 13:00:38 +0100
-In-Reply-To: <SEZPR06MB6959D4BEC90745D94BF02BF596512@SEZPR06MB6959.apcprd06.prod.outlook.com>
-References: <20240220-hisi-wdt-v2-0-63edc4965b4c@outlook.com>
-	 <20240220-hisi-wdt-v2-1-63edc4965b4c@outlook.com>
-	 <534b62dc-3874-407f-a5c9-f67d366107dc@wanadoo.fr>
-	 <SEZPR06MB6959D4BEC90745D94BF02BF596512@SEZPR06MB6959.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E5E54D58E;
+	Wed, 21 Feb 2024 12:04:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.103.44
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708517093; cv=fail; b=rLvzkJOcpu64KJvtVDLTyih7I5SGCShE85lvcqcLzqNZAEQsD9Td83TDPoUR0FoLgw/iPpoYgihSKB4+7EePu6Da1/1gUtJOI5DJVu5bYsCMAW9FxngsV/3sTPDyP0LcrhsSxaoZqve9islMAKbyvdyZAteAo7k8iZB59LTG9VY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708517093; c=relaxed/simple;
+	bh=+OXVROfovaZ1YM05bxeGmzMbIfgc4dc3B9xOS44tqpI=;
+	h=Message-ID:Date:Subject:To:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=YVXmtY3vJh+aajJkgwT8clvmbJZm1FaZSu/SkbBq5aj4VEfcxLnGz0TrCQwjNDT0htzIleVeS0ewQd/kTFBmzXa08dxtROoO8VFIxBUFnFO4y+vkmVLvW7UejdrAcamhhRaJ5WbhtCpQ9XPRujP453KW18WOdM95tN4M6uwjUqk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=bgTCUzn9; arc=fail smtp.client-ip=40.92.103.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mox/WSRf0Vqy2AQVf+wkxBKxq6DKBnmNUVTV7KZTVFvsfChdR1eQKVf07U671Y/FrL6FU5RDEcOyFEMB3BUWrdhkp/GNsH0nFUep+iNOa4fAvvseHsKAuRr6aYC/mQNSzwyNiSYJzOsUEOKGJBJnjKsfJZbEmeoc+tgL62+XhDgnuXFhHHmmGUTpeNNXbCGRIrypOQGWP2v5akYbUwsOoY30dL9FdQQatUn4vIrwUn2Q4QO3UcnVH/VLWbM3Z90d7tfjfG889fmMopN465aBFiAynNpVRAMDZbhBG/YOqmDTTFCoggEb0cQG5eeyU9GnZBczaN5ndjW344U3D5ROYg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=P+O0qDKFHwYAauWvigIs+9N8AaDr6RSZfIfR7+cu1YA=;
+ b=UaLKnW1FpB4TeqxqrGFeQGBtr3s7Lwwep+FrHpF68rKrzpmtUr50aUrrsdGfqt3C+XEwzKT5Q80A0oipfrXymY9E6qph1F8quR9Z9pbL6uSE1V59X3zrO+9BpKJeZLO4St6bzJ0+MBSKhzlAm0zZUxfkNhFqBiT7I7iH2b2n+MUznzrOkxsXp4l2SSW+KLN2SaHp3B5FRBnfpFiNCjCoHh+Jar9K6fsha36hQx+ivNVTGubVNQk86SaokbWiu5KACIBD2LaO53JH6qvkgu6cEQ3FP07KdHdxiWVmRgQu/zRxf9mR2Zkm89ITdGqWsFg++TXGUTxqsVnZEqv0Gbk1FQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=P+O0qDKFHwYAauWvigIs+9N8AaDr6RSZfIfR7+cu1YA=;
+ b=bgTCUzn92Bu1Be5/LYUQHKAhcBWPmObrh3RheNwW9QyY6KFkFjR+P6jyXRl2lGwm8ebg8af+YMrZUfz5reZWAkKFvGxx68fBjw2e8Qp57vnNtARfSpr95dnw8/hA/tjaTJ0vxrf5fEYbeHGi5HePwWFdD4va8+RnFrinCSmxnkG+u6XDeaFUfPQx1sInIPdywni1tTNiaJX6pBYyI3KkDD9YXZNtgxd3NwZFfaqpghXbxESoF61vqtIXKdhmTSCfa0uSM2P3tN5MZdujNo9x257QPemDdljKt0lFAGe7xaeQbA+b7DHBfRsSfjNbRYwlADlX40tTbTA0XHKFg/eHng==
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
+ by PN2P287MB2090.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1c2::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.22; Wed, 21 Feb
+ 2024 12:04:44 +0000
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::8473:67b4:9a2a:3a69]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::8473:67b4:9a2a:3a69%7]) with mapi id 15.20.7316.018; Wed, 21 Feb 2024
+ 12:04:43 +0000
+Message-ID:
+ <MA0P287MB28227AAD9D0E84EF39C8DBABFE572@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+Date: Wed, 21 Feb 2024 20:04:38 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/4] riscv: sophgo: add reset support for SG2042
+To: Philipp Zabel <p.zabel@pengutronix.de>, Chen Wang <unicornxw@gmail.com>,
+ aou@eecs.berkeley.edu, chao.wei@sophgo.com, conor@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
+ paul.walmsley@sifive.com, robh+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com, guoren@kernel.org,
+ jszhang@kernel.org, inochiama@outlook.com
+References: <cover.1706577450.git.unicorn_wang@outlook.com>
+ <6aeef5bcc9ce007bdd3312f6b96ffb06655ae909.camel@pengutronix.de>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <6aeef5bcc9ce007bdd3312f6b96ffb06655ae909.camel@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TMN: [orMDvOVkHA32lvfiom+TGLGBxDeBZk9R]
+X-ClientProxiedBy: SI2PR06CA0018.apcprd06.prod.outlook.com
+ (2603:1096:4:186::8) To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:138::5)
+X-Microsoft-Original-Message-ID:
+ <50532f60-240e-4d39-9cad-5a9fde5b84a5@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|PN2P287MB2090:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6bb58e51-ec01-472a-978d-08dc32d54a49
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	ziweUDKR8nsDrhau5tJ3cSMpXSglXVtbh+hBmqiqMhGQErDt9AHPOS1465ZnvHVIaNyXeFc5EMMCiLxFF5uCWhZS0AkXeO11s1+X6qIoytKCQQCN0wODSkYyLJSOp04CV71nd0Tt2z+xu0e0HIw+jdAFWEZ+83+1TPAInRdY0NzlyFKmJ+CcDhmf8PYuxd0XCxdT77TuqTVJrcWwz53BRvmIPVhEumsSLvvAs5hm65AONeo0DjFP+svun7C8UtI0iNqSUhkpt7+q9zS0rPUtvqoJ6/2O6GuEaGK7Do07c7c25ZL5SnMYxW/0nsA7uF/gwC4LN6g/Gjwm+5+jZ2nKcHuux6MBgg60DR8hyKkRF+A5TB3ye7/y85p/58oFm9EJnXJGmbkF6TVmtGTzELw1EE2jnIdKVCyPjWaPeaZ/+fr556Z9lQAzeKA0kTPToxGPY62OCAWgAO8X03zB8hwrLj95gCPCD0qt6xgqhAnCZN92/eINnYMhXfNAsLKMoIQ2CqvI106hVqBXab1XQ7HTfKhr/ScN+wYfeIFHILiSNwlX81JiA/37YK4Yv+qkWUoknE4atXbScvtnKgTxi/minYGlGYEZlJHUhQtHr5bf4jA=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?VHd3MFI2ZHFDUWhOWXEwVGQrZkdWWXg4c2FzTTdIeEkrSXhrdXp2dFRqMnB4?=
+ =?utf-8?B?Q0ZrSzBqWThsbDhoT0xLck5vR1VuTytRTVhBQXU4YkFVN0VMMWtoY3lQNnk4?=
+ =?utf-8?B?N2kwYnFuaU9MOGkvaXFqZEJwdXRoeXQ1ei9paitKVmFaQkcvd0dmK1QzNW80?=
+ =?utf-8?B?cVQyVHJSeXRnUC9NUk5NVnFEVTRxZE51QS9kbVd2ZGNGUVRWZUxER0RSSHRN?=
+ =?utf-8?B?SjNhMmxicnluNEhPUGlVbEowb2l5VTJlTmR4WkwweEFQQmZUN3hUK05Za014?=
+ =?utf-8?B?M2t0R0N2RTFhUGppQmp6Q3IrVEZ4ZUIwRkQrNXUrNVlGRFFrcjB4MkNib3Fi?=
+ =?utf-8?B?Ylp4ZFNjcFZKbG1KSW9NS1g0YlRzdWNhT2VSZFR1SjZEZEJzQ0x6RHBSRW5J?=
+ =?utf-8?B?aFQzaERFVG5BTmYxZXJZT3krRGxGSk95dnY3aGljYnRaZm5EL05NVlB4V2lr?=
+ =?utf-8?B?LzYyOXRJaU9QUlc5Y08ybFRyN09kM3JPNnFnV3dadng5S0RSYk10bzRwVWpH?=
+ =?utf-8?B?dC8rQzJOZzJ5ZEZLSGRpSFpJUklCblBWeEpkYVg1STRwSjFwcERhNEpESXlD?=
+ =?utf-8?B?Y01aUkNKbTlIK2o2RUtpUFY4SWI2RVRHcyttK3JQZTFpWFEreFlKUzBnSGhm?=
+ =?utf-8?B?ajU0U0YwaXNOZUxVc3pZc3hTUzlJejZnSTFGb1lZQXBrN1pxV2VvRVd3a1hw?=
+ =?utf-8?B?akwxL2lFek8xazVpVVlsSGZRQ3JXYkc0MVUvekVtN0QweWl4akNyM3AvYTNr?=
+ =?utf-8?B?TnZIR3BveGhRbWI4bk8wS0hoOWVZTDVMdXdIRHZLYXZ3Uk9nTDU2c3B6aHQ5?=
+ =?utf-8?B?ZTN2YmxKdk0vTk9BTXRZbnkxa1pmZjRhOFZSMTRaMzV1MzNtbnhyeFNDdUVO?=
+ =?utf-8?B?c2NpWmRVQTYvazkyeGFWZ0hqZkVGNElpL21ybmNEOE1nNlF1b291NHhVc2F2?=
+ =?utf-8?B?YzlOWkEzZ1JJUlROeExOS0h2TXJqOEZXTHBUYjdjTmNlL3g2Wmc2MG5GaUdq?=
+ =?utf-8?B?L1V4OC9PZnJxSDB3WkwzUGNaZ215VmQwdTRZOElJZ0E4MTRLb2ordk5QNXZk?=
+ =?utf-8?B?c0pjNGRLelV2ekk2YWxUUG5EMzFkS0d2NDkveXRvV2JwbU9jQTU2NElIWUJp?=
+ =?utf-8?B?MjVPWS9pSTg4NzJZWHpRVTFKS0ZnQUE4MFBKbEtuYWJaYTdLK0t5NEo5RzBV?=
+ =?utf-8?B?V1QweXFpYy9PVlgzK3lZNjgwV01RL2d6YlRtd2ZBUmxTdXBIWG5CT2w0NEow?=
+ =?utf-8?B?aG1pVnhIYWtNTzBkQmZvTFpLSElPWDdPYXdSVDU2OFlxYjlMbDJsNTROS3pE?=
+ =?utf-8?B?VUZmelNyUjlScERneFBVc0ZLQzgrUVpxcG1ydWwvYnkxSW5uSUpUejlOcHF3?=
+ =?utf-8?B?eGU4QmRWTkxmK1RHK3YyR2dEblhXeFh0MFlybE42YzhPZjV5VTFTTExJaUdU?=
+ =?utf-8?B?U1VlOTdCVFFhSDhCbHdxdC8zLzBoallTalI3b0pwMGwxY0J4YjdvNGFXRmZF?=
+ =?utf-8?B?YXZnSi9TS2IvT1oycm9sQWExa1Q0YmF1TjkwWEFMaEFGd1pSVEJUSjBkVVQv?=
+ =?utf-8?B?aC9ocmhSNnFRL05OSlE3M3pBRlRkcnMxRmFPUG81dmNYMldIaC93Qm9ZTlBh?=
+ =?utf-8?B?ZDhQUkR0Mm05bWRhU2pIRXF0cm54ZDlrTkZZMVlDUkoyYXluZHpFZG9Va1lJ?=
+ =?utf-8?Q?xquYEOhKRMOFp9h5jgoQ?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6bb58e51-ec01-472a-978d-08dc32d54a49
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2024 12:04:43.8000
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2P287MB2090
 
-On Di, 2024-02-20 at 03:00 +0800, Yang Xiwen wrote:
-> On 2/20/2024 2:22 AM, Christophe JAILLET wrote:
-> > Le 19/02/2024 =C3=A0 19:14, Yang Xiwen via B4 Relay a =C3=A9crit=C2=A0:
-> > > From: Yang Xiwen <forbidden405-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.or=
-g>
-> > >=20
-> > > According to the datasheet, the core has an WDOGRESn input signal tha=
-t
-> > > needs to be deasserted before being operational. Implement it in the
-> > > driver.
-> > >=20
-> > > Signed-off-by: Yang Xiwen=20
-> > > <forbidden405-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.org>
-> > > ---
-> > > =C2=A0 drivers/watchdog/sp805_wdt.c | 9 +++++++++
-> > > =C2=A0 1 file changed, 9 insertions(+)
-> > >=20
-> > > diff --git a/drivers/watchdog/sp805_wdt.c b/drivers/watchdog/sp805_wd=
-t.c
-> > > index 2756ed54ca3d..b4bcfdeb39e6 100644
-> > > --- a/drivers/watchdog/sp805_wdt.c
-> > > +++ b/drivers/watchdog/sp805_wdt.c
-> > > @@ -25,6 +25,7 @@
-> > > =C2=A0 #include <linux/moduleparam.h>
-> > > =C2=A0 #include <linux/pm.h>
-> > > =C2=A0 #include <linux/property.h>
-> > > +#include <linux/reset.h>
-> > > =C2=A0 #include <linux/slab.h>
-> > > =C2=A0 #include <linux/spinlock.h>
-> > > =C2=A0 #include <linux/types.h>
-> > > @@ -59,6 +60,7 @@
-> > > =C2=A0=C2=A0 * @lock: spin lock protecting dev structure and io acces=
-s
-> > > =C2=A0=C2=A0 * @base: base address of wdt
-> > > =C2=A0=C2=A0 * @clk: (optional) clock structure of wdt
-> > > + * @rst: (optional) reset control signal of wdt
-> > > =C2=A0=C2=A0 * @rate: (optional) clock rate when provided via propert=
-ies
-> > > =C2=A0=C2=A0 * @adev: amba device structure of wdt
-> > > =C2=A0=C2=A0 * @status: current status of wdt
-> > > @@ -69,6 +71,7 @@ struct sp805_wdt {
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 spinlock_t=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 lock;
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 void __iomem=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *base;
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct clk=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *clk;
-> > > +=C2=A0=C2=A0=C2=A0 struct reset_control=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 *rst;
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u64=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 rate;
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct amba_device=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 *adev;
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned int=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 load_val;
-> > > @@ -264,6 +267,12 @@ sp805_wdt_probe(struct amba_device *adev, const=
-=20
-> > > struct amba_id *id)
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return -ENODEV=
-;
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
-> > > =C2=A0 +=C2=A0=C2=A0=C2=A0 wdt->rst =3D devm_reset_control_get_option=
-al(&adev->dev, NULL);
-> > > +=C2=A0=C2=A0=C2=A0 if (IS_ERR(wdt->rst))
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return dev_err_probe(&ade=
-v->dev, PTR_ERR(wdt->rst), "Can not=20
-> > > get reset\n");
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0 reset_control_deassert(wdt->rst);
-> > > +
-> >=20
-> > Hi,
-> >=20
-> > Is a corresponding reset_control_assert() needed in the remove function=
-?
->=20
-> I don't think it makes much sense. Many drivers in kernel does not=20
-> reassert the resets in their driver's remove callback too.
 
-In general, balancing deassert/assert is only required for shared reset
-controls.
-
-For exclusive reset controls, it depends on whether the driver has any
-expectations that the reset was asserted at some point before deassert
-is called, possibly to reset registers or some internal state.
-E.g., if this driver is unbound and then bound again, the deassert
-during second probe is a no-op.
-
-regards
-Philipp
+On 2024/2/21 19:14, Philipp Zabel wrote:
+> On Tue, 30 Jan 2024 09:49:08 +0800, Chen Wang wrote:
+>> From: Chen Wang <unicorn_wang@outlook.com>
+>>
+>> This series adds reset controller support for Sophgo SG2042 using
+>> reset-simple driver.
+>>
+>> Thanks,
+>> Chen
+>>
+>> [...]
+> Applied patches 1-2 to reset/next, thanks!
+>
+> [1/4] dt-bindings: reset: sophgo: support SG2042
+>        https://git.pengutronix.de/cgit/pza/linux/commit/?id=41197eb5f993
+> [2/4] reset: simple: add support for Sophgo SG2042
+>        https://git.pengutronix.de/cgit/pza/linux/commit/?id=a6166a4da5e4
+>
+> regards
+> Philipp
+>
+Thank you Philipp.
 
