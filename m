@@ -1,55 +1,74 @@
-Return-Path: <devicetree+bounces-44260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D737685D50A
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 11:02:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B4EB85D50B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 11:02:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 781031F27D75
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AEBD71C23C68
 	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 10:02:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 589324CE12;
-	Wed, 21 Feb 2024 09:54:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 223B64652F;
+	Wed, 21 Feb 2024 09:55:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="i9xXFb9q"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m7O2Saz+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67A4F4CB51
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 09:54:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4438A4CE0E
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 09:54:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708509295; cv=none; b=GsSukSelrXQ+ELKaIVFpNi+xF1UoKJwJpAk81eqd95DUsxXDyJ1HitcWl2OPmxLhzAWx1gaB4oFknyyqqXkwEWnC6r6kutg0U6hStqz9+0S6I1z65yw5U01bZlUSsWOfa+0fDktQeb6URl2turqINpItJ3n4wgpnNcxw6ri6swQ=
+	t=1708509301; cv=none; b=jTmb/QIZriXC03IyN1rk/fkFMhA4X6ZWm3gtCruiQAzRd+QqKjU5DrLsxFkpRW23BB2TJ9bbUZDIFhC3JuYxMfLLoNMZnIw9px/yyTqXbX3WXCuDEZyWKAfiF359IteOZUuJlfEdPI5AxF+pFRFAGMH5tassle/6i31B/0yAvJY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708509295; c=relaxed/simple;
-	bh=Ov6Fr48gl0NfzJDJ/3C8ImGoCw/m3Sy0KlaKo63UvA0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Pa0grUVrHOep7sDX+gBel10HF8Nx/vjys9Z5SVB5DY41/E9PIn2DpEETn95vR9glha6EGTBx+uvGFj9zOzy/LDETnqmq3z3DjI8egAny/uoC2AlFSoK5E4OnJfHg+aZaCFYiXr7WQ7XAwH8Ijk+gbA/FBlac8Xw5pB/1L6zNA5c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=i9xXFb9q; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1708509291;
-	bh=Ov6Fr48gl0NfzJDJ/3C8ImGoCw/m3Sy0KlaKo63UvA0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=i9xXFb9q0JzKtrzxylejHMKSnQdr4rUNu8Vk3cyb427BHDXNE5X1BEqUHjulJvCLZ
-	 53455+nsw0zZejSSnILF/Q6zL6khL9mBJ9S9RL1MKxxCdfBiEhd5hrMZX1GUXEwGor
-	 /AGcg94WEeRsNALZ5xepKTsOH1o+XyxapBKaDy5+4RzczD6zXaNTJOHyps/dyJtuM0
-	 I2Ztqe2S7+TxrtCboEFRNd5IVaM5L2+upCWKQZNjlEVDf6olFJ7ygfUENFoL6GyAFj
-	 6gtA3LM8IvPf/OVUJze1FGNKYwO6BV5TDXfEwoOGoSaWDC53moFCwPazB8qi9xjlBh
-	 nq7HLWSRyw4sw==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id C52F6378107C;
-	Wed, 21 Feb 2024 09:54:50 +0000 (UTC)
-Message-ID: <7a623f15-02cc-4508-88e2-da12aaeee242@collabora.com>
-Date: Wed, 21 Feb 2024 10:54:50 +0100
+	s=arc-20240116; t=1708509301; c=relaxed/simple;
+	bh=zm/vBibTZ3Rw1+e1hTTVkyysGtZeGEl4z6JnweURqmg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=NrynhWmwtHNBmp3vlNEY2Us9sXa9XZFB2xYYHsD645q7MopD09+ebFX+JdmR9Ydz0KnbtISgeVlQqJ+px+LGfLmRbFj4Y8Jl+ynmcBnprBFHwa9MykIkQn3dKI0aL8WMob8nOMRyW3QGuw7nzRv2gdm+u5wcvh1tFgoKrB4Stus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m7O2Saz+; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a3f4464c48dso39812966b.3
+        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 01:54:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708509297; x=1709114097; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KcmtWXC+eeRLQpsTOmN8RmXIXynGIPAPPuNNVvjXO7E=;
+        b=m7O2Saz+5wDh3x6N5ZUcOfeF9V2tItGVJg6mVNNfVPyniR1NoN/VITvuHIjufOzaUC
+         ml37e3oSdenjgR/6qdhubNaI3ptbh9YLBXIAafKq9Rye9Em4X0ZRuA0IaiMK7I4YEj9c
+         aKt7NhkZIdiZaJhtnbbh/hAQPx7t4ioamIoK4UiUAd58Mp5fs5/D4fFbNJmhfLcjMbun
+         ilDx+cTbZuMQh8AtPDmP7bSd0bz7y8ye7sQihnyB1TTMe7ghdkzVjXnDOg6t5YiOV0Os
+         L2SR6geTDqjulkDkKdUeOB6K7d9mbK5YKkCXByrTwwd4ECYPUpETrz4F3aXwZv5oToP/
+         OUgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708509297; x=1709114097;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KcmtWXC+eeRLQpsTOmN8RmXIXynGIPAPPuNNVvjXO7E=;
+        b=QS1Zlr4ok69p21xCY5wkjcXxFISV1FgHX5K2dsDIO3pLyeAEFDBfx3+LXj2E1y2gJZ
+         sAp9hTa7nWN2VJGSEHcQljVXvnxV+a4bGTIb3RQdNoej6S4u+f7e3LgIx/oO9lG+c6Mz
+         z57nnT4l4xldMmHFxpP4iud/Fg+a2OQ/iHU0+OeCHNuOv03MaMuq13OwgHPekULIwDGG
+         IYRYz/LEr9d2w+A8NJbDXgUwq/+Iryj8dJf1m5xamsnkaCtqRBy6Egws6D9SJkJN9y5n
+         58QwcV0eLGbGiZyT7YT11rOU/9aWCGzwMul3FkY8l5BWfjI0Rlxw7/rSExe9vn8rdUu1
+         kJ6g==
+X-Forwarded-Encrypted: i=1; AJvYcCU7Ou3mcdIyPgTk+dE+e2qHddDiv7cy/ujjYkyE1DvYpHkYmoD15iHtmlLk90W5I5mz7BxQzObSftcMrudidSm1VV0gZra1Ugz/PA==
+X-Gm-Message-State: AOJu0YzPaK5THNfHcrBA3Dx6Xphe77V8zsPFOWDYpX7+o8i6lMcNsC+G
+	9bQIrKVvRm0O/AyDagszKEjHhyiorCYbiT5g1QaFa0sr29Q1kymz7fhN2uYuG6c=
+X-Google-Smtp-Source: AGHT+IEU1nxc4NKao6byiVMdxqkd2y5TaHUyEJZs+U3hYhmscxhdnGmUNo/hj6bQWgubkdGHXQX7Ew==
+X-Received: by 2002:a17:906:4f0d:b0:a3e:8aeb:c198 with SMTP id t13-20020a1709064f0d00b00a3e8aebc198mr7655196eju.17.1708509297621;
+        Wed, 21 Feb 2024 01:54:57 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.116])
+        by smtp.gmail.com with ESMTPSA id ss15-20020a170907c00f00b00a3e0dc787bfsm4745061ejc.17.2024.02.21.01.54.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Feb 2024 01:54:57 -0800 (PST)
+Message-ID: <c532285c-6104-473f-be12-a5e833484bd3@linaro.org>
+Date: Wed, 21 Feb 2024 10:54:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,288 +76,90 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] arm64: dts: Add Airoha EN7581 SoC and EN7581
- Evaluation Board
+Subject: Re: [PATCH v3 6/9] ARM: dts: aspeed: Harma: Add PDB temperature
 Content-Language: en-US
-To: Lorenzo Bianconi <lorenzo@kernel.org>,
- linux-arm-kernel@lists.infradead.org
-Cc: lorenzo.bianconi@redhat.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, nbd@nbd.name,
- john@phrozen.org, devicetree@vger.kernel.org, dd@embedd.com,
- catalin.marinas@arm.com, will@kernel.org
-References: <cover.1708473083.git.lorenzo@kernel.org>
- <f59389838c741650f6ff05d984a9127545e4eb83.1708473083.git.lorenzo@kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <f59389838c741650f6ff05d984a9127545e4eb83.1708473083.git.lorenzo@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Peter Yin <peteryin.openbmc@gmail.com>, patrick@stwcx.xyz,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+References: <20240221093925.2393604-1-peteryin.openbmc@gmail.com>
+ <20240221093925.2393604-7-peteryin.openbmc@gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240221093925.2393604-7-peteryin.openbmc@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Il 21/02/24 01:04, Lorenzo Bianconi ha scritto:
-> From: Daniel Danzberger <dd@embedd.com>
+On 21/02/2024 10:39, Peter Yin wrote:
+> Add PDB temperature sensor.
 > 
-> Introduce the Airoha EN7581 SoC's dtsi and the Airoha EN7581 Evaluation
-> Board's dts file, as well as the required Makefiles.
-> 
-> Signed-off-by: Daniel Danzberger <dd@embedd.com>
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
 > ---
->   arch/arm64/boot/dts/Makefile              |   1 +
->   arch/arm64/boot/dts/airoha/Makefile       |   2 +
->   arch/arm64/boot/dts/airoha/en7581-evb.dts |  27 +++++
->   arch/arm64/boot/dts/airoha/en7581.dtsi    | 137 ++++++++++++++++++++++
->   4 files changed, 167 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/airoha/Makefile
->   create mode 100644 arch/arm64/boot/dts/airoha/en7581-evb.dts
->   create mode 100644 arch/arm64/boot/dts/airoha/en7581.dtsi
+>  arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/Makefile b/arch/arm64/boot/dts/Makefile
-> index 30dd6347a929..21cd3a87f385 100644
-> --- a/arch/arm64/boot/dts/Makefile
-> +++ b/arch/arm64/boot/dts/Makefile
-> @@ -1,5 +1,6 @@
->   # SPDX-License-Identifier: GPL-2.0
->   subdir-y += actions
-> +subdir-y += airoha
->   subdir-y += allwinner
->   subdir-y += altera
->   subdir-y += amazon
-> diff --git a/arch/arm64/boot/dts/airoha/Makefile b/arch/arm64/boot/dts/airoha/Makefile
-> new file mode 100644
-> index 000000000000..ebea112ce1d7
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/airoha/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +dtb-$(CONFIG_ARCH_AIROHA) += en7581-evb.dtb
-> diff --git a/arch/arm64/boot/dts/airoha/en7581-evb.dts b/arch/arm64/boot/dts/airoha/en7581-evb.dts
-> new file mode 100644
-> index 000000000000..4eaa8ac431c3
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/airoha/en7581-evb.dts
-> @@ -0,0 +1,27 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +/dts-v1/;
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
+> index ca3052cce0e0..4d5d1c822fa3 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
+> @@ -260,6 +260,11 @@ delta_brick@69 {
+>  		compatible = "pmbus";
+>  		reg = <0x69>;
+>  	};
 > +
-> +/* Bootloader installs ATF here */
-> +/memreserve/ 0x80000000 0x200000;
-> +
-> +#include "en7581.dtsi"
-> +
-> +/ {
-> +	model = "Airoha EN7581 Evaluation Board";
-> +	compatible = "airoha,en7581-evb", "airoha,en7581";
-> +
-> +	aliases {
-> +		serial0 = &uart1;
-> +	};
-> +
-> +	chosen {
-> +		bootargs = "console=ttyS0,115200 earlycon";
-> +		stdout-path = "serial0:115200n8";
-> +		linux,usable-memory-range = <0x0 0x80200000 0x0 0x1fe00000>;
-> +	};
-> +
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x80000000 0x2 0x00000000>;
+> +	tmp75@49 {
 
-Is your bootloader really not filling the size for the memory node?
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
-Can you please verify?
-If it doesn't, it's not a problem of course.
+Best regards,
+Krzysztof
 
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/airoha/en7581.dtsi b/arch/arm64/boot/dts/airoha/en7581.dtsi
-> new file mode 100644
-> index 000000000000..7a3c0a45c03f
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/airoha/en7581.dtsi
-> @@ -0,0 +1,137 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +/ {
-> +	interrupt-parent = <&gic>;
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		npu_binary@84000000 {
-
-npu-binary@...
-
-> +			no-map;
-> +			reg = <0x0 0x84000000 0x0 0xA00000>;
-> +		};
-> +
-> +		npu_flag@84B0000 {
-> +			no-map;
-> +			reg = <0x0 0x84B00000 0x0 0x100000>;
-> +		};
-> +
-> +		npu_pkt@85000000 {
-> +			no-map;
-> +			reg = <0x0 0x85000000 0x0 0x1A00000>;
-> +		};
-> +
-> +		npu_phyaddr@86B00000 {
-> +			no-map;
-> +			reg = <0x0 0x86B00000 0x0 0x100000>;
-> +		};
-> +
-> +		npu_rxdesc@86D00000 {
-> +			no-map;
-> +			reg = <0x0 0x86D00000 0x0 0x100000>;
-> +		};
-> +	};
-> +
-> +	psci {
-> +		compatible = "arm,psci-0.2";
-
-Not the first time I comment that (in general - not specifically to you): are you
-sure that your platform supports PSCI v0.2 and not a later version?
-
-Please check your kernel log, you should see a message like
-
-[    0.000000] psci: PSCIv1.1 detected in firmware.
-
-(with the right version)
-
-...then use the right compatible string :-)
-
-> +		method = "smc";
-> +	};
-> +
-> +	cpus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		cpu-map {
-> +			cluster0 {
-> +				core0 {
-> +					cpu = <&cpu0>;
-> +				};
-> +				core1 {
-> +					cpu = <&cpu1>;
-> +				};
-
-Your cluster contains only two cores, this means that the other two are in a
-parallel reality? :-P :-P
-
-Jokes apart, this cpu-map looks wrong.
-
-Check what the topology is supposed to be for real, clusterized or DynamIQ?
-In the first case, you get X clusters with Y CPUs each - in the second case,
-you get *one* single cluster with all CPUs inside.
-
-> +			};
-> +		};
-> +
-> +		cpu0: cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			reg = <0x0>;
-> +			enable-method = "psci";
-> +			clock-frequency = <80000000>;
-> +			next-level-cache = <&L2_0>;
-> +		};
-> +
-> +		cpu1: cpu@1 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			reg = <0x1>;
-> +			enable-method = "psci";
-> +			clock-frequency = <80000000>;
-> +			next-level-cache = <&L2_0>;
-> +		};
-> +
-> +		cpu2: cpu@2 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			reg = <0x2>;
-> +			enable-method = "psci";
-> +			clock-frequency = <80000000>;
-> +			next-level-cache = <&L2_0>;
-> +		};
-> +
-> +		cpu3: cpu@3 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			reg = <0x3>;
-> +			enable-method = "psci";
-> +			clock-frequency = <80000000>;
-> +			next-level-cache = <&L2_0>;
-> +		};
-> +
-> +		L2_0: l2-cache0 {
-> +			compatible = "cache";
-> +			cache-level = <2>;
-> +			cache-unified;
-
-Do you know what is the l2 cache size, line size, sets?
-cache-size = < ... >
-cache-line-size = < ... >
-cache-sets = < ... >
-
-> +		};
-> +	};
-> +
-
-All iospace addressable nodes must go into a soc node, others go in the root node.
-
-soc {
-	gic: interrupt-controller@9000000 {
-		....
-	}
-
-	uart0: serial@ ....
-
-};
-
-> +	gic: interrupt-controller@9000000 {
-> +		compatible = "arm,gic-v3";
-> +		interrupt-controller;
-> +		#interrupt-cells = <3>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		reg = <0x0 0x09000000 0x0 0x20000>,
-> +		      <0x0 0x09080000 0x0 0x80000>,
-> +		      <0x0 0x09400000 0x0 0x2000>,
-> +		      <0x0 0x09500000 0x0 0x2000>,
-> +		      <0x0 0x09600000 0x0 0x20000>;
-> +		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupt-parent = <&gic>;
-> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
-> +	};
-> +
-> +	uart1: serial@1fbf0000 {
-> +		compatible = "ns16550";
-> +		reg = <0x0 0x1fbf0000 0x0 0x30>;
-> +		reg-io-width = <4>;
-> +		reg-shift = <2>;
-> +		interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
-> +		clock-frequency = <1843200>;
-> +		status = "okay";
-
-status is okay by default, you don't need that.
-
-> +	};
-> +};
-
-Cheers,
-Angelo
 
