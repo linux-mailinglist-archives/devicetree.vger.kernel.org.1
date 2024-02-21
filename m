@@ -1,130 +1,111 @@
-Return-Path: <devicetree+bounces-44388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0C9C85DFFF
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 15:41:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 456AC85E00E
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 15:42:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7542F1F248B9
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 14:41:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7BBCFB27B90
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 14:41:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFC537FBB6;
-	Wed, 21 Feb 2024 14:40:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 683B780633;
+	Wed, 21 Feb 2024 14:40:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Y6yTi2qQ"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="MnpcL/j2";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="a4xVjwE2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 582307EF03;
-	Wed, 21 Feb 2024 14:40:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 162047EF03
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 14:40:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708526421; cv=none; b=ejwueMlJyPtzNaCQZRtVb8PhYG7OABXAOFeUhpa8EIeijEWeFCVg/Gta7o2+DzcVOKrLvCZ1yQrflAlkepnuv/uDu3rm2wsjgMu0xlU4E+RgH5o09gm+9/O9Gfwik8LCiViuKNlq/7BltD1+vLbzoQniu1b/cQuQCzFU8FXxdiY=
+	t=1708526431; cv=none; b=tUx7TGFPLK1ib3SAowI8ok+fyeGg8C+KzejCC4OT5xnPppiLvn0sknYdOG7y5S0R6YsIHacmNTRHTrEJiu/5QrUY8D2dZRyYNVh70iXZBoajSOllmAJRdHqU+43as0yXahFlHjU/C4H/EWfC91kye5oXurAMgKYsD5ZGD/1zi3g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708526421; c=relaxed/simple;
-	bh=Vtj87ir413FfelSjrCQhZpK5ETcv5wHwL+6tPtbC/Uc=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CgPb+phhpu8x/yCZhkwYs2ZBe3hfrdZ5qVR/YE6SK4o4o86rSFrYZolB3mqnNAEmbXlJ3pxKGtBNszAIK5pA/Q4QgcfLsB34KGgVnJ8Mk+66/fCjUi5IcNES0mipFcDpGarY8JhMJ3WVaVd8xMDsUt/CqUF37QZhleRSNlNJHwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Y6yTi2qQ; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 44BA0C0005;
-	Wed, 21 Feb 2024 14:40:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1708526411;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=tQm0Ki+vp+Zu8t/KqaIVW4arTM7ikJLGwDxFBBM8zRM=;
-	b=Y6yTi2qQeizuS5QqtOVYt2nD/gLX1NBZSTTyeKh7qGJlx0SKp7Qbuom3BsiBfoyXIm1XBU
-	89mGEKUeZo4PW7DXVu4VwkwHCZw81uvIl29JXXoe0nHedMk8bJWz/sMy+jMywiEaMSX6fU
-	2R6XzTWuRfhe5/+FyRpfGc4dUN3LM82he24bmlACxF62NwzNTY65tL8eLSq9xR8ZflZcvF
-	CXlqQ3azgASB6cZVNqsNtM0hzKIXEVikJzc1ThwlDphHdccIDb2nCAb/XrRJ5Mk4kZop0Y
-	EO7Yns5A+Mti/OkLhpsNfzuzY94H0OB3oNUb2x5+VjgAaLV/xPyGlZvt92gHDw==
-Date: Wed, 21 Feb 2024 15:40:06 +0100
-From: =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Jakub Kicinski <kuba@kernel.org>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
- <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Luis Chamberlain
- <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Oleksij Rempel <o.rempel@pengutronix.de>, Mark Brown <broonie@kernel.org>,
- Frank Rowand <frowand.list@gmail.com>, Heiner Kallweit
- <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- devicetree@vger.kernel.org, Dent Project <dentproject@linuxfoundation.org>
-Subject: Re: [PATCH net-next v4 05/17] net: pse-pd: Introduce PSE types
- enumeration
-Message-ID: <20240221154006.7ad2d66d@kmaincent-XPS-13-7390>
-In-Reply-To: <11225a0d-bdc4-459c-9258-c9da217cc89e@lunn.ch>
-References: <20240215-feature_poe-v4-0-35bb4c23266c@bootlin.com>
-	<20240215-feature_poe-v4-5-35bb4c23266c@bootlin.com>
-	<20240215105846.6dd48886@kernel.org>
-	<20240216104211.2c11d1cc@kmaincent-XPS-13-7390>
-	<20240216173638.4bb12af2@kernel.org>
-	<20240219160456.0b5e8de3@kmaincent-XPS-13-7390>
-	<11225a0d-bdc4-459c-9258-c9da217cc89e@lunn.ch>
-Organization: bootlin
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1708526431; c=relaxed/simple;
+	bh=3d9JNVFIhkqRvDtfjtX+RE3Xd+VcM4BGs+4NSIjFF+k=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ibaOvGNWtyEs5LOZZBN8n9iX4oLzv7U5yDBc+B/XfcVu/+QPdskk01eOhh3BjDKWuxKL7fNcfnDB/UfIwplmHxtTtXH38lF9+2jAC91rt2G+1kTXXm55LsWTAmYG4ZmxyCCb986c/S9rgIGJRmINzlrTTYmH5Sfg9hrCK2gf9Rc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=MnpcL/j2; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=a4xVjwE2 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1708526428; x=1740062428;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=wPNeXZryNciBa8K97encGWLVROwGNIWg2+Iounkui/w=;
+  b=MnpcL/j2F8rDlCT7AibjAvYnnwW0sTZwqUCwta1vvrFZp2X4ASowRB0p
+   stAe2ffTFV/LVwYvWeFzHVy484rTI6sV7NCdKP8KVvwkK5fhREwUeqEq7
+   nITt7bRbouhv//sv9JiM2fNdKimxvtRvso5gan5eDlwICHjTQPY/aIRKS
+   18mK42dX04sUsoH4LTgUVs73/d9rlailrQjgreLv2809WwCju99plhxuV
+   NdcextiLTT7fhgCW1P3J87b8iL7az2dhdhyQNK9XsEiHcKvaPz3HercCs
+   e7h/YTehx0MOpGo0yZbu6cWv3bP6I1ORcvhhkQ6aDkyw47MN1jA+TMqpf
+   w==;
+X-IronPort-AV: E=Sophos;i="6.06,175,1705359600"; 
+   d="scan'208";a="35525819"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 21 Feb 2024 15:40:25 +0100
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id ACD60161437;
+	Wed, 21 Feb 2024 15:40:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1708526421; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=wPNeXZryNciBa8K97encGWLVROwGNIWg2+Iounkui/w=;
+	b=a4xVjwE2bbIN050jnepwHpXU/x+jWpkICj6SXyxN/N0PPmSmbOXyI5SQx8DEVVDeis/W9n
+	JQMn6VcFL3eeQArxmXVM3Fv5v9inzdCQvZr23naDB5KqV0Jzpo8tre0MQf7u19elbQANrb
+	Z7U6NhZVHyOfrX5KFuVCGuQTcLa6zhZU7VKP4EghK3VTuqb3uiKduLNBvc/UvkgSqdJTak
+	H/u1oW9T26uIWNcf96k8Z/0JBbWyvi5KCiiLh1AwU4iStNu7zXxXzysma2t7DAhOTUBVNa
+	nEjh6d+rFNsGAYlEN6OnJSy+NJBRbuI/SFRAlQQYfjag7a0EbkEIgmxOMYFRWg==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	linux@ew.tq-group.com,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH 1/1] arm64: dts: mba8xx: Add missing #interrupt-cells
+Date: Wed, 21 Feb 2024 15:40:12 +0100
+Message-Id: <20240221144012.533946-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: kory.maincent@bootlin.com
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Mon, 19 Feb 2024 16:44:34 +0100
-Andrew Lunn <andrew@lunn.ch> wrote:
+The GPIO expander is a interrupt-controller, so add the missing
+ #interrupt-cells property as well.
 
-> On Mon, Feb 19, 2024 at 04:04:56PM +0100, K=C3=B6ry Maincent wrote:
-> > On Fri, 16 Feb 2024 17:36:38 -0800
-> > Jakub Kicinski <kuba@kernel.org> wrote: =20
-> > > > > but why the separate header? Is it going to be used in other part=
-s of
-> > > > > uAPI than just in ethtool?     =20
-> > > >=20
-> > > > We might use it in pse core if capabilities between PoE and PoDL di=
-ffer
-> > > > but I am not sure about it.
-> > > > Do you prefer to move it to ethtool header and add prefix ETHTOOL_ =
-to
-> > > > the enum values?   =20
-> > >=20
-> > > I don't know enough to have an opinion :) Whatever you end up doing,
-> > > it's probably worth documenting the reason for the choice in the comm=
-it
-> > > message? =20
-> >=20
-> > Mmh, I am still not sure of the best choice on this. I think I will mov=
-e it
-> > to ethtool as you suggested. =20
->=20
-> kAPI is hard to change. So it is worth thinking about it.
->=20
-> Can you think of any possible kAPI not using ethtool netlink? Its not
-> going to be ioctl. We generally don't export new things in /sysfs if
-> we have netlink, etc.
->=20
-> So to me, it is only going to be used be the ethtool API, so i would
-> follow the usual conventions for ethtool.
+Fixes: 71363a485ad0c ("arm64: dts: freescale: add initial device tree for TQMa8Xx")
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+ arch/arm64/boot/dts/freescale/mba8xx.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-Oops sorry forgot to reply to you.
-Indeed I reached to the same conclusion on my side.
+diff --git a/arch/arm64/boot/dts/freescale/mba8xx.dtsi b/arch/arm64/boot/dts/freescale/mba8xx.dtsi
+index 4a9986409947f..b06f7fe8f85c5 100644
+--- a/arch/arm64/boot/dts/freescale/mba8xx.dtsi
++++ b/arch/arm64/boot/dts/freescale/mba8xx.dtsi
+@@ -263,6 +263,7 @@ expander: gpio@70 {
+ 		interrupt-parent = <&lsio_gpio4>;
+ 		interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
+ 		interrupt-controller;
++		#interrupt-cells = <2>;
+ 		vcc-supply = <&reg_1v8>;
+ 
+ 		gpio-line-names = "", "LED_A",
+-- 
+2.34.1
 
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
 
