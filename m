@@ -1,214 +1,155 @@
-Return-Path: <devicetree+bounces-44338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A705885D860
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 13:54:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC0B485D865
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 13:54:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1D576B214D0
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 12:54:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 966DC285C36
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 12:54:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9A906995F;
-	Wed, 21 Feb 2024 12:53:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F7296D1CC;
+	Wed, 21 Feb 2024 12:54:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Nyc5g1sP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C96EF69D2D
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 12:53:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EACA69D36
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 12:54:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708520019; cv=none; b=KvKBP+lpu68WXZtlEfyAZSGjjmWU4UG7npk583tTHFsPK9l7wsdthHplH9yo/uXV/XlUDyE870cXCnG2aqYGdraRy4qZdZ+GxritRbniBf1cAZ4/owRU3lTbtawe6Gbv3B2WKnlJRStCHZFcbmTSuAY1coRYmNsNYItIZGIOrU8=
+	t=1708520043; cv=none; b=eczm5l9QQeYU7Cw0/25eLouyJBNj3s25UkW1Bk0OOYx702S21tQmJs6KfGTS1elq3VBnjXwRl53Y+UY57TGwJog19HFaUEPUQT3TkTAzTWxh0ximCMCev9vZBGOUP6foZb96OoRAVvEd5xvDt4ncjiLwXxcUeqnNuDqKPgmkQZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708520019; c=relaxed/simple;
-	bh=hTG3eAPLYzYmquR02fXknRi2lIHvaWX9Eb6xzIxa+3Y=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=BMejsbukNkPcE9Y5v2iIpno43w7gEBogGN/NcF9/4bQtjoFYfPtdIKJJda7NEzgRhevQrUTTsFWmK4/HX0cSnn1v+09JhAQE9Nkjd/IYqDRv1zXAmRnr8+f5/AiE3HSGfPPNTr3HAOwCFxL0V6hpFhz3GGExh9ulo08+u+EjH5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rcm6C-0005K1-8p; Wed, 21 Feb 2024 13:53:20 +0100
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rcm68-0022jj-SA; Wed, 21 Feb 2024 13:53:16 +0100
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rcm68-00083g-2a;
-	Wed, 21 Feb 2024 13:53:16 +0100
-Message-ID: <4bf4146749abb1500f8a412deb4d61ab0f3c80e6.camel@pengutronix.de>
-Subject: Re: [PATCH RFC v3 4/5] phy: hisilicon: hisi-inno-phy: add support
- for Hi3798MV200 INNO PHY
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: forbidden405@outlook.com, Vinod Koul <vkoul@kernel.org>, Kishon Vijay
- Abraham I <kishon@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>,  Jiancheng Xue <xuejiancheng@hisilicon.com>, Shawn
- Guo <shawn.guo@linaro.org>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Kishon Vijay Abraham I <kishon@ti.com>, David
- Yang <mmyangfl@gmail.com>
-Date: Wed, 21 Feb 2024 13:53:16 +0100
-In-Reply-To: <20240220-inno-phy-v3-4-893cdf8633b4@outlook.com>
-References: <20240220-inno-phy-v3-0-893cdf8633b4@outlook.com>
-	 <20240220-inno-phy-v3-4-893cdf8633b4@outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1708520043; c=relaxed/simple;
+	bh=gj9HszIZjr2+2zgmHjzU08k4foTBQoFlvs186D3Pyjo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Bf3SRftGKBnkuPhBE95aaGinOdZ7xooFYpi0aHBzJYDoJ33Ns6v0ldwt63Nw+mLKNjxkiizUYi9lKNYh+tUB82y+GQExh+s09oj8hxaLzE0nD2aVDNJi6+DfRtlToALD9tbPwuIhjM1LwfFBIaZGUqHL6e3z/MPARdo4JqIMP1c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Nyc5g1sP; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-564fc8f56c5so727507a12.1
+        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 04:54:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708520039; x=1709124839; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=rrIn9V2qKd16f2HB+Y2fWO0Di+JAOx1XvlTDsXHt6ls=;
+        b=Nyc5g1sPE+Q4H+B5KqKIVWiNROK+ZdcyXQIr0H1ipiDB4/mtNG9nb88GreXbGU8N1n
+         YiQ/v0+Z2cQskEsyewhRsWBoCloADjW/2imEdmIP/26cx+ZLZlYicn8LkD7z4VZRtoZ7
+         vTkgwiTDIlhCvQnWSOPYqiVP6zAk2Zde2cHHVL6xfZvLo3pG/9mN+JIPz7P/GRAtAWTa
+         +lX5UtYtBbuHWgXPdRHwdrYkx88I4/x6OKvkML9AfG8p8yYG2zI6z61qkDTChMKSM1N5
+         9/gR+4+hD/9WsnTuVAAGy7FpQQ9X+6Tfjty+URhQQK48ncXLjqc8yqKpMrvIK3Ez/7gR
+         b+8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708520039; x=1709124839;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rrIn9V2qKd16f2HB+Y2fWO0Di+JAOx1XvlTDsXHt6ls=;
+        b=uTTOWZvtBIHf2pnMwBW5EsA4/Bh0A4UI7s2+L2ooiTFjh18y2HmdGMpKiyDQjrS6QR
+         1vCzn/HhLL+GC3vldGitWXffB0oWKhkia4rQysVzLANJFd937jXCrxkwcI1gNDZrE6w5
+         9a7b+qkyEjp4M1TYtz1BzAHfCGyKFHNpJ8CH2KvVAUf6ly7dPhKmlU29h6WuikWmtFda
+         L9PAWMA8KMYqdKYbVxmS8QsDq7fsTnfPLxr50qXkEd4W6eHBWK4oAC8Rd2azlzojZ7SC
+         CP2xKkuiPc9xmgA1O7AwbIvdxXngFDMDhTBMCpVbIGVt5yLdg9pOE5H8NQ+WYbL25OwF
+         +BVA==
+X-Forwarded-Encrypted: i=1; AJvYcCX0bh0eS+JHE0MYmISR9D+1/Q3bIFwSAf+Xs+QMxL4EctMQGENOFctN7b2qE7RKgKC2IFAYxPRnasEBcl89OWBYAySCB5DXpomTdA==
+X-Gm-Message-State: AOJu0YxM6pI3aLpvOXgDGmPcHPsxHpFYrBosMXbcOwZK1lfhMBXUexkE
+	hEk2/3NatmDvPS/cW7csJiXIEKmeC6r4gwgchsSKwA8eJYdryZv8VH4IetRejkU=
+X-Google-Smtp-Source: AGHT+IHlu6VRCSoQfdAgctz6wL9+t4rQ5qwcFr0fCK5QYqDHcoSmXL6ExdOSZBj1EFMB5ncELO6NuA==
+X-Received: by 2002:a50:ee02:0:b0:564:5227:972 with SMTP id g2-20020a50ee02000000b0056452270972mr8437730eds.33.1708520039525;
+        Wed, 21 Feb 2024 04:53:59 -0800 (PST)
+Received: from linaro.org ([188.24.162.93])
+        by smtp.gmail.com with ESMTPSA id fg11-20020a056402548b00b00564168e6674sm4384642edb.51.2024.02.21.04.53.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Feb 2024 04:53:58 -0800 (PST)
+Date: Wed, 21 Feb 2024 14:53:57 +0200
+From: Abel Vesa <abel.vesa@linaro.org>
+To: neil.armstrong@linaro.org
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sm8[56]50: Fix SPMI channels size
+Message-ID: <ZdXyZV0t+7QUvwG0@linaro.org>
+References: <20240220-dts-qcom-sm8550-fix-spmi-chnls-size-v1-1-24e22107a6ac@linaro.org>
+ <2585d866-8451-492e-9f8b-95210ac52a81@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2585d866-8451-492e-9f8b-95210ac52a81@linaro.org>
 
-On Di, 2024-02-20 at 05:28 +0800, Yang Xiwen via B4 Relay wrote:
-> From: Yang Xiwen <forbidden405@outlook.com>
->=20
-> Direct MMIO resgiter access is used by Hi3798MV200. For other models,
+On 24-02-21 13:52:12, neil.armstrong@linaro.org wrote:
+> Hi,
+> 
+> On 20/02/2024 18:04, Abel Vesa wrote:
+> > The actual size of the channels registers region is 4MB, according to the
+> > documentation. This issue was not caught until now because the driver was
+> > supposed to allow same regions being mapped multiple times for supporting
+> > multiple buses. Thie driver is using platform_get_resource_byname() and
+> > devm_ioremap() towards that purpose, which intentionally avoids
+> > devm_request_mem_region() altogether.
+> > 
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > ---
+> >   arch/arm64/boot/dts/qcom/sm8550.dtsi | 2 +-
+> >   arch/arm64/boot/dts/qcom/sm8650.dtsi | 2 +-
+> >   2 files changed, 2 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> > index 7474cddf7ad3..3904348075f6 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> > @@ -3318,7 +3318,7 @@ sram@c3f0000 {
+> >   		spmi_bus: spmi@c400000 {
+> >   			compatible = "qcom,spmi-pmic-arb";
+> >   			reg = <0 0x0c400000 0 0x3000>,
+> > -			      <0 0x0c500000 0 0x4000000>,
+> > +			      <0 0x0c500000 0 0x400000>,
+> >   			      <0 0x0c440000 0 0x80000>,
+> >   			      <0 0x0c4c0000 0 0x20000>,
+> >   			      <0 0x0c42d000 0 0x4000>;
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> > index d488b3b3265e..260eda81b743 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> > @@ -3747,7 +3747,7 @@ sram@c3f0000 {
+> >   		spmi_bus: spmi@c400000 {
+> >   			compatible = "qcom,spmi-pmic-arb";
+> >   			reg = <0 0x0c400000 0 0x3000>,
+> > -			      <0 0x0c500000 0 0x4000000>,
+> > +			      <0 0x0c500000 0 0x400000>,
+> >   			      <0 0x0c440000 0 0x80000>,
+> >   			      <0 0x0c4c0000 0 0x20000>,
+> >   			      <0 0x0c42d000 0 0x4000>;
+> > 
+> > ---
+> > base-commit: 2d5c7b7eb345249cb34d42cbc2b97b4c57ea944e
+> > change-id: 20240220-dts-qcom-sm8550-fix-spmi-chnls-size-b8e6323fecc0
+> > 
+> > Best regards,
+> 
+> I confirm the value, but I think you should split it in 2 and add Fixes tags
+> 
 
-              register
+Will split and re-send.
 
-> of_iomap() returns 0 due to insufficient length. So they are unaffected.
->=20
-> Also Hi3798MV200 INNO PHY has an extra reset required to be deasserted,
-> switch to reset_control_bulk_() APIs to resolve this.
+> Take my:
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> if you re-spin.
 
-            reset_control_array_()
+Thanks.
 
-apparently.
-
-> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
-> ---
->  drivers/phy/hisilicon/phy-hisi-inno-usb2.c | 65 ++++++++++++++++++------=
-------
->  1 file changed, 39 insertions(+), 26 deletions(-)
->=20
-> diff --git a/drivers/phy/hisilicon/phy-hisi-inno-usb2.c b/drivers/phy/his=
-ilicon/phy-hisi-inno-usb2.c
-> index b7e740eb4752..5175e5a351ac 100644
-> --- a/drivers/phy/hisilicon/phy-hisi-inno-usb2.c
-> +++ b/drivers/phy/hisilicon/phy-hisi-inno-usb2.c
-> @@ -10,6 +10,7 @@
->  #include <linux/io.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> +#include <linux/of_address.h>
->  #include <linux/phy/phy.h>
->  #include <linux/platform_device.h>
->  #include <linux/reset.h>
-> @@ -43,6 +44,7 @@
->  #define PHY_CLK_ENABLE		BIT(2)
-> =20
->  struct hisi_inno_phy_port {
-> +	void __iomem *base;
->  	struct reset_control *utmi_rst;
->  	struct hisi_inno_phy_priv *priv;
->  };
-> @@ -50,7 +52,7 @@ struct hisi_inno_phy_port {
->  struct hisi_inno_phy_priv {
->  	void __iomem *mmio;
->  	struct clk *ref_clk;
-> -	struct reset_control *por_rst;
-> +	struct reset_control *rsts;
->  	unsigned int type;
->  	struct hisi_inno_phy_port ports[INNO_PHY_PORT_NUM];
->  };
-> @@ -62,26 +64,31 @@ static void hisi_inno_phy_write_reg(struct hisi_inno_=
-phy_priv *priv,
->  	u32 val;
->  	u32 value;
-> =20
-> -	if (priv->type =3D=3D PHY_TYPE_0)
-> -		val =3D (data & PHY_TEST_DATA) |
-> -		      ((addr << PHY_TEST_ADDR_OFFSET) & PHY0_TEST_ADDR) |
-> -		      ((port << PHY0_TEST_PORT_OFFSET) & PHY0_TEST_PORT) |
-> -		      PHY0_TEST_WREN | PHY0_TEST_RST;
-> -	else
-> -		val =3D (data & PHY_TEST_DATA) |
-> -		      ((addr << PHY_TEST_ADDR_OFFSET) & PHY1_TEST_ADDR) |
-> -		      ((port << PHY1_TEST_PORT_OFFSET) & PHY1_TEST_PORT) |
-> -		      PHY1_TEST_WREN | PHY1_TEST_RST;
-> -	writel(val, reg);
-> -
-> -	value =3D val;
-> -	if (priv->type =3D=3D PHY_TYPE_0)
-> -		value |=3D PHY0_TEST_CLK;
-> -	else
-> -		value |=3D PHY1_TEST_CLK;
-> -	writel(value, reg);
-> -
-> -	writel(val, reg);
-> +	if (priv->ports[port].base)
-> +		// stride is 4
-> +		writel(data, (u32 *)priv->ports[port].base + addr);
-> +	else {
-> +		if (priv->type =3D=3D PHY_TYPE_0)
-> +			val =3D (data & PHY_TEST_DATA) |
-> +			      ((addr << PHY_TEST_ADDR_OFFSET) & PHY0_TEST_ADDR) |
-> +			      ((port << PHY0_TEST_PORT_OFFSET) & PHY0_TEST_PORT) |
-> +			      PHY0_TEST_WREN | PHY0_TEST_RST;
-> +		else
-> +			val =3D (data & PHY_TEST_DATA) |
-> +			      ((addr << PHY_TEST_ADDR_OFFSET) & PHY1_TEST_ADDR) |
-> +			      ((port << PHY1_TEST_PORT_OFFSET) & PHY1_TEST_PORT) |
-> +			      PHY1_TEST_WREN | PHY1_TEST_RST;
-> +		writel(val, reg);
-> +
-> +		value =3D val;
-> +		if (priv->type =3D=3D PHY_TYPE_0)
-> +			value |=3D PHY0_TEST_CLK;
-> +		else
-> +			value |=3D PHY1_TEST_CLK;
-> +		writel(value, reg);
-> +
-> +		writel(val, reg);
-> +	}
->  }
-> =20
->  static void hisi_inno_phy_setup(struct hisi_inno_phy_priv *priv)
-> @@ -104,7 +111,7 @@ static int hisi_inno_phy_init(struct phy *phy)
->  		return ret;
->  	udelay(REF_CLK_STABLE_TIME);
-> =20
-> -	reset_control_deassert(priv->por_rst);
-> +	reset_control_deassert(priv->rsts);
->  	udelay(POR_RST_COMPLETE_TIME);
-> =20
->  	/* Set up phy registers */
-> @@ -122,7 +129,7 @@ static int hisi_inno_phy_exit(struct phy *phy)
->  	struct hisi_inno_phy_priv *priv =3D port->priv;
-> =20
->  	reset_control_assert(port->utmi_rst);
-> -	reset_control_assert(priv->por_rst);
-> +	reset_control_assert(priv->rsts);
->  	clk_disable_unprepare(priv->ref_clk);
-> =20
->  	return 0;
-> @@ -158,15 +165,16 @@ static int hisi_inno_phy_probe(struct platform_devi=
-ce *pdev)
->  	if (IS_ERR(priv->ref_clk))
->  		return PTR_ERR(priv->ref_clk);
-> =20
-> -	priv->por_rst =3D devm_reset_control_get_exclusive(dev, NULL);
-> -	if (IS_ERR(priv->por_rst))
-> -		return PTR_ERR(priv->por_rst);
-> +	priv->rsts =3D devm_reset_control_array_get(dev, false, false);
-
-Please use devm_reset_control_array_get_exclusive() instead.
-
-
-regards
-Philipp
+> 
+> Neil
 
