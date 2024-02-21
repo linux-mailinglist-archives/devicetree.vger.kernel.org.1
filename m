@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-44228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44229-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C1EA85D26D
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 09:22:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64EC785D275
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 09:23:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11B802860DA
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 08:22:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C9C091F251AA
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 08:23:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 825DD3BB46;
-	Wed, 21 Feb 2024 08:22:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C10C3BB21;
+	Wed, 21 Feb 2024 08:23:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oSpjTQj8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ux7iLFBB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C7DD3B1B7
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 08:22:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7D6B3A8F5
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 08:23:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708503737; cv=none; b=uxJEQwPeDnFmmI2o0f+ZGemiqCTas6202t8EXLT7Kdgr6gNK4teGuvCpvDscvhsMDSwzs50N2IhpIE6trzU2DKP35SPUODFmsdCQSlBaooQntC03PIh7zd1get/YkU3iGOTrEw6rEW2v+7YeJqpl3Xwsw5f3Lmx1Ch8Lcppd1YE=
+	t=1708503815; cv=none; b=OKsEfgR16vaizlq8CCXCRUpGY4frylVHt4UDDqXLRL0qcf7U8ekmRbSYKuqpx/typgztRfbyOygBvGDt5p5LRzKobbBSR1rRmQ130wOOecEGVZOFIw3o1NTjk9dg1PWAFOBWBTgj3ImOPogUYbDknk9zTPl4s4OzRdeDn7WSiUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708503737; c=relaxed/simple;
-	bh=3V5zvZ9gDapkGtLGs1YTvpdOWFfOI53x2eiHAb9b9L0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oIeK2Hwov/sFsOLE7WkMXNu46IKXRYDn1NLRK5GhgwzSvzUvnW8YYqxd/66WTh7b+DHyfiFUGo1GsS6ObjoS+Xj4oxKPkfxEAzuSQR2GzqQDPSa9OiC5ioVL5FwEqTLadiMqg4RMwfRJYOjpt3oKjbFwAWHB/XEqSPa/7maxGwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oSpjTQj8; arc=none smtp.client-ip=209.85.218.48
+	s=arc-20240116; t=1708503815; c=relaxed/simple;
+	bh=N2ymqBOzQvtUin+X9/ISTosPoBKAGowkK/Se57Wv3rg=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=eDIEAD4LXY1ahgRd33Xwugow/pwmdbfAq6Y6gSrOcOVWEhQTy496OCVJqTij8j1fGZEDkxKMlaxo8DBqxyCb+04g9r0b/Bm5X8kQebMz3XviY6IcEQMAE0QsWyAxeDcWKDpcBVLe6fjgyXYK6yRPU7LuLsrPFrYwPjVr2imQrvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ux7iLFBB; arc=none smtp.client-ip=209.85.218.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a3e5d82ad86so439797966b.2
-        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 00:22:15 -0800 (PST)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a28a6cef709so755556566b.1
+        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 00:23:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708503733; x=1709108533; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=x2NMUuw1viV82VO/DLrEzPbQIPhzFG4Kdea6ANtO4N8=;
-        b=oSpjTQj8UBPoUQJcP6qUDdiTxxbtCip87fNsTjkItovo4HhAObYG6tHJupTW704ZnI
-         djgOt83fBFZfc7aaf+bagivXPVsVOqA7acBbaqyW6X9D1EYPCpPd8BErprMNJE3RojyQ
-         zmev488O2wtwKB/6uN6M8J1jToOkv8DkEAm/7e7+JidbmBpGnZkfHN+hV80e5HwU3U+q
-         3Hp0NQ/d0ekflIjuaXIgCJO9/n9Huv8z1zBvBrbPuT8t+HBBqhAMwzLDo4A28oP4Tp2f
-         YWcM5kO4qMGAygR9mqvWJ07PKkQ9GKZKqn7kVISlARLwdI6/Dm/c6oMhsLBQZjO1v/R8
-         VRrA==
+        d=linaro.org; s=google; t=1708503812; x=1709108612; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=oBcowBd/6XrApSR06rx4f2K7ELRDmm9vc4YApL4IGTw=;
+        b=ux7iLFBBXoKM7zZ9gHDz1AfPwpK+PLc4YVswrdZh9OHS5YiRnxa+DTLU1gebmxT1vq
+         VeRZCoTBpRunOt1v6VIdMqdGX4qp/E7N0Ftb7Nulgqc3gos+FiXqNqttDPfMAewNFNXO
+         SZshj+9gpKI2p54VHEExhtcsR+QnwmE7HsHFMqhdl8I4annAeeXKqJcoZkMWzQ7p6sgo
+         RUnRClF08xwD/JarKIohR4ffp0hQFspv1H3qH/EyrdmdK0BOZceav1R2fJl6K3pWBN4M
+         uYCZ385Ln9vZTZnG+kpZchEM8D7lJG9LvKu9BO4QMVrnqv5oQWEfyRVqFw26tutiw8ay
+         QPtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708503733; x=1709108533;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=x2NMUuw1viV82VO/DLrEzPbQIPhzFG4Kdea6ANtO4N8=;
-        b=pLpktR3i/Lfzvk8ecDj3+fECOBVqAbGzynbRxSKf7aKz4vovWpD1kewMx32gFoQPhm
-         nSQ+6gRkdBYjRZD2dInXwIfc/4DYjkcOyqSbNCzEl1wRpjwoPvD1veT3TLVQPe0+u3Gs
-         EKiD/4gf0S6DL/VTe2dIKUsLs8BYr2634ERxVkESSXUI6At0m+DoX/rMSk6PAbgoBUYt
-         OGjRALDAiNDsWyY0W8qkR4haEtKwW1dLdjrG9AF8rxGuNOmQaANYU6fZofTgMw0d6xUI
-         GEUr43zSAfVIaVQWmq7ZnYeKZfHjIh5fu6QBRW5WGthPQD7vyqA0/Gni+KKTkcd/wuKA
-         pxCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUdXBDrAL6a/6qHWf8op/zJz8rwqyBCISS6KPoTf7C4hcBNNGkmvsDHGYcXkJBdo84ueHDKiwdVC2DyNcvXPVuirUyKp5JBaEJjlg==
-X-Gm-Message-State: AOJu0YxJkH2aQU1bFy/QnAi7ZC0DG68DRhRLvWBdhHb27tSaXVqHAy3K
-	ne+M346K4IiB7A46alWWZSARqaVOM9BeDgDASKL4nwf+LaZvFf5Eg6XzS/jPmYg=
-X-Google-Smtp-Source: AGHT+IFp4XIBlJoAeXnTDvO63g+Rr6NE3zpbBWESMQ+/rs9Jr/5wuhvA4ENvgTzmtr6DpKSUrht5jQ==
-X-Received: by 2002:a17:906:488c:b0:a3f:7bc:7278 with SMTP id v12-20020a170906488c00b00a3f07bc7278mr3123854ejq.31.1708503733549;
-        Wed, 21 Feb 2024 00:22:13 -0800 (PST)
+        d=1e100.net; s=20230601; t=1708503812; x=1709108612;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oBcowBd/6XrApSR06rx4f2K7ELRDmm9vc4YApL4IGTw=;
+        b=RGV6uYTDsM0hlCtg4DY+z+T6+Q4jJHr6XrHZRuAKDwiW4nHEN6ghR4QA5MLY5mx1H7
+         2XYZSJ0OxnuT+Qc+kNcueQnipqnixsR9ByYW1Uq4U8U9Hb4M0JJLxssILgYFST4JF0vs
+         WjT/OxKu0vbHAOtv7nqFfZTFOnDXwyuy1sz1U+7B8sIbtbjyoIYhmpwfWkLrK6IEduMA
+         3oLZ4+CQOmtMc2QiCUOHQ0mtfAh9Hu/MSe60arDbiOP+5U/UAg/cQWILdEu6ii+I3dlS
+         7U9k5TZK7u8a9ZvGI3Sd9M/j5Cg5zdZKki1BKWtg5MqaINKC99y5FHgQiIaIwwSTgO1X
+         BlKw==
+X-Forwarded-Encrypted: i=1; AJvYcCWtCt6RvHO7z7MOZOZbRPEetg2wMSsiz4xzfWfRrKs2ZvfCgwWhwXnK0rMG37BZD6EPl8OYQbVf1ztLSVsd7/7A236FKGfnABKZHw==
+X-Gm-Message-State: AOJu0Yx6M7oL8Kg3/bixXih40IXoZx00p/Xbfe2lU4COohamMZsETg6d
+	bHwkvj2puwwfUbn2ucfSO0mUZnkMY/46BtHUXzSZblw3zMLc2MmSKtuKFQ/UDY0=
+X-Google-Smtp-Source: AGHT+IGz+kpUHD1v2JHYWZz1mDIkfIk5QUEiisF+4LbTF7vTARk8nI5vlLmPWuFC2BZa857qXS+nXg==
+X-Received: by 2002:a17:906:ad8f:b0:a3f:2125:c466 with SMTP id la15-20020a170906ad8f00b00a3f2125c466mr1545020ejb.74.1708503812026;
+        Wed, 21 Feb 2024 00:23:32 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id tj2-20020a170907c24200b00a3f480154a3sm221446ejc.65.2024.02.21.00.22.11
+        by smtp.gmail.com with ESMTPSA id tj2-20020a170907c24200b00a3f480154a3sm221446ejc.65.2024.02.21.00.23.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Feb 2024 00:22:13 -0800 (PST)
-Message-ID: <94730d0a-0e5a-4777-aadc-4748038a3ca8@linaro.org>
-Date: Wed, 21 Feb 2024 09:22:11 +0100
+        Wed, 21 Feb 2024 00:23:31 -0800 (PST)
+Message-ID: <f600daf1-a0db-4ff9-9bbb-77364e7fa22b@linaro.org>
+Date: Wed, 21 Feb 2024 09:23:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,6 +80,7 @@ User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH RFC v3 1/5] dt-bindings: phy: hisi-inno-usb2: convert to
  YAML
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Yang Xiwen <forbidden405@outlook.com>, Vinod Koul <vkoul@kernel.org>,
  Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
  <robh+dt@kernel.org>, Krzysztof Kozlowski
@@ -98,8 +100,6 @@ References: <20240220-inno-phy-v3-0-893cdf8633b4@outlook.com>
  <SEZPR06MB69594A5036F122CE6C14043C96502@SEZPR06MB6959.apcprd06.prod.outlook.com>
  <bf4ce87a-51ab-49e1-ac70-c463d8008a62@linaro.org>
  <b4fe5565-9378-4786-8c55-113f9088f34a@linaro.org>
- <SEZPR06MB695943CE42B3A91A22E70DD696502@SEZPR06MB6959.apcprd06.prod.outlook.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -144,167 +144,27 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <SEZPR06MB695943CE42B3A91A22E70DD696502@SEZPR06MB6959.apcprd06.prod.outlook.com>
+In-Reply-To: <b4fe5565-9378-4786-8c55-113f9088f34a@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 20/02/2024 13:12, Yang Xiwen wrote:
-> On 2/20/2024 7:43 PM, Krzysztof Kozlowski wrote:
->> On 20/02/2024 12:41, Krzysztof Kozlowski wrote:
->>> On 20/02/2024 11:40, Yang Xiwen wrote:
->>>> On 2/20/2024 4:16 PM, Krzysztof Kozlowski wrote:
->>>>> On 19/02/2024 22:49, Yang Xiwen wrote:
->>>>>> On 2/20/2024 5:37 AM, Krzysztof Kozlowski wrote:
->>>>>>> On 19/02/2024 22:35, Yang Xiwen wrote:
->>>>>>>> On 2/20/2024 5:32 AM, Krzysztof Kozlowski wrote:
->>>>>>>>> On 19/02/2024 22:27, Yang Xiwen via B4 Relay wrote:
->>>>>>>>>> From: Yang Xiwen <forbidden405@outlook.com>
->>>>>>>>>>
->>>>>>>>>> Add missing compatible "hisilicon,hi3798mv100-usb2-phy" to compatible
->>>>>>>>>> list due to prior driver change.
->>>>>>>>>>
->>>>>>>>>> Also rename to hisilicon,inno-usb2-phy.yaml and add this name to
->>>>>>>>>> compatible lists.
->>>>>>>>>>
->>>>>>>>>> Fixes: 3940ffc65492 ("phy: hisilicon: Add inno-usb2-phy driver for Hi3798MV100")
->>>>>>>>>> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
->>>>>>>>>> ---
->>>>>>>>>>      .../bindings/phy/hisilicon,inno-usb2-phy.yaml      | 95 ++++++++++++++++++++++
->>>>>>>>>>      .../devicetree/bindings/phy/phy-hisi-inno-usb2.txt | 71 ----------------
->>>>>>>>>>      2 files changed, 95 insertions(+), 71 deletions(-)
->>>>>>>>>>
->>>>>>>>>> diff --git a/Documentation/devicetree/bindings/phy/hisilicon,inno-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/hisilicon,inno-usb2-phy.yaml
->>>>>>>>>> new file mode 100644
->>>>>>>>>> index 000000000000..1b57e0396209
->>>>>>>>>> --- /dev/null
->>>>>>>>>> +++ b/Documentation/devicetree/bindings/phy/hisilicon,inno-usb2-phy.yaml
->>>>>>>>>> @@ -0,0 +1,95 @@
->>>>>>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>>>>>>> +%YAML 1.2
->>>>>>>>>> +---
->>>>>>>>>> +$id: http://devicetree.org/schemas/phy/hisilicon,inno-usb2-phy.yaml#
->>>>>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>>>>>> +
->>>>>>>>>> +title: HiSilicon HiSTB SoCs INNO USB2 PHY device
->>>>>>>>>> +
->>>>>>>>>> +maintainers:
->>>>>>>>>> +  - Yang Xiwen <forbidden405@outlook.com>
->>>>>>>>>> +
->>>>>>>>>> +properties:
->>>>>>>>>> +  compatible:
->>>>>>>>>> +    items:
->>>>>>>>>> +      - enum:
->>>>>>>>>> +          - hisilicon,hi3798cv200-usb2-phy
->>>>>>>>>> +          - hisilicon,hi3798mv100-usb2-phy
->>>>>>>>>> +      - const: hisilicon,inno-usb2-phy
->>>>>>>>> According to your driver hisilicon,hi3798mv100-usb2-phy and
->>>>>>>>> hisilicon,inno-usb2-phy are not compatible.
->>>>>>>> Ah, i didn't pay too much attention to that. I should remove the entry
->>>>>>>> for hisilicon,inno-usb2-phy in the driver. Sorry for that.
->>>>>>> We don't talk here about driver, although I used the driver as proof or
->>>>>>> argument, because I don't have access to hardware datasheet (and no
->>>>>>> intention to look there).
->>>>>>>
->>>>>>> What I claim is these are not compatible, so respond to this argument,
->>>>>>> not some other one.
->>>>>> Why not? Of course they are compatible. All 3 SoCs are using
->>>>> Why? Because...
->>>>>
->>>>>> inno-usb2-phy. The only difference here is the method to access the
->>>>> ... here! Different programming interface means not compatible.
->>>>>
->>>>> Please provide instead any argument that they are compatible, in the
->>>>> meaning of Devicetree of course. You are claiming inno-usb2-phy  can be
->>>>> used for hi3798mv100 and it will work fine?
->>>>>
->>>>>> registers. They are all enabled by `writing BIT(2) to address 0x6`. In
->>>>>> the cover letter, I said the driver is actually doing things wrong.
->>>>> Cover letter does not matter, I don't even read them. Your commits matter.
->>>>>
->>>>>> Especially the commit adding PHY_TYPE enums, the name is confusing and
->>>>>> conveys the wrong info. It's not PHY which are not compatible, it's the
->>>>>> bus. I'll fix the driver, but still the PHY hardwares are compatible
->>>>>> between these 3 SoCs.
->>>>> Provide any argument.
->>>> Just take a look at the driver. hisi_inno_phy_write_reg() is the
->>>> function that differs between different models. But for all of them,
->>>> hisi_inno_phy_setup() is the same.
->>>>
->>>>
->>>> hisi_inno_phy_write_reg() should be moved to a separate bus driver. It's
->>>> bus-related, not phy. PHY driver should not care how to access the bus,
->>> So drivers are compatible or hardware? We talk about hardware, not
->>> drivers...
+On 20/02/2024 12:43, Krzysztof Kozlowski wrote:
 >>>
->>>> but the bus driver should. The PHY driver only needs to use regmap_*
->>>> APIs to "write BIT(2) to addr 6".
->>> Different programming interface, so not compatible.
->> Although maybe I jumped to conclusions too fast. Do you claim that all
->> registers are the same? All the values, offsets, fields and masks?
+>>> hisi_inno_phy_write_reg() should be moved to a separate bus driver. It's 
+>>> bus-related, not phy. PHY driver should not care how to access the bus, 
+>>
+>> So drivers are compatible or hardware? We talk about hardware, not
+>> drivers...
+>>
+>>> but the bus driver should. The PHY driver only needs to use regmap_* 
+>>> APIs to "write BIT(2) to addr 6".
+>>
+>> Different programming interface, so not compatible.
 > 
-> 
-> I don't quite understand. I've said there are two register spaces. One 
-> is the bus to access the PHY (i.e. perictrl for mv100 and cv200 and mmio 
-> for mv200), the other is the PHY register space. So if you are talking 
-> about the prior one, then no, because the PHY is attached to different 
-> buses. But for the latter, yes.
+> Although maybe I jumped to conclusions too fast. Do you claim that all
+> registers are the same? All the values, offsets, fields and masks?
 
-I am talking about the register address space which the binding document.
-
-> 
-> 
-> So here we are talking about two devices. One is the PHY, the other is 
-> the bus the phy attached to.
-> 
-> 
-> The old binding is mixing all the things up because INNO PHY is the only 
-> device attached to the dedicated bus implemented by perictrl. But it's 
-> not how it works. The binding is for the PHY, not for the bus.
-> 
-> 
-> For mv100 and cv200, it's: cpu->perictrl->inno-phy. For mv200, it's: 
-> cpu->inno-phy. cpu always accesses peripherals with MMIO, both for 
-> perictrl and mv200-inno-phy. But if the inno-phy is attached to 
-> perictrl. CPU must access the registers of inno-phy through 
-> perictrl(Here perictrl act as a bus driver like a I2C/SPI controller).  
-> For mv100 and cv200, the difference here is only related to to perictrl, 
-> not the PHY itself. For mv200, perictrl does not implement this strange 
-> bus anymore, instead the phy is attached to system bus directly.
-
-Your driver writes different values depending on the device. For one
-model it writes PHY0_TEST_WREN+PHY0_TEST_RST+PHY0_TEST_CLK. For the
-second PHY1-versions of above.
-
-The PHY0_TEST_CLK is written to the "reg", so I understand that to the
-device address space.
-
-If you write two different values to the same register, devices are not
-compatible usually.
-
-> 
-> 
-> I don't understand why you say they are not compatible, simply because 
-> they are attached to different buses. For x86, peripherals are mapped in 
-
-I did not say that. I said that according to quick look in the driver
-and to your explanations you had different programming models and
-interfaces, which means devices are not compatible.
-
-> dedicated IO address spaces with `IN` and `OUT`, while for ARM, they are 
-> all attached to MMIO buses like APB/AHB/AXI etc.. So peripherals for x86 
-> and peripherals for arm are also not compatible?
-
-Depends. You did not answer to my question whether you even understand
-what is "compatible", so I assume you don't. Compatible means
-programming models are the same or one is subset of another, so
-effectively both devices work with the same compatible and everything is
-fine.
-
-Answer yes or not:
-Can PHY1 type of device, so hisilicon,hi3798mv100, bind using
-hisilicon,hi3798mv100-usb2-phy compatible and operate correctly, so you
-remove hisilicon,hi3798mv100-usb2-phy from the driver and device
-operates correctly?
+I still wait for the answer: yes or not, for above.
 
 Best regards,
 Krzysztof
