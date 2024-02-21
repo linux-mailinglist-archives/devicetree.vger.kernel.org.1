@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-44379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47D8C85DFC6
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 15:34:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DD1A85DFD5
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 15:35:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BC9A1C24077
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 14:34:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23C2A282F0B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 14:35:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F0B469D10;
-	Wed, 21 Feb 2024 14:34:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55E5C7F7F0;
+	Wed, 21 Feb 2024 14:35:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SfSm5W7M"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FY0TNFGD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B95837C0B8
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 14:34:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 564EE7F7EB
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 14:35:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708526046; cv=none; b=qWrauEf+Z/E2+305xYa2ewbCcGkTK3+skuQkUzhsJKVUhoP5Ded42Awj6WBYUZSsrRsestyBNIDhAE+n3kPD439LfULeJU03i1j8Zle0etZB4h6qWbeACz12AGBLVRgw5RczTRGS85sLDTrVbAJoqQyJxFYj1dVsgHKSlbDBuio=
+	t=1708526129; cv=none; b=QtnLp2Jdz76tn9X8Gssgi7DF6M6Ww5BqIEIngQEQ2yRmBK7iE80KGmttx44pmgTZ56/to5Ic7zfgxZetvQisu4vwr2mijkhmRlhp22f5beWb3/Eaeo1DlQ5VS3w4YkGKQaD6QrtUSG0QqZeyekqMmzDM8PO8+QtVGI+tjRU9Jwk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708526046; c=relaxed/simple;
-	bh=fk/hx35bDJfwmm2rrn7zg+nEITyyI4XpRW1p6l+4fN8=;
+	s=arc-20240116; t=1708526129; c=relaxed/simple;
+	bh=gPjB+RDXPuCjeR4Zvji9FM6UPTN7zM11Ylf5UeRzCcw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G/Dbm9WAdBJ87SdzfO/owEp1WFttda/SxX0TOAWbDqwwLkTlcGfd5X0W9Cnsa9zW/gE/dO4dje1luzQi6j0mlLA79o/QikI6fZ7nwqXvGOMA30bH0yPHjcXXf2tJlN3Zjmt2F+GwhiNxEZkz6OFmWrtxSfrZttRdzXW8lKEYHzw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SfSm5W7M; arc=none smtp.client-ip=209.85.208.44
+	 In-Reply-To:Content-Type; b=hrUZT60e93TfK8D7JvuKrcDdjyyJqxJXIcbc7tiOY+eHlrjQ7UdrynFRohVz+O8z6erpuR/71eIswBFX0qugkm5zg7H9nMnXOGrFkTdh6WOM/zp/hgZL7souW/JxwcoSIogkSYGTKlZEy3win8UAgMq/8SsZ9vnUKh1gJyblFl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FY0TNFGD; arc=none smtp.client-ip=209.85.218.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-564fc495d83so903375a12.0
-        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 06:34:04 -0800 (PST)
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a3d5e77cfbeso1169021266b.0
+        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 06:35:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708526043; x=1709130843; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708526125; x=1709130925; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8rAlRoM29ajsutB92KLvoThndrvNnQoe5UZ7QoG1Y/o=;
-        b=SfSm5W7MGJdkxcafOcMyEtyBnZfJTQsayNcbFsJ5dVp4pLS/EInGfq87FvYmPVAdn+
-         Sg4da8XEFiHQM3Nt59GMomGUEQE+R3541U+YFbtEIjgN7/T5EjMkdD7aZkKR8ydh3Dqk
-         IYR2B3ArjnKb59y3FKEzwkw24N/IcJs9EVUw4+YaRGdkTMwEHdDehyFB0aSjgbVRv5n/
-         ItaBCCzmv1I2LV0+ePsycI8CFkG8V3zvUZpOtd6OamNXQPN/t2kXvXUzTUTs6T9k2y6H
-         ir/k+nezY9TYCMwv/woEAnu8WqyAXiC5k77JZ/49mszM/XSzv6ZKdyr32mnO2ApaeiGG
-         gtow==
+        bh=4mpg5rDXxuNVjHnT61EDD12HqwJ64u9R7UWEbZkDSa4=;
+        b=FY0TNFGDlkpth+5cNVJnchAN8VkiR+qQgg9RsGg2IsgSP27kajfw6nfW2Pzj3rjB0D
+         Pu5S2IzSWFxYBS59Ir3tgLDsvXZNFK1v0UmIUBpydOE5jJpHKezI0zgOXagScPEOh4Qd
+         A5LxgIQXUjpnxof/GDxxeHCDKnzzfE1AOIosIHhD65qAEgCzulY/mBSObdi5Pjt7SMvT
+         KAiJ46M2o+U7MM/mziGO3l03ImxgnnOC96v0Vh638LhDWnpgit897Y/DMVb9eBIQO10e
+         HkkRtLcd/zJeJot5FMbDqVfgiupFiX3ByNxzXJ/n8JyC62fnyl1erHn2jplWCCg/FzdA
+         9OAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708526043; x=1709130843;
+        d=1e100.net; s=20230601; t=1708526125; x=1709130925;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8rAlRoM29ajsutB92KLvoThndrvNnQoe5UZ7QoG1Y/o=;
-        b=dJ3iBTuAHcshvi1Yg9LwzCYgr/k3EMQqCZqFeuW5jRMeM88GdPneApnAa+fY3k/cBr
-         HFIES3Uyexqgr06th93jTVsoiChdxBGLRFSHsAaCd+GFVROP8DvG/+8dPsdW83wRq9Z9
-         PL4qx5HWqTeh7+UnGrlxw3JPYrHyywfwoCgr+55cc3g4Hk3Y2GJfF3O23ElZ02qAKlp5
-         DKfc1AVyEbeEZQcaIYh47tF3fuUDT24VdLIxsvUa+RJBb1hc7chR/kGUF5T+s8NxUie5
-         +fbt2qf3iDGp1Q6A9eBQRP3GH8vf9u1RCgqJ4uYByaZR8YpCWT6fkRsGK5ch1QhT8FPP
-         5UFg==
-X-Forwarded-Encrypted: i=1; AJvYcCUvLmTXSH9dsSclbtKPf64w6xa9e38iWspL0683RIuCT8qJWWtcfpil6s1cAAvn39yfZaGrb23vJEiBxK6OqycX782j85dSWkgTyg==
-X-Gm-Message-State: AOJu0Yy/O7X/O01YQ1EpZzAohiUHjL1LHV1ubKIV459iOHjjucu+jXYy
-	oNV/O7IwqGLZsSayIamsGN03SQP7bwPHeJXICO5pb0aTwNif0dcNwAmMGzLBK7E=
-X-Google-Smtp-Source: AGHT+IGZQkwx4Qc949RPLUdXWDl0TSjbT+eCw56rdpcOSUGIcytXd04rBw0ljTAcoMoB7x+aghYamQ==
-X-Received: by 2002:a17:906:f88a:b0:a3e:9ce3:1bb with SMTP id lg10-20020a170906f88a00b00a3e9ce301bbmr5822915ejb.3.1708526043024;
-        Wed, 21 Feb 2024 06:34:03 -0800 (PST)
+        bh=4mpg5rDXxuNVjHnT61EDD12HqwJ64u9R7UWEbZkDSa4=;
+        b=nhugdLOiiXUkZ3LiiIHKHBH0sDamd/Bt3X4MuKeazElOJNPAahd/Kl73Rn2pngybnL
+         nILsPYt8CBrMT+qH6oGy/WAZEMiW+qzRX2I2VuSHC1Ec75FmOxJ7gNNdOBrX9+rL/zGh
+         j9/QAq8YBH/bHqyAbT+J75cpOR8k2VolHBJ8rpOHUnYMULz/L7CcGPgEzHdITObejtZa
+         s5K04q2NZyfUGMFHcHndr2heAsFx4qxBbExHAvKYRTC8Fv5+zJE+Rk7unFXbsWaarC7d
+         ey+QikSBzDlfvtUtwovzWyjr8aBLwO+BG7raxNCzommOXjDFROSMq0zqOU3/jqSWSBBl
+         RkMw==
+X-Forwarded-Encrypted: i=1; AJvYcCXkGD0VsPPJOsAUJuEqd4xomGNf5NYfnKC6zDtzhFeFX+rYhN3lh1x0o20WJUEfSjGrgDa59Uy+YZIFehTgU7EmORxKt7va2z2WIw==
+X-Gm-Message-State: AOJu0YxHGjPRfEnzRxsMwq8A6q7OL40LIDrrniUppbE6it/igahCOUfA
+	rDE500fLBhtiu/6ETCbJh7gJK/xsR6Sq8Lb6s5Osx4+Q/Jn2UbWtaiorvQWmA/E=
+X-Google-Smtp-Source: AGHT+IHXMK0h0j9dsKRzwpwiFDkKo9PkzVZ9sjf4SvXUXo3bUsXYCp/6Yo40Ync+24Jh+8KcvouF6Q==
+X-Received: by 2002:a17:906:565a:b0:a3f:1139:5a6b with SMTP id v26-20020a170906565a00b00a3f11395a6bmr4301459ejr.32.1708526125697;
+        Wed, 21 Feb 2024 06:35:25 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id r22-20020a170906281600b00a3d777aa8fesm4977610ejc.69.2024.02.21.06.34.00
+        by smtp.gmail.com with ESMTPSA id r22-20020a170906281600b00a3d777aa8fesm4977610ejc.69.2024.02.21.06.35.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Feb 2024 06:34:02 -0800 (PST)
-Message-ID: <88d8fea5-2b11-4d01-816c-dbe822ac8d19@linaro.org>
-Date: Wed, 21 Feb 2024 15:33:58 +0100
+        Wed, 21 Feb 2024 06:35:25 -0800 (PST)
+Message-ID: <6bfc66bb-a706-4881-bcbf-57ca7ebc300b@linaro.org>
+Date: Wed, 21 Feb 2024 15:35:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,26 +76,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/3] dt-bindings: PCI: qcom: Add global irq support for
- SA8775p
+Subject: Re: [PATCH v1 3/3] PCI: qcom: Add support for detecting controller
+ level PCIe errors
 Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
- root <root@hu-msarkar-hyd.qualcomm.com>, andersson@kernel.org,
+To: root <root@hu-msarkar-hyd.qualcomm.com>, andersson@kernel.org,
  krzysztof.kozlowski+dt@linaro.org, jingoohan1@gmail.com,
- gustavo.pimentel@synopsys.com, manivannan.sadhasivam@linaro.org,
- conor+dt@kernel.org, quic_nitegupt@quicinc.com
+ gustavo.pimentel@synopsys.com, konrad.dybcio@linaro.org,
+ manivannan.sadhasivam@linaro.org, conor+dt@kernel.org,
+ quic_nitegupt@quicinc.com
 Cc: quic_shazhuss@quicinc.com, quic_ramkri@quicinc.com,
  quic_nayiluri@quicinc.com, quic_krichai@quicinc.com,
- quic_vbadigan@quicinc.com, Mrinmay Sarkar <quic_msarkar@quicinc.com>,
+ quic_vbadigan@quicinc.com, Nitesh Gupta <nitegupt@quicinc.com>,
+ Mrinmay Sarkar <quic_msarkar@quicinc.com>,
+ Bjorn Helgaas <bhelgaas@google.com>,
  Lorenzo Pieralisi <lpieralisi@kernel.org>,
  =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+ Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
 References: <20240221140405.28532-1-root@hu-msarkar-hyd.qualcomm.com>
- <20240221140405.28532-2-root@hu-msarkar-hyd.qualcomm.com>
- <08ca89da-d6a1-440c-8347-f2e31222bede@linaro.org>
- <a0677780-d013-44f7-94bf-ea7e23aab019@linaro.org>
+ <20240221140405.28532-4-root@hu-msarkar-hyd.qualcomm.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -141,57 +141,36 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <a0677780-d013-44f7-94bf-ea7e23aab019@linaro.org>
+In-Reply-To: <20240221140405.28532-4-root@hu-msarkar-hyd.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/02/2024 15:31, Konrad Dybcio wrote:
-> On 21.02.2024 15:28, Krzysztof Kozlowski wrote:
->> On 21/02/2024 15:04, root wrote:
->>> From: Mrinmay Sarkar <quic_msarkar@quicinc.com>
->>>
->>> Add global interrupt support in dt-bindings for SA8775p RC platform.
->>
->> What is this global interrupt? Why wasn't it there before?
->>
->>>
->>> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
->>> ---
->>>  .../devicetree/bindings/pci/qcom,pcie.yaml    | 26 +++++++++++++++++--
->>>  1 file changed, 24 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
->>> index a93ab3b54066..d86fb63a2d2c 100644
->>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
->>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
->>> @@ -63,7 +63,7 @@ properties:
->>>  
->>>    interrupt-names:
->>>      minItems: 1
->>> -    maxItems: 8
->>> +    maxItems: 9
->>>  
->>>    iommu-map:
->>>      minItems: 1
->>> @@ -873,8 +873,30 @@ allOf:
->>>          compatible:
->>>            contains:
->>>              enum:
->>> -              - qcom,pcie-msm8996
->>>                - qcom,pcie-sa8775p
->>> +    then:
->>> +      oneOf:
->>
->> No need, drop.
+On 21/02/2024 15:04, root wrote:
+> From: Nitesh Gupta <nitegupt@quicinc.com>
 > 
-> Moreover, I think this global irq should be present on all qc platforms
+> Synopsys Controllers provide capabilities to detect various controller
+> level errors. These can range from controller interface error to random
+> PCIe configuration errors. This patch intends to add support to detect
+> these errors and report it to userspace entity via sysfs, which can take
+> appropriate actions to mitigate the errors.
+> 
 
-Heh, this will anyway conflict with my series:
-https://lore.kernel.org/all/90a50ab4-a513-48af-b13a-bba082e49540@linaro.org/
+...
 
-https://lore.kernel.org/all/20240205-dt-bindings-pci-qcom-split-continued-v1-0-c333cab5eeea@linaro.org/
+> +
+>  static void qcom_pcie_init_debugfs(struct qcom_pcie *pcie)
+>  {
+>  	struct dw_pcie *pci = pcie->pci;
+> @@ -1496,6 +1829,21 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+>  		goto err_pm_runtime_put;
+>  	}
+>  
+> +	pcie->global_irq = platform_get_irq_byname(pdev, "global");
+> +	if (pcie->global_irq < 0) {
+> +		ret = pcie->global_irq;
+> +		goto err_pm_runtime_put;
 
-
+How does this work with old DTS and with all other platforms? Was it tested?
 
 Best regards,
 Krzysztof
