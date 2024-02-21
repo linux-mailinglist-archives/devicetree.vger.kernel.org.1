@@ -1,128 +1,211 @@
-Return-Path: <devicetree+bounces-44130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C39E685CD1D
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 01:52:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75FF685CD3E
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 02:11:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 78F1B1F2359C
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 00:52:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 007951F231EF
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 01:11:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 985B96FD0;
-	Wed, 21 Feb 2024 00:51:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AB2B1C33;
+	Wed, 21 Feb 2024 01:11:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J7USTkxr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S54bans2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13C0C6FBE;
-	Wed, 21 Feb 2024 00:51:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50D7417D5;
+	Wed, 21 Feb 2024 01:11:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708476710; cv=none; b=G70z3ExGM1bX0n3PrvQdG5q5XOjBH+tCTJhD5F6pblwnYaFthvXbXqDFbmfOc4ErIuebnPpblipHtoeiTPbYFkRm/WzojMJUn/h29dhkvplk2fj0Tpw05s5wczgwWNTu8N41GjZODl6mdCyds9Q79NW5Si8l6djHHphkjR+MbvQ=
+	t=1708477874; cv=none; b=Y7mIMXSJTpUOLvcCDm2AkgAPkZduSqsZbNEjlnmo1eCZ7Qc1BfFwgtWuAjRpPMm3s1faJvQ0IVv/NszBNzqo1wtpCy/WPUS8TTZvFeInAVti1mQdyBBcPNd6NaSp0NvyO1/gWW2I3hqQCkBfXUG5iMrX6QG/ue8gb7JMfmeNwUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708476710; c=relaxed/simple;
-	bh=MieXVm22ma551iVFmKtgUAOJPGMkvDbr5o0lgBA3X8M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fmfl4VOaLuYtYH6ZHqr11iDUSSrchBmA1gfxyWaC1G/78AcX/rn6IAfe3dGzyShgCsDW34IQJbwvHGTv4sNHWl3vz+diygWcA5LM6gAqEUaw4zPGP5tWJhvJOWCAQw9kTZZ/EiZyq0XpFm6eMIoL8ElaWOYtFMJuLsTxIeNET0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J7USTkxr; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1d8da50bffaso30966745ad.2;
-        Tue, 20 Feb 2024 16:51:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708476708; x=1709081508; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=B0SlzYf9q4r5oo3cnCmgPLBf9yL53UG8nb29+3uRtXs=;
-        b=J7USTkxr/V0zCXI/6QuqmR4yBLA7UTlue+U6jYfCGfz8FOTFbXnN5ddjTflQL98o7n
-         Ej24WbK7Q9mxP0IFjgmFAyAkjtjLFkuVK71IrQE459mBQur1Vsc8pA9Qn3ujZLmVt6QQ
-         OMEdn8dP64qTXbHakZRRqU8m4Feyv5txGSnwnohsnjEnWL6DMo86V5z+E2+6WMPaIhQP
-         PWg5b6+G6n1O5dXCwZd67ulI2UTTr4O/ps2fvv/Jf/IY+nkeknXXqfxph0k0TuGe+wqT
-         Ms5w6J5NWjwap0/xqQif8vVuqX9php8F0vHDzyxCA8pOL3z1WqSFoLzgOrwHNPgTd6iA
-         cLeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708476708; x=1709081508;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=B0SlzYf9q4r5oo3cnCmgPLBf9yL53UG8nb29+3uRtXs=;
-        b=i3pBjz1FA/sBxcf1yzegSxFIvIn1buj/T9XvERJHlfPzkDM4fYFGsaJ1HfKKgYMkNP
-         cLNfI/mUciMml1KzgobsrnrgF+HJXOQKOc+kxBge/eWzfsTM3vjD7vieUHqAnHuuRoqR
-         LAFdJNYJqDTFkJetwIyjbE71e5SL/yioKpfaUIuQAsU5CgX5MOedb8VrYzlCK3x5Ua6a
-         AK9VUZmiD252Bn/1XKe4G2cVR5uXr4KnErkpV0Lix9t+i6+f3dTmruOXv1eHXV3FiAhe
-         99g4p/p0ryu8annH1e9D01a+cLYkLRU6E6cChDKO2IDPeZYG6ECOx29XpkJdK1cyGqJ/
-         OlFg==
-X-Forwarded-Encrypted: i=1; AJvYcCVrrmtvuayv/ZL0aE/89lZ7lSt1dU7F/WHKnB3sInL2bL2/hJmKbRna7Ir0W6hh1PH+fVPGjDEjZZxYidODH7SqViFtf4ztXSSTXBlPxsHIhZjGVt/TRygiEuJ967Jbq4CJcY8Prxj9+HWnLudlq2AANyI6nUm6P9CdNVrYjnMNUfvy++c=
-X-Gm-Message-State: AOJu0YxWbAZUSm1pbFSI8Ch3VzUZHP/5LHWAmzBnUrhS7/ya12o1ys1n
-	ww0lu9gx0JOwhZJPfvny44U5yG3ONhJ61hZnoEzaKuRVP49ZBweF
-X-Google-Smtp-Source: AGHT+IHpWBNu8g6t7YfE+qIGbFSW1RZzQSg9X2TrRyMpgRBhzWoeu63O8KOYi+IXdOVYZh0DRmDQOg==
-X-Received: by 2002:a17:902:c084:b0:1dc:20f2:77bb with SMTP id j4-20020a170902c08400b001dc20f277bbmr2027961pld.29.1708476708315;
-        Tue, 20 Feb 2024 16:51:48 -0800 (PST)
-Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id w16-20020a1709029a9000b001db7ee44ff9sm6790232plp.263.2024.02.20.16.51.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Feb 2024 16:51:47 -0800 (PST)
-Message-ID: <9c0f9285-4418-4ae9-9f72-ea74bfcf92cc@gmail.com>
-Date: Wed, 21 Feb 2024 08:51:43 +0800
+	s=arc-20240116; t=1708477874; c=relaxed/simple;
+	bh=btJOLopJktgGi2/wGoVtv1QtxSSCjSdVjxE6aY9Ek/k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AglAjEU35Eet+gLfd+16AxEpEgl1DPEQSlGYwof2oGHrULRyeITlf6F7L+iWmPne7SD0AH/ncAASZAbbDc03HcZc0/lb5tmfdUj1B5AGp5Qizt3d0L8jOQe+7SbtGsRKBIBUXWRfdnAR45wBbWuaJ9tQOL1POiUUc+NNlrG3/lA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S54bans2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A791C433F1;
+	Wed, 21 Feb 2024 01:11:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708477874;
+	bh=btJOLopJktgGi2/wGoVtv1QtxSSCjSdVjxE6aY9Ek/k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=S54bans2BlnZaSoevee1TwMnZ3Z3UqHKYFnM5eKUMAyIF7yl9wKF/twxUlPaTSb0b
+	 /f28cCjcxKNP2CauQPQkAOm5BDzn0pFNTKoAfjTRFNpbUJtx8YWqFB3ZFwDfujXraD
+	 mbwAGAA0YBqF7CW7/G784mvdaWhs2M7pHiI9ckbEBsL41Z92cbc4X3RgwTKRG8acRx
+	 3ICgwweV5lMk5U0vSPVuNJOxCnvB2Y6Zwgb3eMZMgY8fSuazrimy1VOwxmT0SD+Aim
+	 SYenZvlu2BNC9JFJ2qOKr1cQoSERvBjV11btcAJ66vimZQSsTOQe/2ggI7PBCti7ac
+	 LRLMVB6gao3XA==
+Date: Wed, 21 Feb 2024 01:11:09 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Yangyu Chen <cyy@cyyself.name>
+Cc: linux-riscv@lists.infradead.org,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, linux-kernel@vger.kernel.org,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh+dt@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH 1/1] riscv: dts: Allow BUILTIN_DTB for all socs
+Message-ID: <20240221-numerator-grill-1e5603841a8d@spud>
+References: <tencent_AB625442CC1BCFF86E04D7B5891C43719109@qq.com>
+ <tencent_C9E0DAC75884B0346EF2250A5E68673BA20A@qq.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/4] pinctrl: nuvoton: Add ma35d1 pinctrl and GPIO
- driver
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- linus.walleij@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- p.zabel@pengutronix.de, j.neuschaefer@gmx.net
-Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- ychuang3@nuvoton.com, schung@nuvoton.com
-References: <20240220004159.1580108-1-ychuang570808@gmail.com>
- <20240220004159.1580108-5-ychuang570808@gmail.com>
- <b40f5b2d-d41f-47fa-8aae-30290e0d2737@linaro.org>
-Content-Language: en-US
-From: Jacky Huang <ychuang570808@gmail.com>
-In-Reply-To: <b40f5b2d-d41f-47fa-8aae-30290e0d2737@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-Dear Krzysztof,
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Fp5d1QqaibeYLKMo"
+Content-Disposition: inline
+In-Reply-To: <tencent_C9E0DAC75884B0346EF2250A5E68673BA20A@qq.com>
 
 
-On 2024/2/20 下午 04:28, Krzysztof Kozlowski wrote:
-> On 20/02/2024 01:41, Jacky Huang wrote:
->> From: Jacky Huang <ychuang3@nuvoton.com>
->>
->> Add common pinctrl and GPIO driver for Nuvoton MA35 series SoC, and
->> add support for ma35d1 pinctrl.
->>
->> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
->> ---
->>   drivers/pinctrl/nuvoton/Kconfig          |   19 +
->>   drivers/pinctrl/nuvoton/Makefile         |    2 +
->>   drivers/pinctrl/nuvoton/pinctrl-ma35.c   | 1211 +++++++++++++++
->>   drivers/pinctrl/nuvoton/pinctrl-ma35.h   |   51 +
->>   drivers/pinctrl/nuvoton/pinctrl-ma35d1.c | 1797 ++++++++++++++++++++++
->>   5 files changed, 3080 insertions(+)
->>   create mode 100644 drivers/pinctrl/nuvoton/pinctrl-ma35.c
->>   create mode 100644 drivers/pinctrl/nuvoton/pinctrl-ma35.h
->>   create mode 100644 drivers/pinctrl/nuvoton/pinctrl-ma35d1.c
-> Driver cannot depend on DTS, so please reorganize patchset so DTS is not
-> in the middle or even split the DTS to separate patchset.
->
-> Best regards,
-> Krzysztof
->
+--Fp5d1QqaibeYLKMo
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thank you for your explanation. In the next version, I will adjust the 
-order and move the DTS to the end of this patchset. Best Regards, Jacky 
-Huang
+On Wed, Feb 21, 2024 at 03:03:57AM +0800, Yangyu Chen wrote:
+> The BUILTIN_DTB kernel feature on RISC-V only works on K210 SoC only. This
+> patch moved this configuration to entire riscv.
+>=20
+> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
+
+A passing remark here only:
+The detail in the cover letter belongs in the commit message. There's
+very little value in a cover letter for a one patch "series" - it
+either will duplicate information from the commit message (and is
+therefore useless) or, as in this case, splits information that should
+be in the commit message away from it.
+
+Thanks,
+Conor.
+
+> ---
+>  arch/riscv/Kconfig                  | 16 ++++++++++++++-
+>  arch/riscv/Kconfig.socs             | 32 -----------------------------
+>  arch/riscv/boot/dts/Makefile        |  2 +-
+>  arch/riscv/boot/dts/canaan/Makefile |  2 --
+>  4 files changed, 16 insertions(+), 36 deletions(-)
+>=20
+> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+> index b49016bb5077..23d501561e64 100644
+> --- a/arch/riscv/Kconfig
+> +++ b/arch/riscv/Kconfig
+> @@ -996,7 +996,21 @@ config RISCV_ISA_FALLBACK
+>  config BUILTIN_DTB
+>  	bool "Built-in device tree"
+>  	depends on OF && NONPORTABLE
+> -	default y if XIP_KERNEL
+> +	default y if XIP_KERNEL || SOC_CANAAN
+> +	help
+> +	  Build a device tree into the Linux image.
+> +	  This option should be selected if no bootloader is being used.
+> +	  If unsure, say Y.
+> +
+> +
+> +config BUILTIN_DTB_SOURCE
+> +	string "Built-in device tree source"
+> +	depends on BUILTIN_DTB
+> +	default "canaan/k210_generic" if SOC_CANAAN
+> +	help
+> +	  DTS file path (without suffix, relative to arch/riscv/boot/dts)
+> +	  for the DTS file that will be used to produce the DTB linked into the
+> +	  kernel.
+> =20
+>  endmenu # "Boot options"
+> =20
+> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+> index e08e91c49abe..623de5f8a208 100644
+> --- a/arch/riscv/Kconfig.socs
+> +++ b/arch/riscv/Kconfig.socs
+> @@ -84,36 +84,4 @@ config SOC_CANAAN
+>  	help
+>  	  This enables support for Canaan Kendryte K210 SoC platform hardware.
+> =20
+> -if ARCH_CANAAN
+> -
+> -config ARCH_CANAAN_K210_DTB_BUILTIN
+> -	def_bool SOC_CANAAN_K210_DTB_BUILTIN
+> -
+> -config SOC_CANAAN_K210_DTB_BUILTIN
+> -	bool "Builtin device tree for the Canaan Kendryte K210"
+> -	depends on ARCH_CANAAN
+> -	default y
+> -	select OF
+> -	select BUILTIN_DTB
+> -	help
+> -	  Build a device tree for the Kendryte K210 into the Linux image.
+> -	  This option should be selected if no bootloader is being used.
+> -	  If unsure, say Y.
+> -
+> -config ARCH_CANAAN_K210_DTB_SOURCE
+> -	string
+> -	default SOC_CANAAN_K210_DTB_SOURCE
+> -
+> -config SOC_CANAAN_K210_DTB_SOURCE
+> -	string "Source file for the Canaan Kendryte K210 builtin DTB"
+> -	depends on ARCH_CANAAN
+> -	depends on ARCH_CANAAN_K210_DTB_BUILTIN
+> -	default "k210_generic"
+> -	help
+> -	  Base name (without suffix, relative to arch/riscv/boot/dts/canaan)
+> -	  for the DTS file that will be used to produce the DTB linked into the
+> -	  kernel.
+> -
+> -endif # ARCH_CANAAN
+> -
+>  endmenu # "SoC selection"
+> diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Makefile
+> index 72030fd727af..318239d9423b 100644
+> --- a/arch/riscv/boot/dts/Makefile
+> +++ b/arch/riscv/boot/dts/Makefile
+> @@ -8,4 +8,4 @@ subdir-y +=3D sophgo
+>  subdir-y +=3D starfive
+>  subdir-y +=3D thead
+> =20
+> -obj-$(CONFIG_BUILTIN_DTB) :=3D $(addsuffix /, $(subdir-y))
+> +obj-$(CONFIG_BUILTIN_DTB) :=3D $(addsuffix .dtb.o, $(CONFIG_BUILTIN_DTB_=
+SOURCE))
+> \ No newline at end of file
+> diff --git a/arch/riscv/boot/dts/canaan/Makefile b/arch/riscv/boot/dts/ca=
+naan/Makefile
+> index 520623264c87..987d1f0c41f0 100644
+> --- a/arch/riscv/boot/dts/canaan/Makefile
+> +++ b/arch/riscv/boot/dts/canaan/Makefile
+> @@ -5,5 +5,3 @@ dtb-$(CONFIG_ARCH_CANAAN) +=3D sipeed_maix_bit.dtb
+>  dtb-$(CONFIG_ARCH_CANAAN) +=3D sipeed_maix_dock.dtb
+>  dtb-$(CONFIG_ARCH_CANAAN) +=3D sipeed_maix_go.dtb
+>  dtb-$(CONFIG_ARCH_CANAAN) +=3D sipeed_maixduino.dtb
+> -
+> -obj-$(CONFIG_ARCH_CANAAN_K210_DTB_BUILTIN) +=3D $(addsuffix .dtb.o, $(CO=
+NFIG_ARCH_CANAAN_K210_DTB_SOURCE))
+> --=20
+> 2.43.0
+>=20
+>=20
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
+
+--Fp5d1QqaibeYLKMo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdVNrQAKCRB4tDGHoIJi
+0sFAAP4h5Qi4wUH4zI2ZIpYCW4U7sB6GTty5lWkHW6FWrypX4AD/TYWKB0d+Ksve
+mhB9mhYApbgHPMDwnSKtULPRnM7Hswg=
+=hNmM
+-----END PGP SIGNATURE-----
+
+--Fp5d1QqaibeYLKMo--
 
