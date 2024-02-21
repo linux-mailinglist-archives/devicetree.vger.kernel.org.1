@@ -1,119 +1,131 @@
-Return-Path: <devicetree+bounces-44248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FF6385D368
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 10:23:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 094AD85D3DD
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 10:41:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C4297B23259
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 09:23:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B3C431F2506F
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 09:41:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E80093D0BF;
-	Wed, 21 Feb 2024 09:23:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86D9A3D3A8;
+	Wed, 21 Feb 2024 09:41:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LrmSA7G2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X2yWFv6P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF2583D0B9;
-	Wed, 21 Feb 2024 09:23:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 230803D3A1;
+	Wed, 21 Feb 2024 09:41:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708507415; cv=none; b=qYOeVMdii+7zm/0XmQ5ugD5RZOJCwklIa7K04b0rh2CLeq9oNCJJy1/vSz8BpV9mUeNzO7TK0roY1NaoPM6n9vQ7n1eE82MoJydVU5eTrtRHXkIKHX4JXAp66tjKOF7m7LeibTbFO48cPzHXQ1k3N4ccXWvzI4ie5D+X2eBxOTE=
+	t=1708508490; cv=none; b=OCX+HvVgO4OltOLoY+NGmYSZ1fV7/L0xMACRU3nC0JvyqO/3xMnhAg/R9/QHxa0TX8VstZ4ONoEJhK/+ekJ8ugV0cnSK8n+63X/iSpm8RXXKcSlcLLGF9I5WYMTpmji/Nxj7U1IKpTqTLmHzd3330Xw1jCaSXtoPqFe09squQNY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708507415; c=relaxed/simple;
-	bh=jE1ncH7sLUYatuNt7cLbmypurrJj6Bf/Ccrj6W1lvQc=;
-	h=Content-Type:Date:Message-Id:Cc:From:To:Subject:References:
-	 In-Reply-To; b=FelfAn0uA42CcxK62mam3079GYUbTsfS4+kwcu7/qSIOy8DIM+vygBZYvDy7hl2nm1sFglOiRbz6VC+jHx9WM+E4IYTeeFz3QVCzfnxhxw/QRtcBMhhH4k2E6nGtz/eCT43UGFvUtAjwueUIfM9I6OQELNMxxh/P8zT+xAtaG90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LrmSA7G2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8C35C433C7;
-	Wed, 21 Feb 2024 09:23:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708507415;
-	bh=jE1ncH7sLUYatuNt7cLbmypurrJj6Bf/Ccrj6W1lvQc=;
-	h=Date:Cc:From:To:Subject:References:In-Reply-To:From;
-	b=LrmSA7G2qnXbBZhzlDs81CW9rI3+FG6uXE41/r/OntunNmQAaXDrUdQ8ItFLdHyn+
-	 bNAfSgOe2g83K0QYoUPAzIXpjzHL7G4l3xvd8XB/qJcF947Mt65f9sgd99elh1g01v
-	 /9tAmqpvAK1edAwv7CN7XVVNFYT9gOY5u5xdfzMxSD6pJRfCvbn4uF9h6O2yVw5fIw
-	 a4rDLwUB3BShO/RVIULt8/jeq6Te5kQkxR+tRjhbSPAPByOprD+IDlTGO/be3/SsIW
-	 oSd+YaFoVy8b+45thdfESHxajkjPW6jTgRNnbfcW+SgrbNClj9xvf8E4CKYySc//gg
-	 0kgN66e1XzQJQ==
-Content-Type: multipart/signed;
- boundary=e9f867f281deaf04305f7f7b113436157ecc73b10b85215ac510f5eb30ca;
- micalg=pgp-sha256; protocol="application/pgp-signature"
-Date: Wed, 21 Feb 2024 10:23:25 +0100
-Message-Id: <CZANBUQ2RJ3N.DO07Z9VFJCBZ@kernel.org>
-Cc: "Yazan Shhady" <yazan.shhady@solid-run.com>, "Rob Herring"
- <robh@kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-From: "Michael Walle" <mwalle@kernel.org>
-To: "Josua Mayer" <josua@solid-run.com>, "Tudor Ambarus"
- <tudor.ambarus@linaro.org>, "Pratyush Yadav" <pratyush@kernel.org>, "Miquel
- Raynal" <miquel.raynal@bootlin.com>, "Richard Weinberger" <richard@nod.at>,
- "Vignesh Raghavendra" <vigneshr@ti.com>, "Rob Herring"
- <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- <linux-mtd@lists.infradead.org>, "Takahiro Kuwano" <tkuw584924@gmail.com>,
- "Takahiro Kuwano" <Takahiro.Kuwano@infineon.com>
-Subject: Re: [PATCH v7] dt-bindings: mtd: spi-nor: add optional interrupts
- property
-X-Mailer: aerc 0.16.0
-References: <20240219-mtd-flash-interrupt-binding-v7-1-206e30a656fa@solid-run.com> <CZAM553H2H56.2TDN36QEL90XX@kernel.org> <a0144c5b-4095-4a0c-84b6-93dfe9631a6b@solid-run.com>
-In-Reply-To: <a0144c5b-4095-4a0c-84b6-93dfe9631a6b@solid-run.com>
+	s=arc-20240116; t=1708508490; c=relaxed/simple;
+	bh=yzhPkGmyhDClujHspv4zU8ozbniJXsmsLHFQtn3+hB4=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version; b=nSc1zlQt1Z2N16RvOFwkJa+npzpmMukig2xvm8gwLmCFAkwdPul+1ju1ZtuHxbruxxEXp5GwpgRYGcN4Q6meJvWaIYyNhNxmiKAonBQR2ka40x/jaWqU+syvQDohzzeQAKdWJ2lTbwPZIF/pEciw72fjjMnXVfVQj8wFoWZdN+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X2yWFv6P; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-6de3141f041so4480503b3a.0;
+        Wed, 21 Feb 2024 01:41:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708508488; x=1709113288; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jxPgBDv3C3dcuReLG+Pr4kZ7NGxk76ia560ll/5bMEk=;
+        b=X2yWFv6PPs7MO/iVMQFvFoNF/k1N4qzpQ7Et3K3IBd+kGmFod8nmBB1snnx/chLeif
+         6vqJMx0Z8PWNbmQSuCi6NPqh1BLCwpkbWOOOZFbKNqi8xBl7BpVA+4QMTqO1R+yj4QUQ
+         oaSZLBUaUqGIh8QhgnSqH6NgjhSESFwBpcCbHVATW7Nkx2pl9acFxwhG6rR7kl85/aBX
+         55ovLBIFDq3K/Sjsg7SVb2n06/MhRE+WTrJiW07uCqEjDeozc3Ck5yKMzOemozxhqex5
+         NxPDwjBezjsNk4rfqlNlAD13VzjibxgPxMWaF3Qrzi9N8N13amm5scM20w6J2nL9L6QH
+         hkVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708508488; x=1709113288;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jxPgBDv3C3dcuReLG+Pr4kZ7NGxk76ia560ll/5bMEk=;
+        b=fC4u5Gr9eo7uI0OXIHHV7er+cMM/MiMVKgjG3Qm2cRaZIX89JQqSYIZAZXVL6Xzsqk
+         h171zY2VGZu9gcvbVc24yLen/A0HgWr5Rci1hE5tyzPOq6liESIslWK1g6QEPH5L0+zV
+         wedQAcu6NrLRD4bLOQ3u4a79HV3n8abZ0F4aDssEPC4jOaG3VTI9WCcCRwsXjhNL7+Mc
+         EgHjOYE09Wj7BoKuUB56XnkRLCkRejcVHiwCsbAhjFEUMVBLJlQDbsy5pXbTQwHXW6EQ
+         DeWh6mfhmMCjwABYKc2m+Hq5TanMEsceZcS5K7dhX6GLhVlIVLO7FUO6cgIur2eom5yx
+         KWbw==
+X-Forwarded-Encrypted: i=1; AJvYcCUXFALdeA5LDapNeZ1t4JNR5NUlSBgfvfLd7RHqYMGbg+kZZOAMDe4VWM1UdAZcDQl++u7WtiUmouqnpNDRbMuJ5xNIR3F88fICVCu/fgL+1Kpe4eYW2llwys4pAHUOWX2dEPVlKP1ybw==
+X-Gm-Message-State: AOJu0Yw56/wzdrqeDUV+II3e+H41f9RAKowL7ZJaMWmmFonmNl0xb3Xc
+	dk3fAh9Ofk+0sq84cqT8xDjmapzDkNFIFY7cUUL3qpESmL/s7Qd1
+X-Google-Smtp-Source: AGHT+IEpYDF/aIErFO50W/tttHeceZ9QK7f/ypdE9/vLUtf1QQi2UI/UoCC3API4C5Z9wcpvGwoo9g==
+X-Received: by 2002:a05:6a00:2d0d:b0:6e4:5cf5:1b5b with SMTP id fa13-20020a056a002d0d00b006e45cf51b5bmr10524465pfb.30.1708508488450;
+        Wed, 21 Feb 2024 01:41:28 -0800 (PST)
+Received: from peter-bmc.dhcpserver.bu9bmc.local (1-34-21-66.hinet-ip.hinet.net. [1.34.21.66])
+        by smtp.gmail.com with ESMTPSA id lm4-20020a056a003c8400b006e488553f09sm1645026pfb.81.2024.02.21.01.41.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Feb 2024 01:41:28 -0800 (PST)
+From: Peter Yin <peteryin.openbmc@gmail.com>
+To: patrick@stwcx.xyz,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@aj.id.au>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/9] Revise Meta(Facebook) Harma BMC(AST2600)
+Date: Wed, 21 Feb 2024 17:39:15 +0800
+Message-Id: <20240221093925.2393604-1-peteryin.openbmc@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
---e9f867f281deaf04305f7f7b113436157ecc73b10b85215ac510f5eb30ca
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+Summary:
+Revise linux device tree entry related to Meta(Facebook) Harma
+specific devices connected to BMC(AST2600) SoC.
 
-[+ Takahiro]
+Base on : https://lore.kernel.org/all/CACPK8XePx+PvDKzPMjPRn_g9z8yrtAmLvP8Qbepm1AVjuCbaKw@mail.gmail.com/
 
-Hi,
+Change log:
 
-On Wed Feb 21, 2024 at 10:13 AM CET, Josua Mayer wrote:
-> Hi,
->
-> Am 21.02.24 um 09:27 schrieb Michael Walle:
-> > Hi,
-> >
-> > On Mon Feb 19, 2024 at 3:41 PM CET, Josua Mayer wrote:
-> >> Some spi flash memories have an interrupt signal which can be used for
-> >> signalling on-chip events such as busy status or ecc errors to the hos=
-t.
-> > Do you have an example? Maybe one with a public datasheet?
->
-> My example is Infineon S28HS512T, however datasheet download requires=20
-> user account.
->
-> S26HS512T has interrupt line, too, and datasheet is downloadable without=
-=20
-> registration:
-> https://www.infineon.com/cms/en/product/memories/nor-flash/semper-nor-fla=
-sh-family/semper-nor-flash/#!documents
+v2 -> v3
+  - Patch 0007 - Revise max31790 address
+  - Patch 0008 - Harma: Add NIC Fru device
+  - Patch 0009 - Add ltc4286 device
 
-Thanks, as far as I can see, both are hyperbus flashes. I'm asking
-because I'm not aware of any SPI NOR flash with an interrupt line.=20
+v1 -> v2
+  - Add infineon,slb9670 information for tpm.
+  - Patch 0006 - Add PDB temperature.
 
--michael
+v1
+  - Patch 0001 - Revise SGPIO line name.
+  - Patch 0002 - Mapping ttyS2 to UART4.
+  - Patch 0003 - Remove Vuart.
+  - Patch 0004 - Add cpu power good line name.
+  - Patch 0005 - Add spi-gpio.
 
---e9f867f281deaf04305f7f7b113436157ecc73b10b85215ac510f5eb30ca
-Content-Type: application/pgp-signature; name="signature.asc"
+Peter Yin (9):
+  ARM: dts: aspeed: Harma: Revise SGPIO line name.
+  ARM: dts: aspeed: Harma: mapping ttyS2 to UART4.
+  ARM: dts: aspeed: Harma: Remove Vuart
+  ARM: dts: aspeed: Harma: Add cpu power good line name
+  ARM: dts: aspeed: Harma: Add spi-gpio
+  ARM: dts: aspeed: Harma: Add PDB temperature
+  ARM: dts: aspeed: Harma: Revise max31790 address
+  ARM: dts: aspeed: Harma: Add NIC Fru device
+  ARM: dts: aspeed: Harma: Add ltc4286 device
 
------BEGIN PGP SIGNATURE-----
+ .../dts/aspeed/aspeed-bmc-facebook-harma.dts  | 59 +++++++++++++++----
+ 1 file changed, 47 insertions(+), 12 deletions(-)
 
-iIgEABYIADAWIQQCnWSOYTtih6UXaxvNyh2jtWxG+wUCZdXBDRIcbXdhbGxlQGtl
-cm5lbC5vcmcACgkQzcodo7VsRvsMiwEAjOqBidGogjxPHhp8y+blJyfOYdrapFQv
-ZY95qF3u2uIBAP+EXR9ovlBJIAjMCkirhifr2qt6x005yRPmB2mlhi8N
-=iSVx
------END PGP SIGNATURE-----
+-- 
+2.25.1
 
---e9f867f281deaf04305f7f7b113436157ecc73b10b85215ac510f5eb30ca--
 
