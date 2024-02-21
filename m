@@ -1,102 +1,172 @@
-Return-Path: <devicetree+bounces-44396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44397-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9926B85E070
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 16:03:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5D2885E092
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 16:08:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8CA221C23D8E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 15:03:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0387A1C21172
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 15:08:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E90A8003D;
-	Wed, 21 Feb 2024 15:03:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pxcv9QCS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08BED80C04;
+	Wed, 21 Feb 2024 15:07:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16D427FBD2;
-	Wed, 21 Feb 2024 15:03:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38A3180C14
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 15:07:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708527786; cv=none; b=SBm3aWuyt2+Y+HXMFNEYFbzHj3BMXZ5zHN5A6VZMgAJNi03n1Qc3YYsnPQ3/3i5PKa4wM5jkF0Xp5PTNWgUjLGieTMKCe8Zv7MpXnAHzHQFEfWj10PY9MEYlM8eCtbq87YS0hUfJwEqMhli7tOE138/vZH+E0CHWKYcAsIsYnJM=
+	t=1708528024; cv=none; b=hzKEdfSJ7EpWiWC8SPsmELHa8MqiGXJMe1g0oxmg7n2I0Vg1+5SCtWQKgU2DSVEAqZY6qVejHoNds2OoioNVW4typgwwQ4KM84y7p9gt2+Q6GFzXzlSP9iPhdUe9DPfjymn74MOzeyU9mAXEuofOqyW2sScoxpsYcvXOuGEO4Pg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708527786; c=relaxed/simple;
-	bh=1CtEOyx2YcI+N1p30TgJ+jc78ftKgIOaBRAAhCXGC5k=;
+	s=arc-20240116; t=1708528024; c=relaxed/simple;
+	bh=VKs5SC9Um/6jmiJHZEARbnapbryfD+Cwve6zqW4sFCw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Slg4yrWwckUtoFYPb8r5T3fpEmZ2zA26m1zzvSHA7k0cwwKGPvmKhAn6YW+I4uaiGk91hvuNODwDDHW97zKah9XnCqYnBZup05ZVA0mpRfBbvoVPyNUtKXDhNUVq5RsxGZyd7B0q7cgVbJkEJKAhHiKLlwnP6XQ+TazGRvYslds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pxcv9QCS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A41BC433C7;
-	Wed, 21 Feb 2024 15:03:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708527785;
-	bh=1CtEOyx2YcI+N1p30TgJ+jc78ftKgIOaBRAAhCXGC5k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pxcv9QCSmf0h6efzbD/gnBpg7HJE4h7qF6Ay+rxFcgymR8Id49/wB+NnAtWSYm8U6
-	 5RcrNlJhPxjyw7m7IogkoGect8UklJ37b4vtBr8mCxhHdAdaN9g4KRGRPwEo4adOOQ
-	 1ksaWTQkNkMlvo/CGshXs86mgZO/RPltpXC9D8hFgV3iebTxzSkGIt/t6T2KRe4szb
-	 1dK7fIXjOKBhz3P05lp+ycpjse4fe6tRcFobaOkWpT78UZz674oZcnDQp3rVcLV8qp
-	 YVy0fzOkolTtRdNMShRbqovzuVrD6ZEafc48cUKYKKg2/kuRuAmjq+i1OFgeY3OORO
-	 W2qU13medhlfg==
-Date: Wed, 21 Feb 2024 08:03:03 -0700
-From: Rob Herring <robh@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=iqVFAEKWuHT0Ni8gHOboXyeMf0ppxH5XzA6tNs39KsiAwEklCDbBqFdJVvM6p26+HAOUZpwHDf9Soa+jeqwDTt325ntBOm4zIzdpFbSD6qJMFUAaYz+pBGCiFmwRZCPZ6HOGf4J2wXs6cy7ixhUHiYX8s2wl8TRiUDfp5QaruNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rcoB2-0005mi-2V; Wed, 21 Feb 2024 16:06:28 +0100
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rcoAz-0023lz-EZ; Wed, 21 Feb 2024 16:06:25 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rcoAz-001Ke2-15;
+	Wed, 21 Feb 2024 16:06:25 +0100
+Date: Wed, 21 Feb 2024 16:06:25 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Rob Herring <robh@kernel.org>
+Cc: Kory Maincent <kory.maincent@bootlin.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: vendor-prefixes: Add missing prefixes used
- in compatibles
-Message-ID: <20240221150303.GA2792906-robh@kernel.org>
-References: <20240216025839.902288-1-robh@kernel.org>
- <20240216-percolate-wooing-b5e4f6814d15@wendy>
- <20240220163845.GA3606739-robh@kernel.org>
- <20240220-colonial-shame-e217e4399184@spud>
+	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+	Dent Project <dentproject@linuxfoundation.org>
+Subject: Re: [PATCH net-next v4 14/17] dt-bindings: net: pse-pd: Add bindings
+ for PD692x0 PSE controller
+Message-ID: <ZdYRccm7-TXcRp_v@pengutronix.de>
+References: <20240215-feature_poe-v4-0-35bb4c23266c@bootlin.com>
+ <20240215-feature_poe-v4-14-35bb4c23266c@bootlin.com>
+ <ZdCjJcPbbBGYVtuo@pengutronix.de>
+ <20240221144135.GB2779189-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240220-colonial-shame-e217e4399184@spud>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240221144135.GB2779189-robh@kernel.org>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Tue, Feb 20, 2024 at 05:51:37PM +0000, Conor Dooley wrote:
-> On Tue, Feb 20, 2024 at 09:38:45AM -0700, Rob Herring wrote:
-> > On Fri, Feb 16, 2024 at 08:59:56AM +0000, Conor Dooley wrote:
-> > > On Thu, Feb 15, 2024 at 08:58:29PM -0600, Rob Herring wrote:
-> > > > +  "^calao,.*":
-> > > > +    description: CALAO Systems SAS
-> > > >    "^calaosystems,.*":
-> > > >      description: CALAO Systems SAS
+On Wed, Feb 21, 2024 at 07:41:35AM -0700, Rob Herring wrote:
+> On Sat, Feb 17, 2024 at 01:14:29PM +0100, Oleksij Rempel wrote:
+> > On Thu, Feb 15, 2024 at 05:02:55PM +0100, Kory Maincent wrote:
+> > > Add the PD692x0 I2C Power Sourcing Equipment controller device tree
+> > > bindings documentation.
 > > > 
-> > > > +  "^IBM,.*":
-> > > > +    description: International Business Machines (IBM)
-> > > >    "^ibm,.*":
-> > > >      description: International Business Machines (IBM)
+> > > This patch is sponsored by Dent Project <dentproject@linuxfoundation.org>.
 > > > 
-> > > These ones add duplicates with no indication of which one is to be used
-> > > going forward. Why not mark one as deprecated?
+> > > Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+> > > ---
+> > ...
+> > > +        pse_pis {
+> > > +          #address-cells = <1>;
+> > > +          #size-cells = <0>;
+> > > +
+> > > +          pse_pi0: pse_pi@0 {
+> > > +            reg = <0>;
+> > > +            #pse-cells = <0>;
+> > > +            pairset-names = "alternative-a", "alternative-b";
+> > > +            pairsets = <&phys0>, <&phys1>;
+> > > +          };
+> > > +          pse_pi1: pse_pi@1 {
+> > > +            reg = <1>;
+> > > +            #pse-cells = <0>;
+> > > +            pairset-names = "alternative-a";
+> > > +            pairsets = <&phys2>;
 > > 
-> > Because I couldn't decide which... It's a mixture with no clear pattern 
-> > of on what or when each one is used. Power is kind of special.
+> > According to latest discussions, PSE PI nodes will need some
+> > additional, board specific, information:
+> > - this controller do not implements polarity switching, we need to know
+> >   what polarity is implemented on this board. The 802.3 spec provide not
+> >   really consistent names for polarity configurations:
+> >   - Alternative A MDI-X
+> >   - Alternative A MDI
+> >   - Alternative B X
+> >   - Alternative B S
+> >   The board may implement one of polarity configurations per alternative
+> >   or have additional helpers to switch them without using PSE
+> >   controller.
+> >   Even if specification explicitly say:
+> >   "The PD shall be implemented to be insensitive to the polarity of the power
+> >    supply and shall be able to operate per the PD Mode A column and the PD
+> >    Mode B column in Table 33–13"
+> >   it is possible to find reports like this:
+> >   https://community.ui.com/questions/M5-cant-take-reversed-power-polarity-/d834d9a8-579d-4f08-80b1-623806cc5070
+> > 
+> >   Probably this kind of property is a good fit:
+> >   polarity-supported = "MDI-X", "MDI", "X", "S";
 > 
->  That might be true for ibm, but is it true for calao systems?
->  The website appears to now be something to do with Korean gambling, but
->  the twitter remains and looks to have produced arm sbcs:
->  https://twitter.com/calaosystems?lang=en
+> Where does that live? Looks like a property of the consumers defined in 
+> the provider. Generally, that's not the right way for DT. 
 
-I used this:
+This is property of PSE PI (Power Interface)
 
-https://en.wikipedia.org/wiki/Calao_Systems
+                                             Ethernet PHY --\
+PSE (provider) ----> PSE PI (consumer of multiple PSE's) ----> Physial port
 
-The company went bankrupt in 2016. ST based systems used one prefix and 
-Atmel based systems used the other. Which do I pick to deprecate? I'm 
-not expecting any new boards either. 
 
-Rob
+PSE - provides power lines.
+PSE PI - switches (or not) power lines in different configurations. This
+is different part of the board/system. PSE PI can have combination or
+one of following configurations: "MDI-X", "MDI", "X", "S";
+This is not something what PSE actually do. PSE PI and PSE are described
+in IEEE802.3 specification.
+
+> I'll say it 
+> again, I think you should be expanding #pse-cells (>1), not getting rid 
+> of them (==0).
+
+Did you took time to read my last explanation? Sorry for making it long
+description, this topic is a bit complex.
+
+Regards,
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
