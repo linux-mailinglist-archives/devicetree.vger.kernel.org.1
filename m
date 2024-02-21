@@ -1,153 +1,107 @@
-Return-Path: <devicetree+bounces-44362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2634385DC1D
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 14:49:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1ED285DCB4
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 14:56:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BAAC91F22085
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 13:49:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52D9D283041
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 13:56:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 567B07C08D;
-	Wed, 21 Feb 2024 13:49:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AC167BB1E;
+	Wed, 21 Feb 2024 13:56:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UUF0MQo5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W0VR8Sr4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76CFD78B50
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 13:49:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BFD97BB18;
+	Wed, 21 Feb 2024 13:56:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708523346; cv=none; b=uVL4NjGgWP2aFkMHG8HfXDhVTnQD8VWOrM6evobsq3EqiEwLS2b9vgxS7S76F7X1HkIRDgX3kW2B1tSMAihAHerDLHwEYQTOXhcNwNUgTGb3F6kZbMOMrrG0CMCnuqnI2cptkFSZlmVWmUb+nrHTTX4mXHopE5NqQgaPQUK5d+8=
+	t=1708523787; cv=none; b=ablVDBPXEiBdseQ2CqVPA+TH8A6rnuxXgbIkPGj1J8iSCx5kQA97MpAdGN/5YZTnCXfuyJS+L3uUkyJ8B2y2XePIYqEaFVlPUbZd801+DiKwzvMzDErareMu0eRU8wKNAz/WcpGA0f29P8CosN4gDOxmo7sM0awWopErVehZ0NQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708523346; c=relaxed/simple;
-	bh=dbqzli4cR3WCeUsaiipTFck3hHY4sMi8a7ZU5v4Fnq4=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Co4hS7M8aLS2mcmQ4EyuwFz5c2RMOMeh1DzEX35nrl33GQxEe/7OUG3m3KPncwbDZF1ZzQeQWysDKXSX0bK5jCazKu4ZfkBtnBdabFHze+NlZ7RNWsVLwzrPZWxgArr3m3QE2TzN8HFOlh4MaMJi+vrMqePE8+DvfUoRqgFMry0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UUF0MQo5; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-412730e5b95so7953665e9.3
-        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 05:49:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708523343; x=1709128143; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VtFDOKN5+hR4HH1P/38GAxhyej34QU8WFZl+t+s3aWo=;
-        b=UUF0MQo5HFiUJeiILuBf2tD44upvRRwWsy4GL9ngc0hX7mWlp1gsTrcFn4G8Vl8m/d
-         gso/obKmxy5atXiqpr0Jzxjwwk4IjCHA9Dw3jwfR4XCIqZ7aIPn9NIH4uLfQcg5V8zMk
-         fuIs2UeAYl84z7UpEjYgF7aDgD6YIAHHN24wKjdBhWZ3cpDS38dIZkVdxP3w8iVRKKb5
-         4Yb6imUvOkRNUWfJG7Rm3AOG4UffjNDahQsMxAjT6E52+ii13nyJcNtM96Raka2M2gvH
-         czJTt4QtpptDTLP09+KCSfHiuggBexQ7dFDO3/Zn5bmBOd+Bh+8yVwKkEMtbKp3fUKgy
-         G2rA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708523343; x=1709128143;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=VtFDOKN5+hR4HH1P/38GAxhyej34QU8WFZl+t+s3aWo=;
-        b=tO3xwDsynCpE2hu8omKPKhbikVTJbMTId9o/HcIzUiBExGNjydaP86ayWbBH/TJ7Yc
-         XuG7UqVejS3cWtIj0B4/60NslhJqiQwtsOXf04ps9P4QHj5WlwtcGIiNidZWo39YGAf5
-         5Fx2XZkIQto5jEaDB4eg/Yf1hVldWZcRms9sjvZsQ8K0nl3BMV/buBw27QqSY7C2xzj9
-         SVbL14ULZAAy+Lghpz6lshlBULth5GEbJgCTGIpgChF+pkVO7lPUQVoOhaTS7JVy1BHq
-         0qV1ZFew4WHawk3mrIhMUZvkjslu6p2JCwLtg0Es4ECb/lHnEUMUSQnUrDlNUEUM9He2
-         0brQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWkIwhC/CvZDpKnWj07h7nD/LNWka4eHX02AIsQvZJBINrbjP3AtUe4XiSre3BacIp+qA1pxrFrlY7CluGw7etyzgPVk4maVSBu3A==
-X-Gm-Message-State: AOJu0YyLpSD+w4WsEaw9sdSoQVYU4/2YEmz5vprZ67GrsETnznkVC7p2
-	+ghnbuCv5RsdNALGejJ7aSZ/Dzo387DnuTZHXfZHjcaQcjzJeVZOsC9EwLk/Wkk=
-X-Google-Smtp-Source: AGHT+IFESSv2epAh2jQikPzor1NGRNpRGVyZZwKtgnNFvsQler9c/74e1224I59lL6qrirgD1bFHNA==
-X-Received: by 2002:a05:600c:4f55:b0:412:392e:6f06 with SMTP id m21-20020a05600c4f5500b00412392e6f06mr11955635wmq.7.1708523342806;
-        Wed, 21 Feb 2024 05:49:02 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:83fc:439c:6f36:ce5c? ([2a01:e0a:982:cbb0:83fc:439c:6f36:ce5c])
-        by smtp.gmail.com with ESMTPSA id r17-20020a05600c459100b004124907f43fsm17647391wmo.12.2024.02.21.05.49.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Feb 2024 05:49:01 -0800 (PST)
-Message-ID: <f2b9443e-b214-4f72-a870-2f16d37a04a6@linaro.org>
-Date: Wed, 21 Feb 2024 14:49:01 +0100
+	s=arc-20240116; t=1708523787; c=relaxed/simple;
+	bh=FurAbRLSrj+WrRKW3LABQYLQlweDJrWbSesqU4LpggA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=evIy2StuUzqZWeTzTsfq92wJyb4WIvNMXhN64yN/7Sg3D/ewKveu1qvVBI/oqPLb5kZIGl1DI9xSUeUymK2Y/MQxzukSUdKfb29ahruqkHFBNNuxeku885MOY8/H7+aQR8cvqrS5nu4QZcU7cnrkm/GUqwYNz38Ski4DixeD5zg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W0VR8Sr4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9821BC433F1;
+	Wed, 21 Feb 2024 13:56:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708523787;
+	bh=FurAbRLSrj+WrRKW3LABQYLQlweDJrWbSesqU4LpggA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=W0VR8Sr4N6zwNgpzxd03p24GPTGwTwfHy3Jny0P2EMSokCr6tGuM5m/izGBB8XoMD
+	 GIfvCZETcBVMHronNhjZzWN8FnppDXmFCD7x1dBPop+IVTbgk1Vg/dzOjYDCrlkPhc
+	 xs7JgXQUwOHJaHdt1iZfN3/P0CxuyulBPJYvGT9lquzOfQlM3qBZGYRoKW7Nm6w01w
+	 QgM6w0pToNTF1umQjZTHjAm7I9zORwwuP+IHXBBYnkM2omQmwDH7tkOMhqKntu00ap
+	 vV0I4vYlJ9owynikwU9O0QzhqnKH3mpCpm1Q7fXkakll7RnoOtwxSf5tmk0L5/lbz8
+	 24j0bvpbIF08A==
+From: Mark Brown <broonie@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-usb@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240221-pm4125-typec-v3-0-fdd0ee0465b8@linaro.org>
+References: <20240221-pm4125-typec-v3-0-fdd0ee0465b8@linaro.org>
+Subject: Re: (subset) [PATCH v3 0/3] arm64: dts: qcom: qrb2210-rb1: enable
+ Type-C support
+Message-Id: <170852378435.35408.11860058120076755324.b4-ty@kernel.org>
+Date: Wed, 21 Feb 2024 13:56:24 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sm8650: Fix SPMI channels size
-Content-Language: en-US, fr
-To: Abel Vesa <abel.vesa@linaro.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240221-dts-qcom-sm8550-fix-spmi-chnls-size-v2-0-72b5efd9dc4f@linaro.org>
- <20240221-dts-qcom-sm8550-fix-spmi-chnls-size-v2-2-72b5efd9dc4f@linaro.org>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20240221-dts-qcom-sm8550-fix-spmi-chnls-size-v2-2-72b5efd9dc4f@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-a684c
 
-On 21/02/2024 14:04, Abel Vesa wrote:
-> The actual size of the channels registers region is 4MB, according to the
-> documentation. This issue was not caught until now because the driver was
-> supposed to allow same regions being mapped multiple times for supporting
-> multiple buses. Thie driver is using platform_get_resource_byname() and
-> devm_ioremap() towards that purpose, which intentionally avoids
-> devm_request_mem_region() altogether.
+On Wed, 21 Feb 2024 01:58:49 +0200, Dmitry Baryshkov wrote:
+> Reuse Type-C support implemented for the PMI632 PMIC (found on Qualcomm
+> Robotics RB2 platform) and implement Type-C handling for the Qualcomm
+> Robotics RB1 platform.
 > 
-> Fixes: 10e024671295 ("arm64: dts: qcom: sm8650: add interconnect dependent device nodes")
-> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/sm8650.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> index d488b3b3265e..260eda81b743 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> @@ -3747,7 +3747,7 @@ sram@c3f0000 {
->   		spmi_bus: spmi@c400000 {
->   			compatible = "qcom,spmi-pmic-arb";
->   			reg = <0 0x0c400000 0 0x3000>,
-> -			      <0 0x0c500000 0 0x4000000>,
-> +			      <0 0x0c500000 0 0x400000>,
->   			      <0 0x0c440000 0 0x80000>,
->   			      <0 0x0c4c0000 0 0x20000>,
->   			      <0 0x0c42d000 0 0x4000>;
 > 
 
-Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8650-QRD
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+
+Thanks!
+
+[1/3] regulator: dt-bindings: qcom,usb-vbus-regulator: add support for PM4125
+      commit: b9262cc1b988cdaf9bb5c2a4411d4ad4e7128e8d
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
