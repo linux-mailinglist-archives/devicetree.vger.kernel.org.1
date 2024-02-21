@@ -1,259 +1,268 @@
-Return-Path: <devicetree+bounces-44295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBFC385D616
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 11:53:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8017885D628
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 11:58:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85A722846AA
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 10:52:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0097C1F239FC
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 10:58:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C5423DB86;
-	Wed, 21 Feb 2024 10:52:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17E1C3D3A1;
+	Wed, 21 Feb 2024 10:58:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="iGVFLfoU"
+	dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b="RXDUnqSJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from meesny.iki.fi (meesny.iki.fi [195.140.195.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52D393EA72;
-	Wed, 21 Feb 2024 10:52:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708512775; cv=none; b=QmTE+qRHB1ImufhpNwsAkGZr9udMcYIbDXevrgHtcxam/LZxUkGbweuIDQY14Yalc3lb6EAB5OBn+0f95EYjM2mZwkgYU0h4wRcJodd7cUPnbeS0EPq2zwxADOnEYsx0dUc8eU7k0p4Qj7iuAFfnljpI7ykMKjQ36vKdLJ4wsfo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708512775; c=relaxed/simple;
-	bh=mANM8Mj17utuO74C4GVIckTC6XGo+k2ahYlLtoQ2An8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QyRA2X6FuOegKSAQszopsYJfWC9tGZJeIS8b1h4i4BBLIJjMjx/bU5QMZfj1mG8d26q3JRYl4nynYDp5mUVYD0HhZrWq2dD67iR2E8QHxpHHb6FWGTVmfeeUN5SV79nXU6ls4UwZRF7Cul4+c0D+jR/Tq7VNS8K88MrQgQCMgzc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=iGVFLfoU; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1708512771;
-	bh=mANM8Mj17utuO74C4GVIckTC6XGo+k2ahYlLtoQ2An8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iGVFLfoU0uUorDxu3xhcQFffIKP/1Er5IQxtwGNk0oHmftuGr6UCNYN7hWJebCQp1
-	 j3ba1suU3gSQB0kF80g3wM36DZ1J0CNnCmVnjBubm9WCNkEVDFkrZLrCcb5FbuqZd2
-	 3K8rI79Ykphdi0n0BmKrRecjFRVlbBV0ofRwC2MfO749TCG0xxK4aSivhuJBUjSQnq
-	 /fCbnGsmLoSw8iK8SFzAtXKLfkJehv+Zr/OA6dti0mf3FVhuk66E9sOnnN1kW4L/Ly
-	 k0Vn4HuuCB7Lo9PqEop5KOz/G3EJTGFzGDgV6pMFJze05+fXsWGxmQc+M5DZ543CN0
-	 IEFXA7afZcfLw==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 093B83EA93;
+	Wed, 21 Feb 2024 10:58:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=195.140.195.201
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708513094; cv=pass; b=Pn2CZBoSW23MYJ3KfDH3NsPDX1QuabSfMrQcWfRgGy4J/dyi4I9yH/Xb/GJsN7NWDm42nPjHVTYvsUnn9bLWXZ5nqkxj2uXDfdpAfl1x9Xh2nlyUrJEE1BXOIO4F7Epc18WwaqAJjwxvJ4mW2C39WzdT84CrVGZ5hACkBka/IkA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708513094; c=relaxed/simple;
+	bh=o8sYnoTQvODKPsJ5eLmeJIo3Vkg1AHBr3FnhQry1IJE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZNDI0YQo7E5n86kOS2jzxipXxhC5uKWWHxLQqnInB1goH8cIDWqJWWjXLy3bj2KB3DHt37kdvbSq3hWHdI8TSW9/nOvJetK6qKSl4Mo2BLlnp9AWykZZwNdn8VR6yOn5Dez6ra8Jv2ll4EuvQg3OeZowlvmoU7uH3M6QBDSIDv0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b=RXDUnqSJ; arc=pass smtp.client-ip=195.140.195.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
+Received: from hillosipuli.retiisi.eu (2a00-1190-d1dd-0-c641-1eff-feae-163c.v6.cust.suomicom.net [IPv6:2a00:1190:d1dd:0:c641:1eff:feae:163c])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 54CFF3781FE6;
-	Wed, 21 Feb 2024 10:52:50 +0000 (UTC)
-Message-ID: <80e92209-5578-44e7-bd4b-603a29053ddf@collabora.com>
-Date: Wed, 21 Feb 2024 11:52:49 +0100
+	(Authenticated sender: sailus)
+	by meesny.iki.fi (Postfix) with ESMTPSA id 4TftXm5q20zyRj;
+	Wed, 21 Feb 2024 12:58:00 +0200 (EET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
+	t=1708513083;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=VflWzHR2epedex4fdVA6CCyN8VAZ75HPYtEERrituog=;
+	b=RXDUnqSJFv3hpYNEpxvGSu7gqWhh0ujUdsdT4YCJ4dDWESvOzAM5eqvZPrjcRCCcjsE8ra
+	SThL5MHDt7PIeiVjLDSqKME8DxlHb74mG0tgBLnF4L+EJhS0lwWZh+KrcRhM45xaVKTo9J
+	ZvSeLATKC5eCBBgoF8H0dRMfGBpXgUY=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=meesny; t=1708513083;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=VflWzHR2epedex4fdVA6CCyN8VAZ75HPYtEERrituog=;
+	b=o1wxzSlssOm48b1EhrHj0rsBX7CX/GSH7Or4RkiN6FPA5wFLiLFP0mcG1NkxT0K25z7V+7
+	8wgpV4nuhyCd35ikGsp3CRc3QKgBdm6HoSin4dZwEal6VS2jLWqfpD7L2bljcN0WBlJ926
+	uM0zgj1+8m7C5a33uoX19/3aAo0M9Hg=
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Seal: i=1; s=meesny; d=iki.fi; t=1708513083; a=rsa-sha256; cv=none;
+	b=uE2cKX6w2Endr4JLi6v7mx6NOaOpXQ0ZzEzFrb42PbN54KgbvPwp/RWwdaSowkQXTVcGrx
+	ojmewYuUzp/WY6qeSfZYgVe7Ki/20jJogiMEIxrTGpryQVz9XEfeZ8RLro5RzDqn79EWZH
+	AfR3TyKMOtGuDl0MSBAzDuMkOmaYbSU=
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 36092634C93;
+	Wed, 21 Feb 2024 12:57:59 +0200 (EET)
+Date: Wed, 21 Feb 2024 10:57:58 +0000
+From: Sakari Ailus <sakari.ailus@iki.fi>
+To: Mehdi Djait <mehdi.djait.k@gmail.com>
+Cc: mchehab@kernel.org, heiko@sntech.de, hverkuil-cisco@xs4all.nl,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	conor+dt@kernel.org, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com,
+	maxime.chevallier@bootlin.com, paul.kocialkowski@bootlin.com,
+	michael.riesch@wolfvision.net, laurent.pinchart@ideasonboard.com,
+	Mehdi Djait <mehdi.djait@bootlin.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [RESEND Patch v13 1/3] media: dt-bindings: media: add bindings
+ for Rockchip CIF
+Message-ID: <ZdXXNvGl-2CZdnhk@valkosipuli.retiisi.eu>
+References: <cover.1707677804.git.mehdi.djait.k@gmail.com>
+ <13deb8c5cb58e08c1b47decd112b51e8e0b6c4dc.1707677804.git.mehdi.djait.k@gmail.com>
+ <Zcta6hhSio67ahKs@valkosipuli.retiisi.eu>
+ <ZdTbilKCsMFcjz64@mehdi-archlinux>
+ <ZdT97Szv3yYG9Xbb@valkosipuli.retiisi.eu>
+ <ZdUQBl5pkFg2i1iu@mehdi-archlinux>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] arm64: dts: mediatek: Add Cudy WR3000 V1
-Content-Language: en-US
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Chen-Yu Tsai <wenst@chromium.org>, Hsin-Yi Wang <hsinyi@chromium.org>,
- =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
- Heiko Stuebner <heiko.stuebner@cherry.de>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Chris Morgan <macromorgan@hotmail.com>,
- Linus Walleij <linus.walleij@linaro.org>, Sean Wang
- <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-kernel@vger.kernel.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>
-References: <20240221073524.20947-1-zajec5@gmail.com>
- <20240221073524.20947-5-zajec5@gmail.com>
- <2fdf724e-4994-4873-971a-56c19b9fc471@collabora.com>
- <b4e8d3c6-5113-4324-9af5-c4e89cd89349@gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <b4e8d3c6-5113-4324-9af5-c4e89cd89349@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZdUQBl5pkFg2i1iu@mehdi-archlinux>
 
-Il 21/02/24 11:18, Rafał Miłecki ha scritto:
-> On 21.02.2024 11:11, AngeloGioacchino Del Regno wrote:
->> Il 21/02/24 08:35, Rafał Miłecki ha scritto:
->>> From: Rafał Miłecki <rafal@milecki.pl>
->>>
->>> Cudy WR3000 V1 is an MT7981B (AKA Filogic 820) based wireless router. It
->>> has 256 MiB of RAM, some LEDs & buttons and (not described yet) 4
->>> Ethernet ports.
->>>
->>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->>> ---
->>>   arch/arm64/boot/dts/mediatek/Makefile         |  1 +
->>>   .../dts/mediatek/mt7981b-cudy-wr3000-v1.dts   | 74 +++++++++++++++++++
->>>   2 files changed, 75 insertions(+)
->>>   create mode 100644 arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dts
->>>
->>> diff --git a/arch/arm64/boot/dts/mediatek/Makefile 
->>> b/arch/arm64/boot/dts/mediatek/Makefile
->>> index 37b4ca3a87c9..96da4ad640aa 100644
->>> --- a/arch/arm64/boot/dts/mediatek/Makefile
->>> +++ b/arch/arm64/boot/dts/mediatek/Makefile
->>> @@ -8,6 +8,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-evb.dtb
->>>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-x20-dev.dtb
->>>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-rfb1.dtb
->>>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-bananapi-bpi-r64.dtb
->>> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt7981b-cudy-wr3000-v1.dtb
->>>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7981b-xiaomi-ax3000t.dtb
->>>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-acelink-ew-7886cax.dtb
->>>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3.dtb
->>> diff --git a/arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dts 
->>> b/arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dts
->>> new file mode 100644
->>> index 000000000000..cb36a089518a
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dts
->>> @@ -0,0 +1,74 @@
->>> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
->>> +
->>> +/dts-v1/;
->>> +#include <dt-bindings/input/input.h>
->>> +#include <dt-bindings/gpio/gpio.h>
->>> +#include <dt-bindings/leds/common.h>
->>> +
->>> +#include "mt7981b.dtsi"
->>> +
->>> +/ {
->>> +    compatible = "cudy,wr3000-v1", "mediatek,mt7981b";
->>> +    model = "Cudy WR3000 V1";
->>> +
->>> +    memory@40000000 {
->>> +        reg = <0 0x40000000 0 0x10000000>;
->>> +        device_type = "memory";
->>> +    };
->>> +
->>> +    keys {
->>> +        compatible = "gpio-keys";
->>> +
->>> +        key-wps {
->>> +            label = "WPS";
->>> +            gpios = <&pio 0 GPIO_ACTIVE_LOW>;
->>> +            linux,code = <KEY_WPS_BUTTON>;
->>> +        };
->>> +
->>> +        key-reset {
->>> +            label = "RESET";
->>> +            gpios = <&pio 1 GPIO_ACTIVE_LOW>;
->>> +            linux,code = <KEY_RESTART>;
->>> +        };
->>> +    };
->>> +
->>> +    leds {
->>> +        compatible = "gpio-leds";
->>> +
->>> +        led-0 {
->>> +            function = LED_FUNCTION_WAN;
->>> +            color = <LED_COLOR_ID_BLUE>;
->>> +            gpios = <&pio 5 GPIO_ACTIVE_LOW>;
->>
->> Can we please order those properties alphabetically, as it doesn't impact
->> on human readability in any way?
->> Just a nitpick, anyway.
->>
->> color = <LED_COLOR_ID_BLUE>;
->> function = LED_FUNCTION_WAN;
->> gpios = <&pio 5 GPIO_ACTIVE_LOW>;
+Hi Mehdi,
+
+On Tue, Feb 20, 2024 at 09:48:06PM +0100, Mehdi Djait wrote:
+> Hi Sakari,
 > 
-> If I understand [1] correctly alphabetical / alpha-numerical order
-> applies to non-addresses nodes only.
+> On Tue, Feb 20, 2024 at 07:30:53PM +0000, Sakari Ailus wrote:
+> > Hi Mehdi,
+> > 
+> > On Tue, Feb 20, 2024 at 06:04:10PM +0100, Mehdi Djait wrote:
+> > > Hi Sakari,
+> > > 
+> > > Thank you for the review.
+> > 
+> > You're welcome!
+> > 
+> > > 
+> > > On Tue, Feb 13, 2024 at 12:04:58PM +0000, Sakari Ailus wrote:
+> > > > Hi Mehdi,
+> > > > 
+> > > > Thanks for the patchset.
+> > > > 
+> > > > On Sun, Feb 11, 2024 at 08:03:30PM +0100, Mehdi Djait wrote:
+> > > > > From: Mehdi Djait <mehdi.djait@bootlin.com>
+> > > > > 
+> > > > > Add a documentation for the Rockchip Camera Interface binding.
+> > > > > 
+> > > > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > > > > Reviewed-by: Michael Riesch <michael.riesch@wolfvision.net>
+> > > > > Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
+> > > > > Signed-off-by: Mehdi Djait <mehdi.djait.k@gmail.com>
+> > > > > ---
+> > > > >  .../bindings/media/rockchip,px30-vip.yaml     | 123 ++++++++++++++++++
+> > > > >  1 file changed, 123 insertions(+)
+> > > > >  create mode 100644 Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml
+> > > > > 
+> > > > > diff --git a/Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml b/Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml
+> > > > > new file mode 100644
+> > > > > index 000000000000..6af4a9b6774a
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml
+> > > > > @@ -0,0 +1,123 @@
+> > > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +$id: http://devicetree.org/schemas/media/rockchip,px30-vip.yaml#
+> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: Rockchip Camera Interface (CIF)
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Mehdi Djait <mehdi.djait@bootlin.com>
+> > > > > +
+> > > > > +description:
+> > > > > +  CIF is a camera interface present on some Rockchip SoCs. It receives the data
+> > > > > +  from Camera sensor or CCIR656 encoder and transfers it into system main memory
+> > > > > +  by AXI bus.
+> > > > > +
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    const: rockchip,px30-vip
+> > > > > +
+> > > > > +  reg:
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  interrupts:
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  clocks:
+> > > > > +    items:
+> > > > > +      - description: ACLK
+> > > > > +      - description: HCLK
+> > > > > +      - description: PCLK
+> > > > > +
+> > > > > +  clock-names:
+> > > > > +    items:
+> > > > > +      - const: aclk
+> > > > > +      - const: hclk
+> > > > > +      - const: pclk
+> > > > > +
+> > > > > +  resets:
+> > > > > +    items:
+> > > > > +      - description: AXI
+> > > > > +      - description: AHB
+> > > > > +      - description: PCLK IN
+> > > > > +
+> > > > > +  reset-names:
+> > > > > +    items:
+> > > > > +      - const: axi
+> > > > > +      - const: ahb
+> > > > > +      - const: pclkin
+> > > > > +
+> > > > > +  power-domains:
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  ports:
+> > > > > +    $ref: /schemas/graph.yaml#/properties/ports
+> > > > > +
+> > > > > +    properties:
+> > > > > +      port@0:
+> > > > > +        $ref: /schemas/graph.yaml#/$defs/port-base
+> > > > > +        unevaluatedProperties: false
+> > > > > +        description: input port on the parallel interface
+> > > > > +
+> > > > > +        properties:
+> > > > > +          endpoint:
+> > > > > +            $ref: video-interfaces.yaml#
+> > > > > +            unevaluatedProperties: false
+> > > > > +
+> > > > > +            properties:
+> > > > > +              bus-type:
+> > > > > +                enum: [5, 6]
+> > > > > +
+> > > > > +            required:
+> > > > > +              - bus-type
+> > > > 
+> > > > What about the vsync-active, hsync-active and data-active properties?
+> > > > Aren't they relevant for this device? Are there default values? This should
+> > > > be part of the bindings for the device, shouldn't it?
+> > > > 
+> > > 
+> > > From what I gathered from the Rockchip PX30 TRM and the other
+> > > available documents from Rockchip, I will add the following:
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml b/Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml
+> > > index 6af4a9b6774a..6920b0cb0507 100644
+> > > --- a/Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml
+> > > +++ b/Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml
+> > > @@ -69,6 +69,14 @@ properties:
+> > >                bus-type:
+> > >                  enum: [5, 6]
+> > >  
+> > > +              hsync-active:
+> > > +                enum: [0, 1]
+> > > +                default: 1
+> > > +
+> > > +              vsync-active:
+> > > +                enum: [0, 1]
+> > > +                default: 0
+> > 
+> > I'd use the same default for both, whether it's 0 or 1.
+> > 
 > 
-> Here I put "function" first as that seemed more important than a color.
+> Is this supposed to be the default value HIGH or LOW if it is not
+> configured by the driver ? because the manual states the following:
 > 
-> Perhaps you could suggest an addition to Devicetree Sources (DTS) Coding
-> Style or point me to the missed part, please?
+> HREF_POL
+> Href input polarity:
+> 1'b0 : high active
+> 1'b1 : low active
+> RESET VALUE: 0x0
 > 
-> [1] 
-> https://www.kernel.org/doc/html/next/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node
+> VSYNC_POL
+> Vsync input polarity:
+> 1'b0 : low active
+> 1'b1 : high active
+> RESET VALUE: 0x0
 > 
-> 
+> And that's why I chose 1 for hsync and 0 for vsync
 
-I didn't say that this was *mandatory*, but since alphanumeric ordering in device
-trees is actually a thing for nodes, this could be as well applied to properties
-inside when this doesn't impact on human readability.
+The hardware reset values do not have to reflect defaults in DT bindings.
 
-As far as I'm aware, I'm not the only maintainer asking for that (am I?!)
+-- 
+Kind regards,
 
-If you've got any *strong opinion* about having `function` as the first property,
-I'm full ears, and I will be okay with that. No problem on my side, I'm open for
-alternatives when those make sense.
-
-> 
->>> +        };
->>> +
->>> +        led-1 {
->>> +            function = LED_FUNCTION_WLAN_2GHZ;
->>> +            color = <LED_COLOR_ID_BLUE>;
->>> +            gpios = <&pio 6 GPIO_ACTIVE_LOW>;
->>> +        };
->>> +
->>> +        led-2 {
->>> +            function = LED_FUNCTION_WLAN_5GHZ;
->>> +            color = <LED_COLOR_ID_BLUE>;
->>> +            gpios = <&pio 7 GPIO_ACTIVE_LOW>;
->>> +        };
->>> +
->>> +        led-3 {
->>> +            function = LED_FUNCTION_LAN;
->>> +            color = <LED_COLOR_ID_BLUE>;
->>> +            gpios = <&pio 9 GPIO_ACTIVE_LOW>;
->>> +        };
->>> +
->>> +        led-4 {
->>> +            function = LED_FUNCTION_STATUS;
->>> +            color = <LED_COLOR_ID_BLUE>;
->>> +            gpios = <&pio 10 GPIO_ACTIVE_LOW>;
->>> +        };
->>> +
->>> +        led-5 {
->>> +            function = "online";
->>
->> Uhm, what does "online" mean?
->>
->> Are you sure that you can't use any of the LED_FUNCTION_XXX standard definitions?
-> 
-> This device has:
-> 1. "WAN Port" LED that indicates "WAN Port has connection" state
-
-Just a curiosity: is the WAN port ethernet, fiber or what?
-(to entirely clarify in my brain if that LED is a carrier detect indicator,
-but doesn't matter for this patch, it's really just a personal curiosity and
-nothing else)
-
-> 2. "Internet" LED that indicates "Connected to the Internet" state
-> 
-> I couldn't find any define that would fit Internet access LED case.
-
-I was imagining something like that, but wasn't sure, so asking you was the best
-choice.
-
-I wonder if it makes sense to add a "wan-online" or "wan-connected" or .. I don't
-know, some definition that makes common sense, to dt-bindings/leds/common.h to
-somewhat standardize the function for that usecase?
-
-One thing I'm (mostly) sure of, it makes sense to have the "wan-" prefix before
-any word (because you can have sorts of authenticated LANs as well).
-
-I don't think that there's anything hugely restrictive that would prevent you
-from doing that: there are even "player-[1-5]" definitions for game controllers,
-and yours is not the first router that I physically see with my own eyes that
-has such a LED for that state.
-
-After all, what's going to turn on that LED is userspace, and if we can get one
-that works for all (without custom functions for each router), why not :-)
-
-
+Sakari Ailus
 
