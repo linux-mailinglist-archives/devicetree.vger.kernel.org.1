@@ -1,221 +1,182 @@
-Return-Path: <devicetree+bounces-44172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 202E085CFCB
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 06:37:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0820A85CFDE
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 06:42:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8AE7BB22C68
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 05:37:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 73D2DB2229B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 05:42:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97BA939FE0;
-	Wed, 21 Feb 2024 05:36:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A85239AF3;
+	Wed, 21 Feb 2024 05:42:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="csqpwUFz"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="kJIq0XIU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD85E39ADD;
-	Wed, 21 Feb 2024 05:36:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF55B383BF
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 05:42:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708493810; cv=none; b=G3EfME8hhV2k5TRmA4vV6Az8YJS3twJkuXQNut6gXle43zaEmt2i9dvjWJxI762GFQq9xDqY/fgm1JwmzEPXguszxgJXMV8WupWRZOmLgpXO+877xGdBw6JhVH3jALjDpfHwYOlFurbmNuS2/TuNRJCCkMgM7AGv0vng6UryyWQ=
+	t=1708494157; cv=none; b=S5aiD+J8pcWqZrDUHMdaV/7d79pmPvtWsi8fEAeD6VN1qFyZjqVTg2IKtjzdaXXwcfH+BbaC9asJiAx4tIc9oQEV6M8hvpGoGpdMW8B6TT9FuXtiTdTcagQ5ypTnPgsqavvsr17keDP3NMRdQHbAZqc59vBWR+lyCnWpmpRAl8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708493810; c=relaxed/simple;
-	bh=h/VjfafKWnZdt701kQi9hEaeMSuYAmya+J9erv+EEuM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=IQ5U1Z3X/g7VApyNW81FVq+3M86IBWYaC1KUglVnbvUduzuAr9bh8w1+pjL50MXHsgI1w6JRsBX0MPUVUE2SSRcSplMkZbc8YkwJN0U2616I2c14YGXyd9Gvqv4iRuWhzCkgMDue1FzZzaJFAU2j/VCf5+anfHLPqUW5dRCaUTE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=csqpwUFz; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41L1jdSL030713;
-	Wed, 21 Feb 2024 05:36:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=S5n/WpV8JcN0mx2fE3uU/d+OZrGuwRrR1d3N//9CiFA=; b=cs
-	qpwUFzcl29oiOj+cr6STCjwPDDiknXqXp+BiwsKat9U3dEcTGj5KLCoLVseOafAy
-	1W1jatIWVkw+PUhTbQOimI693MkpC89cxcVvDZUWN3NUq4D0Zb9gkgO6Xer4m8EI
-	ALJuHSVKkF78jjz7xUrvWtDk7RWS9150zMExJmc3AfsSKDIxWNc3qpUFYKl3RiYm
-	RtnWvktckBz9gHcfsGNN0fEe9lGCTlrxeRSKJ5jlpbeO3WKa7rPKO0rBJB59uIpx
-	ax7IycEeJcNWjVCDKPkuqRjrAEwpoytBSQ+xePQTKMl31kXHH+oBzkDj595/zVQF
-	yXBXHBIjbJxMSF/xm4pQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wd21s924s-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Feb 2024 05:36:23 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41L5aMKl003639
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Feb 2024 05:36:22 GMT
-Received: from [10.218.16.59] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 20 Feb
- 2024 21:36:11 -0800
-Message-ID: <0b9e807d-e0ca-411c-9a2b-3d804bdf168c@quicinc.com>
-Date: Wed, 21 Feb 2024 11:06:07 +0530
+	s=arc-20240116; t=1708494157; c=relaxed/simple;
+	bh=5mHfGkDqXY2sFaL5o9O5bX17A/vCLByoldlnAjHeEcg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=M/FXhV27gf31wSieHc7J77sXkNYuoQ3zzy/6GTmWsQ6D5X4gLbONi6RDgUaBxkMKXvcIDpjt93x5nSQMYcvoU7Eor174w8jk3hyECCOWUXcxalN+Fwhn23yZ7Z6DF9KkUxa1nIY/RtspsjfPCnnVfStVAQRmM1OxxvD6qAjSuJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=kJIq0XIU; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2d208be133bso66839081fa.2
+        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 21:42:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1708494154; x=1709098954; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=w1d7hZavIMGB2x2hfQFp+lPTn6xdZ/fjiStm9f3KoRE=;
+        b=kJIq0XIUbjF7EShwV8QoV94/JtaDLDadPcFOtAsKXF3+jQPK4H3hejkKAqXY5vIROH
+         MCrcxCg30f1YCIyp0HNP03OLBvL18qsbL2X36hlU8t1m75j45Nzn3sh2Y5RX7KN3d2Ry
+         3pX1nyQ7gx7sZfdsU5p1aWQXz8lQCKxYTrkoksiXoAp1kvCaT2S44EW3J/dKxj8+27u3
+         POdtrL0bOYixqm0ALIL9EwSC0lXmTnBJLscemg1yehCUX53xf7xsPEXTYPPiCj4LxzpI
+         GVxUy7jMQ1RkThQ3mNs6rNSIj9Y3kvR862Vf1W4FfY2Y4qyoqSXz6CdUDQuNijWH8EsV
+         9hXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708494154; x=1709098954;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=w1d7hZavIMGB2x2hfQFp+lPTn6xdZ/fjiStm9f3KoRE=;
+        b=YO04hPTi7JUYI0fG0UrmY1hX8FeJfyJGf2+C4qYIH3Rq867PFuYHYx3NgRHNC2mEPT
+         6LTfOD6QsKNgPK/g/e9IpEX9zbnqbYdpeeENARPixl8VyQm74sx6HxgYV1L7NY/7dGZZ
+         w2t2f35r/5yM3OkkkaSAZmWYssvoF5QmS6qDS1tQxAPm4a29pVNc3AmR8YHbU+nM+MyX
+         zIViCEQxTdaJS/DjTGGM/umNiHCV2J4NTIKiq0juqGBvzNoBQyDp5ZXT+6hUYGRDmbWr
+         9GsYUpe4ujZ6dlOHCGJbzM/A6OMU6GjohfLMEF4Be/1pJTaEj60srz5JY1cBgSbTr4aO
+         4w+g==
+X-Forwarded-Encrypted: i=1; AJvYcCXX3CtMluXpZjQaKiypimL273w4WV6HIyj0+versPKHwHw8M4QMaYbAikCYrPiphPKMi/KkE28V/ZeHC8ps8Ee3CbXpTafr4iiRBQ==
+X-Gm-Message-State: AOJu0Yw6UQm7iV/Fr0nLX9FjjG9uAhrRbSiUU0+a7+zWY9lM+ImCZQHH
+	zwWdnI37Fq3DQz8m1gvSZa2mTP1z0DWNrAbRbR9h4Z/Nve1NrE0ISMHbJCX5lokxYkU7zNnnhSt
+	MGG9tPn8x/IbOfYCllK4dj3VN48Z+L0VJ52RRFQ==
+X-Google-Smtp-Source: AGHT+IFb84z/g0LynflqO9zK/rVG0kAAg34f4O3W488QJp1C1kHZnlxZ0aHySaTBe0gfXMZeky8a58K7CWioKkUsxPU=
+X-Received: by 2002:a2e:9bc2:0:b0:2d2:3c72:516d with SMTP id
+ w2-20020a2e9bc2000000b002d23c72516dmr4891326ljj.1.1708494153699; Tue, 20 Feb
+ 2024 21:42:33 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] dt-bindings: iio: adc: Add support for QCOM PMIC5
- Gen3 ADC
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <jic23@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <lee@kernel.org>,
-        <andriy.shevchenko@linux.intel.com>, <daniel.lezcano@linaro.org>,
-        <dmitry.baryshkov@linaro.org>
-CC: <lars@metafoo.de>, <luca@z3ntu.xyz>, <marijn.suijten@somainline.org>,
-        <agross@kernel.org>, <sboyd@kernel.org>, <rafael@kernel.org>,
-        <rui.zhang@intel.com>, <lukasz.luba@arm.com>,
-        <linus.walleij@linaro.org>, <quic_subbaram@quicinc.com>,
-        <quic_collinsd@quicinc.com>, <quic_amelende@quicinc.com>,
-        <quic_kamalw@quicinc.com>, <kernel@quicinc.com>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-arm-msm-owner@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <cros-qcom-dts-watchers@chromium.org>
-References: <20231231171237.3322376-1-quic_jprakash@quicinc.com>
- <20231231171237.3322376-3-quic_jprakash@quicinc.com>
- <3f812ffa-ec33-448e-b72a-ce698618a8c1@linaro.org>
- <13f2b558-a50d-44d3-85de-38e230212732@quicinc.com>
- <f52b2d5e-b2b4-48ae-a6a6-fc00c89662d2@linaro.org>
-Content-Language: en-US
-From: Jishnu Prakash <quic_jprakash@quicinc.com>
-In-Reply-To: <f52b2d5e-b2b4-48ae-a6a6-fc00c89662d2@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: fGcC1wH5IHx3LPFKis3LhLj_W6R4ZpCQ
-X-Proofpoint-GUID: fGcC1wH5IHx3LPFKis3LhLj_W6R4ZpCQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-20_06,2024-02-20_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 impostorscore=0
- priorityscore=1501 adultscore=0 spamscore=0 lowpriorityscore=0 bulkscore=0
- clxscore=1015 mlxscore=0 suspectscore=0 mlxlogscore=999 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2402120000
- definitions=main-2402210039
+References: <20240220060718.823229-1-apatel@ventanamicro.com>
+ <20240220060718.823229-11-apatel@ventanamicro.com> <87zfvvgsnr.ffs@tglx>
+In-Reply-To: <87zfvvgsnr.ffs@tglx>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Wed, 21 Feb 2024 11:12:22 +0530
+Message-ID: <CAK9=C2XhUQtYqe2t3HvjxMZw3ffbUCfGfBVrFHf0_Bxtpz-E9g@mail.gmail.com>
+Subject: Re: [PATCH v13 10/13] irqchip: Add RISC-V advanced PLIC driver for direct-mode
+To: Thomas Gleixner <tglx@linutronix.de>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Marc Zyngier <maz@kernel.org>, =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>, 
+	Atish Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>, 
+	Sunil V L <sunilvl@ventanamicro.com>, Saravana Kannan <saravanak@google.com>, 
+	Anup Patel <anup@brainfault.org>, linux-riscv@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Krzysztof,
+On Tue, Feb 20, 2024 at 7:10=E2=80=AFPM Thomas Gleixner <tglx@linutronix.de=
+> wrote:
+>
+> On Tue, Feb 20 2024 at 11:37, Anup Patel wrote:
+> > +/*
+> > + * To handle an APLIC direct interrupts, we just read the CLAIMI regis=
+ter
+> > + * which will return highest priority pending interrupt and clear the
+> > + * pending bit of the interrupt. This process is repeated until CLAIMI
+> > + * register return zero value.
+> > + */
+> > +static void aplic_direct_handle_irq(struct irq_desc *desc)
+> > +{
+> > +     struct aplic_idc *idc =3D this_cpu_ptr(&aplic_idcs);
+> > +     struct irq_domain *irqdomain =3D idc->direct->irqdomain;
+> > +     struct irq_chip *chip =3D irq_desc_get_chip(desc);
+> > +     irq_hw_number_t hw_irq;
+> > +     int irq;
+> > +
+> > +     chained_irq_enter(chip, desc);
+> > +
+> > +     while ((hw_irq =3D readl(idc->regs + APLIC_IDC_CLAIMI))) {
+> > +             hw_irq =3D hw_irq >> APLIC_IDC_TOPI_ID_SHIFT;
+> > +             irq =3D irq_find_mapping(irqdomain, hw_irq);
+> > +
+> > +             if (unlikely(irq <=3D 0))
+> > +                     dev_warn_ratelimited(idc->direct->priv.dev,
+> > +                                          "hw_irq %lu mapping not foun=
+d\n", hw_irq);
+>
+> Lacks brackets. See Documentation....
 
-On 2/17/2024 7:43 PM, Krzysztof Kozlowski wrote:
-> On 16/02/2024 11:39, Jishnu Prakash wrote:
->> Hi Krzysztof,
->>
->> On 1/4/2024 1:48 PM, Krzysztof Kozlowski wrote:
->>> On 31/12/2023 18:12, Jishnu Prakash wrote:
->>>> For the PMIC5-Gen3 type PMICs, ADC peripheral is present in HW for the
->>>> following PMICs: PMK8550, PM8550, PM8550B and PM8550VX PMICs.
->>>>
->>>> It is similar to PMIC5-Gen2, with SW communication to ADCs on all PMICs
->>>> going through PBS(Programmable Boot Sequence) firmware through a single
->>>> register interface. This interface is implemented on an SDAM (Shared
->>>> Direct Access Memory) peripheral on the master PMIC PMK8550 rather
->>>> than a dedicated ADC peripheral.
->>>>
->>>> Add documentation for PMIC5 Gen3 ADC and macro definitions for ADC
->>>> channels and virtual channels (combination of ADC channel number and
->>>> PMIC SID number) per PMIC, to be used by clients of this device.
->>>>
->>>> Changes since v2:
->>>> - Moved ADC5 Gen3 documentation into a separate new file.
->>> Changelog goes under ---.
->>>
->>> Why did you do this? What is the rationale? Sorry, this patchset goes
->>> nowhere.
->>
->>
->> I'll elaborate this more in the next patchset. There are two main
->> reasons for adding this documentation in a new file:
-> 
-> This was more than a month ago? You reply to my comment with 1.5 months
-> delay?
-> 
-> Sorry, I am not in the context and I am not going back to it. I have
-> many other emails where my questions are addressed faster than 1.5 months.
-> 
-> The patch is not even in my mailbox, long gone.
-> Why you are making it so difficult for reviewers?
-> 
-> You will get answers like I am not in context, sorry. Next time don't
-> respond after 1.5 months.
-> 
+Okay, I will update.
 
-You're right - I'll do my best to get back to review comments in a 
-reasonable time frame.
+>
+> > +             else
+> > +                     generic_handle_irq(irq);
+> > +     }
+> > +
+> > +static int aplic_direct_starting_cpu(unsigned int cpu)
+> > +{
+> > +     if (aplic_direct_parent_irq)
+> > +             enable_percpu_irq(aplic_direct_parent_irq,
+> > +                               irq_get_trigger_type(aplic_direct_paren=
+t_irq));
+>
+> Ditto.
 
-> 
->>
->> 1.This device is not exactly like the existing QCOM VADC drivers as it
->> now combines VADC functionality (reading ADC channel on client request)
->> with ADC_TM functionality (thermal threshold monitoring).
-> 
-> Does no explain touching bindings. Your drivers don't matter for bindings.
-> 
->>
->> 2.Adding this device's bindings in the existing qcom,spmi-vadc.yaml file
-> 
-> No rationale was provided in commit msg.
-> 
->> is not possible as it would require updating some of the existing
->> top-level constraints. (for the older devices in that file, "reg" and
->> "interrupts" can have at most one item, while this device can have more
->> than one item under these properties.)
-> 
+Okay, I will update.
 
-> How is this a problem?
+>
+> > +     return 0;
+> > +}
+>
+> > +void aplic_init_hw_global(struct aplic_priv *priv, bool msi_mode)
+> > +{
+> > +     u32 val;
+> > +#ifdef CONFIG_RISCV_M_MODE
+> > +     u32 valH;
+>
+> No camel case please.
 
-In qcom,spmi-vadc.yaml, we have the following top-level constraints for 
-the "reg" and "interrupts" properties:
+Okay.
 
-   reg:
-     maxItems: 1
+>
+> > +
+> > +     if (msi_mode) {
+> > +             val =3D lower_32_bits(priv->msicfg.base_ppn);
+> > +             valH =3D FIELD_PREP(APLIC_xMSICFGADDRH_BAPPN, upper_32_bi=
+ts(priv->msicfg.base_ppn));
+> > +             valH |=3D FIELD_PREP(APLIC_xMSICFGADDRH_LHXW, priv->msicf=
+g.lhxw);
+> > +             valH |=3D FIELD_PREP(APLIC_xMSICFGADDRH_HHXW, priv->msicf=
+g.hhxw);
+> > +             valH |=3D FIELD_PREP(APLIC_xMSICFGADDRH_LHXS, priv->msicf=
+g.lhxs);
+> > +             valH |=3D FIELD_PREP(APLIC_xMSICFGADDRH_HHXS, priv->msicf=
+g.hhxs);
+> > +             writel(val, priv->regs + APLIC_xMSICFGADDR);
+> > +             writel(valH, priv->regs + APLIC_xMSICFGADDRH);
+> > +     }
+>
+> Thanks,
+>
+>         tglx
 
-   interrupts:
-     maxItems: 1
-
-For the ADC5 Gen3 device being added now, these constraints cannot be 
-followed always, as there may be more than one peripheral under one 
-device instance, each with a corresponding interrupt. For example, the 
-above properties could be like this for a ADC5 Gen3 device:
-
-     reg = <0x9000>, <0x9100>;
-     interrupts = <0x0 0x90 0x1 IRQ_TYPE_EDGE_RISING>,
-                  <0x0 0x91 0x1 IRQ_TYPE_EDGE_RISING>;
-
-
-I could not overwrite the top-level constraints for the new device 
-"qcom,spmi-adc5-gen3" alone in qcom,spmi-vadc.yaml, so I tried to remove 
-the constraints from the top level and add them back conditionally for 
-all the device types separately, but you told me not to remove them 
-(full message: 
-https://lore.kernel.org/linux-iio/832053f4-bd5d-4e58-81bb-1a8188e7f364@linaro.org/)
-
-Since these constraints cannot be modified for a specific new device or 
-removed, I think the only way to accommodate this new device is to add 
-it in its own new file.
-
-Is this a sufficient justification for adding this documentation in a 
-new file or do you have any other suggestions?
-
-Thanks,
-Jishnu
-
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+Regards,
+Anup
 
