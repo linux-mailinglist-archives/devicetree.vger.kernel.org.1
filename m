@@ -1,160 +1,153 @@
-Return-Path: <devicetree+bounces-44508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A607885EB3A
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 22:47:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CACFA85EB69
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 22:54:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1D5C7B279EB
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 21:47:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DE6B283591
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 21:54:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 788EE128807;
-	Wed, 21 Feb 2024 21:46:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F148D1272D6;
+	Wed, 21 Feb 2024 21:54:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="KdPSqg9w"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QZ/k9Eke"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B11A41272D6
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 21:46:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AADF10953;
+	Wed, 21 Feb 2024 21:53:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708552001; cv=none; b=lhnjs4cYD/xOqZTXaK61ZjKAaLxsv0UnpiqbAKQ36ckvGFeCFbEN7g4Qn75tNgz2tVUMysXm9nY5o2QvBYfC9c1tcJFSj/vf4o8hpqsLJ57s8j/7QKLLpkL367MIytwhSrt3YLdSZfN+GeHZf18LomPRhEApquryjoOI+x5onV8=
+	t=1708552440; cv=none; b=mwWaAtxla8Sl5YJeIfEc4NsMBIwrK+SWQfLzpxFyvCB8KC8t+UL7kUX4IoB01D9vqZDHZbYtR9EJMB6geRlzL5GDOdnzk6dUU5kYfjoDi6w5+EMWsNI56mZ+reXn0XbSarsaXaxPMoHJzbtoQPJQgQB8uZWwYw2p4pZ/aS+lMzU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708552001; c=relaxed/simple;
-	bh=of9bAtEogX5ECgh9Cm9HB0yowv3h3jorHP2cz4TfNmI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NXfnuzniEzfXPWs1Sae/HinPn2NcjpcD1b0+sr7xGr/l2Obc26ewxxZ1yCirWMRKKcwqd8tBstrC9QPzWs9tw+6vKd5JqdSIDvS56uPAt419pDR4VCujwc0wlJZQ8MPz46PuUGgIg6cd7cwcRdLuCw9mLLxSGiOKL3sfIh6IiG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=KdPSqg9w; arc=none smtp.client-ip=209.85.166.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-il1-f181.google.com with SMTP id e9e14a558f8ab-3652731b2b7so14180595ab.2
-        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 13:46:39 -0800 (PST)
+	s=arc-20240116; t=1708552440; c=relaxed/simple;
+	bh=4yH6g5tamOusVbcyW0SRdI3swoDz3DS9OYnuqNk6+z8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Eo6gfBZyckemM9lceXhxOT44oR2qX2MyqLdMcyYLOArqfbXRuMIeZr6yVbVrDcUIBmxNLDcnoMZSKJL1CHn+8fvAxwU32jUBqkr8inl5g/N+i3+adKXLf4qsK+sn5QScl3GBGl5xmrKBpG1odsdUxuujR8vIke9dzhiZbAaPqeE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QZ/k9Eke; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-33d8b14715bso21802f8f.0;
+        Wed, 21 Feb 2024 13:53:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1708551999; x=1709156799; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=7+QKepU2MbI4a/2CEG6x48g/5yOOaTqkeikoyN0HwE4=;
-        b=KdPSqg9w51T7mvoBvMapZ4uHalkw+HZdr4AM5nOb1DMOYnXNzQRN4VRJV444r/39Bb
-         Zril6J9mHKplS8MH0XzLxng943Uec2oSGERvWfGSe4QgYZnQNiMwiVBfiWQZULj2An9A
-         Co1H9UGeJf6uJqacJPwgeGAa1eKs2bWERAYu8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708551999; x=1709156799;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1708552437; x=1709157237; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=7+QKepU2MbI4a/2CEG6x48g/5yOOaTqkeikoyN0HwE4=;
-        b=wv3d3pAVdlysohupVYjgVRoKWND0X5tv2HAWqxFDbw5Y5Z781yZf6SG1YD0otThiBa
-         gl2aJ8dKJ2n6XLshTzBb+vHJGp5xycRhWPSPUQ3DkinYhsBGpkD7bLcV9/SswemxKj6z
-         uYAT8KBPTcnBm25ExGQolWV76ftaZs1POSjJTm+Wc4Sn0XIarNO1M0naYMxidlWuw8t+
-         uOlZnDNO5ZL9gHeFY9RRcDtbrKzIvkOS5xJBwM/BlF2PogSffd97ox3OIjZ0vuJgKnzW
-         PgKe/+JjYHuUKVLkMRg1li++wLP/L3TSgG3w45GoDhsdh5OYJ2RHAtee79sP0ojBS3Er
-         9OiA==
-X-Forwarded-Encrypted: i=1; AJvYcCWkOVtXZBv6y7fgRkE/8siyDew3sexdhUnZ71MPYeK4Fhwt1R+eN9IwR6yfsXM2+XTwB4JLZovuiHYEFr8PElloi7WhZGPZcmDmNQ==
-X-Gm-Message-State: AOJu0YzYTLXn8l9pzDG+8bPHf4IqOfSKyi97lUbE4JPufnmaBPGaQiyO
-	TR6HK4GhzcGh+Cvin72Zf6dyjEqhp3VDc91OTXv2WbmUBPLviaLpZHnv/fErgg==
-X-Google-Smtp-Source: AGHT+IFBUZzWY7+Gyh4073StMQynW71O1XhzOlaNGslbtvVVdGagjjqiCcd5gNO5djx/h05+c4TUWg==
-X-Received: by 2002:a05:6e02:c6f:b0:364:2406:992e with SMTP id f15-20020a056e020c6f00b003642406992emr20453456ilj.23.1708551998951;
-        Wed, 21 Feb 2024 13:46:38 -0800 (PST)
-Received: from localhost (147.220.222.35.bc.googleusercontent.com. [35.222.220.147])
-        by smtp.gmail.com with UTF8SMTPSA id b11-20020a05663801ab00b00473e844f978sm456921jaq.32.2024.02.21.13.46.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Feb 2024 13:46:38 -0800 (PST)
-Date: Wed, 21 Feb 2024 21:46:38 +0000
-From: Matthias Kaehlcke <mka@chromium.org>
-To: Javier Carrasco <javier.carrasco@wolfvision.net>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Helen Koike <helen.koike@collabora.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Russell King <linux@armlinux.org.uk>,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 6/8] usb: misc: onboard_dev: use device supply names
-Message-ID: <ZdZvPiEVKgciB-cg@google.com>
-References: <20240220-onboard_xvf3500-v4-0-dc1617cc5dd4@wolfvision.net>
- <20240220-onboard_xvf3500-v4-6-dc1617cc5dd4@wolfvision.net>
- <ZdZcLOlSc3FScjLK@google.com>
- <503d9ea9-9812-498b-a5ee-2579ba8a7ecf@wolfvision.net>
- <ZdZokatitviYZ7rg@google.com>
- <6a4f1862-ccb1-4d6d-bab2-f22090a1a08b@wolfvision.net>
+        bh=PFRJDpPchYGhggcYn82/GAyKEim/RW8WyZ7494NwPio=;
+        b=QZ/k9EkeIah1Cwzc8ayVELADFfkm3VdeDnAYJnJSRyb4BsJLPp/DsEtVreRZVqxqfF
+         FjbllVU+A9FtG78mNT50KRNmy0YoMmz8pPrUoTD9GRwZ0/jSspR2h7EqPPsXRg1M7KES
+         5QJcygVtoXEjWkK8MdS41OKSxXiogrTT2OJn7EUAO9EPEmMcxnZ280WUpY0tOC+0SG9s
+         qYD9yxRncz2yEIFHHasNgVwyMzYY1ct/qEqUbvn+aCoghN4s3JDqxKmKU19Pw5WuL4Ar
+         TZyRpXZzxgu5s6XiiOkVsI8ruCD8fuKeMW3Orqcswlz/BuLi/e/E+N5kfYfHf/wIKQ/X
+         DJeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708552437; x=1709157237;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=PFRJDpPchYGhggcYn82/GAyKEim/RW8WyZ7494NwPio=;
+        b=HFaXmgXe6YwOKLWDZFq2z+XFKCoSBQ/G98pwoUR1rduGCv9SKsaOXPGl2ip+JfY4N5
+         2kgv3+ZMy7nvFrJHQjQCj4WyHkm1NN7yilwYXqZ0Q/krsOYYcs0YghP3mTXYYcsojSFa
+         +b35rrM4+LxSHDStVPvcRXlMlqFAdiZ+adXeVRBqLc4ckm427PmfBmy2p4V/naNDLI/q
+         c2ys/GT0YnlJKDeIsRb71Ue7Yg1sZWaqw38e1PkhPqA7rafqCq2dPLeteXuGgo6Lh3Sz
+         j5HNPD+uc1vIi2LB/PuYDXyLD4ZW0PII9D2rKRzF337U8czs5x9DXKvQnO+nlz0Ar4Qt
+         ftcA==
+X-Forwarded-Encrypted: i=1; AJvYcCUZnVEarpJtE9nlQGV008vTm9iaYY8zuv1kpsPPNY0hk6cS19A7vhTHZ75jc42t8Z1YQzDmDPP5JjkTJu9alc3Vs0vrr0LJ/NgnsWn0Fbxu0lBjJENJ8QGB7J3O5GpsEtIj9wE2
+X-Gm-Message-State: AOJu0YxFr/WBXQOZH/dCRS94VDFFu8Zrbl4+45UsTE0RVW4XSMHeODyq
+	FIKVEpmv6sAqE1CUEKD5Ats+XckE5w0RfCj3O7ihzyvtf2AA/KI/nXVw8WN4bEs7Etd3/hSul3N
+	cfgrJM+BVoU74bIsm73hOquH41pQ=
+X-Google-Smtp-Source: AGHT+IHV55akNwFuAIFfQvhZOuT8lK5D89kMCL3mGgzrAcnXttcgmEDXvmr7PnYnEg/aTKh3F7l+YPToHA0Ndcz8jzo=
+X-Received: by 2002:a05:6000:71b:b0:33d:32f7:c85 with SMTP id
+ bs27-20020a056000071b00b0033d32f70c85mr8694215wrb.0.1708552437408; Wed, 21
+ Feb 2024 13:53:57 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <6a4f1862-ccb1-4d6d-bab2-f22090a1a08b@wolfvision.net>
+References: <20240219153639.179814-1-andre.przywara@arm.com> <13c957a9-6021-46a7-9243-b3658c26a333@linaro.org>
+In-Reply-To: <13c957a9-6021-46a7-9243-b3658c26a333@linaro.org>
+From: Vasily Khoruzhick <anarsoul@gmail.com>
+Date: Wed, 21 Feb 2024 13:53:30 -0800
+Message-ID: <CA+E=qVeMnQNrT8tNnHBnCL2Efy3VjbRAYQGMXstziCThRsiBDw@mail.gmail.com>
+Subject: Re: [PATCH v5 0/7] add support for H616 thermal system
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: Andre Przywara <andre.przywara@arm.com>, Yangtao Li <tiny.windzz@gmail.com>, 
+	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, "Rafael J . Wysocki" <rafael@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
+	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Martin Botka <martin.botka@somainline.org>, Maksim Kiselev <bigunclemax@gmail.com>, 
+	Bob McChesney <bob@electricworry.net>, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 21, 2024 at 10:33:53PM +0100, Javier Carrasco wrote:
-> On 21.02.24 22:18, Matthias Kaehlcke wrote:
-> >>>> +/*
-> >>>> + * Fallback supply names for backwards compatibility. If the device requires
-> >>>> + * more than the currently supported supplies, add a new one here, and if
-> >>>> + * possible, the real name supplies to the device-specific data.
-> >>>> + */
-> >>>> +static const char * const generic_supply_names[] = {
-> >>>> +	"vdd",
-> >>>> +	"vdd2",
-> >>>> +};
-> >>>> +
-> >>>> +#define MAX_SUPPLIES ARRAY_SIZE(generic_supply_names)
-> >>>
-> >>> This will have to change when support for a device with more than 2 non-generic
-> >>> supply names gets added. Please use a literal value for MAX_SUPPLIES instead of
-> >>> ARRAY_SIZE. If the literal is 2 it would still need to change for future devices
-> >>> with more supplies, but that change would be more straighforward.
-> >>>
-> >>
-> >> I am not completely sure about this. Someone could increase MAX_SUPPLIES
-> >> without adding a generic name.
-> > 
-> > That's perfectly fine and intended. MAX_SUPPLIES is a max, any list
-> > shorther than that is valid. Any longer list will result in probe()
-> > being aborted with a clear error message.
-> > 
-> >> Actually two modifications will be necessary for every addition (name
-> >> and MAX_SUPPLIES). If ARRAY_SIZE is used, only new names are required,
-> >> and MAX_SUPPLIES is automatically increased.
-> > 
-> > As per above it's not necessary to add a new name when MAX_SUPPLIES is
-> > increased to support more non-generic names. It would only be necessary
-> > if more generic names were added, my understanding is that this
-> > should not happen because any newly supported onboard devices are
-> > supposed to use device specific supply names. I don't like to idea of
-> > adding unused pseudo supply names to the list, just for the sake of
-> > using ARRAY_SIZE.
-> > 
-> >> I understand that the whole point of this is getting rid of the generic
-> >> names, but we still have to provide generic names for every extra
-> >> supply, at least for code consistency and to avoid size mismatches
-> >> between real an generic supply names.
-> > 
-> > Please let me know if you still think the extra names are needed.
-> 
-> Not really, the only case I could come up is if an existing device that
-> uses generic names might end up requiring a third supply, which would
-> also be generic. But even such an unlikely event would be cover without
-> ARRAY_SIZE.
-> 
-> Actually one could argue that every existing device could have "vdd" and
-> "vdd2" as their supply names and remove checks and the generic array.
+On Wed, Feb 21, 2024 at 5:43=E2=80=AFAM Daniel Lezcano
+<daniel.lezcano@linaro.org> wrote:
+>
+> On 19/02/2024 16:36, Andre Przywara wrote:
+> > Hi,
+> >
+> > this is v5 of this series originally by Martin, only some cosmetic
+> > changes this time, for instance  mentioning experiments with the SRAM
+> > controller registers to confirm that it's not an SRAM region which fixe=
+s
+> > the temperature reporting issue.
+> > See the Changelog below for more details.
+> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >
+> > This series introduces support for the thermal sensors in the Allwinner
+> > H616 SoCs, which includes its siblings H618 and T507. The actual
+> > temperature reading turns out to be very similar to the H6 SoC, just
+> > with support for two more sensors. One nasty complication is caused
+> > by reports about temperatures above 200C, which are related to the
+> > firmware being run (because the vendor U-Boot contains a hack avoiding
+> > this problem). Some investigation and digging in BSP code later
+> > we identified that bit 16 in register 0x3000000 (SYS_CFG) needs to be
+> > cleared for the raw temperature register values to contain reasonable
+> > values.
+> > To achieve this, patch 1/7 exports this very register from the already
+> > existing SRAM/syscon device. Patch 5/7 then adds code to the thermal
+> > driver to find that device via a new DT property, and query its regmap
+> > to clear bit 16 in there.
+> > Patch 4/7 reworks the existing H6 calibration function to become
+> > compatible with the H616, many thanks to Maksim for figuring this out.
+> > This makes the actual enablement patch 6/7 very easy.
+> >
+> > The rest of the patches are straightforward and build on Martin's
+> > original work, with some simplifications, resulting in more code sharin=
+g.
+> >
+> > Please have a look!
+>
+> Thanks for the detailed explanation.
+>
+> I'm willing to pick the patches 1-6 and let the last one to go through
+> the allwinner tree.
+>
+> However I need the blessing from the different designed maintainers for
+> the thermal driver and from the sunxi_sram
 
-Sounds good to me. Another similar option would be to assign
-'generic_supply_names' to '.supply_names'. I don't have a strong
-preference.
+For sun8i_thermal:
+
+Acked-by: Vasily Khoruzhick <anarsoul@gmail.com>
+
+> Thanks
+>
+> --
+> <http://www.linaro.org/> Linaro.org =E2=94=82 Open source software for AR=
+M SoCs
+>
+> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+> <http://twitter.com/#!/linaroorg> Twitter |
+> <http://www.linaro.org/linaro-blog/> Blog
+>
 
