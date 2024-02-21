@@ -1,274 +1,135 @@
-Return-Path: <devicetree+bounces-44280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11BB685D58C
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 11:30:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E380485D590
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 11:31:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C9D51F23446
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 10:30:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91BE4284D65
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 10:31:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 883403C00;
-	Wed, 21 Feb 2024 10:30:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C2DF5224;
+	Wed, 21 Feb 2024 10:30:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VcsKRm4x"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Prj9SD/T"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 642721FDB
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 10:30:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BFB736118;
+	Wed, 21 Feb 2024 10:30:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708511448; cv=none; b=VuXy1lJXrl/OlbkWBIlieTS3iMpPyov6q6rnT/ASJV+Bi/gBCGY35dI4Rd02kk6X5msrguOmkl8I2QELcbPF002EpB8V0wfeEO7rLh8lLb5VnQ5RPSI5U2axUgYM0MHhAzP5lXuj/7Qe8fnwx+KWd4rLLfOBA0ccLgexsFFzfU8=
+	t=1708511457; cv=none; b=l9nwjO5f63Motv1+UYPFAvNsQQKVmzEWG8Hg/yQZC/1tYm/k+ymPzQCHgO4w8znNV9xARzzwwXqkjoxlFrJdGMOlNcCyg7VYAfyORbVS+GtgjfzmDMocCv94v4kLAzb6yggrqEX6ZJogsQePQ7R8K6zJpjgXytI+z7rskF1bDj8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708511448; c=relaxed/simple;
-	bh=J0YyaehfcrO54beByd/o2DbRGlOFbAcfP2y4HWHjhWc=;
+	s=arc-20240116; t=1708511457; c=relaxed/simple;
+	bh=AyULnxl8eWca9ATWEvMi4RxoJIAaos1kfRJm+tdT0fA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rt2S+4FW0D2vCpDngPNWAUwcsHva/EbGuCdardpD3sImOOrajBBKfAlEqJ5b5qEWNsscuoSlKFtf/N01QXgcfoUAZyvw2WCLuf4P5JpilefBc7vJfOiR0zpsm1K5NiF3XIwkRoTe4Op0aX9+3sAgKcksdJuhvoimjxdAf23skwo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VcsKRm4x; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1EC7C433C7;
-	Wed, 21 Feb 2024 10:30:47 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PwAmnPPsaGV2Xjd217lxFfLZv+JVxposwEgoWT6TEyYhHIiiGDrNDazPUo9JGXg9v9m3Mb46zFmjtgMHkLmC9nivDMpyq0XJCJUq92FXkp5rQG424vqZKdMX8FUwQUq3VejISdZHeztzFh6jv+Q4tcMty+8l39eCBjt2eqHO40A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Prj9SD/T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBBD2C433F1;
+	Wed, 21 Feb 2024 10:30:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708511448;
-	bh=J0YyaehfcrO54beByd/o2DbRGlOFbAcfP2y4HWHjhWc=;
+	s=k20201202; t=1708511456;
+	bh=AyULnxl8eWca9ATWEvMi4RxoJIAaos1kfRJm+tdT0fA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VcsKRm4xkM2Mx5aufi1F0ZVSZPfJy0Rd7QF+feE8ZpthakQq6VBrym4bZFgId/j9H
-	 CbWJzcu4TVBcKiBkhwFYjj59aGE0oSQmWCHJMsFwJdjTVipEX3LrO0eMZcpUaqxP2s
-	 mqGVUk6WLDUOMbvDjpT91Rfxe0NX+WMmDkTqB+QBtG0IfLQi5yCCgfpkuFCVtfLlvh
-	 hVTNZwz3t8x4tGPBvpuPzYMyoGMKhdDkbRmmk+4o1S5gGpQo7zGCg5e2ryWwzxbPrw
-	 kU5Ru1EExQWRDRQzjaAPDdkPGPbVKPKzgji+DZogA6uwpmT29uMAUUrgLYZ1sl2zDh
-	 SSiphSuJsnUKg==
-Date: Wed, 21 Feb 2024 11:30:44 +0100
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-arm-kernel@lists.infradead.org, lorenzo.bianconi@redhat.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, nbd@nbd.name, john@phrozen.org,
-	devicetree@vger.kernel.org, dd@embedd.com, catalin.marinas@arm.com,
-	will@kernel.org, angelogioacchino.delregno@collabora.com
-Subject: Re: [PATCH v2 2/4] arm64: dts: Add Airoha EN7581 SoC and EN7581
- Evaluation Board
-Message-ID: <ZdXQ1OXjjyWOzSWD@lore-desk>
-References: <cover.1708473083.git.lorenzo@kernel.org>
- <f59389838c741650f6ff05d984a9127545e4eb83.1708473083.git.lorenzo@kernel.org>
- <2e8e6a0a-44ce-45e4-8321-592f08852412@linaro.org>
+	b=Prj9SD/TT3thrMU98jXSo6RtM1nbzBbYJawWoAMeejKQvddmS8PmNUtqzfTM9NgLm
+	 +KECwCrcXSHSLjvVupbrzepUotTmpb8/fsE6BK3RhXHmJySuwmY8nX8k2AgVqPUNNn
+	 stkaZz9VPX9tvSfgBp/nX8eZarCPsZDqGgS70ixFktf4j71rAr6MXrANw7Wfzrah+S
+	 MlhmLp2CbpzOJDpAyBwnSNmPE7LSSmMKsxU8ZrPEYsNKwE2jW+OCoYqQXkseMuONhM
+	 hYLpfjAOnfunhFfava9qqfHGF/ATdLDbYTeqMblmaFQE9YiQ/ZJ5yJs9lqFMPlm26F
+	 scmkNBNjnsGOA==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1rcjsQ-000000007Sk-2gBd;
+	Wed, 21 Feb 2024 11:30:58 +0100
+Date: Wed, 21 Feb 2024 11:30:58 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 02/10] dt-bindings: PCI: qcom: Do not require
+ 'msi-map-mask'
+Message-ID: <ZdXQ4h03J9pi81Vq@hovoldconsulting.com>
+References: <20240212165043.26961-1-johan+linaro@kernel.org>
+ <20240212165043.26961-3-johan+linaro@kernel.org>
+ <e396cf20-8598-4437-b635-09a4a737a772@linaro.org>
+ <Zcy4Atjmb6-wofCL@hovoldconsulting.com>
+ <59bd6e54-0d5d-4e1a-818a-475a96c223ff@linaro.org>
+ <20240216165406.GD39963@thinkpad>
+ <ZdRXpQnbDbojlMkV@hovoldconsulting.com>
+ <20240221052607.GB11693@thinkpad>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="FzQ0dmwhpInBsEzt"
-Content-Disposition: inline
-In-Reply-To: <2e8e6a0a-44ce-45e4-8321-592f08852412@linaro.org>
-
-
---FzQ0dmwhpInBsEzt
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240221052607.GB11693@thinkpad>
 
-> On 21/02/2024 01:04, Lorenzo Bianconi wrote:
-> > From: Daniel Danzberger <dd@embedd.com>
-> >=20
-> > Introduce the Airoha EN7581 SoC's dtsi and the Airoha EN7581 Evaluation
-> > Board's dts file, as well as the required Makefiles.
-> >=20
-> > Signed-off-by: Daniel Danzberger <dd@embedd.com>
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > ---
-> >  arch/arm64/boot/dts/Makefile              |   1 +
-> >  arch/arm64/boot/dts/airoha/Makefile       |   2 +
-> >  arch/arm64/boot/dts/airoha/en7581-evb.dts |  27 +++++
-> >  arch/arm64/boot/dts/airoha/en7581.dtsi    | 137 ++++++++++++++++++++++
-> >  4 files changed, 167 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/airoha/Makefile
-> >  create mode 100644 arch/arm64/boot/dts/airoha/en7581-evb.dts
-> >  create mode 100644 arch/arm64/boot/dts/airoha/en7581.dtsi
-> >=20
-> > diff --git a/arch/arm64/boot/dts/Makefile b/arch/arm64/boot/dts/Makefile
-> > index 30dd6347a929..21cd3a87f385 100644
-> > --- a/arch/arm64/boot/dts/Makefile
-> > +++ b/arch/arm64/boot/dts/Makefile
-> > @@ -1,5 +1,6 @@
-> >  # SPDX-License-Identifier: GPL-2.0
-> >  subdir-y +=3D actions
-> > +subdir-y +=3D airoha
-> >  subdir-y +=3D allwinner
-> >  subdir-y +=3D altera
-> >  subdir-y +=3D amazon
-> > diff --git a/arch/arm64/boot/dts/airoha/Makefile b/arch/arm64/boot/dts/=
-airoha/Makefile
-> > new file mode 100644
-> > index 000000000000..ebea112ce1d7
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/airoha/Makefile
-> > @@ -0,0 +1,2 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only
-> > +dtb-$(CONFIG_ARCH_AIROHA) +=3D en7581-evb.dtb
-> > diff --git a/arch/arm64/boot/dts/airoha/en7581-evb.dts b/arch/arm64/boo=
-t/dts/airoha/en7581-evb.dts
-> > new file mode 100644
-> > index 000000000000..4eaa8ac431c3
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/airoha/en7581-evb.dts
-> > @@ -0,0 +1,27 @@
-> > +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +/dts-v1/;
-> > +
-> > +/* Bootloader installs ATF here */
-> > +/memreserve/ 0x80000000 0x200000;
-> > +
-> > +#include "en7581.dtsi"
-> > +
-> > +/ {
-> > +	model =3D "Airoha EN7581 Evaluation Board";
-> > +	compatible =3D "airoha,en7581-evb", "airoha,en7581";
-> > +
-> > +	aliases {
-> > +		serial0 =3D &uart1;
-> > +	};
-> > +
-> > +	chosen {
-> > +		bootargs =3D "console=3DttyS0,115200 earlycon";
->=20
-> You have console below. You don't need earlycon for mainline, broad
-> usage, because it is purely debugging part, so drop entire bootargs.
+On Wed, Feb 21, 2024 at 10:56:07AM +0530, Manivannan Sadhasivam wrote:
+> On Tue, Feb 20, 2024 at 08:41:25AM +0100, Johan Hovold wrote:
+> > On Fri, Feb 16, 2024 at 10:24:06PM +0530, Manivannan Sadhasivam wrote:
 
-ack, I will fix it in v3.
+> > > msi-map-mask is definitely needed as it would allow all the devices under the
+> > > same bus to reuse the MSI identifier. Currently, excluding this property will
+> > > not cause any issue since there is a single device under each bus. But we cannot
+> > > assume that is going to be the case on all boards.
+> > 
+> > Are you saying that there is never a use case for an identity mapping?
+> > Just on Qualcomm hardware or in general?
+> > 
+> > It looks like we have a fairly large number of mainline devicetrees that
+> > do use an identity mapping here (i.e. do not specify 'msi-map-mask') and
+> > the binding document also has an explicit example of this.
+> > 
+> > 	Documentation/devicetree/bindings/pci/pci-msi.txt
+> 
+> I don't know how other platforms supposed to work without this property for more
+> than one devices. Maybe they were not tested enough?
 
->=20
-> > +		stdout-path =3D "serial0:115200n8";
-> > +		linux,usable-memory-range =3D <0x0 0x80200000 0x0 0x1fe00000>;
-> > +	};
-> > +
-> > +	memory@80000000 {
-> > +		device_type =3D "memory";
-> > +		reg =3D <0x0 0x80000000 0x2 0x00000000>;
-> > +	};
-> > +};
-> > diff --git a/arch/arm64/boot/dts/airoha/en7581.dtsi b/arch/arm64/boot/d=
-ts/airoha/en7581.dtsi
-> > new file mode 100644
-> > index 000000000000..7a3c0a45c03f
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/airoha/en7581.dtsi
-> > @@ -0,0 +1,137 @@
-> > +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +
-> > +#include <dt-bindings/interrupt-controller/irq.h>
-> > +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +
-> > +/ {
-> > +	interrupt-parent =3D <&gic>;
-> > +	#address-cells =3D <2>;
-> > +	#size-cells =3D <2>;
-> > +
-> > +	reserved-memory {
-> > +		#address-cells =3D <2>;
-> > +		#size-cells =3D <2>;
-> > +		ranges;
-> > +
-> > +		npu_binary@84000000 {
->=20
-> No underscores in nodenames.
-> ...
->=20
+Seems a bit far fetched since it's also an example in the binding.
 
-ack, I will fix it in v3.
+In fact, only the two Qualcomm platforms that you added 'msi-map-mask'
+for use it.
 
-> > +
-> > +		L2_0: l2-cache0 {
->=20
-> Nodename: l2-cache
->=20
+> But for sure, Qcom SoCs require either per device MSI identifier or
+> msi-map-mask.
 
-ack, I will fix it in v3.
+But isn't the mapping set up by the boot firmware and can differ between
+platforms?
 
-> > +			compatible =3D "cache";
-> > +			cache-level =3D <2>;
-> > +			cache-unified;
-> > +		};
-> > +	};
-> > +
-> > +	gic: interrupt-controller@9000000 {
->=20
-> Why this is outside of SoC? Where is your SoC node BTW?
+The mapping on sc8280xp looks quite different from sm8450/sm8650:
 
-ack, I will fix it in v3.
+	msi-map = <0x0 &gic_its 0x5981 0x1>,
+		  <0x100 &gic_its 0x5980 0x1>;
+	msi-map-mask = <0xff00>;
 
->=20
-> It does not look like you tested the DTS against bindings. Please run
-> `make dtbs_check W=3D1` (see
-> Documentation/devicetree/bindings/writing-schema.rst or
-> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sou=
-rces-with-the-devicetree-schema/
-> for instructions).
->=20
-> > +		compatible =3D "arm,gic-v3";
-> > +		interrupt-controller;
-> > +		#interrupt-cells =3D <3>;
-> > +		#address-cells =3D <1>;
-> > +		#size-cells =3D <1>;
-> > +		reg =3D <0x0 0x09000000 0x0 0x20000>,
-> > +		      <0x0 0x09080000 0x0 0x80000>,
-> > +		      <0x0 0x09400000 0x0 0x2000>,
-> > +		      <0x0 0x09500000 0x0 0x2000>,
-> > +		      <0x0 0x09600000 0x0 0x20000>;
-> > +		interrupts =3D <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
-> > +	};
-> > +
-> > +	timer {
-> > +		compatible =3D "arm,armv8-timer";
-> > +		interrupt-parent =3D <&gic>;
-> > +		interrupts =3D <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-> > +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-> > +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-> > +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
-> > +	};
-> > +
-> > +	uart1: serial@1fbf0000 {
->=20
-> This cannot be outside of SoC.
+Here it's obvious that the mask is needed, whereas for sc8280xp:
 
-ack, I will fix it in v3.
+	msi-map = <0x0 &its 0xa0000 0x10000>;
 
->=20
-> > +		compatible =3D "ns16550";
-> > +		reg =3D <0x0 0x1fbf0000 0x0 0x30>;
-> > +		reg-io-width =3D <4>;
-> > +		reg-shift =3D <2>;
-> > +		interrupts =3D <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
-> > +		clock-frequency =3D <1843200>;
-> > +		status =3D "okay";
->=20
-> Drop
+it's not obvious what the mask should be. In fact, it looks like
+Qualcomm intended a linear mapping here as the length is 0x10000 and
+they left out the mask.
 
-ack, I will fix it in v3.
+And after digging through the X13s ACPI tables, this is indeed how the
+hardware is configured, which means that we should not use a
+'msi-map-mask' property for sc8280xp and that this patch is correct.
 
-Regards,
-Lorenzo
-
->=20
->=20
-> Best regards,
-> Krzysztof
->=20
-
---FzQ0dmwhpInBsEzt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZdXQ1AAKCRA6cBh0uS2t
-rPAkAP4hJvk3e9CcLRh0k7EQ3wYtxC0tQPvNyZ38OEbvMuwEGgD+Pkjls+MRmBxF
-ShRkCKJR1T1jTNHXcpPLwYsmiWqUCQo=
-=5KjC
------END PGP SIGNATURE-----
-
---FzQ0dmwhpInBsEzt--
+Johan
 
