@@ -1,136 +1,226 @@
-Return-Path: <devicetree+bounces-44432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C67D885E30C
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 17:26:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1393A85E366
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 17:31:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E6221F25A63
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 16:26:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7919BB25E68
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 16:31:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD1B68288D;
-	Wed, 21 Feb 2024 16:25:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C376F82D8D;
+	Wed, 21 Feb 2024 16:31:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h7TSNY4l"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="fBsfzKu3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B49A8286F;
-	Wed, 21 Feb 2024 16:25:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12F163E495
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 16:31:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708532731; cv=none; b=OAtO/ksPY3ipSkoETcfp+87N1GWg1zi+lCIeYV8pATPfkGIQ4r4vH9e4uMQwmmXSDLE406sARlFRZNnpNvf+E3I7hyI5AzYuGA8+LRD/8R9Q69rP29qhmaCia7EtAdDtyl5QwdzFBS3TE/911+hyKSuVe81WLClCiVJrHnsI5to=
+	t=1708533070; cv=none; b=uqzcDrDU2FzFYsUAb+2Cx9WiVsAY8OAgEv8D8PHNYa6LDQkrVgK6k4iz95GjUHjzCkLf9+m5tVIG57DfwUcmZ81/nkG1/GPW5lDxeR9oHNTDTC+cKFmSk7zUWx7L2cCpDy0Mi39APpqzQc0FVyerEnxHviBSgyB8QtGAXVk6TGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708532731; c=relaxed/simple;
-	bh=2GH++iFg55PT7lGJbftPrDc2UDnZ0fiNhGV7I1SaPOs=;
-	h=Content-Type:Mime-Version:Date:Message-Id:From:To:Cc:Subject:
-	 References:In-Reply-To; b=JICTDL1R0fEmjxOPtos5PxvitTFzbR993JmWoLbi1dUxCXmlrLaiV4p0OYyZpGC9VBI545Q3nRL+W72Rzhp3w5fzCNpkoAWGJjZSGxBC5hDRsHZBsHZnWk9cV5DNidgr2ast8DbcQFloIBxtjDfgkfc5vD2txvK7GGpgpbsZ/10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h7TSNY4l; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-41279203064so3449745e9.1;
-        Wed, 21 Feb 2024 08:25:29 -0800 (PST)
+	s=arc-20240116; t=1708533070; c=relaxed/simple;
+	bh=KmRZ5uM+dkyrD3VVMo8Sn7/Dfsa+I57DS/ua1TzZ4rM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=F/6xo15OkKtWF1iuttanFHcv3ikWM4rhLE9CBq3foDkVcKt55zqFjQeo4zfrtcZo3fUZVN+Wq1DEk0CgPrgkzsuFl8FAz2QpNg6xNFCnCakt4YARUARKGy/G/0/vr20s0cXzim9Ruh1KLSzxqKoRw0S4SOZlAZZT0YxDGt4ylmE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=fBsfzKu3; arc=none smtp.client-ip=209.85.166.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-io1-f44.google.com with SMTP id ca18e2360f4ac-7c7476a11e0so199700439f.3
+        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 08:31:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708532728; x=1709137528; darn=vger.kernel.org;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=x5+vR2ekzu20AFjxsL5xv5k3p1BsOZITFMLwlxeVU4o=;
-        b=h7TSNY4lxn6xXCnkaw8a5zJU0mWtf9a6hKofFp8hng2gnaWi9MeruU3feN/GpgARUe
-         PZ51RcW/tw0x6Ruwy/EHYxgR6WdP9PshmI9ExyCuK/NiPM/x9IGbmffVae6RHc//T9wd
-         O+MS8eaIEidb6N16JeIeBATjSqqyrIlanYmcoAnxh5+/0KDu0iG4AZ49WnTKayF5RGmn
-         W/gMWB5L+LjhMNVjW9riPmp7XhOGL1H8UaX08RtTKqg+ebk2Mvhf3cua5V0ipbpvc5vo
-         WaTNNT1eQOHReo7luzT++ELOKGMdWSYvhLvJM94jZiiX6wphwMWr03Ag+kSDjJRIl1l8
-         6fAA==
+        d=google.com; s=20230601; t=1708533068; x=1709137868; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NAe7/3QZg7F6kt4OXJPb9Y6Tm7Pxl+pIe4bnMQYzmYI=;
+        b=fBsfzKu3mIHYWcs9ZEh4jbg6e+MAkgvKPOscrCgveo5JHStqkEJefFzBUGkL6CLyIV
+         3MwxgiUSSDPrPJ6GW7m7/GqtDHbLLu4ld8+MGAoJF5b58dBnJRNVFfkI2xAz/imxE+g0
+         +eBUqGS316BCKlKhrFFhJbvbvsYG6vgFjAasjd4fwMN/k910erUbNOk5+yXU5UTRvy9X
+         o0RsDPu7t25Nc96obN1136F/gH6koc8KWOwXjj0TDaqPnprfNVwwQL8T7aELV8qDvr/m
+         agqzH7DFg1RhmBrZJsCxkwYGFGEF5PPqt40vDkI7kUZJAuWe++EOMdByPgLvUUVLCttA
+         mMLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708532728; x=1709137528;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=x5+vR2ekzu20AFjxsL5xv5k3p1BsOZITFMLwlxeVU4o=;
-        b=OEnTa22KT3KE0YFfAGWXprcp3RSWWxIb09Xfcqh8wmuaumKLseM1u9sKAOlslEjrQg
-         gvDZVjVzOTjjQH4W+TV5TkNJIlz8IPjxM+jmeXe64IOWPXSVyj+/Q0DaC7k+st1gyVE6
-         1D4ROQrfUmCaaceEsCl7XN3S8vMtrhl3Pd2sXvedZT9NO9jJcR5w2H40e07uvfWvTg2z
-         Gd2aomh5mJRPmPKwllKjqUVYd1gviWGd2o3Ecr6gbqXKn7YOipmuFfQgSzH+fafqrP3J
-         h1ly/dB+/igs2wnKfG5x2gaFN3WeYGNxsDJzP1KJFLu//kuPm1KCTx3cASSRiUrSZPEd
-         sA8w==
-X-Forwarded-Encrypted: i=1; AJvYcCX1pCSdTrg4CJJ2z0ALsRfeiICMiWSTB+Na2EXe34PnE7czCcka3MFyZixWr8/2UZIPiy8Lb+vgnTFZOOeNtmDG5mh9OCXM+GKXLro=
-X-Gm-Message-State: AOJu0Yxy1jsWYSS1nA6m7OX0RyMbQG251cSvAcLjIVsw9o5OVzSfDwJ/
-	h88rTedANpLf1Ae7mrOEZ/Qib9mq8oFON9PPc9IsNib/RsIGWbYx
-X-Google-Smtp-Source: AGHT+IFDXbSkqEpgc8NgjACYWWUHK71w9yeeDYalcn2NJj91xzfBx0a/F6JnB5DCCMuKTR4+yksLrg==
-X-Received: by 2002:adf:cb05:0:b0:33d:3896:be5f with SMTP id u5-20020adfcb05000000b0033d3896be5fmr7366739wrh.54.1708532728219;
-        Wed, 21 Feb 2024 08:25:28 -0800 (PST)
-Received: from localhost (p200300e41f2d4600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f2d:4600:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id v4-20020a5d6784000000b0033d39626c27sm12959326wru.76.2024.02.21.08.25.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Feb 2024 08:25:27 -0800 (PST)
-Content-Type: multipart/signed;
- boundary=9b431b1840d6d62518f3f7dfaa394198e3d0eff296828a15bb82876af41f;
- micalg=pgp-sha256; protocol="application/pgp-signature"
+        d=1e100.net; s=20230601; t=1708533068; x=1709137868;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NAe7/3QZg7F6kt4OXJPb9Y6Tm7Pxl+pIe4bnMQYzmYI=;
+        b=jqXvktBOx5T3m2s16SKbUHFUXMgRukdSZEnrjg2IcyOg+yKWPNT6GZ3uGL/Qwyevz5
+         xOUd4TCZD51uvzob+Ne/y5C983mkG7bsPI+1RIe36S7GZgzLm5AFOcjTHkddLhQH2N2j
+         ngO0MVW5wBeFTpQaulMx6WQcGHHy269UrypoTtsHNg3i4rfkr0yqbMFOqnO1r9F0esZ+
+         xiKTyi8F4293VuTetbgK+H1brURKKzGHhR+Wzfi7/g0wUbrjvqCoSw2XijSZSI74znFB
+         qCcJ6SqB0MhItiqk2ukovNkiIZYfcx+EwJJ32pyadvx+1PsyVObNzvEmpPzau/GwUqy6
+         xOPA==
+X-Forwarded-Encrypted: i=1; AJvYcCWI8b+vjySHFJH7nw7w1sWj9ndpAnHIcirH58YjSNrtbBdbHIQNbmcCYhC+Jx8CZDumG2sw4Kam8zONL+azI4z2gHRnGpxgWGIHeQ==
+X-Gm-Message-State: AOJu0YxIbVXlFpH9x7+gjFZvbXdV79x887e9mutsIUHb/bx0XdHtDdCN
+	0Lx/ZM0+aJUveUGWfnGV21q+/4dKCSpyk/pCsYF+7bCWlQ4vPCHsxu2m22TfUty13MqBaiO1uZx
+	YcU7is9pRhmO4ZpZDI2d67gP69cIPZEgvb2AA
+X-Google-Smtp-Source: AGHT+IHA0I/TkMUo4dpT97MXiRqq1ZaBo3fcCy2GY6tK6iHF1Ly9jSiVekMtxHcZsLqU2Vr0uhsnEHV83fGJqZ4TBIA=
+X-Received: by 2002:a05:6602:e17:b0:7c7:466b:f315 with SMTP id
+ gp23-20020a0566020e1700b007c7466bf315mr9936019iob.3.1708533068049; Wed, 21
+ Feb 2024 08:31:08 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Wed, 21 Feb 2024 17:25:27 +0100
-Message-Id: <CZAWAZDE4BVU.2UICKBDWVQKGX@gmail.com>
-From: "Thierry Reding" <thierry.reding@gmail.com>
-To: "Jon Hunter" <jonathanh@nvidia.com>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
- <conor+dt@kernel.org>
-Cc: <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>
-Subject: Re: [PATCH] arm64: tegra: Fix Tegra234 MGBE power-domains
-X-Mailer: aerc 0.16.0-1-0-g560d6168f0ed-dirty
-References: <20240216115748.24845-1-jonathanh@nvidia.com>
-In-Reply-To: <20240216115748.24845-1-jonathanh@nvidia.com>
-
---9b431b1840d6d62518f3f7dfaa394198e3d0eff296828a15bb82876af41f
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <20240212131323.2162161-1-panikiel@google.com> <20240212131323.2162161-9-panikiel@google.com>
+ <20240215-moodiness-concert-0050a16f644c@spud>
+In-Reply-To: <20240215-moodiness-concert-0050a16f644c@spud>
+From: =?UTF-8?Q?Pawe=C5=82_Anikiel?= <panikiel@google.com>
+Date: Wed, 21 Feb 2024 17:30:57 +0100
+Message-ID: <CAM5zL5psgAKmxW_nAL8J+Bvu27R8POmvhJYkM6524zXRZrbP0A@mail.gmail.com>
+Subject: Re: [PATCH 8/9] media: dt-bindings: Add Intel Displayport RX IP
+To: Conor Dooley <conor@kernel.org>
+Cc: airlied@gmail.com, akpm@linux-foundation.org, conor+dt@kernel.org, 
+	daniel@ffwll.ch, dinguyen@kernel.org, hverkuil-cisco@xs4all.nl, 
+	krzysztof.kozlowski+dt@linaro.org, maarten.lankhorst@linux.intel.com, 
+	mchehab@kernel.org, mripard@kernel.org, robh+dt@kernel.org, 
+	tzimmermann@suse.de, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+	linux-media@vger.kernel.org, chromeos-krk-upstreaming@google.com, 
+	ribalda@chromium.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
 
-On Fri Feb 16, 2024 at 12:57 PM CET, Jon Hunter wrote:
-> The MGBE power-domains on Tegra234 are mapped to the MGBE controllers as
-> follows:
+On Thu, Feb 15, 2024 at 6:26=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
 >
->  MGBE0 (0x68000000) --> Power-Domain MGBEB
->  MGBE1 (0x69000000) --> Power-Domain MGBEC
->  MGBE2 (0x6a000000) --> Power-Domain MGBED
+> Yo,
 >
-> Update the device-tree nodes for Tegra234 to correct this.
+> On Mon, Feb 12, 2024 at 01:13:22PM +0000, Pawe=C5=82 Anikiel wrote:
+> > The Intel Displayport RX IP is a part of the DisplayPort Intel FPGA IP
+> > Core. It implements a DisplayPort 1.4 receiver capable of HBR3 video
+> > capture and Multi-Stream Transport. The user guide can be found here:
+> >
+> > https://www.intel.com/programmable/technical-pdfs/683273.pdf
+> >
+> > Signed-off-by: Pawe=C5=82 Anikiel <panikiel@google.com>
+> > ---
+> >  .../devicetree/bindings/media/intel,dprx.yaml | 125 ++++++++++++++++++
+> >  1 file changed, 125 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/intel,dprx.=
+yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/intel,dprx.yaml b/=
+Documentation/devicetree/bindings/media/intel,dprx.yaml
+> > new file mode 100644
+> > index 000000000000..3ed37e0a4a94
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/intel,dprx.yaml
+> > @@ -0,0 +1,125 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/intel,dprx.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Intel DisplayPort RX IP
+> > +
+> > +maintainers:
+> > +  - Pawe=C5=82 Anikiel <panikiel@google.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: intel,dprx
 >
-> Fixes: 610cdf3186bc ("arm64: tegra: Add MGBE nodes on Tegra234")
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> ---
->  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+> Please version this compatible, given that is it for an FPGA IP.
+> I could not find an example of another intel IP that had versioning, but
+> there's plenty of xilinx stuff you can get inspiration from.
 
-Applied, thanks.
+The IP has had a few different revisions, so I decided to just use the
+"IP version" which is 20.0.1 for the version this driver is targeting.
 
-Thierry
+>
+> > +  reg:
+> > +    items:
+> > +      - description: core registers
+> > +      - description: irq registers
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  intel,has-mst:
+>
+> Mostly this looks fine, but this property drew my eye.
+> Firstly, I'd probably call this "intel,multi-stream-support" rather than
+> "intel,has-mst".
 
---9b431b1840d6d62518f3f7dfaa394198e3d0eff296828a15bb82876af41f
-Content-Type: application/pgp-signature; name="signature.asc"
+Sure,
 
------BEGIN PGP SIGNATURE-----
+>
+> > +    type: boolean
+> > +    description: The device supports Multi-Stream Transport
+>
+> Secondly, there are many many configuration parameters for this IP,
+> but you have chosen to document just one.
+> Are all other configuration parameters currently in their default
+> states or ignored by the driver? If not, please at least document all
+> configuration settings that you rely on - for example the max stream
+> count or audio packet encoding.
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmXWI/cACgkQ3SOs138+
-s6FoLw/+Ixrt0iqmTN0PpMVTsQCcMzGXFu8VIEb24TGfCo38vYlDI3XAntdBArSX
-kZP0nYSpF5sWKrDYlgOlWr7kxxv1pcf35T4hDrwP2wmp8eV6SQzofmS0f836JVh1
-PTcuiCjYFMgZN3Gz7MRjp8XkySy4iQjtfym/itH7J+1tCqYC5ZK/uL9aMGZy0ikT
-5m3SX/XpTB/bzUU6FHz4qbpo3r0BiVQDED7y5wuFHBlSQiiR3HW4sCCs7i+15b4o
-Udp4Wj2FowtX1vIlFTUPWaf/KR8DWvWOynYESmY1BWfsZZMIg4vgpDTOZj6vSQlI
-MJfw6HNTpS+oWYfTRCuAuiPQ3pPSNEmHp6EvaqH6nLJLsruWRbLJWMdfAHmlGo29
-UDlWgE89A+UYuPk4BFzHOX/zM93p3Dm+WwbRrqIbUY0cXWbbIyAynMkc7MjOk6nL
-zBXaZ/uEXF42vhJpe9EkTPLCBfbFG60H3uw56bvJF5mepMcSvajh+1n0D2VW/qpS
-da0EP16QqOwR2q9N93ZXOVUwptydCsbj67aRC+zB+NUkNoV36Wmtf0G18gnAU5dx
-xqjdgNdKRQ1oBPq5HbRvVdi2aZac8ZVkDpfdY/mhsIOENAUOG3okcNFEgvdaG69A
-0elnnyzKGBuRKKesIQ59ps5DZc3OIv/F2Pl3FVrhd8URZwX/Qmk=
-=kNll
------END PGP SIGNATURE-----
+I looked at all the parameters listed in the user guide, and most of
+them don't affect the driver. I listed the ones which are required,
+and added support for the remaining ones in v2.
 
---9b431b1840d6d62518f3f7dfaa394198e3d0eff296828a15bb82876af41f--
+>
+> > +
+> > +  port:
+> > +    $ref: /schemas/graph.yaml#/properties/port
+> > +    description: SST main link
+> > +
+> > +  ports:
+> > +    $ref: /schemas/graph.yaml#/properties/ports
+> > +
+> > +    properties:
+> > +      port@0:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description: MST virtual channel 0 or SST main link
+> > +
+> > +      port@1:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description: MST virtual channel 1
+> > +
+> > +      port@2:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description: MST virtual channel 2
+> > +
+> > +      port@3:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description: MST virtual channel 3
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +
+> > +allOf:
+> > +  - if:
+> > +      required:
+> > +        - intel,has-mst
+> > +    then:
+> > +      required:
+> > +        - ports
+> > +    else:
+> > +      required:
+> > +        - port
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    dprx@c0062000 {
+>
+> "dprx" isn't a class of device, please try to use a generic node name
+> here.
+
+I couldn't find anything in the DT spec or any other similar examples,
+so I chose dp-receiver.
 
