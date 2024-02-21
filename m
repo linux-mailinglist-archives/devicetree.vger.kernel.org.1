@@ -1,152 +1,277 @@
-Return-Path: <devicetree+bounces-44490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFE7085E756
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 20:34:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FF7885E75F
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 20:37:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 352B01F23616
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 19:34:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CBF501F236C2
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 19:37:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1285685C7C;
-	Wed, 21 Feb 2024 19:34:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7E0486645;
+	Wed, 21 Feb 2024 19:36:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pOHByhzS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u7W79RKB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3E2783A06;
-	Wed, 21 Feb 2024 19:34:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F67385C7C
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 19:36:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708544060; cv=none; b=S7k5iRBS7gPr6FFc3bzUGJk/eoF3i8IeTlXKrJCzorkmeEVGsCONjzf3HOM0YADUNEmUqL9eX2J85cHzEWFmzHRWVU1sikUI892iwZE6DNLZrjHF2X9GqrFhx4iRa3I5n1tLDuAm5jOgrNgt7vx2a33AmnSgGZaEWUwRMw2GBtc=
+	t=1708544213; cv=none; b=Umx4ZOQVQoKFiErmAhqQb/Y/dG9jDf+nRytRWEJPy7C2YAtb5QrxYQ+p4oFznma5SJVEenPEW7RHPIxHTvpVIqvX0EgeMAGpXQtx+9wg15Vzh36kltIi9dJwdFw/4x4A+xK5sP1361HP/Wm8ekscDoBgr1YdWLrvyRvhyBfAxu0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708544060; c=relaxed/simple;
-	bh=sXa5dPwz8bX/os8/Ajvudq3p1HLKGVCbEjjsuMeVa5o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CgN2jxUv2y3RGSZUFhjKr9GsFWctXdEzFahrIZjxyaWGDfWlZSFaWtSDSUMX8Wic/sfUxRzIicwD0U9CjSozM/URmtgenTW47PJuy5NeS4ZF2wYclis378iLMkf1p99InnjzgG/DxG94fhym2Kc7y4KMLLvdgg3KYMMX6aQglIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pOHByhzS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA81FC433C7;
-	Wed, 21 Feb 2024 19:34:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708544059;
-	bh=sXa5dPwz8bX/os8/Ajvudq3p1HLKGVCbEjjsuMeVa5o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pOHByhzScvU/U0TCoTIQTNO5d3/UV2yM9PwLvGTv35mTJpxaGtM+G+RdDlJL53puo
-	 QYfMCCRjV8YrCpDvU+bdh8Wb24/aAvFRyea6WmIceRG17LO/LlsquvUkVKk39XtJXD
-	 YVt37gKZGq5efvojR20BnMmOS4eDcPTx/ZRYSgtVeceR+gkDoioXuDmixB0OAWf4vz
-	 t0rMDee6yY5N4h42osps466yGwZywfH9RyZiMsNpPnk7rugdSBWh9h1uqgwXVlKYOm
-	 nKXarH0nNjLI4ltp9t2LtGgcZ4xOuF1JY2DoELiDNTgtedT2t4RSVwFXnuKtw/aaZ7
-	 4SO24rSgbzwtw==
-Date: Wed, 21 Feb 2024 19:34:12 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Saravana Kannan <saravanak@google.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Ard Biesheuvel <ardb@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>, Len Brown <lenb@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	kernel-team@android.com, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-efi@vger.kernel.org,
-	linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] dt-bindings: Add post-init-supplier property
-Message-ID: <20240221-emblaze-ripeness-7ad4e41343fa@spud>
-References: <20240212213147.489377-1-saravanak@google.com>
- <20240212213147.489377-4-saravanak@google.com>
- <20240214-stable-anytime-b51b898d87af@spud>
- <CAGETcx-tBjfaLQqmGW=ap2N5FLK_gvTzxskA6sVsr_SUEpvomA@mail.gmail.com>
- <20240215-unstirred-rearrange-d619a2524a63@spud>
- <CAGETcx8EBta8dUSELUJ6_ibZABnnhSYX0VEGa8s-CbHFYuskkQ@mail.gmail.com>
+	s=arc-20240116; t=1708544213; c=relaxed/simple;
+	bh=eV8KAdCq546PLUu5EHILB1FlUk/5D6xqO6K8+ATuJRk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DjhngjtN/TOziHRezmHuaa7sNyQ+Qk02OX8NEsMR09DE62SYfKShwpepdnE5c4OPIfYTGvkSMIgs2a5+es2dE0GYeHudoVWx8WoAwdJzWA7qhGjzkAgVdkmxyYd7SW5kfrwP/oflrFvkLVG2ClHwf5cqPf6RTi/tRhw3Fqynm+0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u7W79RKB; arc=none smtp.client-ip=209.85.128.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-607fc3e69adso61399897b3.0
+        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 11:36:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708544210; x=1709149010; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ww0To1dp+AHUBLp6rp2jOb2P+DD7/I49Wgp5bodshls=;
+        b=u7W79RKBLtsgCnc0flAkFFQjlNIqxSAjY5e/tyZWGtgpaeWNePfbPUT/5PyeQQy0Vg
+         gMawdvc7NuNL2qna8LFqr8OoYCxlSNbNchQtxc3gKCQnpM8KzZTDoxG+ZCRoumx8fg4j
+         vKGy5yVlHdC3r+q+1lbXf6/AKkrc6XdgPPT4Oau/33l1pCJ4mHeG9ggcN+S0sGO/uTFy
+         /ELHrXy7VM8kS5kqWWcrWM+OFMoy4XImpDOMhQdVzhnDxCfEUBzYSYwlcZlita1tX0h2
+         SfTk+p/6UAKzYhFDtfufqjxWXM5/MmPhZnFMzEwtxFhINIZUpdEyguFQ+tIB9o3u9ule
+         6gjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708544210; x=1709149010;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Ww0To1dp+AHUBLp6rp2jOb2P+DD7/I49Wgp5bodshls=;
+        b=A1p8qmy4Svzyk24nuUTyLDSm6ZEbv17L9bcqyI3OSkxwdBjwOFQydhS3h7/1O97JDC
+         lgcNJDslsr2ZYCzfTqpL6ycDOJjjqAsUT3LQ/XDZ9Sx5xuEUCmj1yuSsNOtJ4S8k5a8e
+         j8+BShb4DKZu/lqVaw1Be/pgGZ8DNqDRMNhbBbb8qTKJj/gUcW5JeS5OlpPzzEUwrsQN
+         J1sZJGolYQzB9pKGqjSh6V3rb8aQ3jaj0fBSt0PjaAAf8NZoMyRDwDyx8dYgEaNRvAjU
+         XaEHl2cWVzmKy+QfHBJBTq5mLqx5bFF1JffUndWIc0YmDA3ePsyz/H0WBvvDTu3puZw3
+         LLPg==
+X-Forwarded-Encrypted: i=1; AJvYcCUSwslhiQR1kClMSuaDB4KeEUEH4DeJvvmyCqQwaMEwNXcreHDA5TaPbBb0OfuCjC6siQfV+2R9tVXE1RtF7fvY4bcqDvHOIuwsqQ==
+X-Gm-Message-State: AOJu0Ywlolif5II56cXSh3vg+y7qMkbkPtc2uPssptCh+fcXSNuNNK9w
+	rJ2DJD208qVqwimaAF3XkYKbxKV9ycNXlYp4QVe+S2jwgpwswc6AbejPPDNyAN7wqu3th9ByqFa
+	OyZR+fM7U3ZP/hoKIjxMw4R2pOiN+f0illicCEw==
+X-Google-Smtp-Source: AGHT+IGCZPDCa1Hzfo+KEBVcL7TsTR0Ad/nA9/EpiWdmACh0Xp2HAj3m3ZyLtUAY4auzZzhlgNjzo05jt7jYW0MAWUM=
+X-Received: by 2002:a81:8d51:0:b0:608:8b1e:cee with SMTP id
+ w17-20020a818d51000000b006088b1e0ceemr1805668ywj.25.1708544210048; Wed, 21
+ Feb 2024 11:36:50 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="pLmCPIAdI0+mCq/J"
-Content-Disposition: inline
-In-Reply-To: <CAGETcx8EBta8dUSELUJ6_ibZABnnhSYX0VEGa8s-CbHFYuskkQ@mail.gmail.com>
+References: <20240214-mbly-gpio-v1-0-f88c0ccf372b@bootlin.com>
+ <20240214-mbly-gpio-v1-18-f88c0ccf372b@bootlin.com> <CACRpkdYLBGsphNkmWyPXQZvFaO2hHGHGTMt1eqz-HAa2k5F3bg@mail.gmail.com>
+ <CZAW47LJHQVD.1Z9GFT8UENYXT@bootlin.com>
+In-Reply-To: <CZAW47LJHQVD.1Z9GFT8UENYXT@bootlin.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 21 Feb 2024 20:36:39 +0100
+Message-ID: <CACRpkdZQ9LEqKvugDCMEXPPLMCUJ-f9rYQOpmsSEJhtW0zjNsg@mail.gmail.com>
+Subject: Re: [PATCH 18/23] gpio: nomadik: support mobileye,eyeq5-gpio
+To: =?UTF-8?B?VGjDqW8gTGVicnVu?= <theo.lebrun@bootlin.com>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mips@vger.kernel.org, Gregory CLEMENT <gregory.clement@bootlin.com>, 
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Feb 21, 2024 at 5:16=E2=80=AFPM Th=C3=A9o Lebrun <theo.lebrun@bootl=
+in.com> wrote:
 
---pLmCPIAdI0+mCq/J
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> > Trying to figure it out...
+>
+> Can I help in the debugging process?
 
-On Tue, Feb 20, 2024 at 08:13:31PM -0800, Saravana Kannan wrote:
-> I made that fix and now I'm getting this:
-> $ make DT_CHECKER_FLAGS=-m dt_binding_check
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/post-init-suppliers.yaml
->   DTEX    Documentation/devicetree/bindings/post-init-suppliers.example.dts
->   LINT    Documentation/devicetree/bindings
->   CHKDT   Documentation/devicetree/bindings/processed-schema.json
-> /mnt/android/linus-tree/Documentation/devicetree/bindings/post-init-suppliers.yaml:
-> 'oneOf' conditional failed, one must be fixed:
->         'unevaluatedProperties' is a required property
->         'additionalProperties' is a required property
->         hint: Either unevaluatedProperties or additionalProperties
-> must be present
->         from schema $id: http://devicetree.org/meta-schemas/core.yaml#
->   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-> /mnt/android/linus-tree/Documentation/devicetree/bindings/tpm/ibm,vtpm.yaml:
-> ignoring, error in schema: properties
-> /mnt/android/linus-tree/Documentation/devicetree/bindings/post-init-suppliers.yaml:
-> ignoring, error in schema:
-> /mnt/android/linus-tree/Documentation/devicetree/bindings/soc/tegra/nvidia,tegra20-pmc.yaml:
-> ignoring, error in schema: allOf: 0: then: properties: pinmux
-> /mnt/android/linus-tree/Documentation/devicetree/bindings/net/lantiq,pef2256.yaml:
-> ignoring, error in schema: properties: lantiq,data-rate-bps
-> /mnt/android/linus-tree/Documentation/devicetree/bindings/post-init-supplier.yaml:
-> ignoring, error in schema:
-> /mnt/android/linus-tree/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml:
-> ignoring, error in schema: properties: honeywell,pmax-pascal
-> /mnt/android/linus-tree/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml:
-> ignoring, error in schema: properties: honeywell,pmax-pascal
+Nah, I found it :)
 
->   DTC_CHK Documentation/devicetree/bindings/post-init-suppliers.example.dtb
-> Documentation/devicetree/bindings/post-init-suppliers.example.dtb:0:0:
-> /example-0/clock-controller@1000: failed to match any schema with
-> compatible: ['vendor,soc4-gcc', 'vendor,soc1-gcc']
-> Documentation/devicetree/bindings/post-init-suppliers.example.dtb:0:0:
-> /example-0/clock-controller@1000: failed to match any schema with
-> compatible: ['vendor,soc4-gcc', 'vendor,soc1-gcc']
-> Documentation/devicetree/bindings/post-init-suppliers.example.dtb:0:0:
-> /example-0/clock-controller@2000: failed to match any schema with
-> compatible: ['vendor,soc4-dispcc', 'vendor,soc1-dispcc']
-> Documentation/devicetree/bindings/post-init-suppliers.example.dtb:0:0:
-> /example-0/clock-controller@2000: failed to match any schema with
-> compatible: ['vendor,soc4-dispcc', 'vendor,soc1-dispcc']
+> Reading the code once again I'd guess
+> of_device_get_match_data(&gpio_pdev->dev) could be the root cause. We
+> are accessing match data for the GPIO device while probing the pinctrl
+> device. Maybe something isn't initialised properly yet? The rest looks
+> rather harmless, I've checked all conditional expressions.
 
-FWIW, I don't see these or the other errors you see above. You really
-need to get yourself a newer version of dt-schema, or else avoid
-working on this using whatever castrated system google provides you with!
+Yep spot on. The nmk_gpio_populate_chip() is sometimes called from
+the pinctrl driver before the gpio probe() has been called, so the match
+data is NULL and we crash.
 
-> But I guess the "oneOf" error is because the yaml is being treated as
-> a description of a DT node and not a schema?
+This looks like it does for historical reasons and there could be better
+ways to fix it now that Saravana Kannan has fixed up the probe ordering
+code.
 
-The oneOf is due to missing "additionalProperties: true" - As far as I
-understand you need that regardless of whether this is going into
-dt-schema or the kernel.
+The following is one way to fix it for now using device_is_compatible()
+(illustrating some other changes I did as well):
 
---pLmCPIAdI0+mCq/J
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/drivers/gpio/gpio-nomadik.c b/drivers/gpio/gpio-nomadik.c
+index 21bb6d6363fc..11071a982ebb 100644
+--- a/drivers/gpio/gpio-nomadik.c
++++ b/drivers/gpio/gpio-nomadik.c
+@@ -27,6 +27,7 @@
+ #include <linux/of_platform.h>
+ #include <linux/pinctrl/pinctrl.h>
+ #include <linux/platform_device.h>
++#include <linux/property.h>
+ #include <linux/reset.h>
+ #include <linux/seq_file.h>
+ #include <linux/types.h>
+@@ -37,15 +38,13 @@
+ static DEFINE_SPINLOCK(nmk_gpio_slpm_lock);
+ #endif
 
------BEGIN PGP SIGNATURE-----
+-#define NMK_GPIO_FLAG_QUIRK_MBLY    BIT(0)
+-
+ void __nmk_gpio_set_slpm(struct nmk_gpio_chip *nmk_chip, unsigned int offs=
+et,
+              enum nmk_gpio_slpm mode)
+ {
+     u32 slpm;
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdZQNAAKCRB4tDGHoIJi
-0g3HAQDpIe4M9otvSpLROV6Ux41ghNaHIm5e1Qhx4Q295ZxF3QEAodiz/FUXPees
-zSZSMDf2CLnO5KDtqoIy8tOHjOqzMw0=
-=9UjH
------END PGP SIGNATURE-----
+     /* We should NOT have been called. */
+-    if (WARN_ON(nmk_chip->quirk_mbly))
++    if (WARN_ON(nmk_chip->is_mobileye_soc))
+         return;
 
---pLmCPIAdI0+mCq/J--
+     slpm =3D readl(nmk_chip->addr + NMK_GPIO_SLPC);
+@@ -105,7 +104,7 @@ static void __nmk_gpio_irq_modify(struct
+nmk_gpio_chip *nmk_chip,
+         fimscval =3D &nmk_chip->fimsc;
+     } else  {
+         /* We should NOT have been called. */
+-        if (WARN_ON(nmk_chip->quirk_mbly))
++        if (WARN_ON(nmk_chip->is_mobileye_soc))
+             return;
+         rimscreg =3D NMK_GPIO_RWIMSC;
+         fimscreg =3D NMK_GPIO_FWIMSC;
+@@ -134,7 +133,7 @@ static void __nmk_gpio_set_wake(struct
+nmk_gpio_chip *nmk_chip,
+                 int offset, bool on)
+ {
+     /* We should NOT have been called. */
+-    if (WARN_ON(nmk_chip->quirk_mbly))
++    if (WARN_ON(nmk_chip->is_mobileye_soc))
+         return;
+
+     /*
+@@ -161,7 +160,7 @@ static void nmk_gpio_irq_maskunmask(struct
+nmk_gpio_chip *nmk_chip,
+
+     __nmk_gpio_irq_modify(nmk_chip, d->hwirq, NORMAL, enable);
+
+-    if (!nmk_chip->quirk_mbly && !(nmk_chip->real_wake & BIT(d->hwirq)))
++    if (!nmk_chip->is_mobileye_soc && !(nmk_chip->real_wake & BIT(d->hwirq=
+)))
+         __nmk_gpio_set_wake(nmk_chip, d->hwirq, enable);
+
+     spin_unlock(&nmk_chip->lock);
+@@ -194,7 +193,7 @@ static int nmk_gpio_irq_set_wake(struct irq_data
+*d, unsigned int on)
+     unsigned long flags;
+
+     /* Handler is registered in all cases. */
+-    if (nmk_chip->quirk_mbly)
++    if (nmk_chip->is_mobileye_soc)
+         return -ENXIO;
+
+     clk_enable(nmk_chip->clk);
+@@ -235,7 +234,7 @@ static int nmk_gpio_irq_set_type(struct irq_data
+*d, unsigned int type)
+     if (enabled)
+         __nmk_gpio_irq_modify(nmk_chip, d->hwirq, NORMAL, false);
+
+-    if (!nmk_chip->quirk_mbly && (enabled || wake))
++    if (!nmk_chip->is_mobileye_soc && (enabled || wake))
+         __nmk_gpio_irq_modify(nmk_chip, d->hwirq, WAKE, false);
+
+     nmk_chip->edge_rising &=3D ~BIT(d->hwirq);
+@@ -249,7 +248,7 @@ static int nmk_gpio_irq_set_type(struct irq_data
+*d, unsigned int type)
+     if (enabled)
+         __nmk_gpio_irq_modify(nmk_chip, d->hwirq, NORMAL, true);
+
+-    if (!nmk_chip->quirk_mbly && (enabled || wake))
++    if (!nmk_chip->is_mobileye_soc && (enabled || wake))
+         __nmk_gpio_irq_modify(nmk_chip, d->hwirq, WAKE, true);
+
+     spin_unlock_irqrestore(&nmk_chip->lock, flags);
+@@ -383,7 +382,7 @@ static int nmk_gpio_get_mode(struct nmk_gpio_chip
+*nmk_chip, int offset)
+     u32 afunc, bfunc;
+
+     /* We don't support modes. */
+-    if (nmk_chip->quirk_mbly)
++    if (nmk_chip->is_mobileye_soc)
+         return NMK_GPIO_ALT_GPIO;
+
+     clk_enable(nmk_chip->clk);
+@@ -517,7 +516,6 @@ struct nmk_gpio_chip
+*nmk_gpio_populate_chip(struct device_node *np,
+     struct resource *res;
+     struct clk *clk;
+     void __iomem *base;
+-    uintptr_t flags;
+     u32 id, ngpio;
+
+     gpio_pdev =3D of_find_device_by_node(np);
+@@ -551,8 +549,7 @@ struct nmk_gpio_chip
+*nmk_gpio_populate_chip(struct device_node *np,
+         dev_dbg(&pdev->dev, "populate: using default ngpio (%d)\n", ngpio)=
+;
+     }
+
+-    flags =3D (uintptr_t)of_device_get_match_data(&gpio_pdev->dev);
+-    nmk_chip->quirk_mbly =3D !!(flags & NMK_GPIO_FLAG_QUIRK_MBLY);
++    nmk_chip->is_mobileye_soc =3D device_is_compatible(&gpio_pdev->dev,
+"mobileye,eyeq5-gpio");
+     nmk_chip->bank =3D id;
+     chip =3D &nmk_chip->chip;
+     chip->base =3D -1;
+@@ -667,7 +664,7 @@ static int nmk_gpio_probe(struct platform_device *pdev)
+         return ret;
+     }
+
+-    if (!nmk_chip->quirk_mbly) {
++    if (!nmk_chip->is_mobileye_soc) {
+         clk_enable(nmk_chip->clk);
+         nmk_chip->lowemi =3D readl_relaxed(nmk_chip->addr + NMK_GPIO_LOWEM=
+I);
+         clk_disable(nmk_chip->clk);
+@@ -690,7 +687,6 @@ static const struct of_device_id nmk_gpio_match[] =3D {
+     },
+     {
+         .compatible =3D "mobileye,eyeq5-gpio",
+-        .data =3D (void*)NMK_GPIO_FLAG_QUIRK_MBLY,
+     },
+     {}
+ };
+diff --git a/include/linux/gpio/gpio-nomadik.h
+b/include/linux/gpio/gpio-nomadik.h
+index 8d0134dd3771..ede16cdaa920 100644
+--- a/include/linux/gpio/gpio-nomadik.h
++++ b/include/linux/gpio/gpio-nomadik.h
+@@ -51,6 +51,7 @@ enum nmk_gpio_slpm {
+
+ struct nmk_gpio_chip {
+     struct gpio_chip chip;
++    bool is_mobileye_soc;
+     void __iomem *addr;
+     struct clk *clk;
+     unsigned int bank;
+
+Yours,
+Linus Walleij
 
