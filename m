@@ -1,138 +1,148 @@
-Return-Path: <devicetree+bounces-44311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9E7485D766
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 12:49:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8759B85D775
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 12:52:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 49F47B22FEC
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 11:49:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FDE21F23BB2
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 11:52:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95E5147A67;
-	Wed, 21 Feb 2024 11:49:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0398547A74;
+	Wed, 21 Feb 2024 11:52:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JahR6DaO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5F4E47784
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 11:49:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D129047A52;
+	Wed, 21 Feb 2024 11:52:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708516149; cv=none; b=SzI5NvsCkR1I9b6dXlFM6TjH39ePryfActYsIpMMhv80nKV0O+eqxFvvSptW8vZTWuMVMWGgDqJZMfLD0zxJQCuga8UM5ln16HLEETus18IHeMfk/G2n57TOFdvICFNpxpYP4fqWMOiu5FRwWBgVonBQ4OJuE8XY1UY/1KhMxDU=
+	t=1708516358; cv=none; b=hgrZBV9ppu4gFMChBuE+u0/8OVAR/VN8PxZ9AoAjm6U7u4u7TQ4jWVPVmo106XZu7EpirPEkoYKpxZeID/srSCv4+nWhhmDGfrAC4+0Hy/6zqTvcot77aUJcL7hlAhxG0x6vUpYlSXxSAqYd3gZf8AYdlzdnLPc9n6y4peADZks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708516149; c=relaxed/simple;
-	bh=MqAtX4r3evQnuc0+Z+SGH7wwaQmeoU0VpHKlY7UeihQ=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ptCL/wligedt7befac7+AZtZfBlSRql/+lROC73F3q/3Ys/n6sDH86KPVXMS02u/FpjCj3w+O2A3HVyef64mgCJa4gI2aD1BWpgH9fnGJQ7EBchrBPDeuNKCrTLasyLP+efn+l/eVKNHZ21Q5TLUUqwzrGdgjj3FTkoU1dDSfEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rcl5k-0003zo-5c; Wed, 21 Feb 2024 12:48:48 +0100
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rcl5i-0021w0-CM; Wed, 21 Feb 2024 12:48:46 +0100
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rcl5i-0006MR-10;
-	Wed, 21 Feb 2024 12:48:46 +0100
-Message-ID: <7c3246e94de0fdad3f9bed50d46f70327ef30ef9.camel@pengutronix.de>
-Subject: Re: [PATCH v2 1/2] watchdog: sp805_wdt: deassert the reset if
- available
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: forbidden405@outlook.com, Wim Van Sebroeck <wim@linux-watchdog.org>, 
- Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>,  Viresh Kumar <vireshk@kernel.org>
-Cc: linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Date: Wed, 21 Feb 2024 12:48:46 +0100
-In-Reply-To: <20240220-hisi-wdt-v2-1-63edc4965b4c@outlook.com>
-References: <20240220-hisi-wdt-v2-0-63edc4965b4c@outlook.com>
-	 <20240220-hisi-wdt-v2-1-63edc4965b4c@outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1708516358; c=relaxed/simple;
+	bh=lZLENxtHLbI6QbQIsmJDLuLCaCc5Gu/ruskB21Fbjd4=;
+	h=Content-Type:Date:Message-Id:From:To:Subject:Cc:References:
+	 In-Reply-To; b=Ly0WE4Y0wnFicifNRgdgU5bXE+fR6anO8uYrO143u+oBOkyYfy7bWHG+A0CxVxR79rbLjS4KsmUa3I4OyFav9AN/l3YfAZT8tY7S6O+mPQUa7fCaT6Mc6hCqhC9wokCGlYn+myRUdMQ48RJKgSocc4M9mcDAmxycr5LKZ38y+oE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JahR6DaO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2660C433C7;
+	Wed, 21 Feb 2024 11:52:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708516358;
+	bh=lZLENxtHLbI6QbQIsmJDLuLCaCc5Gu/ruskB21Fbjd4=;
+	h=Date:From:To:Subject:Cc:References:In-Reply-To:From;
+	b=JahR6DaOk3I/CcusIGmx+XzxI0zXtyxmcIprdjvc2Su2RQEF0iJ38GgOpZO+/fllm
+	 ZlUuKfJYvaAWKqs6fuMTPGBm6V0CN3JYis4ZvmNj8+9j6nBxSak9RoIfM7oh1Dchn+
+	 zzYjv8P82bkaHQPmRH9Oj1RgSKtZ8pj3jLGYhi/iosspHIczcmhcFk2+vvcoQd1kRm
+	 lBuR3myQY5ir/Pj+5N89EIkh43E1kkaFR5ixa8aT5UyYiCLiz3MNfSzO4Wvp5sz0aR
+	 Y2aBmqsHCU8U7zOoFLDTrlV5Qj1yysP6yMQYyjCLck2fjyUfWYn7EoMh5fiAAUFe4y
+	 7rI7jd9Z+20tQ==
+Content-Type: multipart/signed;
+ boundary=c688cecef0f4ae5165c98d85f84090b76ef48c63c8e86034169e62c2a33d;
+ micalg=pgp-sha256; protocol="application/pgp-signature"
+Date: Wed, 21 Feb 2024 12:52:25 +0100
+Message-Id: <CZAQHXT016DW.GDDY3ZAKS4CJ@kernel.org>
+From: "Michael Walle" <mwalle@kernel.org>
+To: "Pratyush Yadav" <pratyush@kernel.org>
+Subject: Re: [PATCH v7] dt-bindings: mtd: spi-nor: add optional interrupts
+ property
+Cc: "Josua Mayer" <josua@solid-run.com>, "Tudor Ambarus"
+ <tudor.ambarus@linaro.org>, "Miquel Raynal" <miquel.raynal@bootlin.com>,
+ "Richard Weinberger" <richard@nod.at>, "Vignesh Raghavendra"
+ <vigneshr@ti.com>, "Rob Herring" <robh+dt@kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, <linux-mtd@lists.infradead.org>, "Takahiro Kuwano"
+ <tkuw584924@gmail.com>, "Takahiro Kuwano" <Takahiro.Kuwano@infineon.com>,
+ "Yazan Shhady" <yazan.shhady@solid-run.com>, "Rob Herring"
+ <robh@kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+X-Mailer: aerc 0.16.0
+References: <20240219-mtd-flash-interrupt-binding-v7-1-206e30a656fa@solid-run.com> <CZAM553H2H56.2TDN36QEL90XX@kernel.org> <a0144c5b-4095-4a0c-84b6-93dfe9631a6b@solid-run.com> <CZANBUQ2RJ3N.DO07Z9VFJCBZ@kernel.org> <mafs0v86i6qk6.fsf@kernel.org>
+In-Reply-To: <mafs0v86i6qk6.fsf@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Di, 2024-02-20 at 02:14 +0800, Yang Xiwen via B4 Relay wrote:
-> From: Yang Xiwen <forbidden405@outlook.com>
->=20
-> According to the datasheet, the core has an WDOGRESn input signal that
-> needs to be deasserted before being operational. Implement it in the
-> driver.
->=20
-> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
-> ---
->  drivers/watchdog/sp805_wdt.c | 9 +++++++++
->  1 file changed, 9 insertions(+)
->=20
-> diff --git a/drivers/watchdog/sp805_wdt.c b/drivers/watchdog/sp805_wdt.c
-> index 2756ed54ca3d..b4bcfdeb39e6 100644
-> --- a/drivers/watchdog/sp805_wdt.c
-> +++ b/drivers/watchdog/sp805_wdt.c
-> @@ -25,6 +25,7 @@
->  #include <linux/moduleparam.h>
->  #include <linux/pm.h>
->  #include <linux/property.h>
-> +#include <linux/reset.h>
->  #include <linux/slab.h>
->  #include <linux/spinlock.h>
->  #include <linux/types.h>
-> @@ -59,6 +60,7 @@
->   * @lock: spin lock protecting dev structure and io access
->   * @base: base address of wdt
->   * @clk: (optional) clock structure of wdt
-> + * @rst: (optional) reset control signal of wdt
->   * @rate: (optional) clock rate when provided via properties
->   * @adev: amba device structure of wdt
->   * @status: current status of wdt
-> @@ -69,6 +71,7 @@ struct sp805_wdt {
->  	spinlock_t			lock;
->  	void __iomem			*base;
->  	struct clk			*clk;
-> +	struct reset_control		*rst;
+--c688cecef0f4ae5165c98d85f84090b76ef48c63c8e86034169e62c2a33d
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-This can be a local variable in sp805_wdt_probe().
+On Wed Feb 21, 2024 at 11:48 AM CET, Pratyush Yadav wrote:
+> On Wed, Feb 21 2024, Michael Walle wrote:
+>
+> > [+ Takahiro]
+> >
+> > Hi,
+> >
+> > On Wed Feb 21, 2024 at 10:13 AM CET, Josua Mayer wrote:
+> >> Hi,
+> >>
+> >> Am 21.02.24 um 09:27 schrieb Michael Walle:
+> >> > Hi,
+> >> >
+> >> > On Mon Feb 19, 2024 at 3:41 PM CET, Josua Mayer wrote:
+> >> >> Some spi flash memories have an interrupt signal which can be used =
+for
+> >> >> signalling on-chip events such as busy status or ecc errors to the =
+host.
+> >> > Do you have an example? Maybe one with a public datasheet?
+> >>
+> >> My example is Infineon S28HS512T, however datasheet download requires=
+=20
+> >> user account.
+> >>
+> >> S26HS512T has interrupt line, too, and datasheet is downloadable witho=
+ut=20
+> >> registration:
+> >> https://www.infineon.com/cms/en/product/memories/nor-flash/semper-nor-=
+flash-family/semper-nor-flash/#!documents
+> >
+> > Thanks, as far as I can see, both are hyperbus flashes. I'm asking
+> > because I'm not aware of any SPI NOR flash with an interrupt line.=20
+>
+> I found this datasheet [0] for S28H flash family from Infineon on
+> Google. These are SPI NOR flashes. In pinout you can see there is an
+> INT# signal. The signal description says: "System Interrupt (INT#). When
+> LOW, the device is indicating that an internal event has occurred."
+> Further in section 4.1.1.5 "INT# Output" it says:
+>
+>     HL-T/HS-T supports INT# output pin to indicate to the host system
+>     that an event has occurred within the flash device. The user can
+>     configure the INT# output pin to transition to the active (LOW)
+>     state when:
+>
+>     - 2-bit ECC error is detected
+>     - 1-bit ECC error is detected
+>     - Transitioning from the Busy to the Ready state
+>
+> [0] https://www.infineon.com/dgdl/Infineon-S28HS256T_S28HS512T_S28HS01GT_=
+S28HL256T_S28HL512T_S28HL01GT_256-Mb_(32-MB)_512-Mb_(64-MB)_1-Gb_(128-MB)_H=
+S-T_(1.8-V)_HL-T_(3.0-V)_Semper_Flash_with_Octal_Interface-DataSheet-v03_00=
+-EN.pdf?fileId=3D8ac78c8c7d0d8da4017d0ee6bca96f97&da=3Dt
 
->  	u64				rate;
->  	struct amba_device		*adev;
->  	unsigned int			load_val;
-> @@ -264,6 +267,12 @@ sp805_wdt_probe(struct amba_device *adev, const stru=
-ct amba_id *id)
->  		return -ENODEV;
->  	}
-> =20
-> +	wdt->rst =3D devm_reset_control_get_optional(&adev->dev, NULL);
 
-Please use devm_reset_control_get_optional_exclusive() directly.
+Okay then,
+Acked-by: Michael Walle <mwalle@kernel.org>
 
-> +	if (IS_ERR(wdt->rst))
-> +		return dev_err_probe(&adev->dev, PTR_ERR(wdt->rst), "Can not get reset=
-\n");
-> +
-> +	reset_control_deassert(wdt->rst);
-> +
->  	wdt->adev =3D adev;
->  	wdt->wdd.info =3D &wdt_info;
->  	wdt->wdd.ops =3D &wdt_ops;
+-michael
 
-regards
-Philipp
+--c688cecef0f4ae5165c98d85f84090b76ef48c63c8e86034169e62c2a33d
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iIgEABYIADAWIQQCnWSOYTtih6UXaxvNyh2jtWxG+wUCZdXj+RIcbXdhbGxlQGtl
+cm5lbC5vcmcACgkQzcodo7VsRvvNcAEApra9rSm1MfAkhRbVfkHLU/6D/SWddatA
+gXpTpAKirOoBALjzfbDua3ec+2dO1vFKuvOuC4AdReQxdnr3bRXO4SYB
+=rxHh
+-----END PGP SIGNATURE-----
+
+--c688cecef0f4ae5165c98d85f84090b76ef48c63c8e86034169e62c2a33d--
 
