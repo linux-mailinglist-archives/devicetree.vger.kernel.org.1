@@ -1,160 +1,154 @@
-Return-Path: <devicetree+bounces-44404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 160A985E0E3
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 16:22:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D195785E0F2
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 16:24:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 477071C219F8
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 15:22:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B934285631
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 15:24:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 092CB8002B;
-	Wed, 21 Feb 2024 15:22:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B98E380626;
+	Wed, 21 Feb 2024 15:24:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MMGyCEkB"
+	dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b="N/eabdjO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mta-64-225.siemens.flowmailer.net (mta-64-225.siemens.flowmailer.net [185.136.64.225])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D00F87F7DA;
-	Wed, 21 Feb 2024 15:22:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10B1F80606
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 15:24:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.64.225
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708528949; cv=none; b=Mxs3TDUUphblV4lI/gfwPKv+SutYfGyw0aVrvNUntRST7cnMdH/TyDOicKSKN47326nlavF3YPfOxPcZ70QerOtFnyaq/9G9ATCKOvXXSYDKxAT3+hETd39/9pOKP2zxL72f9q/9NEuYerVKd2zueAixYEBWGbY6LvBtPSIENW4=
+	t=1708529076; cv=none; b=i82NJuYOaMHWqVkEsLf/7/r5xjAWblvjt1GGLlCmOpXYGzvKim6gOK4m7IWlwgw66wtUs8jnOBg/JxxmclPhQM0CX9o3101Lxng4ohZJoUxrQ2YpED0FfKe/rvQluTJtoZmpnBpuEDIJH+wEyC3FiaNdLRQkMJvIE1NYEUx6GSE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708528949; c=relaxed/simple;
-	bh=TCtBpdIY7450Ty+SdGZtoT1IyppeoEDJ8gGAm0LnTiM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eDKFGEebFGc0lzWZFVRniqnVLM2XtTCwSHd777HZn9YpouD1zo2E9uikYk1ZhC25fOGYbUSKhNIehA56zO+XDYmQHUsZ6+wjDLYYgPW+y7JhiqSLA5dtoRd76S7TookBeEuq4p6t2ocoJLaeUjgpFq1N2DCllEft3vZRvVtZqgs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MMGyCEkB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F5EBC433F1;
-	Wed, 21 Feb 2024 15:22:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708528949;
-	bh=TCtBpdIY7450Ty+SdGZtoT1IyppeoEDJ8gGAm0LnTiM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MMGyCEkBJYH1XwA80dc+qUCu/cOXpEl3HiZXgftka+aMyQbtI3GIlyhflIWpSZLe3
-	 iGDsz3jH4054EU0NKQv0fEJ7P/kTV2kusLyGo+Ws9keDj1mnLeGazBq3cmiYPvEtZF
-	 roD9hoj4iqu6Qh+iCsuosQVpsei+XZHMw4NnsFFE6atsvo07Gy+ouAZG1Hs6a3BRH9
-	 9B67sx7ijI39SgJX2fX9fk49wlYljyxe6qnCxcVChR8dkeGuMWpdcy3hhyI1b8e1zM
-	 C5aO8WeTqtqEbiPNl9w/p2yG0X0p5R3XVcFGZYEsMemAGlenhaPrXinHPw+KNmgRJP
-	 4zdBYxpn+/yJw==
-Date: Wed, 21 Feb 2024 08:22:26 -0700
-From: Rob Herring <robh@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: linux-iio@vger.kernel.org,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: add ad7944 ADCs
-Message-ID: <20240221152226.GA2868707-robh@kernel.org>
-References: <20240216-ad7944-mainline-v2-0-7eb69651e592@baylibre.com>
- <20240216-ad7944-mainline-v2-1-7eb69651e592@baylibre.com>
+	s=arc-20240116; t=1708529076; c=relaxed/simple;
+	bh=xbSJySuLz+kUWt/a4hSL5ok5Gu+9XGsWi2p/iYqZpk4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=N2AScZL4aaD8K4wjzUMVvthos89dIWij4OuQ1K+xL/32SFeYP0+lR6ZuPm9NCT7La3hzxMtZBbmhMij7cF49h5nRBEcJr1cSz3G5yb045PTe9x5Uev5kTo42d2sRk1n+iQxNQ07j6cZefCiK5qG02I68TaZhuiSEKPMW8Fav9yM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b=N/eabdjO; arc=none smtp.client-ip=185.136.64.225
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
+Received: by mta-64-225.siemens.flowmailer.net with ESMTPSA id 202402211524259acfa42e4f2fd95355
+        for <devicetree@vger.kernel.org>;
+        Wed, 21 Feb 2024 16:24:25 +0100
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
+ d=siemens.com; i=diogo.ivo@siemens.com;
+ h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc;
+ bh=4somyZElZcPHvwR2g6Lf1q6jrCP6R7JaWxuo2W+uI58=;
+ b=N/eabdjO7BahFVDEmBRrkOIi3G8+WgmtROHqivaOeyV+MijgW4p1QlYdMIV25zq22tZ6PX
+ mFuYrvw3V5+tc7YJvByJ53J1eJfTz5bgZRdE5dhTMiFnpxMKbnG5qB0+4LDSSwuzScwE1BAe
+ 0D0rMp+ooTKjmwfZH9RJtHJEvg+sM=;
+From: Diogo Ivo <diogo.ivo@siemens.com>
+To: danishanwar@ti.com,
+	rogerq@kernel.org,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	andrew@lunn.ch,
+	dan.carpenter@linaro.org,
+	jacob.e.keller@intel.com,
+	robh@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	vigneshr@ti.com,
+	wsa+renesas@sang-engineering.com,
+	hkallweit1@gmail.com,
+	arnd@arndb.de,
+	vladimir.oltean@nxp.com,
+	linux-arm-kernel@lists.infradead.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Diogo Ivo <diogo.ivo@siemens.com>,
+	jan.kiszka@siemens.com
+Subject: [PATCH net-next v3 00/10] Support ICSSG-based Ethernet on AM65x SR1.0 devices
+Date: Wed, 21 Feb 2024 15:24:06 +0000
+Message-ID: <20240221152421.112324-1-diogo.ivo@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240216-ad7944-mainline-v2-1-7eb69651e592@baylibre.com>
+X-Flowmailer-Platform: Siemens
+Feedback-ID: 519:519-1320519:519-21489:flowmailer
 
-On Fri, Feb 16, 2024 at 01:46:18PM -0600, David Lechner wrote:
-> This adds a new binding for the Analog Devices, Inc. AD7944, AD7985, and
-> AD7986 ADCs.
-> 
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
-> ---
->  .../devicetree/bindings/iio/adc/adi,ad7944.yaml    | 204 +++++++++++++++++++++
->  MAINTAINERS                                        |   8 +
->  2 files changed, 212 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7944.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7944.yaml
-> new file mode 100644
-> index 000000000000..61ee81326660
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7944.yaml
-> @@ -0,0 +1,204 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7944.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices PulSAR LFCSP Analog to Digital Converters
-> +
-> +maintainers:
-> +  - Michael Hennerich <Michael.Hennerich@analog.com>
-> +  - Nuno Sá <nuno.sa@analog.com>
-> +
-> +description: |
-> +  A family of pin-compatible single channel differential analog to digital
-> +  converters with SPI support in a LFCSP package.
-> +
-> +  * https://www.analog.com/en/products/ad7944.html
-> +  * https://www.analog.com/en/products/ad7985.html
-> +  * https://www.analog.com/en/products/ad7986.html
-> +
-> +$ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ad7944
-> +      - adi,ad7985
-> +      - adi,ad7986
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-max-frequency:
-> +    maximum: 111111111
-> +
-> +  spi-cpol: true
-> +  spi-cpha: true
-> +
-> +  adi,spi-mode:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum: [ single, multi, chain ]
-> +    default: multi
-> +    description: |
-> +      * single: The datasheet calls this "3-wire mode". It is often used when
-> +        the ADC is the only device on the bus. In this mode, SDI is tied to VIO,
-> +        and the CNV line can be connected to the CS line of the SPI controller
-> +        or to a GPIO, in which case the CS line of the controller is unused.
+Hello,
 
-We have a standard property for this.
+This series extends the current ICSSG-based Ethernet driver to support
+AM65x Silicon Revision 1.0 devices.
 
-> +      * multi: The datasheet calls this "4-wire mode". This is the convential
-> +        SPI mode used when there are multiple devices on the same bus. In this
-> +        mode, the CNV line is used to initiate the conversion and the SDI line
-> +        is connected to CS on the SPI controller.
+Notable differences between the Silicon Revisions are that there is
+no TX core in SR1.0 with this being handled by the firmware, requiring
+extra DMA channels to manage communication with the firmware (with the
+firmware being different as well) and in the packet classifier.
 
-That's "normal" mode.
+The motivation behind it is that a significant number of Siemens
+devices containing SR1.0 silicon have been deployed in the field
+and need to be supported and updated to newer kernel versions
+without losing functionality.
 
-> +      * chain: The datasheet calls this "chain mode". This mode is used to save
-> +        on wiring when multiple ADCs are used. In this mode, the SDI line of
-> +        one chip is tied to the SDO of the next chip in the chain and the SDI of
-> +        the last chip in the chain is tied to GND. Only the first chip in the
-> +        chain is connected to the SPI bus. The CNV line of all chips are tied
-> +        together. The CS line of the SPI controller is unused.
+This series is based on TI's 5.10 SDK [1].
 
-Don't you need to know how many chips are chained? In any case, you just 
-need a property for chain mode. There's some existing properties for 
-chained devices I think. Standard logic shift register based GPIO IIRC.
+The second version of this patch series can be found in [2].
 
-CNV are tied together, but must be driven by something? I suppose 
-cnv-gpios? But wouldn't that be the same as the SPI controller GPIO CS? 
-Does a SPI controller CS line connected to CNV not work in this case?
+The main changes in this version are the introduction of a separate
+driver for SR1.0 with its own Kconfig symbol and the refactoring of
+functions that can be shared across Silicon Revisions into a common
+location. A more detailed description of the changes can be found
+in each commit's message.
 
-Rob
+Importantly, in its current form the driver has two problems:
+ - Setting the link to 100Mbit/s and half duplex results in slower than
+   expected speeds. We have identified that this comes from
+   icssg_rgmii_get_fullduplex() misreporting a full duplex connection
+   and thus we send the wrong command to the firmware.
+
+ - When using 3 TX channels we observe a timeout on TX queue 0. We have
+   made no real progress on this front in identifying the root cause.
+
+For both of these topics help from someone more familiar with the hardware
+would be greatly appreciated so that we can support these features rather
+than disable them in the final driver version.
+
+[1]: https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/tree/?h=ti-linux-5.10.y
+[2]: https://lore.kernel.org/netdev/20240117161602.153233-1-diogo.ivo@siemens.com/
+
+Diogo Ivo (10):
+  dt-bindings: net: Add support for AM65x SR1.0 in ICSSG
+  eth: Move IPv4/IPv6 multicast address bases to their own symbols
+  net: ti: icssg-prueth: Move common functions into a separate file
+  net: ti: icssg-prueth: Add SR1.0-specific configuration bits
+  net: ti: icssg-prueth: Add SR1.0-specific description bits
+  net: ti: icssg-prueth: Adjust IPG configuration for SR1.0
+  net: ti: icssg-prueth: Adjust the number of TX channels for SR1.0
+  net: ti: icssg-prueth: Add functions to configure SR1.0 packet
+    classifier
+  net: ti: icssg-prueth: Modify common functions for SR1.0
+  net: ti: icssg-prueth: Add ICSSG Ethernet driver for AM65x SR1.0
+    platforms
+
+ .../bindings/net/ti,icssg-prueth.yaml         |   35 +-
+ drivers/net/ethernet/ti/Kconfig               |   15 +
+ drivers/net/ethernet/ti/Makefile              |    9 +
+ .../net/ethernet/ti/icssg/icssg_classifier.c  |  113 +-
+ drivers/net/ethernet/ti/icssg/icssg_common.c  | 1222 +++++++++++++++++
+ drivers/net/ethernet/ti/icssg/icssg_config.c  |   14 +-
+ drivers/net/ethernet/ti/icssg/icssg_config.h  |   56 +
+ drivers/net/ethernet/ti/icssg/icssg_ethtool.c |   10 +
+ drivers/net/ethernet/ti/icssg/icssg_prueth.c  | 1189 +---------------
+ drivers/net/ethernet/ti/icssg/icssg_prueth.h  |   77 +-
+ .../net/ethernet/ti/icssg/icssg_prueth_sr1.c  | 1173 ++++++++++++++++
+ include/linux/etherdevice.h                   |   12 +-
+ 12 files changed, 2716 insertions(+), 1209 deletions(-)
+ create mode 100644 drivers/net/ethernet/ti/icssg/icssg_common.c
+ create mode 100644 drivers/net/ethernet/ti/icssg/icssg_prueth_sr1.c
+
+-- 
+2.43.2
+
 
