@@ -1,133 +1,88 @@
-Return-Path: <devicetree+bounces-44482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BC2A85E6F6
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 20:10:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CB2385E700
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 20:13:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9C56DB2627B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 19:10:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BCA651F25C7F
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 19:13:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2B0A8593E;
-	Wed, 21 Feb 2024 19:10:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FzOGdq3y"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5523D85C51;
+	Wed, 21 Feb 2024 19:13:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA49D1097B;
-	Wed, 21 Feb 2024 19:10:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B70FD1097B
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 19:13:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708542645; cv=none; b=j/miPX/O60sh3smPAKEcvF3mvhHGaz3Arg56hjh9xvOslBHVcV1F++lvkDf6TdSHiJDe4vbCybw+FIUVcx/jMFRT6KxMHM2i6dR+k2I+DoAjPYP+Bc2o0ZtT0zc2wiqKmB8TdHhZIiyCqgiz5mz6Z0fBLZ+WUz9QzSpeAEdND7E=
+	t=1708542813; cv=none; b=IbfNXEIeAoPySc9G/NmPelm8SpL0U8ws9B9nW9GG/6Pd5S1aUq0PwKgFeZxRLrB9AbjBDbV8/XMsKnKw8LiEm7TB1/lbRkWxqXt4qfs3aXuPUfQGGg47GGvBTqpwQGNlAu7eSqQnmDjDue/eFHTGSKyx4a81MHB1oJPWiGqJEYk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708542645; c=relaxed/simple;
-	bh=/M7TPMT/PgzbB4ehLxeVyg29RzS0Guc+B3bAov1XaN4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cfcIrvZdUCbVgYHZrcAoB34Y/PbvGQPhlUpzeO42zHuXDatqwD7zg7ss+FSQ6VQzNb7ndYdL5OJd1YR1bm1NNObmMtH5QAYL74wyjttBLwS8R8h+fkccMrHQiOQ0kSj75y//5T8/jRl5ru+2qV9MGUlWWeKBswMPUBuE1unVZkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FzOGdq3y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD8A9C433C7;
-	Wed, 21 Feb 2024 19:10:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708542645;
-	bh=/M7TPMT/PgzbB4ehLxeVyg29RzS0Guc+B3bAov1XaN4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FzOGdq3yQkkvKtdfcFu6MiRtvxRkTX7itvbAUFURCQepGqZeMmM5vk5yKd5o0GlKF
-	 HEy/+L77sz1vzn43++e/6qOYr+iTIb2GB7D4dJRYKcNfWidxNkcAi3TDz32wHGGMY1
-	 QtMMQbsQcF5ieVK4WdgDgztmQNTHBjeY8GK1LHwG3w8WQ3eqthhLJY4Rb8hT5i29H9
-	 mI54gdvdlucrwANISzOjA0zTfV8YBHx+GgdLv59Q8Lq+gJ1SeJM3OYHYh4OKr05Fwt
-	 aL0VFb9Xth4FpuSRDdk3qLZuSb5fQsa1d21Hwjs+Mx7HW12Y4CRSG4J0/hDQbI+RCQ
-	 hgTpf8SgghpPQ==
-Date: Wed, 21 Feb 2024 19:10:40 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: vendor-prefixes: Add missing prefixes used
- in compatibles
-Message-ID: <20240221-haphazard-nerd-e12e45f9495c@spud>
-References: <20240216025839.902288-1-robh@kernel.org>
- <20240216-percolate-wooing-b5e4f6814d15@wendy>
- <20240220163845.GA3606739-robh@kernel.org>
- <20240220-colonial-shame-e217e4399184@spud>
- <20240221150303.GA2792906-robh@kernel.org>
+	s=arc-20240116; t=1708542813; c=relaxed/simple;
+	bh=jefV61l/T0TatZNUI9/rQ+/DLxxeKsWDtFNb40LJrcw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=jUbgXu9mDKO2UUIfXETxgcb9mo5SsuR6t4/B9beCJUsZlr0SWOen7Z9PLdVMyR8ufxufyFmNOV/sz9zQY59nuEiHZDwJ7lJsmXmgv8VCLvAgkY83uP/KThnjetCHjlg7mGWdaRLaKRP5LUZ2Vr3w7lDsYz8O4V5dd3cmfNCKcVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <m.felsch@pengutronix.de>)
+	id 1rcs1T-000155-EG; Wed, 21 Feb 2024 20:12:51 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: conor.dooley@microchip.com,
+	v.georgiev@metrotek.ru,
+	mdf@kernel.org,
+	hao.wu@intel.com,
+	yilun.xu@intel.com,
+	trix@redhat.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org
+Cc: linux-fpga@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	kernel@pengutronix.de
+Subject: [PATCH] dt-bindings: fpga: microchip,mpf-spi-fpga-mgr: document CPOL/CPHA support
+Date: Wed, 21 Feb 2024 20:12:47 +0100
+Message-Id: <20240221191247.3643671-1-m.felsch@pengutronix.de>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Ky3yF72IJF/c8h0h"
-Content-Disposition: inline
-In-Reply-To: <20240221150303.GA2792906-robh@kernel.org>
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
+X-SA-Exim-Mail-From: m.felsch@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+Microchip FPGAs can communicate in different modes, so document them to
+avoid dt-validate warnings.
 
---Ky3yF72IJF/c8h0h
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+---
+ .../devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml   | 3 +++
+ 1 file changed, 3 insertions(+)
 
-On Wed, Feb 21, 2024 at 08:03:03AM -0700, Rob Herring wrote:
-> On Tue, Feb 20, 2024 at 05:51:37PM +0000, Conor Dooley wrote:
-> > On Tue, Feb 20, 2024 at 09:38:45AM -0700, Rob Herring wrote:
-> > > On Fri, Feb 16, 2024 at 08:59:56AM +0000, Conor Dooley wrote:
-> > > > On Thu, Feb 15, 2024 at 08:58:29PM -0600, Rob Herring wrote:
-> > > > > +  "^calao,.*":
-> > > > > +    description: CALAO Systems SAS
-> > > > >    "^calaosystems,.*":
-> > > > >      description: CALAO Systems SAS
-> > > >=20
-> > > > > +  "^IBM,.*":
-> > > > > +    description: International Business Machines (IBM)
-> > > > >    "^ibm,.*":
-> > > > >      description: International Business Machines (IBM)
-> > > >=20
-> > > > These ones add duplicates with no indication of which one is to be =
-used
-> > > > going forward. Why not mark one as deprecated?
-> > >=20
-> > > Because I couldn't decide which... It's a mixture with no clear patte=
-rn=20
-> > > of on what or when each one is used. Power is kind of special.
-> >=20
-> >  That might be true for ibm, but is it true for calao systems?
-> >  The website appears to now be something to do with Korean gambling, but
-> >  the twitter remains and looks to have produced arm sbcs:
-> >  https://twitter.com/calaosystems?lang=3Den
->=20
-> I used this:
->=20
-> https://en.wikipedia.org/wiki/Calao_Systems
->=20
-> The company went bankrupt in 2016.
+diff --git a/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml b/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
+index a157eecfb5fc..bb9a7d16db60 100644
+--- a/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
++++ b/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
+@@ -22,6 +22,9 @@ properties:
+     description: SPI chip select
+     maxItems: 1
+ 
++  spi-cpol: true
++  spi-cpha: true
++
+ required:
+   - compatible
+   - reg
+-- 
+2.39.2
 
-Yah. I found the twitter to provide more info about the type of chips
-they used than wikipedia though, since I was trying to confirm whether
-or not they were power.
-
-> ST based systems used one prefix and=20
-> Atmel based systems used the other. Which do I pick to deprecate? I'm=20
-> not expecting any new boards either.=20
-
-I guess, if nothing new will show up since the company itself got
-deprecated, it doesn;t really matter.
-
---Ky3yF72IJF/c8h0h
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdZKsAAKCRB4tDGHoIJi
-0jMhAQDEDXZsA/69hMcZwPFP2BQQgEwLnp61XZn4VQTeZdtgxgEAvbhJz+IpWQG4
-cX1FnrKgy+mvhWcJT1tDe9If7Vtj8AA=
-=K318
------END PGP SIGNATURE-----
-
---Ky3yF72IJF/c8h0h--
 
