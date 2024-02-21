@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-44262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44263-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66C5685D50E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 11:03:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A41CA85D51E
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 11:05:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20F6228778F
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 10:03:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A63E287330
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 10:05:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 576304DA06;
-	Wed, 21 Feb 2024 09:57:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41DF03EA91;
+	Wed, 21 Feb 2024 10:00:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="jaCxejWQ"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ibcIOx9k"
 X-Original-To: devicetree@vger.kernel.org
 Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A70623D569;
-	Wed, 21 Feb 2024 09:57:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 927C13FB0C;
+	Wed, 21 Feb 2024 10:00:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708509454; cv=none; b=Gc1OLiSbNeUYtsv4j/5VxoXBv5znA7lvqYbywIkSjcIlUQ3aXsnUccYQKnkWayq/OftI1d+2J5gS/0qJ5c4GhqilU9rd/gmElQWzc2Ra0XE1d1jHparoBnFgFhAF8nSgoN1vvATbm9DZhu2FW/mj3smgp13O9O0xQMXQxFhLYaE=
+	t=1708509650; cv=none; b=NARYdkmyqpPOa8BUWV51qI2R4OrmEAXg8FnM1GWDFaAQ6x8OJ2KVFeQDn0xtB9B8rWCvZJsQ1ngHbzKqG5oWOyf0bk8cli20D0Dc7fkxmHdIbdc07cHG6tEOWUMu2RyqQ/CoVkEgf8E4ZmNmENWGWZ4Hpwf4nJEM/P3LWRijUSA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708509454; c=relaxed/simple;
-	bh=CBRwI7HgCvtHtSggfcJjCRi/PajFPLcmhsfXJ/u7MmQ=;
+	s=arc-20240116; t=1708509650; c=relaxed/simple;
+	bh=wcF4f8oB66/zilBylgZvCVlgJPjo9n+Rs862VHuPPtE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lfYhEObXxQKWuOiwK/xerPLXFxZY8HNAqE8VqCNCN9OxEx+82C94t/atBAbuRSdpoY/utuxOS57bPjYBsCGSA8JDyOeyNRwBOVYTS9BJg6RwmHf4I9zf8pVRrK40dqCDzVk99nSuCk8Wjs1PENBGqPs6NmFlC40VIH1+8kLS58I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=jaCxejWQ; arc=none smtp.client-ip=46.235.227.194
+	 In-Reply-To:Content-Type; b=LnIEClPgvfhnuTXqa8BWZjGguOLOCV1q7zUUiKFDv2eyx9nFOQ4N/PuHCK/Jqu8HYSYyU+kz5NferE+pzZIGLW3kcnhyjZ+eH46P5JCyV/Ni9v4LU74oawjR3ZYJFp3zNCsdLadtaSbOo0/ZAmOIALDOoApUbrjz0ST9x2prabk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ibcIOx9k; arc=none smtp.client-ip=46.235.227.194
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1708509450;
-	bh=CBRwI7HgCvtHtSggfcJjCRi/PajFPLcmhsfXJ/u7MmQ=;
+	s=mail; t=1708509646;
+	bh=wcF4f8oB66/zilBylgZvCVlgJPjo9n+Rs862VHuPPtE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jaCxejWQxJfIe0hBE5Ipck3zFqSAN2f5oVJ5kE3mOF62mPU7gXwn/RTGIEcEXOjWo
-	 3xQ7qtwotsYswBNxtIEQz9/7cULc+M4P9EKJwekfhJorFym4k0rWsCan01Z6biCSFT
-	 fFcfZwZ9M5RFxdxJmZPrqkmGzKNJu1wKj/qF9nWWjpbJCcr+GsaxmaSs6lySkQrbNe
-	 9RAJVu6PU2p5ONwG7qCgpWJFXLQvwIrf0ewX6Soki30P3Ef2fMKMUI4CUJQxehi1pL
-	 oi4pGyhmH6fTvrjFl+w1CNObPh5uWVRTurW5OmBAHE26wwd//zfT38D3QDI2IDTj0Q
-	 nfVfA1Ex8YDuw==
+	b=ibcIOx9khG/HibZOQuADQzzX0BqkCDivppWffmnMYxNslmqkpFm4o7N7PSjEXpZ+G
+	 Xkdg1M6DbzGGnluOboEfBBz6dgGonmZt8Vz6i/lpF+UaPao1G5aEhqUTAp5CqpLBFC
+	 7ZcopzX8/GZGhqzB3/JNcM/Ti4BS7Giq6lr0tyuK1sQiYXvUNwENPtHCChZn3Z0pDr
+	 Y4UCiCgo/6gwEHwz07zjY5tP+23KdmbN3DX/rLDIA8EN4lDzOdo6kj1EIZXPHmy5nm
+	 8Jj09w1Yn8pqWutpt+q4W1c5Tkjc3MRHBeHMIejmpoh37n7En5xTC0aMcKkauIjoku
+	 kr1ftJPjRQhtg==
 Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 6E4CE37820C8;
-	Wed, 21 Feb 2024 09:57:29 +0000 (UTC)
-Message-ID: <8d80be8a-6ed4-48e3-b792-454e11b518c5@collabora.com>
-Date: Wed, 21 Feb 2024 10:57:28 +0100
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 7292237820C8;
+	Wed, 21 Feb 2024 10:00:45 +0000 (UTC)
+Message-ID: <770b23ec-7199-4202-888d-6a22b7f4af74@collabora.com>
+Date: Wed, 21 Feb 2024 11:00:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,8 +57,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] dt-bindings: arm64: dts: mediatek: Add Cudy WR3000 V1
- router
+Subject: Re: [PATCH 3/4] arm64: dts: mediatek: mt7981: add pinctrl
 Content-Language: en-US
 To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
  Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
@@ -75,20 +74,78 @@ Cc: Chen-Yu Tsai <wenst@chromium.org>, Hsin-Yi Wang <hsinyi@chromium.org>,
  linux-kernel@vger.kernel.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
  <rafal@milecki.pl>
 References: <20240221073524.20947-1-zajec5@gmail.com>
- <20240221073524.20947-3-zajec5@gmail.com>
+ <20240221073524.20947-4-zajec5@gmail.com>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20240221073524.20947-3-zajec5@gmail.com>
+In-Reply-To: <20240221073524.20947-4-zajec5@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
 Il 21/02/24 08:35, Rafał Miłecki ha scritto:
 > From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Cudy WR3000 V1 is an MT7981B (AKA Filogic 820) based wireless router.
+> MT7981 contains on-SoC PIN controller that is also a GPIO provider.
 > 
 > Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+>   arch/arm64/boot/dts/mediatek/mt7981b.dtsi | 37 +++++++++++++++++++++++
+>   1 file changed, 37 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7981b.dtsi b/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
+> index 4feff3d1c5f4..fdd5c22cfc9c 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
+> @@ -86,6 +86,43 @@ pwm@10048000 {
+>   			#pwm-cells = <2>;
+>   		};
+>   
+> +		pio: pinctrl@11d00000 {
+> +			compatible = "mediatek,mt7981-pinctrl";
+> +			reg = <0 0x11d00000 0 0x1000>,
+> +			      <0 0x11c00000 0 0x1000>,
+> +			      <0 0x11c10000 0 0x1000>,
+> +			      <0 0x11d20000 0 0x1000>,
+> +			      <0 0x11e00000 0 0x1000>,
+> +			      <0 0x11e20000 0 0x1000>,
+> +			      <0 0x11f00000 0 0x1000>,
+> +			      <0 0x11f10000 0 0x1000>,
+> +			      <0 0x1000b000 0 0x1000>;
+> +			reg-names = "gpio", "iocfg_rt", "iocfg_rm", "iocfg_rb", "iocfg_lb",
+> +				    "iocfg_bl", "iocfg_tm", "iocfg_tl", "eint";
+> +			interrupt-controller;
+> +			interrupts = <GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-parent = <&gic>;
+> +			gpio-ranges = <&pio 0 0 56>;
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			#interrupt-cells = <2>;
+> +
+> +			mdio-pins {
+> +				mux {
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+That's board specific. MDIO and SPI0 pins can be used as GPIO instead of,
+respectively, ETH and SPI.
 
+Must go to your board devicetree, not here: please move both.
+
+Cheers,
+Angelo
+
+> +					function = "eth";
+> +					groups = "smi_mdc_mdio";
+> +				};
+> +			};
+> +
+> +			spi0-pins {
+> +				mux {
+> +					function = "spi";
+> +					groups = "spi0", "spi0_wp_hold";
+> +				};
+> +			};
+> +
+> +		};
+> +
+>   		clock-controller@15000000 {
+>   			compatible = "mediatek,mt7981-ethsys", "syscon";
+>   			reg = <0 0x15000000 0 0x1000>;
 
 
