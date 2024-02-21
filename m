@@ -1,102 +1,119 @@
-Return-Path: <devicetree+bounces-44247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDAB185D360
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 10:23:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FF6385D368
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 10:23:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7F15AB24458
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 09:23:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C4297B23259
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 09:23:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ADA43D0B4;
-	Wed, 21 Feb 2024 09:22:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E80093D0BF;
+	Wed, 21 Feb 2024 09:23:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="OmOdepO6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LrmSA7G2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3D113D3B8;
-	Wed, 21 Feb 2024 09:22:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF2583D0B9;
+	Wed, 21 Feb 2024 09:23:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708507377; cv=none; b=IGq3I0eHCobLdFxEURgYdrZA0RfRdDq98nUyqlENpWyeepOERgTvgIA9bg6XxbQpeuW+45ckdiohonq9o6bcWY02SYy+AEsfWWu7LTS0BZWTi6sOhgCZUlL8tGeO4nHpTjoksalOExfngWUtEkJaLWvTs6QdDqTk7nrgzAaE1BA=
+	t=1708507415; cv=none; b=qYOeVMdii+7zm/0XmQ5ugD5RZOJCwklIa7K04b0rh2CLeq9oNCJJy1/vSz8BpV9mUeNzO7TK0roY1NaoPM6n9vQ7n1eE82MoJydVU5eTrtRHXkIKHX4JXAp66tjKOF7m7LeibTbFO48cPzHXQ1k3N4ccXWvzI4ie5D+X2eBxOTE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708507377; c=relaxed/simple;
-	bh=xIf/au/9NhubwKmMHmZZdLTDwXFfPoXGSwzESI0C9a4=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WRD+OsY0Enj/MUieOGvbFUqBBP1GPgDt29unguNchLYP8jreNAO1NfUEPBdGOQTQ/lp0CPKeX8kMy+qMnJAje2AEUySRiUErUdTrVj6AU44SXhzTSl/yH0OeW6zvjqgswDAQaPq6yZSNX3CiaOw1SVjbAZ1PtZXQ2TRNvUe2VI8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=OmOdepO6; arc=none smtp.client-ip=67.231.149.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41L6dxZj023747;
-	Wed, 21 Feb 2024 03:22:49 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=PODMain02222019; bh=R6mowYBz3PTNIEc
-	LjqKSH0kC4MBHuU3YHPxD8CCuIdM=; b=OmOdepO6+jJZxuwBNqN+zYI0+GxJmc+
-	V+yLpt3pFeGSndGXHiVGYBmQ9REr+cTwRaTXngrvsfVEE+IfqsHdRL9/Adqwmsij
-	P6chxJLeBUVfOsdNWwfYGyp9e+RtmkY/gMepf9t5aaidWGeuBgK6g1AJRnwq05OQ
-	FyA0Ey2LMKGEpIR7Owlto8yDg+81a1Vhnp/2I7Ery2axIcSZyiSdEIAoHiVUJpS7
-	nnCLczkKtUyNtjEpDoGcEpDq7pxIRf+uqfTfUBbT5d3qsGE8gWN7TuWp5Kb41J7B
-	GOOJxClbXXkmHPj796PR758J1LRYD6p3eiutGxuRl384Kl9x9KmylWw==
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3wd207grsk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Feb 2024 03:22:48 -0600 (CST)
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 21 Feb
- 2024 09:22:46 +0000
-Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1118.40 via Frontend Transport; Wed, 21 Feb 2024 09:22:46 +0000
-Received: from ediswmail9.ad.cirrus.com (ediswmail9.ad.cirrus.com [198.61.86.93])
-	by ediswmail9.ad.cirrus.com (Postfix) with ESMTPS id 96F58820246;
-	Wed, 21 Feb 2024 09:22:46 +0000 (UTC)
-Date: Wed, 21 Feb 2024 09:22:45 +0000
-From: Charles Keepax <ckeepax@opensource.cirrus.com>
-To: James Ogletree <jogletre@opensource.cirrus.com>
-CC: <dmitry.torokhov@gmail.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <lee@kernel.org>, <broonie@kernel.org>, <jeff@labundy.com>,
-        <patches@opensource.cirrus.com>, <linux-sound@vger.kernel.org>,
-        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v8 1/5] firmware: cs_dsp: Add write sequencer interface
-Message-ID: <ZdXA5cNFd+hvw//F@ediswmail9.ad.cirrus.com>
-References: <20240221003630.2535938-1-jogletre@opensource.cirrus.com>
- <20240221003630.2535938-2-jogletre@opensource.cirrus.com>
+	s=arc-20240116; t=1708507415; c=relaxed/simple;
+	bh=jE1ncH7sLUYatuNt7cLbmypurrJj6Bf/Ccrj6W1lvQc=;
+	h=Content-Type:Date:Message-Id:Cc:From:To:Subject:References:
+	 In-Reply-To; b=FelfAn0uA42CcxK62mam3079GYUbTsfS4+kwcu7/qSIOy8DIM+vygBZYvDy7hl2nm1sFglOiRbz6VC+jHx9WM+E4IYTeeFz3QVCzfnxhxw/QRtcBMhhH4k2E6nGtz/eCT43UGFvUtAjwueUIfM9I6OQELNMxxh/P8zT+xAtaG90=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LrmSA7G2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8C35C433C7;
+	Wed, 21 Feb 2024 09:23:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708507415;
+	bh=jE1ncH7sLUYatuNt7cLbmypurrJj6Bf/Ccrj6W1lvQc=;
+	h=Date:Cc:From:To:Subject:References:In-Reply-To:From;
+	b=LrmSA7G2qnXbBZhzlDs81CW9rI3+FG6uXE41/r/OntunNmQAaXDrUdQ8ItFLdHyn+
+	 bNAfSgOe2g83K0QYoUPAzIXpjzHL7G4l3xvd8XB/qJcF947Mt65f9sgd99elh1g01v
+	 /9tAmqpvAK1edAwv7CN7XVVNFYT9gOY5u5xdfzMxSD6pJRfCvbn4uF9h6O2yVw5fIw
+	 a4rDLwUB3BShO/RVIULt8/jeq6Te5kQkxR+tRjhbSPAPByOprD+IDlTGO/be3/SsIW
+	 oSd+YaFoVy8b+45thdfESHxajkjPW6jTgRNnbfcW+SgrbNClj9xvf8E4CKYySc//gg
+	 0kgN66e1XzQJQ==
+Content-Type: multipart/signed;
+ boundary=e9f867f281deaf04305f7f7b113436157ecc73b10b85215ac510f5eb30ca;
+ micalg=pgp-sha256; protocol="application/pgp-signature"
+Date: Wed, 21 Feb 2024 10:23:25 +0100
+Message-Id: <CZANBUQ2RJ3N.DO07Z9VFJCBZ@kernel.org>
+Cc: "Yazan Shhady" <yazan.shhady@solid-run.com>, "Rob Herring"
+ <robh@kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+From: "Michael Walle" <mwalle@kernel.org>
+To: "Josua Mayer" <josua@solid-run.com>, "Tudor Ambarus"
+ <tudor.ambarus@linaro.org>, "Pratyush Yadav" <pratyush@kernel.org>, "Miquel
+ Raynal" <miquel.raynal@bootlin.com>, "Richard Weinberger" <richard@nod.at>,
+ "Vignesh Raghavendra" <vigneshr@ti.com>, "Rob Herring"
+ <robh+dt@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ <linux-mtd@lists.infradead.org>, "Takahiro Kuwano" <tkuw584924@gmail.com>,
+ "Takahiro Kuwano" <Takahiro.Kuwano@infineon.com>
+Subject: Re: [PATCH v7] dt-bindings: mtd: spi-nor: add optional interrupts
+ property
+X-Mailer: aerc 0.16.0
+References: <20240219-mtd-flash-interrupt-binding-v7-1-206e30a656fa@solid-run.com> <CZAM553H2H56.2TDN36QEL90XX@kernel.org> <a0144c5b-4095-4a0c-84b6-93dfe9631a6b@solid-run.com>
+In-Reply-To: <a0144c5b-4095-4a0c-84b6-93dfe9631a6b@solid-run.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240221003630.2535938-2-jogletre@opensource.cirrus.com>
-X-Proofpoint-GUID: 9gIjqvAJ_zbDyiqVeROZ2A_urHKZXvOn
-X-Proofpoint-ORIG-GUID: 9gIjqvAJ_zbDyiqVeROZ2A_urHKZXvOn
-X-Proofpoint-Spam-Reason: safe
 
-On Wed, Feb 21, 2024 at 12:36:26AM +0000, James Ogletree wrote:
-> A write sequencer is a sequence of register addresses
-> and values executed by some Cirrus DSPs following
-> power state transitions.
-> 
-> Add support for Cirrus drivers to update or add to a
-> write sequencer present in firmware.
-> 
-> Signed-off-by: James Ogletree <jogletre@opensource.cirrus.com>
-> ---
+--e9f867f281deaf04305f7f7b113436157ecc73b10b85215ac510f5eb30ca
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-Think this one looks good to me:
+[+ Takahiro]
 
-Reviewed-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+Hi,
 
-Thanks,
-Charles
+On Wed Feb 21, 2024 at 10:13 AM CET, Josua Mayer wrote:
+> Hi,
+>
+> Am 21.02.24 um 09:27 schrieb Michael Walle:
+> > Hi,
+> >
+> > On Mon Feb 19, 2024 at 3:41 PM CET, Josua Mayer wrote:
+> >> Some spi flash memories have an interrupt signal which can be used for
+> >> signalling on-chip events such as busy status or ecc errors to the hos=
+t.
+> > Do you have an example? Maybe one with a public datasheet?
+>
+> My example is Infineon S28HS512T, however datasheet download requires=20
+> user account.
+>
+> S26HS512T has interrupt line, too, and datasheet is downloadable without=
+=20
+> registration:
+> https://www.infineon.com/cms/en/product/memories/nor-flash/semper-nor-fla=
+sh-family/semper-nor-flash/#!documents
+
+Thanks, as far as I can see, both are hyperbus flashes. I'm asking
+because I'm not aware of any SPI NOR flash with an interrupt line.=20
+
+-michael
+
+--e9f867f281deaf04305f7f7b113436157ecc73b10b85215ac510f5eb30ca
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iIgEABYIADAWIQQCnWSOYTtih6UXaxvNyh2jtWxG+wUCZdXBDRIcbXdhbGxlQGtl
+cm5lbC5vcmcACgkQzcodo7VsRvsMiwEAjOqBidGogjxPHhp8y+blJyfOYdrapFQv
+ZY95qF3u2uIBAP+EXR9ovlBJIAjMCkirhifr2qt6x005yRPmB2mlhi8N
+=iSVx
+-----END PGP SIGNATURE-----
+
+--e9f867f281deaf04305f7f7b113436157ecc73b10b85215ac510f5eb30ca--
 
