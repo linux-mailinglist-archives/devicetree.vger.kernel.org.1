@@ -1,143 +1,119 @@
-Return-Path: <devicetree+bounces-44309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DE6585D706
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 12:33:18 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CCBA85D74B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 12:42:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9303283950
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 11:33:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B5023B23F68
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 11:42:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B10241212;
-	Wed, 21 Feb 2024 11:31:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KDaPoHyg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B84974597D;
+	Wed, 21 Feb 2024 11:41:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A5D540BF0;
-	Wed, 21 Feb 2024 11:31:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F0A53D38F
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 11:41:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708515062; cv=none; b=ucMusyf8lfU6aaor5rIt7eqjx6esaYs3mXXI+wxPTjP15gFownIt6+LlFRSd8vQFa6+qy77zzs8A8iEeP9AZCKJDwTlqsHpLY5RiWMmxiUYyMdHNmAQXYarIw1U66sAs7+oF3GB9AGhJOMHPkXQQXT7sCzjC4J2TXcUMg4tDQ7g=
+	t=1708515677; cv=none; b=M7lgz2Z0n6Kj8jHOPLpuO26+le/etIK4+Bd+lzGjGP22TxYs8gzobm3c6s8SBm5CHeqHsvjgFGPsjfWCB3fRzd7+ybx4AbwQU47lENRFkYfq1tufJVICBg4DIMdZRGhq3oSOMRW6PQITGGcAl3mCUUqatiVkiL/Gqku4M4X9JUE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708515062; c=relaxed/simple;
-	bh=R06aAEMhs4VND/RSzWUYXOWMIOf4o7CtU24ik/gBYso=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KHgaOVAt2TeZ3kN94RTFjwWeNMf+2f9kQPjRs/SZsgzcAwXN9IngFOXB0Nr+oEaE9Xj61a3qZ8Yuw/W7kbK691p1F46nwvvk2j/mUMvXcENFGXoh54NyWgkzawzMbPculevuMnMN8ibFhALzVSt+kO/BhEeZlTuqyJ5Ee2UPzVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KDaPoHyg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D8BCC433F1;
-	Wed, 21 Feb 2024 11:30:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708515061;
-	bh=R06aAEMhs4VND/RSzWUYXOWMIOf4o7CtU24ik/gBYso=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KDaPoHyg0AHRcXQMxanR12gVR12clkhaAkwfKJCuJzmieyysXJRL9eC6SSH6dTa+r
-	 HCsjYMivTJUX7bKJLQVWT9nXnfedTTBy8Hn+pr8Suf014f+f8dap/wwR1GCj20jMkz
-	 4iORMgd7Hl+JTKLIpPn8UE+9TvHOtTwakxCKPgXF5/hWBj7+msySjnAtNIup4dIEqj
-	 WmQztSkiw3aUB8pbyvo85E9XXRGvH70OtAMF3LNRhbYoHv/7Iw/YZZ/HZV4c+EWwFA
-	 UXyoXCMHo7GRT734ub1xahDq7M/Gy5+0vUuYJHxoGr0is8QtBFWas3hI31JqicvcuC
-	 5FUbGRU7CRnyA==
-Date: Wed, 21 Feb 2024 11:30:57 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Yangyu Chen <cyy@cyyself.name>
-Cc: linux-riscv@lists.infradead.org,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, linux-kernel@vger.kernel.org,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [RFC PATCH 0/1] riscv: dts: Allow BUILTIN_DTB for all socs
-Message-ID: <20240221-islamic-quartered-3863e44bc862@spud>
-References: <tencent_AB625442CC1BCFF86E04D7B5891C43719109@qq.com>
+	s=arc-20240116; t=1708515677; c=relaxed/simple;
+	bh=N88ZAVmfemoKev6jlYmIQMcDug/YAdpNBEedT/wfwl8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=IYTyc4QS8tBaWSggGbScSpr5xHCkOaFGfWG6nMSrMyLfdWQGUNcrcFh01tmnASyyZG+qJID8lvwr2rgX0PcRHuu5C8xqmfaAArrxamwN9TBb2zyV+iMIWE9P46Ec+E/55QOP575UMb2thdpaZmuE5L+33Wn73mC+xFOjiY2CusI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rckyI-0002lV-Sp; Wed, 21 Feb 2024 12:41:06 +0100
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rckyE-0021v1-Of; Wed, 21 Feb 2024 12:41:02 +0100
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rckyE-00061g-2E;
+	Wed, 21 Feb 2024 12:41:02 +0100
+Message-ID: <f2e3d662e92b76e43b89a3c99669c3dadb2176b5.camel@pengutronix.de>
+Subject: Re: [PATCH 05/23] gpio: nomadik: extract GPIO platform driver from
+ drivers/pinctrl/nomadik/
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: =?ISO-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>, Linus Walleij
+ <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mips@vger.kernel.org, Gregory CLEMENT <gregory.clement@bootlin.com>, 
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+Date: Wed, 21 Feb 2024 12:41:02 +0100
+In-Reply-To: <CAMRc=Me-oEx9S0w=XhwC4MzV9uzV0o0HnWBfNSstcqg5jpXyZg@mail.gmail.com>
+References: <20240214-mbly-gpio-v1-0-f88c0ccf372b@bootlin.com>
+	 <20240214-mbly-gpio-v1-5-f88c0ccf372b@bootlin.com>
+	 <e031566a85ae0da0ee71dffba5d87c6414ef83e1.camel@pengutronix.de>
+	 <CAMRc=Me-oEx9S0w=XhwC4MzV9uzV0o0HnWBfNSstcqg5jpXyZg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="6BDdXDRGwPxzf+xE"
-Content-Disposition: inline
-In-Reply-To: <tencent_AB625442CC1BCFF86E04D7B5891C43719109@qq.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+Hi Bartosz,
 
---6BDdXDRGwPxzf+xE
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Mo, 2024-02-19 at 16:33 +0100, Bartosz Golaszewski wrote:
+> On Thu, Feb 15, 2024 at 11:03=E2=80=AFAM Philipp Zabel <p.zabel@pengutron=
+ix.de> wrote:
+> >=20
+> > On Mi, 2024-02-14 at 17:23 +0100, Th=C3=A9o Lebrun wrote:
+> > [...]
+> > > diff --git a/drivers/gpio/gpio-nomadik.c b/drivers/gpio/gpio-nomadik.=
+c
+> > > new file mode 100644
+> > > index 000000000000..e39477e1a58f
+> > > --- /dev/null
+> > > +++ b/drivers/gpio/gpio-nomadik.c
+> > > @@ -0,0 +1,660 @@
+> > [...]
+> > > +static int nmk_gpio_probe(struct platform_device *dev)
+> > > +{
+> > [...]
+> > > +     ret =3D gpiochip_add_data(chip, nmk_chip);
+> >=20
+> > Use devm_gpiochip_add_data() to cleanup on unbind, before nmk_chip goes
+> > away. Or make the driver un-unbindable via suppress_bind_attrs. In that
+> > case you could drop devm_ prefixes everywhere for consistency.
+> >=20
+>=20
+> No! Why? What about error paths in probe() where you want to undo everyth=
+ing?
 
-Hey,
+Brain fog moment. I was triggered by the mixture of devm_ and non-devm_
+calls and jumped to the wrong conclusion.
 
-On Wed, Feb 21, 2024 at 03:01:53AM +0800, Yangyu Chen wrote:
-> The BUILTIN_DTB kernel feature on RISC-V only works on K210 SoC only. This
-> patch moved this configuration to entire riscv.
+Yes, keeping devm_ for error cleanup is of course correct, and with
+suppress_bind_attrs it'd even be ok to use non-devm_
+gpiochip_add_data(), as long as there can be no error return
+afterwards.
 
-To be honest, I would rather delete BUILTIN_DTB (and the configurations
-that depend on it) than expand its usefulness.
-
-> Although BUILTIN_DTB is not a good choice for most platforms, it is likely
-> to be a debug feature when some bootloader will always override something
-> like the memory node in the device tree to adjust the memory size from SPD
-> or configuration resistor, which makes it hard to do some debugging.
-
-My inclination here is to say "fix your bootloader" and if that's not
-possible, chainload a bootloader that allows you control over
-modifications to your devicetree.
-
-> As an
-> example, some platforms with numa like sg2042 only support sv39 will fail
-> to boot when there is no ZONE_HIGHMEM patch with 128G memory. If we want
-> a kernel without this patch to boot, we need to write the memory nodes=20
-> in the DT manually.
-
-If, as Alex suggests, there's a way to gain support some more memory in
-sv39, we should do so - but it is worth mentioning that highmem is on the
-removal list for the kernel, so mainline support for that is highly
-unlikely.
-
-> Also, changing DT on some platforms is not easy. For Milk-V Pioneer, the
-> boot procedure is ZSBL -> OpenSBI -> LinuxBoot -> Linux. If DT gets
-> changed, OpenSBI or LinuxBoot may refuse to boot. And there is some bug on
-> LinuxBoot now which does not consume --dtb argument on kexec and always
-> uses DT from memory.
-
-I don't use Linuxboot, but let me try to understand. Linuxboot uses kexec
-to boot the main Linux kernel, but the dtb you want to use is not used, and
-instead the one that Linuxboot itself was booted with is used?
-
-It sounds like Linuxboot has a --dtb argumet that is meant to be used to
-set the dtb for the next stage, but that argument is being ignored?
-
-That sounds like a pretty serious issue with Linuxboot which should be
-fixed - what am I missing?
-
-> So I would like to do debugging on DT using
-> BUILTIN_DTB, which makes it very simple,
-
-> I can even install the kernel in
-> the distro's way and provide a kernel package for other users to test.
-
-I'm not sure what you mean by this, other distros manage to create
-kernel packages without using builtin dtbs.
-
-Thanks,
-Conor.
-
---6BDdXDRGwPxzf+xE
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdXe8QAKCRB4tDGHoIJi
-0vrYAP9VXm6khUlWB8q8p1RxXCZDwC0wOdqAAu2teabf2mgMbAEA0oaXGtQIWT+6
-hRyOdPEH0c08Xd4EhI/UdYf2kNSMkwc=
-=yHib
------END PGP SIGNATURE-----
-
---6BDdXDRGwPxzf+xE--
+regards
+Philipp
 
