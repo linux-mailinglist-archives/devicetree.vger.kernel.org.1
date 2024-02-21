@@ -1,358 +1,160 @@
-Return-Path: <devicetree+bounces-44403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD17E85E0A9
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 16:12:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 160A985E0E3
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 16:22:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0CBF41C22F76
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 15:12:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 477071C219F8
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 15:22:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A07D480C0C;
-	Wed, 21 Feb 2024 15:12:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 092CB8002B;
+	Wed, 21 Feb 2024 15:22:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="tKaSVONl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MMGyCEkB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89FE480601
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 15:12:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D00F87F7DA;
+	Wed, 21 Feb 2024 15:22:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708528335; cv=none; b=qXjdYW7euur/TFydo25kS+ayNLV3hBU/5eL9lDEhzYcyj5oXd6QS2W5J/5kcRfINIZPblxKM5FDwQ8Oa4rGVJm3feZWalTTupaPcK8A51VnpIKj+Fl9VBCY6VxgHjrCD9mVTMZyxWNTP28nTyLOJTTZ/W5RW98SggcYPncckxIE=
+	t=1708528949; cv=none; b=Mxs3TDUUphblV4lI/gfwPKv+SutYfGyw0aVrvNUntRST7cnMdH/TyDOicKSKN47326nlavF3YPfOxPcZ70QerOtFnyaq/9G9ATCKOvXXSYDKxAT3+hETd39/9pOKP2zxL72f9q/9NEuYerVKd2zueAixYEBWGbY6LvBtPSIENW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708528335; c=relaxed/simple;
-	bh=X3WasE9KQ70MN0Vh4+bqPFmp29TXlEdA2D5rh4MfY18=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=CYGJs6oG+wQDBjQaoGKd+B4P8WOotGWBXDKvev+A+9igVrrzXAIFLrY+EAGhdP08Ycc9XyrpXV9fFIpbQwCDU2QAXbQfnuYxbR2Ce1lzpKclCSWqRIPFrL/7d/24vqr5uhhpLRdYsBpt62HduHXj0Xn1mQgH+Z6M3YjQiS1asAY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=tKaSVONl; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-41278acf971so3349425e9.2
-        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 07:12:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1708528332; x=1709133132; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=h74FeFDIe1tQA6L7395dqtw/ncyV+KOTJre2S3F/uNM=;
-        b=tKaSVONlRDeqDMg/2j8gNpfxGRgVNQVENe7h+yFMpV9LvaVFxDj670ipTJzv9qqTR6
-         1k2EGFV9FDStfBCtpQLNqH4ixTdy+ZVynBcfjfiY3nQ9wgefcN8rl9HCyqmAMN+UxnkE
-         dCc4OaeVg8HxveMvxO8pXiuEbq+UbSy0mxIcutb1jPAUqTXlkA+jYo0WNdrIdKryMrrV
-         oiF3+eEWuDLJLo6XvFTAlRBnFg5jte/FDYsCJWOG5AeL9ABoy3zn/Zn9m0ROyzdpCvj2
-         +Imy6StO65B3UtN6JVWtiUPqPv8nLlRck3hOslnm4cXVLPr1jJxIFSg0kiDWa/749U0H
-         fPeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708528332; x=1709133132;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=h74FeFDIe1tQA6L7395dqtw/ncyV+KOTJre2S3F/uNM=;
-        b=wQqnzhZnSHfQQ7Pj779A+7CNXwbtD9CXT4bPQo4EqWZlRXbSbzM8NO5bwN+8AHNHRj
-         c7iXqsS7ehPuSKYbzDpAy5dWSrcANqfrL8sPgf/MtCtXGeL0xo3mTkOAnZLczLdWHEKK
-         mjRvCLJLKAkMgyUpo5AspXS/P4l9gTo6pGhkC8LZ+MO7geH6oZJAM9WnhAU0bPpkWlu9
-         MkmBZFRuxNdex+JUEzMjACALDJkeYndnCPZ6DG5ls1g2QV64w6Y4PpP2zye2VxxRtClI
-         xK3WrNg7qPP+hdqx8Y8Z4YhZ/9hmfUasH0DTqLSw4csnMgBm7p3uv6rUfcV/aCIC6c7q
-         UDQw==
-X-Forwarded-Encrypted: i=1; AJvYcCW0d1akJ6nB5hI1XIgnPMgOtVEh8VzWmChyqDWuPQN5NBax8VIMFqDyoHEbSrLibPxoCKn2QYYM7Q2g8/c5391zk/yyuiN7r13urg==
-X-Gm-Message-State: AOJu0YwUJOaCUkCwpS+9BL/O7Sqfd5ATkh3xlJFMuc3/IwdCgNVlYcH6
-	HAl8YLuk5UgKwHf9v837skzHo7Mb3/LJalK73Qfl0wnf0SQMbEkt6Bxv2TS3Y9A=
-X-Google-Smtp-Source: AGHT+IH0BIGfDcyECWrL+G0YcnBelN2VYVCfDRoTAKneFYafATVPl+LVdCn8hr7FrY+5box9ZQGFEg==
-X-Received: by 2002:a05:600c:4f83:b0:411:ddc2:28b2 with SMTP id n3-20020a05600c4f8300b00411ddc228b2mr17153344wmq.27.1708528332062;
-        Wed, 21 Feb 2024 07:12:12 -0800 (PST)
-Received: from toaster.lan ([2a01:e0a:3c5:5fb1:1b1a:d907:d735:9f9e])
-        by smtp.googlemail.com with ESMTPSA id bg22-20020a05600c3c9600b0040fc56712e8sm18725342wmb.17.2024.02.21.07.12.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Feb 2024 07:12:11 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
+	s=arc-20240116; t=1708528949; c=relaxed/simple;
+	bh=TCtBpdIY7450Ty+SdGZtoT1IyppeoEDJ8gGAm0LnTiM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eDKFGEebFGc0lzWZFVRniqnVLM2XtTCwSHd777HZn9YpouD1zo2E9uikYk1ZhC25fOGYbUSKhNIehA56zO+XDYmQHUsZ6+wjDLYYgPW+y7JhiqSLA5dtoRd76S7TookBeEuq4p6t2ocoJLaeUjgpFq1N2DCllEft3vZRvVtZqgs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MMGyCEkB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F5EBC433F1;
+	Wed, 21 Feb 2024 15:22:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708528949;
+	bh=TCtBpdIY7450Ty+SdGZtoT1IyppeoEDJ8gGAm0LnTiM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MMGyCEkBJYH1XwA80dc+qUCu/cOXpEl3HiZXgftka+aMyQbtI3GIlyhflIWpSZLe3
+	 iGDsz3jH4054EU0NKQv0fEJ7P/kTV2kusLyGo+Ws9keDj1mnLeGazBq3cmiYPvEtZF
+	 roD9hoj4iqu6Qh+iCsuosQVpsei+XZHMw4NnsFFE6atsvo07Gy+ouAZG1Hs6a3BRH9
+	 9B67sx7ijI39SgJX2fX9fk49wlYljyxe6qnCxcVChR8dkeGuMWpdcy3hhyI1b8e1zM
+	 C5aO8WeTqtqEbiPNl9w/p2yG0X0p5R3XVcFGZYEsMemAGlenhaPrXinHPw+KNmgRJP
+	 4zdBYxpn+/yJw==
+Date: Wed, 21 Feb 2024 08:22:26 -0700
+From: Rob Herring <robh@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: linux-iio@vger.kernel.org,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-pwm@vger.kernel.org,
-	JunYi Zhao <junyi.zhao@amlogic.com>
-Subject: [PATCH v5 5/5] pwm: meson: add generic compatible for meson8 to sm1
-Date: Wed, 21 Feb 2024 16:11:51 +0100
-Message-ID: <20240221151154.26452-6-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240221151154.26452-1-jbrunet@baylibre.com>
-References: <20240221151154.26452-1-jbrunet@baylibre.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: add ad7944 ADCs
+Message-ID: <20240221152226.GA2868707-robh@kernel.org>
+References: <20240216-ad7944-mainline-v2-0-7eb69651e592@baylibre.com>
+ <20240216-ad7944-mainline-v2-1-7eb69651e592@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240216-ad7944-mainline-v2-1-7eb69651e592@baylibre.com>
 
-Introduce a new compatible support in the Amlogic PWM driver.
+On Fri, Feb 16, 2024 at 01:46:18PM -0600, David Lechner wrote:
+> This adds a new binding for the Analog Devices, Inc. AD7944, AD7985, and
+> AD7986 ADCs.
+> 
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> ---
+>  .../devicetree/bindings/iio/adc/adi,ad7944.yaml    | 204 +++++++++++++++++++++
+>  MAINTAINERS                                        |   8 +
+>  2 files changed, 212 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7944.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7944.yaml
+> new file mode 100644
+> index 000000000000..61ee81326660
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7944.yaml
+> @@ -0,0 +1,204 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7944.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices PulSAR LFCSP Analog to Digital Converters
+> +
+> +maintainers:
+> +  - Michael Hennerich <Michael.Hennerich@analog.com>
+> +  - Nuno Sá <nuno.sa@analog.com>
+> +
+> +description: |
+> +  A family of pin-compatible single channel differential analog to digital
+> +  converters with SPI support in a LFCSP package.
+> +
+> +  * https://www.analog.com/en/products/ad7944.html
+> +  * https://www.analog.com/en/products/ad7985.html
+> +  * https://www.analog.com/en/products/ad7986.html
+> +
+> +$ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ad7944
+> +      - adi,ad7985
+> +      - adi,ad7986
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    maximum: 111111111
+> +
+> +  spi-cpol: true
+> +  spi-cpha: true
+> +
+> +  adi,spi-mode:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    enum: [ single, multi, chain ]
+> +    default: multi
+> +    description: |
+> +      * single: The datasheet calls this "3-wire mode". It is often used when
+> +        the ADC is the only device on the bus. In this mode, SDI is tied to VIO,
+> +        and the CNV line can be connected to the CS line of the SPI controller
+> +        or to a GPIO, in which case the CS line of the controller is unused.
 
-The PWM HW is actually the same for all SoCs supported so far. A specific
-compatible is needed only because the clock sources of the PWMs are
-hard-coded in the driver.
+We have a standard property for this.
 
-It is better to have the clock source described in DT but this changes the
-bindings so a new compatible must be introduced.
+> +      * multi: The datasheet calls this "4-wire mode". This is the convential
+> +        SPI mode used when there are multiple devices on the same bus. In this
+> +        mode, the CNV line is used to initiate the conversion and the SDI line
+> +        is connected to CS on the SPI controller.
 
-When all supported platform have migrated to the new compatible, support
-for the legacy ones may be removed from the driver.
+That's "normal" mode.
 
-The addition of this new compatible makes the old ones obsolete, as
-described in the DT documentation.
+> +      * chain: The datasheet calls this "chain mode". This mode is used to save
+> +        on wiring when multiple ADCs are used. In this mode, the SDI line of
+> +        one chip is tied to the SDO of the next chip in the chain and the SDI of
+> +        the last chip in the chain is tied to GND. Only the first chip in the
+> +        chain is connected to the SPI bus. The CNV line of all chips are tied
+> +        together. The CS line of the SPI controller is unused.
 
-Adding a callback to setup the clock will also make it easier to add
-support for the new PWM HW found in a1, s4, c3 and t7 SoC families.
+Don't you need to know how many chips are chained? In any case, you just 
+need a property for chain mode. There's some existing properties for 
+chained devices I think. Standard logic shift register based GPIO IIRC.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/pwm/pwm-meson.c | 195 +++++++++++++++++++++++++---------------
- 1 file changed, 121 insertions(+), 74 deletions(-)
+CNV are tied together, but must be driven by something? I suppose 
+cnv-gpios? But wouldn't that be the same as the SPI controller GPIO CS? 
+Does a SPI controller CS line connected to CNV not work in this case?
 
-diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-index fe61335d87d0..90fc7b349723 100644
---- a/drivers/pwm/pwm-meson.c
-+++ b/drivers/pwm/pwm-meson.c
-@@ -101,6 +101,7 @@ struct meson_pwm_channel {
- 
- struct meson_pwm_data {
- 	const char *const parent_names[MESON_NUM_MUX_PARENTS];
-+	int (*channels_init)(struct pwm_chip *chip);
- };
- 
- struct meson_pwm {
-@@ -341,86 +342,16 @@ static const struct pwm_ops meson_pwm_ops = {
- 	.get_state = meson_pwm_get_state,
- };
- 
--static const struct meson_pwm_data pwm_meson8b_data = {
--	.parent_names = { "xtal", NULL, "fclk_div4", "fclk_div3" },
--};
--
--/*
-- * Only the 2 first inputs of the GXBB AO PWMs are valid
-- * The last 2 are grounded
-- */
--static const struct meson_pwm_data pwm_gxbb_ao_data = {
--	.parent_names = { "xtal", "clk81", NULL, NULL },
--};
--
--static const struct meson_pwm_data pwm_axg_ee_data = {
--	.parent_names = { "xtal", "fclk_div5", "fclk_div4", "fclk_div3" },
--};
--
--static const struct meson_pwm_data pwm_axg_ao_data = {
--	.parent_names = { "xtal", "axg_ao_clk81", "fclk_div4", "fclk_div5" },
--};
--
--static const struct meson_pwm_data pwm_g12a_ao_ab_data = {
--	.parent_names = { "xtal", "g12a_ao_clk81", "fclk_div4", "fclk_div5" },
--};
--
--static const struct meson_pwm_data pwm_g12a_ao_cd_data = {
--	.parent_names = { "xtal", "g12a_ao_clk81", NULL, NULL },
--};
--
--static const struct of_device_id meson_pwm_matches[] = {
--	{
--		.compatible = "amlogic,meson8b-pwm",
--		.data = &pwm_meson8b_data
--	},
--	{
--		.compatible = "amlogic,meson-gxbb-pwm",
--		.data = &pwm_meson8b_data
--	},
--	{
--		.compatible = "amlogic,meson-gxbb-ao-pwm",
--		.data = &pwm_gxbb_ao_data
--	},
--	{
--		.compatible = "amlogic,meson-axg-ee-pwm",
--		.data = &pwm_axg_ee_data
--	},
--	{
--		.compatible = "amlogic,meson-axg-ao-pwm",
--		.data = &pwm_axg_ao_data
--	},
--	{
--		.compatible = "amlogic,meson-g12a-ee-pwm",
--		.data = &pwm_meson8b_data
--	},
--	{
--		.compatible = "amlogic,meson-g12a-ao-pwm-ab",
--		.data = &pwm_g12a_ao_ab_data
--	},
--	{
--		.compatible = "amlogic,meson-g12a-ao-pwm-cd",
--		.data = &pwm_g12a_ao_cd_data
--	},
--	{},
--};
--MODULE_DEVICE_TABLE(of, meson_pwm_matches);
--
--static int meson_pwm_init_channels(struct pwm_chip *chip)
-+static int meson_pwm_init_clocks_meson8b(struct pwm_chip *chip,
-+					 struct clk_parent_data *mux_parent_data)
- {
- 	struct meson_pwm *meson = to_meson_pwm(chip);
--	struct clk_parent_data mux_parent_data[MESON_NUM_MUX_PARENTS] = {};
- 	struct device *dev = pwmchip_parent(chip);
- 	unsigned int i;
- 	char name[255];
- 	int err;
- 
--	for (i = 0; i < MESON_NUM_MUX_PARENTS; i++) {
--		mux_parent_data[i].index = -1;
--		mux_parent_data[i].name = meson->data->parent_names[i];
--	}
--
--	for (i = 0; i < chip->npwm; i++) {
-+	for (i = 0; i < MESON_NUM_PWMS; i++) {
- 		struct meson_pwm_channel *channel = &meson->channels[i];
- 		struct clk_parent_data pdata = {};
- 		struct meson8b_pwm_clocks *clks;
-@@ -502,6 +433,122 @@ static int meson_pwm_init_channels(struct pwm_chip *chip)
- 	return 0;
- }
- 
-+static int meson_pwm_init_channels_meson8b_legacy(struct pwm_chip *chip)
-+{
-+	struct clk_parent_data mux_parent_data[MESON_NUM_MUX_PARENTS] = {};
-+	struct meson_pwm *meson = to_meson_pwm(chip);
-+	int i;
-+
-+	dev_warn_once(pwmchip_parent(chip),
-+		      "using obsolete compatible, please consider updating dt\n");
-+
-+	for (i = 0; i < MESON_NUM_MUX_PARENTS; i++) {
-+		mux_parent_data[i].index = -1;
-+		mux_parent_data[i].name = meson->data->parent_names[i];
-+	}
-+
-+	return meson_pwm_init_clocks_meson8b(chip, mux_parent_data);
-+}
-+
-+static int meson_pwm_init_channels_meson8b_v2(struct pwm_chip *chip)
-+{
-+	struct clk_parent_data mux_parent_data[MESON_NUM_MUX_PARENTS] = {};
-+	int i;
-+
-+	/*
-+	 * NOTE: Instead of relying on the hard coded names in the driver
-+	 * as the legacy version, this relies on DT to provide the list of
-+	 * clocks.
-+	 * For once, using input numbers actually makes more sense than names.
-+	 * Also DT requires clock-names to be explicitly ordered, so there is
-+	 * no point bothering with clock names in this case.
-+	 */
-+	for (i = 0; i < MESON_NUM_MUX_PARENTS; i++)
-+		mux_parent_data[i].index = i;
-+
-+	return meson_pwm_init_clocks_meson8b(chip, mux_parent_data);
-+}
-+
-+static const struct meson_pwm_data pwm_meson8b_data = {
-+	.parent_names = { "xtal", NULL, "fclk_div4", "fclk_div3" },
-+	.channels_init = meson_pwm_init_channels_meson8b_legacy,
-+};
-+
-+/*
-+ * Only the 2 first inputs of the GXBB AO PWMs are valid
-+ * The last 2 are grounded
-+ */
-+static const struct meson_pwm_data pwm_gxbb_ao_data = {
-+	.parent_names = { "xtal", "clk81", NULL, NULL },
-+	.channels_init = meson_pwm_init_channels_meson8b_legacy,
-+};
-+
-+static const struct meson_pwm_data pwm_axg_ee_data = {
-+	.parent_names = { "xtal", "fclk_div5", "fclk_div4", "fclk_div3" },
-+	.channels_init = meson_pwm_init_channels_meson8b_legacy,
-+};
-+
-+static const struct meson_pwm_data pwm_axg_ao_data = {
-+	.parent_names = { "xtal", "axg_ao_clk81", "fclk_div4", "fclk_div5" },
-+	.channels_init = meson_pwm_init_channels_meson8b_legacy,
-+};
-+
-+static const struct meson_pwm_data pwm_g12a_ao_ab_data = {
-+	.parent_names = { "xtal", "g12a_ao_clk81", "fclk_div4", "fclk_div5" },
-+	.channels_init = meson_pwm_init_channels_meson8b_legacy,
-+};
-+
-+static const struct meson_pwm_data pwm_g12a_ao_cd_data = {
-+	.parent_names = { "xtal", "g12a_ao_clk81", NULL, NULL },
-+	.channels_init = meson_pwm_init_channels_meson8b_legacy,
-+};
-+
-+static const struct meson_pwm_data pwm_meson8_v2_data = {
-+	.channels_init = meson_pwm_init_channels_meson8b_v2,
-+};
-+
-+static const struct of_device_id meson_pwm_matches[] = {
-+	{
-+		.compatible = "amlogic,meson8-pwm-v2",
-+		.data = &pwm_meson8_v2_data
-+	},
-+	/* The following compatibles are obsolete */
-+	{
-+		.compatible = "amlogic,meson8b-pwm",
-+		.data = &pwm_meson8b_data
-+	},
-+	{
-+		.compatible = "amlogic,meson-gxbb-pwm",
-+		.data = &pwm_meson8b_data
-+	},
-+	{
-+		.compatible = "amlogic,meson-gxbb-ao-pwm",
-+		.data = &pwm_gxbb_ao_data
-+	},
-+	{
-+		.compatible = "amlogic,meson-axg-ee-pwm",
-+		.data = &pwm_axg_ee_data
-+	},
-+	{
-+		.compatible = "amlogic,meson-axg-ao-pwm",
-+		.data = &pwm_axg_ao_data
-+	},
-+	{
-+		.compatible = "amlogic,meson-g12a-ee-pwm",
-+		.data = &pwm_meson8b_data
-+	},
-+	{
-+		.compatible = "amlogic,meson-g12a-ao-pwm-ab",
-+		.data = &pwm_g12a_ao_ab_data
-+	},
-+	{
-+		.compatible = "amlogic,meson-g12a-ao-pwm-cd",
-+		.data = &pwm_g12a_ao_cd_data
-+	},
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, meson_pwm_matches);
-+
- static int meson_pwm_probe(struct platform_device *pdev)
- {
- 	struct pwm_chip *chip;
-@@ -522,7 +569,7 @@ static int meson_pwm_probe(struct platform_device *pdev)
- 
- 	meson->data = of_device_get_match_data(&pdev->dev);
- 
--	err = meson_pwm_init_channels(chip);
-+	err = meson->data->channels_init(chip);
- 	if (err < 0)
- 		return err;
- 
--- 
-2.43.0
-
+Rob
 
