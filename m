@@ -1,118 +1,117 @@
-Return-Path: <devicetree+bounces-44350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CD9085D9BD
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 14:22:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9003385D9D5
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 14:23:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AFEAFB2569C
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 13:22:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A4F228894E
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 13:23:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BF7778B7C;
-	Wed, 21 Feb 2024 13:21:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E15EE76C99;
+	Wed, 21 Feb 2024 13:22:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11DB67C090
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 13:21:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3480763FF;
+	Wed, 21 Feb 2024 13:22:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708521701; cv=none; b=oWrhfHo6a5d1yYzzX9DKpGoCiHT36H2Mvo1gqwzn9SxgYk/2QFrqBTwNGk12kVvbzffiQJqS2n3lE2tiniG8cA1/XikiTPyCud5vAxaVEC0CRwqY5j7rXMKf8M+1fNovVG25Ok47nppg0Ud/lnw+DtrUTfVAKEX9q1kbuSvqyAY=
+	t=1708521771; cv=none; b=dzeTaMUoZ7FP/4XyThbN5x6yhmdiNIZ3jF9DpBGmoW16QnYCFOYgJ83D/KDg5Y1NxwfVtzBBMpLDxSqJhi5AnybWNNG75UbQyXrZZzezeu4c1xClhERA7vF1JfeMCgl9bbKumytaDd3+IzVk2MYsD14Eazz39V/7HQzsdcashgk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708521701; c=relaxed/simple;
-	bh=SI3SEn2rXlKhuuBlz7D1YxEpNb6+9jhtk6arFV0Ido8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=GYLphegPNZ+61Lk35lCmV/plbIuWGw1d38GUdKg3u2fpt/hp8HXvkZZTwOLbfVMbF/tl8NoVaf9enXHCzVeSkPsMpRBr5A6c4YkUoHOFV383G217gsh08K/tbSruP3bNEAGpFyqpz4ha4lE3wqQNKKOhIWuhcFp0V7e/0SqqZpE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rcmXM-0002OS-FY; Wed, 21 Feb 2024 14:21:24 +0100
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rcmXL-00237x-Gz; Wed, 21 Feb 2024 14:21:23 +0100
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rcmXL-0009An-1R;
-	Wed, 21 Feb 2024 14:21:23 +0100
-Message-ID: <09c275d0f0a1bf85f37635d9570514e8fc631e72.camel@pengutronix.de>
-Subject: Re: [PATCH v3 4/7] ASoC: codecs: Add RK3308 internal audio codec
- driver
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>, Nicolas Frattaroli
- <frattaroli.nicolas@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark
- Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
- <tiwai@suse.com>, Heiko Stuebner <heiko@sntech.de>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	linux-rockchip@lists.infradead.org, linux-sound@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Date: Wed, 21 Feb 2024 14:21:23 +0100
-In-Reply-To: <20240221-rk3308-audio-codec-v3-4-dfa34abfcef6@bootlin.com>
-References: <20240221-rk3308-audio-codec-v3-0-dfa34abfcef6@bootlin.com>
-	 <20240221-rk3308-audio-codec-v3-4-dfa34abfcef6@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1708521771; c=relaxed/simple;
+	bh=1WBlNT8odHQkxsLlRlt3vxx/AqRWnzohRYDkm2BhJRA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jT8+VPWqAMZYqiPLihEtToxwv+rjCTy8zD3aTbBZv//FEPT3ArvnsZ1YAhdUfdxGnBmLFNdGT92Ba5PAL8OKL+YFGDysH+XonGM6YFi94/jrlr/pS1SJV2QtlxiX3vauQqUTioUnouWUXvMyxRqmPAMIKpntchPGigc5RlBkqLc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-60879e3e3ccso5940307b3.3;
+        Wed, 21 Feb 2024 05:22:49 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708521767; x=1709126567;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pAM78tj5uOxRuTUGFyc9jO9UNKyv8uwyxAyo2kow3xQ=;
+        b=JfzI5+B8VCqyj8PEEGYUEON8fu5abPGC5kv9Oud671VcAMkGAkZ/2ud7QKH3EV5ylU
+         U9A2CkngA1hcOWWkMysKKnELGxY95k+KbHMcig/JSVdVeR3/12/ek0IuWdu18TWXiZBP
+         8UtyrgA6HHq8Z/dlmxGqdVnxO55axMRrghyuBfafXzvrggsIf40pxzeJ8O3p6xBbPDPI
+         3KUds+FXuFQXshH5vbs1bq41AbBurUT+mwlyiyQ0q2kfSeePUlJGXgj9DmYb4K/0asx+
+         9Jtt34PIC9PntXqgwW8aDw60LzfbztrN4cY85pRTbhmcYzFuNhaaqAfh4QNEzcEHkz1G
+         PVHw==
+X-Forwarded-Encrypted: i=1; AJvYcCUOCW3UnSrcXI+e2+b0tq2t+WpP6tsZP+0Vxg/w41BsIZchGkRlZbg+I43L0ry4pGI2uU34v5ssYBLzDqcadIaDW1MS2G/cZdCeuUtoMbMq2qGSTit/LPTUPv3QHw1R+jHQH6qyOYCvS9+ghEdi
+X-Gm-Message-State: AOJu0YwrdstrqNHsViXJFfsc5I7+K1kOJssMTO7XD/Cx4eoI5oq9bURw
+	VDa4DY/SFtvmVFXYd2aRndmRV4nlm8WJhbvt9KboIgJQ2UbNDhHKdEzd8FYgEy8=
+X-Google-Smtp-Source: AGHT+IGvU+Pr3MOlkCRRM0OcYxutuQFgxi7X5z96UjB9561PAZn+ZGeS0GbedM9u4hj9Xs+i4m717A==
+X-Received: by 2002:a81:99d5:0:b0:607:be5e:fa27 with SMTP id q204-20020a8199d5000000b00607be5efa27mr19186288ywg.13.1708521767468;
+        Wed, 21 Feb 2024 05:22:47 -0800 (PST)
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
+        by smtp.gmail.com with ESMTPSA id t62-20020a815f41000000b00604a5103629sm2597355ywb.76.2024.02.21.05.22.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Feb 2024 05:22:47 -0800 (PST)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-6088276045fso5754167b3.2;
+        Wed, 21 Feb 2024 05:22:47 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWcVrclC0bXRRB7EirE6OdQUuT9/hSYGph5ikej+xSe4sLAnWUFxCxzFljLEPLr7Ptd5w37VGg4TYWki/hMSmAsY2GOVOM+AIb9VE5sS0xfUChCbprPOg27mhHWLRatJYxrmUC25KA13egPfLl8
+X-Received: by 2002:a81:6dc4:0:b0:608:8f2a:fc35 with SMTP id
+ i187-20020a816dc4000000b006088f2afc35mr495032ywc.40.1708521766783; Wed, 21
+ Feb 2024 05:22:46 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20240213141300.159847-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20240213141300.159847-1-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 21 Feb 2024 14:22:34 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUoYBP4mjvJnLD5XBNEW_pjkSzp1M-QHBb6dx3RYhckUg@mail.gmail.com>
+Message-ID: <CAMuHMdUoYBP4mjvJnLD5XBNEW_pjkSzp1M-QHBb6dx3RYhckUg@mail.gmail.com>
+Subject: Re: [PATCH v3] arm64: dts: renesas: rzg2ul-smarc: Enable CRU, CSI support
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mi, 2024-02-21 at 11:22 +0100, Luca Ceresoli wrote:
-> Add driver for the internal audio codec of the Rockchip RK3308 SoC.
->=20
-> Initially based on the vendor kernel driver [0], with lots of cleanups,
-> fixes, improvements, conversion to DAPM and removal of some features.
->=20
-> [0] https://github.com/rockchip-linux/kernel/blob/develop-4.19/sound/soc/=
-codecs/rk3308_codec.c
->=20
-> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+On Tue, Feb 13, 2024 at 3:13=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
+m> wrote:
+> Enable CRU, CSI on RZ/G2UL SMARC EVK and tie the CSI to the OV5645 sensor
+> using Device Tree overlay.
 >
-[...]
-> diff --git a/sound/soc/codecs/rk3308_codec.c b/sound/soc/codecs/rk3308_co=
-dec.c
-> new file mode 100644
-> index 000000000000..61bfb75f92a3
-> --- /dev/null
-> +++ b/sound/soc/codecs/rk3308_codec.c
-> @@ -0,0 +1,993 @@
-[...]
-> +static int rk3308_codec_platform_probe(struct platform_device *pdev)
-> +{
-[...]
-> +	rk3308->reset =3D devm_reset_control_get(&pdev->dev, "codec");
-> +	if (IS_ERR(rk3308->reset)) {
-> +		err =3D PTR_ERR(rk3308->reset);
-> +		if (err !=3D -ENOENT)
-> +			return err;
-> +
-> +		dev_dbg(&pdev->dev, "No reset control found\n");
-> +		rk3308->reset =3D NULL;
-> +	}
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> Note:
+>  * This patch has a functional dependecy [1]
+>    [1] https://lore.kernel.org/all/20240213140240.159057-1-biju.das.jz@bp=
+.renesas.com/
+> v2->v3:
+>  * Added missing r9a07g043u11-smarc-cru-csi-ov5645.dtbo entry in Makefile=
+.
+>  * Made this as separate patch as SoC dtsi is accepted and dropping the
+>    i2c workaround patch for ov5645.
 
-Please use devm_reset_control_get_optional_exclusive(). That already
-returns NULL instead of -ENOENT if the reset control is not specified
-in the device tree. Then dev_err_probe() can be used to report errors.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.9.
 
+Gr{oetje,eeting}s,
 
-regards
-Philipp
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
