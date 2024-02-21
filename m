@@ -1,172 +1,271 @@
-Return-Path: <devicetree+bounces-44371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB4BD85DDBF
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 15:11:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E833C85DE87
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 15:19:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0AF8E1C227EB
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 14:11:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 15D8B1C23BD0
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 14:19:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 661777BAFF;
-	Wed, 21 Feb 2024 14:07:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41CCA7BB18;
+	Wed, 21 Feb 2024 14:19:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i6IdtteK"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="KN6Nomwx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8776B7E77A
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 14:07:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 462243CF42;
+	Wed, 21 Feb 2024 14:19:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708524423; cv=none; b=frWoPQhm8RQLtu+IFfuFngu2ayt6e120GfO/TmZE/KEOpMlS5e8jLUbhAHyQjwwFD2DfubD5BP1wzNngUrGFs9Bef5iz+fIPtEkgzE0OhmqFTEMCpUrKTt+RENT1A/6DiwYqhL8ABosMbVXQPdOxc2/6TLrgrnxtTqPWQFz5p3s=
+	t=1708525151; cv=none; b=RMWiziafMIa+1/r+KZ04ekUAmiLn4g/BKJe+tHTZeyvUh8vRcdu+E/SDayJ95iQ6XeMbv3X78/6s/AdqFBSUa5K3aHECK4QYAqA/xq0CLJUbooEokI+dp2W5lJoxG0shMvcQWsOJe4FO/K58PBWas5lg9sCBrBeSFQVuKITuJds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708524423; c=relaxed/simple;
-	bh=FEbHr6G47z91jG/f2Wo43A66B+GnrNcmQlXyLl/2KAw=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=F9VsW0bXAlSAftQqHsEmnuS3zSIdeQSeKwFN0+yEz/Er7DdQwBo4RowZ8XUE5nhhqHFdO5ZIBrbFVWV3tgJaYOpHD6lDOJmx6K30MiUck29WNBWau0LEbiB4LS2ORvX5BE+UDNrGWBp1v38Smn7JZLN6VymbZNLQ76Pl7dDxQK4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=i6IdtteK; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2d21a68dd3bso67464921fa.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 06:07:01 -0800 (PST)
+	s=arc-20240116; t=1708525151; c=relaxed/simple;
+	bh=484XVZMEV57wsb7+3XUHDx88xuKknYIRkJzEl41wSd0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=a1HPtPDltzZAdKBIs0AIrNd4I63BlU+PL7LiN04/JDZaz8wKB0uHOMAQCKb2+S7Ip1m4IZDkatW+acoejwIGuacFTcHNBuRGlGOSiYHmV9OKYX+gCfBk142LFl1vzRu092TOqDJCIOPZYNBleFRIqxkiHxjmZa1LJVw+BpfADDI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=KN6Nomwx; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708524420; x=1709129220; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CKWxl3OogXVVnFS17fBlVo+bIxHD2cqSz5ab8fWS80s=;
-        b=i6IdtteKWyvisRAFAPo7CO6ZeD3KH+SIpZ6NNPzkVvPE316dnJtmIire3nmalpn8wQ
-         NB6ReaIaW8preu8eB/71yuxBVviv53rqd/z3tA6MK4JXBioceW6NOH8GuD2u/RCIALeK
-         mv9wvwgye8LEFqx+nzfz08fsQ3PRUwLxBmzCza2QCAPNqD/18E3GIQNQrIefbCJ1RAkh
-         RT5BA0lc8K4bkGipcFEbpbSakXmAJPh7OFXql2AXa4mG+1l37lYTUhzJYGgNQGG+6Luw
-         i3QEyAeRBt1PaVj7YQR+DjCmMChnFGWsEjsjXQBsKmT0CVguk+FtqDYILDCLmlNmzyBA
-         /KWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708524420; x=1709129220;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=CKWxl3OogXVVnFS17fBlVo+bIxHD2cqSz5ab8fWS80s=;
-        b=fH+MGPF1r3ktR0DnUYM7fR1CdbW0sWi8/H64Zwok2BABIMBu/lncNWZJCal5bsyKUn
-         5XtRjiSFUNYNa3lRUfBRGRLSWxS3HZF3RmDOB9n+SXrovDKNriqM41FTDZvy927xcZE9
-         DNpu+btiIdYxKvT7dugUfMQ5lQpNg8CemiLQkUoPNvqNadiEfXoTPNJYhu+okvoP63hv
-         cXCNWvbCfLf/IGa+BkVTbZQ7GKcAborVCntfOI/ygTLMCVFOMmJq0gzaLuRD/qVFRVwO
-         MW4fjjw5WoEF1JjZFjG6TZgAeLlo77cqp+c69Wj5SUFMgmlGFLtMAnInpMUo92gIQMXv
-         06mQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWRjHbg0MWqRQo4gcNJ7ydBWsLADAax1avfEFM0H3j44gitzIYTzRfKANLuDO8H2cQtUmgNsAZxFa5B8Iww8d2iFNdsDmvHt5Lrzw==
-X-Gm-Message-State: AOJu0Yx6jovj0wRYnrfmNLvl7rzWV0H2iYNXopJgoJ0dkXxqkimMg/ik
-	wIF2MrC4OhzxmJ97nUt6DVgoyzlMapU9yf8lHAVJcCN0qgtFI7FxVTt7qzIucR0=
-X-Google-Smtp-Source: AGHT+IHlCycFUalK8spusNdvliYS8b0yE47wfcWtbkwDCcSipjuydmvvQfLjQ4AEGVa9UCMUi13c0g==
-X-Received: by 2002:ac2:4c41:0:b0:512:b4cf:ae3 with SMTP id o1-20020ac24c41000000b00512b4cf0ae3mr7444785lfk.19.1708524419725;
-        Wed, 21 Feb 2024 06:06:59 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:83fc:439c:6f36:ce5c? ([2a01:e0a:982:cbb0:83fc:439c:6f36:ce5c])
-        by smtp.gmail.com with ESMTPSA id 14-20020a05600c230e00b0040fafd84095sm2612088wmo.41.2024.02.21.06.06.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Feb 2024 06:06:59 -0800 (PST)
-Message-ID: <1f12586a-16d8-45e8-a974-75923f9a3bd1@linaro.org>
-Date: Wed, 21 Feb 2024 15:06:58 +0100
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1708525147; x=1740061147;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=4tGYCuZ8S9Z/8bIyUQU7cinajEjRFCnLFwqKv4o4HsY=;
+  b=KN6NomwxsbywSV83rUmr+RkXr4grvoxoJbBXz8mXMawbMjK7TmvdEcCS
+   IK/jLmBvy4sS3W5EtPlDKmLK65soErECU9LMyMJ1uBP0NzCGuRiexKGdx
+   gnpjlEBjDfD+ixd6TyZsDCEgnKZTubeRoykmO2JiSYzMyGjPUMGsHMLGf
+   nAbnySfK4bmQBo9L/ba5gD1y5s6ttuMHu8gy0cgufKiQdpawKYAeiqeuN
+   SI8jJ2VykOLr9dldka5edLiPxHCEFgL2S3BILebY1JeHCDcaX0+lSrS1D
+   9r/UzBYfJUDqHhgcd/XOXWXVhUfO85A9eAYFN3UmAAXGevNNGIuJ5HR/u
+   g==;
+X-IronPort-AV: E=Sophos;i="6.06,175,1705359600"; 
+   d="scan'208";a="35525266"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 21 Feb 2024 15:18:58 +0100
+Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.25])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 603C7280075;
+	Wed, 21 Feb 2024 15:18:58 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
+	"andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
+	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	"jonas@kwiboo.se" <jonas@kwiboo.se>,
+	"jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
+	"airlied@gmail.com" <airlied@gmail.com>,
+	"daniel@ffwll.ch" <daniel@ffwll.ch>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"shawnguo@kernel.org" <shawnguo@kernel.org>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"festevam@gmail.com" <festevam@gmail.com>,
+	"vkoul@kernel.org" <vkoul@kernel.org>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-phy@lists.infradead.org" <"li nux-phy"@lists.infradead.org>,
+	Sandor Yu <sandor.yu@nxp.com>
+Cc: "kernel@pengutronix.de" <kernel@pengutronix.de>, dl-linux-imx <linux-imx@nxp.com>, Oliver Brown <oliver.brown@nxp.com>, "sam@ravnborg.org" <sam@ravnborg.org>, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v14 5/7] dt-bindings: phy: Add Freescale iMX8MQ DP and HDMI PHY
+Date: Wed, 21 Feb 2024 15:18:58 +0100
+Message-ID: <12385213.O9o76ZdvQC@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <PAXPR04MB9448F3065AE9F838C4553CB1F4572@PAXPR04MB9448.eurprd04.prod.outlook.com>
+References: <cover.1708395604.git.Sandor.yu@nxp.com> <10421561.nUPlyArG6x@steina-w> <PAXPR04MB9448F3065AE9F838C4553CB1F4572@PAXPR04MB9448.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] fixup! arm64: dts: amlogic: add fbx8am DT overlays
-Content-Language: en-US, fr
-To: Marc Gonzalez <mgonzalez@freebox.fr>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Pierre-Hugues Husson <phhusson@freebox.fr>,
- Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- AML <linux-amlogic@lists.infradead.org>, DT <devicetree@vger.kernel.org>
-References: <07f7a695-18a0-4211-82e9-b1e2c7166969@freebox.fr>
- <79ba726d-d02c-44b9-b6f6-59b17ba9755c@freebox.fr>
- <54b4e810-754e-481a-bbc8-984f859b116d@linaro.org>
- <15fcafb2-4b4a-40a1-8ef5-ee3aef9b3b9d@freebox.fr>
- <95cafd69-de6d-497f-b3d6-b6d7a8a3b795@linaro.org>
- <e3e47a72-8a6c-475b-a248-95da5dae24ff@linaro.org>
- <814c9035-1fda-4cd3-ab3c-95b58e2ecb22@freebox.fr>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <814c9035-1fda-4cd3-ab3c-95b58e2ecb22@freebox.fr>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-On 21/02/2024 14:48, Marc Gonzalez wrote:
-> Drop compatible properties as requested.
-> 
-> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
-> ---
->   arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso    | 4 ----
->   arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso | 4 ----
->   2 files changed, 8 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
-> index ed79809b15859..9591fdc31ee0e 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
-> @@ -7,10 +7,6 @@
->   #include <dt-bindings/gpio/gpio.h>
->   #include <dt-bindings/gpio/meson-g12a-gpio.h>
->   
-> -/ {
-> -	compatible = "freebox,fbx8am-brcm", "freebox,fbx8am", "amlogic,g12a";
-> -};
-> -
->   &uart_A {
->   	bluetooth {
->   		compatible = "brcm,bcm43438-bt";
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso
-> index 5da88fb94fb98..55fff35b09ae7 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso
-> @@ -7,10 +7,6 @@
->   #include <dt-bindings/gpio/gpio.h>
->   #include <dt-bindings/gpio/meson-g12a-gpio.h>
->   
-> -/ {
-> -	compatible = "freebox,fbx8am-realtek", "freebox,fbx8am", "amlogic,g12a";
-> -};
-> -
->   &uart_A {
->   	bluetooth {
->   		compatible = "realtek,rtl8822cs-bt";
+Hi,
 
-Squashed on https://git.kernel.org/amlogic/c/13636d5502204e671398470962babbfb46bc2721
-now is:
-https://git.kernel.org/amlogic/c/d881d79f8c77d7f9935a8d9424a1dc4364787bf1
+Am Mittwoch, 21. Februar 2024, 08:46:46 CET schrieb Sandor Yu:
+> Hi Alexander,
+>=20
+> Thanks for your comments,
+>=20
+> >
+> >
+> > Hi,
+> >
+> > thanks for the update.
+> >
+> > Am Dienstag, 20. Februar 2024, 04:23:53 CET schrieb Sandor Yu:
+> > > Add bindings for Freescale iMX8MQ DP and HDMI PHY.
+> > >
+> > > Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
+> > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > ---
+> > > v9->v14:
+> > >  *No change.
+> > >
+> > >  .../bindings/phy/fsl,imx8mq-dp-hdmi-phy.yaml  | 53
+> > > +++++++++++++++++++
+> > >  1 file changed, 53 insertions(+)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/phy/fsl,imx8mq-dp-hdmi-phy.yaml
+> > >
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/phy/fsl,imx8mq-dp-hdmi-phy.yaml
+> > > b/Documentation/devicetree/bindings/phy/fsl,imx8mq-dp-hdmi-phy.yaml
+> > > new file mode 100644
+> > > index 0000000000000..917f113503dca
+> > > --- /dev/null
+> > > +++
+> > b/Documentation/devicetree/bindings/phy/fsl,imx8mq-dp-hdmi-phy.yam
+> > > +++ l
+> > > @@ -0,0 +1,53 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) %YAML 1.2
+> > > +---
+> > > +$id:
+> > > +http://devi/
+> > >
+> > +cetree.org%2Fschemas%2Fphy%2Ffsl%2Cimx8mq-dp-hdmi-phy.yaml%23&da
+> > ta=3D05
+> > >
+> > +%7C02%7CSandor.yu%40nxp.com%7Ce79b4d15c204494963c508dc31fbab5d
+> > %7C686e
+> > >
+> > +a1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C638440204190687801%7C
+> > Unknown%7
+> > >
+> > +CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWw
+> > iLCJX
+> > >
+> > +VCI6Mn0%3D%7C0%7C%7C%7C&sdata=3DrKWiYc1wbOvKMO%2BWnvT6agxo
+> > 9V%2B1ndZVTxh
+> > > +gLT0g7h8%3D&reserved=3D0
+> > > +$schema:
+> > > +http://devi/
+> > >
+> > +cetree.org%2Fmeta-schemas%2Fcore.yaml%23&data=3D05%7C02%7CSandor.y
+> > u%40n
+> > >
+> > +xp.com%7Ce79b4d15c204494963c508dc31fbab5d%7C686ea1d3bc2b4c6fa9
+> > 2cd99c5
+> > >
+> > +c301635%7C0%7C0%7C638440204190709341%7CUnknown%7CTWFpbGZsb
+> > 3d8eyJWIjoi
+> > >
+> > +MC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0
+> > %7C%7C%
+> > >
+> > +7C&sdata=3D%2FuCSz0aVVsRLorOqrorbZIyT7iU5BavPKCbA9qL9qDI%3D&reserv
+> > ed=3D0
+> > > +
+> > > +title: Cadence HDP-TX DP/HDMI PHY for Freescale i.MX8MQ SoC
+> > > +
+> > > +maintainers:
+> > > +  - Sandor Yu <sandor.yu@nxp.com>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - fsl,imx8mq-dp-phy
+> > > +      - fsl,imx8mq-hdmi-phy
+> >
+> > While reading cdns-mhdp8501-core.c I'm not so sure about this. There is=
+ only
+> > a single PHY which can be configured for either DP or HDMI.
+> > Using separate compatibles for that somehow bugs me.
+> > Maybe the DT maintainers can add some input if this should be single or
+> > double compatibles.
+> >
+> When user enable MHDP8501 HDMI or DP, he should clearly know which type h=
+e want to enable,
+> From board type, flash.bin(firmware) to dts(connector and phy type), they=
+ are all need align to HDMI or DP.
 
-Thanks,
-Neil
+I understand your concerns. On the other hand cdns_mhdp8501_dt_parse() from
+patch 4 already parses DT setup to decide whether the output is DP or HDMI.
+mhdp->connector_type can be used to configure the PHY accordingly.
+
+Best regards,
+Alexander
+
+> B.R
+> Sandor
+>=20
+> > Thanks and best regards,
+> > Alexander
+> >
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    items:
+> > > +      - description: PHY reference clock.
+> > > +      - description: APB clock.
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: ref
+> > > +      - const: apb
+> > > +
+> > > +  "#phy-cells":
+> > > +    const: 0
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - clocks
+> > > +  - clock-names
+> > > +  - "#phy-cells"
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/clock/imx8mq-clock.h>
+> > > +    #include <dt-bindings/phy/phy.h>
+> > > +    dp_phy: phy@32c00000 {
+> > > +        compatible =3D "fsl,imx8mq-dp-phy";
+> > > +        reg =3D <0x32c00000 0x100000>;
+> > > +        #phy-cells =3D <0>;
+> > > +        clocks =3D <&hdmi_phy_27m>, <&clk
+> > IMX8MQ_CLK_DISP_APB_ROOT>;
+> > > +        clock-names =3D "ref", "apb";
+> > > +    };
+> > >
+> >
+> >
+> > --
+> > TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+> > Amtsgericht M=FCnchen, HRB 105018
+> > Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+> > http://www.tq-/
+> > group.com%2F&data=3D05%7C02%7CSandor.yu%40nxp.com%7Ce79b4d15c2044
+> > 94963c508dc31fbab5d%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0
+> > %7C638440204190726471%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjA
+> > wMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7
+> > C&sdata=3D7xs1%2FC%2BK1cSFDc3rlBEZdNBsYw6Gc8AR6CWr2Djz4s0%3D&res
+> > erved=3D0
+> >
+>=20
+>=20
+>=20
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
 
