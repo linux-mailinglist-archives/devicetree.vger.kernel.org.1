@@ -1,140 +1,239 @@
-Return-Path: <devicetree+bounces-44164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C596D85CF22
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 04:50:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CB9E85CF35
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 05:08:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B8651F23552
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 03:50:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B26E41F25415
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 04:08:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27F234177B;
-	Wed, 21 Feb 2024 03:43:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F398238F9D;
+	Wed, 21 Feb 2024 04:08:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zzwVZNu4"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="xMyMoqWJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79AF441235
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 03:43:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2528425613
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 04:08:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708487003; cv=none; b=ImWJkcVaeY4ua19NkvBuSR+JvCEX4fmcJ0inj1NCXLKKPJ+fGI8xQ7vkF3j1YnP+Lx1BS9V2bdNrUg7RH8GdfChcuEAWvmFI5JF8jk8zbcccouDEW60Kc8KiSxcyebSzIagLL2V0YMNs5gBpY8rZxDAsAzcRp6aNhzFsRiYFd/Y=
+	t=1708488512; cv=none; b=QKc4R1KW2fUuTPNDyBVhA+8voYj2Fi+56RKAD0y3RsHyeVHPFzXE1i1rMSrtMmTRaIVnnHy+dPnQs7sgcttdvSxWn0w2A3dfhUI3Ol54TVarCi2GU0IlsPqs3cEkzSGM9jNUvGSEElSxlSkSOg0ILgl5bV1Vm2QLPJyvDLH2pNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708487003; c=relaxed/simple;
-	bh=A1U2AhFSylFEoWUJauK5UZCee1hBlTSyFV6uA0M2qLc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=fXWfNpUSS9uBWyXySITkA535tr3XhttVsFy1tba6fAYQ4wqDR+7hejaBVoXOBz6B+ewpljjQS+MAcQXk8UEBUu/UfNfz4W7p6W2zbWGpUw7J0u5s6jI3lbawOb6UnN/mbsMOWnROaR4hoTDvXuvkcup5GRgBlyo9x1QWhnsD9BA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zzwVZNu4; arc=none smtp.client-ip=209.85.167.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-3c15d67b83cso1078995b6e.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 19:43:21 -0800 (PST)
+	s=arc-20240116; t=1708488512; c=relaxed/simple;
+	bh=VMnZZMlvZpAbCe/9PN4y8l6fqn6fzCdYpCLaJwhENmQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=aAtrv8JohoRBwqL4FQtPWJfHgAAZnENFCI3l2AWSNvHeWWX7nmmAlx+7D3z/MFIzRxBGqJq6jAI9MdSi1XtKj9hwZ3O9THO+//H4g/m4NxMgq5pwDQLdYfqoshAJ1WWzHUxF43SyMZdm42Aj+Za6MaUrDXc0/NrPgRNQWr0n2Tw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=xMyMoqWJ; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-564e4477b7cso4699a12.1
+        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 20:08:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708487000; x=1709091800; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8TcGD0vYzqY744qhG+3tpLJcU6jq9OWgwS9pK6BYGt0=;
-        b=zzwVZNu4a/L32m6yDGkRU6kXO/6nNMkEseKa8biMqrWrvgzh4OMwvPhbD3Ta2+hgX8
-         63qq6X+Ww8OOqo8SjiIBc0aziVkuK78YECG9jIsbfQOp5GfCf+J5IHw81c3lsVS8A5am
-         QkKz1+9SKhmiNkC6hxRCp/uIHeAwpdWSL/Xoco3+ukh5JMJQZyp4XBO/kWHgHFu4z4RN
-         uQo0l6RYdU4X8M3XQGc4ld8Bni7oYDeJhSeWIbKOOZ/jvoNhUlYvclLCWzfPiiNNdqw0
-         phsofR7X4LRFlXEhPYi7v5dnV4iNNUYFrXAQMpSE7qoLZSwIjJi6z5uyKrjw/sH20d7G
-         dCMw==
+        d=google.com; s=20230601; t=1708488509; x=1709093309; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1vYLUdRHnLOuE5GlvVy5mmDzCcmYulWt5UKno2mI/Ts=;
+        b=xMyMoqWJWUh+y/Z7mD1swhWNCdspx5wwLL/H6thBwHhdCxoeo5NL9HnfVoYpll3wQR
+         FBi23f/6ITJisMLOy/rh/cmGA9ExQLxygiZQwu5Tksbwy264juz64oMyLem1Yts9EJgo
+         lMg+2fsgnmtK+tRuLpxdngmnJQpEvV6bj/aIdqFQPqnV8yai+zFjK34GJqkSKLsRHbtc
+         hE+ZWHamJbUevirArV2knhqefRIezkM8M9v1IBwVydOVRRRkXmoEQWGFoLJylxpen5/N
+         F1PnQbBWEyaPyT2QuCkLfOUAyC3Nr39tCg0gcjiXzOGC/ZX2QOsIql3Qwb894CkvIbvV
+         1zmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708487000; x=1709091800;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1708488509; x=1709093309;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=8TcGD0vYzqY744qhG+3tpLJcU6jq9OWgwS9pK6BYGt0=;
-        b=niQKnyCw+RdXjJF5eXLatyNXTEDKv1oksPUN+0dCmkkYNTrlgB8XRb+k7vQB0wfhwa
-         iimUt54dzRgsNWn87VcJW5vXSo9sia6aHseRvR5c/nfJtBpfrd/7hO638KUI/vTUirf5
-         znJg7yZycj9xpEgwPJqWfPDB7OWSZFGqwu+GjFeaOpWeqpQ+StEN9ziSLWRuiOsbnWlY
-         0jZekOE0US6V1SKyfZUjGJ7RTMczJ0GJPIyjdlbAxI91HLE7C+bBGXUKaok2ekSkbu8A
-         NuHUh3KjOxefJewcOnEsCp0aiMuOpDKxYnmVxYthOybXHKCXGLYhWZphCl89BrmsCWIh
-         D9jQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV3H4vlOgl+MLqOtspTeZXi6YjMCLKOdG3BzQyxTboLAwd2xZ5L3fbQyvJxGjX5x2f6Hl6BfI/31975RPvV4ycjAWgRl7zy5bxK9A==
-X-Gm-Message-State: AOJu0YwUZJ+9WTCyG8tMMC/1ealql9q60z2MF2FPUCogc4zJePvbGcVz
-	3s556IMVk3mgXm9rq2RvhTeTTOpXmOjjnYjkI35vwfAG81jweqDjyOjyQ4SfTg==
-X-Google-Smtp-Source: AGHT+IGh0VRHakYBLfpQxyEw//q97OJGZlL2MMOYTb+lFbU6Qr3vHRhVfnVdfzEW5Zoqq4N4oxfu2A==
-X-Received: by 2002:a05:6808:21a5:b0:3c1:35de:bdb6 with SMTP id be37-20020a05680821a500b003c135debdb6mr19959345oib.6.1708487000712;
-        Tue, 20 Feb 2024 19:43:20 -0800 (PST)
-Received: from [127.0.1.1] ([117.207.28.224])
-        by smtp.gmail.com with ESMTPSA id o23-20020a056a001b5700b006e466369645sm4436231pfv.132.2024.02.20.19.43.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Feb 2024 19:43:20 -0800 (PST)
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Date: Wed, 21 Feb 2024 09:12:07 +0530
-Subject: [PATCH 21/21] arm64: dts: qcom: sm8650: Use "pcie" as the node
- name instead of "pci"
+        bh=1vYLUdRHnLOuE5GlvVy5mmDzCcmYulWt5UKno2mI/Ts=;
+        b=nPp4beMBTY37TsnIRRtD4OL2WHI5LQZfNGbtYSgZg68SRB/FluUS5t8lLOLEY066be
+         Ce+tXoNGFrDzGhpwFKG7W/6lzOMw7YWm7/ckWrSmwp9uI+/XHln79Rdq+R7CSWJmCV9A
+         ofT1/l2aetlc/ucgMOQFr58/lBaUl4rt/MwFPdi8rEMKRwx5UM+AhCnGNpYlF2lc23JG
+         2mBZAgl2mk9M2h6UGgRsd9lBHTZVMjliWof2sZqfOMh+588qYhQo8YPwkhsmRqEPdr8N
+         H/gB08ugZ/dcNYD/U8BK7BVr+4BLyeyN3TRf14KaMK1a43l4GFLPPQQxTmAu2NaPTgOi
+         0e7g==
+X-Forwarded-Encrypted: i=1; AJvYcCW35be5CTl3FzaSms7mLA3Z85tJk7AqZGOCW/jVfo5UEVYeThRNFi2gThw7eVC1+Di7aRt0w/xuzlCpbDCH66pIbpqLyr8dOV7DuQ==
+X-Gm-Message-State: AOJu0Yz28oEmpcJVK/ARecjFiCcB3oLVsYovWmqj8K4rmxhMEETgwFco
+	gNmxuwLu9b203MZMbhKMITGo1fm5M+u1elhe65VUrmZ1IlHjKg914Q2E0HJlhBwcuEPS7XQ7F5O
+	Jv3HkCSPUeVxdnWSaA01RH92M/Vd3LIITbbP1
+X-Google-Smtp-Source: AGHT+IHmgqd6Xu5JQrE9v4Rhsl5MKM0/pejNdb3HvU+7d2flqEB0yhf6jyU2v+sB5FmKxqZFYTO435nbWJ8DHnQHhOM=
+X-Received: by 2002:a50:d5d9:0:b0:563:f48f:a5bc with SMTP id
+ g25-20020a50d5d9000000b00563f48fa5bcmr47442edj.5.1708488509288; Tue, 20 Feb
+ 2024 20:08:29 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240221-pcie-qcom-bridge-dts-v1-21-6c6df0f9450d@linaro.org>
-References: <20240221-pcie-qcom-bridge-dts-v1-0-6c6df0f9450d@linaro.org>
-In-Reply-To: <20240221-pcie-qcom-bridge-dts-v1-0-6c6df0f9450d@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1042;
- i=manivannan.sadhasivam@linaro.org; h=from:subject:message-id;
- bh=A1U2AhFSylFEoWUJauK5UZCee1hBlTSyFV6uA0M2qLc=;
- b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBl1XEJ3o0L4dHDQjbMepOhZ1jZsMoVqyLsW6pH/
- fn/qiMCsn+JATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCZdVxCQAKCRBVnxHm/pHO
- 9bo3B/wOKFCwu5EF2RDsdLQq8H7yjzWtnlJ+uU9SY929BX3KiBjk3O5vHXIx3VKz7pCgTF7BnUE
- LQoNqjY7Ya3Iw2KLY/wU4D8KVcqmXEn/QKiNc4/GR0wBFfob3+o2cJJfAtxrMVd8eJ+jL15+0ul
- +Bxa2V4gBI6m8XV9uFrqcEin/3TcRni3RId/aQqrzNQ0d1zcSFM4lEAqDubCAXRTEsLOfUFpU+h
- x/OagTT1bC7iXRec28qAiKmQhQwcU96Eirqqev7EA0sRXr3kG4Snf2H/mmXh7+/+LYpIpVpavS3
- 5v+Trxc/b6ZTcPbtQ1rxGL4yghjg62v8wBkR+phcDsCo4d5D
-X-Developer-Key: i=manivannan.sadhasivam@linaro.org; a=openpgp;
- fpr=C668AEC3C3188E4C611465E7488550E901166008
+References: <20240212213147.489377-1-saravanak@google.com> <20240212213147.489377-4-saravanak@google.com>
+ <20240214-stable-anytime-b51b898d87af@spud> <CAGETcx-tBjfaLQqmGW=ap2N5FLK_gvTzxskA6sVsr_SUEpvomA@mail.gmail.com>
+ <b7fcb71a-e3bf-4f50-89d6-caff9f3303dc@linaro.org>
+In-Reply-To: <b7fcb71a-e3bf-4f50-89d6-caff9f3303dc@linaro.org>
+From: Saravana Kannan <saravanak@google.com>
+Date: Tue, 20 Feb 2024 20:07:48 -0800
+Message-ID: <CAGETcx8XBj=vh_e3vyXuj8oQYA3UC4uy9h9K2OmwBxZ2G_ms9Q@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] dt-bindings: Add post-init-supplier property
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Ard Biesheuvel <ardb@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Len Brown <lenb@kernel.org>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, kernel-team@android.com, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-efi@vger.kernel.org, linux-acpi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Qcom SoCs doesn't support legacy PCI, but only PCIe. So use the correct
-node name for the controller instances.
+On Sat, Feb 17, 2024 at 2:27=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 15/02/2024 00:32, Saravana Kannan wrote:
+> >
+> > Good point. Done.
+> >
+> >>> +    # One or more suppliers can be marked as post initialization sup=
+plier
+> >>> +    description:
+> >>> +      List of phandles to suppliers that are not needed for initiali=
+zing or
+> >>> +      resuming this device.
+> >>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> >>> +      items:
+> >>> +        maxItems: 1
+> >>
+> >> Rob's bot rightfully complains here about invalid syntax.
+> >
+> > I added these two lines based on Rob's feedback. Is the indentation
+> > that's wrong?
+> >
+> > Yeah, I'm trying to run the dts checker, but I haven't be able to get
+> > it to work on my end. See my email to Rob on the v1 series about this.
+> >
+> > $ make DT_CHECKER_FLAGS=3D-m dt_binding_check
+> >
+> > The best I could get out of it is a bunch of error reports on other
+> > files and then:
+> > ...
+> > <snip>/Documentation/devicetree/bindings/post-init-suppliers.yaml:
+> > ignoring, error parsing file
+> > ...
+> >
+> > I also tried to use DT_SCHEMA_FILES so I can only test this one file,
+> > but that wasn't working either:
+>
+> I see the errors immediately during testing, no special arguments needed:
+>
+> crosc64_dt_binding_check post-init-supplier.yaml
+> make[1]: Entering directory '/home/krzk/dev/linux/linux/out'
+>   LINT    Documentation/devicetree/bindings
+>   DTEX    Documentation/devicetree/bindings/post-init-supplier.example.dt=
+s
+> ../Documentation/devicetree/bindings/post-init-supplier.yaml:84:12:
+> [error] syntax error: mapping values are not allowed here (syntax)
+>   CHKDT   Documentation/devicetree/bindings/processed-schema.json
+> ../Documentation/devicetree/bindings/post-init-supplier.yaml:84:12:
+> mapping values are not allowed in this context
+> make[3]: *** [../Documentation/devicetree/bindings/Makefile:26:
+> Documentation/devicetree/bindings/post-init-supplier.example.dts] Error 1
+> make[3]: *** Deleting file
+> 'Documentation/devicetree/bindings/post-init-supplier.example.dts'
+> make[3]: *** Waiting for unfinished jobs....
+> ../Documentation/devicetree/bindings/post-init-supplier.yaml:84:12:
+> mapping values are not allowed in this context
+>   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+> /home/krzk/dev/linux/linux/Documentation/devicetree/bindings/post-init-su=
+pplier.yaml:
+> ignoring, error parsing file
+> make[2]: *** [/home/krzk/dev/linux/linux/Makefile:1424:
+> dt_binding_check] Error 2
+> make[1]: *** [/home/krzk/dev/linux/linux/Makefile:240: __sub-make] Error =
+2
+> make[1]: Leaving directory '/home/krzk/dev/linux/linux/out'
+> make: *** [Makefile:240: __sub-make] Error 2
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8650.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+I think I was just getting overwhelmed with the sea of error logs I
+saw (for unrelated files). If I don't use the flags it's way too noisy
+and it's not always the first thing that's reported.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index 57a1ea84aa59..1b226499175a 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -2203,7 +2203,7 @@ rng: rng@10c3000 {
- 			reg = <0 0x010c3000 0 0x1000>;
- 		};
- 
--		pcie0: pci@1c00000 {
-+		pcie0: pcie@1c00000 {
- 			device_type = "pci";
- 			compatible = "qcom,pcie-sm8650", "qcom,pcie-sm8550";
- 			reg = <0 0x01c00000 0 0x3000>,
-@@ -2313,7 +2313,7 @@ pcie0_phy: phy@1c06000 {
- 			status = "disabled";
- 		};
- 
--		pcie1: pci@1c08000 {
-+		pcie1: pcie@1c08000 {
- 			device_type = "pci";
- 			compatible = "qcom,pcie-sm8650", "qcom,pcie-sm8550";
- 			reg = <0 0x01c08000 0 0x3000>,
+This is what I see now and I think I now understand what to look for.
 
--- 
-2.25.1
+$ make DT_CHECKER_FLAGS=3D-m dt_binding_check
+DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/post-init-suppliers.yam=
+l
+  LINT    Documentation/devicetree/bindings
+./Documentation/devicetree/bindings/post-init-suppliers.yaml:84:12:
+[error] syntax error: mapping values are not allowed here (syntax)
+  CHKDT   Documentation/devicetree/bindings/processed-schema.json
+./Documentation/devicetree/bindings/post-init-suppliers.yaml:84:12:
+mapping values are not allowed in this context
+  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+/mnt/android/linus-tree/Documentation/devicetree/bindings/tpm/ibm,vtpm.yaml=
+:
+ignoring, error in schema: properties
+/mnt/android/linus-tree/Documentation/devicetree/bindings/post-init-supplie=
+rs.yaml:
+ignoring, error parsing file
+/mnt/android/linus-tree/Documentation/devicetree/bindings/soc/tegra/nvidia,=
+tegra20-pmc.yaml:
+ignoring, error in schema: allOf: 0: then: properties: pinmux
+/mnt/android/linus-tree/Documentation/devicetree/bindings/net/lantiq,pef225=
+6.yaml:
+ignoring, error in schema: properties: lantiq,data-rate-bps
+/mnt/android/linus-tree/Documentation/devicetree/bindings/iio/pressure/hone=
+ywell,mprls0025pa.yaml:
+ignoring, error in schema: properties: honeywell,pmin-pascal
+/mnt/android/linus-tree/Documentation/devicetree/bindings/iio/pressure/hone=
+ywell,hsc030pa.yaml:
+ignoring, error in schema: properties: honeywell,pmax-pascal
+  DTEX    Documentation/devicetree/bindings/post-init-suppliers.example.dts
+Documentation/devicetree/bindings/post-init-suppliers.yaml:84:12:
+mapping values are not allowed in this context
+make[2]: *** [Documentation/devicetree/bindings/Makefile:26:
+Documentation/devicetree/bindings/post-init-suppliers.example.dts]
+Error 1
+make[2]: *** Deleting file
+'Documentation/devicetree/bindings/post-init-suppliers.example.dts'
+make[1]: *** [/mnt/android/linus-tree/Makefile:1432: dt_binding_check] Erro=
+r 2
+make: *** [Makefile:240: __sub-make] Error 2
 
+>
+>
+> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sou=
+rces-with-the-devicetree-schema/
+>
+> I assume you develop on some older trees, because both next and v6.8-rc1
+> work... or standard issues: old dtschema, old yamllint.
+>
+> I am afraid you do it for some old Android kernel... :(
+
+No, I always develop on Linus's tree and test it on an android kernel
+that's behind Linus's tree by a month or so.
+
+My yamllint version is 1.32.0, but until 2 weeks ago the latest
+yamllint version was 1.33.0.
+
+And dt-schema is  2022.08.2-5 and I had to revert this from Linus's
+tree to get it to work:
+b32dcf23a03e dt-bindings: Drop kernel copy of common reserved-memory bindin=
+gs
+
+Unfortunately, AFAIK, I don't have permissions to change the package
+repo, so can't really install a newer version.
+
+Thanks for the tips.
+
+-Saravana
+
+
+
+-Saravana
 
