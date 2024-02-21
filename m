@@ -1,85 +1,149 @@
-Return-Path: <devicetree+bounces-44453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DB0485E516
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 18:58:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5701685E526
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 19:04:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5EFC51C241D4
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 17:58:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 868881C21B1D
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 18:04:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB3AA84FD9;
-	Wed, 21 Feb 2024 17:58:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEAA985261;
+	Wed, 21 Feb 2024 18:04:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cQt+VtgO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B53C84FD8
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 17:58:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFAF184FAD;
+	Wed, 21 Feb 2024 18:04:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708538305; cv=none; b=Ip8KfMjk2ojP3Ommap329eRXpcX3QGtwhKHM2kpr4q2EYSShzM7V1FxlL6jjIaGbItN1ufgEfq3Xsf/4r3m9XdZRLvqyr/uDuFsePf+yBjgxe/gAVV798NyknkI7kD7Mp0tIQJH2mp9HnebGSulDGdSNcCR26ydLK3p+kHkbdVU=
+	t=1708538683; cv=none; b=XfVkWY6JCBMIqDOhTe0Kmzo8G9PfiYd3BjRjK5Sx0DQKMIw4QcLriEwMOpGcyGB8KpOpvex+VjkS+V8l0txaMyKXv+m0yWKvM7USA1O8dqOhOwrx4TDjYLUtUiVU7F5LUvMgY7Y8U1Fp/d8TLt33tMIyuyJ/NoFY7nJp1nOpl5k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708538305; c=relaxed/simple;
-	bh=SDXjqB4wIG3XnhyFFBnM6Pd3RHudSe6ZGddZfgcxJrQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ppPhleJVDH6YQ63zsktxGS1nM+p1SP0CfLwrZz5oWsyyiquBfvH5cgZ48iuTvz7/np2TACRuW3/6m2Xi2EhhyzbyrILCdPVtjyL7C0uDyULuVHtRFqZkaiEgnB5VQ4hBkdSyhvH3lKNLWsjw97GtClRYVsW73JVfnnDeocluY0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <m.felsch@pengutronix.de>)
-	id 1rcqrF-00046q-LD; Wed, 21 Feb 2024 18:58:13 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: jic23@kernel.org,
-	lars@metafoo.de,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	denis.ciocca@st.com,
-	linus.walleij@linaro.org
-Cc: linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	kernel@pengutronix.de
-Subject: [PATCH] dt-bindings: iio: st-sensors: Add IIS2MDC magnetometer
-Date: Wed, 21 Feb 2024 18:58:10 +0100
-Message-Id: <20240221175810.3581399-1-m.felsch@pengutronix.de>
-X-Mailer: git-send-email 2.39.2
+	s=arc-20240116; t=1708538683; c=relaxed/simple;
+	bh=N3hyQeCD6IQBf8tWP+/hKiWNxUyx+FYv+Qik7aMVPn8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RfVru2FI34IFWdF1gnKooEWaYgGHXIGXUV9TJ5W3heK2enSNcKFxXf2wxdLM1IEtuEgMstOrAOm3ChbLhRh7iIADikiq9gZumjXIyYXmPl6aHtvrxtPYp4LRBpWb/zQKPm6ptrcZoIbYBVNq8awPBMoBcoh2vSu9atrcAZB2cts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cQt+VtgO; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1708538682; x=1740074682;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=N3hyQeCD6IQBf8tWP+/hKiWNxUyx+FYv+Qik7aMVPn8=;
+  b=cQt+VtgOuFecBhjBLeA3z/jGGPVXZmbLde5sBJSHaaT2GciMMyexjCB+
+   QE5hqZ0mXZfuY5jJ5hX3kVqkKDPG5oDLbC7D4fMdEbYoQD1aVQFgFg7hs
+   DUdWpdmFO9MS+0/U+UInzOc72wArD2Uzzflq3ol1aU8PSrg5PBDMxFbTr
+   /AEePP6XLzsvzPLvTlnUkIYeyZhd6Sh14OZqqd5V59sb/j4pWMOnvsmw6
+   HEkoR2D4f9xcFAbDNb4A1kcb7MpsmTEZzStaSmvaCcube+GAVUuk4TKnx
+   UHcmpVVROOrPNxJ8sZiQYcK/IXe7BHNQbdYlnxTENJSByCTh6+FDfRN0s
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="13845918"
+X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; 
+   d="scan'208";a="13845918"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2024 10:04:33 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; 
+   d="scan'208";a="5420455"
+Received: from lkp-server02.sh.intel.com (HELO 3c78fa4d504c) ([10.239.97.151])
+  by fmviesa006.fm.intel.com with ESMTP; 21 Feb 2024 10:04:29 -0800
+Received: from kbuild by 3c78fa4d504c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rcqwz-0005ZM-24;
+	Wed, 21 Feb 2024 18:04:26 +0000
+Date: Thu, 22 Feb 2024 02:04:02 +0800
+From: kernel test robot <lkp@intel.com>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>,
+	antoniu.miclaus@analog.com, alexandre.belloni@bootlin.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, jdelvare@suse.com, linux@roeck-us.net
+Cc: oe-kbuild-all@lists.linux.dev, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+	Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: Re: [PATCH v7 1/2] drivers: rtc: add max313xx series rtc driver
+Message-ID: <202402220139.EmXyZO4Q-lkp@intel.com>
+References: <20240219221827.3821415-2-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
-X-SA-Exim-Mail-From: m.felsch@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240219221827.3821415-2-chris.packham@alliedtelesis.co.nz>
 
-Add the iis2mdc magnetometer support which is equivalent to the lis2mdl.
+Hi Chris,
 
-Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
----
- Documentation/devicetree/bindings/iio/st,st-sensors.yaml | 1 +
- 1 file changed, 1 insertion(+)
+kernel test robot noticed the following build warnings:
 
-diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-index fff7e3d83a02..ee593c8bbb65 100644
---- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-+++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-@@ -64,6 +64,7 @@ properties:
-           - st,lsm9ds0-gyro
-       - description: STMicroelectronics Magnetometers
-         enum:
-+          - st,iis2mdc
-           - st,lis2mdl
-           - st,lis3mdl-magn
-           - st,lsm303agr-magn
+[auto build test WARNING on abelloni/rtc-next]
+[also build test WARNING on linus/master v6.8-rc5 next-20240221]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Chris-Packham/drivers-rtc-add-max313xx-series-rtc-driver/20240220-062057
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
+patch link:    https://lore.kernel.org/r/20240219221827.3821415-2-chris.packham%40alliedtelesis.co.nz
+patch subject: [PATCH v7 1/2] drivers: rtc: add max313xx series rtc driver
+config: x86_64-randconfig-123-20240220 (https://download.01.org/0day-ci/archive/20240222/202402220139.EmXyZO4Q-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240222/202402220139.EmXyZO4Q-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202402220139.EmXyZO4Q-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/rtc/rtc-max31335.c:727:22: sparse: sparse: symbol 'max313xx_clk_init' was not declared. Should it be static?
+>> drivers/rtc/rtc-max31335.c:750:21: sparse: sparse: symbol 'max313xx_nvmem_cfg' was not declared. Should it be static?
+
+vim +/max313xx_clk_init +727 drivers/rtc/rtc-max31335.c
+
+   726	
+ > 727	struct clk_init_data max313xx_clk_init = {
+   728		.name = "max313xx-clkout",
+   729		.ops = &max313xx_clkout_ops,
+   730	};
+   731	
+   732	static int max313xx_nvmem_reg_read(void *priv, unsigned int offset,
+   733					   void *val, size_t bytes)
+   734	{
+   735		struct max313xx *rtc = priv;
+   736		unsigned int reg = rtc->chip->ram_reg + offset;
+   737	
+   738		return regmap_bulk_read(rtc->regmap, reg, val, bytes);
+   739	}
+   740	
+   741	static int max313xx_nvmem_reg_write(void *priv, unsigned int offset,
+   742					    void *val, size_t bytes)
+   743	{
+   744		struct max313xx *rtc = priv;
+   745		unsigned int reg = rtc->chip->ram_reg + offset;
+   746	
+   747		return regmap_bulk_write(rtc->regmap, reg, val, bytes);
+   748	}
+   749	
+ > 750	struct nvmem_config max313xx_nvmem_cfg = {
+   751		.reg_read = max313xx_nvmem_reg_read,
+   752		.reg_write = max313xx_nvmem_reg_write,
+   753		.word_size = 8,
+   754	};
+   755	
+
 -- 
-2.39.2
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
