@@ -1,142 +1,128 @@
-Return-Path: <devicetree+bounces-44487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 605E185E736
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 20:24:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8B5A85E742
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 20:27:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9300F1C247A5
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 19:24:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74951286229
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 19:27:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5D5686633;
-	Wed, 21 Feb 2024 19:24:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60FC285C69;
+	Wed, 21 Feb 2024 19:27:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="PZi07Wty"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qcO5KgwD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FB6C8613C
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 19:24:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3423585927;
+	Wed, 21 Feb 2024 19:27:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708543456; cv=none; b=ciaim6TMe/MjT/ijaHNbSRZSAMBRZdNReRK3oB89BAWnSDrOnkl2xpsmQvp+ZCTWbOunV0JjA59z3nPvtmWVxt4u8l5p9+O9lY+2vS8TJErltsnfXOVkG0fGLJ+7oTjd2+9YP66+TG6O0Aoal/avclQKaM7McN/gbXueAlMEnW0=
+	t=1708543671; cv=none; b=C0ly/bvZ7JggvmPdDTqxeRyfhIo/kir9r5Mr28t8L82vGuDpTe/EdsumeT6dvBxo4xU9rckuKazYaLay93tjyvle6DPeZQJJG2lT9aELdYp3sAZik7DTGdQBqNJmVDhDbuw0hSRwvTO/1ZnKXr9Mhsh8rJW7Qk0ZITtV4c/9Q08=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708543456; c=relaxed/simple;
-	bh=3T+4Sowq+/a2cVZqSXKH4sBJEPnTUsRKB2xiZ30Hff4=;
+	s=arc-20240116; t=1708543671; c=relaxed/simple;
+	bh=BTdDx5vaaX86wA8OnfV1D5yuydXlrU3KbL90R01bacw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KGUgoQsEk2n2p9/QqZYrli8OtWG60J7Jph0HtDtXMtDK/DrCFQ4dELydeW7KpQgkuG1Hi5bIGXkNt4aa0tQ3SJ1lAFhihQ86zQZo0e/BTYMSnxFgsKoSSdNuFtDp1LAU371Z6ktCTjM9ZXXrRGw7Ui1veOD0lD11B57GUACiL6g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=PZi07Wty; arc=none smtp.client-ip=209.85.166.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-io1-f44.google.com with SMTP id ca18e2360f4ac-7c029beb8efso4447939f.0
-        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 11:24:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1708543454; x=1709148254; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=0yFTzTjr3GTZORxDHTHVOaXJnjBMrs5r+BDpbCsO/O0=;
-        b=PZi07WtySJY7RDcpykVgk8yCt4XeyzKR4b/MLOYnEfo/9gsVh9c06tUTGt7UZ0N25Q
-         pzn2QrHpjg5szoyuYmHF6ymWPS4VT00vRRlFybrI6xhOHm8IJZYCkNDb/yvGiS1tpfoW
-         wgFZpy/LFhQJKLzlVa43vbIRQ/PfhGi6Urqc8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708543454; x=1709148254;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0yFTzTjr3GTZORxDHTHVOaXJnjBMrs5r+BDpbCsO/O0=;
-        b=Lz+fyMjRcjuqRFHNSQpQ2cPLIGpfnCkT+SqdH51XIHziR3KpwbHSun+0y78NTo5W7U
-         5pY/mMTiazjx7Maajrz0X+4XHQ4aLawX71u6n+1gbdoAP7a3pS6LzLxjd26OjgqHfdzx
-         sp6Af8gHXFqpv+Ktv/lx9jibrW8jrc/PDT7jKpkji7OzJC7X9qTG1irdNbirNAvhJvGO
-         /nCKZL9K6sOKpkruWkM0UZfMmIh7knriL9rpUm8f1r7BRa18nLd0IiWJKJ+I8vVx5Lp/
-         q+b86Wtar5zLIFpZr2M3NdqDukwjMVZeIptETWV5I7RKvcPvb1KIP04i8fIG7vuNUgua
-         AYJA==
-X-Forwarded-Encrypted: i=1; AJvYcCVS1xOdUPvN7wPDDah3hylytgy+y7i97KNdfK9HwOdxe6TDqMi4wWGfL0B4xLiO1CH/uTuO19fS+BMLkWJLLQsVA4rvh+quJD+E2A==
-X-Gm-Message-State: AOJu0YyjEVvMgOarZS9Wbbvqzb/imqR1VV5aaNSBqk0Qlc8VnhHI7URt
-	BqfFXyBb8rdfEm5hNG/K/uDlbq9yepnVhgkXYOA2Up4purJ8aFJRZtq+7Zqdkw==
-X-Google-Smtp-Source: AGHT+IE291cBjzdobD8lyxusA74siOxGXcy/qiDGaMre5yQogt2xjfceKZiBvFi5jaiIFeXbw+8BWA==
-X-Received: by 2002:a6b:e519:0:b0:7c4:89b2:8084 with SMTP id y25-20020a6be519000000b007c489b28084mr423301ioc.1.1708543453597;
-        Wed, 21 Feb 2024 11:24:13 -0800 (PST)
-Received: from localhost (147.220.222.35.bc.googleusercontent.com. [35.222.220.147])
-        by smtp.gmail.com with UTF8SMTPSA id x17-20020a02ac91000000b00473f31f96desm2836260jan.90.2024.02.21.11.24.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Feb 2024 11:24:13 -0800 (PST)
-Date: Wed, 21 Feb 2024 19:24:12 +0000
-From: Matthias Kaehlcke <mka@chromium.org>
-To: Javier Carrasco <javier.carrasco@wolfvision.net>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Helen Koike <helen.koike@collabora.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Russell King <linux@armlinux.org.uk>,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 2/8] usb: misc: onboard_dev: add support for non-hub
- devices
-Message-ID: <ZdZN3FIS4zcKe4Kw@google.com>
-References: <20240220-onboard_xvf3500-v4-0-dc1617cc5dd4@wolfvision.net>
- <20240220-onboard_xvf3500-v4-2-dc1617cc5dd4@wolfvision.net>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Kd9MC+VUgUQ+x8/B8/z4vzZT8xeRIpLG4VSKjUR2n8QxFWaVYGMHw5IlTIevgsV0zj+p0gZPqDizl39YhB1fr4VoXh8WbkjDvw/opCzYp43xbCu6iFhTRqNs/wHk9WAEkGi5LJLQYYITn0rAmAdBq6RSDmUfRrqE4j40MAem+6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qcO5KgwD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01079C433F1;
+	Wed, 21 Feb 2024 19:27:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708543670;
+	bh=BTdDx5vaaX86wA8OnfV1D5yuydXlrU3KbL90R01bacw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qcO5KgwDyPU4I+kQ72WAHgsDx0sqct+ZKI3+LafZxgHXF93+z0OleWVB7encrLF3S
+	 4o79uqGWTb2/GuMitsHXYQwAMY4/WEEtyMy2zjfpERK8ulaP+KNTqTAEnsHJbDV7/R
+	 zXFiHLLcvIe72IjmLL7oE3hpy3GThmqGB5KqGr9krHrSNkQQy4Y+qq1QHaSNqb3FPl
+	 uNIYZLQVrjoySKHyrGXs5PbiWk28rEALT5b4uZ+SWSSHalkbNuBReNSBKRmOaJIR8h
+	 o9/xMMsEJYUoP5CyKJUcO2Cp0Ak9Dq6QgoABtEkRM459cMS4RBy4l4jFACA0TI1RLB
+	 OTCBAXsyo/CaA==
+Date: Wed, 21 Feb 2024 19:27:45 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	denis.ciocca@st.com, linus.walleij@linaro.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH] dt-bindings: iio: st-sensors: Add IIS2MDC magnetometer
+Message-ID: <20240221-imitate-molar-81d93285ac77@spud>
+References: <20240221175810.3581399-1-m.felsch@pengutronix.de>
+ <20240221-undecided-union-4078db711693@spud>
+ <20240221191644.5r3ylr5w3cnfnrzj@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="nUPua0KAJjDmCWQL"
 Content-Disposition: inline
-In-Reply-To: <20240220-onboard_xvf3500-v4-2-dc1617cc5dd4@wolfvision.net>
-
-On Tue, Feb 20, 2024 at 03:05:46PM +0100, Javier Carrasco wrote:
-> Most of the functionality this driver provides can be used by non-hub
-> devices as well.
-> 
-> To account for the hub-specific code, add a flag to the device data
-> structure and check its value for hub-specific code.
-
-Please mention that the driver doesn't power off non-hub devices
-during system suspend.
-
-> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
-> ---
->  drivers/usb/misc/onboard_usb_dev.c |  3 ++-
->  drivers/usb/misc/onboard_usb_dev.h | 10 ++++++++++
->  2 files changed, 12 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/usb/misc/onboard_usb_dev.c b/drivers/usb/misc/onboard_usb_dev.c
-> index 2103af2cb2a6..f43130a6786f 100644
-> --- a/drivers/usb/misc/onboard_usb_dev.c
-> +++ b/drivers/usb/misc/onboard_usb_dev.c
-> @@ -129,7 +129,8 @@ static int __maybe_unused onboard_dev_suspend(struct device *dev)
->  		if (!device_may_wakeup(node->udev->bus->controller))
->  			continue;
->  
-> -		if (usb_wakeup_enabled_descendants(node->udev)) {
-> +		if (usb_wakeup_enabled_descendants(node->udev) ||
-> +		    !onboard_dev->pdata->is_hub) {
+In-Reply-To: <20240221191644.5r3ylr5w3cnfnrzj@pengutronix.de>
 
 
-This check isn't dependent on characteristics of the USB devices processed
-in this loop, therefore it can be performed at function entry. Please combine
-it with the check of 'always_powered_in_suspend'. It's also an option to
-omit the check completely, 'always_powered_in_suspend' will never be set for
-non-hub devices (assuming the sysfs attribute isn't added).
+--nUPua0KAJjDmCWQL
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->  			power_off = false;
->  			break;
->  		}
+On Wed, Feb 21, 2024 at 08:16:44PM +0100, Marco Felsch wrote:
+> On 24-02-21, Conor Dooley wrote:
+> > On Wed, Feb 21, 2024 at 06:58:10PM +0100, Marco Felsch wrote:
+> > > Add the iis2mdc magnetometer support which is equivalent to the lis2m=
+dl.
+> > >=20
+> > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > > ---
+> > >  Documentation/devicetree/bindings/iio/st,st-sensors.yaml | 1 +
+> > >  1 file changed, 1 insertion(+)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml=
+ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+> > > index fff7e3d83a02..ee593c8bbb65 100644
+> > > --- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+> > > +++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+> > > @@ -64,6 +64,7 @@ properties:
+> > >            - st,lsm9ds0-gyro
+> > >        - description: STMicroelectronics Magnetometers
+> > >          enum:
+> > > +          - st,iis2mdc
+> >=20
+> > Without a fallback compatible to the equivilent device, how does a
+> > driver bind to this device?
+>=20
+> I skimed the datasheets and the driver already handles this binding
+> exactly the same as the st,lis2mdl, so my assumption is they do match.
+>=20
+> Why do I you think we need a fallback compatible here?
 
-Without code context: please omit the creation of the 'always_powered_in_suspend'
-attribute for non-hub devices. As per above we don't plan to hone it, so it
-shouldn't exist.
+I didn't look at the driver, there was no mention of the driver already
+having (undocumented) support for it. Since there was no driver change
+alongside this patch, I thought you'd need a fallback compatible to
+allow the driver to match against a compatible it recognises.
+Besides, having fallback compatibles is the norm when one device has the
+same programming model as another.
+
+
+Cheers,
+Conor.
+
+
+--nUPua0KAJjDmCWQL
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdZOsQAKCRB4tDGHoIJi
+0oUFAP9dcoAmt9xrKwnbtL1gzjHaQs/HRkMgmbtho7RYa8T5hAD+La0IOSMbLau8
+273ryvy0VtZAZHnh6YcGOY9BW3pDjAs=
+=DCXd
+-----END PGP SIGNATURE-----
+
+--nUPua0KAJjDmCWQL--
 
