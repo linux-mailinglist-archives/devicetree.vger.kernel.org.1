@@ -1,325 +1,153 @@
-Return-Path: <devicetree+bounces-44202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCF5985D1A0
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 08:43:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45B1685D1A4
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 08:44:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92A0C285208
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 07:43:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7C829B2364A
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 07:44:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF3093AC19;
-	Wed, 21 Feb 2024 07:43:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 302353AC16;
+	Wed, 21 Feb 2024 07:43:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IN4Evyml"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dNE9OOnu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C12383A27B;
-	Wed, 21 Feb 2024 07:43:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 592293A27B
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 07:43:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708501425; cv=none; b=LSYxKp+X2Aln7+y2tAuD5U846/dZYs2GgYA0juSnbRGtk70QKewQaQtYHDq2qInJ1/vBFd1Fpf7oHjGsRnD4xdfqixIdNbz5rHDdOroGL5E5bsS1i0VGoeIEMO40Sust9ZDPsT0b0uEmd3P7liznbzd1xPEl9G2gzuPRqkqGoXU=
+	t=1708501438; cv=none; b=o4u2RDEAtqJp2HwoTeTJytX+z0PNqC48qzD7UU/8VKi5px7YAIEhFgjMfEVe3EqIWF1BcmWpOB6gPeUcdmaXh2MxI7cOh6NSmpUgsP48uXcARGIaHLSEMV+hNZHj9eRFPUzanGLNwiJIfCwN0DV1J8Nl+7Rta6UFhba07JyU6wg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708501425; c=relaxed/simple;
-	bh=ltTht77zSLOZYTaO34bNZ2vXR72J5XsBwuQr3EcrxMc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ggRw21H5DaIsYUuwptXtx2/1nzbu2pkYObOETXm7dZfHavwk2ubCtbm2GJ3DkFmiRDic0ElzuDZZ1WMojNnHD47rPiA4vIzT7oDNlxBjj4KXqBA5oyjC6k1dMZyOTXgLiIcTjt8ZtxN1BUiiK2K88Ap1BQhmQf1ZyAHg0IkPEDM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IN4Evyml; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1708501424; x=1740037424;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=ltTht77zSLOZYTaO34bNZ2vXR72J5XsBwuQr3EcrxMc=;
-  b=IN4EvymlP0JQktO7IAo5rzmlKPFPRmf6miSjyG0RhqiRAnajMwRBy8te
-   gRBSnSTROSNu7S5rpQXTP08NeCZEUs5jBGg3M4lOlq5Rx3SJBOwtmSEp7
-   yQEoTu1CU7qZFSiK64Yn5/TcfsZj2eT2xombxbSo/ss2S0gS0kJSpJ3rf
-   aR7J2hXs3XNHvfETiunp4vTPUty9jGXy2nsB6tGijqVFmhm/4CHQuyhTm
-   KwitqLmc+kPXJTnLYQQ6mzoRnbXLtSB3Qu4u0jEsfKKtGeY2/q8f7klED
-   Lblp1iRuU6ql/RAubWgeFVFeC2uqWGGHBO3DNNDo53FF7EWVAdmtD12qL
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10990"; a="13267305"
-X-IronPort-AV: E=Sophos;i="6.06,175,1705392000"; 
-   d="scan'208";a="13267305"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2024 23:43:42 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10990"; a="827300778"
-X-IronPort-AV: E=Sophos;i="6.06,175,1705392000"; 
-   d="scan'208";a="827300778"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2024 23:43:34 -0800
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with ESMTP id B6E6511F855;
-	Wed, 21 Feb 2024 09:43:31 +0200 (EET)
-Date: Wed, 21 Feb 2024 07:43:31 +0000
-From: "sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>
-To: Zhi Mao =?utf-8?B?KOavm+aZuik=?= <zhi.mao@mediatek.com>
-Cc: "heiko@sntech.de" <heiko@sntech.de>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"yunkec@chromium.org" <yunkec@chromium.org>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"dan.scally@ideasonboard.com" <dan.scally@ideasonboard.com>,
-	Shengnan Wang =?utf-8?B?KOeOi+Wco+eUtyk=?= <shengnan.wang@mediatek.com>,
-	"hdegoede@redhat.com" <hdegoede@redhat.com>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	"gerald.loacker@wolfvision.net" <gerald.loacker@wolfvision.net>,
-	"linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-	"andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
-	Yaya Chang =?utf-8?B?KOW8tembhea4hSk=?= <Yaya.Chang@mediatek.com>,
-	"jacopo.mondi@ideasonboard.com" <jacopo.mondi@ideasonboard.com>,
-	"mchehab@kernel.org" <mchehab@kernel.org>,
-	"jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
-	Project_Global_Chrome_Upstream_Group <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	"tomi.valkeinen@ideasonboard.com" <tomi.valkeinen@ideasonboard.com>,
-	"10572168@qq.com" <10572168@qq.com>,
-	"hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
-	"bingbu.cao@intel.com" <bingbu.cao@intel.com>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-	"laurent.pinchart@ideasonboard.com" <laurent.pinchart@ideasonboard.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"angelogioacchino.delregno@collabora.com" <angelogioacchino.delregno@collabora.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"macromorgan@hotmail.com" <macromorgan@hotmail.com>
-Subject: Re: [PATCH v4 2/2] media: i2c: Add GC08A3 image sensor driver
-Message-ID: <ZdWpow0JIM18Hc4u@kekkonen.localdomain>
-References: <20240204061538.2105-1-zhi.mao@mediatek.com>
- <20240204061538.2105-3-zhi.mao@mediatek.com>
- <20240206184542.GE2827@pendragon.ideasonboard.com>
- <598f62bbb55157eec1e23dd1dbc307fea3851b21.camel@mediatek.com>
- <20240220030104.GF20376@pendragon.ideasonboard.com>
- <115698c0c549e747026cc8841a3bd571533f8e6f.camel@mediatek.com>
- <ZdRUB92gkbRGPyr_@kekkonen.localdomain>
- <063fa9763efb1570295cfef385829714dd5e42cf.camel@mediatek.com>
+	s=arc-20240116; t=1708501438; c=relaxed/simple;
+	bh=e91w2HLo6+2Y3uvfpaJpiMEvHADhQtaSt09mxrrvNOU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HlpZyHsJgEHXTVnx0MHzoTFo7A5XW/ErthxgdUT+HBQFfIHf3ESKr2dtUTOjE6u3ilUexi9WBEuiaHqLkbymvAcIPO/uEI70jboaJQyzM0OAGlm+MEdGe6WmkwT7gHloYbBYTG8ZsrRcmUKKZM7Xa313WkmSOrWovkoUdb9y4Os=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dNE9OOnu; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a3d01a9a9a2so22286866b.1
+        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 23:43:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708501435; x=1709106235; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=I6vTvvurgVOAlBhNrimZ5xW2NbqTl5BKpSU68PDjodA=;
+        b=dNE9OOnufb0unmPEXD+94q6f0LWr6aRT3uQV91ydjzkkVC1ONP7rP+jcqwC2/Unmto
+         /XM6p4CC9K3Orcc3mfnx+r2dhhZxS46AZWvojt7fKAUJmhSiuB8HW+f24aQGrv+C/5VG
+         pDxCdV5kGhe/c5yrOAYM7xwhtoHRzdtkoUH87h63424FSCjKzajYTRn7xylFEAbtWN+E
+         qJ6c+/8t3fiDPvO1/jlSPlfZiWerz7XLUEH3EETDXd8ZuIAN5ThNH8DpQ7lR+fFFXi+S
+         jLZxhnm5GdxTHDw+w9vWr8XBrzu6D/DwLLLpb2gFyPBODx1/4Z8A2QcZYLE1DiY/z6L4
+         T6mw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708501435; x=1709106235;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=I6vTvvurgVOAlBhNrimZ5xW2NbqTl5BKpSU68PDjodA=;
+        b=fkrKJeWy0Sgz9NGjSJx1O3w64CuD8+bD/7mQ1yR9JmKIa1hkajWTb5XHKRm+VPGGOG
+         CSbGYnJpM+0UyKVfwIUR3VrjlvRKfbXQQtoAauuujaE5f6BXz+TWjyZ9uTAvOltONL9W
+         hPJjfvAFL5K/qCCcsSNiMQBu4tws4Z7ENqMoVCVM+LqYfEdYISXlJGRdTVO4ByidA8T3
+         J+TXWVM8JAOV6INeZc68juUQbCa1zO8K2xzH46d03iWSb+NBR5/BlQdwyzth6JgpXhEW
+         iXoX5cTr4Tv/rcrJOI71iH7/tQGxN6tm5qw+xOY3VMTMDe688jm/NFsaMGHrlVuiva8s
+         sJJA==
+X-Forwarded-Encrypted: i=1; AJvYcCWaGOraBv7JPC0mQ4wUyNzQqNNa1+6UZ6nbEz40nV0vTTt951DDz3xfy1zgK39fNCL5a8J6g+Xo4lwElmLrfhcfcoVTBGRvz86SkQ==
+X-Gm-Message-State: AOJu0YwtdPf6u78ZY0MI6tziZE8c74JoObyS08SBP14/Us8TZARCdON7
+	NaCTdh5yFwzm67a6OIYvEVPqu5oK/MXDhKxkcJovPiaJvNxLWtFj/bVPoHi7kdE=
+X-Google-Smtp-Source: AGHT+IE50ilgEXZWksjPqfnMD8kr6kMZBElRWy3CGPi/NTzerNbuBON2o4TKAgvEz8hE+Ze9EC12PQ==
+X-Received: by 2002:a17:906:33cb:b0:a3e:b43d:e1bd with SMTP id w11-20020a17090633cb00b00a3eb43de1bdmr4687237eja.9.1708501434743;
+        Tue, 20 Feb 2024 23:43:54 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.116])
+        by smtp.gmail.com with ESMTPSA id tx17-20020a1709078e9100b00a3f4bafa6fbsm152481ejc.168.2024.02.20.23.43.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Feb 2024 23:43:54 -0800 (PST)
+Message-ID: <c82d10cb-ab0c-4f1b-8492-3f8db3cc766e@linaro.org>
+Date: Wed, 21 Feb 2024 08:43:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <063fa9763efb1570295cfef385829714dd5e42cf.camel@mediatek.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] dt-bindings: arm64: dts: airoha: Add en7581 series
+Content-Language: en-US
+To: Lorenzo Bianconi <lorenzo@kernel.org>,
+ linux-arm-kernel@lists.infradead.org
+Cc: lorenzo.bianconi@redhat.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, nbd@nbd.name,
+ john@phrozen.org, devicetree@vger.kernel.org, dd@embedd.com,
+ catalin.marinas@arm.com, will@kernel.org,
+ angelogioacchino.delregno@collabora.com
+References: <cover.1708473083.git.lorenzo@kernel.org>
+ <8589d9ca1469e73227af596852a9adf673ac50ad.1708473083.git.lorenzo@kernel.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <8589d9ca1469e73227af596852a9adf673ac50ad.1708473083.git.lorenzo@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Zhi,
+On 21/02/2024 01:04, Lorenzo Bianconi wrote:
+> Introduce Airoha EN7581 entry in Airoha dts binding.
+> 
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/arm/airoha.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
 
-On Wed, Feb 21, 2024 at 02:37:27AM +0000, Zhi Mao (毛智) wrote:
-> Hi Laurent & sakari,
-> 
-> Thanks for your feedback.
-> 
-> On Tue, 2024-02-20 at 07:25 +0000, sakari.ailus@linux.intel.com wrote:
-> >  	 
-> > External email : Please do not click links or open attachments until
-> > you have verified the sender or the content.
-> >  Hi Zhi,
-> > 
-> > On Tue, Feb 20, 2024 at 05:45:54AM +0000, Zhi Mao (毛智) wrote:
-> > > Hi Laurent,
-> > > 
-> > > Thanks for you reply.
-> > > I'd like to ask for advice about how to contrl "reset-pin", please
-> > > check the below comments.
-> > > 
-> > > On Tue, 2024-02-20 at 05:01 +0200, Laurent Pinchart wrote:
-> > > >   
-> > > > External email : Please do not click links or open attachments
-> > until
-> > > > you have verified the sender or the content.
-> > > >  Hi Zhi,
-> > > > 
-> > > > On Tue, Feb 20, 2024 at 02:12:26AM +0000, Zhi Mao (毛智) wrote:
-> > > > > On Tue, 2024-02-06 at 20:45 +0200, Laurent Pinchart wrote:
-> > > > > > On Sun, Feb 04, 2024 at 02:15:38PM +0800, Zhi Mao wrote:
-> > > > > > > Add a V4L2 sub-device driver for Galaxycore GC08A3 image
-> > > > sensor.
-> > > > > > >
-> > > > > > > Signed-off-by: Zhi Mao <zhi.mao@mediatek.com>
-> > > > > > > ---
-> > > > > > >  drivers/media/i2c/Kconfig  |   10 +
-> > > > > > >  drivers/media/i2c/Makefile |    1 +
-> > > > > > >  drivers/media/i2c/gc08a3.c | 1448
-> > > > ++++++++++++++++++++++++++++++++++++
-> > > > > > >  3 files changed, 1459 insertions(+)
-> > > > > > >  create mode 100644 drivers/media/i2c/gc08a3.c
-> > > > 
-> > > > [snip]
-> > > > 
-> > > > > > > diff --git a/drivers/media/i2c/gc08a3.c
-> > > > b/drivers/media/i2c/gc08a3.c
-> > > > > > > new file mode 100644
-> > > > > > > index 000000000000..3fc7fffb815c
-> > > > > > > --- /dev/null
-> > > > > > > +++ b/drivers/media/i2c/gc08a3.c
-> > > > > > > @@ -0,0 +1,1448 @@
-> > > > 
-> > > > [snip]
-> > > > 
-> > > > > > > +static int gc08a3_power_on(struct device *dev)
-> > > > > > > +{
-> > > > > > > +struct i2c_client *client = to_i2c_client(dev);
-> > > > > > > +struct v4l2_subdev *sd = i2c_get_clientdata(client);
-> > > > > > > +struct gc08a3 *gc08a3 = to_gc08a3(sd);
-> > > > > > > +int ret;
-> > > > > > > +
-> > > > > > > +ret =
-> > regulator_bulk_enable(ARRAY_SIZE(gc08a3_supply_name),
-> > > > > > > +    gc08a3->supplies);
-> > > > > > > +if (ret < 0) {
-> > > > > > > +dev_err(gc08a3->dev, "failed to enable regulators: %d\n",
-> > > > ret);
-> > > > > > > +return ret;
-> > > > > > > +}
-> > > > > > > +
-> > > > > > > +ret = clk_prepare_enable(gc08a3->xclk);
-> > > > > > > +if (ret < 0) {
-> > > > > > > +regulator_bulk_disable(ARRAY_SIZE(gc08a3_supply_name),
-> > > > > > > +       gc08a3->supplies);
-> > > > > > > +dev_err(gc08a3->dev, "clk prepare enable failed\n");
-> > > > > > > +return ret;
-> > > > > > > +}
-> > > > > > > +
-> > > > > > > +usleep_range(GC08A3_MIN_SLEEP_US, GC08A3_MAX_SLEEP_US);
-> > > > > > > +
-> > > > > > > +gpiod_set_value_cansleep(gc08a3->reset_gpio, 1);
-> > > > > >
-> > > > > > Are you asserting reset when powering on ? That sounds wrong,
-> > you
-> > > > should
-> > > > > > de-assert reset here (and acquire the reset gpio in probe()
-> > with
-> > > > > > GPIOD_OUT_HIGH). Drivers should use logical levels for GPIOs,
-> > > > setting a
-> > > > > > GPIO named "reset" to 1 should assert the reset signal, even
-> > if
-> > > > the
-> > > > > > physical signal is active low. You may have the wrong
-> > polarity in
-> > > > the
-> > > > > > device tree.
-> > > > >
-> > > > > According to the sensor power sequence sepc, "reset" pin should
-> > be
-> > > > pull
-> > > > > from low to high after "dovdd/dvdd/avdd" power on, so I follow
-> > this
-> > > > > power sequece to pull "reset" pin high in software flow.
-> > > > 
-> > > > From a hardware point of view that's right, but the Linux kernel
-> > > > handles
-> > > > logical level of GPIOs. If a GPIO is named "reset", it is
-> > expected
-> > > > that
-> > > > calling
-> > > > 
-> > > > gpiod_set_value_cansleep(gc08a3->reset_gpio, 1);
-> > > > 
-> > > > will "assert" the reset signal, setting it to a logical "reset =
-> > > > true"
-> > > > level. This maps to the hardware 0V output level, as the signal
-> > is
-> > > > active-low. To achieve this, define the reset GPIO as active low
-> > in
-> > > > DT,
-> > > > and the GPIO framework will invert the signal for you. You should
-> > > > then
-> > > > call
-> > > > 
-> > > > gpiod_set_value_cansleep(gc08a3->reset_gpio, 1);
-> > > > 
-> > > > in the driver when you want to assert reset (set it to 0V), and
-> > > > 
-> > > > gpiod_set_value_cansleep(gc08a3->reset_gpio, 0);
-> > > > 
-> > > > when you want to deassert it (set it to 3.3V, or whatever the I/O
-> > > > voltage for the signal is).
-> > > > 
-> > > > This way all driver use logical states, and the inversion is
-> > handled
-> > > > in
-> > > > DT.
-> > > > 
-> > > 
-> > > Sensor power sequence as below:
-> > >                       ------------------
-> > >                      | | |
-> > >                      | | | 
-> > > dvdd/avdd/dovdd  --------
-> > >                                ---------
-> > >                               |
-> > >                               |
-> > > reset-pin        -------------
-> > > 
-> > > In order to match this power sequece, "reset-pin" contrl flow is
-> > below:
-> > > 1. config the "reset-pin" is "active-high" in DTS:
-> > >     reset-gpios = <&pio 19 GPIO_ACTIVE_HIGH>;
-> > > 
-> > > 2. image sensor driver probe function:
-> > > gc08a3->reset_gpio = devm_gpiod_get(dev, "reset",
-> > > GPIOD_OUT_LOW);  //init "reset-pin" is low
-> > > 
-> > > 3. image sensor driver power_on function:
-> > > gpiod_set_value_cansleep(gc08a3->reset_gpio, 1); //pull "reset-pin"
-> > > high 
-> > > 
-> > > so, the expect state of "reset-pin" is from low to high.
-> > > If I am wrong, please correct me.
-> > 
-> > 
-> > From Documentation/driver-api/gpio/consumer.rst:
-> > 
-> > As a consumer should not have to care about the physical line
-> > level, all of the gpiod_set_value_xxx() or
-> > gpiod_set_array_value_xxx() functions operate with the *logical*
-> > value. With this they take the active low property into account.
-> > This means that they check whether the GPIO is configured to be
-> > active low, and if so, they manipulate the passed value before the
-> > physical line level is driven.
-> > 
-> > I.e. when you want to enable reset, you set the value to 1 in the
-> > driver. I
-> > think you're now setting the value to 0 in that case. The opposite
-> > for
-> > disabling it of course.
-> > 
-> After checking "Documentation/driver-api/gpio/consumer.rst":
-> To summarize::
->   Function (example)                 line property          physical
-> line
-> ...
->   gpiod_set_value(desc, 1);          default (active high)  high
->   gpiod_set_value(desc, 0);          active low             high
-> ...
-> 
-> 
-> From my understanding, it seems that "reset-pin" is using the
-> following(active_high) case in current code: 
-> "gpiod_set_value(desc, 1);          default (active high)  high" 
-> 
-> Do you mean, we should use the "active_low" case:
-> "gpiod_set_value(desc, 0);          active low             high"
-> Code should be changed as below:
-> 1. config the "reset-pin" is "active-low" in DTS:
->    - reset-gpios = <&pio 19 GPIO_ACTIVE_LOW>
-> 2. image sensor driver power_on function:
->    - gpiod_set_value_cansleep(gc08a3->reset_gpio, 0); //pull high 
-> Is that so?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Correct.
+Best regards,
+Krzysztof
 
--- 
-Regards,
-
-Sakari Ailus
 
