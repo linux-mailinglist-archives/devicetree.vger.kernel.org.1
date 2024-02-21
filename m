@@ -1,137 +1,134 @@
-Return-Path: <devicetree+bounces-44341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44342-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03EE185D877
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 13:56:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 605C685D8BB
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 14:04:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B86F2871C6
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 12:56:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83B4F1C22D10
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 13:04:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6033E6994A;
-	Wed, 21 Feb 2024 12:55:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC2FA69964;
+	Wed, 21 Feb 2024 13:04:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OItDn+I8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gwvEwLFJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA8AE69D28;
-	Wed, 21 Feb 2024 12:55:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 175C04D5B7
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 13:04:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708520140; cv=none; b=r487BegsjFckpQbR9q4vxvR3XewH9wG5xCzAN3m/XO8Mb8bbQ28SJxlr0Z0vwaViuFk0Bw79/m7Hsb+yUPqFw3DGNvh9EBTpIWxE9fmRJGNoNZzBKvIlAgEN0cpRQseOBM9XEbSV6bC5NOOX4QrnhdxjRzpugVbTI6khCC4TNt0=
+	t=1708520682; cv=none; b=RTqBTVyLxSBIP7mfbPr090ShGin37AzVFMYsNrh/4x8M4DbC9wCvXjD1fW7qIQbUcjFrSScfEyXfJpD75vQnxAulXXZt3jUXXMOUan0Du+nKIxixY1V3qzfQX399zwegXLPG2ccZIzRRshu/6Tz4FNtPLYpAkRIv27n6ZA4AdFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708520140; c=relaxed/simple;
-	bh=BLO3yH1f9XYAxLZPnPfV2ATOOxsVqEcXjqOx9jWDsWc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fBruKKbrwswDB2jQpzj4dgI/DD3u3iiSU6zilfC94FBQ2rOE0KUGyaHogVDKBVBvSFs9eM1YHJzaYyet7VVOMo3ggnE2s4f4zSvgx/lMrfZMcrfjbNOnshgJB6OZNdF4jWONWV4NVrd38B0dTjtFxE7nMj+Urnrhpfj1wxIFh/4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OItDn+I8; arc=none smtp.client-ip=209.85.215.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-5c66b093b86so5476161a12.0;
-        Wed, 21 Feb 2024 04:55:38 -0800 (PST)
+	s=arc-20240116; t=1708520682; c=relaxed/simple;
+	bh=9KoXOsoD3oFZG1btxerktQuS6eWjGbeSUSu4T0DJIN0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=UgbA2SeuIiKt6Cxhdh8xjNpBsAH60S0PBYRj1+LG8Ltoh1VeYPpDwP3TEra9Wbcztg93IDETLrE5TX4oy9tHjfpPzEBAufFvgE+uPTtVbtFHw3pZt9HXmmzBGX2UAQzg0jcymqB3znJyPXcVZIQKbmbeSyDZHUTDrulFutXp3as=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gwvEwLFJ; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-564fe0273e4so622761a12.2
+        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 05:04:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708520138; x=1709124938; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IPjLDm2Lg7w6b61bovpX2e/7PuAoyyIn9ZUIR2lJePM=;
-        b=OItDn+I8u7NdTabUEpli9S1rXFMX+ddtxVBQuEz4pyxYTBYLOR0OxqF118boazZyVE
-         gRXSF4mb5mYNKaKJafYK9rLeiiJryyw04Tdh9Sf/LSHI0+/U1fEKacCAUk4huN56U+RV
-         xNAvKp36HwUVAokrGa6ppRlUh38QY/9rr501eU7G8emj/ow8YnrZE8GVKNTKT13+uVFb
-         8EgYYBdpG8JiNQEqOs4bn36LA3a/KlM6VflrbN0tSUhqfiCnqM9b8vXM3Y3kHiuNAvkr
-         PCtQhV4vJGTPyxcN5EOjeyHmT0SZ+1pBR74q+a3HROEe1zbmtlvwTgAw84LnNW1bZCxE
-         9PcA==
+        d=linaro.org; s=google; t=1708520679; x=1709125479; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Su7u5LVuWTODqDqwc76MxpUbjqV0wYO33Q2DKXaVprI=;
+        b=gwvEwLFJmUQr02cZef9lWmwIt0TPKCLCxosyRlUeyRbCz1G6KeayuXo3wnmEYYGtc8
+         3MOE8VkKavfE9f+ZO+FUGgJgsFoMsJh2Kf6iON66mU5Fhgs3Cf8AeoMsavwpn5389UT9
+         VeZAK/ty8Tvzy6AXKppKJS5uQ52Lv7Wv+Frxox90T/2p3+ta60E36LYVuWlqcu9f+Hi5
+         fskFY7JtRDHNCfSdirgiYz2pOAiGfu0CF1Yf/8/z5cz6dMtT+JOSH1Xn7ZXW6DqwbRzJ
+         Ru6BvNZcKYwBL4VglalYECinF26GuZOcJlJDg+Ev+jrcwYAX/ses+zy361y2KOhCMAiU
+         FeXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708520138; x=1709124938;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IPjLDm2Lg7w6b61bovpX2e/7PuAoyyIn9ZUIR2lJePM=;
-        b=HyqqkytXg+NDLSG+c3yJmQ/P5hJ7/MJm3U6YFBak9f2fJYRSasqp7PMX+7vTCwf33D
-         RwcpQTWBp9ppNcTaUq7W7XgZSxarUSkgIE+X/Z/rnGpLqeaKPMISc6rlQhP1DPEJY4k1
-         fsfRM/eENCAmguFkE6HpUmAE7z9l1vpt3CF5KH/g/de9ZbQbWytBcmxH6m+Xnc2gb8F5
-         HddjksrcOvgYgQ9bujz9CYgDx153HeVCjyJiMr+MKnxYMzp1nxwBhEy0QxF7iHq66Mbe
-         m1zVzQoyNYVXYuWsYZLcjTlV77wvDRq3/AzNfOTZIJWhISFjGkv58r1sTupse/A8DqLe
-         k39w==
-X-Forwarded-Encrypted: i=1; AJvYcCXFjnpOMR8HrKG40EVgIt8DZRE3itGb9WIoMzKxNp9ObKAmQbtMa8hTZNw35piM5cSUc1EzYkC4wD3WDBvWXC/mhEs6CFErsgMlj3I/DRPSdl/jBAn8rScSfpVhrUqDJBab6pL0H7TN+A0jj5w4H8Z1oB6FwdlWicuSmTvELEZZ/lzG6ccKpXzK
-X-Gm-Message-State: AOJu0YwXgJPSeOyA5ltsHNl62+7RlzeDs7pzbCvW07c7N7Q8D6X5KRUm
-	RvoBsCkyU3IMg5i42hiYppDLSOuwx+BSL7hCNju1iOOAijQTwHl1
-X-Google-Smtp-Source: AGHT+IGfpm02vM/88+RBjjwQJMRoSGI+3sE4KhUNggbX0WSLf6NK71qWGwEWztczL7y5Rxk+TEfzzw==
-X-Received: by 2002:a17:90a:d152:b0:296:f2d5:6567 with SMTP id t18-20020a17090ad15200b00296f2d56567mr24073274pjw.4.1708520138041;
-        Wed, 21 Feb 2024 04:55:38 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id qc17-20020a17090b289100b002993743e4a7sm1635413pjb.20.2024.02.21.04.55.37
+        d=1e100.net; s=20230601; t=1708520679; x=1709125479;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Su7u5LVuWTODqDqwc76MxpUbjqV0wYO33Q2DKXaVprI=;
+        b=FMfpk8z9NTL1yNNrRZiWg+3FErfLsriTyaVldaHluJUZb124n8q1cG24gnftwb+MEw
+         CN5J+iIbCXo5SZgJRwXFEerK0XgGYPyMQGZuC4aB9qBKdFd6RR/7HV3DivG2wsZX/hTZ
+         cjm9N8cwJU//p1ZRPSWiPKWTLnM+gz7/yf+zkX64VLgzRDd9rQMsno9gT7HHEYywSlsk
+         0TZDkkAc12W4O8l0xKym5oS/VI8+Jd78E70GoA6tyBndG8Nu5I24QwULT/UZfYM/NPZR
+         c8TaTRNkCJs1qZslpHZduWQhzJ7E5nYmaIntnyPvmbvPPpQxHzjdY6ACeTdt34VgCkvr
+         YDNA==
+X-Forwarded-Encrypted: i=1; AJvYcCWJ6EHJEoWshcUEwwbr84pLtuO/3pdrR2qni0j6FpFo+xQ+HSVUA7ciRoVZSWJUfxcSpE1Jrjb65tgplSGPqLLHtB8ed1ytI947og==
+X-Gm-Message-State: AOJu0YxtSW73HUnj9Vx4tnUGS+sj75KrF5I5s+792NWDG3UgPSQeVY4o
+	NbgQ0WKaIXCNYRmo3IhaEkXvClL/2d/z8i7LXP+BrOP58mrg0ohlVeA3tiX9q24=
+X-Google-Smtp-Source: AGHT+IGmKbo9lU2m/jrWYJ7PcWbo1TlLD3D5477TsjL7EmHoAggInAZZez0dXgjKWSq/rM16CjJLCg==
+X-Received: by 2002:aa7:d4d0:0:b0:564:66b2:2075 with SMTP id t16-20020aa7d4d0000000b0056466b22075mr6746229edr.10.1708520679346;
+        Wed, 21 Feb 2024 05:04:39 -0800 (PST)
+Received: from [127.0.1.1] ([188.24.162.93])
+        by smtp.gmail.com with ESMTPSA id a20-20020a50ff14000000b0056459eafc0asm1356178edu.17.2024.02.21.05.04.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Feb 2024 04:55:37 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Wed, 21 Feb 2024 04:55:36 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: forbidden405@outlook.com
-Cc: Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Viresh Kumar <vireshk@kernel.org>, linux-watchdog@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v3 2/2] dt-bindings: watchdog: arm,sp805: document the
- reset signal
-Message-ID: <b28acf81-75e6-444b-bd4b-c67f2bbd980c@roeck-us.net>
-References: <20240221-hisi-wdt-v3-0-9642613dc2e6@outlook.com>
- <20240221-hisi-wdt-v3-2-9642613dc2e6@outlook.com>
+        Wed, 21 Feb 2024 05:04:38 -0800 (PST)
+From: Abel Vesa <abel.vesa@linaro.org>
+Subject: [PATCH v2 0/2] arm64: dts: qcom: Fix SPMI channels size for SM8550
+ and SM8650
+Date: Wed, 21 Feb 2024 15:04:24 +0200
+Message-Id: <20240221-dts-qcom-sm8550-fix-spmi-chnls-size-v2-0-72b5efd9dc4f@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240221-hisi-wdt-v3-2-9642613dc2e6@outlook.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANj01WUC/5WNTQ6CMBBGr0K6dkw7/EhceQ/DopYBJoEWO4Soh
+ LtbuYHL9+XLe5sSikyirtmmIq0sHHwCPGXKDdb3BNwmVqix0Iga2kXg6cIEMtVlqaHjF8g8Mbj
+ BjwLCH4JHTVWOeUfOaZVMc6R0Oyr3JvHAsoT4PqKr+a3/+VcDBrAgRKMvtrLuNrK3MZxD7FWz7
+ /sXHmlckNcAAAA=
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=757; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=9KoXOsoD3oFZG1btxerktQuS6eWjGbeSUSu4T0DJIN0=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBl1fTekLLY3gwYLed73X+kjnLL0XN08XVXOkOuv
+ dGL7/RivqGJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZdX03gAKCRAbX0TJAJUV
+ VonWEACKeNwRc6/wRAzkMHGwxWu6JA/jUTkeMwhgsN1BoJiJ/b3lkfbTDZFJs5ZLML8mHfvA8dq
+ dd7DaiizNXUoigpbOdMMvT7s7XrK4Pk7RRCUy+bzVKq1+P5SkK1nyppWP3ubscGurv5v51zCGtT
+ 7rB/pEriNB6LmUUWDr+b03n84aolaqCazxxzyCM1RSEphE0J2g8bAPF0SBT6ujoBKy3XTwHfRmX
+ z+mxm+gKr9QokQiVStxfbfL8Uyq8T4qjUhoxokPpjGn/Tk/eiQ4Ct7CVAYVBEMJKmmLUTfnu0Ij
+ UvVid4mUIGLSYcHXiOJ47iiQUU4qWVQi1fXwxsNB0VSUQogtVkHKH4t6IU6FmGSDrvC+bYoJ1ym
+ dksXd21o79G1y/9Ok0maNzyElo9K4/pZwSLV19UnCcV9ymac+cpKLoeKudYUov5c85svPsg/ZCW
+ MkTFQiabQ6M+kviALnEDFhO1oVruKDZi2HNxpP92NTH41nLCbGL0/I3RVkk7j+00GbbfVh1L8Ef
+ iGdDAN+6hDpsw8u6XwVFN2FVcawIME7zL9/Gfi4cBDwJ2NiXJ8F8WTX5xVndWker62teysqZzRg
+ tqZ7eV6dqygrNXXhqDEntnzLpOG0hVWK3l4chgQZi2GdnOBCOsKTDmJyS44ebk104IvFhFz9eKt
+ /iVPFcUwUECO03A==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-On Wed, Feb 21, 2024 at 07:56:42PM +0800, Yang Xiwen via B4 Relay wrote:
-> From: Yang Xiwen <forbidden405@outlook.com>
-> 
-> The reset signal needs to be deasserted before operation of sp805
-> module. Document in the binding.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+Changes in v2:
+- Split into 2 separate patches
+- Added Fixes tag to each patch
+- Added Neil's R-b tag to both patches
+- Link to v1: https://lore.kernel.org/r/20240220-dts-qcom-sm8550-fix-spmi-chnls-size-v1-1-24e22107a6ac@linaro.org
 
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+---
+Abel Vesa (2):
+      arm64: dts: qcom: sm8550: Fix SPMI channels size
+      arm64: dts: qcom: sm8650: Fix SPMI channels size
 
-> ---
->  Documentation/devicetree/bindings/watchdog/arm,sp805.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/arm,sp805.yaml b/Documentation/devicetree/bindings/watchdog/arm,sp805.yaml
-> index 7aea255b301b..bd7c09ed1938 100644
-> --- a/Documentation/devicetree/bindings/watchdog/arm,sp805.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/arm,sp805.yaml
-> @@ -50,6 +50,10 @@ properties:
->        - const: wdog_clk
->        - const: apb_pclk
->  
-> +  resets:
-> +    maxItems: 1
-> +    description: WDOGRESn input reset signal for sp805 module.
-> +
->  required:
->    - compatible
->    - reg
-> @@ -67,4 +71,5 @@ examples:
->          interrupts = <GIC_SPI 406 IRQ_TYPE_LEVEL_HIGH>;
->          clocks = <&wdt_clk>, <&apb_pclk>;
->          clock-names = "wdog_clk", "apb_pclk";
-> +        resets = <&wdt_rst>;
->      };
-> 
-> -- 
-> 2.43.0
-> 
+ arch/arm64/boot/dts/qcom/sm8550.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/sm8650.dtsi | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+---
+base-commit: 2d5c7b7eb345249cb34d42cbc2b97b4c57ea944e
+change-id: 20240220-dts-qcom-sm8550-fix-spmi-chnls-size-b8e6323fecc0
+
+Best regards,
+-- 
+Abel Vesa <abel.vesa@linaro.org>
+
 
