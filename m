@@ -1,412 +1,798 @@
-Return-Path: <devicetree+bounces-44136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44139-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D916A85CE00
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 03:27:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 528E085CE1A
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 03:39:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3F80AB22FDB
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 02:27:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 88562B236D4
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 02:39:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB6B1FBF4;
-	Wed, 21 Feb 2024 02:27:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DF6425777;
+	Wed, 21 Feb 2024 02:39:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="PBwTckPo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2107.outbound.protection.partner.outlook.cn [139.219.146.107])
+Received: from mail-m25472.xmail.ntesmail.com (mail-m25472.xmail.ntesmail.com [103.129.254.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E0BA154B1;
-	Wed, 21 Feb 2024 02:27:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.107
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708482438; cv=fail; b=JLWIRVP0wajZqzcfcGRbW54210HbgDDjqoEgcyG1fuqKMUN3nn/++jIt4pWBvGq68Rt526fkvUwfe/h6e0Mjus8MHLDTxG29IvNT+4NqEDTxCD+/gqIkPGwbKJnPmaLyDAf0zKS1XDEqvcPqJCDn/pFr2RvYEOdp/UOZGXZIrdg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708482438; c=relaxed/simple;
-	bh=ZE0Gm2H+R05ae9LneQuPHiJAJ/fZ02DBSgPAltY/Bvs=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=gVbjP4qUQ7BcvBOOCDZhwzKQItA+wPxPYhvh3z72cZFsdRqXuFx+uFZGqdTBtH5WRcWtWAqjJZeFeX6N59cqSs3Vhq1elfUWXoWgvHZpgsT9wzvuisZ5sXDaEeEWjZLAw0yuRt4/8OCbQ3bh+On+vbSELN3gEahDsKHqgCCUPaE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.107
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=l6x7ziNT3IkcJY/gICyQ9PB66+dTNhsGpsx014FgRpn9hNCXJenM0R/Pr4/Znu40uDkwXMgNmtj9lb2W96hnixxxi8QE4BydRsjw9oPY1VXDO3ZlEqdlvvdE03s5PWapNGAqloLQsZmU1fDoIur7EKHs8F3GvNLIS0SGvKQAFnLUzwxUuhV2ZXuFCuAK5uiYBuun7irLS/sUucE/4Zvb70pwaYEEuQndaUEumZen6ArXRBSdQttsD3WZU1QW9H0388efQvEPB/XcszxS7iPFzM3freI32xt82yMJQHjPfJqhxMqUpq4B64BfuSywr3SYNXTs2JEqBaHqzPEHbBiUlA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=n3J7vJaxM3jUR4q2zFdrL8tMpvILc/3hyS2EV4Da33U=;
- b=ZtuxRYII+dGq5YcC0S2Gwkb8cIBKvOZlLWjcz4vu9apG4HQHR6f9gcKz4GUVQCy1ijz4aDXLgzpfgvlwIov9ojjjWEn19H2hhVBZKx4+Rkv0t9q8NO+y3iEFlqizXtipBu78v459CjcgbiNDDwR3lbM5OUOA6qDrlomo3NYBUqSC2mGS8YITj3ELA8uSechry60KShQVje8NexMjdOAB9HovINn0R/qkCB20mNo+0xmD55j9jE4MUStMa4DTCw56jHrJOcYdzkcAg5P6Nn8Tk+h7VNfB82JZFPOq+kTzJG5YwsuNETsyV3CneNsW864Q4eQypFxJcct2K9HV0Hf5Qw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-Received: from SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:25::10) by SHXPR01MB0541.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:1d::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.47; Wed, 21 Feb
- 2024 02:26:58 +0000
-Received: from SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn
- ([fe80::b0af:4c9d:2058:a344]) by
- SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn ([fe80::b0af:4c9d:2058:a344%6])
- with mapi id 15.20.7249.041; Wed, 21 Feb 2024 02:26:58 +0000
-From: Changhuang Liang <changhuang.liang@starfivetech.com>
-To: Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Ley Foon Tan <leyfoon.tan@starfivetech.com>,
-	Jack Zhu <jack.zhu@starfivetech.com>,
-	Changhuang Liang <changhuang.liang@starfivetech.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F294A2554B;
+	Wed, 21 Feb 2024 02:39:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.129.254.72
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708483146; cv=none; b=DISzcT6BP63PhRvYxASEnWPc6ubAv/FwFmOulwq64d7oDrKk+kZKrUUHcaQp9xl1uuhXhhsCBvPRvf3YILm1/1VG3SpERSnhjVqsl6SgVPLAuV59FbPmemZE1rvbQONOyDrKYWmpkxuAeMVp9R0CNTwaK8dXCVwqhkqUQpgz3vY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708483146; c=relaxed/simple;
+	bh=H6mK4DsHqzRvfULBy+IFAYTMO/As7QrrHkQPyMUBIbk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=LpGcdJ2EsL1aTaCMcipiPxXlYdIZcAuhPhW5Hw2sZHCL3Z5n6WstSBAElBttU6BwmdYkLq3XzDIwp25nPoQsbqUNVfiJCh4j+q1brdPCeiIEfWB4gyaXIQ8UuG8BpMghToUDNhSZ5wBRk7pxHOFqDcCVaYRCs17ZWB6JFRZzxOc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=PBwTckPo; arc=none smtp.client-ip=103.129.254.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+DKIM-Signature: a=rsa-sha256;
+	b=PBwTckPocaQbGS8lFkeCswJP51bINo6lHJV34bc0lQEPZQxKsRew3mWITn8RwakdDHoRAS19bPsIcXhrvELvQkIJbuwverxox+oc1rfAA2VDPLnJDOqW4ZDW5lnqAixcoHCklyI3HM7bug+9f5KNaORLCVUJMk+aE7gUwe5YgtE=;
+	s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=avtdy0pGkoGIB/cMW/ec+I2K0f2AuInF3Fr8yTtHs+Y=;
+	h=date:mime-version:subject:message-id:from;
+Received: from zhangzj-rk.. (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTPA id 52ADF2A018B;
+	Wed, 21 Feb 2024 10:29:32 +0800 (CST)
+From: Elon Zhang <zhangzj@rock-chips.com>
+To: heiko@sntech.de,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: weizhao.ouyang@arm.com,
 	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v3 2/2] irqchip: Add StarFive external interrupt controller
-Date: Tue, 20 Feb 2024 18:26:47 -0800
-Message-Id: <20240221022647.5297-3-changhuang.liang@starfivetech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240221022647.5297-1-changhuang.liang@starfivetech.com>
-References: <20240221022647.5297-1-changhuang.liang@starfivetech.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BJSPR01CA0019.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c211:c::31) To SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:25::10)
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Elon Zhang <zhangzj@rock-chips.com>
+Subject: [PATCH v3 1/2] arm64: dts: rockchip: Add devicetree support for TB-RK3588X board
+Date: Wed, 21 Feb 2024 10:29:01 +0800
+Message-Id: <20240221022902.751528-1-zhangzj@rock-chips.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SHXPR01MB0671:EE_|SHXPR01MB0541:EE_
-X-MS-Office365-Filtering-Correlation-Id: f489f186-4bdd-4dcb-878f-08dc3284944a
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	6Woz1ujBEkuwWc+292NIvwvvjMfx9O0fdHJivF1Mumje+y2xWSRYw5toBk6fUjoXdHnzx8WCtk+bLeY10xKFoo+Y0DO4o1bd+qJmS/szzYGD9EZcQNFO58XUhmtbGaFJ9gI7TvlpDxuwnxbziHSmii7zwd8WC1oL1scUMEXYMpwgPSZFQ2zXmjMReY2jDMSw83QZ/cbRPIp2RrghVjGbWoq6fASY1GtXEknFhJSp9bYDpPmadMct8mnamOJVP4s2RF4dLZ1B+ONeFmAISd3LkCRkIZR/1jXr9UCj1z6anKOHXtF13UxoMzy8/aTUlroXeavBN5nHA7LqhqTeCZcknn/7NSim+oElBE9ZV6oWGxbX9atnEYnkHLqGYHQheyvsTNclxH+ZG+jxQpCBrdODB0NJ+5XfV+wRKanWMnYMYBH1BLO5qyjGG4loRBZekhp44vqzVNJMrGscfKRl/LY7UZRi4AL+PZcqXPaW+ZY1k1Z5ejfR9ifBpPHSETcWYbmuB78K6nXEfczxcD0pQ/XEgy2I/1bwOgdEgfSKFGsivl2iHRvtfjYwxAWWVNKr8ScQ
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(230273577357003)(38350700005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?xHfz9b23cDFwsQqY2KdXA7DSfQKtuf3e5fqVoVw5Uy+4AJtvcCLuxWDuG0cQ?=
- =?us-ascii?Q?NYeG+L5hv+mmauCdW8A/7tgPbIzR4OuBAl07kF/SErFFZkgMJv5YoHaKdnVX?=
- =?us-ascii?Q?R1NGQ8ygaeSwZDmAcxWjQYYjHCe5go8leYh4t94YwZPGTJPfJfLF5nxVxJbq?=
- =?us-ascii?Q?IcfQOOLOXJ71QVkB5/uwUddvp+f0QI2U/Us175T/y19gQkqv41H9MGcoNrPu?=
- =?us-ascii?Q?AvFLpjSArbioJ6qkHlb9YY1vcmel2BQvFtAKbCgb5ifPaURCmj8oS7RmUN/w?=
- =?us-ascii?Q?J5r7IqdWciObtinJonKYHKaJziGgbDCp7NbiqqktNmEVBP2oPIrW8vn/mfWO?=
- =?us-ascii?Q?z2gSifCMR3oR26ewR+dwByx7uXDnEs+VS0inYq3A8V12fRrS5JTZRcf4eltA?=
- =?us-ascii?Q?B/R+F/WUPrdak+/furXDzUQTsqnBD/3oAS6eirgLFQRY97TLHLGPGWpfYl95?=
- =?us-ascii?Q?sKnv9mL8MG9sy7SXm/mQMvjAD6w2Ekjd/sByNE9T/bu8FZYDAYk7/l+tpur+?=
- =?us-ascii?Q?tLSlo5PWPG8jGMNrWjK7jTa+/SoGJvfgQWg216LFHWbuN2y2TVF8uvTgMSf7?=
- =?us-ascii?Q?GLU6orqa1niDOuW5YefCT6BtuwLwoALOpU/SEbxT5CJYA5XTTZa1+VmiPFTU?=
- =?us-ascii?Q?hQwu5zfLPF25rE1U+hrGAbuaIAXcn6ofbvzIzj6Ovs3Lvmk9oECIfJdWZUQN?=
- =?us-ascii?Q?ZBxOGOSYlkbH5YAGQjCWkI/5zfaTZn+fGrHJkq2k8wub68XIbJACIDilrYsW?=
- =?us-ascii?Q?PhtqZ5YAVINu6Q1g6oGH772E2P3Gmizps1MqUW5SzzkPVpNOliklffceBiPt?=
- =?us-ascii?Q?Scsv8Fj/0w7WTZCKOrP+q9M4e65bMIeNGuiVjauLH2jfjTkmviQ9gTC4m0dw?=
- =?us-ascii?Q?uIfzRwCA09BSSPy3MYkYXWEhMvJz66Aqci6+fb8m4sbZvVFDycghS9zvboA8?=
- =?us-ascii?Q?Z0oNDA6VbuIlkgHb82UWJavIMzxwhQrwrRk8RumbkE59BuAOjMza0LkQaWuN?=
- =?us-ascii?Q?oR1mct67u4fe+GRDX1i5eKaI91adfVi+/NqL6FWQp8DVcrIsn5ecqhz6PWe9?=
- =?us-ascii?Q?KIz2uiVoa2QyUOOIv67GjaWmklzTqbBLocPiz7+rS5+Z/d8uVvCds3Sl7qjw?=
- =?us-ascii?Q?1tAuX14flr1bhHIs+d14cU7HHZm03SRdmz+w01tHx6MtKsb1q8YMB3xkFGtB?=
- =?us-ascii?Q?1t13b/N41QOQunwFG7fRsX35M9X+4RdL7NoPT0hrCHLz+wi7wORk0B6PIs0U?=
- =?us-ascii?Q?G0CPgjn9XXJtsWDUqYa400LWhB5pTp2xsgF12Ol53W/HFyJf+9Mf3KIqZb37?=
- =?us-ascii?Q?acHaJ+2/QGLAiIqSGvdv+1fsfX+XCFdVTLw76WKVTR7enZNB/ZlemxKZ1d/h?=
- =?us-ascii?Q?+cnGoyN0h2q7XTokoggs00IfZVC0z6K1/3Vw2rXnaOCJkYqKvDx09xkdFohf?=
- =?us-ascii?Q?AyiEpOnlD/qb7/fRz5tPohXyy/lRS0yBVbVmeICPVqlz4G/AV9ohubLMAQ2n?=
- =?us-ascii?Q?3KS2ACMSh1fkN1gS8B1Jzt2HYrRFAh+ND8vIppo4v8Zt3fQlp7S1iXGqkkoI?=
- =?us-ascii?Q?0f6KBhYMYSGAqRH1jV9+o5qUP0q1XJt/0mklF+uVVoHcuQ6PClKJJ6QjZN1w?=
- =?us-ascii?Q?iB5adCGu6wtYnc78iVXxt68=3D?=
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f489f186-4bdd-4dcb-878f-08dc3284944a
-X-MS-Exchange-CrossTenant-AuthSource: SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2024 02:26:58.5937
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: s34lNXclK3AHkJKJsWt6gfQwVIHRUKbW8Gqv7QA7diiQexHUEmptfWTssQdAR/h2IHDI5Hn3TNougpUxszO8OBVrSzON/sg/+wDNLycXsUWQL3kz8Jw3922KLMA0aMrZ
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SHXPR01MB0541
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGU1PTlYZH01KSB8fTxlOQ0lVEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk1PSUxOVUpLS1VKQk
+	tLWQY+
+X-HM-Tid: 0a8dc97f323003aakunm52adf2a018b
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NjY6Axw6GDMVAxoKCxUuESkO
+	CykaFBJVSlVKTEtDT0NJTkxITk1IVTMWGhIXVQETGhUcARE7CRQYEFYYExILCFUYFBZFWVdZEgtZ
+	QVlOQ1VJSVVMVUpKT1lXWQgBWUFKQkpCSzcG
 
-Add StarFive external interrupt controller for JH8100 SoC.
+Add board file for Rockchip Toybrick TB-RK3588X board.
 
-Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
-Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
+Specification:
+	Rockchip Rk3588 SoC
+	4x ARM Cortex-A76, 4x ARM Cortex-A55
+	8/16GB Memory LPDDR4x
+	Mali G610MC4 GPU
+	2× MIPI-CSI0 Connector
+	1x 2Lanes PCIe3.0 Connector
+	1x SATA3.0 Connector
+	32GB eMMC Module
+	2x USB 2.0, 2x USB 3.0
+	1x HDMI Output, 1x HDMI Input
+	2x Ethernet Port
+
+Functions work normally:
+	[1] USB2.0 Host
+	[2] Ethernet0 with PHY RTL8211F
+
+More information can be obtained from the following websites:
+	[1] https://t.rock-chips.com/en/wiki/EN/tb-rk3588x_en/index.html
+	[2] http://t.rock-chips.com/
+
+Reviewed-by: Weizhao Ouyang <weizhao.ouyang@arm.com>
+Signed-off-by: Elon Zhang <zhangzj@rock-chips.com>
 ---
- MAINTAINERS                                |   6 +
- drivers/irqchip/Kconfig                    |  11 ++
- drivers/irqchip/Makefile                   |   1 +
- drivers/irqchip/irq-starfive-jh8100-intc.c | 208 +++++++++++++++++++++
- 4 files changed, 226 insertions(+)
- create mode 100644 drivers/irqchip/irq-starfive-jh8100-intc.c
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3588-toybrick-x0.dts  | 672 ++++++++++++++++++
+ 2 files changed, 673 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-toybrick-x0.dts
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 73d898383e51..3359d5016f00 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -20960,6 +20960,12 @@ F:	Documentation/devicetree/bindings/phy/starfive,jh7110-usb-phy.yaml
- F:	drivers/phy/starfive/phy-jh7110-pcie.c
- F:	drivers/phy/starfive/phy-jh7110-usb.c
- 
-+STARFIVE JH8100 EXTERNAL INTERRUPT CONTROLLER DRIVER
-+M:	Changhuang Liang <changhuang.liang@starfivetech.com>
-+S:	Supported
-+F:	Documentation/devicetree/bindings/interrupt-controller/starfive,jh8100-intc.yaml
-+F:	drivers/irqchip/irq-starfive-jh8100-intc.c
-+
- STATIC BRANCH/CALL
- M:	Peter Zijlstra <peterz@infradead.org>
- M:	Josh Poimboeuf <jpoimboe@kernel.org>
-diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
-index f7149d0f3d45..72c07a12f5e1 100644
---- a/drivers/irqchip/Kconfig
-+++ b/drivers/irqchip/Kconfig
-@@ -546,6 +546,17 @@ config SIFIVE_PLIC
- 	select IRQ_DOMAIN_HIERARCHY
- 	select GENERIC_IRQ_EFFECTIVE_AFF_MASK if SMP
- 
-+config STARFIVE_JH8100_INTC
-+	bool "StarFive JH8100 External Interrupt Controller"
-+	depends on ARCH_STARFIVE || COMPILE_TEST
-+	default ARCH_STARFIVE
-+	select IRQ_DOMAIN_HIERARCHY
-+	help
-+	  This enables support for the INTC chip found in StarFive JH8100
-+	  SoC.
-+
-+	  If you don't know what to do here, say Y.
-+
- config EXYNOS_IRQ_COMBINER
- 	bool "Samsung Exynos IRQ combiner support" if COMPILE_TEST
- 	depends on (ARCH_EXYNOS && ARM) || COMPILE_TEST
-diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
-index ffd945fe71aa..ec4a18380998 100644
---- a/drivers/irqchip/Makefile
-+++ b/drivers/irqchip/Makefile
-@@ -96,6 +96,7 @@ obj-$(CONFIG_CSKY_MPINTC)		+= irq-csky-mpintc.o
- obj-$(CONFIG_CSKY_APB_INTC)		+= irq-csky-apb-intc.o
- obj-$(CONFIG_RISCV_INTC)		+= irq-riscv-intc.o
- obj-$(CONFIG_SIFIVE_PLIC)		+= irq-sifive-plic.o
-+obj-$(CONFIG_STARFIVE_JH8100_INTC)	+= irq-starfive-jh8100-intc.o
- obj-$(CONFIG_IMX_IRQSTEER)		+= irq-imx-irqsteer.o
- obj-$(CONFIG_IMX_INTMUX)		+= irq-imx-intmux.o
- obj-$(CONFIG_IMX_MU_MSI)		+= irq-imx-mu-msi.o
-diff --git a/drivers/irqchip/irq-starfive-jh8100-intc.c b/drivers/irqchip/irq-starfive-jh8100-intc.c
+diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+index a7b30e11beaf..e0722b6e2d99 100644
+--- a/arch/arm64/boot/dts/rockchip/Makefile
++++ b/arch/arm64/boot/dts/rockchip/Makefile
+@@ -110,6 +110,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-nanopc-t6.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-orangepi-5-plus.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-quartzpro64.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
++dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-toybrick-x0.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-turing-rk1.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-coolpi-4b.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-indiedroid-nova.dtb
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-toybrick-x0.dts b/arch/arm64/boot/dts/rockchip/rk3588-toybrick-x0.dts
 new file mode 100644
-index 000000000000..0e6e10c321ff
+index 000000000000..f3f7c1d35ed2
 --- /dev/null
-+++ b/drivers/irqchip/irq-starfive-jh8100-intc.c
-@@ -0,0 +1,208 @@
-+// SPDX-License-Identifier: GPL-2.0
++++ b/arch/arm64/boot/dts/rockchip/rk3588-toybrick-x0.dts
+@@ -0,0 +1,672 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 +/*
-+ * StarFive JH8100 External Interrupt Controller driver
++ * Copyright (c) 2024 Rockchip Electronics Co., Ltd.
 + *
-+ * Copyright (C) 2023 StarFive Technology Co., Ltd.
-+ *
-+ * Author: Changhuang Liang <changhuang.liang@starfivetech.com>
 + */
 +
-+#define pr_fmt(fmt) "irq-starfive-jh8100: " fmt
++/dts-v1/;
 +
-+#include <linux/bitops.h>
-+#include <linux/clk.h>
-+#include <linux/irq.h>
-+#include <linux/irqchip.h>
-+#include <linux/irqchip/chained_irq.h>
-+#include <linux/irqdomain.h>
-+#include <linux/of_address.h>
-+#include <linux/of_irq.h>
-+#include <linux/reset.h>
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/pinctrl/rockchip.h>
++#include "rk3588.dtsi"
 +
-+#define STARFIVE_INTC_SRC0_CLEAR	0x10
-+#define STARFIVE_INTC_SRC0_MASK		0x14
-+#define STARFIVE_INTC_SRC0_INT		0x1c
++/ {
++	model = "Rockchip Toybrick TB-RK3588X Board";
++	compatible = "rockchip,rk3588-toybrick-x0", "rockchip,rk3588";
 +
-+#define STARFIVE_INTC_SRC_IRQ_NUM	32
++	aliases {
++		mmc0 = &sdhci;
++		serial2 = &uart2;
++	};
 +
-+struct starfive_irq_chip {
-+	void __iomem		*base;
-+	struct irq_domain	*domain;
-+	raw_spinlock_t		lock;
++	chosen {
++		stdout-path = "serial2:1500000n8";
++	};
++
++	adc-keys {
++		compatible = "adc-keys";
++		io-channels = <&saradc 1>;
++		io-channel-names = "buttons";
++		keyup-threshold-microvolt = <1800000>;
++		poll-interval = <100>;
++
++		button-vol-up {
++			label = "Volume Up";
++			linux,code = <KEY_VOLUMEUP>;
++			press-threshold-microvolt = <17000>;
++		};
++
++		button-vol-down {
++			label = "Volume Down";
++			linux,code = <KEY_VOLUMEDOWN>;
++			press-threshold-microvolt = <417000>;
++		};
++
++		button-menu {
++			label = "Menu";
++			linux,code = <KEY_MENU>;
++			press-threshold-microvolt = <890000>;
++		};
++
++		button-escape {
++			label = "Escape";
++			linux,code = <KEY_ESC>;
++			press-threshold-microvolt = <1235000>;
++		};
++	};
++
++	backlight: backlight {
++		compatible = "pwm-backlight";
++		power-supply = <&vcc12v_dcin>;
++		pwms = <&pwm2 0 25000 0>;
++	};
++
++	pcie20_avdd0v85: pcie20-avdd0v85-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "pcie20_avdd0v85";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <850000>;
++		regulator-max-microvolt = <850000>;
++		vin-supply = <&vdd_0v85_s0>;
++	};
++
++	pcie20_avdd1v8: pcie20-avdd1v8-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "pcie20_avdd1v8";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		vin-supply = <&avcc_1v8_s0>;
++	};
++
++	pcie30_avdd0v75: pcie30-avdd0v75-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "pcie30_avdd0v75";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <750000>;
++		regulator-max-microvolt = <750000>;
++		vin-supply = <&avdd_0v75_s0>;
++	};
++
++	pcie30_avdd1v8: pcie30-avdd1v8-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "pcie30_avdd1v8";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		vin-supply = <&avcc_1v8_s0>;
++	};
++
++	vcc12v_dcin: vcc12v-dcin-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc12v_dcin";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <12000000>;
++		regulator-max-microvolt = <12000000>;
++	};
++
++	vcc5v0_host: vcc5v0-host-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc5v0_host";
++		regulator-boot-on;
++		regulator-always-on;
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		enable-active-high;
++		gpio = <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&vcc5v0_host_en>;
++		vin-supply = <&vcc5v0_usb>;
++	};
++
++	vcc5v0_sys: vcc5v0-sys-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc5v0_sys";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		vin-supply = <&vcc12v_dcin>;
++	};
++
++	vcc5v0_usbdcin: vcc5v0-usbdcin-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc5v0_usbdcin";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		vin-supply = <&vcc12v_dcin>;
++	};
++
++	vcc5v0_usb: vcc5v0-usb-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc5v0_usb";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		vin-supply = <&vcc5v0_usbdcin>;
++	};
++
++	vcc_1v1_nldo_s3: vcc-1v1-nldo-s3-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc_1v1_nldo_s3";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <1100000>;
++		regulator-max-microvolt = <1100000>;
++		vin-supply = <&vcc5v0_sys>;
++	};
 +};
 +
-+static void starfive_intc_bit_set(struct starfive_irq_chip *irqc,
-+				  u32 reg, u32 bit_mask)
-+{
-+	u32 value;
-+
-+	value = ioread32(irqc->base + reg);
-+	value |= bit_mask;
-+	iowrite32(value, irqc->base + reg);
-+}
-+
-+static void starfive_intc_bit_clear(struct starfive_irq_chip *irqc,
-+				    u32 reg, u32 bit_mask)
-+{
-+	u32 value;
-+
-+	value = ioread32(irqc->base + reg);
-+	value &= ~bit_mask;
-+	iowrite32(value, irqc->base + reg);
-+}
-+
-+static void starfive_intc_unmask(struct irq_data *d)
-+{
-+	struct starfive_irq_chip *irqc = irq_data_get_irq_chip_data(d);
-+	unsigned long flags;
-+
-+	raw_spin_lock_irqsave(&irqc->lock, flags);
-+	starfive_intc_bit_clear(irqc, STARFIVE_INTC_SRC0_MASK, BIT(d->hwirq));
-+	raw_spin_unlock_irqrestore(&irqc->lock, flags);
-+}
-+
-+static void starfive_intc_mask(struct irq_data *d)
-+{
-+	struct starfive_irq_chip *irqc = irq_data_get_irq_chip_data(d);
-+	unsigned long flags;
-+
-+	raw_spin_lock_irqsave(&irqc->lock, flags);
-+	starfive_intc_bit_set(irqc, STARFIVE_INTC_SRC0_MASK, BIT(d->hwirq));
-+	raw_spin_unlock_irqrestore(&irqc->lock, flags);
-+}
-+
-+static struct irq_chip intc_dev = {
-+	.name		= "StarFive JH8100 INTC",
-+	.irq_unmask	= starfive_intc_unmask,
-+	.irq_mask	= starfive_intc_mask,
++&combphy0_ps {
++	status = "okay";
 +};
 +
-+static int starfive_intc_map(struct irq_domain *d, unsigned int irq,
-+			     irq_hw_number_t hwirq)
-+{
-+	irq_domain_set_info(d, irq, hwirq, &intc_dev, d->host_data,
-+			    handle_level_irq, NULL, NULL);
-+
-+	return 0;
-+}
-+
-+static const struct irq_domain_ops starfive_intc_domain_ops = {
-+	.xlate	= irq_domain_xlate_onecell,
-+	.map	= starfive_intc_map,
++&combphy2_psu {
++	status = "okay";
 +};
 +
-+static void starfive_intc_irq_handler(struct irq_desc *desc)
-+{
-+	struct starfive_irq_chip *irqc = irq_data_get_irq_handler_data(&desc->irq_data);
-+	struct irq_chip *chip = irq_desc_get_chip(desc);
-+	unsigned long value;
-+	int hwirq;
++&cpu_b0 {
++	cpu-supply = <&vdd_cpu_big0_s0>;
++};
 +
-+	chained_irq_enter(chip, desc);
++&cpu_b1 {
++	cpu-supply = <&vdd_cpu_big0_s0>;
++};
 +
-+	value = ioread32(irqc->base + STARFIVE_INTC_SRC0_INT);
-+	while (value) {
-+		hwirq = ffs(value) - 1;
++&cpu_b2 {
++	cpu-supply = <&vdd_cpu_big1_s0>;
++};
 +
-+		generic_handle_domain_irq(irqc->domain, hwirq);
++&cpu_b3 {
++	cpu-supply = <&vdd_cpu_big1_s0>;
++};
 +
-+		starfive_intc_bit_set(irqc, STARFIVE_INTC_SRC0_CLEAR, BIT(hwirq));
-+		starfive_intc_bit_clear(irqc, STARFIVE_INTC_SRC0_CLEAR, BIT(hwirq));
++&cpu_l0 {
++	cpu-supply = <&vdd_cpu_lit_s0>;
++};
 +
-+		clear_bit(hwirq, &value);
-+	}
++&cpu_l1 {
++	cpu-supply = <&vdd_cpu_lit_s0>;
++};
 +
-+	chained_irq_exit(chip, desc);
-+}
++&cpu_l2 {
++	cpu-supply = <&vdd_cpu_lit_s0>;
++};
 +
-+static int __init starfive_intc_init(struct device_node *intc,
-+				     struct device_node *parent)
-+{
-+	struct starfive_irq_chip *irqc;
-+	struct reset_control *rst;
-+	struct clk *clk;
-+	int parent_irq;
-+	int ret;
++&cpu_l3 {
++	cpu-supply = <&vdd_cpu_lit_s0>;
++};
 +
-+	irqc = kzalloc(sizeof(*irqc), GFP_KERNEL);
-+	if (!irqc)
-+		return -ENOMEM;
++&gmac0 {
++	clock_in_out = "output";
++	phy-handle = <&rgmii_phy>;
++	phy-mode = "rgmii-rxid";
++	pinctrl-0 = <&gmac0_miim
++		     &gmac0_tx_bus2
++		     &gmac0_rx_bus2
++		     &gmac0_rgmii_clk
++		     &gmac0_rgmii_bus>;
++	pinctrl-names = "default";
++	rx_delay = <0x00>;
++	tx_delay = <0x43>;
++	status = "okay";
++};
 +
-+	irqc->base = of_iomap(intc, 0);
-+	if (!irqc->base) {
-+		pr_err("Unable to map registers\n");
-+		ret = -ENXIO;
-+		goto err_free;
-+	}
++&i2c0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c0m2_xfer>;
++	status = "okay";
 +
-+	rst = of_reset_control_get_exclusive(intc, NULL);
-+	if (IS_ERR(rst)) {
-+		pr_err("Unable to get reset control %pe\n", rst);
-+		ret = PTR_ERR(rst);
-+		goto err_unmap;
-+	}
++	vdd_cpu_big0_s0: regulator@42 {
++		compatible = "rockchip,rk8602";
++		reg = <0x42>;
++		fcs,suspend-voltage-selector = <1>;
++		regulator-name = "vdd_cpu_big0_s0";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <550000>;
++		regulator-max-microvolt = <1050000>;
++		regulator-ramp-delay = <2300>;
++		vin-supply = <&vcc5v0_sys>;
 +
-+	clk = of_clk_get(intc, 0);
-+	if (IS_ERR(clk)) {
-+		pr_err("Unable to get clock %pe\n", clk);
-+		ret = PTR_ERR(clk);
-+		goto err_reset_put;
-+	}
++		regulator-state-mem {
++			regulator-off-in-suspend;
++		};
++	};
 +
-+	ret = reset_control_deassert(rst);
-+	if (ret)
-+		goto err_clk_put;
++	vdd_cpu_big1_s0: regulator@43 {
++		compatible = "rockchip,rk8603", "rockchip,rk8602";
++		reg = <0x43>;
++		fcs,suspend-voltage-selector = <1>;
++		regulator-name = "vdd_cpu_big1_s0";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <550000>;
++		regulator-max-microvolt = <1050000>;
++		regulator-ramp-delay = <2300>;
++		vin-supply = <&vcc5v0_sys>;
 +
-+	ret = clk_prepare_enable(clk);
-+	if (ret)
-+		goto err_reset_assert;
++		regulator-state-mem {
++			regulator-off-in-suspend;
++		};
++	};
++};
 +
-+	raw_spin_lock_init(&irqc->lock);
++&i2c2 {
++	status = "okay";
 +
-+	irqc->domain = irq_domain_add_linear(intc, STARFIVE_INTC_SRC_IRQ_NUM,
-+					     &starfive_intc_domain_ops, irqc);
-+	if (!irqc->domain) {
-+		pr_err("Unable to create IRQ domain\n");
-+		ret = -EINVAL;
-+		goto err_clk_disable;
-+	}
++	hym8563: rtc@51 {
++		compatible = "haoyu,hym8563";
++		reg = <0x51>;
++		#clock-cells = <0>;
++		clock-output-names = "hym8563";
++		pinctrl-names = "default";
++		pinctrl-0 = <&hym8563_int>;
++		interrupt-parent = <&gpio0>;
++		interrupts = <RK_PD4 IRQ_TYPE_LEVEL_LOW>;
++		wakeup-source;
++	};
++};
 +
-+	parent_irq = of_irq_get(intc, 0);
-+	if (parent_irq < 0) {
-+		pr_err("Failed to get main IRQ: %d\n", parent_irq);
-+		ret = parent_irq;
-+		goto err_remove_domain;
-+	}
++&mdio0 {
++	rgmii_phy: ethernet-phy@1 {
++		/* RTL8211F */
++		compatible = "ethernet-phy-id001c.c916";
++		reg = <0x1>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&rtl8211f_rst>;
++		reset-assert-us = <20000>;
++		reset-deassert-us = <100000>;
++		reset-gpios = <&gpio4 RK_PB3 GPIO_ACTIVE_LOW>;
++	};
++};
 +
-+	irq_set_chained_handler_and_data(parent_irq, starfive_intc_irq_handler,
-+					 irqc);
++&pinctrl {
++	rtl8211f {
++		rtl8211f_rst: rtl8211f-rst {
++			rockchip,pins = <4 RK_PB3 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
 +
-+	pr_info("Interrupt controller register, nr_irqs %d\n",
-+		STARFIVE_INTC_SRC_IRQ_NUM);
++	};
 +
-+	return 0;
++	hym8563 {
++		hym8563_int: hym8563-int {
++			rockchip,pins = <0 RK_PD4 RK_FUNC_GPIO &pcfg_pull_up>;
++		};
++	};
 +
-+err_remove_domain:
-+	irq_domain_remove(irqc->domain);
-+err_clk_disable:
-+	clk_disable_unprepare(clk);
-+err_reset_assert:
-+	reset_control_assert(rst);
-+err_clk_put:
-+	clk_put(clk);
-+err_reset_put:
-+	reset_control_put(rst);
-+err_unmap:
-+	iounmap(irqc->base);
-+err_free:
-+	kfree(irqc);
-+	return ret;
-+}
++	usb {
++		vcc5v0_host_en: vcc5v0-host-en {
++			rockchip,pins = <4 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++};
 +
-+IRQCHIP_PLATFORM_DRIVER_BEGIN(starfive_intc)
-+IRQCHIP_MATCH("starfive,jh8100-intc", starfive_intc_init)
-+IRQCHIP_PLATFORM_DRIVER_END(starfive_intc)
++&pwm2 {
++	status = "okay";
++};
 +
-+MODULE_DESCRIPTION("StarFive JH8100 External Interrupt Controller");
-+MODULE_LICENSE("GPL");
-+MODULE_AUTHOR("Changhuang Liang <changhuang.liang@starfivetech.com>");
++&saradc {
++	vref-supply = <&vcc_1v8_s0>;
++	status = "okay";
++};
++
++&sdhci {
++	bus-width = <8>;
++	no-sdio;
++	no-sd;
++	non-removable;
++	mmc-hs400-1_8v;
++	mmc-hs400-enhanced-strobe;
++	status = "okay";
++};
++
++&spi2 {
++	status = "okay";
++	assigned-clocks = <&cru CLK_SPI2>;
++	assigned-clock-rates = <200000000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&spi2m2_cs0 &spi2m2_pins>;
++	num-cs = <1>;
++
++	pmic@0 {
++		compatible = "rockchip,rk806";
++		spi-max-frequency = <1000000>;
++		reg = <0x0>;
++
++		interrupt-parent = <&gpio0>;
++		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&pmic_pins>, <&rk806_dvs1_null>,
++			    <&rk806_dvs2_null>, <&rk806_dvs3_null>;
++
++		system-power-controller;
++
++		vcc1-supply = <&vcc5v0_sys>;
++		vcc2-supply = <&vcc5v0_sys>;
++		vcc3-supply = <&vcc5v0_sys>;
++		vcc4-supply = <&vcc5v0_sys>;
++		vcc5-supply = <&vcc5v0_sys>;
++		vcc6-supply = <&vcc5v0_sys>;
++		vcc7-supply = <&vcc5v0_sys>;
++		vcc8-supply = <&vcc5v0_sys>;
++		vcc9-supply = <&vcc5v0_sys>;
++		vcc10-supply = <&vcc5v0_sys>;
++		vcc11-supply = <&vcc_2v0_pldo_s3>;
++		vcc12-supply = <&vcc5v0_sys>;
++		vcc13-supply = <&vcc_1v1_nldo_s3>;
++		vcc14-supply = <&vcc_1v1_nldo_s3>;
++		vcca-supply = <&vcc5v0_sys>;
++
++		gpio-controller;
++		#gpio-cells = <2>;
++
++		rk806_dvs1_null: dvs1-null-pins {
++			pins = "gpio_pwrctrl1";
++			function = "pin_fun0";
++		};
++
++		rk806_dvs2_null: dvs2-null-pins {
++			pins = "gpio_pwrctrl2";
++			function = "pin_fun0";
++		};
++
++		rk806_dvs3_null: dvs3-null-pins {
++			pins = "gpio_pwrctrl3";
++			function = "pin_fun0";
++		};
++
++		regulators {
++			vdd_gpu_s0: vdd_gpu_mem_s0: dcdc-reg1 {
++				regulator-boot-on;
++				regulator-min-microvolt = <550000>;
++				regulator-max-microvolt = <950000>;
++				regulator-ramp-delay = <12500>;
++				regulator-name = "vdd_gpu_s0";
++				regulator-enable-ramp-delay = <400>;
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vdd_cpu_lit_s0: vdd_cpu_lit_mem_s0: dcdc-reg2 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <550000>;
++				regulator-max-microvolt = <950000>;
++				regulator-ramp-delay = <12500>;
++				regulator-name = "vdd_cpu_lit_s0";
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vdd_log_s0: dcdc-reg3 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <675000>;
++				regulator-max-microvolt = <750000>;
++				regulator-ramp-delay = <12500>;
++				regulator-name = "vdd_log_s0";
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <750000>;
++				};
++			};
++
++			vdd_vdenc_s0: vdd_vdenc_mem_s0: dcdc-reg4 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <550000>;
++				regulator-max-microvolt = <950000>;
++				regulator-init-microvolt = <750000>;
++				regulator-ramp-delay = <12500>;
++				regulator-name = "vdd_vdenc_s0";
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vdd_ddr_s0: dcdc-reg5 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <675000>;
++				regulator-max-microvolt = <900000>;
++				regulator-ramp-delay = <12500>;
++				regulator-name = "vdd_ddr_s0";
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <850000>;
++				};
++			};
++
++			vdd2_ddr_s3: dcdc-reg6 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-name = "vdd2_ddr_s3";
++				regulator-state-mem {
++					regulator-on-in-suspend;
++				};
++			};
++
++			vcc_2v0_pldo_s3: dcdc-reg7 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <2000000>;
++				regulator-max-microvolt = <2000000>;
++				regulator-name = "vdd_2v0_pldo_s3";
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <2000000>;
++				};
++			};
++
++			vcc_3v3_s3: dcdc-reg8 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-name = "vcc_3v3_s3";
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <3300000>;
++				};
++			};
++
++			vddq_ddr_s0: dcdc-reg9 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-name = "vddq_ddr_s0";
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vcc_1v8_s3: dcdc-reg10 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-name = "vcc_1v8_s3";
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <1800000>;
++				};
++			};
++
++			avcc_1v8_s0: pldo-reg1 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-name = "avcc_1v8_s0";
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vcc_1v8_s0: pldo-reg2 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-name = "vcc_1v8_s0";
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <1800000>;
++				};
++			};
++
++			avdd_1v2_s0: pldo-reg3 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <1200000>;
++				regulator-max-microvolt = <1200000>;
++				regulator-name = "avdd_1v2_s0";
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vcc_3v3_s0: pldo-reg4 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-name = "vcc_3v3_s0";
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vccio_sd_s0: pldo-reg5 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-name = "vccio_sd_s0";
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			pldo6_s3: pldo-reg6 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-name = "pldo6_s3";
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <1800000>;
++				};
++			};
++
++			vdd_0v75_s3: nldo-reg1 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <750000>;
++				regulator-max-microvolt = <750000>;
++				regulator-name = "vdd_0v75_s3";
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <750000>;
++				};
++			};
++
++			vdd_ddr_pll_s0: nldo-reg2 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <850000>;
++				regulator-max-microvolt = <850000>;
++				regulator-name = "vdd_ddr_pll_s0";
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <850000>;
++				};
++			};
++
++			avdd_0v75_s0: nldo-reg3 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <837500>;
++				regulator-max-microvolt = <837500>;
++				regulator-name = "avdd_0v75_s0";
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vdd_0v85_s0: nldo-reg4 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <850000>;
++				regulator-max-microvolt = <850000>;
++				regulator-name = "vdd_0v85_s0";
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vdd_0v75_s0: nldo-reg5 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <750000>;
++				regulator-max-microvolt = <750000>;
++				regulator-name = "vdd_0v75_s0";
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++		};
++	};
++};
++
++&u2phy2 {
++	status = "okay";
++};
++
++&u2phy2_host {
++	phy-supply = <&vcc5v0_host>;
++	status = "okay";
++};
++
++&u2phy3 {
++	status = "okay";
++};
++
++&u2phy3_host {
++	phy-supply = <&vcc5v0_host>;
++	status = "okay";
++};
++
++&uart2 {
++	pinctrl-0 = <&uart2m0_xfer>;
++	status = "okay";
++};
++
++&usb_host0_ehci {
++	status = "okay";
++};
++
++&usb_host0_ohci {
++	status = "okay";
++};
++
++&usb_host1_ehci {
++	status = "okay";
++};
++
++&usb_host1_ohci {
++	status = "okay";
++};
 -- 
-2.25.1
+2.34.1
 
 
