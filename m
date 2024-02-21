@@ -1,153 +1,160 @@
-Return-Path: <devicetree+bounces-44509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CACFA85EB69
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 22:54:05 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 778FE85EBB3
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 23:15:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DE6B283591
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 21:54:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D1436B21DC3
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 22:15:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F148D1272D6;
-	Wed, 21 Feb 2024 21:54:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A958B12837C;
+	Wed, 21 Feb 2024 22:15:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QZ/k9Eke"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="sEQRinXi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2068.outbound.protection.outlook.com [40.107.22.68])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AADF10953;
-	Wed, 21 Feb 2024 21:53:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708552440; cv=none; b=mwWaAtxla8Sl5YJeIfEc4NsMBIwrK+SWQfLzpxFyvCB8KC8t+UL7kUX4IoB01D9vqZDHZbYtR9EJMB6geRlzL5GDOdnzk6dUU5kYfjoDi6w5+EMWsNI56mZ+reXn0XbSarsaXaxPMoHJzbtoQPJQgQB8uZWwYw2p4pZ/aS+lMzU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708552440; c=relaxed/simple;
-	bh=4yH6g5tamOusVbcyW0SRdI3swoDz3DS9OYnuqNk6+z8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Eo6gfBZyckemM9lceXhxOT44oR2qX2MyqLdMcyYLOArqfbXRuMIeZr6yVbVrDcUIBmxNLDcnoMZSKJL1CHn+8fvAxwU32jUBqkr8inl5g/N+i3+adKXLf4qsK+sn5QScl3GBGl5xmrKBpG1odsdUxuujR8vIke9dzhiZbAaPqeE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QZ/k9Eke; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-33d8b14715bso21802f8f.0;
-        Wed, 21 Feb 2024 13:53:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708552437; x=1709157237; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PFRJDpPchYGhggcYn82/GAyKEim/RW8WyZ7494NwPio=;
-        b=QZ/k9EkeIah1Cwzc8ayVELADFfkm3VdeDnAYJnJSRyb4BsJLPp/DsEtVreRZVqxqfF
-         FjbllVU+A9FtG78mNT50KRNmy0YoMmz8pPrUoTD9GRwZ0/jSspR2h7EqPPsXRg1M7KES
-         5QJcygVtoXEjWkK8MdS41OKSxXiogrTT2OJn7EUAO9EPEmMcxnZ280WUpY0tOC+0SG9s
-         qYD9yxRncz2yEIFHHasNgVwyMzYY1ct/qEqUbvn+aCoghN4s3JDqxKmKU19Pw5WuL4Ar
-         TZyRpXZzxgu5s6XiiOkVsI8ruCD8fuKeMW3Orqcswlz/BuLi/e/E+N5kfYfHf/wIKQ/X
-         DJeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708552437; x=1709157237;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PFRJDpPchYGhggcYn82/GAyKEim/RW8WyZ7494NwPio=;
-        b=HFaXmgXe6YwOKLWDZFq2z+XFKCoSBQ/G98pwoUR1rduGCv9SKsaOXPGl2ip+JfY4N5
-         2kgv3+ZMy7nvFrJHQjQCj4WyHkm1NN7yilwYXqZ0Q/krsOYYcs0YghP3mTXYYcsojSFa
-         +b35rrM4+LxSHDStVPvcRXlMlqFAdiZ+adXeVRBqLc4ckm427PmfBmy2p4V/naNDLI/q
-         c2ys/GT0YnlJKDeIsRb71Ue7Yg1sZWaqw38e1PkhPqA7rafqCq2dPLeteXuGgo6Lh3Sz
-         j5HNPD+uc1vIi2LB/PuYDXyLD4ZW0PII9D2rKRzF337U8czs5x9DXKvQnO+nlz0Ar4Qt
-         ftcA==
-X-Forwarded-Encrypted: i=1; AJvYcCUZnVEarpJtE9nlQGV008vTm9iaYY8zuv1kpsPPNY0hk6cS19A7vhTHZ75jc42t8Z1YQzDmDPP5JjkTJu9alc3Vs0vrr0LJ/NgnsWn0Fbxu0lBjJENJ8QGB7J3O5GpsEtIj9wE2
-X-Gm-Message-State: AOJu0YxFr/WBXQOZH/dCRS94VDFFu8Zrbl4+45UsTE0RVW4XSMHeODyq
-	FIKVEpmv6sAqE1CUEKD5Ats+XckE5w0RfCj3O7ihzyvtf2AA/KI/nXVw8WN4bEs7Etd3/hSul3N
-	cfgrJM+BVoU74bIsm73hOquH41pQ=
-X-Google-Smtp-Source: AGHT+IHV55akNwFuAIFfQvhZOuT8lK5D89kMCL3mGgzrAcnXttcgmEDXvmr7PnYnEg/aTKh3F7l+YPToHA0Ndcz8jzo=
-X-Received: by 2002:a05:6000:71b:b0:33d:32f7:c85 with SMTP id
- bs27-20020a056000071b00b0033d32f70c85mr8694215wrb.0.1708552437408; Wed, 21
- Feb 2024 13:53:57 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E65E9127B68;
+	Wed, 21 Feb 2024 22:15:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.68
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708553734; cv=fail; b=o6YF0G7OgfS5EmClyPW1/FUwicuM1XcENTIFNxqN6i3vTIlA87RHR3NQcaryOsnEr0lVP3xj2elwygjjCRdZNLxt9az4nED4T+RcdzYXqyiaqUaYc8TwbHMhOfrT+zsB6jrKMjh5Lt1Ky4EnFPk50B7Ua4MdbOfN38O0q8FLKa4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708553734; c=relaxed/simple;
+	bh=rTcJPfGNgLi4woPPelCmZ9Fcf0eBGIYvGfJi4i5DxME=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=MxZ3NOOXIShLB9sN27IKRgb6u4E3SBVNcxxpl2HXRu3viyU7Ict0ru7Vn2hOhXE4MLXrLt3yHxhR6EcsRYKOEHVtf9pDnGNdAdL4KOS9cJfKuU5F5h4TgdZXxMGJwb1zV4JaBMUiXUkdzAtsIyPV5OqBdl3H1eIRAr66YplQHQg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=sEQRinXi; arc=fail smtp.client-ip=40.107.22.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SNZc4KXFstf+T9pDwrrHLNyk8ZitYh3y5yBmHf8F2t1/H45KxzqJouKUQaZ1Tb183ffHIESMdHM/IgiLDXBmfKcUPhW+fLugpl3wxUBZA6MUzkFk4jAU+29//NCpgZelqCEmD5WjvDGchfSt8aDnLzGBvfxxuHvy5WzwEnpEXGX9lqtKb0Uf+qgZtz/QF/FdhTfu4/2He4lwiw4uCsVllvdXicqwIrX1JuC+awDhas1UDzO6Qb7DS4wnu3xOAci5e+BnwJ3uJzGXo1pBXCtGCffDljwupkRM6FQpnur18Wd89LVml4DC3YGNdz9OBACjNh5aiHlY32BLWIG2+Wmcyw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TYjfspc+aXbCX0iUA3GKMGrEXak94P53eMq/pDZX/GM=;
+ b=FGcXK6j6KBzlm7+WdSTxBJ5FK/cqyAG1SpOfI039kY4VzLFmxCgmfbgnhtFWV8SgJj7zIuX48KHkHOy76O095LHQK6ETdPNcCXbcwT1VFW/9Tl90PD+rhtwcSsYbcAtvhD7jaK1apMnwz+qSbVesDL+v9PfN0IXQ0JGQPE50xPPjZ252bx42yh0H8GreOTzZElmgAzx01RkienLYRXnUjqnxdd/bw619JtI45dEqQp4l4qUpqvFRWnvf3fw/0RuRt6okVb0NuqDJU8ZZIc4zOqipAHoGZWbAbEsLtFdxt/6SLsXiaR4rCevl4+LfcCwJJavSmtoxy4KHeZ1n+2Cp8Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TYjfspc+aXbCX0iUA3GKMGrEXak94P53eMq/pDZX/GM=;
+ b=sEQRinXiKSelrSvQaLoJgL1ArkEIYFTsCfPgxqsncjARbky5qZCKYH5Q0jKeoKv2fK5U4JCwg5zVwY7TfeM92zZyTFqL+gF7WTyQCRg4mN5+mKxvzEuft1auPAKPTDzl8jedUApede9f4pds33/tCfmZQmkGnjhJ+6Yr0euXUHo=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AS8PR04MB8867.eurprd04.prod.outlook.com (2603:10a6:20b:42e::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.31; Wed, 21 Feb
+ 2024 22:15:29 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9af4:87e:d74:94aa]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9af4:87e:d74:94aa%7]) with mapi id 15.20.7316.018; Wed, 21 Feb 2024
+ 22:15:29 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Shawn Guo <shawnguo@kernel.org>,
+	Li Yang <leoyang.li@nxp.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE LAYERSCAPE ARM ARCHITECTURE),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH 1/1] ARM: dts: ls1021a: Enable usb3-lpm-capable for usb3 node
+Date: Wed, 21 Feb 2024 17:15:09 -0500
+Message-Id: <20240221221510.3762096-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0P220CA0027.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:41b::18) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240219153639.179814-1-andre.przywara@arm.com> <13c957a9-6021-46a7-9243-b3658c26a333@linaro.org>
-In-Reply-To: <13c957a9-6021-46a7-9243-b3658c26a333@linaro.org>
-From: Vasily Khoruzhick <anarsoul@gmail.com>
-Date: Wed, 21 Feb 2024 13:53:30 -0800
-Message-ID: <CA+E=qVeMnQNrT8tNnHBnCL2Efy3VjbRAYQGMXstziCThRsiBDw@mail.gmail.com>
-Subject: Re: [PATCH v5 0/7] add support for H616 thermal system
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: Andre Przywara <andre.przywara@arm.com>, Yangtao Li <tiny.windzz@gmail.com>, 
-	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, "Rafael J . Wysocki" <rafael@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
-	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Martin Botka <martin.botka@somainline.org>, Maksim Kiselev <bigunclemax@gmail.com>, 
-	Bob McChesney <bob@electricworry.net>, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB8867:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7bac5110-2f54-422a-33d1-08dc332a9cc2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	HKs8Q6gOyW+epDF7gMgI4mGptV60p9ZMxxqVCUdEh835uIne0K0R3F3ZzD0yzMzM+8x93BpciqAQrnCvOg/VveQq79jLcF1j6Gf6i/UuifSy6ilER54ayywNVbdBeQIwHIHmGv3FURvN5k3uuYsvsuxj+pWZ6O7MjV+i1Sangj2XDzGzQ3R2QZLdkk1yCKnF1D8emOgfmCmTe+5KvDEFCYYsEa+5OxjqLzrC1ok//w2/gPVVeCGx3AMYsfwYH6Gc2gVB5jgsjTkpO7mbdNNIcZT/5MGtDFK0z6qCmlTbZx1SyHwv05xSZ4fu8v3ZoGX5dp8uQpp1W0K7xlkTPyV0bjF35xHAx8v4brYBQPCHO7I2yaAmsh2ug3VMmyX15T8UDg3DiQLFBOdtDn8c99urpu8P9k/yHX4ZzyahS0rJsiXQ64dNpMObF7qxZ2EInTw6h75X6Ptn2WAlh53tRPTY/e8FHimIzMKJLHvj+TtFCRq+GmWWbJ9YfBCMklObYnLzPUnS/dVgZia4uq9Ax/BWEO0lmN7NlSjD/aSsCykl7cuGkD46WtfAYAlZqvcyS+waIh+3Ak/r8NX+WWitCc7Lvb+WeMMug+7fy1B57B248wcJbRLAeiso5MYoL2PmwQ3A
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?21k2t8pHrjhtxWI+2Q4K3Fw6kXcBsy2/r6Q3HqjXbuDPPR0nFle/2/yWz++u?=
+ =?us-ascii?Q?SotYfV9ameSBIj62zKdLdWT7BNIPvFTWv3HWRXDZRbRvvt6Y5pAcWXu7fnp8?=
+ =?us-ascii?Q?NBO1058lGQclgK5POpFuLJeoog+hfwvDZBWkgjEJMfc9LxJXPejF0dgmsiku?=
+ =?us-ascii?Q?BJ2x/r8g+HnM1N8gpb6Ht7/iU1UuT3thfux10otraPG/dgKONJG782tkkh3m?=
+ =?us-ascii?Q?uJnNvq9sJD6v88P/qruwvULDVD0tA2QjBKAjgIoMU5RuQm4eOxDbLtstVfnO?=
+ =?us-ascii?Q?0GlzcLTCBdED2GbfxjA0n12edSnI2sECEVcaxNdgTp4TZ+1eXjD46iTZdzn8?=
+ =?us-ascii?Q?LuzOT9EFOEc9D4k+jUq4m1pKi397XtaKRFARoZUT8/e3QCxYK9/g7obkZE9F?=
+ =?us-ascii?Q?3a/go+lSsxV2uMWiVMh5pN9wYvwLQYy4t9jqi0N2NezBpfE3MNMPEc7EeV3t?=
+ =?us-ascii?Q?HPsnXgh9Yd4CIHt1PDK3hTKf6C4X/hvBeRE0x6rR0ohHiLv5/RrhT4/OLvth?=
+ =?us-ascii?Q?8d6wZW0+84LAPGLQ2M80cEP887Bj0OkDjFP19rp7jPkY2/W0DhLI4M0iEM5k?=
+ =?us-ascii?Q?BnMIFAX1JMW21Y4Mp69OdIsHzIYkgVD4xNFPiN/1uOgl4oyCaIrCBVcf3hoL?=
+ =?us-ascii?Q?sXtkT64RhphyPhT2sAWS5hIIWkHbJvOqnFMxXNoD3lxt3lYhup52YmS7uyFc?=
+ =?us-ascii?Q?d2LyYBDTVDUS3gqG8aRNJFRCUIL7LpYcgK7DR6NLPhYf7ZurAavMsVZknBpZ?=
+ =?us-ascii?Q?m/+e+a6EQCF7+8gZfKkGxT9uxDB2ZFpQn4tKc5z3Aeni9Nifo3W+djrdj3kE?=
+ =?us-ascii?Q?abxoKgWMCJjFAU9/Y8/3K51Aq+GrJMKzv/TEfgBhIQH8ra2RL/A2VXSxumiI?=
+ =?us-ascii?Q?3jfIUlu0XueR1sJ8RAxEvE3UJ+BC5jkuIbP+qzlTesWH/F80DM1HIPPvb0Ds?=
+ =?us-ascii?Q?rEa0K0VpDsuzk7DhSjPSK3RDCueDRkJv2en+CT5XDWqQEkWGIUTz3hpL9vIc?=
+ =?us-ascii?Q?QEbyzfJ5d4Wf310mbgkTuABWfuvY0KCi4/hgGhyyhtVF454JsEcEQGMGS4xM?=
+ =?us-ascii?Q?+saqE9qEr3BZDJ+2ey5uUC4hgX+/X28+PiTPYSrkoToRVzjXnsa0D7HBF1Nn?=
+ =?us-ascii?Q?kPIC+tq+XpEPh3HTyIS7cR7zxaKzr3ZV7myVSSh1xc3HniZOj0mDEbulPhGg?=
+ =?us-ascii?Q?fjvEZA0l6MkpvcmmES8UOI4x4hs1bA0fjlAviGLwhYRg8OAPRMubKGDJgHo7?=
+ =?us-ascii?Q?xKkj4n3FqocZFPzBjp4Y9FNn2vdoBeDmGC9EScvHD6ybx9y67VRqC3t2iGig?=
+ =?us-ascii?Q?3FoYmeSS9qe1RMKtprf1D4ju/SvtNRLVwdBiJ9ax/gJ9YRakg28LNqiu7knI?=
+ =?us-ascii?Q?QbbuRM4vaVnruaBBZMs2ACnuL6NrvcjC4KLr51kPI00kdeegTpsois7at9ZE?=
+ =?us-ascii?Q?cSv/t+OMiaVEYNELD/GrPvjf3Cxrc9884x1ZQgGzFU8DkPB9L4VOxycK2TcR?=
+ =?us-ascii?Q?6eYtIysXiW4wkVE1EEA0egWFERBzCpcFmmpMTPrXjTlRrjc+j4JmxBZM3f4q?=
+ =?us-ascii?Q?75DnknF/cjuyhJV4y2vz/7U8+jPeKqJMuh7xJ1Jx?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7bac5110-2f54-422a-33d1-08dc332a9cc2
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2024 22:15:29.4177
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: NFm8cIs1rm67EFqcpoEf6WnufaSYSSqpOnzDcYYuAa2ISac1CvmNRbIQarrH0C4z/c8VRNtS4dgD/eteMHICpg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8867
 
-On Wed, Feb 21, 2024 at 5:43=E2=80=AFAM Daniel Lezcano
-<daniel.lezcano@linaro.org> wrote:
->
-> On 19/02/2024 16:36, Andre Przywara wrote:
-> > Hi,
-> >
-> > this is v5 of this series originally by Martin, only some cosmetic
-> > changes this time, for instance  mentioning experiments with the SRAM
-> > controller registers to confirm that it's not an SRAM region which fixe=
-s
-> > the temperature reporting issue.
-> > See the Changelog below for more details.
-> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> >
-> > This series introduces support for the thermal sensors in the Allwinner
-> > H616 SoCs, which includes its siblings H618 and T507. The actual
-> > temperature reading turns out to be very similar to the H6 SoC, just
-> > with support for two more sensors. One nasty complication is caused
-> > by reports about temperatures above 200C, which are related to the
-> > firmware being run (because the vendor U-Boot contains a hack avoiding
-> > this problem). Some investigation and digging in BSP code later
-> > we identified that bit 16 in register 0x3000000 (SYS_CFG) needs to be
-> > cleared for the raw temperature register values to contain reasonable
-> > values.
-> > To achieve this, patch 1/7 exports this very register from the already
-> > existing SRAM/syscon device. Patch 5/7 then adds code to the thermal
-> > driver to find that device via a new DT property, and query its regmap
-> > to clear bit 16 in there.
-> > Patch 4/7 reworks the existing H6 calibration function to become
-> > compatible with the H616, many thanks to Maksim for figuring this out.
-> > This makes the actual enablement patch 6/7 very easy.
-> >
-> > The rest of the patches are straightforward and build on Martin's
-> > original work, with some simplifications, resulting in more code sharin=
-g.
-> >
-> > Please have a look!
->
-> Thanks for the detailed explanation.
->
-> I'm willing to pick the patches 1-6 and let the last one to go through
-> the allwinner tree.
->
-> However I need the blessing from the different designed maintainers for
-> the thermal driver and from the sunxi_sram
+From: Li Yang <leoyang.li@nxp.com>
 
-For sun8i_thermal:
+Enable USB3 HW LPM feature.
 
-Acked-by: Vasily Khoruzhick <anarsoul@gmail.com>
+Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
+Signed-off-by: Li Yang <leoyang.li@nxp.com>
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+ arch/arm/boot/dts/nxp/ls/ls1021a.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-> Thanks
->
-> --
-> <http://www.linaro.org/> Linaro.org =E2=94=82 Open source software for AR=
-M SoCs
->
-> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-> <http://twitter.com/#!/linaroorg> Twitter |
-> <http://www.linaro.org/linaro-blog/> Blog
->
+diff --git a/arch/arm/boot/dts/nxp/ls/ls1021a.dtsi b/arch/arm/boot/dts/nxp/ls/ls1021a.dtsi
+index 95e2057d9213c..e86998ca77d6e 100644
+--- a/arch/arm/boot/dts/nxp/ls/ls1021a.dtsi
++++ b/arch/arm/boot/dts/nxp/ls/ls1021a.dtsi
+@@ -808,6 +808,7 @@ usb3: usb@3100000 {
+ 			dr_mode = "host";
+ 			snps,quirk-frame-length-adjustment = <0x20>;
+ 			snps,dis_rxdet_inp3_quirk;
++			usb3-lpm-capable;
+ 			snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
+ 			snps,host-vbus-glitches;
+ 		};
+-- 
+2.34.1
+
 
