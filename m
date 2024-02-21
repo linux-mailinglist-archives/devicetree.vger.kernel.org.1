@@ -1,212 +1,325 @@
-Return-Path: <devicetree+bounces-44201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44202-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1339885D187
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 08:37:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCF5985D1A0
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 08:43:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 354721C2212F
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 07:37:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92A0C285208
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 07:43:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F05EC3C68C;
-	Wed, 21 Feb 2024 07:36:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF3093AC19;
+	Wed, 21 Feb 2024 07:43:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MGWviKJA"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IN4Evyml"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E5AA3C484;
-	Wed, 21 Feb 2024 07:36:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C12383A27B;
+	Wed, 21 Feb 2024 07:43:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708500973; cv=none; b=GEMiKHNP+KmvNxC2lRysT20j0o8fBK+32QpnqQDPKQmjWE2V3blCwo0VLRPI4JQPNXgpJe0vcukMs4h8/pjUYZslonZrhFnqszeIHYioJUS+0OTX5Eooz7r6dGiYb0HXo/+G7QGDiYjcoYa4dEYITYxvTWud67hUwu9Soh1ePRc=
+	t=1708501425; cv=none; b=LSYxKp+X2Aln7+y2tAuD5U846/dZYs2GgYA0juSnbRGtk70QKewQaQtYHDq2qInJ1/vBFd1Fpf7oHjGsRnD4xdfqixIdNbz5rHDdOroGL5E5bsS1i0VGoeIEMO40Sust9ZDPsT0b0uEmd3P7liznbzd1xPEl9G2gzuPRqkqGoXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708500973; c=relaxed/simple;
-	bh=F3Sf0JiF6x4iJ+PX/ACP+GxQSz0ogVWMEW4G4AWPfyQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SLgQWdsLKelC0uKVVmOvcqpEFA4swgN74u9gYO8sIhzqA5AsEK1vVTmbDUNxWariW6WIFROndy275xqEIOeXXkhgEKSgSn6pGuF40RaaBOfwEdm4Ox2d5mYWwceIKWFMOhwrj9nKaLiFWgacNofx8aSi2epkGm5JKUYKdVF7Is8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MGWviKJA; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2d1094b5568so83301761fa.1;
-        Tue, 20 Feb 2024 23:36:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708500970; x=1709105770; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NbLgMoZR4t08q5k+O843alwk/f3OePOmG2WLruO1CqU=;
-        b=MGWviKJAA6dYyKCQ0aay8a7OCxazyH4xSQkHSfS9PdFNOGw/RdLpKl8C39Rb3J6sMr
-         g5WdoRcC/mNSk0e1R2TscBkuusW2OBKEonTXOBdvTTVvvRmGx60L7xGQHGGYGvUElTxa
-         tnDMsm0qvj1PDCdvX9W3tY57oE+wtZorBaRTueEI6x/584IlEcIkqUZJ3LrTYmxDvBJl
-         V/b8LSWjGimmN9OM9f2zVk2PLHP21GtuSzd/NeN3SD+L477eJfIphDomm56RLgpB5/Vb
-         ck7e+RITbdiihAC/pe0O4y3Ys8xEmiHBMsVs8z96MLjma8yr5DVL0+lmv0U3L1IAB/Eg
-         Kkiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708500970; x=1709105770;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NbLgMoZR4t08q5k+O843alwk/f3OePOmG2WLruO1CqU=;
-        b=Hjv1yw38SnsGKheS7AyBGmGFAEA960fHrkoTOaxvdSbsMZMapcvv7HAueS9RS8CbFZ
-         FlruvwrcYyLNJbcG6HYTTFLmyCDZqIt6tMtNRIlipW+dlOQ3S7MkAtueMMESHEhpwMa+
-         bcF9RWbbqA+xEwtsZ/90cljjXG+xpqLMXOCv5gU2rvRLGD77s2S6TvtpnvcnOvblF6ZE
-         pbvzsP5tORs19zUlN3qAiuvwES2+QVJoeWCj3zxQO+IKNCVPc6bbYTtjMGcjzfILXaNa
-         QCr+mCt6j4pC9oKZknoO5aX/Rx6Q3r5zYx+vClkJx+Ase6Xkwt6+i5QVx3O9Nd0YYVTF
-         KJ9A==
-X-Forwarded-Encrypted: i=1; AJvYcCXyT42HF8LNgVQyRJqtcboZDD9OLLirhqvocJBfo7ly4VNwulkAoIJ44gWu9cvLXsrGgZm4v6JICm79CWNse7KXNK8TX2ZZIDMLILAcsFfc7GfjGD/V6U2Co9/KmZNKT7zofAuz1ReX2g==
-X-Gm-Message-State: AOJu0YwWOr1V6zNtHY6m9WsX4HSJKSz43Sy382XFiVyWXQNUuKRhBl++
-	byQuGc5rnN8Gbtzx5gViJmaHkvzyjqCwmE8GDvihNycI4NDlFCf2
-X-Google-Smtp-Source: AGHT+IGbhTXvfJwY454gP9jL76eAJGY29TsXCEdiPrgqL7hjr4TGYQ2YlFcD/47YCPPm1w0ctPzyyA==
-X-Received: by 2002:a2e:c49:0:b0:2d2:40cb:8182 with SMTP id o9-20020a2e0c49000000b002d240cb8182mr3976818ljd.49.1708500970465;
-        Tue, 20 Feb 2024 23:36:10 -0800 (PST)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id z3-20020a2e7e03000000b002d0f99a7fc4sm1722330ljc.79.2024.02.20.23.36.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Feb 2024 23:36:10 -0800 (PST)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
-	Hsin-Yi Wang <hsinyi@chromium.org>,
-	=?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= <nfraprado@collabora.com>,
-	Heiko Stuebner <heiko.stuebner@cherry.de>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Sean Wang <sean.wang@mediatek.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 4/4] arm64: dts: mediatek: Add Cudy WR3000 V1
-Date: Wed, 21 Feb 2024 08:35:24 +0100
-Message-Id: <20240221073524.20947-5-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
-In-Reply-To: <20240221073524.20947-1-zajec5@gmail.com>
-References: <20240221073524.20947-1-zajec5@gmail.com>
+	s=arc-20240116; t=1708501425; c=relaxed/simple;
+	bh=ltTht77zSLOZYTaO34bNZ2vXR72J5XsBwuQr3EcrxMc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ggRw21H5DaIsYUuwptXtx2/1nzbu2pkYObOETXm7dZfHavwk2ubCtbm2GJ3DkFmiRDic0ElzuDZZ1WMojNnHD47rPiA4vIzT7oDNlxBjj4KXqBA5oyjC6k1dMZyOTXgLiIcTjt8ZtxN1BUiiK2K88Ap1BQhmQf1ZyAHg0IkPEDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IN4Evyml; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1708501424; x=1740037424;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=ltTht77zSLOZYTaO34bNZ2vXR72J5XsBwuQr3EcrxMc=;
+  b=IN4EvymlP0JQktO7IAo5rzmlKPFPRmf6miSjyG0RhqiRAnajMwRBy8te
+   gRBSnSTROSNu7S5rpQXTP08NeCZEUs5jBGg3M4lOlq5Rx3SJBOwtmSEp7
+   yQEoTu1CU7qZFSiK64Yn5/TcfsZj2eT2xombxbSo/ss2S0gS0kJSpJ3rf
+   aR7J2hXs3XNHvfETiunp4vTPUty9jGXy2nsB6tGijqVFmhm/4CHQuyhTm
+   KwitqLmc+kPXJTnLYQQ6mzoRnbXLtSB3Qu4u0jEsfKKtGeY2/q8f7klED
+   Lblp1iRuU6ql/RAubWgeFVFeC2uqWGGHBO3DNNDo53FF7EWVAdmtD12qL
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10990"; a="13267305"
+X-IronPort-AV: E=Sophos;i="6.06,175,1705392000"; 
+   d="scan'208";a="13267305"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2024 23:43:42 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10990"; a="827300778"
+X-IronPort-AV: E=Sophos;i="6.06,175,1705392000"; 
+   d="scan'208";a="827300778"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2024 23:43:34 -0800
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with ESMTP id B6E6511F855;
+	Wed, 21 Feb 2024 09:43:31 +0200 (EET)
+Date: Wed, 21 Feb 2024 07:43:31 +0000
+From: "sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>
+To: Zhi Mao =?utf-8?B?KOavm+aZuik=?= <zhi.mao@mediatek.com>
+Cc: "heiko@sntech.de" <heiko@sntech.de>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"yunkec@chromium.org" <yunkec@chromium.org>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"dan.scally@ideasonboard.com" <dan.scally@ideasonboard.com>,
+	Shengnan Wang =?utf-8?B?KOeOi+Wco+eUtyk=?= <shengnan.wang@mediatek.com>,
+	"hdegoede@redhat.com" <hdegoede@redhat.com>,
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+	"gerald.loacker@wolfvision.net" <gerald.loacker@wolfvision.net>,
+	"linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+	"andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
+	Yaya Chang =?utf-8?B?KOW8tembhea4hSk=?= <Yaya.Chang@mediatek.com>,
+	"jacopo.mondi@ideasonboard.com" <jacopo.mondi@ideasonboard.com>,
+	"mchehab@kernel.org" <mchehab@kernel.org>,
+	"jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
+	Project_Global_Chrome_Upstream_Group <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	"tomi.valkeinen@ideasonboard.com" <tomi.valkeinen@ideasonboard.com>,
+	"10572168@qq.com" <10572168@qq.com>,
+	"hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
+	"bingbu.cao@intel.com" <bingbu.cao@intel.com>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+	"laurent.pinchart@ideasonboard.com" <laurent.pinchart@ideasonboard.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"angelogioacchino.delregno@collabora.com" <angelogioacchino.delregno@collabora.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"macromorgan@hotmail.com" <macromorgan@hotmail.com>
+Subject: Re: [PATCH v4 2/2] media: i2c: Add GC08A3 image sensor driver
+Message-ID: <ZdWpow0JIM18Hc4u@kekkonen.localdomain>
+References: <20240204061538.2105-1-zhi.mao@mediatek.com>
+ <20240204061538.2105-3-zhi.mao@mediatek.com>
+ <20240206184542.GE2827@pendragon.ideasonboard.com>
+ <598f62bbb55157eec1e23dd1dbc307fea3851b21.camel@mediatek.com>
+ <20240220030104.GF20376@pendragon.ideasonboard.com>
+ <115698c0c549e747026cc8841a3bd571533f8e6f.camel@mediatek.com>
+ <ZdRUB92gkbRGPyr_@kekkonen.localdomain>
+ <063fa9763efb1570295cfef385829714dd5e42cf.camel@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <063fa9763efb1570295cfef385829714dd5e42cf.camel@mediatek.com>
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Hi Zhi,
 
-Cudy WR3000 V1 is an MT7981B (AKA Filogic 820) based wireless router. It
-has 256 MiB of RAM, some LEDs & buttons and (not described yet) 4
-Ethernet ports.
+On Wed, Feb 21, 2024 at 02:37:27AM +0000, Zhi Mao (毛智) wrote:
+> Hi Laurent & sakari,
+> 
+> Thanks for your feedback.
+> 
+> On Tue, 2024-02-20 at 07:25 +0000, sakari.ailus@linux.intel.com wrote:
+> >  	 
+> > External email : Please do not click links or open attachments until
+> > you have verified the sender or the content.
+> >  Hi Zhi,
+> > 
+> > On Tue, Feb 20, 2024 at 05:45:54AM +0000, Zhi Mao (毛智) wrote:
+> > > Hi Laurent,
+> > > 
+> > > Thanks for you reply.
+> > > I'd like to ask for advice about how to contrl "reset-pin", please
+> > > check the below comments.
+> > > 
+> > > On Tue, 2024-02-20 at 05:01 +0200, Laurent Pinchart wrote:
+> > > >   
+> > > > External email : Please do not click links or open attachments
+> > until
+> > > > you have verified the sender or the content.
+> > > >  Hi Zhi,
+> > > > 
+> > > > On Tue, Feb 20, 2024 at 02:12:26AM +0000, Zhi Mao (毛智) wrote:
+> > > > > On Tue, 2024-02-06 at 20:45 +0200, Laurent Pinchart wrote:
+> > > > > > On Sun, Feb 04, 2024 at 02:15:38PM +0800, Zhi Mao wrote:
+> > > > > > > Add a V4L2 sub-device driver for Galaxycore GC08A3 image
+> > > > sensor.
+> > > > > > >
+> > > > > > > Signed-off-by: Zhi Mao <zhi.mao@mediatek.com>
+> > > > > > > ---
+> > > > > > >  drivers/media/i2c/Kconfig  |   10 +
+> > > > > > >  drivers/media/i2c/Makefile |    1 +
+> > > > > > >  drivers/media/i2c/gc08a3.c | 1448
+> > > > ++++++++++++++++++++++++++++++++++++
+> > > > > > >  3 files changed, 1459 insertions(+)
+> > > > > > >  create mode 100644 drivers/media/i2c/gc08a3.c
+> > > > 
+> > > > [snip]
+> > > > 
+> > > > > > > diff --git a/drivers/media/i2c/gc08a3.c
+> > > > b/drivers/media/i2c/gc08a3.c
+> > > > > > > new file mode 100644
+> > > > > > > index 000000000000..3fc7fffb815c
+> > > > > > > --- /dev/null
+> > > > > > > +++ b/drivers/media/i2c/gc08a3.c
+> > > > > > > @@ -0,0 +1,1448 @@
+> > > > 
+> > > > [snip]
+> > > > 
+> > > > > > > +static int gc08a3_power_on(struct device *dev)
+> > > > > > > +{
+> > > > > > > +struct i2c_client *client = to_i2c_client(dev);
+> > > > > > > +struct v4l2_subdev *sd = i2c_get_clientdata(client);
+> > > > > > > +struct gc08a3 *gc08a3 = to_gc08a3(sd);
+> > > > > > > +int ret;
+> > > > > > > +
+> > > > > > > +ret =
+> > regulator_bulk_enable(ARRAY_SIZE(gc08a3_supply_name),
+> > > > > > > +    gc08a3->supplies);
+> > > > > > > +if (ret < 0) {
+> > > > > > > +dev_err(gc08a3->dev, "failed to enable regulators: %d\n",
+> > > > ret);
+> > > > > > > +return ret;
+> > > > > > > +}
+> > > > > > > +
+> > > > > > > +ret = clk_prepare_enable(gc08a3->xclk);
+> > > > > > > +if (ret < 0) {
+> > > > > > > +regulator_bulk_disable(ARRAY_SIZE(gc08a3_supply_name),
+> > > > > > > +       gc08a3->supplies);
+> > > > > > > +dev_err(gc08a3->dev, "clk prepare enable failed\n");
+> > > > > > > +return ret;
+> > > > > > > +}
+> > > > > > > +
+> > > > > > > +usleep_range(GC08A3_MIN_SLEEP_US, GC08A3_MAX_SLEEP_US);
+> > > > > > > +
+> > > > > > > +gpiod_set_value_cansleep(gc08a3->reset_gpio, 1);
+> > > > > >
+> > > > > > Are you asserting reset when powering on ? That sounds wrong,
+> > you
+> > > > should
+> > > > > > de-assert reset here (and acquire the reset gpio in probe()
+> > with
+> > > > > > GPIOD_OUT_HIGH). Drivers should use logical levels for GPIOs,
+> > > > setting a
+> > > > > > GPIO named "reset" to 1 should assert the reset signal, even
+> > if
+> > > > the
+> > > > > > physical signal is active low. You may have the wrong
+> > polarity in
+> > > > the
+> > > > > > device tree.
+> > > > >
+> > > > > According to the sensor power sequence sepc, "reset" pin should
+> > be
+> > > > pull
+> > > > > from low to high after "dovdd/dvdd/avdd" power on, so I follow
+> > this
+> > > > > power sequece to pull "reset" pin high in software flow.
+> > > > 
+> > > > From a hardware point of view that's right, but the Linux kernel
+> > > > handles
+> > > > logical level of GPIOs. If a GPIO is named "reset", it is
+> > expected
+> > > > that
+> > > > calling
+> > > > 
+> > > > gpiod_set_value_cansleep(gc08a3->reset_gpio, 1);
+> > > > 
+> > > > will "assert" the reset signal, setting it to a logical "reset =
+> > > > true"
+> > > > level. This maps to the hardware 0V output level, as the signal
+> > is
+> > > > active-low. To achieve this, define the reset GPIO as active low
+> > in
+> > > > DT,
+> > > > and the GPIO framework will invert the signal for you. You should
+> > > > then
+> > > > call
+> > > > 
+> > > > gpiod_set_value_cansleep(gc08a3->reset_gpio, 1);
+> > > > 
+> > > > in the driver when you want to assert reset (set it to 0V), and
+> > > > 
+> > > > gpiod_set_value_cansleep(gc08a3->reset_gpio, 0);
+> > > > 
+> > > > when you want to deassert it (set it to 3.3V, or whatever the I/O
+> > > > voltage for the signal is).
+> > > > 
+> > > > This way all driver use logical states, and the inversion is
+> > handled
+> > > > in
+> > > > DT.
+> > > > 
+> > > 
+> > > Sensor power sequence as below:
+> > >                       ------------------
+> > >                      | | |
+> > >                      | | | 
+> > > dvdd/avdd/dovdd  --------
+> > >                                ---------
+> > >                               |
+> > >                               |
+> > > reset-pin        -------------
+> > > 
+> > > In order to match this power sequece, "reset-pin" contrl flow is
+> > below:
+> > > 1. config the "reset-pin" is "active-high" in DTS:
+> > >     reset-gpios = <&pio 19 GPIO_ACTIVE_HIGH>;
+> > > 
+> > > 2. image sensor driver probe function:
+> > > gc08a3->reset_gpio = devm_gpiod_get(dev, "reset",
+> > > GPIOD_OUT_LOW);  //init "reset-pin" is low
+> > > 
+> > > 3. image sensor driver power_on function:
+> > > gpiod_set_value_cansleep(gc08a3->reset_gpio, 1); //pull "reset-pin"
+> > > high 
+> > > 
+> > > so, the expect state of "reset-pin" is from low to high.
+> > > If I am wrong, please correct me.
+> > 
+> > 
+> > From Documentation/driver-api/gpio/consumer.rst:
+> > 
+> > As a consumer should not have to care about the physical line
+> > level, all of the gpiod_set_value_xxx() or
+> > gpiod_set_array_value_xxx() functions operate with the *logical*
+> > value. With this they take the active low property into account.
+> > This means that they check whether the GPIO is configured to be
+> > active low, and if so, they manipulate the passed value before the
+> > physical line level is driven.
+> > 
+> > I.e. when you want to enable reset, you set the value to 1 in the
+> > driver. I
+> > think you're now setting the value to 0 in that case. The opposite
+> > for
+> > disabling it of course.
+> > 
+> After checking "Documentation/driver-api/gpio/consumer.rst":
+> To summarize::
+>   Function (example)                 line property          physical
+> line
+> ...
+>   gpiod_set_value(desc, 1);          default (active high)  high
+>   gpiod_set_value(desc, 0);          active low             high
+> ...
+> 
+> 
+> From my understanding, it seems that "reset-pin" is using the
+> following(active_high) case in current code: 
+> "gpiod_set_value(desc, 1);          default (active high)  high" 
+> 
+> Do you mean, we should use the "active_low" case:
+> "gpiod_set_value(desc, 0);          active low             high"
+> Code should be changed as below:
+> 1. config the "reset-pin" is "active-low" in DTS:
+>    - reset-gpios = <&pio 19 GPIO_ACTIVE_LOW>
+> 2. image sensor driver power_on function:
+>    - gpiod_set_value_cansleep(gc08a3->reset_gpio, 0); //pull high 
+> Is that so?
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- arch/arm64/boot/dts/mediatek/Makefile         |  1 +
- .../dts/mediatek/mt7981b-cudy-wr3000-v1.dts   | 74 +++++++++++++++++++
- 2 files changed, 75 insertions(+)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dts
+Correct.
 
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index 37b4ca3a87c9..96da4ad640aa 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -8,6 +8,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-evb.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-x20-dev.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-rfb1.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-bananapi-bpi-r64.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt7981b-cudy-wr3000-v1.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7981b-xiaomi-ax3000t.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-acelink-ew-7886cax.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3.dtb
-diff --git a/arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dts b/arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dts
-new file mode 100644
-index 000000000000..cb36a089518a
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dts
-@@ -0,0 +1,74 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+
-+/dts-v1/;
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+
-+#include "mt7981b.dtsi"
-+
-+/ {
-+	compatible = "cudy,wr3000-v1", "mediatek,mt7981b";
-+	model = "Cudy WR3000 V1";
-+
-+	memory@40000000 {
-+		reg = <0 0x40000000 0 0x10000000>;
-+		device_type = "memory";
-+	};
-+
-+	keys {
-+		compatible = "gpio-keys";
-+
-+		key-wps {
-+			label = "WPS";
-+			gpios = <&pio 0 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_WPS_BUTTON>;
-+		};
-+
-+		key-reset {
-+			label = "RESET";
-+			gpios = <&pio 1 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_RESTART>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			function = LED_FUNCTION_WAN;
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&pio 5 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		led-1 {
-+			function = LED_FUNCTION_WLAN_2GHZ;
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&pio 6 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		led-2 {
-+			function = LED_FUNCTION_WLAN_5GHZ;
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&pio 7 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		led-3 {
-+			function = LED_FUNCTION_LAN;
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&pio 9 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		led-4 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&pio 10 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		led-5 {
-+			function = "online";
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&pio 11 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+};
 -- 
-2.35.3
+Regards,
 
+Sakari Ailus
 
