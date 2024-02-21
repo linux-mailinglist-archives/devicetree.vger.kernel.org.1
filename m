@@ -1,216 +1,149 @@
-Return-Path: <devicetree+bounces-44506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF2EA85EB16
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 22:38:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC22B85EB1E
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 22:39:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27D2B1F284D9
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 21:38:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4ECE0B2249D
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 21:39:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7162213172C;
-	Wed, 21 Feb 2024 21:34:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3ACE126F00;
+	Wed, 21 Feb 2024 21:38:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="rjlfp4wQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gUwpgeHS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-he1eur01on2138.outbound.protection.outlook.com [40.107.13.138])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68761127B56;
-	Wed, 21 Feb 2024 21:34:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.13.138
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708551244; cv=fail; b=YYjV3++TuS/C91mav4Tp8SUDE1j2cgDGkBbCA5SRhvlKx+AgAZ0fn8asYqRbMVRHY6diiilxoRXZeDHmQQUdgT8khbb86hk43hoDm6jRxhOsfWdXwKN1QeRtX7TduC3s2DynkC488KbTFOI+NM9Hmb9ZG96DGjgT4a7R+EDIJ8U=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708551244; c=relaxed/simple;
-	bh=p3CEpE5gGqXZ8XA3pMbe9Z7TUPoAzs8la3pacwLSsNg=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=Nhcnvrz+qlUDrRlIt0+oB/r2kpozLr5M28glF601gm3p7/md2Mfp/ez6cv0YD62NmIu7jTY8vEdZTcBL9nN9WObA9TruGGjSIpabk/nIc47vM0E8GGSSfGcYDonHLuJL75zh48dmr1Pc4T+VHP6xKTEQ/zQCx3BVuX5qRoF6jqc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net; spf=pass smtp.mailfrom=wolfvision.net; dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b=rjlfp4wQ; arc=fail smtp.client-ip=40.107.13.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wolfvision.net
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UdJCF1JUL8Gq0d61Gw5g4p/Rjq9TgTgSK+WkqCAMYxPOOgdxpHkWTe9L5xaWXx8NPZm7DcRrQeT8WUd6tYspMlAiURRWSUDRu6UgJC66/hN+P3EOFkBehsJv3Xidpt4eV3aZaUA280XKTkQdmkJtf5NAxUjt/ly9evqOW9wRxe8pDjmxNsjbKRhZg7QODBIrzIl0g8aeUbicr4jenIzV3XimVR7ao1PG8nOXC1+CpEpkcBXSSEMBMNwBPWQA9m4H4vUQnUX7dNOJ31j5MWuVz3Z4PK5XItZ29Ka/gtRAC+icdgs1NjTHF4GKB2Y6GLqmjzEhI4XZXw4NCpnK2F7RmA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uTC5rKkkP24K9S+TjQREaokE0Lm1WOZkJTluCu6158g=;
- b=hGvfYMaDKpilT0XxWY3FnqZzysHVfNQnVWgYpqBZ6Z0pUAZJKiDstuucdvjVFeHDgvGHmv0oMMRUivfHlLDaU7PIoHixmq33mIoVclAY+fSKdmzlXcn/gTYnd+S824/5Jp2dkgfa1ZokNwMX3YZMwXSOCi8nwmyM+gRjajwPci6fQ+7q9OOJ+hwBtXkNUKeSovcmqAut/qo3kswT5eoW7dzYMQQYdOXBZU0wVJY2uqnkQXVnlDyIhYmec9+hzDktnjpgq2cASZx4oYYcIc47KRymocZEFephyraTb7G/Enw6OyEUr5pkAiSA7oQyxcWhno5BlT84GjbCsyg0J902QA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uTC5rKkkP24K9S+TjQREaokE0Lm1WOZkJTluCu6158g=;
- b=rjlfp4wQ5pChljfJUpY0IOzIIwUqlD3uL4TistQoyt9ARmO6pXJZ1/0IKfuaCwRIljN2yCmBaQGbMFuBG+BBxPXAZmnTiFlYjoAF9mcOpGsNvpb0GBU+i/MRSsaMRbn7NBAZl+El/PuRAI7WxBlH39mM911ldCkILzD7IvMX0UA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wolfvision.net;
-Received: from VE1PR08MB4974.eurprd08.prod.outlook.com (2603:10a6:803:111::15)
- by DB3PR08MB9036.eurprd08.prod.outlook.com (2603:10a6:10:435::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.39; Wed, 21 Feb
- 2024 21:33:58 +0000
-Received: from VE1PR08MB4974.eurprd08.prod.outlook.com
- ([fe80::9527:ec9f:ec4b:ec99]) by VE1PR08MB4974.eurprd08.prod.outlook.com
- ([fe80::9527:ec9f:ec4b:ec99%6]) with mapi id 15.20.7292.033; Wed, 21 Feb 2024
- 21:33:56 +0000
-Message-ID: <6a4f1862-ccb1-4d6d-bab2-f22090a1a08b@wolfvision.net>
-Date: Wed, 21 Feb 2024 22:33:53 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 6/8] usb: misc: onboard_dev: use device supply names
-Content-Language: en-US
-To: Matthias Kaehlcke <mka@chromium.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Helen Koike <helen.koike@collabora.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Russell King <linux@armlinux.org.uk>, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org
-References: <20240220-onboard_xvf3500-v4-0-dc1617cc5dd4@wolfvision.net>
- <20240220-onboard_xvf3500-v4-6-dc1617cc5dd4@wolfvision.net>
- <ZdZcLOlSc3FScjLK@google.com>
- <503d9ea9-9812-498b-a5ee-2579ba8a7ecf@wolfvision.net>
- <ZdZokatitviYZ7rg@google.com>
-From: Javier Carrasco <javier.carrasco@wolfvision.net>
-In-Reply-To: <ZdZokatitviYZ7rg@google.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR4P281CA0197.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:e5::7) To VE1PR08MB4974.eurprd08.prod.outlook.com
- (2603:10a6:803:111::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7C5F25619;
+	Wed, 21 Feb 2024 21:38:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708551480; cv=none; b=hx8qS3rhGsg4T3XD6BoMLp1elz2s7ZlC1urW+uLUTLjgAtZAaML2Fj/X/92jr2ZUsDBd2djEh/2xAiAhUn+sDXDeZELF0CgaivcDB45cfZAicubrJqu8iSNOEN2ExcaHDT7cpKcvthF5b9hxuLbOGLpmG3WumwRNaoad7Wr0B+4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708551480; c=relaxed/simple;
+	bh=9oOl86N850lxplmi/fO/ptHo5glf8VI/jrIlpQnN4nQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=altsWRO64cvSk5owsplFmr1vQKWBwYEKtXad2qswvYXdetsfVgvnpfPAjrOrsWHPwhxkfM14dvkfcEk5CdE4erLNDRVxAg4NGIf45QVMjevSgcMW1VWGKVDArz4qpSNnDNrALHNWdD9SfU0u+t4/eqJeuDED1kK8N7e2Ux8yy4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gUwpgeHS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B38A2C433C7;
+	Wed, 21 Feb 2024 21:37:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708551480;
+	bh=9oOl86N850lxplmi/fO/ptHo5glf8VI/jrIlpQnN4nQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gUwpgeHSO142RKuGwIXhScBu/2cWKaelACWeOtQaATMpwLNtmAhe7poC6xPinYXbi
+	 Pw0h3MgztfEi/qIXYF4mTyADgknquKPVgPLWiDPGfUKSPJSkGugrBQpwooGSCI5ykE
+	 PTJ1B7I9pd3+cNrqFs6TUychg9izY9QUcKU0XKL5Fcgp5faOxC9TwvqMJARlVuctr1
+	 zXwUV3b4PUd9uAW4vxP1qrfXqMeSARav+HY9fub4BB6q1p+eiMb7mPyNguEK7ULMTt
+	 CLAXyxk0TWXK+F62AuVAzwbnUpt8avb8GaWIV0Id0n7h+mCLi7n0+tMy37jeISGSIT
+	 gbmzKWRLlukmg==
+Date: Wed, 21 Feb 2024 21:37:54 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	denis.ciocca@st.com, linus.walleij@linaro.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH] dt-bindings: iio: st-sensors: Add IIS2MDC magnetometer
+Message-ID: <20240221-lubricant-machine-79054f117eb0@spud>
+References: <20240221175810.3581399-1-m.felsch@pengutronix.de>
+ <20240221-undecided-union-4078db711693@spud>
+ <20240221191644.5r3ylr5w3cnfnrzj@pengutronix.de>
+ <20240221-imitate-molar-81d93285ac77@spud>
+ <20240221194518.3sm4o5i274ldpvzf@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VE1PR08MB4974:EE_|DB3PR08MB9036:EE_
-X-MS-Office365-Filtering-Correlation-Id: f019f5e6-ad4a-4105-5e94-08dc3324cf04
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	9LkB5i3Qgw8zMzOKvrTSAJ59QFW1h4XjBxqal0O11IfreeO+TvQ9lf0WXzkGhGP7QInnxy/nxwlvoSWmRDJULGZeZgOUTA/GEvWTjCeBOK33s5VFLUjjkyF/h0VK408g3JkN/qsi8HDEBLnl0xx9MHuivhuqxSVSTfPaLb2BL/P553yeVbo6gPHLkeAri4Os7WlROPgOHj44bw8BBlvXP2tH6k2oaEdTXsiGWdnKfTF4L5l6485rDO3k8WLOCT9nT7LcX0jDKqMC5LUOyLV4vcLpMVNbTqLJ2x7T7OmJ1WzBnID7N5gDm7Mt0kIdCMVaUaQ/yovDjtRBGyOdlZf1xgHkNIkKTaGTriLdNu6JDmkwE4J5o+DowhS1m8kqRIVJQfGm38pdOfkxkGFJZ4yHMw0NQTXMShRuIt+tSxKiDdiZd6hgbzakEVNAzAVU+44SCLCB/EAzDPUQqDWBtgFLmG+7XXv4t0SrabEhiWbnLy7VK8A91XE1g0XFoFkuEAlooKrRwtbUXaXkXH3OiFmYh9JE+RsTvdOOjnDf8994CFM=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR08MB4974.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?SDRyVGs3N29zQ0xtV1lJbmRzU2VEMUZwVEk0WlR1a3BzNWtiSzYyWjVqM0FN?=
- =?utf-8?B?NGVHYVNjV05DN2YyWXVETTRxTTQyc3pZVy9Ld05aZmhib2s3TVI5QlZaWDNU?=
- =?utf-8?B?aWY2WVoyQ2RrNlF0c09Vd01pVHlxRGhrbFJ2VDdPSjZzOFc5c3JoSXo1bk5i?=
- =?utf-8?B?RjVQbmVpSW9kZlQraTNSR01pUjlEZmRXaVVGTUc3NTVqMUYrenFFSjhBUzkv?=
- =?utf-8?B?UURMcGZGWXhMemZLcDRDa2tqMTZWSElDMWNHa2NSdEpRNEJ2dUc4czh6ci9M?=
- =?utf-8?B?U0E2M252RnE4b2xQSUsyQlhsOWFoVGtYMjNScXVhNzk1TGxFdmgvd25EdGlV?=
- =?utf-8?B?aU9yTW41MCt3UmxRUWJVTmFOV3JMbXUyYXhmQjlyMzByOU1zQUhxclVuakU3?=
- =?utf-8?B?YzNZdmtkK0ZYVWM5V04vMmFHU0lQcG5RbGZsWGc1NENsUEpXTVFQaW1DNmh1?=
- =?utf-8?B?Y2dOUHJuOUJBTlQwZFJZN3FiRlRiZDVmRExNNVMwdG81OXhMSmIyUFJGSUYr?=
- =?utf-8?B?N1A2M3cxckdSZ2c4THl5ZzdDNzBpRTBXTUk2cG9rT01YSFgwdVpWclorL05j?=
- =?utf-8?B?NURjVEsrZ1E3NzFtV2Uzczk3MkJLckpJZFl0VFZaWUg5Smw3a1FpMWg0VEZY?=
- =?utf-8?B?SGVpcGNNMjduQUFTTXZ6MVVxMEpkRWJzaEFwYndVV1k4eE5WN1hHWWdXYUp6?=
- =?utf-8?B?MW5GQUUxY1A1NUpCMGxVSVFWSlJiTFhSazU0WGVYWEUrSGdQSzdBdjhsNHVU?=
- =?utf-8?B?MDRVNWJ3QkFEdXpHNFdyUk1qMkZwS01yU3podEFWMHJyVEZsRjBvbGxMVnlT?=
- =?utf-8?B?ZnViQnp4b1dSakdocnJQR25KVDRiQ3h1cUoydWRLZWl6YUFNT3EzL3l6OEZN?=
- =?utf-8?B?akVDZ1U5RG5lNklWdEIzWFU4bmVTVXV6SmowSms0eElRcENlM0F3TnlIbnYv?=
- =?utf-8?B?YU1sM0FFZVRGOUV4MWl2WGk4MnpBY0QwMkJUMyszU0RSeG1BL1hOdThvQkw0?=
- =?utf-8?B?RnhmSjdoR3lJaHhhUW8yN2NNN0xGUkVBT2tnREZaVktHSWRaUVhGeFBUNTZR?=
- =?utf-8?B?ZFdITHFPMDRaRmZvdThURkcyUjkwaGFQdE9qSmlGK0NJRU8xZkc0OGJ6N2J1?=
- =?utf-8?B?dnpXYXNudHRic0s2YXExVkRVNzRSdHljMkpDanNGNTdzZ2tGYzlKejNxckNS?=
- =?utf-8?B?U0lNdW5RS1IzT0l1Mk0zZGR2Y2J0bFBSMVNOTFpjRG5pdTR5N3hTWTl5b3hN?=
- =?utf-8?B?RmdBRjFvb0hVVGYrUTVIMDk1SExxS0NNL1loT0UxMWh1V21pWjNZK2pNcGtR?=
- =?utf-8?B?QlZLRmFaUVhKS09mTmlXcG5FS2JkS2ZFcGdPamw1NXZ1eHcxd0RRZEQwLytx?=
- =?utf-8?B?bitNelZJRnJqWmRMM0dYTTNEVENUeEhoRGZpMG0wRmxsaENEc1VWL1F6dmJZ?=
- =?utf-8?B?bVZ4VWF1RnpJU2p0ZkV3ZVRzbWFqNkJWWEk2SEFQSnVRc1pQK1Z0V2t5dTVT?=
- =?utf-8?B?bzFMSkdtcHkyUHpFQmF0cFh5QXV1SUZqNDk3SnZTNFlCM3B6cmY3OVZacU1q?=
- =?utf-8?B?STdIQko2d3E1Zm5CV1RIUkJockw2SjRSUGRBNWpQbVBLOUtUUFRzM1pjL3gv?=
- =?utf-8?B?T2dpNFlOUXNWTCswWm9vM2ltbmRFbWFhWVVadFJyNnRNZDVpS29iM1FUUTJM?=
- =?utf-8?B?UUExVDIxODJJd3hLdmxtWTlLbmZxNTcyb1JyS1pPSlhCWDdvZ3J6SVk2bTRi?=
- =?utf-8?B?bG1NRTJLdC9VREczNm9KcER1akFhKzNLekNkd2w5TFlUN04yV21YTVRON0xx?=
- =?utf-8?B?U3VmNDdvZkQzVWtRQXBHVEJkdEZYOU1aMVNPdjdVd3ZqNk51VCs5VHNHby9o?=
- =?utf-8?B?azQ1cHpNZFd4L1RhbnJYM3RVTVhwQzJSZ3NqUTBaVkRvTG1UKzlKbHZrRkQ1?=
- =?utf-8?B?Z1QyNjFjbjI3c0J5OGh5UUpOSDdIQmJmY1JzTzVOZ2hkc1ByOTgybDVVNWJM?=
- =?utf-8?B?cHV6TUJoY3BiWXRjWkdGbWp1OTZpUEh2TVVWSDBmbWczelV0N1FRK2kweDlx?=
- =?utf-8?B?S001SWdMbVNqajVTQ2xocnZDVHpYY0QwWFpTeUhzV3FuQ0tRNG53SElqb01J?=
- =?utf-8?B?WTM3QXRvZE5KeXVTcjJPT0Uyb3RTR0wrd2wycTlQZUpYL3J5UDNHT1hPOVhS?=
- =?utf-8?B?ZE4wRjY4MitGT28wZm9wV0p2VmtHblBZN0xjNDdkUFlOcUhwZDU3WDhJTUhq?=
- =?utf-8?Q?ZtSj5WG/AZc1uQP++5NUB8ger375RbSAZyycLaPKuc=3D?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: f019f5e6-ad4a-4105-5e94-08dc3324cf04
-X-MS-Exchange-CrossTenant-AuthSource: VE1PR08MB4974.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2024 21:33:56.6295
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lQD7ftecaZlNKUyOk/EOo+dlMZd8q2ZBaSTa4BGZqIzSdvcQFI6SBMOO13FEyDs3RTU9brgpiZ/OFlvJhEp0bHNap+dRSo+L4svtXf6X/mM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR08MB9036
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="aCdhMTuN5ae1nNlN"
+Content-Disposition: inline
+In-Reply-To: <20240221194518.3sm4o5i274ldpvzf@pengutronix.de>
 
-On 21.02.24 22:18, Matthias Kaehlcke wrote:
->>>> +/*
->>>> + * Fallback supply names for backwards compatibility. If the device requires
->>>> + * more than the currently supported supplies, add a new one here, and if
->>>> + * possible, the real name supplies to the device-specific data.
->>>> + */
->>>> +static const char * const generic_supply_names[] = {
->>>> +	"vdd",
->>>> +	"vdd2",
->>>> +};
->>>> +
->>>> +#define MAX_SUPPLIES ARRAY_SIZE(generic_supply_names)
->>>
->>> This will have to change when support for a device with more than 2 non-generic
->>> supply names gets added. Please use a literal value for MAX_SUPPLIES instead of
->>> ARRAY_SIZE. If the literal is 2 it would still need to change for future devices
->>> with more supplies, but that change would be more straighforward.
->>>
->>
->> I am not completely sure about this. Someone could increase MAX_SUPPLIES
->> without adding a generic name.
-> 
-> That's perfectly fine and intended. MAX_SUPPLIES is a max, any list
-> shorther than that is valid. Any longer list will result in probe()
-> being aborted with a clear error message.
-> 
->> Actually two modifications will be necessary for every addition (name
->> and MAX_SUPPLIES). If ARRAY_SIZE is used, only new names are required,
->> and MAX_SUPPLIES is automatically increased.
-> 
-> As per above it's not necessary to add a new name when MAX_SUPPLIES is
-> increased to support more non-generic names. It would only be necessary
-> if more generic names were added, my understanding is that this
-> should not happen because any newly supported onboard devices are
-> supposed to use device specific supply names. I don't like to idea of
-> adding unused pseudo supply names to the list, just for the sake of
-> using ARRAY_SIZE.
-> 
->> I understand that the whole point of this is getting rid of the generic
->> names, but we still have to provide generic names for every extra
->> supply, at least for code consistency and to avoid size mismatches
->> between real an generic supply names.
-> 
-> Please let me know if you still think the extra names are needed.
 
-Not really, the only case I could come up is if an existing device that
-uses generic names might end up requiring a third supply, which would
-also be generic. But even such an unlikely event would be cover without
-ARRAY_SIZE.
+--aCdhMTuN5ae1nNlN
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Actually one could argue that every existing device could have "vdd" and
-"vdd2" as their supply names and remove checks and the generic array.
+On Wed, Feb 21, 2024 at 08:45:18PM +0100, Marco Felsch wrote:
+> Hi Conor,
+>=20
+> On 24-02-21, Conor Dooley wrote:
+> > On Wed, Feb 21, 2024 at 08:16:44PM +0100, Marco Felsch wrote:
+> > > On 24-02-21, Conor Dooley wrote:
+> > > > On Wed, Feb 21, 2024 at 06:58:10PM +0100, Marco Felsch wrote:
+> > > > > Add the iis2mdc magnetometer support which is equivalent to the l=
+is2mdl.
+> > > > >=20
+> > > > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > > > > ---
+> > > > >  Documentation/devicetree/bindings/iio/st,st-sensors.yaml | 1 +
+> > > > >  1 file changed, 1 insertion(+)
+> > > > >=20
+> > > > > diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.=
+yaml b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+> > > > > index fff7e3d83a02..ee593c8bbb65 100644
+> > > > > --- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+> > > > > @@ -64,6 +64,7 @@ properties:
+> > > > >            - st,lsm9ds0-gyro
+> > > > >        - description: STMicroelectronics Magnetometers
+> > > > >          enum:
+> > > > > +          - st,iis2mdc
+> > > >=20
+> > > > Without a fallback compatible to the equivilent device, how does a
+> > > > driver bind to this device?
+> > >=20
+> > > I skimed the datasheets and the driver already handles this binding
+> > > exactly the same as the st,lis2mdl, so my assumption is they do match.
+> > >=20
+> > > Why do I you think we need a fallback compatible here?
+> >=20
+> > I didn't look at the driver, there was no mention of the driver already
+> > having (undocumented) support for it. Since there was no driver change
+> > alongside this patch, I thought you'd need a fallback compatible to
+> > allow the driver to match against a compatible it recognises.
+>=20
+> I explicitly did not mention the driver in the commit message else I
+> would have got a response like "dt-bindings have no dependency to
+> drivers" ;)
 
-Best regards,
-Javier Carrasco
+Putting it under the --- line is always an option. Where there are
+existing users but the compatible is just undocumented, this it's
+helpful to do.
 
+> > Besides, having fallback compatibles is the norm when one device has the
+> > same programming model as another.
+>=20
+> Not for this binding according the driver.
+
+If they don't have the same programming model, then describing them as
+"equivalent" wouldn't be correct. That said, they seem to use the same
+sensor settings when alls said and done (see st_magn_sensors_settings),
+so I think they are actually compatible even if the driver has separate
+match data for each.
+
+Cheers,
+Conor.
+
+--aCdhMTuN5ae1nNlN
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdZtMgAKCRB4tDGHoIJi
+0mhFAP4uPT1KilNvuJy11JVEqyK46NkPn3I0vD5H1rPev9iSUQD/c2IAJZDAfJpg
+j6ckgYP2rWSx/t9GqIONxFD8RfJMegM=
+=nU5D
+-----END PGP SIGNATURE-----
+
+--aCdhMTuN5ae1nNlN--
 
