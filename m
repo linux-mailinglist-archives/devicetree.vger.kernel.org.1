@@ -1,113 +1,114 @@
-Return-Path: <devicetree+bounces-44410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09E9985E1EA
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 16:52:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12B9A85E236
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 16:59:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB25E28332D
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 15:52:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A67641F25776
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 15:59:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C8DF8062E;
-	Wed, 21 Feb 2024 15:52:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B767C81AA2;
+	Wed, 21 Feb 2024 15:57:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bgTGeDWD"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="gGYFQU56"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC9BE811E6;
-	Wed, 21 Feb 2024 15:52:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1C1D80C19;
+	Wed, 21 Feb 2024 15:57:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708530734; cv=none; b=ikY9/mopsssQLTIT9t5ie1SVn59k58xm53Iz+CNU7goeNoGHRBQNjPP3uRlWMygR1mYGfJ5beAULgcSPqtN5HNVBBNicu0P1FYBEeVNGzhOwqDpwsEge8kPjeiqVZHYxypUSuBkdxIvZ8iz2GOxhCbfP5rAQ2TCUMboRNixPgpY=
+	t=1708531032; cv=none; b=Gi7uuJ8B0+oPKmwyr0Zk1BEZ0CPXSuia2e68i9J59y1oKvxTw92MwujDVtpzGTNTCFUYqqsZ2GjxmEeovTKDeTkuG1b/Y3n1QxtU9h1y4ApQ2tFTaAwCkB/FDCau0twfVvoTZ6KY/9sZIBambxBbLi8DzmhRHHcJ/nFX5VLtj24=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708530734; c=relaxed/simple;
-	bh=Hc2gNosDH0WL3FwUMTKC6bjH3WyWXFkJYhu4PhBaqz8=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=p+StxV6fTx8WushFZZuoRzIYiTG8oZLihFjPX//jaegyXrQfBUklE5XYtbjVzNwM3CRqjlUQw4PwP7dKLxei6vy6JbXODuUdTKVNaRilH7FN+GZ/E/PaHCgFbFT92NbuYCU6lNRhlvHuq4Zl7joJWp7cY/ckjN/2og6N3WY5NVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bgTGeDWD; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-6e4741b23d7so2144426b3a.0;
-        Wed, 21 Feb 2024 07:52:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708530721; x=1709135521; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=2xk9Gvlf2w28BmSjU5WKADzraWBiGin15NR7z07i4Zs=;
-        b=bgTGeDWD1pofMm6++dAdVixI7ThjRiEbNkeDkeQ6uT3oH30lcuwzulOlLsvKxUJ7+F
-         Wt9P9Ft9k1iXwYy5zibqlcTy/MiuwAtKxC3mrvTCImWgBHD/g7+kEBIY0E5EBinp8FOY
-         QH2fVYXYv+Hy48kH/NzdZeDFIfCwLxQ45SCvVepIoq2R3/GHdbLFWkxZYPSWDGy/jiJn
-         9DaURZPbTybezWIo9RIUpANPxfCwxsq1hZLE2NS9wIGupEcFnS2V2F0oEQ6Vyo/HG9un
-         Mj6rCoyDPUmP9VTuj2eBWw3rbJCYbUFOyMt70RrW1jxJshfI3/CLzvSV0qPlq1XRJUtC
-         Eotg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708530721; x=1709135521;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2xk9Gvlf2w28BmSjU5WKADzraWBiGin15NR7z07i4Zs=;
-        b=EYGCIpEv0j9izfJPOYwkWxqRQ6B+Agy50XfOE3bDmLU7Wkv+VQysTIPJ6ehz17Fc9r
-         XSTw7PAMUrc/rfr4iuUMxYyrO9ywLZvCjUPBsBCXJ1T21KgGwrrSVEp+Qztw6/b8+1IA
-         nOE2Zf6dOjmIvLjzXiHhqWh9/zfS+LOiDDzZe/SjM0TW6GrpF6RyXfDycnhrAeUjQprx
-         KW0AxVDgQvJrCq70UDorqopoTdTDBRdn8Xd55O9ONFnCM7LYZrvF5yH5KN591vYL7/Dz
-         leGVZLCnyEZPUEdE778VqWJeftffQb0dVjTPYe7CjRYa83Jk4YwjwQYK/xFKlnqzZ80A
-         C1Og==
-X-Forwarded-Encrypted: i=1; AJvYcCV3hUZ+aoRznyybjAOGPhFX0jtHgn0Fw/Kh9tZyQ/w0poSZDIMRb3JciEGj7sLzTMVwT1DC5Koz/V1I2qC5qTCL5pYCSw9KGF99Y0bwrZyz1DElX8Gw/Ht+5jO/2pkfrmQK7KTLxt3t
-X-Gm-Message-State: AOJu0Yw4FLFbiQeuvN55vDl7kWSdfSXXBHo1psSA9Ibqq7rcoX1lCSoK
-	HyDmbCszyPiSoCgcxDF4jRTkEI1outvraI20qVQCyIIr37rWDLl8
-X-Google-Smtp-Source: AGHT+IESlZPmZB6/4B+dz/kWbgIFk+P/yIAK0XMGtrEWa37UGlzShSisN/YO2nhOBgZoH7hUyCgSKg==
-X-Received: by 2002:a05:6a20:e68c:b0:19c:8ed6:8bb5 with SMTP id mz12-20020a056a20e68c00b0019c8ed68bb5mr17627595pzb.39.1708530721194;
-        Wed, 21 Feb 2024 07:52:01 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id lp8-20020a056a003d4800b006e4c4c3d4cfsm90032pfb.207.2024.02.21.07.52.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Feb 2024 07:52:00 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-From: Guenter Roeck <linux@roeck-us.net>
-To: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Zev Weiss <zev@bewilderbeest.net>,
-	Guenter Roeck <linux@roeck-us.net>
-Subject: [PATCH] dt-bindings: hwmon: nuvoton,nct6775: Add compatible value for NCT6799
-Date: Wed, 21 Feb 2024 07:51:58 -0800
-Message-Id: <20240221155158.2234898-1-linux@roeck-us.net>
-X-Mailer: git-send-email 2.39.2
+	s=arc-20240116; t=1708531032; c=relaxed/simple;
+	bh=oFTqTVOhHyDJ5iYE8i8hwXVq+ixGFDMjQjac4S4aVmQ=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:From:Subject:Cc:
+	 References:In-Reply-To; b=t0swwV0q1qSEiXdZf7fH73uUZqlNZK91hi5y551hYEyuPLLMjQQGUkZUilABcXLCGJTDt0GoGSwpRM6HdOJBI//czC/A0XgDgJSFRQOeE4OP1CSQamg4qgVDifoYsYS+dH3glkf4b4lQXC84e0aYfFAFI3StEWUTOD0jNz/3cJk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=gGYFQU56; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E2B85C000D;
+	Wed, 21 Feb 2024 15:57:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1708531027;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=+ZfXtDRePUcMFundzZXNFuj+fqBl14FactsX+t+og0A=;
+	b=gGYFQU56WVJfwGdXAyVvjtXT0qNdEkBQSjeig/nT1NCNXHpjmwTTlMZm/91p2oVbqfvlCy
+	Ksl62koMCFbE9sOvKBQCLHCLBT7RSAM1S83SYeHq8nGNqGRs7RpfbgmJ+S5wE7yBFulkRS
+	ZhTBCPDR+JvIl/fB2WEG0xQzNv1ckP4phguN5HcYYFG3WE3ZI+tZZBcy6CvhXZj0aENgwp
+	JnNn09CQlZgOxgPavln5KGAFVvADqKYcmDDQUG+Ijstk4bZVJiwOViE4s++YVGAlNI5lQN
+	tHZmhzqdAZqrn00ULmx/netaZlbaFvaLLFLJfdoysx7j9Kmd/LryfAKFy+ME+g==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 21 Feb 2024 16:57:04 +0100
+Message-Id: <CZAVP96SON5X.2KDT24P963WZ9@bootlin.com>
+To: "Bartosz Golaszewski" <brgl@bgdev.pl>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH 13/23] gpio: nomadik: fix offset bug in nmk_pmx_set()
+Cc: "Linus Walleij" <linus.walleij@linaro.org>, "Rob Herring"
+ <robh+dt@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Philipp Zabel" <p.zabel@pengutronix.de>, "Thomas Bogendoerfer"
+ <tsbogend@alpha.franken.de>, <linux-gpio@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-mips@vger.kernel.org>,
+ "Gregory CLEMENT" <gregory.clement@bootlin.com>, "Vladimir Kondratiev"
+ <vladimir.kondratiev@mobileye.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>
+X-Mailer: aerc 0.15.2
+References: <20240214-mbly-gpio-v1-0-f88c0ccf372b@bootlin.com>
+ <20240214-mbly-gpio-v1-13-f88c0ccf372b@bootlin.com>
+ <CAMRc=MdwAQUgc=LP45r-j0UCtN1gzPg9_y3hrbQhCyH91D=W-g@mail.gmail.com>
+In-Reply-To: <CAMRc=MdwAQUgc=LP45r-j0UCtN1gzPg9_y3hrbQhCyH91D=W-g@mail.gmail.com>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-While NCT6799 is mostly compatible to NCT6798, it needs a separate
-compatible entry because it is not completely compatible and does
-require chip specific code in the driver.
+Hello,
 
-Signed-off-by: Guenter Roeck <linux@roeck-us.net>
----
- Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml | 1 +
- 1 file changed, 1 insertion(+)
+On Mon Feb 19, 2024 at 4:54 PM CET, Bartosz Golaszewski wrote:
+> On Wed, Feb 14, 2024 at 5:24=E2=80=AFPM Th=C3=A9o Lebrun <theo.lebrun@boo=
+tlin.com> wrote:
+> >
+> > Previously, the statement looked like:
+> >
+> >     slpm[x] &=3D ~BIT(g->pins[i]);
+> >
+> > Where:
+> >  - slpm is a unsigned int pointer;
+> >  - g->pins[i] is a pin number which can grow to more than 32.
+> >
+> > The expected shift amount is a pin bank offset.
+> >
+> > This bug does not occur on every group or pin: the altsetting must be
+> > NMK_GPIO_ALT_C and the pin must be 32 or above. It is possible that it
+> > occurred. For example, in pinctrl-nomadik-db8500.c, pin group i2c3_c_2
+> > has the right altsetting and has pins 229 and 230.
+> >
+> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+>
+> Maybe add a Fixes: tag and put it at the beginning of the series so
+> that it can go upstream earlier as a fix?
 
-diff --git a/Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml b/Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml
-index 358b262431fc..e3db642878d4 100644
---- a/Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml
-@@ -25,6 +25,7 @@ properties:
-       - nuvoton,nct6796
-       - nuvoton,nct6797
-       - nuvoton,nct6798
-+      - nuvoton,nct6799
- 
-   reg:
-     maxItems: 1
--- 
-2.39.2
+I'll see how it works out because the fix depends on helpers added in
+this series. I'll be reworking that.
 
+Regards,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
