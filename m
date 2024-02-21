@@ -1,116 +1,102 @@
-Return-Path: <devicetree+bounces-44395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44396-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E455D85E05B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 15:55:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9926B85E070
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 16:03:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0EAE11C21DC6
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 14:55:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8CA221C23D8E
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 15:03:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59B457FBA4;
-	Wed, 21 Feb 2024 14:55:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E90A8003D;
+	Wed, 21 Feb 2024 15:03:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="LhqVrL7d"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pxcv9QCS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8820D7FBA9;
-	Wed, 21 Feb 2024 14:55:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16D427FBD2;
+	Wed, 21 Feb 2024 15:03:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708527334; cv=none; b=g5cTcaBq9mWpdGmL5yVJxbqn7hzwOkVjt7vTri64OJhHN743IUSl3OAQElBaswGuIPaQgq0Vk5CBK1dG8Dz0XJK3thZ6TauiH8kdjMXUYke1jIQzD/U6rihp6yxIpQNwB3bQfOoi3u8daDwMHojxO1YRktM3nqiD56z7EiwxAzc=
+	t=1708527786; cv=none; b=SBm3aWuyt2+Y+HXMFNEYFbzHj3BMXZ5zHN5A6VZMgAJNi03n1Qc3YYsnPQ3/3i5PKa4wM5jkF0Xp5PTNWgUjLGieTMKCe8Zv7MpXnAHzHQFEfWj10PY9MEYlM8eCtbq87YS0hUfJwEqMhli7tOE138/vZH+E0CHWKYcAsIsYnJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708527334; c=relaxed/simple;
-	bh=rT9e0xR3/zf9fYz4q5UoZyzl1p9/q6xVVkH3VlQhn6c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=KmmMRNDX1GRbvjQQNyQ0C3qzbiaa8aUQm/QlmHOBWomDmJX6Bn0RXXR6OsqfFwHUKYsRr1fzjn3igKJWdLMMFURhmeCO3H+Ek2gcWzKPhLCSsBaU0CF71gm4zkpEd3WhfFpsIw5FDu1hzpC9YaEN0PjXpyk9aC1Bz3SRzcoi8IQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=LhqVrL7d; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41LEtFba066348;
-	Wed, 21 Feb 2024 08:55:15 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1708527315;
-	bh=4EpSx7TG90PV+Ig74g5C3cPghx9YNnQ6JyQb5mCzoTM=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=LhqVrL7dmwFpOBmD39pWTeWv0zunVEW6gWGQ71l951Xc1XOhSP3OjSwNNmD5UsH+q
-	 UsN5W12gJrDvvp7Sxcr0NoNL8brx3vaupCrqMKTiait6UnaBvW2YKFl4b/uW9QbWEc
-	 nWNzPDuZyGVrHGwci24TbARJy/Zrc7IUBdSSSwX0=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41LEtFoe057387
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 21 Feb 2024 08:55:15 -0600
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 21
- Feb 2024 08:55:14 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 21 Feb 2024 08:55:14 -0600
-Received: from [10.249.141.75] ([10.249.141.75])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41LEtAus108137;
-	Wed, 21 Feb 2024 08:55:11 -0600
-Message-ID: <0801de56-f3f0-4564-9677-345eca5fef6e@ti.com>
-Date: Wed, 21 Feb 2024 20:25:09 +0530
+	s=arc-20240116; t=1708527786; c=relaxed/simple;
+	bh=1CtEOyx2YcI+N1p30TgJ+jc78ftKgIOaBRAAhCXGC5k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Slg4yrWwckUtoFYPb8r5T3fpEmZ2zA26m1zzvSHA7k0cwwKGPvmKhAn6YW+I4uaiGk91hvuNODwDDHW97zKah9XnCqYnBZup05ZVA0mpRfBbvoVPyNUtKXDhNUVq5RsxGZyd7B0q7cgVbJkEJKAhHiKLlwnP6XQ+TazGRvYslds=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pxcv9QCS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A41BC433C7;
+	Wed, 21 Feb 2024 15:03:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708527785;
+	bh=1CtEOyx2YcI+N1p30TgJ+jc78ftKgIOaBRAAhCXGC5k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pxcv9QCSmf0h6efzbD/gnBpg7HJE4h7qF6Ay+rxFcgymR8Id49/wB+NnAtWSYm8U6
+	 5RcrNlJhPxjyw7m7IogkoGect8UklJ37b4vtBr8mCxhHdAdaN9g4KRGRPwEo4adOOQ
+	 1ksaWTQkNkMlvo/CGshXs86mgZO/RPltpXC9D8hFgV3iebTxzSkGIt/t6T2KRe4szb
+	 1dK7fIXjOKBhz3P05lp+ycpjse4fe6tRcFobaOkWpT78UZz674oZcnDQp3rVcLV8qp
+	 YVy0fzOkolTtRdNMShRbqovzuVrD6ZEafc48cUKYKKg2/kuRuAmjq+i1OFgeY3OORO
+	 W2qU13medhlfg==
+Date: Wed, 21 Feb 2024 08:03:03 -0700
+From: Rob Herring <robh@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: vendor-prefixes: Add missing prefixes used
+ in compatibles
+Message-ID: <20240221150303.GA2792906-robh@kernel.org>
+References: <20240216025839.902288-1-robh@kernel.org>
+ <20240216-percolate-wooing-b5e4f6814d15@wendy>
+ <20240220163845.GA3606739-robh@kernel.org>
+ <20240220-colonial-shame-e217e4399184@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 0/2] Add CAN and OSPI support for AM69-SK platform
-To: <sabiya.d@mistralsolutions.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <linus.walleij@linaro.org>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Dasnavis Sabiya <sabiya.d@ti.com>
-References: <20240220162527.663394-1-sabiya.d@ti.com>
-Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20240220162527.663394-1-sabiya.d@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240220-colonial-shame-e217e4399184@spud>
 
+On Tue, Feb 20, 2024 at 05:51:37PM +0000, Conor Dooley wrote:
+> On Tue, Feb 20, 2024 at 09:38:45AM -0700, Rob Herring wrote:
+> > On Fri, Feb 16, 2024 at 08:59:56AM +0000, Conor Dooley wrote:
+> > > On Thu, Feb 15, 2024 at 08:58:29PM -0600, Rob Herring wrote:
+> > > > +  "^calao,.*":
+> > > > +    description: CALAO Systems SAS
+> > > >    "^calaosystems,.*":
+> > > >      description: CALAO Systems SAS
+> > > 
+> > > > +  "^IBM,.*":
+> > > > +    description: International Business Machines (IBM)
+> > > >    "^ibm,.*":
+> > > >      description: International Business Machines (IBM)
+> > > 
+> > > These ones add duplicates with no indication of which one is to be used
+> > > going forward. Why not mark one as deprecated?
+> > 
+> > Because I couldn't decide which... It's a mixture with no clear pattern 
+> > of on what or when each one is used. Power is kind of special.
+> 
+>  That might be true for ibm, but is it true for calao systems?
+>  The website appears to now be something to do with Korean gambling, but
+>  the twitter remains and looks to have produced arm sbcs:
+>  https://twitter.com/calaosystems?lang=en
 
-On 2/20/2024 9:55 PM, sabiya.d@mistralsolutions.com wrote:
-> From: Dasnavis Sabiya <sabiya.d@ti.com>
->
-> Hi All,
->
-> This series adds support for the below interfaces on AM69-SK platform:
-> -  CAN support on both MCU and MAIN domains
-> -  OSPI NOR flash support
->
-> v3: Changelog:
-> 1) Updated OSPI partition table to increase the tiboot3 partition to 1MB.
-> 2) Rebase the sources to accommodate the latest merge.
->
-> v2: Changelog:
-> 1) Removed CAN interface aliasing.
-> 2) Updated bootph property on the leaf nodes.
->
-> Link to v1: https://lore.kernel.org/lkml/20240118153524.4135901-1-sabiya.d@ti.com/
-> Link to v2: https://lore.kernel.org/linux-arm-kernel/20240219111422.171315-1-sabiya.d@ti.com/
->
-> Dasnavis Sabiya (2):
->    arm64: dts: ti: k3-am69-sk: Enable CAN interfaces for AM69 SK board
->    arm64: dts: ti: k3-am69-sk: Add support for OSPI flash
+I used this:
 
+https://en.wikipedia.org/wiki/Calao_Systems
 
-For Series
+The company went bankrupt in 2016. ST based systems used one prefix and 
+Atmel based systems used the other. Which do I pick to deprecate? I'm 
+not expecting any new boards either. 
 
-Reviewed-by: Udit Kumar <u-kumar1@ti.com>
-
-
->   arch/arm64/boot/dts/ti/k3-am69-sk.dts | 163 ++++++++++++++++++++++++++
->   1 file changed, 163 insertions(+)
->
+Rob
 
