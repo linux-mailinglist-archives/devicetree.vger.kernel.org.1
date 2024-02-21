@@ -1,155 +1,221 @@
-Return-Path: <devicetree+bounces-44171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44172-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83D0885CF8E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 06:26:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 202E085CFCB
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 06:37:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EEC73B22B33
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 05:26:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8AE7BB22C68
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 05:37:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79C1639FC0;
-	Wed, 21 Feb 2024 05:26:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97BA939FE0;
+	Wed, 21 Feb 2024 05:36:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WMz2/Gzf"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="csqpwUFz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98308A35
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 05:26:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD85E39ADD;
+	Wed, 21 Feb 2024 05:36:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708493178; cv=none; b=Sk71J8ypl6yNreUpVkkFj2vp2d3wEgpHofrqsxiljd6XRZfnph6lEb8JYuI8c6zwuT5Fzt8ykEmNO+T/ELoKxrzQO13iDpVYjWoa2mo1raYtuLGY26YQA+7jA61bHlSMoUPqsBR5lmZuke8ylf6kxULVKcxE1SXNvs0MGRPPUqE=
+	t=1708493810; cv=none; b=G3EfME8hhV2k5TRmA4vV6Az8YJS3twJkuXQNut6gXle43zaEmt2i9dvjWJxI762GFQq9xDqY/fgm1JwmzEPXguszxgJXMV8WupWRZOmLgpXO+877xGdBw6JhVH3jALjDpfHwYOlFurbmNuS2/TuNRJCCkMgM7AGv0vng6UryyWQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708493178; c=relaxed/simple;
-	bh=rJCs/lTuNqz4lwNq2Iu1h8tZDBoOnXv0chyWC70/1xM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FL1qdXzTpgJx9ZMB/6Y0WVJ95RRi3wAoqj9cC0tpaz+EeuI+yLQDxOezXtxspDehMCbJvK9gf+ac0NbH276f9V0NsUYJDTquRmDf7t+IclhsHfAyNNOsTQ87clrHn1raRll873zS5DF27wyIHEIT0UMN8xNS2e0z6DIBzP2qdYQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WMz2/Gzf; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-1d746856d85so40256315ad.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 21:26:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708493176; x=1709097976; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=MTWJcnG98aeovE0bc5/gXqjs0hZE7lI82YidLyMzmGo=;
-        b=WMz2/Gzf8oUkHP6Q4O53Qjo4NpZUTNc4SnSY1pfeZ/XB21WTpUehriMIN1H6c1VzBY
-         STBufiGEFhTdlzMfgsTFjavCyxhWGmD6BgfThNpYK81cN9bm+b9lSsBknYsyThjKxCG2
-         z9Nd+jxDi2T03wqHPk2Yvv3Lo43L9ZhDGCRUs+XVYaA/Jsq/lrh0bA/WmsTdoyQHSael
-         ozplBZfRAAqWZxq41ZSA5PkSySo7uX4It1a3UZ6SFEBcNKs6J4Tl+lCssJjfnK+/TPAm
-         83nXVXki/xVJnXVX6VvvpPfzBCKXD+z9tI1NNtJPudSmiRPd/hOSHDuFPamC73YCefEh
-         yQkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708493176; x=1709097976;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MTWJcnG98aeovE0bc5/gXqjs0hZE7lI82YidLyMzmGo=;
-        b=i9ieNFJ0Lukh9iq+CKQnRdkLqTXwA6cjvhVcFVDTiBLu8JA9RbcHzS40H2aFBPaLmO
-         vQCeCImqeI973q21YIxIJzkNIoOOu8cPMvBvHywoAVyBCsjC/jH8acLbhF3bBQhgE40p
-         UJfPix9FyZfj3aM3Mm+daoPwQ72Us6QVMJ1n0nFKfhigrP6WpyFeyy/qrg7FSq5gUmXw
-         llnz1vWxyU0h0i01J51ZHQeKikkKfiR6Xujja0AmVVjb/K6bX1XOw1lqGrD4howvjJi8
-         kKR017i8lK9yzQrm3hUjctwbFAxY47W/YKUEqLsgcmPceFHJWyDkaFhNhUPyf5KX/7xJ
-         qXpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVXznQpoQBePfweje6iivzv7LCiMoO26kgQVH+7Ns0+3XoiO3FzzBDEsbW+gSpMYgAG4CO+mK5DeaYna097Mclr8VtFhjKLJwlT4A==
-X-Gm-Message-State: AOJu0YxQ86lz9dXm20VvG+xkOrfXrq10D231evaly3RgLedyLmiYNhBi
-	rdrbIUOc9M91e+y+iEZNBgOdR9rRLBG1ZJ/XOEeOnx059R1eeZ79pwh6MdCMSQ==
-X-Google-Smtp-Source: AGHT+IHuplcoWMw4r0gDZZn2ICKSFcQ8PLjle78E1d6SCAd4YVLTBAnWH4POCADFW4B7pRAQwvjENQ==
-X-Received: by 2002:a17:902:c3c4:b0:1db:cb13:10f1 with SMTP id j4-20020a170902c3c400b001dbcb1310f1mr9654097plj.19.1708493175961;
-        Tue, 20 Feb 2024 21:26:15 -0800 (PST)
-Received: from thinkpad ([117.207.28.224])
-        by smtp.gmail.com with ESMTPSA id p11-20020a170902bd0b00b001dc35e04b02sm95905pls.32.2024.02.20.21.26.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Feb 2024 21:26:15 -0800 (PST)
-Date: Wed, 21 Feb 2024 10:56:07 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Johan Hovold <johan@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 02/10] dt-bindings: PCI: qcom: Do not require
- 'msi-map-mask'
-Message-ID: <20240221052607.GB11693@thinkpad>
-References: <20240212165043.26961-1-johan+linaro@kernel.org>
- <20240212165043.26961-3-johan+linaro@kernel.org>
- <e396cf20-8598-4437-b635-09a4a737a772@linaro.org>
- <Zcy4Atjmb6-wofCL@hovoldconsulting.com>
- <59bd6e54-0d5d-4e1a-818a-475a96c223ff@linaro.org>
- <20240216165406.GD39963@thinkpad>
- <ZdRXpQnbDbojlMkV@hovoldconsulting.com>
+	s=arc-20240116; t=1708493810; c=relaxed/simple;
+	bh=h/VjfafKWnZdt701kQi9hEaeMSuYAmya+J9erv+EEuM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=IQ5U1Z3X/g7VApyNW81FVq+3M86IBWYaC1KUglVnbvUduzuAr9bh8w1+pjL50MXHsgI1w6JRsBX0MPUVUE2SSRcSplMkZbc8YkwJN0U2616I2c14YGXyd9Gvqv4iRuWhzCkgMDue1FzZzaJFAU2j/VCf5+anfHLPqUW5dRCaUTE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=csqpwUFz; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41L1jdSL030713;
+	Wed, 21 Feb 2024 05:36:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=S5n/WpV8JcN0mx2fE3uU/d+OZrGuwRrR1d3N//9CiFA=; b=cs
+	qpwUFzcl29oiOj+cr6STCjwPDDiknXqXp+BiwsKat9U3dEcTGj5KLCoLVseOafAy
+	1W1jatIWVkw+PUhTbQOimI693MkpC89cxcVvDZUWN3NUq4D0Zb9gkgO6Xer4m8EI
+	ALJuHSVKkF78jjz7xUrvWtDk7RWS9150zMExJmc3AfsSKDIxWNc3qpUFYKl3RiYm
+	RtnWvktckBz9gHcfsGNN0fEe9lGCTlrxeRSKJ5jlpbeO3WKa7rPKO0rBJB59uIpx
+	ax7IycEeJcNWjVCDKPkuqRjrAEwpoytBSQ+xePQTKMl31kXHH+oBzkDj595/zVQF
+	yXBXHBIjbJxMSF/xm4pQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wd21s924s-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 21 Feb 2024 05:36:23 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41L5aMKl003639
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 21 Feb 2024 05:36:22 GMT
+Received: from [10.218.16.59] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 20 Feb
+ 2024 21:36:11 -0800
+Message-ID: <0b9e807d-e0ca-411c-9a2b-3d804bdf168c@quicinc.com>
+Date: Wed, 21 Feb 2024 11:06:07 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZdRXpQnbDbojlMkV@hovoldconsulting.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/3] dt-bindings: iio: adc: Add support for QCOM PMIC5
+ Gen3 ADC
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <jic23@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <lee@kernel.org>,
+        <andriy.shevchenko@linux.intel.com>, <daniel.lezcano@linaro.org>,
+        <dmitry.baryshkov@linaro.org>
+CC: <lars@metafoo.de>, <luca@z3ntu.xyz>, <marijn.suijten@somainline.org>,
+        <agross@kernel.org>, <sboyd@kernel.org>, <rafael@kernel.org>,
+        <rui.zhang@intel.com>, <lukasz.luba@arm.com>,
+        <linus.walleij@linaro.org>, <quic_subbaram@quicinc.com>,
+        <quic_collinsd@quicinc.com>, <quic_amelende@quicinc.com>,
+        <quic_kamalw@quicinc.com>, <kernel@quicinc.com>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-arm-msm-owner@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <cros-qcom-dts-watchers@chromium.org>
+References: <20231231171237.3322376-1-quic_jprakash@quicinc.com>
+ <20231231171237.3322376-3-quic_jprakash@quicinc.com>
+ <3f812ffa-ec33-448e-b72a-ce698618a8c1@linaro.org>
+ <13f2b558-a50d-44d3-85de-38e230212732@quicinc.com>
+ <f52b2d5e-b2b4-48ae-a6a6-fc00c89662d2@linaro.org>
+Content-Language: en-US
+From: Jishnu Prakash <quic_jprakash@quicinc.com>
+In-Reply-To: <f52b2d5e-b2b4-48ae-a6a6-fc00c89662d2@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: fGcC1wH5IHx3LPFKis3LhLj_W6R4ZpCQ
+X-Proofpoint-GUID: fGcC1wH5IHx3LPFKis3LhLj_W6R4ZpCQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-20_06,2024-02-20_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 impostorscore=0
+ priorityscore=1501 adultscore=0 spamscore=0 lowpriorityscore=0 bulkscore=0
+ clxscore=1015 mlxscore=0 suspectscore=0 mlxlogscore=999 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2402120000
+ definitions=main-2402210039
 
-On Tue, Feb 20, 2024 at 08:41:25AM +0100, Johan Hovold wrote:
-> On Fri, Feb 16, 2024 at 10:24:06PM +0530, Manivannan Sadhasivam wrote:
-> > On Wed, Feb 14, 2024 at 02:38:57PM +0100, Krzysztof Kozlowski wrote:
-> > > On 14/02/2024 13:54, Johan Hovold wrote:
-> > > > On Wed, Feb 14, 2024 at 01:01:20PM +0100, Krzysztof Kozlowski wrote:
-> > > >> On 12/02/2024 17:50, Johan Hovold wrote:
-> > > >>> Whether the 'msi-map-mask' property is needed or not depends on how the
-> > > >>> MSI interrupts are mapped and it should therefore not be described as
-> > > >>> required.
-> > > >>
-> > > >> I could imagine that on all devices the interrupts are mapped in a way
-> > > >> you need to provide msi-map-mask. IOW, can there be a Qualcomm platform
-> > > >> without msi-map-mask?
-> > > > 
-> > > > I don't have access to the documentation so I'll leave that for you guys
-> > > > to determine. I do note that the downstream DT does not use it and that
-> > > > we have a new devicetree in linux-next which also does not have it:
-> > > > 
-> > > > 	https://lore.kernel.org/r/20240125-topic-sm8650-upstream-pcie-its-v1-1-cb506deeb43e@linaro.org
-> > > > 
-> > > > But at least the latter looks like an omission that should be fixed.
-> > > 
-> > > Hm, either that or the mask for sm8450 was not needed as well. Anyway,
-> > > thanks for explanation, appreciated!
-> > 
-> > msi-map-mask is definitely needed as it would allow all the devices under the
-> > same bus to reuse the MSI identifier. Currently, excluding this property will
-> > not cause any issue since there is a single device under each bus. But we cannot
-> > assume that is going to be the case on all boards.
+Hi Krzysztof,
+
+On 2/17/2024 7:43 PM, Krzysztof Kozlowski wrote:
+> On 16/02/2024 11:39, Jishnu Prakash wrote:
+>> Hi Krzysztof,
+>>
+>> On 1/4/2024 1:48 PM, Krzysztof Kozlowski wrote:
+>>> On 31/12/2023 18:12, Jishnu Prakash wrote:
+>>>> For the PMIC5-Gen3 type PMICs, ADC peripheral is present in HW for the
+>>>> following PMICs: PMK8550, PM8550, PM8550B and PM8550VX PMICs.
+>>>>
+>>>> It is similar to PMIC5-Gen2, with SW communication to ADCs on all PMICs
+>>>> going through PBS(Programmable Boot Sequence) firmware through a single
+>>>> register interface. This interface is implemented on an SDAM (Shared
+>>>> Direct Access Memory) peripheral on the master PMIC PMK8550 rather
+>>>> than a dedicated ADC peripheral.
+>>>>
+>>>> Add documentation for PMIC5 Gen3 ADC and macro definitions for ADC
+>>>> channels and virtual channels (combination of ADC channel number and
+>>>> PMIC SID number) per PMIC, to be used by clients of this device.
+>>>>
+>>>> Changes since v2:
+>>>> - Moved ADC5 Gen3 documentation into a separate new file.
+>>> Changelog goes under ---.
+>>>
+>>> Why did you do this? What is the rationale? Sorry, this patchset goes
+>>> nowhere.
+>>
+>>
+>> I'll elaborate this more in the next patchset. There are two main
+>> reasons for adding this documentation in a new file:
 > 
-> Are you saying that there is never a use case for an identity mapping?
-> Just on Qualcomm hardware or in general?
+> This was more than a month ago? You reply to my comment with 1.5 months
+> delay?
 > 
-> It looks like we have a fairly large number of mainline devicetrees that
-> do use an identity mapping here (i.e. do not specify 'msi-map-mask') and
-> the binding document also has an explicit example of this.
+> Sorry, I am not in the context and I am not going back to it. I have
+> many other emails where my questions are addressed faster than 1.5 months.
 > 
-> 	Documentation/devicetree/bindings/pci/pci-msi.txt
+> The patch is not even in my mailbox, long gone.
+> Why you are making it so difficult for reviewers?
+> 
+> You will get answers like I am not in context, sorry. Next time don't
+> respond after 1.5 months.
+> 
 
-I don't know how other platforms supposed to work without this property for more
-than one devices. Maybe they were not tested enough?
+You're right - I'll do my best to get back to review comments in a 
+reasonable time frame.
 
-But for sure, Qcom SoCs require either per device MSI identifier or
-msi-map-mask.
+> 
+>>
+>> 1.This device is not exactly like the existing QCOM VADC drivers as it
+>> now combines VADC functionality (reading ADC channel on client request)
+>> with ADC_TM functionality (thermal threshold monitoring).
+> 
+> Does no explain touching bindings. Your drivers don't matter for bindings.
+> 
+>>
+>> 2.Adding this device's bindings in the existing qcom,spmi-vadc.yaml file
+> 
+> No rationale was provided in commit msg.
+> 
+>> is not possible as it would require updating some of the existing
+>> top-level constraints. (for the older devices in that file, "reg" and
+>> "interrupts" can have at most one item, while this device can have more
+>> than one item under these properties.)
+> 
 
-- Mani
+> How is this a problem?
 
--- 
-மணிவண்ணன் சதாசிவம்
+In qcom,spmi-vadc.yaml, we have the following top-level constraints for 
+the "reg" and "interrupts" properties:
+
+   reg:
+     maxItems: 1
+
+   interrupts:
+     maxItems: 1
+
+For the ADC5 Gen3 device being added now, these constraints cannot be 
+followed always, as there may be more than one peripheral under one 
+device instance, each with a corresponding interrupt. For example, the 
+above properties could be like this for a ADC5 Gen3 device:
+
+     reg = <0x9000>, <0x9100>;
+     interrupts = <0x0 0x90 0x1 IRQ_TYPE_EDGE_RISING>,
+                  <0x0 0x91 0x1 IRQ_TYPE_EDGE_RISING>;
+
+
+I could not overwrite the top-level constraints for the new device 
+"qcom,spmi-adc5-gen3" alone in qcom,spmi-vadc.yaml, so I tried to remove 
+the constraints from the top level and add them back conditionally for 
+all the device types separately, but you told me not to remove them 
+(full message: 
+https://lore.kernel.org/linux-iio/832053f4-bd5d-4e58-81bb-1a8188e7f364@linaro.org/)
+
+Since these constraints cannot be modified for a specific new device or 
+removed, I think the only way to accommodate this new device is to add 
+it in its own new file.
+
+Is this a sufficient justification for adding this documentation in a 
+new file or do you have any other suggestions?
+
+Thanks,
+Jishnu
+
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
