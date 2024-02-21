@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-44195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3805185D164
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 08:30:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0341585D16F
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 08:33:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A09CB1F244D7
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 07:30:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 846141F24907
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 07:33:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 167403B2AD;
-	Wed, 21 Feb 2024 07:28:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B16753A8F0;
+	Wed, 21 Feb 2024 07:33:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TePViEV1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tp1iY+NL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 608933B2BB
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 07:28:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A31613A8E9
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 07:33:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708500532; cv=none; b=eRQC1tH6vut18IHzJropoTsCseh61fBlfXAPKLc+RJUY//SYFgRI+07AAJNVZlRupBqmpJownB37q7j+qKuNVterydmhLe9VHr/YNMmteE77d+WdtZ3k7M70Vplj67ztr+84jH5K55+KWWOJh3G9R6oXPGegTDc2fULq4PBs4UA=
+	t=1708500789; cv=none; b=BfdhFnh0VDjaH7RdVdpJOwzblGgORzjLL3PUuhOK9yI1DOsuFSlKWHNGTAQ2HVrjtLgum5iVDXBGD4Aqa0KGL9vhQiQihhFTu6veFDhpmbpPrbAoW3oXyKfkhJSVMm+OVUWbKUSKCwgXvZjBkoBR8B58ULnrr1APdsKxwJLLd5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708500532; c=relaxed/simple;
-	bh=CIfnd2Wu9etGQlNzbccf2GpOhvDT4XOgRq+S3kdZW6c=;
+	s=arc-20240116; t=1708500789; c=relaxed/simple;
+	bh=sR//o/tuJf857xJLOyU2EoRSgAjpFAylMFwVtpE+sCs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kpVUi8TrM/wbyZPVMHuOEgrP2L6CFxu0GYFAeQTwIPNMu7aEWuTcO85ABWcGtgSfqbqLH0w8x2YqfwPAjcDq7STIcgsdE1J/IwdrAd3J5R53xrJkxLKtYxLbOOpbiGtV/jdK9XicdtJhzP4tR9otdbtRqYVzHwu6DhrM05QK/78=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TePViEV1; arc=none smtp.client-ip=209.85.218.54
+	 In-Reply-To:Content-Type; b=uXdN+22qWBdTPn7iVyFcr/7kVRHVASxOzRWdP+6mb6iWY21rSxwYZKyVcESkPjvs5i7INNs0yR+XVmK9thWU6pzL7oQ0hUHUFFwcy9McA4zAdSRtRMj/xB8KBU36o4ysWvKiMPWdg2f2S4ekMH3r8b5/fMHe9p7uzDzMesPSEvo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tp1iY+NL; arc=none smtp.client-ip=209.85.218.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a3f3d0d2787so34453166b.3
-        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 23:28:50 -0800 (PST)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a3e87b2de41so299690266b.2
+        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 23:33:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708500529; x=1709105329; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708500786; x=1709105586; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xXQZ1+8jg6XuC1aWQCpnKy8t7rYipx4t4EdzSstyQPo=;
-        b=TePViEV1aAU4qOy3ohhYlYQYejWrkKxXIlRid/yenvfgtIvZKn/iI2KIv1Umv+dnaf
-         Q89Ww7ZB9L3MpxMXy6r/5mpXYVzL7hk96MNcDqlwx4Bsoqfgg+3kGdF9vmQu+xkm4nte
-         AkHBcYM2WdxEvYKL1c247zzyKE3xmZoA1RnNAF9pWx+Tvi6PBN+7aIK9YK0AdxXYIVV4
-         AhOS3Hqp7Mh6bGtAKGwMjK7PIkYSIcrsYikIKy/tiNMKLpGq4o6TPJvI7cJ6y4QXFYhp
-         sYxHB8DkRzX976hof++yT+7xCBh1zY4DtNVRZYt1oNeLVTAunezbCyuepQ8dEZ90D+vl
-         M+yg==
+        bh=ge+YsHI3pA9L1s6/L6Hl+8/Uj32oY85P6VFsTj+jp9s=;
+        b=tp1iY+NLQyKsEQAyWwba6C1Dtk7jcQKs8uz51ILWqw4522efrbPBdHFv04K1vHT/7Y
+         Gfibl0KuHbr+wMZazDAM5bnYFBJbizHmI6UOJg1G9zBOuysadhPcRYGel6HkOvjLbioP
+         CxUQm6bNZMnfIYRDAu+TQe7RIIjldMYcJmTaVkkoM9UuKN2IwKLmmCdd2eFJE8ib03Kd
+         O7lgJ03vN39uoPysqVyfbW4B94sjB0Vr5NtcsgWgvwCy2+3F2Fo8OvBnbzDoOiCstUw3
+         mkcMfqtmLElK5BWgzbW0bFnZybmMaIJIt5UmSydHG871iV4r4kmmeNct/sW5pHtPw0G0
+         tiYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708500529; x=1709105329;
+        d=1e100.net; s=20230601; t=1708500786; x=1709105586;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xXQZ1+8jg6XuC1aWQCpnKy8t7rYipx4t4EdzSstyQPo=;
-        b=dNejHiDubmpzvml5iRp98XcUd5/qUxvRgTfDvdtBiLNmvYC5gzciF+02JkINZfjuKY
-         h3epVvylobBKOjBYs2GCQUScsvdZZPM3W1Wso76dPylCU4FEZColDYuw4dvv1tx5l/YG
-         sfsBzw6zjlTw7G8odx9gEP9HDepolezfJiWbAIBlujkS4uvyp2+NJLWpxhoapKa9Nv8z
-         rKaA7W9vAVZeZWZu1+aMqgv2hCd95fLxjAMc1n1Wy/3nTW/UFDxwohIhRWRHCoCwE+up
-         UQfJ1aceyYPt1bXHjQUvwf8e8OIbVXqfG+WSg5jd3MBfXjv3Z8GlgYmEL/P06GEgWcDO
-         FHGw==
-X-Forwarded-Encrypted: i=1; AJvYcCW1/0X6Oi8vGM8V2KPcF3OIfmwz4dWt3SwSj9IYH10zYcwCT01Mf4+h8dWUM6nzpgwLXzzGJu4h5vk/d18CZnIRSVhXBjf5DDrN4Q==
-X-Gm-Message-State: AOJu0YyxFjLI67YwzUC2WlYrsArT9Q+rDwBNDof3pnNdqNkckWzMl1Ek
-	jzsp4JYOAgCyxTFq7tH6EVkQTnNdFZr+DojwADA4tTSGm35Hx0mKfE7AJfccm1A=
-X-Google-Smtp-Source: AGHT+IGCrs8dud3fJGDDTWV/MO91R9uKNDumyYG/Owog983vFyiYbynjy0YM4aQcvB4/wlYgBFTvvA==
-X-Received: by 2002:a17:906:5f8b:b0:a3c:f4d6:657e with SMTP id a11-20020a1709065f8b00b00a3cf4d6657emr11388349eju.69.1708500528829;
-        Tue, 20 Feb 2024 23:28:48 -0800 (PST)
+        bh=ge+YsHI3pA9L1s6/L6Hl+8/Uj32oY85P6VFsTj+jp9s=;
+        b=FY6hxu/Iu8EM21CF0HHVchIKWBAMmlUpgqALsfTnVEBBSzX6P4lbD+QwSsZUBnnVZj
+         FSOsIIUoNy4Vg+C9BO1uVnMywVHqv9uu3B04X0PyxtW63U1MQk+LlWU/PDxITzK2iC5G
+         H499IKVpA2M0RuXPVxT8VwD4C15QL9jLxM74RIqSd/r9q1gQFULHZ/oR8VCeZh2Eo9k5
+         xCfgT5d4XoiPftj1XgK5DBlUwKO5lOGfIAkzV3Ph/Y6cXU2nQRvAA7PZZ0o+a9CLzWE0
+         +YvOL42uAmQ6EXTRgkjgCw5vf3dakJihqRs42fwwhFc40yVWC+k4/KIqgIiZOG3JuXNc
+         aSCg==
+X-Forwarded-Encrypted: i=1; AJvYcCVo57vEWJkvl7td4RjV1WfJyRzvEmckhkPa+IuHy16VFKmZGDMAf/cqZQM1p87rXX8UnyXC9gdnitjwhj5Q+Rrqv7MIDUnlW+ZCKQ==
+X-Gm-Message-State: AOJu0YyCsHIJQcZ1awziUTkxxP4hMnYfRbxHrkyvS250l41tHDa0pAVJ
+	BhY0l/DX+NKUNEndIuDtzi7OhJ3yQdoHaAfAiTN4tEHqLQu2QRRx6BJzQQaZNRpzVumwIxdt2gi
+	N
+X-Google-Smtp-Source: AGHT+IHWzQ5/tTM5Uqis2UhNSPWnEXfUlTqsaXLus/bMg3HEQg2kJ0AW5ft9wP/BnmHfjxFeGZBqzQ==
+X-Received: by 2002:a17:906:eb19:b0:a3e:d0ab:5fac with SMTP id mb25-20020a170906eb1900b00a3ed0ab5facmr4686121ejb.28.1708500785945;
+        Tue, 20 Feb 2024 23:33:05 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id vg8-20020a170907d30800b00a3d70dc4337sm4657844ejc.102.2024.02.20.23.28.47
+        by smtp.gmail.com with ESMTPSA id p18-20020a1709060e9200b00a3d153fba90sm4636654ejf.220.2024.02.20.23.33.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Feb 2024 23:28:48 -0800 (PST)
-Message-ID: <214c03b8-7c5d-45db-8f14-c144751dd819@linaro.org>
-Date: Wed, 21 Feb 2024 08:28:47 +0100
+        Tue, 20 Feb 2024 23:33:05 -0800 (PST)
+Message-ID: <c6dbbb75-a67e-485f-8e00-3be05fb53b7f@linaro.org>
+Date: Wed, 21 Feb 2024 08:33:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,17 +77,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/9] dt-bindings: usb: usbmisc-imx: add
- fsl,imx8ulp-usbmisc compatible
+Subject: Re: [PATCH v5 4/4] ASoc: dt-bindings: PCM6240: Add initial DT binding
 Content-Language: en-US
-To: Xu Yang <xu.yang_2@nxp.com>, gregkh@linuxfoundation.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
- conor+dt@kernel.org
-Cc: s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
- linux-imx@nxp.com, peter.chen@kernel.org, jun.li@nxp.com,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240221145846.1611627-1-xu.yang_2@nxp.com>
+To: Shenghao Ding <shenghao-ding@ti.com>, linux-kernel@vger.kernel.org
+Cc: lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org, perex@perex.cz,
+ tiwai@suse.com, 13916275206@139.com, mohit.chawla@ti.com, soyer@irl.hu,
+ jkhuang3@ti.com, tiwai@suse.de, pdjuandi@ti.com, manisha.agrawal@ti.com,
+ s-hari@ti.com, aviel@ti.com, hnagalla@ti.com, praneeth@ti.com
+References: <20240221051501.627-1-shenghao-ding@ti.com>
+ <20240221051501.627-4-shenghao-ding@ti.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -132,20 +133,107 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240221145846.1611627-1-xu.yang_2@nxp.com>
+In-Reply-To: <20240221051501.627-4-shenghao-ding@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/02/2024 15:58, Xu Yang wrote:
-> Add "fsl,imx8ulp-usbmisc" compatible.
+On 21/02/2024 06:15, Shenghao Ding wrote:
+> PCM6240 family chips are popular among audio customers, in spite of only a
+> portion of the functionality of codec, such as ADC or DAC, and so on, for
+> different Specifications, range from Personal Electric to Automotive
+> Electric, even some professional fields. Yet their audio performance is far
+> superior to the codec's, and cost is lower than codec, and much easier to
+> program than codec.
 > 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> Signed-off-by: Shenghao Ding <shenghao-ding@ti.com>
 > 
+> ---
+> Change in v5:
 
-Please fix your machine time, so this does not appear in +8 hours in the
-future. It unnecessarily goes to the top of my inbox, so I will ignore
-the patchset.
+?!? You got review which you ignored. Now you rewrite everything?
+
+>  - Rewrite the subject to match something similar to other commits.
+>  - And none of them are compatible with something.
+>  - minItems, then maxItems.
+>  - Drop reset-gpios description
+>  - Remove the repeated reg descriptions and reg constraints.
+>  - Drop redundant spaces.
+>  - Add missing line breaks between blocks and additionalProperties.
+>  - Correct compatibility issue on adc6120 and pcm6240.
+>  - All these chips have only a portion of the functionality of codec,
+>    such as ADC or DAC, and so on, but their audio performance is far
+>    superior to the codec's, and cost is lower than codec, and much easier
+>    to program than codec. Simply one or two register settings can enable
+>    them to work. Init for these chips are hardware reset or software reset.
+>    As to some audio filter params for internal filters, it is up to the
+>    special user cases, which can be saved into the bin file. The default
+>    value also can work well.
+>  - Add blank line before reg.
+>  - remove unneeded items and if branches.
+>  - Add missing compatible devices, such as adc6120, etc.
+>  - Add necessary people into the list for DTS review
+>  - correct misaligned.
+>  - simplify the compatibility
+>  - Add sound-name-prefix
+
+Didn't you do all this?
+
+...
+
+> +  interrupts:
+> +    maxItems: 1
+> +    description:
+> +      Invalid only for ti,pcm1690 because of no INT pin.
+> +
+> +  sound-name-prefix: true
+
+Drop
+
+> +
+> +  '#sound-dai-cells':
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - ti,pcm1690
+> +    then:
+> +      properties:
+> +        interrupts: false
+> +
+> +additionalProperties: false
+
+unevaluatedProperties
+> +
+> +examples:
+> +  - |
+> +   #include <dt-bindings/gpio/gpio.h>
+> +   i2c {
+
+
+This is a friendly reminder during the review process.
+
+It looks like you received a tag and forgot to add it.
+
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+If a tag was not added on purpose, please state why and what changed.
 
 Best regards,
 Krzysztof
