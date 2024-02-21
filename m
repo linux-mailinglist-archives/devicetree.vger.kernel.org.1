@@ -1,73 +1,75 @@
-Return-Path: <devicetree+bounces-44231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1400285D281
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 09:26:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BC6085D287
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 09:27:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 94ADA1F22707
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 08:26:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE8281F231EE
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 08:27:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C84903BB46;
-	Wed, 21 Feb 2024 08:26:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF1183C068;
+	Wed, 21 Feb 2024 08:27:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gv8Lv9yG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yr6OH8T/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 164E03A8EF
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 08:26:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E88F53BB20
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 08:27:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708503998; cv=none; b=her+LqQB3nsxa36uQuxeT5l8ShrkTgx7LLnm7eyDdSIU/ZtRAZemjIeyu366vlKgVjwGx+WFf/t0hvRTD5wnp+ePDxzyFkUdDkeiOdKiYSu36WoILWD7K5u6NarH1h1t9XxSQdk/H3+hLJy00oS7yP9AqlGFv2d1bW0d9vfALqk=
+	t=1708504059; cv=none; b=k8TxkCr/rC+zAEoaQ+s6iGyBxq0HuWrKDgAFMBewS5ksLKyYEUThgGNEClyQ/vYP+PZFCOyIWSrvwSuwXLk3mmG7YBmfdIjQ7xTJW/wqsyeSmnCNla0V1uaskCaCUweP9q9NLq7e+bNEPUqGc0bIgbLFQTYK66a6OoUrlYjYdrw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708503998; c=relaxed/simple;
-	bh=I0bo8l/3tnsQkzmqvZYQClIXmZoRUaOHZDADPg+C6z8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KnCaEcmvyt2Ol+CYM+8n2/u/1ovjtTQD53kSU6ye7vAQnNJ6Gby3hmn0HP0oCwQbUrk6yU20RHIdp79G1LcLjFPdC6fNeOf9hTG58YGeI7BKAAXHCmiIItd8AmC5lp3iTe/f9kI3Za1u3b8S+hoBOtlhcXaEAvj0A4jyhmbi91c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gv8Lv9yG; arc=none smtp.client-ip=209.85.208.44
+	s=arc-20240116; t=1708504059; c=relaxed/simple;
+	bh=QeMzv/etgEhBablKw0Yx4a+QCh4YoauFHNBIDedTeHE=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=emyKWdUvt2c7aOuJ9RAl+YRjf5BZrVQIMvy4AJ268S5UHgAY577pvRuwX9YGYnw7borb0LzrM5L23nb4tk0B/LD0lQdHPO8Uz/0nOEAmAKzS0FUmYeeJATpP0FL+YwQzMY/LoEXfFMlcRvyX++jSPdxt7Ce/7nbWtMBBsL+z+1M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yr6OH8T/; arc=none smtp.client-ip=209.85.218.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-563c403719cso6562516a12.2
-        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 00:26:36 -0800 (PST)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a3f4464c48dso28286366b.3
+        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 00:27:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708503995; x=1709108795; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=q/sQIzf7jUG39BwFXjRnU4IN93Y7rOl9mKYuRy+MVuk=;
-        b=gv8Lv9yGE7MZabaU37aV6fMeKnhcecj6JVejvUZGeVCzcOsBpmWI7RO9J6IuHRzZwY
-         qTJe0hD+6mmU2GPo20qXBTK3RAGa/9X8UhT4FWbiuTUAR/fIxUVX6c8UyD82rgjEMo/Y
-         HhLEtfzfxQEk5hZxWPuEkklKM+qLSPQMZCOBzYyKa1x7ZoZ6yctxpp6uV/WvAjTdEF+M
-         hwMaEsfBe6KNq8JSz8w9Rkf2E3tDBCeYxp4JN/0rJ9mcQHQ7hw+D78XKRhn/lMzLRHS3
-         ilTZqsprrx2hLF/ZF6ayZKCrq3QfP60nm2oJbnP85iUcUsBcYJl3fnwQOfm29g45Fk9L
-         p/pw==
+        d=linaro.org; s=google; t=1708504056; x=1709108856; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=YQjRyAwQWZLJeaCmy33nzaWsWm0D5EPxrwsuAppNSUo=;
+        b=yr6OH8T/fJFJyckKUn+Gt+7DRkGeqpX7WYTzYiY50OopGKO1stm22Ub3T4Iojc54Z6
+         WiqEtEld+/aP3J7nxtUuLFZrx9AcWodEuws1buLjuR/P6wXpyPAXIef/0p4uouI8udFK
+         vd9Qu68GjGsblADxxUd68SnkPDlYO9llL4X4qnSLnZZtz5LGop4xfRLw33aqNGxOFqJ+
+         d45QkJbgNrytU8NkhiYbd1Bg8VhZrFDxD9xUf23BSjINv8UAFihqmzsRda8Y9PPOWsFS
+         VTclQtWT244/L7P1PZboXS80FH9cFdANB+w8rF6g26J0wF86NEKTbm2IaWHOpzeKo39o
+         b7dw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708503995; x=1709108795;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=q/sQIzf7jUG39BwFXjRnU4IN93Y7rOl9mKYuRy+MVuk=;
-        b=dM2kor/q8p1YJoPqxZ7dntc0t6AGzPpIrD4VtGPD4qAVCgQ6pZykMZweVjxI4EjWXq
-         WQ7yV7h/TonXKElwnJOppH15hJ3EGEcJ5bvPSy11j6z3I6GYrQReoMGOZZNyoX7aJCDD
-         8KZrP272zApWAtaFpwFgSTUaUKh6WoYRLPU5pgvPV+J8efIulyeK4skB/dqRLctyZNGY
-         1Lp44WTPbsWp41nK4vLNa9sb+oWp8PsB4YYeuzKQ/NR3P3wASeht9odmutAd2EuQMExS
-         zU31jGDs35Tnd1HUMI1kQ4/UHSZDl08ebrd6xv760YjkzMZWpLgXjOOosevK8I/mKP52
-         MiRA==
-X-Gm-Message-State: AOJu0YwpvzAvex63is3c3XjX96g09oKnsB6CsfOtpXKlLW5iZ2aYz4Y9
-	NBeHyiCRxDcbvGSr20xMPMEJNyxi36ED57PtzSAljb9okFTwkzilr9FgCBbIw10=
-X-Google-Smtp-Source: AGHT+IE5308iO3EziNYS8p6OPFXk0fAD939H+KHXM+VeHIRV49q9tNWT2mXHQsloXxsn5P/WLKd/Mg==
-X-Received: by 2002:a05:6402:1814:b0:560:209:c800 with SMTP id g20-20020a056402181400b005600209c800mr14433374edy.18.1708503995437;
-        Wed, 21 Feb 2024 00:26:35 -0800 (PST)
+        d=1e100.net; s=20230601; t=1708504056; x=1709108856;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YQjRyAwQWZLJeaCmy33nzaWsWm0D5EPxrwsuAppNSUo=;
+        b=laiP2dex/T+HwK/3ECfA3pQjDjK9yjubK2NL9u8J0u4ABz4VGpE6Aw7gLgeCNohHHL
+         RHRSqLQwVig5tHmFa7d1ouPioLP5MvAYdtgBLbflIb2n06R1f2MYMIdUMWPMuvF9YY8u
+         sltyJz8Cc9mQv1FcuNt1MrxRrwe5x6FXmGmDtki3Gjoqfw9Cz3pNu0Sv/gnW3sRJLpUu
+         vjylSZ/fp5b6SZQKflKW+vTgUwE6w7GymM/4er8enU75sVfPJo7ZYNaHgQVQQM5vY+Nb
+         W6OIxAhYy3DhytkSKtXIUwm/pcr6H+7vYno+3JLKlVfTCb2Hz+sDv/sT44w4DP7V/tnv
+         G1/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUU6d4q0QWE/GUsECgoMAxL9V3Rn4CIaP5plAqLIkJiOP8zvE5mytg0DJqxPv4gQBipY8MLg4LgrfjCcSFFi0fk/jjAR/ExbfJjbA==
+X-Gm-Message-State: AOJu0Yw3Mg45u5vZlKsryt0bge7JUWwPbdE+5xsG8WkzV2yKmFSx85u2
+	LkXxpI9iFnf4WmYbfaXv9NQDKRjae5k8NQdbfSdibfSVB7Q5EfbIw8yncz7b7cQ=
+X-Google-Smtp-Source: AGHT+IH11iclK1l0XHNWC3iWDhuoSvnEaHN2KJ/rSAIvwRdL1g1iBo940/0DAdFDJwaAxGIsTshvow==
+X-Received: by 2002:a17:906:abc8:b0:a3f:3e18:8f0 with SMTP id kq8-20020a170906abc800b00a3f3e1808f0mr822820ejb.43.1708504056246;
+        Wed, 21 Feb 2024 00:27:36 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id fe12-20020a056402390c00b00564fa936b2bsm337395edb.94.2024.02.21.00.26.33
+        by smtp.gmail.com with ESMTPSA id fe12-20020a056402390c00b00564fa936b2bsm337395edb.94.2024.02.21.00.27.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Feb 2024 00:26:34 -0800 (PST)
-Message-ID: <5d67441e-df61-4894-ba52-2bed8a1143d6@linaro.org>
-Date: Wed, 21 Feb 2024 09:26:33 +0100
+        Wed, 21 Feb 2024 00:27:35 -0800 (PST)
+Message-ID: <b051c8b5-4559-43cd-a3fc-02756dd12d1b@linaro.org>
+Date: Wed, 21 Feb 2024 09:27:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,18 +77,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: exynos4212-tab3: limit usable memory range
+Subject: Re: [PATCH v2 1/5] dt-bindings: memory-controller: st,stm32: add MP25
+ support
 Content-Language: en-US
-To: Artur Weber <aweber.kernel@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht
-References: <20240217-tab3-limit-usable-memory-range-v1-1-49cc9c86a5cc@gmail.com>
- <15ab6aa6-fb30-4970-9c50-546afb933e03@linaro.org>
- <c2fde69d-48c2-446f-ac56-876651c06b51@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Christophe Kerello <christophe.kerello@foss.st.com>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ devicetree@vger.kernel.org
+References: <20240219140202.85680-1-christophe.kerello@foss.st.com>
+ <20240219140202.85680-2-christophe.kerello@foss.st.com>
+ <fea964af-4ae8-46ed-a12f-d9d2849e25a7@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -131,55 +132,30 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <c2fde69d-48c2-446f-ac56-876651c06b51@gmail.com>
+In-Reply-To: <fea964af-4ae8-46ed-a12f-d9d2849e25a7@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/02/2024 20:49, Artur Weber wrote:
-> On 19.02.2024 08:44, Krzysztof Kozlowski wrote:
->> On 17/02/2024 20:02, Artur Weber wrote:
->>> The stock bootloader on the Samsung Galaxy Tab 3 8.0 provides an
->>> incorrect available memory range over ATAG_MEM. Limit the usable
->>> memory in the DTS to prevent it from doing so, without having to
->>> disable ATAG support.
->>>
->>> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
->>> ---
->>>   arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi | 6 ++++++
->>>   1 file changed, 6 insertions(+)
->>>
->>> diff --git a/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi b/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
->>> index e5254e32aa8f..9bc05961577d 100644
->>> --- a/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
->>> +++ b/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
->>> @@ -45,6 +45,12 @@ chosen {
->>>   		/* Default S-BOOT bootloader loads initramfs here */
->>>   		linux,initrd-start = <0x42000000>;
->>>   		linux,initrd-end = <0x42800000>;
->>> +
->>> +		/*
->>> +		 * Stock bootloader provides incorrect memory size in ATAG_MEM;
->>> +		 * override it here
->>> +		 */
->>> +		linux,usable-memory-range = <0x40000000 0x3fc00000>;
+On 20/02/2024 10:56, Krzysztof Kozlowski wrote:
+> On 19/02/2024 15:01, Christophe Kerello wrote:
+>> Add a new compatible string to support MP25 SoC.
 >>
->> Applied and dropped:
->>   chosen: linux,usable-memory-range:0: [4611686019496935424] is too short
+>> On MP1 SoC, RNB signal (NAND controller signal) and NWAIT signal (PSRAM
+>> controller signal) have been integrated together in the SoC. That means
+>> that the NAND controller and the PSRAM controller (if the signal is
+>> used) can not be used at the same time. On MP25 SoC, the 2 signals can
+>> be used outside the SoC, so there is no more restrictions.
+>>
+>> MP1 SoC also embeds revision 1.1 of the FMC2 IP when MP25 SoC embeds
+>> revision 2.0 of the FMC2 IP.
+>>
 > 
-> This seems to be a binding issue; the DT schema expects a 64-bit memory 
-> address and size, and doesn't allow a 32-bit range. I've tested the DTS 
-> on my device and this property seems to be handled fine, so I think this 
-> should allow 32-bit values as well.
-
-Regardless where is the issue: please test before sending.
-
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> I've opened a PR[1] against devicetree-org/dt-schema (where the schema 
-> for the chosen node is stored) to try and fix this. If my approach is 
-> incorrect, feel free to comment there as well.
 
+Heh, that's actually a patch for me.
 
-According to Rob's comments, the DTS is the issue.
+Un-acked.
 
 Best regards,
 Krzysztof
