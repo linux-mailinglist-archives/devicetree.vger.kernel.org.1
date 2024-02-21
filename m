@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-44192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA88085D13E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 08:24:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A73085D160
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 08:30:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3AEA5B21CAD
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 07:24:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 05CA61F23A39
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 07:30:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FA443A8E1;
-	Wed, 21 Feb 2024 07:24:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30DDB3A8FF;
+	Wed, 21 Feb 2024 07:27:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RubxwRXr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ijj4DS7v"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59BFA3A8C0
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 07:24:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 336ED3A8F1
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 07:27:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708500272; cv=none; b=pIEWFBkxIJGBR2rHVaFKeUNg1NGb0SMIl47XJGZfc2AHGhA40tTqCi3bhQqZcabKaakKNTbp5GQze9+QyBZyKbY2LZn7ugrlIEAQ9xv1p4GqKrrUMS/GJvXeDqdrLeMNX4JRPZkBJ/cxrDws78MzBQEK2kqjwXVToA4lntexrw4=
+	t=1708500462; cv=none; b=aZV+hIuppjNOIZklOBY5siN1CQpgE6BiF+GbMV+KZJJx1J73XVRqk2yfQL0OO5O0oO/+WoChRr4X9wzzgFokKGg/ZxfF8oTKFOw1HEH2xcK1eMFfc6yShA7QA2113nYzhuczIINI2SDQ+GbKdENW4ob477rVKSguAYrxm3CTt6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708500272; c=relaxed/simple;
-	bh=KM8TUDFkFdaV4IFO9KRdnz+hRjEOdtNqZk2rlhy85nA=;
+	s=arc-20240116; t=1708500462; c=relaxed/simple;
+	bh=i/Z255Tf2x8i7s/H6pawdDSPBpzQEqOfG7zhdoGwFMQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZC1y1DMzJIPj3dti625criqoI2AS+ng/PrfuKkvrM3IHtOQIBaVbPdWd/CLwS99BSN6cqVG7W37vW9Lg6vaYDURgzHKlwNyP9j5Yo8SnnXJPOvNBROpmggljVhoVkZfVRMUM80k2xHj2FkEG7CKHhCBMkdvAMJQRga0LmZ8q79g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RubxwRXr; arc=none smtp.client-ip=209.85.208.49
+	 In-Reply-To:Content-Type; b=dHIXqKHhghYsF9wgrl1LiaZZVmnSHzIoCUmbAJHEDQyiRg3BaFE7EE3ww63+OLxonlhE1M5ZXj0g2CQNJu/P7V8kpOmUPvQu7JoH3aS0AG7KhXkmlKc2z2kZO9qEcFhGCxxr3+liXFlnxl350N+CAMjruM9fF2V2CwR4EbUZo4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ijj4DS7v; arc=none smtp.client-ip=209.85.208.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-563d32ee33aso6956830a12.2
-        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 23:24:30 -0800 (PST)
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-55f50cf2021so399516a12.1
+        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 23:27:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708500268; x=1709105068; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708500458; x=1709105258; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=fg7UA2pgP6jgQm6h9UxtYlknGOnovxlEnNFLzHUpWNA=;
-        b=RubxwRXrRiQ7hfD24+veTNINK7BzyIHy3qobGrrmXw7Qi8mBLpEUesVRGNO8kmY8QT
-         ntnbGFgLelPwjumGiyPSXe3/tshrXf3CSFqpVS71n32Zg+9UAMZe6JKL6QMybNT+RHZL
-         /t5KIo0/DRvg4TiXbLdRZ0Aew12sdwVbB369TAienOZnG/FBp/eu7k8rxDHrvR8BoKew
-         gZIFp1XZ4D76LYeu0fBIpwfMJmc3ApiW2BvKTSc8KhPKaHXKOpix5FQZ0jDUJ/efjOFY
-         2x53xlD+rO68lA+75iFz3LLWeki6sJTvBC7ER7ytvjQaxBw5KLgRT8alzGqDCR20zSwO
-         YTSA==
+        bh=rmVElpnqL+d6DT1A1PN7w2052IYFt/BLMTqk1R3bSYE=;
+        b=Ijj4DS7vgxV8KcSxDvgCOVqWliccqNzFAIOVo51W/k/4wsPjfTkxy+M5TILNxsPxCk
+         SiXM1W2rbtQmlw/ulp9xZntcfFhtXK2MwOFblEmJm5yfRt7imVE4REHLQ8KE2ab4vM0T
+         sLXKOW/7H97mR1TsXmtMUghvmIH4b/Hu6XG8GJp/VzTzNadRgQLnWN1DAcwguzjMCfV9
+         P8HFeP+4DFX/QJzxkDHfRewuaTDndax+FDCJfEROFJcLhp5o7mLUicEb+kVRjz3/BiWP
+         P692AdlmZwKwA5MjMDA+tWnq80tqdJmuluKNISIU0jgSa312zl6rlcoFJ9x1qXTAB8vT
+         IRYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708500268; x=1709105068;
+        d=1e100.net; s=20230601; t=1708500458; x=1709105258;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fg7UA2pgP6jgQm6h9UxtYlknGOnovxlEnNFLzHUpWNA=;
-        b=buKFeTp1rcOhWTGqaXfmUikQ5Z3v3YQ72SxX0QhKDuNemLg5IuvTGYGNj9GFShVEyE
-         6V5JPC0B8ABAvikYXv3075MkxW8nWUVjukKbQNF7Ce//eWZjPJIP14lnHmj6MGvLGUIq
-         BQDIwUy3+akIenyUoAiLPK3wytqJr7pzVCXYmD+MgfInLv5ZXEKjq23/FRMni2ef3XJP
-         t5RjiTuB/i5awdghypCJl5jSGcZbNAUw+IE8ji5Zjc66nxX2KKVeliDMOPF81y2S4CJz
-         up9qfDoKH0k6oXVn1yKnymdH1UCY7F4hCphlb5poVjr4CEH/9jT4RUH7IY/hCKBoHHMc
-         sylQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWnti1bU14XiYBZryImPZtqV/9rJ65wGZohDjTk3UrJ5Ah+v9YfmBBLaJTTVRUr3K0fSXcFGu1nrV0Q9g/rM/nAy/qRAKhxQutIfA==
-X-Gm-Message-State: AOJu0YzyHSjw4PArmRGRYyCzFWaInm7G/zv/ZuOGyj1PqyAuQ3fr4mqF
-	Ta86gUTwlxDrDbqo59e5tRXp9dzI9ky7l3lbOO22wT/AFR6ioOarctBwkPNHKPs=
-X-Google-Smtp-Source: AGHT+IEPtwDbNlQcgwoArYWIPoLh6nol4vCWQ9AODZ3rdMyVSunRDo0eHxIHvncYo+zi9nQGEL6FrA==
-X-Received: by 2002:a05:6402:214f:b0:563:c0f1:917b with SMTP id bq15-20020a056402214f00b00563c0f1917bmr11128011edb.0.1708500268681;
-        Tue, 20 Feb 2024 23:24:28 -0800 (PST)
+        bh=rmVElpnqL+d6DT1A1PN7w2052IYFt/BLMTqk1R3bSYE=;
+        b=f3zIyUhN7KuuDhMdasq/u233BV+NysF7q1KQS+cDbaeFPvwRT7A7rzsi8/82ZuDOVb
+         Jimh31SAU5UFbb+dV0x0G2azs+Gt2H1FIPWwcUaIpA2S5UetS05MvdZUyo5hl0niyUVA
+         6fq1qo4xEWOhZ1PcEM+UVsbQmHMtJrK6yxp7YGFFumjk+o9wBX5MlIko62/GhzP4Gs4c
+         +NuhG/OD2DQT86mqdX5ah2oRSfd4aG3kBYfltGh2BjgEFMc6WdA8QcvxfsceHU/JpgTI
+         6cCvViC7oiRjp2KKkqDx0pcUVJesINntMyYFuH9yCn9CwwG03yxkDCEnOmcFs3zvyX2D
+         kwhg==
+X-Forwarded-Encrypted: i=1; AJvYcCX8RagpsNI7bMr0LA/AOs7bfFxNoOQUgLhiDrpar1CXB4ALD22elRt04nu59m2sqUKIKPFoETo6916d3sFApR7QX5EejHEvtsi+sQ==
+X-Gm-Message-State: AOJu0YzRkDJuA6r+XGtavCSZo+Ps/5d3TFMYegqQBGW+/NvtoeFXmx5V
+	4CFYwq8ljhJo+Pr0Vlfn3I/aHVvqPkkHDmRHydKbclcdzCc0LJlRWGc8ctfNbcI=
+X-Google-Smtp-Source: AGHT+IFkzmnEdTYzMCJUOIA3d/1xojV557WWMTF7vx7ECfLIDE8GAWAFdeUxqkFDzkS0ac3tOY+Vew==
+X-Received: by 2002:a17:906:c28e:b0:a3f:33e:9ecb with SMTP id r14-20020a170906c28e00b00a3f033e9ecbmr2629145ejz.32.1708500458415;
+        Tue, 20 Feb 2024 23:27:38 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id g14-20020a056402428e00b005642bcfed99sm3856648edc.23.2024.02.20.23.24.26
+        by smtp.gmail.com with ESMTPSA id vg8-20020a170907d30800b00a3d70dc4337sm4657844ejc.102.2024.02.20.23.27.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Feb 2024 23:24:28 -0800 (PST)
-Message-ID: <cafccf8d-b8f7-44cb-bc41-3c7a908fd1e4@linaro.org>
-Date: Wed, 21 Feb 2024 08:24:26 +0100
+        Tue, 20 Feb 2024 23:27:37 -0800 (PST)
+Message-ID: <9dc9306b-ff1b-48aa-ae03-3fabcccf480d@linaro.org>
+Date: Wed, 21 Feb 2024 08:27:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,27 +76,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v2 1/6] dt-bindings: pinctrl: starfive: Add JH8100
- pinctrl
+Subject: Re: [PATCH RFC v2 1/5] dt-bindings: clock: histb-clock: Add missing
+ common clock and Hi3798MV200 specific clock definition
 Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>
-Cc: Alex Soo <yuklin.soo@starfivetech.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Hal Feng <hal.feng@starfivetech.com>,
- Ley Foon Tan <leyfoon.tan@starfivetech.com>,
- Jianlong Huang <jianlong.huang@starfivetech.com>,
- Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
+To: Yang Xiwen <forbidden405@outlook.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Drew Fustini <drew@beagleboard.org>,
- linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
-References: <20240220064246.467216-1-yuklin.soo@starfivetech.com>
- <20240220064246.467216-2-yuklin.soo@starfivetech.com>
- <1a11cee2-2ef1-4ce0-8cc1-63c6cc97863f@linaro.org>
- <20240220-bottling-reverence-e0ee08f48ccc@spud>
+ Conor Dooley <conor+dt@kernel.org>
+Cc: David Yang <mmyangfl@gmail.com>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240217-clk-mv200-v2-0-b782e4eb66f7@outlook.com>
+ <20240217-clk-mv200-v2-1-b782e4eb66f7@outlook.com>
+ <875b706f-801a-4a4c-8806-411a67c5a5e7@linaro.org>
+ <SEZPR06MB6959456E59D84C15F0C1B88396502@SEZPR06MB6959.apcprd06.prod.outlook.com>
+ <90e0dc10-8514-4827-998f-15b4d45d874e@linaro.org>
+ <SEZPR06MB69594CBF0625989A5C54DC9096502@SEZPR06MB6959.apcprd06.prod.outlook.com>
+ <3b6ab055-360b-4f73-8d11-8f52b272b7a8@linaro.org>
+ <SEZPR06MB695996DD12D23D13D3579A8996502@SEZPR06MB6959.apcprd06.prod.outlook.com>
+ <d59ed810-f8d6-492e-aeb6-fd8ed13735a0@linaro.org>
+ <SEZPR06MB6959F718988B9A12C2D69D4396502@SEZPR06MB6959.apcprd06.prod.outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -142,30 +141,105 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240220-bottling-reverence-e0ee08f48ccc@spud>
+In-Reply-To: <SEZPR06MB6959F718988B9A12C2D69D4396502@SEZPR06MB6959.apcprd06.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/02/2024 20:10, Conor Dooley wrote:
-> On Tue, Feb 20, 2024 at 09:11:43AM +0100, Krzysztof Kozlowski wrote:
->> On 20/02/2024 07:42, Alex Soo wrote:
->>> Add documentation and header file for JH8100 pinctrl driver.
+On 20/02/2024 18:29, Yang Xiwen wrote:
+> On 2/21/2024 1:06 AM, Krzysztof Kozlowski wrote:
+>> On 20/02/2024 17:31, Yang Xiwen wrote:
+>>> On 2/21/2024 12:25 AM, Krzysztof Kozlowski wrote:
+>>>> On 20/02/2024 17:19, Yang Xiwen wrote:
+>>>>> On 2/21/2024 12:13 AM, Krzysztof Kozlowski wrote:
+>>>>>> On 20/02/2024 15:06, Yang Xiwen wrote:
+>>>>>>> On 2/20/2024 6:10 PM, Krzysztof Kozlowski wrote:
+>>>>>>>> On 17/02/2024 13:52, Yang Xiwen via B4 Relay wrote:
+>>>>>>>>> From: Yang Xiwen <forbidden405@outlook.com>
+>>>>>>>>>
+>>>>>>>>> According to the datasheet, some clocks are missing, add their
+>>>>>>>>> definitions first.
+>>>>>>>>>
+>>>>>>>>> Some aliases for hi3798mv200 are also introduced.
+>>>>>>>>>
+>>>>>>>>> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+>>>>>>>>> ---
+>>>>>>>>>      include/dt-bindings/clock/histb-clock.h | 21 +++++++++++++++++++++
+>>>>>>>>>      1 file changed, 21 insertions(+)
+>>>>>>>>>
+>>>>>>>>> diff --git a/include/dt-bindings/clock/histb-clock.h b/include/dt-bindings/clock/histb-clock.h
+>>>>>>>>> index e64e5770ada6..68a53053586a 100644
+>>>>>>>>> --- a/include/dt-bindings/clock/histb-clock.h
+>>>>>>>>> +++ b/include/dt-bindings/clock/histb-clock.h
+>>>>>>>>> @@ -58,6 +58,27 @@
+>>>>>>>>>      #define HISTB_USB3_UTMI_CLK1		48
+>>>>>>>>>      #define HISTB_USB3_PIPE_CLK1		49
+>>>>>>>>>      #define HISTB_USB3_SUSPEND_CLK1		50
+>>>>>>>>> +#define HISTB_SDIO1_BIU_CLK		51
+>>>>>>>>> +#define HISTB_SDIO1_CIU_CLK		52
+>>>>>>>>> +#define HISTB_SDIO1_DRV_CLK		53
+>>>>>>>>> +#define HISTB_SDIO1_SAMPLE_CLK		54
+>>>>>>>>> +#define HISTB_ETH0_PHY_CLK		55
+>>>>>>>>> +#define HISTB_ETH1_PHY_CLK		56
+>>>>>>>>> +#define HISTB_WDG0_CLK			57
+>>>>>>>>> +#define HISTB_USB2_UTMI0_CLK		HISTB_USB2_UTMI_CLK
+>>>>>>>> Why? It's anyway placed oddly, the entries are ordered by number/value.
+>>>>>>> So this is somewhat broken at the beginning. It named after
+>>>>>>> histb-clock.h but actually they are all clocks for Hi3798CV200 SoC. For
+>>>>>>> Hi3798MV200(also a HiSTB SoC), there is one additional UTMI clock.
+>>>>>>>
+>>>>>>>
+>>>>>>> What solution do you prefer? rename UTMI_CLK to UTMI0_CLK, add UTMI1_CLK
+>>>>>>> after it and increment all the indexes after it? Then the diff would be
+>>>>>>> very ugly.
+>>>>>> I still don't understand what is the problem you are trying to solve
+>>>>>> here. Your commit msg says add missing ID, but that ID -
+>>>>>> HISTB_USB2_UTMI_CLK - is already there.
+>>>>>>
+>>>>>> I also do not get why there is a need to rename anything.
+>>>>> Because there are two USB2_UTMI_CLKs in total, at least for Hi3798MV200.
+>>>>> UTMI1 is missing here. For other HiSTB SoCs, there could be even more.
+>>>> My comment was under UTMI0. We do not talk about UTMI1...
+>>>>
+>>>>> If we add USB2_UTMI1_CLK, it looks silly to keep USB2_UTMI_CLK without
+>>>>> renaming it to UTMI0. Just like all the other clocks. E.g.
+>>>>> I2Cn_CLK(n=0,1,2,3,4) etc.., so the same for USB2_UTMI_CLK.
+>>>> Then place it next to old name and explain why it is deprecated with
+>>>> comment.
 >>>
->>> Signed-off-by: Alex Soo <yuklin.soo@starfivetech.com>
->>> ---
+>>> Do we need to keep the old name? I can fix all the users (only
+>>> hi3798cv200.dtsi) in next version and drop this name directly. Is that
+>> All users in all projects? That might be tricky. And even for Linux
+>> kernel, how can you do it in a bisectable way? Just keep old name.
 >>
 >>
->> RFC? Why isn't this patch ready for review?
+>>> okay? Should i insert UTMI1_CLK to the middle and re-index all the
+>>> macros after it? Or simply add it to the tail?
+>> Bindings and header constants are ABI, so you cannot change them.
 > 
-> The TL;DR is that Emil and I didn't want to apply the dts patches to
-> support a platform that hadn't actually been taped out yet. 
-> For an SoC in that state, at least the bindings for, clock and pinctrl
-> could be subject to changes before tapeou. I think putting RFC on those
-> patches is a good idea, but of course the rationale should be mentioned.
+> 
+> This file should be renamed to hi3798cv200-clock.h, it shouldn't be 
+> called histb-clock.h from the beginning. Now I have to workaround this 
+> in a dirty way. What if another HiSTB SoC has 3 or more UTMI_CLKs? Do we 
+> need to add more definitions to the end of the file? The file is gonna 
 
-That would be useful information. We also could mark some bindings
-unstable and accept breaking ABI under certain conditions, like that it
-is early work without users for long time.
+That's not a big problem, but indeed shows poor design of the driver and
+bindings.
+
+> to be more and more unreadable with scattered clock definitions.
+> 
+> 
+> Do you think it's acceptable to create a new header file instead? I 
+
+This depends on the purpose of it. In general every SoC follows that
+concept - binding headers are per given clock controller, not even per SoC.
+
+> think we don't need a generic histb-clock.h. Each SoC should maintain 
+> their own clock indexes header file. Maybe we can rename it to 
+> hi3798cv200-clock.h and include it from a new histb-clock.h (also mark 
+> this generic header file deprecated and only for hi3798cv200). Then I'll 
+> create hi3798mv200-clock.h header file instead. So we don't have to 
+> workaround this.
+
 
 Best regards,
 Krzysztof
