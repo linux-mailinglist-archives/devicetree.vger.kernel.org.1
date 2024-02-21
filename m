@@ -1,116 +1,122 @@
-Return-Path: <devicetree+bounces-44429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44430-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8158185E2E9
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 17:20:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE94685E2F3
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 17:21:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 377411F25C51
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 16:20:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8674D282AA4
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 16:21:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 462598172A;
-	Wed, 21 Feb 2024 16:20:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DC5B8173C;
+	Wed, 21 Feb 2024 16:21:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Ov4Qzcww"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GVm/x4Ve"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CB8F3A1A2;
-	Wed, 21 Feb 2024 16:20:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E44AC8002B;
+	Wed, 21 Feb 2024 16:21:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708532413; cv=none; b=oe51hKbJNcmUHyNtYTdBHRyVJ2AJz07cFAEBTkTkYGKfAnky4o2pM6wFUSpZ2VnJW46GxRo3TKLo5sFVEKi5PHCGZvnRQscuYqsQepNCFE3z9RVPMRH8hGNctxvUu3eTc1Wa+wLN5AhvX9PKM/Lg3M4yoBaIl0cc46dj0wMaN44=
+	t=1708532514; cv=none; b=Nxl0IqU0JniAEBiyYPf7XP+hRIZ3f0/wVl5E1hyELIPKrGRbH2WoLSVE3PGuJIiAM4a4hg8dodQeiWAK7QLQ8V+rQecNyH15zpxr2g1zHbEDCo7uJiKGNfICdnL9ECPhalcAu6BnnfFJNdzB+YEnGzqcfeS18yBEeteh0CLr1zA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708532413; c=relaxed/simple;
-	bh=Jv77BKBMeiG/2ccQEV5Y0hNVCO0qasm00dKSVctkfdE=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=g8t9ZYMgQWwRaPgY33kGFInukqiSZ04tNeBQsQuYEUIF8hgaqJ5VXAchYaxpC81fhNRKSf8p/FhzllzLe4b2izCIEK54J8yH7o+YmD6LxXAE5DIXCHIJ2XUEFP+YqzTe8PytH8kyOIyMEt1aeYX5fMSc8Brub5zicE67B3Fwqas=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Ov4Qzcww; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 8CEECFF80B;
-	Wed, 21 Feb 2024 16:20:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1708532408;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=/iZaP2iqfKmtJsxgwYrLbSeh4l2Ui6y1YNvqMc6YgDU=;
-	b=Ov4QzcwwK74DcmYrB3MfqOZ4uASvFg6MD+s8zyECgBZLyYUP9f2G/+dpfIe1WEggyXFgL0
-	71rl6N7MPYeBf2tGwxmVgSbLQUFCWBZotLI7/7DsWGgUyRCqJ6VLgvBFXKXOnphqXI+3Rj
-	oFQh77q/QB0NozZA6BsOXBsfWAIcWLg0NGjPuleJOcuYr9JB0d9w+QvZGEjXpKns+CXK1G
-	4Lpo3FEOAHE9kpnb5xit/9HYCZdb2kco/HJGX+Y5sM7J6dGbAkoo/kXmaZeety1iS5p8hn
-	PtW/GtuQi96SeBzKqJUN1OVUGkaKA6fS38pmPEbn2udjs5yeAMPZZEWif7BXfw==
+	s=arc-20240116; t=1708532514; c=relaxed/simple;
+	bh=c6IAI0d4rf33B/TEyMTET/0mJewT6I/BgtcPF5uREU0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=uZ8zL3HrSCZlpIBI/3N/Dq3XminvHs/eRSexrhaE0sRIiENb4NDx14M+pOEndRcsJ7iqbacDxyOOqtIEX9CIiTpNlm52epShnbJo3XRTlo+ykJVV9zg7zTe3PvmOFMCuNLmFl2J6vNj/jHXXeBUlhMoCTX//2MYfv5qytqNksrA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GVm/x4Ve; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a3e4765c86eso529216066b.0;
+        Wed, 21 Feb 2024 08:21:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708532511; x=1709137311; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7prFhpjayFvXIvvHtpQ8JCGfeAR1nSUHLtg8UyqzWwQ=;
+        b=GVm/x4VeG2+1ZZ1zwBBNcqDmzjKu31dONy8hLXaIOyb6tjUYgPUfozLmbgSVN4krqG
+         9Zp1AuJLb/50mQ7w0ce8W8n2DtNRcgMHVjUyR1FB1Pg0H9v8SPp37Xw4ZYHWMv1aSMxD
+         a67qBbgyrOCUsMGeNLzjg6UzMw6k9BEX01LHTL305wvnItb2uKSBsPtY3NsqpvmKCAcp
+         EVQYeqj1Rn1BQCugCm/KKKhJo1KqaUKwQEgreKnPC7of1FLEllcctdd0O4t2M5Bqwee3
+         QLBoy7I+OOfOAiFQts98VbZAxsqjsMTOCkpZRzuwHo4yK3PeDQRUYdNh70mGI6Se4DsQ
+         Ciaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708532511; x=1709137311;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7prFhpjayFvXIvvHtpQ8JCGfeAR1nSUHLtg8UyqzWwQ=;
+        b=o8JQB4u3BWuUCg75+FNrwfD/VP6XcBVti3SE4WJoCnMPiWdKbbGHFioJtkwmyG2CTZ
+         2aetP2nMb77/2ZPKOPMMCClvWdelSWaxsXOn5oYk/X1/owDjIs2Kpyjfr0zwev9GgIzE
+         q6NFj8hxbfQxgrqBk3+lVxUX4RFo5A1FLTnZuJtpooWzQHNlEpewK9elmu8apPFInjyV
+         vCAJJOgpv57y76gQwPBx2tcIt9p4DrQbAeESl1LXShASwWf1QGSmWLvswEpAuWQMYVAB
+         zmjOzF0DbfG1Y5IOSSI3aejvOir/7gcIte2LqOWxiOyCU1kOB4m6jb7CL+lfTe6gp81r
+         GkOA==
+X-Forwarded-Encrypted: i=1; AJvYcCVbx8ec860q53QNHGfUvow31DPlDooI3+6nL5+NxnXuA986cksBcp6mshoLYw9YGyFuNN9IPp3SiT8cYB4wcYORTPPIYx5YSjpPoYY=
+X-Gm-Message-State: AOJu0Yweqq6rR3yEZPsy6dti+Do5RcFKW0EIs6PcGO03I0sL/1u18fdM
+	BeJXEFH8FQzqZ4j/rg8Jfv8x/wY2xJlXQGklf03heCio3l8ZgElG
+X-Google-Smtp-Source: AGHT+IHCECbBMXwb0Not1oP2H9Xc3C2VtC2/3FkrWYsCgUDg1LFIfFCF6FCXKrFrnR9g5XfiTK2cQw==
+X-Received: by 2002:a17:906:b0d1:b0:a3d:4ed8:f5bf with SMTP id bk17-20020a170906b0d100b00a3d4ed8f5bfmr14147049ejb.2.1708532511087;
+        Wed, 21 Feb 2024 08:21:51 -0800 (PST)
+Received: from localhost (p200300e41f2d4600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f2d:4600:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id st12-20020a170907c08c00b00a3e544f5d62sm4016116ejc.201.2024.02.21.08.21.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Feb 2024 08:21:50 -0800 (PST)
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jon Hunter <jonathanh@nvidia.com>
+Cc: devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org
+Subject: Re: [PATCH V2 0/3] arm64: tegra: Tegra194 device-tree updates
+Date: Wed, 21 Feb 2024 17:21:49 +0100
+Message-ID: <170853250064.670293.12783848800491071416.b4-ty@nvidia.com>
+X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20240220121714.16543-1-jonathanh@nvidia.com>
+References: <20240220121714.16543-1-jonathanh@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 21 Feb 2024 17:20:03 +0100
-Message-Id: <CZAW6UTMON6K.34LW7FDGNO1XC@bootlin.com>
-Subject: Re: [PATCH 05/23] gpio: nomadik: extract GPIO platform driver from
- drivers/pinctrl/nomadik/
-Cc: "Bartosz Golaszewski" <brgl@bgdev.pl>, "Rob Herring"
- <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Philipp Zabel" <p.zabel@pengutronix.de>, "Thomas Bogendoerfer"
- <tsbogend@alpha.franken.de>, <linux-gpio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <linux-mips@vger.kernel.org>,
- "Gregory CLEMENT" <gregory.clement@bootlin.com>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-To: "Linus Walleij" <linus.walleij@linaro.org>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: aerc 0.15.2
-References: <20240214-mbly-gpio-v1-0-f88c0ccf372b@bootlin.com>
- <20240214-mbly-gpio-v1-5-f88c0ccf372b@bootlin.com>
- <CACRpkdaSMJBFrmbTu+C1Ls8HkLH4FZsAQ6t7dC76+sVTXXHEyw@mail.gmail.com>
-In-Reply-To: <CACRpkdaSMJBFrmbTu+C1Ls8HkLH4FZsAQ6t7dC76+sVTXXHEyw@mail.gmail.com>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Hello,
+From: Thierry Reding <treding@nvidia.com>
 
-On Wed Feb 21, 2024 at 3:37 PM CET, Linus Walleij wrote:
-> just a quick note here:
->
-> On Wed, Feb 14, 2024 at 5:24=E2=80=AFPM Th=C3=A9o Lebrun <theo.lebrun@boo=
-tlin.com> wrote:
->
-> > +config GPIO_NOMADIK
-> > +       bool "Nomadik GPIO driver"
-> > +       depends on ARCH_U8500 || ARCH_NOMADIK || COMPILE_TEST
-> > +       select OF_GPIO
-> > +       select GPIOLIB_IRQCHIP
->
-> Could you add:
->
-> default PINCTRL_NOMADIK
->
-> so it is turned on by default when we have that, since they are jitted to=
-gether
-> so closely.
 
-Would that bring something more than what is currently present? I've set
-PINCTRL_NOMADIK to select GPIO_NOMADIK. This means that if
-PINCTRL_NOMADIK=3Dy then GPIO_NOMADIK=3Dy. If PINCTRL_NOMADIK=3Dn then
-GPIO_NOMADIK is free to be whatever.
+On Tue, 20 Feb 2024 12:17:11 +0000, Jon Hunter wrote:
+> Add the current monitors for Jetson Xavier based devices and enable USB
+> device support for Jetson AGX Xavier.
+> 
+> Changes since V1:
+> - Used generic name 'power-sensor' for current monitors
+> 
+> Jon Hunter (3):
+>   arm64: tegra: Add current monitors for Jetson Xavier
+>   arm64: tegra: Add USB device support for Jetson AGX Xavier
+>   arm64: tegra: Add USB Type-C controller for Jetson AGX Xavier
+> 
+> [...]
 
-This behavior sounds similar to what would happen if adding "default
-PINCTRL_NOMADIK".
+Applied, thanks!
 
-Thanks,
+[1/3] arm64: tegra: Add current monitors for Jetson Xavier
+      commit: 525684a0b8ae14389ce440f843ade4023cc64834
+[2/3] arm64: tegra: Add USB device support for Jetson AGX Xavier
+      commit: 4772ac35937a3d91d8695670e11dd5b06692b2f4
+[3/3] arm64: tegra: Add USB Type-C controller for Jetson AGX Xavier
+      commit: c707794bc3f31d9c56efe9967b1631ce7d44ab26
 
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Best regards,
+-- 
+Thierry Reding <treding@nvidia.com>
 
