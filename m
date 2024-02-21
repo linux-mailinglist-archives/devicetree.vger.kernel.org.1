@@ -1,191 +1,119 @@
-Return-Path: <devicetree+bounces-44236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4528C85D29B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 09:32:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1906385D2A4
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 09:38:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67D111C2141D
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 08:32:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4AABD1C211A5
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 08:38:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5BEB3C491;
-	Wed, 21 Feb 2024 08:32:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A9263C493;
+	Wed, 21 Feb 2024 08:38:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pmKMlNEB"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="HMO6CblH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0940826AC9
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 08:32:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 259AF26AC9
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 08:38:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708504333; cv=none; b=h1DpluMtpy/QJnp1PmjYqvlhIpKFsVLJHgKPjcnw7yqqWcV/nitiFVsoYYMlpWGUyeFfyc6dk3kHpZCoLnLmonHn42GNE2zlxG5kTwTxeXwRqula/btHprPFOG5Rm0oE/efiOmpKoaE0tnqNgRMv70xHLpNOcWyAfGqHXoiQhzI=
+	t=1708504703; cv=none; b=JJc8M/ipBMUOMTN4zz79EHaGkUasdb2GaOQI5RKE2/k3Km7KvnvNeYM6D0W1toh2lV/4Hh2Y11sLNb+fMnyqfD6vU+S3kDtzBe1ypQr+GBk5/y6z6WNk5SVr9F200o2h597xpu8tW+Bydztc2pmrTQYVOqHcPy/U61InTK9aRmk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708504333; c=relaxed/simple;
-	bh=sRSdcdgUW77LnHXhmWN7ej8KZgqG5Mf2zjrzhHO5WMI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kd+1Q6bTIDwLKkGTBESvw0FauV+/Ml/u5iK/vNSaanX4QuDhwW64k391lmGOP+OMJRfWmet1aSirvLZLev0PMKWcnx1CXjf80JBVDVufTmIAS2+hh9AqFSh2Hmzh9DC0zOaa3GHSoX0flDq4gHr5N2IbkMot8iz70+jWNzabm14=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pmKMlNEB; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-564e4df00f3so1274445a12.3
-        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 00:32:11 -0800 (PST)
+	s=arc-20240116; t=1708504703; c=relaxed/simple;
+	bh=ofqy1Y7Refuaa9+RVslSj3wum+qn6fGUUPCxAf0lt9Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rICExAPtzhbsfd2mwt+asoVnVBXvnt30miP4L+M9OAHRGAGjsw4l5Dhl6v0y7M+qwSxpFmwXY5PMjIYUK8Jv3bu7vhzzlXpM3ckD2PQKrd1wlvQu9mXVDWVcgRE/8GfvzJicrSTkNYtksGrcc8cRp3ssTv/MCBfdo51fMDvxyLg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=HMO6CblH; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708504330; x=1709109130; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mdaaffL3wD5KD94WUbRUHLkXwdrsOL+Wu2EeIoyFzc4=;
-        b=pmKMlNEBTctzSlnyN/Ul+B2pVC8KyJKlryVsME/yLvz0RZUNVdZg9jCPWDgtJ8l3XH
-         EHPopxZZnpjrndOBwLfi9r0SgP8TosCQlCfWitvqdVB2qQedb2L5qMCdK674mnoI0OMv
-         kJaZ54kVQw8LClqJRqgNY5BjkfcTE6p0kdLCC3W2AlGyNO227HH6/+juRu2UB/I9wbUR
-         FsIj71tL/stam7rXGVLihJsHIyLWk4PYZI/RjJHhR3TrGTv5IEQ6mfuDTqaKoxcfVDLt
-         Ey65I8OQrR0n/UpYGygtJNFTn0XAqPpX/+tr4bS5RSf5ClrwVT51FKMT9xzjPlApA0KT
-         EY5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708504330; x=1709109130;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mdaaffL3wD5KD94WUbRUHLkXwdrsOL+Wu2EeIoyFzc4=;
-        b=jF0LwsFcRtyu0QPV+YF8BxICWn6FX+En0+AY3eHUz7InuUdhlxBYk2whZmUcLgvIHm
-         0Yfdci+FAgUNicszkzVzYrxm8v21vEM4wAkY3HTkC6GluByRvg84Lwxn4qGxc/t/rH2S
-         cakOwji+TSCEZ3Xc3SCbAl/zYol587YFmSP6xXZO2d/160qp2h4ArRs6RBwOweqCtoHD
-         egfJNQkUCLVzYK7HZs9VtK+gMphyslHsZqKmFCzI0W0mi0UsFEpooFijcmtNyWSiUOvv
-         FErieoZpLYJljvDyqYMKzO3RcDqQZAMUl8NyiPX9BZwt01aHM+YkNNDxcgWEoO5/FNWr
-         bA1A==
-X-Forwarded-Encrypted: i=1; AJvYcCXDB9/83MujFNjzZ9bHLUUHMtw3nO/+fpG3K9qTzTRjdDxWHiTKg/aViPiqM/vAAvpyTXIO3JNz4atWCIOYP3KGJFXoxG+BUX5kOg==
-X-Gm-Message-State: AOJu0YwfaENyXVGoVOinzf7hvD49ywtDWL07krC+8kkLcaJ6Ri+8e15y
-	iOwdlk/3RLZdF9Cj/sDMLKxy4c54Ke4R6148JPBqoGZsZYK6wrPWxjKCIXZq3VI=
-X-Google-Smtp-Source: AGHT+IH9KMqx8QDcnCemy8gJRJYvooBAsmB/Xn3nukq19T9gvsWue069jVrFWuwLH/iuRYOvICmeSA==
-X-Received: by 2002:a05:6402:17c4:b0:563:ccd1:26bd with SMTP id s4-20020a05640217c400b00563ccd126bdmr10123229edy.2.1708504330133;
-        Wed, 21 Feb 2024 00:32:10 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id fj21-20020a0564022b9500b00564da28dfe2sm916763edb.19.2024.02.21.00.32.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Feb 2024 00:32:09 -0800 (PST)
-Message-ID: <21ad2752-ad25-451a-b892-6b3b31c1031a@linaro.org>
-Date: Wed, 21 Feb 2024 09:32:07 +0100
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1708504699; x=1740040699;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=4iac42gfs2c+GJVsuPyZQfh8x2edP+ZGzOm+36bFLSM=;
+  b=HMO6CblH9lJTMlA6WGkap3KTrrQ/MnkBcVIyqx9pjE5UJ1Ytj+tT8T/u
+   Z1uVUDulLMqoa33l8gmn5B5WpKOM30WZcm7RGesF2l1O0leWNMuJRnhNZ
+   G4LhGsLF+3Eui3yOvJivhrsHguUYYCWg/opLCyWlowSq83kKrWc2gR+np
+   6fbewnMHnMqjEcBSvS2kfeIdLSoe7vbEhwQAILa2TURdu1OhI0/ejpZwx
+   2iwAQQHwGMsGzhFS45s+HexmM0ZOPgWjQBb9j2yfSaJ47Eml5yIcEd7hp
+   oLzaBSbxwUk40wVkcZWEewddXPYS362iyVEVLGk3Lg+y75+d5XnWxEi60
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.06,175,1705359600"; 
+   d="scan'208";a="35515358"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 21 Feb 2024 09:38:16 +0100
+Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.25])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 9733B280075;
+	Wed, 21 Feb 2024 09:38:16 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, linux@ew.tq-group.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/2] arm64: dts: imx8mn: tqma8mqnl-mba8mx: Add missing USB PHY vbus supply
+Date: Wed, 21 Feb 2024 09:38:20 +0100
+Message-ID: <2596915.Lt9SDvczpP@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20240220153334.2624873-2-alexander.stein@ew.tq-group.com>
+References: <20240220153334.2624873-1-alexander.stein@ew.tq-group.com> <20240220153334.2624873-2-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/5] memory: stm32-fmc2-ebi: add MP25 support
-Content-Language: en-US
-To: Christophe Kerello <christophe.kerello@foss.st.com>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- devicetree@vger.kernel.org
-References: <20240219140202.85680-1-christophe.kerello@foss.st.com>
- <20240219140202.85680-4-christophe.kerello@foss.st.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240219140202.85680-4-christophe.kerello@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-On 19/02/2024 15:02, Christophe Kerello wrote:
-> Add the support of the revision 2 of FMC2 IP.
->      - PCSCNTR register has been removed,
->      - CFGR register has been added,
->      - the bit used to enable the IP has moved from BCR1 to CFGR,
->      - the timeout for CEx deassertion has moved from PCSCNTR to BCRx,
->      - the continuous clock enable has moved from BCR1 to CFGR,
->      - the clk divide ratio has moved from BCR1 to CFGR.
-> 
-> The MP1 SoCs have only one signal to manage all the controllers (NWAIT).
-> The MP25 SOC has one RNB signal for the NAND controller and one NWAIT
-> signal for the memory controller.
-> 
-> Let's use a platform data structure for parameters that will differ
-> between MP1 and MP25.
-
-
-...
-
+Am Dienstag, 20. Februar 2024, 16:33:34 CET schrieb Alexander Stein:
+> VBUS 5V is statically provided to both USB host and on-bard USB-hub.
+>=20
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts | 4 ++++
+>  1 file changed, 4 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts b/=
+arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
+> index c07d59147ab55..5b682dd907578 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
+> @@ -86,6 +86,10 @@ &usbotg1 {
+>  	status =3D "okay";
+>  };
+> =20
+> +&usbphynop1 {
+> +	vbus-supply =3D <&reg_hub_vbus>;
+> +};
 > +
->  	ebi->regmap = device_node_to_regmap(dev->of_node);
->  	if (IS_ERR(ebi->regmap))
->  		return PTR_ERR(ebi->regmap);
-> @@ -1190,9 +1502,11 @@ static int stm32_fmc2_ebi_probe(struct platform_device *pdev)
->  	if (ret)
->  		goto err_release;
->  
-> -	ret = stm32_fmc2_ebi_save_setup(ebi);
-> -	if (ret)
-> -		goto err_release;
-> +	if (ebi->data->save_setup) {
 
-This cannot be NULL.
+Okay, this is kinda confusing. While checking imx8mm platform as well, it t=
+urns out
+vbus-supply in drivers/usb/phy/phy-generic.c is not used at all, because i.=
+MX
+chipidea host doesn't use PHY vbus control at all.
 
-> +		ret = ebi->data->save_setup(ebi);
-> +		if (ret)
-> +			goto err_release;
-> +	}
->  
->  	platform_set_drvdata(pdev, ebi);
->  
-> @@ -1238,7 +1552,9 @@ static int __maybe_unused stm32_fmc2_ebi_resume(struct device *dev)
->  	if (ret)
->  		return ret;
->  
-> -	stm32_fmc2_ebi_set_setup(ebi);
-> +	if (ebi->data->set_setup)
+Please drop this, thanks.
+Alexander
 
-This cannot be NULL.
+>  &iomuxc {
+>  	pinctrl_ecspi1: ecspi1grp {
+>  		fsl,pins =3D <MX8MN_IOMUXC_ECSPI1_SCLK_ECSPI1_SCLK	0x00000146>,
+>=20
 
 
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
-Best regards,
-Krzysztof
 
 
