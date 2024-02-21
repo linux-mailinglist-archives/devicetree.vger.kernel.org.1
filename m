@@ -1,70 +1,70 @@
-Return-Path: <devicetree+bounces-44165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CB9E85CF35
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 05:08:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 980F185CF3C
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 05:14:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B26E41F25415
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 04:08:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BC0CC1C22C14
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 04:14:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F398238F9D;
-	Wed, 21 Feb 2024 04:08:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E14339AC4;
+	Wed, 21 Feb 2024 04:14:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="xMyMoqWJ"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="ltAGKq+e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2528425613
-	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 04:08:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A6D639851
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 04:14:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708488512; cv=none; b=QKc4R1KW2fUuTPNDyBVhA+8voYj2Fi+56RKAD0y3RsHyeVHPFzXE1i1rMSrtMmTRaIVnnHy+dPnQs7sgcttdvSxWn0w2A3dfhUI3Ol54TVarCi2GU0IlsPqs3cEkzSGM9jNUvGSEElSxlSkSOg0ILgl5bV1Vm2QLPJyvDLH2pNE=
+	t=1708488856; cv=none; b=VJOQhK0N2VCUrxFb52VoUEgiKE5q4WNahANjTXS0wKqvjaEr4klBK9zkQXp5jajyNGKC4WXc3OsV6QwgKYKUAW51mgHxkNI8f6moQMVQ8ttTV6wgieNh9bFtqTEZJZFOJtZovNz4CtfUOdZ+Sq17En0x4Y29J/zfKGAGk9lr3Pc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708488512; c=relaxed/simple;
-	bh=VMnZZMlvZpAbCe/9PN4y8l6fqn6fzCdYpCLaJwhENmQ=;
+	s=arc-20240116; t=1708488856; c=relaxed/simple;
+	bh=iv7CH99iRhguDQ1/YjXbTn4+yMkEyHgzrQwytHVXsmo=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aAtrv8JohoRBwqL4FQtPWJfHgAAZnENFCI3l2AWSNvHeWWX7nmmAlx+7D3z/MFIzRxBGqJq6jAI9MdSi1XtKj9hwZ3O9THO+//H4g/m4NxMgq5pwDQLdYfqoshAJ1WWzHUxF43SyMZdm42Aj+Za6MaUrDXc0/NrPgRNQWr0n2Tw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=xMyMoqWJ; arc=none smtp.client-ip=209.85.208.51
+	 To:Cc:Content-Type; b=U2amMVjWFG7h706cVEh5/wTiGCg735vC6lHxSaS0DG4F+umVZTdZvCP8YuTSlwp77dvljIb1t89fvN4QeOJYmZbEQdQL8bdzLRDkmcAP5da6GuRIWZv1HSMDL4SMM9I+JtJGV6jOss3MAHKcP2x4/aZ3kyiVNpojE7Et4fn4ffA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=ltAGKq+e; arc=none smtp.client-ip=209.85.208.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-564e4477b7cso4699a12.1
-        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 20:08:30 -0800 (PST)
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-564e4477b7cso4760a12.1
+        for <devicetree@vger.kernel.org>; Tue, 20 Feb 2024 20:14:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1708488509; x=1709093309; darn=vger.kernel.org;
+        d=google.com; s=20230601; t=1708488852; x=1709093652; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=1vYLUdRHnLOuE5GlvVy5mmDzCcmYulWt5UKno2mI/Ts=;
-        b=xMyMoqWJWUh+y/Z7mD1swhWNCdspx5wwLL/H6thBwHhdCxoeo5NL9HnfVoYpll3wQR
-         FBi23f/6ITJisMLOy/rh/cmGA9ExQLxygiZQwu5Tksbwy264juz64oMyLem1Yts9EJgo
-         lMg+2fsgnmtK+tRuLpxdngmnJQpEvV6bj/aIdqFQPqnV8yai+zFjK34GJqkSKLsRHbtc
-         hE+ZWHamJbUevirArV2knhqefRIezkM8M9v1IBwVydOVRRRkXmoEQWGFoLJylxpen5/N
-         F1PnQbBWEyaPyT2QuCkLfOUAyC3Nr39tCg0gcjiXzOGC/ZX2QOsIql3Qwb894CkvIbvV
-         1zmA==
+        bh=TCa6Ml6GRh+LdklHOgguZfEh9d/lY861XdAuUikozNs=;
+        b=ltAGKq+e1pRtwewINOGDXpaAx3jWSDpDE5UXqojnajW6k25F/HrfoY9CnF3HSEqOX9
+         O+z3CZJPoeDyeXw+uFppwgHZFJBYGsKRwLJSk4WRTPdcj0hcqF70oFozmzubx17gr6TI
+         W8rKFC8WgFyfDaX/5onkLVzmuyBc5lZMNO00Y37JwHA4ZOfylYBmeJWrgx1SwSLTM5Qd
+         BPecGoUf4oAWSnlA3woJQdutHgCLa3f832mP1564IXWV14VlsKpDH/xTrVqvf96kO8aa
+         2PvRJEm8FDyOfdZBz1N+l2EMUWmtfKLCO25XD2OVoH/Z6kdgj2obH1CyxKwoQnA087Lk
+         mjQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708488509; x=1709093309;
+        d=1e100.net; s=20230601; t=1708488852; x=1709093652;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=1vYLUdRHnLOuE5GlvVy5mmDzCcmYulWt5UKno2mI/Ts=;
-        b=nPp4beMBTY37TsnIRRtD4OL2WHI5LQZfNGbtYSgZg68SRB/FluUS5t8lLOLEY066be
-         Ce+tXoNGFrDzGhpwFKG7W/6lzOMw7YWm7/ckWrSmwp9uI+/XHln79Rdq+R7CSWJmCV9A
-         ofT1/l2aetlc/ucgMOQFr58/lBaUl4rt/MwFPdi8rEMKRwx5UM+AhCnGNpYlF2lc23JG
-         2mBZAgl2mk9M2h6UGgRsd9lBHTZVMjliWof2sZqfOMh+588qYhQo8YPwkhsmRqEPdr8N
-         H/gB08ugZ/dcNYD/U8BK7BVr+4BLyeyN3TRf14KaMK1a43l4GFLPPQQxTmAu2NaPTgOi
-         0e7g==
-X-Forwarded-Encrypted: i=1; AJvYcCW35be5CTl3FzaSms7mLA3Z85tJk7AqZGOCW/jVfo5UEVYeThRNFi2gThw7eVC1+Di7aRt0w/xuzlCpbDCH66pIbpqLyr8dOV7DuQ==
-X-Gm-Message-State: AOJu0Yz28oEmpcJVK/ARecjFiCcB3oLVsYovWmqj8K4rmxhMEETgwFco
-	gNmxuwLu9b203MZMbhKMITGo1fm5M+u1elhe65VUrmZ1IlHjKg914Q2E0HJlhBwcuEPS7XQ7F5O
-	Jv3HkCSPUeVxdnWSaA01RH92M/Vd3LIITbbP1
-X-Google-Smtp-Source: AGHT+IHmgqd6Xu5JQrE9v4Rhsl5MKM0/pejNdb3HvU+7d2flqEB0yhf6jyU2v+sB5FmKxqZFYTO435nbWJ8DHnQHhOM=
-X-Received: by 2002:a50:d5d9:0:b0:563:f48f:a5bc with SMTP id
- g25-20020a50d5d9000000b00563f48fa5bcmr47442edj.5.1708488509288; Tue, 20 Feb
- 2024 20:08:29 -0800 (PST)
+        bh=TCa6Ml6GRh+LdklHOgguZfEh9d/lY861XdAuUikozNs=;
+        b=Xn4CIPuxrgOtt7TSM957yNamtZXjVnWfTkDupDVmclJxQQoyXeZlteCIlBVIJ0mmpi
+         TAZBj/WVB0pS0Zav5dAybytFy28cRadjD6MDrwdKTXGuSn4F2QJYHw2qrAwAy3v5wf4K
+         kx+G2yL01tNiz2v+yP5PCdna6L55qPgr/T89RayZAOS/VB5x106faiA1jlJ3pP6sP0/E
+         ih20c+kw7gS+y/moOq//VabRn4BvvDbrgD5eiL2tizd86QHVeVKaspwH9lnuXwqAFeXV
+         N3+MxOFlQG0h1kMtb0LTKW4Y4Jx8ci2eH5GvzzznkpRJWmv9fW4ZixTolyuwYJ0xR80f
+         pFhg==
+X-Forwarded-Encrypted: i=1; AJvYcCXnoSKqlUznfFioKdvZzMzXO/5uLm5q3rfiDbF3O7uOWWQJbSf4gaPUIpzEPiUdXcRYrze1YAoEbY+jbesOulAQR7v6Tb4cgYRjOQ==
+X-Gm-Message-State: AOJu0YyZq+4jUYRIhUS2HYaY5OJHGR+BBTnjpE6B5knBguORCs1d7seD
+	WdMjuiF0RbWPn7kQmIZWCD2q7UuQOrPGxFa5cOJHUO/0yOy9imL3ljlKjCnS8MptPai+tQcfrHP
+	17Fo/EeMlEmayNui2P4nLF4xPGfdN4xIYtJjV
+X-Google-Smtp-Source: AGHT+IEmhFJMlJUUEju8UhhM1aaUnzSKK+rUpO3avm0pyBj9JxssRH7+jbwr7oE7NQv7fjKcKV4K1nsC9iq3UoRUqVE=
+X-Received: by 2002:a50:c30f:0:b0:564:55e5:6ee1 with SMTP id
+ a15-20020a50c30f000000b0056455e56ee1mr107058edb.2.1708488852242; Tue, 20 Feb
+ 2024 20:14:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,14 +73,14 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20240212213147.489377-1-saravanak@google.com> <20240212213147.489377-4-saravanak@google.com>
  <20240214-stable-anytime-b51b898d87af@spud> <CAGETcx-tBjfaLQqmGW=ap2N5FLK_gvTzxskA6sVsr_SUEpvomA@mail.gmail.com>
- <b7fcb71a-e3bf-4f50-89d6-caff9f3303dc@linaro.org>
-In-Reply-To: <b7fcb71a-e3bf-4f50-89d6-caff9f3303dc@linaro.org>
+ <20240215-unstirred-rearrange-d619a2524a63@spud>
+In-Reply-To: <20240215-unstirred-rearrange-d619a2524a63@spud>
 From: Saravana Kannan <saravanak@google.com>
-Date: Tue, 20 Feb 2024 20:07:48 -0800
-Message-ID: <CAGETcx8XBj=vh_e3vyXuj8oQYA3UC4uy9h9K2OmwBxZ2G_ms9Q@mail.gmail.com>
+Date: Tue, 20 Feb 2024 20:13:31 -0800
+Message-ID: <CAGETcx8EBta8dUSELUJ6_ibZABnnhSYX0VEGa8s-CbHFYuskkQ@mail.gmail.com>
 Subject: Re: [PATCH v2 3/4] dt-bindings: Add post-init-supplier property
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+To: Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
 	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
 	Ard Biesheuvel <ardb@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Len Brown <lenb@kernel.org>, 
@@ -92,27 +92,290 @@ Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Feb 17, 2024 at 2:27=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Thu, Feb 15, 2024 at 4:15=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
+te:
 >
-> On 15/02/2024 00:32, Saravana Kannan wrote:
+> On Wed, Feb 14, 2024 at 03:32:31PM -0800, Saravana Kannan wrote:
+> > Hi Conon,
+> >
+> > On Wed, Feb 14, 2024 at 10:49=E2=80=AFAM Conor Dooley <conor@kernel.org=
+> wrote:
+> > >
+> > > On Mon, Feb 12, 2024 at 01:31:44PM -0800, Saravana Kannan wrote:
+> > > > The post-init-supplier property can be used to break a dependency c=
+ycle by
+> > > > marking some supplier(s) as a post device initialization supplier(s=
+). This
+> > > > allows an OS to do a better job at ordering initialization and
+> > > > suspend/resume of the devices in a dependency cycle.
+> > > >
+> > > > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > > > ---
+> > > >  .../bindings/post-init-supplier.yaml          | 101 ++++++++++++++=
+++++
+> > > >  MAINTAINERS                                   |  13 +--
+> > > >  2 files changed, 108 insertions(+), 6 deletions(-)
+> > > >  create mode 100644 Documentation/devicetree/bindings/post-init-sup=
+plier.yaml
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/post-init-supplier.y=
+aml b/Documentation/devicetree/bindings/post-init-supplier.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..aab75b667259
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/post-init-supplier.yaml
+> > > > @@ -0,0 +1,101 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +# Copyright (c) 2020, Google LLC. All rights reserved.
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/post-init-supplier.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Post device initialization supplier
+> > > > +
+> > > > +maintainers:
+> > > > +  - Saravana Kannan <saravanak@google.com>
+> > > > +
+> > > > +description: |
+> > > > +  This property is used to indicate that the device(s) pointed to =
+by the
+> > > > +  property are not needed for the initialization of the device tha=
+t lists this
+> > > > +  property.
+> > >
+> > > > This property is meaningful only when pointing to direct suppliers
+> > > > +  of a device that are pointed to by other properties in the devic=
+e.
+> > >
+> > > I don't think this sentence makes sense, or at least it is not easy t=
+o
+> > > parse. It implies that it can "point to" other properties too
+> >
+> > I don't see how this sentence implies this.
+>
+> Because, to me, it reads as if you can put extra stuff in here that will
+> be ignored if not "pointed to" by another property. The word
+> "meaningful" is what implies that you can.
+>
+> > But open to suggestions on
+> > how to reword it. I don't want to drop this line entirely though
+> > because I'm trying to make it clear that this doesn't make a device
+> > (that's not previously a supplier) into a supplier. It only down
+> > grades an existing supplier to a post device initialization supplier.
+>
+> If you wanna keep it, I would just go for what you said in this
+> response - that this property does not make devices into suppliers and
+> is only to mark existing suppliers as post-init. I think that rules out
+> putting other devices in there.
+
+Sounds good.
+
+> > > - but
+> > > that's not the case. It is only valid to "point to" these suppliers.
+> > > I'd drop this entirely.
+> >
+> > >
+> > > > +
+> > > > +  A device can list its suppliers in devicetree using one or more =
+of the
+> > > > +  standard devicetree bindings. By default, it would be safe to as=
+sume the
+> > > > +  supplier device can be initialized before the consumer device is=
+ initialized.
+> > >
+> > > "it would be safe to assume" seems odd wording to me - I feel like th=
+e
+> > > default is stronger than "safe to assume". I'd just drop the "would b=
+e
+> > > safe to assume and replace with "is assumed".
+> >
+> > Sounds good.
+> >
+> > >
+> > > > +
+> > > > +  However, that assumption cannot be made when there are cyclic de=
+pendencies
+> > > > +  between devices. Since each device is a supplier (directly or in=
+directly) of
+> > > > +  the others in the cycle, there is no guaranteed safe order for i=
+nitializing
+> > > > +  the devices in a cycle. We can try to initialize them in an arbi=
+trary order
+> > > > +  and eventually successfully initialize all of them, but that doe=
+sn't always
+> > > > +  work well.
+> > > > +
+> > > > +  For example, say,
+> > > > +  * The device tree has the following cyclic dependency X -> Y -> =
+Z -> X (where
+> > > > +    -> denotes "depends on").
+> > > > +  * But X is not needed to fully initialize Z (X might be needed o=
+nly when a
+> > > > +    specific functionality is requested post initialization).
+> > > > +
+> > > > +  If all the other -> are mandatory initialization dependencies, t=
+hen trying to
+> > > > +  initialize the devices in a loop (or arbitrarily) will always ev=
+entually end
+> > > > +  up with the devices being initialized in the order Z, Y and X.
+> > > > +
+> > > > +  However, if Y is an optional supplier for X (where X provides li=
+mited
+> > > > +  functionality when Y is not initialized and providing its servic=
+es), then
+> > > > +  trying to initialize the devices in a loop (or arbitrarily) coul=
+d end up with
+> > > > +  the devices being initialized in the following order:
+> > > > +
+> > > > +  * Z, Y and X - All devices provide full functionality
+> > > > +  * Z, X and Y - X provides partial functionality
+> > > > +  * X, Z and Y - X provides partial functionality
+> > > > +
+> > > > +  However, we always want to initialize the devices in the order Z=
+, Y and X
+> > > > +  since that provides the full functionality without interruptions=
+.
+> > > > +
+> > > > +  One alternate option that might be suggested is to have the driv=
+er for X
+> > > > +  notice that Y became available at a later point and adjust the f=
+unctionality
+> > > > +  it provides. However, other userspace applications could have st=
+arted using X
+> > > > +  with the limited functionality before Y was available and it mig=
+ht not be
+> > > > +  possible to transparently transition X or the users of X to full
+> > > > +  functionality while X is in use.
+> > > > +
+> > > > +  Similarly, when it comes to suspend (resume) ordering, it's uncl=
+ear which
+> > > > +  device in a dependency cycle needs to be suspended/resumed first=
+ and trying
+> > > > +  arbitrary orders can result in system crashes or instability.
+> > > > +
+> > > > +  Explicitly calling out which link in a cycle needs to be broken =
+when
+> > > > +  determining the order, simplifies things a lot, improves efficie=
+ncy, makes
+> > > > +  the behavior more deterministic and maximizes the functionality =
+that can be
+> > > > +  provided without interruption.
+> > > > +
+> > > > +  This property is used to provide this additional information bet=
+ween devices
+> > > > +  in a cycle by telling which supplier(s) is not needed for initia=
+lizing the
+> > > > +  device that lists this property.
+> > > > +
+> > > > +  In the example above, Z would list X as a post-init-supplier and=
+ the
+> > > > +  initialization dependency would become X -> Y -> Z -/-> X. So th=
+e best order
+> > > > +  to initialize them become clear: Z, Y and then X.
+> > >
+> > > Otherwise, I think this is a great description, describing the use ca=
+se
+> > > well :)
+> >
+> > Thanks! I always spend more time writing documentation and commit text
+> > than the time I spend writing code.
+> >
+> > >
+> > > > +
+> > > > +select: true
+> > > > +properties:
+> > > > +  post-init-supplier:
+> >
+> > [Merging your other email here]
+> >
+> > > Also, this should likely be pluralised, to match "clocks" "resets"
+> > > "interrupts" etc.
 > >
 > > Good point. Done.
 > >
-> >>> +    # One or more suppliers can be marked as post initialization sup=
-plier
-> >>> +    description:
-> >>> +      List of phandles to suppliers that are not needed for initiali=
-zing or
-> >>> +      resuming this device.
-> >>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> >>> +      items:
-> >>> +        maxItems: 1
-> >>
-> >> Rob's bot rightfully complains here about invalid syntax.
+> > > > +    # One or more suppliers can be marked as post initialization s=
+upplier
+> > > > +    description:
+> > > > +      List of phandles to suppliers that are not needed for initia=
+lizing or
+> > > > +      resuming this device.
+> > > > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > > > +      items:
+> > > > +        maxItems: 1
+> > >
+> > > Rob's bot rightfully complains here about invalid syntax.
 > >
 > > I added these two lines based on Rob's feedback. Is the indentation
 > > that's wrong?
+>
+> Aye, both items: and maxItems: need to lose a level of indent. That
+> said, its not actually restricting anything. I fixed it up locally and
+> you can put as many elements as you like into each phandle and it does
+> not care. Maybe Rob can tell what is going wrong there..
+
+I made that fix and now I'm getting this:
+$ make DT_CHECKER_FLAGS=3D-m dt_binding_check
+DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/post-init-suppliers.yam=
+l
+  DTEX    Documentation/devicetree/bindings/post-init-suppliers.example.dts
+  LINT    Documentation/devicetree/bindings
+  CHKDT   Documentation/devicetree/bindings/processed-schema.json
+/mnt/android/linus-tree/Documentation/devicetree/bindings/post-init-supplie=
+rs.yaml:
+'oneOf' conditional failed, one must be fixed:
+        'unevaluatedProperties' is a required property
+        'additionalProperties' is a required property
+        hint: Either unevaluatedProperties or additionalProperties
+must be present
+        from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+/mnt/android/linus-tree/Documentation/devicetree/bindings/tpm/ibm,vtpm.yaml=
+:
+ignoring, error in schema: properties
+/mnt/android/linus-tree/Documentation/devicetree/bindings/post-init-supplie=
+rs.yaml:
+ignoring, error in schema:
+/mnt/android/linus-tree/Documentation/devicetree/bindings/soc/tegra/nvidia,=
+tegra20-pmc.yaml:
+ignoring, error in schema: allOf: 0: then: properties: pinmux
+/mnt/android/linus-tree/Documentation/devicetree/bindings/net/lantiq,pef225=
+6.yaml:
+ignoring, error in schema: properties: lantiq,data-rate-bps
+/mnt/android/linus-tree/Documentation/devicetree/bindings/post-init-supplie=
+r.yaml:
+ignoring, error in schema:
+/mnt/android/linus-tree/Documentation/devicetree/bindings/iio/pressure/hone=
+ywell,mprls0025pa.yaml:
+ignoring, error in schema: properties: honeywell,pmax-pascal
+/mnt/android/linus-tree/Documentation/devicetree/bindings/iio/pressure/hone=
+ywell,hsc030pa.yaml:
+ignoring, error in schema: properties: honeywell,pmax-pascal
+  DTC_CHK Documentation/devicetree/bindings/post-init-suppliers.example.dtb
+Documentation/devicetree/bindings/post-init-suppliers.example.dtb:0:0:
+/example-0/clock-controller@1000: failed to match any schema with
+compatible: ['vendor,soc4-gcc', 'vendor,soc1-gcc']
+Documentation/devicetree/bindings/post-init-suppliers.example.dtb:0:0:
+/example-0/clock-controller@1000: failed to match any schema with
+compatible: ['vendor,soc4-gcc', 'vendor,soc1-gcc']
+Documentation/devicetree/bindings/post-init-suppliers.example.dtb:0:0:
+/example-0/clock-controller@2000: failed to match any schema with
+compatible: ['vendor,soc4-dispcc', 'vendor,soc1-dispcc']
+Documentation/devicetree/bindings/post-init-suppliers.example.dtb:0:0:
+/example-0/clock-controller@2000: failed to match any schema with
+compatible: ['vendor,soc4-dispcc', 'vendor,soc1-dispcc']
+
+But I guess the "oneOf" error is because the yaml is being treated as
+a description of a DT node and not a schema?
+
+Rob,
+
+Can you let me know how to move ahead with this? I'll do the fixes
+that Conor suggested in v3.
+
+-Saravana
+
+>
 > >
 > > Yeah, I'm trying to run the dts checker, but I haven't be able to get
 > > it to work on my end. See my email to Rob on the v1 series about this.
@@ -125,115 +388,55 @@ zing or
 > > <snip>/Documentation/devicetree/bindings/post-init-suppliers.yaml:
 > > ignoring, error parsing file
 > > ...
+>
+> Yup, that is about right, although you snipped out the actual complaint.
+>
 > >
 > > I also tried to use DT_SCHEMA_FILES so I can only test this one file,
 > > but that wasn't working either:
+> >
+> > $ make DT_CHECKER_FLAGS=3D-m dt_binding_check
+> > DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/post-init-suppliers=
+.yaml
+> > or
+> > $ make DT_CHECKER_FLAGS=3D-m dt_binding_check DT_SCHEMA_FILES=3D<path t=
+o
+> > the .patch file>
+> >
+> > Results in this error early on in the output:
+> > ...
+> > usage: yamllint [-h] [-] [-c CONFIG_FILE | -d CONFIG_DATA]
+> > [--list-files] [-f {parsable,standard,colored,github,auto}] [-s]
+> > [--no-warnings] [-v] [FILE_OR_DIR ...]
+> > yamllint: error: one of the arguments FILE_OR_DIR - is required
+> > ...
+> > /mnt/android/linus-tree/Documentation/devicetree/bindings/post-init-sup=
+pliers.yaml:
+> > ignoring, error parsing file
+> > ...
 >
-> I see the errors immediately during testing, no special arguments needed:
+> That is part of the actual complaint:
 >
-> crosc64_dt_binding_check post-init-supplier.yaml
-> make[1]: Entering directory '/home/krzk/dev/linux/linux/out'
+> make dt_binding_check W=3D1 -j 30 DT_SCHEMA_FILES=3Dpost-init-supplier.ya=
+ml
 >   LINT    Documentation/devicetree/bindings
 >   DTEX    Documentation/devicetree/bindings/post-init-supplier.example.dt=
 s
-> ../Documentation/devicetree/bindings/post-init-supplier.yaml:84:12:
-> [error] syntax error: mapping values are not allowed here (syntax)
+> Documentation/devicetree/bindings/post-init-supplier.yaml:84:12: mapping =
+values are not allowed here
+> make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentatio=
+n/devicetree/bindings/post-init-supplier.example.dts] Error 1
+> make[2]: *** Deleting file 'Documentation/devicetree/bindings/post-init-s=
+upplier.example.dts'
+> make[2]: *** Waiting for unfinished jobs....
+> ./Documentation/devicetree/bindings/post-init-supplier.yaml:84:12: [error=
+] syntax error: mapping values are not allowed here (syntax)
 >   CHKDT   Documentation/devicetree/bindings/processed-schema.json
-> ../Documentation/devicetree/bindings/post-init-supplier.yaml:84:12:
-> mapping values are not allowed in this context
-> make[3]: *** [../Documentation/devicetree/bindings/Makefile:26:
-> Documentation/devicetree/bindings/post-init-supplier.example.dts] Error 1
-> make[3]: *** Deleting file
-> 'Documentation/devicetree/bindings/post-init-supplier.example.dts'
-> make[3]: *** Waiting for unfinished jobs....
-> ../Documentation/devicetree/bindings/post-init-supplier.yaml:84:12:
-> mapping values are not allowed in this context
+> ./Documentation/devicetree/bindings/post-init-supplier.yaml:84:12: mappin=
+g values are not allowed here
 >   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-> /home/krzk/dev/linux/linux/Documentation/devicetree/bindings/post-init-su=
-pplier.yaml:
-> ignoring, error parsing file
-> make[2]: *** [/home/krzk/dev/linux/linux/Makefile:1424:
-> dt_binding_check] Error 2
-> make[1]: *** [/home/krzk/dev/linux/linux/Makefile:240: __sub-make] Error =
-2
-> make[1]: Leaving directory '/home/krzk/dev/linux/linux/out'
+> /stuff/linux-dt/Documentation/devicetree/bindings/post-init-supplier.yaml=
+: ignoring, error parsing file
+> make[1]: *** [/stuff/linux-dt/Makefile:1432: dt_binding_check] Error 2
 > make: *** [Makefile:240: __sub-make] Error 2
-
-I think I was just getting overwhelmed with the sea of error logs I
-saw (for unrelated files). If I don't use the flags it's way too noisy
-and it's not always the first thing that's reported.
-
-This is what I see now and I think I now understand what to look for.
-
-$ make DT_CHECKER_FLAGS=3D-m dt_binding_check
-DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/post-init-suppliers.yam=
-l
-  LINT    Documentation/devicetree/bindings
-./Documentation/devicetree/bindings/post-init-suppliers.yaml:84:12:
-[error] syntax error: mapping values are not allowed here (syntax)
-  CHKDT   Documentation/devicetree/bindings/processed-schema.json
-./Documentation/devicetree/bindings/post-init-suppliers.yaml:84:12:
-mapping values are not allowed in this context
-  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-/mnt/android/linus-tree/Documentation/devicetree/bindings/tpm/ibm,vtpm.yaml=
-:
-ignoring, error in schema: properties
-/mnt/android/linus-tree/Documentation/devicetree/bindings/post-init-supplie=
-rs.yaml:
-ignoring, error parsing file
-/mnt/android/linus-tree/Documentation/devicetree/bindings/soc/tegra/nvidia,=
-tegra20-pmc.yaml:
-ignoring, error in schema: allOf: 0: then: properties: pinmux
-/mnt/android/linus-tree/Documentation/devicetree/bindings/net/lantiq,pef225=
-6.yaml:
-ignoring, error in schema: properties: lantiq,data-rate-bps
-/mnt/android/linus-tree/Documentation/devicetree/bindings/iio/pressure/hone=
-ywell,mprls0025pa.yaml:
-ignoring, error in schema: properties: honeywell,pmin-pascal
-/mnt/android/linus-tree/Documentation/devicetree/bindings/iio/pressure/hone=
-ywell,hsc030pa.yaml:
-ignoring, error in schema: properties: honeywell,pmax-pascal
-  DTEX    Documentation/devicetree/bindings/post-init-suppliers.example.dts
-Documentation/devicetree/bindings/post-init-suppliers.yaml:84:12:
-mapping values are not allowed in this context
-make[2]: *** [Documentation/devicetree/bindings/Makefile:26:
-Documentation/devicetree/bindings/post-init-suppliers.example.dts]
-Error 1
-make[2]: *** Deleting file
-'Documentation/devicetree/bindings/post-init-suppliers.example.dts'
-make[1]: *** [/mnt/android/linus-tree/Makefile:1432: dt_binding_check] Erro=
-r 2
-make: *** [Makefile:240: __sub-make] Error 2
-
->
->
-> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sou=
-rces-with-the-devicetree-schema/
->
-> I assume you develop on some older trees, because both next and v6.8-rc1
-> work... or standard issues: old dtschema, old yamllint.
->
-> I am afraid you do it for some old Android kernel... :(
-
-No, I always develop on Linus's tree and test it on an android kernel
-that's behind Linus's tree by a month or so.
-
-My yamllint version is 1.32.0, but until 2 weeks ago the latest
-yamllint version was 1.33.0.
-
-And dt-schema is  2022.08.2-5 and I had to revert this from Linus's
-tree to get it to work:
-b32dcf23a03e dt-bindings: Drop kernel copy of common reserved-memory bindin=
-gs
-
-Unfortunately, AFAIK, I don't have permissions to change the package
-repo, so can't really install a newer version.
-
-Thanks for the tips.
-
--Saravana
-
-
-
--Saravana
 
