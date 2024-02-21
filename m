@@ -1,114 +1,96 @@
-Return-Path: <devicetree+bounces-44411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12B9A85E236
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 16:59:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5F3985E248
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 17:01:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A67641F25776
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 15:59:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7FBBE283D80
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 16:01:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B767C81AA2;
-	Wed, 21 Feb 2024 15:57:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55B4580C12;
+	Wed, 21 Feb 2024 15:59:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="gGYFQU56"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p2+Irjth"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1C1D80C19;
-	Wed, 21 Feb 2024 15:57:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EF4643AAB;
+	Wed, 21 Feb 2024 15:59:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708531032; cv=none; b=Gi7uuJ8B0+oPKmwyr0Zk1BEZ0CPXSuia2e68i9J59y1oKvxTw92MwujDVtpzGTNTCFUYqqsZ2GjxmEeovTKDeTkuG1b/Y3n1QxtU9h1y4ApQ2tFTaAwCkB/FDCau0twfVvoTZ6KY/9sZIBambxBbLi8DzmhRHHcJ/nFX5VLtj24=
+	t=1708531160; cv=none; b=XRem9xznB+S9wCpClMRUCNjrcIFCVw++DmriA08IjtlavXEKUrOYCXjYt5GLHmfyjRMDH48FVnCJWHsc17WvG/kYgepWH5g3bH4LPtCwwtPrOryNeCnLE2FSVWVaGHBi1VkvF4IH7tUiH+e9dQn9NMk/CpG2wgmeUy2H3HC9n34=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708531032; c=relaxed/simple;
-	bh=oFTqTVOhHyDJ5iYE8i8hwXVq+ixGFDMjQjac4S4aVmQ=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:From:Subject:Cc:
-	 References:In-Reply-To; b=t0swwV0q1qSEiXdZf7fH73uUZqlNZK91hi5y551hYEyuPLLMjQQGUkZUilABcXLCGJTDt0GoGSwpRM6HdOJBI//czC/A0XgDgJSFRQOeE4OP1CSQamg4qgVDifoYsYS+dH3glkf4b4lQXC84e0aYfFAFI3StEWUTOD0jNz/3cJk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=gGYFQU56; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E2B85C000D;
-	Wed, 21 Feb 2024 15:57:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1708531027;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+ZfXtDRePUcMFundzZXNFuj+fqBl14FactsX+t+og0A=;
-	b=gGYFQU56WVJfwGdXAyVvjtXT0qNdEkBQSjeig/nT1NCNXHpjmwTTlMZm/91p2oVbqfvlCy
-	Ksl62koMCFbE9sOvKBQCLHCLBT7RSAM1S83SYeHq8nGNqGRs7RpfbgmJ+S5wE7yBFulkRS
-	ZhTBCPDR+JvIl/fB2WEG0xQzNv1ckP4phguN5HcYYFG3WE3ZI+tZZBcy6CvhXZj0aENgwp
-	JnNn09CQlZgOxgPavln5KGAFVvADqKYcmDDQUG+Ijstk4bZVJiwOViE4s++YVGAlNI5lQN
-	tHZmhzqdAZqrn00ULmx/netaZlbaFvaLLFLJfdoysx7j9Kmd/LryfAKFy+ME+g==
+	s=arc-20240116; t=1708531160; c=relaxed/simple;
+	bh=wzMn7N6GEbr+AfMO+gRxUUuRVYZP5iP83MZxHmQMiEA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=N0/pCp5iGTAMaxV/4+lJJQCsu8cQUyaMJeq4yaFyFR6UxFZ8qH5+FiacdSRXkzKSDNvy7zQ+BYaDlmNAXtsHcc4R2ftEixuMxUASqF7T2d7HKhL8k6o8/5XPTzd5lfQtjRwU0cHXAuN/eU5HNoCGasM5rbqhGdlA+XmLcE8Ss2k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p2+Irjth; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9230FC433C7;
+	Wed, 21 Feb 2024 15:59:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708531159;
+	bh=wzMn7N6GEbr+AfMO+gRxUUuRVYZP5iP83MZxHmQMiEA=;
+	h=From:To:Cc:Subject:Date:From;
+	b=p2+IrjthXJUqyxlAB8oa2fPoOALqBc/eMw1FjuvbQqAlhQWy/R7rECLc6dP35JxPL
+	 o3W8x1pK+HyIdN3m+/6D76x2ZeUYN9fH3OLLs9E2OQXf0oMhiS1b3Hnw94bmlE5RlN
+	 TuMRNEkxRQC+301wy4ArUm8dGTt3FHLRH0wJN3tlGne7TxOthraBoZLnZPAo9EhXfY
+	 54TPXv50b5vbrJF82tSj1i5E8NS8MjH2DBZAz+9382IigZvTJzbS0ZKHDaXUKS1by3
+	 GEu0XbTxkf6S9O8TvJk5cGUkFWCbITe37O32vwjyoDQPK6Ci/fQSPlLCQDHVf03DZY
+	 akoaB7bHJ4cBA==
+From: Michael Walle <mwalle@kernel.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: devicetree@vger.kernel.org,
+	Sean Wang <sean.wang@mediatek.com>,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Michael Walle <mwalle@kernel.org>
+Subject: [PATCH v3 1/2] dt-bindings: arm64: mediatek: add Kontron 3.5"-SBC-i1200
+Date: Wed, 21 Feb 2024 16:59:04 +0100
+Message-Id: <20240221155905.1217340-1-mwalle@kernel.org>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 21 Feb 2024 16:57:04 +0100
-Message-Id: <CZAVP96SON5X.2KDT24P963WZ9@bootlin.com>
-To: "Bartosz Golaszewski" <brgl@bgdev.pl>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH 13/23] gpio: nomadik: fix offset bug in nmk_pmx_set()
-Cc: "Linus Walleij" <linus.walleij@linaro.org>, "Rob Herring"
- <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Philipp Zabel" <p.zabel@pengutronix.de>, "Thomas Bogendoerfer"
- <tsbogend@alpha.franken.de>, <linux-gpio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <linux-mips@vger.kernel.org>,
- "Gregory CLEMENT" <gregory.clement@bootlin.com>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-X-Mailer: aerc 0.15.2
-References: <20240214-mbly-gpio-v1-0-f88c0ccf372b@bootlin.com>
- <20240214-mbly-gpio-v1-13-f88c0ccf372b@bootlin.com>
- <CAMRc=MdwAQUgc=LP45r-j0UCtN1gzPg9_y3hrbQhCyH91D=W-g@mail.gmail.com>
-In-Reply-To: <CAMRc=MdwAQUgc=LP45r-j0UCtN1gzPg9_y3hrbQhCyH91D=W-g@mail.gmail.com>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-Hello,
+Add the compatible string for the Kontron 3.5"-SBC-i1200 single board
+computer.
 
-On Mon Feb 19, 2024 at 4:54 PM CET, Bartosz Golaszewski wrote:
-> On Wed, Feb 14, 2024 at 5:24=E2=80=AFPM Th=C3=A9o Lebrun <theo.lebrun@boo=
-tlin.com> wrote:
-> >
-> > Previously, the statement looked like:
-> >
-> >     slpm[x] &=3D ~BIT(g->pins[i]);
-> >
-> > Where:
-> >  - slpm is a unsigned int pointer;
-> >  - g->pins[i] is a pin number which can grow to more than 32.
-> >
-> > The expected shift amount is a pin bank offset.
-> >
-> > This bug does not occur on every group or pin: the altsetting must be
-> > NMK_GPIO_ALT_C and the pin must be 32 or above. It is possible that it
-> > occurred. For example, in pinctrl-nomadik-db8500.c, pin group i2c3_c_2
-> > has the right altsetting and has pins 229 and 230.
-> >
-> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
->
-> Maybe add a Fixes: tag and put it at the beginning of the series so
-> that it can go upstream earlier as a fix?
+Signed-off-by: Michael Walle <mwalle@kernel.org>
+---
+v3:
+ - drop description and add to mt8395 existing entry
 
-I'll see how it works out because the fix depends on helpers added in
-this series. I'll be reworking that.
+v2:
+ - convert enum to const as there is only one specific board
+---
+ Documentation/devicetree/bindings/arm/mediatek.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Regards,
+diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+index 09f9ffd3ff7b..29ebe1f9c1d2 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek.yaml
++++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+@@ -353,6 +353,7 @@ properties:
+           - const: mediatek,mt8365
+       - items:
+           - enum:
++              - kontron,3-5-sbc-i1200
+               - mediatek,mt8395-evk
+               - radxa,nio-12l
+           - const: mediatek,mt8395
+-- 
+2.39.2
 
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
