@@ -1,128 +1,259 @@
-Return-Path: <devicetree+bounces-44294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D424085D607
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 11:49:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBFC385D616
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 11:53:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F44C283D15
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 10:49:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85A722846AA
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 10:52:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CB263A1CB;
-	Wed, 21 Feb 2024 10:49:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C5423DB86;
+	Wed, 21 Feb 2024 10:52:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OYsFWyE/"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="iGVFLfoU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08B413DB8C;
-	Wed, 21 Feb 2024 10:49:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52D393EA72;
+	Wed, 21 Feb 2024 10:52:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708512576; cv=none; b=o8qMdGpomAuHCeWw7wvq7hsbz25YUPaDHdHI+N8CX8G65KRifHq4cLD9/xTR83QIlnOi6cMQfGPdCZr5U7eXLtyVQoOggVAQ+NEkf56tYvHGGdDRRiNkDdzNgnIoHDsQdv+EQ1Te7IwaIppVoGYXIje+o2zlQmVt0PZzDSEHiFY=
+	t=1708512775; cv=none; b=QmTE+qRHB1ImufhpNwsAkGZr9udMcYIbDXevrgHtcxam/LZxUkGbweuIDQY14Yalc3lb6EAB5OBn+0f95EYjM2mZwkgYU0h4wRcJodd7cUPnbeS0EPq2zwxADOnEYsx0dUc8eU7k0p4Qj7iuAFfnljpI7ykMKjQ36vKdLJ4wsfo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708512576; c=relaxed/simple;
-	bh=arxOax1Fal/10bdeaxUbFAhv0i0ETEjU7HQwbaIn75g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TqVKbwCtgFtz/g+2yFKPkGri/StPjoJDqe7qf3j4GEyeg5dyff0K0wF1fxTNjpoGcQEaDP6xT8sX8zhyBazHmKwdnVRTJtCNDi8dh4QxVe48zhaNbL1kUz8ptECqTx2EFNHuJVuQ6Qr6MZaKGebskU/gaSnktehrk2AviwRFmMQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OYsFWyE/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89CD3C43390;
-	Wed, 21 Feb 2024 10:49:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708512575;
-	bh=arxOax1Fal/10bdeaxUbFAhv0i0ETEjU7HQwbaIn75g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OYsFWyE/axhIQyem8BlEb5Ux6m0afNO6l13t/w6dbXBZgrmIJqP9sVdkEdmxr4B0U
-	 avzMjmA1I49P+Bpx3W+kUjbSUdRo5iZG79GKt9wN6PZ9D7g44BTG1tVu6lBMGqgP/g
-	 r/cup2peMrEjBECspg5qHvQNbViQ7EgesHMR39ONcLFExoMUsZ65ZeLAAnVpbcVUSh
-	 ZOysjfBS4YmYCkGJalQnzgDnxLlJ88OjTB4ub9w9NYCEBG45erbSvQJ/r7pvNj/s5+
-	 qbYMLvcrR++Ytd5md6atdT0c903u1FXjCbl8tymwS1+dI3205R2la9I4XhlGFgBL7G
-	 M8abO1W7lgXsw==
-Date: Wed, 21 Feb 2024 11:49:27 +0100
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: bhelgaas@google.com, cassel@kernel.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, festevam@gmail.com, helgaas@kernel.org,
-	hongxing.zhu@nxp.com, imx@lists.linux.dev, kernel@pengutronix.de,
-	krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
-	kw@linux.com, l.stach@pengutronix.de,
-	linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	manivannan.sadhasivam@linaro.org, robh@kernel.org,
-	s.hauer@pengutronix.de, shawnguo@kernel.org
-Subject: Re: [PATCH v11 07/14] dt-bindings: imx6q-pcie: Clean up
- irrationality clocks check
-Message-ID: <ZdXVN17SogJG1RgZ@lpieralisi>
-References: <20240220161924.3871774-1-Frank.Li@nxp.com>
- <20240220161924.3871774-8-Frank.Li@nxp.com>
+	s=arc-20240116; t=1708512775; c=relaxed/simple;
+	bh=mANM8Mj17utuO74C4GVIckTC6XGo+k2ahYlLtoQ2An8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QyRA2X6FuOegKSAQszopsYJfWC9tGZJeIS8b1h4i4BBLIJjMjx/bU5QMZfj1mG8d26q3JRYl4nynYDp5mUVYD0HhZrWq2dD67iR2E8QHxpHHb6FWGTVmfeeUN5SV79nXU6ls4UwZRF7Cul4+c0D+jR/Tq7VNS8K88MrQgQCMgzc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=iGVFLfoU; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1708512771;
+	bh=mANM8Mj17utuO74C4GVIckTC6XGo+k2ahYlLtoQ2An8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=iGVFLfoU0uUorDxu3xhcQFffIKP/1Er5IQxtwGNk0oHmftuGr6UCNYN7hWJebCQp1
+	 j3ba1suU3gSQB0kF80g3wM36DZ1J0CNnCmVnjBubm9WCNkEVDFkrZLrCcb5FbuqZd2
+	 3K8rI79Ykphdi0n0BmKrRecjFRVlbBV0ofRwC2MfO749TCG0xxK4aSivhuJBUjSQnq
+	 /fCbnGsmLoSw8iK8SFzAtXKLfkJehv+Zr/OA6dti0mf3FVhuk66E9sOnnN1kW4L/Ly
+	 k0Vn4HuuCB7Lo9PqEop5KOz/G3EJTGFzGDgV6pMFJze05+fXsWGxmQc+M5DZ543CN0
+	 IEFXA7afZcfLw==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 54CFF3781FE6;
+	Wed, 21 Feb 2024 10:52:50 +0000 (UTC)
+Message-ID: <80e92209-5578-44e7-bd4b-603a29053ddf@collabora.com>
+Date: Wed, 21 Feb 2024 11:52:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240220161924.3871774-8-Frank.Li@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/4] arm64: dts: mediatek: Add Cudy WR3000 V1
+Content-Language: en-US
+To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Chen-Yu Tsai <wenst@chromium.org>, Hsin-Yi Wang <hsinyi@chromium.org>,
+ =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
+ Heiko Stuebner <heiko.stuebner@cherry.de>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Chris Morgan <macromorgan@hotmail.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Sean Wang
+ <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-kernel@vger.kernel.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>
+References: <20240221073524.20947-1-zajec5@gmail.com>
+ <20240221073524.20947-5-zajec5@gmail.com>
+ <2fdf724e-4994-4873-971a-56c19b9fc471@collabora.com>
+ <b4e8d3c6-5113-4324-9af5-c4e89cd89349@gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <b4e8d3c6-5113-4324-9af5-c4e89cd89349@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Irrationality ? I think you mean "duplicate" or "redundant" ?
+Il 21/02/24 11:18, Rafał Miłecki ha scritto:
+> On 21.02.2024 11:11, AngeloGioacchino Del Regno wrote:
+>> Il 21/02/24 08:35, Rafał Miłecki ha scritto:
+>>> From: Rafał Miłecki <rafal@milecki.pl>
+>>>
+>>> Cudy WR3000 V1 is an MT7981B (AKA Filogic 820) based wireless router. It
+>>> has 256 MiB of RAM, some LEDs & buttons and (not described yet) 4
+>>> Ethernet ports.
+>>>
+>>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+>>> ---
+>>>   arch/arm64/boot/dts/mediatek/Makefile         |  1 +
+>>>   .../dts/mediatek/mt7981b-cudy-wr3000-v1.dts   | 74 +++++++++++++++++++
+>>>   2 files changed, 75 insertions(+)
+>>>   create mode 100644 arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dts
+>>>
+>>> diff --git a/arch/arm64/boot/dts/mediatek/Makefile 
+>>> b/arch/arm64/boot/dts/mediatek/Makefile
+>>> index 37b4ca3a87c9..96da4ad640aa 100644
+>>> --- a/arch/arm64/boot/dts/mediatek/Makefile
+>>> +++ b/arch/arm64/boot/dts/mediatek/Makefile
+>>> @@ -8,6 +8,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-evb.dtb
+>>>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-x20-dev.dtb
+>>>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-rfb1.dtb
+>>>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-bananapi-bpi-r64.dtb
+>>> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt7981b-cudy-wr3000-v1.dtb
+>>>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7981b-xiaomi-ax3000t.dtb
+>>>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-acelink-ew-7886cax.dtb
+>>>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3.dtb
+>>> diff --git a/arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dts 
+>>> b/arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dts
+>>> new file mode 100644
+>>> index 000000000000..cb36a089518a
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dts
+>>> @@ -0,0 +1,74 @@
+>>> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+>>> +
+>>> +/dts-v1/;
+>>> +#include <dt-bindings/input/input.h>
+>>> +#include <dt-bindings/gpio/gpio.h>
+>>> +#include <dt-bindings/leds/common.h>
+>>> +
+>>> +#include "mt7981b.dtsi"
+>>> +
+>>> +/ {
+>>> +    compatible = "cudy,wr3000-v1", "mediatek,mt7981b";
+>>> +    model = "Cudy WR3000 V1";
+>>> +
+>>> +    memory@40000000 {
+>>> +        reg = <0 0x40000000 0 0x10000000>;
+>>> +        device_type = "memory";
+>>> +    };
+>>> +
+>>> +    keys {
+>>> +        compatible = "gpio-keys";
+>>> +
+>>> +        key-wps {
+>>> +            label = "WPS";
+>>> +            gpios = <&pio 0 GPIO_ACTIVE_LOW>;
+>>> +            linux,code = <KEY_WPS_BUTTON>;
+>>> +        };
+>>> +
+>>> +        key-reset {
+>>> +            label = "RESET";
+>>> +            gpios = <&pio 1 GPIO_ACTIVE_LOW>;
+>>> +            linux,code = <KEY_RESTART>;
+>>> +        };
+>>> +    };
+>>> +
+>>> +    leds {
+>>> +        compatible = "gpio-leds";
+>>> +
+>>> +        led-0 {
+>>> +            function = LED_FUNCTION_WAN;
+>>> +            color = <LED_COLOR_ID_BLUE>;
+>>> +            gpios = <&pio 5 GPIO_ACTIVE_LOW>;
+>>
+>> Can we please order those properties alphabetically, as it doesn't impact
+>> on human readability in any way?
+>> Just a nitpick, anyway.
+>>
+>> color = <LED_COLOR_ID_BLUE>;
+>> function = LED_FUNCTION_WAN;
+>> gpios = <&pio 5 GPIO_ACTIVE_LOW>;
+> 
+> If I understand [1] correctly alphabetical / alpha-numerical order
+> applies to non-addresses nodes only.
+> 
+> Here I put "function" first as that seemed more important than a color.
+> 
+> Perhaps you could suggest an addition to Devicetree Sources (DTS) Coding
+> Style or point me to the missed part, please?
+> 
+> [1] 
+> https://www.kernel.org/doc/html/next/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node
+> 
+> 
 
-Lorenzo
+I didn't say that this was *mandatory*, but since alphanumeric ordering in device
+trees is actually a thing for nodes, this could be as well applied to properties
+inside when this doesn't impact on human readability.
 
-On Tue, Feb 20, 2024 at 11:19:17AM -0500, Frank Li wrote:
-> The bindings referencing this file already define these constraints for
-> each of the variants, so the if not: then: is redundant.
+As far as I'm aware, I'm not the only maintainer asking for that (am I?!)
+
+If you've got any *strong opinion* about having `function` as the first property,
+I'm full ears, and I will be okay with that. No problem on my side, I'm open for
+alternatives when those make sense.
+
 > 
-> Acked-by: Rob Herring <robh@kernel.org>
-> Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
+>>> +        };
+>>> +
+>>> +        led-1 {
+>>> +            function = LED_FUNCTION_WLAN_2GHZ;
+>>> +            color = <LED_COLOR_ID_BLUE>;
+>>> +            gpios = <&pio 6 GPIO_ACTIVE_LOW>;
+>>> +        };
+>>> +
+>>> +        led-2 {
+>>> +            function = LED_FUNCTION_WLAN_5GHZ;
+>>> +            color = <LED_COLOR_ID_BLUE>;
+>>> +            gpios = <&pio 7 GPIO_ACTIVE_LOW>;
+>>> +        };
+>>> +
+>>> +        led-3 {
+>>> +            function = LED_FUNCTION_LAN;
+>>> +            color = <LED_COLOR_ID_BLUE>;
+>>> +            gpios = <&pio 9 GPIO_ACTIVE_LOW>;
+>>> +        };
+>>> +
+>>> +        led-4 {
+>>> +            function = LED_FUNCTION_STATUS;
+>>> +            color = <LED_COLOR_ID_BLUE>;
+>>> +            gpios = <&pio 10 GPIO_ACTIVE_LOW>;
+>>> +        };
+>>> +
+>>> +        led-5 {
+>>> +            function = "online";
+>>
+>> Uhm, what does "online" mean?
+>>
+>> Are you sure that you can't use any of the LED_FUNCTION_XXX standard definitions?
 > 
-> Notes:
->     Change from v7 to v8
->     - add Manivannan Sadhasiva's Ack tag
->     Change from v6 to v7
->     - rewrite git commit message by using simple words
->     Change from v5 to v6
->     - rewrite git commit message and explain why remove it safely.
->     - Add Rob's Ack
->     Change from v1 to v4
->     - new patch at v4
+> This device has:
+> 1. "WAN Port" LED that indicates "WAN Port has connection" state
+
+Just a curiosity: is the WAN port ethernet, fiber or what?
+(to entirely clarify in my brain if that LED is a carrier detect indicator,
+but doesn't matter for this patch, it's really just a personal curiosity and
+nothing else)
+
+> 2. "Internet" LED that indicates "Connected to the Internet" state
 > 
->  .../bindings/pci/fsl,imx6q-pcie-common.yaml      | 16 ----------------
->  1 file changed, 16 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml
-> index d91b639ae7ae7..0c50487a3866d 100644
-> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml
-> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml
-> @@ -150,22 +150,6 @@ allOf:
->              - {}
->              - const: pcie_phy
->              - const: pcie_aux
-> -  - if:
-> -      properties:
-> -        compatible:
-> -          not:
-> -            contains:
-> -              enum:
-> -                - fsl,imx6sx-pcie
-> -                - fsl,imx8mq-pcie
-> -                - fsl,imx6sx-pcie-ep
-> -                - fsl,imx8mq-pcie-ep
-> -    then:
-> -      properties:
-> -        clocks:
-> -          maxItems: 3
-> -        clock-names:
-> -          maxItems: 3
->  
->    - if:
->        properties:
-> -- 
-> 2.34.1
-> 
+> I couldn't find any define that would fit Internet access LED case.
+
+I was imagining something like that, but wasn't sure, so asking you was the best
+choice.
+
+I wonder if it makes sense to add a "wan-online" or "wan-connected" or .. I don't
+know, some definition that makes common sense, to dt-bindings/leds/common.h to
+somewhat standardize the function for that usecase?
+
+One thing I'm (mostly) sure of, it makes sense to have the "wan-" prefix before
+any word (because you can have sorts of authenticated LANs as well).
+
+I don't think that there's anything hugely restrictive that would prevent you
+from doing that: there are even "player-[1-5]" definitions for game controllers,
+and yours is not the first router that I physically see with my own eyes that
+has such a LED for that state.
+
+After all, what's going to turn on that LED is userspace, and if we can get one
+that works for all (without custom functions for each router), why not :-)
+
+
 
