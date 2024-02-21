@@ -1,141 +1,84 @@
-Return-Path: <devicetree+bounces-44352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADDD885D9E7
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 14:24:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C4FC85D9FF
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 14:26:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 083BAB21790
-	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 13:24:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 32B02282646
+	for <lists+devicetree@lfdr.de>; Wed, 21 Feb 2024 13:26:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6796476C85;
-	Wed, 21 Feb 2024 13:23:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KKfEiYj/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C35CE7E774;
+	Wed, 21 Feb 2024 13:24:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A723F53816;
-	Wed, 21 Feb 2024 13:23:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52FFB7E772
+	for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 13:24:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708521835; cv=none; b=CPTEOxBYySQa98PBii3MIYEGmWGO3h8QyRudNxcmQU1GHlLc03m0eEZm0Daz2Uq+FkwjnoUmm0nvCIbpdKzlTX4/u+rDWDJmqptld5KTjUcvxjkUTIQmakkZWEcwTcPBKo0gLxtWZTcJkX7FJcobiobhplDkWLhiV5znaF80H9g=
+	t=1708521874; cv=none; b=Sw9vE2AzLIhs9If+y4xTxoUXxSCKmHdL42qm5KpZWKeT+5IEE7hut8JMwAiTqUSZ0MDcEAzLmzljC+gul4oO7ttr5jc5ofAuqPVt5E1s8Y2XQcpo5J0q2Q2LthFzea7I9ecuOj+7cbRJ0s9yX2nBKBD99HwHdP6SSD3AhN+m9TY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708521835; c=relaxed/simple;
-	bh=7cyNJ515me6l3XFmqj5aB+dIDuK/5jXCgnSutXO+HsE=;
+	s=arc-20240116; t=1708521874; c=relaxed/simple;
+	bh=qEJkDHFlcaMCT3yh6MM8qc2RcuGT84nKmTLuSreRygo=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=MCUMTHPW3Sq4P/2DHiJNp3L79Fc2WYbn0WQF/WDq7SlFNGOn0+8IX3H4+bA06A9iBhrpXbnqx6rfG0YxmXs04XWD8FIR3s4R56snyRKYrA9UtLBCe5sqkHAIDPTt6jd1uv2bFJqnKP/KaylCLdSxs1NjKVY6R+4d9he1WENpGdo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KKfEiYj/; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a3e8c1e4aa7so75104866b.2;
-        Wed, 21 Feb 2024 05:23:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708521832; x=1709126632; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=TYHh7SiHeNTNK2tXpyXWlj0JF7DBAfbrFEvAlcv1JZ8=;
-        b=KKfEiYj/QJRTVhmKA8HztfLGKEHSkgiCMrd/qhQeP5AzKXTdrUUgo1l61WmDvRXxI0
-         EjabUoeYJEDELifGMaP2xVhsDYXRBfxKkgcCLGeMWzrqnrwm3STqQrkfUhk64/NMkN4j
-         joZBdiadolhsrHQhquMbpRsa+YeaMMntCCNcJrolN4skNgcmoxOVJRJya//3rrOVe5zU
-         3L+1rA982cma1GQ7/KHZlq1Z8TJfi7N0LgonOv3/Sua4K4xy0dSe+3vATqk7Eoj9DC0m
-         7r273HLMME9SfH7g/dmMTs/TlXDHSfb/UHdjSoCxUoU7R82In+VD5qtWT8XdquYkSqJx
-         AGMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708521832; x=1709126632;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TYHh7SiHeNTNK2tXpyXWlj0JF7DBAfbrFEvAlcv1JZ8=;
-        b=MpDBuZNNNFtBQQrtUGIsuxSxRmRA2Z1A6jv19UvfIgNgPcjoCB/9FD7XBXrTmKRD74
-         36XPJ7+/He1r1sk+juxgo/oDvUO8V3akNgZyZKc+ccp8F22P9T4MsFSUFmpJWpQeu00c
-         Bcipvi1evsvETnmga4lCOyQcEwbrQNaWPz4r2/DscXa72ginNj4HXs0WWKP2iSYfDP/G
-         8vAbvAj+p+GGGW4NEVxM8ODqN+rCBkr9r+isnyROe0fZzC1QLVhMtSDHOrnCHhq/iGiv
-         6lKCbn4QP/0J2S/LtRcmE4ipkaR78E6Db0HCXKM2FSaCBQkNk0nH7DE1Pb3l4ribiatd
-         1c3A==
-X-Forwarded-Encrypted: i=1; AJvYcCWYlvHMhiw9hEER2WZXzT4ndGJFNZyG8PZPh+F5xoUn1jP1uxDlbRqn16jXf9lFjHocNJMi3cnWzkLqydNtbRU+zZOXZdThyyvdUI1zgXWfajrNPyRZpYwZq0Dfei5SR/E+JakCykssPKbupAwLIoFEti1BIE5QUvmtKE1X0KoC4Q9zRQ==
-X-Gm-Message-State: AOJu0YzD4azQurbRn/tnpxo3cgWE1PuZzToiivbqira0Nu3xj1WOxiU6
-	UiXSGLrAcjHOc483Fxs9OODkLE/SL6GJHmb2gPWOiTTJ6nllSzcn
-X-Google-Smtp-Source: AGHT+IGV6fsUIv4DXC3rekvSLt61Ux/puLB88XNo2FdXL4dpAuVGpy8ZBFyDqHuYlLeYX4XBP6bEDg==
-X-Received: by 2002:a17:906:abcf:b0:a3f:2ffd:c683 with SMTP id kq15-20020a170906abcf00b00a3f2ffdc683mr1533014ejb.62.1708521831730;
-        Wed, 21 Feb 2024 05:23:51 -0800 (PST)
-Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
-        by smtp.gmail.com with ESMTPSA id lx16-20020a170906af1000b00a3e67585addsm3688229ejb.130.2024.02.21.05.23.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Feb 2024 05:23:51 -0800 (PST)
-Message-ID: <c92c4c71f433c7375588e832d3c084a50190a1b5.camel@gmail.com>
-Subject: Re: [PATCH v5 5/5] iio: amplifiers: hmc425a: add support for
- LTC6373 Instrumentation Amplifier
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Dumitru Ceclan <mitrutzceclan@gmail.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Jonathan Cameron
- <jic23@kernel.org>,  Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Ceclan Dumitru <dumitru.ceclan@analog.com>
-Date: Wed, 21 Feb 2024 14:23:51 +0100
-In-Reply-To: <20240220153553.2432-6-mitrutzceclan@gmail.com>
-References: <20240220153553.2432-1-mitrutzceclan@gmail.com>
-	 <20240220153553.2432-6-mitrutzceclan@gmail.com>
+	 Content-Type:MIME-Version; b=bMQ7l4Tbq6Fqlc45p3vNsAoEEdwJNVbKmeD9Q89sypu62apsbl4jcjq9Ui82jW9khIrCXhyhxB6e83n0Cde2CUiXkS4ggr8J8iyI/jYILgBhb6Y2In0E7sbh+tg2a7HR3UYSh5TVbntGIZ8k7kU1mMqmTlWFu6O21ox6y648ftw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rcmaB-0002t3-7t; Wed, 21 Feb 2024 14:24:19 +0100
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rcma8-00238N-Vr; Wed, 21 Feb 2024 14:24:16 +0100
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rcma8-0009Is-2z;
+	Wed, 21 Feb 2024 14:24:16 +0100
+Message-ID: <13e6d73ec0db159e4f34b8dbc7c7305f0131db84.camel@pengutronix.de>
+Subject: Re: [PATCH v3 2/2] irqchip: Add StarFive external interrupt
+ controller
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Changhuang Liang <changhuang.liang@starfivetech.com>, Thomas Gleixner
+ <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Ley Foon Tan <leyfoon.tan@starfivetech.com>, Jack Zhu
+	 <jack.zhu@starfivetech.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Date: Wed, 21 Feb 2024 14:24:16 +0100
+In-Reply-To: <20240221022647.5297-3-changhuang.liang@starfivetech.com>
+References: <20240221022647.5297-1-changhuang.liang@starfivetech.com>
+	 <20240221022647.5297-3-changhuang.liang@starfivetech.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Tue, 2024-02-20 at 17:34 +0200, Dumitru Ceclan wrote:
-> This adds support for LTC6373 36 V Fully-Differential Programmable-Gain
-> Instrumentation Amplifier with 25 pA Input Bias Current.
-> The user can program the gain to one of seven available settings through
-> a 3-bit parallel interface (A2 to A0).
+On Di, 2024-02-20 at 18:26 -0800, Changhuang Liang wrote:
+> Add StarFive external interrupt controller for JH8100 SoC.
 >=20
-> Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
-> ---
+> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+> Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
 
-Just one minor comment. With that:
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 
-Reviewed-by: Nuno Sa <nuno.sa@analog.com>
-
-> =C2=A0drivers/iio/amplifiers/hmc425a.c | 124 ++++++++++++++++++++++++++++=
-++-
-> =C2=A01 file changed, 120 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/iio/amplifiers/hmc425a.c b/drivers/iio/amplifiers/hm=
-c425a.c
-> index 77872e2dfdfe..50c86c2d28d7 100644
-> --- a/drivers/iio/amplifiers/hmc425a.c
-> +++ b/drivers/iio/amplifiers/hmc425a.c
-> @@ -2,9 +2,10 @@
-> =C2=A0/*
-> =C2=A0 * HMC425A and similar Gain Amplifiers
-> =C2=A0 *
-> - * Copyright 2020 Analog Devices Inc.
-> + * Copyright 2020, 2024 Analog Devices Inc.
-> =C2=A0 */
-
-...
-
->=20
-> =C2=A0
-> +static ssize_t ltc6373_read_powerdown(struct iio_dev *indio_dev,
-> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uintptr_t private,
-> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct iio_chan_spec *chan,
-> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 char *buf)
-> +{
-> +	struct hmc425a_state *st =3D iio_priv(indio_dev);
-> +
-> +	return sysfs_emit(buf, "%d\n", st->powerdown);
-
-Well, in theory the read should also be protected with the lock...
-
-- Nuno S=C3=A1
-
+regards
+Philipp
 
