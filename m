@@ -1,676 +1,163 @@
-Return-Path: <devicetree+bounces-44572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0BFE85EF9F
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 04:05:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7780E85F021
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 04:49:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 852E72820DA
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 03:05:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 070861F219B7
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 03:49:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15D4C2BB1B;
-	Thu, 22 Feb 2024 03:02:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NYyhZ6ZJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A196E17583;
+	Thu, 22 Feb 2024 03:49:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC82E225DA
-	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 03:02:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E24BD101EC;
+	Thu, 22 Feb 2024 03:49:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708570973; cv=none; b=iIupKkixxQHBmrJCcE4RC368cYO5zykE0+VbA8lE9EM9FuSSdsG+L9r8EoDipNmkg2YaLRrxhxMStICLYFULIccLVRUHhwDQd86mZUYumLpbKybP3zpLT6PNUs7qzsBeZJDPrGB5x3PGmq0FG2WXY1GfSUNxc+hJpEdJO8Bm3u0=
+	t=1708573752; cv=none; b=eepB2x/HIv2oZqQ8InLRcoXLQFde8ZTCrBIOWvhBdS7r4DMq5Xs//3I9w+lELQqcTGZVP+JhNSEtCbfOxBLJwee1x/ujdJxLqNCTL5AHhOjSSuaSTTAiwjw0xbjUD3i4idPeM8oGqbZlmIQAZx+7iBfaB2A5rraY8JJ7mBJ49v4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708570973; c=relaxed/simple;
-	bh=ZE/QvSMZHCt5s64EoQqHPXsKlXeewrXWHQXkC8HWWdU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=AHVNsnEDSGqDCg9fIRwr/Lx1yR2vFwZ8/v7rDmnKwQ1kVPhq+vx/YbZPfrYu2GYDk/T0plCKlP4NGPeF1TiUTkZJQwu/8Ve2fDtbEYOlM9DMQLBmTocPJOnakqBAAY89LIZhWfY7KZce3yVc0vS6Iv35kqFR9GBIuiDwTM/IcWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NYyhZ6ZJ; arc=none smtp.client-ip=209.85.210.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-6e4423b64acso2871078a34.2
-        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 19:02:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708570968; x=1709175768; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WlsQ1B+0CtzBD6FSbcHeF9Qp/tSSzBk1uXJJn0tpGjA=;
-        b=NYyhZ6ZJIfM0mfMnaVXDhLA2Hs0mBYXwnSWh7Nr8CeUWzFk9AjjzrwKp7Ed+XTqQjF
-         ENK0hkAcnTAEYteLexqDXz1XtG66bCfAV9C+TCgnJ4k2DsldY0WX/q4uolpvkgadiI5U
-         WuaNqkWKWz8dhHHdleMjF0AO2JkNQFwrFxueVkKoVZmOq2AgW/1++axCTvWgy0uoGVoe
-         +Z4IclfFXrPE5Lsh2kgNXuMQ2lmT5PN0PwJEiK7lZgHWLch0UoZ4xmVsuD+UEwWhkwXQ
-         3Bi9hZf0m0CpCzT/5M36XUJS+b4usLpr8jsZdPyq1EKOjaJm78V8LofGZZrPo8fDLZTL
-         dg5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708570968; x=1709175768;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WlsQ1B+0CtzBD6FSbcHeF9Qp/tSSzBk1uXJJn0tpGjA=;
-        b=OZk239ozFCjGPly60VSDah8bXLnio2P33G0a2TXIAQdXVNjb88XmtygG9IvQMIWLHO
-         +s9aoveGbcLknEgoHTMJBUkt+1WXWO7kDyu9fQUayurSj4jp3SKqOAaT2vZVAgePy/Et
-         z8Xx1VGR/i41VzWerkkaIgNldAbuNV0pYnq1yWl5CAzpkCzqW9qyjJS8NrlRrLZSmL+V
-         z6dN0C2UwpzH+ZkyUrY7JJH23pykLEG+VIiFdUMW3gohSFJf3WTT869jMuV/3HmIjTfL
-         fHOQeDH8oLeXHLRLNJzUW548oEl2LK0zxtptRrqHScI+Q2UJHOlWcD4MUNvEL5W/q7Fw
-         5Ufg==
-X-Forwarded-Encrypted: i=1; AJvYcCWejiwFbn4BQWbmpRvU+t4jWA/vDvB6lGcl8T+Td0rMgQPGnVEMzlhW9bG/7xgsrX+zIT5JSdgCyjzCY7LMbkwlOUZx5+iZVLQvJg==
-X-Gm-Message-State: AOJu0Yw/RTAK5VsxIDVtIFjPvOed2XDANDhkiKN6DZjXdf500aVg1tZ3
-	N1SxLr/nUJIihIIQiZQRqSsgXqMn/oIPq/tfdTc3ne4oSCl3PKSl2hwyDd8i/WI=
-X-Google-Smtp-Source: AGHT+IF4lrYzngv+RhXHjJjThHPTxPI6mvJEHT28CdAVHmOxI6wucHsyoKTfOa4ATFp2TQPjinCyDA==
-X-Received: by 2002:a9d:7a53:0:b0:6de:6ad0:d34c with SMTP id z19-20020a9d7a53000000b006de6ad0d34cmr19565704otm.9.1708570967869;
-        Wed, 21 Feb 2024 19:02:47 -0800 (PST)
-Received: from localhost ([136.62.192.75])
-        by smtp.gmail.com with ESMTPSA id g1-20020a9d6481000000b006e2ed0b4f2csm1898904otl.40.2024.02.21.19.02.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Feb 2024 19:02:47 -0800 (PST)
-From: Sam Protsenko <semen.protsenko@linaro.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Chanwoo Choi <cw00.choi@samsung.com>
-Cc: Alim Akhtar <alim.akhtar@samsung.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Tomasz Figa <tomasz.figa@gmail.com>,
-	linux-samsung-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 14/15] clk: samsung: exynos850: Add CMU_CPUCL0 and CMU_CPUCL1
-Date: Wed, 21 Feb 2024 21:02:34 -0600
-Message-Id: <20240222030235.27815-15-semen.protsenko@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240222030235.27815-1-semen.protsenko@linaro.org>
-References: <20240222030235.27815-1-semen.protsenko@linaro.org>
+	s=arc-20240116; t=1708573752; c=relaxed/simple;
+	bh=dwf0vhpo2jYUb2gwbg7vwjdYNHNEw2bP9BitRqQMy60=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HL72BgZ846KYTPuEnQN2MqO1sh4PdmbXbHoUhTMQhCb1qd/UrkaL74ercZc//Si5OxBiVbLyRwsiLE5Z2sax6XmaGRsp9MQ7t/XYgzxb3i/A8H1sz7RTzSmNjFCwB3wn2PYkxTIYywvcv5viaiAAuy0/RnSHDI449gm+4HeYJv0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
+Received: from Atcsqr.andestech.com (localhost [127.0.0.2] (may be forged))
+	by Atcsqr.andestech.com with ESMTP id 41M3PZkX080876;
+	Thu, 22 Feb 2024 11:25:35 +0800 (+08)
+	(envelope-from peterlin@andestech.com)
+Received: from mail.andestech.com (ATCPCS16.andestech.com [10.0.1.222])
+	by Atcsqr.andestech.com with ESMTP id 41M3N6Y8080329;
+	Thu, 22 Feb 2024 11:23:06 +0800 (+08)
+	(envelope-from peterlin@andestech.com)
+Received: from APC323 (10.0.12.98) by ATCPCS16.andestech.com (10.0.1.222) with
+ Microsoft SMTP Server id 14.3.498.0; Thu, 22 Feb 2024 11:23:03 +0800
+Date: Thu, 22 Feb 2024 11:23:00 +0800
+From: Yu-Chien Peter Lin <peterlin@andestech.com>
+To: Palmer Dabbelt <palmer@dabbelt.com>
+CC: <acme@kernel.org>, <adrian.hunter@intel.com>, <ajones@ventanamicro.com>,
+        <alexander.shishkin@linux.intel.com>, <andre.przywara@arm.com>,
+        <anup@brainfault.org>, <aou@eecs.berkeley.edu>,
+        <atishp@atishpatra.org>, <conor+dt@kernel.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        "Conor
+ Dooley" <conor@kernel.org>, <devicetree@vger.kernel.org>,
+        Evan Green
+	<evan@rivosinc.com>, <geert+renesas@glider.be>,
+        <guoren@kernel.org>, "Heiko
+ Stuebner" <heiko@sntech.de>,
+        <irogers@google.com>, <jernej.skrabec@gmail.com>, <jolsa@kernel.org>,
+        <jszhang@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-perf-users@vger.kernel.org>,
+        <linux-renesas-soc@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-sunxi@lists.linux.dev>, <locus84@andestech.com>,
+        <magnus.damm@gmail.com>, Mark Rutland <mark.rutland@arm.com>,
+        <mingo@redhat.com>, <n.shubin@yadro.com>, <namhyung@kernel.org>,
+        "Paul
+ Walmsley" <paul.walmsley@sifive.com>, <peterz@infradead.org>,
+        <prabhakar.mahadev-lad.rj@bp.renesas.com>, <rdunlap@infradead.org>,
+        <robh+dt@kernel.org>, <samuel@sholland.org>,
+        Sunil V L
+	<sunilvl@ventanamicro.com>, <tglx@linutronix.de>,
+        <tim609@andestech.com>, <uwu@icenowy.me>, <wens@csie.org>,
+        Will Deacon <will@kernel.org>, <inochiama@outlook.com>,
+        <unicorn_wang@outlook.com>, <wefu@redhat.com>
+Subject: Re: [PATCH v8 00/10] Support Andes PMU extension
+Message-ID: <Zda-FE2FpyhbIJKd@APC323>
+References: <20240129092553.2058043-1-peterlin@andestech.com>
+ <mhng-b85cfae6-43ef-42ac-94b4-d0f4ce2d0940@palmer-ri-x1c9a>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <mhng-b85cfae6-43ef-42ac-94b4-d0f4ce2d0940@palmer-ri-x1c9a>
+User-Agent: Mutt/2.2.12 (2023-09-09)
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:Atcsqr.andestech.com 41M3PZkX080876
 
-Implement support for CPU clock management units:
-  - CMU_CPUCL0: clocks for cluster 0: 4 x Cortex-A55 (cpu0..cpu3)
-  - CMU_CPUCL1: clocks for cluster 1: 4 x Cortex-A55 (cpu4..cpu7)
+Hi Palmer,
 
-CPU PLLs are generating main CPU clocks for each cluster, and there are
-alternate ("switch") clocks that can be used temporarily while
-re-configuring the PLL for a new rate. ACLK, ATCLK, PCLKDBG and
-PERIPHCLK clocks are driving corresponding buses. CLK_CLUSTERx_SCLK are
-actual leaf CPU clocks and should be used to change CPU rates. Also some
-CoreSight clocks can be derived from DBG_USER (debug clock).
+On Wed, Feb 21, 2024 at 12:58:31PM -0800, Palmer Dabbelt wrote:
+> On Mon, 29 Jan 2024 01:25:43 PST (-0800), peterlin@andestech.com wrote:
+> > Hi All,
+> > 
+> > This patch series introduces the Andes PMU extension, which serves the
+> > same purpose as Sscofpmf and Smcntrpmf. Its non-standard local interrupt
+> > is assigned to bit 18 in the custom S-mode local interrupt enable and
+> > pending registers (slie/slip), while the interrupt cause is (256 + 18).
+> > 
+> > Linux patches based on:
+> > - ed5b7cf ("riscv: errata: andes: Probe for IOCP only once in boot stage")
+> > It can be found on Andes Technology GitHub:
+> > - https://github.com/andestech/linux/commits/andes-pmu-support-v8
+> > 
+> > The PMU device tree node used on AX45MP:
+> > - https://github.com/riscv-software-src/opensbi/blob/master/docs/pmu_support.md#example-3
+> > 
+> > Locus Wei-Han Chen (1):
+> >   riscv: andes: Support specifying symbolic firmware and hardware raw
+> >     events
+> > 
+> > Yu Chien Peter Lin (9):
+> >   riscv: errata: Rename defines for Andes
+> >   irqchip/riscv-intc: Allow large non-standard interrupt number
+> >   irqchip/riscv-intc: Introduce Andes hart-level interrupt controller
+> >   dt-bindings: riscv: Add Andes interrupt controller compatible string
+> >   riscv: dts: renesas: r9a07g043f: Update compatible string to use Andes
+> >     INTC
+> >   perf: RISC-V: Eliminate redundant interrupt enable/disable operations
+> >   perf: RISC-V: Introduce Andes PMU to support perf event sampling
+> >   dt-bindings: riscv: Add Andes PMU extension description
+> >   riscv: dts: renesas: Add Andes PMU extension for r9a07g043f
+> > 
+> >  .../devicetree/bindings/riscv/cpus.yaml       |   6 +-
+> >  .../devicetree/bindings/riscv/extensions.yaml |   7 +
+> >  arch/riscv/boot/dts/renesas/r9a07g043f.dtsi   |   4 +-
+> >  arch/riscv/errata/andes/errata.c              |  10 +-
+> >  arch/riscv/include/asm/errata_list.h          |  13 +-
+> >  arch/riscv/include/asm/hwcap.h                |   1 +
+> >  arch/riscv/include/asm/vendorid_list.h        |   2 +-
+> >  arch/riscv/kernel/alternative.c               |   2 +-
+> >  arch/riscv/kernel/cpufeature.c                |   1 +
+> >  drivers/irqchip/irq-riscv-intc.c              |  88 ++++++++++--
+> >  drivers/perf/Kconfig                          |  14 ++
+> >  drivers/perf/riscv_pmu_sbi.c                  |  37 ++++-
+> >  include/linux/soc/andes/irq.h                 |  18 +++
+> >  .../arch/riscv/andes/ax45/firmware.json       |  68 ++++++++++
+> >  .../arch/riscv/andes/ax45/instructions.json   | 127 ++++++++++++++++++
+> >  .../arch/riscv/andes/ax45/memory.json         |  57 ++++++++
+> >  .../arch/riscv/andes/ax45/microarch.json      |  77 +++++++++++
+> >  tools/perf/pmu-events/arch/riscv/mapfile.csv  |   1 +
+> >  18 files changed, 494 insertions(+), 39 deletions(-)
+> >  create mode 100644 include/linux/soc/andes/irq.h
+> >  create mode 100644 tools/perf/pmu-events/arch/riscv/andes/ax45/firmware.json
+> >  create mode 100644 tools/perf/pmu-events/arch/riscv/andes/ax45/instructions.json
+> >  create mode 100644 tools/perf/pmu-events/arch/riscv/andes/ax45/memory.json
+> >  create mode 100644 tools/perf/pmu-events/arch/riscv/andes/ax45/microarch.json
+> 
+> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+> 
+> in case someone wants to take this via another tree.  I'm also OK taking it
+> via the RISC-V tree, pending a resolution to Thomas' comments on patch 2.
+> For now I'm going to assume there's a v9 coming.
 
-PLL table was extracted from ECT table. ECT stands for "Exynos
-Characteristic Table", it's a Samsung specific binary data populated by
-BL2 bootloader in RAM at 0x90000000 address, containing PLL tables for
-various CMUs and other hardware specific information.
+Yes, I'm working on v9, please hold off taking the series, thanks.
 
-The particular PLL type used in CMU_CPUCL0 and CMU_CPUCL1 (pll0822x) is
-an integer PLL with middle FVCO. The equation to calculate its output
-rate is:
+Regards,
+Peter Lin
 
-    fout = fin * M / (P*2^S)
-
-where:
-
-    fin = 26 MHz (OSCCLK frequency)
-    M = 64..1023
-    P = 1..63
-    S = 0..6
-
-The PLL table tries to keep "P" value low to reduce the locking time,
-which for pll0822x is "t = P * 150" (in OSCCLK cycles).
-
-Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
----
-Changes in v2:
-  - none
-
- drivers/clk/samsung/clk-exynos850.c | 440 +++++++++++++++++++++++++++-
- 1 file changed, 439 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/clk/samsung/clk-exynos850.c b/drivers/clk/samsung/clk-exynos850.c
-index 82cfa22c0788..6215471c4ac6 100644
---- a/drivers/clk/samsung/clk-exynos850.c
-+++ b/drivers/clk/samsung/clk-exynos850.c
-@@ -14,13 +14,16 @@
- #include <dt-bindings/clock/exynos850.h>
- 
- #include "clk.h"
-+#include "clk-cpu.h"
- #include "clk-exynos-arm64.h"
- 
- /* NOTE: Must be equal to the last clock ID increased by one */
--#define CLKS_NR_TOP			(CLK_DOUT_G3D_SWITCH + 1)
-+#define CLKS_NR_TOP			(CLK_DOUT_CPUCL1_SWITCH + 1)
- #define CLKS_NR_APM			(CLK_GOUT_SYSREG_APM_PCLK + 1)
- #define CLKS_NR_AUD			(CLK_GOUT_AUD_CMU_AUD_PCLK + 1)
- #define CLKS_NR_CMGP			(CLK_GOUT_SYSREG_CMGP_PCLK + 1)
-+#define CLKS_NR_CPUCL0			(CLK_CLUSTER0_SCLK + 1)
-+#define CLKS_NR_CPUCL1			(CLK_CLUSTER1_SCLK + 1)
- #define CLKS_NR_G3D			(CLK_GOUT_G3D_SYSREG_PCLK + 1)
- #define CLKS_NR_HSI			(CLK_GOUT_HSI_CMU_HSI_PCLK + 1)
- #define CLKS_NR_IS			(CLK_GOUT_IS_SYSREG_PCLK + 1)
-@@ -47,6 +50,10 @@
- #define CLK_CON_MUX_MUX_CLKCMU_CORE_CCI		0x1018
- #define CLK_CON_MUX_MUX_CLKCMU_CORE_MMC_EMBD	0x101c
- #define CLK_CON_MUX_MUX_CLKCMU_CORE_SSS		0x1020
-+#define CLK_CON_MUX_MUX_CLKCMU_CPUCL0_DBG	0x1024
-+#define CLK_CON_MUX_MUX_CLKCMU_CPUCL0_SWITCH	0x1028
-+#define CLK_CON_MUX_MUX_CLKCMU_CPUCL1_DBG	0x102c
-+#define CLK_CON_MUX_MUX_CLKCMU_CPUCL1_SWITCH	0x1030
- #define CLK_CON_MUX_MUX_CLKCMU_DPU		0x1034
- #define CLK_CON_MUX_MUX_CLKCMU_G3D_SWITCH	0x1038
- #define CLK_CON_MUX_MUX_CLKCMU_HSI_BUS		0x103c
-@@ -69,6 +76,10 @@
- #define CLK_CON_DIV_CLKCMU_CORE_CCI		0x1824
- #define CLK_CON_DIV_CLKCMU_CORE_MMC_EMBD	0x1828
- #define CLK_CON_DIV_CLKCMU_CORE_SSS		0x182c
-+#define CLK_CON_DIV_CLKCMU_CPUCL0_DBG		0x1830
-+#define CLK_CON_DIV_CLKCMU_CPUCL0_SWITCH	0x1834
-+#define CLK_CON_DIV_CLKCMU_CPUCL1_DBG		0x1838
-+#define CLK_CON_DIV_CLKCMU_CPUCL1_SWITCH	0x183c
- #define CLK_CON_DIV_CLKCMU_DPU			0x1840
- #define CLK_CON_DIV_CLKCMU_G3D_SWITCH		0x1844
- #define CLK_CON_DIV_CLKCMU_HSI_BUS		0x1848
-@@ -97,6 +108,10 @@
- #define CLK_CON_GAT_GATE_CLKCMU_CORE_CCI	0x2020
- #define CLK_CON_GAT_GATE_CLKCMU_CORE_MMC_EMBD	0x2024
- #define CLK_CON_GAT_GATE_CLKCMU_CORE_SSS	0x2028
-+#define CLK_CON_GAT_GATE_CLKCMU_CPUCL0_DBG	0x202c
-+#define CLK_CON_GAT_GATE_CLKCMU_CPUCL0_SWITCH	0x2030
-+#define CLK_CON_GAT_GATE_CLKCMU_CPUCL1_DBG	0x2034
-+#define CLK_CON_GAT_GATE_CLKCMU_CPUCL1_SWITCH	0x2038
- #define CLK_CON_GAT_GATE_CLKCMU_DPU		0x203c
- #define CLK_CON_GAT_GATE_CLKCMU_G3D_SWITCH	0x2040
- #define CLK_CON_GAT_GATE_CLKCMU_HSI_BUS		0x2044
-@@ -130,6 +145,10 @@ static const unsigned long top_clk_regs[] __initconst = {
- 	CLK_CON_MUX_MUX_CLKCMU_CORE_CCI,
- 	CLK_CON_MUX_MUX_CLKCMU_CORE_MMC_EMBD,
- 	CLK_CON_MUX_MUX_CLKCMU_CORE_SSS,
-+	CLK_CON_MUX_MUX_CLKCMU_CPUCL0_DBG,
-+	CLK_CON_MUX_MUX_CLKCMU_CPUCL0_SWITCH,
-+	CLK_CON_MUX_MUX_CLKCMU_CPUCL1_DBG,
-+	CLK_CON_MUX_MUX_CLKCMU_CPUCL1_SWITCH,
- 	CLK_CON_MUX_MUX_CLKCMU_DPU,
- 	CLK_CON_MUX_MUX_CLKCMU_G3D_SWITCH,
- 	CLK_CON_MUX_MUX_CLKCMU_HSI_BUS,
-@@ -152,6 +171,10 @@ static const unsigned long top_clk_regs[] __initconst = {
- 	CLK_CON_DIV_CLKCMU_CORE_CCI,
- 	CLK_CON_DIV_CLKCMU_CORE_MMC_EMBD,
- 	CLK_CON_DIV_CLKCMU_CORE_SSS,
-+	CLK_CON_DIV_CLKCMU_CPUCL0_DBG,
-+	CLK_CON_DIV_CLKCMU_CPUCL0_SWITCH,
-+	CLK_CON_DIV_CLKCMU_CPUCL1_DBG,
-+	CLK_CON_DIV_CLKCMU_CPUCL1_SWITCH,
- 	CLK_CON_DIV_CLKCMU_DPU,
- 	CLK_CON_DIV_CLKCMU_G3D_SWITCH,
- 	CLK_CON_DIV_CLKCMU_HSI_BUS,
-@@ -180,6 +203,10 @@ static const unsigned long top_clk_regs[] __initconst = {
- 	CLK_CON_GAT_GATE_CLKCMU_CORE_CCI,
- 	CLK_CON_GAT_GATE_CLKCMU_CORE_MMC_EMBD,
- 	CLK_CON_GAT_GATE_CLKCMU_CORE_SSS,
-+	CLK_CON_GAT_GATE_CLKCMU_CPUCL0_DBG,
-+	CLK_CON_GAT_GATE_CLKCMU_CPUCL0_SWITCH,
-+	CLK_CON_GAT_GATE_CLKCMU_CPUCL1_DBG,
-+	CLK_CON_GAT_GATE_CLKCMU_CPUCL1_SWITCH,
- 	CLK_CON_GAT_GATE_CLKCMU_DPU,
- 	CLK_CON_GAT_GATE_CLKCMU_G3D_SWITCH,
- 	CLK_CON_GAT_GATE_CLKCMU_HSI_BUS,
-@@ -234,6 +261,14 @@ PNAME(mout_core_mmc_embd_p)	= { "oscclk", "dout_shared0_div2",
- 				    "oscclk", "oscclk" };
- PNAME(mout_core_sss_p)		= { "dout_shared0_div3", "dout_shared1_div3",
- 				    "dout_shared0_div4", "dout_shared1_div4" };
-+/* List of parent clocks for Muxes in CMU_TOP: for CMU_CPUCL0 */
-+PNAME(mout_cpucl0_switch_p)	= { "fout_shared0_pll", "fout_shared1_pll",
-+				    "dout_shared0_div2", "dout_shared1_div2" };
-+PNAME(mout_cpucl0_dbg_p)	= { "dout_shared0_div4", "dout_shared1_div4" };
-+/* List of parent clocks for Muxes in CMU_TOP: for CMU_CPUCL1 */
-+PNAME(mout_cpucl1_switch_p)	= { "fout_shared0_pll", "fout_shared1_pll",
-+				    "dout_shared0_div2", "dout_shared1_div2" };
-+PNAME(mout_cpucl1_dbg_p)	= { "dout_shared0_div4", "dout_shared1_div4" };
- /* List of parent clocks for Muxes in CMU_TOP: for CMU_G3D */
- PNAME(mout_g3d_switch_p)	= { "dout_shared0_div2", "dout_shared1_div2",
- 				    "dout_shared0_div3", "dout_shared1_div3" };
-@@ -300,6 +335,18 @@ static const struct samsung_mux_clock top_mux_clks[] __initconst = {
- 	MUX(CLK_MOUT_CORE_SSS, "mout_core_sss", mout_core_sss_p,
- 	    CLK_CON_MUX_MUX_CLKCMU_CORE_SSS, 0, 2),
- 
-+	/* CPUCL0 */
-+	MUX(CLK_MOUT_CPUCL0_DBG, "mout_cpucl0_dbg", mout_cpucl0_dbg_p,
-+	    CLK_CON_MUX_MUX_CLKCMU_CPUCL0_DBG, 0, 1),
-+	MUX(CLK_MOUT_CPUCL0_SWITCH, "mout_cpucl0_switch", mout_cpucl0_switch_p,
-+	    CLK_CON_MUX_MUX_CLKCMU_CPUCL0_SWITCH, 0, 2),
-+
-+	/* CPUCL1 */
-+	MUX(CLK_MOUT_CPUCL1_DBG, "mout_cpucl1_dbg", mout_cpucl1_dbg_p,
-+	    CLK_CON_MUX_MUX_CLKCMU_CPUCL1_DBG, 0, 1),
-+	MUX(CLK_MOUT_CPUCL1_SWITCH, "mout_cpucl1_switch", mout_cpucl1_switch_p,
-+	    CLK_CON_MUX_MUX_CLKCMU_CPUCL1_SWITCH, 0, 2),
-+
- 	/* DPU */
- 	MUX(CLK_MOUT_DPU, "mout_dpu", mout_dpu_p,
- 	    CLK_CON_MUX_MUX_CLKCMU_DPU, 0, 2),
-@@ -378,6 +425,18 @@ static const struct samsung_div_clock top_div_clks[] __initconst = {
- 	DIV(CLK_DOUT_CORE_SSS, "dout_core_sss", "gout_core_sss",
- 	    CLK_CON_DIV_CLKCMU_CORE_SSS, 0, 4),
- 
-+	/* CPUCL0 */
-+	DIV(CLK_DOUT_CPUCL0_DBG, "dout_cpucl0_dbg", "gout_cpucl0_dbg",
-+	    CLK_CON_DIV_CLKCMU_CPUCL0_DBG, 0, 3),
-+	DIV(CLK_DOUT_CPUCL0_SWITCH, "dout_cpucl0_switch", "gout_cpucl0_switch",
-+	    CLK_CON_DIV_CLKCMU_CPUCL0_SWITCH, 0, 3),
-+
-+	/* CPUCL1 */
-+	DIV(CLK_DOUT_CPUCL1_DBG, "dout_cpucl1_dbg", "gout_cpucl1_dbg",
-+	    CLK_CON_DIV_CLKCMU_CPUCL1_DBG, 0, 3),
-+	DIV(CLK_DOUT_CPUCL1_SWITCH, "dout_cpucl1_switch", "gout_cpucl1_switch",
-+	    CLK_CON_DIV_CLKCMU_CPUCL1_SWITCH, 0, 3),
-+
- 	/* DPU */
- 	DIV(CLK_DOUT_DPU, "dout_dpu", "gout_dpu",
- 	    CLK_CON_DIV_CLKCMU_DPU, 0, 4),
-@@ -442,6 +501,18 @@ static const struct samsung_gate_clock top_gate_clks[] __initconst = {
- 	GATE(CLK_GOUT_AUD, "gout_aud", "mout_aud",
- 	     CLK_CON_GAT_GATE_CLKCMU_AUD, 21, 0, 0),
- 
-+	/* CPUCL0 */
-+	GATE(CLK_GOUT_CPUCL0_DBG, "gout_cpucl0_dbg", "mout_cpucl0_dbg",
-+	     CLK_CON_GAT_GATE_CLKCMU_CPUCL0_DBG, 21, 0, 0),
-+	GATE(CLK_GOUT_CPUCL0_SWITCH, "gout_cpucl0_switch", "mout_cpucl0_switch",
-+	     CLK_CON_GAT_GATE_CLKCMU_CPUCL0_SWITCH, 21, 0, 0),
-+
-+	/* CPUCL1 */
-+	GATE(CLK_GOUT_CPUCL1_DBG, "gout_cpucl1_dbg", "mout_cpucl1_dbg",
-+	     CLK_CON_GAT_GATE_CLKCMU_CPUCL1_DBG, 21, 0, 0),
-+	GATE(CLK_GOUT_CPUCL1_SWITCH, "gout_cpucl1_switch", "mout_cpucl1_switch",
-+	     CLK_CON_GAT_GATE_CLKCMU_CPUCL1_SWITCH, 21, 0, 0),
-+
- 	/* DPU */
- 	GATE(CLK_GOUT_DPU, "gout_dpu", "mout_dpu",
- 	     CLK_CON_GAT_GATE_CLKCMU_DPU, 21, 0, 0),
-@@ -1030,6 +1101,373 @@ static const struct samsung_cmu_info cmgp_cmu_info __initconst = {
- 	.clk_name		= "gout_clkcmu_cmgp_bus",
- };
- 
-+/* ---- CMU_CPUCL0 ---------------------------------------------------------- */
-+
-+/* Register Offset definitions for CMU_CPUCL0 (0x10900000) */
-+#define PLL_LOCKTIME_PLL_CPUCL0				0x0000
-+#define PLL_CON0_PLL_CPUCL0				0x0100
-+#define PLL_CON1_PLL_CPUCL0				0x0104
-+#define PLL_CON3_PLL_CPUCL0				0x010c
-+#define PLL_CON0_MUX_CLKCMU_CPUCL0_DBG_USER		0x0600
-+#define PLL_CON0_MUX_CLKCMU_CPUCL0_SWITCH_USER		0x0610
-+#define CLK_CON_MUX_MUX_CLK_CPUCL0_PLL			0x100c
-+#define CLK_CON_DIV_DIV_CLK_CLUSTER0_ACLK		0x1800
-+#define CLK_CON_DIV_DIV_CLK_CLUSTER0_ATCLK		0x1808
-+#define CLK_CON_DIV_DIV_CLK_CLUSTER0_PCLKDBG		0x180c
-+#define CLK_CON_DIV_DIV_CLK_CLUSTER0_PERIPHCLK		0x1810
-+#define CLK_CON_DIV_DIV_CLK_CPUCL0_CMUREF		0x1814
-+#define CLK_CON_DIV_DIV_CLK_CPUCL0_CPU			0x1818
-+#define CLK_CON_DIV_DIV_CLK_CPUCL0_PCLK			0x181c
-+#define CLK_CON_GAT_CLK_CPUCL0_CLUSTER0_ATCLK		0x2000
-+#define CLK_CON_GAT_CLK_CPUCL0_CLUSTER0_PCLK		0x2004
-+#define CLK_CON_GAT_CLK_CPUCL0_CLUSTER0_PERIPHCLK	0x2008
-+#define CLK_CON_GAT_CLK_CPUCL0_CLUSTER0_SCLK		0x200c
-+#define CLK_CON_GAT_CLK_CPUCL0_CMU_CPUCL0_PCLK		0x2010
-+#define CLK_CON_GAT_GATE_CLK_CPUCL0_CPU			0x2020
-+
-+static const unsigned long cpucl0_clk_regs[] __initconst = {
-+	PLL_LOCKTIME_PLL_CPUCL0,
-+	PLL_CON0_PLL_CPUCL0,
-+	PLL_CON1_PLL_CPUCL0,
-+	PLL_CON3_PLL_CPUCL0,
-+	PLL_CON0_MUX_CLKCMU_CPUCL0_DBG_USER,
-+	PLL_CON0_MUX_CLKCMU_CPUCL0_SWITCH_USER,
-+	CLK_CON_MUX_MUX_CLK_CPUCL0_PLL,
-+	CLK_CON_DIV_DIV_CLK_CLUSTER0_ACLK,
-+	CLK_CON_DIV_DIV_CLK_CLUSTER0_ATCLK,
-+	CLK_CON_DIV_DIV_CLK_CLUSTER0_PCLKDBG,
-+	CLK_CON_DIV_DIV_CLK_CLUSTER0_PERIPHCLK,
-+	CLK_CON_DIV_DIV_CLK_CPUCL0_CMUREF,
-+	CLK_CON_DIV_DIV_CLK_CPUCL0_CPU,
-+	CLK_CON_DIV_DIV_CLK_CPUCL0_PCLK,
-+	CLK_CON_GAT_CLK_CPUCL0_CLUSTER0_ATCLK,
-+	CLK_CON_GAT_CLK_CPUCL0_CLUSTER0_PCLK,
-+	CLK_CON_GAT_CLK_CPUCL0_CLUSTER0_PERIPHCLK,
-+	CLK_CON_GAT_CLK_CPUCL0_CLUSTER0_SCLK,
-+	CLK_CON_GAT_CLK_CPUCL0_CMU_CPUCL0_PCLK,
-+	CLK_CON_GAT_GATE_CLK_CPUCL0_CPU,
-+};
-+
-+/* List of parent clocks for Muxes in CMU_CPUCL0 */
-+PNAME(mout_pll_cpucl0_p)		 = { "oscclk", "fout_cpucl0_pll" };
-+PNAME(mout_cpucl0_switch_user_p)	 = { "oscclk", "dout_cpucl0_switch" };
-+PNAME(mout_cpucl0_dbg_user_p)		 = { "oscclk", "dout_cpucl0_dbg" };
-+PNAME(mout_cpucl0_pll_p)		 = { "mout_pll_cpucl0",
-+					     "mout_cpucl0_switch_user" };
-+
-+static const struct samsung_pll_rate_table cpu_pll_rates[] __initconst = {
-+	PLL_35XX_RATE(26 * MHZ, 2210000000U, 255, 3, 0),
-+	PLL_35XX_RATE(26 * MHZ, 2106000000U, 243, 3, 0),
-+	PLL_35XX_RATE(26 * MHZ, 2002000000U, 231, 3, 0),
-+	PLL_35XX_RATE(26 * MHZ, 1846000000U, 213, 3, 0),
-+	PLL_35XX_RATE(26 * MHZ, 1742000000U, 201, 3, 0),
-+	PLL_35XX_RATE(26 * MHZ, 1586000000U, 183, 3, 0),
-+	PLL_35XX_RATE(26 * MHZ, 1456000000U, 168, 3, 0),
-+	PLL_35XX_RATE(26 * MHZ, 1300000000U, 150, 3, 0),
-+	PLL_35XX_RATE(26 * MHZ, 1157000000U, 267, 3, 1),
-+	PLL_35XX_RATE(26 * MHZ, 1053000000U, 243, 3, 1),
-+	PLL_35XX_RATE(26 * MHZ, 949000000U,  219, 3, 1),
-+	PLL_35XX_RATE(26 * MHZ, 806000000U,  186, 3, 1),
-+	PLL_35XX_RATE(26 * MHZ, 650000000U,  150, 3, 1),
-+	PLL_35XX_RATE(26 * MHZ, 546000000U,  252, 3, 2),
-+	PLL_35XX_RATE(26 * MHZ, 442000000U,  204, 3, 2),
-+	PLL_35XX_RATE(26 * MHZ, 351000000U,  162, 3, 2),
-+	PLL_35XX_RATE(26 * MHZ, 247000000U,  114, 3, 2),
-+	PLL_35XX_RATE(26 * MHZ, 182000000U,  168, 3, 3),
-+	PLL_35XX_RATE(26 * MHZ, 130000000U,  120, 3, 3),
-+};
-+
-+static const struct samsung_pll_clock cpucl0_pll_clks[] __initconst = {
-+	PLL(pll_0822x, CLK_FOUT_CPUCL0_PLL, "fout_cpucl0_pll", "oscclk",
-+	    PLL_LOCKTIME_PLL_CPUCL0, PLL_CON3_PLL_CPUCL0, cpu_pll_rates),
-+};
-+
-+static const struct samsung_mux_clock cpucl0_mux_clks[] __initconst = {
-+	MUX_F(CLK_MOUT_PLL_CPUCL0, "mout_pll_cpucl0", mout_pll_cpucl0_p,
-+	      PLL_CON0_PLL_CPUCL0, 4, 1,
-+	      CLK_SET_RATE_PARENT | CLK_RECALC_NEW_RATES, 0),
-+	MUX_F(CLK_MOUT_CPUCL0_SWITCH_USER, "mout_cpucl0_switch_user",
-+	      mout_cpucl0_switch_user_p,
-+	      PLL_CON0_MUX_CLKCMU_CPUCL0_SWITCH_USER, 4, 1,
-+	      CLK_SET_RATE_PARENT, 0),
-+	MUX(CLK_MOUT_CPUCL0_DBG_USER, "mout_cpucl0_dbg_user",
-+	    mout_cpucl0_dbg_user_p,
-+	    PLL_CON0_MUX_CLKCMU_CPUCL0_DBG_USER, 4, 1),
-+	MUX_F(CLK_MOUT_CPUCL0_PLL, "mout_cpucl0_pll", mout_cpucl0_pll_p,
-+	      CLK_CON_MUX_MUX_CLK_CPUCL0_PLL, 0, 1, CLK_SET_RATE_PARENT, 0),
-+};
-+
-+static const struct samsung_div_clock cpucl0_div_clks[] __initconst = {
-+	DIV_F(CLK_DOUT_CPUCL0_CPU, "dout_cpucl0_cpu", "mout_cpucl0_pll",
-+	      CLK_CON_DIV_DIV_CLK_CPUCL0_CPU, 0, 1,
-+	      CLK_GET_RATE_NOCACHE, CLK_DIVIDER_READ_ONLY),
-+	DIV_F(CLK_DOUT_CPUCL0_CMUREF, "dout_cpucl0_cmuref", "dout_cpucl0_cpu",
-+	      CLK_CON_DIV_DIV_CLK_CPUCL0_CMUREF, 0, 3,
-+	      CLK_GET_RATE_NOCACHE, CLK_DIVIDER_READ_ONLY),
-+	DIV_F(CLK_DOUT_CPUCL0_PCLK, "dout_cpucl0_pclk", "dout_cpucl0_cpu",
-+	      CLK_CON_DIV_DIV_CLK_CPUCL0_PCLK, 0, 4,
-+	      CLK_GET_RATE_NOCACHE, CLK_DIVIDER_READ_ONLY),
-+
-+	/* EMBEDDED_CMU_CPUCL0 */
-+	DIV_F(CLK_DOUT_CLUSTER0_ACLK, "dout_cluster0_aclk", "gout_cluster0_cpu",
-+	      CLK_CON_DIV_DIV_CLK_CLUSTER0_ACLK, 0, 4,
-+	      CLK_GET_RATE_NOCACHE, CLK_DIVIDER_READ_ONLY),
-+	DIV_F(CLK_DOUT_CLUSTER0_ATCLK, "dout_cluster0_atclk",
-+	      "gout_cluster0_cpu", CLK_CON_DIV_DIV_CLK_CLUSTER0_ATCLK, 0, 4,
-+	      CLK_GET_RATE_NOCACHE, CLK_DIVIDER_READ_ONLY),
-+	DIV_F(CLK_DOUT_CLUSTER0_PCLKDBG, "dout_cluster0_pclkdbg",
-+	      "gout_cluster0_cpu", CLK_CON_DIV_DIV_CLK_CLUSTER0_PCLKDBG, 0, 4,
-+	      CLK_GET_RATE_NOCACHE, CLK_DIVIDER_READ_ONLY),
-+	DIV_F(CLK_DOUT_CLUSTER0_PERIPHCLK, "dout_cluster0_periphclk",
-+	      "gout_cluster0_cpu", CLK_CON_DIV_DIV_CLK_CLUSTER0_PERIPHCLK, 0, 4,
-+	      CLK_GET_RATE_NOCACHE, CLK_DIVIDER_READ_ONLY),
-+};
-+
-+static const struct samsung_gate_clock cpucl0_gate_clks[] __initconst = {
-+	GATE(CLK_GOUT_CPUCL0_CMU_CPUCL0_PCLK, "gout_cpucl0_cmu_cpucl0_pclk",
-+	     "dout_cpucl0_pclk",
-+	     CLK_CON_GAT_CLK_CPUCL0_CMU_CPUCL0_PCLK, 21, CLK_IGNORE_UNUSED, 0),
-+
-+	/* EMBEDDED_CMU_CPUCL0 */
-+	GATE(CLK_GOUT_CLUSTER0_CPU, "gout_cluster0_cpu", "dout_cpucl0_cpu",
-+	     CLK_CON_GAT_GATE_CLK_CPUCL0_CPU, 21, CLK_IGNORE_UNUSED, 0),
-+	GATE(CLK_GOUT_CLUSTER0_SCLK, "gout_cluster0_sclk", "gout_cluster0_cpu",
-+	     CLK_CON_GAT_CLK_CPUCL0_CLUSTER0_SCLK, 21, CLK_IGNORE_UNUSED, 0),
-+	GATE(CLK_GOUT_CLUSTER0_ATCLK, "gout_cluster0_atclk",
-+	     "dout_cluster0_atclk",
-+	     CLK_CON_GAT_CLK_CPUCL0_CLUSTER0_ATCLK, 21, CLK_IGNORE_UNUSED, 0),
-+	GATE(CLK_GOUT_CLUSTER0_PERIPHCLK, "gout_cluster0_periphclk",
-+	     "dout_cluster0_periphclk",
-+	     CLK_CON_GAT_CLK_CPUCL0_CLUSTER0_PERIPHCLK, 21,
-+	     CLK_IGNORE_UNUSED, 0),
-+	GATE(CLK_GOUT_CLUSTER0_PCLK, "gout_cluster0_pclk",
-+	     "dout_cluster0_pclkdbg",
-+	     CLK_CON_GAT_CLK_CPUCL0_CLUSTER0_PCLK, 21, CLK_IGNORE_UNUSED, 0),
-+};
-+
-+/*
-+ * Each parameter is going to be written into the corresponding DIV register. So
-+ * the actual divider value for each parameter will be 1/(param+1). All these
-+ * parameters must be in the range of 0..15, as the divider range for all of
-+ * these DIV clocks is 1..16. The default values for these dividers is
-+ * (1, 3, 3, 1).
-+ */
-+#define E850_CPU_DIV0(aclk, atclk, pclkdbg, periphclk) \
-+	(((aclk) << 16) | ((atclk) << 12) | ((pclkdbg) << 8) | \
-+	 ((periphclk) << 4))
-+
-+static const struct exynos_cpuclk_cfg_data exynos850_cluster_clk_d[] __initconst
-+= {
-+	{ 2210000, E850_CPU_DIV0(1, 3, 3, 1) },
-+	{ 2106000, E850_CPU_DIV0(1, 3, 3, 1) },
-+	{ 2002000, E850_CPU_DIV0(1, 3, 3, 1) },
-+	{ 1846000, E850_CPU_DIV0(1, 3, 3, 1) },
-+	{ 1742000, E850_CPU_DIV0(1, 3, 3, 1) },
-+	{ 1586000, E850_CPU_DIV0(1, 3, 3, 1) },
-+	{ 1456000, E850_CPU_DIV0(1, 3, 3, 1) },
-+	{ 1300000, E850_CPU_DIV0(1, 3, 3, 1) },
-+	{ 1157000, E850_CPU_DIV0(1, 3, 3, 1) },
-+	{ 1053000, E850_CPU_DIV0(1, 3, 3, 1) },
-+	{ 949000,  E850_CPU_DIV0(1, 3, 3, 1) },
-+	{ 806000,  E850_CPU_DIV0(1, 3, 3, 1) },
-+	{ 650000,  E850_CPU_DIV0(1, 3, 3, 1) },
-+	{ 546000,  E850_CPU_DIV0(1, 3, 3, 1) },
-+	{ 442000,  E850_CPU_DIV0(1, 3, 3, 1) },
-+	{ 351000,  E850_CPU_DIV0(1, 3, 3, 1) },
-+	{ 247000,  E850_CPU_DIV0(1, 3, 3, 1) },
-+	{ 182000,  E850_CPU_DIV0(1, 3, 3, 1) },
-+	{ 130000,  E850_CPU_DIV0(1, 3, 3, 1) },
-+	{ 0 }
-+};
-+
-+static const struct samsung_cpu_clock cpucl0_cpu_clks[] __initconst = {
-+	CPU_CLK(CLK_CLUSTER0_SCLK, "cluster0_clk", CLK_MOUT_PLL_CPUCL0,
-+		CLK_MOUT_CPUCL0_SWITCH_USER, 0, 0x0, CPUCLK_LAYOUT_E850_CL0,
-+		exynos850_cluster_clk_d),
-+};
-+
-+static const struct samsung_cmu_info cpucl0_cmu_info __initconst = {
-+	.pll_clks		= cpucl0_pll_clks,
-+	.nr_pll_clks		= ARRAY_SIZE(cpucl0_pll_clks),
-+	.mux_clks		= cpucl0_mux_clks,
-+	.nr_mux_clks		= ARRAY_SIZE(cpucl0_mux_clks),
-+	.div_clks		= cpucl0_div_clks,
-+	.nr_div_clks		= ARRAY_SIZE(cpucl0_div_clks),
-+	.gate_clks		= cpucl0_gate_clks,
-+	.nr_gate_clks		= ARRAY_SIZE(cpucl0_gate_clks),
-+	.cpu_clks		= cpucl0_cpu_clks,
-+	.nr_cpu_clks		= ARRAY_SIZE(cpucl0_cpu_clks),
-+	.nr_clk_ids		= CLKS_NR_CPUCL0,
-+	.clk_regs		= cpucl0_clk_regs,
-+	.nr_clk_regs		= ARRAY_SIZE(cpucl0_clk_regs),
-+	.clk_name		= "dout_cpucl0_switch",
-+	.manual_plls		= true,
-+};
-+
-+static void __init exynos850_cmu_cpucl0_init(struct device_node *np)
-+{
-+	exynos_arm64_register_cmu(NULL, np, &cpucl0_cmu_info);
-+}
-+
-+/* Register CMU_CPUCL0 early, as CPU clocks should be available ASAP */
-+CLK_OF_DECLARE(exynos850_cmu_cpucl0, "samsung,exynos850-cmu-cpucl0",
-+	       exynos850_cmu_cpucl0_init);
-+
-+/* ---- CMU_CPUCL1 ---------------------------------------------------------- */
-+
-+/* Register Offset definitions for CMU_CPUCL1 (0x10800000) */
-+#define PLL_LOCKTIME_PLL_CPUCL1				0x0000
-+#define PLL_CON0_PLL_CPUCL1				0x0100
-+#define PLL_CON1_PLL_CPUCL1				0x0104
-+#define PLL_CON3_PLL_CPUCL1				0x010c
-+#define PLL_CON0_MUX_CLKCMU_CPUCL1_DBG_USER		0x0600
-+#define PLL_CON0_MUX_CLKCMU_CPUCL1_SWITCH_USER		0x0610
-+#define CLK_CON_MUX_MUX_CLK_CPUCL1_PLL			0x1000
-+#define CLK_CON_DIV_DIV_CLK_CLUSTER1_ACLK		0x1800
-+#define CLK_CON_DIV_DIV_CLK_CLUSTER1_ATCLK		0x1808
-+#define CLK_CON_DIV_DIV_CLK_CLUSTER1_PCLKDBG		0x180c
-+#define CLK_CON_DIV_DIV_CLK_CLUSTER1_PERIPHCLK		0x1810
-+#define CLK_CON_DIV_DIV_CLK_CPUCL1_CMUREF		0x1814
-+#define CLK_CON_DIV_DIV_CLK_CPUCL1_CPU			0x1818
-+#define CLK_CON_DIV_DIV_CLK_CPUCL1_PCLK			0x181c
-+#define CLK_CON_GAT_CLK_CPUCL1_CLUSTER1_ATCLK		0x2000
-+#define CLK_CON_GAT_CLK_CPUCL1_CLUSTER1_PCLK		0x2004
-+#define CLK_CON_GAT_CLK_CPUCL1_CLUSTER1_PERIPHCLK	0x2008
-+#define CLK_CON_GAT_CLK_CPUCL1_CLUSTER1_SCLK		0x200c
-+#define CLK_CON_GAT_CLK_CPUCL1_CMU_CPUCL1_PCLK		0x2010
-+#define CLK_CON_GAT_GATE_CLK_CPUCL1_CPU			0x2020
-+
-+static const unsigned long cpucl1_clk_regs[] __initconst = {
-+	PLL_LOCKTIME_PLL_CPUCL1,
-+	PLL_CON0_PLL_CPUCL1,
-+	PLL_CON1_PLL_CPUCL1,
-+	PLL_CON3_PLL_CPUCL1,
-+	PLL_CON0_MUX_CLKCMU_CPUCL1_DBG_USER,
-+	PLL_CON0_MUX_CLKCMU_CPUCL1_SWITCH_USER,
-+	CLK_CON_MUX_MUX_CLK_CPUCL1_PLL,
-+	CLK_CON_DIV_DIV_CLK_CLUSTER1_ACLK,
-+	CLK_CON_DIV_DIV_CLK_CLUSTER1_ATCLK,
-+	CLK_CON_DIV_DIV_CLK_CLUSTER1_PCLKDBG,
-+	CLK_CON_DIV_DIV_CLK_CLUSTER1_PERIPHCLK,
-+	CLK_CON_DIV_DIV_CLK_CPUCL1_CMUREF,
-+	CLK_CON_DIV_DIV_CLK_CPUCL1_CPU,
-+	CLK_CON_DIV_DIV_CLK_CPUCL1_PCLK,
-+	CLK_CON_GAT_CLK_CPUCL1_CLUSTER1_ATCLK,
-+	CLK_CON_GAT_CLK_CPUCL1_CLUSTER1_PCLK,
-+	CLK_CON_GAT_CLK_CPUCL1_CLUSTER1_PERIPHCLK,
-+	CLK_CON_GAT_CLK_CPUCL1_CLUSTER1_SCLK,
-+	CLK_CON_GAT_CLK_CPUCL1_CMU_CPUCL1_PCLK,
-+	CLK_CON_GAT_GATE_CLK_CPUCL1_CPU,
-+};
-+
-+/* List of parent clocks for Muxes in CMU_CPUCL0 */
-+PNAME(mout_pll_cpucl1_p)		 = { "oscclk", "fout_cpucl1_pll" };
-+PNAME(mout_cpucl1_switch_user_p)	 = { "oscclk", "dout_cpucl1_switch" };
-+PNAME(mout_cpucl1_dbg_user_p)		 = { "oscclk", "dout_cpucl1_dbg" };
-+PNAME(mout_cpucl1_pll_p)		 = { "mout_pll_cpucl1",
-+					     "mout_cpucl1_switch_user" };
-+
-+static const struct samsung_pll_clock cpucl1_pll_clks[] __initconst = {
-+	PLL(pll_0822x, CLK_FOUT_CPUCL1_PLL, "fout_cpucl1_pll", "oscclk",
-+	    PLL_LOCKTIME_PLL_CPUCL1, PLL_CON3_PLL_CPUCL1, cpu_pll_rates),
-+};
-+
-+static const struct samsung_mux_clock cpucl1_mux_clks[] __initconst = {
-+	MUX_F(CLK_MOUT_PLL_CPUCL1, "mout_pll_cpucl1", mout_pll_cpucl1_p,
-+	      PLL_CON0_PLL_CPUCL1, 4, 1,
-+	      CLK_SET_RATE_PARENT | CLK_RECALC_NEW_RATES, 0),
-+	MUX_F(CLK_MOUT_CPUCL1_SWITCH_USER, "mout_cpucl1_switch_user",
-+	      mout_cpucl1_switch_user_p,
-+	      PLL_CON0_MUX_CLKCMU_CPUCL1_SWITCH_USER, 4, 1,
-+	      CLK_SET_RATE_PARENT, 0),
-+	MUX(CLK_MOUT_CPUCL1_DBG_USER, "mout_cpucl1_dbg_user",
-+	    mout_cpucl1_dbg_user_p,
-+	    PLL_CON0_MUX_CLKCMU_CPUCL1_DBG_USER, 4, 1),
-+	MUX_F(CLK_MOUT_CPUCL1_PLL, "mout_cpucl1_pll", mout_cpucl1_pll_p,
-+	      CLK_CON_MUX_MUX_CLK_CPUCL1_PLL, 0, 1, CLK_SET_RATE_PARENT, 0),
-+};
-+
-+static const struct samsung_div_clock cpucl1_div_clks[] __initconst = {
-+	DIV_F(CLK_DOUT_CPUCL1_CPU, "dout_cpucl1_cpu", "mout_cpucl1_pll",
-+	      CLK_CON_DIV_DIV_CLK_CPUCL1_CPU, 0, 1,
-+	      CLK_GET_RATE_NOCACHE, CLK_DIVIDER_READ_ONLY),
-+	DIV_F(CLK_DOUT_CPUCL1_CMUREF, "dout_cpucl1_cmuref", "dout_cpucl1_cpu",
-+	      CLK_CON_DIV_DIV_CLK_CPUCL1_CMUREF, 0, 3,
-+	      CLK_GET_RATE_NOCACHE, CLK_DIVIDER_READ_ONLY),
-+	DIV_F(CLK_DOUT_CPUCL1_PCLK, "dout_cpucl1_pclk", "dout_cpucl1_cpu",
-+	      CLK_CON_DIV_DIV_CLK_CPUCL1_PCLK, 0, 4,
-+	      CLK_GET_RATE_NOCACHE, CLK_DIVIDER_READ_ONLY),
-+
-+	/* EMBEDDED_CMU_CPUCL1 */
-+	DIV_F(CLK_DOUT_CLUSTER1_ACLK, "dout_cluster1_aclk", "gout_cluster1_cpu",
-+	      CLK_CON_DIV_DIV_CLK_CLUSTER1_ACLK, 0, 4,
-+	      CLK_GET_RATE_NOCACHE, CLK_DIVIDER_READ_ONLY),
-+	DIV_F(CLK_DOUT_CLUSTER1_ATCLK, "dout_cluster1_atclk",
-+	      "gout_cluster1_cpu", CLK_CON_DIV_DIV_CLK_CLUSTER1_ATCLK, 0, 4,
-+	      CLK_GET_RATE_NOCACHE, CLK_DIVIDER_READ_ONLY),
-+	DIV_F(CLK_DOUT_CLUSTER1_PCLKDBG, "dout_cluster1_pclkdbg",
-+	      "gout_cluster1_cpu", CLK_CON_DIV_DIV_CLK_CLUSTER1_PCLKDBG, 0, 4,
-+	      CLK_GET_RATE_NOCACHE, CLK_DIVIDER_READ_ONLY),
-+	DIV_F(CLK_DOUT_CLUSTER1_PERIPHCLK, "dout_cluster1_periphclk",
-+	      "gout_cluster1_cpu", CLK_CON_DIV_DIV_CLK_CLUSTER1_PERIPHCLK, 0, 4,
-+	      CLK_GET_RATE_NOCACHE, CLK_DIVIDER_READ_ONLY),
-+};
-+
-+static const struct samsung_gate_clock cpucl1_gate_clks[] __initconst = {
-+	GATE(CLK_GOUT_CPUCL1_CMU_CPUCL1_PCLK, "gout_cpucl1_cmu_cpucl1_pclk",
-+	     "dout_cpucl1_pclk",
-+	     CLK_CON_GAT_CLK_CPUCL1_CMU_CPUCL1_PCLK, 21, CLK_IGNORE_UNUSED, 0),
-+
-+	/* EMBEDDED_CMU_CPUCL1 */
-+	GATE(CLK_GOUT_CLUSTER1_CPU, "gout_cluster1_cpu", "dout_cpucl1_cpu",
-+	     CLK_CON_GAT_GATE_CLK_CPUCL1_CPU, 21, CLK_IGNORE_UNUSED, 0),
-+	GATE(CLK_GOUT_CLUSTER1_SCLK, "gout_cluster1_sclk", "gout_cluster1_cpu",
-+	     CLK_CON_GAT_CLK_CPUCL1_CLUSTER1_SCLK, 21, CLK_IGNORE_UNUSED, 0),
-+	GATE(CLK_GOUT_CLUSTER1_ATCLK, "gout_cluster1_atclk",
-+	     "dout_cluster1_atclk",
-+	     CLK_CON_GAT_CLK_CPUCL1_CLUSTER1_ATCLK, 21, CLK_IGNORE_UNUSED, 0),
-+	GATE(CLK_GOUT_CLUSTER1_PERIPHCLK, "gout_cluster1_periphclk",
-+	     "dout_cluster1_periphclk",
-+	     CLK_CON_GAT_CLK_CPUCL1_CLUSTER1_PERIPHCLK, 21,
-+	     CLK_IGNORE_UNUSED, 0),
-+	GATE(CLK_GOUT_CLUSTER1_PCLK, "gout_cluster1_pclk",
-+	     "dout_cluster1_pclkdbg",
-+	     CLK_CON_GAT_CLK_CPUCL1_CLUSTER1_PCLK, 21, CLK_IGNORE_UNUSED, 0),
-+};
-+
-+static const struct samsung_cpu_clock cpucl1_cpu_clks[] __initconst = {
-+	CPU_CLK(CLK_CLUSTER1_SCLK, "cluster1_clk", CLK_MOUT_PLL_CPUCL1,
-+		CLK_MOUT_CPUCL1_SWITCH_USER, 0, 0x0, CPUCLK_LAYOUT_E850_CL1,
-+		exynos850_cluster_clk_d),
-+};
-+
-+static const struct samsung_cmu_info cpucl1_cmu_info __initconst = {
-+	.pll_clks		= cpucl1_pll_clks,
-+	.nr_pll_clks		= ARRAY_SIZE(cpucl1_pll_clks),
-+	.mux_clks		= cpucl1_mux_clks,
-+	.nr_mux_clks		= ARRAY_SIZE(cpucl1_mux_clks),
-+	.div_clks		= cpucl1_div_clks,
-+	.nr_div_clks		= ARRAY_SIZE(cpucl1_div_clks),
-+	.gate_clks		= cpucl1_gate_clks,
-+	.nr_gate_clks		= ARRAY_SIZE(cpucl1_gate_clks),
-+	.cpu_clks		= cpucl1_cpu_clks,
-+	.nr_cpu_clks		= ARRAY_SIZE(cpucl1_cpu_clks),
-+	.nr_clk_ids		= CLKS_NR_CPUCL1,
-+	.clk_regs		= cpucl1_clk_regs,
-+	.nr_clk_regs		= ARRAY_SIZE(cpucl1_clk_regs),
-+	.clk_name		= "dout_cpucl1_switch",
-+	.manual_plls		= true,
-+};
-+
-+static void __init exynos850_cmu_cpucl1_init(struct device_node *np)
-+{
-+	exynos_arm64_register_cmu(NULL, np, &cpucl1_cmu_info);
-+}
-+
-+/* Register CMU_CPUCL1 early, as CPU clocks should be available ASAP */
-+CLK_OF_DECLARE(exynos850_cmu_cpucl1, "samsung,exynos850-cmu-cpucl1",
-+	       exynos850_cmu_cpucl1_init);
-+
- /* ---- CMU_G3D ------------------------------------------------------------- */
- 
- /* Register Offset definitions for CMU_G3D (0x11400000) */
--- 
-2.39.2
-
+> Thanks!
 
