@@ -1,56 +1,52 @@
-Return-Path: <devicetree+bounces-44969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6245E860461
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 22:09:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB3E986048E
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 22:14:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9299B1C22F20
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 21:09:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 664A0283C4B
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 21:14:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7962C73F21;
-	Thu, 22 Feb 2024 21:09:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0D2213BAFD;
+	Thu, 22 Feb 2024 21:12:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D95B07175C
-	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 21:09:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27BFA137906
+	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 21:12:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708636166; cv=none; b=LsOsT2vc8DCPQosDqZAVUr2fS5WAzRTjZ3tnuLwZJquGx0DQZ474FjLweo9btSnoYQ3ON22v1zaMbtMTvRkRk0T8yCcsOpOLJPziyztJIMdbODkHjW9CsMgSVEpGrkbtqrpfwTnUBybWS5QWSNOXnIWThvCkoj6210c8MByEM8M=
+	t=1708636373; cv=none; b=i13OuCjfWU1Ptq3ET9KLGorcD7Ur9qEB2Z0F8c+ooBMp8+RAorWl/HVS+qORSoTNTCH4Hkwb4ruCb6fq0PaaYL5frTcYn3KWMjWkHv950Ev7TH7fKRg7dm73g355wfrm+HQdFMX1jLyYx7jUeB3ixulE/0AV8EEzA2r8QZkfd40=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708636166; c=relaxed/simple;
-	bh=jJBEyKL9gND32kj54k1i3vG+7Q/PclKg2QPivadtkVg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=C6xHSt1r95yCgSFda0WF6qasdonSsKyL2mpu0Gk0LlIUOyV8dMc5hlGtxNKcA2HWyPLeP9vX3FD1FNCKhtTc2LSYl1il/LoTzkssZywLCdCJEFhUx4xFAyJXkMjrQ0tqIx7NY2M4NigofFCegFJd682nMaTjNnaI4904wI5hliE=
+	s=arc-20240116; t=1708636373; c=relaxed/simple;
+	bh=ooilAgavlglq9dtkeSGqLGvVxR72yEBxj+XDAUCE3xQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=dsnQLslPBgnm3UZ0Kpd98fVVNZTUXZkcBmKOrDqTdfohYEtks1M0Sl7ZVnPlCVZgzLMOlS++dh42TpP+Sa8MUvuIqaATYrwsU8apSZunuNSkeCsGpXe61xw7fexGYSeJmMr30Nw2DIN00002W298lRxB/mbbEvvUH0BydUuUcgk=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <m.felsch@pengutronix.de>)
-	id 1rdGJZ-0000lo-Be; Thu, 22 Feb 2024 22:09:09 +0100
+	id 1rdGN2-0001fF-R5; Thu, 22 Feb 2024 22:12:44 +0100
 From: Marco Felsch <m.felsch@pengutronix.de>
-To: gregkh@linuxfoundation.org,
-	robh+dt@kernel.org,
+To: robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
 	conor+dt@kernel.org,
-	linux@roeck-us.net,
-	heikki.krogerus@linux.intel.com,
-	jun.li@nxp.com
+	shawnguo@kernel.org,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	linux-imx@nxp.com,
+	agx@sigxcpu.org
 Cc: devicetree@vger.kernel.org,
-	linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	kernel@pengutronix.de
-Subject: [PATCH v3 4/4] usb: typec: tcpci: add support to set connector orientation
-Date: Thu, 22 Feb 2024 22:09:03 +0100
-Message-Id: <20240222210903.208901-5-m.felsch@pengutronix.de>
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] arm64: dts: Adapt TCPC compatible
+Date: Thu, 22 Feb 2024 22:12:42 +0100
+Message-Id: <20240222211242.210340-1-m.felsch@pengutronix.de>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240222210903.208901-1-m.felsch@pengutronix.de>
-References: <20240222210903.208901-1-m.felsch@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,139 +59,103 @@ X-SA-Exim-Mail-From: m.felsch@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-This add the support to set the optional connector orientation bit which
-is part of the optional CONFIG_STANDARD_OUTPUT register 0x18 [1]. This
-allows system designers to connect the tcpc orientation pin directly to
-the 2:1 ss-mux.
-
-[1] https://www.usb.org/sites/default/files/documents/usb-port_controller_specification_rev2.0_v1.0_0.pdf
+Add the new fallback binding to all devicetrees which do have a
+nxp,ptn5110 node to not cause any dt-validation regression.
 
 Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 ---
-v3:
-- no changes
-v2:
-- Make use of fallthrough 
+Hi,
 
- drivers/usb/typec/tcpm/tcpci.c | 44 ++++++++++++++++++++++++++++++++++
- include/linux/usb/tcpci.h      |  8 +++++++
- 2 files changed, 52 insertions(+)
+this requires patchset
+https://lore.kernel.org/all/20240222210903.208901-1-m.felsch@pengutronix.de/
+to be applied.
 
-diff --git a/drivers/usb/typec/tcpm/tcpci.c b/drivers/usb/typec/tcpm/tcpci.c
-index 7118551827f6..73a52e7f95c2 100644
---- a/drivers/usb/typec/tcpm/tcpci.c
-+++ b/drivers/usb/typec/tcpm/tcpci.c
-@@ -67,6 +67,18 @@ static int tcpci_write16(struct tcpci *tcpci, unsigned int reg, u16 val)
- 	return regmap_raw_write(tcpci->regmap, reg, &val, sizeof(u16));
- }
+ arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi               | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi               | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts         | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mq-hummingboard-pulse.dts | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts     | 2 +-
+ arch/arm64/boot/dts/freescale/imx8qxp-mek.dts               | 2 +-
+ 6 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+index b53104ed8919..91830f6333bd 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+@@ -359,7 +359,7 @@ adv7535_out: endpoint {
+ 	};
  
-+static bool tcpci_check_std_output_cap(struct regmap *regmap, u8 mask)
-+{
-+	unsigned int reg;
-+	int ret;
-+
-+	ret = regmap_read(regmap, TCPC_STD_OUTPUT_CAP, &reg);
-+	if (ret < 0)
-+		return ret;
-+
-+	return (reg & mask) == mask;
-+}
-+
- static int tcpci_set_cc(struct tcpc_dev *tcpc, enum typec_cc_status cc)
- {
- 	struct tcpci *tcpci = tcpc_to_tcpci(tcpc);
-@@ -301,6 +313,28 @@ static int tcpci_set_polarity(struct tcpc_dev *tcpc,
- 			   TCPC_TCPC_CTRL_ORIENTATION : 0);
- }
+ 	ptn5110: tcpc@50 {
+-		compatible = "nxp,ptn5110";
++		compatible = "nxp,ptn5110", "tcpci";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_typec1>;
+ 		reg = <0x50>;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
+index a0e13d3324ed..648901192e99 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
+@@ -213,7 +213,7 @@ adv7533_out: endpoint {
+ 	};
  
-+static int tcpci_set_orientation(struct tcpc_dev *tcpc,
-+				 enum typec_orientation orientation)
-+{
-+	struct tcpci *tcpci = tcpc_to_tcpci(tcpc);
-+	unsigned int reg;
-+
-+	switch (orientation) {
-+	case TYPEC_ORIENTATION_NONE:
-+		/* We can't put a single output into high impedance */
-+		fallthrough;
-+	case TYPEC_ORIENTATION_NORMAL:
-+		reg = TCPC_CONFIG_STD_OUTPUT_ORIENTATION_NORMAL;
-+		break;
-+	case TYPEC_ORIENTATION_REVERSE:
-+		reg = TCPC_CONFIG_STD_OUTPUT_ORIENTATION_FLIPPED;
-+		break;
-+	}
-+
-+	return regmap_update_bits(tcpci->regmap, TCPC_CONFIG_STD_OUTPUT,
-+				  TCPC_CONFIG_STD_OUTPUT_ORIENTATION_MASK, reg);
-+}
-+
- static void tcpci_set_partner_usb_comm_capable(struct tcpc_dev *tcpc, bool capable)
- {
- 	struct tcpci *tcpci = tcpc_to_tcpci(tcpc);
-@@ -808,6 +842,9 @@ struct tcpci *tcpci_register_port(struct device *dev, struct tcpci_data *data)
- 	if (tcpci->data->vbus_vsafe0v)
- 		tcpci->tcpc.is_vbus_vsafe0v = tcpci_is_vbus_vsafe0v;
+ 	ptn5110: tcpc@50 {
+-		compatible = "nxp,ptn5110";
++		compatible = "nxp,ptn5110", "tcpci";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_typec1>;
+ 		reg = <0x50>;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
+index feae77e03835..4db3a8cd2776 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
+@@ -340,7 +340,7 @@ pcieclk: clock-generator@68 {
+ &i2c3 {
+ 	/* Connected to USB Hub */
+ 	usb-typec@52 {
+-		compatible = "nxp,ptn5110";
++		compatible = "nxp,ptn5110", "tcpci";
+ 		reg = <0x52>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_typec>;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-hummingboard-pulse.dts b/arch/arm64/boot/dts/freescale/imx8mq-hummingboard-pulse.dts
+index 366693f31992..e92b5d5a66b5 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-hummingboard-pulse.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mq-hummingboard-pulse.dts
+@@ -42,7 +42,7 @@ &i2c2 {
+ 	status = "okay";
  
-+	if (tcpci->data->set_orientation)
-+		tcpci->tcpc.set_orientation = tcpci_set_orientation;
-+
- 	err = tcpci_parse_config(tcpci);
- 	if (err < 0)
- 		return ERR_PTR(err);
-@@ -851,6 +888,13 @@ static int tcpci_probe(struct i2c_client *client)
- 	if (err < 0)
- 		return err;
+ 	typec_ptn5100: usb-typec@50 {
+-		compatible = "nxp,ptn5110";
++		compatible = "nxp,ptn5110", "tcpci";
+ 		reg = <0x50>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_typec>;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
+index 8055a2c23035..b268ba7a0e12 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
+@@ -429,7 +429,7 @@ ldo7_reg: LDO7 {
+ 	};
  
-+	err = tcpci_check_std_output_cap(chip->data.regmap,
-+					 TCPC_STD_OUTPUT_CAP_ORIENTATION);
-+	if (err < 0)
-+		return err;
-+
-+	chip->data.set_orientation = err;
-+
- 	chip->tcpci = tcpci_register_port(&client->dev, &chip->data);
- 	if (IS_ERR(chip->tcpci))
- 		return PTR_ERR(chip->tcpci);
-diff --git a/include/linux/usb/tcpci.h b/include/linux/usb/tcpci.h
-index 467e8045e9f8..f2bfb4250366 100644
---- a/include/linux/usb/tcpci.h
-+++ b/include/linux/usb/tcpci.h
-@@ -47,6 +47,9 @@
- #define TCPC_SINK_FAST_ROLE_SWAP	BIT(0)
+ 	typec_ptn5100: usb-typec@52 {
+-		compatible = "nxp,ptn5110";
++		compatible = "nxp,ptn5110", "tcpci";
+ 		reg = <0x52>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_typec>;
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+index 8360bb851ac0..83d298c2bfd3 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+@@ -149,7 +149,7 @@ light-sensor@44 {
+ 	};
  
- #define TCPC_CONFIG_STD_OUTPUT		0x18
-+#define TCPC_CONFIG_STD_OUTPUT_ORIENTATION_MASK		BIT(0)
-+#define TCPC_CONFIG_STD_OUTPUT_ORIENTATION_NORMAL	0
-+#define TCPC_CONFIG_STD_OUTPUT_ORIENTATION_FLIPPED	1
- 
- #define TCPC_TCPC_CTRL			0x19
- #define TCPC_TCPC_CTRL_ORIENTATION	BIT(0)
-@@ -127,6 +130,7 @@
- #define TCPC_DEV_CAP_2			0x26
- #define TCPC_STD_INPUT_CAP		0x28
- #define TCPC_STD_OUTPUT_CAP		0x29
-+#define TCPC_STD_OUTPUT_CAP_ORIENTATION	BIT(0)
- 
- #define TCPC_MSG_HDR_INFO		0x2e
- #define TCPC_MSG_HDR_INFO_DATA_ROLE	BIT(3)
-@@ -198,12 +202,16 @@ struct tcpci;
-  *		Chip level drivers are expected to check for contaminant and call
-  *		tcpm_clean_port when the port is clean to put the port back into
-  *		toggling state.
-+ * @set_orientation:
-+ *		Optional; Enable setting the connector orientation
-+ *		CONFIG_STANDARD_OUTPUT (0x18) bit0.
-  */
- struct tcpci_data {
- 	struct regmap *regmap;
- 	unsigned char TX_BUF_BYTE_x_hidden:1;
- 	unsigned char auto_discharge_disconnect:1;
- 	unsigned char vbus_vsafe0v:1;
-+	unsigned char set_orientation:1;
- 
- 	int (*init)(struct tcpci *tcpci, struct tcpci_data *data);
- 	int (*set_vconn)(struct tcpci *tcpci, struct tcpci_data *data,
+ 	ptn5110: tcpc@50 {
+-		compatible = "nxp,ptn5110";
++		compatible = "nxp,ptn5110", "tcpci";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_typec>;
+ 		reg = <0x50>;
 -- 
 2.39.2
 
