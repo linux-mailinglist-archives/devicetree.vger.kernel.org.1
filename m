@@ -1,190 +1,164 @@
-Return-Path: <devicetree+bounces-44915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F977860090
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 19:13:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 620948600FC
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 19:21:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E3FE3282A41
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 18:13:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 825EA1C23A11
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 18:21:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75769157E81;
-	Thu, 22 Feb 2024 18:13:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE4246AF91;
+	Thu, 22 Feb 2024 18:14:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="T5MTSX79"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AP2Euznr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01olkn2019.outbound.protection.outlook.com [40.92.53.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76EF62BB01;
-	Thu, 22 Feb 2024 18:13:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.53.19
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708625597; cv=fail; b=LPMX/GIe2ZvLib2AAQIB84NTcckCbykY4vG3x5JapaN7rF8bB41oeNGNEAFQZpUDT5PSKaENw32hBmFKeP5aiXZiT8omN0wUlR16uR8EsTM0siABvSnh/YHmYmjSiAL/dwYRpd9nL7KIeMdT8Sp/zkkHp/Y9x1wL9sPkcUT3DLc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708625597; c=relaxed/simple;
-	bh=fcGqX4Jbf11oniWlnVaEswwZqffOTlGajS/NT29IekQ=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=DN4W+yF5GREMlq49UYHzcJ4nVD5ZoDFy+D2QPykMLQwaaEDpCmNHaoHOL5ryI5E37v9QRncXOKjo55rPkkb/OZudhqOHAn1awtpMwqQdvA5MZA5yk1AsbqtfPRskygwe8WQbYk340xWhuQnGimLT1eBzwhQ3SVBvwGgyPKHzYcc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=T5MTSX79; arc=fail smtp.client-ip=40.92.53.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FAJwOSU731uOkzi9z6VwiTMNSvAQrt0WohiI4XecT6Ez42hZ9webnOIdm7i/PO+HU5p0KsAyjqfy3XHedciHj6o8pV6MJwgRm74/ZZiODvC0viEfNDUhAHuUYbTecdtpzrZWd7S8niohlLwC8ciy0IcpPK4sQMzH7txsBCz+dLdgrKrGYUaxWy1qyLTnQp9/RokEr06GlPKRXjGZqMtZmO4cTDMumr7Ie8hvSfXzFWZ1vDVgLAmL/3CITevvjhXkCrlJ5xw043WmQPAjjMMnGmf5+S0XaT4ZNKJLV/SHNeRud7OdtM0OVPqZJrpTrtZ3t8+7VLDlnn/kdQqO455rBw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0oCTLsCGjOCeh15fwg47l/IQp3fKwmj950GliVWFJ4I=;
- b=lK0Ahpyf5OTVbl+H3p/Pd6IYN/VqA3z163whFQwQa30vG9peOopr5IV0G58vxCqgKUM9lsQ50kp3ugOx0seIPfDtgSsvddYxmuVWPMuNZsI8sowKC7IlW5oJOIQ/ZDLRQ0rY8o29BK+vifiLxNi/zASFUYprLFl8nqHC6qm8l2TqSXz0q30wpuNvWjeGEg6HOEG7CatpIhI8NRds1Gu1p7iyQD73uMx6sWM/9XVtUE2UIC/ASqe6N2IzuAP2dMkNwpzc0BeBgcyt+8lzA6ad5plxGeKhUGieoBBq2IMHmFXKbjkUDd64bkHFZRJuA8z0QQyNHww6jX334gOX6J44Ww==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0oCTLsCGjOCeh15fwg47l/IQp3fKwmj950GliVWFJ4I=;
- b=T5MTSX79IDU4fV5Upghms/wI0+X84KHwPtaE7x1+q41F3QiGsjYOt76O3VrEARocNC35aV5cnT+rjoi3qPK60m58MD+1wV05Jm1PtG1M1IqlPwIIHdke5X0q5hgKYvBiez4CtYA3Ol3lLWbpQtr8fF/j1A52ISHfP000BVi4g0ffsYGckBH9W12an+eKClV4mx1IffJclERD8Kw7ez0XywCfl9M5/roF6aYw0rz7ZwwK0Cdm3NwiG3K2zGZtrTjZDFCA0KWuDdOb62ufQvA6bDu0LS9C2X2j0whlEWI6L5iWkiqprWNpT09j260c41wSn8IX1jM1d1VCFj8cWXiaiA==
-Received: from SEZPR06MB6959.apcprd06.prod.outlook.com (2603:1096:101:1ed::14)
- by SEZPR06MB5522.apcprd06.prod.outlook.com (2603:1096:101:a6::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.38; Thu, 22 Feb
- 2024 18:13:11 +0000
-Received: from SEZPR06MB6959.apcprd06.prod.outlook.com
- ([fe80::53da:a8a:83cb:b9ad]) by SEZPR06MB6959.apcprd06.prod.outlook.com
- ([fe80::53da:a8a:83cb:b9ad%4]) with mapi id 15.20.7316.023; Thu, 22 Feb 2024
- 18:13:10 +0000
-Message-ID:
- <SEZPR06MB6959274FCF19F70B45589F4196562@SEZPR06MB6959.apcprd06.prod.outlook.com>
-Date: Fri, 23 Feb 2024 02:13:06 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/8] ARM: dts: hisilicon: add missing compatibles to
- CRG node
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: David Yang <mmyangfl@gmail.com>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240222-clk-mv200-v3-0-f30795b50318@outlook.com>
- <20240222-clk-mv200-v3-2-f30795b50318@outlook.com>
- <2085057c-0000-4e0d-a633-c84e939313d6@linaro.org>
-From: Yang Xiwen <forbidden405@outlook.com>
-In-Reply-To: <2085057c-0000-4e0d-a633-c84e939313d6@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN:
- [oa1urRsIqkKn5yTD+cBO9bfA6lS7LfTELJNhfQv0716b760DEVytd8qFvXY8U3QvpWgfhY4QYxs=]
-X-ClientProxiedBy: TYCP286CA0240.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:3c7::16) To SEZPR06MB6959.apcprd06.prod.outlook.com
- (2603:1096:101:1ed::14)
-X-Microsoft-Original-Message-ID:
- <febc4acf-d3a3-43ac-bbf7-1e9e3a3d0556@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D129B54917
+	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 18:14:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708625697; cv=none; b=Az0LcdWjTkBK6U9zsNiZ8SCRvukF66QCx0x99xdpDhOsvfLT+pRJ/4gvG8BF+kbX+9K7+yd+X0A0+xut5yrQ/g8xAkxJXlCgV6ZvsaM/uMW9lWTQQVgiDmvmcVMy99L/B71XPeqSrXt/UwBtnzmiguYvvsAd1H17/m9o98Qvexo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708625697; c=relaxed/simple;
+	bh=BqZmvU8BOwVdELmPtCCfeCYk2qCbe5qFERDgheb+Ylk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fhFFfXRG9Ybi5lnlZnCyES+aYpkLwsrn+1P9+Tuhys4C9vsHOFyHlwN8v8SiMd/o1ExlnNSCnAxba9GAfCDSe3FgcbZIRoQFqWZ5+W0LDwAs/0leU/mBrU9s2h5OX5TdcdDlbjho0B91bK2N/Q0RP9EjOVSZ4JMY+6HzSjdh910=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AP2Euznr; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5101cd91017so77402e87.2
+        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 10:14:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708625694; x=1709230494; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mjNKbxM5Nnm2fZkUdL6IsffYJIQllY2Z5FDP4HC+nww=;
+        b=AP2EuznrDPVY4pOdeR+TjYTo/M714kjm9I3QEO7OfZ5/dTHZthRpE/ApXlxP6y2pYE
+         z1VU4hTW2vNN8FwQxsbYnf5NHsWjPAr22ImMvKOSeNEc0F6RPR0MbqE955B9W9N5T7jB
+         0qSX8m0zPheQ0niLr4wOb8Tlr7d48XR8FNV+Z0DLBzOzhy6BmrlYSkA2g5ZEM5TkHyfq
+         WKf6J+ul0GVn9BtrDqNf5PneDuqfKjTuWhlNjvW9QcxzgJSGVupQjSq1bnHY7w85krqu
+         f0PnTh3AG8VnUtcEVPCAhfzi4umWfwYXrus+MjZOq6oDntIt/zXTEYF+TD4AaMxVDgZ+
+         BJtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708625694; x=1709230494;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mjNKbxM5Nnm2fZkUdL6IsffYJIQllY2Z5FDP4HC+nww=;
+        b=FNQg0NrXe1qxtFmH66W60NbIwd74BK01b+FfrvR3OsUa4H0zoUvc4s4yoGHVgYI4YX
+         0IalWCXYqbIgN5HVrYa6C3E1EjLnXJT6HVDW1TySo0q49UqpUWdAvvDkW0g2vt9XNcNX
+         kqepGNoBYK5W5axrIbDfauVtamiD0RLaSoZPKToWl+4ido2keiWO0aM7E1JkXMOl4ab+
+         KGdL64LkTWqAYjd+HSi2Y7FHSpN2vJG2Z0YDlAVaXpqoC+Iw6wf4+qpoySgZVMhhCX5/
+         VP4HPKyfJoLazUH0V8aVmeKc2fI6fEvHVpD9/SGHZY8kl7+xB6qhlSECrCoSznDht9sW
+         F5QQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUdvu1zNGB27GJEDdsNDsGMRLYGrsONdMZhDMXKLEpn8hTCBYjyoCVqDm5atmvRs3dgh/p1mj34GXf3SkYjtbG6W2ELSgNc0Nlf4w==
+X-Gm-Message-State: AOJu0Yy9Lu+tfodeZ1KB0pTtPC8//8BgnqD1+TICxUGUYFjwYUb7/rwA
+	MJmaeUyW9ZsjKvYLZ1p+ohaNf+IEpNYrnlsnPJqnT4h8FcSOeLc2ucVT1efhr9M=
+X-Google-Smtp-Source: AGHT+IFuXihglQKgVnvg96ctoMsff1iPiMAAbtCvPq0dIjo9Sm7rlM5jxqQvbEkVfsrcMjVIxh4fww==
+X-Received: by 2002:ac2:5dcc:0:b0:512:b420:1a92 with SMTP id x12-20020ac25dcc000000b00512b4201a92mr7465144lfq.63.1708625694014;
+        Thu, 22 Feb 2024 10:14:54 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.116])
+        by smtp.gmail.com with ESMTPSA id ps7-20020a170906bf4700b00a3f1cb81dcesm2266058ejb.116.2024.02.22.10.14.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Feb 2024 10:14:53 -0800 (PST)
+Message-ID: <e053448f-2b58-408a-af22-d7b464c52781@linaro.org>
+Date: Thu, 22 Feb 2024 19:14:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SEZPR06MB6959:EE_|SEZPR06MB5522:EE_
-X-MS-Office365-Filtering-Correlation-Id: bccdb437-fa7f-4926-5780-08dc33d1ed59
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	ErXUK3137rczeUQKvT3RS84YOWgjc/uEaBiFrkRPvs+kjpYJRpHbDRfxDDSIZy+P1RBDbbTqSxjmX4xRZwozmfK9lXWmgi/OlgGjFkpf65Pd//8I81pPFK7ZaetAiGgWQWq8dja0K9pE1upXhreAvuFM7NBd5taScIfC4qoll5/UKRHnn6hyKVJzaU7rqUCdMwwaDyfOSIh7FPrYYl/8dB+Zosn6qTgoKBqkAhjW/Ab+SKhlcGEeCbiLo7ki35AX+BkwKHsudOSEASOuyToUPIRHm88+hTn7XY0v7IvPZHYjDBU67ACz0ZxACVgIdY5S3s02CmaLouEHeIsltGgT4Ud/HvOxGcDEbimKScP402TR5WXNbDhBiUQ/lJAQlpVWDuG7qEimKUxxwp23B/52aSPaDU7HBSnA45j//2o9gmxdUq96ShM7Q2jM7q75iUChrRfZDmYWbEpjG4kKgraCdbuedHRB0mRkwgjDqF4t7HX8sG+ULDKnN5TuHrKb3Yg59ydihyUPkbCiPDCBOAa6c9wG2UI5nmjDHv9IW7FjydpnjwIvX5Lv4DzG3xlqnSrp
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?TmRTd3R4Nkt2Ujd0eHdyOEc5bEwyV3RBeWF0RXN3alhGaDRBSE55Q3NMcHM2?=
- =?utf-8?B?bmJQUkVLR3dRRXlXRUN4c0E0YzVKMnFSSXV3UTZ4dzdjRmdpbk5Ma3U3eGJV?=
- =?utf-8?B?OVE4dVBjNjRlSHhDME5OMWdoYzRURFUwbzdYckxtb0pWZDltOXlOQS9idFcr?=
- =?utf-8?B?djNzY1lISW03TG5NYVo1UUF6SjF6dFJmNnZvNHArU1VibGFBZHg0S3J3MDZx?=
- =?utf-8?B?NnJKeFlML3lPZXg2VjIvL2gzeVp1czJzRkdmZWIzOElRQjZpVzZMcVZRQWZM?=
- =?utf-8?B?amdHekprM2JwbDhmUGZVSms3VkNNZ2NqSVB4ZmxjNDJZaDd0aHRwLy9oMFla?=
- =?utf-8?B?elV6OW9ZWmxac3h0eXNRSFFiNkdTSGJ3OG0xSnc5UHpySm51VXBDcE5NK1VK?=
- =?utf-8?B?R25ZdjRIT3gvVU9UVkYxS2ppQ3ZvMUlLeDQ5QVFScWJOUFVOaVp1d0dQQkhN?=
- =?utf-8?B?NzBIZjhFRVR4VnJ5RTRuaEgyeEVjbEhBS2Q0WUNpOHpFajdBU1FHUWd0MTlE?=
- =?utf-8?B?UWFXWkRhaFRuZnRLa1llcC80TzFxdnJ6RmVNNFc1eVcxdWt1eTc2QjNrS05t?=
- =?utf-8?B?bVZFUXBlY2ZQTlEwV3J0SUZERjJIQU9CMWtUZ09EOEI1Si9LeEFqSlpOdFli?=
- =?utf-8?B?b0pwS0xHaEJtZG1yVFNsU2pERVVoeXowVm16QzMyQVNNSmlUUmFQZ3RsSWQ3?=
- =?utf-8?B?Zm9BZnVNUzVsdVZlbjVjUi96bE5kOEkvSXFHMEtHOTJmTkMraTNHNkV0ZTJJ?=
- =?utf-8?B?TmVaYk16MTVzTmVvTHN0emxULzRJZUFmU0I4RXNEUGZmaHo2cXhYS21IMHFz?=
- =?utf-8?B?SnMrVDM3L2tXY1g4MGNNdjM1bzd1aUJDeU5LVWJNYXlINS9CZFFSbVpzMVhy?=
- =?utf-8?B?ZDNIN3J6VlJtVmh1ZmR3dFBOdURpQUs0cUVpWkNWOUErNHIvd096QTY3WFZw?=
- =?utf-8?B?ai9ZZXlKbUpSNzFqVDhpOVEwYnExYWlhUUJwVEJEVWZzblRRQ0lnbk5MeUww?=
- =?utf-8?B?aVNpSExyMHNnb0dJR2hIZ0ZPaUdUaWlYRVpxNnVyMHJGV0xvU0VFTWRhMDBW?=
- =?utf-8?B?RU9ORjJqajU0eG5CNkR2TjNiWkNMQmkwc2dHVEUxY29MeGsyT0pOeEdSdFBt?=
- =?utf-8?B?Wk14QzNOS0p3MUJRZE9kcSsrVmI1REJQSDEydDZQZXJmanFwZWpLSzdrU0JF?=
- =?utf-8?B?Smh2RlVGa0hVVElvR3M0Y3FHUW0yZ1BKbzFaSWk0N1lmRXhJSzV3QmtJMmRS?=
- =?utf-8?B?aFZBMVIvbWVna0lJTFRqbnAzTXBvVldYcDd2azFHcDZNL0xhaHBvclYrMHor?=
- =?utf-8?B?TU1zRFd2djZqMW95ZDhFOVo3K2duem5yOEk0QXJlYnkwdXI1bnBWYVJ2UXhm?=
- =?utf-8?B?SmhPMkJwcjQyajRURHVsR25kdHdXOG93cFdoWTVmWnlnRzRqc3hmblFoRXVT?=
- =?utf-8?B?UzBhRTQwdzRjZUxub0Z2OVBycTNmb1hFc1FQMXRudkY3c0tqUXRacis1QkpN?=
- =?utf-8?B?SCswYjJnL3dyYkVXR3ZYYjEvaENaVGpKdGt5TFo5bFBZUWxEeldiL1NOY0Zr?=
- =?utf-8?B?Z3RoZzUzbmlLaGptTnpzcmVmZG1rQkhaQXhNSkp6aFk5VStHMUZzWTBiV1J4?=
- =?utf-8?B?cEZic1Y0cHNESUlTZysxZkxJQmZJZHRFMXVpRVRrM3pnSVlHc3NIaG11OVQx?=
- =?utf-8?B?bUVrNldYVWc3Z0FHa3NUOXRyMkpOU0lqa2EvOWxaRTIvNWdCYWNQakpISW8w?=
- =?utf-8?Q?Np0S2vOIf5RKShclDYqn1wXeK9VKmmLKwYvUjkv?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bccdb437-fa7f-4926-5780-08dc33d1ed59
-X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB6959.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Feb 2024 18:13:10.4883
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR06MB5522
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v4 1/6] dt-bindings: net: hisilicon-femac-mdio:
+ convert to YAML
+Content-Language: en-US
+To: forbidden405@outlook.com, Yisen Zhuang <yisen.zhuang@huawei.com>,
+ Salil Mehta <salil.mehta@huawei.com>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>
+Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240222-net-v4-0-eea68f93f090@outlook.com>
+ <20240222-net-v4-1-eea68f93f090@outlook.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240222-net-v4-1-eea68f93f090@outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 2/23/2024 2:08 AM, Krzysztof Kozlowski wrote:
-> On 21/02/2024 17:41, Yang Xiwen via B4 Relay wrote:
->> From: Yang Xiwen <forbidden405@outlook.com>
->>
->> Add "syscon" and "simple-mfd" compatibles to CRG node due to recent
->> binding changes.
-> Why? You claimed you added them in the bindings because DTS has them. In
-> DTS you claim reason is: binding has them.
->
-> That's confusing.
+On 22/02/2024 13:43, Yang Xiwen via B4 Relay wrote:
+> From: Yang Xiwen <forbidden405@outlook.com>
+> 
+> For some FEMAC cores, MDIO bus is integrated to the MAC controller. So
+> We don't have a dedicated MDIO bus clock.
 
+Hm, this means you miss compatibles for these different cores.
 
-Because the old txt based binding claimed there should not be a "syscon" 
-and "simple-mfd".
+> 
+> Also due to the PHY reset procedure, it's required to manage all clocks
+> and resets in the MAC controller driver. MAC controller clock can not be
+> shared with MDIO bus node in dts.
+> 
+> Mark the clock optional to resolve this problem.
 
+I don't understand how making clock optional solves this problem. Clock
+is still there. Whether driver handles it, does not affect the binding.
 
-But it exists in hi3798cv200.dtsi. And i think it does no harm to be 
-there. So should i do it in two commits?
-
-
->
->> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
->> ---
->>   arch/arm/boot/dts/hisilicon/hi3519.dtsi | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/arm/boot/dts/hisilicon/hi3519.dtsi b/arch/arm/boot/dts/hisilicon/hi3519.dtsi
->> index a42b71cdc5d7..da46e01b8fdc 100644
->> --- a/arch/arm/boot/dts/hisilicon/hi3519.dtsi
->> +++ b/arch/arm/boot/dts/hisilicon/hi3519.dtsi
->> @@ -35,7 +35,7 @@ clk_3m: clk_3m {
->>   	};
->>   
->>   	crg: clock-reset-controller@12010000 {
->> -		compatible = "hisilicon,hi3519-crg";
->> +		compatible = "hisilicon,hi3519-crg", "syscon", "simple-mfd";
-> Why? This does not make much sense. No children here, no usage as syscon.
->
->
->
-> Best regards,
-> Krzysztof
->
-
--- 
-Regards,
-Yang Xiwen
+Best regards,
+Krzysztof
 
 
