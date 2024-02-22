@@ -1,91 +1,93 @@
-Return-Path: <devicetree+bounces-44986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C91C86056C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 23:08:20 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35514860579
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 23:14:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B179A1F248C9
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 22:08:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 445F3B23535
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 22:14:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E417012D211;
-	Thu, 22 Feb 2024 22:08:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u8FQdZtL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B4BF12D21A;
+	Thu, 22 Feb 2024 22:14:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF33B73F37;
-	Thu, 22 Feb 2024 22:08:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3845473F10;
+	Thu, 22 Feb 2024 22:14:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708639693; cv=none; b=lMbZqr8Vzq16Xy75IgRWGA/3kdmpD1tChqb2tt5919EdI5avtL6lSDPJI4TyfPrPXgQvEYHO8rG/uVNxU2sGAViOtQuSjv5s2cYvljBQPJk4fhVgESvMvrnqK3rh8F2fkjq0foodwC0tvCRMV8EG7PKWQaPH9e4/bPQU76uIjs8=
+	t=1708640055; cv=none; b=O4e6egauBvVyDF/sQxa43pplqpxsHGECvZn8SgAN0Ko/8N9e8hBcc+3/m2nUDYMDtzblgLBqbugqPShiHlJ4ZBWQPrR0Tj005BtEUVUYVcTXdPLIMmUeLwTxmv+83Wr89IJUz5aOwb9OeNuFYg/qZzqcEPY5W5T+xwDrVRU3pDY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708639693; c=relaxed/simple;
-	bh=CuQc5x7leFz9R9+zLGnroGX22UpyIfplVvG4ngR5Kso=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=lfCl0gRbFIku/RAkaOMtaEgtsBr+bsi3iiFJrL1RQJqAB32rbeAQaM45hZ1W1PnrP08AD4rE+vpyzgYAxFaY331vXFXEJUOpPpoV5Zfkp7ZIlJOJepvcX9xCPyu3wS1plTd6BpnC4zyn9jT08RYJ+eE5Nh9cyAHCndQ6E+tel3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u8FQdZtL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC3C4C433C7;
-	Thu, 22 Feb 2024 22:08:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708639693;
-	bh=CuQc5x7leFz9R9+zLGnroGX22UpyIfplVvG4ngR5Kso=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=u8FQdZtLixiIeEa3nlQA2BOqfuEA288VBLVysxbhcTY4n1/4y/QUfks1sYI02qEPM
-	 33YgWKHaHGQGIhkzXWhheAQvDCTrOQUjFnH47obguKW+fwXagbH+/rf+3OMrnay5vW
-	 9qQUH3oPxce+mPGwmLv2a4l3HmTW5c/dsW7NvVE23ojrSrthlUwus4sP22itOfAvwR
-	 Y4aUq4zBmJKrK75vOgtzavOIA/viEL1JfBV1NKao6YIvkZNuMsAdv1MuaIu1P1Cz69
-	 OJTXHfOp/FaP7di+biTTklm+hwaP7sWDa0XtaGQj5LarxV09L6bFEhq1qxPVVRXi+/
-	 IhHSr9wDoQ2ag==
-Date: Thu, 22 Feb 2024 16:08:11 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Vidya Sagar <vidyas@nvidia.com>
-Cc: bhelgaas@google.com, rafael@kernel.org, lenb@kernel.org,
-	will@kernel.org, lpieralisi@kernel.org, kw@linux.com,
-	robh@kernel.org, frowand.list@gmail.com, linux-pci@vger.kernel.org,
-	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	treding@nvidia.com, jonathanh@nvidia.com, kthota@nvidia.com,
-	mmaddireddy@nvidia.com, sagar.tv@gmail.com
-Subject: Re: [PATCH V3] PCI: Add support for preserving boot configuration
-Message-ID: <20240222220811.GA31251@bhelgaas>
+	s=arc-20240116; t=1708640055; c=relaxed/simple;
+	bh=ck3jRgRIEFFe1vVEFGBoovJRWLr353BeTOW5VKjl/ZU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=gucSISJNx2mOmTq55yt9xr4Izklpsi/zRGsHl5tA8osQ4l9SDIy6eui5l+4QXn5jTtmHUHFmkqZgxNfmNZdC7mmAqOMaD4RVc9uiS2E/5iVKvInhiXSqB8r5hCBvakPuQ3tAeM49HGuelMLbO1bGyqBGyrxLS6ZNa+SumINipJw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C3FC7DA7;
+	Thu, 22 Feb 2024 14:14:49 -0800 (PST)
+Received: from minigeek.lan (unknown [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BD2AE3F766;
+	Thu, 22 Feb 2024 14:14:09 -0800 (PST)
+Date: Thu, 22 Feb 2024 22:12:45 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, wens@csie.org, samuel@sholland.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: allwinner: h616: Add Orange Pi Zero 2W to
+ Makefile
+Message-ID: <20240222221245.216f403a@minigeek.lan>
+In-Reply-To: <20240222211326.114955-1-jernej.skrabec@gmail.com>
+References: <20240222211326.114955-1-jernej.skrabec@gmail.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <17a29a7e-b013-4568-8e21-9647969b6b6d@nvidia.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Fri, Feb 23, 2024 at 02:48:24AM +0530, Vidya Sagar wrote:
-> On 22-02-2024 22:36, Bjorn Helgaas wrote:
-> > On Thu, Feb 22, 2024 at 06:11:10PM +0530, Vidya Sagar wrote:
+On Thu, 22 Feb 2024 22:13:26 +0100
+Jernej Skrabec <jernej.skrabec@gmail.com> wrote:
 
-> > > +     if (&host_bridge->dev) {
-> > Checking &host_bridge->dev doesn't seem like the right way to
-> > determine whether this is an ACPI host bridge.
+Hi,
 
-BTW, I think this condition is *always* true, since it's testing the
-address of a member of a struct.
+> Orange Pi Zero 2W dts file is not included in Makefile. Fix this.
+> 
+> Fixes: c505ee1eae18 ("arm64: dts: allwinner: h616: add Orange Pi Zero 2W support")
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-> Honestly, I couldn't find a clear way to differentiate between an
-> ACPI based host bridge and a DT based host bridge. Hence, the
-> current code tries to get the information using both ways and since
-> a system can only be either ACPI or DT based, but one at a time,
-> preserve_config will be set only once (assuming the system wants it
-> to be set). Let me know if there is a better approach for this?
+Ah, sorry, I think this was lost during a rebase, when the other H618
+boards were merged.
 
-I'm not sure ACPI and DT will always be mutually exclusive; I think
-we're headed toward some combinations, e.g.,
-https://lore.kernel.org/linux-pci/1692120000-46900-1-git-send-email-lizhi.hou@amd.com/
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
 
-But I think "if (ACPI_HANDLE(&host_bridge->dev))" would work.
+Cheers,
+Andre
 
-Bjorn
+> ---
+>  arch/arm64/boot/dts/allwinner/Makefile | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
+> index 91d505b385de..1f1f8d865d0e 100644
+> --- a/arch/arm64/boot/dts/allwinner/Makefile
+> +++ b/arch/arm64/boot/dts/allwinner/Makefile
+> @@ -42,5 +42,6 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-cb1-manta.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-pi.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
+> +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero2w.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero3.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-transpeed-8k618-t.dtb
+
 
