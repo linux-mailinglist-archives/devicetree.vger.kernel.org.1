@@ -1,149 +1,144 @@
-Return-Path: <devicetree+bounces-44959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44962-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B82AD860421
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 21:57:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87EC486042B
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 21:58:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E96381C256CF
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 20:57:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 286B2B28AF4
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 20:58:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 613DC73F3A;
-	Thu, 22 Feb 2024 20:57:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F28997175C;
+	Thu, 22 Feb 2024 20:58:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g+TVcWsU"
+	dkim=pass (2048-bit key) header.d=dabbelt-com.20230601.gappssmtp.com header.i=@dabbelt-com.20230601.gappssmtp.com header.b="j90nl2wi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9132371739;
-	Thu, 22 Feb 2024 20:57:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F114107B4
+	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 20:58:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708635426; cv=none; b=lg7sVW2Ntsx9pCkPEEA89w9yrp67QlHkzRrfX5d532UORdx8Fa9D/RH+Npb5FcOljNQrn7zUZHA+rrzrmrbVTEQiLP4Jx2AqM2BCBv8H0IMutAc3CEIuSKomtni44xhJoZConhmYheqbUwopL7xytVvzm+fkNaEH4yiTzGsKrLQ=
+	t=1708635484; cv=none; b=brXVREjOR2ILC1dZRi+Eem6VH+2sBctdDkImMDTTq84xGpLt+m3pswizeILUjjExTQt69Z4vD8o17zR6RcZSTsB/9al02zCcsMgSWD1DAzNe9uESXi+cuqUKgSbEIETbUMZFFdEASMHUUdvyO9cANIDQzxVk5C+zhnNOpdcKx6k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708635426; c=relaxed/simple;
-	bh=ZXL/20AOlmDgfRX36Nzj4Pff74rf6CTLJF/MqrlGbAc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=azjXMUXH+lzE5RNmJVr2Ux7N2c0WEbf2VU6gjhfaRo8Bgnic1lRBQkvtJX1FsTOPHbM1qSjr3ki32v79sxC5/2eOyxhPAMgxyHHJy20qZ6Hvexjz32+SJnKHLJ9DUBTq6RMV5APOrYcGpDr1Mpn0wcZ2/YgKHcg43T8Z/EWpTy0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g+TVcWsU; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5654621d62dso66090a12.3;
-        Thu, 22 Feb 2024 12:57:04 -0800 (PST)
+	s=arc-20240116; t=1708635484; c=relaxed/simple;
+	bh=oo8hXXOsRZpFdbwH1oQe9YLEy7wMWlFsaDKNC37/KpE=;
+	h=Date:Subject:In-Reply-To:CC:From:To:Message-ID:Mime-Version:
+	 Content-Type; b=oblq234D0Ii7QtB6YxuW/rdEoak7eRJoZz8j/qc1o2+gakiSY5HybYEFJavgtLFz3dERaDSOo+A6pTrddoKYel7zgGDMXUQhnRGGYtQRr1U7kX4/Y8z3iMIENb6+kUHo2cGkAb/AQSfItiPDlj52wgHusAACjtQ8yuv7g2qAygA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dabbelt.com; spf=pass smtp.mailfrom=dabbelt.com; dkim=pass (2048-bit key) header.d=dabbelt-com.20230601.gappssmtp.com header.i=@dabbelt-com.20230601.gappssmtp.com header.b=j90nl2wi; arc=none smtp.client-ip=209.85.160.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dabbelt.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dabbelt.com
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-21e7c3e3cf3so124120fac.0
+        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 12:58:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708635423; x=1709240223; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=k2R6exNFMuMyEP9Zs0TU701ZxYwzvvvAfOU9DIEkDzQ=;
-        b=g+TVcWsUvU38GqV+gwUEtUKoG8zXXRYmpcGGGQrpgtrCCKt9m98Xs2BAPMHqpfOWzH
-         kGLQz468V9PM7ArAM9VovH8T0WZ8X9WPp7ERPhWv6/NKQAyd/JK0EoAhgPsrFKHfCfDg
-         l5+CGWxkFgmNqX6sXF5lcnXFeTgXkOWhIvZKrAzBRmjEj7Qr8EtIbD9gS1pkyUqpv/rb
-         ibU9mTVLZ4en/MpcZydsXod7BYckyd3JlMRIxL21AjiHRXE73n4tE05Gab+VE7Hsmynp
-         mlrsH2O2RIQRmHx7jsBcK0bOtQ38Fv27toXMffpmHjnBrFucxYMAVDL0KcKkv9pOg0n3
-         NUUA==
+        d=dabbelt-com.20230601.gappssmtp.com; s=20230601; t=1708635481; x=1709240281; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=F/JstmNsXGrATrdQJrqYAdriIsItVvYWhgpEZTS+OEc=;
+        b=j90nl2wi4lQdjX4IXjpvaESIlQ/+0vWIpWSrUkoJ/hyAfQKAzrbykU/v3k689RKMis
+         He4eA6wRRBl9zDt0TMQJVQ5MVjOOese1VVFBnLGBWIvzSgyl6t0e9aT7WnQvx39xR1ug
+         BVv96pwRtNtANoPIjE4G+07uIeLj8X16wMLEKs7B/c1Dtsp3Jm0A6ceNn3ppCD/dM/d2
+         96FJpsxDwyC1wi3nurX0E6n1O6bLRsEJeuo7vIWQ8OtKHXAob58EUIAPi13HYbGOW+fM
+         IstEgw32rXRhQywiBQu7JrVHiuGYEqAZ0OfafFAxfW5h+128SeC9DiCtJAE2klgKPl0q
+         pnyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708635423; x=1709240223;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=k2R6exNFMuMyEP9Zs0TU701ZxYwzvvvAfOU9DIEkDzQ=;
-        b=jK9zorFkU730j0vSeb27YkIZRV484ootI7yw006nuVIfSyzo9seCNyBheZRI8jHWL3
-         txhJI/QZHf+LLgE1aJ91wc/qVylydn5rXwLbipja7vVJwhp6tAA5djaotKkxyS5B5ouo
-         mOABJv61zi1UKSt6RoFD59zqJV/4l9/m//8Uv6kUbEDk9JAy75TsVlM1mWzZ7yRVNVne
-         U7Hl8tpqQD2cEJPXjnm5PpkoPQ3Pa225stXhswp8s8MMtPZ3MTJv2t/JBwkmQEHqqom3
-         STOQEB4al3F2pawt5+k2saG6D/PFORZzn+TTBfpCKAaXA8MU/4WIKrj/p14u1mFuNWCN
-         8z2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXYRC1oXWkfQE2IGu9dcE3kfWSGp9eAUfvyijQ5M7ovpPvhEl2ilGwn8PI5LJL3Z7bkb1m9184Kb8VDQxLawsisgZ046Yen83RYIQKIKZZoa15MWCF46cWvXt/TgdekvVO+6S/ap3s=
-X-Gm-Message-State: AOJu0YxsYlAYssUVDc7IUxxK8u3pfSjglqtUl0zYGXQq0kYUPvhxOKlU
-	igbfYq3irZL2SN8kD20voe8eYQlpnF4aJ3HI1lM1KoAXuk9OfcOeCG7+rAML42g=
-X-Google-Smtp-Source: AGHT+IE/qvrg3YIq3JMhwgKa7j4LV2SY69KS3EGu1YYakjYgPPsfh2dUaKoCvH0+xzFJkFJVYOeQJA==
-X-Received: by 2002:a50:cd58:0:b0:563:e5e0:85e1 with SMTP id d24-20020a50cd58000000b00563e5e085e1mr16447362edj.25.1708635422647;
-        Thu, 22 Feb 2024 12:57:02 -0800 (PST)
-Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id r21-20020a50d695000000b00563f3ee5003sm6120860edi.91.2024.02.22.12.57.01
+        d=1e100.net; s=20230601; t=1708635481; x=1709240281;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=F/JstmNsXGrATrdQJrqYAdriIsItVvYWhgpEZTS+OEc=;
+        b=GPTurPJP5A7gJRCrVUvIl7oOWqY57j6q2p1g1EF4o5dDBZH1BdPWZr4Ml8++N3yS4n
+         R7HuisYaoPgHuo8HhmMsqt4miiyXpX7K/UPbNnd6YnwI/beg15WsDBCIyFfxOzNny+Wb
+         QvH3auT/hY910a7/KIoMCwae91VWowZ4arLi9O8W7UVamQswdDwyo0MsN8l/RUU9mZD0
+         cs840jgWH0geGG1w4X1qGU7XMpmanDodboDn8UjNHUP429vhF1JCloz+TrYt/66r28Gd
+         VVrzFB7yrJttc+XqckBqkisDndXSXNkIBh7IvQPEpw/j8njErKxY5dF6G/uTmuSgzatq
+         krGg==
+X-Forwarded-Encrypted: i=1; AJvYcCUomc9T/6CA8xLvh80t8FLLbcGlJUhJ9+1kHn7sZWxKhlg/xfMkSRDm9lxhT54QnPE+P+7cBbs7Wh/OVBtZmEqPojit1r2dETc37A==
+X-Gm-Message-State: AOJu0YzRSeR3oltmNk20IjwhmjyYWrBsaF6aBOOcQ5WNgJLmnng4dtvf
+	8bfHbCHOnl3WXaLLQt0M61aqqNgcdmLL0L9xdt0iAHUOdGA7dHQeF2tkWeiVVPo=
+X-Google-Smtp-Source: AGHT+IFzHbOMj9bR4XwoTV78+XQQDpkce4tWRSTpsF1S4rvhPsRaNJYaAkOqP1nVzW664TOOaBFWYA==
+X-Received: by 2002:a05:6870:3306:b0:219:48a9:2d08 with SMTP id x6-20020a056870330600b0021948a92d08mr84346oae.12.1708635481161;
+        Thu, 22 Feb 2024 12:58:01 -0800 (PST)
+Received: from localhost ([50.213.54.97])
+        by smtp.gmail.com with ESMTPSA id u2-20020a656702000000b005dc26144d96sm9549017pgf.75.2024.02.22.12.58.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Feb 2024 12:57:02 -0800 (PST)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: linux-kernel@vger.kernel.org, Aren Moynihan <aren@peacevolution.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
- Jean-Jacques Hiblot <jjhiblot@traphandler.com>, Chen-Yu Tsai <wens@csie.org>,
- Ondrej Jirman <megi@xff.cz>, linux-sunxi@lists.linux.dev,
- Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>,
- linux-arm-kernel@lists.infradead.org, linux-leds@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>, Miles Alan <m@milesalan.com>,
- Samuel Holland <samuel@sholland.org>, Aren Moynihan <aren@peacevolution.org>
-Subject:
- Re: [PATCH v2 4/4] arm64: dts: sun50i-a64-pinephone: change led type to
- status
-Date: Thu, 22 Feb 2024 21:57:00 +0100
-Message-ID: <2792937.BEx9A2HvPv@jernej-laptop>
-In-Reply-To: <20240206185400.596979-4-aren@peacevolution.org>
-References:
- <20240206185400.596979-1-aren@peacevolution.org>
- <20240206185400.596979-4-aren@peacevolution.org>
+        Thu, 22 Feb 2024 12:58:00 -0800 (PST)
+Date: Thu, 22 Feb 2024 12:58:00 -0800 (PST)
+X-Google-Original-Date: Thu, 22 Feb 2024 12:57:58 PST (-0800)
+Subject:     Re: [RFC PATCH 0/1] riscv: dts: Allow BUILTIN_DTB for all socs
+In-Reply-To: <ac11967c-3ab4-42be-86ca-0d40c35eee04@ghiti.fr>
+CC: cyy@cyyself.name, linux-riscv@lists.infradead.org,
+  Paul Walmsley <paul.walmsley@sifive.com>, aou@eecs.berkeley.edu, Conor Dooley <conor@kernel.org>,
+  linux-kernel@vger.kernel.org, masahiroy@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org
+From: Palmer Dabbelt <palmer@dabbelt.com>
+To: alex@ghiti.fr
+Message-ID: <mhng-a0b00545-1522-4045-a4fe-97c3fbb8b082@palmer-ri-x1c9a>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Dne torek, 06. februar 2024 ob 19:13:20 CET je Aren Moynihan napisal(a):
-> The status function is described in the documentation as being a rgb led
-> used for system notifications on phones[1][2]. This is exactly what this
-> led is used for on the PinePhone, so using status is probably more
-> accurate than indicator.
-> 
-> 1: Documentation/leds/well-known-leds.txt
-> 2: include/dt-bindings/leds/common.h
-> 
-> Signed-off-by: Aren Moynihan <aren@peacevolution.org>
+On Tue, 20 Feb 2024 12:46:57 PST (-0800), alex@ghiti.fr wrote:
+> Hi Yangyu,
+>
+> On 20/02/2024 20:01, Yangyu Chen wrote:
+>> The BUILTIN_DTB kernel feature on RISC-V only works on K210 SoC only. This
+>> patch moved this configuration to entire riscv.
+>>
+>> Although BUILTIN_DTB is not a good choice for most platforms, it is likely
+>> to be a debug feature when some bootloader will always override something
+>> like the memory node in the device tree to adjust the memory size from SPD
+>> or configuration resistor, which makes it hard to do some debugging. As an
+>> example, some platforms with numa like sg2042 only support sv39 will fail
+>> to boot when there is no ZONE_HIGHMEM patch with 128G memory. If we want
 
-Sorry for late review.
+I guess that's a surprising one, but there's always some Kconfig entries 
+that are necessary to set in order to get platforms to boot -- at a bare 
+minimum errata and drivers, for example.
 
-Please update subject in patches 2-3. Instead of "sun50i-a64-pinephone:"
-use "allwinner: pinephone:" (check commit history of sun50i-a64-pinephone.dtsi).
-Also rgb -> RGB, led -> LED. Last, please reword commit message to exclude
-links and just say DT bindings documentation.
+> Orthogonal to this patch, but if needs be, we can fix this issue with
+> 128G on sv39 by changing the sv39 address space layout, we still have
+> room to gain the 4G you miss, at that time I was pretty sure that amount
+> of memory would come with sv48 :)
 
-Note that I'll merge patches 2-3 once patch 1 is merged.
+That seems like a reasonable way to go, as long as it's not overly 
+complex.
 
-Best regards,
-Jernej
+>
+> Thanks,
+>
+> Alex
+>
+>
+>> a kernel without this patch to boot, we need to write the memory nodes
+>> in the DT manually.
+>>
+>> Also, changing DT on some platforms is not easy. For Milk-V Pioneer, the
+>> boot procedure is ZSBL -> OpenSBI -> LinuxBoot -> Linux. If DT gets
+>> changed, OpenSBI or LinuxBoot may refuse to boot. And there is some bug on
+>> LinuxBoot now which does not consume --dtb argument on kexec and always
+>> uses DT from memory. So I would like to do debugging on DT using
 
-> ---
-> I can't find any documentation describing the indicator function, so
-> it's definitely less specific than status, but besides that I'm not sure
-> how it compares. Please ignore this patch if it's not useful.
-> 
-> (no changes since v1)
-> 
->  arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-> index e53e0d4579a7..6d327266e6cc 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-> @@ -61,7 +61,7 @@ led2: led-2 {
->  	multi-led {
->  		compatible = "leds-group-multicolor";
->  		color = <LED_COLOR_ID_RGB>;
-> -		function = LED_FUNCTION_INDICATOR;
-> +		function = LED_FUNCTION_STATUS;
->  		leds = <&led0>, <&led1>, <&led2>;
->  	};
->  
-> 
+I'd argue those are bootloader/firmware bugs.
 
-
-
-
+>> BUILTIN_DTB, which makes it very simple, I can even install the kernel in
+>> the distro's way and provide a kernel package for other users to test.
+>>
+>> Yangyu Chen (1):
+>>    riscv: dts: Allow BUILTIN_DTB for all socs
+>>
+>>   arch/riscv/Kconfig                  | 16 ++++++++++++++-
+>>   arch/riscv/Kconfig.socs             | 32 -----------------------------
+>>   arch/riscv/boot/dts/Makefile        |  2 +-
+>>   arch/riscv/boot/dts/canaan/Makefile |  2 --
+>>   4 files changed, 16 insertions(+), 36 deletions(-)
+>>
 
