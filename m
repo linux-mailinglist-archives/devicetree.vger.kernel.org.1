@@ -1,173 +1,151 @@
-Return-Path: <devicetree+bounces-44841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44842-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E60B785FC7C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 16:34:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 789A085FC98
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 16:39:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B9599B21578
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 15:34:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0579A1F254ED
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 15:39:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50D361482F7;
-	Thu, 22 Feb 2024 15:34:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3100514C586;
+	Thu, 22 Feb 2024 15:39:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bSBc2oNL"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="dK8fP4oy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2087.outbound.protection.outlook.com [40.107.95.87])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20E49482D4;
-	Thu, 22 Feb 2024 15:34:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708616072; cv=none; b=tgHU+k/I7uLtmz3ABKW4E7dQiHp8ITyzkIgq/6zgqpBem6Ej1IHtuz73fsKhRR/dcU/mT93sSKoSFlMykcka9lQFVmccQQHclKM3GtT8NU4hKEGwXKXClbmlroC3zASx2KNfb0N6ZbESLauKZT2x/qwblqhY9m1BzlcJteNs+jc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708616072; c=relaxed/simple;
-	bh=hgxfsP2uprA1vuFpi6P+dbDSTCbhlaU5XxD8Li/ITTk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Me9PvnIatWo0OZua1OLpBenWX4qTX52jzhsS6bjsvLTCiLw5j0EebaklRU0g0f8qgHnh1N3L81tXV3Off8/6dOQq8zuSTBbCty4x7jAiI/u25gZRGJvR8SD7kUwiVpP8tvXdZmsQTUsL/8Lbl2zhEbf3NhtoiQGp9d82n+u7kyU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bSBc2oNL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABABDC433C7;
-	Thu, 22 Feb 2024 15:34:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708616071;
-	bh=hgxfsP2uprA1vuFpi6P+dbDSTCbhlaU5XxD8Li/ITTk=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=bSBc2oNLRFmbQIRlCpTLIsOFniG6X/9lQjpBl+sgZs1ftQRbrwubjgyBGC5BRmtk4
-	 BTGMofh5DM7mLd4m+Xrf43sSqezKos2E7XJw/cGXTQd9g8/fAFSkfhDaBOnnnlPGSQ
-	 QfC6dBNm2kfMNBVp8Bq9PcBEi4tgme20p8JhBwTD/tYAFFKvEG95FWd8Dr6iF13jcG
-	 vV2kw3+eIrx08urnq8Qr9OMtxbnTvTnlZlpQvubrq88hAuBfNXTiznp5LJ4LYLzqHE
-	 rqaEMSf3ScvZWmtLIFgwirVzQrtPCllp6Stt0e/+KpI7qsj2XP3aGhvSCargZJrwuK
-	 DDM1q6La43olw==
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2d09cf00214so92055051fa.0;
-        Thu, 22 Feb 2024 07:34:31 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVSQ+TXgBFrbe2p2Ki4aEm3I/is4DqLy6gEYsfI1jhfpMzrH00hnPzojX+k2bJobrWoTfY4KvMszNUTq36vQ2vbsZ8H1tyTqfTg2VotX6BB/lFGpJ6q5OxY6kLW+bjjD4MaM7lYNvwcaA==
-X-Gm-Message-State: AOJu0YzLJ0zGK+8yT/UVwA3uSPzv/tz0cSjyBX/566e5N6ci1uLmi6re
-	CY05wRC6qlMyws/Nmha+M4dezjQkb/4ZYGQOrt83Ddssub7DzFztZmzLgRY1mop7RMon5WHsT9d
-	lW4xLVuUsrm6nUrUOLst30z0g0A==
-X-Google-Smtp-Source: AGHT+IFgyNerjD3B8faWG/isyW+76U5eGaG3mxQGoiIVhZWC3fI6SK73bLHpCgSZuwiktVrJEUSjJo6fWh5RcbhYnFc=
-X-Received: by 2002:a05:651c:9:b0:2d2:555f:b4ae with SMTP id
- n9-20020a05651c000900b002d2555fb4aemr3219787lja.51.1708616069766; Thu, 22 Feb
- 2024 07:34:29 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C5EA135A67;
+	Thu, 22 Feb 2024 15:39:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.95.87
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708616346; cv=fail; b=lPxSPJAh46c4gMAW4dRSRjngFag3wWfPp/OYJTZp0hpaWyOsOhTuRJm4Mzml9NDc2+obYEIYNPN1zloz8qLBUre9U5nRJyZ0WPKoevc3P+czMktImki14z+TrkuDUfGB9pfl9qpMksBpa+/ujuhBLfy7xPvJBAqdNsvsVJQD3Xg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708616346; c=relaxed/simple;
+	bh=qI4WOQwWTn+7M5bezZhlzLvBL+cT/Ltoieh1NkonlHk=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=kd25vDVcOubwZ5n1QUgATGgQj6ZfoNfthx9v4Hnzt5nJO0NAy2ERyBcfDfwUR8J5NOeATMBDgfptnGP2/hIimoIS6iDhtQJa+JNR8mot9klmpr50ku3mrpOOcd6O6CdaU0Pl6EjMTa+jHk/rrdUdPoKdQL0bpox+c/p5LR+/RHg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=dK8fP4oy; arc=fail smtp.client-ip=40.107.95.87
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GVEXMyYY3ZcnSH+yt6T7F9t+X8j5iTwNFf8/zTh1F3qJXMi153L+QB46pCsj5vV6eZGk7wzz2YYQ2ZMLmJmwQ780fA/Mh1KVYu6sLhRJd9u8gV/3oLdiiqAZ3Gyh7zMT6AZoeqfTphSelie3uUe8wMbyZZNng6YcHo8QCKhAdgMeeMEcjWk2hWq63bl4PJtSBH6Kn7sE5GW4atgBV9nIV4kB7DaqYaRnOJG7onOWkRT/vnNaMvgdbbdro3xtKDOMoIDLXbtxEG2t6GuD5bPHi+G9eFpiWhYS/V7EcZD3xze7WRhdVCttOnOrZWcaUBBWfNgVu8D1jeFSYCCZD3iCBg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=462XqMe00tZB/KAoaobwvlb80Meg/13cV2cDWHRgkxE=;
+ b=ZGhFLD5n4h7XHw9wxQnCzXUoFESGGNnnWeEMt60GYXOXP+NZav0M6oZLQqI/SodevC9fK1TpC24qoLf/D/BY0tMWzrqG/GMdVD0DLPIfoealPb7D+VwFlZIixtefv4/zHjnPV+pFv04gbFpRHylvUrPDiCaru17oRX1Mzux9Dz+epUtDor4hjmNkHDtT7JrT7dbbyQmfok0VtOEJEKu6TuUCnNVSX2PZl36xEw5+AQDEeT7wc3wDIhDyAwa/Nd22Y8R8K21MuwUPwTuKzJz/hlkvBwpvmepF3aT8QNLKEWuPZbNl4RjJmtVKYM8nb6/SBUZfU+5CCJa3F5lVbFHRKQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=microchip.com smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=462XqMe00tZB/KAoaobwvlb80Meg/13cV2cDWHRgkxE=;
+ b=dK8fP4oyAB/6BhcwgC9akOtHuR4mnU1YsVhEu5UBWMvE7b4/ebsXMNhgKUqt+hL/HkoeC9r3cRTo5WTzS/UDN9377Fx+RGPpvFBgx8IaTITUsxin97saHivwUQlILc7nQHNWPAcpP5+Wfog1mIORhAGn7U1kFtBhvJQitiliza4=
+Received: from BN1PR12CA0003.namprd12.prod.outlook.com (2603:10b6:408:e1::8)
+ by DS7PR12MB5981.namprd12.prod.outlook.com (2603:10b6:8:7c::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.24; Thu, 22 Feb
+ 2024 15:38:59 +0000
+Received: from BN1PEPF00004684.namprd03.prod.outlook.com
+ (2603:10b6:408:e1:cafe::5b) by BN1PR12CA0003.outlook.office365.com
+ (2603:10b6:408:e1::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.43 via Frontend
+ Transport; Thu, 22 Feb 2024 15:38:59 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN1PEPF00004684.mail.protection.outlook.com (10.167.243.90) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7292.25 via Frontend Transport; Thu, 22 Feb 2024 15:38:59 +0000
+Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 22 Feb
+ 2024 09:38:58 -0600
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB08.amd.com
+ (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 22 Feb
+ 2024 07:38:58 -0800
+Received: from xhdvineethc40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Thu, 22 Feb 2024 09:38:54 -0600
+From: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
+To: <nicolas.ferre@microchip.com>, <claudiu.beznea@tuxon.dev>,
+	<davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+	<pabeni@redhat.com>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<linux@armlinux.org.uk>, <vadim.fedorenko@linux.dev>, <andrew@lunn.ch>
+CC: <vineeth.karumanchi@amd.com>, <netdev@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, <git@amd.com>
+Subject: [PATCH net-next v2 0/4] net: macb: WOL enhancements 
+Date: Thu, 22 Feb 2024 21:08:44 +0530
+Message-ID: <20240222153848.2374782-1-vineeth.karumanchi@amd.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240216-ad7944-mainline-v2-0-7eb69651e592@baylibre.com>
- <20240216-ad7944-mainline-v2-1-7eb69651e592@baylibre.com> <20240221152226.GA2868707-robh@kernel.org>
- <CAMknhBFytGYNo8FviHepoxLApoGyo0mVhL2BzVmm1vt8-Evn9Q@mail.gmail.com>
-In-Reply-To: <CAMknhBFytGYNo8FviHepoxLApoGyo0mVhL2BzVmm1vt8-Evn9Q@mail.gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 22 Feb 2024 08:34:16 -0700
-X-Gmail-Original-Message-ID: <CAL_Jsq+diFUEn=Tf99_FkXqLHuyLrZW_jaYoPjGhGjGbecgivg@mail.gmail.com>
-Message-ID: <CAL_Jsq+diFUEn=Tf99_FkXqLHuyLrZW_jaYoPjGhGjGbecgivg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: add ad7944 ADCs
-To: David Lechner <dlechner@baylibre.com>
-Cc: linux-iio@vger.kernel.org, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN1PEPF00004684:EE_|DS7PR12MB5981:EE_
+X-MS-Office365-Filtering-Correlation-Id: ea097517-a497-4ab6-d29e-08dc33bc634b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	3hGPNg54zE0vvPDy3oLZ5pvDMWIpwybei+Ntzf385j8msCqpfwtQNhWxH2kZaN2f3gcw2ZIKYeAtV9k5aQp8wVSsIwfWxJZ9U+8LX7j5Fkr5wraUX/z9C4ebcprWgjR/TingJvmhtpRQT7SytDCc7GPH7QiX5rQG00kZdjd/p9ksh/T5Eb3YcBbV7zMUkx00d9JDLzDd5xRF016EbcgGd2+XZYE7EApCWRmlLwO5crcrmyTCFVHtDknoeF9lm3oMYqbN9r+uH6jzUQDG+nESflpUOlvcvAaV2edZHmKHnfXw87ArSqMknDZqoyJ+OdiSzDoSD5QjiHSoZHFYn6wLSyt1QBxUjKMJVJYGQn1zTmZqAVbZSACCEEreZSpvPoCfjUCBUCH5JSKaNARD5czxou0C1Injkx5jYVC4VLFle/NEo3JV+GBVEGC2bwCtESQ64c5wV2unlK1rGjGwiA/40VxBFzFa0AIiSGE/sq8Bd/O//rcZlvEI/Fv8zwQMJPl7B5Oui1OSyJM/rpibeq1jg59odg7oiFdbIxWCHgpBqm/KNh2HyDrMpWErITY5/5uCseCUCCVeuWfbAjcNdPSZegr3daWdRHAWEyf9hWcqynTUs5fXS/m5o3O5k2PL7S4BaMU/5uT+HambIb3ielZtPDLu6xPiCA/eme9IastLDCE=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(230273577357003)(36860700004)(40470700004)(46966006)(921011);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Feb 2024 15:38:59.2080
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ea097517-a497-4ab6-d29e-08dc33bc634b
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BN1PEPF00004684.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5981
 
-On Wed, Feb 21, 2024 at 8:44=E2=80=AFAM David Lechner <dlechner@baylibre.co=
-m> wrote:
->
-> On Wed, Feb 21, 2024 at 9:22=E2=80=AFAM Rob Herring <robh@kernel.org> wro=
-te:
-> >
-> > On Fri, Feb 16, 2024 at 01:46:18PM -0600, David Lechner wrote:
->
-> ...
->
-> > > +  adi,spi-mode:
-> > > +    $ref: /schemas/types.yaml#/definitions/string
-> > > +    enum: [ single, multi, chain ]
-> > > +    default: multi
-> > > +    description: |
-> > > +      * single: The datasheet calls this "3-wire mode". It is often =
-used when
-> > > +        the ADC is the only device on the bus. In this mode, SDI is =
-tied to VIO,
-> > > +        and the CNV line can be connected to the CS line of the SPI =
-controller
-> > > +        or to a GPIO, in which case the CS line of the controller is=
- unused.
-> >
-> > We have a standard property for this.
->
-> As discussed in v1 [1], the datasheet's definition of "3-wire mode" is
-> _not_ the same as the standard spi-3wire property. I can add that to
-> the description here to clarify (I hoped changing the enum name was
-> enough, but perhaps not). Or is there a different property you are
-> referring to?
->
-> [1]: https://lore.kernel.org/all/20240216140826.58b3318d@jic23-huawei/
->
-> >
-> > > +      * multi: The datasheet calls this "4-wire mode". This is the c=
-onvential
+- Add provisioning for queue tie-off and queue disable during suspend.
+- Add WOL caps to support magic-packet and ARP modes.
+- Depricate magic-packet property.
 
-Also, typo.
+Changes in v2:
+- Re-implement WOL using CAPS instead of device-tree attribute.
+- Deprecate device-tree "magic-packet" property.
+- Sorted CAPS values.
+- New Bit fields inline with existing implementation.
+- Optimize code.
+- Fix sparse warnings.
+- Addressed minor review comments.
 
-> > > +        SPI mode used when there are multiple devices on the same bu=
-s. In this
-> > > +        mode, the CNV line is used to initiate the conversion and th=
-e SDI line
-> > > +        is connected to CS on the SPI controller.
-> >
-> > That's "normal" mode.
->
-> That was my first choice, but the datasheet uses the term "normal
-> mode" to mean not TURBO mode which is something else unrelated to the
-> SPI mode.
+v1 link : https://lore.kernel.org/lkml/20240130104845.3995341-1-vineeth.karumanchi@amd.com/#t
 
-What I mean is this should be conveyed by the absence of any property.
-You don't need a property for "normal SPI mode".
+Vineeth Karumanchi (4):
+  net: macb: queue tie-off or disable during WOL suspend
+  net: macb: Add ARP support to WOL
+  net: macb: Enable queue disable and WOL
+  dt-bindings: net: cdns,macb: Deprecate magic-packet property
 
-> >
-> > > +      * chain: The datasheet calls this "chain mode". This mode is u=
-sed to save
-> > > +        on wiring when multiple ADCs are used. In this mode, the SDI=
- line of
-> > > +        one chip is tied to the SDO of the next chip in the chain an=
-d the SDI of
-> > > +        the last chip in the chain is tied to GND. Only the first ch=
-ip in the
-> > > +        chain is connected to the SPI bus. The CNV line of all chips=
- are tied
-> > > +        together. The CS line of the SPI controller is unused.
-> >
-> > Don't you need to know how many chips are chained? In any case, you jus=
-t
-> > need a property for chain mode. There's some existing properties for
-> > chained devices I think. Standard logic shift register based GPIO IIRC.
->
-> Thanks, I see #daisy-chained-devices now. I missed that before.
->
-> >
-> > CNV are tied together, but must be driven by something? I suppose
-> > cnv-gpios?
->
-> Yes.
->
-> > But wouldn't that be the same as the SPI controller GPIO CS?
-> > Does a SPI controller CS line connected to CNV not work in this case?
->
-> Maybe technically possible if CS is inverted on the bus since the line
-> has to be high to trigger the conversion and during the xfer.
+ .../devicetree/bindings/net/cdns,macb.yaml    |   1 +
+ drivers/net/ethernet/cadence/macb.h           |   9 ++
+ drivers/net/ethernet/cadence/macb_main.c      | 118 +++++++++++++++---
+ 3 files changed, 109 insertions(+), 19 deletions(-)
 
-That's supported by the binding. Seems like it would simplify the
-driver if you went that route and better support other devices on the
-SPI bus. Also, we require 'reg', so I don't know what you'd put in it
-in the no CS case. Though, we probably already have that case with CS
-tied active. Shrug.
+-- 
+2.34.1
 
-Rob
 
