@@ -1,368 +1,125 @@
-Return-Path: <devicetree+bounces-44792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44794-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FD8485F989
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 14:22:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F7C085F996
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 14:23:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D84BD2873D7
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 13:22:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE7F91F26CD4
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 13:23:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB259135A4A;
-	Thu, 22 Feb 2024 13:21:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32223133284;
+	Thu, 22 Feb 2024 13:22:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rgpXxHjt"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="bNzOX7jY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A5291332B5
-	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 13:21:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D62B3F9ED;
+	Thu, 22 Feb 2024 13:22:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708608097; cv=none; b=KVTq+4AQrS0EDtAhRX2wgiTBpXsERZrmMvP1tImxcW2eoc7lprC/blRL2FMCv7QvJqXqaffmBE7I/Q2zn1U67gk9qJDNDVf6ez2FkUWZ+N2AoY55H0HRzLCuYEkREstSzG8P4+ejgqTzyeGiWs1/ZlYldqDOXt5R3pucVeqcaHs=
+	t=1708608165; cv=none; b=oAaYvkCH/Z3vWK6OOmJ0Q34wIGsQoujYHb72mW1PdltXRM2YStsAwBn4WpClR5Ei2Y4zKvDWmXF7qafnEBGhPteNUHNIFejy2W2MZfrP3bG5/txCQhWzkrhxGQdYSsOOTQj63Kv4wVLnHZ83Y6+9AZGZhhYIS7zeu+HvupCLY/A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708608097; c=relaxed/simple;
-	bh=bhujJwo0n2i82rSZ2CCyo+HTa0yJTbld2cvmeZujWFg=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=kYi8me/HDvWd3t1ZPfwRT+Sqn3BE2iaYIrUPs1G6F0gjOW/hvQ6YwqD3ZGTgxnfamsRkDK5Oy/vmmecxhfnyy+fkFtyjkuToPXPUFuYgDkASKhNsEbVviuX04mlDh1io8puRfYhDnqdL/CCe/yLuZpn9j4X0TgLr7NozyMbh6aM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rgpXxHjt; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-33d6f1f17e5so1812679f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 05:21:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708608093; x=1709212893; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nJe8AJQ4avlhs+TrkE3V41RN60ULi4C44lxA2alOfPw=;
-        b=rgpXxHjtXOjJKc3miMT3mnfJ6H4wBUa9r3bbRWU/J1KpQR+yJJeXf9LmaEoThJaBGA
-         1isD7O3bUB9piirj5EIGlnLpECuNPaZZGapC1SFusZbApSGK3gqT0nCebOyYuc72PCpg
-         7aRJD9oFYNLsxNqvnjP83OvGpPU4LUAlKG4+A+/Weoff+kHejWH+lvpQ/b+aqzaLJIym
-         Jww1BZSzzbSXcyMp5DfnYM8VJ98yoJRvl0FX1uhNhfN706fqQO+0eR4HVhNIy4jgfBvd
-         KGlR24GyGkzx7OsZ88Oi9zOJNT3wKylieEquDERnBIPctD2VwUQd0qTNMyh4F80FMB0h
-         S1Fw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708608093; x=1709212893;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=nJe8AJQ4avlhs+TrkE3V41RN60ULi4C44lxA2alOfPw=;
-        b=tiyQ58+IMDl+cyDreJlB87cm5icp3qrxA5tLkxlzT96Rg7Kl6Uos71+q/+QKbbnfga
-         acekTFCMsu9COYmLGISFYyCFTRgkwGuB0XKWrfIkQjV4IlaAJgvOr5uncwNB+Qd0TGFO
-         ZQ1UmTrXAXGRDmzT7qICwNA3Mc+lGQPrQU7pyyfNRIo1VVh2UmSuqmlGix2XvqUrTX0u
-         +BjvHYk7umGB8eiXN3nqLDn8rBIfcvpMMxyXhUKBAanw2gPY3jifPxniykeMqpevN9Ta
-         oVYoIQ7Ebej73Cu9Q715RTwAyBYBy51vi73bxS1GdVOX11Lt08KDxl8DGwMOwJiHHJlc
-         24Ww==
-X-Forwarded-Encrypted: i=1; AJvYcCXrRp70kc5/4aB9b9yXQ5qj6+Zu/a8PBVivhUJh/c0qAqBTRar8DJ8n/p4XFX6ecADxqiM9lYdqV4xY+4ByV/+YV1nO7W7KcByHaw==
-X-Gm-Message-State: AOJu0YwFEItuWq3n15ZxztcSYxnWIssVd3UAfYq6KpCgRUV87Tsm1dDl
-	VxFb9EcbfQtd+f6ddiSS7pHXH6C6Mz//5QLZONe6ITxcAL/Cikq1W9E9jy9wnWU=
-X-Google-Smtp-Source: AGHT+IFe5RxqLhSi7hpw2Xp1Ta1zsSUeiZfO4vru4wGScJd+HsEOHeDUU7HSxRMxcC5/c9uf6FaJpw==
-X-Received: by 2002:adf:e84c:0:b0:33d:82a1:626d with SMTP id d12-20020adfe84c000000b0033d82a1626dmr3017418wrn.38.1708608093324;
-        Thu, 22 Feb 2024 05:21:33 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:c3d:c732:acf9:f53b? ([2a01:e0a:982:cbb0:c3d:c732:acf9:f53b])
-        by smtp.gmail.com with ESMTPSA id r10-20020adfda4a000000b0033d3b8820f8sm15199268wrl.109.2024.02.22.05.21.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Feb 2024 05:21:32 -0800 (PST)
-Message-ID: <665f37e9-eda4-4d82-8d94-a1238514dbff@linaro.org>
-Date: Thu, 22 Feb 2024 14:21:31 +0100
+	s=arc-20240116; t=1708608165; c=relaxed/simple;
+	bh=eBYXIyM7l7L2CPD4PZhB6FUIsDNqhBJx3bdqZp3tWg4=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=XOfzg/6ZDn9CakRQJXFcdYk8RJGp7yXqVNJU0rstMNJ1CnMI/4R1y/1/hV6xgSP8ZYw553YcxBMpQSzAxzKhl5u2oOsLlMlu9imDNiJwkfili5W4vXJhcL6VBzwh2pk4to+NBI4aPJj11/1sMv7PvUAkoSxR4A8g/XGwPgggkI8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=bNzOX7jY; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41MDMZLD046755;
+	Thu, 22 Feb 2024 07:22:35 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1708608155;
+	bh=XgfpVgHH1tgrJ5dLNBy/JKfod6zFSg3RNVRg+hVXmEo=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=bNzOX7jYKJtuRVFz4CF/+dZ0IteuFbYrcHXSawakmYBK5KAOSW9P74YH6x/yww1wI
+	 sDqR83VRj2V70Q71oDfAxcViSlNMAt8KeyE+AXzLn4hPZjCXnUAGCtldhwrmAnEhFh
+	 OMi+MVtsTI2Mb8ZonCeJEVs7wPMZxB0/W2gud56M=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41MDMZmX120727
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 22 Feb 2024 07:22:35 -0600
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 22
+ Feb 2024 07:22:35 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 22 Feb 2024 07:22:35 -0600
+Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.94])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41MDMVWF008883;
+	Thu, 22 Feb 2024 07:22:32 -0600
+From: Vignesh Raghavendra <vigneshr@ti.com>
+To: <nm@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        Vaishnav Achath
+	<vaishnav.a@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: Re: [PATCH v2 0/2] Add OSPI and Ethernet support on J722S EVM
+Date: Thu, 22 Feb 2024 18:52:28 +0530
+Message-ID: <170860805562.1966114.3015232602049266823.b4-ty@ti.com>
+X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20240219090435.934383-1-vaishnav.a@ti.com>
+References: <20240219090435.934383-1-vaishnav.a@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [RFC PATCH 4/6] arm64: dts: qcom: sm8650p: introduce sm8650p dtsi
-Content-Language: en-US, fr
-To: Jingyi Wang <quic_jingyw@quicinc.com>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- andersson@kernel.org, konrad.dybcio@linaro.org, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: kernel@quicinc.com
-References: <20240205115721.1195336-1-quic_jingyw@quicinc.com>
- <20240205115721.1195336-5-quic_jingyw@quicinc.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20240205115721.1195336-5-quic_jingyw@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 05/02/2024 12:57, Jingyi Wang wrote:
-> Introduce sm8650p dtsi, sm8650p has same base functions
-> as sm8650 with different memory regions.
+Hi Vaishnav Achath,
+
+On Mon, 19 Feb 2024 14:34:33 +0530, Vaishnav Achath wrote:
+> This series adds support for Ethernet and OSPI NOR flash on J722S EVM.
 > 
-> There are 3 types of reserved memory regions here:
-> 1. Firmware related regions.
->      This will be described as: reserved-region@address. Current
-> reserved-region may have reserved area which was not yet used, release
-> note of the firmware can have such kind of information.
-> 2. Firmware related which shared with kernel access.
->      Each region will have a specific node with specific label name for
-> later phandle reference from other driver dt node. May overlapping with
-> above type regions.
-> 3. PIL regions.
->      PIL regions are allocated by kernel and assigned to subsystem
-> firmware later.
-> Here is a map for this platform:
-> 0x100000000 +------------------+
->              |                  |
->              | Firmware Related |
->              |                  |
->   0xd8000000 +------------------+
->              |                  |
->              | Kernel Available |
->              |                  |
->   0xA7000000 +------------------+
->              |                  |
->              |    PIL Region    |
->              |                  |
->   0x8BC00000 +------------------+
->              |                  |
->              | Firmware Related |
->              |                  |
->   0x80000000 +------------------+
-> Note that:
-> 1. 0xA7000000 to 0xA8000000 was used by bootloader as well, not suggest
-> for other usage.
-> 2. Kernel start address was start at 0xA8000000.
+> V1: https://lore.kernel.org/all/20240216135533.904130-1-vaishnav.a@ti.com/
 > 
-> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
-> ---
->   arch/arm64/boot/dts/qcom/sm8650p.dtsi | 180 ++++++++++++++++++++++++++
->   1 file changed, 180 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/qcom/sm8650p.dtsi
+> Changelog:
+> V1->V2:
+>   * Update comments indicating PAD numbers.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8650p.dtsi b/arch/arm64/boot/dts/qcom/sm8650p.dtsi
-> new file mode 100644
-> index 000000000000..26dfe315b49d
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sm8650p.dtsi
-> @@ -0,0 +1,180 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include "sm8650.dtsi"
-> +
-> +/delete-node/ &reserved_memory;
-> +
-> +/ {
-> +	reserved_memory: reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		/*
-> +		 * There are 3 types of reserved memory regions here:
-> +		 * 1. Firmware related regions.
-> +		 *     This will be described as: reserved-region@address. Current
-> +		 * reserved-region may have reserved area which was not yet used,
-> +		 * release note of the firmware can have such kind of information.
-> +		 * 2. Firmware related which shared with kernel access.
-> +		 *     Each region will have a specific node with specific label
-> +		 * name for later phandle reference from other driver dt node. May
-> +		 * overlapping with above type regions.
-> +		 * 3. PIL regions.
-> +		 *     PIL regions are allocated by kernel and assigned to subsystem
-> +		 * firmware later.
-> +		 * Here is a map for this platform:
-> +		 * 0x100000000 +------------------+
-> +		 *             |                  |
-> +		 *             | Firmware Related |
-> +		 *             |                  |
-> +		 *  0xd8000000 +------------------+
-> +		 *             |                  |
-> +		 *             | Kernel Available |
-> +		 *             |                  |
-> +		 *  0xA7000000 +------------------+
-> +		 *             |                  |
-> +		 *             |    PIL Region    |
-> +		 *             |                  |
-> +		 *  0x8BC00000 +------------------+
-> +		 *             |                  |
-> +		 *             | Firmware Related |
-> +		 *             |                  |
-> +		 *  0x80000000 +------------------+
-> +		 * Note that:
-> +		 * 1. 0xA7000000 to 0xA8000000 was used by bootloader as well, not
-> +		 * suggest for other usage.
-> +		 * 2. Kernel start address was start at 0xA8000000.
-> +		 */
-> +
-> +		/* Firmware related regions */
-> +		reserved-region@80000000 {
-> +			reg = <0x0 0x80000000 0x0 0xbc00000>;
-> +			no-map;
-> +		};
+> [...]
 
-Ok this region goes up to 0x8BC00000 and so overlaps with the next regions:
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
-> +
-> +		aop_image_mem: aop-image-region@81c00000 {
-> +			reg = <0x0 0x81c00000 0x0 0x60000>;
-> +			no-map;
-> +		};
-> +
-> +		aop_cmd_db_mem: aop-cmd-db-region@81c60000 {
-> +			compatible = "qcom,cmd-db";
-> +			reg = <0x0 0x81c60000 0x0 0x20000>;
-> +			no-map;
-> +		};
-> +
-> +		aop_config_mem: aop-config-region@81c80000 {
-> +			no-map;
-> +			reg = <0x0 0x81c80000 0x0 0x20000>;
-> +		};
-> +
-> +		smem_mem: smem-region@81d00000 {
-> +			compatible = "qcom,smem";
-> +			reg = <0x0 0x81d00000 0x0 0x200000>;
-> +			hwlocks = <&tcsr_mutex 3>;
-> +			no-map;
-> +		};
-> +
-> +		adsp_mhi_mem: adsp-mhi-region@81f00000 {
-> +			reg = <0x0 0x81f00000 0x0 0x20000>;
-> +			no-map;
-> +		};
-> +
-> +		global_sync_mem: global-sync@82600000 {
-> +			reg = <0 0x82600000 0 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		mpss_dsm_mem: mpss-dsm@86b00000 {
-> +			reg = <0 0x86b00000 0 0x4900000>;
-> +			no-map;
-> +		};
-> +
-> +		mpss_dsm_mem_2: mpss-dsm-2@8b400000 {
-> +			reg = <0 0x8b400000 0 0x800000>;
-> +			no-map;
-> +		};
+[1/2] arm64: dts: ti: k3-j722s-evm: Enable CPSW3G RGMII1
+      commit: 9aa197b64df4c382763f032a31b35cad92cbce17
+[2/2] arm64: dts: ti: k3-j722s-evm: Enable OSPI NOR support
+      commit: 2e53b9c05a1589577565625fdb45cf918b54eb39
 
-up to here
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-Please fix this,
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-I just checked against plain sm8650.dtsi and actually the memory adresses are the same.
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-So what's the _real_ difference here ? Just drop the superfluous memory zones and redefine them if needed.
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-Thanks,
-Neil
-
-> +
-> +		/* PIL region */
-> +		mpss_mem: mpss-region@8bc00000 {
-> +			reg = <0x0 0x8bc00000 0x0 0xf400000>;
-> +			no-map;
-> +		};
-> +
-> +		q6_mpss_dtb_mem: q6-mpss-dtb-region@9b000000 {
-> +			reg = <0x0 0x9b000000 0x0 0x80000>;
-> +			no-map;
-> +		};
-> +
-> +		ipa_fw_mem: ipa-fw-region@9b080000 {
-> +			reg = <0x0 0x9b080000 0x0 0x10000>;
-> +			no-map;
-> +		};
-> +
-> +		ipa_gsi_mem: ipa-gsi-region@9b090000 {
-> +			reg = <0x0 0x9b090000 0x0 0xa000>;
-> +			no-map;
-> +		};
-> +
-> +		gpu_micro_code_mem: gpu-micro-code-region@9b09a000 {
-> +			reg = <0x0 0x9b09a000 0x0 0x2000>;
-> +			no-map;
-> +		};
-> +
-> +		spss_region_mem: spss-region@9b0a0000 {
-> +			reg = <0x0 0x9b0a0000 0x0 0x1e0000>;
-> +			no-map;
-> +		};
-> +
-> +		spu_secure_shared_memory_mem: spu-secure-shared-memory-region@9b280000 {
-> +			reg = <0x0 0x9b280000 0x0 0x80000>;
-> +			no-map;
-> +		};
-> +
-> +		camera_mem: camera-region@9b300000 {
-> +			reg = <0x0 0x9b300000 0x0 0x800000>;
-> +			no-map;
-> +		};
-> +
-> +		video_mem: video-region@9bb00000 {
-> +			reg = <0x0 0x9bb00000 0x0 0x800000>;
-> +			no-map;
-> +		};
-> +
-> +		cvp_mem: cvp-region@9c300000 {
-> +			reg = <0x0 0x9c300000 0x0 0x700000>;
-> +			no-map;
-> +		};
-> +
-> +		cdsp_mem: cdsp-region@9ca00000 {
-> +			reg = <0x0 0x9ca00000 0x0 0x1400000>;
-> +			no-map;
-> +		};
-> +
-> +		q6_cdsp_dtb_mem: q6-cdsp-dtb-region@9de00000 {
-> +			reg = <0x0 0x9de00000 0x0 0x80000>;
-> +			no-map;
-> +		};
-> +
-> +		q6_adsp_dtb_mem: q6-adsp-dtb-region@9de80000 {
-> +			reg = <0x0 0x9de80000 0x0 0x80000>;
-> +			no-map;
-> +		};
-> +
-> +		adspslpi_mem: adspslpi-region@9df00000 {
-> +			reg = <0x0 0x9df00000 0x0 0x4080000>;
-> +			no-map;
-> +		};
-> +
-> +		/* Firmware related regions */
-> +		reserved-region@d8000000 {
-> +			reg = <0x0 0xd8000000 0x0 0x28000000>;
-> +			no-map;
-> +		};
-> +
-> +	};
-> +};
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+--
+Vignesh
 
 
