@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-44696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3706A85F4B7
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 10:42:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 802ED85F4B9
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 10:42:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 87050B2539E
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 09:42:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA0711F21865
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 09:42:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A34443839A;
-	Thu, 22 Feb 2024 09:41:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F0FA39FF5;
+	Thu, 22 Feb 2024 09:41:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="F1unxOpY"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="QlJGNwMx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24B433F9E5
-	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 09:41:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A83F7383BD
+	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 09:41:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708594875; cv=none; b=XyRIRD3PeZR0b3chjc23A4moVkU8hJ7ZrLaij5iqs5mgQAqfLVLiDNsIfwbQoYvcnKLGMkP7bcLppvzasXro0gBUfye0bDyJZVx4teVyxv3cxzXR+phPhwmvgizZvawlXXPx19wQoYyLJ0AIEl3s3OoSoB+pM2Baeyc6sFl60qw=
+	t=1708594883; cv=none; b=WkP5tLkb0lnVrVgyj3JIrlI1Y8cmtaD++EQrT1PXTwk7HB7VrWNJWFYKX6Igdh6EfNSBY2ur2wujCWjJo4Ny5lVr7nAjIPpCWSQ2/MEc1Tcqa4d48RZ5bW9ir89PNXzr+A9qymjNj/h+Xk/ZYJDUwLgY849ci+lj369HLLn/EO4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708594875; c=relaxed/simple;
-	bh=4ipmzzw4N/1s36yujXDL2FWU6D5+RIErGNPMLbFlHwE=;
+	s=arc-20240116; t=1708594883; c=relaxed/simple;
+	bh=AREfP5h691mLVlaksim6LHj3bQFv44Li+RtHHtiPx0k=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=NYMdDKTksCoiBRgkWNnVe5S0R5Bz+k2kI6P/JQfAhvnKTNTyrKT2Nk87gduVYlC0/C51SauDmku78q7zm0HbmIfVkFasusZpr7Mq1bk45VI1SePngeM/y79yaID6iL9Nb7QkX/hd8yC0dPECgau7NbfezVts/OnKY8ubUIHjYXU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=F1unxOpY; arc=none smtp.client-ip=209.85.167.182
+	 MIME-Version; b=HJqIB7LNHUQ10L7oYq2ojvh/RcObDtrx0Ad0psoKfoe4rrUgRuoNEIQVQ8pbxWnbv/1GiRXisGAxORbn6vurf5HKhGCri2FKIMbGIr7QE41nfg7wTJy1BlzSBKCwN9J9b73YH3oHl5J2zUYtvIXaWBSMGCuOjyHtpYFSFFmKcKA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=QlJGNwMx; arc=none smtp.client-ip=209.85.167.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-3c049ccb623so5086999b6e.1
-        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 01:41:13 -0800 (PST)
+Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-3c1593b82acso2297908b6e.0
+        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 01:41:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1708594873; x=1709199673; darn=vger.kernel.org;
+        d=ventanamicro.com; s=google; t=1708594881; x=1709199681; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=yFOwokt/Qs+I70jfKIbSgbLogS64uTxBCY4KGhVh6mo=;
-        b=F1unxOpYLYiVYRWfbszPf2MHONyIU7xUJ0EuibhcknXWMxNqlALnRnlh2bWJorLxNB
-         +xJkqtdPbpdbD4YHGxVbRp10xQvwTdDM+9HCCtRDidknaaW9BGuC13AkSUPlX3YsTzNl
-         fEXCB2kfhwMa7Lc5LlBlQR0wKW60x9FswUNs902lLIYJM9HbOwaxeLC280/tm/v+Ab33
-         fbjTkj6cOMaAfAFVPIclhSNDvC0rPYO1BFG4zqF7Q3gL35a0eIjWfnnC0mQQVXedbt+Y
-         y3zkWRxb+7FUpFQVvrld6xgcWXEGphEltnFFZkibZvjU4TPsJt1vrnwdJv1tXfr/Ux2J
-         wWZA==
+        bh=Dw8y24wZWNZ04w7x8csHkLTJ35ivq17oSt9+7/D12iY=;
+        b=QlJGNwMxRCxHmrovkpzNvW9f6Vn6jIjAiPwNaWEuQhGzQmgWajmG17LGQao4FXpxAL
+         tOKTVKwgIAI2OHjw8NzFgTlNb5i9RYB0jcWM8RnnzZ0+V7c25vCscrb+97xXT4dTvakl
+         X5JiqTuSVrda/ExFKCm+DaLRS/3aSaE135KYkG5hk1iSNsD/LWt7Pl6HTkJmVDlz9In1
+         enZkrioHlZ/ywJg+FuBMFVJQ8ecdgTBLmcXOU+7aI6Sr2Zr9AKktjczRIVi1y/jbHK4w
+         lQwoywu1J4nVTjc+Blpl/rkrt+Ac6wqEWxFFJnAFbA6QFuYTqvDCOBncu9gSR0eTZMgY
+         a06g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708594873; x=1709199673;
+        d=1e100.net; s=20230601; t=1708594881; x=1709199681;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=yFOwokt/Qs+I70jfKIbSgbLogS64uTxBCY4KGhVh6mo=;
-        b=h5tCMT8gBbYvyiS4oG2BVAm9h8YN8WwFirEwjbUnTVlDX625OF/OpWU+lOqiaifQ05
-         1wFoijD7W8PrLZTJ8LgMeRm/NhO7iGmuOBxnTxYp6r5q2ia5RC1clQDv8A138C5213U9
-         dUZrLr/oLxK3zN3EYHl5OufkPe/re3GUcOdDDRcFA4yVJmN82UecmS3rpo7e0cS79Aw5
-         gBExSq1sx+iPzcfqlyOFmdysCJL/MsOiw9FcWBqQCHoOUokdAgxNiG4HALyXhvFymqF4
-         6A0/lPwWTjnXSx/8OgHEgKW7/al+yfdRKp988GOyvNcY+n/zdGXDa4atWwPS4FPMfLjR
-         bb8A==
-X-Forwarded-Encrypted: i=1; AJvYcCW6tv1u9Z9MnCmE/S6nY2zzbJpE4v8vT45AgUtzZij6xO+ULSmtY00YezpJTKDVALJXcwVy+FaMUxB9H2aiP9vgejJmxUcCJ6QsMQ==
-X-Gm-Message-State: AOJu0YzYzxOqNYGg5li+2Z+/x3i7usBtNkFDQgb52aGPvPZ35iPne/X0
-	2ozhT+0bFRRqdKSmFyH1Cpc3QlkoljkSdvX4/UjuwlIxfDccPA/GQ8Mrf4aUSxU=
-X-Google-Smtp-Source: AGHT+IGSHWVbV1tcxeH3+z11dMA97PdpaF9ANlA0nsm0f5BLNAt/QDzUFxbA279Ntl5owUYgn9cD2g==
-X-Received: by 2002:a05:6808:2e93:b0:3c1:3f84:7a95 with SMTP id gt19-20020a0568082e9300b003c13f847a95mr25335778oib.14.1708594873059;
-        Thu, 22 Feb 2024 01:41:13 -0800 (PST)
+        bh=Dw8y24wZWNZ04w7x8csHkLTJ35ivq17oSt9+7/D12iY=;
+        b=DDH3d6YfYr7gE4WdLwcwu5rtM5pzI0fosocfSssKorjU1jqXbWIc5gasweyzX8gNKc
+         aEPJN9uHCcqdRWI8eBB9AynZKcWbekRPvFGKu+sa5j53M9/XocuhJoANNm1gCOPfixgJ
+         uCyUVA7CUmZr6jvzMjJrXxfEuBGO3EW6guQMIAeqiJ5AQgVPtqm8oVe59ap52OXtvVPX
+         PE+Ur6mx9P9Mz8fkI+SgfQWdv7dRdlRWv9PzYpr4lBHKpD9ka2CHdXyNjg7dnhv3awIn
+         Dd7e9A2lHel1WOabgF5GRFJSC/necjXVi9zqfTJNV6P3qRn4Pi99dts46avFKikMvCn6
+         jS3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXZ6rq2mFeLshK2GtXcjpz1UFq+vQ+aCsGDvj1Tkh30WMjz2OQr6i0+35moQOqqYJ9JvXgSV9bVRAIv7pVyeDWtvZ0JqTQJRlm5EQ==
+X-Gm-Message-State: AOJu0YwRAOTZGX4MgxAvpUellVBqnDO6ROpUdz84ohm2Hw97ScI8dVwj
+	cweVIli1hJnKAJJEUV6X82CSjN5qTXzmtpZIbPsGJClG+T4r2Go8LLTWICwBNXo=
+X-Google-Smtp-Source: AGHT+IEOb1Yx2hf7SfgFjAX4PLImkj9wNrlWxC26sYi3FIjcQ1SGd91HFyROaXeS/Zjiup30flFeDw==
+X-Received: by 2002:a05:6808:d47:b0:3c1:8039:f8b9 with SMTP id w7-20020a0568080d4700b003c18039f8b9mr408375oik.21.1708594880741;
+        Thu, 22 Feb 2024 01:41:20 -0800 (PST)
 Received: from anup-ubuntu-vm.localdomain ([103.97.165.210])
-        by smtp.gmail.com with ESMTPSA id n15-20020a05680803af00b003c17c2b8d09sm130699oie.31.2024.02.22.01.41.05
+        by smtp.gmail.com with ESMTPSA id n15-20020a05680803af00b003c17c2b8d09sm130699oie.31.2024.02.22.01.41.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Feb 2024 01:41:12 -0800 (PST)
+        Thu, 22 Feb 2024 01:41:20 -0800 (PST)
 From: Anup Patel <apatel@ventanamicro.com>
 To: Palmer Dabbelt <palmer@dabbelt.com>,
 	Paul Walmsley <paul.walmsley@sifive.com>,
@@ -87,9 +87,9 @@ Cc: Marc Zyngier <maz@kernel.org>,
 	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	Anup Patel <apatel@ventanamicro.com>
-Subject: [PATCH v14 07/18] irqchip/sifive-plic: Improve locking safety by using irqsave/irqrestore
-Date: Thu, 22 Feb 2024 15:09:55 +0530
-Message-Id: <20240222094006.1030709-8-apatel@ventanamicro.com>
+Subject: [PATCH v14 08/18] irqchip/riscv-intc: Add support for RISC-V AIA
+Date: Thu, 22 Feb 2024 15:09:56 +0530
+Message-Id: <20240222094006.1030709-9-apatel@ventanamicro.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240222094006.1030709-1-apatel@ventanamicro.com>
 References: <20240222094006.1030709-1-apatel@ventanamicro.com>
@@ -101,95 +101,102 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Now that PLIC driver is probed as a regular platform driver, the lock
-dependency validator complains about the safety of handler->enable_lock
-usage:
+The RISC-V advanced interrupt architecture (AIA) extends the per-HART
+local interrupts in following ways:
+1. Minimum 64 local interrupts for both RV32 and RV64
+2. Ability to process multiple pending local interrupts in same
+   interrupt handler
+3. Priority configuration for each local interrupts
+4. Special CSRs to configure/access the per-HART MSI controller
 
-[    0.956775]  Possible interrupt unsafe locking scenario:
-
-[    0.956998]        CPU0                    CPU1
-[    0.957247]        ----                    ----
-[    0.957439]   lock(&handler->enable_lock);
-[    0.957607]                                local_irq_disable();
-[    0.957793]                                lock(&irq_desc_lock_class);
-[    0.958021]                                lock(&handler->enable_lock);
-[    0.958246]   <Interrupt>
-[    0.958342]     lock(&irq_desc_lock_class);
-[    0.958501]
-                *** DEADLOCK ***
-
-To address above, use raw_spin_lock_irqsave/unlock_irqrestore() instead
-of raw_spin_lock/unlock().
+Add support for #1 and #2 described above in the RISC-V intc driver.
 
 Signed-off-by: Anup Patel <apatel@ventanamicro.com>
 ---
- drivers/irqchip/irq-sifive-plic.c | 16 ++++++++++------
- 1 file changed, 10 insertions(+), 6 deletions(-)
+ drivers/irqchip/irq-riscv-intc.c | 32 +++++++++++++++++++++++++-------
+ 1 file changed, 25 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifive-plic.c
-index e6d23fde51ed..175d02f7fd64 100644
---- a/drivers/irqchip/irq-sifive-plic.c
-+++ b/drivers/irqchip/irq-sifive-plic.c
-@@ -103,9 +103,11 @@ static void __plic_toggle(void __iomem *enable_base, int hwirq, int enable)
+diff --git a/drivers/irqchip/irq-riscv-intc.c b/drivers/irqchip/irq-riscv-intc.c
+index e8d01b14ccdd..8997f6986f89 100644
+--- a/drivers/irqchip/irq-riscv-intc.c
++++ b/drivers/irqchip/irq-riscv-intc.c
+@@ -17,6 +17,7 @@
+ #include <linux/module.h>
+ #include <linux/of.h>
+ #include <linux/smp.h>
++#include <asm/hwcap.h>
  
- static void plic_toggle(struct plic_handler *handler, int hwirq, int enable)
- {
--	raw_spin_lock(&handler->enable_lock);
-+	unsigned long flags;
-+
-+	raw_spin_lock_irqsave(&handler->enable_lock, flags);
- 	__plic_toggle(handler->enable_base, hwirq, enable);
--	raw_spin_unlock(&handler->enable_lock);
-+	raw_spin_unlock_irqrestore(&handler->enable_lock, flags);
+ static struct irq_domain *intc_domain;
+ 
+@@ -30,6 +31,14 @@ static asmlinkage void riscv_intc_irq(struct pt_regs *regs)
+ 	generic_handle_domain_irq(intc_domain, cause);
  }
  
- static inline void plic_irq_toggle(const struct cpumask *mask,
-@@ -236,6 +238,7 @@ static int plic_irq_set_type(struct irq_data *d, unsigned int type)
- static int plic_irq_suspend(void)
++static asmlinkage void riscv_intc_aia_irq(struct pt_regs *regs)
++{
++	unsigned long topi;
++
++	while ((topi = csr_read(CSR_TOPI)))
++		generic_handle_domain_irq(intc_domain, topi >> TOPI_IID_SHIFT);
++}
++
+ /*
+  * On RISC-V systems local interrupts are masked or unmasked by writing
+  * the SIE (Supervisor Interrupt Enable) CSR.  As CSRs can only be written
+@@ -39,12 +48,18 @@ static asmlinkage void riscv_intc_irq(struct pt_regs *regs)
+ 
+ static void riscv_intc_irq_mask(struct irq_data *d)
  {
- 	unsigned int i, cpu;
-+	unsigned long flags;
- 	u32 __iomem *reg;
- 	struct plic_priv *priv;
+-	csr_clear(CSR_IE, BIT(d->hwirq));
++	if (IS_ENABLED(CONFIG_32BIT) && d->hwirq >= BITS_PER_LONG)
++		csr_clear(CSR_IEH, BIT(d->hwirq - BITS_PER_LONG));
++	else
++		csr_clear(CSR_IE, BIT(d->hwirq));
+ }
  
-@@ -253,12 +256,12 @@ static int plic_irq_suspend(void)
- 		if (!handler->present)
- 			continue;
+ static void riscv_intc_irq_unmask(struct irq_data *d)
+ {
+-	csr_set(CSR_IE, BIT(d->hwirq));
++	if (IS_ENABLED(CONFIG_32BIT) && d->hwirq >= BITS_PER_LONG)
++		csr_set(CSR_IEH, BIT(d->hwirq - BITS_PER_LONG));
++	else
++		csr_set(CSR_IE, BIT(d->hwirq));
+ }
  
--		raw_spin_lock(&handler->enable_lock);
-+		raw_spin_lock_irqsave(&handler->enable_lock, flags);
- 		for (i = 0; i < DIV_ROUND_UP(priv->nr_irqs, 32); i++) {
- 			reg = handler->enable_base + i * sizeof(u32);
- 			handler->enable_save[i] = readl(reg);
- 		}
--		raw_spin_unlock(&handler->enable_lock);
-+		raw_spin_unlock_irqrestore(&handler->enable_lock, flags);
+ static void riscv_intc_irq_eoi(struct irq_data *d)
+@@ -115,16 +130,18 @@ static struct fwnode_handle *riscv_intc_hwnode(void)
+ 
+ static int __init riscv_intc_init_common(struct fwnode_handle *fn)
+ {
+-	int rc;
++	int rc, nr_irqs = riscv_isa_extension_available(NULL, SxAIA) ? 64 : BITS_PER_LONG;
+ 
+-	intc_domain = irq_domain_create_linear(fn, BITS_PER_LONG,
+-					       &riscv_intc_domain_ops, NULL);
++	intc_domain = irq_domain_create_linear(fn, nr_irqs, &riscv_intc_domain_ops, NULL);
+ 	if (!intc_domain) {
+ 		pr_err("unable to add IRQ domain\n");
+ 		return -ENXIO;
  	}
+ 
+-	rc = set_handle_irq(&riscv_intc_irq);
++	if (riscv_isa_extension_available(NULL, SxAIA))
++		rc = set_handle_irq(&riscv_intc_aia_irq);
++	else
++		rc = set_handle_irq(&riscv_intc_irq);
+ 	if (rc) {
+ 		pr_err("failed to set irq handler\n");
+ 		return rc;
+@@ -132,7 +149,8 @@ static int __init riscv_intc_init_common(struct fwnode_handle *fn)
+ 
+ 	riscv_set_intc_hwnode_fn(riscv_intc_hwnode);
+ 
+-	pr_info("%d local interrupts mapped\n", BITS_PER_LONG);
++	pr_info("%d local interrupts mapped%s\n", nr_irqs,
++		riscv_isa_extension_available(NULL, SxAIA) ? " using AIA" : "");
  
  	return 0;
-@@ -267,6 +270,7 @@ static int plic_irq_suspend(void)
- static void plic_irq_resume(void)
- {
- 	unsigned int i, index, cpu;
-+	unsigned long flags;
- 	u32 __iomem *reg;
- 	struct plic_priv *priv;
- 
-@@ -284,12 +288,12 @@ static void plic_irq_resume(void)
- 		if (!handler->present)
- 			continue;
- 
--		raw_spin_lock(&handler->enable_lock);
-+		raw_spin_lock_irqsave(&handler->enable_lock, flags);
- 		for (i = 0; i < DIV_ROUND_UP(priv->nr_irqs, 32); i++) {
- 			reg = handler->enable_base + i * sizeof(u32);
- 			writel(handler->enable_save[i], reg);
- 		}
--		raw_spin_unlock(&handler->enable_lock);
-+		raw_spin_unlock_irqrestore(&handler->enable_lock, flags);
- 	}
  }
- 
 -- 
 2.34.1
 
