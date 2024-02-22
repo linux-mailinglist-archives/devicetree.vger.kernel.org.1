@@ -1,71 +1,91 @@
-Return-Path: <devicetree+bounces-44576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40E2B85EFEB
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 04:32:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A75A85EFE6
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 04:30:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EFE9B285066
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 03:32:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B67FF1F21845
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 03:30:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37D58175AB;
-	Thu, 22 Feb 2024 03:32:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 222F61755B;
+	Thu, 22 Feb 2024 03:30:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="l0Ibl/cA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C52A17578;
-	Thu, 22 Feb 2024 03:32:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35826134CD;
+	Thu, 22 Feb 2024 03:29:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708572730; cv=none; b=dCtxiqdggmHKS2LTygLPTkWzgujsN2/QboyKkaMNigBwIQLTMCN4jHDnIVUrUl7+RBLXSaMV+K72wumEhp1ZSt0xT8NBs97OjSZQhEgn1XE6Ti+MRiR1gtsKXT9qNeD55bfi1FxmhoiCtVjrynvqaGXl/O0odUkfaGIJsGndvJk=
+	t=1708572601; cv=none; b=cNLBBOC2/+gD++9fyTvMRlBIPkjzU1HoSr/AGNMirzSs6WN9lLh23GyZ34Jk4youy1zVks7Uo7qgTGqFfExW8OjteNcSRxvFXvnOihjcs9NZj59aY77x9kWAT12DHT6ywdyewfFf8PH3VtR2oRnazxlioV58pkR+jFQsksHalG4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708572730; c=relaxed/simple;
-	bh=E7Z8pSK89+sDDxGUmJjzBockun9fP/w10U/EGjDCcDY=;
+	s=arc-20240116; t=1708572601; c=relaxed/simple;
+	bh=+bQj+lBCpZG5wyDBj5ceNvTqINhX4KEOr7PVyiYgXyQ=;
 	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fmk9l2vGwoM5PWCUuYt/5Jw1sfDXxeQ1N7XXTiXn/NweDN8gdQzkL11d0OlTl62/heRRshDLaqvkE890dG7KCO7Dlub4SVCWWbYj3JzD8o/paczolIESdiXxfwEt7VTzTpyfJGep3TkHluuQ76AUeRzpbUEQiXIZggG+WyMZXhM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
-Received: from mail.andestech.com (ATCPCS16.andestech.com [10.0.1.222])
-	by Atcsqr.andestech.com with ESMTP id 41M3PcR8080879;
-	Thu, 22 Feb 2024 11:25:38 +0800 (+08)
-	(envelope-from peterlin@andestech.com)
-Received: from APC323 (10.0.12.98) by ATCPCS16.andestech.com (10.0.1.222) with
- Microsoft SMTP Server id 14.3.498.0; Thu, 22 Feb 2024 11:25:35 +0800
-Date: Thu, 22 Feb 2024 11:25:35 +0800
-From: Yu-Chien Peter Lin <peterlin@andestech.com>
-To: Thomas Gleixner <tglx@linutronix.de>
-CC: <acme@kernel.org>, <adrian.hunter@intel.com>, <ajones@ventanamicro.com>,
-        <alexander.shishkin@linux.intel.com>, <andre.przywara@arm.com>,
-        <anup@brainfault.org>, <aou@eecs.berkeley.edu>,
-        <atishp@atishpatra.org>, <conor+dt@kernel.org>,
-        <conor.dooley@microchip.com>, <conor@kernel.org>,
-        <devicetree@vger.kernel.org>, <evan@rivosinc.com>,
-        <geert+renesas@glider.be>, <guoren@kernel.org>, <heiko@sntech.de>,
-        <irogers@google.com>, <jernej.skrabec@gmail.com>, <jolsa@kernel.org>,
-        <jszhang@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-perf-users@vger.kernel.org>,
-        <linux-renesas-soc@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <linux-sunxi@lists.linux.dev>, <locus84@andestech.com>,
-        <magnus.damm@gmail.com>, <mark.rutland@arm.com>, <mingo@redhat.com>,
-        <n.shubin@yadro.com>, <namhyung@kernel.org>, <palmer@dabbelt.com>,
-        <paul.walmsley@sifive.com>, <peterz@infradead.org>,
-        <prabhakar.mahadev-lad.rj@bp.renesas.com>, <rdunlap@infradead.org>,
-        <robh+dt@kernel.org>, <samuel@sholland.org>,
-        <sunilvl@ventanamicro.com>, <tim609@andestech.com>, <uwu@icenowy.me>,
-        <wens@csie.org>, <will@kernel.org>, <inochiama@outlook.com>,
-        <unicorn_wang@outlook.com>, <wefu@redhat.com>,
-        Randolph <randolph@andestech.com>, Atish Patra <atishp@rivosinc.com>
-Subject: Re: [PATCH v8 02/10] irqchip/riscv-intc: Allow large non-standard
- interrupt number
-Message-ID: <Zda-r16ysaKzPdLV@APC323>
-References: <20240129092553.2058043-1-peterlin@andestech.com>
- <20240129092553.2058043-3-peterlin@andestech.com>
- <877cj8issa.ffs@tglx>
+	 Content-Type:Content-Disposition:In-Reply-To; b=KQADBaMLvEuTBaiI0YS3/TC2vckyNI0rpePe0dxC0bm8P9sg7u5gW0pzZnQ78T/7Ojuo9GqifFsDle3bO5ZKEv8+0ZLjn25LeXpR2Ydc9r3JRUZ7P5gJufJPuWbykAGznGF+GQrPhGTBE0nTtBxax/+dZ8lNMr/zm56cZ4WOghw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=l0Ibl/cA; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41M2Oqw2027341;
+	Thu, 22 Feb 2024 03:29:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=qcppdkim1; bh=DCjZ7JcUutr11PASE41wp
+	VLY4d3szWyOc4z87emDhzU=; b=l0Ibl/cAN+hmnftU65EXcLA4RlvcLtFkgwMEW
+	XGAqc1or/RBUpztmaTRB+OrikApwqTDLzlUkeMVD+nsvKNFhsm3kuEEqRH9HpBu9
+	yiHtPr95pJyUE9SYUUn8QJw7QBLnROtJ5LIlJnAbWxoU6d5eyN1JbzplwHxsaOR+
+	dBg5j6tU0y8+O5/I25MEQF90dFapU+WuUHmBl9oVYciZ3SrlzmfMk5Xu8D7gefph
+	0yb4oLIXxEhSh0/SK9b2mY1h8v9UhfvqaXR5VjHOSlgOpwsIvsTjc1F+jqmgsIwr
+	SffTzDZx8wWKBYeTJqdW5+6JsE0Qo1Z444aYfKbFik0uWmxsw==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wdfqa23v2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 22 Feb 2024 03:29:42 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41M3Tfvc007837
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 22 Feb 2024 03:29:41 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 21 Feb 2024 19:29:41 -0800
+Date: Wed, 21 Feb 2024 19:29:39 -0800
+From: Bjorn Andersson <quic_bjorande@quicinc.com>
+To: Abel Vesa <abel.vesa@linaro.org>
+CC: Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar
+	<quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        "Maarten
+ Lankhorst" <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard
+	<mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Johan Hovold <johan@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH RFC 2/3] drm/msm/dp: Add support for setting the eDP mode
+ from devicetree
+Message-ID: <20240222032939.GA2273464@hu-bjorande-lv.qualcomm.com>
+References: <20240221-x1e80100-display-refactor-connector-v1-0-86c0e1ebd5ec@linaro.org>
+ <20240221-x1e80100-display-refactor-connector-v1-2-86c0e1ebd5ec@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,88 +94,92 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <877cj8issa.ffs@tglx>
-User-Agent: Mutt/2.2.12 (2023-09-09)
-X-DNSRBL: 
-X-SPAM-SOURCE-CHECK: pass
-X-MAIL:Atcsqr.andestech.com 41M3PcR8080879
+In-Reply-To: <20240221-x1e80100-display-refactor-connector-v1-2-86c0e1ebd5ec@linaro.org>
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: rMimyKKcqjJHZoUz8yBKf5ZMp3rhSsCT
+X-Proofpoint-ORIG-GUID: rMimyKKcqjJHZoUz8yBKf5ZMp3rhSsCT
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-22_01,2024-02-21_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ lowpriorityscore=0 mlxscore=0 bulkscore=0 suspectscore=0 spamscore=0
+ clxscore=1011 phishscore=0 impostorscore=0 malwarescore=0 mlxlogscore=999
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2402220025
 
-Hi Thomas,
+On Wed, Feb 21, 2024 at 12:50:32AM +0200, Abel Vesa wrote:
+> diff --git a/drivers/gpu/drm/msm/dp/dp_ctrl.h b/drivers/gpu/drm/msm/dp/dp_ctrl.h
+> index fa014cee7e21..a10d1b19d172 100644
+> --- a/drivers/gpu/drm/msm/dp/dp_ctrl.h
+> +++ b/drivers/gpu/drm/msm/dp/dp_ctrl.h
+> @@ -32,6 +32,7 @@ struct dp_ctrl *dp_ctrl_get(struct device *dev, struct dp_link *link,
+>  			struct phy *phy);
+>  
+>  void dp_ctrl_reset_irq_ctrl(struct dp_ctrl *dp_ctrl, bool enable);
+> +int dp_ctrl_phy_set_mode(struct dp_ctrl *dp_ctrl, int mode);
+>  void dp_ctrl_phy_init(struct dp_ctrl *dp_ctrl);
+>  void dp_ctrl_phy_exit(struct dp_ctrl *dp_ctrl);
+>  void dp_ctrl_irq_phy_exit(struct dp_ctrl *dp_ctrl);
+> diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
+> index e4433891becb..9e58285d4ec6 100644
+> --- a/drivers/gpu/drm/msm/dp/dp_display.c
+> +++ b/drivers/gpu/drm/msm/dp/dp_display.c
+> @@ -1229,6 +1229,7 @@ static int dp_display_probe(struct platform_device *pdev)
+>  	int rc = 0;
+>  	struct dp_display_private *dp;
+>  	const struct msm_dp_desc *desc;
+> +	bool is_edp = false;
+>  
+>  	if (!pdev || !pdev->dev.of_node) {
+>  		DRM_ERROR("pdev not found\n");
+> @@ -1243,13 +1244,19 @@ static int dp_display_probe(struct platform_device *pdev)
+>  	if (!desc)
+>  		return -EINVAL;
+>  
+> +	if (dp->dp_display.connector_type == DRM_MODE_CONNECTOR_eDP ||
 
-On Tue, Feb 13, 2024 at 11:04:53AM +0100, Thomas Gleixner wrote:
-> On Mon, Jan 29 2024 at 17:25, Yu Chien Peter Lin wrote:
-> >  static asmlinkage void riscv_intc_irq(struct pt_regs *regs)
-> >  {
-> >  	unsigned long cause = regs->cause & ~CAUSE_IRQ_FLAG;
-> >  
-> > -	if (unlikely(cause >= BITS_PER_LONG))
-> > -		panic("unexpected interrupt cause");
-> > -
-> > -	generic_handle_domain_irq(intc_domain, cause);
-> > +	if (generic_handle_domain_irq(intc_domain, cause))
-> > +		pr_warn_ratelimited("Failed to handle interrupt (cause: %ld)\n",
-> > +				    cause);
-> 
-> Either let the cause stick out or you need brackets. See:
-> 
->   https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#bracket-rules
-> 
-> >  }
-> >  
-> >  /*
-> > @@ -93,6 +95,14 @@ static int riscv_intc_domain_alloc(struct irq_domain *domain,
-> >  	if (ret)
-> >  		return ret;
-> >  
-> > +	/*
-> > +	 * Only allow hwirq for which we have corresponding standard or
-> > +	 * custom interrupt enable register.
-> > +	 */
-> > +	if ((riscv_intc_nr_irqs <= hwirq && hwirq < riscv_intc_custom_base) ||
-> > +	    (riscv_intc_custom_base + riscv_intc_custom_nr_irqs) <= hwirq)
-> > +		return -EINVAL;
-> 
-> Duh. This mix of ordering required to read this 3 times. What's wrong
-> with writing this consistently:
-> 
-> 	if ((hwirq >= riscv_intc_nr_irqs && hwirq < riscv_intc_custom_base) ||
-> 	    (hwirq >= iscv_intc_custom_base + riscv_intc_custom_nr_irqs)
-> 		return -EINVAL;
-> 
-> Hmm?
-> 
-> > -	pr_info("%d local interrupts mapped\n", BITS_PER_LONG);
-> > +	pr_info("%d local interrupts mapped\n", riscv_intc_nr_irqs);
-> > +	if (riscv_intc_custom_nr_irqs)
-> > +		pr_info("%d custom local interrupts mapped\n",
-> > +			riscv_intc_custom_nr_irqs);
-> 
-> See bracket rules.
->   
-> >  	return 0;
-> >  }
-> > @@ -166,6 +178,10 @@ static int __init riscv_intc_init(struct device_node *node,
-> >  		return 0;
-> >  	}
-> >  
-> > +	riscv_intc_nr_irqs = BITS_PER_LONG;
-> > +	riscv_intc_custom_base = riscv_intc_nr_irqs;
-> 
-> Why don't you initialize the static variables with constants right away?
-> 
-> > +	riscv_intc_custom_nr_irqs = 0;
-> 
-> It's already 0, no?
-> 
-> >  	return riscv_intc_init_common(of_node_to_fwnode(node));
-> >  }
-> 
-> Thanks,
-> 
->         tglx
-
-Thanks for pointing these out, I'll fix them in PATCH v9.
+dp is just allocated, and will be 0. You need to check
+desc->connector_type here.
 
 Regards,
-Peter Lin
+Bjorn
+
+> +	    of_property_read_bool(pdev->dev.of_node, "is-edp"))
+> +		is_edp = true;
+> +
+> +	dp->dp_display.is_edp = is_edp;
+>  	dp->dp_display.pdev = pdev;
+>  	dp->name = "drm_dp";
+>  	dp->id = desc->id;
+> -	dp->dp_display.connector_type = desc->connector_type;
+>  	dp->wide_bus_en = desc->wide_bus_en;
+> -	dp->dp_display.is_edp =
+> -		(dp->dp_display.connector_type == DRM_MODE_CONNECTOR_eDP);
+> +
+> +	dp->dp_display.connector_type = is_edp ?
+> +					DRM_MODE_CONNECTOR_eDP :
+> +					DRM_MODE_CONNECTOR_DisplayPort;
+>  
+>  	rc = dp_init_sub_modules(dp);
+>  	if (rc) {
+> @@ -1257,6 +1264,12 @@ static int dp_display_probe(struct platform_device *pdev)
+>  		return -EPROBE_DEFER;
+>  	}
+>  
+> +	rc = dp_ctrl_phy_set_mode(dp->ctrl, is_edp ? PHY_SUBMODE_EDP : PHY_SUBMODE_DP);
+> +	if (rc) {
+> +		DRM_ERROR("setting PHY submode failed\n");
+> +		goto err;
+> +	}
+> +
+>  	/* setup event q */
+>  	mutex_init(&dp->event_mutex);
+>  	init_waitqueue_head(&dp->event_q);
+> 
+> -- 
+> 2.34.1
+> 
 
