@@ -1,144 +1,136 @@
-Return-Path: <devicetree+bounces-44867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2B9085FE2E
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 17:37:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D84185FE32
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 17:37:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3B501C24A47
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 16:37:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C995B287A57
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 16:37:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B677151CC1;
-	Thu, 22 Feb 2024 16:37:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2724C14F9FF;
+	Thu, 22 Feb 2024 16:37:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H8OQXrXL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hODCkxC/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C56114F9FF
-	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 16:37:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 680773F8E2;
+	Thu, 22 Feb 2024 16:37:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708619851; cv=none; b=mBYI9BHpoQOedCB05/3T3pxurYGbb9OrABGZRn6OA+ZuvnVghDcapK3o3hAmDKEITQM2CwmD9SRZjWDg9Vm/ojd0B6yUVVU2bdN0ur3FdkKX2obu5TD10Zz01O3ullT28397Ubryi8Wtqyp9b3iYI2Kpzv760lt7Q/JM7kSkwEw=
+	t=1708619866; cv=none; b=pGSuhqCL+o5FtetA2FhBRDbaGdvZwWuQx9l1JKxMhMsljLW9HxVz9Jc9Jkbhrmk/Cn0sbowyovnQAA4FVqLR+9YQJWKOZ0/Mdkmnf2QJZyH8FApqI0cptnPkwaZzNYycmnN4RDeAlcCbKJSXQx87VUKbcITuV9xtucv+HA8VArE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708619851; c=relaxed/simple;
-	bh=7TaWjSMnr9SyJaL1rSnUq6UVe3SDZbweU+CU/JSE12o=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Y8eSuZE0O2W0vWthiFl9qXmQk8Ijg8D20KMviSxVjcIIx+gP9qQImSoAo7GG4hAP+Jf9hE3YyNokb5G0qVjZaYc6dk00BiTDkqReL0J+tPwp9DDcywITxw5kYWwEkuiEUQhO6UsFRTRhTgKXbKDvo7Kq8q1P/UrhcmCfuVijNLY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=H8OQXrXL; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-563f675be29so8267619a12.0
-        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 08:37:29 -0800 (PST)
+	s=arc-20240116; t=1708619866; c=relaxed/simple;
+	bh=xPkfO/GDnVYxxjFHlmBNH8rDyiFVfGYZBsI7Mz1cJZ8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=OcQs7xL69OiZvJSYBd8Kdnu1XraZSlE4ItMCC41xiTQ1aGVQo8VWm1nz2deGA2z8Yt4Ihm160zZ58Ef8cp44MRFFD5BwQYdqzcOULw3PmwJt67UzP7cd7wC9VMzvkTQkKCheJGCSvtzVVWBUwFj8ArbyNs21Vn/AFOmmhsdw7ow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hODCkxC/; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5655c7dd3b1so91155a12.0;
+        Thu, 22 Feb 2024 08:37:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708619848; x=1709224648; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ythAlB5fOuduCOWoNXa4hv2/pnJOcPq8G9cfPzDgUoI=;
-        b=H8OQXrXLleYyVLeshdY3zehihi+qwT/Nk6N+ArWW1TNbRoUb6v5aJbow9wQcaklDB1
-         /rlt6vftkl6XzIk36t4Ka9C3tDXlm2v3g4Ac6vALE+5v1vEOt+xuUUTNAi/q2FYD/vSM
-         ZCMZ3b9i+myf1lPeAbQzCTCJMTRi+sJcjLHVH3ugrRiNyERuBRASVEHvpii5C91c+oPy
-         IamZL503BYj+lm38EAjmS4Tq+uN4O9mSmXiWtmR3pqftboA+/n9FrbVL5xIdIbSP+lOW
-         K6GoU2vUCQYX3GCMyWBClShmo3wM2T5+PurN6kKpz1JBi3FqNWIOC89H3YyXeO4UFFEo
-         KKUw==
+        d=gmail.com; s=20230601; t=1708619863; x=1709224663; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=xPkfO/GDnVYxxjFHlmBNH8rDyiFVfGYZBsI7Mz1cJZ8=;
+        b=hODCkxC/kxJrl5MNUoW9LP0A88C7n8FX4MioBeSOO2Jmo3V4cx+tuO/5nI4GmU1qcp
+         pXoqWqwhDnYmoNkTEbGFKx3VNBy1wyQKtlTcSuAMFPeClNTuAWEkMO16ouFCHbeNrujl
+         LIVCvtC4x2tju6Tsjds33NzlRZDjoaovD43pucKM8rWUMKeBuLWzTEnTojCzwkm0rQCQ
+         FyxZ/HIG3zPLW2DX8BqkPYYpxl5dRHJmJh9Thbl05NRcew82ec0gD8H8VHqU4tWQOw6O
+         exD/AR94n1Z9mvi4SDpljSy43hq2szKnEmD6jAnkmvdW9r53Rdt5v1K7DsDToDwAADVe
+         ZTWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708619848; x=1709224648;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ythAlB5fOuduCOWoNXa4hv2/pnJOcPq8G9cfPzDgUoI=;
-        b=SAYxWTVvmXKQD6ci+QcJS6Q0G2VE0sjdaDjsQBbzZyuSPiR3eKuS/Kf1VwwhKFCj9a
-         7UD09oMmIR2pUDhqNeZ1R49lOflG4uLIMD0QpuFdVWaz8tMtGmx+O0iXzqvURHEetXLF
-         H/CarbNWwpcUQmBpQ3gZbaxLodLybClnH6g9yZ6Ijpo0Q02ZMhI+P7J3U9WXAVJewIyH
-         iM5rQOWf0oZ09MOJNH2PTLqPhFSsiEZJJsbm0mN9xHN++yB3pqLJzZOcMe1DtKH1BQ3L
-         3xWlzOA9y+81EiKvUUWssnRhKPGZ9ReW13MsdBMrsyVCUdiuo0gC85Td5s9TwVSa+ytA
-         Ub9w==
-X-Forwarded-Encrypted: i=1; AJvYcCXrHV1+twmOPPyyj55LhQz+c/wNo7umQMpp2vAGo/pyOAxLTdiQ57jNimvpelPV8P9WiT54Wwv24RKF13KdzFoJzKSZisU6xuHS/Q==
-X-Gm-Message-State: AOJu0YxlcU8tMx6FHGCA0sBF0oA6Atx+j7ZvSueSe/cXSdnWPKUZMzgM
-	AZVx1lCEEH5ydKRTuaxBlBH5zUe2qmP2UF1IS12g0EtP5bZQ6moIrbF+o842wBU=
-X-Google-Smtp-Source: AGHT+IEDqRBn3wWYrrFcXKIOrpL73QXc+7HDhyj6TIw4Ua/8t6GPiVQ6GsEbJRHzFBalKuA1vFJmwg==
-X-Received: by 2002:a05:6402:5246:b0:565:2183:d296 with SMTP id t6-20020a056402524600b005652183d296mr2969008edd.27.1708619847900;
-        Thu, 22 Feb 2024 08:37:27 -0800 (PST)
-Received: from krzk-bin.. ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id u19-20020aa7d993000000b005653c441a20sm614191eds.34.2024.02.22.08.37.26
+        d=1e100.net; s=20230601; t=1708619863; x=1709224663;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xPkfO/GDnVYxxjFHlmBNH8rDyiFVfGYZBsI7Mz1cJZ8=;
+        b=wyOc1AyZj7o0SZqtl7YTOVsc+MQ0DeDBm5f3CPxlvT7TnGCYRTBLzQ2FwtSGFc7T9z
+         ft432SamgvVAzfQBuQyeqwIxvz7Zv84oBbbTFe18wOYFh58uQZWb3mOspKSmVv+94HH6
+         JPau/0jfJPks0aL8BBVqNG5YlzteYGGKsZmdm+lSo1lMti0hFI4XRoT+XoflFU9AwVfF
+         VFoJdEiWHvv2LN/ZwWeVpyNbtIMhWrZPLbKQrkU6oqANvieSjnGT9KVmGo0zl6GQG2m4
+         bfzyHpuVTtF2yMUTePxbnFW10N79qfEfhsZL3s+/eXphTvRK0iXfZgHTSL/Vj8nlqJmc
+         WHug==
+X-Forwarded-Encrypted: i=1; AJvYcCUd791mrXdhWzxcjiIyy0AOgNubCUdliD7Sk9hNY0H38PaBCuZ4CB9MSKK2zqD43mtRG0W3H4gF1iX2SefP8KEgmo8yjd1+4lkf9Q==
+X-Gm-Message-State: AOJu0YxsWe9VbssJZEZLNUBWpe+2YTCOn3KkQE4rws/x/Ng1AbQ3ODp6
+	IMkvCyGnTI50bP+Ul/2a1DBuR+hzeaVUD4feiMa7VghcbK/LnY+0
+X-Google-Smtp-Source: AGHT+IHiZxqXwNFn+RKeUqfTvHuSDxvfB0F7CZjlCIc7pQvstjdKNOnC547E6WyAmSllAGce1Nf9hA==
+X-Received: by 2002:a17:906:7110:b0:a3e:feee:3a5b with SMTP id x16-20020a170906711000b00a3efeee3a5bmr3035703ejj.3.1708619862534;
+        Thu, 22 Feb 2024 08:37:42 -0800 (PST)
+Received: from ?IPv6:2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47? (p200300f6ef1b2000944ccbc71e1c2c47.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47])
+        by smtp.gmail.com with ESMTPSA id s10-20020a17090699ca00b00a3f9a10f792sm455050ejn.7.2024.02.22.08.37.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Feb 2024 08:37:27 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: linux-usb@vger.kernel.org,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Banajit Goswami <bgoswami@quicinc.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	alsa-devel@alsa-project.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH usb next] ASoC: Revert "ASoC: dt-bindings: Update example for enabling USB offload on SM8250"
-Date: Thu, 22 Feb 2024 17:32:04 +0100
-Message-Id: <20240222163204.65468-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        Thu, 22 Feb 2024 08:37:42 -0800 (PST)
+Message-ID: <f31abc7140dfa8477623d4fca8abece03d37926e.camel@gmail.com>
+Subject: Re: [PATCH 5/6] dt-bindings: iio: temperature: ltc2983: document
+ power supply
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Conor Dooley <conor@kernel.org>, Nuno Sa <nuno.sa@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Jonathan Cameron
+ <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>
+Date: Thu, 22 Feb 2024 17:41:03 +0100
+In-Reply-To: <20240222-component-stiffen-d046386433b3@spud>
+References: <20240222-ltc2983-misc-improv-v1-0-cf7d4457e98c@analog.com>
+	 <20240222-ltc2983-misc-improv-v1-5-cf7d4457e98c@analog.com>
+	 <20240222-component-stiffen-d046386433b3@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-This reverts commit a9c83252bff616cf3a38d55b7c6a6ad63667f2dd from USB
-tree, because it depends on other DT bindings changes which were not
-applied.  This commit alone causes dt_binding_check failures:
+On Thu, 2024-02-22 at 15:40 +0000, Conor Dooley wrote:
+> On Thu, Feb 22, 2024 at 01:55:56PM +0100, Nuno Sa wrote:
+> > Add a property for the VDD power supply regulator.
+> >=20
+> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> > ---
+> > =C2=A0Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yam=
+l | 2 ++
+> > =C2=A01 file changed, 2 insertions(+)
+> >=20
+> > diff --git
+> > a/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
+> > b/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
+> > index dbb85135fd66..8aae867a770a 100644
+> > --- a/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yam=
+l
+> > +++ b/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yam=
+l
+> > @@ -57,6 +57,8 @@ properties:
+> > =C2=A0=C2=A0 interrupts:
+> > =C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > =C2=A0
+> > +=C2=A0 vdd-supply: true
+>=20
+> Although technically an ABI break, should we make this supply required?
+> It is, at the end of the day, required by the hardware for operation.
+>=20
 
-  Documentation/devicetree/bindings/sound/qcom,sm8250.example.dts:97.44-45 syntax error
+I thought about it but then realized it could break some existing users whi=
+ch is
+never a nice thing.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I recently (in another series - the IIO backend) went through some trouble =
+to
+actually not break ABI. Meaning, I had to do some not so neat hacking in th=
+e
+driver because Rob was more comfortable with not breaking ABI in DT. So, I
+assumed he would not like for me to break it in here.
 
----
-
-Greg,
-
-Please take this revert. Original commit should go via Mark's ASoC.
----
- .../devicetree/bindings/sound/qcom,sm8250.yaml    | 15 ---------------
- 1 file changed, 15 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-index 49e4f5bbe9dd..2ab6871e89e5 100644
---- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-@@ -227,21 +227,6 @@ examples:
-                 sound-dai = <&vamacro 0>;
-             };
-         };
--
--        usb-dai-link {
--            link-name = "USB Playback";
--            cpu {
--                sound-dai = <&q6afedai USB_RX>;
--            };
--
--            codec {
--                sound-dai = <&usbdai USB_RX>;
--            };
--
--            platform {
--                sound-dai = <&q6routing>;
--            };
--        };
-     };
- 
-   - |
--- 
-2.34.1
-
+- Nuno S=C3=A1
+>=20
 
