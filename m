@@ -1,126 +1,165 @@
-Return-Path: <devicetree+bounces-44548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44549-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 535AC85EE2F
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 01:41:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9D2785EE35
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 01:42:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7E571F24A0D
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 00:41:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 174C6B23B77
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 00:42:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C325F9CE;
-	Thu, 22 Feb 2024 00:40:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2811F10796;
+	Thu, 22 Feb 2024 00:42:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SmyvVi70"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UYtixNgB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B12EB290E;
-	Thu, 22 Feb 2024 00:40:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 756B1FBF2
+	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 00:42:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708562455; cv=none; b=DomJcwy+J0mAM7bo4cZTCOuLMHsjSO0Swxf4i5bpNQXTwmamh2XcQq5fNRps/rG8xAiC3Xq71LQ5RzoBCzxsIZ5ZZoY8G4x/JfU+ESKWLl+5iKGFqB/o0Qi3+eloNqhQr1tgOuLgK6fKZ+oaSyaZ2AeeQHiUz4vbE5yp/8nYxlw=
+	t=1708562553; cv=none; b=LG4OSVeO+SbCP03bCxaZsnmvbRkBtGk1Mx+GzR9hNM9UjsFyNKnzUIIyVj+RM8KD4C3Scx8kfEpNMzCaP8oqsXVjHUZrpTnWgYhbQ4coKgQ6qN/LALk94mdTk1sppyLo1bc0Z0DRrFTg7V2yv3AIGiFwGX7jqr6HXoj650UaQtI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708562455; c=relaxed/simple;
-	bh=uIknOpeeUouqDPil14LJdoYQHv5RvkrlrBxIYK5+/38=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mZx+v6Lg44FA8gBNNs1f9VWiWP2WtJnI4bydTfDSZ/5TRUrqjHN0FF3QRkvqve8Zoob3GyCT96EyxyYvvSRpPySesCAVKDCvn+vcyto07F/nhnSvBkRK14sJ6P/KdqLt5kbLFR4EI48T9+EYHkTwcZD+EERKEs8rmcUQGU9oJWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SmyvVi70; arc=none smtp.client-ip=209.85.222.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-7874a96a0a8so29240385a.1;
-        Wed, 21 Feb 2024 16:40:53 -0800 (PST)
+	s=arc-20240116; t=1708562553; c=relaxed/simple;
+	bh=Bs9vhLKuGEIex6OPxJkFxMFJCT3jUj8PEgVKlk55ND4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TPo5aUJPv1pIsPa4zaC6K29BIRQPwcxE7quXZ5xEARQVkyzeYNQUXzQ5wLeKjfexAANLVMVXFIyo8nSwgu94ZPdo1+xQLNzcfuBgTao6LiwLZvH7go+vVhWOqpPdhu1qpwW5dTkKiGjw8ZMEciwJoOP8btJE0BAZ7sTMXoqoJWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UYtixNgB; arc=none smtp.client-ip=209.85.128.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-6087192b092so13455107b3.0
+        for <devicetree@vger.kernel.org>; Wed, 21 Feb 2024 16:42:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708562452; x=1709167252; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=G592VWMGGcABpadcIh5PdK0ygTD2cWhbQA79MbBz9fA=;
-        b=SmyvVi70RWGUD40sb6XqHXLs4s0VAplUPkUC5xGj3ZRyG82WsL1zAS4dUhfDmt7zLC
-         +27a+PHxYkfZSypHbU8qpgsEz5+R1/grGdBu7WALoI/Cb7DXSzv8Ay3MtMdJ9QA3+ZJp
-         HrpwPthmIpOyXmRk+lDIl9AtQzcfzLQNB8bKISk/SFFXjrprbB3EhWylUR1FN5cQx68J
-         yMDfa8j5K5+BAgX6P0fouDh/K9dFO87xrPZVOd7IeNp/fn/3z4LtRyzke3x8nmcizgok
-         WWkpz87LnzKMomWy2wAm9egqsgxwAZgZU6j5aZoRIVSPHqozTmF8+/HBveQwwsK1mPUZ
-         URsg==
+        d=linaro.org; s=google; t=1708562550; x=1709167350; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ShxvQ8PVoqtGaEPQqhEqEYNCHruhNGrg1u0pTjKfrU0=;
+        b=UYtixNgBQFiKAO4w4+Udpn2GKuFPl0ARB5tOU1uUFetljSj8qUmr+Rn5G1gSGUqBg0
+         f5tv5Q+P8Z5CSQegkDMu3wuvbSEGxAmkb/2Ur+cUWt9wEHexOAlA4nViBG3VLQK65bz1
+         kqY7/KnQfsQRrJ7XeDuSybRY80SMRQLdCFrJHlwRi54sDKGV+oaExp0Gjff7O1orll0M
+         8MriWzrdQQYSm2VeBeUzt2DQFs15sn706mvjUXqkhMVppZOC3rlaBUTHTYvSL9qqkWK5
+         ayHgYwJIDv3Z1ff+NHd02CwxMpTPxSRp0FJ8d8IIKN7S3d6o+OIENWdKw7/do+acWQxc
+         qSkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708562452; x=1709167252;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=G592VWMGGcABpadcIh5PdK0ygTD2cWhbQA79MbBz9fA=;
-        b=rdYAGwjVyiM2EXEhpuvkttGHhnDbnrMs7RHJijVXDeLDWmL3SMqs+yxXYbz66Wx3O/
-         0m7krqrusMpjZXej0/TdF1KxG2Aznq8xeKPj0ic8EEHTQLD4bfGMnIDsnYBzPzoiK0D4
-         yaoEiSrMQHnxSsL67S4u3i+jQFE+rrS/w2f3PQkatzTIDg9V+45K4ElCwt+NOddjk/+H
-         V7GiJ0a+kUiYnHsTn3WK7z8PEz2gXTP3PDXXH3z243Vo6ChABjHpvJ2zBke6ajvMvdP1
-         VYoE8UyvBkBHWDfNHsDdKr2qY69Cl9h3U1rizVoDCzOAYAJcgA7U4UqgEyyl+TUjPql+
-         8kTw==
-X-Forwarded-Encrypted: i=1; AJvYcCVfTjM1c3tYT/ojH97wmlA3PUuj+6RxFwVKCoJwVWD3m9mvTxRnTRwjouL7mhSldWGxjEs4EeeyZMlB3UvYvLHTC9xStT4DIKlCGmFCp+KxCITfp+cFjGhaj07ewZ50zcWaN6c3M5uRRw==
-X-Gm-Message-State: AOJu0YyO9PoeQ/zF/LdrSTx3X6L0jkGZ4iLQj5wePIx+Wv9AhP3OTuto
-	gkfsU9e05FOLUvtOPlvzyCOagmR7imHMt58thpG6mEglUJrq41Cw
-X-Google-Smtp-Source: AGHT+IFMZPcztj+yF88D81UW5dxTUX4mF799w8qju7MgkdsbqrbDoESIU7yGI5Z+WYNTzz8dKI2EGg==
-X-Received: by 2002:a05:620a:2441:b0:787:8dd3:7c5 with SMTP id h1-20020a05620a244100b007878dd307c5mr1797283qkn.21.1708562452552;
-        Wed, 21 Feb 2024 16:40:52 -0800 (PST)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id b15-20020a05620a0f8f00b0078401adad7fsm4811165qkn.133.2024.02.21.16.40.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Feb 2024 16:40:51 -0800 (PST)
-Message-ID: <1e636620-d456-4bb8-a5f0-742be3a9d6ad@gmail.com>
-Date: Wed, 21 Feb 2024 16:40:48 -0800
+        d=1e100.net; s=20230601; t=1708562550; x=1709167350;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ShxvQ8PVoqtGaEPQqhEqEYNCHruhNGrg1u0pTjKfrU0=;
+        b=NpkZY9OZrpFlvwZhgtzAhmflSadWRLETMG2NuZQZyp26BEa+bIXKmwQHEml14BMQ+n
+         lZyvkk7EDxzAy1pnMB91xz/OUBCC7c6wpi1qG7EJuSR9770aSmOCiZP6rLrWwB/YtBtc
+         LeKV/YoxswUogOvtNDLIuYf3fcnQD99f/KWURRbOSh44ALWyN8CfCv86wb2o99eKpEvW
+         4KK6ZLYCmT5vT4JbOahc2U4DyWGLjAhWQbm7reA4YQfXkxVtZ+zo8FNjMJfPe61p420A
+         EZHl14yhSgZLXnBaB/t6S0ATjXTSBGSUQXzMF75vQZMJMhwlDjUiJmgfUJVH4SJVO6ZA
+         RdAw==
+X-Forwarded-Encrypted: i=1; AJvYcCW2kzslNGevly0Q7wfLBRVYm9iGDhERwNDdFvbT0W0e22yLT5h20/xiW9KWlD+7WqTboZTHcCzG22EshQm4+YjdOqOjl7HId4HXeA==
+X-Gm-Message-State: AOJu0YxeZnFixi2fENJBEQebZubyE1CYq/qk5bXyPgEcF2EPeAPmh9sm
+	XC/gEqMh7yQNEVrAkrC4gU1UGQUjkJ5g1P9+otukVuL9SWzUzwjVyzSqXZlQ4SGa65rDVg2I5DW
+	LFUIofLZJsLdqaiIxzYg3X8bnxOuaUDegvphJHQ==
+X-Google-Smtp-Source: AGHT+IHHuwGqbZaTb+bV+UPau4y6yhAeIrb6TWdnVktV+oEQVFlA8nEB2tKz9vC9H977t8keyZqZPMrkgYtfMJvYxvw=
+X-Received: by 2002:a81:9a47:0:b0:607:a75e:9caf with SMTP id
+ r68-20020a819a47000000b00607a75e9cafmr18882889ywg.22.1708562549946; Wed, 21
+ Feb 2024 16:42:29 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 06/12] arm64: dts: broadcom: bcmbca: Update router
- boards
-Content-Language: en-US
-To: Florian Fainelli <florian.fainelli@broadcom.com>,
- bcm-kernel-feedback-list@broadcom.com,
- William Zhang <william.zhang@broadcom.com>,
- Linux MTD List <linux-mtd@lists.infradead.org>,
- Linux ARM List <linux-arm-kernel@lists.infradead.org>
-Cc: kursad.oney@broadcom.com, joel.peshkin@broadcom.com,
- anand.gore@broadcom.com, dregan@mail.com, kamal.dasu@broadcom.com,
- tomer.yacoby@broadcom.com, dan.beygelman@broadcom.com,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>
-References: <20240207202257.271784-1-william.zhang@broadcom.com>
- <20240207202257.271784-7-william.zhang@broadcom.com>
- <20240222003755.670359-1-florian.fainelli@broadcom.com>
-From: Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20240222003755.670359-1-florian.fainelli@broadcom.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240216223245.12273-1-semen.protsenko@linaro.org>
+ <20240216223245.12273-12-semen.protsenko@linaro.org> <ce515530-428a-4a21-8c56-5a497cc8130a@linaro.org>
+In-Reply-To: <ce515530-428a-4a21-8c56-5a497cc8130a@linaro.org>
+From: Sam Protsenko <semen.protsenko@linaro.org>
+Date: Wed, 21 Feb 2024 18:42:18 -0600
+Message-ID: <CAPLW+4=kpk=Vg=nX-hVxcCS0OttC6xmyUcB005tmX+vtUF9TLA@mail.gmail.com>
+Subject: Re: [PATCH 11/16] clk: samsung: Keep register offsets in chip
+ specific structure
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Tomasz Figa <tomasz.figa@gmail.com>, linux-samsung-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2/21/24 16:37, Florian Fainelli wrote:
-> From: Florian Fainelli <f.fainelli@gmail.com>
-> 
-> On Wed,  7 Feb 2024 12:22:51 -0800, William Zhang <william.zhang@broadcom.com> wrote:
->> Enable the nand controller and add WP pin connection property in actual
->> board dts as they are board level properties now that they are disabled
->> and moved out from SoC dtsi.
->>
->> Also remove the unnecessary brcm,nand-has-wp property from AC5300 board.
->> This property is only needed for some old controller that this board
->> does not apply.
->>
->> Signed-off-by: William Zhang <william.zhang@broadcom.com>
->> ---
-> 
-> Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
-> --
-> Florian
+On Tue, Feb 20, 2024 at 5:04=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 16/02/2024 23:32, Sam Protsenko wrote:
+> > Abstract CPU clock registers by keeping their offsets in a dedicated
+> > chip specific structure to accommodate for oncoming Exynos850 support,
+> > which has different offsets for cluster 0 and cluster 1. This rework
+> > also makes it possible to use exynos_set_safe_div() for all chips, so
+> > exynos5433_set_safe_div() is removed here to reduce the code
+> > duplication.
+> >
+>
+> So that's the answer why you could not use flags anymore - you need an
+> enum, not a bitmap. Such short explanation should be in previous commits
+> justifying moving reg layout to new property.
 
-Actually no, cannot apply this just yet since this depends upon patch #5.
--- 
-Florian
+Will do, thanks.
 
+>
+> > No functional change.
+> >
+> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> > ---
+> >  drivers/clk/samsung/clk-cpu.c | 156 +++++++++++++++++++---------------
+> >  1 file changed, 86 insertions(+), 70 deletions(-)
+> >
+> > diff --git a/drivers/clk/samsung/clk-cpu.c b/drivers/clk/samsung/clk-cp=
+u.c
+> > index 04394d2166c9..744b609c222d 100644
+> > --- a/drivers/clk/samsung/clk-cpu.c
+> > +++ b/drivers/clk/samsung/clk-cpu.c
+> > @@ -44,12 +44,14 @@ typedef int (*exynos_rate_change_fn_t)(struct clk_n=
+otifier_data *ndata,
+> >
+> >  /**
+> >   * struct exynos_cpuclk_chip - Chip specific data for CPU clock
+> > + * @regs: register offsets for CPU related clocks
+> >   * @pre_rate_cb: callback to run before CPU clock rate change
+> >   * @post_rate_cb: callback to run after CPU clock rate change
+> >   */
+> >  struct exynos_cpuclk_chip {
+> > -     exynos_rate_change_fn_t pre_rate_cb;
+> > -     exynos_rate_change_fn_t post_rate_cb;
+> > +     const void                              * const regs;
+>
+> Why this is void?
+>
+
+Different chips can have very different register layout. For example,
+older Exynos chips usually keep multiple CPU divider ratios in one
+single register, whereas more modern chips have a dedicated register
+for each divider clock. Also, old chips usually split divider ratio vs
+DIV clock status between different registers, but in modern chips they
+both live in one single register. Having (void *) makes it possible to
+keep pointers to different structures, and each function for the
+particular chip can "know" which exactly structure is stored there,
+casting (void *) to a needed type. Another way to do that would be to
+have "one-size-fits-all" structure with all possible registers for all
+possible chips. I don't know, I just didn't like that for a couple of
+reasons, so decided to go with (void *).
+
+I'll add some explanation in the commit message in v2.
+
+> > +     exynos_rate_change_fn_t                 pre_rate_cb;
+> > +     exynos_rate_change_fn_t                 post_rate_cb;
+> >  };
+> >
+>
+>
+>
+> Best regards,
+> Krzysztof
+>
 
