@@ -1,122 +1,193 @@
-Return-Path: <devicetree+bounces-44850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D323E85FD02
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 16:50:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D24CF85FD38
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 16:56:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DEAD2880A2
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 15:50:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8359C28A457
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 15:56:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A887A14E2CB;
-	Thu, 22 Feb 2024 15:50:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F4E3153BE9;
+	Thu, 22 Feb 2024 15:55:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WoFDFmH8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JklXxe5V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7520F39FC7;
-	Thu, 22 Feb 2024 15:50:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2217153BE0
+	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 15:55:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708617049; cv=none; b=gNsB4KP2Z8jpHc8B56x+5qRqd0mo/2/Pn9LJnzCc/H5nMWnGCOhsvluw50QTfl5QkYs8Kvg7awnpXKoF2I0vqK/JdY1IVzgV8zdQHaVjcbUBxhU03Os+0lJAeVFKijiebWMSyjUBY65cw9oQZjBvq8tUVWbS4O9OhR2zVFdrVH0=
+	t=1708617308; cv=none; b=O5n+EyPV88VJbzyXMX2XkNvYE6zx4dETwy44J9J9q0gTabTpV26zAeA0Z/C/gXU0ijFcDh8XGSkkJ0y/sMti99PlxYRvq7VCIif+0DNu7izL7be/nnXi96W6jsDQVDk/HhrgYN21dcXoo56ZCUroFI0Fxkz56xyXPFUeeoQsqvM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708617049; c=relaxed/simple;
-	bh=qrXeUMXMXQQJJinBxkYIkgCdWWGqU0eYOxt+Ka3y1ns=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FCRA1JoYvxu2sDBMnXcXgsaGtL+n9PAJH1hgNfBGhP9Rag5rXOX7QOC7pJUqR9huVrLG5LJ2AscneMofxD4UdsPpmfCLcud1kTKf66jjCpju6bx1gGrzCin6/eqDvmSof2huSzQFQPQqgEUiGJhLNhTRpv68GTH5I1k6URBgw9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WoFDFmH8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79FF8C433C7;
-	Thu, 22 Feb 2024 15:50:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708617049;
-	bh=qrXeUMXMXQQJJinBxkYIkgCdWWGqU0eYOxt+Ka3y1ns=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WoFDFmH8MtmBaZbxh9Y+QXZPIt/GC6HK+hBtylJmUMaqLtO4EmJ/I2wtce0rU7hw/
-	 rRPodZCBceiYLQm833le+XLO/jj43g0dUfEeLrH9yohMA0s2GvjyKMx7Hm+Esns7TV
-	 U1nXMDSjDJR95Ah78N13O6kXWP+ASblmMZLQlzzgma9hE9oll3HzDUeKZ73rEuHZ4r
-	 q5CzQ9+A7mMBRfz/Jj5j5pJlzJVQctOXfC3nn0p0fAry0/BbgUYq0LMawNAeAIbW8a
-	 6TfsQ0EO8Flq6ESot/6jC4c2oWDiQhIOquGJQJqm5O1Ij9KtmQnwWVk/s+3HkmNiMK
-	 wE3O/5ZfWxz8g==
-Date: Thu, 22 Feb 2024 15:50:42 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Dumitru Ceclan <mitrutzceclan@gmail.com>
-Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org,
-	linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Walle <michael@walle.cc>,
-	Andy Shevchenko <andy.shevchenko@gmail.com>,
-	Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu <chiaen_wu@richtek.com>,
-	Niklas Schnelle <schnelle@linux.ibm.com>,
-	Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
-	Mike Looijmans <mike.looijmans@topic.nl>,
-	Haibo Chen <haibo.chen@nxp.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	David Lechner <dlechner@baylibre.com>,
-	Ceclan Dumitru <dumitru.ceclan@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v14 1/3] dt-bindings: adc: add AD7173
-Message-ID: <20240222-defeat-nearly-f83f8b920f51@spud>
-References: <20240222110817.29670-1-mitrutzceclan@gmail.com>
+	s=arc-20240116; t=1708617308; c=relaxed/simple;
+	bh=KUtc8q6CcpBvImGltJZTUBOEuTBoRPVvVKgGQlQcYuk=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=d0p6SlbOwJxT9EVZwH+AsOV36rk7wsmdifazcxUWLkRdW+QuJU7+iZXA/m7o/1TtVo8Wrf9qX+aJrarlvxiGBMALJp6byqkZoetFxWXPaA8UM8+TeryUHD47cbuu53W2A9GpGVORbd6cGUPu7idl1/oPqf/OPGKuyMMs1kZ4m5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JklXxe5V; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-563f675be29so8192942a12.0
+        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 07:55:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708617305; x=1709222105; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=y/3fqyShE16h1P4+I1UlQxe681BbNCFMrZ9zvWuxmnc=;
+        b=JklXxe5V2K0ppMtrjQwWB0P1+RB//LhhrWd9tE1tFIOl+CqDDZVsc6znxEE8EPB/XB
+         H2saWOAjN+1MHRHyZ7HOuDYmJ6wCIjzsf6Q0e5cWon+1CY4lcx9KpogFrRgyEObcCm3o
+         ueS47ZE0mtsQLVpTpUiKl5g5XBbxc5OJeo7su3m6Q39QN6+xXLVBjG6sYfYsKmISS88X
+         zTpYGdkkYHaEw4g4GdU+L9RogPmspDRXlA//a6QQe/J0R/yGmie8wHn1LakdNS+N8ZgT
+         u5lAvJiyrKQtV4EbMP4WF0Pf/H3TmneS3LCoaLyzfEDvN0n69mtRXYjCtPdnpkIwYH3F
+         U0iQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708617305; x=1709222105;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=y/3fqyShE16h1P4+I1UlQxe681BbNCFMrZ9zvWuxmnc=;
+        b=YpkgZqvq+Ry2ohdg61vuqJIJsNchkd9ih08KJ4rKMJW2KSezEswRaoHdvLtyU2mWwB
+         lxT1zcJo1Upn+IzkPLd1BOcWr0+gTJddQsJ8wigqTi1TH/VOKTT1XjLneLGhefMDnuTg
+         wGVAh/CjX1ZkPENmsT9P24k8NoH4eszLDR/o2CLMsvt+TfuzYimR36MXQCHZHcljEF3n
+         yvQicOdhCGtew+yzwcDI6OtyrYp4YA6CcwF+hF+pTgkQ/iE535F1sr37tcdYZgC7fFzh
+         IOdXSRL/sPxD0LOXoIfyQrhchRpn7eSXtZ0LXWHJ9lK+tIzHAmdCyNfABiubZZYojW8a
+         59hw==
+X-Gm-Message-State: AOJu0YwhBRnGTfRsLHAq0UQCroLqdbdHMbACtmw2DtvhzN5nghSUSrcY
+	LZsRXtVDQ0ApfPyfGsa0bUINkCMmOlL99UBu3HDKTmOR03tFghpW+T1lj7L6owA=
+X-Google-Smtp-Source: AGHT+IHUf2LeUhiX0NVKNKGBIjlSW+tITgaRRyIfQrirSgrJFxJP1e/otOZPgCFnq9S5wSt1JKVYlQ==
+X-Received: by 2002:a05:6402:5246:b0:565:2183:d296 with SMTP id t6-20020a056402524600b005652183d296mr2863889edd.27.1708617305020;
+        Thu, 22 Feb 2024 07:55:05 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.116])
+        by smtp.gmail.com with ESMTPSA id s1-20020a056402164100b00563f918c76asm5623671edx.52.2024.02.22.07.55.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Feb 2024 07:55:04 -0800 (PST)
+Message-ID: <d41b7281-5f44-4de0-9ea6-5dcae26ac295@linaro.org>
+Date: Thu, 22 Feb 2024 16:55:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="/1zEzl6q9dQoOtWc"
-Content-Disposition: inline
-In-Reply-To: <20240222110817.29670-1-mitrutzceclan@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: exynos4212-tab3: limit usable memory range
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Artur Weber <aweber.kernel@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht
+References: <20240217-tab3-limit-usable-memory-range-v1-1-49cc9c86a5cc@gmail.com>
+ <15ab6aa6-fb30-4970-9c50-546afb933e03@linaro.org>
+ <c2fde69d-48c2-446f-ac56-876651c06b51@gmail.com>
+ <5d67441e-df61-4894-ba52-2bed8a1143d6@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <5d67441e-df61-4894-ba52-2bed8a1143d6@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 21/02/2024 09:26, Krzysztof Kozlowski wrote:
+> On 19/02/2024 20:49, Artur Weber wrote:
+>> On 19.02.2024 08:44, Krzysztof Kozlowski wrote:
+>>> On 17/02/2024 20:02, Artur Weber wrote:
+>>>> The stock bootloader on the Samsung Galaxy Tab 3 8.0 provides an
+>>>> incorrect available memory range over ATAG_MEM. Limit the usable
+>>>> memory in the DTS to prevent it from doing so, without having to
+>>>> disable ATAG support.
+>>>>
+>>>> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+>>>> ---
+>>>>   arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi | 6 ++++++
+>>>>   1 file changed, 6 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi b/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
+>>>> index e5254e32aa8f..9bc05961577d 100644
+>>>> --- a/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
+>>>> +++ b/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
+>>>> @@ -45,6 +45,12 @@ chosen {
+>>>>   		/* Default S-BOOT bootloader loads initramfs here */
+>>>>   		linux,initrd-start = <0x42000000>;
+>>>>   		linux,initrd-end = <0x42800000>;
+>>>> +
+>>>> +		/*
+>>>> +		 * Stock bootloader provides incorrect memory size in ATAG_MEM;
+>>>> +		 * override it here
+>>>> +		 */
+>>>> +		linux,usable-memory-range = <0x40000000 0x3fc00000>;
+>>>
+>>> Applied and dropped:
+>>>   chosen: linux,usable-memory-range:0: [4611686019496935424] is too short
+>>
+>> This seems to be a binding issue; the DT schema expects a 64-bit memory 
+>> address and size, and doesn't allow a 32-bit range. I've tested the DTS 
+>> on my device and this property seems to be handled fine, so I think this 
+>> should allow 32-bit values as well.
+> 
+> Regardless where is the issue: please test before sending.
+> 
+>>
+>> I've opened a PR[1] against devicetree-org/dt-schema (where the schema 
+>> for the chosen node is stored) to try and fix this. If my approach is 
+>> incorrect, feel free to comment there as well.
+> 
+> 
+> According to Rob's comments, the DTS is the issue.
 
---/1zEzl6q9dQoOtWc
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+With updated dtschema I still see the same warning. Is something else
+missing?
 
-On Thu, Feb 22, 2024 at 01:07:41PM +0200, Dumitru Ceclan wrote:
-> The AD7173 family offer a complete integrated Sigma-Delta ADC solution
-> which can be used in high precision, low noise single channel applications
-> or higher speed multiplexed applications. The Sigma-Delta ADC is intended
-> primarily for measurement of signals close to DC but also delivers
-> outstanding performance with input bandwidths out to ~10kHz.
->=20
-> Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
-> ---
-> V13->V14
+Best regards,
+Krzysztof
 
-I gave you an R-b tag on v13, conditional on the descriptions.
-Why didn't you take it? The only other relevant change is the added
-restriction on channel reg. Is that the reason you didn't take or was
-there smething else.
-
-Cheers,
-Conor.
-
->  - Refer in descriptions of the avdd-supply as AVDD1 in concordance to da=
-tasheet
->  - Fix typo
->  - Place interrupts descriptions separately for each item
->  - Restrict max channel reg to 3 for models AD717x-2
-
---/1zEzl6q9dQoOtWc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZddtUgAKCRB4tDGHoIJi
-0nVIAP9CGmzcWRghRruPsZKM2A2VV/WKUkjaNA/s2KPcfRq5RwEAnMkRBLYeguK4
-YwxbFkkSlG2NKIpNzstT+JArt8H6cQ8=
-=eZG3
------END PGP SIGNATURE-----
-
---/1zEzl6q9dQoOtWc--
 
