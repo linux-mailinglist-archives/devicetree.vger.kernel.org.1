@@ -1,121 +1,147 @@
-Return-Path: <devicetree+bounces-44833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEDBC85FB4A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 15:32:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 315C585FB6E
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 15:39:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 432AEB22ACE
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 14:32:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DBDDA1F260A6
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 14:39:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B77543AAE;
-	Thu, 22 Feb 2024 14:32:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E10DB4437A;
+	Thu, 22 Feb 2024 14:39:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J79RmMG/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B60B3F8D0;
-	Thu, 22 Feb 2024 14:32:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FE2343AC1;
+	Thu, 22 Feb 2024 14:39:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708612366; cv=none; b=fkmnBzw/VHkbcov8RbEx7Sci5LBdkR7aX+PrTjfcGGw7tuEdGHtgu/gFlt7Omf6eeuzP9nmE4SrhOhCC4wz1rRELvvJC+k8XoJlL0TMRjzzOtDqWcK5g+2qd4oRNrP80nB8K1Ynqer8Jh+atiu9/m1Vfjt6lC7gyNPYQCWCncYQ=
+	t=1708612758; cv=none; b=TgU72eDm7wX4vXnd+zYlT30r/KCR4OyFK2VXKe99uEoqcPdHtX65OZmNphZLL/1w9I+RDrv2qzmDEWOugiO9XFP4SXYxzf5DS1A0LMA4jgfMjq2CSfM1ju4YOHSiF/fvwFP4E2CGODytWRnmq56X3Zej8zlp3zBcZSFjyQEx3UM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708612366; c=relaxed/simple;
-	bh=LZHDN+CsRP+drHIzWcPwzkzGhgWExE0txMHPI86FeWg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OqHzPZh0+CarNfF5BLA2Jgur0KZN8YlvcHlvT6uRkQxNXCVaRgzSwGzehVVA4VlHYGW5mCcmNPAEZ97z1GBMOL2nPdVGVJQW0h2LdcSllYBEa+sCBl32x2HHMRCp0rkiUJ/jp83Z/obUDxMPFv1+UG19LP4SKXq9RCZijmL0BNk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1708612758; c=relaxed/simple;
+	bh=wSOvlb03/D7krHVr7xUayF+tLqXr3NS/442O6IABCvo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=bWSJKwCRBBAh4yBujw282VyfoQDx1e/f0XEtyocTIKxO5lOmBKgNJAAa786Q2VjL2GTYmHiJ/aW74G6H+Wny50ZoOnLJ0U2wYhJFf950B02MgEQkCui0ZfO3VyaEgst/4cLQqmEVyL7ya56r9cHIbC3TMDuKdRSxcbzqRQu+Se8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J79RmMG/; arc=none smtp.client-ip=209.85.214.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-60853ad17f9so43029047b3.0;
-        Thu, 22 Feb 2024 06:32:44 -0800 (PST)
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-1dbff00beceso8436985ad.1;
+        Thu, 22 Feb 2024 06:39:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708612757; x=1709217557; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=g2KoF5bOnKbOW3thGz1lV4ex1ONuDNSa3Szl9tuUuXc=;
+        b=J79RmMG/u8lrtunGsvNJL1JPjaUrGJqVY17vyFrxzwmSEQ6nrCvVW1v3WUFDyL5Coh
+         hP7UyP06HB4Hlhfuor3y4y9HINKEmaw8/htkoqA/TFZzZS+qMzKXEoqMjgUqCDoGvy+p
+         kuOToSxOK8YFqsfP/C+3oXS9nijqY8+lkGMuYjhx0T44UTweb6L/VSlo9xDnF6iqm7Ef
+         8qEMsqZgwm7UmFdutxQC6cZ7C3wXMMIRCeCPhKtwrC4UU+1XHXvYxIcOdR0+D0uO6PVo
+         4bt8hNwDWKpk6E1s5UWGujlW10JZ9xrWiYDFma9+BSBI3wR7iivEJe6URLP/2Oxuqb8i
+         DyFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708612363; x=1709217163;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TRroxZP7R3yxxPUiepuBbi7r16wL47S6mTJMGmYkUsI=;
-        b=qHy88arV1Gk13mrO88VprueVFiomSSMJx4Y0Qj2ejEd2XyodmJccn6FLIQ4nCqxbgA
-         tlU9J5Nt2zOz8hf+ItUDBQ4mqiFNtL83yFBzIUZCF+aoxFLzGr0/YFeKXhibJ0OpAMt2
-         3ZI8M1EaT3ZAGYx7vp5qYzE1Oef2IpUSiulUBm8sJESwY1QdYtbkDXIqYW5zhCA+in63
-         umn7zDB/wIqB6Nv1y37R1DWya8qJ0nPi/UzklyfALXkU3nLXJw5PUfTZaViE9zoghynE
-         8sdp9GM8uI0fw+ZQqsfrDppO6X6ampDYx4mzGo1eQkYsotSMZUp4Okcgcf8CklkdzAhA
-         vnCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUPRSNSVLzM3EisYyows/nBuWzhABpsrEZc7N965/0kGzPNha9Yi+SoYDY4ROFBh6qKAyGadDLMLPHbOkitTSFdgycpUcJN9XkgcfJcWR2GgudXCd30n7dsWaRiu9lGZBrM4oZ5rxi0rGaxCdN9
-X-Gm-Message-State: AOJu0YxOmb+1EojjFG7KPUsEwCCk+fj4jbX2ctfG5xUPBSQfmQooF5GP
-	2acI8ZOn0cOZHh00+h/fquZOTjic3qO5Sn6AkZx1LoGqkvJFPUI1JBw/+4gg56c=
-X-Google-Smtp-Source: AGHT+IE5iQLtLrPLuy7Bh5WNBdItBjJnT/emr8o+W87WhcQxo9kL6pzK8nmpfZrRMoWQ+CAc+iIzow==
-X-Received: by 2002:a0d:e60f:0:b0:607:7e50:1a11 with SMTP id p15-20020a0de60f000000b006077e501a11mr18322476ywe.19.1708612363255;
-        Thu, 22 Feb 2024 06:32:43 -0800 (PST)
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
-        by smtp.gmail.com with ESMTPSA id a125-20020a818a83000000b006040f198d3esm3065994ywg.142.2024.02.22.06.32.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Feb 2024 06:32:43 -0800 (PST)
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-6085b652fc8so36198757b3.2;
-        Thu, 22 Feb 2024 06:32:42 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVQIq7bMpfhYarll7ENQ3BQRaPlI1fEU49FjW8WpuqFH1eT2Zj4q/oMBgka8xfRn0+Rt98zf0/CpX+gT6bu4pbB7aCigWqBXCJ8JuSwSzEVCnWpZZ27KzBH7zUXmUkJZODvm0ivEpRkMEm8wQIz
-X-Received: by 2002:a81:7184:0:b0:607:75e7:80db with SMTP id
- m126-20020a817184000000b0060775e780dbmr20648117ywc.13.1708612361737; Thu, 22
- Feb 2024 06:32:41 -0800 (PST)
+        d=1e100.net; s=20230601; t=1708612757; x=1709217557;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=g2KoF5bOnKbOW3thGz1lV4ex1ONuDNSa3Szl9tuUuXc=;
+        b=UQXZmDEFY+STSzzaMPz4clAVF+WXzmcJBqfRH0s7Eb3HiickCErCp6XwO1NwX1pSUl
+         siOqaXe4xuYuFDPq/ma0RV2UvJRYCN/Wo8sNSMXuBTqujrY8aWevycBRJG+f/BAkWZ99
+         z8MSrno3BQRzNbjrl7/Ti04QXWd0GSKlipMVBfu0AqGi70M6LWqO1SPfjyjjgaIaa0zE
+         6QOLjlW4fHXVSpzIhzgTLwtJr0kQ/DG4whfA0u2AmAPKjKk8/VXGGRpvehgdEp7ZYErh
+         X0vdutnwjbtMnficPAawN4wikCPdAb8t07x/QAkopOLcbrkWuyEOhC7yQWmqP237fprj
+         BfTA==
+X-Forwarded-Encrypted: i=1; AJvYcCVTWFrwVZDTAWOMFwx2/mYgSrbcgOfN90xa+30NMsxEbB/xzlzs5/8feNU3jZrtO48JPfy6XoFM+jgiJPZ8EpmbkFPVop7jUj7JU0KurGCJVENCeNMPVzTMOtQR8F0gKG7+gTzz/A==
+X-Gm-Message-State: AOJu0YxmRWRxk6N0IMRidedrLRKV6uj2nnCLiklnCla9dteIUm5b4d6r
+	IBzTqd59XA5prvmuUOMj7IJVuk3jVbu5zCxMyDi4ygzjJA4wLy53
+X-Google-Smtp-Source: AGHT+IH1sJhJRoWPd50doMZ6u6RSmH7Z/WMd5p74xo+r0vH6cKfIhSqbrC8kbRe+Do7YDSOSLFv6mA==
+X-Received: by 2002:a17:90a:3ee4:b0:298:b736:ecf7 with SMTP id k91-20020a17090a3ee400b00298b736ecf7mr16446798pjc.0.1708612756641;
+        Thu, 22 Feb 2024 06:39:16 -0800 (PST)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:d30a:d617:c813:c70f])
+        by smtp.gmail.com with ESMTPSA id lx14-20020a17090b4b0e00b00299f727f7a5sm5266839pjb.46.2024.02.22.06.39.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Feb 2024 06:39:16 -0800 (PST)
+From: Fabio Estevam <festevam@gmail.com>
+To: ulf.hansson@linaro.org
+Cc: robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH v2] dt-bindings: mmc: fsl-imx-mmc: Document the required clocks
+Date: Thu, 22 Feb 2024 11:39:11 -0300
+Message-Id: <20240222143911.979058-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240222132117.137729-1-biju.das.jz@bp.renesas.com> <20240222132117.137729-4-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20240222132117.137729-4-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 22 Feb 2024 15:32:29 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUTDnVR6ALCxdTAW22CvfR2R4Rixo3i7RfVP1f3HKE+FQ@mail.gmail.com>
-Message-ID: <CAMuHMdUTDnVR6ALCxdTAW22CvfR2R4Rixo3i7RfVP1f3HKE+FQ@mail.gmail.com>
-Subject: Re: [PATCH v9 3/3] arm64: dts: renesas: rzg2l-smarc: Enable DU and
- link with DSI
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Biju,
+From: Fabio Estevam <festevam@denx.de>
 
-On Thu, Feb 22, 2024 at 2:21=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
-m> wrote:
-> Enable DU and link with DSI on RZ/{G2L,G2LC,V2L} SMARC EVK.
->
-> Move DSI port properties from board dtsi to SoC dtsi and then link with D=
-U
-> and after that enable DU on the board dtsi.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v8->v9:
->  * Moved port properties from board dtsi to SoC dtsi
->  * Linked DU with DSI in SoC dtsi
->  * Enabled DU on the board dtsi.
+The fsl-imx-mmc hardware needs two clocks to operate: ipg and per.
 
-LGTM, so
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue this in renesas-devel for v6.9 tomorrow, unless
-anyone objects.
+Document these required clocks.
 
-Gr{oetje,eeting}s,
+This fixes the following schema warning:
 
-                        Geert
+imx27-apf27dev.dtb: mmc@10014000: Unevaluated properties are not allowed ('clock-names', 'clocks' were unexpected)
+	from schema $id: http://devicetree.org/schemas/mmc/fsl-imx-mmc.yaml#
 
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+Changes since v2:
+- None. Just fixed a typo in the dt list.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+ .../devicetree/bindings/mmc/fsl-imx-mmc.yaml         | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-mmc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-mmc.yaml
+index 221f5bc047bd..7911316fbd6a 100644
+--- a/Documentation/devicetree/bindings/mmc/fsl-imx-mmc.yaml
++++ b/Documentation/devicetree/bindings/mmc/fsl-imx-mmc.yaml
+@@ -24,6 +24,14 @@ properties:
+   reg:
+     maxItems: 1
+ 
++  clocks:
++    maxItems: 2
++
++  clock-names:
++    items:
++      - const: ipg
++      - const: per
++
+   interrupts:
+     maxItems: 1
+ 
+@@ -34,6 +42,8 @@ properties:
+     const: rx-tx
+ 
+ required:
++  - clocks
++  - clock-names
+   - compatible
+   - reg
+   - interrupts
+@@ -46,6 +56,8 @@ examples:
+         compatible = "fsl,imx27-mmc", "fsl,imx21-mmc";
+         reg = <0x10014000 0x1000>;
+         interrupts = <11>;
++        clocks = <&clks 29>, <&clks 60>;
++        clock-names = "ipg", "per";
+         dmas = <&dma 7>;
+         dma-names = "rx-tx";
+         bus-width = <4>;
+-- 
+2.34.1
+
 
