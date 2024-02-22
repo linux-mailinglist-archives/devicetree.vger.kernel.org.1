@@ -1,73 +1,80 @@
-Return-Path: <devicetree+bounces-44800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E93B785F9C8
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 14:28:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 308C785F9CC
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 14:29:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2666F1C25014
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 13:28:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4C1B1F2754F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 13:29:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89A58133296;
-	Thu, 22 Feb 2024 13:28:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E9CA1332B1;
+	Thu, 22 Feb 2024 13:29:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="p06ePR5J"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="bHzNZ0TI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C38443C480;
-	Thu, 22 Feb 2024 13:28:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 967A450A98;
+	Thu, 22 Feb 2024 13:29:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708608509; cv=none; b=E7ABoIQX5RRwAqYEcm7zD3qanCTR+aOQw3YGMbUHxDLqqhduNwFnzc89whMcFyh140WScWWDyL2GSb7TqrtvwSZmH3h77vNSMRCE2Qyz5EHSpwmBIRPgDlAWKsLq/6DsaYRIv4NTNLYXAshVQtPZoar3XQyiWCddFNMDQ0B8Rfw=
+	t=1708608578; cv=none; b=s+5hMLdcCnblNXGRNUO93J7SbR1zv94AsKQZ6/jv28isWKfF48cSyHZ+0JlWE1Dvad2yINDOT9JeZm5SI8JP+2njoUqWx+19nBcrHJQ8VVvWI8StPD8ZV/rcXqZKanNPydmpx2nehZm1sXhcW8+fL7gln5lOEVFXWkHCEN2Zo9k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708608509; c=relaxed/simple;
-	bh=GcuZDND4BOCDJ3Qbi+8MqLFkdkVUVN8h6KHnXZTDnBc=;
+	s=arc-20240116; t=1708608578; c=relaxed/simple;
+	bh=5O4K7q1IK/NjYK7WhiJ/eVnZEXOtS5drn8zpx1YYZg0=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=r6dCAnm2glNXfABhSxa/a7u7VbIYBrJbs6FbY2wBR3Qj8G/uJXWygEjGE4cG1v8KTwMx8SCDgrHtcR1i0CFKU5uI9m71Pp5QGrCcComybKLPhHgIGx3npco/gUHjxys4wF5ctDdm6w1/6iRwZK9H9C52M4rFAhmRNmYW25o0LVc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=p06ePR5J; arc=none smtp.client-ip=198.47.19.142
+	 MIME-Version:Content-Type; b=uWZc5pomHEIKlly5aEdk4P1DzUk9o3OFDKvJwsHDzjArhaMoyp0nf97gIHpvNzDz5X0z14XbDz0Z4w/UAHN6otOOOK0JrDarGJ1PTpvl/NXrE14Ltcmjt5/LXaV5zyEujbCGnCio1RfsNhP0uNLTr99AiQhFEjk7k4gBsJUrgsU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=bHzNZ0TI; arc=none smtp.client-ip=198.47.19.142
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41MDSGmg051181;
-	Thu, 22 Feb 2024 07:28:16 -0600
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41MDTOIU051313;
+	Thu, 22 Feb 2024 07:29:24 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1708608496;
-	bh=q46Q7hHSkGrZ7spae297ZIJS9vHwJ1ZBQZkXEcC56MM=;
+	s=ti-com-17Q1; t=1708608564;
+	bh=/aXM1yR70nrbW0ktic0OxdjuUQY0IFYS5g44OXEYMrc=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=p06ePR5J63UEnum1dG9Zn4zPMafOVgYzY8GSmmvWYuV3laMhknzS0MmWh/6Ch5Rn5
-	 pAK07pjYfBZVey0W7nT5AXIe7oIwGpb00rSgt3ZcI/HsaeykjRNRz9J33PimVd0zQr
-	 dScX9CfPVMyCt/tDm6+rl1MNvtCiTUy+LyV/OtNk=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41MDSGFR039736
+	b=bHzNZ0TItjC1RCegWIeDfp0oiYQyIL6AN66VMk+Gk33sTymag13pEOTfELydsFbo7
+	 1JQF8xRSIYlW821A+CMsB+kS6LjV8SpDPkV971Qd6gBUifZ/JBWTgbiZ+3FBI9Oswg
+	 zbWd8WLc3xUMLd5C6c6OzkAg9hAb5iMNg3pW0jys=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41MDTO4K028337
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 22 Feb 2024 07:28:16 -0600
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 22 Feb 2024 07:29:24 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 22
- Feb 2024 07:28:16 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ Feb 2024 07:29:24 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 22 Feb 2024 07:28:16 -0600
+ Frontend Transport; Thu, 22 Feb 2024 07:29:24 -0600
 Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41MDSCCX015467;
-	Thu, 22 Feb 2024 07:28:13 -0600
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41MDTKSa107922;
+	Thu, 22 Feb 2024 07:29:21 -0600
 From: Vignesh Raghavendra <vigneshr@ti.com>
-To: <nm@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <sabiya.d@mistralsolutions.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <u-kumar1@ti.com>, Dasnavis Sabiya <sabiya.d@ti.com>
-Subject: Re: [PATCH V3 0/2] Add CAN and OSPI support for AM69-SK platform
-Date: Thu, 22 Feb 2024 18:58:07 +0530
-Message-ID: <170860805565.1966114.18241653060912010768.b4-ty@ti.com>
+To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Peter Rosin <peda@axentia.se>, Andrew Davis
+	<afd@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-j721e: Fix mux-reg-masks in hbmc_mux
+Date: Thu, 22 Feb 2024 18:59:17 +0530
+Message-ID: <170860805561.1966114.12049702081667007759.b4-ty@ti.com>
 X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240220162527.663394-1-sabiya.d@ti.com>
-References: <20240220162527.663394-1-sabiya.d@ti.com>
+In-Reply-To: <20240215141957.13775-1-afd@ti.com>
+References: <20240215141957.13775-1-afd@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,26 +85,23 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi sabiya.d@mistralsolutions.com,
+Hi Andrew Davis,
 
-On Tue, 20 Feb 2024 21:55:25 +0530, sabiya.d@mistralsolutions.com wrote:
-> This series adds support for the below interfaces on AM69-SK platform:
-> -  CAN support on both MCU and MAIN domains
-> -  OSPI NOR flash support
+On Thu, 15 Feb 2024 08:19:57 -0600, Andrew Davis wrote:
+> Change offset in mux-reg-masks property for hbmc_mux node
+> since reg-mux property is used in compatible.
 > 
-> v3: Changelog:
-> 1) Updated OSPI partition table to increase the tiboot3 partition to 1MB.
-> 2) Rebase the sources to accommodate the latest merge.
+> While here, update the reg region to include 4 bytes as this
+> is a 32bit register.
+> 
 > 
 > [...]
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/2] arm64: dts: ti: k3-am69-sk: Enable CAN interfaces for AM69 SK board
-      commit: daa2eb7f30eeb7127b6050e18f491326d278b836
-[2/2] arm64: dts: ti: k3-am69-sk: Add support for OSPI flash
-      commit: fabd934c6df2fb0c351144e424727fead261f333
+[1/1] arm64: dts: ti: k3-j721e: Fix mux-reg-masks in hbmc_mux
+      commit: 3d585389d454e147187684e492a0eb8f56adf311
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
