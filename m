@@ -1,130 +1,147 @@
-Return-Path: <devicetree+bounces-44714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 414C485F5B3
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 11:28:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 811B685F5BF
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 11:30:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C77A1C23E20
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 10:28:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 210C71F29439
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 10:30:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2F523B19E;
-	Thu, 22 Feb 2024 10:28:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7F5C3D393;
+	Thu, 22 Feb 2024 10:29:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qWwbxASk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TW9B5rlP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93F2B1B59E;
-	Thu, 22 Feb 2024 10:28:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACD003CF6B;
+	Thu, 22 Feb 2024 10:29:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708597685; cv=none; b=MJZOAnFA+zYhTaxjFowqPqjvkrV/D0I4ZCi4VNWAl6/B11sk2BvtB2MMqvq6RXkZ3EtmYLCBSLmhgxpdthT8EiICsWwapZnNCf0EGWmpThZkY4kc5kKa21STBnLrb5p1hDyZJDNcpvMVDR36ckYmcEXaLYSd7foJWxktk0xG8Ds=
+	t=1708597796; cv=none; b=SLOV0jhnW5i2XABz8PVP7/2uBQE6w04E5+kbrM3/xL2xGKH6XPnbz9G3cNqAhbgqlXrn+Xlqxy5GWR6n4O2uBECFYTrET6B69dnhqy6bt6LCATBYVZknU2g/ECAsayQyQS6/xM0p7IybK9QvkxqhNk9oSFxaasheH7CB68tmeJ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708597685; c=relaxed/simple;
-	bh=b4FUqCJ0EFJCW1Eb2H2P7CKrb72vkMjtY68vabwTKH4=;
+	s=arc-20240116; t=1708597796; c=relaxed/simple;
+	bh=afYuJSyH4RiPAE1WvxVP1Cil3M0pG313XkEHICNyg8A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Eai2Xyqr4l/VEO1wmWslUCUuZkWaU+/fBQ4llQyBQwnR9BRCMNCsi/Rj908Vvbsmicq99jTNPJlw0XS/cMT9E7O5tsJSxvFaWRZPiowpXzzlFsfr3xzLnKMqzz9uzLRBUxIJ3SA/uVQ+zGHTyA9VmRYwvZPpdSepPP+2V6VJmXI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qWwbxASk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80B22C433F1;
-	Thu, 22 Feb 2024 10:28:04 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=cHDK71ME7BxSHO5QGx4vgxpvWtnQbxKsFX+gZ2VHsYddY4cqiUBvA8cCV3SlolkaR2DXy3kR/NVS2VBzyR55x5UU6mkNWEy2GHy58RbdURr0j/yQN4lx82iPfHkfmRLRnzHPHbPJIKZPSsb6MWSKmraoxe9qCu5xvAmstKvZ0Vs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TW9B5rlP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C18CEC43390;
+	Thu, 22 Feb 2024 10:29:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708597685;
-	bh=b4FUqCJ0EFJCW1Eb2H2P7CKrb72vkMjtY68vabwTKH4=;
+	s=k20201202; t=1708597796;
+	bh=afYuJSyH4RiPAE1WvxVP1Cil3M0pG313XkEHICNyg8A=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qWwbxASk1MbAVTuyZfGCOFBhHJn0KpL0yeXX4HC+Fz2c/rwa0T+PGhF4Vk2pE4SHP
-	 QHEy3WJOaieXRi4kEplUJuaoAPVrmU6E4KBZO8i+8KreL1vrFDmA1Uh3yO/8Ie0Gdq
-	 Nurfasgeew1ljzYRCNxFqcf/WAFG11U67kfbrXeIRpkzcYuDcpbMl0fmm7jqnvOlYU
-	 SNrLZbjUC8hz4FSfzG8C97126If854WAjMA86c/UC6RI/Ij2A8AohL6BiD1TtGLf58
-	 JTJJ/bKq+xoo7ZtM78azfGmPVRuabtrnSlGjCRD3UBaIh6UztK6Hz8mwNY02e7Mfax
-	 f9Ws2/duLb0KA==
-Date: Thu, 22 Feb 2024 11:28:02 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Frank Oltmanns <frank@oltmanns.dev>
-Cc: Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Diego Roversi <diegor@tiscali.it>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Samuel Holland <samuel@sholland.org>, Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>, 
-	Purism Kernel Team <kernel@puri.sm>, Ondrej Jirman <megi@xff.cz>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Sam Ravnborg <sam@ravnborg.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/6] clk: sunxi-ng: nkm: Support minimum and maximum
- rate
-Message-ID: <ng2xdo7icjshbwlwy4sgaofibkg3e7qaotd2dnaq5zfizgub7s@b7egn5kd3ejf>
-References: <20240205-pinephone-pll-fixes-v2-0-96a46a2d8c9b@oltmanns.dev>
- <20240205-pinephone-pll-fixes-v2-3-96a46a2d8c9b@oltmanns.dev>
- <8734tmhzkg.fsf@oltmanns.dev>
+	b=TW9B5rlPPl5eawcAop2ve7LU3/6MAaYknJCqr38lGgRhKsfs5J79IBTheSjcbNMtA
+	 NhO9WKjam+jcU9OHLqTknnaajMPieIFd8dtTRJhdBI5KPbNJMGCupBA0lmiagn4piM
+	 kferNd5Idv7e5m+eYzZG7rAbNLsIQrLB5vJuJqhKdf2KSVBQMExjLX7kF/6NZ0oZqs
+	 Bzgy1+ugtB9hdLQgL+vA+mJeCKM4dWp5+XkPPCXRbYyZFBzByT6ti/QSvuq0Q/qlyQ
+	 YZdEuQdlMP3WPaQKTTGZpDNGzIafV/e9gJtu1BUzbPhp2liL/Q5MDOlPcNfMkAnn5/
+	 MTWWYKprZh3Dw==
+Date: Thu, 22 Feb 2024 10:29:51 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	denis.ciocca@st.com, linus.walleij@linaro.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH] dt-bindings: iio: st-sensors: Add IIS2MDC magnetometer
+Message-ID: <20240222-fretted-riches-bf15f5d63018@spud>
+References: <20240221175810.3581399-1-m.felsch@pengutronix.de>
+ <20240221-undecided-union-4078db711693@spud>
+ <20240221191644.5r3ylr5w3cnfnrzj@pengutronix.de>
+ <20240221-imitate-molar-81d93285ac77@spud>
+ <20240221194518.3sm4o5i274ldpvzf@pengutronix.de>
+ <20240221-lubricant-machine-79054f117eb0@spud>
+ <20240222084717.rcckoyjeh4shmcxr@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="q4pk3zqf4xnyu77u"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ahPoXcnEvQcnarTl"
 Content-Disposition: inline
-In-Reply-To: <8734tmhzkg.fsf@oltmanns.dev>
+In-Reply-To: <20240222084717.rcckoyjeh4shmcxr@pengutronix.de>
 
 
---q4pk3zqf4xnyu77u
+--ahPoXcnEvQcnarTl
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 21, 2024 at 11:38:39AM +0100, Frank Oltmanns wrote:
-> Hi Jernej,
-> hi Maxime,
+On Thu, Feb 22, 2024 at 09:47:17AM +0100, Marco Felsch wrote:
+> On 24-02-21, Conor Dooley wrote:
+> > On Wed, Feb 21, 2024 at 08:45:18PM +0100, Marco Felsch wrote:
+> > > On 24-02-21, Conor Dooley wrote:
+> > > > On Wed, Feb 21, 2024 at 08:16:44PM +0100, Marco Felsch wrote:
+> > > > > On 24-02-21, Conor Dooley wrote:
+> > > > > > On Wed, Feb 21, 2024 at 06:58:10PM +0100, Marco Felsch wrote:
+
+> > > > Besides, having fallback compatibles is the norm when one device ha=
+s the
+> > > > same programming model as another.
+> > >=20
+> > > Not for this binding according the driver.
+> >=20
+> > If they don't have the same programming model, then describing them as
+> > "equivalent" wouldn't be correct. That said, they seem to use the same
+> > sensor settings when alls said and done (see st_magn_sensors_settings),
+> > so I think they are actually compatible even if the driver has separate
+> > match data for each.
 >=20
-> On 2024-02-05 at 16:22:26 +0100, Frank Oltmanns <frank@oltmanns.dev> wrot=
-e:
-> > According to the Allwinner User Manual, the Allwinner A64 requires
-> > PLL-MIPI to run at 500MHz-1.4GHz. Add support for that to ccu_nkm.
->=20
-> I should point out that limiting PLL-MIPI also fixes a regression
-> that was introduced in 6.5, specifically
-> ca1170b69968233b34d26432245eddf7d265186b "clk: sunxi-ng: a64: force
-> select PLL_MIPI in TCON0 mux". This has been bisected and reported by
-> Diego [1].
->=20
-> I don't know the procedure (yet), but probably the fix (if and when
-> accepted) should be backported at least to 6.6 (first broken LTS), 6.7
-> (stable), and 6.8 (next stable).
+> I told you that I have checked the driver and skimed the datasheets and
+> came to the exact same conclusion.
 
-https://www.kernel.org/doc/html/next/process/stable-kernel-rules.html#proce=
-dure-for-submitting-patches-to-the-stable-tree
+Did you tell me that? I did't see it.
 
-> My suggestion:
->  - In V3 of this series, I will reorder the patches, so that what is now
->    PATCH 3 and 4 becomes 1 and 2 respectively, so that they can be
->    applied to 6.6 more easily.
->  - Maxime, IIUC you requested some refactoring for handling the rate
->    limits [2]. I propose, we use my current proposal as-is, and I will
->    do a follow-up series for the refactoring.
+Anyway, I think what happened is that I interpreted "Not for this
+binding according the driver" as a comment about the programming model
+being different, but you meant it in reference to the fallback. Since
+they do have the same programming model the fallback is appropriate,
+even if the driver knows about the iis2mdc compatible.
+I'd squash in the following, similar to what was done for the
+st,iis328dq that was added recently:
 
-I'd really like to not introduce a new ad-hoc implementation of range
-handling. It's fine for older users to not be converted yet, but we
-shouldn't introduce more users.
+diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml b/Doc=
+umentation/devicetree/bindings/iio/st,st-sensors.yaml
+index ee593c8bbb65..ee6c3800436d 100644
+--- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
++++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+@@ -64,7 +64,6 @@ properties:
+           - st,lsm9ds0-gyro
+       - description: STMicroelectronics Magnetometers
+         enum:
+-          - st,iis2mdc
+           - st,lis2mdl
+           - st,lis3mdl-magn
+           - st,lsm303agr-magn
+@@ -73,6 +72,9 @@ properties:
+           - st,lsm303dlhc-magn
+           - st,lsm303dlm-magn
+           - st,lsm9ds1-magn
++      - items:
++          - const: st,iis2mdc
++          - const: st,lis2mdl
+       - description: STMicroelectronics Pressure Sensors
+         enum:
+           - st,lps001wp-press
 
-Maxime
-
---q4pk3zqf4xnyu77u
+--ahPoXcnEvQcnarTl
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZdchsQAKCRDj7w1vZxhR
-xazKAQCsOgi9EGPB1NvcUX+zJHujzzu0Eni6yLd7IVdDRMkbQwD9FgYrQZze53po
-fwfG9jJrp7PSo+5yd2QAWoj53xExtQw=
-=1YY2
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdciHwAKCRB4tDGHoIJi
+0rYLAP9zXNYPi9SZuObV9gQE3XitJbRNMbErzItFTaLr7pgDwgD+NA+JrD+s8dqv
+AQAMzEvicv1YL6dcsEnWJJyJKjz4fgw=
+=TXSE
 -----END PGP SIGNATURE-----
 
---q4pk3zqf4xnyu77u--
+--ahPoXcnEvQcnarTl--
 
