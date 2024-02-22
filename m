@@ -1,102 +1,110 @@
-Return-Path: <devicetree+bounces-44905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8D3286003F
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 19:00:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 097EF860060
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 19:07:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11F191C25311
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 18:00:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 97CB3B23118
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 18:07:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83DC7157E7A;
-	Thu, 22 Feb 2024 17:59:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E830156985;
+	Thu, 22 Feb 2024 18:06:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d/Rou46X"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nOj4Yd1j"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59106153BEF;
-	Thu, 22 Feb 2024 17:59:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE62B4776E;
+	Thu, 22 Feb 2024 18:06:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708624763; cv=none; b=ISr79GV8rXAdoqwR4JjfWx6STMANA84bwdcdonKYgZUxfS1iZcB+JrIoO0bm3ERp/xHnENvrKMQlM/iXmt3ee79Kyt1u0UA7jjJ0HUrDfECLgeBM1740E/IbSFJG98hVNY1UtkHDdwsZH/szJdwN2ICecSrzD0ujH74BRiBUZDw=
+	t=1708625218; cv=none; b=T1a7wKMO0ycM/+kX/6YX6IEHKgjtE6EzueUXJUOeA/yb4vJupKijLM7ViWFGLfuap/cFoO85uo6Gd96yLM0WHlR8U+8rPjpb5E5yRxhtotGklW3olbFVp2JvT20QX56sqKgbExcqnK3TiaGn2v5VqGIJBELGfvmBiACxaZk+I/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708624763; c=relaxed/simple;
-	bh=wdnO0bFfHymT5iCbsiUCX/eH2jaKJvVYJF6RugEQ6ZU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UJKLZACgw80yF4FI1a47qSj6xgquzzriTSCBKwUaNuvRHLPuxaajhSka7qkSAd0CGuwDimsUaV0isrkDPwgiZ1xVUIfOIfLj49gRVAx+n0GLo1LoQnudKkHd+Xa+PBsUGa1gNS5ZrgMF/A2Zj7uEMho2hqi197X1IYtU2UWjynk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d/Rou46X; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E618C433F1;
-	Thu, 22 Feb 2024 17:59:21 +0000 (UTC)
+	s=arc-20240116; t=1708625218; c=relaxed/simple;
+	bh=lBeRCmby1gUQMllOcKWPl1MR8+1XX3jNUKV55GgSZAs=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Pz1NfmJtkI6zarhZP2Aolm+SDJBLZA8u812OKxykK6j4SQxokbZqKKkVJn4k9E5BqQKAzcBPs5ZA9cJ0I00ykuAWAVAPxd5eAN5xE81f9qjKfrEYxgLAVC5sUkJAQSGkrnrreICm1Ynpuk5aLYvw65UoxGa6OnL35N2vIntvYAE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nOj4Yd1j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B1C1C433C7;
+	Thu, 22 Feb 2024 18:06:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708624762;
-	bh=wdnO0bFfHymT5iCbsiUCX/eH2jaKJvVYJF6RugEQ6ZU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=d/Rou46XoeDVCackneWERhF7n8kwnrl/gU/Vr0pLn9yDrVgMvCxjRhrUAXm+TYb8e
-	 BxgA8ftVrWEEbAoq/CYx2arEmh6w7yrXkSQG5NTJjCHbA+yo0vM7LeLom1I1WROFhJ
-	 tTH7iVbkZ1D1Vs3OfSDyuOZCX2OV6YoVTkU977KlgYbtdQkudT4MCTvi81LQUjyx8Z
-	 wUHGZgwSwh+arqkj3SUW8cB5ZrqdMY1eAB+8ukEwCpyzkQ5L2JfveFUbXI3QCwuMI4
-	 LlF0XNDeh5SZOcz6LVTRTOauO2th45VNxBDr3m6pIuihZQ9MlNcLeWOpGa3rwltHWK
-	 j1HQahO9xKuAg==
-Date: Thu, 22 Feb 2024 10:59:18 -0700
-From: Rob Herring <robh@kernel.org>
-To: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
-Cc: nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, linux@armlinux.org.uk,
-	vadim.fedorenko@linux.dev, andrew@lunn.ch, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	git@amd.com
-Subject: Re: [PATCH net-next v2 4/4] dt-bindings: net: cdns,macb: Deprecate
- magic-packet property
-Message-ID: <20240222175918.GA3500038-robh@kernel.org>
-References: <20240222153848.2374782-1-vineeth.karumanchi@amd.com>
- <20240222153848.2374782-5-vineeth.karumanchi@amd.com>
+	s=k20201202; t=1708625218;
+	bh=lBeRCmby1gUQMllOcKWPl1MR8+1XX3jNUKV55GgSZAs=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=nOj4Yd1jSGV/rjAPstPTsYiX+lJPz6EK1NrTGv2/aKwxPtNlK3XwRyBkMo2xXsyU7
+	 ZwP1xxts/KJzXw/q2GLcL0qJKGA8sqCttvVHRLDYP543X2ZKIrP5l2h+pCsMICnhMt
+	 e9j9u43vWXrN1kcjmvE8GYsSaRLw2+oMCAyW5Xgcm5fJSSPBXDZdVXWgA+eyBhd8/R
+	 rwFR6MgB5qq07jMnfwASdMorZ21XXlunJxKEGF0zcbNs7ZzLyA+lrHr9bP9jhjzfVR
+	 c+DG0836DiJFLKJ06sWpb/3wztPPnoTAPxIwMnYk9M2p9SJrYI0wD2M8tWQm2K2AHG
+	 j2KkN8BtsSSBg==
+From: Will Deacon <will@kernel.org>
+To: Robin Murphy <robin.murphy@arm.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Joerg Roedel <joro@8bytes.org>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Sean Paul <sean@poorly.run>,
+	Rob Herring <robh@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Clark <robdclark@gmail.com>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Bjorn Andersson <andersson@kernel.org>
+Cc: catalin.marinas@arm.com,
+	kernel-team@android.com,
+	Will Deacon <will@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	linux-kernel@vger.kernel.org,
+	freedreno@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	iommu@lists.linux.dev,
+	linux-clk@vger.kernel.org,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 0/8] A702 support
+Date: Thu, 22 Feb 2024 18:06:24 +0000
+Message-Id: <170861662823.1923805.14686424405847288477.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20240219-topic-rb1_gpu-v1-0-d260fa854707@linaro.org>
+References: <20240219-topic-rb1_gpu-v1-0-d260fa854707@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240222153848.2374782-5-vineeth.karumanchi@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Thu, Feb 22, 2024 at 09:08:48PM +0530, Vineeth Karumanchi wrote:
-> WOL modes such as magic-packet should be an OS policy.
-> Leverage MACB_CAPS_WOL on supported devices to advertise
-> supported modes through ethtool. Use ethtool to activate
-> the required mode.
+On Mon, 19 Feb 2024 14:35:45 +0100, Konrad Dybcio wrote:
+> Bit of a megaseries, bunched together for your testing convenience..
+> Needs mesa!27665 [1] on the userland part, kmscube happily spins.
+> 
+> I'm feeling quite lukewarm about the memory barriers in patch 3..
+> 
+> Patch 1 for Will/smmu, 5-6 for drm/msm, rest for qcom
+> 
+> [...]
 
-According to the description of the property, it indicates whether magic 
-packet is supported by the h/w or not. Enabling WOL or not is a separate 
-matter. OTOH, I would think WOL support would be implied by compatible 
-properties. No objection from me, just highlighting the distinction.
+Applied SMMU bindings patch to will (for-joerg/arm-smmu/bindings), thanks!
 
-> 
-> Suggested-by: Andrew Lunn <andrew@lunn.ch>
-> Signed-off-by: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
-> ---
->  Documentation/devicetree/bindings/net/cdns,macb.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/cdns,macb.yaml b/Documentation/devicetree/bindings/net/cdns,macb.yaml
-> index bf8894a0257e..096309bf3235 100644
-> --- a/Documentation/devicetree/bindings/net/cdns,macb.yaml
-> +++ b/Documentation/devicetree/bindings/net/cdns,macb.yaml
-> @@ -141,6 +141,7 @@ patternProperties:
->  
->        magic-packet:
->          type: boolean
-> +        deprecated: true
->          description:
->            Indicates that the hardware supports waking up via magic packet.
->  
-> -- 
-> 2.34.1
-> 
+[1/8] dt-bindings: arm-smmu: Add QCM2290 GPU SMMU
+      https://git.kernel.org/will/c/0eca305f8e0d
+
+Cheers,
+-- 
+Will
+
+https://fixes.arm64.dev
+https://next.arm64.dev
+https://will.arm64.dev
 
