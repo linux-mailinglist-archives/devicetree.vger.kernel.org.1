@@ -1,217 +1,165 @@
-Return-Path: <devicetree+bounces-44748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8358785F74D
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 12:39:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9F3485F7AC
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 13:05:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0EF971F29403
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 11:39:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAC091C222D1
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 12:05:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAE9D56B71;
-	Thu, 22 Feb 2024 11:33:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B784C55E67;
+	Thu, 22 Feb 2024 12:05:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="WtlcC9am"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oVlKyEdn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE9B856471;
-	Thu, 22 Feb 2024 11:33:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35075535BC
+	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 12:05:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708601639; cv=none; b=UlJALKChW7b+AR1pM+qNepFcS9/vPdNUZMVB8wgb9tzJrJEgFn/m6JrP5zYOi0fxb7b0IytBfpk3Ohl4SRbWG8aOiflbcziQd1tajIbk5nosZDiUFbc+5O6peYhVQ1jrIZUdly53OUoiA4tdTfhC9O4IsCV09ToVJS1hYxeQHC4=
+	t=1708603555; cv=none; b=tnPCYaxlmRt54+pfirUlvrZP7YOTbm9QK+O90Scu+yvjGLBVOouCpRYjr0G+sRqvnZAfh0yWAAR0ekW5uh9DZgz1+hN8gET1Ol8sBX0/8QKsrtuSBQDnnmWcZliQpX6aqI4cnd/L8x49pSoTnMSa/AQgKwx7fv8/1NgyD64SV5g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708601639; c=relaxed/simple;
-	bh=/GtmPjLiq5+SagkrfDQAkAZP5XRkWs7T9sGKIVhkkz4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=Qo7sSWTGa5/6ESs+jIpER050MymYdiU0sBVLo2xfbUCRFMmPRS66NHAmHFXa+iYqgM3xtQDehEc71wiuGMBLDHTL7fNHSk52n4M0qmlU/QheDQruuenx70rZHPhaMmPEE7yEv87N1xN9FY0mlJbzkwcdorL9UfrZLObthY7/4WM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=WtlcC9am; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41MBXk50027853;
-	Thu, 22 Feb 2024 05:33:46 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1708601626;
-	bh=Vlbz21goACtx1c8zMXtgD7uoZ9QnG6VdgKVSgHpupv8=;
-	h=From:Date:Subject:References:In-Reply-To:To:CC;
-	b=WtlcC9amfGGCuR1WryWRG8vcT8UQA4iOk70DW9csiMHCyI5cwdZ/Rp7cLPJfN43+i
-	 owusU6Vw+I15sXQC5Mc2JEq+sWU42S/88MxS+rJzLeN0ai/BMQuxfwGpXzVMf86Iyj
-	 yheibmUbAhRe6TyZq+du3OSEEuWi8I0CmmjPP5ps=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41MBXkVR014493
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 22 Feb 2024 05:33:46 -0600
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 22
- Feb 2024 05:33:46 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 22 Feb 2024 05:33:46 -0600
-Received: from localhost (jluthra.dhcp.ti.com [172.24.227.217])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41MBXi5B091622;
-	Thu, 22 Feb 2024 05:33:45 -0600
-From: Jai Luthra <j-luthra@ti.com>
-Date: Thu, 22 Feb 2024 17:01:37 +0530
-Subject: [PATCH RFC 21/21] media: ti: j721e-csi2rx: Submit all available
- buffers
+	s=arc-20240116; t=1708603555; c=relaxed/simple;
+	bh=KKvLcOiV98GSllgISKgrqyI1EGcLROv5/IvM5efETM0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iztoso190X2IM5y/kHb1qZYmgaqoYDbcbPglhZFsOhuP+2sGUInhON5BU2xBhq7W1o7AcXGQJUgvlJK0NPfGLrJaB7hIkdROv+EUiUbcEy39qNAehldSF4NPMShuc2hRcbx3mTjGJLtb5xaE9DtLXuF77Cr5mPLATfJ3In/IcG8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oVlKyEdn; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a36126ee41eso1024642966b.2
+        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 04:05:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708603551; x=1709208351; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=VhNTP5JSQFFpkkI45lmtwLKszfADT7dwrioks7vMsQQ=;
+        b=oVlKyEdnwydGEFn5UQ8VK8OBSkc8lVUIZa+/lO9jNgDFNz12LP/WVNS34KCJhNiMAY
+         gdPX/mrh7Pp8APvLr2G78nlctpeYPrkx7bIDq6YEuI7kLJJVu/XiWhdStswHDg5lEW/u
+         034WVTqo2ZEchdcpO+2xCtiOyG5ISgwQRvk57UXz1LJ5HTXtHE0y9XitLB4xAMJYCDy5
+         XKBTHcTD56M1yiKRGoytK8NREf/h8cfwRXaGrOd7i0jev3uk+b/816UcJLtwheTDpaGN
+         837sAsx4e+vdR4tTcDO7MMXDYnRO+C3jFDVk2TqcCFT8d82ok3/6wqn4zkIt89UVs+Zi
+         fjMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708603551; x=1709208351;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VhNTP5JSQFFpkkI45lmtwLKszfADT7dwrioks7vMsQQ=;
+        b=i2ntYKJRHFj2EAjr3hvnaMqgchhwIV3ez6sV+kuMVmJo0O0QVL06AShEiCjIsDhVXv
+         iwi00zBG+gZOyE6XgQitMpnftjXxkI8j2Dae9u52xhTc14ubvZYt/U2DpTFP5l4aHru4
+         8uuz5nGhc8hUjhndZxK80X+X6EcHy/rIqqlDXTGI3lgtowGku+4wmKfKUUR7GicdfpxY
+         PoPnRJYvqv4sEvIs8K2NTRhetvmSxcjUzc6/1I1yITYhEePGF6jtw8sGpziGdFRZFJoR
+         ZuWJAy2AaFsa/TQwxqpJOqFY1bXFeBpvPTJhMFcMlagncshHGeJeKGUuxZWTOhIeE6kl
+         7GWg==
+X-Forwarded-Encrypted: i=1; AJvYcCVzUdcLoHynao1rXGC5HB007/oVsuBJwxHTpJ5MbdUtwNYzhZcpAO3pE25yzBzzKnjEfq8STQ2EMJiXp2QjvCxb7xQO71S1PnLwUQ==
+X-Gm-Message-State: AOJu0YynN4fVf9sCMZRgh2UgOqfUC9Lhjfs23sRHeSgkr/BeNMEQNUtV
+	nlpbsArderSvWB7k2NjjdvuaDMcsrRItYKK5zVqLLgjH8nCbq1uGvJJfAGnfhWY=
+X-Google-Smtp-Source: AGHT+IF0gq7oB19JRQfFEFdJ3i5QsdYD92leThmo951Mg2PKlUcdNRsBde2z2MI+ZKWkTEbzC/a84Q==
+X-Received: by 2002:a17:907:b9ca:b0:a3f:2247:bb59 with SMTP id xa10-20020a170907b9ca00b00a3f2247bb59mr4009151ejc.61.1708603551444;
+        Thu, 22 Feb 2024 04:05:51 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.116])
+        by smtp.gmail.com with ESMTPSA id y2-20020a170906470200b00a3d0dd84276sm5890564ejq.184.2024.02.22.04.05.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Feb 2024 04:05:50 -0800 (PST)
+Message-ID: <bd13fb09-8602-45e3-8d03-db7a8a0afb7e@linaro.org>
+Date: Thu, 22 Feb 2024 13:05:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/7] dt-bindings: arm-smmu: fix SM8[45]50 GPU SMMU if
+ condition
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ iommu@lists.linux.dev
+References: <20240216-topic-sm8650-gpu-v3-0-eb1f4b86d8d3@linaro.org>
+ <20240216-topic-sm8650-gpu-v3-2-eb1f4b86d8d3@linaro.org>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240216-topic-sm8650-gpu-v3-2-eb1f4b86d8d3@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-ID: <20240222-multistream-v1-21-1837ed916eeb@ti.com>
-References: <20240222-multistream-v1-0-1837ed916eeb@ti.com>
-In-Reply-To: <20240222-multistream-v1-0-1837ed916eeb@ti.com>
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Mauro Carvalho Chehab
-	<mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans
- Verkuil <hverkuil-cisco@xs4all.nl>,
-        Vaishnav Achath <vaishnav.a@ti.com>,
-        Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Aradhya
- Bhatia <a-bhatia1@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
-        Changhuang
- Liang <changhuang.liang@starfivetech.com>,
-        Jack Zhu
-	<jack.zhu@starfivetech.com>,
-        Julien Massot <julien.massot@collabora.com>,
-        Jayshri Pawar <jpawar@cadence.com>, Jai Luthra <j-luthra@ti.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3577; i=j-luthra@ti.com;
- h=from:subject:message-id; bh=/GtmPjLiq5+SagkrfDQAkAZP5XRkWs7T9sGKIVhkkz4=;
- b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBl1zDuro/ycwjO5PCLQrJiQETtI9R/Rz8V16qhH
- NGhUvuH9NSJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZdcw7gAKCRBD3pH5JJpx
- RcEsEACXdlnzSwdPg09vRskjpB2V19aq2bTmJA5wMNKnsdqtyZms6Bks+K2NFIVccg7T1/kzOsW
- 21J9BXbvl9kotNHmiC9Dym6GGPX8PwSeER9ta/k67oEp+jcLqNYx013SDvmirXcBYKYrDjOb+ZK
- PyW8Aey4CRxqsLVo84BfWikCJuU6HNIE2puO47t+iTEm106GAwZLJpPDLJZjUfHd5FmEtJmwf07
- GxK7+RFUfzaOkwgbNmg7qYMuL+UkMEBqONYDlMSopQhewlpGij1rsIVGsW5vLCcW1Dojq4WiPJj
- oItB+ePyFD9u5TGgSQM4oFeKZyDR5txG2VSuVbEkMlBWW6c/UVSIaNZppxUfDusr2DaOwYkpeJp
- LdfnNLEY75vdjHWlStzsNncC7n2ndrX3uHAs92XKsV8o7aXsfrHxOpl/xC/DbaPTVPVPMqt3Oce
- bTgrBXsX0fwr+um1f15uqHeXlGeDbEEtfBptF0zYPGutkfVdgDc1VcA5VP3NCHIVd7XCAIDinUT
- sNZWmtKUL5gU2x1/2bfEP7/C41y05IfuKLnqaTs4oTrkvp4QI7E1dA1+XZJiBo31NlTnxOuqKf+
- 1s0zeZJK7Mk5e9BZ4FbNOSASxr64396RCo+TiU7XyvcpM2NKQ79DAybYUEbEzsIEDqPSXEY39rh
- +8lm46CyNyVOlnA==
-X-Developer-Key: i=j-luthra@ti.com; a=openpgp;
- fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-We already make sure to submit all available buffers to DMA in each DMA
-completion callback.
+On 16/02/2024 12:03, Neil Armstrong wrote:
+> The if condition for the SM8[45]50 GPU SMMU is too large,
+> add the other compatible strings to the condition to only
+> allow the clocks for the GPU SMMU nodes.
+> 
+> Fixes: 4fff78dc2490 ("dt-bindings: arm-smmu: Document SM8[45]50 GPU SMMU")
+> Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-Move that logic in a separate function, and use it during stream start
-as well, as most application queue all their buffers before stream on.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Jai Luthra <j-luthra@ti.com>
----
- .../media/platform/ti/j721e-csi2rx/j721e-csi2rx.c  | 43 ++++++++++++----------
- 1 file changed, 24 insertions(+), 19 deletions(-)
-
-diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-index 0b9e0852da9f..a682db099e6c 100644
---- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-+++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-@@ -666,6 +666,27 @@ static int ti_csi2rx_drain_dma(struct ti_csi2rx_ctx *ctx)
- 	return ret;
- }
- 
-+static int ti_csi2rx_dma_submit_pending(struct ti_csi2rx_ctx *ctx)
-+{
-+	struct ti_csi2rx_dma *dma = &ctx->dma;
-+	struct ti_csi2rx_buffer *buf;
-+	int ret = 0;
-+
-+	/* If there are more buffers to process then start their transfer. */
-+	while (!list_empty(&dma->queue)) {
-+		buf = list_entry(dma->queue.next, struct ti_csi2rx_buffer, list);
-+		ret = ti_csi2rx_start_dma(ctx, buf);
-+		if (ret) {
-+			dev_err(ctx->csi->dev,
-+				"Failed to queue the next buffer for DMA\n");
-+			vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_ERROR);
-+			break;
-+		}
-+		list_move_tail(&buf->list, &dma->submitted);
-+	}
-+	return ret;
-+}
-+
- static void ti_csi2rx_dma_callback(void *param)
- {
- 	struct ti_csi2rx_buffer *buf = param;
-@@ -686,18 +707,7 @@ static void ti_csi2rx_dma_callback(void *param)
- 	vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_DONE);
- 	list_del(&buf->list);
- 
--	/* If there are more buffers to process then start their transfer. */
--	while (!list_empty(&dma->queue)) {
--		buf = list_entry(dma->queue.next, struct ti_csi2rx_buffer, list);
--
--		if (ti_csi2rx_start_dma(ctx, buf)) {
--			dev_err(ctx->csi->dev,
--				"Failed to queue the next buffer for DMA\n");
--			vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_ERROR);
--		} else {
--			list_move_tail(&buf->list, &dma->submitted);
--		}
--	}
-+	ti_csi2rx_dma_submit_pending(ctx);
- 
- 	if (list_empty(&dma->submitted))
- 		dma->state = TI_CSI2RX_DMA_IDLE;
-@@ -906,7 +916,6 @@ static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
- 	struct ti_csi2rx_ctx *ctx = vb2_get_drv_priv(vq);
- 	struct ti_csi2rx_dev *csi = ctx->csi;
- 	struct ti_csi2rx_dma *dma = &ctx->dma;
--	struct ti_csi2rx_buffer *buf;
- 	struct v4l2_subdev_krouting *routing;
- 	struct v4l2_subdev_route *route = NULL;
- 	struct media_pad *remote_pad;
-@@ -972,16 +981,13 @@ static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
- 	ctx->sequence = 0;
- 
- 	spin_lock_irqsave(&dma->lock, flags);
--	buf = list_entry(dma->queue.next, struct ti_csi2rx_buffer, list);
- 
--	ret = ti_csi2rx_start_dma(ctx, buf);
-+	ret = ti_csi2rx_dma_submit_pending(ctx);
- 	if (ret) {
--		dev_err(csi->dev, "Failed to start DMA: %d\n", ret);
- 		spin_unlock_irqrestore(&dma->lock, flags);
--		goto err_pipeline;
-+		goto err_dma;
- 	}
- 
--	list_move_tail(&buf->list, &dma->submitted);
- 	dma->state = TI_CSI2RX_DMA_ACTIVE;
- 	spin_unlock_irqrestore(&dma->lock, flags);
- 
-@@ -995,7 +1001,6 @@ static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
- 
- err_dma:
- 	ti_csi2rx_stop_dma(ctx);
--err_pipeline:
- 	video_device_pipeline_stop(&ctx->vdev);
- 	writel(0, csi->shim + SHIM_CNTL);
- 	writel(0, csi->shim + SHIM_DMACNTX(ctx->idx));
-
--- 
-2.43.0
+Best regards,
+Krzysztof
 
 
