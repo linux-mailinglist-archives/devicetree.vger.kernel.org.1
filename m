@@ -1,106 +1,107 @@
-Return-Path: <devicetree+bounces-44761-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D081985F843
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 13:33:34 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6987185F858
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 13:38:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D07D71C2372F
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 12:33:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B87E8B2668E
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 12:38:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8937A12D765;
-	Thu, 22 Feb 2024 12:33:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B24D41C87;
+	Thu, 22 Feb 2024 12:38:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=jms.id.au header.i=@jms.id.au header.b="YWB9i1QA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BPF2Nf0m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F59112C809;
-	Thu, 22 Feb 2024 12:33:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAFC37E769;
+	Thu, 22 Feb 2024 12:38:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708605208; cv=none; b=Ox40SG7+9hEkHx+fTxTwJaZGzxPOVZ8jwwxoMTFvhLmr8xTGWiC7e/QCywBw0hvDkXtzY7IPhV6WwG1gu11Ul2NtIC5PUS4hTTRyMb2pBHGpcW7PCly4RCC9U5AhNEGftYysQFaD2EkcWWMKesgP4Yu1GwsBr//lyEbBZ3dBkE8=
+	t=1708605499; cv=none; b=o2Smw5tZoEbaaiHhOGYuOHnHm66BxqyX1uL7QMesXme9qUf5EHfg5F5MdVxjHqfI6Sw5xvKVIrRXMN+lWKehNwWzviqwpuHZwz4lwwvHj7Hvia8qHH+BYpHpckAD8F4jy2qa7TOl3EC9Rq5z1AxEIh1DskmDzi3pL4kbnes5joI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708605208; c=relaxed/simple;
-	bh=d8IBLOsOQdtQiFzfCa4rzkp7M8N0SMED9bMMxXfaXt0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SaGJgzjU82NHyHYyeEDv4l0vw1vQbi94UpTlBNwObOWtESdK7GvuU4MPWrTKHb0HjuO1w0KypgEYDkuAWMcmPuQzWvumK+qcsApCpq27y0+UkVjVwyUiDVJkLz2uddZaT5FBHCoaADUdeNjubWXilkMaz2YvVzK1cvHI/T4Ts9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jms.id.au; spf=pass smtp.mailfrom=gmail.com; dkim=pass (1024-bit key) header.d=jms.id.au header.i=@jms.id.au header.b=YWB9i1QA; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jms.id.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5654621d62dso506948a12.3;
-        Thu, 22 Feb 2024 04:33:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google; t=1708605204; x=1709210004; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=MG0vDESW85KfZHlebYHCzgubjC4U6RsUx6p93ih8in8=;
-        b=YWB9i1QAvS0jYzldpgC0URUHG+SesrEkacobvGZkjC27D4BwDl6o5hYfD1ivHzbcXw
-         w6D/9TRTL4J5mHC8+1Td+QsmI9DS1q3jUIWzcJtF+6EUtYlcd29aocivANCbPmssRdZd
-         Cct2yexxyP4S0EPWQf0X22YLOyIqMaTNmAjIw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708605204; x=1709210004;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MG0vDESW85KfZHlebYHCzgubjC4U6RsUx6p93ih8in8=;
-        b=sBJAu7i28EJ91wZlDh5GAjDk8gsBwtPtoV7vwyaGqHfNDCZDx0mIoiE6bfv1kDC5SM
-         oUrBUYJWsKzXpNBpy7YaOdAxvx6mfnkfiHzeOzor6EBvHDtwjyYJR88970njP9cfQnAU
-         HBlALS/AidfkidcnUug/JqpROeb6ZQnEkxkxoghYzj5BGs3K8hTEUCTy3vqyDiOP98+D
-         ZOwpGp79roP1N7PLZw1BcpKTD8ooazEfFVmZyzkBG7GayDABEf0t4rAzHqNvGR/+0bvN
-         hvQm3LoP/rL9SVX2yt4y+QkxD3NcycXqqAOCpcU8hv20+KXaGBbjCkhFwalq0X6LHSX0
-         AseQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU62+GX9H9D3cWCSplXeq1H/37Q/J5iBd/GMlOrcKb2LDaMTiBJ4iRcma+NIPBwuRDZgbzqtNI0/HbPvD6QzEo4/npLJ2pSRVwbeXdJOjipuF+iYQKdEjFBRBPymCNw37J4+xexeYeL3q9dORPVj1cOStVQJ0eZF2SHLjSqd8Ir/4v+hxhq6ElGGA+6lCdVKZ5RwjRJSlk4BmouHwNUvA==
-X-Gm-Message-State: AOJu0YwsX+DHZ4MGwJrtD6nRnDsc0wCoMDLVLctLNW53WtXr8R70BvVy
-	r0/uuEWh96BVZvP6dyl+LHbh9hITAZu+JXdwLagrPW8sw0RCmh3DAh9kiF34CnCnnbGEu39FRuW
-	JrkljmJ98PIHOOXtRDhgBwKvEwfc=
-X-Google-Smtp-Source: AGHT+IFNrhrORPsfM/GgVwQUISFHcEt4aCj/nGl8kGj58IUCD9NdG07mYT8c4lWWTr3+YPEzqcaJIS6qW4w1k5sANc0=
-X-Received: by 2002:a17:906:c5a:b0:a3e:d2ea:ff5e with SMTP id
- t26-20020a1709060c5a00b00a3ed2eaff5emr9620337ejf.58.1708605204290; Thu, 22
- Feb 2024 04:33:24 -0800 (PST)
+	s=arc-20240116; t=1708605499; c=relaxed/simple;
+	bh=sxaJLT5iKpLAmJvusUKEsV6Vqp4iTdyLko6AEmPLNgQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=awtE2240ddhPVVgsuEE/YCOYHNNVY0Miivux9qhMjoGkID9Nuu+YaUZCBmxbNdqdJi5ChCXNZEK2BC/ZDCibZuRM48N/iWtMvANiABZ6XLtt/jtVcIv3KDG4dhKtSo2HcAvsbt/cPIwy2Sqdc4XIJNL4Xu5LqtjjhdJ9sattx1c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BPF2Nf0m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09441C433F1;
+	Thu, 22 Feb 2024 12:38:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708605498;
+	bh=sxaJLT5iKpLAmJvusUKEsV6Vqp4iTdyLko6AEmPLNgQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=BPF2Nf0mrNYw7LRiePxAviGUUfj04Yg+PGN13BiZXpH/VlonJ99VG1txuwrzwHaxR
+	 riZmO+LhZ489fzBgWABqQHJUWlGd1t/Q4+dO0v8txkuByDmIHBXijBLM6xQysDtVVC
+	 SQR+e8Aw/gS+OdK6gj06++9AYC92hx5TKFNdwIaNGyT435YFB1wRO+e1EJ7vAqCOni
+	 9UMu4HB4PwbBQUJMqdIVP7urlmo4hCiYfQS49w3arf27xw/f1qfaxvq9ZmaHd+DNwK
+	 90Lpb9IX2FHdXYlsQDDsVbVcK0Jo6TOehqXMPzf7W2b+2bCVSOWgp3BTBUXj210oGA
+	 jgheFw68CZWrg==
+Date: Thu, 22 Feb 2024 06:38:16 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: root <root@hu-msarkar-hyd.qualcomm.com>
+Cc: andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+	konrad.dybcio@linaro.org, manivannan.sadhasivam@linaro.org,
+	conor+dt@kernel.org, quic_nitegupt@quicinc.com,
+	quic_shazhuss@quicinc.com, quic_ramkri@quicinc.com,
+	quic_nayiluri@quicinc.com, quic_krichai@quicinc.com,
+	quic_vbadigan@quicinc.com, Nitesh Gupta <nitegupt@quicinc.com>,
+	Mrinmay Sarkar <quic_msarkar@quicinc.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 3/3] PCI: qcom: Add support for detecting controller
+ level PCIe errors
+Message-ID: <20240222123816.GA1633656@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240215220759.976998-1-eajames@linux.ibm.com>
- <20240215220759.976998-8-eajames@linux.ibm.com> <67ea1daa-72a5-4dc0-b766-34a99052dabb@linaro.org>
- <8649af3d-c7f9-452b-a8c4-921fe5fa30f8@linux.ibm.com>
-In-Reply-To: <8649af3d-c7f9-452b-a8c4-921fe5fa30f8@linux.ibm.com>
-From: Joel Stanley <joel@jms.id.au>
-Date: Thu, 22 Feb 2024 23:03:11 +1030
-Message-ID: <CACPK8XdZ6twg=d5tHKh0OuDXsHDuD8kjhcPVxRTn3y9N75hERg@mail.gmail.com>
-Subject: Re: [PATCH 07/33] ARM: dts: aspeed: p10 and tacoma: Set FSI clock frequency
-To: Eddie James <eajames@linux.ibm.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, linux-fsi@lists.ozlabs.org, 
-	linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, andi.shyti@kernel.org, 
-	alistair@popple.id.au, jk@ozlabs.org, sboyd@kernel.org, 
-	mturquette@baylibre.com, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240221185017.GA1536431@bhelgaas>
 
-On Sat, 17 Feb 2024 at 05:44, Eddie James <eajames@linux.ibm.com> wrote:
->
->
-> On 2/16/24 02:08, Krzysztof Kozlowski wrote:
-> > On 15/02/2024 23:07, Eddie James wrote:
-> >> Now that the driver doesn't hardcode the clock divider, set it
-> >> in the device tree.
-> >>
-> >> Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> >> ---
-> >>   arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts | 1 +
-> >>   arch/arm/boot/dts/aspeed/ibm-power10-dual.dtsi     | 1 +
-> >>   2 files changed, 2 insertions(+)
-> > Please do not mix DTS patches with driver code. DTS goes to the end
-> > because driver code CANNOT depend on it (there are exceptions but it was
-> > not explained here).
+On Wed, Feb 21, 2024 at 12:50:17PM -0600, Bjorn Helgaas wrote:
+> On Wed, Feb 21, 2024 at 07:34:04PM +0530, root wrote:
+> > From: Nitesh Gupta <nitegupt@quicinc.com>
+> > 
+> > Synopsys Controllers provide capabilities to detect various controller
+> > level errors. These can range from controller interface error to random
+> > PCIe configuration errors. This patch intends to add support to detect
+> > these errors and report it to userspace entity via sysfs, which can take
+> > appropriate actions to mitigate the errors.
 
-No, this is fine. Please continue sending the patches in logical order
-as you see fit.
+> > +static void qcom_pcie_enable_error_reporting_2_7_0(struct qcom_pcie *pcie)
+> > +{
+> > + ...
+> 
+> > +	val = readl(pci->dbi_base + DBI_DEVICE_CONTROL_DEVICE_STATUS);
+> > +	val |= (PCIE_CAP_CORR_ERR_REPORT_EN | PCIE_CAP_NON_FATAL_ERR_REPORT_EN |
+> > +			PCIE_CAP_FATAL_ERR_REPORT_EN | PCIE_CAP_UNSUPPORT_REQ_REP_EN);
+> > +	writel(val, pci->dbi_base + DBI_DEVICE_CONTROL_DEVICE_STATUS);
+> 
+> Is there any way to split the AER part (specified by the PCIe spec)
+> from the qcom-specific (or dwc-specific) part?  This looks an awful
+> lot like pci_enable_pcie_error_reporting(), and we should do this in
+> the PCI core in a generic way if possible.
+> 
+> > +	val = readl(pci->dbi_base + DBI_ROOT_CONTROL_ROOT_CAPABILITIES_REG);
+> > +	val |= (PCIE_CAP_SYS_ERR_ON_CORR_ERR_EN | PCIE_CAP_SYS_ERR_ON_NON_FATAL_ERR_EN |
+> > +			PCIE_CAP_SYS_ERR_ON_FATAL_ERR_EN);
+> > +	writel(val, pci->dbi_base + DBI_ROOT_CONTROL_ROOT_CAPABILITIES_REG);
+
+More to the point: why do we need to do this in the qcom driver at
+all?  Why is pci_enable_pcie_error_reporting() not enough?
+
+Bjorn
 
