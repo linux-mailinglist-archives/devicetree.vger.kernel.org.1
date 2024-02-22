@@ -1,156 +1,123 @@
-Return-Path: <devicetree+bounces-44952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60C4E86039A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 21:21:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D25CA86039F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 21:24:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C924287432
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 20:21:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 871161F27139
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 20:24:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F2A66E5E3;
-	Thu, 22 Feb 2024 20:21:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U+4jAzrd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B6F26E5FE;
+	Thu, 22 Feb 2024 20:24:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5054314B832;
-	Thu, 22 Feb 2024 20:21:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6300C14B815
+	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 20:24:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708633309; cv=none; b=FJAfcjT6KaBKKAxzsDiPnnEHiJJ7qi7aka9xpMwHZFoCixx8NoUnVEX3inOHWE+I1g2r3Hdv9T5lCJaC6XjgpgoJybu0dqLcAUucGh29Ool1612qNNSsDyYCOBg4ll6+m+ViZWBwfv3SIMYdltyslRbAyWZwfJJhXjuakFs7cJo=
+	t=1708633456; cv=none; b=uGYc0jPic2XlEgpVboc+yLr3T4ZBiz8qXAlI4N88qUPEXldBoI4tLNuqPJmJt65JJFzJSYvhKjPi1GJEjxZA4atppyrx0H9QAJZwv/h4GugTLQ/7xUp9JO8Gm2wl32qJV8lzTQ+IyMkc5ZiM5pK8aVm6LVMVea5PgGX5NOSEHws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708633309; c=relaxed/simple;
-	bh=SgFxhOq+EnrXdHT0SYVq/FJ3HuLFv4isdMn8h8YAW4o=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NhQs2W2SIqf3XsFoxNUvyt3zpv7S1DTXxddRTd26COHkOLm/XzY/ESFvkSNzGnN0sfkbnZ9PbF9tbt8xd8iIS2OFzss/ZBwBfB00RcR3d99n5KUfLeVTVX4wSr5eAJsed4zzcglh6OSjIG72cY8o55AyunHQKI3ni4echncqvXo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U+4jAzrd; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-412897a2f9eso1176995e9.1;
-        Thu, 22 Feb 2024 12:21:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708633305; x=1709238105; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=99vnuqEXMLe3Jmfg/HJHmgn8y+UJAkAraWQlEnUY7ic=;
-        b=U+4jAzrdPdapVZyfaFppi5rtRg9NdXa7SjTs/wSsoEy+QBhytgwj8fOg1h3nnQx7aZ
-         96WqRpCYDtNdfk8eC283eGtXm+TwbcsvFWkjtXC21ND6t3/Kn4oEJ1iyEKNv4bIBgl79
-         BOQc8vluwB76TvzQhrEgiCRQCkc2YcPlUr2r8fWpTvSIFMK3F7xmr5DUWsvIrHx/Fc3O
-         h156DAIVQ1i1jhTXEKVHv0vaX0M+XDKS4gFKnrsC7VzkKuPq682K7tDM4uSq/ijXPS/X
-         tDYS6Tjc/UmGQXp7YY42JfgoNyz+PqwMPjs5tNczLAG2t16ZEysLRd6gmPxJXz0e6gal
-         8pjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708633306; x=1709238106;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=99vnuqEXMLe3Jmfg/HJHmgn8y+UJAkAraWQlEnUY7ic=;
-        b=vVCSBnDhA9Cy2HwB6I8wQEvKabecb46s8RBBJkiHuswhOq8EuDuKr18NFdqLpWerxs
-         sLEFgPpy/zMdc5gYgCqDdIM6sJuh69m47KrFbucgmJqRonzBHdfG09Oapds36xU0woav
-         bWCyZT1QJoRbrgmK9vcBbM9rmBl6Gqc4617MmcLh9ViLWROYrOTiRyP34wC5CiSHCsGD
-         GaXwfvYGVekZ1+ZSFgvfe6DZTSPwxa8MGkcQ3/Zmt/PRGk+jd/08O0Q1R4b8eyUCiVtA
-         C7s+5oebVUEQWvr9cFlDk2L5de1IOuIpTWqTcIh1Yaly7CiuLuePOdKDaPWNNH056KKP
-         MtqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV1OwOuNNVP+p48/RlMM8F7pj8nrnPi+YyYufsvhgr3j1E3BdmbUQFDHklvoeH3zquf00KnmZHp5rUJ85eYe30CSVeeBuk0TrN+Cg==
-X-Gm-Message-State: AOJu0Ywi+0Kc9Z1CXKAND+bipqM1UhPY5M+J0ADcwGc4tACkcU6J9Ifm
-	S8PD5hK7sII1EcdkLU9Q9++Q6WmkfdjvCssZrzj8VD033ekKpBiedpE5JjcybRM=
-X-Google-Smtp-Source: AGHT+IGyWVz7dF80oqRaSk3e45BDjiWLpL6Ezf8tUtNg33PSaV+2fPL0yYo9wtVgTm717Llwm13CQQ==
-X-Received: by 2002:a05:600c:4706:b0:412:5652:138f with SMTP id v6-20020a05600c470600b004125652138fmr68354wmo.16.1708633305497;
-        Thu, 22 Feb 2024 12:21:45 -0800 (PST)
-Received: from arrakis.kwizart.net (home.kwizart.net. [82.65.38.83])
-        by smtp.gmail.com with ESMTPSA id a10-20020a05600c224a00b004128da16dddsm1785707wmm.15.2024.02.22.12.21.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Feb 2024 12:21:45 -0800 (PST)
-From: Nicolas Chauvet <kwizart@gmail.com>
-To: Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Marc Dietrich <marvin24@gmx.de>
-Cc: linux-tegra@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Andre Przywara <andre.przywara@arm.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Nicolas Chauvet <kwizart@gmail.com>
-Subject: [PATCH] ARM: tegra: paz00: Add emc-tables for ram-code 1
-Date: Thu, 22 Feb 2024 21:21:42 +0100
-Message-ID: <20240222202142.129807-1-kwizart@gmail.com>
-X-Mailer: git-send-email 2.42.0
+	s=arc-20240116; t=1708633456; c=relaxed/simple;
+	bh=hAkN/NX5yXEi2GCHP9KAWQTzICfcHQzGYpzH+Sy/CgM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jElKSN0+upUUC5wNN0jwbxClyN1WBJ8qstM9yq17TkqBmTcA+7PhdiuuYNRxzISrh3MMlumdP9VtV7A9KOe8MQ1IlStIjuel/oySu9aHvi0VyabZzhYVtG+UOSGeSx8PhN6ERmZEZ4QNRRxF8xibz1LnaCsWDM2juIhi1SFePNU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rdFbr-0001Zu-3z; Thu, 22 Feb 2024 21:23:59 +0100
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rdFbp-002IPq-J9; Thu, 22 Feb 2024 21:23:57 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rdFbp-002ruz-1c;
+	Thu, 22 Feb 2024 21:23:57 +0100
+Date: Thu, 22 Feb 2024 21:23:57 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linux@roeck-us.net, heikki.krogerus@linux.intel.com, jun.li@nxp.com,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH v2 1/4] dt-bindings: usb: typec-tcpci: add tcpci fallback
+ binding
+Message-ID: <20240222202357.2etmuoy6i6qr6bnq@pengutronix.de>
+References: <20240215212852.1202339-1-m.felsch@pengutronix.de>
+ <20240215212852.1202339-2-m.felsch@pengutronix.de>
+ <4e464a7a-6a38-461a-b03e-442cc43d1719@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4e464a7a-6a38-461a-b03e-442cc43d1719@linaro.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-The same table as ram-code 0 operates correctly on ram-code 1
+On 24-02-22, Krzysztof Kozlowski wrote:
+> On 15/02/2024 22:28, Marco Felsch wrote:
+> > The NXP PTN5110 [1] is an TCPCI [2] compatible chip, so add the fallback
+> > binding.
+> > 
+> > [1] https://www.nxp.com/docs/en/data-sheet/PTN5110.pdf
+> > [2] https://www.usb.org/sites/default/files/documents/usb-port_controller_specification_rev2.0_v1.0_0.pdf
+> > 
+> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > ---
+> > v2:
+> > - rephrase commit message
+> > 
+> >  Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml | 4 +++-
+> >  1 file changed, 3 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml b/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml
+> > index eaedb4cc6b6c..7bd7bbbac9e0 100644
+> > --- a/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml
+> > +++ b/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml
+> > @@ -11,7 +11,9 @@ maintainers:
+> >  
+> >  properties:
+> >    compatible:
+> > -    const: nxp,ptn5110
+> > +    enum:
+> > +      - nxp,ptn5110
+> > +      - tcpci
+> 
+> That's not a fallback, but enum. Fallback is "items" and then you could
 
-v2: rebase on current kernel
+Damn, you're right. Sorry.
 
-Signed-off-by: Nicolas Chauvet <kwizart@gmail.com>
----
- arch/arm/boot/dts/nvidia/tegra20-paz00.dts | 43 ++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
+> also send a follow-up patchset (separate, so Greg won't take it) fixing
+> DTS (if not, let me know, so I will fix it).
 
-diff --git a/arch/arm/boot/dts/nvidia/tegra20-paz00.dts b/arch/arm/boot/dts/nvidia/tegra20-paz00.dts
-index afb922bd79a7..1408e1e00759 100644
---- a/arch/arm/boot/dts/nvidia/tegra20-paz00.dts
-+++ b/arch/arm/boot/dts/nvidia/tegra20-paz00.dts
-@@ -533,6 +533,49 @@ emc-table@333000 {
- 					0x00000000 0x00000000 0x00000000 0x00000000>;
- 			};
- 		};
-+
-+		emc-tables@1 {
-+			nvidia,ram-code = <0x1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+
-+			emc-table@166500 {
-+				reg = <166500>;
-+				compatible = "nvidia,tegra20-emc-table";
-+				clock-frequency = <166500>;
-+				nvidia,emc-registers = <0x0000000a 0x00000016
-+					0x00000008 0x00000003 0x00000004 0x00000004
-+					0x00000002 0x0000000c 0x00000003 0x00000003
-+					0x00000002 0x00000001 0x00000004 0x00000005
-+					0x00000004 0x00000009 0x0000000d 0x000004df
-+					0x00000000 0x00000003 0x00000003 0x00000003
-+					0x00000003 0x00000001 0x0000000a 0x000000c8
-+					0x00000003 0x00000006 0x00000004 0x00000008
-+					0x00000002 0x00000000 0x00000000 0x00000002
-+					0x00000000 0x00000000 0x00000083 0xe03b0323
-+					0x007fe010 0x00001414 0x00000000 0x00000000
-+					0x00000000 0x00000000 0x00000000 0x00000000>;
-+			};
-+
-+			emc-table@333000 {
-+				reg = <333000>;
-+				compatible = "nvidia,tegra20-emc-table";
-+				clock-frequency = <333000>;
-+				nvidia,emc-registers = <0x00000018 0x00000033
-+					0x00000012 0x00000004 0x00000004 0x00000005
-+					0x00000003 0x0000000c 0x00000006 0x00000006
-+					0x00000003 0x00000001 0x00000004 0x00000005
-+					0x00000004 0x00000009 0x0000000d 0x00000bff
-+					0x00000000 0x00000003 0x00000003 0x00000006
-+					0x00000006 0x00000001 0x00000011 0x000000c8
-+					0x00000003 0x0000000e 0x00000007 0x00000008
-+					0x00000002 0x00000000 0x00000000 0x00000002
-+					0x00000000 0x00000000 0x00000083 0xf0440303
-+					0x007fe010 0x00001414 0x00000000 0x00000000
-+					0x00000000 0x00000000 0x00000000 0x00000000>;
-+			};
-+		};
- 	};
- 
- 	usb@c5000000 {
--- 
-2.42.0
+Sry. but I don't get this. Why do I need to send a follow-up? Greg did
+not apply anything, at least I didn't received an e-mail, that this
+patchset was picked.
 
+Regards,
+  Marco
+
+
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
 
