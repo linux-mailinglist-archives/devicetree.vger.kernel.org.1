@@ -1,238 +1,147 @@
-Return-Path: <devicetree+bounces-45032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 610B38606ED
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 00:28:09 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C821860638
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 00:08:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7AB3281DA9
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 23:28:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3CBF6B2354F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 23:08:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A8BC140374;
-	Thu, 22 Feb 2024 23:21:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0FDE208CB;
+	Thu, 22 Feb 2024 23:08:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gtb9elFl"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="n0dgbacE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B1282208F;
-	Thu, 22 Feb 2024 23:21:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C57181864A;
+	Thu, 22 Feb 2024 23:08:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708644094; cv=none; b=dNUmuaQ+TF9k2wZCFt0Dz79yLIscOf6HlG6yy1MPV2mxWLwxsBVUm961gSq3sEflxCtj+xgudBWT2t6LDJ+xgqTQ0trjULfyaIKGREKhX9J/zDcps79zA35AIItZm5j2lGHqZmzp/M2qgsPv5En+mi2F57WzmzW0/pVx8ibu00A=
+	t=1708643298; cv=none; b=ePU7KbzYAlQQZQR971ansi3Qbcn0ZvVQ+2jSZSy9FcTQk3Yzqoa6vv8HQ7H0MmRrBdpav4xO/fAdycBCUTrIls616WYGthtiGrWpBs8icELO0RG4sA+8RoJIl4XxxUtJCWtOAuapTxaEs840B7wRxW8D5fOJCcSeKEHbiiI8pPY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708644094; c=relaxed/simple;
-	bh=/7oDxzaotDMQ2PYxvxhhKnxcodeCvytyBRIpHzW+Yog=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dDCfqb8eOA86bj99TUIJw59yFsZEKN1dTOiiymmwxNgOvAdCldZ6KPQIyPW7/IxkBEIdxbY8JUk2x1EE2bENHN43mNkS9XN8ZyH5m2gPXcaAU8eqteqIm30sD2AG1Sw5B6uTCihnWa0XqFWvlvuq5U46/KqlhdDKWacspZUX1c4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gtb9elFl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CF3CC433F1;
-	Thu, 22 Feb 2024 23:21:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708644093;
-	bh=/7oDxzaotDMQ2PYxvxhhKnxcodeCvytyBRIpHzW+Yog=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Gtb9elFlw0C4aEVU9bfKXRUwfVwgsRLl1VDgjExetw4rUsO6PHqWUITOD0C0czy/M
-	 gNJ4rn6NoNwiJF5S3bnE7sXKW4vY8DkFfKWLHDJIOG+GDRTJ7vZv2hlLAodZb3O1a+
-	 HJuhgzRwS2Gofu45IBFGFB9akdWh0kV0OCC+YJj87tVmmELVm/inroYIhyA5PWFC1/
-	 ooYrLFpTFexkoWaAZ5Ur6dyia+okjXSViKu31n1NNtCYGK3O3xVMQChYmlt0tK46Qz
-	 dCwtuMytvYnz1IzvlyBBEie3z2WQo5D1uZKMUe1IYSUWr6eWzkUazxXChyHGiPqNCH
-	 LDG66X26HEVyQ==
-Date: Thu, 22 Feb 2024 14:14:11 -0600
-From: Rob Herring <robh@kernel.org>
-To: Yang Xiwen <forbidden405@outlook.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, David Yang <mmyangfl@gmail.com>,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC 3/4] dt-binding: clock: merge all hisilicon clock
- bindings to hisilicon,clock-reset-generator
-Message-ID: <20240222201411.GA3765548-robh@kernel.org>
-References: <20240216-clk-mv200-v1-0-a29ace29e636@outlook.com>
- <20240216-clk-mv200-v1-3-a29ace29e636@outlook.com>
+	s=arc-20240116; t=1708643298; c=relaxed/simple;
+	bh=1D67/mPVlMD7ke1rp9N2k/nIv32BdFuF+09t2rgxBz0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=fJY5bw3WYu59xfzA0ZNEOx965SigU1z0RfUe4SziuNqWuaW7zf9AQgcmfvQWwvm9RqRaurwVueWVP9hZ3Xk21su4tEariZr/GFCA8Op/s+OcfV2sYrIHHn+LLoJ8lp9IW5ZbNabwFLJ4oya63JoD1kv8HgfPNm3VEQzXrivaV4E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=n0dgbacE; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41MLiPtB021602;
+	Thu, 22 Feb 2024 23:08:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=XPoJMjX
+	mGQ4kcptMPlhI6nE0j7PL7Mx3eZx7q5qBBdw=; b=n0dgbacE/5SRUUGztg4CDKL
+	CM2GIETcKevippfcJSgApNECCICy0T07N4sGseOwgA+JJsEQTyl7Ij8xBL2KLp84
+	hExPvPYoK8itzW3HkQaw6Vu9yGrFdbUGxF2nZEDX18qjHDk8L8N/whyQ2KMr/ZrR
+	Qq/lcdFn9x0vHXPJFI/hqV+0Fr2giWnGiKuapb1XHhbKmr4UrBSjov7QoZ9fLxWQ
+	n2j1BPEqHPrVrbCMdKT5L9pjHxrKW2RF0yGTqUTQSOxW7x72E0NOdDXohiCHZB3C
+	xwGPjPS9eE3yPKyBhbcNoaol8jhyHwu5EHLXGLn3s7ecO29er4v1zahREmMUpbQ=
+	=
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3we2kf9pcf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 22 Feb 2024 23:08:10 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41MN89Ff017666
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 22 Feb 2024 23:08:09 GMT
+Received: from hu-uchalich-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Thu, 22 Feb 2024 15:08:07 -0800
+From: Unnathi Chalicheemala <quic_uchalich@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
+Subject: [PATCH v3 0/5] LLCC: Support for Broadcast_AND region
+Date: Thu, 22 Feb 2024 15:07:52 -0800
+Message-ID: <cover.1708551850.git.quic_uchalich@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240216-clk-mv200-v1-3-a29ace29e636@outlook.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: VDSipTSQMxikcqQczaHUmArNjg7Z_-Ax
+X-Proofpoint-GUID: VDSipTSQMxikcqQczaHUmArNjg7Z_-Ax
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-22_15,2024-02-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 impostorscore=0
+ mlxscore=0 suspectscore=0 phishscore=0 clxscore=1011 malwarescore=0
+ lowpriorityscore=0 spamscore=0 bulkscore=0 priorityscore=1501
+ mlxlogscore=528 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2402220178
 
-On Fri, Feb 16, 2024 at 07:37:53PM +0800, Yang Xiwen wrote:
-> We don't need so many separated and duplicated dt-binding files. Merge
-> them all and convert them to YAML.
-> 
-> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
-> ---
->  .../devicetree/bindings/clock/hi3660-clock.txt     |  47 -------
->  .../devicetree/bindings/clock/hi3670-clock.txt     |  43 -------
->  .../devicetree/bindings/clock/hi6220-clock.txt     |  52 --------
->  .../devicetree/bindings/clock/hisi-crg.txt         |  50 --------
->  .../clock/hisilicon,clock-reset-generator.yaml     | 139 +++++++++++++++++++++
->  .../clock/hisilicon,hi3559av100-clock.yaml         |  59 ---------
->  6 files changed, 139 insertions(+), 251 deletions(-)
+This series adds:
+1. Device tree register mapping for Broadcast_AND region in SM8450,
+SM8550, SM8650.
+2. LLCC driver updates to reflect addition of Broadcast_AND regmap.
 
+To support CSR programming, a broadcast interface is used to program all
+channels in a single command. Until SM8450 there was only one broadcast
+region (Broadcast_OR) used to broadcast write and check for status bit
+0. From SM8450 onwards another broadcast region (Broadcast_AND) has been
+added which checks for status bit 1.
 
-> diff --git a/Documentation/devicetree/bindings/clock/hisilicon,clock-reset-generator.yaml b/Documentation/devicetree/bindings/clock/hisilicon,clock-reset-generator.yaml
-> new file mode 100644
-> index 000000000000..d37cd892473e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/hisilicon,clock-reset-generator.yaml
-> @@ -0,0 +1,139 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/hisilicon,clock-reset-generator.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Hisilicon SOC Clock and Reset Generator (CRG) module
-> +
-> +maintainers:
-> +  - Yang Xiwen <forbidden405@foxmail.com>
-> +
-> +description: |
+This series updates the device trees from SM8450 onwards to have a
+mapping to this Broadcast_AND region. It also updates the llcc_drv_data
+structure with a regmap for Broadcast_AND region and corrects the
+broadcast region used to check for status bit 1.
 
-Don't need '|' if no formatting. Here and elsewhere.
+Changes in v3:
+- Removed new example in dt-bindings patch and ran 'make
+DT_CHECKER_FLAGS=-m dt_binding_check'
+- Use of ternary operator in llcc_update_act_ctrl()
+- Add comment before initialization of Broadcast_AND regmap in probe
+function
+- Move DeviceTree patches to the end
 
-> +  Hisilicon SOC clock control module which supports the clocks, resets and
-> +  power domains on various SoCs.
-> +
-> +properties:
-> +  compatible:
-> +    minItems: 1
-> +    items:
-> +      - enum:
-> +          - hisilicon,hi3559av100-clock
-> +          - hisilicon,hi3559av100-shub-clock
-> +          - hisilicon,hi3660-crgctrl
-> +          - hisilicon,hi3660-pctrl
-> +          - hisilicon,hi3660-pmuctrl
-> +          - hisilicon,hi3660-sctrl
-> +          - hisilicon,hi3660-iomcu
-> +          - hisilicon,hi3660-stub-clk
-> +          - hisilicon,hi3670-crgctrl
-> +          - hisilicon,hi3670-pctrl
-> +          - hisilicon,hi3670-pmuctrl
-> +          - hisilicon,hi3670-sctrl
-> +          - hisilicon,hi3670-iomcu
-> +          - hisilicon,hi3670-media1-crg
-> +          - hisilicon,hi3670-media2-crg
-> +          - hisilicon,hi6220-acpu-sctrl
-> +          - hisilicon,hi6220-aoctrl
-> +          - hisilicon,hi6220-sysctrl
-> +          - hisilicon,hi6220-mediactrl
-> +          - hisilicon,hi6220-pmctrl
-> +          - hisilicon,hi6220-stub-clk
-> +          - hisilicon,hi3516cv300-crg
-> +          - hisilicon,hi3516cv300-sysctrl
-> +          - hisilicon,hi3519-crg
-> +          - hisilicon,hi3798cv200-crg
-> +          - hisilicon,hi3798cv200-sysctrl
-> +      - const: syscon
-> +      - const: simple-mfd
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +  '#reset-cells':
-> +    enum: [1, 2]
-> +    description: |
-> +      First cell is reset request register offset.
-> +      Second cell is bit offset in reset request register.
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 1
-> +
-> +  mboxes:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+Changes in v2:
+- Added an additional check in the case old DT files are used for
+above mentioned chipsets for backwards compatibility
+- Moved addition of if check in llcc_update_act_ctrl() to a separate
+"Fixes" patch; not part of this series
 
-Standard property already has a type. You need to define how many 
-entries and what each one is if more than 1.
+Link to v2: https://lore.kernel.org/all/cover.1707202761.git.quic_uchalich@quicinc.com/
+Link to v1: https://lore.kernel.org/all/cover.1706296015.git.quic_uchalich@quicinc.com/
 
-> +    description: |
-> +      Phandle to the mailbox for sending msg to MCU
-> +      (See ../mailbox/hisilicon,hi3660-mailbox.txt for more info)
+Unnathi Chalicheemala (5):
+  dt-bindings: arm: msm: Add llcc Broadcast_AND register
+  soc: qcom: llcc: Add regmap for Broadcast_AND region
+  arm64: dts: qcom: sm8450: Add mapping to llcc Broadcast_AND region
+  arm64: dts: qcom: sm8550: Add mapping to llcc Broadcast_AND region
+  arm64: dts: qcom: sm8650: Add mapping to llcc Broadcast_AND region
 
-Convert or avoid adding new references to txt bindings.
+ .../devicetree/bindings/cache/qcom,llcc.yaml  | 27 ++++++++++++++++++-
+ arch/arm64/boot/dts/qcom/sm8450.dtsi          |  5 ++--
+ arch/arm64/boot/dts/qcom/sm8550.dtsi          |  6 +++--
+ arch/arm64/boot/dts/qcom/sm8650.dtsi          |  6 +++--
+ drivers/soc/qcom/llcc-qcom.c                  | 15 ++++++++++-
+ include/linux/soc/qcom/llcc-qcom.h            |  4 ++-
+ 6 files changed, 54 insertions(+), 9 deletions(-)
 
-> +
-> +  mbox-names:
-> +    $ref: /schemas/types.yaml#/definitions/string-array
-> +    description: |
-> +      Names of the mailboxes.
-> +
-> +  hisilicon,hi6220-clk-sram:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: |
-> +      Phandle to the syscon managing the SoC internal sram
-> +      the driver needs using the sram to pass parameters for frequency change.
-> +
-> +  reset-controller:
-> +    type: object
-> +    description: |
-> +      Reset controller for Hi3798CV200 GMAC module
-> +
-> +required:
-> +  - compatible
-> +  - '#clock-cells'
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          not:
-> +            contains:
-> +              enum:
-> +                - hisilicon,hi3798cv200-crg
-> +    then:
-> +      properties:
-> +        reset-controller: false
-> +  - oneOf:
-> +      - required:
-> +          - hisilicon,hi6220-clk-sram
-> +      - required:
-> +          - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/hi3559av100-clock.h>
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        clock-controller@12010000 {
-> +            compatible = "hisilicon,hi3559av100-clock";
-> +            #clock-cells = <1>;
-> +            #reset-cells = <2>;
-> +            reg = <0x0 0x12010000 0x0 0x10000>;
-> +        };
-> +    };
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/hi3660-clock.h>
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        clock-controller@fff35000 {
-> +            compatible = "hisilicon,hi3660-crgctrl", "syscon";
-> +            reg = <0x0 0xfff35000 0x0 0x1000>;
-> +            #clock-cells = <1>;
-> +        };
-> +    };
+-- 
+2.25.1
+
 
