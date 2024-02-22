@@ -1,171 +1,229 @@
-Return-Path: <devicetree+bounces-44720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5592185F5CC
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 11:32:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A659285F65C
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 12:00:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 874551C20C08
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 10:32:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CF34283E96
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 11:00:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E28CA4177B;
-	Thu, 22 Feb 2024 10:31:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2DC13FE31;
+	Thu, 22 Feb 2024 11:00:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="N8pQdRn/"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="VkMj3gfd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4E803F9EF;
-	Thu, 22 Feb 2024 10:31:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92FBE2BB1B
+	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 11:00:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708597891; cv=none; b=olKKAmiex/ga8/KRODBj1uDVQ3FfKEEuwCFZedyP78TU7R4UHDL/izP7vovlzf8vuD0z5D1R31UEWSAUKq1Xmpl2XNRRzurTTYgL34d+zIiEPEZ54/0UcCDAsTGWEdYw8TbY/ADOGVGdiLFDYJ0+d1ztjeo88mxyB7hIGGnqkLc=
+	t=1708599628; cv=none; b=CuwCO2RW9hWKIRWSWP9MS9lSGIOHPi7ub5RrOb46kKCpw+VmTMsISKlhPR/OiLyKnAQ/w1GZvdNGilYxFEIAyoQfuJ938T9R/jJaLsKxX/6F/AksVGsyrZ3XCWkJ8cPC3yE7vGx1xGsXvjt9HQoBNmzIhdwRZAw8IQDv2X1LhO0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708597891; c=relaxed/simple;
-	bh=6e8t3ifHPLtPmBHbfdKNgpyW1ydO5nrnXft3+pBt3j8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kp1nFbr6ZoBb2Wznun1Hl3Nv35Gf4Fb+zAaqDuf4J+jOpl9O5uQxGwcNPKYaU6zYIb1Y3j3l5iN39FArGiJU2KbTJfwEJjMi559yWWjX5ADSObwwYwg4JxVMLdJ53s5E6cOu/bplBDw+GmL2fQ+8kA58O9zyElBuFE03YTVkAL8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=N8pQdRn/; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 4A74BFF802;
-	Thu, 22 Feb 2024 10:31:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1708597888;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=7j152Eq5lSDHkvM0B06uWbtq1OGz2o/iHiAPq8//XBw=;
-	b=N8pQdRn/TolXDmnev8WosBnFCkiIHNQwA8OhF5TnqmBlQ4BMTSIEghWdSNjMe8LwWQLEdu
-	sqNTehKHDa4mq/pFhWf5IOTO0JlaL2AgAZebPk/9UYettCMLur9OSkvWEo2ehN7EnKvAsn
-	4BIqwMMoS/aoYJQFTaPPIJ1ofgpq+7aZ0E0GsQIppVyberN98r/FUxfN9lbsRKcj0YBDCF
-	fEYEu7+oqEZsfU5KxtD64AyMzJEDiNRYWGs0ugdiPegFf4FkSDEfh7ylaBle8F4DiXdMx9
-	j4nlYmt1FCWVXQCOdMLYuQuTxCL3Fd+jrjMVgkoMkX4g0ocJ8jg2gJbE0N8w5A==
-From: =?UTF-8?q?J=C3=A9r=C3=A9mie=20Dautheribes?= <jeremie.dautheribes@bootlin.com>
-To: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Andrew Davis <afd@ti.com>
-Cc: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?UTF-8?q?Miqu=C3=A8l=20Raynal?= <miquel.raynal@bootlin.com>,
-	Yen-Mei Goh <yen-mei.goh@keysight.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	=?UTF-8?q?J=C3=A9r=C3=A9mie=20Dautheribes?= <jeremie.dautheribes@bootlin.com>
-Subject: [PATCH net-next 3/3] net: phy: dp83826: support configuring RMII master/slave operation mode
-Date: Thu, 22 Feb 2024 11:31:17 +0100
-Message-Id: <20240222103117.526955-4-jeremie.dautheribes@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240222103117.526955-1-jeremie.dautheribes@bootlin.com>
-References: <20240222103117.526955-1-jeremie.dautheribes@bootlin.com>
+	s=arc-20240116; t=1708599628; c=relaxed/simple;
+	bh=4SUhFECzfgHvN70ojLHKQ96rAaBsv2JrpKaeoW6p6NU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KZXEXGIRz9igcl+KOHjjsL1NS6CrxtdcUtKtJ6U6IcH7z2eJvqn9va4hmkNHsiG+1oitKkblXy6qOUgsPCItio5P2Xb2uBx1yoWYzm2Vvd2FioWYFri7pBAyBZ6UOCVfcjHndVYug3phVHCuPVM/NF1uRRnUyLQZvwXdGELPguI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=VkMj3gfd; arc=none smtp.client-ip=209.85.221.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-4d147f87bb6so132862e0c.1
+        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 03:00:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1708599625; x=1709204425; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/H/VIpoB4an+Mp36arHK/D3Ob8nW5Qqkhlyoj2/3jaw=;
+        b=VkMj3gfdcFnz42zo5KLDCMaRFv4b0U0/AkjZW3epTqbYbaaD/h/iHU2FIa7Mnr67md
+         RBQ/zLS3xiCJ7ptiCQHAbPPXT3IafWKRdsIVBZfOFupfDQikMwPe+HIUEEXz5hUCweSC
+         7iangEDzwS2C0DVrsWpOxQ1BXQquior9uqGpoJhTf3S8FWWEAW5lh1VLiQ7H6pfpAnta
+         zQF50G8AMFwP+rxRZrPI8PlG3ULBuAz6yR0FfurGccUNuZrxkzFdhihk0QxIZskLoEfQ
+         fpB8b5AMkjka5xduQ7XAaeUdfCGEyQNStzPei9FXlsjUhdP0N7qvAAPEsQ6hTOFCtr/v
+         3fqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708599625; x=1709204425;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/H/VIpoB4an+Mp36arHK/D3Ob8nW5Qqkhlyoj2/3jaw=;
+        b=B2RNt0tU60c4HtT1Gi0/7mYdi6OpCB0YxzBfIqIjCY3qlZB6YG/Y4PLpMwq01lSQKK
+         z0NuWWLfUaqM0twE4S3dMxzTo3CcaW2yorJBFyMAN7aW70ME1hjQTmV20RSl6zjHhja8
+         93uqAA1J85zsJLY2lOUhlgZmP/xo+ifLGpCIhi21+dfuzfjGlNIF32zIxnjEl45+ahMU
+         T5Y/2JD3Ky3LeR9ato77iDiTpuhY2W9GNkQuGGTgyMKla8dxgKhJ1/m1NhqZ4z7Psx29
+         tqFu896r/lKn/Z37kki30exPzh4iFcKekxkbbcOwq8sJS/1CLC6REXO7jQFLipIUJLco
+         C71A==
+X-Forwarded-Encrypted: i=1; AJvYcCVHVTVConS0GgrYQwfyeF68pDszyGFFxK8ixYGJoAJI27gy5LffWyjiMibqNOorOMQ3kd+A7AGcD857fbJ+dMJl/zwFzoBTJdOO5g==
+X-Gm-Message-State: AOJu0YyqX2sBJz80ToKTLOAF0VRTQZI4dYZKDqa+HF8KhyXAFuxDotvX
+	OKtlToafemS+63lVO1/YBPbhf/NM9rPBYvyvl8MPEz2N3C1EcQTRf8oPyLSRRrsD8Pfz/095C7B
+	im87FZzHreD08X6gXca73Vt5RjetJhPDhsNNPHw==
+X-Google-Smtp-Source: AGHT+IGc4k4afM7yOHcqPtsyx85w0wC4eDvcktSKZo2fOpRx3WfdsV144zf5agpJ1l8kNtCEpqQOOt7K2tgZtw6QOw8=
+X-Received: by 2002:a1f:4a45:0:b0:4c7:7760:8f12 with SMTP id
+ x66-20020a1f4a45000000b004c777608f12mr12070252vka.2.1708599625549; Thu, 22
+ Feb 2024 03:00:25 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: jeremie.dautheribes@bootlin.com
+References: <20240216203215.40870-1-brgl@bgdev.pl> <CAA8EJppt4-L1RyDeG=1SbbzkTDhLkGcmAbZQeY0S6wGnBbFbvw@mail.gmail.com>
+ <e4cddd9f-9d76-43b7-9091-413f923d27f2@linaro.org> <CAA8EJpp6+2w65o2Bfcr44tE_ircMoON6hvGgyWfvFuh3HamoSQ@mail.gmail.com>
+ <4d2a6f16-bb48-4d4e-b8fd-7e4b14563ffa@linaro.org> <CAA8EJpq=iyOfYzNATRbpqfBaYSdJV1Ao5t2ewLK+wY+vEaFYAQ@mail.gmail.com>
+ <CAMRc=Mfnpusf+mb-CB5S8_p7QwVW6owekC5KcQF0qrR=iOQ=oA@mail.gmail.com>
+ <CAA8EJppY7VTrDz3-FMZh2qHoU+JSGUjCVEi5x=OZgNVxQLm3eQ@mail.gmail.com>
+ <b9a31374-8ea9-407e-9ec3-008a95e2b18b@linaro.org> <CAA8EJppWY8c-pF75WaMadWtEuaAyCc5A1VLEq=JmB2Ngzk-zyw@mail.gmail.com>
+In-Reply-To: <CAA8EJppWY8c-pF75WaMadWtEuaAyCc5A1VLEq=JmB2Ngzk-zyw@mail.gmail.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Thu, 22 Feb 2024 12:00:14 +0100
+Message-ID: <CAMRc=Md6SoXukoGb4bW-CSYgjpO4RL+0Uu3tYrZzgSgVtFH6Sw@mail.gmail.com>
+Subject: Re: [PATCH v5 00/18] power: sequencing: implement the subsystem and
+ add first users
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: neil.armstrong@linaro.org, Marcel Holtmann <marcel@holtmann.org>, 
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, "David S . Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Saravana Kannan <saravanak@google.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Arnd Bergmann <arnd@arndb.de>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Alex Elder <elder@linaro.org>, 
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Abel Vesa <abel.vesa@linaro.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Lukas Wunner <lukas@wunner.de>, linux-bluetooth@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-pci@vger.kernel.org, linux-pm@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The TI DP83826 PHY can operate between two RMII modes:
-	- master mode (PHY operates from a 25MHz clock reference)
-        - slave mode (PHY operates from a 50MHz clock reference)
+On Mon, Feb 19, 2024 at 11:21=E2=80=AFPM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On Mon, 19 Feb 2024 at 19:18, <neil.armstrong@linaro.org> wrote:
+> >
+> > On 19/02/2024 13:33, Dmitry Baryshkov wrote:
+> > > On Mon, 19 Feb 2024 at 14:23, Bartosz Golaszewski <brgl@bgdev.pl> wro=
+te:
+> > >>
+> > >> On Mon, Feb 19, 2024 at 11:26=E2=80=AFAM Dmitry Baryshkov
+> > >> <dmitry.baryshkov@linaro.org> wrote:
+> > >>>
+> > >>
+> > >> [snip]
+> > >>
+> > >>>>>>>>
+> > >>>>>>>> For WCN7850 we hide the existence of the PMU as modeling it is=
+ simply not
+> > >>>>>>>> necessary. The BT and WLAN devices on the device-tree are repr=
+esented as
+> > >>>>>>>> consuming the inputs (relevant to the functionality of each) o=
+f the PMU
+> > >>>>>>>> directly.
+> > >>>>>>>
+> > >>>>>>> We are describing the hardware. From the hardware point of view=
+, there
+> > >>>>>>> is a PMU. I think at some point we would really like to describ=
+e all
+> > >>>>>>> Qualcomm/Atheros WiFI+BT units using this PMU approach, includi=
+ng the
+> > >>>>>>> older ath10k units present on RB3 (WCN3990) and db820c (QCA6174=
+).
+> > >>>>>>
+> > >>>>>> While I agree with older WiFi+BT units, I don't think it's neede=
+d for
+> > >>>>>> WCN7850 since BT+WiFi are now designed to be fully independent a=
+nd PMU is
+> > >>>>>> transparent.
+> > >>>>>
+> > >>>>> I don't see any significant difference between WCN6750/WCN6855 an=
+d
+> > >>>>> WCN7850 from the PMU / power up point of view. Could you please p=
+oint
+> > >>>>> me to the difference?
+> > >>>>>
+> > >>>>
+> > >>>> The WCN7850 datasheet clearly states there's not contraint on the =
+WLAN_EN
+> > >>>> and BT_EN ordering and the only requirement is to have all input r=
+egulators
+> > >>>> up before pulling up WLAN_EN and/or BT_EN.
+> > >>>>
+> > >>>> This makes the PMU transparent and BT and WLAN can be described as=
+ independent.
+> > >>>
+> > >>>  From the hardware perspective, there is a PMU. It has several LDOs=
+. So
+> > >>> the device tree should have the same style as the previous
+> > >>> generations.
+> > >>>
+> > >>
+> > >> My thinking was this: yes, there is a PMU but describing it has no
+> > >> benefit (unlike QCA6x90). If we do describe, then we'll end up havin=
+g
+> > >> to use pwrseq here despite it not being needed because now we won't =
+be
+> > >> able to just get regulators from WLAN/BT drivers directly.
+> > >>
+> > >> So I also vote for keeping it this way. Let's go into the package
+> > >> detail only if it's required.
+> > >
+> > > The WiFi / BT parts are not powered up by the board regulators. They
+> > > are powered up by the PSU. So we are not describing it in the accurat=
+e
+> > > way.
+> >
+> > I disagree, the WCN7850 can also be used as a discrete PCIe M.2 card, a=
+nd in
+> > this situation the PCIe part is powered with the M.2 slot and the BT si=
+de
+> > is powered separately as we currently do it now.
+>
+> QCA6390 can also be used as a discrete M.2 card.
+>
+> > So yes there's a PMU, but it's not an always visible hardware part, fro=
+m the
+> > SoC PoV, only the separate PCIe and BT subsystems are visible/controlla=
+ble/powerable.
+>
+> From the hardware point:
+> - There is a PMU
+> - The PMU is connected to the board supplies
+> - Both WiFi and BT parts are connected to the PMU
+> - The BT_EN / WLAN_EN pins are not connected to the PMU
+>
+> So, not representing the PMU in the device tree is a simplification.
+>
 
-By default, the operation mode is configured by hardware straps.
+What about the existing WLAN and BT users of similar packages? We
+would have to deprecate a lot of existing bindings. I don't think it's
+worth it.
 
-Add support to configure the operation mode from within the driver.
+The WCN7850 is already described in bindings as consuming what is PMUs
+inputs and not its outputs.
 
-Signed-off-by: Jérémie Dautheribes <jeremie.dautheribes@bootlin.com>
----
- drivers/net/phy/dp83822.c | 43 ++++++++++++++++++++++++++++++++++-----
- 1 file changed, 38 insertions(+), 5 deletions(-)
+Bart
 
-diff --git a/drivers/net/phy/dp83822.c b/drivers/net/phy/dp83822.c
-index 2d8275e59dcc..edc39ae4c241 100644
---- a/drivers/net/phy/dp83822.c
-+++ b/drivers/net/phy/dp83822.c
-@@ -101,6 +101,7 @@
- 
- /* RCSR bits */
- #define DP83822_RMII_MODE_EN	BIT(5)
-+#define DP83822_RMII_MODE_SEL	BIT(7)
- #define DP83822_RGMII_MODE_EN	BIT(9)
- #define DP83822_RX_CLK_SHIFT	BIT(12)
- #define DP83822_TX_CLK_SHIFT	BIT(11)
-@@ -495,21 +496,53 @@ static int dp83822_config_init(struct phy_device *phydev)
- 	return dp8382x_disable_wol(phydev);
- }
- 
-+static int dp83826_config_rmii_mode(struct phy_device *phydev)
-+{
-+	struct device *dev = &phydev->mdio.dev;
-+	const char *of_val;
-+	int ret;
-+
-+	if (!device_property_read_string(dev, "ti,rmii-mode", &of_val)) {
-+		if (strcmp(of_val, "master") == 0) {
-+			ret = phy_clear_bits_mmd(phydev, DP83822_DEVADDR, MII_DP83822_RCSR,
-+						 DP83822_RMII_MODE_SEL);
-+		} else if (strcmp(of_val, "slave") == 0) {
-+			ret = phy_set_bits_mmd(phydev, DP83822_DEVADDR, MII_DP83822_RCSR,
-+					       DP83822_RMII_MODE_SEL);
-+		} else {
-+			phydev_err(phydev, "Invalid value for ti,rmii-mode property (%s)\n",
-+				   of_val);
-+			ret = -EINVAL;
-+		}
-+
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
- static int dp83826_config_init(struct phy_device *phydev)
- {
- 	struct dp83822_private *dp83822 = phydev->priv;
- 	u16 val, mask;
- 	int ret;
- 
--	if (phydev->interface == PHY_INTERFACE_MODE_RMII)
-+	if (phydev->interface == PHY_INTERFACE_MODE_RMII) {
- 		ret = phy_set_bits_mmd(phydev, DP83822_DEVADDR, MII_DP83822_RCSR,
- 				       DP83822_RMII_MODE_EN);
--	else
-+		if (ret)
-+			return ret;
-+
-+		ret = dp83826_config_rmii_mode(phydev);
-+		if (ret)
-+			return ret;
-+	} else {
- 		ret = phy_clear_bits_mmd(phydev, DP83822_DEVADDR, MII_DP83822_RCSR,
- 					 DP83822_RMII_MODE_EN);
--
--	if (ret)
--		return ret;
-+		if (ret)
-+			return ret;
-+	}
- 
- 	if (dp83822->cfg_dac_minus != DP83826_CFG_DAC_MINUS_DEFAULT) {
- 		val = FIELD_PREP(DP83826_VOD_CFG1_MINUS_MDI_MASK, dp83822->cfg_dac_minus) |
--- 
-2.34.1
-
+> >
+> > Neil
+> >
+> > >
+> > > Moreover, I think we definitely want to move BT driver to use only th=
+e
+> > > pwrseq power up method. Doing it in the other way results in the code
+> > > duplication and possible issues because of the regulator / pwrseq
+> > > taking different code paths.
+>
+> --
+> With best wishes
+> Dmitry
 
