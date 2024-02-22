@@ -1,133 +1,139 @@
-Return-Path: <devicetree+bounces-44885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5306C85FF1E
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 18:18:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6091685FF27
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 18:19:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0EAF3288367
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 17:18:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C8522865B0
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 17:19:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBD14158D85;
-	Thu, 22 Feb 2024 17:17:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38EA7156973;
+	Thu, 22 Feb 2024 17:18:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="w5FaFJCO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KelkGL01"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC5461586F0
-	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 17:17:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D6EB1552E5;
+	Thu, 22 Feb 2024 17:18:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708622238; cv=none; b=cai7lnCcq5ugKcnwhb1YsxC3pOu+5Beiu7KjEnNlxKCShQBdSl1B+49I5K5ibMKoLPdRAyrw1lLbl0cIOGwiIOkzYb30a79KRDXhBHrTIb/G4X7y3f3SX8wKg108R1DIvdK7gDky5Qko00RPL4cAMq0j2JeyzOL0Ws+KAjFXeoU=
+	t=1708622334; cv=none; b=WD/yrcOh7NyGMJ8Dmy0hZWuWV8DV+uyfZ0MHlrifY2EyRTOe7EWe5GWUS2Jq2Vpb+m+c9m3vuCJQUNzkyIQEPaE7SIfjiKb9YLjeEO2IWQruj64W+ZtQwwv2EHGTYixrk149Q5o3Hp+Mp0Djq1Mm4KO52H0e6UEkIsWHa1lqpPk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708622238; c=relaxed/simple;
-	bh=4o1+/xiccn6IbZFyFdK5VsobG9GOTyhsglvL8I9FFnU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ovYh2MMf0Ovkf2LTJdSbNq9PjX6xxxVQuqoBBNdBxmGLcoyJCRPVezS8aFwWnf72sutZoqUIfwgVEAKzPzMTk0p3o+aE17gpX8d5A1lcwvdoXR6zuo0JcKO8tsaZ9Nn+lQFvlSzfYL2QNpVwIm6OHUERlX8LZKvaOd5FTDsZmek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=w5FaFJCO; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4127190ad83so21705525e9.0
-        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 09:17:16 -0800 (PST)
+	s=arc-20240116; t=1708622334; c=relaxed/simple;
+	bh=6W9R+2RnX+xJriKLEePGAOhhbohzlAhcx1GzJMdmf0g=;
+	h=Content-Type:Mime-Version:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=DIJgQ7Vp0R3NP5o1VhfkR1DHr9lqqJ8e+hMZSxR4zWdY6Tt7GLF8vlzOX0EPrj+rMP1bsY+w5g46CJCvWZYK2lS5mT1Jj19TNVMHNnlvYT4yzGR8ZBdLIQMNVdSK7TKtSxSSjk/lnQVdzIb4/WRcR5jP/d91ovPBneKbY6xsxAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KelkGL01; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4129017c942so514355e9.2;
+        Thu, 22 Feb 2024 09:18:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708622235; x=1709227035; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MvlvisPT5Ben13N2VpV4ugUj5QGv6luxiD0ao9BxeLo=;
-        b=w5FaFJCO9D3RAF9eLMmVH3O+Yto/r9JtGBF+hRwr4fn6LD0Ga9YcnM4c5OIy/ZsU8B
-         0Ikzg1yHEe6uLBX/p/EXm8Njv4sWlT6baWKiDSZuOlLUUpvAXjYsyo99OszN9HRvZoHc
-         VuNih3CzpHGcn5SV+gQtO2kG+ghLssrYcvm9tgRRvCyLJyipvSUl2zHPyD0qimO5kVPw
-         +m4Poay8z1kKhaUM0Ii4XjfkTu2Bao13C4gLVoCyZnRKUI1uDBLmIVoiSbF43s8DLZyc
-         qVYaC2/XsLMU4ZM5Pn3cP61aWAOR8Ek05PfQBk+XqM61Ep3RG6m62GEOlItDu9gynIcX
-         l1aA==
+        d=gmail.com; s=20230601; t=1708622331; x=1709227131; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=qH1aFezfITjBuqwMChIdF7KsoU18GtIL2VZPCgKWDd0=;
+        b=KelkGL019BpF+fvrjxUkpTgKKnolgzoQvtlei3Z0cRQW6U5RMb3YnVO480ZtYiu/zw
+         YWBAajxH6rsW69KO8zkB4dgP9bXnjUP+aUx/NFh6mJqmD6Re7H4R52J/wTmOADJvMLko
+         /eMa3IiMDYq0BL6yNt+4CR7ZOD8+CSdN4aB5zT0PoNW9RrgN8rD70bX7YKCt4b1fbAJi
+         G0sUG6qOUndIrvhiqJANeKQ27eQb21aJd1JrM6Qs15IK5BW6p7LdBtjWt/NXqdebbZLQ
+         DdR82HrGH+zcJtn6JjGViCaGKaRg8IYvQhnZ1+itwQ7ORuJFyzAtk1G2Ru1YI2PWPiIM
+         PB6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708622235; x=1709227035;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MvlvisPT5Ben13N2VpV4ugUj5QGv6luxiD0ao9BxeLo=;
-        b=PdGGFSx2FMa8zYN5QP/Gb5WEWYZ4xTQG0aYgzsL0MfxzfSealeAiS/bOtjxAkuCKUh
-         HgJLmx/hJ2cj/tQU6smHr3ikdPEH8I6p2wRA3+toj6p0On3jiMgUd/mpYFVxrIRfcBIn
-         WAFRcjj4O/heI9r47HJw3mS3qCOWduH7G/tKCZbp35s2v6CvYoPyMSApDbFIQvMDq7tY
-         aYM5hyujFpLR8FyjtKxCPNLEaHhQl2KT43wBN6rQDwL7BNP6LJ8aSXHrHtcU71HJwhe6
-         MANDq/qaEMAOVH/+jGT7ytGzIxp2Fdi8oJ23niH1md7wZYfA19GQ8rRBtH77Ejl7a4Rf
-         JWog==
-X-Forwarded-Encrypted: i=1; AJvYcCUU/l4yOukWrwLs348Mx54AWx7B/DXAS5vyWb8aNSyCFB7TCyHoM6leqdDvmPP6zxv2u+/ipXpiGqCn4nUNGHpvwudX4+EaihW/9A==
-X-Gm-Message-State: AOJu0Yw3NZH6QQexh1Gag4Ktf+NKXHIVYCSGwTsLOV+WZZfEw/Gje0T5
-	Zrd+QsW8007kkHKoAi5VehmGLyl9LH1ecdfRt29+1VI1lKg9Ow9YSX9pJW8wxxc=
-X-Google-Smtp-Source: AGHT+IFh0J92vILaksmRT7F3B/QT/Hprse3K5+Rx3tOAYoCDqO3ED1yTgMeYAb00DS3QuDi++fmveA==
-X-Received: by 2002:a05:600c:a386:b0:411:ee70:ed5c with SMTP id hn6-20020a05600ca38600b00411ee70ed5cmr16596123wmb.12.1708622235258;
-        Thu, 22 Feb 2024 09:17:15 -0800 (PST)
-Received: from [127.0.1.1] ([176.61.106.68])
-        by smtp.gmail.com with ESMTPSA id u7-20020a7bc047000000b0040fe4b733f4sm6656512wmc.26.2024.02.22.09.17.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Feb 2024 09:17:14 -0800 (PST)
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Date: Thu, 22 Feb 2024 17:17:04 +0000
-Subject: [PATCH v6 6/6] media: qcom: camss: vfe-17x: Rename camss-vfe-170
- to camss-vfe-17x
+        d=1e100.net; s=20230601; t=1708622331; x=1709227131;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qH1aFezfITjBuqwMChIdF7KsoU18GtIL2VZPCgKWDd0=;
+        b=k9OtwEV5w3RqGdlo6oHpNG0hRGGJJM+kaA3GhGJGSKqXU9+4o/ENeFILI5FJCz2AGc
+         VaQGYIAXLTfe1ee23XHr3MuIYjkrTdDjpe1dTBtyUGOx0g1jr0HlkkTbqjDvjmOI6qk4
+         zpH0LtDhCJBLoLCwJLY2maeNC4jdR8K1h/wLbm9zwjhJnXxd50pXn1USy9cF+EdZzFnr
+         WVBQ0sSzqkJQp82Ir+PhDzXTio9hoJLReqvw6f8pRTjQHLKRW5x3RRwef28BmOGTftOn
+         halyJoj+Ww6OFGhoRMF/MvozjMcDUDwrnB+3pPxk7sDB62o8H4D6sFxFDq8yG0lC8+b9
+         Tzag==
+X-Forwarded-Encrypted: i=1; AJvYcCU9tmpJ7uTKYWvBPLZHO90RhXpw8FPq8hWNi6yg1h1FZxMGS+vYi0oxtqWG40LZos5lqRgslc5X2tZAt6YChDuCF6IGDCt/w0de8A2+Sp9Gy9Q8yucShhSeBbi/j7TMOnrtdos5zRoQWxs=
+X-Gm-Message-State: AOJu0YyKR2wcA5oK0/hM2WEkG5317jnQaoo7X4Z2jD/6M4qB7Woqr3qz
+	/YshTEYZERJ+6tm0ms1NRh+hFGQAWz0ZvBTkG+hGYQHu5Gelub+l
+X-Google-Smtp-Source: AGHT+IE2Ut5Z5WGiB1oJq6SYb9mJspdyJBkPJmLGA9MdcsroVviXKZsZ4S2RZI9rejkwWRorYX4dQA==
+X-Received: by 2002:a05:600c:1d8d:b0:412:749d:a931 with SMTP id p13-20020a05600c1d8d00b00412749da931mr4278401wms.14.1708622330531;
+        Thu, 22 Feb 2024 09:18:50 -0800 (PST)
+Received: from localhost (p200300e41f2d4600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f2d:4600:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id n9-20020a056000170900b0033d5fab6781sm12464851wrc.96.2024.02.22.09.18.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Feb 2024 09:18:50 -0800 (PST)
+Content-Type: multipart/signed;
+ boundary=366b5e636869f080d569d9729819056cc7e75300287e346f441a79f3504a;
+ micalg=pgp-sha256; protocol="application/pgp-signature"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240222-b4-camss-sc8280xp-v6-6-0e0e6a2f8962@linaro.org>
-References: <20240222-b4-camss-sc8280xp-v6-0-0e0e6a2f8962@linaro.org>
-In-Reply-To: <20240222-b4-camss-sc8280xp-v6-0-0e0e6a2f8962@linaro.org>
-To: hverkuil-cisco@xs4all.nl, laurent.pinchart@ideasonboard.com, 
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Todor Tomov <todor.too@gmail.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, vincent.knecht@mailoo.org, 
- matti.lehtimaki@gmail.com, quic_grosikop@quicinc.com
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-X-Mailer: b4 0.13-dev-4e032
+Mime-Version: 1.0
+Date: Thu, 22 Feb 2024 18:18:49 +0100
+Message-Id: <CZBS2E10TRA3.23RY1MDLKZCD4@gmail.com>
+Cc: <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 1/1] ARM: tegra: nexus7: add missing clock binding
+ into sound node
+From: "Thierry Reding" <thierry.reding@gmail.com>
+To: "Svyatoslav Ryhel" <clamor95@gmail.com>, "Rob Herring"
+ <robh+dt@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Jonathan Hunter" <jonathanh@nvidia.com>, "Andre Przywara"
+ <andre.przywara@arm.com>, "Manivannan Sadhasivam" <mani@kernel.org>,
+ "Romain Perier" <romain.perier@gmail.com>, "Linus Walleij"
+ <linus.walleij@linaro.org>, "Robert Eckelmann" <longnoserob@gmail.com>
+X-Mailer: aerc 0.16.0-1-0-g560d6168f0ed-dirty
+References: <20240129181049.89971-1-clamor95@gmail.com>
+ <20240129181049.89971-2-clamor95@gmail.com>
+In-Reply-To: <20240129181049.89971-2-clamor95@gmail.com>
 
-vfe-170 and vfe-175 can be supported in the same file with some minimal
-indirection to differentiate between the silicon versions.
+--366b5e636869f080d569d9729819056cc7e75300287e346f441a79f3504a
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-sdm845 uses vfe-170, sc8280xp uses vfe-175-200. Lets rename the file to
-capture its wider scope than vfe-170 only.
+On Mon Jan 29, 2024 at 7:10 PM CET, Svyatoslav Ryhel wrote:
+> From: Robert Eckelmann <longnoserob@gmail.com>
+>
+> A recent rt5640 codec update requires mclk definition in the
+> device tree. Without mclk defined sound will not work.
+>
+> Signed-off-by: Robert Eckelmann <longnoserob@gmail.com>
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> ---
+>  .../boot/dts/nvidia/tegra30-asus-nexus7-grouper-common.dtsi    | 3 +++
+>  1 file changed, 3 insertions(+)
 
-Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- drivers/media/platform/qcom/camss/Makefile                             | 2 +-
- drivers/media/platform/qcom/camss/{camss-vfe-170.c => camss-vfe-17x.c} | 0
- 2 files changed, 1 insertion(+), 1 deletion(-)
+Applied, thanks.
 
-diff --git a/drivers/media/platform/qcom/camss/Makefile b/drivers/media/platform/qcom/camss/Makefile
-index 4e2222358973..0d4389ab312d 100644
---- a/drivers/media/platform/qcom/camss/Makefile
-+++ b/drivers/media/platform/qcom/camss/Makefile
-@@ -14,7 +14,7 @@ qcom-camss-objs += \
- 		camss-vfe-4-1.o \
- 		camss-vfe-4-7.o \
- 		camss-vfe-4-8.o \
--		camss-vfe-170.o \
-+		camss-vfe-17x.o \
- 		camss-vfe-480.o \
- 		camss-vfe-gen1.o \
- 		camss-vfe.o \
-diff --git a/drivers/media/platform/qcom/camss/camss-vfe-170.c b/drivers/media/platform/qcom/camss/camss-vfe-17x.c
-similarity index 100%
-rename from drivers/media/platform/qcom/camss/camss-vfe-170.c
-rename to drivers/media/platform/qcom/camss/camss-vfe-17x.c
+Thierry
 
--- 
-2.43.0
+--366b5e636869f080d569d9729819056cc7e75300287e346f441a79f3504a
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmXXgfoACgkQ3SOs138+
+s6HJQBAAwbAKrqwAHtiVCCnNzuqO5jBE+I7O3Z1dXXWSBlZm55IVRoGnRidMNqRL
+o63gO8ic4dDZhqYZEQNLq31BWbFEgBMzgcmuxTnUp1UlyUd64llg7o+T2nQfGVdO
+VepkCixttejCGlxRY6W/HNqYjz6vZwJqtEmlggtOp9OpWdepamKSSIH1kVDjdUsA
+lKqCj8nTZwLy7CbA0+ak2IPEBeJKsyspEMY+iUoFWkfw9at3siJ8/k70yTCFl2Sb
+m2n3ijm7TIEYipBEGho6qW02xIco9gGBwKrPG5kUGuCNjdqobPB51qeXdgT4Ouas
+ZSCXMPBYgNL3cE/2wLUaII1eqQ5BZBQlnEkPI40vP5cEGa18nrIPwyoDof7ivtyJ
+rDBeILTGf643lZ4Mk7Bduy280fQEfh3XQ7T7UeCcpRhd9dKuSqXIn5P9WaeFDSGE
+hoKl+C+h8RVw6kw2aGr5K0U+7tZcA3nB77ftTZmcUWHFN39QOXnBsNiqXxXGT+3b
+WtLXxqReMGAx/FEtabFdpqGUaALRjg1vT90yGYgPAZUwAaGFXhPyRcyduyborZbt
+HTUAG5jplm2lzYDgmZDGXuEw4SC/HPVed8rFlAoeesuIpjlpNjT+AyY6BtERt6rc
+aawMu9IzNR/EA1g/FjyUY+IokeQ/4Axncae5ZK0xJxic1zLwOkI=
+=UPpn
+-----END PGP SIGNATURE-----
+
+--366b5e636869f080d569d9729819056cc7e75300287e346f441a79f3504a--
 
