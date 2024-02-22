@@ -1,142 +1,152 @@
-Return-Path: <devicetree+bounces-44933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44932-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D4DB86026E
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 20:15:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B6EB86026D
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 20:15:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DD641C237DF
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 19:15:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 13E652824CB
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 19:15:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A1A314B838;
-	Thu, 22 Feb 2024 19:15:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8092514B838;
+	Thu, 22 Feb 2024 19:15:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PZQRhhpL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e15zy45m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D467714B828;
-	Thu, 22 Feb 2024 19:15:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB9EC14B834;
+	Thu, 22 Feb 2024 19:15:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708629337; cv=none; b=WbOcXI8jt4Rs8lv2UU8n3DdzG7Az5pf54u4/47cELGFyBjL7uUTUx9tctFFdvC6huqbOKGCcwhwFk1qcW6z0gXZR4w+eDTVzRybJyNRL9j8q8Q+CTTua2YD2/25Na9ZkDuTmhNBgp2nA7Rrby/jttAeH6hfEh7/qoz8zZEt8GbY=
+	t=1708629330; cv=none; b=o/JlDeFRaYXHFeDz1OKByLbaUtGCsrBbHf22rgYtYfPiWwGSNyXs375kqxfpv80R+F1LAu8jsgbaQ7iML2tZWqi+XFwJk4IAlt8KnrS30iF6vjlVXXR53oI5BfTeBTn8mHbYhgk4ytKWsnXSG7mlQJaO76mhlIF30pEOc1Sr7jA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708629337; c=relaxed/simple;
-	bh=uoHcq6vmDqKTEp/vi5c6UuNL2m2udk+dDugKpnCn8Rw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bcPPbUW+NOvOeEX25yFIgeeGmTvEvZqTCmU1HneNg5y1xjY85He5snl3wyf2LvIY2sPNdUFbTZq3YANI7g5k1eObqUP2tbVnDEcZOJfpoFdtaTbTwynWlnNP7PH0M/ixZ3aucQxgaQBgZwnKBJIZllNq8EERpGpDAYfa+n49isQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PZQRhhpL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C71BC433F1;
-	Thu, 22 Feb 2024 19:15:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708629337;
-	bh=uoHcq6vmDqKTEp/vi5c6UuNL2m2udk+dDugKpnCn8Rw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=PZQRhhpLlZm3PV4wadMAHcmL70Pu/w0Mky8XvK89shberWPjNstKA0HFgc6l52KTQ
-	 y5aOGiVAHRf7tKje3EgArNQHZ8B+M17sjXHv5gYV0IjYYXBYABVFid85gd7aQZEtP5
-	 YSfL8Rthk4ENNeCmJrgi3FiiOUoFqac0C9GV8kYEYLGz7cvjjFEwijZlO6hdqCS5qA
-	 E4sHjINcil3+CwOsjOcEnKEppZCP/dcvMLGXnIp63UxLhZ2YQ0rkpBPA8E3WSfLiBn
-	 yBv/sDuGhdmLWmmwkpZcaP+Kc1F9/+3tRI2kREEp8vvcmmfl2I9UfBOIL0DI9NRxY1
-	 Q7lUl0+1m+VHA==
-Date: Thu, 22 Feb 2024 19:15:22 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>, Nuno Sa
- <nuno.sa@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>
-Subject: Re: [PATCH 5/6] dt-bindings: iio: temperature: ltc2983: document
- power supply
-Message-ID: <20240222191522.343f33a8@jic23-huawei>
-In-Reply-To: <20240222-lance-sprinkled-04a7650ca316@spud>
-References: <20240222-ltc2983-misc-improv-v1-0-cf7d4457e98c@analog.com>
-	<20240222-ltc2983-misc-improv-v1-5-cf7d4457e98c@analog.com>
-	<20240222-component-stiffen-d046386433b3@spud>
-	<f31abc7140dfa8477623d4fca8abece03d37926e.camel@gmail.com>
-	<20240222-lance-sprinkled-04a7650ca316@spud>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1708629330; c=relaxed/simple;
+	bh=lJ2c3OXsmQPXj5fU9jUAfehd5sZPmYmHiVLEPGq+gLI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=pVL0XS1UfHC02/vHgbewvJ7geyz8WpAbJ2fzanII+BXPXSoqKZugXuYChfE+ow+qxVA8aiR0zFZfPL62N3p2klziE72IhsLv8eSEDP0w2CVODBH6IRro5lgMIgzEKCcG10Vjg3Qcy+Mf1Lpv56RyplVwf6CsagX2dFWU+F7oOSA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e15zy45m; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-511976c126dso226187e87.1;
+        Thu, 22 Feb 2024 11:15:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708629327; x=1709234127; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lJ2c3OXsmQPXj5fU9jUAfehd5sZPmYmHiVLEPGq+gLI=;
+        b=e15zy45mrLvt8tlsb98H/phHzQsvtI3mvlGG0cF/aaQXaLR/lZBceqfMBzs7/+Vgpg
+         ssTon6ZnH43rCaP25QLvksRBahS7Y/uwDDhVbtqPWK2d5qqxuw8FaB8mg40v3sXzHeI5
+         wIwgeggA5bJ05sX+ZFoVBxwOutpazj1mZJlUARAPfmZTTj87NRYkkZKGHB6Jr4JGgkjU
+         4Q3MqVP4lQmO45xBr2WGh7xNMUa4wxIG9G3DhAbQqCwZiVXieEgfqz51wRYqpUrNaE48
+         bc3OnYkjt/IEq4QyOSjYaxu3o4TrNQs++CBjSk6ANku4og43qsgFe1AXfD9Tga0jHn/9
+         qGiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708629327; x=1709234127;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lJ2c3OXsmQPXj5fU9jUAfehd5sZPmYmHiVLEPGq+gLI=;
+        b=ciDQMFUnsY6T1NOOSK7Tj5mJtOza38QOIgV6MN4Gl72u49tI6/JETMBcRNfk1judQ3
+         U5tuBZNRoPH0eP1p16m9wMvrssqKDY3s4+iuebjc/ZIZYVW59hJUP5uTLfQ9CAtn+q0X
+         lB1GhbYeH0BC0pQtj1K4b7JPBo9FBhLkELswSP5O955+mgkve3i+p0TubNhPHEXUy+6x
+         UtkK4IOSO5gxNDGKmzett1Xo0Lm/+NM87YNV9fK6gSNKQ08yMxlUCKtR3oWsXY/d3MVv
+         Dbf1aidPPmN9f2/yrF5s20wsen83rrr7aqMs5f1FFGP7mk4lmLoRLkqZMofsLUG09pQW
+         5L8w==
+X-Forwarded-Encrypted: i=1; AJvYcCXsZZqBn+3JngLGfeU4kV46BsY9ywYwiduUntjgSm/22w9U/X3RIIol/42WgZoi4mYFfFUwi8XeXSEMg7LdjTMhfZe/ce8VGah76Pwp+v1SuQckhxe76krUPD+QrBDmU5pgnd2a
+X-Gm-Message-State: AOJu0Yz9i8Mh6pMRidakiV1wacFa6BRGGh+BfJ4CwrHgSMUZUNUS39PT
+	3vENHgj12b+58ykBRgE2Sn227MLn8UnhXmy+XFAqyytIXDAJAYAw
+X-Google-Smtp-Source: AGHT+IER/vmuD6l/fCUkPsT8W3LSUxshUclFAkO2I+bTa1CPpJ3dnNRrr76fSv42mzzs9VdOwiRzPQ==
+X-Received: by 2002:a05:6512:4ce:b0:512:a52f:4690 with SMTP id w14-20020a05651204ce00b00512a52f4690mr43492lfq.68.1708629326683;
+        Thu, 22 Feb 2024 11:15:26 -0800 (PST)
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id q18-20020a170906145200b00a3d2d81daafsm6335565ejc.172.2024.02.22.11.15.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Feb 2024 11:15:26 -0800 (PST)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Vasily Khoruzhick <anarsoul@gmail.com>,
+ Yangtao Li <tiny.windzz@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>,
+ Andre Przywara <andre.przywara@arm.com>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: "Rafael J . Wysocki" <rafael@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Martin Botka <martin.botka@somainline.org>,
+ Maksim Kiselev <bigunclemax@gmail.com>,
+ Bob McChesney <bob@electricworry.net>, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev
+Subject:
+ Re: [PATCH v5 1/7] soc: sunxi: sram: export register 0 for THS on H616
+Date: Thu, 22 Feb 2024 20:15:24 +0100
+Message-ID: <1956003.PYKUYFuaPT@jernej-laptop>
+In-Reply-To: <dcd115fd-dc38-4f48-8485-9e4d64f53b4a@linaro.org>
+References:
+ <20240219153639.179814-1-andre.przywara@arm.com>
+ <2717467.mvXUDI8C0e@jernej-laptop>
+ <dcd115fd-dc38-4f48-8485-9e4d64f53b4a@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 
-On Thu, 22 Feb 2024 17:54:28 +0000
-Conor Dooley <conor@kernel.org> wrote:
-
-> On Thu, Feb 22, 2024 at 05:41:03PM +0100, Nuno S=C3=A1 wrote:
-> > On Thu, 2024-02-22 at 15:40 +0000, Conor Dooley wrote: =20
-> > > On Thu, Feb 22, 2024 at 01:55:56PM +0100, Nuno Sa wrote: =20
-> > > > Add a property for the VDD power supply regulator.
-> > > >=20
-> > > > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> > > > ---
-> > > > =C2=A0Documentation/devicetree/bindings/iio/temperature/adi,ltc2983=
-.yaml | 2 ++
-> > > > =C2=A01 file changed, 2 insertions(+)
-> > > >=20
-> > > > diff --git
-> > > > a/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
-> > > > b/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
-> > > > index dbb85135fd66..8aae867a770a 100644
-> > > > --- a/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983=
-.yaml
-> > > > +++ b/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983=
-.yaml
-> > > > @@ -57,6 +57,8 @@ properties:
-> > > > =C2=A0=C2=A0 interrupts:
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 1
-> > > > =C2=A0
-> > > > +=C2=A0 vdd-supply: true =20
-> > >=20
-> > > Although technically an ABI break, should we make this supply require=
-d?
-> > > It is, at the end of the day, required by the hardware for operation.
-> > >  =20
+Dne =C4=8Detrtek, 22. februar 2024 ob 19:44:12 CET je Daniel Lezcano napisa=
+l(a):
+> On 22/02/2024 19:26, Jernej =C5=A0krabec wrote:
+> > Dne ponedeljek, 19. februar 2024 ob 16:36:33 CET je Andre Przywara napi=
+sal(a):
+> >> The Allwinner H616 SoC contains a mysterious bit at register offset 0x0
+> >> in the SRAM control block. If bit 16 is set (the reset value), the
+> >> temperature readings of the THS are way off, leading to reports about
+> >> 200C, at normal ambient temperatures. Clearing this bits brings the
+> >> reported values down to the expected values.
+> >> The BSP code clears this bit in firmware (U-Boot), and has an explicit
+> >> comment about this, but offers no real explanation.
+> >>
+> >> Experiments in U-Boot show that register 0x0 has no effect on the SRAM=
+ C
+> >> visibility: all tested bit settings still allow full read and write
+> >> access by the CPU to the whole of SRAM C. Only bit 24 of the register =
+at
+> >> offset 0x4 makes all of SRAM C inaccessible by the CPU. So modelling
+> >> the THS switch functionality as an SRAM region would not reflect reali=
+ty.
+> >>
+> >> Since we should not rely on firmware settings, allow other code (the T=
+HS
+> >> driver) to access this register, by exporting it through the already
+> >> existing regmap. This mimics what we already do for the LDO control and
+> >> the EMAC register.
+> >>
+> >> To avoid concurrent accesses to the same register at the same time, by
+> >> the SRAM switch code and the regmap code, use the same lock to protect
+> >> the access. The regmap subsystem allows to use an existing lock, so we
+> >> just need to hook in there.
+> >>
+> >> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 > >=20
-> > I thought about it but then realized it could break some existing users=
- which is
-> > never a nice thing. =20
+> > Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> >=20
+> > I guess this one goes through sunxi tree, right?
 >=20
-> Could you explain what scenario it actually breaks a system (not
-> produces warnings with dtbs_check)?
->=20
-> If anything actually broke something, it would be the driver change that
-> actually assumed that the regulator was present and refused to probe
-> otherwise, right? In Linux at least, the regulator core will provide a
-> dummy regulator if one doesn't exist - otherwise patch 6/6 would
-> actually contain a DT ABI breakage, since it does:
->=20
-> 	ret =3D devm_regulator_get_enable(&spi->dev, "vdd");
-> 	if (ret)
-> 		return ret;
->=20
-> IMO making a new property required is only a meaningful break of the ABI
-> when drivers reject probe when it is missing, but I must admit I don't
-> know if other operating systems handle missing regulators as nicely as
-> Linux does.
+> I'll pick this patch along with the patch 2-6, so through the thermal=20
+> tree. The patch 7/7 will go indeed via the sunxi tree
 
-Agreed - adding a requirement on a supply to the dt-binding shouldn't
-be a problem because of the dummy regulators.
+Ok.
 
-Jonathan
+Best regards,
+Jernej
 
->=20
-> > I recently (in another series - the IIO backend) went through some trou=
-ble to
-> > actually not break ABI. Meaning, I had to do some not so neat hacking i=
-n the
-> > driver because Rob was more comfortable with not breaking ABI in DT. So=
-, I
-> > assumed he would not like for me to break it in here. =20
->=20
+
 
 
