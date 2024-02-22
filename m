@@ -1,65 +1,85 @@
-Return-Path: <devicetree+bounces-45035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45036-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FD0E860718
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 00:43:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68BDE86073B
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 00:58:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C4591F23406
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 23:43:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E6101F21136
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 23:58:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58F9A13BAD2;
-	Thu, 22 Feb 2024 23:43:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8D16140368;
+	Thu, 22 Feb 2024 23:56:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jnJy0g8a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QwVwDGWI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D6471CD25;
-	Thu, 22 Feb 2024 23:43:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BD9C140362;
+	Thu, 22 Feb 2024 23:56:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708645385; cv=none; b=g3oRLvnXnEb3urdrHToAbTx1ZuNAnDmGPTnEfA9BO4Nduo8GWyKnlQAp2Bemt1y/o5nWnoZ3kn9w1p3TSuH/75Kr8Hj5LV7uZ97PeJc+8Qx6d6LkpOfSQOKnrB6iuI1pMfOO1/rget5rz+GmTG9rNw6fRTG/9y/pE1ByQZvxQ8U=
+	t=1708646206; cv=none; b=beAas/wX7DQYyqSvWehvRRNSZ1gyGvKLWKoa7A0kIE/qiEtft69vV3kCESrhOE/xQ/sl31cGNZZXxBYZi5wrdFsVepDYRiesAyZ9W1eMnUdeOvVl5H6X/mdq/eKsD3Wo8EuH25lWF/m1LPrsjx5Pzr6BNM2eWPr1O+7e7hGHw3w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708645385; c=relaxed/simple;
-	bh=orYPHvKEF7pNsfLnqS3JuQ7jmo0kJmxsHCs+Py+BljA=;
+	s=arc-20240116; t=1708646206; c=relaxed/simple;
+	bh=LT7juKYEp/f9qDdcPqJbGxaoih0K5Y+y46uk9wz7+VY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EvV6+WSXxJnujFkmJnR+9D1DyzRkGtkj1vPE2aQ0i6QnjgLuOuAr1CZRC3cyqXJKOqYS/CGG1/AiKMlV7xdJ3vps4WMzCs+wqoO3utX8nvFn2tKmhZ5KECbBQiVeN8T8MIzgh0o+ItTQLnklqW6BCRbreO135hjVXV2BTlppzME=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jnJy0g8a; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3385EC433F1;
-	Thu, 22 Feb 2024 23:43:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z5f6ML4zKljqf3oY9ES1XlBlWi8Nyj2Is6yt7IMd/pajQHuL+NAFubbptuH2yI/7bmXlkOndbEvyxBfLdsUahWYMJMJUUJtmoOlatPZz+xvafpd0N4kRo/Gkhscn3zziQmffzhU1MClRPAUpLRkVvooGXQnCQ1gXlenvl/yuwzg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QwVwDGWI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6C2AC433F1;
+	Thu, 22 Feb 2024 23:56:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708645384;
-	bh=orYPHvKEF7pNsfLnqS3JuQ7jmo0kJmxsHCs+Py+BljA=;
+	s=k20201202; t=1708646206;
+	bh=LT7juKYEp/f9qDdcPqJbGxaoih0K5Y+y46uk9wz7+VY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jnJy0g8aJUy/nsIbPKzZliYyca0yhygNbHrmb8qSxM9IRSUuonUBjN6cqCGiQPs7t
-	 sinQph2fUfALhfnfpUT+l0JSThKKjSVvJkRtH+chmJYXTaWkISRtTzM1H1qxPKZ7Z0
-	 XLw1swd88spcG3rvy3Ts3unIJLjo5G5UCye+DlcyDHRtWAa9e26hKlFH3FGdmUrOU3
-	 E0hiarafAkSIvMbvLMG/egu1oKGeUll0sJq9ExZ6oHzpX2Xop7tAqpemff2KWx6Yy1
-	 kwE7TSSNCsvBNiIhxz/PEwmOGs2fh/vgnCYqVv/Pc0OH9RQQ8mDNbBnRfdiXSC7mUq
-	 RsVPZsDPDk7UQ==
-Date: Thu, 22 Feb 2024 16:43:00 -0700
+	b=QwVwDGWIlGDmjoUCNCnCFjCexY9JD7sAHDcwAtfbLFz/EfjD4Dl7h8NdQCK9HF6mm
+	 WhoyA8k+H+L9QUxdt1OIbqcKsqhnbommtNHEnyitbUj56o2OnxuWqZlEa9wclisnJ0
+	 IGjdNMZexcOyHDpi32KWAqKbN1H3rhJe7I8e7/NZ0Be6SPEtLrTkvVoHC0buJQy8Tj
+	 ei5CO8qRI5ijGU/ATAl7SfnYIvqxoT3/hjpi/Xyde8bwQMtoGD1PZZlgO3WWbMy/Ur
+	 FUte7UJKB5pU8XI0WfH0bfoE0OEeKaE1jPVkYTMohF1FiO6v9lxlsl1gusSdJTLFy1
+	 sYfmPdRpgPiuw==
+Date: Thu, 22 Feb 2024 16:56:42 -0700
 From: Rob Herring <robh@kernel.org>
-To: Antonio Borneo <antonio.borneo@foss.st.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
 	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Subject: Re: [PATCH 02/12] dt-bindings: interrupt-controller: stm32-exti: Add
- irq nexus child node
-Message-ID: <20240222234300.GA3809915-robh@kernel.org>
-References: <20240216094758.916722-1-antonio.borneo@foss.st.com>
- <20240216094758.916722-3-antonio.borneo@foss.st.com>
+	Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Alex Elder <elder@linaro.org>,
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Abel Vesa <abel.vesa@linaro.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Lukas Wunner <lukas@wunner.de>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-wireless@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH v5 06/18] dt-bindings: new: wireless: describe the ath12k
+ PCI module
+Message-ID: <20240222235642.GA3830828-robh@kernel.org>
+References: <20240216203215.40870-1-brgl@bgdev.pl>
+ <20240216203215.40870-7-brgl@bgdev.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,29 +88,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240216094758.916722-3-antonio.borneo@foss.st.com>
+In-Reply-To: <20240216203215.40870-7-brgl@bgdev.pl>
 
-On Fri, Feb 16, 2024 at 10:47:47AM +0100, Antonio Borneo wrote:
-> The mapping of EXTI interrupts to its parent interrupt controller
-> is both SoC and instance dependent.
-> The current implementation requires adding a new table to the
-> driver's code and a new compatible for each new EXTI instance.
+On Fri, Feb 16, 2024 at 09:32:03PM +0100, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+
+s/new/net/ in the subject.
+
 > 
-> Add to the binding an interrupt nexus child node that will be
-> used on the new EXTI instances and can be optionally used on the
-> existing instances.
-> The property 'interrupt-map' in the nexus node maps each EXTI
-> interrupt to the parent interrupt.
-> Align #address-cells and #interrupt-cells between the EXTI node
-> and its nexus node.
-
-Looks like an abuse of interrupt-map. You avoid adding yourself to the 
-abuser list by putting it in a child node. Clever. (See list in 
-drivers/of/irq.c if you don't know what I'm talking about)
-
-I assume the EXTI has 0..N interrupts. Just define 'interrupts' with N 
-entries with each entry mapping EXTI interrupt N to 'interrupts' entry 
-N.
-
-Rob
+> Add device-tree bindings for the ATH12K module found in the WCN7850
+> package.
+> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> ---
+>  .../net/wireless/qcom,ath12k-pci.yaml         | 103 ++++++++++++++++++
+>  1 file changed, 103 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/wireless/qcom,ath12k-pci.yaml
 
