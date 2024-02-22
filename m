@@ -1,158 +1,113 @@
-Return-Path: <devicetree+bounces-44715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 485DB85F5BC
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 11:29:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76D3585F5C3
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 11:31:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 04180285E79
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 10:29:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A81CE1C217BE
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 10:31:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6D3C3A8FE;
-	Thu, 22 Feb 2024 10:29:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F05003A8FE;
+	Thu, 22 Feb 2024 10:31:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GLpeCnbB"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="QZGZQspl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 862A118657;
-	Thu, 22 Feb 2024 10:29:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9657F22F0C;
+	Thu, 22 Feb 2024 10:31:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708597794; cv=none; b=NZEIvIqEeNmxnln9Lf1RkrxYmrPbaGfjry+nRXlm+glMciteVa6VNK8JEP/woB5zstmV/xxcJllEDEwjbePXjL7PC4PhxIN4loR2rY0okG+VvrUpzmDhVUprqYazEIiWuXnp0w6q9vTSgxvKr0u7JUQlVbs+haRWzvNR7OgXpDY=
+	t=1708597888; cv=none; b=dsPVmQaQBulOhCLmnQq6iFrtivggz+d4k2IEjhX5XyKT/rAt8zQt94Nw5WQiHayiEtIuuG9CDHCnI2ioHwn+bCDil2ZTFsyn3rOdcHRWoGppeSosSsAR1UP+KKb5wiucNPm57sxVcgstRxx4UPnPlUSPLT0n8uAvGitKNlzOZBE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708597794; c=relaxed/simple;
-	bh=Wzsp+43YqM+LlxN0cpsEdEREeR6hPbCyLnqKwXy8YPk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YicjJGAARkMssK75v+eKJ7/HNVyMBHxbKASrrKMg/APAi5OTV2EkFRr3u4fWK6BjWxroJbYMa1Ihzw1CK2q9ROSfRpXQ6EU1RQix1YZ4WadJOAvGiFkrkm43hAV9awydBHRbg5Wsomy3ZiBTnX9RcO4t2Bq3TOzcSqRI4ix/MGs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GLpeCnbB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86506C433F1;
-	Thu, 22 Feb 2024 10:29:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708597794;
-	bh=Wzsp+43YqM+LlxN0cpsEdEREeR6hPbCyLnqKwXy8YPk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GLpeCnbBnu29hs6MZNOozG2jG6b1fFuTJVhE3nvd7tjl6OJrs/6etqCnvwC1gydFc
-	 fZaiIs07i5pfwnXJ+lyW5Irfyo1A4zz85pj1wabeJ7hHUqk2KOdpUel/X2TixStzQz
-	 V58Kw1xhT+bVoCZNonvGZgNysqVEW/SraW2A6pjK7nU1YpFwSWACfR/7CkFRkFf7mE
-	 OPikCWYMo91ZsmfU/RQ/POBakSS1xVnR7T2/P/ZpO+odkg+uBRfP4f62sytseG05jY
-	 P0L90QvV7eZlk0m9ZoDBIDUf8lS9dwxaWtHQuXvP5xb8VBZaX1IWZFRjlm6KMap4uX
-	 Ng7/DDdFyaRkg==
-Date: Thu, 22 Feb 2024 11:29:51 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Frank Oltmanns <frank@oltmanns.dev>
-Cc: Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>, Purism Kernel Team <kernel@puri.sm>, Ondrej Jirman <megi@xff.cz>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Sam Ravnborg <sam@ravnborg.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 5/6] drm/panel: st7703: Drive XBD599 panel at higher
- clock rate
-Message-ID: <ia7e7gqozltl5wkfdvwtf2rw2ko2dt67qxtuqbavsroyv4ifys@x4mbulqhhri5>
-References: <20240205-pinephone-pll-fixes-v2-0-96a46a2d8c9b@oltmanns.dev>
- <20240205-pinephone-pll-fixes-v2-5-96a46a2d8c9b@oltmanns.dev>
- <poua4bzyciiwt65sqjf2whqfdumvoe4h3bkjpf64px2vwgumrf@sai73byg2iju>
- <87sf1zxb0s.fsf@oltmanns.dev>
+	s=arc-20240116; t=1708597888; c=relaxed/simple;
+	bh=cvAVudDIoWoUoaJqLInNNrpIO3J8u/OOuWGjXc5U+RA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=atCBASzP+u5ajionit585hSVWAMyIvcFPc5Ommk/gi9mCrH3gUtzjajbPWs4Vb1ZnD2kN/x6OFcL87AAHhxNHSlPOowTwvKbIHZE0S8DBmIlihu/PmIV3Z+CklZScada37uOUWLMC5pp69AzYGlVLNp+gv7zeCiipPVSQe7ofJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=QZGZQspl; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id DB2E1FF808;
+	Thu, 22 Feb 2024 10:31:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1708597885;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=EUBZIS6T/qLjtF5ns0fFYJqEALyXOpqOh5I1fTOvjy8=;
+	b=QZGZQsplpYiao1CnngozWgY+pdVXe6ZKvyqqFiCKX5/zyWkXvOYe6jwuMbetqDgDMqnTCz
+	8I1mGYS0cdjUd2IBUscIkeBssxpTTiqrU5WRKra0LLiVCFN4yddnqnkhCrL+fcp9VNld3Z
+	eSXh5zCK+6i4q1Y1wNjECgFUGVI5u540UdJQpSjyZL2yfT7H4zkDwzc3EJ6qDPqwRfnSa+
+	SH9uO1hDoTzEY9FN4etIa2lm6Mq+Z7gyDs0Qo8Ou3pgSC+sbW80GRkywMH9lZsaFdZcWaT
+	4u2lmljncLNY/+Sk/sDK3B9DyOFjHgxLeP2Cf8mEPCqQoI3pTZd5yYAndZc3Ag==
+From: =?UTF-8?q?J=C3=A9r=C3=A9mie=20Dautheribes?= <jeremie.dautheribes@bootlin.com>
+To: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Andrew Davis <afd@ti.com>
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	=?UTF-8?q?Miqu=C3=A8l=20Raynal?= <miquel.raynal@bootlin.com>,
+	Yen-Mei Goh <yen-mei.goh@keysight.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	=?UTF-8?q?J=C3=A9r=C3=A9mie=20Dautheribes?= <jeremie.dautheribes@bootlin.com>
+Subject: [PATCH net-next 0/3] Add support for TI DP83826 configuration
+Date: Thu, 22 Feb 2024 11:31:14 +0100
+Message-Id: <20240222103117.526955-1-jeremie.dautheribes@bootlin.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="bml6dpjoov3orz5g"
-Content-Disposition: inline
-In-Reply-To: <87sf1zxb0s.fsf@oltmanns.dev>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: jeremie.dautheribes@bootlin.com
 
+Hi everyone,
 
---bml6dpjoov3orz5g
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This short patch series introduces the possibility of overriding
+some parameters which are latched by default by hardware straps on the
+TI DP83826 PHY.
 
-On Sun, Feb 11, 2024 at 04:42:43PM +0100, Frank Oltmanns wrote:
->=20
-> On 2024-02-08 at 20:05:08 +0100, Maxime Ripard <mripard@kernel.org> wrote:
-> > [[PGP Signed Part:Undecided]]
-> > Hi Frank,
-> >
-> > On Mon, Feb 05, 2024 at 04:22:28PM +0100, Frank Oltmanns wrote:
-> >> This panel is used in the pinephone that runs on a Allwinner A64 SOC.
-> >> The SOC requires pll-mipi to run at more than 500 MHz.
-> >>
-> >> This is the relevant clock tree:
-> >>  pll-mipi
-> >>     tcon0
-> >>        tcon-data-clock
-> >>
-> >> tcon-data-clock has to run at 1/4 the DSI per-lane bit rate. The XBD599
-> >> has 24 bpp and 4 lanes. Therefore, the resulting requested
-> >> tcon-data-clock rate is:
-> >>     crtc_clock * 1000 * (24 / 4) / 4
-> >>
-> >> tcon-data-clock runs at tcon0 / 4 (fixed divisor), so it requests a
-> >> parent rate of
-> >>     4 * (crtc_clock * 1000 * (24 / 4) / 4)
-> >>
-> >> Since tcon0 is a ccu_mux, the rate of tcon0 equals the rate of pll-mip=
-i.
-> >>
-> >> pll-mipi's constraint to run at 500MHz or higher forces us to have a
-> >> crtc_clock >=3D 83333 kHz if we want a 60 Hz vertical refresh rate.
-> >>
-> >> Change [hv]sync_(start|end) so that we reach a clock rate of 83502 kHz
-> >> so that it is high enough to align with pll-pipi limits.
-> >>
-> >> Signed-off-by: Frank Oltmanns <frank@oltmanns.dev>
-> >
-> > That commit log is great, but it's kind of off-topic. It's a panel
-> > driver, it can be used on any MIPI-DSI controller, the only relevant
-> > information there should be the panel timings required in the datasheet.
-> >
-> > The PLL setup is something for the MIPI-DSI driver to adjust, not for
-> > the panel to care for.
-> >
->=20
-> I absolutely agree. It even was the reason for my submission of a
-> sunxi-ng patch series last year that was accepted, to make pll-mipi more
-> flexible. :)
->=20
-> The only remaining option I currently see for adjusting the sunxi-ng
-> driver to further accomodate the panel, is trying to use a higher
-> divisor than 4 for calculating tcon-data-clock from tcon0. I remember
-> reading a discussion about this, but as far as I remember that proposal
-> was rejected (by you, IIRC).
->=20
-> While I appreciate other suggestion as well, I'll look into options for
-> using a different divisor than 4.
+The settings that can be overridden include:
+  - Configuring the PHY in either MII mode or RMII mode.
+  - When in RMII mode, configuring the PHY in RMII slave mode or RMII
+  master mode.
 
-Like I said, I'm not against the patch at all, it looks great to me on
-principle. I just think you should completely rephrase the commit log
-using the datasheet as the only reliable source of the display timings.
-Whether sun4i can work around the panel requirements is something
-completely orthogonal to the discussion, and thus the commit log.
+The RMII master/slave mode is TI-specific and determines whether the PHY
+operates from a 25MHz reference clock (master mode) or from a 50MHz
+reference clock (slave mode).
 
-Maxime
+While these features should be supported by all the TI DP8382x family,
+I have only been able to test them on TI DP83826 hardware.
+Therefore, support has been added specifically for this PHY in this patch
+series.
 
---bml6dpjoov3orz5g
-Content-Type: application/pgp-signature; name="signature.asc"
+Jérémie Dautheribes (3):
+  dt-bindings: net: dp83822: support configuring RMII master/slave mode
+  net: phy: dp83826: Add support for phy-mode configuration
+  net: phy: dp83826: support configuring RMII master/slave operation
+    mode
 
------BEGIN PGP SIGNATURE-----
+ .../devicetree/bindings/net/ti,dp83822.yaml   | 16 +++++++
+ drivers/net/phy/dp83822.c                     | 44 +++++++++++++++++++
+ 2 files changed, 60 insertions(+)
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZdciHgAKCRDj7w1vZxhR
-xfJ1APsGJxlhH6N9Zf5Bg18E9npao1trsNfER/3ulA49l/e3zQEArlyYygxuPvKn
-3nkhyF0YeukoDf5065tfHAeU7wy1JQA=
-=mdeZ
------END PGP SIGNATURE-----
+-- 
+2.34.1
 
---bml6dpjoov3orz5g--
 
