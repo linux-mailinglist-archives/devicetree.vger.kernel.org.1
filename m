@@ -1,247 +1,436 @@
-Return-Path: <devicetree+bounces-44926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 609BD860197
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 19:38:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08D288601A7
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 19:40:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83CC41C24AAB
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 18:38:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C71F1C23006
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 18:40:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AE1173F1B;
-	Thu, 22 Feb 2024 18:27:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3290514263C;
+	Thu, 22 Feb 2024 18:31:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IE+1gTDP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E5mJCdFR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 886FA137905;
-	Thu, 22 Feb 2024 18:27:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3FCA1EB3A;
+	Thu, 22 Feb 2024 18:31:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708626475; cv=none; b=RSgBwoLqYjQe302BzUOcCtuYo9B6LZXORUSNr+iuLApI/jA+DcqYisvlXxOkEz73DfOtMah1YO/HSKVYL1UV8GwJqVLHBrpmmTv/unHOf3b5HN4famPkEVaKdIMy0rNlZXYvguv5t7BFDxZxkwMtDvsjk3AbRWYxf2m7lQwPc6M=
+	t=1708626676; cv=none; b=NXhCotJOl9Bpp82iYQ229hE+2ONyhQy8h8hwhc19UkKTQRV+UEjp21tE0ltEcLDtAX1N6VgQpsFb9Xb49b3ckBTPHeuOK704Blsnd9zmZ3rWy13c/qSrzw0nXpX0NQv5JKewXEwLVflJIyPdAA31Vc3TMIwlw1jufgMG25BvH1g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708626475; c=relaxed/simple;
-	bh=/ERQAEsXu0G6kcuTagglxUQka6jY9dYPE/DzuZNf3dI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YKID/gPhUuYKaok+h5miSr+T3sSfCqkFbpgUtM4T3XF3PVKbJDGANJpxKBD8W+dN8uzDsAZaZF6dXTKCYrrgA/V6qM+u9aSin0/Z8B7WFvyCsTO5mJbHMxv8VXW2IrVQe0tZNUGKixMx9pcqpNo7lFkRcWCI+b7KLoPx3mzWQew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IE+1gTDP; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a3ed9cae56fso242360366b.1;
-        Thu, 22 Feb 2024 10:27:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708626472; x=1709231272; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tELClXvgGOtyHBZZBd2XEfCIwH1azmS4e74QYILe7xI=;
-        b=IE+1gTDPNqjASF5P5ZKg7gZhIpmrsm5Xc+V/vfukRYhJ5ZLDtaY81PD9wXq/cfxr+q
-         4eWBef6E/Qk4MBi5WJXKzkcR6qtyCWVBjmK07fqSsZk1EKsLByu36l8Yx6s3Kxgq9UZB
-         nwL/VqhimjYMFDlWCtSqK128XlJkmeuuCi2Rp7v4r3TlHxSvK80LFozF99R6LeS0Jd/3
-         r1hA/t2fVXJTlF02BAWZmZ2cgkzVurHMOguvkcnwvLE/DtKTljjHjgvbdBsC3G3FLyh0
-         zqZ2QqOmh+4YC/N5powUPwviDAk4pel9ibigGL5iRCjB6OzVTNQYQYllCppYyNjpV4f1
-         BYyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708626472; x=1709231272;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tELClXvgGOtyHBZZBd2XEfCIwH1azmS4e74QYILe7xI=;
-        b=i80O44Ocvlon6NUFtCXF3wMv3V161v/tlXixlACw1XrMR+cD6+x+ggNIKvKUi++dzN
-         o4tenQ8XyXDZ2Iq0K5eVjBc7aSYZ15H+pkIwhLzZ5NFmf9qA7z+c1S5wlPVRjDt7N53Z
-         QAW4WKfXEdSJVVV/xH5X/Xu/btkcIVPQBFT1cO2dOZNYDFLIEZLOPzq+RUkTS6tSTz6k
-         MhU4719vn8jCl1AXEZrcWktTMVnUYCFGj0wknancNtO/HyIVczdKy7atvFYP8inP+/46
-         L8GQeatel2RAAD62meVjhl2/o7DmS89f5j4go0lXCP4F7QKDe0bJZta6WMCSxWkTp+LW
-         TSjQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWxIGp9/HaYJgjxsE8t9jWP3bd73nHkWAW8LyMijTRFCQIlDhEFiUTfzO4vboYEb9R+1zuiP2QJBC9uBLr9aCWD3hD3m+IdZj7i82yFcyU8zXrvaaEylZzd4qNmQquYBsQs0twG
-X-Gm-Message-State: AOJu0YzlEOB0wE1yxapXHRA5sD0Vv9NVBKp1yNN0GedYwzYBj/5cSGOZ
-	bravAq+tsUsanzFJoCpptAbX7Tt17KFzERgz5GcM1xB/ebKc+j2h
-X-Google-Smtp-Source: AGHT+IEyETD3CnHapZN/pItaYfe7T2SP89qHiRZOnxnaXo9m2VgXcYMwYEO4qUFvxVQA2rz+LGVA2Q==
-X-Received: by 2002:a17:906:3398:b0:a3e:8b8e:8795 with SMTP id v24-20020a170906339800b00a3e8b8e8795mr2534984eja.34.1708626471678;
-        Thu, 22 Feb 2024 10:27:51 -0800 (PST)
-Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id bn9-20020a170907268900b00a3db46018a4sm6143818ejc.71.2024.02.22.10.27.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Feb 2024 10:27:51 -0800 (PST)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Vasily Khoruzhick <anarsoul@gmail.com>,
- Yangtao Li <tiny.windzz@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>, Andre Przywara <andre.przywara@arm.com>
-Cc: "Rafael J . Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Martin Botka <martin.botka@somainline.org>,
- Maksim Kiselev <bigunclemax@gmail.com>,
- Bob McChesney <bob@electricworry.net>, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev
-Subject:
- Re: [PATCH v5 7/7] arm64: dts: allwinner: h616: Add thermal sensor and zones
-Date: Thu, 22 Feb 2024 19:27:49 +0100
-Message-ID: <6017340.lOV4Wx5bFT@jernej-laptop>
-In-Reply-To: <20240219153639.179814-8-andre.przywara@arm.com>
-References:
- <20240219153639.179814-1-andre.przywara@arm.com>
- <20240219153639.179814-8-andre.przywara@arm.com>
+	s=arc-20240116; t=1708626676; c=relaxed/simple;
+	bh=zSwQ+29IemVAKsJR/QppCLHoxlyDpZ3/5G5UcwkHZ9I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=S5EERpoXSnu6WH/0t/5cILyXA9LWnqIUW3sCK/kZQqStzJ7iDK3v6QmWUfiJN6VFdjkJd/+Vhx3wSmwqrD+fo2/3/kv7qx6jygK0azaVo7tI1TxzBNhZ5Nb74i2PHtUVNbQNSNIK3IpTHIqWS09H2OS0f+YnxoSG4QeWyGEl5IY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E5mJCdFR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 217C8C433F1;
+	Thu, 22 Feb 2024 18:31:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708626675;
+	bh=zSwQ+29IemVAKsJR/QppCLHoxlyDpZ3/5G5UcwkHZ9I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=E5mJCdFRarCvwy2IdOpt8oKhCoNcJU6+NxrAr098IA9x0H1YS/hyHxGAJdfAUzVGl
+	 lWAZjQy9ortegc+W3weeRlrky15kfRe/B9oks65Pld3RIHeWTeywjg24LpRHvC3nVh
+	 eBvV1quVZX0Aq3tes6jTO3Nw6ztMXdEtIjhPd0pWAiiht2jOMc1bl4fmihOveKQhbT
+	 NNTIKf/YD+VQswufCEHRC9RDUfQE1xc2nbz92py0VSYeQsPhnYzDEb6yQtdE1xbMSi
+	 aU/xVu+7FJhfTW4zUobEv13BOM+k7j8gc3v2sg/jSujXtaFJkPHb2VX5Qi58cV6FQd
+	 XIA5nvee7DJ0A==
+Date: Thu, 22 Feb 2024 12:30:48 -0600
+From: Rob Herring <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" <linux-pci@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH v3 1/1] dt-bindings: pci: layerscape-pci: Convert to yaml
+ format
+Message-ID: <20240222183048.GA3652979-robh@kernel.org>
+References: <20240214194145.2669744-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240214194145.2669744-1-Frank.Li@nxp.com>
 
-Dne ponedeljek, 19. februar 2024 ob 16:36:39 CET je Andre Przywara napisal(a):
-> From: Martin Botka <martin.botka@somainline.org>
+On Wed, Feb 14, 2024 at 02:41:44PM -0500, Frank Li wrote:
+> Convert the layerscape-pci PCIe binding document to yaml format.
 > 
-> There are four thermal sensors:
-> - CPU
-> - GPU
-> - VE
-> - DRAM
+> Additionally, changes for the layerscape-pci endpoint part:
+> - Add interrupt name 'pme' restriction for fsl,ls1028a-pcie-ep,
+> fsl,ls1046a-pcie-ep, and fsl,ls1088a-pcie-ep.
+> - Add register name restrictions: 'reg' and 'addr_space'. 'addr_space' is
+> required by snps,dw-pcie-ep.
+> - Add an example.
 > 
-> Add the thermal sensor configuration and the thermal zones.
+> Changes for the layerscape-pci root complex part:
+> - Add required property: 'reg-names', "#address-cells", "#size-cells",
+> 'device_type', 'bus-range', 'ranges', "#interrupt-cells",
+> 'interrupt-map-mask' and 'interrupt-map'.
+> - Interrupt-names requirement split to each compatible string.
+> - Add register name restrictions: 'reg' and 'config'. 'config' is required
+> by snps,dw-pcie.
 > 
-> Signed-off-by: Martin Botka <martin.botka@somainline.org>
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-
-Best regards,
-Jernej
-
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  .../arm64/boot/dts/allwinner/sun50i-h616.dtsi | 88 +++++++++++++++++++
->  1 file changed, 88 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> index 12ffabc79bcde..7c7d7c285505c 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> @@ -9,6 +9,7 @@
->  #include <dt-bindings/clock/sun6i-rtc.h>
->  #include <dt-bindings/reset/sun50i-h616-ccu.h>
->  #include <dt-bindings/reset/sun50i-h6-r-ccu.h>
-> +#include <dt-bindings/thermal/thermal.h>
->  
->  / {
->  	interrupt-parent = <&gic>;
-> @@ -138,6 +139,10 @@ sid: efuse@3006000 {
->  			reg = <0x03006000 0x1000>;
->  			#address-cells = <1>;
->  			#size-cells = <1>;
-> +
-> +			ths_calibration: thermal-sensor-calibration@14 {
-> +				reg = <0x14 0x8>;
-> +			};
->  		};
->  
->  		watchdog: watchdog@30090a0 {
-> @@ -517,6 +522,19 @@ mdio0: mdio {
->  			};
->  		};
->  
-> +		ths: thermal-sensor@5070400 {
-> +			compatible = "allwinner,sun50i-h616-ths";
-> +			reg = <0x05070400 0x400>;
-> +			interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&ccu CLK_BUS_THS>;
-> +			clock-names = "bus";
-> +			resets = <&ccu RST_BUS_THS>;
-> +			nvmem-cells = <&ths_calibration>;
-> +			nvmem-cell-names = "calibration";
-> +			allwinner,sram = <&syscon>;
-> +			#thermal-sensor-cells = <1>;
-> +		};
-> +
->  		usbotg: usb@5100000 {
->  			compatible = "allwinner,sun50i-h616-musb",
->  				     "allwinner,sun8i-h3-musb";
-> @@ -761,4 +779,74 @@ r_rsb: rsb@7083000 {
->  			#size-cells = <0>;
->  		};
->  	};
-> +
-> +	thermal-zones {
-> +		cpu-thermal {
-> +			polling-delay-passive = <500>;
-> +			polling-delay = <1000>;
-> +			thermal-sensors = <&ths 2>;
-> +			sustainable-power = <1000>;
-> +
-> +			trips {
-> +				cpu_threshold: cpu-trip-0 {
-> +					temperature = <60000>;
-> +					type = "passive";
-> +					hysteresis = <0>;
-> +				};
-> +				cpu_target: cpu-trip-1 {
-> +					temperature = <70000>;
-> +					type = "passive";
-> +					hysteresis = <0>;
-> +				};
-> +				cpu_critical: cpu-trip-2 {
-> +					temperature = <110000>;
-> +					type = "critical";
-> +					hysteresis = <0>;
-> +				};
-> +			};
-> +		};
-> +
-> +		gpu-thermal {
-> +			polling-delay-passive = <500>;
-> +			polling-delay = <1000>;
-> +			thermal-sensors = <&ths 0>;
-> +			sustainable-power = <1100>;
-> +
-> +			trips {
-> +				gpu_temp_critical: gpu-trip-0 {
-> +					temperature = <110000>;
-> +					type = "critical";
-> +					hysteresis = <0>;
-> +				};
-> +			};
-> +		};
-> +
-> +		ve-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +			thermal-sensors = <&ths 1>;
-> +
-> +			trips {
-> +				ve_temp_critical: ve-trip-0 {
-> +					temperature = <110000>;
-> +					type = "critical";
-> +					hysteresis = <0>;
-> +				};
-> +			};
-> +		};
-> +
-> +		ddr-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +			thermal-sensors = <&ths 3>;
-> +
-> +			trips {
-> +				ddr_temp_critical: ddr-trip-0 {
-> +					temperature = <110000>;
-> +					type = "critical";
-> +					hysteresis = <0>;
-> +				};
-> +			};
-> +		};
-> +	};
->  };
+> Notes:
+>     There are log discuss at v1. If I missed something, let me know.
+>     
+>     Change from v2 to v3
+>     - update commit message, show change compare txt file
+>     - add failback compatible fsl,ls-pcie-ep.
+>     - add commit message about 'addr_space' and 'config'.
+>     
+>     Change from v1 to v2
+>     - remove '|-'
+>     - dma-coherent: true
+>     - add interrupts and interrupt-names at before Allof
+>     - remove ref to snps,pcie*.yaml, some reg-names are not aligned with in
+>     drivers
+>     - Add an example for pcie-ep
 > 
+>  .../bindings/pci/fsl,layerscape-pcie-ep.yaml  | 110 +++++++++++
+>  .../bindings/pci/fsl,layerscape-pcie.yaml     | 182 ++++++++++++++++++
+>  .../bindings/pci/layerscape-pci.txt           |  79 --------
+>  3 files changed, 292 insertions(+), 79 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pci/fsl,layerscape-pcie-ep.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pci/fsl,layerscape-pcie.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/pci/layerscape-pci.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie-ep.yaml
+> new file mode 100644
+> index 0000000000000..b384a0b2fe22e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie-ep.yaml
+> @@ -0,0 +1,110 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pci/fsl,layerscape-pcie-ep.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale Layerscape PCIe Endpoint(EP) controller
+> +
+> +maintainers:
+> +  - Frank Li <Frank.Li@nxp.com>
+> +
+> +description:
+> +  This PCIe EP controller is based on the Synopsys DesignWare PCIe IP.
 
+Where's the reference to the DWC schema?
 
+> +
+> +  This controller derives its clocks from the Reset Configuration Word (RCW)
+> +  which is used to describe the PLL settings at the time of chip-reset.
+> +
+> +  Also as per the available Reference Manuals, there is no specific 'version'
+> +  register available in the Freescale PCIe controller register set,
+> +  which can allow determining the underlying DesignWare PCIe controller version
+> +  information.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - fsl,ls2088a-pcie-ep
+> +          - fsl,ls1088a-pcie-ep
+> +          - fsl,ls1046a-pcie-ep
+> +          - fsl,ls1028a-pcie-ep
+> +          - fsl,lx2160ar2-pcie-ep
+> +      - const: fsl,ls-pcie-ep
+> +
+> +  reg:
+> +    maxItems: 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: regs
+> +      - const: addr_space
+> +
+> +  fsl,pcie-scfg:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: A phandle to the SCFG device node. The second entry is the
+> +      physical PCIe controller index starting from '0'. This is used to get
+> +      SCFG PEXN registers.
+> +
+> +  big-endian:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: If the PEX_LUT and PF register block is in big-endian, specify
+> +      this property.
+> +
+> +  dma-coherent: true
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 2
+> +    oneOf:
+> +      - anyOf:
+> +          - const: pme
+> +          - const: aer
+> +      - const: intr
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-names
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - fsl,ls1028a-pcie-ep
+> +            - fsl,ls1046a-pcie-ep
+> +            - fsl,ls1088a-pcie-ep
+> +    then:
+> +      properties:
+> +        interrupt-names:
+> +          items:
+> +            - const: pme
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    soc {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      pcie_ep1: pcie-ep@3400000 {
+> +        compatible = "fsl,ls1028a-pcie-ep", "fsl,ls-pcie-ep";
+> +        reg = <0x00 0x03400000 0x0 0x00100000
+> +              0x80 0x00000000 0x8 0x00000000>;
+> +        reg-names = "regs", "addr_space";
+> +        interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>; /* PME interrupt */
+> +        interrupt-names = "pme";
 
+> +        num-ib-windows = <6>;
+> +        num-ob-windows = <8>;
 
+Not documented and deprecated.
+
+> +        status = "disabled";
+
+Examples should be enabled.
+
+> +      };
+> +    };
+> +...
+> diff --git a/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie.yaml b/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie.yaml
+> new file mode 100644
+> index 0000000000000..988929729580a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie.yaml
+> @@ -0,0 +1,182 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pci/fsl,layerscape-pcie.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale Layerscape PCIe Root Complex(RC) controller
+> +
+> +maintainers:
+> +  - Frank Li <Frank.Li@nxp.com>
+> +
+> +description:
+> +  This PCIe RC controller is based on the Synopsys DesignWare PCIe IP
+> +
+> +  This controller derives its clocks from the Reset Configuration Word (RCW)
+> +  which is used to describe the PLL settings at the time of chip-reset.
+> +
+> +  Also as per the available Reference Manuals, there is no specific 'version'
+> +  register available in the Freescale PCIe controller register set,
+> +  which can allow determining the underlying DesignWare PCIe controller version
+> +  information.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,ls1021a-pcie
+> +      - fsl,ls2080a-pcie
+> +      - fsl,ls2085a-pcie
+> +      - fsl,ls2088a-pcie
+> +      - fsl,ls1088a-pcie
+> +      - fsl,ls1046a-pcie
+> +      - fsl,ls1043a-pcie
+> +      - fsl,ls1012a-pcie
+> +      - fsl,ls1028a-pcie
+> +      - fsl,lx2160a-pcie
+> +
+> +  reg:
+> +    maxItems: 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: regs
+> +      - const: config
+> +
+> +  fsl,pcie-scfg:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: A phandle to the SCFG device node. The second entry is the
+> +      physical PCIe controller index starting from '0'. This is used to get
+> +      SCFG PEXN registers.
+> +
+> +  big-endian:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: If the PEX_LUT and PF register block is in big-endian, specify
+> +      this property.
+> +
+> +  dma-coherent: true
+> +
+> +  msi-parent: true
+> +
+> +  iommu-map: true
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 3
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 3
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - device_type
+> +  - bus-range
+
+This should never be required unless you have some restriction in the 
+h/w. DWC generally doesn't.
+
+> +  - ranges
+> +  - interrupts
+> +  - interrupt-names
+> +  - "#interrupt-cells"
+> +  - interrupt-map-mask
+> +  - interrupt-map
+
+The common PCI and DWC schemas already make most of these required, so 
+you don't need to here.
+
+> +
+> +allOf:
+> +  - $ref: /schemas/pci/pci-bus.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - fsl,lx2160a-pcie
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          maxItems: 2
+> +        interrupt-names:
+> +          items:
+> +            - const: pme
+> +            - const: aer
+> +            - const: intr
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - fsl,ls1028a-pcie
+> +            - fsl,ls1046a-pcie
+> +            - fsl,ls1043a-pcie
+> +            - fsl,ls1012a-pcie
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          maxItems: 2
+> +        interrupt-names:
+> +          items:
+> +            - const: pme
+> +            - const: aer
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - fsl,ls2080a-pcie
+> +            - fsl,ls2085a-pcie
+> +            - fsl,ls2088a-pcie
+> +            - fsl,ls1021a-pcie
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          maxItems: 1
+> +        interrupt-names:
+> +          items:
+> +            - const: intr
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - fsl,ls1088a-pcie
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          maxItems: 1
+> +        interrupt-names:
+> +          items:
+> +            - const: aer
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    soc {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      pcie@3400000 {
+> +        compatible = "fsl,ls1088a-pcie";
+> +        reg = <0x00 0x03400000 0x0 0x00100000>, /* controller registers */
+> +            <0x20 0x00000000 0x0 0x00002000>; /* configuration space */
+> +        reg-names = "regs", "config";
+> +        interrupts = <0 108 IRQ_TYPE_LEVEL_HIGH>; /* aer interrupt */
+> +        interrupt-names = "aer";
+> +        #address-cells = <3>;
+> +        #size-cells = <2>;
+> +        dma-coherent;
+> +        device_type = "pci";
+> +        bus-range = <0x0 0xff>;
+> +        ranges = <0x81000000 0x0 0x00000000 0x20 0x00010000 0x0 0x00010000   /* downstream I/O */
+> +                 0x82000000 0x0 0x40000000 0x20 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
+> +        msi-parent = <&its>;
+> +        #interrupt-cells = <1>;
+> +        interrupt-map-mask = <0 0 0 7>;
+> +        interrupt-map = <0000 0 0 1 &gic 0 0 0 109 IRQ_TYPE_LEVEL_HIGH>,
+> +                        <0000 0 0 2 &gic 0 0 0 110 IRQ_TYPE_LEVEL_HIGH>,
+> +                        <0000 0 0 3 &gic 0 0 0 111 IRQ_TYPE_LEVEL_HIGH>,
+> +                        <0000 0 0 4 &gic 0 0 0 112 IRQ_TYPE_LEVEL_HIGH>;
+> +        iommu-map = <0 &smmu 0 1>; /* Fixed-up by bootloader */
+> +      };
+> +    };
+> +...
 
