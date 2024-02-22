@@ -1,135 +1,182 @@
-Return-Path: <devicetree+bounces-44643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5F7985F2E2
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 09:28:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B21E85F2EF
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 09:30:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3ED37B23E86
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 08:28:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8DD711C21000
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 08:30:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 062E91B273;
-	Thu, 22 Feb 2024 08:28:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFE4C22EF5;
+	Thu, 22 Feb 2024 08:30:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xpTbwESL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Lnst1hBl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 307A3182D2
-	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 08:28:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECF2D22615
+	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 08:30:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708590506; cv=none; b=mxHXZvzi3ry5cDaGYltekvYt5H8Lp+s8lOvSvmtrlJPzhzTXB+4GNRkJMTrf4AburvKy+9R6RFX8ESTUT5zaSrpE09ww6LcsksqGHjYhhi6s1/ddp9gvbrHAVBfToRdAWFNon+Sz4tlVh06Y3jtVEwy8M5EAmVNJJJJGj22ffyU=
+	t=1708590623; cv=none; b=SstvelvLoEnl4Fdtrkb45WE4dXqGEsJ7iuJWuXoBKY4i2/dfwjfwAnrXDyAlgzZdGq2NjC/prZTAbKNgOi/XimXaxz1ER+vBG8PwVa5oPlNcp4tV/knM4PhX0sfqXLqNDRzFpzr7BxFoJLmvgHdaou5KuAiihc44Q2pcHkpLCcU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708590506; c=relaxed/simple;
-	bh=EvteK50wyl2kprR8zyPWEQOJdijQCkbQp/sp4jSnARc=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=LqYG2J4sOtUEQpK7hEL61pyxMEDGrQ6Ah45tQz3/bqhfs1NY7hX5oWld0p2IN5Vs0B8i4tdly6qeRXbzRf+TZtbB85MWnO7myC422caPjw/ztcumKaL5WNQDsPSQ+8iFG1seJUaSpWPDvdvva7FHELhIUV8pq6ONvo+RWqwHbBM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xpTbwESL; arc=none smtp.client-ip=209.85.218.52
+	s=arc-20240116; t=1708590623; c=relaxed/simple;
+	bh=TDVHbHmjOOuwKIGXLipXVMrG/xOSgCHdDWJzigXFsD0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iuhE75uxTrhJBVzbhIZ5k0SXQw5UEXZum2s2svup0XThWzXHlK2oSf6Qmjjk+VmwaSMxOaqZpGck/VV/GKXfE792Ih1beYRfkRFt/ZReEIXb1LRhCoBqMQaSnzATQprIXIaMg7B/1nebGKV4eNc9e7XXFQftr6wxaqE7kBNwBno=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Lnst1hBl; arc=none smtp.client-ip=209.85.218.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a3f299f828aso237190666b.1
-        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 00:28:24 -0800 (PST)
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a3f5808b0dfso177695266b.1
+        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 00:30:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708590503; x=1709195303; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=0K0y7mMwQ6eINvxBjtceE3os6xVsWexBerMPUbtyFps=;
-        b=xpTbwESLemYSup/R3juAirb3bJPYOF7B1ZcUO1Z2OE7nUNBJkfUSywLntAEKPiOxU3
-         GSEzjwIM979u9w0J7uIwRwKqnm/9yKmVnVNRj64ouQb7WvRPp1Ckrw/3xbMJ9cUGEPQM
-         WD3J+X9GCXGVvYE1XP1ehgqgmqkv0cb14pWvTlRUxcWXzS03b4yBxcixk3oJfgfoQwuh
-         3WTRbNnbNvuWAon1BIG5ro23l/L7YKe36nVCn4J2/FOJhV91z9S9xaLbTsTCDMsaQyUc
-         ikbRBdXpMB72cubkJu5RJWKsbax9sT7hfAsBwVICPHju4u6GlJ45WAq3ZdU1mHz+Y67b
-         EvIQ==
+        d=linaro.org; s=google; t=1708590620; x=1709195420; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JfFl6Nv53g+4pvBn47IPDnhewZ3IGGDlWpzdfZ97p5g=;
+        b=Lnst1hBlLD79YokojBGfNqPw7HJcFf4vvVBdE+pIzLrxhHctNfj329ygaH3sIwgQvl
+         vRKF53P/lMlNwVhSrHhT8NHh2OrkPphIbvkF64H/v11UgnQGYt0MrFSjTKFcFlIydKRw
+         JnvMzzdu13lJpfs2PDot9fKjbkCHGj03RDkUb7Pyy4TOuceEbBC6kSbsx805xsBOt0+Y
+         o1VVdEyZD+IbWsCvxnT6yZMNBUsVs8eKlJR1gHy3rFFaupC/T1fxehmeJO4w2l3H43Jd
+         6UrJqI+V3WLNzetouS3T76Nsp5Go7eZz52i9s/OfFaP1E2qxjUNAPzPi3qecsy2gXnpX
+         hwDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708590503; x=1709195303;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0K0y7mMwQ6eINvxBjtceE3os6xVsWexBerMPUbtyFps=;
-        b=XNTLluMLxtZSYTBZzWdxZxI2po8G0Xb+c2BYyUnGsIjKBCDjAwtZtQ/8GGy0gLc9yg
-         zD6aI+Al5gnALBK/mWkBbuzb6IGwIroyQ3RU8WrDn9gdr8MTdURORN53H7VDFs5hEGdR
-         fHhgFajg04bKn0BWWUPtfOxtEoeHURjNT8Ej5/lywo8n72DiDK5Yrub2pZtuH3oge1pr
-         Buq00CK1Nj1HohhfFX+J2JNK/5hv4p4NzngYn9ebyznWBZU/j+zOG6M4Kinu1FazHJMR
-         KnCkzsWdT1BP5q4xibSx/gIlVox/yvb3/iNztTvSHdgUe3yQ5uymOSPBBM50AgvgCP9V
-         cWog==
-X-Forwarded-Encrypted: i=1; AJvYcCVd129sPkbvKbWF/AaOZCWXPiieUJmUn5GRScN50os1eKpUDg3IHfgufyjANhRGs6lAmpL5tugz+lobufLs+DyD1rhNnFx6SklxJA==
-X-Gm-Message-State: AOJu0YyhRFSk46wJIE/wXfXPFIfE3qLBG+smy3iJCyOcUA69IcbVcL8X
-	9MBCzB3N6Q22XV3Cg+PYGBevwJlMJMSTMDqOJkHonEcb+hVJOUpUc+NIKd528EKABTkX8ubyMN6
-	ndog=
-X-Google-Smtp-Source: AGHT+IH7dW5lx5ijk4XY4dgNzFesrot5udC3LHg/4tTUdJiIgWdnAJqUyV96hgU+dShciHbxpbF27Q==
-X-Received: by 2002:a17:907:375:b0:a3f:6b7f:11fe with SMTP id rs21-20020a170907037500b00a3f6b7f11femr1200803ejb.66.1708590503535;
-        Thu, 22 Feb 2024 00:28:23 -0800 (PST)
-Received: from krzk-bin.. ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id vh8-20020a170907d38800b00a3f28bf94f8sm1600210ejc.199.2024.02.22.00.28.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Feb 2024 00:28:23 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Xin Ji <xji@analogixsemi.com>,
-	linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Pavel Machek <pavel@ucw.cz>
-Subject: [PATCH] dt-bindings: usb: analogix,anx7411: drop redundant connector properties
-Date: Thu, 22 Feb 2024 09:28:19 +0100
-Message-Id: <20240222082819.10321-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20230601; t=1708590620; x=1709195420;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JfFl6Nv53g+4pvBn47IPDnhewZ3IGGDlWpzdfZ97p5g=;
+        b=Ay1SPouIK0sPJM5qgNlKlLGcQ8zG2zm2WMCeZwN7c5CsyWFtf9B28g/kYxdzm55PWh
+         AOHfmeJs83WcoJDP8qnru1V/f8W06Oq/Tkh0XyPB+RC4vE70SXRvhFYB3rOzth1L7Q/V
+         AUXs8ISGw+tMvGmU5Vdop492CB8mf0FwtilwXhexB+7nc8gBpQ4nsNUj1kUcW/FLZpHN
+         k50kyjiluIaYuEgdK3c1eRC84s+ddzwktBvu7MrJafkMum9pLTp/0RQYK6Vg7YlOiT3V
+         1bqEfB9fCw+6guc5PNOHrd/gs5F1u8UwqrKdk5Fev2Fg7Ao8xu9T395uxPqz+q0MiNQQ
+         mj2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWYgaq2EoH1mpy0vQcnwHYcFZtVk/AyWyI4tSlkULU5Kt+4MNqPqAhQ7DpXqvaye7m/3onX3DfsZtE3MrFJ/QrufxPRYC1lxXJxwg==
+X-Gm-Message-State: AOJu0Yyd9zPofmig0KXD86EOv8D7R1XNjwhKTZ/pC5taMah6OPdEutcS
+	W/sVEWn3+TdGhvofKSxLiCkiyZJye/FNHJsd2GvwwRAqeuCZUUD4PGRzPFTZFCE=
+X-Google-Smtp-Source: AGHT+IGImmTMlOFAe/o1JwcZ1T7azTD8kxUe9dHesVYTOfpnRc19tZTN5OeMe5epAEbcaB63z54uMw==
+X-Received: by 2002:a17:906:d8a8:b0:a3f:4596:c3c8 with SMTP id qc8-20020a170906d8a800b00a3f4596c3c8mr2238058ejb.53.1708590620255;
+        Thu, 22 Feb 2024 00:30:20 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.116])
+        by smtp.gmail.com with ESMTPSA id wg4-20020a17090705c400b00a3d99415705sm5698736ejb.73.2024.02.22.00.30.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Feb 2024 00:30:19 -0800 (PST)
+Message-ID: <efee9c66-cb84-4f02-91b6-53f2db874b3b@linaro.org>
+Date: Thu, 22 Feb 2024 09:30:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] dt-bindings: media: Document bindings for HDMI RX
+ Controller
+Content-Language: en-US
+To: Shreeya Patel <shreeya.patel@collabora.com>
+Cc: heiko@sntech.de, mchehab@kernel.org, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+ jose.abreu@synopsys.com, nelson.costa@synopsys.com,
+ dmitry.osipenko@collabora.com, sebastian.reichel@collabora.com,
+ shawn.wen@rock-chips.com, kernel@collabora.com,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-dt@vger.kernel.org, linux-arm@lists.infradead.org
+References: <20240216094922.257674-1-shreeya.patel@collabora.com>
+ <20240216094922.257674-3-shreeya.patel@collabora.com>
+ <fd3b7ab7-3702-412f-947a-95396dbe1f4c@linaro.org>
+ <1048c3-65d66380-b-49a25c80@188726434>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <1048c3-65d66380-b-49a25c80@188726434>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The binding references usb-connector.yaml schema, which lists all
-allowed properties and ends with unevaluatedProperties:false, so we can
-simplify analogix,anx7411 binding by dropping everything covered by
-usb-connector.yaml.
+On 21/02/2024 21:55, Shreeya Patel wrote:
+>>> +  - hdmirx-5v-detection-gpios
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
+>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>>> +    #include <dt-bindings/power/rk3588-power.h>
+>>> +    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
+>>> +    hdmirx_ctrler: hdmirx-controller@fdee0000 {
+>>
+>> What is hdmirx-controller? Isn't this just hdmi@?
+>>
+> 
+> Writing just hdmi would imply hdmi output I think so that name
+> will not be appropriate here.
+> 
+>> Node names should be generic. See also an explanation and list of
+>> examples (not exhaustive) in DT specification:
+>> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+>>
+> 
+> This documentation doesn't have any generic name for HDMI INPUT
+> but maybe we can use the name hdmi-receiver like some other existing
+> binding has it here :-
+> Documentation/devicetree/bindings/media/i2c/tda1997x.txt
 
-Suggested-by: Pavel Machek <pavel@ucw.cz>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/usb/analogix,anx7411.yaml   | 13 -------------
- 1 file changed, 13 deletions(-)
+Yes, it is fine. You did not respond to other comments, so I assume you
+agree with them.
 
-diff --git a/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml b/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
-index e4d893369d57..3f5857aee3b0 100644
---- a/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
-+++ b/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
-@@ -23,24 +23,11 @@ properties:
-   connector:
-     type: object
-     $ref: ../connector/usb-connector.yaml
--    unevaluatedProperties: false
--
--    description:
--      Properties for usb c connector.
- 
-     properties:
-       compatible:
-         const: usb-c-connector
- 
--      power-role: true
--
--      data-role: true
--
--      try-power-role: true
--
--    required:
--      - compatible
--
- required:
-   - compatible
-   - reg
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
