@@ -1,158 +1,162 @@
-Return-Path: <devicetree+bounces-44838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3E1E85FBD2
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 16:05:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B26985FBE3
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 16:09:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7847C1F24901
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 15:05:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 152E3288FB2
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 15:09:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B466214AD30;
-	Thu, 22 Feb 2024 15:04:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3698A14AD00;
+	Thu, 22 Feb 2024 15:09:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XAhG3C6l"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="w8Nq8B4r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2120A14A09F;
-	Thu, 22 Feb 2024 15:04:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0782A1487EA
+	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 15:09:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708614291; cv=none; b=RMnf7qWZTL/W0UhBhbtUJC5zIhlQEahmnGY4d2tqc0t20mM9yregfLfRwrmlXUJ0y61YgPoS4T1AG7Ima5EM+8KqucMEe0EkD9EAGDz5bh3i3Wwc5nWwcWRrKDgNMfz5WIQZxK4nP8YYSEKff9eaipdvkKqG7Y28fYix+cQIyrg=
+	t=1708614585; cv=none; b=I+QytYs9O1r+2HxYpw1xcy7CMYTBzR/nqDNhJJHKemLXHVWt2AV706dT5jlh/yQlJOaufeNQIYXWi5V2D8NuQG+lfTtEKti8Cxp39KIuzxlpe+0JhYEle3u66oEOkvoMH6RqvK8+PdBArNgmQT9Z/dXyRRTwYWeTmw6D1DmSmS4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708614291; c=relaxed/simple;
-	bh=tLdgo1sCtJ0emV13YZ9Zs1IhgApVirrJo8aoC37yYq8=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pR+x7JcKKqBJJ9rZtoYlZEUc+pFVWSO8VXbjn05Z0e0lGFu36DtBylhOz/EFpxlK2paIYFhgK/zEBpIJTXOeJj1pPw7Aqraj/vBAywEndymRFJE7ALl3r0IIinaGWnFqIBkvq4yER/gHxmYy5YnS1e/p+Xj+9A6lJ+ai3Q10u7o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XAhG3C6l; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41M7iWuK024680;
-	Thu, 22 Feb 2024 15:04:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=qcppdkim1; bh=Q41hDQ++x7HXRNek8ydp2
-	FcmEDLeuAZTGmbaK9Fam8g=; b=XAhG3C6lKi+6qZ19iMOchCk/0cDyANDay/Q3Y
-	lEh8TvwZ5UBwIJDY4wWs/HPpeo0BtMaSCWpf1YtcmNTYR2paWzQJ8xZ7zJIGD3WU
-	0ORyEvIkCr7kUttnOOf8UIYCis3PE5mYLsctdmyHZGlAJC5EqHPz01wDzdFkMnjP
-	pH8OloFfPgKn7AvFEwdUkxRNYm+qOIiIrbuRaC26myhT3SgAttt/CKF6Ja7zd+n2
-	r5DP0NGSVvadR4pltqz0hCetClweaVc8Zb5moe5iQyI9rS7xXX2y+CAli8elJk9F
-	DJi1U+HtbCWt1e7olBrRK7Xyomu/1amnNjH9/wSLOYzruf08A==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3we24ah67a-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 22 Feb 2024 15:04:25 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41MF4Oqx032174
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 22 Feb 2024 15:04:24 GMT
-Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 22 Feb 2024 07:04:24 -0800
-Date: Thu, 22 Feb 2024 07:04:23 -0800
-From: Bjorn Andersson <quic_bjorande@quicinc.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Douglas Anderson
-	<dianders@chromium.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, "Daniel
- Vetter" <daniel@ffwll.ch>,
-        <cros-qcom-dts-watchers@chromium.org>,
-        "Bjorn
- Andersson" <andersson@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 3/9] arm64: dts: qcom: sc7280: Enable MDP turbo mode
-Message-ID: <20240222150423.GI2936378@hu-bjorande-lv.qualcomm.com>
-References: <20240221-rb3gen2-dp-connector-v1-0-dc0964ef7d96@quicinc.com>
- <20240221-rb3gen2-dp-connector-v1-3-dc0964ef7d96@quicinc.com>
- <CAA8EJpo=9vhM+5YzaFxUoYRuEWQyrMS8wLNPSF3K=bN5JwWyDw@mail.gmail.com>
- <8313a7c3-3ace-4dee-ad27-8f51a06cd58c@linaro.org>
- <CAA8EJpqFj5nf8d_=Uoup7qg+nQrxqQU-DHbL3uSP138m9AcXLw@mail.gmail.com>
- <8fcb5816-2d59-4e27-ba68-8e0ed6e7d839@linaro.org>
- <CAA8EJporaUuddHHqpyYHiYSu=toHmrDxSHf9msZUJoym4Nz72g@mail.gmail.com>
+	s=arc-20240116; t=1708614585; c=relaxed/simple;
+	bh=voELvsUOK6uz8tXugGOugF+CHCFGm+S7q1ctYk6vQZ0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AS9SGNCUwcfDEXO8JOfeExq0CfVzGYHdbROsuyq8uyxwb9tnIRaDkMIaitSkacUW4MISERTP+GcbZk6Zit1GNJuARYt+oriokAriGeyaHnfvkNbTt/yzTkEUclFwzadvMqe5rhTCq/rONwjNu+og93hmi8Dgeh2EnbuYLzq02iM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=w8Nq8B4r; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-511976c126dso2913294e87.1
+        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 07:09:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708614580; x=1709219380; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lUeYHiv0imciboL1nDPvOvZW5+7J3Fdt+dfdqadHu+Y=;
+        b=w8Nq8B4rezxTpF28hTd/VDbb8Iz/ZAK0MN9TJo13J7US1Ddq3KAAm7odwptf+5Qkb7
+         pQdxDJBYvz2gi/SLzCqs4M4QpmGIOL4bHz1VXmEbLewQWXjvoAS0an19tN7C7z/hnkmE
+         2lMqHSVk6xlW4UiqA9dLs49q5WUsN/d2fvzgaioC9cKWAECC5PiBSAkjU3fHQUMAKtsz
+         OTLcF/xiZnSsNH+WXXRAC0PM6CebccNtOciGvkp/7pFi3BLEd+jLvL6ls2d4M/TQCRS6
+         bo09a0/+bEpNIf5yoH2eF5954lKf45rd6BBk3iEVyxQR2uI39CIqcNaLy0BnYK4B98j8
+         iDEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708614580; x=1709219380;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lUeYHiv0imciboL1nDPvOvZW5+7J3Fdt+dfdqadHu+Y=;
+        b=jbHxWJuhXfzAc8kx4HnJGlMAxibi1SkeIB7DM86ne4khz5begp8ETwgic6s20aGbOT
+         dyDk/cIiUPRNqKJkZ6aqKO3Vht81Vi556W9ZkZOlxhjqWmoffJ2d7xhpJIuJDnNdJtcY
+         lUwoVAofvgaO4oIlcTxsaIxIMzjijnaBPSy8mLWjGa8YjaF6SzWKHpqbETdy7ZY346ik
+         IonjzBTJtbhMDWUEKBuK3n4f33D2+ihkMYAyZSrQI4GPNnGbPrFGXvuACOm+zkR39cTI
+         mH9aiUSGMydC0/7QNc1heeEvl6MYbVtlkhUqkPsx83fIZeNRRYEl56RtEaGsbLxCkavc
+         Nd2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXBEAfQchmYpK1i8DcT5oINo+d03GwQ3rmfh2TWO4ynNZnLlMW7NVogSLeV1KcMfWXYIeE4NM5dWmBbmjO40n0QRNOdvLmVqwli1g==
+X-Gm-Message-State: AOJu0Yx2OZ6CZgvEepoJImEUmL3SRZYZv676c36lpvE6/X8a4WcDw9qc
+	iUPHYSATOgA1XDbEejAn7TkDEBJSpgO3QHigKlQCeUe8lArLRETdF4VMBpK+aiU=
+X-Google-Smtp-Source: AGHT+IHHv4XWa+Dsp4qs2tAL1aRSarddVjWnE6UX3tyrhcaGOnUcI3c/7HFqt5G4f/F08ztDcBwxHA==
+X-Received: by 2002:a05:6512:3a7:b0:512:b37f:a9ae with SMTP id v7-20020a05651203a700b00512b37fa9aemr6674552lfp.63.1708614580103;
+        Thu, 22 Feb 2024 07:09:40 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.116])
+        by smtp.gmail.com with ESMTPSA id r22-20020a170906281600b00a3d777aa8fesm5992979ejc.69.2024.02.22.07.09.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Feb 2024 07:09:39 -0800 (PST)
+Message-ID: <d6ee0e39-5e37-4c38-812e-a93ec8071772@linaro.org>
+Date: Thu, 22 Feb 2024 16:09:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CAA8EJporaUuddHHqpyYHiYSu=toHmrDxSHf9msZUJoym4Nz72g@mail.gmail.com>
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Cohb87XPDhqkiAa09wtNUJyEMXFtcRPd
-X-Proofpoint-ORIG-GUID: Cohb87XPDhqkiAa09wtNUJyEMXFtcRPd
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-22_11,2024-02-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
- clxscore=1011 lowpriorityscore=0 priorityscore=1501 adultscore=0
- mlxlogscore=999 phishscore=0 spamscore=0 mlxscore=0 bulkscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2402220120
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next 1/3] dt-bindings: net: dp83822: support
+ configuring RMII master/slave mode
+Content-Language: en-US
+To: =?UTF-8?B?SsOpcsOpbWllIERhdXRoZXJpYmVz?=
+ <jeremie.dautheribes@bootlin.com>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+ <linux@armlinux.org.uk>, Andrew Davis <afd@ti.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, =?UTF-8?Q?Miqu=C3=A8l_Raynal?=
+ <miquel.raynal@bootlin.com>, Yen-Mei Goh <yen-mei.goh@keysight.com>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>
+References: <20240222103117.526955-1-jeremie.dautheribes@bootlin.com>
+ <20240222103117.526955-2-jeremie.dautheribes@bootlin.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240222103117.526955-2-jeremie.dautheribes@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Thu, Feb 22, 2024 at 11:46:26AM +0200, Dmitry Baryshkov wrote:
-> On Thu, 22 Feb 2024 at 11:28, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
-> >
-> >
-> >
-> > On 2/22/24 10:04, Dmitry Baryshkov wrote:
-> > > On Thu, 22 Feb 2024 at 10:56, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
-> > >>
-> > >>
-> > >>
-> > >> On 2/22/24 00:41, Dmitry Baryshkov wrote:
-> > >>> On Thu, 22 Feb 2024 at 01:19, Bjorn Andersson <quic_bjorande@quicinc.com> wrote:
-> > >>>>
-> > >>>> The max frequency listed in the DPU opp-table is 506MHz, this is not
-> > >>>> sufficient to drive a 4k@60 display, resulting in constant underrun.
-> > >>>>
-> > >>>> Add the missing MDP_CLK turbo frequency of 608MHz to the opp-table to
-> > >>>> fix this.
-> > >>>
-> > >>> I think we might want to keep this disabled for ChromeOS devices. Doug?
-> > >>
-> > >> ChromeOS devices don't get a special SoC
-> > >
-> > > But they have the sc7280-chrome-common.dtsi, which might contain a
-> > > corresponding /delete-node/ .
-> >
-> > What does that change? The clock rates are bound to the
-> > SoC and the effective values are limited by link-frequencies
-> > or the panel driver.
+On 22/02/2024 11:31, Jérémie Dautheribes wrote:
+> Add property ti,rmii-mode to support selecting the RMII operation mode
+> between:
+> 	- master mode (PHY operates from a 25MHz clock reference)
+> 	- slave mode (PHY operates from a 50MHz clock reference)
 > 
-> Preventing the DPU from overheating? Or spending too much power?
+> If not set, the operation mode is configured by hardware straps.
 > 
+> Signed-off-by: Jérémie Dautheribes <jeremie.dautheribes@bootlin.com>
+> ---
 
-Perhaps I'm misunderstanding the implementation then, are we always
-running at the max opp? I thought the opp was selected based on the
-current need for performance?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Regards,
-Bjorn
+Best regards,
+Krzysztof
 
-> -- 
-> With best wishes
-> Dmitry
 
