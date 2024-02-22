@@ -1,97 +1,134 @@
-Return-Path: <devicetree+bounces-44550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBB1385EE66
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 02:01:04 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02EE485EE87
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 02:14:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18B7E1C21FAF
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 01:01:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 926B6B22D8D
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 01:14:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 626EB111A1;
-	Thu, 22 Feb 2024 01:01:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D6CF14296;
+	Thu, 22 Feb 2024 01:13:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bewilderbeest.net header.i=@bewilderbeest.net header.b="PDX9t50b"
+	dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b="IR51U6C8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [71.19.156.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D26C528EF;
-	Thu, 22 Feb 2024 01:00:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=71.19.156.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B30CF80C;
+	Thu, 22 Feb 2024 01:13:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.181.215.36
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708563660; cv=none; b=vAKXRW6iqhu96cTXielP4qV4UdMdG8VHV9DIxdiwfjKV2jPs4LeXZnTu2jcqrGOO59pq+klCmfuUH8k0nNURakEqr6xmQref4UXwdactZCBzxLMrIt1HqiNKLxQxwmoxaH54f2uC6/qvObLJBrMvN0qaDP7h45vze/IrDDjI5lw=
+	t=1708564436; cv=none; b=NKiDIxijUNDgFZoSnCJi3/jA89IcGlg8IaR2cAcjF4CYe5BI1v1nB+pq0zLXwiUJVslV98rghyJEQX2q+mwdBQByt0L/42qjB8joneDMOlym5k0QkfnzQ03sotyLcisntPF7DqTShlfzk1r6PRb2jlUI6EOyr1Yx1dAYl6Th63c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708563660; c=relaxed/simple;
-	bh=cD2i83b8Ha4nSxdN9LDmQVw8JoMYX7ZQQrHcrlA/hqg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dV09Fid9g8FBYoFTi6MB5u+15nWH7oirl3L4lODeErOAipP2tCkCFxvMdsAfyckJhCp9QIySMSYF5u+AceR8g1aW/qY2IeMZd5q9mS+uZGSgn7viepCQFXJNBI9GfuMQqiaMCEDRTETaWO+qEBq7DdXZS9/aay94foHsORhjAnc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bewilderbeest.net; spf=pass smtp.mailfrom=bewilderbeest.net; dkim=pass (1024-bit key) header.d=bewilderbeest.net header.i=@bewilderbeest.net header.b=PDX9t50b; arc=none smtp.client-ip=71.19.156.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bewilderbeest.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bewilderbeest.net
-Received: from hatter.bewilderbeest.net (unknown [IPv6:2602:61:712b:6300::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: zev)
-	by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 85E8D73D;
-	Wed, 21 Feb 2024 17:00:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-	s=thorn; t=1708563652;
-	bh=h0jc/OdAL3LAJdChikYYJE4lBxyIpD+osoWdj2KVKkg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PDX9t50bpElsRWI5kuM8iIFUvoDIaWKnQnZGzqLumFEkFxxe4W0wlik+Kx/vIp8cT
-	 hiQPiCg9Bs/Hhx6UFpvBjDex75t0o7+XDf4oCBXRb1lQxio/yeayjV40m5UhWcgbpV
-	 JSthYgjAUGOPApfUHYnbC8siFzZ+nDgBbEztgY7s=
-Date: Wed, 21 Feb 2024 17:00:51 -0800
-From: Zev Weiss <zev@bewilderbeest.net>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Rob Herring <robh+dt@kernel.org>,
+	s=arc-20240116; t=1708564436; c=relaxed/simple;
+	bh=YvwPGE6Je1yh6m1wlcMDe3waw6z0rk4FE6NC0S7WrtI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gU+UbZV0V9xP04JMArqH+ACVfn+ge3X3yrj9fJkoWNHcEuPxaMrFDqutq6Eb6OVuPluowyZhF55b//CA6XZvCLPws67iLwabigtL+FMwAYYrF/QPyKXJ1Mtx3XUMq/OcLlYMtFW7s1xZhRpYX8/HfHB/h9XsXFuXtBjFtkzYDX0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz; spf=pass smtp.mailfrom=xff.cz; dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b=IR51U6C8; arc=none smtp.client-ip=195.181.215.36
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xff.cz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
+	t=1708564424; bh=YvwPGE6Je1yh6m1wlcMDe3waw6z0rk4FE6NC0S7WrtI=;
+	h=From:To:Cc:Subject:Date:From;
+	b=IR51U6C8FowjMKn6pODgTAZeYUwQ5y3+6aiQwNmO+2+6cQSvaB91QuV+fZtUtMeFC
+	 XmpHIu7kbs4b9PzJbcahzmZ08UR5S5FIq8iW9fViRG7acsKD8u0/u/j+/I5kP1UXOr
+	 Tu5flioRygnxaBzaGu8SFcUqTYWYYBnseahxJOWI=
+From: =?UTF-8?q?Ond=C5=99ej=20Jirman?= <megi@xff.cz>
+To: linux-kernel@vger.kernel.org,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrey Skvortsov <andrej.skvortzov@gmail.com>
+Cc: Ondrej Jirman <megi@xff.cz>,
+	Icenowy Zheng <icenowy@aosc.io>,
+	Dalton Durst <dalton@ubports.com>,
+	Shoji Keita <awaittrot@shjk.jp>,
+	linux-iio@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: hwmon: nuvoton,nct6775: Add compatible
- value for NCT6799
-Message-ID: <5924d0ff-4b24-487e-a58d-31977c2919f4@hatter.bewilderbeest.net>
-References: <20240221155158.2234898-1-linux@roeck-us.net>
+Subject: [PATCH v4 0/4] Add support for AF8133J magnetometer
+Date: Thu, 22 Feb 2024 02:13:34 +0100
+Message-ID: <20240222011341.3232645-1-megi@xff.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20240221155158.2234898-1-linux@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Wed, Feb 21, 2024 at 07:51:58AM PST, Guenter Roeck wrote:
->While NCT6799 is mostly compatible to NCT6798, it needs a separate
->compatible entry because it is not completely compatible and does
->require chip specific code in the driver.
->
->Signed-off-by: Guenter Roeck <linux@roeck-us.net>
->---
-> Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml | 1 +
-> 1 file changed, 1 insertion(+)
->
->diff --git a/Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml b/Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml
->index 358b262431fc..e3db642878d4 100644
->--- a/Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml
->+++ b/Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml
->@@ -25,6 +25,7 @@ properties:
->       - nuvoton,nct6796
->       - nuvoton,nct6797
->       - nuvoton,nct6798
->+      - nuvoton,nct6799
->
->   reg:
->     maxItems: 1
->-- 
->2.39.2
->
+From: Ondrej Jirman <megi@xff.cz>
 
-Acked-by: Zev Weiss <zev@bewilderbeest.net>
+This series adds support for AF8133J magnetometer sensor. It's a simple
+3-axis sensor with two sensitivity options and not much else to it.
+
+This sensor is used on both Pinephone and Pinephone Pro. DT patches
+adding it will come later, once this driver is merged.
+
+Please take a look. :)
+
+Thank you very much,
+	Ondřej Jirman
+
+v4:
+- move RPM enable in probe function before iio device registration
+
+v3:
+- collect more tags
+- if (ret < 0) -> (ret) where appropriate
+- scoped guard move to af8133j_set_scale()
+- remove pm_runtime_disable/enable guard from af8133j_power_down_action()
+- pretty much just this:
+  https://megous.com/dl/tmp/0001-if-ret-0-ret-where-appropriate.patch
+  https://megous.com/dl/tmp/0002-scoped-guard-move-to-af8133j_set_scale.patch
+  https://megous.com/dl/tmp/0003-remove-pm_runtime_disable-enable-guard-from-af8133j_.patch
+
+v2:
+- move maintainers patch to the end of series
+- bindings:
+  - fix compatible definition in bindings file
+  - require power supplies
+  - fix descriptions
+- driver:
+  - sort includes
+  - rework RPM, the driver should now work with RPM disabled
+    among other improvements
+    - I've tested RPM left and right doing device bind/unbind under
+      various conditions, system suspend under various conditions,
+      etc.
+  - use scoped_guard for mutexes
+  - use devm for power down and handle power down correctly with both
+    RPM enabled/disabled without tracking power state in data->powered
+  - fix issue with changing scale while RPM suspended
+  - various code formatting issues resolved
+- as for sign-offs, I've added co-developed-by for people I know for
+  sure worked on the driver, and left other tags as they were when
+  I picked up the patch 2 years ago to my Linux branch
+
+Icenowy Zheng (3):
+  dt-bindings: vendor-prefix: Add prefix for Voltafield
+  dt-bindings: iio: magnetometer: Add Voltafield AF8133J
+  iio: magnetometer: add a driver for Voltafield AF8133J magnetometer
+
+Ondrej Jirman (1):
+  MAINTAINERS: Add an entry for AF8133J driver
+
+ .../iio/magnetometer/voltafield,af8133j.yaml  |  60 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   6 +
+ drivers/iio/magnetometer/Kconfig              |  12 +
+ drivers/iio/magnetometer/Makefile             |   1 +
+ drivers/iio/magnetometer/af8133j.c            | 524 ++++++++++++++++++
+ 6 files changed, 605 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/magnetometer/voltafield,af8133j.yaml
+ create mode 100644 drivers/iio/magnetometer/af8133j.c
+
+-- 
+2.43.0
 
 
