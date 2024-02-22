@@ -1,82 +1,91 @@
-Return-Path: <devicetree+bounces-44795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C323E85F9A4
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 14:24:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB1CB85F9B4
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 14:26:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F35551C238BB
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 13:24:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 805AC288452
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 13:26:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DB371468FA;
-	Thu, 22 Feb 2024 13:23:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E6411332AC;
+	Thu, 22 Feb 2024 13:26:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="NhvXyovi"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="R6AE6aX2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A07ED135405;
-	Thu, 22 Feb 2024 13:23:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 612F413172C;
+	Thu, 22 Feb 2024 13:26:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708608191; cv=none; b=opAeAQzO+AIxv2bIGy6nyHMN21+9IlJW1ty7BpyAKCKxJyyxwYtCHy9IFHwJQhWu1BvDFxDWXSj+9wxJzj6BwnkOC8nPOzKsGBHzFiJOqpW0s2kz1rEJc9btLccwyZ1LPDk/DJMoX3D6J04ZvIWmFDk0Z7guKtxqSSvbwNcJfDw=
+	t=1708608378; cv=none; b=eq4nmlG5bja6zLLWdPxQyNJ/pITUAHcK7OTt7b3dYNvIw/gMEIaHdIxClOIjofwIM+hjR8E9aV47S53qNtHS0QXR+g/UQMqAOgAaZpMlua9XOSZWkDkDVOxAX7A20P+noKBSbU5zX3JdXSAFcBCNnvymb8u7dSG4DTEJidYD5Z0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708608191; c=relaxed/simple;
-	bh=eSbXUqFedQp3uxU8odFpdsy0/WXm8uAd03gbB8t0lCw=;
+	s=arc-20240116; t=1708608378; c=relaxed/simple;
+	bh=I4irWzrbdiecduFdHLP1KMnn3sD5tUCl+NF7IaHYyNw=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ukrVQzJgA5LG2WzuiSpD9UE8jobql5xom6AuRL4db/Bo8W7hb/PbtIrMouPrnYX6KLmfVUA7jwlJTTyMuFTFUgz8+J9kaydi75iFCA+xB46ppZvXja1KqS46vaUhjQ+JYuvJ+/jDcOl4gkLhYyfl4R9j6U1PPcB4DHcsV/XiGXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=NhvXyovi; arc=none smtp.client-ip=198.47.23.248
+	 MIME-Version:Content-Type; b=uCDfHxHCydmrT24/aeIGHlV3aIfrnfUXHT6v4Y/5bAk4Qbgz5pjmRU2JCjbPBL13nFiJmeH7w+CaPDVMSMOhcTZcJmnGP1AexHb52NsPj5B8D9O7xL8XUePI0BG6gh+3tQXxFnWjeZxXBP+eNUBeKCjnQa0C+eV4mlCbPeUcxTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=R6AE6aX2; arc=none smtp.client-ip=198.47.23.249
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41MDN4cb046825;
-	Thu, 22 Feb 2024 07:23:04 -0600
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41MDPnE8005138;
+	Thu, 22 Feb 2024 07:25:49 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1708608184;
-	bh=CKdem2P6UyMctXabHybF1t5eSYfeMxcyIMqd3gX3ji0=;
+	s=ti-com-17Q1; t=1708608349;
+	bh=aMbV5adGSWaSv1TMJZb7IGsODIV0BZo86n43P68dotQ=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=NhvXyovirvowl8rr71OGYD8Rc9rfCW4OwqVJXZe5uVv1iqYmrb0XoOn4cOlIbgIA9
-	 CGoUHtL1kg/mtMJu/06QIHyiSy6UQzv/ZRcne3rTu/jzM7YZCTYFvXjCNOBIr084Tj
-	 EpRqAupWAFL7gugoP634Rj5tEZMI45+Q9fptDnqg=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41MDN4KQ022141
+	b=R6AE6aX2PKZCmsmuSvWgSBQ/RSttSCzhRnHMr5aosFwhfCCcWNiLUuk1K76N10Ymr
+	 2eFtWa4wIVVmSxRM8Y+Cy6zIqqu3Aqd46kv/6Kb3awTiQnta97BTftuyco2Hhj33I/
+	 TvMTX4oWJZ12ATFjwdJPcR/1MppAgRsgLbPl8S8A=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41MDPnf9123837
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 22 Feb 2024 07:23:04 -0600
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 22 Feb 2024 07:25:49 -0600
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 22
- Feb 2024 07:23:03 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ Feb 2024 07:25:49 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 22 Feb 2024 07:23:03 -0600
+ Frontend Transport; Thu, 22 Feb 2024 07:25:49 -0600
 Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41MDMwBt009356;
-	Thu, 22 Feb 2024 07:22:59 -0600
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41MDPgml103774;
+	Thu, 22 Feb 2024 07:25:43 -0600
 From: Vignesh Raghavendra <vigneshr@ti.com>
 To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
         Rob Herring
 	<robh+dt@kernel.org>,
         Krzysztof Kozlowski
 	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
-        Bryan Brattlof <bb@ti.com>, Dhruva Gole
-	<d-gole@ti.com>,
-        Jai Luthra <j-luthra@ti.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Geert Uytterhoeven
+	<geert+renesas@glider.be>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?=
+	<nfraprado@collabora.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
         <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Vaishnav Achath <vaishnav.a@ti.com>,
-        Devarsh
- Thakkar <devarsht@ti.com>, Aradhya Bhatia <a-bhatia1@ti.com>
-Subject: Re: [PATCH v2 0/4] arm64: dts: ti: Enable camera for SK-AM62P
-Date: Thu, 22 Feb 2024 18:52:54 +0530
-Message-ID: <170860805564.1966114.7021966559574978180.b4-ty@ti.com>
+        <linux-kernel@vger.kernel.org>, Darren Etheridge <detheridge@ti.com>,
+        Brandon
+ Brnich <b-brnich@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Andrew Davis <afd@ti.com>
+Subject: Re: [PATCH v5 0/4] Add Support for Wave5 on TI Devices
+Date: Thu, 22 Feb 2024 18:55:25 +0530
+Message-ID: <170860824003.1969506.11520093746235278886.b4-ty@ti.com>
 X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240220-am62p_csi-v2-0-3e71d9945571@ti.com>
-References: <20240220-am62p_csi-v2-0-3e71d9945571@ti.com>
+In-Reply-To: <20240220191413.3355007-1-b-brnich@ti.com>
+References: <20240220191413.3355007-1-b-brnich@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,29 +96,37 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Jai Luthra,
+Hi Brandon Brnich,
 
-On Tue, 20 Feb 2024 11:48:01 +0530, Jai Luthra wrote:
-> This series enables support for camera sensors using CSI-RX ports on
-> AM62P family of SoCs.
+On Tue, 20 Feb 2024 13:14:09 -0600, Brandon Brnich wrote:
+> This series is responsible for adding support for Wave5 driver[0]
+> across numerous TI K3 platforms.
 > 
-> Particularly, it enables OV5640 and IMX219 sensors via the 22-pin FFC
-> CSI-RX connector on SK-AM62P [1] using the existing common overlays for
-> SK-AM62* family of boards.
+> [0]: https://lore.kernel.org/all/ae6d2ad3-0b2a-462a-a9eb-9ce01e7a7f5e@xs4all.nl/
+> 
+> Changes since v4:
+> =================
+> * Remove clock-names from device tree nodes per Vignesh's request
+>   - "vcodec" clock-name is defined as macro in driver, but unused
+>   - no purpose to have it in dt node
 > 
 > [...]
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/4] arm64: dts: ti: k3-am62p: Fix memory ranges for DMSS
-      commit: 90a67583171f213711de662fab9f8d24a2d291a9
-[2/4] arm64: dts: ti: k3-am62p: Add DMASS1 for CSI
-      commit: 091e2e05228fa3fd424b1d775b04fb4734d5275b
-[3/4] arm64: dts: ti: k3-am62p: Add nodes for CSI-RX
-      commit: a8787f4fd29a43c5351daf3059a6156ff089a441
-[4/4] arm64: dts: ti: Enable overlays for SK-AM62P
-      commit: 598139b8c7c56cc6fb30ef8b4cf34b53a7fa5d0f
+[1/4] arm64: dts: ti: k3-j784s4: Add Wave5 Video Encoder/Decoder Node
+      commit: 7805623df1ff50e69fa66e91f7305144e9ef5c31
+[2/4] arm64: dts: ti: k3-j721s2-main: Add Wave5 Video Encoder/Decoder Node
+      commit: 8caaf735b9114f77895608acde21a5163b1bf02e
+[3/4] arm64: dts: ti: k3-am62p: Add Wave5 Video Encoder/Decoder Node
+      commit: ab480b8036fde8c1ea628bb1027919bf399468e9
+
+I have applied the following to branch ti-k3-config-next on [1].
+Thank you!
+
+[4/4] arm64: defconfig: Enable Wave5 Video Encoder/Decoder
+      commit: 02b645583e26f38261711f2a8b36c5db06862527
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
