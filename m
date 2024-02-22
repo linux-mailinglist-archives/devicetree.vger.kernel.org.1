@@ -1,167 +1,137 @@
-Return-Path: <devicetree+bounces-44765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E01985F86E
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 13:43:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BC7985F872
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 13:43:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B8C5CB22069
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 12:42:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94F081C24280
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 12:43:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFED712DD82;
-	Thu, 22 Feb 2024 12:42:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6870C12DDBC;
+	Thu, 22 Feb 2024 12:43:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="XJMZ07e2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RpPnITRj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2067.outbound.protection.outlook.com [40.107.93.67])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23CF0612EF
-	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 12:42:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.93.67
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708605775; cv=fail; b=okUPHFcjOtwUv0Dj01jAELvtu52jTR43676x8JGxhJwvp2cOWAoameboaCo2eHKqDSZS5z5pl9R6JZxKha0w8av4+A2g42gRVIdJZnwvdQbtuvlTnDrGnGg7sHaAPPMT4UNhrak4o37eoNP/YG1Vrhq3/yJgf7EHCGXVz7rx4gM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708605775; c=relaxed/simple;
-	bh=fQUt+00hhcmKir5tyDx6LvFSxJl4HTnJskIO6TTZAoo=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=EmLrV3ELIbPVGBo9AC49j9V1wL8i0N0INIb2X17eSRbStV5o6Rhf9N0y+viX0J4TPMs6u9h5TwQrgs2FPSHheSZANqyFQaVpznz6ovFAFcADVJEFV6HWsZs5vtnWU5PZueJ1CvwbCw8MkfXWUVCQU2EeLeLgzqYGRuv8sBLKg74=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=XJMZ07e2; arc=fail smtp.client-ip=40.107.93.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=E7cQ7ag8ooEs22cQDfgwWIR+T0HERHvYAYay8urIILGCX41Cb/DU3kSRPFKVzXRHPJLEFeEdNn4YLAtQoYae8/Lryjjj/K4/kNCjON3leKhsWlNZIblu+6S8C0fY/X3QKxXWJuRxTIgZdqmhlSKNbIf1MoBxuKMmQNMq1qiEhDKtzROaOi0HrKXtg9m25ELtttpBwzKYN4CPrPt4PSsLMWdn7YkcAQHVz+DaVCZxIhHistHJV3L35xtPslFxasdFAhhiex1q6QCIM3904izYouC3r8pOx8QvIHf+HgmfHky7ijBRXktxvoA2B5AcTG8cEqdunx22l2gS7utbQ9cKrw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=g0pAN1kOIrluLgQ5WkyE2N1lYXNeTwI/zs3o4TaQIss=;
- b=hpG3v3jrx1jbGiLAhiGLWjCMcFWyAvBWsjezbwO5MLSNB4DjtC38aleoN+VIK6LB/yDYgH7PEBryZCGUmYVBkE10W9UU7IBElWFW5RHCM8jiK6F9WXXCWCcvq9o29Q12r9FAi+so3dZcrRexDT+U4PlpncxGeEolUaTHPq4DiPDmFUTY9Kw4CLAalTLRAg3eH+esgHdl5XaAGz4+WHi++G6UNIWAQDXffkhbuGwQoVVJOh1boOxKQVb420ah7yvVEihCZkRfdUIxSQRkV1bzGzbFQAFdTfQSD7VY6G5Y37EztICDaS/Y2UVfzg1HeQHc4bpJrmWeydpbWcGDEeWJuA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.161) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=g0pAN1kOIrluLgQ5WkyE2N1lYXNeTwI/zs3o4TaQIss=;
- b=XJMZ07e20LzPVU90yBSjOeLLxgMHmkhM9V4b70XOSzgOr0/biy4QGCWdWeKqtK0TqPr5skrtg89AJ9B1mdwxowt0zV3dq319yEbJr2DhW+CeATZQa9syXIyM7IYhMnFgg58oLTCmlvGpW/m4XZ8dW24ABAofO5MrQGU0XjFxYOpa5AQWw23tqz9ld+XzcVgCfYv5zvwm5Nrn9xP0+pFZ42ZUu49BOMwQc/SZ14SFUKgdS6T2MJc8BIWDGqQfqX4wt3FPv4U8HUGUsb+wNuZqrfAmdcDjwbbNfi8J5wMfyZjALYlftjRzMRnFgxyvcEzEeuNoedoHN6gEyW/7xMTFwA==
-Received: from DS7PR06CA0039.namprd06.prod.outlook.com (2603:10b6:8:54::7) by
- DM6PR12MB4091.namprd12.prod.outlook.com (2603:10b6:5:222::16) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7316.27; Thu, 22 Feb 2024 12:42:50 +0000
-Received: from DS2PEPF00003442.namprd04.prod.outlook.com
- (2603:10b6:8:54:cafe::d9) by DS7PR06CA0039.outlook.office365.com
- (2603:10b6:8:54::7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.45 via Frontend
- Transport; Thu, 22 Feb 2024 12:42:50 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.161) by
- DS2PEPF00003442.mail.protection.outlook.com (10.167.17.69) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7292.25 via Frontend Transport; Thu, 22 Feb 2024 12:42:50 +0000
-Received: from rnnvmail204.nvidia.com (10.129.68.6) by mail.nvidia.com
- (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Thu, 22 Feb
- 2024 04:42:37 -0800
-Received: from rnnvmail203.nvidia.com (10.129.68.9) by rnnvmail204.nvidia.com
- (10.129.68.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.12; Thu, 22 Feb
- 2024 04:42:36 -0800
-Received: from vidyas-desktop.nvidia.com (10.127.8.9) by mail.nvidia.com
- (10.129.68.9) with Microsoft SMTP Server id 15.2.1258.12 via Frontend
- Transport; Thu, 22 Feb 2024 04:42:33 -0800
-From: Vidya Sagar <vidyas@nvidia.com>
-To: <robh@kernel.org>, <bhelgaas@google.com>
-CC: <devicetree@vger.kernel.org>, <treding@nvidia.com>,
-	<jonathanh@nvidia.com>, <kthota@nvidia.com>, <mmaddireddy@nvidia.com>,
-	<vidyas@nvidia.com>, <sagar.tv@gmail.com>
-Subject: [DT-SCHEMA PATCH V1] schemas: pci: Extend the meaning of 'linux,pci-probe-only'
-Date: Thu, 22 Feb 2024 18:12:31 +0530
-Message-ID: <20240222124231.2685261-1-vidyas@nvidia.com>
-X-Mailer: git-send-email 2.25.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3227312DD8F;
+	Thu, 22 Feb 2024 12:43:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708605822; cv=none; b=p7yRrEG0XJgzSRahCEfQICO1lM1ME+u+tnHJ/U1Bo/YqcsY+H3avl5FI/u2aqckpzC+YjQZTNwyEzRp4taeBektijE19H1Eziy8jaZCC7Mm+o5xBw3xYUmgqSF9joJPXbOoPbBxwL/CbV9YUwVbzl4VgKwZ8ULV943hl/j3HNrw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708605822; c=relaxed/simple;
+	bh=fxXyTnfaIEMd/Q22ZZODuf6RK5WPhFO+nFybeSW6WRM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=i3zd80/b0pOkhalFbXFzIsdEVkFe+VoiHFBtlrn+cG77It6cetyP4EGX+NHOAYGTMnuJ1hLERvT96loGFbyD/7KSL+kcsKW5mxrKlTj9LuDlkyG3/zd5EGLt9Ea7LMOCkZxThsH+9GhEnzOH65JdIWiq7CQuAiL1Uk3xwZgOxac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RpPnITRj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B4D9CC433F1;
+	Thu, 22 Feb 2024 12:43:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708605821;
+	bh=fxXyTnfaIEMd/Q22ZZODuf6RK5WPhFO+nFybeSW6WRM=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=RpPnITRj9dSrbD/t1sjshLiCi+BTf2/+GLZKXBfbvIrcS9Dr+zgjeEG+Cxk3gckMj
+	 ywTBYOowk3LFLqYciEEVkEabePeA7LPzG0sdosaIFsrJmomlgIF0DVSnWpd/KS7gF9
+	 iLle01qR2CL/hJfutEOcIZC6iVaXm3l08f6EWUB5gvkX7peKxal/tMR6vCvmzJJ2G4
+	 Jtk0rV5EKkQY72Um+LhKXxA+UlbcWIATMEak7dDOpYhDFcD3bmQclAzOM/pSV/8lLZ
+	 QkWYiR6Cul67kLGmDJIHeVXJnszYP5wzwqY4//2O82yGy3f5OrGXWRYSwg4T3MfUb5
+	 san7A+127UYfw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 96A72C48BEB;
+	Thu, 22 Feb 2024 12:43:41 +0000 (UTC)
+From: Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>
+Subject: [PATCH net-next v4 0/6] net: hisi-femac: add support for
+ Hi3798MV200, remove unmaintained compatibles
+Date: Thu, 22 Feb 2024 20:43:20 +0800
+Message-Id: <20240222-net-v4-0-eea68f93f090@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF00003442:EE_|DM6PR12MB4091:EE_
-X-MS-Office365-Filtering-Correlation-Id: abd4f405-2c85-4f30-c327-08dc33a3c7e8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	cnQ2nR9Wz0tGPObeXWUWXQ9sVhhHnPvDELgDhXdUQG5ZfneagAgg5+RpMGDCkjLB6+Vm92Fbb18eN00S4ABzqi24X16OBBIc30yX4WpOuB0PlX3gKAx3KbAL8iL0C0D/+gtVA1nxcCcsdOzyX5RahmFeaIRCczlkycCQDAvqyxZeLb/XkJa7A/kVakQH+FmRFNgiiEC8wn0M5k3ufd8PjJkRV6gN/odNpFadde/LPb03UOwIo3b5ol7WzNQR621+KrKLhJ8M68ckk/4Yh8kp4jBz7OrxEYLxBEMBU0xKdKxrrkf0aTCCy4BNoFt8xgcFAJbVTnmfuNq/WnSNN0e2olyQPSpuEM0WpmVGgKAv7kdBUzcH9ZxBKwv/yepqMvpK+tHsxPoCQ75FeCuWkb87lRebxw8fCntroFsnnVSC3tStUtU9JLS1O7IUQp0GQpCCIl5me934gOTbdBr7XCEEprcslC8sKWl5TwsyS+BtM0fq724D6LqlTaqE7iv8y4iqUgq+rO/yIjq0AuEiQ+UJ65DGlmQSoIoROwxXP88rN/atSgFJtDh3bQ9GmgXqRHmKzv3nAnWvzlKyA3nyrahaT/7ZOGCLzS2K+tSNm5T5OoyKxMOstTwXRKEWr9HBB0y+nYCAlG9GMSccxmankLweUGg1lqj1r9FT+19FQbGvgGI=
-X-Forefront-Antispam-Report:
-	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230031)(36860700004)(40470700004)(46966006);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Feb 2024 12:42:50.4342
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: abd4f405-2c85-4f30-c327-08dc33a3c7e8
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DS2PEPF00003442.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4091
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGhB12UC/23MTQ6CMBQE4KuYrq1pH/2hrryHcdGWhzRqawAJh
+ nB3K24kupzMfDORDtuAHdlvJtLiELqQYg5iuyG+sfGMNFQ5E2AgGHBFI/bUWGAlcu0Fq0le3lu
+ sw7i8HMl7EHHsySk3Tej61D6X+4Ev/epp4JRRZLYyGnxljTmkR39N6bLz6bY8DPBHQValcZVwm
+ inp4VcVXwrYRxVZOVWidFqiVnKt5nl+AcVufu0OAQAA
+To: Yisen Zhuang <yisen.zhuang@huawei.com>, 
+ Salil Mehta <salil.mehta@huawei.com>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>
+Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Yang Xiwen <forbidden405@outlook.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1708605802; l=2180;
+ i=forbidden405@outlook.com; s=20230724; h=from:subject:message-id;
+ bh=fxXyTnfaIEMd/Q22ZZODuf6RK5WPhFO+nFybeSW6WRM=;
+ b=RrqJTz2jLMJ7U3KfrwKu0Jq2o8HGaCGAG8EpKR8IWL0Pa49wginkGhGWVa/kmqdHo7rVh6UL+
+ Vmh4RpB5yMYAYn2A2ihTYNchYzzuB7IkeaLm9W79IPzAVSTi/vrjnhx
+X-Developer-Key: i=forbidden405@outlook.com; a=ed25519;
+ pk=qOD5jhp891/Xzc+H/PZ8LWVSWE3O/XCQnAg+5vdU2IU=
+X-Endpoint-Received:
+ by B4 Relay for forbidden405@outlook.com/20230724 with auth_id=67
+X-Original-From: Yang Xiwen <forbidden405@outlook.com>
+Reply-To: <forbidden405@outlook.com>
 
-Extend the meaning of 'linux,pci-probe-only' to cover the cases where
-it is applicable only to a specific PCIe host bridge if defined in a
-PCIe node instead of chosen node. Add the documentation for the same
-in schemas/pci/pci-host-bridge.yaml
-
-Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
 ---
- dtschema/schemas/chosen.yaml              | 2 ++
- dtschema/schemas/pci/pci-host-bridge.yaml | 8 ++++++++
- 2 files changed, 10 insertions(+)
+Changes in v4:
+- edit commit log to show why mdio bus clk is optional (Krzysztof Kozlowski)
+- add clk_bulk_disable_unprepare() during error path (Maxime Chevallier)
+- remove of_node_put() (Simon Horman)
+- remove histb-clock.h header in binding example as it's goign to be deprecated.
+- rearrange patches so binding comes before driver
+- Link to v3: https://lore.kernel.org/r/20240220-net-v3-0-b68e5b75e765@outlook.com
 
-diff --git a/dtschema/schemas/chosen.yaml b/dtschema/schemas/chosen.yaml
-index 6d5c3f1..9152df3 100644
---- a/dtschema/schemas/chosen.yaml
-+++ b/dtschema/schemas/chosen.yaml
-@@ -144,6 +144,8 @@ properties:
-       Optional property which takes a single-cell argument. If '0', then Linux
-       will assign devices in its usual manner, otherwise it will not try to
-       assign devices and instead use them as they are configured already.
-+      NOTE:- To restrict the applicability of this property to a specific PCIe
-+             host bridge, please refer to /schemas/pci/pci-host-bridge.yaml
- 
-   stdout-path:
-     $ref: types.yaml#/definitions/string
-diff --git a/dtschema/schemas/pci/pci-host-bridge.yaml b/dtschema/schemas/pci/pci-host-bridge.yaml
-index fbbb829..d6d595d 100644
---- a/dtschema/schemas/pci/pci-host-bridge.yaml
-+++ b/dtschema/schemas/pci/pci-host-bridge.yaml
-@@ -31,6 +31,14 @@ properties:
-       number for each host bridge in the system must be unique.
-     $ref: /schemas/types.yaml#/definitions/uint32
- 
-+  linux,pci-probe-only:
-+    description: If present, Linux will not try to assign devices and instead
-+      use them as they are configured already by the platform firmware for this
-+      particular host bridge.
-+      NOTE:- If defined in chosen node, this property has system wide applicability.
-+             Please refer to /schemas/chosen.yaml for more info.
-+    type: boolean
-+
-   msi-map:
-     $ref: /schemas/types.yaml#/definitions/uint32-matrix
-     items:
+Changes in v3:
+- rearrange patches to fix bot error. (Rob Herring)
+- rewrite commit logs (Andrew Lunn)
+- use clk_bulk_ APIs (Andrew Lunn)
+- fix uninitialization use of ret (assign to -ENODEV before goto) (Simon Horman)
+- Link to v2: https://lore.kernel.org/r/20240216-net-v2-0-89bd4b7065c2@outlook.com
+
+Changes in v2:
+- replace email.
+- hisi-femac: s/BUS/MACIF (Andrew Lunn)
+- hisi-femac: add "hisilicon,hisi-femac" compatible since the driver
+  seems generic enough for various SoCs
+- hisi-femac-mdio: convert binding to YAML (Krzysztof Kozlowski)
+- rewrite commit logs (Krzysztof Kozlowski)
+- Link to v1: https://lore.kernel.org/r/20240216-net-v1-0-e0ad972cda99@outlook.com
+
+---
+Yang Xiwen (6):
+      dt-bindings: net: hisilicon-femac-mdio: convert to YAML
+      net: mdio: hisi-femac: make clock optional
+      dt-bindings: net: remove outdated hisilicon-femac
+      dt-bindings: net: add hisilicon,hisi-femac
+      net: hisilicon: add support for hisi_femac core on Hi3798MV200
+      net: hisi_femac: remove unused compatible strings
+
+ .../bindings/net/hisilicon,hisi-femac-mdio.yaml    |  43 ++++++++
+ .../bindings/net/hisilicon,hisi-femac.yaml         | 116 +++++++++++++++++++++
+ .../bindings/net/hisilicon-femac-mdio.txt          |  22 ----
+ .../devicetree/bindings/net/hisilicon-femac.txt    |  41 --------
+ drivers/net/ethernet/hisilicon/hisi_femac.c        |  78 +++++++++++---
+ drivers/net/mdio/mdio-hisi-femac.c                 |   2 +-
+ 6 files changed, 221 insertions(+), 81 deletions(-)
+---
+base-commit: 8d3dea210042f54b952b481838c1e7dfc4ec751d
+change-id: 20240216-net-9a208e17c40f
+
+Best regards,
 -- 
-2.25.1
+Yang Xiwen <forbidden405@outlook.com>
 
 
