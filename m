@@ -1,126 +1,118 @@
-Return-Path: <devicetree+bounces-44874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D787C85FE5B
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 17:45:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 669E385FE6E
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 17:50:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4FDEF2829FD
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 16:45:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1ECF2285DCC
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 16:50:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72C2C1552E0;
-	Thu, 22 Feb 2024 16:44:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0FB6153BE4;
+	Thu, 22 Feb 2024 16:50:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gv/VWJu1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tvw+TbRx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B53811552E7;
-	Thu, 22 Feb 2024 16:44:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 698341552E2;
+	Thu, 22 Feb 2024 16:50:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708620280; cv=none; b=u2D4psykWxVuH6f6SxeMhT85YfTlv/Tp8etApndNodvXOTXMgs802HAm+zhLN5d/q2n9YR/WmSQUkHo4sAqiiYXc5Ywe/YMtS5wOkI3jMxI0PpDfB7KFnJWiPOJDfySE9rL1q+YZnVlBI02CLpFcJcYE2BnM9wZDWnrsFoP4EBA=
+	t=1708620616; cv=none; b=lP6qA8rMjiGcKKIsjzd1uvfK+nk6GTQdEKmEUw2Uu2YiqKM98TUBP/tF8D4gkZ66ENUUwOAAy9oRb5b1k5kwKS15jadgyMBU4AQwdOA5TJYeiYKVno5jI78GSYLeybiV4ipuaZrdk20gIJQG6jUaYYy/U0Y+szrDIxFkRMpFtt0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708620280; c=relaxed/simple;
-	bh=Z430PI7b/xHtUxak96DMBj+edhpX9NXBhwZDo/BO8nc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=C6687DrZ6UYsaRO5YJmyoz4geTbo2mugeJ1GsYhQ0AKPzAgRBON6hpUZMxt0Fg6H7fV1HBoe/fWG2X3LrTD57snN6N5KlB/QfHKj4QJLcJV/9BPxg+G7lA1/nhs3Wv2ljgcXIuJNT8xC7aHfoWK+ObPUliLe/quxjMUkPjQ754g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gv/VWJu1; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-41275971886so15806215e9.3;
-        Thu, 22 Feb 2024 08:44:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708620277; x=1709225077; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SJbQ3RMr2l9g2dwn49+72QIs9q2n9zDfNSkTMBZwZqU=;
-        b=gv/VWJu1r5WqmV3RjbJbfEqoqWXn532ayLMEmzDVqvp8rwFgp5IRfQySmg/dyMZVeo
-         KSELY32dwnDhJG863c+dfkGztbfW77Pw0+NVl24sptgYZSRdK9oMdYLzXCRVvWqOuxfJ
-         Y9/K9CjxKg0i166VnGShNjTFk8bBsCW6loHzSx/rzQhlYjW18FCkZcWOSM2QnV9CBuSo
-         7zRVOq6bu2yrxXfpwtqpKFG3jLYtJbeAH+c9KzNH0hABIqP/MyeLgXXjeZvs5rSt2QR4
-         B9GcUI14sJY4KaRBBNnoAqsMtlVt5itT6M9k6A8AXG/nRJ7/VRk7g05JX7zEfVvU4Hxw
-         1mAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708620277; x=1709225077;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SJbQ3RMr2l9g2dwn49+72QIs9q2n9zDfNSkTMBZwZqU=;
-        b=WfOBgaPY+DtnkMRYX5cUrgPCldHIY9h0grDXIpKXCOH/d8l6j6qBMHGVCZO6br1zDA
-         kqivA7MmwkqflhxQqgz+NLn38q0l45cgyme8PKymwDooDFXBbhJJQEAb/9ZvOLI/V+WP
-         V6Fsdr4UavE57QOLs1NR/iDoOirTzq7RtbNpf/+NB37rdi7zadWgKL7MAy/B2pmysHG9
-         iGfJD/b3nrsJQHAVq6dOVBQBH8U+lDPPXhgwIZFZ+sCHCDNKJwUklZ0MdN38yCc1uGkM
-         K841Jx0r1ZjKxdNCt4H+bFqAZZ4HAsPoc5qPhjFRuOhCeZGcPFNHq94uNytE5fKk7TW4
-         9nMA==
-X-Forwarded-Encrypted: i=1; AJvYcCXyO897fLvC+URLr0cVvDozO48InzeXQCddY4gLhOaHDbOLvHHKh1VicsL2GX8daFvmKEWf5zDaptzH3kX4ZSwcggOViyyR8t1coKLD4gwL83UDkMj/iM2DqsoInFpT2BlJvt1BZ9wtjg==
-X-Gm-Message-State: AOJu0Yw+0KoFQgkKlrn1KfxYTzhlWUp2Xl0WVEdqLuDGA/6lUE90ratc
-	CkLynIchYFW7WDja6VazLOgqnx5iApbqtSDaLUvsw/YOQJWP1S/M
-X-Google-Smtp-Source: AGHT+IFzXwKQPSxSSxzZqbXiZzBKkMFdfxPv4JL+1o3Iq/5dLUL4kB+1nHUcUFbHgsQgjKD2SH3foA==
-X-Received: by 2002:a05:600c:1c1e:b0:412:1d7d:6c51 with SMTP id j30-20020a05600c1c1e00b004121d7d6c51mr16054487wms.6.1708620277066;
-        Thu, 22 Feb 2024 08:44:37 -0800 (PST)
-Received: from localhost.localdomain ([90.255.110.157])
-        by smtp.googlemail.com with ESMTPSA id r2-20020a05600c35c200b004123b049f86sm22800420wmq.37.2024.02.22.08.44.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Feb 2024 08:44:36 -0800 (PST)
-From: Adam Green <greena88@gmail.com>
-To: Jagan Teki <jagan@amarulasolutions.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: greena88@gmail.com
-Subject: [PATCH v2 2/2] dt-bindings: display: st7701: Add Hardkernel ODROID-GO Ultra panel
-Date: Thu, 22 Feb 2024 16:43:14 +0000
-Message-ID: <20240222164332.3864716-3-greena88@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240222164332.3864716-1-greena88@gmail.com>
-References: <20240221194528.1855714-1-greena88@gmail.com>
- <20240222164332.3864716-1-greena88@gmail.com>
+	s=arc-20240116; t=1708620616; c=relaxed/simple;
+	bh=jzgZY6zqPBSGD9YD0BKd1woI2fsVxRaFtsSJDMgRhhk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=J/tn9odHoUhM0IQq5h0NydKvPcyAv7442KA8WUPWl9OrUdpdmUbLKkU+YvJnesZRCIhzY1undkeIM7Zz12zan9I6LvqUDLFBKokFi972+d8XRNjkMrJqdFTCmkiF1UjbBQlWWSu3MUGOzURnEWEnP88EpvsG1xIJYi/Z12S5oxw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tvw+TbRx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9ECBCC433F1;
+	Thu, 22 Feb 2024 16:50:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708620616;
+	bh=jzgZY6zqPBSGD9YD0BKd1woI2fsVxRaFtsSJDMgRhhk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Tvw+TbRxk808PShE8X9kFc2djAPrBKVC3fPeou9JAwUeFEgmjlzWOarpNx0+DXxXp
+	 FY0YTS2GBnXJ8RYNdGq67aBx2KngY9DLAKutqHQVO0KNrhxMZI5IkYerQNXazGQ3ZT
+	 5n4TcWfuvwzo6M219lB8xUPyWUvLvyFowGO4IEdhX0zwlMEUT5sLea+jainoyh1OKv
+	 kzY0fPn9XEObThLrabLoLo9ypfpUfRGXIN3L3zury9khOitSoyV596qjtHyC3tk23z
+	 xOrc2HACbJB10923znohknE3lWyuIEnltcwgOxcuxXr6X8DJWxCDy7cXhRi8Nsdcja
+	 +SVhesevS2Z3w==
+Date: Thu, 22 Feb 2024 16:50:08 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Wesley Cheng <quic_wcheng@quicinc.com>, srinivas.kandagatla@linaro.org,
+	mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
+	corbet@lwn.net, lgirdwood@gmail.com, andersson@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
+	Thinh.Nguyen@synopsys.com, bgoswami@quicinc.com, tiwai@suse.com,
+	robh+dt@kernel.org, konrad.dybcio@linaro.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
+	alsa-devel@alsa-project.org
+Subject: Re: [PATCH v17 36/51] ASoC: dt-bindings: Update example for enabling
+ USB offload on SM8250
+Message-ID: <bdc57138-e67e-47ae-8cf1-b8be5aeb2369@sirena.org.uk>
+References: <20240217001017.29969-1-quic_wcheng@quicinc.com>
+ <20240217001017.29969-37-quic_wcheng@quicinc.com>
+ <7dc9e80e-0875-4dfc-adf9-9bfad2fb8589@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="cOd1FR6fHMWZvLvO"
+Content-Disposition: inline
+In-Reply-To: <7dc9e80e-0875-4dfc-adf9-9bfad2fb8589@linaro.org>
+X-Cookie: I have accepted Provolone into my life!
 
-The ODROID-GO Ultra panel is a panel specific to the Hardkernel
-ODROID-GO Ultra. It is 5 inches in size (diagonally) with a
-resolution of 480x854.
 
-Signed-off-by: Adam Green <greena88@gmail.com>
----
- .../devicetree/bindings/display/panel/sitronix,st7701.yaml       | 1 +
- 1 file changed, 1 insertion(+)
+--cOd1FR6fHMWZvLvO
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/display/panel/sitronix,st7701.yaml b/Documentation/devicetree/bindings/display/panel/sitronix,st7701.yaml
-index b348f5bf0a98..3eb306161f1a 100644
---- a/Documentation/devicetree/bindings/display/panel/sitronix,st7701.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/sitronix,st7701.yaml
-@@ -30,6 +30,7 @@ properties:
-           - anbernic,rg-arc-panel
-           - densitron,dmt028vghmcmi-1a
-           - elida,kd50t048a
-+          - hardkernel,odroid-go-ultra-panel
-           - techstar,ts8550b
-       - const: sitronix,st7701
- 
--- 
-2.43.0
+On Thu, Feb 22, 2024 at 05:24:58PM +0100, Krzysztof Kozlowski wrote:
+> On 17/02/2024 01:10, Wesley Cheng wrote:
+> > Add an example on enabling of USB offload for the Q6DSP.  The routing c=
+an
+> > be done by the mixer, which can pass the multimedia stream to the USB
+> > backend.
+> >=20
+> > Acked-by: Rob Herring <robh@kernel.org>
+> > Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+> > ---
+> >  .../devicetree/bindings/sound/qcom,sm8250.yaml    | 15 +++++++++++++++
+> >  1 file changed, 15 insertions(+)
 
+> This broke next.
+
+> Wesley, are you sure you explained dependencies in this patch? Why is
+> next failing on this now?
+
+It's surprising to see this merged at all while the series is still in
+review?
+
+--cOd1FR6fHMWZvLvO
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXXez8ACgkQJNaLcl1U
+h9CQogf/Rty+PzQj/jpG1Fsxu7+MaMcQMkpn1XF2iLD4N1C1cgT6z9UpSyhYC29E
+LHR1HWRiqckOMwnBNyrckGk+mP6PMkGkzqMGBb+rZskMwRX1hCrLkGQzNKVZiugQ
+mirk1eX7etmEaXOAwVT8dKNa34Z/YQXUmEe4lXM6fOpDXhoDDe+5DI8C50Xecsvr
+f/dVZiWq7Nl43QJfHimKiSHAR5JfIeiIBFKcJhTGLVhGAK/juChu9IK1bUnkXffT
+7s+3Fqk5c4YbZ8g4WogDEToJkKAt1dQMf4GSJ21Dhn1xy0sewSXnKSilzX5ieLSR
+PFrYDeV9DWhxNldEQDfvR+DPP/XWpQ==
+=xlAH
+-----END PGP SIGNATURE-----
+
+--cOd1FR6fHMWZvLvO--
 
