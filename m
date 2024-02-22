@@ -1,106 +1,118 @@
-Return-Path: <devicetree+bounces-44898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F22485FFF5
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 18:45:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B134D85FFFD
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 18:47:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0B451C26167
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 17:45:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3612CB2717E
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 17:47:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 669041586E6;
-	Thu, 22 Feb 2024 17:45:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E132155313;
+	Thu, 22 Feb 2024 17:47:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gtdcaR1Q"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k8bBJ6Zw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36A65156964;
-	Thu, 22 Feb 2024 17:45:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBF36131722;
+	Thu, 22 Feb 2024 17:47:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708623906; cv=none; b=N1jZ8TsT0rzvZpfznKPDj4lyhZPvBC6EmVmuWbaLfmFPfRhx2CsYwW15TW0mFvw7l9uS7HjTnywDvLAePM0DVLgs1ok5xv94Sr9lNduub5t4xyunJazH8icHGBIag20f6b0a3f5eV6vuBAm5zjrUFVp2y87X2VVldtYw4LR1wcU=
+	t=1708624037; cv=none; b=nz9n9MKBNkF911miqSBojfUdfSCY8HP/K1sEw9tI8KxfhIx3NBk3hf6df9/G6SWDrC+u0Cp+cx+Uqxy8snh8uS590pk+d93CZA4CNG85Hc4ZrujsBBTOeXtUM3H2k48l4drHitqGukdTJhnVZocBWZcEKWhXNe6TBR8bODi9UWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708623906; c=relaxed/simple;
-	bh=EQbxLM18rqvFJ3PNdnsPoefgm4fMY+dLn4MXH2fDWiI=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=KzCD3opTQjRT04d3xYeSFTlOmhEAhkmYmqAqbXFHkbb7cwj94fFE0U5zEdXLZYMBeEO4qulNh20P30ox8d/wah4ajtNig6DXDwzsN2p6FZZD6oJ33GMJWKzLCLGIvGrKRisXT4JEAoZQG6c0A9Lw/bHOzzb/0pLisqC2h4eeVnc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gtdcaR1Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EAE7C433C7;
-	Thu, 22 Feb 2024 17:45:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708623905;
-	bh=EQbxLM18rqvFJ3PNdnsPoefgm4fMY+dLn4MXH2fDWiI=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=gtdcaR1Q2g0YXGy0sPQncYYJ3Be9Tm8RHIAXk6rsXbZY40yrDsudXOWL6MRKCwRVh
-	 g0wyjZPZkS4snwhh8tBtic/hfNUOMvCR1pHkOgy3mAmn669r9NiJer9EBd94+vqlKm
-	 BzknA1r+mW03i38tWvyGQClbofq9yZBgbgkt6BIMlZFPS5weftZtZFFICbokGhsAbA
-	 glwC+5Dh+afE5NevfqKaCE33b2HMfylHDSs3pQU/JmN3mXUliXa7y9MDtN2pxL+2a8
-	 EniCu5qXPw4L0NH+YZ2LTUHW37PW4wHQbayNhzOPIUpgN5IptdN1KIjXiGR1jrfhPm
-	 3MogsVx0tTgmQ==
-Date: Thu, 22 Feb 2024 10:45:02 -0700
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1708624037; c=relaxed/simple;
+	bh=pxj3JMHZFONWDKnKYJpje4WNhEx9Zd7DxubCa9x8R+w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=PC+HxlSVaAQfGA6sRoFmT/kZEeYH7WsAjXukofNFwtjv9hsGU40oH8J+NsOuoEX1mfUNB1PFcvcllPxErtVlAbFWqRj0t1VsazFuuOXPRIgAKH0Gv2xpEWDQnValge3HM1yHlqpX/jzce8ByvZC6VsEunYSxjZ91CQe1tFGl4tY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k8bBJ6Zw; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-512e39226efso83000e87.0;
+        Thu, 22 Feb 2024 09:47:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708624034; x=1709228834; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=1vMzRY4ZdJC97RtaAcBXZtkJzfMV0ziR37O9+2OreJs=;
+        b=k8bBJ6ZwqQPztJ5iWSF9xS0xqfkYefAOe+dFzKRjpfycRNkZvw0qOSbAZFmAOLqiXF
+         GiTssslOJoycJdMG0obOfEnLPd5+3VRhAresH+SJ2bq10Mc5/yYzK5+nqaiBQoJJ+SKf
+         3Kab/xHaNuUUvXcBDyYP41hkcJkP4ebINQsmJ9N9BONLnnqA/56wljJXhiDGbmufp086
+         jZmPgkf/cAqDiklGFX4Sj2YaWGHBMwzS7AeNQndEZdTApbwAvjR+iOW3Xb8A00JtkdlH
+         dOsVTfjmBBQ9WcWprp7+eCoocy+6bvE1p/KsroL4tVyf8ZeL70NT73uyjUiLZ3CksDsW
+         MG4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708624034; x=1709228834;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1vMzRY4ZdJC97RtaAcBXZtkJzfMV0ziR37O9+2OreJs=;
+        b=NZYqTNEOyQ74pTibp6yyuDV0TE2JMwiXMAUsh36b6joebaszW7pGYLmvelI2aWDk/R
+         fRRbtApCZTxAOQ0/7Q+DkUHJtPm0pqcnegVZFHZnDAqMQCmRSH0o2rTl1tD6T5kHydaY
+         zapuqwDrsg66i6YyTTx81H7nipK4ZdvTZsowozzG3mEnHc0QOLK3Co49Ztv/L8M0kAjX
+         eodXx1/2hOSE36LHZrzyQMX2ZCTIXIkvZ/eh41QK3hDXGDPU7zLVVgwRBXvtWjuxeu4T
+         qFCMJ0bm7i4mCj2FJCIvKEmHNt7QqUG3OShssvtjl81Ak/KInLd2CeTePUcdcB0aGQvg
+         k6Ww==
+X-Forwarded-Encrypted: i=1; AJvYcCXV4HwWeGjnVKO30+oHkMLppTn7zQseZPpQgoM4uZigwkVPkRS3yr70ZlbhHC15UQjzUvElDcElcz8LVOGYAfQZptq0zhCvPKWE3h0mVa71+yCMzzrIgOcqTzi06GvG1W4BnAbSZUq2eg==
+X-Gm-Message-State: AOJu0YzmxHFTXTPWOm7Cs+EJjgcZtuQwduNqwLYNHDcXHvE7T8rNK+1I
+	ZK3z++3n1iD+1QT5BpBCEebaP0zv/ynk93tp1+WolTIES82uANRm
+X-Google-Smtp-Source: AGHT+IGiugEEEwYB53ORSW0VA1gdJrv8sHxuyh9M9w4ejmOATIcCj/UM2+JKxQktNLdPnMuWWIo5iw==
+X-Received: by 2002:a05:6512:3fc:b0:512:ceae:93d9 with SMTP id n28-20020a05651203fc00b00512ceae93d9mr3339347lfq.28.1708624033424;
+        Thu, 22 Feb 2024 09:47:13 -0800 (PST)
+Received: from [192.168.50.110] ([90.255.110.157])
+        by smtp.gmail.com with ESMTPSA id ay25-20020a05600c1e1900b00411d3a414c6sm895267wmb.47.2024.02.22.09.47.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Feb 2024 09:47:12 -0800 (PST)
+Message-ID: <79a4b60e-24f3-47fd-b3b3-7d207cec1470@gmail.com>
+Date: Thu, 22 Feb 2024 17:47:11 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: marius.cristea@microchip.com
-Cc: linux-hwmon@vger.kernel.org, lars@metafoo.de, jic23@kernel.org, 
- krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org, 
- robh+dt@kernel.org, devicetree@vger.kernel.org, jdelvare@suse.com, 
- linux@roeck-us.net, conor+dt@kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20240222164206.65700-2-marius.cristea@microchip.com>
-References: <20240222164206.65700-1-marius.cristea@microchip.com>
- <20240222164206.65700-2-marius.cristea@microchip.com>
-Message-Id: <170862389650.3483951.10645767474712290486.robh@kernel.org>
-Subject: Re: [PATCH v5 1/2] dt-bindings: iio: adc: adding support for
- PAC193X
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] drm: panel: st7701: Add Hardkernel ODROID-GO Ultra
+ panel support
+To: Jessica Zhang <quic_jesszhan@quicinc.com>,
+ Jagan Teki <jagan@amarulasolutions.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Sam Ravnborg <sam@ravnborg.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240221194528.1855714-1-greena88@gmail.com>
+ <20240222164332.3864716-1-greena88@gmail.com>
+ <20240222164332.3864716-2-greena88@gmail.com>
+ <f9446923-acd3-41cf-92d4-676b946280c4@quicinc.com>
+Content-Language: en-GB
+From: Adam Green <greena88@gmail.com>
+In-Reply-To: <f9446923-acd3-41cf-92d4-676b946280c4@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-On Thu, 22 Feb 2024 18:42:05 +0200, marius.cristea@microchip.com wrote:
-> From: Marius Cristea <marius.cristea@microchip.com>
+On 22/02/2024 17:14, Jessica Zhang wrote:
+> Hi Adam,
 > 
-> This is the device tree schema for iio driver for
-> Microchip PAC193X series of Power Monitors with Accumulator.
+> Just wondering, why the change to 120 here?
 > 
-> Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  .../bindings/iio/adc/microchip,pac1934.yaml   | 120 ++++++++++++++++++
->  1 file changed, 120 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/microchip,pac1934.yaml
+> Thanks,
 > 
+> Jessica Zhang
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Hi,
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/iio/adc/microchip,pac1934.yaml:51:9: [warning] wrong indentation: expected 6 but found 8 (indentation)
+The 120ms is taken from the datasheet specification for the controller 
+as maximum time it takes for the display to reset,
 
-dtschema/dtc warnings/errors:
+Kind regards,
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240222164206.65700-2-marius.cristea@microchip.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Adam
 
