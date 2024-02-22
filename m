@@ -1,50 +1,84 @@
-Return-Path: <devicetree+bounces-44951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 823A2860395
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 21:20:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60C4E86039A
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 21:21:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 171861F26F03
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 20:20:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C924287432
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 20:21:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE0486E5E7;
-	Thu, 22 Feb 2024 20:20:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F2A66E5E3;
+	Thu, 22 Feb 2024 20:21:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b5xqPH+j"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U+4jAzrd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4D056AFA9;
-	Thu, 22 Feb 2024 20:20:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5054314B832;
+	Thu, 22 Feb 2024 20:21:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708633231; cv=none; b=SJDVTKpPng8jj4scQwBbnC7vk8CXvIPWZ9oh/4rMFb+bsvBDHOpXN4EJuXp2HCSsNQxS8Ei7ISLa5pmdBI9zHzw8HjbQAmq98XPHayBWjzLr6U39Tpjoc9Zh9VudmnMR4Z/I4Vu3xec8sTdQ7ALzX0ZLbeJwfGqfVrcZ1RdJoVM=
+	t=1708633309; cv=none; b=FJAfcjT6KaBKKAxzsDiPnnEHiJJ7qi7aka9xpMwHZFoCixx8NoUnVEX3inOHWE+I1g2r3Hdv9T5lCJaC6XjgpgoJybu0dqLcAUucGh29Ool1612qNNSsDyYCOBg4ll6+m+ViZWBwfv3SIMYdltyslRbAyWZwfJJhXjuakFs7cJo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708633231; c=relaxed/simple;
-	bh=UtGmhrVXWOQgfINhBlApcwhf/spsw5YMmZhYCI+jEww=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=tHrLleSkezJwmEBQOym+ipyC9OW+48jhai0HW7yBs4ITOdOjp28WdF2vKUGySXVsJtuqWrERPl9GIOv3q6vHaGbFJ1vrb+MR0U2bePOYrNic8Z7VqWvmUK0uAr2jM13qFoGg706pLLUKIrdXPDvL/RbVI0GDm7pgtJ9UkPypxdc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b5xqPH+j; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 549CAC43394;
-	Thu, 22 Feb 2024 20:20:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708633231;
-	bh=UtGmhrVXWOQgfINhBlApcwhf/spsw5YMmZhYCI+jEww=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=b5xqPH+jNwgz99/qOuiOdzr5cJrB+12a30C/knYO2wusyXuON2BpRDK6tqpWpsZiv
-	 lz/gvdJ1X/Ahd0nZn74UDJUQ+l0VKNZoNUcpHCBWEQ6CI6Qh2cx0O1SZkKpg8/lr2v
-	 GQSgsQJMBkgcBBEQjLlxddaSixgzV6ixmBj8CJxpd6/NmChd0eMPALkN+P5k1W7OMo
-	 75Qtkm+fRQGxuxgQGIIVbIfpsVoryXrO2WXIUMtyJh4vnkurMYQm1sQ4iWqwDybt6u
-	 PwWvesXOqcW+JWSu0VDeqxBUyEc3DG1Wi1eZqLdcPTouAPs188tPH3+fNn69emz1vb
-	 Cx92WtX27ptKQ==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 39A19D84BBF;
-	Thu, 22 Feb 2024 20:20:31 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1708633309; c=relaxed/simple;
+	bh=SgFxhOq+EnrXdHT0SYVq/FJ3HuLFv4isdMn8h8YAW4o=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NhQs2W2SIqf3XsFoxNUvyt3zpv7S1DTXxddRTd26COHkOLm/XzY/ESFvkSNzGnN0sfkbnZ9PbF9tbt8xd8iIS2OFzss/ZBwBfB00RcR3d99n5KUfLeVTVX4wSr5eAJsed4zzcglh6OSjIG72cY8o55AyunHQKI3ni4echncqvXo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U+4jAzrd; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-412897a2f9eso1176995e9.1;
+        Thu, 22 Feb 2024 12:21:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708633305; x=1709238105; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=99vnuqEXMLe3Jmfg/HJHmgn8y+UJAkAraWQlEnUY7ic=;
+        b=U+4jAzrdPdapVZyfaFppi5rtRg9NdXa7SjTs/wSsoEy+QBhytgwj8fOg1h3nnQx7aZ
+         96WqRpCYDtNdfk8eC283eGtXm+TwbcsvFWkjtXC21ND6t3/Kn4oEJ1iyEKNv4bIBgl79
+         BOQc8vluwB76TvzQhrEgiCRQCkc2YcPlUr2r8fWpTvSIFMK3F7xmr5DUWsvIrHx/Fc3O
+         h156DAIVQ1i1jhTXEKVHv0vaX0M+XDKS4gFKnrsC7VzkKuPq682K7tDM4uSq/ijXPS/X
+         tDYS6Tjc/UmGQXp7YY42JfgoNyz+PqwMPjs5tNczLAG2t16ZEysLRd6gmPxJXz0e6gal
+         8pjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708633306; x=1709238106;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=99vnuqEXMLe3Jmfg/HJHmgn8y+UJAkAraWQlEnUY7ic=;
+        b=vVCSBnDhA9Cy2HwB6I8wQEvKabecb46s8RBBJkiHuswhOq8EuDuKr18NFdqLpWerxs
+         sLEFgPpy/zMdc5gYgCqDdIM6sJuh69m47KrFbucgmJqRonzBHdfG09Oapds36xU0woav
+         bWCyZT1QJoRbrgmK9vcBbM9rmBl6Gqc4617MmcLh9ViLWROYrOTiRyP34wC5CiSHCsGD
+         GaXwfvYGVekZ1+ZSFgvfe6DZTSPwxa8MGkcQ3/Zmt/PRGk+jd/08O0Q1R4b8eyUCiVtA
+         C7s+5oebVUEQWvr9cFlDk2L5de1IOuIpTWqTcIh1Yaly7CiuLuePOdKDaPWNNH056KKP
+         MtqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV1OwOuNNVP+p48/RlMM8F7pj8nrnPi+YyYufsvhgr3j1E3BdmbUQFDHklvoeH3zquf00KnmZHp5rUJ85eYe30CSVeeBuk0TrN+Cg==
+X-Gm-Message-State: AOJu0Ywi+0Kc9Z1CXKAND+bipqM1UhPY5M+J0ADcwGc4tACkcU6J9Ifm
+	S8PD5hK7sII1EcdkLU9Q9++Q6WmkfdjvCssZrzj8VD033ekKpBiedpE5JjcybRM=
+X-Google-Smtp-Source: AGHT+IGyWVz7dF80oqRaSk3e45BDjiWLpL6Ezf8tUtNg33PSaV+2fPL0yYo9wtVgTm717Llwm13CQQ==
+X-Received: by 2002:a05:600c:4706:b0:412:5652:138f with SMTP id v6-20020a05600c470600b004125652138fmr68354wmo.16.1708633305497;
+        Thu, 22 Feb 2024 12:21:45 -0800 (PST)
+Received: from arrakis.kwizart.net (home.kwizart.net. [82.65.38.83])
+        by smtp.gmail.com with ESMTPSA id a10-20020a05600c224a00b004128da16dddsm1785707wmm.15.2024.02.22.12.21.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Feb 2024 12:21:45 -0800 (PST)
+From: Nicolas Chauvet <kwizart@gmail.com>
+To: Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Marc Dietrich <marvin24@gmx.de>
+Cc: linux-tegra@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Andre Przywara <andre.przywara@arm.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Nicolas Chauvet <kwizart@gmail.com>
+Subject: [PATCH] ARM: tegra: paz00: Add emc-tables for ram-code 1
+Date: Thu, 22 Feb 2024 21:21:42 +0100
+Message-ID: <20240222202142.129807-1-kwizart@gmail.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,52 +86,71 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v8 0/4] RISC-V: Add MMC support for TH1520 boards
-From: patchwork-bot+linux-riscv@kernel.org
-Message-Id: 
- <170863323122.27873.17493121539917977053.git-patchwork-notify@kernel.org>
-Date: Thu, 22 Feb 2024 20:20:31 +0000
-References: <20231206-th1520_mmc_dts-v8-0-69220e373e8f@baylibre.com>
-In-Reply-To: <20231206-th1520_mmc_dts-v8-0-69220e373e8f@baylibre.com>
-To: Drew Fustini <dfustini@baylibre.com>
-Cc: linux-riscv@lists.infradead.org, paul.walmsley@sifive.com,
- palmer@dabbelt.com, aou@eecs.berkeley.edu, jszhang@kernel.org,
- guoren@kernel.org, wefu@redhat.com, conor@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, jkridner@beagleboard.org,
- robertcnelson@beagleboard.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
 
-Hello:
+The same table as ram-code 0 operates correctly on ram-code 1
 
-This series was applied to riscv/linux.git (for-next)
-by Palmer Dabbelt <palmer@rivosinc.com>:
+v2: rebase on current kernel
 
-On Wed, 06 Dec 2023 00:09:20 -0800 you wrote:
-> This series enables the MMC controller in the T-Head TH1520 SoC and
-> enables the eMMC and microSD on both the BeagleV Ahead and the Sipeed
-> LicheePi 4A.
-> 
-> The drivers/mmc/host patches from v6 were applied by Ulf and are already
-> in the linux-next [1][2] as well as the bindings patch [3]. Thus v7 was
-> only a defconfig patch and three device tree patches. This v8 is a
-> followup to change the dwcmshc node names to match the documentation.
-> 
-> [...]
+Signed-off-by: Nicolas Chauvet <kwizart@gmail.com>
+---
+ arch/arm/boot/dts/nvidia/tegra20-paz00.dts | 43 ++++++++++++++++++++++
+ 1 file changed, 43 insertions(+)
 
-Here is the summary with links:
-  - [v8,1/4] riscv: defconfig: Enable mmc and dma drivers for T-Head TH1520
-    https://git.kernel.org/riscv/c/45e0b0fd6dc5
-  - [v8,2/4] riscv: dts: thead: Add TH1520 mmc controllers and sdhci clock
-    (no matching commit)
-  - [v8,3/4] riscv: dts: thead: Enable BeagleV Ahead eMMC and microSD
-    (no matching commit)
-  - [v8,4/4] riscv: dts: thead: Enable LicheePi 4A eMMC and microSD
-    (no matching commit)
-
-You are awesome, thank you!
+diff --git a/arch/arm/boot/dts/nvidia/tegra20-paz00.dts b/arch/arm/boot/dts/nvidia/tegra20-paz00.dts
+index afb922bd79a7..1408e1e00759 100644
+--- a/arch/arm/boot/dts/nvidia/tegra20-paz00.dts
++++ b/arch/arm/boot/dts/nvidia/tegra20-paz00.dts
+@@ -533,6 +533,49 @@ emc-table@333000 {
+ 					0x00000000 0x00000000 0x00000000 0x00000000>;
+ 			};
+ 		};
++
++		emc-tables@1 {
++			nvidia,ram-code = <0x1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <1>;
++
++			emc-table@166500 {
++				reg = <166500>;
++				compatible = "nvidia,tegra20-emc-table";
++				clock-frequency = <166500>;
++				nvidia,emc-registers = <0x0000000a 0x00000016
++					0x00000008 0x00000003 0x00000004 0x00000004
++					0x00000002 0x0000000c 0x00000003 0x00000003
++					0x00000002 0x00000001 0x00000004 0x00000005
++					0x00000004 0x00000009 0x0000000d 0x000004df
++					0x00000000 0x00000003 0x00000003 0x00000003
++					0x00000003 0x00000001 0x0000000a 0x000000c8
++					0x00000003 0x00000006 0x00000004 0x00000008
++					0x00000002 0x00000000 0x00000000 0x00000002
++					0x00000000 0x00000000 0x00000083 0xe03b0323
++					0x007fe010 0x00001414 0x00000000 0x00000000
++					0x00000000 0x00000000 0x00000000 0x00000000>;
++			};
++
++			emc-table@333000 {
++				reg = <333000>;
++				compatible = "nvidia,tegra20-emc-table";
++				clock-frequency = <333000>;
++				nvidia,emc-registers = <0x00000018 0x00000033
++					0x00000012 0x00000004 0x00000004 0x00000005
++					0x00000003 0x0000000c 0x00000006 0x00000006
++					0x00000003 0x00000001 0x00000004 0x00000005
++					0x00000004 0x00000009 0x0000000d 0x00000bff
++					0x00000000 0x00000003 0x00000003 0x00000006
++					0x00000006 0x00000001 0x00000011 0x000000c8
++					0x00000003 0x0000000e 0x00000007 0x00000008
++					0x00000002 0x00000000 0x00000000 0x00000002
++					0x00000000 0x00000000 0x00000083 0xf0440303
++					0x007fe010 0x00001414 0x00000000 0x00000000
++					0x00000000 0x00000000 0x00000000 0x00000000>;
++			};
++		};
+ 	};
+ 
+ 	usb@c5000000 {
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.42.0
 
 
