@@ -1,62 +1,65 @@
-Return-Path: <devicetree+bounces-45034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C19A86070D
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 00:35:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FD0E860718
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 00:43:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EC60EB21761
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 23:35:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C4591F23406
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 23:43:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ED301B819;
-	Thu, 22 Feb 2024 23:35:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58F9A13BAD2;
+	Thu, 22 Feb 2024 23:43:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ShIIAFFh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jnJy0g8a"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ADF61B7E8;
-	Thu, 22 Feb 2024 23:35:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D6471CD25;
+	Thu, 22 Feb 2024 23:43:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708644915; cv=none; b=ES9VVngT3NeYTPE0IPvHsP+7/6QaQpGOEC6jzWeFfFy2T5l+zcnQ9gCOE62cLBnvZirNdGn+1QR2Z16fm9Q3n93We6vvJpNneVTMlkj52C06hFwV9Hnixqv6sgQg9F+ACL7BrGq3TEy5OX0DWaeeeCQ8L0mW39wFjabMuRly/Hg=
+	t=1708645385; cv=none; b=g3oRLvnXnEb3urdrHToAbTx1ZuNAnDmGPTnEfA9BO4Nduo8GWyKnlQAp2Bemt1y/o5nWnoZ3kn9w1p3TSuH/75Kr8Hj5LV7uZ97PeJc+8Qx6d6LkpOfSQOKnrB6iuI1pMfOO1/rget5rz+GmTG9rNw6fRTG/9y/pE1ByQZvxQ8U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708644915; c=relaxed/simple;
-	bh=bWHQ4veqHNgZLLV3PvODabroMs7Y6VE4DKsDteiIziM=;
+	s=arc-20240116; t=1708645385; c=relaxed/simple;
+	bh=orYPHvKEF7pNsfLnqS3JuQ7jmo0kJmxsHCs+Py+BljA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i033M+8eCpv6LE8E/hq264Nqnq5QOwMw9XMaGXxrPGMp9EOlPp50lVaxGeorCA3LyaVCL/Ks5mn8uTU82TJiLZvpglGjd6gm5nZQ9SZvoT6N0NiYA1VrwUC1b7ctdUKviH2PNhISDDSic42OiSlRP7PqBC8DQ7xZqzNOKj0TVCw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ShIIAFFh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53FC2C433F1;
-	Thu, 22 Feb 2024 23:35:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=EvV6+WSXxJnujFkmJnR+9D1DyzRkGtkj1vPE2aQ0i6QnjgLuOuAr1CZRC3cyqXJKOqYS/CGG1/AiKMlV7xdJ3vps4WMzCs+wqoO3utX8nvFn2tKmhZ5KECbBQiVeN8T8MIzgh0o+ItTQLnklqW6BCRbreO135hjVXV2BTlppzME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jnJy0g8a; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3385EC433F1;
+	Thu, 22 Feb 2024 23:43:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708644915;
-	bh=bWHQ4veqHNgZLLV3PvODabroMs7Y6VE4DKsDteiIziM=;
+	s=k20201202; t=1708645384;
+	bh=orYPHvKEF7pNsfLnqS3JuQ7jmo0kJmxsHCs+Py+BljA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ShIIAFFh+3T39gD8YC924PmfNQhM4tY30CnPeKJD92aKONmy7ruQf14KyQV4Vi58z
-	 98ew1Qzt6FURyURo0IEctanKtVpKrj4d2xLJeMTmxpehOXWxyqkJUqvngxel0SHp6Y
-	 /ef2mpYckwgmZnK18aNoNTS+Sw6SrzTiHjheh33q2jKlLs1NoJMgj+TP3eE2MifRRO
-	 JqduNINSGm0TwIuB+1wqsvDQaa5wMXZYpUhRKKRj4movMj+Qwj6kUOhC28em4OAD/t
-	 Mf3NVXxjYlqelfCgIrvSWu5VhTpLalqaSn0O9G5fM+iQMPDYpHLa6Xvitp6mtbuQei
-	 XetYvnDI08DDA==
-Date: Thu, 22 Feb 2024 16:35:10 -0700
+	b=jnJy0g8aJUy/nsIbPKzZliYyca0yhygNbHrmb8qSxM9IRSUuonUBjN6cqCGiQPs7t
+	 sinQph2fUfALhfnfpUT+l0JSThKKjSVvJkRtH+chmJYXTaWkISRtTzM1H1qxPKZ7Z0
+	 XLw1swd88spcG3rvy3Ts3unIJLjo5G5UCye+DlcyDHRtWAa9e26hKlFH3FGdmUrOU3
+	 E0hiarafAkSIvMbvLMG/egu1oKGeUll0sJq9ExZ6oHzpX2Xop7tAqpemff2KWx6Yy1
+	 kwE7TSSNCsvBNiIhxz/PEwmOGs2fh/vgnCYqVv/Pc0OH9RQQ8mDNbBnRfdiXSC7mUq
+	 RsVPZsDPDk7UQ==
+Date: Thu, 22 Feb 2024 16:43:00 -0700
 From: Rob Herring <robh@kernel.org>
-To: Jan Kiszka <jan.kiszka@siemens.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, "Andrew F. Davis" <afd@ti.com>,
-	Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-	linux-pci@vger.kernel.org,
+To: Antonio Borneo <antonio.borneo@foss.st.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Kishon Vijay Abraham I <kishon@ti.com>,
-	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-	devicetree <devicetree@vger.kernel.org>, Nishanth Menon <nm@ti.com>,
-	"Lopes Ivo, Diogo Miguel (T CED IFD-PT)" <diogo.ivo@siemens.com>
-Subject: Re: [PATCH v2] dt-bindings: PCI: ti,am65: Fix remaining binding
- warnings
-Message-ID: <170864491030.3808693.7969720495759139872.robh@kernel.org>
-References: <8032b018-c870-403a-9dd9-63440de1da07@siemens.com>
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Subject: Re: [PATCH 02/12] dt-bindings: interrupt-controller: stm32-exti: Add
+ irq nexus child node
+Message-ID: <20240222234300.GA3809915-robh@kernel.org>
+References: <20240216094758.916722-1-antonio.borneo@foss.st.com>
+ <20240216094758.916722-3-antonio.borneo@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,28 +68,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <8032b018-c870-403a-9dd9-63440de1da07@siemens.com>
+In-Reply-To: <20240216094758.916722-3-antonio.borneo@foss.st.com>
 
+On Fri, Feb 16, 2024 at 10:47:47AM +0100, Antonio Borneo wrote:
+> The mapping of EXTI interrupts to its parent interrupt controller
+> is both SoC and instance dependent.
+> The current implementation requires adding a new table to the
+> driver's code and a new compatible for each new EXTI instance.
+> 
+> Add to the binding an interrupt nexus child node that will be
+> used on the new EXTI instances and can be optionally used on the
+> existing instances.
+> The property 'interrupt-map' in the nexus node maps each EXTI
+> interrupt to the parent interrupt.
+> Align #address-cells and #interrupt-cells between the EXTI node
+> and its nexus node.
 
-On Thu, 15 Feb 2024 13:55:56 +0100, Jan Kiszka wrote:
-> From: Jan Kiszka <jan.kiszka@siemens.com>
-> 
-> This adds the missing num-viewport, phys and phy-name properties to the
-> schema. Based on driver code, num-viewport is required for the root
-> complex, phys are optional. Their number corresponds to the number of
-> lanes. The AM65x supports up to 2 lanes.
-> 
-> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-> 
-> ---
-> Changes in v2:
->  - limit phy-names to pcie-phy[0-1]
->  - fix schema-checking of example
-> ---
->  .../bindings/pci/ti,am65-pci-host.yaml        | 20 +++++++++++++++++++
->  1 file changed, 20 insertions(+)
-> 
+Looks like an abuse of interrupt-map. You avoid adding yourself to the 
+abuser list by putting it in a child node. Clever. (See list in 
+drivers/of/irq.c if you don't know what I'm talking about)
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+I assume the EXTI has 0..N interrupts. Just define 'interrupts' with N 
+entries with each entry mapping EXTI interrupt N to 'interrupts' entry 
+N.
 
+Rob
 
