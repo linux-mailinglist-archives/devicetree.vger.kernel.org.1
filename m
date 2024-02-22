@@ -1,94 +1,226 @@
-Return-Path: <devicetree+bounces-44600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 328FF85F0C4
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 06:14:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6843885F0DD
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 06:21:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 164C61C215E7
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 05:14:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C5C8CB23A0C
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 05:21:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40EFB6FCC;
-	Thu, 22 Feb 2024 05:14:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82D327483;
+	Thu, 22 Feb 2024 05:21:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="g0cHn1fn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZRSL7TEE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 865C06FB2;
-	Thu, 22 Feb 2024 05:14:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5A1D5244;
+	Thu, 22 Feb 2024 05:20:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708578870; cv=none; b=XoVZtqrXbrCyLCVpvXGD6XyrvwgzgHvXDVKrTibKZBhJ73NJzuPjREuiBnFQ5LMJpaYv0kG9p19HA7zW9kfsNavZJXRKBKTunH2+3Hc1AKP9dUVqCufgGhAtBLKEn3pbzk9CVbVBsm/acJ1GAsWQ0KBCHa1KqBLhZp1vlQbrk2o=
+	t=1708579260; cv=none; b=duudSQe4RONhMw0k3TSLlDTE4SewZy2tIO8KfHq5ehXEq0mQAIj9vonIHuI6tO3DUWN2VE8fwZXyN5GtPLMoSfTXokj1+3vZMAX0YJbS51H471ze5lnC0YFaMT3KfUucyCiDYPXyYvN2egCxXoInq+PJc5bbWbOra2U+grf4URc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708578870; c=relaxed/simple;
-	bh=N4KpCM+UVrNx33f8oBGXZMbn6GuSNZZSPQgZqz/X9Sw=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ViUJyfw6GlMxrgQlr9EYGy+cmDJnNQldBC6QU7PUsbIK7zPgbY3u58aeztYZCmR0/e8Ck1iDdwfpP9aVFwnSIhnJxwOR/Vm68ctYmEWnVTkmgfOLMfOC6ACq0n2u/jsslbXq/VnUqsXy7QupznCJFWRz4K/i2BlwAj8c9awxAkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=g0cHn1fn; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-Received: from [192.168.16.88] (ppp118-210-168-240.adl-adc-lon-bras34.tpg.internode.on.net [118.210.168.240])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 93A7120127;
-	Thu, 22 Feb 2024 13:14:22 +0800 (AWST)
+	s=arc-20240116; t=1708579260; c=relaxed/simple;
+	bh=g+xx/zj+2br9BDde8+30/oiYrFuCk00e9lGzpVPAZUE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=n121toA0HpmDONFojge8T3TdlzbqHFzxxGPbFWGFRkuu64WMYWCpjHnXgi+MUfFpbbJLx0aPCN7jCUg38Lu1zggjiYP6FldBUYLCFU3xbmyknWSdxlvi3pvMMGc3EVIoxekvf7HIIciM7Yo8xX2PM9vzaTzpHkLXvRsyuejp3T4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZRSL7TEE; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-512b13bf764so5200910e87.0;
+        Wed, 21 Feb 2024 21:20:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1708578865;
-	bh=89ProCV78HKbw9sgfRbewDIGLrfuKhODmhkmtlXU7lw=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=g0cHn1fnMT6UpTNcpHCJ9LOZRxITvHjhkLUvdoHuoEqCSvt4DyHBI3/QDbJgMHhne
-	 hv/PFKdK0XzOAmAQjQkKCCtjKxBG9OPX2PnkDHnRSucKG23cPf9Ik9x4MgwBLTPHVq
-	 s0yzTbSZSHwQ8kXSnU6uhLoHkKbv+gnzUOuLckJsGjK7KgN8JWoNMZbnbyuckR79bv
-	 T5IR5gFvH/TA/F/TxCU7dWUiDdSdc3RRBm7MwXc0F0LdZC7KkOwyZ5BJq/G2QAzyP9
-	 DzR09xY3euO6q/CzzrpuG+1R0rxgszMfARDPWtsIVpqlVJrWH9J7g+qiYU3W/cxMao
-	 4qHi/YThobLaA==
-Message-ID: <2ab9b3924dbe07039e934d4580ab7dd397a31728.camel@codeconstruct.com.au>
-Subject: Re: [PATCH] dt-bindings: arm: aspeed: add ASUS X4TF board
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Kelly Hung <ppighouse@gmail.com>, robh+dt@kernel.org
-Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, joel@jms.id.au, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
-	openbmc@lists.ozlabs.org, kelly_hung@asus.com, Allenyy_Hsu@asus.com
-Date: Thu, 22 Feb 2024 15:44:20 +1030
-In-Reply-To: <20240222032504.1147489-2-Kelly_Hung@asus.com>
-References: <20240222032504.1147489-1-Kelly_Hung@asus.com>
-	 <20240222032504.1147489-2-Kelly_Hung@asus.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+        d=gmail.com; s=20230601; t=1708579257; x=1709184057; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=p1IgVF5skWIyujttVkQJHEL92mFwiPJ1+coNrRfMm9Y=;
+        b=ZRSL7TEE3xRc6X8nKSOfhaTI63k5YMYhGtSmVB9bI7hJz6c2ffaFIRHLqBZrWRVmyT
+         9erpK1355Cx9tOwArEk9Qi9WMMfAz/ZsnevaOXfhlBs476C8lu+Nc7pnsU14VfVWZ/c2
+         XG5lvOcM/A6YzOZGOkqFsRBNFHBlQwQvPFRfeMJSBbwBXbQkugRHwH6Ha/wOrp2Nf1GV
+         bW4brRCghyX7bbNr3ocCcBVze0pt8WmT6Fm9YBPKaB6EXAFUJiqeCeoZismMlusDgBRR
+         V3qMYThkh6esyu/bsPNUoaKfkKMoIV6/YZeUJIu2DP/RK+/h7OO3TS3ZX0Aq4dQF2pk2
+         8VWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708579257; x=1709184057;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=p1IgVF5skWIyujttVkQJHEL92mFwiPJ1+coNrRfMm9Y=;
+        b=NRsICvhaOZUKkhN6/dALz6FSKZL962wrOrnve7HtkawroLWsTT00IJ1fAb8nLP8PRU
+         e8xiVvzZZK6H7A1RwyGpVUrvitEowg0dIFjVtpxaLtKOoU8n9yjdIorSKu6ZPXrMyWfR
+         n3QeKcIbWl3zeM8AIpc2EpbJ9aSMG5WEBv5Bur4ZSRu80Y/6pNy/7VksHtLYdLaJYfza
+         PKdulVf7ZYKQgIDqyCRiYgNWyGAETduJiM2YgUAndKfu8xsjz6VY8ACLcyJ7D3252FpQ
+         M3vywie7GdbgQ+MzM0znOkJlsYD7EItZXLeOi+/uheDIaybzkSuxVCmKZVQIjG8sbZ4H
+         9kCA==
+X-Forwarded-Encrypted: i=1; AJvYcCUt+ZmTaOwq4vsXzqNAl//Zl4loxX6T7dFO4WQ+iCOxKPlzbLdEb4uqKSsIySPfeunVOhjhfWY6H/96n1G67QbnIGZ8tPIZwjlZrlM5R/jwSVEtzTm6Rv2STPWkTgG3VhwZu2E2zANLR4wDrD3tVeNf1g50cNNBMZYc7AnZLqHtrZMTtA3Q
+X-Gm-Message-State: AOJu0YyU8utPPLTE1h2FQ3e61taLTFli4a9DM5BgTWsbRmCEeAXTlTQx
+	QdPl9hUSRTyE7RLREg33Ju8B7bdRFoyp7kxUxMPlGOeaUx8ornV3
+X-Google-Smtp-Source: AGHT+IFrakLqyJ6PYef53Y/DlK3T4t27nkFtJ2Uc5xBeTTD99qHfWRNXXFtR1QRF2ujurL66ohwxIA==
+X-Received: by 2002:a05:6512:5c4:b0:512:d721:f0f5 with SMTP id o4-20020a05651205c400b00512d721f0f5mr1789690lfo.60.1708579256369;
+        Wed, 21 Feb 2024 21:20:56 -0800 (PST)
+Received: from localhost ([2a05:3580:f312:6c02:29d4:49b1:c3dc:494c])
+        by smtp.gmail.com with ESMTPSA id y10-20020ac2420a000000b00512c56ecd7asm855134lfh.61.2024.02.21.21.20.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Feb 2024 21:20:41 -0800 (PST)
+Date: Thu, 22 Feb 2024 08:20:32 +0300
+From: Andrey Skvortsov <andrej.skvortzov@gmail.com>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Alain Volmat <alain.volmat@foss.st.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	=?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
+	Pavel Machek <pavel@ucw.cz>,
+	Arnaud Ferraris <arnaud.ferraris@collabora.com>
+Subject: Re: [PATCH 2/2] media: gc2145: implement basic dvp bus support
+Message-ID: <ZdbZoF_uUPga3uek@skv.local>
+Mail-Followup-To: Andrey Skvortsov <andrej.skvortzov@gmail.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Alain Volmat <alain.volmat@foss.st.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	=?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
+	Pavel Machek <pavel@ucw.cz>,
+	Arnaud Ferraris <arnaud.ferraris@collabora.com>
+References: <20240217220308.594883-1-andrej.skvortzov@gmail.com>
+ <20240217220308.594883-3-andrej.skvortzov@gmail.com>
+ <ZdSFGaJ9qnayYI5C@kekkonen.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <ZdSFGaJ9qnayYI5C@kekkonen.localdomain>
 
-Hi Kelly,
+Hi Sakari,
 
-On Thu, 2024-02-22 at 11:25 +0800, Kelly Hung wrote:
-> Document the new compatibles used on ASUS X4TF.
->=20
-> Signed-off-by: Kelly Hung <Kelly_Hung@asus.com>
-> ---
->  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/D=
-ocumentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-> index 749ee54a3ff8..60a494b7aaaf 100644
-> --- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-> +++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-> @@ -74,6 +74,7 @@ properties:
->                - ampere,mtmitchell-bmc
->                - aspeed,ast2600-evb
->                - aspeed,ast2600-evb-a1
-> +              - asus, x4tf
+On 24-02-20 10:55, Sakari Ailus wrote:
+> Hi Andrey,
+> 
+> On Sun, Feb 18, 2024 at 01:03:08AM +0300, Andrey Skvortsov wrote:
+> > Tested on PinePhone with libcamera-based GNOME screenshot.
+> > 
+> > Signed-off-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
+> > ---
+> >  drivers/media/i2c/gc2145.c | 117 ++++++++++++++++++++++++++++---------
+> >  1 file changed, 90 insertions(+), 27 deletions(-)
+> > 
+> >  
+> > @@ -612,6 +623,11 @@ struct gc2145 {
+> >  	const struct gc2145_mode *mode;
+> >  };
+> >  
+> > +static inline bool gc2145_is_csi2(const struct gc2145 *gc2145)
+> > +{
+> > +	return gc2145->ep.bus_type == V4L2_MBUS_CSI2_DPHY;
+> 
+> This is used in a single place. Could you move this comparison there?
+Yes, I'll do.
 
-You need to remove the space after the comma. This should be
-`asus,x4tf`.
+> 
+> > +}
+> > +
 
-Andrew
+> >  	}
+> > @@ -924,6 +975,9 @@ static void gc2145_stop_streaming(struct gc2145 *gc2145)
+> >  			GC2145_CSI2_MODE_EN | GC2145_CSI2_MODE_MIPI_EN, 0,
+> >  			&ret);
+> >  	cci_write(gc2145->regmap, GC2145_REG_PAGE_SELECT, 0x00, &ret);
+> > +
+> > +	/* Disable dvp streaming */
+> > +	cci_write(gc2145->regmap, GC2145_REG_PAD_IO, 0x00, &ret);
+> >  	if (ret)
+> >  		dev_err(&client->dev, "%s failed to write regs\n", __func__);
+> >  
+> > @@ -1233,9 +1287,8 @@ static int gc2145_init_controls(struct gc2145 *gc2145)
+> >  static int gc2145_check_hwcfg(struct device *dev)
+> >  {
+> >  	struct fwnode_handle *endpoint;
+> > -	struct v4l2_fwnode_endpoint ep_cfg = {
+> > -		.bus_type = V4L2_MBUS_CSI2_DPHY
+> > -	};
+> 
+> First try D-PHY and if that fails, then try PARALLEL.
+> 
+> > +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+> > +	struct gc2145 *gc2145 = to_gc2145(sd);
+> >  	int ret;
+> >  
+> >  	endpoint = fwnode_graph_get_next_endpoint(dev_fwnode(dev), NULL);
+> > @@ -1244,36 +1297,46 @@ static int gc2145_check_hwcfg(struct device *dev)
+> >  		return -EINVAL;
+> >  	}
+> >  
+> > -	ret = v4l2_fwnode_endpoint_alloc_parse(endpoint, &ep_cfg);
+> > +	ret = v4l2_fwnode_endpoint_parse(endpoint, &gc2145->ep);
+> 
+> You won't have any link frequencies available with this change.
+Thanks for catching this up. I'll fix that.
+
+> 
+> >  	fwnode_handle_put(endpoint);
+> >  	if (ret)
+> >  		return ret;
+> >  
+> > -	/* Check the number of MIPI CSI2 data lanes */
+> > -	if (ep_cfg.bus.mipi_csi2.num_data_lanes != 2) {
+> > -		dev_err(dev, "only 2 data lanes are currently supported\n");
+> > -		ret = -EINVAL;
+> > -		goto out;
+> > -	}
+> > +	switch (gc2145->ep.bus_type) {
+> > +	case V4L2_MBUS_CSI2_DPHY:
+> > +		/* Check the link frequency set in device tree */
+> > +		if (!gc2145->ep.nr_of_link_frequencies) {
+> > +			dev_err(dev, "link-frequencies property not found in DT\n");
+> > +			ret = -EINVAL;
+> > +			goto out;
+> > +		}
+> > +
+> > +		/* Check the number of MIPI CSI2 data lanes */
+> > +		if (gc2145->ep.bus.mipi_csi2.num_data_lanes != 2) {
+> > +			dev_err(dev, "only 2 data lanes are currently supported\n");
+> > +			ret = -EINVAL;
+> > +			goto out;
+> > +		}
+> > +
+> > +		if (gc2145->ep.nr_of_link_frequencies != 3 ||
+> > +			gc2145->ep.link_frequencies[0] != GC2145_640_480_LINKFREQ ||
+> > +			gc2145->ep.link_frequencies[1] != GC2145_1280_720_LINKFREQ ||
+> > +			gc2145->ep.link_frequencies[2] != GC2145_1600_1200_LINKFREQ) {
+> > +			dev_err(dev, "Invalid link-frequencies provided\n");
+> > +			ret = -EINVAL;
+> > +			goto out;
+> > +		}
+> > +		break;
+> >  
+> > -	/* Check the link frequency set in device tree */
+> > -	if (!ep_cfg.nr_of_link_frequencies) {
+> > -		dev_err(dev, "link-frequency property not found in DT\n");
+> > +	case V4L2_MBUS_PARALLEL:
+> > +		break;
+> > +	default:
+> > +		dev_err(dev, "unsupported bus type %u\n",
+> > +			gc2145->ep.bus_type);
+> 
+> Fits on the previous line.
+I'll change this in v2.
+
+
+-- 
+Best regards,
+Andrey Skvortsov
 
