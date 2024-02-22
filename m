@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-44819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 591DD85FABF
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 15:07:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 999C585FADC
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 15:15:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E43BA1F25C6C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 14:07:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A3B5282957
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 14:15:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AA63148FEE;
-	Thu, 22 Feb 2024 14:05:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F1C81419A4;
+	Thu, 22 Feb 2024 14:15:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GIWgfYuU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iVKuLGwp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 640221482F7;
-	Thu, 22 Feb 2024 14:05:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3642712FB02;
+	Thu, 22 Feb 2024 14:15:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708610745; cv=none; b=IrMxD3XOXlqHptKebO+wOMK8FBYaIM8V0I68fGfuj8y9ULnebZ5LxC7Sz5GPhpdrDHuPeKQbKW5AzzolVGMd6H9TfgYq1xfZbp+uuBR2GkqQvbMmBqNiD3mzVk9H0fYwaPWufQnxTzi6LfN8PbjIdzG96ckW8elVakslpjgAcvk=
+	t=1708611327; cv=none; b=lgvl3dVJcNWn8GYuEplzlg41+U1GeFGTtb94AIu8BTmcYNCDShdSuaQ4r4nTlNrjSwgPcmKU7pnD8Qspw+IuICmz34PgwYEArUMrKgGl6DOlR0DlksfEsb2sxyUKQwRpwV5q1jDqw8bDOGrNms25Az6yzV25lwmsP0rYbUITeIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708610745; c=relaxed/simple;
-	bh=3oLeLa6rd2L74GgGe1DmbMXwWVI+cNrH91RsxvM/HdU=;
+	s=arc-20240116; t=1708611327; c=relaxed/simple;
+	bh=kIZczWHR5/Nc3nYCAWYzUjsydPY/1nsM6oO6gbmZSHw=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=CtkgZQ/YiORuA4eCX3u9uUjOlFrHHpIXsECMFEGBsTQ8CnjpTPa4IO6ARj+CMbIkmJKv9t6uwHFPn0iSyttimd9MwYTQ2W0dlFujEJ4RpnBto8XVFRUsLWEg6il8TNtN3bSyUGztFueZvRKL9MdpyjCGHvsHegO5YyBijcWrS0Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GIWgfYuU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DFFAC43390;
-	Thu, 22 Feb 2024 14:05:44 +0000 (UTC)
+	 MIME-Version:Content-Type; b=NQco+sQ5IH9sMEfELuEmtPe1OqwEkDdt5QH+Pbm8PfA9OcBDLIhL6B4WR8dhb9CIb+J4SeADdcd9h8PallXVhv06cxQLaIH6LZSESXmTcGoV1Nlx2KY0eHW2J+njQmzwHgQr+Jfer/fSIsK18bseRxA6h9sta7SA/KNradKvO3s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iVKuLGwp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 790F7C433F1;
+	Thu, 22 Feb 2024 14:15:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708610745;
-	bh=3oLeLa6rd2L74GgGe1DmbMXwWVI+cNrH91RsxvM/HdU=;
+	s=k20201202; t=1708611327;
+	bh=kIZczWHR5/Nc3nYCAWYzUjsydPY/1nsM6oO6gbmZSHw=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=GIWgfYuUsPS4XvVO2lTxlI17U35koeY34HM6mt79Jdy7hxI109bKBGWOs/zgGbOwj
-	 c5G4vORDQGBHPM/buap+bKoyjEnq1COlebNehisFZdyb7KMz14Vaw6pGu427gsqxoB
-	 ze8LKrgoEqYOuxTFFufpQJuOqjel2fpCpj4LSQGKlV9xbWSptu/UmoyicZdGThVqHN
-	 BmqMWhQc3A9RCrxc1M/13CwnB0Me43A1TV3WAtYkKDBnHrDUpTS5M8NP6JBNDyVVVB
-	 pyX/9/tKgD7jyxA620LQigX1ApQ7KfH5puEh+QMQgDYgALF12EIuWct9Ev4v9A0IGw
-	 9fNADVe3cCeaA==
+	b=iVKuLGwp5DCor24xZgAAwTwbovowF/3KA6uXFHUuiRANLfpMQdn8lzSu93BRzigiF
+	 zQHiyJFhIJro3MAq5tOfWq/PdEmtCHZZ+2lIbaH291kiNdNCwJAuWyOVyUzn48AKdc
+	 sBtesUDmENKKh6ghBZQEal9sTLzLaEa0V0LVK8xWlCf9+fdjB44brVSGFaRDcwKWl2
+	 KYPJlnO+cZngbU8tJUTJGgHY8aMRqruGi/jkJePAdeXaBjTpOEQ8QKEolQpNV2cJUE
+	 1awqBYW+WNH8BPC74erA05naYUY5MwNXzi7Xvw2/Zg0o8i9mkE9CjZXj9zA34AS3YD
+	 HIUl+FnTPD8PA==
 From: =?utf-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
 To: Anup Patel <anup@brainfault.org>
 Cc: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt
@@ -53,15 +53,15 @@ Cc: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt
  <atishp@atishpatra.org>, linux-riscv@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, Andrew Jones
  <ajones@ventanamicro.com>
-Subject: Re: [PATCH v14 13/18] irqchip/riscv-imsic: Add device MSI domain
- support for PCI devices
-In-Reply-To: <CAAhSdy3DtDFnZKQLXXJ2OPPSv5s8bbGvm8Mmqhg_F2rPneQ3sw@mail.gmail.com>
+Subject: Re: [PATCH v14 11/18] irqchip: Add RISC-V incoming MSI controller
+ early driver
+In-Reply-To: <CAAhSdy3R9TCHG13vFk=sF0MvA60LtxOs9NbjSB7XBk+v1+XH4w@mail.gmail.com>
 References: <20240222094006.1030709-1-apatel@ventanamicro.com>
- <20240222094006.1030709-14-apatel@ventanamicro.com>
- <87msrstzck.fsf@all.your.base.are.belong.to.us>
- <CAAhSdy3DtDFnZKQLXXJ2OPPSv5s8bbGvm8Mmqhg_F2rPneQ3sw@mail.gmail.com>
-Date: Thu, 22 Feb 2024 15:05:41 +0100
-Message-ID: <87edd4twzu.fsf@all.your.base.are.belong.to.us>
+ <20240222094006.1030709-12-apatel@ventanamicro.com>
+ <87r0h4tzeq.fsf@all.your.base.are.belong.to.us>
+ <CAAhSdy3R9TCHG13vFk=sF0MvA60LtxOs9NbjSB7XBk+v1+XH4w@mail.gmail.com>
+Date: Thu, 22 Feb 2024 15:15:24 +0100
+Message-ID: <874je0twjn.fsf@all.your.base.are.belong.to.us>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,95 +73,263 @@ Content-Transfer-Encoding: quoted-printable
 
 Anup Patel <anup@brainfault.org> writes:
 
-> On Thu, Feb 22, 2024 at 6:44=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjorn@kern=
+> On Thu, Feb 22, 2024 at 6:43=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjorn@kern=
 el.org> wrote:
 >>
 >> Anup Patel <apatel@ventanamicro.com> writes:
 >>
->> > The Linux PCI framework supports per-device MSI domains for PCI devices
->> > so extend the IMSIC driver to allow PCI per-device MSI domains.
->> >
->> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
->> > ---
->> >  drivers/irqchip/Kconfig                    |  7 +++++
->> >  drivers/irqchip/irq-riscv-imsic-platform.c | 35 ++++++++++++++++++++--
->> >  2 files changed, 40 insertions(+), 2 deletions(-)
->> >
->> > diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
->> > index 85f86e31c996..2fc0cb32341a 100644
->> > --- a/drivers/irqchip/Kconfig
->> > +++ b/drivers/irqchip/Kconfig
->> > @@ -553,6 +553,13 @@ config RISCV_IMSIC
->> >       select GENERIC_IRQ_MATRIX_ALLOCATOR
->> >       select GENERIC_MSI_IRQ
->> >
->> > +config RISCV_IMSIC_PCI
->> > +     bool
->> > +     depends on RISCV_IMSIC
->> > +     depends on PCI
->> > +     depends on PCI_MSI
->> > +     default RISCV_IMSIC
->> > +
->> >  config EXYNOS_IRQ_COMBINER
->> >       bool "Samsung Exynos IRQ combiner support" if COMPILE_TEST
->> >       depends on (ARCH_EXYNOS && ARM) || COMPILE_TEST
->> > diff --git a/drivers/irqchip/irq-riscv-imsic-platform.c b/drivers/irqc=
-hip/irq-riscv-imsic-platform.c
->> > index e2344fc08dca..90ddcdd0bba5 100644
->> > --- a/drivers/irqchip/irq-riscv-imsic-platform.c
->> > +++ b/drivers/irqchip/irq-riscv-imsic-platform.c
->> > @@ -14,6 +14,7 @@
->> >  #include <linux/irqdomain.h>
->> >  #include <linux/module.h>
->> >  #include <linux/msi.h>
->> > +#include <linux/pci.h>
->> >  #include <linux/platform_device.h>
->> >  #include <linux/spinlock.h>
->> >  #include <linux/smp.h>
->> > @@ -208,6 +209,28 @@ static const struct irq_domain_ops imsic_base_dom=
-ain_ops =3D {
->> >  #endif
->> >  };
->> >
->> > +#ifdef CONFIG_RISCV_IMSIC_PCI
->> > +
->> > +static void imsic_pci_mask_irq(struct irq_data *d)
->> > +{
->> > +     pci_msi_mask_irq(d);
->> > +     irq_chip_mask_parent(d);
->> > +}
->> > +
->> > +static void imsic_pci_unmask_irq(struct irq_data *d)
->> > +{
->> > +     irq_chip_unmask_parent(d);
->> > +     pci_msi_unmask_irq(d);
->> > +}
->> > +
->> > +#define MATCH_PCI_MSI                BIT(DOMAIN_BUS_PCI_MSI)
->> > +
->> > +#else
->> > +
->> > +#define MATCH_PCI_MSI                0
->> > +
->> > +#endif
->> > +
->> >  static bool imsic_init_dev_msi_info(struct device *dev,
->> >                                   struct irq_domain *domain,
->> >                                   struct irq_domain *real_parent,
->> > @@ -231,6 +254,13 @@ static bool imsic_init_dev_msi_info(struct device=
- *dev,
->> >
->> >       /* Is the target supported? */
->> >       switch (info->bus_token) {
->> > +#ifdef CONFIG_RISCV_IMSIC_PCI
->> > +     case DOMAIN_BUS_PCI_DEVICE_MSI:
->> > +     case DOMAIN_BUS_PCI_DEVICE_MSIX:
->> > +             info->chip->irq_mask =3D imsic_pci_mask_irq;
->> > +             info->chip->irq_unmask =3D imsic_pci_unmask_irq;
+>> > diff --git a/drivers/irqchip/irq-riscv-imsic-state.c b/drivers/irqchip=
+/irq-riscv-imsic-state.c
+>> > new file mode 100644
+>> > index 000000000000..0c19ffb9ca3e
+>> > --- /dev/null
+>> > +++ b/drivers/irqchip/irq-riscv-imsic-state.c
+>> > @@ -0,0 +1,870 @@
 >>
->> irq_set_affinity()?
+>> [...]
+>>
+>> > +static void __imsic_local_sync(struct imsic_local_priv *lpriv)
+>> > +{
+>> > +     struct imsic_local_config *mlocal;
+>> > +     struct imsic_vector *vec, *mvec;
+>> > +     int i;
+>> > +
+>> > +     lockdep_assert_held(&lpriv->lock);
+>> > +
+>> > +     /* This pairs with the barrier in __imsic_remote_sync(). */
+>> > +     smp_mb();
+>>
+>> I'm trying to figure out why this barrier is needed? All the updates are
+>> done behind the spinlocks. If there're some ordering constraints that
+>> I'm missing, please document them.
+>>
+>> > +
+>> > +     for_each_set_bit(i, lpriv->dirty_bitmap, imsic->global.nr_ids + =
+1) {
+>> > +             if (!i || i =3D=3D IMSIC_IPI_ID)
+>> > +                     goto skip;
+>> > +             vec =3D &lpriv->vectors[i];
+>> > +
+>> > +             if (READ_ONCE(vec->enable))
+>> > +                     __imsic_id_set_enable(i);
+>> > +             else
+>> > +                     __imsic_id_clear_enable(i);
+>> > +
+>> > +             /*
+>> > +              * If the ID was being moved to a new ID on some other C=
+PU
+>> > +              * then we can get a MSI during the movement so check the
+>> > +              * ID pending bit and re-trigger the new ID on other CPU
+>> > +              * using MMIO write.
+>> > +              */
+>> > +             mvec =3D READ_ONCE(vec->move);
+>> > +             WRITE_ONCE(vec->move, NULL);
+>>
+>> mvec =3D xchg(&vec->move, NULL) ?
 >
-> It's already set by the switch-case above.
+> The __imsic_local_sync() is called with spinlock held.
 
-Ah, right -- the new .bus_select_token! Thank you!
+Yeah, this was a readability comment.
+
+>> > +             if (mvec && mvec !=3D vec) {
+>> > +                     if (__imsic_id_read_clear_pending(i)) {
+>> > +                             mlocal =3D per_cpu_ptr(imsic->global.loc=
+al, mvec->cpu);
+>> > +                             writel_relaxed(mvec->local_id, mlocal->m=
+si_va);
+>> > +                     }
+>> > +
+>> > +                     imsic_vector_free(&lpriv->vectors[i]);
+>> > +             }
+>> > +
+>> > +skip:
+>> > +             bitmap_clear(lpriv->dirty_bitmap, i, 1);
+>> > +     }
+>> > +}
+>> > +
+>> > +void imsic_local_sync_all(void)
+>> > +{
+>> > +     struct imsic_local_priv *lpriv =3D this_cpu_ptr(imsic->lpriv);
+>> > +     unsigned long flags;
+>> > +
+>> > +     raw_spin_lock_irqsave(&lpriv->lock, flags);
+>> > +     bitmap_fill(lpriv->dirty_bitmap, imsic->global.nr_ids + 1);
+>> > +     __imsic_local_sync(lpriv);
+>> > +     raw_spin_unlock_irqrestore(&lpriv->lock, flags);
+>> > +}
+>> > +
+>> > +void imsic_local_delivery(bool enable)
+>> > +{
+>> > +     if (enable) {
+>> > +             imsic_csr_write(IMSIC_EITHRESHOLD, IMSIC_ENABLE_EITHRESH=
+OLD);
+>> > +             imsic_csr_write(IMSIC_EIDELIVERY, IMSIC_ENABLE_EIDELIVER=
+Y);
+>> > +             return;
+>> > +     }
+>> > +
+>> > +     imsic_csr_write(IMSIC_EIDELIVERY, IMSIC_DISABLE_EIDELIVERY);
+>> > +     imsic_csr_write(IMSIC_EITHRESHOLD, IMSIC_DISABLE_EITHRESHOLD);
+>> > +}
+>> > +
+>> > +#ifdef CONFIG_SMP
+>> > +static void imsic_local_timer_callback(struct timer_list *timer)
+>> > +{
+>> > +     struct imsic_local_priv *lpriv =3D this_cpu_ptr(imsic->lpriv);
+>> > +     unsigned long flags;
+>> > +
+>> > +     raw_spin_lock_irqsave(&lpriv->lock, flags);
+>> > +     __imsic_local_sync(lpriv);
+>> > +     raw_spin_unlock_irqrestore(&lpriv->lock, flags);
+>> > +}
+>> > +
+>> > +static void __imsic_remote_sync(struct imsic_local_priv *lpriv, unsig=
+ned int cpu)
+>> > +{
+>> > +     lockdep_assert_held(&lpriv->lock);
+>> > +
+>> > +     /*
+>> > +      * Ensure that changes to vector enable, vector move and
+>> > +      * dirty bitmap are visible to the target CPU.
+>>
+>> ...which case the spinlock(s) are enough, no?
+>
+> spinlocks are not fences.
+
+They are indeed, and it would be hard to use them as locks otherwise
+(acq/rel -- good ol' Documentation/memory-barriers.txt).
+
+> If the timer wheel on the target cpu is already running and we don't
+> have a fence here then the target cpu might not see the changes
+> done by this cpu.
+
+Remove the smp_mb() pair, the spinlocks are enough for this scenario!
+
+>> > +      *
+>> > +      * This pairs with the barrier in __imsic_local_sync().
+>> > +      */
+>> > +     smp_mb();
+>> > +
+>> > +     /*
+>> > +      * We schedule a timer on the target CPU if the target CPU is not
+>> > +      * same as the current CPU. An offline CPU will unconditionally
+>> > +      * synchronize IDs through imsic_starting_cpu() when the
+>> > +      * CPU is brought up.
+>> > +      */
+>> > +     if (cpu_online(cpu)) {
+>> > +             if (cpu =3D=3D smp_processor_id()) {
+>> > +                     __imsic_local_sync(lpriv);
+>> > +                     return;
+>> > +             }
+>>
+>> Maybe move this if-clause out from the cpu_online(), and only have
+>> something like
+>>   if (cpu_online(cpu) && !timer_pending(&lpriv->timer)) { ... }
+>> inside the CONFIG_SMP guard...
+>>
+>> > +
+>> > +             if (!timer_pending(&lpriv->timer)) {
+>> > +                     lpriv->timer.expires =3D jiffies + 1;
+>> > +                     add_timer_on(&lpriv->timer, cpu);
+>> > +             }
+>> > +     }
+>> > +}
+>> > +#else
+>> > +static void __imsic_remote_sync(struct imsic_local_priv *lpriv, unsig=
+ned int cpu)
+>> > +{
+>> > +     lockdep_assert_held(&lpriv->lock);
+>> > +     __imsic_local_sync(lpriv);
+>> > +}
+>> > +#endif
+>>
+>> ...where we can get rid of this special !SMP all together for this
+>> function.
+>
+> I failed to understand what is wrong the current code.
+
+Oh, nothing is wrong. Just trying to get rid of some ifdeffery.
+
+>> > +void imsic_vector_mask(struct imsic_vector *vec)
+>> > +{
+>> > +     struct imsic_local_priv *lpriv;
+>> > +
+>> > +     lpriv =3D per_cpu_ptr(imsic->lpriv, vec->cpu);
+>> > +     if (WARN_ON_ONCE(&lpriv->vectors[vec->local_id] !=3D vec))
+>> > +             return;
+>> > +
+>> > +     /*
+>> > +      * This function is called through Linux irq subsystem with
+>> > +      * irqs disabled so no need to save/restore irq flags.
+>> > +      */
+>> > +
+>> > +     raw_spin_lock(&lpriv->lock);
+>> > +
+>> > +     vec->enable =3D false;
+>>
+>> Should have WRITE_ONCE to make the checkers happy.
+>
+> Okay, I will update.
+>
+>>
+>> > +     bitmap_set(lpriv->dirty_bitmap, vec->local_id, 1);
+>> > +     __imsic_remote_sync(lpriv, vec->cpu);
+>> > +
+>> > +     raw_spin_unlock(&lpriv->lock);
+>> > +}
+>> > +
+>> > +void imsic_vector_unmask(struct imsic_vector *vec)
+>> > +{
+>> > +     struct imsic_local_priv *lpriv;
+>> > +
+>> > +     lpriv =3D per_cpu_ptr(imsic->lpriv, vec->cpu);
+>> > +     if (WARN_ON_ONCE(&lpriv->vectors[vec->local_id] !=3D vec))
+>> > +             return;
+>> > +
+>> > +     /*
+>> > +      * This function is called through Linux irq subsystem with
+>> > +      * irqs disabled so no need to save/restore irq flags.
+>> > +      */
+>> > +
+>> > +     raw_spin_lock(&lpriv->lock);
+>> > +
+>> > +     vec->enable =3D true;
+>>
+>> Dito.
+>
+> Okay, I will update.
+>
+>>
+>> > +     bitmap_set(lpriv->dirty_bitmap, vec->local_id, 1);
+>> > +     __imsic_remote_sync(lpriv, vec->cpu);
+>> > +
+>> > +     raw_spin_unlock(&lpriv->lock);
+>> > +}
+>> > +
+>> > +static bool imsic_vector_move_update(struct imsic_local_priv *lpriv, =
+struct imsic_vector *vec,
+>> > +                                  bool new_enable, struct imsic_vecto=
+r *new_move)
+>> > +{
+>> > +     unsigned long flags;
+>> > +     bool enabled;
+>> > +
+>> > +     raw_spin_lock_irqsave(&lpriv->lock, flags);
+>> > +
+>> > +     /* Update enable and move details */
+>> > +     enabled =3D READ_ONCE(vec->enable);
+>> > +     WRITE_ONCE(vec->enable, new_enable);
+>>
+>> Again, xchg() would be easier to read.
+>
+> why ? spinlock is not enough?
+
+They're enough! Just readbaility/personal taste.
+
+
+I'm running tests for this series now! Would be awesome to have the
+series land for 6.9!
+
+Cheers,
+Bj=C3=B6rn
 
