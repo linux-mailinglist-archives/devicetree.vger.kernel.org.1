@@ -1,117 +1,135 @@
-Return-Path: <devicetree+bounces-44660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC3B685F360
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 09:46:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5F7985F2E2
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 09:28:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CA191F22C2E
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 08:46:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3ED37B23E86
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 08:28:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B138F2BB18;
-	Thu, 22 Feb 2024 08:45:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 062E91B273;
+	Thu, 22 Feb 2024 08:28:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xpTbwESL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from 17.mo582.mail-out.ovh.net (17.mo582.mail-out.ovh.net [46.105.36.150])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D95D2BB1D
-	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 08:45:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.105.36.150
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 307A3182D2
+	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 08:28:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708591545; cv=none; b=IGiHpUveIjfgUE4Gu/pi/sIZg8tD9rX6teLrQV9U2j5t2TlZyQskKdvSfyF4JQS0IjjZISH3ginJrzl4+MYRBWJnQQmYiLPNKSnyL2uo3OVlPOIocfwVmAfsXCuJFeobCxx3WhM4YFH73HzJaLK3axXXeV+qmPDPdToQGZQ+D2A=
+	t=1708590506; cv=none; b=mxHXZvzi3ry5cDaGYltekvYt5H8Lp+s8lOvSvmtrlJPzhzTXB+4GNRkJMTrf4AburvKy+9R6RFX8ESTUT5zaSrpE09ww6LcsksqGHjYhhi6s1/ddp9gvbrHAVBfToRdAWFNon+Sz4tlVh06Y3jtVEwy8M5EAmVNJJJJGj22ffyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708591545; c=relaxed/simple;
-	bh=LPJlLHDkajqw80z9ma4e+vfl3sbURWj1jM2baBv2XzU=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=NVmsAybrrz/xXD+ZRLLaPBLjz8qpv0duVQYT9VU+aZPfTIGDZtu6aDK/4EM8M6zx/P2ZorSjGra2rl6bet87NCDY23frr8fjETbyEdWHqMba+jRE8Ie+MJggwo1hmuUnawd0gGoMUgCpV6Vc/byxlQwajJHSPnrH14Tbm8Ryq9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=milecki.pl; spf=pass smtp.mailfrom=milecki.pl; arc=none smtp.client-ip=46.105.36.150
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=milecki.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=milecki.pl
-Received: from director4.ghost.mail-out.ovh.net (unknown [10.109.140.55])
-	by mo582.mail-out.ovh.net (Postfix) with ESMTP id 4TgR8h1sNmz1Bcp
-	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 08:27:32 +0000 (UTC)
-Received: from ghost-submission-6684bf9d7b-62nvk (unknown [10.110.168.159])
-	by director4.ghost.mail-out.ovh.net (Postfix) with ESMTPS id BBB0C1FEA0;
-	Thu, 22 Feb 2024 08:27:30 +0000 (UTC)
-Received: from milecki.pl ([37.59.142.108])
-	by ghost-submission-6684bf9d7b-62nvk with ESMTPSA
-	id DFvxKHIF12Uj8g8AoXgo/A
-	(envelope-from <rafal@milecki.pl>); Thu, 22 Feb 2024 08:27:30 +0000
-Authentication-Results:garm.ovh; auth=pass (GARM-108S00278859a77-0453-42f0-9082-a2d4777bd21b,
-                    A5D7B7EF969FCE09FFB803620F60B84AE0971723) smtp.auth=rafal@milecki.pl
-X-OVh-ClientIp:178.33.236.78
+	s=arc-20240116; t=1708590506; c=relaxed/simple;
+	bh=EvteK50wyl2kprR8zyPWEQOJdijQCkbQp/sp4jSnARc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=LqYG2J4sOtUEQpK7hEL61pyxMEDGrQ6Ah45tQz3/bqhfs1NY7hX5oWld0p2IN5Vs0B8i4tdly6qeRXbzRf+TZtbB85MWnO7myC422caPjw/ztcumKaL5WNQDsPSQ+8iFG1seJUaSpWPDvdvva7FHELhIUV8pq6ONvo+RWqwHbBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xpTbwESL; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a3f299f828aso237190666b.1
+        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 00:28:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708590503; x=1709195303; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0K0y7mMwQ6eINvxBjtceE3os6xVsWexBerMPUbtyFps=;
+        b=xpTbwESLemYSup/R3juAirb3bJPYOF7B1ZcUO1Z2OE7nUNBJkfUSywLntAEKPiOxU3
+         GSEzjwIM979u9w0J7uIwRwKqnm/9yKmVnVNRj64ouQb7WvRPp1Ckrw/3xbMJ9cUGEPQM
+         WD3J+X9GCXGVvYE1XP1ehgqgmqkv0cb14pWvTlRUxcWXzS03b4yBxcixk3oJfgfoQwuh
+         3WTRbNnbNvuWAon1BIG5ro23l/L7YKe36nVCn4J2/FOJhV91z9S9xaLbTsTCDMsaQyUc
+         ikbRBdXpMB72cubkJu5RJWKsbax9sT7hfAsBwVICPHju4u6GlJ45WAq3ZdU1mHz+Y67b
+         EvIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708590503; x=1709195303;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0K0y7mMwQ6eINvxBjtceE3os6xVsWexBerMPUbtyFps=;
+        b=XNTLluMLxtZSYTBZzWdxZxI2po8G0Xb+c2BYyUnGsIjKBCDjAwtZtQ/8GGy0gLc9yg
+         zD6aI+Al5gnALBK/mWkBbuzb6IGwIroyQ3RU8WrDn9gdr8MTdURORN53H7VDFs5hEGdR
+         fHhgFajg04bKn0BWWUPtfOxtEoeHURjNT8Ej5/lywo8n72DiDK5Yrub2pZtuH3oge1pr
+         Buq00CK1Nj1HohhfFX+J2JNK/5hv4p4NzngYn9ebyznWBZU/j+zOG6M4Kinu1FazHJMR
+         KnCkzsWdT1BP5q4xibSx/gIlVox/yvb3/iNztTvSHdgUe3yQ5uymOSPBBM50AgvgCP9V
+         cWog==
+X-Forwarded-Encrypted: i=1; AJvYcCVd129sPkbvKbWF/AaOZCWXPiieUJmUn5GRScN50os1eKpUDg3IHfgufyjANhRGs6lAmpL5tugz+lobufLs+DyD1rhNnFx6SklxJA==
+X-Gm-Message-State: AOJu0YyhRFSk46wJIE/wXfXPFIfE3qLBG+smy3iJCyOcUA69IcbVcL8X
+	9MBCzB3N6Q22XV3Cg+PYGBevwJlMJMSTMDqOJkHonEcb+hVJOUpUc+NIKd528EKABTkX8ubyMN6
+	ndog=
+X-Google-Smtp-Source: AGHT+IH7dW5lx5ijk4XY4dgNzFesrot5udC3LHg/4tTUdJiIgWdnAJqUyV96hgU+dShciHbxpbF27Q==
+X-Received: by 2002:a17:907:375:b0:a3f:6b7f:11fe with SMTP id rs21-20020a170907037500b00a3f6b7f11femr1200803ejb.66.1708590503535;
+        Thu, 22 Feb 2024 00:28:23 -0800 (PST)
+Received: from krzk-bin.. ([178.197.222.116])
+        by smtp.gmail.com with ESMTPSA id vh8-20020a170907d38800b00a3f28bf94f8sm1600210ejc.199.2024.02.22.00.28.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Feb 2024 00:28:23 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Xin Ji <xji@analogixsemi.com>,
+	linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Pavel Machek <pavel@ucw.cz>
+Subject: [PATCH] dt-bindings: usb: analogix,anx7411: drop redundant connector properties
+Date: Thu, 22 Feb 2024 09:28:19 +0100
+Message-Id: <20240222082819.10321-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Thu, 22 Feb 2024 09:27:30 +0100
-From: =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
-To: William Zhang <william.zhang@broadcom.com>
-Cc: Linux MTD List <linux-mtd@lists.infradead.org>, Linux ARM List
- <linux-arm-kernel@lists.infradead.org>, Broadcom Kernel List
- <bcm-kernel-feedback-list@broadcom.com>, f.fainelli@gmail.com,
- kursad.oney@broadcom.com, joel.peshkin@broadcom.com,
- anand.gore@broadcom.com, dregan@mail.com, kamal.dasu@broadcom.com,
- tomer.yacoby@broadcom.com, dan.beygelman@broadcom.com, David Regan
- <dregan@broadcom.com>, devicetree@vger.kernel.org, Conor Dooley
- <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>
-Subject: Re: [PATCH v5 05/12] arm64: dts: broadcom: bcmbca: Add NAND
- controller node
-In-Reply-To: <20240207202257.271784-6-william.zhang@broadcom.com>
-References: <20240207202257.271784-1-william.zhang@broadcom.com>
- <20240207202257.271784-6-william.zhang@broadcom.com>
-Message-ID: <cd32d304d740e3c1875e449d459c805a@milecki.pl>
-X-Sender: rafal@milecki.pl
-X-Webmail-UserID: rafal@milecki.pl
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
 Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 392939071277214476
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvledrfeefgdduudekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggffhffvvefujghfkfigihgtgfesthekjhdttddtjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepjeejkeekgeejtdffffevffeivedtueeifeeuffegkeehkeeliedugfelfedutdeunecukfhppeduvdejrddtrddtrddupdefuddruddurddvudekrddutdeipddujeekrdeffedrvdefiedrjeekpdefjedrheelrddugedvrddutdeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepuddvjedrtddrtddruddpmhgrihhlfhhrohhmpehrrghfrghlsehmihhlvggtkhhirdhplhdpnhgspghrtghpthhtohepuddprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhoheekvddpmhhouggvpehsmhhtphhouhht
 
-On 2024-02-07 21:22, William Zhang wrote:
-> diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
-> b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
-> index 2f124b027bbf..336016e334d9 100644
-> --- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
-> +++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
-> @@ -589,7 +589,7 @@ hsspi: spi@1000 {
->  			status = "disabled";
->  		};
-> 
-> -		nand-controller@1800 {
-> +		nand_controller: nand-controller@1800 {
->  			#address-cells = <1>;
->  			#size-cells = <0>;
->  			compatible = "brcm,nand-bcm63138", "brcm,brcmnand-v7.1", 
-> "brcm,brcmnand";
-> @@ -597,7 +597,7 @@ nand-controller@1800 {
->  			reg-names = "nand", "nand-int-base";
->  			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
->  			interrupt-names = "nand_ctlrdy";
-> -			status = "okay";
-> +			status = "disabled";
-> 
->  			nandcs: nand@0 {
->  				compatible = "brcm,nandcs";
+The binding references usb-connector.yaml schema, which lists all
+allowed properties and ends with unevaluatedProperties:false, so we can
+simplify analogix,anx7411 binding by dropping everything covered by
+usb-connector.yaml.
 
-You disable NAND controller here breaking support for all dependant
-devices.
+Suggested-by: Pavel Machek <pavel@ucw.cz>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/usb/analogix,anx7411.yaml   | 13 -------------
+ 1 file changed, 13 deletions(-)
 
-I see you fix it afterwards in PATCH 06/12 but it's still a poor way of
-handling such change and this issue can be hit e.g. during git bisect.
-
-Also: given that 99% of BCM4908 devices use NAND controller can we just
-save ourselves efforts and keep it enabled in .dtsi?
-
+diff --git a/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml b/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
+index e4d893369d57..3f5857aee3b0 100644
+--- a/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
++++ b/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
+@@ -23,24 +23,11 @@ properties:
+   connector:
+     type: object
+     $ref: ../connector/usb-connector.yaml
+-    unevaluatedProperties: false
+-
+-    description:
+-      Properties for usb c connector.
+ 
+     properties:
+       compatible:
+         const: usb-c-connector
+ 
+-      power-role: true
+-
+-      data-role: true
+-
+-      try-power-role: true
+-
+-    required:
+-      - compatible
+-
+ required:
+   - compatible
+   - reg
 -- 
-Rafał Miłecki
+2.34.1
+
 
