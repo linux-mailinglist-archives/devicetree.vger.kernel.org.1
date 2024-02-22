@@ -1,146 +1,145 @@
-Return-Path: <devicetree+bounces-44659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CF9185F359
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 09:45:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FAC785F366
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 09:47:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E8F71C21F23
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 08:45:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD8F92825CC
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 08:47:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C362836AE3;
-	Thu, 22 Feb 2024 08:44:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 581382BD01;
+	Thu, 22 Feb 2024 08:47:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa1.ltts.com (unknown [118.185.121.105])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B972C36AED;
-	Thu, 22 Feb 2024 08:44:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=118.185.121.105
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51E6823754
+	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 08:47:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708591472; cv=none; b=RJD8yOC/3wcUnLQyn9UHt0SiQXcJTB29AIuBhZb5rDaDMqfT2yNiARxX54ZGhceTCeN3tKm6KFXCeEtTA4Jeukt/18sA9nMc6eWC4nhU8mE1CwVnbF6yJjZeTGN5J5mvF2fhSzHpFxD2nN7kC5dl6L+2YVO/koBIoMQVxK6z1b0=
+	t=1708591654; cv=none; b=tlAkEUUEHn7pB5t2deuUN8ylOg2JhUhBDIR51b7EklfTL1NX8bvamv9HipRjw7A0fFO4ojizakjkImDTNvw8EBkT4SR7ApplFF5LUnbx4x9VnWDfcoZKiYWkcQygBTNwDOLuKpA72nd3BsyNhHkBqITBhz9u+vp14pEQZN8CY3g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708591472; c=relaxed/simple;
-	bh=aAHuEmErw6Xhwk48sQ2yXHjadNeRu84HgxsVgDkNpw8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=fE47ufrJJUTIh4R9MDGg3u/XdThXcFGRpYLZvfugiglYBvm1rhV9PDPfMh0wxkXTdO8ggHiNg4ThIiV4lI6SwKWx4zeKGtd4Qw71jmFMrla6YwoXaidbbMQ4oWc2uDYmnniC+HaHCaCMmcBALnnp/dKAz54ZC+XTZiuVHrv9SZM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ltts.com; spf=pass smtp.mailfrom=ltts.com; arc=none smtp.client-ip=118.185.121.105
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ltts.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ltts.com
-IronPort-SDR: xSdWhlzWQNfyCNiMvHcoX/EBWrRv49Ekw2KBJdYXwzUq61c2mhFMhdOSy0AV+QXomotupaWb7v
- LPe0QjzGuR8w==
-Received: from unknown (HELO localhost.localdomain) ([192.168.34.55])
-  by esa1.ltts.com with ESMTP; 22 Feb 2024 14:13:16 +0530
-From: Bhargav Raviprakash <bhargav.r@ltts.com>
-To: khilman@kernel.org
-Cc: arnd@arndb.de,
-	bhargav.r@ltts.com,
-	broonie@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	gregkh@linuxfoundation.org,
-	jpanis@baylibre.com,
-	kristo@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	lee@kernel.org,
-	lgirdwood@gmail.com,
-	linus.walleij@linaro.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	m.nirmaladevi@ltts.com,
-	nm@ti.com,
-	robh+dt@kernel.org,
-	vigneshr@ti.com
-Subject: Re: [RESEND PATCH v1 05/13] mfd: tps6594-spi: Add TI TPS65224 PMIC SPI
-Date: Thu, 22 Feb 2024 14:13:09 +0530
-Message-Id: <20240222084309.6008-1-bhargav.r@ltts.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <7hcysy6ho6.fsf@baylibre.com>
-References: <7hcysy6ho6.fsf@baylibre.com>
+	s=arc-20240116; t=1708591654; c=relaxed/simple;
+	bh=1O+AV1qRXleQZJEL0gbhPEb6oQ9MCd5osE9XC4AXlro=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=G9snZyhGXkppD7LcHI8Tr6phIbkERBD1BuygefzUKnZ48Og0t2d515YxaxkzNIMngDlVfXoiKne0PIGxs8qDmbnCp01AdzfAlXqTzrvXqYtV/k/8niOEWklgrZwGxQK9bvi54hMrYLL8ww7kStgINWVlbrWcs+wQdCwca8dU+oo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rd4je-0005ah-MD; Thu, 22 Feb 2024 09:47:18 +0100
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rd4jd-002CJ3-9R; Thu, 22 Feb 2024 09:47:17 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rd4jd-002j7F-0e;
+	Thu, 22 Feb 2024 09:47:17 +0100
+Date: Thu, 22 Feb 2024 09:47:17 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Conor Dooley <conor@kernel.org>
+Cc: jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	denis.ciocca@st.com, linus.walleij@linaro.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH] dt-bindings: iio: st-sensors: Add IIS2MDC magnetometer
+Message-ID: <20240222084717.rcckoyjeh4shmcxr@pengutronix.de>
+References: <20240221175810.3581399-1-m.felsch@pengutronix.de>
+ <20240221-undecided-union-4078db711693@spud>
+ <20240221191644.5r3ylr5w3cnfnrzj@pengutronix.de>
+ <20240221-imitate-molar-81d93285ac77@spud>
+ <20240221194518.3sm4o5i274ldpvzf@pengutronix.de>
+ <20240221-lubricant-machine-79054f117eb0@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240221-lubricant-machine-79054f117eb0@spud>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hello Kevin,
-On Wed, 14 Feb 2024 10:10:17 -0800, Kevin wrote:
-> Bhargav Raviprakash <bhargav.r@ltts.com> writes:
+On 24-02-21, Conor Dooley wrote:
+> On Wed, Feb 21, 2024 at 08:45:18PM +0100, Marco Felsch wrote:
+> > Hi Conor,
+> > 
+> > On 24-02-21, Conor Dooley wrote:
+> > > On Wed, Feb 21, 2024 at 08:16:44PM +0100, Marco Felsch wrote:
+> > > > On 24-02-21, Conor Dooley wrote:
+> > > > > On Wed, Feb 21, 2024 at 06:58:10PM +0100, Marco Felsch wrote:
+> > > > > > Add the iis2mdc magnetometer support which is equivalent to the lis2mdl.
+> > > > > > 
+> > > > > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > > > > > ---
+> > > > > >  Documentation/devicetree/bindings/iio/st,st-sensors.yaml | 1 +
+> > > > > >  1 file changed, 1 insertion(+)
+> > > > > > 
+> > > > > > diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+> > > > > > index fff7e3d83a02..ee593c8bbb65 100644
+> > > > > > --- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+> > > > > > +++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+> > > > > > @@ -64,6 +64,7 @@ properties:
+> > > > > >            - st,lsm9ds0-gyro
+> > > > > >        - description: STMicroelectronics Magnetometers
+> > > > > >          enum:
+> > > > > > +          - st,iis2mdc
+> > > > > 
+> > > > > Without a fallback compatible to the equivilent device, how does a
+> > > > > driver bind to this device?
+> > > > 
+> > > > I skimed the datasheets and the driver already handles this binding
+> > > > exactly the same as the st,lis2mdl, so my assumption is they do match.
+> > > > 
+> > > > Why do I you think we need a fallback compatible here?
+> > > 
+> > > I didn't look at the driver, there was no mention of the driver already
+> > > having (undocumented) support for it. Since there was no driver change
+> > > alongside this patch, I thought you'd need a fallback compatible to
+> > > allow the driver to match against a compatible it recognises.
+> > 
+> > I explicitly did not mention the driver in the commit message else I
+> > would have got a response like "dt-bindings have no dependency to
+> > drivers" ;)
 > 
-> > Add support for TPS65224 PMIC in the TPS6594 driver as they share
-> > significant functional overlap.
-> >
-> > Signed-off-by: Bhargav Raviprakash <bhargav.r@ltts.com>
-> > ---
-> >  drivers/mfd/tps6594-spi.c | 16 ++++++++++------
-> >  1 file changed, 10 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/drivers/mfd/tps6594-spi.c b/drivers/mfd/tps6594-spi.c
-> > index 5afb1736f..7ec66d31b 100644
-> > --- a/drivers/mfd/tps6594-spi.c
-> > +++ b/drivers/mfd/tps6594-spi.c
-> > @@ -1,6 +1,6 @@
-> >  // SPDX-License-Identifier: GPL-2.0
-> >  /*
-> > - * SPI access driver for TI TPS6594/TPS6593/LP8764 PMICs
-> > + * SPI access driver for TI TPS65224/TPS6594/TPS6593/LP8764 PMICs
-> >   *
-> >   * Copyright (C) 2023 BayLibre Incorporated - https://www.baylibre.com/
-> >   */
-> > @@ -66,7 +66,7 @@ static int tps6594_spi_reg_write(void *context, unsigned int reg, unsigned int v
-> >  	return spi_write(spi, buf, count);
-> >  }
-> >  
-> > -static const struct regmap_config tps6594_spi_regmap_config = {
-> > +static struct regmap_config tps6594_spi_regmap_config = {
-> >  	.reg_bits = 16,
-> >  	.val_bits = 8,
-> >  	.max_register = TPS6594_REG_DWD_FAIL_CNT_REG,
-> > @@ -81,6 +81,7 @@ static const struct of_device_id tps6594_spi_of_match_table[] = {
-> >  	{ .compatible = "ti,tps6594-q1", .data = (void *)TPS6594, },
-> >  	{ .compatible = "ti,tps6593-q1", .data = (void *)TPS6593, },
-> >  	{ .compatible = "ti,lp8764-q1",  .data = (void *)LP8764,  },
-> > +	{ .compatible = "ti,tps65224-q1", .data = (void *)TPS65224, },
-> >  	{}
-> >  };
-> >  MODULE_DEVICE_TABLE(of, tps6594_spi_of_match_table);
-> > @@ -101,15 +102,18 @@ static int tps6594_spi_probe(struct spi_device *spi)
-> >  	tps->reg = spi_get_chipselect(spi, 0);
-> >  	tps->irq = spi->irq;
-> >  
-> > -	tps->regmap = devm_regmap_init(dev, NULL, spi, &tps6594_spi_regmap_config);
-> > -	if (IS_ERR(tps->regmap))
-> > -		return dev_err_probe(dev, PTR_ERR(tps->regmap), "Failed to init regmap\n");
-> > -
-> >  	match = of_match_device(tps6594_spi_of_match_table, dev);
-> >  	if (!match)
-> >  		return dev_err_probe(dev, -EINVAL, "Failed to find matching chip ID\n");
-> >  	tps->chip_id = (unsigned long)match->data;
-> >  
-> > +	if (tps->chip_id == TPS65224)
-> > +		tps6594_spi_regmap_config.volatile_table = &tps65224_volatile_table;
+> Putting it under the --- line is always an option. Where there are
+> existing users but the compatible is just undocumented, this it's
+> helpful to do.
 > 
-> Similar to my comment on the i2c series, but to be more specific:
+> > > Besides, having fallback compatibles is the norm when one device has the
+> > > same programming model as another.
+> > 
+> > Not for this binding according the driver.
 > 
-> Rather than use the .data pointer in the of_match_table as simply a
-> chip_id, instead make that into a struct that can contain chip-specific
-> values/pointers etc, and then each compatible can have a custom struct
-> (if needed.)
-> 
-> This way, at probe/match time, all the chip-specific data is setup using
-> that struct, so that at runtime, there doesn't need to be any "if
-> (chip_id)" checking.
-> 
-> Kevin
+> If they don't have the same programming model, then describing them as
+> "equivalent" wouldn't be correct. That said, they seem to use the same
+> sensor settings when alls said and done (see st_magn_sensors_settings),
+> so I think they are actually compatible even if the driver has separate
+> match data for each.
 
-Thanks for the feedback!
-We will implement the same in the next version.
+I told you that I have checked the driver and skimed the datasheets and
+came to the exact same conclusion.
 
 Regards,
-Bhargav
+  Marco
+
+
+> 
+> Cheers,
+> Conor.
+
+
 
