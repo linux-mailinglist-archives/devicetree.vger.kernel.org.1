@@ -1,121 +1,161 @@
-Return-Path: <devicetree+bounces-44574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F273585EFC7
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 04:25:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40E2B85EFEB
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 04:32:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2FA6F1C216DE
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 03:25:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EFE9B285066
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 03:32:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A223117576;
-	Thu, 22 Feb 2024 03:25:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iAP38SUO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37D58175AB;
+	Thu, 22 Feb 2024 03:32:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34B081755B;
-	Thu, 22 Feb 2024 03:25:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C52A17578;
+	Thu, 22 Feb 2024 03:32:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708572315; cv=none; b=IL3LT0+krooHSVcbWi/l3/046ZVfeNezpTp/dhKTdXAarhRPTqXzphjNvA+nxvaDPhkSHCPaBQk9vVPSb2vBa4ZxE51Wv8T1c4x7RQcz6aqYhBDvL/CZG8fx83hbJjOtDwl88O93Am3mItgbCmi9O8VcSeVSMrkWq2HbuywhN1Q=
+	t=1708572730; cv=none; b=dCtxiqdggmHKS2LTygLPTkWzgujsN2/QboyKkaMNigBwIQLTMCN4jHDnIVUrUl7+RBLXSaMV+K72wumEhp1ZSt0xT8NBs97OjSZQhEgn1XE6Ti+MRiR1gtsKXT9qNeD55bfi1FxmhoiCtVjrynvqaGXl/O0odUkfaGIJsGndvJk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708572315; c=relaxed/simple;
-	bh=LbLLQRWjAmTW+TCrAgKFeNWDqld2wMMlaegq1z3AipA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=PHb7OoP+QE9qanMXDt4IztvpFbOTdzHm+Kmk03RA2KHIMzz9lyomcUa4a+yuLiC2Syxgv6tbUMbLdkOklnet/6sN9kKSf+brdB4tESvOxgZ6FPFi+dnp6kBeE1vcZv37JLFUbKTIjMWcGm1O4ACBhRUfVk8To11Y3jCHsKzumVU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iAP38SUO; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-1d7431e702dso73130785ad.1;
-        Wed, 21 Feb 2024 19:25:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708572313; x=1709177113; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LJjLHFzHOOxg5aRXQc96zwBJZ9WYrMKJ+K0shUjS2Ls=;
-        b=iAP38SUOd5o0MxEZmRUOaACmWwdT0gjx/BFpchD3aYwVkfkWx4FgUrJCRkfQM10teG
-         sj4/ZewyTYkOEhQRo/w9nuZl40B9KlhKPZiGZmwoF1TMSp2tn8kiqT6yr3PIK91gPgz9
-         6gFASbGasGDWSvmUjuIli5Wpj/xbu6V+l7CWYZCIXNFg3/HzETVUe1eVRkTu7/I/cc8U
-         URw7cvmxLffNE+Ppx1vkME1ito//3FRDRbEfSG4N+ZocDbeCZmnB1e/YeenkbLBQGw56
-         ccECiSyu7KFDKlEzBxum7UHPGWh8LB7Z7NxgToSDIvlWbg5ufFFMiazTli8HEO8gcQcR
-         79og==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708572313; x=1709177113;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LJjLHFzHOOxg5aRXQc96zwBJZ9WYrMKJ+K0shUjS2Ls=;
-        b=nAkGIY7xqm0girsCumoSAuOmFq+uPCNw8QEOqk7t59AnEMO2xTTVAwn7zVamlC9Alm
-         n62XCN2GZunilzNuQy4YMri8OJYoOAJbJRjL/b8I6e4rUsdAHYfkmL/+VNPbYDjxNCo+
-         rByAJxGtMhnVLMMpwKkGx+6OxOuGO4LM1mhnlP1KV1rp+Ic8IQUePJ+jszrt7HyTbvX0
-         uJ66+A1p34EOdZxl8Adry1qiq7xqJbo3tI95zQv9sEo1JFqehz3Roq8ltKFBuW30RiDD
-         MRuoGH0Akm8/L7xSxyZPRSWluQ89767WKH9kUUHtaqdjRb6DL4GfV0xJ58gW/P8wP3Ao
-         YvcA==
-X-Forwarded-Encrypted: i=1; AJvYcCXvsyFElRG6WylO8EqeZKjMZu9KS+om3jAq73WXflvm5XemjMw7VtlI9TO/JYamNwMjUwGNH61WXFHkQKZwHTBE7DFF+jsRn2UY8Me5mpbK9RfO1b2jtNjxmCQaUysbjchYggSTHJWPhQ==
-X-Gm-Message-State: AOJu0YzISj8Atr9iYLNCiZUN/5EL/L/hBYMgps5Lq1UdgHJ1niq9sM2j
-	j4AzghvEL6rTO7wsB+y0dgKGKKpfG5j0L9g74SJ1vQL6qCx5gceU
-X-Google-Smtp-Source: AGHT+IEG/CFzCGbmOpgJHBmhgewL9gM9hzsrOSEcXfQgEffeWwtQjBoIKYJQnj72kGXSs/nyQbdZKA==
-X-Received: by 2002:a05:6a20:c704:b0:19e:3a9f:f925 with SMTP id hi4-20020a056a20c70400b0019e3a9ff925mr19940646pzb.14.1708572313445;
-        Wed, 21 Feb 2024 19:25:13 -0800 (PST)
-Received: from localhost.localdomain (125-229-150-10.hinet-ip.hinet.net. [125.229.150.10])
-        by smtp.gmail.com with ESMTPSA id h15-20020a170902f7cf00b001db4433ef95sm8781580plw.152.2024.02.21.19.25.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Feb 2024 19:25:13 -0800 (PST)
-From: Kelly Hung <ppighouse@gmail.com>
-X-Google-Original-From: Kelly Hung <Kelly_Hung@asus.com>
-To: robh+dt@kernel.org
-Cc: krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	joel@jms.id.au,
-	andrew@codeconstruct.com.au,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org,
-	openbmc@lists.ozlabs.org,
-	kelly_hung@asus.com,
-	Allenyy_Hsu@asus.com,
-	Kelly Hung <Kelly_Hung@asus.com>
-Subject: [PATCH] dt-bindings: arm: aspeed: add ASUS X4TF board
-Date: Thu, 22 Feb 2024 11:25:04 +0800
-Message-Id: <20240222032504.1147489-2-Kelly_Hung@asus.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240222032504.1147489-1-Kelly_Hung@asus.com>
-References: <20240222032504.1147489-1-Kelly_Hung@asus.com>
+	s=arc-20240116; t=1708572730; c=relaxed/simple;
+	bh=E7Z8pSK89+sDDxGUmJjzBockun9fP/w10U/EGjDCcDY=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fmk9l2vGwoM5PWCUuYt/5Jw1sfDXxeQ1N7XXTiXn/NweDN8gdQzkL11d0OlTl62/heRRshDLaqvkE890dG7KCO7Dlub4SVCWWbYj3JzD8o/paczolIESdiXxfwEt7VTzTpyfJGep3TkHluuQ76AUeRzpbUEQiXIZggG+WyMZXhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
+Received: from mail.andestech.com (ATCPCS16.andestech.com [10.0.1.222])
+	by Atcsqr.andestech.com with ESMTP id 41M3PcR8080879;
+	Thu, 22 Feb 2024 11:25:38 +0800 (+08)
+	(envelope-from peterlin@andestech.com)
+Received: from APC323 (10.0.12.98) by ATCPCS16.andestech.com (10.0.1.222) with
+ Microsoft SMTP Server id 14.3.498.0; Thu, 22 Feb 2024 11:25:35 +0800
+Date: Thu, 22 Feb 2024 11:25:35 +0800
+From: Yu-Chien Peter Lin <peterlin@andestech.com>
+To: Thomas Gleixner <tglx@linutronix.de>
+CC: <acme@kernel.org>, <adrian.hunter@intel.com>, <ajones@ventanamicro.com>,
+        <alexander.shishkin@linux.intel.com>, <andre.przywara@arm.com>,
+        <anup@brainfault.org>, <aou@eecs.berkeley.edu>,
+        <atishp@atishpatra.org>, <conor+dt@kernel.org>,
+        <conor.dooley@microchip.com>, <conor@kernel.org>,
+        <devicetree@vger.kernel.org>, <evan@rivosinc.com>,
+        <geert+renesas@glider.be>, <guoren@kernel.org>, <heiko@sntech.de>,
+        <irogers@google.com>, <jernej.skrabec@gmail.com>, <jolsa@kernel.org>,
+        <jszhang@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-perf-users@vger.kernel.org>,
+        <linux-renesas-soc@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-sunxi@lists.linux.dev>, <locus84@andestech.com>,
+        <magnus.damm@gmail.com>, <mark.rutland@arm.com>, <mingo@redhat.com>,
+        <n.shubin@yadro.com>, <namhyung@kernel.org>, <palmer@dabbelt.com>,
+        <paul.walmsley@sifive.com>, <peterz@infradead.org>,
+        <prabhakar.mahadev-lad.rj@bp.renesas.com>, <rdunlap@infradead.org>,
+        <robh+dt@kernel.org>, <samuel@sholland.org>,
+        <sunilvl@ventanamicro.com>, <tim609@andestech.com>, <uwu@icenowy.me>,
+        <wens@csie.org>, <will@kernel.org>, <inochiama@outlook.com>,
+        <unicorn_wang@outlook.com>, <wefu@redhat.com>,
+        Randolph <randolph@andestech.com>, Atish Patra <atishp@rivosinc.com>
+Subject: Re: [PATCH v8 02/10] irqchip/riscv-intc: Allow large non-standard
+ interrupt number
+Message-ID: <Zda-r16ysaKzPdLV@APC323>
+References: <20240129092553.2058043-1-peterlin@andestech.com>
+ <20240129092553.2058043-3-peterlin@andestech.com>
+ <877cj8issa.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <877cj8issa.ffs@tglx>
+User-Agent: Mutt/2.2.12 (2023-09-09)
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:Atcsqr.andestech.com 41M3PcR8080879
 
-Document the new compatibles used on ASUS X4TF.
+Hi Thomas,
 
-Signed-off-by: Kelly Hung <Kelly_Hung@asus.com>
----
- Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
- 1 file changed, 1 insertion(+)
+On Tue, Feb 13, 2024 at 11:04:53AM +0100, Thomas Gleixner wrote:
+> On Mon, Jan 29 2024 at 17:25, Yu Chien Peter Lin wrote:
+> >  static asmlinkage void riscv_intc_irq(struct pt_regs *regs)
+> >  {
+> >  	unsigned long cause = regs->cause & ~CAUSE_IRQ_FLAG;
+> >  
+> > -	if (unlikely(cause >= BITS_PER_LONG))
+> > -		panic("unexpected interrupt cause");
+> > -
+> > -	generic_handle_domain_irq(intc_domain, cause);
+> > +	if (generic_handle_domain_irq(intc_domain, cause))
+> > +		pr_warn_ratelimited("Failed to handle interrupt (cause: %ld)\n",
+> > +				    cause);
+> 
+> Either let the cause stick out or you need brackets. See:
+> 
+>   https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#bracket-rules
+> 
+> >  }
+> >  
+> >  /*
+> > @@ -93,6 +95,14 @@ static int riscv_intc_domain_alloc(struct irq_domain *domain,
+> >  	if (ret)
+> >  		return ret;
+> >  
+> > +	/*
+> > +	 * Only allow hwirq for which we have corresponding standard or
+> > +	 * custom interrupt enable register.
+> > +	 */
+> > +	if ((riscv_intc_nr_irqs <= hwirq && hwirq < riscv_intc_custom_base) ||
+> > +	    (riscv_intc_custom_base + riscv_intc_custom_nr_irqs) <= hwirq)
+> > +		return -EINVAL;
+> 
+> Duh. This mix of ordering required to read this 3 times. What's wrong
+> with writing this consistently:
+> 
+> 	if ((hwirq >= riscv_intc_nr_irqs && hwirq < riscv_intc_custom_base) ||
+> 	    (hwirq >= iscv_intc_custom_base + riscv_intc_custom_nr_irqs)
+> 		return -EINVAL;
+> 
+> Hmm?
+> 
+> > -	pr_info("%d local interrupts mapped\n", BITS_PER_LONG);
+> > +	pr_info("%d local interrupts mapped\n", riscv_intc_nr_irqs);
+> > +	if (riscv_intc_custom_nr_irqs)
+> > +		pr_info("%d custom local interrupts mapped\n",
+> > +			riscv_intc_custom_nr_irqs);
+> 
+> See bracket rules.
+>   
+> >  	return 0;
+> >  }
+> > @@ -166,6 +178,10 @@ static int __init riscv_intc_init(struct device_node *node,
+> >  		return 0;
+> >  	}
+> >  
+> > +	riscv_intc_nr_irqs = BITS_PER_LONG;
+> > +	riscv_intc_custom_base = riscv_intc_nr_irqs;
+> 
+> Why don't you initialize the static variables with constants right away?
+> 
+> > +	riscv_intc_custom_nr_irqs = 0;
+> 
+> It's already 0, no?
+> 
+> >  	return riscv_intc_init_common(of_node_to_fwnode(node));
+> >  }
+> 
+> Thanks,
+> 
+>         tglx
 
-diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-index 749ee54a3ff8..60a494b7aaaf 100644
---- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-+++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-@@ -74,6 +74,7 @@ properties:
-               - ampere,mtmitchell-bmc
-               - aspeed,ast2600-evb
-               - aspeed,ast2600-evb-a1
-+              - asus, x4tf
-               - facebook,bletchley-bmc
-               - facebook,cloudripper-bmc
-               - facebook,elbert-bmc
--- 
-2.25.1
+Thanks for pointing these out, I'll fix them in PATCH v9.
 
+Regards,
+Peter Lin
 
