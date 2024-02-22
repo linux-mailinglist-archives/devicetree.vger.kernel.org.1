@@ -1,120 +1,146 @@
-Return-Path: <devicetree+bounces-44938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 375368602C0
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 20:36:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BF558602CC
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 20:40:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0A571F22343
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 19:36:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C5A11C23152
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 19:40:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E8F7548FD;
-	Thu, 22 Feb 2024 19:36:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F6F86AF86;
+	Thu, 22 Feb 2024 19:40:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JYUx/u7h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ewFDjOQf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF4DA14B82B;
-	Thu, 22 Feb 2024 19:36:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CB0F548E7;
+	Thu, 22 Feb 2024 19:40:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708630606; cv=none; b=ptVIf8/S/ubl//M+ps6cXIlqIMZHDc6fbWPXbuOv5u+YZcBU1SJl1J6t/TLDSA+6XRI6KETfx9y27dfuzJEUw9Uab4c8XA9D9Z70DpZCI8dBX9AsVVe7CY+oa1GPRYi2kfli7cP91exZPDXlZ1mh+42pKXsvw+8mnactqxEHcv0=
+	t=1708630837; cv=none; b=OLgFwkEsgDAucY/SXnniqhcEo9wRPzp/KE7hEX5bN/Es5yK2Pbj0/QqTa+s2zDZOV3ineK6P7WoZlbgQBnARYsIBDNGM+UUEYiebY/AJ00Wnj6n4MTk8zujWtfUHhlbWgF4rbX9dpcBC9jHeGLNFjV+WcDpgMu0lRi1quB7mE7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708630606; c=relaxed/simple;
-	bh=mimHLt883XdmFq/Wm0Rkx9D2WOF046CaBE6YY7gWH2g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SgQZJBTx58pErcHqLnpsQiHjlqyg/cmGaFqgdtChFtpJfUhyKvvH3bN0+FwuJrCv93dAvP2ZUrslirHhTHjx6b2+Mqv1yW36OpyBTWkslctwWyTm0TYDI6sUc1B8+83cim08/qUaIUwRMwz8cIrtFeXFKx0cZKb8V1PsOIFt3Gg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JYUx/u7h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34538C433C7;
-	Thu, 22 Feb 2024 19:36:45 +0000 (UTC)
+	s=arc-20240116; t=1708630837; c=relaxed/simple;
+	bh=aEJwhXImnZlG7CDsaIYX4SI0jp1bWvk6d41It98Jybs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=d095gVYuY8Q20GZG3GrSt0MxAX6bH9uG2LaunOH9paQtxZWEUgNvpqQWF1BNK7F3dTX0eKpZBuYQAqAf+yJwH3C3TbGZAJ8QtF0s8ON0i66Nj4NZRi9rKDLwUCccip5zMMMuY61z1FCZZOEJUEDxz9WY+GgM0vNpkoRgVi8Orpw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ewFDjOQf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 7FE4FC433C7;
+	Thu, 22 Feb 2024 19:40:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708630605;
-	bh=mimHLt883XdmFq/Wm0Rkx9D2WOF046CaBE6YY7gWH2g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JYUx/u7h25KDz8BfvyXWk5Tf63l5gzlGdWG7C8XiqHsI/6yue9cwssXR2nNZpWIwB
-	 ExHMi7J9oCrTc+zR5MvO7AqoROap7Bo2JakJWx7x73uMKGtt0R2yH7O5a+iGZylPta
-	 o4ptRFQjzoCDnLwqO18dAUhqBssmsY6Ousd0f/N7j+7ESSZDAHzxUAXvuBzE5l3oaS
-	 yf2h+ncRZi+LXA/JGwkGqGPE3wwjhpK15Qt/057a7JfmYENTiPTrIVS7kgUvmQn2Sr
-	 eTH2GFDoJCX7AIKDXzp0kJl+Q6+Q/xjum7G3dPR1zC8WhPm5O/J1+COxDVPliGM/uP
-	 m5Lm4TY1NcDJQ==
-Date: Thu, 22 Feb 2024 13:36:42 -0600
-From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Samuel Holland <samuel.holland@sifive.com>,
-	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-	Eric Lin <eric.lin@sifive.com>, Conor Dooley <conor@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	linux-riscv@lists.infradead.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 1/6] dt-bindings: cache: Document the
- sifive,perfmon-counters property
-Message-ID: <20240222193642.GA3713418-robh@kernel.org>
-References: <20240216000837.1868917-1-samuel.holland@sifive.com>
- <20240216000837.1868917-2-samuel.holland@sifive.com>
- <eeb2331d-10e6-4902-91ba-85896a8f0ee1@linaro.org>
- <72221da1-4a1a-4947-a202-9de203032f5c@sifive.com>
- <6ac4005b-01e6-48c2-971e-d6a127134d13@linaro.org>
+	s=k20201202; t=1708630836;
+	bh=aEJwhXImnZlG7CDsaIYX4SI0jp1bWvk6d41It98Jybs=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=ewFDjOQfu9nVhOPbo18S4GilBcFJD5VNt20ofD/5y7zXyaoDAF5xRvkBcvIyCC7Um
+	 P2LBpPETFOvsummu2VB5++nzZpWOSyrMhwc/TxaR8L/IPfmu/pTTInHshqs6k3NeF+
+	 no7Kngci8V+p1QfqfxLM205F3xAUoki/JobL773jxaYg25+l0s/xp+EGgBKzsW9LfZ
+	 V+xWuuITIo52NKC6K3oJBobZp/syqRg29v6K/TaBcu47Nr2V7gSroyeA0MQS79vk25
+	 yCvT773m557lm6RJ8+Rs9af3icfgGGaYQ2NAmjcMGE+nJUmdYmPExiavP5+6Q8QBos
+	 L9hks9BBjdGTg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5CDCBC48BF8;
+	Thu, 22 Feb 2024 19:40:36 +0000 (UTC)
+From: Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>
+Subject: [PATCH v4 0/7] clk: hisilicon: add support for Hi3798MV200
+Date: Fri, 23 Feb 2024 03:40:10 +0800
+Message-Id: <20240223-clk-mv200-v4-0-3e37e501d407@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6ac4005b-01e6-48c2-971e-d6a127134d13@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABqj12UC/23MTQ6CMBCG4auQrq0ZplDAlfcwLkodpOGnpsVGQ
+ 7i7hRVGl99knndmnpwhz07JzBwF440d48gOCdOtGu/EzS1uhoAZYCq57js+BATgWpdakagkEbD
+ 4/3DUmNfWulzjbo2frHtv6ZCu13+VkHLgCiulCSuSQp7tc+qt7Y7aDmztBNzbYm8x2rookTKqp
+ WyKXyt2FnFvRbSNgKLK6xxEWn7bZVk+buBEsBwBAAA=
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: David Yang <mmyangfl@gmail.com>, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Yang Xiwen <forbidden405@outlook.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1708630834; l=3178;
+ i=forbidden405@outlook.com; s=20230724; h=from:subject:message-id;
+ bh=aEJwhXImnZlG7CDsaIYX4SI0jp1bWvk6d41It98Jybs=;
+ b=YqA4nNJSTfz8MeqQJgmJun8HZaAauoycAGFJWjwwixURnZVnFlg2+MRVianFBm/fcLTPkf6lp
+ HbcUiBhCC9pCi8cLOgmwKIH80zVuMFLF365iowbQg2Upp7eAls+Rzn4
+X-Developer-Key: i=forbidden405@outlook.com; a=ed25519;
+ pk=qOD5jhp891/Xzc+H/PZ8LWVSWE3O/XCQnAg+5vdU2IU=
+X-Endpoint-Received:
+ by B4 Relay for forbidden405@outlook.com/20230724 with auth_id=67
+X-Original-From: Yang Xiwen <forbidden405@outlook.com>
+Reply-To: <forbidden405@outlook.com>
 
-On Sun, Feb 18, 2024 at 07:35:35PM +0100, Krzysztof Kozlowski wrote:
-> On 18/02/2024 16:29, Samuel Holland wrote:
-> > Hi Krzysztof,
-> > 
-> > On 2024-02-17 3:00 AM, Krzysztof Kozlowski wrote:
-> >> On 16/02/2024 01:08, Samuel Holland wrote:
-> >>> The SiFive Composable Cache controller contains an optional PMU with a
-> >>> configurable number of event counters. Document a property which
-> >>
-> >> Configurable in what context? By chip designers or by OS? Why this
-> >> cannot be deduced from the compatible?
-> > 
-> > This parameter is configurable by the chip designers.
-> > 
-> > The information certainly can be deduced from the SoC-specific compatible
-> > string, but doing so makes the driver only work on that specific list of SoCs.
-> 
-> Usually that's exactly what's expected, so why here usual approach is wrong?
-> 
-> > When provided via a property, the driver can work without changes on any SoC
-> > that uses this IP block. (None of the SoCs currently listed in the binding
-> 
-> Sorry, properties are not a work-around for missing compatibles.
-> 
-> > contain a PMU, so there is no backward compatibility concern with adding the new
-> > property.)
-> > 
-> > My understanding of the purpose of the SoC-specific compatible string is to
-> > handle eventualities (silicon bugs, integration quirks, etc.), not to
-> > intentionally limit the driver to a narrow list of hardware.
-> 
-> Depends what is the hardware. For most of licensed blocks, the final
-> design is the hardware so equals to its compatible.
+This SoC is similar to Hi3798CV200 with a few more clocks in CRG module.
 
-While I generally agree, I think a property is fine here for 2 reasons. 
+Note this driver is still ongoing, many clocks are not registered in the
+driver now. Feedback is welcomed, especially from HiSilicon people.
 
-This is going to vary on just about every design. That's true for any 
-PMU. So maybe this shouldn't even be SiFfive specific.
+Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+---
+Changes in v4:
+- dt-bindings: hisi-crg: add reg and #reset-cells to required, add reset-controller to required for cv200
+- dt-bindings: hisi-crg: do not add "simple-mfd" and "syscon" for hi3519 (Krzysztof Kozlowski)
+- dt-bindings: hi3798mv200: replace spaces with tabs (Krzysztof Kozlowski)
+- dt-bindings: s/DTS/DT_BINDINGS_CLOCK (Krzysztof Kozlowski)
+- Link to v3: https://lore.kernel.org/r/20240222-clk-mv200-v3-0-f30795b50318@outlook.com
 
-The second is counters available to the OS may not equal the number in 
-h/w because counters could be reserved for different priviledge levels 
-(secure, hypervisor, guest, etc.). No idea if Risc-V supports this, but 
-if not it is a matter of time. That's more likely for a core PMU than an 
-uncore PMU.
+Changes in v3:
+- remove RFC (Krzysztof Kozlowski)
+- rearrange patches so dt-binding comes before drivers (Krzysztof Kozlowski)
+- dt-bindings: Remove lots of properties
+- dt-bindings: stop merging all hisi-clock bindings, only convert hisi-crg.txt for now.
+- dt-bindings: remove hisilicon,hisi-sdmmc-dll subnode (Rob Herring, Krzysztof Kozlowski)
+- split histb-clock.h into two files, deprecate this header file
+- fix all users (hi3798cv200.dtsi and hi3798cv200 CRG driver)
+- hi3798mv200-crg: add a few missing clocks
+- Link to v2: https://lore.kernel.org/r/20240217-clk-mv200-v2-0-b782e4eb66f7@outlook.com
 
-Rob
+Changes in v2:
+- s/dt-binding/dt-bindings in commit logs: (Krzysztof Kozlowski)
+- fix bot error by adding "hisilicon,hisi-sdmmc-dll" to syscon.yaml (Rob Herring)
+- hi3798mv200-crg: assign fixed rate parents to some gates
+- hi3798mv200-crg: s/ETH/FEMAC, add GMAC ctrl clock
+- Link to v1: https://lore.kernel.org/r/20240216-clk-mv200-v1-0-a29ace29e636@outlook.com
+
+---
+Yang Xiwen (7):
+      dt-bindings: clock: convert hisi-crg.txt to YAML
+      dt-bindings: clock: histb-clock: split into two header files
+      arm64: dts: hisilicon: fix include path
+      clk: hisilicon: fix include path for crg-hi3798cv200
+      dt-bindings: clock: hisilicon,clock-reset-controller: add Hi3798MV200 SoC
+      dt-bindings: clock: hisilicon: add clock definitions for Hi3798MV200
+      clk: hisilicon: add CRG driver for Hi3798MV200 SoC
+
+ .../devicetree/bindings/clock/hisi-crg.txt         |  50 ---
+ .../bindings/clock/hisilicon,hisi-crg.yaml         |  76 ++++
+ arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi     |   3 +-
+ drivers/clk/hisilicon/Kconfig                      |   8 +
+ drivers/clk/hisilicon/Makefile                     |   1 +
+ drivers/clk/hisilicon/crg-hi3798cv200.c            |   3 +-
+ drivers/clk/hisilicon/crg-hi3798mv200.c            | 462 +++++++++++++++++++++
+ .../dt-bindings/clock/hisilicon,hi3798cv200-crg.h  |  62 +++
+ .../clock/hisilicon,hi3798cv200-sysctrl.h          |  17 +
+ .../dt-bindings/clock/hisilicon,hi3798mv200-crg.h  | 150 +++++++
+ .../clock/hisilicon,hi3798mv200-sysctrl.h          |  21 +
+ include/dt-bindings/clock/histb-clock.h            |  70 +---
+ 12 files changed, 810 insertions(+), 113 deletions(-)
+---
+base-commit: 8d3dea210042f54b952b481838c1e7dfc4ec751d
+change-id: 20240216-clk-mv200-cc8cae396ee0
+
+Best regards,
+-- 
+Yang Xiwen <forbidden405@outlook.com>
+
 
