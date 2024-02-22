@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-44705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D87FA85F4D2
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 10:45:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2181785F4D7
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 10:45:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 07D611C24216
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 09:45:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B63FC1F216CA
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 09:45:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E32CF47774;
-	Thu, 22 Feb 2024 09:42:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2D693F8FD;
+	Thu, 22 Feb 2024 09:42:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="nhRwgA5P"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="kgJ6hDRb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4E253F8ED
-	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 09:42:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 747C8482C6
+	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 09:42:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708594946; cv=none; b=lu9Gkfs7ZDijabOy+j8K0xfd6NTKOyAQYiOoch4pqM1OwHxSHyBYFM4KNI71cmaM9Hh3W71U5FqqBmKIbodXRLtzeMYUoizlJ+tHTpcZOCdTOYmCg4SxDryW1Pi03p4Fx4+KZOcxJttEi9o7l3C2GqCzCW7amm2GxqQSMKnMB1c=
+	t=1708594953; cv=none; b=Q3oxOx//Yl+3dje6kHbqNg3wax3Z95oJE/t0QcbvUyZxcDjW6kFPNtrEkd+2yJayyEHD7Agz9jG9RDT7uEsQxs+IlipfCAYlncJggAHVv9nXbgxnbr+OJwgtuUVHfORFxBygexXg6AzMWq5roR0QHerL34nhhU3FUi1zUNzfuJ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708594946; c=relaxed/simple;
-	bh=dUis2WrulY83n29hZsrObRp7r28ztx551Th4pPrHqJ4=;
+	s=arc-20240116; t=1708594953; c=relaxed/simple;
+	bh=hb7lwuFLB9UuIJTL//kIhghW1ugqaGYSY/RdRY1h8Zc=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=LpsfcUbjV9L+xm5MagzMjdvHu4UhG1g3Sd7QzcRfU9Tq3aX9U5oB7fwnjSHwk7TyOS/vbDbQWFRpUgRiEk55GVnWLfMbMqOrgL7JdckNCiMREM8NNaAro+tMDjMdHx7wozKgpAONWRU2gvjxR+G2N80MPjD3mTLgkDFlKGkbVfg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=nhRwgA5P; arc=none smtp.client-ip=209.85.167.174
+	 MIME-Version; b=IM0BeZskMn81FcDWVapdk+2squouF+3TTahXJBrIB+g6/TNMpJGbjbE2TfgSyxz0O97inUBo68sn7tz03DfTbvy5/8qSrxMxwdLKYuz3j2m3W3ZX4+qYogOuH668TkAdojwGnawT6doJH1f4AaJkGJmrxE0gl5qFfFvVyz5JHrY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=kgJ6hDRb; arc=none smtp.client-ip=209.85.167.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-3c03d6e5e56so7318191b6e.1
-        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 01:42:24 -0800 (PST)
+Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-3c132695f1bso5792681b6e.2
+        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 01:42:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1708594944; x=1709199744; darn=vger.kernel.org;
+        d=ventanamicro.com; s=google; t=1708594951; x=1709199751; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=QI4aqAmAGveFqtunFvSRZVDquEgvdVoykJrGG/5E5MY=;
-        b=nhRwgA5PDYzA+IFRbeSY3TBMOPIoPyKamOziA14T0WKCdXFy4hUUjtUCqgfxi7RhOG
-         5INS6uG6kidYEjKR2kii9YWyzpnCds6SLQC7UJgPEyD3B8SrnWOn1m42UxJUz5yCumzE
-         vXFGKYMsNDG+hy4wWAtEwZXiG+yQeJj/YGGgLU4J0OnGU2iNblo2WhqHeuo4AgC86JHg
-         WHjO1Qy25NX9cA/5WLb2maxB9k9+0PKbZtfBf/7HSOvLscdQ4pcv0w3lZP6XeEmQDEJp
-         Polon++67GUVa91/BGytr8osBg8KaG5z2wOln3otRSSUCXxd/7EVqywCIT6th/aselrT
-         qDFg==
+        bh=71v8gbBOdtXGvo9g+2jtAQQQGBX8E4yEXl9JiWYqu5c=;
+        b=kgJ6hDRb6OcGKbzqGzLUi2T+JkeVtvLxvJkZytzdJiyJvL2inJ4vC/vd5qq6ry7UbU
+         hu6EDLUQVp+/FbkFSdrRfZJvVsET4euMVlM58oXr9h1KiTvGerpnF8SwvLJgLv/yW1LO
+         8t9GivG3FtS8if2pJCEFVuyvY1P6r6ybLSsPAKKwm6Oh6vE0nGVPvv9M9No6CcuDYqB1
+         OH6qpAkShqH3TUb/v9AIjEKkUQv8VEKix0Q/ZCBa3xeezPBf2xixee4q+iHA/U+5KIRo
+         UHpJG78pDWqXo8NJw1hrkpA1B7+HbvS6c0M4uOSsw7rvyTKh9pZTGZVXMI74JdgA8yyk
+         rQtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708594944; x=1709199744;
+        d=1e100.net; s=20230601; t=1708594951; x=1709199751;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=QI4aqAmAGveFqtunFvSRZVDquEgvdVoykJrGG/5E5MY=;
-        b=ljNrdzOLjH9t7UxcSikA9xUPomPDZcVehg6WD1Fqvpy6x0gricM9nlh9cDkiz/Zm6/
-         t0f6QvjhRs2XMWzKS/SToe6Z9QB7aCtDaFjWfUsOC4jvfY+cRTA2HzXyoxvHFBDUma3y
-         t592Uw1U/3N2c/dKfMqC4+Q1O6XM+Pa7djFCYbGy/PEdbUaOVNt9axCoK+VXACeR5bxF
-         NEKfCWx3yYMY1exibmky8CRjF89edxY7bGeVBTiiPYavIwdc1gbMKRQjvzO8kmcL08Lw
-         PcbbKbi7LdWaq5Q1cA21xZhsqpXanCSuPZfC417uh7DYsHU51tccQK4tehREMuvdH8ai
-         ekEg==
-X-Forwarded-Encrypted: i=1; AJvYcCUnddwg6UI7SH7p4TGQjhZFXgp3PAECrk33y2dm3wZTECMUkpVo0Ya0MT6SSbsbnUPmg1+avUMktv/n4XKUdJ25xwq85auwub+kAA==
-X-Gm-Message-State: AOJu0YyPleKC5Zj11eVi+NORZ3Ik/pKVjC3iivULqksmbZ8wa82nPW5b
-	xT6S/QyDeywQ/Ya0Pz38HKI7x7pLycSmIzx8MdrGNVfiyJ8LZ1UuLJcr+WTxABo=
-X-Google-Smtp-Source: AGHT+IHqtP1DKIsPgt40MUTWJUvh3tb/nRx6sJbeclwYdEZRb3n1JZInRsUXuCI+LY1z9MeqvOqikw==
-X-Received: by 2002:a05:6808:f87:b0:3c1:559d:b56b with SMTP id o7-20020a0568080f8700b003c1559db56bmr15787611oiw.14.1708594943914;
-        Thu, 22 Feb 2024 01:42:23 -0800 (PST)
+        bh=71v8gbBOdtXGvo9g+2jtAQQQGBX8E4yEXl9JiWYqu5c=;
+        b=bOrpbBBwGTcNbo4LZ+beYTLzV8OAL2AP+P1EFjvwqjS7NJHMwuGRa9dS2dsPe32lAO
+         wob5L8gXYfITlMeZQsjFpil521tp9k0JD4pGLLh2ZEfVu8OR/s5a8IZQYjXK6efDVzDI
+         ibMSmAhAmIMbI4v9wcaeVoZb3bexEYPZyzEEScecidpLLFI7eX0qLDTga7+jUvuZA2Lf
+         4G6LNETMVJ944qH6ipiuBoe1/PjBQTeA5EgyufhFxqqfefj7vps+BK0TGW1iqzSidtBf
+         bzdvcU2UGnOff3c/yx/UegIcUtEwrj0KCWtEm525cFwvgdjQRdalJOlRUHAYbRU48MF8
+         5ejg==
+X-Forwarded-Encrypted: i=1; AJvYcCUE4fDHfkDBpDnjLZU46krZ76Xs9vef0MCVM5QAPa4D9woj+We7ko/c/wUr4R/ucWgw+mQNuC4DJ+Py+Ek0iLpXVurkmOmdsvpUWw==
+X-Gm-Message-State: AOJu0YzAJi2P3VXxI83suxnCU+YCbgQOc7gOt9YXUPCxZL4Qt6a2YhuS
+	uclPc5seVc52DrSTCT4M7bcnNH2X9I9oj+ZlGQpEZyPoh8cTDa6nYXqsvANjMy0=
+X-Google-Smtp-Source: AGHT+IF0y2dY34ltcK7epyszLwVDXzQXA+TqKHzDIczRSHobiYjOfHtewc2vswxjV5CnvZL2ARs9rQ==
+X-Received: by 2002:a05:6808:3011:b0:3c0:32ad:7422 with SMTP id ay17-20020a056808301100b003c032ad7422mr28344533oib.5.1708594951517;
+        Thu, 22 Feb 2024 01:42:31 -0800 (PST)
 Received: from anup-ubuntu-vm.localdomain ([103.97.165.210])
-        by smtp.gmail.com with ESMTPSA id n15-20020a05680803af00b003c17c2b8d09sm130699oie.31.2024.02.22.01.42.16
+        by smtp.gmail.com with ESMTPSA id n15-20020a05680803af00b003c17c2b8d09sm130699oie.31.2024.02.22.01.42.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Feb 2024 01:42:23 -0800 (PST)
+        Thu, 22 Feb 2024 01:42:31 -0800 (PST)
 From: Anup Patel <apatel@ventanamicro.com>
 To: Palmer Dabbelt <palmer@dabbelt.com>,
 	Paul Walmsley <paul.walmsley@sifive.com>,
@@ -86,10 +86,11 @@ Cc: Marc Zyngier <maz@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	Anup Patel <apatel@ventanamicro.com>
-Subject: [PATCH v14 16/18] irqchip/riscv-aplic: Add support for MSI-mode
-Date: Thu, 22 Feb 2024 15:10:04 +0530
-Message-Id: <20240222094006.1030709-17-apatel@ventanamicro.com>
+	Anup Patel <apatel@ventanamicro.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v14 17/18] RISC-V: Select APLIC and IMSIC drivers
+Date: Thu, 22 Feb 2024 15:10:05 +0530
+Message-Id: <20240222094006.1030709-18-apatel@ventanamicro.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240222094006.1030709-1-apatel@ventanamicro.com>
 References: <20240222094006.1030709-1-apatel@ventanamicro.com>
@@ -101,355 +102,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The RISC-V advanced platform-level interrupt controller (APLIC) has
-two modes of operation: 1) Direct mode and 2) MSI mode.
-(For more details, refer https://github.com/riscv/riscv-aia)
-
-In APLIC MSI-mode, wired interrupts are forwared as message signaled
-interrupts (MSIs) to CPUs via IMSIC.
-
-Extend the existing APLIC irqchip driver to support MSI-mode for
-RISC-V platforms having both wired interrupts and MSIs.
+The QEMU virt machine supports AIA emulation and quite a few RISC-V
+platforms with AIA support are under development so select APLIC and
+IMSIC drivers for all RISC-V platforms.
 
 Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- drivers/irqchip/Kconfig                |   6 +
- drivers/irqchip/Makefile               |   1 +
- drivers/irqchip/irq-riscv-aplic-main.c |   2 +-
- drivers/irqchip/irq-riscv-aplic-main.h |   8 +
- drivers/irqchip/irq-riscv-aplic-msi.c  | 263 +++++++++++++++++++++++++
- 5 files changed, 279 insertions(+), 1 deletion(-)
- create mode 100644 drivers/irqchip/irq-riscv-aplic-msi.c
+ arch/riscv/Kconfig | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
-index dbc8811d3764..806b5fccb3e8 100644
---- a/drivers/irqchip/Kconfig
-+++ b/drivers/irqchip/Kconfig
-@@ -551,6 +551,12 @@ config RISCV_APLIC
- 	depends on RISCV
- 	select IRQ_DOMAIN_HIERARCHY
- 
-+config RISCV_APLIC_MSI
-+	bool
-+	depends on RISCV_APLIC
-+	select GENERIC_MSI_IRQ
-+	default RISCV_APLIC
-+
- config RISCV_IMSIC
- 	bool
- 	depends on RISCV
-diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
-index 7f8289790ed8..47995fdb2c60 100644
---- a/drivers/irqchip/Makefile
-+++ b/drivers/irqchip/Makefile
-@@ -96,6 +96,7 @@ obj-$(CONFIG_CSKY_MPINTC)		+= irq-csky-mpintc.o
- obj-$(CONFIG_CSKY_APB_INTC)		+= irq-csky-apb-intc.o
- obj-$(CONFIG_RISCV_INTC)		+= irq-riscv-intc.o
- obj-$(CONFIG_RISCV_APLIC)		+= irq-riscv-aplic-main.o irq-riscv-aplic-direct.o
-+obj-$(CONFIG_RISCV_APLIC_MSI)		+= irq-riscv-aplic-msi.o
- obj-$(CONFIG_RISCV_IMSIC)		+= irq-riscv-imsic-state.o irq-riscv-imsic-early.o irq-riscv-imsic-platform.o
- obj-$(CONFIG_SIFIVE_PLIC)		+= irq-sifive-plic.o
- obj-$(CONFIG_IMX_IRQSTEER)		+= irq-imx-irqsteer.o
-diff --git a/drivers/irqchip/irq-riscv-aplic-main.c b/drivers/irqchip/irq-riscv-aplic-main.c
-index 160ff99d6979..774a0c97fdab 100644
---- a/drivers/irqchip/irq-riscv-aplic-main.c
-+++ b/drivers/irqchip/irq-riscv-aplic-main.c
-@@ -187,7 +187,7 @@ static int aplic_probe(struct platform_device *pdev)
- 	if (is_of_node(dev->fwnode))
- 		msi_mode = of_property_present(to_of_node(dev->fwnode), "msi-parent");
- 	if (msi_mode)
--		rc = -ENODEV;
-+		rc = aplic_msi_setup(dev, regs);
- 	else
- 		rc = aplic_direct_setup(dev, regs);
- 	if (rc)
-diff --git a/drivers/irqchip/irq-riscv-aplic-main.h b/drivers/irqchip/irq-riscv-aplic-main.h
-index 4cfbadf37ddc..4393927d8c80 100644
---- a/drivers/irqchip/irq-riscv-aplic-main.h
-+++ b/drivers/irqchip/irq-riscv-aplic-main.h
-@@ -40,5 +40,13 @@ int aplic_irqdomain_translate(struct irq_fwspec *fwspec, u32 gsi_base,
- void aplic_init_hw_global(struct aplic_priv *priv, bool msi_mode);
- int aplic_setup_priv(struct aplic_priv *priv, struct device *dev, void __iomem *regs);
- int aplic_direct_setup(struct device *dev, void __iomem *regs);
-+#ifdef CONFIG_RISCV_APLIC_MSI
-+int aplic_msi_setup(struct device *dev, void __iomem *regs);
-+#else
-+static inline int aplic_msi_setup(struct device *dev, void __iomem *regs)
-+{
-+	return -ENODEV;
-+}
-+#endif
- 
- #endif
-diff --git a/drivers/irqchip/irq-riscv-aplic-msi.c b/drivers/irqchip/irq-riscv-aplic-msi.c
-new file mode 100644
-index 000000000000..b2a25e011bb2
---- /dev/null
-+++ b/drivers/irqchip/irq-riscv-aplic-msi.c
-@@ -0,0 +1,263 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2021 Western Digital Corporation or its affiliates.
-+ * Copyright (C) 2022 Ventana Micro Systems Inc.
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/bitops.h>
-+#include <linux/cpu.h>
-+#include <linux/interrupt.h>
-+#include <linux/irqchip.h>
-+#include <linux/irqchip/riscv-aplic.h>
-+#include <linux/irqchip/riscv-imsic.h>
-+#include <linux/module.h>
-+#include <linux/msi.h>
-+#include <linux/of_irq.h>
-+#include <linux/platform_device.h>
-+#include <linux/printk.h>
-+#include <linux/smp.h>
-+
-+#include "irq-riscv-aplic-main.h"
-+
-+static void aplic_msi_irq_unmask(struct irq_data *d)
-+{
-+	aplic_irq_unmask(d);
-+	irq_chip_unmask_parent(d);
-+}
-+
-+static void aplic_msi_irq_mask(struct irq_data *d)
-+{
-+	irq_chip_mask_parent(d);
-+	aplic_irq_mask(d);
-+}
-+
-+static void aplic_msi_irq_eoi(struct irq_data *d)
-+{
-+	struct aplic_priv *priv = irq_data_get_irq_chip_data(d);
-+	u32 reg_off, reg_mask;
-+
-+	/*
-+	 * EOI handling is required only for level-triggered interrupts
-+	 * when APLIC is in MSI mode.
-+	 */
-+
-+	reg_off = APLIC_CLRIP_BASE + ((d->hwirq / APLIC_IRQBITS_PER_REG) * 4);
-+	reg_mask = BIT(d->hwirq % APLIC_IRQBITS_PER_REG);
-+	switch (irqd_get_trigger_type(d)) {
-+	case IRQ_TYPE_LEVEL_LOW:
-+		/*
-+		 * If the rectified input value of the source is still low
-+		 * then set the interrupt pending bit so that interrupt is
-+		 * re-triggered via MSI.
-+		 */
-+		if (!(readl(priv->regs + reg_off) & reg_mask))
-+			writel(d->hwirq, priv->regs + APLIC_SETIPNUM_LE);
-+		break;
-+	case IRQ_TYPE_LEVEL_HIGH:
-+		/*
-+		 * If the rectified input value of the source is still high
-+		 * then set the interrupt pending bit so that interrupt is
-+		 * re-triggered via MSI.
-+		 */
-+		if (readl(priv->regs + reg_off) & reg_mask)
-+			writel(d->hwirq, priv->regs + APLIC_SETIPNUM_LE);
-+		break;
-+	}
-+}
-+
-+static void aplic_msi_write_msg(struct irq_data *d, struct msi_msg *msg)
-+{
-+	unsigned int group_index, hart_index, guest_index, val;
-+	struct aplic_priv *priv = irq_data_get_irq_chip_data(d);
-+	struct aplic_msicfg *mc = &priv->msicfg;
-+	phys_addr_t tppn, tbppn, msg_addr;
-+	void __iomem *target;
-+
-+	/* For zeroed MSI, simply write zero into the target register */
-+	if (!msg->address_hi && !msg->address_lo && !msg->data) {
-+		target = priv->regs + APLIC_TARGET_BASE;
-+		target += (d->hwirq - 1) * sizeof(u32);
-+		writel(0, target);
-+		return;
-+	}
-+
-+	/* Sanity check on message data */
-+	WARN_ON(msg->data > APLIC_TARGET_EIID_MASK);
-+
-+	/* Compute target MSI address */
-+	msg_addr = (((u64)msg->address_hi) << 32) | msg->address_lo;
-+	tppn = msg_addr >> APLIC_xMSICFGADDR_PPN_SHIFT;
-+
-+	/* Compute target HART Base PPN */
-+	tbppn = tppn;
-+	tbppn &= ~APLIC_xMSICFGADDR_PPN_HART(mc->lhxs);
-+	tbppn &= ~APLIC_xMSICFGADDR_PPN_LHX(mc->lhxw, mc->lhxs);
-+	tbppn &= ~APLIC_xMSICFGADDR_PPN_HHX(mc->hhxw, mc->hhxs);
-+	WARN_ON(tbppn != mc->base_ppn);
-+
-+	/* Compute target group and hart indexes */
-+	group_index = (tppn >> APLIC_xMSICFGADDR_PPN_HHX_SHIFT(mc->hhxs)) &
-+		     APLIC_xMSICFGADDR_PPN_HHX_MASK(mc->hhxw);
-+	hart_index = (tppn >> APLIC_xMSICFGADDR_PPN_LHX_SHIFT(mc->lhxs)) &
-+		     APLIC_xMSICFGADDR_PPN_LHX_MASK(mc->lhxw);
-+	hart_index |= (group_index << mc->lhxw);
-+	WARN_ON(hart_index > APLIC_TARGET_HART_IDX_MASK);
-+
-+	/* Compute target guest index */
-+	guest_index = tppn & APLIC_xMSICFGADDR_PPN_HART(mc->lhxs);
-+	WARN_ON(guest_index > APLIC_TARGET_GUEST_IDX_MASK);
-+
-+	/* Update IRQ TARGET register */
-+	target = priv->regs + APLIC_TARGET_BASE;
-+	target += (d->hwirq - 1) * sizeof(u32);
-+	val = FIELD_PREP(APLIC_TARGET_HART_IDX, hart_index);
-+	val |= FIELD_PREP(APLIC_TARGET_GUEST_IDX, guest_index);
-+	val |= FIELD_PREP(APLIC_TARGET_EIID, msg->data);
-+	writel(val, target);
-+}
-+
-+static void aplic_msi_set_desc(msi_alloc_info_t *arg, struct msi_desc *desc)
-+{
-+	arg->desc = desc;
-+	arg->hwirq = (u32)desc->data.icookie.value;
-+}
-+
-+static int aplic_msi_translate(struct irq_domain *d, struct irq_fwspec *fwspec,
-+			       unsigned long *hwirq, unsigned int *type)
-+{
-+	struct msi_domain_info *info = d->host_data;
-+	struct aplic_priv *priv = info->data;
-+
-+	return aplic_irqdomain_translate(fwspec, priv->gsi_base, hwirq, type);
-+}
-+
-+static const struct msi_domain_template aplic_msi_template = {
-+	.chip = {
-+		.name			= "APLIC-MSI",
-+		.irq_mask		= aplic_msi_irq_mask,
-+		.irq_unmask		= aplic_msi_irq_unmask,
-+		.irq_set_type		= aplic_irq_set_type,
-+		.irq_eoi		= aplic_msi_irq_eoi,
-+#ifdef CONFIG_SMP
-+		.irq_set_affinity	= irq_chip_set_affinity_parent,
-+#endif
-+		.irq_write_msi_msg	= aplic_msi_write_msg,
-+		.flags			= IRQCHIP_SET_TYPE_MASKED |
-+					  IRQCHIP_SKIP_SET_WAKE |
-+					  IRQCHIP_MASK_ON_SUSPEND,
-+	},
-+
-+	.ops = {
-+		.set_desc		= aplic_msi_set_desc,
-+		.msi_translate		= aplic_msi_translate,
-+	},
-+
-+	.info = {
-+		.bus_token		= DOMAIN_BUS_WIRED_TO_MSI,
-+		.flags			= MSI_FLAG_USE_DEV_FWNODE,
-+		.handler		= handle_fasteoi_irq,
-+	},
-+};
-+
-+int aplic_msi_setup(struct device *dev, void __iomem *regs)
-+{
-+	const struct imsic_global_config *imsic_global;
-+	struct aplic_priv *priv;
-+	struct aplic_msicfg *mc;
-+	phys_addr_t pa;
-+	int rc;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	rc = aplic_setup_priv(priv, dev, regs);
-+	if (rc) {
-+		dev_err(dev, "failed to create APLIC context\n");
-+		return rc;
-+	}
-+	mc = &priv->msicfg;
-+
-+	/*
-+	 * The APLIC outgoing MSI config registers assume target MSI
-+	 * controller to be RISC-V AIA IMSIC controller.
-+	 */
-+	imsic_global = imsic_get_global_config();
-+	if (!imsic_global) {
-+		dev_err(dev, "IMSIC global config not found\n");
-+		return -ENODEV;
-+	}
-+
-+	/* Find number of guest index bits (LHXS) */
-+	mc->lhxs = imsic_global->guest_index_bits;
-+	if (APLIC_xMSICFGADDRH_LHXS_MASK < mc->lhxs) {
-+		dev_err(dev, "IMSIC guest index bits big for APLIC LHXS\n");
-+		return -EINVAL;
-+	}
-+
-+	/* Find number of HART index bits (LHXW) */
-+	mc->lhxw = imsic_global->hart_index_bits;
-+	if (APLIC_xMSICFGADDRH_LHXW_MASK < mc->lhxw) {
-+		dev_err(dev, "IMSIC hart index bits big for APLIC LHXW\n");
-+		return -EINVAL;
-+	}
-+
-+	/* Find number of group index bits (HHXW) */
-+	mc->hhxw = imsic_global->group_index_bits;
-+	if (APLIC_xMSICFGADDRH_HHXW_MASK < mc->hhxw) {
-+		dev_err(dev, "IMSIC group index bits big for APLIC HHXW\n");
-+		return -EINVAL;
-+	}
-+
-+	/* Find first bit position of group index (HHXS) */
-+	mc->hhxs = imsic_global->group_index_shift;
-+	if (mc->hhxs < (2 * APLIC_xMSICFGADDR_PPN_SHIFT)) {
-+		dev_err(dev, "IMSIC group index shift should be >= %d\n",
-+			(2 * APLIC_xMSICFGADDR_PPN_SHIFT));
-+		return -EINVAL;
-+	}
-+	mc->hhxs -= (2 * APLIC_xMSICFGADDR_PPN_SHIFT);
-+	if (APLIC_xMSICFGADDRH_HHXS_MASK < mc->hhxs) {
-+		dev_err(dev, "IMSIC group index shift big for APLIC HHXS\n");
-+		return -EINVAL;
-+	}
-+
-+	/* Compute PPN base */
-+	mc->base_ppn = imsic_global->base_addr >> APLIC_xMSICFGADDR_PPN_SHIFT;
-+	mc->base_ppn &= ~APLIC_xMSICFGADDR_PPN_HART(mc->lhxs);
-+	mc->base_ppn &= ~APLIC_xMSICFGADDR_PPN_LHX(mc->lhxw, mc->lhxs);
-+	mc->base_ppn &= ~APLIC_xMSICFGADDR_PPN_HHX(mc->hhxw, mc->hhxs);
-+
-+	/* Setup global config and interrupt delivery */
-+	aplic_init_hw_global(priv, true);
-+
-+	/* Set the APLIC device MSI domain if not available */
-+	if (!dev_get_msi_domain(dev)) {
-+		/*
-+		 * The device MSI domain for OF devices is only set at the
-+		 * time of populating/creating OF device. If the device MSI
-+		 * domain is discovered later after the OF device is created
-+		 * then we need to set it explicitly before using any platform
-+		 * MSI functions.
-+		 *
-+		 * In case of APLIC device, the parent MSI domain is always
-+		 * IMSIC and the IMSIC MSI domains are created later through
-+		 * the platform driver probing so we set it explicitly here.
-+		 */
-+		if (is_of_node(dev->fwnode))
-+			of_msi_configure(dev, to_of_node(dev->fwnode));
-+	}
-+
-+	if (!msi_create_device_irq_domain(dev, MSI_DEFAULT_DOMAIN, &aplic_msi_template,
-+					  priv->nr_irqs + 1, priv, priv)) {
-+		dev_err(dev, "failed to create MSI irq domain\n");
-+		return -ENOMEM;
-+	}
-+
-+	/* Advertise the interrupt controller */
-+	pa = priv->msicfg.base_ppn << APLIC_xMSICFGADDR_PPN_SHIFT;
-+	dev_info(dev, "%d interrupts forwared to MSI base %pa\n", priv->nr_irqs, &pa);
-+
-+	return 0;
-+}
+diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+index bffbd869a068..569f2b6fd60a 100644
+--- a/arch/riscv/Kconfig
++++ b/arch/riscv/Kconfig
+@@ -162,6 +162,8 @@ config RISCV
+ 	select PCI_DOMAINS_GENERIC if PCI
+ 	select PCI_MSI if PCI
+ 	select RISCV_ALTERNATIVE if !XIP_KERNEL
++	select RISCV_APLIC
++	select RISCV_IMSIC
+ 	select RISCV_INTC
+ 	select RISCV_TIMER if RISCV_SBI
+ 	select SIFIVE_PLIC
 -- 
 2.34.1
 
