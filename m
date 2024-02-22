@@ -1,118 +1,151 @@
-Return-Path: <devicetree+bounces-44817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DEFA85FA70
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 14:56:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4360085FAAA
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 15:02:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2DA7B1F2510E
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 13:56:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E47161F281FB
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 14:02:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DFB5133981;
-	Thu, 22 Feb 2024 13:56:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92745139582;
+	Thu, 22 Feb 2024 14:02:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90B5612EBC0;
-	Thu, 22 Feb 2024 13:56:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEE6D137C29;
+	Thu, 22 Feb 2024 14:02:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708610211; cv=none; b=CzOP/DXG1HNbd1VGmI82SJ7UE1cViRLT1sH2aOzoD2lvUYZ08WtetYKbkW3SG/ioXNyhokMgTku1jBX5al2afQvnAdOpJVGfag0/U6II40E38oBPmRfkTtTQwV7ZKzB0/m5UHwhtchQ2KUldJxqUSI5zCUIftBMqT0HLZh5d+UQ=
+	t=1708610543; cv=none; b=OlgeQhHtOArxf6MgasqfaSalVKuoQJmeVw9+xFHyXuCoPhhQyszWJcEhPVHtz0wKkD3M8HEg1yJmxlIixeWP/jB8kJuxTP1cziQd/2IeUO6TsU6qXmL/ReX6kRYjWIRGP+ZSBxJb6hf51L7h2zTVIGblFco4dpCKLjR+KN5m6kk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708610211; c=relaxed/simple;
-	bh=dEm3suX3fzhg2bcPZcHvC1sndYyx/vFg3G0E53CeiIk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oL/GJ8dcRpx/C8MQH2fX5K7WYEN49CvJkbqwbLgIAyavoC5oZ5oOO0GrxTr1RwULpOUZQ9Qa/S0t4C6/0SPQiFiTSrBOMQRllUFqWPUx3OcKLUE2iYNwsqsEt0mF5oIgdX68cyEQaj9BUHXULipeJFGoULOIQ1F4e6gCdE3jCH0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-dc745927098so1802930276.3;
-        Thu, 22 Feb 2024 05:56:49 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708610208; x=1709215008;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sHews1cTMJ0VI2OKFXujWZMUtBy3bDbxnSwdRHcUaXA=;
-        b=nNBh2Fz13eVDl/Fndgm3t2Awv8SduR1H1fBqGv1hVsDQQFQybTWHPVLZSgKGJJ2+Zd
-         bJtCSWzGT3l678M/dQME0PiZSKqwWnfYm3ZDFf+H8Y/kystv2x0CUnLd/Yb8aeKwS3dT
-         EEhbRe3j4+L6L9p5KNDvh3+21rIQxUBIpNY7BDwH1n4PdaY8O/z3he+OPuUSN2nyMhKl
-         uugMa/TnnLkxTQhW/QL5TylVWfkQJl6q5hxYBc1oGQaEt/qGuW4wvoWqCNlLrxoUFco0
-         MiN8z5FOj18hDhPTNVBtopjNNtP1HAkCLZgIU89RWeOxQ1AWwGEqEP8LnI6TAihzuY/W
-         w2ow==
-X-Forwarded-Encrypted: i=1; AJvYcCXkl/UyDhLs9thlOgEYEC/Kazj0aNlIQl+W663MwmMVlVkm+XQt2vS++N2lYQhRXrpM5NlTAwX/V4tSTs+wU6YZOXIuWzxNDH8/XapkP8Lc+zMnd0yPWxfq4GflALotmvYMTSaSPstrdA==
-X-Gm-Message-State: AOJu0Ywpz1iYmQOl4BW9vLKiu16m88yIXJ7eYaXUkSB61LGXq+zkc5p1
-	ZVcpZB28o/0vWqMZVVvU5NHofEE031k5dnUNmTVwdHRLcnU4OmEaHPBjKc3A38k=
-X-Google-Smtp-Source: AGHT+IHDnxMaL4S9e1oOcyRMxcT4xuDgnMz8PWZHdKA8rstOZAF22YU+xR3nLE5F3BRzap3Z8Y8K0Q==
-X-Received: by 2002:a25:8c88:0:b0:dc7:5a73:184e with SMTP id m8-20020a258c88000000b00dc75a73184emr2462330ybl.14.1708610208158;
-        Thu, 22 Feb 2024 05:56:48 -0800 (PST)
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
-        by smtp.gmail.com with ESMTPSA id v1-20020a056902028100b00dc7622402b9sm2750688ybh.43.2024.02.22.05.56.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Feb 2024 05:56:47 -0800 (PST)
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-dc6d8bd612dso1966118276.1;
-        Thu, 22 Feb 2024 05:56:47 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCX+SZUYn3ufchA3+aPsYWxc3sxe77isC8SB9BYPP6JM2ZEVxZ5+Rx37uZlfe3mwzQobGuLGnYRqrUbqjpw8DJ7o84+wS/eAfPOYOHq8TrjyHvfaQ+VEvE2S5yo/kmf3SA9KqVbbwc3OVw==
-X-Received: by 2002:a81:b615:0:b0:608:9c24:45c3 with SMTP id
- u21-20020a81b615000000b006089c2445c3mr1430864ywh.24.1708610207726; Thu, 22
- Feb 2024 05:56:47 -0800 (PST)
+	s=arc-20240116; t=1708610543; c=relaxed/simple;
+	bh=0Ca7pcaxdTC94QZGuqXAmtVUf+PPMCRljrZfstySUqs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=a7E9F3c3keu+bWbIo3dN47QxnFZ5/kdRi8sm/ONy2PP9hXgyIZFN8lCv/BupZjoF0M2jJ/J4UVvMPhyBVijvRtUCdlfFiIke35JWcA038SrzQYLyQswTxZf1DUyohRcGgY2e/fLDJzVniIS3p2bn+1KPiH3KdlptV5G8uNZy+5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
+X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="6613447"
+X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; 
+   d="scan'208";a="6613447"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Feb 2024 06:02:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="936853609"
+X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; 
+   d="scan'208";a="936853609"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Feb 2024 06:02:15 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andy@kernel.org>)
+	id 1rd9eN-00000006e1a-1QX8;
+	Thu, 22 Feb 2024 16:02:11 +0200
+Date: Thu, 22 Feb 2024 16:02:10 +0200
+From: Andy Shevchenko <andy@kernel.org>
+To: Dumitru Ceclan <mitrutzceclan@gmail.com>
+Cc: linus.walleij@linaro.org, brgl@bgdev.pl, linux-gpio@vger.kernel.org,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Walle <michael@walle.cc>, Arnd Bergmann <arnd@arndb.de>,
+	ChiaEn Wu <chiaen_wu@richtek.com>,
+	Niklas Schnelle <schnelle@linux.ibm.com>,
+	Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
+	Mike Looijmans <mike.looijmans@topic.nl>,
+	Haibo Chen <haibo.chen@nxp.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	David Lechner <dlechner@baylibre.com>,
+	Ceclan Dumitru <dumitru.ceclan@analog.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Nuno Sa <nuno.sa@analog.com>
+Subject: Re: [PATCH v14 3/3] iio: adc: ad7173: add AD7173 driver
+Message-ID: <ZddT4mmxf3W55ea8@smile.fi.intel.com>
+References: <20240222110817.29670-1-mitrutzceclan@gmail.com>
+ <20240222110817.29670-3-mitrutzceclan@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240219170337.2161754-1-andriy.shevchenko@linux.intel.com> <ZddRZWftWhMHUl23@smile.fi.intel.com>
-In-Reply-To: <ZddRZWftWhMHUl23@smile.fi.intel.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 22 Feb 2024 14:56:35 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWQ1hx143eJYyCcEj-uqQ3uXLWfB_x70bQDn=wp3kQG7A@mail.gmail.com>
-Message-ID: <CAMuHMdWQ1hx143eJYyCcEj-uqQ3uXLWfB_x70bQDn=wp3kQG7A@mail.gmail.com>
-Subject: Re: [PATCH v3 0/9] auxdisplay: linedisp: Clean up and add new driver
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Robin van der Gracht <robin@protonic.nl>, Paul Burton <paulburton@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240222110817.29670-3-mitrutzceclan@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Hi Andy,
+On Thu, Feb 22, 2024 at 01:07:43PM +0200, Dumitru Ceclan wrote:
+> The AD7173 family offer a complete integrated Sigma-Delta ADC solution
+> which can be used in high precision, low noise single channel
+> applications or higher speed multiplexed applications. The Sigma-Delta
+> ADC is intended primarily for measurement of signals close to DC but also
+> delivers outstanding performance with input bandwidths out to ~10kHz.
 
-On Thu, Feb 22, 2024 at 2:51=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
-> On Mon, Feb 19, 2024 at 06:57:59PM +0200, Andy Shevchenko wrote:
-> > Add a new initial driver for Maxim MAX6958/6959 chips.
-> > While developing that driver I realised that there is a lot
-> > of duplication between ht16k33 and a new one. Hence set of
-> > cleanups and refactorings.
-> >
-> > Note, the new driver has minimum support of the hardware and
-> > I have plans to cover more features in the future.
->
-> Geert, would it be possible to give one more round of reviewing/testing
-> this week? I want to close auxdisplay for next merge window next week.
+A couple more comments which Jonathan might address when applying,
+up to him.
 
-For 1-7 (linedisp and ht16k33):
-Tested-by: Geert Uytterhoeven <geert@linux-m68k.org>
+...
 
-I hope to get to the actual review later...
+With
 
-Gr{oetje,eeting}s,
+	struct device *dev = &st->sd.spi->dev;
 
-                        Geert
+the below will be neater.
 
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+> +	struct ad7173_state *st = iio_priv(indio_dev);
+> +	u8 buf[AD7173_RESET_LENGTH];
+> +	unsigned int id;
+> +	int ret;
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+...
+
+> +	if (id != st->info->id)
+> +		dev_warn(&st->sd.spi->dev,
+> +			 "Unexpected device id: 0x%04X, expected: 0x%04X\n",
+> +			 id, st->info->id);
+
+(like here)
+
+...
+
+> +	st->config_usage_counter = 0;
+> +	st->config_cnts = devm_kcalloc(&st->sd.spi->dev, st->info->num_configs,
+> +				       sizeof(u64), GFP_KERNEL);
+
+sizeof(*st->config_cnts) ?
+
+(or here)
+
+> +	if (!st->config_cnts)
+> +		return -ENOMEM;
+
+...
+
+> +	ret = fwnode_property_match_property_string(dev_fwnode(dev),
+
+
+device_property_match_property_string()
+
+> +						    "clock-names",
+> +						    ad7173_clk_sel,
+> +						    ARRAY_SIZE(ad7173_clk_sel));
+
+...
+
+> +	if (num_channels == 0)
+> +		return dev_err_probe(dev, -EINVAL, "No channels specified\n");
+
+-ENODATA?
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
