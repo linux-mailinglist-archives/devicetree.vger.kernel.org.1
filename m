@@ -1,283 +1,149 @@
-Return-Path: <devicetree+bounces-44961-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44959-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9EA1860425
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 21:57:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B82AD860421
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 21:57:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 79C5128C929
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 20:57:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E96381C256CF
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 20:57:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEF1A12D1FC;
-	Thu, 22 Feb 2024 20:57:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 613DC73F3A;
+	Thu, 22 Feb 2024 20:57:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="WhYobgGD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g+TVcWsU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2100012D1E6
-	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 20:57:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9132371739;
+	Thu, 22 Feb 2024 20:57:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708635428; cv=none; b=sMCyvYqe235WHNgh854qzZpIlSWHNr6tKlJW3bknpRAEVcFDTe/l52QOTU5ohiXSHgmHJ6cASULD+NvUc6jl50obauFo7wn8MECmIFp8RSRQEpITCy+DovXt/jjRwYCPzScbUhb5ZnNUBNb+idBL5wD69jaFn9rMmTKPegRsLR4=
+	t=1708635426; cv=none; b=lg7sVW2Ntsx9pCkPEEA89w9yrp67QlHkzRrfX5d532UORdx8Fa9D/RH+Npb5FcOljNQrn7zUZHA+rrzrmrbVTEQiLP4Jx2AqM2BCBv8H0IMutAc3CEIuSKomtni44xhJoZConhmYheqbUwopL7xytVvzm+fkNaEH4yiTzGsKrLQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708635428; c=relaxed/simple;
-	bh=YpQ+4FHkDi4IbLU58IkyFBJ/SqkQAy1481PaL315Kqk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Qoekqqtcd4hDMMijMvqYs7Jv8mPmtPHjjqU7E/0c9P8M2C+OUPpVzTXo9UGhwvGFbJPgYaeG61n2xzWFM7iVpnd8EkZ63GJvMjVThY56P9yGrLcFdFAW4jKVbIT1OoAEwtrf6doGD/1Y2rj+hcU/yuEymJXmUwZ10eAPa/WPfk0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=WhYobgGD; arc=none smtp.client-ip=209.85.160.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-42a029c8e62so290711cf.1
-        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 12:57:06 -0800 (PST)
+	s=arc-20240116; t=1708635426; c=relaxed/simple;
+	bh=ZXL/20AOlmDgfRX36Nzj4Pff74rf6CTLJF/MqrlGbAc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=azjXMUXH+lzE5RNmJVr2Ux7N2c0WEbf2VU6gjhfaRo8Bgnic1lRBQkvtJX1FsTOPHbM1qSjr3ki32v79sxC5/2eOyxhPAMgxyHHJy20qZ6Hvexjz32+SJnKHLJ9DUBTq6RMV5APOrYcGpDr1Mpn0wcZ2/YgKHcg43T8Z/EWpTy0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g+TVcWsU; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5654621d62dso66090a12.3;
+        Thu, 22 Feb 2024 12:57:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1708635426; x=1709240226; darn=vger.kernel.org;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=zvU61T36wFvt+VT3VahgyPjk24RceusQMIeBT+f1pBs=;
-        b=WhYobgGD7X57092hOmM60A/YI8sFAuOaSyVARK+LldR6p8ZkZD19SsBOXAk6+kGRDE
-         JqeSvld5yubDGKQA6qGGfDoGTirgbbPyKjsCUijex4AfZmKWjEVWJSUtLWIfddIn7C+B
-         pSigQ5ibBlRJ75Fy2WEqhQ1hn97/wSqY+MWxM=
+        d=gmail.com; s=20230601; t=1708635423; x=1709240223; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=k2R6exNFMuMyEP9Zs0TU701ZxYwzvvvAfOU9DIEkDzQ=;
+        b=g+TVcWsUvU38GqV+gwUEtUKoG8zXXRYmpcGGGQrpgtrCCKt9m98Xs2BAPMHqpfOWzH
+         kGLQz468V9PM7ArAM9VovH8T0WZ8X9WPp7ERPhWv6/NKQAyd/JK0EoAhgPsrFKHfCfDg
+         l5+CGWxkFgmNqX6sXF5lcnXFeTgXkOWhIvZKrAzBRmjEj7Qr8EtIbD9gS1pkyUqpv/rb
+         ibU9mTVLZ4en/MpcZydsXod7BYckyd3JlMRIxL21AjiHRXE73n4tE05Gab+VE7Hsmynp
+         mlrsH2O2RIQRmHx7jsBcK0bOtQ38Fv27toXMffpmHjnBrFucxYMAVDL0KcKkv9pOg0n3
+         NUUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708635426; x=1709240226;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zvU61T36wFvt+VT3VahgyPjk24RceusQMIeBT+f1pBs=;
-        b=ttTSr1BFgyBHRgWt0iVSzNSJqyIKL+MMZBMEPxKhDb3QWbLZfSYQg/nNoCzSrswQke
-         3QF7HBYbOIkGrQKwzaGPC1ICesjPzFR5yQIeL4x3FLLXzhisViaq9pDO+j7k2Oepogy+
-         xnQAPJbBM7pTgSdsQXoWtbuGDw9WT8WIZo81yAt6bnY66m1G/JjtLx+JZU3Rph7kbQyF
-         ixUUFitXQ/hNzvs/12MWFAAvi1l+hKNXLpp2yJlVj+Ka4qvjVOCCk/NZhrNXA1W7f0Q7
-         hOtpCn8gu4EYHgnvzqQTmBcNgEG43pd9AtivEu26oTwZiwXSfSg9wGXZ1GsXSfNhZLHZ
-         ABXw==
-X-Forwarded-Encrypted: i=1; AJvYcCVAjSBS8c4pK9S5z0lI++8t8L6zIY7RSg20dP9l8c2npmAeSe9+yxxUri0AOjH6UH2aqL0BCRefW+I5L1pJMgf/OAK/1BGFDHxQrA==
-X-Gm-Message-State: AOJu0Yx6zRSow6S1F8cugbnrejf479t3rk4fdsDSoeW6ulYnIba8VczP
-	CglI+kNYIn8+1yybcKAQBsznmeJQ0zxi6LliagsY5BhNBWfsMj6Ux+oMRMrF0Q==
-X-Google-Smtp-Source: AGHT+IGy1qCsgNT10YtMAC/kdQLI1fRjJLjgcT6oS9zQPWJAPnC9qWxQa2z//70gk63Ktr6q0jtE3Q==
-X-Received: by 2002:a05:622a:1745:b0:42e:2b6:8b52 with SMTP id l5-20020a05622a174500b0042e02b68b52mr370785qtk.14.1708635426039;
-        Thu, 22 Feb 2024 12:57:06 -0800 (PST)
-Received: from stbirv-lnx-1.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id jr11-20020a05622a800b00b0042e224098eesm3159370qtb.27.2024.02.22.12.57.03
+        d=1e100.net; s=20230601; t=1708635423; x=1709240223;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=k2R6exNFMuMyEP9Zs0TU701ZxYwzvvvAfOU9DIEkDzQ=;
+        b=jK9zorFkU730j0vSeb27YkIZRV484ootI7yw006nuVIfSyzo9seCNyBheZRI8jHWL3
+         txhJI/QZHf+LLgE1aJ91wc/qVylydn5rXwLbipja7vVJwhp6tAA5djaotKkxyS5B5ouo
+         mOABJv61zi1UKSt6RoFD59zqJV/4l9/m//8Uv6kUbEDk9JAy75TsVlM1mWzZ7yRVNVne
+         U7Hl8tpqQD2cEJPXjnm5PpkoPQ3Pa225stXhswp8s8MMtPZ3MTJv2t/JBwkmQEHqqom3
+         STOQEB4al3F2pawt5+k2saG6D/PFORZzn+TTBfpCKAaXA8MU/4WIKrj/p14u1mFuNWCN
+         8z2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXYRC1oXWkfQE2IGu9dcE3kfWSGp9eAUfvyijQ5M7ovpPvhEl2ilGwn8PI5LJL3Z7bkb1m9184Kb8VDQxLawsisgZ046Yen83RYIQKIKZZoa15MWCF46cWvXt/TgdekvVO+6S/ap3s=
+X-Gm-Message-State: AOJu0YxsYlAYssUVDc7IUxxK8u3pfSjglqtUl0zYGXQq0kYUPvhxOKlU
+	igbfYq3irZL2SN8kD20voe8eYQlpnF4aJ3HI1lM1KoAXuk9OfcOeCG7+rAML42g=
+X-Google-Smtp-Source: AGHT+IE/qvrg3YIq3JMhwgKa7j4LV2SY69KS3EGu1YYakjYgPPsfh2dUaKoCvH0+xzFJkFJVYOeQJA==
+X-Received: by 2002:a50:cd58:0:b0:563:e5e0:85e1 with SMTP id d24-20020a50cd58000000b00563e5e085e1mr16447362edj.25.1708635422647;
+        Thu, 22 Feb 2024 12:57:02 -0800 (PST)
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id r21-20020a50d695000000b00563f3ee5003sm6120860edi.91.2024.02.22.12.57.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Feb 2024 12:57:05 -0800 (PST)
-From: Justin Chen <justin.chen@broadcom.com>
-To: netdev@vger.kernel.org
-Cc: bcm-kernel-feedback-list@broadcom.com,
-	florian.fainelli@broadcom.com,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	opendmb@gmail.com,
-	andrew@lunn.ch,
-	hkallweit1@gmail.com,
-	linux@armlinux.org.uk,
-	rafal@milecki.pl,
-	devicetree@vger.kernel.org,
-	Justin Chen <justin.chen@broadcom.com>
-Subject: [PATCH net-next 6/6] net: bcmasp: Add support for PHY interrupts
-Date: Thu, 22 Feb 2024 12:56:44 -0800
-Message-Id: <20240222205644.707326-7-justin.chen@broadcom.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240222205644.707326-1-justin.chen@broadcom.com>
-References: <20240222205644.707326-1-justin.chen@broadcom.com>
+        Thu, 22 Feb 2024 12:57:02 -0800 (PST)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: linux-kernel@vger.kernel.org, Aren Moynihan <aren@peacevolution.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+ Jean-Jacques Hiblot <jjhiblot@traphandler.com>, Chen-Yu Tsai <wens@csie.org>,
+ Ondrej Jirman <megi@xff.cz>, linux-sunxi@lists.linux.dev,
+ Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+ linux-arm-kernel@lists.infradead.org, linux-leds@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Miles Alan <m@milesalan.com>,
+ Samuel Holland <samuel@sholland.org>, Aren Moynihan <aren@peacevolution.org>
+Subject:
+ Re: [PATCH v2 4/4] arm64: dts: sun50i-a64-pinephone: change led type to
+ status
+Date: Thu, 22 Feb 2024 21:57:00 +0100
+Message-ID: <2792937.BEx9A2HvPv@jernej-laptop>
+In-Reply-To: <20240206185400.596979-4-aren@peacevolution.org>
+References:
+ <20240206185400.596979-1-aren@peacevolution.org>
+ <20240206185400.596979-4-aren@peacevolution.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="000000000000a3cf510611feafb3"
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---000000000000a3cf510611feafb3
-Content-Transfer-Encoding: 8bit
+Dne torek, 06. februar 2024 ob 19:13:20 CET je Aren Moynihan napisal(a):
+> The status function is described in the documentation as being a rgb led
+> used for system notifications on phones[1][2]. This is exactly what this
+> led is used for on the PinePhone, so using status is probably more
+> accurate than indicator.
+> 
+> 1: Documentation/leds/well-known-leds.txt
+> 2: include/dt-bindings/leds/common.h
+> 
+> Signed-off-by: Aren Moynihan <aren@peacevolution.org>
 
-Hook up the phy interrupts for internal phys to reduce mdio traffic
-and improve responsiveness of link changes.
+Sorry for late review.
 
-Signed-off-by: Justin Chen <justin.chen@broadcom.com>
----
- drivers/net/ethernet/broadcom/asp2/bcmasp.c     | 17 +++++++++++++++++
- drivers/net/ethernet/broadcom/asp2/bcmasp.h     |  4 ++++
- .../net/ethernet/broadcom/asp2/bcmasp_intf.c    |  5 +++++
- 3 files changed, 26 insertions(+)
+Please update subject in patches 2-3. Instead of "sun50i-a64-pinephone:"
+use "allwinner: pinephone:" (check commit history of sun50i-a64-pinephone.dtsi).
+Also rgb -> RGB, led -> LED. Last, please reword commit message to exclude
+links and just say DT bindings documentation.
 
-diff --git a/drivers/net/ethernet/broadcom/asp2/bcmasp.c b/drivers/net/ethernet/broadcom/asp2/bcmasp.c
-index 3086b0b9b784..a2627c2a6e45 100644
---- a/drivers/net/ethernet/broadcom/asp2/bcmasp.c
-+++ b/drivers/net/ethernet/broadcom/asp2/bcmasp.c
-@@ -31,6 +31,20 @@ static void _intr2_mask_set(struct bcmasp_priv *priv, u32 mask)
- 	priv->irq_mask |= mask;
- }
- 
-+void bcmasp_enable_phy_irq(struct bcmasp_intf *intf, int en)
-+{
-+	struct bcmasp_priv *priv = intf->parent;
-+
-+	/* Only supported with internal phys */
-+	if (!intf->internal_phy)
-+		return;
-+
-+	if (en)
-+		_intr2_mask_clear(priv, ASP_INTR2_PHY_EVENT(intf->channel));
-+	else
-+		_intr2_mask_set(priv, ASP_INTR2_PHY_EVENT(intf->channel));
-+}
-+
- void bcmasp_enable_tx_irq(struct bcmasp_intf *intf, int en)
- {
- 	struct bcmasp_priv *priv = intf->parent;
-@@ -79,6 +93,9 @@ static void bcmasp_intr2_handling(struct bcmasp_intf *intf, u32 status)
- 			__napi_schedule_irqoff(&intf->tx_napi);
- 		}
- 	}
-+
-+	if (status & ASP_INTR2_PHY_EVENT(intf->channel))
-+		phy_mac_interrupt(intf->ndev->phydev);
- }
- 
- static irqreturn_t bcmasp_isr(int irq, void *data)
-diff --git a/drivers/net/ethernet/broadcom/asp2/bcmasp.h b/drivers/net/ethernet/broadcom/asp2/bcmasp.h
-index 127a5340625e..f93cb3da44b0 100644
---- a/drivers/net/ethernet/broadcom/asp2/bcmasp.h
-+++ b/drivers/net/ethernet/broadcom/asp2/bcmasp.h
-@@ -19,6 +19,8 @@
- #define ASP_INTR2_TX_DESC(intr)			BIT((intr) + 14)
- #define ASP_INTR2_UMC0_WAKE			BIT(22)
- #define ASP_INTR2_UMC1_WAKE			BIT(28)
-+#define ASP_INTR2_PHY_EVENT(intr)		((intr) ? BIT(30) | BIT(31) : \
-+						BIT(24) | BIT(25))
- 
- #define ASP_WAKEUP_INTR2_OFFSET			0x1200
- #define  ASP_WAKEUP_INTR2_STATUS		0x0
-@@ -556,6 +558,8 @@ void bcmasp_enable_tx_irq(struct bcmasp_intf *intf, int en);
- 
- void bcmasp_enable_rx_irq(struct bcmasp_intf *intf, int en);
- 
-+void bcmasp_enable_phy_irq(struct bcmasp_intf *intf, int en);
-+
- void bcmasp_flush_rx_port(struct bcmasp_intf *intf);
- 
- extern const struct ethtool_ops bcmasp_ethtool_ops;
-diff --git a/drivers/net/ethernet/broadcom/asp2/bcmasp_intf.c b/drivers/net/ethernet/broadcom/asp2/bcmasp_intf.c
-index 1aed28b06309..a2fa8dcbe387 100644
---- a/drivers/net/ethernet/broadcom/asp2/bcmasp_intf.c
-+++ b/drivers/net/ethernet/broadcom/asp2/bcmasp_intf.c
-@@ -382,6 +382,7 @@ static void bcmasp_netif_start(struct net_device *dev)
- 
- 	bcmasp_enable_rx_irq(intf, 1);
- 	bcmasp_enable_tx_irq(intf, 1);
-+	bcmasp_enable_phy_irq(intf, 1);
- 
- 	phy_start(dev->phydev);
- }
-@@ -890,6 +891,7 @@ static void bcmasp_netif_deinit(struct net_device *dev)
- 	/* Disable interrupts */
- 	bcmasp_enable_tx_irq(intf, 0);
- 	bcmasp_enable_rx_irq(intf, 0);
-+	bcmasp_enable_phy_irq(intf, 0);
- 
- 	netif_napi_del(&intf->tx_napi);
- 	netif_napi_del(&intf->rx_napi);
-@@ -1027,6 +1029,9 @@ static int bcmasp_netif_init(struct net_device *dev, bool phy_connect)
- 			netdev_err(dev, "could not attach to PHY\n");
- 			goto err_phy_disable;
- 		}
-+
-+		if (intf->internal_phy)
-+			dev->phydev->irq = PHY_MAC_INTERRUPT;
- 	} else if (!intf->wolopts) {
- 		ret = phy_resume(dev->phydev);
- 		if (ret)
--- 
-2.34.1
+Note that I'll merge patches 2-3 once patch 1 is merged.
+
+Best regards,
+Jernej
+
+> ---
+> I can't find any documentation describing the indicator function, so
+> it's definitely less specific than status, but besides that I'm not sure
+> how it compares. Please ignore this patch if it's not useful.
+> 
+> (no changes since v1)
+> 
+>  arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+> index e53e0d4579a7..6d327266e6cc 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+> @@ -61,7 +61,7 @@ led2: led-2 {
+>  	multi-led {
+>  		compatible = "leds-group-multicolor";
+>  		color = <LED_COLOR_ID_RGB>;
+> -		function = LED_FUNCTION_INDICATOR;
+> +		function = LED_FUNCTION_STATUS;
+>  		leds = <&led0>, <&led1>, <&led2>;
+>  	};
+>  
+> 
 
 
---000000000000a3cf510611feafb3
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
 
-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
-NhTY3E+cXCB11wty89QStajwXdhGJTYEvUgvsq1h8CwJj9w/38ldAQf5WjhPmApYeJR2ewFrBMCM
-4lHkdRJ6TDc9nXoEkypUfjJkJHe7Eal06tosh6JpAgMBAAGjggHZMIIB1TAOBgNVHQ8BAf8EBAMC
-BaAwgaMGCCsGAQUFBwEBBIGWMIGTME4GCCsGAQUFBzAChkJodHRwOi8vc2VjdXJlLmdsb2JhbHNp
-Z24uY29tL2NhY2VydC9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcnQwQQYIKwYBBQUHMAGG
-NWh0dHA6Ly9vY3NwLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwME0G
-A1UdIARGMEQwQgYKKwYBBAGgMgEoCjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3dy5nbG9iYWxz
-aWduLmNvbS9yZXBvc2l0b3J5LzAJBgNVHRMEAjAAMEkGA1UdHwRCMEAwPqA8oDqGOGh0dHA6Ly9j
-cmwuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3JsMCMGA1UdEQQc
-MBqBGGp1c3Rpbi5jaGVuQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAfBgNVHSME
-GDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUIWGeYuaTsnIada5Xx8TR3cheUbgw
-DQYJKoZIhvcNAQELBQADggEBAHNQlMqQOFYPYFO71A+8t+qWMmtOdd2iGswSOvpSZ/pmGlfw8ZvY
-dRTkl27m37la84AxRkiVMes14JyOZJoMh/g7fbgPlU14eBc6WQWkIA6AmNkduFWTr1pRezkjpeo6
-xVmdBLM4VY1TFDYj7S8H2adPuypd62uHMY/MZi+BIUys4uAFA+N3NuUBNjcVZXYPplYxxKEuIFq6
-sDL+OV16G+F9CkNMN3txsym8Nnx5WAYZb6+rBUIhMGz70V05xsHQfzvo2s7f0J1tJ5BoRlPPhL0h
-VOnWA3h71u9TfSsv+PXVm3P21TfOS2uc1hbzEqyENCP4i5XQ0rv0TmPW42GZ0o4xggJtMIICaQIB
-ATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhH
-bG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwj8BKLXNpALfemdRAwDQYJ
-YIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIJF6Lsya2of3jTp2HyH+tP3bZJUsnEeBDoke
-r8ebtj7yMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI0MDIyMjIw
-NTcwNlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFl
-AwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFlAwQCATAN
-BgkqhkiG9w0BAQEFAASCAQC5M1ZtFd54N01OrlAR49tj4RYyelrP2BQP/a6P5UX9jjENEiWZSDvr
-hs56KEz9TasZoSNZZfPvdI7e0qWwjnuqatguwxFIciqgGPr2cybtpkPbJXZ8dF5han8yTIJC27aS
-zshOXcgbpvAnof/7PxoRJS/34RU4s/KdWTzPPHd04mNXfECwzRY4pLb+ZSPyVIlnZCLXfcdtErZz
-AwcpVDWTavM3NVd5ep45J7YXotTVpaqWRr8kizvZ4YklFOZW8fu/PNxdFr7bl3ZWGurGpXrxIPtG
-4KmXTGNe/5UtIpbdrjyJIC11wZOQOKowiaSoY+Dy+r0anfzyPanky8Fq7Bn/
---000000000000a3cf510611feafb3--
+
 
