@@ -1,168 +1,153 @@
-Return-Path: <devicetree+bounces-44928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ED3B8601AC
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 19:41:03 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8C0F8601B6
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 19:42:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1FC63B28F1D
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 18:41:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3DA36B2739A
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 18:41:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30D0873F22;
-	Thu, 22 Feb 2024 18:32:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57A6714B812;
+	Thu, 22 Feb 2024 18:34:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SbhntPsG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G8oT0tXV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C1C1125CE;
-	Thu, 22 Feb 2024 18:32:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23A2C14B800;
+	Thu, 22 Feb 2024 18:34:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708626762; cv=none; b=Lwj0vHwHpfBIdvF7JWEMksHidHrUstBqVeTvdaUOgqLO3S69L1fc4wxk6kaTnvUJiwgT00PZUIC3mgm8IzvR1VwNGV2glvE5u8goW+ZUqs7VELsprf0XkJQir+dm3NUxzkruvAnx6y4Gw8T8QnNckIgFebx9klBudqlPUTAnW7Q=
+	t=1708626875; cv=none; b=iQdQH4hxd9doAb48goykcLAk3C8rM8KRUAW7sPewFYu6ejUDUR3d2znbZE5M4vOheibD+BTQVOkiFi2Dnxn8YZ4zj/hjHahgJAvZ1+1dZVP2Lv3d7yjuUBP+rwkI6dMQ5Ome0fLrI1StTV+/reXuuakXzioXTThPX/a0ZP6qC+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708626762; c=relaxed/simple;
-	bh=Dq/WJWzvf8wQHOTJLFRXt3BmVpE2zcnhDDsvnsZo7Q8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=kMuP35tu6biXrIPJFX70PUHfZBkmxPEtkTQsZ+HP6g86h71cdcaOjo2VvEcD8mXAZjVWhPX0pY7Kf194dqNAtOn75nNWvY/1+nGSV5mpOM2WGD9icEKC0aeYEtKvtuc5oG3L0j1zfZygxsh3NYaeFu7GudhExOVxPH0bKgtSANc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SbhntPsG; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41MHXd4w011379;
-	Thu, 22 Feb 2024 18:32:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=uBZVc2KAKMD3VrRODtzocPOslJ8eEF/cruNuWqPmlKI=; b=Sb
-	hntPsGuukpcjKB4zPplj4GOzJxfsYhuBytggceShdDIlmcH+JehD+Wz2F1sBHE6W
-	HkP4GuOrWmP/YSw0gLjTmlXhnaPAmbSS53WQu/Kexo4YcGWZx8yO8iG77hbZ6WVz
-	RopOwTy6MDoZZOEi9CCKFjyc8uBDKOvQlF4b1XlhlmZNLcn3zlWVz1rVeoI6ZdKy
-	Nus270Dkg6U/9FrRXVnHREQJ5yWXr54tpegIELdhS2V5mj4MtvtVMJ8mA6KER+ny
-	nqtroOgX7O9Qt0A9HTSKs7M9jqI+1oQaik9zwEXvL8BPNqls9L8dBQ6ayngwz+DW
-	+yw4RuTJpuMnPpB8SvDQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3weasbr9eg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 22 Feb 2024 18:32:25 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41MIWOTJ011497
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 22 Feb 2024 18:32:24 GMT
-Received: from [10.71.109.81] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 22 Feb
- 2024 10:32:23 -0800
-Message-ID: <4de8626d-7dc6-42af-85ea-60e6670aef72@quicinc.com>
-Date: Thu, 22 Feb 2024 10:32:06 -0800
+	s=arc-20240116; t=1708626875; c=relaxed/simple;
+	bh=bvKuvKytbBtOqC4SY6tWbkwrs+qn3Ow0VkeI33yKTic=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EVzUrBpGyPqlKU0yuYsa/qATyhrOs4lMibCHybmu1doko36YX9FZ5dBfz5655Z4uniN+yQo9lr7pvWIluyj6B5rcNRbOEjOuVJ8SNEOU3gUmPgr+hv2tHb0xMFQIBoAPmIJgJN2iK0a6ZyY6vugjWyChW35B0olGZ7lCTq3BVus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G8oT0tXV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B8EDC433C7;
+	Thu, 22 Feb 2024 18:34:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708626874;
+	bh=bvKuvKytbBtOqC4SY6tWbkwrs+qn3Ow0VkeI33yKTic=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=G8oT0tXVU4X7BItZoA+QBGG7v64UjhuOc2fwK5PtsL5lxYiSvr+oioLkQ/YUj/Bfj
+	 ZSQHeZq3IHUe8srHmb3OOGEdQttgW7ucrf67qQC92RsPJAG7Ss1pnYpqTNAaKpnwnT
+	 7XGmI5ZsPjpIX9BBv1tG+ndivz4pDp9Qaiy9KS50Lp8tqv92FEeWf6jECYQfrOUvDn
+	 LD9O4UQOCars0jZwM3YUEMhJUwVsj02JNejh/4Y0NwZkJSFquzxytyLJZk1V57/wxi
+	 eXih8b7HxjUWmHslJr8KxgliYRk/cOXrxpnoRpV6k4bMcHwDd/AAHC7jh9Di55mXWu
+	 jC/7CCBQCatCw==
+Date: Thu, 22 Feb 2024 18:34:30 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" <linux-pci@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH v3 1/1] dt-bindings: pci: layerscape-pci: Convert to yaml
+ format
+Message-ID: <20240222-cardboard-mousiness-1f0cc1389f5d@spud>
+References: <20240214194145.2669744-1-Frank.Li@nxp.com>
+ <ZdPJys6OWGewNgX4@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 3/9] arm64: dts: qcom: sc7280: Enable MDP turbo mode
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>
-CC: Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Douglas Anderson
-	<dianders@chromium.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul
-	<sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        "David
- Airlie" <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        <cros-qcom-dts-watchers@chromium.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20240221-rb3gen2-dp-connector-v1-0-dc0964ef7d96@quicinc.com>
- <20240221-rb3gen2-dp-connector-v1-3-dc0964ef7d96@quicinc.com>
- <CAA8EJpo=9vhM+5YzaFxUoYRuEWQyrMS8wLNPSF3K=bN5JwWyDw@mail.gmail.com>
- <8313a7c3-3ace-4dee-ad27-8f51a06cd58c@linaro.org>
- <CAA8EJpqFj5nf8d_=Uoup7qg+nQrxqQU-DHbL3uSP138m9AcXLw@mail.gmail.com>
- <8fcb5816-2d59-4e27-ba68-8e0ed6e7d839@linaro.org>
- <CAA8EJporaUuddHHqpyYHiYSu=toHmrDxSHf9msZUJoym4Nz72g@mail.gmail.com>
-Content-Language: en-US
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <CAA8EJporaUuddHHqpyYHiYSu=toHmrDxSHf9msZUJoym4Nz72g@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: g1j4Hzm46QuFIDBMWdiTeBtPETXWT6ay
-X-Proofpoint-GUID: g1j4Hzm46QuFIDBMWdiTeBtPETXWT6ay
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-22_14,2024-02-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
- mlxlogscore=999 impostorscore=0 bulkscore=0 phishscore=0 spamscore=0
- clxscore=1011 lowpriorityscore=0 malwarescore=0 adultscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2402220144
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="pmwBZ8CSTAd4wZRC"
+Content-Disposition: inline
+In-Reply-To: <ZdPJys6OWGewNgX4@lizhi-Precision-Tower-5810>
 
 
+--pmwBZ8CSTAd4wZRC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 2/22/2024 1:46 AM, Dmitry Baryshkov wrote:
-> On Thu, 22 Feb 2024 at 11:28, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->>
->>
->>
->> On 2/22/24 10:04, Dmitry Baryshkov wrote:
->>> On Thu, 22 Feb 2024 at 10:56, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->>>>
->>>>
->>>>
->>>> On 2/22/24 00:41, Dmitry Baryshkov wrote:
->>>>> On Thu, 22 Feb 2024 at 01:19, Bjorn Andersson <quic_bjorande@quicinc.com> wrote:
->>>>>>
->>>>>> The max frequency listed in the DPU opp-table is 506MHz, this is not
->>>>>> sufficient to drive a 4k@60 display, resulting in constant underrun.
->>>>>>
->>>>>> Add the missing MDP_CLK turbo frequency of 608MHz to the opp-table to
->>>>>> fix this.
->>>>>
->>>>> I think we might want to keep this disabled for ChromeOS devices. Doug?
->>>>
->>>> ChromeOS devices don't get a special SoC
->>>
->>> But they have the sc7280-chrome-common.dtsi, which might contain a
->>> corresponding /delete-node/ .
->>
->> What does that change? The clock rates are bound to the
->> SoC and the effective values are limited by link-frequencies
->> or the panel driver.
-> 
-> Preventing the DPU from overheating? Or spending too much power?
-> 
+On Mon, Feb 19, 2024 at 04:36:10PM -0500, Frank Li wrote:
+> On Wed, Feb 14, 2024 at 02:41:44PM -0500, Frank Li wrote:
+> > Convert the layerscape-pci PCIe binding document to yaml format.
+> >=20
+> > Additionally, changes for the layerscape-pci endpoint part:
+> > - Add interrupt name 'pme' restriction for fsl,ls1028a-pcie-ep,
+> > fsl,ls1046a-pcie-ep, and fsl,ls1088a-pcie-ep.
+> > - Add register name restrictions: 'reg' and 'addr_space'. 'addr_space' =
+is
+> > required by snps,dw-pcie-ep.
+> > - Add an example.
+> >=20
+> > Changes for the layerscape-pci root complex part:
+> > - Add required property: 'reg-names', "#address-cells", "#size-cells",
+> > 'device_type', 'bus-range', 'ranges', "#interrupt-cells",
+> > 'interrupt-map-mask' and 'interrupt-map'.
+> > - Interrupt-names requirement split to each compatible string.
+> > - Add register name restrictions: 'reg' and 'config'. 'config' is requi=
+red
+> > by snps,dw-pcie.
+>=20
+> @conor
+>     Any comments about this one?
 
-Running DPU clock in turbo is a requirement to support 4k@60 otherwise 
-the pixel rate that high cannot be supported.
-
-sc7280 chrome devices already limit to HBR2
-
-https://lore.kernel.org/all/20230329233416.27152-1-quic_abhinavk@quicinc.com/
-
-So the DPU will not vote more than nominal.
-
-And like others wrote, limiting SOC frequencies is not the way and we 
-should filter out required frequencies using link-frequencies.
-
-Hence fwiw, I am fine with this change.
+Sorry I missed this - I've been sick the last week and probably
+overzealously deleted stuff from my mailbox. I see Rob replied to this
+as I was in the process of reading through the patch, so I only left two
+minor comments here.
 
 
-Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +    soc {
+> > +      #address-cells =3D <2>;
+> > +      #size-cells =3D <2>;
+> > +
+> > +      pcie_ep1: pcie-ep@3400000 {
 
+Nit: unused label.
+
+> > +allOf:
+> > +  - $ref: /schemas/pci/pci-bus.yaml#
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          enum:
+> > +            - fsl,lx2160a-pcie
+> > +    then:
+> > +      properties:
+> > +        interrupts:
+> > +          maxItems: 2
+> > +        interrupt-names:
+> > +          items:
+> > +            - const: pme
+> > +            - const: aer
+> > +            - const: intr
+
+You set maxItems to 2 but there are 3 names. That doesn't seem right!
+
+Chers,
+Conor.
+
+--pmwBZ8CSTAd4wZRC
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHQEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdeTtgAKCRB4tDGHoIJi
+0n4oAPjEU95BElZ57lil+e0CiVomgjohQVzInjwCtSiJvxOTAP9enJlRBahLf2bB
+iF6yOklO25g+/lcbiEUHvAvFfjUOBw==
+=dDxo
+-----END PGP SIGNATURE-----
+
+--pmwBZ8CSTAd4wZRC--
 
