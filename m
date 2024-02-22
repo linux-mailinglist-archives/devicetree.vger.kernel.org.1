@@ -1,108 +1,203 @@
-Return-Path: <devicetree+bounces-44668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D807F85F393
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 09:56:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E552885F396
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 09:56:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A3A21F23D1E
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 08:56:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F2E51C22C4D
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 08:56:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A71C364C1;
-	Thu, 22 Feb 2024 08:55:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46E422C68A;
+	Thu, 22 Feb 2024 08:56:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J7LYGWGz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LKwLzXgw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70F5B33CD2
-	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 08:55:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D21A2BB13;
+	Thu, 22 Feb 2024 08:56:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708592149; cv=none; b=d6qzhrgwyQfTf05LrktUIkIaEEAuxwHDRV9AUWm6NqGwhrmsSpodvuD0L7pXcyg3i3TCAZSH5zD8Jh6RRqyA6K85yQolnKzfLMNJw6B/5yODxFrJedfRUXJPyXocf4VpmLzOnpzkYIuuq7vCWws1q6sELh3qWXfk3RRjUcODEg4=
+	t=1708592179; cv=none; b=ks86MkCox0H/vbRwuphgnfQSi5AhuRkny9gSTjrkgDH/GIqlDuZM9XepyIAeQzkOtksVODvCaBiXYpKpnzsTtZOxV4op6MX//4ZoKuHQbdvSEhMcSoXojAju+R1kF01l44V6PFoXdNlldHvW6YgM039nINE/lOxABBJZK9U9xQo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708592149; c=relaxed/simple;
-	bh=IcM7smgmshlPZKJJye5knpGquFJahdcma+FIvudzbLo=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=odAO0OQ+keb9s41ciBOL161PhPU/omH1Okn33Nzz9m1VVOH7wiND7k+09Zq5ENt4qBpnv+YeWtsts4l+C+D8SBVS8B/OoqIhjR6ydIlPwgjfk3vergI9EfzXdxU/tvO3fG++Uzo5ejCYDRB8GM+9qGOPCx9YSX94LWoAodl05Wk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J7LYGWGz; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-563d56ee65cso8160828a12.2
-        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 00:55:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708592144; x=1709196944; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=x2xIBE07uRp27zY2uDwM2n5My/GljeuLw0Gdcn3yNZg=;
-        b=J7LYGWGzChkTsEDAyRh5zEVArOjgduj7Xblqwpx2/8OI5npTNjONesTLZKOcSu63TA
-         0XfBLHTiiUT7ih+cF+yBuC9P+g1NYZ7pnx4zcVLk2yFfxjGghWgnufMqmDyW5tSdav1p
-         e9Xw55/E1tAMKQah+qHn9BOi8GPdM6Vq4SmxqlDRMEesK74I2lPp4gyrmqx7gffB/Plj
-         QhLeEt/3A0pAGujnnr4WITPczze4F8wT+TX+DRkE9kCABIc2C0m1PMuUiS6hD2KS9O9H
-         kPCFZQblD8rnTLGV9gJLB2dQO69p/VRXocingKxj4FoPSNxoRCGHJOzw+HU7zq77qf5e
-         IUgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708592144; x=1709196944;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=x2xIBE07uRp27zY2uDwM2n5My/GljeuLw0Gdcn3yNZg=;
-        b=V4527zaTjyYH6UPOlOpOoddCZbfUekPtCd5L8mYoT8EEggT8zh/rINgWvQ1y0fHwv2
-         Um1VhU2ZtBPEyDtbPYMnUA89AyTucKSZ6nmw/PmWrtGJdcIuRQ9cP7vAfd7qT66lU+wU
-         Fp09mKXjBG39WQZpszHU/UKb4ZNjdYfI5oTyWRdVeuS9YQqhRJgIhOuA0au0vVAx4tI8
-         eyksGnu4Z0A+OSz0GdaWtaeN4gGO6107bn/XRZlgngPPr5zglTEIDsVhJBZTqijOqP+T
-         qUPT3DQtPHUl1x2AIXD9tGcQcjToDXt128uDTb3KWtWBE1HWKlNOffuufQjYmJG3KceO
-         F+Bg==
-X-Gm-Message-State: AOJu0Yx5vlGTgkerLRbHYQnCk7g3rzKPhjHEEm5m0h92c+0oztfZuS7v
-	YUGcmKhqQDLpzjSGASGUCjTt9bgz4EVtl2PItg8SuaArb+zDPDfKIC4btE0NGxI=
-X-Google-Smtp-Source: AGHT+IGTBQXFQxIW1xR6WblG6hAs+BpiQfKPcE7mNs9Z7PfdBbyqjaLnHEWt+TEVaqWG2aU8UWq6IQ==
-X-Received: by 2002:aa7:d60f:0:b0:565:4bce:db2 with SMTP id c15-20020aa7d60f000000b005654bce0db2mr13728edr.40.1708592143835;
-        Thu, 22 Feb 2024 00:55:43 -0800 (PST)
-Received: from [127.0.1.1] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id w22-20020aa7dcd6000000b00563918a48cfsm5325808edu.40.2024.02.22.00.55.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Feb 2024 00:55:43 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Sergei Shtylyov <sergei.shtylyov@gmail.com>, 
- Wolfram Sang <wsa+renesas@sang-engineering.com>, 
- Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <263d6626fd4fa51b175b5c7a53e6a363e2c91519.1708354280.git.geert+renesas@glider.be>
-References: <263d6626fd4fa51b175b5c7a53e6a363e2c91519.1708354280.git.geert+renesas@glider.be>
-Subject: Re: [PATCH] dt-bindings: memory: renesas,rpc-if: Document R-Car
- V4M support
-Message-Id: <170859214253.12531.12753169435670805395.b4-ty@linaro.org>
-Date: Thu, 22 Feb 2024 09:55:42 +0100
+	s=arc-20240116; t=1708592179; c=relaxed/simple;
+	bh=AuwUkPFckUyTiGUSQ4l57RJbPEcUt9jkQMJMV60bK+o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mvQYBdpaTK8fqOV2AbBAlPxfAg0/QjHOc08BwkhkqbNdmXjU5WwBxE6cC7oEw8YBqkCIQMTZL3wkk7E/x7HU7q0gfUkq2esqNKfgpS3ByMIXYRCWcHVEUhAQUDKhZ+XKbGA1FwPnTl+YdZf+1qh7hK5HwzmLRB5TvAP4VXPVIKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LKwLzXgw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 299CFC433F1;
+	Thu, 22 Feb 2024 08:56:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708592178;
+	bh=AuwUkPFckUyTiGUSQ4l57RJbPEcUt9jkQMJMV60bK+o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LKwLzXgwnUQISRQN8b0HiG9097CDoF463ushTc7nbxWeS9jfqUeZHgzPJl+YLzmaX
+	 Ejt7GVR1OzTzk6rAkRvAP8C4uIGk94cARAMTsBDuXQGniOC04ZZvpCaJFRtld4LRz2
+	 Hy3LffLQ3VRRjTsf7GNSPBZQpU66xKtrY1sdP6a33jg0mg6t9NQgCoat3ijnfhUJOR
+	 rC7m39ROxUNPH79PIhzw3f4YZX1qnq3e8gAm944pfHm7l6/WfaMp41MM69uNNwaaU4
+	 lG6SSPykpCXwAepmR8FJeW+tyMBFnOL7QDk1+/f0HYDimJYpjs54LP9X5L0ZZlXQyQ
+	 ckODHMOawaI6A==
+Date: Thu, 22 Feb 2024 08:56:13 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Dharma Balasubiramani <dharma.b@microchip.com>
+Cc: robh@kernel.org, tglx@linutronix.de, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, Nicolas.Ferre@microchip.com,
+	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v3] dt-bindings: interrupt-controller: Convert Atmel AIC
+ to json-schema
+Message-ID: <20240222-stiffly-squeeze-b4ec2b49a4fe@spud>
+References: <20240222035158.195265-1-dharma.b@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.4
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="lHpyoJFoRpJTBuEw"
+Content-Disposition: inline
+In-Reply-To: <20240222035158.195265-1-dharma.b@microchip.com>
 
 
-On Mon, 19 Feb 2024 15:52:19 +0100, Geert Uytterhoeven wrote:
-> Document support for the SPI Multi I/O Bus Controller (RPC-IF) in the
-> Renesas R-Car V4M (R8A779H0) SoC.
-> 
-> 
+--lHpyoJFoRpJTBuEw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Applied, thanks!
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/atmel=
+,aic.yaml b/Documentation/devicetree/bindings/interrupt-controller/atmel,ai=
+c.yaml
+> new file mode 100644
+> index 000000000000..0d51bd78bf2b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/atmel,aic.ya=
+ml
+> @@ -0,0 +1,89 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/interrupt-controller/atmel,aic.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Advanced Interrupt Controller (AIC)
+> +
+> +maintainers:
+> +  - Nicolas Ferre <nicolas.ferre@microchip.com>
+> +  - Dharma balasubiramani <dharma.b@microchip.com>
+> +
+> +description:
+> +  The Advanced Interrupt Controller (AIC) is an 8-level priority, indivi=
+dually
+> +  maskable, vectored interrupt controller providing handling of up to one
+> +  hundred and twenty-eight interrupt sources.
+> +
 
-[1/1] dt-bindings: memory: renesas,rpc-if: Document R-Car V4M support
-      https://git.kernel.org/krzk/linux-mem-ctrl/c/fdb88a1453d212ac52bbacfbaa9a950c626bfd1e
+> +allOf:
+> +  - $ref: /schemas/interrupt-controller.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: atmel,at91rm9200-aic
+> +    then:
+> +      properties:
+> +        atmel,external-irqs:
+> +          minItems: 1
+> +          maxItems: 7
+> +    else:
+> +      properties:
+> +        atmel,external-irqs:
+> +          minItems: 1
+> +          maxItems: 1
 
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+When there's property restrictions being applied, move the allof down
+to...
 
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - atmel,at91rm9200-aic
+> +      - atmel,sama5d2-aic
+> +      - atmel,sama5d3-aic
+> +      - atmel,sama5d4-aic
+> +      - microchip,sam9x60-aic
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  "#interrupt-cells":
+> +    const: 3
+> +    description: |
+> +      The 1st cell is the IRQ number (Peripheral IDentifier on datasheet=
+).
+> +      The 2nd cell specifies flags:
+> +        bits[3:0] trigger type and level flags:
+> +          1 =3D low-to-high edge triggered.
+> +          2 =3D high-to-low edge triggered.
+> +          4 =3D active high level-sensitive.
+> +          8 =3D active low level-sensitive.
+> +        Valid combinations: 1, 2, 3, 4, 8.
+> +        Default for internal sources: 4 (active high).
+> +      The 3rd cell specifies irq priority from 0 (lowest) to 7 (highest).
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  atmel,external-irqs:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    description: u32 array of external irqs.
+
+=2E..here. Both work, but seeing the restrictions before you see any of
+the properties is not the most understandable.
+
+Cheers,
+Conor.
+
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupt-controller
+> +  - "#interrupt-cells"
+> +  - atmel,external-irqs
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    interrupt-controller@fffff000 {
+> +      compatible =3D "atmel,at91rm9200-aic";
+> +      reg =3D <0xfffff000 0x200>;
+> +      interrupt-controller;
+> +      #interrupt-cells =3D <3>;
+> +      atmel,external-irqs =3D <31>;
+> +    };
+> +...
+>=20
+> base-commit: 4f5e5092fdbf5cec6bedc19fbe69cce4f5f08372
+> --=20
+> 2.25.1
+>=20
+
+--lHpyoJFoRpJTBuEw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdcMLQAKCRB4tDGHoIJi
+0iOsAP9m+bcNCJqOinLb0AteBdy7mXRGcB1XbQsicq2MgSjpjQD+MssNTCXfQ6vt
+gzfH0TbEBfWso1aovIY/r1JDSDcpoA8=
+=wd3E
+-----END PGP SIGNATURE-----
+
+--lHpyoJFoRpJTBuEw--
 
