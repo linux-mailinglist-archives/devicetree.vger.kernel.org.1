@@ -1,328 +1,419 @@
-Return-Path: <devicetree+bounces-44722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C99F885F668
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 12:02:34 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BC1285F684
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 12:08:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E066283A6D
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 11:02:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 76794B218E8
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 11:08:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64F163FB3C;
-	Thu, 22 Feb 2024 11:02:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E1E43FE3D;
+	Thu, 22 Feb 2024 11:08:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="V5Z6LsFt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k0twM8Cq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 550513FB31;
-	Thu, 22 Feb 2024 11:02:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 865A83FB31;
+	Thu, 22 Feb 2024 11:08:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708599737; cv=none; b=q+6K7psSzIa8RTfMciC6gCFKaabnhDjdeyH4PLZNd261iIz9GmyQTfG33DAT+pLMb57nwZjclWs9Fv3XHsS33MVG7/AZCOx6tV5YxgqsF2gTLpAfEJADZZSLlAhrADqsn2g9UEWPGVKRYzg2vdnDBU8K7BXLaIGOs1kQGu3Npo4=
+	t=1708600106; cv=none; b=DwX2SGyIIxSVXSPaFgdYnItHq9AlLgQnKLyBa75Voep+kHk1pxj9crbF9UqgcIJ9vGuUwNEH91eVmdfkG6TsWlrX/5pexU+4igQsIdIEkG+lpS5uglIcmppVc038zjVx1xRc/z5ncg2sH2pVfTO1q6IJZo3f/n8123LQKay9+GQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708599737; c=relaxed/simple;
-	bh=OVOk4RhIEc0k7TSecJD8kDaA2nGJ6pApQKcMqlr9SD0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hfX8+lnY4RnTFF2WfhuRoNinQTSxjehl+jKirD4BvMM4PEQOD+jos6wmXoWDnj6poMsR1aSJL5nN6s++uka/jN5KlMN55aoQNkZ91JpsWgyqQbO85mhh1B0KmjhwL4ADKR6QORLlqEtO8zrc6cS6yTGoHveD6LRnDqhon3mRhL8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=V5Z6LsFt; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1708599735; x=1740135735;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=OVOk4RhIEc0k7TSecJD8kDaA2nGJ6pApQKcMqlr9SD0=;
-  b=V5Z6LsFtGtjQy/V5Jd7gz/hOdla/lZwerTYf12W8hvBNdoFtml0NHv4P
-   B2EEoQPlqGC7dly/haG+jasgjSHjhd8PzJ9bKEgJGG1Z41sfbb+pmG/sx
-   j+qqQNDpyhtbwFHI1eeXcUQ6G1eKwHd6oeAxNKS7o83LgkLB/xe3eQS0O
-   uVdbqraGatLLCwmbIKqiz2/iwqxOO2csZ8+Goyvc21YrH1My+Nvw0EyfL
-   d9/Ndr3c+2Vq7ynqqnpx8Ta+AyZsIDMP1/8pWgiVZPXS2gm3EWIwiDAjg
-   3JPnMOoYYR9t+i9ZiGY8MBLQxA96OG3pl04NtLqZsXjOQYTpKjfDKkIaY
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="2957367"
-X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; 
-   d="scan'208";a="2957367"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Feb 2024 03:02:14 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; 
-   d="scan'208";a="36472291"
-Received: from lkp-server02.sh.intel.com (HELO 3c78fa4d504c) ([10.239.97.151])
-  by fmviesa001.fm.intel.com with ESMTP; 22 Feb 2024 03:02:09 -0800
-Received: from kbuild by 3c78fa4d504c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rd6q6-0006Ei-2E;
-	Thu, 22 Feb 2024 11:02:06 +0000
-Date: Thu, 22 Feb 2024 19:01:22 +0800
-From: kernel test robot <lkp@intel.com>
-To: andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-	konrad.dybcio@linaro.org, manivannan.sadhasivam@linaro.org,
-	conor+dt@kernel.org, quic_nitegupt@quicinc.com
-Cc: oe-kbuild-all@lists.linux.dev, quic_shazhuss@quicinc.com,
-	quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
-	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
-	Nitesh Gupta <nitegupt@quicinc.com>,
-	Mrinmay Sarkar <quic_msarkar@quicinc.com>,
-	Bjorn Helgaas <helgaas@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 3/3] PCI: qcom: Add support for detecting controller
- level PCIe errors
-Message-ID: <202402221838.5n7vo0Jo-lkp@intel.com>
-References: <20240221140405.28532-4-root@hu-msarkar-hyd.qualcomm.com>
+	s=arc-20240116; t=1708600106; c=relaxed/simple;
+	bh=uMcsARZAJ/pWtueCpdZWxsB/jQmR3DwOwdtTYUouGk0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=RydPpSMnulupIsXyX5uUaEVd59k2sl8aDHiFnJzol0YEL2ZamNjKF1ZuS86einBC+nLquZSSysqAv8d6HqM+JsjnjyeMCRWm6lbQebPMhT3tJBWkP1P/DWsc0uHSkLT16tImjX+BMxkm3Hu0tXW83JdFOu086evybQKX/5BwLlY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k0twM8Cq; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-563b7b3e3ecso9673843a12.0;
+        Thu, 22 Feb 2024 03:08:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708600103; x=1709204903; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0whVvYDY95pBVQJ7bhciQeW66/kwSxxjH2jVbNo2XNk=;
+        b=k0twM8CqBVJyM3AK5aWXrlnDep0HcMsc1X1xM1XujpPxqnTgVI/7WtlYT089l7z54u
+         0Rrz/BIY721SKctJFmt1EXTryK4tgiKzTNY+NUH450XFYEZhSV7FI5DjVXMaAl+b2pY5
+         UFSQCVSG07Oy5KFs5jV7lk/gSEqS4uiZZH2GoE18lZrxoLLwSpbUOvARqJwd3ZrLJl1h
+         ozwF7QjUWcJWnAjEMec4ILBATlLBnTFd33zTTkQvlJDgTizIDmFJpoDDuDlZdzllFedE
+         28+z5omPKJjzEgQim/RFVy5yJNsHfvEk+grQUs7IyP/umkPElf9WnlrGUmz6z0RzAok/
+         rEMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708600103; x=1709204903;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0whVvYDY95pBVQJ7bhciQeW66/kwSxxjH2jVbNo2XNk=;
+        b=EQzYhEILtO9yabCnYNO8mnnBTfiX1JNgUem8dXipAhN5zP5JzPIACATnahw1F98D4a
+         WwfqRhNfb+0AufzWQZG7MlqdbgLgDbM+Jq4uvee6q9zVzVxkUJM6OknAegXR12OFIo6W
+         LOcdT3Ti82CU8KhiKREPR9dI8+398DopwgCSVlkLBTFL+O/6E5uonZC7EVnbSZddbFQu
+         3fe1kY3GwqU7j4mKoef1OVT9XCfJBamioi0gdp9ZT+JDCuuyhSfjeALcqSEt5oMyPxVX
+         rJhFbPUtRGo6JVOUmRIVZgYZOukB7KI6UdTyQxwB+X+YIipwfqOvNQUaJnG+axcRScz6
+         xlMQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW9iGbPi9f2mXHRIgQeuUcn0vRGjz1koV8I6JsMDVPhpgmY0Z3Z5mPQW5vJCL7xWJAohzIj+dC2uS822LQgZ/t2yL99CApJ83dgvde5nHbXuSCwwbZgQpR9zNFQux6b29d/FxzDYXX2AX0yTjtuFxSmC1PtsJzIg5iJzL/Co12tv9oZ9zr+XCh1A0gBQaEPQ4m2GxtdlJhzBE5JaVkYYYY=
+X-Gm-Message-State: AOJu0YzOXs9H/eiFhkNbbxLx9juikTxj+5jrplMfNzRZ/3QGSQJxhvGl
+	CDy5Vv6FIE2KvK49o1YgIyYszMJOTGs3ncCgP/YSmY3ddly36wwo
+X-Google-Smtp-Source: AGHT+IHb1WcJuA/WNALHR6fhcWVrHPh+54mjtrmf4NW7jDX2/r8OUOKZvslgdTm426wmULAn1wadpA==
+X-Received: by 2002:a05:6402:31f6:b0:564:dd13:56e9 with SMTP id dy22-20020a05640231f600b00564dd1356e9mr3906531edb.29.1708600102333;
+        Thu, 22 Feb 2024 03:08:22 -0800 (PST)
+Received: from HYB-hhAwRlzzMZb.ad.analog.com ([83.103.132.21])
+        by smtp.gmail.com with ESMTPSA id q29-20020a50cc9d000000b00563a3ff30basm5786350edi.59.2024.02.22.03.08.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Feb 2024 03:08:21 -0800 (PST)
+From: Dumitru Ceclan <mitrutzceclan@gmail.com>
+To: 
+Cc: linus.walleij@linaro.org,
+	brgl@bgdev.pl,
+	andy@kernel.org,
+	linux-gpio@vger.kernel.org,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Walle <michael@walle.cc>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	ChiaEn Wu <chiaen_wu@richtek.com>,
+	Niklas Schnelle <schnelle@linux.ibm.com>,
+	=?UTF-8?q?Leonard=20G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
+	Mike Looijmans <mike.looijmans@topic.nl>,
+	Haibo Chen <haibo.chen@nxp.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	David Lechner <dlechner@baylibre.com>,
+	Ceclan Dumitru <dumitru.ceclan@analog.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Dumitru Ceclan <mitrutzceclan@gmail.com>
+Subject: [PATCH v14 1/3] dt-bindings: adc: add AD7173
+Date: Thu, 22 Feb 2024 13:07:41 +0200
+Message-ID: <20240222110817.29670-1-mitrutzceclan@gmail.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240221140405.28532-4-root@hu-msarkar-hyd.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi root,
+The AD7173 family offer a complete integrated Sigma-Delta ADC solution
+which can be used in high precision, low noise single channel applications
+or higher speed multiplexed applications. The Sigma-Delta ADC is intended
+primarily for measurement of signals close to DC but also delivers
+outstanding performance with input bandwidths out to ~10kHz.
 
-kernel test robot noticed the following build warnings:
+Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
+---
+V13->V14
+ - Refer in descriptions of the avdd-supply as AVDD1 in concordance to datasheet
+ - Fix typo
+ - Place interrupts descriptions separately for each item
+ - Restrict max channel reg to 3 for models AD717x-2
+V12->V13
+ - Remove adi,clock-select
+ - Update avdd and avdd2 supply descriptions
+ - Update adi,reference-select description to suggest that it is referenced to avss
+ - Make clocks/clock-names and clock-controller mutually exclusive
+V11->V12
+ - Drop "binding", describe hardware in binding description
+ - Rename refin and refin2 to vref and vref2
+ - Add better description to external references to better show that the voltage
+    value that needs to be specified is the difference between the positive and
+    negative reference pins
+ - Add optional clocks properties
+ - Add optional adi,clock-select property
+ - Add option for second interrupt, error
+ - Add description to interrupts
+V10->V11
+ - Fix example warning: '#gpio-cells' is a dependency of 'gpio-controller'
+ - Add description to #gpio-cells property
+V9->V10
+ - Fix dt_binding_check type warning from adi,reference-select
+V8->v9
+ - Add gpio-controller and "#gpio-cells" properties
+ - Add missing avdd2 and iovdd supplies
+ - Add string type to reference-select
+V7->V8
+ - include missing fix from V6
+V6->V7 <no changes>
+V5->V6
+ - Moved global required property to proper placement
+V4 -> V5
+ - Use string enum instead of integers for "adi,reference-select"
+ - Fix conditional checking in regards to compatible
+V3 -> V4
+ - include supply attributes
+ - add channel attribute for selecting conversion reference
+V2 -> V3
+ - remove redundant descriptions
+ - use referenced 'bipolar' property
+ - remove newlines from example
+V1 -> V2 <no changes>
+ .../bindings/iio/adc/adi,ad7173.yaml          | 246 ++++++++++++++++++
+ 1 file changed, 246 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
 
-[auto build test WARNING on pci/next]
-[also build test WARNING on pci/for-linus robh/for-next mani-mhi/mhi-next linus/master v6.8-rc5 next-20240221]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/root/dt-bindings-PCI-qcom-Add-global-irq-support-for-SA8775p/20240221-220722
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
-patch link:    https://lore.kernel.org/r/20240221140405.28532-4-root%40hu-msarkar-hyd.qualcomm.com
-patch subject: [PATCH v1 3/3] PCI: qcom: Add support for detecting controller level PCIe errors
-config: microblaze-allmodconfig (https://download.01.org/0day-ci/archive/20240222/202402221838.5n7vo0Jo-lkp@intel.com/config)
-compiler: microblaze-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240222/202402221838.5n7vo0Jo-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202402221838.5n7vo0Jo-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/pci/controller/dwc/pcie-qcom.c: In function 'qcom_pcie_error_report_show':
->> drivers/pci/controller/dwc/pcie-qcom.c:1751:63: warning: format '%lu' expects argument of type 'long unsigned int', but argument 5 has type 'u32' {aka 'unsigned int'} [-Wformat=]
-    1751 |                         len += sysfs_emit_at(buf, len, "%s: %lu\n",
-         |                                                             ~~^
-         |                                                               |
-         |                                                               long unsigned int
-         |                                                             %u
-    1752 |                                         pcie_fault_string[i],
-    1753 |                                         pcie_fault[i]);
-         |                                         ~~~~~~~~~~~~~          
-         |                                                   |
-         |                                                   u32 {aka unsigned int}
-   drivers/pci/controller/dwc/pcie-qcom.c:1756:47: warning: format '%lu' expects argument of type 'long unsigned int', but argument 5 has type 'u32' {aka 'unsigned int'} [-Wformat=]
-    1756 |         len += sysfs_emit_at(buf, len, "%s: %lu\n",
-         |                                             ~~^
-         |                                               |
-         |                                               long unsigned int
-         |                                             %u
-    1757 |                                         pcie_fault_string[i],
-    1758 |                                         pcie->pcie_fault_total);
-         |                                         ~~~~~~~~~~~~~~~~~~~~~~
-         |                                             |
-         |                                             u32 {aka unsigned int}
-   drivers/pci/controller/dwc/pcie-qcom.c: In function 'qcom_pcie_probe':
->> drivers/pci/controller/dwc/pcie-qcom.c:1902:9: warning: ignoring return value of 'sysfs_create_group' declared with attribute 'warn_unused_result' [-Wunused-result]
-    1902 |         sysfs_create_group(&pdev->dev.kobj, &qcom_pcie_attribute_group);
-         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-vim +1751 drivers/pci/controller/dwc/pcie-qcom.c
-
-  1739	
-  1740	static ssize_t qcom_pcie_error_report_show(struct device *dev,
-  1741			struct device_attribute *attr,
-  1742			char *buf)
-  1743	{
-  1744		unsigned int i;
-  1745		struct qcom_pcie *pcie = (struct qcom_pcie *)dev_get_drvdata(dev);
-  1746		u32 *pcie_fault = pcie->pcie_fault;
-  1747		size_t len = 0;
-  1748	
-  1749		for (i = 0; i < MAX_PCIE_SAFETY_FAULT; i++) {
-  1750			if (pcie_fault_string[i])
-> 1751				len += sysfs_emit_at(buf, len, "%s: %lu\n",
-  1752						pcie_fault_string[i],
-  1753						pcie_fault[i]);
-  1754		}
-  1755	
-  1756		len += sysfs_emit_at(buf, len, "%s: %lu\n",
-  1757						pcie_fault_string[i],
-  1758						pcie->pcie_fault_total);
-  1759	
-  1760		return len;
-  1761	}
-  1762	static DEVICE_ATTR_RO(qcom_pcie_error_report);
-  1763	
-  1764	static struct attribute *qcom_pcie_attrs[] = {
-  1765		&dev_attr_qcom_pcie_error_report.attr,
-  1766		NULL,
-  1767	};
-  1768	
-  1769	static const struct attribute_group qcom_pcie_attribute_group = {
-  1770		.attrs = qcom_pcie_attrs,
-  1771		.name = "qcom_pcie"
-  1772	};
-  1773	
-  1774	static void qcom_pcie_init_debugfs(struct qcom_pcie *pcie)
-  1775	{
-  1776		struct dw_pcie *pci = pcie->pci;
-  1777		struct device *dev = pci->dev;
-  1778		char *name;
-  1779	
-  1780		name = devm_kasprintf(dev, GFP_KERNEL, "%pOFP", dev->of_node);
-  1781		if (!name)
-  1782			return;
-  1783	
-  1784		pcie->debugfs = debugfs_create_dir(name, NULL);
-  1785		debugfs_create_devm_seqfile(dev, "link_transition_count", pcie->debugfs,
-  1786					    qcom_pcie_link_transition_count);
-  1787	}
-  1788	
-  1789	static int qcom_pcie_probe(struct platform_device *pdev)
-  1790	{
-  1791		const struct qcom_pcie_cfg *pcie_cfg;
-  1792		struct device *dev = &pdev->dev;
-  1793		struct qcom_pcie *pcie;
-  1794		struct dw_pcie_rp *pp;
-  1795		struct resource *res;
-  1796		struct dw_pcie *pci;
-  1797		int ret;
-  1798	
-  1799		pcie_cfg = of_device_get_match_data(dev);
-  1800		if (!pcie_cfg || !pcie_cfg->ops) {
-  1801			dev_err(dev, "Invalid platform data\n");
-  1802			return -EINVAL;
-  1803		}
-  1804	
-  1805		pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
-  1806		if (!pcie)
-  1807			return -ENOMEM;
-  1808	
-  1809		pci = devm_kzalloc(dev, sizeof(*pci), GFP_KERNEL);
-  1810		if (!pci)
-  1811			return -ENOMEM;
-  1812	
-  1813		pm_runtime_enable(dev);
-  1814		ret = pm_runtime_get_sync(dev);
-  1815		if (ret < 0)
-  1816			goto err_pm_runtime_put;
-  1817	
-  1818		pci->dev = dev;
-  1819		pci->ops = &dw_pcie_ops;
-  1820		pp = &pci->pp;
-  1821	
-  1822		pcie->pci = pci;
-  1823	
-  1824		pcie->cfg = pcie_cfg;
-  1825	
-  1826		pcie->reset = devm_gpiod_get_optional(dev, "perst", GPIOD_OUT_HIGH);
-  1827		if (IS_ERR(pcie->reset)) {
-  1828			ret = PTR_ERR(pcie->reset);
-  1829			goto err_pm_runtime_put;
-  1830		}
-  1831	
-  1832		pcie->global_irq = platform_get_irq_byname(pdev, "global");
-  1833		if (pcie->global_irq < 0) {
-  1834			ret = pcie->global_irq;
-  1835			goto err_pm_runtime_put;
-  1836		}
-  1837	
-  1838		ret = devm_request_threaded_irq(dev, pcie->global_irq, NULL,
-  1839					qcom_pcie_global_irq_thread,
-  1840					IRQF_ONESHOT,
-  1841					"global_irq", pcie);
-  1842		if (ret) {
-  1843			dev_err(dev, "Failed to request Global IRQ\n");
-  1844			goto err_pm_runtime_put;
-  1845		}
-  1846	
-  1847		pcie->parf = devm_platform_ioremap_resource_byname(pdev, "parf");
-  1848		if (IS_ERR(pcie->parf)) {
-  1849			ret = PTR_ERR(pcie->parf);
-  1850			goto err_pm_runtime_put;
-  1851		}
-  1852	
-  1853		pcie->elbi = devm_platform_ioremap_resource_byname(pdev, "elbi");
-  1854		if (IS_ERR(pcie->elbi)) {
-  1855			ret = PTR_ERR(pcie->elbi);
-  1856			goto err_pm_runtime_put;
-  1857		}
-  1858	
-  1859		/* MHI region is optional */
-  1860		res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "mhi");
-  1861		if (res) {
-  1862			pcie->mhi = devm_ioremap_resource(dev, res);
-  1863			if (IS_ERR(pcie->mhi)) {
-  1864				ret = PTR_ERR(pcie->mhi);
-  1865				goto err_pm_runtime_put;
-  1866			}
-  1867		}
-  1868	
-  1869		pcie->phy = devm_phy_optional_get(dev, "pciephy");
-  1870		if (IS_ERR(pcie->phy)) {
-  1871			ret = PTR_ERR(pcie->phy);
-  1872			goto err_pm_runtime_put;
-  1873		}
-  1874	
-  1875		ret = qcom_pcie_icc_init(pcie);
-  1876		if (ret)
-  1877			goto err_pm_runtime_put;
-  1878	
-  1879		ret = pcie->cfg->ops->get_resources(pcie);
-  1880		if (ret)
-  1881			goto err_pm_runtime_put;
-  1882	
-  1883		pp->ops = &qcom_pcie_dw_ops;
-  1884	
-  1885		ret = phy_init(pcie->phy);
-  1886		if (ret)
-  1887			goto err_pm_runtime_put;
-  1888	
-  1889		platform_set_drvdata(pdev, pcie);
-  1890	
-  1891		ret = dw_pcie_host_init(pp);
-  1892		if (ret) {
-  1893			dev_err(dev, "cannot initialize host\n");
-  1894			goto err_phy_exit;
-  1895		}
-  1896	
-  1897		qcom_pcie_icc_update(pcie);
-  1898	
-  1899		if (pcie->mhi)
-  1900			qcom_pcie_init_debugfs(pcie);
-  1901	
-> 1902		sysfs_create_group(&pdev->dev.kobj, &qcom_pcie_attribute_group);
-  1903	
-  1904		return 0;
-  1905	
-  1906	err_phy_exit:
-  1907		phy_exit(pcie->phy);
-  1908	err_pm_runtime_put:
-  1909		pm_runtime_put(dev);
-  1910		pm_runtime_disable(dev);
-  1911	
-  1912		return ret;
-  1913	}
-  1914	
-
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
+new file mode 100644
+index 000000000000..36f16a325bc5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
+@@ -0,0 +1,246 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2023 Analog Devices Inc.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/adc/adi,ad7173.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices AD7173 ADC
++
++maintainers:
++  - Ceclan Dumitru <dumitru.ceclan@analog.com>
++
++description: |
++  Analog Devices AD717x ADC's:
++  The AD717x family offer a complete integrated Sigma-Delta ADC solution which
++  can be used in high precision, low noise single channel applications
++  (Life Science measurements) or higher speed multiplexed applications
++  (Factory Automation PLC Input modules). The Sigma-Delta ADC is intended
++  primarily for measurement of signals close to DC but also delivers
++  outstanding performance with input bandwidths out to ~10kHz.
++
++  Datasheets for supported chips:
++    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7172-2.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7173-8.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7175-2.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7176-2.pdf
++
++properties:
++  compatible:
++    enum:
++      - adi,ad7172-2
++      - adi,ad7173-8
++      - adi,ad7175-2
++      - adi,ad7176-2
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    minItems: 1
++    items:
++      - description: |
++          Ready: multiplexed with SPI data out. While SPI CS is low,
++          can be used to indicate the completion of a conversion.
++
++      - description: |
++          Error: The three error bits in the status register (ADC_ERROR, CRC_ERROR,
++          and REG_ERROR) are OR'ed, inverted, and mapped to the ERROR pin.
++          Therefore, the ERROR pin indicates that an error has occurred.
++
++  interrupt-names:
++    minItems: 1
++    items:
++      - const: rdy
++      - const: err
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++  spi-max-frequency:
++    maximum: 20000000
++
++  gpio-controller:
++    description: Marks the device node as a GPIO controller.
++
++  '#gpio-cells':
++    const: 2
++    description:
++      The first cell is the GPIO number and the second cell specifies
++      GPIO flags, as defined in <dt-bindings/gpio/gpio.h>.
++
++  vref-supply:
++    description: |
++      Differential external reference supply used for conversion. The reference
++      voltage (Vref) specified here must be the voltage difference between the
++      REF+ and REF- pins: Vref = (REF+) - (REF-).
++
++  vref2-supply:
++    description: |
++      Differential external reference supply used for conversion. The reference
++      voltage (Vref2) specified here must be the voltage difference between the
++      REF2+ and REF2- pins: Vref2 = (REF2+) - (REF2-).
++
++  avdd-supply:
++    description: Avdd supply, can be used as reference for conversion.
++                 This supply is referenced to AVSS, voltage specified here
++                 represents (AVDD1 - AVSS).
++
++  avdd2-supply:
++    description: Avdd2 supply, used as the input to the internal voltage regulator.
++                 This supply is referenced to AVSS, voltage specified here
++                 represents (AVDD2 - AVSS).
++
++  iovdd-supply:
++    description: iovdd supply, used for the chip digital interface.
++
++  clocks:
++    maxItems: 1
++    description: |
++      Optional external clock source. Can include one clock source: external
++      clock or external crystal.
++
++  clock-names:
++    enum:
++      - ext-clk
++      - xtal
++
++  '#clock-cells':
++    const: 0
++
++patternProperties:
++  "^channel@[0-9a-f]$":
++    type: object
++    $ref: adc.yaml
++    unevaluatedProperties: false
++
++    properties:
++      reg:
++        minimum: 0
++        maximum: 15
++
++      diff-channels:
++        items:
++          minimum: 0
++          maximum: 31
++
++      adi,reference-select:
++        description: |
++          Select the reference source to use when converting on
++          the specific channel. Valid values are:
++          vref       : REF+  /REF−
++          vref2      : REF2+ /REF2−
++          refout-avss: REFOUT/AVSS (Internal reference)
++          avdd       : AVDD  /AVSS
++
++          External reference ref2 only available on ad7173-8.
++          If not specified, internal reference used.
++        $ref: /schemas/types.yaml#/definitions/string
++        enum:
++          - vref
++          - vref2
++          - refout-avss
++          - avdd
++        default: refout-avss
++
++    required:
++      - reg
++      - diff-channels
++
++required:
++  - compatible
++  - reg
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++  - if:
++      properties:
++        compatible:
++          not:
++            contains:
++              const: adi,ad7173-8
++    then:
++      properties:
++        vref2-supply: false
++      patternProperties:
++        "^channel@[0-9a-f]$":
++          properties:
++            adi,reference-select:
++              enum:
++                - vref
++                - refout-avss
++                - avdd
++            reg:
++              maximum: 3
++
++  - if:
++      anyOf:
++        - required: [clock-names]
++        - required: [clocks]
++    then:
++      properties:
++        '#clock-cells': false
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    spi {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      adc@0 {
++        compatible = "adi,ad7173-8";
++        reg = <0>;
++
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        interrupts = <25 IRQ_TYPE_EDGE_FALLING>;
++        interrupt-names = "rdy";
++        interrupt-parent = <&gpio>;
++        spi-max-frequency = <5000000>;
++        gpio-controller;
++        #gpio-cells = <2>;
++        #clock-cells = <0>;
++
++        vref-supply = <&dummy_regulator>;
++
++        channel@0 {
++          reg = <0>;
++          bipolar;
++          diff-channels = <0 1>;
++          adi,reference-select = "vref";
++        };
++
++        channel@1 {
++          reg = <1>;
++          diff-channels = <2 3>;
++        };
++
++        channel@2 {
++          reg = <2>;
++          bipolar;
++          diff-channels = <4 5>;
++        };
++
++        channel@3 {
++          reg = <3>;
++          bipolar;
++          diff-channels = <6 7>;
++        };
++
++        channel@4 {
++          reg = <4>;
++          diff-channels = <8 9>;
++          adi,reference-select = "avdd";
++        };
++      };
++    };
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.42.0
+
 
