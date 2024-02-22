@@ -1,129 +1,143 @@
-Return-Path: <devicetree+bounces-44752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE37985F7E0
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 13:18:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECF9585F7FC
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 13:21:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63A521F240F3
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 12:18:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2A861F21ACA
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 12:21:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B591758ACA;
-	Thu, 22 Feb 2024 12:18:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EA295FBA5;
+	Thu, 22 Feb 2024 12:21:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qxynINXW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vais+w7d"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80FEF4776E;
-	Thu, 22 Feb 2024 12:18:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4075355C28;
+	Thu, 22 Feb 2024 12:21:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708604327; cv=none; b=EDLg7nzsaGHbxviNts+58FUsr1uuuOirDrYkpL+tR5bxoikSPwZz0zXRvZmj63S4YT1ncOEMTCsNY23MALyC92b+7dLCRBdU8HhHPcfcXUe0DFugKvZK956PuZaMmin5uMofEY39Cwbx/F+BJP+SqR9CEYrj/cDDiqIUXSIkTkA=
+	t=1708604507; cv=none; b=Z8xJ3xZsVFNTHO/YjKKJzrpI6I9tzF6C7tuoZDhAe6lzSZrXpsLN4nI+fVZWJlhR25OY08R6zTg0uhsjBKDZUY3U2aQ3JfqHhOmThqn3wqCXsYljwak89oYSqDoXk9Y/gh1e7iCC4+UpYUUMeYR9NEbyadX218spl5A9DgFtqNg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708604327; c=relaxed/simple;
-	bh=lXEIG8Yh0DgsjWjqS6TtqjvsNB92LqQdH9NNSBnF+H0=;
+	s=arc-20240116; t=1708604507; c=relaxed/simple;
+	bh=EqZbzaH/qaB7a7IKc6JYTdatq4CHgvMWc4c4mJHW2hE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Blx2Kjzs0a8OCyYUGrHjl7dQhO41J+drkFg6bJCMbcWUDRIdLfPyUJtYJ3Au1IuP3MorOqAcaE6fetjEkSKyEzIQfQoWfFjTlXmoN9L0+tKUiXIPpix0XwYM3IOOEQM7AlqNjw6U8xOuKf1xi+Mx1oeY3YWPf9sxgMr835N95Mc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qxynINXW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EDA3C433C7;
-	Thu, 22 Feb 2024 12:18:42 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=IVjtJUg6NUJ5CM35VO8VXbepV/5gVRPM799nC637htVLwp30Vkr29y/MxlWFwdiSyuCIcyUTmm5daNeBhwbSODwh+31ZU6djOzVTj1djWdL/445r0Pdcb6xfvt069m5WRnr/qTz2ihDF0JX0b434506R7vM0Iwz7SQsrMo9lsK0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vais+w7d; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81E0DC433C7;
+	Thu, 22 Feb 2024 12:21:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708604327;
-	bh=lXEIG8Yh0DgsjWjqS6TtqjvsNB92LqQdH9NNSBnF+H0=;
+	s=k20201202; t=1708604506;
+	bh=EqZbzaH/qaB7a7IKc6JYTdatq4CHgvMWc4c4mJHW2hE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qxynINXWm88A4QHPt46s7Sap1xtFkJICI62sepLQMB5exKnWDLhsI3Mjc+tr+D7TV
-	 5SBcizXDvqkcdnYuyhilXvjJ6LLXFyz896yZnfT6UUstgFDPL1xRHvyYwRUIlpuYXn
-	 u12EPPruDXaCRei662gS2j1++JDz2qSRKj4TIspDUjOQd/2gyWy2ILDDsAvIDr8iLq
-	 bxx1C/eqiKDse3dCLMh3O3wwTJRZLO8VyT3y3GYcZd2324S1Jtut7FMCQS1EF5X+0P
-	 t/5iWs9lSDKNL7tK33NUOEdUAvSmqYHgA27gsSOZCdu3W0RIo9IshLQj2X90A/LUCQ
-	 4RaQ76tY7Luog==
-Date: Thu, 22 Feb 2024 12:18:38 +0000
-From: Will Deacon <will@kernel.org>
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: Frank.li@nxp.com, mark.rutland@arm.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, john.g.garry@oracle.com, jolsa@kernel.org,
-	namhyung@kernel.org, irogers@google.com, linux-imx@nxp.com,
-	mike.leach@linaro.org, leo.yan@linaro.org, peterz@infradead.org,
-	mingo@redhat.com, acme@kernel.org,
-	alexander.shishkin@linux.intel.com, adrian.hunter@intel.com,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-perf-users@vger.kernel.org,
-	imx@lists.linux.dev
-Subject: Re: [PATCH v4 2/6] perf: imx_perf: refactor driver for imx93
-Message-ID: <20240222121838.GA8308@willie-the-truck>
-References: <20240131055811.3035741-1-xu.yang_2@nxp.com>
- <20240131055811.3035741-2-xu.yang_2@nxp.com>
+	b=Vais+w7dVBc+Xk4EvckzPmvM6a/2KjvGzm2VDrn7oZd6lT1sMCuOcX1qDb2PMDCEW
+	 IZALOUfq5R7czopyD6Q8n/kouh0W3vDg13fw2wPev+9aOxAzv5iSFTj01WlgeRtm8q
+	 rfrlSSvGHi8dMfB4nzhaZ81mQagcgNVTDsSzCfY3Yk76RiQvI4C+1mW9qVZN85sa5q
+	 Uz3u+hqODk6ps05MFS1CAhRh/TkO/5AAWb5UNCazW0O8MTp8aD1OJpRyMUiaGn3Rcm
+	 lv9vU3NJ1hmnoVZQ4RN+226xKHklRHGaTs1CBXAw5vmIXparkNzLdJs/W+pgHBWnYG
+	 hT7MEcGskAyYw==
+Date: Thu, 22 Feb 2024 12:21:36 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Alex Elder <elder@linaro.org>,
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Abel Vesa <abel.vesa@linaro.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Lukas Wunner <lukas@wunner.de>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-wireless@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH v5 14/18] PCI/pwrctl: add a power control driver for
+ WCN7850
+Message-ID: <52fba837-989b-4213-8af7-f02cd8cb48c8@sirena.org.uk>
+References: <20240216203215.40870-1-brgl@bgdev.pl>
+ <20240216203215.40870-15-brgl@bgdev.pl>
+ <d5d603dc-ec66-4e21-aa41-3b25557f1fb7@sirena.org.uk>
+ <CAMRc=MeUjKPS3ANE6=7WZ3kbbGAdyE8HeXFN=75Jp-pVyBaWrQ@mail.gmail.com>
+ <ea08a286-ff53-4d58-ae41-38cca151508c@sirena.org.uk>
+ <17bbd9ae-0282-430e-947b-e6fb08c53af7@linaro.org>
+ <53f0956f-ee64-4bd6-b44f-cbebafd42e46@sirena.org.uk>
+ <CAMRc=MedCX_TGGawMhr39oXtJPF4pOQF=Jh2z4uXkOxwhfJWRw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="M/jaeVyfzRnxNsGp"
 Content-Disposition: inline
-In-Reply-To: <20240131055811.3035741-2-xu.yang_2@nxp.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <CAMRc=MedCX_TGGawMhr39oXtJPF4pOQF=Jh2z4uXkOxwhfJWRw@mail.gmail.com>
+X-Cookie: I have accepted Provolone into my life!
 
-On Wed, Jan 31, 2024 at 01:58:07PM +0800, Xu Yang wrote:
-> This driver is initinally used to support imx93 Soc and now it's time to
-> add support for imx95 Soc. However, some macro definitions and events are
-> different on these two Socs. For preparing imx95 supports, this will
-> refactor driver for imx93.
-> 
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> 
-> ---
-> Changes in v4:
->  - new patch
-> ---
->  drivers/perf/fsl_imx9_ddr_perf.c | 121 ++++++++++++++++++++++---------
->  1 file changed, 87 insertions(+), 34 deletions(-)
 
-[...]
+--M/jaeVyfzRnxNsGp
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> @@ -476,12 +490,12 @@ static int ddr_perf_event_add(struct perf_event *event, int flags)
->  	hwc->idx = counter;
->  	hwc->state |= PERF_HES_STOPPED;
->  
-> +	/* read trans, write trans, read beat */
-> +	imx93_ddr_perf_monitor_config(pmu, cfg, cfg1, cfg2);
-> +
->  	if (flags & PERF_EF_START)
->  		ddr_perf_event_start(event, flags);
->  
-> -	/* read trans, write trans, read beat */
-> -	ddr_perf_monitor_config(pmu, cfg, cfg1, cfg2);
-> -
->  	return 0;
+On Thu, Feb 22, 2024 at 10:22:50AM +0100, Bartosz Golaszewski wrote:
+> On Wed, Feb 21, 2024 at 12:44=E2=80=AFAM Mark Brown <broonie@kernel.org> =
+wrote:
 
-This change looks like more than just refactoring and should probably be a
-separate patch. Is it a bug fix for the existing code?
+> > Yes, that's the theory - I just question if it actually does something
+> > useful in practice.  Between regulators getting more and more able to
+> > figure out mode switching autonomously based on load monitoring and them
+> > getting more efficient it's become very unclear if this actually
+> > accomplishes anything, the only usage is the Qualcomm stuff and that's
+> > all really unsophisticated and has an air of something that's being
+> > cut'n'pasted forwards rather than delivering practical results.  There
+> > is some value at ultra low loads, but that's more for suspend modes than
+> > for actual use.
 
-> +static int ddr_perf_add_events(struct ddr_pmu *pmu)
-> +{
-> +	int i, ret;
-> +	struct attribute **attrs = pmu->devtype_data->attrs;
-> +	struct device *pmu_dev = pmu->pmu.dev;
-> +
-> +	if (!attrs)
-> +		return 0;
-> +
-> +	for (i = 0; attrs[i]; i++) {
-> +		ret = sysfs_add_file_to_group(&pmu_dev->kobj, attrs[i], "events");
-> +		if (ret) {
-> +			dev_warn(pmu->dev, "i.MX9 DDR Perf add events failed (%d)\n", ret);
-> +			return ret;
+> Removing it would be out of scope for this series and I don't really
+> want to introduce any undefined behavior when doing a big development
+> like that. I'll think about it separately.
 
-Can you use the '.is_visible' callback in 'struct attribute_group' to avoid
-having to manipulate sysfs directly like this? For example, create separate
-groups for the imx93 and imx95-specific events and only make them visible
-if we're on the appropriate hardware.
+This is new code?
 
-Will
+--M/jaeVyfzRnxNsGp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXXPE8ACgkQJNaLcl1U
+h9CIHwf/XP89jkt/tlGa4jICwu1iztzFqaiTJkTcvJjUXga/U61RNmUVRGfMlGTs
+NbXYJFbdHP6Rz6ClY+/Ws+p1AsrvAOj18ufykhqOSOf5OBAsi8Lzeex5WSN0LZKs
+iT7v2mfE45b+lM8yTNapT0z3KoAKh9QWJHmohYHG+cJadqgoYuv8zZfPVWIBJhFD
+I6jZ37EHzRJ5t9CgmJBA84tQojwDT3sie2EuZQ+wTGvaPloUU3LJuAv+ZF5LMsIi
+o+kwTHP7xgkb5VD9I6EcO70CHkzvwSKLXzuhvEB4jGlrWNXjL7ZYjPyoruUMbtrS
+LRRnFjVnLkvTL1/Jg1GArsnIQd7Xow==
+=UdGL
+-----END PGP SIGNATURE-----
+
+--M/jaeVyfzRnxNsGp--
 
