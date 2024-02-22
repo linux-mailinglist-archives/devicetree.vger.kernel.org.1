@@ -1,165 +1,289 @@
-Return-Path: <devicetree+bounces-44786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0B8D85F913
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 14:02:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1433585F943
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 14:13:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F6C91F23F59
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 13:02:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 369B91C216C3
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 13:13:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C341312E1F4;
-	Thu, 22 Feb 2024 13:01:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 613431332B3;
+	Thu, 22 Feb 2024 13:13:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mF8b9PpX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ku47Uswl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0220812E1F2
-	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 13:01:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 377C65FB81;
+	Thu, 22 Feb 2024 13:13:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708606913; cv=none; b=VEfhkkt0t9XtB/WHmRgn/+1+Z2vqG1Wz352SB8FP+ynjWi4xJ4H4JRnRWoT9NNcF7Tl8/XsQrksZy5lHutdtkXBXhuFt/OoGvNAXC1/hYqqqkQE5U6LB9fCX9FFx+Adf/j4U+uxeCSb8Sdb2ylWC28Zem2Yq+kKkChUruFBJ9bI=
+	t=1708607617; cv=none; b=Y71z5NWtSn3YBJjyLJHxCKg/zu8Sx8F1137rhpi3h6ICyUC5MmNDmyUoHEPCXQhoSpUjkCoTpP2mZsEjNQBeTkMIwfSHkFZvibA9vMEP2bmoiS6B67UmCk/oXwP7M6CIsDmd8lSDselINC184qt/2Q1trkELCfRZSC120oWVrhE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708606913; c=relaxed/simple;
-	bh=9zC3a/lUBBoHG92n62uz1igUDeqMpK/0eJHMsRGQvwY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JvMGjegd3hx1aCcKYvwdxbm4eVIPNjtudSPTFbcQccEzsFq9I7GnLdSvMRkdlNFjJP7pSXB2ANJTMZ0jAHZTfX5NtWM+tyaUaugcNCrYfzMzkyq+l+SkhyF+A+q7HGdckI5Ot3zxIvRYy16+sYEjoz613lebho87L0Y2yAi4L94=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mF8b9PpX; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-512e01b3da3so480372e87.3
-        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 05:01:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708606910; x=1709211710; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=m7Z26rH0nxtWAPBPvE/KxZ0NHjlwRm5O/7QOSN2/Ky0=;
-        b=mF8b9PpXDpthGYHQOPyBJgfTwj/UQtTrU1m0/EVniS7hxHKaKMMd9yw1W2eLqJoA6e
-         lTnhz0ZRyZVpjgUvKZ4N6a7BGC8Nz/vUP70MyR8KRkuceXY+cFe4DreBnws6hU5Jhy3C
-         QISH21uoUuRdR0bmZVQU5ogw9bwI3UtU/oYZvs5JtnT86jKNcnTRZpRF3XswhONGofq9
-         ZXXVZtsRvmFKWzPkZx+1/+a69Pqr2rdxtQxDrqJ5fsH2FBvW9FrDixqMlHEG+BQ1nd/B
-         LR0tLFnCDUESdUD3Tx+Wpy1gdOBwPmNbGd1bZE/XqreNyGAqQgroxBIMzoLmfVlmDiAu
-         AgFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708606910; x=1709211710;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=m7Z26rH0nxtWAPBPvE/KxZ0NHjlwRm5O/7QOSN2/Ky0=;
-        b=xLXs0x2hAHrs0FZ4lZ/AAXQoU4X4j+J4ixe3yHHELqPGBsBLi+ZvcLhuFKai7K4RCX
-         uy+AEyOcWauqBCdSnWH0cesa/M08OzjOSkXdGu83Dor5NqiXYghFkgShfdZdWTB1lHPN
-         QFlTXNMlYVEgzK+Oqqph24ZDvqXrSb/IZjsMgoelg4oDAezMc1SdPCR2/HHGelNmCiNR
-         iGFbJn9D0vB0c4+7SAz6mlrbKHxZ1AtMgJs/bH5cg8g9WT1dX1qnRWCHRrqc2oYeIduy
-         I55Cu/55k70LMHfD0euPOzSgDrEY8jmnoU8dD7uWbSoXa3Yr1ajFyNDO1W9ecT5H39GX
-         ciTA==
-X-Forwarded-Encrypted: i=1; AJvYcCVr1NDOQnEkgHhLXC6v+40VzGDe+/fG15mXWDumu8yIB+gNQGXHagvs+mGhjEaA8MfJI5sZ5iu+YGf3tlMY5l1Mh9TVk7gs/+yvUw==
-X-Gm-Message-State: AOJu0YznIP7ZwLCVF8fACt1LeCJj7Mm4Bqn+cGMEaViFZkPpbS8i8QGD
-	OWjXh4ZRFpZSqKJWFKKm5NYIuPbTho/19mSVTdrKu03/3cxHTfLsYZdcpzu2x1w=
-X-Google-Smtp-Source: AGHT+IGkf5An0FRhTN8uAcXotjLH9vOh29NQ0tafltetUlELSWRNWwvu9X3GqAFXb4b17ycZtwCaOQ==
-X-Received: by 2002:a05:6512:3a88:b0:512:ba3a:5368 with SMTP id q8-20020a0565123a8800b00512ba3a5368mr9141098lfu.48.1708606910048;
-        Thu, 22 Feb 2024 05:01:50 -0800 (PST)
-Received: from [172.30.204.125] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id o6-20020ac24e86000000b0051186931619sm2055814lfr.146.2024.02.22.05.01.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Feb 2024 05:01:49 -0800 (PST)
-Message-ID: <54b8c58a-6288-4ae6-9ed7-aa7b212e63da@linaro.org>
-Date: Thu, 22 Feb 2024 14:01:44 +0100
+	s=arc-20240116; t=1708607617; c=relaxed/simple;
+	bh=MbENokeI9PUY9gmhafxiQFG9i+/znCgTXAZEO2pR1D0=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=Qhiy6cblCNdKrjrvpMJV3cgsmVq5VdEFAswOmlH3N0/43ZqDpgq2lomYJn9Bck9BbguKezkQ4ZWyvIXtt3MT11ihG3saDTvvrCF94oCUs/imAGk8HwR8jhwIg5FLXMs6djx9AEEJDyOWsLw2QsmrYB9FbUI2zUsS7awQfUIpQ8U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ku47Uswl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21CADC433F1;
+	Thu, 22 Feb 2024 13:13:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708607616;
+	bh=MbENokeI9PUY9gmhafxiQFG9i+/znCgTXAZEO2pR1D0=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=ku47UswlrQW3XlqS3h0ikrchgU3HJschH2qvnH733wa9ZGvYzpW8Q6piRfczQ90/3
+	 yIJ3IOyK9Co5eO+n3SftKdMEWWzIWpxZ/m5S6SDN5roVVAErAf7qd6gV8QpB1iYsPI
+	 xpnRecMXxPxsk4rxnA1CbJdhHaybbAFT24gYhVlySCa9IBnAuE8EZh7ZDlrGLlmgrM
+	 ERtcRNXsZZn0hjBeH4JNUg5uRzvbtfJYRw2LsaKZdgz5jbMdbJfK3znlaF5tu8ERLM
+	 jwbMsxSm2//EDqnEUnx1JI55oxVE7zQacNyVrZK6JA7kaY+pnVyMgVBN43EO8iP7fC
+	 cbxAFhXGqyRsQ==
+From: =?utf-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
+To: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Thomas
+ Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
+ <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>
+Cc: Anup Patel <apatel@ventanamicro.com>, devicetree@vger.kernel.org,
+ Saravana Kannan <saravanak@google.com>, Marc Zyngier <maz@kernel.org>,
+ Anup Patel <anup@brainfault.org>, linux-kernel@vger.kernel.org, Atish
+ Patra <atishp@atishpatra.org>, linux-riscv@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Andrew Jones
+ <ajones@ventanamicro.com>
+Subject: Re: [PATCH v14 11/18] irqchip: Add RISC-V incoming MSI controller
+ early driver
+In-Reply-To: <20240222094006.1030709-12-apatel@ventanamicro.com>
+References: <20240222094006.1030709-1-apatel@ventanamicro.com>
+ <20240222094006.1030709-12-apatel@ventanamicro.com>
+Date: Thu, 22 Feb 2024 14:13:33 +0100
+Message-ID: <87r0h4tzeq.fsf@all.your.base.are.belong.to.us>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next] net: stmmac: dwmac-qcom-ethqos: Update link
- clock rate only for RGMII
-Content-Language: en-US
-To: Sarosh Hasan <quic_sarohasa@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
- Bhupesh Sharma <bhupesh.sharma@linaro.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Jose Abreu <joabreu@synopsys.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- Prasad Sodagudi <psodagud@quicinc.com>, Andrew Halaney
- <ahalaney@redhat.com>, Rob Herring <robh@kernel.org>
-Cc: kernel@quicinc.com, Sneh Shah <quic_snehshah@quicinc.com>,
- Suraj Jaiswal <quic_jsuraj@quicinc.com>
-References: <20240222125517.3356-1-quic_sarohasa@quicinc.com>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240222125517.3356-1-quic_sarohasa@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
+Anup Patel <apatel@ventanamicro.com> writes:
 
+> diff --git a/drivers/irqchip/irq-riscv-imsic-state.c b/drivers/irqchip/ir=
+q-riscv-imsic-state.c
+> new file mode 100644
+> index 000000000000..0c19ffb9ca3e
+> --- /dev/null
+> +++ b/drivers/irqchip/irq-riscv-imsic-state.c
+> @@ -0,0 +1,870 @@
 
-On 2/22/24 13:55, Sarosh Hasan wrote:
-> Updating link clock rate for different speeds is only needed when
-> using RGMII, as that mode requires changing clock speed when the link
-> speed changes. Let's restrict updating the link clock speed in
-> ethqos_update_link_clk() to just RGMII. Other modes such as SGMII
-> only need to enable the link clock (which is already done in probe).
-> 
-> Signed-off-by: Sarosh Hasan <quic_sarohasa@quicinc.com>
-> ---
->   .../stmicro/stmmac/dwmac-qcom-ethqos.c        | 26 ++++++++++---------
->   1 file changed, 14 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> index 31631e3f89d0..9cd144fb3005 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> @@ -169,21 +169,23 @@ static void rgmii_dump(void *priv)
->   static void
->   ethqos_update_link_clk(struct qcom_ethqos *ethqos, unsigned int speed)
->   {
-> -	switch (speed) {
-> -	case SPEED_1000:
-> -		ethqos->link_clk_rate =  RGMII_1000_NOM_CLK_FREQ;
-> -		break;
-> +	if (phy_interface_mode_is_rgmii(ethqos->phy_mode)) {
-> +		switch (speed) {
-> +		case SPEED_1000:
-> +			ethqos->link_clk_rate =  RGMII_1000_NOM_CLK_FREQ;
-> +			break;
->   
-> -	case SPEED_100:
-> -		ethqos->link_clk_rate =  RGMII_ID_MODE_100_LOW_SVS_CLK_FREQ;
-> -		break;
-> +		case SPEED_100:
-> +			ethqos->link_clk_rate =  RGMII_ID_MODE_100_LOW_SVS_CLK_FREQ;
-> +			break;
->   
-> -	case SPEED_10:
-> -		ethqos->link_clk_rate =  RGMII_ID_MODE_10_LOW_SVS_CLK_FREQ;
-> -		break;
-> -	}
-> +		case SPEED_10:
-> +			ethqos->link_clk_rate =  RGMII_ID_MODE_10_LOW_SVS_CLK_FREQ;
-> +			break;
+[...]
+
+> +static void __imsic_local_sync(struct imsic_local_priv *lpriv)
+> +{
+> +	struct imsic_local_config *mlocal;
+> +	struct imsic_vector *vec, *mvec;
+> +	int i;
+> +
+> +	lockdep_assert_held(&lpriv->lock);
+> +
+> +	/* This pairs with the barrier in __imsic_remote_sync(). */
+> +	smp_mb();
+
+I'm trying to figure out why this barrier is needed? All the updates are
+done behind the spinlocks. If there're some ordering constraints that
+I'm missing, please document them.
+
+> +
+> +	for_each_set_bit(i, lpriv->dirty_bitmap, imsic->global.nr_ids + 1) {
+> +		if (!i || i =3D=3D IMSIC_IPI_ID)
+> +			goto skip;
+> +		vec =3D &lpriv->vectors[i];
+> +
+> +		if (READ_ONCE(vec->enable))
+> +			__imsic_id_set_enable(i);
+> +		else
+> +			__imsic_id_clear_enable(i);
+> +
+> +		/*
+> +		 * If the ID was being moved to a new ID on some other CPU
+> +		 * then we can get a MSI during the movement so check the
+> +		 * ID pending bit and re-trigger the new ID on other CPU
+> +		 * using MMIO write.
+> +		 */
+> +		mvec =3D READ_ONCE(vec->move);
+> +		WRITE_ONCE(vec->move, NULL);
+
+mvec =3D xchg(&vec->move, NULL) ?
+
+> +		if (mvec && mvec !=3D vec) {
+> +			if (__imsic_id_read_clear_pending(i)) {
+> +				mlocal =3D per_cpu_ptr(imsic->global.local, mvec->cpu);
+> +				writel_relaxed(mvec->local_id, mlocal->msi_va);
+> +			}
+> +
+> +			imsic_vector_free(&lpriv->vectors[i]);
 > +		}
->   
-> -	clk_set_rate(ethqos->link_clk, ethqos->link_clk_rate);
-> +		clk_set_rate(ethqos->link_clk, ethqos->link_clk_rate);
+> +
+> +skip:
+> +		bitmap_clear(lpriv->dirty_bitmap, i, 1);
 > +	}
->   }
+> +}
+> +
+> +void imsic_local_sync_all(void)
+> +{
+> +	struct imsic_local_priv *lpriv =3D this_cpu_ptr(imsic->lpriv);
+> +	unsigned long flags;
+> +
+> +	raw_spin_lock_irqsave(&lpriv->lock, flags);
+> +	bitmap_fill(lpriv->dirty_bitmap, imsic->global.nr_ids + 1);
+> +	__imsic_local_sync(lpriv);
+> +	raw_spin_unlock_irqrestore(&lpriv->lock, flags);
+> +}
+> +
+> +void imsic_local_delivery(bool enable)
+> +{
+> +	if (enable) {
+> +		imsic_csr_write(IMSIC_EITHRESHOLD, IMSIC_ENABLE_EITHRESHOLD);
+> +		imsic_csr_write(IMSIC_EIDELIVERY, IMSIC_ENABLE_EIDELIVERY);
+> +		return;
+> +	}
+> +
+> +	imsic_csr_write(IMSIC_EIDELIVERY, IMSIC_DISABLE_EIDELIVERY);
+> +	imsic_csr_write(IMSIC_EITHRESHOLD, IMSIC_DISABLE_EITHRESHOLD);
+> +}
+> +
+> +#ifdef CONFIG_SMP
+> +static void imsic_local_timer_callback(struct timer_list *timer)
+> +{
+> +	struct imsic_local_priv *lpriv =3D this_cpu_ptr(imsic->lpriv);
+> +	unsigned long flags;
+> +
+> +	raw_spin_lock_irqsave(&lpriv->lock, flags);
+> +	__imsic_local_sync(lpriv);
+> +	raw_spin_unlock_irqrestore(&lpriv->lock, flags);
+> +}
+> +
+> +static void __imsic_remote_sync(struct imsic_local_priv *lpriv, unsigned=
+ int cpu)
+> +{
+> +	lockdep_assert_held(&lpriv->lock);
+> +
+> +	/*
+> +	 * Ensure that changes to vector enable, vector move and
+> +	 * dirty bitmap are visible to the target CPU.
 
-if (!phy_interface_mode_is_rgmii(ethqos->phy_mode))
-	return 0;
+...which case the spinlock(s) are enough, no?
 
-[leave the rest unchanged]
+> +	 *
+> +	 * This pairs with the barrier in __imsic_local_sync().
+> +	 */
+> +	smp_mb();
+> +
+> +	/*
+> +	 * We schedule a timer on the target CPU if the target CPU is not
+> +	 * same as the current CPU. An offline CPU will unconditionally
+> +	 * synchronize IDs through imsic_starting_cpu() when the
+> +	 * CPU is brought up.
+> +	 */
+> +	if (cpu_online(cpu)) {
+> +		if (cpu =3D=3D smp_processor_id()) {
+> +			__imsic_local_sync(lpriv);
+> +			return;
+> +		}
 
-?
+Maybe move this if-clause out from the cpu_online(), and only have
+something like
+  if (cpu_online(cpu) && !timer_pending(&lpriv->timer)) { ... }
+inside the CONFIG_SMP guard...
 
-Konrad
+> +
+> +		if (!timer_pending(&lpriv->timer)) {
+> +			lpriv->timer.expires =3D jiffies + 1;
+> +			add_timer_on(&lpriv->timer, cpu);
+> +		}
+> +	}
+> +}
+> +#else
+> +static void __imsic_remote_sync(struct imsic_local_priv *lpriv, unsigned=
+ int cpu)
+> +{
+> +	lockdep_assert_held(&lpriv->lock);
+> +	__imsic_local_sync(lpriv);
+> +}
+> +#endif
+
+...where we can get rid of this special !SMP all together for this
+function.
+
+> +
+> +void imsic_vector_mask(struct imsic_vector *vec)
+> +{
+> +	struct imsic_local_priv *lpriv;
+> +
+> +	lpriv =3D per_cpu_ptr(imsic->lpriv, vec->cpu);
+> +	if (WARN_ON_ONCE(&lpriv->vectors[vec->local_id] !=3D vec))
+> +		return;
+> +
+> +	/*
+> +	 * This function is called through Linux irq subsystem with
+> +	 * irqs disabled so no need to save/restore irq flags.
+> +	 */
+> +
+> +	raw_spin_lock(&lpriv->lock);
+> +
+> +	vec->enable =3D false;
+
+Should have WRITE_ONCE to make the checkers happy.
+
+> +	bitmap_set(lpriv->dirty_bitmap, vec->local_id, 1);
+> +	__imsic_remote_sync(lpriv, vec->cpu);
+> +
+> +	raw_spin_unlock(&lpriv->lock);
+> +}
+> +
+> +void imsic_vector_unmask(struct imsic_vector *vec)
+> +{
+> +	struct imsic_local_priv *lpriv;
+> +
+> +	lpriv =3D per_cpu_ptr(imsic->lpriv, vec->cpu);
+> +	if (WARN_ON_ONCE(&lpriv->vectors[vec->local_id] !=3D vec))
+> +		return;
+> +
+> +	/*
+> +	 * This function is called through Linux irq subsystem with
+> +	 * irqs disabled so no need to save/restore irq flags.
+> +	 */
+> +
+> +	raw_spin_lock(&lpriv->lock);
+> +
+> +	vec->enable =3D true;
+
+Dito.
+
+> +	bitmap_set(lpriv->dirty_bitmap, vec->local_id, 1);
+> +	__imsic_remote_sync(lpriv, vec->cpu);
+> +
+> +	raw_spin_unlock(&lpriv->lock);
+> +}
+> +
+> +static bool imsic_vector_move_update(struct imsic_local_priv *lpriv, str=
+uct imsic_vector *vec,
+> +				     bool new_enable, struct imsic_vector *new_move)
+> +{
+> +	unsigned long flags;
+> +	bool enabled;
+> +
+> +	raw_spin_lock_irqsave(&lpriv->lock, flags);
+> +
+> +	/* Update enable and move details */
+> +	enabled =3D READ_ONCE(vec->enable);
+> +	WRITE_ONCE(vec->enable, new_enable);
+
+Again, xchg() would be easier to read.
+
+
+Bj=C3=B6rn
 
