@@ -1,63 +1,60 @@
-Return-Path: <devicetree+bounces-44903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 141D2860022
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 18:54:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8928786002F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 18:57:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 45D111C21DC9
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 17:54:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E8451F24DF3
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 17:57:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A4D6156960;
-	Thu, 22 Feb 2024 17:54:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE416156979;
+	Thu, 22 Feb 2024 17:57:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Uyum0d1U"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TCnNDK7A"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F33F154BE3;
-	Thu, 22 Feb 2024 17:54:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4684155A5C;
+	Thu, 22 Feb 2024 17:57:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708624473; cv=none; b=FkDlF6tqKk2HtpRhf3VsgRAcpKUZX8WGZYZQNbk8Fl6KYz7PF7cCFAO45DeiAme8zxYbtwz+xszaC0GSfsFNE6K3JGoNHnffqxYgpGgKeC1IUzyV7MNXjik/5kQ3yakfOApqdDvmY+17dOwbUmBoSRRxRfeUU+uLkMq+A6oiYEU=
+	t=1708624669; cv=none; b=Kb7Czhz508WCv7fWNnqm6i+BwtT0JPu0Zc99HuLFGmihw5kNPyI6Ju37ejgewZduWzdqasRuMZyE4vS+0PihWn4OXpCwG6/hRRGcIs3Mjou7G3D+wSG6eCnvhLPsHJGaGgziPcESH02tNFhAh07ZAjwFLIk6PyQvvskXXy+OJbg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708624473; c=relaxed/simple;
-	bh=IY1ePbLAyPh7qCMtDQVfjh9zA9mYaliEiYn0nbCobz8=;
+	s=arc-20240116; t=1708624669; c=relaxed/simple;
+	bh=NlepLU1IkX5NFGOdm1Fp+waf/GdME+Xd7+O2IGTpcGc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n8wot0MLrsfAtcP2ySNkznH4dAR1R4xO9LUUuzWcjDHXpC8Ml9/Wd0a2NKCEA817CmHV6H+wlnepoGWSiQtxKxasQZK9CGM/pOU4cLO8ds0h+WHvG0Hvqn7nV5EAxuBUcUob+S1hyxBTv0UQJFheT5cTGOUlE+dkR7drwkztb60=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Uyum0d1U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9186C433F1;
-	Thu, 22 Feb 2024 17:54:30 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=rJXxen35T8Ha4sVz62iC/PTHasw1bCGG0e9KrmJeduN3rEJePVsOPkO5Y1Ca29aZEb30PT+oyDqavkMjCBKn5XENdPxJymqrJ2yQiQnShkq1Z56OsNocgqdvQAcIYn9ZMTr85qNslnm92Ap3AW0PpmDIBq7mwWNH8E+iiBkpQFM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TCnNDK7A; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77EE6C433C7;
+	Thu, 22 Feb 2024 17:57:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708624472;
-	bh=IY1ePbLAyPh7qCMtDQVfjh9zA9mYaliEiYn0nbCobz8=;
+	s=k20201202; t=1708624669;
+	bh=NlepLU1IkX5NFGOdm1Fp+waf/GdME+Xd7+O2IGTpcGc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Uyum0d1UsBa+HVz7gGlNIwgpHmzHPV6iJ0xVbNsuOanZMV4SXDhofdf0E26BZlmy6
-	 BZsBWWZOBFn2CDuqGS1XzU3iCeDCdDsWuDeKWl/W28AqUax0++fGVFSt2YD6rl5x1y
-	 1KAY+ui16OQSUmzTbB/lV0EFAIDNnRsUo2bVWAk6T94z0KQ5hltzAcLVkWwI1WbwNt
-	 0i45uF7eSytSBdK/paWRMBIguhuFGjtBepE74oDbWxn1dxlm0whbxucbmHnPZPMcwH
-	 Y6H98442+Fb825YZwSY3ZZtcKQEwNk+FB+JYAdkfcQXLTeglhtAY3d7OJAtzxd70/T
-	 ikCVmSC5aIQMQ==
-Date: Thu, 22 Feb 2024 17:54:28 +0000
+	b=TCnNDK7ANhJpdzwCBCRy2xDVk78UIk0xDNsQG2zwV6yjRwM2UlNBvVvGe+3DUUHdl
+	 C4ukqvrf/91XtmT3KU+wWhLliHWuM/xUepWZur7luVJH+U1OICS1zKqtfSPFlwPOCs
+	 +v9qY+41/qxcPFvemjPX4BKT16V26xlD0Sk3s+e+spBpv0ufFGWtYMeBX9yZSAQcjT
+	 uTYg+IfA9sVSWiL7FLGss9Bhv5gOn3xIz+5M8Pb841aWf/H8FoXBeosTJk8kBgFe2p
+	 PFiS2p6U36+D8my8LaUfQUwkTicx+qEjdAojqQnZmflgsfpb4xBXAMNEQXw181yXjz
+	 Pqlk0e4d7RQsg==
+Date: Thu, 22 Feb 2024 17:57:44 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc: Nuno Sa <nuno.sa@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 5/6] dt-bindings: iio: temperature: ltc2983: document
- power supply
-Message-ID: <20240222-lance-sprinkled-04a7650ca316@spud>
-References: <20240222-ltc2983-misc-improv-v1-0-cf7d4457e98c@analog.com>
- <20240222-ltc2983-misc-improv-v1-5-cf7d4457e98c@analog.com>
- <20240222-component-stiffen-d046386433b3@spud>
- <f31abc7140dfa8477623d4fca8abece03d37926e.camel@gmail.com>
+To: Diogo Ivo <diogo.ivo@siemens.com>
+Cc: danishanwar@ti.com, rogerq@kernel.org, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	jan.kiszka@siemens.com
+Subject: Re: [PATCH net-next v3 01/10] dt-bindings: net: Add support for
+ AM65x SR1.0 in ICSSG
+Message-ID: <20240222-rebate-squiggle-d6801d506994@spud>
+References: <20240221152421.112324-1-diogo.ivo@siemens.com>
+ <20240221152421.112324-2-diogo.ivo@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,85 +62,41 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="X4sZeGhzNO6ZrYPs"
+	protocol="application/pgp-signature"; boundary="Hhfnaeilk2i9ejhd"
 Content-Disposition: inline
-In-Reply-To: <f31abc7140dfa8477623d4fca8abece03d37926e.camel@gmail.com>
+In-Reply-To: <20240221152421.112324-2-diogo.ivo@siemens.com>
 
 
---X4sZeGhzNO6ZrYPs
-Content-Type: text/plain; charset=iso-8859-1
+--Hhfnaeilk2i9ejhd
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 22, 2024 at 05:41:03PM +0100, Nuno S=E1 wrote:
-> On Thu, 2024-02-22 at 15:40 +0000, Conor Dooley wrote:
-> > On Thu, Feb 22, 2024 at 01:55:56PM +0100, Nuno Sa wrote:
-> > > Add a property for the VDD power supply regulator.
-> > >=20
-> > > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> > > ---
-> > > =A0Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml=
- | 2 ++
-> > > =A01 file changed, 2 insertions(+)
-> > >=20
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
-> > > b/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
-> > > index dbb85135fd66..8aae867a770a 100644
-> > > --- a/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.y=
-aml
-> > > +++ b/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.y=
-aml
-> > > @@ -57,6 +57,8 @@ properties:
-> > > =A0=A0 interrupts:
-> > > =A0=A0=A0=A0 maxItems: 1
-> > > =A0
-> > > +=A0 vdd-supply: true
-> >=20
-> > Although technically an ABI break, should we make this supply required?
-> > It is, at the end of the day, required by the hardware for operation.
-> >=20
+On Wed, Feb 21, 2024 at 03:24:07PM +0000, Diogo Ivo wrote:
+> Silicon Revision 1.0 of the AM65x came with a slightly different ICSSG
+> support: Only 2 PRUs per slice are available and instead 2 additional
+> DMA channels are used for management purposes. We have no restrictions
+> on specified PRUs, but the DMA channels need to be adjusted.
 >=20
-> I thought about it but then realized it could break some existing users w=
-hich is
-> never a nice thing.
+> Co-developed-by: Jan Kiszka <jan.kiszka@siemens.com>
+> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+> Signed-off-by: Diogo Ivo <diogo.ivo@siemens.com>
 
-Could you explain what scenario it actually breaks a system (not
-produces warnings with dtbs_check)?
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-If anything actually broke something, it would be the driver change that
-actually assumed that the regulator was present and refused to probe
-otherwise, right? In Linux at least, the regulator core will provide a
-dummy regulator if one doesn't exist - otherwise patch 6/6 would
-actually contain a DT ABI breakage, since it does:
+Cheers,
+Conor.
 
-	ret =3D devm_regulator_get_enable(&spi->dev, "vdd");
-	if (ret)
-		return ret;
-
-IMO making a new property required is only a meaningful break of the ABI
-when drivers reject probe when it is missing, but I must admit I don't
-know if other operating systems handle missing regulators as nicely as
-Linux does.
-
-> I recently (in another series - the IIO backend) went through some troubl=
-e to
-> actually not break ABI. Meaning, I had to do some not so neat hacking in =
-the
-> driver because Rob was more comfortable with not breaking ABI in DT. So, I
-> assumed he would not like for me to break it in here.
-
-
---X4sZeGhzNO6ZrYPs
+--Hhfnaeilk2i9ejhd
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdeKVAAKCRB4tDGHoIJi
-0pdYAQCmfw0Pf378aK2iFdC1BlE5wzRJlZkxDKeAZHPXMw6e5AD+O/O6a7y+ok8N
-6juyCLp/ZHhKv5jwLJBYtorw7SEd5Qs=
-=Dqii
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdeLGAAKCRB4tDGHoIJi
+0h3SAPwIj1Tsf7UlvzD0iQym9nQVdjpmIASXKB1SDp7tg3Pn4QD+Jk8XT0oG4HMP
+rwBe4sL/qYwJsYrE5yqJgujYHCUC0wM=
+=Z4S5
 -----END PGP SIGNATURE-----
 
---X4sZeGhzNO6ZrYPs--
+--Hhfnaeilk2i9ejhd--
 
