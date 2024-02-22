@@ -1,149 +1,120 @@
-Return-Path: <devicetree+bounces-44846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44847-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CEC285FCA6
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 16:40:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F64685FCB5
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 16:41:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5BE56B261AF
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 15:40:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B3EDE1F22EEB
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 15:41:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CBF3153501;
-	Thu, 22 Feb 2024 15:39:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C54A14E2C5;
+	Thu, 22 Feb 2024 15:40:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="2kg7YYJL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sAvZKL/z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2050.outbound.protection.outlook.com [40.107.94.50])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90662152E07;
-	Thu, 22 Feb 2024 15:39:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.94.50
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708616361; cv=fail; b=AuEUHeDiU/ViAct/PkBBJ0n0oxB0CqGgwFoWkkdiFkyj2QbP1cAV+hjtQaImCuFnHMEFcf14tWnPnPIqJl6osUZE7pER//gSvVBAdaZOpSt7s1SEnNoUrSN3VOnL4lqZoSj0aeoU1IqX9I1kQVYbhWYAsO6cWhkLQ/SFXA/SgYA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708616361; c=relaxed/simple;
-	bh=K/JdAhcKRXCA0M0L7U/DYTYlmfjcFhkKyuFSf2KSXp8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XokD20p8OgwhyR70KlhvyLBMmWCjVni/1KKIUwGK9nGiP9Xsfy1KZAnBJ1hV0iZSf+rvMfyT3XI7ewh70WRYLnkZ77/ygv3jWfw+S9otaBAM/WOj/NXgIeyQsF8g5yhh+ghiTXgx/32t2GxDyDSE1TvbPWwqhhe+uxdYSyUm4XQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=2kg7YYJL; arc=fail smtp.client-ip=40.107.94.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GOd/04ZEXd7yg50I/HS6vqhWpw4437XEq8V0BudhBMbuXw6ktjigZlaR32AJRqQZ7bllVDIC6Ymw0Wzhmolm88Bwewo+iUXvOJvTUvMsih1qQUqpfLPA88ffTxNXvqifEhnJ2Tpky1BEb+GCStX+FZ+CdIRjNOuEgc3aV71ut7fRP/CgrcLA+Yz7BnBFG1ZlSs4jJbx6vPx5w1n/D6YZOyvq2M4m13Scpwn0eYxZIb4R6FFBgJ9maYl2NxIAgAqkFkUqX5VA/3omq2sIP+X5As3cL0fWrCl2qc8wRrgZEmlZJQ8ibUiurD6sVwAIgVYbopsQpIZy3nA732iQB9i6yw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1sY55USOYqGVVfb2BFIg25xYCkPJMmBZ9K5PMjhSSJw=;
- b=Ut1jH8H9Ov9seDSFapclHmPDVOMPSptA3Mutn3Opvf3m46J5EuYs2ydCjMRQG9D7wdDk6rNsnYqtBwG8aFIQhzRzX7IL+K5kwe6r9D1MxJvVhuVkJXMCsA43beRX8KVawGpfMomUfd2ujF549rVxIqifjKCcJ6BCVk7EONt5r+BYPE/6STaYAwlJtJKxnevbr09CSOEocjKi0JdwmL61CBwrWTsY1iAg90Wi96WKFGNLdz0Z8e06LkNnUM0KodZbxAra+EE510tKzkeMHbm9kywBDJdT8jY9NKRieOXSNxJQY2RisL0ydiQcy2ce/XPSxJzm/3r/dLn5eUiAt9XCqQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=microchip.com smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1sY55USOYqGVVfb2BFIg25xYCkPJMmBZ9K5PMjhSSJw=;
- b=2kg7YYJLq4bv74sTlKAkOuk7eRd/UAyF/oY8cAXqMrGJlP9JXpDQjiwNW867Xbl+tObluUMP3XiL7QUVaJQTGzad9+JpDjBIM6nLdHIncwHs3NWC9/lU5oCHBiv+pOaoeboFovp3BSHMPZUJgsMo0NvMOJJGhnMdexJvlSg8ayc=
-Received: from BN1PR12CA0021.namprd12.prod.outlook.com (2603:10b6:408:e1::26)
- by PH7PR12MB5782.namprd12.prod.outlook.com (2603:10b6:510:1d1::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.20; Thu, 22 Feb
- 2024 15:39:17 +0000
-Received: from BN1PEPF00004684.namprd03.prod.outlook.com
- (2603:10b6:408:e1:cafe::f2) by BN1PR12CA0021.outlook.office365.com
- (2603:10b6:408:e1::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.42 via Frontend
- Transport; Thu, 22 Feb 2024 15:39:16 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BN1PEPF00004684.mail.protection.outlook.com (10.167.243.90) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7292.25 via Frontend Transport; Thu, 22 Feb 2024 15:39:16 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 22 Feb
- 2024 09:39:16 -0600
-Received: from xhdvineethc40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Thu, 22 Feb 2024 09:39:12 -0600
-From: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
-To: <nicolas.ferre@microchip.com>, <claudiu.beznea@tuxon.dev>,
-	<davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-	<pabeni@redhat.com>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<linux@armlinux.org.uk>, <vadim.fedorenko@linux.dev>, <andrew@lunn.ch>
-CC: <vineeth.karumanchi@amd.com>, <netdev@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, <git@amd.com>
-Subject: [PATCH net-next v2 4/4] dt-bindings: net: cdns,macb: Deprecate magic-packet property
-Date: Thu, 22 Feb 2024 21:08:48 +0530
-Message-ID: <20240222153848.2374782-5-vineeth.karumanchi@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240222153848.2374782-1-vineeth.karumanchi@amd.com>
-References: <20240222153848.2374782-1-vineeth.karumanchi@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 550481B7E6;
+	Thu, 22 Feb 2024 15:40:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708616439; cv=none; b=XJHtShOozDPnC7KFdloqMzmchtn4p+3iXHajkHhCnbNsKlO0P4Jrn9TgS2EWFEyJ/l4jDc4tUeQyYZiItGw3g4oWuBB4of4GL9w2HHADdNDpz7xzIqinR12wUtqI4tFSfe4htfkFLR45ig/n2lHS0GzoW1Cqf89nn8rGQQJLmHU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708616439; c=relaxed/simple;
+	bh=xc07QGkepUAGGcDE2z3e5aOhvw7tXF1qa6A82GqprFs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FZjoTLUy8D/B53kEdEbbi0ts64vetvKmD/oO/RYW31gLd9hohvSqLmkscktWE5UQWEBi3DaU/b8E7rssEo36WASgJeUbLm84lqiCJaLm0c7JPm1JM6sRUgN65SVmtrBpuR5qustOl0AVt1Zdj1c0H77H9CopR1n6AFyMVG3WXo4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sAvZKL/z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA2EBC433C7;
+	Thu, 22 Feb 2024 15:40:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708616438;
+	bh=xc07QGkepUAGGcDE2z3e5aOhvw7tXF1qa6A82GqprFs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sAvZKL/zErRTChJH+5+VlA8B4Sj4bBpztoBx/4wBbhusDuPrYf14Uv1l5TpBrwwSI
+	 PaWcDlm64yVHcCL1VoMokXRWwJdZEJ5io+Q7MBPsE+cluKRYo5eanIswjcpU6zjrjZ
+	 xD/5MPJZNPJWoOg8qP7eX7+K6qmWfZd5OhM+19M0zJvt1QdIwFvdZ17dGSRm7r++PK
+	 oj0lHr/raFp08ItKhQodXYaRYct9w8paZ8lFkY46OaRzO/Z1wLrmAniXU5ioZbcTcv
+	 0fgONqVqyynW+IoL01ubF5Ea6zbFqlNa5xdtGeZDNBQH6odMNAJY7sEgRUy7Xe6+J8
+	 027i7X98Q2J4Q==
+Date: Thu, 22 Feb 2024 15:40:34 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Nuno Sa <nuno.sa@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 5/6] dt-bindings: iio: temperature: ltc2983: document
+ power supply
+Message-ID: <20240222-component-stiffen-d046386433b3@spud>
+References: <20240222-ltc2983-misc-improv-v1-0-cf7d4457e98c@analog.com>
+ <20240222-ltc2983-misc-improv-v1-5-cf7d4457e98c@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB03.amd.com: vineeth.karumanchi@amd.com does not
- designate permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN1PEPF00004684:EE_|PH7PR12MB5782:EE_
-X-MS-Office365-Filtering-Correlation-Id: 41a67c64-c821-40b6-cd25-08dc33bc6dca
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	IYcLOSFeikfM/vIqYH+c0zvkhuM3vzRg/97OVWjjv5MAx2Jy8MhwI2vVXZ3EilPFF8jUIFe9BWZWKMtKRiiTlBlhOKC3OFRMs/qDUSZuAltpXxTWUu12L2maR6TXXhlmSHNXvqrBrSQnwSVNqL3t2XmrUP5utbLcm6xyR2cs+weis4wnAS3Pi+2gtO6FKp5RROuhqNvdmqkf1sd0XXJ5whcHm9luTO13UFtHZInGrAZaRIFuukbro+nf0cgjGMTslGmq//leXqJ4o6UPNDj1hX+JYET/wR9rld/PxwEdFuLr/+7f585mAO55J69C45cOkGMSpNs5yTiYF4MsyXlV8gmEdtkpc4hdyXLHUjOpRf9BzHx2xDf73xHWi2nf8TtnKoYmEUYZvOw3FP4NGz2kQMpGGi4kuYnsee1JOzFxAPq4pI7IbyrcEk8+lHD0/CmwzuwCQEwqy30OtSIOtJRBuo4zDwaA1IPeeaeVJcsIjv5UiojwaBuTx8/mCoSQ+LIkd1EIBYhEqXgwglHOCR7XO6BRT6dDxU3JmNrqtJY1+9EULeZTgieHV6Cbv0PouyzgAQRc5RkEunEvQjsli2skbPfjoX5BdPcyE/lmLCl8BvA+8C9Bvuwux85+5auUAYvYI/g1y1njcn3zncn8htHsMKtWzLPRSXXlhtv+Rq23TeM=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(36860700004)(46966006)(40470700004)(921011);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Feb 2024 15:39:16.8174
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 41a67c64-c821-40b6-cd25-08dc33bc6dca
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BN1PEPF00004684.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5782
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="FdbL3WJlakIndfR1"
+Content-Disposition: inline
+In-Reply-To: <20240222-ltc2983-misc-improv-v1-5-cf7d4457e98c@analog.com>
 
-WOL modes such as magic-packet should be an OS policy.
-Leverage MACB_CAPS_WOL on supported devices to advertise
-supported modes through ethtool. Use ethtool to activate
-the required mode.
 
-Suggested-by: Andrew Lunn <andrew@lunn.ch>
-Signed-off-by: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
----
- Documentation/devicetree/bindings/net/cdns,macb.yaml | 1 +
- 1 file changed, 1 insertion(+)
+--FdbL3WJlakIndfR1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/net/cdns,macb.yaml b/Documentation/devicetree/bindings/net/cdns,macb.yaml
-index bf8894a0257e..096309bf3235 100644
---- a/Documentation/devicetree/bindings/net/cdns,macb.yaml
-+++ b/Documentation/devicetree/bindings/net/cdns,macb.yaml
-@@ -141,6 +141,7 @@ patternProperties:
- 
-       magic-packet:
-         type: boolean
-+        deprecated: true
-         description:
-           Indicates that the hardware supports waking up via magic packet.
- 
--- 
-2.34.1
+On Thu, Feb 22, 2024 at 01:55:56PM +0100, Nuno Sa wrote:
+> Add a property for the VDD power supply regulator.
+>=20
+> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> ---
+>  Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/temperature/adi,ltc298=
+3.yaml b/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
+> index dbb85135fd66..8aae867a770a 100644
+> --- a/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
+> +++ b/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
+> @@ -57,6 +57,8 @@ properties:
+>    interrupts:
+>      maxItems: 1
+> =20
+> +  vdd-supply: true
 
+Although technically an ABI break, should we make this supply required?
+It is, at the end of the day, required by the hardware for operation.
+
+> +
+>    adi,mux-delay-config-us:
+>      description: |
+>        Extra delay prior to each conversion, in addition to the internal =
+1ms
+>=20
+> --=20
+> 2.43.2
+>=20
+
+--FdbL3WJlakIndfR1
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZddq8gAKCRB4tDGHoIJi
+0nnFAQC2H7lqeY7aI5oJlOwOs78r2LlF1Qhqa1z9Umxt2l37BAEAsbgxlVhtSoqg
+KhXR0NV/1sCXBFgT29Sm8SaduDmOnAE=
+=9wDI
+-----END PGP SIGNATURE-----
+
+--FdbL3WJlakIndfR1--
 
