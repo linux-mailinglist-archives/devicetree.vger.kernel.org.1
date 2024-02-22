@@ -1,37 +1,38 @@
-Return-Path: <devicetree+bounces-44966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B94E86045E
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D442986045F
 	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 22:09:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CAFE1289B12
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 21:09:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 736C71F23DCB
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 21:09:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86E1573F17;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ECC573F1B;
 	Thu, 22 Feb 2024 21:09:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D954B71750
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE46F73F0C
 	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 21:09:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708636165; cv=none; b=qWPeQnBngZpzA5MGgGXQcXL/yUGcJlpjyRB1bcJ5J0e6cj9V7MIbW2H9s3jbzy0KcYtNbWKlUWTKiFzSKccdaoy1mMvKdb7z6ueAN2/sgCjIYK6pj5xbHZnzRr5yGUU02yUFXIUDGnIlGaXC3DxlrVcg+7gvJ6tkPl7pU5XAFFE=
+	t=1708636165; cv=none; b=BkMybGQ+5FAbHenEiRMi6Sw7HDlKXZ5696+PezhrVjOhsuDJ+kAaFsbx6XgsCMCtLYUP6G8Du+GXHaKlobc9BGTHlCMG3wPNSQSc9mtMuLPcMkf/SPKOa/5iTFgMPTRdefw1i1FefWzmZzjo+ZPrMrlrYPT6+SIOzKFkFEBwrcI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1708636165; c=relaxed/simple;
-	bh=j31Dajbarf+Gba2tIUbxNCli685oiAzWii4l564PZMs=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=dAIpUPYpZ5jiLCljlLeqDZ5uLaOjnNIo/eX3n13OSOtj7q3t+gTb99/5SIr5HMTVKuf06bhIDozlJ1tOM9ENYladh+pwmog41lCHuDn4Ox7lredLyq9vT6ImOUfiTbUCicPF53vk3Lp8o7N9S5nUhyJR4qXYCazpn//ah/mDsO0=
+	bh=I3EW9Vuk0mnGohws0wZ3vlCFahdWLNd/taLlxlA1rao=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=ZL/ll9FOox2U9w6WldLRYkygSQBfcKwWb1tdn16rUXt+i9DVkZAAPzJ6OaDaYj1kaACgrQSBN3vWwRZpoIGiZ6H61mO7E+5H85lt82xjFiOgNQaP+lTfWwXavKbgqFH9UkgoJIVk1ZktSnOtocyBm77RElucOjtNOa8E43/Fdgw=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <m.felsch@pengutronix.de>)
-	id 1rdGJY-0000lo-UV; Thu, 22 Feb 2024 22:09:08 +0100
+	id 1rdGJZ-0000lo-03; Thu, 22 Feb 2024 22:09:09 +0100
 From: Marco Felsch <m.felsch@pengutronix.de>
 To: gregkh@linuxfoundation.org,
 	robh+dt@kernel.org,
@@ -44,10 +45,12 @@ Cc: devicetree@vger.kernel.org,
 	linux-usb@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	kernel@pengutronix.de
-Subject: [PATCH v3 0/4] USB-C TCPM Orientation Support
-Date: Thu, 22 Feb 2024 22:08:59 +0100
-Message-Id: <20240222210903.208901-1-m.felsch@pengutronix.de>
+Subject: [PATCH v3 1/4] dt-bindings: usb: typec-tcpci: add tcpci fallback binding
+Date: Thu, 22 Feb 2024 22:09:00 +0100
+Message-Id: <20240222210903.208901-2-m.felsch@pengutronix.de>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20240222210903.208901-1-m.felsch@pengutronix.de>
+References: <20240222210903.208901-1-m.felsch@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,43 +63,48 @@ X-SA-Exim-Mail-From: m.felsch@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi,
+The NXP PTN5110 [1] is an TCPCI [2] compatible chip, so add the fallback
+binding.
 
-this adds the support to control the optional connector-orientation
-available on some TCPC from the TCPM.
+[1] https://www.nxp.com/docs/en/data-sheet/PTN5110.pdf
+[2] https://www.usb.org/sites/default/files/documents/usb-port_controller_specification_rev2.0_v1.0_0.pdf
 
-I used an custom board with OnSemi FUSB307B TCPC which is spec [1]
-compatible but albeit the spec [1] says that this pin is controlled by
-the TCPC if 'TCPC_CONTROL.DebugAccessoryControl = 0' it isn't at least
-for this device.
+Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+---
+v3:
+- use items
+- adapt example
 
-I'm unsure if the usb tcpci spec has an copy'n'paste failure since
-'TCPC_CONTROL.DebugAccessoryControl' shouldn't control the state of the
-'connector orientation' pin or if the OnSemi FUSB307B has an HW bug.
-Since on my device the 'TCPC_CONTROL.DebugAccessoryControl' is set to
-0 but the register wasn't updated automatically.
+v2:
+- rephrase commit message
 
-The patch adapting the existing dts files is send separately, as
-requested.
+ Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-Regards,
-  Marco
-
-[1] https://www.usb.org/sites/default/files/documents/usb-port_controller_specification_rev2.0_v1.0_0.pdf
-
-Marco Felsch (4):
-  dt-bindings: usb: typec-tcpci: add tcpci fallback binding
-  usb: typec: tcpci: add generic tcpci fallback compatible
-  usb: typec: tcpm: add support to set tcpc connector orientatition
-  usb: typec: tcpci: add support to set connector orientation
-
- .../devicetree/bindings/usb/nxp,ptn5110.yaml  |  6 ++-
- drivers/usb/typec/tcpm/tcpci.c                | 45 +++++++++++++++++++
- drivers/usb/typec/tcpm/tcpm.c                 |  6 +++
- include/linux/usb/tcpci.h                     |  8 ++++
- include/linux/usb/tcpm.h                      |  2 +
- 5 files changed, 65 insertions(+), 2 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml b/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml
+index eaedb4cc6b6c..65a8632b4d9e 100644
+--- a/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml
++++ b/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml
+@@ -11,7 +11,9 @@ maintainers:
+ 
+ properties:
+   compatible:
+-    const: nxp,ptn5110
++    items:
++      - const: nxp,ptn5110
++      - const: tcpci
+ 
+   reg:
+     maxItems: 1
+@@ -41,7 +43,7 @@ examples:
+         #size-cells = <0>;
+ 
+         tcpci@50 {
+-            compatible = "nxp,ptn5110";
++            compatible = "nxp,ptn5110", "tcpci";
+             reg = <0x50>;
+             interrupt-parent = <&gpio3>;
+             interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
 -- 
 2.39.2
 
