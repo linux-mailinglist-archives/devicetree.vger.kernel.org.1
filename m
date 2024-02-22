@@ -1,124 +1,144 @@
-Return-Path: <devicetree+bounces-44866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2368985FE12
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 17:28:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2B9085FE2E
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 17:37:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7F1B1F25FEE
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 16:28:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3B501C24A47
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 16:37:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6477C153BC0;
-	Thu, 22 Feb 2024 16:28:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B677151CC1;
+	Thu, 22 Feb 2024 16:37:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cBgI+8Ck"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H8OQXrXL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EB5615351C;
-	Thu, 22 Feb 2024 16:28:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C56114F9FF
+	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 16:37:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708619314; cv=none; b=F6kW/epvrbl+wzdjIGp5WHy9w8qSdTUCRUyj91ewgjDRUsf8RctEYaEtEyPp2+ZJRzYONywHmYix4EZCGoMYgv8okO5hyuAUUjTf8CnF34qZrkX3Rxuu2X3NtB4pMk1WeyO3JNMMtaK8cbIOJL0js1G4FFvqCz/hz/9FWgddsm0=
+	t=1708619851; cv=none; b=mBYI9BHpoQOedCB05/3T3pxurYGbb9OrABGZRn6OA+ZuvnVghDcapK3o3hAmDKEITQM2CwmD9SRZjWDg9Vm/ojd0B6yUVVU2bdN0ur3FdkKX2obu5TD10Zz01O3ullT28397Ubryi8Wtqyp9b3iYI2Kpzv760lt7Q/JM7kSkwEw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708619314; c=relaxed/simple;
-	bh=itZJtWvnlDX8BTYjQebFHP4oWvzdRahIFdPuDTsEIwE=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lNhA0Qf2hqnAvlBN5uotvromCupVStjt8tBZRr7YP7GIl+2HLhQFKcDKuRvthuahfypDoin09qd0iafpiRHBrXfI0jtFeGT4HDzB7H5RMwaEu7YEI1nB4sI1P3Lz2gTmrKE8jtYdhIfl2hub2XhSak3h6dwi9QWmCxQbz2X8zag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cBgI+8Ck; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9382AC433B2;
-	Thu, 22 Feb 2024 16:28:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708619313;
-	bh=itZJtWvnlDX8BTYjQebFHP4oWvzdRahIFdPuDTsEIwE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=cBgI+8Ckp17p3a8II2dv5FbR0WpnSaEmgaNRFhim9Tr/ReIHOaExdlfVNL+4Zw3pJ
-	 W5NTxrT3RkIQQHPU2JNIISiLtlpp7nJGN06cg4i8PESZgn70gaJdGzwRC5omcjK8eH
-	 9jqyOIKOgah9JOp4r+OmWhzL/AZ1uJJVjNbP/MzL1QS4+o0+ph+PK/BYV5txoyLXcW
-	 R4PFxg9C7TsVleHzEkexV7w4ieUaGS/jeRMjauWUTIdaO1LF95QrVz8uaSCTXUe296
-	 zDIJq4eD+CLCoc1dXIp6cbep5sJoSuEEXpJBMh2dr/xLfkNSJIQKT1kEv5eioaVCWN
-	 rsMGp31hI1qXA==
-Received: from 82-132-212-42.dab.02.net ([82.132.212.42] helo=wait-a-minute.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1rdBvy-005njW-UK;
-	Thu, 22 Feb 2024 16:28:31 +0000
-Date: Thu, 22 Feb 2024 16:28:27 +0000
-Message-ID: <87edd4a2fo.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Aishwarya TCV <aishwarya.tcv@arm.com>
-Cc: Anup Patel <apatel@ventanamicro.com>,	Palmer Dabbelt
- <palmer@dabbelt.com>,	Paul Walmsley <paul.walmsley@sifive.com>,	Thomas
- Gleixner <tglx@linutronix.de>,	Rob Herring <robh+dt@kernel.org>,	Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,	Frank Rowand
- <frowand.list@gmail.com>,	Conor Dooley <conor+dt@kernel.org>,
-	=?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>,	Atish Patra
- <atishp@atishpatra.org>,	Andrew Jones <ajones@ventanamicro.com>,	Sunil V L
- <sunilvl@ventanamicro.com>,	Saravana Kannan <saravanak@google.com>,	Anup
- Patel <anup@brainfault.org>,	linux-riscv@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,	Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH v12 02/25] genirq/irqdomain: Remove the param count restriction from select()
-In-Reply-To: <e42b76a9-fc5f-4ab7-96a2-629261a9c983@arm.com>
-References: <20240127161753.114685-1-apatel@ventanamicro.com>
-	<20240127161753.114685-3-apatel@ventanamicro.com>
-	<e42b76a9-fc5f-4ab7-96a2-629261a9c983@arm.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/28.2
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=arc-20240116; t=1708619851; c=relaxed/simple;
+	bh=7TaWjSMnr9SyJaL1rSnUq6UVe3SDZbweU+CU/JSE12o=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Y8eSuZE0O2W0vWthiFl9qXmQk8Ijg8D20KMviSxVjcIIx+gP9qQImSoAo7GG4hAP+Jf9hE3YyNokb5G0qVjZaYc6dk00BiTDkqReL0J+tPwp9DDcywITxw5kYWwEkuiEUQhO6UsFRTRhTgKXbKDvo7Kq8q1P/UrhcmCfuVijNLY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=H8OQXrXL; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-563f675be29so8267619a12.0
+        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 08:37:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708619848; x=1709224648; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ythAlB5fOuduCOWoNXa4hv2/pnJOcPq8G9cfPzDgUoI=;
+        b=H8OQXrXLleYyVLeshdY3zehihi+qwT/Nk6N+ArWW1TNbRoUb6v5aJbow9wQcaklDB1
+         /rlt6vftkl6XzIk36t4Ka9C3tDXlm2v3g4Ac6vALE+5v1vEOt+xuUUTNAi/q2FYD/vSM
+         ZCMZ3b9i+myf1lPeAbQzCTCJMTRi+sJcjLHVH3ugrRiNyERuBRASVEHvpii5C91c+oPy
+         IamZL503BYj+lm38EAjmS4Tq+uN4O9mSmXiWtmR3pqftboA+/n9FrbVL5xIdIbSP+lOW
+         K6GoU2vUCQYX3GCMyWBClShmo3wM2T5+PurN6kKpz1JBi3FqNWIOC89H3YyXeO4UFFEo
+         KKUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708619848; x=1709224648;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ythAlB5fOuduCOWoNXa4hv2/pnJOcPq8G9cfPzDgUoI=;
+        b=SAYxWTVvmXKQD6ci+QcJS6Q0G2VE0sjdaDjsQBbzZyuSPiR3eKuS/Kf1VwwhKFCj9a
+         7UD09oMmIR2pUDhqNeZ1R49lOflG4uLIMD0QpuFdVWaz8tMtGmx+O0iXzqvURHEetXLF
+         H/CarbNWwpcUQmBpQ3gZbaxLodLybClnH6g9yZ6Ijpo0Q02ZMhI+P7J3U9WXAVJewIyH
+         iM5rQOWf0oZ09MOJNH2PTLqPhFSsiEZJJsbm0mN9xHN++yB3pqLJzZOcMe1DtKH1BQ3L
+         3xWlzOA9y+81EiKvUUWssnRhKPGZ9ReW13MsdBMrsyVCUdiuo0gC85Td5s9TwVSa+ytA
+         Ub9w==
+X-Forwarded-Encrypted: i=1; AJvYcCXrHV1+twmOPPyyj55LhQz+c/wNo7umQMpp2vAGo/pyOAxLTdiQ57jNimvpelPV8P9WiT54Wwv24RKF13KdzFoJzKSZisU6xuHS/Q==
+X-Gm-Message-State: AOJu0YxlcU8tMx6FHGCA0sBF0oA6Atx+j7ZvSueSe/cXSdnWPKUZMzgM
+	AZVx1lCEEH5ydKRTuaxBlBH5zUe2qmP2UF1IS12g0EtP5bZQ6moIrbF+o842wBU=
+X-Google-Smtp-Source: AGHT+IEDqRBn3wWYrrFcXKIOrpL73QXc+7HDhyj6TIw4Ua/8t6GPiVQ6GsEbJRHzFBalKuA1vFJmwg==
+X-Received: by 2002:a05:6402:5246:b0:565:2183:d296 with SMTP id t6-20020a056402524600b005652183d296mr2969008edd.27.1708619847900;
+        Thu, 22 Feb 2024 08:37:27 -0800 (PST)
+Received: from krzk-bin.. ([178.197.222.116])
+        by smtp.gmail.com with ESMTPSA id u19-20020aa7d993000000b005653c441a20sm614191eds.34.2024.02.22.08.37.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Feb 2024 08:37:27 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: linux-usb@vger.kernel.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Banajit Goswami <bgoswami@quicinc.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	alsa-devel@alsa-project.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH usb next] ASoC: Revert "ASoC: dt-bindings: Update example for enabling USB offload on SM8250"
+Date: Thu, 22 Feb 2024 17:32:04 +0100
+Message-Id: <20240222163204.65468-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 82.132.212.42
-X-SA-Exim-Rcpt-To: aishwarya.tcv@arm.com, apatel@ventanamicro.com, palmer@dabbelt.com, paul.walmsley@sifive.com, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, frowand.list@gmail.com, conor+dt@kernel.org, bjorn@kernel.org, atishp@atishpatra.org, ajones@ventanamicro.com, sunilvl@ventanamicro.com, saravanak@google.com, anup@brainfault.org, linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, broonie@kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Thu, 22 Feb 2024 13:01:32 +0000,
-Aishwarya TCV <aishwarya.tcv@arm.com> wrote:
-> 
-> 
-> 
-> On 27/01/2024 16:17, Anup Patel wrote:
-> > From: Thomas Gleixner <tglx@linutronix.de>
-> > 
-> > Now that the GIC-v3 callback can handle invocation with a fwspec parameter
-> > count of 0 lift the restriction in the core code and invoke select()
-> > unconditionally when the domain provides it.
-> > 
-> > Preparatory change for per device MSI domains.
-> > 
-> > Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
-> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> > ---
-> 
-> Hi Thomas/Anup
-> 
-> Currently when booting the kernel against next-master(next-20240222)
-> with Arm64 on Qualcomm boards RB5/DB845C, the kernel is resulting in
-> boot failures for our CI. I can send the full logs if required. Most
-> other boards seem to be fine.
-> 
-> A bisect (full log below) identified this patch as introducing the
-> failure. Bisected it on the tag "next-20240220" at repo
-> "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git".
-> 
-> This works fine on Linux v6.8-rc5
+This reverts commit a9c83252bff616cf3a38d55b7c6a6ad63667f2dd from USB
+tree, because it depends on other DT bindings changes which were not
+applied.  This commit alone causes dt_binding_check failures:
 
-Can you please try [1]?
+  Documentation/devicetree/bindings/sound/qcom,sm8250.example.dts:97.44-45 syntax error
 
-	M.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-[1] https://lore.kernel.org/linux-kernel/20240220114731.1898534-1-maz@kernel.org
+---
 
+Greg,
+
+Please take this revert. Original commit should go via Mark's ASoC.
+---
+ .../devicetree/bindings/sound/qcom,sm8250.yaml    | 15 ---------------
+ 1 file changed, 15 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+index 49e4f5bbe9dd..2ab6871e89e5 100644
+--- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
++++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+@@ -227,21 +227,6 @@ examples:
+                 sound-dai = <&vamacro 0>;
+             };
+         };
+-
+-        usb-dai-link {
+-            link-name = "USB Playback";
+-            cpu {
+-                sound-dai = <&q6afedai USB_RX>;
+-            };
+-
+-            codec {
+-                sound-dai = <&usbdai USB_RX>;
+-            };
+-
+-            platform {
+-                sound-dai = <&q6routing>;
+-            };
+-        };
+     };
+ 
+   - |
 -- 
-Without deviation from the norm, progress is not possible.
+2.34.1
+
 
