@@ -1,70 +1,70 @@
-Return-Path: <devicetree+bounces-44805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87EBC85FA14
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 14:43:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77B9885FA1E
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 14:45:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F3B35B2860F
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 13:43:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 821771C2536D
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 13:45:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C444146915;
-	Thu, 22 Feb 2024 13:42:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA804135403;
+	Thu, 22 Feb 2024 13:44:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b="VE6d/x3O"
+	dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b="y8foOu/P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
+Received: from mail-il1-f176.google.com (mail-il1-f176.google.com [209.85.166.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B7D8134CEA
-	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 13:42:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A9A8135A67
+	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 13:44:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708609368; cv=none; b=bhDknn1vuEnMUoAFXfTJVYZCCTvqe2yxPFQwk0O3KzY7KIXPGb9k/7tfln0fDzgGBQNI1uzsN61AabLXczAzK8dxDWkE3UMT4SWobqCPmSCZC8Ya24HJQx6s1eLsJrcjEHD9ZH3qsgspFkL/OTEy+RydP1mz2ZlWHXvZgdKtNfY=
+	t=1708609496; cv=none; b=fQqQN0Qw/fLgyHXjWzCVNF3WguxCRv218n3/3GJ/FXF6UW+aszwu3GjhTrWQJvAz55mbd75C9xO6IDwtl0VPDIULS5k46uGbhgY8JuUNUXmDPeEURKS8amSnJj7KcT7Lw332ix3T+FLPGcYFNzaLJmMasHxupKRfQJN26opV4nI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708609368; c=relaxed/simple;
-	bh=/I5UN6rS2bC58hGlKP/796JjqpYaIY/KO00PzS2YvPU=;
+	s=arc-20240116; t=1708609496; c=relaxed/simple;
+	bh=vk6k34KDNdipFCo9WjNlQF1gQiO2YH5LPk2uMac/0Gs=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tEib6e3vUwDEhZab+3/h20B3+0B6cTWhat+8Yb7GuAS1Rv/00yXuxz9i5sieqJYMrqLx1BzvRYZnlifg84pENWiJqpCYz2MS7R/XbGC6SEyNkGIZ7IZN7zCpbtRvcNbFy40x92OGV2EKGSM0QSnfzmHpccjaLnZI0HFqg9w9g1k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org; spf=none smtp.mailfrom=brainfault.org; dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b=VE6d/x3O; arc=none smtp.client-ip=209.85.166.178
+	 To:Cc:Content-Type; b=fHSzBXfSOXZ5K6EhF0f86vdzRCSRT0puixB4d8Fm5zlVtH988LmpifR8Ta4tb74dnQL8yHOLwt3pi0X89TDB8a58EFjICT8SWLso34vvTV50AGq9JsnCuiSbjNNtNhNTrob4Xc3UBTyVwOm8kCW/hX5w4ys4iU0e0djI3+WWG+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org; spf=none smtp.mailfrom=brainfault.org; dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b=y8foOu/P; arc=none smtp.client-ip=209.85.166.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=brainfault.org
-Received: by mail-il1-f178.google.com with SMTP id e9e14a558f8ab-3651607db16so2966715ab.0
-        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 05:42:46 -0800 (PST)
+Received: by mail-il1-f176.google.com with SMTP id e9e14a558f8ab-365124888a5so5937835ab.1
+        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 05:44:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20230601.gappssmtp.com; s=20230601; t=1708609366; x=1709214166; darn=vger.kernel.org;
+        d=brainfault-org.20230601.gappssmtp.com; s=20230601; t=1708609494; x=1709214294; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=i+7F9iO3+mXH7VTYCtlMS4hTStlRmkU6oL8ws4qXJp4=;
-        b=VE6d/x3O71lCMqh7FurUDQECqhgKKuD160QjCctwRnc2OrDtJQyixFwN+iZwYmEj0h
-         7EvMQ5qrpHLzoncxdeg2yPn9ilY3VUx0rm63BJruohcby1m2/sZRv+ArC9jRZN34QWzM
-         MpRMXIkPO9noiXWCMpnQuwanER9HhFbZJ1UFfyLpFTHZhutRQ/NmyFRgzz33ZPoIXiUq
-         nTZedoisgvHe5Q9+RwSACdVbgSL1fr4x4uWkVhizR3V4QN5HIUaLIlDqHzsXN8NAtTCk
-         xYihKMpQOQGtsQgzmXCOm53aGwVTfT6K2EKLlNJNxI8oJvQOrOrTVpX5nOSBZBv9G250
-         yz/g==
+        bh=EswbuaXlWdyWvQSXByNFyyCNmlubm5it++fspmdd4Cs=;
+        b=y8foOu/P7qd5fE9mpTKI1lKfgqPfBUunAmeRsGkdgC4FrO0mjvWlVOrQ/SBW9LNcae
+         N24++lrmGcwr2RadWxf2iUcl6hZenJLcDzp9Fvp+fPQQLdcPkhSjslXvOoQ1zXqH0A2U
+         OC6VpPPGjlOHbWIdbVtqdKB5f/WvQPtN7faZV43yfSLI1R+359QBQwLlLE0cwq21u7aW
+         os14gHQ7yLo1kGxecKrF7+9n9/c5ZZ/Koxuz+090qzwQbiWGKfHPFF60SK9e/Dv7PIpW
+         M9RoOZfB+vIdznhXOCeQ7WWcWsN+497ifmuiGC7r6PHOjtBgXmDKGAV4JUUEPGUhck+z
+         aY4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708609366; x=1709214166;
+        d=1e100.net; s=20230601; t=1708609494; x=1709214294;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=i+7F9iO3+mXH7VTYCtlMS4hTStlRmkU6oL8ws4qXJp4=;
-        b=J6P5iAfi7ShAdgaweKVr1rMv+khtSDHhD9/kgElZdo8cOFJZVwXjYfRyLhjmZtxmLO
-         PjfT+kqy2zjR8BPP3dRuXH5AJHF8ySFYPttFOfpoKpJVF9VYuGLI3YNppDtag960yQGv
-         eOnDxlVYyM79hR9RNiNP+v6cpZEEC8QZN90SbkGxAEGi4w/qEP3xg1nNNeTpoFZIWAR3
-         UtiqmYpsC6d2VcSAl6ZV7f4/oha+S5ImVNSEBG6yofSqvmpx/LB/KsXctly2G0ee67M6
-         AKX2l+co6ujrM5S7sGAnpwBO5x0DLzDIH9Vn+H4+4E5CeAPYVDEyjHFnKnqeDfB1ws39
-         nj9w==
-X-Forwarded-Encrypted: i=1; AJvYcCWPu3200yilnXUeKeHtFxRE0SR5Zll0oF562g/JL+Zx4LLU3UAl03avumygzKeSD/hlhuKRq4e57CHp5sPAXehHIi6PUXuLMzh9XQ==
-X-Gm-Message-State: AOJu0Yzy1m7rTGCozitW8TEuqtikTPdsMYFFtZu8IbMMAO6uKvkfMHSe
-	CgKBnpW3ZqFCR2SJccgI8pGqLZ9+GzuY80jxJmDb5/0onP4pPUJGpFuLwg/ky8JgWcDIt8f1Y39
-	An0SVWa36m+8rfTRq5EGZg4KqJYeiGV1I7s/88A==
-X-Google-Smtp-Source: AGHT+IEyGdfc6Ws9njPn029lfsFwPuHczKy9SK/OVm6bvBMUwZvIOc12u/317tQ6sjiK/ka/7zNZhB+Ci3N/uVtu2f4=
-X-Received: by 2002:a05:6e02:1a6a:b0:363:86dd:b35 with SMTP id
- w10-20020a056e021a6a00b0036386dd0b35mr2188181ilv.10.1708609365653; Thu, 22
- Feb 2024 05:42:45 -0800 (PST)
+        bh=EswbuaXlWdyWvQSXByNFyyCNmlubm5it++fspmdd4Cs=;
+        b=wfCEzgnMVCHS7tM/e3njTsLW0Y346khc/z/Nx+ms9maxzzaRMgnOf98JESLn3gslNw
+         CfTrNqPLSfEDZjI7rLiv3hchqJ4Ut6LCUSBpBpzmvQ+AXKuwff8wDDHjP7y15np7g6MW
+         JdWLu6vI9GSbpHpH+jQNBW0r1XisP5J5yFUsxMqyepWw242sLeMO/98WfnRasXIrb36K
+         DKWxB2OSril4ClOKBXEdh6X9zkm82GcSw5HsdgHyCiy7oSmFLG6jq3uXPNAk8VYJJH03
+         9KTOTeo+mEW/LFUFsgcWSq0CY/nSM5FwCIyHYp2tBOpI49QejU4U0itErjTXxVLIolxW
+         uK3g==
+X-Forwarded-Encrypted: i=1; AJvYcCXyoI1POy/Cv7ocI8moaIVpi9l97g1qZpKDpm6FaceaW3DyCHYi5bqG+kjsezQjCWtCRv7q1g3qiyzBnTLLJPdI6OyCNzs0iZHIwA==
+X-Gm-Message-State: AOJu0YzSzmmXDn+1mhiIGzMIvuTxaQhc1VnJwu1WME2tQDm0OwM9zet+
+	NxZhjmCn0FBJnsRc654GpVOwpWdd4b+QxOUqMeW5PdGSXNpMXSGZdohBNLf+z31OGJ1C1Pi0Yvn
+	aAFtoBjfHH/1DT8BvUIalHuTaFcYeQBSau3B9Qw==
+X-Google-Smtp-Source: AGHT+IGuwVUGIA/rJKeevzNlSfij9OPuE8wC6KsD+yqt5T+6uRdLRzE93C4Sp7zGIDWKgMwGatjwI7z3VqvOQwS6888=
+X-Received: by 2002:a92:d981:0:b0:365:1035:83ab with SMTP id
+ r1-20020a92d981000000b00365103583abmr18164814iln.32.1708609494485; Thu, 22
+ Feb 2024 05:44:54 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,13 +72,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20240222094006.1030709-1-apatel@ventanamicro.com>
- <20240222094006.1030709-12-apatel@ventanamicro.com> <87r0h4tzeq.fsf@all.your.base.are.belong.to.us>
-In-Reply-To: <87r0h4tzeq.fsf@all.your.base.are.belong.to.us>
+ <20240222094006.1030709-13-apatel@ventanamicro.com> <87jzmwtzbs.fsf@all.your.base.are.belong.to.us>
+In-Reply-To: <87jzmwtzbs.fsf@all.your.base.are.belong.to.us>
 From: Anup Patel <anup@brainfault.org>
-Date: Thu, 22 Feb 2024 19:12:34 +0530
-Message-ID: <CAAhSdy3R9TCHG13vFk=sF0MvA60LtxOs9NbjSB7XBk+v1+XH4w@mail.gmail.com>
-Subject: Re: [PATCH v14 11/18] irqchip: Add RISC-V incoming MSI controller
- early driver
+Date: Thu, 22 Feb 2024 19:14:43 +0530
+Message-ID: <CAAhSdy1V5yqO3kqs7+wOb34oSDgdo=QRT-i2XG+okFtHTgyMrQ@mail.gmail.com>
+Subject: Re: [PATCH v14 12/18] irqchip/riscv-imsic: Add device MSI domain
+ support for platform devices
 To: =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
 Cc: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
 	Paul Walmsley <paul.walmsley@sifive.com>, Thomas Gleixner <tglx@linutronix.de>, 
@@ -91,251 +91,91 @@ Cc: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt <palmer@dabbelt.com>,
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 22, 2024 at 6:43=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjorn@kernel=
+On Thu, Feb 22, 2024 at 6:45=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjorn@kernel=
 .org> wrote:
 >
 > Anup Patel <apatel@ventanamicro.com> writes:
 >
-> > diff --git a/drivers/irqchip/irq-riscv-imsic-state.c b/drivers/irqchip/=
-irq-riscv-imsic-state.c
+> > The Linux platform MSI support allows per-device MSI domains so add
+> > a platform irqchip driver for RISC-V IMSIC which provides a base IRQ
+> > domain with MSI parent support for platform device domains.
+> >
+> > The IMSIC platform driver assumes that the IMSIC state is already
+> > initialized by the IMSIC early driver.
+> >
+> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > ---
+> >  drivers/irqchip/Makefile                   |   2 +-
+> >  drivers/irqchip/irq-riscv-imsic-platform.c | 344 +++++++++++++++++++++
+> >  drivers/irqchip/irq-riscv-imsic-state.h    |   1 +
+> >  3 files changed, 346 insertions(+), 1 deletion(-)
+> >  create mode 100644 drivers/irqchip/irq-riscv-imsic-platform.c
+> >
+> > diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
+> > index d714724387ce..abca445a3229 100644
+> > --- a/drivers/irqchip/Makefile
+> > +++ b/drivers/irqchip/Makefile
+> > @@ -95,7 +95,7 @@ obj-$(CONFIG_QCOM_MPM)                      +=3D irq-=
+qcom-mpm.o
+> >  obj-$(CONFIG_CSKY_MPINTC)            +=3D irq-csky-mpintc.o
+> >  obj-$(CONFIG_CSKY_APB_INTC)          +=3D irq-csky-apb-intc.o
+> >  obj-$(CONFIG_RISCV_INTC)             +=3D irq-riscv-intc.o
+> > -obj-$(CONFIG_RISCV_IMSIC)            +=3D irq-riscv-imsic-state.o irq-=
+riscv-imsic-early.o
+> > +obj-$(CONFIG_RISCV_IMSIC)            +=3D irq-riscv-imsic-state.o irq-=
+riscv-imsic-early.o irq-riscv-imsic-platform.o
+> >  obj-$(CONFIG_SIFIVE_PLIC)            +=3D irq-sifive-plic.o
+> >  obj-$(CONFIG_IMX_IRQSTEER)           +=3D irq-imx-irqsteer.o
+> >  obj-$(CONFIG_IMX_INTMUX)             +=3D irq-imx-intmux.o
+> > diff --git a/drivers/irqchip/irq-riscv-imsic-platform.c b/drivers/irqch=
+ip/irq-riscv-imsic-platform.c
 > > new file mode 100644
-> > index 000000000000..0c19ffb9ca3e
+> > index 000000000000..e2344fc08dca
 > > --- /dev/null
-> > +++ b/drivers/irqchip/irq-riscv-imsic-state.c
-> > @@ -0,0 +1,870 @@
->
-> [...]
->
-> > +static void __imsic_local_sync(struct imsic_local_priv *lpriv)
+> > +++ b/drivers/irqchip/irq-riscv-imsic-platform.c
+> > @@ -0,0 +1,344 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Copyright (C) 2021 Western Digital Corporation or its affiliates.
+> > + * Copyright (C) 2022 Ventana Micro Systems Inc.
+> > + */
+> > +
+> > +#define pr_fmt(fmt) "riscv-imsic: " fmt
+> > +#include <linux/bitmap.h>
+> > +#include <linux/cpu.h>
+> > +#include <linux/interrupt.h>
+> > +#include <linux/io.h>
+> > +#include <linux/irq.h>
+> > +#include <linux/irqchip.h>
+> > +#include <linux/irqdomain.h>
+> > +#include <linux/module.h>
+> > +#include <linux/msi.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/spinlock.h>
+> > +#include <linux/smp.h>
+> > +
+> > +#include "irq-riscv-imsic-state.h"
+> > +
+> > +static bool imsic_cpu_page_phys(unsigned int cpu, unsigned int guest_i=
+ndex,
+> > +                             phys_addr_t *out_msi_pa)
 > > +{
-> > +     struct imsic_local_config *mlocal;
-> > +     struct imsic_vector *vec, *mvec;
-> > +     int i;
+> > +     struct imsic_global_config *global;
+> > +     struct imsic_local_config *local;
 > > +
-> > +     lockdep_assert_held(&lpriv->lock);
+> > +     global =3D &imsic->global;
+> > +     local =3D per_cpu_ptr(global->local, cpu);
 > > +
-> > +     /* This pairs with the barrier in __imsic_remote_sync(). */
-> > +     smp_mb();
+> > +     if (BIT(global->guest_index_bits) <=3D guest_index)
+> > +             return false;
+> > +
+> > +     if (out_msi_pa)
+> > +             *out_msi_pa =3D local->msi_pa +
+> > +                           (guest_index * IMSIC_MMIO_PAGE_SZ);
 >
-> I'm trying to figure out why this barrier is needed? All the updates are
-> done behind the spinlocks. If there're some ordering constraints that
-> I'm missing, please document them.
->
-> > +
-> > +     for_each_set_bit(i, lpriv->dirty_bitmap, imsic->global.nr_ids + 1=
-) {
-> > +             if (!i || i =3D=3D IMSIC_IPI_ID)
-> > +                     goto skip;
-> > +             vec =3D &lpriv->vectors[i];
-> > +
-> > +             if (READ_ONCE(vec->enable))
-> > +                     __imsic_id_set_enable(i);
-> > +             else
-> > +                     __imsic_id_clear_enable(i);
-> > +
-> > +             /*
-> > +              * If the ID was being moved to a new ID on some other CP=
-U
-> > +              * then we can get a MSI during the movement so check the
-> > +              * ID pending bit and re-trigger the new ID on other CPU
-> > +              * using MMIO write.
-> > +              */
-> > +             mvec =3D READ_ONCE(vec->move);
-> > +             WRITE_ONCE(vec->move, NULL);
->
-> mvec =3D xchg(&vec->move, NULL) ?
+> Nit: And one more redundant parenthesis and 100 char! ;-)
 
-The __imsic_local_sync() is called with spinlock held.
-
->
-> > +             if (mvec && mvec !=3D vec) {
-> > +                     if (__imsic_id_read_clear_pending(i)) {
-> > +                             mlocal =3D per_cpu_ptr(imsic->global.loca=
-l, mvec->cpu);
-> > +                             writel_relaxed(mvec->local_id, mlocal->ms=
-i_va);
-> > +                     }
-> > +
-> > +                     imsic_vector_free(&lpriv->vectors[i]);
-> > +             }
-> > +
-> > +skip:
-> > +             bitmap_clear(lpriv->dirty_bitmap, i, 1);
-> > +     }
-> > +}
-> > +
-> > +void imsic_local_sync_all(void)
-> > +{
-> > +     struct imsic_local_priv *lpriv =3D this_cpu_ptr(imsic->lpriv);
-> > +     unsigned long flags;
-> > +
-> > +     raw_spin_lock_irqsave(&lpriv->lock, flags);
-> > +     bitmap_fill(lpriv->dirty_bitmap, imsic->global.nr_ids + 1);
-> > +     __imsic_local_sync(lpriv);
-> > +     raw_spin_unlock_irqrestore(&lpriv->lock, flags);
-> > +}
-> > +
-> > +void imsic_local_delivery(bool enable)
-> > +{
-> > +     if (enable) {
-> > +             imsic_csr_write(IMSIC_EITHRESHOLD, IMSIC_ENABLE_EITHRESHO=
-LD);
-> > +             imsic_csr_write(IMSIC_EIDELIVERY, IMSIC_ENABLE_EIDELIVERY=
-);
-> > +             return;
-> > +     }
-> > +
-> > +     imsic_csr_write(IMSIC_EIDELIVERY, IMSIC_DISABLE_EIDELIVERY);
-> > +     imsic_csr_write(IMSIC_EITHRESHOLD, IMSIC_DISABLE_EITHRESHOLD);
-> > +}
-> > +
-> > +#ifdef CONFIG_SMP
-> > +static void imsic_local_timer_callback(struct timer_list *timer)
-> > +{
-> > +     struct imsic_local_priv *lpriv =3D this_cpu_ptr(imsic->lpriv);
-> > +     unsigned long flags;
-> > +
-> > +     raw_spin_lock_irqsave(&lpriv->lock, flags);
-> > +     __imsic_local_sync(lpriv);
-> > +     raw_spin_unlock_irqrestore(&lpriv->lock, flags);
-> > +}
-> > +
-> > +static void __imsic_remote_sync(struct imsic_local_priv *lpriv, unsign=
-ed int cpu)
-> > +{
-> > +     lockdep_assert_held(&lpriv->lock);
-> > +
-> > +     /*
-> > +      * Ensure that changes to vector enable, vector move and
-> > +      * dirty bitmap are visible to the target CPU.
->
-> ...which case the spinlock(s) are enough, no?
-
-spinlocks are not fences.
-
-If the timer wheel on the target cpu is already running and we don't
-have a fence here then the target cpu might not see the changes
-done by this cpu.
-
->
-> > +      *
-> > +      * This pairs with the barrier in __imsic_local_sync().
-> > +      */
-> > +     smp_mb();
-> > +
-> > +     /*
-> > +      * We schedule a timer on the target CPU if the target CPU is not
-> > +      * same as the current CPU. An offline CPU will unconditionally
-> > +      * synchronize IDs through imsic_starting_cpu() when the
-> > +      * CPU is brought up.
-> > +      */
-> > +     if (cpu_online(cpu)) {
-> > +             if (cpu =3D=3D smp_processor_id()) {
-> > +                     __imsic_local_sync(lpriv);
-> > +                     return;
-> > +             }
->
-> Maybe move this if-clause out from the cpu_online(), and only have
-> something like
->   if (cpu_online(cpu) && !timer_pending(&lpriv->timer)) { ... }
-> inside the CONFIG_SMP guard...
->
-> > +
-> > +             if (!timer_pending(&lpriv->timer)) {
-> > +                     lpriv->timer.expires =3D jiffies + 1;
-> > +                     add_timer_on(&lpriv->timer, cpu);
-> > +             }
-> > +     }
-> > +}
-> > +#else
-> > +static void __imsic_remote_sync(struct imsic_local_priv *lpriv, unsign=
-ed int cpu)
-> > +{
-> > +     lockdep_assert_held(&lpriv->lock);
-> > +     __imsic_local_sync(lpriv);
-> > +}
-> > +#endif
->
-> ...where we can get rid of this special !SMP all together for this
-> function.
-
-I failed to understand what is wrong the current code.
-
->
-> > +
-> > +void imsic_vector_mask(struct imsic_vector *vec)
-> > +{
-> > +     struct imsic_local_priv *lpriv;
-> > +
-> > +     lpriv =3D per_cpu_ptr(imsic->lpriv, vec->cpu);
-> > +     if (WARN_ON_ONCE(&lpriv->vectors[vec->local_id] !=3D vec))
-> > +             return;
-> > +
-> > +     /*
-> > +      * This function is called through Linux irq subsystem with
-> > +      * irqs disabled so no need to save/restore irq flags.
-> > +      */
-> > +
-> > +     raw_spin_lock(&lpriv->lock);
-> > +
-> > +     vec->enable =3D false;
->
-> Should have WRITE_ONCE to make the checkers happy.
-
-Okay, I will update.
-
->
-> > +     bitmap_set(lpriv->dirty_bitmap, vec->local_id, 1);
-> > +     __imsic_remote_sync(lpriv, vec->cpu);
-> > +
-> > +     raw_spin_unlock(&lpriv->lock);
-> > +}
-> > +
-> > +void imsic_vector_unmask(struct imsic_vector *vec)
-> > +{
-> > +     struct imsic_local_priv *lpriv;
-> > +
-> > +     lpriv =3D per_cpu_ptr(imsic->lpriv, vec->cpu);
-> > +     if (WARN_ON_ONCE(&lpriv->vectors[vec->local_id] !=3D vec))
-> > +             return;
-> > +
-> > +     /*
-> > +      * This function is called through Linux irq subsystem with
-> > +      * irqs disabled so no need to save/restore irq flags.
-> > +      */
-> > +
-> > +     raw_spin_lock(&lpriv->lock);
-> > +
-> > +     vec->enable =3D true;
->
-> Dito.
-
-Okay, I will update.
-
->
-> > +     bitmap_set(lpriv->dirty_bitmap, vec->local_id, 1);
-> > +     __imsic_remote_sync(lpriv, vec->cpu);
-> > +
-> > +     raw_spin_unlock(&lpriv->lock);
-> > +}
-> > +
-> > +static bool imsic_vector_move_update(struct imsic_local_priv *lpriv, s=
-truct imsic_vector *vec,
-> > +                                  bool new_enable, struct imsic_vector=
- *new_move)
-> > +{
-> > +     unsigned long flags;
-> > +     bool enabled;
-> > +
-> > +     raw_spin_lock_irqsave(&lpriv->lock, flags);
-> > +
-> > +     /* Update enable and move details */
-> > +     enabled =3D READ_ONCE(vec->enable);
-> > +     WRITE_ONCE(vec->enable, new_enable);
->
-> Again, xchg() would be easier to read.
-
-why ? spinlock is not enough?
+Ahh, I missed updating this line. I will update in the next revision.
 
 Regards,
 Anup
