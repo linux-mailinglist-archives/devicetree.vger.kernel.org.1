@@ -1,135 +1,118 @@
-Return-Path: <devicetree+bounces-44623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C252F85F18A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 07:38:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F6F185F16F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 07:22:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C0E9283E78
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 06:38:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 617022834F5
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 06:22:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77684C8E2;
-	Thu, 22 Feb 2024 06:38:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1414C17BB2;
+	Thu, 22 Feb 2024 06:22:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rvk8w2Hn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C804917981;
-	Thu, 22 Feb 2024 06:38:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C4E0179B0;
+	Thu, 22 Feb 2024 06:22:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708583885; cv=none; b=JFVwZjKBEHRNH30LndHeOGiMTVukBqu5WZEsto3L29v75RO+CsFouW+CFmvgI8qWoUx7yEnyn5P/4+hNRYD7XK5TmolZtkv7E0K7AfYDzTvhUT8UEFERBtKAABG/ZGXUqjg+S94d/UixG5VjB1bFG6lAo2hQwFpsRqwQRQBSKgE=
+	t=1708582951; cv=none; b=KtWqS5U+IP/c7czN8uuoZNkUtNWPSDIaexElFDKPo09b3mkHI3PXgpicoS4vwEYYn6hrJQJAwPI1/ZSrskfwIR6+Larg0nBX9eYQ7XOZ0F28tKjnr3Dz7tOa2OX9jyNwmu162IRbcrkUVEma8kbVLeIsq7kOmfs9OfOIKybS7FE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708583885; c=relaxed/simple;
-	bh=OcVV1einNzUPldfyyWwLLlbDtP3dTcDDAic0h4gOn70=;
-	h=From:To:Subject:Date:Message-Id; b=Ho4RCSloeEM6yM92dJ8fydEBxsDEpwR7K/JPJRWx01v5Xa70CbxeFhlz/DnytfwWwbBx4iS/MsR36mfT4lCj6Qxqj9a6y8FPMs6l+6qoif7XgKIA9H37WojjlfZJHwb7FPbsLbznlvLVcr5RETE0njdhNAQJk6ys0OByyEYQw14=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 996C4202368;
-	Thu, 22 Feb 2024 07:32:21 +0100 (CET)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 6173820050F;
-	Thu, 22 Feb 2024 07:32:21 +0100 (CET)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id B11591820F59;
-	Thu, 22 Feb 2024 14:32:19 +0800 (+08)
-From: Shengjiu Wang <shengjiu.wang@nxp.com>
-To: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	linux-imx@nxp.com,
+	s=arc-20240116; t=1708582951; c=relaxed/simple;
+	bh=5zPWaGxuvPdH6xrIjwITcYmJ0FVhd7Z6bIq4IKyG7PE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cnnId2QMQvndmgoC8THA6ZVUYl2l65igwiXyosLNLhWykNo4592nmoWx6x42ms9izavOxT9hbw23wF41WEfNVSwZ1jod/hxuqzeN9TOS9Lj/XpPMQ7F1OSvZAZlvQBqMtypkf9uQ2tB2z98ciWEKnphOE53c/pILWGh+m1Wsb8s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rvk8w2Hn; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-512d8fe4fceso742391e87.3;
+        Wed, 21 Feb 2024 22:22:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708582947; x=1709187747; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=H1a0uGmRwFxQVTjWSYQgbbb6IcpaIjDAJCmTdMKxd2U=;
+        b=Rvk8w2HnIFjrbBMXkaEkvzoIrVxmH7ZSGc8KlcJFbYX7iDoinYipFj5kK7jb6vMT2n
+         qg9yZ7gWb9nIZhhhpq9W8cR78CUh7gfbia9VtYaanlgrAVrxv02jpECEGLknsY54Txml
+         Y+NzLpRLS5gSVe4IgpaN5hWkWkqUvRiLknGZ0n32fMWjPz+holHsprfFbEXswkzNslh8
+         dCEUygFStfByWLrWkpEm53Ek3M/kF/sb0G05eRMYQdolVy/dH7R6CdyvMYQ0Mz3ORTxA
+         Fn93Pq6gwNAPnsKKgQahLfL69i3FKkKARZ02z9ImG6dzmTocyDEMDKlDWKQAIdEQU5z/
+         V/PQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708582947; x=1709187747;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=H1a0uGmRwFxQVTjWSYQgbbb6IcpaIjDAJCmTdMKxd2U=;
+        b=cFmLYrO4O71D/79vRNxr/eGCg94IySEQiF4XD/8G7VDunBNWqqVdkdoU3smW4BmxwJ
+         ezzHCdxUytU432unUSd/DwVQV12hvEfV5WbgC7aGHBgE/PcPCB0pqEBY0DqUOJ7mp3Bk
+         mJimUWp+9CL0nUd/QLql9ENos5wgdlDXZ81spkogYOBVdGDfj+R/SbTi2bVCsZuZOduf
+         h4NR3MXVJ8FMnR52z+CiX7QOlOYsp+2ynzmCtQyp09x+gkt02EBgEqTUJcpdOf1xgndZ
+         0DqdEUWJhR1MvLfZkH9wphusRWmiRJxMKCKAEfYvrqNpLwulCiDwU0gcTHxr/EeAv+Xg
+         6djA==
+X-Forwarded-Encrypted: i=1; AJvYcCXRz76WlX8zdSh18eNrMtAbBBI60t2Hbj76rXFO+5s0aHETC5c9TUsenJUNpBZhzhUQrmF9fjMEJVTXrBolY12cAdQSN8DbbP4bD9bhvyrPp0uM/lYaztd1MXUJVmf/BBBmbSJ2JX3pTEKuijwHxdvevwpXsw4v/blyXH4LuXBFlwzPGrhL
+X-Gm-Message-State: AOJu0YwkhF9F0YDgZNGRaSkhfAsJeWzL2FZdLSiEOaVy5Zn4/+q9qNIG
+	CQVVHXE0cBwo1RRk/17SzWM/k/KGt5jG52j+36/aCcwYR77IB9P0O/bvbXnD10c=
+X-Google-Smtp-Source: AGHT+IHmITekBIGo1Rlou/oYfs2bRUkkZ2jcZqPTPIkfiZp3t0jE6XJABlWVB9Q1hAu5NOPQE6+8qQ==
+X-Received: by 2002:a05:6512:318a:b0:512:cb0c:d984 with SMTP id i10-20020a056512318a00b00512cb0cd984mr5323554lfe.68.1708582947271;
+        Wed, 21 Feb 2024 22:22:27 -0800 (PST)
+Received: from localhost.localdomain ([2a05:3580:f312:6c02:29d4:49b1:c3dc:494c])
+        by smtp.gmail.com with ESMTPSA id e8-20020a05651236c800b0051296788949sm1945574lfs.232.2024.02.21.22.22.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Feb 2024 22:22:23 -0800 (PST)
+From: Andrey Skvortsov <andrej.skvortzov@gmail.com>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Alain Volmat <alain.volmat@foss.st.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-media@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	shengjiu.wang@gmail.com
-Subject: [PATCH] arm64: dts: imx8mm-evk: Add spdif sound card support
-Date: Thu, 22 Feb 2024 14:17:13 +0800
-Message-Id: <1708582633-6969-1-git-send-email-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-X-Virus-Scanned: ClamAV using ClamSMTP
+	linux-kernel@vger.kernel.org
+Cc: =?UTF-8?q?Ond=C5=99ej=20Jirman?= <megi@xff.cz>,
+	Pavel Machek <pavel@ucw.cz>,
+	Arnaud Ferraris <arnaud.ferraris@collabora.com>,
+	Andrey Skvortsov <andrej.skvortzov@gmail.com>
+Subject: [PATCH v2 0/2] media: gc2145: add basic dvp bus support
+Date: Thu, 22 Feb 2024 09:22:12 +0300
+Message-ID: <20240222062214.2627810-1-andrej.skvortzov@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-Add spdif sound card support, configure the pinmux.
+Tested on PinePhone with libcamera-based GNOME screenshot.
 
-This sound card supports recording and playing sound
-through spdif interface.
+Andrey Skvortsov (2):
+  dt-bindings: media: i2c: add galaxycore,gc2145 DVP bus support
+  media: gc2145: implement basic dvp bus support
 
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi | 33 +++++++++++++++++++
- 1 file changed, 33 insertions(+)
+v2:
+ - bindings:
+   - add required bus-type property
+   - conditionally require link-frequency property based on bus-type
+   - add DVP properties with their default values
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-index 9b39458f3fa5..bd5b365867fd 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-@@ -165,6 +165,14 @@ cpu {
- 			};
- 		};
- 	};
-+
-+	sound-spdif {
-+		compatible = "fsl,imx-audio-spdif";
-+		model = "imx-spdif";
-+		spdif-controller = <&spdif1>;
-+		spdif-out;
-+		spdif-in;
-+	};
- };
- 
- &A53_0 {
-@@ -533,6 +541,24 @@ &snvs_pwrkey {
- 	status = "okay";
- };
- 
-+&spdif1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_spdif1>;
-+	assigned-clocks = <&clk IMX8MM_CLK_SPDIF1>;
-+	assigned-clock-parents = <&clk IMX8MM_AUDIO_PLL1_OUT>;
-+	assigned-clock-rates = <24576000>;
-+	clocks = <&clk IMX8MM_CLK_AUDIO_AHB>, <&clk IMX8MM_CLK_24M>,
-+		 <&clk IMX8MM_CLK_SPDIF1>, <&clk IMX8MM_CLK_DUMMY>,
-+		 <&clk IMX8MM_CLK_DUMMY>, <&clk IMX8MM_CLK_DUMMY>,
-+		 <&clk IMX8MM_CLK_AUDIO_AHB>, <&clk IMX8MM_CLK_DUMMY>,
-+		 <&clk IMX8MM_CLK_DUMMY>, <&clk IMX8MM_CLK_DUMMY>,
-+		 <&clk IMX8MM_AUDIO_PLL1_OUT>, <&clk IMX8MM_AUDIO_PLL2_OUT>;
-+	clock-names = "core", "rxtx0", "rxtx1", "rxtx2", "rxtx3",
-+		      "rxtx4", "rxtx5", "rxtx6", "rxtx7", "spba",
-+		      "pll8k", "pll11k";
-+	status = "okay";
-+};
-+
- &uart2 { /* console */
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_uart2>;
-@@ -702,6 +728,13 @@ MX8MM_IOMUXC_SAI3_TXD_SAI3_TX_DATA0     0xd6
- 		>;
- 	};
- 
-+	pinctrl_spdif1: spdif1grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SPDIF_TX_SPDIF1_OUT	0xd6
-+			MX8MM_IOMUXC_SPDIF_RX_SPDIF1_IN		0xd6
-+		>;
-+	};
-+
- 	pinctrl_typec1: typec1grp {
- 		fsl,pins = <
- 			MX8MM_IOMUXC_SD1_STROBE_GPIO2_IO11	0x159
+ - driver:
+  - fix fwnode parsing
+  - remove gc2145_is_csi2
+  - fix error message for unsupported bus-type
+
+ .../bindings/media/i2c/galaxycore,gc2145.yaml |  64 ++++++++-
+ drivers/media/i2c/gc2145.c                    | 122 ++++++++++++++----
+ 2 files changed, 159 insertions(+), 27 deletions(-)
+
 -- 
-2.34.1
+2.43.0
 
 
