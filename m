@@ -1,163 +1,136 @@
-Return-Path: <devicetree+bounces-44783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A85985F8EF
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 13:56:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A67CE85F8D6
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 13:54:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 04CC6287FF1
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 12:56:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46F1C1F2669B
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 12:54:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA9C912E1E9;
-	Thu, 22 Feb 2024 12:56:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 302D312DDB0;
+	Thu, 22 Feb 2024 12:53:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hicX5ReW"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="qrR/dK3g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4685A47F64;
-	Thu, 22 Feb 2024 12:56:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AD023EA68;
+	Thu, 22 Feb 2024 12:53:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708606572; cv=none; b=TUl7CUEt9BwvKFEYqlHCspVgUImro+Ql7KKm5jLPivhcE/QBGW4nQgeOZyXpPWxsWcRgDwAXw381CUOoMvd8Y728k6jMSswNlYmo5+VTiev3qYq5zVFH64oZfbxiQKrl9KsUesiOyL3Xuz3ceSok+MPsOa9ytyEKN5aji+TM7t0=
+	t=1708606392; cv=none; b=V37JIGJF7woPjAxBGURqcMnywhT+Dqq3yW1lPIeZalP8YdR93NPemmTjt+8x1SOjyCzE/Ho+Z70uwXlG+NVRiVvVJiYdwOfqr3sZ0zi+SyYFfPksiRhBSEkI5pUmFTq76O3kIv7oFBFUXna/eCNOOp3048HrgaAm/+1qOzJYee8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708606572; c=relaxed/simple;
-	bh=7dqHVymEpv+mbY9Ii99AQPmzVOgGT6bep74WvflVCio=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=c60sinTakyKydZPhYLbmeSrqqK+EStADd6oBOiK0BMnXr6Yj7pnAzAOQs+kwBD1SQ8Dt3idoVIUJyitW4NT37lXMWSwZ8ABvcy2gLtyxyagMmw74fGj/WWy6xviO35NU3EOcyZj2fGP65Et2XXFPxHR/4+cNoH2ci2z9nwGOwK0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hicX5ReW; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41M1cGao002544;
-	Thu, 22 Feb 2024 12:55:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:mime-version:content-type; s=
-	qcppdkim1; bh=F0djyJzQX2boq62he0FY77tfcSeF1hlmz7vhqN4MXI8=; b=hi
-	cX5ReW/Wtbbl0RCaW7zmhbOWSWfcCYUzS2uyeit+CfyTYagLhSoI5dpbWZgLsyft
-	S/15vAvWsFnB+EV4bAROnOpfa2NdbCJzoAivOTohuNShB5mrz1k2unXHRho32bqd
-	c+C0Cwn/Ec2vPogIhW23JJkl5R7C+1nYK6YViS0yRBBapWCkHpiuvMmdKL+eSphF
-	68sWDc/j0mPawcjX4Oq4aqagiqJnxdaQxQyPyV57+Y/DkTvLLRiBFwRm9pDYljD7
-	ZJVKwCbrx03RZSZYIctC8rrQZ1XhgwopqWjvo+GjY9hwBrRAQUvxi3jPFh4InwdW
-	dpKuznfDkvBJjFTsFIMA==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wdvsehkac-1
+	s=arc-20240116; t=1708606392; c=relaxed/simple;
+	bh=KPn/gGiZOcI/JFBHX2+OKDZD1hrMlq1IMEF8Ebg8ZNU=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=NEKGUZL0l2KlXcJUmV5zEhKeE3VY30RIg7MfGpIH4FGQnSzNDUsFlBITZkCsxX/hYhJqCfdc+8pEcjxDAVNn6GyMwF1i/zx3Czt1edNfIRJYA279cVRD7bYVG0H5ivCwK9V3UR4zPm0n8kc/wVIkIO9rmG41MwCNsC6Xk2fDGow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=qrR/dK3g; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41M9uLNl014855;
+	Thu, 22 Feb 2024 07:52:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
+	from:subject:date:message-id:mime-version:content-type
+	:content-transfer-encoding:to:cc; s=DKIM; bh=Um11GDqwlMkP4mfofg5
+	tsr5KqlYadWQcEEDX8dJ0ehQ=; b=qrR/dK3gOJgl4gBI5Yn0saKCxNx2Bq/piEc
+	qXnEEqqOr+RnQXwdnft0t49UXp4/2QiS3mN9KVmvL3N9+FhlbBNXSZ22ZGTBj5j7
+	xqtl7OM5q9+LNwvN+7Vs5MEs5gdsilnobcnSP3AdpfLVVGXeLYQc1SqnJwF0oSLo
+	P0eUu5L044RCyjo94g82GI4J0lDg3U9XdhRv1DXYBq5G3hlc9BGgp3aPvvPed5wB
+	+Vf/Ks+kWSZ4ZBgru3pSRooqXX4/2btACVc7q2J4TpJSCVRJb81xPEdd5yAE2e1/
+	8LJW+gaajmqZH4g0dm0H4ehQ784QfYDhuEWLJ6ZzcdgP61Uf8Vw==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3wd21p8k9s-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 22 Feb 2024 12:55:56 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41MCtseU013656
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 22 Feb 2024 12:55:54 GMT
-Received: from hu-sarohasa-hyd.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+	Thu, 22 Feb 2024 07:52:44 -0500 (EST)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 41MCqhs5022904
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 22 Feb 2024 07:52:43 -0500
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 22 Feb 2024 04:55:45 -0800
-From: Sarosh Hasan <quic_sarohasa@quicinc.com>
-To: Vinod Koul <vkoul@kernel.org>, Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "David S. Miller"
-	<davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu
-	<joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>, <netdev@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Prasad Sodagudi
-	<psodagud@quicinc.com>,
-        Andrew Halaney <ahalaney@redhat.com>, Rob Herring
-	<robh@kernel.org>
-CC: <kernel@quicinc.com>, Sneh Shah <quic_snehshah@quicinc.com>,
-        Suraj Jaiswal
-	<quic_jsuraj@quicinc.com>
-Subject: [PATCH net-next] net: stmmac: dwmac-qcom-ethqos: Update link clock rate only for RGMII
-Date: Thu, 22 Feb 2024 18:25:17 +0530
-Message-ID: <20240222125517.3356-1-quic_sarohasa@quicinc.com>
-X-Mailer: git-send-email 2.17.1
+ 15.2.986.14; Thu, 22 Feb 2024 07:52:42 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Thu, 22 Feb 2024 07:52:42 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Thu, 22 Feb 2024 07:52:42 -0500
+Received: from [127.0.0.1] ([10.44.3.55])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 41MCqTF7003844;
+	Thu, 22 Feb 2024 07:52:32 -0500
+From: Nuno Sa <nuno.sa@analog.com>
+Subject: [PATCH 0/6] iio: temperature: ltc2983: small improvements
+Date: Thu, 22 Feb 2024 13:55:51 +0100
+Message-ID: <20240222-ltc2983-misc-improv-v1-0-cf7d4457e98c@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 6qj-1LaJaYXMpzY-ZwzeqVmwy3LF1NrY
-X-Proofpoint-GUID: 6qj-1LaJaYXMpzY-ZwzeqVmwy3LF1NrY
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAFhE12UC/x3MSQqAMAxA0auUrA1oKjhcRVxIjBpwKK2IUHp3i
+ 8u3+D9CEK8SoDcRvDwa9DozqsIAb9O5CuqcDVRSXRIR7jdT11o8NDDq4fz1YMXN1LTC0tkFcum
+ 8LPr+12FM6QPJOlwVZQAAAA==
+To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1708606552; l=984;
+ i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
+ bh=KPn/gGiZOcI/JFBHX2+OKDZD1hrMlq1IMEF8Ebg8ZNU=;
+ b=taB58kK8pF/idaIV9Jskm5NRUJYuxbfe5vBpfcrodhLDEchy223ZLuTgccknl7E3BwosUEUcu
+ vanIIADNFC5DRB27faQbvkFNe3B+GgVBNzPX3jWko/9IDYnMjVdQvbl
+X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
+ pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: fFC3mk4wYfcTkpyDVNwqHYsy3ZzIK2Lj
+X-Proofpoint-ORIG-GUID: fFC3mk4wYfcTkpyDVNwqHYsy3ZzIK2Lj
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-22_10,2024-02-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
- lowpriorityscore=0 suspectscore=0 mlxlogscore=998 adultscore=0
- malwarescore=0 phishscore=0 impostorscore=0 mlxscore=0 clxscore=1011
- priorityscore=1501 spamscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2402120000 definitions=main-2402220103
+ definitions=2024-02-22_09,2024-02-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
+ suspectscore=0 malwarescore=0 mlxlogscore=701 priorityscore=1501
+ impostorscore=0 clxscore=1015 lowpriorityscore=0 bulkscore=0 adultscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2402220101
 
-Updating link clock rate for different speeds is only needed when
-using RGMII, as that mode requires changing clock speed when the link
-speed changes. Let's restrict updating the link clock speed in
-ethqos_update_link_clk() to just RGMII. Other modes such as SGMII
-only need to enable the link clock (which is already done in probe).
+This series adds small improvements to the driver. There's no functional
+change intended for it.
 
-Signed-off-by: Sarosh Hasan <quic_sarohasa@quicinc.com>
+Jonathan, this will conflict with your series on the cleanup stuff for
+fwnodes. If you want, I can rebase on top of that series.
+
 ---
- .../stmicro/stmmac/dwmac-qcom-ethqos.c        | 26 ++++++++++---------
- 1 file changed, 14 insertions(+), 12 deletions(-)
+Nuno Sa (6):
+      iio: temperature: ltc2983: make use of spi_get_device_match_data()
+      iio: temperature: ltc2983: rename ltc2983_parse_dt()
+      iio: temperature: ltc2983: convert to dev_err_probe()
+      iio: temperature: ltc2983: explicitly set the name in chip_info
+      dt-bindings: iio: temperature: ltc2983: document power supply
+      iio: temperature: ltc2983: support vdd regulator
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-index 31631e3f89d0..9cd144fb3005 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-@@ -169,21 +169,23 @@ static void rgmii_dump(void *priv)
- static void
- ethqos_update_link_clk(struct qcom_ethqos *ethqos, unsigned int speed)
- {
--	switch (speed) {
--	case SPEED_1000:
--		ethqos->link_clk_rate =  RGMII_1000_NOM_CLK_FREQ;
--		break;
-+	if (phy_interface_mode_is_rgmii(ethqos->phy_mode)) {
-+		switch (speed) {
-+		case SPEED_1000:
-+			ethqos->link_clk_rate =  RGMII_1000_NOM_CLK_FREQ;
-+			break;
- 
--	case SPEED_100:
--		ethqos->link_clk_rate =  RGMII_ID_MODE_100_LOW_SVS_CLK_FREQ;
--		break;
-+		case SPEED_100:
-+			ethqos->link_clk_rate =  RGMII_ID_MODE_100_LOW_SVS_CLK_FREQ;
-+			break;
- 
--	case SPEED_10:
--		ethqos->link_clk_rate =  RGMII_ID_MODE_10_LOW_SVS_CLK_FREQ;
--		break;
--	}
-+		case SPEED_10:
-+			ethqos->link_clk_rate =  RGMII_ID_MODE_10_LOW_SVS_CLK_FREQ;
-+			break;
-+		}
- 
--	clk_set_rate(ethqos->link_clk, ethqos->link_clk_rate);
-+		clk_set_rate(ethqos->link_clk, ethqos->link_clk_rate);
-+	}
- }
- 
- static void ethqos_set_func_clk_en(struct qcom_ethqos *ethqos)
--- 
-2.17.1
+ .../bindings/iio/temperature/adi,ltc2983.yaml      |   2 +
+ drivers/iio/temperature/ltc2983.c                  | 223 +++++++++++----------
+ 2 files changed, 123 insertions(+), 102 deletions(-)
+---
+base-commit: 3cc5ebd3a2d6247aeba81873d6b040d5d87f7db1
+change-id: 20240222-ltc2983-misc-improv-1c7a78ece93f
+--
+
+Thanks!
+- Nuno Sá
 
 
