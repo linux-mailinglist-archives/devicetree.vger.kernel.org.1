@@ -1,246 +1,176 @@
-Return-Path: <devicetree+bounces-44726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3409785F6BA
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 12:27:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3567D85F702
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 12:33:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE6712826F1
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 11:27:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 670991C21E55
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 11:33:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4FF942078;
-	Thu, 22 Feb 2024 11:27:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8803445010;
+	Thu, 22 Feb 2024 11:33:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zaq/4x0y"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="t48+/f5Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C012641212
-	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 11:27:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CEA8383BD;
+	Thu, 22 Feb 2024 11:33:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708601233; cv=none; b=s1L3jTklC2Cwf7UutS/iIqbJHRD5dQSfFZW/8rQ1z5t1+L0HMazbcJ+sHbBfWT35f4CmDDakipiYIu07f8IAB+4J6krMQj55++ZtQgK5FoYYvN+JhZeTByZaIpidxe34Z7z2Vk7PlVVHExLA0O+sYWJIijZOcd3d/OcnFsFvYAc=
+	t=1708601607; cv=none; b=GTGm/7ydWKiFcCofvqtY6HJGms3Chz4JouYLXM07URIdXc98xLaWxr23EoGLsLUFzWTuWNCob1Jff8kWDbwVzrEQdeZS5fa1cw6tC/PWdq49viDTi3y3JA3YRP+IC8Jj40hTrturSdLT3BFpLwbKJ19M+0lkH/6IbltSz+pkA9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708601233; c=relaxed/simple;
-	bh=+rgLuw5oSwBFP4Ow0ptZ3qnTpUGqMbW5KK1t7j5QRoQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uw0toxyEt8akAeMbEmDIUBbxFlgvkoKB+bzzq8HpAgGyM5CcsgXko93cTn8O1BCOpnY/9jiPNp37gaz5rvcKMzQXa+kHkEuy0YxE6fTUls8lwG5q4cmP9vC1W8hEf2L6euu6ZxpwCzpoK3DUSlhwVRicQtu8jfLvHOhlpTe1iA4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zaq/4x0y; arc=none smtp.client-ip=209.85.219.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-db3a09e96daso6821608276.3
-        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 03:27:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708601231; x=1709206031; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=R4xgDZb1P7EFUwoTHIn2hJ0tMWxsP/j125TvtkH/GhA=;
-        b=zaq/4x0ykWlKc5A8P5W1u0NUMpBUrOqgSSDgort8rcxCKF8F6BJjpUU9NipTLJJ/Yw
-         sN4+bQmEE9Jd2T1dpQ79bw8yCZK9uWufoIVtgOfneHwsXfZI0rZKB6uyevtxL3enTRiP
-         cZXan2Yb9KiNM/qu4zgWVlXssBsvuiYg/jbwy4wZh/iHayf7BPGAfBRcBoR7k3MHfuE0
-         Nh6gyzaff2GF8TqaaCgQ+yPoyQSpBeb3ynA+1wgSgagnxjT0LSy3ZvPo9F5kN4I8o2pa
-         IIwEuPa3ufDK+FeMnI9RSCZdpZy/iczYHYAbiZTeScFHqrtNwq8Te+yYBHwGAl/705aY
-         Dylg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708601231; x=1709206031;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=R4xgDZb1P7EFUwoTHIn2hJ0tMWxsP/j125TvtkH/GhA=;
-        b=L6rrep8xPVf87fuOdSoCl8yHSYrveiBodBT9Z3xytfbW5ngEGFrTQPSOwAglQJEpHJ
-         W0kNljJ3N2fOBHDpfOaqxqpk1RJIGbE4MF2sF/rUzvYEe78ym3sOL1qmoTOgiU0TS2wa
-         XQ7LJQIbDWpb4wr0/6y4DOCUPNRrpZtf0TYiDRa6PJ0q5wSYYEtJMnrgzTKgffD1wTkm
-         1ZbSsd6yoHC4+ruDQIDGX7Z0ruztseNlItT84a6j+S+yQl4452A+iqHnZ81+MUVSb+cl
-         t+hLz+2jR0XhQHOJGcHKPYeZnOCOl7ShSxmRp/TK822IupqWCUAMgyXTKXmjsM7tDGmu
-         y10g==
-X-Forwarded-Encrypted: i=1; AJvYcCX5o6jdnDHwcWzxJbpUFbBFC9ywezVqejrtrjKIGXfRcjn3QUXVf11VsHWuUwk7JpgoEzDfFDaFjIR3BdqGQA1aWV6KSjQ2fouaOA==
-X-Gm-Message-State: AOJu0Yz8KVwOqEnWlZc1SCsBoVprc7X1YX1y0ZEIX0jQ+yKNirtDdJyT
-	o08nG5fpmjpC7wOBHHptP8t1iHV3Z5r/gfJThjNOIR2V9kJAP2sFOGbuZXrlegznuatw+k3QwES
-	e8Gsw9PZu3iPa6Z95amVd3732PuhgBs0YIlIolw==
-X-Google-Smtp-Source: AGHT+IGAH9HKM2JNlJGtqlBg9xAVeOcNDcSSfQGB4O1issqL+64giDGxV3EK2ifXD1JwfWN2ZGYk5wlqfAYXwHW/w3g=
-X-Received: by 2002:a25:1184:0:b0:dc6:aed5:718a with SMTP id
- 126-20020a251184000000b00dc6aed5718amr1758467ybr.26.1708601230793; Thu, 22
- Feb 2024 03:27:10 -0800 (PST)
+	s=arc-20240116; t=1708601607; c=relaxed/simple;
+	bh=dE8sWUiPLq0FaWrSd12fT0dLFSxfOZH6t/B1AZQdSaw=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=LeTctDtRimHuLMLch3ChswQwhQnGCBzvXelghbbHlCKfSc4Bs3WDShTsmblytGm3zCa+MQHbTKtaLtpNahCiidKlWp/KPd+pgjnlJDd4JnNnf1LIP3nrZMOEwY2bRZDJTbpGFvv9b9N7iO9obwRu+OoqzeDDvAvSakW1qmya5gs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=t48+/f5Q; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41MBX53d059115;
+	Thu, 22 Feb 2024 05:33:05 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1708601585;
+	bh=bj4DBD9JzM1ZhZS2ZLCo1fD79T0JhKNn65e+gvIiMAI=;
+	h=From:Subject:Date:To:CC;
+	b=t48+/f5QGgNDJk8O8T/IxbEEbfEkgV3Veqg/Hyu58PtBUdxX6cNC3GHhCSmOppJI0
+	 8La/aN5t9Oc/twLQcr4Htm2kSWF4erVnL4bnqPd81ziol4WHm9zfL3ygojxsa/rwxM
+	 7qoIsEh3Nb77NTesn5/RW/Z/4aWAJ/XZHtjTvfI0=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41MBX5v4007284
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 22 Feb 2024 05:33:05 -0600
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 22
+ Feb 2024 05:33:04 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 22 Feb 2024 05:33:04 -0600
+Received: from localhost (jluthra.dhcp.ti.com [172.24.227.217])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41MBX3U1128346;
+	Thu, 22 Feb 2024 05:33:04 -0600
+From: Jai Luthra <j-luthra@ti.com>
+Subject: [PATCH RFC 00/21] media: cadence,ti: CSI2RX Multistream Support
+Date: Thu, 22 Feb 2024 17:01:16 +0530
+Message-ID: <20240222-multistream-v1-0-1837ed916eeb@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240216203215.40870-1-brgl@bgdev.pl> <CAA8EJppt4-L1RyDeG=1SbbzkTDhLkGcmAbZQeY0S6wGnBbFbvw@mail.gmail.com>
- <e4cddd9f-9d76-43b7-9091-413f923d27f2@linaro.org> <CAA8EJpp6+2w65o2Bfcr44tE_ircMoON6hvGgyWfvFuh3HamoSQ@mail.gmail.com>
- <4d2a6f16-bb48-4d4e-b8fd-7e4b14563ffa@linaro.org> <CAA8EJpq=iyOfYzNATRbpqfBaYSdJV1Ao5t2ewLK+wY+vEaFYAQ@mail.gmail.com>
- <CAMRc=Mfnpusf+mb-CB5S8_p7QwVW6owekC5KcQF0qrR=iOQ=oA@mail.gmail.com>
- <CAA8EJppY7VTrDz3-FMZh2qHoU+JSGUjCVEi5x=OZgNVxQLm3eQ@mail.gmail.com>
- <b9a31374-8ea9-407e-9ec3-008a95e2b18b@linaro.org> <CAA8EJppWY8c-pF75WaMadWtEuaAyCc5A1VLEq=JmB2Ngzk-zyw@mail.gmail.com>
- <CAMRc=Md6SoXukoGb4bW-CSYgjpO4RL+0Uu3tYrZzgSgVtFH6Sw@mail.gmail.com>
-In-Reply-To: <CAMRc=Md6SoXukoGb4bW-CSYgjpO4RL+0Uu3tYrZzgSgVtFH6Sw@mail.gmail.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 22 Feb 2024 13:26:59 +0200
-Message-ID: <CAA8EJprUM6=ZqTwWLB8rW8WRDqwncafa-szSsTvPQCOOSXUn_w@mail.gmail.com>
-Subject: Re: [PATCH v5 00/18] power: sequencing: implement the subsystem and
- add first users
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: neil.armstrong@linaro.org, Marcel Holtmann <marcel@holtmann.org>, 
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, "David S . Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Saravana Kannan <saravanak@google.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Arnd Bergmann <arnd@arndb.de>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Alex Elder <elder@linaro.org>, 
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Abel Vesa <abel.vesa@linaro.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Lukas Wunner <lukas@wunner.de>, linux-bluetooth@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-pci@vger.kernel.org, linux-pm@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIQw12UC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDIyND3dzSnJLM4pKi1MRc3bSkpESztLRUE/NEYyWgjoKi1LTMCrBp0Up
+ Bbs5KsbW1AMsf+ZFiAAAA
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Mauro Carvalho Chehab
+	<mchehab@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans
+ Verkuil <hverkuil-cisco@xs4all.nl>,
+        Vaishnav Achath <vaishnav.a@ti.com>,
+        Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Aradhya
+ Bhatia <a-bhatia1@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
+        Changhuang
+ Liang <changhuang.liang@starfivetech.com>,
+        Jack Zhu
+	<jack.zhu@starfivetech.com>,
+        Julien Massot <julien.massot@collabora.com>,
+        Jayshri Pawar <jpawar@cadence.com>, Jai Luthra <j-luthra@ti.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3027; i=j-luthra@ti.com;
+ h=from:subject:message-id; bh=dE8sWUiPLq0FaWrSd12fT0dLFSxfOZH6t/B1AZQdSaw=;
+ b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBl1zDSRemMopB1oyhk0qqhqMq7jed7QD5MkvQB+
+ HQ5MAOBls6JAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZdcw0gAKCRBD3pH5JJpx
+ RZd4D/wKmk5+oJ5+9MHqCQj2Du6+Y4Sw2Z3uehl3kGI/oZqnSTogESbxfsvOEjmnf8N4/eG3BuM
+ lq/F3xa1BJLVY6VxYsoyNx1lA7koLinFK90BDsdN+ohE/sLOfkyXkSxtppzsyzdQe6FLJZTLjHn
+ MG95f+lUB8szac6peQ4HURinOHy6SZJ5EKb0IJCJOGNLU5e7AcleFDAg5/V8p2jKqUHgHMV/mXZ
+ OYoHZpJ5OHN/wcyp0uAVOkp7VpC9KeU+gbxWvQ84jVTYEI8csZDFS6Ui6fNej3PvbTchq9cuqXr
+ bPYYEAepIUfPeaM02Hh3lCX22OCLGriIWuyGFuaODZtMerUArBD49VeDj4wMCIpRyLzIp9/LvOY
+ y2jJRTezH5OG3XgiV6DETNma0SUEtWMdwOlLbol9vKCAL3eR7+0AtSnMM2r7Amq9uiDu4QxJOET
+ fK+Uuteq7cgjAo5AWUYIAYceHSJnjmn9U/e5OviUp0Q+4F3SKpNIwWCtQLwMYL7WTYLdZrJ7nE/
+ S0NC0iXk6G0UyQJGU/FjPm+vScORoHyzkLOadbWPhbgm9J79VMUnpeEJ7Dc9VWwFLeWKQBfEc1q
+ TUwTKKAE7IIWQVPteAcTgCFEHJqD3M/s+2ziMczZq5SRa/Eqk+nQvkHgO4K8HncqVqirLp5q0di
+ Ai2U0GAc7uxwBfA==
+X-Developer-Key: i=j-luthra@ti.com; a=openpgp;
+ fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Thu, 22 Feb 2024 at 13:00, Bartosz Golaszewski <brgl@bgdev.pl> wrote:
->
-> On Mon, Feb 19, 2024 at 11:21=E2=80=AFPM Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
-> >
-> > On Mon, 19 Feb 2024 at 19:18, <neil.armstrong@linaro.org> wrote:
-> > >
-> > > On 19/02/2024 13:33, Dmitry Baryshkov wrote:
-> > > > On Mon, 19 Feb 2024 at 14:23, Bartosz Golaszewski <brgl@bgdev.pl> w=
-rote:
-> > > >>
-> > > >> On Mon, Feb 19, 2024 at 11:26=E2=80=AFAM Dmitry Baryshkov
-> > > >> <dmitry.baryshkov@linaro.org> wrote:
-> > > >>>
-> > > >>
-> > > >> [snip]
-> > > >>
-> > > >>>>>>>>
-> > > >>>>>>>> For WCN7850 we hide the existence of the PMU as modeling it =
-is simply not
-> > > >>>>>>>> necessary. The BT and WLAN devices on the device-tree are re=
-presented as
-> > > >>>>>>>> consuming the inputs (relevant to the functionality of each)=
- of the PMU
-> > > >>>>>>>> directly.
-> > > >>>>>>>
-> > > >>>>>>> We are describing the hardware. From the hardware point of vi=
-ew, there
-> > > >>>>>>> is a PMU. I think at some point we would really like to descr=
-ibe all
-> > > >>>>>>> Qualcomm/Atheros WiFI+BT units using this PMU approach, inclu=
-ding the
-> > > >>>>>>> older ath10k units present on RB3 (WCN3990) and db820c (QCA61=
-74).
-> > > >>>>>>
-> > > >>>>>> While I agree with older WiFi+BT units, I don't think it's nee=
-ded for
-> > > >>>>>> WCN7850 since BT+WiFi are now designed to be fully independent=
- and PMU is
-> > > >>>>>> transparent.
-> > > >>>>>
-> > > >>>>> I don't see any significant difference between WCN6750/WCN6855 =
-and
-> > > >>>>> WCN7850 from the PMU / power up point of view. Could you please=
- point
-> > > >>>>> me to the difference?
-> > > >>>>>
-> > > >>>>
-> > > >>>> The WCN7850 datasheet clearly states there's not contraint on th=
-e WLAN_EN
-> > > >>>> and BT_EN ordering and the only requirement is to have all input=
- regulators
-> > > >>>> up before pulling up WLAN_EN and/or BT_EN.
-> > > >>>>
-> > > >>>> This makes the PMU transparent and BT and WLAN can be described =
-as independent.
-> > > >>>
-> > > >>>  From the hardware perspective, there is a PMU. It has several LD=
-Os. So
-> > > >>> the device tree should have the same style as the previous
-> > > >>> generations.
-> > > >>>
-> > > >>
-> > > >> My thinking was this: yes, there is a PMU but describing it has no
-> > > >> benefit (unlike QCA6x90). If we do describe, then we'll end up hav=
-ing
-> > > >> to use pwrseq here despite it not being needed because now we won'=
-t be
-> > > >> able to just get regulators from WLAN/BT drivers directly.
-> > > >>
-> > > >> So I also vote for keeping it this way. Let's go into the package
-> > > >> detail only if it's required.
-> > > >
-> > > > The WiFi / BT parts are not powered up by the board regulators. The=
-y
-> > > > are powered up by the PSU. So we are not describing it in the accur=
-ate
-> > > > way.
-> > >
-> > > I disagree, the WCN7850 can also be used as a discrete PCIe M.2 card,=
- and in
-> > > this situation the PCIe part is powered with the M.2 slot and the BT =
-side
-> > > is powered separately as we currently do it now.
-> >
-> > QCA6390 can also be used as a discrete M.2 card.
-> >
-> > > So yes there's a PMU, but it's not an always visible hardware part, f=
-rom the
-> > > SoC PoV, only the separate PCIe and BT subsystems are visible/control=
-lable/powerable.
-> >
-> > From the hardware point:
-> > - There is a PMU
-> > - The PMU is connected to the board supplies
-> > - Both WiFi and BT parts are connected to the PMU
-> > - The BT_EN / WLAN_EN pins are not connected to the PMU
-> >
-> > So, not representing the PMU in the device tree is a simplification.
-> >
->
-> What about the existing WLAN and BT users of similar packages? We
-> would have to deprecate a lot of existing bindings. I don't think it's
-> worth it.
+This series adds multi-stream support for Cadence CSI2RX and TI CSI2RX
+Shim drivers, along with minor improvements and bug fixes. It is a
+follow up to [1] which added single-camera support for TI CSI2RX.
 
-We have bindings that are not reflecting the hardware. So yes, we
-should gradually update them once the powerseq is merged.
+Posting this as an RFC as it is late in this merge window, will post a
+non-RFC v2 fixing any comments after v6.9-rc1 is tagged.
 
-> The WCN7850 is already described in bindings as consuming what is PMUs
-> inputs and not its outputs.
+Some of the patches are split to ease review, and are prefixed with
+"SQUASH" in the subject. They can be squashed in subsequent revisions,
+as they should ideally go as a single commit.
 
-So do WCN6855 and QCA6391 BlueTooth parts.
+PATCH 1-3:   Misc. fixes and improvements
+PATCH 4-10:  Support multiple DMA contexts/video nodes in TI CSI2RX
+PATCH 11-12: Use get_frame_desc to propagate virtual channel information
+	     across the different subdevs in the media pipeline
+PATCH 13-20: Use new multi-stream APIs across the drivers to support
+	     multiplexed cameras from sources like UB960 (FPDLink)
+PATCH 21:    Optimize stream on by submitting all queued buffers to DMA
 
->
-> Bart
->
-> > >
-> > > Neil
-> > >
-> > > >
-> > > > Moreover, I think we definitely want to move BT driver to use only =
-the
-> > > > pwrseq power up method. Doing it in the other way results in the co=
-de
-> > > > duplication and possible issues because of the regulator / pwrseq
-> > > > taking different code paths.
-> >
-> > --
-> > With best wishes
-> > Dmitry
+[1]: https://lore.kernel.org/all/20231009-upstream_csi-v10-0-330aaed24c5d@ti.com/
 
+Signed-off-by: Jai Luthra <j-luthra@ti.com>
+---
+Jai Luthra (15):
+      media: ti: j721e-csi2rx: Fix races while restarting DMA
+      dt-bindings: media: ti,j721e-csi2rx-shim: Support 32 dma chans
+      media: ti: j721e-csi2rx: separate out device and context
+      media: ti: j721e-csi2rx: add a subdev for the core device
+      SQUASH: media: ti: j721e-csi2rx: Fix link validation for multi-stream
+      media: ti: j721e-csi2rx: add support for processing virtual channels
+      media: cadence: csi2rx: Use new enable stream APIs
+      media: cadence: csi2rx: Enable stream-wise routing
+      SQUASH: media: cadence: csi2rx: Enable per-stream controls
+      SQUASH: media: cadence: csi2rx: Filter using MIPI virtual channels
+      SQUASH: media: cadence: csi2rx: Filter streams in get_frame_desc
+      media: ti: j721e-csi2rx: add multistream support
+      SQUASH: media: ti: j721e-csi2rx: Enable per-stream controls
+      SQUASH: media: ti: j721e-csi2rx: Assert pixel reset before stopping last stream
+      media: ti: j721e-csi2rx: Submit all available buffers
 
+Jayshri Pawar (1):
+      media: cadence: csi2rx: Support runtime PM
 
---=20
-With best wishes
-Dmitry
+Pratyush Yadav (5):
+      media: cadence: csi2rx: configure DPHY before starting source stream
+      media: ti: j721e-csi2rx: prepare SHIM code for multiple contexts
+      media: ti: j721e-csi2rx: allocate DMA channel based on context index
+      media: ti: j721e-csi2rx: get number of contexts from device tree
+      media: cadence: csi2rx: add get_frame_desc wrapper
+
+ .../bindings/media/ti,j721e-csi2rx-shim.yaml       |  40 +-
+ drivers/media/platform/cadence/cdns-csi2rx.c       | 460 +++++++++--
+ .../media/platform/ti/j721e-csi2rx/j721e-csi2rx.c  | 853 +++++++++++++++------
+ 3 files changed, 1052 insertions(+), 301 deletions(-)
+---
+base-commit: d894a2a286fccd6e47cd1cac4c2d4ff5d300d7c7
+change-id: 20240221-multistream-fbba6ffe47a3
+
+Best regards,
+-- 
+Jai Luthra <j-luthra@ti.com>
+
 
