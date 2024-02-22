@@ -1,173 +1,133 @@
-Return-Path: <devicetree+bounces-44876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B82B685FE89
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 17:56:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B47085FEAC
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 18:06:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3AC3A1F28016
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 16:56:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D0DC1C21F44
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 17:06:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D079153BD5;
-	Thu, 22 Feb 2024 16:56:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69E8E154430;
+	Thu, 22 Feb 2024 17:06:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NAJqVGEp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qMv3dQYD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 914BA148FF2
-	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 16:56:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A3C715099F;
+	Thu, 22 Feb 2024 17:06:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708620978; cv=none; b=HE7GjsxZ/ECPoh45K17UsedRb4nU9g/f1R2J+6T39Kb+ybOZ45B1/dJV8i1Kputtb9XwvLRMWH3vp661cz6aEZe4nKisRP3ghwXDhshsf2hR96g0YpjNuLVkQ/U+44AsEa8EX5k5uDc6XlKdYit9Um0oVvCJbp6iaou/WLIuLSM=
+	t=1708621604; cv=none; b=kswNrQDrVARku7F8IK9dDiqbiristj14HmZihWpgrYn4PcO5FoM2fYxg8qihpzYw6mLFV9PafF+jUoEbyQGxsItbg1j95tilD3brUBiYLfHq1r6EHwwXW98v1gSvmX41N5lcTi4krVo3vrt7CQBgDq+IZ1CwmQV2K378igfsfEQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708620978; c=relaxed/simple;
-	bh=6U8FqSStYOT271wkS485Zv6xwQyu21sm+mXhN1q6qsA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KHpdrEZS9frqQVbiFMSvx/IMXqgkJGxlbn9N68+IsCDjhw3gidu20VTGT1naUgYf71eRM/GwbQPYlTQBYT7G9KByjIk2cScjGYXTCKBxoUSOFSqJVFb0WLDX5ckIxCN3595wiunM7AqlzonBaZTc32OaR49cdz1yOGUpXQDEeqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NAJqVGEp; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5649c25369aso6450620a12.2
-        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 08:56:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708620975; x=1709225775; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mbGLEGj2VKNYhB6nINNs2mbku43zUpKeqKkEauZl/Ug=;
-        b=NAJqVGEpwD7ipUarennQunNk/f/myivGQV3wl6MlgMi8jRXZIFBBbcSRVuFF+Wby/r
-         3a10YVRfdZo2SuWma72ppWGIjXCZb3AMqXnqyG6i3odPzZlbeaL/lZ4Z0yioNui2mA+T
-         fUSbW6LwFf/Q1n82i4sgZvf2Y3rr1VEtVTUkcm7gqgJQR9L4tMU70dywzh7H5OkH+W3s
-         MfivyV8+8bOcGixTT7Yu7lDx2PLUaSgZhlopa2PagCcBVZvfC/AiVd6BUAGm3BLYG0EU
-         6o+DU+Sh94bEAJNsHrTT4/7wzBcIp9mmO/bsCufcr45Iqud6y7mbYmO6Dlp0kas1XTYd
-         xKSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708620975; x=1709225775;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mbGLEGj2VKNYhB6nINNs2mbku43zUpKeqKkEauZl/Ug=;
-        b=mB+ZLpK4tTlRa7xwEJ6iwgXF3LyLjNok2W5wcSQXIcV19JUGKu3tkrSt3be0IVSQr7
-         ZjjZsk6RIiNV5yXeNyrZTO2mpz2MtwMrC9j2W8JgrDRFdzWs5GwiWyP/1XrUBuN3RcaX
-         P6r/BI/FlMLmHw1+58IcpTgkuuy4xJFP9j+WjcnVbx5h2IWHF1OWPYs5/gj5lJmY++HY
-         YAh36ImuD/jYMAwzB/c5QiO0Bi88IUPL3FmptavDb0cWywcO++YOqctshUNn4ipMaeyY
-         4UZ9Wdwh1ppTCXVivFnD01o3OcwQV26NFoela1Vo6XHXNNRRtnFUiTEP9GLyC8w+vlwz
-         s3Bg==
-X-Forwarded-Encrypted: i=1; AJvYcCXetFCsnvVbgiP5tqDgTt5sQ8gskJZVAVygPNszzXvwczojeO3GzcPoMtRqhngckacBdp/jZkR70PQ1KvUoMAJVmlGLeVbOy6qHRA==
-X-Gm-Message-State: AOJu0YwuDZUR7FODmNqBLNrrTaJBU79QVt61WrWapbx3zA1ggmpuSMTq
-	LplJdftJfhhRnqEgb0j65Rg0TlWDCR8hMFaI/sYnlCJuKOVmIuwxeURZ+Y92FuQ=
-X-Google-Smtp-Source: AGHT+IEOQmypuUZMeFnuW3n73xNV08zfVTDxnusdbGbhxlS9yk1AakJwIzoPoOqH07uohT8/2CJJgw==
-X-Received: by 2002:aa7:ca45:0:b0:565:35a9:ca03 with SMTP id j5-20020aa7ca45000000b0056535a9ca03mr1751168edt.17.1708620974914;
-        Thu, 22 Feb 2024 08:56:14 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id h14-20020a056402094e00b005644221a3desm4779979edz.3.2024.02.22.08.56.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Feb 2024 08:56:14 -0800 (PST)
-Message-ID: <838ed10f-7f0a-48e8-a195-a155e4766f49@linaro.org>
-Date: Thu, 22 Feb 2024 17:56:12 +0100
+	s=arc-20240116; t=1708621604; c=relaxed/simple;
+	bh=kE8TIXCP4omiH8Tb48QLZ4vtCQlIIcYaY2PACwfRHLU=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=PXA93MwD/OdzL+FQOQgzWsH6W7CUa0KVCL6dkosrFMrtcALwmOscIayTgaSUL9i4jbbFTSRBUx1GCeO+9MDVX2VAQ68qHtDrZQ7XUMR+x7jdgR/9eYp1SQimodLGt31HTOv7Rq5GBoAFJqbIIX5G8YL5WLXYUf9z0AF4+3IciJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qMv3dQYD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5688BC433C7;
+	Thu, 22 Feb 2024 17:06:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708621603;
+	bh=kE8TIXCP4omiH8Tb48QLZ4vtCQlIIcYaY2PACwfRHLU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=qMv3dQYDhbkA55iCtTxciIgE1L7pMg9o9uWTVAV+VOYkCajdj9ypNeK3dAMJjedon
+	 Yfm16dXgjEDaJvw7MKL3T1NUQJuoykxKJy3QBBvO7KjZn6mhHuhTJGHvovxIKU2zrR
+	 zDIG+iHYedR7cXvE6GdAAvt5KB235VxZ/Plmw5wAIXTGdCIAdrxI/gYIsiztfOlUMO
+	 sRy4h/QB7EziUrqeYVH8Xhch+hYzriJXTd6xGKvdtvOfJu8/ojjSIEqc2no6ipAGbJ
+	 +fGCcGAK0vbTCM29gk3bUyqBGrb/tWnTENLA+Bk37mXCqwO4TnK5iKODRwQgZELV7b
+	 cavlvjo3SyKpg==
+Date: Thu, 22 Feb 2024 11:06:41 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Vidya Sagar <vidyas@nvidia.com>
+Cc: bhelgaas@google.com, rafael@kernel.org, lenb@kernel.org,
+	will@kernel.org, lpieralisi@kernel.org, kw@linux.com,
+	robh@kernel.org, frowand.list@gmail.com, linux-pci@vger.kernel.org,
+	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	treding@nvidia.com, jonathanh@nvidia.com, kthota@nvidia.com,
+	mmaddireddy@nvidia.com, sagar.tv@gmail.com
+Subject: Re: [PATCH V3] PCI: Add support for preserving boot configuration
+Message-ID: <20240222170641.GA15593@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: usb: analogix,anx7411: drop redundant
- connector properties
-Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Xin Ji <xji@analogixsemi.com>,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Pavel Machek <pavel@ucw.cz>
-References: <20240222082819.10321-1-krzysztof.kozlowski@linaro.org>
- <20240222-election-doorstop-8c179803c47e@spud>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240222-election-doorstop-8c179803c47e@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240222124110.2681455-1-vidyas@nvidia.com>
 
-On 22/02/2024 17:08, Conor Dooley wrote:
-> On Thu, Feb 22, 2024 at 09:28:19AM +0100, Krzysztof Kozlowski wrote:
->> The binding references usb-connector.yaml schema, which lists all
->> allowed properties and ends with unevaluatedProperties:false, so we can
->> simplify analogix,anx7411 binding by dropping everything covered by
->> usb-connector.yaml.
->>
->> Suggested-by: Pavel Machek <pavel@ucw.cz>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  .../devicetree/bindings/usb/analogix,anx7411.yaml   | 13 -------------
->>  1 file changed, 13 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml b/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
->> index e4d893369d57..3f5857aee3b0 100644
->> --- a/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
->> +++ b/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
->> @@ -23,24 +23,11 @@ properties:
->>    connector:
->>      type: object
->>      $ref: ../connector/usb-connector.yaml
->> -    unevaluatedProperties: false
-> 
-> The connector schema sets `additionalProperties: true`. Is removing this
-> correct?
-> 
+On Thu, Feb 22, 2024 at 06:11:10PM +0530, Vidya Sagar wrote:
+> Add support for preserving the boot configuration done by the
+> platform firmware per host bridge basis, based on the presence of
+> 'linux,pci-probe-only' property in the respective PCIe host bridge
+> device-tree node. It also unifies the ACPI and DT based boot flows
+> in this regard.
 
-I think you look at some old version:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/connector/usb-connector.yaml?h=v6.8-rc5#n327
+> +/**
+> + * of_pci_bridge_check_probe_only - Return true if the boot configuration
+> + *                                  needs to be preserved
 
-Best regards,
-Krzysztof
+I don't like the "check_probe_only" name because it's a boolean
+function but the name doesn't tell me what a true/false return value
+means.  Something like "preserve_resources" would be better.  If you
+want "probe_only", even removing the "check" would help.
 
+> + * @node: Device tree node with the domain information.
+> + *
+> + * This function looks for "linux,pci-probe-only" property for a given
+> + * PCIe controller's node and returns true if found. Having this property
+> + * for a PCIe controller ensures that the kernel doesn't re-enumerate and
+> + * reconfigure the BAR resources that are already done by the platform firmware.
+
+This is generic PCI, not PCIe-specific (also in commit log and comment
+below).
+
+I think "enumeration" specifically refers to discovering what devices
+are present, and the kernel always does that, so drop that part.
+Reconfiguring BARs and bridge windows is what we want to prevent.
+
+> + * NOTE: The scope of "linux,pci-probe-only" defined within a PCIe bridge device
+> + *       is limited to the hierarchy under that particular bridge device. whereas
+> + *       the scope of "linux,pci-probe-only" defined within chosen node is
+> + *       system wide.
+> + *
+> + * Return: true if the property exists false otherwise.
+> + */
+
+> +bool of_pci_bridge_check_probe_only(struct device_node *node)
+> +{
+> +	return of_property_read_bool(node, "linux,pci-probe-only");
+> +}
+> +EXPORT_SYMBOL_GPL(of_pci_bridge_check_probe_only);
+
+Why does this need to be exported for modules and exposed via
+include/linux/pci.h?
+
+> +static void pci_check_config_preserve(struct pci_host_bridge *host_bridge)
+> +{
+> +	if (&host_bridge->dev) {
+
+Checking &host_bridge->dev doesn't seem like the right way to
+determine whether this is an ACPI host bridge.
+
+> +		union acpi_object *obj;
+> +
+> +		/*
+> +		 * Evaluate the "PCI Boot Configuration" _DSM Function.  If it
+> +		 * exists and returns 0, we must preserve any PCI resource
+> +		 * assignments made by firmware for this host bridge.
+> +		 */
+> +		obj = acpi_evaluate_dsm(ACPI_HANDLE(&host_bridge->dev), &pci_acpi_dsm_guid, 1,
+> +					DSM_PCI_PRESERVE_BOOT_CONFIG, NULL);
+> +		if (obj && obj->type == ACPI_TYPE_INTEGER && obj->integer.value == 0)
+> +			host_bridge->preserve_config = 1;
+> +		ACPI_FREE(obj);
+> +	}
 
