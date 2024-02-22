@@ -1,68 +1,65 @@
-Return-Path: <devicetree+bounces-44896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22AAB85FFE9
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 18:45:03 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EAEA86000B
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 18:50:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 46E1E1C25A1B
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 17:45:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A9AEBB23598
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 17:50:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4C0D155A5C;
-	Thu, 22 Feb 2024 17:44:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26BA615699E;
+	Thu, 22 Feb 2024 17:50:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RhPuhD8h"
+	dkim=pass (1024-bit key) header.d=baikalelectronics.ru header.i=@baikalelectronics.ru header.b="N4CfgLMK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C7191534F8;
-	Thu, 22 Feb 2024 17:44:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from post.baikalelectronics.com (post.baikalelectronics.com [213.79.110.86])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F43F45C18;
+	Thu, 22 Feb 2024 17:50:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.79.110.86
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708623897; cv=none; b=I76gDHnLL5M3s6aK76RsQPCSpfN8bfrcdBdO1W5tkd5pDZb+HJ9hhcKsVOZSBWnA/BJXZ2gselq4iMHZJJBYsmV5oriJmQHPjww5nBg2/Z6loDf4+E0QzNp6ljzEKh86UvyP6TnprdYLNsf8i6Bv9346X/OWobWx/Px/QYce+9g=
+	t=1708624225; cv=none; b=mQZ96CfkbUnvk7+sKgQz6kIG/LXBTWZe/7luJmjmdIVfK9tHBboEDPJLMWWrZ0MmhlEldG9/cqkkFyV7EHU7ZpI7vSfLk5Pw2j/ZOxeho63ofouO0F62mmKHYEomymdhmqHKWVHs9rzevejhn2D2m1fiY9bwxxDBGHloMKUD9wI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708623897; c=relaxed/simple;
-	bh=7BNl0V7JZ8ZTvufEz+lXYL9lojiWbKA/DEhMbabZlLo=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=DuG5EwkAp/lR7+rVt1wmw9GghqMjFWYR/jiDrmY9D5bIo4TFhjv06r1OjyW/pXko2a3e/bilZhl2QFJ5i1/OOF3huE2zqdQ1ZNN5ZT/4zgTI1YaJnhFnEpnudZAi0401Cs0zsLYV6CHAnV8jgAN+v8ViXcVYqSlMvocpdOfYoMw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RhPuhD8h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98844C433C7;
-	Thu, 22 Feb 2024 17:44:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708623897;
-	bh=7BNl0V7JZ8ZTvufEz+lXYL9lojiWbKA/DEhMbabZlLo=;
-	h=From:To:Cc:Subject:Date:From;
-	b=RhPuhD8hNzl4pDDmJJaR9Z7BJhNWOlZjOsKhFiA64srC8v6z8YYIfy7R4+vzXS1Sz
-	 Ph4pAm1bTtt3yhZKNBh5ZqfmI5Zjh1UsoXhQPgIsrgvRQSkvh34EDsSNRbfzosV13q
-	 Im3QGBJXoPyGWTg2MQ/u5jERtY3+aMzNdvKajsfqal9EDskAZbVOHBpbwsDaPxUedy
-	 BJqNm/uO8MSmHEC7JL8tQ02rRJCOktX/XPDvQsApcSoJ6jvvVmKXwZ+hXcBKyt3wAW
-	 +adsFhYtBAA2Y8HAbsTVnebSqS/tL7QCf4VneCErtuNwuSHI8f44bJB9ImnjfpQn+b
-	 10SJr0PvNMPeA==
-From: Rob Herring <robh@kernel.org>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-i2c@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	linux-i3c@lists.infradead.org,
-	linux-sound@vger.kernel.org
-Subject: [PATCH] dt-bindings: i2c: Remove obsolete i2c.txt
-Date: Thu, 22 Feb 2024 10:43:42 -0700
-Message-ID: <20240222174343.3482354-2-robh@kernel.org>
+	s=arc-20240116; t=1708624225; c=relaxed/simple;
+	bh=3qmplO43I9PzDk/n4V+hkSgfw8S4LC83IjeuJyEm4HI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=cq1vl3GTNW4u+Qe4F6YDKwCIAWuVNTIt5zIC5Odz9h5c4LLcTN36PHNniJE6378WjbhOmiy/o3CGwUw9fjAkmWpkJvgn1jM/2ri+6quj2CYLvJRZBvWsqoyOn4Qa5gNLoedUHyqA19LYyLQ/4Yu1HqhGohvnMYzzPazLWwFFT3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=baikalelectronics.ru; spf=pass smtp.mailfrom=baikalelectronics.ru; dkim=pass (1024-bit key) header.d=baikalelectronics.ru header.i=@baikalelectronics.ru header.b=N4CfgLMK; arc=none smtp.client-ip=213.79.110.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=baikalelectronics.ru
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baikalelectronics.ru
+Received: from post.baikalelectronics.com (localhost.localdomain [127.0.0.1])
+	by post.baikalelectronics.com (Proxmox) with ESMTP id 45F81E0EC2;
+	Thu, 22 Feb 2024 20:44:58 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	baikalelectronics.ru; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:from:from:message-id
+	:mime-version:reply-to:subject:subject:to:to; s=post; bh=ECxaRkn
+	9yfqjrxSfI8sHbBDrza4hdFLYIVczvySlchw=; b=N4CfgLMKNqKY1JTx83U2XNW
+	HLxS2lzaYHex5BfzTb83yqoyLz27fK3KU+zjqSveb1yOUgUQbtykgEw8chgV3XBP
+	pOZkKAjU/65EB0Gb+WUD3ebZ8vJ2fqcvyCjN1Psmq0jNEhILTMAE16xR46a8K/QB
+	Rdq3Fno/FUkxZddqDTfA=
+Received: from mail.baikal.int (mail.baikal.int [192.168.51.25])
+	by post.baikalelectronics.com (Proxmox) with ESMTP id 1530EE0DE6;
+	Thu, 22 Feb 2024 20:44:58 +0300 (MSK)
+Received: from localhost (10.8.30.70) by mail (192.168.51.25) with Microsoft
+ SMTP Server (TLS) id 15.0.1395.4; Thu, 22 Feb 2024 20:44:57 +0300
+From: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To: Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin
+	<npiggin@gmail.com>, Christophe Leroy <christophe.leroy@csgroup.eu>, Aneesh
+ Kumar K.V <aneesh.kumar@kernel.org>, "Naveen N. Rao"
+	<naveen.n.rao@linux.ibm.com>, Rob Herring <robh+dt@kernel.org>, Frank Rowand
+	<frowand.list@gmail.com>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>
+CC: Serge Semin <Sergey.Semin@baikalelectronics.ru>, Serge Semin
+	<fancer.lancer@gmail.com>, Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring
+	<robh@kernel.org>, <linuxppc-dev@lists.ozlabs.org>,
+	<linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: [PATCH RESEND v10 0/1] dt-bindings: usb: Harmonize xHCI/EHCI/OHCI/DWC3 nodes name
+Date: Thu, 22 Feb 2024 20:44:50 +0300
+Message-ID: <20240222174456.25903-1-Sergey.Semin@baikalelectronics.ru>
 X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -71,246 +68,150 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 
-Everything in i2c.txt is covered by schemas/i2c/i2c-controller.yaml in
-dtschema project, so remove i2c.txt and update links to it in the tree.
+As the subject states this series is an attempt to harmonize the xHCI,
+EHCI, OHCI and DWC USB3 DT nodes with the DT schema introduced in the
+framework of the patchset [1].
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-Wolfram, you can take it or I can.
+Firstly as Krzysztof suggested we've deprecated a support of DWC USB3
+controllers with "synopsys,"-vendor prefix compatible string in favor of
+the ones with valid "snps,"-prefix. It's done in all the DTS files,
+which have been unfortunate to define such nodes.
 
- .../bindings/gpio/gateworks,pld-gpio.txt      |   3 +-
- Documentation/devicetree/bindings/i2c/i2c.txt | 151 ------------------
- .../i2c/nvidia,tegra186-bpmp-i2c.yaml         |   3 +-
- .../devicetree/bindings/i3c/i3c.yaml          |   2 +-
- .../devicetree/bindings/sound/cs4341.txt      |   2 +-
- MAINTAINERS                                   |   1 -
- 6 files changed, 4 insertions(+), 158 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/i2c/i2c.txt
+Secondly we suggest to fix the snps,quirk-frame-length-adjustment property
+declaration in the Amlogic meson-g12-common.dtsi DTS file, since it has
+been erroneously declared as boolean while having uint32 type. Neil said
+it was ok to init that property with 0x20 value.
 
-diff --git a/Documentation/devicetree/bindings/gpio/gateworks,pld-gpio.txt b/Documentation/devicetree/bindings/gpio/gateworks,pld-gpio.txt
-index 6e81f8b755c5..d543fd1b8b23 100644
---- a/Documentation/devicetree/bindings/gpio/gateworks,pld-gpio.txt
-+++ b/Documentation/devicetree/bindings/gpio/gateworks,pld-gpio.txt
-@@ -1,7 +1,6 @@
- Gateworks PLD GPIO controller bindings
- 
--The GPIO controller should be a child node on an I2C bus,
--see: i2c/i2c.txt for details.
-+The GPIO controller should be a child node on an I2C bus.
- 
- Required properties:
- - compatible: Should be "gateworks,pld-gpio"
-diff --git a/Documentation/devicetree/bindings/i2c/i2c.txt b/Documentation/devicetree/bindings/i2c/i2c.txt
-deleted file mode 100644
-index fc3dd7ec0445..000000000000
---- a/Documentation/devicetree/bindings/i2c/i2c.txt
-+++ /dev/null
-@@ -1,151 +0,0 @@
--Generic device tree bindings for I2C busses
--===========================================
--
--This document describes generic bindings which can be used to describe I2C
--busses and their child devices in a device tree.
--
--Required properties (per bus)
-------------------------------
--
--- #address-cells  - should be <1>. Read more about addresses below.
--- #size-cells     - should be <0>.
--- compatible      - name of I2C bus controller
--
--For other required properties e.g. to describe register sets,
--clocks, etc. check the binding documentation of the specific driver.
--
--The cells properties above define that an address of children of an I2C bus
--are described by a single value.
--
--Optional properties (per bus)
-------------------------------
--
--These properties may not be supported by all drivers. However, if a driver
--wants to support one of the below features, it should adapt these bindings.
--
--- clock-frequency
--	frequency of bus clock in Hz.
--
--- i2c-bus
--	For I2C adapters that have child nodes that are a mixture of both I2C
--	devices and non-I2C devices, the 'i2c-bus' subnode can be used for
--	populating I2C devices. If the 'i2c-bus' subnode is present, only
--	subnodes of this will be considered as I2C slaves. The properties,
--	'#address-cells' and '#size-cells' must be defined under this subnode
--	if present.
--
--- i2c-scl-falling-time-ns
--	Number of nanoseconds the SCL signal takes to fall; t(f) in the I2C
--	specification.
--
--- i2c-scl-internal-delay-ns
--	Number of nanoseconds the IP core additionally needs to setup SCL.
--
--- i2c-scl-rising-time-ns
--	Number of nanoseconds the SCL signal takes to rise; t(r) in the I2C
--	specification.
--
--- i2c-sda-falling-time-ns
--	Number of nanoseconds the SDA signal takes to fall; t(f) in the I2C
--	specification.
--
--- i2c-analog-filter
--	Enable analog filter for i2c lines.
--
--- i2c-digital-filter
--	Enable digital filter for i2c lines.
--
--- i2c-digital-filter-width-ns
--	Width of spikes which can be filtered by digital filter
--	(i2c-digital-filter). This width is specified in nanoseconds.
--
--- i2c-analog-filter-cutoff-frequency
--	Frequency that the analog filter (i2c-analog-filter) uses to distinguish
--	which signal to filter. Signal with higher frequency than specified will
--	be filtered out. Only lower frequency will pass (this is applicable to
--	a low-pass analog filter). Typical value should be above the normal
--	i2c bus clock frequency (clock-frequency).
--	Specified in Hz.
--
--- multi-master
--	states that there is another master active on this bus. The OS can use
--	this information to adapt power management to keep the arbitration awake
--	all the time, for example. Can not be combined with 'single-master'.
--
--- pinctrl
--	add extra pinctrl to configure SCL/SDA pins to GPIO function for bus
--	recovery, call it "gpio" or "recovery" (deprecated) state
--
--- scl-gpios
--	specify the gpio related to SCL pin. Used for GPIO bus recovery.
--
--- sda-gpios
--	specify the gpio related to SDA pin. Optional for GPIO bus recovery.
--
--- single-master
--	states that there is no other master active on this bus. The OS can use
--	this information to detect a stalled bus more reliably, for example.
--	Can not be combined with 'multi-master'.
--
--- smbus
--	states that additional SMBus restrictions and features apply to this bus.
--	An example of feature is SMBusHostNotify. Examples of restrictions are
--	more reserved addresses and timeout definitions.
--
--- smbus-alert
--	states that the optional SMBus-Alert feature apply to this bus.
--
--- mctp-controller
--	indicates that the system is accessible via this bus as an endpoint for
--	MCTP over I2C transport.
--
--Required properties (per child device)
----------------------------------------
--
--- compatible
--	name of I2C slave device
--
--- reg
--	One or many I2C slave addresses. These are usually a 7 bit addresses.
--	However, flags can be attached to an address. I2C_TEN_BIT_ADDRESS is
--	used to mark a 10 bit address. It is needed to avoid the ambiguity
--	between e.g. a 7 bit address of 0x50 and a 10 bit address of 0x050
--	which, in theory, can be on the same bus.
--	Another flag is I2C_OWN_SLAVE_ADDRESS to mark addresses on which we
--	listen to be devices ourselves.
--
--Optional properties (per child device)
----------------------------------------
--
--These properties may not be supported by all drivers. However, if a driver
--wants to support one of the below features, it should adapt these bindings.
--
--- host-notify
--	device uses SMBus host notify protocol instead of interrupt line.
--
--- interrupts
--	interrupts used by the device.
--
--- interrupt-names
--	"irq", "wakeup" and "smbus_alert" names are recognized by I2C core,
--	other names are	left to individual drivers.
--
--- reg-names
--	Names of map programmable addresses.
--	It can contain any map needing another address than default one.
--
--- wakeup-source
--	device can be used as a wakeup source.
--
--Binding may contain optional "interrupts" property, describing interrupts
--used by the device. I2C core will assign "irq" interrupt (or the very first
--interrupt if not using interrupt names) as primary interrupt for the slave.
--
--Alternatively, devices supporting SMBus Host Notify, and connected to
--adapters that support this feature, may use "host-notify" property. I2C
--core will create a virtual interrupt for Host Notify and assign it as
--primary interrupt for the slave.
--
--Also, if device is marked as a wakeup source, I2C core will set up "wakeup"
--interrupt for the device. If "wakeup" interrupt name is not present in the
--binding, then primary interrupt will be used as wakeup interrupt.
-diff --git a/Documentation/devicetree/bindings/i2c/nvidia,tegra186-bpmp-i2c.yaml b/Documentation/devicetree/bindings/i2c/nvidia,tegra186-bpmp-i2c.yaml
-index b8319dcf3d8a..8676335e9e94 100644
---- a/Documentation/devicetree/bindings/i2c/nvidia,tegra186-bpmp-i2c.yaml
-+++ b/Documentation/devicetree/bindings/i2c/nvidia,tegra186-bpmp-i2c.yaml
-@@ -21,8 +21,7 @@ description: |
-   See ../firmware/nvidia,tegra186-bpmp.yaml for details of the BPMP
-   binding.
- 
--  This node represents an I2C controller. See ../i2c/i2c.txt for details
--  of the core I2C binding.
-+  This node represents an I2C controller.
- 
- properties:
-   compatible:
-diff --git a/Documentation/devicetree/bindings/i3c/i3c.yaml b/Documentation/devicetree/bindings/i3c/i3c.yaml
-index c816e295d565..87cadbcdc61c 100644
---- a/Documentation/devicetree/bindings/i3c/i3c.yaml
-+++ b/Documentation/devicetree/bindings/i3c/i3c.yaml
-@@ -71,7 +71,7 @@ patternProperties:
-     description: |
-       I2C child, should be named: <device-type>@<i2c-address>
- 
--      All properties described in Documentation/devicetree/bindings/i2c/i2c.txt
-+      All properties described in dtschema schemas/i2c/i2c-controller.yaml
-       are valid here, except the reg property whose content is changed.
- 
-     properties:
-diff --git a/Documentation/devicetree/bindings/sound/cs4341.txt b/Documentation/devicetree/bindings/sound/cs4341.txt
-index 12b4aa8ef0db..c1d5c8ad1a36 100644
---- a/Documentation/devicetree/bindings/sound/cs4341.txt
-+++ b/Documentation/devicetree/bindings/sound/cs4341.txt
-@@ -9,7 +9,7 @@ Required properties:
-           number for SPI.
- 
- For required properties on I2C-bus, please consult
--Documentation/devicetree/bindings/i2c/i2c.txt
-+dtschema schemas/i2c/i2c-controller.yaml
- For required properties on SPI-bus, please consult
- Documentation/devicetree/bindings/spi/spi-bus.txt
- 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 45c6c13b4edf..50a906eb8dfd 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -10074,7 +10074,6 @@ S:	Maintained
- W:	https://i2c.wiki.kernel.org/
- Q:	https://patchwork.ozlabs.org/project/linux-i2c/list/
- T:	git git://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux.git
--F:	Documentation/devicetree/bindings/i2c/i2c.txt
- F:	Documentation/i2c/
- F:	drivers/i2c/*
- F:	include/dt-bindings/i2c/i2c.h
+Thirdly the main part of the patchset concern fixing the xHCI, EHCI/OHCI
+and DWC USB3 DT nodes name as in accordance with their DT schema the
+corresponding node name is suppose to comply with the Generic USB HCD DT
+schema, which requires the USB nodes to have the name acceptable by the
+regexp: "^usb(@.*)?". Such requirement had been applicable even before we
+introduced the new DT schema in [1], but as we can see it hasn't been
+strictly implemented for a lot the DTS files. Since DT schema is now
+available the automated DTS validation shall make sure that the rule isn't
+violated.
+
+Note most of these patches have been a part of the last three patches of
+[1]. But since there is no way to have them merged in in a combined
+manner, I had to move them to the dedicated series and split them up so to
+be accepted by the corresponding subsystem maintainers one-by-one.
+
+[1] Link: https://lore.kernel.org/linux-usb/20201014101402.18271-1-Sergey.Semin@baikalelectronics.ru
+Changelog v1:
+- As Krzysztof suggested I've created a script which checked whether the
+  node names had been also updated in all the depended dts files. As a
+  result I found two more files which should have been also modified:
+  arch/arc/boot/dts/{axc003.dtsi,axc003_idu.dtsi}
+- Correct the USB DWC3 nodes name found in
+  arch/arm64/boot/dts/apm/{apm-storm.dtsi,apm-shadowcat.dtsi} too.
+
+Link: https://lore.kernel.org/linux-usb/20201020115959.2658-1-Sergey.Semin@baikalelectronics.ru
+Changelog v2:
+- Drop the patch:
+  [PATCH 01/29] usb: dwc3: Discard synopsys,dwc3 compatibility string
+  and get back the one which marks the "synopsys,dwc3" compatible string
+  as deprecated into the DT schema related series.
+- Drop the patches:
+  [PATCH 03/29] arm: dts: am437x: Correct DWC USB3 compatible string
+  [PATCH 04/29] arm: dts: exynos: Correct DWC USB3 compatible string
+  [PATCH 07/29] arm: dts: bcm53x: Harmonize EHCI/OHCI DT nodes name
+  [PATCH 08/29] arm: dts: stm32: Harmonize EHCI/OHCI DT nodes name
+  [PATCH 16/29] arm: dts: bcm5301x: Harmonize xHCI DT nodes name
+  [PATCH 19/29] arm: dts: exynos: Harmonize DWC USB3 DT nodes name
+  [PATCH 21/29] arm: dts: ls1021a: Harmonize DWC USB3 DT nodes name
+  [PATCH 22/29] arm: dts: omap5: Harmonize DWC USB3 DT nodes name
+  [PATCH 24/29] arm64: dts: allwinner: h6: Harmonize DWC USB3 DT nodes name
+  [PATCH 26/29] arm64: dts: exynos: Harmonize DWC USB3 DT nodes name
+  [PATCH 27/29] arm64: dts: layerscape: Harmonize DWC USB3 DT nodes name
+  since they have been applied to the corresponding maintainers repos.
+- Fix drivers/usb/dwc3/dwc3-qcom.c to be looking for the "usb@"-prefixed
+  sub-node and falling back to the "dwc3@"-prefixed one on failure.
+
+Link: https://lore.kernel.org/linux-usb/20201111091552.15593-1-Sergey.Semin@baikalelectronics.ru
+Changelog v3:
+- Drop the patches:
+  [PATCH v2 04/18] arm: dts: hisi-x5hd2: Harmonize EHCI/OHCI DT nodes name
+  [PATCH v2 06/18] arm64: dts: hisi: Harmonize EHCI/OHCI DT nodes name
+  [PATCH v2 07/18] mips: dts: jz47x: Harmonize EHCI/OHCI DT nodes name
+  [PATCH v2 08/18] mips: dts: sead3: Harmonize EHCI/OHCI DT nodes name
+  [PATCH v2 09/18] mips: dts: ralink: mt7628a: Harmonize EHCI/OHCI DT nodes name
+  [PATCH v2 11/18] arm64: dts: marvell: cp11x: Harmonize xHCI DT nodes name
+  [PATCH v2 12/18] arm: dts: marvell: armada-375: Harmonize DWC USB3 DT nodes name
+  [PATCH v2 16/18] arm64: dts: hi3660: Harmonize DWC USB3 DT nodes name
+  since they have been applied to the corresponding maintainers repos.
+
+Link: https://lore.kernel.org/linux-usb/20201205155621.3045-1-Sergey.Semin@baikalelectronics.ru
+Changelog v4:
+- Just resend.
+
+Link: https://lore.kernel.org/linux-usb/20201210091756.18057-1-Sergey.Semin@baikalelectronics.ru
+Changelog v5:
+- Drop the patch:
+  [PATCH v4 02/10] arm64: dts: amlogic: meson-g12: Set FL-adj property value
+  since it has been applied to the corresponding maintainers repos.
+- Get back the patch:
+  [PATCH 21/29] arm: dts: ls1021a: Harmonize DWC USB3 DT nodes name
+  as it has been missing in the kernel 5.11-rc7
+- Rebase onto the kernel 5.11-rc7.
+
+Link: https://lore.kernel.org/lkml/20210208135154.6645-1-Sergey.Semin@baikalelectronics.ru
+Changelog v6:
+- Just resend and add linux-usb.vger.kernel.org to the list of Ccecipients.
+
+Link: https://lore.kernel.org/linux-usb/20210210172850.20849-1-Sergey.Semin@baikalelectronics.ru
+Link: https://lore.kernel.org/linux-usb/20210212205521.14280-1-Sergey.Semin@baikalelectronics.ru
+Changelog v7:
+- Replace "of_get_child_by_name(np, "usb") ?: of_get_child_by_name(np, "dwc3");"
+  pattern with using of_get_compatible_child() method in the Qcom DWC3 driver.
+- Drop the patches:
+  [PATCH v6 01/10] arm: dts: ls1021a: Harmonize DWC USB3 DT nodes name
+  [PATCH v6 02/10] arm: dts: keystone: Correct DWC USB3 compatible string
+  [PATCH v6 06/10] arm: dts: keystone: Harmonize DWC USB3 DT nodes name
+  since they have been applied to the corresponding maintainers repos.
+- Cleanup the list of recipients.
+- Rebase onto kernel 5.12-rc4.
+
+Link: https://lore.kernel.org/lkml/20210324204836.29668-1-Sergey.Semin@baikalelectronics.ru
+Changelog v8:
+- Just resend.
+
+Link: https://lore.kernel.org/lkml/20210409113029.7144-1-Sergey.Semin@baikalelectronics.ru
+Changelog v9:
+- Drop the patches:
+  [PATCH RESEND v8 1/8] arm: dts: ls1021a: Harmonize DWC USB3 DT nodes name
+  [PATCH RESEND v8 7/8] usb: dwc3: qcom: Detect DWC3 DT-nodes using compatible string
+  since they have been applied to the corresponding maintainers repos.
+- Rebase onto the kernel 5.19-rcX.
+
+Link: https://lore.kernel.org/lkml/20220624141622.7149-1-Sergey.Semin@baikalelectronics.ru
+Changelog v10:
+- Just resend.
+- Rebase onto the kernel 6.8-rc3.
+- Drop the already merged in patches:
+  [PATCH RESEND v9 1/5] arc: dts: Harmonize EHCI/OHCI DT nodes name
+  [PATCH RESEND v9 2/5] arm: dts: lpc18xx: Harmonize EHCI/OHCI DT nodes name
+  [PATCH RESEND v9 4/5] arm: dts: stih407-family: Harmonize DWC USB3 DT nodes name
+  [PATCH RESEND v9 5/5] arm64: dts: apm: Harmonize DWC USB3 DT nodes name
+
+Cc: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>
+Cc: linuxppc-dev@lists.ozlabs.org
+Cc: linux-usb@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+
+Serge Semin (1):
+  powerpc: dts: akebono: Harmonize EHCI/OHCI DT nodes name
+
+ arch/powerpc/boot/dts/akebono.dts | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
 -- 
 2.43.0
+
 
 
