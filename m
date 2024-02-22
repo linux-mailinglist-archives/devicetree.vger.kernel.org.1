@@ -1,101 +1,104 @@
-Return-Path: <devicetree+bounces-44759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FC9885F822
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 13:27:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B608185F82C
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 13:28:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C40C1283B9D
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 12:27:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4352C1F26555
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 12:28:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92C6260B94;
-	Thu, 22 Feb 2024 12:27:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B85EB60DCE;
+	Thu, 22 Feb 2024 12:27:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="Y3oBOrKP"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="2eHmZLCC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com [209.85.221.172])
+Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com [209.85.222.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C852840BFE
-	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 12:27:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C04F60B87
+	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 12:27:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708604832; cv=none; b=uL9ptbbO4+ak2vc4DyKeeBXJDtg4SJJQBiR8I1d7LDxKecmdGYassKFohk9PC8YWK5pLLAxVqN5sVqSJoH41/vpiUeQd9aMy3BaOcfW4Yyavqah65OkrTtAwk+qh/2BzjdyUe5edY8hG4q5xgLU9Et2FjO+QRyMoY0oJSuNk6+w=
+	t=1708604872; cv=none; b=dIdqyF3IU5OLeSjPQ5AIdC5uG7ymWI5hGTRVWfDbRJ9HvPuBbqMvdCl7ehXXZl0/o7WzW5ElqU5KnzlDCY7yw2iJrdG2dzkyJVKEqCRwpC6NFyTjS4rVjDqyhuGweOsrbY0XBxEUcXI85YMrsMdzC9uHYz5jFmCc1rlLSQLsGWc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708604832; c=relaxed/simple;
-	bh=RqgQ6WWKx6ea08lg/2dT3uWXLimx+QSntv5Wes1ky/U=;
+	s=arc-20240116; t=1708604872; c=relaxed/simple;
+	bh=wSHsjtGyIG8Oy03Ay1/8wBYOX3m/TamMnf+lgB3hfcQ=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=O4xV6CLq8VFk5vJw7mgfIAlJA2ajO2iUFyH3Tsa0VZV/p+lHBmOF+KNxb72CgwTS6ed6QiYPQ6P71ndR7sdwogVHg9Vz557cGcoFYj86Wgkt3tM9vudwxjIrgWaxWYPRLRUo5Fes9zAduXXOKYyFPgrCAHsYO4700O1JwsSw7/E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=Y3oBOrKP; arc=none smtp.client-ip=209.85.221.172
+	 To:Cc:Content-Type; b=rdHV/fTKFsUjynKF/EKZfNj9v+YqbepCVYdi7gCHnH3MEh/cDXclkQy+lZ1GIQobn2cltnHhDe5O6zTFaDRVkF/pm066VeUv/CF6NCMHrQgOWeJ+TSy9TgijaOCGrjjvh8VRtcLBotHekpNmq6P88dBYgF4OoSOyiGaia81F4bQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=2eHmZLCC; arc=none smtp.client-ip=209.85.222.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-vk1-f172.google.com with SMTP id 71dfb90a1353d-4d14e9d4d0fso99698e0c.1
-        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 04:27:10 -0800 (PST)
+Received: by mail-ua1-f49.google.com with SMTP id a1e0cc1a2514c-7d6a85586e3so3721704241.2
+        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 04:27:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1708604830; x=1709209630; darn=vger.kernel.org;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1708604869; x=1709209669; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=jauQlDLtoDoTZv/wYHS4jaWj+p+OfLWIznwN3L3gztY=;
-        b=Y3oBOrKP1nTdzndqP2anCnrHfJ8DpwUAegYUMgTBQdBP1y7W7HCGIfgi9g5HfnmyHM
-         RdIULV536nWWH73dNf3ddemPSUA5WzkJ2OMUqLVx1cdX8c4rC56JI9sO191Wbtu65jp0
-         6qNkIeSdPcF5LK/N7z2d1mfPj57+9syuyjcoUSRssAAho540Je1qcxUxxsyR2crjJzP4
-         JRXPX1NBmqFqs3z+niC+xwN7OvMM/3dE1qnVt6UjI4pKmMI4cb6b9CnomS87F6l9XDCH
-         TobuL8AOqgypO+8QfDGB0sSREXccHWLW/nwIqrYNzVK7sAapmkobPEzvVZouUMx85sjC
-         uMfw==
+        bh=87z6zq0uGbrgFYkt6YA8mx0pzsMb/ayOMfEcY0+aFV8=;
+        b=2eHmZLCC9NwBA2UI5DGC/Jym4gQdwpEaB5dYGg8BPMMcWhUag3yJ3LSPgIglBODGNj
+         laSYuL9M50I3fQqKy/BcYy47MEVvy3cess5Mxj7FT5D3JD1yFF0gn3grXrPklA1UvB9U
+         uXepih9fGlDcxDC4iZpDtdhIjBvo7P6APwamwvC4ADjSipEHq2p+q9/cVXrgYjNrdUbP
+         xWXmzTGJ8evLKWkV9psjTd4sDs5ujxHAUQ0PRtGihxttBlvBP6VHOLY0Luxi0yIOCKUM
+         sgy4vPS7GBZStZBLdL+KJwQj/JYcnH7ZKAP8Vw+2CY93nFdd7epamkepxOlFfaqdpD/P
+         1g0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708604830; x=1709209630;
+        d=1e100.net; s=20230601; t=1708604869; x=1709209669;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=jauQlDLtoDoTZv/wYHS4jaWj+p+OfLWIznwN3L3gztY=;
-        b=ZSw7TzrBL/KlDoKdi8RB/cyHi4Neo6V7jqgM58xa3EOBpvgUNMjwsKKHPxil6TsCBl
-         EIlSRdb+7M1LGWNEgZ9R+qvOe7h0Mi9gH6/B/0ueCDd0A2JX5WkINHriopycJ47GleRx
-         hvPCKsVgxNcMiCbctWScNsyvcxQndWt3U2XQJkD1OTSEWqozZfHaP7LGcH3Y3QCHGyDY
-         ZBLij05cbEht6We831wc+Jlyym7FO+PAxC99r+gbUJOIX7u6oNi7kk8IFf6QCjsu6fj2
-         Oj5jEYEt/jKvnAglBqc3eeGz69JbiPp4aKMjMzVpdByR8tuujn0xpm+bXQUp+yzCHcZ1
-         ssyg==
-X-Forwarded-Encrypted: i=1; AJvYcCX+6a+Jg82AYASHulLHbrHj5mrxmB9Z5k+aBdnx0ERIGt1l88Um6NjQzvvbIXDm36OO9ez62SUOXZQqiGNvcK+9gjPP9kzhhMouEg==
-X-Gm-Message-State: AOJu0YwreP9TvyTTst0gWX3tfmwLdzu101q4K+kOaITbA1EiX332EMUP
-	c/xJHd8JhV0SQJQDL8SzqpJT6MIaASBdyFPlddEeabMKbAmyAXDrSR+rjU8BZuPXvdMn3yB4Qek
-	22aKng9P0RkxL0gPcSQg5MYwZmSQ1YXXP7TuuTg==
-X-Google-Smtp-Source: AGHT+IFlGGmIhRlgVOJ7guJadgo+TYPb+Ty3wru20Zbb3E4L9+ZKZyhslxKwfpF5Fh/fPrLioG3sC4Re2RH2PFEfGYU=
-X-Received: by 2002:a1f:66c1:0:b0:4c8:8149:848e with SMTP id
- a184-20020a1f66c1000000b004c88149848emr10294476vkc.5.1708604829800; Thu, 22
- Feb 2024 04:27:09 -0800 (PST)
+        bh=87z6zq0uGbrgFYkt6YA8mx0pzsMb/ayOMfEcY0+aFV8=;
+        b=S2UtvBd2lTlhYZcPVFX76ukDzMRhKYIsxTlNuFggN8KmQGfwnJpzdpbURvOUf4eGCG
+         U/c5SRIYRgg8lrs1moTDu3BuR/g+HrRfr9AxGdySl4Zz+TL2tlNiEiwawjByFFhdTtLQ
+         oeDIJpj8DtXEaC+1vAsN+iHCwqLXKa9FbAx4fFb8mFkBsOUPOzF+YeOLR2ZRsRNmOE7G
+         I/3HpqtnPydDbxjdIL7RT3+DkzENvLtWANzXBgznijKcf/00xKzoLnHCztRMuP9xsSwm
+         UXqWY1Ue763xKZMTCm/u9M6nbnTCw4DRCcmITy+eKcAuQ8xjxGAfkGdIwGWSY57KqcIj
+         sGXA==
+X-Forwarded-Encrypted: i=1; AJvYcCU6ghV+gyOiJVEV8yNu+I6jH3UqG3CN4cXoGfmzf/C+jSUZrM8XGnTS93EJyBrXpSdz8la40WGNARSpUj8UNDbUx2uXV2xu62qx2Q==
+X-Gm-Message-State: AOJu0YxDuP+2WD4R4DnYzkZQxCcvsps+r6n2y+7pE8a+yXy/9fWMgj/1
+	cH+Sgf7mGCtRAXvJ9UyKsatPiHNSTVqpgh2vtSTlBayVhC+0nC60qxPsEJaGhObKEElklhWFBPq
+	vP9WjPjj430UBJ9EcyV0kYemYxjU75TeERga8Wg==
+X-Google-Smtp-Source: AGHT+IEX89w8BA5MRuF+hYzsldrzWJL7R30+wWpJcrmQgBmAJsacwJX7Ls13cXFgRWb101UOeMKn5UqfoaZY6qWXHKw=
+X-Received: by 2002:a05:6102:c50:b0:471:bde0:4050 with SMTP id
+ y16-20020a0561020c5000b00471bde04050mr1095401vss.8.1708604869551; Thu, 22 Feb
+ 2024 04:27:49 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240216203215.40870-1-brgl@bgdev.pl> <20240216203215.40870-15-brgl@bgdev.pl>
- <d5d603dc-ec66-4e21-aa41-3b25557f1fb7@sirena.org.uk> <CAMRc=MeUjKPS3ANE6=7WZ3kbbGAdyE8HeXFN=75Jp-pVyBaWrQ@mail.gmail.com>
- <ea08a286-ff53-4d58-ae41-38cca151508c@sirena.org.uk> <17bbd9ae-0282-430e-947b-e6fb08c53af7@linaro.org>
- <53f0956f-ee64-4bd6-b44f-cbebafd42e46@sirena.org.uk> <CAMRc=MedCX_TGGawMhr39oXtJPF4pOQF=Jh2z4uXkOxwhfJWRw@mail.gmail.com>
- <52fba837-989b-4213-8af7-f02cd8cb48c8@sirena.org.uk>
-In-Reply-To: <52fba837-989b-4213-8af7-f02cd8cb48c8@sirena.org.uk>
+References: <20240216203215.40870-1-brgl@bgdev.pl> <CAA8EJppt4-L1RyDeG=1SbbzkTDhLkGcmAbZQeY0S6wGnBbFbvw@mail.gmail.com>
+ <e4cddd9f-9d76-43b7-9091-413f923d27f2@linaro.org> <CAA8EJpp6+2w65o2Bfcr44tE_ircMoON6hvGgyWfvFuh3HamoSQ@mail.gmail.com>
+ <4d2a6f16-bb48-4d4e-b8fd-7e4b14563ffa@linaro.org> <CAA8EJpq=iyOfYzNATRbpqfBaYSdJV1Ao5t2ewLK+wY+vEaFYAQ@mail.gmail.com>
+ <CAMRc=Mfnpusf+mb-CB5S8_p7QwVW6owekC5KcQF0qrR=iOQ=oA@mail.gmail.com>
+ <CAA8EJppY7VTrDz3-FMZh2qHoU+JSGUjCVEi5x=OZgNVxQLm3eQ@mail.gmail.com>
+ <b9a31374-8ea9-407e-9ec3-008a95e2b18b@linaro.org> <CAA8EJppWY8c-pF75WaMadWtEuaAyCc5A1VLEq=JmB2Ngzk-zyw@mail.gmail.com>
+ <CAMRc=Md6SoXukoGb4bW-CSYgjpO4RL+0Uu3tYrZzgSgVtFH6Sw@mail.gmail.com> <CAA8EJprUM6=ZqTwWLB8rW8WRDqwncafa-szSsTvPQCOOSXUn_w@mail.gmail.com>
+In-Reply-To: <CAA8EJprUM6=ZqTwWLB8rW8WRDqwncafa-szSsTvPQCOOSXUn_w@mail.gmail.com>
 From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Thu, 22 Feb 2024 13:26:59 +0100
-Message-ID: <CAMRc=MeF7xVjRKetg1A3MNO4yMasPA2GC7MLCBrOiwO5UBv6LA@mail.gmail.com>
-Subject: Re: [PATCH v5 14/18] PCI/pwrctl: add a power control driver for WCN7850
-To: Mark Brown <broonie@kernel.org>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, Marcel Holtmann <marcel@holtmann.org>, 
+Date: Thu, 22 Feb 2024 13:27:38 +0100
+Message-ID: <CAMRc=Metemd=24t0RJw-O9Z0-cg4mESouOfvMVLs_rJDCwRBPQ@mail.gmail.com>
+Subject: Re: [PATCH v5 00/18] power: sequencing: implement the subsystem and
+ add first users
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: neil.armstrong@linaro.org, Marcel Holtmann <marcel@holtmann.org>, 
 	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, "David S . Miller" <davem@davemloft.net>, 
 	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
 	Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
 	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
 	Bjorn Helgaas <bhelgaas@google.com>, Saravana Kannan <saravanak@google.com>, 
 	Geert Uytterhoeven <geert+renesas@glider.be>, Arnd Bergmann <arnd@arndb.de>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Marek Szyprowski <m.szyprowski@samsung.com>, 
-	Alex Elder <elder@linaro.org>, Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Alex Elder <elder@linaro.org>, 
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
 	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Abel Vesa <abel.vesa@linaro.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Lukas Wunner <lukas@wunner.de>, 
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, linux-bluetooth@vger.kernel.org, 
+	Manivannan Sadhasivam <mani@kernel.org>, Lukas Wunner <lukas@wunner.de>, linux-bluetooth@vger.kernel.org, 
 	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, 
 	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
@@ -104,37 +107,150 @@ Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, Marcel Holtmann <marcel@holtmann.o
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 22, 2024 at 1:21=E2=80=AFPM Mark Brown <broonie@kernel.org> wro=
-te:
+On Thu, Feb 22, 2024 at 12:27=E2=80=AFPM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
 >
-> On Thu, Feb 22, 2024 at 10:22:50AM +0100, Bartosz Golaszewski wrote:
-> > On Wed, Feb 21, 2024 at 12:44=E2=80=AFAM Mark Brown <broonie@kernel.org=
-> wrote:
->
-> > > Yes, that's the theory - I just question if it actually does somethin=
-g
-> > > useful in practice.  Between regulators getting more and more able to
-> > > figure out mode switching autonomously based on load monitoring and t=
-hem
-> > > getting more efficient it's become very unclear if this actually
-> > > accomplishes anything, the only usage is the Qualcomm stuff and that'=
-s
-> > > all really unsophisticated and has an air of something that's being
-> > > cut'n'pasted forwards rather than delivering practical results.  Ther=
+> On Thu, 22 Feb 2024 at 13:00, Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+> >
+> > On Mon, Feb 19, 2024 at 11:21=E2=80=AFPM Dmitry Baryshkov
+> > <dmitry.baryshkov@linaro.org> wrote:
+> > >
+> > > On Mon, 19 Feb 2024 at 19:18, <neil.armstrong@linaro.org> wrote:
+> > > >
+> > > > On 19/02/2024 13:33, Dmitry Baryshkov wrote:
+> > > > > On Mon, 19 Feb 2024 at 14:23, Bartosz Golaszewski <brgl@bgdev.pl>=
+ wrote:
+> > > > >>
+> > > > >> On Mon, Feb 19, 2024 at 11:26=E2=80=AFAM Dmitry Baryshkov
+> > > > >> <dmitry.baryshkov@linaro.org> wrote:
+> > > > >>>
+> > > > >>
+> > > > >> [snip]
+> > > > >>
+> > > > >>>>>>>>
+> > > > >>>>>>>> For WCN7850 we hide the existence of the PMU as modeling i=
+t is simply not
+> > > > >>>>>>>> necessary. The BT and WLAN devices on the device-tree are =
+represented as
+> > > > >>>>>>>> consuming the inputs (relevant to the functionality of eac=
+h) of the PMU
+> > > > >>>>>>>> directly.
+> > > > >>>>>>>
+> > > > >>>>>>> We are describing the hardware. From the hardware point of =
+view, there
+> > > > >>>>>>> is a PMU. I think at some point we would really like to des=
+cribe all
+> > > > >>>>>>> Qualcomm/Atheros WiFI+BT units using this PMU approach, inc=
+luding the
+> > > > >>>>>>> older ath10k units present on RB3 (WCN3990) and db820c (QCA=
+6174).
+> > > > >>>>>>
+> > > > >>>>>> While I agree with older WiFi+BT units, I don't think it's n=
+eeded for
+> > > > >>>>>> WCN7850 since BT+WiFi are now designed to be fully independe=
+nt and PMU is
+> > > > >>>>>> transparent.
+> > > > >>>>>
+> > > > >>>>> I don't see any significant difference between WCN6750/WCN685=
+5 and
+> > > > >>>>> WCN7850 from the PMU / power up point of view. Could you plea=
+se point
+> > > > >>>>> me to the difference?
+> > > > >>>>>
+> > > > >>>>
+> > > > >>>> The WCN7850 datasheet clearly states there's not contraint on =
+the WLAN_EN
+> > > > >>>> and BT_EN ordering and the only requirement is to have all inp=
+ut regulators
+> > > > >>>> up before pulling up WLAN_EN and/or BT_EN.
+> > > > >>>>
+> > > > >>>> This makes the PMU transparent and BT and WLAN can be describe=
+d as independent.
+> > > > >>>
+> > > > >>>  From the hardware perspective, there is a PMU. It has several =
+LDOs. So
+> > > > >>> the device tree should have the same style as the previous
+> > > > >>> generations.
+> > > > >>>
+> > > > >>
+> > > > >> My thinking was this: yes, there is a PMU but describing it has =
+no
+> > > > >> benefit (unlike QCA6x90). If we do describe, then we'll end up h=
+aving
+> > > > >> to use pwrseq here despite it not being needed because now we wo=
+n't be
+> > > > >> able to just get regulators from WLAN/BT drivers directly.
+> > > > >>
+> > > > >> So I also vote for keeping it this way. Let's go into the packag=
 e
-> > > is some value at ultra low loads, but that's more for suspend modes t=
-han
-> > > for actual use.
+> > > > >> detail only if it's required.
+> > > > >
+> > > > > The WiFi / BT parts are not powered up by the board regulators. T=
+hey
+> > > > > are powered up by the PSU. So we are not describing it in the acc=
+urate
+> > > > > way.
+> > > >
+> > > > I disagree, the WCN7850 can also be used as a discrete PCIe M.2 car=
+d, and in
+> > > > this situation the PCIe part is powered with the M.2 slot and the B=
+T side
+> > > > is powered separately as we currently do it now.
+> > >
+> > > QCA6390 can also be used as a discrete M.2 card.
+> > >
+> > > > So yes there's a PMU, but it's not an always visible hardware part,=
+ from the
+> > > > SoC PoV, only the separate PCIe and BT subsystems are visible/contr=
+ollable/powerable.
+> > >
+> > > From the hardware point:
+> > > - There is a PMU
+> > > - The PMU is connected to the board supplies
+> > > - Both WiFi and BT parts are connected to the PMU
+> > > - The BT_EN / WLAN_EN pins are not connected to the PMU
+> > >
+> > > So, not representing the PMU in the device tree is a simplification.
+> > >
+> >
+> > What about the existing WLAN and BT users of similar packages? We
+> > would have to deprecate a lot of existing bindings. I don't think it's
+> > worth it.
 >
-> > Removing it would be out of scope for this series and I don't really
-> > want to introduce any undefined behavior when doing a big development
-> > like that. I'll think about it separately.
+> We have bindings that are not reflecting the hardware. So yes, we
+> should gradually update them once the powerseq is merged.
 >
-> This is new code?
+> > The WCN7850 is already described in bindings as consuming what is PMUs
+> > inputs and not its outputs.
+>
+> So do WCN6855 and QCA6391 BlueTooth parts.
+>
 
-It's a new driver but Qualcomm standard has been to provide the load
-values. If it's really unnecessary then maybe let's consider it
-separately and possibly rework globally?
+That is not true for the latter, this series is adding regulators for it.
 
 Bart
+
+> >
+> > Bart
+> >
+> > > >
+> > > > Neil
+> > > >
+> > > > >
+> > > > > Moreover, I think we definitely want to move BT driver to use onl=
+y the
+> > > > > pwrseq power up method. Doing it in the other way results in the =
+code
+> > > > > duplication and possible issues because of the regulator / pwrseq
+> > > > > taking different code paths.
+> > >
+> > > --
+> > > With best wishes
+> > > Dmitry
+>
+>
+>
+> --
+> With best wishes
+> Dmitry
 
