@@ -1,182 +1,146 @@
-Return-Path: <devicetree+bounces-44644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B21E85F2EF
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 09:30:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1466385F31E
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 09:38:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8DD711C21000
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 08:30:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BDA7F2839AD
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 08:38:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFE4C22EF5;
-	Thu, 22 Feb 2024 08:30:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1653E23754;
+	Thu, 22 Feb 2024 08:38:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Lnst1hBl"
+	dkim=pass (1024-bit key) header.d=nuvoton.com header.i=@nuvoton.com header.b="N+njsBqB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2050.outbound.protection.outlook.com [40.107.215.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECF2D22615
-	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 08:30:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708590623; cv=none; b=SstvelvLoEnl4Fdtrkb45WE4dXqGEsJ7iuJWuXoBKY4i2/dfwjfwAnrXDyAlgzZdGq2NjC/prZTAbKNgOi/XimXaxz1ER+vBG8PwVa5oPlNcp4tV/knM4PhX0sfqXLqNDRzFpzr7BxFoJLmvgHdaou5KuAiihc44Q2pcHkpLCcU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708590623; c=relaxed/simple;
-	bh=TDVHbHmjOOuwKIGXLipXVMrG/xOSgCHdDWJzigXFsD0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iuhE75uxTrhJBVzbhIZ5k0SXQw5UEXZum2s2svup0XThWzXHlK2oSf6Qmjjk+VmwaSMxOaqZpGck/VV/GKXfE792Ih1beYRfkRFt/ZReEIXb1LRhCoBqMQaSnzATQprIXIaMg7B/1nebGKV4eNc9e7XXFQftr6wxaqE7kBNwBno=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Lnst1hBl; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a3f5808b0dfso177695266b.1
-        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 00:30:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708590620; x=1709195420; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JfFl6Nv53g+4pvBn47IPDnhewZ3IGGDlWpzdfZ97p5g=;
-        b=Lnst1hBlLD79YokojBGfNqPw7HJcFf4vvVBdE+pIzLrxhHctNfj329ygaH3sIwgQvl
-         vRKF53P/lMlNwVhSrHhT8NHh2OrkPphIbvkF64H/v11UgnQGYt0MrFSjTKFcFlIydKRw
-         JnvMzzdu13lJpfs2PDot9fKjbkCHGj03RDkUb7Pyy4TOuceEbBC6kSbsx805xsBOt0+Y
-         o1VVdEyZD+IbWsCvxnT6yZMNBUsVs8eKlJR1gHy3rFFaupC/T1fxehmeJO4w2l3H43Jd
-         6UrJqI+V3WLNzetouS3T76Nsp5Go7eZz52i9s/OfFaP1E2qxjUNAPzPi3qecsy2gXnpX
-         hwDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708590620; x=1709195420;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JfFl6Nv53g+4pvBn47IPDnhewZ3IGGDlWpzdfZ97p5g=;
-        b=Ay1SPouIK0sPJM5qgNlKlLGcQ8zG2zm2WMCeZwN7c5CsyWFtf9B28g/kYxdzm55PWh
-         AOHfmeJs83WcoJDP8qnru1V/f8W06Oq/Tkh0XyPB+RC4vE70SXRvhFYB3rOzth1L7Q/V
-         AUXs8ISGw+tMvGmU5Vdop492CB8mf0FwtilwXhexB+7nc8gBpQ4nsNUj1kUcW/FLZpHN
-         k50kyjiluIaYuEgdK3c1eRC84s+ddzwktBvu7MrJafkMum9pLTp/0RQYK6Vg7YlOiT3V
-         1bqEfB9fCw+6guc5PNOHrd/gs5F1u8UwqrKdk5Fev2Fg7Ao8xu9T395uxPqz+q0MiNQQ
-         mj2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWYgaq2EoH1mpy0vQcnwHYcFZtVk/AyWyI4tSlkULU5Kt+4MNqPqAhQ7DpXqvaye7m/3onX3DfsZtE3MrFJ/QrufxPRYC1lxXJxwg==
-X-Gm-Message-State: AOJu0Yyd9zPofmig0KXD86EOv8D7R1XNjwhKTZ/pC5taMah6OPdEutcS
-	W/sVEWn3+TdGhvofKSxLiCkiyZJye/FNHJsd2GvwwRAqeuCZUUD4PGRzPFTZFCE=
-X-Google-Smtp-Source: AGHT+IGImmTMlOFAe/o1JwcZ1T7azTD8kxUe9dHesVYTOfpnRc19tZTN5OeMe5epAEbcaB63z54uMw==
-X-Received: by 2002:a17:906:d8a8:b0:a3f:4596:c3c8 with SMTP id qc8-20020a170906d8a800b00a3f4596c3c8mr2238058ejb.53.1708590620255;
-        Thu, 22 Feb 2024 00:30:20 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id wg4-20020a17090705c400b00a3d99415705sm5698736ejb.73.2024.02.22.00.30.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Feb 2024 00:30:19 -0800 (PST)
-Message-ID: <efee9c66-cb84-4f02-91b6-53f2db874b3b@linaro.org>
-Date: Thu, 22 Feb 2024 09:30:16 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0DED2261F;
+	Thu, 22 Feb 2024 08:38:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.215.50
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708591127; cv=fail; b=OiJiN0Fh9aiR3F2ruLFyNBNd9FKYW687+VUc+L6SKsaezNSNexg+ElGDBOJLKCFxw3Ow63sh2s2Cy0PRgUhEwVOdvna7If19emt4UXqLyCFE/os0p1JahN0BEFVT0FOQvQd/tkCC+kuG3j7/WhvFN5Ge41xZ218d4BR+R2IhV3w=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708591127; c=relaxed/simple;
+	bh=urpBMRg4QJ/+erpVhxrs3D7M9jaAucnv/nvlYHl9zUY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ogvnt3Qk/sfCrRdWK1qTCJTKTSCViHqbXYdrdYV5ClT6Lb+WdRlgWAPX5XrUrq3hocL3uEOqKPCKoi0rtjqZ41DnfB8UmMrtf+XCXf2743GFxbxFjK/P/9qaVL32GC4GRAXf+ILp8tGqdZA9ZStDyArcWQaVRDigZ1f1DzMMNVQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nuvoton.com; spf=pass smtp.mailfrom=nuvoton.com; dkim=pass (1024-bit key) header.d=nuvoton.com header.i=@nuvoton.com header.b=N+njsBqB; arc=fail smtp.client-ip=40.107.215.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nuvoton.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nuvoton.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gFDhbap8blGlutriPlDzr3sDs4fAS+YzrJkD+cPO9DZM/4ttA44k5dCFJAVuWagQTQ5Cyx/nOZYBhsGoYEoej04+9BTtIMpMqxPdKwQSQhsakdvIUG31U/MPHU8kngbAiDXMpXnCeizxuKIa7ZxqI9QWK3y7YzTSuHsLQ4Z/K+ZRZMJ0Io0IdABMB0vieHrXFEfaeT5HIAwb+LK9lbizQMb2fpv4y64qiKdiAFuz1nwDQET71sCvfrJqdNHNjan5ZrgWqRkUXfgEopLTCjjaX383B1rg4sRzCfTymamABVRqMREnzzYDlMrK3RFjEQrx4KhwuLvgkOt7cq9jYBivPQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VuuSublDF3WqGdilez+Yu8tqbNiAXUNSAgn4+jcjmtU=;
+ b=PCtTqeSzwK2us7xciTT9n6ANlwRUmPpZqSz35/j4s2BTKQaJN7qdJBN0H0vHhwkLYdMGT7gXNo0TdjMN4kQ1KIc1a/W3i7KNZdmSbRK9RMd6Z3hmXA1ukUi/vToTwUfTSZ5DPRw7hKr3AHA603dhurw11buj7Hm6O1jJ1OI3oAL/X1um0TnlG7Lwo3cqt8QiuBJFOJck4BbMZToZhGOv/9xSHboXXxz3NKdrrnl8YPSCIKhbPY9a6uVjwVIF5BmUkFdbnSKFlp1L1BjXQiHVqCxfzlKaPcfjerY/35KXDF4UpwUDAf1+FH9vupd0mZ5PSdAun0k/DL5JlA+78pvPHw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 175.98.123.7) smtp.rcpttodomain=kernel.org smtp.mailfrom=nuvoton.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=nuvoton.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nuvoton.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VuuSublDF3WqGdilez+Yu8tqbNiAXUNSAgn4+jcjmtU=;
+ b=N+njsBqBZvHj75nskfXED2d9viRKC8zaYELC9y4BP6VEoL0H/QNpJjd+ualp0Keqy3Tsc9MIsbuZPjafd4FiVnA1hRnomb43++K17dtAzX/htowH1N1iD/b8i/A9nq0nON++jYPO8mQ7Ds1rV/A0u9VGZGh4QJOzzIeEq6z3bLc=
+Received: from SG2PR04CA0156.apcprd04.prod.outlook.com (2603:1096:4::18) by
+ SEYPR03MB8391.apcprd03.prod.outlook.com (2603:1096:101:203::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.24; Thu, 22 Feb
+ 2024 08:38:38 +0000
+Received: from SG1PEPF000082E8.apcprd02.prod.outlook.com
+ (2603:1096:4:0:cafe::fd) by SG2PR04CA0156.outlook.office365.com
+ (2603:1096:4::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.43 via Frontend
+ Transport; Thu, 22 Feb 2024 08:38:38 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 175.98.123.7)
+ smtp.mailfrom=nuvoton.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nuvoton.com;
+Received-SPF: Pass (protection.outlook.com: domain of nuvoton.com designates
+ 175.98.123.7 as permitted sender) receiver=protection.outlook.com;
+ client-ip=175.98.123.7; helo=NTHCCAS04.nuvoton.com; pr=C
+Received: from NTHCCAS04.nuvoton.com (175.98.123.7) by
+ SG1PEPF000082E8.mail.protection.outlook.com (10.167.240.11) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
+ 15.20.7292.25 via Frontend Transport; Thu, 22 Feb 2024 08:38:38 +0000
+Received: from NTHCCAS04.nuvoton.com (10.1.8.29) by NTHCCAS04.nuvoton.com
+ (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.14; Thu, 22
+ Feb 2024 16:38:36 +0800
+Received: from localhost.localdomain (10.11.36.27) by NTHCCAS04.nuvoton.com
+ (10.1.8.29) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
+ Transport; Thu, 22 Feb 2024 16:38:36 +0800
+From: Seven Lee <wtli@nuvoton.com>
+To: <broonie@kernel.org>
+CC: <lgirdwood@gmail.com>, <alsa-devel@alsa-project.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<robh+dt@kernel.org>, <conor+dt@kernel.org>, <YHCHuang@nuvoton.com>,
+	<KCHSU0@nuvoton.com>, <CTLIN0@nuvoton.com>, <SJLIN0@nuvoton.com>,
+	<wtli@nuvoton.com>, <scott6986@gmail.com>, <supercraig0719@gmail.com>,
+	<dardar923@gmail.com>
+Subject: [PATCH v2 0/2] ASoC: nau8325: Modify driver code and dtschema.
+Date: Thu, 22 Feb 2024 16:38:23 +0800
+Message-ID: <20240222083825.190854-1-wtli@nuvoton.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] dt-bindings: media: Document bindings for HDMI RX
- Controller
-Content-Language: en-US
-To: Shreeya Patel <shreeya.patel@collabora.com>
-Cc: heiko@sntech.de, mchehab@kernel.org, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
- jose.abreu@synopsys.com, nelson.costa@synopsys.com,
- dmitry.osipenko@collabora.com, sebastian.reichel@collabora.com,
- shawn.wen@rock-chips.com, kernel@collabora.com,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-dt@vger.kernel.org, linux-arm@lists.infradead.org
-References: <20240216094922.257674-1-shreeya.patel@collabora.com>
- <20240216094922.257674-3-shreeya.patel@collabora.com>
- <fd3b7ab7-3702-412f-947a-95396dbe1f4c@linaro.org>
- <1048c3-65d66380-b-49a25c80@188726434>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <1048c3-65d66380-b-49a25c80@188726434>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NotSetDelaration: True
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG1PEPF000082E8:EE_|SEYPR03MB8391:EE_
+X-MS-Office365-Filtering-Correlation-Id: fd8309d1-b293-4163-5eb7-08dc3381aa65
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	HB6kpCcQlX1LYxCYiSwhUFYDl0YiH6s3oIglvaA6KIvgmEA0UJknhMvnywihfysQO8gdMudq8WOqQj4ykwykcwokU+ErkuAthVxPXb/TTOOzkL3/uOL0I2x1qEFVxH3G8r2Ri8xdPPzOA3EAdfwQTxkEZv3FNhjVRKiY5B4KwO7Wqcgw/iiyGNXORzUMtie4Fw2kmdaJuQCIkixCXjt+oUtBfzCG701K04XZFo/mak1Rta8lw33DYS8uyKK8XU6N+m3vdUSSdpp4q4Ndw77yahF9dCczp3JjGzUzuiICXkcN8bOniwXCFwPhvRs0fVpveCB8NgYJwfgjelSF4l7OLhWaHYE9+Hi9TQTHSFr6P/p1vphce6Q3rcnWms+MsYZ+fv8w3tWax0316s6NES1ZorXDbUAek7SyolobShEYJyWCzhZW3T/eZO2eE2uqE5/S7R1haLE+Wqm84abHP9YV0Vel2swfeDIF61weFrohO3IA8hhe3kGHWS4r3RiLZzm2gROdUbQMbH28CxFuoMqilOn3xts2NT99kRcgR/g2dNTHSLOv/7I8tdW/o6omprC6U5jiYclVlOx9IoD+jVDO7JJmfETuZP3SRMBoEWYSBbsu4IFn6K/dCp36VoU4Qn/FL4l2HX2E8/rrxX4bUEfcWA==
+X-Forefront-Antispam-Report:
+	CIP:175.98.123.7;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:NTHCCAS04.nuvoton.com;PTR:175-98-123-7.static.tfn.net.tw;CAT:NONE;SFS:(13230031)(36860700004)(40470700004)(46966006);DIR:OUT;SFP:1101;
+X-OriginatorOrg: nuvoton.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Feb 2024 08:38:38.1241
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fd8309d1-b293-4163-5eb7-08dc3381aa65
+X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a3f24931-d403-4b4a-94f1-7d83ac638e07;Ip=[175.98.123.7];Helo=[NTHCCAS04.nuvoton.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SG1PEPF000082E8.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB8391
 
-On 21/02/2024 21:55, Shreeya Patel wrote:
->>> +  - hdmirx-5v-detection-gpios
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
->>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>> +    #include <dt-bindings/interrupt-controller/irq.h>
->>> +    #include <dt-bindings/power/rk3588-power.h>
->>> +    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
->>> +    hdmirx_ctrler: hdmirx-controller@fdee0000 {
->>
->> What is hdmirx-controller? Isn't this just hdmi@?
->>
-> 
-> Writing just hdmi would imply hdmi output I think so that name
-> will not be appropriate here.
-> 
->> Node names should be generic. See also an explanation and list of
->> examples (not exhaustive) in DT specification:
->> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
->>
-> 
-> This documentation doesn't have any generic name for HDMI INPUT
-> but maybe we can use the name hdmi-receiver like some other existing
-> binding has it here :-
-> Documentation/devicetree/bindings/media/i2c/tda1997x.txt
+Remove the "Clock detection" switch control, and modify dtschema
+for the explanation of "nuvoton,dac-vref".
 
-Yes, it is fine. You did not respond to other comments, so I assume you
-agree with them.
+Change:
+V1 -> V2
+ - Revise the driver description part for the C++ comment.
+ - In the nau8325_clkdet_put function, modify the max variable to hard code.
+ - Removed "Clock Detection" switch control.
+ - modify the "ALC Enable" switch name.
+ - Revise the dtschema for "nuvoton,dac-vref".
 
-Best regards,
-Krzysztof
+Seven Lee (2):
+  ASoC: dt-bindings: Added schema for "nuvoton,nau8325"
+  ASoC: nau8325: new driver
+
+ .../bindings/sound/nuvoton,nau8325.yaml       |  82 ++
+ sound/soc/codecs/nau8325.c                    | 856 ++++++++++++++++++
+ sound/soc/codecs/nau8325.h                    | 391 ++++++++
+ 3 files changed, 1329 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/nuvoton,nau8325.yaml
+ create mode 100755 sound/soc/codecs/nau8325.c
+ create mode 100644 sound/soc/codecs/nau8325.h
+
+-- 
+2.25.1
 
 
