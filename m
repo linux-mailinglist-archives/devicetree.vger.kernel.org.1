@@ -1,109 +1,118 @@
-Return-Path: <devicetree+bounces-44666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C017385F38A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 09:55:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E622585F38F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 09:55:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F29FC1C225F5
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 08:55:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 238B11C214FF
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 08:55:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 246822BB1B;
-	Thu, 22 Feb 2024 08:55:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9A6E3716A;
+	Thu, 22 Feb 2024 08:55:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AOQ+jNpe"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PapNwf3y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F8F42C68A
-	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 08:55:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2200A2C683
+	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 08:55:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708592132; cv=none; b=kl5joGVvQMDFqw0NEUy7bJilzrBomghlEsdTNpNIfv6bWG8d8GN5HlSeinFazHn0AZ8CIq8jwawLuqGlYwJwXW8jTC2RZ8j2Q/E3T6a4bNsfHRnf7Qqr0NwIOG2im77fYXup/Tj1Sd8CS+10BLdcLvPcu3WUXCfHcmQbw7JBJCs=
+	t=1708592136; cv=none; b=l+/wQLzCB3/Am8Y9l8BLTmuILr54T7xVd2EpRgpxJcCvA6XFHzdZt4cDZTUEcdApIh9nSbpeFc2r8KueOQ53MPQX9fVUhDqWFmyrCRvJwKvaWWmN4K1y0BJYZvHNKOOtrDpKFJ2GvePiMupgqqdosaapt8VkpzdcQr0GyVv7DYg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708592132; c=relaxed/simple;
-	bh=5i5jWq9DnIH3DlIu00Vc7MJBkT8ExtWdHY6NMTt9fS8=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=ui9WFSb4fSVQpaOPm9ZIvVVCKoQdoukksZUJLgGC8P4ihU39hDbUnllrWnr2Q6Kh6MCbnY3LPi5lnJPzjhj3UlespAe/G+siZ3EfDI3HD9vJO0EsYtIB5JEizF+HX/8rm00iEZLim0L7PVklXfS2/0tnhynNl/NCJo72SkPzLmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AOQ+jNpe; arc=none smtp.client-ip=209.85.208.52
+	s=arc-20240116; t=1708592136; c=relaxed/simple;
+	bh=FjEV8hE5eZcXGtQ08yUqG4aewSRcZQEUdUXoAZyvLdM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZOK2M5wa+fONA4BaUAL20+ZWOXkBVJdsamM5X3GJvowWoySFqA3Y2bRx/ZzCbn63S3H9koOATGyLHUe7I4okgV76BwUM/eizB+s0yqBNoqLzbe7llOJhflR1QABXacw7ajMrUc4h6bue5gfCIbyBkQJ/64/8Xtweu00E5GMROQE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PapNwf3y; arc=none smtp.client-ip=209.85.167.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5654621d62dso208809a12.3
-        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 00:55:29 -0800 (PST)
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-512bb2ed1f7so5264378e87.3
+        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 00:55:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708592128; x=1709196928; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4dVwQPfQWz5c5f90/AREdLy2jpdXItaUXCVXismVnZg=;
-        b=AOQ+jNpeZSfpOUUKL7S2jN6Nmlwg7lWRPEArHdljLFebbSybMlpIsuLTo/g2TP6L4D
-         3xQ4Rj63Tkx/YxuwIhfe/1B7b3+aHCMMUNI/NZ2u/7HXKNSPlinbXPxkADUZ4qMpiECw
-         PugvCAwAHpLgo09KAWUnoWFebX/gzsR/zIY8BRWYiXiXP7dmOrqpjwCojzt8N0+ixE0i
-         Zp7daGtoiAekhmnJAMO0aQ8IDqnW0RohXaQJLo7nlf68AbU/XVH+Vxr2YNd7j6TTRaCo
-         d2RwHRUWm9raqUrccYE0CPSqRRc6bobjti5hOMRFizK3TsHnRvsGhJD3TkM65anIxCsb
-         TaZw==
+        d=linaro.org; s=google; t=1708592133; x=1709196933; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wvafyN1Ki3gtTTRQp/+ld7EIImwoKNgmY7mZr4vWUK4=;
+        b=PapNwf3y537Ms/L8k4eX+lIusjbE8m+RODhEiY3DAcffEEw1EQsrNG+6fbKIe9EyAW
+         tIA45Lnl0v3HXhAbk4xOFyxtc+fv6xYtw106ggEykTsnmy8TakKtbWGpfkaiKbMjrYNY
+         WsYM6B4j94DypUhEtw+ttyTmcF/hXFFIHEw0yRoHo8AHJQ4GdZCF5+zr6lp97ZC4ZFf6
+         AyVDGex46/8PCDe7Q5y16MZUzdcKZzYe29pKlZA3knz9KU4s0zDkXTtuE2IiTwiRSu+/
+         ffWo1xsBfSfdRIOY5WuNtaiAEjHaT9rwk9+PGKD+b9E43izvMczaPA41jjzuIO2sT2O1
+         nZaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708592128; x=1709196928;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4dVwQPfQWz5c5f90/AREdLy2jpdXItaUXCVXismVnZg=;
-        b=ajnR2L5+y5QnGstSTlLJi1d3IO82b5CW4ZpdeS4jXQGNy2f+rdvs/Q3A5xr9XChu1s
-         MHsGnDuBlesqyLnhNt7yt07T4ps8Lf3OEwrIrInwLY/yJHgcu+AUirzqW1EfWFDURPRg
-         q+ekIAP14XzI5H8EjOdvrnmmu6Md00ddXyeD9NCKfH7Nx1AOjNEPiFuzJ87d8G5ee3Wf
-         QwfoeWoiAhum5cgMRyzry0bsh9ntBBL9RJWTe+AMY5ju0L9o2u9Ym9tU5ITmZ8qDxPI3
-         FMsIyjm6gQG6jOyF8A2jeV3p7QkV8lt4IJ9XTC6GY9OwZ2DrmnBZeCLeQi9ycc/kjyyw
-         lniQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVtX/w1vHU7E9iUmFAv39NT4/bu+uOKsUQDXKhEjn4Tx00XVaxISpOlIruhpTFwIoC/78AzTjJfJbfvvfQQPBZUR1NVexqK/vcyug==
-X-Gm-Message-State: AOJu0YxDaRPB5L+LKucghN7ctQFkopB+s3+fjyyMlIJILY5ILhsYPNlu
-	Sl1RzbRM5s1EkgUOKpY6pfV41E+pCMyLLHmN5UuD7EPvxu3/Za88X6cnyejswIc=
-X-Google-Smtp-Source: AGHT+IGL+YtqEIUR4QxIfx4HWjVOJQw8MXI0vRI83fodpBAUEiUtIV1FNqp9YQeKt4pNfoY9Jn3zpw==
-X-Received: by 2002:a17:906:c293:b0:a3e:ff36:c83 with SMTP id r19-20020a170906c29300b00a3eff360c83mr6234774ejz.29.1708592128486;
-        Thu, 22 Feb 2024 00:55:28 -0800 (PST)
-Received: from [127.0.1.1] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id tl19-20020a170907c31300b00a3e5bd2482csm4623503ejc.46.2024.02.22.00.55.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Feb 2024 00:55:27 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Peter Griffin <peter.griffin@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20240219125453.103692-1-krzysztof.kozlowski@linaro.org>
-References: <20240219125453.103692-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] MAINTAINERS: samsung: gs101: match patches touching
- Google Tensor SoC
-Message-Id: <170859212673.12469.13497019748127862340.b4-ty@linaro.org>
-Date: Thu, 22 Feb 2024 09:55:26 +0100
+        d=1e100.net; s=20230601; t=1708592133; x=1709196933;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wvafyN1Ki3gtTTRQp/+ld7EIImwoKNgmY7mZr4vWUK4=;
+        b=OloX1g5+sbQk/1qC5F5D1RKdsft4Q05r289a7rsZhwBZQM0MM7Gh26jQ/Z+FHA9HVs
+         CDXcTLLjTjOigO/TLF1ac5q5RnZD4f57TjYofrSXDZgYm0Ddk2cydOvzlInT2uoBWZsR
+         ugJYtoHPHpgEV7vY2B6wZKvsm+PdQY1tEXx/HXX++WMQXJwSiAB2gf5jnOBupSpR7Pfd
+         hllI5rDXURIs6pKJvNwMQqy7XouTo1+jP36vhdKnaZrSR2tLpzjXSIdcgg9o2KtA2h+S
+         ucWtbymVzXqqsW7kH98Jabasl13Gc0jPY+soFT9Nxkw8qEBNdCSg6qnCLtcnpO+fIycs
+         tR9w==
+X-Forwarded-Encrypted: i=1; AJvYcCVfPoiWk6q6Rav+sZUjyMOZIHKlCLBg25TT6VBcbqucM97N4dymDDigRVod56KNV36N6nIvSzc/e/LJ83jLjPicWKNdtQzZRzdEGw==
+X-Gm-Message-State: AOJu0Yybfbt15EA5PNSx3omtOmjIhWkKYEYvTUOfQ5msw4a1o7Hm4e7P
+	PlMVpg7ZEn/YYa/8AkYX3SiGHVSJ4IfDKGFyHPZj926WEQ15Tg63fYi50Nf9C2U=
+X-Google-Smtp-Source: AGHT+IEtIiogO1qg0DsIHuHZDJdmbDgFoql2wOjjQ0dHxEtTw/GBno7cWP1Jf8NhMK0pYXBLxrLr8w==
+X-Received: by 2002:a05:6512:128b:b0:512:d8fa:a0f2 with SMTP id u11-20020a056512128b00b00512d8faa0f2mr1752378lfs.22.1708592133207;
+        Thu, 22 Feb 2024 00:55:33 -0800 (PST)
+Received: from [87.246.222.6] (netpanel-87-246-222-6.pol.akademiki.lublin.pl. [87.246.222.6])
+        by smtp.gmail.com with ESMTPSA id b6-20020ac24106000000b0051176ff32c1sm1992022lfi.62.2024.02.22.00.55.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Feb 2024 00:55:32 -0800 (PST)
+Message-ID: <dcbf0e04-0252-4cda-be1e-ee4c707017f7@linaro.org>
+Date: Thu, 22 Feb 2024 09:55:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/9] arm64: dts: qcom: sc7280: Make eDP/DP controller
+ default DP
+To: Bjorn Andersson <quic_bjorande@quicinc.com>,
+ Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ cros-qcom-dts-watchers@chromium.org, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240221-rb3gen2-dp-connector-v1-0-dc0964ef7d96@quicinc.com>
+ <20240221-rb3gen2-dp-connector-v1-2-dc0964ef7d96@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20240221-rb3gen2-dp-connector-v1-2-dc0964ef7d96@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.4
 
 
-On Mon, 19 Feb 2024 13:54:53 +0100, Krzysztof Kozlowski wrote:
-> Maintainers of Google Tensor SoC should be aware of all driver patches
-> having that name.
+
+On 2/22/24 00:19, Bjorn Andersson wrote:
+> The newly introduced mechanism for selecting eDP mode allow us to make a
+> DisplayPort controller operate in eDP mode, but not the other way
+> around. The qcom,sc7280-edp compatible is obviously tied to eDP, so this
+> would not allow us to select DisplayPort-mode.
 > 
+> Switch the compatible of the mdss_edp instance and make it eDP for the
+> SC7280 qcard.
 > 
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> ---
 
-Applied, thanks!
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-[1/1] MAINTAINERS: samsung: gs101: match patches touching Google Tensor SoC
-      https://git.kernel.org/krzk/linux/c/9690b9de81d1ad40a70b3d34b9d7e26486a5e83a
-
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+Konrad
 
