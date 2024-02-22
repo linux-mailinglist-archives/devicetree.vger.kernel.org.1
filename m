@@ -1,116 +1,238 @@
-Return-Path: <devicetree+bounces-44988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA7F48605E9
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 00:00:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 610B38606ED
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 00:28:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C9AA1F2571E
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 23:00:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7AB3281DA9
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 23:28:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA775182A3;
-	Thu, 22 Feb 2024 23:00:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A8BC140374;
+	Thu, 22 Feb 2024 23:21:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gtb9elFl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9954817BD3;
-	Thu, 22 Feb 2024 23:00:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B1282208F;
+	Thu, 22 Feb 2024 23:21:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708642806; cv=none; b=NZyqxBr5iJOqrpq4h8cpXdGw7lyEYWwUAjJrJrvSaZ+wG0gP3GJ061WvUTFmXJX7mr+fc7bnwJNkJzDWLDJthO/8AeJ4q5dsTfu1m5OdG6+cv5SyEMeTsl1Ebf1jrwQixj3OSDnb+GeNssyqPYcNqvDxxQu2o9uzvgeVDwNGLd4=
+	t=1708644094; cv=none; b=dNUmuaQ+TF9k2wZCFt0Dz79yLIscOf6HlG6yy1MPV2mxWLwxsBVUm961gSq3sEflxCtj+xgudBWT2t6LDJ+xgqTQ0trjULfyaIKGREKhX9J/zDcps79zA35AIItZm5j2lGHqZmzp/M2qgsPv5En+mi2F57WzmzW0/pVx8ibu00A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708642806; c=relaxed/simple;
-	bh=OEjFAKIuJA3qH4FAQOSySl87ZHAyj2jyASYFVZY0SMo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lJIdZSILNs+YabN6KGB74ZoMu2WHfdixNgfHhvlYPTl/D50qXLbNN1byIVZbEnWEvIYUsrhrOE5hX5lIfcOuUiNq8H9/Etf1vEb1GvH2w17N6z1nSAIy5LGnGBhpOIl1V2SyZMFre/coWTaF5Jrd18zj6cGAYsfar1ybvgGZat8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3FD8EDA7;
-	Thu, 22 Feb 2024 15:00:42 -0800 (PST)
-Received: from [10.57.10.154] (unknown [10.57.10.154])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 19E2F3F766;
-	Thu, 22 Feb 2024 15:00:00 -0800 (PST)
-Message-ID: <27ad9614-e3de-4965-9f4e-865bc541eb4c@arm.com>
-Date: Thu, 22 Feb 2024 22:59:58 +0000
+	s=arc-20240116; t=1708644094; c=relaxed/simple;
+	bh=/7oDxzaotDMQ2PYxvxhhKnxcodeCvytyBRIpHzW+Yog=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dDCfqb8eOA86bj99TUIJw59yFsZEKN1dTOiiymmwxNgOvAdCldZ6KPQIyPW7/IxkBEIdxbY8JUk2x1EE2bENHN43mNkS9XN8ZyH5m2gPXcaAU8eqteqIm30sD2AG1Sw5B6uTCihnWa0XqFWvlvuq5U46/KqlhdDKWacspZUX1c4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gtb9elFl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CF3CC433F1;
+	Thu, 22 Feb 2024 23:21:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708644093;
+	bh=/7oDxzaotDMQ2PYxvxhhKnxcodeCvytyBRIpHzW+Yog=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Gtb9elFlw0C4aEVU9bfKXRUwfVwgsRLl1VDgjExetw4rUsO6PHqWUITOD0C0czy/M
+	 gNJ4rn6NoNwiJF5S3bnE7sXKW4vY8DkFfKWLHDJIOG+GDRTJ7vZv2hlLAodZb3O1a+
+	 HJuhgzRwS2Gofu45IBFGFB9akdWh0kV0OCC+YJj87tVmmELVm/inroYIhyA5PWFC1/
+	 ooYrLFpTFexkoWaAZ5Ur6dyia+okjXSViKu31n1NNtCYGK3O3xVMQChYmlt0tK46Qz
+	 dCwtuMytvYnz1IzvlyBBEie3z2WQo5D1uZKMUe1IYSUWr6eWzkUazxXChyHGiPqNCH
+	 LDG66X26HEVyQ==
+Date: Thu, 22 Feb 2024 14:14:11 -0600
+From: Rob Herring <robh@kernel.org>
+To: Yang Xiwen <forbidden405@outlook.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, David Yang <mmyangfl@gmail.com>,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC 3/4] dt-binding: clock: merge all hisilicon clock
+ bindings to hisilicon,clock-reset-generator
+Message-ID: <20240222201411.GA3765548-robh@kernel.org>
+References: <20240216-clk-mv200-v1-0-a29ace29e636@outlook.com>
+ <20240216-clk-mv200-v1-3-a29ace29e636@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 02/25] genirq/irqdomain: Remove the param count
- restriction from select()
-Content-Language: en-US
-To: Marc Zyngier <maz@kernel.org>
-Cc: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>,
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Frank Rowand <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
- =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>,
- Atish Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>,
- Sunil V L <sunilvl@ventanamicro.com>, Saravana Kannan
- <saravanak@google.com>, Anup Patel <anup@brainfault.org>,
- linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Mark Brown <broonie@kernel.org>
-References: <20240127161753.114685-1-apatel@ventanamicro.com>
- <20240127161753.114685-3-apatel@ventanamicro.com>
- <e42b76a9-fc5f-4ab7-96a2-629261a9c983@arm.com> <87edd4a2fo.wl-maz@kernel.org>
-From: Aishwarya TCV <aishwarya.tcv@arm.com>
-In-Reply-To: <87edd4a2fo.wl-maz@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240216-clk-mv200-v1-3-a29ace29e636@outlook.com>
 
-
-
-On 22/02/2024 16:28, Marc Zyngier wrote:
-> On Thu, 22 Feb 2024 13:01:32 +0000,
-> Aishwarya TCV <aishwarya.tcv@arm.com> wrote:
->>
->>
->>
->> On 27/01/2024 16:17, Anup Patel wrote:
->>> From: Thomas Gleixner <tglx@linutronix.de>
->>>
->>> Now that the GIC-v3 callback can handle invocation with a fwspec parameter
->>> count of 0 lift the restriction in the core code and invoke select()
->>> unconditionally when the domain provides it.
->>>
->>> Preparatory change for per device MSI domains.
->>>
->>> Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
->>> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
->>> ---
->>
->> Hi Thomas/Anup
->>
->> Currently when booting the kernel against next-master(next-20240222)
->> with Arm64 on Qualcomm boards RB5/DB845C, the kernel is resulting in
->> boot failures for our CI. I can send the full logs if required. Most
->> other boards seem to be fine.
->>
->> A bisect (full log below) identified this patch as introducing the
->> failure. Bisected it on the tag "next-20240220" at repo
->> "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git".
->>
->> This works fine on Linux v6.8-rc5
+On Fri, Feb 16, 2024 at 07:37:53PM +0800, Yang Xiwen wrote:
+> We don't need so many separated and duplicated dt-binding files. Merge
+> them all and convert them to YAML.
 > 
-> Can you please try [1]?
-> 
-> 	M.
-> 
-> [1] https://lore.kernel.org/linux-kernel/20240220114731.1898534-1-maz@kernel.org
-> 
+> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+> ---
+>  .../devicetree/bindings/clock/hi3660-clock.txt     |  47 -------
+>  .../devicetree/bindings/clock/hi3670-clock.txt     |  43 -------
+>  .../devicetree/bindings/clock/hi6220-clock.txt     |  52 --------
+>  .../devicetree/bindings/clock/hisi-crg.txt         |  50 --------
+>  .../clock/hisilicon,clock-reset-generator.yaml     | 139 +++++++++++++++++++++
+>  .../clock/hisilicon,hi3559av100-clock.yaml         |  59 ---------
+>  6 files changed, 139 insertions(+), 251 deletions(-)
 
-With the patch[1] applied on next-master(next-20240222), successfully
-tested booting the kernel with Arm64 on Qualcomm boards RB5/DB845C.
-Confirming that the patch is resolving the boot issue on RB5/DB845C
 
-Thanks
-Aishwarya
+> diff --git a/Documentation/devicetree/bindings/clock/hisilicon,clock-reset-generator.yaml b/Documentation/devicetree/bindings/clock/hisilicon,clock-reset-generator.yaml
+> new file mode 100644
+> index 000000000000..d37cd892473e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/hisilicon,clock-reset-generator.yaml
+> @@ -0,0 +1,139 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/hisilicon,clock-reset-generator.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Hisilicon SOC Clock and Reset Generator (CRG) module
+> +
+> +maintainers:
+> +  - Yang Xiwen <forbidden405@foxmail.com>
+> +
+> +description: |
+
+Don't need '|' if no formatting. Here and elsewhere.
+
+> +  Hisilicon SOC clock control module which supports the clocks, resets and
+> +  power domains on various SoCs.
+> +
+> +properties:
+> +  compatible:
+> +    minItems: 1
+> +    items:
+> +      - enum:
+> +          - hisilicon,hi3559av100-clock
+> +          - hisilicon,hi3559av100-shub-clock
+> +          - hisilicon,hi3660-crgctrl
+> +          - hisilicon,hi3660-pctrl
+> +          - hisilicon,hi3660-pmuctrl
+> +          - hisilicon,hi3660-sctrl
+> +          - hisilicon,hi3660-iomcu
+> +          - hisilicon,hi3660-stub-clk
+> +          - hisilicon,hi3670-crgctrl
+> +          - hisilicon,hi3670-pctrl
+> +          - hisilicon,hi3670-pmuctrl
+> +          - hisilicon,hi3670-sctrl
+> +          - hisilicon,hi3670-iomcu
+> +          - hisilicon,hi3670-media1-crg
+> +          - hisilicon,hi3670-media2-crg
+> +          - hisilicon,hi6220-acpu-sctrl
+> +          - hisilicon,hi6220-aoctrl
+> +          - hisilicon,hi6220-sysctrl
+> +          - hisilicon,hi6220-mediactrl
+> +          - hisilicon,hi6220-pmctrl
+> +          - hisilicon,hi6220-stub-clk
+> +          - hisilicon,hi3516cv300-crg
+> +          - hisilicon,hi3516cv300-sysctrl
+> +          - hisilicon,hi3519-crg
+> +          - hisilicon,hi3798cv200-crg
+> +          - hisilicon,hi3798cv200-sysctrl
+> +      - const: syscon
+> +      - const: simple-mfd
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  '#reset-cells':
+> +    enum: [1, 2]
+> +    description: |
+> +      First cell is reset request register offset.
+> +      Second cell is bit offset in reset request register.
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 1
+> +
+> +  mboxes:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+
+Standard property already has a type. You need to define how many 
+entries and what each one is if more than 1.
+
+> +    description: |
+> +      Phandle to the mailbox for sending msg to MCU
+> +      (See ../mailbox/hisilicon,hi3660-mailbox.txt for more info)
+
+Convert or avoid adding new references to txt bindings.
+
+> +
+> +  mbox-names:
+> +    $ref: /schemas/types.yaml#/definitions/string-array
+> +    description: |
+> +      Names of the mailboxes.
+> +
+> +  hisilicon,hi6220-clk-sram:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: |
+> +      Phandle to the syscon managing the SoC internal sram
+> +      the driver needs using the sram to pass parameters for frequency change.
+> +
+> +  reset-controller:
+> +    type: object
+> +    description: |
+> +      Reset controller for Hi3798CV200 GMAC module
+> +
+> +required:
+> +  - compatible
+> +  - '#clock-cells'
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          not:
+> +            contains:
+> +              enum:
+> +                - hisilicon,hi3798cv200-crg
+> +    then:
+> +      properties:
+> +        reset-controller: false
+> +  - oneOf:
+> +      - required:
+> +          - hisilicon,hi6220-clk-sram
+> +      - required:
+> +          - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/hi3559av100-clock.h>
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        clock-controller@12010000 {
+> +            compatible = "hisilicon,hi3559av100-clock";
+> +            #clock-cells = <1>;
+> +            #reset-cells = <2>;
+> +            reg = <0x0 0x12010000 0x0 0x10000>;
+> +        };
+> +    };
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/hi3660-clock.h>
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        clock-controller@fff35000 {
+> +            compatible = "hisilicon,hi3660-crgctrl", "syscon";
+> +            reg = <0x0 0xfff35000 0x0 0x1000>;
+> +            #clock-cells = <1>;
+> +        };
+> +    };
 
