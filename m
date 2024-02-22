@@ -1,153 +1,152 @@
-Return-Path: <devicetree+bounces-44949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC69F860352
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 20:55:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 235DE860371
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 21:03:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D8802880A8
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 19:55:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B84381F24FA4
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 20:03:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83BB56AFB8;
-	Thu, 22 Feb 2024 19:55:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="dMhLdZCo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 610666E5EC;
+	Thu, 22 Feb 2024 20:03:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D481C3F9EC
-	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 19:55:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B44B5490D
+	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 20:03:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708631742; cv=none; b=Flvz4lTRpqYCMneXLVWUMZVgbAFDsbe1fkVQGW1+sPRVPAD4SZJb7U0euYxgtR5AlJ/CZwM36K8PTvs7JJD+9jEruJqAJMMCWE4UZoR8YYwCF0BLfVrWcgwfZQas1ukENqAvU4ox8AzsD/LAL5POiusYXocxRNDgNJj87suO0V8=
+	t=1708632194; cv=none; b=FqarTKXkT2msbVqECFvIvum7JLNurszk1klRe70HIs4SZEzSV4ZOpOny9hUqhL39w7ePKutnU7S4CvD8zmvk2TZZl8avMxMkMdG0E0IpktG45GcA2ujC08ClfnNx7pAtbUfgs/yZwnd5KUR6wWJ8un+6YjreqyOg2K/DQ69yl5U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708631742; c=relaxed/simple;
-	bh=Xj8O+DPx4wU2UfJYi69n5ttyXQyRDoWMxk1LCwlpI8E=;
+	s=arc-20240116; t=1708632194; c=relaxed/simple;
+	bh=CX160NET1Fcfq2rMl6x/JBoCh5EQAykHpH7T6BBqCrw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RimT5r5ideMGTtkApd87Ez0OPuWe2qgFBWDUNxPlxC3FovQAk4fcGv+lv3tLKdrWvMVC4yzo+44cqacYd3bwc7NRYKzhlKuweR8+miBshslHTcHF2W+SQ2kU1BZybhBtOI/7eKBFSXfnDIcj3RJHaD5NRe059zfqArHn2bWHfvQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=dMhLdZCo; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=jhVW
-	YIYPS+WQc6qJONpuGdYkkC+vizXSWdkxmtKR2Zw=; b=dMhLdZCo1B8/rATCc2vu
-	mLNgJZko4QxGxAqBAHcqm1HMnlSyh3p6MujX/axkL2zz8dOKBqbrKaSsWZzlK2/1
-	lLOLt6chZwcranpAh2zMDdV6DcIHwWDRDhnPfEYVSMYcEKJaZjkHmRGpV9Qo2k1q
-	QAtgFkfbF3TTzNf1+9Uer1VUghhsvMhMPxCrjVcRcSDZwqTSfYA3QG+cI/UmCweK
-	rGJuAkiEyQyyIGAdDDDUn2aHixyNcPeHL+JOW4FjSeYjpFHe5ZHN8iUbSqKQbe8A
-	Nd+ANcb1k4G1B8J5XWOa6OJ10OnuAYQKf3vyh+MsQFvWm4QblGP6iD2T9nu1PTRC
-	zQ==
-Received: (qmail 4086918 invoked from network); 22 Feb 2024 20:55:30 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 22 Feb 2024 20:55:30 +0100
-X-UD-Smtp-Session: l3s3148p1@iyNN0/0R+OQujnsZ
-Date: Thu, 22 Feb 2024 20:55:29 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-	linux-tegra@vger.kernel.org, linux-i3c@lists.infradead.org,
-	linux-sound@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: i2c: Remove obsolete i2c.txt
-Message-ID: <ZdemsdGQE0RtilCd@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Rob Herring <robh@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-	linux-tegra@vger.kernel.org, linux-i3c@lists.infradead.org,
-	linux-sound@vger.kernel.org
-References: <20240222174343.3482354-2-robh@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=owE4/u+D1tk3IkxaqW+B6B+1CHcSNFi7wa6ixjzJR/5/iavnHZeGEmx1OWmt1wOMbgmgdw93VgClHcGWffR2zeoshe0Qehx+FT84vBTp6JZUwbElj/IScV5L+uYBpE5Bsqz9acdht4vAkQIIKf6l95cqXK5YIG8jAMTGMi0n338=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rdFH6-0006yI-D8; Thu, 22 Feb 2024 21:02:32 +0100
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rdFH4-002I2v-6x; Thu, 22 Feb 2024 21:02:30 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rdFH4-002rcW-0M;
+	Thu, 22 Feb 2024 21:02:30 +0100
+Date: Thu, 22 Feb 2024 21:02:30 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Conor Dooley <conor@kernel.org>
+Cc: conor.dooley@microchip.com, v.georgiev@metrotek.ru, mdf@kernel.org,
+	hao.wu@intel.com, yilun.xu@intel.com, trix@redhat.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
+	kernel@pengutronix.de
+Subject: Re: [PATCH] dt-bindings: fpga: microchip,mpf-spi-fpga-mgr: document
+ CPOL/CPHA support
+Message-ID: <20240222200230.ulhguouu37nm6inu@pengutronix.de>
+References: <20240221191247.3643671-1-m.felsch@pengutronix.de>
+ <20240222-rotten-truck-cf5e4b681ac1@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="xwbnszeJhFgpzihu"
-Content-Disposition: inline
-In-Reply-To: <20240222174343.3482354-2-robh@kernel.org>
-
-
---xwbnszeJhFgpzihu
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240222-rotten-truck-cf5e4b681ac1@spud>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Thu, Feb 22, 2024 at 10:43:42AM -0700, Rob Herring wrote:
-> Everything in i2c.txt is covered by schemas/i2c/i2c-controller.yaml in
-> dtschema project, so remove i2c.txt and update links to it in the tree.
->=20
-> Signed-off-by: Rob Herring <robh@kernel.org>
+On 24-02-22, Conor Dooley wrote:
+> On Wed, Feb 21, 2024 at 08:12:47PM +0100, Marco Felsch wrote:
+> > Microchip FPGAs can communicate in different modes, so document them to
+> > avoid dt-validate warnings.
+> 
+> Are you sure it can "communicate in different modes"?
 
-Differences to i2c.txt:
+No I'm not but I didn't found an overview within the FPGA datasheet [1]
+which modes are supported. What I did found was an note which says:
 
-* In the schema, "clock-frequency" has a minimum of 1kHz and a maximum
-  of 3MHz. Why? The specs do not say anything about a minimum freq and
-  fastest speed mentioned in the docs is 5Mhz (Ultra fast mode).
+"""
+1. Parameters are referenced to the active edge of SCK, which depends on
+the configured SPI protocol (for example, Motorola SPI mode uses rising
+edge as active edge if SPO = 0)
+"""
 
-* new binding "i2c-scl-clk-low-timeout-us" has a description which I do
-  not understand. What is a waiting state?
+Therefore I thought that this can be configured somehow differently.
 
-* new binding "no-detect" is broken. At the least, it should be named
-  something like "bus-fully-described" and then the OS can decide to
-  leave out auto-detection mechanisms. If you are interested in the
-  latter, you can simply disable class based instantiation on the host
-  controller. No need to describe this in DT.
+[1] https://www.microsemi.com/document-portal/doc_view/136519-ds0141-polarfire-fpga-datasheet
 
-> Wolfram, you can take it or I can.
+> The documentation actually says "Motorla SPI Mode 3 is required to
+> communicate with M2S, M2GL, and MPF devices using dedicated system
+> controller SPI port" with mode 3 being SPO = SPH = 1:
+> https://www.microsemi.com/document-portal/doc_view/137543-spi-directc-sp1-v2-0-user-guide
 
-Once we are done, I guess it is better if you take it.
+Thanks for the Pointer, there are plenty documents for the Polarfire
+FPGA.
 
-Thanks for the work,
+> I suspect the answer is that it can actually communicate in different
+> modes (because I don't recall setting those options), but the binding
+> should enforce the correct way of doing it IMO.
 
-   Wolfram
+Sure, I will rephrase my commit message to:
+
+"""
+dt-bindings: fpga: microchip,mpf-spi-fpga-mgr: document CPOL/CPHA
+
+Using the dedicated system controller SPI port requires Motorola SPI
+Mode 3 according the SPI-DirectC v2.0 User Guid [1]. So require the
+spi-cpol and spi-cpha to be set.
+
+[1] https://www.microsemi.com/document-portal/doc_view/137543-spi-directc-sp1-v2-0-user-guide
+"""
+
+Regards,
+  Marco
 
 
---xwbnszeJhFgpzihu
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
+> 
+> Cheers,
+> Conor.
+> 
+> > 
+> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > ---
+> >  .../devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml   | 3 +++
+> >  1 file changed, 3 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml b/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
+> > index a157eecfb5fc..bb9a7d16db60 100644
+> > --- a/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
+> > +++ b/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
+> > @@ -22,6 +22,9 @@ properties:
+> >      description: SPI chip select
+> >      maxItems: 1
+> >  
+> > +  spi-cpol: true
+> > +  spi-cpha: true
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
+> > -- 
+> > 2.39.2
+> > 
+> > 
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmXXprEACgkQFA3kzBSg
-Kba7Ng//f2uJIbUxhVqaRPb6cEvRbSMkgp3fOuy7aYo9Chftjp+DCOgB+z/d29DB
-4q9Hsd4mNQAHMYKPeieoE/wm6PC7fQQqw/F4mczeiKY+XS1PpFwSXjS3flVBPYOW
-UeUYPRZCvWFck7FCOUF9XK2qR/88V1pSDzw5kHf8+CABuFX2RSjyVmiXFbdSV1qf
-/I4DfO2M40MkAVGkKIwJcaCBuk6QMjGrJqw+qWYnYmAWsltiWgdy/pOt1Ge03ieM
-CinXc9GP6Jg4eDUcpWLETd3ehz9uV40IPugp7fXJxIR38V0Pxbz1G9BUbPjPCj28
-Mp3lm3o/60TE68NXU0DEN75PpVz/M/zkv9cx0UJucMDFplec/4BH38TzTsNlAPWV
-R5Sh6wD4y6MgfkxqTVEeEaQibH7JTSYK5PwWmR8MNyGk1YN5+avCk2YbUxs618wJ
-jauxhbeZNDQ+XWplirsMKB0lrWbV75OxiJ4sGljcpy16MfXaMfP7J7HG+18GOuS1
-wD0qBTKzSVrClGu79/LwV90OieqSpAJuEbex5Ls4wNV5/VJUj7t4PH2rOPDZRxc4
-nlOpJ5SYSgWwOnGYVgh6wDr6QFCmZGZpQbQlxlezaRkwhQZKmA87/jM+ZkFt8Rwc
-3d5oj6TIiOFWfkl3zdbl9/voX7DTTY3ku/KgG5OvEPy9nl120C0=
-=o5Lw
------END PGP SIGNATURE-----
 
---xwbnszeJhFgpzihu--
 
