@@ -1,335 +1,110 @@
-Return-Path: <devicetree+bounces-44820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 999C585FADC
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 15:15:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10CB485FAE4
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 15:16:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A3B5282957
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 14:15:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4C571F2587A
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 14:16:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F1C81419A4;
-	Thu, 22 Feb 2024 14:15:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iVKuLGwp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A3FD134CDC;
+	Thu, 22 Feb 2024 14:16:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3642712FB02;
-	Thu, 22 Feb 2024 14:15:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CED112EBC0;
+	Thu, 22 Feb 2024 14:15:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708611327; cv=none; b=lgvl3dVJcNWn8GYuEplzlg41+U1GeFGTtb94AIu8BTmcYNCDShdSuaQ4r4nTlNrjSwgPcmKU7pnD8Qspw+IuICmz34PgwYEArUMrKgGl6DOlR0DlksfEsb2sxyUKQwRpwV5q1jDqw8bDOGrNms25Az6yzV25lwmsP0rYbUITeIQ=
+	t=1708611362; cv=none; b=pIO8/PON2n/eURWrekpE+zhFDyOxWjg/gRTCHxk8SW6D0tzVEGUniE3vj5j20xlpXqwMtg6V2Eyl4zVA4vC1WW8ppEknV9X/DQcdl/gQbVO2Boam4j5vHP4G9Tz4E+pBnwZtejLtnn+7kYiQa2jhkEHgBeLTLtHa/EcFl5lxSxI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708611327; c=relaxed/simple;
-	bh=kIZczWHR5/Nc3nYCAWYzUjsydPY/1nsM6oO6gbmZSHw=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=NQco+sQ5IH9sMEfELuEmtPe1OqwEkDdt5QH+Pbm8PfA9OcBDLIhL6B4WR8dhb9CIb+J4SeADdcd9h8PallXVhv06cxQLaIH6LZSESXmTcGoV1Nlx2KY0eHW2J+njQmzwHgQr+Jfer/fSIsK18bseRxA6h9sta7SA/KNradKvO3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iVKuLGwp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 790F7C433F1;
-	Thu, 22 Feb 2024 14:15:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708611327;
-	bh=kIZczWHR5/Nc3nYCAWYzUjsydPY/1nsM6oO6gbmZSHw=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=iVKuLGwp5DCor24xZgAAwTwbovowF/3KA6uXFHUuiRANLfpMQdn8lzSu93BRzigiF
-	 zQHiyJFhIJro3MAq5tOfWq/PdEmtCHZZ+2lIbaH291kiNdNCwJAuWyOVyUzn48AKdc
-	 sBtesUDmENKKh6ghBZQEal9sTLzLaEa0V0LVK8xWlCf9+fdjB44brVSGFaRDcwKWl2
-	 KYPJlnO+cZngbU8tJUTJGgHY8aMRqruGi/jkJePAdeXaBjTpOEQ8QKEolQpNV2cJUE
-	 1awqBYW+WNH8BPC74erA05naYUY5MwNXzi7Xvw2/Zg0o8i9mkE9CjZXj9zA34AS3YD
-	 HIUl+FnTPD8PA==
-From: =?utf-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
-To: Anup Patel <anup@brainfault.org>
-Cc: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Thomas
- Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
- <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org, Saravana Kannan <saravanak@google.com>, Marc
- Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org, Atish Patra
- <atishp@atishpatra.org>, linux-riscv@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Andrew Jones
- <ajones@ventanamicro.com>
-Subject: Re: [PATCH v14 11/18] irqchip: Add RISC-V incoming MSI controller
- early driver
-In-Reply-To: <CAAhSdy3R9TCHG13vFk=sF0MvA60LtxOs9NbjSB7XBk+v1+XH4w@mail.gmail.com>
-References: <20240222094006.1030709-1-apatel@ventanamicro.com>
- <20240222094006.1030709-12-apatel@ventanamicro.com>
- <87r0h4tzeq.fsf@all.your.base.are.belong.to.us>
- <CAAhSdy3R9TCHG13vFk=sF0MvA60LtxOs9NbjSB7XBk+v1+XH4w@mail.gmail.com>
-Date: Thu, 22 Feb 2024 15:15:24 +0100
-Message-ID: <874je0twjn.fsf@all.your.base.are.belong.to.us>
+	s=arc-20240116; t=1708611362; c=relaxed/simple;
+	bh=DYqF1UZ1vPcBAPEthNWj7VFurT5eGkMxMSYqI02hJ9E=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=AVagQQaogvpy03hiZ1/QUr/u6UhZb795zdmxLG+Tca5o5okNQoOcA4hZreLMMpMoIryO6JfI7XcdDQHNIwxkvyBr7tBRIOh1yvQWeb/+BqEZvzG9G9TDdsraxn6JB9W1y55deczr6IeACVYqOvZu76RJeIsbaXYSiLSNhU/+Fag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-608aada6268so2691307b3.0;
+        Thu, 22 Feb 2024 06:15:59 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708611358; x=1709216158;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XJg6ceEh6y9WFJ9bdB2UqI4oLw5M/TjlT/GmwqhyFNY=;
+        b=FEdwd+s0IUYvkIaXJTcKY6vLD32pswmVu/83yclwLNkyVGOuKbsP2/OrX/kUQI+MCo
+         4zyWS1qyADDtiEpBM+9hMkocPyA/ab/Cvw79ZJLOhat3/YSWqmDzV+YtBeihVm6Xz7pH
+         NCjI9T26prN0NjnabrgF5MWRTpThYFvwHzZYWjwYytc22pW8UEsUPNPPF8RqbO57xMKQ
+         baThJzqyCOTGxJL4RBl5Q/Ev6XAAhlrO9PfVJUlpgcaXUyTflczqnDR+x2TUhdPXfMqs
+         DGDeIqfryP+OsbEdfYdPNUzZ9CZo2wqkkkmobycbkBhZNgnAxlPhRUzb1jnMFm6XVxOR
+         9yzg==
+X-Forwarded-Encrypted: i=1; AJvYcCURonBVUbZ8SFWuK4blnAWVGEdPbG3/Y1jxy9+DnkNPW8T/8f23djkXAkSO0UxaeqpffPFEZ0il/itucMXXro7eGHzvrQqFRpl2BNsx5EAOnwZNmQ/nttZegqM2LGSDSlI2+F1vP+QeUtO7ajkZ
+X-Gm-Message-State: AOJu0YxSOhEkMik4ExraMyoWQYe4q5xNXhMpc9/7wbSmBHptSQwd1xvy
+	lZN+oosCWKETNtR6s4ZCgdZgSfR1njR5gWIC7JGIUyyR2vSFSgO8dPQlKJxml9s=
+X-Google-Smtp-Source: AGHT+IEdKmMjkisyEMXDOqmirRv14/pmGO9pGBt1Ejhby5RIlWWGKba7h/0uwKwx9+BbElyjVa+aBA==
+X-Received: by 2002:a05:690c:3602:b0:608:5dfc:1336 with SMTP id ft2-20020a05690c360200b006085dfc1336mr10178255ywb.39.1708611358329;
+        Thu, 22 Feb 2024 06:15:58 -0800 (PST)
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com. [209.85.128.173])
+        by smtp.gmail.com with ESMTPSA id m127-20020a817185000000b005ffce9cee9fsm3094629ywc.12.2024.02.22.06.15.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Feb 2024 06:15:57 -0800 (PST)
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-6002317a427so66156427b3.2;
+        Thu, 22 Feb 2024 06:15:57 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWeP1eUrBkUOGI360zsBXy4RvwgOjb+QfFTAlVYAluTYh7tgeUJj+bsyrLwhCEO37pHFP+Y4HgSyFasN/AP9ZrFlihmtjUqqkVcwwGEqSartlL8SOrIrpmjO3ViIaw8PxKyc427gAOPAw09WN4E
+X-Received: by 2002:a0d:db45:0:b0:608:d1f:1088 with SMTP id
+ d66-20020a0ddb45000000b006080d1f1088mr14320639ywe.17.1708611357688; Thu, 22
+ Feb 2024 06:15:57 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+References: <20240222132117.137729-1-biju.das.jz@bp.renesas.com> <20240222132117.137729-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20240222132117.137729-2-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 22 Feb 2024 15:15:45 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVh_qDqasd-N4dfsYcobXRscxfiKsKPRY0RfUqvjZV9eA@mail.gmail.com>
+Message-ID: <CAMuHMdVh_qDqasd-N4dfsYcobXRscxfiKsKPRY0RfUqvjZV9eA@mail.gmail.com>
+Subject: Re: [PATCH v9 1/3] arm64: dts: renesas: r9a07g044: Add DU node
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Anup Patel <anup@brainfault.org> writes:
-
-> On Thu, Feb 22, 2024 at 6:43=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjorn@kern=
-el.org> wrote:
->>
->> Anup Patel <apatel@ventanamicro.com> writes:
->>
->> > diff --git a/drivers/irqchip/irq-riscv-imsic-state.c b/drivers/irqchip=
-/irq-riscv-imsic-state.c
->> > new file mode 100644
->> > index 000000000000..0c19ffb9ca3e
->> > --- /dev/null
->> > +++ b/drivers/irqchip/irq-riscv-imsic-state.c
->> > @@ -0,0 +1,870 @@
->>
->> [...]
->>
->> > +static void __imsic_local_sync(struct imsic_local_priv *lpriv)
->> > +{
->> > +     struct imsic_local_config *mlocal;
->> > +     struct imsic_vector *vec, *mvec;
->> > +     int i;
->> > +
->> > +     lockdep_assert_held(&lpriv->lock);
->> > +
->> > +     /* This pairs with the barrier in __imsic_remote_sync(). */
->> > +     smp_mb();
->>
->> I'm trying to figure out why this barrier is needed? All the updates are
->> done behind the spinlocks. If there're some ordering constraints that
->> I'm missing, please document them.
->>
->> > +
->> > +     for_each_set_bit(i, lpriv->dirty_bitmap, imsic->global.nr_ids + =
-1) {
->> > +             if (!i || i =3D=3D IMSIC_IPI_ID)
->> > +                     goto skip;
->> > +             vec =3D &lpriv->vectors[i];
->> > +
->> > +             if (READ_ONCE(vec->enable))
->> > +                     __imsic_id_set_enable(i);
->> > +             else
->> > +                     __imsic_id_clear_enable(i);
->> > +
->> > +             /*
->> > +              * If the ID was being moved to a new ID on some other C=
-PU
->> > +              * then we can get a MSI during the movement so check the
->> > +              * ID pending bit and re-trigger the new ID on other CPU
->> > +              * using MMIO write.
->> > +              */
->> > +             mvec =3D READ_ONCE(vec->move);
->> > +             WRITE_ONCE(vec->move, NULL);
->>
->> mvec =3D xchg(&vec->move, NULL) ?
+On Thu, Feb 22, 2024 at 2:21=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
+m> wrote:
+> Add DU node to RZ/G2L SoC DTSI.
 >
-> The __imsic_local_sync() is called with spinlock held.
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v8->v9:
+>  * Added ports properties.
+>  * Dropped Rb tag from Geert.
 
-Yeah, this was a readability comment.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.9.
 
->> > +             if (mvec && mvec !=3D vec) {
->> > +                     if (__imsic_id_read_clear_pending(i)) {
->> > +                             mlocal =3D per_cpu_ptr(imsic->global.loc=
-al, mvec->cpu);
->> > +                             writel_relaxed(mvec->local_id, mlocal->m=
-si_va);
->> > +                     }
->> > +
->> > +                     imsic_vector_free(&lpriv->vectors[i]);
->> > +             }
->> > +
->> > +skip:
->> > +             bitmap_clear(lpriv->dirty_bitmap, i, 1);
->> > +     }
->> > +}
->> > +
->> > +void imsic_local_sync_all(void)
->> > +{
->> > +     struct imsic_local_priv *lpriv =3D this_cpu_ptr(imsic->lpriv);
->> > +     unsigned long flags;
->> > +
->> > +     raw_spin_lock_irqsave(&lpriv->lock, flags);
->> > +     bitmap_fill(lpriv->dirty_bitmap, imsic->global.nr_ids + 1);
->> > +     __imsic_local_sync(lpriv);
->> > +     raw_spin_unlock_irqrestore(&lpriv->lock, flags);
->> > +}
->> > +
->> > +void imsic_local_delivery(bool enable)
->> > +{
->> > +     if (enable) {
->> > +             imsic_csr_write(IMSIC_EITHRESHOLD, IMSIC_ENABLE_EITHRESH=
-OLD);
->> > +             imsic_csr_write(IMSIC_EIDELIVERY, IMSIC_ENABLE_EIDELIVER=
-Y);
->> > +             return;
->> > +     }
->> > +
->> > +     imsic_csr_write(IMSIC_EIDELIVERY, IMSIC_DISABLE_EIDELIVERY);
->> > +     imsic_csr_write(IMSIC_EITHRESHOLD, IMSIC_DISABLE_EITHRESHOLD);
->> > +}
->> > +
->> > +#ifdef CONFIG_SMP
->> > +static void imsic_local_timer_callback(struct timer_list *timer)
->> > +{
->> > +     struct imsic_local_priv *lpriv =3D this_cpu_ptr(imsic->lpriv);
->> > +     unsigned long flags;
->> > +
->> > +     raw_spin_lock_irqsave(&lpriv->lock, flags);
->> > +     __imsic_local_sync(lpriv);
->> > +     raw_spin_unlock_irqrestore(&lpriv->lock, flags);
->> > +}
->> > +
->> > +static void __imsic_remote_sync(struct imsic_local_priv *lpriv, unsig=
-ned int cpu)
->> > +{
->> > +     lockdep_assert_held(&lpriv->lock);
->> > +
->> > +     /*
->> > +      * Ensure that changes to vector enable, vector move and
->> > +      * dirty bitmap are visible to the target CPU.
->>
->> ...which case the spinlock(s) are enough, no?
->
-> spinlocks are not fences.
+Gr{oetje,eeting}s,
 
-They are indeed, and it would be hard to use them as locks otherwise
-(acq/rel -- good ol' Documentation/memory-barriers.txt).
+                        Geert
 
-> If the timer wheel on the target cpu is already running and we don't
-> have a fence here then the target cpu might not see the changes
-> done by this cpu.
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-Remove the smp_mb() pair, the spinlocks are enough for this scenario!
-
->> > +      *
->> > +      * This pairs with the barrier in __imsic_local_sync().
->> > +      */
->> > +     smp_mb();
->> > +
->> > +     /*
->> > +      * We schedule a timer on the target CPU if the target CPU is not
->> > +      * same as the current CPU. An offline CPU will unconditionally
->> > +      * synchronize IDs through imsic_starting_cpu() when the
->> > +      * CPU is brought up.
->> > +      */
->> > +     if (cpu_online(cpu)) {
->> > +             if (cpu =3D=3D smp_processor_id()) {
->> > +                     __imsic_local_sync(lpriv);
->> > +                     return;
->> > +             }
->>
->> Maybe move this if-clause out from the cpu_online(), and only have
->> something like
->>   if (cpu_online(cpu) && !timer_pending(&lpriv->timer)) { ... }
->> inside the CONFIG_SMP guard...
->>
->> > +
->> > +             if (!timer_pending(&lpriv->timer)) {
->> > +                     lpriv->timer.expires =3D jiffies + 1;
->> > +                     add_timer_on(&lpriv->timer, cpu);
->> > +             }
->> > +     }
->> > +}
->> > +#else
->> > +static void __imsic_remote_sync(struct imsic_local_priv *lpriv, unsig=
-ned int cpu)
->> > +{
->> > +     lockdep_assert_held(&lpriv->lock);
->> > +     __imsic_local_sync(lpriv);
->> > +}
->> > +#endif
->>
->> ...where we can get rid of this special !SMP all together for this
->> function.
->
-> I failed to understand what is wrong the current code.
-
-Oh, nothing is wrong. Just trying to get rid of some ifdeffery.
-
->> > +void imsic_vector_mask(struct imsic_vector *vec)
->> > +{
->> > +     struct imsic_local_priv *lpriv;
->> > +
->> > +     lpriv =3D per_cpu_ptr(imsic->lpriv, vec->cpu);
->> > +     if (WARN_ON_ONCE(&lpriv->vectors[vec->local_id] !=3D vec))
->> > +             return;
->> > +
->> > +     /*
->> > +      * This function is called through Linux irq subsystem with
->> > +      * irqs disabled so no need to save/restore irq flags.
->> > +      */
->> > +
->> > +     raw_spin_lock(&lpriv->lock);
->> > +
->> > +     vec->enable =3D false;
->>
->> Should have WRITE_ONCE to make the checkers happy.
->
-> Okay, I will update.
->
->>
->> > +     bitmap_set(lpriv->dirty_bitmap, vec->local_id, 1);
->> > +     __imsic_remote_sync(lpriv, vec->cpu);
->> > +
->> > +     raw_spin_unlock(&lpriv->lock);
->> > +}
->> > +
->> > +void imsic_vector_unmask(struct imsic_vector *vec)
->> > +{
->> > +     struct imsic_local_priv *lpriv;
->> > +
->> > +     lpriv =3D per_cpu_ptr(imsic->lpriv, vec->cpu);
->> > +     if (WARN_ON_ONCE(&lpriv->vectors[vec->local_id] !=3D vec))
->> > +             return;
->> > +
->> > +     /*
->> > +      * This function is called through Linux irq subsystem with
->> > +      * irqs disabled so no need to save/restore irq flags.
->> > +      */
->> > +
->> > +     raw_spin_lock(&lpriv->lock);
->> > +
->> > +     vec->enable =3D true;
->>
->> Dito.
->
-> Okay, I will update.
->
->>
->> > +     bitmap_set(lpriv->dirty_bitmap, vec->local_id, 1);
->> > +     __imsic_remote_sync(lpriv, vec->cpu);
->> > +
->> > +     raw_spin_unlock(&lpriv->lock);
->> > +}
->> > +
->> > +static bool imsic_vector_move_update(struct imsic_local_priv *lpriv, =
-struct imsic_vector *vec,
->> > +                                  bool new_enable, struct imsic_vecto=
-r *new_move)
->> > +{
->> > +     unsigned long flags;
->> > +     bool enabled;
->> > +
->> > +     raw_spin_lock_irqsave(&lpriv->lock, flags);
->> > +
->> > +     /* Update enable and move details */
->> > +     enabled =3D READ_ONCE(vec->enable);
->> > +     WRITE_ONCE(vec->enable, new_enable);
->>
->> Again, xchg() would be easier to read.
->
-> why ? spinlock is not enough?
-
-They're enough! Just readbaility/personal taste.
-
-
-I'm running tests for this series now! Would be awesome to have the
-series land for 6.9!
-
-Cheers,
-Bj=C3=B6rn
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
