@@ -1,321 +1,270 @@
-Return-Path: <devicetree+bounces-44878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75C9485FEFE
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 18:16:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 461DA85FF08
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 18:17:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A0281C248E4
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 17:16:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD54D1F2C76F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 17:17:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29EEF1552F3;
-	Thu, 22 Feb 2024 17:14:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AC3A155313;
+	Thu, 22 Feb 2024 17:17:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ZATx9QUu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iNoUCLzj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34669154C15;
-	Thu, 22 Feb 2024 17:14:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 680BA155303
+	for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 17:17:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708622085; cv=none; b=u/tx9RbDS4kzKYl9eR5XBbejP8D7EOdLSKd5yUSERw5564Dnnp2btpNf9DDWzZTZfNnkXsE4TtKTGDYflxn9DyEuqsy6P5f+4fOyccBloHd2zfblP45GPy1WYWVHrCcAECF/4Q0ukGJ1Ri8bfLqeGzyV+rLDVW+05VdB47vhAf8=
+	t=1708622229; cv=none; b=VErxLA2tUokHHxF66du6Kc7vRZuJAcWry37UR7FxwQ8gXTBlvbc7kxxwJbhaNK1HTl3tRAKDaDvpd3Fev2VUaty0lNOAMu/rUaUYrNiBqTpP+V0CP9FKB+sIZILKkFlRBLOr1F+6Q4PJRHk+LGTfukaG0o9F2qJ+1GFWluoClg0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708622085; c=relaxed/simple;
-	bh=d32PKeM3g8/qW9WT4NQuBsLuxUjgCrWZo/R1eoVvooo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=OLjCkNodDqcfyNTkL0qEP92j8pgldH+a2Hq2eD6ltWkVhAu6Q8TYfo+jZplrsZtpdZtvsSb5+5NulEuVAK31XoiND9/t1ZOdOCqbobK9LAvP63WyjZeQRvWoGFNalv2w89ABnm2KAGVMnDjCL+xbTyatl5hEOHrITGv8SN/aW14=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ZATx9QUu; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41M6mhJB019461;
-	Thu, 22 Feb 2024 17:14:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=41ijdyh6f8n7C660F21th4GQ953AMCJ7CZREOVJwJS0=; b=ZA
-	Tx9QUuIY8VQLegHQgGMdq5JfMCswoFCUxGsm2U+s0zx2YR9DnEmSa2I5yLQzl2N5
-	YPo8yipuLg4TdlMd2xAteSKoyRSo+DaPIvQnaaGyvRGDjL2NAVyZp95owapdi718
-	yde10SaY1NQZfPfMNwVw+DYKfdSvOEAR72m+nuRAgQ0IefzblHQvyb/gGC5olJT7
-	TVjBP/X3v2sPsgtnK1fM0KKf0DzLar1fpVrxDVAwOjwI5Ehf2ykbihpyt0vjyQVg
-	RihjJeuhna6PEDdsOO/WQTJYX4IVf5yer0DrhnObwtgRLKscV0b7GuayKNTi8gLS
-	QMyLoaJbIhR4Uyq70REg==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3we1b0hp20-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 22 Feb 2024 17:14:27 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41MHEQlg018442
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 22 Feb 2024 17:14:26 GMT
-Received: from [10.71.111.207] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 22 Feb
- 2024 09:14:26 -0800
-Message-ID: <f9446923-acd3-41cf-92d4-676b946280c4@quicinc.com>
-Date: Thu, 22 Feb 2024 09:14:21 -0800
+	s=arc-20240116; t=1708622229; c=relaxed/simple;
+	bh=Z9TW01ieGheVvSYGj35+wS9k2elxysGt636MZCOr0HM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=bZgYpZmMzLJQsf0DNpfkEaG5dI7VQwG1ihcyRprNkoD8KGStMWj6DYSWMX55W3IwLBKv4xSgBpGKZKRxCy71dq1kDsVnh4bnkGIQ74qdwU6keGh2CqedpUzSuhewaGXIYtS6FeYKvtlJ36cjxLFkj7GyRogxwb8S8C3Qlv7hq6g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iNoUCLzj; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2d26227d508so86341fa.2
+        for <devicetree@vger.kernel.org>; Thu, 22 Feb 2024 09:17:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708622225; x=1709227025; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Hty7Q8TdVcE5cj7rf2bC8mc3p4rUC33JHE6Y9JSzuwI=;
+        b=iNoUCLzjE98kmZzEVJnjRakmNWsCPq9CDLfvGwkxSLtfWWvl2WAqGXZ8HCaxzq1Yze
+         5IW5LO1ZSQwjWX58jMrlbIw3aJSgS5n5Y2XE8FRY9d9X4zbyHgXgr+jYfdu/MgbXAX8/
+         VsnQG/rzPOqAJBP9ny/OMbkkw0AVpHP4h7M+Muv2k0GJ1z9t1fguePxqii33ijyMoDLO
+         3DNe0nMHrszP6q49BzCZXLnaCarwdl600Sd8565ilBSgsYKIu50qJN1klJBnX4UlH5il
+         FmC6OY3hGdjugFHOeAMAD45zRMFdT3C8bydpTCnrAs5xwR98cvs624OMl8EDpWymMw1q
+         2kXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708622225; x=1709227025;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Hty7Q8TdVcE5cj7rf2bC8mc3p4rUC33JHE6Y9JSzuwI=;
+        b=m84Mo4Uw+8VK6oHF2isUh2TUjmTTLvFSHMbhjEx2pe0Xdlw+pGGaYu3KaWRlAASh/d
+         2TVqPExfoL3FJ0Vk7J3N/cn0zHshPpetIxoHHeYTMjKsuKWMwtepEPSzUFmKV24OXxFN
+         mzKxgk67tal2ZuSsD4N8mnh3vh+jgnGFFrUswhEey/B2dQYYKlAx+TieT9+B/1OCLHur
+         glr4ngQfZisYJygBrz2rhCP3AruRC3Le2mwP/5QhY6KPMJUHRG8lNnToGNaiEWJFz3S/
+         MIRn6bC8hiHbXvHngUkbZxx5Gbon4XRJS5DAH5feTS1USmNnX9wxDCy/Saj2epE/qA/K
+         SEug==
+X-Forwarded-Encrypted: i=1; AJvYcCXk5GUsnBP77DSuYJaMbaQ0djlDRACBfjKrz3MvFiIi1nkdhzCbErWXx3SKsN9GcxNTA8z0PbfxBJcfZg8Ys7KMzOOR+ekKW8Igig==
+X-Gm-Message-State: AOJu0Yy7dMnmUihYKU+/gYd7/RTDpc+wozQ3nfhY/0otchhCl+mZ7XoI
+	ry3sUYjzTLsZZzBU6QqaOi3CY8w0VAQhefbLauu4x/hWoVhNUVE2y2omtaNOJlw=
+X-Google-Smtp-Source: AGHT+IEsMvdRwmUi1rMLhFEmCATmy+3oItwsLCQ/1vC6eyzxbtfc74jRuaMhXGmY0NY45DfDcNLYZg==
+X-Received: by 2002:a2e:a272:0:b0:2d2:4388:63fc with SMTP id k18-20020a2ea272000000b002d2438863fcmr6008642ljm.44.1708622225561;
+        Thu, 22 Feb 2024 09:17:05 -0800 (PST)
+Received: from [127.0.1.1] ([176.61.106.68])
+        by smtp.gmail.com with ESMTPSA id u7-20020a7bc047000000b0040fe4b733f4sm6656512wmc.26.2024.02.22.09.17.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Feb 2024 09:17:05 -0800 (PST)
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: [PATCH v6 0/6] media: qcom: camss: Add sc8280xp support
+Date: Thu, 22 Feb 2024 17:16:58 +0000
+Message-Id: <20240222-b4-camss-sc8280xp-v6-0-0e0e6a2f8962@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] drm: panel: st7701: Add Hardkernel ODROID-GO Ultra
- panel support
-To: Adam Green <greena88@gmail.com>, Jagan Teki <jagan@amarulasolutions.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard
-	<mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie
-	<airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20240221194528.1855714-1-greena88@gmail.com>
- <20240222164332.3864716-1-greena88@gmail.com>
- <20240222164332.3864716-2-greena88@gmail.com>
-Content-Language: en-US
-From: Jessica Zhang <quic_jesszhan@quicinc.com>
-In-Reply-To: <20240222164332.3864716-2-greena88@gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: c96G9I9C2Z3p0VD_rZ4yHUrDP4wr5jn7
-X-Proofpoint-GUID: c96G9I9C2Z3p0VD_rZ4yHUrDP4wr5jn7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-22_13,2024-02-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=999
- mlxscore=0 adultscore=0 spamscore=0 lowpriorityscore=0 malwarescore=0
- impostorscore=0 suspectscore=0 bulkscore=0 priorityscore=1501
- clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2402220135
+X-B4-Tracking: v=1; b=H4sIAIqB12UC/23OwYoCMQyA4VeRnu2SpqnTevI9lj20tdHCOiOtD
+ C4y775VWJjFHv9AvuQhaio5VbHfPERJc655GlvsthsRz348JZmPrQUCaqVAyUAy+kutskaLFu5
+ XCUkFp1JAFVi0vWtJnO8v8/Or9TnX21R+Xidm9Zz+adjRZiVBOud2TCEGy3T4zqMv08dUTuLJz
+ bgmdI/ARoTBMx3RaI/wRug1YXqEbgQFHfWAzND5gtaE6xHUCGO9sSEiALs3wqwIBT3CNGJgcjT
+ EaFy0/4hlWX4B+zwe8b8BAAA=
+To: hverkuil-cisco@xs4all.nl, laurent.pinchart@ideasonboard.com, 
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Todor Tomov <todor.too@gmail.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, vincent.knecht@mailoo.org, 
+ matti.lehtimaki@gmail.com, quic_grosikop@quicinc.com
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.13-dev-4e032
 
+V6:
+- Add of camss.yaml passes on linux-stable/master as at
+  commit: ff93872a9c61 ("clk: qcom: camcc-sc8280xp: Add sc8280xp CAMCC")
 
+- Fixed IFE/VFE comment discongruity - Konrad
 
-On 2/22/2024 8:43 AM, Adam Green wrote:
-> The Hardkernel ODROID-GO Ultra is a handheld gaming devices, with
-> a 5 inch 480x854 display. Add support for the display.
-> 
-> Signed-off-by: Adam Green <greena88@gmail.com>
-> ---
->   drivers/gpu/drm/panel/panel-sitronix-st7701.c | 158 +++++++++++++++++-
->   1 file changed, 157 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7701.c b/drivers/gpu/drm/panel/panel-sitronix-st7701.c
-> index 421eb4592b61..d08e8f4c39dd 100644
-> --- a/drivers/gpu/drm/panel/panel-sitronix-st7701.c
-> +++ b/drivers/gpu/drm/panel/panel-sitronix-st7701.c
-> @@ -423,6 +423,62 @@ static void kd50t048a_gip_sequence(struct st7701 *st7701)
->   		   0xFF, 0xFF, 0xFF, 0xFF, 0x10, 0x45, 0x67, 0x98, 0xBA);
->   }
->   
-> +static void odroid_go_ultra_gip_sequence(struct st7701 *st7701)
-> +{
-> +	ST7701_DSI(st7701, 0x01);
-> +	msleep(20);
-> +	ST7701_DSI(st7701, 0x11);
-> +	msleep(120);
-> +
-> +	ST7701_DSI(st7701, 0xFF, 0x77, 0x01, 0x00, 0x00, 0x10);
-> +	ST7701_DSI(st7701, 0xC0, 0xE9, 0x03);
-> +	ST7701_DSI(st7701, 0xC1, 0x11, 0x02);
-> +	ST7701_DSI(st7701, 0xC2, 0x31, 0x08);
-> +	ST7701_DSI(st7701, 0xCC, 0x10);
-> +	ST7701_DSI(st7701, 0xB0, 0x00, 0x0D, 0x14, 0x0D, 0x10, 0x05, 0x02, 0x08,
-> +		   0x08, 0x1E, 0x05, 0x13, 0x11, 0xA3, 0x29, 0x18);
-> +	ST7701_DSI(st7701, 0xB1, 0x00, 0x0C, 0x14, 0x0C, 0x10, 0x05, 0x03, 0x08,
-> +		   0x07, 0x20, 0x05, 0x13, 0x11, 0xA4, 0x29, 0x18);
-> +	ST7701_DSI(st7701, 0xFF, 0x77, 0x01, 0x00, 0x00, 0x11);
-> +	ST7701_DSI(st7701, 0xB0, 0x6C);
-> +	ST7701_DSI(st7701, 0xB1, 0x43);
-> +	ST7701_DSI(st7701, 0xB2, 0x07);
-> +	ST7701_DSI(st7701, 0xB3, 0x80);
-> +	ST7701_DSI(st7701, 0xB5, 0x47);
-> +	ST7701_DSI(st7701, 0xB7, 0x85);
-> +	ST7701_DSI(st7701, 0xB8, 0x20);
-> +	ST7701_DSI(st7701, 0xB9, 0x10);
-> +	ST7701_DSI(st7701, 0xC1, 0x78);
-> +	ST7701_DSI(st7701, 0xC3, 0x78);
-> +	ST7701_DSI(st7701, 0xD0, 0x88);
-> +	msleep(120);
-> +
-> +	ST7701_DSI(st7701, 0xE0, 0x00, 0x00, 0x02);
-> +	ST7701_DSI(st7701, 0xE1, 0x08, 0x00, 0x0A, 0x00, 0x07, 0x00, 0x09,
-> +		   0x00, 0x00, 0x33, 0x33);
-> +	ST7701_DSI(st7701, 0xE2, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +		   0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
-> +	ST7701_DSI(st7701, 0xE3, 0x00, 0x00, 0x33, 0x33);
-> +	ST7701_DSI(st7701, 0xE4, 0x44, 0x44);
-> +	ST7701_DSI(st7701, 0xE5, 0x0E, 0x60, 0xA0, 0xA0, 0x10, 0x60, 0xA0,
-> +		   0xA0, 0x0A, 0x60, 0xA0, 0xA0, 0x0C, 0x60, 0xA0, 0xA0);
-> +	ST7701_DSI(st7701, 0xE6, 0x00, 0x00, 0x33, 0x33);
-> +	ST7701_DSI(st7701, 0xE7, 0x44, 0x44);
-> +	ST7701_DSI(st7701, 0xE8, 0x0D, 0x60, 0xA0, 0xA0, 0x0F, 0x60, 0xA0,
-> +		   0xA0, 0x09, 0x60, 0xA0, 0xA0, 0x0B, 0x60, 0xA0, 0xA0);
-> +	ST7701_DSI(st7701, 0xEB, 0x02, 0x01, 0xE4, 0xE4, 0x44, 0x00, 0x40);
-> +	ST7701_DSI(st7701, 0xEC, 0x02, 0x01);
-> +	ST7701_DSI(st7701, 0xED, 0xAB, 0x89, 0x76, 0x54, 0x01, 0xFF, 0xFF,
-> +		   0xFF, 0xFF, 0xFF, 0xFF, 0x10, 0x45, 0x67, 0x98, 0xBA);
-> +	ST7701_DSI(st7701, 0xFF, 0x77, 0x01, 0x00, 0x00, 0x00);
-> +	ST7701_DSI(st7701, 0x3A, 0x70);
-> +	ST7701_DSI(st7701, 0x53, 0xEC);
-> +	ST7701_DSI(st7701, 0x55, 0xB3);
-> +	ST7701_DSI(st7701, 0x5E, 0xFF);
-> +	ST7701_DSI(st7701, 0x29);
-> +	msleep(50);
-> +}
-> +
->   static void rg_arc_gip_sequence(struct st7701 *st7701)
->   {
->   	st7701_switch_cmd_bkx(st7701, true, 3);
-> @@ -470,7 +526,7 @@ static int st7701_prepare(struct drm_panel *panel)
->   				    st7701->supplies);
->   	if (ret < 0)
->   		return ret;
-> -	msleep(20);
-> +	msleep(120);
+- Per my explaination I don't propose to change IFE/VFE naming since
+  they are the same thing.
 
-Hi Adam,
+  SFE blocks should be named SFE though, not IFE/VFE
 
-Just wondering, why the change to 120 here?
+- Referring to Konrad's other comments on IFE/VFE naming
+  https://lore.kernel.org/all/9a13471b-fc39-4081-8905-9d0d7c28b501@linaro.org/#t
 
-Thanks,
+  The next two changes I intend not covered in this SoC series
 
-Jessica Zhang
+  a) Completing the conversion to named power-domains
+  b) Camera NOC => OPPs for the camera NoC
 
->   
->   	gpiod_set_value(st7701->reset, 1);
->   	msleep(150);
-> @@ -875,6 +931,105 @@ static const struct st7701_panel_desc kd50t048a_desc = {
->   	.gip_sequence = kd50t048a_gip_sequence,
->   };
->   
-> +static const struct drm_display_mode odroid_go_ultra_mode = {
-> +	.clock		= 29170,
-> +
-> +	.hdisplay	= 480,
-> +	.hsync_start	= 480 + 12,
-> +	.hsync_end	= 480 + 12 + 12,
-> +	.htotal		= 480 + 12 + 12 + 38,
-> +
-> +	.vdisplay	= 854,
-> +	.vsync_start	= 854 + 2,
-> +	.vsync_end	= 854 + 2 + 19,
-> +	.vtotal		= 854 + 2 + 19 + 22,
-> +
-> +	.width_mm	= 70,
-> +	.height_mm	= 140,
-> +
-> +	.type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
-> +};
-> +
-> +static const struct st7701_panel_desc odroid_go_ultra_desc = {
-> +	.mode = &odroid_go_ultra_mode,
-> +	.lanes = 2,
-> +	.format = MIPI_DSI_FMT_RGB888,
-> +	.panel_sleep_delay = 120,
-> +
-> +	.pv_gamma = {
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC0_MASK, 0),
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC4_MASK, 0xd),
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC8_MASK, 0x14),
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC16_MASK, 0xd),
-> +
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC24_MASK, 0x10),
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC52_MASK, 0x5),
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC80_MASK, 0x2),
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC108_MASK, 0x8),
-> +
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC147_MASK, 0x8),
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC175_MASK, 0x1e),
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC203_MASK, 0x5),
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC231_MASK, 0x13),
-> +
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC239_MASK, 0x11),
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_AJ_MASK, 2) |
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC247_MASK, 0x23),
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC251_MASK, 0x29),
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC255_MASK, 0x18)
-> +	},
-> +	.nv_gamma = {
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC0_MASK, 0),
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC4_MASK, 0xc),
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC8_MASK, 0x14),
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC16_MASK, 0xc),
-> +
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC24_MASK, 0x10),
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC52_MASK, 0x5),
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC80_MASK, 0x3),
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC108_MASK, 0x8),
-> +
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC147_MASK, 0x7),
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC175_MASK, 0x20),
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC203_MASK, 0x5),
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC231_MASK, 0x13),
-> +
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC239_MASK, 0x11),
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_AJ_MASK, 2) |
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC247_MASK, 0x24),
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC251_MASK, 0x29),
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_VC255_MASK, 0x18)
-> +	},
-> +	.nlinv = 1,
-> +	.vop_uv = 4887500,
-> +	.vcom_uv = 937500,
-> +	.vgh_mv = 15000,
-> +	.vgl_mv = -9510,
-> +	.avdd_mv = 6600,
-> +	.avcl_mv = -4400,
-> +	.gamma_op_bias = OP_BIAS_MIDDLE,
-> +	.input_op_bias = OP_BIAS_MIN,
-> +	.output_op_bias = OP_BIAS_MIN,
-> +	.t2d_ns = 1600,
-> +	.t3d_ns = 10400,
-> +	.eot_en = true,
-> +	.gip_sequence = odroid_go_ultra_gip_sequence,
-> +};
-> +
->   static const struct drm_display_mode rg_arc_mode = {
->   	.clock          = 25600,
->   
-> @@ -1055,6 +1210,7 @@ static const struct of_device_id st7701_of_match[] = {
->   	{ .compatible = "anbernic,rg-arc-panel", .data = &rg_arc_desc },
->   	{ .compatible = "densitron,dmt028vghmcmi-1a", .data = &dmt028vghmcmi_1a_desc },
->   	{ .compatible = "elida,kd50t048a", .data = &kd50t048a_desc },
-> +	{ .compatible = "hardkernel,odroid-go-ultra-panel", .data = &odroid_go_ultra_desc },
->   	{ .compatible = "techstar,ts8550b", .data = &ts8550b_desc },
->   	{ }
->   };
-> -- 
-> 2.43.0
-> 
+  Not covered in this series though.
+
+Link to v5: https://lore.kernel.org/r/20231110-b4-camss-sc8280xp-v5-0-7f4947cc59c8@linaro.org
+Link to tree: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/b4/camss-sc8280xp-v6
+Bootable: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/sc8280xp-v6.8-rc4-camss?ref_type=heads
+
+V5:
+- Fixes the lower case 0x0c to 0x0C not sure how Konrad even saw this.
+- Drops frequency table to just individual frequencies not full array of
+  opps - Konrad
+
+- As explained doesn't change the finding of frequencies.
+  Current array size will ensure testing if (freq[x]) succeeds though I
+  do agree this should be changed up.
+
+  Plan to restructure struct params for specificity to VFE, CSID and will
+  incorporate this change then.
+  Link: https://lore.kernel.org/all/e80d4026-a525-48ef-b53a-f1276dd316e6@linaro.org
+
+-  Reset sequence
+
+   Right now the reset works. I agree qcom's downstream has more stuff in
+   it. I've logged a task to evaluate expansion of the reset and to test
+   across multiple platforms.
+
+   For now not required for this drop.
+
+- _src clocks
+
+  One assumes the reason at some stage in time we didn't have SET_PARENT in
+  our CAMCC which meant setting _src clocks was necessary. In any case it
+  ought not to be necessary now.
+
+  Removing the _src from existing platforms should be trivial however we
+  might find that as a result some of the CAMCC drivers need to be updated.
+
+  That obviously is a separate series.
+
+Link to v4: https://lore.kernel.org/r/20231109-b4-camss-sc8280xp-v4-0-58a58bc200f9@linaro.org
+Link to tree: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/b4/camss-sc8280xp-v5
+
+V4:
+- Drops all _src clocks and _SRC indexes in series.
+  True enough the CAMCC driver has all of the appropriate SET_PARENT flags
+  so there's no need to represent _src clocks. - Konrad
+
+- I've opted not to split C-PHY and D-PHY init sequences up unless/until
+  we have a C-PHY init sequence upstream. - bod/Konrad
+
+- b4 trailes --update -> + Konrad's Acks
+
+Link to v3: https://lore.kernel.org/r/20231105-b4-camss-sc8280xp-v3-0-4b3c372ff0f4@linaro.org
+Link to tree: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/b4/camss-sc8280xp-v4
+
+V3:
+- Strip pointer to dependencies from yaml patch
+  I was hoping the robot would understand the links but it doesn't -
+  Krzysztof
+
+Link to v2: https://lore.kernel.org/r/20231103-b4-camss-sc8280xp-v2-0-b7af4d253a20@linaro.org
+
+b4 base:
+https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/b4/camss-sc8280xp-v3
+
+V2:
+- Rebase to capture is_lite flag from named power-domain series
+- Amends commit log of final patch to give more detail on rename - Konrad
+- Opted not to change switch() statements with returns. - bod/Konrad
+
+Requires CAMCC for sc8280xp which applies to qcom/clk-for-6.7:
+https://lore.kernel.org/linux-arm-msm/20231026105345.3376-1-bryan.odonoghue@linaro.org/
+b4 shazam 20231026105345.3376-1-bryan.odonoghue@linaro.org
+
+Requires the named power-domain patches which apply to media-tree/*:
+https://lore.kernel.org/linux-arm-msm/20231103-b4-camss-named-power-domains-v4-0-33a905359dbc@linaro.org/
+b4 shazam e700133b-58f7-4a4d-8e5c-0d04441b789b@linaro.org
+
+Link to v1:
+https://lore.kernel.org/r/20231102-b4-camss-sc8280xp-v1-0-9996f4bcb8f4@linaro.org
+
+b4 base:
+https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/b4/camss-sc8280xp-v2
+
+V1:
+sc8280xp is the SoC found in the Lenovo X13s. This series adds support to
+bring up the CSIPHY, CSID, VFE/RDI interfaces.
+
+A number of precursor patches make this series smaller overall than
+previous series.
+
+sc8280xp provides
+
+- 4 x VFE, 4 RDI per VFE
+- 4 x VFE Lite, 4 RDI per VFE
+- 4 x CSID
+- 4 x CSID Lite
+- 4 x CSI PHY
+
+I've taken the yaml from a dtsi series and included it here since 1) I sent
+the yaml to the wrong person and 2) it already has RB from Krzysztof.
+
+Requires CAMCC for sc8280xp which applies to qcom/clk-for-6.7:
+https://lore.kernel.org/linux-arm-msm/20231026105345.3376-1-bryan.odonoghue@linaro.org/
+b4 shazam 20231026105345.3376-1-bryan.odonoghue@linaro.org
+
+Requires the named power-domain patches which apply to media-tree/* :
+https://lore.kernel.org/linux-arm-msm/20231101-b4-camss-named-power-domains-v3-5-bbdf5f22462a@linaro.org/
+b4 shazam 20231101-b4-camss-named-power-domains-v3-5-bbdf5f22462a@linaro.org
+
+To use the camera on x13s with say Google Hangouts or Microsoft Teams you
+will need to
+
+1. Run Firefox
+2. Update about:config to enable pipewire
+3. Use this WIP version of libcamera
+   https://gitlab.freedesktop.org/camera/libcamera-softisp
+
+A working bootable tree can be found here:
+Link: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/lenovo-x13s-linux-6.5.y
+
+b4 base:
+https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/b4/camss-sc8280xp
+
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
+Bryan O'Donoghue (6):
+      media: dt-bindings: media: camss: Add qcom,sc8280xp-camss binding
+      media: qcom: camss: csiphy-3ph: Add Gen2 v1.1 two-phase MIPI CSI-2 DPHY init
+      media: qcom: camss: Add CAMSS_SC8280XP enum
+      media: qcom: camss: Add sc8280xp resources
+      media: qcom: camss: Add sc8280xp support
+      media: qcom: camss: vfe-17x: Rename camss-vfe-170 to camss-vfe-17x
+
+ .../bindings/media/qcom,sc8280xp-camss.yaml        | 512 +++++++++++++++++++++
+ drivers/media/platform/qcom/camss/Makefile         |   2 +-
+ .../platform/qcom/camss/camss-csiphy-3ph-1-0.c     | 108 ++++-
+ drivers/media/platform/qcom/camss/camss-csiphy.c   |   1 +
+ .../camss/{camss-vfe-170.c => camss-vfe-17x.c}     |   0
+ drivers/media/platform/qcom/camss/camss-vfe.c      |  25 +-
+ drivers/media/platform/qcom/camss/camss-video.c    |   1 +
+ drivers/media/platform/qcom/camss/camss.c          | 307 ++++++++++++
+ drivers/media/platform/qcom/camss/camss.h          |   1 +
+ 9 files changed, 948 insertions(+), 9 deletions(-)
+---
+base-commit: e31185ce00a96232308300008db193416ceb9769
+change-id: 20231101-b4-camss-sc8280xp-0e1b91eb21bf
+
+Best regards,
+-- 
+Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+
 
