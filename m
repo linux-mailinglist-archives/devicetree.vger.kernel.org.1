@@ -1,137 +1,171 @@
-Return-Path: <devicetree+bounces-44861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-44862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48C3985FDAA
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 17:09:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2E5D85FDC9
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 17:13:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9F9E1B28EF5
-	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 16:09:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 697F5282101
+	for <lists+devicetree@lfdr.de>; Thu, 22 Feb 2024 16:13:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91E8B150996;
-	Thu, 22 Feb 2024 16:08:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78895156968;
+	Thu, 22 Feb 2024 16:11:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hYwmS/3M"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Wcgi/ear"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65B6D1474A2;
-	Thu, 22 Feb 2024 16:08:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1810155A59;
+	Thu, 22 Feb 2024 16:11:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708618130; cv=none; b=edS8XtT4eafFzSB34/qS1sU8YvdYp9mP7HJB43yceJqkgHA2N1MFMwNCnO5WfT/j67E18wGALzi303mlQwOCL2EkBeiTiaoMv3BFV5LjXATrpk/cvSz5+lVMy6WZS4hcjzuU7KmNOZY9Vr5kmVlxhu3eHJysRx9u4EFRcwz7A9k=
+	t=1708618304; cv=none; b=Nwy9tQvROQrg/Rz5RyIlhjsgjQ0HpphZX3t9P3m+nqlkx6ErwLSrfMh2fJcikPM4vqXY7uMJbnz3RT0SokTqy0fF5CWE1eVM0tqnh+VJYMX7Iryo21dwQW0sxjZcahntO1donotYSs+/YdywyiirqWaSoTF06f9qNM5017YQreE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708618130; c=relaxed/simple;
-	bh=kTLXnWnZsoedwczOpTL5BffDlpeFrsNtVM8o2rNejWo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JFxZufh9Zs5MWBgOYGzCzpp5VpTWPmC+tuHQ6sqtfF1/T8LuY3Vrznj8ovRC49ycwtfQu1PCEK7R/8HfVHNriyx4UkzyOjgt106RJfLiSdOnxhuxPdo6QR3RpZqXum5s4+m20Zej+isYWgigyAIRnvRgVH3i+w2Hd/xzama06ng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hYwmS/3M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D19D1C433C7;
-	Thu, 22 Feb 2024 16:08:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708618129;
-	bh=kTLXnWnZsoedwczOpTL5BffDlpeFrsNtVM8o2rNejWo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hYwmS/3MHejuSJkKkSewFfWVUMALm1mb5c4ADq019zonk57QExftcbqz8Ow1Tcukd
-	 xVqKNEu4jYCrI7bOzYlil7Ha7/k3UbgY/jlWNDo8wNsiK86j4KScDvtbdBSu8rGrFx
-	 +9DGtrCLCCoFHFJGOnY/KsWRco4bPZmkMfIjl5XF7spLOpoMCOnjfd7Z/dBRFE1WqV
-	 BQrzWGgxV1Hr85gfc9g9asOAEJh/iNoR335J7rz/wWhEvaT1/qMjb3fDRswGACLs9M
-	 0nQ03n5lpGk6/NILENxZj0MM72ka73X4qu5YOYW2CIv2Cwn5RmeSkQL84RmjwBzzqN
-	 U6s2+D23mBomw==
-Date: Thu, 22 Feb 2024 16:08:45 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Xin Ji <xji@analogixsemi.com>,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Pavel Machek <pavel@ucw.cz>
-Subject: Re: [PATCH] dt-bindings: usb: analogix,anx7411: drop redundant
- connector properties
-Message-ID: <20240222-election-doorstop-8c179803c47e@spud>
-References: <20240222082819.10321-1-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1708618304; c=relaxed/simple;
+	bh=ODWAXk37uneRRqTuBv4cWoCMKia5zti02gXxeRYGzfg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=e+87svp4TfjG9q112yCx1fXSpjJ6DM1yO3Cj4XTRPbvWfwf5vj1uuk2ErRrToXgf1J2HMiT7y6N7f07f94HDqEVMwgOuTx6DoR1/e4oWdcPuflSB9hKKrPsFod6KEY7dPDROjA1mr45XrvOAP2rKL+hHN0fYvlHTN5nj+AtjRok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Wcgi/ear; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41ME0Uw0004898;
+	Thu, 22 Feb 2024 16:11:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=VkGlsO5Mrfm3ug1ikkXZ4Ko+065GQMTl3KKTloxaHRI=; b=Wc
+	gi/ear9ii7PqqSdoUkOjrnztKdKVFRyHlKKtvpDEkavoLTOtgN5L5Toc45h2Dg03
+	cySRywimZGBcub6CmgYXa/CgTDYN/Hm95MQbTSIWLjX5uigTPIKyz+4UGWig1dyK
+	qFKtqBcYu0C6HI/bahlTIIVGdMM5AC1Rj5mSlXZtFdVA9dVTH187pcC8nNYG+hh4
+	/C4DGzUXK9hR717dUEp58GuAETcwSWd6En21QTaVO1QaqUmowNqGruhNdOHeuo+X
+	3gQbClyKk1YOIHPZQNKn53l7U1Vsdx6KsU966EE8FOm5rKTeqQlQboZcD21RcoRS
+	ZPevnel8sDaTpHTgYkcg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wdwmd1yt8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 22 Feb 2024 16:11:31 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41MGBUNA018720
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 22 Feb 2024 16:11:30 GMT
+Received: from [10.216.18.198] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 22 Feb
+ 2024 08:11:24 -0800
+Message-ID: <407ea19a-17a2-471b-80e9-1c35dbc21bb4@quicinc.com>
+Date: Thu, 22 Feb 2024 21:41:20 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="0CcJJwfGBToPtmCF"
-Content-Disposition: inline
-In-Reply-To: <20240222082819.10321-1-krzysztof.kozlowski@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/9] arm64: dts: qcom: qcs6490-rb3gen2: Enable USB role
+ switching
+To: Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Rob Clark
+	<robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        "Dmitry
+ Baryshkov" <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>,
+        "Marijn Suijten" <marijn.suijten@somainline.org>,
+        David Airlie
+	<airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        <cros-qcom-dts-watchers@chromium.org>,
+        "Bjorn Andersson"
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20240221-rb3gen2-dp-connector-v1-0-dc0964ef7d96@quicinc.com>
+ <20240221-rb3gen2-dp-connector-v1-6-dc0964ef7d96@quicinc.com>
+Content-Language: en-US
+From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <20240221-rb3gen2-dp-connector-v1-6-dc0964ef7d96@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Vdf4OS8I7J8VXnlr-FvlAMW764c5s7EW
+X-Proofpoint-ORIG-GUID: Vdf4OS8I7J8VXnlr-FvlAMW764c5s7EW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-22_12,2024-02-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ impostorscore=0 mlxlogscore=999 suspectscore=0 malwarescore=0 spamscore=0
+ bulkscore=0 priorityscore=1501 phishscore=0 mlxscore=0 clxscore=1011
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2402220127
 
 
---0CcJJwfGBToPtmCF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 22, 2024 at 09:28:19AM +0100, Krzysztof Kozlowski wrote:
-> The binding references usb-connector.yaml schema, which lists all
-> allowed properties and ends with unevaluatedProperties:false, so we can
-> simplify analogix,anx7411 binding by dropping everything covered by
-> usb-connector.yaml.
->=20
-> Suggested-by: Pavel Machek <pavel@ucw.cz>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 2/22/2024 4:49 AM, Bjorn Andersson wrote:
+> With the ADSP remoteproc loaded pmic_glink can be introduced and wired
+> up to provide role and orientation switching signals.
+> 
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
 > ---
->  .../devicetree/bindings/usb/analogix,anx7411.yaml   | 13 -------------
->  1 file changed, 13 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml =
-b/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
-> index e4d893369d57..3f5857aee3b0 100644
-> --- a/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
-> +++ b/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
-> @@ -23,24 +23,11 @@ properties:
->    connector:
->      type: object
->      $ref: ../connector/usb-connector.yaml
-> -    unevaluatedProperties: false
+>   arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 48 +++++++++++++++++++++++++++-
+>   1 file changed, 47 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> index ab498494caea..079bf43b14cc 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> @@ -121,6 +121,41 @@ debug_vm_mem: debug-vm@d0600000 {
+>   		};
+>   	};
+>   
+> +	pmic-glink {
+> +		compatible = "qcom,qcm6490-pmic-glink", "qcom,pmic-glink";
+> +
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		connector@0 {
+> +			compatible = "usb-c-connector";
+> +			reg = <0>;
+> +			power-role = "dual";
+> +			data-role = "dual";
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +
+> +					pmic_glink_hs_in: endpoint {
+> +						remote-endpoint = <&usb_1_dwc3_hs>;
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +
+> +					pmic_glink_ss_in: endpoint {
+> +						remote-endpoint = <&usb_1_dwc3_ss>;
+> +					};
+> +				};
 
-The connector schema sets `additionalProperties: true`. Is removing this
-correct?
+For the role switching part:
+Tested-By: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+
+Regards,
+Krishna,
 
 
-> -
-> -    description:
-> -      Properties for usb c connector.
-> =20
->      properties:
->        compatible:
->          const: usb-c-connector
-> =20
-> -      power-role: true
-> -
-> -      data-role: true
-> -
-> -      try-power-role: true
-> -
-> -    required:
-> -      - compatible
-> -
->  required:
->    - compatible
->    - reg
-> --=20
-> 2.34.1
->=20
-
---0CcJJwfGBToPtmCF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZddxjQAKCRB4tDGHoIJi
-0uEqAP9Xf9zXv7mqM14GGniZvnJbzR6Y9xYhn3ayyr5xFSWPKAD8DOItDvsLF29D
-BM/6Njluym2MAlGcqvjwD+BmS3rCjQM=
-=aipQ
------END PGP SIGNATURE-----
-
---0CcJJwfGBToPtmCF--
 
