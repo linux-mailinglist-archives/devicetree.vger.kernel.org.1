@@ -1,68 +1,66 @@
-Return-Path: <devicetree+bounces-45409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4635A861C1F
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 19:47:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87F13861C27
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 19:51:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4B3F1F27C53
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 18:47:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 292381F21BD2
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 18:51:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D8F4143C4D;
-	Fri, 23 Feb 2024 18:47:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8EDF1420B7;
+	Fri, 23 Feb 2024 18:51:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UpP5gPFr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ezUa7WaV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34213143C40;
-	Fri, 23 Feb 2024 18:47:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EE2484FA7;
+	Fri, 23 Feb 2024 18:51:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708714033; cv=none; b=kxqOqrUVdi0MnrWwcASgGxib1Ru+4QlVe5OQeOz7xqIXFHmyZf7DbRu7/8m2/nbRk4ez62LGxde6mzHpXFjC01CLAgznaroIIY0YW6OPSqyXyt79eB8QORNfU5fvjkRvz5Pt51wZ3d4UfBz5yUT4iZRxczv+MtvvA2iVkYIdg/c=
+	t=1708714296; cv=none; b=BYNGmxfLyFHzXs3vkPH11Rhr4aLj/BamyNthqN7o2ZqVGnjawBdnSHE09seKjl3pY83w5YBt0ta+PFM4g21iEiRCKHN5FXNGxiY9Tn5L74egvrFr4aFly0QjNnCwkZ7Oh/hlj69Gf+56Qk5RBsR+YTc6P5ClXrg4iVt8jIPXiy8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708714033; c=relaxed/simple;
-	bh=eVLWzS7gYaF42Hqu36RJiepcfVw/lg0keFM7RtUV0Zo=;
+	s=arc-20240116; t=1708714296; c=relaxed/simple;
+	bh=FO7BdQ8U8hk1Y0sbXcP0MfCgm4tIizQxDb2XU/U2g4M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UxGbPKQnciM4eYTY7MtSWUyR7G9cku+w2XyIg0S2+3P9LSk7AuCocFkwk/bKtYghgRu05lCdPzO6vJLlOeQDZ3zITZu9Y6yUZLd2mSBGm6HsNMk7h/+ifM2BvJve21Y25IRXJdNU4V+3yb5yFcZzlVoOU3galJHzomCRPgrg5qg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UpP5gPFr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 989F7C433F1;
-	Fri, 23 Feb 2024 18:47:08 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZJNeK5cpbvgIOqqY31AlydqhlKSnsHrHXBaVkL0TEenKkQRtp/11AUgp5OiRntJnlZLdpTWfGoY4L4sBsigxQgdUmxgfX9jcfg9mW7sq4ysjV4acOYxTkimqSrciavpbaPrdX/2r5ZVtYr3WwilqQyrvB5I9ZFpTzWH8fg0FAVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ezUa7WaV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6557C433F1;
+	Fri, 23 Feb 2024 18:51:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708714032;
-	bh=eVLWzS7gYaF42Hqu36RJiepcfVw/lg0keFM7RtUV0Zo=;
+	s=k20201202; t=1708714296;
+	bh=FO7BdQ8U8hk1Y0sbXcP0MfCgm4tIizQxDb2XU/U2g4M=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UpP5gPFr/wO3BW32q043WYJ8BndpF+5c5kvBbPcCvKFQoWIG8bQxVldGM5HF8/7Zn
-	 19GFA+mY4vLTHE0QqgTa9TW1CDUBWJmW/1pGul98tVLPC8XRtgXruShuDyzrr63fXs
-	 DKygP3MxjDZwjMsUSC+X4mGT+4U2lFBYh1lp9ar2DGTMGRX65f76HenH4YSxIJOk9T
-	 ZcwrK3IKo534NeFkb3w7GCYemQapPnOc5B/4ZuEa6ymmiYltJbpQ9P/YZ7HUWmv3uM
-	 geVSVjFUCQ1pyN6PLP716Z0ag8V5iEdv+Dpk+IL47x1wJozGWDpnWUL0uaAkPqH7/d
-	 BEYm/83ZFsNuQ==
-Date: Fri, 23 Feb 2024 18:47:06 +0000
+	b=ezUa7WaVWWaEBWN4K67za3YyrYXeUmASX5LyFjacCmS+ub+3SXmzngSPhhuh00jGj
+	 GGf3WcSfOgXD2wQOHB+kKn+7uIv1+ByU5MLkk5jq0Udl71uNjtuqhMSEq+0Ny88rdy
+	 vu7eYxQW6IsuqaBBjmyCx78eYD3aW8EbYiT+7uEGTpHSJQToEPl00iqq+3PEngvwbh
+	 WcCC44Ls7rMZBGW3Za3U9aJsKbnyI9nPluVuAxIXCKPWhF11BUBVHXgQJiFOy0C3qv
+	 1709HCmYwxmCfINroI8cXo3ZNlsgfYi9ayQkobUGG1jB+MIXd5h0f5vwcB06hFsFJZ
+	 IBhyY4YIPGUBA==
+Date: Fri, 23 Feb 2024 18:51:31 +0000
 From: Conor Dooley <conor@kernel.org>
-To: William Zhang <william.zhang@broadcom.com>
-Cc: Linux MTD List <linux-mtd@lists.infradead.org>,
-	Linux ARM List <linux-arm-kernel@lists.infradead.org>,
-	Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
-	f.fainelli@gmail.com, kursad.oney@broadcom.com,
-	joel.peshkin@broadcom.com, anand.gore@broadcom.com, dregan@mail.com,
-	kamal.dasu@broadcom.com, tomer.yacoby@broadcom.com,
-	dan.beygelman@broadcom.com, devicetree@vger.kernel.org,
-	Brian Norris <computersforpeace@gmail.com>,
-	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Kamal Dasu <kdasu.kdev@gmail.com>, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v6 06/13] dt-bindings: mtd: brcmnand: Add ecc strap
- property
-Message-ID: <20240223-revolver-astute-8fb3bdbb6b2e@spud>
-References: <20240223034758.13753-1-william.zhang@broadcom.com>
- <20240223034758.13753-7-william.zhang@broadcom.com>
+To: Kelly =?utf-8?B?SHVuZyjmtKrlmInojokp?= <Kelly_Hung@asus.com>
+Cc: Kelly Hung <ppighouse@gmail.com>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"joel@jms.id.au" <joel@jms.id.au>,
+	"andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+	AllenYY =?utf-8?B?SHN1KOioseW5vOWysyk=?= <AllenYY_Hsu@asus.com>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: aspeed: add ASUS X4TF board
+Message-ID: <20240223-sprang-rework-4b0fb07ccc98@spud>
+References: <20240222085914.1218037-1-Kelly_Hung@asus.com>
+ <20240222-getting-nebulizer-8f75ba8063b1@spud>
+ <TYZPR04MB6596ED7F905CB53191F48A289D552@TYZPR04MB6596.apcprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,38 +68,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="n37UuXkV/2mgwiHJ"
+	protocol="application/pgp-signature"; boundary="ryaepkQT1Q7qbbw9"
 Content-Disposition: inline
-In-Reply-To: <20240223034758.13753-7-william.zhang@broadcom.com>
+In-Reply-To: <TYZPR04MB6596ED7F905CB53191F48A289D552@TYZPR04MB6596.apcprd04.prod.outlook.com>
 
 
---n37UuXkV/2mgwiHJ
+--ryaepkQT1Q7qbbw9
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 22, 2024 at 07:47:51PM -0800, William Zhang wrote:
-> Add brcm,nand-ecc-use-strap to get ecc and spare area size settings from
-> board boot strap for broadband board designs because they do not specify
-> ecc setting in dts but rather using the strap setting.
->=20
-> Signed-off-by: William Zhang <william.zhang@broadcom.com>
+I have no idea what his email is meant to mean, it just looks like a
+copy of your original patch. That said, you have a footer about the mail
+contents of being confidential, so please fix that too.
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Cheers,
+Thanks,
 Conor.
 
---n37UuXkV/2mgwiHJ
+--ryaepkQT1Q7qbbw9
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdjoKgAKCRB4tDGHoIJi
-0oLTAQD6uuZ7A4FClI0rca2qTrbTuWwDulHcIMWL6jq5deCSoQEA4yGAktqwg9dD
-8s+wtFRJwP+4UEJdvzAjCR2i8xbyHwE=
-=0j/A
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdjpMwAKCRB4tDGHoIJi
+0qaFAQD5taRnu/02nJkNtw7fgfQfgtOsbXKXvPhgWUxdfZVWxAD+LF4RgECksW1C
+QZifqbegVd+Ek4Jw/1lWJUwbT+vW+gM=
+=dc6a
 -----END PGP SIGNATURE-----
 
---n37UuXkV/2mgwiHJ--
+--ryaepkQT1Q7qbbw9--
 
