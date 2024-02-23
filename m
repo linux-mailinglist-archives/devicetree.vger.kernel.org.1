@@ -1,78 +1,77 @@
-Return-Path: <devicetree+bounces-45181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45183-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA2F8860F63
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 11:33:05 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 138AB860FC2
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 11:46:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FE75286266
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 10:33:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7E1AEB2736B
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 10:46:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3686C76905;
-	Fri, 23 Feb 2024 10:32:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C24716313F;
+	Fri, 23 Feb 2024 10:41:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XyQDy89I"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nNXUAdlz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 680EF76029;
-	Fri, 23 Feb 2024 10:32:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C82F5FB82;
+	Fri, 23 Feb 2024 10:41:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708684340; cv=none; b=ZSUPMZ93Zaj51vJ+C3Ll8FAi4ZH04q6rHgqXuSYz3YFH3OPLDjTrJO6CGfyY6iSEGoRqnqlgP4ppn5EN9gYIPWIX9ecYFLNZJ0IjgCUhuVsCDTQuR362NMonwCybA4pnO3cg8wHHjdV6KUh8O4NRTRmFgteRbG9ywYcip+mXANM=
+	t=1708684904; cv=none; b=OpxC+MP6aKlSfrkIxNisIXXE0lH0anGf5Pxt0qgVFMyBzUnTfbCug85og/fgDAZgspT8z4gtLX57tS0K3WBnGNqfA+c8PM7uD+RfOYhOyNaczPIw8VufLTS0gGHDZSml+lRu3WKfR+rZwSRxH8fexDNBGQ3kpZLVfw5O+Rc4M1M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708684340; c=relaxed/simple;
-	bh=qEI1IPPY45I44MWrA2eQdelfQfewfwy4o3CwSMwNZRc=;
+	s=arc-20240116; t=1708684904; c=relaxed/simple;
+	bh=pMA/M1Wst7tXkYIO5GIr1rjeX1F/9HHGrY1Lxy8EC3w=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=TaeHzy84I0A9rGHAchIvd9l3/W1Nh+SpmNXQksR+qZyysndoG+BWfhD4ndNqgzlbMq1ZmWkLXrT+mDNHsq26PN+tJ1cXTMUKLJRIFfTYg3YCSRG1uImuT2kw1rgMu2pCTk35RvX2xrkylEZ1zRc6HeWFL+F7aM8cAqjyrhi7PbA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XyQDy89I; arc=none smtp.client-ip=209.85.218.41
+	 Content-Type:MIME-Version; b=OYDaltaPLpq5zNpd3+JNM4LNnEH5/teblyXxTT/37c21tPX01PGJW5r6k0dbE8xSoX2e0hGxdHSNwqKFyI+Q9fdy6Gf3hW5ktUZa9Heq32SLLZX/4+h/4s1hy1VkcHo+aDvT80NauSrgI8Qpzb+tX2qQlrDXaSfgaQys0l0BwZw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nNXUAdlz; arc=none smtp.client-ip=209.85.218.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a3e72ec566aso86798966b.2;
-        Fri, 23 Feb 2024 02:32:18 -0800 (PST)
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a3d5e77cfbeso128235366b.0;
+        Fri, 23 Feb 2024 02:41:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708684337; x=1709289137; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1708684901; x=1709289701; darn=vger.kernel.org;
         h=mime-version:user-agent:content-transfer-encoding:references
          :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=qEI1IPPY45I44MWrA2eQdelfQfewfwy4o3CwSMwNZRc=;
-        b=XyQDy89Ix2n+1Y7qHm1NeOtdzDQZhQ3Sd4ooY7qe5HozhYYnEcsfrplGDC+XG1dtuc
-         scgxWGf10DKsB1seUQ2yAvMJwLxWFqGKOlx1JY9BVrmfjTiEFoelrLu+VEz1XXC61aEb
-         928jm6ba/BwHYL4N3bG8crBRRn1r8P8CH2gBPAszCef96xPRg0l+i0F8s0uHceDteo43
-         fy4E78CrxM0QaUbhcbvbMz0qI3Bhq5Ix/UbGWscy7lSsdPOqqMlDLHxgZedQlOvhx+Jp
-         OsuMOZD9eHBMdnfuWENPcoBrKw3BIYDHhNADdlMyuhwl/Tg+nYhAzqah0v6MP+wY/zpJ
-         e4Fw==
+        bh=pMA/M1Wst7tXkYIO5GIr1rjeX1F/9HHGrY1Lxy8EC3w=;
+        b=nNXUAdlzppPpKfGM+9uUXwTErhlOIWOEuIIycM5iubmq6LkmexL98e41OsNy+L8qDe
+         yrV0hi618880HngsiGM+Zg8HCnkGimOHdp/QZen5W71FFV3LvKYc7YBMbjhar/+eyZGY
+         Ad3AECKIxoa9Hqrhh2knV8qRLDy9Q8OfkkhsxSdLkJDJhZsQ+vLljKhMzoNn6UKjYBsA
+         NSKHgNsSnqu1dMls+GHOKI4lW3eHVA9Xi6MvAPcK9/rCbWnxWQ3+rEx51rj2sOvXXp7Y
+         WGNBxtDVmhFmGOZKNgkDT1iuE5Mcleu6DqRhoZ7FYpgFdwGX5CKOx0gaSrYDkT1po3DB
+         bkpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708684337; x=1709289137;
+        d=1e100.net; s=20230601; t=1708684901; x=1709289701;
         h=mime-version:user-agent:content-transfer-encoding:references
          :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=qEI1IPPY45I44MWrA2eQdelfQfewfwy4o3CwSMwNZRc=;
-        b=YB/tjyDRqkXrtMwRM5fT77aFB63C74euNg/0Fu4UqAfJlCBHwNFvFqL7swuDEb1AUX
-         UZo+Vx/13SSXcUpTHfVIfl7dbomd0VskW+9P2XsHkXjVwuqKAkmSoFL3yarFmIuyyXV2
-         1R8E/8HKh+tng9BN3yBbnfPh6g8Ac/6HyiBGLtdr/LKHkKLmfnhk30k9YyRbDT2bTjDl
-         6dFNg0Qu41s5qY9AVqpF7FRWmp3i2qkJA8jseplLKG2IoZXr7dfpJwWqImHip7YKtzRU
-         JK4BI87J77KFDhjf4Md6F2Cnl8sqsXiOvMBOYc6n4/QEuWg5taNC9f1Op4ZIqLIsQLqC
-         mh9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVucJjKG5F5cLR+yxzRTh1f6LkSx8FJXuURrcU0SNSaGMybWKcIk355nlKAuSgw1ciKNECM2tDrjF5K7o5KVA5/KH6aD1lqtH36lp/MqSPry+qwJteE2i67ZIpg4GRtw9MSQ40blersNg==
-X-Gm-Message-State: AOJu0YzVHBklDrBrtgpIOD78/kJy27ZpQ5RR21Dd9HKhi4zUHxpYTiq3
-	oqj+YenlEGjxHalOxirIfpJV4nW4waC2uEHGJ4jIHenFDkBCS9TH
-X-Google-Smtp-Source: AGHT+IHxdZXGV8Be6XpyrCYxPJM4LoRjOCsKLfrTE03uuhRSifhKWE7vbJfQRvpqoydjAQJMNW4irA==
-X-Received: by 2002:a17:906:7192:b0:a3e:a951:4087 with SMTP id h18-20020a170906719200b00a3ea9514087mr937414ejk.76.1708684336474;
-        Fri, 23 Feb 2024 02:32:16 -0800 (PST)
+        bh=pMA/M1Wst7tXkYIO5GIr1rjeX1F/9HHGrY1Lxy8EC3w=;
+        b=Vda7QvdLes8BW4WLCprRLOHrrirXF7Y64xBXOWHNbGJOzbIuXqCToVOpbT2K5t6ua8
+         xhhANJ4Qnwq8okg3rZMNSaJTmScoToN0SRfbu0hEjaoWinDZVzzAGTs/UAvb+vkmXTEO
+         3MWIMHNca4cu2Y8d7z9XMC6xhFLuNUkPDUQ2uK7MruQ/zCqBF8aCHNhBjgaZiRA8Wi0N
+         Wb5ckVjjTYNq4Ml7vUbtog6inCBl3OQF0iF6gloGgvSzPha6K6XHJyd+hJDX29iF9dAI
+         tzD5OmOqV5FISQpOtdMpaabmNO/oWo8RzSye4WvE08WsJzCXPX/OOfnJMM7JvmsyM2RT
+         GLaw==
+X-Forwarded-Encrypted: i=1; AJvYcCWTZyMP29Kzo4jXJqKUZDzq9EXd4yaWyb5yhhuiaJnTjp9boHC0beCS5iPZuLgqd74wM549jziqk/lWzHTJkGZJUgGCBfofNJKRqlEZOdXZmLOLo134gEN9k8bRh2zIC8AvBVHpbcJD/w==
+X-Gm-Message-State: AOJu0Yx8fwGP6tvSPi+tVDfcPfSZVFX5Qh3HeJQ4rwGLZXckCId8RRLR
+	ZQgJbYHglmSBOe3McYvEILV0bxXJVswz9Nz5/eo5UXLQwW3nC9Zb
+X-Google-Smtp-Source: AGHT+IGUCCSCQV9rw4wx/ZhCMSmgrPlnVN15HXlKN/MbnKUIkrgqLVKR3L5lMpuFeA3d/5nKzSSAzg==
+X-Received: by 2002:a17:906:5c9:b0:a3f:4800:1fa8 with SMTP id t9-20020a17090605c900b00a3f48001fa8mr4270726ejt.26.1708684901141;
+        Fri, 23 Feb 2024 02:41:41 -0800 (PST)
 Received: from ?IPv6:2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47? (p200300f6ef1b2000944ccbc71e1c2c47.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47])
-        by smtp.gmail.com with ESMTPSA id q18-20020a170906145200b00a3d2d81daafsm6909238ejc.172.2024.02.23.02.32.15
+        by smtp.gmail.com with ESMTPSA id ty24-20020a170907c71800b00a3ee41cbe87sm3762669ejc.153.2024.02.23.02.41.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Feb 2024 02:32:16 -0800 (PST)
-Message-ID: <23ccb927c4a8b9f86cf7832fb1d2b0326fbae3a1.camel@gmail.com>
-Subject: Re: [PATCH 2/2] of: overlay: Synchronize of_overlay_remove() with
- the devlink removals
+        Fri, 23 Feb 2024 02:41:40 -0800 (PST)
+Message-ID: <cdf0a9facd95a2b7ee618e6130dedb9aabf4ed09.camel@gmail.com>
+Subject: Re: [PATCH 1/2] driver core: Introduce device_link_wait_removal()
 From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
 To: Herve Codina <herve.codina@bootlin.com>, Saravana Kannan
-	 <saravanak@google.com>, Nuno Sa <nuno.sa@analog.com>
+	 <saravanak@google.com>
 Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
  <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Frank Rowand
  <frowand.list@gmail.com>, Lizhi Hou <lizhi.hou@amd.com>, Max Zhen
@@ -82,14 +81,14 @@ Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
  devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>,
  Horatiu Vultur <horatiu.vultur@microchip.com>,  Steen Hegelund
  <steen.hegelund@microchip.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Android Kernel Team <kernel-team@android.com>
-Date: Fri, 23 Feb 2024 11:35:37 +0100
-In-Reply-To: <20240223104550.234ecdcb@bootlin.com>
+ <thomas.petazzoni@bootlin.com>, Android Kernel Team
+ <kernel-team@android.com>
+Date: Fri, 23 Feb 2024 11:45:02 +0100
+In-Reply-To: <20240223101115.6bf7d570@bootlin.com>
 References: <20231130174126.688486-1-herve.codina@bootlin.com>
-	 <20231130174126.688486-3-herve.codina@bootlin.com>
-	 <CAGETcx_zB95nyTpi-_kYW_VqnPqMEc8mS9sewSwRNVr0x=7+kA@mail.gmail.com>
-	 <20240223104550.234ecdcb@bootlin.com>
+	 <20231130174126.688486-2-herve.codina@bootlin.com>
+	 <CAGETcx9uP86EHyKJNifBMd23oCsA+KpMa+e36wJEEnHDve+Avg@mail.gmail.com>
+	 <20240223101115.6bf7d570@bootlin.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.50.4 
@@ -100,58 +99,56 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
-On Fri, 2024-02-23 at 10:45 +0100, Herve Codina wrote:
-> Hi Saravana, Nuno,=20
+On Fri, 2024-02-23 at 10:11 +0100, Herve Codina wrote:
+> Hi Saravana,
 >=20
-> On Tue, 20 Feb 2024 16:37:05 -0800
+> On Tue, 20 Feb 2024 16:31:13 -0800
 > Saravana Kannan <saravanak@google.com> wrote:
 >=20
 > ...
-> > > @@ -1202,6 +1202,12 @@ int of_overlay_remove(int *ovcs_id)
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 goto out;
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
-> > >=20
+>=20
+> > > +void device_link_wait_removal(void)
+> > > +{
 > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /*
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * Wait for any ongoing de=
-vice link removals before removing some
-> > > of
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * nodes
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * devlink removal jobs ar=
+e queued in the dedicated work queue.
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * To be sure that all rem=
+oval jobs are terminated, ensure that
+> > > any
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * scheduled work has run =
+to completion.
 > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 device_link_wait_removal();
-> > > +=C2=A0=20
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drain_workqueue(fw_devlink_wq);=
+=C2=A0=20
 > >=20
-> > Nuno in his patch[1] had this "wait" happen inside
-> > __of_changeset_entry_destroy(). Which seems to be necessary to not hit
-> > the issue that Luca reported[2] in this patch series. Is there any
-> > problem with doing that?
+> > Is there a reason this needs to be drain_workqueu() instead of
+> > flush_workqueue(). Drain is a stronger guarantee than we need in this
+> > case. All we are trying to make sure is that all the device link
+> > remove work queued so far have completed.
 >=20
-> Is it the right place to wait ?
+> I used drain_workqueue() because drain_workqueue() allows for jobs alread=
+y
+> present in a workqueue to re-queue a job and drain_workqueue() will wait
+> also for this new job completion.
 >=20
-> __of_changeset_entry_destroy() can do some of_node_put() and I am not sur=
-e
-> that of_node_put() can call device_put() when the of_node refcount reachs
-> zero.
+> I think flush_workqueue() doesn't wait for this chain queueing.
+>=20
+> In our case, my understanding was that device_link_release_fn() calls
+> put_device() for the consumer and the supplier.
+> If refcounts reaches zero, devlink_dev_release() can be called again
+> and re-queue a job.
 >=20
 
-I don't think of_node_put() can call device_put(). At least by looking at:
-
-https://elixir.bootlin.com/linux/v6.8-rc5/source/drivers/of/dynamic.c#L326
-
-> If of_node_put() cannot call device_put(), I think we can wait in the
-> of_changeset_destroy(). I.e. the __of_changeset_entry_destroy() caller.
-> =C2=A0 https://elixir.bootlin.com/linux/v6.8-rc1/source/drivers/of/dynami=
-c.c#L670
->=20
-> What do you think about this ?
-> Does it make sense ?
-
-I think it makes sense from a logical point of view. Like, let's flush the =
-queue
-right before checking our assumptions...
-
-In my tests, I did not saw any issue (Hopefully I was not missing any subtl=
-ety).
+Looks sensible. The only doubt (that Saravana mays know better) is that I'm=
+ not
+sure put_device() on a supplier or consumer can actually lead to
+devlink_dev_release(). AFAIU, a consumer or a supplier should not be a devi=
+ce
+from the devlink class. Hence, looking at device_release(), I'm not sure it=
+ can
+happen unless for some odd reason someone is messing with devlinks in .remo=
+ve()
+or .type->remove().
 
 - Nuno S=C3=A1
 
