@@ -1,181 +1,117 @@
-Return-Path: <devicetree+bounces-45341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45342-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87C55861814
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 17:36:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CDAE861880
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 17:56:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C8BD288E49
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 16:36:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C5301C22FD4
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 16:55:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A6851292FF;
-	Fri, 23 Feb 2024 16:36:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA0F4128833;
+	Fri, 23 Feb 2024 16:55:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XiNDkNdl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cdn5DnOB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D15245B1E0;
-	Fri, 23 Feb 2024 16:36:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9100F84A2B;
+	Fri, 23 Feb 2024 16:55:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708706208; cv=none; b=jx8iGbmOzTqokk6ybd2HG5xMTozV/nrbLYzTicSF7PlW+AnD5pilTmRqLXxnfZ0fFZlu9iVnHK916E51FK9/sbNZX3lO9KqgLra8LwBED6cMMoiy18Wc+aiKVGXGjDdE3S3XLWiAPkJ20enpP15rFq0JKKv3SONmwKnObvF4kCc=
+	t=1708707355; cv=none; b=F6e7meaGJdVuQlzZuaHxkkFD4Bw/7085H31f9msrERAIydSFTDJfYG2DHk0KEYwlkyrRRo2XiAWObKJ0Qm/Zmd+6kQF0/qcdgeBkos8TBToknmyEu+GY5R5AFck60afwH355EYyy4mWnCxpFec4e6u7lJLoL/KpY4NIPz7G+1hs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708706208; c=relaxed/simple;
-	bh=fI/IAdkB29JdV6KJtBT8ElzaQ0cLMc44qidIJ5rd/I4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=BOD+sIZxdybL/oHena+0G1WaQwNqTsWtmZ9dfHIxtAWYW817Ttex9/AQ35prFwNTsaA/e5k/dlJDuXmIZlq0yiEm92vH+qgeGn3wfUtHO4Iz6id4V6deTnIVmJOQ7DLqEs7rJFjxnoHHdYFIg0FTvWp9ni14i4VIdMCd3D0j9SU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XiNDkNdl; arc=none smtp.client-ip=209.85.208.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5648d92919dso1184902a12.1;
-        Fri, 23 Feb 2024 08:36:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708706205; x=1709311005; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SKe39YFDJ/aeVcKQ4XcWYXwsRT9ZbN8/BAXxQxEi0rU=;
-        b=XiNDkNdlxuyQwNDNNF9VokCJ/CHQ9QXF2msRHdRLZpft55JQ7+3hJkgQIIKZA0QT7P
-         +bOCldm5ZOXE56ICEblyBczIBDOw6iMx9tNGE52O+1SAUvXh2duCWIKYS7/H4//0CPJL
-         unLyeMvugbKSyXyOOVZCGHzK9US2kIXUi9hmYIFkcEP7rmczc4iCbGwuzJS2tc03hvK5
-         xFak4JpZ7HL1Bg6Tf8pMtY08ohwK9drbxeYbIe8CIHHQPfuMACpNskSLG9ZMM4ayFSXh
-         xIgzbTLR+fepoOJxU6vPZjjhMj6ORUYXeTBXwsO150nwMyjgODjM/szHLTlMEJ3RSWtV
-         OEeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708706205; x=1709311005;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SKe39YFDJ/aeVcKQ4XcWYXwsRT9ZbN8/BAXxQxEi0rU=;
-        b=uDBueiRoYNvUkJh9N6Uz2WrXExWnuAXKmpWpiEdSiDlftny53libt1yK9QvXPE0Hdq
-         skyEXHv8lDKB1KnEnuUvuYeFOvel77g/jw4o82EmlGhX/hoGxha1tBQxDy78SaGFQdmu
-         MPt7vSKDW+mxJtWw+20XTLzpjLcIlllxYSRCJADotFJe7NeGm1QZqZ1wTju77z+iC8QS
-         IrB47e7Ztn2HwHVTTL3zWUEu6Tetji8XB/3nDcsv91cqqe5kXhACoW4qDVk3LdrrZXBS
-         btbTZ/XuAbHJ/waSUnlOYDUADWCw4NwZj/8OwYIGNuK7RWnFr/OMrYmVo77KvM8HbWbY
-         vTsg==
-X-Forwarded-Encrypted: i=1; AJvYcCVxVTEjp5UR0qySWLTak7Zb5s6oFJtmzny9ZrDfZRu+3FEjYVCHrVYQHRBGaNOduKOHqMukFGQaza8C9NJJytEIM4xyWkJYH2qwnuzwReQBY+l+6u6F/hGMMNpmqP/QJMUZRcVNNVw=
-X-Gm-Message-State: AOJu0YzlMReoyaepdehgu7y5eg3sRWsK2uKnq6lnX4hiit3bNu6BEI2d
-	BTJf67lNNjO8vb3L6r7hFs78vNEVSdj2I5HuS/hcu2bXHxYlkuGk
-X-Google-Smtp-Source: AGHT+IHVdyrN3kBkUrfWyiP7YQLML5RAlwreabe5AGh4wWZSEssVDk9CCs13QdkcRc8MkQf4ECAYfA==
-X-Received: by 2002:aa7:d0ca:0:b0:564:54c6:6903 with SMTP id u10-20020aa7d0ca000000b0056454c66903mr295366edo.7.1708706204889;
-        Fri, 23 Feb 2024 08:36:44 -0800 (PST)
-Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id e10-20020a50ec8a000000b00564d6840976sm3194261edr.80.2024.02.23.08.36.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Feb 2024 08:36:44 -0800 (PST)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Aren <aren@peacevolution.org>
-Cc: linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
- Jean-Jacques Hiblot <jjhiblot@traphandler.com>, Chen-Yu Tsai <wens@csie.org>,
- Ondrej Jirman <megi@xff.cz>, linux-sunxi@lists.linux.dev,
- Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>,
- linux-arm-kernel@lists.infradead.org, linux-leds@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>, Miles Alan <m@milesalan.com>,
- Samuel Holland <samuel@sholland.org>
-Subject:
- Re: [PATCH v2 4/4] arm64: dts: sun50i-a64-pinephone: change led type to
- status
-Date: Fri, 23 Feb 2024 17:36:42 +0100
-Message-ID: <4545459.LvFx2qVVIh@jernej-laptop>
-In-Reply-To: <n5rmhx7ez7xoqainjqxpdk47e3bw2pvtsgswofnhjdxtrk72j2@debhbdxsxz4m>
-References:
- <20240206185400.596979-1-aren@peacevolution.org>
- <2792937.BEx9A2HvPv@jernej-laptop>
- <n5rmhx7ez7xoqainjqxpdk47e3bw2pvtsgswofnhjdxtrk72j2@debhbdxsxz4m>
+	s=arc-20240116; t=1708707355; c=relaxed/simple;
+	bh=o9q4NasFNGWz8zlB0rOMsX/O1t9hGjI/2ZeyGOezbiM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Content-Type; b=AjPMdUwOi4njmR1Y8fy2hJnWt/u/8EEedE4WenqCfgl4HCk2jIwF0KbLfEUdPPQQi+FHFSDFV7O3w91+/76zmoclsM7mz8Kq/L9cecA9E9XQ+37doXFyO4WFTmmdY1hYEnSa3jVJOuLlMH9+2ERHNg8CGMSz7FQXAx+plnupQBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cdn5DnOB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 078E8C43330;
+	Fri, 23 Feb 2024 16:55:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708707355;
+	bh=o9q4NasFNGWz8zlB0rOMsX/O1t9hGjI/2ZeyGOezbiM=;
+	h=References:In-Reply-To:From:Date:Subject:To:From;
+	b=Cdn5DnOBlicJ0wUckGy4GLjk0678uwLkjSvz0YRREgyci3Ctsqte0wLRfij9CHFRT
+	 S2L4JRLQ0QaiGizgjUOtlLun1f+2DGOcTRiUynJglubdSGcVZAat9Kx/2c5kqsS5m2
+	 plj7Y3yoBocKYXmzHqlx8PiSMrwtD3YJKlAxA0Tu2l5mh+JKT71h0x4r7Ewlxq3RIK
+	 yuR4NrFpy3wPgsq8zxxbSNpSIlFHmBN59ZlSxQYmCxNnqu8ro9xwu9/jvxcROocIWH
+	 8jCN6i5Qt2629wNnfXHUZCOgchwzysgPuROgAPldAOSa5cvX46P0jffMUJ5fTKHoad
+	 bu6YVtUsVo5rw==
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-512e75e013eso1020568e87.1;
+        Fri, 23 Feb 2024 08:55:54 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUn6SN9ylNChomsxvkwv1ZDCm1dng5ty0XYOYb3P3aLEReU3S9HmhQGkJraixOnHIK7QGexRfexWhVpm8Vt86KxXBtUCOGOITlkvK5UC/9996hJLd4v8ikWOIPHQuHVcB8IZZqE3wf/+t9JT0fphuQTF1M1rsdG22glRIr0QaSumMo6bShjSWkwvj6qE286UPTuLSAFYbklVZdpDcc1OvIzJwJ4BWLJ3mPiVGyKyJgTLJp/EGAA1j+Qt6FEMG72KG+Noqmgs9NvLiFfQxDrn7pmif6Ak3NLDVfY
+X-Gm-Message-State: AOJu0Yx+Rigxt/k9uJWiEtRRr0qB9y8CixhIpcpiEJz43OhZsEYICyTS
+	Afbq7pVr9ZcbVyFk3Qm+lFeWD/AQ0//7r8DjGYMuRzbt1WmW98AwpRNxs3YLElTuQNcaQy70mLc
+	d55ABu8W+/9xAcWpbmNggb0eBGg==
+X-Google-Smtp-Source: AGHT+IH3eU4uHcOcgNkS4EpFf9+utY4dSGP0CnG9Q3vlqtkLCgKqay36eKFj4lBrOQtl0GgcUPQ/S/qHFYrfi4oR314=
+X-Received: by 2002:a05:6512:e93:b0:512:d830:358c with SMTP id
+ bi19-20020a0565120e9300b00512d830358cmr267753lfb.49.1708707353147; Fri, 23
+ Feb 2024 08:55:53 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+References: <20240222174343.3482354-2-robh@kernel.org> <ZdemsdGQE0RtilCd@shikoro>
+In-Reply-To: <ZdemsdGQE0RtilCd@shikoro>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 23 Feb 2024 09:55:40 -0700
+X-Gmail-Original-Message-ID: <CAL_JsqKpn6jqktRLQUx7HMrJG0PZeiOZ=hQnHpZK6AHcM22CLQ@mail.gmail.com>
+Message-ID: <CAL_JsqKpn6jqktRLQUx7HMrJG0PZeiOZ=hQnHpZK6AHcM22CLQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: i2c: Remove obsolete i2c.txt
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>, Rob Herring <robh@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Andi Shyti <andi.shyti@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-i2c@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	linux-i3c@lists.infradead.org, linux-sound@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Dne petek, 23. februar 2024 ob 17:30:00 CET je Aren napisal(a):
-> On Thu, Feb 22, 2024 at 09:57:00PM +0100, Jernej =C5=A0krabec wrote:
-> > Dne torek, 06. februar 2024 ob 19:13:20 CET je Aren Moynihan napisal(a):
-> > > The status function is described in the documentation as being a rgb =
-led
-> > > used for system notifications on phones[1][2]. This is exactly what t=
-his
-> > > led is used for on the PinePhone, so using status is probably more
-> > > accurate than indicator.
-> > >=20
-> > > 1: Documentation/leds/well-known-leds.txt
-> > > 2: include/dt-bindings/leds/common.h
-> > >=20
-> > > Signed-off-by: Aren Moynihan <aren@peacevolution.org>
-> >=20
-> > Sorry for late review.
-> >=20
-> > Please update subject in patches 2-3. Instead of "sun50i-a64-pinephone:"
-> > use "allwinner: pinephone:" (check commit history of sun50i-a64-pinepho=
-ne.dtsi).
-> > Also rgb -> RGB, led -> LED. Last, please reword commit message to excl=
-ude
-> > links and just say DT bindings documentation.
-> >=20
-> > Note that I'll merge patches 2-3 once patch 1 is merged.
->=20
-> Would you like me to reword and resend the patches, or is it quicker
-> for you to just do it when you apply them?
+On Thu, Feb 22, 2024 at 12:55=E2=80=AFPM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+>
+> On Thu, Feb 22, 2024 at 10:43:42AM -0700, Rob Herring wrote:
+> > Everything in i2c.txt is covered by schemas/i2c/i2c-controller.yaml in
+> > dtschema project, so remove i2c.txt and update links to it in the tree.
+> >
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+>
+> Differences to i2c.txt:
 
-Since Ond=C5=99ej raised concerns, let's finish that discussion first. It's=
- possible
-that this patch will be rejected. That would also mean new revision of patc=
-hes.
+Thanks
 
-Sadly, this means DT patches will miss v6.9 window.
+> * In the schema, "clock-frequency" has a minimum of 1kHz and a maximum
+>   of 3MHz. Why? The specs do not say anything about a minimum freq and
+>   fastest speed mentioned in the docs is 5Mhz (Ultra fast mode).
 
-Best regards,
-Jernej
+IIRC, the high speed mode originally topped out at 3MHz. I guess
+that's been revised.
 
->=20
-> Thanks for taking a look at this,
->  - Aren
->=20
-> > Best regards,
-> > Jernej
-> >=20
-> > > ---
-> > > I can't find any documentation describing the indicator function, so
-> > > it's definitely less specific than status, but besides that I'm not s=
-ure
-> > > how it compares. Please ignore this patch if it's not useful.
-> > >=20
-> > > (no changes since v1)
-> > >=20
-> > >  arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > >=20
-> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi =
-b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-> > > index e53e0d4579a7..6d327266e6cc 100644
-> > > --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-> > > @@ -61,7 +61,7 @@ led2: led-2 {
-> > >  	multi-led {
-> > >  		compatible =3D "leds-group-multicolor";
-> > >  		color =3D <LED_COLOR_ID_RGB>;
-> > > -		function =3D LED_FUNCTION_INDICATOR;
-> > > +		function =3D LED_FUNCTION_STATUS;
-> > >  		leds =3D <&led0>, <&led1>, <&led2>;
-> > >  	};
-> > > =20
-> > >=20
-> >=20
-> >=20
-> >=20
-> >=20
->=20
+We can drop the minimum.
 
+> * new binding "i2c-scl-clk-low-timeout-us" has a description which I do
+>   not understand. What is a waiting state?
 
+Shrug. May have to look at the MPC h/w that uses the property.
 
+>
+> * new binding "no-detect" is broken. At the least, it should be named
+>   something like "bus-fully-described" and then the OS can decide to
+>   leave out auto-detection mechanisms. If you are interested in the
+>   latter, you can simply disable class based instantiation on the host
+>   controller. No need to describe this in DT.
 
+I've reverted the property now.
+
+Rob
 
