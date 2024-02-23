@@ -1,135 +1,180 @@
-Return-Path: <devicetree+bounces-45474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E4DE8620B2
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 00:33:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19AE88620C1
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 00:46:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 185FF285590
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 23:33:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 967E0B23B21
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 23:46:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10D0B14DFC4;
-	Fri, 23 Feb 2024 23:33:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 761A814DFE3;
+	Fri, 23 Feb 2024 23:46:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="hYQNp5fd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WPYq7mXA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-177132.yeah.net (mail-177132.yeah.net [123.58.177.132])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A55414D44A;
-	Fri, 23 Feb 2024 23:33:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.132
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C5EE14DFDA
+	for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 23:46:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708731215; cv=none; b=Rl4fMRcfgH8owEKqvFoVGrhEunAPakUtDXfGdmPvjXJ+oVmv1k5z2zEbW+Lxy5hvfvr89IXmQwbMvu5Ba+FT0Cdx9qpT+ocupqaBDWKKtTcmKAWWgC4UGimm1K6SH31aznsxl2Fa8bVjD5Odz5RyYg8N+v3mNacAPYF0WZKvozA=
+	t=1708731998; cv=none; b=SpdtIENCKYx3Tm3BVEmY2aTOQ8DYRj+U3h6efmEqJysACtuNyLLDEsytrr1Fl5kOsSpeTWKg3GaUEXsDL3A0+HhQJSJ9Xxpr/RxIT2W4XY4+CcQExxRM1qmV02uDgrcoptVg/pDI/t36BnRKyOXHyv53cTZCfrEKkx3y4+ty0xg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708731215; c=relaxed/simple;
-	bh=QvReWiiur8SYGs5uaKN8mx3ALFlfw1WkRkgG0CneWAE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JpZ9TJzEsD/bOiL8JB0Vi1RZpzMR+mtP3xxqysse/p76iuRzsfTIsrsBLKfN8nSGVwLNBqp8nInxpoRnH0c+2tCDX2K2BCKnvHcu31PNjox454HEkl/Qiujg3C2eBL8Ytogq7yiS/ggnZn4m+NI2rAzG3tKJpUSv42g0unyohEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=hYQNp5fd; arc=none smtp.client-ip=123.58.177.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=l4z91o6goByVRV29UVchlrb57CwSGXGW5ZjXIXoGNv4=;
-	b=hYQNp5fdBJql9uj6OdXcc7YuUxjqSiyIQI2kojMiAumVQzTRWbWJU0y+FXuQnC
-	67DIjttV4YOzQF96ZGJv3d04elGTCItlQ7DCQ0u9nfoI+yHY9ALgNbEZeDuQUUkn
-	44xwCYDUoX1FwbH49F6mMdIc5cjKSu8SajawwGpVnyfKQ=
-Received: from dragon (unknown [183.213.196.200])
-	by smtp2 (Coremail) with SMTP id C1UQrAC3nYc2K9ll3H48BA--.10236S3;
-	Sat, 24 Feb 2024 07:33:11 +0800 (CST)
-Date: Sat, 24 Feb 2024 07:33:09 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Manuel Traut <manuel.traut@mt.com>
-Cc: linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ARM: dts: imx6ul: Set macaddress location in ocotp
-Message-ID: <ZdkrNfkXGo2pprLW@dragon>
-References: <20240208122012.1959628-1-manuel.traut@mt.com>
+	s=arc-20240116; t=1708731998; c=relaxed/simple;
+	bh=mgHqWgnzX8YgCtUVgGyFblbfkBZfwH2hQtNerw34L/0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Wveay5sgCAjllINgdQnR4y5PgmJO1xy1Pd5DdZADjCBZiTmxcu5tMhM8cx9yKqlz8fDxVhnMySFCWARbt2Vo53S7K9MwPzko6jcM1ivs44qalu0wSaCCq7v6Dlss3kGfU8QH23HnKguub8BEbabAvP118V03o3qW+nBI7CYnr08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WPYq7mXA; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a3f3d0d2787so111258166b.3
+        for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 15:46:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708731995; x=1709336795; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=NIAGIlOyfdPQGzUhuhBTCj1fg0Ra/brIZfOUyFxv3go=;
+        b=WPYq7mXA4GS5XMA1VDMZ5ZAmWyn84fNBhQFINGtYcK4i6ywGXwFC1qzi0mpc+vO8wT
+         kNfaqDU04031cp+L85JZNK3iajGT92DI5MS+vOicJm/FpdXbpxcd0z3KNiIeKRLFUyQt
+         tqLFcrAr5Vnnm7yCjDPQ8L+vaOlPa8r8o840iqMi7BA6VZUNbTct1oHrNNheMDG2jXri
+         M4/ySjPMFCcfnd9BChafx5RtXhUmedzJkNozQJmDgl0eolgniE4oFaavi+jr/OqD5IJm
+         OcXwdBUCLITcdT9t5MMRpdarSMXIqhcwEkZx1/lPGn9Q1CK9qxDo2RS7gJe19HPFqLcH
+         ACpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708731995; x=1709336795;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NIAGIlOyfdPQGzUhuhBTCj1fg0Ra/brIZfOUyFxv3go=;
+        b=lRpbRRVHu+7+qZOYe6pL1wWTYddOOyCn5BJ07McADEkL28gia2MqpEBQL5cu9Rslxw
+         WdaPMAgVVPCU7cDZF6E6oJy9Fl+RmuN6Q6FQk/zmvtmpfXaECHaD/Y8Q1LT63hmaZRXj
+         oxIrGA10++gNe2tv9eSgau7Jezs3Rw1uZl97nDzFpSrqZuuxTg8hTI+3pX+uPs+ajVWf
+         cGQ6pPsCEGHohrM8Ej7OqtgtYTlpvTyEM8NUd4IATXRoR9jmP6BczALVLMOoxA5oCFYU
+         fEyg/a4JT1dldOYfSi8cFXW0GtfNVqXN06J5J7bbCgJpauXNJ/3KWzgPkSbfHrgwp3a/
+         QBfA==
+X-Forwarded-Encrypted: i=1; AJvYcCV+TvToXLPwqpwFfbX4KzeD64/+MYq0gtgLUnf7PEacj/I9GKQrvYOdjnPxumviePm3Zm/OMj0kFDMOFzVjBGIzJyibJp6gbDiRrg==
+X-Gm-Message-State: AOJu0YyQQ6sIkllwjm5q4VdgDCKBNbfZERHNv2SJY42k7DKIdhvOI2dm
+	p/OvTvUvZRBfRYAEMV96UfXuHqfYavA0FEWaj84gS+NlZ1uuapusQmQaHIzXgCc=
+X-Google-Smtp-Source: AGHT+IE0+tL8hH0wqn2x+/epyE+ZkG3YGes2J0uLaDyxWp2Ro/Yw07l0+8CizphqXDIS10sDl1t62Q==
+X-Received: by 2002:a17:906:d923:b0:a41:30be:4a82 with SMTP id rn3-20020a170906d92300b00a4130be4a82mr677228ejb.61.1708731994017;
+        Fri, 23 Feb 2024 15:46:34 -0800 (PST)
+Received: from [192.168.179.2] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
+        by smtp.gmail.com with ESMTPSA id u22-20020a1709060b1600b00a3fbe13e2absm52810ejg.211.2024.02.23.15.46.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 Feb 2024 15:46:33 -0800 (PST)
+Message-ID: <b50aae99-151b-47ed-b610-99f4748790bf@linaro.org>
+Date: Sat, 24 Feb 2024 00:46:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240208122012.1959628-1-manuel.traut@mt.com>
-X-CM-TRANSID:C1UQrAC3nYc2K9ll3H48BA--.10236S3
-X-Coremail-Antispam: 1Uf129KBjvJXoW7Aw1UCw13Kw1kAFy3KF47XFb_yoW8Xw4fp3
-	srWrZ8Gr4IkF1Ikay3Jr1qgr95Aas8tr1FvF17WFyjkay7Za47Kr1kKr13u345ZF4Fyayr
-	trs7ur17ur4DtaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j4Q6JUUUUU=
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiDxeNZVnxce-IJgAAso
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v17 05/35] virt: gunyah: Add hypervisor driver
+To: Alex Elder <elder@linaro.org>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Murali Nalajal <quic_mnalajal@quicinc.com>,
+ Trilok Soni <quic_tsoni@quicinc.com>,
+ Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+ Carl van Schaik <quic_cvanscha@quicinc.com>,
+ Philip Derrin <quic_pderrin@quicinc.com>,
+ Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+ Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
+ <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Fuad Tabba
+ <tabba@google.com>, Sean Christopherson <seanjc@google.com>,
+ Andrew Morton <akpm@linux-foundation.org>, linux-arm-msm@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mm@kvack.org
+References: <20240222-gunyah-v17-0-1e9da6763d38@quicinc.com>
+ <20240222-gunyah-v17-5-1e9da6763d38@quicinc.com>
+ <a3356079-bd55-4852-9bb3-b5362a1c953e@linaro.org>
+ <20240223144844667-0800.eberman@hu-eberman-lv.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240223144844667-0800.eberman@hu-eberman-lv.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Feb 08, 2024 at 01:19:59PM +0100, Manuel Traut wrote:
-> If a bootloader does not configure the MAC address, devices come up with
-> a random MAC at the moment.
+On 23.02.2024 23:58, Elliot Berman wrote:
+> On Fri, Feb 23, 2024 at 10:10:47PM +0100, Konrad Dybcio wrote:
+>> On 23.02.2024 00:16, Elliot Berman wrote:
+>>> Add driver to detect when running under Gunyah. It performs basic
+>>> identification hypercall and populates the platform bus for resource
+>>> manager to probe.
+>>>
+>>> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+>>> ---
+>>
+>> [...]
+>>
+>>> +
+>>> +	/* Might move this out to individual drivers if there's ever an API version bump */
+>>> +	if (gunyah_api_version(&gunyah_api) != GUNYAH_API_V1) {
+>>> +		pr_info("Unsupported Gunyah version: %u\n",
+>>> +			gunyah_api_version(&gunyah_api));
+>>
+>> Weird for this not to be an error, but it's probably not worth resending
+>> over if it's the only thing
 > 
-> ocotp provides registers for storing the mac-address.
-> Configure those for i.MX6UL and i.MX6ULL allows net/core to retrieve it from
-> there.
+> It is an error, but maybe I misunderstood:
+
+Sorry, I meant "pr_info might have been pr_err"
+
+Konrad
+
 > 
-> Signed-off-by: Manuel Traut <manuel.traut@mt.com>
-> ---
->  arch/arm/boot/dts/nxp/imx/imx6ul.dtsi | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+>>> +	/* Might move this out to individual drivers if there's ever an API version bump */
+>>> +	if (gunyah_api_version(&gunyah_api) != GUNYAH_API_V1) {
+>>> +		pr_info("Unsupported Gunyah version: %u\n",
+>>> +			gunyah_api_version(&gunyah_api));
+>>> +		return -ENODEV;
+>>> +	}
 > 
-> diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ul.dtsi
-> index a27a7554c2e7..e5e8bf814f77 100644
-> --- a/arch/arm/boot/dts/nxp/imx/imx6ul.dtsi
-> +++ b/arch/arm/boot/dts/nxp/imx/imx6ul.dtsi
-> @@ -538,6 +538,8 @@ fec2: ethernet@20b4000 {
->  				fsl,num-rx-queues = <1>;
->  				fsl,stop-mode = <&gpr 0x10 4>;
->  				fsl,magic-packet;
-> +				nvmem-cells = <&fec2_mac_addr>;
-> +				nvmem-cell-names = "mac-address";
->  				status = "disabled";
->  			};
->  
-> @@ -897,6 +899,8 @@ fec1: ethernet@2188000 {
->  				fsl,num-rx-queues = <1>;
->  				fsl,stop-mode = <&gpr 0x10 3>;
->  				fsl,magic-packet;
-> +				nvmem-cells = <&fec1_mac_addr>;
-> +				nvmem-cell-names = "mac-address";
->  				status = "disabled";
->  			};
->  
-> @@ -1004,6 +1008,14 @@ tempmon_temp_grade: temp-grade@20 {
->  				cpu_speed_grade: speed-grade@10 {
->  					reg = <0x10 4>;
->  				};
-
-Have a newline between nodes.
-
-> +				fec1_mac_addr: mac-addr@88 {
-> +					reg = <0x88 6>;
-> +				};
-> +
-> +				fec2_mac_addr: mac-addr@8e {
-> +					reg = <0x8e 6>;
-> +				};
-> +
-
-Dropped this one.
-
-I fixed them up and applied the patch.
-
-Shawn
-
->  			};
->  
->  			csi: csi@21c4000 {
-> -- 
-> 2.43.0
-> 
-
 
