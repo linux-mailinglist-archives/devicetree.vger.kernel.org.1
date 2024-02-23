@@ -1,108 +1,104 @@
-Return-Path: <devicetree+bounces-45358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B050E861930
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 18:18:03 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42C58861940
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 18:19:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E2AD71C221B8
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 17:18:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C49A9B212DC
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 17:19:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6C2E12DD85;
-	Fri, 23 Feb 2024 17:17:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90D3512D769;
+	Fri, 23 Feb 2024 17:19:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AYQ5S7ir"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="rKxv/KTt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61022129A76;
-	Fri, 23 Feb 2024 17:17:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6009A12DD81;
+	Fri, 23 Feb 2024 17:19:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708708674; cv=none; b=t2pEA3Llbhd1+E3pRacgwVXZfX8YQwpfwDD5LjgEmTUJZXJF1U2T0yZ4Fr9rHgNzbg96KtaW6vYajIE5W5WtZ/DI20NaSbrwXYogXyeLJmRxguDPaV/Gzy7BpBhCRZUTKgdyuDGG1UuUEV0VHYqyIwkropBEwcoAFW1h0QB5TNc=
+	t=1708708760; cv=none; b=u7as/aREbGjNx9iJgkWXfVz31wd/XDIkvfzJlAdNVKTTDQ7sfIJii/gt0eaRmyXPGMVzb/qLuTiqvabzRByePuXQHtYzNmUiXvJyLEyGuVhElUrCw3lEOfis5w/ynVgQsRxoiWgmStySfbEJqKeRPiz9VGVbCinc+1qfYAxdVGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708708674; c=relaxed/simple;
-	bh=A+X94K8nLPrBsMOn/w5jdCaGJfXT7yw62EcicOP2vgo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=deCf+VdQMHTow24+/vNStUYdyOJPRgLimVB25iSjJuL1L5mhyTFuPXKB4FcEi2REoMQvHPsDofsp8vyqv6qDX6ae+MEWW2ok63XN7hxB+q+rHyQh3eJJWkTTjq1wXtBaonQuWBOZ1pUqF5Xx1sr0T9duNc9suY4bbwkMYOqjLlQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AYQ5S7ir; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 052AEC433A6;
-	Fri, 23 Feb 2024 17:17:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708708674;
-	bh=A+X94K8nLPrBsMOn/w5jdCaGJfXT7yw62EcicOP2vgo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=AYQ5S7iriLvhFbkr/s9vYpH8cXsRC1cZ4/ae1w1dBxqHwQ6iD/VbchoYrbNhTJvZA
-	 Q8hqlaA5pv6yChIuz3I6wynk5u+t2qZQJt+BN/xNzqUDx2Mpu/IkvbLdsZV/o7U87E
-	 P6zL9hYXaBdI4uRzLaF4dn0F47p1ECEAovP12KPY8xBLguMYmQs924BU98GRksVbR4
-	 6bfpvvtPNiW4wcl11KA+p8yriwAdHuUahQEdky1ycD4XQbQ6XyQDpRlzDhPbTN84NH
-	 wU5Ke2akhOhPqKnhPYCYCKBwtzZ7W1OD0Z0lNY0Oh30xkGA58VYTC3ALgGE1/xVlUp
-	 Bwm+7X8pHdWMQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DD5ECC54E4C;
-	Fri, 23 Feb 2024 17:17:53 +0000 (UTC)
-From: Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>
-Date: Sat, 24 Feb 2024 01:17:50 +0800
-Subject: [PATCH 2/2] usb: dwc3: of-simple: Add compatible for hi3798mv200
- DWC3 controller
+	s=arc-20240116; t=1708708760; c=relaxed/simple;
+	bh=djVppOvAgFVIlgt/WIoVQ6u2hzYwkqEWVq8VEJwptqg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FFlK8WyPn0jOXs+6Ei/y4VX0AL5v2TjSwbheKIWvEmHp3vaALCeM+ozgI5uzBj89+shwC8IjVbo3fghIqKj+NujqBTtzg6pnQIsKRsNZ3ONfAKn9hGHnIADdPmhzW7/8AeoTfn8dQlsq+ZP2xFvDqLZ944hr3KTvY+pTwx8YW98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=rKxv/KTt; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id A8D49225AC;
+	Fri, 23 Feb 2024 18:19:07 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1708708748;
+	bh=GqOXTbroCo6UamNlREFgTejmjaBG9X8jsQRMkSHXfaw=; h=From:To:Subject;
+	b=rKxv/KTtPN1evHqGHGEOrwfrRmANaLCkTpETdw9Rgs7AKH4Pn7kUF4BIUak59M2tf
+	 yi+O2aJDTsW2M/NbXL2PL0/oFjffofUEp/eOtDKwliGGQFZ9KX6GxhNiaVEGQItGRw
+	 FMzrlC57WS91J1ytQk1bhu6oSk0XXkzZVZAP0RGhqthUVL2heSFSLHgYNAVoVb6hdz
+	 R4s2nX2c0VDyOf5Sj7Vy323+GYwAzuA0wS3h59vYzbBAFByaNWKhKidQm3Gxb4jYiD
+	 Fiw62mI5DTRu8LVZHyDltyv52R3R+PFtYcvOBBbyWqh3zVczS+5XI2+VRTpzmqX+rh
+	 SNn4K2bGK6O9g==
+Date: Fri, 23 Feb 2024 18:19:01 +0100
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Shawn Guo <shawnguo@kernel.org>
+Cc: Francesco Dolcini <francesco@dolcini.it>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Roland Hieber <rhi@pengutronix.de>,
+	Hiago De Franco <hiagofranco@gmail.com>,
+	Arnd Bergmann <arnd@arndb.de>
+Subject: Re: [PATCH v1] ARM: dts: imx7: remove DSI port endpoints
+Message-ID: <20240223171901.GA22584@francesco-nb>
+References: <20240216104255.21052-1-francesco@dolcini.it>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240224-dwc3-v1-2-7ffb2e2baa73@outlook.com>
-References: <20240224-dwc3-v1-0-7ffb2e2baa73@outlook.com>
-In-Reply-To: <20240224-dwc3-v1-0-7ffb2e2baa73@outlook.com>
-To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Yang Xiwen <forbidden405@foxmail.com>
-Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Yang Xiwen <forbidden405@outlook.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1708708670; l=809;
- i=forbidden405@outlook.com; s=20230724; h=from:subject:message-id;
- bh=CsDB1ujYdciRCCnGm2g0rfxKORwEFR6rPwogWA69oCs=;
- b=kcoh+3OR2yb6Nda5qLA0fxQS1yg/KkgJopIiTZA9dyseQ3jAdY9OS150JxrtO5PGYvCJVh8PM
- wHTXeFJgFoZBNcKqFyUxan0nOs1qU67GVQjo2ooc6Bn3y90cbwKsR2a
-X-Developer-Key: i=forbidden405@outlook.com; a=ed25519;
- pk=qOD5jhp891/Xzc+H/PZ8LWVSWE3O/XCQnAg+5vdU2IU=
-X-Endpoint-Received:
- by B4 Relay for forbidden405@outlook.com/20230724 with auth_id=67
-X-Original-From: Yang Xiwen <forbidden405@outlook.com>
-Reply-To: <forbidden405@outlook.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240216104255.21052-1-francesco@dolcini.it>
 
-From: Yang Xiwen <forbidden405@outlook.com>
+On Fri, Feb 16, 2024 at 11:42:55AM +0100, Francesco Dolcini wrote:
+> From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> 
+> This fixes the display not working on colibri imx7, the driver fails to
+> load with the following error:
+> 
+>   mxsfb 30730000.lcdif: error -ENODEV: Cannot connect bridge
+> 
+> NXP i.MX7 LCDIF is connected to both the Parallel LCD Display and to a
+> MIPI DSI IP block, currently it's not possible to describe the
+> connection to both.
+> 
+> Remove the port endpoint from the SOC dtsi to prevent regressions, this
+> would need to be defined on the board DTS.
+> 
+> Reported-by: Hiago De Franco <hiagofranco@gmail.com>
+> Closes: https://lore.kernel.org/r/34yzygh3mbwpqr2re7nxmhyxy3s7qmqy4vhxvoyxnoguktriur@z66m7gvpqlia/
+> Fixes: edbbae7fba49 ("ARM: dts: imx7: add MIPI-DSI support")
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-Hi3798MV200 uses dwc3 controller with a few more clocks and a dedicated
-resets. Use of_simple driver for it.
+Hello Shawn, what do you plan to do with this?
 
-Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
----
- drivers/usb/dwc3/dwc3-of-simple.c | 1 +
- 1 file changed, 1 insertion(+)
+This fixes a regression from v6.8-rc1 and would be nice to have it into
+the final v6.8.
 
-diff --git a/drivers/usb/dwc3/dwc3-of-simple.c b/drivers/usb/dwc3/dwc3-of-simple.c
-index d1539fc9eabd..158acae08af5 100644
---- a/drivers/usb/dwc3/dwc3-of-simple.c
-+++ b/drivers/usb/dwc3/dwc3-of-simple.c
-@@ -173,6 +173,7 @@ static const struct of_device_id of_dwc3_simple_match[] = {
- 	{ .compatible = "sprd,sc9860-dwc3" },
- 	{ .compatible = "allwinner,sun50i-h6-dwc3" },
- 	{ .compatible = "hisilicon,hi3670-dwc3" },
-+	{ .compatible = "hisilicon,hi3798mv200-dwc3" },
- 	{ .compatible = "intel,keembay-dwc3" },
- 	{ /* Sentinel */ }
- };
-
--- 
-2.43.0
+Francesco
 
 
