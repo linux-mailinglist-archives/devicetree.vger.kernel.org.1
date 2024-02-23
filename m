@@ -1,103 +1,106 @@
-Return-Path: <devicetree+bounces-45122-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45123-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47A4E860CE9
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 09:35:16 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF04E860CF4
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 09:36:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 977F0B25A9F
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 08:35:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D750BB274AC
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 08:36:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9412822067;
-	Fri, 23 Feb 2024 08:28:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="cfpLw9z8";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="Gonh+AQT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FF692E638;
+	Fri, 23 Feb 2024 08:34:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11FCE18046;
-	Fri, 23 Feb 2024 08:28:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 554E919474;
+	Fri, 23 Feb 2024 08:34:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708676923; cv=none; b=gh0yqaBOHr79F3j72jiYNR35RTbkEomVPrlyeDmpPqgqtZFtZCiMaW+g04AZGb8mUUw+1BI4/4u391VJ66VmMT+MyEYV0/tKlxpXmLNl0I7sQ6RXyA+4Cwg/oTXGGNL+71NC0qvkoEMUkNnvEKKYMBGVx3yHKB9LcSJg59Ypjh8=
+	t=1708677252; cv=none; b=YVT9CR/pCie/fpC8mIYgieQGm/AnyMtae4I4iyuKVAmJnTenBTdFCNaQhdgcMvGzt8WBmsIXvzSpJ5GbP53BaMUeK1cT7CFA2PaxElijocHiM26+RNQc/H5mSv9X/Fjcm8j/zPYa+WPZ7jyDXC+M2P5cS9OQduGbnGQsEKGor5M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708676923; c=relaxed/simple;
-	bh=/FoVpwZNUTB0nZFTFHl2GxvKh6vIcm+/R1kfqy+g4sI=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=QTWXJkL8lUcLK2vE5Ut5q5sUYwMOMojLtcx/HDvq2zLje6hwjcNMuzejTuegqag33GGXaqHHy+BMuKZH+4qN6ZaoBOUO3TyjR8DYPI2bs0unYfZ2w+nOPwrc0iq2bkFqgH+7iCpoexxHui/8d/NNTfeB0jA4CuoYsjWZsAbMWzA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=cfpLw9z8; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=Gonh+AQT; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1708676920;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=BwouyOLbHz0eSzCdVQ2ZEsHOl10HJAxDGKDUKAL7Owk=;
-	b=cfpLw9z8ATpZPiDKbtK60qO0kt54LwXCDHCurRp/6YD+12HSf3uBMKcklWFSACBsIAxbZM
-	Gzfu7GBoQALfc6TLvIv0sA1guMwPM1uuqE9ljEfvOCL+t/mFIJS9LoqM+Nrund9/hzgi5j
-	NfmMx2yL3j+NnrOvGGiCU+bV3Gnd3EHGyZzoLj/W2+x1kPFVT4TMMVCQHyWgYLQAMm/Xvn
-	zimTWHdPfiHFuIegAswCFXw2TyvjkBhZz4FP3RrLqN9Lkjxp+jNtZV+vSS3HJ2R8h2Imie
-	ueoCgOrGxcBKRnuUhqh8vbbkwa1uwYJDjPGCjLVbTu9Pwq29j3kFH55YWqmSTQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1708676920;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=BwouyOLbHz0eSzCdVQ2ZEsHOl10HJAxDGKDUKAL7Owk=;
-	b=Gonh+AQTnZOB2EGMkKzwClO38MRD1hddXVrDFhRCeIADXpMKUQUubjPqRKqdqGquOcIx80
-	7n/i+HaywMLdrGAw==
-To: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
- <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>
-Cc: Marc Zyngier <maz@kernel.org>, =?utf-8?B?QmrDtnJuIFTDtnBlbA==?=
- <bjorn@kernel.org>, Atish
- Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>,
- Sunil V L <sunilvl@ventanamicro.com>, Saravana Kannan
- <saravanak@google.com>, Anup Patel <anup@brainfault.org>,
- linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Anup Patel
- <apatel@ventanamicro.com>
-Subject: Re: [PATCH v14 11/18] irqchip: Add RISC-V incoming MSI controller
- early driver
-In-Reply-To: <20240222094006.1030709-12-apatel@ventanamicro.com>
-References: <20240222094006.1030709-1-apatel@ventanamicro.com>
- <20240222094006.1030709-12-apatel@ventanamicro.com>
-Date: Fri, 23 Feb 2024 09:28:39 +0100
-Message-ID: <87a5nreg94.ffs@tglx>
+	s=arc-20240116; t=1708677252; c=relaxed/simple;
+	bh=/lW7ZmoooOy9fLc7q9dtxDneE+FqEHXGAYdnAzZbiw4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=T2ae4CLH3edxoYwsWd+AW0s3Ufz/8mpZSaz8hARVI32AA/Vgdo7R5yViGoZWOjmcEE3yx10+08HpN81zFccwSn+vad7whF1xCc/Lhxk7T/GT5TQ3V9DC7J9lZS14Iy+Zfs8FJTyZ9u+lJ8zjSX3hGSn60xI1Sv99NxdN8AwD86I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E439C15DB;
+	Fri, 23 Feb 2024 00:34:46 -0800 (PST)
+Received: from pluto (unknown [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 050E83F73F;
+	Fri, 23 Feb 2024 00:34:05 -0800 (PST)
+Date: Fri, 23 Feb 2024 08:33:55 +0000
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Oleksii Moisieiev <oleksii_moisieiev@epam.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	AKASHI Takahiro <takahiro.akashi@linaro.org>,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH v4 3/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+ protocol basic support
+Message-ID: <ZdhYc90uy7yuYrx2@pluto>
+References: <20240223-pinctrl-scmi-v4-0-10eb5a379274@nxp.com>
+ <20240223-pinctrl-scmi-v4-3-10eb5a379274@nxp.com>
+ <CACRpkdZLuWwecacBAimT=Vj67dGabzBH-7aaqzoyj1B1sY6o_A@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CACRpkdZLuWwecacBAimT=Vj67dGabzBH-7aaqzoyj1B1sY6o_A@mail.gmail.com>
 
-On Thu, Feb 22 2024 at 15:09, Anup Patel wrote:
-> +	/*
-> +	 * Setup cpuhp state (must be done after setting imsic_parent_irq)
-> +	 *
-> +	 * Don't disable per-CPU IMSIC file when CPU goes offline
-> +	 * because this affects IPI and the masking/unmasking of
-> +	 * virtual IPIs is done via generic IPI-Mux
-> +	 */
-> +	cpuhp_setup_state(CPUHP_AP_ONLINE_DYN, "irqchip/riscv/imsic:starting",
-> +			  imsic_starting_cpu, imsic_dying_cpu);
+On Fri, Feb 23, 2024 at 09:28:12AM +0100, Linus Walleij wrote:
+> On Fri, Feb 23, 2024 at 2:08 AM Peng Fan (OSS) <peng.fan@oss.nxp.com> wrote:
+> 
+> > From: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+> >
+> > Add basic implementation of the SCMI v3.2 pincontrol protocol.
+> >
+> > Reviewed-by: Cristian Marussi <cristian.marussi@arm.com>
+> > Tested-by: Cristian Marussi <cristian.marussi@arm.com>
+> > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> > Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+> > Co-developed-by: Peng Fan <peng.fan@nxp.com>
+> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> 
+> This looks ripe for merging for me, there are clearly dependencies in the SCMI
+> firmware tree so I can't apply this to the pin control tree, but if
+> someone creates
+> an immutable branch from the SCMI firmware repo (based off v6.8-rc1 or so)
+> I'm happy to also pull the branch into pin control.
+> 
 
-This is not really correct. IPIs should be working right away when a CPU
-comes online and on the unplug side until it really goes offline.
+Well, AFAIK there is another upcoming change in the v3.2 SCMI spec and
+I am not sure if this series accounts for it...indeed the v3.2 -bet4 was
+still pending fr feedback AFAIK (and I doubt latest changes are in since
+they have been discussed like yesterday...)....but I maybe wrong, I will
+chase for the final spec and look into this to verify if it is
+compliant...
 
-So this wants to be in the starting range, i.e. between CPUHP_AP_OFFLINE
-and CPUHP_AP_ONLINE. No?
+Anyway, given the particularly long history of changes in PINCTRL v3.2
+SCMI I would wait to have the final spec officially frozen at this
+point before merging....
 
 Thanks,
+Cristian
 
-        tglx
 
