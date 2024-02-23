@@ -1,224 +1,163 @@
-Return-Path: <devicetree+bounces-45171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45172-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 698AB860F0C
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 11:18:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38A0A860F12
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 11:19:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D3DEAB26239
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 10:18:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1D8A1F258D4
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 10:19:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 037DF5D8FA;
-	Fri, 23 Feb 2024 10:17:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B43A5D460;
+	Fri, 23 Feb 2024 10:18:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RDIAnpoM"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GeCoMpt8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17BCA5D73E;
-	Fri, 23 Feb 2024 10:17:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C3741642A;
+	Fri, 23 Feb 2024 10:18:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708683448; cv=none; b=a4U1NSn9GEl/wgCZD3XZL/YlDWLTTRoOLjBIFyqgyayJSBxZTgTMql9c9Te0BLKjb+v98xIatW5okJRAk+vsHNpJe3qoNfPQTvpvUXQv5PL10P9ayMzOH16MwyZgcbjf0zbAeJY/DWAHvxqc1giDZeP3XNZuk8vOQXN/AspqE4U=
+	t=1708683531; cv=none; b=h318X2qX+B+cPMKDdy6yaqIZM7IcAPOdxgi5as0f9NvVOGY4jXuZHpHScNsaem/DvevXWbPRHtNoc2VIqZTWb42Iu74pLwMxQdyFlLOduZQZkXQZiSm+cw1nF/TdncqrZd94A9xaTyAsLTzKt67GTqZlLM8Dy4zcZI9vBpuSk2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708683448; c=relaxed/simple;
-	bh=r1avm1HU/toYNUFcWO/X2baMVifnIIcezeoOB2bpc4I=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kEs05AKkpoatTZkTsOG72FCDsHDWbGpEpJu2vaHZQ4SF3ip4rggQ2mMNjYT7449f0zggrHsiaGEjEZB4/DXNfiTeL2fAAI9e1knhRUBO6nUqavzcdH1WvpT8lwSyFyvluAbXBcaA4QaDx7okvsQ4Ok14b6YuS+m+8PeG92OytbE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RDIAnpoM; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a3e891b5e4eso74029166b.0;
-        Fri, 23 Feb 2024 02:17:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708683445; x=1709288245; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SDnyKS3QNE5QbkDew8ZYn7NVYP9CWlivkQitTepgpqI=;
-        b=RDIAnpoMj9nC/5C3RLiUBeW201hyV1o51zITpn5nWhfzKTkwN6ISXr5S3NsiV8S/80
-         bpXCBFl0nvGqf2My+8MpsOZVRWscPbH26lxdsXzgdZpgWz3mp7i8+D/hBROGW4IXhF4r
-         kqXOvG3EdQssgc0mk4pTi872ibpWKSZ/34YJgrH3u5HC6iZc1NsSzkIFb2TMbeCMZ63r
-         llsG5/epn0CPg9wwpNOAntUHhY3XZmwt0jhigPcGtTe70AGeb5wdVsPZr+uL0ZTkDhSw
-         3AOa+xidzeIzuhYyttc/5oycv4Vn7Xp2xJ1/8TSFyzwImDr6VUwD9vdKqPtdTDYj7rMl
-         L5aA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708683445; x=1709288245;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SDnyKS3QNE5QbkDew8ZYn7NVYP9CWlivkQitTepgpqI=;
-        b=STO5UDTQZ25OY+slAkMXFL/tWmuUcNy6aYTdz4pJXN9xN/gOr8HS65FKKNK1iXe8Sj
-         6RS0ZSG/Ag9/+XBbPnl8HJAAJJQPRr/NtxUVqKzXQalZlaOybPhDJ/mXmSyQ6bibQbQ6
-         /ikgtJktgG/VgDUZUW9YAaHyHOE/ylVJcYMBgHFS5friaXsBiaK1yKFlVWVsN72c/dny
-         TXJCDz2J5gO80bi45SnacaXtmbASW8WSE5vXKGtZxzDJzoZdbIXvvB9XsBSnqcmfA4hm
-         YITYHzC/hWLhBHg5Mz+s+1qEeJpdaDdJpVkQawXRbS6a8XD9rRi/VWENMfeC9yvwkFkJ
-         +v5w==
-X-Forwarded-Encrypted: i=1; AJvYcCW/cQSq5U7D1HvgOB/l1SDF6D9lfNlut/wDNiUvGL7PoJJ2OvWI7feUvLvCbBSnsE4l7epsT6mRSkz1JxQ+ewSWA49q/n8nrTdg5ZbEvc7WySe6grgB1/LeydRMEQETvqjTAMF3DMZGIQ==
-X-Gm-Message-State: AOJu0YzCJwSlFYjj7xtNa/wS0OHyMZVcnkwBZemFVv0Fj+eHjyMPA4ta
-	YvE+4YpnJCE0Uo8vc67xI+eywXlLflFyblUbCUL1BaprAUXPKxCc
-X-Google-Smtp-Source: AGHT+IGLzGErmk49F6mmcrzLRayF6ZuwlDFpL6n1RrViLMs4HRmJNjhxukyy2BSZR9VhdOsfsPpDqw==
-X-Received: by 2002:a17:906:2844:b0:a3e:792f:3955 with SMTP id s4-20020a170906284400b00a3e792f3955mr972977ejc.62.1708683445424;
-        Fri, 23 Feb 2024 02:17:25 -0800 (PST)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id ti7-20020a170907c20700b00a3d99dc3f3asm6667250ejc.67.2024.02.23.02.17.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Feb 2024 02:17:25 -0800 (PST)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
-	Hsin-Yi Wang <hsinyi@chromium.org>,
-	=?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= <nfraprado@collabora.com>,
-	Heiko Stuebner <heiko.stuebner@cherry.de>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Sean Wang <sean.wang@mediatek.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V2 4/4] arm64: dts: mediatek: Add Cudy WR3000 V1
-Date: Fri, 23 Feb 2024 11:17:09 +0100
-Message-Id: <20240223101709.30072-5-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
-In-Reply-To: <20240223101709.30072-1-zajec5@gmail.com>
-References: <20240223101709.30072-1-zajec5@gmail.com>
+	s=arc-20240116; t=1708683531; c=relaxed/simple;
+	bh=0kvbSqosJ5PV6gzc4ndMjbUoqfFey9a9gTa/COfANw4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=J6Rq2jg8rSVE+BquwIoRtRP9+TbCVfH04MqNCwwslgJrctnYt3ZC7G/mNkWcAVdDZyiDyZ0NmkKHN3oqvzOaCJdv8ASBOb64SrFbEqYltY7XpVaGdCH/GuFkvW4P3Yv5scrA+rimGPMxyrYXFSYeVLm877RIQ87AYyQnpNTHAm0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GeCoMpt8; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41N7u7iV027179;
+	Fri, 23 Feb 2024 10:18:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=C2pBHnwMTIW0Lt1mPFv3jlV9ek01TT1xsSVaoZixcdw=; b=Ge
+	CoMpt80TaowAfNcB52WBhNG2Qp5pRwVIrZN3AM07+OT/cE8Ow8ntwJmiwpcypCI1
+	cTEupLNU6uIx0hAWB2iqyhgcNs0MrAGW/xV3H8ln4K+drhSrFSnYsyRIdPRCExrI
+	KJJ/93TprC6jh0Iep74FG9YlxY7mqCKBFVSuL96zIR23DglI+YrZ8CDFg88o1wOd
+	hB6YG+YirQFNjkgildBu57OiYBUq+zFOKzsgW752yr56VVnro0B9rw1iLZFfKwf9
+	12vATnB3ZtXCZ1/KAAzRcw1MTuagAG57twMjIjpf/fiKJbX/GgF90G0rz5rRny6y
+	i2nqO457aZmFrFjlqgwg==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3weqcf88xp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 23 Feb 2024 10:18:34 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41NAIXm2010206
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 23 Feb 2024 10:18:33 GMT
+Received: from [10.201.2.96] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 23 Feb
+ 2024 02:18:27 -0800
+Message-ID: <3a6d301d-16f6-4a11-8be5-6bbb6eb501f4@quicinc.com>
+Date: Fri, 23 Feb 2024 15:48:27 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/8] clk: qcom: ipq5332: enable few nssnoc clocks in
+ driver probe
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Andrew Lunn <andrew@lunn.ch>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Catalin Marinas
+	<catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20240122-ipq5332-nsscc-v4-0-19fa30019770@quicinc.com>
+ <20240122-ipq5332-nsscc-v4-2-19fa30019770@quicinc.com>
+ <7a69a68d-44c2-4589-b286-466d2f2a0809@lunn.ch>
+ <11fda059-3d8d-4030-922a-8fef16349a65@quicinc.com>
+ <17e2400e-6881-4e9e-90c2-9c4f77a0d41d@lunn.ch>
+ <8c9ee34c-a97b-4acf-a093-9ac2afc28d0e@quicinc.com>
+ <CAA8EJppe6aNf2WJ5BvaX8SPTbuaEwzRm74F8QKyFtbmnGQt=1w@mail.gmail.com>
+ <74f585c2-d220-4324-96eb-1a945fef9608@quicinc.com>
+ <CAA8EJppuNRB9fhjimg4SUR2PydX7-KLWSb9H-nC-oSMYVOME-Q@mail.gmail.com>
+ <d518dbc1-41aa-46f9-b549-c95a33b06ee0@quicinc.com>
+ <CAA8EJppP_bAPRH7Upnq8dO7__xQPOJ6F_Lc-fpRAcutKKzk0eA@mail.gmail.com>
+From: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+In-Reply-To: <CAA8EJppP_bAPRH7Upnq8dO7__xQPOJ6F_Lc-fpRAcutKKzk0eA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: TBM5zPBMFRANid5D1Kx_kZprPk2Mx-1T
+X-Proofpoint-GUID: TBM5zPBMFRANid5D1Kx_kZprPk2Mx-1T
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-22_15,2024-02-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=865
+ impostorscore=0 clxscore=1015 priorityscore=1501 suspectscore=0
+ spamscore=0 phishscore=0 lowpriorityscore=0 mlxscore=0 adultscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2402230073
 
-From: Rafał Miłecki <rafal@milecki.pl>
 
-Cudy WR3000 V1 is an MT7981B (AKA Filogic 820) based wireless router. It
-has 256 MiB of RAM, some LEDs & buttons and (not described yet) 4
-Ethernet ports.
 
-There is one slightly uncommon LED with a label of globe icon described
-in the Quick Installation Guide as having 2 meanings:
-1. "Not connected to the Internet"
-2. "Connected to the Internet"
+On 2/19/2024 3:53 PM, Dmitry Baryshkov wrote:
+> On Sun, 18 Feb 2024 at 06:29, Kathiravan Thirumoorthy
+> <quic_kathirav@quicinc.com> wrote:
+>>
+>>
+>>
+>> On 2/17/2024 10:15 PM, Dmitry Baryshkov wrote:
+>>> On Sat, 17 Feb 2024 at 17:45, Kathiravan Thirumoorthy
+>>> <quic_kathirav@quicinc.com> wrote:
+>>>>
+>>>>
+>>>> <snip>
+>>>>
+>>>>>> Reason being, to access the NSSCC clocks, these GCC clocks
+>>>>>> (gcc_snoc_nssnoc_clk, gcc_snoc_nssnoc_1_clk, gcc_nssnoc_nsscc_clk)
+>>>>>> should be turned ON. But CCF disables these clocks as well due to the
+>>>>>> lack of consumer.
+>>>>>
+>>>>> This means that NSSCC is also a consumer of those clocks. Please fix
+>>>>> both DT and nsscc driver to handle NSSNOC clocks.
+>>>>
+>>>>
+>>>> Thanks Dmitry. I shall include these clocks in the NSSCC DT node and
+>>>> enable the same in the NSSCC driver probe.
+>>>
+>>> Or use them through pm_clk. This might be better, as the system
+>>> doesn't need these clocks if NSSCC is suspended.
+>>
+>>
+>> IPQ53XX SoC doesn't support the PM(suspend / resume) functionality, so
+>> that, can I enable these clocks in NSSCC driver probe itself?
+> 
+> There is a difference between PM (suspend/resume) and runtime PM.
+> 
+> 
 
-Vendor designed it to light up when some Internet-accessible IP can be
-reached. This change will be follow by an attempt to define some
-predefined FUNCTION for it.
+Thanks Dmitry. IIUC your question correctly, runtime PM for the 
+peripherals are not supported (except CPU cores which supports DVFS). 
+Since these are router based products, once system is powered on, all 
+the peripherals are configured to the required frequency and it will be 
+never go into low power modes.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
-V2: Reorder properties
-    Describe online LED
-
- arch/arm64/boot/dts/mediatek/Makefile         |  1 +
- .../dts/mediatek/mt7981b-cudy-wr3000-v1.dts   | 74 +++++++++++++++++++
- 2 files changed, 75 insertions(+)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dts
-
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index 37b4ca3a87c9..96da4ad640aa 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -8,6 +8,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-evb.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-x20-dev.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-rfb1.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-bananapi-bpi-r64.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt7981b-cudy-wr3000-v1.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7981b-xiaomi-ax3000t.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-acelink-ew-7886cax.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3.dtb
-diff --git a/arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dts b/arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dts
-new file mode 100644
-index 000000000000..2a988218039c
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dts
-@@ -0,0 +1,74 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+
-+/dts-v1/;
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+
-+#include "mt7981b.dtsi"
-+
-+/ {
-+	compatible = "cudy,wr3000-v1", "mediatek,mt7981b";
-+	model = "Cudy WR3000 V1";
-+
-+	memory@40000000 {
-+		reg = <0 0x40000000 0 0x10000000>;
-+		device_type = "memory";
-+	};
-+
-+	keys {
-+		compatible = "gpio-keys";
-+
-+		key-wps {
-+			label = "WPS";
-+			gpios = <&pio 0 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_WPS_BUTTON>;
-+		};
-+
-+		key-reset {
-+			label = "RESET";
-+			gpios = <&pio 1 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_RESTART>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_WAN;
-+			gpios = <&pio 5 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		led-1 {
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_WLAN_2GHZ;
-+			gpios = <&pio 6 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		led-2 {
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_WLAN_5GHZ;
-+			gpios = <&pio 7 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		led-3 {
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_LAN;
-+			gpios = <&pio 9 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		led-4 {
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&pio 10 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		led-5 {
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = "wan-online";
-+			gpios = <&pio 11 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+};
--- 
-2.35.3
-
+Please let me know if this answers your questions.
 
