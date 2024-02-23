@@ -1,131 +1,179 @@
-Return-Path: <devicetree+bounces-45461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE9B9862005
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 23:49:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EA3A86200F
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 23:51:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BDF61C22BD0
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 22:49:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 506D3286C67
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 22:51:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CEE014CACA;
-	Fri, 23 Feb 2024 22:49:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEA45142649;
+	Fri, 23 Feb 2024 22:51:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Qew1ha+z"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hEaItwDP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C92751428A;
-	Fri, 23 Feb 2024 22:49:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AA5A24B2B;
+	Fri, 23 Feb 2024 22:51:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708728556; cv=none; b=Z5TxJyMy/fpVSRkstIebkeIYJtU4w8brvyhmYXChkvS3OvRXSf21a7s26jI8s4ljO4Q3P00d3bpAl1A2ohbrrIC+JnHJfumZK+G/z0aFiVpE+eYQdXZINJP31HE2xTWSndwkkK8QOR4u1gJiuRsi9d2KwFe07mYG27D4ru682Q8=
+	t=1708728699; cv=none; b=FYglo9kxQ4gR/pMTj5RCbTIcGjMVl+Yp1Svyly2Do3ZabF5G6wJI+fqZGLZPAtnrjToGARzRoIc6fzJadGyyXBh0KNkhtdy+PPCAJd2Lbgssc4pPU5iKwZs/oL5lnkW4cRId9gC3efGm9p20bQakdjmSi1/esF09+MyLHecv6xk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708728556; c=relaxed/simple;
-	bh=BneJaexN6bxax2QSYZ41yzv4sfBJcOWFqW2K4d+gM6c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=FEHGNKvfCiH1Go8d/K0qQ997luk7RgUd52WuvuB0SoprISi+JRwxRJNP4A2C3rK+oGZDE73dFnRq1U7UZsuDDLofzeaPN4oXUXEy5xzmzdCVvlNkfQggfrwr4MpRm4XjfrNG9tknPgKyIN+kbh3oZnrwi3mFoiIv0OnaYJKr7Hk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Qew1ha+z; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41NLwboI019276;
-	Fri, 23 Feb 2024 22:48:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=K+EhGOBFAOwInduVtZkvCxg9hFwWnwlqCf5W7sd/NdU=; b=Qe
-	w1ha+zQFfefKt1PgJZA671PJegduTk1YJOJMHvwGEpaeAnsLbsCC44i71BnxopFk
-	Ci+QPetBkpF+0bNS8D2nkofhj/U6aSTwfkfMECelhti6c+RivM+PdKm7u3cL5+e5
-	YeZLDJT3suQjM+Oicou9UvrP6b6G3CY7pEtpENkCZ+mho93AjHBAQgoRr89YUaRJ
-	TJeHcj+q3s++qMMiysD0vKeoLWF1+59DeKaPYXLGsx/FCFkqiztpfCH4gTaL8HMh
-	e+Uy61GudVuqT+4E+Aib7ShlswtIdF2E6JsbXTfVV90t0r7DoHpAHVcaIjp6WDq3
-	fTtKtzvbVacya3Sq16QQ==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wer8mssky-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 23 Feb 2024 22:48:52 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41NMmpQ9006083
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 23 Feb 2024 22:48:51 GMT
-Received: from [10.110.70.241] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 23 Feb
- 2024 14:48:50 -0800
-Message-ID: <605d9e50-d61b-b0ce-1664-00554ba70b41@quicinc.com>
-Date: Fri, 23 Feb 2024 14:48:49 -0800
+	s=arc-20240116; t=1708728699; c=relaxed/simple;
+	bh=Mc357CVHrALPxH36XBhZd6gv5wG0eLnjO1BTu774TgA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Dv4Qc6N1yaCyG5qbiqLdKcpBw06O+38BYF4kTuazlWpLmVAc8KyzFXpBBDOF6hZmqCLJX2BV5NbTrP7mRVBiTZXcUtCfZ/TzirW0VO+1TleFTXwtCxE3NiOJP0+96jvMvHYCC99QimLsAQOgAcZ+PqdPWbzPMOpEmjb8uU6fEPw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hEaItwDP; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1708728697; x=1740264697;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Mc357CVHrALPxH36XBhZd6gv5wG0eLnjO1BTu774TgA=;
+  b=hEaItwDPF+oDN1AdK4O3zl0Uq83P+fMbkdtBhTbsWQkLHk1H8ex0WI7B
+   NZ5rrVq99t/N8Mg99ATHwt/kVor2RvQtRYF5VESmQne/dyNDcZEkTEfgv
+   Wtw7Jb/EunBMSpdXMSasNFHZOm1FFDKQpTPbzfhkjkfKyr1sJlKuqy9/W
+   4H6dTZ820dJm27vRegby+fdg8+avNIBOJyARMr7I2cJbLpqXlckMXT7OA
+   FrMYIeaAnJ/aWbL+bP4+AELS12M3WQyk8qI4f0kBUnsql4TGfMI9IQnRI
+   6gdso0Yg1XZN1eWF+ShXOGDJQ0SLm7nR/2IaNWAdFfIP53CoRNBef9ZI2
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10993"; a="6013691"
+X-IronPort-AV: E=Sophos;i="6.06,180,1705392000"; 
+   d="scan'208";a="6013691"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Feb 2024 14:51:37 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,180,1705392000"; 
+   d="scan'208";a="6194312"
+Received: from lkp-server02.sh.intel.com (HELO 3c78fa4d504c) ([10.239.97.151])
+  by fmviesa008.fm.intel.com with ESMTP; 23 Feb 2024 14:51:34 -0800
+Received: from kbuild by 3c78fa4d504c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rdeOA-0007z2-1p;
+	Fri, 23 Feb 2024 22:51:31 +0000
+Date: Sat, 24 Feb 2024 06:50:30 +0800
+From: kernel test robot <lkp@intel.com>
+To: Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Yang Xiwen <forbidden405@outlook.com>
+Subject: Re: [PATCH 2/2] drivers: bus: simple-pm-bus: Get and deassert resets
+ exclusively
+Message-ID: <202402240650.1O7vtd48-lkp@intel.com>
+References: <20240223-b4-bus-v1-2-2803c3ac4673@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v2 2/7] clk: qcom: clk-alpha-pll: Add HUAYRA_2290 support
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
-        "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Clark
-	<robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        "Dmitry
- Baryshkov" <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, "David
- Airlie" <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>
-CC: Marijn Suijten <marijn.suijten@somainline.org>,
-        <linux-arm-kernel@lists.infradead.org>, <iommu@lists.linux.dev>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>
-References: <20240219-topic-rb1_gpu-v2-0-2d3d6a0db040@linaro.org>
- <20240219-topic-rb1_gpu-v2-2-2d3d6a0db040@linaro.org>
-From: Trilok Soni <quic_tsoni@quicinc.com>
-In-Reply-To: <20240219-topic-rb1_gpu-v2-2-2d3d6a0db040@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: nmwHTNyTCNAaftUm0O5wFymUBF5x3hm_
-X-Proofpoint-ORIG-GUID: nmwHTNyTCNAaftUm0O5wFymUBF5x3hm_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-23_06,2024-02-23_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
- adultscore=0 malwarescore=0 bulkscore=0 clxscore=1011 mlxscore=0
- impostorscore=0 mlxlogscore=901 suspectscore=0 priorityscore=1501
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2402230163
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240223-b4-bus-v1-2-2803c3ac4673@outlook.com>
 
-On 2/23/2024 1:21 PM, Konrad Dybcio wrote:
-> +	/* Wait 50us for PLL_LOCK_DET bit to go high */
-> +	usleep_range(50, 55);
-> +
-> +	/* Enable PLL output */
-> +	regmap_update_bits(regmap, PLL_MODE(pll), PLL_OUTCTRL, PLL_OUTCTRL);
-> +}
-> +EXPORT_SYMBOL(clk_huayra_2290_pll_configure);
+Hi Yang,
 
-Please use EXPORT_SYMBOL_GPL. 
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on 8d3dea210042f54b952b481838c1e7dfc4ec751d]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Yang-Xiwen-via-B4-Relay/dt-bindings-simple-pm-bus-Add-optional-resets/20240223-115400
+base:   8d3dea210042f54b952b481838c1e7dfc4ec751d
+patch link:    https://lore.kernel.org/r/20240223-b4-bus-v1-2-2803c3ac4673%40outlook.com
+patch subject: [PATCH 2/2] drivers: bus: simple-pm-bus: Get and deassert resets exclusively
+config: openrisc-allnoconfig (https://download.01.org/0day-ci/archive/20240224/202402240650.1O7vtd48-lkp@intel.com/config)
+compiler: or1k-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240224/202402240650.1O7vtd48-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202402240650.1O7vtd48-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/bus/simple-pm-bus.c: In function 'simple_pm_bus_probe':
+>> drivers/bus/simple-pm-bus.c:67:50: warning: passing argument 1 of 'devm_reset_control_array_get' discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+      67 |         bus->rsts = devm_reset_control_array_get(dev, false, true);
+         |                                                  ^~~
+   In file included from drivers/bus/simple-pm-bus.c:19:
+   include/linux/reset.h:192:45: note: expected 'struct device *' but argument is of type 'const struct device *'
+     192 | devm_reset_control_array_get(struct device *dev, bool shared, bool optional)
+         |                              ~~~~~~~~~~~~~~~^~~
+
+
+vim +67 drivers/bus/simple-pm-bus.c
+
+    26	
+    27	static int simple_pm_bus_probe(struct platform_device *pdev)
+    28	{
+    29		const struct device *dev = &pdev->dev;
+    30		const struct of_dev_auxdata *lookup = dev_get_platdata(dev);
+    31		struct device_node *np = dev->of_node;
+    32		const struct of_device_id *match;
+    33		struct simple_pm_bus *bus;
+    34	
+    35		/*
+    36		 * Allow user to use driver_override to bind this driver to a
+    37		 * transparent bus device which has a different compatible string
+    38		 * that's not listed in simple_pm_bus_of_match. We don't want to do any
+    39		 * of the simple-pm-bus tasks for these devices, so return early.
+    40		 */
+    41		if (pdev->driver_override)
+    42			return 0;
+    43	
+    44		match = of_match_device(dev->driver->of_match_table, dev);
+    45		/*
+    46		 * These are transparent bus devices (not simple-pm-bus matches) that
+    47		 * have their child nodes populated automatically.  So, don't need to
+    48		 * do anything more. We only match with the device if this driver is
+    49		 * the most specific match because we don't want to incorrectly bind to
+    50		 * a device that has a more specific driver.
+    51		 */
+    52		if (match && match->data) {
+    53			if (of_property_match_string(np, "compatible", match->compatible) == 0)
+    54				return 0;
+    55			else
+    56				return -ENODEV;
+    57		}
+    58	
+    59		bus = devm_kzalloc(&pdev->dev, sizeof(*bus), GFP_KERNEL);
+    60		if (!bus)
+    61			return -ENOMEM;
+    62	
+    63		bus->num_clks = devm_clk_bulk_get_all(&pdev->dev, &bus->clks);
+    64		if (bus->num_clks < 0)
+    65			return dev_err_probe(&pdev->dev, bus->num_clks, "failed to get clocks\n");
+    66	
+  > 67		bus->rsts = devm_reset_control_array_get(dev, false, true);
+    68		if (IS_ERR(bus->rsts))
+    69			return dev_err_probe(&pdev->dev, PTR_ERR(bus->rsts), "failed to get resets\n");
+    70	
+    71		dev_set_drvdata(&pdev->dev, bus);
+    72	
+    73		dev_dbg(&pdev->dev, "%s\n", __func__);
+    74	
+    75		pm_runtime_enable(&pdev->dev);
+    76	
+    77		if (np)
+    78			of_platform_populate(np, NULL, lookup, &pdev->dev);
+    79	
+    80		return 0;
+    81	}
+    82	
 
 -- 
----Trilok Soni
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
