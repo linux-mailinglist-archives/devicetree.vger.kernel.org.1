@@ -1,74 +1,49 @@
-Return-Path: <devicetree+bounces-45213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16B15861229
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 14:01:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32264861255
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 14:12:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B238D283612
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 13:01:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E17FA2821D2
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 13:12:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83FD17E571;
-	Fri, 23 Feb 2024 13:01:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CEB37E76C;
+	Fri, 23 Feb 2024 13:12:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XIZGbKX6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="akSHjSLE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8C641097D;
-	Fri, 23 Feb 2024 13:01:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 652747D411;
+	Fri, 23 Feb 2024 13:12:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708693306; cv=none; b=igYiSHV4vTgonX8F4Hm8OHNqGl8nkPMfOaWMQzEuOJ7jnHuyjianN+dPIu0exiV5q7hR4yCF58xCTXVjyu9mHtjBawxV0DZKjfmBMAWVJ+cyVuhL35Se4apKA3ueAZXCpSvyJJhE2BJ441m9FZJPCe3cnZoDHrebMSKIi6evkPo=
+	t=1708693972; cv=none; b=Ap9FqCIdJkvDq94cqX5zzMWteYBjpwa9/TijWYo/mbHKvp/cekFE61txn6pJ4nr8eyRVMdm6iLGFImNv7QAv3w0yT36MhC9hIH758+FDkOGyQLdfvNs9H0hlIVmdbWQNIIdz1OzSi7nw5q3GFPwmHQrQgLzZ2qLrrYg/U6elGMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708693306; c=relaxed/simple;
-	bh=KQF9YPtUSkRZ+JpmVKYQ9PTQCWFyX1w6lHWuY9DzDgA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=k+kjKn5pQR5aBWDatbC1v4UuZkyf4PvYjtb3jS8gru+EYXmj1p0OjWtOOpE2Eb8PJsrIw8SASq+F+6iXrAo32uhw7U9KuaeZ1JAEFZHZlMxr54A/Z5lzWBg1L8D4LxVO9lwi2qAeN6kTWNotq9GhixFpYXvSrA+VAhDbdTkKSnc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XIZGbKX6; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-55a035669d5so1232689a12.2;
-        Fri, 23 Feb 2024 05:01:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708693303; x=1709298103; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=xwVLrP5e0GKj/Gr/YOGNMocGh8+7OdL1LctFVaC5kRE=;
-        b=XIZGbKX6V6uEg5Y+Lbbk7BBTes+VSiBo1ZgMcXfC2kjArSB/VYl3qJ98dvmQKgnjws
-         DHFRNvl5r8sYKak4F2M5/akcsDWxqeKqBcHAIqGDrMuyk7KUR5NSNjzZcIYcs4nJOarp
-         ZDV/qPr8Z3t7vJbc1YTziCSRSxy4BMRqOIbUOXkGeqE0L0QJQqyqi/csxTGTDDmfPkl8
-         QLibFPOMbxxNVq/3QJDPxF7xMKe3VeIMlCI9Nl33C+ZdB4w/7gy/5a2YPDJiDK9e3pbi
-         KlUSEOnhD5HSJkvq2GePaXRWKFAyHtLd0ZyMKdrTATTdo0iODd2M2NitzlRq3dABG9QJ
-         QAiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708693303; x=1709298103;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xwVLrP5e0GKj/Gr/YOGNMocGh8+7OdL1LctFVaC5kRE=;
-        b=QYoDu2JUg7a5YWCd0aisITqSTvHbOEofPbUtTMSH0AXfnGjrNKm9G+z89lgU7ZvtE1
-         eIlcZatNzeYDniKOXDFn5crEU/EHP/rK5F6E6uUBuuJqEH/hiKPfpbhO+5sMF42ZKEl1
-         XoJ70LCo8CKPS1CGLF1Z3jBifqs+6Pr12GE1SABrIEgKPB40XqAOF0m5XEjr77OrNuKu
-         uhslgHHQb+jLgido+DWr1IUxQM4HlAnjMBBK1eZ9mx7penzUivixq805WlwjQpIWGiQp
-         wOHTi+Mu74WHC/u+W/CaJRbgSLvYjMGyD+AZYaVGIqZFrZP112rJC2xxw/rCv8QlU+R6
-         3WOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXZemhcId/265iVuvv/fl2c5q8T9VEEes3yQMdSI2adQ97NBgnCz3jLW628erjEt9t753b02QzFjn7cTPBdnBwpDPfrcNj9+EBj4GqiVsQPOhgHBIVEgp00yOWhrlHCoAKLK7DSZrTcEg==
-X-Gm-Message-State: AOJu0YyaYruESvEjUIPpugE71H6v351eJo6F+jTXnNM5q6RHVGDaS/pz
-	V89JciQx3xXfinEgO8IOWv7oyT2y8JZCYweq3eJxGGNf+ne7R+Kn
-X-Google-Smtp-Source: AGHT+IFCQ/Ih92c2I54+6GuGrhk/vwz0fRL3tiy0H59PHeDEy+El5xAW3oSpdtZT10Gsmpk6GvNc6w==
-X-Received: by 2002:aa7:d69a:0:b0:564:26d9:b4ac with SMTP id d26-20020aa7d69a000000b0056426d9b4acmr910512edr.41.1708693302729;
-        Fri, 23 Feb 2024 05:01:42 -0800 (PST)
-Received: from [127.0.1.1] (2a02-8389-41cf-e200-a1fd-07e8-2475-107f.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:a1fd:7e8:2475:107f])
-        by smtp.gmail.com with ESMTPSA id g14-20020a056402428e00b005642bcfed99sm5954561edc.23.2024.02.23.05.01.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Feb 2024 05:01:42 -0800 (PST)
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Date: Fri, 23 Feb 2024 14:01:33 +0100
-Subject: [PATCH] dt-bindings: iio: light: vishay,veml6075: make vdd-supply
- required
+	s=arc-20240116; t=1708693972; c=relaxed/simple;
+	bh=2SIXe075Sw3ed8GxgqbY7C51dZQTx4Z+wCjZhCZu2Bo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=tAHNBzuvQYoZVILJC68Bmer3TSTRM6xOMnVjHijsK0DvEDbKvcDkIwpcm7G6HkJwYeZICq2SS6wpLeT5Gc/kTKRcG+rfx1PV8cgEHUF8WRqeCcmdG778oz1uGDLO+kgwFmR5MJmxxgDbnOOSMYMon9HmRrN/0nsTakhVgKO5IeY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=akSHjSLE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85028C433F1;
+	Fri, 23 Feb 2024 13:12:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708693972;
+	bh=2SIXe075Sw3ed8GxgqbY7C51dZQTx4Z+wCjZhCZu2Bo=;
+	h=From:Subject:Date:To:Cc:From;
+	b=akSHjSLEWJFZ9lW2TTL/znls0ISFCWhaXcDnccAfc09E9FcjOEIHEx2XobXW3gAev
+	 mZhjekb45ccNvG92WwDPSP1PmfcvgoMq0c3j4gbiy2hlr56aSc3Vi5ayUkFj2g1nvI
+	 X/RxDTZqPBlVZN/mpKzaBb3VzVcmTnoKLSnEhiPaY9JtX2CcihT7vy3OpxxCqpDuEO
+	 YCQQmrziu26UbSTCc/dbJ8AY5mRQJeypaqF3H6yVhXMq6QtnbtKIjHzKnt0lxjKstE
+	 2na0t5l+4k2WCvWmj8F6QoEOFTB2Epb/eRApPdmN3HEdu778R1vBontT8HPHyDYFRo
+	 VZ03xL9PWUrFg==
+From: Roger Quadros <rogerq@kernel.org>
+Subject: [PATCH v5 0/4] arm64: dts: ti: am62: Add USB support for k3-am62p
+Date: Fri, 23 Feb 2024 15:12:37 +0200
+Message-Id: <20240223-b4-for-v6-5-am62-usb-typec-dt-v5-0-4b5854d17d18@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,69 +52,74 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240223-veml6075_vdd-v1-1-ac76509b1998@gmail.com>
-X-B4-Tracking: v=1; b=H4sIACyX2GUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIxMDIyNj3bLU3BwzA3PT+LKUFN1UIyMjA0NTi7S0lEQloJaCotS0zAqwcdG
- xtbUABUzEbV4AAAA=
-To: Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, 
+X-B4-Tracking: v=1; b=H4sIAMWZ2GUC/x3MMQ6DMAwF0Ksgz/0SckOgvUrVIRgDHgoooQiEu
+ Hujjm95JyWNpomexUlRN0s2TxnVrSAZwzQorMsmLtmVzHe0Dv0csXlUCB/P+KYW67GooFtR+4e
+ qOGnEBcrHErW3/f+/3tf1AygNYRtvAAAA
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Javier Carrasco <javier.carrasco.cruz@gmail.com>
-X-Mailer: b4 0.14-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1708693301; l=1623;
- i=javier.carrasco.cruz@gmail.com; s=20230509; h=from:subject:message-id;
- bh=KQF9YPtUSkRZ+JpmVKYQ9PTQCWFyX1w6lHWuY9DzDgA=;
- b=15qwh5h1OZ9vnbKVGCStogGtXAfMFwg53a3w02a65gKd0dwPQP8NwAgtuX2ljrmHo8HEuOXig
- 4Y/l9iXdGC4Cxb0a6oywIw6RWlZmhafKlKHZxS6at+esk8Mj9c/poZE
-X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
- pk=tIGJV7M+tCizagNijF0eGMBGcOsPD+0cWGfKjl4h6K8=
+ Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, 
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>
+Cc: Andrew Davis <afd@ti.com>, b-liu@ti.com, srk@ti.com, 
+ r-gunasekaran@ti.com, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ Roger Quadros <rogerq@kernel.org>, Rob Herring <robh@kernel.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1476; i=rogerq@kernel.org;
+ h=from:subject:message-id; bh=2SIXe075Sw3ed8GxgqbY7C51dZQTx4Z+wCjZhCZu2Bo=;
+ b=owEBbQKS/ZANAwAIAdJaa9O+djCTAcsmYgBl2JnPzQuFDaW7cPuQ8iABwa7UFZfp3gSsHvRMB
+ qfDarDNTBCJAjMEAAEIAB0WIQRBIWXUTJ9SeA+rEFjSWmvTvnYwkwUCZdiZzwAKCRDSWmvTvnYw
+ kxB6EACBMDYHp8ymY83yO/lfB1yd8wPfI5L1Sv2fvGPtHqO5DqGFn3rN1mQbhImx7Y1xE45Lx+1
+ JIcdEndHlZCvTsJtJtOChLYvE88oj9g46PjRLcXJJ9QeIrTSqxtTsy81f71LlhV1s50CAZZQ+eP
+ CuZneoj8HL8DKf9ZrFapWqh9mSRiOuMgq6oGovd3urWZ8822rnFredTndJJQZxA+vY8bMXU+R59
+ G2haNFUdCSaUfzYpFPTVJnUXDsKq7jeswMr1q5lRZj85elYii+U46wNG1/FN56Voi2u0H90Ttmi
+ bg4/xcF26otMoJvu+ZtYGlbUEx1bcpOIxFRoBkjLTinKMPt9u0lrELqZoMd0QOabo8Bda3dRIWV
+ BToR/4BR4cs+7YVBL5bUikMyenXxO5/Ko0sncMrsJDqe0/UY4ZaQxW5HfD8JB8fVvp0Ah3pKNHU
+ F4YZ1u3edWjtX33ramwpm6CbmvfqLL8M2rehxL5gVcPDdujCdwbRovT5P8VzBKN2mDY76cW2K0U
+ pLZCfh8r7BVP6J1o2uqwVed5azz/Blpbp02Wt4HzGeVVxFu3QJ2jhM6jd5gDFjXDZird6bbCiwc
+ q5pM20DXUs03AC75IRlg8F6T3DpOe3qQ9hoS8jmBk5pTFqkDtF7/yml/zXJPHYqBCdDb2T1aUxe
+ WvwUz0olSFcM6VA==
+X-Developer-Key: i=rogerq@kernel.org; a=openpgp;
+ fpr=412165D44C9F52780FAB1058D25A6BD3BE763093
 
-The VEML6075 requires a single supply to operate. The property already
-exists in the bindings and it is used in the example, but it is still
-not on the list of required properties.
+Hi,
 
-Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+This series first adds device nodes for USB0_PHY_CTRL and USB1_PHY_CTRL
+in the wkup_conf node and fixus up the USB nodes to use the newly
+added nodes.
+
+Then it adds USB support for AM62P SoC and AM62P5-SK board.
+
+In v5, we disable USB LPM support for all USB nodes as it is not supported.
+Also Acks were added and To list updated.
+
+Changelog in each patch.
+
+cheers,
+-roger
+
+Signed-off-by: Roger Quadros <rogerq@kernel.org>
 ---
-The driver and bindings for the VEML6075 UV sensor were merged in the
-merge window for v6.8 i.e. they have not been released yet beyond rc.
+Roger Quadros (4):
+      dt-bindings: mfd: syscon: Add ti,am62-usb-phy-ctrl compatible
+      arm64: dts: ti: k3-am62/a: use sub-node for USB_PHY_CTRL registers
+      arm64: dts: ti: k3-am62p: add the USB sub-system
+      arm64: dts: ti: k3-am62a: Disable USB LPM
 
-Applying this patch as a fix now would avoid an ABI break like the
-recently discussed here:
-
-https://lore.kernel.org/linux-iio/8409a5bc71b995e3b738b817a074cfb131c3b2b5.camel@gmail.com/
-
-On the other hand, from the same discussion it can be concluded that the
-major risk would be a potential warning with dtbs_check, in case this
-patch is applied during the next merge window.
-
-The VEML6075 driver already handles the power supply with
-devm_regulator_get_enable().
+ Documentation/devicetree/bindings/mfd/syscon.yaml |  1 +
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi          |  4 +-
+ arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi        | 10 ++++
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi         |  8 ++-
+ arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi       | 10 ++++
+ arch/arm64/boot/dts/ti/k3-am62p-main.dtsi         | 50 +++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi       | 10 ++++
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts           | 67 +++++++++++++++++++++++
+ 8 files changed, 156 insertions(+), 4 deletions(-)
 ---
- Documentation/devicetree/bindings/iio/light/vishay,veml6075.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/iio/light/vishay,veml6075.yaml b/Documentation/devicetree/bindings/iio/light/vishay,veml6075.yaml
-index abee04cd126e..91c318746bf3 100644
---- a/Documentation/devicetree/bindings/iio/light/vishay,veml6075.yaml
-+++ b/Documentation/devicetree/bindings/iio/light/vishay,veml6075.yaml
-@@ -21,6 +21,7 @@ properties:
- required:
-   - compatible
-   - reg
-+  - vdd-supply
- 
- additionalProperties: false
- 
-
----
-base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
-change-id: 20240223-veml6075_vdd-e2220158ffda
+base-commit: ab480b8036fde8c1ea628bb1027919bf399468e9
+change-id: 20240223-b4-for-v6-5-am62-usb-typec-dt-769eec4c8c4a
 
 Best regards,
 -- 
-Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Roger Quadros <rogerq@kernel.org>
 
 
