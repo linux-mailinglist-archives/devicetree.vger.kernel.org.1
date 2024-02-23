@@ -1,74 +1,89 @@
-Return-Path: <devicetree+bounces-45458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59F8C861FD0
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 23:32:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2496861FDB
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 23:34:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE6E61F23682
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 22:32:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 667671F247B7
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 22:34:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92CCD17C9B;
-	Fri, 23 Feb 2024 22:32:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 559162EB09;
+	Fri, 23 Feb 2024 22:34:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="KDiQaAq1"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="WNubgYoW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA9C91119B;
-	Fri, 23 Feb 2024 22:32:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83ABA1F5E4
+	for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 22:34:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708727560; cv=none; b=hPKTGyp9TTFIlorEqLeq4lHOJ5RvYGWezT5ICmEyFMCU2zS5ZS/FybDQ/390fwDaZdf+Fg1WHUKIBvcaFhpTIX7yjgHFK9wxlz02epxXfNuMibG6LWiH7Z9PuoJ9Tbi2JxTbh4KbgiV3YhY2Xag/eBYMuWoa/L5OqsRcB/5LyQI=
+	t=1708727672; cv=none; b=DL2tw6ouplwNusZNmkRV5cHDhc3vZm9sSLL9T2y/Tt6CVlpzl/ksHoeqlHJ+JScKtyiRJWOR5Q9lxq00ZgTMelky0utg1SjSuwsgc45guHOn8PNOC7NuV22+CmzAKGBmNF2qdOO1TgAZ6sgTvNUBiC1cl10p9AfdiB5UqKG46ls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708727560; c=relaxed/simple;
-	bh=PSs1k4yhOaJo0FhDXl1IC/61LVXaUjlUC3glDlqHR+s=;
+	s=arc-20240116; t=1708727672; c=relaxed/simple;
+	bh=OjImI9nqJ8TO8TDyZt96kFcK0C88oOP70tesV0S+yBY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fO0i7LcyLgV2PN8k2kNf4G+io1RPmdLHzF9IQ04Xf4avyN9+QBeeFErwQIGmPER7ymxqGw0jIhKNKwYLczls4FHS8lLrIeYYHldIDDpTwGnDsuTfF/ykp1n6ur4A+slfNXuSIVZNewnS19oNZkHtA31iBJmC8M6pHSnOMKnURUs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=KDiQaAq1; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1708727554;
-	bh=PSs1k4yhOaJo0FhDXl1IC/61LVXaUjlUC3glDlqHR+s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KDiQaAq1lyRcjhTQW47KCHDEbmn5dw4W0sqCeown0uhw6TzmHSV93fpjvZU7swVkI
-	 +KXHOAjYoD/aE5QDrVnCfbI2k1hOSE7EDK9EM59hbVqhXqYj0345NiO/75as3pQJdr
-	 zGONe1b+drG4lF1T8vkB/mewsMfc8XJmd0VKY1POhpnut9rDJ/qF5uGj96+k5eBxFY
-	 G4Bu1fgzzbHkFsPjhWljBjV+hgUPexoljU9qGO9YTfzrHmjqq33JMir2C46wM/em+E
-	 X+6cxY3dC5gCPfR8z5zl72ZmyVpfxeTZTNUGUJPVxKHVMLZ741ADY3cO42YAMTllGK
-	 ADnx4v9lvELjA==
-Received: from mercury (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id CB97C3780627;
-	Fri, 23 Feb 2024 22:32:34 +0000 (UTC)
-Received: by mercury (Postfix, from userid 1000)
-	id 4818D1060C95; Fri, 23 Feb 2024 23:32:34 +0100 (CET)
-Date: Fri, 23 Feb 2024 23:32:34 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Nikita Travkin <nikita@trvn.ru>
-Cc: Hans de Goede <hdegoede@redhat.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	cros-qcom-dts-watchers@chromium.org, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh@kernel.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	platform-driver-x86@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] power: supply: Add Acer Aspire 1 embedded
- controller driver
-Message-ID: <wr4awfmyip3fe5y4xpv6xajigsvc4qftawonkolrtsamr3pumb@aio2ishg3o7c>
-References: <20240220-aspire1-ec-v3-0-02cb139a4931@trvn.ru>
- <20240220-aspire1-ec-v3-2-02cb139a4931@trvn.ru>
- <qoidm5wujjbeoc2hlraky26wuwmuaxi2atyl6ehovhvffdbfeh@g5gunqdei45m>
- <7c429d2110dbac68d0c82c8fb8bfb742@trvn.ru>
- <xelebhoitnwguhewahw26xopl5btjo5ezznjjaeb2zfyy2bpcr@7pmclezshwck>
- <6e3fb1080c54cfc38dc3c3e79e32a53d@trvn.ru>
+	 Content-Type:Content-Disposition:In-Reply-To; b=j6/7yBvM9Y5hS/vUO6OH5pg7MlmTkoWl4k0ML46YR8z9zzMb3KzdaxfZGAw65U61EFq4XqjqUHMHoSPXDN+IVVNgoKOq+9EqLOL3DZ2CesLzV8+yuauysbSrjFrJV4CnrrxO58q8gVBR3DUm5i5ON9xknfcgqSzgrh/RunjEVCQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=WNubgYoW; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=2Wfh
+	FQ80HGIyU4EysZndPKnOpYN/Nd/vyMAbdv2H1oE=; b=WNubgYoWQFi11xP0oDRe
+	z/4cvJH7rLAtEdS7XwEDVqmGY3B/gf0rxuPUCi8SUmKE5NbqOBWwE3iLQxBm9z/Y
+	GEhlSWf36eGtjPd7KjFexqs64aymQbsRPCwOZcBC/7+QRUd4K/1mIjQ6nEUMx9JP
+	AeZM/fNoXKdT96q0u3GhKaPjI1i7SzrnuBKBsjMY7PuqTkzMIFucYW2sTxJNgjBh
+	kSBN6dzu658AL9eQEIOvM/8tXMt79XIyRdZtZrZXHw1xf+F5Z9tYhCEkfE1IKoFx
+	RAyhlfXSm1iJv2YG1wkKEE87gA9pf/lj9V9PaSZ4GoezXe+222K7unYyAizoWy0i
+	lg==
+Received: (qmail 380856 invoked from network); 23 Feb 2024 23:34:20 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 23 Feb 2024 23:34:20 +0100
+X-UD-Smtp-Session: l3s3148p1@CUgsKRQS0JEujnsZ
+Date: Fri, 23 Feb 2024 23:34:19 +0100
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+	linux-tegra@vger.kernel.org, linux-i3c@lists.infradead.org,
+	linux-sound@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: i2c: Remove obsolete i2c.txt
+Message-ID: <Zdkda5jf072mENvK@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Rob Herring <robh@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+	linux-tegra@vger.kernel.org, linux-i3c@lists.infradead.org,
+	linux-sound@vger.kernel.org
+References: <20240222174343.3482354-2-robh@kernel.org>
+ <ZdemsdGQE0RtilCd@shikoro>
+ <CAL_JsqKpn6jqktRLQUx7HMrJG0PZeiOZ=hQnHpZK6AHcM22CLQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,77 +91,77 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="x3dnrs6dj67zatrw"
+	protocol="application/pgp-signature"; boundary="fF2R2D/X283ptnYJ"
 Content-Disposition: inline
-In-Reply-To: <6e3fb1080c54cfc38dc3c3e79e32a53d@trvn.ru>
+In-Reply-To: <CAL_JsqKpn6jqktRLQUx7HMrJG0PZeiOZ=hQnHpZK6AHcM22CLQ@mail.gmail.com>
 
 
---x3dnrs6dj67zatrw
-Content-Type: text/plain; charset=utf-8
+--fF2R2D/X283ptnYJ
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Rob,
 
-On Fri, Feb 23, 2024 at 08:34:29PM +0500, Nikita Travkin wrote:
-> Sebastian Reichel =D0=BF=D0=B8=D1=81=D0=B0=D0=BB(=D0=B0) 23.02.2024 20:04:
-> > On Fri, Feb 23, 2024 at 07:32:17PM +0500, Nikita Travkin wrote:
-> >> >> + This driver provides battery and AC status support for the mentio=
-ned
-> >> > I did not see any AC status bits?
-> >>
-> >> I was referring to whatever ACPI spec calls "AC Adapter" but I guess
-> >> I should have used the word "charger" instead... Will reword this.
-> >=20
-> > But you only register a power-supply device for the battery and not
-> > for the AC adapter/charger. When you write "and AC status support" I
-> > would have expected something similar to this (that's from ACPI AC
-> > adapter driver):
-> >=20
-> > $ cat /sys/class/power_supply/AC/uevent
-> > POWER_SUPPLY_NAME=3DAC
-> > POWER_SUPPLY_TYPE=3DMains
-> > POWER_SUPPLY_ONLINE=3D1
+> > * In the schema, "clock-frequency" has a minimum of 1kHz and a maximum
+> >   of 3MHz. Why? The specs do not say anything about a minimum freq and
+> >   fastest speed mentioned in the docs is 5Mhz (Ultra fast mode).
 >=20
-> Ah, I see... Yeah looking at it one more time, I mistakenly assumed the
-> acpi ac code uses the same data fields as the battery but seems like it
-> reads the single online flag from a different place. I don't think there
-> is really a point on implementing that field since we can still easily
-> track the battery charging/discharging status so I will probably omit it
-> for now. Will reword the help text to not mention charger/ac adapter.
+> IIRC, the high speed mode originally topped out at 3MHz. I guess
+> that's been revised.
 
-If you have the information easily available, it's a good plan to
-expose it.
+Hs-mode has a max of 3.4MHz...
 
-Without a charger reporting online status at least the kernel's
-power_supply_is_system_supplied() will return false (which is e.g.
-used by AMD GPU driver to select power profile).
+>=20
+> We can drop the minimum.
 
-Generic userspace (i.e. upower) probably behaves similar, since
-battery status is not the same as AC connceted. A system might
-not charge the battery but still run from AC itself.
+=2E.. but I see you changed min/max now to 1/5000000. That's what I would
+have suggested as well.
 
--- Sebastian
 
---x3dnrs6dj67zatrw
+> > * new binding "i2c-scl-clk-low-timeout-us" has a description which I do
+> >   not understand. What is a waiting state?
+>=20
+> Shrug. May have to look at the MPC h/w that uses the property.
+
+I will also have another look. My gut feeling is that the binding is
+okay, only the description might need an update.
+
+> >
+> > * new binding "no-detect" is broken. At the least, it should be named
+> >   something like "bus-fully-described" and then the OS can decide to
+> >   leave out auto-detection mechanisms. If you are interested in the
+> >   latter, you can simply disable class based instantiation on the host
+> >   controller. No need to describe this in DT.
+>=20
+> I've reverted the property now.
+
+Cool, thanks!
+
+Kind regards,
+
+   Wolfram
+
+
+--fF2R2D/X283ptnYJ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmXZHPcACgkQ2O7X88g7
-+ppExA/6Ay7wM3uN5mNgDtWxq1XLrsykjXSgSsYKJzByjQuageupwDlF6Rx6lKXQ
-X8UjL4r8YlEaGyce2L8uYaoH9KN0ge45v/CiEKZo2PJyCBpQGW8rbO1rNlZampi+
-y2jSurRj8aUrbgToM0Q2tiZQWU3CLJzu0TsFZ0/7sfgEzaEzFurQ0k3nvTNYARLN
-ayqnP6NIDb18AFwToW5jdoe8c+MweBK4XhjNNZeiFAsnCe4LgKSjr0aHdeGwJh1F
-AGffLuHnc/TSWecDaKQG8NaZV9KIjzYHZwULTWFQwvIaFnMSNFJLyaZX91NGV4Sc
-R7HZVdSm/3Q60PvKQ9ZkseRbLSHHRJQTvj8akX5sLfD4L7CMe19tPqcaDB50jIUi
-VJdqCrq9lZLJVfbJDKVysLHfTNHBrm948FxOdFgd/chETFCDODrRJZ+W96+rb7uC
-m/CoGtow7mSP1Tm183JktlamMk7c+D2qj2xF6mfRJMIT1816qA7hfZNB6YQyky++
-pw8kRos46RCCOrhRInZqJGy5DBz3JDZqqMWJFDQYdxQaZM0m7J2PST/auCUhK14v
-Uo8bjWdbR7BBFLB5FXAGONH/bdihhnD8er1H5LIDzPmxv8ASQxC924BEozSya/4J
-aEox1XhdHHsQpCByVX7kL2afGt574rkvnyOwT9WLf8RA2KCjROg=
-=gazE
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmXZHWcACgkQFA3kzBSg
+KbYzig//S6LN1IJcbov4tQYqc0ld204PZ2cFEc0wE9p1z2ACiq71IoYiaESHLfjF
+8BndHnuZnCc4LsHNTnDVquUsM54mxypBiXdnBvmmKCrJUlnpDrwlVmRi1yQ0VuFP
+V2/zW4mOesb56puXSfua8Hsyp9M2qEGyjwJSdMMEozyQcBkLausobHQKbphvFhc6
+OAjp1HJvGb9kjrYRGpH6dbDPrk6efXcwKy3n63//ILBcmSloVfFbWgn8n3j7nk1I
+0EDdgRx4MDdz0leMRTlROjl7VtF+EdWeZ0OqIuZPGNxTuk5xXa3XII0bT9+tOBCA
+/c4eLMLua8keQnLJanHxIpcVYv982KNjJMfOaIOI6u0F7UsV6ZRLEQbmzuYE9QpG
+2mK37DgB4b8V85n6HwpXzZaiqOnzEFIJ70ZEDPkVhtEfcNjz5etDvwWomgiotfKO
+QajwbDm9F3R4FcO3EA8WgDR/dDv8cqCXjOfgFyUV9jjbbeDO5rVUMBGLoLSlv1+D
+ysOnVR1JSK6d4wtN6gbCMnzK6aAQPmgdZWq09P5sarNEfGJ3tv6ztUdcfDkoKsiJ
+xfRUrch+VMkrIMbshoICqlRyjtOPMSNpme1eClzMQgd6CDi0mBXJC6fWPmLYV6kS
+Spc1IA87hY7oYQH5LXdd0PwZs/2ulfzTdJ/m90bdPzfIifiVxn4=
+=ITPf
 -----END PGP SIGNATURE-----
 
---x3dnrs6dj67zatrw--
+--fF2R2D/X283ptnYJ--
 
