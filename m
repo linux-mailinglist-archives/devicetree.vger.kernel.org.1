@@ -1,104 +1,114 @@
-Return-Path: <devicetree+bounces-45359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45361-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42C58861940
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 18:19:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3A3B861955
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 18:23:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C49A9B212DC
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 17:19:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1130B1C24A2C
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 17:23:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90D3512D769;
-	Fri, 23 Feb 2024 17:19:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27A5612D758;
+	Fri, 23 Feb 2024 17:23:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="rKxv/KTt"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Xh136TwB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6009A12DD81;
-	Fri, 23 Feb 2024 17:19:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 402DD186A;
+	Fri, 23 Feb 2024 17:23:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708708760; cv=none; b=u7as/aREbGjNx9iJgkWXfVz31wd/XDIkvfzJlAdNVKTTDQ7sfIJii/gt0eaRmyXPGMVzb/qLuTiqvabzRByePuXQHtYzNmUiXvJyLEyGuVhElUrCw3lEOfis5w/ynVgQsRxoiWgmStySfbEJqKeRPiz9VGVbCinc+1qfYAxdVGs=
+	t=1708708997; cv=none; b=f/AfU4g2vvYNUyF9ovOAJiZYUoE/I8IB/p7IguQnpeePRO1q9pl5QaZIHHshntvTyeGxKX78RHo3PJiXMFD0TF8LWz20gmPQPxYBzod7F7pFdvuL3YUYMNdAicNphMN4XuDN5203QxjXSWRrwHVCVS7KQcwHYy9QXDtREdqXSTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708708760; c=relaxed/simple;
-	bh=djVppOvAgFVIlgt/WIoVQ6u2hzYwkqEWVq8VEJwptqg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FFlK8WyPn0jOXs+6Ei/y4VX0AL5v2TjSwbheKIWvEmHp3vaALCeM+ozgI5uzBj89+shwC8IjVbo3fghIqKj+NujqBTtzg6pnQIsKRsNZ3ONfAKn9hGHnIADdPmhzW7/8AeoTfn8dQlsq+ZP2xFvDqLZ944hr3KTvY+pTwx8YW98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=rKxv/KTt; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id A8D49225AC;
-	Fri, 23 Feb 2024 18:19:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1708708748;
-	bh=GqOXTbroCo6UamNlREFgTejmjaBG9X8jsQRMkSHXfaw=; h=From:To:Subject;
-	b=rKxv/KTtPN1evHqGHGEOrwfrRmANaLCkTpETdw9Rgs7AKH4Pn7kUF4BIUak59M2tf
-	 yi+O2aJDTsW2M/NbXL2PL0/oFjffofUEp/eOtDKwliGGQFZ9KX6GxhNiaVEGQItGRw
-	 FMzrlC57WS91J1ytQk1bhu6oSk0XXkzZVZAP0RGhqthUVL2heSFSLHgYNAVoVb6hdz
-	 R4s2nX2c0VDyOf5Sj7Vy323+GYwAzuA0wS3h59vYzbBAFByaNWKhKidQm3Gxb4jYiD
-	 Fiw62mI5DTRu8LVZHyDltyv52R3R+PFtYcvOBBbyWqh3zVczS+5XI2+VRTpzmqX+rh
-	 SNn4K2bGK6O9g==
-Date: Fri, 23 Feb 2024 18:19:01 +0100
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Shawn Guo <shawnguo@kernel.org>
-Cc: Francesco Dolcini <francesco@dolcini.it>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Marco Felsch <m.felsch@pengutronix.de>,
-	Roland Hieber <rhi@pengutronix.de>,
-	Hiago De Franco <hiagofranco@gmail.com>,
-	Arnd Bergmann <arnd@arndb.de>
-Subject: Re: [PATCH v1] ARM: dts: imx7: remove DSI port endpoints
-Message-ID: <20240223171901.GA22584@francesco-nb>
-References: <20240216104255.21052-1-francesco@dolcini.it>
+	s=arc-20240116; t=1708708997; c=relaxed/simple;
+	bh=N3JiGSIuHPDoA9DuIr7Vrwk1kYjucAxaD+67rAGm5Lw=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=roOngCr34mAmAeFKfIsBZqVZ/YKk6KAO5ijR+utUS4ej3e7tbdZLfNCwBwzLp3SM9YUJnSXAzJ8m3Snr6lRIGir/mEgIpT1Ck9as19wz23HpjCK/b9bdQRHxTEySrttGQhbbPCF4Heemn+GYLiFtezY21xRjjkzI6sXHclnHQQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Xh136TwB; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1708708996; x=1740244996;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=N3JiGSIuHPDoA9DuIr7Vrwk1kYjucAxaD+67rAGm5Lw=;
+  b=Xh136TwBENiFRm4Q27ncYrZNQf6033W3YrgMaJnh8OwdB0QEIayWf59C
+   Xzn9euZjmDe3ywIQZe3cjuMNmvQF8ODz4ZdqXi3wfsBX5O1HrJ4TT4z7n
+   jebrdi932F/QVt0Zgq3tI+6tfSFxKmY8kJDjW6KpB60IAebQf0OhobjNo
+   PVSOJdmnYb5ZO2Apy0OCx2i0oJv52J+tECD/GtaWIohqyrmfQOyVeuF3H
+   A9f1kS4I4Poi2T24Njhtl/9S9YmpgnSqdsnwEeEH1FNV+fqL2jbXU5CHZ
+   IMMgwn1oVNxl6Po3Bl9JXMC9esr4F3lTwWY+QkPMwVfILeJ+lkB2azZET
+   g==;
+X-CSE-ConnectionGUID: aMpctv24Qgyd0lLqchzPeA==
+X-CSE-MsgGUID: FQ6J8jJpQr+9AOQUIOPwGw==
+X-IronPort-AV: E=Sophos;i="6.06,180,1705388400"; 
+   d="scan'208";a="247481201"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 23 Feb 2024 10:23:14 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 23 Feb 2024 10:22:50 -0700
+Received: from che-lt-i67070.microchip.com (10.10.85.11) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Fri, 23 Feb 2024 10:22:45 -0700
+From: Varshini Rajendran <varshini.rajendran@microchip.com>
+To: <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+	<pabeni@redhat.com>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<nicolas.ferre@microchip.com>, <claudiu.beznea@tuxon.dev>,
+	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+CC: <varshini.rajendran@microchip.com>, Rob Herring <robh@kernel.org>
+Subject: [PATCH v4 01/39] dt-bindings: net: cdns,macb: add sam9x7 ethernet interface
+Date: Fri, 23 Feb 2024 22:52:28 +0530
+Message-ID: <20240223172228.671553-1-varshini.rajendran@microchip.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240223171342.669133-1-varshini.rajendran@microchip.com>
+References: <20240223171342.669133-1-varshini.rajendran@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240216104255.21052-1-francesco@dolcini.it>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Fri, Feb 16, 2024 at 11:42:55AM +0100, Francesco Dolcini wrote:
-> From: Francesco Dolcini <francesco.dolcini@toradex.com>
-> 
-> This fixes the display not working on colibri imx7, the driver fails to
-> load with the following error:
-> 
->   mxsfb 30730000.lcdif: error -ENODEV: Cannot connect bridge
-> 
-> NXP i.MX7 LCDIF is connected to both the Parallel LCD Display and to a
-> MIPI DSI IP block, currently it's not possible to describe the
-> connection to both.
-> 
-> Remove the port endpoint from the SOC dtsi to prevent regressions, this
-> would need to be defined on the board DTS.
-> 
-> Reported-by: Hiago De Franco <hiagofranco@gmail.com>
-> Closes: https://lore.kernel.org/r/34yzygh3mbwpqr2re7nxmhyxy3s7qmqy4vhxvoyxnoguktriur@z66m7gvpqlia/
-> Fixes: edbbae7fba49 ("ARM: dts: imx7: add MIPI-DSI support")
-> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+Add documentation for sam9x7 ethernet interface.
 
-Hello Shawn, what do you plan to do with this?
+Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+Changes in v4:
+- Changed the fallback compatible as const as per the comment.
+---
+ Documentation/devicetree/bindings/net/cdns,macb.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-This fixes a regression from v6.8-rc1 and would be nice to have it into
-the final v6.8.
-
-Francesco
+diff --git a/Documentation/devicetree/bindings/net/cdns,macb.yaml b/Documentation/devicetree/bindings/net/cdns,macb.yaml
+index bf8894a0257e..2c71e2cf3a2f 100644
+--- a/Documentation/devicetree/bindings/net/cdns,macb.yaml
++++ b/Documentation/devicetree/bindings/net/cdns,macb.yaml
+@@ -59,6 +59,11 @@ properties:
+           - cdns,gem                  # Generic
+           - cdns,macb                 # Generic
+ 
++      - items:
++          - enum:
++              - microchip,sam9x7-gem     # Microchip SAM9X7 gigabit ethernet interface
++          - const: microchip,sama7g5-gem # Microchip SAMA7G5 gigabit ethernet interface
++
+   reg:
+     minItems: 1
+     items:
+-- 
+2.25.1
 
 
