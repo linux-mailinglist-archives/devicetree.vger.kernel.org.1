@@ -1,113 +1,182 @@
-Return-Path: <devicetree+bounces-45288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAE75861555
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 16:16:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 959FA861586
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 16:23:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08A751C23222
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 15:16:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CB341F256BE
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 15:23:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0892481ACB;
-	Fri, 23 Feb 2024 15:16:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 697FA823BE;
+	Fri, 23 Feb 2024 15:23:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WfzzO8cv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BwTHzWzs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D37B0224D8;
-	Fri, 23 Feb 2024 15:16:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B6EC83A0D;
+	Fri, 23 Feb 2024 15:23:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708701384; cv=none; b=L1HOD8DqQh+NLYuwr0lci9Mb2Ltvf2yIzNOOGSniCuHi6sfovXxl+SP1NI2aR1r66mPsaGRvRyY59SziI6syrchdNhq1OdUpFA6j2cQm9H6LF4uq6ayYhXvnoTKcy8PPS7bvLVJh5qlRTF9MuacQ1oo7WhyCSfDoZ4r8Is2UOS4=
+	t=1708701788; cv=none; b=KrpR8ER9dWc1xcw4ynpZ2+Pzekv6t77dOxm1UfSFxYxO6KALrvi4Ya+Lodn6hhEeV4qQaTdr1Uand3bEq58wg8UTcG1tSTULkIvbVNm53aqm9kNLVWjr+QQrfEB/2VMrSGcxyWhPkHFNt7Oblh4u0CEdtKsluhs/UHPnYPRjkyA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708701384; c=relaxed/simple;
-	bh=hiDT6YHGmh3oE5cDRrYXYKlwqhuhJpnLRLGqGi7XlCw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ADsLh63bJ6oXFDWT+ImlYMoSVa/KXP+/ixjJHYkGTGNqaQfO0EUzQco6ZtQMbkXyZeWObCE/B50/n6/IRhOhjM/FEMAUX//Xmt1xE0T6zlpZoUfQEuGYzuJsUtuZhMZdPG4seh9Roxq1Usb4tqHkvJP000CIIp2NA7P37HXM6Aw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WfzzO8cv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D520EC433C7;
-	Fri, 23 Feb 2024 15:16:22 +0000 (UTC)
+	s=arc-20240116; t=1708701788; c=relaxed/simple;
+	bh=9shxrV37X/hKYhC7+xafRBxXkbpYRJ8dJYB3wBS8aq0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BLOL9n7tF5+le8pZTh8ROqBCKTFXlXowQNGZNIwNz/fxBdIk5uEy+9BPJBi8JObhNuXAaDNKrmdtSw8TLb5Jr6/+ZuZPooX/4ZMTk8+/sU2v+DndfIzVAfwYWtUzjod83UyUShpJ5SOuGxXq3AGoXaiNRhzXHxnY3iQWesc0f5A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BwTHzWzs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F0DFC433B2;
+	Fri, 23 Feb 2024 15:23:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708701384;
-	bh=hiDT6YHGmh3oE5cDRrYXYKlwqhuhJpnLRLGqGi7XlCw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WfzzO8cvde7hjjv8g1iSG/QnSuIFHCsqD1L0NTWkpjzI9oAOkQN4uDg25wcfC9mxN
-	 PIpRjrZIFCCMOItPf+wTo9S4Kec2wyQt4zQ5VxEfLPb7g9tpOW6nSRywDajDg/fRE2
-	 rWy0Bj0W7XnowgpCF2Qws8uwBJoN6TT8z9dSY7R52Os3vpGUSSSqu8K+NGIUmbB3EQ
-	 2vbWPe3yPz2fP8uDXbNMg3/O4xzG8zW1aN0OSpOF/6kI8EEavn3/DrZlHXfebYfVZQ
-	 iTkz1c4VbymC9ksIFVzUssOJ4XO/98hfggvCz8ElZ53qV8/ih6a3eEg7jzC7k9dZ/X
-	 816GjZgRU9X1Q==
-Date: Fri, 23 Feb 2024 15:16:19 +0000
-From: Lee Jones <lee@kernel.org>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Support Opensource <support.opensource@diasemi.com>,
+	s=k20201202; t=1708701786;
+	bh=9shxrV37X/hKYhC7+xafRBxXkbpYRJ8dJYB3wBS8aq0=;
+	h=From:To:Cc:Subject:Date:From;
+	b=BwTHzWzsu/Zd0FkgYEt+VHXbuKOy5OgClB6+XaV77LhCiG9PBCZEJSKEHkrmIK+Wf
+	 BYa+b8S/A4inKzgNzR6f8Q58lkxDXjPL60D1qxqVFHC8raTHfuiPBwzhIIWw6RJzl1
+	 Vc3DrZWsRQseLG/eRus7+GfMAQbdeHRR9gHwhxx2V1euwi0wrVDRwp1ZzRDepbvcj3
+	 84k8dfFLc/xbsPA9emz04nCyG/95jqxWDRj5LHy2yfqXhwWJIavpBhIlWJj9ewSvlq
+	 wgvtR3xw0ssPqYPpQZWnnez0cCIwStZ/r8bZZQ1eJlDu7ngNu6XiBpQxf+ZEM9bw+1
+	 IXsRPM0H507SA==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan+linaro@kernel.org>)
+	id 1rdXOI-000000005FT-0JA2;
+	Fri, 23 Feb 2024 16:23:10 +0100
+From: Johan Hovold <johan+linaro@kernel.org>
+To: Bjorn Helgaas <bhelgaas@google.com>,
+	Bjorn Andersson <andersson@kernel.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Steve Twiss <stwiss.opensource@diasemi.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mfd: dlg,da9063: Make #interrupt-cells
- required
-Message-ID: <20240223151619.GD1666215@google.com>
-References: <2212567f4c17251011e5e0bfa4ea0126d9815d39.1707922672.git.geert+renesas@glider.be>
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH v2 00/12] arm64: dts: qcom: sc8280xp: PCIe fixes and GICv3 ITS enable
+Date: Fri, 23 Feb 2024 16:21:12 +0100
+Message-ID: <20240223152124.20042-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <2212567f4c17251011e5e0bfa4ea0126d9815d39.1707922672.git.geert+renesas@glider.be>
 
-On Wed, 14 Feb 2024, Geert Uytterhoeven wrote:
+This series addresses a few problems with the sc8280xp PCIe
+implementation.
 
-> '#interrupt-cells' is a required property for interrupt providers, hence
-> make it required.
-> 
-> While at it, move '#interrupt-cells' in the example to match common sort
-> order.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  Documentation/devicetree/bindings/mfd/dlg,da9063.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml b/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
-> index c5a7e10d7d80e8d7..e5ccc2708f0bb0f8 100644
-> --- a/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
-> @@ -87,6 +87,7 @@ required:
->    - reg
->    - interrupts
->    - interrupt-controller
-> +  - '#interrupt-cells'
+The DWC PCIe controller can either use its internal MSI controller or an
+external one such as the GICv3 ITS. Enabling the latter allows for
+assigning affinity to individual interrupts, but results in a large
+amount of Correctable Errors being logged on both the Lenovo ThinkPad
+X13s and the sc8280xp-crd reference design.
 
-This doesn't seem to apply.
+It turns out that these errors are always generated, but for some yet to
+be determined reason, the AER interrupts are never received when using
+the internal MSI controller, which makes the link errors harder to
+notice.
 
->  additionalProperties: false
->  
-> @@ -99,10 +100,10 @@ examples:
->        pmic@58 {
->          compatible = "dlg,da9063";
->          reg = <0x58>;
-> -        #interrupt-cells = <2>;
->          interrupt-parent = <&gpio6>;
->          interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
->          interrupt-controller;
-> +        #interrupt-cells = <2>;
->  
->          rtc {
->            compatible = "dlg,da9063-rtc";
-> -- 
-> 2.34.1
-> 
+On the X13s, there is a large number of errors generated when bringing
+up the link on boot. This is related to the fact that UEFI firmware has
+already enabled the Wi-Fi PCIe link at Gen2 speed and restarting the
+link at Gen3 generates a massive amount of errors until the Wi-Fi
+firmware is restarted. This has now also been shown to cause the Wi-Fi
+to sometimes not start at all on boot for some users.
+
+A recent commit enabling ASPM on certain Qualcomm platforms introduced
+further errors when using the Wi-Fi on the X13s as well as when
+accessing the NVMe on the CRD. The exact reason for this has not yet
+been identified, but disabling ASPM L0s makes the errors go away. This
+could suggest that either the current ASPM implementation is incomplete
+or that L0s is not supported with these devices.
+
+Note that the X13s and CRD use the same Wi-Fi controller, but the errors
+are only generated on the X13s. The NVMe controller on my X13s does not
+support L0s so there are no issues there, unlike on the CRD which uses a
+different controller. The modem on the CRD does not generate any errors,
+but both the NVMe and modem keeps bouncing in and out of L0s/L1 also
+when not used, which could indicate that there are bigger problems with
+the ASPM implementation. I don't have a modem on my X13s so I have not
+been able to test whether L0s causes any trouble there.
+
+Enabling AER error reporting on sc8280xp could similarly also reveal
+existing problems with the related sa8295p and sa8540p platforms as they
+share the base dtsi.
+
+After discussing this with Bjorn Andersson at Qualcomm we have decided
+to go ahead and disable L0s for all controllers on the CRD and the
+X13s.
+
+Note that disabling ASPM L0s for the X13s Wi-Fi does not seem to have a
+significant impact on the power consumption (and there are indications
+that this applies generally for L0s on these platforms).
+
+***
+
+As this series fixes a regression in 6.7 (which enabled ASPM) and fixes
+a user-reported problem with the Wi-Fi often not starting at boot, I
+think we should merge this series for the 6.8 cycle. The final patch
+enabling the GIC ITS should wait for 6.9.
+
+The DT bindings and PCI patch are expected to go through the PCI tree,
+while Bjorn A takes the devicetree updates through the Qualcomm tree.
+
+Note that the devicetree binding updates will conflict with the
+following series which was just merged for 6.9 today:
+
+	https://lore.kernel.org/lkml/513dfb69-aea1-4848-8755-613e03c65843@linaro.org/
+
+The resolution is simply to add 'required-opps' and 'aspm-no-l0s' to the
+new 'qcom,pcie-common.yaml' schema file instead of 'qcom,pcie.yaml',
+while removing 'msi-map-mask'.
+
+***
+
+Johan
+
+
+Changes in v2
+ - drop RFC from ASPM patches and add stable tags
+ - reorder patches and move ITS patch last
+ - fix s/GB/MB/ typo in Gen2 speed commit messages
+ - fix an incorrect Fixes tag
+ - amend commit message X13 wifi link speed patch after user
+   confirmation that this fixes the wifi startup issue
+ - disable L0s also for modem and wifi on CRD
+ - disable L0s also for nvme and modem on X13s
+
+
+Johan Hovold (12):
+  dt-bindings: PCI: qcom: Allow 'required-opps'
+  dt-bindings: PCI: qcom: Do not require 'msi-map-mask'
+  dt-bindings: PCI: qcom: Allow 'aspm-no-l0s'
+  PCI: qcom: Add support for disabling ASPM L0s in devicetree
+  arm64: dts: qcom: sc8280xp: add missing PCIe minimum OPP
+  arm64: dts: qcom: sc8280xp-crd: limit pcie4 link speed
+  arm64: dts: qcom: sc8280xp-x13s: limit pcie4 link speed
+  arm64: dts: qcom: sc8280xp-crd: disable ASPM L0s for NVMe
+  arm64: dts: qcom: sc8280xp-crd: disable ASPM L0s for modem and Wi-Fi
+  arm64: dts: qcom: sc8280xp-x13s: disable ASPM L0s for Wi-Fi
+  arm64: dts: qcom: sc8280xp-x13s: disable ASPM L0s for NVMe and modem
+  arm64: dts: qcom: sc8280xp: enable GICv3 ITS for PCIe
+
+ .../devicetree/bindings/pci/qcom,pcie.yaml    |  6 +++++-
+ arch/arm64/boot/dts/qcom/sc8280xp-crd.dts     |  7 +++++++
+ .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    |  7 +++++++
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi        | 17 +++++++++++++++-
+ drivers/pci/controller/dwc/pcie-qcom.c        | 20 +++++++++++++++++++
+ 5 files changed, 55 insertions(+), 2 deletions(-)
 
 -- 
-Lee Jones [李琼斯]
+2.43.0
+
 
