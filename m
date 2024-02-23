@@ -1,149 +1,124 @@
-Return-Path: <devicetree+bounces-45413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2176C861C52
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 20:14:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86268861D0C
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 20:57:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 17FC5B22DD6
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 19:14:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2763E1F23404
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 19:57:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC4D0142645;
-	Fri, 23 Feb 2024 19:14:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB70F14532B;
+	Fri, 23 Feb 2024 19:56:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dpBx4YYF"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="P/5a1fmc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A25231420C1;
-	Fri, 23 Feb 2024 19:14:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C28C143C77
+	for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 19:56:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708715642; cv=none; b=fWJRAQ4xEeIuZnPuUzEcpL9gtSfmxUdDBdV5ep+dCNHfI2mExmQ2JqtahD5cBB11svq9NaJABGNGWF4RMmSqtRs/ew9D/zZgkx1Kt5312yP52ghlEA32mhY6K6qlxjERsSadPXyISxN2ibC5H6FFyuY428HDwno6P+CQS+dLqWs=
+	t=1708718217; cv=none; b=sEr2q7tLkrXIx0WU0wiK8/UV1BM7qkWYXY7iAjIwT61wUiAowZxet+ube5+u1gfGkQXisORIrd31u7/CY8+pKKTK60CQ2bke7k1tndDKXMFV4btJDZ4ySJItLLa0IuZrfx+yFzE8O06Q00HPzBNYwrBZZEoAWwajFC8KoxVnV0k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708715642; c=relaxed/simple;
-	bh=cj//DlVPM+8k23LrNze3wHLdXva2PZF6sH1KLL3tuNw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lYBqRCtBrC5lQWrBkfqa+nzoVKvwWvRTSbp6/vns6n0us52jvYh4a+EkbeG+jr/0H12cBHTWigbdDqR/Kc89baYYeyzFy0uQud+8JVdYscR7/YyLFojzPEaHgBWew+vjjImsDKhPopIFYHHn8PIJVNlTfrDntro5Bwy/pmuUxtg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dpBx4YYF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9424C433F1;
-	Fri, 23 Feb 2024 19:13:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708715642;
-	bh=cj//DlVPM+8k23LrNze3wHLdXva2PZF6sH1KLL3tuNw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dpBx4YYFI/f8bXAmv6mpw8ZV/hjkU/nV9iHJnf9LCBIDC4VN8OkXs/+Ez5H6VxjUV
-	 mNTjEbHX9mEaveZoA0kkwt029CweE5RQ4OXAkdLmWlSDwrE1wPjEdARS+gXT1IwklT
-	 bbQoYtJ+Nj5z+GWeIk4jqE8xsrz1M5khfW8NNUtyVLD6UWK+MV52IflS2TiqxjOGTD
-	 JBWpNsz7wzF1VkTvHJGrXURy/sRfSuknZ1MCmZi0ZLPTIQtk8EpdVsSSblClyI86ke
-	 bqZMoqBMg5a9dwm7vZO6eV+YtYetAliFzkswS6T3XuId9e4XllUzhF3ZjBT8LM/M+l
-	 OHgEcuudPYueQ==
-Date: Fri, 23 Feb 2024 19:13:57 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: conor.dooley@microchip.com, v.georgiev@metrotek.ru, mdf@kernel.org,
-	hao.wu@intel.com, yilun.xu@intel.com, trix@redhat.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
-	kernel@pengutronix.de
-Subject: Re: [PATCH] dt-bindings: fpga: microchip,mpf-spi-fpga-mgr: document
- CPOL/CPHA support
-Message-ID: <20240223-polio-debating-241fc4ab2262@spud>
-References: <20240221191247.3643671-1-m.felsch@pengutronix.de>
- <20240222-rotten-truck-cf5e4b681ac1@spud>
- <20240222200230.ulhguouu37nm6inu@pengutronix.de>
+	s=arc-20240116; t=1708718217; c=relaxed/simple;
+	bh=2Er/E/YWR4ziMDKsjtcUbOnth7XzrgxHccJF7NTGcdE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=LBiwUYmpbQdehfBI/JA1YQVsQug4RTJR7A6HSvX/C1G/Ooh7oTmUkC8B+MK/+9GgWGprpqgzbJv5MKMTQXz3kIEeCi3+IkmcoG9GuTeCfzXHnLTjoME+yTvqX5c2Rfjnd1PsrcjoF3Ouwj2vLQDHo1bYBgOb8zZWpr3aG69F2xc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=P/5a1fmc; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2d26227d508so9016731fa.2
+        for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 11:56:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ragnatech.se; s=google; t=1708718213; x=1709323013; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pnKaa7U6yo34FD6yjr/0ko1wRd4z14aSOMgBBceVmWE=;
+        b=P/5a1fmcCxe5wyHwutsdiUG9UZcP/ZwRjF2b9ewOuy/awYBjVn1gRNaiA6gZNaHtqJ
+         Xg+fQcNPwx2rzs8xtcSHFOFjuSRnWRdzZwKSZ/MZL21h3wl+br2crCXZ++5TsvvZ3i7H
+         olu4yLHYL6/qkyS36Xps5T7aHVVMWXmGP0pEbAt1EjlpOwebF0ts2Mk4sIp1RfiqW7En
+         7i7E+6VqpSJnHVoaQ3yGzpSU8Mpuueu1oIo6pl52BCpW6sq29C9vJQXbbVuKqx8QW07w
+         o+FcD+JaA2z+6QPeOky88C/P6pYNqR7uHhPY5VsEsk+tHFh4c9E4hEFn9fbgnDco/yyE
+         kzWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708718213; x=1709323013;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pnKaa7U6yo34FD6yjr/0ko1wRd4z14aSOMgBBceVmWE=;
+        b=VpCJ5tQy7HdyKjHO5+zD4G2ncs3Jaybuwc6LTsd0V0pABMqqOjpx9XGwbY08fDkZna
+         fYkIVtF4w8Z+tDKYITqaeZuCsVOZ1YgFcWQvVItrrl1aiFcpmt6ZWL21MZCfw7ZVuUld
+         s47R+gRg2F23SS31PR55dXCHsOLCQ7Vf/QOEhCvILgWU5AEa054cSf3ySIS/PmRkRDut
+         aHWYqhDVEK0k2h/SufkjXKVsyP7Y3J10WAd3gLHs/e4i8rLdq8oRJS78Lw1WPyqiPLzX
+         t87gI+zWAtohgiXNeol/0t7f0qJxO4xd+hk8P3PCd4/wAf62QDNffqqEhlt9u7d4SCTx
+         MmmA==
+X-Forwarded-Encrypted: i=1; AJvYcCXswz+zWPeo+LJM96t7/hUY+uo4wFtG1kstG9qb4KA3Xg44L/bgFFMomRFsAXDDYVJN3yzpRu0pobEtwSs/rFIqXcj1xrJfAKt/2w==
+X-Gm-Message-State: AOJu0Ywd9maTt+RKiIECiV9hLVbwJLSmy47QxKifYaQVYv9HI/g6h7/p
+	LoQiKs+DJ4g01yDcZ4nRmzfu4XbYkVQJXYy8HxgcjB9BZMFlaFlCP7SX20K4GSmDVRAGx7nDfBf
+	Oqeg=
+X-Google-Smtp-Source: AGHT+IEszpjkvVii9Ofn9U98ZBWGg1toQDRx9xo+HuBlNaQdnBY246B7GBYO8EHTSbTKFXUCPiDO8w==
+X-Received: by 2002:a2e:9c8a:0:b0:2d2:31e2:ec00 with SMTP id x10-20020a2e9c8a000000b002d231e2ec00mr82847lji.30.1708718212975;
+        Fri, 23 Feb 2024 11:56:52 -0800 (PST)
+Received: from sleipner.berto.se (p4fcc8c6a.dip0.t-ipconnect.de. [79.204.140.106])
+        by smtp.googlemail.com with ESMTPSA id bf2-20020a0564021a4200b00562149c7bf4sm6658334edb.48.2024.02.23.11.56.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Feb 2024 11:56:52 -0800 (PST)
+From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	devicetree@vger.kernel.org
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	netdev@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	=?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH] dt-bindings: net: renesas,ethertsn: Document default for delays
+Date: Fri, 23 Feb 2024 20:55:26 +0100
+Message-ID: <20240223195526.1161232-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.43.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="LVEg82uQrEH/J5n+"
-Content-Disposition: inline
-In-Reply-To: <20240222200230.ulhguouu37nm6inu@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+The internal delay properties are not mandatory and should have a
+documented default value. The device only supports either no delay or a
+fixed delay and the device reset default is no delay, document the
+default as no delay.
 
---LVEg82uQrEH/J5n+
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+---
+ Documentation/devicetree/bindings/net/renesas,ethertsn.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-On Thu, Feb 22, 2024 at 09:02:30PM +0100, Marco Felsch wrote:
-> On 24-02-22, Conor Dooley wrote:
-> > On Wed, Feb 21, 2024 at 08:12:47PM +0100, Marco Felsch wrote:
-> > > Microchip FPGAs can communicate in different modes, so document them =
-to
-> > > avoid dt-validate warnings.
-> >=20
-> > Are you sure it can "communicate in different modes"?
->=20
-> No I'm not but I didn't found an overview within the FPGA datasheet [1]
-> which modes are supported. What I did found was an note which says:
->=20
-> """
-> 1. Parameters are referenced to the active edge of SCK, which depends on
-> the configured SPI protocol (for example, Motorola SPI mode uses rising
-> edge as active edge if SPO =3D 0)
-> """
->=20
-> Therefore I thought that this can be configured somehow differently.
->=20
-> [1] https://www.microsemi.com/document-portal/doc_view/136519-ds0141-pola=
-rfire-fpga-datasheet
->=20
-> > The documentation actually says "Motorla SPI Mode 3 is required to
-> > communicate with M2S, M2GL, and MPF devices using dedicated system
-> > controller SPI port" with mode 3 being SPO =3D SPH =3D 1:
-> > https://www.microsemi.com/document-portal/doc_view/137543-spi-directc-s=
-p1-v2-0-user-guide
->=20
-> Thanks for the Pointer, there are plenty documents for the Polarfire
-> FPGA.
->=20
-> > I suspect the answer is that it can actually communicate in different
-> > modes (because I don't recall setting those options), but the binding
-> > should enforce the correct way of doing it IMO.
->=20
-> Sure, I will rephrase my commit message to:
->=20
-> """
-> dt-bindings: fpga: microchip,mpf-spi-fpga-mgr: document CPOL/CPHA
->=20
-> Using the dedicated system controller SPI port requires Motorola SPI
-> Mode 3 according the SPI-DirectC v2.0 User Guid [1]. So require the
-> spi-cpol and spi-cpha to be set.
->=20
-> [1] https://www.microsemi.com/document-portal/doc_view/137543-spi-directc=
--sp1-v2-0-user-guide
-> """
+diff --git a/Documentation/devicetree/bindings/net/renesas,ethertsn.yaml b/Documentation/devicetree/bindings/net/renesas,ethertsn.yaml
+index 475aff7714d6..ea35d19be829 100644
+--- a/Documentation/devicetree/bindings/net/renesas,ethertsn.yaml
++++ b/Documentation/devicetree/bindings/net/renesas,ethertsn.yaml
+@@ -65,9 +65,11 @@ properties:
+ 
+   rx-internal-delay-ps:
+     enum: [0, 1800]
++    default: 0
+ 
+   tx-internal-delay-ps:
+     enum: [0, 2000]
++    default: 0
+ 
+   '#address-cells':
+     const: 1
+-- 
+2.43.2
 
-You say require here, but don't actually make them required.
-I think we probably should actually make them required, since the docs
-say they should be used, but I'd like to look at it a bit more though
-before that, since it does work on the setup I had without them.
-
-I'd say do s/require/allow/ and I'll try to do some testing as to
-whether we should actually mark the properties as required.
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-Cheers,
-Conor.
-
---LVEg82uQrEH/J5n+
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdjudQAKCRB4tDGHoIJi
-0hNYAP9cbxllgl0uVLb/u1KpIl7a+NKaL1NE0dzgGmNknrUARQEA/GEf6Txnwnpd
-evDGJOj58Poiwnpsnn8u2fLiid59/Qs=
-=iefM
------END PGP SIGNATURE-----
-
---LVEg82uQrEH/J5n+--
 
