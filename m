@@ -1,191 +1,145 @@
-Return-Path: <devicetree+bounces-45212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A6EB861205
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 13:56:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16B15861229
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 14:01:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5140B22DA6
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 12:56:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B238D283612
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 13:01:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23BEF7D417;
-	Fri, 23 Feb 2024 12:56:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83FD17E571;
+	Fri, 23 Feb 2024 13:01:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="B04g03eJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XIZGbKX6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38A1F1E4B3
-	for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 12:56:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8C641097D;
+	Fri, 23 Feb 2024 13:01:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708692971; cv=none; b=GYSjV5Gt82Vf3rWIeh40dP7D8zOa28n1LSsqZa1XmMEMeHlK8IpS5wqoGXamFeeUToXuCV+nzLDEZlnmNlIAkmw9i0MDizJlcwT9w8qquitQBm/VdGDE2hJiOaUojefcDDFageWRueaulAMVTg06N7OPBr6LlwhXams4PftIQ+0=
+	t=1708693306; cv=none; b=igYiSHV4vTgonX8F4Hm8OHNqGl8nkPMfOaWMQzEuOJ7jnHuyjianN+dPIu0exiV5q7hR4yCF58xCTXVjyu9mHtjBawxV0DZKjfmBMAWVJ+cyVuhL35Se4apKA3ueAZXCpSvyJJhE2BJ441m9FZJPCe3cnZoDHrebMSKIi6evkPo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708692971; c=relaxed/simple;
-	bh=9WxyGLInQ3+YuB9kRb+g/z8l++WsWG2igx2CN6r29RE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KHm15fPx0zDr8viVXJYC0XXbM71Ai5/et1btagYGb43/GL4T95DwjLrTRijz39uP7Jo5DGkwnpVD1DkbFggINS5qYl+6Acl6qbEVv1yZX1a6OrNIQilBkb9O3icMOWgLcuTfBxauyANtpqCFMpbI7cXd28u/WBg8QFGZHJGusjk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=B04g03eJ; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a3f4464c48dso95673266b.3
-        for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 04:56:07 -0800 (PST)
+	s=arc-20240116; t=1708693306; c=relaxed/simple;
+	bh=KQF9YPtUSkRZ+JpmVKYQ9PTQCWFyX1w6lHWuY9DzDgA=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=k+kjKn5pQR5aBWDatbC1v4UuZkyf4PvYjtb3jS8gru+EYXmj1p0OjWtOOpE2Eb8PJsrIw8SASq+F+6iXrAo32uhw7U9KuaeZ1JAEFZHZlMxr54A/Z5lzWBg1L8D4LxVO9lwi2qAeN6kTWNotq9GhixFpYXvSrA+VAhDbdTkKSnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XIZGbKX6; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-55a035669d5so1232689a12.2;
+        Fri, 23 Feb 2024 05:01:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1708692966; x=1709297766; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KUZL8CRCk1GBYfD5pXoX8ZuzGzgzEHs69yLAocERd8Q=;
-        b=B04g03eJYgr4T7Bf7cU3FA80u+v5XMOMrinfq/457CEUFzEDIVWC8vDc4PHfUFnqM4
-         Y2A4GrImw6ufNqDp8h5M3zcI2KYTWcTg//WlZzwJMOqq7jYysLg/Kolkxp+2gMDPlnYy
-         Baq9HQMYZg12ZbTyxrg9WxDRGJBJJulXoRNN+Ld9cd0nyc4Dh3UuOyLBQfrMJE5FXgmN
-         lGdrEoTMaGwYwjabW6Y/zJ2MrFeTDRo46jz4ckfaLJrNKObQp+VMxVi8M9qTm7E+URDz
-         jxjGNRdNE/AsmiYLu8VoNWttjTarHZQqb7vmlFMg7pAlf+LSoEamoJnx8AJJqacWFziQ
-         4Wlw==
+        d=gmail.com; s=20230601; t=1708693303; x=1709298103; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xwVLrP5e0GKj/Gr/YOGNMocGh8+7OdL1LctFVaC5kRE=;
+        b=XIZGbKX6V6uEg5Y+Lbbk7BBTes+VSiBo1ZgMcXfC2kjArSB/VYl3qJ98dvmQKgnjws
+         DHFRNvl5r8sYKak4F2M5/akcsDWxqeKqBcHAIqGDrMuyk7KUR5NSNjzZcIYcs4nJOarp
+         ZDV/qPr8Z3t7vJbc1YTziCSRSxy4BMRqOIbUOXkGeqE0L0QJQqyqi/csxTGTDDmfPkl8
+         QLibFPOMbxxNVq/3QJDPxF7xMKe3VeIMlCI9Nl33C+ZdB4w/7gy/5a2YPDJiDK9e3pbi
+         KlUSEOnhD5HSJkvq2GePaXRWKFAyHtLd0ZyMKdrTATTdo0iODd2M2NitzlRq3dABG9QJ
+         QAiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708692966; x=1709297766;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KUZL8CRCk1GBYfD5pXoX8ZuzGzgzEHs69yLAocERd8Q=;
-        b=CX35Ari3aYK+QKUmnupXSPrTIya80gCt2K0846FGT749lr2OSInPGW9GEJv0FWvaIz
-         oefuddp4fvLsVE5yeMTasgrnqRzMkPHFbp7Dl9bmjieKVxiUIJOPDNLDb2j1agWm43QA
-         KsITqKGHmY9mctqmcTix1kONrtVotIWNkKXRs4W+1UQMuH7f9zFlv5vkqk08A2a+4b8S
-         CyXnu7T1RsNQPPvy/VFkWiSdOSIE93pHQ+1WvymBTl6QV9EVPPQ0tcNj2xqUehmDxOaC
-         /iH6sczW0VfZsaPVcK9ZjsXutHhpwd0S1yaGG0uH4HhP3oF9teudWEW2gpAW4DND5qPS
-         swUg==
-X-Forwarded-Encrypted: i=1; AJvYcCUdiCfG/+Ad3pFHgXoPwXDOO3zB9RYO4SzKqVGtmMw8y3BlYefqITD4PegxNlTyU6kq2RmTFeJMbiV955YNmhAfHLoH1I9zK6llrg==
-X-Gm-Message-State: AOJu0YyfEp+RX/Q5Ubjz7NcTACyAGU+O7yB+dAp1Zs4Eu802dZlP3K5i
-	sMKSfhdq/tSp3qWg9ABJ3ycQn6B2SK/Ljyd81IO3EDoH6nbOuiTNiJ6Yg3NjvM8=
-X-Google-Smtp-Source: AGHT+IEBxqrq/uM9YGzHqm8hnB8YTe/HM75AdxogZRRxZMYLQxSBRuY8Nkl0XdQyWscyjUUe6IiScQ==
-X-Received: by 2002:a17:906:b2d5:b0:a3f:c6f1:24d with SMTP id cf21-20020a170906b2d500b00a3fc6f1024dmr1117832ejb.25.1708692966275;
-        Fri, 23 Feb 2024 04:56:06 -0800 (PST)
-Received: from [192.168.50.4] ([82.78.167.99])
-        by smtp.gmail.com with ESMTPSA id rs6-20020a170907890600b00a3e43b7e7b4sm6167282ejc.143.2024.02.23.04.56.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Feb 2024 04:56:05 -0800 (PST)
-Message-ID: <2063e4a0-4287-4b02-b7d1-d762c4a69966@tuxon.dev>
-Date: Fri, 23 Feb 2024 14:56:04 +0200
+        d=1e100.net; s=20230601; t=1708693303; x=1709298103;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xwVLrP5e0GKj/Gr/YOGNMocGh8+7OdL1LctFVaC5kRE=;
+        b=QYoDu2JUg7a5YWCd0aisITqSTvHbOEofPbUtTMSH0AXfnGjrNKm9G+z89lgU7ZvtE1
+         eIlcZatNzeYDniKOXDFn5crEU/EHP/rK5F6E6uUBuuJqEH/hiKPfpbhO+5sMF42ZKEl1
+         XoJ70LCo8CKPS1CGLF1Z3jBifqs+6Pr12GE1SABrIEgKPB40XqAOF0m5XEjr77OrNuKu
+         uhslgHHQb+jLgido+DWr1IUxQM4HlAnjMBBK1eZ9mx7penzUivixq805WlwjQpIWGiQp
+         wOHTi+Mu74WHC/u+W/CaJRbgSLvYjMGyD+AZYaVGIqZFrZP112rJC2xxw/rCv8QlU+R6
+         3WOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXZemhcId/265iVuvv/fl2c5q8T9VEEes3yQMdSI2adQ97NBgnCz3jLW628erjEt9t753b02QzFjn7cTPBdnBwpDPfrcNj9+EBj4GqiVsQPOhgHBIVEgp00yOWhrlHCoAKLK7DSZrTcEg==
+X-Gm-Message-State: AOJu0YyaYruESvEjUIPpugE71H6v351eJo6F+jTXnNM5q6RHVGDaS/pz
+	V89JciQx3xXfinEgO8IOWv7oyT2y8JZCYweq3eJxGGNf+ne7R+Kn
+X-Google-Smtp-Source: AGHT+IFCQ/Ih92c2I54+6GuGrhk/vwz0fRL3tiy0H59PHeDEy+El5xAW3oSpdtZT10Gsmpk6GvNc6w==
+X-Received: by 2002:aa7:d69a:0:b0:564:26d9:b4ac with SMTP id d26-20020aa7d69a000000b0056426d9b4acmr910512edr.41.1708693302729;
+        Fri, 23 Feb 2024 05:01:42 -0800 (PST)
+Received: from [127.0.1.1] (2a02-8389-41cf-e200-a1fd-07e8-2475-107f.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:a1fd:7e8:2475:107f])
+        by smtp.gmail.com with ESMTPSA id g14-20020a056402428e00b005642bcfed99sm5954561edc.23.2024.02.23.05.01.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Feb 2024 05:01:42 -0800 (PST)
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Date: Fri, 23 Feb 2024 14:01:33 +0100
+Subject: [PATCH] dt-bindings: iio: light: vishay,veml6075: make vdd-supply
+ required
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] ARM: dts: microchip: sama7g5: add sama7g5
- compatible
-Content-Language: en-US
-To: Balakrishnan Sambath <balakrishnan.s@microchip.com>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240223-b4-sama5d2-flexcom-yaml-v2-0-7e96c60c7701@microchip.com>
- <20240223-b4-sama5d2-flexcom-yaml-v2-1-7e96c60c7701@microchip.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20240223-b4-sama5d2-flexcom-yaml-v2-1-7e96c60c7701@microchip.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20240223-veml6075_vdd-v1-1-ac76509b1998@gmail.com>
+X-B4-Tracking: v=1; b=H4sIACyX2GUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDIyNj3bLU3BwzA3PT+LKUFN1UIyMjA0NTi7S0lEQloJaCotS0zAqwcdG
+ xtbUABUzEbV4AAAA=
+To: Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>
+X-Mailer: b4 0.14-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1708693301; l=1623;
+ i=javier.carrasco.cruz@gmail.com; s=20230509; h=from:subject:message-id;
+ bh=KQF9YPtUSkRZ+JpmVKYQ9PTQCWFyX1w6lHWuY9DzDgA=;
+ b=15qwh5h1OZ9vnbKVGCStogGtXAfMFwg53a3w02a65gKd0dwPQP8NwAgtuX2ljrmHo8HEuOXig
+ 4Y/l9iXdGC4Cxb0a6oywIw6RWlZmhafKlKHZxS6at+esk8Mj9c/poZE
+X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
+ pk=tIGJV7M+tCizagNijF0eGMBGcOsPD+0cWGfKjl4h6K8=
 
-Hi, Balakrishnan,
+The VEML6075 requires a single supply to operate. The property already
+exists in the bindings and it is used in the example, but it is still
+not on the list of required properties.
 
-On 23.02.2024 11:16, Balakrishnan Sambath wrote:
-> Add sama7g5 flexcom specific compatible in DT with fallbacks.
+Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+---
+The driver and bindings for the VEML6075 UV sensor were merged in the
+merge window for v6.8 i.e. they have not been released yet beyond rc.
 
-Can you also take care of lan966x and sam9x60?
+Applying this patch as a fix now would avoid an ABI break like the
+recently discussed here:
 
-Thank you,
-Claudiu Beznea
+https://lore.kernel.org/linux-iio/8409a5bc71b995e3b738b817a074cfb131c3b2b5.camel@gmail.com/
 
-> 
-> Signed-off-by: Balakrishnan Sambath <balakrishnan.s@microchip.com>
-> ---
->  arch/arm/boot/dts/microchip/sama7g5.dtsi | 16 ++++++++--------
->  1 file changed, 8 insertions(+), 8 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/microchip/sama7g5.dtsi b/arch/arm/boot/dts/microchip/sama7g5.dtsi
-> index 269e0a3ca269..6496a4ca376f 100644
-> --- a/arch/arm/boot/dts/microchip/sama7g5.dtsi
-> +++ b/arch/arm/boot/dts/microchip/sama7g5.dtsi
-> @@ -698,7 +698,7 @@ sha: crypto@e1814000 {
->  		};
->  
->  		flx0: flexcom@e1818000 {
-> -			compatible = "atmel,sama5d2-flexcom";
-> +			compatible = "microchip,sama7g5-flexcom", "atmel,sama5d2-flexcom";
->  			reg = <0xe1818000 0x200>;
->  			clocks = <&pmc PMC_TYPE_PERIPHERAL 38>;
->  			#address-cells = <1>;
-> @@ -723,7 +723,7 @@ uart0: serial@200 {
->  		};
->  
->  		flx1: flexcom@e181c000 {
-> -			compatible = "atmel,sama5d2-flexcom";
-> +			compatible = "microchip,sama7g5-flexcom", "atmel,sama5d2-flexcom";
->  			reg = <0xe181c000 0x200>;
->  			clocks = <&pmc PMC_TYPE_PERIPHERAL 39>;
->  			#address-cells = <1>;
-> @@ -747,7 +747,7 @@ i2c1: i2c@600 {
->  		};
->  
->  		flx3: flexcom@e1824000 {
-> -			compatible = "atmel,sama5d2-flexcom";
-> +			compatible = "microchip,sama7g5-flexcom", "atmel,sama5d2-flexcom";
->  			reg = <0xe1824000 0x200>;
->  			clocks = <&pmc PMC_TYPE_PERIPHERAL 41>;
->  			#address-cells = <1>;
-> @@ -791,7 +791,7 @@ tdes: crypto@e2014000 {
->  		};
->  
->  		flx4: flexcom@e2018000 {
-> -			compatible = "atmel,sama5d2-flexcom";
-> +			compatible = "microchip,sama7g5-flexcom", "atmel,sama5d2-flexcom";
->  			reg = <0xe2018000 0x200>;
->  			clocks = <&pmc PMC_TYPE_PERIPHERAL 42>;
->  			#address-cells = <1>;
-> @@ -817,7 +817,7 @@ uart4: serial@200 {
->  		};
->  
->  		flx7: flexcom@e2024000 {
-> -			compatible = "atmel,sama5d2-flexcom";
-> +			compatible = "microchip,sama7g5-flexcom", "atmel,sama5d2-flexcom";
->  			reg = <0xe2024000 0x200>;
->  			clocks = <&pmc PMC_TYPE_PERIPHERAL 45>;
->  			#address-cells = <1>;
-> @@ -911,7 +911,7 @@ tcb0: timer@e2814000 {
->  		};
->  
->  		flx8: flexcom@e2818000 {
-> -			compatible = "atmel,sama5d2-flexcom";
-> +			compatible = "microchip,sama7g5-flexcom", "atmel,sama5d2-flexcom";
->  			reg = <0xe2818000 0x200>;
->  			clocks = <&pmc PMC_TYPE_PERIPHERAL 46>;
->  			#address-cells = <1>;
-> @@ -935,7 +935,7 @@ i2c8: i2c@600 {
->  		};
->  
->  		flx9: flexcom@e281c000 {
-> -			compatible = "atmel,sama5d2-flexcom";
-> +			compatible = "microchip,sama7g5-flexcom", "atmel,sama5d2-flexcom";
->  			reg = <0xe281c000 0x200>;
->  			clocks = <&pmc PMC_TYPE_PERIPHERAL 47>;
->  			#address-cells = <1>;
-> @@ -959,7 +959,7 @@ i2c9: i2c@600 {
->  		};
->  
->  		flx11: flexcom@e2824000 {
-> -			compatible = "atmel,sama5d2-flexcom";
-> +			compatible = "microchip,sama7g5-flexcom", "atmel,sama5d2-flexcom";
->  			reg = <0xe2824000 0x200>;
->  			clocks = <&pmc PMC_TYPE_PERIPHERAL 49>;
->  			#address-cells = <1>;
-> 
+On the other hand, from the same discussion it can be concluded that the
+major risk would be a potential warning with dtbs_check, in case this
+patch is applied during the next merge window.
+
+The VEML6075 driver already handles the power supply with
+devm_regulator_get_enable().
+---
+ Documentation/devicetree/bindings/iio/light/vishay,veml6075.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/iio/light/vishay,veml6075.yaml b/Documentation/devicetree/bindings/iio/light/vishay,veml6075.yaml
+index abee04cd126e..91c318746bf3 100644
+--- a/Documentation/devicetree/bindings/iio/light/vishay,veml6075.yaml
++++ b/Documentation/devicetree/bindings/iio/light/vishay,veml6075.yaml
+@@ -21,6 +21,7 @@ properties:
+ required:
+   - compatible
+   - reg
++  - vdd-supply
+ 
+ additionalProperties: false
+ 
+
+---
+base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
+change-id: 20240223-veml6075_vdd-e2220158ffda
+
+Best regards,
+-- 
+Javier Carrasco <javier.carrasco.cruz@gmail.com>
+
 
