@@ -1,111 +1,168 @@
-Return-Path: <devicetree+bounces-45306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE6A58615E7
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 16:34:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C88CC86161A
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 16:43:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72618287767
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 15:34:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 064061C238B0
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 15:43:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF6C7823DF;
-	Fri, 23 Feb 2024 15:34:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65C6C8287D;
+	Fri, 23 Feb 2024 15:43:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="qq6TzNBG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fQjwj/f4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from box.trvn.ru (unknown [194.87.146.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 827214A3D;
-	Fri, 23 Feb 2024 15:34:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.87.146.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A30282863;
+	Fri, 23 Feb 2024 15:43:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708702484; cv=none; b=tmTTw2da6IM0n0IcsmagIAG0cK7BR6h+UTMMm7+qC0nGcpnxTCUxfHKLXbXbpdmWNzpTTE1P+krNBnL2bsAvQMdxLlAtsYNk9zGTYl6ynAuq0rnq/OqrPiXHFwZVk6s4D1R/lwgrjULEes5jl+RXXWw/RBqWbs9Z/WFK18kf+W4=
+	t=1708702990; cv=none; b=m1SpQYXmfsxfGjMgtmMYLiPlBCRjiwfp/IbYr9J/2zSNS8b3X+gOGdSmcsnBLNs3vDnT0k6Oo0O5lTDWKcw7mCzBgSHwIEiwswTPBy1xuAI1qzid4MGlCflgqw9qzN5A6HJqBoEBil5Zc8iMseJo/qoZZuyzl7pR67opZJM4ApU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708702484; c=relaxed/simple;
-	bh=0SNtXViAi/uuzITK6f3+yak148HxUT/1hggSYF8AK6Y=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=SmmfxeQ9jWjmDSuk33Sm9WTsdLK2WZB+pJ68pPZ3C9Ho1FR1XH1vohWb+b2nCy9r+CMcVX0IWgyrE9YDWiVkCWep7I2CfsOFjgp9Ar+LyT71F2kx1SZwvkCNL4cl3HPQ7NyzILZkS8W/enWDIiyr12y+o2wozFeHOVkELBsU0pU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru; spf=pass smtp.mailfrom=trvn.ru; dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b=qq6TzNBG; arc=none smtp.client-ip=194.87.146.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=trvn.ru
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	by box.trvn.ru (Postfix) with ESMTPSA id 9694A40164;
-	Fri, 23 Feb 2024 20:34:30 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-	t=1708702471; bh=0SNtXViAi/uuzITK6f3+yak148HxUT/1hggSYF8AK6Y=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=qq6TzNBGn05giGvmcRQt3AaAYb/F/pzsMBFrc0khdePz1ghzyF/iRXUEmoaELmULx
-	 kGf29xKC7wG0D4ZNvipJkyYDbp7hnSCsq/2MHRw8ko6B4+ndA0lGGw2ylRvH3tKsZt
-	 qdrTV6ECrpuN7f0V2xSsBgWoNyLUJQeJikTicP3lSiGIaIXp7QhUDaimK4uKjAE3eC
-	 rcSnmEdBRh0QskL1PWIAyqEcZXukZp378sMEb7T5RFPDvw+44WEGLPaWS4j66IfprM
-	 R5oBdwi2MET5cZCR+LtLhHxzrZxVDPWBeGtgereyi5DxsLAzQqEMUMP32E8hJP71Yd
-	 CaU1bnWbVbJkA==
+	s=arc-20240116; t=1708702990; c=relaxed/simple;
+	bh=VulX/bEzC0bjQkYNIhonnatB3A8d1Ksmk/boghxkEaw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FSgNEn7kBgDQMyPrdTaxucjLWoY0BLMjfF9Dfn2ksYldzk2PcpUvMifThWnhDHOKAmc06aBR/scqwvtCp63EWvPCWM9c0AJmDI2f3JuqGfJzB+OlTwuzPLVT3mUELMQyxRDVxxbvzHtWHapvu6TF1KA+Ddqt9/fH5DqxC25Ex4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fQjwj/f4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A83AC433F1;
+	Fri, 23 Feb 2024 15:43:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708702989;
+	bh=VulX/bEzC0bjQkYNIhonnatB3A8d1Ksmk/boghxkEaw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fQjwj/f4dQ98xd0fo1xB7lPKHDUxOPTz4UCfTpUlcO3fbM2pMRC5mbsn5wYzc6rDD
+	 51uWyKM+IuiVDK2E6sGleOjE4ZsaOJOa3vbCbt6v/wVzWTs31RQzHI/sTkgUqgFYb+
+	 ZshFgXTcKhqqO79Bhqa8Ew3u7kv6xoTNcOI5ZyZlow+rl9FMGi/jQ2s9WopDWz6zLu
+	 Minrw3mN+v7mOtl6EYUxzqQdocc5rHQ/+oxAX7R1qJQ6SMpOfdevtUD6Mtk6NrBwz4
+	 JWRddU8W+MjeIH/6+bO+lCksqNglGMD34q1Vywql1Zj4a+UcKPQbhG1ycypNEQhhwf
+	 mKz5ecVg3Su8Q==
+Date: Fri, 23 Feb 2024 15:43:04 +0000
+From: Lee Jones <lee@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, Pavel Machek <pavel@ucw.cz>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: leds: pwm-multicolour: re-allow active-low
+Message-ID: <20240223154304.GE1666215@google.com>
+References: <20240213-verse-clinic-e6de06e1f18d@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Fri, 23 Feb 2024 20:34:29 +0500
-From: Nikita Travkin <nikita@trvn.ru>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Hans de Goede <hdegoede@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org, Andy Gross
- <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
- <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- platform-driver-x86@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] power: supply: Add Acer Aspire 1 embedded
- controller driver
-In-Reply-To: <xelebhoitnwguhewahw26xopl5btjo5ezznjjaeb2zfyy2bpcr@7pmclezshwck>
-References: <20240220-aspire1-ec-v3-0-02cb139a4931@trvn.ru>
- <20240220-aspire1-ec-v3-2-02cb139a4931@trvn.ru>
- <qoidm5wujjbeoc2hlraky26wuwmuaxi2atyl6ehovhvffdbfeh@g5gunqdei45m>
- <7c429d2110dbac68d0c82c8fb8bfb742@trvn.ru>
- <xelebhoitnwguhewahw26xopl5btjo5ezznjjaeb2zfyy2bpcr@7pmclezshwck>
-Message-ID: <6e3fb1080c54cfc38dc3c3e79e32a53d@trvn.ru>
-X-Sender: nikita@trvn.ru
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240213-verse-clinic-e6de06e1f18d@spud>
 
-Sebastian Reichel писал(а) 23.02.2024 20:04:
-> Hi,
-> 
-> On Fri, Feb 23, 2024 at 07:32:17PM +0500, Nikita Travkin wrote:
->> >> + This driver provides battery and AC status support for the mentioned
->> >
->> > I did not see any AC status bits?
->>
->> I was referring to whatever ACPI spec calls "AC Adapter" but I guess
->> I should have used the word "charger" instead... Will reword this.
-> 
-> But you only register a power-supply device for the battery and not
-> for the AC adapter/charger. When you write "and AC status support" I
-> would have expected something similar to this (that's from ACPI AC
-> adapter driver):
-> 
-> $ cat /sys/class/power_supply/AC/uevent
-> POWER_SUPPLY_NAME=AC
-> POWER_SUPPLY_TYPE=Mains
-> POWER_SUPPLY_ONLINE=1
-> 
+On Tue, 13 Feb 2024, Conor Dooley wrote:
 
-Ah, I see... Yeah looking at it one more time, I mistakenly assumed the
-acpi ac code uses the same data fields as the battery but seems like it
-reads the single online flag from a different place. I don't think there
-is really a point on implementing that field since we can still easily
-track the battery charging/discharging status so I will probably omit it
-for now. Will reword the help text to not mention charger/ac adapter.
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
+> active-low was lifted to the common schema for leds, but it went
+> unnoticed that the leds-multicolour binding had "additionalProperties:
+> false" where the other users had "unevaluatedProperties: false", thereby
+> disallowing active-low for multicolour leds. Explicitly permit it again.
+> 
+> Fixes: c94d1783136e ("dt-bindings: net: phy: Make LED active-low property common")
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> 
+> I'm just assuming this is intentionally restrictive, if its not, we
+> could easily just change this to uneval: false.
+> 
+> CC: Pavel Machek <pavel@ucw.cz>
+> CC: Lee Jones <lee@kernel.org>
+> CC: Rob Herring <robh@kernel.org>
+> CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> CC: Conor Dooley <conor+dt@kernel.org>
+> CC: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
+> CC: Christian Marangi <ansuelsmth@gmail.com>
+> CC: linux-leds@vger.kernel.org
+> CC: devicetree@vger.kernel.org
+> CC: linux-kernel@vger.kernel.org
+> ---
+>  Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml b/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+> index 5edfbe347341..a31a202afe5c 100644
+> --- a/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+> +++ b/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+> @@ -41,6 +41,8 @@ properties:
+>  
+>            pwm-names: true
+>  
+> +          active-low: true
+> +
+>            color: true
+>  
+>          required:
+> -- 
+> 2.43.0
 
-Thanks for clarifying!
-Nikita
+Neither checkpatch.pl or Git appear to be happy with this:
 
-> -- Sebastian
+ERROR: Does not appear to be a unified-diff format patch
+
+total: 1 errors, 0 warnings, 0 lines checked
+
+NOTE: For some of the reported defects, checkpatch may be able to
+      mechanically convert to the typical style using --fix or --fix-inplace.
+
+"[PATCH] dt-bindings: leds: pwm-multicolour: re-allow active-low" has style problems, please review.
+
+NOTE: If any of the errors are false positives, please report
+      them to the maintainer, see CHECKPATCH in MAINTAINERS.
+WARNING: Missing commit description - Add an appropriate one
+
+ERROR: Missing Signed-off-by: line(s)
+
+total: 1 errors, 1 warnings, 8 lines checked
+
+NOTE: For some of the reported defects, checkpatch may be able to
+      mechanically convert to the typical style using --fix or --fix-inplace.
+
+Your patch has style problems, please review.
+
+NOTE: If any of the errors are false positives, please report
+      them to the maintainer, see CHECKPATCH in MAINTAINERS.
+
+Check the results (hit return to continue or Ctrl+c to exit)
+
+
+Applying patch(es)
+Applying: dt-bindings: leds: pwm-multicolour: re-allow active-low
+Using index info to reconstruct a base tree...
+M	Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+/home/joneslee/projects/linux/kernel/.git/worktrees/for-led-next/rebase-apply/patch:28: indent with spaces.
+          active-low: true
+Checking patch Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml...
+Applied patch Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml cleanly.
+warning: 1 line adds whitespace errors.
+Falling back to patching base and 3-way merge...
+error: Your local changes to the following files would be overwritten by merge:
+	Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+Please commit your changes or stash them before you merge.
+Aborting
+error: Failed to merge in the changes.
+Patch failed at 0001 dt-bindings: leds: pwm-multicolour: re-allow active-low
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
+-- 
+Lee Jones [李琼斯]
 
