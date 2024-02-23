@@ -1,284 +1,146 @@
-Return-Path: <devicetree+bounces-45113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0819860C08
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 09:19:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AC97860C1E
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 09:21:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4AB29B2432B
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 08:19:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E7B23B2574F
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 08:21:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0421417C9E;
-	Fri, 23 Feb 2024 08:18:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BE2118C3A;
+	Fri, 23 Feb 2024 08:20:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iOhbRt14"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h6oWMldV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ABB717BAC;
-	Fri, 23 Feb 2024 08:18:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5906168D0;
+	Fri, 23 Feb 2024 08:20:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708676307; cv=none; b=CaUao+TKabBUjjcXdEEaHOx1Xw5rE+RMEB0nhthUSqWlxEQDmlpe8g5EaxyXkkMwaVwpkNmQbTVJ1tUkzx15geQuClSL8UgSZ+X+KdN9LcrlHOBzDPycDPPg0ytBl1VPgt2tm98qY6H4ivNVMh/YovS+9GrFFV2X4AirBn+3Zo4=
+	t=1708676421; cv=none; b=hQzw0FHc9+lXfyDWC1GvItBXgpx+lUXDWlaH1ApWFClgL1N+qjQ6JIxIIgRSmyc5cHtW9Ru6Yzn/fDJ4lWSrsx6TumsKCxkEis5DBvonn6dq90ObrPiBRkuvLw21L+ZD/zGqKk5umpSBlwD1hH5IAOueVWmrxuy2xJCrfJps8Eo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708676307; c=relaxed/simple;
-	bh=4I6OZOlOj+HIdeauCtLby14X5Kskp3I8zfKg0UXk/n8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Q89UkvHgdNFSfI4DDcCT+nhTYcdF0siJGkqDyJI+uDbEkuhyGTqV6V2/+amH3a6eWoeagluBNOJxuD0QLCzhpVgq7IPokSD8MuSuHPC70f2tJ/sGB+oM22YSTXqqtk5bH85WMJH9UoAI1nkdoRQWPmqC7lP9bh/JoSPcM3Dw7e8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iOhbRt14; arc=none smtp.client-ip=209.85.218.43
+	s=arc-20240116; t=1708676421; c=relaxed/simple;
+	bh=3/tyvtTLYkVikNeiWKkzmPYZ1L/MFt6KSzklylS//MQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=pRk0HU+n3jXw1/5jHbNmQJL+oNljqYrNJF+TZ8Z9mDGTRcW6OKghdMsLkXZZkx/2qgJSbboOcGwM90Ut8149hTzWPSUOE+yY7MQPj5QS2Ym5jSB+kf3f9hVQm3KLjd/fw4JM88gyd5gAXAA0HiHibr+l8fRJteXigB91rrhRhE0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h6oWMldV; arc=none smtp.client-ip=209.85.214.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a3f1bf03722so13233966b.1;
-        Fri, 23 Feb 2024 00:18:25 -0800 (PST)
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-1dba177c596so4399965ad.0;
+        Fri, 23 Feb 2024 00:20:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708676304; x=1709281104; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hKIik/RQMNSPLGet0W6OaCPG7/aADm0oTMdBWOLBjFo=;
-        b=iOhbRt14t5z2GIHU53GRu/d9otQ2P7QQGBjINciP17vIACsFzibQKlgjCEVkxm03+x
-         nxeQTG0ZRXSUUoiAnBJqfU/eGldBc0ECqgCHcON6Q3fyYRPuVCluklHOQTkeBjCOY7ja
-         Lox69IP01EGT7F41G58Csrht7SI/nBaksoXPOTWe6EYoWxxQrXne68Z6oSLX4LuD8NOV
-         Y5om1Bdt7x7CKstme0CX+oDeqCWVypnDVDUFgHFNbn0/PR1RknCx8VlBH4m/zcIbqOwl
-         ZDLsVLC4ZuxO479u5q4wdoDiv3AKZW3q2zuuGjGjn66IBFFb2emzPmdVZQTB0gvqmKlg
-         i4BQ==
+        d=gmail.com; s=20230601; t=1708676419; x=1709281219; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Sze53a4mLbAZrJRpXbT6ASWNWrGoWY6+1B710NM4C+0=;
+        b=h6oWMldVZBtmomhJChDQUWHEgMGYD96KR8JI9aNiklsI6mZFK8wVRYp5zT/oxcZR5X
+         wsdbP63q0NY9gKfVk6B/3y+BBNvXUlGRVWqIodZbmv1tGQkuyZjYfqFujpGqXeWzJS8N
+         HH0XDBd6HYVSAj8OA0GuE82tDi99qJgaKav4+HQ76MOQV+GbE+OA0Vukebntf36UY3aA
+         WlVzJVidtzin3/r13rLPb4H7FygBIKwdmoli0SSWa8Mr65/0LeRTrK8n8GLiCUtqAL02
+         f9CxKi0ips3JKqTqVpYo99064cL6A+gwtgRHeQyRRPqjXukUX5yhmfIEbeZ7sO/TIjI4
+         74Nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708676304; x=1709281104;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hKIik/RQMNSPLGet0W6OaCPG7/aADm0oTMdBWOLBjFo=;
-        b=I5eg0VjHIEKVO9PZI3RjD6ptXIrM65+tTqmcCkjUATAyRZEC1TDC+oeTtaPlMXndyM
-         7Zfh9mZWcv8lzGMJlVSD8zkLnfa9rtfnLoEYcFELwirbC2UEjoRBUSA02PjDIPe1ui1o
-         bhSRjzMviiL7jxRwAGwd+smIZ1eH/46ZeZ6Uh+W1pLJHqRj26BfHvYwcHxMjuLug8NpO
-         ezcStblJyY4GrE8YobCdvMkAXlpZtjrnfIKqLRMM4TjOVw0N0fd7uchF+6C7cZ6yJLR9
-         EjUVtveA8Pcw5844JiP+AJchJOC9TSsMcAvxxlYeSw1AU4OQvJ+GS7DuN5c4WROA6z54
-         9ogg==
-X-Forwarded-Encrypted: i=1; AJvYcCXoarbVywF/nUK4dhK5ZS0Ns1AmaDVyOSHut5wSyUrNVqZ6rN5k9HNVFOfQnfjUGuIg+G7oSIyZ1rbFoecm6jo8B3vPhmJ+mnjv82AjUtmRWDiPCAp3cJT8Km+C5LnrxL3rh+0Lcv4lag==
-X-Gm-Message-State: AOJu0YzG+2ARLQYT8CPQgbaljZ1qwJzfzO1EQqwY8GCYYCeEd8gRbqlw
-	QlvTPnqKPHGhFdYrD/ETpAl1FM3BJyTA3gmGk0MebO9FrqgmqH78
-X-Google-Smtp-Source: AGHT+IFVX+HnIlQdQQXpmqwWffZYECK++FSTWmlVVr9hTsRXXAULtPza3tRm/RT/TqpH3XgdcrSBmw==
-X-Received: by 2002:a17:906:65c2:b0:a3f:5104:dabb with SMTP id z2-20020a17090665c200b00a3f5104dabbmr740905ejn.63.1708676304102;
-        Fri, 23 Feb 2024 00:18:24 -0800 (PST)
-Received: from [192.168.20.102] (57657817.catv.pool.telekom.hu. [87.101.120.23])
-        by smtp.googlemail.com with ESMTPSA id n16-20020a170906379000b00a3f6c5bf929sm1633346ejc.18.2024.02.23.00.18.23
+        d=1e100.net; s=20230601; t=1708676419; x=1709281219;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Sze53a4mLbAZrJRpXbT6ASWNWrGoWY6+1B710NM4C+0=;
+        b=kNZnWzG+On5Y9DSWVxp1CTKzzH4WWFSCKiogwN0YTfLcpYMhvkxM5lc4TkkCqby/g2
+         sxpu7rHq1/w3uETykbUee05TYh7EPFbu48kn3YRSz+ILGqFdvDmFTwCtTzFv9nEvc5yz
+         iY4Q1ruQWQ6Uw2lxI03zIaAKT69IK0LxgR3Bkuxx1fm6M1JcLGuy6yDze2E4nvcac3y7
+         PnWx2I3W6+7ut2vgJiIpBULtv5QujiMY4yCjQKX3p5bc4ISVAOU8uspIykb6G5JKgfhb
+         ELTx3SGX6tjHOVwVfkz/pfy8joh0jFJPw6+FDfNKHAn/TuHkgeXxTSC3rtTWLmdU0IdU
+         Zaww==
+X-Forwarded-Encrypted: i=1; AJvYcCUnIdgjcLfpJtVOhOsqKvlEGnKVrNTyi5VlAdb2oagO6cxZJ/gKC+6I8hPXR0hdBFLejS1RAF1BUAMXTP0YjIO73U4/TXRo2s9KtBbqxq8eJNjd03HN9SqnAZT68sJnJJfwg4KXPrTrxg==
+X-Gm-Message-State: AOJu0Yyr+rZgVhqCoSaUPZGCOB5sBEJLfet0AVu+R9amt3tETANMcvBS
+	KZjbTrJn7J0zgwU87S0y79QW3AvvtEWm2yOCsqK17AWxB0FoR664
+X-Google-Smtp-Source: AGHT+IHN9p03M6aIBHrqTTDGUkW5yhHqo0eDp/G/bUfb2CZSqyCXW4ZWKB5vivJP5QX2Ka3E7QQ6Hg==
+X-Received: by 2002:a17:903:605:b0:1db:c649:cff0 with SMTP id kg5-20020a170903060500b001dbc649cff0mr5932075plb.25.1708676418326;
+        Fri, 23 Feb 2024 00:20:18 -0800 (PST)
+Received: from localhost ([46.3.240.101])
+        by smtp.gmail.com with ESMTPSA id v12-20020a170902d08c00b001d9588f0714sm11163439plv.177.2024.02.23.00.20.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Feb 2024 00:18:23 -0800 (PST)
-From: Gabor Juhos <j4g8y7@gmail.com>
-Date: Fri, 23 Feb 2024 09:17:45 +0100
-Subject: [PATCH 2/2] arm64: dts: qcom: add TP-Link Archer AX55 v1
+        Fri, 23 Feb 2024 00:20:18 -0800 (PST)
+From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+To: u.kleine-koenig@pengutronix.de,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu
+Cc: linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	dlan@gentoo.org,
+	inochiama@outlook.com,
+	Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+Subject: [PATCH v3 0/2] riscv: pwm: sophgo: add pwm support for CV1800
+Date: Fri, 23 Feb 2024 16:20:12 +0800
+Message-Id: <20240223082014.109385-1-qiujingbao.dlmu@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240223-archer-ax55-v1-v1-2-99f8fa2c3858@gmail.com>
-References: <20240223-archer-ax55-v1-v1-0-99f8fa2c3858@gmail.com>
-In-Reply-To: <20240223-archer-ax55-v1-v1-0-99f8fa2c3858@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Gabor Juhos <j4g8y7@gmail.com>
-X-Mailer: b4 0.12.3
+Content-Transfer-Encoding: 8bit
 
-Add device tree source for the TP-Link Archer AX55 v1 [1]
-which is a dual-band WiFi router based on the IPQ5018 SoC.
+The Sophgo CV1800 chip provides a set of four independent
+PWM channel outputs.
+This series adds PWM controller support for Sophgo cv1800.
 
-At the moment, only the UART, the GPIO LEDs and buttons
-are usable, but it makes it possible to boot an initramfs
-image on the device.
+Changes since v2:
+- use 0x08 instead of macro
+- split if statements based on conditions
+- in order to round up, first calculate the
+  number of high-level cycles, then subtract
+  it from the PERIOD to obtain the number of HLPERIOD
+- use new pwmchip_alloc() API instead of old style
 
-The device tree can be extended in the future, once support
-for other periherals will be available for the platform.
+v2: https://lore.kernel.org/all/20240212121729.1086718-1-qiujingbao.dlmu@gmail.com/
 
-1. https://www.tp-link.com/en/home-networking/wifi-router/archer-ax55/v1/
+Changes since v1:
+- drop full stop from subject
+- re-order maintainers and description
+- pass checkpatch.pl --strict
+- fix naming errors
+- add "Limitations" section
+- use a driver specific prefix for all defines
+- using bool instead u32 in cv1800_pwm_enable
+- check and set state->polarity
+- use mul_u64_u64_div_u64
+- use clk_rate_exclusive_get(), balance with clk_rate_exclusive_put()
+- using macro definitions instead of shift operations
+- remove shift operation on 0
+- use priv replace cv_pwm 
+- hardcode npwm
+- set atomic to true
+- remove MODULE_ALIAS
 
-Signed-off-by: Gabor Juhos <j4g8y7@gmail.com>
----
-Note: running 'make CHECK_DTBS=y qcom/ipq5018-tplink-archer-ax55-v1.dtb'
-shows the following:
+v1: https://lore.kernel.org/all/20240207055856.672184-1-qiujingbao.dlmu@gmail.com/
 
-    DTC_CHK arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dtb
-  <...>/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dtb: usb@8af8800: interrupts: [[0, 62, 4]] is too short
-  	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
-  <...>/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dtb: usb@8af8800: interrupt-names: ['hs_phy_irq'] is too short
-  	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
-  <...>/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dtb: usb@8af8800: interrupts: [[0, 62, 4]] is too short
-  	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
-  <...>/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dtb: usb@8af8800: interrupt-names:0: 'pwr_event' was expected
-  	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
-  <...>/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dtb: usb@8af8800: interrupt-names: ['hs_phy_irq'] is too short
-  	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
+Jingbao Qiu (2):
+  dt-bindings: pwm: sophgo: add pwm for Sophgo CV1800 series SoC
+  pwm: sophgo: add pwm support for Sophgo CV1800 SoC
 
-This is not caused by the new device tree per se but comes from
-the usb@8af8800 node defined in ipq5018.dtsi. Running the check
-on 'qcom/ipq5018-rdp432-c2.dtb' shows the same.
----
- arch/arm64/boot/dts/qcom/Makefile                  |   1 +
- .../dts/qcom/ipq5018-tplink-archer-ax55-v1.dts     | 133 +++++++++++++++++++++
- 2 files changed, 134 insertions(+)
+ .../bindings/pwm/sophgo,cv1800-pwm.yaml       |  45 +++
+ drivers/pwm/Kconfig                           |  10 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-cv1800.c                      | 259 ++++++++++++++++++
+ 4 files changed, 315 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/sophgo,cv1800-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-cv1800.c
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 39889d5f8e12..d3ba1e22d6dd 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -10,6 +10,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= apq8094-sony-xperia-kitakami-karin_windy.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-ifc6640.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-rdp432-c2.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-tplink-archer-ax55-v1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp441.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp442.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp468.dtb
-diff --git a/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dts b/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dts
-new file mode 100644
-index 000000000000..1b30d4bc781e
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dts
-@@ -0,0 +1,133 @@
-+// SPDX-License-Identifier: GPL-2.0+ OR BSD-3-Clause
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+
-+#include "ipq5018.dtsi"
-+
-+/ {
-+	model = "TP-Link Archer AX55 v1";
-+	compatible = "tplink,archer-ax55-v1", "qcom,ipq5018";
-+
-+	aliases {
-+		serial0 = &blsp1_uart1;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-0 = <&led_pins>;
-+		pinctrl-names = "default";
-+
-+		led-0 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_LAN;
-+			gpios = <&tlmm 10 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-1 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_WAN;
-+			gpios = <&tlmm 11 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-2 {
-+			/* WLAN 2.4GHz */
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_WLAN;
-+			function-enumerator = <0>;
-+			gpios = <&tlmm 13 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-3 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_POWER;
-+			gpios = <&tlmm 18 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-4 {
-+			color = <LED_COLOR_ID_ORANGE>;
-+			function = LED_FUNCTION_WAN;
-+			gpios = <&tlmm 22 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-5 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_USB;
-+			gpios = <&tlmm 38 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-6 {
-+			/* WLAN 5GHz */
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_WLAN;
-+			function-enumerator = <1>;
-+			gpios = <&tlmm 39 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+
-+	buttons {
-+		compatible = "gpio-keys";
-+		pinctrl-0 = <&button_pins>;
-+		pinctrl-names = "default";
-+
-+		button-reset {
-+			debounce-interval = <60>;
-+			gpios = <&tlmm 25 GPIO_ACTIVE_LOW>;
-+			label = "reset";
-+			linux,code = <KEY_RESTART>;
-+		};
-+
-+		button-wps {
-+			debounce-interval = <60>;
-+			gpios = <&tlmm 31 GPIO_ACTIVE_LOW>;
-+			label = "wps";
-+			linux,code = <KEY_WPS_BUTTON>;
-+		};
-+	};
-+};
-+
-+&blsp1_uart1 {
-+	pinctrl-0 = <&uart1_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&sleep_clk {
-+	clock-frequency = <32000>;
-+};
-+
-+&tlmm {
-+	button_pins: button-pins-state {
-+		pins = "gpio25", "gpio31";
-+		bias-pull-up;
-+		drive-strength = <8>;
-+		function = "gpio";
-+	};
-+
-+	led_pins: led-pins-state {
-+		pins = "gpio10", "gpio11", "gpio13", "gpio18", "gpio22",
-+		       "gpio38", "gpio39";
-+		bias-disable;
-+		drive-strength = <2>;
-+		function = "gpio";
-+	};
-+};
-+
-+&uart1_pins {
-+	/*
-+	 * Remove "gpio31" from the default pins in order to be able
-+	 * to use that for the WPS button.
-+	 */
-+	pins = "gpio32", "gpio33", "gpio34";
-+};
-+
-+&xo_board_clk {
-+	clock-frequency = <24000000>;
-+};
 
+base-commit: 801de0882d8a95aa1b1fe67df1696e037d785656
 -- 
-2.43.0
+2.25.1
 
 
