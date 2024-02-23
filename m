@@ -1,101 +1,111 @@
-Return-Path: <devicetree+bounces-45305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B5E18615DF
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 16:32:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE6A58615E7
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 16:34:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BDA41C242CC
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 15:32:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72618287767
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 15:34:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7790B823DF;
-	Fri, 23 Feb 2024 15:32:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF6C7823DF;
+	Fri, 23 Feb 2024 15:34:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=peacevolution.org header.i=@peacevolution.org header.b="CoCNqIXM"
+	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="qq6TzNBG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from a.peacevolution.org (a.peacevolution.org [206.189.193.133])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from box.trvn.ru (unknown [194.87.146.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE8846FD1;
-	Fri, 23 Feb 2024 15:32:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.193.133
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 827214A3D;
+	Fri, 23 Feb 2024 15:34:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.87.146.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708702360; cv=none; b=P/tszB+YSAVYV0Q786wMm6QgQkk91Iue2wQh4CfyR9/RhcNXCbZ37dkeaE14SgQvxGOGbvh0JMvPvLQY+MIMxTYO7+KmeLyc7fHKzgDxVSEBhjTFx0pwf1cySyeo4++cDcU0CrYf7r1KfTX+/GP/HXyP4iHl2TpDyIfdCfgW37s=
+	t=1708702484; cv=none; b=tmTTw2da6IM0n0IcsmagIAG0cK7BR6h+UTMMm7+qC0nGcpnxTCUxfHKLXbXbpdmWNzpTTE1P+krNBnL2bsAvQMdxLlAtsYNk9zGTYl6ynAuq0rnq/OqrPiXHFwZVk6s4D1R/lwgrjULEes5jl+RXXWw/RBqWbs9Z/WFK18kf+W4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708702360; c=relaxed/simple;
-	bh=QwhJ/EhbFImaRF3xYH27wlph7G0Hv+gUoIttDJYn92g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rB67kS9OS6SChFk3PIG8ZLKHK0uVXvna7aGJ7TLvsVND8LPci2xiCkrSGHObZzulu3TmyMnJqsSQbEhsWDR7W6CpOlVd1uAj+6EspQhIOqn9CAS8KK/J0K0YIxUbMKOanMy+M4ZkybLtX5QPg+PY/AXEg11g61GOowbVtdHgz0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=peacevolution.org; spf=pass smtp.mailfrom=peacevolution.org; dkim=pass (1024-bit key) header.d=peacevolution.org header.i=@peacevolution.org header.b=CoCNqIXM; arc=none smtp.client-ip=206.189.193.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=peacevolution.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=peacevolution.org
-Received: from authenticated-user (PRIMARY_HOSTNAME [PUBLIC_IP])
-	by a.peacevolution.org (Postfix) with ESMTPA id 03147473D0;
-	Fri, 23 Feb 2024 15:32:36 +0000 (UTC)
-Date: Fri, 23 Feb 2024 10:32:34 -0500
-From: Aren <aren@peacevolution.org>
-To: Lee Jones <lee@kernel.org>
-Cc: linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, 
-	Jean-Jacques Hiblot <jjhiblot@traphandler.com>, Chen-Yu Tsai <wens@csie.org>, Ondrej Jirman <megi@xff.cz>, 
-	linux-sunxi@lists.linux.dev, Pavel Machek <pavel@ucw.cz>, 
-	linux-arm-kernel@lists.infradead.org, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	linux-leds@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Miles Alan <m@milesalan.com>, 
-	Samuel Holland <samuel@sholland.org>
-Subject: Re: (subset) [PATCH v2 1/4] leds: rgb: leds-group-multicolor: allow
- leds to stay on in suspend
-Message-ID: <hjug4ilzxvtf7in64zw4jcjudzknqh2onvicd5cjuc3e47nl4w@3uiabmqehx5n>
-References: <20240206185400.596979-1-aren@peacevolution.org>
- <170868429025.1582603.10651778411484887304.b4-ty@kernel.org>
- <20240223103537.GA1585387@google.com>
+	s=arc-20240116; t=1708702484; c=relaxed/simple;
+	bh=0SNtXViAi/uuzITK6f3+yak148HxUT/1hggSYF8AK6Y=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=SmmfxeQ9jWjmDSuk33Sm9WTsdLK2WZB+pJ68pPZ3C9Ho1FR1XH1vohWb+b2nCy9r+CMcVX0IWgyrE9YDWiVkCWep7I2CfsOFjgp9Ar+LyT71F2kx1SZwvkCNL4cl3HPQ7NyzILZkS8W/enWDIiyr12y+o2wozFeHOVkELBsU0pU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru; spf=pass smtp.mailfrom=trvn.ru; dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b=qq6TzNBG; arc=none smtp.client-ip=194.87.146.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=trvn.ru
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	by box.trvn.ru (Postfix) with ESMTPSA id 9694A40164;
+	Fri, 23 Feb 2024 20:34:30 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+	t=1708702471; bh=0SNtXViAi/uuzITK6f3+yak148HxUT/1hggSYF8AK6Y=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=qq6TzNBGn05giGvmcRQt3AaAYb/F/pzsMBFrc0khdePz1ghzyF/iRXUEmoaELmULx
+	 kGf29xKC7wG0D4ZNvipJkyYDbp7hnSCsq/2MHRw8ko6B4+ndA0lGGw2ylRvH3tKsZt
+	 qdrTV6ECrpuN7f0V2xSsBgWoNyLUJQeJikTicP3lSiGIaIXp7QhUDaimK4uKjAE3eC
+	 rcSnmEdBRh0QskL1PWIAyqEcZXukZp378sMEb7T5RFPDvw+44WEGLPaWS4j66IfprM
+	 R5oBdwi2MET5cZCR+LtLhHxzrZxVDPWBeGtgereyi5DxsLAzQqEMUMP32E8hJP71Yd
+	 CaU1bnWbVbJkA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Date: Fri, 23 Feb 2024 20:34:29 +0500
+From: Nikita Travkin <nikita@trvn.ru>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Hans de Goede <hdegoede@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org, Andy Gross
+ <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
+ <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] power: supply: Add Acer Aspire 1 embedded
+ controller driver
+In-Reply-To: <xelebhoitnwguhewahw26xopl5btjo5ezznjjaeb2zfyy2bpcr@7pmclezshwck>
+References: <20240220-aspire1-ec-v3-0-02cb139a4931@trvn.ru>
+ <20240220-aspire1-ec-v3-2-02cb139a4931@trvn.ru>
+ <qoidm5wujjbeoc2hlraky26wuwmuaxi2atyl6ehovhvffdbfeh@g5gunqdei45m>
+ <7c429d2110dbac68d0c82c8fb8bfb742@trvn.ru>
+ <xelebhoitnwguhewahw26xopl5btjo5ezznjjaeb2zfyy2bpcr@7pmclezshwck>
+Message-ID: <6e3fb1080c54cfc38dc3c3e79e32a53d@trvn.ru>
+X-Sender: nikita@trvn.ru
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240223103537.GA1585387@google.com>
-X-Spamd-Bar: /
-Authentication-Results: auth=pass smtp.auth=aren@peacevolution.org smtp.mailfrom=aren@peacevolution.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=peacevolution.org;
-	s=dkim; t=1708702357;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:content-transfer-encoding:in-reply-to:references;
-	bh=bw29ITqhOc5CeCA/jH5jxWpEfOX2iQUtCJTOD5NXUhg=;
-	b=CoCNqIXMagBCAcmjTHXGXkYAtAh0zjlljpz2ecGOWTzDEXfRdy9XzNeENx/jrVfOFS/3Uh
-	Bh9wbkJxKqXrTaacPJkPRP6DnmA9E3X0/t9Dizc79YsRX84jJVg8KlnStpJ2ArEIZL8uq7
-	siR4+baxF5E9ExTBYG/xrQJ6/pD4y9s=
 
-On Fri, Feb 23, 2024 at 10:35:37AM +0000, Lee Jones wrote:
-> On Fri, 23 Feb 2024, Lee Jones wrote:
+Sebastian Reichel писал(а) 23.02.2024 20:04:
+> Hi,
 > 
-> > On Tue, 06 Feb 2024 13:13:17 -0500, Aren Moynihan wrote:
-> > > If none of the managed leds enable LED_CORE_SUSPENDRESUME, then we
-> > > shouldn't need to set it here. This makes it possible to use multicolor
-> > > groups with gpio leds that enable retain-state-suspended in the device
-> > > tree.
-> > > 
-> > > 
-> > 
-> > Applied, thanks!
-> > 
-> > [1/4] leds: rgb: leds-group-multicolor: allow leds to stay on in suspend
-> >       commit: 68552911e71d59e62dd5e50e9ac56ebfc32f0c71
+> On Fri, Feb 23, 2024 at 07:32:17PM +0500, Nikita Travkin wrote:
+>> >> + This driver provides battery and AC status support for the mentioned
+>> >
+>> > I did not see any AC status bits?
+>>
+>> I was referring to whatever ACPI spec calls "AC Adapter" but I guess
+>> I should have used the word "charger" instead... Will reword this.
 > 
-> Note that I changed a bunch of grammatical issues.
+> But you only register a power-supply device for the battery and not
+> for the AC adapter/charger. When you write "and AC status support" I
+> would have expected something similar to this (that's from ACPI AC
+> adapter driver):
 > 
-> led  => LED
-> gpio => GPIO
+> $ cat /sys/class/power_supply/AC/uevent
+> POWER_SUPPLY_NAME=AC
+> POWER_SUPPLY_TYPE=Mains
+> POWER_SUPPLY_ONLINE=1
 > 
-> Capitalised the first word of the comment, etc.
 
-Awesome, thank you
- - Aren
+Ah, I see... Yeah looking at it one more time, I mistakenly assumed the
+acpi ac code uses the same data fields as the battery but seems like it
+reads the single online flag from a different place. I don't think there
+is really a point on implementing that field since we can still easily
+track the battery charging/discharging status so I will probably omit it
+for now. Will reword the help text to not mention charger/ac adapter.
 
-> -- 
-> Lee Jones [李琼斯]
+Thanks for clarifying!
+Nikita
+
+> -- Sebastian
 
