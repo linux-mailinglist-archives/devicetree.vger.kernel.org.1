@@ -1,95 +1,83 @@
-Return-Path: <devicetree+bounces-45061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F26FA860812
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 02:10:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BB34860878
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 02:47:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 186BE1C21AF7
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 01:10:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 143971F2304F
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 01:47:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49C78D29B;
-	Fri, 23 Feb 2024 01:09:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85474AD53;
+	Fri, 23 Feb 2024 01:47:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="bvP+Eg33"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="KpTHXJhU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2055.outbound.protection.outlook.com [40.107.8.55])
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10olkn2108.outbound.protection.outlook.com [40.92.41.108])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B601DD2FF;
-	Fri, 23 Feb 2024 01:09:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.8.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96F6A3209;
+	Fri, 23 Feb 2024 01:46:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.41.108
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708650545; cv=fail; b=IjGAFfMe+l2cADuSr7Z+8TPlePiGwXzURpY5Hf44oHIrXQsFHCgXwYVxonYDujOlvo0wNzQpqugF3dW0J7TzhLgd1dR5z0w51MSdVhOZrmGWv6NMqTrM6Ybb8a90ROARwdYvk4oCscEqhFfcqiA6dqkF6Z278UTF2gDlHA+8Q8U=
+	t=1708652821; cv=fail; b=uJfpfvJX/FyWAj1tddxkjwDHJL15TwTjE+fBalA2pdmfSxzqYcaQGaJPMUV5DmGxL3zYjFeEZVFbEfuUpyTdSpb23n7MXx9plj0RWvMQwHWLWygU5caU+n4VirkPIsMEHV3f4VsljrhBL1i6A9CllczNDB0gcvvTuMwy9pJC8UM=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708650545; c=relaxed/simple;
-	bh=5ITmc5uva/HTe705qku9tPU3KnGIwLiEr22e4lOjbpQ=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=c9oM8EBL9DdMnWAXxrvuaps4XiXNlBMme49V/wGtXAxA1II9BqUDJcsSx/mSSH2d3kx/LaKAlbbQvlY3l+7JNU7vMFwaCV4wBSxN4JC2kPKI/6g1kf+DrenGjt7HlfPBbauEUwTGn1wd8qHZ1+Hsv5qzZ2XUmBDT88Xln+1NOQ4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=bvP+Eg33; arc=fail smtp.client-ip=40.107.8.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+	s=arc-20240116; t=1708652821; c=relaxed/simple;
+	bh=BvdzCsiOuEQnLzHKvLK10SgDkqW466AoFOTJ+jvZST8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=KgMH0ENyEToY3IXaS7O/IYVYRpfsdD9clH3Zoor7gigpMFcUjjvvTXq8YrE6uAKGF/BTdbFWy8PcoBUFqPseqri0sjXNwkTdf9I/e36hSI6M9sfUaYLDqvzwZ824BhRQ010t4H5U4RW6IOpbMYfiTOR8Amqktz/6sNeDp5GyDVg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=KpTHXJhU; arc=fail smtp.client-ip=40.92.41.108
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=i7kTDmNW99W9rBWpRKt8Z2NfNlGe4JymUHLgkrEpwIclk+QqE14GMFfQRA3yXJVHXzyKuklUN8OJyRcaHD+Tl7fmH1JUebLmkrAMiRWrAcrcyAs7DAAdXYnljxkRUKIzsla/k48rY+4MjPwqyabmnAkgD5ZMd1dZ05GZ4xIjx1ZjnxBcMQdYkvOUh+KYVjMUJTXatmsA3dYLkQCM2B+2JG1PCo7jOoViv7ONiSY+SMdA39o7IF3XekI5nnJs1pylp0tGlWEeO3gf4CGpvrr8T4TQmNscXbbtRq7irFzEDpGxK8kdqbIuPdt5yBuiuuIV5V1bjaWPpQ4QKHDY566CEw==
+ b=CN5DOV451z0/uW1RstPpGYOpy30CR8xkZCxFlb7GHGHO1bawTZqLhGPRO0xDnjHdjXsel36qK1InWST9rvg8mx4Udj43SwFTd3Wg8XuX2bDuEZDBQoS+FOEJGIQgYN83SHziDpiR8OIprdJF0hyuOo3q23VH/lrhiBlaxk5Bp2wjhNpXzM1PztcLTFAQ0mqfKUftEvLqcZIi9tRvy/mb0oy5EJ+IrTZxUUOrVgacpHLngQfp64FGOHL3uM4vS2Vb5n4KOkiMurBSBwsxyHQqqd/yIJN3x+HrABi0+Uyn4E1TqMfLlCo3pgX6pDtzZxyzuI6eo7blMGuZndz56PsODQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=udgdJYSrFzRlZijbx6NDrjt8bJBM2InMt3Qx0wZrW0E=;
- b=ZvN1GuecNeCIQjc+tmM809vBHklkx1H/KS1qF01XWzMRseof3vTHatRmmCeBcg73ZnwaVQDVn91BtChqj8w+drcYDxadaY+TuRGaQlTTcz1BOGBj2ZgBN/O2OtvtRd+YmFiY1mc0Xcxzr5zRlQOQI2wK5/egu9hsqMueZqyCktfnH2/TC58FBfnyebNaYKFFVBgK0OG0LvyMBS5gK7nJCcDjw3bnzBQqaMEhiEr0FfNsy5Vp9jRDw/DRR+kjMkJo/00zkN45CjbhiaHyfZlKrs5RCFmJHpT5SLgYqUpDtyatOTHOBRIHMCLTS38x33nhwE0rDnFhrjnlOLfWzndVpw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
+ bh=v8flhnJjnP/pjoa2t/0+6XcItrSmDHmkTuieKtLHOs4=;
+ b=F2h+1Of7dfRNhueIPyPECurk4cUkX+wmWo7S6q3ii13BlLCvWrfxYJ/ba2vURkoNW4yMepFUSJgbvm8SAFhl0rCg8lAxFM+V792lfyeSawqcRBpHOdOXMrD7R+ZiYFc7kHGpjwJ0a9VcLVFZajWl+AMSoyOnHobLXSnBgNt/ysA0+Hi4PAlaeM3CDNQFNHupcxcQa3mku9x/NRf/3bc0F/tltbMgq94185irXSZzHvmFmwyTpo3nadkC8+UVQegJH0PR8Gm0U5bpf0rrStNjR4ethoBeUMEDPeKXGDhJADms+E4Xq3KSj1bxueryVfprFVeyfQejOoTO3wriajvslw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=udgdJYSrFzRlZijbx6NDrjt8bJBM2InMt3Qx0wZrW0E=;
- b=bvP+Eg3352sS/UPzhICjJLI0j8MElmnOr7/+RIAKoX6R9tPU65+vRyzqnXv4+re3GF8UvEuTwJqpwEhDXXdY3WGQJSDIN6rCCAnvKH29VoJEBs1QiWAL0U98uEhmZ3T3GFc+QYcezFsDOx5ALZUafCFjwLhVl83XoeFASqTTB/g=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by AS8PR04MB8418.eurprd04.prod.outlook.com (2603:10a6:20b:3fa::15) with
+ bh=v8flhnJjnP/pjoa2t/0+6XcItrSmDHmkTuieKtLHOs4=;
+ b=KpTHXJhUpEwwAzOqzQ/8dKnHIaMXP5aYKG17EHVoGlLu/JAzx3Hp6GzVyK31Ou0a80mKNqGK6cYMdnpQur8rg//w6uBEAmOqSDZP29gmil0CuRdI6UtCScP3e4QCcPrvZmbUCGBsF9PuzJ46HcXoX7faUgcW4fT22LcWlpfXiDeqnRKTl/fq7sihVf4iiIiOtUvUYP4JOB5SjMyWqmp1SW9C6viH7xLB0dXRs0qe5ileRovC12F7fp7e5kJ/wjTP6MrP1eXP1Eul10Qinb0kDHBAd2597TOKY0y4qjBxClClkGs4TDD/M5QmmqUWfaINi13oa+dedtldgupsyhV9MQ==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by PH7PR20MB4457.namprd20.prod.outlook.com (2603:10b6:510:13d::6) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.24; Fri, 23 Feb
- 2024 01:09:00 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::4ac3:3559:4200:38e1]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::4ac3:3559:4200:38e1%4]) with mapi id 15.20.7292.036; Fri, 23 Feb 2024
- 01:09:00 +0000
-From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Date: Fri, 23 Feb 2024 09:16:41 +0800
-Subject: [PATCH v4 4/4] pinctrl: Implementation of the generic scmi-pinctrl
- driver
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240223-pinctrl-scmi-v4-4-10eb5a379274@nxp.com>
-References: <20240223-pinctrl-scmi-v4-0-10eb5a379274@nxp.com>
-In-Reply-To: <20240223-pinctrl-scmi-v4-0-10eb5a379274@nxp.com>
-To: Sudeep Holla <sudeep.holla@arm.com>, 
- Cristian Marussi <cristian.marussi@arm.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Oleksii Moisieiev <oleksii_moisieiev@epam.com>, 
- Linus Walleij <linus.walleij@linaro.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
- AKASHI Takahiro <takahiro.akashi@linaro.org>, Peng Fan <peng.fan@nxp.com>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1708651021; l=19238;
- i=peng.fan@nxp.com; s=20230812; h=from:subject:message-id;
- bh=f/ftPAn1+b7xP3Hqqk8O5KBm5r1H0b7KvOCiADr7ttA=;
- b=KC4I62cI386TMkpuXl5j36VlimdTRNj6fCaFdEhuCX0GPAv/atXvYnpBjfgZ4OIvV2pgD7jko
- hRRpKpHY7uGDxmHif0/Hdz9K2MC3p2lX/LmRtP9N7rEk39naKLoeBOc
-X-Developer-Key: i=peng.fan@nxp.com; a=ed25519;
- pk=I4sJg7atIT1g63H7bb5lDRGR2gJW14RKDD0wFL8TT1g=
-X-ClientProxiedBy: SI2PR04CA0009.apcprd04.prod.outlook.com
- (2603:1096:4:197::8) To DU0PR04MB9417.eurprd04.prod.outlook.com
- (2603:10a6:10:358::11)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.29; Fri, 23 Feb
+ 2024 01:46:56 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::8615:efe2:7c8e:2041]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::8615:efe2:7c8e:2041%3]) with mapi id 15.20.7316.018; Fri, 23 Feb 2024
+ 01:46:56 +0000
+Date: Fri, 23 Feb 2024 09:47:05 +0800
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Rob Herring <robh@kernel.org>, Inochi Amaoto <inochiama@outlook.com>
+Cc: Vinod Koul <vkoul@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Jisheng Zhang <jszhang@kernel.org>, 
+	Liu Gui <kenneth.liu@sophgo.com>, Jingbao Qiu <qiujingbao.dlmu@gmail.com>, dlan@gentoo.org, 
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] dt-bindings: soc: sophgo: Add top misc controller
+ of CV18XX/SG200X series SoC
+Message-ID:
+ <IA1PR20MB4953C60F0B70D82922D3AD36BB552@IA1PR20MB4953.namprd20.prod.outlook.com>
+References: <PH7PR20MB49624AFE44E26F26490DC827BB502@PH7PR20MB4962.namprd20.prod.outlook.com>
+ <PH7PR20MB4962BEA2751F7C45A16E40B9BB502@PH7PR20MB4962.namprd20.prod.outlook.com>
+ <20240223003334.GA3981337-robh@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240223003334.GA3981337-robh@kernel.org>
+X-TMN: [3Q7LaCtfwTJTrWh+CTkufnqkNi32nr742q+wNWTGq5E=]
+X-ClientProxiedBy: TYCPR01CA0034.jpnprd01.prod.outlook.com
+ (2603:1096:405:1::22) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <upbgq2yq3jddnvvswwojx3fcd6zd3kxtpbrwzxnnqy64aw2etp@proeihjizzhd>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,732 +86,126 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|AS8PR04MB8418:EE_
-X-MS-Office365-Filtering-Correlation-Id: 67b27c00-aa17-42e3-a40b-08dc340c04ca
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|PH7PR20MB4457:EE_
+X-MS-Office365-Filtering-Correlation-Id: d16c7d08-708b-4516-2769-08dc34115142
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info:
-	LWaoyPpVHOhOIanTUJoHO0lpIqBTaglQVbwTZv+o4if3W+ZBr6gceW5ll6F9iop9FIXP+Ueo3d/VFkIPPC1IXMYPXSpvvhGccYmsXG1vvWv8zxQlaiAGJX7X37ILX9f3thg6FAq32ktlMO+qrHgVNqmCTb5lhroon/oAXytTFxQ/i7dLB5ZJOXvot/p8YoX8g+3y+EIXTy3+ezREMAWzksy1P7TwCw/FWMSPi7PvzrjaNNWMb7VRUYdFTsvZASH2L2nAARjX4mct8Pl6OPBE7tHLGCxWJUjbQmhm45LsauNW5yQ/7dQTmIAEHYgUFcyGiZOkokbdnbfYLb1mftr+BsMfy7ewT3l54ur2CKfvm4VrIL0mbaxXXuLJ+Q2eldK30d8DH1ykJudMA/rDU9ELWvj/f634mAyFELtCEkc593lU3QXtMJp3rusc0sjE22xZmIxwsqfYP2OxXkYQn4tzk18S7TQzZYTkwx8DOUVKefidtaygtv4Wjx7ihO+ylqKU+yFO3wARk1HAkOYj9fbtq5B2rPByKIBLeZhjWKzs0m2kvakIpkC+nfnCms72FoUaOwsR7wHTiizbWCg3q3lzAhlxZk7lv3e9LadD/4N1pwxWKc2AzE/eztcumcYGLi5kppfp7BlhwSoibvbjiv3p+A==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(38350700005)(921011);DIR:OUT;SFP:1101;
+	k+Klvno7K7Aa4+tdHKprMWHrc8YQdFHmvPfBlxRgyQACnSB1ZOIU9hmsloO/ljOMGmCeJA8VFR7K7BuiXwR1OMPp/jfAS+M61HP9J7+krAeHvTfMn5xxNgUg1QmjUNm7E61D6PDqMcFKE6elPSN4T91UOChraVnRONVDjbKvN4uajoIcPW4FTc38eJEQbp8v+8Mi/k26/Jzw6JK0XP7moWSBd108N/DDI26zS4ovBOLWKlejR0r9bXeiA9lkzlKGqQdNL17prYY3l2jqi1tPKDZMY0y5zRnbS4MsIbpsMz6fwnGct3QseUBm4oxcPhkCLacm6F22pepiRfavYM4QEMc68tEfyk4W5e3LRtWa30Gdq6KR87MqO5ekKvUkEmXLNdjFDyzyyY+oTaQmxHPPwAgdASbBqQdpud0eGZoQh/tNBg4oEVULlaygT3Qx5ZuYmBGjrvokMKGaXXE18YJVEpXktjqkpCBXmr/9p6SazRtwhNfRQdwajWrjyg7blQFqBeCDsE4ZApevvx4emXvmOsvmlET7UpG+5Ia1g73bqebW7PTgDVqvJDKmHvaaiz0hVzZGc3yW89THqWY4dexY0yozpyoX4s4U60G9PAUnP4LVVjPhjYqUta/+fCFueIPrlJVTAoWnEHyZsn18xefs+R8NW3HcgCOiZ2++d4kxy8U=
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?L1UwTWtwQjRpUUpYUEFua2l5cXkvbXE0NkYzczFnU2VBQmliN21XMkJNVGNX?=
- =?utf-8?B?ckk1NzNOUVo3bWJFNFdxeU1STThzZDJOdis3aUVFeUFQSkRQVmEvMkpkMHRH?=
- =?utf-8?B?d1NHVmNCNWw2VjU3aTJySk1neTdwaGhNZEJLRFhJcGFCUjFscEJqZ2xTMkZX?=
- =?utf-8?B?ZUUwQzVSVFA3NHV1OURyeUx3eW5UQ1NBcnNRVGpvNFhmektZZzlwcE1DSU9t?=
- =?utf-8?B?T3kyZzZNamgzWXBwWGFqMXA3RkNNY1pvSzRyazBXeTJObGZLcGc0bk1TUVRk?=
- =?utf-8?B?bHJ4a2w2bjJLR1JHZlNxWmFNTkoyenhYdVVBVi9LNXJ2RUxZRUtOeExOZ2hF?=
- =?utf-8?B?SFg0dDQySW1tSi9acmR1WkYwbGFBTlVmbFlsSy9YSERxNE83aW9QU3EyczVy?=
- =?utf-8?B?RDdYdGo1bnUwVVpsaEhrQVpMZXpRWm9OK2ROVmxPdllHNXdmK0tveTc2T0JW?=
- =?utf-8?B?NUN1dHVFNmd4WGJNTlF5TmR2YkJtUGU2eWhsN1h6dnVvMU9JTXFHdzFFZzA3?=
- =?utf-8?B?RVRXZG9aU3BpNEFzNlRYeXlxbFpZaElZVkFmTlRXRmhUaU82ZVZyUmxHOWk0?=
- =?utf-8?B?eHFhTmxnSXl0eWdTUjFnS0szZERmaUwveW9jUEI0Znp1cE9STTVlMXllWTVY?=
- =?utf-8?B?WGptMlp0UUVtZHRqS2JNSHBqdDJwQ1BCdFpnNHNabEE2ZTRvUWR6akhGUmFZ?=
- =?utf-8?B?UkhwRldZWFlhemk2TWl1b1hWUWZaRURHTzJTaXRzbkRFNTcxUklUaG5DQ0Ur?=
- =?utf-8?B?NFRLRlR0S00rSUxJR21VczBnVDBsZXpRSmxSMk1ZSVZQYjRoRndHSlg2WW9S?=
- =?utf-8?B?eVpacmdMeVduUS9jQW01TktIK0VwSmFKU3ZDeitqVkdQUVJmUFhWcDhRdHpP?=
- =?utf-8?B?OVNSV2Jhdm9JM0JYN0YzR0pnSXZjRGl3TkhlZTZZUlRBa3ZLTHVmMEVMT0tv?=
- =?utf-8?B?R1F5Mzh2MVljeGJhKysxZnR2MlRKVVJicG9TTkpxWWEzbHpsQTFyQVVxTXVy?=
- =?utf-8?B?T3JrYXFObjZ6Y1BUYjJGeFpnc1lRTUdTdTd4bTBOUFJmeU04N2FRejVZNURF?=
- =?utf-8?B?b3NZcTkzc0xBTUFFZlVSb1NvUWUyNG1QYVZ3NXkvcU1ldVMvY3VCbUNNNE1S?=
- =?utf-8?B?a1h1UlpHUVJDMVU2SnI3MkI5Qk1WYzE1ZVJveFJ2UVI2eVo5ZUJKNkxKOW9q?=
- =?utf-8?B?VXdPOFJGQUR5UHNsSjIxSW1DaUxMWEVMNmRVOC9PRGlEenV4UW9saXIxblhk?=
- =?utf-8?B?TFBkOWpkMTF6OHprODVEbVYxam5CaFRtYjkycGZpa25DOTBhMFBTRDk3MEkx?=
- =?utf-8?B?dkwzVG9YM3ZiYm1ZZjUyNEFqL1FaUmxwR2VKNDVvdkVlOEMxTitocjJLWVlL?=
- =?utf-8?B?amlIRGxZYXRBNC9DS1Npa3VBL1Bsd0d3YlBlZk43ZEVmbHh0KytuNnZNVGJV?=
- =?utf-8?B?aTFoemxkNTZNcC9TQUNLdVhtb1NPcWRteGRGMTlGREMzRE84UExFWlhnbDFF?=
- =?utf-8?B?N1Q1UGg4eEhzRUZtaUlRakhXdHdVclNjYVZjSHVFMnV6ZTlDN214aUNlelR0?=
- =?utf-8?B?YUwrYlFlTDRaMGxpdkQrT1ppd0ZXRlJXbDVlRUlGQStHYlJJYzVpaFR5eHQ5?=
- =?utf-8?B?OGFFNkl0L1FwZ2lvbVIwN0I2cEJuQkRHTHZxZUNSTklaeGc4NDRKQUgyZTdI?=
- =?utf-8?B?RFRWZk9PMHRKVWkxbnJlNVhoWktyOHNoL2VQZFdLNmY0WWFYa0xseFFFSENY?=
- =?utf-8?B?ajhIc2EycElRWGNFYzZxeGhWYmVlUkhmam1aNFNiZ2NMa0NhZmJCRjFjK2FP?=
- =?utf-8?B?NjZLc0V2UTdnNjlhM1ByU3pGRGZ2M0Nub1VNb0RYcTkzUk03UnZMY3FIMEx6?=
- =?utf-8?B?NjJsZE9mNHNPNmg3M1V3Qk5qdHpLeEFKSWZDOUtNa0VHckNQU29PcU54b0NN?=
- =?utf-8?B?MFZXaFBVUTNLU25ocnJXTm54cjk3WVF2WVo0UWZOSXpRZ3pmYmtDQmMwakhz?=
- =?utf-8?B?YkNHMThpZWNmYVR4L1VvOGVpclFJTDVHT25MUncxTExIblZYUWs3L2FTOFFQ?=
- =?utf-8?B?RGtXbnRGbDZIQ05mclZUbXFxSmRsRnBraVY2U0Q2QVFqcVhHcWlNMUtRNklR?=
- =?utf-8?Q?TijSQgwPva8AxUL4JF82DlpuT?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 67b27c00-aa17-42e3-a40b-08dc340c04ca
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+	=?us-ascii?Q?fK2V970UpS/Ij1nF1Nf/gMC78Lf3Qw9Qfxz9rN/ybVRiXIWJk3R7ru7EvwBu?=
+ =?us-ascii?Q?pAeDBnAeXqtV+cSBxw2hjPHu7DFlzBbqmnkzlN3g7bDOGToEFrDgPmN8EYp7?=
+ =?us-ascii?Q?dHQik7qBMNHVtOIY5yGTn/RiTj1Nwy14BJgTpD8MLdKzGyOWTsRYeZmpMhbX?=
+ =?us-ascii?Q?lQ95R1OzV9+9acgufLfywrthYF8VdtREN9s9KYUJUFsjM+IB8+Y9H2t2Qhbz?=
+ =?us-ascii?Q?N55z/5+Yjx1ZQRSPq3AQbLidi/Dxkm+oBt4R/WYvoghikIH/rOISKv7Wbged?=
+ =?us-ascii?Q?91bxv+Xp51oUOsIIclkl1HsASr2QoLYUmgDi3b7yy7lquAheds+GcFSjFEJN?=
+ =?us-ascii?Q?THlV+Z6lxcpIaNPIuJHFlSXkYcqZJzVEkLh70MBBMUQGjPCL81DaL6iCSJW3?=
+ =?us-ascii?Q?bjN/G3afGfff/atT/tc66mA9z882V2h7C1ndUBtWhnqTV7DoMzEHnUx1p6rC?=
+ =?us-ascii?Q?KuFV8J9GRRlrMX0uaklfWlsGLXo+/YnE6iE72XolOF/nJohUV0lVY9glBS60?=
+ =?us-ascii?Q?L37ZrimPBvzJO7LR9RbPPq832MIrgJszZ+wam7ms5e0EfwFEq+PjJnKDN3ir?=
+ =?us-ascii?Q?NZCH8l6t5LBUYKxY4KHG70B2eGsyJvoMyBrkjRHGLSUfERBN+YXjuDa4MSbj?=
+ =?us-ascii?Q?Avr/S2o4An8Tzb9d0c8+6CTcPnEeeb7NLoSWXtpYbkN3NTKyx5vIjd+R8N3s?=
+ =?us-ascii?Q?4HSsqQ5a5QAjGx1FXuy76X8sD7YwKb1HEh61CqN1P0O7A1PI52YmqLpwaJMZ?=
+ =?us-ascii?Q?9Kdt9FFZP7CiVa4kBb2iTq5C54ZkXbsXl9x0cDRbtllCb5ZaF6iroTqwITnh?=
+ =?us-ascii?Q?00swOCcUjOCSwahRWrNjD/WpZ24joBWWOQGM+qbH3vns8bxizMdlAeQWokb1?=
+ =?us-ascii?Q?4E5Av2Kg5RnnXAWuIF6dUDCpUftOU9gNf+RyQ46h+vFs4KimihoRC8+xwTzb?=
+ =?us-ascii?Q?Ca33vRfUpx/yJo+jQs2QzPVdu8haqsEx4cVlCqAlsY8cWY9BKxRFhhUFEPGV?=
+ =?us-ascii?Q?E3jmNnoBURF3tZqF1N2GIL7cuN6LjO5G8247QWF5oDtNmQ/zv/LvUIqWiNpA?=
+ =?us-ascii?Q?Kfd5+S+lC98/bQExQOBeZorRge3inveX9mJYsow0WD8Y2Sx78hV4rUrRJBGe?=
+ =?us-ascii?Q?gXTwoCjOxyCwMSXrTpXILmF4dhtdNcofhMtorjKeaU/iEHbv9lSmPcSDp/If?=
+ =?us-ascii?Q?qsKjUPJBKLtHUZw5c4vD3LQtMh2vX/dOjIFJW0DFJ8RDJiOo5jxpz0ABtl5F?=
+ =?us-ascii?Q?jajfOqP3PFfX6veQkfHf?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d16c7d08-708b-4516-2769-08dc34115142
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Feb 2024 01:09:00.5304
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Feb 2024 01:46:56.4298
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3HYgDdpy8tWrFVzEFCm97olU7xaKC1egG1BN/pjywxcDj0ZPVUZsFHZWX9tXksp4BaVKEdi9mAMmDpxVOLgB8Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8418
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR20MB4457
 
-From: Peng Fan <peng.fan@nxp.com>
+On Thu, Feb 22, 2024 at 05:33:34PM -0700, Rob Herring wrote:
+> On Tue, Feb 20, 2024 at 06:28:59PM +0800, Inochi Amaoto wrote:
+> > CV18XX/SG200X series SoCs have a special top misc system controller,
+> > which provides register access for several devices. In addition to
+> > register access, this system controller also contains some subdevices
+> > (such as dmamux).
+> > 
+> > Add bindings for top misc controller of CV18XX/SG200X series SoC.
+> > 
+> > Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+> > ---
+> >  .../soc/sophgo/sophgo,cv1800-top-syscon.yaml  | 48 +++++++++++++++++++
+> >  1 file changed, 48 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800-top-syscon.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800-top-syscon.yaml b/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800-top-syscon.yaml
+> > new file mode 100644
+> > index 000000000000..29825fee66d5
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800-top-syscon.yaml
+> > @@ -0,0 +1,48 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/soc/sophgo/sophgo,cv1800-top-syscon.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Sophgo CV1800/SG2000 SoC top system controller
+> > +
+> > +maintainers:
+> > +  - Inochi Amaoto <inochiama@outlook.com>
+> > +
+> > +description:
+> > +  The Sophgo CV1800/SG2000 SoC top misc system controller provides
+> > +  register access to configure related modules.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - const: sophgo,cv1800-top-syscon
+> > +      - const: syscon
+> > +      - const: simple-mfd
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +additionalProperties:
+> > +  type: object
+> > +
+> > +examples:
+> > +  - |
+> > +    syscon@3000000 {
+> > +      compatible = "sophgo,cv1800-top-syscon",
+> > +                   "syscon", "simple-mfd";
+> > +      reg = <0x03000000 0x1000>;
+> > +
+> > +      dma-router {
+> 
+> Is there no defined register set you can put in 'reg' here?
+> 
 
-scmi-pinctrl driver implements pinctrl driver interface and using
-SCMI protocol to redirect messages from pinctrl subsystem SDK to
-SCMI platform firmware, which does the changes in HW.
+It has multiple registers in the syscon. But in fact, the dmamux
+is a virtual device. And the syscon device only have some discrete 
+registers. This is why I did not put reg. It should access the
+device using the offset defined in the patch 3.
 
-Reviewed-by: Cristian Marussi <cristian.marussi@arm.com>
-Tested-by: Cristian Marussi <cristian.marussi@arm.com>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Co-developed-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
-Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- MAINTAINERS                    |   1 +
- drivers/pinctrl/Kconfig        |  11 +
- drivers/pinctrl/Makefile       |   1 +
- drivers/pinctrl/pinctrl-scmi.c | 593 +++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 606 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index c042ca394893..851216ba59b0 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -21447,6 +21447,7 @@ F:	drivers/clk/clk-sc[mp]i.c
- F:	drivers/cpufreq/sc[mp]i-cpufreq.c
- F:	drivers/firmware/arm_scmi/
- F:	drivers/firmware/arm_scpi.c
-+F:	drivers/pinctrl/pinctrl-scmi.c
- F:	drivers/pmdomain/arm/
- F:	drivers/powercap/arm_scmi_powercap.c
- F:	drivers/regulator/scmi-regulator.c
-diff --git a/drivers/pinctrl/Kconfig b/drivers/pinctrl/Kconfig
-index 8163a5983166..27b26e428f60 100644
---- a/drivers/pinctrl/Kconfig
-+++ b/drivers/pinctrl/Kconfig
-@@ -432,6 +432,17 @@ config PINCTRL_ROCKCHIP
- 	help
-           This support pinctrl and GPIO driver for Rockchip SoCs.
- 
-+config PINCTRL_SCMI
-+	tristate "Pinctrl driver using SCMI protocol interface"
-+	depends on ARM_SCMI_PROTOCOL || COMPILE_TEST
-+	select PINMUX
-+	select GENERIC_PINCONF
-+	help
-+	  This driver provides support for pinctrl which is controlled
-+	  by firmware that implements the SCMI interface.
-+	  It uses SCMI Message Protocol to interact with the
-+	  firmware providing all the pinctrl controls.
-+
- config PINCTRL_SINGLE
- 	tristate "One-register-per-pin type device tree based pinctrl driver"
- 	depends on OF
-diff --git a/drivers/pinctrl/Makefile b/drivers/pinctrl/Makefile
-index 1071f301cc70..ba755ed2d46c 100644
---- a/drivers/pinctrl/Makefile
-+++ b/drivers/pinctrl/Makefile
-@@ -44,6 +44,7 @@ obj-$(CONFIG_PINCTRL_PIC32)	+= pinctrl-pic32.o
- obj-$(CONFIG_PINCTRL_PISTACHIO)	+= pinctrl-pistachio.o
- obj-$(CONFIG_PINCTRL_RK805)	+= pinctrl-rk805.o
- obj-$(CONFIG_PINCTRL_ROCKCHIP)	+= pinctrl-rockchip.o
-+obj-$(CONFIG_PINCTRL_SCMI)	+= pinctrl-scmi.o
- obj-$(CONFIG_PINCTRL_SINGLE)	+= pinctrl-single.o
- obj-$(CONFIG_PINCTRL_ST) 	+= pinctrl-st.o
- obj-$(CONFIG_PINCTRL_STMFX) 	+= pinctrl-stmfx.o
-diff --git a/drivers/pinctrl/pinctrl-scmi.c b/drivers/pinctrl/pinctrl-scmi.c
-new file mode 100644
-index 000000000000..f2fef3fb85ae
---- /dev/null
-+++ b/drivers/pinctrl/pinctrl-scmi.c
-@@ -0,0 +1,593 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * System Control and Power Interface (SCMI) Protocol based pinctrl driver
-+ *
-+ * Copyright (C) 2024 EPAM
-+ * Copyright 2024 NXP
-+ */
-+
-+#include <linux/device.h>
-+#include <linux/err.h>
-+#include <linux/module.h>
-+#include <linux/seq_file.h>
-+#include <linux/scmi_protocol.h>
-+#include <linux/slab.h>
-+
-+#include <linux/pinctrl/machine.h>
-+#include <linux/pinctrl/pinconf.h>
-+#include <linux/pinctrl/pinconf-generic.h>
-+#include <linux/pinctrl/pinctrl.h>
-+#include <linux/pinctrl/pinmux.h>
-+
-+#include "pinctrl-utils.h"
-+#include "core.h"
-+#include "pinconf.h"
-+
-+#define DRV_NAME "scmi-pinctrl"
-+
-+/* Define num configs, if not large than 4 use stack, else use kcalloc */
-+#define SCMI_NUM_CONFIGS	4
-+
-+static const struct scmi_pinctrl_proto_ops *pinctrl_ops;
-+
-+struct scmi_pinctrl_funcs {
-+	unsigned int num_groups;
-+	const char **groups;
-+};
-+
-+struct scmi_pinctrl {
-+	struct device *dev;
-+	struct scmi_protocol_handle *ph;
-+	struct pinctrl_dev *pctldev;
-+	struct pinctrl_desc pctl_desc;
-+	struct scmi_pinctrl_funcs *functions;
-+	unsigned int nr_functions;
-+	char **groups;
-+	unsigned int nr_groups;
-+	struct pinctrl_pin_desc *pins;
-+	unsigned int nr_pins;
-+};
-+
-+static int pinctrl_scmi_get_groups_count(struct pinctrl_dev *pctldev)
-+{
-+	struct scmi_pinctrl *pmx = pinctrl_dev_get_drvdata(pctldev);
-+
-+	return pinctrl_ops->count_get(pmx->ph, GROUP_TYPE);
-+}
-+
-+static const char *pinctrl_scmi_get_group_name(struct pinctrl_dev *pctldev,
-+					       unsigned int selector)
-+{
-+	int ret;
-+	const char *name;
-+	struct scmi_pinctrl *pmx = pinctrl_dev_get_drvdata(pctldev);
-+
-+	ret = pinctrl_ops->name_get(pmx->ph, selector, GROUP_TYPE, &name);
-+	if (ret) {
-+		dev_err(pmx->dev, "get name failed with err %d", ret);
-+		return NULL;
-+	}
-+
-+	return name;
-+}
-+
-+static int pinctrl_scmi_get_group_pins(struct pinctrl_dev *pctldev,
-+				       unsigned int selector,
-+				       const unsigned int **pins,
-+				       unsigned int *num_pins)
-+{
-+	struct scmi_pinctrl *pmx = pinctrl_dev_get_drvdata(pctldev);
-+
-+	return pinctrl_ops->group_pins_get(pmx->ph, selector, pins, num_pins);
-+}
-+
-+static const struct pinctrl_ops pinctrl_scmi_pinctrl_ops = {
-+	.get_groups_count = pinctrl_scmi_get_groups_count,
-+	.get_group_name = pinctrl_scmi_get_group_name,
-+	.get_group_pins = pinctrl_scmi_get_group_pins,
-+#ifdef CONFIG_OF
-+	.dt_node_to_map = pinconf_generic_dt_node_to_map_all,
-+	.dt_free_map = pinconf_generic_dt_free_map,
-+#endif
-+};
-+
-+static int pinctrl_scmi_get_functions_count(struct pinctrl_dev *pctldev)
-+{
-+	struct scmi_pinctrl *pmx = pinctrl_dev_get_drvdata(pctldev);
-+
-+	return pinctrl_ops->count_get(pmx->ph, FUNCTION_TYPE);
-+}
-+
-+static const char *pinctrl_scmi_get_function_name(struct pinctrl_dev *pctldev,
-+						  unsigned int selector)
-+{
-+	int ret;
-+	const char *name;
-+	struct scmi_pinctrl *pmx = pinctrl_dev_get_drvdata(pctldev);
-+
-+	ret = pinctrl_ops->name_get(pmx->ph, selector, FUNCTION_TYPE, &name);
-+	if (ret) {
-+		dev_err(pmx->dev, "get name failed with err %d", ret);
-+		return NULL;
-+	}
-+
-+	return name;
-+}
-+
-+static int pinctrl_scmi_get_function_groups(struct pinctrl_dev *pctldev,
-+					    unsigned int selector,
-+					    const char * const **groups,
-+					    unsigned int * const num_groups)
-+{
-+	const unsigned int *group_ids;
-+	int ret, i;
-+	struct scmi_pinctrl *pmx = pinctrl_dev_get_drvdata(pctldev);
-+
-+	if (!groups || !num_groups)
-+		return -EINVAL;
-+
-+	if (selector < pmx->nr_functions &&
-+	    pmx->functions[selector].num_groups) {
-+		*groups = (const char * const *)pmx->functions[selector].groups;
-+		*num_groups = pmx->functions[selector].num_groups;
-+		return 0;
-+	}
-+
-+	ret = pinctrl_ops->function_groups_get(pmx->ph, selector,
-+					       &pmx->functions[selector].num_groups,
-+					       &group_ids);
-+	if (ret) {
-+		dev_err(pmx->dev, "Unable to get function groups, err %d", ret);
-+		return ret;
-+	}
-+
-+	*num_groups = pmx->functions[selector].num_groups;
-+	if (!*num_groups)
-+		return -EINVAL;
-+
-+	pmx->functions[selector].groups =
-+		devm_kcalloc(pmx->dev, *num_groups,
-+			     sizeof(*pmx->functions[selector].groups),
-+			     GFP_KERNEL);
-+	if (!pmx->functions[selector].groups)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < *num_groups; i++) {
-+		pmx->functions[selector].groups[i] =
-+			pinctrl_scmi_get_group_name(pmx->pctldev,
-+						    group_ids[i]);
-+		if (!pmx->functions[selector].groups[i]) {
-+			ret = -ENOMEM;
-+			goto err_free;
-+		}
-+	}
-+
-+	*groups = (const char * const *)pmx->functions[selector].groups;
-+
-+	return 0;
-+
-+err_free:
-+	devm_kfree(pmx->dev, pmx->functions[selector].groups);
-+
-+	return ret;
-+}
-+
-+static int pinctrl_scmi_func_set_mux(struct pinctrl_dev *pctldev,
-+				     unsigned int selector, unsigned int group)
-+{
-+	struct scmi_pinctrl *pmx = pinctrl_dev_get_drvdata(pctldev);
-+
-+	return pinctrl_ops->mux_set(pmx->ph, selector, group);
-+}
-+
-+static int pinctrl_scmi_request(struct pinctrl_dev *pctldev,
-+				unsigned int offset)
-+{
-+	struct scmi_pinctrl *pmx = pinctrl_dev_get_drvdata(pctldev);
-+
-+	return pinctrl_ops->pin_request(pmx->ph, offset);
-+}
-+
-+static int pinctrl_scmi_free(struct pinctrl_dev *pctldev, unsigned int offset)
-+{
-+	struct scmi_pinctrl *pmx = pinctrl_dev_get_drvdata(pctldev);
-+
-+	return pinctrl_ops->pin_free(pmx->ph, offset);
-+}
-+
-+static const struct pinmux_ops pinctrl_scmi_pinmux_ops = {
-+	.request = pinctrl_scmi_request,
-+	.free = pinctrl_scmi_free,
-+	.get_functions_count = pinctrl_scmi_get_functions_count,
-+	.get_function_name = pinctrl_scmi_get_function_name,
-+	.get_function_groups = pinctrl_scmi_get_function_groups,
-+	.set_mux = pinctrl_scmi_func_set_mux,
-+};
-+
-+static int pinctrl_scmi_map_pinconf_type(enum pin_config_param param,
-+					 enum scmi_pinctrl_conf_type *type)
-+{
-+	u32 arg = param;
-+
-+	switch (arg) {
-+	case PIN_CONFIG_BIAS_BUS_HOLD:
-+		*type = SCMI_PIN_BIAS_BUS_HOLD;
-+		break;
-+	case PIN_CONFIG_BIAS_DISABLE:
-+		*type = SCMI_PIN_BIAS_DISABLE;
-+		break;
-+	case PIN_CONFIG_BIAS_HIGH_IMPEDANCE:
-+		*type = SCMI_PIN_BIAS_HIGH_IMPEDANCE;
-+		break;
-+	case PIN_CONFIG_BIAS_PULL_DOWN:
-+		*type = SCMI_PIN_BIAS_PULL_DOWN;
-+		break;
-+	case PIN_CONFIG_BIAS_PULL_PIN_DEFAULT:
-+		*type = SCMI_PIN_BIAS_PULL_DEFAULT;
-+		break;
-+	case PIN_CONFIG_BIAS_PULL_UP:
-+		*type = SCMI_PIN_BIAS_PULL_UP;
-+		break;
-+	case PIN_CONFIG_DRIVE_OPEN_DRAIN:
-+		*type = SCMI_PIN_DRIVE_OPEN_DRAIN;
-+		break;
-+	case PIN_CONFIG_DRIVE_OPEN_SOURCE:
-+		*type = SCMI_PIN_DRIVE_OPEN_SOURCE;
-+		break;
-+	case PIN_CONFIG_DRIVE_PUSH_PULL:
-+		*type = SCMI_PIN_DRIVE_PUSH_PULL;
-+		break;
-+	case PIN_CONFIG_DRIVE_STRENGTH:
-+		*type = SCMI_PIN_DRIVE_STRENGTH;
-+		break;
-+	case PIN_CONFIG_DRIVE_STRENGTH_UA:
-+		*type = SCMI_PIN_DRIVE_STRENGTH;
-+		break;
-+	case PIN_CONFIG_INPUT_DEBOUNCE:
-+		*type = SCMI_PIN_INPUT_DEBOUNCE;
-+		break;
-+	case PIN_CONFIG_INPUT_ENABLE:
-+		*type = SCMI_PIN_INPUT_MODE;
-+		break;
-+	case PIN_CONFIG_INPUT_SCHMITT:
-+		*type = SCMI_PIN_INPUT_SCHMITT;
-+		break;
-+	case PIN_CONFIG_INPUT_SCHMITT_ENABLE:
-+		*type = SCMI_PIN_INPUT_MODE;
-+		break;
-+	case PIN_CONFIG_MODE_LOW_POWER:
-+		*type = SCMI_PIN_LOW_POWER_MODE;
-+		break;
-+	case PIN_CONFIG_OUTPUT:
-+		*type = SCMI_PIN_OUTPUT_VALUE;
-+		break;
-+	case PIN_CONFIG_OUTPUT_ENABLE:
-+		*type = SCMI_PIN_OUTPUT_MODE;
-+		break;
-+	case PIN_CONFIG_OUTPUT_IMPEDANCE_OHMS:
-+		*type = SCMI_PIN_OUTPUT_VALUE;
-+		break;
-+	case PIN_CONFIG_POWER_SOURCE:
-+		*type = SCMI_PIN_POWER_SOURCE;
-+		break;
-+	case PIN_CONFIG_SLEW_RATE:
-+		*type = SCMI_PIN_SLEW_RATE;
-+		break;
-+	case SCMI_PIN_OEM_START ... SCMI_PIN_OEM_END:
-+		*type = arg;
-+		break;
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+
-+	return 0;
-+}
-+
-+static int pinctrl_scmi_pinconf_get(struct pinctrl_dev *pctldev,
-+				    unsigned int _pin, unsigned long *config)
-+{
-+	int ret;
-+	struct scmi_pinctrl *pmx = pinctrl_dev_get_drvdata(pctldev);
-+	enum pin_config_param config_type;
-+	enum scmi_pinctrl_conf_type type;
-+	u32 config_value;
-+
-+	if (!config)
-+		return -EINVAL;
-+
-+	config_type = pinconf_to_config_param(*config);
-+
-+	ret = pinctrl_scmi_map_pinconf_type(config_type, &type);
-+	if (ret) {
-+		dev_err(pmx->dev, "Error map pinconf_type %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = pinctrl_ops->config_get(pmx->ph, _pin, PIN_TYPE, type,
-+				      &config_value);
-+	if (ret)
-+		return ret;
-+
-+	*config = pinconf_to_config_packed(config_type, config_value);
-+
-+	return 0;
-+}
-+
-+static int
-+pinctrl_scmi_alloc_configs(struct pinctrl_dev *pctldev, u32 num_configs,
-+			   u32 **p_config_value,
-+			   enum scmi_pinctrl_conf_type **p_config_type)
-+{
-+	if (num_configs <= SCMI_NUM_CONFIGS)
-+		return 0;
-+
-+	*p_config_value = kcalloc(num_configs, sizeof(u32), GFP_KERNEL);
-+	*p_config_type = kcalloc(num_configs,
-+				 sizeof(enum scmi_pinctrl_conf_type),
-+				 GFP_KERNEL);
-+
-+	if (!*p_config_value || !*p_config_type) {
-+		kfree(*p_config_value);
-+		kfree(*p_config_type);
-+		return -ENOMEM;
-+	}
-+
-+	return 0;
-+}
-+
-+static void
-+pinctrl_scmi_free_configs(struct pinctrl_dev *pctldev, u32 num_configs,
-+			  u32 **p_config_value,
-+			  enum scmi_pinctrl_conf_type **p_config_type)
-+{
-+	if (num_configs <= SCMI_NUM_CONFIGS)
-+		return;
-+
-+	kfree(*p_config_value);
-+	kfree(*p_config_type);
-+}
-+
-+static int pinctrl_scmi_pinconf_set(struct pinctrl_dev *pctldev,
-+				    unsigned int _pin,
-+				    unsigned long *configs,
-+				    unsigned int num_configs)
-+{
-+	int i, ret;
-+	struct scmi_pinctrl *pmx = pinctrl_dev_get_drvdata(pctldev);
-+	enum scmi_pinctrl_conf_type config_type[SCMI_NUM_CONFIGS];
-+	u32 config_value[SCMI_NUM_CONFIGS];
-+	enum scmi_pinctrl_conf_type *p_config_type = config_type;
-+	u32 *p_config_value = config_value;
-+	enum pin_config_param param;
-+
-+	if (!configs || !num_configs)
-+		return -EINVAL;
-+
-+	ret = pinctrl_scmi_alloc_configs(pctldev, num_configs, &p_config_type,
-+					 &p_config_value);
-+	if (ret)
-+		return ret;
-+
-+	for (i = 0; i < num_configs; i++) {
-+		param = pinconf_to_config_param(configs[i]);
-+		ret = pinctrl_scmi_map_pinconf_type(param, &p_config_type[i]);
-+		if (ret) {
-+			dev_err(pmx->dev, "Error map pinconf_type %d\n", ret);
-+			goto free_config;
-+		}
-+		p_config_value[i] = pinconf_to_config_argument(configs[i]);
-+	}
-+
-+	ret = pinctrl_ops->config_set(pmx->ph, _pin, PIN_TYPE, num_configs,
-+				      p_config_type,  p_config_value);
-+	if (ret)
-+		dev_err(pmx->dev, "Error parsing config %d\n", ret);
-+
-+free_config:
-+	pinctrl_scmi_free_configs(pctldev, num_configs, &p_config_type,
-+				  &p_config_value);
-+	return ret;
-+}
-+
-+static int pinctrl_scmi_pinconf_group_set(struct pinctrl_dev *pctldev,
-+					  unsigned int group,
-+					  unsigned long *configs,
-+					  unsigned int num_configs)
-+{
-+	int i, ret;
-+	struct scmi_pinctrl *pmx =  pinctrl_dev_get_drvdata(pctldev);
-+	enum scmi_pinctrl_conf_type config_type[SCMI_NUM_CONFIGS];
-+	u32 config_value[SCMI_NUM_CONFIGS];
-+	enum scmi_pinctrl_conf_type *p_config_type = config_type;
-+	u32 *p_config_value = config_value;
-+	enum pin_config_param param;
-+
-+	if (!configs || !num_configs)
-+		return -EINVAL;
-+
-+	ret = pinctrl_scmi_alloc_configs(pctldev, num_configs, &p_config_type,
-+					 &p_config_value);
-+	if (ret)
-+		return ret;
-+
-+	for (i = 0; i < num_configs; i++) {
-+		param = pinconf_to_config_param(configs[i]);
-+		ret = pinctrl_scmi_map_pinconf_type(param,
-+						    &p_config_type[i]);
-+		if (ret) {
-+			dev_err(pmx->dev, "Error map pinconf_type %d\n", ret);
-+			goto free_config;
-+		}
-+
-+		p_config_value[i] = pinconf_to_config_argument(configs[i]);
-+	}
-+
-+	ret = pinctrl_ops->config_set(pmx->ph, group, GROUP_TYPE, num_configs,
-+				      p_config_type, p_config_value);
-+	if (ret)
-+		dev_err(pmx->dev, "Error parsing config %d", ret);
-+
-+free_config:
-+	pinctrl_scmi_free_configs(pctldev, num_configs, &p_config_type,
-+				  &p_config_value);
-+	return ret;
-+};
-+
-+static int pinctrl_scmi_pinconf_group_get(struct pinctrl_dev *pctldev,
-+					  unsigned int group,
-+					  unsigned long *config)
-+{
-+	int ret;
-+	struct scmi_pinctrl *pmx = pinctrl_dev_get_drvdata(pctldev);
-+	enum pin_config_param config_type;
-+	enum scmi_pinctrl_conf_type type;
-+	u32 config_value;
-+
-+	if (!config)
-+		return -EINVAL;
-+
-+	config_type = pinconf_to_config_param(*config);
-+	ret = pinctrl_scmi_map_pinconf_type(config_type, &type);
-+	if (ret) {
-+		dev_err(pmx->dev, "Error map pinconf_type %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = pinctrl_ops->config_get(pmx->ph, group, GROUP_TYPE, type,
-+				      &config_value);
-+	if (ret)
-+		return ret;
-+
-+	*config = pinconf_to_config_packed(config_type, config_value);
-+
-+	return 0;
-+}
-+
-+static const struct pinconf_ops pinctrl_scmi_pinconf_ops = {
-+	.is_generic = true,
-+	.pin_config_get = pinctrl_scmi_pinconf_get,
-+	.pin_config_set = pinctrl_scmi_pinconf_set,
-+	.pin_config_group_set = pinctrl_scmi_pinconf_group_set,
-+	.pin_config_group_get = pinctrl_scmi_pinconf_group_get,
-+	.pin_config_config_dbg_show = pinconf_generic_dump_config,
-+};
-+
-+static int pinctrl_scmi_get_pins(struct scmi_pinctrl *pmx,
-+				 unsigned int *nr_pins,
-+				 const struct pinctrl_pin_desc **pins)
-+{
-+	int ret, i;
-+
-+	if (!pins || !nr_pins)
-+		return -EINVAL;
-+
-+	if (pmx->nr_pins) {
-+		*pins = pmx->pins;
-+		*nr_pins = pmx->nr_pins;
-+		return 0;
-+	}
-+
-+	*nr_pins = pinctrl_ops->count_get(pmx->ph, PIN_TYPE);
-+
-+	pmx->nr_pins = *nr_pins;
-+	pmx->pins = devm_kmalloc_array(pmx->dev, *nr_pins, sizeof(*pmx->pins),
-+				       GFP_KERNEL);
-+	if (!pmx->pins)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < *nr_pins; i++) {
-+		pmx->pins[i].number = i;
-+		ret = pinctrl_ops->name_get(pmx->ph, i, PIN_TYPE,
-+					    &pmx->pins[i].name);
-+		if (ret) {
-+			dev_err(pmx->dev, "Can't get name for pin %d: rc %d", i, ret);
-+			pmx->nr_pins = 0;
-+			return ret;
-+		}
-+	}
-+
-+	*pins = pmx->pins;
-+	dev_dbg(pmx->dev, "got pins %d", *nr_pins);
-+
-+	return 0;
-+}
-+
-+static const struct scmi_device_id scmi_id_table[] = {
-+	{ SCMI_PROTOCOL_PINCTRL, "pinctrl" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(scmi, scmi_id_table);
-+
-+static int scmi_pinctrl_probe(struct scmi_device *sdev)
-+{
-+	int ret;
-+	struct device *dev = &sdev->dev;
-+	struct scmi_pinctrl *pmx;
-+	const struct scmi_handle *handle;
-+	struct scmi_protocol_handle *ph;
-+
-+	if (!sdev || !sdev->handle)
-+		return -EINVAL;
-+
-+	handle = sdev->handle;
-+
-+	pinctrl_ops = handle->devm_protocol_get(sdev, SCMI_PROTOCOL_PINCTRL,
-+						&ph);
-+	if (IS_ERR(pinctrl_ops))
-+		return PTR_ERR(pinctrl_ops);
-+
-+	pmx = devm_kzalloc(dev, sizeof(*pmx), GFP_KERNEL);
-+	if (!pmx)
-+		return -ENOMEM;
-+
-+	pmx->ph = ph;
-+
-+	pmx->dev = dev;
-+	pmx->pctl_desc.name = DRV_NAME;
-+	pmx->pctl_desc.owner = THIS_MODULE;
-+	pmx->pctl_desc.pctlops = &pinctrl_scmi_pinctrl_ops;
-+	pmx->pctl_desc.pmxops = &pinctrl_scmi_pinmux_ops;
-+	pmx->pctl_desc.confops = &pinctrl_scmi_pinconf_ops;
-+
-+	ret = pinctrl_scmi_get_pins(pmx, &pmx->pctl_desc.npins,
-+				    &pmx->pctl_desc.pins);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_pinctrl_register_and_init(dev, &pmx->pctl_desc, pmx,
-+					     &pmx->pctldev);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to register pinctrl\n");
-+
-+	pmx->nr_functions = pinctrl_scmi_get_functions_count(pmx->pctldev);
-+	pmx->nr_groups = pinctrl_scmi_get_groups_count(pmx->pctldev);
-+
-+	if (pmx->nr_functions) {
-+		pmx->functions = devm_kcalloc(dev, pmx->nr_functions,
-+					      sizeof(*pmx->functions),
-+					      GFP_KERNEL);
-+		if (!pmx->functions)
-+			return -ENOMEM;
-+	}
-+
-+	if (pmx->nr_groups) {
-+		pmx->groups = devm_kcalloc(dev, pmx->nr_groups,
-+					   sizeof(*pmx->groups), GFP_KERNEL);
-+		if (!pmx->groups)
-+			return -ENOMEM;
-+	}
-+
-+	return pinctrl_enable(pmx->pctldev);
-+}
-+
-+static struct scmi_driver scmi_pinctrl_driver = {
-+	.name = DRV_NAME,
-+	.probe = scmi_pinctrl_probe,
-+	.id_table = scmi_id_table,
-+};
-+module_scmi_driver(scmi_pinctrl_driver);
-+
-+MODULE_AUTHOR("Oleksii Moisieiev <oleksii_moisieiev@epam.com>");
-+MODULE_AUTHOR("Peng Fan <peng.fan@nxp.com>");
-+MODULE_DESCRIPTION("ARM SCMI pin controller driver");
-+MODULE_LICENSE("GPL");
-
--- 
-2.37.1
-
+> > +        compatible = "sophgo,cv1800-dmamux";
+> > +        #dma-cells = <3>;
+> > +        dma-masters = <&dmac>;
+> > +        dma-requests = <8>;
+> > +      };
+> > +    };
+> > +
+> > +...
+> > --
+> > 2.43.2
+> > 
 
