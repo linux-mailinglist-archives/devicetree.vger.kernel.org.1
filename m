@@ -1,178 +1,124 @@
-Return-Path: <devicetree+bounces-45189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 981E0861034
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 12:18:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF0A3861041
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 12:22:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3E7D1C220DC
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 11:18:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A85E8286EC9
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 11:22:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81B0A664B4;
-	Fri, 23 Feb 2024 11:18:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61ACF633E9;
+	Fri, 23 Feb 2024 11:22:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UdqA70He"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZzAaElrm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 544735C911;
-	Fri, 23 Feb 2024 11:18:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A37A5D47A;
+	Fri, 23 Feb 2024 11:22:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708687119; cv=none; b=cYHGrb2jPOtyBU+iWm1F9rHZBKP8cfdB5LCFZgervrYhnX9M0JWu5uz6zpGjAPMo5x+5y0jOCzVE3WzTFGV4Bnl/xReWvTGuoZElUvIjPN3pPSTPPydZ48w04vdKWbMXJ4EB0IP7qTVvOByl+9OrNzSkAi2NaHnZDdGFJ/tol3g=
+	t=1708687361; cv=none; b=P2AdVud30w04aUWSIxnHnnGesgDvtQbba4ewZl2lJwDLOQskB7w0/SC8o8sc5oMK6w0x2UWgsyfHn0Gk/Iu7DSDGI3Ydzx1j11+OtU14BSzDah+qP6zrZF4c1pPUlZ1IO/fG4aM8SL6LDQsdQjgEspMRmm/RzeWfTggrLE1b35A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708687119; c=relaxed/simple;
-	bh=WqWwgEoSuM/1pfV16dEakkeAH3YcAqhmmNupq9ppA1Y=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ncwOtCz1S2qqkNryx++crP6RXqQ74SNEiagYAfNyGaJzw46Parl21Z9Wq/3AThG0YqHA1BQGb1ruunb2Po/vAQwny3uNw9b842Iqo3MEQWwix10ApI0lEaV+zhTHu5m884wzF8Udg++wsCPTCeJLggSY2CYor56hcSalSDMGUbU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UdqA70He; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id B557BC433F1;
-	Fri, 23 Feb 2024 11:18:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708687118;
-	bh=WqWwgEoSuM/1pfV16dEakkeAH3YcAqhmmNupq9ppA1Y=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=UdqA70HeRjCxiNtSJmZh3McG5HyShAQSx7OcaEfrQI/wMzmdrz0BOKriZFbwmYnvT
-	 0s+yv7HxvsYDMy7aYeixVmfsCfpf3RzLrZ3zjqgrOteT5kbOmgQO5xjdU3iL4ASgK3
-	 qFCJz/m65OugLmDtEVOmVEpQbMEFl0OVV7iEm9YW44nvkQrN91O+R9s8dN81c/hOOr
-	 rqIvn3m1fWUoKTDdlVds+QymKLUDmgAJkV5rnDZYM205amTstAQh0eWhze+Uztt3PN
-	 pr6f65GvM8Fk3xlgqzjnSpRr5Af7EeSGEa1JAJ9/ldHtE0tbRh3ZzkDWn9Wlw0yBbD
-	 FEgxR00zo0s/w==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 98738C5478C;
-	Fri, 23 Feb 2024 11:18:38 +0000 (UTC)
-From: Hui Liu via B4 Relay <devnull+quic_huliu.quicinc.com@kernel.org>
-Date: Fri, 23 Feb 2024 19:18:06 +0800
-Subject: [PATCH v2] arm64: dts: qcom: qcm6490-idp: enable pwrkey and
- volume-up/down function
+	s=arc-20240116; t=1708687361; c=relaxed/simple;
+	bh=7UvKRmG7swJfDdVxCMKMXceTL0sGIOI++hM+zeNhxp8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=jeKMs0MvClxqMoTvC6gcrhoBmjzu1+z4N3ZOGXtiEXNlEuJyiX+tBjRPbfgocpDIAreNxOlI6yNJ03I421W8dD14PiOxT+3ZHGJGsMt7f/Wo0nHZws0AMoMHhG5paAA9oacn1FwjxJsaBF5dN/3jOjJiTcs34q9/2hFES32xQWI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZzAaElrm; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-563c403719cso743979a12.2;
+        Fri, 23 Feb 2024 03:22:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708687358; x=1709292158; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UkDOlwqdJKpgBN8ZxM5dkFMSj6BTyDau6P8LZmuFdvk=;
+        b=ZzAaElrmn6VXvmqW+Mh9/JNXjD4EsUhGLoEjxI/6qmtZV4Cej7aq+ywteOPdFzbNOJ
+         nEBqpJZFluWJEWs3Dpyxew3/ex9ZtBw1JvpY0Xga+laQ5Iy07ux2AvKDVFjf9qS4Bh8F
+         HPaPk40jhak32bXucr/iDgEJ88KB/YlPZvcaH43qic/TGxmrZvpsu7/pGSJ3xHQASOCi
+         iAcbKVVPbKz2GVJ+780K79yabmdJIovDEYzCEG/goHndFlywICPqgrS7ZAWiTEDy4E8n
+         vJnl8TLBWcED1D7XX/KyDeBtrDaoF03IzL1ckyCiEfKqhgcUv5/pXn1ERLF8TYqpXkZ5
+         GEBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708687358; x=1709292158;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UkDOlwqdJKpgBN8ZxM5dkFMSj6BTyDau6P8LZmuFdvk=;
+        b=erk4eG+of11IsXnwht97rL0B2xalgqEG2gi43HX9Rr5uo4inTQMF0ESRS22RzBXRRH
+         31OEP+lHir3HiXzeaFyPnZcOQxdBdSJbAz3D6vrMZV5Cvzihl/IePSksOT9Rpq6QSwpl
+         jv2jx4p5xo8vCByLhPSDljD5k8ZgGJqPxmvBwZrzfoRrMCu9N7BNh68TdT/yLxINQg3X
+         CEPbSzdRyiX+Y8dVlm1OFBOG2QhfbqASt8phMuwRHh9TSX1jrOqDimGVzKBdio2m5pds
+         xe4UHVCr4UYOqLUd70zd3xYjBFvlDoQqdL8tX7uEE9DN4RlJWX/yZS5miX4AG/JQBguD
+         mLJA==
+X-Forwarded-Encrypted: i=1; AJvYcCVANrWhMz1NUg884ApRvOJIPGRt5a5OTqwu1oyKWy4VSvqeFgboo+ELc6LiEjV/NeNLyyAZNeKcWrKxpUmqnl5WUWOWP4yM3Z5ZHPko5nPODIeTngkX9WPZ7QidWAYrsfpXOMhAi12/j16e8xV8iSd5NEKAsDFavKlXawoTeXOBQwuy7co=
+X-Gm-Message-State: AOJu0Yz5aY/QMIiga3bsxzb/1jt0wO5RM2ig2ZmOmFGEBqh30t4Pnuck
+	5UDyBZsIiY9EL3hAlA4YfBPt2IwltFdEz/MTbuU1dpYQJ4CkrJY3
+X-Google-Smtp-Source: AGHT+IFZW7dV98KKwCf84FGK0/EQszkPfkxlwIa3iHUC9ZlPt9zPVQjeD12dAL2y7Blnw8IOmLtBfA==
+X-Received: by 2002:aa7:d958:0:b0:564:5227:972 with SMTP id l24-20020aa7d958000000b0056452270972mr1045362eds.33.1708687357745;
+        Fri, 23 Feb 2024 03:22:37 -0800 (PST)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id f23-20020a50a6d7000000b0056392b7d85fsm6776984edc.9.2024.02.23.03.22.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Feb 2024 03:22:35 -0800 (PST)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: Pavel Machek <pavel@ucw.cz>,
+	Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] dt-bindings: leds: Add LED_FUNCTION_WAN_ONLINE for Internet access
+Date: Fri, 23 Feb 2024 12:22:23 +0100
+Message-Id: <20240223112223.1368-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240223-gpio-keys-v2-1-19f48b3d8762@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAO5+2GUC/23MQQ7CIBCF4as0sxYDVFtw5T1MFy1M24kRKiixa
- bi72LXL/+Xl2yBiIIxwqTYImCiSdyXkoQIz925CRrY0SC5PXPKGTQt5dsc1MlGrYbDqzKVWUP5
- LwJE+u3XrSs8UXz6sO53Eb/2nJMEEaxtVt1rbflT2+nyTIWeOxj+gyzl/AbdBbyGkAAAA
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Hui Liu <quic_huliu@quicinc.com>
-X-Mailer: b4 0.13-dev-83828
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1708687117; l=2151;
- i=quic_huliu@quicinc.com; s=20230823; h=from:subject:message-id;
- bh=uxn7urf55wldvs+MTDmzxYHE9lWSCWgorQZPNSBSB4Q=;
- b=gFwfI20rOvMU+88wBhjVvCNwQwZr+PNJ5pJs+3SVsZpZJBYjmgkcPnn+WzZ1ym208s046PcXO
- HN2QoWGkSEkDzkFnRj2GQIpR340qTwpsJkYp9L3kJ0NE+rVE21fPiBP
-X-Developer-Key: i=quic_huliu@quicinc.com; a=ed25519;
- pk=1z+A50UnTuKe/FdQv2c0W3ajDsJOYddwIHo2iivhTTA=
-X-Endpoint-Received:
- by B4 Relay for quic_huliu@quicinc.com/20230823 with auth_id=80
-X-Original-From: Hui Liu <quic_huliu@quicinc.com>
-Reply-To: <quic_huliu@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-From: Hui Liu <quic_huliu@quicinc.com>
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Add configurations to enable pwrkey, volume-up and volume-down function.
+It's common for routers to have LED indicating link on the WAN port.
 
-Signed-off-by: Hui Liu <quic_huliu@quicinc.com>
+Some devices however have an extra LED that's meant to be used if WAN
+connection is actually "online" (there is Internet access available).
+
+It was suggested to add #define for such use case.
+
+Link: https://lore.kernel.org/linux-devicetree/80e92209-5578-44e7-bd4b-603a29053ddf@collabora.com/T/#u
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
-Changes in v2:
-- Update the commit description.
-- Link to v1: https://lore.kernel.org/r/20240206-gpio-keys-v1-1-7683799daf8d@quicinc.com
----
- arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 43 ++++++++++++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
+ include/dt-bindings/leds/common.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-index acf145d1d97c..4199ebf667af 100644
---- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-@@ -9,6 +9,7 @@
- #define PM7250B_SID 8
- #define PM7250B_SID1 9
- 
-+#include <dt-bindings/input/linux-event-codes.h>
- #include <dt-bindings/leds/common.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- #include "sc7280.dtsi"
-@@ -39,6 +40,24 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		label = "gpio-keys";
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&key_vol_up_default>;
-+
-+		key-volume-up {
-+			label = "volume_up";
-+			gpios = <&pm7325_gpios 6 GPIO_ACTIVE_LOW>;
-+			linux,input-type = <1>;
-+			linux,code = <KEY_VOLUMEUP>;
-+			wakeup-source;
-+			debounce-interval = <15>;
-+			linux,can-disable;
-+		};
-+	};
-+
- 	reserved-memory {
- 		xbl_mem: xbl@80700000 {
- 			reg = <0x0 0x80700000 0x0 0x100000>;
-@@ -421,6 +440,17 @@ vreg_bob_3p296: bob {
- 	};
- };
- 
-+&pm7325_gpios {
-+	key_vol_up_default: key-vol-up-state {
-+		pins = "gpio6";
-+		function = "normal";
-+		input-enable;
-+		bias-pull-up;
-+		power-source = <0>;
-+		qcom,drive-strength = <3>;
-+	};
-+};
-+
- &pm8350c_pwm {
- 	status = "okay";
- 
-@@ -448,6 +478,19 @@ led@3 {
- 	};
- };
- 
-+&pmk8350_pon {
-+	status = "okay";
-+};
-+
-+&pon_pwrkey {
-+	status = "okay";
-+};
-+
-+&pon_resin {
-+	linux,code = <KEY_VOLUMEDOWN>;
-+	status = "okay";
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
-
----
-base-commit: 23e11d0318521e8693459b0e4d23aec614b3b68b
-change-id: 20240206-gpio-keys-138bbd850298
-
-Best regards,
+diff --git a/include/dt-bindings/leds/common.h b/include/dt-bindings/leds/common.h
+index c56785bb9c9c..ecea167930d9 100644
+--- a/include/dt-bindings/leds/common.h
++++ b/include/dt-bindings/leds/common.h
+@@ -100,6 +100,7 @@
+ #define LED_FUNCTION_TX "tx"
+ #define LED_FUNCTION_USB "usb"
+ #define LED_FUNCTION_WAN "wan"
++#define LED_FUNCTION_WAN_ONLINE "wan-online"
+ #define LED_FUNCTION_WLAN "wlan"
+ #define LED_FUNCTION_WLAN_2GHZ "wlan-2ghz"
+ #define LED_FUNCTION_WLAN_5GHZ "wlan-5ghz"
 -- 
-Hui Liu <quic_huliu@quicinc.com>
+2.35.3
 
 
