@@ -1,292 +1,125 @@
-Return-Path: <devicetree+bounces-45327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B42C2861797
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 17:20:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6E188617AB
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 17:22:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 414061F21F95
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 16:20:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 695271F21921
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 16:22:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4B308565A;
-	Fri, 23 Feb 2024 16:18:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFEBD8526D;
+	Fri, 23 Feb 2024 16:20:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="exvmedkQ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PZYe39Xr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9196185621;
-	Fri, 23 Feb 2024 16:18:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBF958562C;
+	Fri, 23 Feb 2024 16:20:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708705137; cv=none; b=j6Rq2C6VR48/ZC10xQPDgXaVExkbe+qEPmK+QsefgIpQUEQp/5CoCWR+mIpQ9+RMUHLZ2lI/P6NvFGmaHhKrfVmfdPpris5HTXBZjVbzUwPHmXCJNiF/Hjx+HLsHQy360vQbhwQRvnko4DxHPw+VCYDY/WlQ9WX4YCV5R9YWCi8=
+	t=1708705257; cv=none; b=jHnE/aRhMcYmGQtHsfPcxmvlyoyyU1tYxAl7rAhsooH/PH796tl8lsJWn3zGpe1PfUb7uJgXKMbE+XnrrHqyEChQPBgBWpUmwqCAJnfrmqb7DW4M8kg3efVZ3psvssnR7Bj8ppLZeayqNNxlsrjhq6thH1u6JSboqRDlVxeZ82w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708705137; c=relaxed/simple;
-	bh=++mXl8XRdlMiuP7x+ZwsIwgEa6yDT7Cbhew/+Mc8OWE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=W+dLOLJ8/6UgYar3Ncm88FzDjy4Nsf+o2OPxc2b9pX8ko729kU6dYQ+bCnzSiAVTR4iHPazsfM96v2DvaEgjzrPfmQRX21nAbyq5ERe7EdsFpro2YMoXJlJXrJgXaYI7JnBAlkUno4pnXy0nMN7xRpE0lnwzHppO3lnVGhygEVg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=exvmedkQ; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 41DCE1C0005;
-	Fri, 23 Feb 2024 16:18:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1708705131;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=/CZ2rpvcJY7E+5kqVg1LQhZq2CIMjXGm23IGlzlbGMg=;
-	b=exvmedkQOBmRFdZC1f4rAaALAYWzbog/CnWuEfrwfl079eTE3r9zzKBZ2kKp/AX4QcnDIC
-	7jNvIjq4RFFjvXRBiWUc5CB5xS5NTYXhEgUVdxKCxtrHhYFcT19JQH4njjhLiwwFux8la0
-	WmwjSNUos1AzN7jomxhfhz9iVb18FWtP/8YCYkL6NgSGYHPyFR2rb0Zk3og74RO6jTlF4H
-	2T2lvj1X1VJNd8dXW+gfW4QSwUwaG+y4dKJnAlrXXJPT3tFTTRQtcB9KfMDuuROiJhQPms
-	uHl4iuf03pTikRnQsV88LFDIPmucW12cxcSB/OoXjSgbtOGupJoqN6u3/Te9BA==
-Date: Fri, 23 Feb 2024 17:18:49 +0100
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Saravana Kannan <saravanak@google.com>
-Cc: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Xu Yang
- <xu.yang_2@nxp.com>, kernel-team@android.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, =?UTF-8?Q?Herv=C3=A9?= Codina
- <herve.codina@bootlin.com>
-Subject: Re: [PATCH v2 2/3] of: property: Improve finding the supplier of a
- remote-endpoint property
-Message-ID: <20240223171849.10f9901d@booty>
-In-Reply-To: <20240207011803.2637531-3-saravanak@google.com>
-References: <20240207011803.2637531-1-saravanak@google.com>
-	<20240207011803.2637531-3-saravanak@google.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1708705257; c=relaxed/simple;
+	bh=dwWIJwGoMU5ew25YXI00QoYBkJKwcHEWsLFpy7KUq64=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=mDKODfkd4eECESzu0xm0OJQLQjeK6n91SY+qjTYxmbY6k7kiVMSmjArCdRftjwPTBshiwOJ9WNiH3WQx39nOs33hfQ8CVAuWdaYCG+pUwL7M7l1V9SgrnWzpgr0JliV/kpJd29e8+A/z7bTzI/kuiHSTwsKDN6yaCuuERspxTiA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PZYe39Xr; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41NFLW01003973;
+	Fri, 23 Feb 2024 16:20:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=7+lZgdm
+	7GSt8ghIDF5MfQ2k86lh0IjM0BRTq/0qelZU=; b=PZYe39XrSEQYwkWXOFGd3UE
+	8Ua//3vqeHRy18OVCZdf1URKWLeQC1f6NpKsKFvWOvvtxcFt2jWZwaNmh8AOtspu
+	x/ifnEvLmSe1U3mU09G0Cb9z8aq/f5Qtah0uDzLLLxX9u7E2wlSuWBSEYwi0m09P
+	2gLO4bOcyUoqVOKfVwvYmSW4z68028tYqSaJL/6csFlboPOmcsmOszRxhtzkOeL0
+	BjI1DRUdbgTLG4j9H+4THOBcVRk4E1kiKi0kqbUgFXakR07k/MgmrKw9x41zF5vB
+	OpAQdBrbSvSxj8v/fVYwWLvB/YbjZvmMkHAHdyN6T5eb5t7TXDRoBXb7cBLHSFg=
+	=
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wen0qhfrg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 23 Feb 2024 16:20:44 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41NGKhhb007434
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 23 Feb 2024 16:20:43 GMT
+Received: from jhugo-lnx.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Fri, 23 Feb 2024 08:20:41 -0800
+From: Jeffrey Hugo <quic_jhugo@quicinc.com>
+To: <quic_bjorande@quicinc.com>, <marcel@holtmann.org>, <luiz.dentz@gmail.com>,
+        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <quic_bgodavar@quicinc.com>, <quic_rjliao@quicinc.com>
+CC: <linux-bluetooth@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Jeffrey Hugo <quic_jhugo@quicinc.com>
+Subject: [PATCH RESEND] dt-bindings: net: bluetooth: qualcomm: Fix bouncing @codeaurora
+Date: Fri, 23 Feb 2024 09:20:27 -0700
+Message-ID: <20240223162027.4016065-1-quic_jhugo@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: luca.ceresoli@bootlin.com
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: yrDevGGHGLEf47oOTWOapKsT_ZsKJ8B3
+X-Proofpoint-GUID: yrDevGGHGLEf47oOTWOapKsT_ZsKJ8B3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-23_02,2024-02-23_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=748 clxscore=1015
+ adultscore=0 malwarescore=0 bulkscore=0 spamscore=0 suspectscore=0
+ lowpriorityscore=0 priorityscore=1501 mlxscore=0 impostorscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2402230118
 
-Hello Saravana,
+The servers for the @codeaurora domain are long retired and any messages
+sent there will bounce.  Update the maintainer addresses for this
+binding to match the entries in .mailmap so that anyone looking in the
+file for a contact will see a correct address.
 
-[+cc Herv=C3=A9 Codina]
+Signed-off-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
+---
 
-On Tue,  6 Feb 2024 17:18:01 -0800
-Saravana Kannan <saravanak@google.com> wrote:
+Rob, will you take this patch into your tree for 6.9?
 
-> After commit 4a032827daa8 ("of: property: Simplify of_link_to_phandle()"),
-> remote-endpoint properties created a fwnode link from the consumer device
-> to the supplier endpoint. This is a tiny bit inefficient (not buggy) when
-> trying to create device links or detecting cycles. So, improve this the
-> same way we improved finding the consumer of a remote-endpoint property.
->=20
-> Fixes: 4a032827daa8 ("of: property: Simplify of_link_to_phandle()")
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
+ .../devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-After rebasing my own branch on v6.8-rc5 from v6.8-rc1 I started
-getting unexpected warnings during device tree overlay removal. After a
-somewhat painful bisection I identified this patch as the one that
-triggers it all.
+diff --git a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
+index eba2f3026ab0..528ef3572b62 100644
+--- a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
++++ b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
+@@ -7,8 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Qualcomm Bluetooth Chips
+ 
+ maintainers:
+-  - Balakrishna Godavarthi <bgodavar@codeaurora.org>
+-  - Rocky Liao <rjliao@codeaurora.org>
++  - Balakrishna Godavarthi <quic_bgodavar@quicinc.com>
++  - Rocky Liao <quic_rjliao@quicinc.com>
+ 
+ description:
+   This binding describes Qualcomm UART-attached bluetooth chips.
+-- 
+2.34.1
 
-> ---
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -1232,7 +1232,6 @@ DEFINE_SIMPLE_PROP(pinctrl5, "pinctrl-5", NULL)
->  DEFINE_SIMPLE_PROP(pinctrl6, "pinctrl-6", NULL)
->  DEFINE_SIMPLE_PROP(pinctrl7, "pinctrl-7", NULL)
->  DEFINE_SIMPLE_PROP(pinctrl8, "pinctrl-8", NULL)
-> -DEFINE_SIMPLE_PROP(remote_endpoint, "remote-endpoint", NULL)
->  DEFINE_SIMPLE_PROP(pwms, "pwms", "#pwm-cells")
->  DEFINE_SIMPLE_PROP(resets, "resets", "#reset-cells")
->  DEFINE_SIMPLE_PROP(leds, "leds", NULL)
-> @@ -1298,6 +1297,17 @@ static struct device_node *parse_interrupts(struct=
- device_node *np,
->  	return of_irq_parse_one(np, index, &sup_args) ? NULL : sup_args.np;
->  }
-> =20
-> +static struct device_node *parse_remote_endpoint(struct device_node *np,
-> +						 const char *prop_name,
-> +						 int index)
-> +{
-> +	/* Return NULL for index > 0 to signify end of remote-endpoints. */
-> +	if (!index || strcmp(prop_name, "remote-endpoint"))
-
-There seem to be a bug here: "!index" should be "index > 0", as the
-comment suggests. Otherwise NULL is always returned.
-
-I am going to send a quick patch for that, but haven't done so yet
-because it still won't solve the problem, so I wanted to open the topic
-here without further delay.
-
-Even with the 'index > 0' fix I'm still getting pretty much the same:
-
-[   34.836781] ------------[ cut here ]------------
-[   34.841401] WARNING: CPU: 2 PID: 204 at drivers/base/devres.c:1064 devm_=
-kfree+0x8c/0xfc
-...
-[   35.024751] Call trace:
-[   35.027199]  devm_kfree+0x8c/0xfc
-[   35.030520]  devm_drm_panel_bridge_release+0x54/0x64 [drm_kms_helper]
-[   35.036990]  devres_release_group+0xe0/0x164
-[   35.041264]  i2c_device_remove+0x38/0x9c
-[   35.045196]  device_remove+0x4c/0x80
-[   35.048774]  device_release_driver_internal+0x1d4/0x230
-[   35.054003]  device_release_driver+0x18/0x24
-[   35.058279]  bus_remove_device+0xcc/0x10c
-[   35.062292]  device_del+0x15c/0x41c
-[   35.065786]  device_unregister+0x18/0x34
-[   35.069714]  i2c_unregister_device+0x54/0x88
-[   35.073988]  of_i2c_notify+0x98/0x224
-[   35.077656]  blocking_notifier_call_chain+0x6c/0xa0
-[   35.082543]  __of_changeset_entry_notify+0x100/0x16c
-[   35.087515]  __of_changeset_revert_notify+0x44/0x78
-[   35.092398]  of_overlay_remove+0x114/0x1c4
-...
-
-By comparing the two versions I found that before removing the overlay:
-
- * in the "working" case (with this patch reverted) I have:
-
-   # ls /sys/class/devlink/ | grep 002c
-   platform:hpbr--i2c:13-002c
-   platform:panel-dsi-lvds--i2c:13-002c
-   platform:regulator-sys-1v8--i2c:13-002c
-   regulator:regulator.31--i2c:13-002c
-   #
-
- * in the "broken" case (v6.8-rc5 + s/!index/index > 0/ as mentioned):
-
-   # ls /sys/class/devlink/ | grep 002c
-   platform:hpbr--i2c:13-002c
-   platform:regulator-sys-1v8--i2c:13-002c
-   regulator:regulator.30--i2c:13-002c
-   #=20
-
-So in the latter case the panel-dsi-lvds--i2c:13-002c link is missing.
-I think it gets created but later on removed. Here's a snippet of the
-kernel log when that happens:
-
-[    9.578279] ----- cycle: start -----
-[    9.578283] /soc@0/bus@30800000/i2c@30ad0000/i2cmux@70/i2c@3/dsi-lvds-br=
-idge@2c: cycle: depends on /panel-dsi-lvds
-[    9.578308] /panel-dsi-lvds: cycle: depends on /soc@0/bus@30800000/i2c@3=
-0ad0000/i2cmux@70/i2c@3/dsi-lvds-bridge@2c
-[    9.578329] ----- cycle: end -----
-[    9.578334] platform panel-dsi-lvds: Fixed dependency cycle(s) with /soc=
-@0/bus@30800000/i2c@30ad0000/i2cmux@70/i2c@3/dsi-lvds-bridge@2c
-...
-[    9.590620] /panel-dsi-lvds Dropping the fwnode link to /soc@0/bus@30800=
-000/i2c@30ad0000/i2cmux@70/i2c@3/dsi-lvds-bridge@2c
-...
-[    9.597280] ----- cycle: start -----
-[    9.597283] /panel-dsi-lvds: cycle: depends on /soc@0/bus@30800000/i2c@3=
-0ad0000/i2cmux@70/i2c@3/dsi-lvds-bridge@2c
-[    9.602781] /soc@0/bus@30800000/i2c@30ad0000/i2cmux@70/i2c@3/dsi-lvds-br=
-idge@2c: cycle: depends on /panel-dsi-lvds
-[    9.607581] ----- cycle: end -----
-[    9.607585] i2c 13-002c: Fixed dependency cycle(s) with /panel-dsi-lvds
-[    9.614217] device: 'platform:panel-dsi-lvds--i2c:13-002c': device_add
-...
-[    9.614277] /soc@0/bus@30800000/i2c@30ad0000/i2cmux@70/i2c@3/dsi-lvds-br=
-idge@2c Dropping the fwnode link to /panel-dsi-lvds
-[    9.614369] /soc@0/bus@30800000/i2c@30ad0000/i2cmux@70/i2c@3/dsi-lvds-br=
-idge@2c Dropping the fwnode link to /regulator-dock-sys-1v8
-...
-[    9.739840] panel-simple panel-dsi-lvds: Dropping the link to 13-002c
-[    9.739846] device: 'i2c:13-002c--platform:panel-dsi-lvds': device_unreg=
-ister
-[   10.247037] sn65dsi83 13-002c: Dropping the link to panel-dsi-lvds
-[   10.247049] device: 'platform:panel-dsi-lvds--i2c:13-002c': device_unreg=
-ister
-
-And here's the relevant portion of my device tree overlay:
-
---------------------8<--------------------
-
-/dts-v1/;
-/plugin/;
-
-&{/}
-{
-        panel_dsi_lvds: panel-dsi-lvds {
-                compatible =3D "auo,g133han01.1";
-
-                ports {
-                        #address-cells =3D <1>;
-                        #size-cells =3D <0>;
-                        port@0{
-                                reg =3D <0>;
-                                dual-lvds-odd-pixels;
-                                panel_dsi_lvds_in0: endpoint {
-                                        remote-endpoint =3D <&sn65dsi84_out=
-0>;
-                                };
-                        };
-
-                        port@1{
-                                reg =3D <1>;
-                                dual-lvds-even-pixels;
-                                panel_dsi_lvds_in1: endpoint {
-                                        remote-endpoint =3D <&sn65dsi84_out=
-1>;
-                                };
-                        };
-                };
-        };
-};
-
-&i2c5_ch3 {
-        dsi-lvds-bridge@2c {
-                compatible =3D "ti,sn65dsi84";
-                reg =3D <0x2c>;
-                vcc-supply =3D <&reg_sys_1v8>;
-
-                ports {
-                        #address-cells =3D <1>;
-                        #size-cells =3D <0>;
-
-                        port@0 {
-                                reg =3D <0>;
-
-                                sn65dsi84_from_bridge: endpoint {
-                                        remote-endpoint =3D <&hpbr_source>;
-                                        data-lanes =3D <1 2 3 4>;
-                                };
-                        };
-                        port@2 {
-                                reg =3D <2>;
-
-                                sn65dsi84_out0: endpoint {
-                                        remote-endpoint =3D <&panel_dsi_lvd=
-s_in0>;
-                                };
-                        };
-                        port@3 {
-                                reg =3D <3>;
-
-                                sn65dsi84_out1: endpoint {
-                                        remote-endpoint =3D <&panel_dsi_lvd=
-s_in1>;
-                                };
-                        };
-                };
-        };
-};
-
---------------------8<--------------------
-
-That's all I could get at this point. Any clues for further
-investigation?
-
-Best regards,
-Luca
-
---=20
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
