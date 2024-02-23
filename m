@@ -1,159 +1,167 @@
-Return-Path: <devicetree+bounces-45301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 280D086158F
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 16:24:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3CA08615C9
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 16:29:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BDB21B24D81
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 15:23:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 018401C23525
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 15:29:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C0C085274;
-	Fri, 23 Feb 2024 15:23:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1154C823D1;
+	Fri, 23 Feb 2024 15:29:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hg+OdIcd"
+	dkim=pass (1024-bit key) header.d=peacevolution.org header.i=@peacevolution.org header.b="BU34EUMB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from a.peacevolution.org (a.peacevolution.org [206.189.193.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6876783CBD;
-	Fri, 23 Feb 2024 15:23:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4112C10A3E;
+	Fri, 23 Feb 2024 15:29:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.193.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708701789; cv=none; b=oRYmBLctHLhXSU1501YhtkBfyIBBrNgcd4uQDH/JQmHno5hS8JHzJj1xXwt2QG3qDIU1B+Y9Z1VbOkmtEoqshA7GjGIxWytgeoQUBZcwWfgZ+GJcFu4LTaBVSamoAvLPq/RmxexprMTpKVzm9jY9ZQ+5Q9JmQGWacLXwiDW9vQ0=
+	t=1708702143; cv=none; b=d++wb8kO1fBJZS4DRlxcBwpRN5pNUX5FskHyLq3YrANuv9pk/m2CClJ6fiiD3bC0lcAKN3zs5jGjcPGExwPgnBFhkaUhiJOgJn2fTmAz4N9Bi8SOQLBd0/bBd50J6nR+gABvTcnmJmz6Vhms/KprKk017ic9ehbIrBbbJtFljvE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708701789; c=relaxed/simple;
-	bh=m8pSgG+tILjksUnIEn47rNQsq3jlzF02sVC9//IqHf8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=foS2W48zS8LHp8GoGiLrI0vWq8oTKYTXAEYPC/6Uovxh+V4DpIT45NQ8ZCIfMMWG4+WvS1Qca65AVzHtspSk+sD4wYSBGjkSxLQz3iIzfWb4FJ2KX1Wt0KkjkUzPfpOccCYYx4Si3HZnBkZ8vw+7DFLWg56PlgoFtJkt7NS+epo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hg+OdIcd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA93EC43142;
-	Fri, 23 Feb 2024 15:23:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708701786;
-	bh=m8pSgG+tILjksUnIEn47rNQsq3jlzF02sVC9//IqHf8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Hg+OdIcd6RZ2ZAkx29PIE2bh37UR/Tzmf8W53YxXYFJJixQYlOJTc4rHr6N8mVi/6
-	 x93Mk6D1NPk92Lyy1e2zZe4c+c9Nvp2rmykNVJ2GP0vszUrvQwjiRPDoQhEBynY7Zw
-	 zjHnOkkuKoNeNJdyfkcJ/nTGwbYOubN21KrU2Sf98WHjDkAzjixiLph/+6J7ketfGE
-	 WwArB7M9YIVGSRuQg4d06tCzohE+Sh/H8N6bcXQd+GFOopFA8XzbRIMO2Ov+y6tcgk
-	 WJe7oMh2Wg7sGiEg2ziCRehwPcwTQZc69Yw/K5EXxRQlHfev8NmJ6MnERgjK9/thm5
-	 SmBGXbEh8RHtQ==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan+linaro@kernel.org>)
-	id 1rdXOJ-000000005Fy-3KpN;
-	Fri, 23 Feb 2024 16:23:11 +0100
-From: Johan Hovold <johan+linaro@kernel.org>
-To: Bjorn Helgaas <bhelgaas@google.com>,
-	Bjorn Andersson <andersson@kernel.org>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH v2 12/12] arm64: dts: qcom: sc8280xp: enable GICv3 ITS for PCIe
-Date: Fri, 23 Feb 2024 16:21:24 +0100
-Message-ID: <20240223152124.20042-13-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240223152124.20042-1-johan+linaro@kernel.org>
-References: <20240223152124.20042-1-johan+linaro@kernel.org>
+	s=arc-20240116; t=1708702143; c=relaxed/simple;
+	bh=25P7JcxoGTkRa2dDDX/BuiwaEg9vmsf9zGtQolf4VMo=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WhowyCPTbwQVW8dtIL2jho4sIQ4pG9mGqdo84sFp1lH28z6zUTlkvSkHD1VA3joa4ub6PIGaH3OtD+umdbsPd2ms7fa43uixti/mlNAsJb4JakoKG79CSW9uIdhpq4WKlNvl14v313jM5hwbiv1kmZTjSpnVQLWpptkfMVStCXo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=peacevolution.org; spf=pass smtp.mailfrom=peacevolution.org; dkim=pass (1024-bit key) header.d=peacevolution.org header.i=@peacevolution.org header.b=BU34EUMB; arc=none smtp.client-ip=206.189.193.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=peacevolution.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=peacevolution.org
+Received: from authenticated-user (PRIMARY_HOSTNAME [PUBLIC_IP])
+	by a.peacevolution.org (Postfix) with ESMTPA id 46802401E9;
+	Fri, 23 Feb 2024 15:22:38 +0000 (UTC)
+Date: Fri, 23 Feb 2024 10:22:36 -0500
+From: Aren <aren@peacevolution.org>
+To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>, 
+	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, 
+	Jean-Jacques Hiblot <jjhiblot@traphandler.com>, Chen-Yu Tsai <wens@csie.org>, linux-sunxi@lists.linux.dev, 
+	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>, 
+	linux-arm-kernel@lists.infradead.org, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	linux-leds@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Miles Alan <m@milesalan.com>, 
+	Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH v2 3/4] arm64: dts: sun50i-a64-pinephone: add multicolor
+ led node
+Message-ID: <5hqfabcolgqcu22hs3xnaimojwuz26tzi63px3rvbsgxa6kjss@ik42w7k26see>
+References: <20240206185400.596979-1-aren@peacevolution.org>
+ <20240206185400.596979-3-aren@peacevolution.org>
+ <sixgkkllo7medcjwjnmbkpqkgfvnmrtlhlwarwuxid5oqwrht5@gl65b6fetq2b>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <sixgkkllo7medcjwjnmbkpqkgfvnmrtlhlwarwuxid5oqwrht5@gl65b6fetq2b>
+X-Spamd-Bar: /
+Authentication-Results: auth=pass smtp.auth=aren@peacevolution.org smtp.mailfrom=aren@peacevolution.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=peacevolution.org;
+	s=dkim; t=1708701759;
+	h=from:subject:date:message-id:to:mime-version:content-type:content-transfer-encoding:in-reply-to:references;
+	bh=/xPGKWu8KokBiTM1Ns88qRxeRkPSchgepjKoxnDo5og=;
+	b=BU34EUMBKkMZj9cFgixCr6e8kpnC8CmyEaBxEXatlZ2lG+RNvZsrr/0A4pL7+pm6xSWq+Q
+	hOCt2IrL/F7WJ5gastagvM/VAtEtUP5tI4RV7wNQSsFi4M2uBQR51LvKarznrxWXngCX+x
+	ZaHL352QGXXAhOgqBatwFmIpHh816mM=
 
-The DWC PCIe controller can be used with its internal MSI controller or
-with an external one such as the GICv3 Interrupt Translation Service
-(ITS).
+On Fri, Feb 23, 2024 at 09:46:25AM +0100, Ondřej Jirman wrote:
+> Hello Aren,
+> 
+> On Tue, Feb 06, 2024 at 01:13:19PM -0500, Aren Moynihan wrote:
+> > The red, green, and blue leds currently in the device tree represent a
+> > single rgb led on the front of the PinePhone.
+> > 
+> > Signed-off-by: Aren Moynihan <aren@peacevolution.org>
+> > ---
+> > 
+> > Changes in v2:
+> >  - remove function property from individual led nodes
+> > 
+> >  .../boot/dts/allwinner/sun50i-a64-pinephone.dtsi | 16 ++++++++++------
+> >  1 file changed, 10 insertions(+), 6 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+> > index ad2476ee01e4..e53e0d4579a7 100644
+> > --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+> > @@ -39,28 +39,32 @@ chosen {
+> >  	leds {
+> >  		compatible = "gpio-leds";
+> >  
+> > -		led-0 {
+> > -			function = LED_FUNCTION_INDICATOR;
+> 
+> This looks like a needless change that will just break people's current scripts
+> and setup. It does mine, and there sure are others that will be surprised, too.
+> 
+> This leads to a change in sysfs path from:
+> 
+>   /sys/class/leds/blue:indicator
+> 
+> to
+> 
+>   /sys/class/leds/blue:
+> 
+> which is 1) a weird name and 2) a backwards compatibility break for seemingly
+> no apparent reason. Any reaons for the change?
 
-Add the msi-map properties needed to use the GIC ITS. This will also
-make Linux switch to the ITS implementation, which allows for assigning
-affinity to individual MSIs.
+Leds-group-multicolor will make those read-only, so that will break when
+it's enabled either way. Removing the function property makes it less
+likely that programs attempting to discover leds will use the wrong
+path.
 
-Note that using the GIC ITS on SC8280XP will cause Advanced Error
-Reporting (AER) interrupts to be received on errors unlike when using
-the internal MSI controller. This will specifically lead to
-notifications about Correctable Errors being logged for the Wi-Fi
-controller on the Lenovo ThinkPad X13s when ASPM L0s is enabled.
+I left these in v1 of this patch, but was recommended to remove them.
+https://lore.kernel.org/lkml/k26bellccok4tj3kz2nrtp2vth2rnsiea677e2kzm56m767wjx@pnkqiz5hmiyb/
 
-Suggested-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+Thanks for taking a look at this
+ - Aren
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index 95c7b746407f..3e5063f67fc6 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -1737,6 +1737,8 @@ pcie4: pcie@1c00000 {
- 			linux,pci-domain = <6>;
- 			num-lanes = <1>;
- 
-+			msi-map = <0x0 &its 0xe0000 0x10000>;
-+
- 			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
-@@ -1838,6 +1840,8 @@ pcie3b: pcie@1c08000 {
- 			linux,pci-domain = <5>;
- 			num-lanes = <2>;
- 
-+			msi-map = <0x0 &its 0xd0000 0x10000>;
-+
- 			interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
-@@ -1937,6 +1941,8 @@ pcie3a: pcie@1c10000 {
- 			linux,pci-domain = <4>;
- 			num-lanes = <4>;
- 
-+			msi-map = <0x0 &its 0xc0000 0x10000>;
-+
- 			interrupts = <GIC_SPI 312 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 313 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 314 IRQ_TYPE_LEVEL_HIGH>,
-@@ -2039,6 +2045,8 @@ pcie2b: pcie@1c18000 {
- 			linux,pci-domain = <3>;
- 			num-lanes = <2>;
- 
-+			msi-map = <0x0 &its 0xb0000 0x10000>;
-+
- 			interrupts = <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>,
-@@ -2138,6 +2146,8 @@ pcie2a: pcie@1c20000 {
- 			linux,pci-domain = <2>;
- 			num-lanes = <4>;
- 
-+			msi-map = <0x0 &its 0xa0000 0x10000>;
-+
- 			interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 523 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 524 IRQ_TYPE_LEVEL_HIGH>,
-@@ -4426,7 +4436,7 @@ intc: interrupt-controller@17a00000 {
- 			#size-cells = <2>;
- 			ranges;
- 
--			msi-controller@17a40000 {
-+			its: msi-controller@17a40000 {
- 				compatible = "arm,gic-v3-its";
- 				reg = <0 0x17a40000 0 0x20000>;
- 				msi-controller;
--- 
-2.43.0
-
+> People normally hardcode these paths in eg. /etc/tmpfiles.d to apply LED triggers
+> to particular LEDs.
+> 
+> Kind regards,
+> 	o.
+> 
+> > +		led0: led-0 {
+> >  			color = <LED_COLOR_ID_BLUE>;
+> >  			gpios = <&pio 3 20 GPIO_ACTIVE_HIGH>; /* PD20 */
+> >  			retain-state-suspended;
+> >  		};
+> >  
+> > -		led-1 {
+> > -			function = LED_FUNCTION_INDICATOR;
+> > +		led1: led-1 {
+> >  			color = <LED_COLOR_ID_GREEN>;
+> >  			gpios = <&pio 3 18 GPIO_ACTIVE_HIGH>; /* PD18 */
+> >  			retain-state-suspended;
+> >  		};
+> >  
+> > -		led-2 {
+> > -			function = LED_FUNCTION_INDICATOR;
+> > +		led2: led-2 {
+> >  			color = <LED_COLOR_ID_RED>;
+> >  			gpios = <&pio 3 19 GPIO_ACTIVE_HIGH>; /* PD19 */
+> >  			retain-state-suspended;
+> >  		};
+> >  	};
+> >  
+> > +	multi-led {
+> > +		compatible = "leds-group-multicolor";
+> > +		color = <LED_COLOR_ID_RGB>;
+> > +		function = LED_FUNCTION_INDICATOR;
+> > +		leds = <&led0>, <&led1>, <&led2>;
+> > +	};
+> > +
+> >  	reg_ps: ps-regulator {
+> >  		compatible = "regulator-fixed";
+> >  		regulator-name = "ps";
+> > -- 
+> > 2.43.0
+> > 
 
