@@ -1,259 +1,139 @@
-Return-Path: <devicetree+bounces-45259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E8CF8613B2
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 15:12:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A078A8613BE
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 15:16:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FFE21F221D6
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 14:12:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 552EE1F22FC7
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 14:16:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D9148002E;
-	Fri, 23 Feb 2024 14:12:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B3658003B;
+	Fri, 23 Feb 2024 14:16:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cGJ2F8h0"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="mCiJFOhc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DABD7F46E;
-	Fri, 23 Feb 2024 14:12:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2493D6FBF;
+	Fri, 23 Feb 2024 14:16:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708697568; cv=none; b=apFq1g1M6WGcx5rXRmapiLVhKmxMs7+KyEKXZjANUes0x8giwTN0uQ5nYKKC1tP7vnc8Ys59yeSIRaawmAHT/IQU+tWosbJqGae9Yq1R5xeK26KBk4sfbw7bQU70Tb7hUU9SkeNktlYFGaN4FS9P3T+sVb8sh8ZUdBockoz/yWs=
+	t=1708697791; cv=none; b=r+5XBvM01paA8G7K5I1st4nMiHPOwVsDIGoYcaOzZ1q6qCOPWdj3lruY/usCR5M3BT70+pGKVRxDFTOsSbrWaOCgq0AKZf3aHmvgdyfb3QyXxVhFfsaLHoVfVPUVsU4SIE5IrToBxQrq8GmAkvL0ZRYCmtc27QeVhQ4189PXP5U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708697568; c=relaxed/simple;
-	bh=bUlp46Zm9bHTWoStRR28lGnePyraKkEGReXUW7v5XGA=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=mw0zZYQG4+VW0sNpD+WN6NSqHScktRSYqKHK8PCoX+Xy6BP3bl7Schgp21iUY8ohTM6Cm1zUl4GvmMzPBMeqMrz9djDp8ntoinqUchjUKFU8Uzqq3j5jKk2S1ekyV0BJd5kP+Irvc1Ke4n9oiL9pJISSv7BtWpTUxGPrHxXR6+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cGJ2F8h0; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-41294136c27so3593935e9.3;
-        Fri, 23 Feb 2024 06:12:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708697564; x=1709302364; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=P4gYPQDKRW28f/+Hb98TaIICcu3K1spSmQnj/lPb0BY=;
-        b=cGJ2F8h0FLbwYerfoOvThEPAieJFAPxsC50iB5V8ikb1/fXNXLo2FJhv4gU2ba6XwN
-         6eSkFddNlxNwBlv71zPLL/+4b5w9zVtODxx99FTxCfH2iZ2t1TVHAXeXGbyDmICF5Zn7
-         9b8Y2oiijgTSzgyJRMppSs2TtVgMGj/8BezYwGcIVxpfzbVEmompGXdcKNuyVTegtDeM
-         /ORgxFYi/bHm/CwHIEaixWSOIydH31pKwdJWZFdlAnR/dPq2hyPoLfHYZyBevg0bzPOI
-         s/jygUwwM31tsnDb1Ckc7DkakTuQh+UQWZmdD1uew3Z7AnWltKclJW8MyaoacTpi2j5r
-         DAUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708697564; x=1709302364;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=P4gYPQDKRW28f/+Hb98TaIICcu3K1spSmQnj/lPb0BY=;
-        b=MF643JJQTNHcRLUz2xagM6/RBVHHzQxglF0O1Ijnavt28QsRSkHTQZN3OY9UDB2ar1
-         JLS63VJbiwN/FJlqEXd11JgySgJNXR0qnaWOwf3oyA302wzRGtbsuj4uMkrEBW45yX4t
-         HMsH7iDbuz0/I+fblf5Eh2IUDsbleSZ05GP4xym0TTa6S9P7PZQ/kxKmpN6QQ1j+SciS
-         0Cu46SHaF6wrsohwYtRHb0SagqZJQC2vLuc/DgCC0MdtTkA1lifNU/0ZK0O/NRuFzkmP
-         X1qV8fjSnYxk2TJhqbJ52CXVftadnMFryVRRQXqGaMyyUzJhbH8pQzndO5+Eu86yH0xh
-         wzaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV/xxRvilrz7PRhsjaeoSXOfjJuFImn8TsHUqsWKO2KkvOn8z10TGDRmIKsrtEKOXT/98heZ2bPGahIFXr69AbWmAyWPbvAcCgeqolwsvOh3U7JnLyyH/D3SHu1Mv0X66bTQ4FFAofaYN9N76NKlepaxIPyDTtHdM4na7FkYQrUBnpxTjmg4zWqZR6DFlqPh5br4D0YX6e+MHHZVsIyFag=
-X-Gm-Message-State: AOJu0YztRbS6PnU7+WjkeI85/1i/Ksex9eMqHSUSsaHx1C2APlZjx0yb
-	s85UTWgrvWZ80ty5og0t1wusmpvmbISQOrDAt8xc/IVMpVNcEdci
-X-Google-Smtp-Source: AGHT+IGLF41VZJ8Eg25oa4IAtL3SpllI6mhpkk3XR+mCfxtVp291bgmLEnl5sysU9tZOQZw7+WctnQ==
-X-Received: by 2002:adf:fd81:0:b0:33d:2710:b424 with SMTP id d1-20020adffd81000000b0033d2710b424mr1590190wrr.22.1708697564206;
-        Fri, 23 Feb 2024 06:12:44 -0800 (PST)
-Received: from ?IPv6:2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47? (p200300f6ef1b2000944ccbc71e1c2c47.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47])
-        by smtp.gmail.com with ESMTPSA id u2-20020a056000038200b0033db0bbc2ccsm1313636wrf.3.2024.02.23.06.12.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Feb 2024 06:12:43 -0800 (PST)
-Message-ID: <b08539f4afdceeb5a0d675113734f6f2f402a311.camel@gmail.com>
-Subject: Re: [PATCH v15 2/3] iio: adc: ad_sigma_delta: Add optional irq
- selection
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Dumitru Ceclan <mitrutzceclan@gmail.com>
-Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org, 
- linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Jonathan
- Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>,  Michael Walle <michael@walle.cc>, Andy Shevchenko
- <andy.shevchenko@gmail.com>, Arnd Bergmann <arnd@arndb.de>,  ChiaEn Wu
- <chiaen_wu@richtek.com>, Niklas Schnelle <schnelle@linux.ibm.com>, Leonard
- =?ISO-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>, Mike Looijmans
- <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>, Hugo Villeneuve
- <hvilleneuve@dimonoff.com>, David Lechner <dlechner@baylibre.com>, Ceclan
- Dumitru <dumitru.ceclan@analog.com>,  linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org
-Date: Fri, 23 Feb 2024 15:16:04 +0100
-In-Reply-To: <20240223133758.9787-2-mitrutzceclan@gmail.com>
-References: <20240223133758.9787-1-mitrutzceclan@gmail.com>
-	 <20240223133758.9787-2-mitrutzceclan@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 
+	s=arc-20240116; t=1708697791; c=relaxed/simple;
+	bh=TqXkdzLDVhLjmfkgDlfUzyaXzwUQa8U/VRQmUdvZQtA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o+P2wnXui6MFgsuC8yObL/5+Ka6idrKPaUJGuhjcWuUhx0ENBqqhsYDcnqnw7uJ9HBbCGqDECbYHPt4oAsbjBfk0LwDYShPyUzF6h1n2qoGxD3NNzWGe3aM99avFA7fPcoDm04K+AdVn02LmKdOGQsRIY3JjNhQatUBl3wu9HhE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=mCiJFOhc; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (89-27-53-110.bb.dnainternet.fi [89.27.53.110])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7C3679B6;
+	Fri, 23 Feb 2024 15:16:17 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1708697777;
+	bh=TqXkdzLDVhLjmfkgDlfUzyaXzwUQa8U/VRQmUdvZQtA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=mCiJFOhcg1pDJeW8TqCLEovKv/psfDvLsKXVB9jlq6Ck4VK1tsU1gAvZu2N6AUvor
+	 Nn8xHsHJKke7lTArFiT7rgFdwUv4WsjyTcsSQ8LY9GPPNZGAMRLPYPdxRnmVKSjj48
+	 2VeqZMrAw68xnHAUitgrPuqN9Vzo0TPwmEN0AgjM=
+Date: Fri, 23 Feb 2024 16:16:30 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/3] media: dt-bindings: nxp,imx8-isi: Allow single port
+ for single pipeline models
+Message-ID: <20240223141630.GA1313@pendragon.ideasonboard.com>
+References: <20240223140445.1885083-1-alexander.stein@ew.tq-group.com>
+ <20240223140445.1885083-3-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240223140445.1885083-3-alexander.stein@ew.tq-group.com>
 
-On Fri, 2024-02-23 at 15:37 +0200, Dumitru Ceclan wrote:
-> Add optional irq_num attribute to ad_sigma_delta_info structure for
-> selecting the used interrupt line for ADC's conversion completion.
->=20
-> Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
+Hi Alexander,
+
+Thank you for the patch.
+
+On Fri, Feb 23, 2024 at 03:04:44PM +0100, Alexander Stein wrote:
+> In case the hardware only supports just one pipeline, allow using a
+> single port node as well.
+
+This is frowned upon in DT bindings, as it makes them more complicated
+for little gain. The recommendation is to always use a ports node if a
+device can have multiple ports for at least one of its compatibles.
+
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 > ---
-
-Reviewed-by: Nuno Sa <nuno.sa@analog.com>
-
-> V15->V14
-> =C2=A0- Uppercase ADC acronym in commit message
-> =C2=A0- Rename irq_num to irq_line, change type to int
-> V13->V14
-> =C2=A0- Invert logic checking the presence of the optional irq_num attrib=
-ute
-> V1->V12
-> <Not present>
-> =C2=A0drivers/iio/adc/ad_sigma_delta.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 | 23 ++++++++++++++---------
-> =C2=A0include/linux/iio/adc/ad_sigma_delta.h |=C2=A0 3 +++
-> =C2=A02 files changed, 17 insertions(+), 9 deletions(-)
->=20
-> diff --git a/drivers/iio/adc/ad_sigma_delta.c
-> b/drivers/iio/adc/ad_sigma_delta.c
-> index 7e2192870743..03c170b638a8 100644
-> --- a/drivers/iio/adc/ad_sigma_delta.c
-> +++ b/drivers/iio/adc/ad_sigma_delta.c
-> @@ -222,11 +222,11 @@ int ad_sd_calibrate(struct ad_sigma_delta *sigma_de=
-lta,
-> =C2=A0		goto out;
-> =C2=A0
-> =C2=A0	sigma_delta->irq_dis =3D false;
-> -	enable_irq(sigma_delta->spi->irq);
-> +	enable_irq(sigma_delta->irq_line);
-> =C2=A0	timeout =3D wait_for_completion_timeout(&sigma_delta->completion, =
-2 *
-> HZ);
-> =C2=A0	if (timeout =3D=3D 0) {
-> =C2=A0		sigma_delta->irq_dis =3D true;
-> -		disable_irq_nosync(sigma_delta->spi->irq);
-> +		disable_irq_nosync(sigma_delta->irq_line);
-> =C2=A0		ret =3D -EIO;
-> =C2=A0	} else {
-> =C2=A0		ret =3D 0;
-> @@ -295,7 +295,7 @@ int ad_sigma_delta_single_conversion(struct iio_dev
-> *indio_dev,
-> =C2=A0	ad_sigma_delta_set_mode(sigma_delta, AD_SD_MODE_SINGLE);
-> =C2=A0
-> =C2=A0	sigma_delta->irq_dis =3D false;
-> -	enable_irq(sigma_delta->spi->irq);
-> +	enable_irq(sigma_delta->irq_line);
-> =C2=A0	ret =3D wait_for_completion_interruptible_timeout(
-> =C2=A0			&sigma_delta->completion, HZ);
-> =C2=A0
-> @@ -315,7 +315,7 @@ int ad_sigma_delta_single_conversion(struct iio_dev
-> *indio_dev,
-> =C2=A0
-> =C2=A0out:
-> =C2=A0	if (!sigma_delta->irq_dis) {
-> -		disable_irq_nosync(sigma_delta->spi->irq);
-> +		disable_irq_nosync(sigma_delta->irq_line);
-> =C2=A0		sigma_delta->irq_dis =3D true;
-> =C2=A0	}
-> =C2=A0
-> @@ -396,7 +396,7 @@ static int ad_sd_buffer_postenable(struct iio_dev
-> *indio_dev)
-> =C2=A0		goto err_unlock;
-> =C2=A0
-> =C2=A0	sigma_delta->irq_dis =3D false;
-> -	enable_irq(sigma_delta->spi->irq);
-> +	enable_irq(sigma_delta->irq_line);
-> =C2=A0
-> =C2=A0	return 0;
-> =C2=A0
-> @@ -414,7 +414,7 @@ static int ad_sd_buffer_postdisable(struct iio_dev
-> *indio_dev)
-> =C2=A0	wait_for_completion_timeout(&sigma_delta->completion, HZ);
-> =C2=A0
-> =C2=A0	if (!sigma_delta->irq_dis) {
-> -		disable_irq_nosync(sigma_delta->spi->irq);
-> +		disable_irq_nosync(sigma_delta->irq_line);
-> =C2=A0		sigma_delta->irq_dis =3D true;
-> =C2=A0	}
-> =C2=A0
-> @@ -516,7 +516,7 @@ static irqreturn_t ad_sd_trigger_handler(int irq, voi=
-d *p)
-> =C2=A0irq_handled:
-> =C2=A0	iio_trigger_notify_done(indio_dev->trig);
-> =C2=A0	sigma_delta->irq_dis =3D false;
-> -	enable_irq(sigma_delta->spi->irq);
-> +	enable_irq(sigma_delta->irq_line);
-> =C2=A0
-> =C2=A0	return IRQ_HANDLED;
-> =C2=A0}
-> @@ -586,9 +586,9 @@ static int devm_ad_sd_probe_trigger(struct device *de=
-v,
-> struct iio_dev *indio_de
-> =C2=A0	sigma_delta->irq_dis =3D true;
-> =C2=A0
-> =C2=A0	/* the IRQ core clears IRQ_DISABLE_UNLAZY flag when freeing an IRQ=
- */
-> -	irq_set_status_flags(sigma_delta->spi->irq, IRQ_DISABLE_UNLAZY);
-> +	irq_set_status_flags(sigma_delta->irq_line, IRQ_DISABLE_UNLAZY);
-> =C2=A0
-> -	ret =3D devm_request_irq(dev, sigma_delta->spi->irq,
-> +	ret =3D devm_request_irq(dev, sigma_delta->irq_line,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ad_sd_data_rdy_trig_poll,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sigma_delta->info->irq_flag=
-s | IRQF_NO_AUTOEN,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 indio_dev->name,
-> @@ -668,6 +668,11 @@ int ad_sd_init(struct ad_sigma_delta *sigma_delta, s=
-truct
-> iio_dev *indio_dev,
-> =C2=A0		}
-> =C2=A0	}
-> =C2=A0
-> +	if (info->irq_line)
-> +		sigma_delta->irq_line =3D info->irq_line;
-> +	else
-> +		sigma_delta->irq_line =3D spi->irq;
+>  .../devicetree/bindings/media/nxp,imx8-isi.yaml    | 14 +++++++++++++-
+>  1 file changed, 13 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+> index 4d5348d456a1f..f855f3cc91fea 100644
+> --- a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+> +++ b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+> @@ -53,6 +53,12 @@ properties:
+>    power-domains:
+>      maxItems: 1
+>  
+> +  port:
+> +    $ref: /schemas/graph.yaml#/properties/port
+> +    description: |
+> +      Port representing the Pixel Link input to the ISI. Used for
+> +      single-pipeline models. The port shall have a single endpoint.
 > +
-> =C2=A0	iio_device_set_drvdata(indio_dev, sigma_delta);
-> =C2=A0
-> =C2=A0	return 0;
-> diff --git a/include/linux/iio/adc/ad_sigma_delta.h
-> b/include/linux/iio/adc/ad_sigma_delta.h
-> index 7852f6c9a714..576eb617939d 100644
-> --- a/include/linux/iio/adc/ad_sigma_delta.h
-> +++ b/include/linux/iio/adc/ad_sigma_delta.h
-> @@ -45,6 +45,7 @@ struct iio_dev;
-> =C2=A0 * @data_reg: Address of the data register, if 0 the default addres=
-s of 0x3
-> will
-> =C2=A0 *=C2=A0=C2=A0 be used.
-> =C2=A0 * @irq_flags: flags for the interrupt used by the triggered buffer
-> + * @irq_line: IRQ for reading conversions. If 0, spi->irq will be used
-> =C2=A0 * @num_slots: Number of sequencer slots
-> =C2=A0 */
-> =C2=A0struct ad_sigma_delta_info {
-> @@ -60,6 +61,7 @@ struct ad_sigma_delta_info {
-> =C2=A0	unsigned int data_reg;
-> =C2=A0	unsigned long irq_flags;
-> =C2=A0	unsigned int num_slots;
-> +	int irq_line;
-> =C2=A0};
-> =C2=A0
-> =C2=A0/**
-> @@ -87,6 +89,7 @@ struct ad_sigma_delta {
-> =C2=A0	unsigned int		active_slots;
-> =C2=A0	unsigned int		current_slot;
-> =C2=A0	unsigned int		num_slots;
-> +	int		irq_line;
-> =C2=A0	bool			status_appended;
-> =C2=A0	/* map slots to channels in order to know what to expect from devi=
-ces
-> */
-> =C2=A0	unsigned int		*slots;
+>    ports:
+>      $ref: /schemas/graph.yaml#/properties/ports
+>      description: |
+> @@ -66,7 +72,6 @@ required:
+>    - clocks
+>    - clock-names
+>    - fsl,blk-ctrl
+> -  - ports
+>  
+>  allOf:
+>    - if:
+> @@ -87,6 +92,11 @@ allOf:
+>              port@1: false
+>            required:
+>              - port@0
+> +      oneOf:
+> +        - required:
+> +            - port
+> +        - required:
+> +            - ports
+>  
+>    - if:
+>        properties:
+> @@ -106,6 +116,8 @@ allOf:
+>            required:
+>              - port@0
+>              - port@1
+> +      required:
+> +        - ports
+>  
+>  additionalProperties: false
+>  
 
+-- 
+Regards,
+
+Laurent Pinchart
 
