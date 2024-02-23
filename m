@@ -1,162 +1,101 @@
-Return-Path: <devicetree+bounces-45078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96A05860994
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 04:50:34 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA3AA86099D
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 04:52:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BA511F26049
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 03:50:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BD16DB26378
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 03:52:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58DBDDDBB;
-	Fri, 23 Feb 2024 03:48:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D01E210A2B;
+	Fri, 23 Feb 2024 03:49:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="hJmsP4vc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pWTmeLFu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.smtp-ext.broadcom.com (unknown [192.19.166.231])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B998116428;
-	Fri, 23 Feb 2024 03:48:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.166.231
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A24562CA5;
+	Fri, 23 Feb 2024 03:49:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708660117; cv=none; b=lKlN52AYWWS5OhSK+nqv08bbhXceCfTAjnl4AdaDeURgh1vSMGdSP7OkvBK/VKStlB6ghdBTTH5FzmO2LTvhniFnGEYaOFB+65Pstvp/tpbb643wN4jWUBRgo3fq5x9S7HHh+j4QvJUpGyfcpU9RX1Nc94dm7vFKUU4UxTPI5n8=
+	t=1708660190; cv=none; b=oxfJ+JWkwJ1+CBA3F2LwiFUY9lF4k06aD2v6k71WIpXX3eC2G6K+0xsazai5Zqx95i7v6rvLW3/Kp0sR8f25SlneU12yyFhc8FwyDOMutOYhjN9GNvL3MDX2PU/dzkiHwzTPML7zCyZ0yYGzgtm8+5y2hqy0XrZ2DGr4qRJBSKs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708660117; c=relaxed/simple;
-	bh=w50MmwQoRzVkuX4F/IPvMazeJ04ok/bzThtfo0MpKFU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=RtwUiuguJ5MBh5xpqDEMPHsgh+i1TcXykN8oXCG3v2+MSuWh6cNcgEmqX38clNN1jfNdNbaaWMwJJkmswziI2w35iKWnHYtgt3w0tbYbLJAp7NVleF4AJzdih+EwnDwEcZz9jVTygTS2fuRyoR9LSFC5cND4EJAJPmn30McO2JE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=hJmsP4vc; arc=none smtp.client-ip=192.19.166.231
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: from mail-lvn-it-01.lvn.broadcom.net (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 8D4D9C001C10;
-	Thu, 22 Feb 2024 19:48:31 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 8D4D9C001C10
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-	s=dkimrelay; t=1708660111;
-	bh=w50MmwQoRzVkuX4F/IPvMazeJ04ok/bzThtfo0MpKFU=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=hJmsP4vczPk+TDrmhnZPh36fICCN+Ihc9+w88ZGBJPbR6Qlgex+0Km8gJYMWFUO5u
-	 a6OhhkKUPeNwfDAgJ1r9wdSsEyMZm+B+yTiwzHk4ltif2mdmTfn6OOgscK3uOpoqtq
-	 3uGNKnLQ69r1RGIyexqZZx5N5tl8KItkN3vv0gMw=
-Received: from bcacpedev-irv-3.lvn.broadcom.net (bcacpedev-irv-3.lvn.broadcom.net [10.173.232.202])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id 219FA18041CAC4;
-	Thu, 22 Feb 2024 19:48:30 -0800 (PST)
-From: William Zhang <william.zhang@broadcom.com>
-To: Linux MTD List <linux-mtd@lists.infradead.org>,
-	Linux ARM List <linux-arm-kernel@lists.infradead.org>,
-	Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>
-Cc: f.fainelli@gmail.com,
-	kursad.oney@broadcom.com,
-	joel.peshkin@broadcom.com,
-	anand.gore@broadcom.com,
-	dregan@mail.com,
-	kamal.dasu@broadcom.com,
-	tomer.yacoby@broadcom.com,
-	dan.beygelman@broadcom.com,
-	William Zhang <william.zhang@broadcom.com>,
-	devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-	Florian Fainelli <florian.fainelli@broadcom.com>
-Subject: [PATCH v6 09/13] arm64: dts: broadcom: bcmbca: Update router boards
-Date: Thu, 22 Feb 2024 19:47:54 -0800
-Message-Id: <20240223034758.13753-10-william.zhang@broadcom.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20240223034758.13753-1-william.zhang@broadcom.com>
-References: <20240223034758.13753-1-william.zhang@broadcom.com>
+	s=arc-20240116; t=1708660190; c=relaxed/simple;
+	bh=FABj5PqTYhnM786LMrFtQ0eBls3CUT1p0QbNHPCEQCs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=IadMFZFvRZjABMqKA/ZjSU44eFoHSWxpASg8ivufdFjus0ZckTRTRCupAuobQrDO95tVWyukZfAjJWfdgXXPOY7DIqfXraeFh1/KfWmevsWL9P/QRgnFw50V31XVlk7t+Zlzz0VBb1ao3oxIjdjNVrb9KZynihbeALgL1fES9qc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pWTmeLFu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6E36EC433C7;
+	Fri, 23 Feb 2024 03:49:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708660190;
+	bh=FABj5PqTYhnM786LMrFtQ0eBls3CUT1p0QbNHPCEQCs=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=pWTmeLFuio0Ad5mcU+z4JGB4eT3C3VXIbezT4tSRCwKbeC7UUBV2XBJVMggGBirwU
+	 YOoYcgQsk3wluZGgxgkPApCfx3Gox4oilEmE2gKj0PBYYJV4ItAQy6ataCGXfOo8ck
+	 pFRp40DmNTTlQzkmOvyolJJBBS6B1xBYu/eiKrZxVASV83RKD/x8fYgixAmAY8k82G
+	 +rkNLGiNq/fvTW7km70I7puU3hu2Wu3uav0UVRtpENoA9ULvOOaImxjrPwmgWg8mJr
+	 BUtlfDAUggFxRV8wztTArEZXZaWsV5ibb/2WvHBCo+n5NecyjhssF9jqIo5pDmD4AK
+	 YYZpgBGPLWAag==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 58CCAC48BC4;
+	Fri, 23 Feb 2024 03:49:50 +0000 (UTC)
+From: Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>
+Subject: [PATCH 0/2] simple-pm-bus: deassert resets if possible
+Date: Fri, 23 Feb 2024 11:49:45 +0800
+Message-Id: <20240223-b4-bus-v1-0-2803c3ac4673@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANkV2GUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDIyNj3SQT3aTSYt0U02SzNHPTRCNTw0QloOKCotS0zAqwQdGxtbUAock
+ 28lgAAAA=
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Yang Xiwen <forbidden405@outlook.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1708660187; l=658;
+ i=forbidden405@outlook.com; s=20230724; h=from:subject:message-id;
+ bh=FABj5PqTYhnM786LMrFtQ0eBls3CUT1p0QbNHPCEQCs=;
+ b=lAjMgm0upwe5GNEV4wO9MDqjNe+0Gto1rn6DLXSaTmlZoFGjD2+RXTGbL9uwWw6+3sir5+WNP
+ tQQ29dl5Rw1AQ8/E5UGsm02f5c26NWy06kxgA0nYOhW9ArEmiBAfR67
+X-Developer-Key: i=forbidden405@outlook.com; a=ed25519;
+ pk=qOD5jhp891/Xzc+H/PZ8LWVSWE3O/XCQnAg+5vdU2IU=
+X-Endpoint-Received:
+ by B4 Relay for forbidden405@outlook.com/20230724 with auth_id=67
+X-Original-From: Yang Xiwen <forbidden405@outlook.com>
+Reply-To: <forbidden405@outlook.com>
 
-Enable the nand controller and add WP pin connection property in actual
-board dts as they are board level properties now that they are disabled
-and moved out from SoC dtsi.
+simple power-managed buses can also have resets. Get and deassert them
+if possible.
 
-Also remove the unnecessary brcm,nand-has-wp property from AC5300 board.
-This property is only needed for some old controller that this board
-does not apply.
-
-Signed-off-by: William Zhang <william.zhang@broadcom.com>
+Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
 ---
+Yang Xiwen (2):
+      dt-bindings: simple-pm-bus: Add optional resets
+      drivers: bus: simple-pm-bus: Get and deassert resets exclusively
 
-Changes in v6: None
-Changes in v5: None
-Changes in v4: None
-Changes in v3: None
-Changes in v2: None
+ Documentation/devicetree/bindings/bus/simple-pm-bus.yaml |  7 +++++--
+ drivers/bus/simple-pm-bus.c                              | 14 +++++++++++++-
+ 2 files changed, 18 insertions(+), 3 deletions(-)
+---
+base-commit: 8d3dea210042f54b952b481838c1e7dfc4ec751d
+change-id: 20240223-b4-bus-d5c6f75a251a
 
- .../boot/dts/broadcom/bcmbca/bcm4906-netgear-r8000p.dts     | 5 +++++
- .../dts/broadcom/bcmbca/bcm4906-tplink-archer-c2300-v1.dts  | 5 +++++
- .../boot/dts/broadcom/bcmbca/bcm4908-asus-gt-ac5300.dts     | 6 +++++-
- 3 files changed, 15 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4906-netgear-r8000p.dts b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4906-netgear-r8000p.dts
-index 78204d71ecd2..999d93730240 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4906-netgear-r8000p.dts
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4906-netgear-r8000p.dts
-@@ -125,6 +125,11 @@ port@7 {
- 	};
- };
- 
-+&nand_controller {
-+	brcm,wp-not-connected;
-+	status = "okay";
-+};
-+
- &nandcs {
- 	nand-ecc-strength = <4>;
- 	nand-ecc-step-size = <512>;
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4906-tplink-archer-c2300-v1.dts b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4906-tplink-archer-c2300-v1.dts
-index fcf092c81b59..19fc03ef47a0 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4906-tplink-archer-c2300-v1.dts
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4906-tplink-archer-c2300-v1.dts
-@@ -155,6 +155,11 @@ port@7 {
- 	};
- };
- 
-+&nand_controller {
-+	brcm,wp-not-connected;
-+	status = "okay";
-+};
-+
- &nandcs {
- 	nand-ecc-strength = <4>;
- 	nand-ecc-step-size = <512>;
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908-asus-gt-ac5300.dts b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908-asus-gt-ac5300.dts
-index d94a53d68320..52f928dbfa3c 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908-asus-gt-ac5300.dts
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908-asus-gt-ac5300.dts
-@@ -166,11 +166,15 @@ led@19 {
- 	};
- };
- 
-+&nand_controller {
-+	brcm,wp-not-connected;
-+	status = "okay";
-+};
-+
- &nandcs {
- 	nand-ecc-strength = <4>;
- 	nand-ecc-step-size = <512>;
- 	nand-on-flash-bbt;
--	brcm,nand-has-wp;
- 
- 	#address-cells = <1>;
- 	#size-cells = <0>;
+Best regards,
 -- 
-2.37.3
+Yang Xiwen <forbidden405@outlook.com>
 
 
