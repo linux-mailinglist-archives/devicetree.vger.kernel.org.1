@@ -1,164 +1,106 @@
-Return-Path: <devicetree+bounces-45417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA52E861D83
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 21:23:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54C03861D8A
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 21:24:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4B4B8B272D5
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 20:23:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 09D2C1F230FB
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 20:24:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96E8A1474A3;
-	Fri, 23 Feb 2024 20:21:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41CF3146E7E;
+	Fri, 23 Feb 2024 20:23:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="NCQEjgzq"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="K/9mnzg4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 156F7146E67
-	for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 20:21:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06AD5148311
+	for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 20:23:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708719716; cv=none; b=p1ur9pG5xsg4KLbg1656UDXbYjN+YhFIj5gqeQxpwx+jpI3IB8AdCCwiH6Ia8iTETuxoUbPDBDP+N+Q6glKrSCzBlFIgzeiZb04uLRHOwS8nwo70JXRm1G4RpN3L6yVLIoNdA7tc8EqNMbkjQqr8goyFplpW70tDW3NlK49nTYQ=
+	t=1708719827; cv=none; b=LzvJuy3i1K31U9VQrmpyt0IC4nrCdDrwmLdepVyw+b0qCR4uHEa75TLUyj1F20dHiNvCISRdqd+NRp5bCCbU3bnKqfRXr+rZ1Xa7ysT1Diw5UTB2mE8fXvSF8DlJIRcH+ZhLrDbfMZhYNSPi1HTXAsU87Y+RzfubwV4b+ski9Ho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708719716; c=relaxed/simple;
-	bh=VLH2Mi4OrInm+33OQhSlzdebE3jFUI1zn/3KcepgOvU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UWV2tqe8eQZaSV4Ul9jXQDRKkF0r/BZkrsU1nMAmFeMRZAQvLGtgeeXjgmCx+lCSsMZ69/7ycT2RhOe7kJWbpaMAzCoIJIwxPIyZ8/Joit6puZhwveUiHaplltLf7RGn8tnDpxvBYRiGK/a/ZM6oKsY6P9W0oVL40eSplpLhQns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=NCQEjgzq; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a3f5808b0dfso170835366b.1
-        for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 12:21:53 -0800 (PST)
+	s=arc-20240116; t=1708719827; c=relaxed/simple;
+	bh=GAPRdDy0weW+cZabohnm2KVovLxRd2YD8tu+op2thxA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=boUQE//752j25YG+7kNaqMiNKaZX9w7IynjVC7bNEs+Dx3px8xWTbWl9mikhqoRM2ekOgWOpmg5csV7Cr+lkLN7TIqmbSMCsTt+iHgxLIYKNHm8vbAfeyj8qQRC2YGPojZp5vWDl2idjytWT/7brpdpZkKSQVjy3xd5vrxg7J/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=K/9mnzg4; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a3f5808b0dfso171034166b.1
+        for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 12:23:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech.se; s=google; t=1708719712; x=1709324512; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=tBho47Re0b/xThgmy+t3YEba2JQw5AvsTOKzKCpCvk8=;
-        b=NCQEjgzqGzN7Hw9GHBo3t5dOKNLtoByfdMISyziQxmEDCrhOI//7nnjdU/5iE/9gcv
-         6UXDaCfxcudqVEyuX/kuXsmfhEybfjtYu82/GyYJ9FDVei8NNLS5KggtJn+KbYwqJmCI
-         7CjJFXsXYKLK6bqHrmP0AWE++YNuhesVLbwR/zIm1XiEemuttGgFQFh/i679L8l+9jH1
-         XVseoDgbcp40ODLcPhq9vrelxATioGjZJxtSoz7kv7Eoq7bEGsAWiYeP8k6IgcqW/7rb
-         rR30ZDJo4ixjNEkGHJs/Npo9N4EVEbCku51zg46pBVTXI9SiDPvNSSuczsfVaBQzKAiJ
-         iCoQ==
+        d=tuxon.dev; s=google; t=1708719823; x=1709324623; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PufCuNIep49lutmoiIwdjVCU3ra1Yep6/fBx1imRwQ0=;
+        b=K/9mnzg4bwTjCd51PyvQUycZ4nPc27ZlX8S8Xz4ncQWkR5x9fH9W7xRlBrEHcMjaCv
+         6tDVcGzCh3U75JEROEjFy9IY4TwIyztQ7+7eGFc01jloYOtBrptj70JC1rfoIsEkdn/V
+         v5+8+2KPvmAzIhHTI2I0eC2ranOd0uUt8jGY4g9HAjnZCC76fTq96iUVUstgDb9O2R8c
+         viTzXwqfCldUncoE9jQEJKQjcumz/gXJmaLxqxtN1p7YO3iwBXOX75W3uJCY3iWgSQrg
+         hT6ZaCo867s3YXM2rxFL8R0TNHwUP89lbEjlDmfIksiQQT5omtje2qua/kOMcTOinH/g
+         HKkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708719712; x=1709324512;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1708719823; x=1709324623;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tBho47Re0b/xThgmy+t3YEba2JQw5AvsTOKzKCpCvk8=;
-        b=YfuLE4qbKdwWZL0I/yFqSJxBJblus4db8+9z7M0FvTsdQ5qPtV5lmd5pgXPf9YkZ+t
-         jRb93wogqXyrTFvQHY/ybVEW52YcxCcHKZYO6z0Yf51Yba2iWfTRNNEbJcoCdsJc3kkk
-         HBL/67JYrUvWsvq4gmnMUQlmyCmb8uhi9UJb7RunCRAMlrHMo/9Lsc4OugUMuCdWGny7
-         +hbS+TEzlQGozN23sGjT6GhaDd8lYzwNFtl12QzG2FqEWWVbIBgSMLBAeIB+hGClvybc
-         JZ7hW/03RSLXnKiat3ifvCHK23+rxhizbann1PoX5MoX4aCiFA178Cbvb8J3NPm2Z8UT
-         TiEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVHgHwplzGwDllk7w5tF47da3L2rkyYifhaxuA9GGX4TmgU5aOKuAxy+QKzxtzExol5zpU2BAJwE2LmT4tnCkyujXA10nY3Tkbweg==
-X-Gm-Message-State: AOJu0YxYalk5TbYnJ/2JbDgX0oR9zkZVBjsVnphc0yr0BR9ZygfXVpTy
-	QhIdI62+b5XmHi0RFtCwuHVRy43e6NT0Wd3DFGqcWYYpufbvQG2bahgZN8RtGT0=
-X-Google-Smtp-Source: AGHT+IHtWJagw673y+UMwer0QBUhU1HY4utHp5hJqo4P/vdLpAdLDdu+EQOh9utcOn95Uw0C/hTS8A==
-X-Received: by 2002:a17:906:3709:b0:a3e:8223:289a with SMTP id d9-20020a170906370900b00a3e8223289amr593062ejc.31.1708719712213;
-        Fri, 23 Feb 2024 12:21:52 -0800 (PST)
-Received: from localhost (p4fcc8c6a.dip0.t-ipconnect.de. [79.204.140.106])
-        by smtp.gmail.com with ESMTPSA id vh9-20020a170907d38900b00a3f1ea776a1sm3225743ejc.94.2024.02.23.12.21.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Feb 2024 12:21:51 -0800 (PST)
-Date: Fri, 23 Feb 2024 21:21:50 +0100
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	netdev@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: net: renesas,ethertsn: Add Ethernet TSN
-Message-ID: <20240223202150.GA1176528@ragnatech.se>
-References: <20231121183738.656192-1-niklas.soderlund+renesas@ragnatech.se>
- <CAMuHMdU_CxNu-BF66POeqKv1_=ujBp8Z=cT=08crFxhgQ+gZ=g@mail.gmail.com>
+        bh=PufCuNIep49lutmoiIwdjVCU3ra1Yep6/fBx1imRwQ0=;
+        b=J3LqQ/DKhi1gF607GPFwB9rjzA84sg4U2bSDmQfpIiii4VYFIiHV8Y2wnpwm5CD46o
+         oNwTyZ/eMQWwPBNs/rCqOCtZSFulJFKuocZE6U0lK1pQP4UEO/mVHtoG+BlVKn4bbRp/
+         GlEKGY3bLi5DgVZSbHItoR0RyQ7jG1O0irqnHOtE/rT+Hgd3Bmc6HSkDgNVCzNbVU6T+
+         1OgriDropMrg4+9toc2+Dt1mX8s50P3Kw3wwl+QTOQ2M48sWZISreCOOegZqtzU9pQNP
+         FdIMtb19Cuz3B0fpqRvNKbMChHX6HwZJPTaAybB2BmucTp3coRpI8xJXpBwczKWDNbKs
+         cO9A==
+X-Forwarded-Encrypted: i=1; AJvYcCVPfbBHCqWOscOwRi5yg6qkq77cVx37dHELMnt+y0nfEP7XUH/Ky2PaG1Z8ZVBqBjhpcB4AyVqUl8LN9nwqzkCby+c4QE5hSC/VKQ==
+X-Gm-Message-State: AOJu0YwFKVSoEKC2pWt59ff0EwrtSp/5PYvmDgesfaolPgh4Lxqjuo9H
+	Ip5fR7HnDVQuT/sItiYGbvqO9rM71zYIBt06MPJPdA/OohWkzp3UFWML4/rcC54=
+X-Google-Smtp-Source: AGHT+IECc8sKOWy0lbsXnY1v63WC5QWxaJU7ch/XxeG9NHaa36ucJ1wxAgJ4bphyr2IcF0fx99zhVg==
+X-Received: by 2002:a17:906:3709:b0:a3e:8223:289a with SMTP id d9-20020a170906370900b00a3e8223289amr595311ejc.31.1708719823195;
+        Fri, 23 Feb 2024 12:23:43 -0800 (PST)
+Received: from [192.168.50.4] ([82.78.167.99])
+        by smtp.gmail.com with ESMTPSA id h11-20020a17090634cb00b00a3d7bcfb9a1sm7195828ejb.128.2024.02.23.12.23.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 Feb 2024 12:23:42 -0800 (PST)
+Message-ID: <dcce833f-7bad-4db4-bbaa-60b5838aa910@tuxon.dev>
+Date: Fri, 23 Feb 2024 22:23:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdU_CxNu-BF66POeqKv1_=ujBp8Z=cT=08crFxhgQ+gZ=g@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] ARM: dts: microchip: sama7g5: add sama7g5
+ compatible
+Content-Language: en-US
+To: Balakrishnan Sambath <balakrishnan.s@microchip.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240223-b4-sama5d2-flexcom-yaml-v2-0-7e96c60c7701@microchip.com>
+ <20240223-b4-sama5d2-flexcom-yaml-v2-1-7e96c60c7701@microchip.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <20240223-b4-sama5d2-flexcom-yaml-v2-1-7e96c60c7701@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Geert,
 
-Thanks for your feedback.
 
-On 2024-02-15 17:03:33 +0100, Geert Uytterhoeven wrote:
-> Hi Niklas,
+On 23.02.2024 11:16, Balakrishnan Sambath wrote:
+> Add sama7g5 flexcom specific compatible in DT with fallbacks.
 > 
-> On Tue, Nov 21, 2023 at 7:38 PM Niklas Söderlund
-> <niklas.soderlund+renesas@ragnatech.se> wrote:
-> > Add bindings for Renesas R-Car Ethernet TSN End-station IP. The RTSN
-> > device provides Ethernet network.
-> >
-> > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> 
-> Thanks for your patch, which is now commit c5b9f4792ea6b9ab
-> ("dt-bindings: net: renesas,ethertsn: Add Ethernet TSN") in v6.8-rc1.
-> 
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/renesas,ethertsn.yaml
-> 
-> > +  interrupts:
-> > +    items:
-> > +      - description: TX data interrupt
-> > +      - description: RX data interrupt
-> > +
-> > +  interrupt-names:
-> > +    items:
-> > +      - const: tx
-> > +      - const: rx
-> 
-> What about the (17!) other interrupts?
+> Signed-off-by: Balakrishnan Sambath <balakrishnan.s@microchip.com>
 
-I did consider them but compared to say ravb each rtsn interrupt have a 
-rather lose description and no easy to define name. So I reasoned it was 
-better to only name the ones we use as we can give them sane names and 
-then as the driver grows with features we can extend the binding.
-
-As each interrupt have a name this would not cause any backward 
-compatibility issues right?
-
-> 
-> > +  rx-internal-delay-ps:
-> > +    enum: [0, 1800]
-> > +
-> > +  tx-internal-delay-ps:
-> > +    enum: [0, 2000]
-> 
-> These two should either have a default, or be required (like on
-> EtherAVB, where we couldn't have a default because the absence of
->  these properties is used to enable a legacy fallback).
-
-This is a good point, I have sent a patch to address this by adding a 
-default value.
-
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
-> -- 
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-> 
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
-
--- 
-Kind Regards,
-Niklas Söderlund
+Applied to at91-dt, thanks!
 
