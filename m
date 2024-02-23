@@ -1,105 +1,113 @@
-Return-Path: <devicetree+bounces-45287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA89D861549
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 16:11:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAE75861555
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 16:16:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A15EE283F5E
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 15:11:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08A751C23222
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 15:16:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09CAB811F9;
-	Fri, 23 Feb 2024 15:11:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0892481ACB;
+	Fri, 23 Feb 2024 15:16:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="h0rWbaEf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WfzzO8cv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF19F7175E;
-	Fri, 23 Feb 2024 15:11:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D37B0224D8;
+	Fri, 23 Feb 2024 15:16:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708701070; cv=none; b=o4WmQx/McrKB0gUfwRVrSTuVTWHQippwqQHhkrf15cK3snkpp1zK6AeYCgp57m6h7yiszJtUvDyyGX5c9Q7DEZYylexklwiquUrYE83OcgVtZOXNyo0yF7OegOu+TJs2vHh6aR54YFwkhdzsMN0fBT1VfoIaVXaC//nKppN3ycI=
+	t=1708701384; cv=none; b=L1HOD8DqQh+NLYuwr0lci9Mb2Ltvf2yIzNOOGSniCuHi6sfovXxl+SP1NI2aR1r66mPsaGRvRyY59SziI6syrchdNhq1OdUpFA6j2cQm9H6LF4uq6ayYhXvnoTKcy8PPS7bvLVJh5qlRTF9MuacQ1oo7WhyCSfDoZ4r8Is2UOS4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708701070; c=relaxed/simple;
-	bh=PxYjF1RutTsLPmE3OJ6tcrJ1xcdHiw4brWhvRfjFA9w=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RZl44I9q+ULpCJt+r3fM+RWowJGY0hWjCNiaLqPWccOeYA10zjC+2QTrj20LViW6Rh1V5woZTEeW5YP2Ar8tERsotNUHzyOXyEe5Rv9Qiceg9VlCZXqTsSaqP7FSp7+T+xYEizy4eXiY9qfLyTPnop4JDo2EBI7AAbPZdEzxd5Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=h0rWbaEf; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 521E66000F;
-	Fri, 23 Feb 2024 15:10:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1708701060;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ydUaesQ0OVtKhYP+EhluA0cNkJa752d4qIXveokF4Ws=;
-	b=h0rWbaEfcT+buqVA4TnEgUUD0EqapemsxttQSTkXQ6OUyOpLbKRlZXN4rlvZehSOdjNM2s
-	aZ66FTmRsPx2ZxzDsA/+oo/8P36SoTYhFZBPDBDcaju++FI7SXuuwNuwCo8joKOtDwy9kk
-	uLk9Zt54c9ZuqWydu6sYstr/ViV88dwYHSBzkU1ODNgZ/6OolZXLMYf60shZb7fzJCq1cH
-	m6u/Zl57MpZzMkxAKXfBjBuXjNXELDhUV7QUmfZvNss+KkcJUQ+EgcsnnpGmMABEHNcZ5h
-	G06t+0lWrWOmPrehhKUG+8m53b6YPxA3zGrnglio20vWJnnl5RYKrTPnStaouQ==
-Date: Fri, 23 Feb 2024 16:10:57 +0100
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, Bastien
- Curutchet <bastien.curutchet@bootlin.com>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
- <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Richard Cochran <richardcochran@gmail.com>, Heiner Kallweit
- <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Herve Codina <herve.codina@bootlin.com>
-Subject: Re: [PATCH 1/2] dt-bindings: net: Add TI DP83640
-Message-ID: <20240223161057.07b7aa5c@device-28.home>
-In-Reply-To: <20240223160704.4018cac2@device-28.home>
-References: <20240130085935.33722-1-bastien.curutchet@bootlin.com>
-	<20240130085935.33722-2-bastien.curutchet@bootlin.com>
-	<20240130-impulsive-widow-9142a069b7fd@spud>
-	<20240131210521.GA2289883-robh@kernel.org>
-	<20240131-tummy-imperfect-e6d6f0e245e9@spud>
-	<a1e54836-51d2-4990-9444-56d9414eb28c@lunn.ch>
-	<20240223160704.4018cac2@device-28.home>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1708701384; c=relaxed/simple;
+	bh=hiDT6YHGmh3oE5cDRrYXYKlwqhuhJpnLRLGqGi7XlCw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ADsLh63bJ6oXFDWT+ImlYMoSVa/KXP+/ixjJHYkGTGNqaQfO0EUzQco6ZtQMbkXyZeWObCE/B50/n6/IRhOhjM/FEMAUX//Xmt1xE0T6zlpZoUfQEuGYzuJsUtuZhMZdPG4seh9Roxq1Usb4tqHkvJP000CIIp2NA7P37HXM6Aw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WfzzO8cv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D520EC433C7;
+	Fri, 23 Feb 2024 15:16:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708701384;
+	bh=hiDT6YHGmh3oE5cDRrYXYKlwqhuhJpnLRLGqGi7XlCw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WfzzO8cvde7hjjv8g1iSG/QnSuIFHCsqD1L0NTWkpjzI9oAOkQN4uDg25wcfC9mxN
+	 PIpRjrZIFCCMOItPf+wTo9S4Kec2wyQt4zQ5VxEfLPb7g9tpOW6nSRywDajDg/fRE2
+	 rWy0Bj0W7XnowgpCF2Qws8uwBJoN6TT8z9dSY7R52Os3vpGUSSSqu8K+NGIUmbB3EQ
+	 2vbWPe3yPz2fP8uDXbNMg3/O4xzG8zW1aN0OSpOF/6kI8EEavn3/DrZlHXfebYfVZQ
+	 iTkz1c4VbymC9ksIFVzUssOJ4XO/98hfggvCz8ElZ53qV8/ih6a3eEg7jzC7k9dZ/X
+	 816GjZgRU9X1Q==
+Date: Fri, 23 Feb 2024 15:16:19 +0000
+From: Lee Jones <lee@kernel.org>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Support Opensource <support.opensource@diasemi.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Steve Twiss <stwiss.opensource@diasemi.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mfd: dlg,da9063: Make #interrupt-cells
+ required
+Message-ID: <20240223151619.GD1666215@google.com>
+References: <2212567f4c17251011e5e0bfa4ea0126d9815d39.1707922672.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: maxime.chevallier@bootlin.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2212567f4c17251011e5e0bfa4ea0126d9815d39.1707922672.git.geert+renesas@glider.be>
 
+On Wed, 14 Feb 2024, Geert Uytterhoeven wrote:
 
+> '#interrupt-cells' is a required property for interrupt providers, hence
+> make it required.
 > 
-> I've missed that thread initially. I guess that if Fiber is to be used,
-> this would be done through sfp, then we have all the regular interfaces
-> to configure the phy_interface_mode, in that case that would be
-> 100BaseX.
+> While at it, move '#interrupt-cells' in the example to match common sort
+> order.
 > 
-> So, a sane behaviour could simply be to configure the PHY in copper
-> mode by default, without relying on any DT property ? If anyone wants to
-> use fiber mode, then they would have to implement the
-> sfp_upstreamp_ops, which would take care of reconfiguring the MDI
-> interface of the PHY in the correct mode.
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+>  Documentation/devicetree/bindings/mfd/dlg,da9063.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml b/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
+> index c5a7e10d7d80e8d7..e5ccc2708f0bb0f8 100644
+> --- a/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
+> @@ -87,6 +87,7 @@ required:
+>    - reg
+>    - interrupts
+>    - interrupt-controller
+> +  - '#interrupt-cells'
 
-I missed the fact that this isn't a new driver... So this would indeed
-break existing setups who would have fiber-mode strapped-in but don't
-use SFP for some reason :(
+This doesn't seem to apply.
 
-Maxime
-
-> Maxime
+>  additionalProperties: false
+>  
+> @@ -99,10 +100,10 @@ examples:
+>        pmic@58 {
+>          compatible = "dlg,da9063";
+>          reg = <0x58>;
+> -        #interrupt-cells = <2>;
+>          interrupt-parent = <&gpio6>;
+>          interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
+>          interrupt-controller;
+> +        #interrupt-cells = <2>;
+>  
+>          rtc {
+>            compatible = "dlg,da9063-rtc";
+> -- 
+> 2.34.1
 > 
 
+-- 
+Lee Jones [李琼斯]
 
