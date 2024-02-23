@@ -1,132 +1,128 @@
-Return-Path: <devicetree+bounces-45267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B10D861443
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 15:41:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A70786145F
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 15:45:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D45C6B2183E
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 14:41:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55F8D284BF8
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 14:45:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 802008565A;
-	Fri, 23 Feb 2024 14:38:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94099225CF;
+	Fri, 23 Feb 2024 14:43:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="y57VezJD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cJPJf7Ly"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B8EA84FAE
-	for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 14:38:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AECD06FBD;
+	Fri, 23 Feb 2024 14:43:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708699093; cv=none; b=k1c8sx2EvzvCrBO5Xgh2nqf5aMmCqSx5J2XakjmEztINjWwgPecBuGfwLAUeGYeZGb+MHpDiqvSbMGT5m0ljfY9CfjdHnimMFjU1IpKnCOQa9PWqqX2gjbJnFYPlHlzPXEbm6/YzROZpzG+/1pC1HymK9mPyn1ey0Tkv6uWQbG0=
+	t=1708699409; cv=none; b=akyLwywmAZNelv9kaYytZTTm4BClgIkDF1EE79HMedYBeo7HdR9zavCnlHszOGVyvzTBdzDREpXOw6ZQi3oBmdivEewUrtDHFnhrJWTXuQeEtYqqrwrrKo4XjCSg5CWg5C05C0MSTqhKKrNEVd+MBnraOZsQ4ZeSu1OE4mjbSwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708699093; c=relaxed/simple;
-	bh=vSQ/Cl3MyhUvN3l5UgZesa4xz46YadYb540aPO5Hivg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Z0hazGnuqsR143d0PNID6xeFjN/qmF+ohRB49cV44aUrUKL+qp/mAFcYTgcBiwEcWgXoY8A66eCP3dCnw8u/92yMnwgGIvGMIaa5qjw4JU7rk71Lp+GdHn2473JOwnNW5jecYIdLx2kfhi9lcq3iySDCuuDFdpQw4kZbwaYLSig=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=y57VezJD; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5645960cd56so543414a12.1
-        for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 06:38:11 -0800 (PST)
+	s=arc-20240116; t=1708699409; c=relaxed/simple;
+	bh=DEMIQOvydhZ/VpnCranobldgWGcw+Pq5Nukc/1RDlVc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Y2C9tZwVy7f/yIGSMW4jYErnTacdmdsMlt93jhK29d8pNZQD9E8Eyz7K0l6ZP/cb1deQvXZAHM5upDzutRo6vaWH5MOmE9K4IunT5E6Xf6MuTGy/ESQPZ6j22xy9DyHNNrp3FvHmblRp9Dfe0Eh2qxEMsXP0rZ+qwS0LYW1uEtY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cJPJf7Ly; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5643eccad0bso1373194a12.1;
+        Fri, 23 Feb 2024 06:43:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708699090; x=1709303890; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qk8L0fuVMP30u16wdE7ApM5IoQqVSEw1Vy3IBCdJBlg=;
-        b=y57VezJDbnlpaGr7eSHNXW+qipMZ8wvGeYpCU5L99Vj8coHdLLpULsLNSYFf4LriuD
-         00E2Ix2A8QPez/jrdmDb0yOoVQ9S8M4ymBpb9YZ28ON6wzuIPeiOc15pA4qk+mYuLx9X
-         D6lxLPBFOPgkmNiupc4fii9njJkRarwF+XcUfD+mzc6tTX0wl6yhZ84sPG7JEF2VY0hA
-         9RVyHAEab4q2DlrqucxQyk/d8qwCe9BuiyP3DL31cT2tlaCFvM1b71kxdOImHKaCP54f
-         +zOfR6KPD0J9Hv9KlT2zmepTuwNKh+J/dEwvyiNn7Nh0AlTyat9OezNomMH3S6/KKXJ4
-         lvXg==
+        d=gmail.com; s=20230601; t=1708699406; x=1709304206; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IRQuvAZAPsUv3dwxMyD+E+7cfGvNoyt2/LH5pgsTUnE=;
+        b=cJPJf7LyBc8vjzfhUn8A/vr1Gv6jGe9Wct57Z5HhdTzzsODeAJOXCBPQsLFUMurlrB
+         OJnuNDaYJCI9yXc7J/g+bCw2WGtZp9jk6BQy9drQsAXo8hgAtLVotjbez2J3+nkAxBmo
+         rs8gfQWOe8ynrspIMA/P2KZQ7BAvFO35C4oBE78LtLbOxmt3kbuFK03Kq7cWpDcQLUIf
+         mldC5E4hG0oIkobAoL/7iHHpHM94yUMCEQGpRNvdAOX2EXN2A3MD3x4r3urPAqVCo/sf
+         w5ArcWzU8oKFaIUZRwu5Fuf8WzNi3ifATTmgYHaLmvagmWMtKCof0LezCniTVo3jZAiJ
+         6O/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708699090; x=1709303890;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1708699406; x=1709304206;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=qk8L0fuVMP30u16wdE7ApM5IoQqVSEw1Vy3IBCdJBlg=;
-        b=b9loug+IilXVFnzKFWOL2+DY4tmbJHgCCFT0MfwJNR3SuA4xpzp3yb9XpDZUscySjT
-         wIBAV8Y+76jY9jjFDFo7TGud9+QqA0m8M7Yu5+iDsnEWQyR8gtEIjJ8ZLWwBjGTqrLHD
-         Z6YGy9ATEaUbZfF+mezUnOzQjB8Z8S8mu4sdJYX6VWGJf4khY4Q++aI/yMDEiPQOY7vk
-         54c1m9M5w5ujhMCXcCalhekHKQUPGFPtUkWXogxoqk4iY+fFp0zgYMvjWLhVMjZK2r7u
-         qdOlTgUSz9KKQhmaCGTEBGE4dYMWgno5k0cJ8OZB3zz8N48bCf/HtrWT/f0PjJSQx3Y+
-         FHVA==
-X-Forwarded-Encrypted: i=1; AJvYcCWSQDsUdL08KaL7nb9nDUFRyG3+UayaKyqWjZBaIch6GhPLXtw3qsA8ut2KFyjxZ2E7lwBlzfBu0I+OJBL1f0L5q3qFejbG+QXhrg==
-X-Gm-Message-State: AOJu0YyoC0kXmJCp+JF/u/dp45W82y5G5zcirdvp+5ro8xZrh9CbI8bS
-	r5eV90vYv8BevFj8XMJ1DMO+17TPzxwonE52e42nyVRnT8CruvvV4hfAjBDGjLt5I+USUqpUHpp
-	I
-X-Google-Smtp-Source: AGHT+IF1M+6eYRsPBs4s5BigpWjZQHgAKf0TfSO4GRCG/F0i4z2w9aYcUP+LD9OEtKewbwA32jifOg==
-X-Received: by 2002:aa7:d741:0:b0:565:6f16:4dac with SMTP id a1-20020aa7d741000000b005656f164dacmr19591eds.2.1708699090095;
-        Fri, 23 Feb 2024 06:38:10 -0800 (PST)
-Received: from [127.0.1.1] ([188.24.162.93])
-        by smtp.gmail.com with ESMTPSA id p27-20020a056402501b00b00562d908daf4sm6637536eda.84.2024.02.23.06.38.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Feb 2024 06:38:09 -0800 (PST)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Fri, 23 Feb 2024 16:37:57 +0200
-Subject: [PATCH 3/3] soc: qcom: socinfo: Add SMB2360 PMIC
+        bh=IRQuvAZAPsUv3dwxMyD+E+7cfGvNoyt2/LH5pgsTUnE=;
+        b=bqBgl16jc1bMjyWpGONnVSlZ0HUNIRXQdjKSqB+g8ruCeuXmpHytq/Y9nopRctJkvV
+         xKsqT4G3OOfH8ikb4FgOKskLfzUhUjawh3ywnd45TDv49fxVWdJH1+0MRQp/jLEFSsvn
+         LpsjD34dU6kInoBKHhz2ELireInWOFrfxpJAeUANvw5K4KiAjrr0Lq3KxNqN8Vid2qMt
+         VTtaNrCXjmhc41OS9hrpxr2pBO4qwC5SYLwgjK1joJiYkifei9Y8baqnnM5+iHoBERRT
+         K6NXjoGHqyI/1Uwk23lPzSdGvtu1YkJSQjPym9z8DU0gH/OdJyfSiZMYxvMTIkXMKgQE
+         JF3w==
+X-Forwarded-Encrypted: i=1; AJvYcCWe0UFflyxrGNqc3t5XUVCNhCEH50VUEoTZ77GdGkz9xFb8x1zr9qvoVJYtN19f5MZRqHyvfz75xxwk/kLIArwsAOErpdoNneU6H/Hvu4/rkGaPNrN/RAEY84CgxOuk8NtnVZdPHM/MnROWtla7C0SUSBOXmYmaeeSM4XF4z4FPm31T2swKLDgUmrIseArPGm5hqpzrLS4yRIbJdrXnFq0=
+X-Gm-Message-State: AOJu0YyCXw48KKsv9bAi0qEVhdMrUCU4HlNKPTCSHUP/ChWD7wX3Gxpk
+	Qjig6X3o7b5mKO/Ae5+fy5LZS4rWUD7tZ9wAUylTIoalOCEAw1yLbnF2KSnINwmNpGxJsj01kcM
+	cfF4fgXnT/jMqi7eldklHYpXCi0w=
+X-Google-Smtp-Source: AGHT+IGiHiAkfrKtroFs848fr9GZTa3NoU86QtnnJ6tiFG1Z8p16HIHWpUfwHXBT5/jFD1kjrOBJqL8PGK2y1xsRPQM=
+X-Received: by 2002:a17:906:1310:b0:a3d:a63f:2db0 with SMTP id
+ w16-20020a170906131000b00a3da63f2db0mr19511ejb.28.1708699405892; Fri, 23 Feb
+ 2024 06:43:25 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240223-x1e80100-socinfo-v1-3-be581ca60f27@linaro.org>
-References: <20240223-x1e80100-socinfo-v1-0-be581ca60f27@linaro.org>
-In-Reply-To: <20240223-x1e80100-socinfo-v1-0-be581ca60f27@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=552; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=vSQ/Cl3MyhUvN3l5UgZesa4xz46YadYb540aPO5Hivg=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBl2K3Med7+oSvj6YjE8+EPSgTLXamR9GReetEzI
- hONDAIZngyJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZditzAAKCRAbX0TJAJUV
- VsY7EACLK1wdaiMmzo1XRU0VGTx8fzMrX8vggovG6bUiCOYLmT+DyDXPPdHTPDOKKQNHVj1deAh
- fho7Hs6iL6l9IMCkeurm4qKnL3tNVd8nuU++ekKJUngwwPnHrOfo0q5j+T/iIsjCmgje0nTBvtF
- wtXwz0KxPIlw3TQ2BHjek9r1uXSeVrpMu8qpA81p3XEc7EAOMl+iMHmlTYig6NOV4UFbAVNm8ic
- +fRnDbkFNhLx3b//w7ylNzM7lBuVw40hQZtOBq7Htrq1R0f+XtMv+UvYHxrTIPyseFQ29h3zEC8
- 3YcyLZXwSPjXXkgbS8lDV1QzFyYa9/cV6bpv+BdnCOsJHqnfcbjxrOgVIAi+W6kc3mimusBeuqe
- dJrD8soZwqYGHFZrrKx25nt0urHOt4t8PxS/52AgyFeqCmVChI700SjdGrvTJEshNYgeOHiA96B
- LOIhDeSGf5zjaYlZElkDGfGmoJ4PxerVpK/LBjphIp4eGov3/+0KQ7eYdVqtxwugb0cGe5g8lyF
- mfPZmL2Mqs83UuL9rq1Vp4PhHn5vuoGO8EE85JDNicH6Yp44bzHr+vupa9Lj2MwYSPgGuDxY4Ij
- Qe+n9HFDvrI2iFq79W5kKSLgsESSgsi+a4ztElokzrvBM5gGeCKcAciPvAxAGVa4U8qt+8sJrvf
- hAcdA0K1+a6P0EQ==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+References: <20240223133758.9787-1-mitrutzceclan@gmail.com> <20240223133758.9787-2-mitrutzceclan@gmail.com>
+In-Reply-To: <20240223133758.9787-2-mitrutzceclan@gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Fri, 23 Feb 2024 16:42:50 +0200
+Message-ID: <CAHp75VekP4fJPxcZeQVXypDDrQT1i9CtesN2R4TtiYxxpQr44A@mail.gmail.com>
+Subject: Re: [PATCH v15 2/3] iio: adc: ad_sigma_delta: Add optional irq selection
+To: Dumitru Ceclan <mitrutzceclan@gmail.com>
+Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org, 
+	linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, 
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Walle <michael@walle.cc>, Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu <chiaen_wu@richtek.com>, 
+	Niklas Schnelle <schnelle@linux.ibm.com>, =?UTF-8?Q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>, 
+	Mike Looijmans <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>, 
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>, David Lechner <dlechner@baylibre.com>, 
+	Ceclan Dumitru <dumitru.ceclan@analog.com>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The SMB2360 PMIC is used on boards with X1E80100.
+On Fri, Feb 23, 2024 at 3:38=E2=80=AFPM Dumitru Ceclan <mitrutzceclan@gmail=
+.com> wrote:
+>
+> Add optional irq_num attribute to ad_sigma_delta_info structure for
+> selecting the used interrupt line for ADC's conversion completion.
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- drivers/soc/qcom/socinfo.c | 1 +
- 1 file changed, 1 insertion(+)
+...
 
-diff --git a/drivers/soc/qcom/socinfo.c b/drivers/soc/qcom/socinfo.c
-index c8e968d7a620..277c07a6603d 100644
---- a/drivers/soc/qcom/socinfo.c
-+++ b/drivers/soc/qcom/socinfo.c
-@@ -133,6 +133,7 @@ static const char *const pmic_models[] = {
- 	[72] = "PMR735D",
- 	[73] = "PM8550",
- 	[74] = "PMK8550",
-+	[82] = "SMB2360",
- };
- 
- struct socinfo_params {
+>   * @data_reg: Address of the data register, if 0 the default address of =
+0x3 will
+>   *   be used.
+>   * @irq_flags: flags for the interrupt used by the triggered buffer
+> + * @irq_line: IRQ for reading conversions. If 0, spi->irq will be used
+>   * @num_slots: Number of sequencer slots
 
--- 
-2.34.1
+Now kernel doc order is unaligned with the real member order.
+Moreover, have you checked with `pahole`?
 
+>  struct ad_sigma_delta_info {
+> @@ -60,6 +61,7 @@ struct ad_sigma_delta_info {
+>         unsigned int data_reg;
+>         unsigned long irq_flags;
+>         unsigned int num_slots;
+> +       int irq_line;
+>  };
+
+But no need to resend, it's minor and Jonathan can probably amend this
+whilst applying.
+
+Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
