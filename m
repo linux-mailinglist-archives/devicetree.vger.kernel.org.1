@@ -1,125 +1,181 @@
-Return-Path: <devicetree+bounces-45340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CD3B861802
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 17:34:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87C55861814
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 17:36:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E5B11C25512
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 16:34:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C8BD288E49
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 16:36:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDB211272D9;
-	Fri, 23 Feb 2024 16:34:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A6851292FF;
+	Fri, 23 Feb 2024 16:36:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="brRGHeTv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XiNDkNdl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC6B58526B;
-	Fri, 23 Feb 2024 16:34:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D15245B1E0;
+	Fri, 23 Feb 2024 16:36:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708706089; cv=none; b=n7r+iIQr5endIz5ksiRZziCRhhwipYPHdqM25CwrL9Z/rY/pMdX+Fn/+PCYFCpA/pwZ3hjiOcOJY0v1gZa+EAk7j0nGtFakLL2lNr7FYbGOYw5q/xUpROE8kVE9e1m1nwXmLpok7YL7r4fpvJFEKslCPwn1cZKsfG8ZfUiAj+gw=
+	t=1708706208; cv=none; b=jx8iGbmOzTqokk6ybd2HG5xMTozV/nrbLYzTicSF7PlW+AnD5pilTmRqLXxnfZ0fFZlu9iVnHK916E51FK9/sbNZX3lO9KqgLra8LwBED6cMMoiy18Wc+aiKVGXGjDdE3S3XLWiAPkJ20enpP15rFq0JKKv3SONmwKnObvF4kCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708706089; c=relaxed/simple;
-	bh=ML4ablhECz74yeyKTaRvj0YCaIvVpkryRuSuGokJQxI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Content-Type; b=Qe4yrvR8bOM4zN6x/ua6S9T+sKCLiDLRnAKeWg2ebNqpaAl8F6uSntVSQbpLF/eVTHzIgvFOF3NfyHo892WFJUmh/P2a0koq5Y9q8j0uvL6hUaBRh2ckU4HP8SBdnFOhku65lM9sHYuDOwb70FgowniQLTPRn6UR096aPDOF/3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=brRGHeTv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51E09C433A6;
-	Fri, 23 Feb 2024 16:34:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708706089;
-	bh=ML4ablhECz74yeyKTaRvj0YCaIvVpkryRuSuGokJQxI=;
-	h=References:In-Reply-To:From:Date:Subject:To:From;
-	b=brRGHeTvcOMxMeLxgsQB9su2KBP0rA/NjlNhGfQHxKx1/0HRxDekA7A4jaNnSAlWt
-	 7WfMIZBQ8LWdXZNmGQwmrGteW9rh69RSXWRYCZy8wf6ZxADgzN8hnzbLXd50eWTNMN
-	 j5x0ABhhn9i9mv+e39KfY+TsjOKuiBkBVfJpjjKW0VOOe2DUGIPHsm0Q/WK2BkQo88
-	 VEx6qRg4vg2kiFf6N5eMQokJveNj7t5vJGK6yLGXemKX9IYnTBk+1PixinifI+eXsw
-	 PWZ7aePCdWa7GyjwQB/VcKWw2llXbwpBrt2KCjQxV+YaYhg5VOu1cPcYZ8JsdQtz8R
-	 g+4jgKRyhDVLg==
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-512ea6ce06aso755459e87.2;
-        Fri, 23 Feb 2024 08:34:49 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVjjpj7QQerYrRG8i2K8goT4L+V+83OcKxjd3JlQq9blXqs1zERJlz1/HZyEB9mwRnX72cW8WF05BDcqMPAUjHvQRI1tsx+q42kuUlHtSq2x+HuJZpsrjTTQ9Y0DWePBbMpPgJZUkvn2rZk3oK2pZ7/aXiXCOWbfAwn+0W0MqbV7myHs9q9Mt6TUUeXn5j7ci5+8kL3AfXGap4lX9YKogI=
-X-Gm-Message-State: AOJu0YyKJFz/jF4bzNUjJ+r64A0quFeNfIGYjXZ1ZxPs4fyCVzmMD8G9
-	zqbwdED5OtPux/6nq+Y/46eqsv+oJZr5H+9VfpQ/vZ2lTZg3t2dkxyss5TdEF25qqKK4ehLKMJd
-	Secyn60f1567ErkKfyvk904sVwA==
-X-Google-Smtp-Source: AGHT+IE8kj3sCHnm6X+LNC4ToAKPr4y//DGpPKNeaFXMPaP7aTysr9A9jP71VheZenF8UTShPBeJkUDGcWcar8hx9Y4=
-X-Received: by 2002:ac2:5fd0:0:b0:512:c985:4890 with SMTP id
- q16-20020ac25fd0000000b00512c9854890mr178807lfg.67.1708706087418; Fri, 23 Feb
- 2024 08:34:47 -0800 (PST)
+	s=arc-20240116; t=1708706208; c=relaxed/simple;
+	bh=fI/IAdkB29JdV6KJtBT8ElzaQ0cLMc44qidIJ5rd/I4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=BOD+sIZxdybL/oHena+0G1WaQwNqTsWtmZ9dfHIxtAWYW817Ttex9/AQ35prFwNTsaA/e5k/dlJDuXmIZlq0yiEm92vH+qgeGn3wfUtHO4Iz6id4V6deTnIVmJOQ7DLqEs7rJFjxnoHHdYFIg0FTvWp9ni14i4VIdMCd3D0j9SU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XiNDkNdl; arc=none smtp.client-ip=209.85.208.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5648d92919dso1184902a12.1;
+        Fri, 23 Feb 2024 08:36:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708706205; x=1709311005; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SKe39YFDJ/aeVcKQ4XcWYXwsRT9ZbN8/BAXxQxEi0rU=;
+        b=XiNDkNdlxuyQwNDNNF9VokCJ/CHQ9QXF2msRHdRLZpft55JQ7+3hJkgQIIKZA0QT7P
+         +bOCldm5ZOXE56ICEblyBczIBDOw6iMx9tNGE52O+1SAUvXh2duCWIKYS7/H4//0CPJL
+         unLyeMvugbKSyXyOOVZCGHzK9US2kIXUi9hmYIFkcEP7rmczc4iCbGwuzJS2tc03hvK5
+         xFak4JpZ7HL1Bg6Tf8pMtY08ohwK9drbxeYbIe8CIHHQPfuMACpNskSLG9ZMM4ayFSXh
+         xIgzbTLR+fepoOJxU6vPZjjhMj6ORUYXeTBXwsO150nwMyjgODjM/szHLTlMEJ3RSWtV
+         OEeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708706205; x=1709311005;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SKe39YFDJ/aeVcKQ4XcWYXwsRT9ZbN8/BAXxQxEi0rU=;
+        b=uDBueiRoYNvUkJh9N6Uz2WrXExWnuAXKmpWpiEdSiDlftny53libt1yK9QvXPE0Hdq
+         skyEXHv8lDKB1KnEnuUvuYeFOvel77g/jw4o82EmlGhX/hoGxha1tBQxDy78SaGFQdmu
+         MPt7vSKDW+mxJtWw+20XTLzpjLcIlllxYSRCJADotFJe7NeGm1QZqZ1wTju77z+iC8QS
+         IrB47e7Ztn2HwHVTTL3zWUEu6Tetji8XB/3nDcsv91cqqe5kXhACoW4qDVk3LdrrZXBS
+         btbTZ/XuAbHJ/waSUnlOYDUADWCw4NwZj/8OwYIGNuK7RWnFr/OMrYmVo77KvM8HbWbY
+         vTsg==
+X-Forwarded-Encrypted: i=1; AJvYcCVxVTEjp5UR0qySWLTak7Zb5s6oFJtmzny9ZrDfZRu+3FEjYVCHrVYQHRBGaNOduKOHqMukFGQaza8C9NJJytEIM4xyWkJYH2qwnuzwReQBY+l+6u6F/hGMMNpmqP/QJMUZRcVNNVw=
+X-Gm-Message-State: AOJu0YzlMReoyaepdehgu7y5eg3sRWsK2uKnq6lnX4hiit3bNu6BEI2d
+	BTJf67lNNjO8vb3L6r7hFs78vNEVSdj2I5HuS/hcu2bXHxYlkuGk
+X-Google-Smtp-Source: AGHT+IHVdyrN3kBkUrfWyiP7YQLML5RAlwreabe5AGh4wWZSEssVDk9CCs13QdkcRc8MkQf4ECAYfA==
+X-Received: by 2002:aa7:d0ca:0:b0:564:54c6:6903 with SMTP id u10-20020aa7d0ca000000b0056454c66903mr295366edo.7.1708706204889;
+        Fri, 23 Feb 2024 08:36:44 -0800 (PST)
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id e10-20020a50ec8a000000b00564d6840976sm3194261edr.80.2024.02.23.08.36.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Feb 2024 08:36:44 -0800 (PST)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Aren <aren@peacevolution.org>
+Cc: linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+ Jean-Jacques Hiblot <jjhiblot@traphandler.com>, Chen-Yu Tsai <wens@csie.org>,
+ Ondrej Jirman <megi@xff.cz>, linux-sunxi@lists.linux.dev,
+ Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+ linux-arm-kernel@lists.infradead.org, linux-leds@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Miles Alan <m@milesalan.com>,
+ Samuel Holland <samuel@sholland.org>
+Subject:
+ Re: [PATCH v2 4/4] arm64: dts: sun50i-a64-pinephone: change led type to
+ status
+Date: Fri, 23 Feb 2024 17:36:42 +0100
+Message-ID: <4545459.LvFx2qVVIh@jernej-laptop>
+In-Reply-To: <n5rmhx7ez7xoqainjqxpdk47e3bw2pvtsgswofnhjdxtrk72j2@debhbdxsxz4m>
+References:
+ <20240206185400.596979-1-aren@peacevolution.org>
+ <2792937.BEx9A2HvPv@jernej-laptop>
+ <n5rmhx7ez7xoqainjqxpdk47e3bw2pvtsgswofnhjdxtrk72j2@debhbdxsxz4m>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240215-mbly-i2c-v1-0-19a336e91dca@bootlin.com>
- <20240215-mbly-i2c-v1-1-19a336e91dca@bootlin.com> <20240216022704.GB850600-robh@kernel.org>
- <CZ6E24VPJKJG.35LACFD6ZV5KE@bootlin.com> <CACRpkdZZhhzg5SY7U5dv_OfLEVejRFom4V9nCfkQXunAw1ZXSw@mail.gmail.com>
- <CZ94LGRSF9KN.15ZO1VRMIQVR8@bootlin.com> <CZAX02IL1N1J.2GQR9D73GLRZB@bootlin.com>
- <ZdY2WzKbElloXC4-@shikoro> <20240222171404.GA3334332-robh@kernel.org> <ZdegTjJpDJGEgdvo@shikoro>
-In-Reply-To: <ZdegTjJpDJGEgdvo@shikoro>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 23 Feb 2024 09:34:34 -0700
-X-Gmail-Original-Message-ID: <CAL_JsqLk3UbrXAymTvLQeeS-ACY7makTVYxa9CetO-G-v3TuqA@mail.gmail.com>
-Message-ID: <CAL_JsqLk3UbrXAymTvLQeeS-ACY7makTVYxa9CetO-G-v3TuqA@mail.gmail.com>
-Subject: Re: [PATCH 01/13] dt-bindings: i2c: nomadik: add timeout-usecs
- property bindings
-To: Wolfram Sang <wsa@kernel.org>, Rob Herring <robh@kernel.org>, 
-	=?UTF-8?B?VGjDqW8gTGVicnVu?= <theo.lebrun@bootlin.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Andi Shyti <andi.shyti@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, linux-arm-kernel@lists.infradead.org, 
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org, 
-	Gregory Clement <gregory.clement@bootlin.com>, 
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 
-On Thu, Feb 22, 2024 at 12:28=E2=80=AFPM Wolfram Sang <wsa@kernel.org> wrot=
-e:
->
->
-> > > @Rob: My memory fails a little bit about these two schemas: we have t=
-he
-> > > github one for generic bindings, not strictly related to Linux, right=
-?
-> >
-> > Well, NONE of the bindings are strictly related to linux unless they sa=
-y
-> > 'linux,' prefix.
->
-> Ok, right, of course. What I meant was probably: why do we have
-> controller bindings in the kernel and schema bindings in a github tree?
+Dne petek, 23. februar 2024 ob 17:30:00 CET je Aren napisal(a):
+> On Thu, Feb 22, 2024 at 09:57:00PM +0100, Jernej =C5=A0krabec wrote:
+> > Dne torek, 06. februar 2024 ob 19:13:20 CET je Aren Moynihan napisal(a):
+> > > The status function is described in the documentation as being a rgb =
+led
+> > > used for system notifications on phones[1][2]. This is exactly what t=
+his
+> > > led is used for on the PinePhone, so using status is probably more
+> > > accurate than indicator.
+> > >=20
+> > > 1: Documentation/leds/well-known-leds.txt
+> > > 2: include/dt-bindings/leds/common.h
+> > >=20
+> > > Signed-off-by: Aren Moynihan <aren@peacevolution.org>
+> >=20
+> > Sorry for late review.
+> >=20
+> > Please update subject in patches 2-3. Instead of "sun50i-a64-pinephone:"
+> > use "allwinner: pinephone:" (check commit history of sun50i-a64-pinepho=
+ne.dtsi).
+> > Also rgb -> RGB, led -> LED. Last, please reword commit message to excl=
+ude
+> > links and just say DT bindings documentation.
+> >=20
+> > Note that I'll merge patches 2-3 once patch 1 is merged.
+>=20
+> Would you like me to reword and resend the patches, or is it quicker
+> for you to just do it when you apply them?
 
-Generally the split is common, stable bindings go in dtschema. This is
-anything we'd consider should be in the DT spec. Though I have 0 plans
-to add anything to the spec because I'd like to generate the spec from
-schema. (Not really working on doing that either though). What's
-stable? Well, no solid definition there other than not new. So new
-things generally go into the kernel tree first.
+Since Ond=C5=99ej raised concerns, let's finish that discussion first. It's=
+ possible
+that this patch will be rejected. That would also mean new revision of patc=
+hes.
 
-For device specific bindings, they will never go into dtschema and
-will live where the dts files are.
+Sadly, this means DT patches will miss v6.9 window.
 
-> For me, this is a tad more difficult to maintain. Like
-> i2c-controller.yaml file has the "no-detect" binding which IMO is wrong
-> in many ways. I rejected the supporting code for Linux.
+Best regards,
+Jernej
 
-It was probably added to i2c.txt and I probably said, looks fine, but
-add it to dtschema. Then the Linux support got rejected. We can simply
-remove it if it is not being used.
+>=20
+> Thanks for taking a look at this,
+>  - Aren
+>=20
+> > Best regards,
+> > Jernej
+> >=20
+> > > ---
+> > > I can't find any documentation describing the indicator function, so
+> > > it's definitely less specific than status, but besides that I'm not s=
+ure
+> > > how it compares. Please ignore this patch if it's not useful.
+> > >=20
+> > > (no changes since v1)
+> > >=20
+> > >  arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > >=20
+> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi =
+b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+> > > index e53e0d4579a7..6d327266e6cc 100644
+> > > --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+> > > @@ -61,7 +61,7 @@ led2: led-2 {
+> > >  	multi-led {
+> > >  		compatible =3D "leds-group-multicolor";
+> > >  		color =3D <LED_COLOR_ID_RGB>;
+> > > -		function =3D LED_FUNCTION_INDICATOR;
+> > > +		function =3D LED_FUNCTION_STATUS;
+> > >  		leds =3D <&led0>, <&led1>, <&led2>;
+> > >  	};
+> > > =20
+> > >=20
+> >=20
+> >=20
+> >=20
+> >=20
+>=20
 
-This is why I'm generally against moving all the DT stuff out of the
-kernel. The reviewing would dry up. I'll try to make sure you see any
-future i2c changes. I take either patches on devicetree-spec list or
-GH PR. Shockingly, I mainly get GH PR.
 
-Rob
+
+
 
