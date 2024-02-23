@@ -1,87 +1,106 @@
-Return-Path: <devicetree+bounces-45163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03B9D860EBC
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 10:55:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECEF1860EF0
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 11:10:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 357301C209E4
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 09:55:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 22CF9B257EE
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 10:10:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C723D5C8E2;
-	Fri, 23 Feb 2024 09:55:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 414425CDD9;
+	Fri, 23 Feb 2024 10:10:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="WJia82bJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ojhuTBgv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1998618E14;
-	Fri, 23 Feb 2024 09:55:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AAB5D533;
+	Fri, 23 Feb 2024 10:10:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708682110; cv=none; b=R6jsOgUSJvWK66ixFRUTHddA4EOzNwgnRbWbOFqhSgpf5hOwuio/EXVo9ifud6ZlilIaCNcJtrvkMGJxLgzHgFAGk0sWRbIPEblbmv9GIVzmhVYvI9Xs405coiZUftGv/s40smigiCPmFe5Ncs9ooFkiv6k07Qqeojcpqk4u8Uk=
+	t=1708683023; cv=none; b=YkXKzbJqIZzoc/z90asomDUSal/tY3bLzt1vr3ZDuvEoSy6erUvucPr6l001PFjgkXxjOQkkpk05YorNsoWjfzdCkEq7II3mlyDmDXKZToZlDsySxECVrqw4vZ0Rubik/YfpYJoFmhyruiPOt3WSAZbLUp4kFW31q9cMvPeC/kM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708682110; c=relaxed/simple;
-	bh=0E2n95rnjTTZ2Ws2bGPAeBdPeTsco6peetfmdUDP3VM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K+JzjYboCZVdU7lsKt7UNRJMDeaoF0a5K0RbWj6757KYKbRJg3S+bjSSGb2cedp+fLKXAOp/wmu/TfBYRuBdKKwm6Dj04qDGYAvGCms2Wk+v64rZCGMakJ+3RJw60LrhYXaK/QMIKjBw8YI7B/E+rUJYsrYila7344SRUZqcsRc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=WJia82bJ; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id A7D49865F5;
-	Fri, 23 Feb 2024 10:54:59 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1708682100;
-	bh=3qKTfJi8o8tNWbQi3rhDcA+/uzL369N4mvuptnnr0JQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WJia82bJfCE0ylDKeHSD7jDKnVcQ2DxS4MT1uqx5w58SzDDQhzRdQECLoR3orlV3G
-	 xO4N9g0wLkU0vTTaWvzloMVD/bcEuBrOQsRqYHXph8K4insNtBcl88rjk+Vclk+/ik
-	 6RPbu1HLnyInwiFRuDV5kwqxifALYwSdzsc1vPE3yjvo59GhyZ8amzqL0mcKWpSmns
-	 TGJ4i95KYXkNwR6tJgyGNKDZWJjhxjCp6b/TMMbe2rGd4rkVhOlf9t6AS9qD5/Db9S
-	 EH9IdUy96oYN1JjiO1DT7tKxC2v3wb7cQbVRp8y9JjVWjFHeouTFndqbdDn0zg8qqs
-	 TxDL0Lyk0sRmg==
-Message-ID: <906acc9a-0dc2-4b39-a2f1-297690a7db63@denx.de>
-Date: Fri, 23 Feb 2024 10:54:59 +0100
+	s=arc-20240116; t=1708683023; c=relaxed/simple;
+	bh=rj50khMCd7O7B7v0SRHISMJug9v3bULtlYjPZBTU/UE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=APvnKuf1yZtrJ0AyUcldk6pCdBxAudu5MhewLAMA/1Nq8+D8LgsYWVKRyi8c1KP3zz/dZJNX+5aaPJ38S8YOPMLeKpx67PNkuHlMU39Lvj7Yi8lYRlBXpreBVfETgtBrO4oam7/Q/ydwJWHEqB5lEwYyJksv0fJyzHMZpOJsoRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ojhuTBgv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 92B5FC433F1;
+	Fri, 23 Feb 2024 10:10:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708683022;
+	bh=rj50khMCd7O7B7v0SRHISMJug9v3bULtlYjPZBTU/UE=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=ojhuTBgvO18NmWnMejaOWRVAOSKiMw5nzMV2JTV5yYzPQbPFjtVw8Dkq7ACmlV9p7
+	 hpW0VwdCTD03BS8x8faqWVRuKYzO+JTRFkJSC2qvYIbkWAkHvE6cLZWiIqN70XItw0
+	 7vqPMB9WE7F0c607K57DIF6DqnkhugSgAY9b2BqVFlsnpnBUtjZFrgw6JhdTTrToro
+	 N4WPdo6TXvWfCrK3gRqU0oXVTzxFLPHqKZtuI7VAtQkJFrxfBqJGchRGN3zBujJyk6
+	 yfczqrRvLiRiLtncJbEa5UOuvQKWhgHDfQcFEplfVtAw7EIwqQX9HG+lxf0xgXyinC
+	 iyAit83w9tIRg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 71E06C54E49;
+	Fri, 23 Feb 2024 10:10:22 +0000 (UTC)
+From: Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>
+Subject: [PATCH v2 0/2] simple-pm-bus: deassert resets if possible
+Date: Fri, 23 Feb 2024 18:10:18 +0800
+Message-Id: <20240223-b4-bus-v2-0-da8ba83c1a5f@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: imx8mp: Fix LDB clocks property
-Content-Language: en-US
-To: Liu Ying <victor.liu@nxp.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, linux-imx@nxp.com, l.stach@pengutronix.de,
- alexander.stein@ew.tq-group.com
-References: <20240223091522.2880155-1-victor.liu@nxp.com>
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20240223091522.2880155-1-victor.liu@nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+X-B4-Tracking: v=1; b=H4sIAApv2GUC/2XMQQ6CMBCF4auQWVtTpi0YV97DsCilyERlTAuNh
+ vTuVrYu/5eXb4PoA/kI52qD4BNF4rkEHipwk51vXtBQGlCilohK9Fr0axSDcc3YGoumtlDOr+B
+ Heu/QtSs9UVw4fHY31b/1j0i1kAJPUjllnW5adeF1eTDfj46f0OWcv+cvru6eAAAA
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Yang Xiwen <forbidden405@outlook.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1708683020; l=785;
+ i=forbidden405@outlook.com; s=20230724; h=from:subject:message-id;
+ bh=rj50khMCd7O7B7v0SRHISMJug9v3bULtlYjPZBTU/UE=;
+ b=KVFzD4/LxaLBN4mijJPpCUdHSXjWF4tITatM8znI+xJq8WdzSibMB92wnRHDyb/bBv2YGJpUw
+ 7KKvEfT0H5QAP7il7TzxQolRaKUegsfGybEbzOPsbYC/lKe0Nw0Cc6Y
+X-Developer-Key: i=forbidden405@outlook.com; a=ed25519;
+ pk=qOD5jhp891/Xzc+H/PZ8LWVSWE3O/XCQnAg+5vdU2IU=
+X-Endpoint-Received:
+ by B4 Relay for forbidden405@outlook.com/20230724 with auth_id=67
+X-Original-From: Yang Xiwen <forbidden405@outlook.com>
+Reply-To: <forbidden405@outlook.com>
 
-On 2/23/24 10:15, Liu Ying wrote:
-> The "media_ldb_root_clk" is the gate clock to enable or disable the clock
-> provided by CCM(Clock Control Module) to LDB instead of the "media_ldb"
-> clock which is the parent of the "media_ldb_root_clk" clock as a composite
-> clock.  Fix LDB clocks property by referencing the "media_ldb_root_clk"
-> clock instead of the "media_ldb" clock.
-> 
-> Fixes: e7567840ecd3 ("arm64: dts: imx8mp: Reorder clock and reg properties")
-> Fixes: 94e6197dadc9 ("arm64: dts: imx8mp: Add LCDIF2 & LDB nodes")
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+simple power-managed buses can also have resets. Get and deassert them
+if possible.
 
-Reviewed-by: Marek Vasut <marex@denx.de>
+Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+---
+Changes in v2:
+- use wrapper
+- Link to v1: https://lore.kernel.org/r/20240223-b4-bus-v1-0-2803c3ac4673@outlook.com
+
+---
+Yang Xiwen (2):
+      dt-bindings: simple-pm-bus: Add optional resets
+      drivers: bus: simple-pm-bus: Get and deassert resets exclusively
+
+ Documentation/devicetree/bindings/bus/simple-pm-bus.yaml |  7 +++++--
+ drivers/bus/simple-pm-bus.c                              | 16 ++++++++++++++--
+ 2 files changed, 19 insertions(+), 4 deletions(-)
+---
+base-commit: 8d3dea210042f54b952b481838c1e7dfc4ec751d
+change-id: 20240223-b4-bus-d5c6f75a251a
+
+Best regards,
+-- 
+Yang Xiwen <forbidden405@outlook.com>
+
 
