@@ -1,125 +1,168 @@
-Return-Path: <devicetree+bounces-45395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45396-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7128861B60
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 19:17:34 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AB11861B67
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 19:18:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70A58289922
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 18:17:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EF939B22137
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 18:18:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8654A143C63;
-	Fri, 23 Feb 2024 18:17:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A9811448E6;
+	Fri, 23 Feb 2024 18:17:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PzGS5lJZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CQbODuas"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58E214C8C;
-	Fri, 23 Feb 2024 18:17:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21059143C7B;
+	Fri, 23 Feb 2024 18:17:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708712237; cv=none; b=K7erAbrI7ajePYTXEkaP8kT020pmziXafs030Mp5bFPhNhv21CkhZdXaHI7IeKY1+lqwo36g2gOUcgdzwK06w1uOtepYOdPFWfcCbdWti9lsSIuo03hodAbKhmyl2ooFhjjZOBE0zvgPBq4CgVnBMshpdpfNAIljTO8HCR5vlXc=
+	t=1708712262; cv=none; b=ZpyGDOPBj9BUa4/usLwCiJNfSJbse67FeKQdXN6bh4QrXGAT2b3wSdWhBHrL6+l2OOsmhQJFrBmU1GsAYkjFtKO0/Rcned5N+shdr/c5Z3tlZjNdoLEsXbM+uVA7wZMiKfe2GBsookD8RdCwLV7ywHa163I5hOqumZKQwKAAfac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708712237; c=relaxed/simple;
-	bh=1TaQyLnLQWa4xzlGMl4VRuz8CCdT4fApVc8elKczvLU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dxLbagMhWCEPVmoBG6h68X59cks3hfKHINuQ9PFm/EV3djhRCVkin9S5UztkmrYYVfNfvOPLUcgc37wL6rWkcLElCfVc5SLoanOC+WM6ha8mvwq6emIr3JHzt3t7qvalPq1HuLyjHlpT+8thbLLel/mGYHNwLZZh4gI9LccadSc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PzGS5lJZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02853C433F1;
-	Fri, 23 Feb 2024 18:17:17 +0000 (UTC)
+	s=arc-20240116; t=1708712262; c=relaxed/simple;
+	bh=c5QkKiyVFMuovuY9obuJR3nnEIMfzmSmwdF2C4GSyDw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EDnew24hvtG+CGSmkU97ixceSxt8cAKEmKyP4cUSsPtW4ZqEoGyoT1Sr9kcqoBKknwN2uU5HR+LhHLLlDLsKew5mtdeeCrwrbBst8ZNMXWbv3XDMe8saVkgRLzpacGdQ41G7FCx9yNi50+tCPR1RQVPg/0GBhce39P49rdDQkqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CQbODuas; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EF88C433F1;
+	Fri, 23 Feb 2024 18:17:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708712237;
-	bh=1TaQyLnLQWa4xzlGMl4VRuz8CCdT4fApVc8elKczvLU=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=PzGS5lJZFKajBhQA28OnjPbLn8f0WYXVCF/WAHYDI7cak3vKJOM3LkRQgJvNlRpag
-	 YNWeP7IJoNSbj1T8FLbiI5yfAxrT7QFgWAnuLTajbXYtbLL5W4qEA9TmvnjKfuRVKO
-	 1WnOX3VDVhBZws5CuuNSHWXxWT8ku+jXPwb8AH/BuhoasuhE793yagK5Jygu3advXS
-	 9ytiKylf1R14hBlHBZS8QKNhqg25kmhDtFBY+9zw+NhZj80ckyJLZI7yE39gWPA4RD
-	 hzZop//Po7dRpba0uORnQe5MgpNsJujHfDWaqVgp2Aq8eotXRUvS71jdSyhxdpI/sC
-	 kAqqjF57jN4rg==
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-512eb0f0616so1018866e87.3;
-        Fri, 23 Feb 2024 10:17:16 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWiTxGDF2Sd2hvOFnYtHUuaE2/ypgWVTFs2/xzsZS30adgJrowQ8oLecEweY0f73o8/zTaCrhA/e29QET50+XcsQiSLMRXGuvuclyPGZe62jvondcqDwlaiGmKxPR0tj0v+plVbFis7ANgBycEZhUKhN2y65Ig4OYtvzVE6dt9yoQ+NDo7+cYQNpg==
-X-Gm-Message-State: AOJu0YzuF567E01qOiqYEWS8BR2J/YvAn5b9G3MgkoIFZB5JaGErIFmW
-	xNXGri3pDOHN/La9x8jzXLcanH+EL75g0pY4l4x7b2EKrHo5+yX7eoTEG6chhZ3mvDpQocpWJj0
-	GqAdX6xA0Sr9JM53KsPov6BRF+A==
-X-Google-Smtp-Source: AGHT+IFnlf/NYg+53odk3xSf/t++OSDfbNnyCI3vytiLL/BpWyZMCTDy8ukEbtAnd0c2SbNSwHy+1Ji8o9g9IN5a9mg=
-X-Received: by 2002:a05:6512:3741:b0:512:acc8:7c36 with SMTP id
- a1-20020a056512374100b00512acc87c36mr307071lfs.58.1708712235214; Fri, 23 Feb
- 2024 10:17:15 -0800 (PST)
+	s=k20201202; t=1708712261;
+	bh=c5QkKiyVFMuovuY9obuJR3nnEIMfzmSmwdF2C4GSyDw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CQbODuasLNvAIL/bKKN2tRcPuY8c07rclpxWMYWAvtLVvFfaSrdn7cytI5jBI4e69
+	 xOHVmqBziRYNaaFUJeXpTDLD7u8qapOjeaGQ+kO5AwoqZoMNghwrKuqKTnCnSKfb1x
+	 1lxJS43+hrQEcR5Qs1/WQ0AyzJQXMg0XNvVwLD0jBp7F6qg//Na8qZrYROByQg9fsX
+	 miRCt0gq4oo38/Z8VgZkmlC89PcxB7thBhCzB+teKn4sd3xyuPHFEYXfuZkpVgsdlA
+	 E340rBY7qdP7ZA4i19EAXl2IcQJfwwEFlXQFVxDCIsef5kOGndUsrjDYmdt9J1HsKl
+	 TfeYouuFr/Muw==
+Date: Fri, 23 Feb 2024 18:17:37 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Lee Jones <lee@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, Pavel Machek <pavel@ucw.cz>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: leds: pwm-multicolour: re-allow active-low
+Message-ID: <20240223-register-snowbound-b837c8b1cc25@spud>
+References: <20240213-verse-clinic-e6de06e1f18d@spud>
+ <20240223154304.GE1666215@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240217010557.2381548-1-sboyd@kernel.org> <20240217010557.2381548-6-sboyd@kernel.org>
- <20240223000317.GA3835346-robh@kernel.org> <20240223102345.GA10274@willie-the-truck>
-In-Reply-To: <20240223102345.GA10274@willie-the-truck>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 23 Feb 2024 11:17:02 -0700
-X-Gmail-Original-Message-ID: <CAL_JsqJSeSHeWV3YJE9n2NuY+s_iE6f7N5C_oguEJn7jTZ20xA@mail.gmail.com>
-Message-ID: <CAL_JsqJSeSHeWV3YJE9n2NuY+s_iE6f7N5C_oguEJn7jTZ20xA@mail.gmail.com>
-Subject: Re: [PATCH v4 5/7] arm64: Unconditionally call unflatten_device_tree()
-To: Will Deacon <will@kernel.org>
-Cc: Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org, patches@lists.linux.dev, 
-	linux-um@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	kunit-dev@googlegroups.com, linux-kselftest@vger.kernel.org, 
-	devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Mark Rutland <mark.rutland@arm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="zXyJuKI1vC8uXvAV"
+Content-Disposition: inline
+In-Reply-To: <20240223154304.GE1666215@google.com>
+
+
+--zXyJuKI1vC8uXvAV
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Feb 23, 2024 at 3:23=E2=80=AFAM Will Deacon <will@kernel.org> wrote=
-:
->
-> On Thu, Feb 22, 2024 at 05:03:17PM -0700, Rob Herring wrote:
-> > On Fri, Feb 16, 2024 at 05:05:54PM -0800, Stephen Boyd wrote:
-> > > Call this function unconditionally so that we can populate an empty D=
-TB
-> > > on platforms that don't boot with a firmware provided or builtin DTB.
-> > > When ACPI is in use, unflatten_device_tree() ignores the
-> > > 'initial_boot_params' pointer so the live DT on those systems won't b=
-e
-> > > whatever that's pointing to. Similarly, when kexec copies the DT data
-> > > the previous kernel to the new one on ACPI systems,
-> > > of_kexec_alloc_and_setup_fdt() will ignore the live DT (the empty roo=
-t
-> > > one) and copy the 'initial_boot_params' data.
-> > >
-> > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > Cc: Frank Rowand <frowand.list@gmail.com>
-> > > Cc: Catalin Marinas <catalin.marinas@arm.com>
-> > > Cc: Will Deacon <will@kernel.org>
-> > > Cc: Mark Rutland <mark.rutland@arm.com>
-> > > Cc: <linux-arm-kernel@lists.infradead.org>
-> > > Signed-off-by: Stephen Boyd <sboyd@kernel.org>
-> > > ---
-> > >  arch/arm64/kernel/setup.c | 3 +--
-> > >  1 file changed, 1 insertion(+), 2 deletions(-)
-> >
-> > Catalin, Will, Can I get an ack on this so I can take the series via th=
-e
-> > DT tree.
->
-> Mark had strong pretty strong objections to this in version one:
+On Fri, Feb 23, 2024 at 03:43:04PM +0000, Lee Jones wrote:
+> On Tue, 13 Feb 2024, Conor Dooley wrote:
+>=20
+> > From: Conor Dooley <conor.dooley@microchip.com>
+> >=20
+> > active-low was lifted to the common schema for leds, but it went
+> > unnoticed that the leds-multicolour binding had "additionalProperties:
+> > false" where the other users had "unevaluatedProperties: false", thereby
+> > disallowing active-low for multicolour leds. Explicitly permit it again.
+> >=20
+> > Fixes: c94d1783136e ("dt-bindings: net: phy: Make LED active-low proper=
+ty common")
+> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> > ---
+> >=20
+> > I'm just assuming this is intentionally restrictive, if its not, we
+> > could easily just change this to uneval: false.
+> >=20
+> > CC: Pavel Machek <pavel@ucw.cz>
+> > CC: Lee Jones <lee@kernel.org>
+> > CC: Rob Herring <robh@kernel.org>
+> > CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> > CC: Conor Dooley <conor+dt@kernel.org>
+> > CC: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
+> > CC: Christian Marangi <ansuelsmth@gmail.com>
+> > CC: linux-leds@vger.kernel.org
+> > CC: devicetree@vger.kernel.org
+> > CC: linux-kernel@vger.kernel.org
+> > ---
+> >  Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/leds/leds-pwm-multicolor=
+=2Eyaml b/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+> > index 5edfbe347341..a31a202afe5c 100644
+> > --- a/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+> > +++ b/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+> > @@ -41,6 +41,8 @@ properties:
+> > =20
+> >            pwm-names: true
+> > =20
+> > +          active-low: true
+> > +
+> >            color: true
+> > =20
+> >          required:
+> > --=20
+> > 2.43.0
+>=20
+> Neither checkpatch.pl or Git appear to be happy with this:
 
-Yes, I had concerns with it as well.
+18:15:26 conor /stuff/linux$ shazam 20240213-verse-clinic-e6de06e1f18d@spud
+Grabbing thread from lore.kernel.org/all/20240213-verse-clinic-e6de06e1f18d=
+@spud/t.mbox.gz
+Checking for newer revisions
+Grabbing search results from lore.kernel.org
+Analyzing 3 messages in the thread
+Looking for additional code-review trailers on lore.kernel.org
+Checking attestation on all messages, may take a moment...
+Retrieving CI status, may take a moment...
+---
+  =E2=9C=93 [PATCH] dt-bindings: leds: pwm-multicolour: re-allow active-low
+    + Acked-by: Rob Herring <robh@kernel.org> (=E2=9C=93 DKIM/kernel.org)
+  ---
+  =E2=9C=93 Signed: openpgp/conor.dooley@microchip.com (From: conor@kernel.=
+org)
+  =E2=9C=93 Signed: DKIM/kernel.org
+---
+Total patches: 1
+---
+Applying: dt-bindings: leds: pwm-multicolour: re-allow active-low
+18:15:39 conor /stuff/linux$ git show HEAD~1
+commit 2d5c7b7eb345249cb34d42cbc2b97b4c57ea944e (tag: next-20240220, korg-n=
+ext/master)
 
-> https://lore.kernel.org/all/ZaZtbU9hre3YhZam@FVFF77S0Q05N/
->
-> and this patch looks the same now as it did then. Did something else
-> change?
+What do you use to apply patches? b4 seems to have no trouble.
 
-Yes, that version unflattened the bootloader passed DT. Now within
-unflatten_devicetree(), the bootloader DT is ignored if ACPI is
-enabled and we unflatten an empty tree. That will prevent the kernel
-getting 2 h/w descriptions if/when a platform does such a thing. Also,
-kexec still uses the bootloader provided DT as before.
+Cheers,
+Conor.
 
-Rob
+--zXyJuKI1vC8uXvAV
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdjhQQAKCRB4tDGHoIJi
+0m2dAP9AxmqLHjwfdwCzutyhWXrCxueWGcdbJvAVyVbFBdMTWAD+JzrGU15t7FOg
+7SIlNUetEH7NFFcptya5JRzVPaw5ugY=
+=HW3e
+-----END PGP SIGNATURE-----
+
+--zXyJuKI1vC8uXvAV--
 
