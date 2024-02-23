@@ -1,208 +1,127 @@
-Return-Path: <devicetree+bounces-45148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECFBB860E27
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 10:38:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5F8D860E95
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 10:50:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 29A321C20E55
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 09:38:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 76849B27595
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 09:50:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1E685D481;
-	Fri, 23 Feb 2024 09:37:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D95F35CDD5;
+	Fri, 23 Feb 2024 09:45:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="CGiYXaky"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa2.ltts.com (unknown [14.140.155.42])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9889E5CDDB;
-	Fri, 23 Feb 2024 09:37:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=14.140.155.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 646D55D49A;
+	Fri, 23 Feb 2024 09:45:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708681075; cv=none; b=HqCIZAeVkuYAgPOUcyNnqpZ31e0tDC65+Kf2jPzbqkkobvUy3szIWwS06LROs96bHlwtQTvxjP5fIR/0Ix8NsHU3jaepTIFpXNGwcwaWWW4yWjBxhtmnr09SNPkhhcXOBCL1FKopwGUOVaeWmp0/GFycYibsHsFlAm35f7rQIVs=
+	t=1708681558; cv=none; b=kWf7P6HUeVHHm4bYFh1xESkHUmqUyaYAq+L26ADORaGlgpF2aruENyUUdqjVBUbG1VZoHqgQkC7JtMrSWcvHbnCPIIT/DChjF6v+5yGKc9k9Hh9PsMLUpBY1kDOM5ekocOMpAY0sTauSZcA5eolM5WodDyYEK2c9qc0+36YFQEg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708681075; c=relaxed/simple;
-	bh=kgd5rZlmo0eQ4+URWAldLJfV0Lypdy0Upba1rC9o8CM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=DpAbl3GMbhGeghU42T3MtzqlUTJoVk3qjmLm8PvlXY5gp62AKRuisJd7PISVSQjNlxd+2tcJgQovBMGX3ZHUerluAPhAu8HahuIE8oKQBoH519E92dl7tt849z4IO4VuAO86zasYUPOXGpi8ULsFEAxsJbFeryWh3PCf2H5OL9w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ltts.com; spf=pass smtp.mailfrom=ltts.com; arc=none smtp.client-ip=14.140.155.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ltts.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ltts.com
-IronPort-SDR: HJlgWVKI0KCo1CJ2mGuQdt5yc8kWdw0FGGTxbx7eGNcQ22h+XVSKSuSU4F3P+cXp6RVgSNgE8w
- ytBdNf9xw/Sg==
-Received: from unknown (HELO localhost.localdomain) ([192.168.34.55])
-  by esa2.ltts.com with ESMTP; 23 Feb 2024 15:07:21 +0530
-From: Bhargav Raviprakash <bhargav.r@ltts.com>
-To: linux-kernel@vger.kernel.org
-Cc: m.nirmaladevi@ltts.com,
-	lee@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	jpanis@baylibre.com,
-	devicetree@vger.kernel.org,
-	arnd@arndb.de,
-	gregkh@linuxfoundation.org,
-	lgirdwood@gmail.com,
-	broonie@kernel.org,
-	linus.walleij@linaro.org,
-	linux-gpio@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	nm@ti.com,
-	vigneshr@ti.com,
-	kristo@kernel.org,
-	Bhargav Raviprakash <bhargav.r@ltts.com>
-Subject: [PATCH v2 14/14] arch: arm64: dts: ti: k3-am62p5-sk: Add TPS65224 PMIC support in AM62P dts
-Date: Fri, 23 Feb 2024 15:07:01 +0530
-Message-Id: <20240223093701.66034-15-bhargav.r@ltts.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240223093701.66034-1-bhargav.r@ltts.com>
-References: <20240223093701.66034-1-bhargav.r@ltts.com>
+	s=arc-20240116; t=1708681558; c=relaxed/simple;
+	bh=vnPXFRNx+a86m5DmfswPlKp7l/rv3+K3EFPRz/NMN+s=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MmQdjI17wT11qlfsnZBklUOfgdhrFA/nFftEicaE61ro2IG+qtKPHNsen0X0cbQlUoJriwC2a2G2k25gM6tZvuzVONAsPz57cZDoSLI+fMssb9X88hDvWbeiNjsWst1nizK9X4uw3sZx6Sh7cnzmZTZ2U7QxETrTYtGs7iA4V+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=CGiYXaky; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id F3E0AE0009;
+	Fri, 23 Feb 2024 09:45:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1708681553;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Gwfzm0aIYjJ7qpMl8GKhOJn5YclIVRibK7FZGX4d/IU=;
+	b=CGiYXakyeEbP1DuGWVuf85ujvDQhvxQmVkfZ5rB1A24G2QeYIo8280L6QaVc1HFAYX6RsG
+	3Wmgs9yneuhowGrJOmN8rt+BZZsQOk0kcN5b8urakcrWilzJEamyYqVWipWddZ2AQzYoPj
+	U07u/z6IvrnPsf5WVjc+0pTWmwgX7G/nd1Ze+2l4K/jpWgdBOFTFkRdMrSMeMdfJJmSw6J
+	Rb2kv9A2zBAahGq9px7yhLiy28TmaX62iqoTRlM7xSeeUsEyLqkKe0xBDwdA29LMR1xaPf
+	dZZdToMfsRecobHAxCl0Gt6kqFoTWYBbD7/kqdLgW03uoouExJfPO5FDVaMcCQ==
+Date: Fri, 23 Feb 2024 10:45:50 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Saravana Kannan <saravanak@google.com>, Nuno Sa <nuno.sa@analog.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Frank Rowand
+ <frowand.list@gmail.com>, Lizhi Hou <lizhi.hou@amd.com>, Max Zhen
+ <max.zhen@amd.com>, Sonal Santan <sonal.santan@amd.com>, Stefano Stabellini
+ <stefano.stabellini@xilinx.com>, Jonathan Cameron
+ <Jonathan.Cameron@huawei.com>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>,
+ Horatiu Vultur <horatiu.vultur@microchip.com>, Steen Hegelund
+ <steen.hegelund@microchip.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Android Kernel Team <kernel-team@android.com>
+Subject: Re: [PATCH 2/2] of: overlay: Synchronize of_overlay_remove() with
+ the devlink removals
+Message-ID: <20240223104550.234ecdcb@bootlin.com>
+In-Reply-To: <CAGETcx_zB95nyTpi-_kYW_VqnPqMEc8mS9sewSwRNVr0x=7+kA@mail.gmail.com>
+References: <20231130174126.688486-1-herve.codina@bootlin.com>
+	<20231130174126.688486-3-herve.codina@bootlin.com>
+	<CAGETcx_zB95nyTpi-_kYW_VqnPqMEc8mS9sewSwRNVr0x=7+kA@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-Add support for TPS65224 PMIC in device tree of AM62P EVM. Adds
-regulator configuration, pinmux configurations and pmic device nodes.
+Hi Saravana, Nuno, 
 
-Signed-off-by: Bhargav Raviprakash <bhargav.r@ltts.com>
----
- arch/arm64/boot/dts/ti/k3-am62p5-sk.dts | 95 +++++++++++++++++++++++++
- 1 file changed, 95 insertions(+)
+On Tue, 20 Feb 2024 16:37:05 -0800
+Saravana Kannan <saravanak@google.com> wrote:
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-index 1773c05f7..5d8e4321b 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-@@ -112,6 +112,16 @@ vddshv_sdio: regulator-3 {
- 		bootph-all;
- 	};
- 
-+	vcc_3v3_main: regulator-4 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_3v3_main";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vmain_pd>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 		pinctrl-names = "default";
-@@ -580,6 +590,12 @@ &main_uart1 {
- &mcu_pmx0 {
- 	bootph-all;
- 
-+	pmic_irq_pins_default: pmic-irq-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_MCU_IOPAD(0x000, PIN_INPUT, 7) /* (B10) MCU_GPIO0_0 */
-+		>;
-+	};
-+
- 	wkup_uart0_pins_default: wkup-uart0-default-pins {
- 		pinctrl-single,pins = <
- 			AM62PX_MCU_IOPAD(0x02c, PIN_INPUT, 0)	/* (C7) WKUP_UART0_CTSn */
-@@ -589,6 +605,13 @@ AM62PX_MCU_IOPAD(0x028, PIN_OUTPUT, 0)	/* (D7) WKUP_UART0_TXD */
- 		>;
- 		bootph-all;
- 	};
-+
-+	wkup_i2c0_pins_default: wkup-i2c0-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_MCU_IOPAD(0x04c, PIN_INPUT, 0) /* (A13) WKUP_I2C0_SCL */
-+			AM62PX_MCU_IOPAD(0x050, PIN_INPUT, 0) /* (C11) WKUP_I2C0_SDA */
-+		>;
-+	};
- };
- 
- &wkup_uart0 {
-@@ -599,6 +622,78 @@ &wkup_uart0 {
- 	bootph-all;
- };
- 
-+&wkup_i2c0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&wkup_i2c0_pins_default>;
-+	clock-frequency = <400000>;
-+
-+	tps65224: pmic@48 {
-+		compatible = "ti,tps65224-q1";
-+		reg = <0x48>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pmic_irq_pins_default>;
-+		interrupt-parent = <&mcu_gpio0>;
-+		interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
-+		ti,primary-pmic;
-+
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		buck12-supply = <&vcc_3v3_main>;
-+		buck3-supply = <&vcc_3v3_main>;
-+		buck4-supply = <&vcc_3v3_main>;
-+
-+		ldo1-supply = <&vcc_3v3_main>;
-+		ldo2-supply = <&vcc_3v3_main>;
-+		ldo3-supply = <&vcc1v8_sys>;
-+
-+		regulators {
-+			vcc_core: buck12 {
-+				regulator-name = "vcc_core_buck12";
-+				regulator-min-microvolt = <715000>;
-+				regulator-max-microvolt = <895000>;
-+				regulator-always-on;
-+			};
-+
-+			vcc1v8_sys: buck3 {
-+				regulator-name = "vcc1v8_sys_buck3";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-always-on;
-+			};
-+
-+			vcc1v1: buck4 {
-+				regulator-name = "vcc1v1_buck4";
-+				regulator-min-microvolt = <1100000>;
-+				regulator-max-microvolt = <1100000>;
-+				regulator-always-on;
-+			};
-+
-+			vdda1v8: ldo1 {
-+				regulator-name = "vdda1v8_ldo1";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-always-on;
-+			};
-+
-+			dvdd3v3: ldo2 {
-+				regulator-name = "dvdd3v3_ldo2";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+			};
-+
-+			vcc_0v85: ldo3 {
-+				regulator-name = "vcc_0v85_ldo3";
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <850000>;
-+				regulator-always-on;
-+			};
-+		};
-+	};
-+};
-+
- /* mcu_gpio0 and mcu_gpio_intr are reserved for mcu firmware usage */
- &mcu_gpio0 {
- 	status = "reserved";
--- 
-2.25.1
+...
+> > @@ -1202,6 +1202,12 @@ int of_overlay_remove(int *ovcs_id)
+> >                 goto out;
+> >         }
+> >
+> > +       /*
+> > +        * Wait for any ongoing device link removals before removing some of
+> > +        * nodes
+> > +        */
+> > +       device_link_wait_removal();
+> > +  
+> 
+> Nuno in his patch[1] had this "wait" happen inside
+> __of_changeset_entry_destroy(). Which seems to be necessary to not hit
+> the issue that Luca reported[2] in this patch series. Is there any
+> problem with doing that?
 
+Is it the right place to wait ?
+
+__of_changeset_entry_destroy() can do some of_node_put() and I am not sure
+that of_node_put() can call device_put() when the of_node refcount reachs
+zero.
+
+If of_node_put() cannot call device_put(), I think we can wait in the
+of_changeset_destroy(). I.e. the __of_changeset_entry_destroy() caller.
+  https://elixir.bootlin.com/linux/v6.8-rc1/source/drivers/of/dynamic.c#L670
+
+What do you think about this ?
+Does it make sense ?
+
+> 
+> Luca for some reason did a unlock/lock(of_mutex) in his test patch and
+> I don't think that's necessary.
+> 
+> Can you move this call to where Nuno did it and see if that works for
+> all of you?
+
+I will check.
+
+Best regards,
+Hervé
 
