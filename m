@@ -1,116 +1,157 @@
-Return-Path: <devicetree+bounces-45124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6009B860CF8
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 09:37:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7058860D20
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 09:46:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A7A5281EDB
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 08:37:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 837B0286533
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 08:46:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E81B18E0E;
-	Fri, 23 Feb 2024 08:35:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E47218E29;
+	Fri, 23 Feb 2024 08:46:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tMZInjpm"
+	dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b="tYDKGXyT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
+Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9FFD17BC1
-	for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 08:35:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22BF618E1E;
+	Fri, 23 Feb 2024 08:46:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.181.215.36
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708677347; cv=none; b=Yc0QeXmPnsG5eP5X18NpDZaPUj8PklW5APXElWP9btRKp38loYp1PyJFX+rfCuR0jAbJR6ar0thjWEZga4nyJltcCecdvrTEpoagj/G4OFBGgGOWwn8qDOAdmgrd5rsFcRFKH7Qq6a78ZJlvVGf4QTwd6IoGNZGiHr9SG42JAg4=
+	t=1708677990; cv=none; b=FaISb6QcpKcFTTwF6ZX5w6M6DOkWKKdeUo6zC0XpxEBqq6arBhD3OZW0sWOuZh1RO15G1cHCmg8YZMkcnMFdSmJLZEc8lAUVdbswY4tHA3oOWq24ckXBrJ0mHujWgmwfkLwbTEYq2nSxxWYdp9/9pxKceU3qt/K8EL7/SezcHGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708677347; c=relaxed/simple;
-	bh=BDJzrankMyMZocCjXVCHMyuvOlOLvr1YP5o6PLfU+ng=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=N9QmgTe1gsAaAUwMbllkLQ14QMCG8l+JtLUMfXdHCbIWZcG73yVgopHvHgtDsj+LO0FhwNrUPW3rlpKXOzkz+pUf7JnDfShMRwaeATDHEJORvRm2ovP0Rdi59iWC0z3uL+8KRItp3SWFzeyMxib17A8aBEWxqwijx2+vMqjsKCw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tMZInjpm; arc=none smtp.client-ip=209.85.219.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-dc6d8bd612dso540193276.1
-        for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 00:35:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708677345; x=1709282145; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BDJzrankMyMZocCjXVCHMyuvOlOLvr1YP5o6PLfU+ng=;
-        b=tMZInjpmvJaLXfTZUAyBYdoUEgLN6Gv4iM1TlgdiLl86hAZ4i06pu9+VpRILXkyTd0
-         ePOdUzghIovQD69xdxbTNooHA/QbYtr80BBmZgDDiJRz7AJplv7G4+tSdQiIxRh59+hc
-         Hl4pbQtC4rBGbFMiuh9hNxYP7lcLLUiEBX3Wxri99LXxSGD8I/Nxp0RecK6zYWRGTl/P
-         Zb7akIT46GajWyNfawR+LIDRXr0PRTna7Uzt2ig5w+PIsnwqrPnYWfsJgXG2rRPHfHLB
-         IRz1JMVnqQXlx1vxHkBtyj/nQFAhcVk8pCopOEo7vqw2lKd+cBF01eMTRkN39l99y/Cc
-         JSpA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708677345; x=1709282145;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BDJzrankMyMZocCjXVCHMyuvOlOLvr1YP5o6PLfU+ng=;
-        b=aezV1sMMUiDl0KWSjKOgPVFs32+lIy8mmt6XBQ5ykaS8AFnuY5GwS+zj3l36lMhdW7
-         ceaBHywf581zbS+a9V1SO24U9WxCKQR4ymWQNOaAtdkutThJpaf0HtwrNodIZcc9bTbB
-         lQQtbAOJAmkLt/8OHyQv3BPOAGNuJg97bFdM/GG2orRXGN36gbZP6TfOSBvmZZYNH8w/
-         AbfUPnoTdLMu9x7NxsNEbXdvWnuraJRhV39cQ0p5sb27E6KB3PSBXlSFlUcd9RGEHIrt
-         bFakPcME6USaVyCVWRHzUgd1gEGjsTab8wBBlDcEsAZmni+WEKU2iLgDNn1uDoz0hiBZ
-         QBdQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW/56EkooTO6LBscpwPK4XwN/yKmfo/ZECprNgxATGX0lGYbWmGR++x0uuX6ryBW/qHxCL8s256W5c2K64lXOHPDSpTod3P1O5O4Q==
-X-Gm-Message-State: AOJu0YwAGSpryEmVbYjDVkuvN0NlCkGrWWzmAeCFoI8M0/+Wg3j8aBm2
-	zD7yq1IyNBEgHidljPEeOBZ1um2GOAla6eHa8osY1dHvEXAmf9tdpkwW7HdUdPKIYDFznBWPuuH
-	aXoNjAbOqViYD9iQJbNR5cWrtjMPHsoS6NL51Mg==
-X-Google-Smtp-Source: AGHT+IGOlBpYdtZ4/p5L/TR0zjPYT869hfBVTynTZpUrGGbxeGr51rjvskBAzAxe2aQoNBXBzWL75316K2e/O2MrnOI=
-X-Received: by 2002:a25:2045:0:b0:dcc:ec02:38b0 with SMTP id
- g66-20020a252045000000b00dccec0238b0mr1342720ybg.64.1708677344960; Fri, 23
- Feb 2024 00:35:44 -0800 (PST)
+	s=arc-20240116; t=1708677990; c=relaxed/simple;
+	bh=EZZPQchlQbMRgMLdaZSVRfWs5DMx2XOakjV6Hz3uCjc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=u6OUgxfN3J5gF/LyvAacZ4JoQLif2LdTxzPzKVVvgDXFbDG9mYHyT2LHItRGOtHtcVV5FC0IpsdazK9ilHuR5BmDai+pPGfIiOhINZ2ADJzZkHZpAnWhGN3mqdisTSkw6anfSbEO5pDELO8HBV5qHP8sUJ+RAEBlHrtbN4jleqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz; spf=pass smtp.mailfrom=xff.cz; dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b=tYDKGXyT; arc=none smtp.client-ip=195.181.215.36
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xff.cz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
+	t=1708677986; bh=EZZPQchlQbMRgMLdaZSVRfWs5DMx2XOakjV6Hz3uCjc=;
+	h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
+	b=tYDKGXyTUFx45Cfn4MxTIQ4wjmFHD/P+5LQ8Tv8lWgD9lkdtT3FOkBhEEyWWts15p
+	 NdK0gVmh6eiX1XcL39WrYugf7CrmeaVPEU3mcpfmHMTbimF+jrF2xM5GtbVsDSDBHq
+	 a3IKS0Xu+eifTUatSjo6DXYkh12/fb+JEgtO842c=
+Date: Fri, 23 Feb 2024 09:46:25 +0100
+From: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
+To: Aren Moynihan <aren@peacevolution.org>
+Cc: linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, 
+	Jean-Jacques Hiblot <jjhiblot@traphandler.com>, Chen-Yu Tsai <wens@csie.org>, linux-sunxi@lists.linux.dev, 
+	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>, 
+	linux-arm-kernel@lists.infradead.org, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	linux-leds@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Miles Alan <m@milesalan.com>, 
+	Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH v2 3/4] arm64: dts: sun50i-a64-pinephone: add multicolor
+ led node
+Message-ID: <sixgkkllo7medcjwjnmbkpqkgfvnmrtlhlwarwuxid5oqwrht5@gl65b6fetq2b>
+Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>, 
+	Aren Moynihan <aren@peacevolution.org>, linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, 
+	Jean-Jacques Hiblot <jjhiblot@traphandler.com>, Chen-Yu Tsai <wens@csie.org>, linux-sunxi@lists.linux.dev, 
+	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>, 
+	linux-arm-kernel@lists.infradead.org, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	linux-leds@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Miles Alan <m@milesalan.com>, 
+	Samuel Holland <samuel@sholland.org>
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
+References: <20240206185400.596979-1-aren@peacevolution.org>
+ <20240206185400.596979-3-aren@peacevolution.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240223-pinctrl-scmi-v4-0-10eb5a379274@nxp.com>
- <20240223-pinctrl-scmi-v4-3-10eb5a379274@nxp.com> <CACRpkdZLuWwecacBAimT=Vj67dGabzBH-7aaqzoyj1B1sY6o_A@mail.gmail.com>
- <ZdhYc90uy7yuYrx2@pluto>
-In-Reply-To: <ZdhYc90uy7yuYrx2@pluto>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 23 Feb 2024 09:35:33 +0100
-Message-ID: <CACRpkdYZuHh4JuwwgUEeVR_0jG1DPtj212AMOgnaxWdkT_sowg@mail.gmail.com>
-Subject: Re: [PATCH v4 3/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
- protocol basic support
-To: Cristian Marussi <cristian.marussi@arm.com>
-Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Sudeep Holla <sudeep.holla@arm.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Oleksii Moisieiev <oleksii_moisieiev@epam.com>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	AKASHI Takahiro <takahiro.akashi@linaro.org>, Peng Fan <peng.fan@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240206185400.596979-3-aren@peacevolution.org>
 
-On Fri, Feb 23, 2024 at 9:34=E2=80=AFAM Cristian Marussi
-<cristian.marussi@arm.com> wrote:
+Hello Aren,
 
-> Well, AFAIK there is another upcoming change in the v3.2 SCMI spec and
-> I am not sure if this series accounts for it...indeed the v3.2 -bet4 was
-> still pending fr feedback AFAIK (and I doubt latest changes are in since
-> they have been discussed like yesterday...)....but I maybe wrong, I will
-> chase for the final spec and look into this to verify if it is
-> compliant...
->
-> Anyway, given the particularly long history of changes in PINCTRL v3.2
-> SCMI I would wait to have the final spec officially frozen at this
-> point before merging....
+On Tue, Feb 06, 2024 at 01:13:19PM -0500, Aren Moynihan wrote:
+> The red, green, and blue leds currently in the device tree represent a
+> single rgb led on the front of the PinePhone.
+> 
+> Signed-off-by: Aren Moynihan <aren@peacevolution.org>
+> ---
+> 
+> Changes in v2:
+>  - remove function property from individual led nodes
+> 
+>  .../boot/dts/allwinner/sun50i-a64-pinephone.dtsi | 16 ++++++++++------
+>  1 file changed, 10 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+> index ad2476ee01e4..e53e0d4579a7 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+> @@ -39,28 +39,32 @@ chosen {
+>  	leds {
+>  		compatible = "gpio-leds";
+>  
+> -		led-0 {
+> -			function = LED_FUNCTION_INDICATOR;
 
-OK fair enough, I hold my horses!
+This looks like a needless change that will just break people's current scripts
+and setup. It does mine, and there sure are others that will be surprised, too.
 
-Maybe we should mark the series as pending spec or something.
+This leads to a change in sysfs path from:
 
-Yours,
-Linus Walleij
+  /sys/class/leds/blue:indicator
+
+to
+
+  /sys/class/leds/blue:
+
+which is 1) a weird name and 2) a backwards compatibility break for seemingly
+no apparent reason. Any reaons for the change?
+
+People normally hardcode these paths in eg. /etc/tmpfiles.d to apply LED triggers
+to particular LEDs.
+
+Kind regards,
+	o.
+
+> +		led0: led-0 {
+>  			color = <LED_COLOR_ID_BLUE>;
+>  			gpios = <&pio 3 20 GPIO_ACTIVE_HIGH>; /* PD20 */
+>  			retain-state-suspended;
+>  		};
+>  
+> -		led-1 {
+> -			function = LED_FUNCTION_INDICATOR;
+> +		led1: led-1 {
+>  			color = <LED_COLOR_ID_GREEN>;
+>  			gpios = <&pio 3 18 GPIO_ACTIVE_HIGH>; /* PD18 */
+>  			retain-state-suspended;
+>  		};
+>  
+> -		led-2 {
+> -			function = LED_FUNCTION_INDICATOR;
+> +		led2: led-2 {
+>  			color = <LED_COLOR_ID_RED>;
+>  			gpios = <&pio 3 19 GPIO_ACTIVE_HIGH>; /* PD19 */
+>  			retain-state-suspended;
+>  		};
+>  	};
+>  
+> +	multi-led {
+> +		compatible = "leds-group-multicolor";
+> +		color = <LED_COLOR_ID_RGB>;
+> +		function = LED_FUNCTION_INDICATOR;
+> +		leds = <&led0>, <&led1>, <&led2>;
+> +	};
+> +
+>  	reg_ps: ps-regulator {
+>  		compatible = "regulator-fixed";
+>  		regulator-name = "ps";
+> -- 
+> 2.43.0
+> 
 
