@@ -1,124 +1,224 @@
-Return-Path: <devicetree+bounces-45190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF0A3861041
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 12:22:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F5F4861055
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 12:26:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A85E8286EC9
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 11:22:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BCB091C21CDE
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 11:26:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61ACF633E9;
-	Fri, 23 Feb 2024 11:22:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 575D079DB5;
+	Fri, 23 Feb 2024 11:26:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZzAaElrm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p1VBBDuw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A37A5D47A;
-	Fri, 23 Feb 2024 11:22:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C1D5633E9;
+	Fri, 23 Feb 2024 11:26:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708687361; cv=none; b=P2AdVud30w04aUWSIxnHnnGesgDvtQbba4ewZl2lJwDLOQskB7w0/SC8o8sc5oMK6w0x2UWgsyfHn0Gk/Iu7DSDGI3Ydzx1j11+OtU14BSzDah+qP6zrZF4c1pPUlZ1IO/fG4aM8SL6LDQsdQjgEspMRmm/RzeWfTggrLE1b35A=
+	t=1708687600; cv=none; b=mS7SrSXVdabbXm0jQ8eQX30I8JH1j2jJ8lM2meoat/k4/mjpabtnWkEXzvzoLhn2iMcF6lnbG6aFhOdFKodty06IHfETL807EE7CjG0fRp6TOa1iOxOAZ0wOD0odEfpzOT6wo4MkYBM+vFdkQFTfzUMiWue76Z9XYcelagt3CRo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708687361; c=relaxed/simple;
-	bh=7UvKRmG7swJfDdVxCMKMXceTL0sGIOI++hM+zeNhxp8=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=jeKMs0MvClxqMoTvC6gcrhoBmjzu1+z4N3ZOGXtiEXNlEuJyiX+tBjRPbfgocpDIAreNxOlI6yNJ03I421W8dD14PiOxT+3ZHGJGsMt7f/Wo0nHZws0AMoMHhG5paAA9oacn1FwjxJsaBF5dN/3jOjJiTcs34q9/2hFES32xQWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZzAaElrm; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-563c403719cso743979a12.2;
-        Fri, 23 Feb 2024 03:22:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708687358; x=1709292158; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=UkDOlwqdJKpgBN8ZxM5dkFMSj6BTyDau6P8LZmuFdvk=;
-        b=ZzAaElrmn6VXvmqW+Mh9/JNXjD4EsUhGLoEjxI/6qmtZV4Cej7aq+ywteOPdFzbNOJ
-         nEBqpJZFluWJEWs3Dpyxew3/ex9ZtBw1JvpY0Xga+laQ5Iy07ux2AvKDVFjf9qS4Bh8F
-         HPaPk40jhak32bXucr/iDgEJ88KB/YlPZvcaH43qic/TGxmrZvpsu7/pGSJ3xHQASOCi
-         iAcbKVVPbKz2GVJ+780K79yabmdJIovDEYzCEG/goHndFlywICPqgrS7ZAWiTEDy4E8n
-         vJnl8TLBWcED1D7XX/KyDeBtrDaoF03IzL1ckyCiEfKqhgcUv5/pXn1ERLF8TYqpXkZ5
-         GEBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708687358; x=1709292158;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UkDOlwqdJKpgBN8ZxM5dkFMSj6BTyDau6P8LZmuFdvk=;
-        b=erk4eG+of11IsXnwht97rL0B2xalgqEG2gi43HX9Rr5uo4inTQMF0ESRS22RzBXRRH
-         31OEP+lHir3HiXzeaFyPnZcOQxdBdSJbAz3D6vrMZV5Cvzihl/IePSksOT9Rpq6QSwpl
-         jv2jx4p5xo8vCByLhPSDljD5k8ZgGJqPxmvBwZrzfoRrMCu9N7BNh68TdT/yLxINQg3X
-         CEPbSzdRyiX+Y8dVlm1OFBOG2QhfbqASt8phMuwRHh9TSX1jrOqDimGVzKBdio2m5pds
-         xe4UHVCr4UYOqLUd70zd3xYjBFvlDoQqdL8tX7uEE9DN4RlJWX/yZS5miX4AG/JQBguD
-         mLJA==
-X-Forwarded-Encrypted: i=1; AJvYcCVANrWhMz1NUg884ApRvOJIPGRt5a5OTqwu1oyKWy4VSvqeFgboo+ELc6LiEjV/NeNLyyAZNeKcWrKxpUmqnl5WUWOWP4yM3Z5ZHPko5nPODIeTngkX9WPZ7QidWAYrsfpXOMhAi12/j16e8xV8iSd5NEKAsDFavKlXawoTeXOBQwuy7co=
-X-Gm-Message-State: AOJu0Yz5aY/QMIiga3bsxzb/1jt0wO5RM2ig2ZmOmFGEBqh30t4Pnuck
-	5UDyBZsIiY9EL3hAlA4YfBPt2IwltFdEz/MTbuU1dpYQJ4CkrJY3
-X-Google-Smtp-Source: AGHT+IFZW7dV98KKwCf84FGK0/EQszkPfkxlwIa3iHUC9ZlPt9zPVQjeD12dAL2y7Blnw8IOmLtBfA==
-X-Received: by 2002:aa7:d958:0:b0:564:5227:972 with SMTP id l24-20020aa7d958000000b0056452270972mr1045362eds.33.1708687357745;
-        Fri, 23 Feb 2024 03:22:37 -0800 (PST)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id f23-20020a50a6d7000000b0056392b7d85fsm6776984edc.9.2024.02.23.03.22.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Feb 2024 03:22:35 -0800 (PST)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Pavel Machek <pavel@ucw.cz>,
-	Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1708687600; c=relaxed/simple;
+	bh=pPKLLS6SVTpg1tKiUiKHfl/jdui9YbrMYB1Xo5+H3qw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=m00oa1Gt6Gnr4PrUppxOHYiTvlCZ6I3rcexxE+unf5nZCVuSlZ6j8SlYG3u2gOaWAYNb5BkzB4hzln+Q9UiZX8Y5B/vuAr2P+pHinTl1h38QWMn/hIHNpP638Sy2yRTx6lAz09aiDBoiGA8gI521r94/XCffWORGVZTIjpQR68Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p1VBBDuw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC829C43390;
+	Fri, 23 Feb 2024 11:26:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708687599;
+	bh=pPKLLS6SVTpg1tKiUiKHfl/jdui9YbrMYB1Xo5+H3qw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=p1VBBDuws5kOxlmM1rNRc6tfcBgeJ2kZK52q+QUTB5RLSJfE2lKpDbEhCMyDz540s
+	 y7GndBI06OoCvSFiXEBS9MvP8dvCgbvSSdd1cm2VIWRnmGIcB8CE4tC0mRBuOtBWot
+	 0Uvo0VyLpfGF2I5xkN0J5vpjPmx/5zkNqXkX6HMDVZHMkhD9S+rs3dZib/JrtyS1K2
+	 svl5QMxTb+rCBVM2+QrSXXLE2xF6Jad4uIU5mzlKZoBgzsNuWjcbnDalrEf2BdxYf9
+	 3fmPGEoT9ZmVbm1iGWRJwCpHDN7tJ7zK76OGAzGjR1xQFMKaqD7nRNLh6+yQZkyEM5
+	 CnPZ0fRkDk6/w==
+Date: Fri, 23 Feb 2024 11:26:33 +0000
+From: Will Deacon <will@kernel.org>
+To: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+Cc: Jonathan Corbet <corbet@lwn.net>, Mark Rutland <mark.rutland@arm.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] dt-bindings: leds: Add LED_FUNCTION_WAN_ONLINE for Internet access
-Date: Fri, 23 Feb 2024 12:22:23 +0100
-Message-Id: <20240223112223.1368-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
+	Conor Dooley <conor+dt@kernel.org>,
+	Dan Williams <dan.j.williams@intel.com>,
+	Ilkka Koskinen <ilkka@os.amperecomputing.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Dave Jiang <dave.jiang@intel.com>,
+	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 1/4] perf: starfive: Add StarLink PMU support
+Message-ID: <20240223112633.GA10403@willie-the-truck>
+References: <20240129095141.3262366-1-jisheng.teoh@starfivetech.com>
+ <20240129095141.3262366-2-jisheng.teoh@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240129095141.3262366-2-jisheng.teoh@starfivetech.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Hi,
 
-It's common for routers to have LED indicating link on the WAN port.
+On Mon, Jan 29, 2024 at 05:51:38PM +0800, Ji Sheng Teoh wrote:
+> This patch adds support for StarFive's StarLink PMU (Performance
+> Monitor Unit). StarLink PMU integrates one or more CPU cores with
+> a shared L3 memory system. The PMU supports overflow interrupt,
+> up to 16 programmable 64bit event counters, and an independent
+> 64bit cycle counter. StarLink PMU is accessed via MMIO.
 
-Some devices however have an extra LED that's meant to be used if WAN
-connection is actually "online" (there is Internet access available).
+Since Palmer acked this (thanks!), I queued it locally but then ran into
+a few small issues with my build testing. Comments below.
 
-It was suggested to add #define for such use case.
+> diff --git a/drivers/perf/Kconfig b/drivers/perf/Kconfig
+> index 273d67ecf6d2..41278742ef88 100644
+> --- a/drivers/perf/Kconfig
+> +++ b/drivers/perf/Kconfig
+> @@ -86,6 +86,15 @@ config RISCV_PMU_SBI
+>  	  full perf feature support i.e. counter overflow, privilege mode
+>  	  filtering, counter configuration.
+>  
+> +config STARFIVE_STARLINK_PMU
+> +	depends on ARCH_STARFIVE
 
-Link: https://lore.kernel.org/linux-devicetree/80e92209-5578-44e7-bd4b-603a29053ddf@collabora.com/T/#u
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- include/dt-bindings/leds/common.h | 1 +
- 1 file changed, 1 insertion(+)
+Please can you add "|| COMPILE_TEST" to this dependency so that you get
+build coverage from other architectures?
 
-diff --git a/include/dt-bindings/leds/common.h b/include/dt-bindings/leds/common.h
-index c56785bb9c9c..ecea167930d9 100644
---- a/include/dt-bindings/leds/common.h
-+++ b/include/dt-bindings/leds/common.h
-@@ -100,6 +100,7 @@
- #define LED_FUNCTION_TX "tx"
- #define LED_FUNCTION_USB "usb"
- #define LED_FUNCTION_WAN "wan"
-+#define LED_FUNCTION_WAN_ONLINE "wan-online"
- #define LED_FUNCTION_WLAN "wlan"
- #define LED_FUNCTION_WLAN_2GHZ "wlan-2ghz"
- #define LED_FUNCTION_WLAN_5GHZ "wlan-5ghz"
--- 
-2.35.3
+> +	bool "StarFive StarLink PMU"
+> +	help
+> +	   Provide support for StarLink Performance Monitor Unit.
+> +	   StarLink Performance Monitor Unit integrates one or more cores with
+> +	   an L3 memory system. The L3 cache events are added into perf event
+> +	   subsystem, allowing monitoring of various L3 cache perf events.
+> +
+>  config ARM_PMU_ACPI
+>  	depends on ARM_PMU && ACPI
+>  	def_bool y
 
+[...]
+
+> diff --git a/drivers/perf/starfive_starlink_pmu.c b/drivers/perf/starfive_starlink_pmu.c
+> new file mode 100644
+> index 000000000000..2447ca09a471
+> --- /dev/null
+> +++ b/drivers/perf/starfive_starlink_pmu.c
+> @@ -0,0 +1,643 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * StarFive's StarLink PMU driver
+> + *
+> + * Copyright (C) 2023 StarFive Technology Co., Ltd.
+> + *
+> + * Author: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+> + *
+> + */
+
+[...]
+
+> +static void starlink_pmu_counter_start(struct perf_event *event,
+> +				       struct starlink_pmu *starlink_pmu)
+> +{
+> +	struct hw_perf_event *hwc = &event->hw;
+> +	int idx = event->hw.idx;
+> +	u64 val;
+> +
+> +	/*
+> +	 * Enable counter overflow interrupt[63:0],
+> +	 * which is mapped as follow:
+> +	 *
+> +	 * event counter 0	- Bit [0]
+> +	 * event counter 1	- Bit [1]
+> +	 * ...
+> +	 * cycle counter	- Bit [63]
+> +	 */
+> +	val = readq(starlink_pmu->pmu_base + STARLINK_PMU_INTERRUPT_ENABLE);
+> +
+> +	if (hwc->config == STARLINK_CYCLES) {
+> +		/*
+> +		 * Cycle count has its dedicated register, and it starts
+> +		 * counting as soon as STARLINK_PMU_GLOBAL_ENABLE is set.
+> +		 */
+> +		val |= STARLINK_PMU_CYCLE_OVERFLOW_MASK;
+> +	} else {
+> +		writeq(event->hw.config, starlink_pmu->pmu_base +
+> +		       STARLINK_PMU_EVENT_SELECT + idx * sizeof(u64));
+> +
+> +		val |= (1 << idx);
+> +	}
+
+I think this needs to be a u64 on the right hand side, or just use the
+BIT_ULL() macro.
+
+> +
+> +	writeq(val, starlink_pmu->pmu_base + STARLINK_PMU_INTERRUPT_ENABLE);
+> +
+> +	writeq(STARLINK_PMU_GLOBAL_ENABLE, starlink_pmu->pmu_base +
+> +	       STARLINK_PMU_CONTROL);
+> +}
+
+[...]
+
+> +static irqreturn_t starlink_pmu_handle_irq(int irq_num, void *data)
+> +{
+> +	struct starlink_pmu *starlink_pmu = data;
+> +	struct starlink_hw_events *hw_events =
+> +			this_cpu_ptr(starlink_pmu->hw_events);
+> +	bool handled = false;
+> +	int idx;
+> +	u64 overflow_status;
+> +
+> +	for (idx = 0; idx < STARLINK_PMU_MAX_COUNTERS; idx++) {
+> +		struct perf_event *event = hw_events->events[idx];
+> +
+> +		if (!event)
+> +			continue;
+> +
+> +		overflow_status = readq(starlink_pmu->pmu_base +
+> +					STARLINK_PMU_COUNTER_OVERFLOW_STATUS);
+> +		if (!(overflow_status & BIT(idx)))
+> +			continue;
+> +
+> +		writeq(1 << idx, starlink_pmu->pmu_base +
+> +		       STARLINK_PMU_COUNTER_OVERFLOW_STATUS);
+
+Same shifting problem here.
+
+> +static int starlink_pmu_probe(struct platform_device *pdev)
+> +{
+> +	struct starlink_pmu *starlink_pmu;
+> +	struct starlink_hw_events *hw_events;
+> +	struct resource *res;
+> +	int cpuid, i, ret;
+> +
+> +	starlink_pmu = devm_kzalloc(&pdev->dev, sizeof(*starlink_pmu), GFP_KERNEL);
+> +	if (!starlink_pmu)
+> +		return -ENOMEM;
+> +
+> +	starlink_pmu->pmu_base =
+> +			devm_platform_get_and_ioremap_resource(pdev, 0, &res);
+> +	if (IS_ERR(starlink_pmu->pmu_base))
+> +		return PTR_ERR(starlink_pmu->pmu_base);
+> +
+> +	starlink_pmu->hw_events = alloc_percpu_gfp(struct starlink_hw_events,
+> +						   GFP_KERNEL);
+> +	if (!starlink_pmu->hw_events) {
+> +		dev_err(&pdev->dev, "Failed to allocate per-cpu PMU data\n");
+> +		kfree(starlink_pmu);
+
+You shouldn't call kfree() on a device-managed object (i.e. allocated with
+devm_kzalloc()).
+
+Will
 
