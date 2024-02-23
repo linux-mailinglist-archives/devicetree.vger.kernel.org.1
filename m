@@ -1,88 +1,101 @@
-Return-Path: <devicetree+bounces-45304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 004778615CD
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 16:30:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B5E18615DF
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 16:32:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ABA7C282EE4
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 15:30:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BDA41C242CC
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 15:32:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CE9D823C6;
-	Fri, 23 Feb 2024 15:30:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7790B823DF;
+	Fri, 23 Feb 2024 15:32:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FnS/XN8k"
+	dkim=pass (1024-bit key) header.d=peacevolution.org header.i=@peacevolution.org header.b="CoCNqIXM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from a.peacevolution.org (a.peacevolution.org [206.189.193.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A96781AD6;
-	Fri, 23 Feb 2024 15:30:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE8846FD1;
+	Fri, 23 Feb 2024 15:32:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.193.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708702227; cv=none; b=hL+iNrPUIMjZx9JSv19KQ7ACpO6hmBG91H0eWYFBYJmWoZo43qO3wLEs8mLqXO7evNMBiFGFTOWtEyYRR/X+ZhlPqvoftIKRrdmbjzOF/zNZv+eqKzazQJHuP8/AhJJqIqf67w2HUiK/I+Ol1rYB+T7RF6zFS8MztmnnU7cKuZ0=
+	t=1708702360; cv=none; b=P/tszB+YSAVYV0Q786wMm6QgQkk91Iue2wQh4CfyR9/RhcNXCbZ37dkeaE14SgQvxGOGbvh0JMvPvLQY+MIMxTYO7+KmeLyc7fHKzgDxVSEBhjTFx0pwf1cySyeo4++cDcU0CrYf7r1KfTX+/GP/HXyP4iHl2TpDyIfdCfgW37s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708702227; c=relaxed/simple;
-	bh=DQYurWyg86Ez3DiK6ASHbaf1yW5T2RgDHOvtFuM+oe4=;
+	s=arc-20240116; t=1708702360; c=relaxed/simple;
+	bh=QwhJ/EhbFImaRF3xYH27wlph7G0Hv+gUoIttDJYn92g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rF/RWtTgxOC6o8k8is2IM4sgAOYwK/3WvGmyYTz3O3akoEYGlbIYITFqmJTzXnRPGlWOLGBGKaZRML2EpJU/8VVF8MfoDzEOEUx2ryMnZ0ZGISVM/gKdVEU9l0NAIXXwz3R9mAHZmMeY/zd6rPeeouQOEdcA66YXwM03S0kWXlw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FnS/XN8k; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E798C433F1;
-	Fri, 23 Feb 2024 15:30:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708702226;
-	bh=DQYurWyg86Ez3DiK6ASHbaf1yW5T2RgDHOvtFuM+oe4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FnS/XN8kuf8T6OCr0ym6LQJ3WEwwTv7W0VpsFFzqr9jsxwttxnEZVsA3VMbPAMWtb
-	 20fThoKTj0shSrCiKPJcbfkXu/affILl0Es3ViG+k169rmLFEnkGHEXPO+pqbWgPnB
-	 1QwOpNNf3QwWxFITeN0l+XELXQQSEsR5e15anYpXP7ixvDVLI4KJe+m0jLl5FEUVQx
-	 9JIup85ncMaQfLNoM+bL8OdtRomIbFrZkCmSIsTchANhgP2uBh+GPa0TIprsBOBysE
-	 AlzqKpl683E6VheQ71DQb4640s3Rzy3J+473qpOdd2xResbAu0q2IJv9wy1JDpjKXI
-	 IsaAN8iHNinlg==
-Date: Fri, 23 Feb 2024 16:30:18 +0100
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: bhelgaas@google.com, cassel@kernel.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, festevam@gmail.com, helgaas@kernel.org,
-	hongxing.zhu@nxp.com, imx@lists.linux.dev, kernel@pengutronix.de,
-	krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
-	kw@linux.com, l.stach@pengutronix.de,
-	linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	manivannan.sadhasivam@linaro.org, robh@kernel.org,
-	s.hauer@pengutronix.de, shawnguo@kernel.org
-Subject: Re: [PATCH v11 00/14] PCI: imx6: Clean up and add imx95 pci support
-Message-ID: <Zdi6CqmNjKfSWCXj@lpieralisi>
-References: <20240220161924.3871774-1-Frank.Li@nxp.com>
- <170870177640.190909.13423263048571416476.b4-ty@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=rB67kS9OS6SChFk3PIG8ZLKHK0uVXvna7aGJ7TLvsVND8LPci2xiCkrSGHObZzulu3TmyMnJqsSQbEhsWDR7W6CpOlVd1uAj+6EspQhIOqn9CAS8KK/J0K0YIxUbMKOanMy+M4ZkybLtX5QPg+PY/AXEg11g61GOowbVtdHgz0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=peacevolution.org; spf=pass smtp.mailfrom=peacevolution.org; dkim=pass (1024-bit key) header.d=peacevolution.org header.i=@peacevolution.org header.b=CoCNqIXM; arc=none smtp.client-ip=206.189.193.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=peacevolution.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=peacevolution.org
+Received: from authenticated-user (PRIMARY_HOSTNAME [PUBLIC_IP])
+	by a.peacevolution.org (Postfix) with ESMTPA id 03147473D0;
+	Fri, 23 Feb 2024 15:32:36 +0000 (UTC)
+Date: Fri, 23 Feb 2024 10:32:34 -0500
+From: Aren <aren@peacevolution.org>
+To: Lee Jones <lee@kernel.org>
+Cc: linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, 
+	Jean-Jacques Hiblot <jjhiblot@traphandler.com>, Chen-Yu Tsai <wens@csie.org>, Ondrej Jirman <megi@xff.cz>, 
+	linux-sunxi@lists.linux.dev, Pavel Machek <pavel@ucw.cz>, 
+	linux-arm-kernel@lists.infradead.org, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	linux-leds@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Miles Alan <m@milesalan.com>, 
+	Samuel Holland <samuel@sholland.org>
+Subject: Re: (subset) [PATCH v2 1/4] leds: rgb: leds-group-multicolor: allow
+ leds to stay on in suspend
+Message-ID: <hjug4ilzxvtf7in64zw4jcjudzknqh2onvicd5cjuc3e47nl4w@3uiabmqehx5n>
+References: <20240206185400.596979-1-aren@peacevolution.org>
+ <170868429025.1582603.10651778411484887304.b4-ty@kernel.org>
+ <20240223103537.GA1585387@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <170870177640.190909.13423263048571416476.b4-ty@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240223103537.GA1585387@google.com>
+X-Spamd-Bar: /
+Authentication-Results: auth=pass smtp.auth=aren@peacevolution.org smtp.mailfrom=aren@peacevolution.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=peacevolution.org;
+	s=dkim; t=1708702357;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:content-transfer-encoding:in-reply-to:references;
+	bh=bw29ITqhOc5CeCA/jH5jxWpEfOX2iQUtCJTOD5NXUhg=;
+	b=CoCNqIXMagBCAcmjTHXGXkYAtAh0zjlljpz2ecGOWTzDEXfRdy9XzNeENx/jrVfOFS/3Uh
+	Bh9wbkJxKqXrTaacPJkPRP6DnmA9E3X0/t9Dizc79YsRX84jJVg8KlnStpJ2ArEIZL8uq7
+	siR4+baxF5E9ExTBYG/xrQJ6/pD4y9s=
 
-On Fri, Feb 23, 2024 at 04:23:24PM +0100, Lorenzo Pieralisi wrote:
-> On Tue, 20 Feb 2024 11:19:10 -0500, Frank Li wrote:
-> > first 6 patches use drvdata: flags to simplify some switch-case code.
-> > Improve maintaince and easy to read code.
-> > 
-> > Then add imx95 basic pci host function.
-> > 
-> > follow two patch do endpoint code clean up.
-> > Then add imx95 basic endpont function.
-> > 
-> > [...]
+On Fri, Feb 23, 2024 at 10:35:37AM +0000, Lee Jones wrote:
+> On Fri, 23 Feb 2024, Lee Jones wrote:
 > 
-> Applied to enumeration, thanks!
+> > On Tue, 06 Feb 2024 13:13:17 -0500, Aren Moynihan wrote:
+> > > If none of the managed leds enable LED_CORE_SUSPENDRESUME, then we
+> > > shouldn't need to set it here. This makes it possible to use multicolor
+> > > groups with gpio leds that enable retain-state-suspended in the device
+> > > tree.
+> > > 
+> > > 
+> > 
+> > Applied, thanks!
+> > 
+> > [1/4] leds: rgb: leds-group-multicolor: allow leds to stay on in suspend
+> >       commit: 68552911e71d59e62dd5e50e9ac56ebfc32f0c71
+> 
+> Note that I changed a bunch of grammatical issues.
+> 
+> led  => LED
+> gpio => GPIO
+> 
+> Capitalised the first word of the comment, etc.
 
-Sorry, scripting messed it up, it is the controller/imx branch.
+Awesome, thank you
+ - Aren
 
-Thanks,
-Lorenzo
+> -- 
+> Lee Jones [李琼斯]
 
