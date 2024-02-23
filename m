@@ -1,444 +1,119 @@
-Return-Path: <devicetree+bounces-45386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41EFE8619F5
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 18:37:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DFBB861A0B
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 18:39:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E22D2288628
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 17:37:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B76FC2887EE
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 17:39:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E595014601D;
-	Fri, 23 Feb 2024 17:31:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE27012DD85;
+	Fri, 23 Feb 2024 17:37:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Yyz/3AH9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kEP+tViy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D8EB12D763;
-	Fri, 23 Feb 2024 17:31:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FC2F1292DF;
+	Fri, 23 Feb 2024 17:37:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708709491; cv=none; b=PlNLKs/2TKoHbTGjPtpUMvG9fMMn0bvBoqGwpTWsOrdLx3Tl/yXTVdm8xm7MP4E5TdQG/w35BHBrUFM/V7JX+psa6LOf6ckMe8VWMDjvCIaaJ99RNhl8uyckM6EaGlC4R7M0XgdHCQORyi6ni7EpFbWfS51gE0INKxDklGXZwuM=
+	t=1708709874; cv=none; b=k5kCVXKziWzHhPNtDPaGlEJGTI70rXUptCwls5FDmAAj3u7f/GMa02kjWsuTfxuA+AhM5CoVqei6g2PUHhQ0PMHffcFikH5UNe0U+2CEUd6h5QaaiQk69P5NEc2IZQI7xmsTqwz6jZFw81xvp9UAIqWg0cX9BNc+QrSNu4N2ru0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708709491; c=relaxed/simple;
-	bh=Z1LIIhp3DdCr6uVt0lYpOJ62r9L9VOMxLwm9s8WfSCM=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YAA2RT4GXIFoKykmtYb0iFHaSvEbMntbrp5g78ZpjgB71AnpdtiG0l8s/98ozN5TjfBdAKBroSrOtE7kA/2FQ6M0PbK62mw8Jv9pHfJ2s8y8I+szcO3SJp+CUyRVdme5zsBB0XVbbV/i2VhP1Zmhs/DZV20pkq6eu5cXwZ6kWNg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Yyz/3AH9; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1708709490; x=1740245490;
-  h=from:to:subject:date:message-id:in-reply-to:references:
-   mime-version:content-transfer-encoding;
-  bh=Z1LIIhp3DdCr6uVt0lYpOJ62r9L9VOMxLwm9s8WfSCM=;
-  b=Yyz/3AH9DtaABAob1NiEBG8fx8mtzftTFaXd2QAlM5PT45xmRSsG+m1H
-   bvwmKKRojyFqZZoff/AH1OkuMGUEjmiPsK4bknKzQOXqh5X/cigiWxJKo
-   i95M9QeAsXlPOLx2V9VwiQgy+C0LxfJrEnGPCmCUda6frMPVDs7RuDnSF
-   Yk107QcKWyijer3hUBJIWUfOo/IHMhTaJBHk8XO2pHNONC5oQpzc5sbZC
-   vRUMKSY5l8FyNQfBthSnU6K6Y8eVg3df60NTLuzTk7k9EBNPUw/6E+jqY
-   e0BQAm+gMarwHEVbg4uaoEtWSm1KfDNv1BiD0K9MgUPQSIzA/lNc1uHej
-   w==;
-X-CSE-ConnectionGUID: PANU8h+pSKGuucnF8SuIjA==
-X-CSE-MsgGUID: mMuWETYZTSazwK3yGcOyIw==
-X-IronPort-AV: E=Sophos;i="6.06,180,1705388400"; 
-   d="scan'208";a="184009809"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 23 Feb 2024 10:31:29 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 23 Feb 2024 10:31:21 -0700
-Received: from che-lt-i67070.microchip.com (10.10.85.11) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Fri, 23 Feb 2024 10:31:16 -0700
-From: Varshini Rajendran <varshini.rajendran@microchip.com>
-To: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
-	<andre.przywara@arm.com>, <gregory.clement@bootlin.com>,
-	<linus.walleij@linaro.org>, <baruch@tkos.co.il>,
-	<varshini.rajendran@microchip.com>, <mihai.sain@microchip.com>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v4 39/39] ARM: dts: at91: sam9x75_curiosity: add sam9x75 curiosity board
-Date: Fri, 23 Feb 2024 23:01:13 +0530
-Message-ID: <20240223173113.673595-1-varshini.rajendran@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240223171342.669133-1-varshini.rajendran@microchip.com>
-References: <20240223171342.669133-1-varshini.rajendran@microchip.com>
+	s=arc-20240116; t=1708709874; c=relaxed/simple;
+	bh=+C0eEtfMj4S5hq66oGvN7X+C67tb5HSsGQI9RTl/0qE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ArOSPVkd/oJxGxoqEznvDrW9oxFoceSN7cAvqVJEIirEvnfZvav9xb4DTS2Yd1wOAPnBeaZqgfu8k2LmP6xl7c5OK42nxwHhqnA1owyQrDWgKPJrgadYEsFmKsXb3xs780FSkLqWyO9+W09rtYGx8tDHCtFaq7aVMuC7SyML+uE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kEP+tViy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D08DC433B2;
+	Fri, 23 Feb 2024 17:37:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708709874;
+	bh=+C0eEtfMj4S5hq66oGvN7X+C67tb5HSsGQI9RTl/0qE=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=kEP+tViyvM7Lrh/MbLagrSkN+jODt1LddtU2XN9CKOxciJqDuUC+KWPx6HK1vQiRZ
+	 Z03wfY2dGrmAOsOzrfqSV+ldO/4zJDXLem+Bw0LLaln80jKmoor8m7WzEt0gPMALkT
+	 fpBNDYFsSzymBNoXa0Pshr8mWMAXD6eR8vA0I9UWI5WyAvcDd+voT1g3CIbupxMGi4
+	 qbgbJFlfKhKBqdSFF1FS8JLCRNfkKGjW51U0A+6Ys0rL7XnvfL/Ru92pLiFUK6JVwx
+	 Nr4wHmhGWVGplW4ner+JiGqFpk6q8b0ma/2/qFpvcvoP58Oh6yXIw74TUuya/+vley
+	 ye9bJoWJ7wmuQ==
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-512db550e3fso1420350e87.2;
+        Fri, 23 Feb 2024 09:37:54 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUCa1k3NggxqnJlcRu/JpSehyiBK4/AGQrdCgPbn7CoZUyCENLogFqg7MUqfyFZxW4zoIk8igCQBY9gJkd8CvATAN7v5vW2ymCs7oL6pcKu2X/MdLgHD4woBhxZytEHe24hkFRqGQQyeaXN81No56IA4srH4rvqJf5MpMZDfsEawZN2ZKTPgnALwf6+D7d0GEHvS6ak3/tZpETqEkkGojQ=
+X-Gm-Message-State: AOJu0YzTXfPnncck40FEape0q073QEHUEdY+hLBabMiBVg1+GsQcbtNa
+	QX8F9zcpp1dFE6PTFPgIEc2ktICR3HQdHYc7UsmWm/bxpJtN7/rav33zq0doftGjd4/0YGyzGzR
+	FiFEyoKKpuHlyom0P0T0S+ygjJw==
+X-Google-Smtp-Source: AGHT+IGNZjMvh7S1025ZqB3yiouLwHO2vlT54KE7NgY7X2HF/zxZWnWrt4cVuNfv3VT4Hbk1i3E7ekmPzVTC0DOYjdo=
+X-Received: by 2002:a05:6512:480c:b0:512:a04a:52d6 with SMTP id
+ eo12-20020a056512480c00b00512a04a52d6mr270864lfb.44.1708709872305; Fri, 23
+ Feb 2024 09:37:52 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+References: <20240221233026.2915061-1-saravanak@google.com>
+ <20240221233026.2915061-5-saravanak@google.com> <ZddNAHqwCNR5MZc4@smile.fi.intel.com>
+ <CAGETcx8-fz7ijTJcBLMWetrZRfvS5GGGOBBoFM7an6qDtZ1NNg@mail.gmail.com>
+In-Reply-To: <CAGETcx8-fz7ijTJcBLMWetrZRfvS5GGGOBBoFM7an6qDtZ1NNg@mail.gmail.com>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Fri, 23 Feb 2024 10:37:39 -0700
+X-Gmail-Original-Message-ID: <CAL_JsqLZbCJ3ziFFtq9V30rvCw_Y+-XUCJNXeHeRA8u76LYQuw@mail.gmail.com>
+Message-ID: <CAL_JsqLZbCJ3ziFFtq9V30rvCw_Y+-XUCJNXeHeRA8u76LYQuw@mail.gmail.com>
+Subject: Re: [PATCH v3 4/4] of: property: fw_devlink: Add support for
+ "post-init-providers" property
+To: Saravana Kannan <saravanak@google.com>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Ard Biesheuvel <ardb@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Daniel Scally <djrscally@gmail.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, Len Brown <lenb@kernel.org>, kernel-team@android.com, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-efi@vger.kernel.org, linux-acpi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add device tree file for sam9x75 curiosity board.
+On Thu, Feb 22, 2024 at 5:04=E2=80=AFPM Saravana Kannan <saravanak@google.c=
+om> wrote:
+>
+> On Thu, Feb 22, 2024 at 5:32=E2=80=AFAM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
+> >
+> > On Wed, Feb 21, 2024 at 03:30:24PM -0800, Saravana Kannan wrote:
+> > > Add support for this property so that dependency cycles can be broken=
+ and
+> > > fw_devlink can do better probe/suspend/resume ordering between device=
+s in a
+> > > dependency cycle.
+> >
+> > ...
+> >
+> > > -     fwnode_link_add(of_fwnode_handle(con_np), of_fwnode_handle(sup_=
+np), 0);
+> > > +     fwnode_link_add(of_fwnode_handle(con_np), of_fwnode_handle(sup_=
+np),
+> > > +                     flags);
+> >
+> > I would leave it one line despite being 83 characters long.
+> >
+> > ...
+> >
+> > > -                     of_link_to_phandle(con_dev_np, phandle);
+> > > +                     of_link_to_phandle(con_dev_np, phandle,
+> > > +                                        s->fwlink_flags);
+> >
+> > I would leave this on one line, it's only 81 characters.
+>
+> I don't have a strong opinion either way. If I need to send another
+> revision out, I'll address this (if checkpatch doesn't complain).
 
-Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
----
-Changes in v4:
-- Removed full node paths
-- Renamed Leds with color names
-- Corrected regulator node names
-- Added support for classd and i2s nodes and their corresponding
-  pinctrl nodes
-- Dropped USB nodes owing to the discussion here
-https://lore.kernel.org/linux-devicetree/CAL_JsqJ9PrX6fj-EbffeJce09MXs=B7t+KS_kOinxaRx38=WxA@mail.gmail.com/
-(Explained elaborately in the cover letter)
-- Updated the linux,code property with the necessary value
----
- arch/arm/boot/dts/microchip/Makefile          |   3 +
- .../dts/microchip/at91-sam9x75_curiosity.dts  | 309 ++++++++++++++++++
- 2 files changed, 312 insertions(+)
- create mode 100644 arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
+My terminal is >80 chars, so 1 line is good.
 
-diff --git a/arch/arm/boot/dts/microchip/Makefile b/arch/arm/boot/dts/microchip/Makefile
-index efde9546c8f4..5b3d518da319 100644
---- a/arch/arm/boot/dts/microchip/Makefile
-+++ b/arch/arm/boot/dts/microchip/Makefile
-@@ -12,6 +12,7 @@ DTC_FLAGS_at91-sama5d3_eds := -@
- DTC_FLAGS_at91-sama5d3_xplained := -@
- DTC_FLAGS_at91-sama5d4_xplained := -@
- DTC_FLAGS_at91-sama7g5ek := -@
-+DTC_FLAGS_at91-sam9x75_curiosity := -@
- dtb-$(CONFIG_SOC_AT91RM9200) += \
- 	at91rm9200ek.dtb \
- 	mpa1600.dtb
-@@ -59,6 +60,8 @@ dtb-$(CONFIG_SOC_AT91SAM9) += \
- dtb-$(CONFIG_SOC_SAM9X60) += \
- 	at91-sam9x60_curiosity.dtb \
- 	at91-sam9x60ek.dtb
-+dtb-$(CONFIG_SOC_SAM9X7) += \
-+	at91-sam9x75_curiosity.dtb
- dtb-$(CONFIG_SOC_SAM_V7) += \
- 	at91-kizbox2-2.dtb \
- 	at91-kizbox3-hs.dtb \
-diff --git a/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
-new file mode 100644
-index 000000000000..be37022d3d05
---- /dev/null
-+++ b/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
-@@ -0,0 +1,309 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * at91-sam9x75_curiosity.dts - Device Tree file for Microchip SAM9X75 Curiosity board
-+ *
-+ * Copyright (C) 2023 Microchip Technology Inc. and its subsidiaries
-+ *
-+ * Author: Varshini Rajendran <varshini.rajendran@microchip.com>
-+ */
-+/dts-v1/;
-+#include "sam9x7.dtsi"
-+#include <dt-bindings/input/input.h>
-+
-+/ {
-+	model = "Microchip SAM9X75 Curiosity";
-+	compatible = "microchip,sam9x75-curiosity", "microchip,sam9x7", "atmel,at91sam9";
-+
-+	aliases {
-+		i2c0 = &i2c6;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_key_gpio_default>;
-+
-+		button-user {
-+			label = "USER";
-+			gpios = <&pioC 9 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_0>;
-+			wakeup-source;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_led_gpio_default>;
-+
-+		led-red {
-+			label = "red";
-+			gpios = <&pioC 19 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-green {
-+			label = "green";
-+			gpios = <&pioC 21 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-blue {
-+			label = "blue";
-+			gpios = <&pioC 20 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
-+	memory@20000000 {
-+		device_type = "memory";
-+		reg = <0x20000000 0x10000000>;
-+	};
-+};
-+
-+&classd {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_classd>;
-+	atmel,pwm-type = "diff";
-+	atmel,non-overlap-time = <10>;
-+	status = "okay";
-+};
-+
-+&dbgu {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_dbgu>;
-+	status = "okay";
-+};
-+
-+&dma0 {
-+	status = "okay";
-+};
-+
-+&flx6 {
-+	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_TWI>;
-+	status = "okay";
-+};
-+
-+&i2c6 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_flx6_default>;
-+	i2c-analog-filter;
-+	i2c-digital-filter;
-+	i2c-digital-filter-width-ns = <35>;
-+	status = "okay";
-+
-+	pmic@5b {
-+		compatible = "microchip,mcp16502";
-+		reg = <0x5b>;
-+
-+		regulators {
-+			vdd_3v3: VDD_IO {
-+				regulator-name = "VDD_IO";
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3600000>;
-+				regulator-initial-mode = <2>;
-+				regulator-allowed-modes = <2>, <4>;
-+				regulator-always-on;
-+
-+				regulator-state-standby {
-+					regulator-on-in-suspend;
-+					regulator-mode = <4>;
-+				};
-+
-+				regulator-state-mem {
-+					regulator-mode = <4>;
-+				};
-+			};
-+
-+			vddioddr: VDD_DDR {
-+				regulator-name = "VDD_DDR";
-+				regulator-min-microvolt = <1283000>;
-+				regulator-max-microvolt = <1450000>;
-+				regulator-initial-mode = <2>;
-+				regulator-allowed-modes = <2>, <4>;
-+				regulator-always-on;
-+
-+				regulator-state-standby {
-+					regulator-on-in-suspend;
-+					regulator-mode = <4>;
-+				};
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-mode = <4>;
-+				};
-+			};
-+
-+			vddcore: VDD_CORE {
-+				regulator-name = "VDD_CORE";
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1210000>;
-+				regulator-initial-mode = <2>;
-+				regulator-allowed-modes = <2>, <4>;
-+				regulator-always-on;
-+
-+				regulator-state-standby {
-+					regulator-on-in-suspend;
-+					regulator-mode = <4>;
-+				};
-+
-+				regulator-state-mem {
-+					regulator-mode = <4>;
-+				};
-+			};
-+
-+			vddcpu: VDD_OTHER {
-+				regulator-name = "VDD_OTHER";
-+				regulator-min-microvolt = <1700000>;
-+				regulator-max-microvolt = <3600000>;
-+				regulator-initial-mode = <2>;
-+				regulator-allowed-modes = <2>, <4>;
-+				regulator-ramp-delay = <3125>;
-+				regulator-always-on;
-+
-+				regulator-state-standby {
-+					regulator-on-in-suspend;
-+					regulator-mode = <4>;
-+				};
-+
-+				regulator-state-mem {
-+					regulator-mode = <4>;
-+				};
-+			};
-+
-+			vldo1: LDO1 {
-+				regulator-name = "LDO1";
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <3700000>;
-+				regulator-always-on;
-+
-+				regulator-state-standby {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
-+			vldo2: LDO2 {
-+				regulator-name = "LDO2";
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <3700000>;
-+
-+				regulator-state-standby {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&i2s {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2s_default>;
-+	#sound-dai-cells = <0>;
-+	status = "disabled";
-+};
-+
-+&main_xtal {
-+	clock-frequency = <24000000>;
-+};
-+
-+&pinctrl {
-+
-+	classd {
-+		pinctrl_classd: classd {
-+			atmel,pins =
-+				<AT91_PIOA 18 AT91_PERIPH_C AT91_PINCTRL_PULL_UP
-+				 AT91_PIOA 19 AT91_PERIPH_C AT91_PINCTRL_PULL_DOWN>;
-+		};
-+	};
-+
-+	dbgu {
-+		pinctrl_dbgu: dbgu-0 {
-+			atmel,pins = <AT91_PIOA 26 AT91_PERIPH_A AT91_PINCTRL_PULL_UP
-+				      AT91_PIOA 27 AT91_PERIPH_A AT91_PINCTRL_NONE>;
-+		};
-+	};
-+
-+	flexcom {
-+		pinctrl_flx6_default: flx6-twi {
-+			atmel,pins =
-+				<AT91_PIOA 24 AT91_PERIPH_A AT91_PINCTRL_PULL_UP
-+				 AT91_PIOA 25 AT91_PERIPH_A AT91_PINCTRL_PULL_UP>;
-+		};
-+	};
-+
-+	gpio-keys {
-+		pinctrl_key_gpio_default: key-gpio-default {
-+			atmel,pins = <AT91_PIOC 9 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
-+		};
-+	};
-+
-+	i2s {
-+		pinctrl_i2s_default: i2s {
-+			atmel,pins =
-+				<AT91_PIOB 26 AT91_PERIPH_D AT91_PINCTRL_NONE		/* I2SCK */
-+				 AT91_PIOB 15 AT91_PERIPH_D AT91_PINCTRL_NONE		/* I2SWS */
-+				 AT91_PIOB 16 AT91_PERIPH_D AT91_PINCTRL_NONE		/* I2SDIN */
-+				 AT91_PIOB 17 AT91_PERIPH_D AT91_PINCTRL_NONE		/* I2SDOUT */
-+				 AT91_PIOB 25 AT91_PERIPH_D AT91_PINCTRL_NONE>;		/* I2SMCK */
-+		};
-+	};
-+
-+	leds {
-+		pinctrl_led_gpio_default: led-gpio-default {
-+			atmel,pins = <AT91_PIOC 19 AT91_PERIPH_GPIO AT91_PINCTRL_NONE
-+				      AT91_PIOC 21 AT91_PERIPH_GPIO AT91_PINCTRL_NONE
-+				      AT91_PIOC 20 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
-+		};
-+	};
-+
-+	sdmmc0 {
-+		pinctrl_sdmmc0_default: sdmmc0 {
-+			atmel,pins =
-+				<AT91_PIOA 2 AT91_PERIPH_A (AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_DIS)					/* PA2 CK  periph A with pullup */
-+				 AT91_PIOA 1 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_DIS)		/* PA1 CMD periph A with pullup */
-+				 AT91_PIOA 0 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_DIS)		/* PA0 DAT0 periph A */
-+				 AT91_PIOA 3 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_DIS)		/* PA3 DAT1 periph A with pullup */
-+				 AT91_PIOA 4 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_DIS)		/* PA4 DAT2 periph A with pullup */
-+				 AT91_PIOA 5 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_DIS)>;	/* PA5 DAT3 periph A with pullup */
-+		};
-+	};
-+
-+}; /* pinctrl */
-+
-+&rtt {
-+	atmel,rtt-rtc-time-reg = <&gpbr 0x0>;
-+};
-+
-+&sdmmc0 {
-+	bus-width = <4>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sdmmc0_default>;
-+	cd-gpios = <&pioA 23 GPIO_ACTIVE_LOW>;
-+	disable-wp;
-+	status = "okay";
-+};
-+
-+&slow_xtal {
-+	clock-frequency = <32768>;
-+};
-+
-+&power_management {
-+	debounce-delay-us = <976>;
-+	status = "okay";
-+
-+	input@0 {
-+		reg = <0>;
-+	};
-+};
-+
-+&trng {
-+	status = "okay";
-+};
-+
-+&watchdog {
-+	status = "okay";
-+};
--- 
-2.25.1
-
+Rob
 
