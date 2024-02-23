@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-45422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 071F4861E8D
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 22:11:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A85B861EA3
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 22:19:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 388FAB23031
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 21:11:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BDB1B1C23A7E
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 21:19:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C481F149387;
-	Fri, 23 Feb 2024 21:10:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A477B14938D;
+	Fri, 23 Feb 2024 21:19:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Bi+ot12s"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PH1DbRgf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C48621487E6
-	for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 21:10:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF64E149382
+	for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 21:19:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708722657; cv=none; b=QOk3FzdDa/wK/JqoPUl1XgzMXhCthaNdHVMcRHyi8ariuZs6CyHc1gcwwtl2dR36dHtgPcaH+ug6FQAec0qKtuIzCoMoeu6H6dX6AswWfxaLEpw9mRtDwM9Ji+nLu9J/SKoPXDS6KBCKkACsPNSV5EKqc9tLIfl7Li9WbEfzSyM=
+	t=1708723144; cv=none; b=MLy6oJGhtOAF0bUKfU4kx5igQXGnLbQL1sHvAefGijIASq7n9FwEAfq2b+Qbc8ef526bGjskjta0Kvw+us5VZIuRY3vo85wajsS7WTAcI3EnyvbCQeZwxLm7HluWDbuU8h/yQq1GoO+wqzffQBmo7yJGHO2FBBEe1ooBV2S/IJw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708722657; c=relaxed/simple;
-	bh=zLfaBPQQ/PChVmxN6vpfoSLBNRdvKq4jQqRP2+O0sUQ=;
+	s=arc-20240116; t=1708723144; c=relaxed/simple;
+	bh=4U611Q4elBg4t0AMJVYfZNMjDBB50VZmE+qFAsL6RK0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=omRLwpU+SFR7f7jATPukQ0m2MQlYUUBfLMNpqqfKa9JOpHpsq4Jgk0Pl663Ue6JWvRnO2EBA5DLEfvWYg/mAHBgU7DB1dfWU8ViPLbwSgxvd5t7togxz/xsLl9v+BGAOLsy9ACZEYGIrKKYsKM3vvsisE3cE3tEtDYHEL73+7PQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Bi+ot12s; arc=none smtp.client-ip=209.85.218.43
+	 In-Reply-To:Content-Type; b=BgsmVxv7LDJO0cGc6BmeUsqfWJPLckwz7cBZHjn6+/EGDW7vkMQw0ER0Cyt390x9JSNGkBwTGXZPV5EAMHPXslIRDnUeHm3QEHWgV+wizZauFpjL1zi33mNA5RGe7fFTM4SZL5h5810pm/4kQqTHKeX+I7KQL755YK+cf6jpHK0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PH1DbRgf; arc=none smtp.client-ip=209.85.218.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a3d5e77cfbeso234370666b.0
-        for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 13:10:55 -0800 (PST)
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a34c5ca2537so183944266b.0
+        for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 13:19:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708722654; x=1709327454; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=brDT2YXF8x8KzS2bAH7c1UHxnZms6mIqOBc2rPT/eec=;
-        b=Bi+ot12sSPPWiJd4UxeO3J/+6vvUyvvisiqqoYcDUeQAzCQLAxY092awLenxUlOBg3
-         HdiKbrwdvHpuV+LAxIFWd5XS7H8pWVp28WYUGsNGM2kDZZc7+Ki/XuqbOf+E4x9MzcUE
-         dihyW1LbOApegVhIo95SSdSYeMIBUhqZbhqzCR2F/gyhszSJLQ7MGFQrBKmSR1oUyHmC
-         ibDdrto7Wc2fyByMNf3fyZ+deelZ9jAQ3D2SIz0Pzw9BtkgOKEDGmwSlDlp69uYCV6zo
-         /Wn8KON55XRwd6IFFIVgNIxndOQgMJi9JFUEx5cRMDBjfoATE1iAWx8sOKbvJq4BAl4y
-         pwVg==
+        d=linaro.org; s=google; t=1708723141; x=1709327941; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YDAHKg/xY0dKdy72D5kG+TPXcRiOx6D/NRETdEr9dSc=;
+        b=PH1DbRgf+YqA7UKhX9i/xCFCNu21ka6MmQj5bqkD2jVpM9a+oVVAj8DuVDa9oHPa+Z
+         PeGsFk+WFFE4e2ALnjZNdXnXdl7d009igpvLUo8beAY2MB+GAxvPPrMiGtc9rbZmhldd
+         XxCAMbAe/9Wrat/XZnEsGTzT/vP3wY37Fwo9dHbfC457mj3SDQtrMoZ3z6Ih/1JjM4Tw
+         KMowouEkkvMhWaCjF5/7j81J83x3t3aerRJ//su8WEUMJ54PXbF9MWCBBG0zLwPQPLVT
+         KbF6j3LLz+bShVlAh9Ks7CkFnBWrVcmGuedwo1l9WAswdOPddOm15ysJ3R8lQ8QBLHGX
+         wKoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708722654; x=1709327454;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=brDT2YXF8x8KzS2bAH7c1UHxnZms6mIqOBc2rPT/eec=;
-        b=flCIr50GNF7C2bL0AhrtcdxlBDL/NvNN2OowRF6NJ/36DW+RMQmIVKAyT3QFKZeAmU
-         KNQ8J6qc3c4PTbCm1RhfgP2fx6Pj/ImuB/4JnS8PrkWIwE2XHMWHGdbZ3q+PBtTTuemG
-         kQKn+S+JyeYBndNRmGISAjxbHe54010wXCvIEldRwohJvmcUkDzbitsOefRXY4CedzVG
-         J6rZhWuEFDXg0DY3548lmk1Ij465ThwWatfxD66RGlwW2gg/HQj/2/FersobIXFuhjmy
-         aZzMldAC/mQpIvJEMnpq0IZgoUq9k/wqHCBSWUQDsnlfl/BKKE/b8/9Ds+c2wU1EAMhn
-         16eQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXPRA81aoud2QitfL7m8O4Hq7LZkv7fjAMKdry1W1fFrYPf2GORz1XahJLhjGUZWL/JN/7Tog3SUiUfP6LfvofV8/axsS4csP6lZA==
-X-Gm-Message-State: AOJu0YwBuMV6PWqoZCVzNIoH8i6Lfhlllv3Wsop+nAu4qpacws81kNbu
-	W9vPFYt/Snysqa8jtPkOc0GOdEbZFkHT64R+O0TN04mUvi0IzXLHzBauAUTHOtU=
-X-Google-Smtp-Source: AGHT+IENyNqGiyGuCGeSB03nxXbt7g7grkwi1tJiTGl4k5p72DlF2FORlui6OfziRrMuxknRyi5GsQ==
-X-Received: by 2002:a17:907:b9d0:b0:a3e:cd8d:39c3 with SMTP id xa16-20020a170907b9d000b00a3ecd8d39c3mr781477ejc.38.1708722654037;
-        Fri, 23 Feb 2024 13:10:54 -0800 (PST)
+        d=1e100.net; s=20230601; t=1708723141; x=1709327941;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YDAHKg/xY0dKdy72D5kG+TPXcRiOx6D/NRETdEr9dSc=;
+        b=mpxbcZNpEi6+AbRjr7nNN/9rLzu1lk03nxkw3b6rBcLK/IBL+rJvhh58kfGotI0QTH
+         F+hLh8tcnvrvwiBiqby5RZ5nR7vvQ3Oeo3oFWt+6SQLYVcM1bb+q+akYVDxdcKSOAGhb
+         dyj62quskrxmLVeO5lz1VEQzVGpfbULReqAVYTPWuMIb7xF3Gs09vcJrVJpsmGtDUICL
+         pvWUlRpcVtmCZemZcF82p2FAc7I7Uv0/FnB8Vk77deCq7T5l7HQ2cjD8cpdszoy1XnNd
+         mm7rb8JG72RZeB7XvUlLH7ypPLJMD/lw2KyULZCoGi2+yEqTKZ0adN/LN7YIXezfkOzS
+         Oukw==
+X-Forwarded-Encrypted: i=1; AJvYcCXa7JW5fHL2qUM143OFeHJ03p9SinSqUUhTZ2Tec1FrVK6WoIDS6kIhad8WZsTh9mqKv8qRv5CbcnbNO1ryGO8FODaMp+hoiV6zCQ==
+X-Gm-Message-State: AOJu0YyHyjZvy8eBxmuQmbmblOAvcn6E0qeFw6eSbOd9FGoAyq3wfdPG
+	kIq5eP0Mlj0MbI0Bmv8E57B2BZPdrEkRN4GN6G+blYwC61GAB8BUnd415CHHV9Y=
+X-Google-Smtp-Source: AGHT+IHOg7pXiT0AFZA/1QFt3MRtosBGj3lEqvVg28cc7hzqw7tFNkxREUX1zxQigtViZXRUXpQPHw==
+X-Received: by 2002:a17:906:1353:b0:a3d:1df3:9d35 with SMTP id x19-20020a170906135300b00a3d1df39d35mr552886ejb.23.1708723141183;
+        Fri, 23 Feb 2024 13:19:01 -0800 (PST)
 Received: from [192.168.179.2] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
-        by smtp.gmail.com with ESMTPSA id rs6-20020a170907890600b00a3e48deecd4sm6313016ejc.222.2024.02.23.13.10.50
+        by smtp.gmail.com with ESMTPSA id js20-20020a170906ca9400b00a3f947c55besm1660040ejb.92.2024.02.23.13.18.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Feb 2024 13:10:53 -0800 (PST)
-Message-ID: <a3356079-bd55-4852-9bb3-b5362a1c953e@linaro.org>
-Date: Fri, 23 Feb 2024 22:10:47 +0100
+        Fri, 23 Feb 2024 13:19:00 -0800 (PST)
+Message-ID: <6ad10b1a-a15b-4877-bc73-90e17be67806@linaro.org>
+Date: Fri, 23 Feb 2024 22:18:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,29 +76,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v17 05/35] virt: gunyah: Add hypervisor driver
-To: Elliot Berman <quic_eberman@quicinc.com>, Alex Elder <elder@linaro.org>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Murali Nalajal <quic_mnalajal@quicinc.com>,
- Trilok Soni <quic_tsoni@quicinc.com>,
- Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
- Carl van Schaik <quic_cvanscha@quicinc.com>,
- Philip Derrin <quic_pderrin@quicinc.com>,
- Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
- Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
- <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Fuad Tabba
- <tabba@google.com>, Sean Christopherson <seanjc@google.com>,
- Andrew Morton <akpm@linux-foundation.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org
-References: <20240222-gunyah-v17-0-1e9da6763d38@quicinc.com>
- <20240222-gunyah-v17-5-1e9da6763d38@quicinc.com>
+Subject: Re: [PATCH 2/3] soc: qcom: socinfo: Add X1E80100 SoC ID table entry
 Content-Language: en-US
+To: Abel Vesa <abel.vesa@linaro.org>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240223-x1e80100-socinfo-v1-0-be581ca60f27@linaro.org>
+ <20240223-x1e80100-socinfo-v1-2-be581ca60f27@linaro.org>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -136,28 +122,17 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240222-gunyah-v17-5-1e9da6763d38@quicinc.com>
+In-Reply-To: <20240223-x1e80100-socinfo-v1-2-be581ca60f27@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23.02.2024 00:16, Elliot Berman wrote:
-> Add driver to detect when running under Gunyah. It performs basic
-> identification hypercall and populates the platform bus for resource
-> manager to probe.
+On 23.02.2024 15:37, Abel Vesa wrote:
+> Add SoC Info support for the X1E80100 platform.
 > 
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > ---
 
-[...]
-
-> +
-> +	/* Might move this out to individual drivers if there's ever an API version bump */
-> +	if (gunyah_api_version(&gunyah_api) != GUNYAH_API_V1) {
-> +		pr_info("Unsupported Gunyah version: %u\n",
-> +			gunyah_api_version(&gunyah_api));
-
-Weird for this not to be an error, but it's probably not worth resending
-over if it's the only thing
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
 
