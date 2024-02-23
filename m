@@ -1,168 +1,163 @@
-Return-Path: <devicetree+bounces-45192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEDEF861058
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 12:28:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA58886109C
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 12:40:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A04E284703
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 11:28:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B2E51F25313
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 11:40:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BB3A657D6;
-	Fri, 23 Feb 2024 11:27:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CTF/Cjbl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3FD07A736;
+	Fri, 23 Feb 2024 11:38:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E875633E9;
-	Fri, 23 Feb 2024 11:27:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.46
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E52F78665;
+	Fri, 23 Feb 2024 11:38:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708687678; cv=none; b=UU1eCEEIqjD435PJFxvDLWsY9ktuSVbFZXaIDdes2pKYG9YPDE/6i5dnTHQX5yFS0KzyXYYi6pMYU8hBaG2s5LoTyNiguKlJJqR4L1vCI7/zAopj/kHkEBFHzA3idxjlN7uUxp5gHZBfqb/p+UeWgk6qEMrm1JsI2LIavc7Ljrw=
+	t=1708688295; cv=none; b=syIIPLhE0tHQHdNd/fEpwDYlo9DJlwLq97A/Hdl0ESRjwbtARO3ZYFqIFDItl/FDDqw13sSuyvJlYs9gQk7173WgGPW42S0Dsb3nxUoQHan4G6Sy0Jj1CloTfiTS/BgpUg1kbO/06r+Gtj3Ym77lCuoVoOg0EIgiC3/wNhan6Og=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708687678; c=relaxed/simple;
-	bh=7lns47V9d3ljbXIZeFjyZUvZyAsX6a4jfQAcXB1V2Qo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hPRt4Q4gRR6kDF+7zfhmxHXuQrWg6H2OkdGqFeEsAioD7/COT7mr/IpsedHbv0YXn2HxxUzqncmRHGCLwOKUq+R1s2/fmNU46su4qlulmzCuudSh0nDpMcMWd0fm9b758aoFTdojWL948O333VydkZiWZTkZ99N2HRLOR1j8YEc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CTF/Cjbl; arc=none smtp.client-ip=209.85.160.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-204235d0913so497883fac.1;
-        Fri, 23 Feb 2024 03:27:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708687675; x=1709292475; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ownr1auPC0la4RuCKQdoXSaC+bAZpMifBCf/a/ywWOs=;
-        b=CTF/CjblEWkgLSzP5YURDT1sil9vKTBBPamB4tdVPbClC7ZsHV3j/RH2PnVJMtMwKX
-         9FG3X94MVKL/Q/JSTexA00i4ctAvsZj9vXehydQTo9al+stGejapR177bo/JCmpXlvyA
-         LFz24akBSkWGdRoYFv6lHUmH+YpKzsYAympp+BwytopDTi3R80Fw/pSkcexbSbrildm5
-         eLRSXAxnRpgEnIncs2d0sYhcjCownGZNZs6UrBotOa0QAYMRNPcft50c7NR2sGdjZybf
-         rJcLegaeWS1WmQe7XU2Ohv1Nd3wBYEVhFWDizLs0M0UIMHg1+pN4Q+86E5Vaj7cnqpqO
-         Pi+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708687675; x=1709292475;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ownr1auPC0la4RuCKQdoXSaC+bAZpMifBCf/a/ywWOs=;
-        b=rEKPO1SvZu5NVz7ioA11yvthsdtOuMqtBpmiU7vArECUtJ6kYaYATGUbZb8bg0yhJZ
-         baY+n3p21G0JVrqL2CLWA8zYU6JZYMrZ6QLFDdiyOpyX0easMtWVsKZcnpufqxjAJdjF
-         2MCZz0Yf/d2adx8s9iYTsmFbIdb7iM7k3BR/b08weHNmVI7e2on/OitYv2GmTybQoKEJ
-         rQhbs9XY0c+oH2FWCA7yPZF+3BZ9vg/oVdSYcsc3bFdvRa3FIiLEjJea73UGnlK//S4Y
-         P45hwrx1X5PeimToFdr8pDtUveR87Hdrgm2ifGfNdTSP8ydRilaM8kAuPjRKf6xjFi2I
-         m1hQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX3RatNtTehrtTqUcN9Wo/gDXNBT7+SYH+6lHJJUB4a+t3XA6kmnIysX7Sl2bmqiHSfZ6dXyloWmkovTaLVtRcpJ/Dr1lZUI6YIISqv
-X-Gm-Message-State: AOJu0Yw+8Ra+kVo8/3xYLx66iC8FbJ4a2rO/F+Bpt3JnYeY4TE6DknmU
-	pq5jMHRm2oNa7rTpwwHs9WhDh5B2G+sNHD+yneQidDId26eg4VddshNzUQTOe/JcR5qn6a8c3zf
-	uP35Ht5O6XeL81EW7FYjNmeF+d+xE9omn
-X-Google-Smtp-Source: AGHT+IE1dBDMul055Ysj1AjF1wKdwGtZya5r0PJl264jRWgiOUKOaFU21Dt8QwN11JqlwDix4OLBt+41tp2ccN34RO0=
-X-Received: by 2002:a05:6870:2014:b0:21f:746a:bcc with SMTP id
- o20-20020a056870201400b0021f746a0bccmr1666226oab.49.1708687675556; Fri, 23
- Feb 2024 03:27:55 -0800 (PST)
+	s=arc-20240116; t=1708688295; c=relaxed/simple;
+	bh=1w5motAc41BNaAEB9ZtHEo966w0phI8Cd6L7pC6Oe/A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IXSNZFzmyEiMlkquTuESLgCoQIy7J5lH+/zM8Rpynf6SdR1DV5D3gn+TXBuPvyNWVnf11nBSgMy69OMPsSt828avUO6RnJ2VsLCf0yGlVk1eHD7ICOwlRaVLOYH2GWDYGfp1FcmaidBUQwzQyeVCjUeQaM9OE0+mfWEyzL9huOs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 33A1911FB;
+	Fri, 23 Feb 2024 03:38:52 -0800 (PST)
+Received: from pluto (unknown [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 828FC3F762;
+	Fri, 23 Feb 2024 03:38:11 -0800 (PST)
+Date: Fri, 23 Feb 2024 11:38:09 +0000
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 1/5] dt-bindings: firmware: add i.MX SCMI Extension
+ protocol
+Message-ID: <ZdiDob6oBc7Jh28a@pluto>
+References: <20240202-imx95-bbm-misc-v1-0-3cb743020933@nxp.com>
+ <20240202-imx95-bbm-misc-v1-1-3cb743020933@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231212093443.1898591-1-sergio.paracuellos@gmail.com>
-In-Reply-To: <20231212093443.1898591-1-sergio.paracuellos@gmail.com>
-From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date: Fri, 23 Feb 2024 12:27:43 +0100
-Message-ID: <CAMhs-H__b2dNQH+nsbc0+gTeQPmkZf5B95+3Y88iRZ5KZmu=yQ@mail.gmail.com>
-Subject: Re: [RESEND PATCH v2] dt-bindings: timer: add Ralink SoCs system tick counter
-To: devicetree@vger.kernel.org
-Cc: tglx@linutronix.de, daniel.lezcano@linaro.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240202-imx95-bbm-misc-v1-1-3cb743020933@nxp.com>
+
+On Fri, Feb 02, 2024 at 02:34:39PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> Add i.MX SCMI Extension protocol BBM and MISC binding.
+> 
 
 Hi,
 
-On Tue, Dec 12, 2023 at 10:34=E2=80=AFAM Sergio Paracuellos
-<sergio.paracuellos@gmail.com> wrote:
->
-> Add YAML doc for the system tick counter which is present on Ralink SoCs.
->
-> cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+just a few remarks down below only about the SCMI related stuff...
+
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
-> Changes in v2 RESEND:
-> - Add Daniel Lezcano to CC in the patch itself.
-> Changes in v2:
-> - Add Rob's Reviewed-by tag.
->
-> v1: https://lore.kernel.org/lkml/CAMhs-H_9kAdOfR-RaJWqAq6d3S3DXtKJqWy-EWC=
-u0-ZjWKB9Sw@mail.gmail.com/T/#re9225265416ca8463c5f06d736f9834ae75efe0c
->
-> I am sending this with Rob's RB added since I ping for the v1 multiple
-> times without response. So I can be missing something or the patch is
-> lost for any reason. Thanks!
->
->  .../bindings/timer/ralink,cevt-systick.yaml   | 38 +++++++++++++++++++
->  1 file changed, 38 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/timer/ralink,cevt-s=
-ystick.yaml
->
-> diff --git a/Documentation/devicetree/bindings/timer/ralink,cevt-systick.=
-yaml b/Documentation/devicetree/bindings/timer/ralink,cevt-systick.yaml
+>  .../devicetree/bindings/firmware/nxp,scmi.yaml     | 64 ++++++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/firmware/nxp,scmi.yaml b/Documentation/devicetree/bindings/firmware/nxp,scmi.yaml
 > new file mode 100644
-> index 000000000000..59d97feddf4e
+> index 000000000000..00d6361bbbea
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/timer/ralink,cevt-systick.yaml
-> @@ -0,0 +1,38 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/firmware/nxp,scmi.yaml
+> @@ -0,0 +1,64 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2024 NXP
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/timer/ralink,cevt-systick.yaml#
+> +$id: http://devicetree.org/schemas/firmware/nxp,scmi.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: System tick counter present in Ralink family SoCs
+> +title: i.MX System Control and Management Interface (SCMI) Protocol Extension
 > +
+
+... (SCMI) Vendor Protocols
+
 > +maintainers:
-> +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> +  - Peng Fan <peng.fan@nxp.com>
+> +
+> +allOf:
+> +  - $ref: arm,scmi.yaml#
 > +
 > +properties:
-> +  compatible:
-> +    const: ralink,cevt-systick
+> +  protocol@11:
+
+protocol@81 ?
+
+> +    $ref: 'arm,scmi.yaml#/$defs/protocol-node'
+> +    unevaluatedProperties: false
 > +
-> +  reg:
-> +    maxItems: 1
+> +    properties:
+> +      reg:
+> +        const: 0x81
 > +
-> +  interrupts:
-> +    maxItems: 1
+> +  protocol@13:
+
+protocol@84 ?
+
+> +    $ref: 'arm,scmi.yaml#/$defs/protocol-node'
+> +    unevaluatedProperties: false
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
+> +    properties:
+> +      reg:
+> +        const: 0x84
+> +
+> +      wakeup-sources:
+> +        description: each entry consists of 2 integers and represents the source and edge
+> +        items:
+> +          items:
+> +            - description: the wakeup source
+> +            - description: the wakeup edge
+> +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
 > +
 > +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    systick@d00 {
-> +        compatible =3D "ralink,cevt-systick";
-> +        reg =3D <0xd00 0x10>;
+> +    firmware {
+> +        scmi {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
 > +
-> +        interrupt-parent =3D <&cpuintc>;
-> +        interrupts =3D <7>;
+> +            protocol@81 {
+> +              reg = <0x81>;
+> +            };
+> +
+> +            protocol@84 {
+> +              reg = <0x84>;
+> +              wakeup-sources = <6 1
+> +                                7 1
+> +                                8 1
+> +                                9 1
+> +                                10 1>;
+> +            };
+> +         };
 > +    };
 > +...
-> --
-> 2.25.1
->
-
-Gentle ping on this patch. It has been a while since it has been sent.
+> 
 
 Thanks,
-     Sergio Paracuellos
+Cristian
 
