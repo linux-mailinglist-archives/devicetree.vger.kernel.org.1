@@ -1,189 +1,152 @@
-Return-Path: <devicetree+bounces-45463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8730862011
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 23:53:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DCF0861F63
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 23:10:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4085F1F257E1
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 22:53:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4462528702B
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 22:10:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDE7B145B1B;
-	Fri, 23 Feb 2024 22:53:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 114CF14CAC4;
+	Fri, 23 Feb 2024 22:10:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=equinix.com header.i=@equinix.com header.b="c6XeHFmP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZpLO6XnX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00268f01.pphosted.com (mx0a-00268f01.pphosted.com [148.163.148.236])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E87C22071;
-	Fri, 23 Feb 2024 22:53:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=148.163.148.236
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708728784; cv=fail; b=ew/YehmglqWNwHFiLtlGzluCd6QlxNenKSwFSYbYqRSWlUf6FdN8u9rHcIvWp5e6qYUCmFYQpmVD/tM2DnmAMLnUkUVhYrUgqg6qOvLo7miyybH0RacOIc0QQTcwBkBFoCSCj7peryvEAHm244P5Ki0P94/0qUo4sKkB8+1w43g=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708728784; c=relaxed/simple;
-	bh=coG6UqcGRRVvlE/ZjP9ARgIv8No0OWy2yF16VRBWXpc=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=VP6PXXq61zOpLe03w0zoyR69cELNPVkd8oQ+OAs2PFHb/2/1yvtORhdVVIB66xlnVdEB9JCERW1usFQYO1ty5rEFOhRuR9AOtbM1vTZLnHZb2j9w2Yog/mreKrGxpv0Aqp3IpuI9nLHBhWDDIfjMYEPVW4GHzDc0NrNSYuw/I/Q=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=equinix.com; spf=pass smtp.mailfrom=equinix.com; dkim=pass (2048-bit key) header.d=equinix.com header.i=@equinix.com header.b=c6XeHFmP; arc=fail smtp.client-ip=148.163.148.236
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=equinix.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=equinix.com
-Received: from pps.filterd (m0165119.ppops.net [127.0.0.1])
-	by mx0a-00268f01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 41NKCYWv020570;
-	Fri, 23 Feb 2024 22:02:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=equinix.com; h=from : to : cc :
- subject : date : message-id : references : in-reply-to : content-type :
- content-id : content-transfer-encoding : mime-version; s=pps202002;
- bh=IPajrUaWvY1CfpZRJehjRW4p/FSnbAfrASe83trFF+4=;
- b=c6XeHFmPIfAaYY/nghdOAzQI47juvYy47VE8SPV240TrAV5vGPP6ABd2Hqc6tAZWAsw6
- eo5KaigktW90/ihG3TLMjAFodxHeh8CJvRRNOyxuQD0bMOkO6Xf0uA+KkV+DEpAQHyo9
- lw5qbUN06eAdsYezpzB3+uyWFfPViGZLAzUW0uw3JKuPnKgQ6hG4+SLcrhhIF8jkQ9Qx
- DoJsFXhl/0h6Rd1vdTsslphXOeJH62fwj8U10KSIdcnYo4ep0S/9rQtRw316neLFSPV2
- CXCmiUbf9Dj0RcPEqnGB0cOO3UXkjsat6XFww6i4+nsqt0nPeBcImRDQpalKuYfmYLWp CQ== 
-Received: from nam10-mw2-obe.outbound.protection.outlook.com (mail-mw2nam10lp2100.outbound.protection.outlook.com [104.47.55.100])
-	by mx0a-00268f01.pphosted.com (PPS) with ESMTPS id 3wf26u8apr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 23 Feb 2024 22:02:01 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=P95IRGLqrrtPoblsvBF+TsXtdHkuzpMqflP1jp4B25sWYC/aHZvV3het+w15rUFG/JhHiGPvyoaZl2lytVAkKS/aNdcAnczSDZqUg4mVXpopmmRE5yz3ssjYvgjlPhqDb5c/CnievHsrQrUiMpMEgre463rsmRhUj815QIO/8ztinUFaPzLjYUsMPh2zc6MPvwfBwTfzoPHDjJJ/yEwRLfC1p0c4Uwt5o2hiUMsqJbYfwDxNfV2EAS/bz7NbZndEldWcwEGAEzCYln8pOmnXh6o7/TUupbx34zS6r6IahQITZhhIP25wmjdkHRdbZ3ZLncai5yYOmDbiedKvyL/Rtg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IPajrUaWvY1CfpZRJehjRW4p/FSnbAfrASe83trFF+4=;
- b=Ve+eMgKAHM6sm2oBPjdcMqC91lda63kOtHsKmQB6xMjsgMpQqvXjhmsKj/6PWnRrylq62icEAc/YjErpunHv3lVCgZQJv68fAQlwSvPhLGSgXN+EC2Ve7UjDEDh2+fa2Q3gDlAkVpZq5k2cHVr+S2ZUvxRwewa+OABdAnHEdGk51jcPzlRnLWYVg1IEwvhQ3U1QlPQiOePF3e2RHdVGaPAL1tLUsA3DUGSP+6Nh9fQZqvo2jbHdJBoul8qwmTcFRFpZru/6HU48J2dFAU5ZA0vczADu3M2FliIUPsbrdkPwh6+5Wn44Cos5ONX/KoyxeN8S/j5tyxxu/Y5FuxJ7tYg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=equinix.com; dmarc=pass action=none header.from=equinix.com;
- dkim=pass header.d=equinix.com; arc=none
-Received: from CO6PR04MB7843.namprd04.prod.outlook.com (2603:10b6:5:35f::22)
- by SJ0PR04MB7470.namprd04.prod.outlook.com (2603:10b6:a03:2a1::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.24; Fri, 23 Feb
- 2024 22:01:15 +0000
-Received: from CO6PR04MB7843.namprd04.prod.outlook.com
- ([fe80::f16c:1fa7:9c55:c1c]) by CO6PR04MB7843.namprd04.prod.outlook.com
- ([fe80::f16c:1fa7:9c55:c1c%2]) with mapi id 15.20.7316.018; Fri, 23 Feb 2024
- 22:01:15 +0000
-From: Zev Weiss <zweiss@equinix.com>
-To: Conor Dooley <conor@kernel.org>
-CC: Kelly Hung <ppighouse@gmail.com>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "kelly_hung@asus.com" <kelly_hung@asus.com>,
-        "robh+dt@kernel.org"
-	<robh+dt@kernel.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-        "Allenyy_Hsu@asus.com" <Allenyy_Hsu@asus.com>,
-        "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: aspeed: add ASUS X4TF board
-Thread-Topic: [PATCH 1/2] dt-bindings: arm: aspeed: add ASUS X4TF board
-Thread-Index: AQHaZqPSJY1nzbZtU0+m3VCAr00hKA==
-Date: Fri, 23 Feb 2024 22:01:15 +0000
-Message-ID: <20240223220115.GB9299@packtop>
-References: <20240222085914.1218037-1-Kelly_Hung@asus.com>
- <20240222-getting-nebulizer-8f75ba8063b1@spud>
-In-Reply-To: <20240222-getting-nebulizer-8f75ba8063b1@spud>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CO6PR04MB7843:EE_|SJ0PR04MB7470:EE_
-x-ms-office365-filtering-correlation-id: fd8c497e-0fd0-40f6-b5f3-08dc34baf4f4
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- V0udlcPH36HKPH5vyhyka73zKGaw2qy2XksJlBTZgHMeg6UaiZMMY4s4b+ssPz2hVVdfx4WRRqiOk8rj1cRz9p1cfiyYonR9c5G9HVw+fbrPM0Mu1wxR6a/C6zwZUbOlEqnnWpMUc1X40oxaetcf6ahgacEZfgRiK08COKzabVf7FVUEHBQtce1cj+uLNt65PfKnpu/p8+seNw5r74T65oEQTTawmcXFJOXW+X/wdE8LRNPp3YFS251CDZSm5QMaY9SLl8gE8sa7eL18c/ddG//frDohUq9AFUIl31/BQIreOlWbGmtMzLhS05+oTsxX7CYlibK6F4tkOJGa3S+4eCukQs7T7pFwUcnK6ygWso/qMIknHhR+OisUxwiWdnAN9Ns3drsbx7OGxFHbq4VE2dohaVC2+AuxV2K1A4IuC4bspO1WrGj4qRCbfxZNLsiaeSOqerJxCkWhGilM8BtjOorEeimr2Z/2IejCbrLF/cyVYaEEqVsoPet/oYFpDOd4NWFeDTpSNriJ1uN/5h9j9kafqZLoR3jvghU4p1//wjLmYu8Ay1GTXoH8o0sbKil3KrfSUoc0T3B/fVx2B+lcKKBnj036U8W15sBha6zFjBWCEMUTvRD+JRCvkTCKy9Uj
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR04MB7843.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(38070700009);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?ChhJs9C9pOB1kHEs83iwJ6VOaMnNoEe/thyO0IFaxpp0rX3fbFEF9/RkhXTM?=
- =?us-ascii?Q?0/yc8inPbXUMyRrci7slJr8dfl2/3+L0MN1MuiHnS5j+/ecCg5g7Yr5nVtkO?=
- =?us-ascii?Q?sOYq+MISWFIrxvHNg5tQzfyErv668HNUJxZCNiqNhOF8VxcxJzpS3y+t2Pj6?=
- =?us-ascii?Q?bETErhsS8Ds2Vv2JTE9p72rbzQ8oJ2/GPMkuPd9tbF/hbbgDK7v7avUQtc5t?=
- =?us-ascii?Q?g0WG3PhJooXKQSOv4eVSA+SHJAzCdFmCw1UvVLZ1MNHntkhYnmm0XABU8T7U?=
- =?us-ascii?Q?IyYYBj38ZzEVqbiv2svBaDC0/e5QJS52+ZxeHz8+4ngaWYXMj8xCzAkgRpsa?=
- =?us-ascii?Q?nHJE5opq9ZL2sx4g2vzRNNW/Qv8fqwNP/Cll53YCRkFrAeEcp5lidH1DA6NT?=
- =?us-ascii?Q?EklBchkyDiE9cclTEYYUMuuGlK14/43cyR1PcnkCeGcB1guoYkq9Uv5gbW/i?=
- =?us-ascii?Q?67fKuRDtH44tIvp/d8F+nBHRgHkyG1jPIHF9m51+V1ix4ojq0kJx3xFM+tcN?=
- =?us-ascii?Q?T7JrV4XjgfNEviBK/flfBWRKqM7ZNk0fBlWz+JOZt5CDeLuFSskcrTAK/Rmu?=
- =?us-ascii?Q?5NVohh3z8ZC/F+HIQYNtRyEAefdpIsvC7bboEPWvAN6LsLCJMZn7Rq5kNRNZ?=
- =?us-ascii?Q?nVGlrmcAM/DLoDd8iWRCxVKwO46+ui8Hnj+Tj2V0Eq8Gg+MZuPQRzPU02ZUH?=
- =?us-ascii?Q?tlhJedl1epgdY7JQe1EjYLJl0YhnoyUS7pB8SO4INepbyMgfuVM+dXYxNqHJ?=
- =?us-ascii?Q?yRFZVwK9ipObsaaUQBfNoYku+gIrjJQPwe7zpdgt0CH5/+Vk8TmgHA//Vknu?=
- =?us-ascii?Q?dlZgmUeNUl2bVQ7OmL0x+RJ5oxNScUeeLk91s2VW96UGSbNSc0iuTjf1X/Ug?=
- =?us-ascii?Q?FLiQ8y+/HzdJf8ygtFFWuBJ6yQlAZW3s7qoftZfeJN0BR7Rk6UEJ9q51jyQT?=
- =?us-ascii?Q?EDnO9oQbmFHRwAE3zSVQ3whdcbLG7+YjBIXqqulvHPLMQ+tEVbfJhYfeWEno?=
- =?us-ascii?Q?B+YTAi5/jaJEtb1JbnPxJR7McQCVzuA4Ibuz7u0idKgU640bfxHbGHHn08f6?=
- =?us-ascii?Q?F2kuHwtFupEcjMxEvy9Jwi8nG5N48Fdon7bAQ4FA0oi7V6Abnc2O4eWayLrr?=
- =?us-ascii?Q?E9XzTzGBJTcfisLXbHSvBZjeMqxgIvNFmm6P/ALSXjz/FFQ5ivkRsuEdXPJu?=
- =?us-ascii?Q?FP5NjSu8cGAliOOwaw3tLtLP0w+enuHGyy4d15csQwNvxqcRgE0j4/aMWHLn?=
- =?us-ascii?Q?ItzUFV6RJYNPIknidh1qdlae69q6FVxeOuW/nlmvKOa36J+28HVurdd6h95M?=
- =?us-ascii?Q?yyK+Zm2PJLWwI2hqd8aoFmQsPnBpICvod79VP+9a5C4DlimDFEKvPoIZpHEK?=
- =?us-ascii?Q?s77Mpgg/pbWw/p2bCe3oxMbtk5NaHL5V7UcSfBh+SBQqUU7Rohr03D4RLhet?=
- =?us-ascii?Q?5kEC/17Mgme7uQnMSDyU7gSr/jRYE/83gXX2ZlYdwvOILbmybeXBEjSq/ZkZ?=
- =?us-ascii?Q?MMkvVNvVFPC9UcYEQTAE31X4BKZLr8e+BlKpTLwId3ZZ+xENUSdD1zwhXk4m?=
- =?us-ascii?Q?vmQ5OccoH+q3pCFmFbIVSp4mbIz7U6Qc5U9Ty4HH?=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <A03DAFD4614B4546908C779519E505B3@namprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF49214CAAB;
+	Fri, 23 Feb 2024 22:10:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708726203; cv=none; b=WU+1S+MaXACWlXCvnJcaE29u0kZC7dImyhy6Xh++a9D7MlwFnnVyg+rcrymiYhvYY8VPQ/35p7AxPhX6xIb+QkQ3rjnzsFfvFz/aktXcg0yrP7hFwCo0XQM73hpyqExnm2t6ALPZObeZdlBC9Cl9REOiRj7hdBZO/S7VfyrAJG8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708726203; c=relaxed/simple;
+	bh=ddVApPNuf6tVk4Tbz93m9z7lMVLzrLppfynOoPkXXNM=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=G9SYZfa5RIKWuWHKWEJLUeZ3e6nSeIn/cJhUzc1khzMBLY7jMx3NWuDQBxYzHg6txhpfKOumy4RQIymRLOS9I1tHqQyiP7WghD+icH4hxJxo5bLRL70ud0aNzU9bCteAAVjKpaU1+GPL6MUt/xsqL8MpWwIcT7gAUwOMVqIrnnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZpLO6XnX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC52FC433F1;
+	Fri, 23 Feb 2024 22:10:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708726202;
+	bh=ddVApPNuf6tVk4Tbz93m9z7lMVLzrLppfynOoPkXXNM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=ZpLO6XnX/konsdIIp8e+tRfeWzOtu1/s2BVvcXtk8MmrAw/V47QQD7APMk6oe8F6s
+	 2S5+EXTzP3qucJYpskwL3rvw8khnQoURsGphXbEOWwGFfi9J6ktiBJ/r3ebyNm1YJ7
+	 PPZbolW144cK7L7xtgvEXl3ibrEcAXOWtqxccI2fSIOgLZhODAdGzKFsi1uJPKi/4o
+	 XZADSyNx0OIdw/mlI+DSv/Yz/wgHF5JOv+/fEq7jtLluOmgbX7rlcFsPB2ozmA/5nQ
+	 +7xUfBuoUrh7yJWFwnLS92ZqOpxsjclNAgRnCB0alW1DzDpZH36+POAG+n051sZg/m
+	 I+uV4hjCDB1SA==
+Date: Fri, 23 Feb 2024 16:10:00 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Johan Hovold <johan+linaro@kernel.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: Re: [PATCH v2 04/12] PCI: qcom: Add support for disabling ASPM L0s
+ in devicetree
+Message-ID: <20240223221000.GA118088@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: 
-	8IxqJCjPr8T1EAclsUBn7q2aJkMxSsqRmadn6NkcDUuAKpjQYqyduGlL9JQmrbwF0/VDgTBmjuOdkDjFCqLuwInds7WR7q9onqO2cNb6vqnmEq/o1nlz7t2qXhXH0L+QI9hd5X6giCANRkujRIIQOXigHwSO4JDM1ac6zgyBCbrvsZI+Z+7cHFnRcLOC6Ukgd/+cNiWLMMayo+dnVLzNcMoF86yj15vv5v4ovFjiVwYXjr8hyzsQNRaQ8TeTQVbcpCUMcaZ/lAkP2af1omjOVtY+bYII/34ugkIFLnKoYHo4x9mkvxIYAP9lHNe5bCebxDqqng60YU40MzrcmNO/Y9S/jL7QVbugy81Z0yWLi78lrWVq5Xc1xatBTAGHpL/5pOsyyo90mKVdYFr2FH28UGPyuxA2CJWh5fbipqSv3wAHkcc80h3jj1TDhg0MSzGDkpVcgKC1I73uyGgk/pnDXJ9KYHTzFfpnDV6z150a2QF+AQ4yQE8W+utWuSsvMK+Z77pOZq3hYW4I93DNup0PCrLQPdHwM11XehnrveWmGaDacPxy0eCSO574+7tYpQQJ1WNRfaaOb++7OjnvQPJFPfIotpScX/P3pJAMZwwd5LyV8W8qMM6/0QvOCoENkCH8LGkp314CZnwIUceOxS0q2W8IEKv0XO/w3g66Pdt08Q4=
-X-OriginatorOrg: equinix.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR04MB7843.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fd8c497e-0fd0-40f6-b5f3-08dc34baf4f4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Feb 2024 22:01:15.7578
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 72adb271-2fc7-4afe-a5ee-9de6a59f6bfb
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: CT6ZYh8IvT0oTN90NRHjiUd5pLZZorPl9/hX6wxHeXxcC1jKEPPk+ptiZGmAQl+tojgmg12mB+k3BkX2y87Nfg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR04MB7470
-X-Proofpoint-ORIG-GUID: FGsH4ZxKLZTAhoAZF6q2gs81s5VR_ZC2
-X-Proofpoint-GUID: FGsH4ZxKLZTAhoAZF6q2gs81s5VR_ZC2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-23_06,2024-02-23_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
- lowpriorityscore=0 phishscore=0 impostorscore=0 spamscore=0 suspectscore=0
- adultscore=0 mlxlogscore=999 priorityscore=1501 malwarescore=0 mlxscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311290000 definitions=main-2402230158
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240223152124.20042-5-johan+linaro@kernel.org>
 
-On Thu, Feb 22, 2024 at 08:02:07AM PST, Conor Dooley wrote:
->On Thu, Feb 22, 2024 at 04:59:13PM +0800, Kelly Hung wrote:
->> Document the new compatibles used on ASUS X4TF.
->
->It would be good to mention here what the x4tf is - is it a bmc or
->an sbc etc.
->
+On Fri, Feb 23, 2024 at 04:21:16PM +0100, Johan Hovold wrote:
+> Commit 9f4f3dfad8cf ("PCI: qcom: Enable ASPM for platforms supporting
+> 1.9.0 ops") started enabling ASPM unconditionally when the hardware
+> claims to support it. This triggers Correctable Errors for some PCIe
+> devices on machines like the Lenovo ThinkPad X13s, which could indicate
+> an incomplete driver ASPM implementation or that the hardware does in
+> fact not support L0s.
 
-...and if, as a quick web search indicates is likely the case, it's a
-BMC for a server (or family of servers), following the existing naming
-convention with something more like "asus,x4tf-bmc" might be nice.
+Are there any more details about this?  Do the errors occur around
+suspend/resume, a power state transition, or some other event?  Might
+other DWC-based devices be susceptible?  Is there a specific driver
+you suspect might be incomplete?
 
-Also, Kelly -- when sending revised versions of patches please use the
-'-v' flag to git format-patch to include a version number in the subject
-line so it's clearer what's going on.  (So when posting the next version
-incorporating the feedback on this one use '-v3', since this appears to
-be a v2.)
+Do you want the DT approach because the problem is believed to be
+platform-specific?  Otherwise, maybe we should consider reverting
+9f4f3dfad8cf until the problem is understood?
 
-Zev
+Could this be done via a quirk like quirk_disable_aspm_l0s()?  That
+currently uses pci_disable_link_state(), which I don't think is
+completely safe because it leaves the possibility that drivers or
+users could re-enable L0s, e.g., via sysfs.
+
+This patch is nice because IIUC it directly changes PCI_EXP_LNKCAP,
+which avoids that issue, but quirk_disable_aspm_l0s() could
+conceivably be reimplemented to cache PCI_EXP_LNKCAP in struct pci_dev
+so quirks could override it, as we do with struct pci_dev.devcap.
+
+> Add support for disabling ASPM L0s in the devicetree when it is not
+> supported on a particular machine and controller.
+> 
+> Note that only the 1.9.0 ops enable ASPM currently.
+> 
+> Fixes: 9f4f3dfad8cf ("PCI: qcom: Enable ASPM for platforms supporting 1.9.0 ops")
+> Cc: stable@vger.kernel.org      # 6.7
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>  drivers/pci/controller/dwc/pcie-qcom.c | 20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index 09d485df34b9..0fb5dc06d2ef 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -273,6 +273,25 @@ static int qcom_pcie_start_link(struct dw_pcie *pci)
+>  	return 0;
+>  }
+>  
+> +static void qcom_pcie_clear_aspm_l0s(struct dw_pcie *pci)
+> +{
+> +	u16 offset;
+> +	u32 val;
+> +
+> +	if (!of_property_read_bool(pci->dev->of_node, "aspm-no-l0s"))
+> +		return;
+> +
+> +	offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
+> +
+> +	dw_pcie_dbi_ro_wr_en(pci);
+> +
+> +	val = readl(pci->dbi_base + offset + PCI_EXP_LNKCAP);
+> +	val &= ~PCI_EXP_LNKCAP_ASPM_L0S;
+> +	writel(val, pci->dbi_base + offset + PCI_EXP_LNKCAP);
+> +
+> +	dw_pcie_dbi_ro_wr_dis(pci);
+> +}
+> +
+>  static void qcom_pcie_clear_hpc(struct dw_pcie *pci)
+>  {
+>  	u16 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
+> @@ -962,6 +981,7 @@ static int qcom_pcie_init_2_7_0(struct qcom_pcie *pcie)
+>  
+>  static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
+>  {
+> +	qcom_pcie_clear_aspm_l0s(pcie->pci);
+>  	qcom_pcie_clear_hpc(pcie->pci);
+>  
+>  	return 0;
+> -- 
+> 2.43.0
+> 
 
