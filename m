@@ -1,178 +1,185 @@
-Return-Path: <devicetree+bounces-45086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2DFE8609FB
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 05:46:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79F19860A05
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 05:52:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E1273B221AC
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 04:46:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F10C01F233E8
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 04:52:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1FAB11199;
-	Fri, 23 Feb 2024 04:46:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63CEB111AD;
+	Fri, 23 Feb 2024 04:52:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="EFItMfhh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f7Nay0L/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2057.outbound.protection.outlook.com [40.107.220.57])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E9DBC8DE;
-	Fri, 23 Feb 2024 04:46:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.220.57
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708663601; cv=fail; b=ryQ3bGAYN3bXUY359C0Xj2zT6S6Q5+k41Re3i9sttxWU+FDVM72AalG2skltK4BQyqDUBSMC9sTRkW3JDL0fV13F3BP8czhKD3kA3D0tp9oeAzVWxm4pkPmSoulsAsOcXYjM2umAYayebFWuTTzNywmxSfx+GVw/LCjBn6q8Zzo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708663601; c=relaxed/simple;
-	bh=qG7rCtXi/+BQB0iReAaib26C3PyLofDDMIm8TC2A90o=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=GykEhGi/HNESks1+gH5frt2hMsgSm9Z5uHaztQrc/P/ik18V5FHpC4JxygD7OqM+OOiWsXxJlNvKB8INqETRIX08h1ue8SlZNEIN/fr+yabDobVcnj2jf/GV2IPMqWqT6WFsGZ2DVHq+zqcLavn7JwXQejgxN/IQctJbPZQxqAY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=EFItMfhh; arc=fail smtp.client-ip=40.107.220.57
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RaZNeUZlQK//1GxxiT1s59vXDj1Lm6uAeACt6Y82TWIzlZSL1aycyxY93NKnQYxCB1o63oaICib9CXvVtMJmypoWQQOVTGuHwcjgsijrQ5easC/kRXRsV1ePBFEbg1hChBBj7zFVF9NDvznTBs0MsORKTMxJIastqUoQg2xFQU/A0bOFLJC87lzYrvnDhSnGPUTns6t1Ev6u8fskM1nmAMbU80adimH5Fqqmu+TQv9SQvg1Au0NAtsW6XROkzxwOfSnnJATduvUr7ZxqntfL1B9gegFiRlUFKVBOA1VX+6kOkLgVTksFkjuTbyGSS1bJFYdPjzF6ZTofbNDppAEbpQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rTs/X7DF7INX2lrmO7jk6w+fOYc7EzQnxXGddJH9Il0=;
- b=HZoer5HguMFzNTgSZ5+XEGT6Jxn3dyfR7HsFCnPnKGKlPti6V2DsBAfJ0vjfCb76gBGopFBCXPQaH73sjfT8xvokALyoGwp0opWXjVxyN4uaF0DJEv5DINjBa2HXTkdQSEOugzTYIVNG6iKpIipdhWvBY3pQ2WGqCrvawQYUhFLDhGbcQBXWSx9Xu/ue/84/vin73dMO+jniOA7DvKI08oPGVNa8T/0/SfM42k1jX7ZZXvoSgxiTMlZ6UGabSM1x4JeO8VVgxW8RpnKiTEdqDkpJ+JYm9TLriMN0i7+GShKo29jf96IhUfOf345q4WsdGpsD5f+eYW/yBzO9wPJv1A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rTs/X7DF7INX2lrmO7jk6w+fOYc7EzQnxXGddJH9Il0=;
- b=EFItMfhhl2Ny4G0/xDVOS1pAGyHrAcUZ4U4BmehO48FsXCiT0fvamOWCEodG+SPN8eKgk6eUiHBVxXdFpZxE1So58quLEDScVrnBarg0hssjVz6d9re8CS3ftj7xnkv1zDoBPx5Dh0Yrkq6V7c0awMaEZXsdjhOByvjGpHrSd8M=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BL1PR12MB5946.namprd12.prod.outlook.com (2603:10b6:208:399::8)
- by DS7PR12MB8290.namprd12.prod.outlook.com (2603:10b6:8:d8::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.24; Fri, 23 Feb
- 2024 04:46:36 +0000
-Received: from BL1PR12MB5946.namprd12.prod.outlook.com
- ([fe80::b440:9a95:dbfa:ae67]) by BL1PR12MB5946.namprd12.prod.outlook.com
- ([fe80::b440:9a95:dbfa:ae67%2]) with mapi id 15.20.7316.018; Fri, 23 Feb 2024
- 04:46:35 +0000
-Message-ID: <03499bd0-323d-4f57-99a8-d47c5ae680ae@amd.com>
-Date: Fri, 23 Feb 2024 10:16:26 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2 2/4] net: macb: Add ARP support to WOL
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, linux@armlinux.org.uk, vadim.fedorenko@linux.dev,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, git@amd.com
-References: <20240222153848.2374782-1-vineeth.karumanchi@amd.com>
- <20240222153848.2374782-3-vineeth.karumanchi@amd.com>
- <8e4a779a-22e7-4db2-b65e-69cca5e6fac5@lunn.ch>
-Content-Language: en-GB
-From: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
-In-Reply-To: <8e4a779a-22e7-4db2-b65e-69cca5e6fac5@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PN2PR01CA0030.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:25::35) To BL1PR12MB5946.namprd12.prod.outlook.com
- (2603:10b6:208:399::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30A2EB653;
+	Fri, 23 Feb 2024 04:52:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708663950; cv=none; b=ZusYrZ0np9krfJ9ohjL5XR8sAIG506StdADWesDRHQMne2UunoRsGp3xOXXvZxR6kSNydSR15y9Y2kPbInqsOWg5+R/hxs85FXaPckFUZ5BzLm3KREKkDtd/R/1fu94BlhPWdthrMWPzvuyVHHom3maBT5EfW09RTt9nG7yvU78=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708663950; c=relaxed/simple;
+	bh=nVZFDFDaVv/qqXq+znUTcPJ+GfF1Pq4SIsLHaObRCUc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tuwRp/DxlEYtqg37HSJsfO/H+xqpujUhwusaoiUFndGqygIZCt8RwittpYTF3Tho862zSuiZDoSNbOAT2T3dzQZDrmSE4tkKDgxRNH2IMrFMzHrXAyYM5tQ6yS1iPzXNEEJH402Jq8LnwUp/Bc+D4TXh9c0IAqLr5XPmo+wb6Gs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f7Nay0L/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91221C433F1;
+	Fri, 23 Feb 2024 04:52:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708663949;
+	bh=nVZFDFDaVv/qqXq+znUTcPJ+GfF1Pq4SIsLHaObRCUc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=f7Nay0L//08naRYKIoJDTIBZ/JuHkL7iir/uq2GkrBmiSOYg3KXavnNMlluJWNA3H
+	 U8ifD8oU6n9ragExcYyUUhx9d2p75NyAnYMnCGHeTb5gtgd7Os9/gmseipnlrczAem
+	 kSC+NrQXgNFCmykOEkZ9NlsNh0KHJ7a6ii7gBe16phCY2qwJAtxXKX30a5k9OwnaHB
+	 enHnzC7aDV19Cq9XNlJ/G4pQ/MHQc3hE98vJ2EDCm9IFp09/nHIYchxcJhnsBFdrAx
+	 ekr/xcue17JCzsRFxDsHyec8RTFRESfjW1hnPIp91pTarp+0nN8zjpLKWoBi2oV4dc
+	 AF31UYi1QWIBA==
+Date: Thu, 22 Feb 2024 21:52:27 -0700
+From: Rob Herring <robh@kernel.org>
+To: Nikita Travkin <nikita@trvn.ru>
+Cc: Sebastian Reichel <sre@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	cros-qcom-dts-watchers@chromium.org, Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: power: supply: Add Acer Aspire 1 EC
+Message-ID: <20240223045227.GA4017491-robh@kernel.org>
+References: <20231212-aspire1-ec-v2-0-ca495ea0a7ac@trvn.ru>
+ <20231212-aspire1-ec-v2-1-ca495ea0a7ac@trvn.ru>
+ <20231214220210.GA988134-robh@kernel.org>
+ <207edefe4e8eac9679cd8966d28820cd@trvn.ru>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5946:EE_|DS7PR12MB8290:EE_
-X-MS-Office365-Filtering-Correlation-Id: 59e6d274-8fc8-46ac-6f66-08dc342a6a37
-X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	vwHPx13eNCHwJ6BP1BlOTy8sAnfuwaYmooLhegUhowrb+dy+aKnDuYTKFZwYPp6H1LdF3/Dwiy98giYRS/PdmzTu8H8FmbAyPs9XONsulIwzwMjTypfIPtKQx9hxIDrgzGmN+AVovobSSVIv4W9x2u7mEWMjFaw31eSjxYIR6HJ8dfN/JeGbvlzTj6oX+hlFjaFPnOva0w3gZX5ae7Sd9jQp2ooN/9tz5BqCOHcjOW9p/5/NTQSMt2CHDJp7PntQXUsKhOCPnC7z7T1qmCrggpCPKb2geoG9LcDuAMXvgUuXRwRCTywUXFl/49y1q8oVuPRNzLxDptXwlgAm2CdzI4MmrZ3DEZ0rwkNuttwDLzUQdGoYig7U4haMRgOGJqs01PAQL9bgXXELAGlhQhYcMyZCxrA3vECLXoTtPkKaKVXIC54iyzUHknRnSrLRuQ4hO/6PwJxyg5zGuBvvCM8ALolO0lZBLYM0Hg2lQCUofX8Cv+lYCOIj0/clc8xupoOVT86JOt/IMqAPi6DBnah/CpKYa4vUO+pAgWOEyGX9J3I=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL1PR12MB5946.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?QUR3NzVGVmVaZWR2TDZnTlNyeU5KVm90c0p5azBZUGhpR0R3bitmYkd4RXBQ?=
- =?utf-8?B?UERSZXZpalRpWWJuWmxuNGsyaG1UeElWczJiQlBvZEVyNG5OYm5Vc3o2TlVW?=
- =?utf-8?B?MnA4TUl2K2xwU2JMbjNRUDkvbDFoVWZSS0Nsb084eDZIRS9BVU41RitMOG5W?=
- =?utf-8?B?NTdzc0hKYldGdlNJSEkzdWVwZXNXdmdpWHQ1UERSU1FQN1ZuR2VwQ0dYWjMw?=
- =?utf-8?B?ZjlEdGZQdXowUFBzWHBZNFV1dHk3emYxeGRNVk5LRkN6c0FtMFZPeDB6UmdZ?=
- =?utf-8?B?dEd0Y2cxa2xCbHhZV3kzQkNaS1FIaGRrbE1nTHBQeHdaaWFadzJjY2dENVRL?=
- =?utf-8?B?SEtRMjgvTUVpdTVySHcrVUVnSlJFekM2K3p1QTZvNENleDBEVHhVNzZDcHZo?=
- =?utf-8?B?cytNcEFsa3NnQ21HWmVMZnM1RnNHTnl5YWhPTkdLZGprbEVybmNPalM4OXFN?=
- =?utf-8?B?cHlBV0xSTmYxbUU0YnB1SWloZ29mSnhvOG9NclFYZWZwRTIvV2FYaXlUeEpU?=
- =?utf-8?B?cWdLd0lnMHJnanZqTkx3K0JwaHFiMEhCZmNBR3FrbVdzcE9ZNnAxMUgxVVlX?=
- =?utf-8?B?M3pOa2dsUUZjSzk0TWVkSjUzTmd6Y2pacDFyNFRaeDFLM3R0aW1OQlhuN1FP?=
- =?utf-8?B?SUFmQmI5ak5hZ09CUitrVUh5MjJxaXozSS95ZkxRcVBOekFiSDdiTzlhZ1RG?=
- =?utf-8?B?L2M2SlA1TndNMjl0R1ZHcEEyRFNiaHJmMUVzY1laWmF4LzRISGdPN2RYajJn?=
- =?utf-8?B?Rmh4V0x0SnFGU1c2Myt3Z1JHSE93czc1dTczTDdQZVBCWktsREZvdU9PVDh6?=
- =?utf-8?B?UGViQXJvaENybkd3cnRXUWlVVGo0TmhmZXpFaEt5ZGI2NW0xWFk3VWltQjBY?=
- =?utf-8?B?MGpUWExYL0I1N0c3aXpKV1M1THRILytheHBzL3J0VnMyTy9OY2NmeFM4cTVY?=
- =?utf-8?B?ZjdQa0xBUVNkMW43MW1kM0pqZXVFZVoyaXV3d2NZaS8rMkhsOTZLS0F2L0E5?=
- =?utf-8?B?QjE2RFlVYmJyM0FJRFZmaGdOWUtFcW93ckZlYkJJRlBsNUNITXIxM0xGNGpi?=
- =?utf-8?B?bUR4M3kvQklDWEJISi9oRHlPRjhZQmIwSnQrejRyT0NWc1B1ZDYyUGFkTGZW?=
- =?utf-8?B?SkNUM0prOHQ1WXRPWjZmbDA0VFBrdzYxYkpWRFZQUzRXTUZ5SExWeGhrZEYx?=
- =?utf-8?B?Ti9jSVNMSkM0ZUQxRXRzSVgyVjdiYUVYd2J6N0hJMEZNbCtPWmxVRVkxMXBm?=
- =?utf-8?B?c0UzRWpoV3lOS1hyNlVHcENEYWVLNCtKY2JvWHpTeWRSNkVVdko5ZHlReUpT?=
- =?utf-8?B?cGFCSVAzcFRwYnVZVGU3c1NzTmtjMnYwUGhndU1iTi9NelhSZ01MbVRYT1A0?=
- =?utf-8?B?RklTTHZiNmpCeGFlYVNQb0RLTndpT2RaUnNFeDlMWUx1cm9OTEpaNUdSRGVQ?=
- =?utf-8?B?TFhMN0lGRVRBejUxQlp5STNyK3FKZi9nSUR3KzVmVUlwVG9rbVRjcnY2THBH?=
- =?utf-8?B?WXR3RVBWN3VxL3doSWlVYnVscEw0dU5QM0hCdEE2dVdZcURBeVJOKzZBY0s2?=
- =?utf-8?B?eTlZL2l1Y1pNZVlXMXFsdHROSkpDOUs3dnFmejQ2d0lVQW5iVUcvNjR4T01y?=
- =?utf-8?B?aEZqWmp3TGZBakNvWFJKNG41WE44elhuTmF3Y0o2NXZXZW41RGJlU244eWF5?=
- =?utf-8?B?YWZIMGp0cDBDRWJIMzhTRFFLR2duMGJPeTB5WXlSYjlMNTdGTWkvWDlqenNk?=
- =?utf-8?B?bkdBVkRzLzFIQzVJTHE5TDk4T1lwcm9HMDRZdFBydEJoRHphelh2cStuVUNi?=
- =?utf-8?B?Qkl0SDZaRjNvSXRDUjdqOStlQ3RVeDFBc3VSS2NCOWhrdkMxUVhzSjBjeWZx?=
- =?utf-8?B?bDZoNFB5SFlOR0lCMndteUkxYldhTUNnSExBSlBVWDVnSWhqVksyU1diRWNs?=
- =?utf-8?B?VnFDazlMcXRqaEFmVFp3NWw1RkZwcmtlOVI4RHlveXN3RDZqakVxcVV0NUxk?=
- =?utf-8?B?akh5VTR2OW0wRmFSbWl6NGhJVnRRanFRSTNIZ2VZaUw5enVaaVJYSU9vYzA0?=
- =?utf-8?B?N29TcnJFWUtYaEt6S1JuQXcwWTllLzhzRzlSa1l1WHFvcHNnWlYyaGZkUzlB?=
- =?utf-8?Q?XKQVD6cg4FMXCm0GGfxMfzG9F?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 59e6d274-8fc8-46ac-6f66-08dc342a6a37
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5946.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Feb 2024 04:46:35.8212
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 15krgvatj8d7U5GSybKqwV09sCF7r1ahwG/Gl5HM5WK77B5OwKt9dXAfD/jdJdRd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB8290
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <207edefe4e8eac9679cd8966d28820cd@trvn.ru>
 
-Hi Andrew,
-
-On 23/02/24 1:02 am, Andrew Lunn wrote:
->>   	u32			wol;
->> +	u32			wolopts;
+On Fri, Dec 15, 2023 at 10:29:22AM +0500, Nikita Travkin wrote:
+> Rob Herring писал(а) 15.12.2023 03:02:
+> > On Tue, Dec 12, 2023 at 05:49:09PM +0500, Nikita Travkin wrote:
+> >> Add binding for the EC found in the Acer Aspire 1 laptop.
+> >>
+> >> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+> >> ---
+> >>  .../bindings/power/supply/acer,aspire1-ec.yaml     | 67 ++++++++++++++++++++++
+> >>  1 file changed, 67 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/power/supply/acer,aspire1-ec.yaml b/Documentation/devicetree/bindings/power/supply/acer,aspire1-ec.yaml
+> >> new file mode 100644
+> >> index 000000000000..1fbf1272a00f
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/power/supply/acer,aspire1-ec.yaml
+> >> @@ -0,0 +1,67 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/power/supply/acer,aspire1-ec.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: Acer Aspire 1 Embedded Controller
+> >> +
+> >> +maintainers:
+> >> +  - Nikita Travkin <nikita@trvn.ru>
+> >> +
+> >> +description:
+> >> +  The Acer Aspire 1 laptop uses an embedded controller to control battery
+> >> +  and charging as well as to provide a set of misc features such as the
+> >> +  laptop lid status and HPD events for the USB Type-C DP alt mode.
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    const: acer,aspire1-ec
+> >> +
+> >> +  reg:
+> >> +    const: 0x76
+> >> +
+> >> +  interrupts:
+> >> +    maxItems: 1
+> >> +
+> >> +  acer,media-keys-on-top:
+> >> +    description: Configure the keyboard layout to use media features of
+> >> +      the fn row when the fn key is not pressed. The firmware may choose
+> >> +      to add this property when user selects the fn mode in the firmware
+> >> +      setup utility.
+> >> +    type: boolean
+> > 
+> > Besides the naming, this isn't really a property of the EC, but really 
+> > part of the keyboard layout. It seems you just stuck it here because 
+> > this is part of the specific device.
+> > 
 > 
->> +	wol->supported |= (bp->wol & MACB_WOL_HAS_MAGIC_PACKET) ? WAKE_MAGIC : 0;
->> +	wol->supported |= (bp->wol & MACB_WOL_HAS_ARP_PACKET) ? WAKE_ARP : 0;
+> The EC on this device is also a keyboard controller, but the keyboard
+> part has a dedicated i2c bus with hid-over-i2c. Since this is the
+> "management" bus of the same device, I decided that it fits here.
+
+So there's also a hid-over-i2c DT node? Then why wouldn't you put this 
+there?
+
 > 
->> +	if (bp->caps & MACB_CAPS_WOL)
->> +		bp->wol |= (MACB_WOL_HAS_ARP_PACKET | MACB_WOL_HAS_MAGIC_PACKET);
+> > It is also hardly a feature unique to this device. I'm typing this from 
+> > a device with the exact same thing (M1 Macbook Pro). Actually, all 3 
+> > laptops I have in front of me have the same thing. The other 2 have 
+> > a Fnlock (Fn+ESC) though.  On the M1, it's just a module param which I 
+> > set as persistent. Though I now wonder if the Fnlock could be 
+> > implemented on it too. Being able to switch whenever I want would be 
+> > nice. That would probably have to be in Linux where as these other 
+> > laptops probably implement this in their EC/firmware?
+> > 
+> > What I'm getting at is controlling changing this in firmware is not a 
+> > great experience and this should all be common.
+> > 
 > 
-> So bp->wol is the capabilities of the hardware?
+> You may be right, however my goal here is to support the original
+> firmware feature that is lost when we use DT.
 > 
-
-Yes, it holds the supported capabilities.
-
-> And bp->wolopts is what has been enabled via ethtool?
+> This is a WoA laptop with UEFI/ACPI and, as usual for "Windows"
+> machines, there is a setting in the firmware setup utility ("bios") to
+> set the fn behavior. But it works by setting an ACPI value, and for
+> Snapdragon devices we can't use that now.
 > 
-
-Yes, it holds the selected options through ethtool.
-
-> I just wounder if it would be easier to understand is bp->wol was
-> renamed wol_caps, similar to bp->caps?
+> Long term I want to have a EFI driver that would automatically
+> detect/load DT and my plan is to handle things like this (and i.e. mac
+> address, different touchpad vendor, etc) there. Thus I'm adding this
+> property already, as an equivalent of that weird acpi bit that original
+> firmware sets.
 > 
-> 	Andrew
+> If we only provide a module param, the "intended by OEM" way of setting
+> the fn mode will be broken, and one would need to know how to write a
+> magic special config file to set a kernel module param. I think it's not
+> the best UX. (and just adds to the silly "arm/dt bad, x86/uefi/acpi
+> "just works"" argument many people sadly have)
 
-Sure, I will make the change.
+But it always works, it is just a question of what is the default mode 
+and I, as a user, want to decide that, not the OEM. And I want to change 
+it at run-time, not reboot into BIOS to change it.
 
-🙏 vineeth
+I wasn't suggesting you do a module param either. That's still specific 
+to the module. Something like a sysfs file would be nice:
+
+echo 1 >  /sys/class/input/input1/fnlock
+
+
+> If you think I shouldn't use DT to pass this info, feel free to say so.
+> I will drop this property and see if there is something else I can do
+> to still support this without relying on Linux cooperation.
+
+Not saying no to being in DT, but if it is, it should be a common 
+property because it is a common thing on all laptops.
+
+Rob
 
