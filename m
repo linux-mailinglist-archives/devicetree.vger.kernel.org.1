@@ -1,130 +1,132 @@
-Return-Path: <devicetree+bounces-45285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 503B686151F
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 16:04:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A18DD86152C
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 16:07:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E41F61F233A0
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 15:04:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C815286704
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 15:07:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 236EE7F7D3;
-	Fri, 23 Feb 2024 15:04:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 590BF224D8;
+	Fri, 23 Feb 2024 15:07:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="VyJmqqsg"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ksxjEXF8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67C2B29AF;
-	Fri, 23 Feb 2024 15:04:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0913629AF;
+	Fri, 23 Feb 2024 15:07:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708700684; cv=none; b=hSiLhTcLL7ckatWIB+gSYq4idV+WoqQoRr4OdTQSeP8rvb5ZOppMlWE2jSN4QHvkshiTK1S11mr4AbQvbRUoSAQ7TR+NWkieo0qVLSdVqJ4UhxWf0rp5Jx5H3vrADiWV0W9gNtLJVYTPvuvFCEbKTYVuaLkqbtZdGsOtX9YYWVE=
+	t=1708700837; cv=none; b=CsTCrdKUAHV+S330NpAbHRJRZaxO9+FAlTAu8NWa3nvqx/7lCBFpyAjEJFIb6KLpi6CsnIQbVXDEnVJPitYbvoON6JOlELRxHv4Iy2KQkDvom8fzegTu7WIwc8kpiTtC+LihkpnyDXTpeNyKKHBxi9BPnPT9BFtzOvETsWjcQSk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708700684; c=relaxed/simple;
-	bh=5x6pYf9qLTpW8AR7rB7BIZ/ftWmhCe5nScEqQHk3wMQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R0nlfI9McLxMuFSXlZxCKHMkFFgjLxFP09lDQEQ0E8Z3hW1lYmBfAjy4wuxzgCuYP+Kz1tsz2ezmGbH62JppLtQmWEg61u8WO2s6YpdIqcpogwow+UjXBPci7pU4OurmJLTkHhEduoFiD30QWEttwyxsdJwrTv60DnVBMGJCjdw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=VyJmqqsg; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1708700676;
-	bh=5x6pYf9qLTpW8AR7rB7BIZ/ftWmhCe5nScEqQHk3wMQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VyJmqqsgpm5U9Y5HtXtI531KmUgmHHitp9i69QI4A+zH5d52EXsfvN55wwYd1KTvP
-	 5SL2CNKtxJ29VXhp+eRVRNcg1/MrKgpLyuAnPxl7KRtEvZc+y8lBvVxQT8LYJLF/FR
-	 IRnVg9ZGUjzW5p9qC/0LoFwwm58SkAtvIrtZjEFgJ+GQXjqhdMiB1xjSND/T/a9OiH
-	 FD0ihu5q66PVpVWD1Fe6rVdSRSU9Se9SwOtuGxtF9A7Wn/gEcyDhXB8vig62Z5ErTY
-	 9DS/5EMBwG18wOc0EqHvYkQSoxMutq4GruMj63dhD8Pe1nKj3e05JIgP4qmyGE0UyU
-	 /EvO+Rx6WTX+w==
-Received: from mercury (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 94627378000E;
-	Fri, 23 Feb 2024 15:04:36 +0000 (UTC)
-Received: by mercury (Postfix, from userid 1000)
-	id 352031060C95; Fri, 23 Feb 2024 16:04:36 +0100 (CET)
-Date: Fri, 23 Feb 2024 16:04:36 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Nikita Travkin <nikita@trvn.ru>
-Cc: Hans de Goede <hdegoede@redhat.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	cros-qcom-dts-watchers@chromium.org, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh@kernel.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	platform-driver-x86@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] power: supply: Add Acer Aspire 1 embedded
- controller driver
-Message-ID: <xelebhoitnwguhewahw26xopl5btjo5ezznjjaeb2zfyy2bpcr@7pmclezshwck>
-References: <20240220-aspire1-ec-v3-0-02cb139a4931@trvn.ru>
- <20240220-aspire1-ec-v3-2-02cb139a4931@trvn.ru>
- <qoidm5wujjbeoc2hlraky26wuwmuaxi2atyl6ehovhvffdbfeh@g5gunqdei45m>
- <7c429d2110dbac68d0c82c8fb8bfb742@trvn.ru>
+	s=arc-20240116; t=1708700837; c=relaxed/simple;
+	bh=qwYvqnbUBgRmfcU5PY/qmaPSAuFYYxZn2Jkfy1nGQPY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=if0JdlbHamRgyI8oPID4AZGMbmX8dDsrdNvNyY1dzaWOUwkyhZdpNPZm8WUDFwKXex9YSJ2LIhXup8cxmxk5gnFYz/KLvm0c7sS2Q2J2iw5XN6JYVQZ4j7EJVMYLF7pHMEmtM3YPxSDifOuxZUvDWfafr0qRe7DLWLKM4vn2nGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ksxjEXF8; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 4107C1C0015;
+	Fri, 23 Feb 2024 15:07:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1708700826;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=7FVN6qzrARPqd8slGB+ZGG+q4yGV1yFcxd8XyD/FaGY=;
+	b=ksxjEXF8MtHctHNicBMz13UjkukmPWXphf8gXxKB6y5Uem1PJZrkDjzSlCUQQB5ENfq2bR
+	s4QDePcCTPRohSRp2I7FIgq6sVvQl8Rqm5mcl3an9DBYOPzLrJ829BWPzlPr47WLu5F2SK
+	kRkMa6hgUeMukEbhoUZzKvBiMhoagAAhl3Yumh5Nfx2gss/hD25R5pvP0GV9ibL5UiI2mD
+	ENkfmO6ab3BWQPIoaJul7mbZg6tBM7D9UzVe50WZtWjI1jhIQSa4NFblhXR8YsLmG6+zZW
+	thfqY4GS1gCWtZLP7CLf7AQl3g+aOQx30JSVfo2N5cQjDhUytE3YY5jEYO9fNA==
+Date: Fri, 23 Feb 2024 16:07:04 +0100
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, Bastien
+ Curutchet <bastien.curutchet@bootlin.com>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+ <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Richard Cochran <richardcochran@gmail.com>, Heiner Kallweit
+ <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, Herve Codina <herve.codina@bootlin.com>
+Subject: Re: [PATCH 1/2] dt-bindings: net: Add TI DP83640
+Message-ID: <20240223160704.4018cac2@device-28.home>
+In-Reply-To: <a1e54836-51d2-4990-9444-56d9414eb28c@lunn.ch>
+References: <20240130085935.33722-1-bastien.curutchet@bootlin.com>
+	<20240130085935.33722-2-bastien.curutchet@bootlin.com>
+	<20240130-impulsive-widow-9142a069b7fd@spud>
+	<20240131210521.GA2289883-robh@kernel.org>
+	<20240131-tummy-imperfect-e6d6f0e245e9@spud>
+	<a1e54836-51d2-4990-9444-56d9414eb28c@lunn.ch>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="zxpcrmzfdpf2u4kj"
-Content-Disposition: inline
-In-Reply-To: <7c429d2110dbac68d0c82c8fb8bfb742@trvn.ru>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-GND-Sasl: maxime.chevallier@bootlin.com
 
+Hi Andrew, Bastien,
 
---zxpcrmzfdpf2u4kj
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, 31 Jan 2024 23:40:45 +0100
+Andrew Lunn <andrew@lunn.ch> wrote:
 
-Hi,
+> On Wed, Jan 31, 2024 at 09:18:39PM +0000, Conor Dooley wrote:
+> > On Wed, Jan 31, 2024 at 03:05:21PM -0600, Rob Herring wrote:  
+> > > On Tue, Jan 30, 2024 at 05:56:37PM +0000, Conor Dooley wrote:  
+> > > > On Tue, Jan 30, 2024 at 09:59:34AM +0100, Bastien Curutchet wrote:  
+> >   
+> > > > > +  ti,fiber-mode:
+> > > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > > +    enum: [0, 1]
+> > > > > +    description: |
+> > > > > +      If present, enables or disables the FX Fiber Mode.
+> > > > > +      Fiber mode support can also be strapped. If the strap pin is not set
+> > > > > +      correctly or not set at all then this can be used to configure it.
+> > > > > +       - 0     = FX Fiber Mode disabled
+> > > > > +       - 1     = FX Fiber Mode enabled
+> > > > > +       - unset = Configured by straps  
+> > > > 
+> > > > I don't like these properties that map meanings onto numbers. We can
+> > > > have enums of strings in bindings that allow you to use something more
+> > > > meaningful than "0" or "1".  
+> > > 
+> > > Tristate properties are fairly common pattern where we need 
+> > > on/off/default. I've thought about making it a type. I don't think we 
+> > > need defines for it.  
+> > 
+> > I think a type would be a good idea. I am not at all a fan of any of the
+> > properties people introduce along these lines.  
+> 
+> Before going too far with that, i'm not actually sure it is required
+> here. I've not looked at the PHY driver itself, but i expect there is
+> some indication somewhere that the network stack expects a fibre link
+> is to be used. We probably can determine at runtime if fibre should be
+> used.
 
-On Fri, Feb 23, 2024 at 07:32:17PM +0500, Nikita Travkin wrote:
-> >> + This driver provides battery and AC status support for the mentioned
-> >=20
-> > I did not see any AC status bits?
->=20
-> I was referring to whatever ACPI spec calls "AC Adapter" but I guess
-> I should have used the word "charger" instead... Will reword this.
+I've missed that thread initially. I guess that if Fiber is to be used,
+this would be done through sfp, then we have all the regular interfaces
+to configure the phy_interface_mode, in that case that would be
+100BaseX.
 
-But you only register a power-supply device for the battery and not
-for the AC adapter/charger. When you write "and AC status support" I
-would have expected something similar to this (that's from ACPI AC
-adapter driver):
+So, a sane behaviour could simply be to configure the PHY in copper
+mode by default, without relying on any DT property ? If anyone wants to
+use fiber mode, then they would have to implement the
+sfp_upstreamp_ops, which would take care of reconfiguring the MDI
+interface of the PHY in the correct mode.
 
-$ cat /sys/class/power_supply/AC/uevent
-POWER_SUPPLY_NAME=3DAC
-POWER_SUPPLY_TYPE=3DMains
-POWER_SUPPLY_ONLINE=3D1
-
--- Sebastian
-
---zxpcrmzfdpf2u4kj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmXYs+8ACgkQ2O7X88g7
-+pp0pQ/+I8r1MIK+6d+62Nhgu1dizPhWY5c5s1DPh3CbJHrAhUlfgaTisBQBldsz
-WkzDoOnYEG1lLDSlhsi+0/JbfufNry+gewlCbZ+WR8xPi/R7Zczp94TVvnVixD3e
-TJeyAlv4adPN1FJs7YIVnZE8e77xb8VeCTUq0vLXWlFi0hLt4lHyAdZk9ZihokTO
-EvKw/1rdVPn1Ztu5EIRZkPfHJvnOlnahTqcV/CEb5Q1W6vq+A4TS8cY1GkJXGGBc
-FTDbMPeaYn/VWxIyqKCgatcd1ypqP5mWhm7JdARSe1vMQw2InVyoNjMmG5I1HxBT
-ndudYQhftgOiDpeh8QcdfxFOhT5Yp9/rAO/DKm68URKBh3mbb0EZvIk46afZPIls
-+DfLtw5FeWNnU5Q0Ak8JY6mFEyqOMLR5IpSUAuHxY4STLsKBDStHBVwYZn0+C4D2
-QmNj9IgWAq51SJVKHWOB1afsPP1JPIyDJsHF8jCubdoAOlywd/HyxPlHXpFqxQsA
-JxvFM/mGHseeE/Q05UNMApNxdn/+wao1bXF2h1JSpW3VOwOSRdLqFJ4I7HzlGpD9
-9uxdqBb/3wRTLsZKIRchIQtbG6j88meODLU7kq4+Yn+UlEVLktfxHFztK5aPfoLy
-ngO2wlTKZs6wUAJuGJJidndXx21+4SJloIOhaLRHO2tmhEG6c1U=
-=X9fX
------END PGP SIGNATURE-----
-
---zxpcrmzfdpf2u4kj--
+Maxime
 
