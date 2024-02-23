@@ -1,149 +1,231 @@
-Return-Path: <devicetree+bounces-45439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57A98861F05
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 22:26:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8195861F0C
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 22:28:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6CF791C22E46
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 21:26:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E5BB283675
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 21:28:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D53E81493BB;
-	Fri, 23 Feb 2024 21:26:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9509514939B;
+	Fri, 23 Feb 2024 21:28:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HpS1Wodt"
+	dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b="DMcfwQ1r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4605B149388
-	for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 21:26:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F4E3149388;
+	Fri, 23 Feb 2024 21:28:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.255.230.98
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708723565; cv=none; b=T2UdbjelPj8EGZEXIPJP0TuMsUQhRszGddY23rV7jVFJxEm9bWOcsdXIoVcTMBydblGtAj95/wQsMeZ/VQPeOwhhCDq877YuY/bhb2okUOs0uli2CxlTM6tFqgicA2N94k1h3JubMGfvoF9Hk6gthznURnOMPuy0SNTXm8zCZqA=
+	t=1708723727; cv=none; b=V+PFmri9mGObCWEYRDDOUGbfaQhhe3aZCFHvKDrJz6A4Jm48YhfrcFa4t+LxdLrCI/QBeaPyGp9pB6VR13jTGmGJ8BaAh3sGhcEBVuI4VzxlXQJJsInC2cHhUgNUn2daVGK5gh5leEWG3Oi9FWLNG6KB6O192edYToJdtGik1uE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708723565; c=relaxed/simple;
-	bh=Fjsaq0/zm7p9DGpDTFVZigAn4TZsyY8nqWWzMK8GrSM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G6A6sUCfHBG+GnFAN5reL9u0c9kjNwQEPkQAJm8I3lUCqiD9c0VQeQUteQLpWDStM3ScSaKfXgonfFW9TR+tg0Q4rjLBNW/HWJg2IPRFG0u9cLU0/vRxuDuyZyEkc1CnR+1dmGcVTKivgzwrnKisKtv4nsEkO6f0x7Ri8rQ5z/Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HpS1Wodt; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a3f4464c48dso158460066b.3
-        for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 13:26:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708723560; x=1709328360; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TLSzs3FTcuEY5t38t/V56bwc1PFgOdBSCZw21m1qF8I=;
-        b=HpS1Wodtq0lspQXrqokaLnVzbVi9JgR7GWz3pQzlwcZSUqjnYmN0PKws1Gl5IdTxvl
-         gYs5ssK+ESeb8vLQ0DxkDi4KyA3w0NLCplivMmZY4pn7n798XS50kN5mBtdyLYTVMP/P
-         pwGTJOZZQMjWP+6mjvTLdXHKkwdbUl6xRugaacDZxM1q0WnAT6NeMPf28Nlhyr4CH1zq
-         Avq9krCwuGcPw71A4GlDbPEwN6GuS5vZ+fBKJOWSiTo3ctVR0z4x/1aOwIJ0WJOWbpZV
-         nmBpvlMCHR/rkGAUAMfzX/Aw/XKXmWYwAkuP07+Cxs6RpF5BYZ8K6Rc0v+cR8MOCjq+G
-         H8ZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708723560; x=1709328360;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TLSzs3FTcuEY5t38t/V56bwc1PFgOdBSCZw21m1qF8I=;
-        b=FlY/56+8OvSo6JiCZqlN1Ct4GTnl85jIcZpyu7DJJyD+LHEFyetpxN29hd6OXT5KxH
-         x0pa8yLDoDE4XozoEk6QnipcZJMDnfpAwPAcAtksvBwCjK3MJJdGq6vdcryu34aiVCOD
-         TKdaebRBnbwrYMQzPDeDs2Cvk0xNLjJuLc4lx+jkdQsHgDrW/2Pktk6hG3YCza9Q0Ao4
-         N4xC71dEU047wxS2D+wm24oNzz/AHH80yW/totpejgGraVWMs3trwNaeJtHq7CbxZg9b
-         cN1NVIyPGG4qmhxRoiiR2GlDqLWU2Vg6TmDqDzKUd3NmyG6MuMfZf41GTfmxyC8GD9Cg
-         XnzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVQSBZzxomWIwPxUha+vgLdrvS6lDCAb8qe/H2smEc9nSUUGgEnYOd5TWfhaeppaX6bbiRGh+xNv8N+k/wUHSZFRbYQ1dUp1QqZuQ==
-X-Gm-Message-State: AOJu0Yz3ARiRmyrFZ5WAF8+MTUEjnLP0SWXYzZArXc/bhSubr2JkKdC0
-	wWAsP9Lud44mvh7HFfNrbuF6ev0uUQeMl6y5DkyuloOz2sRtih/wfJNpLwF6uJE/0ECzYhxCPeS
-	A
-X-Google-Smtp-Source: AGHT+IGB3sLWmREenGlJy16NLBUXNgf5aOXR9ELe+WF8XNoniAUPy+HzYUZMMj8N1J5rkLgmX37aLQ==
-X-Received: by 2002:a17:906:f894:b0:a3e:72ca:700d with SMTP id lg20-20020a170906f89400b00a3e72ca700dmr583283ejb.45.1708723560684;
-        Fri, 23 Feb 2024 13:26:00 -0800 (PST)
-Received: from [192.168.179.2] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
-        by smtp.gmail.com with ESMTPSA id pv14-20020a170907208e00b00a3f45b80559sm2738150ejb.139.2024.02.23.13.25.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Feb 2024 13:26:00 -0800 (PST)
-Message-ID: <f3c86b3f-d78c-463a-aceb-660828b9cd21@linaro.org>
-Date: Fri, 23 Feb 2024 22:25:58 +0100
+	s=arc-20240116; t=1708723727; c=relaxed/simple;
+	bh=DxNJF2HfobJndwwGNuoV3A/j+HNdIf1M2fN5HyV89UU=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition; b=ktrIol+xmth1KnhlDqhwXgHLs5yVNAwK3Elbnvu5pb+Ym6LUtvE9cEWu0wBNKNRpKfOnOIs9KABVowsA+pgnKset7DNd3Jl1MiMNdGITz9if639+HfeIlPa+EoIvrCQIIntsi9Exlg01w1bHQSPzCSaOSQQQ8gRnnPwdhRCeFcc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz; spf=pass smtp.mailfrom=ucw.cz; dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b=DMcfwQ1r; arc=none smtp.client-ip=46.255.230.98
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ucw.cz
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+	id 9A52A1C006B; Fri, 23 Feb 2024 22:28:42 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
+	t=1708723722;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 references:references; bh=6xEIm2edK68HPN0TzWfyCgFMgXaReyr4GncU+XTIWD8=;
+	b=DMcfwQ1r+t1JybfpFlCJHuyYBt6MEIzKeb2mkpYJ2QO6ipE6xUsGnF/bU5KyGUOJ3NGprB
+	u5/Il0c/+l/OODRyjhQERLN/Nzr3u1wrYJBbF0GtYxWE50lyQDIaIPISAvcUOic1ynAYAF
+	fcBBlUUoVOof1v5ET6HQjXQx0ao9GMo=
+Date: Fri, 23 Feb 2024 22:28:42 +0100
+From: Pavel Machek <pavel@ucw.cz>
+To: phone-devel@vger.kernel.org, kernel list <linux-kernel@vger.kernel.org>,
+	fiona.klute@gmx.de, martijn@brixit.nl, samuel@sholland.org,
+	heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
+	linux-usb@vger.kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+	megi@xff.cz
+Subject: [PATCHv2 1/2] dt-bindings: usb: typec: anx7688: start a binding
+ document
+Message-ID: <ZdkOCqPKqa/u9Ftb@duo.ucw.cz>
+References: <ZcaCXYOf6o4VNneu@duo.ucw.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 08/12] arm64: dts: qcom: sc8280xp-crd: disable ASPM L0s
- for NVMe
-Content-Language: en-US
-To: Johan Hovold <johan+linaro@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Bjorn Andersson <andersson@kernel.org>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org
-References: <20240223152124.20042-1-johan+linaro@kernel.org>
- <20240223152124.20042-9-johan+linaro@kernel.org>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20240223152124.20042-9-johan+linaro@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="jCLN6xU/n9iIU9zP"
+Content-Disposition: inline
 
-On 23.02.2024 16:21, Johan Hovold wrote:
-> Enabling ASPM L0s on the CRD results in a large amount of Correctable
-> Errors (Timeout) when accessing the NVMe controller so disable it for
-> now.
-> 
-> Fixes: 9f4f3dfad8cf ("PCI: qcom: Enable ASPM for platforms supporting 1.9.0 ops")
-> Cc: stable@vger.kernel.org      # 6.7
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+--jCLN6xU/n9iIU9zP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Konrad
+Add binding for anx7688 usb type-c bridge. I don't have a datasheet,
+but I did best I could.
+
+Signed-off-by: Pavel Machek <pavel@ucw.cz>
+
+---
+
+v2: implement review feedback
+
+diff --git a/Documentation/devicetree/bindings/usb/analogix,anx7688.yaml b/=
+Documentation/devicetree/bindings/usb/analogix,anx7688.yaml
+new file mode 100644
+index 000000000000..9e887eafb5fc
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/analogix,anx7688.yaml
+@@ -0,0 +1,127 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/usb/analogix,anx7688.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++# Pin names can be deduced from
++# https://files.pine64.org/doc/PinePhone/PinePhone%20v1.2b%20Released%20Sc=
+hematic.pdf
++
++title: Analogix ANX7688 Type-C controller
++
++maintainers:
++  - Pavel Machek <pavel@ucw.cz>
++
++properties:
++  compatible:
++    enum:
++      - analogix,anx7688
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++    description: GPIO controlling RESET_N (B7) pin.
++
++  enable-gpios:
++    maxItems: 1
++    description: GPIO controlling POWER_EN (D2) pin.
++
++  cabledet-gpios:
++    maxItems: 1
++    description: GPIO controlling CABLE_DET (C3) pin.
++
++  avdd10-supply:
++    description: 1.0V power supply going to AVDD10 (A4, ...) pins
++
++  dvdd10-supply:
++    description: 1.0V power supply going to DVDD10 (D6, ...) pins
++
++  avdd18-supply:
++    description: 1.8V power supply going to AVDD18 (E3, ...) pins
++
++  dvdd18-supply:
++    description: 1.8V power supply going to DVDD18 (G4, ...) pins
++
++  avdd33-supply:
++    description: 3.3V power supply going to AVDD33 (C4, ...) pins
++
++  i2c-supply: true
++  vconn-supply: true
++  hdmi-vt-supply: true
++  vbus-supply: true
++  vbus-in-supply: true
++
++  connector:
++    type: object
++    $ref: /schemas/connector/usb-connector.yaml
++
++    description:
++      Properties for usb c connector.
++
++    properties:
++      compatible:
++        const: usb-c-connector
++
++required:
++  - compatible
++  - reg
++  - connector
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c {
++        #address-cells =3D <1>;
++        #size-cells =3D <0>;
++
++        typec@2c {
++            compatible =3D "analogix,anx7688";
++            reg =3D <0x2c>;
++            interrupts =3D <8 IRQ_TYPE_EDGE_FALLING>;
++            interrupt-parent =3D <&gpio0>;
++
++            enable-gpios =3D <&pio 3 10 GPIO_ACTIVE_LOW>; /* PD10 */
++            reset-gpios =3D <&pio 3 6 GPIO_ACTIVE_HIGH>; /* PD6 */
++            cabledet-gpios =3D <&r_pio 0 8 GPIO_ACTIVE_HIGH>; /* PL8 */
++
++            avdd10-supply =3D <&reg_anx1v0>;
++            dvdd10-supply =3D <&reg_anx1v0>;
++            avdd18-supply =3D <&reg_ldo_io1>;
++            dvdd18-supply =3D <&reg_ldo_io1>;
++            avdd33-supply =3D <&reg_dcdc1>;
++            i2c-supply =3D <&reg_ldo_io0>;
++            vconn-supply =3D <&reg_vconn5v0>;
++            hdmi_vt-supply =3D <&reg_dldo1>;
++
++            vbus-supply =3D <&reg_usb_5v>;
++            vbus-in-supply =3D <&usb_power_supply>;
++
++            typec_con: connector {
++                compatible =3D "usb-c-connector";
++                power-role =3D "dual";
++                data-role =3D "dual";
++                try-power-role =3D "source";
++
++                ports {
++                    #address-cells =3D <1>;
++                    #size-cells =3D <0>;
++                    port@0 {
++                        reg =3D <0>;
++                        typec_con_ep: endpoint {
++                            remote-endpoint =3D <&usbotg_hs_ep>;
++                        };
++                    };
++                };
++            };
++        };
++    };
++...
+
+--=20
+People of Russia, stop Putin before his war on Ukraine escalates.
+
+--jCLN6xU/n9iIU9zP
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCZdkOCgAKCRAw5/Bqldv6
+8k4ZAKCyacCwwDMiQJfpB92pVwG7Ep6PFwCglGOsVgCKKM15n+AZgQHGOn/a+1I=
+=AcFn
+-----END PGP SIGNATURE-----
+
+--jCLN6xU/n9iIU9zP--
 
