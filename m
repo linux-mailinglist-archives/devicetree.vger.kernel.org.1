@@ -1,109 +1,88 @@
-Return-Path: <devicetree+bounces-45336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61A928617C9
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 17:25:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8401E8617DF
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 17:28:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E849AB2AAC8
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 16:24:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AA426B22072
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 16:28:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97F0713790F;
-	Fri, 23 Feb 2024 16:21:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A44D84FB3;
+	Fri, 23 Feb 2024 16:28:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sqd0oMWq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FDL5Y02+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E55F12E1FC;
-	Fri, 23 Feb 2024 16:21:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29D8D84FA1;
+	Fri, 23 Feb 2024 16:28:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708705313; cv=none; b=dUmSKX0qQOYQJdSDTk6lv2UVLlqKLRLqQBPPdHXhr1aol2vIoocHL4pvM9lEK6z0d/GZP5osnqzS9PdwMkdWUnIscREQWHrpNT++PoujOqZdWfF7dG+4vxgZVJ0TrVrKKsb8I3udWKHAG3WN4Mj5Xa/jI2uHj5ZU1KGllt7m4OM=
+	t=1708705728; cv=none; b=X+Ay9TQKHRmfb7nVgy2KEZ7gZT+UZGHPOD7ItvBTEoVibdNvxui3AIRL+OC+6Z/dnz8P81Heaa1awThC1hCqjtLrKIjUWWwcq7fjaopL/La4/ALUEeoh86fVpMrwydpM+9Eq+TgAoNIkP4nA5OPvdQ8wnsy4n1+/15N7yn5hi0o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708705313; c=relaxed/simple;
-	bh=WU89fYlzkV7iq1/qt/r+d2wUO9ZbalxxnTbNqYn/EhY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=GM4uiRDSdoj67MQ/eYjT6YelBOaHbpagTqjv49w66OKPomMsurVqXknLYJjYjFD1VJSBILOmk2asbb6GjCl+QiD/yPsKNqMZw4Hrf3kAb31t290uLluLzRAOazZ9/L4GyWPEbdH1Axs5KVNkS1nk+Ibm6+78kKda+DovnphS14M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sqd0oMWq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1538EC43394;
-	Fri, 23 Feb 2024 16:21:49 +0000 (UTC)
+	s=arc-20240116; t=1708705728; c=relaxed/simple;
+	bh=MKwvCMy8mgFWdbvzLyOsYqWArU5NYYRlO+TE1+VYsX0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=THWjdJbxbQXqH9E2Rn03bwdM856BmnRkYgBMMQr3l3F80GATp/FLSVOG7/Zf3A3mmIUbkEPh0Phvm7khqRGZmtBrQxvwqxuM3LdjPK7OqACBxBgZ92kvyeSA4ZNDi83/tvo/A0QJ++WFeVAhtyPk9roAQ/UbtCL1gzazg1WRptc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FDL5Y02+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC4B0C433F1;
+	Fri, 23 Feb 2024 16:28:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708705313;
-	bh=WU89fYlzkV7iq1/qt/r+d2wUO9ZbalxxnTbNqYn/EhY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=sqd0oMWqLS9+bUOV6/JV82J9rY81dxFPJAyjU99xQkWWqoXpQsErsWkJsFHY4d896
-	 DXFzv4CVVIppsCbdCKmU0wXHlcL+E3NqNEcuX+UTrrcEuQ7pSIziUD8wjNn02Q4QHs
-	 IQCg9jELJkmrATcWATFuHzeASjw+txxvuufNHcdvcwwUB72N7MVIzb9MfQGTagNZTu
-	 MlEM6qIMiQI3N2bl9o2ocy7y29UIop+mf+6yfGTPkMdGoWyqIbWESHxAAJN3zNyywp
-	 zFpMgq7+sKQADO5+rRHrqYWvEEyEHjssi0D8RsoJsmJwuJ2ytexvl926KND3gJ9DSC
-	 ElUADPdKC/tHA==
-From: Conor Dooley <conor@kernel.org>
-To: linux@roeck-us.net
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Jean Delvare <jdelvare@suse.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Zev Weiss <zev@bewilderbeest.net>,
-	Patrick Rudolph <patrick.rudolph@9elements.com>,
-	Peter Yin <peteryin.openbmc@gmail.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Naresh Solanki <naresh.solanki@9elements.com>
-Subject: [PATCH v2 5/5] hwmon: (pmbus/ir38064) Use PMBUS_REGULATOR_ONE to declare regulator
-Date: Fri, 23 Feb 2024 16:21:09 +0000
-Message-ID: <20240223-harmless-covenant-9cd3d4f1cfd2@spud>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240223-moonrise-feminist-de59b9e1b3ba@spud>
-References: <20240223-moonrise-feminist-de59b9e1b3ba@spud>
+	s=k20201202; t=1708705727;
+	bh=MKwvCMy8mgFWdbvzLyOsYqWArU5NYYRlO+TE1+VYsX0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=FDL5Y02+HEIiYaW0kbThPhPZ5tpkcEb6j8qRIscIJQcZKJqdHUcl6flVaSz66yUg7
+	 BMle0D2XUu60z49ecU5S+lXh/RmAHkziGc6RKUdso/xlD6G0q5n0Zt7vxBMkZsyQGK
+	 AFlWcWyfa2TV/wK+DwSvpPQasjAsjE8ySm5hFRTwRICxPrl7KRIzksFx26MA2v/6ui
+	 CCak8RETlNWeV49Jpu+d/FMOHeWtejvHrT+7JV6vztuGSAfTjH8GYlJShrwVMj6toa
+	 q1AmEnwkCppWTlGYZPTqGd02csea04b7DzYGhkuVFo2uHJ9H7tkiGTTXR1MEPMZnQm
+	 wvsZC8x59WyVA==
+From: Lee Jones <lee@kernel.org>
+To: lee@kernel.org, daniel.thompson@linaro.org, jingoohan1@gmail.com, 
+ pavel@ucw.cz, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+ conor+dt@kernel.org, andersson@kernel.org, quic_kgunda@quicinc.com, 
+ Jeffrey Hugo <quic_jhugo@quicinc.com>
+Cc: dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20240202180151.4116329-1-quic_jhugo@quicinc.com>
+References: <20240202180151.4116329-1-quic_jhugo@quicinc.com>
+Subject: Re: (subset) [PATCH] dt-bindings: backlight: qcom-wled: Fix
+ bouncing email addresses
+Message-Id: <170870572457.1740438.258994199463486668.b4-ty@kernel.org>
+Date: Fri, 23 Feb 2024 16:28:44 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=959; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=b9OMUzVMqRny91Z1AmDs/nQDPPMoHnmOADsngDqzbtU=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDKk3jv44r/LpbqP0kaSVBQfDZ2lUVPkIT7BblRLP3nCuS eOgdLd2RykLgxgHg6yYIkvi7b4WqfV/XHY497yFmcPKBDKEgYtTACZyu5Dhf+Dxv3/v1lhWaBea 1AS6vrZ9eL3p76cnJ/It53at0JxZk87wT+GosxvnIu7w9yuW+p+akTCjYFEWx/1W6TWTNsze5Bx gzQQA
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.12.4
 
-From: Guenter Roeck <linux@roeck-us.net>
+On Fri, 02 Feb 2024 11:01:51 -0700, Jeffrey Hugo wrote:
+> Bjorn is no longer at Linaro.  Update his email address to @kernel to
+> match the .mailmap entry.
+> 
+> The servers for @codeaurora are long retired and messages sent there
+> will bounce.  Update Kiran's email address to match the .mailmap entry.
+> 
+> This will help anyone that is looking to reach out about this binding
+> and is not using .mailmap to pre-process their message.
+> 
+> [...]
 
-If a chip only provides a single regulator, it should be named 'vout'
-and not 'vout0'. Declare regulator using PMBUS_REGULATOR_ONE() to make
-that happen.
+Applied, thanks!
 
-Cc: Conor Dooley <conor@kernel.org>
-Cc: Naresh Solanki <naresh.solanki@9elements.com>
-Cc: Patrick Rudolph <patrick.rudolph@9elements.com>
-Signed-off-by: Guenter Roeck <linux@roeck-us.net>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- drivers/hwmon/pmbus/ir38064.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+[1/1] dt-bindings: backlight: qcom-wled: Fix bouncing email addresses
+      commit: f842d487c6a2f17a9d4d9bbcbfdb90b49adac71d
 
-diff --git a/drivers/hwmon/pmbus/ir38064.c b/drivers/hwmon/pmbus/ir38064.c
-index 04185be3fdb6..69e18cb468f6 100644
---- a/drivers/hwmon/pmbus/ir38064.c
-+++ b/drivers/hwmon/pmbus/ir38064.c
-@@ -22,7 +22,7 @@
- 
- #if IS_ENABLED(CONFIG_SENSORS_IR38064_REGULATOR)
- static const struct regulator_desc ir38064_reg_desc[] = {
--	PMBUS_REGULATOR("vout", 0),
-+	PMBUS_REGULATOR_ONE("vout"),
- };
- #endif /* CONFIG_SENSORS_IR38064_REGULATOR */
- 
--- 
-2.43.0
+--
+Lee Jones [李琼斯]
 
 
