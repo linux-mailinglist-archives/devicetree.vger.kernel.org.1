@@ -1,155 +1,118 @@
-Return-Path: <devicetree+bounces-45110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B476860BEB
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 09:14:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06217860C02
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 09:18:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA05B283878
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 08:14:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A44E31F26C98
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 08:18:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48EBA168C4;
-	Fri, 23 Feb 2024 08:13:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DCA81756F;
+	Fri, 23 Feb 2024 08:18:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="au1tOZ+V"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NlegUi1U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72EC4171B8;
-	Fri, 23 Feb 2024 08:13:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E817A17552;
+	Fri, 23 Feb 2024 08:18:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708676039; cv=none; b=gDX1ryU4hi7cGoO/q+EByV2urTInHtFK3v40etUm3fQpVSU9yZHxDFlI7UZpBtXX9ngwaoTNqdUQjo1N/Cag1MEJ7M8GcqdmOjRFJPnsf5plB6x7WdubOFiDNejuFsr1um9AXEaMROgLi/wBl8l/66E3Z4nOlP4KlXtQqHeBOMA=
+	t=1708676305; cv=none; b=K/02zjzDM7JzpsjweNlhkNCDcJ4nLuTOK+kG+8q5tkckPRV0EmECZVo+g68XdIyCp3S2/RFPbXnWYnG2pAJyJ9VKbOmP/8MM6Y8xx9TdCecdIa1Qf2iqAYu6V2cusDlzV9s3i/+xis/fXxD/EVhzbqQHhLalmzRp7IqQyiy5cec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708676039; c=relaxed/simple;
-	bh=JVSNT7wTGn9ub9sFBrLZXOKoSP1lL5F6e0EnQSp1JNM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=rQ/en834jFi9nC/doUyrhlmQiL9D1ADkB2uynUxT3vs36PnMY4PVOvxDsS6A4PdD0xthNgHgMnBB+sGpmtsdijEazQR3YP/zYtwgCXQUy1GUllrZlj8+o7sY1pWq8sXNi9MUVyc+RZ3ETwAGEZ+fslN68sUuiItjnBtfnIHoV1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=au1tOZ+V; arc=none smtp.client-ip=209.85.208.44
+	s=arc-20240116; t=1708676305; c=relaxed/simple;
+	bh=ug3cPvmnKVetmcBZDFjj4gZ078LGP+sjMCB9DqO99Vs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Bunsu7EdC9nW/zaWd8GZo4RjDrFW7KtiY1Iw3ez5jipSVsfE4mLXOY3ZEmvua7n+veydJH0ZvvjdQANWWSdfPMNu/Z6KUuoQq3+ZlaJpFNIO/QnCseG6W8nmKbDHnryPrkwRuo7hbYUPa/CZtk8vNQr5A06g+zJ+YI+uCTIsfBo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NlegUi1U; arc=none smtp.client-ip=209.85.218.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-564372fb762so631969a12.0;
-        Fri, 23 Feb 2024 00:13:57 -0800 (PST)
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a3ee69976c9so16353266b.0;
+        Fri, 23 Feb 2024 00:18:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708676036; x=1709280836; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=JVSNT7wTGn9ub9sFBrLZXOKoSP1lL5F6e0EnQSp1JNM=;
-        b=au1tOZ+V85kxTQ6sPTzPCDiBg7VoUIcCv+H43u+N7wzw03q9je3bmx6FOZQMaN6uiM
-         paeQ2P4OQXf3rpuRJriO8UMdZJYE2wSgD2eyA9RYs5YXXwyo63WFRadhf/SsP9Xk0PHe
-         G+zs32cAd3iRs/sFfDehTVazRgVlTNiwqQeVyCrP23O3HZ1dj++cv7ysqDJG0L2vn0FV
-         L9SISS0COt/n6tnPxml6mTUM/ZzS0bSzOjMdTl3fABdoj27k/39ufUYTgzo5GELcD+29
-         8zG6RHVUQnukJZMoONlRwYd9FJHvsyEOz/H+MCqnEOyZwXCHDPAbNhbiydP8k5/YGBL9
-         ieOA==
+        d=gmail.com; s=20230601; t=1708676302; x=1709281102; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kZBPlnvy2Gcjm77bNjlSq48EhGpe5bOoFbicPmusNVs=;
+        b=NlegUi1UcOOjrY3x0Jiu98zEe1YN9uSt+9Z+G3JrEC7sohZdOxZVi418p70pEN1UtR
+         6LCaZlgsC3su3KYqBqrOsV3NB4/h8NzZRhOTodPYS2s3nT2/bTX5nGQrB8/L7ubrJrLc
+         R4AuQfrNAAy5d74UTAuQYFEfObFkRCjS8jg+IhD1Iob9PJ2m6SUup3x1Gtq23y4QzEKc
+         iyJHYh8qiQyRxJcDaXROHfTE/ftudGMUUxXQFiMZ5HOZUxjoSC4+2gVonDfkCXCLBpRW
+         54v+R2WBK3pfZPYEt+W1ctv3/5w5ckpBxvRl40OX1GHtvwwmTA1Bsm3Lb4/hLnlDckr4
+         WtUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708676036; x=1709280836;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JVSNT7wTGn9ub9sFBrLZXOKoSP1lL5F6e0EnQSp1JNM=;
-        b=LC9LKvUXitXx5HAvlmWKSj2qUTYMoNZly8yoZ729w8kNaTjf5MKhsEg+ByTqN5hCQj
-         nqKh2+OnZFyZxchKR6L7R7GDjhZ9vouNPESoSF4Z6F7IAPY9qDT+nvYySJIS1Nz7m8ei
-         v3UzQWLLFbnllCl8m69KQvBucmuW3a8U31EWVeFaeMIe0LBWDwFwVHGHanZXdYCLY+fN
-         pjMaRQo5jzqx7EHwR0sRgb3WdQw8zz53lL/Wct//uisowMTBkrKIoZaoXlKIXUWZDjeB
-         1XWWihfSk0u3zU4p9S9DDrnDTjBinDeGsSrL0G2IWv/IDLAGpTJnUhl2wShKLhXTmlDc
-         y2tA==
-X-Forwarded-Encrypted: i=1; AJvYcCUYiFIsun/k7URPXin1Gbs9zFZuafRIGpPhVWenQH/3rUPsXpN/oxwNAZ429l0MDaHUzLMpnQ2LYhbEjqa07A1O3y0OeYcLx4sjcSKc4m0wdMac9l5iRXpV9kTnRIdUgjFotBUJbg==
-X-Gm-Message-State: AOJu0YzvLEVOCKptQmmAfv7XCEUmvMNzoNROnLxiJJ5PV0OdIeXmxG0V
-	4KrLJZ/aQjcFRPYSOS+qxsx7nWVC0ImAFW2WxkaDe9HUVa5b/ICs
-X-Google-Smtp-Source: AGHT+IFjrnYOlFxMq2/FqTGqrIDQ00Kgutm32PhLYFUA33uWMTA/KEkrsvnIG5mEAXL9vADzt8nTHA==
-X-Received: by 2002:aa7:da57:0:b0:564:7962:4545 with SMTP id w23-20020aa7da57000000b0056479624545mr702447eds.15.1708676035442;
-        Fri, 23 Feb 2024 00:13:55 -0800 (PST)
-Received: from ?IPv6:2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47? (p200300f6ef1b2000944ccbc71e1c2c47.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47])
-        by smtp.gmail.com with ESMTPSA id fe12-20020a056402390c00b00564fa936b2bsm2176762edb.94.2024.02.23.00.13.54
+        d=1e100.net; s=20230601; t=1708676302; x=1709281102;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kZBPlnvy2Gcjm77bNjlSq48EhGpe5bOoFbicPmusNVs=;
+        b=wjjg2sAeFsPZx73HjQzkMrOlolGN5GOwq+SNSgp3FBAVY6blVKaaWp1k5eYDB5C5Pu
+         I/VXwUXE6lGLh1QxZQOGO3x7ubmErlInXzqoZoFXuslG53evxK0Rbn7e4o4Ta3qTnE7w
+         6pxi9PX56pDRPVDq19z6bUL6GymQHA4/8np9fHwXYJmiLumNmcqlxwJR9ZEEsAGay4cs
+         41lJXwww4txt3YtxwMrjMeVR2jOTezzUiYMMSn6GGUvTgkyevEgy1T9lV0n6+KAdlbft
+         YlFoNHV+WNclG33BQae7WwPqpjduDgPmQGyxjnIZFMUyGUAyhnt4VjhCADS6KMrpJvFE
+         TxfA==
+X-Forwarded-Encrypted: i=1; AJvYcCXYLny243mmhQxO30toQJjSP1ru+JITczfyvFco1uPogGI1u0NMmeiYf/i+AOLcP5gXEOXpw9RVt3/UKz1cv1xuyKwJlsaWSpY00cbQXzJ63gAXdOGnaWXp3DXQKsL6Lg7NlDDX49niiw==
+X-Gm-Message-State: AOJu0YxqwychaBdzuz4uNTf+Xd4n8QxMV2HenCy3jTi3fs/u3C/co2SM
+	i8xeB23730sgIAj0EV8mqueU9OL73Ni6gn6hyjt2VV7vRibmak4P
+X-Google-Smtp-Source: AGHT+IHIrzsKe05GOqYZtf1faRDlK4ZGjIQkSVyxmUQ4PM30MiwY0s5q3otZvlV0MIGuRwFU/03oGw==
+X-Received: by 2002:a17:906:aad8:b0:a3f:5040:9d10 with SMTP id kt24-20020a170906aad800b00a3f50409d10mr679998ejb.66.1708676301999;
+        Fri, 23 Feb 2024 00:18:21 -0800 (PST)
+Received: from [192.168.20.102] (57657817.catv.pool.telekom.hu. [87.101.120.23])
+        by smtp.googlemail.com with ESMTPSA id n16-20020a170906379000b00a3f6c5bf929sm1633346ejc.18.2024.02.23.00.18.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Feb 2024 00:13:55 -0800 (PST)
-Message-ID: <8409a5bc71b995e3b738b817a074cfb131c3b2b5.camel@gmail.com>
-Subject: Re: [PATCH 5/6] dt-bindings: iio: temperature: ltc2983: document
- power supply
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Nuno Sa <nuno.sa@analog.com>, linux-iio@vger.kernel.org, 
- devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>, Lars-Peter
- Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley
- <conor+dt@kernel.org>
-Date: Fri, 23 Feb 2024 09:17:16 +0100
-In-Reply-To: <20240222-lance-sprinkled-04a7650ca316@spud>
-References: <20240222-ltc2983-misc-improv-v1-0-cf7d4457e98c@analog.com>
-	 <20240222-ltc2983-misc-improv-v1-5-cf7d4457e98c@analog.com>
-	 <20240222-component-stiffen-d046386433b3@spud>
-	 <f31abc7140dfa8477623d4fca8abece03d37926e.camel@gmail.com>
-	 <20240222-lance-sprinkled-04a7650ca316@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 
+        Fri, 23 Feb 2024 00:18:21 -0800 (PST)
+From: Gabor Juhos <j4g8y7@gmail.com>
+Subject: [PATCH 0/2] arm64: add minimal boot support for TP-Link Archer
+ AX55 v1
+Date: Fri, 23 Feb 2024 09:17:43 +0100
+Message-Id: <20240223-archer-ax55-v1-v1-0-99f8fa2c3858@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKdU2GUC/x3MQQqAIBBA0avErBtQy6KuEi1Ep5yNxQgRiHdPW
+ r7F/wUyCVOGtSsg9HDmKzXovgMfXToJOTSDUWZUxmh04iMJutdafDTOA4VFu2X2E0GLbqGD33+
+ 47bV+R+UwhGAAAAA=
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Gabor Juhos <j4g8y7@gmail.com>
+X-Mailer: b4 0.12.3
 
-On Thu, 2024-02-22 at 17:54 +0000, Conor Dooley wrote:
-> On Thu, Feb 22, 2024 at 05:41:03PM +0100, Nuno S=C3=A1 wrote:
-> > On Thu, 2024-02-22 at 15:40 +0000, Conor Dooley wrote:
-> > > On Thu, Feb 22, 2024 at 01:55:56PM +0100, Nuno Sa wrote:
-> > > > Add a property for the VDD power supply regulator.
-> > > >=20
-> > > > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> > > > ---
-> > > > =C2=A0Documentation/devicetree/bindings/iio/temperature/adi,ltc2983=
-.yaml | 2
-> > > > ++
-> > > > =C2=A01 file changed, 2 insertions(+)
-> > > >=20
-> > > > diff --git
-> > > > a/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yam=
-l
-> > > > b/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yam=
-l
-> > > > index dbb85135fd66..8aae867a770a 100644
-> > > > --- a/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983=
-.yaml
-> > > > +++ b/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983=
-.yaml
-> > > > @@ -57,6 +57,8 @@ properties:
-> > > > =C2=A0=C2=A0 interrupts:
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 1
-> > > > =C2=A0
-> > > > +=C2=A0 vdd-supply: true
-> > >=20
-> > > Although technically an ABI break, should we make this supply require=
-d?
-> > > It is, at the end of the day, required by the hardware for operation.
-> > >=20
-> >=20
-> > I thought about it but then realized it could break some existing users
-> > which is
-> > never a nice thing.
->=20
-> Could you explain what scenario it actually breaks a system (not
-> produces warnings with dtbs_check)?
+The purpose of this series to add minimal boot support for the
+TP-Link Archer AX55 v1 dual-band wireless router.
 
-Oh, I guess I could not explain myself :). I did not meant breaking the sys=
-tem
-(I'm aware of the dummy regulator) but I meant exactly what you mention abo=
-ve
-about dtbs_check. Like, if someone already validated a devicetree against t=
-he
-current bindings, that same devicetree will fail to validate now right? And=
- I
-had the idea that we should not allow that... If not the case, I'm perfectl=
-y
-fine in making the supply required.
+There are two patches:
+  - the first one adds the compatible for the board into the dt-bindings
+    documentation,
+  - the second patch introduces a minimal device tree source which can be
+    used for booting initramfs images
 
-- Nuno S=C3=A1
+---
+Gabor Juhos (2):
+      dt-bindings: arm: qcom: add TP-Link Archer AX55 v1
+      arm64: dts: qcom: add TP-Link Archer AX55 v1
 
->=20
+ Documentation/devicetree/bindings/arm/qcom.yaml    |   1 +
+ arch/arm64/boot/dts/qcom/Makefile                  |   1 +
+ .../dts/qcom/ipq5018-tplink-archer-ax55-v1.dts     | 133 +++++++++++++++++++++
+ 3 files changed, 135 insertions(+)
+---
+base-commit: b401b621758e46812da61fa58a67c3fd8d91de0d
+change-id: 20240221-archer-ax55-v1-73ed91a97c6e
+
+Best regards,
+-- 
+Gabor Juhos <j4g8y7@gmail.com>
 
 
