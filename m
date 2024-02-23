@@ -1,144 +1,94 @@
-Return-Path: <devicetree+bounces-45261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CB1B8613D2
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 15:20:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A95ED8613D9
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 15:20:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1AFBD1F24382
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 14:20:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A1A91F24313
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 14:20:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAFC48003B;
-	Fri, 23 Feb 2024 14:17:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD5BB82889;
+	Fri, 23 Feb 2024 14:19:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Bs1ZSc9e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Eacw6DRV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D64077F7D0;
-	Fri, 23 Feb 2024 14:17:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8048B82883;
+	Fri, 23 Feb 2024 14:19:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708697851; cv=none; b=bWr2NMeeFwh+AI06sATH9ubNZNTRybn1pBDCVNjhxS5VjzEAGyPBbeU6Rh+K9gxRopTSXH7iHaQVpqjnXAiGb6/zPPxRZKWgQfT+fKYRO5Q7sDsA7kOLaKC4EsrSAlyf7lj8dZwzyQtik9Fmjo59QSm1PqeYh/uM4qtHh/3OntA=
+	t=1708697991; cv=none; b=Dcn3agqE69Zrjd31kABNnqun9ULx3MqXNoLlD7FJK0IzBdkZaj4QVTyXEmUu8yjMGoDIqKMq0I/1cOfndV0+AtkO/2k9hAEkxVFA8/XtGHGuka41YCLHriLE58+doll1z6C2fF/xgEaFr/frUmoxG33miAXSut+uv69+wC/Gf3o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708697851; c=relaxed/simple;
-	bh=qTSb8BoFyUBcgMEpFbXgOKysTONG/bgaNnkHx8c8d2U=;
+	s=arc-20240116; t=1708697991; c=relaxed/simple;
+	bh=ETKYcbVy9F3oKzFZtWeCfPtjpmK5klMob+7HF4Z81lU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sI420yDT7UgJP9Baq2qGS7Dl9LCrjtIFGuj8nDei31B+hL1jPdG8Ox568mNzwwQgy9NzbZSiGVnbVSQTO39u7ZtBtCUQGlT9uy7QythYntpAOFAKpTZgUUfvZ2290WlAcEIqYBKwDAK8v4qbe7p3zDKuWfWPtMk5rrQUh5y7eSI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Bs1ZSc9e; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (89-27-53-110.bb.dnainternet.fi [89.27.53.110])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id BDBEE9B6;
-	Fri, 23 Feb 2024 15:17:18 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1708697839;
-	bh=qTSb8BoFyUBcgMEpFbXgOKysTONG/bgaNnkHx8c8d2U=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=d1Z086qGW7EuqJN8jTrC3dJvuRoYVj7G6R/Icw69byuhryipiU7yT1KMQ2QhfPEUohI0H4Y8hdYNT4IXaiuiVLah1ILwVaIJnDYXnHnL8aCK5iPo+ceA5DuPxblOl6xFzoLuKDkG4ZTJ1DLTQWHGEZib9pM9NlK4NaGxUpKUJSE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Eacw6DRV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E39E4C433C7;
+	Fri, 23 Feb 2024 14:19:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708697991;
+	bh=ETKYcbVy9F3oKzFZtWeCfPtjpmK5klMob+7HF4Z81lU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Bs1ZSc9eJYd86bVbGvGEMgUIuI11pVzRaHxnF/ys+VUE8ET/hMsmu9FPEMSgbDlOi
-	 9aH9X5uTOKwJMKr88btC2/wmv3u9i9ZnzI3rnSB3mWvanlc0bZiib61Hq9+Z/ThD9W
-	 suSeJdlmsmznCDOh6P/8bm8COv1FgDBdBP7hpoiQ=
-Date: Fri, 23 Feb 2024 16:17:31 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	b=Eacw6DRV+EHA5iO8RBu8bFKeMyPlp8sbd8pkC2N4jM3EIR6XjC7et+quyXaCCwdgt
+	 Em0tIE/Xm8LXtSYZ9Oc+pr/R48EkxRke7rHiQgBLJCcokMyKu9M5wqzV7xgSXGa1Ej
+	 IBYEAN/HFqOEoklKNm1DIQY3f1LkKLcjDYxGSMt6Fv223meRzd4AXzZxg4rhVyyxs2
+	 0n99jNUBQ/I5UpGLszwm8Yx8/QNwbX5cH5gzXctInzIK8CKcqom0rzHNfxeaCgxOSG
+	 g2HRRJ4Or+Ws3aTaDLLdXVvGlmuqr0Aa48s4F8CqKf4B/Q6mW3318awmLA+NUjGnNE
+	 Bk0jTbFFLj0Xw==
+Date: Fri, 23 Feb 2024 07:19:48 -0700
+From: Rob Herring <robh@kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	JunYi Zhao <junyi.zhao@amlogic.com>,
+	Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/3] media: dt-bindings: nxp,imx8-isi: Allow single port
- for single pipeline models
-Message-ID: <20240223141731.GB1313@pendragon.ideasonboard.com>
-References: <20240223140445.1885083-1-alexander.stein@ew.tq-group.com>
- <20240223140445.1885083-3-alexander.stein@ew.tq-group.com>
- <20240223141630.GA1313@pendragon.ideasonboard.com>
+	Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v5 2/5] dt-bindings: pwm: amlogic: Add a new binding for
+ meson8 pwm types
+Message-ID: <170869798755.1908267.1779690942757984843.robh@kernel.org>
+References: <20240221151154.26452-1-jbrunet@baylibre.com>
+ <20240221151154.26452-3-jbrunet@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240223141630.GA1313@pendragon.ideasonboard.com>
+In-Reply-To: <20240221151154.26452-3-jbrunet@baylibre.com>
 
-On Fri, Feb 23, 2024 at 04:16:31PM +0200, Laurent Pinchart wrote:
-> Hi Alexander,
+
+On Wed, 21 Feb 2024 16:11:48 +0100, Jerome Brunet wrote:
+> The binding that is used up to now describe which input the PWM
+> channel multiplexer should pick among its possible parents,
+> which are hardcoded in the driver. This isn't a good binding in
+> the sense that it should describe hardware but not usage.
 > 
-> Thank you for the patch.
+> Add a new binding deprecating the old one that uses clocks in a
+> better way and how clocks are usually used today: The list of
+> clocks describe the inputs of the PWM block as they are realised
+> in hardware.
 > 
-> On Fri, Feb 23, 2024 at 03:04:44PM +0100, Alexander Stein wrote:
-> > In case the hardware only supports just one pipeline, allow using a
-> > single port node as well.
+> So deprecate the old bindings and introduce a compatible per SoC
+> family to replace these.
 > 
-> This is frowned upon in DT bindings, as it makes them more complicated
-> for little gain. The recommendation is to always use a ports node if a
-> device can have multiple ports for at least one of its compatibles.
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 50 +++++++++++++++++--
+>  1 file changed, 47 insertions(+), 3 deletions(-)
+> 
 
-And reading the cover letter, I see this causes warnings. I think we
-need guidance from Rob on this.
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > ---
-> >  .../devicetree/bindings/media/nxp,imx8-isi.yaml    | 14 +++++++++++++-
-> >  1 file changed, 13 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-> > index 4d5348d456a1f..f855f3cc91fea 100644
-> > --- a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-> > +++ b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-> > @@ -53,6 +53,12 @@ properties:
-> >    power-domains:
-> >      maxItems: 1
-> >  
-> > +  port:
-> > +    $ref: /schemas/graph.yaml#/properties/port
-> > +    description: |
-> > +      Port representing the Pixel Link input to the ISI. Used for
-> > +      single-pipeline models. The port shall have a single endpoint.
-> > +
-> >    ports:
-> >      $ref: /schemas/graph.yaml#/properties/ports
-> >      description: |
-> > @@ -66,7 +72,6 @@ required:
-> >    - clocks
-> >    - clock-names
-> >    - fsl,blk-ctrl
-> > -  - ports
-> >  
-> >  allOf:
-> >    - if:
-> > @@ -87,6 +92,11 @@ allOf:
-> >              port@1: false
-> >            required:
-> >              - port@0
-> > +      oneOf:
-> > +        - required:
-> > +            - port
-> > +        - required:
-> > +            - ports
-> >  
-> >    - if:
-> >        properties:
-> > @@ -106,6 +116,8 @@ allOf:
-> >            required:
-> >              - port@0
-> >              - port@1
-> > +      required:
-> > +        - ports
-> >  
-> >  additionalProperties: false
-> >  
-
--- 
-Regards,
-
-Laurent Pinchart
 
