@@ -1,219 +1,255 @@
-Return-Path: <devicetree+bounces-45389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7AB2861AB1
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 18:54:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8662861B34
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 19:11:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9DF921F28294
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 17:54:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 25A1D1F22206
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 18:11:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CD0F142624;
-	Fri, 23 Feb 2024 17:53:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B72F513DBA8;
+	Fri, 23 Feb 2024 18:11:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kQuQllPj"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="aPGYsU3k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D40761420D9;
-	Fri, 23 Feb 2024 17:53:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7B8812AAD7;
+	Fri, 23 Feb 2024 18:11:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708710809; cv=none; b=hEvt+n5H0dhUQZYVoJQOMxfA4BvA5w6crxjmmIG6jxEJN6k4Vl6IWILYJzB4m5tefQug8fO36Ts4eQAKyhHsMi1YGLk1Abjvlg9c1oCkbtBf0rgWuPpZhS3SsJGGhegZND0XPBnrWzoIgFv6x5SLz0zf/q1Q0BW81Xf3JhvcCVg=
+	t=1708711890; cv=none; b=KqmGczLpuTCQJ8Il6rg/vmcbLxcPI58HrOPaPFucDcHXqz/OuMXYVO/PDw10hcJh4OTNj0RgGXSdgoNKKWYzh5nRH/p5ZB/Qpxw4iTkjihRrGr7tAi4sUKj83+6f91Jn9rgobpCZBwbsq/UxPOMtcRy8ssE8ebHd6916OLL5isw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708710809; c=relaxed/simple;
-	bh=WTOVfHwza5JDZNP0OnvJKCXt8zegJXyWV1Mnm2fCV1Q=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Vc6IETakh36sf5Hhrd/1/PVPoz0hia6LBAV9+oQ2+toO+4XA5fjnS3ctgXdToFA5JK/rerzm7UUYS+e5kjXt2kbwBzVKIbVdSr2uumTmcI+kOWRxGyDxxsEE8fSSqfnAjImfyhjrAbJlm7LaL02RdKiBvZy4UKzzocNKM1m1SyU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kQuQllPj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0E9EC43609;
-	Fri, 23 Feb 2024 17:53:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708710809;
-	bh=WTOVfHwza5JDZNP0OnvJKCXt8zegJXyWV1Mnm2fCV1Q=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=kQuQllPjhL6JnqsGGniHZuQx+bbjCtqTe05hEGi5avlSJFJ7glc6bLdVSZoqgRfs6
-	 Q7C91qeSrknXJE9GTlq0cRK56B6UQmSzw/G+PAXhciDsO5cbp1qZbMMeAHVFWexA++
-	 S/h+h7zb2XWbSssyAooLhfSW4rbuDMyEy4ypvlY1XEBTN+21IPdyft7buecX7Y/PTy
-	 jGdIOU1D8riSMXLR4leBE/55/mAfUU4Xg90DM43iGoThSYuxeztuBSP17CqE4XOF7g
-	 jK3KLsD0u83qtnEzwS1jDha63fZ6XCsZX9q0pMyq0XVX2zC5NHG5ONnpz0OJIA5/Ni
-	 yxM4SloxyH6JA==
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-512e568607aso727480e87.1;
-        Fri, 23 Feb 2024 09:53:29 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWauceGNl2Lr50MYqlxRHX+veyeqHBIO67KHzZq/xDift125SK6CPNy3OEmwTIRD//fRqiCM4xoyfj8O53auGPYQppF92Y3tGXHjOf60WHEtZ8AoLbTnHj6nQuLJtur4J1atJFZPk0kPk4RdOy1WkVnUJutRi2SVQhgT0EscgISmZ6RMg==
-X-Gm-Message-State: AOJu0YzxqVCLZXNMnjBFfykifnQMvyy7LdX2zOzpza/ajWT0msitkNO+
-	tHRlq4mVUKJ3VNt41uRp124AwkxRiqNEwArs+fyxTbX+jM3T2L28rSw1+uqR8rTL6gTghNfLoNK
-	g1MR4XxZhCBtZp8Q63YoK3BPwAQ==
-X-Google-Smtp-Source: AGHT+IHbqG0RqOBjOBsM00h1ydkL16ZhPv0Dk8ezh7fgoRnVQ3LvuIXX116VAry1mCVFHrgzVhf8IxNjpoMQWGm5HjM=
-X-Received: by 2002:a05:6512:3b28:b0:512:a97e:daa6 with SMTP id
- f40-20020a0565123b2800b00512a97edaa6mr363184lfv.36.1708710807665; Fri, 23 Feb
- 2024 09:53:27 -0800 (PST)
+	s=arc-20240116; t=1708711890; c=relaxed/simple;
+	bh=1qxPBgoeZ+hsrF8RaQxLAaC4qD/6Jd10T4AbwhndHzs=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=O8q1T+W82XjdnOiSlH7r60IOhyS38UjxddpNE7pzy1qvkjVy/mYhDNwYzdUeOayYKIkwtZqAIZ7H6YNOJ2RWER+ebfML1GCrYO/mgjc/rmaJWMhTwwKoJbpEYOb5qJi0Y2DzE4afVApc/A8d2jopxeSNRU25g2f0jf9f6CrkrjQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=aPGYsU3k; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1708711886;
+	bh=1qxPBgoeZ+hsrF8RaQxLAaC4qD/6Jd10T4AbwhndHzs=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=aPGYsU3kgQdSGQVBhiy+gZPw7VXjuoPjhm2wQLwRvfMuVO3DmzJmvBboopWcVgwGl
+	 wTOVNnzN3L9HxvirGnP/YQ8/7AhpbnOd9IaNDFTKJEBRuVv1ZyNloJEiTpbwFXH4do
+	 C4DJhKEW6GZvd7ZVbkCojZ1mdXrKiETYEXQKNCVD+yEwpjXbsWZAKB8F8TgWOPadDd
+	 52PUxgHPPVkqL2LjIpVJwj545dFl9kkXKOTORnMDoWcf5UuYb5XE8Iz8VxGh9xklX4
+	 KjvGcqoIVIgJwZTHMofrLv8AqdL7yaE0Oc46xyz8rB9DOn6cslTPAPPvYU9d6xmTfK
+	 PmmXYe06P0R/g==
+Received: from nicolas-tpx395.localdomain (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 57C37378000E;
+	Fri, 23 Feb 2024 18:11:24 +0000 (UTC)
+Message-ID: <680e74eb187926560c8f55b5b2ca064514b985b6.camel@collabora.com>
+Subject: Re: [PATCH v3,1/2] media: mediatek: vcodec: adding lock to protect
+ decoder context list
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Yunfei Dong <yunfei.dong@mediatek.com>, =?ISO-8859-1?Q?N=EDcolas?= "F .
+ R . A . Prado" <nfraprado@collabora.com>, Hans Verkuil
+ <hverkuil-cisco@xs4all.nl>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, Benjamin Gaignard
+ <benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>, 
+ Irui Wang <irui.wang@mediatek.com>
+Cc: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig
+ <frkoenig@chromium.org>,  Daniel Vetter <daniel@ffwll.ch>, Steve Cho
+ <stevecho@chromium.org>, linux-media@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+Date: Fri, 23 Feb 2024 13:11:20 -0500
+In-Reply-To: <20240222092609.31382-2-yunfei.dong@mediatek.com>
+References: <20240222092609.31382-1-yunfei.dong@mediatek.com>
+	 <20240222092609.31382-2-yunfei.dong@mediatek.com>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=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
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240221145846.1611627-1-xu.yang_2@nxp.com> <20240221145846.1611627-4-xu.yang_2@nxp.com>
- <20240223140256.GA1768266-robh@kernel.org> <DU2PR04MB882234D1A9D5718D8355928B8C552@DU2PR04MB8822.eurprd04.prod.outlook.com>
-In-Reply-To: <DU2PR04MB882234D1A9D5718D8355928B8C552@DU2PR04MB8822.eurprd04.prod.outlook.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 23 Feb 2024 10:53:14 -0700
-X-Gmail-Original-Message-ID: <CAL_JsqKXwL5sGkSikRO6CVSRwENbW1-b3Bn+oy1Acupt06=dRQ@mail.gmail.com>
-Message-ID: <CAL_JsqKXwL5sGkSikRO6CVSRwENbW1-b3Bn+oy1Acupt06=dRQ@mail.gmail.com>
-Subject: Re: [EXT] Re: [PATCH v6 4/9] dt-bindings: usb: add NXP ChipIdea USB2
- Controller schema
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>, 
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, 
-	"shawnguo@kernel.org" <shawnguo@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "kernel@pengutronix.de" <kernel@pengutronix.de>, 
-	"festevam@gmail.com" <festevam@gmail.com>, dl-linux-imx <linux-imx@nxp.com>, 
-	"peter.chen@kernel.org" <peter.chen@kernel.org>, Jun Li <jun.li@nxp.com>, 
-	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, Feb 23, 2024 at 7:56=E2=80=AFAM Xu Yang <xu.yang_2@nxp.com> wrote:
->
-> Hi Rob,
->
-> >
-> > On Wed, Feb 21, 2024 at 10:58:41PM +0800, Xu Yang wrote:
-> > > As more and more NXP i.MX chips come out, it becomes harder to mainta=
+Hi Yunfei,
+
+Le jeudi 22 f=C3=A9vrier 2024 =C3=A0 17:26 +0800, Yunfei Dong a =C3=A9crit=
+=C2=A0:
+> The ctx_list will be deleted when scp getting unexpected behavior, then t=
+he
+> ctx_list->next will be NULL, the kernel driver maybe access NULL pointer =
 in
-> > > ci-hdrc-usb2.yaml if more stuffs like property restrictions are added=
- to
-> > > this file. This will separate i.MX parts out of ci-hdrc-usb2.yaml and=
- add
-> > > a new schema for NXP ChipIdea USB2 Controller.
-> > >
-> > > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> > >
-> > > ---
-> > > Changes in v6:
-> > >  - new patch
-> > > ---
-> > >  .../bindings/usb/ci-hdrc-usb2-imx.yaml        | 75 +++++++++++++++++=
-++
-> > >  1 file changed, 75 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/usb/ci-hdrc-usb=
-2-imx.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2-imx.y=
-aml b/Documentation/devicetree/bindings/usb/ci-
-> > hdrc-usb2-imx.yaml
-> > > new file mode 100644
-> > > index 000000000000..2ec62f564bf5
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2-imx.yaml
-> > > @@ -0,0 +1,75 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/usb/ci-hdrc-
-> > usb2-
-> > imx.yaml%23&data=3D05%7C02%7Cxu.yang_2%40nxp.com%7C4ac0c60cd4b4433f0f9f=
-08dc34782572%7C686ea1d3bc2b4c6fa92c
-> > d99c5c301635%7C0%7C0%7C638442937830606824%7CUnknown%7CTWFpbGZsb3d8eyJWI=
-joiMC4wLjAwMDAiLCJQIjoiV2luMzIi
-> > LCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=3D7p1DzvYmBsTgN44jypH=
-7lc56z9hVBsFBYXUwsblk9z8%3D&reserv
-> > ed=3D0
-> > > +$schema: http://devicetree.org/meta-
-> > schemas%2Fcore.yaml%23&data=3D05%7C02%7Cxu.yang_2%40nxp.com%7C4ac0c60cd=
-4b4433f0f9f08dc34782572%7C686ea1d3
-> > bc2b4c6fa92cd99c5c301635%7C0%7C0%7C638442937830615622%7CUnknown%7CTWFpb=
-GZsb3d8eyJWIjoiMC4wLjAwMDAiLC
-> > JQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=3DfWWy9=
-enbGK5yeKiovday7go3Gss5L%2F%2Fe%2F
-> > OZcANny0QA%3D&reserved=3D0
-> > > +
-> > > +title: NXP USB2 ChipIdea USB controller
-> > > +
-> > > +maintainers:
-> > > +  - Xu Yang <xu.yang_2@nxp.com>
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    oneOf:
-> > > +      - enum:
-> > > +          - fsl,imx27-usb
-> > > +      - items:
-> > > +          - enum:
-> > > +              - fsl,imx23-usb
-> > > +              - fsl,imx25-usb
-> > > +              - fsl,imx28-usb
-> > > +              - fsl,imx35-usb
-> > > +              - fsl,imx50-usb
-> > > +              - fsl,imx51-usb
-> > > +              - fsl,imx53-usb
-> > > +              - fsl,imx6q-usb
-> > > +              - fsl,imx6sl-usb
-> > > +              - fsl,imx6sx-usb
-> > > +              - fsl,imx6ul-usb
-> > > +              - fsl,imx7d-usb
-> > > +              - fsl,vf610-usb
-> > > +          - const: fsl,imx27-usb
-> > > +      - items:
-> > > +          - enum:
-> > > +              - fsl,imx8dxl-usb
-> > > +              - fsl,imx8ulp-usb
-> > > +          - const: fsl,imx7ulp-usb
-> > > +          - const: fsl,imx6ul-usb
-> > > +      - items:
-> > > +          - enum:
-> > > +              - fsl,imx8mm-usb
-> > > +              - fsl,imx8mn-usb
-> > > +          - const: fsl,imx7d-usb
-> > > +          - const: fsl,imx27-usb
-> > > +      - items:
-> > > +          - enum:
-> > > +              - fsl,imx6sll-usb
-> > > +              - fsl,imx7ulp-usb
-> > > +          - const: fsl,imx6ul-usb
-> > > +          - const: fsl,imx27-usb
-> >
-> > Now you just duplicated all the compatibles, and now any new compatible=
-s
-> > have to be added in 2 places. For this to work, you have to split
-> > ci-hdrc-usb2.yaml into 2 files. One with all the common properties and
-> > one with compatibles (minus imx). This is also needed if imx has any
-> > extra properties the other don't.
-> >
-> > Didn't I say this already?
-> >
->
-> Yes, I know.
->
-> But according to your words, I need to split ci-hdrc-usb2.yaml into 1 com=
-mon
-> file and more than 1 vendor specific files (imx, nvidia, qcom, nuvoton an=
-d
-> others). In this patchset, I only focus on imx part and KK said he or som=
-eone
-> will take over other parts, therefore I just duplicated all the imx compa=
-tibles.
+> function vpu_dec_ipi_handler when going through each context, then reboot=
+.
+>=20
+> Need to add lock to protect the ctx_list to make sure the ctx_list->next =
+isn't
+> NULL pointer.
+>=20
+> Hardware name: Google juniper sku16 board (DT)
+> pstate: 20400005 (nzCv daif +PAN -UAO -TCO BTYPE=3D--)
+> pc : vpu_dec_ipi_handler+0x58/0x1f8 [mtk_vcodec_dec]
+> lr : scp_ipi_handler+0xd0/0x194 [mtk_scp]
+> sp : ffffffc0131dbbd0
+> x29: ffffffc0131dbbd0 x28: 0000000000000000
+> x27: ffffff9bb277f348 x26: ffffff9bb242ad00
+> x25: ffffffd2d440d3b8 x24: ffffffd2a13ff1d4
+> x23: ffffff9bb7fe85a0 x22: ffffffc0133fbdb0
+> x21: 0000000000000010 x20: ffffff9b050ea328
+> x19: ffffffc0131dbc08 x18: 0000000000001000
+> x17: 0000000000000000 x16: ffffffd2d461c6e0
+> x15: 0000000000000242 x14: 000000000000018f
+> x13: 000000000000004d x12: 0000000000000000
+> x11: 0000000000000001 x10: fffffffffffffff0
+> x9 : ffffff9bb6e793a8 x8 : 0000000000000000
+> x7 : 0000000000000000 x6 : 000000000000003f
+> x5 : 0000000000000040 x4 : fffffffffffffff0
+> x3 : 0000000000000020 x2 : ffffff9bb6e79080
+> x1 : 0000000000000010 x0 : ffffffc0131dbc08
+> Call trace:
+> vpu_dec_ipi_handler+0x58/0x1f8 [mtk_vcodec_dec (HASH:6c3f 2)]
+> scp_ipi_handler+0xd0/0x194 [mtk_scp (HASH:7046 3)]
+> mt8183_scp_irq_handler+0x44/0x88 [mtk_scp (HASH:7046 3)]
+> scp_irq_handler+0x48/0x90 [mtk_scp (HASH:7046 3)]
+> irq_thread_fn+0x38/0x94
+> irq_thread+0x100/0x1c0
+> kthread+0x140/0x1fc
+> ret_from_fork+0x10/0x30
+> Code: 54000088 f94ca50a eb14015f 54000060 (f9400108)
+> ---[ end trace ace43ce36cbd5c93 ]---
+> Kernel panic - not syncing: Oops: Fatal exception
+> SMP: stopping secondary CPUs
+> Kernel Offset: 0x12c4000000 from 0xffffffc010000000
+> PHYS_OFFSET: 0xffffffe580000000
+> CPU features: 0x08240002,2188200c
+> Memory Limit: none
+>=20
+> Fixes: 655b86e52eac ("media: mediatek: vcodec: Fix possible invalid memor=
+y access for decoder")
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
 
-This series is just wasting our time because it can't be applied without th=
-at.
+I've been experiencing this crasher recently, so nice to see you found the
+problem.
 
-> If I only create imx specific yaml file and remove all compatilbles from =
-common
-> file, nvidia, qcom, nuvoton and others compatible info will be lost, is t=
-his
-> feasible? Or should I create mutiple vendor specific files at the same ti=
-me?
+Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
 
-You don't have to split each vendor to a separate vendor schema file.
-Just move everything common to ci-hdrc-usb2-common.yaml and add a
-reference to it. Then imx can reference the common file.
+> ---
+>  .../platform/mediatek/vcodec/common/mtk_vcodec_fw_vpu.c      | 4 ++--
+>  .../platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c    | 5 +++++
+>  .../platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h    | 2 ++
+>  drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.c | 2 ++
+>  4 files changed, 11 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_=
+vpu.c b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vpu.c
+> index 9f6e4b59455da..9a11a2c248045 100644
+> --- a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vpu.c
+> +++ b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vpu.c
+> @@ -58,12 +58,12 @@ static void mtk_vcodec_vpu_reset_dec_handler(void *pr=
+iv)
+> =20
+>  	dev_err(&dev->plat_dev->dev, "Watchdog timeout!!");
+> =20
+> -	mutex_lock(&dev->dev_mutex);
+> +	mutex_lock(&dev->dev_ctx_lock);
+>  	list_for_each_entry(ctx, &dev->ctx_list, list) {
+>  		ctx->state =3D MTK_STATE_ABORT;
+>  		mtk_v4l2_vdec_dbg(0, ctx, "[%d] Change to state MTK_STATE_ABORT", ctx-=
+>id);
+>  	}
+> -	mutex_unlock(&dev->dev_mutex);
+> +	mutex_unlock(&dev->dev_ctx_lock);
+>  }
+> =20
+>  static void mtk_vcodec_vpu_reset_enc_handler(void *priv)
+> diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_de=
+c_drv.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv=
+.c
+> index ad9b68380692f..d69c9fe2af6f3 100644
+> --- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c
+> +++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c
+> @@ -267,7 +267,9 @@ static int fops_vcodec_open(struct file *file)
+> =20
+>  	ctx->dev->vdec_pdata->init_vdec_params(ctx);
+> =20
+> +	mutex_lock(&dev->dev_ctx_lock);
+>  	list_add(&ctx->list, &dev->ctx_list);
+> +	mutex_unlock(&dev->dev_ctx_lock);
+>  	mtk_vcodec_dbgfs_create(ctx);
+> =20
+>  	mutex_unlock(&dev->dev_mutex);
+> @@ -310,7 +312,9 @@ static int fops_vcodec_release(struct file *file)
+>  	v4l2_ctrl_handler_free(&ctx->ctrl_hdl);
+> =20
+>  	mtk_vcodec_dbgfs_remove(dev, ctx->id);
+> +	mutex_lock(&dev->dev_ctx_lock);
+>  	list_del_init(&ctx->list);
+> +	mutex_unlock(&dev->dev_ctx_lock);
+>  	kfree(ctx);
+>  	mutex_unlock(&dev->dev_mutex);
+>  	return 0;
+> @@ -403,6 +407,7 @@ static int mtk_vcodec_probe(struct platform_device *p=
+dev)
+>  	for (i =3D 0; i < MTK_VDEC_HW_MAX; i++)
+>  		mutex_init(&dev->dec_mutex[i]);
+>  	mutex_init(&dev->dev_mutex);
+> +	mutex_init(&dev->dev_ctx_lock);
+>  	spin_lock_init(&dev->irqlock);
+> =20
+>  	snprintf(dev->v4l2_dev.name, sizeof(dev->v4l2_dev.name), "%s",
+> diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_de=
+c_drv.h b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv=
+.h
+> index 849b89dd205c2..85b2c0d3d8bcd 100644
+> --- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
+> +++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
+> @@ -241,6 +241,7 @@ struct mtk_vcodec_dec_ctx {
+>   *
+>   * @dec_mutex: decoder hardware lock
+>   * @dev_mutex: video_device lock
+> + * @dev_ctx_lock: the lock of context list
+>   * @decode_workqueue: decode work queue
+>   *
+>   * @irqlock: protect data access by irq handler and work thread
+> @@ -282,6 +283,7 @@ struct mtk_vcodec_dec_dev {
+>  	/* decoder hardware mutex lock */
+>  	struct mutex dec_mutex[MTK_VDEC_HW_MAX];
+>  	struct mutex dev_mutex;
+> +	struct mutex dev_ctx_lock;
+>  	struct workqueue_struct *decode_workqueue;
+> =20
+>  	spinlock_t irqlock;
+> diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.c=
+ b/drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.c
+> index 82e57ae983d55..da6be556727bb 100644
+> --- a/drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.c
+> +++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.c
+> @@ -77,12 +77,14 @@ static bool vpu_dec_check_ap_inst(struct mtk_vcodec_d=
+ec_dev *dec_dev, struct vde
+>  	struct mtk_vcodec_dec_ctx *ctx;
+>  	int ret =3D false;
+> =20
+> +	mutex_lock(&dec_dev->dev_ctx_lock);
+>  	list_for_each_entry(ctx, &dec_dev->ctx_list, list) {
+>  		if (!IS_ERR_OR_NULL(ctx) && ctx->vpu_inst =3D=3D vpu) {
+>  			ret =3D true;
+>  			break;
+>  		}
+>  	}
+> +	mutex_unlock(&dec_dev->dev_ctx_lock);
+> =20
+>  	return ret;
+>  }
 
-Rob
 
