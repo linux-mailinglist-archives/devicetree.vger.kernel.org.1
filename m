@@ -1,134 +1,154 @@
-Return-Path: <devicetree+bounces-45199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2FFF861183
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 13:31:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC6B786119C
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 13:38:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F9351C21B58
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 12:31:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 622571F2263E
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 12:38:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B452018AF4;
-	Fri, 23 Feb 2024 12:31:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 919D753365;
+	Fri, 23 Feb 2024 12:38:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dnSQt1sL"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="ZLyRrHkm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F3D3134B7;
-	Fri, 23 Feb 2024 12:31:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A68845D72F;
+	Fri, 23 Feb 2024 12:38:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708691514; cv=none; b=h30526804+raLuf5rqatCPgnF60G+Ft1KIe9CZKgd3B0egXgqCNV07ZSuoszhpCGG4eyG14B6bRaAGVDzji7S9QQQe77QaY/ZgssWIiUDbKLt7R0FU2C6w8EBo1Xs/nS23fco0i1xLwwhUkQReaH7VTOjdbTvtmIt0lIEFbdSNY=
+	t=1708691931; cv=none; b=Q22IbIJKQWl8tJ/i5SY+RBYMLnsGIFOaGp9TjF4+UMPlzSSeAQXXDx7zgUWFDXU/x4BcK8x4M8OtwABXwkrqoGLzl2RK9Dm5TN2XPTnRwF6FzwTJF6+0q8tvl1zLo+zjvMiP8jEtpAO86llQCJUvHKMIvMyc1k9CZyNcCk0OhUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708691514; c=relaxed/simple;
-	bh=xoYCgBeNqtGNxoqBdeEfgupdpkUzCMQPgui5YPz3jpg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AgL/nXhQsl4Unhj6/C3hKKN4LhelBOS67uF2CyfZgWoNlJ5S9Cuh6sLklXY+40Ht/bw19sapMnwPgYEQwwyp1wAc4UCU7tzjdQr2T9l4sFsRMUfc+0yux7M8eJmodg7VxXEgX5vQPoNC5tx3wG/uH8Hb0/pFgknpBOuo7T9syfw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dnSQt1sL; arc=none smtp.client-ip=209.85.167.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-3bba0ac2e88so171285b6e.0;
-        Fri, 23 Feb 2024 04:31:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708691511; x=1709296311; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/K7A+AIftwNxa8nwsHRE+wIGsuoNZibDyiJclZmLSLE=;
-        b=dnSQt1sLKmZYz0PiLqxLYyIj+bZuOQTJumR1kunke24aN/HYNpLWdhncOnDnaNFxki
-         EKFGecydltGFxYzQkztGNh9OfJEr4HoBCWQkpb0NjTcp09C8qM43epIi8EMDTm97Azn/
-         NrzzYO1Ve+w5+jhsY4n9tO6WnZfn7I9OptYrlV9QA+wIrosId/UvUbaaNtb7+ZVMe4+3
-         4knU16JPBq/zXNq54FVZthXX1lFRKdp1dA1PjFTBvKliLVe9woP1++K0Sh7+3ry9DLaD
-         waJaBoDVl672BsqYA1tnm3Ijn8zjE2mVyWhW9DO37ufrAiLfOx3SaCsD9vkb5CfvFNUO
-         4Qwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708691511; x=1709296311;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/K7A+AIftwNxa8nwsHRE+wIGsuoNZibDyiJclZmLSLE=;
-        b=udAT5+N+b8vOmE4I9qDn4CRiW61Y8xkfCnTCcGarJpz2qeV0GaQuiEBKsAMQSxk8Xe
-         HLC3Uz6McNlfCMwW5+W/Tu6l1OKyM1bT0NL8F5gAzLRk05pWoYNnLuW+EjqsdRKWvJIN
-         tUDiDzOyjuhfua3iLRQkUofZMyT6Ax9yVrUHHlFs9L6YZ12b3BD1y8rBoZunoCysjM4g
-         OEiP7acf3ureW7sHawqmDyN3fdLw68xihXyi1st06CEECJsImAGIxotdIbtNAGVHn3tR
-         DqAVJKJF72zTF6YQTkJpVzwGDdPhi2phwFaZYP8oIBtTZEjrttUbAs9ihR4u5WkarSCM
-         BFaw==
-X-Forwarded-Encrypted: i=1; AJvYcCXGoGN86EzmtGsj8Jyo+PX6EYzM+9r66VqjbXat2Pfew5DykR9aoqnnhOMaiInpBV/nbzs1iNHnBmEeIzqK2pekbl0R85pWR2TsPqZ4
-X-Gm-Message-State: AOJu0YyvueKWD8DqbySFYwAGZNPh4WXrvoDGS307pzIfYlFAb6R0IqoZ
-	ELTSshF7Ldqp9BFZL+zYiswzRvdemdc8FnAgHG7/4XAHNZpxu6cU9wZw1dBRKfuxRb6tn4z/1wv
-	qnc8l0gJ4a3s2Qkr+ZIVwxdBGx0w=
-X-Google-Smtp-Source: AGHT+IGwmuWoSYk3dQUFPAiF/a28zVOnHOxwyDy3DT4rePOO1G0IO8jUk1OU7lyRupoZiESAWYF4XnYp1ujyiHfF/nI=
-X-Received: by 2002:a05:6870:e2cd:b0:21e:5bb9:5d7a with SMTP id
- w13-20020a056870e2cd00b0021e5bb95d7amr2401314oad.27.1708691510791; Fri, 23
- Feb 2024 04:31:50 -0800 (PST)
+	s=arc-20240116; t=1708691931; c=relaxed/simple;
+	bh=ERS0Pm3SSl1km8+hgMeaWNqmH2dxykHAGMHLSP7sSdQ=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=Q7dBYGzUW/GPwHwB4udOFTRBf+6/s8nV0dI9HYU1xH8fRH+rnHWzIhWvg+99NX+8un70Fre7f2ZojhtV5bH2j5ojmRR+Q9kYS+/SyVl2uHblDKLYv10D3XP8ThH0q5ayeYJEUTfxJiHr/mV7ZnBv0qPU+poTY4nqVQVjWm1x75I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=ZLyRrHkm; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41NCFVmg025810;
+	Fri, 23 Feb 2024 13:38:10 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:subject:date:message-id:mime-version:content-type
+	:content-transfer-encoding:to:cc; s=selector1; bh=D0WVlI4BwzUoHl
+	UpQeRw9lznAxb2mpNvcWKa5zvyP1s=; b=ZLyRrHkmK3WZi15EQDSJ3jp+9beahM
+	FiLxMLC2syN82XZERbvUVCU9KyAi/XmaCfm2hAQGjZWzTXSxTqBoYa7kDZ3TNhBX
+	hTD5xAAPR4Pvh+5YV67aiCkYCHHY+iGkcrJ+qJ9KLZET0ZOJYegJa/bsyUf+ogqB
+	Pu1zuR45+PG4aST1HH40jPvMGGsjWy6kFnBcmg3UEUesYaxucLsxnZLJBuyxjc1G
+	PnWZGLLRxwhTI61AG9A/YBQOoSn2NY4Kqf5GHm1YlAS/lv7ctgb8lDi1Vjd5hPMY
+	zWBTv4gC9TvJdAz4XYtLY7SaGzK0wX//X8UN/mFhTHNhcDotG4HNgShA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3wd2024nuu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 23 Feb 2024 13:38:10 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 5B0F040044;
+	Fri, 23 Feb 2024 13:38:01 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E2EE528CFC4;
+	Fri, 23 Feb 2024 13:36:53 +0100 (CET)
+Received: from localhost (10.129.178.151) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 23 Feb
+ 2024 13:36:53 +0100
+From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+Subject: [PATCH v3 0/4] Add display support for stm32mp135f-dk board
+Date: Fri, 23 Feb 2024 13:36:47 +0100
+Message-ID: <20240223-ltdc_mp13-v3-0-7f92a59ca11f@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231212093443.1898591-1-sergio.paracuellos@gmail.com>
- <CAMhs-H__b2dNQH+nsbc0+gTeQPmkZf5B95+3Y88iRZ5KZmu=yQ@mail.gmail.com> <54605748-e737-46f0-ada5-0e3e79699262@linaro.org>
-In-Reply-To: <54605748-e737-46f0-ada5-0e3e79699262@linaro.org>
-From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date: Fri, 23 Feb 2024 13:31:39 +0100
-Message-ID: <CAMhs-H-oBOQMqkpjMYRRDQAoDL3e6xnBXy=HdOfrx+PSXst2-A@mail.gmail.com>
-Subject: Re: [RESEND PATCH v2] dt-bindings: timer: add Ralink SoCs system tick counter
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: devicetree@vger.kernel.org, tglx@linutronix.de, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAF+R2GUC/03MQQ7CIBCF4as0s5YGBrTYlfcwjakULIktDUMaT
+ cPdxbpx+b+8fBuQjd4StNUG0a6efJhLyEMFZuznh2V+KA3IUXGBij3TYG7TIiRDp099o1GhMlD
+ +S7TOv3br2pUePaUQ3zu94nf9KSiaP2VFxtmRay2cuMuzshcXiGpKtQkTdDnnD1Ic7xWkAAAA
+To: Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard
+	<mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie
+	<airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        Raphael Gallais-Pou
+	<raphael.gallais-pou@foss.st.com>,
+        Yannick Fertre
+	<yannick.fertre@foss.st.com>
+X-Mailer: b4 0.12.4
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-22_15,2024-02-23_01,2023-05-22_02
 
-On Fri, Feb 23, 2024 at 1:23=E2=80=AFPM Daniel Lezcano
-<daniel.lezcano@linaro.org> wrote:
->
->
-> Hi Sergio,
->
-> On 23/02/2024 12:27, Sergio Paracuellos wrote:
-> > Hi,
-> >
-> > On Tue, Dec 12, 2023 at 10:34=E2=80=AFAM Sergio Paracuellos
-> > <sergio.paracuellos@gmail.com> wrote:
-> >>
-> >> Add YAML doc for the system tick counter which is present on Ralink So=
-Cs.
-> >>
-> >> cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-> >> Reviewed-by: Rob Herring <robh@kernel.org>
-> >> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> >> ---
-> >> Changes in v2 RESEND:
-> >> - Add Daniel Lezcano to CC in the patch itself.
-> >> Changes in v2:
-> >> - Add Rob's Reviewed-by tag.
->
-> Applied, thanks
->
-> Sorry for missing this patch
+This serie aims to enable display support for the stm32mp135f-dk board
 
-No problem :). Thanks for letting me know.
+Those are only patches of the device-tree since the driver support has
+already been added [1].
+
+It respectivelly:
+	- adds support for the display controller on stm32mp135
+	- adds pinctrl for the display controller
+	- enables panel, backlight and display controller on
+	  stm32mp135f-dk
+
+Finally it fixes the flags on the panel default mode in the
+'panel-simple' driver, allowing to override the default mode by one
+described in the device tree, and push further the blanking limit on the
+panel.
+
+[1] commit 1726cee3d053 ("drm/stm: ltdc: support of new hardware version")
+
+Changes in v3:
+  - [4/4] Allow every properties from panel-common in panel-simple.yaml
+  - [4/4] Rewrite commit description to match changes
+
+Changes in v2:
+  - Removed already merged patches
+https://lore.kernel.org/lkml/170729755552.1647630.4818786052103823648.b4-ty@linaro.org/
+https://lore.kernel.org/lkml/170729755662.1647630.425379349649657352.b4-ty@linaro.org/
+  - Fixed CHECK_DTBS warnings
+  - Added missing properties in panel-simple.yaml
+
+Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+---
+Raphael Gallais-Pou (4):
+      ARM: dts: stm32: add LTDC support for STM32MP13x SoC family
+      ARM: dts: stm32: add LTDC pinctrl on STM32MP13x SoC family
+      ARM: dts: stm32: enable display support on stm32mp135f-dk board
+      dt-bindings: display: simple: allow panel-common properties
+
+ .../bindings/display/panel/panel-simple.yaml       | 11 +----
+ arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi        | 57 ++++++++++++++++++++++
+ arch/arm/boot/dts/st/stm32mp135.dtsi               | 11 +++++
+ arch/arm/boot/dts/st/stm32mp135f-dk.dts            | 53 ++++++++++++++++++++
+ 4 files changed, 122 insertions(+), 10 deletions(-)
+---
+base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
+change-id: 20240124-ltdc_mp13-2f86a782424c
 
 Best regards,
-    Sergio Paracuellos
->
-> > Gentle ping on this patch. It has been a while since it has been sent.
-> >
-> > Thanks,
-> >       Sergio Paracuellos
->
-> --
-> <http://www.linaro.org/> Linaro.org =E2=94=82 Open source software for AR=
-M SoCs
->
-> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-> <http://twitter.com/#!/linaroorg> Twitter |
-> <http://www.linaro.org/linaro-blog/> Blog
->
+-- 
+Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+
 
