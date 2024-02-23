@@ -1,62 +1,72 @@
-Return-Path: <devicetree+bounces-45047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C35B686078B
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 01:18:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4307586079E
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 01:24:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25E3C283B6A
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 00:18:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DDDCE1F24B23
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 00:24:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13C8A37C;
-	Fri, 23 Feb 2024 00:18:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB95037C;
+	Fri, 23 Feb 2024 00:24:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MTkJisuB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gzHm2f57"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB64D7F;
-	Fri, 23 Feb 2024 00:18:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F49219B;
+	Fri, 23 Feb 2024 00:24:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708647530; cv=none; b=MtseD2JJoPr0FNXyPjtswkT6ojrJjXZd7941DyZUgBgMeK7I3Nxm1pT41iDevWjbkv4LEeVyIHTknH9tLxyku1rSPjSMeJxrjok3wBIl2Jhf2l9PH8i21hPt2Kc9xxilrGqHyh+2YXSpac5rE9YhFV5Cu9QLP8Ca+JZ4zo1CUbI=
+	t=1708647887; cv=none; b=rQNpi1d2WAg2ro3a0QGCZzh2uuCiwB9IgvYAFqfiyfoswwXmxM7XYAttcW3QiRN94IIZhdijAhEb0k3kdIhfMXJ/Qa9+qFZE1gdkj6Ce005V3lCGOlQklBFMic1qCUGE1puog4YQedgAJSEYU8gqgULjI4V1SvhFj3MUGZlmWDI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708647530; c=relaxed/simple;
-	bh=0VXV7QQc4huFHcQS4+UMq0GJKqEi8Bz47SvrUUhEKF0=;
+	s=arc-20240116; t=1708647887; c=relaxed/simple;
+	bh=6RQYh1c+2WGB747k5Q8GGgtAQbYiwufgRsISUMvWeQ4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=l7EN7j/HnUmoyYuKinxlmTjr038NkuvqIodwKwPE7lMcbsgYV7iRuhVOYFIJMgLhOY9h3iJG7xFbDAUiTGGvrVvt/EpW70xUmQDb3e8yl3MLRkfMgZ05sn6ew+M3Cv1tczhG+OXQxmSBKHlLPu3qU9FDWLZ/njUOC8YIDDWr6pU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MTkJisuB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFFDCC433C7;
-	Fri, 23 Feb 2024 00:18:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=kXXaIGC0g8TKPpM89ut1vs3rEwOz0Bw5M32mtAqAS+6oFq1q0DaRw3j5dv8KPvBTUihMRvTnaAQvj4AkZE2K1Y70iXZuM37B9OOIbnfSLltDdk7eSrUYt5gVkB6k7HaXxxYJhTTF26wlRgZ094//X6nrwMiuF1R1sSB85LaFEJM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gzHm2f57; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F619C433C7;
+	Fri, 23 Feb 2024 00:24:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708647529;
-	bh=0VXV7QQc4huFHcQS4+UMq0GJKqEi8Bz47SvrUUhEKF0=;
+	s=k20201202; t=1708647887;
+	bh=6RQYh1c+2WGB747k5Q8GGgtAQbYiwufgRsISUMvWeQ4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MTkJisuB618warovcVt0Nks5rSatRQHBHUfLBZCF7gA+SfQIYasBo8KYYwvPwNNVR
-	 2sKgGGDwnvxbiRfJB3a1iHJc4HLhUE+peNh7j4F4b5jmBhppNYEqd6/tigqpfEtU74
-	 NoVJfgXeE6yp2jierWIuq8zSOkC7a/BmE9ApwkAJNrkkcLnzB55cTVXVXNZ+RrTKra
-	 F/Gb75tg0+N1cbcW0dS+HxiySpMMqTwqsT6SDeE+hyViB9jynHz19wRPFr1c7uvElz
-	 uUL4lnqmTTBihKgqjEsi7b2NnuD+K5TmruAIyQauv3ZseeIhTOey1GbwKk/6i4psM5
-	 xcybcWrCUCGjw==
-Date: Thu, 22 Feb 2024 17:18:40 -0700
+	b=gzHm2f57w8oQ2CKM9OBagrwZLTrD/zFgJ4JyVHlKPWO7vG6JD5bPJ+V4ArEaOdbyg
+	 g55eElDLh8+jCDJIrQdkzYfyeU15LGZk+un8e1MufskvuEmF0zGYZOoIVxbvdnIHL3
+	 hNFph744wKpQzIEszSlMJALrD6ZIrDHo06Sx+VkWneFq8paQjxGNBXBAtyIpdecsmf
+	 6VrQFclphPwRR4h9C3JsqeeltI5YpWw+bsib9axBuWFi/TDBsET+mmFsGMZEeqbb6I
+	 TFASGZSvtjh1zJflNpr2PSHrDqYNiDrqrF4HYvi38csYMuRaq+pltiBTZBzl2R+mkk
+	 XMmyR2Zll5IZA==
+Date: Thu, 22 Feb 2024 17:24:43 -0700
 From: Rob Herring <robh@kernel.org>
-To: Chen Wang <unicornxw@gmail.com>
-Cc: samuel.holland@sifive.com, inochiama@outlook.com, robh+dt@kernel.org,
-	linux-clk@vger.kernel.org, linux-riscv@lists.infradead.org,
-	guoren@kernel.org, jszhang@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
-	xiaoguang.xing@sophgo.com, conor@kernel.org, haijiao.liu@sophgo.com,
-	devicetree@vger.kernel.org, aou@eecs.berkeley.edu,
-	mturquette@baylibre.com, sboyd@kernel.org,
-	Chen Wang <unicorn_wang@outlook.com>, paul.walmsley@sifive.com,
-	chao.wei@sophgo.com, palmer@dabbelt.com, richardcochran@gmail.com
-Subject: Re: [PATCH v11 3/5] dt-bindings: clock: sophgo: add clkgen for SG2042
-Message-ID: <170864751924.3865395.4075439052302524683.robh@kernel.org>
-References: <cover.1708397315.git.unicorn_wang@outlook.com>
- <cebef63e3e704db58658b5eae3f1fc4dfd1a587e.1708397315.git.unicorn_wang@outlook.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Conor Dooley <conor@kernel.org>, Alex Soo <yuklin.soo@starfivetech.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Hal Feng <hal.feng@starfivetech.com>,
+	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
+	Jianlong Huang <jianlong.huang@starfivetech.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Drew Fustini <drew@beagleboard.org>, linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>
+Subject: Re: [RFC PATCH v2 1/6] dt-bindings: pinctrl: starfive: Add JH8100
+ pinctrl
+Message-ID: <20240223002443.GA3877354-robh@kernel.org>
+References: <20240220064246.467216-1-yuklin.soo@starfivetech.com>
+ <20240220064246.467216-2-yuklin.soo@starfivetech.com>
+ <1a11cee2-2ef1-4ce0-8cc1-63c6cc97863f@linaro.org>
+ <20240220-bottling-reverence-e0ee08f48ccc@spud>
+ <cafccf8d-b8f7-44cb-bc41-3c7a908fd1e4@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,24 +75,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cebef63e3e704db58658b5eae3f1fc4dfd1a587e.1708397315.git.unicorn_wang@outlook.com>
+In-Reply-To: <cafccf8d-b8f7-44cb-bc41-3c7a908fd1e4@linaro.org>
 
-
-On Tue, 20 Feb 2024 11:09:18 +0800, Chen Wang wrote:
-> From: Chen Wang <unicorn_wang@outlook.com>
+On Wed, Feb 21, 2024 at 08:24:26AM +0100, Krzysztof Kozlowski wrote:
+> On 20/02/2024 20:10, Conor Dooley wrote:
+> > On Tue, Feb 20, 2024 at 09:11:43AM +0100, Krzysztof Kozlowski wrote:
+> >> On 20/02/2024 07:42, Alex Soo wrote:
+> >>> Add documentation and header file for JH8100 pinctrl driver.
+> >>>
+> >>> Signed-off-by: Alex Soo <yuklin.soo@starfivetech.com>
+> >>> ---
+> >>
+> >>
+> >> RFC? Why isn't this patch ready for review?
+> > 
+> > The TL;DR is that Emil and I didn't want to apply the dts patches to
+> > support a platform that hadn't actually been taped out yet. 
+> > For an SoC in that state, at least the bindings for, clock and pinctrl
+> > could be subject to changes before tapeou. I think putting RFC on those
+> > patches is a good idea, but of course the rationale should be mentioned.
 > 
-> Add bindings for the clock generator of divider/mux and gates working
-> for other subsystem than RP subsystem for Sophgo SG2042.
-> 
-> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
-> ---
->  .../bindings/clock/sophgo,sg2042-clkgen.yaml  |  49 ++++++++
->  .../dt-bindings/clock/sophgo,sg2042-clkgen.h  | 111 ++++++++++++++++++
->  2 files changed, 160 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/sophgo,sg2042-clkgen.yaml
->  create mode 100644 include/dt-bindings/clock/sophgo,sg2042-clkgen.h
-> 
+> That would be useful information. We also could mark some bindings
+> unstable and accept breaking ABI under certain conditions, like that it
+> is early work without users for long time.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+The challenge with that is when do things get marked stable? No one has 
+any motivation to do that (unless users complain). For example, We have 
+a couple of platforms that have an unstable bindings statement that has 
+been there "forever".
 
+I would like a solution though. The only idea I have is passing 
+SystemReady cert, but that's an Arm thing.
+
+Rob
 
