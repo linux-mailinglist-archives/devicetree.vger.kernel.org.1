@@ -1,106 +1,260 @@
-Return-Path: <devicetree+bounces-45420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6362861D99
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 21:27:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91E8A861DC0
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 21:41:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 16C161F2218C
-	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 20:27:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 09A1A1F24206
+	for <lists+devicetree@lfdr.de>; Fri, 23 Feb 2024 20:41:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D32012883B;
-	Fri, 23 Feb 2024 20:27:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0646A146E71;
+	Fri, 23 Feb 2024 20:41:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="rW94okdR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MZ4kBtAC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89C9D142648
-	for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 20:27:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FDC9142649;
+	Fri, 23 Feb 2024 20:41:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708720045; cv=none; b=jny0hw6x57H/1foixNgq4V7LDF39M3Bo1JEXoYxkJo9T9XgMShjIbKqdT/UQremqGc8sGHV9Mau031x3jFdvyoNVI2GyGoFrjz3MHAi4A6sS6rlqPP+mu7/MnqxII+WRWWmYcjmH7wuLsFhA235AAz+uJXXTHf1WC3MOi6vDpVY=
+	t=1708720899; cv=none; b=QAFZyaVrsLo+SASQjUzMCiNpeG/Es73rMKki+hLBMy1uidvVHTIL8YvfzmBW9aANyUnafYQVuLd0yhUh2WJvJnCC0aDsskKXXckG1/gEvP4kce2q/8sC+pxuUeQIIwbE8Q/hq1HHmvqlBUnbXvdG3U5cZbMG3Lf2msSKBOVuoeM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708720045; c=relaxed/simple;
-	bh=3YpEGeuhL8ubJmEesiwCMngORbDqOsSbQu4Bi2PiD98=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PYzUYPv5SNBrXq0AmZWc09T1dAMU9eE711dohyszAY1VRdwjxORLW5gRXjuse0If3E73I4Vw4B+YjyBKaytrJ3r+KZCVf40pu1lhxdMEQ3y8DzBHDIy0cfkBkvIALWx2qKfkYOQBvuLIxZLsCedxdDzL0APE0qTi4r2mFY8B0GY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=rW94okdR; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5129cdae3c6so1583823e87.1
-        for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 12:27:23 -0800 (PST)
+	s=arc-20240116; t=1708720899; c=relaxed/simple;
+	bh=h7Lx0jQ4dl7jKRJSCenNZoCOEDhfi18hDxw3dD5ReaQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Gelyf4QfSvyYBSIhaX/Zqb5DLkX48JBMGXL6ltnS5GfdV4K46Dzxp0JHBY/TSc+8L+q5c+WWYBd6Mn71b/v/PLfVGNjB9MvlMUemsUfXzZJjkvCcKO6X6S8357XCiMXI2zcjy4pMlrY9dlVNo2y21eor2l2+8Js1kGk4OpygF8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MZ4kBtAC; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5654f700705so1602239a12.1;
+        Fri, 23 Feb 2024 12:41:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1708720042; x=1709324842; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=K2Et8H1DtwHnrSyv4ArO1u3yJYDVaQ44clIgnisl2H4=;
-        b=rW94okdRQGsBErEYNste9kOAmY7aCUxzrW8Z2UK181ndRUllIa5wku4yth5BPjWJ2J
-         1pVLn/04ygPt1Oghi6OusywmhBjnY9bFjr7lDgRxBbBVzP2WGAEwM2Py0EyUv01hI0Fo
-         07mWNT2TMewdTS5XExOmMFGS5aWAGSw+D6BOsJmJ8nJDzlNZeclLJEbU+h5SOc+josD7
-         v0T/TigHXJzAWFva35MCFb5Fq7IofxwOCAGc5U5FoIfCTbi5OwT/px9Ywhd9kCFnH4JT
-         TDomTd1OCKtjoHG1ML/BNkHImfLYtNPcN26X1E2eFO61BZDNqagHjznoOSu1qOw/MOKX
-         0JoA==
+        d=gmail.com; s=20230601; t=1708720896; x=1709325696; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZfQMOvarM5YXluKmxjyf8kg0u/LvgCShKkrNwvbX5RY=;
+        b=MZ4kBtACOUZ2aSP/1YouT04Bzi51dIR5vln3/cRWKK7UIZ0PXkF/3qULOz0fC1dka1
+         6rpdjSX5fBU5lskGjKNNIEVroxo8YjS5jNGhB0h0/zNy6fuVeUdpsj7GzDPcZDWm1GtN
+         F3HujEJMNS3D7JOoizCAFpCiiCqgD1kNbujqiKezaEo8Bzb9NtI/2lS0W8KHTe1N5vkc
+         1343YPkFGMOcwtPOis7mATKKJDEaKOI32MnqrCfunY8OpK5R2PDBAy28sanCHt0nkuqi
+         x+Yw+qPgeVNMNgeQwkpyHrSmlUXeXnpOBUqHcB7gaVF+F883Dkg7mtuhgY2T8oUwW+JP
+         JZTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708720042; x=1709324842;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=K2Et8H1DtwHnrSyv4ArO1u3yJYDVaQ44clIgnisl2H4=;
-        b=XXjOszciU60PqYr70GLgVuIYuFvonVFFyPBWtM9jKo4dvW4UyCyR9whKgjyNmPFCUn
-         NXAS7sTXHPZy09UJOpbm5yk46e1tR31J6Y2TocXvXFJnmepiT0zbn+Xeozi5kBMaikTs
-         fW0GzQ31b6mLNMiyqS52IMsTPLeGlzcR+6ZnvpxQUxEsVUASiEick4eprPoLV1SCs48T
-         yxFtwSEHYPokBIIuG+zxptkIANajOtuJTWSSsUthn0cFbA0wRFIlgYHRBWEJj2AXZ58p
-         1FCubN+NyjAXpO7SymrdK6dKTcHpHnAt3DaaHWsavTfdXUR2IfqSCHevubcK06rW0InB
-         3ceA==
-X-Gm-Message-State: AOJu0YyXAapQ6d+wVJ14vseb1A5WWAI9z3rXdCB21oupY5hjp6/p2pZ0
-	JWwxl9yg2kT4wa75uzMFA/x0IaG0wivU+tZgSfNYCMnW/lDj3X+MGcIw16zO1q8=
-X-Google-Smtp-Source: AGHT+IEkDhFlL5nB07GkTiQuGx05uTfF0HxzH9d74rlmOmpM0jUr/IFa5TPMHf48Y4Z6h4KtKW8I1g==
-X-Received: by 2002:a05:6512:3244:b0:512:df93:479c with SMTP id c4-20020a056512324400b00512df93479cmr492390lfr.36.1708720041614;
-        Fri, 23 Feb 2024 12:27:21 -0800 (PST)
-Received: from [192.168.50.4] ([82.78.167.99])
-        by smtp.gmail.com with ESMTPSA id fw14-20020a170906c94e00b00a3f04112c0csm3705544ejb.221.2024.02.23.12.27.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Feb 2024 12:27:21 -0800 (PST)
-Message-ID: <0dac99e5-4ee0-4d55-a344-ae7bd627149e@tuxon.dev>
-Date: Fri, 23 Feb 2024 22:27:20 +0200
+        d=1e100.net; s=20230601; t=1708720896; x=1709325696;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZfQMOvarM5YXluKmxjyf8kg0u/LvgCShKkrNwvbX5RY=;
+        b=LLJVbM3p6KAnFbGV58waAB85kFNipo1bo4EQosRyxYqAyNCLaJzt/S6ATphKGFZzEY
+         RCNU9uET+nP3Aq+MW+K/TDXTzIDt17U5Yi7JEIi8JIi9GMxcvkm4Qv/Yk17cLzJyfong
+         +Cktr9oN3jPpmWtm/i7JINjWt97x9uDtMRitE0ccm+XmEbu6RrG9QS81hj6mK6p00mr2
+         2fYqeonSMkdXYJRVPJZdT1RpsGazwnd1abcyt9EU4tnZyEnLUeJ2epha2qjD2RCMAfH9
+         OPby8g2elL95HUQUx2iZyOEcBmqZwcZjHrxQI3J+6ewv+kxremVgk6iUobF/skN1EH/q
+         3iYQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXtA/COutFhad1xNgvgun2cB26xnqmDFNvRPYdmuJTgnOFEpDUemMrBWBv8IGaOHtQdsPaL24S4PK3+egjOpU27QDqVwrEDl9gK/SUxSRB4AGsArnAWv78TMwuvQTm31kTLjW9h
+X-Gm-Message-State: AOJu0YwMfcSI0PkKJUJz016JLLXSDPkRMgXT+J2d8dkaS4PpUPdJADIX
+	l+hycsIxx/bTxkh64mLi7M0IHVaPweZyFro4DSlSntH0JV23uzae
+X-Google-Smtp-Source: AGHT+IF/qpn86Bjd0nToevWU3u82HCSLTOOj3XhqK/HahY6igDRqhNN2SlnXNlbV8okxQWXuvNuYcg==
+X-Received: by 2002:aa7:c64d:0:b0:565:9938:a881 with SMTP id z13-20020aa7c64d000000b005659938a881mr225843edr.36.1708720895972;
+        Fri, 23 Feb 2024 12:41:35 -0800 (PST)
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id k20-20020aa7c054000000b005657eefa8e9sm603852edo.4.2024.02.23.12.41.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Feb 2024 12:41:35 -0800 (PST)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Vasily Khoruzhick <anarsoul@gmail.com>,
+ Yangtao Li <tiny.windzz@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>, Andre Przywara <andre.przywara@arm.com>
+Cc: "Rafael J . Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Martin Botka <martin.botka@somainline.org>,
+ Maksim Kiselev <bigunclemax@gmail.com>,
+ Bob McChesney <bob@electricworry.net>, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev
+Subject:
+ Re: [PATCH v5 7/7] arm64: dts: allwinner: h616: Add thermal sensor and zones
+Date: Fri, 23 Feb 2024 21:41:34 +0100
+Message-ID: <4545502.LvFx2qVVIh@jernej-laptop>
+In-Reply-To: <6017645.lOV4Wx5bFT@jernej-laptop>
+References:
+ <20240219153639.179814-1-andre.przywara@arm.com>
+ <20240219153639.179814-8-andre.przywara@arm.com>
+ <6017645.lOV4Wx5bFT@jernej-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] ARM: dts: microchip: few DT cleanups
-Content-Language: en-US
-To: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, nicolas.ferre@microchip.com,
- alexandre.belloni@bootlin.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20240218151353.3612621-1-claudiu.beznea@tuxon.dev>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20240218151353.3612621-1-claudiu.beznea@tuxon.dev>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+
+Dne petek, 23. februar 2024 ob 20:59:08 CET je Jernej =C5=A0krabec napisal(=
+a):
+> Dne ponedeljek, 19. februar 2024 ob 16:36:39 CET je Andre Przywara napisa=
+l(a):
+> > From: Martin Botka <martin.botka@somainline.org>
+> >=20
+> > There are four thermal sensors:
+> > - CPU
+> > - GPU
+> > - VE
+> > - DRAM
+> >=20
+> > Add the thermal sensor configuration and the thermal zones.
+> >=20
+> > Signed-off-by: Martin Botka <martin.botka@somainline.org>
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+>=20
+> I can't cleanly apply patch on top of sunxi/dt-for-6.9. Can you please re=
+base?
+
+I rebased and applied. Thanks!
+=20
+Best regards,
+Jernej
+
+> > ---
+> >  .../arm64/boot/dts/allwinner/sun50i-h616.dtsi | 88 +++++++++++++++++++
+> >  1 file changed, 88 insertions(+)
+> >=20
+> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm6=
+4/boot/dts/allwinner/sun50i-h616.dtsi
+> > index 12ffabc79bcde..7c7d7c285505c 100644
+> > --- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> > @@ -9,6 +9,7 @@
+> >  #include <dt-bindings/clock/sun6i-rtc.h>
+> >  #include <dt-bindings/reset/sun50i-h616-ccu.h>
+> >  #include <dt-bindings/reset/sun50i-h6-r-ccu.h>
+> > +#include <dt-bindings/thermal/thermal.h>
+> > =20
+> >  / {
+> >  	interrupt-parent =3D <&gic>;
+> > @@ -138,6 +139,10 @@ sid: efuse@3006000 {
+> >  			reg =3D <0x03006000 0x1000>;
+> >  			#address-cells =3D <1>;
+> >  			#size-cells =3D <1>;
+> > +
+> > +			ths_calibration: thermal-sensor-calibration@14 {
+> > +				reg =3D <0x14 0x8>;
+> > +			};
+> >  		};
+> > =20
+> >  		watchdog: watchdog@30090a0 {
+> > @@ -517,6 +522,19 @@ mdio0: mdio {
+> >  			};
+> >  		};
+> > =20
+> > +		ths: thermal-sensor@5070400 {
+> > +			compatible =3D "allwinner,sun50i-h616-ths";
+> > +			reg =3D <0x05070400 0x400>;
+> > +			interrupts =3D <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
+> > +			clocks =3D <&ccu CLK_BUS_THS>;
+> > +			clock-names =3D "bus";
+> > +			resets =3D <&ccu RST_BUS_THS>;
+> > +			nvmem-cells =3D <&ths_calibration>;
+> > +			nvmem-cell-names =3D "calibration";
+> > +			allwinner,sram =3D <&syscon>;
+> > +			#thermal-sensor-cells =3D <1>;
+> > +		};
+> > +
+> >  		usbotg: usb@5100000 {
+> >  			compatible =3D "allwinner,sun50i-h616-musb",
+> >  				     "allwinner,sun8i-h3-musb";
+> > @@ -761,4 +779,74 @@ r_rsb: rsb@7083000 {
+> >  			#size-cells =3D <0>;
+> >  		};
+> >  	};
+> > +
+> > +	thermal-zones {
+> > +		cpu-thermal {
+> > +			polling-delay-passive =3D <500>;
+> > +			polling-delay =3D <1000>;
+> > +			thermal-sensors =3D <&ths 2>;
+> > +			sustainable-power =3D <1000>;
+> > +
+> > +			trips {
+> > +				cpu_threshold: cpu-trip-0 {
+> > +					temperature =3D <60000>;
+> > +					type =3D "passive";
+> > +					hysteresis =3D <0>;
+> > +				};
+> > +				cpu_target: cpu-trip-1 {
+> > +					temperature =3D <70000>;
+> > +					type =3D "passive";
+> > +					hysteresis =3D <0>;
+> > +				};
+> > +				cpu_critical: cpu-trip-2 {
+> > +					temperature =3D <110000>;
+> > +					type =3D "critical";
+> > +					hysteresis =3D <0>;
+> > +				};
+> > +			};
+> > +		};
+> > +
+> > +		gpu-thermal {
+> > +			polling-delay-passive =3D <500>;
+> > +			polling-delay =3D <1000>;
+> > +			thermal-sensors =3D <&ths 0>;
+> > +			sustainable-power =3D <1100>;
+> > +
+> > +			trips {
+> > +				gpu_temp_critical: gpu-trip-0 {
+> > +					temperature =3D <110000>;
+> > +					type =3D "critical";
+> > +					hysteresis =3D <0>;
+> > +				};
+> > +			};
+> > +		};
+> > +
+> > +		ve-thermal {
+> > +			polling-delay-passive =3D <0>;
+> > +			polling-delay =3D <0>;
+> > +			thermal-sensors =3D <&ths 1>;
+> > +
+> > +			trips {
+> > +				ve_temp_critical: ve-trip-0 {
+> > +					temperature =3D <110000>;
+> > +					type =3D "critical";
+> > +					hysteresis =3D <0>;
+> > +				};
+> > +			};
+> > +		};
+> > +
+> > +		ddr-thermal {
+> > +			polling-delay-passive =3D <0>;
+> > +			polling-delay =3D <0>;
+> > +			thermal-sensors =3D <&ths 3>;
+> > +
+> > +			trips {
+> > +				ddr_temp_critical: ddr-trip-0 {
+> > +					temperature =3D <110000>;
+> > +					type =3D "critical";
+> > +					hysteresis =3D <0>;
+> > +				};
+> > +			};
+> > +		};
+> > +	};
+> >  };
+> >=20
+>=20
+>=20
+>=20
+>=20
+>=20
 
 
-On 18.02.2024 17:13, Claudiu Beznea wrote:
-> Hi,
-> 
-> Series adds minor cleanups for sam9x60 and sama7g5.
-> 
-> Thank you,
-> Claudiu Beznea
-> 
-> Claudiu Beznea (2):
->   ARM: dts: microchip: sama7g5: align dmas to opening '<'
->   ARM: dts: microchip: sam9x60: align dmas to opening '<'
 
-Applied to at91-dt, thanks!
 
 
