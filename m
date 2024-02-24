@@ -1,67 +1,60 @@
-Return-Path: <devicetree+bounces-45577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D278862705
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 20:35:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59E6B862713
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 20:48:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 19449B2174D
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 19:35:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4EF541C210FD
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 19:48:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48F764C618;
-	Sat, 24 Feb 2024 19:35:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 095D04C62E;
+	Sat, 24 Feb 2024 19:48:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W+8mF8J9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="duONKiU8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B45EEDE;
-	Sat, 24 Feb 2024 19:35:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D182C4317B;
+	Sat, 24 Feb 2024 19:48:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708803325; cv=none; b=sUhI3cxVRMMQX3bfqiH4CMfURiBA8I9mRhCewVrpbCbR2BAjOV02FB0WInHQYir/bAXoocxkTiRuBrVORxVGn0mlT6jDAngPV+ywl2Vv6l9QzG8t2uAE8YcvuUjRgT2BDgTDF2w6UrGy/XLj1I/kqgTuYIDkNxb7avgEBEHKHt0=
+	t=1708804120; cv=none; b=ihlPvo1cz+y9hgwTivpSFrr/F3zgLn/Gw0Ppgy7BbMpje1E3KybCwflJ4iYVg4wVTFZegR0X+k3up9OMS/KRDak6WdERdzOenVgv+/P8k8v8Ar7A4ROl/aABVG/PQTv6IOw1xS5XE1ahcvwBRc1zaPPMAR0x33j3FI9gItXFj6I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708803325; c=relaxed/simple;
-	bh=QEBdPxTjL+iDZKwl9XHsrez2AqEj3cnz9Kd0Et3eI0M=;
+	s=arc-20240116; t=1708804120; c=relaxed/simple;
+	bh=DrXEA5LfQtyiBzKY/GgIWRK6O4zFVc1tt6OpMvzP0T4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y1GF3nWiF9MNRFkcjm6apYbP3daz/6mEvE87uO418zGZybgOBRdmIoXscaun7KMkfXQB5zfPyiS/tUpOtS6kzRGOkx0xrLI3CA9zLB4Vcj0W0NbQYjnm4CK7q/AdKxSw2xTve0PWy6vm7qV4WWxVL1zC+m95RwbePELw0V71dpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W+8mF8J9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6641CC433C7;
-	Sat, 24 Feb 2024 19:35:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=oCpwMEf65PoiDxY8pE6U7mJhfuAM5wFn571LHs6RjgQ9SU5Fc1YUfAWxLI0o3RcyqjZmTYodIGNtrJWKfb3T7a2pI5ABfxWCzj+IMW0icccDa0qE0fuOQrdahfiUKIXmAsbOnPdTyLux2+j4OqaFEp+ssA07I6rNNHPn6H06iuI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=duONKiU8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B23BC433C7;
+	Sat, 24 Feb 2024 19:48:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708803324;
-	bh=QEBdPxTjL+iDZKwl9XHsrez2AqEj3cnz9Kd0Et3eI0M=;
+	s=k20201202; t=1708804120;
+	bh=DrXEA5LfQtyiBzKY/GgIWRK6O4zFVc1tt6OpMvzP0T4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=W+8mF8J9kcEc37q93aIIqYA5ufGjGJhMvr763HbRFYSaO/dR6A5jqnY39y0CU0kVT
-	 M+IRLv/uwF/9Q1XAiRNm05tjToxX6IqmjuerdS8wjps2aFacjvF02DyhyY7N+KtU7+
-	 DehQO/jbYTq0DH7kH4TF70FYOqoKLqheMK9XBejWq0j1C7Bg6CfqcJEGknfkFVP0pc
-	 3AbBsUREu9Ad2zRlhmk7ZjocK6CbsCtaEZT1+kzWhuruL6ci9KSjs62hzsLNiJqZcS
-	 kQpLdL+TKArP5glJ//0pHjbpMf7WCulkifqwOcBySE1DtGEgfsrC2Q5Q1H3kKr/DFH
-	 yiM4+FCiXE8Bw==
-Date: Sat, 24 Feb 2024 19:35:19 +0000
+	b=duONKiU8o2/aF9dShN9pM1Jt/VDiYdpOIKqD2ixaszIx5VxL4mL8dWCLESyqQiBbX
+	 d9kiVBZCtakOUubpduacqMM7JSEGIsJcu189cLdzQVPhsegSn/mDUzeROeuZUcF23F
+	 x8uperuvNzjLHdlfZTlrmd9c/rMlY390HkcqWsaP8jcqrPCuRYijG5YnjANiWFDGxc
+	 i93QvOIh7kdJ13F3HcRAevT83jyMHf0+j4PnGRhzWlPnNIdLG6UUjQXeZZAOf3TCHi
+	 EKwuuf4/G1pKLvtPd2AY7XpcFXppHKbkdj4+ftZeZNxqH7U5TTE5diTTpftudy62HH
+	 PtlEqkSwrMqZg==
+Date: Sat, 24 Feb 2024 19:48:35 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Zev Weiss <zev@bewilderbeest.net>
-Cc: linux@roeck-us.net, Conor Dooley <conor.dooley@microchip.com>,
-	Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Patrick Rudolph <patrick.rudolph@9elements.com>,
-	Peter Yin <peteryin.openbmc@gmail.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Naresh Solanki <naresh.solanki@9elements.com>
-Subject: Re: [PATCH v2 4/5] hwmon: (pmbus/lm25066) Use PMBUS_REGULATOR_ONE to
- declare regulator
-Message-ID: <20240224-gloater-uncorrupt-53c9e1e73bd9@spud>
-References: <20240223-moonrise-feminist-de59b9e1b3ba@spud>
- <20240223-player-buckskin-01405c5889c4@spud>
- <684ee927-2287-420b-aee5-f323e05ada47@hatter.bewilderbeest.net>
+To: Varshini Rajendran <varshini.rajendran@microchip.com>
+Cc: claudiu.beznea@tuxon.dev, lgirdwood@gmail.com, broonie@kernel.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, nicolas.ferre@microchip.com,
+	alexandre.belloni@bootlin.com, alsa-devel@alsa-project.org,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 13/39] ASoC: dt-bindings: atmel-classd: add sam9x7
+ compatible
+Message-ID: <20240224-vice-lunchtime-fd456448d41d@spud>
+References: <20240223171342.669133-1-varshini.rajendran@microchip.com>
+ <20240223172608.672190-1-varshini.rajendran@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,52 +62,68 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="yaaNXt9nsk607/Xz"
+	protocol="application/pgp-signature"; boundary="GCI4KyNPv+vKZusj"
 Content-Disposition: inline
-In-Reply-To: <684ee927-2287-420b-aee5-f323e05ada47@hatter.bewilderbeest.net>
+In-Reply-To: <20240223172608.672190-1-varshini.rajendran@microchip.com>
 
 
---yaaNXt9nsk607/Xz
+--GCI4KyNPv+vKZusj
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Feb 23, 2024 at 03:16:26PM -0800, Zev Weiss wrote:
-> On Fri, Feb 23, 2024 at 08:21:08AM PST, Conor Dooley wrote:
-> > From: Guenter Roeck <linux@roeck-us.net>
-> >=20
-> > If a chip only provides a single regulator, it should be named 'vout'
-> > and not 'vout0'. Declare regulator using PMBUS_REGULATOR_ONE() to make
-> > that happen.
-> >=20
+On Fri, Feb 23, 2024 at 10:56:08PM +0530, Varshini Rajendran wrote:
+> Add sam9x7 compatible to DT bindings documentation.
 >=20
-> As mentioned on Guenter's v1, this change necessitates a corresponding
-> update to arch/arm/boot/dts/aspeed/aspeed-bmc-delta-ahe50dc.dts, which ha=
-s a
-> dependency on the name of the regulator.  Given (AFAICT) the lack of any
-> combined dts & driver patches anywhere in the kernel git history I guess
-> maybe doing both atomically in a single commit might not be considered
-> kosher, but could it at least be included in the same patch series?
+> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+> ---
+> Changes in v4:
+> - Changed the subject prefix matching the subsystem
 
-I was gonna do it in isolation if this went ahead, but I see you went
-and did it yourself - thanks. As Guenter pointed out later in the
-thread, any patch that combines dts changes with drivers or bindings
-is something that likely snuck in or was some sort of extenuating
-circumstance.
+> - Removed unwanted '-items' from the syntax
 
-Cheers,
+Did you? The diff looks identical to v3.
+
+Thanks,
 Conor.
 
---yaaNXt9nsk607/Xz
+> ---
+>  .../devicetree/bindings/sound/atmel,sama5d2-classd.yaml    | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/sound/atmel,sama5d2-classd=
+=2Eyaml b/Documentation/devicetree/bindings/sound/atmel,sama5d2-classd.yaml
+> index 43d04702ac2d..ae3162fcfe02 100644
+> --- a/Documentation/devicetree/bindings/sound/atmel,sama5d2-classd.yaml
+> +++ b/Documentation/devicetree/bindings/sound/atmel,sama5d2-classd.yaml
+> @@ -18,7 +18,12 @@ description:
+> =20
+>  properties:
+>    compatible:
+> -    const: atmel,sama5d2-classd
+> +    oneOf:
+> +      - items:
+> +          - const: atmel,sama5d2-classd
+> +      - items:
+> +          - const: microchip,sam9x7-classd
+> +          - const: atmel,sama5d2-classd
+> =20
+>    reg:
+>      maxItems: 1
+> --=20
+> 2.25.1
+>=20
+
+--GCI4KyNPv+vKZusj
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdpE9wAKCRB4tDGHoIJi
-0ip+AQDYD1iWAIQyUVXbKq8vwSg7xBKWez+hDMQthSMQI51qdwEAhBaavARz8BKy
-vN+0CKAeuKtMEb4V4ToEhaF9M80TtAI=
-=z3Nd
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdpIEwAKCRB4tDGHoIJi
+0rqeAP0T/vcukep+lXBA0E6SieaRS5/yTwFDjelCml6dZ9FuPAEAmcrwGIUWtiu9
+CqsI65afkbEy4WSEXseZIFo6hs+MhA4=
+=BpOz
 -----END PGP SIGNATURE-----
 
---yaaNXt9nsk607/Xz--
+--GCI4KyNPv+vKZusj--
 
