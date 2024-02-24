@@ -1,151 +1,117 @@
-Return-Path: <devicetree+bounces-45553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45554-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB38F86263D
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 18:07:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75089862648
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 18:22:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59E971F22154
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 17:07:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0036028263D
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 17:22:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9129E41C6D;
-	Sat, 24 Feb 2024 17:07:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AFD545026;
+	Sat, 24 Feb 2024 17:22:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JkpaewT3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="loyfzEqo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ED341EB34;
-	Sat, 24 Feb 2024 17:07:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 769E23E493;
+	Sat, 24 Feb 2024 17:22:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708794445; cv=none; b=QxuJMrsavDoYK44ZePvnaJ2/vsvVwb9Wxd3ySVnECQwCaxQe+mJeSpPawE3koipvp7UACpP8ZTh5af97HNCWFehDKB07B7JF4Q/Wicji7+lcBLhQKNogS8N5puhN12tUsgnVJMLrJVWd7g5P7f9Xscjt8/l/jtHdYw7LxdGLLUM=
+	t=1708795344; cv=none; b=W//ScNJ0uDyO7mTtxOSQ790ufTIE7BXilMpOYXdMi9RnNYm3L7LPpiISLril/MXY0Vi8iT6bC9I8AhDZWgvC1vkS8XTwp/MY9gIhEr9YH7xdEo0Z3UJU1sfQaCNNiPwFRQGXxWTs4tgNj8RO/i378qVdErnUQ5Jxox8eINwjs+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708794445; c=relaxed/simple;
-	bh=eeYrfwWrvmfry0lGfIaaBnx0Xj+7Z5pHDan2aTVa8+I=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qPKPFySMYMXYrdcB69Bxd3jALU0K+p7HVcGaziAUsAGyxLDm0vgXzCdRs/o0uF9Nf3Ia8YKEqPBwhfKjfs8Ufl2Un/BBxa418m3C08ht8TuatrLLgaj5aH5+zHu5ukdXgPIwyJ/NMKtDW4i7qT9AwjIyGkRyy2qg0sRGr8R7Cns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JkpaewT3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AB6AC433C7;
-	Sat, 24 Feb 2024 17:07:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708794445;
-	bh=eeYrfwWrvmfry0lGfIaaBnx0Xj+7Z5pHDan2aTVa8+I=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=JkpaewT3OUJ2LYRrRKYiGZ62iq7pxMqURkDolTc8o17I5DbxGHgwjDdelaWrH8vl/
-	 kuV9Wo0qgEbkhCqha8x9VLGMIVSIc4Khw4EbtBIA22UpAC/yFONVr2VZsASAfnpu0I
-	 dcXPBkoB1dMMYQyM0MX5MSrkauZ6O15TEN8VWm+7ZLzvZfzF528+bsMD8wP/gw//m2
-	 ywxBIDwnexfQjxp9Lj++wdsHvHC1itGK99Nf2Lc49E9/qFhS/RtirkaV1kJX8Lm5qr
-	 a9LDQNN8mYIPytlJ8erMO26DLQpgzXAF5hTSzXiC1HPz4JP9v7P+24wKg2pcEbe5wz
-	 XAQYY05pGaXng==
-Date: Sat, 24 Feb 2024 17:07:07 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Ceclan Dumitru <mitrutzceclan@gmail.com>
-Cc: David Lechner <dlechner@baylibre.com>, linus.walleij@linaro.org,
- brgl@bgdev.pl, andy@kernel.org, linux-gpio@vger.kernel.org, Lars-Peter
- Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Michael Walle <michael@walle.cc>, Andy Shevchenko
- <andy.shevchenko@gmail.com>, Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu
- <chiaen_wu@richtek.com>, Niklas Schnelle <schnelle@linux.ibm.com>, Leonard
- =?UTF-8?B?R8O2aHJz?= <l.goehrs@pengutronix.de>, Mike Looijmans
- <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>, Hugo Villeneuve
- <hvilleneuve@dimonoff.com>, Ceclan Dumitru <dumitru.ceclan@analog.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v13 1/3] dt-bindings: adc: add AD7173
-Message-ID: <20240224170707.4ffcec19@jic23-huawei>
-In-Reply-To: <0fa819d1-2a0f-4243-8e5f-a098528278c3@gmail.com>
-References: <20240220094344.17556-1-mitrutzceclan@gmail.com>
-	<CAMknhBEZ7Y1Yx=wJGnfvYWGKPLas3pbCyY+sN8vrBzdkYO-A4w@mail.gmail.com>
-	<0fa819d1-2a0f-4243-8e5f-a098528278c3@gmail.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1708795344; c=relaxed/simple;
+	bh=riz6Xex6+r7bkRBfwqFfExsQZzaMsAuLMy8VUuAlfqQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aAtgP3AvWgjXeCSvQIRD9ytChbzLtaFifzc+3LddNAJpdn0XU6dJ5qS9DummAGqkx6NDxvCY4fpDq0lHsqGOUmL6GT/v/cP3A8w4zqXMJJzMSurbPjG1SKRN1NJyX1Ov3xEvkyT6BPpj8FlZvYgXXS3jf4KIadtX3MXf5fPrezM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=loyfzEqo; arc=none smtp.client-ip=209.85.161.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-5a027fda5aeso1010251eaf.1;
+        Sat, 24 Feb 2024 09:22:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708795341; x=1709400141; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bjI3fDhJdgaf2sbT9CybcTVjHLtvdodJIpInpRlIJHk=;
+        b=loyfzEqogG6zhjLt7d5a975pyVPKm/5u81X4n7XC1uIAWYgpa+b9VWM8dkzpnL/hHo
+         bQZiDKBaPWpK4EY7iC0xddt3yqh03m4PHeB16rAeWvxwyxXLE9a2FztI/Ri1wzD4S1vx
+         EAMvvfd1+29Imf+B6uTuCoJOxK422iLYlA7ztAG3WBT6K7E6DUik+SJEoCRoMYMOjdXC
+         W1TcZjFdrkFSA/DSF7yhkQecWSECPPHRRp4VMZawPnqzm2wkyRi/2CQSqtCDb7CrFfjx
+         gZLyLw93XSBigbN8mXg71i0CjZREwyGHbYJynZ1xHyZpWhl54A6G3Ml8hz5lsDS1BT2M
+         KWJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708795341; x=1709400141;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bjI3fDhJdgaf2sbT9CybcTVjHLtvdodJIpInpRlIJHk=;
+        b=u2C9liFg1Amudo+8UB5EXUJNtkCDYIcbhv1SAPVuiftozWUuDPevOKFc3Zth8Zr6Y7
+         1W6SIFajroXZm26NmfzODvoCsWgjUir4tNeC+eQb2PUD4qwAO3IDRZG1Cprka4QimGpg
+         o/tllWEANZZzm/kT5vsMM4FgoNqHoRWeehqtRsekxgXusUvOIxXjM5KLUs9LSqHEXeZK
+         bsN6AX1WFwJPWyuryGKTpl7y1c23FZsmd9VB1gGMaKEg/o79BDlizeMrrMoZJeDbYkcT
+         4FYq8RBbjCSf7vMvxmCwkUjUlb6U/GJ9YunX/HMyxPdoVc7whAKoqynDcbsVEfn6ZN7E
+         5xZA==
+X-Forwarded-Encrypted: i=1; AJvYcCW7HQxblnf/7xpoUewwjLp/1NGz48yb2H/hhekWc1kqD1eAik/95uENlRYqWkSvO/GBDuwjBrSaCs0oANECcJUmrFzI5GOXw67rptlOQJhrDI3ohDgQgmQSz8BzEqyWnveWDW0vPChvfr/OW/eZM08MHIA2iDI08/D+1lg+V+kBetNVaQbf
+X-Gm-Message-State: AOJu0Yyy9IdhpQ27qg36dNLP9BAbNi1Y/2habcOxDGf9z74cnS1Y3TiT
+	aLYe0Dyq3IgayYqn/6cLQSXQpDz55na36kkq5T+zIugydwq/N5fA
+X-Google-Smtp-Source: AGHT+IFQRJOjjl0t10c32jJpjOHMVYdDwG/FtpXvQKL+er2fcNcQjPLQdEB/eznmrJ6WRnG+xAUHkg==
+X-Received: by 2002:a05:6358:b3c8:b0:17b:583c:c4b7 with SMTP id pb8-20020a056358b3c800b0017b583cc4b7mr4514685rwc.3.1708795341453;
+        Sat, 24 Feb 2024 09:22:21 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id i5-20020a635845000000b005e4666261besm184793pgm.50.2024.02.24.09.22.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 24 Feb 2024 09:22:20 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Sat, 24 Feb 2024 09:22:19 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Conor Dooley <conor@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Zev Weiss <zev@bewilderbeest.net>,
+	Patrick Rudolph <patrick.rudolph@9elements.com>,
+	Peter Yin <peteryin.openbmc@gmail.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/5] PMBUS Regulator cleanups
+Message-ID: <1a120a6c-ca15-4ff8-884d-d98fa28b7f68@roeck-us.net>
+References: <20240223-moonrise-feminist-de59b9e1b3ba@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240223-moonrise-feminist-de59b9e1b3ba@spud>
 
-On Wed, 21 Feb 2024 10:29:30 +0200
-Ceclan Dumitru <mitrutzceclan@gmail.com> wrote:
+On Fri, Feb 23, 2024 at 04:21:04PM +0000, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
+> A v2 of Guenter's series that changed the name of regulators registered
+> by PBMUS. The documenation (offical, not bindings) doesn't call the
+> output Vout0 and there were no bindings for these devices that allowed
+> regulator child nodes.
+> 
+> Document the regular child nodes for the TI devices and allow regulator
+> properties for the infineon ones.
+> 
+> Naresh is already working on the tda38640, so there's nothing for that
+> here DT wise.
+> 
 
-> On 2/20/24 22:54, David Lechner wrote:
-> > On Tue, Feb 20, 2024 at 3:43=E2=80=AFAM Dumitru Ceclan <mitrutzceclan@g=
-mail.com> wrote: =20
->=20
-> ...
->=20
-> >> +  clocks:
-> >> +    maxItems: 1
-> >> +    description: | =20
-> >=20
-> > Don't need `|` here.
-> >  =20
-> The description contains ": ". Without '|' yaml syntax considers the
-> whole string before ':' as another attribute
->=20
-> >> +      Optional external clock source. Can include one clock source: e=
-xternal
-> >> +      clock or external crystal.
-> >> + =20
->=20
-> ...
->=20
-> >> +
-> >> +      diff-channels:
-> >> +        items:
-> >> +          minimum: 0
-> >> +          maximum: 31
-> >> + =20
-> >=20
-> > Are we missing `bipolar: true` here? (since we have
-> > unevaluatedProperties: false)
-> >  =20
->=20
-> No, since we are referencing the adc schema "$ref: adc.yaml"
-> Which contains:
-> """
->   bipolar:
->=20
->     $ref: /schemas/types.yaml#/definitions/flag
->=20
->     description: If provided, the channel is to be used in bipolar mode.
-> """
->=20
->=20
-> ...
->=20
-> >> +
-> >> +required:
-> >> +  - compatible
-> >> +  - reg =20
-> >=20
-> > Aren't the various power supplies supposed to be required?
-> >=20
-> > - avdd-supply
-> > - avdd2-supply
-> > - iovdd-supply =20
->=20
-> From my point of view, if someone uses a single supply (avdd =3D=3D avdd2=
- =3D=3D
-> iovdd), and uses only the internal reference then the supplies should
-> not necessarily be required.
+Series applied to hwmon-next.
 
-Convention is that anything that represent a voltage on a pin that
-is needed for operation should be required.  Key here is the difference
-from optional supplies where the driver does something different.
-vref is a good example of this. The ones above are always needed I
-think.
-
-Obviously they may all say the same thing if they are connected
-externally.
-
-
-
+Thanks,
+Guenter
 
