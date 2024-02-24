@@ -1,172 +1,153 @@
-Return-Path: <devicetree+bounces-45583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 720CA862726
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 20:57:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41FC786272C
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 21:02:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 950531C21101
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 19:57:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 745D51C21138
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 20:02:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55D184CB36;
-	Sat, 24 Feb 2024 19:57:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 493A94C630;
+	Sat, 24 Feb 2024 20:02:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NAd4oJC2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M4EJfrEu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E57E4C630
-	for <devicetree@vger.kernel.org>; Sat, 24 Feb 2024 19:57:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1596C4D107;
+	Sat, 24 Feb 2024 20:02:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708804669; cv=none; b=RmgF5i+rCmJqnDH6ivPNLfLAyoiYV/Yr1R9PZ0Z9PkMyNglD3ngvY16ZOAJL1Z/IHy3RAy6t761W1GUfE0rF3IY+T55RoMS/33LuJJ+CLIkY8vUM6HC/f6AB1O8fLcuQ/NXxX2fjzhU6OIPg9xbMgk0xZ+T2N47cSyDRTQTecLo=
+	t=1708804953; cv=none; b=Fcm80jeLhCNw4Ntg+P8byEf/9XxTvut8SlFPPB7zstdS/omH9K9x38GwE7m31kATuHU3i06iKrl88eDrfN2pOR52G/xs948b8yI0a242XMjmDyk8zM4exC2jIhPe1B2ibTDd8V5feNrs/2Obf1w1zNuRuLNeuQyKz69iFVW8m88=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708804669; c=relaxed/simple;
-	bh=QT98gB0MamXu+48RZNGJKHHUP35XArdtMZSyttKyeqM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RBKjNS2QvWBA0yo2JL9lQuetZT9V6BjTUQcEExwZWFOPRuqbWqoi+PoOUGmcXnnZM+OTSqmNHAtVj2jlVCpM6uM++87mk+fGcL1dOg4a223FhBF+TZhH+rVndTS17bZaRq9oQKQJW/DJbHLdFAE3uZrv/r3JOCkvJ6i8o9vibG8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NAd4oJC2; arc=none smtp.client-ip=209.85.219.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-dcc80d6006aso1930290276.0
-        for <devicetree@vger.kernel.org>; Sat, 24 Feb 2024 11:57:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708804666; x=1709409466; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3upkBSE7EW4IvTVy+GKTlfggEfeNrb15KBzrmzdqVsY=;
-        b=NAd4oJC2v0oLjR3kGoQO+AQEzFPHslNy3YRTisExxy+Usvy2yJdcVgOuoDax/aNm9N
-         p+iC1ALNpX9ejayOImmiGDpAnwavMnaU+IvwWWfI1Tw3imIcWtTCxRRBzOFRZgd1pgr4
-         FiG/1jNbqRLyqr11b8yTvs9VAQ1XzzZ16shc3cpA8hN9gcEMjdKJ/+taPko8QMXXbo4T
-         Xx72TUHuxwGtL58WOqAGIp5EscHc0r63w+2lG3q+tyvlKyPP0NvwxHBZQdLKet3salEF
-         5WgukKqjJTGgUluNq9TF1mTPssqzBLOM+W77RGvvKWbK0FBACpLFDwknQlPO3cwtcaMv
-         stOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708804666; x=1709409466;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3upkBSE7EW4IvTVy+GKTlfggEfeNrb15KBzrmzdqVsY=;
-        b=sehINqgt805RPnIExAJ75bE0rWbdmf2RKLloWOJs7zVJCf4fZEyJiJ3iw+jS8XEPoi
-         m1yBQCOvH/3UsxV2iOUE5TYjx1aKz+vrFz7dMFBZyfR2uhcRWb7ZLM3RX2xJnWjznXeH
-         /iC5m4R00sH8jX3MjDZz0lczJYFaIVqEDjfXS7CDplzOe74SwxdMsFsrTkcyrBWxbjY9
-         bJ8lOxbKKNnN4NTkFmWChweJrHU/5Ie5UOJiRpDirLDy1HmZfK2sU4rrGPl6pd78xvMR
-         RHyMR7YWoyBtCq/+SGXfjhwBtwxZtNz2BtZUsXC9hHnCnfkf/xJeUmfzofsbIQ3U6NOZ
-         tYtA==
-X-Forwarded-Encrypted: i=1; AJvYcCXQ8UwNCL9VuQOi2DAH1CzhPdxrMtKOadHkRZyfo1j1cS5nIXx9+FO4Sd36cQYGcqgxJw/pbBBTlOqAbnGv53NaCunaHCRd0wR76A==
-X-Gm-Message-State: AOJu0YzRNgArNH+OEz62C6L4+jlEEICXZdPNYf4ypVnq5/MrBFVZdS2M
-	GRqOySDkWRvsKWmDXx45nQyzUBISCCbYGPk24a1gP4XGSGlgneN0fWY7Ru/cKoSmCunmg5De+A3
-	5SYATrbHoVfnEP39YMxN2yUgriGPw2hg35nw8zw==
-X-Google-Smtp-Source: AGHT+IF324Ij+0TdHaj23lio+sfs2T6+v3wM2ZIkq1lLEzIDLQ6B8M2LdAqBy5aPp7QJDr8vBzFvnBhEYhGDAHPSbIM=
-X-Received: by 2002:a25:abcf:0:b0:dc6:9ea9:8154 with SMTP id
- v73-20020a25abcf000000b00dc69ea98154mr2050724ybi.13.1708804666266; Sat, 24
- Feb 2024 11:57:46 -0800 (PST)
+	s=arc-20240116; t=1708804953; c=relaxed/simple;
+	bh=tpvjkEKYJLAWc8r/kFlJlpJPF2ji+9TFnmJFk47EZlk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=K3+O4VicqeRWTlyqgRXx0BKFu6Cfl14jOWuTuWFBOAnEp1/817tscmWZm37lXewsE6DVDy+6FFP8p6LyWG/5d6nlT9qsY969iy5MHWRXCae0iu4pOluNcP0k06uzDGPbeB0bC8nWRPABffzM5ULgue0wNJUDyWvsUhFYe6lkgo0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M4EJfrEu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 476DFC433F1;
+	Sat, 24 Feb 2024 20:02:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708804952;
+	bh=tpvjkEKYJLAWc8r/kFlJlpJPF2ji+9TFnmJFk47EZlk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=M4EJfrEukmXbwH6vbe4k1OZ9uAkIti2PK99vA7IODObK94M/+dWtj7ewfRKkVCzBe
+	 C07PLANm15udqZOyj0fM2A+5/64AqnNp3y7OEZ3m3qx2LWwmuSym2P3mmbLbMCEoKW
+	 ZkeTkEvJD+E0tqJ7Gei3Ggez2ugzAV+DBBYd++cVQBzLxvTkNqUIGzbRdGOQ571d/l
+	 K2ZCQTYsYFh6ibAlxc+Gnr56XzXoeytPVFeMjE8PDfI0+iAV7a/LICTWNMVF0McfNw
+	 LpwUA2ZTyv3N3EV5tpPt4xQ8FJJcAUG9iSwZPjoDy2T18+4IVkB1Mr/mckTL/hvbzv
+	 vljH/6Y+VYOZA==
+Date: Sat, 24 Feb 2024 20:02:26 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Varshini Rajendran <varshini.rajendran@microchip.com>
+Cc: radu_nicolae.pirea@upb.ro, richard.genoud@gmail.com,
+	gregkh@linuxfoundation.org, jirislaby@kernel.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, nicolas.ferre@microchip.com,
+	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
+	linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 12/39] dt-bindings: serial: atmel,at91-usart: add
+ compatible for sam9x7.
+Message-ID: <20240224-kimono-stress-898eae80abd3@spud>
+References: <20240223171342.669133-1-varshini.rajendran@microchip.com>
+ <20240223172559.672142-1-varshini.rajendran@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240216223245.12273-1-semen.protsenko@linaro.org>
- <20240216223245.12273-12-semen.protsenko@linaro.org> <ce515530-428a-4a21-8c56-5a497cc8130a@linaro.org>
- <CAPLW+4=kpk=Vg=nX-hVxcCS0OttC6xmyUcB005tmX+vtUF9TLA@mail.gmail.com> <c4f7e3cb-db9b-48be-883e-33878d2510e8@linaro.org>
-In-Reply-To: <c4f7e3cb-db9b-48be-883e-33878d2510e8@linaro.org>
-From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Sat, 24 Feb 2024 13:57:35 -0600
-Message-ID: <CAPLW+4kBHnLnPj0JKvdQ-Bm7DiEJ+_Ob-Cw60=vzwDwbOh4qOA@mail.gmail.com>
-Subject: Re: [PATCH 11/16] clk: samsung: Keep register offsets in chip
- specific structure
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Tomasz Figa <tomasz.figa@gmail.com>, linux-samsung-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="8c64jTTjW0j3INUS"
+Content-Disposition: inline
+In-Reply-To: <20240223172559.672142-1-varshini.rajendran@microchip.com>
+
+
+--8c64jTTjW0j3INUS
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 22, 2024 at 1:47=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 22/02/2024 01:42, Sam Protsenko wrote:
-> > On Tue, Feb 20, 2024 at 5:04=E2=80=AFAM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 16/02/2024 23:32, Sam Protsenko wrote:
-> >>> Abstract CPU clock registers by keeping their offsets in a dedicated
-> >>> chip specific structure to accommodate for oncoming Exynos850 support=
-,
-> >>> which has different offsets for cluster 0 and cluster 1. This rework
-> >>> also makes it possible to use exynos_set_safe_div() for all chips, so
-> >>> exynos5433_set_safe_div() is removed here to reduce the code
-> >>> duplication.
-> >>>
-> >>
-> >> So that's the answer why you could not use flags anymore - you need an
-> >> enum, not a bitmap. Such short explanation should be in previous commi=
-ts
-> >> justifying moving reg layout to new property.
-> >
-> > Will do, thanks.
-> >
-> >>
-> >>> No functional change.
-> >>>
-> >>> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> >>> ---
-> >>>  drivers/clk/samsung/clk-cpu.c | 156 +++++++++++++++++++-------------=
---
-> >>>  1 file changed, 86 insertions(+), 70 deletions(-)
-> >>>
-> >>> diff --git a/drivers/clk/samsung/clk-cpu.c b/drivers/clk/samsung/clk-=
-cpu.c
-> >>> index 04394d2166c9..744b609c222d 100644
-> >>> --- a/drivers/clk/samsung/clk-cpu.c
-> >>> +++ b/drivers/clk/samsung/clk-cpu.c
-> >>> @@ -44,12 +44,14 @@ typedef int (*exynos_rate_change_fn_t)(struct clk=
-_notifier_data *ndata,
-> >>>
-> >>>  /**
-> >>>   * struct exynos_cpuclk_chip - Chip specific data for CPU clock
-> >>> + * @regs: register offsets for CPU related clocks
-> >>>   * @pre_rate_cb: callback to run before CPU clock rate change
-> >>>   * @post_rate_cb: callback to run after CPU clock rate change
-> >>>   */
-> >>>  struct exynos_cpuclk_chip {
-> >>> -     exynos_rate_change_fn_t pre_rate_cb;
-> >>> -     exynos_rate_change_fn_t post_rate_cb;
-> >>> +     const void                              * const regs;
-> >>
-> >> Why this is void?
-> >>
-> >
-> > Different chips can have very different register layout. For example,
-> > older Exynos chips usually keep multiple CPU divider ratios in one
-> > single register, whereas more modern chips have a dedicated register
-> > for each divider clock. Also, old chips usually split divider ratio vs
-> > DIV clock status between different registers, but in modern chips they
-> > both live in one single register. Having (void *) makes it possible to
-> > keep pointers to different structures, and each function for the
-> > particular chip can "know" which exactly structure is stored there,
-> > casting (void *) to a needed type. Another way to do that would be to
-> > have "one-size-fits-all" structure with all possible registers for all
-> > possible chips. I don't know, I just didn't like that for a couple of
-> > reasons, so decided to go with (void *).
-> >
-> > I'll add some explanation in the commit message in v2.
->
-> Currently the one-size-fits-all seems feasible, even if few fields are
-> not matching, so I would prefer to go this approach.
->
+On Fri, Feb 23, 2024 at 10:55:59PM +0530, Varshini Rajendran wrote:
+> Add sam9x7 compatible to DT bindings documentation.
+>=20
+> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+> ---
+> Changes in v4:
+> - Fixed the wrong addition of compatible
+> - Added further compatibles that are possible correct (as per DT)
+> ---
+>  .../devicetree/bindings/serial/atmel,at91-usart.yaml | 12 +++++++++---
+>  1 file changed, 9 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/serial/atmel,at91-usart.ya=
+ml b/Documentation/devicetree/bindings/serial/atmel,at91-usart.yaml
+> index 65cb2e5c5eee..30af537e8e81 100644
+> --- a/Documentation/devicetree/bindings/serial/atmel,at91-usart.yaml
+> +++ b/Documentation/devicetree/bindings/serial/atmel,at91-usart.yaml
+> @@ -23,11 +23,17 @@ properties:
+>            - const: atmel,at91sam9260-dbgu
+>            - const: atmel,at91sam9260-usart
+>        - items:
+> -          - const: microchip,sam9x60-usart
+> +          - enum:
+> +              - microchip,sam9x60-usart
+> +              - microchip,sam9x7-usart
+>            - const: atmel,at91sam9260-usart
+>        - items:
+> -          - const: microchip,sam9x60-dbgu
+> -          - const: microchip,sam9x60-usart
+> +          - enum:
+> +              - microchip,sam9x60-dbgu
+> +              - microchip,sam9x7-dbgu
 
-Sure, no problem. Will fix it in v3.
+> +          - enum:
+> +              - microchip,sam9x60-usart
+> +              - microchip,sam9x7-usart
 
-> Best regards,
-> Krzysztof
->
+This doesn't make sense - this enum should be a const.
+I don't really understand the idea behind of the original binding here that
+allowed:
+"microchip,sam9x60-dbgu", "microchip,sam9x60-usart", "atmel,at91sam9260-dbg=
+u", "atmel,at91sam9260-usart"
+
+Specifically, I don't get the purpose of the "microchip,sam9x60-usart".
+Either make it
+      - items:
+          - enum:
+              - microchip,sam9x60-dbgu
+              - microchip,sam9x7-dbgu
+          - const: microchip,sam9x60-usart
+          - const: atmel,at91sam9260-dbgu
+          - const: atmel,at91sam9260-usart
+or add
+      - items:
+          - const: microchip,sam9x60-dbgu
+          - const: atmel,at91sam9260-dbgu
+          - const: atmel,at91sam9260-usart
+or explain exactly why this needs to be
+"chipa-dgbu", "chipa-usart", "chipb-dbgu", "chipb-dbgu"
+
+Thanks,
+Conor.
+
+
+--8c64jTTjW0j3INUS
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdpLUgAKCRB4tDGHoIJi
+0gcuAPwKJcQi8VunTtf+c2HxMwJnzd/VcSM1qfFZR7t6Y2RTxwD/UV6+lcP8ArXQ
+HqrqN+g0Ua0mQyRSLJa+cfksxbl88wY=
+=PXng
+-----END PGP SIGNATURE-----
+
+--8c64jTTjW0j3INUS--
 
