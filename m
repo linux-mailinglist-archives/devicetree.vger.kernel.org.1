@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-45578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59E6B862713
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 20:48:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3934862719
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 20:50:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4EF541C210FD
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 19:48:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10CB41C2101C
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 19:50:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 095D04C62E;
-	Sat, 24 Feb 2024 19:48:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42B764C62A;
+	Sat, 24 Feb 2024 19:49:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="duONKiU8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IEvOBS72"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D182C4317B;
-	Sat, 24 Feb 2024 19:48:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1645F3F8FF;
+	Sat, 24 Feb 2024 19:49:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708804120; cv=none; b=ihlPvo1cz+y9hgwTivpSFrr/F3zgLn/Gw0Ppgy7BbMpje1E3KybCwflJ4iYVg4wVTFZegR0X+k3up9OMS/KRDak6WdERdzOenVgv+/P8k8v8Ar7A4ROl/aABVG/PQTv6IOw1xS5XE1ahcvwBRc1zaPPMAR0x33j3FI9gItXFj6I=
+	t=1708804196; cv=none; b=j1PZ9hO4Tr3ldxWn3dafWp7ZDDVal5apL03bw6yaj/MPXofBm52CGMvgRtczacXFlZ/m0WpDt7CLPvudd9xpA06eL9hBkipn/HvWrgJiQHQ+6TphPs67CukSAe5X98Pl+rYRcoX7Qn3NbOXKRXMznd31uL/UA8alvSqreSRmKBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708804120; c=relaxed/simple;
-	bh=DrXEA5LfQtyiBzKY/GgIWRK6O4zFVc1tt6OpMvzP0T4=;
+	s=arc-20240116; t=1708804196; c=relaxed/simple;
+	bh=LKcf52hIT2A2+hbYa23XsdcTHFHE1z6cL1qWeBShTXg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oCpwMEf65PoiDxY8pE6U7mJhfuAM5wFn571LHs6RjgQ9SU5Fc1YUfAWxLI0o3RcyqjZmTYodIGNtrJWKfb3T7a2pI5ABfxWCzj+IMW0icccDa0qE0fuOQrdahfiUKIXmAsbOnPdTyLux2+j4OqaFEp+ssA07I6rNNHPn6H06iuI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=duONKiU8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B23BC433C7;
-	Sat, 24 Feb 2024 19:48:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GW7srXpprj+EWCRAAKRz03TdGXs67WHbx37kGPuOIh+5/uz9q12aZKHmpixoBHqA7FG8h7AWN9nHHLtoYH9f64CoFa7oIVuM0kHrtp0GmI8f412+eT29GFkAfq2WH62o5XzZrLRhe2DkjdaaF2U5EUbPzNSE5vxR8Lg6CT1gNfo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IEvOBS72; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5514BC433C7;
+	Sat, 24 Feb 2024 19:49:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708804120;
-	bh=DrXEA5LfQtyiBzKY/GgIWRK6O4zFVc1tt6OpMvzP0T4=;
+	s=k20201202; t=1708804195;
+	bh=LKcf52hIT2A2+hbYa23XsdcTHFHE1z6cL1qWeBShTXg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=duONKiU8o2/aF9dShN9pM1Jt/VDiYdpOIKqD2ixaszIx5VxL4mL8dWCLESyqQiBbX
-	 d9kiVBZCtakOUubpduacqMM7JSEGIsJcu189cLdzQVPhsegSn/mDUzeROeuZUcF23F
-	 x8uperuvNzjLHdlfZTlrmd9c/rMlY390HkcqWsaP8jcqrPCuRYijG5YnjANiWFDGxc
-	 i93QvOIh7kdJ13F3HcRAevT83jyMHf0+j4PnGRhzWlPnNIdLG6UUjQXeZZAOf3TCHi
-	 EKwuuf4/G1pKLvtPd2AY7XpcFXppHKbkdj4+ftZeZNxqH7U5TTE5diTTpftudy62HH
-	 PtlEqkSwrMqZg==
-Date: Sat, 24 Feb 2024 19:48:35 +0000
+	b=IEvOBS72ofB8ErsDuFavfypj9GgLtKxg4uLHVjGeRWB7RIavMpgiVdnmwmF5sTaAi
+	 F4UWbvk2FlmcDLd3VMAJqbgIBe8bR8N5NNWWO3THBnL5vrOmoudre6b+pGu9pg9INc
+	 tOc/rMwloq1GL7j1yvxc4G9WYNCuuve+9I8daBCrR7k9mEL5+zL2+Vrq9Pa8HptYgs
+	 6ASfYX5mQf3yUaC5OrlQFSHfguOEPGyNneSDLHjBgTaoU5d/BA4Nggq5kV97ml0kF8
+	 pE3ePmiVVlbpuMANiVKi0oO//OVuGIPeX53rheDWF0088awA6WSr3X+U0sdyk+QtY/
+	 z89jTeKUBj6FQ==
+Date: Sat, 24 Feb 2024 19:49:51 +0000
 From: Conor Dooley <conor@kernel.org>
 To: Varshini Rajendran <varshini.rajendran@microchip.com>
-Cc: claudiu.beznea@tuxon.dev, lgirdwood@gmail.com, broonie@kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, nicolas.ferre@microchip.com,
-	alexandre.belloni@bootlin.com, alsa-devel@alsa-project.org,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 13/39] ASoC: dt-bindings: atmel-classd: add sam9x7
- compatible
-Message-ID: <20240224-vice-lunchtime-fd456448d41d@spud>
+Cc: andi.shyti@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+	claudiu.beznea@tuxon.dev, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 06/39] dt-bindings: i2c: at91: Add sam9x7 compatible
+ string
+Message-ID: <20240224-unarmored-mastiff-0b6273cb7af4@spud>
 References: <20240223171342.669133-1-varshini.rajendran@microchip.com>
- <20240223172608.672190-1-varshini.rajendran@microchip.com>
+ <20240223172459.671832-1-varshini.rajendran@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,68 +62,65 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="GCI4KyNPv+vKZusj"
+	protocol="application/pgp-signature"; boundary="Y4MadY9+wGHU8pb3"
 Content-Disposition: inline
-In-Reply-To: <20240223172608.672190-1-varshini.rajendran@microchip.com>
+In-Reply-To: <20240223172459.671832-1-varshini.rajendran@microchip.com>
 
 
---GCI4KyNPv+vKZusj
+--Y4MadY9+wGHU8pb3
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Feb 23, 2024 at 10:56:08PM +0530, Varshini Rajendran wrote:
-> Add sam9x7 compatible to DT bindings documentation.
+On Fri, Feb 23, 2024 at 10:54:59PM +0530, Varshini Rajendran wrote:
+> Add compatible string for sam9x7.
 >=20
 > Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
-> ---
-> Changes in v4:
-> - Changed the subject prefix matching the subsystem
 
-> - Removed unwanted '-items' from the syntax
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Did you? The diff looks identical to v3.
-
-Thanks,
+Cheers,
 Conor.
 
 > ---
->  .../devicetree/bindings/sound/atmel,sama5d2-classd.yaml    | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
+> Changes in v4:
+> - Made sam9x7 compatible as an enum with sama7g5 compatible
+> - Removed the sam9x7 compatible from allOf section as it was not needed
+>   like pointed out
+> ---
+>  Documentation/devicetree/bindings/i2c/atmel,at91sam-i2c.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 >=20
-> diff --git a/Documentation/devicetree/bindings/sound/atmel,sama5d2-classd=
-=2Eyaml b/Documentation/devicetree/bindings/sound/atmel,sama5d2-classd.yaml
-> index 43d04702ac2d..ae3162fcfe02 100644
-> --- a/Documentation/devicetree/bindings/sound/atmel,sama5d2-classd.yaml
-> +++ b/Documentation/devicetree/bindings/sound/atmel,sama5d2-classd.yaml
-> @@ -18,7 +18,12 @@ description:
-> =20
->  properties:
->    compatible:
-> -    const: atmel,sama5d2-classd
-> +    oneOf:
-> +      - items:
-> +          - const: atmel,sama5d2-classd
-> +      - items:
-> +          - const: microchip,sam9x7-classd
-> +          - const: atmel,sama5d2-classd
+> diff --git a/Documentation/devicetree/bindings/i2c/atmel,at91sam-i2c.yaml=
+ b/Documentation/devicetree/bindings/i2c/atmel,at91sam-i2c.yaml
+> index 6adedd3ec399..b1c13bab2472 100644
+> --- a/Documentation/devicetree/bindings/i2c/atmel,at91sam-i2c.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/atmel,at91sam-i2c.yaml
+> @@ -25,7 +25,9 @@ properties:
+>                - atmel,sama5d2-i2c
+>                - microchip,sam9x60-i2c
+>        - items:
+> -          - const: microchip,sama7g5-i2c
+> +          - enum:
+> +              - microchip,sama7g5-i2c
+> +              - microchip,sam9x7-i2c
+>            - const: microchip,sam9x60-i2c
 > =20
 >    reg:
->      maxItems: 1
 > --=20
 > 2.25.1
 >=20
 
---GCI4KyNPv+vKZusj
+--Y4MadY9+wGHU8pb3
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdpIEwAKCRB4tDGHoIJi
-0rqeAP0T/vcukep+lXBA0E6SieaRS5/yTwFDjelCml6dZ9FuPAEAmcrwGIUWtiu9
-CqsI65afkbEy4WSEXseZIFo6hs+MhA4=
-=BpOz
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdpIXwAKCRB4tDGHoIJi
+0mDNAQDGpl3vP5UAJMTUm53Y4KrHTVIBflsOrBopc0tvkP91qwEAgmnzmONyXwY7
+NchKq6c1FgxFJbFWUaUs7wQtDehlTQ0=
+=xGdj
 -----END PGP SIGNATURE-----
 
---GCI4KyNPv+vKZusj--
+--Y4MadY9+wGHU8pb3--
 
