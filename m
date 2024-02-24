@@ -1,132 +1,350 @@
-Return-Path: <devicetree+bounces-45574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9264B8626F2
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 20:19:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 835678626F6
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 20:19:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0763D1F2171B
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 19:19:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A7A801C20A14
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 19:19:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B90E487A7;
-	Sat, 24 Feb 2024 19:18:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51BA0481B7;
+	Sat, 24 Feb 2024 19:19:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pd+w5m7M"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="ZzUB+pcU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3002DEDE;
-	Sat, 24 Feb 2024 19:18:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67B894C618
+	for <devicetree@vger.kernel.org>; Sat, 24 Feb 2024 19:19:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708802337; cv=none; b=SChAHgSfdHnUKggQ6qcS4/nCcYm7gP/GGtulMEffvIFKOXRghP30TT2zpddy8u5+ouwbmqp87FCUpROklkYXBJJtsVHPLBAjZNMbpx5BDmphFUgJYw9rpV+XRba5s1Cu6wcWEXH8WwPhM2TiI3DB93M+L7K/5IacrcLwaE2YFOE=
+	t=1708802377; cv=none; b=TeaBls1XGtbxFZ9+HigaZLrvQaz8eoiubw9hPJtyFNey+Gd01gYgjR995UJPRaI9xR4F/R292767QfKVggL2PIOxJMY/ARd5JAxnd6GFdkZsIaV+I6hfz/2z0uk2oOdXncNME2WD2SPsO8dqio3Iy7ybodCaTfKz6C63IqjQa3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708802337; c=relaxed/simple;
-	bh=15Z+svmWXnvuKAbgxBOoIfyNn9nC0bhPmQJ8VekgTSY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gXMR6HiKz4hJvYWqopCPmP8b4cnXcZC16LArB1BJe6JowxxL6brU7v9Y8gk11aTESgux7gmbBohPpuxxcdpVbdnI6GU++YY4bu4DGpcyd4UE47T3WKUvOr+Yj8CU5PFH1yHSwvPUbAYv0eFVRqLxD9DwgKDEcZpPfsb4kTYJTsA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pd+w5m7M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79357C433F1;
-	Sat, 24 Feb 2024 19:18:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708802336;
-	bh=15Z+svmWXnvuKAbgxBOoIfyNn9nC0bhPmQJ8VekgTSY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Pd+w5m7MGpgkfvereSA8w363L0+0XYyy4mxCGYK1kLPRXuIphk7iNf9fYjjs9zmFF
-	 4Rh6RW/SyhidEjSAVYl0YYg9VsKRKQJJek5X7pp+2u5uoJmm+d3nL3ZwEn44GXRD+A
-	 dgugZtqmOaP7YLbz55Zlil+KknYgufMCsfWBbdOAbFeEVAS0MfW3j9DwjoSdmtsPWG
-	 bWt+66/72K3W5BLYndjd+QiVd6P186MSkHaMKsSiVyBn1dq8V11KLhWABaiGGNQ0/A
-	 G7j2LIiUYPiq+ZCfC42cA7rQeoj09hHW/1h2c4GJE5rCnkfXTtzoND9vYgCirla/ZG
-	 +9xQqjeoG2NaA==
-Date: Sat, 24 Feb 2024 19:18:43 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Javier Carrasco <javier.carrasco.cruz@gmail.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: light: vishay,veml6075: make
- vdd-supply required
-Message-ID: <20240224191843.61796617@jic23-huawei>
-In-Reply-To: <20240223-niece-shakily-7e18b90f30e7@spud>
-References: <20240223-veml6075_vdd-v1-1-ac76509b1998@gmail.com>
-	<20240223-niece-shakily-7e18b90f30e7@spud>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1708802377; c=relaxed/simple;
+	bh=4LQYSc7GFsrm1TvldZ6buKCHCVGR6zDXQtiaBR+wN7Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Qm1oKa8X8EpVh76TXAjUZYilRWNuev8UVqoQIz8YIoqN30IHTnpHHfG4H0xNWUiVRK2bJTXmuNS3gL2dYk+5wFFUnAxULWhbWKAUUIKNMQXNeoe1r3DiZQ/jYrTT7nLibPLn/gE9jwvxUdRgbixTweLnTseDbgcQBvaND4eD//w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=ZzUB+pcU; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a3f4464c48dso219597966b.3
+        for <devicetree@vger.kernel.org>; Sat, 24 Feb 2024 11:19:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ragnatech.se; s=google; t=1708802373; x=1709407173; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ETFFJxQSBbyZGvl8EQoSQ5mDMb1hGsckWby0hRuDh5s=;
+        b=ZzUB+pcU7I1GO2jl4l5ZHJYOnker+z3B+fW4PodIIru8WUJdJxH3LEND3tRtDuIRd6
+         Y1GW8lszOYF/ZGGoyKg06QoBGptui9Dmsk822ctZTrmkMHaArqqckpDJnafbSTicKiHp
+         j5upGtwyBpt4zLBEQUrVwkbs144Rsdnvg1cafZes44HNI8C2wz8HVZL2lrdpZ8B1ph1N
+         2BfHNKKljIMMrwq9iW0B0zOyPOz/VJb4qUJaAzeAmD3l+CznB3lN5WsLSr1zyb+MMOtt
+         2JkM3IwzFrgB4meqejGIE6UuMAK1KGLX43VdvlFjd6haChC5EvkWOHyk7dV+SP76BMfa
+         pvkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708802373; x=1709407173;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ETFFJxQSBbyZGvl8EQoSQ5mDMb1hGsckWby0hRuDh5s=;
+        b=EQBOd80yMQEIAi/CqkH9wtkGjKDaeJLVqMO5ii819MxiDmvfeB7FGTbkjG70uTUBZ0
+         UQU8w/T1dJzyXTjbR1Jc4gtaW3yrEJf3pbXLLe1pVRxQO+wNdSKzJx8RISpbsy/eheky
+         MyepCnj/PP2/RzJE0HaOygddFveHXmbnSYWpaJMRGjDZkCJfE28NFvYoChSHrm3GEfF8
+         3X4iOH7Y+6SQE+4tESlhJHAtbXcJlv5226drLkO8pahP4r3jgXKVvnR3aWFKaThMsUER
+         y35Tjn+Z5ibf+KKuDKiZRmtM43v3idyKBEq62e2L0cIJcDx/hnFXjNEPQ2KuFAbkD619
+         tsZg==
+X-Forwarded-Encrypted: i=1; AJvYcCVhhGhOgupawbpgSAxeV/d9NgT+E1+zTxrK599NmJ1ct0qUom75BzpiiMFFOq+eT0AkRDkBhUZ1/CLfkNWJpcPlVuvUgTcrROYrlg==
+X-Gm-Message-State: AOJu0Yw0MfcaDN4VkUCFVrCVPpgfJ8Q+Zg4/FFJ1HSPIO7yIhY9nYeaO
+	54Kl/HV7zBjrw61++s+PfMDcqt7UnOyUi+YwuzetYrYrMre6Je1SPSiFEgRkDcv1mJA1eSREBZH
+	0gHI=
+X-Google-Smtp-Source: AGHT+IExpyLk2T7iD3ENjztwYmuOchtgvMUTZhZGECHxp79S+6V+n3UkR2k6nEUR/SNFFWUxwSL0Vw==
+X-Received: by 2002:a17:906:410a:b0:a43:18c1:19c with SMTP id j10-20020a170906410a00b00a4318c1019cmr115525ejk.73.1708802372474;
+        Sat, 24 Feb 2024 11:19:32 -0800 (PST)
+Received: from sleipner.berto.se (p4fcc8c6a.dip0.t-ipconnect.de. [79.204.140.106])
+        by smtp.googlemail.com with ESMTPSA id vb5-20020a170907d04500b00a415674dd16sm828116ejc.3.2024.02.24.11.19.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 24 Feb 2024 11:19:31 -0800 (PST)
+From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	=?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH v2] arm64: dts: renesas: eagle: Add capture overlay for function expansion board
+Date: Sat, 24 Feb 2024 20:19:02 +0100
+Message-ID: <20240224191902.2065733-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.43.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Fri, 23 Feb 2024 18:34:39 +0000
-Conor Dooley <conor@kernel.org> wrote:
+The Eagle board supports an optional "Function expansion board". The
+expansion board adds support for HDMI OUT, HDMI capture from two
+different sources and eMMC.
 
-> On Fri, Feb 23, 2024 at 02:01:33PM +0100, Javier Carrasco wrote:
-> > The VEML6075 requires a single supply to operate. The property already
-> > exists in the bindings and it is used in the example, but it is still
-> > not on the list of required properties.
-> > 
-> > Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-> > ---
-> > The driver and bindings for the VEML6075 UV sensor were merged in the
-> > merge window for v6.8 i.e. they have not been released yet beyond rc.
-> > 
-> > Applying this patch as a fix now would avoid an ABI break like the
-> > recently discussed here:
-> > 
-> > https://lore.kernel.org/linux-iio/8409a5bc71b995e3b738b817a074cfb131c3b2b5.camel@gmail.com/
-> > 
-> > On the other hand, from the same discussion it can be concluded that the
-> > major risk would be a potential warning with dtbs_check, in case this
-> > patch is applied during the next merge window.  
-> 
-> I don't care if it introduces a dtbs_check problem, we can fix those.
-> The device clearly needs power and at least for linux it being missing
-> gets handled perfectly fine. I think it's pretty reasonable to do this.
-> 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> 
-Applied to the togreg branch of iio.git and pushed out as testing.
+This change only adds support for the two HDMI capture sources.
 
-Jonathan
+Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+---
+* Changes since v1
+- The board is named "Function expansion board", update all references.
+- Rename the over lay to r8a77970-eagle-function-expansion.dtso.
+- Add r8a77970-eagle-expansion.dtbo to dtb-$(CONFIG_ARCH_R8A77970) so
+  it's considered for installation.
+- Move #include statements below /.../; markers.
+- Sort nodes without addresses in alphabetical order.
+- Capitalize i2c -> I2C in comments.
+- Use symbolic values for GPIO flags.
+- Adjust gpios and output-{low,high} to match that the signal is
+  active-low.
+- Correct misspelled label and removed unneeded ones.
+---
+ arch/arm64/boot/dts/renesas/Makefile          |   3 +
+ .../r8a77970-eagle-function-expansion.dtso    | 214 ++++++++++++++++++
+ 2 files changed, 217 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a77970-eagle-function-expansion.dtso
 
-> Cheers,
-> Conor.
-> 
-> > 
-> > The VEML6075 driver already handles the power supply with
-> > devm_regulator_get_enable().
-> > ---
-> >  Documentation/devicetree/bindings/iio/light/vishay,veml6075.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/iio/light/vishay,veml6075.yaml b/Documentation/devicetree/bindings/iio/light/vishay,veml6075.yaml
-> > index abee04cd126e..91c318746bf3 100644
-> > --- a/Documentation/devicetree/bindings/iio/light/vishay,veml6075.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/light/vishay,veml6075.yaml
-> > @@ -21,6 +21,7 @@ properties:
-> >  required:
-> >    - compatible
-> >    - reg
-> > +  - vdd-supply
-> >  
-> >  additionalProperties: false
-> >  
-> > 
-> > ---
-> > base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
-> > change-id: 20240223-veml6075_vdd-e2220158ffda
-> > 
-> > Best regards,
-> > -- 
-> > Javier Carrasco <javier.carrasco.cruz@gmail.com>
-> >   
+diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
+index 8ea68d582710..a7d98f286e40 100644
+--- a/arch/arm64/boot/dts/renesas/Makefile
++++ b/arch/arm64/boot/dts/renesas/Makefile
+@@ -62,6 +62,9 @@ dtb-$(CONFIG_ARCH_R8A77965) += r8a77965-ulcb.dtb
+ dtb-$(CONFIG_ARCH_R8A77965) += r8a77965-ulcb-kf.dtb
+ 
+ dtb-$(CONFIG_ARCH_R8A77970) += r8a77970-eagle.dtb
++dtb-$(CONFIG_ARCH_R8A77970) += r8a77970-eagle-function-expansion.dtbo
++r8a77970-eagle-function-expansion-dtbs := r8a77970-eagle.dtb r8a77970-eagle-function-expansion.dtbo
++dtb-$(CONFIG_ARCH_R8A77970) += r8a77970-eagle-function-expansion.dtb
+ dtb-$(CONFIG_ARCH_R8A77970) += r8a77970-v3msk.dtb
+ 
+ dtb-$(CONFIG_ARCH_R8A77980) += r8a77980-condor.dtb
+diff --git a/arch/arm64/boot/dts/renesas/r8a77970-eagle-function-expansion.dtso b/arch/arm64/boot/dts/renesas/r8a77970-eagle-function-expansion.dtso
+new file mode 100644
+index 000000000000..3aa243c5f04c
+--- /dev/null
++++ b/arch/arm64/boot/dts/renesas/r8a77970-eagle-function-expansion.dtso
+@@ -0,0 +1,214 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Device Tree Source for the Eagle V3M Function expansion board.
++ *
++ * Copyright (C) 2024 Niklas Söderlund <niklas.soderlund@ragnatech.se>
++ */
++
++/dts-v1/;
++/plugin/;
++
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/interrupt-controller/irq.h>
++
++/ {
++	/* CN4 */
++	/* Eagle: SW18 set to OFF */
++	cvbs-in-cn4 {
++		compatible = "composite-video-connector";
++		label = "CVBS IN CN4";
++
++		port {
++			cvbs_con: endpoint {
++				remote-endpoint = <&adv7482_ain7>;
++			};
++		};
++	};
++
++	/* CN2 */
++	/* Eagle: SW35 set 5, 6 and 8 to OFF */
++	hdmi-in-cn2 {
++		compatible = "hdmi-connector";
++		label = "HDMI IN CN2";
++		type = "a";
++
++		port {
++			hdmi_in_con2: endpoint {
++				remote-endpoint = <&adv7612_in>;
++			};
++		};
++	};
++
++	/* CN3 */
++	/* Eagle: SW18 set to OFF */
++	hdmi-in-cn3 {
++		compatible = "hdmi-connector";
++		label = "HDMI IN CN3";
++		type = "a";
++
++		port {
++			hdmi_in_con: endpoint {
++				remote-endpoint = <&adv7482_hdmi>;
++			};
++		};
++	};
++};
++
++/* Disconnect MAX9286 GMSL I2C. */
++&i2c3 {
++	status = "disabled";
++};
++
++/* Connect expansion board I2C. */
++&i2c0 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	gpio@27 {
++		compatible = "onnn,pca9654";
++		reg = <0x27>;
++		gpio-controller;
++		#gpio-cells = <2>;
++
++		vin0_adv7612_en {
++			gpio-hog;
++			gpios = <3 GPIO_ACTIVE_LOW>;
++			output-high;
++			line-name = "VIN0_ADV7612_ENn";
++		};
++	};
++
++	hdmi-decoder@4c {
++		compatible = "adi,adv7612";
++		reg = <0x4c>, <0x50>, <0x52>, <0x54>, <0x56>, <0x58>;
++		reg-names = "main", "afe", "rep", "edid", "hdmi", "cp";
++		interrupt-parent = <&gpio3>;
++		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
++		default-input = <0>;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++
++				adv7612_in: endpoint {
++					remote-endpoint = <&hdmi_in_con2>;
++				};
++			};
++
++			port@2 {
++				reg = <2>;
++
++				adv7612_out: endpoint {
++					remote-endpoint = <&vin0_in>;
++				};
++			};
++		};
++	};
++
++	video-receiver@70 {
++		compatible = "adi,adv7482";
++		reg = <0x70 0x71 0x72 0x73 0x74 0x75
++		       0x60 0x61 0x62 0x63 0x64 0x65>;
++		reg-names = "main", "dpll", "cp", "hdmi", "edid", "repeater",
++			    "infoframe", "cbus", "cec", "sdp", "txa", "txb" ;
++		interrupt-parent = <&gpio3>;
++		interrupts = <03 IRQ_TYPE_LEVEL_LOW>, <04 IRQ_TYPE_LEVEL_LOW>;
++		interrupt-names = "intrq1", "intrq2";
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@7 {
++				reg = <7>;
++
++				adv7482_ain7: endpoint {
++					remote-endpoint = <&cvbs_con>;
++				};
++			};
++
++			port@8 {
++				reg = <8>;
++
++				adv7482_hdmi: endpoint {
++					remote-endpoint = <&hdmi_in_con>;
++				};
++			};
++
++			port@a {
++				reg = <10>;
++
++				adv7482_txa: endpoint {
++					clock-lanes = <0>;
++					data-lanes = <1 2 3 4>;
++					remote-endpoint = <&csi40_in>;
++				};
++			};
++		};
++	};
++
++};
++
++&csi40 {
++	status = "okay";
++
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++
++			csi40_in: endpoint {
++				clock-lanes = <0>;
++				data-lanes = <1 2 3 4>;
++				remote-endpoint = <&adv7482_txa>;
++			};
++		};
++	};
++};
++
++&pfc {
++	vin0_pins_parallel: vin0 {
++		groups = "vin0_data12", "vin0_sync", "vin0_clk", "vin0_clkenb";
++		function = "vin0";
++	};
++};
++
++&vin0 {
++	status = "okay";
++
++	pinctrl-0 = <&vin0_pins_parallel>;
++	pinctrl-names = "default";
++
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++
++			vin0_in: endpoint {
++				pclk-sample = <0>;
++				hsync-active = <0>;
++				vsync-active = <0>;
++				remote-endpoint = <&adv7612_out>;
++			};
++		};
++	};
++};
++
++&vin1 {
++	status = "okay";
++};
++
++&vin2 {
++	status = "okay";
++};
++
++&vin3 {
++	status = "okay";
++};
+-- 
+2.43.2
 
 
