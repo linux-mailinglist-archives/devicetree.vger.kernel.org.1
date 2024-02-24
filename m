@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-45476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED9F28620E9
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 01:02:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD0948620FD
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 01:07:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B5861F27473
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 00:02:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E07811C2454F
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 00:07:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D2283C35;
-	Sat, 24 Feb 2024 00:02:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A60D645;
+	Sat, 24 Feb 2024 00:07:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vOlUYHHT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hLMTI8JS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF0EE3C28
-	for <devicetree@vger.kernel.org>; Sat, 24 Feb 2024 00:02:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E297383
+	for <devicetree@vger.kernel.org>; Sat, 24 Feb 2024 00:07:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708732930; cv=none; b=PWRbMB5J5x6qS3FbAqQrAHu4A9mY3z6fpIow1xX61N0cUk28p66dmu0ncgOcbv2L+yvBhgZm3xY5Ly3x7bwjXEcss8DXst4DLyB6gQS3j4SFzOnPzKQf16VUSL5dT5btaOz0HFRvplPFY71Mwkr3dntu46LF6VTrp1j0FMh8+JM=
+	t=1708733254; cv=none; b=COVN/a9qMCk7ZYbYKlEtP5lAtEKL0qIWhWjLuiMu4Hyobnumju2EeYCsGAUINEmuQrSqy4rDZ89E/o9u1Vp1jULrvgI9cOJjpYLtawgsVxPJETMqVVQU19PuSPiTsDNF4aXQiQV+qWkJoonZ5xmCdjUkZBIh46ORJDjvpO0kTxc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708732930; c=relaxed/simple;
-	bh=UbVxq4wTDHlpK8UWuiEzg3/9BzAum9YoZK0MzyDnies=;
+	s=arc-20240116; t=1708733254; c=relaxed/simple;
+	bh=2o21MVF3HyO3lY0XRfIs2jlh9WAVsOYPA8puXNidXdw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=s6TLS5lZiGPKxWaXc606D1ID5no228CdYSf+3uvSxzusQ17YDhic3JbkvOQDM6jtMbgEdNV1JQD50Ys83k4uC/WdwADhoHgdIE7X7WZsEI1YaSzm4a1df8UtcX/l7p44F7y9gAJbNrAhEIokS7SzHVegtMQ9neUMeiVjbRhPf6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vOlUYHHT; arc=none smtp.client-ip=209.85.167.51
+	 In-Reply-To:Content-Type; b=aNnHI4ny061cFPVP1fo7l9z3O2GXYGoAXawgU9LFu/bgWlKAty32Ix8cqtQOFTCEQFCBWxkWonjszvsTz4XXvibk84MYm6APYkuah+mIp6bfTX15+A++TZFhNWZesTxUcLktFYRsRnCkqVM4G4+IZ3xTX4Q+rD9MfxZIpH6AiuI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hLMTI8JS; arc=none smtp.client-ip=209.85.208.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5101cd91017so2029932e87.2
-        for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 16:02:07 -0800 (PST)
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5655c7dd3b1so1743525a12.0
+        for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 16:07:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708732926; x=1709337726; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708733251; x=1709338051; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vhD3DAWbNML3SlHPwjoNnwcDxDI9+wbM/QZnrMUkqLY=;
-        b=vOlUYHHTqPwK5KiY7ZkcKCx1y0LiAA1nbk3AureYlkhU7V9P8DJ++8I5QenxAv9ljE
-         cu7KxTJaweLjuKvUvGvdp4Y51djzkOOqRAmxgM0zXZgHR/jdA17kSiQQ0xPz7+JW8MdF
-         xB0VQLaSvCUNyS+z1NLAJ0nrJtmAArcif2D/lNYWc9A3AbX5i9dR7ZN6shL3ylWfl7YG
-         RsCx+UN44ry9jasSLwvop93Y0Ggkt1aMaKxqwWlO6RS4jQxHRzXDDz/ACxJwrUEkZNlT
-         AWxvRk6yoiiMh8tw9FM5HfelVCqntT2vCwL08e1Ib4+90W7GFihQ0+ezsG6Lg1C8xJQH
-         vvKA==
+        bh=6SOHcP8DrDhZ2e1SgGmWFGExWevqxMGqoGRYxVcIJl8=;
+        b=hLMTI8JSpC6OyOCpDQqlWMeZMs2/xNJ+McMAZDnKJd+QLq/X/JhT90b5QJqGZlidyi
+         MEI7Daan/CrTW/ifqAmmwkO87/aTRs6UTY29pZX7sXPI9vV2DE3AmDMkEMC/kEAidGFF
+         IoQNJ6xTVOyLn59kduEdwnQa/2UXkJv8YZUKa+JuecC+eIugIJlVz0gOUbNZObD5RUYH
+         D4NDAjLDunMTn24GV+NRYhDDz3Xk7aJdol+x8CqhRGPuEgJUoWlc1Kxb749WkdxhZhbp
+         vvPv67SDxgvW3q7J1bMzI+WXfCS9Ddw9zP24WG9DZuHIRS7/NwYUw+zfpAtvXohAexef
+         4kzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708732926; x=1709337726;
+        d=1e100.net; s=20230601; t=1708733251; x=1709338051;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vhD3DAWbNML3SlHPwjoNnwcDxDI9+wbM/QZnrMUkqLY=;
-        b=aOKBSLg5VfSPx2PBhOVb5lVY+Ln/m5g9bgkZhNZPbewjUzu6bW4kd7WlOyyDCMNyxE
-         ffa0TyhaB0yAl/zB3rtldXKb5lZTtuC0sXutNU+eHtkRVtro3P3wrGJqxtP64iXtOKyv
-         WPZaphHU439V5ZdyCTooqdhi7dxkfwbnHNqRJj4tQSTk+is+NiNdFxFvY4cxTsa4qyLv
-         F7/NNk1JU5cxF0gZ7hd9X5Ywj7RhqEJkdXGeyjGNaORSatd42lZoc07Y87MhjiU+Dvfl
-         nodbFC4q1bVGULJCCjO2+FlorHdxqF2ctbnXiYj1ayUihbOp0KjHn+0sY3+SZxoIkKIc
-         gGnQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVK/89PSXKy3+xiq5/yv8T0zVRKdcdGrAZZFcWjeV8xmMs9Ed7gXOVAyineTMZBwXYG1nbSXojs6dOTql6TP57MsLxAYX1q2RMQLg==
-X-Gm-Message-State: AOJu0YxVLUe3QH0hFTbLoSR9fVL4CmTNJr1Lce4mfkDpmqSXlOJRCJtL
-	+oaurAoy5hZFhLLTITf7VhlMS0wxWFhAoZ2PNL7jFcfECNvnKFVg7N8U31Ps95Y=
-X-Google-Smtp-Source: AGHT+IFkK2ZqsQ+kADx4LKX6bQQeA6NKG9CpBHfwrTSpoNCuI4y35aQUf0eZ1nkkqJ2R+HZWqarpUQ==
-X-Received: by 2002:a05:6512:242:b0:512:b935:c542 with SMTP id b2-20020a056512024200b00512b935c542mr774317lfo.59.1708732925952;
-        Fri, 23 Feb 2024 16:02:05 -0800 (PST)
+        bh=6SOHcP8DrDhZ2e1SgGmWFGExWevqxMGqoGRYxVcIJl8=;
+        b=PPcFgtkWv8o1b13F3l1mDTYxWzkaTLfjwNFF2bPT8OEOLWDGk8mumimCsrCV8VMP9S
+         vCUo/B6574n9VOTv/X7bQHZaa7PF9odoQyCh/SR81/HnZxAWZ90IlBKncQmTQwN5JvRI
+         V84qba+xaQwj0zzDfnWz2o6tuI9P2mnCsKXazBxJHwPmzYANaZpCHBvk8fCv7Ghdq0pg
+         a/FvK64noGAbN9SnuzbnRZP1Gt83i2QwZnOAL4tmrAAGS6z+vJufBog6NIj+x2hWKMGc
+         rulJP/0WUdvFV2BfWT9vLcyLJYNcb7yvrqPD1gYbpmndLVQ8klVcw9VCEmfYOux5Q6vl
+         Y4wA==
+X-Forwarded-Encrypted: i=1; AJvYcCVNRkfanmreI7FFyTmffufoLwyqyUYzcoXM8u6Hf03n0UGCwNHoT1SUUL842HUuldJRy0Ft/UDnlJcVnQNVOq3w5ZdRrH+xSHfcsA==
+X-Gm-Message-State: AOJu0YwjJyjhLr4iq0lLg1Zf3r8Wb2SSpgbd9gHfSe99gCpEXYxB7Bdi
+	lfk6s7utnmJcaq+gr3SN+Gx3KNhzDox7IjxWM+upr7KaMAAinlk37/hOXWXPHCQ=
+X-Google-Smtp-Source: AGHT+IEIadmHk63HemoRWWxsA7Fy0W6ljpj9vbzDd37Xdks0UbSJKjAuyBp4GlqH/FgPBWYb2ydAGg==
+X-Received: by 2002:a05:6402:528c:b0:565:26e7:4987 with SMTP id en12-20020a056402528c00b0056526e74987mr1257577edb.5.1708733250749;
+        Fri, 23 Feb 2024 16:07:30 -0800 (PST)
 Received: from [192.168.179.2] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
-        by smtp.gmail.com with ESMTPSA id r7-20020a170906350700b00a3ecfef7f1esm61330eja.189.2024.02.23.16.02.04
+        by smtp.gmail.com with ESMTPSA id z6-20020a50cd06000000b00563918a48cfsm40041edi.40.2024.02.23.16.07.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Feb 2024 16:02:05 -0800 (PST)
-Message-ID: <53f486d1-94c7-4dd9-89fc-d80a92301700@linaro.org>
-Date: Sat, 24 Feb 2024 01:02:03 +0100
+        Fri, 23 Feb 2024 16:07:30 -0800 (PST)
+Message-ID: <640775cb-3508-4228-aa94-2e4b7b6b2b6d@linaro.org>
+Date: Sat, 24 Feb 2024 01:07:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,26 +76,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 3/7] PCI: qcom: Add ICC bandwidth vote for CPU to PCIe
- path
+Subject: Re: [PATCH v5 2/3] PCI: qcom-ep: Enable cache coherency for SA8775P
+ EP
 Content-Language: en-US
-To: Krishna chaitanya chundru <quic_krichai@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
+To: Mrinmay Sarkar <quic_msarkar@quicinc.com>, andersson@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ manivannan.sadhasivam@linaro.org, robh@kernel.org
+Cc: quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
+ quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
+ dmitry.baryshkov@linaro.org, quic_krichai@quicinc.com,
+ quic_vbadigan@quicinc.com, quic_schintav@quicinc.com,
  Lorenzo Pieralisi <lpieralisi@kernel.org>,
  =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, Johan Hovold <johan+linaro@kernel.org>,
- Brian Masney <bmasney@redhat.com>, Georgi Djakov <djakov@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+ Bjorn Helgaas <bhelgaas@google.com>, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- vireshk@kernel.org, quic_vbadigan@quicinc.com, quic_skananth@quicinc.com,
- quic_nitegupt@quicinc.com, quic_parass@quicinc.com,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-References: <20240223-opp_support-v7-0-10b4363d7e71@quicinc.com>
- <20240223-opp_support-v7-3-10b4363d7e71@quicinc.com>
+ linux-pci@vger.kernel.org
+References: <1708697021-16877-1-git-send-email-quic_msarkar@quicinc.com>
+ <1708697021-16877-3-git-send-email-quic_msarkar@quicinc.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -132,39 +129,43 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240223-opp_support-v7-3-10b4363d7e71@quicinc.com>
+In-Reply-To: <1708697021-16877-3-git-send-email-quic_msarkar@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23.02.2024 15:48, Krishna chaitanya chundru wrote:
-> To access PCIe registers, PCIe BAR space, config space the CPU-PCIe
-> ICC(interconnect consumers) path should be voted otherwise it may
-> lead to NoC(Network on chip) timeout. We are surviving because of
-> other driver vote for this path.
-> As there is less access on this path compared to PCIe to mem path
-> add minimum vote i.e 1KBps bandwidth always.
+On 23.02.2024 15:03, Mrinmay Sarkar wrote:
+> Due to some hardware changes, SA8775P has set the NO_SNOOP attribute
+> in its TLP for all the PCIe controllers. NO_SNOOP attribute when set,
+> the requester is indicating that there no cache coherency issues exit
+> for the addressed memory on the host i.e., memory is not cached. But
+> in reality, requester cannot assume this unless there is a complete
+> control/visibility over the addressed memory on the host.
 > 
-> In suspend remove the disable this path after register space access
-> is done.
+> And worst case, if the memory is cached on the host, it may lead to
+> memory corruption issues. It should be noted that the caching of memory
+> on the host is not solely dependent on the NO_SNOOP attribute in TLP.
 > 
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> So to avoid the corruption, this patch overrides the NO_SNOOP attribute
+> by setting the PCIE_PARF_NO_SNOOP_OVERIDE register. This patch is not
+> needed for other upstream supported platforms since they do not set
+> NO_SNOOP attribute by default.
+> 
+> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
 > ---
+>  drivers/pci/controller/dwc/pcie-qcom-ep.c | 20 +++++++++++++++++---
+>  1 file changed, 17 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom-ep.c b/drivers/pci/controller/dwc/pcie-qcom-ep.c
+> index 89d06a3e6e06..369954649254 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom-ep.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom-ep.c
+> @@ -45,6 +45,7 @@
+>  #define PARF_SLV_ADDR_MSB_CTRL			0x2c0
+>  #define PARF_DBI_BASE_ADDR			0x350
+>  #define PARF_DBI_BASE_ADDR_HI			0x354
+> +#define PARF_NO_SNOOP_OVERIDE			0x3d4
 
-[...]
-
->  
-> +	/* Remove cpu path vote after all the register access is done */
-> +	ret = icc_disable(pcie->icc_cpu);
-> +	if (ret) {
-> +		dev_err(dev, "failed to disable icc path of cpu-pcie: %d\n", ret);
-> +		if (pcie->suspended) {
-> +			qcom_pcie_host_init(&pcie->pci->pp);
-> +			pcie->suspended = false;
-> +		}
-> +		qcom_pcie_icc_opp_update(pcie);
-
-This doesn't compile (you rename it in patch 6, this is patch 3)
+Any reason for this to be unsorted?
 
 Konrad
 
