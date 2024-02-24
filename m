@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-45520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8816386243E
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 11:29:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A263386244B
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 11:36:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D178283934
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 10:29:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 172471F21679
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 10:36:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AF21210E4;
-	Sat, 24 Feb 2024 10:29:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A77B18E3F;
+	Sat, 24 Feb 2024 10:36:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TWoPHDiz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cvM4iiLn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7255724B33
-	for <devicetree@vger.kernel.org>; Sat, 24 Feb 2024 10:29:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D83623CE
+	for <devicetree@vger.kernel.org>; Sat, 24 Feb 2024 10:36:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708770561; cv=none; b=rh/jgRfJjodMSyZoZeNCmC+GB5lronbMTTe0gRlfuacHHZ7S5hJ+67XdrcpnmCRW29HdrtCefPqKQgnWdDZAC+zQGy7Fz1xzCkJF/z5ggYSbNumQLQpXJPyFVihkMOMowtTue03PRckJtZyp5BlQhTEQzKoj/fPdnr1zO+liMlA=
+	t=1708771000; cv=none; b=KYA37ynHGy4HZxJj3O2/Fu1hIUau9ZIc/9ph65PHrzQcktA6UCDcpp7sZSRTO7ORKNRJNfaAOvAWcB4HH647SGe08ttI3nQvNM55tAaD6pu85Q/qXBCbGPVnAu1Vlsfk8qXCpPlQQzkOAFEm/ZXekTUOxLHITygqSty8zQKPoHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708770561; c=relaxed/simple;
-	bh=UmmRRipFFGBfDuz1Ljakf7IYYOd3bs6YeFlXvvVLCII=;
+	s=arc-20240116; t=1708771000; c=relaxed/simple;
+	bh=58adu5hvmmb2LOEQiDHsQjLazEwZVBt1UbSh0UkM2No=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B/336MTOX28tnQl6z3rL24Fhl7ayHRq+7qvaLMxm54710PRufTgyS8YaX3Qfb9VNoD7fO5jpHXaMWm9hrip30ZkBwVhJGYBCXlxZAWufMIPekT+f9/3xFePB2CS4/tnv5kbqEPdK6ArkI3Y8GKciaP7cR73HxHqyFD+LvFmUAIU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TWoPHDiz; arc=none smtp.client-ip=209.85.218.42
+	 In-Reply-To:Content-Type; b=Gvot2LTm6dJ2dyr3pa64w9IDJ9L7kSl83XOlNQ96plcTqstC2ga6fJgH4TUfN1+PLdY1C9mujC8hVEwQju5TgAJgRJ+5IBPcz94yCn5h7KJWNQcuh8txAOJQmcmRslcaBh5kOEAzYTMS7h3+KIGgr2iu1WOJ3IPZ89BnAprFaCw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cvM4iiLn; arc=none smtp.client-ip=209.85.208.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a2f22bfb4e6so180535366b.0
-        for <devicetree@vger.kernel.org>; Sat, 24 Feb 2024 02:29:19 -0800 (PST)
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-564fc495d83so1812919a12.0
+        for <devicetree@vger.kernel.org>; Sat, 24 Feb 2024 02:36:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708770558; x=1709375358; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708770996; x=1709375796; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=iiNtF5U9CShuQfFK7JdLW3n+8qn2BZNGbl36brZrEOo=;
-        b=TWoPHDizCCLETsKVyDjS31gNA0vIJPQwyC4ARpD+ANMG0Z2U+p2Fe47c2YDGpO+gKI
-         EDVPgtIBOJ2z3lHUKtbimPugJJ5/AGH++YnGPAJUiXieBhiz6w87KCWBgxlU/oxDr3WE
-         NthBo7D70jJ8n14YtswLwEiYlxsJfV0PSd525eZs2sa64FWwZhQZ6c/zhxbI11LOTunR
-         coGIGy/4m26NJ7H9awNd9wxwm5dNvIQN1fIrKR/dWdo8kx7Ay7YkOfM1AHGqlujQbxOJ
-         lA7EIDggaqakRqFbAbQnWRh9bnUvt+1BuACA9XzKjEtMxOwXWnjnIdMNp0E3ntSxFOIh
-         Emfg==
+        bh=oywdlN7ttlpIa6C90/nFZJ1AJJorSsP7MnjdUxAPcfI=;
+        b=cvM4iiLnm2HJ0QXVBt+rbbaaMsgYa7UE3KCX4pcLsgfVGBpD0colpOaaObMzlUkX5q
+         uQ8SnEQYbp8A0LjXDcIzFPzd71A3W4Eo8QlpsnwMv85mxvsupKsu3dtlKCKcuhqlATNz
+         uBrF0es1hsYVK2zxUfSXLxyFM+3Lq7xC3uFNTyd0yBxn4wBUG0+LL3WB6SfiCayH7FfM
+         YeH41UezyadaqvhXAz45JPqWXmVgin5D48I6HCYdr2PqOZ28oYs/2H+gg7Y+6gtmzbz5
+         l9fumB1urr0uxKldon25rf1AARbSLY6AOnRgRqNTFxXzEO7d/4f5SIWglqIjORLV4SLJ
+         1Mgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708770558; x=1709375358;
+        d=1e100.net; s=20230601; t=1708770996; x=1709375796;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iiNtF5U9CShuQfFK7JdLW3n+8qn2BZNGbl36brZrEOo=;
-        b=l+UKe8HOzKJepgquQT2WqM6Y3Ca5kXacIZ+OlBS+7sw12NCuCqmQwPjnwgv2hhFsgS
-         vpp4K9B/qFG+pStXGDtG30LPgfznEdtbyD042+y50/w8eXizcMQ+FKXpUpT3Gt0GlnrF
-         eqglYXIyw4FrCMG/z81Hg/7vCT6ri8k0P7EEuwx/eS2pO6hIBhvs0SoHjPVk1/G2yROE
-         sULHmYJQy6w97nlUEex/Q4in/o5tkNijJ9ffb5wilow73VaUi+N2utz24l4tY9qJCxcG
-         HlIlr/l7y2yoU+SJsFTH9BYmLVGG+hyCFh5oVWCK71AxYPctjwwKqvYL6mMg+a/cUA7Q
-         3gnw==
-X-Forwarded-Encrypted: i=1; AJvYcCVa9FBFxCOVvrjUYqpwJLuuyMR3bM+zuhsyRgyaTvyXFg53+TlMZtwbx3rcTfHzsWHgi5aYdfEnRNbDbxVcGX8uS0Tl6X7J02ZGTg==
-X-Gm-Message-State: AOJu0YwzTEfxCErQADTm/wMYOrZCbpzU/9O/nLpb219J6WNdhXKSfX7q
-	sA/pFoPaRFK6cCFVtyL19isw4edY77DSN6k5c8DG2lG+TGSJl+mkRV+aVi67f4Q=
-X-Google-Smtp-Source: AGHT+IFQzZH2gzg3Lqz5nCSsTICXmsizRo1EkQQ6/TyNYT2QFrYAWi19EF/tRHNNWBxlfyi5RuhkYQ==
-X-Received: by 2002:a17:906:565a:b0:a3e:34b2:a2fc with SMTP id v26-20020a170906565a00b00a3e34b2a2fcmr1571889ejr.1.1708770557867;
-        Sat, 24 Feb 2024 02:29:17 -0800 (PST)
+        bh=oywdlN7ttlpIa6C90/nFZJ1AJJorSsP7MnjdUxAPcfI=;
+        b=D7xWLtv2Kfb+jM91h6GZu05NhIXdrFV/odTkv0zNA6QfdYXTOg2uTmjF/dKoWXXFR7
+         xrV+gW9ldZrxeI2o3YnfaxOf/H+sju6pRztyCsSLJSakxGpmlHbIIxNuy+HuLUJcbJCs
+         MS/0OEVerbC18cmUiY442hmyVG3E2YErl/vw0Sf8R3ITPH+8XCFfUrwmjVsTvTbZSLXP
+         jtrLWqKFcyH+LeHPzf/crBAlpxMR1EJgOBA5L/vZHn3fp+/2EkbxmaicsEw413x97Zg6
+         YBO8MzUsAyi2e+MPOXCFNckc344oPDV2uXpMnEXLAt5Wd0B8r3iYBmxoU+DdOQNUSVk3
+         V+6Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVXqx9rkmtuDNVtvyf+MBd74YfPIFkevRTBhLyBQ3TvgkfFDevHQffs/4tVwrgVJ32lBDkM0rVZf+PePUiM7+vUHKHP6NiMK71ztg==
+X-Gm-Message-State: AOJu0YyNGdSbhoYWoqIdq4/kHLrxpVGWCTNbXALJhJdihkZ14N3WkI2v
+	LQxcb59iGihK+oRN3hgcK0JTJWTiFCKbbnEbehoy/EajJd1SDqc2noGih9aQY34=
+X-Google-Smtp-Source: AGHT+IFQ1CTLhVHev3X3ZsNIvWOvLmOq9DnNPyZNr2LsttwMkZxgcML6EMs7YR3aM8ssnQ0Gl1q6og==
+X-Received: by 2002:a05:6402:5201:b0:565:a5e1:3a12 with SMTP id s1-20020a056402520100b00565a5e13a12mr740380edd.3.1708770996394;
+        Sat, 24 Feb 2024 02:36:36 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id ps8-20020a170906bf4800b00a42ee2af521sm384657ejb.137.2024.02.24.02.29.16
+        by smtp.gmail.com with ESMTPSA id k1-20020a05640212c100b005653fe3f180sm416424edx.70.2024.02.24.02.36.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 24 Feb 2024 02:29:17 -0800 (PST)
-Message-ID: <37efdcfb-d79a-4560-8171-033320487620@linaro.org>
-Date: Sat, 24 Feb 2024 11:29:16 +0100
+        Sat, 24 Feb 2024 02:36:35 -0800 (PST)
+Message-ID: <fb14acfa-5b43-4ce7-93f4-9f6681152ca7@linaro.org>
+Date: Sat, 24 Feb 2024 11:36:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,16 +76,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] soc: qcom: socinfo: Add X1E80100 SoC ID table entry
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: add TP-Link Archer AX55 v1
 Content-Language: en-US
-To: Abel Vesa <abel.vesa@linaro.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
+To: Gabor Juhos <j4g8y7@gmail.com>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20240223-x1e80100-socinfo-v1-0-be581ca60f27@linaro.org>
- <20240223-x1e80100-socinfo-v1-2-be581ca60f27@linaro.org>
+References: <20240223-archer-ax55-v1-v1-0-99f8fa2c3858@gmail.com>
+ <20240223-archer-ax55-v1-v1-2-99f8fa2c3858@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -131,17 +131,82 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240223-x1e80100-socinfo-v1-2-be581ca60f27@linaro.org>
+In-Reply-To: <20240223-archer-ax55-v1-v1-2-99f8fa2c3858@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/02/2024 15:37, Abel Vesa wrote:
-> Add SoC Info support for the X1E80100 platform.
+On 23/02/2024 09:17, Gabor Juhos wrote:
+> Add device tree source for the TP-Link Archer AX55 v1 [1]
+> which is a dual-band WiFi router based on the IPQ5018 SoC.
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> At the moment, only the UART, the GPIO LEDs and buttons
+> are usable, but it makes it possible to boot an initramfs
+> image on the device.
+> 
+> The device tree can be extended in the future, once support
+> for other periherals will be available for the platform.
+> 
+> 1. https://www.tp-link.com/en/home-networking/wifi-router/archer-ax55/v1/
+> 
+> Signed-off-by: Gabor Juhos <j4g8y7@gmail.com>
 > ---
->  drivers/soc/qcom/socinfo.c | 1 +
->  1 file changed, 1 insertion(+)
+> Note: running 'make CHECK_DTBS=y qcom/ipq5018-tplink-archer-ax55-v1.dtb'
+> shows the following:
+> 
+>     DTC_CHK arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dtb
+>   <...>/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dtb: usb@8af8800: interrupts: [[0, 62, 4]] is too short
+>   	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
+>   <...>/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dtb: usb@8af8800: interrupt-names: ['hs_phy_irq'] is too short
+>   	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
+>   <...>/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dtb: usb@8af8800: interrupts: [[0, 62, 4]] is too short
+>   	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
+>   <...>/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dtb: usb@8af8800: interrupt-names:0: 'pwr_event' was expected
+>   	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
+>   <...>/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dtb: usb@8af8800: interrupt-names: ['hs_phy_irq'] is too short
+>   	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
+> 
+> This is not caused by the new device tree per se but comes from
+> the usb@8af8800 node defined in ipq5018.dtsi. Running the check
+> on 'qcom/ipq5018-rdp432-c2.dtb' shows the same.
+
+Thanks for noticing and describing. Appreciated!
+
+> ---
+>  arch/arm64/boot/dts/qcom/Makefile                  |   1 +
+>  .../dts/qcom/ipq5018-tplink-archer-ax55-v1.dts     | 133 +++++++++++++++++++++
+>  2 files changed, 134 insertions(+)
+
+...
+
+> +
+> +		button-wps {
+> +			debounce-interval = <60>;
+> +			gpios = <&tlmm 31 GPIO_ACTIVE_LOW>;
+> +			label = "wps";
+> +			linux,code = <KEY_WPS_BUTTON>;
+> +		};
+> +	};
+> +};
+> +
+> +&blsp1_uart1 {
+> +	pinctrl-0 = <&uart1_pins>;
+> +	pinctrl-names = "default";
+> +	status = "okay";
+> +};
+> +
+> +&sleep_clk {
+> +	clock-frequency = <32000>;
+> +};
+> +
+> +&tlmm {
+> +	button_pins: button-pins-state {
+> +		pins = "gpio25", "gpio31";
+> +		bias-pull-up;
+> +		drive-strength = <8>;
+> +		function = "gpio";
+
+Usually we keep 'function' as second property, after 'pins', but there
+is no need to send new version just for that.
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
