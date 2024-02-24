@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-45503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 119E08623D6
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 10:24:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 476EC8623FF
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 11:01:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 24D5F1C21B30
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 09:24:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 85E11B222ED
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 10:01:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6A84199C2;
-	Sat, 24 Feb 2024 09:24:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A2FE1B81E;
+	Sat, 24 Feb 2024 10:01:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="E2+EpNMg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RhpoUe8V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF0E618E2A
-	for <devicetree@vger.kernel.org>; Sat, 24 Feb 2024 09:24:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A2A41B976
+	for <devicetree@vger.kernel.org>; Sat, 24 Feb 2024 10:01:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708766654; cv=none; b=Tm4Xfl1fpdna4a0vxtvMXvFDCvmDCvh/ao2dWC5rH3LSRujuSZq5pUg9TCssbrQhiDNMXIAGAZnuOfuwXDHXbwgMu8kAgIXri7jL6ziQiTQjrqc1CFrWqdNg66EeiWdvismh9z7IA7aVI2B5bR3jqrstz5Qc+MV6t5/8mFmozEI=
+	t=1708768904; cv=none; b=oNkIGOHJzH1MigMRLxFRjo018kWL6GvDi7TnkaxNKdcMCdqDgR1BZ7vzQUdxZU2qERJGrKTlGaX53yuD79euA6Xdh13RcttTMKjukXuxJPYMSeNYmu7Z5AzPI3Bb00i60HnSGsdUbrS3TcAio/O9whoX8NRIv9iSm5coJ9+EgwQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708766654; c=relaxed/simple;
-	bh=p8tciHfgWI8nhnU1lwpxUjsCzl9vy0edvMrke59zFOo=;
+	s=arc-20240116; t=1708768904; c=relaxed/simple;
+	bh=3nMkR5dJcVD2Urhl5MgrFW+pMF7H/cPlbsNlgABcQQ8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ptp1D6/lGWDZzvziP92lGOWbuWRgmeZtuyaSpj0NgXSFCu7HzKSiOOOQcxNx2T/ZBR6QjQbPk0m3X4P7P59+xmFBuqBJHEj/zrhuxH9oBHhhxbiAi+fbNmv5+u4lfRBOFEJrkKaviJB1zhfPJjtwfJ2YIl1ahdXaNUJPwM7MROk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=E2+EpNMg; arc=none smtp.client-ip=209.85.218.46
+	 In-Reply-To:Content-Type; b=Tf8BqYq1HoXGsCh6O6DM0Byfe94K09vmXtJttfOZIUilSnIsZIbzVQhSXXSp7esoWaV2ofs5j80SBj3tQ23TnHd/3z64bn+r5zLwxTlY/7M3+KcI+gxkzoubs+mZPCU7sNz+BBEZOKkaW+yJYKfA0DSO/Jhcy5KOw75zOkXPgKY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RhpoUe8V; arc=none smtp.client-ip=209.85.208.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a2f22bfb4e6so174010366b.0
-        for <devicetree@vger.kernel.org>; Sat, 24 Feb 2024 01:24:12 -0800 (PST)
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5645960cd56so1433265a12.1
+        for <devicetree@vger.kernel.org>; Sat, 24 Feb 2024 02:01:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708766651; x=1709371451; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708768901; x=1709373701; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=e2rBHahbd3VJ7pBf4lVqIiyU3jm+URRIYusfSN2waHY=;
-        b=E2+EpNMgIyBeon2ESGqtHYoHiR/LY8wQYWIcIdQbV3Vrhicjsbnl2x98QKu/Lc7+r5
-         r5LaTA0MT5EFw231l+v2VkbvOUdfkN3ihC93U4Yz1KNYjn6F/f+5hS1xkMt9jhh8fk3z
-         onp9ao3RdYsf9fypuG0jMGYzE8oYnsl6KBeNUYZTuO86Qd5BBz2DlbEAupNZV9vcmlIo
-         5/UOBv53+pQcJk1iuN64i8jPzLxVL8HH0kkDnK4P9e5XQziiU7gWjBzT9rejKfYN2cUO
-         bDu+0nH+wCA5CAIadhDW6arBZZVqNk7LleJBoJxk5G8rMSf+rRRSsm4aYiMbzM5Yv0QW
-         wmgw==
+        bh=TLrO/bnxkuSUgm8muCOM3+Hdg03aFgJjfgi0takGu6U=;
+        b=RhpoUe8VCKDovq3UWRDNEtaiBUTL5MeDKcoxXtf4cGANgZekV0pHBGsDvigm+XhXve
+         ZWeOaco4L2sWPvYVuTod9JiBYk0BSYPPs8xFc7+sQxmM1pZDdK0P0cwAmsb2zC37bnX4
+         8M2Y7yf6Rk9hmXExWh7MedljEEn+WhM7yNShZ2DTudMfv7MKYjJyKNm2WYeMr5lB5xPm
+         AoubEw5cOXLnozOyjrEirxASZEdbk42q9NTsf222yzRrez7gqnCVNzJWithMOOJgcTwL
+         tnvWCbs4kWgW9yKLx0YH7of4R/VvN7j3+/M/xXFs+Uf5Ogn1/Jths4xGg4QPHl3ENZ7Q
+         hSEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708766651; x=1709371451;
+        d=1e100.net; s=20230601; t=1708768901; x=1709373701;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=e2rBHahbd3VJ7pBf4lVqIiyU3jm+URRIYusfSN2waHY=;
-        b=ijSvh5qdnnZpnmti+SqFZtxUZH5+k+WyYz4hx5A342uJEJDE6PslEb4u65KfK280jQ
-         zDKZkqFCkLE1/NKZNhoTTaRaHIynJNE/1yc5IvGj/nydpEwdNb2tuk8VRg0nLX5QFrY5
-         9i4IcyzToc+HUvWB3OFoZSm6wRMKk9fHyXNM6tpniN0qYBULYsp6TBRiUoda6idcm1Lm
-         dJx1Ce05BO1vtqDuvguOXMQhZF7JrthSgJg+2legRAt0C0kbh2BK6XFE76KyIl8SULyR
-         g9RibfxDR3YlNfg94/5Ord9lxF9io0tlRuel8sh+nwKp3zyzYkC6LvY6qAZSXBl3dldU
-         gyBw==
-X-Forwarded-Encrypted: i=1; AJvYcCURKewabCohcpSa5I1z/IkRtg023Cu0PMtypgsTE+Oaw1ZUFe1S0lDuV+xPxZR5o1XCNuaeBvPB2WBLlFUurkT7dhSOlRiC2xH/3g==
-X-Gm-Message-State: AOJu0Yz2GaMu+6Ow83hyyBZ35+xghYheKWRRVlyJvRrDEWX05f9PKaCl
-	sqcDntEDa246GLZdTfm5FxAbmTPCz15rmhyww++WOXWy6GXPmQ6/aM1WxVGcLZI=
-X-Google-Smtp-Source: AGHT+IFhWD4eyHrDcXBM8xZtbKLKp84FHlSWIhJzgk9tATj/ZtjCxVEzNU52cpKc1B8JFcnTeBH/yA==
-X-Received: by 2002:a17:906:dfcf:b0:a41:3e28:5db0 with SMTP id jt15-20020a170906dfcf00b00a413e285db0mr1375688ejc.26.1708766651228;
-        Sat, 24 Feb 2024 01:24:11 -0800 (PST)
+        bh=TLrO/bnxkuSUgm8muCOM3+Hdg03aFgJjfgi0takGu6U=;
+        b=B2WrG/ZtQMxejHpext5OgoEnj5zz5Wb4t2mosUJM8Hq3VNa2V0xl3Mo2b58+1TyIVA
+         DIWcbBxct+4znUIPzDIo6e1Dfxmj61FuI8qVRuCATnQXeaemLroD2uYGtjmZuryQO4s5
+         dpJWFe2M6l0pcvoNREqjEWCkHh8aTVBzI9TDOcf4o/E7K9YwY+VlYj0Nevw5hDL2S47+
+         NB5JQz5Op4tTLYbPc1DeWnHXdAOOKetkMuDOfWqBWRZG+srTmDXWeGh0KPDA0OQXFPvE
+         YBxqWD6snLQXTaK7PFuqpInJH9Hm4r/LiS0Geadw7M9ir1l7uMi2ArjJ3vpRWC6rhtRI
+         z90g==
+X-Forwarded-Encrypted: i=1; AJvYcCVNbQaZVrUqyQL0m0aaNPNq00CS434asTlxRLDizV9koF+XMfvFw1xGWu58U4qeH65IAcluhaustq2D/8k7+QuUVu33Wt93I0uCbA==
+X-Gm-Message-State: AOJu0YySe3bH4QkN/KtWqsbMIx7+fArxhEjXkfi0i26hdtRyH2wd108P
+	A//lAQt6pMyo4VRVIN2oA62pxPw6hkDRrQ3189ExiXh0HPLz2DTvHJhTuMRmj9U=
+X-Google-Smtp-Source: AGHT+IEOaVGuf4rEyUWIa2XD5k/ZOel8kCOB1hnm9mITwxBIcyi1g42hF1s5jQIqTrbTzeBHuoZU3g==
+X-Received: by 2002:a50:ef15:0:b0:565:6e46:2c9e with SMTP id m21-20020a50ef15000000b005656e462c9emr1425700eds.5.1708768900694;
+        Sat, 24 Feb 2024 02:01:40 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id z21-20020a1709060ad500b00a3e4d2d99adsm407499ejf.219.2024.02.24.01.24.09
+        by smtp.gmail.com with ESMTPSA id q32-20020a05640224a000b00564fa936b2bsm398120eda.94.2024.02.24.02.01.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 24 Feb 2024 01:24:10 -0800 (PST)
-Message-ID: <2c01f334-d061-44f4-a77d-8714226ff11a@linaro.org>
-Date: Sat, 24 Feb 2024 10:24:08 +0100
+        Sat, 24 Feb 2024 02:01:39 -0800 (PST)
+Message-ID: <eb772e32-7ecb-433a-a449-0aaae067963a@linaro.org>
+Date: Sat, 24 Feb 2024 11:01:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,19 +76,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: add common properties with label
+Subject: Re: [PATCH net-next v4 1/6] dt-bindings: net: hisilicon-femac-mdio:
+ convert to YAML
 Content-Language: en-US
-To: Rob Herring <robh@kernel.org>
-Cc: Guenter Roeck <linux@roeck-us.net>, Jean Delvare <jdelvare@suse.com>,
+To: Yang Xiwen <forbidden405@outlook.com>,
+ Yisen Zhuang <yisen.zhuang@huawei.com>, Salil Mehta
+ <salil.mehta@huawei.com>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzk@kernel.org>
-References: <20240216-dt-bindings-hwmon-common-v1-0-3c2c24ff1260@linaro.org>
- <20240216-dt-bindings-hwmon-common-v1-1-3c2c24ff1260@linaro.org>
- <f0f523c3-7b1c-404a-89c3-0c7345001676@roeck-us.net>
- <b21d351f-68be-4bca-a327-c35591c55610@linaro.org>
- <20240222195005.GA3735196-robh@kernel.org>
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>
+Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240222-net-v4-0-eea68f93f090@outlook.com>
+ <20240222-net-v4-1-eea68f93f090@outlook.com>
+ <e053448f-2b58-408a-af22-d7b464c52781@linaro.org>
+ <SEZPR06MB6959B0A21A1B601644E2836496562@SEZPR06MB6959.apcprd06.prod.outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,62 +138,26 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240222195005.GA3735196-robh@kernel.org>
+In-Reply-To: <SEZPR06MB6959B0A21A1B601644E2836496562@SEZPR06MB6959.apcprd06.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/02/2024 20:50, Rob Herring wrote:
-> On Sat, Feb 17, 2024 at 09:21:46AM +0100, Krzysztof Kozlowski wrote:
->> On 16/02/2024 18:11, Guenter Roeck wrote:
->>> On 2/15/24 23:55, Krzysztof Kozlowski wrote:
->>>> Linux hwmon core code parses "label" property for each device, so add a
->>>> common schema for that.
->>>>
->>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 22/02/2024 19:19, Yang Xiwen wrote:
+> On 2/23/2024 2:14 AM, Krzysztof Kozlowski wrote:
+>> On 22/02/2024 13:43, Yang Xiwen via B4 Relay wrote:
+>>> From: Yang Xiwen <forbidden405@outlook.com>
 >>>
->>>  From hwmon perspective:
->>>
->>> Acked-by: Guenter Roeck <linux@roeck-us.net>
->>>
->>>> ---
->>>>   .../devicetree/bindings/hwmon/hwmon-common.yaml          | 16 ++++++++++++++++
->>>>   1 file changed, 16 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/hwmon/hwmon-common.yaml b/Documentation/devicetree/bindings/hwmon/hwmon-common.yaml
->>>> new file mode 100644
->>>> index 000000000000..d83f4180f622
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/hwmon/hwmon-common.yaml
->>>> @@ -0,0 +1,16 @@
->>>> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/hwmon/hwmon-common.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Hardware Monitoring Devices Common Properties
->>>> +
->>>> +maintainers:
->>>> +  - Guenter Roeck <linux@roeck-us.net>
->>>> +
->>>> +properties:
->>>> +  label:
->>>> +    description: A descriptive name for this device.
->>>> +
->>>
->>> Would it make sense to also add shunt-resistor-micro-ohms ?
->>
->> It's not present on many devices, I think, so it is also not parsed by
->> hwmon core. I plan to add above $ref to hwmon-common to each hwmon
->> binding, so this would mean all of them will get shunt-resistor. I would
->> not add it, but I also don't mind if I am overruled.
+>>> For some FEMAC cores, MDIO bus is integrated to the MAC controller. So
+>>> We don't have a dedicated MDIO bus clock.
+>> Hm, this means you miss compatibles for these different cores.
 > 
-> I count 11 users. That's enough for me to add it here.
 > 
-> I care less if a device uses a defined property it doesn't need. I'm 
-> more worried about having any undefined property allowed.
+> So you mean adding a new compatible like 
+> "hisilicon,hisi-femac-mdio-integrated" for these ones without dedicated 
+> clocks?
 
-Ack, I'll send a v2.
+This is a part of a SoC, right? So compatibles should be SoC specific,
+thus I expect some hisilicon,SoC-femac-mdio.
 
 Best regards,
 Krzysztof
