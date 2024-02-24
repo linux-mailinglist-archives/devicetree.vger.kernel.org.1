@@ -1,124 +1,188 @@
-Return-Path: <devicetree+bounces-45501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB5F68623C3
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 10:13:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1730E8623C9
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 10:15:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6AF9B1F251FF
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 09:13:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4FA8282BA5
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 09:15:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46C86219E0;
-	Sat, 24 Feb 2024 09:12:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5F1B18046;
+	Sat, 24 Feb 2024 09:15:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YAUcGtyA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UyDIdvUq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72D2B1B81F
-	for <devicetree@vger.kernel.org>; Sat, 24 Feb 2024 09:12:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD89218622
+	for <devicetree@vger.kernel.org>; Sat, 24 Feb 2024 09:15:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708765968; cv=none; b=NLcq5ZthgYKnOMDWkKGEx61Ju9mfbYb3k/dAVT/K7k5UXelGU2QgR07676BvV+uOACLM6QBggPvz/dXQMRrG2C/yExQ4CgbZWuP77XNOzMmlFQLshXE5EFvmn9i8Tb13f1xlt0OR8lNEmKtLcLDfPjRqC5gvAlJ57r+gMJX5SDE=
+	t=1708766120; cv=none; b=dfEItNV0c9oT0p5VVo0/EG4kA09YoQi1RKc8AoHwdlvUCzvqcurOEHuqhUcgZ2ulnHWXxtLCwgl1unjQWVRlMf2tcfYGmNlDxH5C7g0Vx/R3PvLgpcTfHFHnJx4kcgxjievnwzjT1vnHvDlimHFLfrMTmUEc3OKLGbYpSK6huUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708765968; c=relaxed/simple;
-	bh=d0VFOfOH3/XDFGCEN39cKeYLTeNfespjyWL1U0WSFPY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=aNhKtUAZwHILUvHpEqiGfOwfiS6r23gzp3isFTwpFVBYV4fxMtZlzWhddVBahCRCoZgElpCGgY72lPLT8oBGUrqSiguy/OuNuDXEx8sEMWJb/4MJDieVTt8DyaRrifWEggnz5HecTicNLqUyN2EHJHNno7oR9MM1ZZiWIpFBVI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YAUcGtyA; arc=none smtp.client-ip=209.85.208.48
+	s=arc-20240116; t=1708766120; c=relaxed/simple;
+	bh=dtqxodcmJ9SBC6Rj+Mp5ZONU2KSQy+STXTzwUWZtTyM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dSSG4og3Mp8ZVMWwBXLwUGllfA5UYV/6b957jIhnCO7GLlXfYTukEqnOjwGepynLNVEjYF4M/1AtVnRw59G3qRaKKa53JeM4BUfIka8urmAMxwn+e37DL/Hxd7OOgDQOEgPzYmyZrzWdOWTWjOFwOmEDMHZyt+oA/m49NsnC07k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UyDIdvUq; arc=none smtp.client-ip=209.85.218.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-564fd9eea75so1577260a12.3
-        for <devicetree@vger.kernel.org>; Sat, 24 Feb 2024 01:12:45 -0800 (PST)
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a3ed9cae56fso214007466b.1
+        for <devicetree@vger.kernel.org>; Sat, 24 Feb 2024 01:15:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708765964; x=1709370764; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tbUWmxXPQmtEJUwryo3H5edvLFU7yMZad6wo2IXtDvs=;
-        b=YAUcGtyAaij2RoTYdOUTqz/OtYEeuofW6E7dLHzn0xrM2/4X9IXkaku49WvUqjKn6c
-         QxlLzgLjJSO1bbIsvwfC03WWc1HNEDJdxdvQA8n5t0gTeA8wlvLRNkUv43xvmGo1EAUJ
-         VQkI0BQCg8UHwFNmqzmEJNRFquVl+sAVei0h61YxHDTUwtq+oHBErpdVSANxskDpVrjt
-         enPiIGWpbVqUpodto8ELaavuGzNlWIW71XGEO0gA87a22bjSmh0+1W47ogfka43DhlQM
-         LQi+a59u4QOWx1htbffFDjONFn3TnclW9MNEfigP0z2CTEMx3uJyDOPq4d8AFKaNY80T
-         rG/Q==
+        d=linaro.org; s=google; t=1708766117; x=1709370917; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/yXuN0xYqKzIX5pSCX1Kp3woa7Po0PztF79u6wq9Z0k=;
+        b=UyDIdvUqTYayinWKrbvoB5ixcUWM0+a0hrTT0ep1kFBLE0/9lfhbwizzd5FzO61sHJ
+         8vV1QH0W+f4c/FG/W9Rm6O5D4tuQm9hefDYdZhDxxkHI5JLJfByah3+3J69ayZlki7Z9
+         kFTL1mde04sd/uG2qleyl3U0vzZSqGsNza2F7W9ZUSWLMuJT3CBughbu5UOiB0H7iGnY
+         ugSs8MnuXoXc1M9yPGC8M0hK0j6cEOYCJc+50zOgT/x1KoABeTNgadQUD3YScx5bw9jy
+         LM7iLlrKZzfw8XDOmd7N6/LHzoJhmaNewagQvdhCAITAFi2n8kCOTMpdibkHNO3NYhoQ
+         VvjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708765964; x=1709370764;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tbUWmxXPQmtEJUwryo3H5edvLFU7yMZad6wo2IXtDvs=;
-        b=BvVBJi/xc/i1i0bKkrZoN35U9Kkw+ZorlodmwtDYze/FHtsAgT4vMkTcZ0FRARFWoJ
-         AcPAzS/UC+A11Evu1ztTUzTeaURl4ZhvP/PPtqrLN+2JLTUIONavhrsTEnDf1xyLx/zs
-         O7N/zw0SLv97EhgAYqzrPiDQYqnfWTcRVAho6SZ3IG1jyAZ/SbgJFnfXrBPJbkAAAuVz
-         GuQGC0KFAC+5OpYxAvJ8xjQeSwDAyx+3x2x9RpU4lFes+mIDeRsxPON79Zuwl4LFn91V
-         g/FgrFz5nYYSvuiUSoOjolg1RJTY0SPj5RKRjmHMQi1J8STQ4TrI0v+7rSmxi0whM7e8
-         Fubw==
-X-Forwarded-Encrypted: i=1; AJvYcCXWObwe2FFCt6UATZlXfhaibbyXSupWDNSb6LSw7BNvOVuE8rUfJ+Xc4rF85Twh+r+xwKubx9nETBmcQd4ZKGxEVp0xBQHdlYkSHQ==
-X-Gm-Message-State: AOJu0YzyjnuVqqch+dWx/5kB7OxVZzf260N85QxDIeBXhsPDSImizbQ/
-	gVnr+EOUYDgZ9DX+2Jd+ecKUk4SQqlvWJ6zrFnWNDWkC6CriPGw2LTVY3lyenec=
-X-Google-Smtp-Source: AGHT+IHPkmdY/2JX+2DxbAffRxrLnVnrTav9C+myuLjv86tAmwyJIFeyB4pKDfYDM9Pizs0gbNasYQ==
-X-Received: by 2002:aa7:d0c9:0:b0:565:7d4a:1d4a with SMTP id u9-20020aa7d0c9000000b005657d4a1d4amr1230145edo.8.1708765964241;
-        Sat, 24 Feb 2024 01:12:44 -0800 (PST)
-Received: from krzk-bin.. ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id s8-20020a056402164800b005652f6a9533sm363120edx.74.2024.02.24.01.12.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 24 Feb 2024 01:12:43 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-remoteproc@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/3] dt-bindings: remoteproc: ti,davinci: remove unstable remark
-Date: Sat, 24 Feb 2024 10:12:36 +0100
-Message-Id: <20240224091236.10146-3-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240224091236.10146-1-krzysztof.kozlowski@linaro.org>
-References: <20240224091236.10146-1-krzysztof.kozlowski@linaro.org>
+        d=1e100.net; s=20230601; t=1708766117; x=1709370917;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/yXuN0xYqKzIX5pSCX1Kp3woa7Po0PztF79u6wq9Z0k=;
+        b=kUMI3TUyrunKzU4ZmOZoe3XeruqIFgbAlVwAGZnRbDwnKQI+5kb0mHLW116sEc9QGR
+         9hdqiKMSGubD2nTNixJb75lbRnJILuED4/aVu2uJxT6Jrz8NUHfBZdpMI+dp+ibwkToL
+         QY7+So0B/cLf23ePuva45Qkb+Omjk/UNibrvoaB/ikT8BwOfphGH+M0Z4DV1As+LbiOV
+         suXUJz5YAq2xKZQcXCxzFUbFILSTEMVAKbrUAK7cNC/JVAhqb8kKDGKAyPbIi2qZgN4e
+         wySvIeaVtYl6k29bVvY4+r/CmqKK2R+MlxlNX72CCd6z8g7fm2JSl+Ux63MyOqxHsLvM
+         v8Rg==
+X-Forwarded-Encrypted: i=1; AJvYcCULJ/DdQDsj5mSlDAPQTRl8K8yxBBc5bwuYaKatHYmyOn69KgwRoeypLuSvwopGmxJ2/aRPxsV61udph/nembHJTiAsDM0UEoIKRA==
+X-Gm-Message-State: AOJu0YytTcs+5Z+ns8nYLGeEJDX39KR5392glaEqoahdZVvwvINA3G5i
+	47r0YMaoYqjE7V5gcufjE9F4pbsHcQi9of1OdU6mZcVG0uiqqSahKyQN+vQGxsk=
+X-Google-Smtp-Source: AGHT+IEAv583RjbPCjqo8rCRP363mV19Vvbw2dN4DNVCngN6jVHMtXOxp2IpGr6bO6h5BvQRj+H2sQ==
+X-Received: by 2002:a17:906:2844:b0:a3f:adad:9ce1 with SMTP id s4-20020a170906284400b00a3fadad9ce1mr1745152ejc.18.1708766117121;
+        Sat, 24 Feb 2024 01:15:17 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.116])
+        by smtp.gmail.com with ESMTPSA id s1-20020a170906060100b00a3d9e6e9983sm410710ejb.174.2024.02.24.01.15.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 24 Feb 2024 01:15:16 -0800 (PST)
+Message-ID: <c9d65615-166b-4612-98a2-3837a90e646d@linaro.org>
+Date: Sat, 24 Feb 2024 10:15:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] dt-bindings: usb: typec-tcpci: add tcpci fallback
+ binding
+Content-Language: en-US
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux@roeck-us.net,
+ heikki.krogerus@linux.intel.com, jun.li@nxp.com, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ kernel@pengutronix.de
+References: <20240215212852.1202339-1-m.felsch@pengutronix.de>
+ <20240215212852.1202339-2-m.felsch@pengutronix.de>
+ <4e464a7a-6a38-461a-b03e-442cc43d1719@linaro.org>
+ <20240222202357.2etmuoy6i6qr6bnq@pengutronix.de>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240222202357.2etmuoy6i6qr6bnq@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-TI Davinci remoteproc bindings were marked as work-in-progress /
-unstable in 2017 in commit ae67b8007816 ("dt-bindings: remoteproc: Add
-bindings for Davinci DSP processors"). Almost seven years is enough, so
-drop the "unstable" remark and expect usual ABI rules.
+On 22/02/2024 21:23, Marco Felsch wrote:
+> On 24-02-22, Krzysztof Kozlowski wrote:
+>> On 15/02/2024 22:28, Marco Felsch wrote:
+>>> The NXP PTN5110 [1] is an TCPCI [2] compatible chip, so add the fallback
+>>> binding.
+>>>
+>>> [1] https://www.nxp.com/docs/en/data-sheet/PTN5110.pdf
+>>> [2] https://www.usb.org/sites/default/files/documents/usb-port_controller_specification_rev2.0_v1.0_0.pdf
+>>>
+>>> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+>>> ---
+>>> v2:
+>>> - rephrase commit message
+>>>
+>>>  Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml | 4 +++-
+>>>  1 file changed, 3 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml b/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml
+>>> index eaedb4cc6b6c..7bd7bbbac9e0 100644
+>>> --- a/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml
+>>> +++ b/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml
+>>> @@ -11,7 +11,9 @@ maintainers:
+>>>  
+>>>  properties:
+>>>    compatible:
+>>> -    const: nxp,ptn5110
+>>> +    enum:
+>>> +      - nxp,ptn5110
+>>> +      - tcpci
+>>
+>> That's not a fallback, but enum. Fallback is "items" and then you could
+> 
+> Damn, you're right. Sorry.
+> 
+>> also send a follow-up patchset (separate, so Greg won't take it) fixing
+>> DTS (if not, let me know, so I will fix it).
+> 
+> Sry. but I don't get this. Why do I need to send a follow-up? Greg did
+> not apply anything, at least I didn't received an e-mail, that this
+> patchset was picked.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/remoteproc/ti,davinci-rproc.txt        | 3 ---
- 1 file changed, 3 deletions(-)
+If you change existing ptn5110 to a list of ptn5110+fallback, then all
+existing will DTS start report warnings. Someone needs to fix this.
 
-diff --git a/Documentation/devicetree/bindings/remoteproc/ti,davinci-rproc.txt b/Documentation/devicetree/bindings/remoteproc/ti,davinci-rproc.txt
-index 25f8658e216f..48a49c516b62 100644
---- a/Documentation/devicetree/bindings/remoteproc/ti,davinci-rproc.txt
-+++ b/Documentation/devicetree/bindings/remoteproc/ti,davinci-rproc.txt
-@@ -1,9 +1,6 @@
- TI Davinci DSP devices
- =======================
- 
--Binding status: Unstable - Subject to changes for DT representation of clocks
--			   and resets
--
- The TI Davinci family of SoCs usually contains a TI DSP Core sub-system that
- is used to offload some of the processor-intensive tasks or algorithms, for
- achieving various system level goals.
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
