@@ -1,159 +1,128 @@
-Return-Path: <devicetree+bounces-45498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5F568623B5
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 10:09:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40E058623BA
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 10:12:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 126881C21EE2
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 09:09:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ADB8F1F23C13
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 09:12:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71FD218037;
-	Sat, 24 Feb 2024 09:09:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1192418AEE;
+	Sat, 24 Feb 2024 09:12:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ax7/KRhK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oD5+EDKs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E72F1400B;
-	Sat, 24 Feb 2024 09:09:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08A6418037
+	for <devicetree@vger.kernel.org>; Sat, 24 Feb 2024 09:12:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708765747; cv=none; b=RdxsKLX8KTh5Gdu8YNkNsI4ot92AESnBI7gwjiD2PzSSNO7bA8Q7Y9uRk0zQWXFDDpJTUYThsotuPMXx57LzW7HJe535G29tPn2kcJxSNya6k5DmxKzypq0eCvsofXCiZgRpOCs6E80qwZOBAsOXIvz8OGkgFA0mvVL2U/fzLK8=
+	t=1708765964; cv=none; b=r7ueZMkFyLw9za+LKWOAHdUP6v53Fo1W77bhiUd9yoJO3WK82MEe1mq6cIQ4pnSCBALft0lKBr0E4kBfucp3YKAAyuj/DGmd0eqoyfyMAxKvyCozI5njfGcrH7ASMyO1nvxg+zWTdD99gk5dlxoEdThzoyhdWriB6Sq8LqMDLek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708765747; c=relaxed/simple;
-	bh=Q1oMbEw0NLdRkWu0F9h/Gc9Oz5SC4qKZQNvZFGmheI4=;
-	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=Bi4MChQEMEPTPwVMh44NQTKoJZshIsUpCRh9cVDMMLJMxDIAKW1PYCb6hWiHXreAVRMibdyEbzK/beCzZ7OnZoMOqDjN2W86Twf9pgYeC0r49pZ0EzjSsFBLUDkksmvEAX4QyOzZRPUl94ks9k84DkTT/AuDa452zyBiaWiYb/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ax7/KRhK; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-512be9194b7so1322840e87.1;
-        Sat, 24 Feb 2024 01:09:05 -0800 (PST)
+	s=arc-20240116; t=1708765964; c=relaxed/simple;
+	bh=QJHaYzPY+m0OHtHiflvDg030t6MnJOuacu/PCuwm03k=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=On163riC6C3Pp1sym6jR1/ud+woTYNLVJbGgRpnrxxOXdl9O8hKubWwBeHhNWduQcJOA7rXGzbxTSfZqTDQeXRI95HCesn3HdK2QmhGILoKBOoBtAMnEJHs35BKM9QkdtNs2wcLgr+9nTiuRJd+204HVJaDaiv+/uGVhBHHZjuU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oD5+EDKs; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-563d56ee65cso1860192a12.2
+        for <devicetree@vger.kernel.org>; Sat, 24 Feb 2024 01:12:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708765744; x=1709370544; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=He0fBSHHPtIHZTRjcYmDZndFACrI+q2AezJo3cfp+yQ=;
-        b=ax7/KRhKL3JgVJSwwIHubvQJ9Z65+f/O1lQFyxK+LYyol0UGNHayOCgcBgFKI8i0At
-         qoUcF2OldmBRU7dTHhNHKfoJqnaWPT68x2Up6ydfHYx+tFQRvrT5Roa5Q2el/3bhA0Vv
-         1bruFcpj1bbu5RhM0rSXuulOQVqF7dH1AULv/I50iBrnKxj5wdmtISP2jw0KogbnxkXI
-         iLBkcMlREsXLM8BTsSdA7/z0FLVidI+3LyKJXGTytAS5ltFslnBBVfmlPy1Cl41vFfF3
-         t0KgWr1Ja92GvcxT3us7WlT+9QZrso/pl2eujBvI3qxT8Qq94qutIJDGxtdm/ppVnr8c
-         sOUg==
+        d=linaro.org; s=google; t=1708765960; x=1709370760; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rSJ+PeO4x72bs3AUvmTEqtOywxqrxagbi+uMUHWuQSQ=;
+        b=oD5+EDKsCqSB++cRrpFfBwCb/J82G2d3Svs5NOnwqgpBw2c4bdZZLqjT+s4MSzUB94
+         rFNbBcYCdI99RLoP7k27BF0R05ZHlADbtTZTcIjdSr5oAEzvDQX2BAvObAaSA+yLXf5d
+         cKxaMlELTaZuyypcleWFJ/iVp2RvfvzRjmHFJU23hbHZiof5ICfJJ9itaBgfxUOdXSMm
+         Jn2nmIGfWWn2nj1bmcgeELrJv9/ap7CMkqq7cFm4tLznsIUU0rmmMRL0t7iYHFMyQ7ri
+         UMXDgVW4nyilih9oGpZ6z+0PpTPj7cImysWeOavYYrDtyhAmt1lRno24aSU/pvWpF3+e
+         wYTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708765744; x=1709370544;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=He0fBSHHPtIHZTRjcYmDZndFACrI+q2AezJo3cfp+yQ=;
-        b=ezT/HyB7G7N2OLvDnOE3JhGUHH7PQQpjF6MFH5+OvBJJqeORuUJTXzKjW3UiSkEkiY
-         ey6cc6wnAXaZyzmzSqdj4O3m3QNo5oVmAGAaW6WFynrVJhnUEhB+azuYTPXGq59pPDAk
-         KIqcLssZGhUZf8P5xodlnjsH4tDwviBFonX8vY91mRV61Stg6rB3nKSCy51I5f/DM1gu
-         wE9FyDSHl6h2lKToNKAtcxhmHkTdlA9mwGVDy9Xn36I0li6Hw0ekL6Gu2LlcI1kHB/UE
-         6dlaNZRHChG79wQLFfN9yLw2UFBwSjx/xUKOBw800qq9kqXnsCeT7gY6yspFiWsdBXOE
-         daPA==
-X-Forwarded-Encrypted: i=1; AJvYcCV0k75IB8Y2GEjXpg8wiHl+Jh08VmJtLSBG4e+woAxOVh97wpGXY1RaoKnhyWu0sCKSiIE8zym2Y3JworlsZOnzSKp4i78M2zlnux89jZ7t2jwRoktHGjetXX8S0ZU5YsuuTiysnW3tRYObivYxESAklpNPgxJ2lmWTAjnwRGhUXO1J4g==
-X-Gm-Message-State: AOJu0YweNdF4qQy0c6robwjRQi0zqE1f34qypayen4DvpgK5yQ5VEO6q
-	V+A5B7oJ67oCmsd64T6KtnWn48WrpriBUNdm1XHcQkl6uTpulny1
-X-Google-Smtp-Source: AGHT+IGOmcFSCvj0DtbfsvvOm/TWfrSBjSEkwMeQyio5qdvAlQZq6fJHLF/fXG4q8mE1YEuQM4uU/w==
-X-Received: by 2002:a19:f710:0:b0:512:bd51:a0ea with SMTP id z16-20020a19f710000000b00512bd51a0eamr1115299lfe.9.1708765743390;
-        Sat, 24 Feb 2024 01:09:03 -0800 (PST)
-Received: from [192.168.1.105] ([178.176.74.19])
-        by smtp.gmail.com with ESMTPSA id t30-20020a195f1e000000b005118e37462asm144768lfb.89.2024.02.24.01.09.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 24 Feb 2024 01:09:02 -0800 (PST)
-Subject: Re: [PATCH v3 4/8] usb: cdns3-ti: support reset-on-resume behavior
-To: =?UTF-8?Q?Th=c3=a9o_Lebrun?= <theo.lebrun@bootlin.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Roger Quadros <rogerq@kernel.org>,
- Peter Chen <peter.chen@kernel.org>, Pawel Laszczak <pawell@cadence.com>,
- Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- =?UTF-8?Q?Gr=c3=a9gory_Clement?= <gregory.clement@bootlin.com>,
- Kevin Hilman <khilman@kernel.org>, Alan Stern <stern@rowland.harvard.edu>,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20240223-j7200-usb-suspend-v3-0-b41c9893a130@bootlin.com>
- <20240223-j7200-usb-suspend-v3-4-b41c9893a130@bootlin.com>
-From: Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Message-ID: <b778d2e8-3fcf-afe4-2e48-0348be19a085@gmail.com>
-Date: Sat, 24 Feb 2024 12:08:58 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        d=1e100.net; s=20230601; t=1708765960; x=1709370760;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rSJ+PeO4x72bs3AUvmTEqtOywxqrxagbi+uMUHWuQSQ=;
+        b=fgv3DmC7OxsXo+x975VQf9Gme+sI9Mhtbg/Bj7wcLGvKucXkiREVSGJdbTKFsbBO/g
+         CvoQpb7tWx+5FpTb9FBB8eOBSnPjFilBTwDv4B7tcZCEJxE3xCs675LvgUar7Rti/wa8
+         11y1XQnrIL6ivCGggCObIYJdR4Sct0yJespZkOx+1mnQCNIZHPSPskDX4zIidUBwui8p
+         El3WCZluMVPlsQA/tf5VfVjxM0A5y6aJCx4sEHn8RXxoe9ksWr8DfK3rIHSAwvyZ8ql3
+         qe+V5VaCq7Jfhndbn3USvWabpP7X/ODcKTRHdfDQbjlwkeUMRgKdE8tJcnCiAbz384DP
+         L/Tg==
+X-Forwarded-Encrypted: i=1; AJvYcCWcQOuPp71pKDWA9o9OD/Zf6p47f7SBbea4DFD7gQ2VNlcuAgSoghermkuYCGixKBJIqBJNUrnkNm/fOLP6D92kWRAAY/RqKtHw9Q==
+X-Gm-Message-State: AOJu0YyAHdeF5jkZqGrUr36k4bHhuWxNMRU21p/lLkSNTgRkIiSajo9T
+	98v3cup0yK84HL5flq53S/MWYu0NL5OK9zqyYOQSQD4nacbg9i7KcqjquoUeDtk=
+X-Google-Smtp-Source: AGHT+IHG9kPQkhg3JSWWrcuHi1+sLlRaO9d5IHwbE6um4kWNgdiD0lDhIkh1bAKYCo23+kRRc/aVwg==
+X-Received: by 2002:aa7:d591:0:b0:565:af2e:d016 with SMTP id r17-20020aa7d591000000b00565af2ed016mr295203edq.32.1708765960266;
+        Sat, 24 Feb 2024 01:12:40 -0800 (PST)
+Received: from krzk-bin.. ([178.197.222.116])
+        by smtp.gmail.com with ESMTPSA id s8-20020a056402164800b005652f6a9533sm363120edx.74.2024.02.24.01.12.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 24 Feb 2024 01:12:39 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/3] dt-bindings: clock: keystone: remove unstable remark
+Date: Sat, 24 Feb 2024 10:12:34 +0100
+Message-Id: <20240224091236.10146-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20240223-j7200-usb-suspend-v3-4-b41c9893a130@bootlin.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 
-On 2/23/24 7:05 PM, Théo Lebrun wrote:
+Keystone clock controller bindings were marked as work-in-progress /
+unstable in 2013 in commit b9e0d40c0d83 ("clk: keystone: add Keystone
+PLL clock driver") and commit 7affe5685c96 ("clk: keystone: Add gate
+control clock driver") Almost eleven years is enough, so drop the
+"unstable" remark and expect usual ABI rules.
 
-> Add match data support, with one boolean to indicate whether the
-> hardware resets after a system-wide suspend. If hardware resets, we
-> force execute ->runtime_resume() at system-wide resume to run the
-> hardware init sequence.
-> 
-> No compatible exploits this functionality, just yet.
-> 
-> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
-> ---
->  drivers/usb/cdns3/cdns3-ti.c | 27 +++++++++++++++++++++++++++
->  1 file changed, 27 insertions(+)
-> 
-> diff --git a/drivers/usb/cdns3/cdns3-ti.c b/drivers/usb/cdns3/cdns3-ti.c
-> index 4c8a557e6a6f..f76327566798 100644
-> --- a/drivers/usb/cdns3/cdns3-ti.c
-> +++ b/drivers/usb/cdns3/cdns3-ti.c
-[...]
-> @@ -220,8 +226,29 @@ static int cdns_ti_runtime_resume(struct device *dev)
->  	return 0;
->  }
->  
-> +static int cdns_ti_suspend(struct device *dev)
-> +{
-> +	struct cdns_ti *data = dev_get_drvdata(dev);
-> +
-> +	if (data->match_data && data->match_data->reset_on_resume)
-> +		return pm_runtime_force_suspend(dev);
-> +	else
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/clock/keystone-gate.txt | 2 --
+ Documentation/devicetree/bindings/clock/keystone-pll.txt  | 2 --
+ 2 files changed, 4 deletions(-)
 
-   Pointless *else* after *return*...
+diff --git a/Documentation/devicetree/bindings/clock/keystone-gate.txt b/Documentation/devicetree/bindings/clock/keystone-gate.txt
+index c5aa187026e3..43f6fb6c9392 100644
+--- a/Documentation/devicetree/bindings/clock/keystone-gate.txt
++++ b/Documentation/devicetree/bindings/clock/keystone-gate.txt
+@@ -1,5 +1,3 @@
+-Status: Unstable - ABI compatibility may be broken in the future
+-
+ Binding for Keystone gate control driver which uses PSC controller IP.
+ 
+ This binding uses the common clock binding[1].
+diff --git a/Documentation/devicetree/bindings/clock/keystone-pll.txt b/Documentation/devicetree/bindings/clock/keystone-pll.txt
+index 9a3fbc665606..69b0eb7c03c9 100644
+--- a/Documentation/devicetree/bindings/clock/keystone-pll.txt
++++ b/Documentation/devicetree/bindings/clock/keystone-pll.txt
+@@ -1,5 +1,3 @@
+-Status: Unstable - ABI compatibility may be broken in the future
+-
+ Binding for keystone PLLs. The main PLL IP typically has a multiplier,
+ a divider and a post divider. The additional PLL IPs like ARMPLL, DDRPLL
+ and PAPLL are controlled by the memory mapped register where as the Main
+-- 
+2.34.1
 
-> +		return 0;
-> +}
-> +
-> +static int cdns_ti_resume(struct device *dev)
-> +{
-> +	struct cdns_ti *data = dev_get_drvdata(dev);
-> +
-> +	if (data->match_data && data->match_data->reset_on_resume)
-> +		return pm_runtime_force_resume(dev);
-> +	else
-
-   Here as well...
-
-> +		return 0;
-> +}
-> +
->  static const struct dev_pm_ops cdns_ti_pm_ops = {
->  	RUNTIME_PM_OPS(NULL, cdns_ti_runtime_resume, NULL)
-> +	SYSTEM_SLEEP_PM_OPS(cdns_ti_suspend, cdns_ti_resume)
->  };
->  
->  static const struct of_device_id cdns_ti_of_match[] = {
-
-MBR, Sergey
 
