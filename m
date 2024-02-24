@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-45502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1730E8623C9
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 10:15:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 119E08623D6
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 10:24:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4FA8282BA5
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 09:15:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 24D5F1C21B30
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 09:24:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5F1B18046;
-	Sat, 24 Feb 2024 09:15:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6A84199C2;
+	Sat, 24 Feb 2024 09:24:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UyDIdvUq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="E2+EpNMg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD89218622
-	for <devicetree@vger.kernel.org>; Sat, 24 Feb 2024 09:15:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF0E618E2A
+	for <devicetree@vger.kernel.org>; Sat, 24 Feb 2024 09:24:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708766120; cv=none; b=dfEItNV0c9oT0p5VVo0/EG4kA09YoQi1RKc8AoHwdlvUCzvqcurOEHuqhUcgZ2ulnHWXxtLCwgl1unjQWVRlMf2tcfYGmNlDxH5C7g0Vx/R3PvLgpcTfHFHnJx4kcgxjievnwzjT1vnHvDlimHFLfrMTmUEc3OKLGbYpSK6huUU=
+	t=1708766654; cv=none; b=Tm4Xfl1fpdna4a0vxtvMXvFDCvmDCvh/ao2dWC5rH3LSRujuSZq5pUg9TCssbrQhiDNMXIAGAZnuOfuwXDHXbwgMu8kAgIXri7jL6ziQiTQjrqc1CFrWqdNg66EeiWdvismh9z7IA7aVI2B5bR3jqrstz5Qc+MV6t5/8mFmozEI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708766120; c=relaxed/simple;
-	bh=dtqxodcmJ9SBC6Rj+Mp5ZONU2KSQy+STXTzwUWZtTyM=;
+	s=arc-20240116; t=1708766654; c=relaxed/simple;
+	bh=p8tciHfgWI8nhnU1lwpxUjsCzl9vy0edvMrke59zFOo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dSSG4og3Mp8ZVMWwBXLwUGllfA5UYV/6b957jIhnCO7GLlXfYTukEqnOjwGepynLNVEjYF4M/1AtVnRw59G3qRaKKa53JeM4BUfIka8urmAMxwn+e37DL/Hxd7OOgDQOEgPzYmyZrzWdOWTWjOFwOmEDMHZyt+oA/m49NsnC07k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UyDIdvUq; arc=none smtp.client-ip=209.85.218.47
+	 In-Reply-To:Content-Type; b=Ptp1D6/lGWDZzvziP92lGOWbuWRgmeZtuyaSpj0NgXSFCu7HzKSiOOOQcxNx2T/ZBR6QjQbPk0m3X4P7P59+xmFBuqBJHEj/zrhuxH9oBHhhxbiAi+fbNmv5+u4lfRBOFEJrkKaviJB1zhfPJjtwfJ2YIl1ahdXaNUJPwM7MROk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=E2+EpNMg; arc=none smtp.client-ip=209.85.218.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a3ed9cae56fso214007466b.1
-        for <devicetree@vger.kernel.org>; Sat, 24 Feb 2024 01:15:18 -0800 (PST)
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a2f22bfb4e6so174010366b.0
+        for <devicetree@vger.kernel.org>; Sat, 24 Feb 2024 01:24:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708766117; x=1709370917; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708766651; x=1709371451; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/yXuN0xYqKzIX5pSCX1Kp3woa7Po0PztF79u6wq9Z0k=;
-        b=UyDIdvUqTYayinWKrbvoB5ixcUWM0+a0hrTT0ep1kFBLE0/9lfhbwizzd5FzO61sHJ
-         8vV1QH0W+f4c/FG/W9Rm6O5D4tuQm9hefDYdZhDxxkHI5JLJfByah3+3J69ayZlki7Z9
-         kFTL1mde04sd/uG2qleyl3U0vzZSqGsNza2F7W9ZUSWLMuJT3CBughbu5UOiB0H7iGnY
-         ugSs8MnuXoXc1M9yPGC8M0hK0j6cEOYCJc+50zOgT/x1KoABeTNgadQUD3YScx5bw9jy
-         LM7iLlrKZzfw8XDOmd7N6/LHzoJhmaNewagQvdhCAITAFi2n8kCOTMpdibkHNO3NYhoQ
-         VvjQ==
+        bh=e2rBHahbd3VJ7pBf4lVqIiyU3jm+URRIYusfSN2waHY=;
+        b=E2+EpNMgIyBeon2ESGqtHYoHiR/LY8wQYWIcIdQbV3Vrhicjsbnl2x98QKu/Lc7+r5
+         r5LaTA0MT5EFw231l+v2VkbvOUdfkN3ihC93U4Yz1KNYjn6F/f+5hS1xkMt9jhh8fk3z
+         onp9ao3RdYsf9fypuG0jMGYzE8oYnsl6KBeNUYZTuO86Qd5BBz2DlbEAupNZV9vcmlIo
+         5/UOBv53+pQcJk1iuN64i8jPzLxVL8HH0kkDnK4P9e5XQziiU7gWjBzT9rejKfYN2cUO
+         bDu+0nH+wCA5CAIadhDW6arBZZVqNk7LleJBoJxk5G8rMSf+rRRSsm4aYiMbzM5Yv0QW
+         wmgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708766117; x=1709370917;
+        d=1e100.net; s=20230601; t=1708766651; x=1709371451;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/yXuN0xYqKzIX5pSCX1Kp3woa7Po0PztF79u6wq9Z0k=;
-        b=kUMI3TUyrunKzU4ZmOZoe3XeruqIFgbAlVwAGZnRbDwnKQI+5kb0mHLW116sEc9QGR
-         9hdqiKMSGubD2nTNixJb75lbRnJILuED4/aVu2uJxT6Jrz8NUHfBZdpMI+dp+ibwkToL
-         QY7+So0B/cLf23ePuva45Qkb+Omjk/UNibrvoaB/ikT8BwOfphGH+M0Z4DV1As+LbiOV
-         suXUJz5YAq2xKZQcXCxzFUbFILSTEMVAKbrUAK7cNC/JVAhqb8kKDGKAyPbIi2qZgN4e
-         wySvIeaVtYl6k29bVvY4+r/CmqKK2R+MlxlNX72CCd6z8g7fm2JSl+Ux63MyOqxHsLvM
-         v8Rg==
-X-Forwarded-Encrypted: i=1; AJvYcCULJ/DdQDsj5mSlDAPQTRl8K8yxBBc5bwuYaKatHYmyOn69KgwRoeypLuSvwopGmxJ2/aRPxsV61udph/nembHJTiAsDM0UEoIKRA==
-X-Gm-Message-State: AOJu0YytTcs+5Z+ns8nYLGeEJDX39KR5392glaEqoahdZVvwvINA3G5i
-	47r0YMaoYqjE7V5gcufjE9F4pbsHcQi9of1OdU6mZcVG0uiqqSahKyQN+vQGxsk=
-X-Google-Smtp-Source: AGHT+IEAv583RjbPCjqo8rCRP363mV19Vvbw2dN4DNVCngN6jVHMtXOxp2IpGr6bO6h5BvQRj+H2sQ==
-X-Received: by 2002:a17:906:2844:b0:a3f:adad:9ce1 with SMTP id s4-20020a170906284400b00a3fadad9ce1mr1745152ejc.18.1708766117121;
-        Sat, 24 Feb 2024 01:15:17 -0800 (PST)
+        bh=e2rBHahbd3VJ7pBf4lVqIiyU3jm+URRIYusfSN2waHY=;
+        b=ijSvh5qdnnZpnmti+SqFZtxUZH5+k+WyYz4hx5A342uJEJDE6PslEb4u65KfK280jQ
+         zDKZkqFCkLE1/NKZNhoTTaRaHIynJNE/1yc5IvGj/nydpEwdNb2tuk8VRg0nLX5QFrY5
+         9i4IcyzToc+HUvWB3OFoZSm6wRMKk9fHyXNM6tpniN0qYBULYsp6TBRiUoda6idcm1Lm
+         dJx1Ce05BO1vtqDuvguOXMQhZF7JrthSgJg+2legRAt0C0kbh2BK6XFE76KyIl8SULyR
+         g9RibfxDR3YlNfg94/5Ord9lxF9io0tlRuel8sh+nwKp3zyzYkC6LvY6qAZSXBl3dldU
+         gyBw==
+X-Forwarded-Encrypted: i=1; AJvYcCURKewabCohcpSa5I1z/IkRtg023Cu0PMtypgsTE+Oaw1ZUFe1S0lDuV+xPxZR5o1XCNuaeBvPB2WBLlFUurkT7dhSOlRiC2xH/3g==
+X-Gm-Message-State: AOJu0Yz2GaMu+6Ow83hyyBZ35+xghYheKWRRVlyJvRrDEWX05f9PKaCl
+	sqcDntEDa246GLZdTfm5FxAbmTPCz15rmhyww++WOXWy6GXPmQ6/aM1WxVGcLZI=
+X-Google-Smtp-Source: AGHT+IFhWD4eyHrDcXBM8xZtbKLKp84FHlSWIhJzgk9tATj/ZtjCxVEzNU52cpKc1B8JFcnTeBH/yA==
+X-Received: by 2002:a17:906:dfcf:b0:a41:3e28:5db0 with SMTP id jt15-20020a170906dfcf00b00a413e285db0mr1375688ejc.26.1708766651228;
+        Sat, 24 Feb 2024 01:24:11 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id s1-20020a170906060100b00a3d9e6e9983sm410710ejb.174.2024.02.24.01.15.15
+        by smtp.gmail.com with ESMTPSA id z21-20020a1709060ad500b00a3e4d2d99adsm407499ejf.219.2024.02.24.01.24.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 24 Feb 2024 01:15:16 -0800 (PST)
-Message-ID: <c9d65615-166b-4612-98a2-3837a90e646d@linaro.org>
-Date: Sat, 24 Feb 2024 10:15:15 +0100
+        Sat, 24 Feb 2024 01:24:10 -0800 (PST)
+Message-ID: <2c01f334-d061-44f4-a77d-8714226ff11a@linaro.org>
+Date: Sat, 24 Feb 2024 10:24:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,19 +76,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindings: usb: typec-tcpci: add tcpci fallback
- binding
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: add common properties with label
 Content-Language: en-US
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux@roeck-us.net,
- heikki.krogerus@linux.intel.com, jun.li@nxp.com, linux-usb@vger.kernel.org,
+To: Rob Herring <robh@kernel.org>
+Cc: Guenter Roeck <linux@roeck-us.net>, Jean Delvare <jdelvare@suse.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- kernel@pengutronix.de
-References: <20240215212852.1202339-1-m.felsch@pengutronix.de>
- <20240215212852.1202339-2-m.felsch@pengutronix.de>
- <4e464a7a-6a38-461a-b03e-442cc43d1719@linaro.org>
- <20240222202357.2etmuoy6i6qr6bnq@pengutronix.de>
+ Krzysztof Kozlowski <krzk@kernel.org>
+References: <20240216-dt-bindings-hwmon-common-v1-0-3c2c24ff1260@linaro.org>
+ <20240216-dt-bindings-hwmon-common-v1-1-3c2c24ff1260@linaro.org>
+ <f0f523c3-7b1c-404a-89c3-0c7345001676@roeck-us.net>
+ <b21d351f-68be-4bca-a327-c35591c55610@linaro.org>
+ <20240222195005.GA3735196-robh@kernel.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,53 +134,62 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240222202357.2etmuoy6i6qr6bnq@pengutronix.de>
+In-Reply-To: <20240222195005.GA3735196-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/02/2024 21:23, Marco Felsch wrote:
-> On 24-02-22, Krzysztof Kozlowski wrote:
->> On 15/02/2024 22:28, Marco Felsch wrote:
->>> The NXP PTN5110 [1] is an TCPCI [2] compatible chip, so add the fallback
->>> binding.
+On 22/02/2024 20:50, Rob Herring wrote:
+> On Sat, Feb 17, 2024 at 09:21:46AM +0100, Krzysztof Kozlowski wrote:
+>> On 16/02/2024 18:11, Guenter Roeck wrote:
+>>> On 2/15/24 23:55, Krzysztof Kozlowski wrote:
+>>>> Linux hwmon core code parses "label" property for each device, so add a
+>>>> common schema for that.
+>>>>
+>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 >>>
->>> [1] https://www.nxp.com/docs/en/data-sheet/PTN5110.pdf
->>> [2] https://www.usb.org/sites/default/files/documents/usb-port_controller_specification_rev2.0_v1.0_0.pdf
+>>>  From hwmon perspective:
 >>>
->>> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
->>> ---
->>> v2:
->>> - rephrase commit message
+>>> Acked-by: Guenter Roeck <linux@roeck-us.net>
 >>>
->>>  Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml | 4 +++-
->>>  1 file changed, 3 insertions(+), 1 deletion(-)
+>>>> ---
+>>>>   .../devicetree/bindings/hwmon/hwmon-common.yaml          | 16 ++++++++++++++++
+>>>>   1 file changed, 16 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/hwmon/hwmon-common.yaml b/Documentation/devicetree/bindings/hwmon/hwmon-common.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..d83f4180f622
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/hwmon/hwmon-common.yaml
+>>>> @@ -0,0 +1,16 @@
+>>>> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/hwmon/hwmon-common.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Hardware Monitoring Devices Common Properties
+>>>> +
+>>>> +maintainers:
+>>>> +  - Guenter Roeck <linux@roeck-us.net>
+>>>> +
+>>>> +properties:
+>>>> +  label:
+>>>> +    description: A descriptive name for this device.
+>>>> +
 >>>
->>> diff --git a/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml b/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml
->>> index eaedb4cc6b6c..7bd7bbbac9e0 100644
->>> --- a/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml
->>> +++ b/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml
->>> @@ -11,7 +11,9 @@ maintainers:
->>>  
->>>  properties:
->>>    compatible:
->>> -    const: nxp,ptn5110
->>> +    enum:
->>> +      - nxp,ptn5110
->>> +      - tcpci
+>>> Would it make sense to also add shunt-resistor-micro-ohms ?
 >>
->> That's not a fallback, but enum. Fallback is "items" and then you could
+>> It's not present on many devices, I think, so it is also not parsed by
+>> hwmon core. I plan to add above $ref to hwmon-common to each hwmon
+>> binding, so this would mean all of them will get shunt-resistor. I would
+>> not add it, but I also don't mind if I am overruled.
 > 
-> Damn, you're right. Sorry.
+> I count 11 users. That's enough for me to add it here.
 > 
->> also send a follow-up patchset (separate, so Greg won't take it) fixing
->> DTS (if not, let me know, so I will fix it).
-> 
-> Sry. but I don't get this. Why do I need to send a follow-up? Greg did
-> not apply anything, at least I didn't received an e-mail, that this
-> patchset was picked.
+> I care less if a device uses a defined property it doesn't need. I'm 
+> more worried about having any undefined property allowed.
 
-If you change existing ptn5110 to a list of ptn5110+fallback, then all
-existing will DTS start report warnings. Someone needs to fix this.
+Ack, I'll send a v2.
 
 Best regards,
 Krzysztof
