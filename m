@@ -1,137 +1,246 @@
-Return-Path: <devicetree+bounces-45488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84A468622BD
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 06:29:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF9A08622E2
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 07:23:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 33E3B1F23502
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 05:29:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89E722843D5
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 06:23:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 043C9175BF;
-	Sat, 24 Feb 2024 05:29:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72C3C17585;
+	Sat, 24 Feb 2024 06:23:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="gbDQ0hTm"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="J4TSy+Mm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFF201758C
-	for <devicetree@vger.kernel.org>; Sat, 24 Feb 2024 05:28:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0DE513FFF;
+	Sat, 24 Feb 2024 06:23:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708752578; cv=none; b=d7oHsLxRjNqU/2Xh3oSqGDwy9IvJEIIqdcJw1K7sgEReqifZxhvXUpF4+nY7/NDsvGH4F1JhaVHsxsl5UNV2r3uShoGB+savjr5FDGJJy1RJI911qJm0Mis2zFHjm5/7ZSPMxpx/O7ocTL9Ly1t230pZ+PuCqJbNeRwCh306cZc=
+	t=1708755812; cv=none; b=bN+/on8d/N/vq9zOcyHVRsDrMyHk+EaNKM10Gx+ULTdEztlMECy/6kqAKVFYkGLLCMImU7tKKiRxom3BlRtvtwQQ6AQ0YACOCSS1BlKIV6Qg38IfMobRLZMdUZpAbIdJRnLA6P938BegO+0/qk5pb5ygGnG24IgyZWY2vPXTnfc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708752578; c=relaxed/simple;
-	bh=QkXAVadBbbhC7bhRBuY+zfwSKeZe3vRCZjDqgT/q5E4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TT3pZaLkdl5IIkQIuHLX50BQCTuY9G5MqgZz3YPYgIViOOFyXphBdmHOUcfhltarr48noQ/VUmSXPkuKadJtBgAov7ACeIZS4wmzyLen2iH6ggoyHczfjUZBikbSQhhJITB+W12opyVJj0X/d2oNxyob8B8jOuMKqnaWQaIYReY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=gbDQ0hTm; arc=none smtp.client-ip=209.85.160.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-428405a0205so118131cf.1
-        for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 21:28:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1708752538; x=1709357338; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=K4n0EEX8jNZZC2pFBMoUXcztzFChc13lSIA8SSXtQGY=;
-        b=gbDQ0hTmEDJJkN4Rn+l/tjzGEcrhkJEwyJFLzHTGEbnn/tjoXYn0NKKn41X+gmpVd1
-         sKe9N5sSLZcA8X2ut5zIJ6EgDf0EVmiVs9m8RqwwF4+IoLF5S/2LR3s/oWCAgd+P2dNB
-         pVyq90wnZbcYu+3ge7duRBffT1EL1d9kqjlBGjJPfe9aiRkDUA8SOtKYcWkZIuOEWvYj
-         60dGKhJMsBj3j12FtW6Ufyf7UVJxBQlagFngR3iKxtRf/0dttEBKQHGv4uS0/rKuGoFx
-         yYrEYCtR6aLU9i2iGCHrI7ZQOz2EXkMUe1cP5VWd87VJhwLjQ+Y7g0b1I3Y6fdGkKj3W
-         GC7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708752538; x=1709357338;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=K4n0EEX8jNZZC2pFBMoUXcztzFChc13lSIA8SSXtQGY=;
-        b=hfg0h98ZHpS2RPzycPl9F0UgC4dxMHs7U4AUG2WevwEq9PDPfRpjKBVcwh2V7g43DX
-         F4iOnnZ3paMuOD12WgtS/28kcZ8Q3ho5GuIynFfuKwMt2SUHrKK8msH/CrJmHlcDIF6q
-         KXFM0JOFgTfCx0dVmOppfDOgxKjR1HWahvicaW/OVuRXIiKW3OPqRWFI2y+KwIavmdm9
-         ewXEzHVBMtOeZreJ1siFXWV0gePIsvIvLjfWP1j/Ga5JraAL6bqCMLNbWqcm43elnxp5
-         /AjuFGzyIBO4NbUKbh1t90nLZWRelpi0GToBYIfvxf/NCYHt8tpAXnnR3++Q+y0Isgzm
-         Hurw==
-X-Forwarded-Encrypted: i=1; AJvYcCWqiCAicqstQ3/hzNv2msxV9hXJ5+SgfacmMnZf3sOMS1iC3oUEZbk/LPvBxrhEfQAkhNw6RFTql44lXBRMjLxNut3DftXwdy0Wjg==
-X-Gm-Message-State: AOJu0YzWM6WUkJKfqwi3ZNGXbu1FSswFRjWY+dtsmDlaSfxQh0tqZGjj
-	EQ2mSQk0I9EfLgAXStTF6/rT1AAy5TAsLMIvB1QJIhPRHOPdkJFPDfvczRqZfi0ryzd0UtDrcQ6
-	lSnqZNotWqgdK5tV6/zKnKuUR9b3OtkpFQWl8
-X-Google-Smtp-Source: AGHT+IGpkNG50duu4FZuxCsRIzu/MxR/r2Jlc+Yz2igEuZwxMMi6sJnFQEo2easuFJxkbpyENtnHU5eQlCmFdM642q8=
-X-Received: by 2002:ac8:524c:0:b0:42e:6b39:9df0 with SMTP id
- y12-20020ac8524c000000b0042e6b399df0mr162594qtn.1.1708752537610; Fri, 23 Feb
- 2024 21:28:57 -0800 (PST)
+	s=arc-20240116; t=1708755812; c=relaxed/simple;
+	bh=W0u5IT/H5hLXinO/B5FelGXdqlc5c1QwMVi0wEyDxCc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=OTzUWSACK4WTMvdwK7tB8K2rbTgdVz5ijhNdRVg/4Nyu8BejrMgVIEWJX0bcXGotLXh0UDNTeYEeGi7UgwDUjwQiM+RPaL96d5GnqMdmJN3YlpEOIlYjTV4/buj6N0NQMmR6KY9xQaBXTZ3AmbxkFBAn3FwA0x72Sqg9ytJUn6s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=J4TSy+Mm; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41O5pM72004828;
+	Sat, 24 Feb 2024 06:22:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=QCYPc8ZRVSnAHVFnIu3U13dqMb2KRmhi+yyRJZMHU5M=; b=J4
+	TSy+MmWnctP1jtu2cXW9nSBuUjYMjc3VRLXJdbd3ywzS0ZW8jiRGtT2HY56pI8HF
+	b1/g3fTj0RAGMyGNv6IjywbpmWNlF6bdeobrLbiFM/MhZbbTEDPud84mRYMQiiTP
+	jGRz4AHhqhfNjwQXt7tOWgPmRbC0XaJf0bchSnUWrMfGfiZ3T6hBF6hHF/19msue
+	LXyvwcVBniQzj5XzuZaoEbs8W6FFIuCBfPLU4z2IcKGTaYbOZk5FVwDzDZva2Spe
+	qwXVcbzHuzpzymPJqTm4nVXKpCwpVRYVZbZ3nX0XGb81r+wbyfWq0pPKMNSYnRGD
+	pMZ2hdiQ2XECFTNQw42A==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wf65hrbbj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 24 Feb 2024 06:22:57 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41O6MuwG006607
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 24 Feb 2024 06:22:56 GMT
+Received: from [10.110.15.108] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 23 Feb
+ 2024 22:22:55 -0800
+Message-ID: <76922981-88ec-a376-ce61-ea1ff85f43d2@quicinc.com>
+Date: Fri, 23 Feb 2024 22:22:50 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240224052436.3552333-1-saravanak@google.com>
-In-Reply-To: <20240224052436.3552333-1-saravanak@google.com>
-From: Saravana Kannan <saravanak@google.com>
-Date: Fri, 23 Feb 2024 21:28:18 -0800
-Message-ID: <CAGETcx_m22xLSDz_kk9ovw5veKaij49+LdcRx0iyzEk8iEz_+A@mail.gmail.com>
-Subject: Re: [PATCH] of: property: fw_devlink: Fix stupid bug in
- remote-endpoint parsing
-To: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Saravana Kannan <saravanak@google.com>
-Cc: =?UTF-8?Q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>, 
-	Luca Ceresoli <luca.ceresoli@bootlin.com>, kernel-team@android.com, 
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, stable <stable@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Subject: Re: [PATCH v14 32/53] ALSA: usb-audio: Check for support for
+ requested audio format
+Content-Language: en-US
+To: Takashi Iwai <tiwai@suse.de>
+CC: <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
+        <lgirdwood@gmail.com>, <andersson@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <gregkh@linuxfoundation.org>,
+        <Thinh.Nguyen@synopsys.com>, <broonie@kernel.org>,
+        <bgoswami@quicinc.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
+        <konrad.dybcio@linaro.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-sound@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <alsa-devel@alsa-project.org>
+References: <20240208231406.27397-1-quic_wcheng@quicinc.com>
+ <20240208231406.27397-33-quic_wcheng@quicinc.com>
+ <87v86x2a27.wl-tiwai@suse.de>
+ <cb3b7857-dc6c-80db-4fa7-6772a856f328@quicinc.com>
+ <7f0c4f85-5a63-4643-8553-e3f5d6af67ec@quicinc.com>
+ <87y1bjpfn0.wl-tiwai@suse.de>
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <87y1bjpfn0.wl-tiwai@suse.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Q1NKQpUrdoWd5O5aWBixNCa6-08HgSIz
+X-Proofpoint-GUID: Q1NKQpUrdoWd5O5aWBixNCa6-08HgSIz
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-24_02,2024-02-23_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
+ bulkscore=0 mlxlogscore=949 suspectscore=0 adultscore=0 priorityscore=1501
+ impostorscore=0 malwarescore=0 phishscore=0 lowpriorityscore=0 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2402120000
+ definitions=main-2402240050
 
-On Fri, Feb 23, 2024 at 9:24=E2=80=AFPM Saravana Kannan <saravanak@google.c=
-om> wrote:
->
-> Introduced a stupid bug in commit 782bfd03c3ae ("of: property: Improve
-> finding the supplier of a remote-endpoint property") due to a last minute
-> incorrect edit of "index !=3D0" into "!index". This patch fixes it to be
-> "index > 0" to match the comment right next to it.
+Hi Takashi,
 
-Greg, this needs to land in the stable branches once Rob picks it up
-for the next 6.8-rc.
+On 2/17/2024 2:08 AM, Takashi Iwai wrote:
+> On Sat, 17 Feb 2024 00:42:18 +0100,
+> Wesley Cheng wrote:
+>>
+>> Hi Takashi,
+>>
+>> On 2/9/2024 1:34 PM, Wesley Cheng wrote:
+>>> Hi Takashi,
+>>>
+>>> On 2/9/2024 2:42 AM, Takashi Iwai wrote:
+>>>> On Fri, 09 Feb 2024 00:13:45 +0100,
+>>>> Wesley Cheng wrote:
+>>>>>
+>>>>> Allow for checks on a specific USB audio device to see if a
+>>>>> requested PCM
+>>>>> format is supported.  This is needed for support when playback is
+>>>>> initiated by the ASoC USB backend path.
+>>>>>
+>>>>> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+>>>>> ---
+>>>>>    sound/usb/card.c | 31 +++++++++++++++++++++++++++++++
+>>>>>    sound/usb/card.h | 11 +++++++++++
+>>>>>    2 files changed, 42 insertions(+)
+>>>>>
+>>>>> diff --git a/sound/usb/card.c b/sound/usb/card.c
+>>>>> index 7dc8007ba839..1ad99a462038 100644
+>>>>> --- a/sound/usb/card.c
+>>>>> +++ b/sound/usb/card.c
+>>>>> @@ -155,6 +155,37 @@ int snd_usb_unregister_platform_ops(void)
+>>>>>    }
+>>>>>    EXPORT_SYMBOL_GPL(snd_usb_unregister_platform_ops);
+>>>>> +/*
+>>>>> + * Checks to see if requested audio profile, i.e sample rate, # of
+>>>>> + * channels, etc... is supported by the substream associated to the
+>>>>> + * USB audio device.
+>>>>> + */
+>>>>> +struct snd_usb_stream *snd_usb_find_suppported_substream(int card_idx,
+>>>>> +            struct snd_pcm_hw_params *params, int direction)
+>>>>> +{
+>>>>> +    struct snd_usb_audio *chip;
+>>>>> +    struct snd_usb_substream *subs;
+>>>>> +    struct snd_usb_stream *as;
+>>>>> +
+>>>>> +    /*
+>>>>> +     * Register mutex is held when populating and clearing usb_chip
+>>>>> +     * array.
+>>>>> +     */
+>>>>> +    guard(mutex)(&register_mutex);
+>>>>> +    chip = usb_chip[card_idx];
+>>>>> +
+>>>>> +    if (chip && enable[card_idx]) {
+>>>>> +        list_for_each_entry(as, &chip->pcm_list, list) {
+>>>>> +            subs = &as->substream[direction];
+>>>>> +            if (snd_usb_find_substream_format(subs, params))
+>>>>> +                return as;
+>>>>> +        }
+>>>>> +    }
+>>>>> +
+>>>>> +    return NULL;
+>>>>> +}
+>>>>> +EXPORT_SYMBOL_GPL(snd_usb_find_suppported_substream);
+>>>>> +
+>>>>>    /*
+>>>>>     * disconnect streams
+>>>>>     * called from usb_audio_disconnect()
+>>>>> diff --git a/sound/usb/card.h b/sound/usb/card.h
+>>>>> index 02e4ea898db5..ed4a664e24e5 100644
+>>>>> --- a/sound/usb/card.h
+>>>>> +++ b/sound/usb/card.h
+>>>>> @@ -217,4 +217,15 @@ struct snd_usb_platform_ops {
+>>>>>    int snd_usb_register_platform_ops(struct snd_usb_platform_ops *ops);
+>>>>>    int snd_usb_unregister_platform_ops(void);
+>>>>> +
+>>>>> +#if IS_ENABLED(CONFIG_SND_USB_AUDIO)
+>>>>> +struct snd_usb_stream *snd_usb_find_suppported_substream(int card_idx,
+>>>>> +            struct snd_pcm_hw_params *params, int direction);
+>>>>> +#else
+>>>>> +static struct snd_usb_stream
+>>>>> *snd_usb_find_suppported_substream(int card_idx,
+>>>>> +            struct snd_pcm_hw_params *params, int direction)
+>>>>> +{
+>>>>> +    return NULL;
+>>>>> +}
+>>>>> +#endif /* IS_ENABLED(CONFIG_SND_USB_AUDIO) */
+>>>>
+>>>> The usefulness of ifdef guard here is doubtful, IMO.  This header is
+>>>> only for USB-audio driver enablement, and not seen as generic
+>>>> helpers.  So, just add the new function declarations without dummy
+>>>> definitions.
+>>>>
+>>>
+>>> Got it, will remove it.  We also have a dependency in place for the
+>>> qc_audio_offload driver and SND USB AUDIO in the Kconfig.
+>>>
+>>
+>> Looking at this again after trying some mixed Kconfig settings.  These
+>> declarations aren't specific for USB-audio.  They are helpers that are
+>> exposed to soc usb, so that it can do some basic verification with soc
+>> usb before allowing the enable stream to continue.
+> 
+> Then rather the question is why snd-soc-usb calls those functions
+> *unconditionally*.  No matter whether we have dependencies in Kconfig,
+> calling the function means that the callee shall be drug when the
+> corresponding code is running.
+> 
+> If it were generic core API stuff such as power-management or ACPI,
+> it'd make sense to define dummy functions without the enablement, as
+> many code may have optional calls.  If the API is enabled, it's anyway
+> in the core.  If not, it's optional.  That'll be fine.
+> 
+> OTOH, the stuff you're calling certainly belongs to snd-usb-audio.
+> Even if the call is really optional, it means that you'll have a hard
+> dependency when snd-usb-audio is built, no matter whether you need or
+> not.
+> 
+>> Since the ASoC
+>> layer doesn't have insight on what audio profiles are supported by the
+>> usb device, this API will ensure that the request profile is
+>> supported.
+>>
+>> Issues are seen when we disable SND USB audio config and enable the
+>> ASoC parts.
+> 
+> If snd-usb-audio is disabled, what snd-soc-usb would serve at all?
+> Does it still make sense to keep it enabled?
+> That said, the statement above (building snd-soc-usb without
+> snd-usb-audio) looks already dubious; isn't it better to have a proper
+> dependency in Kconfig, instead?
+> 
 
--Saravana
+Ok, took a look at it a bit more and should have gotten all the 
+dependencies addressed through Kconfigs.  Thanks for the review comments 
+and feedback.
 
->
-> Reported-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> Link: https://lore.kernel.org/lkml/20240223171849.10f9901d@booty/
-> Fixes: 782bfd03c3ae ("of: property: Improve finding the supplier of a rem=
-ote-endpoint property")
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> ---
-> Using Link: instead of Closes: because Luca reported two separate issues.
->
-> Sorry about introducing a stupid bug in an -rcX Rob.
->
-> -Saravana
->
->  drivers/of/property.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index b71267c6667c..fa8cd33be131 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -1304,7 +1304,7 @@ static struct device_node *parse_remote_endpoint(st=
-ruct device_node *np,
->                                                  int index)
->  {
->         /* Return NULL for index > 0 to signify end of remote-endpoints. =
-*/
-> -       if (!index || strcmp(prop_name, "remote-endpoint"))
-> +       if (index > 0 || strcmp(prop_name, "remote-endpoint"))
->                 return NULL;
->
->         return of_graph_get_remote_port_parent(np);
-> --
-> 2.44.0.rc0.258.g7320e95886-goog
->
+Thanks
+Wesley Cheng
 
