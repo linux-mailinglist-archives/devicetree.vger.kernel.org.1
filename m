@@ -1,154 +1,201 @@
-Return-Path: <devicetree+bounces-45480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D9A2862120
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 01:21:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49D55862143
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 01:37:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42D6C2862C3
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 00:21:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB4972884B6
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 00:37:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 718641FB4;
-	Sat, 24 Feb 2024 00:21:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B3FE15B7;
+	Sat, 24 Feb 2024 00:37:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b="T3nJgwwL"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NHes8mXW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98F8C1C0F
-	for <devicetree@vger.kernel.org>; Sat, 24 Feb 2024 00:21:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7334C139D;
+	Sat, 24 Feb 2024 00:37:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708734068; cv=none; b=Gcfzk9FQArvZk6sj/Msj3L1AkB3cebIvNbhzx9OjNWLp3faRm6CPlp3zZQiTU0DY6A8Fo6teBaZvM+YejWnIkuFYlnOill4z5hHmN5I5X3FCBPf8PWwZxP2r8HT81w95F6KAQqUEi2iYhnKVaTa1RNXv0cnnCrainRK/Kbshxnk=
+	t=1708735067; cv=none; b=XtxTKGWUuoCnpYjnJkuQRWHYRAMIKljbyEaED9Esn9ucMFt+3RcXJTG9Ay+sid0f5nFLAWSckNPKE/MbDwLLnalsNtIZCFAIYj7K+Zqz/8kNFT6bsoKmtVieToSxaajGobl5VevlowIMb5FMbVvWKH3KScyY2jLIAXO+NL2bQDo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708734068; c=relaxed/simple;
-	bh=1L3/kBnWbedasAfije4Fqx7n1ELmB4pYOi26Q3qbJ/c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=W5z4kEzEC2OAmRbAgHkr5HwXW9/RpGQq/0ezc7EF7oWWAm1VEdBiD+TjLbfUFI5NqsXPjNORAr4AbYE5+Ebqq00hh2zEyFvKzAj8owFwCMnQxRYzV2G5la2DZG9ex0Ww8auVN+ouNRa+I07ljo0PdjARXtca9I+bAGKoU8PiIzs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tweaklogic.com; spf=pass smtp.mailfrom=tweaklogic.com; dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b=T3nJgwwL; arc=none smtp.client-ip=209.85.210.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tweaklogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tweaklogic.com
-Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-6e2e44aad03so393359a34.2
-        for <devicetree@vger.kernel.org>; Fri, 23 Feb 2024 16:21:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tweaklogic.com; s=google; t=1708734065; x=1709338865; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rDQLnws0v2S59G/sqDIOuFnQTbfpKB47FDyiyYI8hNc=;
-        b=T3nJgwwLy+Yoq2f9TWNgPAViuvS60NtKnmhZpZuzznyHOlh5JyafMrqAuHelDLjltB
-         9CyAqds2FprrtLrytC4KUKdXsmXfAPHnPgewSkRvcgRVOQc8FEJ4h8CKYnNXzhsFLTbI
-         5u/jPLmuqsp7Iwhk0XeAqvfA4DHUCL1kG5PZ/iRBk1bWOjmKcA3Ejdb5HDxjbPOWQq2Z
-         Gj7tuA4Hdd5sAukYp0rUJ97YkvOt0MB2RP4Rm1NDPdO++GqA4u+Vth6tBE+F5g5njfsA
-         ItBmpvFpJ7MXiZhEsSGc+pGu4Za78BPLnXuIzkky2aSW8KJqqqrlTzBKHvDbuAOCBeha
-         3Plw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708734065; x=1709338865;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rDQLnws0v2S59G/sqDIOuFnQTbfpKB47FDyiyYI8hNc=;
-        b=p9TDQvWOV5bZ/QEOLa7iwTEICSoJ7sFvQ9SbbCIebAMjYP4Vc30/rgdbc5mYu0IcUS
-         YZ0l8NIxQKdbOTs+dX4Ga8r5JVl0zcBjWBHh5iYeVmo0iIFpSrckJru696zoLOUsrMQm
-         rzU1/nXpHvFgLPhbqFcm8MLQeBLk4pWfyCO1a2cvXWr0dPCKrxi/WE6m1VB/YY7tQ6Un
-         mOx3+MbaqPADumMh2X1/OU2+R8OH4GjZ4SQez62mtDeA/NXIAmWkh062rQDZQd5wdvI6
-         KFhJfb91ebJmjDBdS6Uhxm30YzzBhwWBUbhgM7X5BZaVruFYZXzNgaaCK9IwCkHBNTpB
-         Ywwg==
-X-Forwarded-Encrypted: i=1; AJvYcCVybWFWJLAnj/9KFcm88PQxPoxWwxYTnYK06OQlM13E85D2RZ7c5BEnjABmzoECZkssL9+PvOH+c9g7I2xF7YFKG5Bt+766zaDs3Q==
-X-Gm-Message-State: AOJu0YxVerrFsgUtUbR2g4zPOX598fNZVsoTwz3wYOeUqRevC5Qscx0/
-	T+QaneiUsWjOE2aOnBaPQqlBE27R4yKlIjQp/Css7UqvK4UdKnoB0v0L2rYtido=
-X-Google-Smtp-Source: AGHT+IHtYGNnLW4fMlBUFbgiQqoyqfMiTfYYs6wv2IUYocKyqZoKhNuExbj7FT3INM1TM9Pe4uPbhA==
-X-Received: by 2002:a9d:7a43:0:b0:6e4:7762:bff with SMTP id z3-20020a9d7a43000000b006e477620bffmr1412297otm.34.1708734065521;
-        Fri, 23 Feb 2024 16:21:05 -0800 (PST)
-Received: from [192.168.20.11] ([180.150.112.31])
-        by smtp.gmail.com with ESMTPSA id y5-20020a62b505000000b006e0447d48b0sm60806pfe.23.2024.02.23.16.21.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Feb 2024 16:21:05 -0800 (PST)
-Message-ID: <8773c0ad-3762-4fe8-a7bf-66d3f1546bf6@tweaklogic.com>
-Date: Sat, 24 Feb 2024 10:50:58 +1030
+	s=arc-20240116; t=1708735067; c=relaxed/simple;
+	bh=o+dopF+3QwhP/VzUwOvK66g+AD4WW3W8duM1P1rkaZA=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TNKne2VT+JxzDd3KuQ80VT2KabSgWJ4ewknGH/nxvzLBz0CZmRmlAFy9QuvoV6UiTxezxUq95aEjBWK+wiRJ2fRsypkWIdqJ7fhXj7TFFLx/pagZ15rVLadHp3oqrZ1DLnt/nH/zHODXYpbE/2T+NqqtKqR0wsI5lm8e0odMBJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NHes8mXW; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41O0KQ2Y031296;
+	Sat, 24 Feb 2024 00:37:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=qcppdkim1; bh=TAeKBPeqKN87BGLYsho5A
+	H76OwarAu5agw9ZvchmLfo=; b=NHes8mXWQwz+Zos60T+OXib+qAd5JkD7dW26c
+	MImKO0FPFpCh58zeMhEvB09Tze2Ok9lYUzTEDazN+cROyP+yDbWzhVOReN3A3k9s
+	r4wto++of7SWLXR3tiuMBVXHJXY0z+mrC65Jy5gTawMM3miTNhaU9EpJnyLz5qGA
+	RDr9zor2WwX/ssKl4UrzuiOR8MhZB/vnB5gKsCmkttGxsfg7tG3XwxWsjnU1wFDz
+	BprDCg64EDrhfjZGil1A5Lr5orGF/+SVq1/h4/6yjuJ+5Pe64Ug4PTtKR6FXT/6K
+	dVTkNTzNzEoXmPEYb6ctfQu3+dk92VKi7A5oBTLFKwHLkocgw==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wf5tt80mr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 24 Feb 2024 00:37:25 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41O0bOEZ019289
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 24 Feb 2024 00:37:24 GMT
+Received: from hu-eberman-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Fri, 23 Feb 2024 16:37:23 -0800
+Date: Fri, 23 Feb 2024 16:37:23 -0800
+From: Elliot Berman <quic_eberman@quicinc.com>
+To: Christoph Hellwig <hch@infradead.org>, Will Deacon <will@kernel.org>,
+        Quentin Perret <qperret@google.com>,
+        Chris Goldsworthy
+	<quic_cgoldswo@quicinc.com>,
+        Android KVM <android-kvm@google.com>,
+        "Patrick
+ Daly" <quic_pdaly@quicinc.com>
+CC: Alex Elder <elder@linaro.org>,
+        Srinivas Kandagatla
+	<srinivas.kandagatla@linaro.org>,
+        Murali Nalajal <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri
+	<quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Philip Derrin <quic_pderrin@quicinc.com>,
+        Prakruthi Deepak Heragu
+	<quic_pheragu@quicinc.com>,
+        Jonathan Corbet <corbet@lwn.net>, Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        "Fuad
+ Tabba" <tabba@google.com>,
+        Sean Christopherson <seanjc@google.com>,
+        "Andrew
+ Morton" <akpm@linux-foundation.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-mm@kvack.org>
+Subject: Re: Re: [PATCH v17 19/35] arch/mm: Export direct {un,}map functions
+Message-ID: <20240223071006483-0800.eberman@hu-eberman-lv.qualcomm.com>
+Mail-Followup-To: Christoph Hellwig <hch@infradead.org>, 
+	Will Deacon <will@kernel.org>, Quentin Perret <qperret@google.com>, 
+	Chris Goldsworthy <quic_cgoldswo@quicinc.com>, Android KVM <android-kvm@google.com>, 
+	Patrick Daly <quic_pdaly@quicinc.com>, Alex Elder <elder@linaro.org>, 
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Murali Nalajal <quic_mnalajal@quicinc.com>, 
+	Trilok Soni <quic_tsoni@quicinc.com>, Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>, 
+	Carl van Schaik <quic_cvanscha@quicinc.com>, Philip Derrin <quic_pderrin@quicinc.com>, 
+	Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>, Jonathan Corbet <corbet@lwn.net>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Fuad Tabba <tabba@google.com>, 
+	Sean Christopherson <seanjc@google.com>, Andrew Morton <akpm@linux-foundation.org>, 
+	linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org
+References: <20240222-gunyah-v17-0-1e9da6763d38@quicinc.com>
+ <20240222-gunyah-v17-19-1e9da6763d38@quicinc.com>
+ <ZdhEtH7xzbzdhS2j@infradead.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 4/5] dt-bindings: iio: light: Avago APDS9306
-Content-Language: en-US
-To: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Matti Vaittinen <mazziesaccount@gmail.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Marek Vasut <marex@denx.de>, Anshul Dalal <anshulusr@gmail.com>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: Matt Ranostay <matt@ranostay.sg>,
- Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
-References: <20240218054826.2881-1-subhajit.ghosh@tweaklogic.com>
- <20240218054826.2881-5-subhajit.ghosh@tweaklogic.com>
-From: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-In-Reply-To: <20240218054826.2881-5-subhajit.ghosh@tweaklogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <ZdhEtH7xzbzdhS2j@infradead.org>
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: gNcA6io5WictnmGGjeI8Vk68WZWdapO8
+X-Proofpoint-GUID: gNcA6io5WictnmGGjeI8Vk68WZWdapO8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-23_07,2024-02-23_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 phishscore=0
+ spamscore=0 impostorscore=0 adultscore=0 malwarescore=0 lowpriorityscore=0
+ priorityscore=1501 bulkscore=0 suspectscore=0 mlxlogscore=999 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2402120000
+ definitions=main-2402240001
 
-On 18/2/24 16:18, Subhajit Ghosh wrote:
-> Driver support for Avago (Broadcom) APDS9306 Ambient Light Sensor.
-> Extend avago,apds9300.yaml schema file to support apds9306 device.
+On Thu, Feb 22, 2024 at 11:09:40PM -0800, Christoph Hellwig wrote:
+> On Thu, Feb 22, 2024 at 03:16:42PM -0800, Elliot Berman wrote:
+> > Firmware and hypervisor drivers can donate system heap memory to their
+> > respective firmware/hypervisor entities. Those drivers should unmap the
+> > pages from the kernel's logical map before doing so.
+> > 
+> > Export can_set_direct_map, set_direct_map_invalid_noflush, and
+> > set_direct_map_default_noflush.
 > 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-> ---
-> v6 -> v7:
->   - Removed wrong patch dependency statement
->   - Added tag
->     https://lore.kernel.org/all/5089c549-505f-4342-b3fe-bed8a29b6ce1@linaro.org/
->     https://lore.kernel.org/all/20240206-gambling-tricycle-510794e20ca8@spud/
-> 
-> v5 -> v6:
->   - Write proper commit messages
->   - Add vdd-supply in a separate commit
->   - Add Interrupt macro in a separate commit
->     Link: https://lore.kernel.org/all/1d0a80a6-dba5-4db8-a7a8-73d4ffe7a37e@linaro.org/
->     
-> v2 -> v5:
->   - Removed 'required' for Interrupts and 'oneOf' for compatibility strings
->     as per below reviews:
->     Link: https://lore.kernel.org/lkml/20231028142944.7e210eb6@jic23-huawei/
->     Link: https://lore.kernel.org/lkml/22e9e5e9-d26a-46e9-8986-5062bbfd72ec@linaro.org/
-> ---
->   Documentation/devicetree/bindings/iio/light/avago,apds9300.yaml | 2 ++
->   1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/light/avago,apds9300.yaml b/Documentation/devicetree/bindings/iio/light/avago,apds9300.yaml
-> index e07a074f6acf..b750096530bc 100644
-> --- a/Documentation/devicetree/bindings/iio/light/avago,apds9300.yaml
-> +++ b/Documentation/devicetree/bindings/iio/light/avago,apds9300.yaml
-> @@ -12,11 +12,13 @@ maintainers:
->   description: |
->     Datasheet: https://www.avagotech.com/docs/AV02-1077EN
->     Datasheet: https://www.avagotech.com/docs/AV02-4191EN
-> +  Datasheet: https://www.avagotech.com/docs/AV02-4755EN
->   
->   properties:
->     compatible:
->       enum:
->         - avago,apds9300
-> +      - avago,apds9306
->         - avago,apds9960
->   
->     reg:
-Hi,
+> Err, not they should not.  And not using such super low-level interfaces
+> from modular code.
 
-This is actually [PATCH v7 4/5]. I made a copy pasting error in the subject line of this patch
-while adding the recipients!
-Very sorry about that.
+Hi Cristoph,
+ 
+We've observed a few times that Linux can unintentionally access a page
+we've unmapped from host's stage 2 page table via an unaligned load from
+an adjacent page. The stage 2 is managed by Gunyah. There are few
+scenarios where even though we allocate and own a page from buddy,
+someone else could try to access the page without going through the
+hypervisor driver. One such instance we know about is
+load_unaligned_zeropad() via pathlookup_at() [1].
+ 
+load_unaligned_zeropad() could be called near the end of a page. If the
+next page isn't mapped by the kernel in the stage one page tables, then
+the access from to the unmapped page from load_unaligned_zeropad() will
+land in __do_kernel_fault(), call fixup_exception(), and fill the
+remainder of the load with zeroes. If the page in question is mapped in
+stage 1 but was unmapped from stage 2, then the access lands back in
+Linux in do_sea(), leading to a panic().
+ 
+Our preference would be to add fixup_exception() to S2 PTW errors for
+two reasons:
+1. It's cheaper to do performance wise: we've already manipulated S2
+   page table and prevent intentional access to the page because
+   pKVM/Gunyah drivers know that access to the page has been lost.
+2. Page-granular S1 mappings only happen on arm64 with rodata=full.
+ 
+In an off-list discussion with the Android pkvm folks, their preference
+was to have the pages unmapped from stage 1. I've gone with that
+approach to get started but welcome discussion on the best approach.
+ 
+The Android (downstream) implementation of arm64 pkvm is currently
+implementing a hack where s2 ptw faults are given back to the host as s1
+ptw faults (i.e. __do_kernel_fault() gets called and not do_sea()) --
+allowing the kernel to fixup the exception.
+ 
+arm64 pKVM will also face this issue when implementing guest_memfd or
+when donating more memory to the hyp for s2 page tables, etc. As far as
+I can tell, this isn't an issue for arm64 pKVM today because memory
+isn't being dynamically donated to the hypervisor.
+ 
+Thanks,
+Elliot
 
-Regards,
-Subhajit Ghosh
+[1]:
+path_lookupat+0x340/0x3228
+filename_lookup+0xbc/0x1c0
+__arm64_sys_newfstatat+0xb0/0x4a0
+invoke_syscall+0x58/0x118
+
 
