@@ -1,60 +1,69 @@
-Return-Path: <devicetree+bounces-45551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45552-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67A958625F1
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 17:08:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1BA0862636
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 18:02:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 105DD283386
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 16:08:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 904C0283440
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 17:02:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A262447A6C;
-	Sat, 24 Feb 2024 16:08:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF53B3F8FB;
+	Sat, 24 Feb 2024 17:02:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WnArIWcJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TQOms0S5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74B2B249F1;
-	Sat, 24 Feb 2024 16:08:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B108F137E;
+	Sat, 24 Feb 2024 17:02:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708790908; cv=none; b=IJ98KS/MKsZtnC9L7BXPz2fH8KMYck9LqVVV6r1/fOVt32dFvARqr1TX3uBbv0s/ENCB+mJD+SwONiIBH7sEx8XF4H/n09SCzY5jqT3f7xPdNItaxpN8kmPI8yM5GThVqCt4nkt/pl0gjD4zHLTACGSR1YjUQgTsyJJyWXwx0kE=
+	t=1708794164; cv=none; b=B9nlNEbcBzpK5/SUGkhc/UOhvpyxAsGUGeugU40xadhBcCx2BZSGjhXAkZGeapDC/ZWHnfpiD12wNu+XRWRbaQjfU4+i2uXQmtO8SytvGmYUxkrSUG0R72hGcRkaBhFapMw8TbGK9UMpVz24Ds6rXoU+IN52MVT5tV6d49QBXfI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708790908; c=relaxed/simple;
-	bh=vGyWWYV8na+hzi5jplalPwfDYnpFi2wMP0WWLNZpFIo=;
+	s=arc-20240116; t=1708794164; c=relaxed/simple;
+	bh=Rtj/JgUe0ZgjPqgZ3KPLXjUDHRaTYhlr9OcLC/lvnuM=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SYPxoCqEFURFbV44CX+Uln9phHPz9N03RILZq3ey0A4KeUYR9AnCOJVFILG9NGRtlArSYEyEFGorsZK2EfvgRGQDTc4RTh4VgnOebE7aHJJ09Nwq/tt0gZFM7efFlh2sJ0BAKiFr0cHGbp5njVPiJfSltIGlnPUpKUo4kO+Y1tY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WnArIWcJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89849C433F1;
-	Sat, 24 Feb 2024 16:08:25 +0000 (UTC)
+	 MIME-Version:Content-Type; b=LUcS2CHz201yDTKAaKQ/ooDif+w0ETV3c+m/q+pObRSuBCaPWfIpZNIufU9/kx/84CKDKy4mriLYyFNNy/ivpWJp54XcO+Eu8csGlawhHoIsEC0fyNOkJrSVztq0DBce6/LEbNeFojLWE/H9Mx2/YLZg28A52+p5zQ9bVpSGxpE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TQOms0S5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63CBFC433C7;
+	Sat, 24 Feb 2024 17:02:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708790908;
-	bh=vGyWWYV8na+hzi5jplalPwfDYnpFi2wMP0WWLNZpFIo=;
+	s=k20201202; t=1708794164;
+	bh=Rtj/JgUe0ZgjPqgZ3KPLXjUDHRaTYhlr9OcLC/lvnuM=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=WnArIWcJzOPcrTrwRK9E12YjLoYUGIPuKAWGlkRRCNRQeQdy8HAh6UfH7CXu1HDi8
-	 yfbe2pynwspBwEZ941UHsO/Ovw4z+sInOZfR/Y/3wznq0EfRHS+e+ggkAkgc8DoYtv
-	 PYU0dau6qujiSiYnpSvYM9neHNjIBlpoXwg9sKCLQZDEhHSGASWHZgNXpFUIxuYxrQ
-	 j0UAKCCTz8U5Hr6eJGlzx3Wghz5nUoGAiov7lLrSZY4lb3S+fmEn4QmnQYifByI5eF
-	 tg6JFnii6SM/plU99UpwB9VjDiDpyjrlBKQyQpBVQZwY/24FrE7rribCPfytXQXsQv
-	 AlKogB2FpI7Jw==
-Date: Sat, 24 Feb 2024 16:08:14 +0000
+	b=TQOms0S5Yw/dWZmvtSpByX6E8sActTkdEb7pXIRHJQB/eVdouySNlLg41R6tsTQmo
+	 CJuNnzk75iRq2ZiaRYbThXwjwKODhpJM4lkn9CnG/whcCJsUL/sTp/AZ3IVEwfzPG+
+	 Eeq0j/vLz4wmx352vLM/QP/zZZKmpIVYbjhjkjrQdRLWuGGMGmJ3R9tqT+8i7qhCA5
+	 PsliHlbvy6exUsi+7+0S3H66AxsdxZcGQAtZRtwYR+Q/HYURxP3ttVtdxOQDdBV5Wo
+	 EeFh1ZyR9+VWbWaiXS+xsMC2nDoBM916p7x6uYlsMR9iQACe08/61Rs3OxtripWoj9
+	 ApZ4tPaJ+FGBA==
+Date: Sat, 24 Feb 2024 17:02:25 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: Josua Mayer <josua@solid-run.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Eugene Zaikonnikov <ez@norophonic.com>, Yazan Shhady
- <yazan.shhady@solid-run.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Rob Herring
- <robh@kernel.org>
-Subject: Re: [PATCH v7] dt-bindings: iio: humidity: hdc20x0: add optional
- interrupts property
-Message-ID: <20240224160815.0407662a@jic23-huawei>
-In-Reply-To: <20240219-iio-hdc20x0-interrupt-binding-v7-1-c8ffb39c3768@solid-run.com>
-References: <20240219-iio-hdc20x0-interrupt-binding-v7-1-c8ffb39c3768@solid-run.com>
+To: Andy Shevchenko <andy@kernel.org>
+Cc: Ceclan Dumitru <mitrutzceclan@gmail.com>, linus.walleij@linaro.org,
+ brgl@bgdev.pl, linux-gpio@vger.kernel.org, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Michael Walle <michael@walle.cc>, Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu
+ <chiaen_wu@richtek.com>, Niklas Schnelle <schnelle@linux.ibm.com>, Leonard
+ =?UTF-8?B?R8O2aHJz?= <l.goehrs@pengutronix.de>, Mike Looijmans
+ <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>, Hugo Villeneuve
+ <hvilleneuve@dimonoff.com>, David Lechner <dlechner@baylibre.com>, Ceclan
+ Dumitru <dumitru.ceclan@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v13 2/3] iio: adc: ad_sigma_delta: Add optional irq
+ selection
+Message-ID: <20240224170225.4720f9a2@jic23-huawei>
+In-Reply-To: <ZdS0kOKTWHlisuyn@smile.fi.intel.com>
+References: <20240220094344.17556-1-mitrutzceclan@gmail.com>
+	<20240220094344.17556-2-mitrutzceclan@gmail.com>
+	<ZdSzCe2cw8gL3K-W@smile.fi.intel.com>
+	<001d1e99-5d96-44f3-8695-ad2ecee42128@gmail.com>
+	<ZdS0kOKTWHlisuyn@smile.fi.intel.com>
 X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -65,49 +74,33 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Mon, 19 Feb 2024 15:48:21 +0100
-Josua Mayer <josua@solid-run.com> wrote:
+On Tue, 20 Feb 2024 16:17:52 +0200
+Andy Shevchenko <andy@kernel.org> wrote:
 
-> HDC2010 and HDC2080 humidity sensors both have an interrupt / data-ready
-> signal which can be used for signaling to the host.
+> On Tue, Feb 20, 2024 at 04:13:12PM +0200, Ceclan Dumitru wrote:
+> > On 2/20/24 16:11, Andy Shevchenko wrote:  
+> > > On Tue, Feb 20, 2024 at 11:43:39AM +0200, Dumitru Ceclan wrote:  
 > 
-> Add binding for "interrupts" property so that boards wiring this signal
-> may describe the connection.
+> ...
 > 
-> Signed-off-by: Josua Mayer <josua@solid-run.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-Applied to the togreg branch of iio.git but pushed out initially
-as testing so the autobuilders can have their fun.
+> > >> +	if (!info->irq_num)
+> > >> +		sigma_delta->irq_num = spi->irq;
+> > >> +	else
+> > >> +		sigma_delta->irq_num = info->irq_num;  
+> > > 
+> > > Why not positive check?
+> > >   
+> > Considered that selecting spi->irq is usually the default case, so it should
+> > be the first branch  
+> 
+> Let compiler do its job, the negative conditions are harder to read/parse by
+> human beings.
+> 
+FWIW compiler almost certainly won't figure this out as it has nothing to go on
+- history based branch prediction in processors will though!  We don't want to
+be hinting direction to the compiler for a case like this as that will make
+it very painful if we get it wrong.  Anyhow Andy's comment is valid even if
+I disagree with the reason.
 
 Jonathan
-> ---
-> Changes in v7:
-> - split out of original patchset because it should go via iio tree
-> - collected acked-by Rob Herring from v6
-> - Link to v6: https://lore.kernel.org/r/20240212-add-am64-som-v6-0-b59edb2bc8c3@solid-run.com
-> ---
->  Documentation/devicetree/bindings/iio/humidity/ti,hdc2010.yaml | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/humidity/ti,hdc2010.yaml b/Documentation/devicetree/bindings/iio/humidity/ti,hdc2010.yaml
-> index 79e75a8675cb..e3eca8917517 100644
-> --- a/Documentation/devicetree/bindings/iio/humidity/ti,hdc2010.yaml
-> +++ b/Documentation/devicetree/bindings/iio/humidity/ti,hdc2010.yaml
-> @@ -27,6 +27,9 @@ properties:
->    reg:
->      maxItems: 1
->  
-> +  interrupts:
-> +    maxItems: 1
-> +
->  required:
->    - compatible
->    - reg
-> 
-> ---
-> base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
-> change-id: 20240219-iio-hdc20x0-interrupt-binding-42307b7b99b5
-> 
-> Best regards,
-
 
