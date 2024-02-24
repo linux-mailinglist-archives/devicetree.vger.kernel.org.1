@@ -1,550 +1,213 @@
-Return-Path: <devicetree+bounces-45546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47F05862580
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 14:57:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E763B86259C
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 15:25:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C1B51C213DA
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 13:57:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B5331C20983
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 14:25:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2765A4DA1D;
-	Sat, 24 Feb 2024 13:55:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36B8F405F4;
+	Sat, 24 Feb 2024 14:25:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b="MK2rejev"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="cRKvV5DA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01olkn2051.outbound.protection.outlook.com [40.92.53.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C445447F7A;
-	Sat, 24 Feb 2024 13:55:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.181.215.36
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708782916; cv=none; b=LTSi+1X/i6eXcavKvpgw3o7OM0I+l/KLZa1nQO4hAg0lqXD0WTDslx8JphsxzMoi+exn6oT48BXTPKtiyPDUGwPwiSWf787j0swViQ/NNSx2AFAM8XUQvNMfaEGjeaCb2t/mcknwEXGSVDLoeE1IQGUlu/cLKuntdMrDRuH278U=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708782916; c=relaxed/simple;
-	bh=+KDS8iSsEdaVbR9vv7dpeQO+DKaM2BjDrK0qFu2BvpQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=s850RGpPlIMWHOFFNvClD7g5qGq5RwOLysFk9eMlB4YRcFg1mCbE8h1CPIhqTvJUh+h6tCSSnFjRXdOTrAEej1zQGp4R2YQgmQUi2kUFgYigUjEgndFvVJuQ4BqcTgx6jXJ/pktFfvyyqT34s+nkAyiC7L6g9bjkXcF9tE9Rl2w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz; spf=pass smtp.mailfrom=xff.cz; dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b=MK2rejev; arc=none smtp.client-ip=195.181.215.36
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xff.cz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-	t=1708782910; bh=+KDS8iSsEdaVbR9vv7dpeQO+DKaM2BjDrK0qFu2BvpQ=;
-	h=From:To:Cc:Subject:Date:References:From;
-	b=MK2rejevt013by9I7BGX/3+nLkAp0NafG0p6IlM/MvMEtA5K7bvxWUDIlKroJIR9g
-	 /G5MTMSh9Qo3Ems+FIbb1yJPYM7nBlJuYic2vuUDmn9w15cxz5Du9LA9tYSoLDpIQ4
-	 XANnoF3NS4f2ea6DWGCyQhUNoNaoQkc6Ez75Z1Gs=
-From: =?UTF-8?q?Ond=C5=99ej=20Jirman?= <megi@xff.cz>
-To: linux-kernel@vger.kernel.org,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mark Brown <broonie@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>
-Cc: Arnaud Ferraris <arnaud.ferraris@collabora.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Ondrej Jirman <megi@xff.cz>,
-	linux-sound@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-sunxi@lists.linux.dev
-Subject: [RESEND PATCH v2 5/5] ASoC: sun8i-codec: Implement jack and accessory detection
-Date: Sat, 24 Feb 2024 14:54:58 +0100
-Message-ID: <20240224135501.3822390-6-megi@xff.cz>
-In-Reply-To: <20240224135501.3822390-1-megi@xff.cz>
-References: <20240224135501.3822390-1-megi@xff.cz>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EBC21B7E8;
+	Sat, 24 Feb 2024 14:25:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.53.51
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708784714; cv=fail; b=fBMrf/8BOqPK0ZjleswX9IOlnG9moRhM3Wma//CIYHF/LVULaWHFyybRHmBgutAi4aYAkFnbiQ5EM7qCq7CEUByZ4Z0Ae5lu8n0pv3FE3wZd+0taSU2H2kGGx00I+L3lcWJ8gS7lC75DuN68alDJ8N5OzGdwntkRM66jab8mHEY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708784714; c=relaxed/simple;
+	bh=hKmSto5gzz5vSykVEqxPINQylCV3Ax0e9MfU0qCVgHI=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=pPL8O21eT4XZMjfEjYvd9mSID2PzZORRQqxhYRuZMXUnyLy5fKjkdI7KtteGkT6OY9I+mwA83NdOGf6t3/P+YWL2L1ud0GpYFkZ20bN9VYlyUEAwzTJHkTnbsvElQq+xIUQjdg2XPAJ4ikwArJYjHYPV4pIGmKKcNqjNXjbdMFQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=cRKvV5DA; arc=fail smtp.client-ip=40.92.53.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NOH7vOKa90CkR2+xh1vaONbHso8/CO0eZvE86iGNWKlfM6Gqnl3sy5MH7JpfMCN4QJSQdXIZ7px3L3jfiR4UIpXHPhYw5ZEyCpJYtVPGaHoQwL54Anj3mLS8y68RXu9GSAVwMo9x6608fUWsh36UphAWZSeUiOCwYJmdamVn60zIoWWRn863ux5zSip+1cuCdr67hBg53GlT7lKS/g7gFn6Q0k0x/crh3zFwnzsT20tyQUknAny4v97hwnsaRAh7R1O+8aO+TfChSBtcZES6OIjvHOD8r2XE4NU97PflwpEdjrrsq3xU6F2iB6/SohbUTQjP1SrovTVf6e8fgnBUnA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PD2TXALPo56+s0ML7xMWW0yjulhU6krJS0obHzyNXBQ=;
+ b=OZKQpXKcBRFmkx/UahKtIaCF6NWcO5HVccl3DVjtq3IVjPwm9gM8xp3eOjvx0ptX6xXlW/0ko0gswHTQmFJbsRK1R7Yn0dLZyFfE6RWfRh0ASzAQBpghqIhE1R9KB8p5KKoQLsTtEIuSgjiWgC7Lw0C0XxdUXVbcZQQO7P5P+FAsUNuhbpd1s+l99dF5jsbn9XVkT57aGCROj1o2M65qbX7e+3kPkPHkdMyen45+ZMKvsLNrdOWH2FMhcR38FWFZFF8+xhe34g3aWeAZSe7YUqKve4fCWdGJyOJQ4bXscUqlfKC3ulQ/5rB5O96nik61c/48eidC0A+onVlEBQ/Nhw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PD2TXALPo56+s0ML7xMWW0yjulhU6krJS0obHzyNXBQ=;
+ b=cRKvV5DAmDa9zTFbpG4MbywV5zXCvNbR+5g5l5bCPfXyZkXRCrTGIyDEwICYJttTK6nPOraymhrIsVXdCNLdQc/IMHBtqqSt/zoQPme802YfEcPWkHaLObgIMOnnjQ/D4fD0+Xz3EyF/STPLjvYh1rzSK2agSAlMoe1k/2hTRAXhb14uSXxCE0tG5Hzgrj3Foyl2mgttrdWThIVcOKQjbnuYY5wngCWh6XgUxeIwzy3+w6NITTnTSaQ095chF8b77AZZKSOQjfbKf+SAof3Bda7syDJuQExuKdy0aGgt3TVJ+U+/6ZUhhyY/ZWvYaQP0dNfgYadGYcz8jknDgWzcFg==
+Received: from SEZPR06MB6959.apcprd06.prod.outlook.com (2603:1096:101:1ed::14)
+ by TYZPR06MB5869.apcprd06.prod.outlook.com (2603:1096:400:330::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.39; Sat, 24 Feb
+ 2024 14:25:06 +0000
+Received: from SEZPR06MB6959.apcprd06.prod.outlook.com
+ ([fe80::53da:a8a:83cb:b9ad]) by SEZPR06MB6959.apcprd06.prod.outlook.com
+ ([fe80::53da:a8a:83cb:b9ad%4]) with mapi id 15.20.7316.023; Sat, 24 Feb 2024
+ 14:25:06 +0000
+Message-ID:
+ <SEZPR06MB69591E1D33137D0FE215941296542@SEZPR06MB6959.apcprd06.prod.outlook.com>
+Date: Sat, 24 Feb 2024 22:25:04 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/6] clk: hisilicon: add support for Hi3798MV200
+Content-Language: en-US
+To: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: David Yang <mmyangfl@gmail.com>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20240224-clk-mv200-v5-0-79f586d6e1a2@outlook.com>
+From: Yang Xiwen <forbidden405@outlook.com>
+In-Reply-To: <20240224-clk-mv200-v5-0-79f586d6e1a2@outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TMN:
+ [ohyICwd+ZsQ4/3eZl3tyW1SbWdqWN93/jpUTXaIwlxPJ24tOJFnvHZuSdb9udVCEMQp0NDjREpY=]
+X-ClientProxiedBy: TY1PR01CA0189.jpnprd01.prod.outlook.com (2603:1096:403::19)
+ To SEZPR06MB6959.apcprd06.prod.outlook.com (2603:1096:101:1ed::14)
+X-Microsoft-Original-Message-ID:
+ <de81559a-35ab-496e-9fc2-5d55da0c8edf@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SEZPR06MB6959:EE_|TYZPR06MB5869:EE_
+X-MS-Office365-Filtering-Correlation-Id: d4c352a8-7f01-492e-7165-08dc35446532
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	uLeTZBl/kkM3xFYt5QiDXZRpBts7cY8R+ra30WCGcazGgt19+KOBeg2fyXO5tEJuukykK8G/t4B/XJ4KQq9ZjzRy81MHsAy6KSVN4p+GRevvGdSBNqjBUicWhrnzwuN3Pn0/p/A3z304SG3Vu7j88SpE9/964hGWcE6Z458R9gnWpqVKB1ruv6+xTTGVsm8vQi1rk4oHgR11aMyJKknlTcX39d5OLTYjW89anOwPvxZjezf3I8b7Lv7xDiQbpdNdEycYAcv7oZwAdqaKgfvQ7vl/LLwcZRC05QxkHZWpQbdMjygPO0hdW8Hb6RkoNt4/NxB1tn9PN+OjPz09N0yyixpous8cOEWSAttSg7CWFuDCC/ntKJGGpiA6OpclLBZ7JeO13wqmrcOL5b/2HAhOHiwc+knJssLYDyO5wERpBf4fWQ53ImGGpSlEFcGkoLmayYlpc6XZSdykvSw6Rqx3kXWQcqH3QVYxDnCQIlMs1dQBYRdz1Sk6R/hHaQyR4cyDYTBD/L7pGn73sl5Y8+IipvtrVLWyf26zsTPS1kYcTSM=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?TkVuUmhlQzNkVXUrZ1N4bXQvMG5CVExYYmR5eldFUHJETDVreTRwc0JHemR6?=
+ =?utf-8?B?OFh5K2swK2FqaUkrVzBtYnBXamRsdXJISUtndzJWbnNRL2FPcmFsV2h6dmJY?=
+ =?utf-8?B?M3lhSm5ENGI5eHl0VjNWSFgwbTlPV2pzbDIxZG1ldkxjeGxodXVjdUIvU3pm?=
+ =?utf-8?B?VEVobGIxb2RNZWEwaks4VkVpQ0FzRVBualZnNk1lRi9ZSmtac2R2dXAvNEtF?=
+ =?utf-8?B?cHhCUERsMENmcjI5TUVSdVh0NGtTcWFBNDl4VmVGVmZ0ZGdHV3R5S3lMRGMz?=
+ =?utf-8?B?dy9RRXJFRzZZRnNLMHBOdElFM1Q5OHpSU1pTTU42VytxR2tqZHkwTGwvanJs?=
+ =?utf-8?B?TmVYOEdsMGZ6QVJ2a1NDakwwQm1yWGhjTVVFUXZlSitDQi9WdGloOURtblgz?=
+ =?utf-8?B?U1V1WitBcWF4QVdUbVVPbXQyOXZEM3pGNDlJai9oUDBXaTJNWFFrZGdQVmRq?=
+ =?utf-8?B?ZzBwVkVTM1RrMW5ITXlBUTdpUkc1NSt1TnJYREVwc2h5VXhwVFd1alNsaWlt?=
+ =?utf-8?B?YTcxUy9URk1XK1c5dFI3L3NjeHZlZGFJVWYvZk9jYnlOTWsyZlNQaFQ2Nmgv?=
+ =?utf-8?B?V0VrdFR3L3NtejJCNnhJbUpMNTdKaEdHc2JzUlMydVdtSnMza1c5RjFaUjV4?=
+ =?utf-8?B?eWlZSzd1SFdPZG80cENVTloxeXRGbW1RTUtCSm5Pc2RnZGxxclBiNnpoNnpt?=
+ =?utf-8?B?MlN4ZE9oNXllbk5HdksrcmlrWHB1SmtFTmNFbUV1TEtKK2FqWWhhcDVETk85?=
+ =?utf-8?B?NjVnd2YwMDB3YVJwaEo0a2orUEEwT1lCbWtFRW1xQlpGZWtzR3lYQmZFdDV3?=
+ =?utf-8?B?QmxWN1JCRHRRVDZwbWxEZUZXektUSXBBZm03T1pPTGw2WHZFUUxramZjYU1O?=
+ =?utf-8?B?TXFHVXBpdm5hYzZhL25vbWxzQjdpajVHL3REMEdtRFYyRUszaGFVamVCM1FJ?=
+ =?utf-8?B?bG5qYzJmVnBmTHlKd2JKcUsyRFVKb2I4TkRmNTBvd1ZiN2REOGhPbDFqTThZ?=
+ =?utf-8?B?ZEpjNU5wNmw4R1F6OVNPcE9tRmpKclRCZVNGWnAzNnRCaU1nTEdUNHpxcGd0?=
+ =?utf-8?B?aHF1dFNtUFVMdjFIZ0lGZnBiMFZLRmhqYXJTNXNoTWlzOWRlSytOK2p2WitQ?=
+ =?utf-8?B?MEF5VmRhWFBpK2xwelVEREcrWmlkMHlYNXFyb000elJua0hHSzdKZ0p0NkQ1?=
+ =?utf-8?B?VHZvQUtHeGptQzlmdE5YbytTa0pycWZ4dXc3WkoyNHpMOHRoZjFQKy9nVXBB?=
+ =?utf-8?B?VkxTZVE3Ym83bHpwblgvS0hsdWQ3dGZ6Vlc4RXhNY09ndTNDOWxuQlM0TEZT?=
+ =?utf-8?B?QVdzRDhybU5vcFI4QkppbTJ4UXB0bXZ5YXFjZW1qN2pJVTRjck1XY3hVSllT?=
+ =?utf-8?B?dGIrczNqUTJ6OUM5ZG9oYXdlUGpnd3kxaU4rRE1QTUFFeUVzODhlYzd5V2Rl?=
+ =?utf-8?B?MWJWWUU3K09yYThLQk5xSU5BN0t0YmRzWkFNOFowR1liUEdhSUFvejgyY2NY?=
+ =?utf-8?B?R2NJOWhpMnlRZVBoNlBrMEcxWVJSOC9aZE9ubjRtV1pqdVUyM3QvcGFGL0NF?=
+ =?utf-8?B?ZHRPMTNwWC9SL0FZZUVOMUcxK0U3ZjBFaHFablo1eDNwYmFzRDhNaENSWjFM?=
+ =?utf-8?B?NzhUbVdvYXFuR244Yml5WVBtcCt6NEZMNFRiUnhxVmZUZmpPTlNyOG9hbzVh?=
+ =?utf-8?B?dEhnN2h5eFdLOXZmbmhuNXhuRTJBNnEzNFlsZUcyVndjVW92eVhwNERGcXhj?=
+ =?utf-8?Q?E5CXA+wcJ3ZGYiR35eOHx1Sm5HrBBv90LC8Zg5A?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d4c352a8-7f01-492e-7165-08dc35446532
+X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB6959.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2024 14:25:05.3481
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR06MB5869
 
-From: Arnaud Ferraris <arnaud.ferraris@collabora.com>
+On 2/24/2024 1:12 AM, Yang Xiwen via B4 Relay wrote:
+> This SoC is similar to Hi3798CV200 with a few more clocks in CRG module.
+>
+> Note this driver is still ongoing, many clocks are not registered in the
+> driver now. Feedback is welcomed, especially from HiSilicon people.
+>
+> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+> ---
+> Changes in v5:
+> - sort compatibles alphabetically (Rob Herring)
+> - squash patch 5&6 (Rob Herring)
+> - Link to v4: https://lore.kernel.org/r/20240223-clk-mv200-v4-0-3e37e501d407@outlook.com
+>
+> Changes in v4:
+> - dt-bindings: hisi-crg: add reg and #reset-cells to required, add reset-controller to required for cv200
+> - dt-bindings: hisi-crg: do not add "simple-mfd" and "syscon" for hi3519 (Krzysztof Kozlowski)
+> - dt-bindings: hi3798mv200: replace spaces with tabs (Krzysztof Kozlowski)
+> - dt-bindings: s/DTS/DT_BINDINGS_CLOCK (Krzysztof Kozlowski)
+> - Link to v3: https://lore.kernel.org/r/20240222-clk-mv200-v3-0-f30795b50318@outlook.com
+>
+> Changes in v3:
+> - remove RFC (Krzysztof Kozlowski)
+> - rearrange patches so dt-binding comes before drivers (Krzysztof Kozlowski)
+> - dt-bindings: Remove lots of properties
+> - dt-bindings: stop merging all hisi-clock bindings, only convert hisi-crg.txt for now.
+> - dt-bindings: remove hisilicon,hisi-sdmmc-dll subnode (Rob Herring, Krzysztof Kozlowski)
+> - split histb-clock.h into two files, deprecate this header file
+> - fix all users (hi3798cv200.dtsi and hi3798cv200 CRG driver)
+> - hi3798mv200-crg: add a few missing clocks
+> - Link to v2: https://lore.kernel.org/r/20240217-clk-mv200-v2-0-b782e4eb66f7@outlook.com
+>
+> Changes in v2:
+> - s/dt-binding/dt-bindings in commit logs: (Krzysztof Kozlowski)
+> - fix bot error by adding "hisilicon,hisi-sdmmc-dll" to syscon.yaml (Rob Herring)
+> - hi3798mv200-crg: assign fixed rate parents to some gates
+> - hi3798mv200-crg: s/ETH/FEMAC, add GMAC ctrl clock
+> - Link to v1: https://lore.kernel.org/r/20240216-clk-mv200-v1-0-a29ace29e636@outlook.com
+>
+> ---
+> Yang Xiwen (6):
+>        dt-bindings: clock: convert hisi-crg.txt to YAML
+>        dt-bindings: clock: histb-clock: split into two header files
+>        arm64: dts: hisilicon: fix include path
+>        clk: hisilicon: fix include path for crg-hi3798cv200
+>        dt-bindings: clock: hisilicon,hisi-crg: add Hi3798MV200 SoC
+>        clk: hisilicon: add CRG driver for Hi3798MV200 SoC
+>
+>   .../devicetree/bindings/clock/hisi-crg.txt         |  50 ---
+>   .../bindings/clock/hisilicon,hisi-crg.yaml         |  76 ++++
+>   arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi     |   3 +-
+>   drivers/clk/hisilicon/Kconfig                      |   8 +
+>   drivers/clk/hisilicon/Makefile                     |   1 +
+>   drivers/clk/hisilicon/crg-hi3798cv200.c            |   3 +-
+>   drivers/clk/hisilicon/crg-hi3798mv200.c            | 462 +++++++++++++++++++++
+>   .../dt-bindings/clock/hisilicon,hi3798cv200-crg.h  |  62 +++
+>   .../clock/hisilicon,hi3798cv200-sysctrl.h          |  17 +
+>   .../dt-bindings/clock/hisilicon,hi3798mv200-crg.h  | 150 +++++++
+>   .../clock/hisilicon,hi3798mv200-sysctrl.h          |  21 +
+>   include/dt-bindings/clock/histb-clock.h            |  70 +---
+>   12 files changed, 810 insertions(+), 113 deletions(-)
+> ---
+> base-commit: 8d3dea210042f54b952b481838c1e7dfc4ec751d
+> change-id: 20240216-clk-mv200-cc8cae396ee0
+>
+> Best regards,
 
-Add support for the jack detection functionality in the A64 variant,
-which uses a pair of IRQs; and microphone accessory (button) detection,
-which uses an ADC with an IRQ trigger.
 
-IRQs will only be triggered if the JACKDETEN, HMICBIASEN, and MICADCEN
-bits are set appropriately in the analog codec component
-(sun50i-codec-analog), but there is no direct software dependency
-between the two components.
+Please do not merge this series. Some critical clocks are found missing. 
+dt-binding indexes needs update.
 
-Setup ADC so that it samples with period of 16ms, disable smoothing
-and enable MDATA threshold (should be below idle voltage/HMIC_DATA
-value). Also enable HMIC_N, which makes sure we get HMIC_N samples
-after HMIC_DATA crosses the threshold.
-
-This allows us to perform steady state detection of HMIC_DATA, by
-comparing current and previous ADC samples, to detect end of the
-transient when the user de-presses the button. Otherwise ADC could
-sample anywhere within the transient, and the driver may mis-issue
-key-press events for other buttons attached to the resistor ladder.
-
-Signed-off-by: Arnaud Ferraris <arnaud.ferraris@collabora.com>
-[Samuel: Decouple from analog codec, fixes]
-Co-developed-by: Samuel Holland <samuel@sholland.org>
-Signed-off-by: Samuel Holland <samuel@sholland.org>
-[Ondrej: Almost complete rewrite of the patch, change to use set_jack/
-get_jack_type. Better de-bounce, fix mic button handling, better
-interrupt processing.]
-Co-developed-by: Ondrej Jirman <megi@xff.cz>
-Signed-off-by: Ondrej Jirman <megi@xff.cz>
----
- sound/soc/sunxi/sun50i-codec-analog.c |  12 +
- sound/soc/sunxi/sun8i-codec.c         | 318 ++++++++++++++++++++++++++
- 2 files changed, 330 insertions(+)
-
-diff --git a/sound/soc/sunxi/sun50i-codec-analog.c b/sound/soc/sunxi/sun50i-codec-analog.c
-index 2081721a8ff2..2dcdf113b66e 100644
---- a/sound/soc/sunxi/sun50i-codec-analog.c
-+++ b/sound/soc/sunxi/sun50i-codec-analog.c
-@@ -115,6 +115,11 @@
- #define SUN50I_ADDA_HS_MBIAS_CTRL	0x0e
- #define SUN50I_ADDA_HS_MBIAS_CTRL_MMICBIASEN	7
- 
-+#define SUN50I_ADDA_MDET_CTRL		0x1c
-+#define SUN50I_ADDA_MDET_CTRL_SELDETADC_FS	4
-+#define SUN50I_ADDA_MDET_CTRL_SELDETADC_DB	2
-+#define SUN50I_ADDA_MDET_CTRL_SELDETADC_BF	0
-+
- #define SUN50I_ADDA_JACK_MIC_CTRL	0x1d
- #define SUN50I_ADDA_JACK_MIC_CTRL_JACKDETEN	7
- #define SUN50I_ADDA_JACK_MIC_CTRL_INNERRESEN	6
-@@ -564,6 +569,13 @@ static int sun50i_codec_analog_probe(struct platform_device *pdev)
- 			   BIT(SUN50I_ADDA_JACK_MIC_CTRL_INNERRESEN),
- 			   enable << SUN50I_ADDA_JACK_MIC_CTRL_INNERRESEN);
- 
-+	/* Select sample interval of the ADC sample to 16ms */
-+	regmap_update_bits(regmap, SUN50I_ADDA_MDET_CTRL,
-+			   0x7 << SUN50I_ADDA_MDET_CTRL_SELDETADC_FS |
-+			   0x3 << SUN50I_ADDA_MDET_CTRL_SELDETADC_BF,
-+			   0x3 << SUN50I_ADDA_MDET_CTRL_SELDETADC_FS |
-+			   0x3 << SUN50I_ADDA_MDET_CTRL_SELDETADC_BF);
-+
- 	return devm_snd_soc_register_component(&pdev->dev,
- 					       &sun50i_codec_analog_cmpnt_drv,
- 					       NULL, 0);
-diff --git a/sound/soc/sunxi/sun8i-codec.c b/sound/soc/sunxi/sun8i-codec.c
-index 2a46b96b03cc..097418364985 100644
---- a/sound/soc/sunxi/sun8i-codec.c
-+++ b/sound/soc/sunxi/sun8i-codec.c
-@@ -12,12 +12,16 @@
- #include <linux/module.h>
- #include <linux/delay.h>
- #include <linux/clk.h>
-+#include <linux/input.h>
- #include <linux/io.h>
-+#include <linux/irq.h>
-+#include <linux/mutex.h>
- #include <linux/of.h>
- #include <linux/pm_runtime.h>
- #include <linux/regmap.h>
- #include <linux/log2.h>
- 
-+#include <sound/jack.h>
- #include <sound/pcm_params.h>
- #include <sound/soc.h>
- #include <sound/soc-dapm.h>
-@@ -118,6 +122,23 @@
- #define SUN8I_ADC_VOL_CTRL				0x104
- #define SUN8I_ADC_VOL_CTRL_ADCL_VOL			8
- #define SUN8I_ADC_VOL_CTRL_ADCR_VOL			0
-+#define SUN8I_HMIC_CTRL1				0x110
-+#define SUN8I_HMIC_CTRL1_HMIC_M				12
-+#define SUN8I_HMIC_CTRL1_HMIC_N				8
-+#define SUN8I_HMIC_CTRL1_MDATA_THRESHOLD_DB		5
-+#define SUN8I_HMIC_CTRL1_JACK_OUT_IRQ_EN		4
-+#define SUN8I_HMIC_CTRL1_JACK_IN_IRQ_EN			3
-+#define SUN8I_HMIC_CTRL1_HMIC_DATA_IRQ_EN		0
-+#define SUN8I_HMIC_CTRL2				0x114
-+#define SUN8I_HMIC_CTRL2_HMIC_SAMPLE			14
-+#define SUN8I_HMIC_CTRL2_HMIC_MDATA_THRESHOLD		8
-+#define SUN8I_HMIC_CTRL2_HMIC_SF			6
-+#define SUN8I_HMIC_STS					0x118
-+#define SUN8I_HMIC_STS_MDATA_DISCARD			13
-+#define SUN8I_HMIC_STS_HMIC_DATA			8
-+#define SUN8I_HMIC_STS_JACK_OUT_IRQ_ST			4
-+#define SUN8I_HMIC_STS_JACK_IN_IRQ_ST			3
-+#define SUN8I_HMIC_STS_HMIC_DATA_IRQ_ST			0
- #define SUN8I_DAC_DIG_CTRL				0x120
- #define SUN8I_DAC_DIG_CTRL_ENDA				15
- #define SUN8I_DAC_VOL_CTRL				0x124
-@@ -143,6 +164,17 @@
- #define SUN8I_AIF_CLK_CTRL_WORD_SIZ_MASK	GENMASK(5, 4)
- #define SUN8I_AIF_CLK_CTRL_DATA_FMT_MASK	GENMASK(3, 2)
- #define SUN8I_AIF3_CLK_CTRL_AIF3_CLK_SRC_MASK	GENMASK(1, 0)
-+#define SUN8I_HMIC_CTRL1_HMIC_M_MASK		GENMASK(15, 12)
-+#define SUN8I_HMIC_CTRL1_HMIC_N_MASK		GENMASK(11, 8)
-+#define SUN8I_HMIC_CTRL1_MDATA_THRESHOLD_DB_MASK GENMASK(6, 5)
-+#define SUN8I_HMIC_CTRL2_HMIC_SAMPLE_MASK	GENMASK(15, 14)
-+#define SUN8I_HMIC_CTRL2_HMIC_SF_MASK		GENMASK(7, 6)
-+#define SUN8I_HMIC_STS_HMIC_DATA_MASK		GENMASK(12, 8)
-+
-+#define SUN8I_CODEC_BUTTONS	(SND_JACK_BTN_0|\
-+				 SND_JACK_BTN_1|\
-+				 SND_JACK_BTN_2|\
-+				 SND_JACK_BTN_3)
- 
- #define SUN8I_CODEC_PASSTHROUGH_SAMPLE_RATE 48000
- 
-@@ -178,16 +210,32 @@ struct sun8i_codec_aif {
- 
- struct sun8i_codec_quirks {
- 	bool	bus_clock	: 1;
-+	bool	jack_detection	: 1;
- 	bool	legacy_widgets	: 1;
- 	bool	lrck_inversion	: 1;
- };
- 
-+enum {
-+	SUN8I_JACK_STATUS_DISCONNECTED,
-+	SUN8I_JACK_STATUS_WAITING_HBIAS,
-+	SUN8I_JACK_STATUS_CONNECTED,
-+};
-+
- struct sun8i_codec {
-+	struct snd_soc_component	*component;
- 	struct regmap			*regmap;
- 	struct clk			*clk_bus;
- 	struct clk			*clk_module;
- 	const struct sun8i_codec_quirks	*quirks;
- 	struct sun8i_codec_aif		aifs[SUN8I_CODEC_NAIFS];
-+	struct snd_soc_jack		*jack;
-+	struct delayed_work		jack_work;
-+	int				jack_irq;
-+	int				jack_status;
-+	int				jack_last_sample;
-+	ktime_t				jack_hbias_ready;
-+	struct mutex			jack_mutex;
-+	int				last_hmic_irq;
- 	unsigned int			sysclk_rate;
- 	int				sysclk_refcnt;
- };
-@@ -1245,6 +1293,8 @@ static int sun8i_codec_component_probe(struct snd_soc_component *component)
- 	struct sun8i_codec *scodec = snd_soc_component_get_drvdata(component);
- 	int ret;
- 
-+	scodec->component = component;
-+
- 	/* Add widgets for backward compatibility with old device trees. */
- 	if (scodec->quirks->legacy_widgets) {
- 		ret = snd_soc_dapm_new_controls(dapm, sun8i_codec_legacy_widgets,
-@@ -1281,6 +1331,263 @@ static int sun8i_codec_component_probe(struct snd_soc_component *component)
- 	return 0;
- }
- 
-+static void sun8i_codec_set_hmic_bias(struct sun8i_codec *scodec, bool enable)
-+{
-+	struct snd_soc_dapm_context *dapm = &scodec->component->card->dapm;
-+	int irq_mask = BIT(SUN8I_HMIC_CTRL1_HMIC_DATA_IRQ_EN);
-+
-+	if (enable)
-+		snd_soc_dapm_force_enable_pin(dapm, "HBIAS");
-+	else
-+		snd_soc_dapm_disable_pin(dapm, "HBIAS");
-+
-+	snd_soc_dapm_sync(dapm);
-+
-+	regmap_update_bits(scodec->regmap, SUN8I_HMIC_CTRL1,
-+			   irq_mask, enable ? irq_mask : 0);
-+}
-+
-+static void sun8i_codec_jack_work(struct work_struct *work)
-+{
-+	struct sun8i_codec *scodec = container_of(work, struct sun8i_codec,
-+						  jack_work.work);
-+	unsigned int mdata;
-+	int type_mask = scodec->jack->jack->type;
-+	int type;
-+
-+	guard(mutex)(&scodec->jack_mutex);
-+
-+	if (scodec->jack_status == SUN8I_JACK_STATUS_DISCONNECTED) {
-+		if (scodec->last_hmic_irq != SUN8I_HMIC_STS_JACK_IN_IRQ_ST)
-+			return;
-+
-+		scodec->jack_last_sample = -1;
-+
-+		if (type_mask & SND_JACK_MICROPHONE) {
-+			/*
-+			 * If we were in disconnected state, we enable HBIAS and
-+			 * wait 600ms before reading initial HDATA value.
-+			 */
-+			scodec->jack_hbias_ready = ktime_add_ms(ktime_get(), 600);
-+			sun8i_codec_set_hmic_bias(scodec, true);
-+			queue_delayed_work(system_power_efficient_wq,
-+					   &scodec->jack_work,
-+					   msecs_to_jiffies(610));
-+			scodec->jack_status = SUN8I_JACK_STATUS_WAITING_HBIAS;
-+		} else {
-+			snd_soc_jack_report(scodec->jack, SND_JACK_HEADPHONE,
-+					    type_mask);
-+			scodec->jack_status = SUN8I_JACK_STATUS_CONNECTED;
-+		}
-+	} else if (scodec->jack_status == SUN8I_JACK_STATUS_WAITING_HBIAS) {
-+		/*
-+		 * If we're waiting for HBIAS to stabilize, and we get plug-out
-+		 * interrupt and nothing more for > 100ms, just cancel the
-+		 * initialization.
-+		 */
-+		if (scodec->last_hmic_irq == SUN8I_HMIC_STS_JACK_OUT_IRQ_ST) {
-+			scodec->jack_status = SUN8I_JACK_STATUS_DISCONNECTED;
-+			sun8i_codec_set_hmic_bias(scodec, false);
-+			return;
-+		}
-+
-+		/*
-+		 * If we're not done waiting for HBIAS to stabilize, wait more.
-+		 */
-+		if (!ktime_after(ktime_get(), scodec->jack_hbias_ready)) {
-+			s64 msecs = ktime_ms_delta(scodec->jack_hbias_ready,
-+						   ktime_get());
-+
-+			queue_delayed_work(system_power_efficient_wq,
-+					   &scodec->jack_work,
-+					   msecs_to_jiffies(msecs + 10));
-+			return;
-+		}
-+
-+		/*
-+		 * Everything is stabilized, determine jack type and report it.
-+		 */
-+		regmap_read(scodec->regmap, SUN8I_HMIC_STS, &mdata);
-+		mdata &= SUN8I_HMIC_STS_HMIC_DATA_MASK;
-+		mdata >>= SUN8I_HMIC_STS_HMIC_DATA;
-+
-+		regmap_write(scodec->regmap, SUN8I_HMIC_STS, 0);
-+
-+		type = mdata < 16 ? SND_JACK_HEADPHONE : SND_JACK_HEADSET;
-+		if (type == SND_JACK_HEADPHONE)
-+			sun8i_codec_set_hmic_bias(scodec, false);
-+
-+		snd_soc_jack_report(scodec->jack, type, type_mask);
-+		scodec->jack_status = SUN8I_JACK_STATUS_CONNECTED;
-+	} else if (scodec->jack_status == SUN8I_JACK_STATUS_CONNECTED) {
-+		if (scodec->last_hmic_irq != SUN8I_HMIC_STS_JACK_OUT_IRQ_ST)
-+			return;
-+
-+		scodec->jack_status = SUN8I_JACK_STATUS_DISCONNECTED;
-+		if (type_mask & SND_JACK_MICROPHONE)
-+			sun8i_codec_set_hmic_bias(scodec, false);
-+
-+		snd_soc_jack_report(scodec->jack, 0, type_mask);
-+	}
-+}
-+
-+static irqreturn_t sun8i_codec_jack_irq(int irq, void *dev_id)
-+{
-+	struct sun8i_codec *scodec = dev_id;
-+	int type = SND_JACK_HEADSET;
-+	unsigned int status, value;
-+
-+	guard(mutex)(&scodec->jack_mutex);
-+
-+	regmap_read(scodec->regmap, SUN8I_HMIC_STS, &status);
-+	regmap_write(scodec->regmap, SUN8I_HMIC_STS, status);
-+
-+	/*
-+	 * De-bounce in/out interrupts via a delayed work re-scheduling to
-+	 * 100ms after each interrupt..
-+	 */
-+	if (status & BIT(SUN8I_HMIC_STS_JACK_OUT_IRQ_ST)) {
-+		/*
-+		 * Out interrupt has priority over in interrupt so that if
-+		 * we get both, we assume the disconnected state, which is
-+		 * safer.
-+		 */
-+		scodec->last_hmic_irq = SUN8I_HMIC_STS_JACK_OUT_IRQ_ST;
-+		mod_delayed_work(system_power_efficient_wq, &scodec->jack_work,
-+				 msecs_to_jiffies(100));
-+	} else if (status & BIT(SUN8I_HMIC_STS_JACK_IN_IRQ_ST)) {
-+		scodec->last_hmic_irq = SUN8I_HMIC_STS_JACK_IN_IRQ_ST;
-+		mod_delayed_work(system_power_efficient_wq, &scodec->jack_work,
-+				 msecs_to_jiffies(100));
-+	} else if (status & BIT(SUN8I_HMIC_STS_HMIC_DATA_IRQ_ST)) {
-+		/*
-+		 * Ignore data interrupts until jack status turns to connected
-+		 * state, which is after HMIC enable stabilization is completed.
-+		 * Until then tha data are bogus.
-+		 */
-+		if (scodec->jack_status != SUN8I_JACK_STATUS_CONNECTED)
-+			return IRQ_HANDLED;
-+
-+		value = (status & SUN8I_HMIC_STS_HMIC_DATA_MASK) >>
-+			SUN8I_HMIC_STS_HMIC_DATA;
-+
-+		/*
-+		 * Assumes 60 mV per ADC LSB increment, 2V bias voltage, 2.2kOhm
-+		 * bias resistor.
-+		 */
-+		if (value == 0)
-+			type |= SND_JACK_BTN_0;
-+		else if (value == 1)
-+			type |= SND_JACK_BTN_3;
-+		else if (value <= 3)
-+			type |= SND_JACK_BTN_1;
-+		else if (value <= 8)
-+			type |= SND_JACK_BTN_2;
-+
-+		/*
-+		 * De-bounce. Only report button after two consecutive A/D
-+		 * samples are identical.
-+		 */
-+		if (scodec->jack_last_sample >= 0 &&
-+		    scodec->jack_last_sample == value)
-+			snd_soc_jack_report(scodec->jack, type,
-+					    scodec->jack->jack->type);
-+
-+		scodec->jack_last_sample = value;
-+	}
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int sun8i_codec_enable_jack_detect(struct snd_soc_component *component,
-+					  struct snd_soc_jack *jack, void *data)
-+{
-+	struct sun8i_codec *scodec = snd_soc_component_get_drvdata(component);
-+	struct platform_device *pdev = to_platform_device(component->dev);
-+	int ret;
-+
-+	if (!scodec->quirks->jack_detection)
-+		return 0;
-+
-+	scodec->jack = jack;
-+
-+	scodec->jack_irq = platform_get_irq(pdev, 0);
-+	if (scodec->jack_irq < 0)
-+		return scodec->jack_irq;
-+
-+	/* Reserved value required for jack IRQs to trigger. */
-+	regmap_write(scodec->regmap, SUN8I_HMIC_CTRL1,
-+			   0xf << SUN8I_HMIC_CTRL1_HMIC_N |
-+			   0x0 << SUN8I_HMIC_CTRL1_MDATA_THRESHOLD_DB |
-+			   0x4 << SUN8I_HMIC_CTRL1_HMIC_M);
-+
-+	/* Sample the ADC at 128 Hz; bypass smooth filter. */
-+	regmap_write(scodec->regmap, SUN8I_HMIC_CTRL2,
-+			   0x0 << SUN8I_HMIC_CTRL2_HMIC_SAMPLE |
-+			   0x17 << SUN8I_HMIC_CTRL2_HMIC_MDATA_THRESHOLD |
-+			   0x0 << SUN8I_HMIC_CTRL2_HMIC_SF);
-+
-+	/* Do not discard any MDATA, enable user written MDATA threshold. */
-+	regmap_write(scodec->regmap, SUN8I_HMIC_STS, 0);
-+
-+	regmap_set_bits(scodec->regmap, SUN8I_HMIC_CTRL1,
-+			BIT(SUN8I_HMIC_CTRL1_JACK_OUT_IRQ_EN) |
-+			BIT(SUN8I_HMIC_CTRL1_JACK_IN_IRQ_EN));
-+
-+	ret = devm_request_threaded_irq(&pdev->dev, scodec->jack_irq,
-+					NULL, sun8i_codec_jack_irq,
-+					IRQF_ONESHOT,
-+					dev_name(&pdev->dev), scodec);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static void sun8i_codec_disable_jack_detect(struct snd_soc_component *component)
-+{
-+	struct sun8i_codec *scodec = snd_soc_component_get_drvdata(component);
-+
-+	if (!scodec->quirks->jack_detection)
-+		return;
-+
-+	devm_free_irq(component->dev, scodec->jack_irq, scodec);
-+
-+	cancel_delayed_work_sync(&scodec->jack_work);
-+
-+	regmap_clear_bits(scodec->regmap, SUN8I_HMIC_CTRL1,
-+			  BIT(SUN8I_HMIC_CTRL1_JACK_OUT_IRQ_EN) |
-+			  BIT(SUN8I_HMIC_CTRL1_JACK_IN_IRQ_EN) |
-+			  BIT(SUN8I_HMIC_CTRL1_HMIC_DATA_IRQ_EN));
-+
-+	scodec->jack = NULL;
-+}
-+
-+static int sun8i_codec_component_get_jack_type(struct snd_soc_component *component)
-+{
-+	struct device_node *node = component->dev->of_node;
-+
-+	if (of_property_match_string(node, "jack-type", "headset") >= 0)
-+		return SND_JACK_HEADSET | SUN8I_CODEC_BUTTONS;
-+	else if (of_property_match_string(node, "jack-type", "headphone") >= 0)
-+		return SND_JACK_HEADPHONE;
-+
-+	return 0;
-+}
-+
-+static int sun8i_codec_component_set_jack(struct snd_soc_component *component,
-+					  struct snd_soc_jack *jack, void *data)
-+{
-+	int ret = 0;
-+
-+	if (jack)
-+		ret = sun8i_codec_enable_jack_detect(component, jack, data);
-+	else
-+		sun8i_codec_disable_jack_detect(component);
-+
-+	return ret;
-+}
-+
- static const struct snd_soc_component_driver sun8i_soc_component = {
- 	.controls		= sun8i_codec_controls,
- 	.num_controls		= ARRAY_SIZE(sun8i_codec_controls),
-@@ -1288,16 +1595,24 @@ static const struct snd_soc_component_driver sun8i_soc_component = {
- 	.num_dapm_widgets	= ARRAY_SIZE(sun8i_codec_dapm_widgets),
- 	.dapm_routes		= sun8i_codec_dapm_routes,
- 	.num_dapm_routes	= ARRAY_SIZE(sun8i_codec_dapm_routes),
-+	.set_jack		= sun8i_codec_component_set_jack,
-+	.get_jack_type		= sun8i_codec_component_get_jack_type,
- 	.probe			= sun8i_codec_component_probe,
- 	.idle_bias_on		= 1,
- 	.suspend_bias_off	= 1,
- 	.endianness		= 1,
- };
- 
-+static bool sun8i_codec_volatile_reg(struct device *dev, unsigned int reg)
-+{
-+	return reg == SUN8I_HMIC_STS;
-+}
-+
- static const struct regmap_config sun8i_codec_regmap_config = {
- 	.reg_bits	= 32,
- 	.reg_stride	= 4,
- 	.val_bits	= 32,
-+	.volatile_reg	= sun8i_codec_volatile_reg,
- 	.max_register	= SUN8I_DAC_MXR_SRC,
- 
- 	.cache_type	= REGCACHE_FLAT,
-@@ -1314,6 +1629,8 @@ static int sun8i_codec_probe(struct platform_device *pdev)
- 		return -ENOMEM;
- 
- 	scodec->quirks = of_device_get_match_data(&pdev->dev);
-+	INIT_DELAYED_WORK(&scodec->jack_work, sun8i_codec_jack_work);
-+	mutex_init(&scodec->jack_mutex);
- 
- 	platform_set_drvdata(pdev, scodec);
- 
-@@ -1387,6 +1704,7 @@ static const struct sun8i_codec_quirks sun8i_a33_quirks = {
- 
- static const struct sun8i_codec_quirks sun50i_a64_quirks = {
- 	.bus_clock	= true,
-+	.jack_detection	= true,
- };
- 
- static const struct of_device_id sun8i_codec_of_match[] = {
 -- 
-2.43.0
+Regards,
+Yang Xiwen
 
 
