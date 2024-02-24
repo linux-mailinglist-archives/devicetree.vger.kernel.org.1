@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-45560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9503862677
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 18:45:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00DB686267E
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 18:55:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63D6328257A
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 17:45:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7D081C2155A
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 17:55:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4891481AA;
-	Sat, 24 Feb 2024 17:45:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6429481B8;
+	Sat, 24 Feb 2024 17:55:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nr7/l/Ds"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hfYKydJB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A00847F57;
-	Sat, 24 Feb 2024 17:45:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A907D45030;
+	Sat, 24 Feb 2024 17:55:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708796702; cv=none; b=XF+6V98D4ZKXFEenmBzjTNSiYnsHm1TAaUzAGRFYgb44LZE7aFrHlrf6P9CrIV3WmitA/Emqt7m1X6Cd0rJifO0A/RvRd76y8OjHG+3jnJuysF12f8t/T3KTgp9fJP8Z2noHIUo2B1Y5ZDNXiTx3bPjquGKIVHvpS5D/TYBetME=
+	t=1708797306; cv=none; b=mSJ96atme+B7kcYTh6PK7E+n9m7Kv4hTYeLWXI4UJkMgthYmEgoIqFEpHJWj2bVO8yDu1voy8xFGF5rAbitlTOOJG+3ZaOXTjg9EqtUa8/KNM4Gh8+wSr7c1ZYipT+ccrlidvPOzbhlUS8b+lxbG0gOUlOMC93aW6nf9d3R/IDM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708796702; c=relaxed/simple;
-	bh=woSEirEgxk5nDxSKXgKZhmGAUu4mIYHB7i2UM798t/o=;
+	s=arc-20240116; t=1708797306; c=relaxed/simple;
+	bh=+U3p6XWhKPzjcH7Ryeh4baGD5MBCZbaDNuBKMlXSTiY=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fR7dqjy24igNiSnGODnRFmRCcbEaMFs8DDL0IM3Bnki6tSyTycjpH8ixVF9djqGPUMbGmbKz8YRYjiBCSnv8QEGGeW96tzpGNs8+DW+ww3eBoR5QUqu2PcYBkZ+ZgNNq5yxS0VXYa8qXO1t6Zs7Sjzf29/OOXzUwYEwPXOZ47EI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nr7/l/Ds; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77379C433C7;
-	Sat, 24 Feb 2024 17:44:58 +0000 (UTC)
+	 MIME-Version:Content-Type; b=GexZAxFEipFhs8n6i4vnfOjg+YgxPsGzRiOqmiLmhrytfgvxlldKr+KQoaMqQs9eQB42/F9LQ+qooHwZ0IlCmEZCGdQemnm3Rq44FuWA9i1KVZI2jUzZs+SyTReBd5JmEkEl7W/5OkEDdEqkZbyK2cSWwrPxVpP1sJTgKWclSxU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hfYKydJB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84DB7C433C7;
+	Sat, 24 Feb 2024 17:55:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708796702;
-	bh=woSEirEgxk5nDxSKXgKZhmGAUu4mIYHB7i2UM798t/o=;
+	s=k20201202; t=1708797306;
+	bh=+U3p6XWhKPzjcH7Ryeh4baGD5MBCZbaDNuBKMlXSTiY=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Nr7/l/Dsh9VA/ak1wgOPkO2o8018LA8pL3xoFNMNoRScKwx4+Rb6UnzAalxygCB5w
-	 DT+XlQqf0znU8nYhM1Yqq6LMeH6prgmOn5bSwChyXm0fcw1a0XQGeeG4YRaSjWWRBq
-	 n9Ntok0ERSEBghmuDU1FFnUcpi4T3zFIGVcw8k1WQjsC63fEngaVvkgEWKLAELJ1CE
-	 mQGstW7xsHX2Ze0LlZFd057K/OQlXdDgRB7nQDELBCRGD5cZvArhvj2xJOaccwGXMZ
-	 tehSuoS303QNTdRnbizw0za2/dxN51OrOx7R+EbbP0SLmeiI+01zaVjq3XZcproOVe
-	 VOwdFpWz5p8wg==
-Date: Sat, 24 Feb 2024 17:44:46 +0000
+	b=hfYKydJBIyHctRmSVuD74MPe0Z6ZiutZnZUXuyuAY327y1buIlBjT8cAKXdzXrmYl
+	 KCpLlG2ySbaIcRPkgks+h0AjlvmwDWIAzqF1Va879cXgW9Tl4qSXYZwJYpyp2Sv5ls
+	 V6fLg4I5UAhjSGvxdhGsl1JfyxDrDBziiF9HwXrJmzXd0JOqG8TQWgpSc2nShKzaiJ
+	 PwWrby8wu2SKHAZZ47+OuRR77nMNAK6SQ3/ZinLrkpKC8JuTiVaUIYFxKmkKhWhvVp
+	 1zPRshqqJszVHHNUFzmrm3A9mdOToAYP/USWka0v/1OPEHbtrQKQ5ZSX2t+FtGpM9e
+	 EiHoZ0g20o/CA==
+Date: Sat, 24 Feb 2024 17:54:48 +0000
 From: Jonathan Cameron <jic23@kernel.org>
 To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
 Cc: Dumitru Ceclan <mitrutzceclan@gmail.com>, Lars-Peter Clausen
@@ -49,13 +49,13 @@ Cc: Dumitru Ceclan <mitrutzceclan@gmail.com>, Lars-Peter Clausen
  <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
  linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, Ceclan Dumitru <dumitru.ceclan@analog.com>
-Subject: Re: [PATCH v5 4/5] iio: amplifiers: hmc425a: use pointers in match
- table
-Message-ID: <20240224174446.1565bfb9@jic23-huawei>
-In-Reply-To: <94f7e7f2568d0d70055954f628b2bd56cbe78d9b.camel@gmail.com>
+Subject: Re: [PATCH v5 5/5] iio: amplifiers: hmc425a: add support for
+ LTC6373 Instrumentation Amplifier
+Message-ID: <20240224175448.484ccd10@jic23-huawei>
+In-Reply-To: <c92c4c71f433c7375588e832d3c084a50190a1b5.camel@gmail.com>
 References: <20240220153553.2432-1-mitrutzceclan@gmail.com>
-	<20240220153553.2432-4-mitrutzceclan@gmail.com>
-	<94f7e7f2568d0d70055954f628b2bd56cbe78d9b.camel@gmail.com>
+	<20240220153553.2432-6-mitrutzceclan@gmail.com>
+	<c92c4c71f433c7375588e832d3c084a50190a1b5.camel@gmail.com>
 X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -66,43 +66,80 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, 21 Feb 2024 14:17:22 +0100
+On Wed, 21 Feb 2024 14:23:51 +0100
 Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
 
 > On Tue, 2024-02-20 at 17:34 +0200, Dumitru Ceclan wrote:
-> > Change the match table to use pointers instead of device ids.
-> > Remove type from state as it is not used anymore.
+> > This adds support for LTC6373 36 V Fully-Differential Programmable-Gain
+> > Instrumentation Amplifier with 25 pA Input Bias Current.
+> > The user can program the gain to one of seven available settings through
+> > a 3-bit parallel interface (A2 to A0).
 > >=20
 > > Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
 > > --- =20
 >=20
-> One comment (Jonathan might be able to address that while applying)... Wi=
-th that:
+> Just one minor comment. With that:
 >=20
 > Reviewed-by: Nuno Sa <nuno.sa@analog.com>
 >=20
-> > =C2=A0drivers/iio/amplifiers/hmc425a.c | 29 +++++++++++++++------------=
---
-> > =C2=A01 file changed, 15 insertions(+), 14 deletions(-)
+> > =C2=A0drivers/iio/amplifiers/hmc425a.c | 124 ++++++++++++++++++++++++++=
+++++-
+> > =C2=A01 file changed, 120 insertions(+), 4 deletions(-)
 > >=20
 > > diff --git a/drivers/iio/amplifiers/hmc425a.c b/drivers/iio/amplifiers/=
 hmc425a.c
-> > index 13e018a59637..77872e2dfdfe 100644
+> > index 77872e2dfdfe..50c86c2d28d7 100644
 > > --- a/drivers/iio/amplifiers/hmc425a.c
 > > +++ b/drivers/iio/amplifiers/hmc425a.c
-> > @@ -41,15 +41,14 @@ struct hmc425a_chip_info {
+> > @@ -2,9 +2,10 @@
+> > =C2=A0/*
+> > =C2=A0 * HMC425A and similar Gain Amplifiers
+> > =C2=A0 *
+> > - * Copyright 2020 Analog Devices Inc.
+> > + * Copyright 2020, 2024 Analog Devices Inc.
+> > =C2=A0 */ =20
+>=20
+> ...
+>=20
+> >=20
 > > =C2=A0
-> > =C2=A0struct hmc425a_state {
-> > =C2=A0	struct	mutex lock; /* protect sensor state */
-> > -	struct	hmc425a_chip_info *chip_info;
-> > +	const struct	hmc425a_chip_info *chip_info; =20
+> > +static ssize_t ltc6373_read_powerdown(struct iio_dev *indio_dev,
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uintptr_t private,
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct iio_chan_spec *chan,
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 char *buf)
+> > +{
+> > +	struct hmc425a_state *st =3D iio_priv(indio_dev);
+> > +
+> > +	return sysfs_emit(buf, "%d\n", st->powerdown); =20
 >=20
-> Since you're doing this, I believe you should also constify hmc425a_chip_=
-info_tbl[]
-> and mention it in the commit message.
->=20
-Absolutely.  I've made that change and added a note on it to commit message.
+> Well, in theory the read should also be protected with the lock...
 
+Only reason I can think of for that is potential read tearing.
+If that happens on a bool we are going to be in a mess so I think this
+is in practice fine without, though paranoia might suggest locking.
+
+It can race against it being powered down but that effectively happens
+even if we do have a lock as we either see the value before or after
+a racing power down event and we have no way of knowing which.
+
+Applied rest series to iio.git togreg branch and pushed out as testing.
+
+Duitru, if you can figure out what happened to your message thread before
+sending more patches that would be great. The IDs for patches 0-5 go
+
+20240220153553.2432-1-mitrutzceclan@gmail.com
+20240220153553.2432-3-mitrutzceclan@gmail.com
+20240220153553.2432-5-mitrutzceclan@gmail.com
+20240220153553.2432-2-mitrutzceclan@gmail.com
+20240220153553.2432-4-mitrutzceclan@gmail.com
+20240220153553.2432-6-mitrutzceclan@gmail.com
+
+Which really confuses my email client and patchwork.
+https://patchwork.kernel.org/project/linux-iio/list/?series=3D827901
+
+
+
+>=20
 > - Nuno S=C3=A1
 >=20
 
