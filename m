@@ -1,75 +1,94 @@
-Return-Path: <devicetree+bounces-45490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65BB4862350
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 08:35:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 567D9862365
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 09:14:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1850D1F23E7C
-	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 07:35:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD76F1F23922
+	for <lists+devicetree@lfdr.de>; Sat, 24 Feb 2024 08:14:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2682F125A7;
-	Sat, 24 Feb 2024 07:35:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67E70171AC;
+	Sat, 24 Feb 2024 08:14:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HHxUgCVd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Pnv9z4lQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4941D10A2B;
-	Sat, 24 Feb 2024 07:35:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE2681400B;
+	Sat, 24 Feb 2024 08:14:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708760131; cv=none; b=eG8doVW4Ri1nql9nSlN6CDhPfIBipEQbNdHwH3fTakh+aWWZpWb/KovieouWum3orWNKq7LpStOO6TF4yfvOM/F40etfJ5orfBAnQUiS0I/Zt763tgUpYltHXFvt5k1xrVy/2negTH9Ntx2CotjJS7nFQr2vhu0t/8IsicQkXiY=
+	t=1708762485; cv=none; b=sM4GyO8l+1aoAcTvYqDXQx55j0Fskd58Eb6IXPWe/S+B9olY2pd3kud58hX6fvVQNczQxKs6cafiIlwRgXfQB28pnYHwP763YuJZEGbKxKBzOlq38tU3SQTYQVw9wouJC/cr4nwlgrUlFZLcHDxdRi8O1tAH9M9RsSDl/dDiRSM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708760131; c=relaxed/simple;
-	bh=q2/5MqZPz2HDD14dYiI1H5yCstXYofd3cv/H8+6ocWU=;
+	s=arc-20240116; t=1708762485; c=relaxed/simple;
+	bh=Qhz9N/fmoRItK8W7Ipwzkn/wGHgDt+GnC9r4h0Wl+7o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p2KojHwquEGOcSOUvog++2D5eYYOdibOTWvWeXe9WqE5Cbxnyqm+26WBWcj2N96BSJSoqCu3YPFkCtMNfkkG5b8aRRWhbVSE4w6g/GyfY0+OMkcMX/la1yA+IBItqDNjHR8PnYvWNGWMfMkOWssO4SR4ux2NWrfIyFUTZfF8oAg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HHxUgCVd; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1708760129; x=1740296129;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=q2/5MqZPz2HDD14dYiI1H5yCstXYofd3cv/H8+6ocWU=;
-  b=HHxUgCVdIuIVKmdZap7AHR0BAoekH5voFIdpgd8p/1bQlM0KDS6q0RCu
-   6xDaAg4Q/E5G7S1uimLHJzs7zEYlxbNltbDZur7e9C6vM1AHErK9R+HvW
-   5AS796TtPEdcMFUANQyrWalpu7eH6rgj8GD86WUxV3noBn6vxnnqtliR9
-   nBKQW0dJNlK3QTBZpM5KElwShQ1WZG5V+avsr3jnH2Ur8ZvdrevNsrMyk
-   Yho1WQlAEysSx2YdIl+/xF8XJ6YpXL+dDiVaI9X/oNqo0SKr1tgWX8eBP
-   8cTa2AF5l400U1cxRTtjPvpwzqkO2JbCTSCy4rPPRdJwfUbILv/0aRsvs
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10993"; a="6045032"
-X-IronPort-AV: E=Sophos;i="6.06,181,1705392000"; 
-   d="scan'208";a="6045032"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Feb 2024 23:35:28 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,181,1705392000"; 
-   d="scan'208";a="6143052"
-Received: from lkp-server02.sh.intel.com (HELO 3c78fa4d504c) ([10.239.97.151])
-  by fmviesa010.fm.intel.com with ESMTP; 23 Feb 2024 23:35:25 -0800
-Received: from kbuild by 3c78fa4d504c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rdmZ4-0008L2-2j;
-	Sat, 24 Feb 2024 07:35:20 +0000
-Date: Sat, 24 Feb 2024 15:34:51 +0800
-From: kernel test robot <lkp@intel.com>
-To: marius.cristea@microchip.com, jic23@kernel.org, lars@metafoo.de,
-	robh+dt@kernel.org, jdelvare@suse.com, linux@roeck-us.net,
-	linux-hwmon@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	marius.cristea@microchip.com
-Subject: Re: [PATCH v5 1/2] dt-bindings: iio: adc: adding support for PAC193X
-Message-ID: <202402241545.xf7CnlPz-lkp@intel.com>
-References: <20240222164206.65700-2-marius.cristea@microchip.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZebBevVcBzzvDFW3lXkOKiha0+doyIeUWiKSuSdq04h1nbNjtZ1KhjhVbMpavqui8VVYyxRTs2UlH/9NfoSr5TZmdMpgwqYlK0/xZf+BQWLuoXAr2yBwmhGbdBFgA5woRMr1gxfjYRQyMY8oWK66UFIlnPKUZ789wxNY3ykMU/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Pnv9z4lQ; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-6e4ca46ab04so747916b3a.3;
+        Sat, 24 Feb 2024 00:14:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708762483; x=1709367283; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Li+1ch1KmBlW/URGhiU4Afn1fK88RrMkohfrJAlOTqA=;
+        b=Pnv9z4lQp5WhBwTfiRGK2M/ojsXboTOjc3kjPDv3b0oqS/NEfWxl7tX+BcQJFTW0t9
+         yDUTt1Adwctm6AwA0XuPKhmvfsLJVrz9EciQc8+CypqzvO+tfCJq8gGMy6YUcrsgAaBT
+         Gi0N8+yoEpN51t1K9HJbHUTSShHwm7ply3TSjSNgwxGPo/PhiuLv7Vdekg4clIm2unZt
+         qQW5O7NfdVK2hde5RhbolgVqDHSpc2lH79xkdAgE7SLIxWlyUDMlHrzSdav06aFtUYFk
+         aBjZTcRUVTW6ibhkrZ8xKLPvIJ5XB3WWNSP7/C7Em1Zmnxm/rtFlRvv5ZxGTRvCMUovD
+         qKUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708762483; x=1709367283;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Li+1ch1KmBlW/URGhiU4Afn1fK88RrMkohfrJAlOTqA=;
+        b=EU7uzZvTMGCqolHNZM9d0AebY2SR5MjTj4FXAnAIIwuI+tvNiitiOKTyKH/oERIzP+
+         L5zragIGCIhMJQYYus8B+b7uSlatEfi/tcFuGpL02FkNfN/ktTtbofyMSb8UCM2m3cVM
+         c19HuLtOBPim1K0I/FP68eF31G4olDV58hMyKYkDcOubjnMDCf7Rej3f4C3EG/l1oYeZ
+         a9jB6Hb7PZlm5B+eQ+v7nOk8VW+YqCpYYqsVpJW4cyqf7iKa3Gs6Mz/fjc+q0tJHi87D
+         rY0clHbRnXbsmgUOS4rnDyIMqU0C7SCZvevRn+zy/HmOpB6btGw4uVGxYAIkG4Cy9pWe
+         HlSw==
+X-Forwarded-Encrypted: i=1; AJvYcCWDHkvEildx0yORAQlJc0x1fNsJlGIi3klSrP8P/demHoPXcyJ38EgnHC6YiqeAaIcUSUkX+rf+G9tEQ+pvIPHuk0CQxYjm+KjlDqzTx5UyBPKcOYqYdZNjE5ZFZPBFCojCchqI6/SChWgAa9fj09YvEbRfzaks1cp4CzyKHD57qTyYZw==
+X-Gm-Message-State: AOJu0YxA+tjBh5SaqJAmWa3HMOcXfY2ba+5SXFbBg0eXjN5xyPCXnGg8
+	Hzmo9p3jnun09zg8C/NE7AuQmp3EctGgDTDV9wJRxy70k5VUnXqD
+X-Google-Smtp-Source: AGHT+IFAhkrYbVSfRBTZ/EXXjiDnKExGzM6P/79vWS26AYFoZIC/I3bnnsgAxFkQCVZs+EDNz4NvsA==
+X-Received: by 2002:a05:6a21:33a9:b0:19c:90fc:f0d3 with SMTP id yy41-20020a056a2133a900b0019c90fcf0d3mr2936969pzb.46.1708762483141;
+        Sat, 24 Feb 2024 00:14:43 -0800 (PST)
+Received: from linux-8mug (220-129-204-58.dynamic-ip.hinet.net. [220.129.204.58])
+        by smtp.gmail.com with ESMTPSA id dj8-20020a17090ad2c800b00297138f0496sm2802436pjb.31.2024.02.24.00.14.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 24 Feb 2024 00:14:42 -0800 (PST)
+Date: Sat, 24 Feb 2024 16:14:21 +0800
+From: Chester Lin <chester62515@gmail.com>
+To: Matthias Brugger <mbrugger@suse.com>
+Cc: Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+	Andreas Farber <afaerber@suse.de>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, NXP S32 Linux Team <s32@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>,
+	Catalin Udma <catalin-dan.udma@nxp.com>
+Subject: Re: [PATCH v2 1/2] arm64: dts: s32g: add SCMI firmware node
+Message-ID: <ZdmlXYq962azlVRe@linux-8mug>
+References: <20240122140602.1006813-1-ghennadi.procopciuc@oss.nxp.com>
+ <20240122140602.1006813-2-ghennadi.procopciuc@oss.nxp.com>
+ <94742ebd-bc3a-4726-9ba7-5954203e4da1@suse.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,102 +97,84 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240222164206.65700-2-marius.cristea@microchip.com>
+In-Reply-To: <94742ebd-bc3a-4726-9ba7-5954203e4da1@suse.com>
 
-Hi,
+Hi Ghennadi,
 
-kernel test robot noticed the following build warnings:
+On Mon, Jan 22, 2024 at 03:39:09PM +0100, Matthias Brugger wrote:
+> 
+> 
+> On 22/01/2024 15:06, Ghennadi Procopciuc wrote:
+> > From: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+> > 
+> > Linux controls the clocks over SCMI on S32G SoCs. Therefore,
+> > add the SCMI device tree node and the reserved region for SCMI
 
-[auto build test WARNING on b1a1eaf6183697b77f7243780a25f35c7c0c8bdf]
+Is there any dt-binding required to match the SCMI clock IDs declared in
+SCMI? I assume that s32g series will need fixed dt-bindings for clocks to make
+sure there will be no kabi issue in the future.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/marius-cristea-microchip-com/dt-bindings-iio-adc-adding-support-for-PAC193X/20240223-004332
-base:   b1a1eaf6183697b77f7243780a25f35c7c0c8bdf
-patch link:    https://lore.kernel.org/r/20240222164206.65700-2-marius.cristea%40microchip.com
-patch subject: [PATCH v5 1/2] dt-bindings: iio: adc: adding support for PAC193X
-compiler: loongarch64-linux-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20240224/202402241545.xf7CnlPz-lkp@intel.com/reproduce)
+Thanks,
+Chester
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202402241545.xf7CnlPz-lkp@intel.com/
-
-dtcheck warnings: (new ones prefixed by >>)
->> Documentation/devicetree/bindings/iio/adc/microchip,pac1934.yaml:51:9: [warning] wrong indentation: expected 6 but found 8 (indentation)
-
-vim +51 Documentation/devicetree/bindings/iio/adc/microchip,pac1934.yaml
-
-     8	
-     9	maintainers:
-    10	  - Marius Cristea <marius.cristea@microchip.com>
-    11	
-    12	description: |
-    13	  This device is part of the Microchip family of Power Monitors with
-    14	  Accumulator.
-    15	  The datasheet for PAC1931, PAC1932, PAC1933 and PAC1934 can be found here:
-    16	    https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/DataSheets/PAC1931-Family-Data-Sheet-DS20005850E.pdf
-    17	
-    18	properties:
-    19	  compatible:
-    20	    enum:
-    21	      - microchip,pac1931
-    22	      - microchip,pac1932
-    23	      - microchip,pac1933
-    24	      - microchip,pac1934
-    25	
-    26	  reg:
-    27	    maxItems: 1
-    28	
-    29	  "#address-cells":
-    30	    const: 1
-    31	
-    32	  "#size-cells":
-    33	    const: 0
-    34	
-    35	  interrupts:
-    36	    maxItems: 1
-    37	
-    38	  slow-io-gpios:
-    39	    description:
-    40	      A GPIO used to trigger a change is sampling rate (lowering the chip power
-    41	      consumption). If configured in SLOW mode, if this pin is forced high,
-    42	      sampling rate is forced to eight samples/second. When it is forced low,
-    43	      the sampling rate is 1024 samples/second unless a different sample rate
-    44	      has been programmed.
-    45	
-    46	patternProperties:
-    47	  "^channel@[1-4]+$":
-    48	    type: object
-    49	    $ref: adc.yaml
-    50	    description:
-  > 51	        Represents the external channels which are connected to the ADC.
-    52	
-    53	    properties:
-    54	      reg:
-    55	        items:
-    56	          minimum: 1
-    57	          maximum: 4
-    58	
-    59	      shunt-resistor-micro-ohms:
-    60	        description:
-    61	          Value in micro Ohms of the shunt resistor connected between
-    62	          the SENSE+ and SENSE- inputs, across which the current is measured.
-    63	          Value is needed to compute the scaling of the measured current.
-    64	
-    65	    required:
-    66	      - reg
-    67	      - shunt-resistor-micro-ohms
-    68	
-    69	    unevaluatedProperties: false
-    70	
-    71	required:
-    72	  - compatible
-    73	  - reg
-    74	  - "#address-cells"
-    75	  - "#size-cells"
-    76	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> > messages.
+> > 
+> > Signed-off-by: Catalin Udma <catalin-dan.udma@nxp.com>
+> > Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+> 
+> Reviewed-by: Matthias Brugger <mbrugger@suse.com>
+> 
+> > ---
+> >   arch/arm64/boot/dts/freescale/s32g2.dtsi | 27 +++++++++++++++++++++++-
+> >   1 file changed, 26 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm64/boot/dts/freescale/s32g2.dtsi
+> > index 5ac1cc9ff50e..ef1a1d61f2ba 100644
+> > --- a/arch/arm64/boot/dts/freescale/s32g2.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
+> > @@ -3,7 +3,7 @@
+> >    * NXP S32G2 SoC family
+> >    *
+> >    * Copyright (c) 2021 SUSE LLC
+> > - * Copyright (c) 2017-2021 NXP
+> > + * Copyright 2017-2021, 2024 NXP
+> >    */
+> >   #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > @@ -14,6 +14,18 @@ / {
+> >   	#address-cells = <2>;
+> >   	#size-cells = <2>;
+> > +	reserved-memory  {
+> > +		#address-cells = <2>;
+> > +		#size-cells = <2>;
+> > +		ranges;
+> > +
+> > +		scmi_buf: shm@d0000000 {
+> > +			compatible = "arm,scmi-shmem";
+> > +			reg = <0x0 0xd0000000 0x0 0x80>;
+> > +			no-map;
+> > +		};
+> > +	};
+> > +
+> >   	cpus {
+> >   		#address-cells = <1>;
+> >   		#size-cells = <0>;
+> > @@ -77,6 +89,19 @@ timer {
+> >   	};
+> >   	firmware {
+> > +		scmi {
+> > +			compatible = "arm,scmi-smc";
+> > +			arm,smc-id = <0xc20000fe>;
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
+> > +			shmem = <&scmi_buf>;
+> > +
+> > +			clks: protocol@14 {
+> > +				reg = <0x14>;
+> > +				#clock-cells = <1>;
+> > +			};
+> > +		};
+> > +
+> >   		psci {
+> >   			compatible = "arm,psci-1.0";
+> >   			method = "smc";
 
