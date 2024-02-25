@@ -1,233 +1,176 @@
-Return-Path: <devicetree+bounces-45699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCAA4862BC4
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 17:31:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1E9F862BD6
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 17:46:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 33BBFB21063
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 16:31:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B5421F219B1
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 16:46:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BB07182A7;
-	Sun, 25 Feb 2024 16:30:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5F0617756;
+	Sun, 25 Feb 2024 16:46:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nRNgzJVt"
+	dkim=pass (2048-bit key) header.d=oltmanns.dev header.i=@oltmanns.dev header.b="wzEYAgtx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98F591B952;
-	Sun, 25 Feb 2024 16:30:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96775175B6;
+	Sun, 25 Feb 2024 16:46:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708878620; cv=none; b=DWfQBvzuVUyhFJWiBqGyfYTzskUYOzqzng4+NgCyenSa8KmN4Afxq9Che+eFHAnhqfIm3GCmN8zjQPFX40Ead9irYfPbxp8lKEd6rJlko4sGxCSzzVOHyZarFKP1/D2imy9rPBgpIAzxXVIcUecahSy0E46b2QD+iHlD1MNXmz4=
+	t=1708879600; cv=none; b=AsAstzvELbkHP/9zONbD1T+mXAkDk1U08uuZ5hKo2wpQj+/evBqs3Ul480mTgn2JAvFf6kTi5iGMYDUjC8Hi5oCNMkrGzQjS6dg9rCRdh60Ve8+FfxDWVkOgONVCkehWr/xmGPtebmyeIuzgwAMEW5e3RkUmTfyeAlfhIFLaMv0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708878620; c=relaxed/simple;
-	bh=aGWDkl0VRtjUH4DVSrzqDOTU++PRn1TEKNwyTCV6XsU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qFsNVRfaxl/UFptsSeFFEeWKDDbgL5Tujs4fESh9OkPHtJvanME6C41vRJxQrFPw+gWS1yP2uiYzybpGenuTSExoPYsYoQHWHDsutclhp5Yu6KFrS9jMJGycTdyVLelU8vRLj7nA9PpI8cDPlY3QAiSwBhBnrQukFaOSYRlozI8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nRNgzJVt; arc=none smtp.client-ip=209.85.210.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-6e4de4fae2cso1328261b3a.3;
-        Sun, 25 Feb 2024 08:30:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708878618; x=1709483418; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TId9cCS3A8DzD3QTIhlXdJucUWK6LQfPWKtp7ssfcho=;
-        b=nRNgzJVtH4Dy1Ybomy40BfgyqjA4luiIOZQA77YGUBdxkg86fxI6WN+5yr/LGgDZwK
-         BnEhhhtlI6HcZka6hWLptjD5R69x/Lduf3xuwD9zFFjRFaTbqGt8mmmokX7L3bLf/jGV
-         Ew4PbR42eLLp7X2xuTGBz/FrVA1eY5KzcyqXZygPBboUzYmI1+0pXW2qz2RpL9UnOwrt
-         EMHYVDGacwOzdQxeT0H0JKcxVlGH0WOF9iqJYigPznaZtj/3DeFx8hUD7T1pm6oRGBf8
-         MYPg/YjnmQ8/G6/VS10lvR+uHwWgL6r/GQhrHgIa0zB3uhKn7pL/TdK8OEHihPAlcwLw
-         IhOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708878618; x=1709483418;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TId9cCS3A8DzD3QTIhlXdJucUWK6LQfPWKtp7ssfcho=;
-        b=sWGW4cGwkuhCJLoqVs63gqyqmfQUeiIbKFyDWo1RZDRQcyBoc7gJ8h+gcYzKihlJUz
-         zFiZ2kFZmKNRC8IYgW6kZ7HKU58nacnN4+CaFlbB+lnJGsg5Ab2ID1+P2qD6XgxLFMSM
-         H4mC7ZgXN/fJo+PE5BsDrb5F3ArqjOVlqg2hEb7+86DqbzPuXcPDn+PqpOBboNBl3qrq
-         bLHG2bjgmx1Om+e0U1VjKAyqLKtNf3b1iYt1kZBDgFWQ5NUA/CtC02edZcbBL5KJpYgY
-         xZROBMozouJmCE/uHAphOz3COjwDPjvd1OrcpgzehqD1yWfMJTGxN6ueGoVMxdWFXqIH
-         dN7A==
-X-Forwarded-Encrypted: i=1; AJvYcCWf5355ZYD0/bzMKmfzRwVB5V3lBnhLe71T46hfaYiB0cVcpv6qN73PKgF1VekQZE3S1LETa//TZFgEY7QGEDGe4W3vA3P7sLEHxNwou0hdrohRoRqe5d9Kga1p7/TTP+Jy/dV9gdlX3w==
-X-Gm-Message-State: AOJu0Yz6khaeH12X8hg6VPQwXJwmPoZmn6kz2bsIOrBJjPY9CNOKV0PB
-	QVVnBFu7V3OZGv94qgvgEf80yvDwnUaxXKGYRifcAE9den3ANqUj
-X-Google-Smtp-Source: AGHT+IFCOus17MZvuTa65D5oy8sSkk4x9Ymnv0HwhdN6PvdAgw5kJGudtmL8cwlBV8rwWx7nOoG04w==
-X-Received: by 2002:a05:6a21:1014:b0:1a0:e86d:ee6a with SMTP id nk20-20020a056a21101400b001a0e86dee6amr3616045pzb.20.1708878617870;
-        Sun, 25 Feb 2024 08:30:17 -0800 (PST)
-Received: from tresc054937.tre-sc.gov.br (177-131-126-82.acessoline.net.br. [177.131.126.82])
-        by smtp.gmail.com with ESMTPSA id a12-20020a17090acb8c00b0029a4089fbf0sm2838367pju.16.2024.02.25.08.30.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Feb 2024 08:30:17 -0800 (PST)
-From: Luiz Angelo Daros de Luca <luizluca@gmail.com>
-Date: Sun, 25 Feb 2024 13:29:55 -0300
-Subject: [PATCH net-next v5 3/3] net: dsa: realtek: support reset
- controller
+	s=arc-20240116; t=1708879600; c=relaxed/simple;
+	bh=0IaysRnkSUJ7kafD+lVXCwhXE6tPyPunpWCjBWUijxo=;
+	h=References:From:To:Cc:Subject:In-reply-to:Date:Message-ID:
+	 MIME-Version:Content-Type; b=S0BKGWqU7+LZBdxjpXAUPj2jxa5bnTizqSk8slIhQZ84jU+SlVw2PgIRtLn4tFzQfoI5jzphJRHKywsIJG18ryVBhD5jGlJWDsKnf9H3fQrh1TfFG9Q7ymHo/QCptGZg24s087hlAbjzIx+IIeS5KIv1vL2oFh7AdGmJ2gckP/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oltmanns.dev; spf=pass smtp.mailfrom=oltmanns.dev; dkim=pass (2048-bit key) header.d=oltmanns.dev header.i=@oltmanns.dev header.b=wzEYAgtx; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oltmanns.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oltmanns.dev
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4TjV512SKkz9sWt;
+	Sun, 25 Feb 2024 17:46:29 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oltmanns.dev;
+	s=MBO0001; t=1708879589;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=KLvix7hOqGdcmlVqOW3S7yNP24rggDpe3G67MMT5Wy8=;
+	b=wzEYAgtxIWOE/MbT9GVIjTxl0alloTW3tYRA4CooKsH2iJ+EVMMmWBKAO3MpOjbvNB5YTT
+	ztRp6X8h/3VtEd4ymtHXM4ND8X0rocTb6GwwgEUUXFCFfF7GoC1aGzoIU8HplcwyqbErUH
+	y5hVYMH17/cFwaleV7b2b3W10eGEOkIj25l/LOfuEKIRxKA+1TOpRtQx8mQi8IjmzRdgsy
+	Y2XCYv54na1xCZWJAR3WP0hxIwzJDhJ31QFsLvRN8OZU+XtsmfP43cEPVXG+SZHUgKEPY6
+	xkl7ArtkrKlI48AYkpYv3SgMkaqMACDWNbd0TCPDvWLLWEhuuX51TcHxNHu3Vg==
+References: <20240205-pinephone-pll-fixes-v2-0-96a46a2d8c9b@oltmanns.dev>
+ <20240205-pinephone-pll-fixes-v2-5-96a46a2d8c9b@oltmanns.dev>
+ <poua4bzyciiwt65sqjf2whqfdumvoe4h3bkjpf64px2vwgumrf@sai73byg2iju>
+ <87sf1zxb0s.fsf@oltmanns.dev>
+ <ia7e7gqozltl5wkfdvwtf2rw2ko2dt67qxtuqbavsroyv4ifys@x4mbulqhhri5>
+From: Frank Oltmanns <frank@oltmanns.dev>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Guido
+ =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>, Purism Kernel Team
+ <kernel@puri.sm>, Ondrej
+ Jirman <megi@xff.cz>, Neil Armstrong <neil.armstrong@linaro.org>, Jessica
+ Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter
+ <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, Icenowy Zheng
+ <uwu@icenowy.me>
+Subject: Re: [PATCH v2 5/6] drm/panel: st7703: Drive XBD599 panel at higher
+ clock rate
+In-reply-to: <ia7e7gqozltl5wkfdvwtf2rw2ko2dt67qxtuqbavsroyv4ifys@x4mbulqhhri5>
+Date: Sun, 25 Feb 2024 17:46:16 +0100
+Message-ID: <87o7c4mqzr.fsf@oltmanns.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240225-realtek-reset-v5-3-5a4dc0879dfb@gmail.com>
-References: <20240225-realtek-reset-v5-0-5a4dc0879dfb@gmail.com>
-In-Reply-To: <20240225-realtek-reset-v5-0-5a4dc0879dfb@gmail.com>
-To: Linus Walleij <linus.walleij@linaro.org>, 
- =?utf-8?q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>, 
- Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>, 
- Vladimir Oltean <olteanv@gmail.com>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Luiz Angelo Daros de Luca <luizluca@gmail.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4254; i=luizluca@gmail.com;
- h=from:subject:message-id; bh=aGWDkl0VRtjUH4DVSrzqDOTU++PRn1TEKNwyTCV6XsU=;
- b=owGbwMvMwMG4W/D2rovs1mGMp9WSGFJvZ7OaabhY9TKm+G74qRF5119CWjDkkvmFmKkJ9mHN8
- Y+iPA92MhqzMDByMMiKKbIIsmu4t56NthL6pf8DZhArE8gUBi5OAZjIwgwOhvY5vP7l2S1bZzfu
- WyoSNzlDYX/ZjYxQuV/fvp7x+rNiZRXH9gNrrEsbDAxELPK+dma9nNhRIHQ9tObyIrX4hiNMUhO
- /r91x6tTEb9cDYnmPhNZE7WpiS27Lkjvur337YFXPlHeTLvm4hG5RzUlmfP6XjUGL89vSFvW7D0
- rCV9m7y+58Y/HKI+md/oLD/BLFPs0uus9XLljGesXxyRd7vfnqKZXGXzSXOLzi/cM62ZLpxy2vk
- hrxTzIxD7d+F1PKTHwwYfnM28s2fWfa/8fv1a6FoqcYY4s/Nl7TN8mf+MhFJjRf5pfmRan6U+qv
- 2YHGbPxZwL9Jaeq78+uXp1vL5kd4XzRRtytcHdl0z0obAA==
-X-Developer-Key: i=luizluca@gmail.com; a=openpgp;
- fpr=1107284785CD5B3A12FA2FF8BB11DBBAD1073B56
+Content-Type: text/plain
 
-Add support for resetting the device using a reset controller,
-complementing the existing GPIO reset functionality (reset-gpios).
+Hi Maxime,
 
-Although the reset is optional and the driver performs a soft reset
-during setup, if the initial reset pin state was asserted, the driver
-will not detect the device until the reset is deasserted.
+On 2024-02-22 at 11:29:51 +0100, Maxime Ripard <mripard@kernel.org> wrote:
+> [[PGP Signed Part:Undecided]]
+> On Sun, Feb 11, 2024 at 04:42:43PM +0100, Frank Oltmanns wrote:
+>>
+>> On 2024-02-08 at 20:05:08 +0100, Maxime Ripard <mripard@kernel.org> wrote:
+>> > [[PGP Signed Part:Undecided]]
+>> > Hi Frank,
+>> >
+>> > On Mon, Feb 05, 2024 at 04:22:28PM +0100, Frank Oltmanns wrote:
+>> >> This panel is used in the pinephone that runs on a Allwinner A64 SOC.
+>> >> The SOC requires pll-mipi to run at more than 500 MHz.
+>> >>
+>> >> This is the relevant clock tree:
+>> >>  pll-mipi
+>> >>     tcon0
+>> >>        tcon-data-clock
+>> >>
+>> >> tcon-data-clock has to run at 1/4 the DSI per-lane bit rate. The XBD599
+>> >> has 24 bpp and 4 lanes. Therefore, the resulting requested
+>> >> tcon-data-clock rate is:
+>> >>     crtc_clock * 1000 * (24 / 4) / 4
+>> >>
+>> >> tcon-data-clock runs at tcon0 / 4 (fixed divisor), so it requests a
+>> >> parent rate of
+>> >>     4 * (crtc_clock * 1000 * (24 / 4) / 4)
+>> >>
+>> >> Since tcon0 is a ccu_mux, the rate of tcon0 equals the rate of pll-mipi.
+>> >>
+>> >> pll-mipi's constraint to run at 500MHz or higher forces us to have a
+>> >> crtc_clock >= 83333 kHz if we want a 60 Hz vertical refresh rate.
+>> >>
+>> >> Change [hv]sync_(start|end) so that we reach a clock rate of 83502 kHz
+>> >> so that it is high enough to align with pll-pipi limits.
+>> >>
+>> >> Signed-off-by: Frank Oltmanns <frank@oltmanns.dev>
+>> >
+>> > That commit log is great, but it's kind of off-topic. It's a panel
+>> > driver, it can be used on any MIPI-DSI controller, the only relevant
+>> > information there should be the panel timings required in the datasheet.
+>> >
+>> > The PLL setup is something for the MIPI-DSI driver to adjust, not for
+>> > the panel to care for.
+>> >
+>>
+>> I absolutely agree. It even was the reason for my submission of a
+>> sunxi-ng patch series last year that was accepted, to make pll-mipi more
+>> flexible. :)
+>>
+>> The only remaining option I currently see for adjusting the sunxi-ng
+>> driver to further accomodate the panel, is trying to use a higher
+>> divisor than 4 for calculating tcon-data-clock from tcon0. I remember
+>> reading a discussion about this, but as far as I remember that proposal
+>> was rejected (by you, IIRC).
+>>
+>> While I appreciate other suggestion as well, I'll look into options for
+>> using a different divisor than 4.
+>
+> Like I said, I'm not against the patch at all, it looks great to me on
+> principle. I just think you should completely rephrase the commit log
+> using the datasheet as the only reliable source of the display timings.
+> Whether sun4i can work around the panel requirements is something
+> completely orthogonal to the discussion, and thus the commit log.
+>
 
-Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
----
- drivers/net/dsa/realtek/realtek.h |  2 ++
- drivers/net/dsa/realtek/rtl83xx.c | 42 ++++++++++++++++++++++++++++++++++-----
- drivers/net/dsa/realtek/rtl83xx.h |  2 ++
- 3 files changed, 41 insertions(+), 5 deletions(-)
+I was trying to follow the guidelines [1] for describing the reason
+behind my changes to the panel. My original commit message was a lot
+shorter, which, understandably, resulted in follow up questions [2].
+With the current commit log, I'm trying to address those questions.
+According to the device tree, the panel is only used in the pinephone.
+The only reason for the change is that the SoC used by the only user of
+this panel can not provide the rate the panel requests with the current
+values. I think this information is relevant.
 
-diff --git a/drivers/net/dsa/realtek/realtek.h b/drivers/net/dsa/realtek/realtek.h
-index b80bfde1ad04..e0b1aa01337b 100644
---- a/drivers/net/dsa/realtek/realtek.h
-+++ b/drivers/net/dsa/realtek/realtek.h
-@@ -12,6 +12,7 @@
- #include <linux/platform_device.h>
- #include <linux/gpio/consumer.h>
- #include <net/dsa.h>
-+#include <linux/reset.h>
- 
- #define REALTEK_HW_STOP_DELAY		25	/* msecs */
- #define REALTEK_HW_START_DELAY		100	/* msecs */
-@@ -48,6 +49,7 @@ struct rtl8366_vlan_4k {
- 
- struct realtek_priv {
- 	struct device		*dev;
-+	struct reset_control    *reset_ctl;
- 	struct gpio_desc	*reset;
- 	struct gpio_desc	*mdc;
- 	struct gpio_desc	*mdio;
-diff --git a/drivers/net/dsa/realtek/rtl83xx.c b/drivers/net/dsa/realtek/rtl83xx.c
-index 801873754df2..d2e876805393 100644
---- a/drivers/net/dsa/realtek/rtl83xx.c
-+++ b/drivers/net/dsa/realtek/rtl83xx.c
-@@ -184,6 +184,13 @@ rtl83xx_probe(struct device *dev,
- 						    "realtek,disable-leds");
- 
- 	/* TODO: if power is software controlled, set up any regulators here */
-+	priv->reset_ctl = devm_reset_control_get_optional(dev, NULL);
-+	if (IS_ERR(priv->reset_ctl)) {
-+		ret = PTR_ERR(priv->reset_ctl);
-+		dev_err_probe(dev, ret, "failed to get reset control\n");
-+		return ERR_CAST(priv->reset_ctl);
-+	}
-+
- 	priv->reset = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LOW);
- 	if (IS_ERR(priv->reset)) {
- 		dev_err(dev, "failed to get RESET GPIO\n");
-@@ -192,11 +199,11 @@ rtl83xx_probe(struct device *dev,
- 
- 	dev_set_drvdata(dev, priv);
- 
--	if (priv->reset) {
--		gpiod_set_value(priv->reset, 1);
-+	if (priv->reset_ctl || priv->reset) {
-+		rtl83xx_reset_assert(priv);
- 		dev_dbg(dev, "asserted RESET\n");
- 		msleep(REALTEK_HW_STOP_DELAY);
--		gpiod_set_value(priv->reset, 0);
-+		rtl83xx_reset_deassert(priv);
- 		msleep(REALTEK_HW_START_DELAY);
- 		dev_dbg(dev, "deasserted RESET\n");
- 	}
-@@ -292,11 +299,36 @@ EXPORT_SYMBOL_NS_GPL(rtl83xx_shutdown, REALTEK_DSA);
- void rtl83xx_remove(struct realtek_priv *priv)
- {
- 	/* leave the device reset asserted */
--	if (priv->reset)
--		gpiod_set_value(priv->reset, 1);
-+	rtl83xx_reset_assert(priv);
- }
- EXPORT_SYMBOL_NS_GPL(rtl83xx_remove, REALTEK_DSA);
- 
-+void rtl83xx_reset_assert(struct realtek_priv *priv)
-+{
-+	int ret;
-+
-+	ret = reset_control_assert(priv->reset_ctl);
-+	if (ret)
-+		dev_warn(priv->dev,
-+			 "Failed to assert the switch reset control: %pe\n",
-+			 ERR_PTR(ret));
-+
-+	gpiod_set_value(priv->reset, true);
-+}
-+
-+void rtl83xx_reset_deassert(struct realtek_priv *priv)
-+{
-+	int ret;
-+
-+	ret = reset_control_deassert(priv->reset_ctl);
-+	if (ret)
-+		dev_warn(priv->dev,
-+			 "Failed to deassert the switch reset control: %pe\n",
-+			 ERR_PTR(ret));
-+
-+	gpiod_set_value(priv->reset, false);
-+}
-+
- MODULE_AUTHOR("Luiz Angelo Daros de Luca <luizluca@gmail.com>");
- MODULE_AUTHOR("Linus Walleij <linus.walleij@linaro.org>");
- MODULE_DESCRIPTION("Realtek DSA switches common module");
-diff --git a/drivers/net/dsa/realtek/rtl83xx.h b/drivers/net/dsa/realtek/rtl83xx.h
-index 0ddff33df6b0..c8a0ff8fd75e 100644
---- a/drivers/net/dsa/realtek/rtl83xx.h
-+++ b/drivers/net/dsa/realtek/rtl83xx.h
-@@ -18,5 +18,7 @@ int rtl83xx_register_switch(struct realtek_priv *priv);
- void rtl83xx_unregister_switch(struct realtek_priv *priv);
- void rtl83xx_shutdown(struct realtek_priv *priv);
- void rtl83xx_remove(struct realtek_priv *priv);
-+void rtl83xx_reset_assert(struct realtek_priv *priv);
-+void rtl83xx_reset_deassert(struct realtek_priv *priv);
- 
- #endif /* _RTL83XX_H */
+Unfortunately, as described in [2], I cannot back these values with any
+datasheets because I couldn't find any. I could only find hints that
+they are not publicly available. Icenowy (added to CC) submitted the
+original values.
 
--- 
-2.43.0
+Best regards,
+  Frank
 
+[1]: https://www.kernel.org/doc/html/v6.7/process/submitting-patches.html#describe-your-changes
+[2]: https://lore.kernel.org/lkml/87wmsvo0fh.fsf@oltmanns.dev/
+
+>
+> Maxime
+>
+> [[End of PGP Signed Part]]
 
