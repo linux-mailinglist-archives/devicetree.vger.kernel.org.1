@@ -1,57 +1,75 @@
-Return-Path: <devicetree+bounces-45635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BBB9862921
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 06:04:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2899862943
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 07:12:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3EA128204C
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 05:04:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10B001C20A15
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 06:12:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 865A27484;
-	Sun, 25 Feb 2024 05:04:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25CB67484;
+	Sun, 25 Feb 2024 06:12:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JFNtONFw"
+	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="DcvOgHRS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 477CB8F49;
-	Sun, 25 Feb 2024 05:04:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 659DC944E
+	for <devicetree@vger.kernel.org>; Sun, 25 Feb 2024 06:12:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.50.62.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708837463; cv=none; b=HzUbeU3h3+SYFzUVrrVwK/8zZD1ro9bL5lvk/T1m/ERa/SlQKUh40O8yDdR6VMDtU9J8l+TGNxW6exe1fRXmkVYZX7qe1MCHIgGPlWjVxtndQq7MrE/eD4BwIUT/NhkMjFZZ43d+iLrd9kSoS770GnCWP0Cu967jhRB3UaGkVKA=
+	t=1708841550; cv=none; b=coERkfNOQp0HX2XeQ6u7SUvflNzDLVO7FjBMR9nh3iwI9Dlio6Hba49YOWCmtQJ/d5GiSnaexofJmGrJTHJmuRyZS8LJITLckbkFeLv86aFSLq4QdH9k2VO3ju8wKq0n+ID+BrSaQxPMCuq1BOInOMapcFRQ8nyUl/TTQd0SaA0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708837463; c=relaxed/simple;
-	bh=PdNwwCg558iqeuTBDu5R3JB3xjnvzCi/WTZ16LnG+gc=;
+	s=arc-20240116; t=1708841550; c=relaxed/simple;
+	bh=TLbErP9TshFhoHBnjxKHNEUx7cMv4h8UxZqTKhM427k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e/Bl5YHpgYshEXg2zn/BWfSB29WW2hUHp1h8YHCqNhwy9ekpOEfCh8bjU4JRYbhc/Q6tZLsPrL2FoFAlUxO81kAwUpj2PmXR1sMJgdiIDh8DrNGhxquT3JUcLmKmRmOM4FgRV6Np6QY1RYUyW9sQoyveJdR2/LHJjfYWuwNYwUU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JFNtONFw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF383C433F1;
-	Sun, 25 Feb 2024 05:04:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708837462;
-	bh=PdNwwCg558iqeuTBDu5R3JB3xjnvzCi/WTZ16LnG+gc=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=OxOBChnOabNf6f20/DLbCqQwA2R5UNqOwU/KHQv+lhqfcqpn6rjKA8FoujWpNzXL5IDaj/BAJSpfWDUdQWTXktdPhVFSYDfeUgfXcGONVoVjX6V05IzeZA7eGQL2HImNstD/sI2p5XFr5PP4hZ04xU0em12ZdnoagHGUyjJygPA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com; spf=fail smtp.mailfrom=atomide.com; dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b=DcvOgHRS; arc=none smtp.client-ip=74.50.62.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=atomide.com
+Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
+	by mail5.25mail.st (Postfix) with ESMTPSA id E9A636058D;
+	Sun, 25 Feb 2024 06:11:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
+	s=25mailst; t=1708841541;
+	bh=TLbErP9TshFhoHBnjxKHNEUx7cMv4h8UxZqTKhM427k=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JFNtONFwjEAKdwMsHzGHg9Iwgkh+n8EOxliWq7Z0IAO3MP8tEwNnCmRHRGR+2VmWz
-	 DfZ2qwieEFPlzzVNk9oEg8brQWd7EBgGMeJlNwNamB3G6NeXKccm4YZWiUxdn9IfW+
-	 6ooHfrLDTN7f6Wf21NXzb3ATc5La4ET0znmZpuudSnNJy1AWG+VLF4cUXbny7FcPvB
-	 44BtBrnhtQdU07Nngp/W/dqRKMTLT48zpDsTt5uk3djs0N1jY7x5rt+DO3PHVUPwTm
-	 DNtCNgJs43EPRihLDgbeNEYKcfwPrC/tgc1NlDAQAfkbky1moJGqU9nkoG4w9ZFzsv
-	 LkUfU93EmDDRQ==
-Date: Sat, 24 Feb 2024 23:04:20 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: David Collins <quic_collinsd@quicinc.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>
-Subject: Re: [PATCH] dt-bindings: nvmem: qcom,spmi-sdam: update maintainer
-Message-ID: <u2z42cj2jlq6wf4ke3d3qxyoycy7lcqqgjjhcym3xudy3vck3s@vk7gkfl6rbpk>
-References: <20240223232955.1907552-1-quic_collinsd@quicinc.com>
+	b=DcvOgHRSRN/jmv5zpOoR7Fdte2V3Hs8bP4ARNe6NFyv7cXoEOQZEAWcFr/NiKec8o
+	 X9Mfxb+fnw6/5Nopb4f7kG+kQBAEeeSbkgDQqUoXmVlzfNWuhLC/QYPouRJ6KoIb59
+	 6Lkixjnyey7Mxgry0HZKayxYL9JEEXXpLm7JvgoeZllTVF+Di4/HSzzUyucn89d2G9
+	 P7MaVcia15w1mKt0TJX9ILW8WEfQKrNX49z8ZzXQ5wkYVRp39JOLjQ1sPAKKso5aYM
+	 crCMPr86YI+XCUyQZxUEcmMRs+bxRiDqwRcth137t+nMSJABUjfsvGdKxPpkzWS4DI
+	 irG68Wc8b91Iw==
+Date: Sun, 25 Feb 2024 08:11:35 +0200
+From: Tony Lindgren <tony@atomide.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Simha BN <simhavcs@gmail.com>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Michael Walle <mwalle@kernel.org>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 03/10] dt-bindings: display: bridge: tc358775: Add
+ support for tc358765
+Message-ID: <20240225061135.GR5299@atomide.com>
+References: <20240215123222.42609-1-tony@atomide.com>
+ <20240215123222.42609-4-tony@atomide.com>
+ <61a6b5a8-7dbf-4b37-9f6e-1bd85dc5f7b5@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,41 +78,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240223232955.1907552-1-quic_collinsd@quicinc.com>
+In-Reply-To: <61a6b5a8-7dbf-4b37-9f6e-1bd85dc5f7b5@linaro.org>
 
-On Fri, Feb 23, 2024 at 03:29:55PM -0800, David Collins wrote:
-> Emails to Shyam bounce (reason: 585 5.1.1 <sthella@codeaurora.org>:
-> Recipient address rejected: undeliverable address: No such user here.)
-> so change the maintainer to be me.  I work on qcom,spmi-sdam as well
-> as other PMIC peripheral devices.
+* Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> [240215 18:43]:
+> If there is going to be new version, please put allOf: block after
+> required: block.
+
+OK will post v5 set.
+
+> Anyway:
 > 
-> Signed-off-by: David Collins <quic_collinsd@quicinc.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Thanks David!
+Thanks,
 
-Reviewed-by: Bjorn Andersson <andersson@kernel.org>
-
-Regards,
-Bjorn
-
-> ---
->  Documentation/devicetree/bindings/nvmem/qcom,spmi-sdam.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/nvmem/qcom,spmi-sdam.yaml b/Documentation/devicetree/bindings/nvmem/qcom,spmi-sdam.yaml
-> index 068bedf5dbc9..5d7be0b34536 100644
-> --- a/Documentation/devicetree/bindings/nvmem/qcom,spmi-sdam.yaml
-> +++ b/Documentation/devicetree/bindings/nvmem/qcom,spmi-sdam.yaml
-> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  title: Qualcomm Technologies, Inc. SPMI SDAM
->  
->  maintainers:
-> -  - Shyam Kumar Thella <sthella@codeaurora.org>
-> +  - David Collins <quic_collinsd@quicinc.com>
->  
->  description: |
->    The SDAM provides scratch register space for the PMIC clients. This
-> -- 
-> 2.25.1
-> 
+Tony
 
