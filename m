@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-45706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45707-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F753862CC5
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 21:16:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63111862CDD
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 21:38:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECD13282390
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 20:16:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 178222831D1
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 20:38:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AAFE199BE;
-	Sun, 25 Feb 2024 20:16:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A7AF1B959;
+	Sun, 25 Feb 2024 20:37:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b="P29Ipmfl"
+	dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b="blFS+gck"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-40134.protonmail.ch (mail-40134.protonmail.ch [185.70.40.134])
+Received: from mail-40133.protonmail.ch (mail-40133.protonmail.ch [185.70.40.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9353D19BA5
-	for <devicetree@vger.kernel.org>; Sun, 25 Feb 2024 20:16:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.40.134
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BB2C1B956
+	for <devicetree@vger.kernel.org>; Sun, 25 Feb 2024 20:37:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.40.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708892202; cv=none; b=hLsKDNLvgd/9A6+O6nSiwzZfo1pypZdspYkMFJSigB5RRKJsIiXBqgDuWcClrNi/wPi1dXhMxXR6amqnEceWthHSi3+qagLUp8pffHreNkVryAtQJjtnpnPIHQQosWyWpRGtrymxkPrCHZyg709SjBzqA6zi6i9X1o6jduCofmc=
+	t=1708893477; cv=none; b=DTCn6bbFM+uRudkp6aFzNCK1orVGW94bVNfVBKxmWD9a3cEGksXpRUOZ3dQnpPQ2UmO2FRZ5cIQxtzyD4ZCCO/zAij8cU9vN4joCqXxEzbbOdehzJgo6XuXUfu/OCT7B9LETPAkBVKotBluLeahLtuToViR72SjCChU2MNMnBUQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708892202; c=relaxed/simple;
-	bh=cPbPG3uOvlFXj7CQ8vLSlhfo46pBPzqgKu0g5fXAYM8=;
+	s=arc-20240116; t=1708893477; c=relaxed/simple;
+	bh=o+f5YbI4M5UPfaTvg/Fku0fzIM2l31BIbDrylqVTkQs=;
 	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qRZsrmntlclP2N+el5jeG49XX6ecUP/C6jxQuM0yIO0otcfLQLW1xS80ch0OkTQZgzjxXjKLzkkGnRhkUaWhBMDJ4ituvJoizq/z8RdZB7G5JhvOjwnaN71NtYTw9aWqz9khBCg6i4gm+umbK2EmnqVUIuI/+OxJeDZBKRp6tos=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=pass smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=P29Ipmfl; arc=none smtp.client-ip=185.70.40.134
+	 MIME-Version:Content-Type; b=CW8RKrKgoMw7pJBZxEev4y2yPkq6+qG9zRzIdG5sIfSIMtxaSmES4EnpiKi1BQ0ma0bex0/XjoMXDVIfAkUT8Nd9uOk3Bvz4ndPXkJ4N6b2JRVR1LsgDZx+izFj45ORncVD8f70wjfCo9mlH6RiKRxxauuHmKVuIn5/uhbt0u18=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=pass smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=blFS+gck; arc=none smtp.client-ip=185.70.40.133
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pm.me
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
-	s=protonmail3; t=1708892190; x=1709151390;
-	bh=cPbPG3uOvlFXj7CQ8vLSlhfo46pBPzqgKu0g5fXAYM8=;
+	s=protonmail3; t=1708893467; x=1709152667;
+	bh=o+f5YbI4M5UPfaTvg/Fku0fzIM2l31BIbDrylqVTkQs=;
 	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
 	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
 	 Message-ID:BIMI-Selector;
-	b=P29IpmflpJfyZiJQm3j6juYz6/e+zOKi0E5LqEKSENaPU84I9QtxcGWjezFQ1Ko3j
-	 aBBjjH47hs1inq9Xgp+jNJlVrXGxDAV9QxI18jq4e3UhUvtV/RJWNQxYfPQRRO4zPK
-	 JLaHyQ68hkZr2PNk8CfyYq1i8OKg2B5nViM83iAtWyOCiKXlPFYXC4Jw4dtX0SmtaW
-	 B2kamzYH2BXF4Aqbj5sUWTRE5MODkLjHtLvHYRDR+7Okqka9N/zuA2IYK3QlmYXIV+
-	 lxZeMupsQSeFo1jtRncvPawNHdFsSHF1YjnsR/YUSgn4kwBzOPZ3HmdLR220Tmt2HF
-	 qntk5mKjDEhbQ==
-Date: Sun, 25 Feb 2024 20:16:08 +0000
-To: Miquel Raynal <miquel.raynal@bootlin.com>
+	b=blFS+gckOD8y6d+oUfM2gLvszlsnY7Rr3d+JNHIXl44ZBfrmxlPRv/cxljaxBMxwS
+	 tBUdPGM7xVuwYGUGdvrUY2cqdYgIsBthrv4BlzBegh3Nh2bhVcUjSfombvmUTTJI7y
+	 m2QQRkGFksKIE5mJ8iq7GSQXBKuol+RTh+sHqm4722xp2pGAtUjQIne3GUrHtLckEr
+	 IRTbWN6+i4wXhyFsbjnSlcbnkZ8eWPHGkJvzJ1hsVWwkOou+KcTubhU0MTaY0ypRXy
+	 EGGzLyZ1vr/E6CmAP+7/12vlV9BfskaSnaaYKYoSzaT/MHcXE0ujDqdiuSWrtZtII2
+	 j0ca40T6nmhfw==
+Date: Sun, 25 Feb 2024 20:37:42 +0000
+To: Saravana Kannan <saravanak@google.com>
 From: Michael Pratt <mcpratt@pm.me>
-Cc: devicetree@vger.kernel.org, gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org, saravanak@google.com, abel.vesa@linaro.org, alexander.stein@ew.tq-group.com, andriy.shevchenko@linux.intel.com, bigunclemax@gmail.com, brgl@bgdev.pl, colin.foster@in-advantage.com, djrscally@gmail.com, dmitry.baryshkov@linaro.org, festevam@gmail.com, fido_max@inbox.ru, frowand.list@gmail.com, geert@linux-m68k.org, heikki.krogerus@linux.intel.com, kernel@pengutronix.de, linus.walleij@linaro.org, linux@roeck-us.net, luca.weiss@fairphone.com, magnus.damm@gmail.com, martin.kepplinger@puri.sm, rafal@milecki.pl, ansuelsmth@gmail.com, richard@nod.at, sakari.ailus@linux.intel.com, sudeep.holla@arm.com, tglx@linutronix.de, tony@atomide.com, vigneshr@ti.com, dianders@chromium.org, jpb@kernel.org, rafael@kernel.org
+Cc: devicetree@vger.kernel.org, gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org, abel.vesa@linaro.org, alexander.stein@ew.tq-group.com, andriy.shevchenko@linux.intel.com, bigunclemax@gmail.com, brgl@bgdev.pl, colin.foster@in-advantage.com, djrscally@gmail.com, dmitry.baryshkov@linaro.org, festevam@gmail.com, fido_max@inbox.ru, frowand.list@gmail.com, geert@linux-m68k.org, heikki.krogerus@linux.intel.com, kernel@pengutronix.de, linus.walleij@linaro.org, linux@roeck-us.net, luca.weiss@fairphone.com, magnus.damm@gmail.com, martin.kepplinger@puri.sm, miquel.raynal@bootlin.com, rafal@milecki.pl, ansuelsmth@gmail.com, richard@nod.at, sakari.ailus@linux.intel.com, sudeep.holla@arm.com, tglx@linutronix.de, tony@atomide.com, vigneshr@ti.com, dianders@chromium.org, jpb@kernel.org, rafael@kernel.org, Android Kernel Team <kernel-team@android.com>
 Subject: Re: [PATCH v1 2/4] driver core: fw_devlink: Link to supplier ancestor if no device
-Message-ID: <iAkBSgwuEqM4V5DeWWTplkq23zj8zBgHebmwIbpQl7MiojKNiMDtJxN_SaQ2F4CjD42K2gR5wxG-63JiUX0mcZ48UrZY2augArDt-II5_TQ=@pm.me>
-In-Reply-To: <20240205160011.42d1cf80@xps-13>
-References: <20240123014517.5787-1-mcpratt@pm.me> <20240123014517.5787-3-mcpratt@pm.me> <20240205160011.42d1cf80@xps-13>
+Message-ID: <WfZQTVQwRumG8L5YEf32cJoQCFo_5pAh7QH6Giq1CGI8J-PTcwXV-aWtWQqQCdkI2ZVQbbCVdVXxLhorucDAeKDlJoXW0A2Xfm0-cVvdhSo=@pm.me>
+In-Reply-To: <CAGETcx8S6B09T==dSp38-vX+rYjRyTaRwVqF0c2Nh-KxwDFAtw@mail.gmail.com>
+References: <20240123014517.5787-1-mcpratt@pm.me> <20240123014517.5787-3-mcpratt@pm.me> <CAGETcx8S6B09T==dSp38-vX+rYjRyTaRwVqF0c2Nh-KxwDFAtw@mail.gmail.com>
 Feedback-ID: 27397442:user:proton
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -61,100 +61,190 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi Miquel,
+Hi Saravana,
 
-Thanks for taking a look at what I have so far.
+Thanks for taking a look at the patch series.
+I'm going to write a longer reply to the rest of what you said later.
 
-On Monday, February 5th, 2024 at 10:00, Miquel Raynal <miquel.raynal@bootli=
-n.com> wrote:
+On Monday, February 5th, 2024 at 14:25, Saravana Kannan <saravanak@google.c=
+om> wrote:
 
 >=20
 >=20
-> Hi Michael,
+> On Mon, Jan 22, 2024 at 5:46=E2=80=AFPM Michael Pratt mcpratt@pm.me wrote=
+:
 >=20
-> mcpratt@pm.me wrote on Tue, 23 Jan 2024 01:46:40 +0000:
->=20
-> > If a fwnode is flagged as FWNODE_FLAG_NOT_DEVICE
-> > by the time a device link is to be made with it,
-> > but not flagged as FWNODE_FLAG_PARENT_IS_DEV,
-> > the link is dropped, otherwise the device link
-> > is still made with the original supplier fwnode.
-> > Theoretically, we can also handle linking to an ancestor
-> > of the supplier fwnode when forming device links, but there
-> > are still cases where the necessary fwnode flags are still missing
-> > because the real supplier device did not probe yet.
+> >=20
+> > Signed-off-by: Michael Pratt mcpratt@pm.me
 >=20
 >=20
-> I am not sure I follow this. In the following case, I would expect any
-> dependency towards node-c to be made against node-a. But the above
-> paragraph seems to tell otherwise: that the link would be dropped
-> (and thus, not enforced) because recursively searching for a parent
-> that would be a device could be endless? It feels wrong, so I probably
-> mis
+> NACK for a bunch of reasons.
 >=20
-> node-a {
->=09# IS DEV
->=09node-b {
->=09=09# PARENT IS DEV
->=09=09node-c {
->=09=09=09# PARENT IS DEV
->=09=09};
->=09};
->};
->
-> Besides that, the commit feels like a good idea.
+> 1. This logic should not be in fwnode_link_add(). That's supposed to
+> do the exact linking that the firmware meant. This logic should be
+> where the fwnode links are converted to device links or deferred
+> probing decision is done.
 
+Yeah, I can definitely make this change without any problems.
 
-The link is dropped _in order to_ make the dependency towards node-c
-become a dependency towards node-a instead.
+>=20
+> 2. If we handle one parent above correctly, it should be easy to
+> handle multiple parents above too. So why not fix it where we handle
+> multiple parents above?
 
-The "recursive searching" happens after links are dropped in order to
-create the new fwnode links, and it depends on the new flag
-being placed when the supplier device (node-a) probes, which can happen
-before the links are re-attempted, or after a single probe defer of the con=
-sumer.
-
-I placed all the logic that decides whether to drop links and retry linking
-to the consumer immediately before a probe defer of the consumer would occu=
-r.
-That logic could be distributed around multiple functions for fw_devlink,
-but I'm concerned about false positives. The only reason I didn't use or ma=
-ke
-a new function in order to "move" the links is that in this position in the=
- driver core
-which I believe is the right place to do the fixup function, we don't have =
-direct access
-to the fwnode that the links should go to, it would have to be discovered b=
-y recursively
-walking up the tree looking for the flag in the new fixup function
-instead of where the fwnode links are made.
-
-To me, it doesn't matter which order we call the functions,
-but if we are starting with fwnode links that refuse
-to be converted to device links, we need to do more than just move the fwno=
-de links
-because after a probe defer there is no hook to automatically try switching=
- them
-to device links again. Driver core expects that to have already happened by=
- then.
-I imagine that without having to add a lot more code in a lot of places,
-I would have to call fw_devlink_link_device() after "moving" links anyway..=
+I can do this too, but since going one parent up would have to occur
+multiple times, it would still end up being a recursive search for the flag=
 .
+Without finding the right fwnode right away, the new fixup function here
+would have to recursively call itself 3 or 4 times instead of once or twice=
+,
+and each call would result in going through the entire loop of=20
+fw_devlink_link_device() for the consumer which would overall take a little=
+ more time.
 
-It's possible to call that function only when the bad link is still a fwnod=
-e_link
-and do a "move" function when the bad link is a device_link, that is,
-if "moving" a finished device_link is possible or good practice at all
-since it would be skipping quite a few checks that occur before a device_li=
-nk is made.
-It seems to me that making a device_link is a multiple-step process, so a n=
-ew function
-to only move the supplier of a device_link might be a big one as well.
-I tend to try to reuse as many core functions as I could.
 
 >=20
-> Thanks,
-> Miqu=C3=A8l
+> Btw, I'm happy to fix this or help you fix this once I understand the
+> issue. Just wanted to give a quick NACK to avoid people spending
+> cycles on this patch in its current state.
+
+
+I totally understand. I am still new to kernel things, so I imagine that
+whenever I think that I'm finished with something,
+that I'm actually just halfway done with it, even though it took forever
+to get to this point, haha.
+
+
+>=20
+> -Saravana
+>=20
+> > ---
+> > drivers/base/core.c | 49 ++++++++++++++++++++++++++++++++++++------
+> > include/linux/fwnode.h | 4 ++++
+> > 2 files changed, 47 insertions(+), 6 deletions(-)
+> >=20
+> > diff --git a/drivers/base/core.c b/drivers/base/core.c
+> > index c05a5f6b0641..7f2652cf5edc 100644
+> > --- a/drivers/base/core.c
+> > +++ b/drivers/base/core.c
+> > @@ -92,13 +92,45 @@ static int __fwnode_link_add(struct fwnode_handle *=
+con,
+> > return 0;
+> > }
+> >=20
+> > +static int __fwnode_link_add_parents(struct fwnode_handle *con,
+> > + struct fwnode_handle *sup,
+> > + u8 flags, bool loop)
+> > +{
+> > + int ret =3D -EINVAL;
+> > + struct fwnode_handle parent;
+> > +
+> > + fwnode_for_each_parent_node(sup, parent) {
+> > + / Ignore the root node */
+> > + if (fwnode_count_parents(parent) &&
+> > + fwnode_device_is_available(parent) &&
+> > + !(parent->flags & FWNODE_FLAG_NOT_DEVICE) &&
+> > + !(parent->flags & FWNODE_FLAG_PARENT_IS_DEV)) {
+> > + ret =3D __fwnode_link_add(con, parent, flags);
+> > + }
+> > +
+> > + if (!loop && !ret) {
+> > + fwnode_handle_put(parent);
+> > + return 0;
+> > + }
+> > + }
+> > +
+> > + return ret;
+> > +}
+> > +
+> > int fwnode_link_add(struct fwnode_handle *con, struct fwnode_handle *su=
+p)
+> > {
+> > int ret;
+> >=20
+> > mutex_lock(&fwnode_link_lock);
+> > - ret =3D __fwnode_link_add(con, sup, 0);
+> > +
+> > + if ((sup->flags & FWNODE_FLAG_NOT_DEVICE) &&
+> > + (sup->flags & FWNODE_FLAG_PARENT_IS_DEV))
+> > + ret =3D __fwnode_link_add_parents(con, sup, 0, false);
+> > + else
+> > + ret =3D __fwnode_link_add(con, sup, 0);
+> > +
+> > mutex_unlock(&fwnode_link_lock);
+> > +
+> > return ret;
+> > }
+> >=20
+> > @@ -218,7 +250,8 @@ static void __fwnode_links_move_consumers(struct fw=
+node_handle *from,
+> > * MANAGED device links to this device, so leave @fwnode and its descend=
+ant's
+> > * fwnode links alone.
+> > *
+> > - * Otherwise, move its consumers to the new supplier @new_sup.
+> > + * Otherwise, flag descendants of @fwnode as having a parent fwnode fo=
+r a device
+> > + * that has probed and move bad fwnode consumer links from @fwnode to =
+@new_sup.
+> > */
+> > static void __fw_devlink_pickup_dangling_consumers(struct fwnode_handle=
+ *fwnode,
+> > struct fwnode_handle *new_sup)
+> > @@ -228,8 +261,11 @@ static void __fw_devlink_pickup_dangling_consumers=
+(struct fwnode_handle *fwnode,
+> > if (fwnode->dev && fwnode->dev->driver)
+> > return;
+> >=20
+> > - fwnode->flags |=3D FWNODE_FLAG_NOT_DEVICE;
+> > - __fwnode_links_move_consumers(fwnode, new_sup);
+> > + if (fwnode->flags & FWNODE_FLAG_NOT_DEVICE)
+> > + __fwnode_links_move_consumers(fwnode, new_sup);
+> > +
+> > + fwnode->flags |=3D FWNODE_FLAG_PARENT_IS_DEV;
+> > + new_sup->flags &=3D ~(FWNODE_FLAG_PARENT_IS_DEV);
+> >=20
+> > fwnode_for_each_available_child_node(fwnode, child)
+> > __fw_devlink_pickup_dangling_consumers(child, new_sup);
+> > @@ -2071,8 +2107,9 @@ static int fw_devlink_create_devlink(struct devic=
+e *con,
+> > device_links_write_unlock();
+> > }
+> >=20
+> > - if (sup_handle->flags & FWNODE_FLAG_NOT_DEVICE)
+> > - sup_dev =3D fwnode_get_next_parent_dev(sup_handle);
+> > + if ((sup_handle->flags & FWNODE_FLAG_NOT_DEVICE) &&
+> > + !(sup_handle->flags & FWNODE_FLAG_PARENT_IS_DEV))
+> > + return -EINVAL;
+> > else
+> > sup_dev =3D get_dev_from_fwnode(sup_handle);
+> >=20
+> > diff --git a/include/linux/fwnode.h b/include/linux/fwnode.h
+> > index 2a72f55d26eb..3ed8ba503062 100644
+> > --- a/include/linux/fwnode.h
+> > +++ b/include/linux/fwnode.h
+> > @@ -30,6 +30,9 @@ struct device;
+> > * BEST_EFFORT: The fwnode/device needs to probe early and might be miss=
+ing some
+> > * suppliers. Only enforce ordering with suppliers that have
+> > * drivers.
+> > + * PARENT_IS_DEV: The fwnode is a child of a fwnode that is or will be=
+ populated as a
+> > + * struct device, which is more suitable for device links
+> > + * than the fwnode child which may never have a struct device.
+> > */
+> > #define FWNODE_FLAG_LINKS_ADDED BIT(0)
+> > #define FWNODE_FLAG_NOT_DEVICE BIT(1)
+> > @@ -37,6 +40,7 @@ struct device;
+> > #define FWNODE_FLAG_NEEDS_CHILD_BOUND_ON_ADD BIT(3)
+> > #define FWNODE_FLAG_BEST_EFFORT BIT(4)
+> > #define FWNODE_FLAG_VISITED BIT(5)
+> > +#define FWNODE_FLAG_PARENT_IS_DEV BIT(6)
+> >=20
+> > struct fwnode_handle {
+> > struct fwnode_handle *secondary;
+> > --
+> > 2.30.2
 
 --
 MCP
