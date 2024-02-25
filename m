@@ -1,87 +1,146 @@
-Return-Path: <devicetree+bounces-45675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2AA4862AA7
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 15:17:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBCB5862AB3
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 15:27:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 63E3CB20EBC
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 14:17:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6487A1F2148D
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 14:27:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2C6C12E6A;
-	Sun, 25 Feb 2024 14:16:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33347134A8;
+	Sun, 25 Feb 2024 14:27:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="bbdtxajR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C9VInWVb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-177132.yeah.net (mail-177132.yeah.net [123.58.177.132])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F93C134A5;
-	Sun, 25 Feb 2024 14:16:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.132
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05DF7C2D0;
+	Sun, 25 Feb 2024 14:27:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708870617; cv=none; b=Q65dsrtQcc223NXcIn49DDOEejpb58YgS1IMF9auP0rP++6GToErJMF6FgPaKywnl27XJmFRucOnzjuaxVLL3xCSqg5ITc1Eva6/gvDSylYkQiQSWek5p9GuTWkAyyOxO+7lyYv/7QReBxpvb6AJPdZfKyxpgpYnNHMVA2M/KaQ=
+	t=1708871255; cv=none; b=hsBNPE37ofWWyk0I6XmBoMv1eUzZX9flivGuXfhwNPvkvHVhdVJW8bX4zfx/IOFZ6+wCnhTY6y7XUlfbXmwyL30BcmAxYJPrXj1ABHuTRSbe5HNT6ocCTmVQoHgOZCU374vpYyghm9t90KDcBPxep8L/cEAhVgrlSl8IBBxPngA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708870617; c=relaxed/simple;
-	bh=g4jPkP7X+EsAYI60cjkTqW1WzViJ2PvYFmask+nsaG0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dHBhp+XeiBcOxyxi70X2PTTsl6NdhPeRX1bTddoCwcM9yQkp3x9oLXwVYmrzhsSLWo03ua1RtkPvFtrgxNuyRUgvt1vD1FmY62I772OD142CueNJ+RTOYJ3qkUvwdonG3B9dLTUxXVyy1sfM/1X4fb7NEMBXxatVIIkvLMiKhXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=bbdtxajR; arc=none smtp.client-ip=123.58.177.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=IwgfoSTaVLYGnw8I0fogmOLPKGqOp6nR5Z+q8nO/0V8=;
-	b=bbdtxajRYydCK9zrt3pvC58RT+GnkKJhlJ/ZYPJHQRZquSoOcdeA5gD/Xo3qOP
-	ZQ1/vci8ysfvWoG5OmRJ2kLoaibaAb0vaSfjxaGuwZPE5cqnwh3gJeZA7Ytb0tkP
-	PnciMmGrGcS2qcTJJIo3aD3OxJo/xGhxk6AIBaWnR0GO4=
-Received: from dragon (unknown [183.213.196.200])
-	by smtp2 (Coremail) with SMTP id C1UQrAB3fwidS9tlDetWBA--.11344S3;
-	Sun, 25 Feb 2024 22:15:58 +0800 (CST)
-Date: Sun, 25 Feb 2024 22:15:57 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Sebastian Reichel <sre@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Dong Aisheng <aisheng.dong@nxp.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Stefan Wahren <wahrenst@gmx.net>
-Subject: Re: [PATCH v4 16/16] ARM: dts: imx6ull-uti260b: Add board
-Message-ID: <ZdtLnV4IutdMbz4S@dragon>
-References: <20240224213240.1854709-1-sre@kernel.org>
- <20240224213240.1854709-17-sre@kernel.org>
+	s=arc-20240116; t=1708871255; c=relaxed/simple;
+	bh=YxLQapaQ7vM/KWmbNZ9Y8e8vat8a+7NhANYH7fHpT9o=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pAMWmT7FQVQz8HoKR5nfbBnZYr2ei/tbeFtKK1Dvov+NOP+AmVySkdfc/OOq0QJVG1NYN13vWf+GOTc3ZZCYpHfGvniB4c/yqjS85IdWu6j5JLNJ3nJSblsqV88iVdYx3bNtFkVA4/VtTuwXsEGmOdbmdBEkCHhrQSMNozzEdiM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C9VInWVb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32D20C433F1;
+	Sun, 25 Feb 2024 14:27:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708871254;
+	bh=YxLQapaQ7vM/KWmbNZ9Y8e8vat8a+7NhANYH7fHpT9o=;
+	h=From:To:Cc:Subject:Date:From;
+	b=C9VInWVbwXhq7/VYYsr5CFe0MbZ/D3QJ11XJD8Ofysdo2Qy4HBJpzrWpvio5TO632
+	 4zypRlIztvW/0Mmf4voX7SGP+gbOled8Jz7CIJk6FkE/aOZRgP/6SYsKU30K+Nnw8P
+	 egT8P15d0dWwcdK54Pbb8m504gFgK67faJIPj/rTYCPksaSoLJBzQZ9omjn1/nLx6/
+	 sWYqqNbMOPMS1aLhu07W0idkEmHdVGEarcoj/+9NVJVgjwhc6lOP8X+yiznxlH52UY
+	 kMaDIy7pIx7W9ebs3SYr+ctnMcvZZUB1NAjWKmvTHqmItlXKHB1bGQHLgavKGvgv+X
+	 RhHOuAkZLVM+Q==
+From: Jonathan Cameron <jic23@kernel.org>
+To: devicetree@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	linux-kernel@vger.kernel.org,
+	Julia Lawall <Julia.Lawall@inria.fr>
+Cc: Peter Zijlstra <peterz@infradead.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	marek.vasut@gmail.com,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: [RESEND PATCH v2 0/4] of: automate of_node_put() - new approach to loops.
+Date: Sun, 25 Feb 2024 14:27:10 +0000
+Message-ID: <20240225142714.286440-1-jic23@kernel.org>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240224213240.1854709-17-sre@kernel.org>
-X-CM-TRANSID:C1UQrAB3fwidS9tlDetWBA--.11344S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUawvtDUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiFR6PZV6Nm6aC9gAAs7
+Content-Transfer-Encoding: 8bit
 
-On Sat, Feb 24, 2024 at 10:29:48PM +0100, Sebastian Reichel wrote:
-> Add UNI-T UTi260b thermal camera board.
-> 
-> Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
-> Signed-off-by: Sebastian Reichel <sre@kernel.org>
+From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 
-Can we change the patch subject to something like below?
+Some discussion occured on previous posting.
+https://lore.kernel.org/linux-iio/20240223124432.26443-1-Jonathan.Cameron@huawei.com/
 
-  ARM: dts: imx: Add UNI-T UTi260b thermal camera board
+Summary:
+* fwnode conversions should be considered when applying this
+  infrastructure to a driver. Perhaps better to move directly to
+  the generic FW property handling rather than improve existing
+  of specific code.
+* There are lots of potential places to use this based on detections
+  from Julia's coccinelle scripts linked below.
 
-Shawn
+The equivalent device_for_each_child_node_scoped() series for
+fwnode will be queued up in IIO for the merge window shortly as
+it has gathered sufficient tags. Hopefully the precdent set there
+for the approach will reassure people that instantiating the
+child variable inside the macro definition is the best approach.
+https://lore.kernel.org/linux-iio/20240217164249.921878-1-jic23@kernel.org/
+
+v2: Andy suggested most of the original converted set should move to
+    generic fwnode / property.h handling.  Within IIO that was
+    a reasonable observation given we've been trying to move away from
+    firmware specific handling for some time. Patches making that change
+    to appropriate drivers posted.
+    As we discussed there are cases which are not suitable for such
+    conversion and this infrastructure still provides clear benefits
+    for them.
+
+Ideally it would be good if this introductory series adding the
+infrastructure makes the 6.9 merge window. There are no dependencies
+on work queued in the IIO tree, so this can go via devicetree
+if the maintainers would prefer. I've had some off list messages
+asking when this would be merged, as there is interest in building
+on it next cycle for other parts of the kernel (where conversion to
+fwnode handling may be less appropriate).
+
+The outputs of Julia's scripts linked below show how widely this can be
+easily applied and give a conservative estimate of the complexity reduction
+and code savings. In some cases those drivers should move to fwnode
+and use the equivalent infrastructure there, but many will be unsuitable
+for conversion so this is still good win.
+
+Edited cover letter from v1:
+
+Thanks to Julia Lawal who also posted coccinelle for both types (loop and
+non loop cases)
+
+https://lore.kernel.org/all/alpine.DEB.2.22.394.2401312234250.3245@hadrien/
+https://lore.kernel.org/all/alpine.DEB.2.22.394.2401291455430.8649@hadrien/
+
+The cover letter of the RFC includes information on the various approaches
+considered.
+https://lore.kernel.org/all/20240128160542.178315-1-jic23@kernel.org/
+
+Whilst these macros produce nice reductions in complexity the loops
+still have the unfortunate side effect of hiding the local declaration
+of a struct device_node * which is then used inside the loop.
+
+Julia suggested making that a little more visible via
+ #define for_each_child_of_node_scoped(parent, struct device_node *, child)
+but in discussion we both expressed that this doesn't really make things
+all that clear either so I haven't adopted this suggestion.
+
+Jonathan Cameron (4):
+  of: Add cleanup.h based auto release via __free(device_node) markings.
+  of: Introduce for_each_*_child_of_node_scoped() to automate
+    of_node_put() handling
+  of: unittest: Use for_each_child_of_node_scoped()
+  iio: adc: rcar-gyroadc: use for_each_available_child_node_scoped()
+
+ drivers/iio/adc/rcar-gyroadc.c | 21 ++++++---------------
+ drivers/of/unittest.c          | 11 +++--------
+ include/linux/of.h             | 15 +++++++++++++++
+ 3 files changed, 24 insertions(+), 23 deletions(-)
+
+-- 
+2.44.0
 
 
