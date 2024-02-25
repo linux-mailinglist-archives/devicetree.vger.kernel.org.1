@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-45692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A74A2862B98
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 17:13:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55181862B9A
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 17:13:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 44CA01F219BD
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 16:13:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 855DE1C20DD1
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 16:13:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A9411C29C;
-	Sun, 25 Feb 2024 16:11:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B04B21C6B7;
+	Sun, 25 Feb 2024 16:11:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kct1azZu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TtA5/lQG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E8B617BC2
-	for <devicetree@vger.kernel.org>; Sun, 25 Feb 2024 16:11:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3060C1BDD0
+	for <devicetree@vger.kernel.org>; Sun, 25 Feb 2024 16:11:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708877472; cv=none; b=To23BfD6sHUOlyyE09miHURoijOnnNtU3hQ++cV85uvWCE7gnNQcBEN+xNEXh352OffcJzRl4ol4+reW3eZSxCo8ez8XHM1SG+xdpk1qySZ7G+OVMXLF5IIsVNojR6Yujea7HZi3yjup0c1SEkOdAgDyav8ZmMnYV/ifZ+mISmw=
+	t=1708877475; cv=none; b=fRZwoGZnsYLax+QzRCbiNb34s+VGv5J+rde5sqqfL+FdCUrqATHLdFyPHfhl6ZL4jC+iKqJ2ksf2iG6n6BhZL3ZSezDMInc4OEVRyADUjL6sfcyvmfU04RsDHtAhkDa+DjutytY6B31Q1xChiI4SmixJomLWx2RCMZmrHXLePnc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708877472; c=relaxed/simple;
-	bh=cU+ktrd9n1YdiXM1Kh/vgAaMqYKS0NvqKmr3Z7+AuMU=;
+	s=arc-20240116; t=1708877475; c=relaxed/simple;
+	bh=u8Qpi5YiOy9kRaDr0ChX2/pXA1mqNLtMkVDkNl61WfQ=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=NCDNWj7i1JPQ9QEOFcPz40l2xJKAL5Vf6gcFyKu76aCl2jPd6NYPvemhtSJd59PoQmgP3aPippbObya84ZMb38OhbB2ue7o77zVefcqALY7XeQ9I6rJJ0O8iT+m4NmPz0Ywae8DLHWZrH6YqHbSbr/JC5K30LcGRadcHVWAMZdQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kct1azZu; arc=none smtp.client-ip=209.85.208.174
+	 MIME-Version:Content-Type; b=L45FdIZIID6cQhOks8uPKdFywtmn37rRARinm/VG13Bag002wESC+G29SxJCWdJ2d5mSlzDPUWGO8/x+KOYrZsc7WjywHM3opoq1jx8r6zN9I9TKsygm+JHRjRDaSmedYHEh8OdJVf7EEkN1N44eVytsbwFXxoF3iiVdd0VdMo4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TtA5/lQG; arc=none smtp.client-ip=209.85.208.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2d244b28b95so24105631fa.0
-        for <devicetree@vger.kernel.org>; Sun, 25 Feb 2024 08:11:09 -0800 (PST)
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2d243797703so29438111fa.3
+        for <devicetree@vger.kernel.org>; Sun, 25 Feb 2024 08:11:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708877468; x=1709482268; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708877470; x=1709482270; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=4KXVaOKFr5kvye95hXniuMdgC2oHUvYmqm0J4NG2OIs=;
-        b=kct1azZuNZxGpkqxvTy7dbvBPVPOhtsIwwCCmYpacmIRLhtEFFNbx6lGmv489CTbBi
-         4AT5qYVyHDzNQRm1g0+Ux9xsAsmrIfM6HXK07ofOoo4BLHZvJVzbGag1fSZ33GQtloY4
-         gmCgEJOTRqlErRQLjg/1nDLaE22GjYIdgruRTiuSL5AjoUVMFtVATWIZ+iuCK+1YaaSL
-         ARHXBdLcmIhhQUQPmIN8X1rAbC/ZC9h6vKl0T4B0Q/F59rfFw6T76wYatzFn1eP8b7XR
-         E9wV0FuBpDZSI0TbLkQMPSlOkbSl87Pcx2P1zuXCXn/wfxJNQC4YVbsWIMdVq7DkN9yZ
-         RkZQ==
+        bh=REeTwuyBteq5+THLDDm+N0sqW9JR2kC2T9JOUPzqTZQ=;
+        b=TtA5/lQGRL/UROVJ/pSLyqTWZi8F3bCyMVnVhz0pnCGV0BUoPx/ggCNfqn8pXwM7jb
+         dxUTXzK/LD3lammTvA+qWT1h4m8gKZ+rlQQVZ+4HRMMIbgkbbKZTn/k/ECxI1FMFHYdt
+         gzKPLI9brf9nH0wzc/HgWlVte7iXafghvuYVikVjJ48MNleEcBGpLBEg4xy/A6VFbua6
+         FZV35UhnmwMZDj757//pwHTUcynXcO6oGYhA33GMj3kX3eqk5/btyzuNixEKXO1WFSlc
+         dhTk7fqPGQrDMEVaRvdmTr3MTAmo+jylzAwRRk4D4N1+0bTC3Ca8mcGrlz8nzatVRKVB
+         TT8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708877468; x=1709482268;
+        d=1e100.net; s=20230601; t=1708877470; x=1709482270;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=4KXVaOKFr5kvye95hXniuMdgC2oHUvYmqm0J4NG2OIs=;
-        b=d2nhin79HShP8PY3GS5MdhIXQ+jR6Y2otaFTbVV6MatP8kDzWReiIJXtgcJbp1h4yP
-         ZQwswUNsge+nCXSZx7hVsSHX8uJ4MLnW+6g9plgdEvcEpPKN+xYLEJHVXGZKjCh74cfz
-         YTxVyfNMYWS0wpuIwUpq/3DU7ERIX2J0NhZ5L0HmnTNhjrcHkoNFyALgWZARE4FPfXVr
-         ELmSlAZTJCScMdChVFG0FQKT6B9JXcbbqhD4exzXfxA1nwqQILCzofLwhzdXxSD/0IC5
-         G0+VG1lk2bQ7DLIa5niOq1Opa86sbG8qwZ7AhTGPV4qWt3b2gPdHBq3otprtbJBupf3X
-         mXCA==
-X-Forwarded-Encrypted: i=1; AJvYcCVGmVDi7JfST08qQladHwLMt28+LAqtC5zH+xEED0NtNYzOJ8Z+3HPYrayR3K25amyFS5181wgT5q5llz4d9rgY3olnHOkgj+t60g==
-X-Gm-Message-State: AOJu0Yz8eJ54YoYFaIOKNyM9pzNxeF9OD1B5UNfBaZNH0Y89b/cWioET
-	2uQQ1rcaWgzWiL6tiEeW2RxFZ8W6IqzBfUmJ2j5llepI7TAUFk3LQDp7spPE444=
-X-Google-Smtp-Source: AGHT+IGBSbDT8sCsvS0w3yvOiCct9/Bh/XM1WMHea5PKYhnydcn6owioy2ov2Yd8mpPObPaj6UGyvg==
-X-Received: by 2002:a05:651c:220a:b0:2d2:4374:b71 with SMTP id y10-20020a05651c220a00b002d243740b71mr3393789ljq.11.1708877468468;
-        Sun, 25 Feb 2024 08:11:08 -0800 (PST)
+        bh=REeTwuyBteq5+THLDDm+N0sqW9JR2kC2T9JOUPzqTZQ=;
+        b=K9txXdpXb49Am53fevF9208CVWi02vB1udDCf7BPCEX+H43F5yldjdZOZGKifBCLcj
+         GQGgNIkn0pTC7D/4KrF2oBOQwA/Kf6VFTdm6JDelb5+tG407sRH1URXxTwosPx4C0lHH
+         qilV6lEkOzhmTQgPY9MZgAJHydGh3utMIChroHJb95uZ190B202XqMy63V948+n81J5+
+         7zfFdxusRaMOJ/lapyIUZyMxMbEQ+6UZCY5aTHjFzuVtjgb10c41pX7p8Sv/qm9c7Q6t
+         Ec/njxdS+XsZFp/kcZtBSQW6yIZkGXdtna5A+KMMI4H9R8zXP2JcNbN35TYl1Fksj/cn
+         Il4w==
+X-Forwarded-Encrypted: i=1; AJvYcCXeyae+q/Sd/AHqx135UqI9ffCIfSA3Z84tbIzct/jTfe9x4Q+sHMYAZvegV1kUStSaChHTa1XDwqTCCsmHtjgvdVZFCZCjknY9yQ==
+X-Gm-Message-State: AOJu0Yyd4rP7Tgdoko2dYHs7mbIG0JGOJxmRjOttQPv77zHqrkmx96X4
+	bYrKudCRdGpD7JjnGd5tAefFtzeKaGZVtSyGRnskkWc9woQl51nyEN59/8jDFdA=
+X-Google-Smtp-Source: AGHT+IH5ysbPnEAR4gSNi9Y8xJXQNzwoFma6m8b1/S0CcoLGSmBaXXI9IRTtAoynqulT2fdbH///4g==
+X-Received: by 2002:a2e:b170:0:b0:2d2:4cb2:59e4 with SMTP id a16-20020a2eb170000000b002d24cb259e4mr2790327ljm.31.1708877470466;
+        Sun, 25 Feb 2024 08:11:10 -0800 (PST)
 Received: from [127.0.1.1] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id n21-20020a2e7215000000b002d2697570fcsm579184ljc.93.2024.02.25.08.11.06
+        by smtp.gmail.com with ESMTPSA id n21-20020a2e7215000000b002d2697570fcsm579184ljc.93.2024.02.25.08.11.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Feb 2024 08:11:08 -0800 (PST)
+        Sun, 25 Feb 2024 08:11:09 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Sylwester Nawrocki <s.nawrocki@samsung.com>, 
  Chanwoo Choi <cw00.choi@samsung.com>, 
@@ -78,13 +78,13 @@ Cc: Alim Akhtar <alim.akhtar@samsung.com>,
  linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-kernel@vger.kernel.org
-In-Reply-To: <20240224202053.25313-10-semen.protsenko@linaro.org>
+In-Reply-To: <20240224202053.25313-11-semen.protsenko@linaro.org>
 References: <20240224202053.25313-1-semen.protsenko@linaro.org>
- <20240224202053.25313-10-semen.protsenko@linaro.org>
-Subject: Re: (subset) [PATCH v3 09/15] clk: samsung: Keep CPU clock chip
- specific data in a dedicated struct
-Message-Id: <170887746655.215710.9580664950836563273.b4-ty@linaro.org>
-Date: Sun, 25 Feb 2024 17:11:06 +0100
+ <20240224202053.25313-11-semen.protsenko@linaro.org>
+Subject: Re: (subset) [PATCH v3 10/15] clk: samsung: Keep register offsets
+ in chip specific structure
+Message-Id: <170887746854.215710.5270227845876951742.b4-ty@linaro.org>
+Date: Sun, 25 Feb 2024 17:11:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,21 +96,23 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.12.4
 
 
-On Sat, 24 Feb 2024 14:20:47 -0600, Sam Protsenko wrote:
-> Keep chip specific data in the data structure, don't mix it with code.
-> It makes it easier to add more chip specific data further. Having all
-> chip specific data in the table eliminates possible code bloat when
-> adding more rate handlers for new chips, and also makes it possible to
-> keep some other chip related data in that array.
-> 
-> No functional change.
+On Sat, 24 Feb 2024 14:20:48 -0600, Sam Protsenko wrote:
+> Abstract CPU clock registers by keeping their offsets in a dedicated
+> chip specific structure to accommodate for oncoming Exynos850 support,
+> which has different offsets for cluster 0 and cluster 1. This rework
+> also makes it possible to use exynos_set_safe_div() for all chips, so
+> exynos5433_set_safe_div() is removed here to reduce the code
+> duplication. The ".regs" field has to be (void *) as different Exynos
+> chips can have very different register layout, so this way it's possible
+> for ".regs" to point to different structures, each representing its own
+> chip's layout.
 > 
 > [...]
 
 Applied, thanks!
 
-[09/15] clk: samsung: Keep CPU clock chip specific data in a dedicated struct
-        https://git.kernel.org/krzk/linux/c/9c746e5afdc3f784593c903d4be3d418f75d7787
+[10/15] clk: samsung: Keep register offsets in chip specific structure
+        https://git.kernel.org/krzk/linux/c/78bc2312ef9cea4af1073dfab4c71d91b2015b5d
 
 Best regards,
 -- 
