@@ -1,64 +1,57 @@
-Return-Path: <devicetree+bounces-45634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5929862905
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 04:39:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BBB9862921
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 06:04:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6081A281FA7
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 03:39:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3EA128204C
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 05:04:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE26A5382;
-	Sun, 25 Feb 2024 03:39:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 865A27484;
+	Sun, 25 Feb 2024 05:04:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="N/eA0FLM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JFNtONFw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-177132.yeah.net (mail-177132.yeah.net [123.58.177.132])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0F1B53A0;
-	Sun, 25 Feb 2024 03:39:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.132
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 477CB8F49;
+	Sun, 25 Feb 2024 05:04:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708832360; cv=none; b=oSvpsz82uZIgkQ9wODldGnQheO1ZVxdZwypJQScLz4Wyan6kmN5BfpnLn9qxPcnkLhlyY/qQtdIGkUlzUhIH279LRGSxIiri70uz2zEpkYtRKUl/TgvbQ7+tS2eFQqWt5VO3NjoV2JhwrE/ONtU57QN1/BLIiz5MfMSoJUL2qUI=
+	t=1708837463; cv=none; b=HzUbeU3h3+SYFzUVrrVwK/8zZD1ro9bL5lvk/T1m/ERa/SlQKUh40O8yDdR6VMDtU9J8l+TGNxW6exe1fRXmkVYZX7qe1MCHIgGPlWjVxtndQq7MrE/eD4BwIUT/NhkMjFZZ43d+iLrd9kSoS770GnCWP0Cu967jhRB3UaGkVKA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708832360; c=relaxed/simple;
-	bh=u7WCIjEpOQKsg1ni3/puehCB5TErmSAdlAtba0R5QoI=;
+	s=arc-20240116; t=1708837463; c=relaxed/simple;
+	bh=PdNwwCg558iqeuTBDu5R3JB3xjnvzCi/WTZ16LnG+gc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RCbm5ANqCCUIeEbRAR0DiWVavYw3xhKLa9pnUcpnqB5QVgOvqed+SpqTc+e9vKVq/YS6StzRl5BH+uwSsq/wU97FSFisid+R0ClRBuOg7UQ1KAXAfh9Y/rz0ZPsSImajq6PQwwg5p0t2bZWrG6YcRd5Kw97LZCw5Y2lr6N7AuqI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=N/eA0FLM; arc=none smtp.client-ip=123.58.177.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=3BZz6CYSY0RLqb7uGYPPOD2+QTos9rTXVXkguc6zZB0=;
-	b=N/eA0FLMYrdF1EIPQ0boc+Y934+F9NBus66NuyAGB+fDulTvyBJWp6v8z06ySp
-	tY1vJriSBjIq7l4nWGMQek+rA4DlgEf3xQ5+Z8chVYF7twSFhGtZEyGe9G1LApom
-	hZWvhIJLyoRSyKCYeVUEYqoHScxSZMwkL9mEqDiEznOdw=
-Received: from dragon (unknown [183.213.196.200])
-	by smtp2 (Coremail) with SMTP id C1UQrAD3H0A7ttplRc1PBA--.39055S3;
-	Sun, 25 Feb 2024 11:38:36 +0800 (CST)
-Date: Sun, 25 Feb 2024 11:38:34 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Marco Felsch <m.felsch@pengutronix.de>,
-	Roland Hieber <rhi@pengutronix.de>,
-	Hiago De Franco <hiagofranco@gmail.com>,
-	Arnd Bergmann <arnd@arndb.de>
-Subject: Re: [PATCH v1] ARM: dts: imx7: remove DSI port endpoints
-Message-ID: <Zdq2OhFYa7BOhXxt@dragon>
-References: <20240216104255.21052-1-francesco@dolcini.it>
- <20240223171901.GA22584@francesco-nb>
+	 Content-Type:Content-Disposition:In-Reply-To; b=e/Bl5YHpgYshEXg2zn/BWfSB29WW2hUHp1h8YHCqNhwy9ekpOEfCh8bjU4JRYbhc/Q6tZLsPrL2FoFAlUxO81kAwUpj2PmXR1sMJgdiIDh8DrNGhxquT3JUcLmKmRmOM4FgRV6Np6QY1RYUyW9sQoyveJdR2/LHJjfYWuwNYwUU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JFNtONFw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF383C433F1;
+	Sun, 25 Feb 2024 05:04:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708837462;
+	bh=PdNwwCg558iqeuTBDu5R3JB3xjnvzCi/WTZ16LnG+gc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JFNtONFwjEAKdwMsHzGHg9Iwgkh+n8EOxliWq7Z0IAO3MP8tEwNnCmRHRGR+2VmWz
+	 DfZ2qwieEFPlzzVNk9oEg8brQWd7EBgGMeJlNwNamB3G6NeXKccm4YZWiUxdn9IfW+
+	 6ooHfrLDTN7f6Wf21NXzb3ATc5La4ET0znmZpuudSnNJy1AWG+VLF4cUXbny7FcPvB
+	 44BtBrnhtQdU07Nngp/W/dqRKMTLT48zpDsTt5uk3djs0N1jY7x5rt+DO3PHVUPwTm
+	 DNtCNgJs43EPRihLDgbeNEYKcfwPrC/tgc1NlDAQAfkbky1moJGqU9nkoG4w9ZFzsv
+	 LkUfU93EmDDRQ==
+Date: Sat, 24 Feb 2024 23:04:20 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: David Collins <quic_collinsd@quicinc.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>
+Subject: Re: [PATCH] dt-bindings: nvmem: qcom,spmi-sdam: update maintainer
+Message-ID: <u2z42cj2jlq6wf4ke3d3qxyoycy7lcqqgjjhcym3xudy3vck3s@vk7gkfl6rbpk>
+References: <20240223232955.1907552-1-quic_collinsd@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,40 +60,41 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240223171901.GA22584@francesco-nb>
-X-CM-TRANSID:C1UQrAD3H0A7ttplRc1PBA--.39055S3
-X-Coremail-Antispam: 1Uf129KBjvdXoW7JF48ZF1rKw1DGw4UXFW7CFg_yoWkCFX_uF
-	1Sv3yIgw4UWFW0q39FqF1F9rWxW3yrJ34jqFWagr43Za4fA34UJF93KryDXwn3Wayftrsx
-	u3Z5Krn0vr1qvjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUn7fQtUUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiFQ2PZV6Nm6WPWwABsK
+In-Reply-To: <20240223232955.1907552-1-quic_collinsd@quicinc.com>
 
-On Fri, Feb 23, 2024 at 06:19:01PM +0100, Francesco Dolcini wrote:
-> On Fri, Feb 16, 2024 at 11:42:55AM +0100, Francesco Dolcini wrote:
-> > From: Francesco Dolcini <francesco.dolcini@toradex.com>
-> > 
-> > This fixes the display not working on colibri imx7, the driver fails to
-> > load with the following error:
-> > 
-> >   mxsfb 30730000.lcdif: error -ENODEV: Cannot connect bridge
-> > 
-> > NXP i.MX7 LCDIF is connected to both the Parallel LCD Display and to a
-> > MIPI DSI IP block, currently it's not possible to describe the
-> > connection to both.
-> > 
-> > Remove the port endpoint from the SOC dtsi to prevent regressions, this
-> > would need to be defined on the board DTS.
-> > 
-> > Reported-by: Hiago De Franco <hiagofranco@gmail.com>
-> > Closes: https://lore.kernel.org/r/34yzygh3mbwpqr2re7nxmhyxy3s7qmqy4vhxvoyxnoguktriur@z66m7gvpqlia/
-> > Fixes: edbbae7fba49 ("ARM: dts: imx7: add MIPI-DSI support")
-> > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+On Fri, Feb 23, 2024 at 03:29:55PM -0800, David Collins wrote:
+> Emails to Shyam bounce (reason: 585 5.1.1 <sthella@codeaurora.org>:
+> Recipient address rejected: undeliverable address: No such user here.)
+> so change the maintainer to be me.  I work on qcom,spmi-sdam as well
+> as other PMIC peripheral devices.
 > 
-> Hello Shawn, what do you plan to do with this?
+> Signed-off-by: David Collins <quic_collinsd@quicinc.com>
+
+Thanks David!
+
+Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+
+Regards,
+Bjorn
+
+> ---
+>  Documentation/devicetree/bindings/nvmem/qcom,spmi-sdam.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> This fixes a regression from v6.8-rc1 and would be nice to have it into
-> the final v6.8.
-
-Applied as a fix for 6.8, thanks!
-
+> diff --git a/Documentation/devicetree/bindings/nvmem/qcom,spmi-sdam.yaml b/Documentation/devicetree/bindings/nvmem/qcom,spmi-sdam.yaml
+> index 068bedf5dbc9..5d7be0b34536 100644
+> --- a/Documentation/devicetree/bindings/nvmem/qcom,spmi-sdam.yaml
+> +++ b/Documentation/devicetree/bindings/nvmem/qcom,spmi-sdam.yaml
+> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Qualcomm Technologies, Inc. SPMI SDAM
+>  
+>  maintainers:
+> -  - Shyam Kumar Thella <sthella@codeaurora.org>
+> +  - David Collins <quic_collinsd@quicinc.com>
+>  
+>  description: |
+>    The SDAM provides scratch register space for the PMIC clients. This
+> -- 
+> 2.25.1
+> 
 
