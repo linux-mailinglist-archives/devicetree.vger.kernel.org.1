@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-45641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DF02862954
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 07:24:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC9A4862956
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 07:25:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C3E4EB20EE1
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 06:24:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 784EC281CE0
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 06:25:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B659BE4D;
-	Sun, 25 Feb 2024 06:24:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F5462F58;
+	Sun, 25 Feb 2024 06:25:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="m57wh/sX"
+	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="OvibfOf9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90EC09445
-	for <devicetree@vger.kernel.org>; Sun, 25 Feb 2024 06:24:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25448C157
+	for <devicetree@vger.kernel.org>; Sun, 25 Feb 2024 06:25:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.50.62.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708842264; cv=none; b=prfZuUw0TgmcJ3/iqKGDt1F74FicrsjC4wpNcgf7+3OcOmD3RSNnUUyXREOUU+sMp0K0wcpbBeSZjgD1/HkeidOwp9BqIU3//hgWu1RBLx7fZjeSQOhsSIsoo5COK4XkHlZirXArpVnobT2KmEPZugfoPbsDUhE/UWpLpwcxlLE=
+	t=1708842313; cv=none; b=hDzwGbXS+LuTo2bdjoajAsCIJ0TJFh9jBY6TDw0YiEKzj9pv/8Q8of0Vr/dM8X52VHSZi2jGDkt6Tv+dMX8+4p4SCYUskTFa8r49k+DYcI9nhD2rHr+bUhLytnO/Q5dXpIvFOtxWqHNxvlqK7gE3og5TjePZ82f2C7RueQSM/ak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708842264; c=relaxed/simple;
-	bh=SgCZmAiCbtanOTY5/tcqzspKoDYsChxPb0iBzT5jhpY=;
+	s=arc-20240116; t=1708842313; c=relaxed/simple;
+	bh=V2mEp9oEvcmr4hMbt6NFHaZLrPOvc7ilqQ9ACpZGNbk=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=exbR+CwQcmzk9Ea6DoR65WZKaTYRvizUXXdZ26hRvEgDKzgMCTO0RXYaVAooGo+MIzucNVzRrmYFB1pbbfDrljJ6I2I2/eWgZ1djYiC9BCdS7gNGwbpNnJztR6bbiPKQ4w8tRUF8SLdl4XyAT4wJv+zG1uQUnJbXH1bTvt9L6g8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com; spf=fail smtp.mailfrom=atomide.com; dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b=m57wh/sX; arc=none smtp.client-ip=74.50.62.9
+	 MIME-Version; b=CWE8kiEKbzJFs+JVq+ezI38zrCNwu7JwCJMKn2jSIaYpNWFS5qNpHwiQYW8rmXb0S0BmcVlQML61x5GK6BMzL6jzlKR8Ib0DngGTe+cyhUPSgbYjPnV72yc5FrFjfYB5h/6Ehk6P35ZKKcP0qjwcQukAm6ekDc0h+vlbL08IPKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com; spf=fail smtp.mailfrom=atomide.com; dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b=OvibfOf9; arc=none smtp.client-ip=74.50.62.9
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=atomide.com
 Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
-	by mail5.25mail.st (Postfix) with ESMTPSA id 9A2656058D;
-	Sun, 25 Feb 2024 06:23:39 +0000 (UTC)
+	by mail5.25mail.st (Postfix) with ESMTPSA id E9BCC6058D;
+	Sun, 25 Feb 2024 06:24:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
-	s=25mailst; t=1708842263;
-	bh=SgCZmAiCbtanOTY5/tcqzspKoDYsChxPb0iBzT5jhpY=;
+	s=25mailst; t=1708842311;
+	bh=V2mEp9oEvcmr4hMbt6NFHaZLrPOvc7ilqQ9ACpZGNbk=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=m57wh/sXq7ivvJsqJmjoTej1339dMMIAGgDawYZdv3yWiB7jJvBMONFHMy6JWYVpa
-	 i/xGYzJ8T/hcpDmn3Xu3jMd5MXT1coMDoee7SDvKfLkmEWj3Zi1ZcCADf90c449fTm
-	 EzTTtNlWovki2F0UlNYSrzI2YQqzthC4X8O1xongmqn5xIIUf0sAj9b939eLqtgSsi
-	 vV9Dmqt+zL0PntT/RzDF9KVUUaWe/9Xw47nCe5QEz2/8fPL6GnFG2Vn+KO0g4bUvFR
-	 /1kE3iqBpQX+Pvg8pasvlTLrMIGAzlk+KH6Fq91AjehcMQmmYGLtEKH0u5YylhIrP8
-	 J1sXAoEBgSvbA==
+	b=OvibfOf9eoDkW3/MBgNdOBYlZ7Rr/pfdpjhqcsHEGWatMVthIHlkQ3PrKFcKP3qov
+	 9jmC7vCpU3W7yq1XyCPgqAhHv+oI846QhN6m3au4w3xXQ9pTPKR4veui7WflLxEpDa
+	 Z/nUxFwKciRkMs0spy3yIsByguI+YXpaIDbXrU82nbSnEYI4/3u0Cs+wQRJbKIkpGq
+	 STh09/EPs4GY6o/0/ivVs9OBfZHT00Hc37m99zd/fOjWnpifhrXNXDwUUH95WDtMaX
+	 rSFgwzHuhFr/n1/BHWdwahynnE04yFWA3kO7SPxBd4aOlIhARnqIDV21x3GSTGAZ9A
+	 C+C7rNFt3WIDg==
 From: Tony Lindgren <tony@atomide.com>
 To: Andrzej Hajda <andrzej.hajda@intel.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
@@ -51,11 +51,11 @@ To: Andrzej Hajda <andrzej.hajda@intel.com>,
 	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
 	Jonas Karlman <jonas@kwiboo.se>,
 	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
 	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
 	Maxime Ripard <mripard@kernel.org>,
 	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
@@ -66,9 +66,9 @@ Cc: Michael Walle <mwalle@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 	dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH v5 04/10] drm/bridge: tc358775: fix support for jeida-18 and jeida-24
-Date: Sun, 25 Feb 2024 08:19:33 +0200
-Message-ID: <20240225062008.33191-5-tony@atomide.com>
+Subject: [PATCH v5 05/10] drm/bridge: tc358775: make standby GPIO optional
+Date: Sun, 25 Feb 2024 08:19:34 +0200
+Message-ID: <20240225062008.33191-6-tony@atomide.com>
 X-Mailer: git-send-email 2.43.1
 In-Reply-To: <20240225062008.33191-1-tony@atomide.com>
 References: <20240225062008.33191-1-tony@atomide.com>
@@ -82,64 +82,39 @@ Content-Transfer-Encoding: 8bit
 
 From: Michael Walle <mwalle@kernel.org>
 
-The bridge always uses 24bpp internally. Therefore, for jeida-18
-mapping we need to discard the lowest two bits for each channel and thus
-starting with LV_[RGB]2. jeida-24 has the same mapping but uses four
-lanes instead of three, with the forth pair transmitting the lowest two
-bits of each channel. Thus, the mapping between jeida-18 and jeida-24
-is actually the same, except that one channel is turned off (by
-selecting the RGB666 format in VPCTRL).
+The stby pin is optional. It is only needed for power-up and down
+sequencing. It is not needed, if the power rails cannot by dynamically
+enabled.
 
-While at it, remove the bogus comment about the hardware default because
-the default is overwritten in any case.
+Because the GPIO is now optional, remove the error message.
 
-Tested with a jeida-18 display (Evervision VGG644804).
-
-Fixes: b26975593b17 ("display/drm/bridge: TC358775 DSI/LVDS driver")
 Signed-off-by: Michael Walle <mwalle@kernel.org>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Tony Lindgren <tony@atomide.com>
 ---
- drivers/gpu/drm/bridge/tc358775.c | 21 +++++++++------------
- 1 file changed, 9 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/bridge/tc358775.c | 9 +++------
+ 1 file changed, 3 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/bridge/tc358775.c b/drivers/gpu/drm/bridge/tc358775.c
 --- a/drivers/gpu/drm/bridge/tc358775.c
 +++ b/drivers/gpu/drm/bridge/tc358775.c
-@@ -454,10 +454,6 @@ static void tc_bridge_enable(struct drm_bridge *bridge)
- 	dev_dbg(tc->dev, "bus_formats %04x bpc %d\n",
- 		connector->display_info.bus_formats[0],
- 		tc->bpc);
--	/*
--	 * Default hardware register settings of tc358775 configured
--	 * with MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA jeida-24 format
--	 */
- 	if (connector->display_info.bus_formats[0] ==
- 		MEDIA_BUS_FMT_RGB888_1X7X4_SPWG) {
- 		/* VESA-24 */
-@@ -468,14 +464,15 @@ static void tc_bridge_enable(struct drm_bridge *bridge)
- 		d2l_write(tc->i2c, LV_MX1619, LV_MX(LVI_B6, LVI_B7, LVI_B1, LVI_B2));
- 		d2l_write(tc->i2c, LV_MX2023, LV_MX(LVI_B3, LVI_B4, LVI_B5, LVI_L0));
- 		d2l_write(tc->i2c, LV_MX2427, LV_MX(LVI_HS, LVI_VS, LVI_DE, LVI_R6));
--	} else { /*  MEDIA_BUS_FMT_RGB666_1X7X3_SPWG - JEIDA-18 */
--		d2l_write(tc->i2c, LV_MX0003, LV_MX(LVI_R0, LVI_R1, LVI_R2, LVI_R3));
--		d2l_write(tc->i2c, LV_MX0407, LV_MX(LVI_R4, LVI_L0, LVI_R5, LVI_G0));
--		d2l_write(tc->i2c, LV_MX0811, LV_MX(LVI_G1, LVI_G2, LVI_L0, LVI_L0));
--		d2l_write(tc->i2c, LV_MX1215, LV_MX(LVI_G3, LVI_G4, LVI_G5, LVI_B0));
--		d2l_write(tc->i2c, LV_MX1619, LV_MX(LVI_L0, LVI_L0, LVI_B1, LVI_B2));
--		d2l_write(tc->i2c, LV_MX2023, LV_MX(LVI_B3, LVI_B4, LVI_B5, LVI_L0));
--		d2l_write(tc->i2c, LV_MX2427, LV_MX(LVI_HS, LVI_VS, LVI_DE, LVI_L0));
-+	} else {
-+		/* JEIDA-18 and JEIDA-24 */
-+		d2l_write(tc->i2c, LV_MX0003, LV_MX(LVI_R2, LVI_R3, LVI_R4, LVI_R5));
-+		d2l_write(tc->i2c, LV_MX0407, LV_MX(LVI_R6, LVI_R1, LVI_R7, LVI_G2));
-+		d2l_write(tc->i2c, LV_MX0811, LV_MX(LVI_G3, LVI_G4, LVI_G0, LVI_G1));
-+		d2l_write(tc->i2c, LV_MX1215, LV_MX(LVI_G5, LVI_G6, LVI_G7, LVI_B2));
-+		d2l_write(tc->i2c, LV_MX1619, LV_MX(LVI_B0, LVI_B1, LVI_B3, LVI_B4));
-+		d2l_write(tc->i2c, LV_MX2023, LV_MX(LVI_B5, LVI_B6, LVI_B7, LVI_L0));
-+		d2l_write(tc->i2c, LV_MX2427, LV_MX(LVI_HS, LVI_VS, LVI_DE, LVI_R0));
+@@ -669,12 +669,9 @@ static int tc_probe(struct i2c_client *client)
+ 		return ret;
  	}
  
- 	d2l_write(tc->i2c, VFUEN, VFUEN_EN);
+-	tc->stby_gpio = devm_gpiod_get(dev, "stby", GPIOD_OUT_HIGH);
+-	if (IS_ERR(tc->stby_gpio)) {
+-		ret = PTR_ERR(tc->stby_gpio);
+-		dev_err(dev, "cannot get stby-gpio %d\n", ret);
+-		return ret;
+-	}
++	tc->stby_gpio = devm_gpiod_get_optional(dev, "stby", GPIOD_OUT_HIGH);
++	if (IS_ERR(tc->stby_gpio))
++		return PTR_ERR(tc->stby_gpio);
+ 
+ 	tc->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+ 	if (IS_ERR(tc->reset_gpio)) {
 -- 
 2.43.1
 
