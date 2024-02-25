@@ -1,65 +1,63 @@
-Return-Path: <devicetree+bounces-45713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65564862D4A
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 22:53:18 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE077862D5C
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 23:13:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 969951C20CBB
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 21:53:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 640EDB20DC6
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 22:13:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DACBB1B95A;
-	Sun, 25 Feb 2024 21:53:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b="DV33ijJt"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D8B81B970;
+	Sun, 25 Feb 2024 22:13:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lithops.sigma-star.at (lithops.sigma-star.at [195.201.40.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 177B81BC26;
-	Sun, 25 Feb 2024 21:53:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.181.215.36
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C44D1B959;
+	Sun, 25 Feb 2024 22:12:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.201.40.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708897991; cv=none; b=BqwQjcdYmkBAM9ma2EAb38v/mG1mBiSYhbmorADlC+CdBypwfZkjntMr6Ka94Heh+wHzgUl1xIX8oDKxPfVx/ybryPxzvBQohYMxOKcMyjbRVZACKajiQO2FyITgZ8lB8gEXwv2Ii9PY+abuA+PCaBNjWP6P4TNnQJ3FE9MniaA=
+	t=1708899181; cv=none; b=ZtkDHX+KVC4Gknr9sD5+V6nnk96c4/cmKtBXMZIynd8zBdVWdG0A9SLBgFINumBKK9JRiOHK/9v9y3+nVAyQkf/2IcRWhAB5/lW3448MNBGSMuvKb7NKgl2NPncgRCfDk2TCyGhhvzIXe52MeQhYGf+h/QPrKuHJZ3gNzBLOnwU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708897991; c=relaxed/simple;
-	bh=c7qVMzP3hjDjRYr9GI+qimmAMxJsHCBlkxOXyxRGfdM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mZzsa6vUykvfM+jk2x7WR/JPJwzX7iQ40apkgh51qBLuJzIqh/2Q2JRzgzv92HI17xRvW7yvf3TYmn8Wbw5NUMWLmNgaqdDyJJ0CfFtAOU1hVart2Us4eaDSjqPgIMtVvm0MBSHFiftis0iMe4uKb7ACNF9o3jC9qIQfvI84TIc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz; spf=pass smtp.mailfrom=xff.cz; dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b=DV33ijJt; arc=none smtp.client-ip=195.181.215.36
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xff.cz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-	t=1708897979; bh=c7qVMzP3hjDjRYr9GI+qimmAMxJsHCBlkxOXyxRGfdM=;
-	h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-	b=DV33ijJtLijd5NdSy6eThWEcxekzatlBDPxUL26zXZCKhZgfaJIVqGHORR06AUH60
-	 02nH5El2hc/Rf1V5O1aVlFYmT2FNxcA9deWj3Cwdd29G2OtywSvtHSu28QaNzNh+Rz
-	 FVn/I0O9GcuOo6ypcHwTUBuEQQIU7gejn+meqUdo=
-Date: Sun, 25 Feb 2024 22:52:59 +0100
-From: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Andrey Skvortsov <andrej.skvortzov@gmail.com>, 
-	Icenowy Zheng <icenowy@aosc.io>, Dalton Durst <dalton@ubports.com>, 
-	Shoji Keita <awaittrot@shjk.jp>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 3/4] iio: magnetometer: add a driver for Voltafield
- AF8133J magnetometer
-Message-ID: <mn2ewn33djqxmghin73l2exq426sws2ymqvajojctyywvosash@an7dzkftkqvc>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>, 
-	Jonathan Cameron <jic23@kernel.org>, linux-kernel@vger.kernel.org, 
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andrey Skvortsov <andrej.skvortzov@gmail.com>, Icenowy Zheng <icenowy@aosc.io>, 
-	Dalton Durst <dalton@ubports.com>, Shoji Keita <awaittrot@shjk.jp>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <20240222011341.3232645-1-megi@xff.cz>
- <20240222011341.3232645-4-megi@xff.cz>
- <20240225120700.2a0da3f6@jic23-huawei>
+	s=arc-20240116; t=1708899181; c=relaxed/simple;
+	bh=R3PowNmV6z7V5+4rKOYfRZaysNd/F1B+PjegZMDewpo=;
+	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
+	 MIME-Version:Content-Type; b=tRGSyCM0JSzhMpXG+o5D8ZAM0jbg5cXhmCH0mRCZErJAqLRGHf7rJLHSdfjhQTWB/+d9XvxqsECw9c9U1Wr7eDS7Ar0Wqbr0DL1WZDHIsN/kYyYVf2DgxJHdZYts2SW/MwAXZKjFk3++m2Ef3UQT0SsuEFcucrUoGIF6jGoTm+E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nod.at; spf=fail smtp.mailfrom=nod.at; arc=none smtp.client-ip=195.201.40.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nod.at
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nod.at
+Received: from localhost (localhost [127.0.0.1])
+	by lithops.sigma-star.at (Postfix) with ESMTP id 7FFD36342D4C;
+	Sun, 25 Feb 2024 23:12:55 +0100 (CET)
+Received: from lithops.sigma-star.at ([127.0.0.1])
+	by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10032)
+	with ESMTP id ZLfvZ-sQLlLK; Sun, 25 Feb 2024 23:12:54 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by lithops.sigma-star.at (Postfix) with ESMTP id A73D46340E18;
+	Sun, 25 Feb 2024 23:12:54 +0100 (CET)
+Received: from lithops.sigma-star.at ([127.0.0.1])
+	by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id DkOwGdRYt7b1; Sun, 25 Feb 2024 23:12:54 +0100 (CET)
+Received: from lithops.sigma-star.at (lithops.sigma-star.at [195.201.40.130])
+	by lithops.sigma-star.at (Postfix) with ESMTP id 7DB686343B4B;
+	Sun, 25 Feb 2024 23:12:54 +0100 (CET)
+Date: Sun, 25 Feb 2024 23:12:54 +0100 (CET)
+From: Richard Weinberger <richard@nod.at>
+To: Miquel Raynal <miquel.raynal@bootlin.com>, 
+	Daniel Golle <daniel@makrotopia.org>
+Cc: Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	linux-mtd <linux-mtd@lists.infradead.org>, 
+	devicetree <devicetree@vger.kernel.org>, 
+	linux-kernel <linux-kernel@vger.kernel.org>
+Message-ID: <1209094181.98490.1708899174329.JavaMail.zimbra@nod.at>
+In-Reply-To: <20240219120156.383a1427@xps-13>
+References: <cover.1702952891.git.daniel@makrotopia.org> <82ceb13954f7e701bf47c112333e7b15a57fc360.1702952891.git.daniel@makrotopia.org> <20240219120156.383a1427@xps-13>
+Subject: Re: [PATCH v7 7/7] mtd: ubi: provide NVMEM layer over UBI volumes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,93 +65,54 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240225120700.2a0da3f6@jic23-huawei>
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Zimbra 8.8.12_GA_3807 (ZimbraWebClient - FF97 (Linux)/8.8.12_GA_3809)
+Thread-Topic: provide NVMEM layer over UBI volumes
+Thread-Index: LhVCT6G++U013VIiCZmvxnpZEu2GqQ==
 
-Hello Jonathan,
+----- Urspr=C3=BCngliche Mail -----
+> Von: "Miquel Raynal" <miquel.raynal@bootlin.com>
+> An: "Daniel Golle" <daniel@makrotopia.org>
+> CC: "richard" <richard@nod.at>, "Vignesh Raghavendra" <vigneshr@ti.com>, =
+"Rob Herring" <robh+dt@kernel.org>, "Krzysztof
+> Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@=
+kernel.org>, "linux-mtd"
+> <linux-mtd@lists.infradead.org>, "devicetree" <devicetree@vger.kernel.org=
+>, "linux-kernel"
+> <linux-kernel@vger.kernel.org>
+> Gesendet: Montag, 19. Februar 2024 12:01:56
+> Betreff: Re: [PATCH v7 7/7] mtd: ubi: provide NVMEM layer over UBI volume=
+s
 
-On Sun, Feb 25, 2024 at 12:07:00PM +0000, Jonathan Cameron wrote:
-> On Thu, 22 Feb 2024 02:13:37 +0100
-> Ondřej Jirman <megi@xff.cz> wrote:
-> 
-> > From: Icenowy Zheng <icenowy@aosc.io>
-> > 
-> > AF8133J is a simple I2C-connected magnetometer, without interrupts.
-> > 
-> > Add a simple IIO driver for it.
-> > 
-> > Co-developed-by: Icenowy Zheng <icenowy@aosc.io>
-> > Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
-> Check patch correct moaned that Icenowy is the author (from:)
-> so doesn't need a co-developed.
-> 
-> > Signed-off-by: Dalton Durst <dalton@ubports.com>
-> > Signed-off-by: Shoji Keita <awaittrot@shjk.jp>
-> > Co-developed-by: Ondrej Jirman <megi@xff.cz>
-> > Signed-off-by: Ondrej Jirman <megi@xff.cz>
-> > Reviewed-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
-> > Tested-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
-> 
-> Hi.
-> 
-> A few really minor things noticed during a final review.
-> I'll tweak them whilst applying.  Diff is
+> Hi Daniel,
+>=20
+> daniel@makrotopia.org wrote on Tue, 19 Dec 2023 02:33:48 +0000:
+>=20
+>> In an ideal world we would like UBI to be used where ever possible on a
+>> NAND chip. And with UBI support in ARM Trusted Firmware and U-Boot it
+>> is possible to achieve an (almost-)all-UBI flash layout. Hence the need
+>> for a way to also use UBI volumes to store board-level constants, such
+>> as MAC addresses and calibration data of wireless interfaces.
+>>=20
+>> Add UBI volume NVMEM driver module exposing UBI volumes as NVMEM
+>> providers. Allow UBI devices to have a "volumes" firmware subnode with
+>> volumes which may be compatible with "nvmem-cells".
+>> Access to UBI volumes via the NVMEM interface at this point is
+>> read-only, and it is slow, opening and closing the UBI volume for each
+>> access due to limitations of the NVMEM provider API.
+>=20
+> I don't feel qualified enough to review the other patches, however this
+> one looks good to me.
 
-Thank you very much for finishing touches.
+Finally(!), I had enough time to look.
+Thanks for addressing all my comments form the previous series.
+Patches applied.
 
-> > +static int af8133j_product_check(struct af8133j_data *data)
-> > +{
-> > +	struct device *dev = &data->client->dev;
-> > +	unsigned int val;
-> > +	int ret;
-> > +
-> > +	ret = regmap_read(data->regmap, AF8133J_REG_PCODE, &val);
-> > +	if (ret) {
-> > +		dev_err(dev, "Error reading product code (%d)\n", ret);
-> > +		return ret;
-> > +	}
-> > +
-> > +	if (val != AF8133J_REG_PCODE_VAL) {
-> > +		dev_err(dev, "Invalid product code (0x%02x)\n", val);
-> > +		return -EINVAL;
-> 
-> This should be warn only and we should carry on regardless.  The reason
-> behind this is to support fallback compatible values in DT to potentially enable
-> a newer device to be supported on an older kernel.
-> 
-> Many IIO drivers do this wrong as my understanding on what counted on
-> 'compatible' used to be different.  Long discussions on this with the DT
-> maintainers led me to accept that letting ID checks fail was fine, but
-> that a message was appropriate.   Often a fail here actually means no device.
-> We have some exceptions to this rule for devices where we know the same
-> FW ids are in use in the wild for devices supported by different Linux
-> drivers - but those are thankfully rare!
+I have only one tiny request, can you share the lockdep spalt
+you encountered in ubi_notify_add() regarding mtd_table_mutex
+and ubi_devices_mutex? The solutions looks okay to me, but
+if you have more details that would be great.
 
-Makes sense. If newer device variant has the same register meanings, but just
-a different ID register, this way it can be supported without driver
-modifications. I'll keep it in mind when doing ID checks in other drivers.
-
-Thanks for all your detailed notes during the review. I learned a few
-new subtleties.
-
-Kind regards,
-	o.
-
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> }
-> 
-> > +static const int af8133j_scales[][2] = {
-> > +	[0] = { 0, 366210 }, // 12 gauss
-> > +	[1] = { 0, 671386 }, // 22 gauss
-> Trivial so I'll fix it up: IIO comments are /* */
-> not C++ style (with exception of the SPDX stuff that needs to be).
-> > +};
-> 
-> 
-> 
+Thanks,
+//richard
 
