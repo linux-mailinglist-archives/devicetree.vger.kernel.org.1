@@ -1,118 +1,105 @@
-Return-Path: <devicetree+bounces-45714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE077862D5C
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 23:13:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A665B862D86
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 23:58:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 640EDB20DC6
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 22:13:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2A4B1B20F69
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 22:58:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D8B81B970;
-	Sun, 25 Feb 2024 22:13:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D85C61B949;
+	Sun, 25 Feb 2024 22:56:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="yiePqQic"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lithops.sigma-star.at (lithops.sigma-star.at [195.201.40.130])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C44D1B959;
-	Sun, 25 Feb 2024 22:12:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.201.40.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 331CE4EB20;
+	Sun, 25 Feb 2024 22:56:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708899181; cv=none; b=ZtkDHX+KVC4Gknr9sD5+V6nnk96c4/cmKtBXMZIynd8zBdVWdG0A9SLBgFINumBKK9JRiOHK/9v9y3+nVAyQkf/2IcRWhAB5/lW3448MNBGSMuvKb7NKgl2NPncgRCfDk2TCyGhhvzIXe52MeQhYGf+h/QPrKuHJZ3gNzBLOnwU=
+	t=1708901796; cv=none; b=gG4rK86lD2u4Oq9YCRRkhKm3lT+Sl8/SMLk1zZMMT9CaAJerzsXxO3iQxZ9iNkK3hNMzO/xmGRnYOlscJdZYSDmusfKzpii80H76fvE9wWtVmQSpDU8sIeW34pjuc5WugtbGzePhvD/kxI7HrnOnhASnJqPK+776RUoWio7wBog=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708899181; c=relaxed/simple;
-	bh=R3PowNmV6z7V5+4rKOYfRZaysNd/F1B+PjegZMDewpo=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=tRGSyCM0JSzhMpXG+o5D8ZAM0jbg5cXhmCH0mRCZErJAqLRGHf7rJLHSdfjhQTWB/+d9XvxqsECw9c9U1Wr7eDS7Ar0Wqbr0DL1WZDHIsN/kYyYVf2DgxJHdZYts2SW/MwAXZKjFk3++m2Ef3UQT0SsuEFcucrUoGIF6jGoTm+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nod.at; spf=fail smtp.mailfrom=nod.at; arc=none smtp.client-ip=195.201.40.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nod.at
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nod.at
-Received: from localhost (localhost [127.0.0.1])
-	by lithops.sigma-star.at (Postfix) with ESMTP id 7FFD36342D4C;
-	Sun, 25 Feb 2024 23:12:55 +0100 (CET)
-Received: from lithops.sigma-star.at ([127.0.0.1])
-	by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10032)
-	with ESMTP id ZLfvZ-sQLlLK; Sun, 25 Feb 2024 23:12:54 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-	by lithops.sigma-star.at (Postfix) with ESMTP id A73D46340E18;
-	Sun, 25 Feb 2024 23:12:54 +0100 (CET)
-Received: from lithops.sigma-star.at ([127.0.0.1])
-	by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id DkOwGdRYt7b1; Sun, 25 Feb 2024 23:12:54 +0100 (CET)
-Received: from lithops.sigma-star.at (lithops.sigma-star.at [195.201.40.130])
-	by lithops.sigma-star.at (Postfix) with ESMTP id 7DB686343B4B;
-	Sun, 25 Feb 2024 23:12:54 +0100 (CET)
-Date: Sun, 25 Feb 2024 23:12:54 +0100 (CET)
-From: Richard Weinberger <richard@nod.at>
-To: Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Daniel Golle <daniel@makrotopia.org>
-Cc: Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	linux-mtd <linux-mtd@lists.infradead.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>
-Message-ID: <1209094181.98490.1708899174329.JavaMail.zimbra@nod.at>
-In-Reply-To: <20240219120156.383a1427@xps-13>
-References: <cover.1702952891.git.daniel@makrotopia.org> <82ceb13954f7e701bf47c112333e7b15a57fc360.1702952891.git.daniel@makrotopia.org> <20240219120156.383a1427@xps-13>
-Subject: Re: [PATCH v7 7/7] mtd: ubi: provide NVMEM layer over UBI volumes
+	s=arc-20240116; t=1708901796; c=relaxed/simple;
+	bh=O9Vngy+bRYX7Ci9h3aCm4vsF88501smM+7GrX3xVzCE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=NC7IuXzq3cey3slfuN463P0Eg2fUKVEqB2+goF49J4cLGyfu5DlBQRSBg50k2mwuhhQxTRxU1nLb+zn1pVGaKVpzOmqTrkR1qohy8XYGogv8v5KbraH+DKb1RlIBD/xSwhgye1O3TH7AEKshrQ2U4xdTJvvRz/QXYYwKfW8ysbs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=yiePqQic; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:MIME-Version:
+	Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=ftFJcb2j+YtxD2/aw3NjN29F+pLKQHFtVTPjEz6SDiU=; b=yiePqQic1lFEU17BujkHphzNkQ
+	9bsdehHZGSImUmm4lL/TPM52v4Nlk42e00+WCqXOt9TQA0CUiZzVYM9WaXZojkSvv9Vzga33HCUih
+	MSN9FUjNQYDBxWT20/qc9644L1cCculAhKgtOcXkZ/jRQXOYa8HPTLFT9k3Gq4CKs2suLeCoBtPAw
+	OOAFh/70dT/I+Ooy4RKHxVQihhTt//E22LWvFXIQYAMfYC3q3vBkSSCMfsO6mHjolW+RYLvkQtbYd
+	pmw7pS9xhrlClKXivdqwTwUPeSYXYRiXvBJ87aNJA7I003CLKB1ujJKQLKkuZPbcK4ljePa55JPOz
+	Cd1/Jagg==;
+Received: from p200301077700b1001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:107:7700:b100:1a3d:a2ff:febf:d33a] helo=aktux)
+	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <andreas@kemnade.info>)
+	id 1reNQ3-009mDd-CD; Sun, 25 Feb 2024 23:56:27 +0100
+Received: from andi by aktux with local (Exim 4.96)
+	(envelope-from <andreas@kemnade.info>)
+	id 1reNQ2-00ELT3-22;
+	Sun, 25 Feb 2024 23:56:26 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	linux-imx@nxp.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: Andreas Kemnade <andreas@kemnade.info>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Subject: [PATCH] ARM: dts: imx6sl: tolino-shine2hd: fix IRQ config of touchscreen
+Date: Sun, 25 Feb 2024 23:56:22 +0100
+Message-Id: <20240225225622.3419104-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Zimbra 8.8.12_GA_3807 (ZimbraWebClient - FF97 (Linux)/8.8.12_GA_3809)
-Thread-Topic: provide NVMEM layer over UBI volumes
-Thread-Index: LhVCT6G++U013VIiCZmvxnpZEu2GqQ==
+Content-Transfer-Encoding: 8bit
 
------ Urspr=C3=BCngliche Mail -----
-> Von: "Miquel Raynal" <miquel.raynal@bootlin.com>
-> An: "Daniel Golle" <daniel@makrotopia.org>
-> CC: "richard" <richard@nod.at>, "Vignesh Raghavendra" <vigneshr@ti.com>, =
-"Rob Herring" <robh+dt@kernel.org>, "Krzysztof
-> Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@=
-kernel.org>, "linux-mtd"
-> <linux-mtd@lists.infradead.org>, "devicetree" <devicetree@vger.kernel.org=
->, "linux-kernel"
-> <linux-kernel@vger.kernel.org>
-> Gesendet: Montag, 19. Februar 2024 12:01:56
-> Betreff: Re: [PATCH v7 7/7] mtd: ubi: provide NVMEM layer over UBI volume=
-s
+Correctly describe the interrupt as level low. Driver enforces that
+anyways, but do not rely on that in the devicetree.
 
-> Hi Daniel,
->=20
-> daniel@makrotopia.org wrote on Tue, 19 Dec 2023 02:33:48 +0000:
->=20
->> In an ideal world we would like UBI to be used where ever possible on a
->> NAND chip. And with UBI support in ARM Trusted Firmware and U-Boot it
->> is possible to achieve an (almost-)all-UBI flash layout. Hence the need
->> for a way to also use UBI volumes to store board-level constants, such
->> as MAC addresses and calibration data of wireless interfaces.
->>=20
->> Add UBI volume NVMEM driver module exposing UBI volumes as NVMEM
->> providers. Allow UBI devices to have a "volumes" firmware subnode with
->> volumes which may be compatible with "nvmem-cells".
->> Access to UBI volumes via the NVMEM interface at this point is
->> read-only, and it is slow, opening and closing the UBI volume for each
->> access due to limitations of the NVMEM provider API.
->=20
-> I don't feel qualified enough to review the other patches, however this
-> one looks good to me.
+Suggested-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+---
+ arch/arm/boot/dts/nxp/imx/imx6sl-tolino-shine2hd.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Finally(!), I had enough time to look.
-Thanks for addressing all my comments form the previous series.
-Patches applied.
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-shine2hd.dts b/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-shine2hd.dts
+index 815119c12bd48..922749bf11bc1 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-shine2hd.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-shine2hd.dts
+@@ -138,7 +138,7 @@ zforce: touchscreen@50 {
+ 		pinctrl-0 = <&pinctrl_zforce>;
+ 		reg = <0x50>;
+ 		interrupt-parent = <&gpio5>;
+-		interrupts = <6 IRQ_TYPE_EDGE_FALLING>;
++		interrupts = <6 IRQ_TYPE_LEVEL_LOW>;
+ 		vdd-supply = <&ldo1_reg>;
+ 		reset-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
+ 		x-size = <1072>;
+-- 
+2.39.2
 
-I have only one tiny request, can you share the lockdep spalt
-you encountered in ubi_notify_add() regarding mtd_table_mutex
-and ubi_devices_mutex? The solutions looks okay to me, but
-if you have more details that would be great.
-
-Thanks,
-//richard
 
