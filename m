@@ -1,136 +1,161 @@
-Return-Path: <devicetree+bounces-45705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46DED862C76
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 19:07:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F753862CC5
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 21:16:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09A75281967
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 18:07:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECD13282390
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 20:16:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 927581B946;
-	Sun, 25 Feb 2024 18:07:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AAFE199BE;
+	Sun, 25 Feb 2024 20:16:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QJk3G/t/"
+	dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b="P29Ipmfl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-40134.protonmail.ch (mail-40134.protonmail.ch [185.70.40.134])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CD7B1B81E;
-	Sun, 25 Feb 2024 18:06:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9353D19BA5
+	for <devicetree@vger.kernel.org>; Sun, 25 Feb 2024 20:16:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.40.134
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708884420; cv=none; b=SHzTJZdApuPJjQymMycMgAb+b3brW24f2LmYH2Tm8MQkSYMs+y2kVn8o9c4ulrcuiM1jhBmyp6xmzr+XP64LQ3Hw3e5vZtjpNo8HMS3vmX8W/3LABSrTAj892CdX3IRNR08VCnqwuqBu9/67SNes4LY6kuMI8bPHXfT0lWL67Q0=
+	t=1708892202; cv=none; b=hLsKDNLvgd/9A6+O6nSiwzZfo1pypZdspYkMFJSigB5RRKJsIiXBqgDuWcClrNi/wPi1dXhMxXR6amqnEceWthHSi3+qagLUp8pffHreNkVryAtQJjtnpnPIHQQosWyWpRGtrymxkPrCHZyg709SjBzqA6zi6i9X1o6jduCofmc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708884420; c=relaxed/simple;
-	bh=t9TH3IO25i1kABmwESoqJSXOGpunpKDuFCDvVlM+yrk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LzR4tp3ZaYyiyAqzyEj1bwgpw0hr8TVDv7QWoDThhCp6UzZ4US3mTo/rRD3N7GrimJ11V6S+i2TJffXOdRIsoipaF3DLy5cnn5rAEqVgYQZOaaLa2ME+gSfCF1539/863giZgWT2Z1u57Y3lEWfQZ9AuyMs0x/P6k9iclaQg7i0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QJk3G/t/; arc=none smtp.client-ip=209.85.219.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-dcd9e34430cso2524772276.1;
-        Sun, 25 Feb 2024 10:06:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708884418; x=1709489218; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=UyB5v20Xvkeo8vLOJ5G7Ayw3XFpy9UxBMT1oM+PlACI=;
-        b=QJk3G/t/tSpXjTrNWAoYGQMlwyHV2ltR0Vnmk+7L+vObELPIH50GGigV6RQd8WPZKe
-         4BKM5hnvIdwTXRpEBTMXRoFTzeGhVapL5qen11OkzTuMTkfKxqEnaaHcOJCIzejTxhKE
-         gFIqZLCDh8uqQDqJE+Uha5T17qJzQFfui7DCEEAnl4pHcFdeZf7smLx8tRaUM8uc1AOf
-         8avm8huruiC6zfcAI2qPSBxEumz0IsjdZQ+bSRbMmP+MSgTtvifxnRCpxJmT9sopSxyA
-         m9jBsOzrgmBj8ahClSuSfH3CYjy/luXHkImE0MgcmZEX6m0pTwsQrFBLPFoZuxgWZaic
-         SPTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708884418; x=1709489218;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UyB5v20Xvkeo8vLOJ5G7Ayw3XFpy9UxBMT1oM+PlACI=;
-        b=QD+EtY/bRiIiqIslAeawZgbkqDzPv7AzN60pkvskruO/EdIgvvlVf+YEN0AeRrbbP1
-         JaSytUJwvQh0n97QtCCI0gU2M1gAjkaODGkNKp2lleoRBdCF1V7gt93mkSo3yb9JtOR/
-         WHLRqitrKdDE6rffkSh8pAgwtD9WjPumeP1qpReFNE5dqyJq1z16DmKKNfc2MakyCrj/
-         Mwmxu0G5M7CpSEy969Wz9tVIvPaI8YMPWrC4m5x784XUehvsq0vhxAaW3lM5bE5dVZ9f
-         dQBJznKXQcWYlJdlDwRyuB2hiw0HRbi2YrgfPodXsWVuvZJ4PyjrUT8I+N5XZyoW0NVi
-         Gw3g==
-X-Forwarded-Encrypted: i=1; AJvYcCUlRsLmB2J/231pyEL4atMrCwO+KZ6EPX9hNUMujAxO5/zoO6pF39/pG7kLFi+5jfG+X9YLRrwW0u0Z71QZNPp4DxTEg27oCAdtwyc85jY+Oc2f6n4NjgylVJ69KW0R7uIjo+CKPlZ4TbBYIZ6lNcrXearGsKsQjKO3Bvs5ZOJ/IP55Lw==
-X-Gm-Message-State: AOJu0YxxfN4KYMsyoHcGjRJ7WkXdbCy6mjGvMUSyVOLT0oQ4LT8WeTiY
-	kpz+u8EzAIw+IG20V4OIQmPlpVChbsOSCY9q35oq3rbCOC6PNNEH4AZjXMKKPLkqfrHCQZkUIIb
-	NE9BlQ6a/U+2dRsKROg7hR4zS04M=
-X-Google-Smtp-Source: AGHT+IG+svL+R0QQtjbfole4iAKAk0sCbIV/24aVRBshgzy9tOplCpuFeVEJTnIBol1v6+b0OREk9APWtD3AvDe4zXI=
-X-Received: by 2002:a25:9012:0:b0:dcf:464d:8ec3 with SMTP id
- s18-20020a259012000000b00dcf464d8ec3mr2767391ybl.3.1708884418030; Sun, 25 Feb
- 2024 10:06:58 -0800 (PST)
+	s=arc-20240116; t=1708892202; c=relaxed/simple;
+	bh=cPbPG3uOvlFXj7CQ8vLSlhfo46pBPzqgKu0g5fXAYM8=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qRZsrmntlclP2N+el5jeG49XX6ecUP/C6jxQuM0yIO0otcfLQLW1xS80ch0OkTQZgzjxXjKLzkkGnRhkUaWhBMDJ4ituvJoizq/z8RdZB7G5JhvOjwnaN71NtYTw9aWqz9khBCg6i4gm+umbK2EmnqVUIuI/+OxJeDZBKRp6tos=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=pass smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=P29Ipmfl; arc=none smtp.client-ip=185.70.40.134
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pm.me
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
+	s=protonmail3; t=1708892190; x=1709151390;
+	bh=cPbPG3uOvlFXj7CQ8vLSlhfo46pBPzqgKu0g5fXAYM8=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=P29IpmflpJfyZiJQm3j6juYz6/e+zOKi0E5LqEKSENaPU84I9QtxcGWjezFQ1Ko3j
+	 aBBjjH47hs1inq9Xgp+jNJlVrXGxDAV9QxI18jq4e3UhUvtV/RJWNQxYfPQRRO4zPK
+	 JLaHyQ68hkZr2PNk8CfyYq1i8OKg2B5nViM83iAtWyOCiKXlPFYXC4Jw4dtX0SmtaW
+	 B2kamzYH2BXF4Aqbj5sUWTRE5MODkLjHtLvHYRDR+7Okqka9N/zuA2IYK3QlmYXIV+
+	 lxZeMupsQSeFo1jtRncvPawNHdFsSHF1YjnsR/YUSgn4kwBzOPZ3HmdLR220Tmt2HF
+	 qntk5mKjDEhbQ==
+Date: Sun, 25 Feb 2024 20:16:08 +0000
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+From: Michael Pratt <mcpratt@pm.me>
+Cc: devicetree@vger.kernel.org, gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org, saravanak@google.com, abel.vesa@linaro.org, alexander.stein@ew.tq-group.com, andriy.shevchenko@linux.intel.com, bigunclemax@gmail.com, brgl@bgdev.pl, colin.foster@in-advantage.com, djrscally@gmail.com, dmitry.baryshkov@linaro.org, festevam@gmail.com, fido_max@inbox.ru, frowand.list@gmail.com, geert@linux-m68k.org, heikki.krogerus@linux.intel.com, kernel@pengutronix.de, linus.walleij@linaro.org, linux@roeck-us.net, luca.weiss@fairphone.com, magnus.damm@gmail.com, martin.kepplinger@puri.sm, rafal@milecki.pl, ansuelsmth@gmail.com, richard@nod.at, sakari.ailus@linux.intel.com, sudeep.holla@arm.com, tglx@linutronix.de, tony@atomide.com, vigneshr@ti.com, dianders@chromium.org, jpb@kernel.org, rafael@kernel.org
+Subject: Re: [PATCH v1 2/4] driver core: fw_devlink: Link to supplier ancestor if no device
+Message-ID: <iAkBSgwuEqM4V5DeWWTplkq23zj8zBgHebmwIbpQl7MiojKNiMDtJxN_SaQ2F4CjD42K2gR5wxG-63JiUX0mcZ48UrZY2augArDt-II5_TQ=@pm.me>
+In-Reply-To: <20240205160011.42d1cf80@xps-13>
+References: <20240123014517.5787-1-mcpratt@pm.me> <20240123014517.5787-3-mcpratt@pm.me> <20240205160011.42d1cf80@xps-13>
+Feedback-ID: 27397442:user:proton
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240131182653.2673554-1-tmaimon77@gmail.com> <20240131182653.2673554-2-tmaimon77@gmail.com>
- <bea8b72f61caaeac0ce112b57c28297b.sboyd@kernel.org>
-In-Reply-To: <bea8b72f61caaeac0ce112b57c28297b.sboyd@kernel.org>
-From: Tomer Maimon <tmaimon77@gmail.com>
-Date: Sun, 25 Feb 2024 20:06:47 +0200
-Message-ID: <CAP6Zq1jtYAg11EDrhJtzEOM+trKSpLuSbHPOx5ON93UDtr9JVg@mail.gmail.com>
-Subject: Re: [PATCH v23 1/3] dt-bindings: clock: npcm845: Add reference 25m
- clock property
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: benjaminfair@google.com, joel@jms.id.au, krzysztof.kozlowski+dt@linaro.org, 
-	mturquette@baylibre.com, robh+dt@kernel.org, tali.perry1@gmail.com, 
-	venture@google.com, yuenn@google.com, openbmc@lists.ozlabs.org, 
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi Stephen,
+Hi Miquel,
 
-The plan is for both the clock and reset will be under only the memory
-region handle like
-                sysctrl: system-controller@f0801000 {
-                        compatible = "syscon", "simple-mfd";
-                        reg = <0x0 0xf0801000 0x0 0x1000>;
+Thanks for taking a look at what I have so far.
 
-                        rstc: reset-controller {
-                                compatible = "nuvoton,npcm845-reset";
-                                reg = <0x0 0xf0801000 0x0 0xC4>;
-                                #reset-cells = <2>;
-                                nuvoton,sysgcr = <&gcr>;
-                        };
+On Monday, February 5th, 2024 at 10:00, Miquel Raynal <miquel.raynal@bootli=
+n.com> wrote:
 
-                        clk: clock-controller {
-                                compatible = "nuvoton,npcm845-clk";
-                                #clock-cells = <1>;
-                                clocks = <&refclk>;
-                                clock-names = "refclk";
-                        };
-                };
-
-is it problematic?
-
-But this commit is not related to it.
-
-Thanks,
-
-Tomer
-
-On Thu, 22 Feb 2024 at 07:58, Stephen Boyd <sboyd@kernel.org> wrote:
+>=20
+>=20
+> Hi Michael,
+>=20
+> mcpratt@pm.me wrote on Tue, 23 Jan 2024 01:46:40 +0000:
+>=20
+> > If a fwnode is flagged as FWNODE_FLAG_NOT_DEVICE
+> > by the time a device link is to be made with it,
+> > but not flagged as FWNODE_FLAG_PARENT_IS_DEV,
+> > the link is dropped, otherwise the device link
+> > is still made with the original supplier fwnode.
+> > Theoretically, we can also handle linking to an ancestor
+> > of the supplier fwnode when forming device links, but there
+> > are still cases where the necessary fwnode flags are still missing
+> > because the real supplier device did not probe yet.
+>=20
+>=20
+> I am not sure I follow this. In the following case, I would expect any
+> dependency towards node-c to be made against node-a. But the above
+> paragraph seems to tell otherwise: that the link would be dropped
+> (and thus, not enforced) because recursively searching for a parent
+> that would be a device could be endless? It feels wrong, so I probably
+> mis
+>=20
+> node-a {
+>=09# IS DEV
+>=09node-b {
+>=09=09# PARENT IS DEV
+>=09=09node-c {
+>=09=09=09# PARENT IS DEV
+>=09=09};
+>=09};
+>};
 >
-> Quoting Tomer Maimon (2024-01-31 10:26:51)
-> > diff --git a/Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml b/Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml
-> > index b901ca13cd25..7060891d0c32 100644
-> > --- a/Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml
-> > +++ b/Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml
-> > @@ -44,6 +54,8 @@ examples:
-> >              compatible = "nuvoton,npcm845-clk";
-> >              reg = <0x0 0xf0801000 0x0 0x1000>;
-> >              #clock-cells = <1>;
-> > +            clocks = <&refclk>;
-> > +            clock-names = "refclk";
->
-> The driver seems to want this to be a child of the mfd syscon. Is that
-> right?
+> Besides that, the commit feels like a good idea.
+
+
+The link is dropped _in order to_ make the dependency towards node-c
+become a dependency towards node-a instead.
+
+The "recursive searching" happens after links are dropped in order to
+create the new fwnode links, and it depends on the new flag
+being placed when the supplier device (node-a) probes, which can happen
+before the links are re-attempted, or after a single probe defer of the con=
+sumer.
+
+I placed all the logic that decides whether to drop links and retry linking
+to the consumer immediately before a probe defer of the consumer would occu=
+r.
+That logic could be distributed around multiple functions for fw_devlink,
+but I'm concerned about false positives. The only reason I didn't use or ma=
+ke
+a new function in order to "move" the links is that in this position in the=
+ driver core
+which I believe is the right place to do the fixup function, we don't have =
+direct access
+to the fwnode that the links should go to, it would have to be discovered b=
+y recursively
+walking up the tree looking for the flag in the new fixup function
+instead of where the fwnode links are made.
+
+To me, it doesn't matter which order we call the functions,
+but if we are starting with fwnode links that refuse
+to be converted to device links, we need to do more than just move the fwno=
+de links
+because after a probe defer there is no hook to automatically try switching=
+ them
+to device links again. Driver core expects that to have already happened by=
+ then.
+I imagine that without having to add a lot more code in a lot of places,
+I would have to call fw_devlink_link_device() after "moving" links anyway..=
+.
+
+It's possible to call that function only when the bad link is still a fwnod=
+e_link
+and do a "move" function when the bad link is a device_link, that is,
+if "moving" a finished device_link is possible or good practice at all
+since it would be skipping quite a few checks that occur before a device_li=
+nk is made.
+It seems to me that making a device_link is a multiple-step process, so a n=
+ew function
+to only move the supplier of a device_link might be a big one as well.
+I tend to try to reuse as many core functions as I could.
+
+>=20
+> Thanks,
+> Miqu=C3=A8l
+
+--
+MCP
 
