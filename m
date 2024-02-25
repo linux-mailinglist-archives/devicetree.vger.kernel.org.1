@@ -1,44 +1,44 @@
-Return-Path: <devicetree+bounces-45674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0CCD862A92
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 14:58:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2AA4862AA7
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 15:17:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2D75AB210C5
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 13:58:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 63E3CB20EBC
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 14:17:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B230125C1;
-	Sun, 25 Feb 2024 13:57:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2C6C12E6A;
+	Sun, 25 Feb 2024 14:16:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="b7MN18W6"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="bbdtxajR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-177131.yeah.net (mail-177131.yeah.net [123.58.177.131])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B00F12E63;
-	Sun, 25 Feb 2024 13:57:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.131
+Received: from mail-177132.yeah.net (mail-177132.yeah.net [123.58.177.132])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F93C134A5;
+	Sun, 25 Feb 2024 14:16:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708869476; cv=none; b=QORFSP78aukQzClmjRx+qav1EMPZPPA5AHyCjch5gO98+U2ej/uJ69n7P2oIGgTNtyvoSCKsp5s4RcPup/LgxoKIn9eD1kplNT05WrvlB2wzlGkzxAZ6BMGHi4ipS6KxLZLdD0ttKuotRNKtEemhQM+LBFOVk8wMikXshAfkgQQ=
+	t=1708870617; cv=none; b=Q65dsrtQcc223NXcIn49DDOEejpb58YgS1IMF9auP0rP++6GToErJMF6FgPaKywnl27XJmFRucOnzjuaxVLL3xCSqg5ITc1Eva6/gvDSylYkQiQSWek5p9GuTWkAyyOxO+7lyYv/7QReBxpvb6AJPdZfKyxpgpYnNHMVA2M/KaQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708869476; c=relaxed/simple;
-	bh=QgW5eFUnGCQJpfHzxPZzus4WbzbIwcLa646J3/OHdn8=;
+	s=arc-20240116; t=1708870617; c=relaxed/simple;
+	bh=g4jPkP7X+EsAYI60cjkTqW1WzViJ2PvYFmask+nsaG0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WrzjzIS83YeDtO6wrOOS84fNSJ7BtGWKh/VtKTAr73a4y5i1Z62mnIPc0oQ7A4Y+pxGQbVmywDiIhjOkodHBCxR0ZMaAT9J2hg9/bWmY6A1Bin/+ewX2Yf7VqZWCJGun7ycfdB8WprfH2b7J87ZOlohBFeX3Og346lhRafa4Cv0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=b7MN18W6; arc=none smtp.client-ip=123.58.177.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=dHBhp+XeiBcOxyxi70X2PTTsl6NdhPeRX1bTddoCwcM9yQkp3x9oLXwVYmrzhsSLWo03ua1RtkPvFtrgxNuyRUgvt1vD1FmY62I772OD142CueNJ+RTOYJ3qkUvwdonG3B9dLTUxXVyy1sfM/1X4fb7NEMBXxatVIIkvLMiKhXc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=bbdtxajR; arc=none smtp.client-ip=123.58.177.132
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=MRJTwcs94vB+Lx2+6Kp2OGYsHR+TMwHjXKTcIeuFcdQ=;
-	b=b7MN18W6NvNVPdNNd1HDHVUpzCbXk5aYorZ1BwKz3cWG4KMld5IQrW0eJMB9vJ
-	n3SmiLtlhb7hMXUGJQ7/Ef/KrW27u9hm524v2KyfC0Iyg2SYHpR4MP+Fo+1JwVLJ
-	tFSCvT8X3kmBrBWx5/qMFYun94zHTrMDrWahoRj9lcZNE=
+	Content-Type; bh=IwgfoSTaVLYGnw8I0fogmOLPKGqOp6nR5Z+q8nO/0V8=;
+	b=bbdtxajRYydCK9zrt3pvC58RT+GnkKJhlJ/ZYPJHQRZquSoOcdeA5gD/Xo3qOP
+	ZQ1/vci8ysfvWoG5OmRJ2kLoaibaAb0vaSfjxaGuwZPE5cqnwh3gJeZA7Ytb0tkP
+	PnciMmGrGcS2qcTJJIo3aD3OxJo/xGhxk6AIBaWnR0GO4=
 Received: from dragon (unknown [183.213.196.200])
-	by smtp1 (Coremail) with SMTP id ClUQrAB3PCFPR9tlGcVXBA--.20415S3;
-	Sun, 25 Feb 2024 21:57:36 +0800 (CST)
-Date: Sun, 25 Feb 2024 21:57:35 +0800
+	by smtp2 (Coremail) with SMTP id C1UQrAB3fwidS9tlDetWBA--.11344S3;
+	Sun, 25 Feb 2024 22:15:58 +0800 (CST)
+Date: Sun, 25 Feb 2024 22:15:57 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
 To: Sebastian Reichel <sre@kernel.org>
 Cc: Rob Herring <robh+dt@kernel.org>,
@@ -53,12 +53,11 @@ Cc: Rob Herring <robh+dt@kernel.org>,
 	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
 	Mark Brown <broonie@kernel.org>,
 	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4 15/16] dt-bindings: arm: add UNI-T UTi260B
-Message-ID: <ZdtHT2dm36/Tpz3F@dragon>
+	linux-kernel@vger.kernel.org, Stefan Wahren <wahrenst@gmx.net>
+Subject: Re: [PATCH v4 16/16] ARM: dts: imx6ull-uti260b: Add board
+Message-ID: <ZdtLnV4IutdMbz4S@dragon>
 References: <20240224213240.1854709-1-sre@kernel.org>
- <20240224213240.1854709-16-sre@kernel.org>
+ <20240224213240.1854709-17-sre@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,18 +66,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240224213240.1854709-16-sre@kernel.org>
-X-CM-TRANSID:ClUQrAB3PCFPR9tlGcVXBA--.20415S3
+In-Reply-To: <20240224213240.1854709-17-sre@kernel.org>
+X-CM-TRANSID:C1UQrAB3fwidS9tlDetWBA--.11344S3
 X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUaCJmUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiDQKPZVszXQqBVQABsP
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUawvtDUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiFR6PZV6Nm6aC9gAAs7
 
-On Sat, Feb 24, 2024 at 10:29:47PM +0100, Sebastian Reichel wrote:
-> Add compatible value for i.MX6ULL based UNI-T UTi260B thermal camera.
+On Sat, Feb 24, 2024 at 10:29:48PM +0100, Sebastian Reichel wrote:
+> Add UNI-T UTi260b thermal camera board.
 > 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
 > Signed-off-by: Sebastian Reichel <sre@kernel.org>
 
-Applied, thanks!
+Can we change the patch subject to something like below?
+
+  ARM: dts: imx: Add UNI-T UTi260b thermal camera board
+
+Shawn
 
 
