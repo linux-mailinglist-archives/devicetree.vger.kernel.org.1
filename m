@@ -1,108 +1,210 @@
-Return-Path: <devicetree+bounces-45654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3021D862A2C
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 13:04:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 873A7862A33
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 13:07:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 767FFB21064
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 12:04:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 261C9281C08
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 12:07:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 018FF12E7F;
-	Sun, 25 Feb 2024 12:04:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C46C110957;
+	Sun, 25 Feb 2024 12:07:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fYb8dOuQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EJXoU2xi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9F5212E47;
-	Sun, 25 Feb 2024 12:04:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9874610949;
+	Sun, 25 Feb 2024 12:07:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708862643; cv=none; b=XYEPW/basY+H3xTP42PVH0EVdhs98x3j2Jv1y/q7qFYFrvhZvBsxRM/a0vRJeVwU/CaIQFwFRmPSM65SaWfBSDcROVZ8sExJL5Ocsbzk7dznl040NwaTrpcu683izDzV1BJyDOSV606OZBlAqo2UnF0Ory6YOzRw0ar15LSp9b8=
+	t=1708862835; cv=none; b=OJNiT+CuFMk7RHSWVlRYwhTdjjrXM5AOfa3OGZmMIrS++gRpQAP7SReyezY5exhk37rdIKqvW91BXFqAmTU3mCOdfK2XFLlnDq0thLquzMVF27QuyanpcLybZsEHdAOfPU6zxzE88BBbhsogwtLOTV4xsZ40irk88wNoyWcge7o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708862643; c=relaxed/simple;
-	bh=A+X94K8nLPrBsMOn/w5jdCaGJfXT7yw62EcicOP2vgo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=LjO3p7NH/bYBzuVmV5P/QGuWzoNG5GVDhWRAAIiByQoO1fSGxy2pwTW/x8Fr5CoRLxUGOzBEK6ykefm7mH2P2sGO5xO88gWGSGn4BauhvsYn3piQWa17OT7UhLD9Io/QEMcBdUqO/cUCRY2NpY+4IYC9tgDTcOIvYZlEGv7X/tg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fYb8dOuQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 70B0EC43390;
-	Sun, 25 Feb 2024 12:04:03 +0000 (UTC)
+	s=arc-20240116; t=1708862835; c=relaxed/simple;
+	bh=6w8hKlkd2Icuszb9wgQIsvTb5JZNofQSVKO3TItRBrc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ePrFLVMoaOwfMj9HsII3NsD3TAsUqmNJd7Sw+zCHyFUZpmzQHUmcDuF7Up1A7iVBYYOI10Q/epmJSbUcqm+Apjp4ngUUctOTokVMJtNjhbn2mxz3vsZy/F6c1KyQEA/WchEk6WvUIjMQk23MzQDv0FIdCcIymsQIX5iRbOcqVwE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EJXoU2xi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35BCBC433C7;
+	Sun, 25 Feb 2024 12:07:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708862643;
-	bh=A+X94K8nLPrBsMOn/w5jdCaGJfXT7yw62EcicOP2vgo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=fYb8dOuQulxc9W33hGk0+CnBFtpLHEIXsXUnENQNOa38sz4DHex6miv5lnsPS4Syc
-	 p5nkXiA+V8iTHx3GxjkNyQahU4l0hkk25wBO4f5J7U3jhoSYTcrCnFO8a82/KkK9Gl
-	 1+d3EfRqKBrv/TDGjnVG8qi6qcCf2BinvNYvIBcWb8fIExsUq8tp+CQmI67YWDMNHW
-	 Tn4PjNOawtJ2GVxBULw+pH683maWPW0e+2wxD9CSg9C9GECc4+MadqeIREYNHot7s+
-	 PlnuZXhIyK9yK+r3ISLgepIbKsDly/8KoNmKTjj2wrXanHGxT8D9XYdsXsnREsvxIZ
-	 v2Cy08PxJe+Yg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 51FC8C54E49;
-	Sun, 25 Feb 2024 12:04:03 +0000 (UTC)
-From: Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>
-Date: Sun, 25 Feb 2024 20:03:49 +0800
-Subject: [PATCH v4 2/2] usb: dwc3: of-simple: Add compatible for
- hi3798mv200 DWC3 controller
+	s=k20201202; t=1708862835;
+	bh=6w8hKlkd2Icuszb9wgQIsvTb5JZNofQSVKO3TItRBrc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=EJXoU2xiLzpCI2NIi2eQFQ65EmDKjEvzkVpmAIuwKKE1n86CFEMAVWlfaMT3hmxka
+	 uYtIav0sXdtd1L2zffo+OZOtezUuYpOHfmrTcGdqUdGSBshQsqHxieEvkZJMVghoBg
+	 Ak9J6RTCcl4B2gqilL3KNZSLeFiQer/50hK2SjWnTC65NWfJvin7JiEd/n47K2lVNV
+	 latp4oEawsqTk8K3PTDiCrmzkG+bLV2bZSOansZSIMW8tbibJg9pdrK2kkDEOk5pXi
+	 cLFEkhIFqq+9JG6/rB4WURWcMmyZrR58kEmiZO5fR7XV1IOEKe5E6TdQZRxi2I4gM2
+	 K7ifCiWqIkC+Q==
+Date: Sun, 25 Feb 2024 12:07:00 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: =?UTF-8?B?T25kxZllag==?= Jirman <megi@xff.cz>
+Cc: linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Andrey Skvortsov <andrej.skvortzov@gmail.com>, Icenowy Zheng
+ <icenowy@aosc.io>, Dalton Durst <dalton@ubports.com>, Shoji Keita
+ <awaittrot@shjk.jp>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 3/4] iio: magnetometer: add a driver for Voltafield
+ AF8133J magnetometer
+Message-ID: <20240225120700.2a0da3f6@jic23-huawei>
+In-Reply-To: <20240222011341.3232645-4-megi@xff.cz>
+References: <20240222011341.3232645-1-megi@xff.cz>
+	<20240222011341.3232645-4-megi@xff.cz>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240225-dwc3-v4-2-8c1fd6c6f615@outlook.com>
-References: <20240225-dwc3-v4-0-8c1fd6c6f615@outlook.com>
-In-Reply-To: <20240225-dwc3-v4-0-8c1fd6c6f615@outlook.com>
-To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Yang Xiwen <forbidden405@outlook.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1708862628; l=809;
- i=forbidden405@outlook.com; s=20230724; h=from:subject:message-id;
- bh=CsDB1ujYdciRCCnGm2g0rfxKORwEFR6rPwogWA69oCs=;
- b=PwZtfboAq7YOk3NgbRb4laCVeHt4Rc3146+HViWjMIXMOL5QnQPhJOPq/e41hU2/5DE320UdL
- deQbRycxI90B2LG1iPh7/W0ZrqAdyKwZenzj5AN3jd104gsLefAZE3v
-X-Developer-Key: i=forbidden405@outlook.com; a=ed25519;
- pk=qOD5jhp891/Xzc+H/PZ8LWVSWE3O/XCQnAg+5vdU2IU=
-X-Endpoint-Received:
- by B4 Relay for forbidden405@outlook.com/20230724 with auth_id=67
-X-Original-From: Yang Xiwen <forbidden405@outlook.com>
-Reply-To: <forbidden405@outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-From: Yang Xiwen <forbidden405@outlook.com>
+On Thu, 22 Feb 2024 02:13:37 +0100
+Ond=C5=99ej Jirman <megi@xff.cz> wrote:
 
-Hi3798MV200 uses dwc3 controller with a few more clocks and a dedicated
-resets. Use of_simple driver for it.
+> From: Icenowy Zheng <icenowy@aosc.io>
+>=20
+> AF8133J is a simple I2C-connected magnetometer, without interrupts.
+>=20
+> Add a simple IIO driver for it.
+>=20
+> Co-developed-by: Icenowy Zheng <icenowy@aosc.io>
+> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+Check patch correct moaned that Icenowy is the author (from:)
+so doesn't need a co-developed.
 
-Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
----
- drivers/usb/dwc3/dwc3-of-simple.c | 1 +
- 1 file changed, 1 insertion(+)
+> Signed-off-by: Dalton Durst <dalton@ubports.com>
+> Signed-off-by: Shoji Keita <awaittrot@shjk.jp>
+> Co-developed-by: Ondrej Jirman <megi@xff.cz>
+> Signed-off-by: Ondrej Jirman <megi@xff.cz>
+> Reviewed-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
+> Tested-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
 
-diff --git a/drivers/usb/dwc3/dwc3-of-simple.c b/drivers/usb/dwc3/dwc3-of-simple.c
-index d1539fc9eabd..158acae08af5 100644
---- a/drivers/usb/dwc3/dwc3-of-simple.c
-+++ b/drivers/usb/dwc3/dwc3-of-simple.c
-@@ -173,6 +173,7 @@ static const struct of_device_id of_dwc3_simple_match[] = {
- 	{ .compatible = "sprd,sc9860-dwc3" },
- 	{ .compatible = "allwinner,sun50i-h6-dwc3" },
- 	{ .compatible = "hisilicon,hi3670-dwc3" },
-+	{ .compatible = "hisilicon,hi3798mv200-dwc3" },
- 	{ .compatible = "intel,keembay-dwc3" },
- 	{ /* Sentinel */ }
+Hi.
+
+A few really minor things noticed during a final review.
+I'll tweak them whilst applying.  Diff is
+
+diff --git a/drivers/iio/magnetometer/af8133j.c b/drivers/iio/magnetometer/=
+af8133j.c
+index c75d545e152b..40657a08ce37 100644
+--- a/drivers/iio/magnetometer/af8133j.c
++++ b/drivers/iio/magnetometer/af8133j.c
+@@ -40,6 +40,10 @@ static const char * const af8133j_supply_names[] =3D {
+ struct af8133j_data {
+        struct i2c_client *client;
+        struct regmap *regmap;
++       /*
++        * Protect device internal state between starting a measurement
++        * and reading the result.
++        */
+        struct mutex mutex;
+        struct iio_mount_matrix orientation;
+=20
+@@ -107,8 +111,8 @@ static int af8133j_product_check(struct af8133j_data *d=
+ata)
+        }
+=20
+        if (val !=3D AF8133J_REG_PCODE_VAL) {
+-               dev_err(dev, "Invalid product code (0x%02x)\n", val);
+-               return -EINVAL;
++               dev_warn(dev, "Invalid product code (0x%02x)\n", val);
++               return 0; /* Allow unknown ID so fallback compatibles work =
+*/
+        }
+=20
+        return 0;
+@@ -237,8 +241,8 @@ static int af8133j_read_measurement(struct af8133j_data=
+ *data, __le16 buf[3])
+ }
+=20
+ static const int af8133j_scales[][2] =3D {
+-       [0] =3D { 0, 366210 }, // 12 gauss
+-       [1] =3D { 0, 671386 }, // 22 gauss
++       [0] =3D { 0, 366210 }, /* 12 gauss */
++       [1] =3D { 0, 671386 }, /* 22 gauss */
  };
 
--- 
-2.43.0
+
+> diff --git a/drivers/iio/magnetometer/af8133j.c b/drivers/iio/magnetomete=
+r/af8133j.c
+> new file mode 100644
+> index 000000000000..c75d545e152b
+> --- /dev/null
+> +++ b/drivers/iio/magnetometer/af8133j.c
+
+> +
+> +struct af8133j_data {
+> +	struct i2c_client *client;
+> +	struct regmap *regmap;
+> +	struct mutex mutex;
+
+I thought checkpatch still moaned that every lock should have documentation.
+I guess not.  However it's still a nice to have.
+
+Here it seems this is about protecting device state between triggering a
+measurement and getting the reading.
+
+> +	struct iio_mount_matrix orientation;
+> +
+> +	struct gpio_desc *reset_gpiod;
+> +	struct regulator_bulk_data supplies[ARRAY_SIZE(af8133j_supply_names)];
+> +
+> +	u8 range;
+> +};
+
+> +
+> +static int af8133j_product_check(struct af8133j_data *data)
+> +{
+> +	struct device *dev =3D &data->client->dev;
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	ret =3D regmap_read(data->regmap, AF8133J_REG_PCODE, &val);
+> +	if (ret) {
+> +		dev_err(dev, "Error reading product code (%d)\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	if (val !=3D AF8133J_REG_PCODE_VAL) {
+> +		dev_err(dev, "Invalid product code (0x%02x)\n", val);
+> +		return -EINVAL;
+
+This should be warn only and we should carry on regardless.  The reason
+behind this is to support fallback compatible values in DT to potentially e=
+nable
+a newer device to be supported on an older kernel.
+
+Many IIO drivers do this wrong as my understanding on what counted on
+'compatible' used to be different.  Long discussions on this with the DT
+maintainers led me to accept that letting ID checks fail was fine, but
+that a message was appropriate.   Often a fail here actually means no devic=
+e.
+We have some exceptions to this rule for devices where we know the same
+FW ids are in use in the wild for devices supported by different Linux
+drivers - but those are thankfully rare!
+
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+}
+
+> +static const int af8133j_scales[][2] =3D {
+> +	[0] =3D { 0, 366210 }, // 12 gauss
+> +	[1] =3D { 0, 671386 }, // 22 gauss
+Trivial so I'll fix it up: IIO comments are /* */
+not C++ style (with exception of the SPDX stuff that needs to be).
+> +};
+
+
 
 
