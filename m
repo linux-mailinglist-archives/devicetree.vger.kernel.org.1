@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-45681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45682-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5662D862B49
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 16:42:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D83AB862B63
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 17:01:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D7B641F2175D
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 15:42:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 665581F21148
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 16:01:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BED38179AE;
-	Sun, 25 Feb 2024 15:42:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 576311757E;
+	Sun, 25 Feb 2024 16:01:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AV8pNRHk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tx5t9d9r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B46FA15E86
-	for <devicetree@vger.kernel.org>; Sun, 25 Feb 2024 15:42:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FDE9EEAC
+	for <devicetree@vger.kernel.org>; Sun, 25 Feb 2024 16:01:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708875759; cv=none; b=lQSII8fswbWauaLgVmv7RtuMq5Kbgq+XxUsrsq1JLCrVx6jWrBDU3wMik9UKRv7tBcsCVSaqIhoHzCVHJDzM/Y287wbdRkjFTfb2PEb5NuiSC/EikqYkWiW1MvHk/dsrq0+xrV0tsY0JNK5b1AFg2u5G/kKa/MHpHz0uBqjccpc=
+	t=1708876889; cv=none; b=ub2tDoDmxar94vC+kqaPntwu8vNf3RXCdqYmJ+4d3al2v9hObHhBtMiLIgVkYO/MQcT6QGEgBQCyhk0aS/hXbmdMTlivzxcMDWGCLL3q9or4zBb0nje0jrj9KTQddvjpcgtqEfQwdWbvPX4vSQ0Tsuqru+UkxTTzaMvI+qxobpY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708875759; c=relaxed/simple;
-	bh=l0BDmwoFZQU4Qu8uM6y70+fjd5okgH0neujfC6DKo38=;
+	s=arc-20240116; t=1708876889; c=relaxed/simple;
+	bh=tzc3inzMBBnJRCFSdQFsBFDwAmTQGVCalWIpAZqpb4U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nHtJMBR6VBfOYfzdERmWh3Vb/ufdDQmtixyFm6/7L5WjjPvUIiMefgNriL3kxxcQoTbBnANMNnt62qEDtS0pARA+AN91HbZT7f/jahFkNCicdSwRoqixhRs+Xd8nwnhluffAvlfBUAVxmMNuCqE9XTmBYQbm75CS3nHj/hpprkg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AV8pNRHk; arc=none smtp.client-ip=209.85.167.50
+	 In-Reply-To:Content-Type; b=DbRWbx2tL2ZFU6ZWJce6fg9vCu7zkHTajGS48WXjiMJmjnj+yzOwatDwgY6as3JWiFkpaXlZ9zaqFjvSnrrIh/BXYKZEbDD05DCA6LWMwUzieQa7HVZqy6tvhHXELAmY0Gmwf+tMhLJpIvBk4Q724nFBmNZjdmXL+DK2FEeTZt4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tx5t9d9r; arc=none smtp.client-ip=209.85.208.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-512aafb3ca8so2155430e87.3
-        for <devicetree@vger.kernel.org>; Sun, 25 Feb 2024 07:42:36 -0800 (PST)
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-564647bcdbfso2166145a12.2
+        for <devicetree@vger.kernel.org>; Sun, 25 Feb 2024 08:01:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708875755; x=1709480555; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=qiNl5v0sTGoB43AgM/QCHru920Fxf0VXmh2hmLqHphQ=;
-        b=AV8pNRHkA8zu5AE/mQLoquss3+hJcRna8DZDPK2nx9/9Bz9syQGZL5JgUwALic1Alr
-         c43dvXiHZeuRAV0MvyJlCID0i++EWBvFY1/TK06Q0v0ZzxBou7Rm+2L1rJu8uwgzai8H
-         4yOPcS628bJkZrE1W9s+tibeZ2c74LxYUP/SnsMItTGi1ydqEpraMpbFNSRDKBoQB/dY
-         JdrpIk6kMJ3O8Nla01SoyncCDi6Fgz5FKUSSoaZkCQkkXc7QdyVMXXrk7CXY4qx0FX4N
-         F7lw4V7R3UJHfYpCQ5eor9TGB1+f2m2A0g2e//wBm94hsYBgwD6ZgA0m13yCMb8QeOcI
-         2hCw==
+        d=linaro.org; s=google; t=1708876886; x=1709481686; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7Lh8/THgwGw55D3SYvQ4tVT4wl9yHcsf48kaa/ReQKE=;
+        b=tx5t9d9rbdhHSDJ22dZfseqTBCMaxf2u6HrgLaVr1Qxe35moWKt/EDvbmvu3mrk+G0
+         RJnnsh5zMV8VytjhAjfvJdvuxNFlNi4mcF4iJUckRGYvOoiS4wXn50qgQIQ4cHKGJqR8
+         i6soDJIwl7x9smznps22M4cHCyRa+nr9HjeN7z/bem/C4dvRXPBTGkB3MI9MLVLrfAdQ
+         1KKkyxhVKwAzrzB0OFMXJ9HTDJ54GhcFmhQglF8gvlhIFedCQybTgyUP9fVX0NOSoGe5
+         V2b54l7UmHsXfUQbj3lEOkun4zcytFdUcaooHJgBh9GfQHatcG5Iwk2oW9VqZrNo5UTm
+         Lsng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708875755; x=1709480555;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qiNl5v0sTGoB43AgM/QCHru920Fxf0VXmh2hmLqHphQ=;
-        b=tBJ5BPXXs+Dzh6wyfIqdjpyxKZIHoEM3g7t5EGB67MBKsp5w8IqU6YyCstd5OkkpwJ
-         /XbWJvOYFNhPTvZDbo3Iia1JlvvnK6cxJ0l3rpj5KFgv8qxhDHosle8MitsFz8prXZuM
-         RpYM509cZQjJHIItZZR1xcDRqZqxFm3iCB0mUfFi2kNSv8wujiAVaRQixj9S5uixPcS7
-         B2m0lu0IVGgvEi7Dd1PJ3d/xnYOScs4PQEONc+bUHv8/zRKQX9y35awCk1+hwwZnc2kj
-         /aDUzTPqK43do8Z/PCuRVeO1UUBmC73hMrkHWlQvIucXS2J2w3wG4q15iw5JcuTrS/mD
-         jc3w==
-X-Forwarded-Encrypted: i=1; AJvYcCVqK7oduzC9Z4m7Ms1vAObF2+dkMssR/BEfC+M5iqND7pNuDPTRkzON427zbG4JXXXWQw2okr1lS5VATm0Yd5L7KK80cFWBaXNvoQ==
-X-Gm-Message-State: AOJu0Yx87ARfhFTuivTTrTMneZO6wpSo3Za8VFyghB6+XqV8B7KC9k3Y
-	7CsoIMbOyyr0F2nZFP1gq3zOPHj7FRH8kj9cGvclL8QQ0GUW/jh3iDSyT1M4Yz4=
-X-Google-Smtp-Source: AGHT+IHsujxrH5G1TYoTfge92Qs/4nuyFMpW/s3Y919kI/vI3334Jt7mBVfpnctXCL3ku754093TGw==
-X-Received: by 2002:a05:6512:527:b0:512:b3bf:b803 with SMTP id o7-20020a056512052700b00512b3bfb803mr2922414lfc.39.1708875754956;
-        Sun, 25 Feb 2024 07:42:34 -0800 (PST)
+        d=1e100.net; s=20230601; t=1708876886; x=1709481686;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7Lh8/THgwGw55D3SYvQ4tVT4wl9yHcsf48kaa/ReQKE=;
+        b=rrTHms9u+ZkFcjq+BkTKDwbrymTClqJgZQZvoWmLAXSVCAzgIIey80sFqlhDu5iO9n
+         HaLkkLBcSE/wJ0A5sYF368Vz4cBAI9EJp7WuM0RIHv+8w6jHZ+wXrAOjH/LN20vIsLfG
+         TQ1gDs0uSkzKrrp4CLhHUnJRbr7r44a+vp9d5Ao/16B+42H6d0gbrRyQJbBwz1cbcKTz
+         nIElrwxm15hzxDhRT9IUhcWma/bZGG5DttsUlNIKVDU0dHLBS4+6cN1dpwIaxphyQxUR
+         yOnjyMjqkjKVMPI/seqinS7LtcrjOiyv1idICf3OjIG9sCjzUZI5/syYhUG3QZmoKduP
+         psxw==
+X-Forwarded-Encrypted: i=1; AJvYcCW/OhxJPsKPYNfe8R8L5ZXD9ZNk2W5hQXUVNtSVwSBmhBUgmaUtb9rwQiq5LsaAC+TDDGS8e5gXtngt4wSS85c0Y0Ok2jp1K5IGug==
+X-Gm-Message-State: AOJu0YzWeIUdn/ue05ZNh1jWjALhqmgLK9eJ7Nu6quSpBhlpw+yD0FQG
+	+cp3OZhmY8hbOZFw4QlA9HQ9MeYrwxUARN9bUUy/HaXOiI7nHzjJGDwss+4jKIc=
+X-Google-Smtp-Source: AGHT+IF+ubTsC8/SfgWb/dm7Gvisz+DHZDC6KCVOARscF3A2ASrzSWnLFyBviuiY0FAyujHvpfnv+w==
+X-Received: by 2002:a05:6402:5201:b0:565:a5f5:84d0 with SMTP id s1-20020a056402520100b00565a5f584d0mr2761007edd.22.1708876886028;
+        Sun, 25 Feb 2024 08:01:26 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id se16-20020a170906ce5000b00a3d0a094574sm1576572ejb.66.2024.02.25.07.42.33
+        by smtp.gmail.com with ESMTPSA id a8-20020a50ff08000000b0056524c91e18sm1531847edu.2.2024.02.25.08.01.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 25 Feb 2024 07:42:34 -0800 (PST)
-Message-ID: <174b85c4-107b-44ea-af81-4564101aa5ec@linaro.org>
-Date: Sun, 25 Feb 2024 16:42:31 +0100
+        Sun, 25 Feb 2024 08:01:25 -0800 (PST)
+Message-ID: <f6d99b65-7679-4a14-bb4c-ab62aa45dd6f@linaro.org>
+Date: Sun, 25 Feb 2024 17:01:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,17 +76,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: serial: convert st,asc to DT schema
-To: Raphael Gallais-Pou <rgallaispou@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Patrice Chotard <patrice.chotard@foss.st.com>
-Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240225100336.34122-1-rgallaispou@gmail.com>
+Subject: Re: [PATCH v3 10/15] clk: samsung: Keep register offsets in chip
+ specific structure
 Content-Language: en-US
+To: Sam Protsenko <semen.protsenko@linaro.org>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>
+Cc: Alim Akhtar <alim.akhtar@samsung.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>,
+ linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240224202053.25313-1-semen.protsenko@linaro.org>
+ <20240224202053.25313-11-semen.protsenko@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -133,81 +136,30 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240225100336.34122-1-rgallaispou@gmail.com>
+In-Reply-To: <20240224202053.25313-11-semen.protsenko@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/02/2024 11:03, Raphael Gallais-Pou wrote:
-> Converts st,asc binding to DT schema format and update example.
+On 24/02/2024 21:20, Sam Protsenko wrote:
+> Abstract CPU clock registers by keeping their offsets in a dedicated
+> chip specific structure to accommodate for oncoming Exynos850 support,
+> which has different offsets for cluster 0 and cluster 1. This rework
+> also makes it possible to use exynos_set_safe_div() for all chips, so
+> exynos5433_set_safe_div() is removed here to reduce the code
+> duplication. The ".regs" field has to be (void *) as different Exynos
+> chips can have very different register layout, so this way it's possible
+> for ".regs" to point to different structures, each representing its own
+> chip's layout.
 > 
-> Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
+> No functional change.
+> 
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 > ---
->  .../devicetree/bindings/serial/st,asc.yaml    | 57 +++++++++++++++++++
->  .../devicetree/bindings/serial/st-asc.txt     | 18 ------
->  2 files changed, 57 insertions(+), 18 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/serial/st,asc.yaml
->  delete mode 100644 Documentation/devicetree/bindings/serial/st-asc.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/st,asc.yaml b/Documentation/devicetree/bindings/serial/st,asc.yaml
-> new file mode 100644
-> index 000000000000..b26e1d247346
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/serial/st,asc.yaml
-> @@ -0,0 +1,57 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/serial/st,asc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: STMicroelectronics STi SoCs Serial Port
-> +
-> +maintainers:
-> +  - Patrice Chotard <patrice.chotard@foss.st.com>
-> +
-> +allOf:
-> +  - $ref: serial.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: st,asc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
 
-This wasn't here before and your commit msg does not explain it.
+Missing checkpatch --strict:
+ERROR: "foo * const	bar" should be "foo * const bar"
 
-> +
-> +  uart-has-rtscts: true
-
-Drop, not needed.
-
-> +
-> +  st,hw-flow-ctrl:
-> +    description: When set, enable hardware flow control.
-> +    type: boolean
-> +
-> +  st,force-m1:
-> +    description: When set, force asc to be in Mode-1. This is recommended for
-> +      high bit rates above 19.2K.
-> +    type: boolean
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-
-Also something new.
-
-
-
+Corrected and applied.
 
 Best regards,
 Krzysztof
