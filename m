@@ -1,158 +1,129 @@
-Return-Path: <devicetree+bounces-45652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45655-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F61B862A19
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 12:40:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 099BA862A2B
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 13:04:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C1BC1C20A3C
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 11:40:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C4AD1F215CE
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 12:04:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0B6D101EE;
-	Sun, 25 Feb 2024 11:40:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 036AF134A5;
+	Sun, 25 Feb 2024 12:04:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="osUyFlyJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RyiBkJ9U"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1CCFFC0B;
-	Sun, 25 Feb 2024 11:40:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9F8012E5D;
+	Sun, 25 Feb 2024 12:04:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708861229; cv=none; b=Oa9+4hJl6c4DUY93/oAt97vFqpeHI/FFiqv7Xy89Dwl1QTh0P0uzudEQAEmFiIWyBarHxDRRPUijfDZxCe/SM6l9a18MMV1GTUV/INEjbgt5eQ4BsftCu2jhY47f08wxq8+KrOiWrBtgJp/w3chpzuFhWKCRLh+9c9xO2plxuDo=
+	t=1708862643; cv=none; b=esfq21ImW7XWEFLlhHYt1uNNe9m/JUWOlCQkFCRaISbppRdlVr4q8i6Si6JsmHX13/j3N+lFxXMXgo+h1N79OdLRJaFq9yoTkTlhvbLjSFeTX8Dmp3f/xEinB+rXOemz7xKFjVdGjkyUbcBa98XcwPhx5kqKJLtzoAy+8yEYn4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708861229; c=relaxed/simple;
-	bh=P8+9rvC4e3Cz1f2sRgvgazowIHQMzZ4yFaqZrMvpO9A=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=myzZrlHwNqmukJC4Njb6cwjWom+pVCeX2wH1KXffXYYdm+N2EKqAJEdg2gRYUv7lh5+YIkqCbJvZfP4I1hisqpiJNDINI4v/w4RltJxQff+h1YXIgkOy4M65OIuowvReOJcAhZCs3qdliVRmXaV5OVWubGKASPR7QovbPnS0So8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=osUyFlyJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0816BC433C7;
-	Sun, 25 Feb 2024 11:40:24 +0000 (UTC)
+	s=arc-20240116; t=1708862643; c=relaxed/simple;
+	bh=zPcJ2vC3A6HhIVo48qXQTTqMOtfOET2qYf2tQ9lsrYY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=IRu1O+/lz4g9JoiQ6OvZN7RNIenvgHgz9Je4CXbJz9wtRK5Hwlf5uf1GdN4LRVjlwmxFrh25LjlINzk7vOJKu6iEpsflbOP9cK6YbGbcS3ZYGJeVYLAld8HJywCKXt5OAFfO9Sm26d11cMNDdgXdAPwHz8Q6AY7tXY93rmWS/vE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RyiBkJ9U; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 5BB42C433F1;
+	Sun, 25 Feb 2024 12:04:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708861229;
-	bh=P8+9rvC4e3Cz1f2sRgvgazowIHQMzZ4yFaqZrMvpO9A=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=osUyFlyJkuiX6k2IVh48nh3CUYrZ280S8OpF4tTlq+Xno+NSlAmJZsKqABOiGFNaV
-	 4OsTYFcYmS8917tEmmbSFL3gqxQsj78OwP7gYUh/c/IubvkdRgnC9sJ9yAHVBIQFFL
-	 +K1OI5fHE26C5aqoyCcdhNyJCw9wD1rckBH7evhFrm8LbOHKGlmCKz+aYEVGCnTfMP
-	 6UYZjv0JGQx9bQcnxMj6Guixe1W0pFVsa/Vlz2l4pVbYqN49kkZ1wrF9ovJOqUZ+XO
-	 yeF6Ur40yYvx77HXUe4bLr73ZMztlf/Z07odw4cOWf83AHlWze+0AwAE2C9Cp5ZP24
-	 viApYQHYR3k8w==
-Date: Sun, 25 Feb 2024 11:40:13 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Matti Vaittinen <mazziesaccount@gmail.com>, Andy
- Shevchenko <andriy.shevchenko@linux.intel.com>, Marek Vasut
- <marex@denx.de>, Anshul Dalal <anshulusr@gmail.com>, Javier Carrasco
- <javier.carrasco.cruz@gmail.com>, Matt Ranostay <matt@ranostay.sg>, Stefan
- Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 5/5] iio: light: Add support for APDS9306 Light
- Sensor
-Message-ID: <20240225114013.7a5e11be@jic23-huawei>
-In-Reply-To: <15a46491-d126-4998-88f0-1720316f0a6c@tweaklogic.com>
-References: <20240218054826.2881-1-subhajit.ghosh@tweaklogic.com>
-	<20240218054826.2881-6-subhajit.ghosh@tweaklogic.com>
-	<20240224151340.3f2f51e8@jic23-huawei>
-	<15a46491-d126-4998-88f0-1720316f0a6c@tweaklogic.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=k20201202; t=1708862643;
+	bh=zPcJ2vC3A6HhIVo48qXQTTqMOtfOET2qYf2tQ9lsrYY=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=RyiBkJ9UMomoycGN8oAtIW8hlI/RFu9MkPMz7e0LzdwMDzdwpLtRi5ia6S97Mlhz7
+	 wMMoSsn0tfIC3O/I/TgUKzhjP/qZesZGfxZlg9yzblW0GK+rWmGdbPqft/FhCHt2r4
+	 HsDxhfavXrR4sIG5cwZl9eIkKv8v3p+QCw9Og2jQQ/IYUB6qcs/Z/eB6cfeBOuZqNy
+	 WESnJFfMyVsX6TXCgYZGinj1JqZrESk1vbXrXd3LPh0uF1VpkM+X73uaGnJw08Lfej
+	 f1SDd8GZXGpHrcpGdN+jLlZLn8UKh95CMY9bwTv4nemhRhcrwlo1MAa0uYCwFsSl2v
+	 gE5zMBZuaaelg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 373E3C47DD9;
+	Sun, 25 Feb 2024 12:04:03 +0000 (UTC)
+From: Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>
+Subject: [PATCH v4 0/2] usb: dwc3: add glue driver for Hi3798MV200
+Date: Sun, 25 Feb 2024 20:03:47 +0800
+Message-Id: <20240225-dwc3-v4-0-8c1fd6c6f615@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKMs22UC/23MQQ7CIBCF4as0rMXAAIKuvIdxQelgiVpMW1HT9
+ O7S6sbY5ZvM9w+kwzZgR3bFQFpMoQuxyUOuCuJq25yQhipvAgwkA65p9XCCbrbagCmlYdaS/Hp
+ r0YfnnDkc865D18f2NVcTn67fAMhPIHHKqPa+BITSWi328d5fYjyvXbySKZFgiUFmBqV3lVaaa
+ /XPxBITmYESyjtE7Zn5ZeM4vgE6APEuCAEAAA==
+To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Yang Xiwen <forbidden405@outlook.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1708862628; l=1668;
+ i=forbidden405@outlook.com; s=20230724; h=from:subject:message-id;
+ bh=zPcJ2vC3A6HhIVo48qXQTTqMOtfOET2qYf2tQ9lsrYY=;
+ b=sjlryJDUd028obFeraj/Zs16TT0AhhjYtAK23/PgjYEVlDO03Ex/s8VCyMAXzJb26y7kuRDiB
+ bhkAaOd4SckApV2UcAI3de8VumYuXzlh2cEG0qf88nN38lAIOcx/vAL
+X-Developer-Key: i=forbidden405@outlook.com; a=ed25519;
+ pk=qOD5jhp891/Xzc+H/PZ8LWVSWE3O/XCQnAg+5vdU2IU=
+X-Endpoint-Received:
+ by B4 Relay for forbidden405@outlook.com/20230724 with auth_id=67
+X-Original-From: Yang Xiwen <forbidden405@outlook.com>
+Reply-To: <forbidden405@outlook.com>
 
+Hi3798MV200 uses DWC3 with a few more clocks and a dedicated reset.
 
-> >   
-> >> +
-> >> +	/*
-> >> +	 * If a one-shot read through sysfs is underway at the same time
-> >> +	 * as this interrupt handler is executing and a read data available
-> >> +	 * flag was set, this flag is set to inform read_poll_timeout()
-> >> +	 * to exit.
-> >> +	 */
-> >> +	if ((status & APDS9306_ALS_DATA_STAT_MASK))
-> >> +		data->read_data_available = 1;
-> >> +
-> >> +	return IRQ_HANDLED;
-> >> +}  
-> > 
-> > ...
-> >   
-> >> +static int apds9306_read_event_config(struct iio_dev *indio_dev,
-> >> +				      const struct iio_chan_spec *chan,
-> >> +				      enum iio_event_type type,
-> >> +				      enum iio_event_direction dir)
-> >> +{
-> >> +	struct apds9306_data *data = iio_priv(indio_dev);
-> >> +	struct apds9306_regfields *rf = &data->rf;
-> >> +	int int_en, event_ch_is_light, ret;
-> >> +
-> >> +	switch (type) {
-> >> +	case IIO_EV_TYPE_THRESH:
-> >> +		guard(mutex)(&data->mutex);
-> >> +
-> >> +		ret = regmap_field_read(rf->int_src, &event_ch_is_light);  
-> > 
-> > Call the local value int_src - it's not obvious to a reviewer what
-> > relationship between that and int_src is. I had to go read the datasheet
-> > to find out.  
-> This unique name was suggested in a previous review:
-> https://lore.kernel.org/all/20240121152332.6b15666a@jic23-huawei/
-> I will change it next version. int_src is logical.
+Note xhci-histb.c can also be used. But since it's DWC3 in fact, trying
+to support it with the help of DWC3 framework seems a better solution.
 
-Ah, I failed to register that it was a multi bit field (which it isn't
-really but we should track what the datasheet says).  If it had
-been a single bit then it would have made sense to name it as a boolean
-flag.  Not so when in theory it could take 4 values (even if only 2 are
-defined).
+Hi3798CV200 can also try to migrate to this driver too. Thus we can
+remove xhci-histb.c in the future.
 
-> >   
-> >> +		if (ret)
-> >> +			return ret;
-> >> +
-> >> +		ret = regmap_field_read(rf->int_en, &int_en);
-> >> +		if (ret)
-> >> +			return ret;
-> >> +
-> >> +		if (chan->type == IIO_LIGHT)
-> >> +			return int_en & event_ch_is_light;
-> >> +
-> >> +		if (chan->type == IIO_INTENSITY)
-> >> +			return int_en & !event_ch_is_light;  
-> > This is the specific line the compiler doesn't like
-> > drivers/iio/light/apds9306.c:1036:39: warning: dubious: x & !y  
-> I am using gcc 12.2.0 for cross compiling. I definitely do not want to send
-> patches with warnings in them. Can you please let me know the gcc version
-> or flags using which you got the above warning? Should I always use the
-> latest released version?
-Version shouldn't matter that much but this was x86 build with gcc 13.2.1
-W=1 is maybe what is showing this up as it enables a bunch more warnings.
+Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+---
+Changes in v4:
+- bindings: example: move ranges after compatible
+- remove me from email
+- Link to v3: https://lore.kernel.org/r/20240224-dwc3-v3-0-2535fcee7f08@outlook.com
 
-IIO is almost clean with W=1 though a few minor things have gotten in recently
-that I need to tidy up.
+Changes in v3:
+- binding: remove example address
+- binding: remove reg (Krzysztof)
+- binding: rearrange required (Krzysztof)
+- binding: put additionalProperties after required (Krzysztof)
+- binding: indent properly (Krzysztof)
+- Link to v2: https://lore.kernel.org/r/20240224-dwc3-v2-0-8e4fcd757175@outlook.com
 
-> > 
-> > I would match int_src against specific values rather than using tricks
-> > based on what those values happen to be.
-> > 
-> > 			return int_en && (int_src == APDS9306_INT_SRC_CLEAR);  
-> I will implement this.
-> 
-> 
-> Thank you for taking time to review the code in detail and also appreciate
-> your suggestions.
-> 
-> Regards,
-> Subhajit Ghosh
+Changes in v2:
+- remove histb-clock.h as it's deprecated.
+- fix bot error (Rob Herring)
+- add a dummy reg property to make simple-bus parent node happy.
+  (duplicate with subnode, not used in driver)
+- Link to v1: https://lore.kernel.org/r/20240224-dwc3-v1-0-7ffb2e2baa73@outlook.com
+
+---
+Yang Xiwen (2):
+      dt-bindings: usb: add hisilicon,hi3798mv200-dwc3
+      usb: dwc3: of-simple: Add compatible for hi3798mv200 DWC3 controller
+
+ .../bindings/usb/hisilicon,hi3798mv200-dwc3.yaml   | 99 ++++++++++++++++++++++
+ drivers/usb/dwc3/dwc3-of-simple.c                  |  1 +
+ 2 files changed, 100 insertions(+)
+---
+base-commit: 8d3dea210042f54b952b481838c1e7dfc4ec751d
+change-id: 20240217-dwc3-697828b480aa
+
+Best regards,
+-- 
+Yang Xiwen <forbidden405@outlook.com>
 
 
