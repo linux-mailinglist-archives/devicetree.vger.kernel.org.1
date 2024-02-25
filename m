@@ -1,55 +1,64 @@
-Return-Path: <devicetree+bounces-45666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B21A2862A75
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 14:31:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3AE3862A7C
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 14:55:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 508C11F21533
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 13:31:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6C391C20888
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 13:55:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A2CC125C1;
-	Sun, 25 Feb 2024 13:31:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB76A125DC;
+	Sun, 25 Feb 2024 13:55:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="IFbcwGvF"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="nMkrICdf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-177132.yeah.net (mail-177132.yeah.net [123.58.177.132])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E37F810A09;
-	Sun, 25 Feb 2024 13:31:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8943B12B95;
+	Sun, 25 Feb 2024 13:55:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708867882; cv=none; b=XUh+lHqNtw22i9OHgtOUt3z8FjOk6/gg83TnWvuXa8nXlnCRFdP1SvW86qYi/Z4FzCsP/BEluAopbPMEcueoP82wc5TSMW3IcoNi9w9VR5sy56NgAExEIkg5BkFy7l3RJB7mt/mjdv2KqNELo6Dc7DR/kPIHQ5NICk3AZBQKzjw=
+	t=1708869302; cv=none; b=MwfT7BV+G2ie88s52dnuUvzeSPGwF5EJj/D8MtxlzYnoC36Pe5/XZMNwqItjYdP+yzP6K+KY73Ub+/7NfH9XmjUdxxR5ejb9vElo2p1qRKtAd16UhEkBSub/q+ZB3YDXs+yvd0odcCBL0KewAWrlOSYoIsszPpXoP+J8bKXmqZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708867882; c=relaxed/simple;
-	bh=/W1pq4XEAdapNX8RFQqTdUzolkOfaKYU0fjOypQ1DXA=;
+	s=arc-20240116; t=1708869302; c=relaxed/simple;
+	bh=CF7ylrleXE8OYyD9KiFOOGPMOA1ygVTR4WBLFMktj1E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RrnGfPo1mzxGNy81w2QncnShRQvlb2LIrsJYlkgFa+Blb6DdUtts8b+5/yUSFB/DRS2XM0z9Dbbmbw5N2eurVQEZCIodgNW7p0J7ejJkr4UjMPfjXjQuqMw95pqS/o7+IiEI6lFedjQ7AV3u5mwIcGEAT4TGvycu8au5Krk/bKA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=IFbcwGvF; arc=none smtp.client-ip=123.58.177.132
+	 Content-Type:Content-Disposition:In-Reply-To; b=MFbiTUmuSK/pImVwCU6tBNDXX2OAPOqYjPwt8Mtk4aNW5vCH9AT1nncTyvInkX+3iThr7s9CD37zcOk+Hk4x9QhIwCJz26jE5K4di5C6jZ/TPaXZyloeT+sZBYcKXhcig77jLz3S0aJW2AjU/H5sSHr/pWTXrMQBvowJcCjQ6/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=nMkrICdf; arc=none smtp.client-ip=123.58.177.132
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=Cqu2ZXIBpNqsbAWhTsCIwqllICow9j095X0PIZjZnB0=;
-	b=IFbcwGvFysP5yCkTVFfbX8xbcLL8qfhWe3zVG+aMXo9E7+EvuHt20Y2B1te9vB
-	BW2fWwBaKqJxal/ckNVVm9P21SbdXxMNVV5z9jzwJWIsOhoLblJX0S34t/whp0q8
-	SSZtNKlXYLgVaL32GWCjlsI7XQyUEXncm8HOmZlHibtBo=
+	Content-Type; bh=y9oooywQXHAQODFZ5gFVoh+n8Q1+E35JxIjvw7KQnY4=;
+	b=nMkrICdfr00DTogMaO0XroK/FNgDdRLt9TUzXpHQi9nA3/j7viIN9IFjZazvK7
+	YHpyEGaL+j07HHxj5QfmbQNQCDFFdnve+X9gBJwF+l974N0YDfqOIe7Fl3nq66hK
+	l41STSP+cXdUfXfsy3jfsM6QrDCwEb2EtvA72wQ2xfxLg=
 Received: from dragon (unknown [183.213.196.200])
-	by smtp2 (Coremail) with SMTP id C1UQrACXvwcIQdtlGnBWBA--.10980S3;
-	Sun, 25 Feb 2024 21:30:50 +0800 (CST)
-Date: Sun, 25 Feb 2024 21:30:48 +0800
+	by smtp2 (Coremail) with SMTP id C1UQrADXHyt3RttlS61WBA--.31690S3;
+	Sun, 25 Feb 2024 21:54:01 +0800 (CST)
+Date: Sun, 25 Feb 2024 21:53:59 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Liu Ying <victor.liu@nxp.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, linux-imx@nxp.com, l.stach@pengutronix.de,
-	alexander.stein@ew.tq-group.com, marex@denx.de
-Subject: Re: [PATCH] arm64: dts: imx8mp: Fix LDB clocks property
-Message-ID: <ZdtBCEwjonmRV0+X@dragon>
-References: <20240223091522.2880155-1-victor.liu@nxp.com>
+To: Sebastian Reichel <sre@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Dong Aisheng <aisheng.dong@nxp.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 10/16] ARM: dts: imx6ul: add missing
+ #thermal-sensor-cells
+Message-ID: <ZdtGdxBtS+Zxiovq@dragon>
+References: <20240224213240.1854709-1-sre@kernel.org>
+ <20240224213240.1854709-11-sre@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,25 +67,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240223091522.2880155-1-victor.liu@nxp.com>
-X-CM-TRANSID:C1UQrACXvwcIQdtlGnBWBA--.10980S3
-X-Coremail-Antispam: 1Uf129KBjvdXoWrCryDuF4UJF18Zr13Wr45KFg_yoWxGwb_G3
-	4DZF1DWw1DGrWay3srGr43A34DKr98Zr17Wr4fGw4vgw1xAr17A3WkZ3s8ZF4rXanIgw1q
-	9as8Gay7JFnI9jkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU0wvttUUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiFQqPZV6Nm6ZxKQAAsD
+In-Reply-To: <20240224213240.1854709-11-sre@kernel.org>
+X-CM-TRANSID:C1UQrADXHyt3RttlS61WBA--.31690S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUfDDGUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiDhqPZVszYWKg0AAAsl
 
-On Fri, Feb 23, 2024 at 05:15:22PM +0800, Liu Ying wrote:
-> The "media_ldb_root_clk" is the gate clock to enable or disable the clock
-> provided by CCM(Clock Control Module) to LDB instead of the "media_ldb"
-> clock which is the parent of the "media_ldb_root_clk" clock as a composite
-> clock.  Fix LDB clocks property by referencing the "media_ldb_root_clk"
-> clock instead of the "media_ldb" clock.
+On Sat, Feb 24, 2024 at 10:29:42PM +0100, Sebastian Reichel wrote:
+> Fix the following warning found via CHECK_DTBS:
 > 
-> Fixes: e7567840ecd3 ("arm64: dts: imx8mp: Reorder clock and reg properties")
-> Fixes: 94e6197dadc9 ("arm64: dts: imx8mp: Add LCDIF2 & LDB nodes")
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> tempmon: '#thermal-sensor-cells' is a required property
+> 
+> Signed-off-by: Sebastian Reichel <sre@kernel.org>
 
-Applied, thanks!
+Thanks for the patch!  But I had picked up the one [1] from Alexander
+Stein.
+
+Shawn
+
+[1] https://lore.kernel.org/linux-arm-kernel/ZcCNdrQPb10i4rl2@t480/T/
 
 
