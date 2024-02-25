@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-45693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55181862B9A
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 17:13:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDBDC862B9E
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 17:13:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 855DE1C20DD1
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 16:13:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95CD5281A6D
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 16:13:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B04B21C6B7;
-	Sun, 25 Feb 2024 16:11:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B2561C69C;
+	Sun, 25 Feb 2024 16:11:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TtA5/lQG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eMacf//O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3060C1BDD0
-	for <devicetree@vger.kernel.org>; Sun, 25 Feb 2024 16:11:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF47517BD4
+	for <devicetree@vger.kernel.org>; Sun, 25 Feb 2024 16:11:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708877475; cv=none; b=fRZwoGZnsYLax+QzRCbiNb34s+VGv5J+rde5sqqfL+FdCUrqATHLdFyPHfhl6ZL4jC+iKqJ2ksf2iG6n6BhZL3ZSezDMInc4OEVRyADUjL6sfcyvmfU04RsDHtAhkDa+DjutytY6B31Q1xChiI4SmixJomLWx2RCMZmrHXLePnc=
+	t=1708877478; cv=none; b=ueuEah7+ykcprRvmudyXjkJrjH7kfeiRwlMrMPnJcMNRghvjq9SDwBKnMZ35d762JKsCaUxXXA5KPK9b9BDwX+Z+JMrroPHAoNW/xw2/lWB+5W/+AikFJSbmmyVSIy0/+CYloR6QyoNSFgHJkYbTtrmHUPJxJjCmhsVffRMVHWU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708877475; c=relaxed/simple;
-	bh=u8Qpi5YiOy9kRaDr0ChX2/pXA1mqNLtMkVDkNl61WfQ=;
+	s=arc-20240116; t=1708877478; c=relaxed/simple;
+	bh=P80jgCoJx97whY8RZv7ltxiyxidW6ExA+D1/++A5684=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=L45FdIZIID6cQhOks8uPKdFywtmn37rRARinm/VG13Bag002wESC+G29SxJCWdJ2d5mSlzDPUWGO8/x+KOYrZsc7WjywHM3opoq1jx8r6zN9I9TKsygm+JHRjRDaSmedYHEh8OdJVf7EEkN1N44eVytsbwFXxoF3iiVdd0VdMo4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TtA5/lQG; arc=none smtp.client-ip=209.85.208.175
+	 MIME-Version:Content-Type; b=CU92rntKjLfMQExU5seO/LzMP/uyZpB2bUPBXWsXMSdtZ0yme13ZYWh1ZuMQE0XvOfOTtgVHewspGLDlqHdjbMe5yF3tvCOCROoOfjZcS5mHNbelbN1weRH3JVfJlY2xsfud6FNMlxqf95vYIQMpO3Ugd6IsqNhMvq0FHptrPjY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eMacf//O; arc=none smtp.client-ip=209.85.208.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2d243797703so29438111fa.3
-        for <devicetree@vger.kernel.org>; Sun, 25 Feb 2024 08:11:11 -0800 (PST)
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2d09cf00214so37503461fa.0
+        for <devicetree@vger.kernel.org>; Sun, 25 Feb 2024 08:11:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708877470; x=1709482270; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708877472; x=1709482272; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=REeTwuyBteq5+THLDDm+N0sqW9JR2kC2T9JOUPzqTZQ=;
-        b=TtA5/lQGRL/UROVJ/pSLyqTWZi8F3bCyMVnVhz0pnCGV0BUoPx/ggCNfqn8pXwM7jb
-         dxUTXzK/LD3lammTvA+qWT1h4m8gKZ+rlQQVZ+4HRMMIbgkbbKZTn/k/ECxI1FMFHYdt
-         gzKPLI9brf9nH0wzc/HgWlVte7iXafghvuYVikVjJ48MNleEcBGpLBEg4xy/A6VFbua6
-         FZV35UhnmwMZDj757//pwHTUcynXcO6oGYhA33GMj3kX3eqk5/btyzuNixEKXO1WFSlc
-         dhTk7fqPGQrDMEVaRvdmTr3MTAmo+jylzAwRRk4D4N1+0bTC3Ca8mcGrlz8nzatVRKVB
-         TT8A==
+        bh=PzgKojf3trYLunnGeLiGp/WQF9mJK3e1ky7A6J0BwN0=;
+        b=eMacf//OK2/Z+1jPCjCNCQs240fETw+moV7bNsSpyW6U7it6+s5eEDQ7cTWPw8XTWs
+         NaFADShrjMOGiJXAmeyzAjytIWN6KLe4wMZ2PdgMxjbG3GxJ2l3Jyz2l+vRws/SN1xjr
+         EHcGcjTsj2+KVWDBWnhYNwUvC0f7+j6FZ5GGu6GJV3ZrcITTcUZLRzG9uy+gcd+I2FjD
+         g64gurCdvbHmmZAz3sGm1EIHq1PFFlMXnIIpSRmI+SshgcFlBUVc8Agw9QKo5ttEHMhU
+         SBytp+SKRQIc/ahwkunEwkraN50+u6wGXc39CsIMOlF9o7aq8r66P2NGwlCXyFchhN11
+         wfJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708877470; x=1709482270;
+        d=1e100.net; s=20230601; t=1708877472; x=1709482272;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=REeTwuyBteq5+THLDDm+N0sqW9JR2kC2T9JOUPzqTZQ=;
-        b=K9txXdpXb49Am53fevF9208CVWi02vB1udDCf7BPCEX+H43F5yldjdZOZGKifBCLcj
-         GQGgNIkn0pTC7D/4KrF2oBOQwA/Kf6VFTdm6JDelb5+tG407sRH1URXxTwosPx4C0lHH
-         qilV6lEkOzhmTQgPY9MZgAJHydGh3utMIChroHJb95uZ190B202XqMy63V948+n81J5+
-         7zfFdxusRaMOJ/lapyIUZyMxMbEQ+6UZCY5aTHjFzuVtjgb10c41pX7p8Sv/qm9c7Q6t
-         Ec/njxdS+XsZFp/kcZtBSQW6yIZkGXdtna5A+KMMI4H9R8zXP2JcNbN35TYl1Fksj/cn
-         Il4w==
-X-Forwarded-Encrypted: i=1; AJvYcCXeyae+q/Sd/AHqx135UqI9ffCIfSA3Z84tbIzct/jTfe9x4Q+sHMYAZvegV1kUStSaChHTa1XDwqTCCsmHtjgvdVZFCZCjknY9yQ==
-X-Gm-Message-State: AOJu0Yyd4rP7Tgdoko2dYHs7mbIG0JGOJxmRjOttQPv77zHqrkmx96X4
-	bYrKudCRdGpD7JjnGd5tAefFtzeKaGZVtSyGRnskkWc9woQl51nyEN59/8jDFdA=
-X-Google-Smtp-Source: AGHT+IH5ysbPnEAR4gSNi9Y8xJXQNzwoFma6m8b1/S0CcoLGSmBaXXI9IRTtAoynqulT2fdbH///4g==
-X-Received: by 2002:a2e:b170:0:b0:2d2:4cb2:59e4 with SMTP id a16-20020a2eb170000000b002d24cb259e4mr2790327ljm.31.1708877470466;
-        Sun, 25 Feb 2024 08:11:10 -0800 (PST)
+        bh=PzgKojf3trYLunnGeLiGp/WQF9mJK3e1ky7A6J0BwN0=;
+        b=HM1UlPBDYUP53h7LNimcZWRW+GuOLlbMhlME7eqXNX6DubSptKSibnP5l+QHQ21ndd
+         LWLegdXV+8+Wq0lWI3ZpOiqqH+uhOUhn8gyrV2qo6CXZ/6RvlO5vBrGvqNroENvjBW6a
+         8wpvv1ZssMkKJWBDfzVhe1evtqHnk4LorZu53cqA1hGc2T1XCokmS8UHXT9/tuCUTCPD
+         7fMd3Fn4BOMDXSKjK1Q3Q8KSW5L5M5ej3qA7v4awrQt+jzNPGrIstDsGdyi2mzyJk4eF
+         gY/TLQg1iZdp/3f0/9rqfvz9ZJiFXIxJFg0gEU4CMuD3cv/Tf/DNdaXvjFqGNYSLnib5
+         WkaQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW06Y6jyJGwgJb5YCedRw3CofNny7zdeajN3X7ZeDEf2NTOvQi6DFot2uE9rjBq//o3H1F4Zu+BCNWO4qvDwjsK/iwEq1jYA9NQSw==
+X-Gm-Message-State: AOJu0YxnAVI0x5RR8VmRVIcNpyyNDw/6w+Q6M0EHdzCPx6HIkZNlbvv2
+	IW70fB61a/tQQyA97zikk6a805cS382jlwLKj57a5MsMUbc4pdUxAgf6q/ARX8s=
+X-Google-Smtp-Source: AGHT+IEaAI1AU10HJTP05nLv6Cuo24RSPsM278RNSVdPqNxpfxcrIfDk93zPcr82zgNkjNqS+LG+7Q==
+X-Received: by 2002:a05:651c:2211:b0:2d2:8814:e3fb with SMTP id y17-20020a05651c221100b002d28814e3fbmr1056659ljq.49.1708877472590;
+        Sun, 25 Feb 2024 08:11:12 -0800 (PST)
 Received: from [127.0.1.1] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id n21-20020a2e7215000000b002d2697570fcsm579184ljc.93.2024.02.25.08.11.08
+        by smtp.gmail.com with ESMTPSA id n21-20020a2e7215000000b002d2697570fcsm579184ljc.93.2024.02.25.08.11.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Feb 2024 08:11:09 -0800 (PST)
+        Sun, 25 Feb 2024 08:11:12 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Sylwester Nawrocki <s.nawrocki@samsung.com>, 
  Chanwoo Choi <cw00.choi@samsung.com>, 
@@ -78,13 +78,13 @@ Cc: Alim Akhtar <alim.akhtar@samsung.com>,
  linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-kernel@vger.kernel.org
-In-Reply-To: <20240224202053.25313-11-semen.protsenko@linaro.org>
+In-Reply-To: <20240224202053.25313-12-semen.protsenko@linaro.org>
 References: <20240224202053.25313-1-semen.protsenko@linaro.org>
- <20240224202053.25313-11-semen.protsenko@linaro.org>
-Subject: Re: (subset) [PATCH v3 10/15] clk: samsung: Keep register offsets
- in chip specific structure
-Message-Id: <170887746854.215710.5270227845876951742.b4-ty@linaro.org>
-Date: Sun, 25 Feb 2024 17:11:08 +0100
+ <20240224202053.25313-12-semen.protsenko@linaro.org>
+Subject: Re: (subset) [PATCH v3 11/15] clk: samsung: Pass mask to
+ wait_until_mux_stable()
+Message-Id: <170887747056.215710.9176001640764201554.b4-ty@linaro.org>
+Date: Sun, 25 Feb 2024 17:11:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,23 +96,20 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.12.4
 
 
-On Sat, 24 Feb 2024 14:20:48 -0600, Sam Protsenko wrote:
-> Abstract CPU clock registers by keeping their offsets in a dedicated
-> chip specific structure to accommodate for oncoming Exynos850 support,
-> which has different offsets for cluster 0 and cluster 1. This rework
-> also makes it possible to use exynos_set_safe_div() for all chips, so
-> exynos5433_set_safe_div() is removed here to reduce the code
-> duplication. The ".regs" field has to be (void *) as different Exynos
-> chips can have very different register layout, so this way it's possible
-> for ".regs" to point to different structures, each representing its own
-> chip's layout.
+On Sat, 24 Feb 2024 14:20:49 -0600, Sam Protsenko wrote:
+> Make it possible to use wait_until_mux_stable() for MUX registers where
+> the mask is different from MUX_MASK (e.g. in upcoming CPU clock
+> implementation for Exynos850).
+> 
+> No functional change.
+> 
 > 
 > [...]
 
 Applied, thanks!
 
-[10/15] clk: samsung: Keep register offsets in chip specific structure
-        https://git.kernel.org/krzk/linux/c/78bc2312ef9cea4af1073dfab4c71d91b2015b5d
+[11/15] clk: samsung: Pass mask to wait_until_mux_stable()
+        https://git.kernel.org/krzk/linux/c/152cc7478677dee6a11685585fd17efbce6e9db5
 
 Best regards,
 -- 
