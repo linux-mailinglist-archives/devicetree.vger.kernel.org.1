@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-45682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D83AB862B63
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 17:01:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7A44862B76
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 17:10:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 665581F21148
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 16:01:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D389B215E5
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 16:10:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 576311757E;
-	Sun, 25 Feb 2024 16:01:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7ED917756;
+	Sun, 25 Feb 2024 16:09:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tx5t9d9r"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mDfTzpXZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FDE9EEAC
-	for <devicetree@vger.kernel.org>; Sun, 25 Feb 2024 16:01:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76D1717C6D
+	for <devicetree@vger.kernel.org>; Sun, 25 Feb 2024 16:09:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708876889; cv=none; b=ub2tDoDmxar94vC+kqaPntwu8vNf3RXCdqYmJ+4d3al2v9hObHhBtMiLIgVkYO/MQcT6QGEgBQCyhk0aS/hXbmdMTlivzxcMDWGCLL3q9or4zBb0nje0jrj9KTQddvjpcgtqEfQwdWbvPX4vSQ0Tsuqru+UkxTTzaMvI+qxobpY=
+	t=1708877393; cv=none; b=KgHG4mrTCsXye6140Bmik9rDWjafG4lR45fnzD6P+Hd8gS1feyrGi7A1uYAjACh987UvvH2HqXWEs7PNIhVtOG+kQfTkBicbnF0qP+q0X2SsbfUXT3PqBCvloJ9Z/eJ6vc9BTiLy5HD/tIPaKk6ioj2eXkfZaRszI8rqaca4eik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708876889; c=relaxed/simple;
-	bh=tzc3inzMBBnJRCFSdQFsBFDwAmTQGVCalWIpAZqpb4U=;
+	s=arc-20240116; t=1708877393; c=relaxed/simple;
+	bh=U2+VGqrsZndaPaTKvuFN9LF54oo+9v3fZPEIQn7mSUo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DbRWbx2tL2ZFU6ZWJce6fg9vCu7zkHTajGS48WXjiMJmjnj+yzOwatDwgY6as3JWiFkpaXlZ9zaqFjvSnrrIh/BXYKZEbDD05DCA6LWMwUzieQa7HVZqy6tvhHXELAmY0Gmwf+tMhLJpIvBk4Q724nFBmNZjdmXL+DK2FEeTZt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tx5t9d9r; arc=none smtp.client-ip=209.85.208.46
+	 In-Reply-To:Content-Type; b=G8ZO5F4Lm6euc0125EfWXqFCp0+taI/JlcLA5hmj/ajzNe4EvRpyy83DX92cJwA9BAmqk9/oUr1DyFDM2IE11P5ZEdTOw/iGlA8McDxHuigbjra0a52abINTnp3sMk6MpVbjH4uX6DZlMc9eN+0r1E3NPt3iuHdJiveNcB1kFxo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mDfTzpXZ; arc=none smtp.client-ip=209.85.167.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-564647bcdbfso2166145a12.2
-        for <devicetree@vger.kernel.org>; Sun, 25 Feb 2024 08:01:27 -0800 (PST)
+Received: by mail-oi1-f175.google.com with SMTP id 5614622812f47-3bbb4806f67so1720829b6e.3
+        for <devicetree@vger.kernel.org>; Sun, 25 Feb 2024 08:09:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708876886; x=1709481686; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708877389; x=1709482189; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7Lh8/THgwGw55D3SYvQ4tVT4wl9yHcsf48kaa/ReQKE=;
-        b=tx5t9d9rbdhHSDJ22dZfseqTBCMaxf2u6HrgLaVr1Qxe35moWKt/EDvbmvu3mrk+G0
-         RJnnsh5zMV8VytjhAjfvJdvuxNFlNi4mcF4iJUckRGYvOoiS4wXn50qgQIQ4cHKGJqR8
-         i6soDJIwl7x9smznps22M4cHCyRa+nr9HjeN7z/bem/C4dvRXPBTGkB3MI9MLVLrfAdQ
-         1KKkyxhVKwAzrzB0OFMXJ9HTDJ54GhcFmhQglF8gvlhIFedCQybTgyUP9fVX0NOSoGe5
-         V2b54l7UmHsXfUQbj3lEOkun4zcytFdUcaooHJgBh9GfQHatcG5Iwk2oW9VqZrNo5UTm
-         Lsng==
+        bh=VNniMBJSHHTqW45rUrejLdgYVmP6sB411s+Ak3b0ET4=;
+        b=mDfTzpXZUYfm9mTP7kkjqaT5f5oItE8pj874veNVqRo+bDwA6eBRiFdLMGyxFDn89r
+         V+pKEsDzhiLMQj/YWe+cp3/2U1upBwWcy+CflSqiN1qXXTcceXOJeena5ZwEubDv3dqj
+         B1ihZsqyBcgzoiss0tTm/MOoGDIa5rh7TD4jLxvkEYkbg5TWc+UPDMhLAEfJquIUuFFO
+         u0B8VkjlP9xKPz93Jv4UT7QaKXIzmJFlTJ7hoYqbqSnfb05CilCYPTBUdS8nVs4kcFWc
+         RLmMO7ts1zYnCmit0tjO9odUhiMNo+A2M3pu4bxGjrEru52ewisshTR6+iH11DB9PusF
+         Pg6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708876886; x=1709481686;
+        d=1e100.net; s=20230601; t=1708877389; x=1709482189;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7Lh8/THgwGw55D3SYvQ4tVT4wl9yHcsf48kaa/ReQKE=;
-        b=rrTHms9u+ZkFcjq+BkTKDwbrymTClqJgZQZvoWmLAXSVCAzgIIey80sFqlhDu5iO9n
-         HaLkkLBcSE/wJ0A5sYF368Vz4cBAI9EJp7WuM0RIHv+8w6jHZ+wXrAOjH/LN20vIsLfG
-         TQ1gDs0uSkzKrrp4CLhHUnJRbr7r44a+vp9d5Ao/16B+42H6d0gbrRyQJbBwz1cbcKTz
-         nIElrwxm15hzxDhRT9IUhcWma/bZGG5DttsUlNIKVDU0dHLBS4+6cN1dpwIaxphyQxUR
-         yOnjyMjqkjKVMPI/seqinS7LtcrjOiyv1idICf3OjIG9sCjzUZI5/syYhUG3QZmoKduP
-         psxw==
-X-Forwarded-Encrypted: i=1; AJvYcCW/OhxJPsKPYNfe8R8L5ZXD9ZNk2W5hQXUVNtSVwSBmhBUgmaUtb9rwQiq5LsaAC+TDDGS8e5gXtngt4wSS85c0Y0Ok2jp1K5IGug==
-X-Gm-Message-State: AOJu0YzWeIUdn/ue05ZNh1jWjALhqmgLK9eJ7Nu6quSpBhlpw+yD0FQG
-	+cp3OZhmY8hbOZFw4QlA9HQ9MeYrwxUARN9bUUy/HaXOiI7nHzjJGDwss+4jKIc=
-X-Google-Smtp-Source: AGHT+IF+ubTsC8/SfgWb/dm7Gvisz+DHZDC6KCVOARscF3A2ASrzSWnLFyBviuiY0FAyujHvpfnv+w==
-X-Received: by 2002:a05:6402:5201:b0:565:a5f5:84d0 with SMTP id s1-20020a056402520100b00565a5f584d0mr2761007edd.22.1708876886028;
-        Sun, 25 Feb 2024 08:01:26 -0800 (PST)
+        bh=VNniMBJSHHTqW45rUrejLdgYVmP6sB411s+Ak3b0ET4=;
+        b=YtJgOeynQn7avScJuaPN4V+viW1KvbOoRd00KtdN25dfOxtNHo2AxZiQykzfJ1Ul1A
+         myi295sddqIwiixhG8k5RCo0V2RjddjufH3RF8z+5b1tzqitkDGSgFr6ubH3XK/ozFEF
+         j5J/hFNYDq6X13C7KM2p40XxwMpN6lDtnSpbJIVm4ylJCzmR/7S0CcUhmScgdregOGnV
+         r6jQe6nhdgqO9nE1Ib+jdLy5J0+drIXolkCdiglv1khwzbw25ZgSQEYbAKK5+lib3Sqx
+         st8xbq68ehcnRtYFjhB8oJYuNA3shf/iREMSnhKMfB9VEGDrmyM3syFciHKEQMRKe3rf
+         FyQA==
+X-Forwarded-Encrypted: i=1; AJvYcCWKu01eCANz67ebitEKAiULb5Jr16XnyoTmlrNWFv5sAP9P7pdq8cnyg4F3Pd94FTTQobSEwRH9DCvapC5Ie4ikRQaSGBQMX5Q3aA==
+X-Gm-Message-State: AOJu0YwCjoa6px5W9au/LReeJ/vWVyyhixegI4y+ALB0g1LSQEvw3KAg
+	F7i0N9bqQHpyySgk1U9NBdFg7+yP7Fvad5ZGVGeQe5tfzftLVJDxAAZ5HRbIazQ=
+X-Google-Smtp-Source: AGHT+IEL7pBi/R21XdtjAI/ovskBwkyc+QGRVLeiORtTlYr2h8bZQHdRpl6WvFMznUszUCztJYD4fQ==
+X-Received: by 2002:a05:6870:95a8:b0:21e:fbf6:8aaf with SMTP id k40-20020a05687095a800b0021efbf68aafmr5860764oao.53.1708877389506;
+        Sun, 25 Feb 2024 08:09:49 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id a8-20020a50ff08000000b0056524c91e18sm1531847edu.2.2024.02.25.08.01.24
+        by smtp.gmail.com with ESMTPSA id r17-20020a056830121100b006e45a5f0a70sm764617otp.49.2024.02.25.08.09.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 25 Feb 2024 08:01:25 -0800 (PST)
-Message-ID: <f6d99b65-7679-4a14-bb4c-ab62aa45dd6f@linaro.org>
-Date: Sun, 25 Feb 2024 17:01:23 +0100
+        Sun, 25 Feb 2024 08:09:49 -0800 (PST)
+Message-ID: <eb968e2b-495b-44dd-aad9-3cd5eac72bdf@linaro.org>
+Date: Sun, 25 Feb 2024 17:09:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,8 +76,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 10/15] clk: samsung: Keep register offsets in chip
- specific structure
+Subject: Re: [PATCH v3 13/15] clk: samsung: Implement manual PLL control for
+ ARM64 SoCs
 Content-Language: en-US
 To: Sam Protsenko <semen.protsenko@linaro.org>,
  Sylwester Nawrocki <s.nawrocki@samsung.com>,
@@ -90,7 +90,7 @@ Cc: Alim Akhtar <alim.akhtar@samsung.com>,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org
 References: <20240224202053.25313-1-semen.protsenko@linaro.org>
- <20240224202053.25313-11-semen.protsenko@linaro.org>
+ <20240224202053.25313-14-semen.protsenko@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -136,30 +136,82 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240224202053.25313-11-semen.protsenko@linaro.org>
+In-Reply-To: <20240224202053.25313-14-semen.protsenko@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 24/02/2024 21:20, Sam Protsenko wrote:
-> Abstract CPU clock registers by keeping their offsets in a dedicated
-> chip specific structure to accommodate for oncoming Exynos850 support,
-> which has different offsets for cluster 0 and cluster 1. This rework
-> also makes it possible to use exynos_set_safe_div() for all chips, so
-> exynos5433_set_safe_div() is removed here to reduce the code
-> duplication. The ".regs" field has to be (void *) as different Exynos
-> chips can have very different register layout, so this way it's possible
-> for ".regs" to point to different structures, each representing its own
-> chip's layout.
+> Some ARM64 Exynos chips are capable to control PLL clocks automatically.
+> For those chips, whether the PLL is controlled automatically or manually
+> is chosen in PLL_CON1 register with next bits:
 > 
-> No functional change.
+>     [28]  ENABLE_AUTOMATIC_CLKGATING
+>     [1]   MANUAL_PLL_CTRL
+>     [0]   AUTO_PLL_CTRL
+> 
+> The bl2 bootloader sets 0x10000001 value for some PLL_CON1 registers,
+> which means any attempt to control those PLLs manually (e.g.
+> disabling/enabling those PLLs or changing MUX parent clocks) would lead
+> to PLL lock timeout with error message like this:
+> 
+>     Could not lock PLL ...
+> 
+> At the moment, all Samsung clock drivers implement manual clock control.
+> So in order to make it possible to control PLLs, corresponding PLL_CON1
+> registers should be set to 0x2 first.
+> 
+> Some older ARM64 chips don't implement the automatic clock control
+> though. It also might be desirable to configure some PLLs for manual
+> control, while keeping the default configuration for the rest. So it'd
+> convenient to choose this PLL mode for each CMU separately. Introduce
+> .manual_plls field to CMU structure to choose the PLL control mode.
+> Because it'll be initialized with "false" in all existing CMU
+> structures by default, it won't affect any existing clock drivers,
+> allowing for this feature to be enabled gradually when it's needed with
+> no change for the rest of users. In case .manual_plls is set, set
+> PLL_CON1 registers to manual control, akin to what's already done for
+> gate clocks in exynos_arm64_init_clocks(). Of course, PLL_CON1 registers
+> should be added to corresponding struct samsung_cmu_info::clk_regs array
+> to make sure they get initialized.
+> 
+> No functional change. This patch adds a feature, but doesn't enable it
+> for any users.
 > 
 > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 > ---
+> Changes in v3:
+>   - none
+> 
+> Changes in v2:
+>   - none
+> 
+>  drivers/clk/samsung/clk-exynos-arm64.c | 44 +++++++++++++++++---------
+>  drivers/clk/samsung/clk.h              |  4 +++
+>  2 files changed, 33 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/clk/samsung/clk-exynos-arm64.c b/drivers/clk/samsung/clk-exynos-arm64.c
+> index 6fb7194df7ab..55490209b9a9 100644
+> --- a/drivers/clk/samsung/clk-exynos-arm64.c
+> +++ b/drivers/clk/samsung/clk-exynos-arm64.c
+> @@ -25,6 +25,19 @@
+>  #define GATE_OFF_START		0x2000
+>  #define GATE_OFF_END		0x2fff
+>  
+> +/* PLL CON register offsets range */
+> +#define PLL_CON_START		0x100
+> +#define PLL_CON_END		0x600
+> +
+> +/* PLL register bits */
+> +#define PLL_CON1_MANUAL		BIT(1)
+> +
+> +/* Helper macros to check for particular clock regiter by its offset */
+> +#define IS_GATE_REG(o)		((o) >= GATE_OFF_START && (o) <= GATE_OFF_END)
+> +#define IS_PLL_CONx_REG(o)	((o) >= PLL_CON_START && (o) <= PLL_CON_END)
+> +#define IS_PLL_CON1_REG(o)	\
+> +	(IS_PLL_CONx_REG(o) && ((o) & 0xf) == 0x4 && !((o) & 0x10))
 
-Missing checkpatch --strict:
-ERROR: "foo * const	bar" should be "foo * const bar"
-
-Corrected and applied.
+These should be static functions, because it leads to trickier code. See
+also checkpatch warning.
 
 Best regards,
 Krzysztof
