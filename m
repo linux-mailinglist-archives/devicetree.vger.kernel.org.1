@@ -1,57 +1,54 @@
-Return-Path: <devicetree+bounces-45662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08854862A63
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 14:02:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD460862A66
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 14:04:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E7621B20EF5
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 13:02:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65AD9281B24
+	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 13:04:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8E9210A3C;
-	Sun, 25 Feb 2024 13:02:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2CE311190;
+	Sun, 25 Feb 2024 13:04:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="f569tZBG"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="MUb9elrz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-177131.yeah.net (mail-177131.yeah.net [123.58.177.131])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8505079D3;
-	Sun, 25 Feb 2024 13:02:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.131
+Received: from mail-177132.yeah.net (mail-177132.yeah.net [123.58.177.132])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1454DDDA;
+	Sun, 25 Feb 2024 13:04:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708866149; cv=none; b=fDh2c0MspCm/7r3a4AJJGKg1MsgLJd1YZlUawqz+7zL2AH6eo823qHYc9EeP20TLbNC3O2GrivdBKagtAF2Kj0LSBSLm64ee7Ymoq+/yWj786Vb0sqzBCK+FNCprNY9xLSwAsFEkSZMhEniG6puIuwonsQJRWd3sosg32bj4+9s=
+	t=1708866289; cv=none; b=p/OLEYtvlzndTSrSyy0oc96OPX+2dHq9F7hodw2Nba4lfcDx2ukDmXiJ4sMFK6DYSyDjDOXwVvE7u4QSqhO2Tn9eakCozPy1Laven8H/TECV9XaknaBXHr48f3xFgr9Utba17VfzAwHlcx8H/VQrF3Exl77y7dv2twTaTcQiqOs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708866149; c=relaxed/simple;
-	bh=LfaFd7xa4O/kyRU2JhoKAQWv0B28M4wAVsMs8U7J3gM=;
+	s=arc-20240116; t=1708866289; c=relaxed/simple;
+	bh=ln45ZHPv8+YkWi3VQQc0vg+57IBMoHqUd07YiLVFH48=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AkSbotoCFMbVjw4KAxb2CX84Nyx5BbYZWz9xreMEBe9mWEm5InB+N0JxUCEoO1aQe8GIsf5j3mCItAOqUuCeLucxherPfn4/4fKj7lhm19gIsVAC1ydaATBUldREXde1+NmELVD1ryf4vH6sj/K3AjdEEGt3/iIrvagZgMDbntM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=f569tZBG; arc=none smtp.client-ip=123.58.177.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=D/C1mXpkEBPfSwPc46srQNq1A0/y6dUL3SSP6ZETudPnkjRhA5Wc7Oi1HviV2ByLUkHqgPc4aA4HmYbn8Rj9Nz/X2N/WybS9XOkRFoxjWiZW3+5GKO+BJShnENu99mErNwHdJd4PDWj9PgNrVPgC5kK1JZKjsXoMcN3vqB9ZLWo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=MUb9elrz; arc=none smtp.client-ip=123.58.177.132
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=yi04CtgfSgT99pyoULTKBD0Hf7AH2US1TZogXp+f7yI=;
-	b=f569tZBGNh8n6yVkI8Z2LRG4TnAJkrDYps2PUphpv41EfCn/aJSR/iDmpNtBXm
-	zSBFkjLoeK6grwuavDhHjmB6I0LMI9/eKeiCzdgBkU/BENzsek9LygPDRAe+0awD
-	9H4fbHu+wOCjb5BgXJ9i7HM718e9wcvkM7jyaHzgYGpr8=
+	Content-Type; bh=jOX14Uu7tHrKUE0P91Wze9hvWOxj3jqvdUZ1ym6LhD4=;
+	b=MUb9elrzC2VUkwtnyy5ExQcS4xhA9QB2WC0pzvi42XuDbEtYqKRVJPCczzFds1
+	FLfk6fv1QnuibCFXRxrSBXSEAejI6qF1FFFVbqHWRLvvts5YRFJksrf8Bi5hXB0H
+	0qEEIW3IqzVOjB8rP7red7EJjsaCdv5u3Oq1OKQU4lt2M=
 Received: from dragon (unknown [183.213.196.200])
-	by smtp1 (Coremail) with SMTP id ClUQrABHQ+QsOttl6D9XBA--.12411S3;
-	Sun, 25 Feb 2024 21:01:33 +0800 (CST)
-Date: Sun, 25 Feb 2024 21:01:32 +0800
+	by smtp2 (Coremail) with SMTP id C1UQrADnjy+vOttlOjhWBA--.41198S3;
+	Sun, 25 Feb 2024 21:03:44 +0800 (CST)
+Date: Sun, 25 Feb 2024 21:03:43 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"moderated list:ARM/FREESCALE LAYERSCAPE ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] ARM: dts: ls1021a: Enable usb3-lpm-capable for usb3
- node
-Message-ID: <Zds6LCtHJ2nEzIkP@dragon>
-References: <20240221221510.3762096-1-Frank.Li@nxp.com>
+To: Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, shengjiu.wang@gmail.com
+Subject: Re: [PATCH] arm64: dts: imx8mm-evk: Add spdif sound card support
+Message-ID: <Zds6rztD3msV/gId@dragon>
+References: <1708582633-6969-1-git-send-email-shengjiu.wang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,20 +57,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240221221510.3762096-1-Frank.Li@nxp.com>
-X-CM-TRANSID:ClUQrABHQ+QsOttl6D9XBA--.12411S3
+In-Reply-To: <1708582633-6969-1-git-send-email-shengjiu.wang@nxp.com>
+X-CM-TRANSID:C1UQrADnjy+vOttlOjhWBA--.41198S3
 X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUIq2MUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiGA+PZV6NnjVmdQAAsW
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU3jjgUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiDhCPZVszYWKNtAAAsm
 
-On Wed, Feb 21, 2024 at 05:15:09PM -0500, Frank Li wrote:
-> From: Li Yang <leoyang.li@nxp.com>
+On Thu, Feb 22, 2024 at 02:17:13PM +0800, Shengjiu Wang wrote:
+> Add spdif sound card support, configure the pinmux.
 > 
-> Enable USB3 HW LPM feature.
+> This sound card supports recording and playing sound
+> through spdif interface.
 > 
-> Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
-> Signed-off-by: Li Yang <leoyang.li@nxp.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
 
 Applied, thanks!
 
