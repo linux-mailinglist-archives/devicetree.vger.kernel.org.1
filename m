@@ -1,231 +1,132 @@
-Return-Path: <devicetree+bounces-45950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D623867698
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 14:32:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 629A48676A9
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 14:34:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AEF031F25958
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 13:32:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1DF1A288B8F
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 13:34:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EE6612881A;
-	Mon, 26 Feb 2024 13:32:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8413712881C;
+	Mon, 26 Feb 2024 13:34:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mlXB3JID"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8565C128363;
-	Mon, 26 Feb 2024 13:32:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 302147FBAA;
+	Mon, 26 Feb 2024 13:34:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708954324; cv=none; b=NfQTxPMaoAyczIJEv7ogs/vMiZgKnVXH6q2H/HKvOmcfp3BDCMTRHXjeQQ5jVisl9TI4vpMlm6WlwB4vF23yCwwYQWmDq8nSnqB87z8l+mJp5U6lRvYgD/Ynxy4+nz9zZ/sHG8P1KPk220bEMMo9Yp8YM6ROgCmbJE03PUEQQiE=
+	t=1708954477; cv=none; b=hU6JfemUpjotRXhVwPBjDs83JnXPFtEzkiLgUPELGCpS9BL1NlXJVmRMGPOVosUdtiBRjtLf2p09w8EQQ8YE0CMYZP43XQp0VoeGzoqI/F2H5CJrDN/t7bfEkWv7M5h2umuf5zRDBbakDMlpLBPvJbBpXgHEBtyG+lPt1CSzV0E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708954324; c=relaxed/simple;
-	bh=QhNVe/9EhMm8bsHqC7+dEDFK180IjFO1c9ZsUt6BgLM=;
+	s=arc-20240116; t=1708954477; c=relaxed/simple;
+	bh=/x/cq3y9mTCgiZ8o1taGp5qapBsu0Js+9yDBIjMHSCM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b12Tj7yfzzc7QDt1FOKt+FyWz7Kd80Hpvijh4bLoJlWrCYbPW3IPX7n6W8lXeZhF8YvLQSyJOljRcsQyUlOY3u48bx7ZYutcTNyT+mckwYV+c0XuGyyksPjVp0UEzwnXcvJqKktiObV0LwzJ1qh/g2XhWdVSIFMxkglNjdAxB8M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 80E17DA7;
-	Mon, 26 Feb 2024 05:32:40 -0800 (PST)
-Received: from pluto (unknown [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 195D03F762;
-	Mon, 26 Feb 2024 05:31:59 -0800 (PST)
-Date: Mon, 26 Feb 2024 13:31:58 +0000
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=AtV5pgDqIhaTTwuW5Bb+BqNZyLW0C90VzrM3FuoTdXSQGU0aZocMdmZ5As3mdhObVtkUOTiCRonRURpfju9RAGGB3pKtN3IcRBca8q5WUdXkfsB1Ifm5z0xNdbpRKrLq9/BFqCceGoU9WXPLZnCIn1ULjU24trs/4ZCqqxapcTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mlXB3JID; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2ADBC433F1;
+	Mon, 26 Feb 2024 13:34:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708954477;
+	bh=/x/cq3y9mTCgiZ8o1taGp5qapBsu0Js+9yDBIjMHSCM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=mlXB3JIDgx/sTAcksbq0alUlQoDqCg6Xa3YRQvX+pgHlAoRwWxZK+VdSrlRj2tFh2
+	 WgOrqwDvcC936qN+jwQVKZ/yBQozALrLax6Y8j04m5tXRnyj+JkydmSGoAHzI7WgUI
+	 KqHTDMC3IriE7ZmWZAWypMlkbGGGXGTUl75UxvB8UQxmPLTH1VniZKEwN8uwFciqms
+	 hwp8jKhmWx+NwD6hVHBlXwL+99E5v8sceenvE+1GFPEtOhMZEULqLhe1Vhh6Xoh1H7
+	 LbARsrm2bNZ7stG6i92/78t2no6FlD6iljD6IA0lgyMjwaXW3x4+YOsejbn+51ZFV8
+	 QZQeWeabe5phA==
+Date: Mon, 26 Feb 2024 13:34:23 +0000
+From: Mark Brown <broonie@kernel.org>
+To: nikita.shubin@maquefel.me
+Cc: Hartley Sweeten <hsweeten@visionengravers.com>,
+	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Lukasz Majewski <lukma@denx.de>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Andy Shevchenko <andy@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH 5/5] firmware: imx: add i.MX95 MISC driver
-Message-ID: <ZdySzr2JzohJgppR@pluto>
-References: <20240202-imx95-bbm-misc-v1-0-3cb743020933@nxp.com>
- <20240202-imx95-bbm-misc-v1-5-3cb743020933@nxp.com>
- <ZdjlaiQQq67e52Q3@pluto>
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Sergey Shtylyov <s.shtylyov@omp.ru>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Ralf Baechle <ralf@linux-mips.org>,
+	"Wu, Aaron" <Aaron.Wu@analog.com>, Lee Jones <lee@kernel.org>,
+	Olof Johansson <olof@lixom.net>, Niklas Cassel <cassel@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	dmaengine@vger.kernel.org, linux-watchdog@vger.kernel.org,
+	linux-pwm@vger.kernel.org, linux-spi@vger.kernel.org,
+	netdev@vger.kernel.org, linux-mtd@lists.infradead.org,
+	linux-ide@vger.kernel.org, linux-input@vger.kernel.org,
+	linux-sound@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>
+Subject: Re: [PATCH v8 00/38] ep93xx device tree conversion
+Message-ID: <168fd3d7-d1e9-467e-bdd0-36c12aa81b68@sirena.org.uk>
+References: <20240226-ep93xx-v8-0-3136dca7238f@maquefel.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="bOKaKvSbzTVE2lWB"
+Content-Disposition: inline
+In-Reply-To: <20240226-ep93xx-v8-0-3136dca7238f@maquefel.me>
+X-Cookie: Walk softly and carry a BFG-9000.
+
+
+--bOKaKvSbzTVE2lWB
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZdjlaiQQq67e52Q3@pluto>
 
-On Fri, Feb 23, 2024 at 06:35:26PM +0000, Cristian Marussi wrote:
-> On Fri, Feb 02, 2024 at 02:34:43PM +0800, Peng Fan (OSS) wrote:
-> > From: Peng Fan <peng.fan@nxp.com>
-> > 
-> > The i.MX95 System manager exports SCMI MISC protocol for linux to do
-> > various settings, such as set board gpio expander as wakeup source.
-> > 
-> 
-> Hi,
-> 
-> > The driver is to add the support.
-> > 
-> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > ---
-> >  drivers/firmware/imx/Makefile   |  1 +
-> >  drivers/firmware/imx/sm-misc.c  | 92 +++++++++++++++++++++++++++++++++++++++++
-> >  include/linux/firmware/imx/sm.h | 33 +++++++++++++++
-> >  3 files changed, 126 insertions(+)
-> > 
-> > diff --git a/drivers/firmware/imx/Makefile b/drivers/firmware/imx/Makefile
-> > index fb20e22074e1..cb9c361d9b81 100644
-> > --- a/drivers/firmware/imx/Makefile
-> > +++ b/drivers/firmware/imx/Makefile
-> > @@ -2,3 +2,4 @@
-> >  obj-$(CONFIG_IMX_DSP)		+= imx-dsp.o
-> >  obj-$(CONFIG_IMX_SCU)		+= imx-scu.o misc.o imx-scu-irq.o rm.o imx-scu-soc.o
-> >  obj-${CONFIG_IMX_SCMI_BBM_EXT}	+= sm-bbm.o
-> > +obj-${CONFIG_IMX_SCMI_MISC_EXT}	+= sm-misc.o
-> 
-> Same considerations about missing Kconfig as in BBM and implicit
-> dependency on the NXP MISC vendor module...this way also you cannot even
-> NOT compile this module when the Vendor protocol is compiled in for,
-> say, testing purposes...
-> 
-> > diff --git a/drivers/firmware/imx/sm-misc.c b/drivers/firmware/imx/sm-misc.c
-> > new file mode 100644
-> > index 000000000000..4410e69d256b
-> > --- /dev/null
-> > +++ b/drivers/firmware/imx/sm-misc.c
-> > @@ -0,0 +1,92 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
-> > +/*
-> > + * Copyright 2024 NXP.
-> > + */
-> > +
-> > +#include <linux/firmware/imx/sm.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/scmi_protocol.h>
-> > +#include <linux/scmi_nxp_protocol.h>
-> > +
-> > +static const struct scmi_imx_misc_proto_ops *imx_misc_ctrl_ops;
-> > +static struct scmi_protocol_handle *ph;
-> 
-> This global does NOT sound right...if there are multiple SCMI instances
-> defined in the DT this can be probed multiple times, and the MISC
-> protocol will be initialized multuple times, each instance will have
-> its distinct protocol_handle *ph...so store it somewhere like you did in
-> the BBM driver
-> 
-> > +struct notifier_block scmi_imx_misc_ctrl_nb;
-> > +
-> > +int scmi_imx_misc_ctrl_set(u32 id, u32 val)
-> > +{
-> > +	if (!ph)
-> > +		return -EPROBE_DEFER;
-> > +
-> > +	return imx_misc_ctrl_ops->misc_ctrl_set(ph, id, 1, &val);
-> > +};
-> > +EXPORT_SYMBOL(scmi_imx_misc_ctrl_set);
-> > +
-> > +int scmi_imx_misc_ctrl_get(u32 id, u32 *num, u32 *val)
-> > +{
-> > +	if (!ph)
-> > +		return -EPROBE_DEFER;
-> > +
-> > +	return imx_misc_ctrl_ops->misc_ctrl_get(ph, id, num, val);
-> > +}
-> > +EXPORT_SYMBOL(scmi_imx_misc_ctrl_get);
-> > +
-> 
-> Ok, now I suppose that you want to be sure to run just one instance if
-> this driver...
-> 
-> > +static int scmi_imx_misc_ctrl_notifier(struct notifier_block *nb,
-> > +				       unsigned long event, void *data)
-> > +{
-> > +	return 0;
-> > +}
-> 
-> What is the point of this ?
-> 
-> > +
-> > +static int scmi_imx_misc_ctrl_probe(struct scmi_device *sdev)
-> > +{
-> > +	const struct scmi_handle *handle = sdev->handle;
-> > +	struct device_node *np = sdev->dev.of_node;
-> > +	u32 src_id, evt_id, wu_num;
-> > +	int ret, i;
-> > +
-> > +	if (!handle)
-> > +		return -ENODEV;
-> > +
-> > +	imx_misc_ctrl_ops = handle->devm_protocol_get(sdev, SCMI_PROTOCOL_IMX_MISC, &ph);
-> > +	if (IS_ERR(imx_misc_ctrl_ops))
-> > +		return PTR_ERR(imx_misc_ctrl_ops);
-> > +
-> > +	scmi_imx_misc_ctrl_nb.notifier_call = &scmi_imx_misc_ctrl_notifier;
-> > +	wu_num = of_property_count_u32_elems(np, "wakeup-sources");
-> > +	if (wu_num % 2) {
-> > +		dev_err(&sdev->dev, "Invalid wakeup-sources\n");
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	for (i = 0; i < wu_num; i += 2) {
-> > +		WARN_ON(of_property_read_u32_index(np, "wakeup-sources", i, &src_id));
-> > +		WARN_ON(of_property_read_u32_index(np, "wakeup-sources", i + 1, &evt_id));
-> > +		ret = handle->notify_ops->devm_event_notifier_register(sdev, SCMI_PROTOCOL_IMX_MISC,
-> > +								       evt_id,
-> > +								       &src_id,
-> > +								       &scmi_imx_misc_ctrl_nb);
-> 
-> ...when probed more than once this will lead to the same global nb registered on 2
-> different notification chains....
-> 
-> > +		if (ret)
-> > +			dev_err(&sdev->dev, "Failed to register scmi misc event: %d\n", src_id);
-> > +	}
-> > +
-> > +	return 0;
-> > +
-> > +}
-> > +
-> > +static const struct scmi_device_id scmi_id_table[] = {
-> > +	{ SCMI_PROTOCOL_IMX_MISC, "imx-misc-ctrl" },
-> > +	{ },
-> > +};
-> > +MODULE_DEVICE_TABLE(scmi, scmi_id_table);
-> > +
-> > +static struct scmi_driver scmi_imx_misc_ctrl_driver = {
-> > +	.name = "scmi-imx-misc-ctrl",
-> > +	.probe = scmi_imx_misc_ctrl_probe,
-> > +	.id_table = scmi_id_table,
-> > +};
-> > +module_scmi_driver(scmi_imx_misc_ctrl_driver);
-> > +
-> 
-> All in all, I suppose the main thing to reason about this driver is if you
-> want/plan to allow for multiple instances of it to be loaded/probed on the same
-> running system or not...
-> 
-> If you think that this driver HAS STRICTLY to be probed once, and having
-> 2 DT protocol nodes for MISC it is certainly an error, we will have to
-> add some mechianism in the SCMI core to be able to mark this as single
-> instance and refuse to create more than one device for this protocol...a
-> sort of generalization of what is done in a custom way by the core for
-> SYSTEM_POWER, since we dont want to have multiple sources of shutdown
-> events...
+On Mon, Feb 26, 2024 at 10:29:56AM +0300, Nikita Shubin via B4 Relay wrote:
 
-An easier solution would be of course for this driver to just check if
-any global ph was already retrieved on a previous probe and just bail
-out, but I want to have a chat with Sudeep about this approach.
+> The goal is to receive ACKs for all patches in series to merge it via Arnd branch.
 
-Thanks,
-Cristian
+What are the actual dependencies here?
+
+--bOKaKvSbzTVE2lWB
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXck18ACgkQJNaLcl1U
+h9CsAAf+OGvM07gxhxeVoFEY2namqi3/k8QFeVfcgOHP2bvSRWzLj+Za5HJ77pCz
+5NPf/dOYtbqSn6Tg6tGG7nkioQECfPyoUc75jpIZHzFp2uPzk5Zx62L2WVoDnbBX
+6hzWj6VDqDZtgCB5xzXzHhEDL/OpxrUTqA3S+jeaPIeLLf5xnRDl1M4sESkZQseD
+DMzGQouGu00Z+BSB/iAt4O2uN1DAyS/jipqNGmJzmCGD8wt9LbHfpDdzzQ+q6+iw
+JDA6z8gDwF3jF1NH6SuoCvsVgNsRQyqLoMP/4ziVTz/XxQa2S91NnuSVz3Vk3y/k
+gLUn1koeWlce3T54eUcZau09HwlwFg==
+=w2Qd
+-----END PGP SIGNATURE-----
+
+--bOKaKvSbzTVE2lWB--
 
