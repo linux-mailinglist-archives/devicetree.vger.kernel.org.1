@@ -1,171 +1,156 @@
-Return-Path: <devicetree+bounces-45990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AC1E867996
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 16:10:43 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18E7E867A0F
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 16:22:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D8041C28785
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 15:10:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 77A76B33BA1
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 15:11:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8131C134747;
-	Mon, 26 Feb 2024 14:54:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="m594B+Po"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83F2E12DD89;
+	Mon, 26 Feb 2024 14:55:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5F57605CB;
-	Mon, 26 Feb 2024 14:54:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB7F27FBAA;
+	Mon, 26 Feb 2024 14:55:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708959269; cv=none; b=E5Bc+DPhk3MuPL+RJ6Kj5dbMVrDjPI03iLwWKegqLiR+dtGg4I54b5xny2MRmg1EMx7zIx7Cl8OzPokaCZvTEaJAfCkO75vl101SC4AyqS5Kce74FstussWoOGT1EkMtFLw1e+IrYHDeRBn8U1NkemaTy9wnnl3JvQAw3rVURyE=
+	t=1708959307; cv=none; b=sbEQ+fc4adkbPGXCqCGQ51JEYs2N5T8mTRPaPi1dxUudGxDEAdJihn7aUQElz8YCBxYiKMMgjsp/wMvoi6JBqpnTzkqw6X2a3wBJLdF9o7ketUUo54MUz9TayGfEXolytVOH71031I4m0WdN60+dUQsjgEFK6WHEjdaP8cayOMw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708959269; c=relaxed/simple;
-	bh=lgkB/ejSf4q1D6g3ACK0ytRcy3yE2UMi3BpNvE8ZFzk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Pq0gQOsGp5mOvMrlpJwtWDF94MBEVw/+XAaD2NEiaY19IhmMykgs83+ZxujRvOqPRK8c3ij5fWPx/2kiVRMokRqaZyHomPi3cY6ImAfmJFyPtyBLjx9EmrbN9RyXKdqReHtyGGJF1JCUISptOMQE+ERdmzkTGKptVPxGgEVzCxc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=m594B+Po; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1708959265;
-	bh=lgkB/ejSf4q1D6g3ACK0ytRcy3yE2UMi3BpNvE8ZFzk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=m594B+PoBP+t/5toUSZNM5KZJCDjrVdr+i4xaIPhIC93UAUl+hEy49GX2kAhZBeI3
-	 yeXyrtxtIhPWQ9s2v6rnMq6uhEZ6RkAR9yxHZzyn4trQpaXrr4V3ZBVsOsCnXfosLX
-	 4OBPRYmqs6J1Tqhvm64WWBucM7qa8PrG6VClj08RbRBYwxcFdsL5nmjArVkxZ4adW/
-	 2SUHJdcCRQEd1sMsLbQhMWd50lGDlBy++4T/8r1gvSNUGIBPNW5BkHdiVtXSyXgEyo
-	 4MsKCg+YTSypS4I7Bsu/LV17QcvRRiBJGklejkP3xmfmVx2QEOjxmrvO9DEjH5OHf5
-	 OTtb2XXhg0aUg==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 17CAB37820CF;
-	Mon, 26 Feb 2024 14:54:24 +0000 (UTC)
-Message-ID: <53671deb-9c11-43c1-8deb-93fe4708651a@collabora.com>
-Date: Mon, 26 Feb 2024 15:54:23 +0100
+	s=arc-20240116; t=1708959307; c=relaxed/simple;
+	bh=I0TdaHq2K6g+L+L8Q/Fh7u2BvRCJVW8ZB71K1N+w5bM=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=a0K5dGxV1CeoGbhqsAoQGh2K4q5c7DTTHkymJVE7Op4vLVj74HALqtxSXJZK0c4KSkANjVwBI3SpizuM1GPwEtKu8AbVnUrlt52qiN5kzE5y4xhEmgtAcInMw9MtaDznuSJXxsVD92I+kSeHoa2Zehl7OX/75zbiNoY3YXsxNPA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.231])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Tk3Sz0Kg7z6K6hb;
+	Mon, 26 Feb 2024 22:50:43 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
+	by mail.maildlp.com (Postfix) with ESMTPS id D3BF0140D30;
+	Mon, 26 Feb 2024 22:55:01 +0800 (CST)
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.35; Mon, 26 Feb
+ 2024 14:55:01 +0000
+Date: Mon, 26 Feb 2024 14:55:00 +0000
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Jonathan Cameron <jic23@kernel.org>
+CC: Dumitru Ceclan <mitrutzceclan@gmail.com>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, <linus.walleij@linaro.org>,
+	<brgl@bgdev.pl>, <andy@kernel.org>, <linux-gpio@vger.kernel.org>, "Lars-Peter
+ Clausen" <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Michael Walle <michael@walle.cc>, Andy Shevchenko
+	<andy.shevchenko@gmail.com>, Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu
+	<chiaen_wu@richtek.com>, Niklas Schnelle <schnelle@linux.ibm.com>, Leonard
+ =?ISO-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>, Mike Looijmans
+	<mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>, Hugo Villeneuve
+	<hvilleneuve@dimonoff.com>, David Lechner <dlechner@baylibre.com>, "Ceclan
+ Dumitru" <dumitru.ceclan@analog.com>, <linux-iio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Conor Dooley
+	<conor.dooley@microchip.com>
+Subject: Re: [PATCH v15 1/3] dt-bindings: adc: add AD7173
+Message-ID: <20240226145500.00007783@Huawei.com>
+In-Reply-To: <20240224173055.2b2e067c@jic23-huawei>
+References: <20240223133758.9787-1-mitrutzceclan@gmail.com>
+	<20240224173055.2b2e067c@jic23-huawei>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/18] Add audio support for the MediaTek Genio 350-evk
- board
-Content-Language: en-US
-To: Alexandre Mergnat <amergnat@baylibre.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Lee Jones <lee@kernel.org>,
- Flora Fu <flora.fu@mediatek.com>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
- Nicolas Belin <nbelin@baylibre.com>, Fabien Parent <fparent@baylibre.com>
-References: <20240226-audio-i350-v1-0-4fa1cea1667f@baylibre.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20240226-audio-i350-v1-0-4fa1cea1667f@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="US-ASCII"
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml100004.china.huawei.com (7.191.162.219) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
 
-Il 26/02/24 15:01, Alexandre Mergnat ha scritto:
-> This serie aim to add the following audio support for the Genio 350-evk:
-> - Playback
->    - 2ch Headset Jack (Earphone)
->    - 1ch Line-out Jack (Speaker)
->    - 8ch HDMI Tx
-> - Capture
->    - 1ch DMIC (On-board Digital Microphone)
->    - 1ch AMIC (On-board Analogic Microphone)
->    - 1ch Headset Jack (External Analogic Microphone)
-> 
-> Of course, HDMI playback need the MT8365 display patches [1] and a DTS
-> change documented in "mediatek,mt8365-mt6357.yaml".
-> 
-> [1]: https://lore.kernel.org/all/20231023-display-support-v1-0-5c860ed5c33b@baylibre.com/
-> 
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+On Sat, 24 Feb 2024 17:30:55 +0000
+Jonathan Cameron <jic23@kernel.org> wrote:
 
-Actually, I am cooking a series (I'm finishing the testing....) that brings quite
-a bit of cleanups in MTK ASoC, including the commonization of the machine driver
-probe, with the dai-link DT nodes, and which also modernizes most of the existing
-drivers to use that instead.
-
-If you wait for a day or two, your mt8365-mt6357.c driver's probe function can be
-shrunk to ~3 lines or something like that.. very easily :-)
-
-Cheers,
-Angelo
-
-> ---
-> Alexandre Mergnat (15):
->        ASoC: dt-bindings: mediatek,mt8365-afe: Add audio afe document
->        ASoC: dt-bindings: mediatek,mt8365-mt6357: Add audio sound card document
->        dt-bindings: mfd: mediatek: Add codec property for MT6357 PMIC
->        ASoC: mediatek: mt8365: Add common header
->        SoC: mediatek: mt8365: support audio clock control
->        ASoC: mediatek: mt8365: Add I2S DAI support
->        ASoC: mediatek: mt8365: Add ADDA DAI support
->        ASoC: mediatek: mt8365: Add DMIC DAI support
->        ASoC: mediatek: mt8365: Add PCM DAI support
->        ASoC: mediatek: mt8365: Add platform driver
->        ASoC: mediatek: Add MT8365 support
->        arm64: defconfig: enable mt8365 sound
->        arm64: dts: mediatek: add mt6357 audio codec support
->        arm64: dts: mediatek: add afe support for mt8365 SoC
->        arm64: dts: mediatek: add audio support for mt8365-evk
+> On Fri, 23 Feb 2024 15:37:28 +0200
+> Dumitru Ceclan <mitrutzceclan@gmail.com> wrote:
 > 
-> Fabien Parent (1):
->        mfd: mt6397-core: register mt6357 sound codec
+> > The AD7173 family offer a complete integrated Sigma-Delta ADC solution
+> > which can be used in high precision, low noise single channel applications
+> > or higher speed multiplexed applications. The Sigma-Delta ADC is intended
+> > primarily for measurement of signals close to DC but also delivers
+> > outstanding performance with input bandwidths out to ~10kHz.
+> > 
+> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>  
 > 
-> Nicolas Belin (2):
->        ASoc: mediatek: mt8365: Add a specific soundcard for EVK
->        ASoC: codecs: mt6357: add MT6357 codec
+> Ok, in the interests of perfect not being the enemy of good enough.
+> I'll leave the supplies for now.  There are lots of existing drivers
+> where we don't list them as required (because my understanding of this
+> changed in more recent times).
 > 
->   .../devicetree/bindings/mfd/mediatek,mt6357.yaml   |   11 +
->   .../bindings/sound/mediatek,mt8365-afe.yaml        |  164 ++
->   .../bindings/sound/mediatek,mt8365-mt6357.yaml     |  127 ++
->   arch/arm64/boot/dts/mediatek/mt6357.dtsi           |    6 +-
->   arch/arm64/boot/dts/mediatek/mt8365-evk.dts        |   95 +-
->   arch/arm64/boot/dts/mediatek/mt8365.dtsi           |   47 +-
->   arch/arm64/configs/defconfig                       |    2 +
->   drivers/mfd/mt6397-core.c                          |    3 +
->   sound/soc/codecs/Kconfig                           |    7 +
->   sound/soc/codecs/Makefile                          |    2 +
->   sound/soc/codecs/mt6357.c                          | 1805 +++++++++++++++
->   sound/soc/codecs/mt6357.h                          |  674 ++++++
->   sound/soc/mediatek/Kconfig                         |   20 +
->   sound/soc/mediatek/Makefile                        |    1 +
->   sound/soc/mediatek/mt8365/Makefile                 |   15 +
->   sound/soc/mediatek/mt8365/mt8365-afe-clk.c         |  455 ++++
->   sound/soc/mediatek/mt8365/mt8365-afe-clk.h         |   55 +
->   sound/soc/mediatek/mt8365/mt8365-afe-common.h      |  495 +++++
->   sound/soc/mediatek/mt8365/mt8365-afe-pcm.c         | 2347 ++++++++++++++++++++
->   sound/soc/mediatek/mt8365/mt8365-dai-adda.c        |  355 +++
->   sound/soc/mediatek/mt8365/mt8365-dai-dmic.c        |  475 ++++
->   sound/soc/mediatek/mt8365/mt8365-dai-i2s.c         |  901 ++++++++
->   sound/soc/mediatek/mt8365/mt8365-dai-pcm.c         |  298 +++
->   sound/soc/mediatek/mt8365/mt8365-mt6357.c          |  379 ++++
->   sound/soc/mediatek/mt8365/mt8365-reg.h             |  987 ++++++++
->   25 files changed, 9718 insertions(+), 8 deletions(-)
-> ---
-> base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
-> change-id: 20240226-audio-i350-4e11da088e55
+> It's been on my list of jobs for a really boring Friday afternoon
+> to bring them all inline with the convention of if it needs power
+> on the pin, it's required, so what's one more? :)
 > 
-> Best regards,
+> As Nuno pointed out, patch 2 clashed with work already upstream to
+> allow firmware to have the final say on interrupt types. I think
+> I've resolved that correctly.
+> 
+> I tidied up the docs ordering issue Andy noted.
+> 
+> Also, ad_sigma_delta is namespaced. So added
+> MODULE_IMPORT_NS(IIO_AD_SIGMA_DELTA).
+> 
+> Make sure you test your patches with a modular build
+> on a more recent tree - that change was early last in 2022!
+> 
+> A few lines in the driver were too long.
+> I don't mind them going over 80 for readability reasons, but
+> not over 100.
+> 
+> Anyhow, with those changes (and please check I didn't mess things up!)
+> applied to the togreg branch of iio.git and pushed for now as testing
+> for 0-day to get a look in.
 
+Not good news.  There are 2 issues.
+>> drivers/iio/adc/ad7173.c:854:3: warning: variable 'chan_arr' is uninitialized when used here [-Wuninitialized]  
+     854 |                 chan_arr[chan_index] = ad7173_temp_iio_channel_template;
+         |                 ^~~~~~~~
+   drivers/iio/adc/ad7173.c:848:32: note: initialize the variable 'chan_arr' to silence this warning
+     848 |         struct iio_chan_spec *chan_arr, *chan;
+         |                                       ^
+         |                                        = NULL
+>> drivers/iio/adc/ad7173.c:855:19: warning: variable 'chans_st_arr' is uninitialized when used here [-Wuninitialized]  
+     855 |                 chan_st_priv = &chans_st_arr[chan_index];
+         |                                 ^~~~~~~~~~~~
+   drivers/iio/adc/ad7173.c:845:37: note: initialize the variable 'chans_st_arr' to silence this warning
+     845 |         struct ad7173_channel *chans_st_arr, *chan_st_priv;
+         |                                            ^
+         |                                             = NULL
+
++ if you build with !CONFIG_GPIOLIB
+
+ad7173_gpio_init() isn't defined.  That needs a stub.
+
+I'll back this driver out for now as fixing the first issue is a little fiddly because
+indio_dev->channels is const so the code should allocate and fill the array via a local pointer
+before assigning it to indio_dev.
+
+Please send a new version with these resolved + make sure you run some build tests.
+
+Thanks,
+
+Jonathan
+
+> 
+> Thanks,
+> 
+> Jonathan
+> 
 
 
