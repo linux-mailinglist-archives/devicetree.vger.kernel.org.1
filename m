@@ -1,469 +1,214 @@
-Return-Path: <devicetree+bounces-46100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46101-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF9EE8680D5
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 20:22:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 384BF86812E
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 20:39:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F18F01C237E9
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 19:22:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C1611C22B7C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 19:39:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B686E12FB3D;
-	Mon, 26 Feb 2024 19:21:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1C1012FF64;
+	Mon, 26 Feb 2024 19:39:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="CFklZ269"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="TbT37zpY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2073.outbound.protection.outlook.com [40.107.7.73])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96304130ACA;
-	Mon, 26 Feb 2024 19:21:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.7.73
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708975313; cv=fail; b=PavX/gT4Zs7eh1l43nKUvwlMCwIbOv06jD7z8xbVrDdARRfBc4A1U+wfAEApYu4+OFOtMfy2goOppFwwSeJqe3yrjaaTd8xt4Q9K8JcKqZyBep+hM+oLvRSFeArLnpZlQ7M0/CvriJEbLQyd7nQCCTK7nPVG9JpTdgdrlZUwUDs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708975313; c=relaxed/simple;
-	bh=+MURKFlKnb49M6s8cCRZHjmcuQTKUmOaSJ3KbWMUNrs=;
-	h=From:To:Subject:Date:Message-Id:Content-Type:MIME-Version; b=V6aWBf3qlQm2I49v9O5A60WJmCT35g1do6bRHwZSXePPMvK9QoEZgUvk9Sjn+aHCfIK6grosquRpLlOBlSMUIAqcOPHS5MErdFhSsT4RkwgNMljKfcCAAzHiatipXPQvXQcXI/Dnu3TKa6dhAr81ADTGcaVIkGDMfrJIRqtZIt0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=CFklZ269; arc=fail smtp.client-ip=40.107.7.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=A01jz/eaoRz6F+XCLabb3LI/HWvTnriVaX8wVUX7Ei1p3KJXEGwHq0gQbmHUC3PmYxAnbhjh3xA7m9+Q/Fbnz4wMkAIl8ulhys1EM47PFz0cHkDuZke3oD4FHrdr/XOTGnKtk7z67pWFhadSLnYjpu8QJIXXx8lV3hmZZ3KNe5x3FEOH8TCweCDK2Xyub78XI7X/zdYVv9hbij8AymWIVhD4DrzIUnm1JtKe7Ka9NdExc1evZUcWeB39nAGhMEcYMDRn/XNtFWuh3vaJhkDiuGNBqO7RllUq7d75m+XNBuTYaQsOn6othh50S3n4Q/ti6s2RxkANk4NLhXI84eEonQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/+J0Cykbl6eNnedgfb1miI2CGaeEz8G9ulVQRuM1NJU=;
- b=TQsT5pURqMJ7LokzsMfxg7Qs38Ka3ImZef7f5bcUQJov4WEklBZCDE6qsvD7/ZTn7WZfw1Z6yFy7kng1BmQBPqWFFh31X8HKNSH8q8HIRvYaoWie8+3p6L39rdezJz8QbdjQYPnmTMZXlmyR1M3d3sslv7xmfbsFLEeAqtJV8+TLP8MUuO3E04WkkgXnwAlutFiYfiW2p4BsYJN/Rsjg3feC5oJZVAXdp0oCRC6+FXm80czpE90hDOxK+oKaDyV6oKWQGJjLUGf4zGESgXZF/MCFuXrbW2+hdN6nbUJNGm+/X8WEgIqA+oSC/X1XAlvKT/SkoaYZy77icShysVoCJw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/+J0Cykbl6eNnedgfb1miI2CGaeEz8G9ulVQRuM1NJU=;
- b=CFklZ269jiAAlLea7BDrDp9DNHtGpX7Tis6jIL52NRME3zequttk1mJrN0+4JEW/E94PYnh0NoYGsKjPZ/ZHVcxiYnxcAMWR9QP4H3dg1auGoWVT/91Y4L8AOjB8ciEZ5wxfXVe/dzI6SDXy+6v56dH0KF4i1i7+pq3f5WfI2xo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AS8PR04MB7704.eurprd04.prod.outlook.com (2603:10a6:20b:296::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.34; Mon, 26 Feb
- 2024 19:21:45 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9af4:87e:d74:94aa]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9af4:87e:d74:94aa%7]) with mapi id 15.20.7316.032; Mon, 26 Feb 2024
- 19:21:45 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	imx@lists.linux.dev (open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 1/1] arm64: dts: imx8qxp: add asrc[0,1], esai0, spdif[0,1] and sai[4,5]
-Date: Mon, 26 Feb 2024 14:21:29 -0500
-Message-Id: <20240226192130.259288-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SA9P223CA0014.NAMP223.PROD.OUTLOOK.COM
- (2603:10b6:806:26::19) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9CA012FB3A;
+	Mon, 26 Feb 2024 19:39:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708976350; cv=none; b=mAcFhVMYaQv9NA+ZZQyn6oW7Rlc9BtoGAEqHOpQ45g70+JG4AM0CibcepQ1SIuS0f4uiJ4az414msVlY0Qb1ue5Cio4EK/l7axMAmeHaNqYqIWbVlF/baJjQwEM5Lg7QUnkbcGNPEG5Ekzjnc7iwLCRK6K6iZHSOIEXAixG/2XU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708976350; c=relaxed/simple;
+	bh=LbcZ6qWq9CdIRdNMvzTM4cnq43tnvnfCY02gSxkWg6o=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=FrIcdbuQ282hq6Rw8Fuduno4P5UEQB6DI72PgnvcqUtfEPNJ1Mph6LmFlDz5bgdpMgnl5KeyGmTCAn9N27a286j4Uu+gxdypVtd7M//eYqZGf1XhPQLYKz7Xye0e9IHZtbu0SwjM3vD5AhFzfICNEkOV2BCZBvPDjE7TLDmfMwg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=TbT37zpY; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1708976346;
+	bh=LbcZ6qWq9CdIRdNMvzTM4cnq43tnvnfCY02gSxkWg6o=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=TbT37zpYPH5KAbLLpe855oKrwwrgqsQTCy4TiemFVOyKXSaJiWz2opdr8Nv6I6pkI
+	 qO3j1L259B+bCL8rDsIhIqIiihW5PBHv6znH/zNcJDLcP5yyW57KeIQ+4n9CyFUvyg
+	 HCOyP5tEaNXgn8x21wTBF9E0cUmGyxqbuaxj3GxdqYUo/d0ysHemRo0SiEndbYmygl
+	 4Syxih5KS0pDrQN5FvJoeaFcxuIjUy4SydreT2KygZe/yltMuEoQG196PuWEgdV4i/
+	 ezujIPTzItOBSZuly5GkFggB0LRyPIqhImuFe8NGtVEAUSndzLro9pNgBfyL9wLzb0
+	 i1dEGh3rUiIgQ==
+Received: from nicolas-tpx395.localdomain (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5165937820AF;
+	Mon, 26 Feb 2024 19:39:04 +0000 (UTC)
+Message-ID: <a50530974d05fb9a625b4bf6fbf531035161f443.camel@collabora.com>
+Subject: Re: [PATCH v3,1/2] media: mediatek: vcodec: adding lock to protect
+ decoder context list
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Yunfei Dong <yunfei.dong@mediatek.com>, =?ISO-8859-1?Q?N=EDcolas?= "F .
+ R . A . Prado" <nfraprado@collabora.com>, Hans Verkuil
+ <hverkuil-cisco@xs4all.nl>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, Benjamin Gaignard
+ <benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>, 
+ Irui Wang <irui.wang@mediatek.com>
+Cc: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig
+ <frkoenig@chromium.org>,  Daniel Vetter <daniel@ffwll.ch>, Steve Cho
+ <stevecho@chromium.org>, linux-media@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Project_Global_Chrome_Upstream_Group@mediatek.com, Steve Cho
+ <stevecho@google.com>
+Date: Mon, 26 Feb 2024 14:39:00 -0500
+In-Reply-To: <20240222092609.31382-2-yunfei.dong@mediatek.com>
+References: <20240222092609.31382-1-yunfei.dong@mediatek.com>
+	 <20240222092609.31382-2-yunfei.dong@mediatek.com>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=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
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB7704:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6625c2c1-a5bc-40c2-58b3-08dc37002b68
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	bf7MaQ6xqd7WTkNE3/KIjxQQ00WJmAyupRH7T+51BmADk1UCKqiakJpmpur2kf1rxtts/agAxyPI2bamd3IBY8dE0Fyg/QA6twkIpNrxE489SrkLjJCQ20pi3Plvb7lgjOx/P7ektfAspF9471RWRO/zSvRtN5HjtcznUdWC+sR/PjQrfseNcwHkSAHoBxvpMZ+kvoVuqOp0T/+1vF8f1SD0fkQHKv1MwRajuYG1kCCwqSy9MOQjYOptJxwpmqJ8T2gJiz9HFxy17LKFaT1sN59GpRLx+SUO+M3uaPH3PTNqB8n7tr2bpeWsQCGyYrJNNVG1dtO4EviE+HAoMI4k6njESxZB08ftIrhTclZtO1l8ZAzoVDncZpt3jdAefVWO0Trl1XNmkLsdMUo+4YIY07TTA3fyBPI1hkI19Cb4GJ1tcbrPbN/XVaMmVMUQdMwyG9zNT0aM6AMZ3YdZXmK7T97Qn3J4qKc58x+tjUMCuU5StFbrFe65Ksl5iIumRb4mZbXQPslMBTjYGdtWlQSgY7qMafpJvQDPmdMop7/Huc9i8k/qbMcDKZ+f9fjuwHM/nQQhGiqOTjM4Mj6FIFT8hzS3pJDqdWV3fx3gjmq3J0+3e7T8pnD8TR+W8DeC4LCO86d6rCx6MLOJQ5u2OraQ5pCW8CZLbjD5BBSJFxXMQHZ9EC/zmW9eq6hu/xklhDPQiRJKiHHMxXiJwfa0dSUJoNsX5ssjhHbDjZgwAt5oncA=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(38350700005)(921011);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?xvzq5pr3LAI/oJka7JNQ3vJW0zg7Iu0KCLjT8kGCBf6MgWxw+1k7Lc2ZaTVp?=
- =?us-ascii?Q?VmWMrDu6FPZCZa/0HPQI7ksZuvS2H4TKwndSoUJP93IQtuW/wJ7lM7uNI0jA?=
- =?us-ascii?Q?3+11/Qa2dtvZVQVRJEjxO/G3sqOksgiae6w5UjPBb7A96Ouc4TUb/MEYLEV6?=
- =?us-ascii?Q?PADE7heFfV10e0+wrveRGQsFDqmanA5rJGqdUKWveOmDrDWI9FoJDFiA1kuk?=
- =?us-ascii?Q?vFEnFdfTk0JTSfAqs8ux8QTv76BcjzfWWeT9BB6D1I25VQiTlu176vsxCq2F?=
- =?us-ascii?Q?As9BUfUB9FBXwmcx1Rrf1uFYN4bK680ZZt2AdFy3u27c49k50KETqGC49KeW?=
- =?us-ascii?Q?54BwYz24VU40bSEJrRhPScXGZWZIMgRSTdQwVdH0mjwcMXyjM+7nRBAEl0N1?=
- =?us-ascii?Q?zpqnK9peeWvu+W2p1h6AXlqrbwxN4LE7GMF7P+8Ik55SNLhUg+b2hAzYB6oA?=
- =?us-ascii?Q?0r/7cyaKUmTy9OsN3piuFWH09hk/Unk9R533455/l8vjn9Or4fH9UwsyJgA2?=
- =?us-ascii?Q?usYeQlN81O3nLJaLqUVlGYHBu11672hAB4A/0cSyeWWTzZjV/cj0h/dD97wU?=
- =?us-ascii?Q?RB31m7DCRg14L5OpiP+yNo7gDS0qMHbS3kLTA9IBju2zd0XUrn8U4oKqS+ck?=
- =?us-ascii?Q?a/iUA/4bLQBehhu8+DF95shXdYV3AOhVEFg74IKbgOnwxDioiKzNOWM18e6m?=
- =?us-ascii?Q?ce5+2IEX7UXVGVJL/EAVyyMi5weRkCfveTc1ycFg0+xK5HQ+pVcBYDsQMXW9?=
- =?us-ascii?Q?/m3t4tvc17o0BAlsSNHXzpGBK+rzUbfJU8oNGHYRD7jLvVjfJ5/me7wpMNDc?=
- =?us-ascii?Q?5TL7aHODVIF2Y1R/Bhxoma5y0XyA1uHywY4SzqoEGwCS7e4OCXPWKLZs1MxD?=
- =?us-ascii?Q?BRWqzDghFWSRRlCjWUDnvixXRMt2knyIlBXBbC+SqQojhDBMvfoLaLI3TSCt?=
- =?us-ascii?Q?U4uGJqWO/u3Ltqb+yfKqSnJcC4AMV5vfuCT7Oqyx8IF0GkZ+L6u1Zf6+EWjW?=
- =?us-ascii?Q?5ToSIhD1xl+0VwssCMa5UrUuL/0pH0I/x5NxGbCmswuKKd3JxqYdl+2didUy?=
- =?us-ascii?Q?IgFWv4oYySvXYzGL/NOSCuU+NQS6PZcn2O6p7341/9AAwbfmK/wtBIKAAjse?=
- =?us-ascii?Q?5hGYoBCMu8jMyY+AlbU6BmuD+IVvsa00rbMGSRlFT26tbha18duhlOwWY9ZN?=
- =?us-ascii?Q?kzmXV0++Kb9Xc43OaCmQfbGremkG7xrtXWnrM3TrVVRTIv0QLcV/VAoxUOvV?=
- =?us-ascii?Q?NeSqWF+n/Jf2uUO54ZBeAgku7dad4RWcle3y/mwWEkP/sD8c9Psk3alfLTBk?=
- =?us-ascii?Q?rlnLpUwahhr6HvLTR9J4U3A6Xr3wj+ZZzx2mmqhxzgdXfSRgEmyMh9ijW53j?=
- =?us-ascii?Q?xFg+wzEeCEHn9sIG9jGzN5VFNvyTmy9NN+ZhRxT0HUHn372jYseYXt6XkFka?=
- =?us-ascii?Q?kKIP8+RPRPTfFcYG3P9z3W3vLr/ebDm3N/sSTt8lhfnHG/IuzyO8gYwxNS8s?=
- =?us-ascii?Q?OiChzbzMT7mP58W/4hyTVIyjRssIWZ7i076evPEWLBCzRKcCeiouyCXSM2wM?=
- =?us-ascii?Q?jQ9pdVBdkyBCiHimktE=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6625c2c1-a5bc-40c2-58b3-08dc37002b68
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2024 19:21:45.0377
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: D7EqQnkcFKa5iKhOk7ThgREw3TTFubAoND5Y1HcE03TPraSwB/xsJTRQXrXmrEraZBgSV418tNnMX5L1pNK90A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7704
 
-Add asrc[0,1], esai0, spdif[0,1], sai[4,5] and related lpcg node for
-imx8 audio subsystem.
+Hi,
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- .../boot/dts/freescale/imx8-ss-audio.dtsi     | 306 ++++++++++++++++++
- 1 file changed, 306 insertions(+)
+Le jeudi 22 f=C3=A9vrier 2024 =C3=A0 17:26 +0800, Yunfei Dong a =C3=A9crit=
+=C2=A0:
+> The ctx_list will be deleted when scp getting unexpected behavior, then t=
+he
+> ctx_list->next will be NULL, the kernel driver maybe access NULL pointer =
+in
+> function vpu_dec_ipi_handler when going through each context, then reboot=
+.
+>=20
+> Need to add lock to protect the ctx_list to make sure the ctx_list->next =
+isn't
+> NULL pointer.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-audio.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-audio.dtsi
-index 07afeb78ed564..6d78d6c0d9002 100644
---- a/arch/arm64/boot/dts/freescale/imx8-ss-audio.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-ss-audio.dtsi
-@@ -6,6 +6,7 @@
- 
- #include <dt-bindings/clock/imx8-clock.h>
- #include <dt-bindings/clock/imx8-lpcg.h>
-+#include <dt-bindings/dma/fsl-edma.h>
- #include <dt-bindings/firmware/imx/rsrc.h>
- 
- audio_ipg_clk: clock-audio-ipg {
-@@ -481,4 +482,309 @@ acm: acm@59e00000 {
- 			      "sai3_rx_bclk",
- 			      "sai4_rx_bclk";
- 	};
-+
-+	asrc0: asrc@59000000 {
-+		compatible = "fsl,imx8qm-asrc";
-+		reg = <0x59000000 0x10000>;
-+		interrupts = <GIC_SPI 372 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 373 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&asrc0_lpcg 0>,
-+			 <&asrc0_lpcg 0>,
-+			 <&aud_pll_div0_lpcg 0>,
-+			 <&aud_pll_div1_lpcg 0>,
-+			 <&acm IMX_ADMA_ACM_AUD_CLK0_SEL>,
-+			 <&acm IMX_ADMA_ACM_AUD_CLK1_SEL>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>;
-+		clock-names = "ipg", "mem",
-+			      "asrck_0", "asrck_1", "asrck_2", "asrck_3",
-+			      "asrck_4", "asrck_5", "asrck_6", "asrck_7",
-+			      "asrck_8", "asrck_9", "asrck_a", "asrck_b",
-+			      "asrck_c", "asrck_d", "asrck_e", "asrck_f",
-+			      "spba";
-+		dmas = <&edma0 0 0 0>,
-+		       <&edma0 1 0 0>,
-+		       <&edma0 2 0 0>,
-+		       <&edma0 3 0 FSL_EDMA_RX>,
-+		       <&edma0 4 0 FSL_EDMA_RX>,
-+		       <&edma0 5 0 FSL_EDMA_RX>;
-+		/* tx* is output channel of asrc, it is rx channel for eDMA */
-+		dma-names = "rxa", "rxb", "rxc", "txa", "txb", "txc";
-+		fsl,asrc-rate  = <8000>;
-+		fsl,asrc-width = <16>;
-+		fsl,asrc-clk-map = <0>;
-+		power-domains = <&pd IMX_SC_R_ASRC_0>;
-+		status = "disabled";
-+	};
-+
-+	esai0: esai@59010000 {
-+		compatible = "fsl,imx8qm-esai", "fsl,imx6ull-esai";
-+		reg = <0x59010000 0x10000>;
-+		interrupts = <GIC_SPI 409 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&esai0_lpcg 1>, <&esai0_lpcg 0>, <&esai0_lpcg 1>, <&clk_dummy>;
-+		clock-names = "core", "extal", "fsys", "spba";
-+		dmas = <&edma0 6 0 FSL_EDMA_RX>, <&edma0 7 0 0>;
-+		dma-names = "rx", "tx";
-+		power-domains = <&pd IMX_SC_R_ESAI_0>;
-+		status = "disabled";
-+	};
-+
-+	spdif0: spdif@59020000 {
-+		compatible = "fsl,imx8qm-spdif";
-+		reg = <0x59020000 0x10000>;
-+		interrupts =  <GIC_SPI 456 IRQ_TYPE_LEVEL_HIGH>, /* rx */
-+			      <GIC_SPI 458 IRQ_TYPE_LEVEL_HIGH>; /* tx */
-+		clocks = <&spdif0_lpcg 1>,	/* core */
-+			 <&clk_dummy>,		/* rxtx0 */
-+			 <&spdif0_lpcg 0>,	/* rxtx1 */
-+			 <&clk_dummy>,		/* rxtx2 */
-+			 <&clk_dummy>,		/* rxtx3 */
-+			 <&clk_dummy>,		/* rxtx4 */
-+			 <&audio_ipg_clk>,	/* rxtx5 */
-+			 <&clk_dummy>,		/* rxtx6 */
-+			 <&clk_dummy>,		/* rxtx7 */
-+			 <&clk_dummy>;		/* spba */
-+		clock-names = "core", "rxtx0", "rxtx1", "rxtx2", "rxtx3", "rxtx4",
-+			      "rxtx5", "rxtx6", "rxtx7", "spba";
-+		dmas = <&edma0 8 0 (FSL_EDMA_MULTI_FIFO | FSL_EDMA_RX)>,
-+		       <&edma0 9 0 FSL_EDMA_MULTI_FIFO>;
-+		dma-names = "rx", "tx";
-+		power-domains = <&pd IMX_SC_R_SPDIF_0>;
-+		status = "disabled";
-+	};
-+
-+	spdif1: spdif@59030000 {
-+		compatible = "fsl,imx8qm-spdif";
-+		reg = <0x59030000 0x10000>;
-+		interrupts =  <GIC_SPI 460 IRQ_TYPE_LEVEL_HIGH>, /* rx */
-+			      <GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH>; /* tx */
-+		clocks = <&spdif1_lpcg 1>,	/* core */
-+			 <&clk_dummy>,		/* rxtx0 */
-+			 <&spdif1_lpcg 0>,	/* rxtx1 */
-+			 <&clk_dummy>,		/* rxtx2 */
-+			 <&clk_dummy>,		/* rxtx3 */
-+			 <&clk_dummy>,		/* rxtx4 */
-+			 <&audio_ipg_clk>,	/* rxtx5 */
-+			 <&clk_dummy>,		/* rxtx6 */
-+			 <&clk_dummy>,		/* rxtx7 */
-+			 <&clk_dummy>;		/* spba */
-+		clock-names = "core", "rxtx0", "rxtx1", "rxtx2", "rxtx3", "rxtx4",
-+			      "rxtx5", "rxtx6", "rxtx7", "spba";
-+		dmas = <&edma0 10 0 (FSL_EDMA_MULTI_FIFO | FSL_EDMA_RX)>,
-+		       <&edma0 11 0 FSL_EDMA_MULTI_FIFO>;
-+		dma-names = "rx", "tx";
-+		power-domains = <&pd IMX_SC_R_SPDIF_1>;
-+		status = "disabled";
-+	};
-+
-+	asrc1: asrc@59800000 {
-+		compatible = "fsl,imx8qm-asrc";
-+		reg = <0x59800000 0x10000>;
-+		interrupts = <GIC_SPI 380 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 381 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&asrc1_lpcg 0>,
-+			 <&asrc1_lpcg 0>,
-+			 <&aud_pll_div0_lpcg 0>,
-+			 <&aud_pll_div1_lpcg 0>,
-+			 <&acm IMX_ADMA_ACM_AUD_CLK0_SEL>,
-+			 <&acm IMX_ADMA_ACM_AUD_CLK1_SEL>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>;
-+		clock-names = "ipg", "mem",
-+			      "asrck_0", "asrck_1", "asrck_2", "asrck_3",
-+			      "asrck_4", "asrck_5", "asrck_6", "asrck_7",
-+			      "asrck_8", "asrck_9", "asrck_a", "asrck_b",
-+			      "asrck_c", "asrck_d", "asrck_e", "asrck_f",
-+			      "spba";
-+		dmas = <&edma1 0 0 0>,
-+		       <&edma1 1 0 0>,
-+		       <&edma1 2 0 0>,
-+		       <&edma1 3 0 FSL_EDMA_RX>,
-+		       <&edma1 4 0 FSL_EDMA_RX>,
-+		       <&edma1 5 0 FSL_EDMA_RX>;
-+		/* tx* is output channel of asrc, it is rx channel for eDMA */
-+		dma-names = "txa", "txb", "txc", "rxa", "rxb", "rxc";
-+		fsl,asrc-rate  = <8000>;
-+		fsl,asrc-width = <16>;
-+		fsl,asrc-clk-map = <1>;
-+		power-domains = <&pd IMX_SC_R_ASRC_1>;
-+		status = "disabled";
-+	};
-+
-+	sai4: sai@59820000 {
-+		compatible = "fsl,imx8qm-sai";
-+		reg = <0x59820000 0x10000>;
-+		interrupts = <GIC_SPI 329 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&sai4_lpcg 1>,
-+			 <&clk_dummy>,
-+			 <&sai4_lpcg 0>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>;
-+		clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3";
-+		dmas = <&edma1 8 0 FSL_EDMA_RX>, <&edma1 9 0 0>;
-+		dma-names = "rx", "tx";
-+		power-domains = <&pd IMX_SC_R_SAI_4>;
-+		status = "disabled";
-+	};
-+
-+	sai5: sai@59830000 {
-+		compatible = "fsl,imx8qm-sai";
-+		reg = <0x59830000 0x10000>;
-+		interrupts = <GIC_SPI 331 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&sai5_lpcg 1>,
-+			 <&clk_dummy>,
-+			 <&sai5_lpcg 0>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>;
-+		clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3";
-+		dmas = <&edma1 10 0 0>;
-+		dma-names = "tx";
-+		power-domains = <&pd IMX_SC_R_SAI_5>;
-+		status = "disabled";
-+	};
-+
-+	amix: amix@59840000 {
-+		compatible = "fsl,imx8qm-audmix";
-+		reg = <0x59840000 0x10000>;
-+		clocks = <&amix_lpcg 0>;
-+		clock-names = "ipg";
-+		power-domains = <&pd IMX_SC_R_AMIX>;
-+		dais = <&sai4>, <&sai5>;
-+		status = "disabled";
-+	};
-+
-+	mqs: mqs@59850000 {
-+		compatible = "fsl,imx8qm-mqs";
-+		reg = <0x59850000 0x10000>;
-+		clocks = <&mqs0_lpcg 1>,
-+			<&mqs0_lpcg 0>;
-+		clock-names = "core", "mclk";
-+		power-domains = <&pd IMX_SC_R_MQS_0>;
-+		status = "disabled";
-+	};
-+
-+	asrc0_lpcg: clock-controller@59400000 {
-+		compatible = "fsl,imx8qxp-lpcg";
-+		reg = <0x59400000 0x10000>;
-+		#clock-cells = <1>;
-+		clocks = <&audio_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_4>;
-+		clock-output-names = "asrc0_lpcg_ipg_clk";
-+		power-domains = <&pd IMX_SC_R_ASRC_0>;
-+	};
-+
-+	esai0_lpcg: clock-controller@59410000 {
-+		compatible = "fsl,imx8qxp-lpcg";
-+		reg = <0x59410000 0x10000>;
-+		#clock-cells = <1>;
-+		clocks = <&acm IMX_ADMA_ACM_ESAI0_MCLK_SEL>,
-+			 <&audio_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-+		clock-output-names = "esai0_lpcg_extal_clk",
-+				     "esai0_lpcg_ipg_clk";
-+		power-domains = <&pd IMX_SC_R_ESAI_0>;
-+	};
-+
-+	spdif0_lpcg: clock-controller@59420000 {
-+		compatible = "fsl,imx8qxp-lpcg";
-+		reg = <0x59420000 0x10000>;
-+		#clock-cells = <1>;
-+		clocks = <&acm IMX_ADMA_ACM_SPDIF0_TX_CLK_SEL>,
-+			 <&audio_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-+		clock-output-names = "spdif0_lpcg_tx_clk",
-+				     "spdif0_lpcg_gclkw";
-+		power-domains = <&pd IMX_SC_R_SPDIF_0>;
-+	};
-+
-+	spdif1_lpcg: clock-controller@59430000 {
-+		compatible = "fsl,imx8qxp-lpcg";
-+		reg = <0x59430000 0x10000>;
-+		#clock-cells = <1>;
-+		clocks = <&acm IMX_ADMA_ACM_SPDIF1_TX_CLK_SEL>,
-+			 <&audio_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-+		clock-output-names = "spdif1_lpcg_tx_clk",
-+				     "spdif1_lpcg_gclkw";
-+		power-domains = <&pd IMX_SC_R_SPDIF_1>;
-+		status = "disabled";
-+	};
-+
-+	asrc1_lpcg: clock-controller@59c00000 {
-+		compatible = "fsl,imx8qxp-lpcg";
-+		reg = <0x59c00000 0x10000>;
-+		#clock-cells = <1>;
-+		clocks = <&audio_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_4>;
-+		clock-output-names = "asrc1_lpcg_ipg_clk";
-+		power-domains = <&pd IMX_SC_R_ASRC_1>;
-+	};
-+
-+	sai4_lpcg: clock-controller@59c20000 {
-+		compatible = "fsl,imx8qxp-lpcg";
-+		reg = <0x59c20000 0x10000>;
-+		#clock-cells = <1>;
-+		clocks = <&acm IMX_ADMA_ACM_SAI4_MCLK_SEL>,
-+			 <&audio_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-+		clock-output-names = "sai4_lpcg_mclk",
-+				     "sai4_lpcg_ipg_clk";
-+		power-domains = <&pd IMX_SC_R_SAI_4>;
-+	};
-+
-+	sai5_lpcg: clock-controller@59c30000 {
-+		compatible = "fsl,imx8qxp-lpcg";
-+		reg = <0x59c30000 0x10000>;
-+		#clock-cells = <1>;
-+		clocks = <&acm IMX_ADMA_ACM_SAI5_MCLK_SEL>,
-+			 <&audio_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-+		clock-output-names = "sai5_lpcg_mclk",
-+				     "sai5_lpcg_ipg_clk";
-+		power-domains = <&pd IMX_SC_R_SAI_5>;
-+	};
-+
-+	amix_lpcg: clock-controller@59c40000 {
-+		compatible = "fsl,imx8qxp-lpcg";
-+		reg = <0x59c40000 0x10000>;
-+		#clock-cells = <1>;
-+		clocks = <&audio_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_0>;
-+		clock-output-names = "amix_lpcg_ipg_clk";
-+		power-domains = <&pd IMX_SC_R_AMIX>;
-+	};
-+
-+	mqs0_lpcg: clock-controller@59c50000 {
-+		compatible = "fsl,imx8qxp-lpcg";
-+		reg = <0x59c50000 0x10000>;
-+		#clock-cells = <1>;
-+		clocks = <&acm IMX_ADMA_ACM_MQS_TX_CLK_SEL>,
-+			 <&audio_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-+		clock-output-names = "mqs0_lpcg_mclk",
-+				     "mqs0_lpcg_ipg_clk";
-+		power-domains = <&pd IMX_SC_R_MQS_0>;
-+	};
- };
--- 
-2.34.1
+The cited crash no longer occurs for me, but it still sometimes crashes whi=
+le
+the SCP being rebooted. I think this patch can still go in, as it overall
+improves the situation.
 
+Meanwhile, here's my stress test using GStreamer and stream downloaded by
+fluster. I call this script few times this way as it does not always crash.=
+ The
+test just keep starting decode sessions and terminate them after 2 seconds.=
+ It
+is highly parallel. Using too low number does not reproduce the crash, usin=
+g too
+high number leads to alloc failure, which wasn't the goal of this test.
+
+./mtk-vcodec-crash.sh 100
+
+Script code:
+***
+#!/bin/bash
+
+test() {
+	gst-launch-1.0 --no-fault filesrc location=3DTILES_B_Cisco_1.bin ! h265par=
+se ! v4l2slh265dec ! fakevideosink &
+	pid=3D$!
+
+	sleep 2
+	kill $pid
+}
+
+for i in $(seq 1 $1)
+do
+	test &
+done
+
+wait
+***
+
+The kernel Crash:
+[   93.261248] Unable to handle kernel NULL pointer dereference at virtual
+address 0000000000000008
+[   93.270056] Mem abort info:
+[   93.272880]   ESR =3D 0x0000000096000004
+[   93.276804]   EC =3D 0x25: DABT (current EL), IL =3D 32 bits
+[   93.282233]   SET =3D 0, FnV =3D 0
+[   93.285372]   EA =3D 0, S1PTW =3D 0
+[   93.288561]   FSC =3D 0x04: level 0 translation fault
+[   93.293493] Data abort info:
+[   93.296424]   ISV =3D 0, ISS =3D 0x00000004, ISS2 =3D 0x00000000
+[   93.301920]   CM =3D 0, WnR =3D 0, TnD =3D 0, TagAccess =3D 0
+[   93.306977]   GCS =3D 0, Overlay =3D 0, DirtyBit =3D 0, Xs =3D 0
+[   93.312321] user pgtable: 4k pages, 48-bit VAs, pgdp=3D0000000168daf000
+[   93.318790] [0000000000000008] pgd=3D0000000000000000, p4d=3D00000000000=
+00000
+[   93.325588] Internal error: Oops: 0000000096000004 [#1] PREEMPT SMP
+[   93.331842] Modules linked in: mt7921e mt7921_common mt792x_lib
+mt76_connac_lib mt76 mac80211 btusb btintel mtk_vcodec_dec_hw btmtk btrtl
+mtk_vcodec_dec btbcm cfg80211 bluetooth snd_sof_mt8195 mtk_vcodec_enc
+mtk_adsp_common uvcvideo v4l2_vp9 snd_sof_xtensa_dsp v4l2_h264 mtk_vcodec_d=
+bgfs
+snd_sof_of snd_sof ecdh_generic mtk_vcodec_common ecc uvc elan_i2c
+videobuf2_vmalloc crct10dif_ce cros_ec_lid_angle cros_ec_sensors snd_sof_ut=
+ils
+cros_ec_sensors_core cros_usbpd_logger cros_usbpd_charger fuse ip_tables ip=
+v6
+[   93.376652] CPU: 5 PID: 3210 Comm: h265parse0:sink Tainted: G        W  =
+   =20
+6.8.0-rc4-next-20240212+ #14
+[   93.386463] Hardware name: Acer Tomato (rev3 - 4) board (DT)
+[   93.392107] pstate: 80400009 (Nzcv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=
+=3D--)
+[   93.399054] pc : vcodec_vpu_send_msg+0x4c/0x190 [mtk_vcodec_dec]
+[   93.405058] lr : vcodec_send_ap_ipi+0x78/0x170 [mtk_vcodec_dec]
+[   93.410968] sp : ffff80008750bc20
+[   93.414269] x29: ffff80008750bc20 x28: ffff1299f6d70000 x27: 00000000000=
+00000
+[   93.421391] x26: 0000000000000000 x25: 0000000000000000 x24: 00000000000=
+00000
+[   93.428512] x23: ffff80008750bc98 x22: 000000000000a003 x21: ffffd45c4cf=
+ae000
+[   93.435632] x20: 0000000000000010 x19: ffff1299fd668310 x18: 00000000000=
+0001a
+[   93.442753] x17: 000000040044ffff x16: ffffd45cb15dc648 x15: 00000000000=
+00000
+[   93.449874] x14: ffff1299c08da1c0 x13: ffffd45cb1f87a10 x12: ffffd45cb2f=
+5fe80
+[   93.456995] x11: 0000000000000001 x10: 0000000000001b30 x9 : ffffd45c4d1=
+2b488
+[   93.464116] x8 : 1fffe25339380d81 x7 : 0000000000000001 x6 : ffff1299c9c=
+06c00
+[   93.471236] x5 : 0000000000000132 x4 : 0000000000000000 x3 : 00000000000=
+00000
+[   93.478358] x2 : 0000000000000010 x1 : ffff80008750bc98 x0 : 00000000000=
+00000
+[   93.485479] Call trace:
+[   93.487914]  vcodec_vpu_send_msg+0x4c/0x190 [mtk_vcodec_dec]
+[   93.493563]  vcodec_send_ap_ipi+0x78/0x170 [mtk_vcodec_dec]
+[   93.499125]  vpu_dec_deinit+0x1c/0x30 [mtk_vcodec_dec]
+[   93.504254]  vdec_hevc_slice_deinit+0x30/0x98 [mtk_vcodec_dec]
+[   93.510076]  vdec_if_deinit+0x38/0x68 [mtk_vcodec_dec]
+[   93.515205]  mtk_vcodec_dec_release+0x20/0x40 [mtk_vcodec_dec]
+[   93.521027]  fops_vcodec_release+0x64/0x118 [mtk_vcodec_dec]
+[   93.526677]  v4l2_release+0x7c/0x100
+[   93.530245]  __fput+0x80/0x2d8
+[   93.533292]  __fput_sync+0x58/0x70
+[   93.536681]  __arm64_sys_close+0x40/0x90
+[   93.540590]  invoke_syscall+0x50/0x128
+[   93.544329]  el0_svc_common.constprop.0+0x48/0xf0
+[   93.549020]  do_el0_svc+0x24/0x38
+[   93.552323]  el0_svc+0x38/0xd8
+[   93.555367]  el0t_64_sync_handler+0xc0/0xc8
+[   93.559537]  el0t_64_sync+0x1a8/0x1b0
+[   93.563189] Code: d503201f f9401660 b900127f b900227f (f9400400)=20
+[   93.569268] ---[ end trace 0000000000000000 ]---
 
