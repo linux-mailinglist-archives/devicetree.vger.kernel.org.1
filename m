@@ -1,190 +1,111 @@
-Return-Path: <devicetree+bounces-45880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19B8F867228
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 11:54:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A10A867230
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 11:55:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7E70287AC6
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:54:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4003A1F2CC5E
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:55:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23C7E4F21D;
-	Mon, 26 Feb 2024 10:49:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="vg/JvPWp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3B7438DD5;
+	Mon, 26 Feb 2024 10:50:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [195.130.132.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28E0F4EB42;
-	Mon, 26 Feb 2024 10:49:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95B2252F90
+	for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 10:50:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.132.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708944588; cv=none; b=EJqqaXLkKMMTD4XjZzJ1bQZoFvRfSRivU35/OTyAYPRFuqfZxkBSa3jE8zz876fwYnEOvpsPU3TQOgnStI3RCHgAD12UrZKngLkHbtN88oE4oVrpFXW8JxhyKLpdM8t4ofzZfLZaXU5Z7RrK4I5IJNKrd+2YXaZcjrpM8AL+Cy8=
+	t=1708944610; cv=none; b=aG1qUYej1wId386BpBLHXg/2elQE5GvJreLDZp1srDcfdLRqAyynII+ORmzU1G9n6cte60uPzoiFdi4n0JjcE32wizX2BWfWp5LE/JVE+qS/GaixnbteFOiALebOhmkFswiT5Qvya6+odZWLZjpXeg/FiW+9SjK858qvSnfaO1g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708944588; c=relaxed/simple;
-	bh=iKYO2rG3BTMKt5WCaCdwZY//PQVAlVNZ1d+5MI+Gots=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=mpreVKiaYq6Dvo9Gv1gLpJf61F2jCyGeTRXuYcVn06auiXlL/ze1J6z0OCkPcsTSp3cXHGhL5FpO7V4r29i2eRBsTgF+/YUCJYQTZYl0DEb9BjcyoqlyfasmULpX5OSTjyoCzB3GZkVmMsmrLhHQky4KRYSdMLhK7z20CZGZMt8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=vg/JvPWp; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41QALKTN025578;
-	Mon, 26 Feb 2024 11:49:24 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	from:date:subject:mime-version:content-type
-	:content-transfer-encoding:message-id:references:in-reply-to:to
-	:cc; s=selector1; bh=DnsKquutEGOQewPoi6J/BDbXg1mh4kqRqxYNbt4LG2M
-	=; b=vg/JvPWpPfkIqrTHKtz4t+wPErcR6jikhRiL2G1usxocAEZ/05pboKOLv6Q
-	L9k+yDZ9P/MxflXqOFwMvX0jHKngqpVqjhIhVzGDAucbhcReVXQ+Mn1HnounBVEt
-	mmCWNF02BdWrTRoq/CkmMfi34ILQZXq0WXleb8/oYxMlD/y+62DmXItx6y1vNQw4
-	knrxBbRG3XzNVlXB8fpjnvcxhsGOSRv+70Q33zy6GNT374h4CTErRMyRr2OaGpbp
-	k8dhkcWhWa5Rerlx2J6ir1zdEgxCrYhjUTZbM/kGhfp8FHxe+ezOpnGEsoiqT1CD
-	774mt9+FwohuYrNL3Gy/ZXrQJLQ==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3wf8p26kne-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 26 Feb 2024 11:49:24 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 4476F40044;
-	Mon, 26 Feb 2024 11:49:12 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 9683B266D12;
-	Mon, 26 Feb 2024 11:48:10 +0100 (CET)
-Received: from localhost (10.252.9.163) by SHFDAG1NODE2.st.com (10.75.129.70)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 26 Feb
- 2024 11:48:10 +0100
-From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-Date: Mon, 26 Feb 2024 11:48:07 +0100
-Subject: [PATCH v6 3/3] drm/stm: ltdc: add lvds pixel clock
+	s=arc-20240116; t=1708944610; c=relaxed/simple;
+	bh=w0lev0IdkK1jVnrZx1US92KahJ3Kf93B4idY6xvnCd4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Nxb1zOWpaGGSh3MYHWLgnRNM+2Nwa/k7l2YhEBST+UCnaeALheBMkUxgOIQwphTKhoFJVW63GLAs5ZgrFPCzoxKq/OTN1KmWN+rbTzxaEnpoRRql9DMBEd0d/OAS9ZhPjkMKveaFTiOyK/BU0AbScBxEkb/nq4O3ymmZL1WiqlA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.132.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:7662:e968:947d:f3d0])
+	by baptiste.telenet-ops.be with bizsmtp
+	id rmq42B0085Kh3Z501mq4Kk; Mon, 26 Feb 2024 11:50:04 +0100
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1reYYU-001lUO-MP;
+	Mon, 26 Feb 2024 11:50:04 +0100
+Received: from geert by rox.of.borg with local (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1reYYe-003pvR-61;
+	Mon, 26 Feb 2024 11:50:04 +0100
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Support Opensource <support.opensource@diasemi.com>,
+	Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Steve Twiss <stwiss.opensource@diasemi.com>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v2] dt-bindings: mfd: dlg,da9063: Make #interrupt-cells required
+Date: Mon, 26 Feb 2024 11:50:02 +0100
+Message-Id: <f512045738d2102c771a171a514ed7cf612c6d6f.1708944455.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240226-lvds-v6-3-15e3463fbe70@foss.st.com>
-References: <20240226-lvds-v6-0-15e3463fbe70@foss.st.com>
-In-Reply-To: <20240226-lvds-v6-0-15e3463fbe70@foss.st.com>
-To: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard
-	<mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Yannick Fertre <yannick.fertre@foss.st.com>,
-        Philippe Cornu <philippe.cornu@foss.st.com>,
-        Philipp Zabel
-	<p.zabel@pengutronix.de>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-X-Mailer: b4 0.12.4
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-26_07,2024-02-26_01,2023-05-22_02
+Content-Transfer-Encoding: 8bit
 
-The STM32MP25x display subsystem presents a mux which feeds the loopback
-pixel clock of the current bridge in use into the LTDC. This mux is only
-accessible through sysconfig registers which is not yet available in the
-STM32MP25x common clock framework.
+'#interrupt-cells' is a required provided for interrupt providers,
+hence make it required.
 
-While waiting for a complete update of the clock framework, this would
-allow to use the LVDS.
+While at it, move '#interrupt-cells' in the example to match common sort
+order.
 
-Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-Signed-off-by: Yannick Fertre <yannick.fertre@foss.st.com>
+Fixes: 361104b05684 ("dt-bindings: mfd: Convert da9063 to yaml")
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 ---
-Changes in v2:
-	- Fixed my address
-	- Fixed smatch warning
+v2:
+  - Add Fixes, Reviewed-by,
+  - Rebase on top of commit f1eb64bf6d4bef52 ("dt-bindings: mfd:
+    dlg,da9063: Convert da9062 to json-schema") in mfd/for-mfd-next.
 ---
- drivers/gpu/drm/stm/ltdc.c | 19 +++++++++++++++++++
- drivers/gpu/drm/stm/ltdc.h |  1 +
- 2 files changed, 20 insertions(+)
+ Documentation/devicetree/bindings/mfd/dlg,da9063.yaml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/stm/ltdc.c b/drivers/gpu/drm/stm/ltdc.c
-index 5576fdae4962..23011a8913bd 100644
---- a/drivers/gpu/drm/stm/ltdc.c
-+++ b/drivers/gpu/drm/stm/ltdc.c
-@@ -838,6 +838,12 @@ ltdc_crtc_mode_valid(struct drm_crtc *crtc,
- 	int target_max = target + CLK_TOLERANCE_HZ;
- 	int result;
+diff --git a/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml b/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
+index da741c9994456ad9..51612dc22748fcbf 100644
+--- a/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
++++ b/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
+@@ -112,6 +112,7 @@ allOf:
+       required:
+         - interrupts
+         - interrupt-controller
++        - '#interrupt-cells'
  
-+	if (ldev->lvds_clk) {
-+		result = clk_round_rate(ldev->lvds_clk, target);
-+		DRM_DEBUG_DRIVER("lvds pixclk rate target %d, available %d\n",
-+				 target, result);
-+	}
-+
- 	result = clk_round_rate(ldev->pixel_clk, target);
+   - if:
+       properties:
+@@ -162,10 +163,10 @@ examples:
+       pmic@58 {
+         compatible = "dlg,da9063";
+         reg = <0x58>;
+-        #interrupt-cells = <2>;
+         interrupt-parent = <&gpio6>;
+         interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
+         interrupt-controller;
++        #interrupt-cells = <2>;
  
- 	DRM_DEBUG_DRIVER("clk rate target %d, available %d\n", target, result);
-@@ -1896,6 +1902,8 @@ void ltdc_suspend(struct drm_device *ddev)
- 
- 	DRM_DEBUG_DRIVER("\n");
- 	clk_disable_unprepare(ldev->pixel_clk);
-+	if (ldev->lvds_clk)
-+		clk_disable_unprepare(ldev->lvds_clk);
- }
- 
- int ltdc_resume(struct drm_device *ddev)
-@@ -1910,6 +1918,13 @@ int ltdc_resume(struct drm_device *ddev)
- 		DRM_ERROR("failed to enable pixel clock (%d)\n", ret);
- 		return ret;
- 	}
-+	if (ldev->lvds_clk) {
-+		if (clk_prepare_enable(ldev->lvds_clk)) {
-+			clk_disable_unprepare(ldev->pixel_clk);
-+			DRM_ERROR("Unable to prepare lvds clock\n");
-+			return -ENODEV;
-+		}
-+	}
- 
- 	return 0;
- }
-@@ -1981,6 +1996,10 @@ int ltdc_load(struct drm_device *ddev)
- 		}
- 	}
- 
-+	ldev->lvds_clk = devm_clk_get(dev, "lvds");
-+	if (IS_ERR(ldev->lvds_clk))
-+		ldev->lvds_clk = NULL;
-+
- 	rstc = devm_reset_control_get_exclusive(dev, NULL);
- 
- 	mutex_init(&ldev->err_lock);
-diff --git a/drivers/gpu/drm/stm/ltdc.h b/drivers/gpu/drm/stm/ltdc.h
-index 9d488043ffdb..4a60ce5b610c 100644
---- a/drivers/gpu/drm/stm/ltdc.h
-+++ b/drivers/gpu/drm/stm/ltdc.h
-@@ -44,6 +44,7 @@ struct ltdc_device {
- 	void __iomem *regs;
- 	struct regmap *regmap;
- 	struct clk *pixel_clk;	/* lcd pixel clock */
-+	struct clk *lvds_clk;	/* lvds pixel clock */
- 	struct mutex err_lock;	/* protecting error_status */
- 	struct ltdc_caps caps;
- 	u32 irq_status;
-
+         rtc {
+           compatible = "dlg,da9063-rtc";
 -- 
-2.25.1
+2.34.1
 
 
