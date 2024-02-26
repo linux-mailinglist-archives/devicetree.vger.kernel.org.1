@@ -1,121 +1,230 @@
-Return-Path: <devicetree+bounces-45919-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45920-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 904248674CA
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 13:25:49 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBD4B8674F1
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 13:30:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0FDF1C21D1E
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 12:25:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CE7D8B25133
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 12:27:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 735FB433C2;
-	Mon, 26 Feb 2024 12:25:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10808604D7;
+	Mon, 26 Feb 2024 12:27:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC4F35FDB5;
-	Mon, 26 Feb 2024 12:25:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66F41604CE
+	for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 12:27:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708950345; cv=none; b=nkxDGJSoKHj26llC1E3X46FFWvcJI+KkH3m/tT6e/0QIEgi71QwSlYEJZ0ZYSY9XoVzSLPXOqNPEGAHOKUbHEmNxku+3b8OIw0R0uBiad9dSdtY/I5hzMcMcLubS8mCDEBQOSMCuLgjMamDzvgXAbb4wiIrDGymRRUAzFOioGzI=
+	t=1708950436; cv=none; b=gQ0+iWHGekDgz6OlYtuEhVsl17y4cqSDTuFmnQJOLPA7+i8k/D/ui1YXXKgv6UBRpsIdPfgQM97qtcS/wZqUxvi5pHwUcjiLaoyn67i/khkcvAh5zboiv0rcvCMhLSqLrp6xFHoTLGZnCqnIFdxrcYA75N8B4QTpC9/tpSJgvkM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708950345; c=relaxed/simple;
-	bh=Wcusuh+lWuagiIH3bqpP54T63/KX8yQIAxdsoq1Okoo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NFRooT6S3kpBJxHgzqB+3sWUmeuvg17JnnIdJQmxdTLljUCpcxRlDiSLvubnK9UBE0OF0XOwy54fNOTxjSNuU+A7dFKyxLmRLQFfOZDISIX/ebLafPOeYKFzYBzPwew+KN3N+GHLe/aqJGVnKbfqHxH03n4OV7VXd/UVdtK8zN0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-608cf2e08f9so21348617b3.0;
-        Mon, 26 Feb 2024 04:25:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708950342; x=1709555142;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=F3T2uTlXB3ExY2DfXdBhbP4rbR8Cm76B7jSqV3u5yWQ=;
-        b=prXlz/8INbo84GY2I0bsWm3JYwIyni7L9a3CL7Pyfl9EsCDgDIHCb1NkAYSjrr9Tef
-         CFv0m7B36F1s381HK0qtcNzAaU/4kMbHZQyom9OaHwFDsW6ln8XWBEzyzaBQvM6ZLqH5
-         lNZK8gYjWXMz7mISdBso5v1NFYS5V6QsRm5JZsDLW0J/5FcSlHPdIVuMt2nUp4TVbhAR
-         WHIEXTFCvbrGZ3+eSUTlznK3oTqfeI+Z9zgBTVykTtudfYIUVdTkWQII9oULZXR2po6E
-         bF8YHVo5HBHTYaOvu06QbyrvWq4yc6B64hMDjYYAXuk64v+bGYs/sozEXNA0vKJX7z2S
-         9ybw==
-X-Forwarded-Encrypted: i=1; AJvYcCVmNhMzzAyHCmgEIsa2Rd2Pw9NIfAKZca4/4Rx0J5Dw7L5h++S8TpWPSA61lmJIM20gSYuCvVrV0Y1GlQJXlvyswZnha2ZXESZprw==
-X-Gm-Message-State: AOJu0YzZg2acUrcFlZjlvLnLEck3Why8t+6ue+SRMpMCgMYy6uh+A12/
-	pbj/fuotW/tFuBGGiGF6a+EpeW5R7msjMxvjN/fTWs3yYZxtSANLWjgBg7ffdKU=
-X-Google-Smtp-Source: AGHT+IE1gDIsJ1U5D443MMtFoEHHEzHvH/0fEyD8HbVzWqGT2rOXL0m9Zg+x5UnmQfwYAb23MKl1EQ==
-X-Received: by 2002:a81:4cd0:0:b0:608:7af2:f5f5 with SMTP id z199-20020a814cd0000000b006087af2f5f5mr5551308ywa.50.1708950342517;
-        Mon, 26 Feb 2024 04:25:42 -0800 (PST)
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
-        by smtp.gmail.com with ESMTPSA id x198-20020a81a0cf000000b0060483b63a1asm1151351ywg.47.2024.02.26.04.25.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Feb 2024 04:25:42 -0800 (PST)
-Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-dcc84ae94c1so2703381276.1;
-        Mon, 26 Feb 2024 04:25:42 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWgSsxA3ZsfHfhtG1l08L5qdLlv71IyAPa21mjkeIU1BJsGfAWJxzi9MuwSUdFvfJW5Qk1f0dlYyh4RS0cASQgT5/Xh1m7G4E+xWA==
-X-Received: by 2002:a05:6902:98f:b0:dcb:f7b0:4788 with SMTP id
- bv15-20020a056902098f00b00dcbf7b04788mr4904378ybb.60.1708950342152; Mon, 26
- Feb 2024 04:25:42 -0800 (PST)
+	s=arc-20240116; t=1708950436; c=relaxed/simple;
+	bh=MnH2zzUiBpWHT2hKic62kcd5bAVn2S8JMO/2jTnLU58=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=e2ugUU9xRkIB2u9srbHtzu6ClZubMkLH33QTXHy4ykDsabH5I5tTDWNE0ietdPo/1+8ALBXevRnIsJfNqyU114Z2LA0QrzEDlAaM+73go2GsQoQr+Y2ctFYg0+6EMViL+IdJpC9YePt+jOiPkmkRTeJud6aAITPqeiLwyWcNRyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rea4U-0003lf-Nu; Mon, 26 Feb 2024 13:27:02 +0100
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rea4T-002zWT-As; Mon, 26 Feb 2024 13:27:01 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rea4T-0095RZ-0l;
+	Mon, 26 Feb 2024 13:27:01 +0100
+Date: Mon, 26 Feb 2024 13:27:01 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linux@roeck-us.net, jun.li@nxp.com, devicetree@vger.kernel.org,
+	linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+	kernel@pengutronix.de
+Subject: Re: [PATCH v3 4/4] usb: typec: tcpci: add support to set connector
+ orientation
+Message-ID: <20240226122701.inqpodm6mdfxwjo2@pengutronix.de>
+References: <20240222210903.208901-1-m.felsch@pengutronix.de>
+ <20240222210903.208901-5-m.felsch@pengutronix.de>
+ <ZdxII9W/CBx76Xai@kuha.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240224191902.2065733-1-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20240224191902.2065733-1-niklas.soderlund+renesas@ragnatech.se>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 26 Feb 2024 13:25:30 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdW7zWG8_CtjYstR=r1DHCds1vMx4=2qfjMfHb2efjsqnA@mail.gmail.com>
-Message-ID: <CAMuHMdW7zWG8_CtjYstR=r1DHCds1vMx4=2qfjMfHb2efjsqnA@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: renesas: eagle: Add capture overlay for
- function expansion board
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZdxII9W/CBx76Xai@kuha.fi.intel.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Sat, Feb 24, 2024 at 8:19=E2=80=AFPM Niklas S=C3=B6derlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> The Eagle board supports an optional "Function expansion board". The
-> expansion board adds support for HDMI OUT, HDMI capture from two
-> different sources and eMMC.
->
-> This change only adds support for the two HDMI capture sources.
->
-> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
-se>
-> ---
-> * Changes since v1
-> - The board is named "Function expansion board", update all references.
-> - Rename the over lay to r8a77970-eagle-function-expansion.dtso.
-> - Add r8a77970-eagle-expansion.dtbo to dtb-$(CONFIG_ARCH_R8A77970) so
->   it's considered for installation.
-> - Move #include statements below /.../; markers.
-> - Sort nodes without addresses in alphabetical order.
-> - Capitalize i2c -> I2C in comments.
-> - Use symbolic values for GPIO flags.
-> - Adjust gpios and output-{low,high} to match that the signal is
->   active-low.
-> - Correct misspelled label and removed unneeded ones.
+Hi,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.10.
+On 24-02-26, Heikki Krogerus wrote:
+> On Thu, Feb 22, 2024 at 10:09:03PM +0100, Marco Felsch wrote:
+> > This add the support to set the optional connector orientation bit which
+> > is part of the optional CONFIG_STANDARD_OUTPUT register 0x18 [1]. This
+> > allows system designers to connect the tcpc orientation pin directly to
+> > the 2:1 ss-mux.
+> > 
+> > [1] https://www.usb.org/sites/default/files/documents/usb-port_controller_specification_rev2.0_v1.0_0.pdf
+> > 
+> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > ---
+> > v3:
+> > - no changes
+> > v2:
+> > - Make use of fallthrough 
+> > 
+> >  drivers/usb/typec/tcpm/tcpci.c | 44 ++++++++++++++++++++++++++++++++++
+> >  include/linux/usb/tcpci.h      |  8 +++++++
+> >  2 files changed, 52 insertions(+)
+> > 
+> > diff --git a/drivers/usb/typec/tcpm/tcpci.c b/drivers/usb/typec/tcpm/tcpci.c
+> > index 7118551827f6..73a52e7f95c2 100644
+> > --- a/drivers/usb/typec/tcpm/tcpci.c
+> > +++ b/drivers/usb/typec/tcpm/tcpci.c
+> > @@ -67,6 +67,18 @@ static int tcpci_write16(struct tcpci *tcpci, unsigned int reg, u16 val)
+> >  	return regmap_raw_write(tcpci->regmap, reg, &val, sizeof(u16));
+> >  }
+> >  
+> > +static bool tcpci_check_std_output_cap(struct regmap *regmap, u8 mask)
+> > +{
+> > +	unsigned int reg;
+> > +	int ret;
+> > +
+> > +	ret = regmap_read(regmap, TCPC_STD_OUTPUT_CAP, &reg);
+> > +	if (ret < 0)
+> > +		return ret;
+> > +
+> > +	return (reg & mask) == mask;
+> > +}
+> > +
+> >  static int tcpci_set_cc(struct tcpc_dev *tcpc, enum typec_cc_status cc)
+> >  {
+> >  	struct tcpci *tcpci = tcpc_to_tcpci(tcpc);
+> > @@ -301,6 +313,28 @@ static int tcpci_set_polarity(struct tcpc_dev *tcpc,
+> >  			   TCPC_TCPC_CTRL_ORIENTATION : 0);
+> >  }
+> >  
+> > +static int tcpci_set_orientation(struct tcpc_dev *tcpc,
+> > +				 enum typec_orientation orientation)
+> > +{
+> > +	struct tcpci *tcpci = tcpc_to_tcpci(tcpc);
+> > +	unsigned int reg;
+> > +
+> > +	switch (orientation) {
+> > +	case TYPEC_ORIENTATION_NONE:
+> > +		/* We can't put a single output into high impedance */
+> > +		fallthrough;
+> > +	case TYPEC_ORIENTATION_NORMAL:
+> > +		reg = TCPC_CONFIG_STD_OUTPUT_ORIENTATION_NORMAL;
+> > +		break;
+> > +	case TYPEC_ORIENTATION_REVERSE:
+> > +		reg = TCPC_CONFIG_STD_OUTPUT_ORIENTATION_FLIPPED;
+> > +		break;
+> > +	}
+> > +
+> > +	return regmap_update_bits(tcpci->regmap, TCPC_CONFIG_STD_OUTPUT,
+> > +				  TCPC_CONFIG_STD_OUTPUT_ORIENTATION_MASK, reg);
+> > +}
+> > +
+> >  static void tcpci_set_partner_usb_comm_capable(struct tcpc_dev *tcpc, bool capable)
+> >  {
+> >  	struct tcpci *tcpci = tcpc_to_tcpci(tcpc);
+> > @@ -808,6 +842,9 @@ struct tcpci *tcpci_register_port(struct device *dev, struct tcpci_data *data)
+> >  	if (tcpci->data->vbus_vsafe0v)
+> >  		tcpci->tcpc.is_vbus_vsafe0v = tcpci_is_vbus_vsafe0v;
+> >  
+> > +	if (tcpci->data->set_orientation)
+> > +		tcpci->tcpc.set_orientation = tcpci_set_orientation;
+> 
+> I don't think that flag is needed - not yet at least. Please just call
+> tcpci_check_std_output_cap() directly from here.
 
-Gr{oetje,eeting}s,
+The reason for having it this way was to not break exsisting user like:
+tcpci_rt1711h, tcpci_mt6370, tcpci_maxim which may or may not implement
+the TCPC_STD_OUTPUT_CAP_ORIENTATION. This way the users of
+tcpci_register_port() can decide by on its own if they do have this
+feature or not and how this is checked. I'm fine with your proposal if
+you still think that we can check this unconditional.
 
-                        Geert
+Regards,
+  Marco
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> >  	err = tcpci_parse_config(tcpci);
+> >  	if (err < 0)
+> >  		return ERR_PTR(err);
+> > @@ -851,6 +888,13 @@ static int tcpci_probe(struct i2c_client *client)
+> >  	if (err < 0)
+> >  		return err;
+> >  
+> > +	err = tcpci_check_std_output_cap(chip->data.regmap,
+> > +					 TCPC_STD_OUTPUT_CAP_ORIENTATION);
+> > +	if (err < 0)
+> > +		return err;
+> > +
+> > +	chip->data.set_orientation = err;
+> > +
+> >  	chip->tcpci = tcpci_register_port(&client->dev, &chip->data);
+> >  	if (IS_ERR(chip->tcpci))
+> >  		return PTR_ERR(chip->tcpci);
+> > diff --git a/include/linux/usb/tcpci.h b/include/linux/usb/tcpci.h
+> > index 467e8045e9f8..f2bfb4250366 100644
+> > --- a/include/linux/usb/tcpci.h
+> > +++ b/include/linux/usb/tcpci.h
+> > @@ -47,6 +47,9 @@
+> >  #define TCPC_SINK_FAST_ROLE_SWAP	BIT(0)
+> >  
+> >  #define TCPC_CONFIG_STD_OUTPUT		0x18
+> > +#define TCPC_CONFIG_STD_OUTPUT_ORIENTATION_MASK		BIT(0)
+> > +#define TCPC_CONFIG_STD_OUTPUT_ORIENTATION_NORMAL	0
+> > +#define TCPC_CONFIG_STD_OUTPUT_ORIENTATION_FLIPPED	1
+> >  
+> >  #define TCPC_TCPC_CTRL			0x19
+> >  #define TCPC_TCPC_CTRL_ORIENTATION	BIT(0)
+> > @@ -127,6 +130,7 @@
+> >  #define TCPC_DEV_CAP_2			0x26
+> >  #define TCPC_STD_INPUT_CAP		0x28
+> >  #define TCPC_STD_OUTPUT_CAP		0x29
+> > +#define TCPC_STD_OUTPUT_CAP_ORIENTATION	BIT(0)
+> >  
+> >  #define TCPC_MSG_HDR_INFO		0x2e
+> >  #define TCPC_MSG_HDR_INFO_DATA_ROLE	BIT(3)
+> > @@ -198,12 +202,16 @@ struct tcpci;
+> >   *		Chip level drivers are expected to check for contaminant and call
+> >   *		tcpm_clean_port when the port is clean to put the port back into
+> >   *		toggling state.
+> > + * @set_orientation:
+> > + *		Optional; Enable setting the connector orientation
+> > + *		CONFIG_STANDARD_OUTPUT (0x18) bit0.
+> >   */
+> >  struct tcpci_data {
+> >  	struct regmap *regmap;
+> >  	unsigned char TX_BUF_BYTE_x_hidden:1;
+> >  	unsigned char auto_discharge_disconnect:1;
+> >  	unsigned char vbus_vsafe0v:1;
+> > +	unsigned char set_orientation:1;
+> >  
+> >  	int (*init)(struct tcpci *tcpci, struct tcpci_data *data);
+> >  	int (*set_vconn)(struct tcpci *tcpci, struct tcpci_data *data,
+> > -- 
+> > 2.39.2
+> 
+> -- 
+> heikki
+> 
 
