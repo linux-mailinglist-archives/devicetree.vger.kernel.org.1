@@ -1,121 +1,247 @@
-Return-Path: <devicetree+bounces-45849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5EAA867008
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 11:09:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D059B867065
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 11:17:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91AC3285907
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:09:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D62FD1C27CA4
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:17:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 451976217F;
-	Mon, 26 Feb 2024 09:47:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FCD21CFA8;
+	Mon, 26 Feb 2024 09:54:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="JxSo1t98"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MwHNQKxy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E45951CD32;
-	Mon, 26 Feb 2024 09:47:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD59F14280;
+	Mon, 26 Feb 2024 09:54:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708940845; cv=none; b=Y2hEaMa4V+Yf/kLHGeu7RdE70ZBw1h7A8AZfszfU8EzbFGdanXzmwRPCgphEFEsKIUhh0TsRQttQlvycjqUU6gaG5xQEb1hUVtqXn8ENzrcWfWMKHZMd4LJreEo+tKmi/qDNsszzJsNS7pV8n7NcdGul7Yoled3BnKiZEP3TRRY=
+	t=1708941286; cv=none; b=flAfX2mSLXKatCyQPAXvooVZsYlW0gIHzSt0pXURny9YrRrNMN/vKXAFbJav/ymi4Res51fqPExkNKmlpvVQ7W3E4CYoBQcmqUD3/8lET0PFH9R1K6jqT2+Q+oYwaFpq25MvqSiogICBjWiRkyqMxTe5xJFbqkCsH0M8apEliaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708940845; c=relaxed/simple;
-	bh=GUBUJnhCJ+5svJV4Frsq2xuX833M2pcxXkLKdnw/2XQ=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L9YGkiPeEsbJSrYsor3JsT9GLVXOUzE0OI9xulqbk298sDKTTVPfB4CIRwsk0ZqDfEwXciqYopME1+5WKJqWvvtm8sxWePkwafcd+Z3kRzjB3zCJ0TReBQw2zMaGgBfgqQSMnzOBz7odRaql5dAi1sxfWygAqApl6MwLRHFzpss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=JxSo1t98; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+	s=arc-20240116; t=1708941286; c=relaxed/simple;
+	bh=enB6Xir2DeuVTnHYJjI3T8tlXiRYYBFbJ7oEag0B5HQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hs81cbDautfHtX+lpXABoriy+rkPkpkuhRfIU0WMcnTNJMLzPD1O9KjpYDsdSk708Kyb0PmwzjahAWyUFWJf40JVwOpRhj1ePUbKCyszGzrOHSa8NdVw8NivrD2DXdeaUV65pkEAcix5IE1j5i/7BMaNvyxLGFiz3KhnLBsZVxA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MwHNQKxy; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1708940842; x=1740476842;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1708941285; x=1740477285;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=GUBUJnhCJ+5svJV4Frsq2xuX833M2pcxXkLKdnw/2XQ=;
-  b=JxSo1t98+6pArKhTViKwZsuKfzhAjveG6DM9ktOyY1u1Wz9MB+D+/D3A
-   aD6LkeqtRYmGuWMC8jkSGiIXAYIdv/CYeQ8fToYT9D0YHenVJj3OVJ0e9
-   g8WhqIH1f6yGOOB/TQDG/AP8+gjFIVC1XYMNt48DolvvWFqOI23agt7A2
-   o2ddoyVAFvZQZ8mx02XToYdqwfC2QG9qj+s1T3rz5PTgvIArpKwCLkUhy
-   rZdeo+l7bHWlGx/4eWjyqp3BlXfSf5ICzeQliTdy6J/m0zioPjjefU3by
-   itxYQvk+dMkedUnzCDU4G4Z7NoD/bkMYj5Nk+1tEdAdq8XifNCHuEy3TD
-   w==;
-X-CSE-ConnectionGUID: 3TUWboU7Q1e+0wVDoOdcMg==
-X-CSE-MsgGUID: Th18ok6cRYSjDiY187FfJw==
-X-IronPort-AV: E=Sophos;i="6.06,185,1705388400"; 
-   d="asc'?scan'208";a="16814562"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 26 Feb 2024 02:47:20 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 26 Feb 2024 02:46:59 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Mon, 26 Feb 2024 02:46:58 -0700
-Date: Mon, 26 Feb 2024 09:46:15 +0000
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Conor Dooley <conor@kernel.org>
-CC: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>, Rob Herring
-	<robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Paul Walmsley
-	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>, <linux-riscv@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/1] dt-bindings: riscv: cpus: reg matches hart ID
-Message-ID: <20240226-esteemed-bagginess-7373abcdcefe@wendy>
-References: <20240128180621.85686-1-heinrich.schuchardt@canonical.com>
- <20240128-simile-endocrine-9e8af979d361@spud>
+  bh=enB6Xir2DeuVTnHYJjI3T8tlXiRYYBFbJ7oEag0B5HQ=;
+  b=MwHNQKxyapHMpnWbJbPGAA4PsVaQsL+s7G2Fg2/MFrzecbTCK77RLLEQ
+   XvrWJwX2SrndPLwan8IgkRXxHsX2+aeDyBkGFzFv2VZ5Qd+iWiDAV9uQ6
+   KLl4sge3gGLgG7m5ccmdsKNVHdvEvXskGPPRhCDIgLvqrYzeIXB64cvH3
+   PdvSqrBehmkL46bPEUwklt9a747rjyb5Yh9TaAuTN28kVzSgQPnjueKL7
+   EcSxFUWdQ9hxwav9cyZB9c4SJQCXDvsTMLp7gKZcxmJV50jjDf7ZeupO/
+   nWDM0ewyWqzVQiHrqLpAvh0L4nEHnMFlvQZ5KVx6fQMQLXkVXPD6RpCkH
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10995"; a="13859654"
+X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; 
+   d="scan'208";a="13859654"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Feb 2024 01:54:44 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; 
+   d="scan'208";a="11205325"
+Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
+  by fmviesa003.fm.intel.com with ESMTP; 26 Feb 2024 01:54:40 -0800
+Date: Mon, 26 Feb 2024 17:50:38 +0800
+From: Xu Yilun <yilun.xu@linux.intel.com>
+To: Charles Perry <charles.perry@savoirfairelinux.com>
+Cc: mdf@kernel.org, avandiver@markem-imaje.com, bcody@markem-imaje.com,
+	Wu Hao <hao.wu@intel.com>, Xu Yilun <yilun.xu@intel.com>,
+	Tom Rix <trix@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michal Simek <michal.simek@amd.com>, linux-fpga@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 3/3] fpga: xilinx-selectmap: add new driver
+Message-ID: <Zdxe7mvBbHDHzbiS@yilunxu-OptiPlex-7050>
+References: <20240221195058.1281973-1-charles.perry@savoirfairelinux.com>
+ <20240221195058.1281973-4-charles.perry@savoirfairelinux.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="6pjag9RV18K1QWjn"
-Content-Disposition: inline
-In-Reply-To: <20240128-simile-endocrine-9e8af979d361@spud>
-
---6pjag9RV18K1QWjn
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240221195058.1281973-4-charles.perry@savoirfairelinux.com>
 
-On Sun, Jan 28, 2024 at 06:20:46PM +0000, Conor Dooley wrote:
-> On Sun, Jan 28, 2024 at 07:06:21PM +0100, Heinrich Schuchardt wrote:
-> > Add a description to the CPU reg property to clarify that
-> > the reg property must match the hart ID.
->=20
-> That is the expected usage alright. Did you come across something where
-> it was not being used in that way?
->=20
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+On Wed, Feb 21, 2024 at 02:50:49PM -0500, Charles Perry wrote:
+> Xilinx 7 series FPGA can be programmed using a parallel port named
+> the SelectMAP interface in the datasheet. This interface is compatible
+> with the i.MX6 EIM bus controller but other types of external memory
+> mapped parallel bus might work.
+> 
+> xilinx-selectmap currently only supports the x8 mode where data is loaded
+> at one byte per rising edge of the clock, with the MSb of each byte
+> presented to the D0 pin.
+> 
+> Signed-off-by: Charles Perry <charles.perry@savoirfairelinux.com>
+> ---
+>  drivers/fpga/Kconfig            |  8 +++
+>  drivers/fpga/Makefile           |  1 +
+>  drivers/fpga/xilinx-selectmap.c | 97 +++++++++++++++++++++++++++++++++
+>  3 files changed, 106 insertions(+)
+>  create mode 100644 drivers/fpga/xilinx-selectmap.c
+> 
+> diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
+> index d27a1ebf40838..37b35f58f0dfb 100644
+> --- a/drivers/fpga/Kconfig
+> +++ b/drivers/fpga/Kconfig
+> @@ -67,6 +67,14 @@ config FPGA_MGR_STRATIX10_SOC
+>  config FPGA_MGR_XILINX_CORE
+>  	tristate
+>  
+> +config FPGA_MGR_XILINX_SELECTMAP
+> +	tristate "Xilinx Configuration over SelectMAP"
+> +	depends on HAS_IOMEM
+> +	select FPGA_MGR_XILINX_CORE
+> +	help
+> +	  FPGA manager driver support for Xilinx FPGA configuration
+> +	  over SelectMAP interface.
+> +
+>  config FPGA_MGR_XILINX_SPI
+>  	tristate "Xilinx Configuration over Slave Serial (SPI)"
+>  	depends on SPI
+> diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
+> index 7ec795b6a5a70..aeb89bb13517e 100644
+> --- a/drivers/fpga/Makefile
+> +++ b/drivers/fpga/Makefile
+> @@ -16,6 +16,7 @@ obj-$(CONFIG_FPGA_MGR_SOCFPGA_A10)	+= socfpga-a10.o
+>  obj-$(CONFIG_FPGA_MGR_STRATIX10_SOC)	+= stratix10-soc.o
+>  obj-$(CONFIG_FPGA_MGR_TS73XX)		+= ts73xx-fpga.o
+>  obj-$(CONFIG_FPGA_MGR_XILINX_CORE)	+= xilinx-core.o
+> +obj-$(CONFIG_FPGA_MGR_XILINX_SELECTMAP)	+= xilinx-selectmap.o
+>  obj-$(CONFIG_FPGA_MGR_XILINX_SPI)	+= xilinx-spi.o
+>  obj-$(CONFIG_FPGA_MGR_ZYNQ_FPGA)	+= zynq-fpga.o
+>  obj-$(CONFIG_FPGA_MGR_ZYNQMP_FPGA)	+= zynqmp-fpga.o
+> diff --git a/drivers/fpga/xilinx-selectmap.c b/drivers/fpga/xilinx-selectmap.c
+> new file mode 100644
+> index 0000000000000..b63f4623f8b2c
+> --- /dev/null
+> +++ b/drivers/fpga/xilinx-selectmap.c
+> @@ -0,0 +1,97 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Xilinx Spartan6 and 7 Series SelectMAP interface driver
+> + *
+> + * (C) 2024 Charles Perry <charles.perry@savoirfairelinux.com>
+> + *
+> + * Manage Xilinx FPGA firmware loaded over the SelectMAP configuration
+> + * interface.
+> + */
+> +
+> +#include "xilinx-core.h"
+> +
+> +#include <linux/platform_device.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/of.h>
+> +#include <linux/io.h>
+> +
+> +struct xilinx_selectmap_conf {
+> +	struct xilinx_fpga_core core;
+> +	void __iomem *base;
+> +};
+> +
+> +#define to_xilinx_selectmap_conf(obj) \
+> +	container_of(obj, struct xilinx_selectmap_conf, core)
+> +
+> +static int xilinx_selectmap_write(struct xilinx_fpga_core *core,
+> +				  const char *buf, size_t count)
+> +{
+> +	struct xilinx_selectmap_conf *conf = to_xilinx_selectmap_conf(core);
+> +	u32 i;
+> +
+> +	for (i = 0; i < count; ++i)
+> +		writeb(buf[i], conf->base);
+> +
+> +	return 0;
+> +}
+> +
+> +static int xilinx_selectmap_probe(struct platform_device *pdev)
+> +{
+> +	struct xilinx_selectmap_conf *conf;
+> +	struct resource *r;
+> +	void __iomem *base;
+> +	struct gpio_desc *csi_b;
+> +	struct gpio_desc *rdwr_b;
+> +
+> +	conf = devm_kzalloc(&pdev->dev, sizeof(*conf), GFP_KERNEL);
+> +	if (!conf)
+> +		return -ENOMEM;
+> +
+> +	conf->core.dev = &pdev->dev;
+> +	conf->core.write = xilinx_selectmap_write;
+> +
+> +	base = devm_platform_get_and_ioremap_resource(pdev, 0, &r);
+> +	if (IS_ERR(base))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(base),
+> +				     "ioremap error\n");
+> +	conf->base = base;
+> +
+> +	/* CSI_B is active low */
+> +	csi_b = devm_gpiod_get_optional(&pdev->dev, "csi", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(csi_b))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(csi_b),
+> +				     "Failed to get CSI_B gpio\n");
+> +
+> +	/* RDWR_B is active low */
+> +	rdwr_b = devm_gpiod_get_optional(&pdev->dev, "rdwr", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(rdwr_b))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(rdwr_b),
+> +				     "Failed to get RDWR_B gpio\n");
+> +
+> +	return xilinx_core_probe(&conf->core);
+> +}
+> +
+> +static const struct of_device_id xlnx_selectmap_of_match[] = {
+> +	{ .compatible = "xlnx,fpga-xc7s-selectmap", }, // Spartan-7
+> +	{ .compatible = "xlnx,fpga-xc7a-selectmap", }, // Artix-7
+> +	{ .compatible = "xlnx,fpga-xc7k-selectmap", }, // Kintex-7
+> +	{ .compatible = "xlnx,fpga-xc7v-selectmap", }, // Virtex-7
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, xlnx_selectmap_of_match);
 
-I think I pinged Palmer to grab this, but since it's been a month and
-not picked up, I've gone and applied this.
+Does the driver have to be used with OF or not?
+
+If yes, please specify the reason and enforce in Kconfig.
+If no, please ensure it decently compiles without CONFIG_OF.
 
 Thanks,
-Conor.
+Yilun
 
-
---6pjag9RV18K1QWjn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdxd5wAKCRB4tDGHoIJi
-0rpKAQDtHi/6j4X2TxwcayQZ0w2Lut2Pa5wamAt/W3HRnT4ENAD/cOo9XIvgbe7q
-tntBZhh1qRKSOacwcfw2GY4q5z0E+A4=
-=ZusI
------END PGP SIGNATURE-----
-
---6pjag9RV18K1QWjn--
+> +
+> +static struct platform_driver xilinx_selectmap_driver = {
+> +	.driver = {
+> +		.name = "xilinx-selectmap",
+> +		.of_match_table = xlnx_selectmap_of_match,
+> +	},
+> +	.probe  = xilinx_selectmap_probe,
+> +};
+> +
+> +module_platform_driver(xilinx_selectmap_driver);
+> +
+> +MODULE_LICENSE("GPL");
+> +MODULE_AUTHOR("Charles Perry <charles.perry@savoirfairelinux.com>");
+> +MODULE_DESCRIPTION("Load Xilinx FPGA firmware over SelectMap");
+> -- 
+> 2.43.0
+> 
+> 
 
