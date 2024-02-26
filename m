@@ -1,123 +1,134 @@
-Return-Path: <devicetree+bounces-46125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63BA9868272
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 22:11:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E88658682CE
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 22:17:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 02025B2273D
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 21:11:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19E041C23FA6
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 21:17:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7292131747;
-	Mon, 26 Feb 2024 21:11:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DAF8131739;
+	Mon, 26 Feb 2024 21:17:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qAppqhO7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CVZuCtf3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D206D7F7EC
-	for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 21:11:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E0F1130E58;
+	Mon, 26 Feb 2024 21:17:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708981888; cv=none; b=a5vJBX8G61tirCv73Iemxo7XvwcWRJ0dl9T517UzlKEN0iWsUddWbzg78oditFZaB5KDhB0ahrbbr0Y7aru3EFYPAHszfhojAtQBEapCp4A+Hc2BdwqyhBPhDM96UYkYrzYaUXrXuezgIJTn7b3ECTjo+yKvCrBMiVNVPTYZyp4=
+	t=1708982232; cv=none; b=bLX0O46QvsM+vq978w4VdL6H0DTlLoPHsdYFBKeboZFa659ECTVe6gwNXSN5cdKvonBDh/1r7V58dgz3emuXGxi1TCb5TNSutwxGjQyhM+D6gKMJ87SnT9TEuXPKgfSWr6j+IasUURnNWBdVRggr3JZzeNZUsdnvrbGv2k6cNVI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708981888; c=relaxed/simple;
-	bh=93h7BH4GCt3CJB5UrgNfhfUGm34jC2YfcuE3GIiF0fo=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=iBBjtegR+7NoJh81ZypG+OEBkMHpVxT8MYmHE2xE4s6vPzRCKRhL3bBFBGMwBLSJ8j5eLl99VyReWbeSajNOWviup/TzctPBAHW3E7UdY3c70kDrMo42Ycx0nqn2Tj1lknQm6pX7IBOhVhED6DvgiU7VMEUEkyb4fMb2DMHI6+o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qAppqhO7; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-513031ce058so431441e87.1
-        for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 13:11:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708981885; x=1709586685; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=3ysIrqXP7BM1TksftOv6OeeAmfm1vmGt2O+GUwD0KVg=;
-        b=qAppqhO7pamZ/VjIeTbII88PCts6lMHfIRJVX7f5UEBJ5ly62Zlgtcs8y+xfzeyIo9
-         3GY/xgwkfLjCHADuTrTucbb7gpNMkvhizi3xwAdszKHoXwidAIfkB5tackejlTZLsgvm
-         fGvBBTZAP6xY3yllt7kHX6QUd9kV5LgMcRPPTHepO9t14D0u3yS9UjcR1S+YWObVjqyM
-         30/nK895er07g8te/RU9Y9WBU5jEuj7OQ8N2Hr904UgEl1zFa3t0bC8Jn0VOhKabWzKq
-         vCrIBdlF/mcZnkUi/caAbdRT0sB+W5pFGs5sitrTPnND8DBWnpBX8BwdaC2gF82s7WhK
-         RKLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708981885; x=1709586685;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3ysIrqXP7BM1TksftOv6OeeAmfm1vmGt2O+GUwD0KVg=;
-        b=cSQzKlGQ9w2g/LDNzKvgbx8AyvxbOhqoeyC9eBV7gvrWxdY5AZVB4CTDg1PgSPpioy
-         re/dM0h0q0X/mTkny3ESwaXTmpMuS6ZiO4a4dhFr7uR292c5PfrJHqLGl5xYFAIF/gI1
-         M0i9ytnXZcQxFATu9VS686XMgEvFxexnwH0KERvkCddrctMYim1fIIHWzdhM9DQ2ARsU
-         GjyM5Kt3Y/LWr+PD8dD60nhxJKsuQEiXSoKfKmbgoAvWtkCfiXBCHO9vdXHqOOtxq8xl
-         pVg4lTxid7OQyRc6ZMyUb0eu1kCETC5fSP9rrjzg0F9CTFPls+I+G4AL2LwuNQ8tTzUy
-         tI9A==
-X-Forwarded-Encrypted: i=1; AJvYcCVdIbAtlQS5efwE3rboKMTLdCeFTxYjhIxvlipKBTMRyGwBwITzTCTFH8UHj3j1rWr1I2SGFq9fVZF0lKkncWeesDf5g2bYZktu2A==
-X-Gm-Message-State: AOJu0Yy+7gFyaKwcOkt9Y+qY4B1dRapgS7pBKk3BL/z3p975i23cVU+B
-	VDId4quewZbCUnSOj5fTcY+S8lXk0vhPPS7avWOwr1mLGHqTkGo9ryRHd2tqNxY=
-X-Google-Smtp-Source: AGHT+IEUrHt30AIClgMAs0x77is76pDcJXmtvevfkWdT9LQ+5IEwrsUE2gOyNDj2/9AkUyzwOg6RcA==
-X-Received: by 2002:a05:6512:691:b0:512:f59f:15d3 with SMTP id t17-20020a056512069100b00512f59f15d3mr4716294lfe.20.1708981884861;
-        Mon, 26 Feb 2024 13:11:24 -0800 (PST)
-Received: from umbar.lan (dzyjmhybhls-s--zn36gy-3.rev.dnainternet.fi. [2001:14ba:a00e:a300:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id n18-20020a195512000000b00512f73212easm717839lfe.79.2024.02.26.13.11.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Feb 2024 13:11:24 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH] arm64: dts: qcom: sc8280xp: make dispcc cast minimal vote on MMCX
-Date: Mon, 26 Feb 2024 23:11:23 +0200
-Message-Id: <20240226211123.4192907-1-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.2
+	s=arc-20240116; t=1708982232; c=relaxed/simple;
+	bh=fwYYpXzdEOYjL8eAtATGi8UM6eh2OJjoljUqW1PwVUc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sdXrGpfy3lNiNhnwEZb5Ia/RA9PLdeL34WFZ3RWyEfHfgTUVEVUKo6Ujm6S0o6J3mGQuwlIef7G4nQ36eBTz4yhgyYIchX42NiGdL55jsP8Vzq5pM+pip5RqRU8JP42ONP4hAwnmUlVc0FiyUmMerS5xELOh9eozReuDWxh0wKI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CVZuCtf3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B65CC433C7;
+	Mon, 26 Feb 2024 21:17:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708982231;
+	bh=fwYYpXzdEOYjL8eAtATGi8UM6eh2OJjoljUqW1PwVUc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CVZuCtf3s3iT2n5OxYC/w3Q38A4FGsmGQ7/1K2UvmYp9ox0/XHcxkwD4MDWP9aqzw
+	 7mRS8JYnxGQK+/8E4gofKumBYgFuyu1TtbHALkTRnvmT9gAuKztgFbQPxCQsX3EvOB
+	 kIMPjJUfpcVA8xW6/Qmo3PZ8FRID3tHTWuFDpRsG3KRHD/GkZHQbzDMKXgZ+5HSEfE
+	 4Pn4RMqzsQFM6Gdi0/FRPI3fM5LqDcw/QtKlIFqD/li46DxYlmCypH3d0euzN4DhGM
+	 YuyQw+MI5RMKA/rrkpX/29eUim8Uh5LUNZNnyPvixJ5I1v8y9Gm1tMsRZjAuYG7EDd
+	 OO1//B9mq/prw==
+Date: Mon, 26 Feb 2024 21:17:06 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, haibo.chen@nxp.com,
+	lars@metafoo.de, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: imx93: drop the 4th interrupt
+Message-ID: <20240226-rectangle-pacifist-633ae3b801c7@spud>
+References: <20240226130826.3824251-1-peng.fan@oss.nxp.com>
+ <20240226-germinate-anymore-fb85ca9bb226@spud>
+ <20240226192055.54b4a6b1@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="tIzW5O2k7AACHYUt"
+Content-Disposition: inline
+In-Reply-To: <20240226192055.54b4a6b1@jic23-huawei>
 
-Add required-opps property to the display clock controller. This makes
-it cast minimal vote on the MMCX lane to prevents resets caused by the
-DisplayPort / panel probing.
 
-Fixes: 57d6ef683a15 ("arm64: dts: qcom: sc8280xp: Define some of the display blocks")
-Cc: Johan Hovold <johan+linaro@kernel.org>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+--tIzW5O2k7AACHYUt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index febf28356ff8..ec85c81f65cd 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -3938,6 +3938,7 @@ dispcc0: clock-controller@af00000 {
- 				 <0>,
- 				 <0>;
- 			power-domains = <&rpmhpd SC8280XP_MMCX>;
-+			required-opps = <&rpmhpd_opp_low_svs>;
- 
- 			#clock-cells = <1>;
- 			#power-domain-cells = <1>;
-@@ -5034,6 +5035,7 @@ dispcc1: clock-controller@22100000 {
- 				 <0>,
- 				 <0>;
- 			power-domains = <&rpmhpd SC8280XP_MMCX>;
-+			required-opps = <&rpmhpd_opp_low_svs>;
- 
- 			#clock-cells = <1>;
- 			#power-domain-cells = <1>;
--- 
-2.39.2
+On Mon, Feb 26, 2024 at 07:20:55PM +0000, Jonathan Cameron wrote:
+> On Mon, 26 Feb 2024 16:24:47 +0000
+> Conor Dooley <conor@kernel.org> wrote:
+>=20
+> > On Mon, Feb 26, 2024 at 09:08:25PM +0800, Peng Fan (OSS) wrote:
+> > > From: Peng Fan <peng.fan@nxp.com>
+> > >=20
+> > > Per i.MX93 Reference Mannual Rev.4, 12/2013, there is no interrupt 26=
+8,
+> > > so drop it. =20
+> >=20
+> > Don't just remove it from the example, drop it from the binding too?
+> > It does permit a 4th "self testing" interrupt.
+>=20
+> I'm missing something. See below...
+> >=20
+> > Thanks,
+> > Conor.
+> >=20
+> > >=20
+> > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml | 4 +---
+> > >  1 file changed, 1 insertion(+), 3 deletions(-)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.=
+yaml b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+> > > index dacc526dc695..dfc3f512918f 100644
+> > > --- a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+> > > +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+> > > @@ -31,7 +31,6 @@ properties:
+> > >        - description: normal conversion, include EOC (End of Conversi=
+on),
+> > >            ECH (End of Chain), JEOC (End of Injected Conversion) and
+> > >            JECH (End of injected Chain).
+> > > -      - description: Self-testing Interrupts.
+>=20
+> Eyes skipped over this maybe?  The 4th interrupt is removed from binding =
+here...
 
+Huh, wonder how I missed that. I thought I double checked...
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+--tIzW5O2k7AACHYUt
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdz/0gAKCRB4tDGHoIJi
+0lBjAP9JFqwqtIY93+4RkbvZhkGC9z9gyCJ3zcEeEwVkVbdwtQD/b5+mCGr5wIUP
+J5Jf61KY+mwoafOL2mPfd4RwQNzsvAM=
+=h2IV
+-----END PGP SIGNATURE-----
+
+--tIzW5O2k7AACHYUt--
 
