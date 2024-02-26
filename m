@@ -1,56 +1,83 @@
-Return-Path: <devicetree+bounces-45981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E5658677C8
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 15:08:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 254DF8677E8
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 15:12:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E45A1F271F9
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 14:08:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B88751F2064D
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 14:12:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 050FF129A7B;
-	Mon, 26 Feb 2024 14:04:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DFC6129A75;
+	Mon, 26 Feb 2024 14:12:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Wf7ZRLx8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C3821292FB;
-	Mon, 26 Feb 2024 14:04:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2779E128389;
+	Mon, 26 Feb 2024 14:12:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708956275; cv=none; b=GtN6FOBwhvjDUBJ/4uxEQSTEMSPyZgwYOD8yIcSTrFmzwWqkMT14F11ijikPBmndX7Wb4bnBfIHtdeIAakCzfr04SMliMotA1l1chHQ5gjUTzXwJ3IQ75ZuZdJN0cxAx7tPsTclyE7X+O/B0P9mPg/KjI7URFSnw1YDlB1TqQl4=
+	t=1708956753; cv=none; b=GizA9HWRHPhIorjDDiuyGwncMk1uaix8PFK4koYpTLqRcmCH0nZVe3QueWNmQLEK1/sxCAg6lm0q0U9xXZ84mfknHSEGVZXS5qt3nOLwAZuce3n0QoyQ1WfrBr4NcFbM3O9ZXCiEFHp/WQ+6/8rRhBba/ld3ELfyL6pSVDTIWVI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708956275; c=relaxed/simple;
-	bh=eE9D94MSGkexm4+cS9xd5Yz5/AUzCiXROv8azBoWYqc=;
+	s=arc-20240116; t=1708956753; c=relaxed/simple;
+	bh=UtF0hU+9ize1OU+qLoslQEHlSpGHD5zpSnj1SCFGdww=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jQUtUXtgFfXrPvZyB/5l4TS44t6nRIM3gfB/APXYzgZ8+eKil7gHWgEfSBs5bfXKPeRRVIiK6h38hmXbuLg35dC55g42sMV1PD27VBBZZKMdZR2ZOIvuCVlJa7+IomxD7L89elmWKX2IC7wBy99vdSOrQfPYwTMT2xtsH8E5x8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 543F5DA7;
-	Mon, 26 Feb 2024 06:05:11 -0800 (PST)
-Received: from pluto (unknown [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DC99E3F762;
-	Mon, 26 Feb 2024 06:04:30 -0800 (PST)
-Date: Mon, 26 Feb 2024 14:04:28 +0000
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=TMXrZbwgQ843Y2czSEwTuwQWqF7DUhD7U7cipWZqf8tREcZIvQFBKJCQBnH7LFbikNO3hsyMPweonKeYC/O2T0wv1xFo0WMvWoHmKVWc/UKKDtT+b1jRFwth5DwfWAiwTQouiBOOUY6oLmYpj/zD9QRZvFQxw7L9RsAo83n1Mpc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Wf7ZRLx8; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1708956753; x=1740492753;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=UtF0hU+9ize1OU+qLoslQEHlSpGHD5zpSnj1SCFGdww=;
+  b=Wf7ZRLx8fzxO0iwIciHCEZHDRFVtFM3+eEbRMHJHHMnpkwfru1XCnkGU
+   XZsZ7FXGCnqfxBrWZs1sbPGT724mF79406ij4M6Ag2W0ZxyHckUw8G/Jn
+   ySIjptUp5tFbQ5PDm9RfBP+k6WGre2HezqhwxWdaYDQfXX8TXNY8Iei79
+   UioeVWBJbbGikjh8Yah3o7z/g/bAKZapMXsKRuC3FGc06+dB0eHZwbQGN
+   O/51ZcGGxktB930Oo7AbuA1R9I3NhPgK4on58e8DPTwkbWd2hTzGLn9ub
+   OBYU05lzaFw5Wzd4Ars2rMfDowvGO9IbnCr2XNA+7Szn8Ebz9PAXxw9oG
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10995"; a="7046723"
+X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; 
+   d="scan'208";a="7046723"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Feb 2024 06:12:32 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10995"; a="913871995"
+X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; 
+   d="scan'208";a="913871995"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Feb 2024 06:12:27 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1rebiS-00000007hMH-04x7;
+	Mon, 26 Feb 2024 16:12:24 +0200
+Date: Mon, 26 Feb 2024 16:12:23 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH 4/5] firmware: imx: support BBM module
-Message-ID: <ZdyabHM25C9TF7cm@pluto>
-References: <20240202-imx95-bbm-misc-v1-0-3cb743020933@nxp.com>
- <20240202-imx95-bbm-misc-v1-4-3cb743020933@nxp.com>
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Marek Vasut <marex@denx.de>, Anshul Dalal <anshulusr@gmail.com>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	Matt Ranostay <matt@ranostay.sg>,
+	Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 5/5] iio: light: Add support for APDS9306 Light Sensor
+Message-ID: <ZdycR6nr3rtrnuth@smile.fi.intel.com>
+References: <20240218054826.2881-1-subhajit.ghosh@tweaklogic.com>
+ <20240218054826.2881-6-subhajit.ghosh@tweaklogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,93 +86,96 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240202-imx95-bbm-misc-v1-4-3cb743020933@nxp.com>
+In-Reply-To: <20240218054826.2881-6-subhajit.ghosh@tweaklogic.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Fri, Feb 02, 2024 at 02:34:42PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On Sun, Feb 18, 2024 at 04:18:26PM +1030, Subhajit Ghosh wrote:
+> Driver support for Avago (Broadcom) APDS9306 Ambient Light Sensor.
+> It has two channels - ALS and CLEAR. The ALS (Ambient Light Sensor)
+> channel approximates the response of the human-eye providing direct
+> read out where the output count is proportional to ambient light levels.
+> It is internally temperature compensated and rejects 50Hz and 60Hz flicker
+> caused by artificial light sources. Hardware interrupt configuration is
+> optional. It is a low power device with 20 bit resolution and has
+> configurable adaptive interrupt mode and interrupt persistence mode.
+> The device also features inbuilt hardware gain, multiple integration time
+> selection options and sampling frequency selection options.
 > 
-> The BBM module provides RTC and BUTTON feature. To i.MX95, this module
-> is managed by System Manager. Linux could use i.MX SCMI BBM Extension
-> protocol to use RTC and BUTTON feature.
-> 
-> This driver is to use SCMI interface to get/set RTC, enable pwrkey.
-> 
+> This driver also uses the IIO GTS (Gain Time Scale) Helpers Namespace for
+> Scales, Gains and Integration time implementation.
 
-Hi some further remarks questin about pwrkey down below.
+...
 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  drivers/firmware/imx/Makefile |   1 +
->  drivers/firmware/imx/sm-bbm.c | 317 ++++++++++++++++++++++++++++++++++++++++++
->  2 files changed, 318 insertions(+)
-> 
- [snip]
+> +/*
+> + * Available scales with gain 1x - 18x, timings 3.125, 25, 50, 100, 200, 400 mS
 
-> +static int scmi_imx_bbm_pwrkey_init(struct scmi_device *sdev)
-> +{
-> +	const struct scmi_handle *handle = sdev->handle;
-> +	struct device *dev = &sdev->dev;
-> +	struct scmi_imx_bbm *bbnsm = dev_get_drvdata(dev);
-> +	struct input_dev *input;
-> +	int ret;
-> +
-> +	if (device_property_read_u32(dev, "linux,code", &bbnsm->keycode)) {
-> +		bbnsm->keycode = KEY_POWER;
-> +		dev_warn(dev, "key code is not specified, using default KEY_POWER\n");
-> +	}
+"mS" --> "ms."
 
-This linux,code binding prop is searched in the SCMI device node, BUT
-your BB< protocol binding does NOT mention it at all.
+> + * Time impacts to gain: 1x, 8x, 16x, 32x, 64x, 128x
+> + */
+
+...
+
+> +	/*
+> +	 * If this function runs parallel with the interrupt handler, either
+> +	 * this reads and clears the status registers or the interrupt handler
+> +	 * does. The interrupt handler sets a flag for read data available
+> +	 * in our private structure which we read here.
+> +	 */
+> +	ret = regmap_read_poll_timeout(data->regmap, APDS9306_MAIN_STATUS_REG,
+> +				       status, data->read_data_available ||
+> +				       (status & (APDS9306_ALS_DATA_STAT_MASK |
+> +						  APDS9306_ALS_INT_STAT_MASK)),
+> +				       APDS9306_ALS_READ_DATA_DELAY_US, delay * 2);
 
 > +
-> +	INIT_DELAYED_WORK(&bbnsm->check_work, scmi_imx_bbm_pwrkey_check_for_events);
-> +
-> +	input = devm_input_allocate_device(dev);
-> +	if (!input) {
-> +		dev_err(dev, "failed to allocate the input device for SCMI IMX BBM\n");
-> +		return -ENOMEM;
-> +	}
-> +
-> +	input->name = dev_name(dev);
-> +	input->phys = "bbnsm-pwrkey/input0";
-> +	input->id.bustype = BUS_HOST;
-> +
-> +	input_set_capability(input, EV_KEY, bbnsm->keycode);
-> +
-> +	ret = devm_add_action_or_reset(dev, scmi_imx_bbm_pwrkey_act, bbnsm);
-> +	if (ret) {
-> +		dev_err(dev, "failed to register remove action\n");
-> +		return ret;
-> +	}
-> +
-> +	bbnsm->input = input;
-> +
-> +	ret = handle->notify_ops->devm_event_notifier_register(sdev, SCMI_PROTOCOL_IMX_BBM,
-> +							       SCMI_EVENT_IMX_BBM_BUTTON,
-> +							       NULL, &bbnsm->nb);
-> +
+
+Redundant blank line
+
 > +	if (ret)
-> +		dev_err(dev, "Failed to register BBM Button Events %d:", ret);
-> +
-> +	ret = input_register_device(input);
-> +	if (ret) {
-> +		dev_err(dev, "failed to register input device\n");
 > +		return ret;
-> +	}
+
+...
+
+> +static int apds9306_init_iio_gts(struct apds9306_data *data)
+> +{
+> +	int i, ret, part_id;
 > +
-> +	return 0;
+> +	ret = regmap_read(data->regmap, APDS9306_PART_ID_REG, &part_id);
+> +	if (ret)
+> +		return ret;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(apds9306_gts_mul); i++)
+> +		if (part_id == apds9306_gts_mul[i].part_id)
+> +			break;
+> +
+> +	if (i == ARRAY_SIZE(apds9306_gts_mul))
+> +		return -ENXIO;
+
+Strange choice of the error code, why not (one of) -ENOENT / -ENODATA ?
+
+> +	return devm_iio_init_iio_gts(data->dev,
+> +				     apds9306_gts_mul[i].max_scale_int,
+> +				     apds9306_gts_mul[i].max_scale_nano,
+> +				     apds9306_gains, ARRAY_SIZE(apds9306_gains),
+> +				     apds9306_itimes, ARRAY_SIZE(apds9306_itimes),
+> +				     &data->gts);
+
+> +
+> +	return -ENXIO;
+
+Dead code.
+
 > +}
 
-I suppose you cannot use std SystemPower protocol and scmi_power_control
-existent upstream driver because you are configuring the event keycode that
-is associated with your button press event using linux,code DT properies
-looked up above, right ? (which you need to define somewhere as said
-above..)
+...
 
-I was thinking that maybe handling events associated with generic button-presses
-could be done via some std SCMI protocols like PINCTRL/GPIO (IF IT HAD NOTIFICATIONS)
-and some custom SCMI gpio-keys driver in the future (not now clearly :D)...thoughts ?
+Jonathan, are you going to apply this and addressing comments at the same time?
+Or should it be another version?
 
-Thanks,
-Cristian
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
