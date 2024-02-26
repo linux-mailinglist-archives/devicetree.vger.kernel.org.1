@@ -1,301 +1,122 @@
-Return-Path: <devicetree+bounces-45781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45782-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14D7E866AE0
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 08:33:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F3F9866B20
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 08:41:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7FB001F21198
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 07:33:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 852481F22215
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 07:41:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2D551EB39;
-	Mon, 26 Feb 2024 07:31:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 907D01DA24;
+	Mon, 26 Feb 2024 07:37:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iTsmT9Oi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TSBoM3jT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9AA41EB23;
-	Mon, 26 Feb 2024 07:31:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88FD420314
+	for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 07:37:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708932684; cv=none; b=meBM4F88h4xx8UKWIx4C6rRxXjJVghNbDg8FE5X2kdu40+ercMXfJibPHqHnT3AI/t47W+UkjAjP67jCAfitolMn8KZoz2KUJV6rG7UHRuRH6kGtUoIPF4r8Qia9hvUtMyH873PnY1eiYD3TtdCRM/RUXlMdxKTgV89FaqhxuE8=
+	t=1708933042; cv=none; b=kw7WQm4MAEU0k8ZBgNiLJfCLoE6eDKZWKN0iZDIRFUV0X5bystmwXbR6IGN7YVRvs82eXkxgtCGQf46FOWceiXlLuyfi/VFZ7iqr3jxkY+KO5fRP5MDs0N7NjbBk7XFUMDSZja92uw/dmn074AhOXAQzM30x1E/GByIHCs4WfZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708932684; c=relaxed/simple;
-	bh=D8xErp0zejwZpfi8Wd+6nBZxa9LPVk/TpSjAq+BHZns=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=oAPQg7jOXm1KagGhTVKE7yRCI9/uiULmZIV6pTlEiB+g1Qum2xY4UedyKlnJN6jSuqt9lo4c1lzlhSuv7aSKemqMstqdBcWwRMg61GDtL0C8vPtysP8SgjK/6a+C4UlFzodvGSj34ea3XWS6ZwNAhyklteDoZP6AhSycTrxtkDA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iTsmT9Oi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A44BDC4E758;
-	Mon, 26 Feb 2024 07:31:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708932683;
-	bh=D8xErp0zejwZpfi8Wd+6nBZxa9LPVk/TpSjAq+BHZns=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=iTsmT9OipHKTeCEDuNgwqalbHgRDT0MOw59H1xZNbvfWiG+ifxi3utkao9rU7TnlE
-	 g3QFmYl1ZhBa5Y+wo6+UubXJeRdW0pioZ9l0WVEbKUEqWs5+MVpBBhnn8CBPDhvQDN
-	 WNFQYdGqAWF3G6UtVatc3XIYPhfI7Zkty41q+X1yAJsxRg6EPMAlr24lXo9AnQN/vL
-	 rFYk2mDdy4I4OES8TgLF4mM+9tdjLGiyWR2T7E7/XOailLSnIBm0+EDB4C26GxJGgc
-	 SyHen4hI6ekJTEa17yizSy/suN8nmzBy5Dl64bgdxHL5uqafSQDQxscIDqS8Zq86Ew
-	 3yrI51XQwE3KQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 91BECC54E52;
-	Mon, 26 Feb 2024 07:31:23 +0000 (UTC)
-From:
- Nikita Shubin via B4 Relay <devnull+nikita.shubin.maquefel.me@kernel.org>
-Date: Mon, 26 Feb 2024 10:30:27 +0300
-Subject: [PATCH v8 31/38] ARM: dts: ep93xx: Add EDB9302 DT
+	s=arc-20240116; t=1708933042; c=relaxed/simple;
+	bh=+CPBBu9WyqTLEESsUyBowQXqNEsqLAta+C9KRApRjH8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=icYDgMEX98lJCfcfjhlTNxDKXJKkid/0jAox2bQqC3QaeGEvXvqM2u44dTNFxnMkNMohnaXlz8O+wyjW4ozZj5idEd2y/dZ+Kug7XCzRgnDp/izKpOx1gePllBi24cY07UsuOS/wFr/g7TAOqvNbjPf1P0NMRoBv07y9DkLf2a0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TSBoM3jT; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a3e75e30d36so532277166b.1
+        for <devicetree@vger.kernel.org>; Sun, 25 Feb 2024 23:37:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708933038; x=1709537838; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=f93rFz5E3AeU8cJwJga/R66WIzynOr8vsYGsktU0xqw=;
+        b=TSBoM3jTIjO2dAEvEyGbji+B0VdHDuXUNxxtL3scDftfpm0xdqiTiGkHE2G0HGEHi9
+         zVQlaBquclIqrM1QXmQvA+Zo8QnDTrwwXDYl5yOeDZg7ByU87/FgINj91zSlZhxhC9bf
+         pcdntgdIkk8w3w0CZvhXpW3U1FqBvjc2wqFEUtN1e8OX9Kdasf5LIruwUo1EH4DvhgLS
+         U830juSl7dUdPveTO311aq2Nc/7jBgY9dEHf7Rh0lMrLoe9WK4YTZtEK3JZv3pRqCYIt
+         lo1NvtKP8nthCDS/87mVNt1piq3kU/NcjSKBktAupN1CWdeTzU6UfJ+K+FI+VBxTEbQd
+         pkpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708933038; x=1709537838;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=f93rFz5E3AeU8cJwJga/R66WIzynOr8vsYGsktU0xqw=;
+        b=QmHxoyHKmu2UmyHh4izwgmLoAFEOBxci4HuLmOSsj9p3KQfDKDF/pzZvB+TWbsqiN0
+         1VfzTpDyPDS0zlQ/xLZOjQEoHQ5O7kplHtiizyUq+0oMTf9JVFB7dsaNuleeNotUUPlN
+         UpD3eRNhjEN/3T+Twi5iUFgDy8xRL2mdoE/p4K+s4y5wlf5m+PEbCNu5v5LAU1a42E3t
+         ojL3lC6Fhez0W/ObE3ckFaQ+FXHNFCABsvQdo5K1k9NYSqeaoKEeoCTeNW4ktZVAR7v3
+         2prB7urcuswFNfYzN26h1qIApy4WMfa/GjLyuwNJN9UqaKh+qBwg8ameWtLZq2ZXKQS0
+         XV+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXxz3DvEgwjGkKJlTFJWhStGtOndMMtgQFzmKXch3XkxujDZHu4+wCo29jV0+ze+h7Hk/3vZ4dnC/imsjnXq7nLgmgPj41TCM4WPA==
+X-Gm-Message-State: AOJu0YxxhX8urQkhKgf8eO9evKVxVqMz3ccltz2PaTEZVnbmZ6nGd8xs
+	5PK5OyeaVe5zaUJRySYgfZrsSfMa60yZAFCrIGT+9bezOJHTB480L32bZ+YUsmU=
+X-Google-Smtp-Source: AGHT+IH8BkFJeP/UC99e0jX4wZGL1PJeUfLlzAWh6qlnYrXXQUFlZiCkpfV2Ek5S15L9cROt8UR4IQ==
+X-Received: by 2002:a17:907:1701:b0:a3f:365:2276 with SMTP id le1-20020a170907170100b00a3f03652276mr5277748ejc.34.1708933037889;
+        Sun, 25 Feb 2024 23:37:17 -0800 (PST)
+Received: from krzk-bin.. ([178.197.222.116])
+        by smtp.gmail.com with ESMTPSA id y8-20020a170906558800b00a3e8c3fc3ffsm2187425ejp.10.2024.02.25.23.37.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 25 Feb 2024 23:37:17 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Pavel Machek <pavel@ucw.cz>,
+	Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] dt-bindings: leds: qcom-lpg: Drop redundant qcom,pm8550-pwm in if:then:
+Date: Mon, 26 Feb 2024 08:37:12 +0100
+Message-Id: <20240226073713.19045-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240226-ep93xx-v8-31-3136dca7238f@maquefel.me>
-References: <20240226-ep93xx-v8-0-3136dca7238f@maquefel.me>
-In-Reply-To: <20240226-ep93xx-v8-0-3136dca7238f@maquefel.me>
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Nikita Shubin <nikita.shubin@maquefel.me>, 
- Andre Przywara <andre.przywara@arm.com>, Baruch Siach <baruch@tkos.co.il>, 
- Romain Perier <romain.perier@gmail.com>, 
- Paul Barker <paul.barker@sancloud.com>, 
- Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Cc: Enric Balletbo i Serra <eballetbo@gmail.com>, 
- Jesper Nilsson <jesper.nilsson@axis.com>, Rob Herring <robh@kernel.org>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Arnd Bergmann <arnd@arndb.de>
-X-Mailer: b4 0.13-dev-e3e53
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1708932678; l=4429;
- i=nikita.shubin@maquefel.me; s=20230718; h=from:subject:message-id;
- bh=KR6AhAHkrEaDtUcRyLyul6gEHO42boKFUOuHc7e+r74=; =?utf-8?q?b=3DzCIxM2vkUqLv?=
- =?utf-8?q?9Xug6H6kzJa1Uam+9C7/80ysZ6zraW21+JkfsmmJnpUKEmHzP2s/p9uq5TcAW5/g?=
- kujRJRhLCreOmaF0qZQsD//EJdr+n0e011JEynxKc7Ol3uMq5Ajh
-X-Developer-Key: i=nikita.shubin@maquefel.me; a=ed25519;
- pk=vqf5YIUJ7BJv3EJFaNNxWZgGuMgDH6rwufTLflwU9ac=
-X-Endpoint-Received:
- by B4 Relay for nikita.shubin@maquefel.me/20230718 with auth_id=65
-X-Original-From: Nikita Shubin <nikita.shubin@maquefel.me>
-Reply-To: <nikita.shubin@maquefel.me>
+Content-Transfer-Encoding: 8bit
 
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+"qcom,pm8550-pwm" is compatible with "qcom,pm8350c-pwm" (latter used as
+fallback), thus it is enough for the "if:then:" clause to check for the
+presence of the fallback "qcom,pm8350c-pwm".
 
-Add device tree for Cirrus EDB9302.
-
-Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/cirrus/Makefile           |   1 +
- arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts | 182 ++++++++++++++++++++++++++++
- 2 files changed, 183 insertions(+)
+ Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/cirrus/Makefile b/arch/arm/boot/dts/cirrus/Makefile
-index 211a7e2f2115..e6015983e464 100644
---- a/arch/arm/boot/dts/cirrus/Makefile
-+++ b/arch/arm/boot/dts/cirrus/Makefile
-@@ -4,5 +4,6 @@ dtb-$(CONFIG_ARCH_CLPS711X) += \
- dtb-$(CONFIG_ARCH_CLPS711X) += \
- 	ep7211-edb7211.dtb
- dtb-$(CONFIG_ARCH_EP93XX) += \
-+	ep93xx-edb9302.dtb \
- 	ep93xx-bk3.dtb \
- 	ep93xx-ts7250.dtb
-diff --git a/arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts b/arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts
-new file mode 100644
-index 000000000000..f015c6b8c802
---- /dev/null
-+++ b/arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts
-@@ -0,0 +1,182 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+/*
-+ * Device Tree file for Cirrus Logic EDB9302 board based on EP9302 SoC
-+ */
-+/dts-v1/;
-+#include "ep93xx.dtsi"
+diff --git a/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml b/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
+index 6649ca2ec805..699db7995dd5 100644
+--- a/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
++++ b/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
+@@ -141,13 +141,13 @@ allOf:
+           maxItems: 1
+         nvmem-names:
+           maxItems: 1
 +
-+/ {
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+	compatible = "cirrus,edb9302", "cirrus,ep9301";
-+	model = "cirrus,edb9302";
-+
-+	chosen {
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		/* should be set from ATAGS */
-+		reg = <0x0000000 0x800000>,
-+		      <0x1000000 0x800000>,
-+		      <0x4000000 0x800000>,
-+		      <0x5000000 0x800000>;
-+	};
-+
-+	sound {
-+		compatible = "audio-graph-card2";
-+		label = "EDB93XX";
-+		links = <&i2s_port>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		led-0 {
-+			label = "grled";
-+			gpios = <&gpio4 0 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+			function = LED_FUNCTION_HEARTBEAT;
-+		};
-+
-+		led-1 {
-+			label = "rdled";
-+			gpios = <&gpio4 1 GPIO_ACTIVE_HIGH>;
-+			function = LED_FUNCTION_FAULT;
-+		};
-+	};
-+};
-+
-+&adc {
-+	status = "okay";
-+};
-+
-+&ebi {
-+	flash@60000000 {
-+		compatible = "cfi-flash";
-+		reg = <0x60000000 0x1000000>;
-+		bank-width = <2>;
-+	};
-+};
-+
-+&eth0 {
-+	phy-handle = <&phy0>;
-+};
-+
-+&gpio0 {
-+	gpio-ranges = <&syscon 0 153 1>,
-+		      <&syscon 1 152 1>,
-+		      <&syscon 2 151 1>,
-+		      <&syscon 3 148 1>,
-+		      <&syscon 4 147 1>,
-+		      <&syscon 5 146 1>,
-+		      <&syscon 6 145 1>,
-+		      <&syscon 7 144 1>;
-+};
-+
-+&gpio1 {
-+	gpio-ranges = <&syscon 0 143 1>,
-+		      <&syscon 1 142 1>,
-+		      <&syscon 2 141 1>,
-+		      <&syscon 3 140 1>,
-+		      <&syscon 4 165 1>,
-+		      <&syscon 5 164 1>,
-+		      <&syscon 6 163 1>,
-+		      <&syscon 7 160 1>;
-+};
-+
-+&gpio2 {
-+	gpio-ranges = <&syscon 0 115 1>;
-+};
-+
-+/* edb9302 doesn't have GPIO Port D present */
-+&gpio3 {
-+	status = "disabled";
-+};
-+
-+&gpio4 {
-+	gpio-ranges = <&syscon 0 97 2>;
-+};
-+
-+&gpio5 {
-+	gpio-ranges = <&syscon 1 170 1>,
-+		      <&syscon 2 169 1>,
-+		      <&syscon 3 168 1>;
-+};
-+
-+&gpio6 {
-+	gpio-ranges = <&syscon 0 87 2>;
-+};
-+
-+&gpio7 {
-+	gpio-ranges = <&syscon 2 199 4>;
-+};
-+
-+&i2s {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2s_on_ac97_pins>;
-+	status = "okay";
-+	i2s_port: port {
-+		i2s_ep: endpoint {
-+			system-clock-direction-out;
-+			frame-master;
-+			bitclock-master;
-+			mclk-fs = <256>;
-+			dai-format = "i2s";
-+			convert-channels = <2>;
-+			convert-sample-format = "s32_le";
-+			remote-endpoint = <&codec_ep>;
-+		};
-+	};
-+};
-+
-+&mdio0 {
-+	phy0: ethernet-phy@1 {
-+		reg = <1>;
-+		device_type = "ethernet-phy";
-+	};
-+};
-+
-+&spi0 {
-+	cs-gpios = <&gpio0 6 GPIO_ACTIVE_LOW
-+		    &gpio0 7 GPIO_ACTIVE_LOW>;
-+	dmas = <&dma1 10 2>, <&dma1 10 1>;
-+	dma-names = "rx", "tx";
-+	status = "okay";
-+
-+	cs4271: codec@0 {
-+		compatible = "cirrus,cs4271";
-+		reg = <0>;
-+		#sound-dai-cells = <0>;
-+		spi-max-frequency = <6000000>;
-+		spi-cpol;
-+		spi-cpha;
-+		reset-gpio = <&gpio0 1 GPIO_ACTIVE_HIGH>;
-+		port {
-+			codec_ep: endpoint {
-+				remote-endpoint = <&i2s_ep>;
-+			};
-+		};
-+	};
-+
-+	at25f1024: eeprom@1 {
-+		compatible = "atmel,at25";
-+		reg = <1>;
-+		address-width = <8>;
-+		size = <0x20000>;
-+		pagesize = <256>;
-+		spi-max-frequency = <20000000>;
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&usb0 {
-+	status = "okay";
-+};
-+
-
+   - if:
+       properties:
+         compatible:
+           contains:
+             enum:
+               - qcom,pm8350c-pwm
+-              - qcom,pm8550-pwm
+     then:
+       properties:
+         nvmem:
 -- 
-2.41.0
+2.34.1
 
 
