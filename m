@@ -1,123 +1,173 @@
-Return-Path: <devicetree+bounces-46000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92FCC867A33
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 16:28:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0241B867A41
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 16:29:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C45031C21A5B
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 15:28:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 836871F245E5
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 15:29:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ED411292ED;
-	Mon, 26 Feb 2024 15:27:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Ynvz/lPN"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F40E212A176;
+	Mon, 26 Feb 2024 15:28:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB013219E3;
-	Mon, 26 Feb 2024 15:27:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F4F112BE93;
+	Mon, 26 Feb 2024 15:28:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708961279; cv=none; b=OfkLrOrCyFXwKCN/mgXLhgCtuQUTr6Nzqa0h/C/Kb/WTOFUygtXHZRlmcj8Do0+7oBxtsrYipknnDnmKLLRZ4XQb3aEAPKji9LahFnfhaa+hLe/NTT4Rr5DKzOLBhIZ5EE7T8cQNdzIEnZksW3QlKTSuYOTcjRRBcjeLzaysjs8=
+	t=1708961315; cv=none; b=faE3Yu1BxLOXL20pXZm/b49BeDnMNwRNFlIvdCuk6z/a0nyeRo9yISoShqzteIDpxrubyfTYe6S6Cs+HcGmd+kTPsUTaQrruXEq1BeCEwYzzZBnsYGn4orJ55ZMQz/OPYrprGmb8kPmf/9u02GLhhmCzYvmkv+E9aFYBrbAH4sw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708961279; c=relaxed/simple;
-	bh=XaHk1CGkgz44435i/fuj0zT7LXSXHOspkU3pxQTrO7Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tV+AkCwA1feSp8Ik7yXEXQvKwYUkxdT2voDifpi8UQYaqxoIpYuYehqHYzTMn8c+rYT2qY7/B4PAKs3qv2dmgG69BoeZ922xg74qsZVi3UVbE7PsZ4qwc8TbIxuVBzFzpuVObNXdZ45O7Y1gmwiUMseziQImw/0IBsLI2hQ0iv8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Ynvz/lPN; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=OgvLF2sxTIfRPsS3ujCyxTkAmer7UG07rXHGb61zVMk=; b=Yn
-	vz/lPN+xCrwZAx6sK9e2RXXTIp3hv4HL8OFQfR7MnxY3UjQduln30YkNamCCzJ0o42bBHvEFtllBx
-	vzKle+N6NDcL+EW8WGvWMAY6doakPbVNU7YW4oDOf7My5yKjskwawrGDneBIAGmWLHV4xSIz5K4Ks
-	5ws1ipWzW/2e1TQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1recte-008jix-Df; Mon, 26 Feb 2024 16:28:02 +0100
-Date: Mon, 26 Feb 2024 16:28:02 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: =?iso-8859-1?Q?J=E9r=E9mie?= Dautheribes <jeremie.dautheribes@bootlin.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, Andrew Davis <afd@ti.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
-	Yen-Mei Goh <yen-mei.goh@keysight.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>
-Subject: Re: [PATCH net-next 1/3] dt-bindings: net: dp83822: support
- configuring RMII master/slave mode
-Message-ID: <d14ba685-dc7e-4f99-a21e-bae9f3e6bc79@lunn.ch>
-References: <20240222103117.526955-1-jeremie.dautheribes@bootlin.com>
- <20240222103117.526955-2-jeremie.dautheribes@bootlin.com>
+	s=arc-20240116; t=1708961315; c=relaxed/simple;
+	bh=BThJKSHnuKeKiefQoxFWcqNFZUdvTAm2fnN/DgNzB68=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uuIWok6+anPrz7xZPeIt9+t0P3Bm7jjqZegvZAaqs3lBRVTEmbV1Ybt48DKf7SfoZIiNBKfQUYmosBz3GWNT0IpsxUtrxtOWlV2Ds3m8fFs4IF3+4CxRdmxIcuczmnTNOW0ojSRQoBjx4ecL3nCTLMYtxq9AiCNPDrZE25ts+Lo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-6089b64f4eeso31806377b3.2;
+        Mon, 26 Feb 2024 07:28:33 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708961312; x=1709566112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=I8Ir+4ow5lfDeG0ZqJs1S0yjDRpk74TkiTjLDeq+i98=;
+        b=chCS8vpBVAftHsNMvEIYBaOPgE8juASqSMdJ+RCohnAzLqRhtAWGpUR52l7kRlVv8H
+         YK1NKKpUXR928tUrYOTDe72qSja87xGHez5HvEftA/eUo0xkbw92Mo7H+D0BsH8TvUV9
+         D5N27eM42sd64tZmK7kW7M2BzWj4EuY0GonfzBLbBrOh8YBFHL6VGiVs1bh6F/Tz87Is
+         8V5SsbyXStFUv5GnLtGW993NWyo4LxhuKCZFTlotv+/6Grx4pt47zB7SN/MwKyQm4jNz
+         xpVCNHqweMAT3za8z/kJZtfz1sMjAedD4ywl7stFL0EOuKwR/HaJ5nQUI8D6Vb9BnDz3
+         pdKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWMVDi4qWH3u5+rqCKpwXg3Jdj3E3JbufQmhCPg+irIdTrtqaWONGauSNt355SUWfJg+A/vo0/J/rz5n8L1hi050DSzhBQBmQJT2tSmhBkvGeXxxtyzEbmJLB93P2u4tQnE4wMc4Di+Zw==
+X-Gm-Message-State: AOJu0Yw+wIn67lvW1MGfs6zaGDhKSIf4tr1949pps8s/LJSoXQ4YUdaX
+	rg9FCXv4AEJwLwxwM6iboqifBX380T4+sqNENIPtuHBwGSN1irKOH5A3otGjyzQ=
+X-Google-Smtp-Source: AGHT+IHlvZWwJySxD8dXW6Oz+b/EHpNllb+rxYDOZulwjahGSybKLs0G7NjXpYadk0ur9/3uTq8elg==
+X-Received: by 2002:a81:4147:0:b0:608:b73c:d0c8 with SMTP id f7-20020a814147000000b00608b73cd0c8mr6863178ywk.17.1708961312505;
+        Mon, 26 Feb 2024 07:28:32 -0800 (PST)
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
+        by smtp.gmail.com with ESMTPSA id n124-20020a817282000000b00607c9160c22sm1230685ywc.119.2024.02.26.07.28.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Feb 2024 07:28:32 -0800 (PST)
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-dc238cb1b17so3413065276.0;
+        Mon, 26 Feb 2024 07:28:32 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVRHADW3VBjVzLBFvG5HSHhCFLBxikLnCaYw2GS/ta9BiNdECsEdCQxs0ICLEEb/LoNMAh//ncSXRGEbV0QbHBuQFDtPzy0kUlsFlDOUCvM1XOV5Et0WVfy+QTfZ4Yxu7T23OdM5jQMsg==
+X-Received: by 2002:a25:640f:0:b0:dcd:2aa3:d744 with SMTP id
+ y15-20020a25640f000000b00dcd2aa3d744mr4744441ybb.17.1708961311899; Mon, 26
+ Feb 2024 07:28:31 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240222103117.526955-2-jeremie.dautheribes@bootlin.com>
+References: <20240219170337.2161754-1-andriy.shevchenko@linux.intel.com> <20240219170337.2161754-2-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20240219170337.2161754-2-andriy.shevchenko@linux.intel.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 26 Feb 2024 16:28:20 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVv==58uen8nukLDB9ADCvJJFYTb2bZSAcFKQ0wUmqL9w@mail.gmail.com>
+Message-ID: <CAMuHMdVv==58uen8nukLDB9ADCvJJFYTb2bZSAcFKQ0wUmqL9w@mail.gmail.com>
+Subject: Re: [PATCH v3 1/9] auxdisplay: linedisp: Group display drivers together
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Andy Shevchenko <andy@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Robin van der Gracht <robin@protonic.nl>, Paul Burton <paulburton@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 22, 2024 at 11:31:15AM +0100, Jérémie Dautheribes wrote:
-> Add property ti,rmii-mode to support selecting the RMII operation mode
-> between:
-> 	- master mode (PHY operates from a 25MHz clock reference)
-> 	- slave mode (PHY operates from a 50MHz clock reference)
-> 
-> If not set, the operation mode is configured by hardware straps.
-> 
-> Signed-off-by: Jérémie Dautheribes <jeremie.dautheribes@bootlin.com>
-> ---
->  .../devicetree/bindings/net/ti,dp83822.yaml      | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/ti,dp83822.yaml b/Documentation/devicetree/bindings/net/ti,dp83822.yaml
-> index 8f4350be689c..8f23254c0458 100644
-> --- a/Documentation/devicetree/bindings/net/ti,dp83822.yaml
-> +++ b/Documentation/devicetree/bindings/net/ti,dp83822.yaml
-> @@ -80,6 +80,22 @@ properties:
->             10625, 11250, 11875, 12500, 13125, 13750, 14375, 15000]
->      default: 10000
->  
-> +  ti,rmii-mode:
-> +    description: |
-> +       If present, select the RMII operation mode. Two modes are
-> +       available:
-> +         - RMII master, where the PHY operates from a 25MHz clock reference,
-> +         provided by a crystal or a CMOS-level oscillator
-> +         - RMII slave, where the PHY operates from a 50MHz clock reference,
-> +         provided by a CMOS-level oscillator
+Hi Andy,
 
-What has master and slave got to do with this?
+On Mon, Feb 19, 2024 at 6:03=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+> For better usability group the display drivers together in Kconfig
+> and Makefile. With this we will have the following sections:
+>   - Character LCD
+>   - Samsung KS0108 LCD controller
+>   - Single character line display
+>   - Character LCD with non-conforming interface
+>
+> While at it, drop redundant 'default n' entries.
+>
+> Tested-by: Geert Uytterhoeven <geert@linux-m68k.org>
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-Sometimes, the MAC provides a clock to the PHY, and all data transfer
-over the RMII bus is timed by that.
+Thanks for your patch!
 
-Sometimes, the PHY provides a clock to the MAC, and all data transfer
-over the RMII bus is timed by that.
+> --- a/drivers/auxdisplay/Kconfig
+> +++ b/drivers/auxdisplay/Kconfig
 
-Here there is a clear master/slave relationship, who is providing the
-clock, who is consuming the clock. However, what you describe does not
-fit that. Maybe look at other PHY bindings, and copy what they do for
-clocks.
+> +#
+> +# Single character line display section
+> +#
+> +config LINEDISP
+> +       tristate "Character line display core support" if COMPILE_TEST
+> +       help
+> +         This is the core support for single-line character displays, to=
+ be
+> +         selected by drivers that use it.
+> +
+> +config IMG_ASCII_LCD
+> +       tristate "Imagination Technologies ASCII LCD Display"
+> +       depends on HAS_IOMEM
+> +       default y if MIPS_MALTA
+> +       select MFD_SYSCON
+> +       select LINEDISP
+> +       help
+> +         Enable this to support the simple ASCII LCD displays found on
+> +         development boards such as the MIPS Boston, MIPS Malta & MIPS S=
+EAD3
+> +         from Imagination Technologies.
+> +
+> +config HT16K33
+> +       tristate "Holtek Ht16K33 LED controller with keyscan"
 
-	Andrew
+HT16K33 also supports dot-matrix displays using fbdev...
+Yes, categorizing is difficult.
+
+> --- a/drivers/auxdisplay/Makefile
+> +++ b/drivers/auxdisplay/Makefile
+> @@ -5,12 +5,15 @@
+>
+>  obj-$(CONFIG_CHARLCD)          +=3D charlcd.o
+>  obj-$(CONFIG_HD44780_COMMON)   +=3D hd44780_common.o
+> -obj-$(CONFIG_ARM_CHARLCD)      +=3D arm-charlcd.o
+> +obj-$(CONFIG_HD44780)          +=3D hd44780.o
+> +obj-$(CONFIG_LCD2S)            +=3D lcd2s.o
+> +obj-$(CONFIG_PARPORT_PANEL)    +=3D panel.o
+> +
+>  obj-$(CONFIG_KS0108)           +=3D ks0108.o
+>  obj-$(CONFIG_CFAG12864B)       +=3D cfag12864b.o cfag12864bfb.o
+> -obj-$(CONFIG_IMG_ASCII_LCD)    +=3D img-ascii-lcd.o
+> -obj-$(CONFIG_HD44780)          +=3D hd44780.o
+> -obj-$(CONFIG_HT16K33)          +=3D ht16k33.o
+> -obj-$(CONFIG_PARPORT_PANEL)    +=3D panel.o
+> -obj-$(CONFIG_LCD2S)            +=3D lcd2s.o
+> +
+>  obj-$(CONFIG_LINEDISP)         +=3D line-display.o
+> +obj-$(CONFIG_IMG_ASCII_LCD)    +=3D img-ascii-lcd.o
+> +obj-$(CONFIG_HT16K33)          +=3D ht16k33.o
+> +
+> +obj-$(CONFIG_ARM_CHARLCD)      +=3D arm-charlcd.o
+
+I still think these should be sorted alphabetically.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
