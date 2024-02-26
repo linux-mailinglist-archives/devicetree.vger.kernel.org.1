@@ -1,373 +1,273 @@
-Return-Path: <devicetree+bounces-45753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45757-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 696558669C5
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 06:57:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D39F866A0E
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 07:29:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9497DB20D32
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 05:57:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7535282333
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 06:29:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED8571B81C;
-	Mon, 26 Feb 2024 05:57:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D72821BC53;
+	Mon, 26 Feb 2024 06:29:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eEB0Qrhx"
+	dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="VZ99xNVI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2072.outbound.protection.outlook.com [40.107.21.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 413BA1802E;
-	Mon, 26 Feb 2024 05:57:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.180
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708927021; cv=none; b=uwu4n7t67H5aR1hL0h8VSwj4BeF99sfyX/Dbwnbp2yVbfVN11wETElVys1g0zodjmyQEgs8EfZG+6O2Tjx5aVIJWZtZx81MICj0i2yvfN6YMWXQA28XdGgii1yhOHv0yoN2ZIa+OBjjKQNXL7dXzYVYHEiCrdrfAHaDDx9zNKLc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708927021; c=relaxed/simple;
-	bh=OD61sqYHXm1jSGLlEinUOHdglfSSEaDeo8V8wcqBC9o=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NKJ1WYxg0mkhy2+K4tkSulZ2s3OX4dIjOcpauIYx2uVUHR1GiogEzagbzK5pO6FimSiNIfSVMXjMhbQ9KACTxMsKQ6EEc9QfaBUD70oIN3dyodVXfFQUSJK+Q2b3ULZTiT3XaP25D0Ugtfy84HfhntN1AjKw046twBpKwXOGY40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eEB0Qrhx; arc=none smtp.client-ip=209.85.167.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-3c199237eaeso1189928b6e.0;
-        Sun, 25 Feb 2024 21:57:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708927019; x=1709531819; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=AGFrdHM3G/5t2T8ZvOHKM53CfUGS1QDwXMQcIm3VM/g=;
-        b=eEB0QrhxQUd6ewIohVLgnr0y4huQwLzY8rfpN+LcK5CGilWNTIbzvnYaWJkJDLSouO
-         JbnV5mnTiHQ4D8yH094uxICm3XeID0Nm7a6j4ZUK0cx814T6/HJUz9RQC+8Xq63N2pMZ
-         4UBxOuvVzEBRlsiw8OE9B+TWvUtQaRix/t6BfJgleMZYCf5IBvp1LtmRb6TNRHC2M8+b
-         qZ6c1P4f4f5IdO8JuO1DiDt738BY9Ufbw5HZBNKDulw1f4YQC9Vjmqt5oLtU4r/aVXZ6
-         eEM4LbcPo2Zti6ga7Bef2KkdQTyXPBCXiP1DNR3iyH8YtkglO1sPDHtfU0PP53lGHCQK
-         57fQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708927019; x=1709531819;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AGFrdHM3G/5t2T8ZvOHKM53CfUGS1QDwXMQcIm3VM/g=;
-        b=VSurPFcv6CthWIKXg31o9u/cFwGVGIAwsiqKc61Lb4+v5nzba34lGWh4XuIluPlk0j
-         91zLFtXdbbd0/cWP4LtPI8+OcsU1JhdlGxqHLzss1LUNVnMUjhPgU+rp91h75Nu2F0hq
-         cucTEfrTosKzvKNQ/BSme5AxoGpXPnXutrbEVcVuUn9CEWtqfmAvBDta9s8ikFWJ7FyI
-         r1vhr1sNxSRSEgi6jGBj9skFoV5fmOCn/lAdxDPV8xD0XGpewZGFpagU4uhPhuFdZcnb
-         mCnvpVTdgKud2k4MKpRdMoARSaGfxCgvsX3WXnxt+fek6Z5DZH/x0mGdQGkkDjeVhBSo
-         rrcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXkgF1phb3lWg14ffJyePSFFNDHOhtB8LNXo9C/yNiTvbJwNNa/xxxgrwg4juhHbUEopeeKjUuu7k9F4GUZ1m65g7bUjgu5WUV9Xy/DNFeS1lBm2N1KXkplW660hleP2EZcqPpNUel8jgrEnby95tOl4YBmldaWsGLJNZZ5KlL5ClE3QG68ASb6SrJ3SUJLED5n5nwqW+W/dyh/vHHKA4oMVQ0A2orQECo=
-X-Gm-Message-State: AOJu0YzcW4MPZWK6c7wxACwW9Px8K/7Tbr8CW5zUSQ7TiwZXHlsRcDcx
-	Kyl4AqoBsvU7mK2LvM1hkvvnQ4Pw4b0c09xb3Qq07euq+nIc322yU4ZxBTCWJAwd+g==
-X-Google-Smtp-Source: AGHT+IFKs2m5kw3I1l7sEjWzLUndTl0FNnzpmNHBRd/Ca5q7cLMIYz82sOQdu4IOtifdGp9N/o2tEQ==
-X-Received: by 2002:aca:280e:0:b0:3bf:e478:6f41 with SMTP id 14-20020aca280e000000b003bfe4786f41mr5951840oix.14.1708927019316;
-        Sun, 25 Feb 2024 21:56:59 -0800 (PST)
-Received: from localhost.localdomain ([115.187.42.119])
-        by smtp.gmail.com with ESMTPSA id b27-20020aa78edb000000b006e4195cccb5sm625865pfr.133.2024.02.25.21.56.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Feb 2024 21:56:58 -0800 (PST)
-From: Raihan Ahamed <raihan1999ahamed@gmail.com>
-To: 
-Cc: raihan1999ahamed@gmail.com,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kees Cook <keescook@chromium.org>,
-	Tony Luck <tony.luck@intel.com>,
-	"Guilherme G. Piccoli" <gpiccoli@igalia.com>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-hardening@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: msm8953-lenovo-kuntao: Add initial device tree
-Date: Mon, 26 Feb 2024 11:25:56 +0530
-Message-ID: <20240226055615.79195-1-raihan1999ahamed@gmail.com>
-X-Mailer: git-send-email 2.43.2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6648C1BF20;
+	Mon, 26 Feb 2024 06:29:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.72
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708928983; cv=fail; b=TihLHR+kj/jx0bbY9kDdIhx06OSD/rjhsysm/LSyZ8ZRYhVT0p1flE/xgjLABj3Ca3hrn1apSZR/ZlCVlEo2dizj/Zz9CuC6TwYjRQqqjcpsZmBoPgv7Mdqlp9rGWU3cF/1UXicOOgCTdI3Jj0Wv01G5cVlLoRNSBGUuA2tneiI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708928983; c=relaxed/simple;
+	bh=Q/50mLLa9jbkWZVnlO3KwOquF29i5c/qz5Cg7T5jkFE=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=sksAzjAXbJBtZZfbP/RMcqKJHrPEnTaNaz7phjKRGVFhTGdcUKGzceB4Q9BqnSPonTBgSzVEtLjoc7DCOc5Avp0GrwpwYsKv2PTaatUsDACGiVaE9BEUPpCXj2yxm5LHMCoe8a6Z/VrjaNeXE7WRhwIh66eVJfiwhmTMT6mbkok=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=VZ99xNVI; arc=fail smtp.client-ip=40.107.21.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QwfkfYuwczgACCEIsWn/EdEMn/tCDZ47W+LSoPqWyu9tz0TXqu/uqHHsoMRE2yeuunZzKJ/Y43ok/M/mHLmSa921rIqdscGyWSKIwzXfppH32ctHCrH0ZXFqidU+9PtBFMWvCWLLKvX2+xi2tVyBR2ts/0xjBR7328XUGYlDqGZrPaMN/QDIaBUAjGj0DQ9jDjFYdtJlFkkARzpi/dmO5+0RYhpBvHquUhAtAgyFyx8j26j/kn01dwWb9pNKuBUvOWXr0Ig7/fNxou8ealfmftd+uKq5jAHBRHHrSrtFS2+OLJRkuBxtbgz01aX8ZQaAc9OhPYRYacJ9v789o68XRQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8K2AQ8FRAAz6L5ajrpOItkUgBA9p6+P8fjYOJVAXMiI=;
+ b=LV9UKaa2CeLZ/+ghA8NCsEamyzIBcXBld+Su25rzFfFWDC2iaIHLgVOgJaQmCgeXvebleTcJMVufJsHCDXQGh93ATsYGUPdwH7qm06aldw7WGqa2oeF9hM8aqzO507WAKe4FdXG+oirWQJCBTJmmybPKm8qzh2LHCumYmHH6Se/tOfUzYEy/TezMvmBfjkmx/IdHdH2r5s7fGl933otSYj80WBA+QeZRne2xVLvlUyHC3/2fJW9PLC1jpieifyK9gE80wJTScaIsPqC3o8jwn0U6b6wa4kCQihDMCLyz5HOHJspiiKaoIcZU9F/1oj4roo4EzgUy70VtSNFcjbJ1KA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8K2AQ8FRAAz6L5ajrpOItkUgBA9p6+P8fjYOJVAXMiI=;
+ b=VZ99xNVIAASZ05S3kMfVImj9vq1JNOaPVwwezKqVZ6duSwjXLFuil4al8yK44D1elmWN4/FodxDsp2lhKxSgjCBy1XNUvJIOP0PpXI+GHDS50RpfgZKXkjw0/lba/QgTnpQaI7EdS76y9Ugfe+E8eR6o5OosphpcHPDfCxJdz+E=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU2PR04MB8582.eurprd04.prod.outlook.com (2603:10a6:10:2d9::24)
+ by AS8PR04MB7624.eurprd04.prod.outlook.com (2603:10a6:20b:291::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.39; Mon, 26 Feb
+ 2024 06:29:37 +0000
+Received: from DU2PR04MB8582.eurprd04.prod.outlook.com
+ ([fe80::195c:9861:96a1:56ed]) by DU2PR04MB8582.eurprd04.prod.outlook.com
+ ([fe80::195c:9861:96a1:56ed%4]) with mapi id 15.20.7316.034; Mon, 26 Feb 2024
+ 06:29:37 +0000
+Message-ID: <bc9bcc98-62db-420c-b30f-e4af513cbd8c@oss.nxp.com>
+Date: Mon, 26 Feb 2024 08:29:31 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: s32g: add uSDHC node
+Content-Language: en-US
+To: Chester Lin <chester62515@gmail.com>
+Cc: Andreas Farber <afaerber@suse.de>, Matthias Brugger <mbrugger@suse.com>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, NXP S32 Linux Team <s32@nxp.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ NXP Linux Team <linux-imx@nxp.com>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org, Ghennadi Procopciuc
+ <ghennadi.procopciuc@nxp.com>, Ciprian Costea <ciprianmarian.costea@nxp.com>
+References: <20240122140602.1006813-1-ghennadi.procopciuc@oss.nxp.com>
+ <20240122140602.1006813-3-ghennadi.procopciuc@oss.nxp.com>
+ <ZdmnQTtUxOEUy06L@linux-8mug> <ZdnIp8PPtfbuIzwP@linux-8mug>
+From: Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>
+In-Reply-To: <ZdnIp8PPtfbuIzwP@linux-8mug>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR02CA0057.eurprd02.prod.outlook.com
+ (2603:10a6:802:14::28) To DU2PR04MB8582.eurprd04.prod.outlook.com
+ (2603:10a6:10:2d9::24)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8582:EE_|AS8PR04MB7624:EE_
+X-MS-Office365-Filtering-Correlation-Id: cf43db60-8af2-4a94-aedd-08dc36944e1d
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	uVtH6sLYiglLVxj4Xm5q2FJLYq6OnUbmOgftzsmpJ+Urr4rEcLJX+81AJU1DCMzvmJ0ji7q9CAz0lPk8AakhdoWwLB2k9WM5myj/+ItVZS3dabx4IhpTkJHJps3MOrnKbI9XOaYsW4kxeW+CX6NP+88ZdiDpGn+pH2oNDokqTqa/Lzv0ehUmMEWDqj8fonFHU05q6uL2OemihnNzbCmBu9SLZ1CXQHdDq8dizvOiK9DG/d3BFuOOgX08PvUPF9eAAXRsiF7PHEFUhwKdP95CXcwxbtppw6ir/5WbWbHTSWJ68dnpCLnIVK0TyeBM0ZLmcitaC7ez+DS4KZTbwDuOPMJQd7e2xgNgfWXuI/Fv/vo6WPO34yryzRyp6JlOXobUQkncj0Xjt3R24rpRfRBnAMv6S7lUDVim/qFFEXw4bGWGB3AXHlDzIGpdYRb/ZydE9Qvx0PBYOG9hSLim6Tq9zdPWLvt4wJTlaEhlp4wjuhuZewnuLqVkK+rVXVgdrSFZ03QgVaKBEgNRL6ablpA2ldGVT4FJ5EDx3WCxVNLz8gvhHS4oSpWFH95WpFdE8oTup4rp165aP5BdA8O5lx5YwlFEA6Db2cvcx2BV/b4Ci+0hSk+YEA7T47pmLujtiFDW
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8582.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?ODF0TTU2ZjZXdndRdDJNbDU4eXVaVXQxQW1yK0hkT3BLM2J3SnZLVnJ5WGFj?=
+ =?utf-8?B?NDJpU1ZCY2JLWlVHNkoyTGpiVmR2RlRUU0dGTG1CbVY5TUYvWE9vUWNmV1hS?=
+ =?utf-8?B?eWpsMUx1N2h4SDJ6bSt6MW8ya3FVV3FjY0RMek8xdU8rOHVLYVpvekVLZ3NZ?=
+ =?utf-8?B?b0ZaZkExa3ZHYk1GWGowQlo3SitKTDRlaHFMOFY4aGNKR1M2RGRCTllneXYz?=
+ =?utf-8?B?cTdHajM3Nm1Sb0ZURnJIQkRCK1NuYVNORW5iMWs5ekY1UlB0L0I3WS81Y2xL?=
+ =?utf-8?B?SDlQTFlLQndLY2tNdkl5V29yZlJVZmhDK2VPbVpXNnVZYlFmaXBwc2prdlZ3?=
+ =?utf-8?B?NHQ0dXFUQmYzRkJIa21FQVk0RW8wR0JkcHNSZXBLM2tPckVJbG9NVXdJUjNN?=
+ =?utf-8?B?dTErNTVqTTMxVVU2TFR6bTcyYTJYOTdwZ0lDOXNDZithbFgyNUxQbWpVbm12?=
+ =?utf-8?B?MlBVTDBPTjFDbThYTmFpNUxONUlieXhnMStpUzBpdVpQNkQrbHp2WUJsRUdr?=
+ =?utf-8?B?aDBnTXhYWW9ocUErTEI4MTZIb3hZeW5Ca1FlSmdaL2kra0R4a1VhNHRiTlI5?=
+ =?utf-8?B?SjF2YzI5eVRPNGpxNUZoZ1dEMCsxaEg1Mng0d0czcUFZT2RKUUJyR2FHYjZB?=
+ =?utf-8?B?RmtnWEwrdEpyK2trT3JqbnI2UlVLdWVrZ3Jhd1Q4clhsa09LL3dnc3VhaU16?=
+ =?utf-8?B?WWN3YjZDcVlNM05CSHBEb3pnK04wQUM5ZTNCQ3ZLU0dBWUJta2szMVdhVU1R?=
+ =?utf-8?B?VFVQNDRZVm42alYvYWYvRWRMUjlwLzJ4elp4Vi9kMkpvTWhCNWg3SS94V2la?=
+ =?utf-8?B?RWZCdCt4a3Z1YlEvVXh2TE5QMXJ2UjR2dCtYR1JEY3BsbklFeGJHUmJmcHlx?=
+ =?utf-8?B?TTNJOTRjR09NL3BwU2xpQ3VvUW5ReW9NWFdSNXo1dms2c0NXUWFmbnpDNGlT?=
+ =?utf-8?B?L2oveGZJUjArSmRxSk1IRHFSVXpFc056NHpqM2NQREVYR244SkZMYUVTRzVU?=
+ =?utf-8?B?R0xzSk5TeDFuQXB2dWVjYVJrZlpVZWFRQlJ4Sm9sRUQvbWZUZ2ZrUUhENnpQ?=
+ =?utf-8?B?R1g3bDZHazg2bjB2bTlLL2UyUTlTd1I2NEZhWnplRnl3WnQ5OGMvMmFVUTA2?=
+ =?utf-8?B?Y1FROHNueHhNMDY2QWVhaEhuTU56c2hXbm5SdHdBM2xPWlpHYmtDeHQ4YU1k?=
+ =?utf-8?B?SW5LV3VUZS9mOEVtU1lieU1qSGVqUk8vdXVmbDZvc3NURHo5MXAwT1ljWXBN?=
+ =?utf-8?B?U3A2Ni81cUl0TkNLZUZwYTRLUy9QaEcyTkl3N05ScFFZNXZxeVc5UjVHS3Rm?=
+ =?utf-8?B?clVqUSsxcHE4b1R1TUZDZ1d1aFB0SVZBNGthc0liVFpCTXgzbE1talhlZy8y?=
+ =?utf-8?B?WkYxVHlTUWtZamYvQ05NNHFBMEdsYTc1Sy9LbmQyc0ZXcS93cnNXbjZOZGo2?=
+ =?utf-8?B?bllXNzM0OHVaSExZSkZKWWdSSjlmQkZ3OGtHTDdzM2MxKzE2NVBocGJJN3dC?=
+ =?utf-8?B?VWhiWDY3V0JZUXljMWdjLzdWUTEzMTlpa1NLRmlvWE1JQkUwclVRZGcwbXdX?=
+ =?utf-8?B?UjIrWTk2c3RBb3ZqTVR3STZwTmhaMEx2NlBOMXhjV3JXNUc3VkVyM1pCWUtx?=
+ =?utf-8?B?RzZDWTRDM0NqeUdSRmJiZVJvRkh6YVpxSVd5U1lMeW5pQ3ZjbHpUeUFuV05w?=
+ =?utf-8?B?dXB1ellSaGJML1Q4VWNjV0dJRnJ3VXgzTUxMclZ0S0FuUDd4ZktBNElybHZ0?=
+ =?utf-8?B?R0dpVSt6eGtMV1FEQ1lUaVJWbEwxeldYb0NTSC8wWHVVTEluM2tLWjB3V1Vh?=
+ =?utf-8?B?bnRraGFTWnlPdUYzeWFIMC8rQlVESUVOeW1IMTRjZEhGRUV5STZxMDhabTJR?=
+ =?utf-8?B?RW90K2JPSWdHRjF0Y0NoY1U3ZTNULy9YUzFVNEd0and0Yk1HMzVVWm9pbHVo?=
+ =?utf-8?B?QnVmaEVhY2Y5Y1hvQkE3MzJaWThNSWNoaUNQMTRhUUttdjI0dnNIVDI4N0FF?=
+ =?utf-8?B?ZE5ET3QxSkJRWmNyVWI1TW9sU2VZQzIvQmJINEhKNTJIRHBUM0tuRVQ0RElC?=
+ =?utf-8?B?MHBoTDA4Ym9mdzM0WkVlZGtZZ25jQ1ZvZ01oUXlXRllreVRkQWNKRTM3VU1u?=
+ =?utf-8?B?bVhTVkI5YWYrcVQxTm00WDFyWTAwY282ci8vVmVGUmdJZ2VqZnNVdUVGUE5v?=
+ =?utf-8?B?b2c9PQ==?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cf43db60-8af2-4a94-aedd-08dc36944e1d
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8582.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2024 06:29:37.7252
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ywOchhtALhD5V6ZUv3GUUV7j0c67ZYywPd1hsz47CFlLgmS3jqa0lrXeYsuOVCKndejwpz1XV1OLDVzY1sYVCJ2w8vNwuC8SuHyy10tie38=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7624
 
-Lenovo P2 is a handset using the MSM8953 SoC released in 2016
+On 2/24/24 12:44, Chester Lin wrote:
+> Hi Ghennadi,
+> 
+> On Sat, Feb 24, 2024 at 04:22:30PM +0800, Chester Lin wrote:
+>> Hi Ghennadi,
 
-Add a device tree for with initial support for:
+Hi Chester,
+>>
+>> On Mon, Jan 22, 2024 at 04:06:01PM +0200, Ghennadi Procopciuc wrote:
+>>> From: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+>>>
+>>> Add the uSDHC node for the boards that are based on S32G SoCs.
+>>>
+>>> Signed-off-by: Ciprian Costea <ciprianmarian.costea@nxp.com>
+>>> Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+>>> ---
+>>>  arch/arm64/boot/dts/freescale/s32g2.dtsi        | 10 ++++++++++
+>>>  arch/arm64/boot/dts/freescale/s32g274a-evb.dts  |  6 +++++-
+>>>  arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts |  6 +++++-
+>>>  3 files changed, 20 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm64/boot/dts/freescale/s32g2.dtsi
+>>> index ef1a1d61f2ba..fc19ae2e8d3b 100644
+>>> --- a/arch/arm64/boot/dts/freescale/s32g2.dtsi
+>>> +++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
+>>> @@ -138,6 +138,16 @@ uart2: serial@402bc000 {
+>>>  			status = "disabled";
+>>>  		};
+>>>  
+>>> +		usdhc0: mmc@402f0000 {
+>>> +			compatible = "nxp,s32g2-usdhc";
+>>> +			reg = <0x402f0000 0x1000>;
+>>> +			interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
+>>> +			clocks = <&clks 32>, <&clks 31>, <&clks 33>;
+>>
+>> Same as I have mentioned in [PATCH v2 1/2], could we have fixed dt-bindings to
+>> replace with these raw clock id values (32, 31, 33)?
+>>
+> 
+> Just found the previous review discussion in v1:
+> https://lore.kernel.org/all/f54d947c-58dc-498f-8871-b472f97be4a8@oss.nxp.com/
+> 
+Indeed, I switched to raw clocks instead of placing them into a binding
+header after receiving this feedback on v1.
 
-- GPIO keys
-- SDHCI (internal and external storage)
-- USB Device Mode
-- WCNSS (WiFi/BT)
-- Regulators
+> What I'm worried is that, could these raw clock IDs be rearranged in the
+> downstream TF-A? If so it would cause ABI inconsistency and clock issues
+> since the kernel is not aware of any raw ID changes in downstream TF-A.
 
-Signed-off-by: Raihan Ahamed <raihan1999ahamed@gmail.com>
----
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../boot/dts/qcom/msm8953-lenovo-kuntao.dts   | 240 ++++++++++++++++++
- 2 files changed, 241 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/msm8953-lenovo-kuntao.dts
+These clock IDs will become immutable in the downstream version of TF-A
+once the patches get merged. This will prevent any unfortunate events
+when the Kernel and TF-A are not in sync with regard to SCMI clock IDs.
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 39889d5f8e12..aebfb1ae728c 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -49,6 +49,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-huawei-kiwi.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-longcheer-l9100.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-samsung-a7.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-sony-xperia-kanuti-tulip.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-lenovo-kuntao.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-motorola-potter.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-xiaomi-daisy.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-xiaomi-mido.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8953-lenovo-kuntao.dts b/arch/arm64/boot/dts/qcom/msm8953-lenovo-kuntao.dts
-new file mode 100644
-index 000000000000..2fd6345bbe15
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8953-lenovo-kuntao.dts
-@@ -0,0 +1,240 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2024, Raihan Ahamed <raihan1999ahamed@gmail.com>
-+ */
-+/dts-v1/;
-+
-+#include "msm8953.dtsi"
-+#include "pm8953.dtsi"
-+#include "pmi8950.dtsi"
-+
-+/delete-node/ &qseecom_mem;
-+
-+/ {
-+	model = "Lenovo P2";
-+	compatible = "lenovo,kuntao", "qcom,msm8953";
-+	chassis-type = "handset";
-+	qcom,msm-id = <0x125 0x00>;
-+	qcom,board-id = <0x41 0x82b1 0x41 0x83b0>;
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&gpio_key_default>;
-+
-+		key-volume-up {
-+			label = "Volume Up";
-+			gpios = <&tlmm 85 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_VOLUMEUP>;
-+			debounce-interval = <15>;
-+		};
-+	};
-+
-+	reserved-memory {
-+		qseecom_mem: qseecom@84a00000 {
-+			reg = <0x0 0x84a00000 0x0 0x1900000>;
-+			no-map;
-+		};
-+
-+		ramoops@8ee00000 {
-+			compatible = "ramoops";
-+			reg = <0x0 0x8ee00000 0x0 0x80000>;
-+			console-size = <0x40000>;
-+			ftrace-size = <0x15000>;
-+			record-size = <0x5000>;
-+			pmsg-size = <0x2000>;
-+		};
-+	};
-+
-+	vph_pwr: vph-pwr-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph_pwr";
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+};
-+
-+&hsusb_phy {
-+	vdd-supply = <&pm8953_l3>;
-+	vdda-pll-supply = <&pm8953_l7>;
-+	vdda-phy-dpdm-supply = <&pm8953_l13>;
-+
-+	status = "okay";
-+};
-+
-+&pm8953_resin {
-+	linux,code = <KEY_VOLUMEDOWN>;
-+	status = "okay";
-+};
-+
-+&rpm_requests {
-+	regulators {
-+		compatible = "qcom,rpm-pm8953-regulators";
-+		vdd_s1-supply = <&vph_pwr>;
-+		vdd_s2-supply = <&vph_pwr>;
-+		vdd_s3-supply = <&vph_pwr>;
-+		vdd_s4-supply = <&vph_pwr>;
-+		vdd_s5-supply = <&vph_pwr>;
-+		vdd_s6-supply = <&vph_pwr>;
-+		vdd_s7-supply = <&vph_pwr>;
-+		vdd_l1-supply = <&pm8953_s3>;
-+		vdd_l2_l3-supply = <&pm8953_s3>;
-+		vdd_l4_l5_l6_l7_l16_l19-supply = <&pm8953_s4>;
-+		vdd_l8_l11_l12_l13_l14_l15-supply = <&vph_pwr>;
-+		vdd_l9_l10_l17_l18_l22-supply = <&vph_pwr>;
-+
-+		pm8953_s1: s1 {
-+			regulator-min-microvolt = <863000>;
-+			regulator-max-microvolt = <1152000>;
-+		};
-+
-+		pm8953_s3: s3 {
-+			regulator-min-microvolt = <1224000>;
-+			regulator-max-microvolt = <1224000>;
-+		};
-+
-+		pm8953_s4: s4 {
-+			regulator-min-microvolt = <1896000>;
-+			regulator-max-microvolt = <2048000>;
-+		};
-+
-+		pm8953_l1: l1 {
-+			regulator-min-microvolt = <1000000>;
-+			regulator-max-microvolt = <1100000>;
-+		};
-+
-+		pm8953_l2: l2 {
-+			regulator-min-microvolt = <1000000>;
-+			regulator-max-microvolt = <1000000>;
-+		};
-+
-+		pm8953_l3: l3 {
-+			regulator-min-microvolt = <925000>;
-+			regulator-max-microvolt = <925000>;
-+			regulator-allow-set-load;
-+		};
-+
-+		pm8953_l5: l5 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8953_l6: l6 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8953_l7: l7 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1900000>;
-+		};
-+
-+		pm8953_l8: l8 {
-+			regulator-min-microvolt = <2900000>;
-+			regulator-max-microvolt = <2900000>;
-+		};
-+
-+		pm8953_l9: l9 {
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3300000>;
-+		};
-+
-+		pm8953_l10: l10 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8953_l11: l11 {
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <3000000>;
-+		};
-+
-+		pm8953_l12: l12 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <3000000>;
-+		};
-+
-+		pm8953_l13: l13 {
-+			regulator-min-microvolt = <3075000>;
-+			regulator-max-microvolt = <3125000>;
-+		};
-+
-+		pm8953_l15: l15 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8953_l16: l16 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8953_l17: l17 {
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <3000000>;
-+		};
-+
-+		pm8953_l19: l19 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1350000>;
-+		};
-+
-+		pm8953_l22: l22 {
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <2850000>;
-+		};
-+
-+		pm8953_l23: l23 {
-+			regulator-min-microvolt = <975000>;
-+			regulator-max-microvolt = <1225000>;
-+		};
-+	};
-+};
-+
-+&sdhc_1 {
-+	vmmc-supply = <&pm8953_l8>;
-+	vqmmc-supply = <&pm8953_l5>;
-+
-+	status = "okay";
-+};
-+
-+&sdhc_2 {
-+	vmmc-supply = <&pm8953_l11>;
-+	vqmmc-supply = <&pm8953_l12>;
-+
-+	cd-gpios = <&tlmm 133 GPIO_ACTIVE_LOW>;
-+
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on &sdc2_cd_off>;
-+	pinctrl-1 = <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off &sdc2_cd_off>;
-+
-+	status = "okay";
-+};
-+
-+&tlmm {
-+	gpio-reserved-ranges = <0 4>, <135 4>;
-+};
-+
-+&usb3 {
-+	status = "okay";
-+};
-+
-+&usb3_dwc3 {
-+	dr_mode = "peripheral";
-+};
-+
-+&wcnss {
-+	vddpx-supply = <&pm8953_l5>;
-+
-+	status = "okay";
-+};
-+
-+&wcnss_iris {
-+	compatible = "qcom,wcn3660b";
-+
-+	vddxo-supply = <&pm8953_l7>;
-+	vddrfa-supply = <&pm8953_l19>;
-+	vddpa-supply = <&pm8953_l9>;
-+	vdddig-supply = <&pm8953_l5>;
-+};
+Best regards,
+Ghennadi
+> 
+> Chester
+> 
+>>> +			clock-names = "ipg", "ahb", "per";
+>>> +			bus-width = <8>;
+>>> +			status = "disabled";
+>>> +		};
+>>> +
+>>>  		gic: interrupt-controller@50800000 {
+>>>  			compatible = "arm,gic-v3";
+>>>  			reg = <0x50800000 0x10000>,
+>>> diff --git a/arch/arm64/boot/dts/freescale/s32g274a-evb.dts b/arch/arm64/boot/dts/freescale/s32g274a-evb.dts
+>>> index 9118d8d2ee01..00070c949e2a 100644
+>>> --- a/arch/arm64/boot/dts/freescale/s32g274a-evb.dts
+>>> +++ b/arch/arm64/boot/dts/freescale/s32g274a-evb.dts
+>>> @@ -1,7 +1,7 @@
+>>>  // SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+>>>  /*
+>>>   * Copyright (c) 2021 SUSE LLC
+>>> - * Copyright (c) 2019-2021 NXP
+>>> + * Copyright 2019-2021, 2024 NXP
+>>>   */
+>>>  
+>>>  /dts-v1/;
+>>> @@ -32,3 +32,7 @@ memory@80000000 {
+>>>  &uart0 {
+>>>  	status = "okay";
+>>>  };
+>>> +
+>>> +&usdhc0 {
+>>> +	status = "okay";
+>>> +};
+>>> diff --git a/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts b/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts
+>>> index e05ee854cdf5..b3fc12899cae 100644
+>>> --- a/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts
+>>> +++ b/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts
+>>> @@ -1,7 +1,7 @@
+>>>  // SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+>>>  /*
+>>>   * Copyright (c) 2021 SUSE LLC
+>>> - * Copyright (c) 2019-2021 NXP
+>>> + * Copyright 2019-2021, 2024 NXP
+>>>   */
+>>>  
+>>>  /dts-v1/;
+>>> @@ -38,3 +38,7 @@ &uart0 {
+>>>  &uart1 {
+>>>  	status = "okay";
+>>>  };
+>>> +
+>>> +&usdhc0 {
+>>> +	status = "okay";
+>>> +};
+>>> -- 
+>>> 2.43.0
+>>>
+
 -- 
-2.43.2
+Regards,
+Ghennadi
 
 
