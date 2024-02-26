@@ -1,73 +1,74 @@
-Return-Path: <devicetree+bounces-45826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45827-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB4CD866EBA
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:38:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80886866EC2
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:39:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2F8D1C23F9F
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 09:38:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0658F1F2637A
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 09:39:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21D0E6BB23;
-	Mon, 26 Feb 2024 08:59:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 144CD74E37;
+	Mon, 26 Feb 2024 09:00:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iXq8Z133"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tT0Ipqag"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FB442033F
-	for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 08:59:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BC5E73F38
+	for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 09:00:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708937953; cv=none; b=cQUDXLVfZcq11B+80zeyTtF6EPNXBjepQ+7e4Fz32TvGh2ZgJgalclITJoMHBi21IjZ5+bAZQg7bnFrzw5tJt7J7PBawtJLKCeQngb6IRaEFt43+S9/k5oA2UPrPzHYt8/3VqfivegvQ63tVhMNsZqOFgpdCHGMH9g8PdBjsBJw=
+	t=1708938004; cv=none; b=TQzPvhQbcFIfkcKSTQ4/kPOOIcz+waaL/mVA9Wixxu78r24ZRMoQxBtWiNyavhiKtnhTAKPPW5EdoprOtS7wF019qQbgZg2cblYNtpNEOxG10WnkAw0TzG37afKCRQgy0Bqzbn7RNEQQEM0nnU+8SQnpgF+4Npo6BL0x4JWw+bY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708937953; c=relaxed/simple;
-	bh=D+CEX9662VT5q6VaP5GYO5KzRVNGXwkz+e+HT83cFaw=;
+	s=arc-20240116; t=1708938004; c=relaxed/simple;
+	bh=K3bn8IcrK6ztc/f15x3hNTggh05U+CHvzmsPhZ7e2rY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LO3cyqUj4iArR6b7j1AzrZCoQVXKk01LjJzqck9VwIFY0jHZVsXtKJB0/QnjV6xxCiTQirEZNlkVNCpNmbw0QTjLchUDRrQXiTBdpJuIYzoalxKEt4gwJQ7pr9bxB6v3DZTGGJWict+rBXGsUwrY1o7UuZ2wzHlDooTlIwahn/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iXq8Z133; arc=none smtp.client-ip=209.85.208.41
+	 In-Reply-To:Content-Type; b=JL5SAsXrC+v0d22VdXJrgdZ0dDZV/G+W1Q4zLDseGX5joOmrOt4qE5rva/In2NRMYsm5LWe9sbiiTYUiRZUjfmnHrldO4vn6W90Bu/DWqCWj+izRF4U8HMcUvc+fEacPl2ns+umh398G/KdUNkNl7UfEpcoBTK0w0MwtEzoUGcE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tT0Ipqag; arc=none smtp.client-ip=209.85.218.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-565ef8af2f5so807857a12.3
-        for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 00:59:10 -0800 (PST)
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a3e706f50beso354066366b.0
+        for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 01:00:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708937949; x=1709542749; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708938000; x=1709542800; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=3tAhsHSzSFC42nQX6Q0CQ+rcjF+dCO/VKngqryWMXss=;
-        b=iXq8Z133hOhLRXs/hfAPwiKuszUJ+prH0iodfa8TvWACfiNqAhF34f37Xw2QSWH18y
-         z0aJoyqe4BZgQWAVgEe82P1LJxtKbOZ98iyp1qM83yU3IMdtw1weUjp6+r8APDhg7MW/
-         vUKogBvt+gpfsE0bcPjTNlVqn1gvEns9TsABn/bOMkJfcd/9dxYRu6gTsks4f7zr2PHy
-         tIIhrrUYlEuBdM9lpYJ/graQPJrRTFv/ueR8VRpG6JmmO6hOiGJxOnDaN/2lhtORrvii
-         Q777/8uAa3rQr3+BRSuDlKq8o56a7yFaXLZ2yy7AcGOUadEu87YebEZM2BVfhvYCxiOs
-         ZYbw==
+        bh=Dka6OuxlzIRJgdM6av7jNjR6fS6TojdpuLcM5fKS6U4=;
+        b=tT0IpqagSkpZlgnYr47vh01SJAOg8D49kwqDmbmdkO/Z0EYjPVV9qzDiwYWZXv6G79
+         mnn4WKem/iztq3Q0E7hagFDSqO5xHPwCd/Xph82hnz95eh8OHdr+S6G6lnF6P56YuY4y
+         wcqidkVVeLsc1S5RTJOA+sYd+5ESu9QzxYICvj1WN0WgtI9rr5fHmAWAjMsJFHGTAXhg
+         tNvr5t1xJSfdxeqdOisajuyQSIzmRsmCmIoUVpO0IzIewx8cHWZscP5moEbqO5uEX5HX
+         tS+wLjn91U+EnOot5mcEe3idnh48y8VLwGtK9luiI+H0jgcUq1KUjGh+hnt4fTDwoywr
+         EOVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708937949; x=1709542749;
+        d=1e100.net; s=20230601; t=1708938000; x=1709542800;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3tAhsHSzSFC42nQX6Q0CQ+rcjF+dCO/VKngqryWMXss=;
-        b=tXDiJA1ftTtew5WLj3jGY8MLaAwrtl6TPmOckEN87eLbvSUP1FwO9/Cqasd1ByQp1g
-         Bb30yM3GrG+dYXMppHJCSm1SE7djVWNBm0pAPmkbROSPdikeYjtTqxEYLJJOl6XHxebN
-         IcL2aEG5oleWfv7oKp2szDVV1LcenEcGbALUC2q2bt5ixAXz19+RlfGyMpsKEw6ZqcGI
-         xNw+AuwjbdI4JkbDL4oJLJaVESdWJIFnMHSLiFd62sU3bTg06Ltju7qX1N7jfBA9vB7u
-         R5Af4VX9Kh2roduhOeI2thDrvpxeBnH7oGFbRq5jLni1k5GAFEJODx1a5yCoN7qThtYf
-         ojRg==
-X-Gm-Message-State: AOJu0YzCyAgJ42udcqVK+nkyrmCaiHOKO2Itc4UrkEf29LnDSbAIMNPa
-	IJQGUNjcLxuBKSEWwPcZpVtEQM4AdnvXO+ScuHZN+KWFd6i9T1oq0oAXVTx3GFo=
-X-Google-Smtp-Source: AGHT+IHZCCOWwws7D/+j/pCQs+gMhTW7tlgzI7986cs+d4HB+lJ/5Ti/xjTnsy4vt2MKVxsSoWOqTg==
-X-Received: by 2002:a17:906:e0d6:b0:a43:8468:ac0a with SMTP id gl22-20020a170906e0d600b00a438468ac0amr78972ejb.71.1708937949618;
-        Mon, 26 Feb 2024 00:59:09 -0800 (PST)
+        bh=Dka6OuxlzIRJgdM6av7jNjR6fS6TojdpuLcM5fKS6U4=;
+        b=kFtOZVWFOqlp9w2OYnPO31EhipBvWIVsAkei9s/amRx+GhMVoxAAzAXUbGpFekyFS/
+         ZgTbjx9GHa5rpOprQyaZe5hyxBVMwdoNlxyxGwVNX/PlSEpwH7+aBt2LIgvq/fmDoPAe
+         qsXcbtHhUy6TpSGljx+TWFhPrRBNfyVvOkmtHk4zCdiXJntiCsoBUofndf1sFSGMZWkz
+         myH4bWoH2yT1py4mu3Uewlhm+bT+shSL7X6A+3zX6ACn44e7+M8RPMZK5UQ/PFo2vFyp
+         YudDdHf61EoAkjxMNOl7DKzbJrcTrdCUdf1dMct8e2kZrVQNyiSGNsqlh7a6MnKutnbP
+         lCIg==
+X-Forwarded-Encrypted: i=1; AJvYcCXClIjfWcm2V9qV+WXCRu+bU+MJYP47vkoifcC1YwgwCAiuDt+J5WIujWwUyrNj1+KIiFtNXHEaSM/csnNT17qVrvhVpRmQ6EVrzg==
+X-Gm-Message-State: AOJu0YwiwEShkt1T+xEeapgcVxuYOnOcoHOY4Ue5748y/J992tQezZiU
+	nYt7R1MrkqyAIZHmc9YSyIIwwb9MuxBVUMl9kv96MBNxgYdfQV3/C2PCeUCHawg=
+X-Google-Smtp-Source: AGHT+IH46txMpd8uXkzK0RpYebhK4UAku2Qpf+iwfL4KXKoPRWb0XxgX7+lKVcG9/xjZ43X4b3Hklw==
+X-Received: by 2002:a17:906:46d8:b0:a43:5196:393b with SMTP id k24-20020a17090646d800b00a435196393bmr1082169ejs.8.1708938000447;
+        Mon, 26 Feb 2024 01:00:00 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id 7-20020a170906308700b00a3e799969aesm2178043ejv.119.2024.02.26.00.59.08
+        by smtp.gmail.com with ESMTPSA id 7-20020a170906308700b00a3e799969aesm2178043ejv.119.2024.02.26.00.59.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Feb 2024 00:59:09 -0800 (PST)
-Message-ID: <549519dc-9787-436f-a3e0-49ba0bce2e70@linaro.org>
-Date: Mon, 26 Feb 2024 09:59:06 +0100
+        Mon, 26 Feb 2024 01:00:00 -0800 (PST)
+Message-ID: <e6bb70fc-81ed-4775-8d3e-4bf177c6f22f@linaro.org>
+Date: Mon, 26 Feb 2024 09:59:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,13 +76,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: Adapt TCPC compatible
+Subject: Re: [PATCH] dt-bindings: iio: ti,tmp117: add optional label binding
 Content-Language: en-US
-To: Marco Felsch <m.felsch@pengutronix.de>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org,
- kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com, agx@sigxcpu.org
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20240222211242.210340-1-m.felsch@pengutronix.de>
+To: Marco Felsch <m.felsch@pengutronix.de>, puranjay12@gmail.com,
+ jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ kernel@pengutronix.de
+References: <20240223162042.2658620-1-m.felsch@pengutronix.de>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -127,28 +129,40 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240222211242.210340-1-m.felsch@pengutronix.de>
+In-Reply-To: <20240223162042.2658620-1-m.felsch@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/02/2024 22:12, Marco Felsch wrote:
-> Add the new fallback binding to all devicetrees which do have a
-> nxp,ptn5110 node to not cause any dt-validation regression.
+On 23/02/2024 17:20, Marco Felsch wrote:
+> Add the support to provide an optional label like we do for ADC
+> channels to identify the device more easily.
 > 
 > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 > ---
 > Hi,
 > 
-> this requires patchset
-> https://lore.kernel.org/all/20240222210903.208901-1-m.felsch@pengutronix.de/
-> to be applied.
+> patchset [1] should be applied first to avoid merge conflicts.
 > 
+> [1] https://lore.kernel.org/all/20240219131114.134607-1-m.felsch@pengutronix.de/#t
+> 
+> Regards,
+>   Marco
+> 
+>  .../devicetree/bindings/iio/temperature/ti,tmp117.yaml        | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml b/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
+> index 33f2e9c5bd81..f00c1cb89acd 100644
+> --- a/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
+> +++ b/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
+> @@ -27,6 +27,10 @@ properties:
+>    vcc-supply:
+>      description: provide VCC power to the sensor.
+>  
+> +  label:
+> +    $ref: /schemas/types.yaml#/definitions/string
 
-Subject - missing prefix and a bit unspecific name. E.g.:
-
-arm64: dts: freescale (or imx): Add TCPC fallback compatible to PTN5110
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Drop ref. Did you take it from any existing binding?
 
 Best regards,
 Krzysztof
