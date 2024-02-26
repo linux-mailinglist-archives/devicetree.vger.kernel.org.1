@@ -1,250 +1,121 @@
-Return-Path: <devicetree+bounces-46002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8226A867A7F
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 16:41:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78C58867A5A
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 16:34:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7E651B33958
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 15:30:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F3B6294DFB
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 15:34:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A916F12BF39;
-	Mon, 26 Feb 2024 15:30:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFF7E12AAFF;
+	Mon, 26 Feb 2024 15:34:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Y68N6UCu"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="2PNEOOjn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE64712BF11;
-	Mon, 26 Feb 2024 15:30:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2826C7E794;
+	Mon, 26 Feb 2024 15:34:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708961406; cv=none; b=lyjT4qhMwBplqozakXtinu8XFu304JtXti7KNhX+8/Wulv0y5Jp23RbkdniZR6oP6zuRIwo1UrscrvCTIrpxJQlTDJDbhCGMU2ldbHc/gj+CHns3b3wVCPRawdMH2ts9ZPp78m2o0zjE3cpLcULmuMAaX5+6424m7h0NWzQks+g=
+	t=1708961668; cv=none; b=KebEiYaptD1ZT9p+iEhgBHW8cXw0DK4/9HGww4BH/U9ui6MHWnjobvLEyzTssYtV2nHW4JuxbeMLcBfHV546J+ypfrrvdPxHe80Tj+SFi7WfbIUxSqXMh6Ja6N11jAjL19llNBjnIFmQIRvNEspMfP2jhQw6faP0XMxwtlL4RSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708961406; c=relaxed/simple;
-	bh=1dPT6v1I08Wyw5hcrN7bcgojMxnYVXIX2j0GluKbE6Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fbYkgK03hP5wkvcXoLLl1ePdYs4s7xYszXkekkRxEzz038dqVAdstLmoZ6LGVNAJ7cyQ56hH/R7XuTg/Q7qaiqYz1pQcKA2GK6YqgXP6O/tn+/+egXqTkAXtE1YJi2eU2zhFfVCzB4jaULWhA4IPVnLAurhWc7Cpn8GfjSg3+Ts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Y68N6UCu; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1708961402;
-	bh=1dPT6v1I08Wyw5hcrN7bcgojMxnYVXIX2j0GluKbE6Y=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Y68N6UCuVbVFFasJj+ySVlHijeOnuqq7y8A5tsZ0r2I5+eHsdn6kGbuIQEhK7g7eh
-	 9xrlqCRvZTuDtW8PiCKK+RnlkYifQubrxK/ifQjhcDxUuEeLgqnHmMYB3ARUCjhxJj
-	 T5OONjkP2MYwvgu1TBRjX6KjEImlNeFxDuUqGdrT+ZyldQzxawK2jN3Y/MEAGVgYnx
-	 iks6DyEZIRF4HSGtkr11rFZq481N2a7ZUThufV2fpbjtNHSXZWAQnBSuXZA94ggtor
-	 G7R8S41pEbfY3rseYnbtvq4FdHetz7E2Pyy6OTkjE7TP5umlIbZUyaorLZuFMZad8Z
-	 u5JPfnYhZgszw==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 591A237820C3;
-	Mon, 26 Feb 2024 15:30:01 +0000 (UTC)
-Message-ID: <e15fdb18-d4de-495f-b90b-ba0e787cbef4@collabora.com>
-Date: Mon, 26 Feb 2024 16:30:00 +0100
+	s=arc-20240116; t=1708961668; c=relaxed/simple;
+	bh=kuB0H4FU8bT6x452qiWGPFUounbrJC67yGBA/EwPPlc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jclwg94lTS/nm/c2Qhg7MijWDQanJrj1yr128PL1yROmjDgFB4bkwK8Ak4raC/GYOA02Ao3eLcZdrhu9Z7Eo9EU6Pb+OT89UGidq++lOHpIZqggTYj9uIZ/Wn6N18v7AFdBL30im93c/VG7GxzyIyM/zD9FHVhNuJSEqTi6kMRs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=2PNEOOjn; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=Fr1Kk+BTfvCgehT0HKmG9zqX5uvmp1iVYnEnXQZLIm0=; b=2P
+	NEOOjnRUsWhPnM+8MVmxsJVwF19KuGfFLSVatDNgAJFpGgAQ6uIdkWd8t9vaVK7JXSnsJJ/e0PnIX
+	0b6do8qtJ7zYkI5uelSWBco6g5F3ZKq2HMfFOo79V25DwLUJD+QsnvJUu9FX7dHc9/IR60Zytl8nD
+	hvVYPqK4Br2HqWc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1reczy-008jmA-Bn; Mon, 26 Feb 2024 16:34:34 +0100
+Date: Mon, 26 Feb 2024 16:34:34 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: =?iso-8859-1?Q?J=E9r=E9mie?= Dautheribes <jeremie.dautheribes@bootlin.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, Andrew Davis <afd@ti.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	=?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
+	Yen-Mei Goh <yen-mei.goh@keysight.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>
+Subject: Re: [PATCH net-next 2/3] net: phy: dp83826: Add support for phy-mode
+ configuration
+Message-ID: <aee610ab-2815-42f0-a4e4-5f695238beae@lunn.ch>
+References: <20240222103117.526955-1-jeremie.dautheribes@bootlin.com>
+ <20240222103117.526955-3-jeremie.dautheribes@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/18] ASoC: dt-bindings: mediatek,mt8365-mt6357: Add
- audio sound card document
-Content-Language: en-US
-To: Alexandre Mergnat <amergnat@baylibre.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Lee Jones <lee@kernel.org>,
- Flora Fu <flora.fu@mediatek.com>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
-References: <20240226-audio-i350-v1-0-4fa1cea1667f@baylibre.com>
- <20240226-audio-i350-v1-2-4fa1cea1667f@baylibre.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20240226-audio-i350-v1-2-4fa1cea1667f@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240222103117.526955-3-jeremie.dautheribes@bootlin.com>
 
-Il 26/02/24 15:01, Alexandre Mergnat ha scritto:
-> Add soundcard bindings for the MT8365 SoC with the MT6357 audio codec.
+On Thu, Feb 22, 2024 at 11:31:16AM +0100, Jérémie Dautheribes wrote:
+> The TI DP83826 PHY can operate in either MII mode or RMII mode.
+> By default, it is configured by straps.
+> It can also be configured by writing to the bit 5 of register 0x17 - RMII
+> and Status Register (RCSR).
 > 
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> When phydev->interface is rmii, rmii mode must be enabled, otherwise
+> mii mode must be set.
+> This prevents misconfiguration of hw straps.
+> 
+> Signed-off-by: Jérémie Dautheribes <jeremie.dautheribes@bootlin.com>
 > ---
->   .../bindings/sound/mediatek,mt8365-mt6357.yaml     | 127 +++++++++++++++++++++
->   1 file changed, 127 insertions(+)
+>  drivers/net/phy/dp83822.c | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt8365-mt6357.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt8365-mt6357.yaml
-> new file mode 100644
-> index 000000000000..f469611ec6b6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/mediatek,mt8365-mt6357.yaml
-> @@ -0,0 +1,127 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/mediatek,mt8365-mt6357.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mediatek MT8365 sound card with MT6357 sound codec.
-> +
-> +maintainers:
-> +  - Alexandre Mergnat <amergnat@baylibre.com>
-> +
-> +description:
-> +  This binding describes the MT8365 sound card.
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt8365-mt6357
-> +
-> +  mediatek,hp-pull-down:
-> +    description:
-> +      Earphone driver positive output stage short to the
-> +      audio reference ground.
-> +      Default value is false.
-> +    type: boolean
-> +
-> +  mediatek,micbias0-microvolt:
-> +    description: |
+> diff --git a/drivers/net/phy/dp83822.c b/drivers/net/phy/dp83822.c
+> index 30f2616ab1c2..2d8275e59dcc 100644
+> --- a/drivers/net/phy/dp83822.c
+> +++ b/drivers/net/phy/dp83822.c
+> @@ -100,6 +100,7 @@
+>  #define DP83822_WOL_CLR_INDICATION BIT(11)
+>  
+>  /* RCSR bits */
+> +#define DP83822_RMII_MODE_EN	BIT(5)
+>  #define DP83822_RGMII_MODE_EN	BIT(9)
+>  #define DP83822_RX_CLK_SHIFT	BIT(12)
+>  #define DP83822_TX_CLK_SHIFT	BIT(11)
+> @@ -500,6 +501,16 @@ static int dp83826_config_init(struct phy_device *phydev)
+>  	u16 val, mask;
+>  	int ret;
+>  
+> +	if (phydev->interface == PHY_INTERFACE_MODE_RMII)
+> +		ret = phy_set_bits_mmd(phydev, DP83822_DEVADDR, MII_DP83822_RCSR,
+> +				       DP83822_RMII_MODE_EN);
+> +	else
+> +		ret = phy_clear_bits_mmd(phydev, DP83822_DEVADDR, MII_DP83822_RCSR,
+> +					 DP83822_RMII_MODE_EN);
 
-description: Selects MIC Bias 0 output voltage
+I would probably add a test for MII and return -EINVAL if asked to do
+something else altogether.
 
-> +      Selects MIC Bias 0 output voltage.
-> +      [1.7v, 1.8v, 1.9v, 2.0v, 2.1v, 2.5v, 2.6v, 2.7v]
-> +    enum: [0, 1, 2, 3, 4, 5, 6, 7]
-
-No, you don't say 0 1 2 3 4 to a property that says "microvolt", that's simply
-wrong.
-
-mediatek,micbias0-microvolt = <2100000>;
-
-...so you want a binding that says
-enum: [ 1700000, 1800000, this, that, 2700000]
-
-> +
-> +  mediatek,micbias1-microvolt:
-> +    description: |
-> +      Selects MIC Bias 1 output voltage.
-> +      [1.7v, 1.8v, 1.9v, 2.0v, 2.1v, 2.5v, 2.6v, 2.7v]
-> +    enum: [0, 1, 2, 3, 4, 5, 6, 7]
-
-same here.
-
-> +
-> +  mediatek,platform:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: The phandle of MT8365 ASoC platform.
-> +
-> +  pinctrl-names:
-> +    minItems: 1
-> +    items:
-> +      - const: aud_default
-> +      - const: aud_dmic
-> +      - const: aud_miso_off
-> +      - const: aud_miso_on
-> +      - const: aud_mosi_off
-> +      - const: aud_mosi_on
-> +
-> +  vaud28-supply:
-> +    description:
-> +      2.8 volt supply for the audio codec
-> +
-> +patternProperties:
-> +  "^dai-link-[0-9]+$":
-> +    type: object
-> +    description:
-> +      Container for dai-link level properties and CODEC sub-nodes.
-> +
-> +    properties:
-> +      codec:
-> +        type: object
-> +        description: Holds subnode which indicates codec dai.
-> +
-> +        properties:
-> +          sound-dai:
-> +            maxItems: 1
-> +            description: phandle of the codec DAI
-> +
-> +        additionalProperties: false
-> +
-> +      link-name:
-> +        description:
-> +          This property corresponds to the name of the BE dai-link to which
-> +          we are going to update parameters in this node.
-> +        items:
-> +          const: 2ND I2S BE
-> +
-> +      sound-dai:
-> +        maxItems: 1
-> +        description: phandle of the CPU DAI
-> +
-> +    additionalProperties: false
-> +
-> +    required:
-> +      - link-name
-> +      - sound-dai
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - mediatek,platform
-> +  - pinctrl-names
-> +  - vaud28-supply
-> +
-> +examples:
-> +  - |
-> +    sound {
-> +        compatible = "mediatek,mt8365-mt6357";
-> +        mediatek,platform = <&afe>;
-
-Please:
-
-https://docs.kernel.org/devicetree/bindings/dts-coding-style.html
-
-Regards,
-Angelo
-
-> +        pinctrl-names = "aud_default",
-> +            "aud_dmic",
-> +            "aud_miso_off",
-> +            "aud_miso_on",
-> +            "aud_mosi_off",
-> +            "aud_mosi_on";
-> +        pinctrl-0 = <&aud_default_pins>;
-> +        pinctrl-1 = <&aud_dmic_pins>;
-> +        pinctrl-2 = <&aud_miso_off_pins>;
-> +        pinctrl-3 = <&aud_miso_on_pins>;
-> +        pinctrl-4 = <&aud_mosi_off_pins>;
-> +        pinctrl-5 = <&aud_mosi_on_pins>;
-> +        vaud28-supply = <&mt6357_vaud28_reg>;
-> +
-> +        /* hdmi interface */
-> +        dai-link-0 {
-> +            sound-dai = <&afe>;
-> +            link-name = "2ND I2S BE";
-> +
-> +            codec {
-> +                sound-dai = <&it66121hdmitx>;
-> +            };
-> +        };
-> +    };
-> 
-
+	  Andrew
 
