@@ -1,189 +1,166 @@
-Return-Path: <devicetree+bounces-46094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46095-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DB6A86808C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 20:11:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC72A86809C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 20:14:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D5881F24890
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 19:11:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8710B292929
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 19:14:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0484812FB3F;
-	Mon, 26 Feb 2024 19:09:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9FF1130AC8;
+	Mon, 26 Feb 2024 19:10:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="I9egwK4T"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kbmp3DPL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 731A612FB2A;
-	Mon, 26 Feb 2024 19:09:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74C2812F586;
+	Mon, 26 Feb 2024 19:10:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708974574; cv=none; b=nDEt9cl2oq3KKL25EKgvcXwJOEFQVb3c/PCmJwSpbAiN1vvLbrRRdoQUQ9UUVJfFLiYqpnG1darh1k79cGhCzfZmgm/l+JPZ7wO4McKGIQdniUJkWCJrZB23e0kkxmq63IAXdKBdmdcFToOMB2wAW8Z1mTrU8txJyewA/tOi8yo=
+	t=1708974636; cv=none; b=L8vzsGz8UhpX5pciyGiCsRFpwOMFkGdlsctuHBcGyQqtVMJW0RGXnPRROgNYd1Gd27Q8KI/44kF6do6zAVGlbDaEjq8J+nviT79ZyjHWCc957+eT7RRnRZkX3rZguTIiLKfN2lUWozhyA6EazNd9FKuDKbi60eR8O80y2AkzRCY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708974574; c=relaxed/simple;
-	bh=T1nwYcrb80KiMkROIVNK/60go897IbC9GVwqBNMMXlk=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=uRXHMFZM1NdN5OoRpauPig8pL39Ll63sF+WCgMrs2AoKsqpPHeDpEf+3jh7RNN6zS42SgllR36+3MxFUN7xiKUHuhXiyS40AgDBt3RAbtS0uz1+AbijFfFsFYYAb7c6hHKRowIv5cli7Q1yIXdjNZwcCiahfaI3QZJCVlPEZ/7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=I9egwK4T; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1708974636; c=relaxed/simple;
+	bh=r3WL10V8lVhng5mzweFxXOSYkzbeF/59JAqu8qYguho=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=q1WrEGVA9hhUQpCo4S+syubBfYO82wPp8ZC7xP1+r9rItMith1n0okAl+yGzDvwRJqQnKTC1CJEZc5yDHFn7EviMv4AcgFJHxbNL2F3chEpZT8l5ZmqbX9eva0vc9L1vi4iJnQ2Blo+1T903eHulFLl7EFLry8wa9ofnPA8V6mc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kbmp3DPL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FA80C433C7;
+	Mon, 26 Feb 2024 19:10:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708974635;
+	bh=r3WL10V8lVhng5mzweFxXOSYkzbeF/59JAqu8qYguho=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Kbmp3DPLqo+WZBNwoJi38Lo9m2jIb6vXMqm8afS+SoNE0UO4WA/1H8gK5K1zFRQGv
+	 NCCOXjof30mwCEdq26HCJy3+nAGG5W8xgUYxqgnOXSaIQJNn3UHDPaFkrDg8G6ouOC
+	 Ci2puHvIBjXwNRvG/2FvvOoRgap67OhJnYpP5NqQcY0+Le6GRNJTwCaF89vSKO8+ZE
+	 BIz7mBCL9ZNaF0WjDBS1UfK+AVK7xAXbchFLTKy95I+UO6jkDckIenEkodLewQAB1d
+	 Ef6RkGiTFgvn8nuU1/UoMUD0YF+y2zPG/UHl2P5jEng0467mX61GoNLoiWF1olGFfB
+	 qBjE8VTzKffyw==
+Date: Mon, 26 Feb 2024 19:10:11 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Matti Vaittinen <mazziesaccount@gmail.com>, Marek Vasut <marex@denx.de>,
+ Anshul Dalal <anshulusr@gmail.com>, Javier Carrasco
+ <javier.carrasco.cruz@gmail.com>, Matt Ranostay <matt@ranostay.sg>, Stefan
+ Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 5/5] iio: light: Add support for APDS9306 Light
+ Sensor
+Message-ID: <20240226190953.1467da54@jic23-huawei>
+In-Reply-To: <ZdycR6nr3rtrnuth@smile.fi.intel.com>
+References: <20240218054826.2881-1-subhajit.ghosh@tweaklogic.com>
+	<20240218054826.2881-6-subhajit.ghosh@tweaklogic.com>
+	<ZdycR6nr3rtrnuth@smile.fi.intel.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1708974566;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=MhPScaDHRZdhouzkoYyad3R9PfIyEE1nMSKg/JolwpQ=;
-	b=I9egwK4T0p5eJfARevw+aGPmERrw3GF5gjjW79/nE95wu9QItS2TbWjRXlRTj4HfZzW31w
-	Yaw8zlGTOSWMOlovsfFbnOIzVh5XFZDPSdA78Fvn4vMx7+yb+HwnxRPPk+OkpNDlYd8HoB
-	1zbPKHe8+raiZJt9WfpUUFzyw9uB4rtdlrw9HhCAjsWXaZU63W0XaZ9ZXEjLp50F9eGen0
-	gu8Lm/+hFZg3K1gC9PLBjqKAOshVEGLYMBUibpYrdkuj+gP0XmbSWMSdUmHid2ozYNc+dT
-	OrxUt278Ydtbg2X1HwGgh8a/EEoBrX0Qv8oEHkcbkCpIPhQkUwTyZvDsZAw0Jw==
-Date: Mon, 26 Feb 2024 20:09:26 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] arm64: dts: rockchip: Add cache information to the
- Rockchip RK3566 and RK3568 SoC
-In-Reply-To: <20240226182310.4032-1-linux.amoon@gmail.com>
-References: <20240226182310.4032-1-linux.amoon@gmail.com>
-Message-ID: <8ceea100f2ef7cce296943ce1397161a@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hello Anand,
+On Mon, 26 Feb 2024 16:12:23 +0200
+Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
 
-On 2024-02-26 19:23, Anand Moon wrote:
-> As per RK3568 Datasheet and TRM add missing cache information to
-> the Rockchip RK3566 and RK3568 SoC.
+> On Sun, Feb 18, 2024 at 04:18:26PM +1030, Subhajit Ghosh wrote:
+> > Driver support for Avago (Broadcom) APDS9306 Ambient Light Sensor.
+> > It has two channels - ALS and CLEAR. The ALS (Ambient Light Sensor)
+> > channel approximates the response of the human-eye providing direct
+> > read out where the output count is proportional to ambient light levels.
+> > It is internally temperature compensated and rejects 50Hz and 60Hz flicker
+> > caused by artificial light sources. Hardware interrupt configuration is
+> > optional. It is a low power device with 20 bit resolution and has
+> > configurable adaptive interrupt mode and interrupt persistence mode.
+> > The device also features inbuilt hardware gain, multiple integration time
+> > selection options and sampling frequency selection options.
+> > 
+> > This driver also uses the IIO GTS (Gain Time Scale) Helpers Namespace for
+> > Scales, Gains and Integration time implementation.  
 > 
-> - Each Cortex-A55 core has 32KB of L1 instruction cache available and
-> 	32KB of L1 data cache available with ECC.
-> - Along with 512KB Unified L3 cache with ECC.
+> ...
 > 
-> With adding instruction cache and data cache and a write buffer to
-> reduce the effect of main memory bandwidth and latency on data
-> access performance.
+> > +/*
+> > + * Available scales with gain 1x - 18x, timings 3.125, 25, 50, 100, 200, 400 mS  
 > 
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-
-I was about to send my own patch that adds the same missing cache
-information, so please allow me to describe the proposed way to move
-forward.
-
-The way I see it, your commit summary and description need a rather
-complete rewrite, to be more readable, more accurate, and to avoid
-including an irrelevant (and slightly misleading) description of the
-general role of caches.
-
-Also, the changes to the dtsi file would benefit from small touch-ups
-here and there, for improved consistency, etc.
-
-With all that in mind, I propose that you withdraw your patch and let
-me send my patch that will addresses all these issues, of course with
-a proper tag that lists you as a co-developer.  I think that would
-save us a fair amount of time going back and forth.
-
-I hope you agree.
-
-
-> ---
-> [0] 
-> http://www.rock-chips.com/uploads/pdf/2022.8.26/191/RK3568%20Brief%20Datasheet.pdf
-> [1] 
-> https://dl.radxa.com/rock3/docs/hw/datasheet/Rockchip%20RK3568%20TRM%20Part1%20V1.1-20210301.pdf
-> ---
->  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 37 ++++++++++++++++++++++++
->  1 file changed, 37 insertions(+)
+> "mS" --> "ms."
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> index c19c0f1b3778..49235efefb6b 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> @@ -56,6 +56,13 @@ cpu0: cpu@0 {
->  			clocks = <&scmi_clk 0>;
->  			#cooling-cells = <2>;
->  			enable-method = "psci";
-> +			d-cache-line-size = <32>;
-> +			d-cache-size = <0x8000>;
-> +			d-cache-sets = <32>;
-> +			i-cache-line-size = <32>;
-> +			i-cache-size = <0x8000>;
-> +			i-cache-sets = <32>;
-> +			next-level-cache = <&l2>;
->  			operating-points-v2 = <&cpu0_opp_table>;
->  		};
+> > + * Time impacts to gain: 1x, 8x, 16x, 32x, 64x, 128x
+> > + */  
 > 
-> @@ -65,6 +72,13 @@ cpu1: cpu@100 {
->  			reg = <0x0 0x100>;
->  			#cooling-cells = <2>;
->  			enable-method = "psci";
-> +			d-cache-line-size = <32>;
-> +			d-cache-size = <0x8000>;
-> +			d-cache-sets = <32>;
-> +			i-cache-line-size = <32>;
-> +			i-cache-size = <0x8000>;
-> +			i-cache-sets = <32>;
-> +			next-level-cache = <&l2>;
->  			operating-points-v2 = <&cpu0_opp_table>;
->  		};
+> ...
 > 
-> @@ -74,6 +88,13 @@ cpu2: cpu@200 {
->  			reg = <0x0 0x200>;
->  			#cooling-cells = <2>;
->  			enable-method = "psci";
-> +			d-cache-line-size = <32>;
-> +			d-cache-size = <0x8000>;
-> +			d-cache-sets = <32>;
-> +			i-cache-line-size = <32>;
-> +			i-cache-size = <0x8000>;
-> +			i-cache-sets = <32>;
-> +			next-level-cache = <&l2>;
->  			operating-points-v2 = <&cpu0_opp_table>;
->  		};
+> > +	/*
+> > +	 * If this function runs parallel with the interrupt handler, either
+> > +	 * this reads and clears the status registers or the interrupt handler
+> > +	 * does. The interrupt handler sets a flag for read data available
+> > +	 * in our private structure which we read here.
+> > +	 */
+> > +	ret = regmap_read_poll_timeout(data->regmap, APDS9306_MAIN_STATUS_REG,
+> > +				       status, data->read_data_available ||
+> > +				       (status & (APDS9306_ALS_DATA_STAT_MASK |
+> > +						  APDS9306_ALS_INT_STAT_MASK)),
+> > +				       APDS9306_ALS_READ_DATA_DELAY_US, delay * 2);  
 > 
-> @@ -83,8 +104,24 @@ cpu3: cpu@300 {
->  			reg = <0x0 0x300>;
->  			#cooling-cells = <2>;
->  			enable-method = "psci";
-> +			d-cache-line-size = <32>;
-> +			d-cache-size = <0x8000>;
-> +			d-cache-sets = <32>;
-> +			i-cache-line-size = <32>;
-> +			i-cache-size = <0x8000>;
-> +			i-cache-sets = <32>;
-> +			next-level-cache = <&l2>;
->  			operating-points-v2 = <&cpu0_opp_table>;
->  		};
-> +
-> +		l2: l2-cache0 {
-> +			compatible = "cache";
-> +			cache-level = <3>;
-> +			cache-unified;
-> +			cache-size = <0x7d000>; /* L3. 512 KB */
-> +			cache-line-size = <64>;
-> +			cache-sets = <512>;
-> +		};
->  	};
+> > +  
 > 
->  	cpu0_opp_table: opp-table-0 {
+> Redundant blank line
+> 
+> > +	if (ret)
+> > +		return ret;  
+> 
+> ...
+> 
+> > +static int apds9306_init_iio_gts(struct apds9306_data *data)
+> > +{
+> > +	int i, ret, part_id;
+> > +
+> > +	ret = regmap_read(data->regmap, APDS9306_PART_ID_REG, &part_id);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	for (i = 0; i < ARRAY_SIZE(apds9306_gts_mul); i++)
+> > +		if (part_id == apds9306_gts_mul[i].part_id)
+> > +			break;
+> > +
+> > +	if (i == ARRAY_SIZE(apds9306_gts_mul))
+> > +		return -ENXIO;  
+> 
+> Strange choice of the error code, why not (one of) -ENOENT / -ENODATA ?
+> 
+> > +	return devm_iio_init_iio_gts(data->dev,
+> > +				     apds9306_gts_mul[i].max_scale_int,
+> > +				     apds9306_gts_mul[i].max_scale_nano,
+> > +				     apds9306_gains, ARRAY_SIZE(apds9306_gains),
+> > +				     apds9306_itimes, ARRAY_SIZE(apds9306_itimes),
+> > +				     &data->gts);  
+> 
+> > +
+> > +	return -ENXIO;  
+> 
+> Dead code.
+> 
+> > +}  
+> 
+> ...
+> 
+> Jonathan, are you going to apply this and addressing comments at the same time?
+> Or should it be another version?
+> 
+
+The multibit field pretending to be a boolean was too complex for to want to modify
+whilst applying. So yes, v8 with that tidied up and your comments sorted out
+
+Jonathan
+
 
