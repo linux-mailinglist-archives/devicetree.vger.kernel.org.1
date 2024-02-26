@@ -1,152 +1,195 @@
-Return-Path: <devicetree+bounces-45948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45943-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A15E86764D
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 14:19:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AD11867623
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 14:12:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B9150B2134B
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 13:19:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D9DB1C217BE
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 13:12:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E27E127B4F;
-	Mon, 26 Feb 2024 13:19:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 186E3823A5;
+	Mon, 26 Feb 2024 13:12:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hLb5ucUB"
+	dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="FL+TuqDS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2058.outbound.protection.outlook.com [40.107.7.58])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F1731C6B0;
-	Mon, 26 Feb 2024 13:19:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708953551; cv=none; b=bhjn9O9RmW/qhmfaGnycLsRZdrcnBrYCE7TTy8tKXhwels8t4hLp9Cv8x5fkG3yWzuq7RBE7ZZklJnRWMI4vI8YyHBEct3DJAwPg5+/l1U5JFpWgp0CCg9NxDAenNpJoeAJn098i1FW/b0UKZxBniHrj8nOEoky7ZEtKZEm4sWs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708953551; c=relaxed/simple;
-	bh=HBsVccxSNxv26lBX/VuGdylXD0W8SDHVP7TBViLLh1U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VV0yBcZlxBj9HO6bIX0k4jSUnxBsLLMyuI91HuAWHtnAfLIOw83o4UJFcs+C7BTdipjaTV1eG6iY8A4EKd025+ID/yA2XV30MvPenWd81Lo7BLoDmINFodCD1hfA9yPJn7mNraFpi7ZVhA8K6y4oCayfXhHCS0L5aQEQxcHEdfE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hLb5ucUB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DAFA3C433C7;
-	Mon, 26 Feb 2024 13:19:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708953550;
-	bh=HBsVccxSNxv26lBX/VuGdylXD0W8SDHVP7TBViLLh1U=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hLb5ucUBiTfbxjjr2QmBkznJfek11WH5eQYPxJpMIcxvOvaBwZTV3vpqnMVUMYcR3
-	 yozacW65Mb9/3Gt0CJnieXcJTAk8088rHIS8r/UUBgilgciaT2dgFYnU5SnpgrV9Aw
-	 VluPV/mH2bn5nlRF5phXoIQeBlLrnHOFpL+VKvpzQk6GCrs4lvCKP6JyciMPCRk+2U
-	 NGQ/AYJ1Bt9vcn4glsQOHyP9Br28iRb60S+kwPtSWCHqdKfSHIbP9jXsskfA/R7pXU
-	 xlJkdZOyVAjH56bBA2GBFhAplOvAuvdpSDAMy8iEOzNRPsRBge4UeywevtAW9Ailj7
-	 DrDdPzGND2sZA==
-Message-ID: <9554348e-2269-4f7d-a06a-9dcaac7b4301@kernel.org>
-Date: Mon, 26 Feb 2024 15:19:05 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4E0681ACE;
+	Mon, 26 Feb 2024 13:12:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.7.58
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708953128; cv=fail; b=WuD9UI1cDU9ggcCEf/GyttccuaKPbO4+dnFQnfd0yJnZSt5XPwTRBcmHvZ74Q6rfixrAkd4Tohn2x+l2eccaDqktzRh+PleKgH+0KMdGLKJKnveLrHlj9CJTVZdoniu7I9FpZvPDAFGsGQpTOkDy7glGFx2hgsQwMDnmzXEIyVs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708953128; c=relaxed/simple;
+	bh=o6ncHl3BNfjFT+AO8ES0BKJxTftIkfZi3uvdwo0U00s=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=vAEzd+lvVmA5RJ9VMVjOBRJe6pU7i8mUJaseFNupPd/5E9RRSE6Hi0jlROMjRgpW6qkQ+fizOSHKHrFyzOizQmN8iwQMy9hOoUICVOjtf09HIpjYajjXkobkwsHO42dAbgmwQ7ujfLWtRBAnSdMzb2+LHuWGEShX2M15Y2Vz4hM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=FL+TuqDS; arc=fail smtp.client-ip=40.107.7.58
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DtPk3fAXZ8q0lPkAlkq8WahepHbFAULAvRjmP+uVA/8ucmgXT3YYmOpIFTMIMfL4auBSlbbAcCFHMP57uze7HyNI0asjor1mXwafkd6FMrqxMcyub4gwFaV4B4aDh+/GxM/Nvqs5g5xL3p54Hr5D6htSOC21zoW+YYhoGrblIM5aVpyIfFOT/d9ZhfOTvp61GKJbHS0iBT3GZxG5SD2PgFmVONwpq0FhpuQjVOFJBqB4DvPsz3YfxIM5g1mVRKVg3gom98Ncagmi5pN3Iyt3YNiKpZMFV81bFzrv2BYW8xgyT4vIbjUhJaqVc0PIT65fVskS0lV6waiO/SNzvgdCMQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7wXqMLI3qOdnms64WOExCHmw2ftiIy07msiGSmSyyhU=;
+ b=jPoLumMYuvADCGRWmPDRtcKNjDmUiLNXRWzH2uNYTr5cU3VcEq6c2SczDRGOJoLoHNiwceHyURTS1UHE1poix2VFOEk9v2Ctc+FfLjFdguelQHzeDJNZyjGTiKYg9Lt84jxue4C1EWFjPRpSbCdSY4M5lHQClOkF8P548FjNLVh5cT+GpUhvxTmOn/xTzZc+s4288g/YFuvU3ywWX8LyD9xJq04BGAqmlWQvkb6zY2/J8kPprawv7lEBHQqIBrLqQEOu3z+Wk3RTrt0WORflwF26wyw4SyACMsGmE5ZnHZB/6wKrYPFEevCVeHPWah0CcpdTjy8jTwGJeFXNjc7Cdg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7wXqMLI3qOdnms64WOExCHmw2ftiIy07msiGSmSyyhU=;
+ b=FL+TuqDSq5oFaIbqDBwMkZZvLxWKrzjmY6thKTZZ4yS0aDll3+FnvNoz/87hnMiJeds7iW1YvUV6Wxil+tTXz0cSbZP5F8PaAwT8kkUnJdY4p1t0sNvcyT8oMJJ+uh4Bd7/i3JEmW+xuO2SZR49aHYAdmwhxDdfZ+BZ9lF6Oz8M=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by DB9PR04MB8185.eurprd04.prod.outlook.com (2603:10a6:10:240::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.33; Mon, 26 Feb
+ 2024 13:12:01 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::1232:ed97:118f:72fd]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::1232:ed97:118f:72fd%4]) with mapi id 15.20.7316.034; Mon, 26 Feb 2024
+ 13:12:01 +0000
+From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Subject: [PATCH v2 0/3] arm64: dts: add i.MX95 and EVK board
+Date: Mon, 26 Feb 2024 21:20:15 +0800
+Message-Id: <20240226-imx95-dts-v2-0-00e36637b07e@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAA+Q3GUC/23MSw6DIBSF4a2YOy4N3PoAR91H44Ao1DsQDBhCY
+ 9h7qeMO/5OT74RoApkIY3NCMIkieVcDbw3Mq3Zvw2ipDcix5Sgkoy2rji1HZFqb9iH6fhB6gPr
+ fg7GUL+s11V4pHj58LjqJ3/pPSYJxhqpTViqLXMiny/t99htMpZQvPxvhiaAAAAA=
+To: Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1708953624; l=1752;
+ i=peng.fan@nxp.com; s=20230812; h=from:subject:message-id;
+ bh=o6ncHl3BNfjFT+AO8ES0BKJxTftIkfZi3uvdwo0U00s=;
+ b=/dMn3qlBID371+j/B1+a3FqZTrCZm0WlsrXJw0UepXBEkCF/tk8ByI+IKKLj81MtnRkAy01vM
+ HRPi5ia9i7QC6m2vzjgQe2N2h3WvkJcZ1Z/esnhb3F0Rx4Ch2PHkWoz
+X-Developer-Key: i=peng.fan@nxp.com; a=ed25519;
+ pk=I4sJg7atIT1g63H7bb5lDRGR2gJW14RKDD0wFL8TT1g=
+X-ClientProxiedBy: SI2PR01CA0040.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::14) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/5] usb: dwc3-am62: fix error on module removal
-Content-Language: en-US
-To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, "nm@ti.com" <nm@ti.com>,
- "r-gunasekaran@ti.com" <r-gunasekaran@ti.com>, "afd@ti.com" <afd@ti.com>,
- "b-liu@ti.com" <b-liu@ti.com>, "srk@ti.com" <srk@ti.com>,
- "francesco@dolcini.it" <francesco@dolcini.it>,
- "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20240214-for-v6-9-am62-usb-errata-3-0-v3-0-147ec5eae18c@kernel.org>
- <20240214-for-v6-9-am62-usb-errata-3-0-v3-2-147ec5eae18c@kernel.org>
- <20240223223118.3awhuee5kgoebngy@synopsys.com>
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20240223223118.3awhuee5kgoebngy@synopsys.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|DB9PR04MB8185:EE_
+X-MS-Office365-Filtering-Correlation-Id: 00016eda-8f80-471b-77eb-08dc36cc84d4
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	04dLTvU78PiWWq886As35AAZmAC6pOkYgKOj7Rg4u2iQzQJ9Tc7V2AFD8zzcmU1mKJL9bEAsgvRed12B0qMgN78E2lXwh5yjW7Nq+ewcuEpWoDy40xfgKttr0OEqlN2tColkvzp+fl+P24IsKqYxjyZGqRL2ZJ4BguMAyPPzAapMs+3eH8LJD4M6AfbhcVMQHcLVRmV2EnpJ+KuusD3NmGk2L0yJvbtd+tzgxv+TSOPzC6Q7MZmZepTJlQzhJfkeOisjIDXYt1G/wz5vQF/NLYth0WUj5mgNCMfaoRaxue35kCM4dVhIh9Icb/PX3VBJD4WjhjvA6e0QoQAkirjiYUWJJ8TJVOX6j2cQhkjtDVw4M2srB6EkJor/AgyplnMzNP5YtP5LhgfQTIXRfPfLiUq+5qEUR/DMUFEB2fyMI5jOE4GrC9NfnLjPji9LBI7oOgM1ihdPmfuiizKOBo/vyf5IjbtkUZxhIMglamk6ziDPlNyQtufhQ7KUgiqsb/LGwB4COlzj6MyKTH7hz75Hjkrf6BUShilC7LBhywzVh7ywy3IcafuEDUpVrSE02lCCrzvliILP9jD84kR10ijSjLXyWxdbgd1iu1Dgm5VEzchmgG4DmGOtmEJlDRryACCLcsqeyq0PRgXdyBzC1R68OGpnNY3iw65r/lh+P9QVL9Q+groui/9eFiIAh6grVCfvICt3+g1GRYaI78uxJcGo7w==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?NTVMTXFhMUFEeHRWc1dJYUI3eVpmem8yK1NSY0F2UVFvVVB3L3RUVmUxUUJX?=
+ =?utf-8?B?VzA4eWwvbnZBYy9rZFZrTFlwelJjMWtoSXcrTzkrb2VTd2VhOENURDdkY1NG?=
+ =?utf-8?B?OTg0ckhoTU5nUTRUNW9WS2FKWHE4bVg2WWFUTEFNcm00ZTlRd2k4Q2tTOFlW?=
+ =?utf-8?B?emsxbzgrSEx0dFNtS3MrdUZWQ3VLSFM5b2FTUUdydmxQY1hITlpwcTIxTk9I?=
+ =?utf-8?B?NzBQbk9BbFJyYlM5K2JuNWtjQ0U0bmZBTFhDei9pS2t0OEFiZVdzcWtQSG9Q?=
+ =?utf-8?B?V2ZZY1Fuekh3T0RqdmdVN0x0STBvNEdGTjhnbk11TkRSd0hkQ2ZmYTRqK0xP?=
+ =?utf-8?B?NEhWMmZYRUFyRkI1YklhZlZHSVZUdjRUKzJjcStSNmpJSDQ3WTAxMTl2ZzRW?=
+ =?utf-8?B?SnhMRzhNMGh6N1p1cyswTjdXNWtHYklvWEZFSU9LRnZEQkE1TzNTOFcvWkUx?=
+ =?utf-8?B?TnRsbDBnR2h4eENFQ3VIWmxQUHNkb1dTWlkzc2FPdU55YkhlNkl4a0Fxd0lt?=
+ =?utf-8?B?TVltcm5yOUp3aHAwSmtaOXlKcHhwdDBPVUNGMTVEakEyd0RHR0ZXTEluRlJy?=
+ =?utf-8?B?MlozMGcyWjBVbDltV1dMREFzMFJiU0MxUGUvaWRWeVVFbnRkWUJIVUpWTE5G?=
+ =?utf-8?B?RjRVK0ljYlJCWGtKWjR0R2ZVbnZXZnZETEdEQlFoZndXRHBZWldxb0MxMDlo?=
+ =?utf-8?B?NWdob3ZDZlNvT1VIWGo1UEdKVkc5cXhISEs4YldvVWwvUk5sdUNHUVU1SG5E?=
+ =?utf-8?B?cXh1MUZocTU5QzZpMU9NdkJVUThqbUVKZHZoWDRlbTBLQ0R3emFCdGY2Q3pS?=
+ =?utf-8?B?ZjJmT3hQc2RnaUtRWnJhSTZsaEdtWWNLS1J4TW16VG9aclo5N2RjdlQ3VGpR?=
+ =?utf-8?B?SXB4Q25BM3htY0NKYjNWc1JqZHBZbjVnVm1MdEFKMDJEYm5xYk1GcUJVbVI2?=
+ =?utf-8?B?QXBBcmMrajdESVNPd0duenozRTBiUEZTREM1aDBuZUtFclNGbmJPemorWmR4?=
+ =?utf-8?B?U0pUT0xhNUpXTzhSNCt3VGlnb0xwR2F2bEhpKzMzemV4R1FuUTNxV3NvK0Jk?=
+ =?utf-8?B?YUp3eWNHVHl2eFZvTEpDajE3WG9rNzVjR3NLS1JScWdiK05aakJSZVY0Q0Q0?=
+ =?utf-8?B?WTljcTlla282SVY0NEhzb0IxamJzVHZEVWxBSVN2TlZMRTV4eUJYcUhCSExk?=
+ =?utf-8?B?Q1FkeXZKNFFkVHhSVkhqUEhHK0FMNnpqQndpSGl0V0ZKcW03Kzlid1lDYjBS?=
+ =?utf-8?B?WXVGVDYzNUZsaGV6VHdHZVdJV0NLbWgyUEJ6S2tkVlJHdTFYZGRUbFJ0WVl1?=
+ =?utf-8?B?Q1RJaE04YW4xbEowRTZrSGZZUjF1S2FQZEhhd0wvc3M1ZTBRTjNZc3hNRDRz?=
+ =?utf-8?B?V01mbklPL3lyMFdsL2diTFpuMVhLSDBJWjFJUC9peUJyRWNiTEw1VUlJTWxQ?=
+ =?utf-8?B?dzA2OFBmaWpzNUdYWUNFSCswT2dFZVVLMXI0cml3ZjdqWXhRQ0ozR2NIRlJ0?=
+ =?utf-8?B?MlBXREU2UHJBaDVydW1HNEhpMVlEdzJKUVVtamNoam9SSXpOVHNLZE1NS09H?=
+ =?utf-8?B?NDRFazUwYmQ5RHdxOFFPcmkxWFJodE9hUWJYSzUrZUNsVnhxdk5nYzVyVHdZ?=
+ =?utf-8?B?Q3pwMlZLdDZrZERTUEJmZHMyRTRlcnpTWTQwY2JnZ3VFbWpOaml3dlN1aHVG?=
+ =?utf-8?B?ejVMdVFZWjBJMzJ2LzZEamNCU2IxYTRrNHhjOVVvVVREdzE4czRPNGI4QURR?=
+ =?utf-8?B?Z1BXbTVVSVVZZkYvbVRzRXVjajQzb05qT2pGYWZsQnFWY2UvQm0yNmFyUjhD?=
+ =?utf-8?B?ZUw0c0VmdEtpSjdnT2JMTEhiR1MyU293OERWaUpNZUIyQUMyMVp0ZlZxRGky?=
+ =?utf-8?B?RkF6RVVrcUNxdFFoN09wVXdpWURyWEZJdjRmWEJkMEpwclhJOUxBT3N3ekly?=
+ =?utf-8?B?VGZTS0FqdjlVRXQ4VDNVY2RCZTFWSHFWN01NZGhIbFU0dHp2RnVnYUdsdW1S?=
+ =?utf-8?B?eVZ0WXJURGdUWUlJeFBEb1F2Q3FYTEpMcVU0eFpiTkV6eVdJNmVNcDBlL0t4?=
+ =?utf-8?B?bjJYNVNTK1FjOGttb29hRXVnelA2dU05UExCTVpRck5kRFdYT1hPSlBxaVFR?=
+ =?utf-8?Q?6m47DYTBqR81+RLP2M+DgMC/I?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 00016eda-8f80-471b-77eb-08dc36cc84d4
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2024 13:12:01.2297
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2nwEMf7FV4Bn968Jtq76LyKzrl6uNpIlJMcZFQ7mn2knoTemnuojakn7lV/EEq1/7emzIkPn3MWnB3Nj7nFQRw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8185
 
+Add a minimal i.MX95 dtsi and EVK board dts.
+i.MX95 has a M33 running SCMI firmware, but as of now, the scmi pinctrl
+driver still not ready for i.MX95, so we count on bootloader to
+configure the pinctrl for lpuart and sdhc and it boots well. After pinctrl
+driver ready, we could move to use scmi pinctrl.
 
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
+---
+Changes in v2:
+- Addressed Rob and Krzysztof's comments, and fix dts_check issue
+  To pass the dtbs_check, need apply:
+   https://lore.kernel.org/all/20240226070910.3379108-1-peng.fan@oss.nxp.com/
+   https://lore.kernel.org/all/20240226130243.3820915-1-peng.fan@oss.nxp.com/
+   https://lore.kernel.org/all/20240226130516.3821803-1-peng.fan@oss.nxp.com/
+   https://lore.kernel.org/all/20240226130826.3824251-1-peng.fan@oss.nxp.com/
+   https://lore.kernel.org/all/20240219-imx-mailbox-v8-1-75535a87794e@nxp.com/
 
-On 24/02/2024 00:31, Thinh Nguyen wrote:
-> On Wed, Feb 14, 2024, Roger Quadros wrote:
->> As runtime PM is enabled, the module can be runtime
->> suspended when .remove() is called.
->>
->> Do a pm_runtime_get_sync() to make sure module is active
->> before doing any register operations.
->>
->> Doing a pm_runtime_put_sync() should disable the refclk
->> so no need to disable it again.
->>
->> Fixes the below warning at module removel.
->>
->> [   39.705310] ------------[ cut here ]------------
->> [   39.710004] clk:162:3 already disabled
->> [   39.713941] WARNING: CPU: 0 PID: 921 at drivers/clk/clk.c:1090 clk_core_disable+0xb0/0xb8
->>
-> 
-> Actually, it will be better to have a fixes tag and separate this from
-> this series series. You can retain my Acked-by if you resend it with the
-> Fixes tag and Cc stable.
+- Link to v1: https://lore.kernel.org/r/20240218-imx95-dts-v1-0-2959f89f2018@nxp.com
 
-OK I will resend. please see below.
-> 
-> BR,
-> Thinh
-> 
->> Signed-off-by: Roger Quadros <rogerq@kernel.org>
->> ---
->> Changelog:
->>
->> v3: no change
->>
->> v2: no change
->> 	https://urldefense.com/v3/__https://lore.kernel.org/all/20240205141221.56076-3-rogerq@kernel.org/__;!!A4F2R9G_pg!b7_3vmJpNLOFy3g_wExMQSAzi949O4PoID3e4rNEvAsbgCvxxkj0DiSDFJxF7857DZM7qy9DMkH6Q5BPD-jX$ 
->>
->> v1: https://urldefense.com/v3/__https://lore.kernel.org/all/20240201121220.5523-3-rogerq@kernel.org/__;!!A4F2R9G_pg!b7_3vmJpNLOFy3g_wExMQSAzi949O4PoID3e4rNEvAsbgCvxxkj0DiSDFJxF7857DZM7qy9DMkH6Q1CciylE$ 
->> ---
->>  drivers/usb/dwc3/dwc3-am62.c | 6 +++++-
->>  1 file changed, 5 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/usb/dwc3/dwc3-am62.c b/drivers/usb/dwc3/dwc3-am62.c
->> index 1bfc9e67614f..600ba9cfefea 100644
->> --- a/drivers/usb/dwc3/dwc3-am62.c
->> +++ b/drivers/usb/dwc3/dwc3-am62.c
->> @@ -273,6 +273,11 @@ static void dwc3_ti_remove(struct platform_device *pdev)
->>  	struct dwc3_am62 *am62 = platform_get_drvdata(pdev);
->>  	u32 reg;
->>  
->> +	pm_runtime_get_sync(dev);
->> +
->> +	device_wakeup_disable(dev);
->> +	device_set_wakeup_capable(dev, false);
->> +
+---
+Peng Fan (3):
+      dt-bindings: arm: fsl: add i.MX95 19x19 EVK board
+      arm64: dts: freescale: add i.MX95 basic dtsi
+      arm64: dts: freescale: add i.MX95 19x19 EVK minimal board dts
 
-I'll split the wakeup disable changes to a separate patch, so there are less dependencies.
+ Documentation/devicetree/bindings/arm/fsl.yaml    |    6 +
+ arch/arm64/boot/dts/freescale/Makefile            |    1 +
+ arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts |  115 ++
+ arch/arm64/boot/dts/freescale/imx95-clock.h       |  187 ++++
+ arch/arm64/boot/dts/freescale/imx95-power.h       |   55 +
+ arch/arm64/boot/dts/freescale/imx95.dtsi          | 1177 +++++++++++++++++++++
+ 6 files changed, 1541 insertions(+)
+---
+base-commit: d37e1e4c52bc60578969f391fb81f947c3e83118
+change-id: 20240218-imx95-dts-aae4316671a7
 
->>  	of_platform_depopulate(dev);
->>  
->>  	/* Clear mode valid bit */
->> @@ -281,7 +286,6 @@ static void dwc3_ti_remove(struct platform_device *pdev)
->>  	dwc3_ti_writel(am62, USBSS_MODE_CONTROL, reg);
->>  
->>  	pm_runtime_put_sync(dev);
->> -	clk_disable_unprepare(am62->usb2_refclk);
->>  	pm_runtime_disable(dev);
->>  	pm_runtime_set_suspended(dev);
->>  }
->>
->> -- 
->> 2.34.1
->>
-
+Best regards,
 -- 
-cheers,
--roger
+Peng Fan <peng.fan@nxp.com>
+
 
