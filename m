@@ -1,73 +1,74 @@
-Return-Path: <devicetree+bounces-45942-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E353886760F
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 14:09:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42E59867649
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 14:18:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11EA41C24863
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 13:09:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C442B1F28306
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 13:18:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD57880042;
-	Mon, 26 Feb 2024 13:09:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A9E2127B72;
+	Mon, 26 Feb 2024 13:18:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="ohgxPwaK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uiMLTKYZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E6FA7A73D
-	for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 13:09:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9581C84A4F
+	for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 13:18:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708952964; cv=none; b=IRcpDOd1UXr0/t2moODG9EnBH1mkluPp3cJGYkxaYWbJHocUAIEZHCawTXXBjPr3X+8E69EoAcbgqAJOVjitzyYP9CxcvUGQ2kmLhuVqNHOeH5RyTBx2haDf616LpwKLHd6t3+8kRCVhCy9JinlQOrgnpW/P8Sw9CCtAa+7GAZE=
+	t=1708953486; cv=none; b=t6e+gnQ5fRwKeK+IimC2H3L0PfhjYnW58shAzplUbrmRFznK6JcwjIS+MT8W65i/r+6p83ecm72VkoX15zrD4g7UeQttsI5WnRH4I1kJ5sUQqGBGquo8KV/DInZqbIh+L1WBjmewcz78VfwIovc/Rjf4mytRDLH3HPLTS4tTvrM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708952964; c=relaxed/simple;
-	bh=AigPdH8LIBkBZnNo2k33Nm7pz+Rj7dbzEvXzaGsro7w=;
+	s=arc-20240116; t=1708953486; c=relaxed/simple;
+	bh=lqyq54iuxbpXv8VaMiy8ywiu1AO2bm42rLVAedmCbh4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ANzFhTfcqC6loulu5m7qtKbH77wwt2qvrL73rY58k4Pxbiy6A4Df8mFjZViOTG9EHG+8XZWWWvCAc3jKo0AyUjbp4fXeFnom57v3pkV4E1CKl2tM/gbu8CqVkdtgX2elVGvSwybRqCafHZLtmSGKrFgePyto2XVHJ3y2ZZELCQk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=ohgxPwaK; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-412a5ed5a25so3981655e9.0
-        for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 05:09:21 -0800 (PST)
+	 In-Reply-To:Content-Type; b=gPRwfGhAfNhUd5LLNugtVJUcU6OmtjBrGV3KsZZRX9fFobcjqj79NFgW6z2HiAxKBRA5F4EZU/9oXCGlg3GursDGcHBAhOyrNQtSEZOoJzM7f/JETSx7vE5jRyeQCQQDsYUedyOQdSSHEQq8n5xnwGHab/oIMj+On/RR1onVzFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uiMLTKYZ; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a36126ee41eso350742066b.2
+        for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 05:18:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1708952960; x=1709557760; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1708953482; x=1709558282; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=NasxQXxlF1BVrh1m9D33ixboybQ40B3Epj/kMXP+pVU=;
-        b=ohgxPwaK4knFDQGAgjh47grRLloL9gORLT8szQMqZWlMuCsGStSrQrPXsJ39mFAFvW
-         733a1TK+ewLZrZ6Cy6CzOAqlkoLWRksk9ZxDYI4viUTPM6le+6Ato21ohfRDmR71P2/c
-         MaQegf4f5dlALOnX8jzsU8Lb+wSYSrvq8810nuYdztWVZhg0XDhrUWO3th6rvRBWnZdq
-         JNhu7zX6w7wkOK61z1VRP9sB0w4VTXubu5/dOAyt8xBnawOqFoB9xMCLJgPLKGzzBS+A
-         DKZrycAzCKSDdL/kqdR6XaUnHVaGhXwrJvRNjV2DAjMbH6pow3Gx4nBihDVQtkW91Bj1
-         3YBw==
+        bh=BRtErTJRQtHI/SD+5G5muWT6HlUCmDLLerzL9VLw1UI=;
+        b=uiMLTKYZ8zUUeZ11pGVPWAlAk3MBhGwnGOuIohmqGZd/mpuj3SbdseqcF5VRXHrBFs
+         pE2cjcbR2EU0Y2zXlzfyoHKQeePSGRp04GyTJR+XitBG9t4G9AmnHCH1zj19sW9OF47E
+         uIvmt9nHJZEuWmZ8GbmwjdousC+8OTpzUpW2obkxjeqO8kbdyvkvNBolkcm2fNsaG51A
+         JxZ6ebOfNU0Pf3xFKbIucmb5SS56BHYgTRjVJl5N0IY3SY+ymAn+3Vp/0Yx8VDb/XgGi
+         s3k0JgAfyAGqi0AzBhSzqImxEBcSl0bsnIIjt0JuLFZVbJpGqE2+ns2tm1UOG9Q16A2v
+         Unew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708952960; x=1709557760;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1708953482; x=1709558282;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NasxQXxlF1BVrh1m9D33ixboybQ40B3Epj/kMXP+pVU=;
-        b=aAnzjFt3W1+1Xa8UCAwLHsKo/QTtSqjJIVTMkHmvgLd0A/uKkcrk29KzTeqqTFAU5b
-         gRbiGL9YucMQVwGKPglLWqfXP2nOL/6BLobs+74Yj33muiWd2lkX5+Q8WhIkiOM/hLSW
-         Hdeh6KuiyTVB/okqa8zUsRiY8QGNJeEJLvSOerrurHUHJAHo7q55RhYU23hN2eEeeaI1
-         Gi/xEznkihqxOKrDUhbvSPxcGY2niazIskwu9jQGQK8bNmYlgq7ZU2SYwRwiMYGIKEtq
-         tId41PXduca+t/g7FVfh0/spej5a9jwxWXMgFCbla4uoDJakOXlbCcardsF9bTN6WKku
-         Mcew==
-X-Gm-Message-State: AOJu0YyAkkMCauSbqgi+A5OrfJc5JCTRLGheaKllsQaHIKf3rqNWTX7d
-	EyzwDcTGcTXhpkT818IC8BmoHFGwO7FjBYZqFW5jE/WCLnG3oCM4W1+F9vtwlXY=
-X-Google-Smtp-Source: AGHT+IEGWa4r5IymlVvSdz8JQ/h+UlZbOuFONE2brDm+Npj59E8l0EqUIdpkX4ARpdQkbUSd3Z9W/Q==
-X-Received: by 2002:a05:600c:4f52:b0:412:96e2:2ada with SMTP id m18-20020a05600c4f5200b0041296e22adamr5305759wmq.11.1708952960360;
-        Mon, 26 Feb 2024 05:09:20 -0800 (PST)
-Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id j34-20020a05600c1c2200b00412a10d9f7asm5764588wms.42.2024.02.26.05.09.19
+        bh=BRtErTJRQtHI/SD+5G5muWT6HlUCmDLLerzL9VLw1UI=;
+        b=KP5lvIgraF+aGxrGubwIf1XS0s/TJ4/Xf0nVYFTtTYoi1K0OkIk9tMwOlac0gyUUs+
+         YEGPfsOcy57SmQHusL2bfyI/LaJ3xiiDisTnZrziZgnwxzatMCNqyYB8d0V3WtwFrPwn
+         g5kVT08ytRfm5FqfMrPPK9aT/jySB7YEkB9KEDUY8cM9LOcWZDeG7kGRbQ7LpRsug2ky
+         oGkhjvsZJKaYfo2Qzsp/DGaX1YsBGRzHLm7wc7jRu+6MA1Ssl8h3KwXk3BD8NMn3vu0c
+         97TYR/Y+BIAGCI/eBIj57tf15T1ACS3EgJrhR7oz/fCsqHed4WaRwtLo1ph8iFTbvoU3
+         rg3A==
+X-Forwarded-Encrypted: i=1; AJvYcCXc4KxyQdW66RqZgSLVxjc+0n2bcPGXphpDYActXiipsLuR9CSloEew6+U+f0+TcxnNDEGrOQIakp/DH3sK5EEe5D83tjAaKMPOgQ==
+X-Gm-Message-State: AOJu0YyijBZRk7W2lDz/Q8khYtS8hid1XHl/x3dMnkPJFDkj3cRIlVMI
+	S/pur3BafJLBOcIHBUauK5o1zUSywJsgBwfLYnXADmNKRwZ/Tp5Fi6+HdwUHLKY=
+X-Google-Smtp-Source: AGHT+IHcCjB8FMzYOYKicgl4ilY+tx7Xz4BgivIIXMtjUaq6WDbM0Ra34o6NQf433FxWFv4YUbfbTA==
+X-Received: by 2002:a17:906:6d8b:b0:a3f:dae9:1e88 with SMTP id h11-20020a1709066d8b00b00a3fdae91e88mr4662199ejt.37.1708953481986;
+        Mon, 26 Feb 2024 05:18:01 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.116])
+        by smtp.gmail.com with ESMTPSA id k8-20020a1709063e0800b00a412d3d509fsm2413787eji.181.2024.02.26.05.18.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Feb 2024 05:09:20 -0800 (PST)
-Message-ID: <33382ecb-8a73-4d2f-96b1-8048df7a6414@freebox.fr>
-Date: Mon, 26 Feb 2024 14:09:19 +0100
+        Mon, 26 Feb 2024 05:18:01 -0800 (PST)
+Message-ID: <29cc9d21-6fb5-40fc-abba-c0913cd175af@linaro.org>
+Date: Mon, 26 Feb 2024 14:18:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,192 +76,85 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC WIP PATCH] venus: add qcom,no-low-power property
+Subject: Re: [PATCH] dt-bindings: iio: gyroscope: bosch,bmg160: add
+ spi-max-frequency binding
 Content-Language: en-US
-To: Vikash Garodia <quic_vgarodia@quicinc.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: DT <devicetree@vger.kernel.org>, linux-media
- <linux-media@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>,
- Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Pierre-Hugues Husson <phh@phh.me>
-References: <0843621b-386b-4173-9e3c-9538cdb4641d@freebox.fr>
- <f6e68756-72a1-4c32-968d-3d6adaa153c9@linaro.org>
- <CAA8EJpq=G21h87W69_4U-BZ=Sa5VEs15Y-zE-G5x9VxVx4qjsA@mail.gmail.com>
- <81dc6452-4039-4eb4-92ba-df248215fca2@linaro.org>
- <b8325dbf-67c5-4898-bc23-ff093ae6e14a@freebox.fr>
- <87db77f7-fda4-4cf7-adfd-8545c40c3365@linaro.org>
- <10fe67af-0572-4faa-91c6-fce9c8f9dc92@linaro.org>
- <6342e92d-eed0-45c2-8f04-3779aa2e521d@freebox.fr>
- <4ab95e87-c912-469b-b8d4-be0cf0e4710b@linaro.org>
- <a8c5b27c-47a9-044a-78e8-51c67acf19a6@quicinc.com>
- <c6a9c20e-02d3-4334-badd-2efe5be9ce7e@freebox.fr>
- <d5abf142-3a2b-454c-660a-249c0fb25208@quicinc.com>
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <d5abf142-3a2b-454c-660a-249c0fb25208@quicinc.com>
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, hns@goldelico.com,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@pengutronix.de
+References: <20240221174305.3423039-1-m.felsch@pengutronix.de>
+ <91f29265-36fd-4d0e-99b1-61eaada59601@linaro.org>
+ <20240226124036.zzj5p7tlubc332r3@pengutronix.de>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240226124036.zzj5p7tlubc332r3@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/02/2024 14:48, Vikash Garodia wrote:
-
-> On 2/20/2024 8:15 PM, Marc Gonzalez wrote:
+On 26/02/2024 13:40, Marco Felsch wrote:
+> On 24-02-26, Krzysztof Kozlowski wrote:
+>> On 21/02/2024 18:43, Marco Felsch wrote:
+>>> Make use of the common spi-peripheral-props.yaml to pull in the common
+>>> spi device properties and limit the spi-max-frequency to 10 MHz as this
+>>> is the max. frequency if VDDIO >= 1.62V.
+>>
+>> The example uses i2c, so I would expect to see in commit msg explanation
+>> which devices are SPI devices.
 > 
->> On 20/02/2024 14:53, Vikash Garodia wrote:
->>
->>> msm8998 supports configuring the VCodec (venus core0) GDSC in HW power control
->>> mode. Could you please check and confirm if the driver is configuring only the
->>> VCodec GDSC and not the venus GDSC. Look for the attribute
->>> "qcom,support-hw-trigger" in vendor dt file.
->>
->> [ Vendor DTS for easy reference: ]
->> [ https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blob/caf_migration/kernel.lnx.4.4.r38-rel/arch/arm/boot/dts/qcom/msm8998.dtsi ]
->>
->> In the queue, we have a patch enabling the Venus Decoder (VDEC) in mainline.
->> (It is using the previously proposed "qcom,no-low-power" mechanism, but that
->> might not be necessary, if I understand correctly?)
->>
->>
->> diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
->> index 2793cc22d381a..5084191be1446 100644
->> --- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
->> @@ -3000,6 +3000,56 @@ mdss_dsi1_phy: phy@c996400 {
->>  			};
->>  		};
->>  
->> +		venus: video-codec@cc00000 {
->> +			compatible = "qcom,msm8998-venus";
->> +			reg = <0x0cc00000 0xff000>;
->> +			interrupts = <GIC_SPI 287 IRQ_TYPE_LEVEL_HIGH>;
->> +			power-domains = <&mmcc VIDEO_TOP_GDSC>;
->> +			clocks = <&mmcc VIDEO_CORE_CLK>,
->> +				 <&mmcc VIDEO_AHB_CLK>,
->> +				 <&mmcc VIDEO_AXI_CLK>,
->> +				 <&mmcc VIDEO_MAXI_CLK>;
->> +			clock-names = "core", "iface", "bus", "mbus";
->> +			iommus = <&mmss_smmu 0x400>,
->> +				 <&mmss_smmu 0x401>,
->> +				 <&mmss_smmu 0x40a>,
->> +				 <&mmss_smmu 0x407>,
->> +				 <&mmss_smmu 0x40e>,
->> +				 <&mmss_smmu 0x40f>,
->> +				 <&mmss_smmu 0x408>,
->> +				 <&mmss_smmu 0x409>,
->> +				 <&mmss_smmu 0x40b>,
->> +				 <&mmss_smmu 0x40c>,
->> +				 <&mmss_smmu 0x40d>,
->> +				 <&mmss_smmu 0x410>,
->> +				 <&mmss_smmu 0x411>,
->> +				 <&mmss_smmu 0x421>,
->> +				 <&mmss_smmu 0x428>,
->> +				 <&mmss_smmu 0x429>,
->> +				 <&mmss_smmu 0x42b>,
->> +				 <&mmss_smmu 0x42c>,
->> +				 <&mmss_smmu 0x42d>,
->> +				 <&mmss_smmu 0x411>,
->> +				 <&mmss_smmu 0x431>;
->> +			memory-region = <&venus_mem>;
->> +			status = "disabled";
->> +			qcom,no-low-power; /*** WORK AROUND LOW-POWER ISSUE ***/
->> +
->> +			video-decoder {
->> +				compatible = "venus-decoder";
->> +				clocks = <&mmcc VIDEO_SUBCORE0_CLK>;
->> +				clock-names = "core";
->> +				power-domains = <&mmcc VIDEO_SUBCORE0_GDSC>;
->> +			};
->> +
->> +			video-encoder {
->> +				compatible = "venus-encoder";
->> +				clocks = <&mmcc VIDEO_SUBCORE1_CLK>;
->> +				clock-names = "core";
->> +				power-domains = <&mmcc VIDEO_SUBCORE1_GDSC>;
->> +			};
->> +		};
->> +
->>  		mmss_smmu: iommu@cd00000 {
->>  			compatible = "qcom,msm8998-smmu-v2", "qcom,smmu-v2";
->>  			reg = <0x0cd00000 0x40000>;
->> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
->> index a712dd4f02a5b..ad1705e510312 100644
->> --- a/drivers/media/platform/qcom/venus/core.c
->> +++ b/drivers/media/platform/qcom/venus/core.c
->> @@ -585,6 +585,43 @@ static const struct venus_resources msm8996_res = {
->>  	.fwname = "qcom/venus-4.2/venus.mbn",
->>  };
->>  
->> +static const struct freq_tbl msm8998_freq_table[] = {
->> +	{ 1944000, 520000000 },	/* 4k UHD @ 60 (decode only) */
->> +	{  972000, 520000000 },	/* 4k UHD @ 30 */
->> +	{  489600, 346666667 },	/* 1080p @ 60 */
->> +	{  244800, 150000000 },	/* 1080p @ 30 */
->> +	{  108000,  75000000 },	/* 720p @ 30 */
->> +};
->> +
->> +static const struct reg_val msm8998_reg_preset[] = {
->> +    { 0x80124, 0x00000003 },
->> +    { 0x80550, 0x01111111 },
->> +    { 0x80560, 0x01111111 },
->> +    { 0x80568, 0x01111111 },
->> +    { 0x80570, 0x01111111 },
->> +    { 0x80580, 0x01111111 },
->> +    { 0xe2010, 0x00000000 },
->> +};
->> +
->> +static const struct venus_resources msm8998_res = {
->> +	.freq_tbl = msm8998_freq_table,
->> +	.freq_tbl_size = ARRAY_SIZE(msm8998_freq_table),
->> +	.reg_tbl = msm8998_reg_preset,
->> +	.reg_tbl_size = ARRAY_SIZE(msm8998_reg_preset),
->> +	.clks = {"core", "iface", "bus", "mbus"},
->> +	.clks_num = 4,
->> +	.vcodec0_clks = { "core" },
->> +	.vcodec1_clks = { "core" },
->> +	.vcodec_clks_num = 1,
->> +	.max_load = 2563200,
->> +	.hfi_version = HFI_VERSION_3XX,
->> +	.vmem_id = VIDC_RESOURCE_NONE,
->> +	.vmem_size = 0,
->> +	.vmem_addr = 0,
->> +	.dma_mask = 0xddc00000 - 1,
->> +	.fwname = "qcom/venus-4.4/venus.mbn",
->> +};
->> +
->>  static const struct freq_tbl sdm660_freq_table[] = {
->>  	{ 979200, 518400000 },
->>  	{ 489600, 441600000 },
->> @@ -891,6 +928,7 @@ static const struct venus_resources sc7280_res = {
->>  static const struct of_device_id venus_dt_match[] = {
->>  	{ .compatible = "qcom,msm8916-venus", .data = &msm8916_res, },
->>  	{ .compatible = "qcom,msm8996-venus", .data = &msm8996_res, },
->> +	{ .compatible = "qcom,msm8998-venus", .data = &msm8998_res, },
->>  	{ .compatible = "qcom,sdm660-venus", .data = &sdm660_res, },
->>  	{ .compatible = "qcom,sdm845-venus", .data = &sdm845_res, },
->>  	{ .compatible = "qcom,sdm845-venus-v2", .data = &sdm845_res_v2, },
->>
->>
->>
->> @Vikash, are you saying that perhaps the DTS for video-codec@cc00000
->> needs to be written slightly differently?
->
->
-> Certainly yes. For ex, in the clock list, i do not see the core clocks listed
-> i.e clk_mmss_video_subcore0_clk and clk_mmss_video_subcore1_clk. You can refer
-> the downstream video DT node [1] and then align it as per venus driver
-> [1]
-> https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blob/caf_migration/kernel.lnx.4.4.r38-rel/arch/arm/boot/dts/qcom/msm8998-vidc.dtsi
+> All listed devices can either operate in I2C or in SPI mode.
 
+Such information in commit msg would be enough.
 
-If I understand correctly (which is far from certain),
-we should base the "qcom,msm8998-venus" DT node on
-"qcom,sdm845-venus-v2" rather than "qcom,msm8996-venus" ?
+with the changes:
 
-Regards
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+Best regards,
+Krzysztof
 
 
