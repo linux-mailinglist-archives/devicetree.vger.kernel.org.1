@@ -1,255 +1,622 @@
-Return-Path: <devicetree+bounces-45832-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45833-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86460866F10
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:46:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EEAA866F13
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:47:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 353DA285B52
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 09:46:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6AAFB1F267EB
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 09:47:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DCFE5FF18;
-	Mon, 26 Feb 2024 09:12:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0685C80037;
+	Mon, 26 Feb 2024 09:12:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="TbSbxgRx";
-	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="nLJ2udLp"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="s8wqV0qp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1D61249F8;
-	Mon, 26 Feb 2024 09:12:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=210.61.82.184
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708938740; cv=fail; b=U/hQGRfTcbTRK1CQSYG849WY8Jt/5Rh1jbRidprOURA9qCi0oP+x15TfVAHUk7siEvVstjbWvA8nhc7XikOEPXnafuWeVhBukgdINuM8HCNBjC+NgqLj/eQl4Ga6+l0tXaB7XCMEZc5KyeGkgnDajybjvt9BQs+hrPYsVqDKC34=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708938740; c=relaxed/simple;
-	bh=WBymQs/0NQP1/hLGUvYsMcVyKLedWvB+raujBaQLL+w=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=pVsiSiplIIZkZ08ukSgqfWO4wWu4ZBDCMWoBB3MEzRsdBlAoWkpxviYPf/XQkH3f9DdPpiDzaYcYKIbPtjASjnx/eCo8Ai09LjYKkTP2pGndULpB2rUlurpcV3txjApXo6YLQWl3Ut9U1aA5M/PCYSUROgQOBO/TXk1UMurMRn8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=TbSbxgRx; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=nLJ2udLp; arc=fail smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 1fd15edcd48711eea4ad694c3f9da370-20240226
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=WBymQs/0NQP1/hLGUvYsMcVyKLedWvB+raujBaQLL+w=;
-	b=TbSbxgRxunNTXo5O5arJtVaZdhUUucF60HLF75lqDpAC5A83dkTlXmN+0VriOEeg7lFnhBtEpUKIOKG783cv4QeFn769z3daX2yrJeBlpKNzjRmsK+TXqNi0GDn8WY0DUNM/Qv5k7p4VpnQ5vBUVP7KwGBSUL9Mq8s6FBXaT1IM=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.37,REQID:cccdf976-569f-455c-8dd5-2c85f6cdb99a,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:6f543d0,CLOUDID:bf9737ff-c16b-4159-a099-3b9d0558e447,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
-	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
-X-UUID: 1fd15edcd48711eea4ad694c3f9da370-20240226
-Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw02.mediatek.com
-	(envelope-from <chun-jen.tseng@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 2109541051; Mon, 26 Feb 2024 17:12:11 +0800
-Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Mon, 26 Feb 2024 17:12:10 +0800
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Mon, 26 Feb 2024 17:12:10 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JfEvWIGIX1ICBtr+kqKmjrgJt506APrAiNSHVbcn58pfIQVCUBmN05MVfgtdRmQL8CbF0Z39o4iZjMN5GR5P79cnoVao8MvEoD9yb/+yDwtp9zdwgwS3Sn6nmZrY9S3LAXBVKesGB1mP36oa4NwGhXxrGLwkNh4K1V3QDAvjhoMBuKRMLxxhfn+ZiRm9ADR4jK36xjGtcvB2FeVpkUpIGgETs1W/KKvo8Bu7igIPfRnxhhMHEG4epyeufh2Z8GVNeyNyyptyS0vRUpbYhkKvf/7tahUMzHfk+1AAZkp3IUgovsHqNbVS8PxpsD0mK8V4SeIVm8b9EQzZjI/1G2ycHA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WBymQs/0NQP1/hLGUvYsMcVyKLedWvB+raujBaQLL+w=;
- b=BbIFRV1LJ/3YEDrfjFXy1dFA/jg0bahZfgNBT8ELnkQ/skoGLu2AMhBc1l8758eoUL15iRqql0RssPsx+3WN6I/5NCaNHvwRT29+lT1mGw254GBqvTgp+3TsnfF6sDKBF7p4e8Pg8Gx62tIrEYF6Dv9xGNvYnlBYmjOWbcqEKhHXN5nZCdsiND4HVEBl8rAztmNJJcaB/7Rp+gr8mfA9hKavbdMdCfPmmQHlmPcCGwEofWnAuoap378vB6FKoiZqIDv3h5ySgfQs8YHO7W47mtlDip0EE8hzFjQJgJVl76OsQl1dqSn0vi8yLiRSY/exOoM1WF5Dq8djPjx6sDePoQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WBymQs/0NQP1/hLGUvYsMcVyKLedWvB+raujBaQLL+w=;
- b=nLJ2udLp1DWR4/ALFfLVNA8oD06ZD0NyVh5tSMRv0Shfa63pJYuh24QKe73bNQzyXvhRrA8Z0XAjGFclcJtnpeYRWn2cRVF/vrZPJs5BCDl60sKY+H4taKuQac+/DDUq7wVnHc0WfeatdzmzYV2s2eUny/6VMt0fXoZKiaklxrk=
-Received: from PSAPR03MB5351.apcprd03.prod.outlook.com (2603:1096:301:40::11)
- by SI2PR03MB6028.apcprd03.prod.outlook.com (2603:1096:4:14c::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.33; Mon, 26 Feb
- 2024 09:12:07 +0000
-Received: from PSAPR03MB5351.apcprd03.prod.outlook.com
- ([fe80::1738:63b:3631:4d52]) by PSAPR03MB5351.apcprd03.prod.outlook.com
- ([fe80::1738:63b:3631:4d52%6]) with mapi id 15.20.7316.032; Mon, 26 Feb 2024
- 09:12:07 +0000
-From: =?utf-8?B?Q2h1bi1KZW4gVHNlbmcgKOabvuS/iuS7gSk=?=
-	<Chun-Jen.Tseng@mediatek.com>
-To: "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, "wenst@chromium.org"
-	<wenst@chromium.org>, "angelogioacchino.delregno@collabora.com"
-	<angelogioacchino.delregno@collabora.com>, "robh+dt@kernel.org"
-	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>
-CC: "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-mediatek@lists.infradead.org"
-	<linux-mediatek@lists.infradead.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, Project_Global_Chrome_Upstream_Group
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: Re: [PATCH v2 1/1] arm64: dts: mediatek: mt8186: Increase CCI
- frequency
-Thread-Topic: [PATCH v2 1/1] arm64: dts: mediatek: mt8186: Increase CCI
- frequency
-Thread-Index: AQHZ5wSUhbsMZ16YIEu+XAqYgTN4rLCRwDuAgEGB1gCAAFsFAIBJvJ0A
-Date: Mon, 26 Feb 2024 09:12:06 +0000
-Message-ID: <f0403753f64eaa6e62249a1d787dc9153dd8e733.camel@mediatek.com>
-References: <20230914121035.17320-1-chun-jen.tseng@mediatek.com>
-	 <20230914121035.17320-2-chun-jen.tseng@mediatek.com>
-	 <c9881e63-a52a-4d14-895e-9a14d31004e3@collabora.com>
-	 <894594bd2adb156fa8f290f4e603edbccdbbcdab.camel@mediatek.com>
-	 <679f35f9-3265-4b2f-8de5-df9460881de6@collabora.com>
-In-Reply-To: <679f35f9-3265-4b2f-8de5-df9460881de6@collabora.com>
-Accept-Language: zh-TW, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PSAPR03MB5351:EE_|SI2PR03MB6028:EE_
-x-ms-office365-filtering-correlation-id: 80d00764-9f79-41ee-f8a9-08dc36ab015b
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: XTwSTzRPrEUUOU9Xrr7cT1xwvWTcfh7Djk2ClzVHWCeXxwCM575hgem3X0TXtERIzQ5wchlqPlPnf+1IkWY7ud/UU27z3pXJiJZaID24CtJO5pHYVZTI62JMqkXdn4n959qKOno00DDKtZavFGij0xXZpmzNDgdhZ9Bie8tIpNWTXJU/v21x3Mf1Eq77bGbi+ERygtjzV4WhYzx89vyKiyf8feETfgj9kUzmfXYvTJlihYnY83i1hfDBXSu4cj50/pCK6OaCTChgkEY1qQcGhWlikAf555WBlA0FugAEmvbSPTwOcB0cpVkxNQl05rje/yxtYHD61+iDgMsWCKU4FmVyGyMceeVhFfgPHfWwSN+BWKqnCoeFaVhyR5PpNBxWsY5B4agVYr0BvF7+CiwOhcLN/h7vpdAPXVp/rlDjQY5G7BCvTOQmDJIbQLcU2wO/nyEjmsJ5bPeL2O/YmvFwwrm2o7rm2zwi4NRhEiIo8QLByiOLocSBUrWBzoKi5Li2rEb3ptRIxShSP+awrmxpkq12IxABCewqq2pXDBwq4rQIFTLv8b51ssszkAsUWfjHjMJKhuyfut/UMmz/pyiTyCOufaKu7B1bVWZwYrErbp62eAeq0GJaWL41Xobdx00fklXM9lV8OXuz7EuYrnoq+QzlJNIVB0h7/C1luecDSxK5gxSlnVlsKeuSYntDTiR0Do1MmsuM4TFHgwzcGfCEtg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PSAPR03MB5351.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(38070700009);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZHcxeDVob3FHVU5iM3lsZ3c4ZHN3Z2tXNStST21mL3Vqb0VwVFJsVG9rK0Ry?=
- =?utf-8?B?UXcxUmw1ci91N3pMdWpMbmQ0eTNlcnhhc2hKRHY0bFdQczc3NEE0dnhxdHdp?=
- =?utf-8?B?RFdqVWNMYnM5bTVJbE1pNDNha0ZJMWU2dU50ZGgyWnhDVnRyRXBPMnZFNnJa?=
- =?utf-8?B?d1hjVHRqM0hkMUNnbDNKWjA5SGNocDN0K0d6cmVJNmI5Z1FsYlYwL3dUTWFM?=
- =?utf-8?B?dUlobnNIWDZYb2M3RE4yWDA0cEJrdWR2VXBZcUxyZVpjYnZpQmorQk5hbzVq?=
- =?utf-8?B?VzJnZ0s4RmVmTlEwTGlnZjdrbElzQjBUMkhlelBPWGRyZkU3ODB5RktIdlJ1?=
- =?utf-8?B?alo0ZFU5cVJCdTN4bnU4OGlnQk9SdHdRZU5ZTm5USzBZaDUyUG1RRktzcWZm?=
- =?utf-8?B?NmNtSFFpd1VoeUZVUU1XSnBVOHVQck0vNlBkaVdPZ2k0bnhyMFExN3E4T0VV?=
- =?utf-8?B?NWl2RzdZZlExc0FaaGdFM0UwM1l2SVlTaXJlVi9Ca2U1Skk0Y0dPL3gvaFRq?=
- =?utf-8?B?Mk9kNmsvNG4xbFJhMGdXaGx1ZXdvOHAwNmt1WDNNWmpGSEtUZmV5VnZnZy92?=
- =?utf-8?B?c2ptRzVla1h2elpxQUllaFBEc1c5em1XdDlpRE9lZXFWUTFEc21RK01NSk5w?=
- =?utf-8?B?bUFmL1cwMDFzZ2JFRXgyWWdmNklFS2hmYmhDRmVuU09mODZOK0FMb1JBQmhW?=
- =?utf-8?B?UkNnajdYRWVTY1VUTFl4Uis0TkV1dnQ0Ykk2Z3U5SkRFNGFqT24wYWZhQyt4?=
- =?utf-8?B?V1hkR1E5ZWYwcEsrSU9nM2dQOEFsSTZ4anhqcGpnR1ltSjhQOTlmby8rNWRi?=
- =?utf-8?B?TE5uM1g4dXlCYVRBcExrbFMrR0dJM0pWVHU1QzRTWWU1R3hDMTZ2bVR4MmNU?=
- =?utf-8?B?S1NpRkxCKzBZdG9zMkwveGorVkoyRW15b3paN3NLdWVUK2tBR2FHeWRLL1pS?=
- =?utf-8?B?RHJDTk9SRTlGV0pFOWJSbG43cFBoZnp3djhsemdyVGg1ckF4SG5hRGlqOGk5?=
- =?utf-8?B?ZzZMaFJub3hKTWNJSFZxYXpwR1RBblRXbUVoenpUKzdYMGJjWWwyNlNCckVr?=
- =?utf-8?B?RzJCeUJsc0RYRW9zcndnY1NFaEZhem5saW1tUGE4QUFVTWVhTERlR0xOcWlZ?=
- =?utf-8?B?WHdNVzdOVWdCOWcxQjdoVFFTcnpRVndoTUNLSlc0dFhPRWQvS2xVbmZqQlFI?=
- =?utf-8?B?TVJ5Q3FHSnlYeHhRZlFGcEZzZEVyQngvcS9xelF0dStYZFNCV00yWmZocTVs?=
- =?utf-8?B?NVh5ajlpLzR0Nzg4Rzl0R2lVUTdLVzJQZGowVzZIK1lKamtNak9WazhVdHI1?=
- =?utf-8?B?T1FmK0E0Zk90OGFub3A2d0FUR3pCdlBLaDN3YzUzdjhiSUdINUVSQUFGNERX?=
- =?utf-8?B?dTZnTWM3MFk1M3JidDNqVk5laC9XMkJFUUEyV0E5NitjTzBhSHF4UmJNdjVw?=
- =?utf-8?B?YlVWZkRmWi9CVEgrRWZicmRucnJqcnltcFBhTitrdUpJM0xhNE5tSTd6aW9U?=
- =?utf-8?B?ZHBmWjhYcUpIVjFFU1JpbFRqczBLNmlNYTVLZzdqdGRSSzlWVm1jdzdlZDl4?=
- =?utf-8?B?RU1WLzNKSmloRFdVNU85QWpIejA0ZVVKZ3VKMVpQTmZBcG42ajFHem9JU1JV?=
- =?utf-8?B?aW5GUWd1d1NlcVlOK1Z3SXdEVzJ3ZFQvQW4xSzZwZElqQXJPejF0NEZ5OWd3?=
- =?utf-8?B?a3pXdGMzMEdCWmxhaFpIcXo3cms3ZzgvMXpaKzdGV29wWTcwNm05K2JHdXVu?=
- =?utf-8?B?bzNKekpiTXJsL2lnR1ZWcUY2UTBsdW5PVTRzZjBIWTlFN0dabkt5VTRVYTRk?=
- =?utf-8?B?OXlLa2trQVlKWDZnampmNGVaV015Z2U3Q1ZjNUYzK0hqWUNlT0FkZDdnaEJx?=
- =?utf-8?B?cTJRRTVLWFk2bnkyT0dKckdMdmc4M2FXQ2VHSGswdnRMeU9pNENFUG5mQ3g0?=
- =?utf-8?B?SGFYTWMyVHUzODBkTHRWRWs4OWlXT0FUMUZFV205aVI1U1FWemxILzMzZHZy?=
- =?utf-8?B?RGRYWWNwUlBZOUVqc3NhRlZJcFFKdTA0cXBUUXkwVk5FbzliTEtpTHR5SWZy?=
- =?utf-8?B?d2ZuZWhmaUFKM1J4bzlsRTY0NW5sYndQSEFmUFBYTHFuZXRrMVFlSmtrdmNz?=
- =?utf-8?B?d0ZkcVhwTXBSMWNLUWUxbmtCM095VExhdjVPcXhHVVdPNVFPcGlaUXVxL1Nj?=
- =?utf-8?Q?y+G3uxc3wvo2Wz9sYUpbCW0=3D?=
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48BDE7FBCA;
+	Mon, 26 Feb 2024 09:12:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708938743; cv=none; b=dE3FOOvNwo5AFo03h++d1yxlpy/5J8eOu/TFulXW1td/agTO32cc2L5K3Y3YvndM97Om4QapCV5ph6TXQPV7/0GRyPv1nsqgAjzQ81effZRSknbJeQ11KztSpzB01b6qveHZuKmtBaiRB6cwl0j97UJR9en9jUPYFRwYh5P0r70=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708938743; c=relaxed/simple;
+	bh=nWjfBVuLQ8eaPAFRF01HIEhCOqTZRh8kZBxzCg1CSZI=;
+	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:Message-ID; b=ARb2Pvcjj7+9OwBl2HxZUlI0unPdbLErCMO5u8YudJ4KVSRsGQkZFzTjw5JAf+usJDZJSnQyFwnuFDCLoJeDZqF+Ps0vKhiQi8fdB/kiUf9bfInfiQFlFWrZe3l3yVPoD6JIFIKSz1fdHpXreo1V+7E8sgB7joo9UpG04cIn0ys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=s8wqV0qp; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (aztw-30-b2-v4wan-166917-cust845.vm26.cable.virginm.net [82.37.23.78])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 02AED673;
+	Mon, 26 Feb 2024 10:12:07 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1708938728;
+	bh=nWjfBVuLQ8eaPAFRF01HIEhCOqTZRh8kZBxzCg1CSZI=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=s8wqV0qpaJ9cpzkJIsE5T5GxQ3U3zQHY/Qy1tu0Upn+2CKDBUJzaXHPyi8M8hcFVb
+	 nPfpD1oVzDTbQewHGUsLuBzV4ax5rM3ZoJ7oj6Ydh0qs8z/C+JebFu3beLcLtrNCvW
+	 t+GOvWiiCga7o4JQLtXPE4zwssewFvjQKT4K6Vr8=
 Content-Type: text/plain; charset="utf-8"
-Content-ID: <597506B4B5AF824899601CF271970A19@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PSAPR03MB5351.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 80d00764-9f79-41ee-f8a9-08dc36ab015b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Feb 2024 09:12:06.9665
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: fnd2OlP0Ybtbbe0EzbMhZrMhG3p51pnKO0b+HxPlNJHbs7SJI9oLadllXbdIOTVsnsCrviN4F+9OySEcL2QGcWLZyG9VsckvCccFRDZDK9I=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI2PR03MB6028
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <f99c9e34-182a-4b92-9ba4-050d6724f5e5@ideasonboard.com>
+References: <20240214141906.245685-1-dan.scally@ideasonboard.com> <20240214141906.245685-5-dan.scally@ideasonboard.com> <170889617240.914352.11519004661256637360@ping.linuxembedded.co.uk> <f99c9e34-182a-4b92-9ba4-050d6724f5e5@ideasonboard.com>
+Subject: Re: [PATCH v2 4/5] media: Documentation: Add Mali-C55 ISP Documentation
+From: Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc: jacopo.mondi@ideasonboard.com, nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jerome.forissier@linaro.org, laurent.pinchart@ideasonboard.com
+To: Dan Scally <dan.scally@ideasonboard.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
+Date: Mon, 26 Feb 2024 09:12:16 +0000
+Message-ID: <170893873667.1011926.18284546733096440304@ping.linuxembedded.co.uk>
+User-Agent: alot/0.10
 
-T24gV2VkLCAyMDI0LTAxLTEwIGF0IDEyOjEwICswMTAwLCBBbmdlbG9HaW9hY2NoaW5vIERlbCBS
-ZWdubyB3cm90ZToNCj4gSWwgMTAvMDEvMjQgMDY6NDQsIENodW4tSmVuIFRzZW5nICjmm77kv4rk
-u4EpIGhhIHNjcml0dG86DQo+ID4gT24gV2VkLCAyMDIzLTExLTI5IGF0IDE0OjIyICswMTAwLCBB
-bmdlbG9HaW9hY2NoaW5vIERlbCBSZWdubw0KPiA+IHdyb3RlOg0KPiA+ID4gSWwgMTQvMDkvMjMg
-MTQ6MTAsIE1hcmsgVHNlbmcgaGEgc2NyaXR0bzoNCj4gPiA+ID4gVGhlIG9yaWdpbmFsIENDSSBP
-UFAgdGFibGUncyBsb3dlc3QgZnJlcXVlbmN5IDUwMCBNSHogaXMgdG9vDQo+ID4gPiA+IGxvdw0K
-PiA+ID4gPiBhbmQgY2F1c2VzDQo+ID4gPiA+IHN5c3RlbSBzdGFsbHMuIEluY3JlYXNlIHRoZSBm
-cmVxdWVuY3kgcmFuZ2UgdG8gMS4wNSBHSHogfiAxLjQNCj4gPiA+ID4gR0h6DQo+ID4gPiA+IGFu
-ZCBhZGp1c3QNCj4gPiA+ID4gdGhlIE9QUHMgYWNjb3JkaW5nbHkuDQo+ID4gPiA+IA0KPiA+ID4g
-PiBGaXhlczogMzJkZmJjMDNmYzI2ICgiYXJtNjQ6IGR0czogbWVkaWF0ZWs6IG10ODE4NjogQWRk
-IENDSQ0KPiA+ID4gPiBub2RlDQo+ID4gPiA+IGFuZCBDQ0kgT1BQIHRhYmxlIikNCj4gPiA+ID4g
-DQo+ID4gPiA+IFNpZ25lZC1vZmYtYnk6IE1hcmsgVHNlbmcgPGNodW4tamVuLnRzZW5nQG1lZGlh
-dGVrLmNvbT4NCj4gPiA+IA0KPiA+ID4gWW91IGlnbm9yZWQgbXkgY29tbWVudCBbMV0gb24gdGhl
-IHYxIG9mIHRoaXMgcGF0Y2guDQo+ID4gPiANCj4gPiA+IEJlc2lkZXMsIEkgdGhpbmsgdGhhdCB5
-b3Ugc2hvdWxkIGF0IGxlYXN0IGtlZXAgdGhlIDUwME1Ieg0KPiA+ID4gZnJlcXVlbmN5DQo+ID4g
-PiBmb3IgYQ0KPiA+ID4gc2xlZXAtb25seS9pZGxlIE9QUCB0byBzYXZlIHBvd2VyLg0KPiA+ID4g
-DQo+ID4gPiBJdCB3b3VsZCBhbHNvIGJlIGhlbHBmdWwgdG8gdW5kZXJzdGFuZCB3aHkgeW91IGNo
-b3NlIHRoaXMgbmV3DQo+ID4gPiBmcmVxdWVuY3kgcmFuZ2UsDQo+ID4gPiBzbyBpZiB5b3UgY2Fu
-LCBwbGVhc2UgcHV0IHNvbWUgbnVtYmVycyBpbiB0aGUgY29tbWl0IGRlc2NyaXB0aW9uLA0KPiA+
-ID4gc2hvd2luZyB0aGUNCj4gPiA+IHN0YWxsIGluIHRlcm1zIG9mIHJlcXVlc3RlZCBCVyB2cyBh
-Y3R1YWwgQlcgKGFzIEknZCBpbWFnaW5lIHRoYXQNCj4gPiA+IGEgMngNCj4gPiA+IGluY3JlYXNl
-DQo+ID4gPiBpbiBDQ0kgZnJlcXVlbmN5IG1lYW5zIHRoYXQgd2UgbmVlZCAqdHdpY2UqIHRoZSBi
-YW5kd2lkdGgNCj4gPiA+IGNvbXBhcmVkIHRvDQo+ID4gPiB3aGF0IHdlDQo+ID4gPiBoYXZlIGZv
-ciB0aGUgd29ya2xvYWRzIHRoYXQgYXJlIHN0YWxsaW5nIHRoZSBzeXN0ZW0pLg0KPiA+ID4gDQo+
-ID4gDQo+ID4gSGkgQW5nZWxvR2lvYWNjaGlubyBEZWwgUmVnbm8sDQo+ID4gDQo+ID4gVGhhbmtz
-IHlvdXIgcmVtaW5kZXIgdGhpcyBpc3N1ZS4gQWZ0ZXIgYWpkdXN0bWVudCBDQ0kgT1BQLCB3ZSBh
-bHNvDQo+ID4gZG8NCj4gPiBwb3dlciB0ZXN0IGJlbmNobWFyayBhbmQgdGhlIHJlc3VsdCBpcyBQ
-QVNTLg0KPiA+IA0KPiANCj4gU29ycnkgYnV0IGBQQVNTYCBpcyBub3QgYSBudW1iZXI7IEkgYWN0
-dWFsbHkgd2FudGVkIGEgYmVmb3JlIGFuZA0KPiBhZnRlciBwb3dlcg0KPiBjb25zdW1wdGlvbiBt
-ZWFzdXJlbWVudCBpbiBtaWNyb3dhdHRzLg0KPiANCj4gPiBUaGUgb3JpZ2luYWwgQ0NJIHRhYmxl
-IGhhcyBzdGFsbCBpc3N1ZS4gIFdoZW4gdGhlIEJpZyBDUFUgZnJlcXVlbmN5DQo+ID4gc2V0DQo+
-ID4gb24gMi4wNUcgYW5kIENDSSBmcmVxdWVuY3kga2VlcCBvbiA1MDBNSHogdGhlbiBydW4gQ1RT
-IE1lZGlhVGVzdA0KPiA+IHdpbGwNCj4gPiBzeXN0ZW0gc3RhbGwgdGhlbiB0cmlnZ2VyIHdhdGNo
-ZG9nIHJlc2V0IFNvQy4NCj4gPiANCj4gPiBUaGUgQ1BVIGFuZCBDQ0kgZnJlcXVlbmN5IHNldHRp
-bmcgYXJlIG5vdCBpbiB0aGUgc2FtZSBkcml2ZXIuIFNvIGl0DQo+ID4gd2lsbCBoYXZlIHRpbWlu
-ZyBpc3N1ZSBjYXVzZSBDUFUgc3RhbGwgc2lkZSBlZmZlY3QuDQo+ID4gDQo+IA0KPiBBcmUgeW91
-IHRyeWluZyB0byBmaXggYSBmcmVxdWVuY3kgc2V0dGluZyBkZWxheS9kZXN5bmMgd2l0aCByYWlz
-aW5nDQo+IHRoZQ0KPiBmcmVxdWVuY3kgb2YgdGhlIENDST8NCj4gVGhhdCdzIG5vdCB0aGUgcmln
-aHQgd2F5IG9mIGRvaW5nIGl0Lg0KPiANCj4gQXNzZXJ0aW5nIHRoYXQgd2UgaGF2ZSBhIHRpbWlu
-ZyBpc3N1ZSBiZWNhdXNlIHRoZSB0d28gZnJlcXVlbmN5DQo+IHNldHRpbmdzDQo+IGFyZSBub3Qg
-ZG9uZSBieSB0aGUgc2FtZSBkcml2ZXIgaXMgYm9yZGVybGluZSB3cm9uZyAtIGJ1dCBhbnl3YXkg
-LSBpZg0KPiB0aGVyZQ0KPiBpcyBhIGZyZXF1ZW5jeSBzZXR0aW5nIHRpbWluZyBpc3N1ZSBiZWNh
-dXNlIG9mIHRoZSBpbnRlcmFjdGlvbg0KPiBiZXR3ZWVuIHRoZQ0KPiB0d28gZHJpdmVycyAoY3B1
-ZnJlcS9jY2lmcmVxKSwgdGhlIHJpZ2h0IHdheSBvZiBlbGltaW5hdGluZyB0aGUgc3RhbGwNCj4g
-aXMgdG8NCj4gYWN0dWFsbHkgc29sdmUgdGhlIHJvb3QgY2F1c2Ugb2YgdGhhdC4NCj4gDQo+IEkn
-bSBpbnNpc3Rpbmcgb24gdGhpcyBiZWNhdXNlIGlmIHRoZXJlJ3MgYSAidGltaW5nIGlzc3VlIiB0
-aGlzIG1lYW5zDQo+IHRoYXQNCj4gZXZlbiB0aG91Z2ggdGhlICJiYXNlIiBDQ0kgZnJlcXVlbmN5
-IGlzIGhpZ2hlciwgZHVyaW5nIGEgc2NhbGluZyB1cA0KPiBvcGVyYXRpb24NCj4gZGVwZW5kaW5n
-IG9uIGhvdyBtdWNoIHRoZSBDQ0kgZ2V0cyBmbG9vZGVkLCB5b3UgbWlnaHQgKmVpdGhlcio6DQo+
-ICAgLSBIYXZlIHRoaXMgc2FtZSBzdGFsbCBpc3N1ZSBhZ2FpbiwgYW5kL29yDQo+ICAgLSBIYXZl
-IHBlcmZvcm1hbmNlIGlzc3Vlcy9kcm9wcyB3aGlsZSB3YWl0aW5nIGZvciB0aGUgQ0NJIHRvIHNj
-YWxlDQo+IHVwLg0KPiANCj4gRXZlbiB0aG91Z2ggeW91IG1heSBub3QgKG9yIG1heS4uLikgZ2V0
-IGEgc3RhbGwgaXNzdWUgYWdhaW4gd2l0aCB0aGlzDQo+IGNoYW5nZSwNCj4geW91IHdpbGwgc3Vy
-ZWx5IGdldCAodmVyeSBzaG9ydCkgdGVtcG9yYXJ5IHBlcmZvcm1hbmNlIGRyb3BzIGR1cmluZw0K
-PiBzY2FsaW5nIHVwLg0KPiANCj4gLi4uLmFuZCB0aGlzIGlzIHdoeSB5b3VyIENDSSBmcmVxdWVu
-Y3kgaW5jcmVhc2Ugc29sdXRpb24gZG9lcyAqbm90Kg0KPiByZXNvbHZlDQo+IHRoaXMgaXNzdWUs
-IGJ1dCBvbmx5IHBhcnRpYWxseSBtaXRpZ2F0ZXMgaXQuDQo+IA0KPiBUaGF0IHNob3VsZCBnZXQg
-c29sdmVkLCBub3QgcGFydGlhbGx5IG1pdGlnYXRlZC4NCj4gDQo+IEJlc2lkZXMgdGhhdCwgY2Fu
-IHlvdSBwbGVhc2UgdGVsbCBtZSBob3cgdG8gcmVwbGljYXRlIHRoZSBzdGFsbA0KPiBpc3N1ZSwg
-bWFraW5nDQo+IG1lIGFibGUgdG8gYmV0dGVyIHVuZGVyc3RhbmQgd2hhdCdzIGdvaW5nIG9uIGhl
-cmU/DQo+IA0KPiBSZWdhcmRzLA0KPiBBbmdlbG8NCj4gDQoNCkhpIEFuZ2VsbywNCg0KVGhhbmtz
-IHlvdXIgcmV2aWV3IGFuZCBzdWdnZXN0aW9uLg0KDQpUaGlzIGlzc3VlIGhhcHBlbiBvbiBDVFMg
-bWVkaWFUZXN0IGFuZCBXZWJHTCB0ZXN0Lg0KDQpJIGZvdW5kIHRoYXQgaWYgQ0NJIHVuZGVyIDEu
-MDUgR0h6LCBpdCB3aWxsIGhhcHBlbmQgcmFuZG9tbHkgc3lzdGVtDQpzdGFsbCBzbyBJIGRvIHdv
-cmthcm91bmQgbW9kaWZpY2F0aW9uIG9uIGRldmZyZXEgZHJpdmVyIHRvIGxpbWl0IENDSQ0KbGV2
-ZWwgKDEuMDUgR2h6KS4gSXQgbG9vayBzb2x2ZSB0aGlzIGlzc3VlLg0KDQpCUnMsDQoNCk1hcmsg
-VHNlbmcNCg0KDQoNCj4gPiBCUnMsDQo+ID4gDQo+ID4gTWFyayBUc2VuZw0KPiA+IA0KPiA+ID4g
-WzFdOg0KPiA+ID4gDQpodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvNzk5MzI1ZjUtMjliNS1m
-MGMwLTE2ZWEtZDQ3YzA2ODMwZWQzQGNvbGxhYm9yYS5jb20vDQo+ID4gPiANCj4gPiA+IFJlZ2Fy
-ZHMsDQo+ID4gPiBBbmdlbG8NCj4gDQo+IA0K
+Quoting Dan Scally (2024-02-26 07:48:44)
+> Morning Kieran
+>=20
+> On 25/02/2024 21:22, Kieran Bingham wrote:
+> > Hi Dan,
+> >
+> > Quoting Daniel Scally (2024-02-14 14:19:05)
+> >> Add a documentation page for the mali-c55 driver, which gives a brief
+> >> overview of the hardware and explains how to use the driver's capture
+> >> devices and the crop/scaler functions.
+> >>
+> >> Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
+> >> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+> >> ---
+> >> Changes in v2:
+> >>
+> >>          - none
+> >>
+> >>   .../admin-guide/media/mali-c55-graph.dot      |  19 ++
+> >>   Documentation/admin-guide/media/mali-c55.rst  | 318 ++++++++++++++++=
+++
+> >>   .../admin-guide/media/v4l-drivers.rst         |   1 +
+> >>   3 files changed, 338 insertions(+)
+> >>   create mode 100644 Documentation/admin-guide/media/mali-c55-graph.dot
+> >>   create mode 100644 Documentation/admin-guide/media/mali-c55.rst
+> >>
+> >> diff --git a/Documentation/admin-guide/media/mali-c55-graph.dot b/Docu=
+mentation/admin-guide/media/mali-c55-graph.dot
+> >> new file mode 100644
+> >> index 000000000000..0775ba42bf4c
+> >> --- /dev/null
+> >> +++ b/Documentation/admin-guide/media/mali-c55-graph.dot
+> >> @@ -0,0 +1,19 @@
+> >> +digraph board {
+> >> +        rankdir=3DTB
+> >> +        n00000001 [label=3D"{{} | mali-c55 tpg\n/dev/v4l-subdev0 | {<=
+port0> 0}}", shape=3DMrecord, style=3Dfilled, fillcolor=3Dgreen]
+> >> +        n00000001:port0 -> n00000003:port0 [style=3Ddashed]
+> >> +        n00000003 [label=3D"{{<port0> 0} | mali-c55 isp\n/dev/v4l-sub=
+dev1 | {<port1> 1 | <port2> 2}}", shape=3DMrecord, style=3Dfilled, fillcolo=
+r=3Dgreen]
+> >> +        n00000003:port1 -> n00000007:port0 [style=3Dbold]
+> >> +        n00000003:port2 -> n00000007:port2 [style=3Dbold]
+> >> +        n00000003:port1 -> n0000000b:port0 [style=3Dbold]
+> >> +        n00000007 [label=3D"{{<port0> 0 | <port2> 2} | mali-c55 resiz=
+er fr\n/dev/v4l-subdev2 | {<port1> 1}}", shape=3DMrecord, style=3Dfilled, f=
+illcolor=3Dgreen]
+> >> +        n00000007:port1 -> n0000000e [style=3Dbold]
+> >> +        n0000000b [label=3D"{{<port0> 0} | mali-c55 resizer ds\n/dev/=
+v4l-subdev3 | {<port1> 1}}", shape=3DMrecord, style=3Dfilled, fillcolor=3Dg=
+reen]
+> >> +        n0000000b:port1 -> n00000012 [style=3Dbold]
+> >> +        n0000000e [label=3D"mali-c55 fr\n/dev/video0", shape=3Dbox, s=
+tyle=3Dfilled, fillcolor=3Dyellow]
+> >> +        n00000012 [label=3D"mali-c55 ds\n/dev/video1", shape=3Dbox, s=
+tyle=3Dfilled, fillcolor=3Dyellow]
+> >> +        n00000022 [label=3D"{{<port0> 0} | csi2-rx\n/dev/v4l-subdev4 =
+| {<port1> 1}}", shape=3DMrecord, style=3Dfilled, fillcolor=3Dgreen]
+> >> +        n00000022:port1 -> n00000003:port0
+> >> +        n00000027 [label=3D"{{} | imx415 1-001a\n/dev/v4l-subdev5 | {=
+<port0> 0}}", shape=3DMrecord, style=3Dfilled, fillcolor=3Dgreen]
+> >> +        n00000027:port0 -> n00000022:port0 [style=3Dbold]
+> >> +}
+> >> \ No newline at end of file
+> >> diff --git a/Documentation/admin-guide/media/mali-c55.rst b/Documentat=
+ion/admin-guide/media/mali-c55.rst
+> >> new file mode 100644
+> >> index 000000000000..83f630c3bd9d
+> >> --- /dev/null
+> >> +++ b/Documentation/admin-guide/media/mali-c55.rst
+> >> @@ -0,0 +1,318 @@
+> >> +.. SPDX-License-Identifier: GPL-2.0
+> >> +
+> >> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >> +ARM Mali-C55 Image Signal Processor driver
+> >> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >> +
+> >> +Introduction
+> >> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >> +
+> >> +This file documents the driver for ARM's Mali-C55 Image Signal Proces=
+sor. The
+> >> +driver is located under drivers/media/platform/arm/mali-c55.
+> >> +
+> >> +The Mali-C55 ISP receives data in either raw Bayer format or RGB/YUV =
+format from
+> >> +sensors through either a parallel interface or a memory bus before pr=
+ocessing it
+> >> +and outputting it through an internal DMA engine. Two output pipeline=
+s are
+> >> +possible (though one may not be fitted, depending on the implementati=
+on). These
+> >> +are referred to as "Full resolution" and "Downscale", but the naming =
+is historic
+> >> +and both pipes are capable of cropping/scaling operations. An integra=
+ted test
+> >> +pattern generator can be used to drive the ISP and produce image data=
+ in the
+> >> +absence of a connected camera sensor. The driver module is named mali=
+_c55, and
+> >> +is enabled through the CONFIG_VIDEO_MALI_C55 config option.
+> > Can it handle metadata or other datatypes separately? anything else
+> > that's worthy of mention? Or maybe not yet in this version.
+>=20
+>=20
+> As in, can you stream the parameters/statistics without streaming video d=
+ata? Not at present but the=20
+> change to add that ability would be very very minor - though none of that=
+ is in this version.
+
+It was other stream data I was curious about clarifying. I think the
+answer is the same though, not yet in this version, but will be added on
+top.
+
+
+> >> +
+> >> +The driver implements V4L2, Media Controller and V4L2 Subdevice inter=
+faces and
+> >> +expects camera sensors connected to the ISP to have V4L2 subdevice in=
+terfaces.
+> >> +
+> >> +Mali-C55 ISP hardware
+> >> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >> +
+> >> +A high level functional view of the Mali-C55 ISP is presented below. =
+The ISP
+> >> +takes input from either a live source or through a DMA engine for mem=
+ory input,
+> >> +depending on the SoC integration.::
+> >> +
+> >> +  +---------+    +----------+                                     +--=
+------+
+> >> +  | Sensor  |--->| CSI-2 Rx |                "Full Resolution"    |  =
+DMA   |
+> >> +  +---------+    +----------+   |\                 Output    +--->| W=
+riter |
+> >> +                       |        | \                          |    +--=
+------+
+> >> +                       |        |  \    +----------+  +------+---> St=
+reaming I/O
+> >> +  +------------+       +------->|   |   |          |  |
+> >> +  |            |                |   |-->| Mali-C55 |--+
+> >> +  | DMA Reader |--------------->|   |   |    ISP   |  |
+> >> +  |            |                |  /    |          |  |      +---> St=
+reaming I/O
+> >> +  +------------+                | /     +----------+  |      |
+> >> +                                |/                    +------+
+> >> +                                                            |    +---=
+-----+
+> >> +                                                             +--->|  =
+DMA   |
+> >> +                                               "Downscaled"       | W=
+riter |
+> >> +                                                 Output          +---=
+-----+
+> >> +
+> >> +Media Controller Topology
+> >> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D
+> >> +
+> >> +An example of the ISP's topology (as implemented in a system with an =
+IMX415
+> >> +camera sensor and generic CSI-2 receiver) is below:
+> >> +
+> >> +
+> >> +.. kernel-figure:: mali-c55-graph.dot
+> >> +    :alt:   mali-c55-graph.dot
+> >> +    :align: center
+> >> +
+> >> +The driver has 4 V4L2 subdevices:
+> >> +
+> >> +- `mali_c55 isp`: Responsible for configuring input crop and color sp=
+ace
+> >> +                  conversion
+> >> +- `mali_c55 tpg`: The test pattern generator, emulating a camera sens=
+or.
+> >> +- `mali_c55 resizer fr`: The Full-Resolution pipe resizer
+> >> +- `mali_c55 resizer ds`: The Downscale pipe resizer
+> >> +
+> >> +The driver has 2 V4L2 video devices:
+> >> +
+> >> +- `mali-c55 fr`: The full-resolution pipe's capture device
+> >> +- `mali-c55 ds`: The downscale pipe's capture device
+> >> +
+> >> +Idiosyncrasies
+> >> +--------------
+> >> +
+> >> +**mali-c55 isp**
+> >> +The `mali-c55 isp` subdevice has a single sink pad to which all sourc=
+es of data
+> >> +should be connected. The active source is selected by enabling the ap=
+propriate
+> >> +media link and disabling all others.
+> > By that I presume you mean you can only accept a single input link at a
+> > time?
+>=20
+>=20
+> Yes
+>=20
+> >
+> >> The ISP has two source pads, reflecting the
+> >> +different paths through which it can internally route data. Tap point=
+s within
+> >> +the ISP allow users to divert data to avoid processing by some or all=
+ of the
+> >> +hardware's processing steps. The diagram below is intended only to hi=
+ghlight how
+> >> +the bypassing works and is not a true reflection of those processing =
+steps; for
+> >> +a high-level functional block diagram see ARM's developer page for the
+> >> +ISP [3]_::
+> >> +
+> >> +  +--------------------------------------------------------------+
+> >> +  |                Possible Internal ISP Data Routes             |
+> >> +  |          +------------+  +----------+  +------------+        |
+> >> +  +---+      |            |  |          |  |  Colour    |    +---+
+> >> +  | 0 |--+-->| Processing |->| Demosaic |->|   Space    |--->| 1 |
+> >> +  +---+  |   |            |  |          |  | Conversion |    +---+
+> >> +  |      |   +------------+  +----------+  +------------+        |
+> >> +  |      |                                                   +---+
+> >> +  |      +---------------------------------------------------| 2 |
+> >> +  |                                                          +---+
+> >> +  |                                                              |
+> >> +  +--------------------------------------------------------------+
+> >> +
+> >> +
+> >> +.. flat-table::
+> >> +    :header-rows: 1
+> >> +
+> >> +    * - Pad
+> >> +      - Direction
+> >> +      - Purpose
+> >> +
+> >> +    * - 0
+> >> +      - sink
+> >> +      - Data input, connected to the TPG and camera sensors
+> >> +
+> >> +    * - 1
+> >> +      - source
+> >> +      - RGB/YUV data, connected to the FR and DS V4L2 subdevices
+> >> +
+> >> +    * - 2
+> >> +      - source
+> >> +      - RAW bayer data, connected to the FR V4L2 subdevices
+> >> +
+> >> +**mali-c55 resizer fr**
+> >> +The `mali-c55 resizer fr` subdevice has two _sink_ pads to reflect th=
+e different
+> >> +insertion points in the hardware (either RAW or demosaiced data):
+> >> +
+> >> +.. flat-table::
+> >> +    :header-rows: 1
+> >> +
+> >> +    * - Pad
+> >> +      - Direction
+> >> +      - Purpose
+> >> +
+> >> +    * - 0
+> >> +      - sink
+> >> +      - Data input connected to the ISP's demosaiced stream.
+> >> +
+> >> +    * - 1
+> >> +      - source
+> >> +      - Data output connected to the capture video device
+> >> +
+> >> +    * - 2
+> >> +      - sink
+> >> +      - Data input connected to the ISP's raw data stream
+> >> +
+> >> +The data source in use is selected through the routing API; two route=
+s each of a
+> >> +single stream are available:
+> >> +
+> >> +.. flat-table::
+> >> +    :header-rows: 1
+> >> +
+> >> +    * - Sink Pad
+> >> +      - Source Pad
+> >> +      - Purpose
+> >> +
+> >> +    * - 0
+> >> +      - 1
+> >> +      - Demosaiced data route
+> >> +
+> >> +    * - 2
+> >> +      - 1
+> >> +      - Raw data route
+> >> +
+> >> +
+> >> +If the demosaiced route is active then the FR pipe is only capable of=
+ output
+> >> +in RGB/YUV formats. If the raw route is active then the output reflec=
+ts the
+> >> +input (which may be either Bayer or RGB/YUV data).
+> >> +
+> >> +Using the driver to capture video
+> >> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >> +
+> >> +Using the media controller APIs we can configure the input source and=
+ ISP to
+> >> +capture images in a variety of formats. In the examples below, config=
+uring the
+> >> +media graph is done with the v4l-utils [1]_ package's media-ctl utili=
+ty.
+> >> +Capturing the images is done with yavta [2]_.
+> >> +
+> >> +Configuring the input source
+> >> +----------------------------
+> >> +
+> >> +The first step is to set the input source that we wish by enabling th=
+e correct
+> >> +media link. Using the example topology above, we can select the TPG a=
+s follows:
+> >> +
+> >> +.. code-block:: none
+> >> +
+> >> +    media-ctl -l "'lte-csi2-rx':1->'mali-c55 isp':0[0]"
+> >> +    media-ctl -l "'mali-c55 tpg':0->'mali-c55 isp':0[1]"
+> >> +
+> >> +Capturing bayer data from the source and processing to RGB/YUV
+> >> +--------------------------------------------------------------
+> >> +To capture 1920x1080 bayer data from the source and push it through t=
+he ISP's
+> >> +full processing pipeline, we configure the data formats appropriately=
+ on the
+> >> +source, ISP and resizer subdevices and set the FR resizer's routing t=
+o select
+> >> +processed data. The media bus format on the resizer's source pad will=
+ be either
+> >> +RGB121212_1X36 or YUV10_1X30, depending on whether you want to captur=
+e RGB or
+> >> +YUV. The ISP's debayering block outputs RGB data natively, setting th=
+e source
+> >> +pad format to YUV10_1X30 enables the colour space conversion block.
+> >> +
+> >> +In this example we target RGB565 output, so select RGB121212_1X36 as =
+the resizer
+> >> +source pad's format:
+> >> +
+> >> +.. code-block:: none
+> >> +
+> >> +    # Set formats on the TPG and ISP
+> >> +    media-ctl -V "'mali-c55 tpg':0[fmt:SRGGB16_1X16/1920x1080]"
+> >> +    media-ctl -V "'mali-c55 isp':0[fmt:SRGGB16_1X16/1920x1080]"
+> >> +    media-ctl -V "'mali-c55 isp':1[fmt:SRGGB16_1X16/1920x1080]"
+> >> +
+> >> +    # Set routing on the FR resizer
+> >> +    media-ctl -R "'mali-c55 resizer fr'[0/0->1/0[1],2/0->1/0[0]]"
+> >> +
+> >> +    # Set format on the resizer, must be done AFTER the routing.
+> >> +    media-ctl -V "'mali-c55 resizer fr':1[fmt:RGB121212_1X36/1920x108=
+0]"
+> >> +
+> >> +The downscale output can also be used to stream data at the same time=
+. In this
+> >> +case only processed data can be captured and so no routing need be se=
+t:
+> > Is the route automatically reset? or is it just that the default route
+> > is already the correct choice for this instance?
+>=20
+>=20
+> Err, the default route is already the correct choice for this instance bu=
+t I'm nonetheless setting=20
+> it above...perhaps I'm misunderstanding the question?
+
+My question was on why the text stated "and so no routing need be set:"
+
+> >> +
+> >> +.. code-block:: none
+> >> +
+> >> +    # Set format on the resizer
+> >> +    media-ctl -V "'mali-c55 resizer ds':1[fmt:RGB121212_1X36/1920x108=
+0]"
+> >> +
+> >> +Following which images can be captured from both the FR and DS output=
+'s video
+> >> +devices (simultaneously, if desired):
+> >> +
+> >> +.. code-block:: none
+> >> +
+> >> +    yavta -f RGB565 -s 1920x1080 -c10 /dev/video0
+> >> +    yavta -f RGB565 -s 1920x1080 -c10 /dev/video1
+> >> +
+> > Is there any synchronisation required? Can one pipe run without the
+> > other if they are both enabled? or will stalling on one pipe stall the
+> > other?
+>=20
+>=20
+> The outputs are synchronised already to the extent that if both are enabl=
+ed they'll receive data=20
+> from the same input frame at the same time. They can be run independently=
+ though, if an application=20
+> stopped queuing frames to one but continued queuing to the other then the=
+ latter would work fine.
+>=20
+> >
+> >> +Cropping the image
+> >> +~~~~~~~~~~~~~~~~~~
+> >> +
+> >> +Both the full resolution and downscale pipes can crop to a minimum re=
+solution of
+> >> +640x480. To crop the image simply configure the resizer's sink pad's =
+crop and
+> >> +compose rectangles and set the format on the video device:
+> >> +
+> >> +.. code-block:: none
+> >> +
+> >> +    media-ctl -V "'mali-c55 resizer fr':0[fmt:RGB121212_1X36/1920x108=
+0 crop:(480,270)/640x480 compose:(0,0)/640x480]"
+> >> +    media-ctl -V "'mali-c55 resizer fr':1[fmt:RGB121212_1X36/640x480]"
+> >> +    yavta -f RGB565 -s 640x480 -c10 /dev/video0
+> >> +
+> >> +Downscaling the image
+> >> +~~~~~~~~~~~~~~~~~~~~~
+> >> +
+> >> +Both the full resolution and downscale pipes can downscale the image =
+by up to 8x
+> >> +provided the minimum 640x480 resolution is adhered to. For the best i=
+mage result
+> > 'minimum 640x480 output resolution' I presume.
+>=20
+>=20
+> And input, actually.
+>=20
+> >
+> > Maybe the ISP limits/restrictions need to be defined before here?
+>=20
+>=20
+> I'll expand on them yes.
+>=20
+> >
+> >> +the scaling ratio for each dimension should be the same. To configure=
+ scaling we
+> >> +use the compose rectangle on the resizer's sink pad:
+> >> +
+> >> +.. code-block:: none
+> >> +
+> >> +    media-ctl -V "'mali-c55 resizer fr':0[fmt:RGB121212_1X36/1920x108=
+0 crop:(0,0)/1920x1080 compose:(0,0)/640x480]"
+> >> +    media-ctl -V "'mali-c55 resizer fr':1[fmt:RGB121212_1X36/640x480]"
+> >> +    yavta -f RGB565 -s 640x480 -c10 /dev/video0
+> >> +
+> >> +Capturing images in YUV formats
+> >> +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> >> +
+> >> +If we need to output YUV data rather than RGB the color space convers=
+ion block
+> >> +needs to be active, which is achieved by setting MEDIA_BUS_FMT_YUV10_=
+1X30 on the
+> > Is 10 bit required here? (As opposed to the 12 bit before in the
+> > pipeline? is that a limitation on the component?)
+>=20
+>=20
+> It's a reflection of the output from the colour-space conversion block.
+>=20
+> > or is this to match
+> > the desired output format?
+>=20
+>=20
+> Sort of, it's used to inform the driver about which of the output formats=
+ can be generated - without=20
+> conversion to YUV here only RGB formats can be set on the capture device =
+nodes.
+
+Hrm, sorry - my question is why we went from 12 bit to 10 bit in the
+example. Maybe we need to document the capabilities of each stage if the
+bitdepth will be reduced by force somewhere along the pipe?
+
+> >> +resizer's source pad. We can then configure a capture format like NV1=
+2 (here in
+> >> +its multi-planar variant)
+> >> +
+> >> +.. code-block:: none
+> >> +
+> >> +    media-ctl -V "'mali-c55 resizer fr':1[fmt:YUV10_1X30/1920x1080]"
+> >> +    yavta -f NV12M -s 1920x1080 -c10 /dev/video0
+> >> +
+> >> +Capturing RGB data from the source and processing it with the resizers
+> >> +----------------------------------------------------------------------
+> >> +
+> >> +The Mali-C55 ISP can work with sensors capable of outputting RGB data=
+. In this
+> >> +case although none of the image quality blocks would be used it can s=
+till
+> >> +crop/scale the data in the usual way.
+> >> +
+> >> +To achieve this, the ISP's sink pad's format is set to
+> >> +MEDIA_BUS_FMT_RGB202020_1X60 - this reflects the format that data mus=
+t be in to
+> >> +work with the ISP. Converting the camera sensor's output to that form=
+at is the
+> >> +responsibility of external hardware.
+> >> +
+> >> +In this example we ask the test pattern generator to give us RGB data=
+ instead of
+> >> +bayer.
+> >> +
+> >> +.. code-block:: none
+> >> +
+> >> +    media-ctl -V "'mali-c55 tpg':0[fmt:RGB202020_1X60/1920x1080]"
+> >> +    media-ctl -V "'mali-c55 isp':0[fmt:RGB202020_1X60/1920x1080]"
+> >> +
+> >> +Cropping or scaling the data can be done in exactly the same way as o=
+utlined
+> >> +earlier.
+> >> +
+> >> +Capturing raw data from the source and outputting it unmodified
+> >> +-----------------------------------------------------------------
+> >> +
+> >> +The ISP can additionally capture raw data from the source and output =
+it on the
+> >> +full resolution pipe only, completely unmodified. In this case the do=
+wnscale
+> >> +pipe can still process the data normally and be used at the same time.
+> >> +
+> >> +To configure raw bypass the FR resizer's subdevice's routing table ne=
+eds to be
+> >> +configured, followed by formats in the appropriate places:
+> >> +
+> >> +.. code-block:: none
+> >> +
+> >> +    # We need to configure the routing table for the resizer to use t=
+he bypass
+> >> +    # path along with set formats on the resizer's bypass sink pad. D=
+oing this
+> >> +    # necessitates a single media-ctl command, as multiple calls to t=
+he program
+> >> +    # reset the routing table.
+> >> +    media-ctl -R "'mali-c55 resizer fr'[0/0->1/0[0],2/0->1/0[1]]"\
+> >> +    -V "'mali-c55 isp':0[fmt:RGB202020_1X60/1920x1080],"\
+> >> +       "'mali-c55 resizer fr':2[fmt:RGB202020_1X60/1920x1080],"\
+> >> +       "'mali-c55 resizer fr':1[fmt:RGB202020_1X60/1920x1080]"
+> >> +
+> >> +    # Set format on the video device and stream
+> >> +    yavta -f RGB565 -s 1920x1080 -c10 /dev/video0
+> >> +
+> >> +References
+> >> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >> +.. [1] https://git.linuxtv.org/v4l-utils.git/
+> >> +.. [2] https://git.ideasonboard.org/yavta.git
+> >> +.. [3] https://developer.arm.com/Processors/Mali-C55
+> >> diff --git a/Documentation/admin-guide/media/v4l-drivers.rst b/Documen=
+tation/admin-guide/media/v4l-drivers.rst
+> >> index f4bb2605f07e..af033c892808 100644
+> >> --- a/Documentation/admin-guide/media/v4l-drivers.rst
+> >> +++ b/Documentation/admin-guide/media/v4l-drivers.rst
+> >> @@ -17,6 +17,7 @@ Video4Linux (V4L) driver-specific documentation
+> >>          imx7
+> >>          ipu3
+> >>          ivtv
+> >> +       mali-c55
+> >>          mgb4
+> >>          omap3isp
+> >>          omap4_camera
+> >> --=20
+> >> 2.34.1
+> >>
 
