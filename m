@@ -1,74 +1,73 @@
-Return-Path: <devicetree+bounces-45801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEEB5866B90
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 08:58:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CACE866BA0
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 09:01:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1DE1A1C2181A
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 07:58:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6FF661C20433
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 08:01:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3F301C2B3;
-	Mon, 26 Feb 2024 07:58:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95AA41C28F;
+	Mon, 26 Feb 2024 08:01:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uxz2Kb5b"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FJks3vWa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F8761C28F
-	for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 07:58:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFFA81CA83
+	for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 08:01:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708934308; cv=none; b=ehjTSPYkbpmXdb1/HFp6NQP2GCGuzq3aNb/7AfdIu18hT+UNgWM3UhF5z0JEaDKBDsNIkTB90JF1jpZW4e0UwN/jj61OuiZD5H+3u54VXmAs/n6/O5N2nPsU+aRyPhNMiIFSACyuBNoAZlFvsWoigBUMfIDupB/etdYILpWxeHk=
+	t=1708934514; cv=none; b=IjwwaHUoJqYyaVfXNO1MPXUVLTdgwrPXCiNBkyiVsIAnHM8B3PoUk2xe0+Q3lCY/PxTwi2ronZOcbKeebHv0GQWTiqVroACEmnsKJTvq3lx2L9eiUS/cEeDNOkxvj7Vq7m1HAqKyqrhk74MUGgdrfIXDGRFe47GFLHuUdQfZ0N8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708934308; c=relaxed/simple;
-	bh=EVPVNEhV2DDRHVZkNGK6fIg9jNzIJvd0vCYgUD07hdo=;
+	s=arc-20240116; t=1708934514; c=relaxed/simple;
+	bh=VGxWxy9skHW9/UiaM1LL46KGhCSFefhCm25LomCpg5g=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=COXzqJ9EDKSn6sPEOt88Tv6z6q0eMvWNnK2hOU4Sq8WSVqUfxctHZepaoQuu1OZ5hyCCdB/JwPKnLfGzpkADIIr4kurnEcLZVeO9UeA+aCt3guVl5J7ipWxsoZrS56mBBOJ7KsE4AficWQ+oWA5tkkvCD0Cyt9fFtcIdjPeRmMk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uxz2Kb5b; arc=none smtp.client-ip=209.85.218.53
+	 In-Reply-To:Content-Type; b=mTin6wEpWi3MVlZdFv4HgSEqjVcHQtH0kvhlrtj4xTixi/a4o6bvgFTjJ79sWIONaxkg25d0VGyxQQiOsbY9efsesOegyTdWq/sBJiZ2DvzZv5Vv2K4RH7BUuGBXWIpW7RUddEZvKwANPUvtWMJeujGEIuqmXCFX6vdRjnN8vAE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FJks3vWa; arc=none smtp.client-ip=209.85.208.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a3f829cde6dso300440866b.0
-        for <devicetree@vger.kernel.org>; Sun, 25 Feb 2024 23:58:26 -0800 (PST)
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-563b7b3e3ecso3749857a12.0
+        for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 00:01:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708934305; x=1709539105; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708934511; x=1709539311; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=J/wnw05gknLy+1IaMFQLqgbRDHNCFWf3yMo9lajJWjE=;
-        b=uxz2Kb5b5CBQVsonGrnO3dKoiq36h9XfEmO2o+8k2/ce6uxojxMo2Uc9c8rJ+VEraV
-         +EQ+8VXi9f+OLGAovbfV3BZFOGHMdy9R02snQuyPrMmHd6Zu0eRs5IKFmg6U8cpzkduM
-         70TTL/8ouAmEggZn86YDueL6A/AJ9coxZHUIXZ+BpZifiAUcgZoTzCeWJV3yF0oeNQ4k
-         viMmT1I04gOdLbUaZVxmULQ1IiYpdXeUsvHb4fs5W+eQJfL63d97RY8k560dcvYTD7F8
-         Q9reNw/axdhFdDRJ92npw2EXZmoF3byrwA+29TXTNI15VPHn5BZvcttEN+it5pt2m4vX
-         UWtA==
+        bh=kUXF7KhDywrA7hvLz9/cRwe+/meEyC6uqfp1PEa82vQ=;
+        b=FJks3vWaxGRA6GHL83Kg3AdOs+WZ0m/kBD23hdMtxojBkdyaPddNukofmw257PSRK+
+         nth/MUcJSSFzNOw/DwCXRxZzmZzzYNY4CCwRjmQPiBwGUzP4S+lOWpCBP3Qt4ger3Xv/
+         tsRgGST56HbiqUdjZ0lrUvwsRDhEVTEkM49p+basBWBgx8WFG6BMxXpRZ9BW6DI6isZf
+         IS8IjFE9wuS0Ux5xTjSTSyiBPmcw91zb5nU3rDCju1YafXHCuJ3SDVn8RzaD3DbiAmkP
+         wSMW0JREQz9x9Vx1VCSXeYi3f/TN3ex1rYTPB/9m/3kbUZ4M1r5/ER9fsSBga3n+cL7X
+         l3Cg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708934305; x=1709539105;
+        d=1e100.net; s=20230601; t=1708934511; x=1709539311;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=J/wnw05gknLy+1IaMFQLqgbRDHNCFWf3yMo9lajJWjE=;
-        b=Y0ABf9jOU2GnqEd5EBHCk/7JNOjVkT9tZPGRMa8n3EtsUXf+6YHMeCSQxKQu1AOheG
-         Mq31vvTJMLvjOdyhXRKcW1pd6MVdS60k+AUr+c8F2BvshWcYQz7I4f0gHeGOKctgNNNP
-         QAQQk/XxiAIPaxmX9aVVHp7ELcTCq2D+suzcXSucCqh2csPn4yL+nkGPbSSK/CGEi8QY
-         FrH63HAU47tzeMzgBJ2S5kyQ58I8qcbG4eQflttHZJZPZI5a0h6Zr2iKlwpZYkiQhVRj
-         sGTMBjwM00lhaJlvszn0j8RHtyiFaeynObnEdJJnaq/EsDYLUFl4TogfoAmI3gOrSakG
-         SofQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUTeqwGGgQc3+U+UOnu51gyFYOlwb7dy/WhGKlPABK6xvbrz77qRRdEoI1xHzqv8WVItsXBiUoR0RpQ6S+Z/LccQTn7rLNz5u38SA==
-X-Gm-Message-State: AOJu0YwlT/dW8aHPS+Fb3TVp3VcU6MNuJh9yVSbqJiwyvqeq5NJ7iuzp
-	Bk4gPNoXuFjhxqavrxbUw931Fu1Whp0d01TGRsn0y8AC2oOXiZfCs52I4ChnTMs=
-X-Google-Smtp-Source: AGHT+IGM5h06d8qUVbpLhPBoF+qOejX/68LbwMDNyRPmC6A/w+9LoVxy6tPWUQSmeOtv5GZBTfCBVA==
-X-Received: by 2002:a17:906:f9d4:b0:a43:4c31:c4f1 with SMTP id lj20-20020a170906f9d400b00a434c31c4f1mr1156222ejb.11.1708934305379;
-        Sun, 25 Feb 2024 23:58:25 -0800 (PST)
+        bh=kUXF7KhDywrA7hvLz9/cRwe+/meEyC6uqfp1PEa82vQ=;
+        b=DJHqkO8e/E20EuQqPeSSLa/16u0b05S4Me2YQtbwKrES1zx8zqcpxY2XxsXBS48c5C
+         0IJKK+7j8E1ufJkt+CIPVbQpMOfcYn8LtB+I/QvXkdHKmNmGusbFHFSTx5FJHuGrEa+J
+         fQBkh9viXs5AxcfEU7gipFtPLCmVRCzDKIstgBM3mbFYLg3bTN9EQO8jAKYbzU3GWdnk
+         cQsmEIkC2VqA0pDMfj8NsmfD33hHww7LVRuXBkJWNiVnJa9hFhFhwBOWpcs8WTiX9KnK
+         NwgAHcuOYAvBypLqDv2cOPKOHwpNl4BgnHk9JBqii/BB0odxkIodFkYE7UjBUbyML+zD
+         8l2Q==
+X-Gm-Message-State: AOJu0Yxl2KaiQWxzrrMF1txujXJYJZ1+bXBg/WV+suEkj4+WQ6wbS2h1
+	xMtOunhOInx2Ny9a6RgEHmlLCD3EpAQK1zlNjiAziUeLEoopo3PgMmhbsPm/low=
+X-Google-Smtp-Source: AGHT+IFyWjHSVF4dvCCMiYIPLpQhIt9lexeXyEpjA5Mi3B9gAbJQGNDvRjTpLOT8qPFZXZkBH3mz/Q==
+X-Received: by 2002:aa7:d297:0:b0:563:ccd1:26bd with SMTP id w23-20020aa7d297000000b00563ccd126bdmr3970060edq.2.1708934511019;
+        Mon, 26 Feb 2024 00:01:51 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id w9-20020a1709064a0900b00a3d153fba90sm2146703eju.220.2024.02.25.23.58.23
+        by smtp.gmail.com with ESMTPSA id r22-20020aa7cfd6000000b0056536eed484sm2102206edy.35.2024.02.26.00.01.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 25 Feb 2024 23:58:24 -0800 (PST)
-Message-ID: <c05757e1-26c0-4cff-b7a0-c8cb418b7895@linaro.org>
-Date: Mon, 26 Feb 2024 08:58:23 +0100
+        Mon, 26 Feb 2024 00:01:50 -0800 (PST)
+Message-ID: <5ac7534e-3fc3-4e96-84af-035ea30462ac@linaro.org>
+Date: Mon, 26 Feb 2024 09:01:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,21 +75,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v5 2/7] dt-bindings: net:
- hisilicon,hisi-femac-mdio: remove clocks
+Subject: Re: [PATCH v2 1/2] dt-bindings: simple-pm-bus: Add optional resets
 Content-Language: en-US
-To: forbidden405@outlook.com, Yisen Zhuang <yisen.zhuang@huawei.com>,
- Salil Mehta <salil.mehta@huawei.com>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh+dt@kernel.org>,
+To: forbidden405@outlook.com, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>
-Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240223-net-v5-0-43b22d39c013@outlook.com>
- <20240223-net-v5-2-43b22d39c013@outlook.com>
+ Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240223-b4-bus-v2-0-da8ba83c1a5f@outlook.com>
+ <20240223-b4-bus-v2-1-da8ba83c1a5f@outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -136,22 +130,52 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240223-net-v5-2-43b22d39c013@outlook.com>
+In-Reply-To: <20240223-b4-bus-v2-1-da8ba83c1a5f@outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/02/2024 14:28, Yang Xiwen via B4 Relay wrote:
+On 23/02/2024 11:10, Yang Xiwen via B4 Relay wrote:
 > From: Yang Xiwen <forbidden405@outlook.com>
 > 
-> This integrated MDIO bus does have a dedicated clock. Remove it. The old
-> binding is wrong.
+> For some on-soc buses, it is also needed to deassert the resets before
+> access. Document it in the binding.
 > 
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+> ---
+>  Documentation/devicetree/bindings/bus/simple-pm-bus.yaml | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml b/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
+> index 182134d7a6a3..430638104980 100644
+> --- a/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
+> +++ b/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
+> @@ -14,8 +14,9 @@ description: |
+>    driver, as it's typically initialized by the boot loader.
+>  
+>    However, its bus controller is part of a PM domain, or under the control
+> -  of a functional clock.  Hence, the bus controller's PM domain and/or
+> -  clock must be enabled for child devices connected to the bus (either
+> +  of a functional clock, and it might have a reset control signal.  Hence,
+> +  the bus controller's PM domain and/or clock must be enabled, reset control
+> +  signal must be deasserted for child devices connected to the bus (either
+>    on-SoC or externally) to function.
+>  
+>    While "simple-pm-bus" follows the "simple-bus" set of properties, as
+> @@ -49,6 +50,8 @@ properties:
+>      # Required if clocks is absent, optional otherwise
+>      minItems: 1
+>  
+> +  resets: true
 
-Slow down with your patches... Multiple series every day is a bit too
-much. Or help reducing the burden and review other people's work.
+If you have to toggle some resets (and often actually in some order),
+then it is not a simple-bus anymore.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This looks more and more like a one-binding-to-rule-them-all.
+
+Especially that description clearly states: "does not need real driver"
+and "typically initialized by the boot loader", but here I see more and
+more of a driver, and more and more of doing things by Linux.
 
 Best regards,
 Krzysztof
