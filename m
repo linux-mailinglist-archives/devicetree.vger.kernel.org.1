@@ -1,89 +1,125 @@
-Return-Path: <devicetree+bounces-45727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2AC38667D6
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 03:11:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFD6B86681B
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 03:24:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CD06281A2D
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 02:11:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68A6B1F21264
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 02:24:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD36ED53C;
-	Mon, 26 Feb 2024 02:10:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56DEADF44;
+	Mon, 26 Feb 2024 02:23:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="Vy/IF6A5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RThGUQnS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD0BB14F7F;
-	Mon, 26 Feb 2024 02:10:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 643F13233;
+	Mon, 26 Feb 2024 02:23:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708913458; cv=none; b=E4b4M++nqC5XrIBRnqImwV+YKNKi6qSgHKEucceNxuUQ2kuCimfJnn3TD3Jl/x5w8WQitnYvaqojLBFPfFLjwF643tz5qoFl5osmISJcTnSmRg16fnxVC8TPNKw3VJqtkNqYDBy+iISvCDDP56Y/bEeo3r6DKCNRoXXzyMkYduM=
+	t=1708914235; cv=none; b=JLBkdl+/a4PIMaN6BrbqkxK5gMPbhDwrGhRb2JcbT4C/5sAOLQ6REX0x0OCtJWWTTKJ/wihNGzaZn4Yy4Lj1sYPllaA2M2pOceXDL/EYyT1rVaTR2k3SiZxvKvV/GgoPlnGfcaZWLBz5WmVsoFFy3BDydxhm+pyTm3kJyOiveLc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708913458; c=relaxed/simple;
-	bh=1PGDAlwqkKduNR0qATzDOgp6IwGGdfJr+451JYSH7vQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NXSoir5UR5RnRIRiCjyXFJ06pDzlqwRrG1HzX2vrN+W8OLE4iPF+GOnkLygm06z9jyRaZal9bxkZwWC2N0hO70qmCQ827c/NazoNXx8UgD2HGkcqB/9WFdYqxUks1wqjKXJ1Xu8udhVEJV8ZFRcbWpx/Z4DNf+gZe4z9F1UeIWw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=Vy/IF6A5; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-From: Tobias Schramm <t.schramm@manjaro.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1708913446;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=uByT/CuH2FQvqhN2Aqa6wrgcmxTYFdlYUbt9MyV6+lw=;
-	b=Vy/IF6A5rHclKRF+PcTbsTLrMGt7tTjCwvRu8wxHuShA9zbSvDEZ5LdRmiqIw0KfDaME0n
-	q31XKSx2JKtOUSuKJFuwzHLkvwbfsSeIklP0fPxNBIhK51uALmSW8k8YYF3s+tZH8nv2pA
-	Bdl+IjQhvVKwAanIKGWZchxT23dC4jkPCDLqbpSITeCyVB1IHueopWPeL80wsYbUUF0ZK2
-	B4Y8X0EeR0J1cKZ+JbrX1vn5Plht3FkpWsQ6nih9CiLnnY65id4nP6gNi+g6MpEi6YYJQE
-	T5nJek/aAp/xs3mnG6JG40yZTBCcjMasQ2zJ7pfvFxU6J36eYxjD/EYvdoej6w==
-To: Miquel Raynal <miquel.raynal@bootlin.com>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Tobias Schramm <t.schramm@manjaro.org>
-Subject: [PATCH] dt-bindings: nvmem: fix tlv layout I2C eeprom example
-Date: Mon, 26 Feb 2024 03:10:17 +0100
-Message-ID: <20240226021017.1470869-1-t.schramm@manjaro.org>
+	s=arc-20240116; t=1708914235; c=relaxed/simple;
+	bh=WRNR2Yde+eM1MDT0PjmQe6YBmq8+6bOG11aatMwggeQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=l9BOI7ddKJrTgqwTeWCCoHucgmgWStdQOF4kcipC1C6nDc6f5n5qDsv0511Se8STWFbOyPqk+hClQBkFjRgztxiNmvtoWptnjpCuT4gHvzUYY/38CA28UKue5tu88of45OItldzPylH0+SWKZQP8cBR+gQiQdQPISqWgMpSUJdA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RThGUQnS; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a26fa294e56so445380266b.0;
+        Sun, 25 Feb 2024 18:23:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708914232; x=1709519032; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WRNR2Yde+eM1MDT0PjmQe6YBmq8+6bOG11aatMwggeQ=;
+        b=RThGUQnSObw1HgwnOAT1PXWlnJk1QN9XPg2tIwZIPwWykwgUd68tHIHP2plpa0tE7B
+         7WZe1cpoGsRXzt+eQtJQZBrV5nGoAZR3YeRlEEfGZxKWF1c6vCDBXNSdYjDg88LougIT
+         JFHbpA827r5S+3/GE/8YRRJGOzlI9Yfyh+uFhB/94GQJmlKBis5gzExneODuyND4WBd6
+         JCrBjJa1y825JF25uTBqgkyVS6biyuzk+kJZPfA3s+x5Nlmzg450mg9yOqEny+WQ14vs
+         VIeVWNpZ89vCvcquU3ZDyxTfT0iW/zvjzDg9q/5xUPjg3tSLzAuVgcfUUDv7w6oZ9373
+         HHqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708914232; x=1709519032;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WRNR2Yde+eM1MDT0PjmQe6YBmq8+6bOG11aatMwggeQ=;
+        b=AZe/6uMlETpRmA1zMty43DpMwDVDn+MMY2AvF8pp6vnFxy75ev/ZbR47h7TW96/Eas
+         5WCKvr3pihyxS+95yjM1G0jCQIx7aHb0/EUlnLXdTY5ItVN5ropSITxTca+E0sXNTWmo
+         UvdvpNeYxAIphtQmGgELyW0tVuYitgG8FbrQdSJ1gKzv43MwccKjCIIZqTmy3xkdr4Hf
+         tat1CiKpz4d4nHft/Nzr0IFidiLCeY1rUp/tdiIbtsf2+YeYBTGVcaLm2bQAwfWu75e8
+         wlYR8mgdlRSGVABa2AZpvPiZN/Wab/AzOC8ZdOU1Haaf4h1kajqR1NAwCnpoaIDpxzdG
+         QzFw==
+X-Forwarded-Encrypted: i=1; AJvYcCUPbhhIb2ttt6UE0T/SUfJlGiXON8MD0KJqWIZOqfy/3zYvzRvIBtzKIH38fdKN0UCwRzCnTGQuDiFC2vVizbjvjj+OWL9lXFcD4tIXgeaUxL4QFUvJzvjHKSRJ/JCTqT7GJxBdcXs6qWXiAexAI8OE6H2mp/oqyCn8w9q8L3dYQsaBG5s=
+X-Gm-Message-State: AOJu0Yy+wcDAKeCU5JQV/SAdQ/evKf61rHKU59PvZu0C7YMjVY0k5aq2
+	SCM9cZAFPpNnLzdINR4hmWniaWDfXYGh4lcn4BzlvyqNqf6JVQYfvUzZ2qyIPLDa5CSTkgKtdWi
+	BGmdb2SP+6W/Odz6FjXXcVMvlGb0=
+X-Google-Smtp-Source: AGHT+IF1LO8GFispgremVVqbGf6oZjhb/+i4rsMZg2vxLPqRMyLjKiB/rkSWNNcmVULSYlt8LOTOEKMK167ekpSbAVo=
+X-Received: by 2002:a17:906:688a:b0:a43:4ac2:f16b with SMTP id
+ n10-20020a170906688a00b00a434ac2f16bmr895377ejr.13.1708914231478; Sun, 25 Feb
+ 2024 18:23:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=t.schramm@manjaro.org smtp.mailfrom=t.schramm@manjaro.org
+References: <20240225213423.690561-1-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20240225213423.690561-1-chris.packham@alliedtelesis.co.nz>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Mon, 26 Feb 2024 04:23:15 +0200
+Message-ID: <CAHp75Vc9OBtxdKSmk9Uu9G3j+mfN8+9prTEVx3LyUcdBYFEqwg@mail.gmail.com>
+Subject: Re: [PATCH 0/3] auxdisplay: 7 segment LED display
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: ojeda@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, andrew@lunn.ch, gregory.clement@bootlin.com, 
+	sebastian.hesselbarth@gmail.com, geert@linux-m68k.org, pavel@ucw.cz, 
+	lee@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-leds@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-24Cxx eeproms are I2C devices, not SPI.
+On Sun, Feb 25, 2024 at 11:34=E2=80=AFPM Chris Packham
+<chris.packham@alliedtelesis.co.nz> wrote:
+>
+> This series adds a driver for a 7 segment LED display.
+>
+> I'd like to get some feedback on how this could be extended to support >1
+> character. The driver as presented is sufficient for my hardware which on=
+ly has
+> a single character display but I can see that for this to be generically =
+useful
+> supporting more characters would be desireable.
+>
+> Earlier I posted an idea that the characters could be represended by
+> sub-nodes[1] but there doesn't seem to be a way of having that and keepin=
+g the
+> convenience of using devm_gpiod_get_array() (unless I've missed something=
+).
 
-Signed-off-by: Tobias Schramm <t.schramm@manjaro.org>
----
- .../devicetree/bindings/nvmem/layouts/onie,tlv-layout.yaml      | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+It seems you didn't know that the tree for auxdisplay has been changed.
+Can you rebase your stuff on top of
+https://git.kernel.org/pub/scm/linux/kernel/git/andy/linux-auxdisplay.git/l=
+og/?h=3Dfor-next?
+It will reduce your code base by ~50%.
 
-diff --git a/Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.yaml b/Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.yaml
-index ee8ac322332d..4c981935f76b 100644
---- a/Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.yaml
-+++ b/Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.yaml
-@@ -104,7 +104,7 @@ additionalProperties: false
- 
- examples:
-   - |
--    spi {
-+    i2c {
-         #address-cells = <1>;
-         #size-cells = <0>;
- 
--- 
-2.43.2
+WRT subnodes, you can go with device_for_each_child_node() and
+retrieve gpio array per digit. It means you will have an array of
+arrays of GPIOs.
 
+> [1] - https://lore.kernel.org/lkml/2a8d19ee-b18b-4b7c-869f-7d601cea30b6@a=
+lliedtelesis.co.nz/
+
+
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
