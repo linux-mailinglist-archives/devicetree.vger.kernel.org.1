@@ -1,247 +1,228 @@
-Return-Path: <devicetree+bounces-45851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D059B867065
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 11:17:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01AC7867057
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 11:16:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D62FD1C27CA4
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:17:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 252301C2571B
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:16:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FCD21CFA8;
-	Mon, 26 Feb 2024 09:54:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C54EF3D55B;
+	Mon, 26 Feb 2024 09:52:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MwHNQKxy"
+	dkim=pass (1024-bit key) header.d=mistralsolutions.com header.i=@mistralsolutions.com header.b="i5ik96/D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from egress-ip12b.ess.de.barracuda.com (egress-ip12b.ess.de.barracuda.com [18.185.115.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD59F14280;
-	Mon, 26 Feb 2024 09:54:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5280D2D029
+	for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 09:52:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.185.115.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708941286; cv=none; b=flAfX2mSLXKatCyQPAXvooVZsYlW0gIHzSt0pXURny9YrRrNMN/vKXAFbJav/ymi4Res51fqPExkNKmlpvVQ7W3E4CYoBQcmqUD3/8lET0PFH9R1K6jqT2+Q+oYwaFpq25MvqSiogICBjWiRkyqMxTe5xJFbqkCsH0M8apEliaM=
+	t=1708941178; cv=none; b=kOHBhG+QfYP1mv0j7O+bEGTcoXUi9DqXxD2hvICNf0arxfJ7vx4bBLqwf8FzgZIvmfYJVFtL6XuXRONyqomgMUco6/XH6z19HAFsg2wERznb3Ah3TojyQ7ouRi+l9AWvPkWdVcT5kt5f+Ut44ul/9U5759VB30gDt+v5PT7S5kE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708941286; c=relaxed/simple;
-	bh=enB6Xir2DeuVTnHYJjI3T8tlXiRYYBFbJ7oEag0B5HQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hs81cbDautfHtX+lpXABoriy+rkPkpkuhRfIU0WMcnTNJMLzPD1O9KjpYDsdSk708Kyb0PmwzjahAWyUFWJf40JVwOpRhj1ePUbKCyszGzrOHSa8NdVw8NivrD2DXdeaUV65pkEAcix5IE1j5i/7BMaNvyxLGFiz3KhnLBsZVxA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MwHNQKxy; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1708941285; x=1740477285;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=enB6Xir2DeuVTnHYJjI3T8tlXiRYYBFbJ7oEag0B5HQ=;
-  b=MwHNQKxyapHMpnWbJbPGAA4PsVaQsL+s7G2Fg2/MFrzecbTCK77RLLEQ
-   XvrWJwX2SrndPLwan8IgkRXxHsX2+aeDyBkGFzFv2VZ5Qd+iWiDAV9uQ6
-   KLl4sge3gGLgG7m5ccmdsKNVHdvEvXskGPPRhCDIgLvqrYzeIXB64cvH3
-   PdvSqrBehmkL46bPEUwklt9a747rjyb5Yh9TaAuTN28kVzSgQPnjueKL7
-   EcSxFUWdQ9hxwav9cyZB9c4SJQCXDvsTMLp7gKZcxmJV50jjDf7ZeupO/
-   nWDM0ewyWqzVQiHrqLpAvh0L4nEHnMFlvQZ5KVx6fQMQLXkVXPD6RpCkH
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10995"; a="13859654"
-X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; 
-   d="scan'208";a="13859654"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Feb 2024 01:54:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; 
-   d="scan'208";a="11205325"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by fmviesa003.fm.intel.com with ESMTP; 26 Feb 2024 01:54:40 -0800
-Date: Mon, 26 Feb 2024 17:50:38 +0800
-From: Xu Yilun <yilun.xu@linux.intel.com>
-To: Charles Perry <charles.perry@savoirfairelinux.com>
-Cc: mdf@kernel.org, avandiver@markem-imaje.com, bcody@markem-imaje.com,
-	Wu Hao <hao.wu@intel.com>, Xu Yilun <yilun.xu@intel.com>,
-	Tom Rix <trix@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michal Simek <michal.simek@amd.com>, linux-fpga@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 3/3] fpga: xilinx-selectmap: add new driver
-Message-ID: <Zdxe7mvBbHDHzbiS@yilunxu-OptiPlex-7050>
-References: <20240221195058.1281973-1-charles.perry@savoirfairelinux.com>
- <20240221195058.1281973-4-charles.perry@savoirfairelinux.com>
+	s=arc-20240116; t=1708941178; c=relaxed/simple;
+	bh=KPcwfWdpX8YK0QQBA1KIIQNBU2j+KBxkMlHqfMTxePI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=HkJoDzVjS89Rgiz/O3ksMdddQTUZ9xmIzOcnycsd+L+FKDK0JliCoRU3bRi2r9WFK0jpm51Oqdog6VBMu1xe1AdJkgGKGLfDTuBoEbf6+ga6ug8D/ISfw6hntCii2J0DvzlA86V2DHLiKch61huHLVanAL5OEUhSXDWzXpVo2bU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mistralsolutions.com; spf=pass smtp.mailfrom=mistralsolutions.com; dkim=pass (1024-bit key) header.d=mistralsolutions.com header.i=@mistralsolutions.com header.b=i5ik96/D; arc=none smtp.client-ip=18.185.115.216
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mistralsolutions.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mistralsolutions.com
+Received: from mail-oa1-f71.google.com (mail-oa1-f71.google.com [209.85.160.71]) by mx-outbound19-13.eu-central-1b.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Mon, 26 Feb 2024 09:52:47 +0000
+Received: by mail-oa1-f71.google.com with SMTP id 586e51a60fabf-214d020850eso3048671fac.2
+        for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 01:52:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mistralsolutions.com; s=google; t=1708941167; x=1709545967; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=tKQNwvH/UeIkXyNOqlphLDdRi9b8R2L805pgQZbjTtE=;
+        b=i5ik96/DhzPZ5kT8NW0/sjtd7DSqIy3gfBWYSivpaCF1zQyYttXkrPIIteEpyqznjw
+         0g/6cQaS9Kixxon54k5SCaqEnYSO1ofJMlEXXdgtPTSrN3NaP3osA6AE4K3RL2xHaRev
+         w5vNA03fCWe3TUN82ZCzrubhZS1I7XigQBlYY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708941167; x=1709545967;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tKQNwvH/UeIkXyNOqlphLDdRi9b8R2L805pgQZbjTtE=;
+        b=wcyOZZgXr3ZQoDjrF6nIV4yR+RQXO43JHgnM8KnBYWxF/dQ7nnGeYq8ncUCJBxkBqG
+         e2XzguBVZfpT0IBIpZsEii79++uGp0ywG+9nFWAGHuUGX9z0ldWI/keLCMVVGLMiHX5X
+         jpoDPxEVCs1E5TpSA+JTPyVB+oJ+t81O3WKfo7V7IqCH4ASejK2rmC0Naazo9y0nJg8W
+         m+bFiy8X0Plnl1OYgSZJ5dOJR/rYFFkAgDYAZF74XspsFdcvzfJ1pedmhMJjQ/m6W1nl
+         +gKsbhClaanqQzx0ZsQfw1ikzgxGcg1P4JSL2WnRhg2nzrbphnXC0T+zqWJrN94aNK/5
+         +qGg==
+X-Forwarded-Encrypted: i=1; AJvYcCVIgiJYgyHTix++mXgvGRa18HhGs5i6ovZulc0vgBOOb584skkkUtNWsJ/j6SQ2/mA6oSQSDqKItTWStPtYWH2OSlNMtvvIJjVUJQ==
+X-Gm-Message-State: AOJu0YzxEh+v2FnzO3HJhdCZ2SesSYA1MtwkfDYzJveJTTo+ZERyFLuY
+	3G4aTYWzp6hhe5ok/aHfZB8B6zQw5x9Btdes8N8QOP/yDxTImfw/emFCjr2Uauam7fakt6Iz4yY
+	8uQhC83atyd1jhtgJPPH5lEHQ/lkv6nMocfR1utjzyO2v0kXNZ7AfFSPF/HGXt4yPED5W/jd1EJ
+	ZToXwK8KWdRWX+XTPLZw==
+X-Received: by 2002:a05:6871:28a9:b0:21f:67a:198 with SMTP id bq41-20020a05687128a900b0021f067a0198mr8304857oac.56.1708941167078;
+        Mon, 26 Feb 2024 01:52:47 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFqQCb/6BUEcCnB9ST+4FjZQjRJInWfuJCpWHsp3I/vbtkGbQzkeMWlC+S1O3eY8mxcJ7RmdQ==
+X-Received: by 2002:a05:6871:28a9:b0:21f:67a:198 with SMTP id bq41-20020a05687128a900b0021f067a0198mr8304852oac.56.1708941166815;
+        Mon, 26 Feb 2024 01:52:46 -0800 (PST)
+Received: from LAP568U.mistral.in ([106.51.69.35])
+        by smtp.gmail.com with ESMTPSA id h10-20020a63f90a000000b005dc4829d0e1sm3545202pgi.85.2024.02.26.01.52.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Feb 2024 01:52:46 -0800 (PST)
+From: Sinthu Raja <sinthu.raja@mistralsolutions.com>
+X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
+To: Nishanth Menon <nm@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Udit Kumar <u-kumar1@ti.com>
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Sinthu Raja <sinthu.raja@ti.com>
+Subject: [PATCH V3] arm64: dts: ti: k3-am68-sk-som: Add support for OSPI flash
+Date: Mon, 26 Feb 2024 15:22:31 +0530
+Message-Id: <20240226095231.35684-1-sinthu.raja@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240221195058.1281973-4-charles.perry@savoirfairelinux.com>
+Content-Transfer-Encoding: 8bit
+X-BESS-ID: 1708941167-304877-12446-3258-1
+X-BESS-VER: 2019.1_20240214.1700
+X-BESS-Apparent-Source-IP: 209.85.160.71
+X-BESS-Parts: H4sIAAAAAAACA4uuVkqtKFGyUirNy1bSUcovVrIyNjI1BrIygIKWhsmJBhZGBi
+	lppubJJubGSSnGycZGSUZJKWlJhqlGBkq1sQATCvmSQQAAAA==
+X-BESS-Outbound-Spam-Score: 0.40
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.254481 [from 
+	cloudscan22-15.eu-central-1b.ess.aws.cudaops.com]
+	Rule breakdown below
+	 pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+	0.40 BSF_SC0_SA085b         META: Custom Rule SA085b 
+	0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
+X-BESS-Outbound-Spam-Status: SCORE=0.40 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND, BSF_SC0_SA085b, BSF_SC0_MISMATCH_TO
+X-BESS-BRTS-Status:1
 
-On Wed, Feb 21, 2024 at 02:50:49PM -0500, Charles Perry wrote:
-> Xilinx 7 series FPGA can be programmed using a parallel port named
-> the SelectMAP interface in the datasheet. This interface is compatible
-> with the i.MX6 EIM bus controller but other types of external memory
-> mapped parallel bus might work.
-> 
-> xilinx-selectmap currently only supports the x8 mode where data is loaded
-> at one byte per rising edge of the clock, with the MSb of each byte
-> presented to the D0 pin.
-> 
-> Signed-off-by: Charles Perry <charles.perry@savoirfairelinux.com>
-> ---
->  drivers/fpga/Kconfig            |  8 +++
->  drivers/fpga/Makefile           |  1 +
->  drivers/fpga/xilinx-selectmap.c | 97 +++++++++++++++++++++++++++++++++
->  3 files changed, 106 insertions(+)
->  create mode 100644 drivers/fpga/xilinx-selectmap.c
-> 
-> diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
-> index d27a1ebf40838..37b35f58f0dfb 100644
-> --- a/drivers/fpga/Kconfig
-> +++ b/drivers/fpga/Kconfig
-> @@ -67,6 +67,14 @@ config FPGA_MGR_STRATIX10_SOC
->  config FPGA_MGR_XILINX_CORE
->  	tristate
->  
-> +config FPGA_MGR_XILINX_SELECTMAP
-> +	tristate "Xilinx Configuration over SelectMAP"
-> +	depends on HAS_IOMEM
-> +	select FPGA_MGR_XILINX_CORE
-> +	help
-> +	  FPGA manager driver support for Xilinx FPGA configuration
-> +	  over SelectMAP interface.
-> +
->  config FPGA_MGR_XILINX_SPI
->  	tristate "Xilinx Configuration over Slave Serial (SPI)"
->  	depends on SPI
-> diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
-> index 7ec795b6a5a70..aeb89bb13517e 100644
-> --- a/drivers/fpga/Makefile
-> +++ b/drivers/fpga/Makefile
-> @@ -16,6 +16,7 @@ obj-$(CONFIG_FPGA_MGR_SOCFPGA_A10)	+= socfpga-a10.o
->  obj-$(CONFIG_FPGA_MGR_STRATIX10_SOC)	+= stratix10-soc.o
->  obj-$(CONFIG_FPGA_MGR_TS73XX)		+= ts73xx-fpga.o
->  obj-$(CONFIG_FPGA_MGR_XILINX_CORE)	+= xilinx-core.o
-> +obj-$(CONFIG_FPGA_MGR_XILINX_SELECTMAP)	+= xilinx-selectmap.o
->  obj-$(CONFIG_FPGA_MGR_XILINX_SPI)	+= xilinx-spi.o
->  obj-$(CONFIG_FPGA_MGR_ZYNQ_FPGA)	+= zynq-fpga.o
->  obj-$(CONFIG_FPGA_MGR_ZYNQMP_FPGA)	+= zynqmp-fpga.o
-> diff --git a/drivers/fpga/xilinx-selectmap.c b/drivers/fpga/xilinx-selectmap.c
-> new file mode 100644
-> index 0000000000000..b63f4623f8b2c
-> --- /dev/null
-> +++ b/drivers/fpga/xilinx-selectmap.c
-> @@ -0,0 +1,97 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Xilinx Spartan6 and 7 Series SelectMAP interface driver
-> + *
-> + * (C) 2024 Charles Perry <charles.perry@savoirfairelinux.com>
-> + *
-> + * Manage Xilinx FPGA firmware loaded over the SelectMAP configuration
-> + * interface.
-> + */
-> +
-> +#include "xilinx-core.h"
-> +
-> +#include <linux/platform_device.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/of.h>
-> +#include <linux/io.h>
-> +
-> +struct xilinx_selectmap_conf {
-> +	struct xilinx_fpga_core core;
-> +	void __iomem *base;
-> +};
-> +
-> +#define to_xilinx_selectmap_conf(obj) \
-> +	container_of(obj, struct xilinx_selectmap_conf, core)
-> +
-> +static int xilinx_selectmap_write(struct xilinx_fpga_core *core,
-> +				  const char *buf, size_t count)
-> +{
-> +	struct xilinx_selectmap_conf *conf = to_xilinx_selectmap_conf(core);
-> +	u32 i;
-> +
-> +	for (i = 0; i < count; ++i)
-> +		writeb(buf[i], conf->base);
-> +
-> +	return 0;
-> +}
-> +
-> +static int xilinx_selectmap_probe(struct platform_device *pdev)
-> +{
-> +	struct xilinx_selectmap_conf *conf;
-> +	struct resource *r;
-> +	void __iomem *base;
-> +	struct gpio_desc *csi_b;
-> +	struct gpio_desc *rdwr_b;
-> +
-> +	conf = devm_kzalloc(&pdev->dev, sizeof(*conf), GFP_KERNEL);
-> +	if (!conf)
-> +		return -ENOMEM;
-> +
-> +	conf->core.dev = &pdev->dev;
-> +	conf->core.write = xilinx_selectmap_write;
-> +
-> +	base = devm_platform_get_and_ioremap_resource(pdev, 0, &r);
-> +	if (IS_ERR(base))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(base),
-> +				     "ioremap error\n");
-> +	conf->base = base;
-> +
-> +	/* CSI_B is active low */
-> +	csi_b = devm_gpiod_get_optional(&pdev->dev, "csi", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(csi_b))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(csi_b),
-> +				     "Failed to get CSI_B gpio\n");
-> +
-> +	/* RDWR_B is active low */
-> +	rdwr_b = devm_gpiod_get_optional(&pdev->dev, "rdwr", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(rdwr_b))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(rdwr_b),
-> +				     "Failed to get RDWR_B gpio\n");
-> +
-> +	return xilinx_core_probe(&conf->core);
-> +}
-> +
-> +static const struct of_device_id xlnx_selectmap_of_match[] = {
-> +	{ .compatible = "xlnx,fpga-xc7s-selectmap", }, // Spartan-7
-> +	{ .compatible = "xlnx,fpga-xc7a-selectmap", }, // Artix-7
-> +	{ .compatible = "xlnx,fpga-xc7k-selectmap", }, // Kintex-7
-> +	{ .compatible = "xlnx,fpga-xc7v-selectmap", }, // Virtex-7
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, xlnx_selectmap_of_match);
+From: Sinthu Raja <sinthu.raja@ti.com>
 
-Does the driver have to be used with OF or not?
+AM68 SK has an OSPI NOR flash on its SOM connected to OSPI0 instance.
+Enable support for the same. Also, describe the OSPI flash partition
+information through the device tree, according to the offsets in the
+bootloader.
 
-If yes, please specify the reason and enforce in Kconfig.
-If no, please ensure it decently compiles without CONFIG_OF.
+Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+---
 
-Thanks,
-Yilun
+Changes in V3:
+Address review comments:
+   a. Fix the make dtbs_check error related to ospi pinctrl
+   b. Increase the partition 0 size to 1MB and update the following
+partitions start address accordingly.
 
-> +
-> +static struct platform_driver xilinx_selectmap_driver = {
-> +	.driver = {
-> +		.name = "xilinx-selectmap",
-> +		.of_match_table = xlnx_selectmap_of_match,
-> +	},
-> +	.probe  = xilinx_selectmap_probe,
-> +};
-> +
-> +module_platform_driver(xilinx_selectmap_driver);
-> +
-> +MODULE_LICENSE("GPL");
-> +MODULE_AUTHOR("Charles Perry <charles.perry@savoirfairelinux.com>");
-> +MODULE_DESCRIPTION("Load Xilinx FPGA firmware over SelectMap");
-> -- 
-> 2.43.0
-> 
-> 
+V2: https://lore.kernel.org/linux-arm-kernel/20240219075932.6458-1-sinthu.raja@ti.com/
+
+ arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi | 78 ++++++++++++++++++++++
+ 1 file changed, 78 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi b/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
+index 0f4a5da0ebc4..d3e869c250a2 100644
+--- a/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
+@@ -130,6 +130,24 @@ rtos_ipc_memory_region: ipc-memories@a8000000 {
+ 	};
+ };
+ 
++&wkup_pmx0 {
++	mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-pins {
++		pinctrl-single,pins = <
++			J721S2_WKUP_IOPAD(0x000, PIN_OUTPUT, 0) /* (D19) MCU_OSPI0_CLK */
++			J721S2_WKUP_IOPAD(0x02c, PIN_OUTPUT, 0) /* (F15) MCU_OSPI0_CSn0 */
++			J721S2_WKUP_IOPAD(0x00c, PIN_INPUT, 0) /* (C19) MCU_OSPI0_D0 */
++			J721S2_WKUP_IOPAD(0x010, PIN_INPUT, 0) /* (F16) MCU_OSPI0_D1 */
++			J721S2_WKUP_IOPAD(0x014, PIN_INPUT, 0) /* (G15) MCU_OSPI0_D2 */
++			J721S2_WKUP_IOPAD(0x018, PIN_INPUT, 0) /* (F18) MCU_OSPI0_D3 */
++			J721S2_WKUP_IOPAD(0x01c, PIN_INPUT, 0) /* (E19) MCU_OSPI0_D4 */
++			J721S2_WKUP_IOPAD(0x020, PIN_INPUT, 0) /* (G19) MCU_OSPI0_D5 */
++			J721S2_WKUP_IOPAD(0x024, PIN_INPUT, 0) /* (F19) MCU_OSPI0_D6 */
++			J721S2_WKUP_IOPAD(0x028, PIN_INPUT, 0) /* (F20) MCU_OSPI0_D7 */
++			J721S2_WKUP_IOPAD(0x008, PIN_INPUT, 0) /* (E18) MCU_OSPI0_DQS */
++		>;
++	};
++};
++
+ &wkup_pmx2 {
+ 	wkup_i2c0_pins_default: wkup-i2c0-default-pins {
+ 		pinctrl-single,pins = <
+@@ -152,6 +170,66 @@ eeprom@51 {
+ 	};
+ };
+ 
++&ospi0 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
++
++	flash@0 {
++		compatible = "jedec,spi-nor";
++		reg = <0x0>;
++		spi-tx-bus-width = <8>;
++		spi-rx-bus-width = <8>;
++		spi-max-frequency = <25000000>;
++		cdns,tshsl-ns = <60>;
++		cdns,tsd2d-ns = <60>;
++		cdns,tchsh-ns = <60>;
++		cdns,tslch-ns = <60>;
++		cdns,read-delay = <4>;
++
++		partitions {
++			compatible = "fixed-partitions";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			partition@0 {
++				label = "ospi.tiboot3";
++				reg = <0x0 0x100000>;
++			};
++
++			partition@100000 {
++				label = "ospi.tispl";
++				reg = <0x100000 0x200000>;
++			};
++
++			partition@300000 {
++				label = "ospi.u-boot";
++				reg = <0x300000 0x400000>;
++			};
++
++			partition@700000 {
++				label = "ospi.env";
++				reg = <0x700000 0x40000>;
++			};
++
++			partition@740000 {
++				label = "ospi.env.backup";
++				reg = <0x740000 0x40000>;
++			};
++
++			partition@800000 {
++				label = "ospi.rootfs";
++				reg = <0x800000 0x37c0000>;
++			};
++
++			partition@3fc0000 {
++				label = "ospi.phypattern";
++				reg = <0x3fc0000 0x40000>;
++			};
++		};
++	};
++};
++
+ &mailbox0_cluster0 {
+ 	status = "okay";
+ 	interrupts = <436>;
+-- 
+2.34.1
+
 
