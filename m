@@ -1,131 +1,125 @@
-Return-Path: <devicetree+bounces-45716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45725-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF947862D88
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 23:59:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38F0586675E
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 01:34:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D4CB1F24642
-	for <lists+devicetree@lfdr.de>; Sun, 25 Feb 2024 22:59:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD2201F2140F
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 00:34:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC7191BC39;
-	Sun, 25 Feb 2024 22:57:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="ELa2MzcP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB4FDA50;
+	Mon, 26 Feb 2024 00:34:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25E701CA83;
-	Sun, 25 Feb 2024 22:57:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 278B6DDA9;
+	Mon, 26 Feb 2024 00:34:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708901851; cv=none; b=WFL8A1qhCFbvpkGcnOlViMBPH2OBV374pglwieCMeMgCLSrgknQMtYs9Y6uJiqsD0IuOonWHYH7k+auJMXQJG+7yNDhzM+aS/QPMDbzIp9QIqRT0uDQ9a9ToZ4AVhdB+eeIr77vsva502QK1OruPBp6Cfaa6m2kOzC5jqrM5LOM=
+	t=1708907656; cv=none; b=YkZ9bGrqqEjwTOrNrmBwO/7/Isn1TApKYVtxbopIFzcqdXybn8ObrSZ7aYPlw8VjDyelfKg3YlP9sgiDg4mOQj9DIESBmxEoxHxH2ttabObSZlgNk9KmToxZHsEJ5ejGvVBSPr+XN0uFiXh/YtlofZlNnlmo6YGdjbN+CGrxqxA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708901851; c=relaxed/simple;
-	bh=o5bX03US8Sve1tRCoSNZ35XHbWPiDIVPzkJeF2sRr4Y=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=lsdGHosn56P5iOzwFZilYqW0Swx7bxXUGR1I3+APhI6RUb20cfPCWw1MjxTUPXGsnIdIKuDNhA5Zk1D1qrPGNT33EsZ0E6T7PR6sVrj7zFY5p/MctGn4vLrDPQleGkwpaZWPGGvV50lMbaetV+od4MtAPLHiBX9SVvThWK77dXo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=ELa2MzcP; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:MIME-Version:
-	Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=tL2xqaDy2Owl8JnIMnWmV+KkuV5UDXRRMqbcTjWXteg=; b=ELa2MzcPFuS5eN2BNsvmSFAtDc
-	AWDYTXTOnDrV8D0cUS1BdGrm2tRxiEiE1/eHdWqZjZsP1B+Byxh3UQC8m3MBKnnO3PBXiSCWCZxtZ
-	ERwcYZye+8jZkw/PkY1lBGVho+T5uUr9VbGachqQKNjyxKuqhGq09LPrmvOlWirMUCxd9HvTo4LmP
-	R/CuRfwim1eT5Ib7hWXWUahTh7cCCnUxXCeW60M2Jg5spgnQRw1ozljkxqc+7qIX/VBeMpv8lzSIV
-	z9B0K9zjBlbgD7LyzGrGwL9sjhHkm85E00GooZCyvLD6uV5Mncc0VEzBBFyFmHLWZrjntiJzGFNBT
-	LozlCJUg==;
-Received: from p200301077700b1001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:107:7700:b100:1a3d:a2ff:febf:d33a] helo=aktux)
-	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <andreas@kemnade.info>)
-	id 1reNQx-009mDz-CW; Sun, 25 Feb 2024 23:57:23 +0100
-Received: from andi by aktux with local (Exim 4.96)
-	(envelope-from <andreas@kemnade.info>)
-	id 1reNQw-00ELTZ-24;
-	Sun, 25 Feb 2024 23:57:22 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	linux-imx@nxp.com,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Andreas Kemnade <andreas@kemnade.info>
-Subject: [PATCH] ARM: dts: imx6: fix IRQ config of RC5T619
-Date: Sun, 25 Feb 2024 23:57:20 +0100
-Message-Id: <20240225225720.3419129-1-andreas@kemnade.info>
-X-Mailer: git-send-email 2.39.2
+	s=arc-20240116; t=1708907656; c=relaxed/simple;
+	bh=54BOPxkMLzdRKYevCC6yKEk91ZN6DktUcQnOZ91yBos=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KOFdPv8dz1FTIAiHEO44iNnX/8l8Tm+bE7RsHSeyG+l8fD/ol59zmvNza/mEO3SN5Y+JpODIKa8wDTvqfdBbbI5UwiuKM/LVRDthe2yDlZxwTDzW+Uyb75w6TyY48++r8MKisPnPuc9gW63xd7FgJetzL7kOvMaKXpEEgd/7+7c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.96.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1reOVA-0001je-1q;
+	Mon, 26 Feb 2024 00:05:48 +0000
+Date: Mon, 26 Feb 2024 00:05:40 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Richard Weinberger <richard@nod.at>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-mtd <linux-mtd@lists.infradead.org>,
+	devicetree <devicetree@vger.kernel.org>,
+	linux-kernel <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v7 7/7] mtd: ubi: provide NVMEM layer over UBI volumes
+Message-ID: <ZdvV1KABu_UCSL7B@makrotopia.org>
+References: <cover.1702952891.git.daniel@makrotopia.org>
+ <82ceb13954f7e701bf47c112333e7b15a57fc360.1702952891.git.daniel@makrotopia.org>
+ <20240219120156.383a1427@xps-13>
+ <1209094181.98490.1708899174329.JavaMail.zimbra@nod.at>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <1209094181.98490.1708899174329.JavaMail.zimbra@nod.at>
 
-Set interrupt type to level low to correctly describe the hardware and
-do not rely on the driver to do the right thing.
+Hi Richard,
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- arch/arm/boot/dts/nxp/imx/e60k02.dtsi                | 2 +-
- arch/arm/boot/dts/nxp/imx/e70k02.dtsi                | 2 +-
- arch/arm/boot/dts/nxp/imx/imx6sl-tolino-shine2hd.dts | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+On Sun, Feb 25, 2024 at 11:12:54PM +0100, Richard Weinberger wrote:
+> ----- Ursprüngliche Mail -----
+> > Von: "Miquel Raynal" <miquel.raynal@bootlin.com>
+> > An: "Daniel Golle" <daniel@makrotopia.org>
+> > CC: "richard" <richard@nod.at>, "Vignesh Raghavendra" <vigneshr@ti.com>, "Rob Herring" <robh+dt@kernel.org>, "Krzysztof
+> > Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>, "linux-mtd"
+> > <linux-mtd@lists.infradead.org>, "devicetree" <devicetree@vger.kernel.org>, "linux-kernel"
+> > <linux-kernel@vger.kernel.org>
+> > Gesendet: Montag, 19. Februar 2024 12:01:56
+> > Betreff: Re: [PATCH v7 7/7] mtd: ubi: provide NVMEM layer over UBI volumes
+> 
+> > Hi Daniel,
+> > 
+> > daniel@makrotopia.org wrote on Tue, 19 Dec 2023 02:33:48 +0000:
+> > 
+> >> In an ideal world we would like UBI to be used where ever possible on a
+> >> NAND chip. And with UBI support in ARM Trusted Firmware and U-Boot it
+> >> is possible to achieve an (almost-)all-UBI flash layout. Hence the need
+> >> for a way to also use UBI volumes to store board-level constants, such
+> >> as MAC addresses and calibration data of wireless interfaces.
+> >> 
+> >> Add UBI volume NVMEM driver module exposing UBI volumes as NVMEM
+> >> providers. Allow UBI devices to have a "volumes" firmware subnode with
+> >> volumes which may be compatible with "nvmem-cells".
+> >> Access to UBI volumes via the NVMEM interface at this point is
+> >> read-only, and it is slow, opening and closing the UBI volume for each
+> >> access due to limitations of the NVMEM provider API.
+> > 
+> > I don't feel qualified enough to review the other patches, however this
+> > one looks good to me.
+> 
+> Finally(!), I had enough time to look.
+> Thanks for addressing all my comments form the previous series.
+> Patches applied.
 
-diff --git a/arch/arm/boot/dts/nxp/imx/e60k02.dtsi b/arch/arm/boot/dts/nxp/imx/e60k02.dtsi
-index dd03e3860f97f..13756d39fb7b9 100644
---- a/arch/arm/boot/dts/nxp/imx/e60k02.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/e60k02.dtsi
-@@ -127,7 +127,7 @@ ricoh619: pmic@32 {
- 		compatible = "ricoh,rc5t619";
- 		reg = <0x32>;
- 		interrupt-parent = <&gpio5>;
--		interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
- 		system-power-controller;
- 
- 		regulators {
-diff --git a/arch/arm/boot/dts/nxp/imx/e70k02.dtsi b/arch/arm/boot/dts/nxp/imx/e70k02.dtsi
-index 4e1bf080eaca0..dcc3c9d488a88 100644
---- a/arch/arm/boot/dts/nxp/imx/e70k02.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/e70k02.dtsi
-@@ -145,7 +145,7 @@ ricoh619: pmic@32 {
- 		compatible = "ricoh,rc5t619";
- 		reg = <0x32>;
- 		interrupt-parent = <&gpio4>;
--		interrupts = <19 IRQ_TYPE_EDGE_FALLING>;
-+		interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
- 		system-power-controller;
- 
- 		regulators {
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-shine2hd.dts b/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-shine2hd.dts
-index 922749bf11bc1..04027627fe62b 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-shine2hd.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-shine2hd.dts
-@@ -161,7 +161,7 @@ ricoh619: pmic@32 {
- 		pinctrl-0 = <&pinctrl_ricoh_gpio>;
- 		reg = <0x32>;
- 		interrupt-parent = <&gpio5>;
--		interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
- 		system-power-controller;
- 
- 		regulators {
--- 
-2.39.2
+It's an enourmous coicident that you are writing just now that I found
+a sizeof(int)-related problem which triggers a compiler warning when
+building the UBI NVMEM provider on 32-bit platforms. I was just about
+to prepare an updated series. Literally in this minute.
+Should I still send the whole updates series or only the final patch
+(as the necessary change is there) or a follow-up patch fixing the
+original patch?
 
+> 
+> I have only one tiny request, can you share the lockdep spalt
+> you encountered in ubi_notify_add() regarding mtd_table_mutex
+> and ubi_devices_mutex? The solutions looks okay to me, but
+> if you have more details that would be great.
+
+I will setup a test build to reproduce the original warning and
+let you know shortly.
+
+
+Cheers
+
+
+Daniel
 
