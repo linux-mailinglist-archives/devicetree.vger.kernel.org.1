@@ -1,173 +1,250 @@
-Return-Path: <devicetree+bounces-46001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0241B867A41
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 16:29:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8226A867A7F
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 16:41:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 836871F245E5
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 15:29:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7E651B33958
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 15:30:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F40E212A176;
-	Mon, 26 Feb 2024 15:28:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A916F12BF39;
+	Mon, 26 Feb 2024 15:30:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Y68N6UCu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F4F112BE93;
-	Mon, 26 Feb 2024 15:28:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE64712BF11;
+	Mon, 26 Feb 2024 15:30:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708961315; cv=none; b=faE3Yu1BxLOXL20pXZm/b49BeDnMNwRNFlIvdCuk6z/a0nyeRo9yISoShqzteIDpxrubyfTYe6S6Cs+HcGmd+kTPsUTaQrruXEq1BeCEwYzzZBnsYGn4orJ55ZMQz/OPYrprGmb8kPmf/9u02GLhhmCzYvmkv+E9aFYBrbAH4sw=
+	t=1708961406; cv=none; b=lyjT4qhMwBplqozakXtinu8XFu304JtXti7KNhX+8/Wulv0y5Jp23RbkdniZR6oP6zuRIwo1UrscrvCTIrpxJQlTDJDbhCGMU2ldbHc/gj+CHns3b3wVCPRawdMH2ts9ZPp78m2o0zjE3cpLcULmuMAaX5+6424m7h0NWzQks+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708961315; c=relaxed/simple;
-	bh=BThJKSHnuKeKiefQoxFWcqNFZUdvTAm2fnN/DgNzB68=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uuIWok6+anPrz7xZPeIt9+t0P3Bm7jjqZegvZAaqs3lBRVTEmbV1Ybt48DKf7SfoZIiNBKfQUYmosBz3GWNT0IpsxUtrxtOWlV2Ds3m8fFs4IF3+4CxRdmxIcuczmnTNOW0ojSRQoBjx4ecL3nCTLMYtxq9AiCNPDrZE25ts+Lo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-6089b64f4eeso31806377b3.2;
-        Mon, 26 Feb 2024 07:28:33 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708961312; x=1709566112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=I8Ir+4ow5lfDeG0ZqJs1S0yjDRpk74TkiTjLDeq+i98=;
-        b=chCS8vpBVAftHsNMvEIYBaOPgE8juASqSMdJ+RCohnAzLqRhtAWGpUR52l7kRlVv8H
-         YK1NKKpUXR928tUrYOTDe72qSja87xGHez5HvEftA/eUo0xkbw92Mo7H+D0BsH8TvUV9
-         D5N27eM42sd64tZmK7kW7M2BzWj4EuY0GonfzBLbBrOh8YBFHL6VGiVs1bh6F/Tz87Is
-         8V5SsbyXStFUv5GnLtGW993NWyo4LxhuKCZFTlotv+/6Grx4pt47zB7SN/MwKyQm4jNz
-         xpVCNHqweMAT3za8z/kJZtfz1sMjAedD4ywl7stFL0EOuKwR/HaJ5nQUI8D6Vb9BnDz3
-         pdKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWMVDi4qWH3u5+rqCKpwXg3Jdj3E3JbufQmhCPg+irIdTrtqaWONGauSNt355SUWfJg+A/vo0/J/rz5n8L1hi050DSzhBQBmQJT2tSmhBkvGeXxxtyzEbmJLB93P2u4tQnE4wMc4Di+Zw==
-X-Gm-Message-State: AOJu0Yw+wIn67lvW1MGfs6zaGDhKSIf4tr1949pps8s/LJSoXQ4YUdaX
-	rg9FCXv4AEJwLwxwM6iboqifBX380T4+sqNENIPtuHBwGSN1irKOH5A3otGjyzQ=
-X-Google-Smtp-Source: AGHT+IHlvZWwJySxD8dXW6Oz+b/EHpNllb+rxYDOZulwjahGSybKLs0G7NjXpYadk0ur9/3uTq8elg==
-X-Received: by 2002:a81:4147:0:b0:608:b73c:d0c8 with SMTP id f7-20020a814147000000b00608b73cd0c8mr6863178ywk.17.1708961312505;
-        Mon, 26 Feb 2024 07:28:32 -0800 (PST)
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
-        by smtp.gmail.com with ESMTPSA id n124-20020a817282000000b00607c9160c22sm1230685ywc.119.2024.02.26.07.28.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Feb 2024 07:28:32 -0800 (PST)
-Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-dc238cb1b17so3413065276.0;
-        Mon, 26 Feb 2024 07:28:32 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVRHADW3VBjVzLBFvG5HSHhCFLBxikLnCaYw2GS/ta9BiNdECsEdCQxs0ICLEEb/LoNMAh//ncSXRGEbV0QbHBuQFDtPzy0kUlsFlDOUCvM1XOV5Et0WVfy+QTfZ4Yxu7T23OdM5jQMsg==
-X-Received: by 2002:a25:640f:0:b0:dcd:2aa3:d744 with SMTP id
- y15-20020a25640f000000b00dcd2aa3d744mr4744441ybb.17.1708961311899; Mon, 26
- Feb 2024 07:28:31 -0800 (PST)
+	s=arc-20240116; t=1708961406; c=relaxed/simple;
+	bh=1dPT6v1I08Wyw5hcrN7bcgojMxnYVXIX2j0GluKbE6Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fbYkgK03hP5wkvcXoLLl1ePdYs4s7xYszXkekkRxEzz038dqVAdstLmoZ6LGVNAJ7cyQ56hH/R7XuTg/Q7qaiqYz1pQcKA2GK6YqgXP6O/tn+/+egXqTkAXtE1YJi2eU2zhFfVCzB4jaULWhA4IPVnLAurhWc7Cpn8GfjSg3+Ts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Y68N6UCu; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1708961402;
+	bh=1dPT6v1I08Wyw5hcrN7bcgojMxnYVXIX2j0GluKbE6Y=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Y68N6UCuVbVFFasJj+ySVlHijeOnuqq7y8A5tsZ0r2I5+eHsdn6kGbuIQEhK7g7eh
+	 9xrlqCRvZTuDtW8PiCKK+RnlkYifQubrxK/ifQjhcDxUuEeLgqnHmMYB3ARUCjhxJj
+	 T5OONjkP2MYwvgu1TBRjX6KjEImlNeFxDuUqGdrT+ZyldQzxawK2jN3Y/MEAGVgYnx
+	 iks6DyEZIRF4HSGtkr11rFZq481N2a7ZUThufV2fpbjtNHSXZWAQnBSuXZA94ggtor
+	 G7R8S41pEbfY3rseYnbtvq4FdHetz7E2Pyy6OTkjE7TP5umlIbZUyaorLZuFMZad8Z
+	 u5JPfnYhZgszw==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 591A237820C3;
+	Mon, 26 Feb 2024 15:30:01 +0000 (UTC)
+Message-ID: <e15fdb18-d4de-495f-b90b-ba0e787cbef4@collabora.com>
+Date: Mon, 26 Feb 2024 16:30:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240219170337.2161754-1-andriy.shevchenko@linux.intel.com> <20240219170337.2161754-2-andriy.shevchenko@linux.intel.com>
-In-Reply-To: <20240219170337.2161754-2-andriy.shevchenko@linux.intel.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 26 Feb 2024 16:28:20 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVv==58uen8nukLDB9ADCvJJFYTb2bZSAcFKQ0wUmqL9w@mail.gmail.com>
-Message-ID: <CAMuHMdVv==58uen8nukLDB9ADCvJJFYTb2bZSAcFKQ0wUmqL9w@mail.gmail.com>
-Subject: Re: [PATCH v3 1/9] auxdisplay: linedisp: Group display drivers together
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Andy Shevchenko <andy@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Robin van der Gracht <robin@protonic.nl>, Paul Burton <paulburton@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 02/18] ASoC: dt-bindings: mediatek,mt8365-mt6357: Add
+ audio sound card document
+Content-Language: en-US
+To: Alexandre Mergnat <amergnat@baylibre.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Lee Jones <lee@kernel.org>,
+ Flora Fu <flora.fu@mediatek.com>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
+References: <20240226-audio-i350-v1-0-4fa1cea1667f@baylibre.com>
+ <20240226-audio-i350-v1-2-4fa1cea1667f@baylibre.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20240226-audio-i350-v1-2-4fa1cea1667f@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Andy,
-
-On Mon, Feb 19, 2024 at 6:03=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
-> For better usability group the display drivers together in Kconfig
-> and Makefile. With this we will have the following sections:
->   - Character LCD
->   - Samsung KS0108 LCD controller
->   - Single character line display
->   - Character LCD with non-conforming interface
->
-> While at it, drop redundant 'default n' entries.
->
-> Tested-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-
-Thanks for your patch!
-
-> --- a/drivers/auxdisplay/Kconfig
-> +++ b/drivers/auxdisplay/Kconfig
-
-> +#
-> +# Single character line display section
-> +#
-> +config LINEDISP
-> +       tristate "Character line display core support" if COMPILE_TEST
-> +       help
-> +         This is the core support for single-line character displays, to=
- be
-> +         selected by drivers that use it.
+Il 26/02/24 15:01, Alexandre Mergnat ha scritto:
+> Add soundcard bindings for the MT8365 SoC with the MT6357 audio codec.
+> 
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> ---
+>   .../bindings/sound/mediatek,mt8365-mt6357.yaml     | 127 +++++++++++++++++++++
+>   1 file changed, 127 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt8365-mt6357.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt8365-mt6357.yaml
+> new file mode 100644
+> index 000000000000..f469611ec6b6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/mediatek,mt8365-mt6357.yaml
+> @@ -0,0 +1,127 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/mediatek,mt8365-mt6357.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +config IMG_ASCII_LCD
-> +       tristate "Imagination Technologies ASCII LCD Display"
-> +       depends on HAS_IOMEM
-> +       default y if MIPS_MALTA
-> +       select MFD_SYSCON
-> +       select LINEDISP
-> +       help
-> +         Enable this to support the simple ASCII LCD displays found on
-> +         development boards such as the MIPS Boston, MIPS Malta & MIPS S=
-EAD3
-> +         from Imagination Technologies.
+> +title: Mediatek MT8365 sound card with MT6357 sound codec.
 > +
-> +config HT16K33
-> +       tristate "Holtek Ht16K33 LED controller with keyscan"
-
-HT16K33 also supports dot-matrix displays using fbdev...
-Yes, categorizing is difficult.
-
-> --- a/drivers/auxdisplay/Makefile
-> +++ b/drivers/auxdisplay/Makefile
-> @@ -5,12 +5,15 @@
->
->  obj-$(CONFIG_CHARLCD)          +=3D charlcd.o
->  obj-$(CONFIG_HD44780_COMMON)   +=3D hd44780_common.o
-> -obj-$(CONFIG_ARM_CHARLCD)      +=3D arm-charlcd.o
-> +obj-$(CONFIG_HD44780)          +=3D hd44780.o
-> +obj-$(CONFIG_LCD2S)            +=3D lcd2s.o
-> +obj-$(CONFIG_PARPORT_PANEL)    +=3D panel.o
+> +maintainers:
+> +  - Alexandre Mergnat <amergnat@baylibre.com>
 > +
->  obj-$(CONFIG_KS0108)           +=3D ks0108.o
->  obj-$(CONFIG_CFAG12864B)       +=3D cfag12864b.o cfag12864bfb.o
-> -obj-$(CONFIG_IMG_ASCII_LCD)    +=3D img-ascii-lcd.o
-> -obj-$(CONFIG_HD44780)          +=3D hd44780.o
-> -obj-$(CONFIG_HT16K33)          +=3D ht16k33.o
-> -obj-$(CONFIG_PARPORT_PANEL)    +=3D panel.o
-> -obj-$(CONFIG_LCD2S)            +=3D lcd2s.o
+> +description:
+> +  This binding describes the MT8365 sound card.
 > +
->  obj-$(CONFIG_LINEDISP)         +=3D line-display.o
-> +obj-$(CONFIG_IMG_ASCII_LCD)    +=3D img-ascii-lcd.o
-> +obj-$(CONFIG_HT16K33)          +=3D ht16k33.o
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt8365-mt6357
 > +
-> +obj-$(CONFIG_ARM_CHARLCD)      +=3D arm-charlcd.o
+> +  mediatek,hp-pull-down:
+> +    description:
+> +      Earphone driver positive output stage short to the
+> +      audio reference ground.
+> +      Default value is false.
+> +    type: boolean
+> +
+> +  mediatek,micbias0-microvolt:
+> +    description: |
 
-I still think these should be sorted alphabetically.
+description: Selects MIC Bias 0 output voltage
 
-Gr{oetje,eeting}s,
+> +      Selects MIC Bias 0 output voltage.
+> +      [1.7v, 1.8v, 1.9v, 2.0v, 2.1v, 2.5v, 2.6v, 2.7v]
+> +    enum: [0, 1, 2, 3, 4, 5, 6, 7]
 
-                        Geert
+No, you don't say 0 1 2 3 4 to a property that says "microvolt", that's simply
+wrong.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+mediatek,micbias0-microvolt = <2100000>;
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+...so you want a binding that says
+enum: [ 1700000, 1800000, this, that, 2700000]
+
+> +
+> +  mediatek,micbias1-microvolt:
+> +    description: |
+> +      Selects MIC Bias 1 output voltage.
+> +      [1.7v, 1.8v, 1.9v, 2.0v, 2.1v, 2.5v, 2.6v, 2.7v]
+> +    enum: [0, 1, 2, 3, 4, 5, 6, 7]
+
+same here.
+
+> +
+> +  mediatek,platform:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: The phandle of MT8365 ASoC platform.
+> +
+> +  pinctrl-names:
+> +    minItems: 1
+> +    items:
+> +      - const: aud_default
+> +      - const: aud_dmic
+> +      - const: aud_miso_off
+> +      - const: aud_miso_on
+> +      - const: aud_mosi_off
+> +      - const: aud_mosi_on
+> +
+> +  vaud28-supply:
+> +    description:
+> +      2.8 volt supply for the audio codec
+> +
+> +patternProperties:
+> +  "^dai-link-[0-9]+$":
+> +    type: object
+> +    description:
+> +      Container for dai-link level properties and CODEC sub-nodes.
+> +
+> +    properties:
+> +      codec:
+> +        type: object
+> +        description: Holds subnode which indicates codec dai.
+> +
+> +        properties:
+> +          sound-dai:
+> +            maxItems: 1
+> +            description: phandle of the codec DAI
+> +
+> +        additionalProperties: false
+> +
+> +      link-name:
+> +        description:
+> +          This property corresponds to the name of the BE dai-link to which
+> +          we are going to update parameters in this node.
+> +        items:
+> +          const: 2ND I2S BE
+> +
+> +      sound-dai:
+> +        maxItems: 1
+> +        description: phandle of the CPU DAI
+> +
+> +    additionalProperties: false
+> +
+> +    required:
+> +      - link-name
+> +      - sound-dai
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - mediatek,platform
+> +  - pinctrl-names
+> +  - vaud28-supply
+> +
+> +examples:
+> +  - |
+> +    sound {
+> +        compatible = "mediatek,mt8365-mt6357";
+> +        mediatek,platform = <&afe>;
+
+Please:
+
+https://docs.kernel.org/devicetree/bindings/dts-coding-style.html
+
+Regards,
+Angelo
+
+> +        pinctrl-names = "aud_default",
+> +            "aud_dmic",
+> +            "aud_miso_off",
+> +            "aud_miso_on",
+> +            "aud_mosi_off",
+> +            "aud_mosi_on";
+> +        pinctrl-0 = <&aud_default_pins>;
+> +        pinctrl-1 = <&aud_dmic_pins>;
+> +        pinctrl-2 = <&aud_miso_off_pins>;
+> +        pinctrl-3 = <&aud_miso_on_pins>;
+> +        pinctrl-4 = <&aud_mosi_off_pins>;
+> +        pinctrl-5 = <&aud_mosi_on_pins>;
+> +        vaud28-supply = <&mt6357_vaud28_reg>;
+> +
+> +        /* hdmi interface */
+> +        dai-link-0 {
+> +            sound-dai = <&afe>;
+> +            link-name = "2ND I2S BE";
+> +
+> +            codec {
+> +                sound-dai = <&it66121hdmitx>;
+> +            };
+> +        };
+> +    };
+> 
+
 
