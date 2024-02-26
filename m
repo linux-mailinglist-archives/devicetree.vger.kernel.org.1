@@ -1,183 +1,103 @@
-Return-Path: <devicetree+bounces-46092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C4B1867FC4
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 19:23:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E30AE867FD6
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 19:30:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B4BCB24120
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 18:23:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 999511F25160
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 18:30:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9C7C12EBF6;
-	Mon, 26 Feb 2024 18:23:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9D8912F58B;
+	Mon, 26 Feb 2024 18:30:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ndoDhY9W"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BkZX6H9C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B03C660DC5;
-	Mon, 26 Feb 2024 18:23:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2E941DFCD;
+	Mon, 26 Feb 2024 18:30:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708971809; cv=none; b=O+0Yc2cmIghBzMmZ2wxNcCmSy4YxbaD0VE/uIBhPPVSjpZ3Xv6pIs1nZKxR0IfXg/uXgHvK166ej1BvBFMEkFRTz1xLzHDHO411PCcTin2WxlLVkvuBhci7IHoOLhp2vs00VNmchUPSpL+vLe5lfCOYX1RkNxQKR1MN1jQG+BQs=
+	t=1708972218; cv=none; b=oIq++adW3BhwAp0m1f6UAGS8//dluWF0dKLFbUTwxgfoc38hdDkGRnD6Seo0qkrFiTVje5McekqzDTU54CezuqcSIUPbwwfblXnjYIxfuGyjevntfVTdSnNWyfVLA80TP5BdaPSyhy6/UwCCZF4emMNy5OfWOM4q7HZQBrvH+HU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708971809; c=relaxed/simple;
-	bh=Q+hnu8amVqGGKWiAAjeU+PULKBuLit8f6zcLD9Zz+aM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dEFgOPCsTybtUirtP2zog+No9trgk+9SqnpL/VfZ1mcBotcdfKWw68SRVPDo2haLnOBudMI0Bpvj22erYlc71NP/SXj/QJmxhJNrboamARJrkOmpzoogezlNoL9QEBSMYFYlLoJprY3cUGP4PFazSZezfEa2ImXXcHY4jANz0Rc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ndoDhY9W; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-1d944e8f367so23751305ad.0;
-        Mon, 26 Feb 2024 10:23:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708971807; x=1709576607; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Oq9kS8EeuXsGUVpRBBrLiDhME6a4wGuEkqHoj3EbhjU=;
-        b=ndoDhY9W9X0+nLzs52XUR6L0iuX8Mk88PsKZ6hdRNjbdOGoXtZ0y8ijDVWWZD3QDtD
-         wqb09dlS1MhmLxw3BMchgfSVFCqLDoeKLmjAoH4V6d3hNjwJ9JYXeR5BLnTvwuiJfal0
-         onYj03PDjQDOSfW+uLqpd7poHntT1WBgK0n/OCD1tBaZkdEMWbWwUtzyb3xP/DhmbQUo
-         ADSXwmjodDpnUiNqun8ywx/oZ0aWEZXwlJCYBYA4wHzzT3bjbxIaETW48gdXb4PQ8Tjz
-         XTzdJ3IznT5aRssBZrrDRCWNnt2UZ6QofuCLaATZVzpup/59IcgDbj8ZeAffSvMVoerw
-         DKwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708971807; x=1709576607;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Oq9kS8EeuXsGUVpRBBrLiDhME6a4wGuEkqHoj3EbhjU=;
-        b=h0rhluAnHrxbZ4UdECYUcs2na4gLRKb+iOWVCDjLqWsh7CKHgzrM4oc5Ek/7XbUSwx
-         YGH/WFklo7oUlVwa6oHYGNnTCmWbw9qBZaxV57HciFzKCg9xC6CTuPf577ll5xlpBAwS
-         BZL2mEACq1EksDeRtku4hKSMUQnIjnpmIou48D6dcQkgnv3yc6hDUgU8Sookpz4N+RPv
-         5rbfnI+3JZvmHBGWDRuL4wbM76v8Rq0W/cIeTEkZrKZA7ZbYll2dS0bVP1L0PKL1BZLD
-         t2ItLqEyWeEGae1M0aW3jvMnUFIaWK5FnIkHcnZ4d38Byrj25ugHNbEgN+drFL38zA5t
-         yqwg==
-X-Forwarded-Encrypted: i=1; AJvYcCUlGU4+ob4+NQTGu12BbG7Ua6qa/+9MsZwr+OdJy46K/XarLubihOjypWdUD7+ssjQSXjKsRmjXVmwOf9jZ8+21FD4CppzsVHFg27p0GZtBxPL9SjejR+XJ34KsCZOn5iM8GxYr2WnOhw==
-X-Gm-Message-State: AOJu0YyraBaR0Syt0ed9gQjhF5olTfpuryqV8NzZTJhSTZ1qHqyK0/Tp
-	gDfWoAdSVUZBkaNFERttOtXbDNgJTubPiHxrMwBB+PNL6HNbaX86
-X-Google-Smtp-Source: AGHT+IGcMiAe18D+5u0jq2w+Qc6RGbcBVwo+6peup7V+MeX/rhw3iKmj2TOIPAmop9O04XOqDlG6/A==
-X-Received: by 2002:a17:902:e9c4:b0:1db:f23f:678e with SMTP id 4-20020a170902e9c400b001dbf23f678emr6781170plk.15.1708971806955;
-        Mon, 26 Feb 2024 10:23:26 -0800 (PST)
-Received: from localhost.localdomain ([113.30.217.222])
-        by smtp.gmail.com with ESMTPSA id v19-20020a170902d09300b001dba98889a3sm2353plv.71.2024.02.26.10.23.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Feb 2024 10:23:26 -0800 (PST)
-From: Anand Moon <linux.amoon@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: Anand Moon <linux.amoon@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1] arm64: dts: rockchip: Add cache information to the Rockchip RK3566 and RK3568 SoC
-Date: Mon, 26 Feb 2024 23:53:03 +0530
-Message-ID: <20240226182310.4032-1-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1708972218; c=relaxed/simple;
+	bh=RTq/X7hmBPr7XVhCcE4AXU8PreuCVmB4I7EXfiacCEk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=NNFCC2Z0NtmjhZSeN6IxlnXP6VQ71wEkR85IcVkPledZx8sTpSUbrkWmmc3Te/S/Ca/ys3VFR99HytJdihV/Mw9tC6PpF2K1DSnX/8Q448grO2qU5BmCvxYRPqcQnm3+oN31h+TveYOkbH/2BiY/Ky+rQaGyW5JNDwCq9o+NaQI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BkZX6H9C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 160C9C433C7;
+	Mon, 26 Feb 2024 18:30:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708972218;
+	bh=RTq/X7hmBPr7XVhCcE4AXU8PreuCVmB4I7EXfiacCEk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=BkZX6H9COAdUyzqNU7wq+09GE89JOraBwyZUmf6ElzQZhErePOc9qxUGdHsMbu+Uq
+	 SC5VEEbdcuxBWz+wdPVma0k8+C4fHcOagf8SU2GRg+IdcCFbsM2jE+AoRvFayvtZBA
+	 SbzluVDFG/n8dLl698KaskYP5Qlbln7xZGRqpXXQuNqxpNnC8IaGCnkfAjASTGBn6M
+	 R2//Umu+4BWQ+hG/uLbL5aoGKPm4LW0kY23pFxBvB6aI/Gy3fBbPy1sUnAoXumiqgb
+	 x22wbCBWmTRNaeV9SH96T2k2wpj6rWFJlDCEb85mUePPnkRI40BuNBL4ePCdoTK0+f
+	 685FFiAUib6mA==
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20240224000752.3830665-1-robh@kernel.org>
+References: <20240224000752.3830665-1-robh@kernel.org>
+Subject: Re: [PATCH] regulators: dt-bindings: gpio-regulator: Fix
+ "gpios-states" and "states" array bounds
+Message-Id: <170897221675.89041.15993993935283518276.b4-ty@kernel.org>
+Date: Mon, 26 Feb 2024 18:30:16 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-a684c
 
-As per RK3568 Datasheet and TRM add missing cache information to
-the Rockchip RK3566 and RK3568 SoC.
+On Fri, 23 Feb 2024 17:07:51 -0700, Rob Herring wrote:
+> The minimum number of array entries for "gpios-states" was not not
+> specified, so the the default is the same as the max (8).
+> 
+> The minimum is also missing from "states", and the maximum is also wrong
+> as it should be 2^(# of GPIO lines). Since there can be 1 to 8 GPIOs,
+> the "states" range should be 2 to 256.
+> 
+> [...]
 
-- Each Cortex-A55 core has 32KB of L1 instruction cache available and
-	32KB of L1 data cache available with ECC.
-- Along with 512KB Unified L3 cache with ECC.
+Applied to
 
-With adding instruction cache and data cache and a write buffer to
-reduce the effect of main memory bandwidth and latency on data
-access performance.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
-[0] http://www.rock-chips.com/uploads/pdf/2022.8.26/191/RK3568%20Brief%20Datasheet.pdf
-[1] https://dl.radxa.com/rock3/docs/hw/datasheet/Rockchip%20RK3568%20TRM%20Part1%20V1.1-20210301.pdf
----
- arch/arm64/boot/dts/rockchip/rk356x.dtsi | 37 ++++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
+Thanks!
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-index c19c0f1b3778..49235efefb6b 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-@@ -56,6 +56,13 @@ cpu0: cpu@0 {
- 			clocks = <&scmi_clk 0>;
- 			#cooling-cells = <2>;
- 			enable-method = "psci";
-+			d-cache-line-size = <32>;
-+			d-cache-size = <0x8000>;
-+			d-cache-sets = <32>;
-+			i-cache-line-size = <32>;
-+			i-cache-size = <0x8000>;
-+			i-cache-sets = <32>;
-+			next-level-cache = <&l2>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 		};
- 
-@@ -65,6 +72,13 @@ cpu1: cpu@100 {
- 			reg = <0x0 0x100>;
- 			#cooling-cells = <2>;
- 			enable-method = "psci";
-+			d-cache-line-size = <32>;
-+			d-cache-size = <0x8000>;
-+			d-cache-sets = <32>;
-+			i-cache-line-size = <32>;
-+			i-cache-size = <0x8000>;
-+			i-cache-sets = <32>;
-+			next-level-cache = <&l2>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 		};
- 
-@@ -74,6 +88,13 @@ cpu2: cpu@200 {
- 			reg = <0x0 0x200>;
- 			#cooling-cells = <2>;
- 			enable-method = "psci";
-+			d-cache-line-size = <32>;
-+			d-cache-size = <0x8000>;
-+			d-cache-sets = <32>;
-+			i-cache-line-size = <32>;
-+			i-cache-size = <0x8000>;
-+			i-cache-sets = <32>;
-+			next-level-cache = <&l2>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 		};
- 
-@@ -83,8 +104,24 @@ cpu3: cpu@300 {
- 			reg = <0x0 0x300>;
- 			#cooling-cells = <2>;
- 			enable-method = "psci";
-+			d-cache-line-size = <32>;
-+			d-cache-size = <0x8000>;
-+			d-cache-sets = <32>;
-+			i-cache-line-size = <32>;
-+			i-cache-size = <0x8000>;
-+			i-cache-sets = <32>;
-+			next-level-cache = <&l2>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 		};
-+
-+		l2: l2-cache0 {
-+			compatible = "cache";
-+			cache-level = <3>;
-+			cache-unified;
-+			cache-size = <0x7d000>; /* L3. 512 KB */
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+		};
- 	};
- 
- 	cpu0_opp_table: opp-table-0 {
--- 
-2.43.0
+[1/1] regulators: dt-bindings: gpio-regulator: Fix "gpios-states" and "states" array bounds
+      commit: efe9a6da2292e68d45cd9e0eb1c31b85841d0c2a
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
