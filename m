@@ -1,68 +1,50 @@
-Return-Path: <devicetree+bounces-45992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3DB58679A2
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 16:11:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79E698679C5
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 16:14:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 309CD1C2AA58
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 15:11:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB17D1C2B31B
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 15:14:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B85D1353F7;
-	Mon, 26 Feb 2024 14:55:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WadZePrh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D343912BE81;
+	Mon, 26 Feb 2024 15:02:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 309971350E7;
-	Mon, 26 Feb 2024 14:55:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8228980049;
+	Mon, 26 Feb 2024 15:02:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708959320; cv=none; b=UqVX6CIwDFPUBcvgt5Odt9hAA0ioUFRSMH0+Q6C1HtyFXE0a228g5AQ/3ODCIhgdWMHon5jrOmip6RejZ/3QwzJo3iRbWEb8SeA1lyCMuR9ezBCASESyLK76fbSCSneiiyCy1YEXT9yKCE/SeEe1eowpXOvMd3oPh/oErNXlXAY=
+	t=1708959752; cv=none; b=jval2lm7UtpX2OvR6knQges/ct7k3bx8/dRJNkajLgv6WvEHucDNri4SUiOV890Y7ROC9IVgAEL60tdjLKor8C3JgiQrdLrZenWe886fRxVOJHMbDyUgLkrY667IvBOB2OtvLTY065hluDYbH5DuHvsHAf0DEhtZhynOncEB7T4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708959320; c=relaxed/simple;
-	bh=SHDBTf5C5XMzZppp5DC1oDDIjabtSADDcRTNwJ3pHAc=;
+	s=arc-20240116; t=1708959752; c=relaxed/simple;
+	bh=lxru2RLpQGafW/DK//nd6H7g0aV878wnKDx+n+iQDv0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ac911gAvcCT4103X4swOdA9T5/ksBH6TPPs4d5sSFo9+VPKLiPUsF+OhgcDvkXtIS9SV0orZH0ertTC6rg9wUy3KTOrLM/SMmbuKdiz49PDkNslyCGxwcd/Uf9EThFpiSIbqk3AfwXnlxp7Bb3XJLW5mXO6bd9ys3LZwoRVp3QU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WadZePrh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A1FAC433F1;
-	Mon, 26 Feb 2024 14:55:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708959319;
-	bh=SHDBTf5C5XMzZppp5DC1oDDIjabtSADDcRTNwJ3pHAc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WadZePrhydomBWSz8uFS7lO8azeX2/uaMhOWABcgLXAagrkhRukFAJ1Ru4x9gfGdk
-	 l0AvNL9nmp0mxTlE1BrXGA+q17oe3G6z+J67aUVfMcvdRCB24jq2audnmjgNyLqAYO
-	 JuzHcuzdnFaiYcZkZ6AekL7P84Omu4apAE0t1fx9lhzzOlTNkj0uhDXzTfaCuSEguX
-	 EB+uRGDUiFaxUN4W8b/PZVlhMCnOZo83OplURxF1TEIbkfNdXvB1VswNgh0BrxF8cp
-	 HrgJGL0MLeWeSYFT5AYiOFLTpLFxAZ+s/xSY3tOgWI70lrMNYatuSv0YaLvwfpxIOS
-	 UhzuBVYWHV7kA==
-Date: Mon, 26 Feb 2024 08:55:17 -0600
-From: Rob Herring <robh@kernel.org>
-To: Sebastian Reichel <sre@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Mark Brown <broonie@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Dong Aisheng <aisheng.dong@nxp.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v4 06/16] dt-bindings: lcdif: Do not require
- power-domains for i.MX6ULL
-Message-ID: <170895931635.643835.3601839818121921964.robh@kernel.org>
-References: <20240224213240.1854709-1-sre@kernel.org>
- <20240224213240.1854709-7-sre@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Bw54RVy2pvKNswjM0Q/MOLMnhYbEZ+eIUCdBNNs+yUqqWcubO1SdpFZT4ZFutyD5AAxc+CcI4n+H/VgasvC0Now3O88eGEKveLrPbD3Nv1jNafoZEEIAj4qmO31/4aXpUqbZxVyGwXkAZcz9ub+a1u/aSOzASTn20m+EViOj/JM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7F664DA7;
+	Mon, 26 Feb 2024 07:03:08 -0800 (PST)
+Received: from pluto (unknown [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A4F893F762;
+	Mon, 26 Feb 2024 07:02:28 -0800 (PST)
+Date: Mon, 26 Feb 2024 15:02:26 +0000
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: sudeep.holla@arm.com, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH] dt-bindings: firmware: arm,scmi: support system power
+ protocol
+Message-ID: <ZdyoAsYGXK9GjHVx@pluto>
+References: <20240226130243.3820915-1-peng.fan@oss.nxp.com>
+ <ZdyR_MWeqOWga8iQ@pluto>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,25 +53,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240224213240.1854709-7-sre@kernel.org>
+In-Reply-To: <ZdyR_MWeqOWga8iQ@pluto>
 
-
-On Sat, 24 Feb 2024 22:29:38 +0100, Sebastian Reichel wrote:
-> i.MX6UL(L) uses "fsl,imx6sx-lcdif" as fallback compatible string,
-> but has only very lightweight DISPLAY power domain. Its DISPLAY
-> power domain is not supported by the binding / Linux kernel at
-> the moment. Since the current setup is working, let's remove the
-> power-domain from being required for that platform to fix the warning
-> printed by CHECK_DTBS=y.
+On Mon, Feb 26, 2024 at 01:28:31PM +0000, Cristian Marussi wrote:
+> On Mon, Feb 26, 2024 at 09:02:43PM +0800, Peng Fan (OSS) wrote:
+> > From: Peng Fan <peng.fan@nxp.com>
+> > 
+> > Add SCMI System Power Protocol bindings, and the protocol id is 0x12.
+> > 
+> Hi,
 > 
-> Fixes: f62678a77d58 ("dt-bindings: mxsfb: Document i.MX8M/i.MX6SX/i.MX6SL power-domains property")
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Sebastian Reichel <sre@kernel.org>
-> ---
->  Documentation/devicetree/bindings/display/fsl,lcdif.yaml | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
+> yes this is something I spotted in the past it was missing and I posted
+> a similar patch but I was told that a protocol node without any specific
+> additional properties is already being described by the general protocol
+> node described above.
 > 
 
-Applied, thanks!
 
+I was referring to this old thread...
+
+https://lore.kernel.org/all/20230124222023.316089-1-robh@kernel.org/
+
+Thanks,
+Cristian
 
