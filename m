@@ -1,136 +1,131 @@
-Return-Path: <devicetree+bounces-46021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46022-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92AA8867B8D
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 17:17:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E011B867B9C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 17:21:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 324141F241A5
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 16:17:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E9041C2A2FE
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 16:21:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2B1C12BF1C;
-	Mon, 26 Feb 2024 16:17:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2C3512C53E;
+	Mon, 26 Feb 2024 16:21:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CI8sybhw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fxo40mUJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D9951D531;
-	Mon, 26 Feb 2024 16:17:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC1E71D531;
+	Mon, 26 Feb 2024 16:21:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708964254; cv=none; b=Z5kldy+lCodJi4WsEmA2w9b3j8Dc3wlrVM/lpxROFVbvdWwFyPFGJOy6VXfxFgjE27xizzSfR0VNxxSYOHRPhftuc5MXnkMvoQ2RTq1OUSnkmjkjwCOIrSkbG5fPgo1xODdGnGjVU/5VMywdBMlaK5fNepj96eFvlzaxVr8F47Q=
+	t=1708964461; cv=none; b=qvkrosIu92KAFKPrC1DglxWyZ0gaw3+bX3MYJLzHbdeZkYs6SdfInaTT6C8/4Hib7L0tOX4kmk35wOvbvjQ9nU7yRHCbGfGeLZjWHtqnNPEU8jqMj2hq9pmXMNZOVKFq7ffFfsbT00HhZYsKHCi+QteHXbVXn62hvUQg8PNc4hM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708964254; c=relaxed/simple;
-	bh=kL7LUNB8fATmqEvONvO/82NaFVfnKvx48g056TlSyro=;
+	s=arc-20240116; t=1708964461; c=relaxed/simple;
+	bh=C6tE3K79M1feIkZlGioaGmywnXiz4aPQZcwoC8cUC6U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bof3YUEGuaN6HEpKqIg28zDbBDA02ZhhPJh07EHXI8oICG7rz2GXpukur1fq8Nw3jxPdrPVKLEGYwhXNgXqLQxcbbAgDzynp2SKVRj6vXagHVzGbWpifrZZ0/V1qN+hrVIRom4N0UewgOjAvLqN3oQwBjVWgLxMKCHAMlWp/umA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=CI8sybhw; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1708964253; x=1740500253;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=kL7LUNB8fATmqEvONvO/82NaFVfnKvx48g056TlSyro=;
-  b=CI8sybhw7h0PxMW09zqSMrvgRfPV46ORsL/2+5U5Ol9FDDK1tx7sHQ+V
-   NdyIXSRBPZdgsXnpbX7yjX1mBulCW428ZvapBs4bvVYtPoGIw+nUn3tFf
-   q7YCE0Yk7LDT7LlxIOn4I/uhi9EQ21p880qkbx6iMW42oF6Xd8Tzz87lH
-   EhPUrwDkXeea6X5Gz4MBqnSxkimKl7WzJFLkMnNypKaH5IFe1pJrL0gB4
-   uWD+vVyRnKpTrEFXw6uCSWCS5WM9wEPQzQPeEzgcNZk5j3UkOJ1pKn2Wf
-   aEhZnCi0shyxmd1BHaWJv6x1X2xCZ7mZE7Wlg4+bURCG0zBqEMvS51u7U
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="3182520"
-X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; 
-   d="scan'208";a="3182520"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Feb 2024 08:17:30 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="913880217"
-X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; 
-   d="scan'208";a="913880217"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Feb 2024 08:17:27 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1redfR-00000007jJy-0pXI;
-	Mon, 26 Feb 2024 18:17:25 +0200
-Date: Mon, 26 Feb 2024 18:17:24 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=ttMBFHEXwTj/B24IHg0GL3A/j5S6YJ8N5FJZ4ZEzvoho1/QaehI/ckBKrnq2IYq1GnEN78IYlHGdJKmB+sOCV8h7KrTprpLAAEJf5Jh2Yk5kVq4Zv4Cftly0rOLDYwK/1i6jx+diK6eBO9ti3ZzRDC4BSsG3WXYpavu8WWpu+g8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fxo40mUJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAF3DC433C7;
+	Mon, 26 Feb 2024 16:20:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708964461;
+	bh=C6tE3K79M1feIkZlGioaGmywnXiz4aPQZcwoC8cUC6U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Fxo40mUJLCrHJrkY4ZRit37Q29j2FLt76QszjOvrsMRHUAjz/HROZcjCxrKA2DofT
+	 D7topPGgz52MhANrIij/057RhFKEvP3o6nvxan4UpcliGbZo6dzl0Q+IIPowITDDb2
+	 GaQYzbM21bq3vSw+1eGa//ZnkSS++aZhWoJ5x3VeFrygY8JkMtCDnOLeg3EbeKJbHX
+	 QV+COFG7T0QxdVveORNck1VkWFGnDbW7RVNsCofQOXicRuydjnIou2h7r7GZrtMWWE
+	 0fWfYJkdl8j/s90K97411LPDHMokeVk9D6ZEsVwherN/uUHYpIl6K6CaAPSR5eLg2Q
+	 OusjiKSSYUILA==
+Date: Mon, 26 Feb 2024 16:20:56 +0000
+From: Conor Dooley <conor@kernel.org>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Robin van der Gracht <robin@protonic.nl>,
-	Paul Burton <paulburton@kernel.org>
-Subject: Re: [PATCH v3 9/9] auxdisplay: Add driver for MAX695x 7-segment LED
- controllers
-Message-ID: <Zdy5lDOBrQ9XFCpm@smile.fi.intel.com>
-References: <20240219170337.2161754-1-andriy.shevchenko@linux.intel.com>
- <20240219170337.2161754-10-andriy.shevchenko@linux.intel.com>
- <CAMuHMdWpepH0P8g9dPfq1rsZRJsvOnoZ7VnjqTL9nkSGtKFpYQ@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: fsl: add i.MX95 19x19 EVK board
+Message-ID: <20240226-sharpness-material-54a8e719ce91@spud>
+References: <20240226-imx95-dts-v2-0-00e36637b07e@nxp.com>
+ <20240226-imx95-dts-v2-1-00e36637b07e@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="rUkY2RhctmtN3G5T"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdWpepH0P8g9dPfq1rsZRJsvOnoZ7VnjqTL9nkSGtKFpYQ@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-
-On Mon, Feb 26, 2024 at 05:01:46PM +0100, Geert Uytterhoeven wrote:
-> On Mon, Feb 19, 2024 at 6:03 PM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
-> > Add initial driver for the MAX6958 and MAX6959 7-segment LED
-> > controllers.
-
-> LGTM, so
-> Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
-
-Thanks, but see below.
-
-...
-
-> > +       u8 buf[4];
-> > +
-> > +       /* Map segments according to datasheet */
-> > +       buf[0] = bitrev8(map_to_seg7(&map->map.seg7, *s++)) >> 1;
-> > +       buf[1] = bitrev8(map_to_seg7(&map->map.seg7, *s++)) >> 1;
-> > +       buf[2] = bitrev8(map_to_seg7(&map->map.seg7, *s++)) >> 1;
-> > +       buf[3] = bitrev8(map_to_seg7(&map->map.seg7, *s++)) >> 1;
-> 
-> for (unsigned int i = 0; i < linedisp->num_chars; i++) { ... }
-> 
-> > +
-> > +       regmap_bulk_write(priv->regmap, REG_DIGIT(0), buf, ARRAY_SIZE(buf));
-> 
-> linedisp->num_chars
-
-Maybe, but then we probably want to synchronize the 4 there and here as we
-can't have VLA on stack.
-
-> > +}
-
-...
-
-> > +       ret = linedisp_register(&priv->linedisp, dev, 4, &max6959_linedisp_ops);
-> 
-> + device_property_read_u32(dev, "display-width-chars", ...) handling.
-
-Not sure it should be part of this series.
-
--- 
-With Best Regards,
-Andy Shevchenko
+In-Reply-To: <20240226-imx95-dts-v2-1-00e36637b07e@nxp.com>
 
 
+--rUkY2RhctmtN3G5T
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Feb 26, 2024 at 09:20:16PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+>=20
+> Add DT compatible string for NXP i.MX95 19x19 EVK board.
+>=20
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+A passing comment, it feels like it'd be good to add a Link: pointing to
+the docs for this board. This is true generally, but doubly so when
+googling the name above doesn't give me anything other than LKML.
+
+Cheers,
+Conor.
+
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentati=
+on/devicetree/bindings/arm/fsl.yaml
+> index 39378879777b..42c6e8467dc5 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -1264,6 +1264,12 @@ properties:
+>                - fsl,imx93-11x11-evk       # i.MX93 11x11 EVK Board
+>            - const: fsl,imx93
+> =20
+> +      - description: i.MX95 based Boards
+> +        items:
+> +          - enum:
+> +              - fsl,imx95-19x19-evk       # i.MX95 19x19 EVK Board
+> +          - const: fsl,imx95
+> +
+>        - description: i.MXRT1050 based Boards
+>          items:
+>            - enum:
+>=20
+> --=20
+> 2.37.1
+>=20
+
+--rUkY2RhctmtN3G5T
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdy6aAAKCRB4tDGHoIJi
+0gjOAP9Rgfuc3rAtLjLFrfH5OqhO2c+vaRrkr3viH+WrvvsSQAD/RqOHIWP+4NNY
+M4k1synCu0LAfkZEy7Ae2vTHkNXzXQs=
+=t3G2
+-----END PGP SIGNATURE-----
+
+--rUkY2RhctmtN3G5T--
 
