@@ -1,224 +1,108 @@
-Return-Path: <devicetree+bounces-45808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A9FB866BDC
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 09:13:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7880E866BF5
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 09:19:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DF221C21465
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 08:13:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2991B1F240C2
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 08:19:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8CC81C6BE;
-	Mon, 26 Feb 2024 08:13:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F7081C6BF;
+	Mon, 26 Feb 2024 08:19:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XN6VyXmP"
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="bEt2Xa9D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C16D61C6B0;
-	Mon, 26 Feb 2024 08:13:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0A231C696;
+	Mon, 26 Feb 2024 08:19:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708935211; cv=none; b=hvZiJj1XvVemK/QYCpi6FUT3BhiOtsbdCNrItqe/RjlC4NviSfVPhtoQ6iVd/huj+kNNbGDvKAPvpFqjEdzwupU46+Zo0B1HsZkulj/+Pn3z2S97G1N1XMrUSbeUm+8umMQiNoK32oSjfCfYuUvQyfqjeqO1rvxkoQFuWXwVXSY=
+	t=1708935557; cv=none; b=lPhkL8CXaHxcfiM/cjapEJZ/RTDF6q+4ORS0VVW/Lz3cqLjvx9NcnvYyQIc3Y+Pc71qqeLfiJjuCw2dnp36wx19z1Uv5EtotXOQqC+mbfdaLUo1fVC1iyG2LX2F6thqOxHJMU9MfgWRSxPS58kHi+RYoT2OLxrmrJUbmtY1YFBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708935211; c=relaxed/simple;
-	bh=0vtzk69dbjKH3PT00ztg+h1Ul0IyzUgBMCZJECKZeiI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Nvx/A2eD9uMDYPUa6PqL4lbzTPBjLFr/QSSxFNdNbinK9853v38uoZwBr3ULFqhXU0Lx/g0SdsLCGQRHQa7aJ3On06rxtZ2/cq3pwYswI2Kx7iS6V9zcxLIamtqtDSzYFhfLijzChPuHiviL4f012fUeeZcMRcTy6vtn3b+WZbw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XN6VyXmP; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1708935210; x=1740471210;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=0vtzk69dbjKH3PT00ztg+h1Ul0IyzUgBMCZJECKZeiI=;
-  b=XN6VyXmPhgNm42nr0dqlluHLGvTz1KE8bYO5CTlbj7TKHDVIOE5XrPAz
-   ooR6kCs030SKbhCKyFttGvqyf8LW4urXHeL4zEKEaXfogF0EcsM7Yv2hA
-   KXzfyA7aPZjt+wbA7iCXEtxmFFButOk3ZNMDahz2fATLP4KbowDgT0+dP
-   eN5tvhVNwZ6aRCevpwl6I66lctiJa/mCHbsPmnuvMZSLrYgZRnFoD4W2c
-   BEl19zwawG1pd02i7cf2+vfOn6lul3LrZkPkphdo6kPh3+tZWuD/HPSm7
-   kMnxNHguW9i8mCBBB+ZohF6tVGwQMfe2Iakn+eLezkBKo4qL0LvYdM7lR
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10995"; a="14336679"
-X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; 
-   d="scan'208";a="14336679"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Feb 2024 00:13:28 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10995"; a="937029470"
-X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; 
-   d="scan'208";a="937029470"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga001.fm.intel.com with SMTP; 26 Feb 2024 00:13:24 -0800
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 26 Feb 2024 10:13:23 +0200
-Date: Mon, 26 Feb 2024 10:13:23 +0200
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux@roeck-us.net, jun.li@nxp.com, devicetree@vger.kernel.org,
-	linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-	kernel@pengutronix.de
-Subject: Re: [PATCH v3 4/4] usb: typec: tcpci: add support to set connector
- orientation
-Message-ID: <ZdxII9W/CBx76Xai@kuha.fi.intel.com>
-References: <20240222210903.208901-1-m.felsch@pengutronix.de>
- <20240222210903.208901-5-m.felsch@pengutronix.de>
+	s=arc-20240116; t=1708935557; c=relaxed/simple;
+	bh=zRa4yJkcA4V6X2vjCJFvlB/Gfr7vxYL8h6QUTOx2fZc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RmpMVWeI6Zp/b0q1dvhdJyQepA2CHDFf0bGUEPVLcLd9siAz8buUrY6Qb6nvE9fWSuw6phctJzpDPAk6jJ1V5IRL1o2a2UN/xa4QoP6kXu1Goa18qFn5sBn8SkqKJbMC5fblVV3WUYsZkhiJFYj1zDEChkYRF/mxERr7MD6VSdk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=bEt2Xa9D; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-1dc09556599so24193465ad.1;
+        Mon, 26 Feb 2024 00:19:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1708935555; x=1709540355; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zRa4yJkcA4V6X2vjCJFvlB/Gfr7vxYL8h6QUTOx2fZc=;
+        b=bEt2Xa9DGcTXdQdGdsPjiej0u93NgJNcNv19DrVWYZSGQ2YWEW4hDfmnYst9+BsDnj
+         qhJxfirc9r4NVRtvSCbs3vG385Ye8dvtuJxl6ORS8gsXcmqxf2GrEThL+7fsYS/q1GiQ
+         /lxKn8BAuLE4Hk3RJtcfQzFcf+MexBN+4o7ilkA9jffYfQMoL4bikZEo9Q0frHq/a/WP
+         z/0C2AgEQhNwgj6G/CIHOAisFalbI8n3M2VmSS6MfNSW7ifif5N9EXmS5D8gULp82QKj
+         v6b4V9U2BGRpc2j4MGV6TCaZRU4DikdCFlrP0SbqnoVLe92Mnf1OxIFHJiCQQW4fAkjx
+         5D4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708935555; x=1709540355;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zRa4yJkcA4V6X2vjCJFvlB/Gfr7vxYL8h6QUTOx2fZc=;
+        b=uaO75uf0RqUmMiSObxd2C1TK/S+lCSTBgJw1iGhqdrTRPNqNuiC20ea+ndofvzKK+Q
+         wf6cc6txcDV9TwxR/UI/94PC+Wijw6caAygmL56tcuulk/YyHIXWBofZLUnYURNvpF1q
+         0+zV6DsFeeg5Ob90T37jLEF3LAZj4eiZL+JEWEWn25+RARabGQitdk8mdGOPWtb9VsBZ
+         GtYt+/6yepArvnTicCU90PSsrPUhN0vj91X7bLdYM2YRxmTeNUtbJQuPYND6CaUG+7tl
+         7aHd71SE9c+cCYx7MsG0LvW3g8hSAOYZ8owY2+9XmBMhxKoUpzpPWrQVUETc5IVITpLb
+         PHRQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX6Ybg1b/iju7E7YbrdKGzvcszL9M0+vCDabcPuOU7FytGD4CWn4WjvdikSmvJ79HjCbrCpS2QUIRcwDDeLe5wYvU2jCR9JvPsdh4I4Z2tDhd7Glqvi2y0l8hNdqJM0+1+DbdROhzR4nQ==
+X-Gm-Message-State: AOJu0Yyouh03TA4uadbnHyocDx3rtrjJARCxfaVlEXgwTSH3BJ3yF/a8
+	/CU15gFvtfcIfYjIFitzVvu1E+aXArEKgJkIlsQcilcJNE5WRwK7GSJrCPEEj4pFf3b7Lmwd7dR
+	KHyFM0xdTZCHDXU3kd4y7mfR84/A=
+X-Google-Smtp-Source: AGHT+IHSKx4UhHS4/QTc0p0DdYlvOIScoPdMc1mzgFs3IyOjSbzD8+0JaBmln7m9eAh6BmvSRIksg68WtgQUL+yJNrQ=
+X-Received: by 2002:a17:903:54a:b0:1dc:afd0:e273 with SMTP id
+ jo10-20020a170903054a00b001dcafd0e273mr173179plb.59.1708935554895; Mon, 26
+ Feb 2024 00:19:14 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240222210903.208901-5-m.felsch@pengutronix.de>
+References: <20240224084030.5867-1-krzysztof.kozlowski@linaro.org> <20240224084030.5867-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240224084030.5867-2-krzysztof.kozlowski@linaro.org>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Mon, 26 Feb 2024 09:19:03 +0100
+Message-ID: <CAFBinCBqh_0hbYWk8Hk6iYbkZuHa1Nbq5WJLY7FRhwbsgAyurA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: arm: amlogic: add Neil, Martin and
+ Jerome as maintainers
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 22, 2024 at 10:09:03PM +0100, Marco Felsch wrote:
-> This add the support to set the optional connector orientation bit which
-> is part of the optional CONFIG_STANDARD_OUTPUT register 0x18 [1]. This
-> allows system designers to connect the tcpc orientation pin directly to
-> the 2:1 ss-mux.
-> 
-> [1] https://www.usb.org/sites/default/files/documents/usb-port_controller_specification_rev2.0_v1.0_0.pdf
-> 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> ---
-> v3:
-> - no changes
-> v2:
-> - Make use of fallthrough 
-> 
->  drivers/usb/typec/tcpm/tcpci.c | 44 ++++++++++++++++++++++++++++++++++
->  include/linux/usb/tcpci.h      |  8 +++++++
->  2 files changed, 52 insertions(+)
-> 
-> diff --git a/drivers/usb/typec/tcpm/tcpci.c b/drivers/usb/typec/tcpm/tcpci.c
-> index 7118551827f6..73a52e7f95c2 100644
-> --- a/drivers/usb/typec/tcpm/tcpci.c
-> +++ b/drivers/usb/typec/tcpm/tcpci.c
-> @@ -67,6 +67,18 @@ static int tcpci_write16(struct tcpci *tcpci, unsigned int reg, u16 val)
->  	return regmap_raw_write(tcpci->regmap, reg, &val, sizeof(u16));
->  }
->  
-> +static bool tcpci_check_std_output_cap(struct regmap *regmap, u8 mask)
-> +{
-> +	unsigned int reg;
-> +	int ret;
-> +
-> +	ret = regmap_read(regmap, TCPC_STD_OUTPUT_CAP, &reg);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return (reg & mask) == mask;
-> +}
-> +
->  static int tcpci_set_cc(struct tcpc_dev *tcpc, enum typec_cc_status cc)
->  {
->  	struct tcpci *tcpci = tcpc_to_tcpci(tcpc);
-> @@ -301,6 +313,28 @@ static int tcpci_set_polarity(struct tcpc_dev *tcpc,
->  			   TCPC_TCPC_CTRL_ORIENTATION : 0);
->  }
->  
-> +static int tcpci_set_orientation(struct tcpc_dev *tcpc,
-> +				 enum typec_orientation orientation)
-> +{
-> +	struct tcpci *tcpci = tcpc_to_tcpci(tcpc);
-> +	unsigned int reg;
-> +
-> +	switch (orientation) {
-> +	case TYPEC_ORIENTATION_NONE:
-> +		/* We can't put a single output into high impedance */
-> +		fallthrough;
-> +	case TYPEC_ORIENTATION_NORMAL:
-> +		reg = TCPC_CONFIG_STD_OUTPUT_ORIENTATION_NORMAL;
-> +		break;
-> +	case TYPEC_ORIENTATION_REVERSE:
-> +		reg = TCPC_CONFIG_STD_OUTPUT_ORIENTATION_FLIPPED;
-> +		break;
-> +	}
-> +
-> +	return regmap_update_bits(tcpci->regmap, TCPC_CONFIG_STD_OUTPUT,
-> +				  TCPC_CONFIG_STD_OUTPUT_ORIENTATION_MASK, reg);
-> +}
-> +
->  static void tcpci_set_partner_usb_comm_capable(struct tcpc_dev *tcpc, bool capable)
->  {
->  	struct tcpci *tcpci = tcpc_to_tcpci(tcpc);
-> @@ -808,6 +842,9 @@ struct tcpci *tcpci_register_port(struct device *dev, struct tcpci_data *data)
->  	if (tcpci->data->vbus_vsafe0v)
->  		tcpci->tcpc.is_vbus_vsafe0v = tcpci_is_vbus_vsafe0v;
->  
-> +	if (tcpci->data->set_orientation)
-> +		tcpci->tcpc.set_orientation = tcpci_set_orientation;
+Hi Krzysztof,
 
-I don't think that flag is needed - not yet at least. Please just call
-tcpci_check_std_output_cap() directly from here.
+On Sat, Feb 24, 2024 at 9:40=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> Add rest of Linux Amlogic Meson SoC maintainers and reviewers to the
+> Amlogic board/SoC binding maintainers.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Obviously the patch is fine for me - still I have one question:
+are you expecting an Acked-by here so you can take it through a
+devicetree git tree or should Neil take it through the amlogic tree
+(in that case I'm not sure if he can as the amlogic mailing list is
+not CC'ed)?
 
->  	err = tcpci_parse_config(tcpci);
->  	if (err < 0)
->  		return ERR_PTR(err);
-> @@ -851,6 +888,13 @@ static int tcpci_probe(struct i2c_client *client)
->  	if (err < 0)
->  		return err;
->  
-> +	err = tcpci_check_std_output_cap(chip->data.regmap,
-> +					 TCPC_STD_OUTPUT_CAP_ORIENTATION);
-> +	if (err < 0)
-> +		return err;
-> +
-> +	chip->data.set_orientation = err;
-> +
->  	chip->tcpci = tcpci_register_port(&client->dev, &chip->data);
->  	if (IS_ERR(chip->tcpci))
->  		return PTR_ERR(chip->tcpci);
-> diff --git a/include/linux/usb/tcpci.h b/include/linux/usb/tcpci.h
-> index 467e8045e9f8..f2bfb4250366 100644
-> --- a/include/linux/usb/tcpci.h
-> +++ b/include/linux/usb/tcpci.h
-> @@ -47,6 +47,9 @@
->  #define TCPC_SINK_FAST_ROLE_SWAP	BIT(0)
->  
->  #define TCPC_CONFIG_STD_OUTPUT		0x18
-> +#define TCPC_CONFIG_STD_OUTPUT_ORIENTATION_MASK		BIT(0)
-> +#define TCPC_CONFIG_STD_OUTPUT_ORIENTATION_NORMAL	0
-> +#define TCPC_CONFIG_STD_OUTPUT_ORIENTATION_FLIPPED	1
->  
->  #define TCPC_TCPC_CTRL			0x19
->  #define TCPC_TCPC_CTRL_ORIENTATION	BIT(0)
-> @@ -127,6 +130,7 @@
->  #define TCPC_DEV_CAP_2			0x26
->  #define TCPC_STD_INPUT_CAP		0x28
->  #define TCPC_STD_OUTPUT_CAP		0x29
-> +#define TCPC_STD_OUTPUT_CAP_ORIENTATION	BIT(0)
->  
->  #define TCPC_MSG_HDR_INFO		0x2e
->  #define TCPC_MSG_HDR_INFO_DATA_ROLE	BIT(3)
-> @@ -198,12 +202,16 @@ struct tcpci;
->   *		Chip level drivers are expected to check for contaminant and call
->   *		tcpm_clean_port when the port is clean to put the port back into
->   *		toggling state.
-> + * @set_orientation:
-> + *		Optional; Enable setting the connector orientation
-> + *		CONFIG_STANDARD_OUTPUT (0x18) bit0.
->   */
->  struct tcpci_data {
->  	struct regmap *regmap;
->  	unsigned char TX_BUF_BYTE_x_hidden:1;
->  	unsigned char auto_discharge_disconnect:1;
->  	unsigned char vbus_vsafe0v:1;
-> +	unsigned char set_orientation:1;
->  
->  	int (*init)(struct tcpci *tcpci, struct tcpci_data *data);
->  	int (*set_vconn)(struct tcpci *tcpci, struct tcpci_data *data,
-> -- 
-> 2.39.2
 
--- 
-heikki
+Best regards,
+Martin
 
