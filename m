@@ -1,140 +1,126 @@
-Return-Path: <devicetree+bounces-45819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2B20866E1E
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:19:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BF57866EA4
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:36:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0FE851C23D43
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 09:19:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74D46B21759
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 09:34:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6D721CFA8;
-	Mon, 26 Feb 2024 08:42:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 277B81DA21;
+	Mon, 26 Feb 2024 08:54:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bhxK74p5"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Y8uHFjKc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEA731CAB9;
-	Mon, 26 Feb 2024 08:42:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E8221CD2B;
+	Mon, 26 Feb 2024 08:54:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708936921; cv=none; b=MtyhUdLqDDmfBTN6m/2fDWEj+5YLqVn4gxrERghmm7JvAbuuMmb3Z9qgAqyJWxfyUQE1GrdrLgWlNNRf8GmZE1JgGTckUf4FnBh5BKJHAsb00XPTjCdryg4l20K9EJTXUZrhf8RE4Helsnwm+lg7fjzXh3+vABPsoakeC5QJX2s=
+	t=1708937652; cv=none; b=PLzoCQw89wFOLttVIvmpUcqGj5SGyWj499jDyY0C0DDySFp4ttn3x1J4v5hzdME+Q8qLVPfdpcJNUmzQuj/JEIxbcX3s7CeCw/jaggKtdOhoY2VlviluGb6afY/bdvCgFqgADiaySw3pnUUMA4X5SmFLMWjve9eu2eWDhin9Qfc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708936921; c=relaxed/simple;
-	bh=cEt/RUX0lThydTXPuAPjsQ4gTtxmbYh9mUY2ih/P5eY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Lgoa2lH1HtwcJVReGyz7arvvVQtz3Fv4IzVFLBWpqN7gv5OlKiSBNKPC9wjixj8tPK6Ux889p2gdzvY6irX8emImQRViMcJpkU+ng2rM8yBQLbHljRT0ZDio/ugBzucVplSX88AWOs8hlf0M6C7Fd87vXRNYLjoiHc/8A0JbLkw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bhxK74p5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EADDC433C7;
-	Mon, 26 Feb 2024 08:42:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708936921;
-	bh=cEt/RUX0lThydTXPuAPjsQ4gTtxmbYh9mUY2ih/P5eY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bhxK74p5YtnC90wX4cA1Nmh6dihZgxJSx0HfRpclARKsRDJgwhBWWCv8326q1ug2N
-	 2JFQ7+Iza+A2uMQ3SiZHUSNpWZwkBny21B3zNprSQiU0y8cngnSQHgRNevUoVWLm8m
-	 HXLud7VnN5zexuXuXfCPoFlIA8GbHAdY0rw/rrze/0M6vXE5QxcXzTHb9LFngavUve
-	 PLK32NGc72b339ZIYVDn0sK+xhBiqqtCAlpbIoMlmnaIF+Spxt5mmxxnGK9577VlVL
-	 DkSLoXgQ50EpTYa78kPAzChTIqMPYycE4fgxmJgOZrjEVhISnpnti4/NljL+vqc5gr
-	 4zCS55d1gAX3A==
-Date: Mon, 26 Feb 2024 09:41:58 +0100
-From: Wolfram Sang <wsa@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>
-Subject: Re: [PATCH 01/13] dt-bindings: i2c: nomadik: add timeout-usecs
- property bindings
-Message-ID: <ZdxO1l408x7kMwsB@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	=?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>
-References: <20240215-mbly-i2c-v1-1-19a336e91dca@bootlin.com>
- <20240216022704.GB850600-robh@kernel.org>
- <CZ6E24VPJKJG.35LACFD6ZV5KE@bootlin.com>
- <CACRpkdZZhhzg5SY7U5dv_OfLEVejRFom4V9nCfkQXunAw1ZXSw@mail.gmail.com>
- <CZ94LGRSF9KN.15ZO1VRMIQVR8@bootlin.com>
- <CZAX02IL1N1J.2GQR9D73GLRZB@bootlin.com>
- <ZdY2WzKbElloXC4-@shikoro>
- <20240222171404.GA3334332-robh@kernel.org>
- <ZdegTjJpDJGEgdvo@shikoro>
- <CAL_JsqLk3UbrXAymTvLQeeS-ACY7makTVYxa9CetO-G-v3TuqA@mail.gmail.com>
+	s=arc-20240116; t=1708937652; c=relaxed/simple;
+	bh=pjv2fhOW94iLLWS4VEuh49cFeCknKUZZbCQ8xc1tWOc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=K773oyh61RPPg4ILDQzZMA07oUTEoqxC4h0hz/8k2euClfSqAHFNjzT5uHAlMV68dy2mOp41Zv2sTywn2hsYf8MWY/DWt8MZapK87syErg1U2YBnDv6Bcx4xyxWKbHm8B2D5g7hj82UfF70rbzwQDMYegwfOUWBH/dY2ALPrMic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Y8uHFjKc; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1708937648;
+	bh=pjv2fhOW94iLLWS4VEuh49cFeCknKUZZbCQ8xc1tWOc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Y8uHFjKcveo1pVJZlRfFNFHwPbJMhQ6YfKl5FXTPDX1/vf96Z9+SBvqwh0BWUs/7Q
+	 ppn6luqf/Aci81+xb2qMABaa5fK7ROaTv0m+VA4rEqwAIesYC1QXzIvNZVuLEokSmw
+	 eRflYxpwL1Y13iMSmu2lf2GCsVv5Se+8ToY38OvsnoPDgbexRtcCT9SSccFaeQ0rm6
+	 xh4Xr9IAQph6NrfOog4b56SusB90LxmG634DJ7dEhi/8UXfnJ0Yyla8QriLbdemgaU
+	 +HcqatEWq+XMHbKqDKZDxRWCdtJ9hI0wUhLXi+nyCz2ikSNZeTbIJEYCH3UD7v30nm
+	 G1rXyzsxbPPnw==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 1CE373781183;
+	Mon, 26 Feb 2024 08:54:08 +0000 (UTC)
+Message-ID: <feab2039-5745-41a4-87c3-44fa266efc1d@collabora.com>
+Date: Mon, 26 Feb 2024 09:54:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="jGozXIullJVYR1fu"
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqLk3UbrXAymTvLQeeS-ACY7makTVYxa9CetO-G-v3TuqA@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8183: Add power-domains properity
+ to mfgcfg
+Content-Language: en-US
+To: Chen-Yu Tsai <wenst@chromium.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Ikjoon Jang <ikjn@chromium.org>, devicetree@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Weiyi Lu <weiyi.lu@mediatek.com>
+References: <20240223091122.2430037-1-wenst@chromium.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20240223091122.2430037-1-wenst@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Il 23/02/24 10:11, Chen-Yu Tsai ha scritto:
+> From: Ikjoon Jang <ikjn@chromium.org>
+> 
+> mfgcfg clock is under MFG_ASYNC power domain.
+> 
+> Fixes: e526c9bc11f8 ("arm64: dts: Add Mediatek SoC MT8183 and evaluation board dts and Makefile")
+> Fixes: 37fb78b9aeb7 ("arm64: dts: mediatek: Add mt8183 power domains controller")
+> Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
+> Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
+> Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> ---
+> This patch is long overdue. Could we merge it for fixes for this or the
+> next release?
+> 
+
+A clock controller that needs a power domain? Can you please describe the issue
+that you're trying to solve with this?
+
+It's not very uncommon but I'm not entirely convinced that this is right, because
+the MFG_BG3D is a gate - and it's *not* outputting a clock rate on its own: the
+mfgcfg is entirely GPU related and if there is no GPU support this clock is not
+even ever needed.
+
+MediaTek, can you please clarify if (and why) this gate clock needs a MTCMOS to
+be ungated?
+
+Thanks,
+Angelo
+
+> Changes since v2:
+> - Rebased onto current tree
+> - Added Fixes tags
+> - Fix up subject prefix
+> 
+>   arch/arm64/boot/dts/mediatek/mt8183.dtsi | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> index 93dfbf130231..774ae5d9143f 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> @@ -1637,6 +1637,7 @@ mfgcfg: syscon@13000000 {
+>   			compatible = "mediatek,mt8183-mfgcfg", "syscon";
+>   			reg = <0 0x13000000 0 0x1000>;
+>   			#clock-cells = <1>;
+> +			power-domains = <&spm MT8183_POWER_DOMAIN_MFG_ASYNC>;
+>   		};
+>   
+>   		gpu: gpu@13040000 {
 
 
---jGozXIullJVYR1fu
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-Hi Rob,
-
-> I'll try to make sure you see any future i2c changes.
-
-Thanks, if you mention @wsakernel I should get notified.
-
-I looked into watching specific directories in Github and I found the
-CODEOWNERS file. But code owners need to have write permissions and I
-am not sure this is worth the hazzle.
-
-Now on to checking that remaining binding...
-
-   Wolfram
-
-
---jGozXIullJVYR1fu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmXcTtIACgkQFA3kzBSg
-KbZ0Eg/9GIPjjbNJOCUz4gJoECPA7PtwjD0jB/4iW1OQQ32akslqKMkl0nIx8HCR
-chtQDMDl8xFHw1eQCV1FWFVorUoVEslcDJDX2CCUUcJGfimb8h/W6AwcEHib7mMu
-nnC/0OYBmDCQ+AU6A9YUYQRkF+j/zclDay5U5v9VNu69IDiE/lyZfem1zdDjJjD7
-WszhKsNhxItWKdWGvURKLkGPpB3jVJqaeaidi9QMm6IHIBLSmHf+fUWGRlaavpG0
-PHLZ2BDXY3+3tZm9oocAiK8CSJeAoo1DXSuz/tGNjamV2cgkDP9SqEaG+4wMoVKI
-pb6FeoKZQrAPCeNkKstYceh8AZtZY5HpgOKib7LhwhMWvJ92nstFU8++7qzus1np
-ibixz+VrQc0Pjm/HsO755vVeyleazBetuhCMHnq1yiYTAad7kkS1KQSFysSaWJVg
-aTbdPC3khK22hZ3kdiVtUw2Gaq3b97xMbx0r0yM3cA8VW9vwUKMNBCVRLtTIF9so
-KtTH1n6ZcPUaLaW6wzYXK8+VsvduSuBVLMFUWum+pZJUL2fxkvJv4z/Tj6zaViqa
-moWgVDVciK+Mh5y6LsvedTXU2Fdtiyoi9VtQTxy+GtE6htoCPGu8DKphNuFHxNCK
-crfhE+pwPhqrtHX9XDWgvzKEzVgSHG9XQ0mCn/rpShWu/KXQ4Gw=
-=oPtZ
------END PGP SIGNATURE-----
-
---jGozXIullJVYR1fu--
 
