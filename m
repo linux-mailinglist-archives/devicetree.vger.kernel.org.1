@@ -1,123 +1,141 @@
-Return-Path: <devicetree+bounces-45854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E89218670A9
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 11:23:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5814B8670C4
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 11:25:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 83F7B1F2BF2C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:23:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E2141F2896A
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:25:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C81B555E41;
-	Mon, 26 Feb 2024 10:07:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AAF02511F;
+	Mon, 26 Feb 2024 10:08:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="TIUD9stV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KwAwrajB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE53C55C3A;
-	Mon, 26 Feb 2024 10:07:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DFAE1CD39;
+	Mon, 26 Feb 2024 10:08:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708942050; cv=none; b=nr2LzGgfLHmfEoJmfpOzZgW/og3DxX517z0TGGYapkf/SH4WCReVKUKTb7Zv1NKUwp0MaqWvFAYXkYMMdfH/j8uFJ/YEaCHxjY8u0lF9Ai9lJOGz0KUgErwFVN9jObdv2dECvmkftjrfmTvNhDzX/Ms7laXPFmXRZLoZjvz+j+I=
+	t=1708942136; cv=none; b=eo12v/rk2O6HFfwINks6ThpYyaGO/Xp5n0tVd2LY3aNmMMtsQ78E0FrWThsSwG3zLCF9/TIPMQXU/c3ZJ2MVCTqmDGsW8nh+2JZDykD6dSXe08s1bzimiVjkwv69Z/PUTGmpYnKX9uA4Yb5Pmncmqs7Kv5U0zbPQkxS0wYDZCdY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708942050; c=relaxed/simple;
-	bh=DNebHSY35bj2aTTlomFot9W8ge7L9kuaM2+VvG/w0cQ=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Vydz4MPFDJEJku9gbUB+PGOmDAxR9OtRFyOmapug1OnAZWxLZhxCE3gm+rOAnnLufPiOz5Zc7e8ekMTmoOnx3VkD2G2OLM7utPwCMPCTXT3vW7dNxzMze2vl8pjhFHK+Dn5l9w/q37lFTXiTfyfVTvg2nQhS31oU04QeWE42D2Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=TIUD9stV; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1708942049; x=1740478049;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=DNebHSY35bj2aTTlomFot9W8ge7L9kuaM2+VvG/w0cQ=;
-  b=TIUD9stVWwLtzZVubbyLaE2JskhGPzvRjupek/YU0zmxCcTAqiQL5K7B
-   Fp7ZimIWgvkwMph33WUQqty5oAGkSJIP3eKXR1nHi0uc+ipVxflD0iQrl
-   XutfJ7gwXEY8opNgzpfJ/y1g1eNJGpMfUmzOPtu10PJyWrTSuC0TTo9lk
-   dYtgteG/aEQ6CcUGnJ3cFlWmTP1cmvjWpBi+bByLdDf1tKZOfbY/fgtoC
-   W5s4IrQWo5va7lhWmm5XHLGoX0f9q0+HPQvevF+B6qdOYDWV6MJEOAhFf
-   wyOtJ/VBbR6eNK1FxbwKYpVp2HxHSQ8BYggOFer+Yz/6oLZ80lclccdiS
-   w==;
-X-CSE-ConnectionGUID: VSJxsAsaSlyrhJ5T50LSuQ==
-X-CSE-MsgGUID: QEGURzX6Rn6dwABcqO++nQ==
-X-IronPort-AV: E=Sophos;i="6.06,185,1705388400"; 
-   d="asc'?scan'208";a="247564532"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 26 Feb 2024 03:07:28 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 26 Feb 2024 03:07:07 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Mon, 26 Feb 2024 03:07:04 -0700
-Date: Mon, 26 Feb 2024 10:06:22 +0000
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
-CC: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Paul
- Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, William Qiu
-	<william.qiu@starfivetech.com>, Ley Foon Tan <leyfoon.tan@starfivetech.com>,
-	<linux-pwm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH] dt-bindings: pwm: opencores: Add compatible for StarFive
- JH8100
-Message-ID: <20240226-hurt-cubbyhole-f792a9e8b25b@wendy>
-References: <20240226033945.816974-1-jisheng.teoh@starfivetech.com>
+	s=arc-20240116; t=1708942136; c=relaxed/simple;
+	bh=uqLS03IoInvWNidwN+ZlNlrEZa8bvo2yjHOvhtrlXVk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jtaX1bEwhWnCKrCkvn43YmhUi+QzjqJljcqQYwg6fMmLpN4T52zc0nQ5IZ6KT3c3FdhW5DrFY4P+bccUaKgs1sUz1m5a4HE7QoRsolvJJS+ShgHxQmflprz2VH+C5A2gMRxt3raXUU5VpzcS0LawRmNVN2asUls3+AIjVM6OK28=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KwAwrajB; arc=none smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2d28464c554so17232731fa.3;
+        Mon, 26 Feb 2024 02:08:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708942132; x=1709546932; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=otUebX+7GsI1tLV4gJo2QwLDS/8XHJF0EtxeLNPIl3I=;
+        b=KwAwrajBOxrOw+6MSoYIe2m+jpgrIBqSDBn1u2Qnn35ALTqEE+zmmv+2Da1+QzEN/Q
+         GYtnr8PjjyydaiFvN8Qv6q2jaLwdvcLVnNKikFfKy0ZC9f8LiuipcV7Djr78tBk5sBWy
+         p/Zb9N4uoyfab36Uy1S+dZYUfqM3nTnv0q5Y5mFIjEvdffoUFo7nFeKW4NVypdZtlu8Z
+         ZDcbtLZfgE7nB65DaWd5mzCPk0geSGoEs3lWx12x4DqN0H7QynE+RfFtS/yJkEecgQA4
+         7yQQMmUdfxuRu1oQBA/j+wiCSLPo6SJxbVdM+/ANqw9wJk3Z6hrSKu36Q+FTq93EzUAK
+         sMuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708942132; x=1709546932;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=otUebX+7GsI1tLV4gJo2QwLDS/8XHJF0EtxeLNPIl3I=;
+        b=lyaEJ2ME5/JF5Aw0za9tq1xKrq+fpqEx6BYCVw6ZULBQAidf5nfRRdK9vZA7+wbrBT
+         ut9S0D/hkgFvZQc1AoOD2OmUGVwmIrjC+iGqzsRZcVIIE98FV9AFA48Cpc2zTDgq/X+L
+         /FdQsZM+pPH4L5Obr38QaB5kDy66+J0mDlqccw2X8uLaUHb2Z5/0XSYJtEikPpv+zEnm
+         XxMo+p6n+/PwEYsPKHC7JXgjtIREh8+ZO3QDf53XPFk77qO3zHxZVC0HqNsjzBnQRju4
+         l60EmsJ56uqB/IYru686g6o68/hVk8u23E7hdVTz1KNdTvmcOkjNhaz6rr0zBonha0Ji
+         kdtQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV1mpJR30KoA4+8FSP6wnosO1QlVz+yNFbDi2nRTlRWslMos1iAsQvBr/gUpx60wMvmaggDjCUfTKLo0aXdc5jYWyrwExIVY7mV9301A/vZgndFAxnsKuo0eYzItMR7H8KvfpCAlwf9gA==
+X-Gm-Message-State: AOJu0YwsEH93EA02XnB7GXh53y6MYGH6M8b6tlsk7xJoZhOBaSwrPRMr
+	CxKpn52k0C7xEhcAMLud9yH3BmZTMXFCEm/mQ7rdMdHm+Wue7Bnk
+X-Google-Smtp-Source: AGHT+IHjaCHb+GrSNwOJOmtyQHnKRbUT3jlBXdZcTX+9xBWhqvsdiapJnnN/0yWuMjY7DqU1gaeVAA==
+X-Received: by 2002:a2e:2201:0:b0:2d2:6c74:58d6 with SMTP id i1-20020a2e2201000000b002d26c7458d6mr3597981lji.44.1708942132372;
+        Mon, 26 Feb 2024 02:08:52 -0800 (PST)
+Received: from ?IPV6:2001:861:3385:e20:6384:4cf:52c5:3194? ([2001:861:3385:e20:6384:4cf:52c5:3194])
+        by smtp.gmail.com with ESMTPSA id m22-20020a056000175600b0033d1b653e4csm7741794wrf.54.2024.02.26.02.08.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Feb 2024 02:08:52 -0800 (PST)
+Message-ID: <5fdcd8d3-1793-4f82-9e35-a3b2fd18c2e7@gmail.com>
+Date: Mon, 26 Feb 2024 11:08:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="O/w1adAHCIQ0qVfg"
-Content-Disposition: inline
-In-Reply-To: <20240226033945.816974-1-jisheng.teoh@starfivetech.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: serial: convert st,asc to DT schema
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Patrice Chotard <patrice.chotard@foss.st.com>
+Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240225100336.34122-1-rgallaispou@gmail.com>
+ <174b85c4-107b-44ea-af81-4564101aa5ec@linaro.org>
+ <4a1504d4-6c64-4385-bb52-43d39a017215@gmail.com>
+ <934c476c-dbe6-4266-8821-ed401e63a004@linaro.org>
+Content-Language: en-US, fr
+From: =?UTF-8?Q?Rapha=C3=ABl_Gallais-Pou?= <rgallaispou@gmail.com>
+In-Reply-To: <934c476c-dbe6-4266-8821-ed401e63a004@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
---O/w1adAHCIQ0qVfg
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Feb 26, 2024 at 11:39:45AM +0800, Ji Sheng Teoh wrote:
-> StarFive JH8100 uses the same OpenCores PWM controller as JH7110.
-> Mark JH8100 as compatible to the OpenCores PWM controller.
->=20
-> Signed-off-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
-> Signed-off-by: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
->=20
 
-Applied, thanks.
+Le 26/02/2024 à 09:09, Krzysztof Kozlowski a écrit :
+> On 26/02/2024 08:38, Raphaël Gallais-Pou wrote:
+>>>> +
+>>>> +allOf:
+>>>> +  - $ref: serial.yaml#
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    const: st,asc
+>>>> +
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  interrupts:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  clocks:
+>>>> +    maxItems: 1
+>>>
+>>> This wasn't here before and your commit msg does not explain it.
+>>
+>> Looking at the device-tree I found that every instance of this device
+>> refers to a phandle of a clock.
+>>
+>> Moreover in the driver of the device, the probe fails if it does not
+>> find a clock, hence this addition.
+>>
+>> cf. drivers/tty/serial/st-asc.c:701
+> 
+> Commit msg should explain differences from pure conversion and the
+> reason behind. Otherwise how can we know why you did it?
 
-This should've been a b4 email, but I don't think the old copy of b4 I
-had on this machine likes UTF-8 encoding in email addresses as it
-generated a pile of crap in the to field. I'll have to see if a new
-version fixes that.
+Indeed, I will change the commit log.
 
-Conor.
-
---O/w1adAHCIQ0qVfg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdxingAKCRB4tDGHoIJi
-0nImAP4vdfnl3n5CXRLR+1UVkwBvzjbGYeIeN699Lwxtm34nBAEAqrsi/qdEuw2a
-QrQux1Bc7Q30vbEzVEY8CwRVrQjdwAw=
-=I55z
------END PGP SIGNATURE-----
-
---O/w1adAHCIQ0qVfg--
+Regards,
+Raphaël
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
