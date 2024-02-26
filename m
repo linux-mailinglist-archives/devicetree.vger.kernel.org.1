@@ -1,88 +1,171 @@
-Return-Path: <devicetree+bounces-45874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CBFE8672F7
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 12:23:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7C11867360
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 12:38:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D7E3BB2B6FC
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:49:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 06292B2AA69
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:54:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35FE7537FC;
-	Mon, 26 Feb 2024 10:44:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22CD44EB52;
+	Mon, 26 Feb 2024 10:49:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="DDrCoXDe"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="obmUA0pg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 645E353818;
-	Mon, 26 Feb 2024 10:44:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08DB14EB3D;
+	Mon, 26 Feb 2024 10:49:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708944286; cv=none; b=Yuhk3T2IkNq4dHYnrk0555dqaROmEVBKTNSWtS6Ww53X94bMaDeJ7wQVnoZ37LAxuAO10yN1GKmiR4fRBSOacMkwalKDESn0ME1NszEs1i685kkexesZ+roxJBrGKPfviQjw+XrrqTqJjBdjqNxk5shBbdhNpRAq4XxQYf277Bw=
+	t=1708944587; cv=none; b=gL4MhP69PyWGzm8XBEO0sGzfKefaq+K0MkR4of7M0d+Do2RnD0VYbH8K4jvINgrZ8kj0Lca0Y7zyIN7ML6flRKGgxSCZqAAZkSVroObIgMz98+21nn7/1YWy0hf29m5X8EeRF/VjR4aXyHtJ3+wf9ydmn9x14Xd0rULpgl7H+MY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708944286; c=relaxed/simple;
-	bh=Yh4uJmsOYrQwN5g3SD4LmyI3xt/tWe1trAaD+pHWlx0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=f5jAXpNCyg8/98Nv/sDq9rcsR8QjeZDePLM5tKtbToG8EucUiR0dtfR4LGaVDa3WfZ/Xjz4z9JpGcrsgcbS6nsfg5gaXra7e0LOrKIkfA9YFqaUNx/qlSVUYM65cdYkeMHu2HQg5XLOIovf2QCQzVWZBGH1HIf1qnGjbTKhhBS0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=DDrCoXDe; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 32E2D24000A;
-	Mon, 26 Feb 2024 10:44:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1708944282;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=f/jayUSRVjpybZD3WxWT1q4xekLKiFI7st5oYv5V+jg=;
-	b=DDrCoXDe3eXuMjrtasnZepDNu5tAKDw6NduQOARdFQTp/RU2aOKzoJrkm5DDaOLzLYanzf
-	uGtLN7yJtowil+EvApOjaxjqROfc9OKN7G8V3frxG2TeGjnvD0G1cY2h3jjN0XttEfcvXV
-	jjlied8vSz68+prRMHlV2ep86a2sFFuAtDQ9CHIVM5A86YFyr64uYCGcrpBAIAZAzBlsR1
-	PGpcFtLQs/Gy2jLp8vMfQRSmg0F5t5kpi5jMeNVfFkUs3zgeM8N+Yr/6sbho+3pSgi9SSC
-	qYYO8cT6s1ThAvUOaRKdoG6Pnjp67LkLvU+JnFyLlbtccmRyc9phIUvcJsZMlA==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Christophe Kerello <christophe.kerello@foss.st.com>,
-	miquel.raynal@bootlin.com,
-	richard@nod.at,
-	vigneshr@ti.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org
-Cc: linux-mtd@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] mtd: rawnand: stm32_fmc2: add MP25 support
-Date: Mon, 26 Feb 2024 11:44:41 +0100
-Message-Id: <20240226104441.489887-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240219140505.85794-4-christophe.kerello@foss.st.com>
-References: 
+	s=arc-20240116; t=1708944587; c=relaxed/simple;
+	bh=VakyMaA1l7gz26bljxnOjhozKPXHVEdJUrM8CWUHQT0=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=ImGHEFpckRPasjaaHAlsvVJvykXy/g7h7yq0JzF5KDAxSZ+6Sudpzv5pf+rgDRq2NfVxlIRniHiYH9kcsjkx4K3SUhJQlh+BXcJTcUIAx35pa4PMjQhFA8YG7Wj1hXL4Jn/Su3uw8UidsucovLE5ldxptNPINpxQJHWlhR4eXCQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=obmUA0pg; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41QALGin020301;
+	Mon, 26 Feb 2024 11:49:17 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:subject:date:message-id:mime-version:content-type
+	:content-transfer-encoding:to:cc; s=selector1; bh=KSlAKh5khHrm2l
+	h9JDEYwfn6mQwNRMWXeZ4rXWYoMPM=; b=obmUA0pgK23lV+iGq6BnCH2IcutvDH
+	pOBwx7Akg0ILyMRM1yYdHrvITrC9rJFjCspZ901h0kD9syoUxuV+mXlxOVQdl28G
+	xsqfE99qn+2bv20dk12Wj9Nnx+/2n7XIvA4H9MsZuELZQ1Q87WC37Trd6+7IsT+5
+	nH5jRX3Xhnga96kb6yZEF9eqOnqm2GimHuGeuyxkqMvdtSfYyZ0DPfWXS1ZebnI/
+	jl7jdrOEWnc/udr5VCA484zKV3WF6RlsUMo2kgXv0XxCXCCTGyqGfY/Mfu4nWnQ9
+	X4uaQO7eRHFFOmCZFdn2Ax5bML3DoelJ8zd1m/b39ad3EiaLIQKvW11w==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3wftw4mpfb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 26 Feb 2024 11:49:17 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id F178540048;
+	Mon, 26 Feb 2024 11:49:12 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E8979266D0C;
+	Mon, 26 Feb 2024 11:48:08 +0100 (CET)
+Received: from localhost (10.252.9.163) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 26 Feb
+ 2024 11:48:08 +0100
+From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+Subject: [PATCH v6 0/3] Introduce STM32 LVDS driver
+Date: Mon, 26 Feb 2024 11:48:04 +0100
+Message-ID: <20240226-lvds-v6-0-15e3463fbe70@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'0bfad3b3561d6f219b768d2a4265642ee9d31b1d'
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGRs3GUC/22MQQ6CMBBFr0JmbcmILbSuvIdxAXQqTZSaDmk0h
+ LtbMC5MXL6f/94MTNETw7GYIVLy7MOYod4V0A/teCXhbWaosJJYoRK3ZFkQakm9QtKNhnx9RHL
+ +uWXOl8yD5ynE11ZNcl2/gfoTSFKgMNoqZ1p3MMaeXGAueSr7cIc1kdQ/TWWts/u6MU2HDs2vt
+ izLG10KIC3RAAAA
+To: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard
+	<mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Yannick Fertre <yannick.fertre@foss.st.com>,
+        Philippe Cornu <philippe.cornu@foss.st.com>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+        Conor Dooley
+	<conor.dooley@microchip.com>
+X-Mailer: b4 0.12.4
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-26_07,2024-02-26_01,2023-05-22_02
 
-On Mon, 2024-02-19 at 14:05:05 UTC, Christophe Kerello wrote:
-> FMC2 IP supports up to 4 chip select. On MP1 SoC, only 2 of them are
-> available when on MP25 SoC, the 4 chip select are available.
-> 
-> Let's use a platform data structure for parameters that will differ.
-> 
-> Signed-off-by: Christophe Kerello <christophe.kerello@foss.st.com>
+This serie introduces a new DRM bridge driver for STM32MP257 platforms
+based on Arm Cortex-35. It also adds an instance in the device-tree and
+handle the inclusion of the driver within the DRM framework. First patch
+adds a new panel compatible in the panel-lvds driver, which is used by
+default on the STM32MP257.
 
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
+Changes in v6:
+	- [1/3] Added Conor's Reviewed-by
+	- [2/3] Fixed kernel test robot warnings
+	- Rebased on latest drm-misc-next
 
-Miquel
+Changes in v5:
+	- Fixed path in MAINTAINERS
+	- Fixed compatible in driver
+
+Changes in v4:
+	- Align dt-bindings filename and compatible
+	- Remove redundant word in [1/6] subject
+	- Fix example on typo
+	- Some minor fixes on YAML syntax
+	- Explicitly include linux/platform_device.h
+	- Drop device-tree related patch after internal discussions
+	- Rebase on latest drm-misc-next
+
+Changes in v3:
+	- Changed the compatible to show SoC specificity
+	- Fixed includes in dt-binding example
+	- Added "#clock-cells" description in dt-binding example
+	- Some minor fixes on typo
+
+Changes in v2:
+	- Dropped [1/8] because already merged
+	- Dropped [4/8] since not mandatory for this serie
+	- [1/6]: Switch compatible and clock-cells related areas
+	- [1/6]: Remove faulty #include in the example.
+	- [1/6]: Add missing entry in MAINTAINERS
+	- [2/6]: Removed CamelCase macros
+	- [2/6]: Removed hard to read debug log
+	- [3/6]: Fixed my address
+	- [3/6]: Fixed smatch warning
+	- [5/6]: Move changes to stm32mp255.dtsi
+
+Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+---
+Raphael Gallais-Pou (3):
+      dt-bindings: display: add STM32 LVDS device
+      drm/stm: lvds: add new STM32 LVDS Display Interface Transmitter driver
+      drm/stm: ltdc: add lvds pixel clock
+
+ .../bindings/display/st,stm32mp25-lvds.yaml        |  119 ++
+ MAINTAINERS                                        |    1 +
+ drivers/gpu/drm/stm/Kconfig                        |   11 +
+ drivers/gpu/drm/stm/Makefile                       |    2 +
+ drivers/gpu/drm/stm/ltdc.c                         |   19 +
+ drivers/gpu/drm/stm/ltdc.h                         |    1 +
+ drivers/gpu/drm/stm/lvds.c                         | 1226 ++++++++++++++++++++
+ 7 files changed, 1379 insertions(+)
+---
+base-commit: de8de2c8acb931ce6197a04376a7078ccf50e821
+change-id: 20240205-lvds-e084ec50e878
+
+Best regards,
+-- 
+Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+
 
