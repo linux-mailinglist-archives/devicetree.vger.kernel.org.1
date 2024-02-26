@@ -1,114 +1,123 @@
-Return-Path: <devicetree+bounces-45999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA918867B91
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 17:18:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92FCC867A33
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 16:28:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DB7FAB2D089
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 15:27:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C45031C21A5B
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 15:28:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E92D12BE8B;
-	Mon, 26 Feb 2024 15:26:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ED411292ED;
+	Mon, 26 Feb 2024 15:27:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="wpAj+S2V"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Ynvz/lPN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B91C712B17F;
-	Mon, 26 Feb 2024 15:26:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB013219E3;
+	Mon, 26 Feb 2024 15:27:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708961173; cv=none; b=FyZPGCeMbHkLS79vs25L0ZGKKX8IuDmuSJrh2l1MZBJG7z3kLCorJRblAvDxtejDUojLwP8IUjPQ21upVlNlyBjDgxWKdFZ9FlwD9qD3kulJSQ7lQ0cf4AiATRNOyIr8vKxneMwYiYf6ZdkgjDzVFCFyRb0YlpwDNHhj1NDNV2k=
+	t=1708961279; cv=none; b=OfkLrOrCyFXwKCN/mgXLhgCtuQUTr6Nzqa0h/C/Kb/WTOFUygtXHZRlmcj8Do0+7oBxtsrYipknnDnmKLLRZ4XQb3aEAPKji9LahFnfhaa+hLe/NTT4Rr5DKzOLBhIZ5EE7T8cQNdzIEnZksW3QlKTSuYOTcjRRBcjeLzaysjs8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708961173; c=relaxed/simple;
-	bh=BGtrotZCxe9YdvKz5MvCySGTf7PW9GlLNALwLZ9BjU4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ih/aVeHKxfElAtMMwXfIkWOa0G6ICGlSD25CZhMyyBryb8NVqoMOWKgIImQ7HkQI3WQjHVf61TTNN1Zf6DjluWBNuUybdffZTdqOJ8DC4/9XLuDkyv5aGh2bi27wzyYSAiFpn4D05Wya0IGoc14Erz7V5YHrchhsar+Y8Mw/o4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=wpAj+S2V; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1708961170;
-	bh=BGtrotZCxe9YdvKz5MvCySGTf7PW9GlLNALwLZ9BjU4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=wpAj+S2VxraYD5Zf+Qnw39b+gY+qm4td3h7VT+Kh1Vh1Y/7BFOu+qrrLXIKmFpuP4
-	 19HVXvZj6iDi1LJq234qe98XlAqHxRfv/yuh1U0AP9HuvNxc9ld3EoaqalxOWmoN2H
-	 dCo/Rowu/7xtCH8JuIBkU2+2EU4RdM8J9uObf7/NwvKGqeXQk98fDZOWmmP+TCN2HE
-	 3/X2Cwf+ESqbNpQFwJcvAFiLZsQL15yABc4eYLI1qKV7HS/OvvhyH31iMjZUWeeLBP
-	 9Penc6a61I5BbJItAStwVigwq/Iv5c21SwBI1z6lBbBq5L5MCEiGoVjolaitui7pPb
-	 8Asf93ze/gB5w==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 862E737820CB;
-	Mon, 26 Feb 2024 15:26:08 +0000 (UTC)
-Message-ID: <31c732dd-21cf-4961-afb8-6c757eef0eeb@collabora.com>
-Date: Mon, 26 Feb 2024 16:26:08 +0100
+	s=arc-20240116; t=1708961279; c=relaxed/simple;
+	bh=XaHk1CGkgz44435i/fuj0zT7LXSXHOspkU3pxQTrO7Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tV+AkCwA1feSp8Ik7yXEXQvKwYUkxdT2voDifpi8UQYaqxoIpYuYehqHYzTMn8c+rYT2qY7/B4PAKs3qv2dmgG69BoeZ922xg74qsZVi3UVbE7PsZ4qwc8TbIxuVBzFzpuVObNXdZ45O7Y1gmwiUMseziQImw/0IBsLI2hQ0iv8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Ynvz/lPN; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=OgvLF2sxTIfRPsS3ujCyxTkAmer7UG07rXHGb61zVMk=; b=Yn
+	vz/lPN+xCrwZAx6sK9e2RXXTIp3hv4HL8OFQfR7MnxY3UjQduln30YkNamCCzJ0o42bBHvEFtllBx
+	vzKle+N6NDcL+EW8WGvWMAY6doakPbVNU7YW4oDOf7My5yKjskwawrGDneBIAGmWLHV4xSIz5K4Ks
+	5ws1ipWzW/2e1TQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1recte-008jix-Df; Mon, 26 Feb 2024 16:28:02 +0100
+Date: Mon, 26 Feb 2024 16:28:02 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: =?iso-8859-1?Q?J=E9r=E9mie?= Dautheribes <jeremie.dautheribes@bootlin.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, Andrew Davis <afd@ti.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	=?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
+	Yen-Mei Goh <yen-mei.goh@keysight.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>
+Subject: Re: [PATCH net-next 1/3] dt-bindings: net: dp83822: support
+ configuring RMII master/slave mode
+Message-ID: <d14ba685-dc7e-4f99-a21e-bae9f3e6bc79@lunn.ch>
+References: <20240222103117.526955-1-jeremie.dautheribes@bootlin.com>
+ <20240222103117.526955-2-jeremie.dautheribes@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 13/18] mfd: mt6397-core: register mt6357 sound codec
-Content-Language: en-US
-To: amergnat@baylibre.com, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Lee Jones <lee@kernel.org>,
- Flora Fu <flora.fu@mediatek.com>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
- Fabien Parent <fparent@baylibre.com>
-References: <20240226-audio-i350-v1-0-4fa1cea1667f@baylibre.com>
- <20240226-audio-i350-v1-13-4fa1cea1667f@baylibre.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20240226-audio-i350-v1-13-4fa1cea1667f@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240222103117.526955-2-jeremie.dautheribes@bootlin.com>
 
-Il 26/02/24 15:01, amergnat@baylibre.com ha scritto:
-> From: Fabien Parent <fparent@baylibre.com>
+On Thu, Feb 22, 2024 at 11:31:15AM +0100, Jérémie Dautheribes wrote:
+> Add property ti,rmii-mode to support selecting the RMII operation mode
+> between:
+> 	- master mode (PHY operates from a 25MHz clock reference)
+> 	- slave mode (PHY operates from a 50MHz clock reference)
 > 
-> Add MT6357 codec entry in the MFD driver.
+> If not set, the operation mode is configured by hardware straps.
 > 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
+> Signed-off-by: Jérémie Dautheribes <jeremie.dautheribes@bootlin.com>
 > ---
->   drivers/mfd/mt6397-core.c | 3 +++
->   1 file changed, 3 insertions(+)
+>  .../devicetree/bindings/net/ti,dp83822.yaml      | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 > 
-> diff --git a/drivers/mfd/mt6397-core.c b/drivers/mfd/mt6397-core.c
-> index 4449dde05021..4fd4a2da5ad7 100644
-> --- a/drivers/mfd/mt6397-core.c
-> +++ b/drivers/mfd/mt6397-core.c
-> @@ -141,6 +141,9 @@ static const struct mfd_cell mt6357_devs[] = {
->   		.num_resources = ARRAY_SIZE(mt6357_rtc_resources),
->   		.resources = mt6357_rtc_resources,
->   		.of_compatible = "mediatek,mt6357-rtc",
-> +	}, {
-> +		.name = "mt6357-sound",
-> +		.of_compatible = "mediatek,mt6357-sound"
->   	}, {
->   		.name = "mtk-pmic-keys",
->   		.num_resources = ARRAY_SIZE(mt6357_keys_resources),
-> 
+> diff --git a/Documentation/devicetree/bindings/net/ti,dp83822.yaml b/Documentation/devicetree/bindings/net/ti,dp83822.yaml
+> index 8f4350be689c..8f23254c0458 100644
+> --- a/Documentation/devicetree/bindings/net/ti,dp83822.yaml
+> +++ b/Documentation/devicetree/bindings/net/ti,dp83822.yaml
+> @@ -80,6 +80,22 @@ properties:
+>             10625, 11250, 11875, 12500, 13125, 13750, 14375, 15000]
+>      default: 10000
+>  
+> +  ti,rmii-mode:
+> +    description: |
+> +       If present, select the RMII operation mode. Two modes are
+> +       available:
+> +         - RMII master, where the PHY operates from a 25MHz clock reference,
+> +         provided by a crystal or a CMOS-level oscillator
+> +         - RMII slave, where the PHY operates from a 50MHz clock reference,
+> +         provided by a CMOS-level oscillator
 
+What has master and slave got to do with this?
 
+Sometimes, the MAC provides a clock to the PHY, and all data transfer
+over the RMII bus is timed by that.
+
+Sometimes, the PHY provides a clock to the MAC, and all data transfer
+over the RMII bus is timed by that.
+
+Here there is a clear master/slave relationship, who is providing the
+clock, who is consuming the clock. However, what you describe does not
+fit that. Maybe look at other PHY bindings, and copy what they do for
+clocks.
+
+	Andrew
 
