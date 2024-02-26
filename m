@@ -1,189 +1,125 @@
-Return-Path: <devicetree+bounces-46018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E649867B34
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 17:10:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA08F867B46
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 17:12:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7FCF41C29D14
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 16:09:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83392285CF4
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 16:12:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABBF212C807;
-	Mon, 26 Feb 2024 16:09:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9BD112CD83;
+	Mon, 26 Feb 2024 16:12:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gFKSjVwP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BoRS2yBQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7386212C547;
-	Mon, 26 Feb 2024 16:09:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26D2E12C554
+	for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 16:12:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708963774; cv=none; b=WPqiz+eQ9gDbjfmUrWDXLlnc31+G7AZA/i5f8+JzHrqjwhW5ugRR0etVuEap21U40UHeVNUV9p00+rK4XE9RVublif9Kz9u42zI15aNUSsYYjfzC6qrkdtldGn0XalmuyGXK+ZzLG7kG1pnkAmYQeW+OoFmA2zWXsktZYxRH+MU=
+	t=1708963945; cv=none; b=l3hTlOyZ9q9497u4QSLSrLgh9/0j1xZbL5ZwMlxD18TEnNdR7kbKLJEanFEdKMijTxlsV79DT8GyRvPEPvZX15MBQIVN7ebxawLqFe/MWKbubC+1nwlU4PqaYyFYWMk8C0tFW0HTcjrvZtcOsnDrQu15OZkRF7u3Vc8tqaMV2Ss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708963774; c=relaxed/simple;
-	bh=544qUMhqgYQOHGl46eHK6g/2ihFgsZn/LHzZzuoNf14=;
+	s=arc-20240116; t=1708963945; c=relaxed/simple;
+	bh=a6f7tH+OqrI8hsygIm05fQcRkKGxUj/pum2GnIuoRvs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i4mJ0pVA9S2hBdWVQ73eeeMwlxu9QAX/yJGlbs17nqEExN2S7I9qNoXk7iMn5e5br5IyBMj0SMjzhVsJi87VIESrJQYKaMt2orV6Ziu1AeJa2ByHTWY3WXyWqChTnOmQ9iAjrBTHx6TA6c3k/doKAsjhkJcAg6UknGas/psdvZ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gFKSjVwP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3858C433F1;
-	Mon, 26 Feb 2024 16:09:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708963774;
-	bh=544qUMhqgYQOHGl46eHK6g/2ihFgsZn/LHzZzuoNf14=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gFKSjVwP60i6oW9D7LFMScKauvLLEEnmQASp+Uth6mTofKuSpkIQq72+2SDSFXZ6R
-	 Lq1ZT4yI+OaSa41rwTMpeOj5sbsruVuvaxytpdeoM3mWQ6iV+7K1OeNGrhBLoCz/2i
-	 dTrZH7dG03AaoXC267IIp6BIqJ2w1vurx7gjm8QLgpfD5U7WkqMKQYhBBbyRT9fpOc
-	 HDalcrYaW3e2HphJwpjaqrUVi3BGrjIH2eQGKh6nHJGgmqSAQnXBCyaFcFggWxVqn5
-	 vJqdYB/klAj/39MMDPZHvGtUhlGcsH9DLE4+bQbCDJWVo2dydZozgQ9SPNQ+YZwRHv
-	 7TuEZXZlVRG3A==
-Date: Mon, 26 Feb 2024 16:09:25 +0000
-From: Mark Brown <broonie@kernel.org>
-To: amergnat@baylibre.com
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=Cldg30fzDtOeMeCXzxXUhksc/wIrOBxkMHdYrWisJvvqBe8Wqgb3NqbLJsvx0zrSjDyLxNV0x7vFTCNXAn0Z7yeR9AL8/I9OHlzA3GvwkXcn7VKbUrEFMxCuV35FF868JxyMAotRzXpDIVepJAZ+cKhm/0Jl7QkuoJB3x/i7Fhw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BoRS2yBQ; arc=none smtp.client-ip=209.85.161.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-599fc25071bso2166922eaf.3
+        for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 08:12:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708963942; x=1709568742; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=5sH6z9nrzqVNTL38OQhoDAwWJzK93pXYFPgmQuEUCcY=;
+        b=BoRS2yBQ1FIjCzXe3Am2ozDjd3R7N9NAiJC1hWk9JYXOnorAh5dgaVcrrCuX3qzaAb
+         bmOWwsK+A4uJnnUfIEoe4BYki7CgvY/ejWPgaB7Dw02NDMsmqwRenfzVpUmm/H/EpDW/
+         I/PjgplIDH5Ld/WFgRp/hihvBa3mwqwiS6Iyizq1zvc40oE/ir1RsVddHzl1cQFMmXDE
+         WOA1XJqA+nMW8KNueKX64MqlWrHnP4kl2Z/aHcRIVOau4X7G4RbMAqjdDlHLH6lsPK2+
+         XqMRfNbdIDn0WS5LBRF/wndbTKXPEA6gl1UaIbQw1XRHQ8tZh8rgTkweQ8qKV6cpzPhA
+         +0UA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708963942; x=1709568742;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5sH6z9nrzqVNTL38OQhoDAwWJzK93pXYFPgmQuEUCcY=;
+        b=di1ePOtyXEPp2Qet41GvQvg4wms7uB47cLnfHbSW2WxeSYYNu9XumGT1yreg/FFf6i
+         YFYj14g4elmWahYm/6xjhpFZx3tQwXZmomffZjWxylwzLaY/yYu1degOnS41kCvtOtOW
+         1qtKflf4O/Qxsjhdjs/bDpvdVffYvsyjkGXiyvaLraSyTwtexcw9vSkR6y475HvV5dyx
+         0F18ZEEFyuXraNxBxY+jqDPRe6H6p8DBkevoyQvRVU8nAe3PVk6sXHlqWaWal0WQpwE2
+         5N0U7lJ2Uu/rnPH5EDe1+9YqpCS7EuaFnYQM9s/GBsfLbzzjUbUtFay6c0O+moytaDOi
+         MKBg==
+X-Forwarded-Encrypted: i=1; AJvYcCVtj2Xejonb2gMvTS4cJy4aU1QSJgxYr73Y1cMCTxzghdxqnVzvItU2KLkgPft6XYE6Nrg5HufpHB6wnRkBNWvYvFcvJdc0aHIXGw==
+X-Gm-Message-State: AOJu0YzHI2aUmfqHy52CfvxLo6kHzZihxv/+kBULvsHgpXphSgVd1MbC
+	eqffchEteBVLhfNlrXjyl3c7K82fgQm5EDvZyfcyPHSXHAUn4q5NilJbHffdXmI=
+X-Google-Smtp-Source: AGHT+IFjUb+c/fFWRXoZFCN25O2SmDpaUNvFqFasQHJGd7CEyCqvLCJr1Pd5sypoEjZ6QljgaKYLNw==
+X-Received: by 2002:a05:6358:6f0c:b0:17b:b532:80be with SMTP id r12-20020a0563586f0c00b0017bb53280bemr1375921rwn.25.1708963942241;
+        Mon, 26 Feb 2024 08:12:22 -0800 (PST)
+Received: from p14s ([2604:3d09:148c:c800:360c:e16d:91ef:5fec])
+        by smtp.gmail.com with ESMTPSA id d18-20020a63d652000000b005cfbdf71baasm3591736pgj.47.2024.02.26.08.12.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Feb 2024 08:12:21 -0800 (PST)
+Date: Mon, 26 Feb 2024 09:12:19 -0700
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Sumit Semwal <sumit.semwal@linaro.org>,
-	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, linux-sound@vger.kernel.org,
+	Bjorn Andersson <andersson@kernel.org>, linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
-	Nicolas Belin <nbelin@baylibre.com>
-Subject: Re: [PATCH 12/18] ASoC: codecs: mt6357: add MT6357 codec
-Message-ID: <9891855d-2284-42e4-9d3a-35ba406540e8@sirena.org.uk>
-References: <20240226-audio-i350-v1-0-4fa1cea1667f@baylibre.com>
- <20240226-audio-i350-v1-12-4fa1cea1667f@baylibre.com>
+	linux-remoteproc@vger.kernel.org
+Subject: Re: [PATCH 3/3] dt-bindings: remoteproc: ti,davinci: remove unstable
+ remark
+Message-ID: <Zdy4YwD9LNmq7hth@p14s>
+References: <20240224091236.10146-1-krzysztof.kozlowski@linaro.org>
+ <20240224091236.10146-3-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="CwpsPPtJ8s7wyugW"
-Content-Disposition: inline
-In-Reply-To: <20240226-audio-i350-v1-12-4fa1cea1667f@baylibre.com>
-X-Cookie: Walk softly and carry a BFG-9000.
-
-
---CwpsPPtJ8s7wyugW
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20240224091236.10146-3-krzysztof.kozlowski@linaro.org>
 
-On Mon, Feb 26, 2024 at 03:01:50PM +0100, amergnat@baylibre.com wrote:
+On Sat, Feb 24, 2024 at 10:12:36AM +0100, Krzysztof Kozlowski wrote:
+> TI Davinci remoteproc bindings were marked as work-in-progress /
+> unstable in 2017 in commit ae67b8007816 ("dt-bindings: remoteproc: Add
+> bindings for Davinci DSP processors"). Almost seven years is enough, so
+> drop the "unstable" remark and expect usual ABI rules.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../devicetree/bindings/remoteproc/ti,davinci-rproc.txt        | 3 ---
+>  1 file changed, 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,davinci-rproc.txt b/Documentation/devicetree/bindings/remoteproc/ti,davinci-rproc.txt
+> index 25f8658e216f..48a49c516b62 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/ti,davinci-rproc.txt
+> +++ b/Documentation/devicetree/bindings/remoteproc/ti,davinci-rproc.txt
+> @@ -1,9 +1,6 @@
+>  TI Davinci DSP devices
+>  =======================
+>  
+> -Binding status: Unstable - Subject to changes for DT representation of clocks
+> -			   and resets
+> -
 
-> index 000000000000..13e95c227114
-> --- /dev/null
-> +++ b/sound/soc/codecs/mt6357.c
-> @@ -0,0 +1,1805 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * MT6357 ALSA SoC audio codec driver
-> + *
+Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
 
-Please use a C++ comment for the whole comment to make it clearer that
-this is intentional.
-
-> +static void set_playback_gpio(struct mt6357_priv *priv, bool enable)
-> +{
-> +	if (enable) {
-> +		/* set gpio mosi mode */
-> +		regmap_write(priv->regmap, MT6357_GPIO_MODE2_CLR, GPIO_MODE2_CLEAR_ALL);
-> +		regmap_write(priv->regmap, MT6357_GPIO_MODE2_SET, GPIO8_MODE_SET_AUD_CLK_MOSI |
-> +								  GPIO9_MODE_SET_AUD_DAT_MOSI0 |
-> +								  GPIO10_MODE_SET_AUD_DAT_MOSI1 |
-> +								  GPIO11_MODE_SET_AUD_SYNC_MOSI);
-
-This would be a lot more legible if you worked out the values to set and
-then had a single set of writes, currently the indentation makes it very
-hard to read.  Similarly for other similar functions.
-
-> +static int mt6357_put_volsw(struct snd_kcontrol *kcontrol, struct snd_ctl_elem_value *ucontrol)
-> +{
-> +	struct snd_soc_component *component = snd_soc_kcontrol_component(kcontrol);
-> +	struct mt6357_priv *priv = snd_soc_component_get_drvdata(component);
-> +	struct soc_mixer_control *mc = (struct soc_mixer_control *)kcontrol->private_value;
-> +	unsigned int reg;
-> +	int ret;
-> +
-> +	ret = snd_soc_put_volsw(kcontrol, ucontrol);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	switch (mc->reg) {
-> +	case MT6357_ZCD_CON2:
-> +		regmap_read(priv->regmap, MT6357_ZCD_CON2, &reg);
-> +		priv->ana_gain[ANALOG_VOLUME_HPOUTL] =
-> +			(reg & AUD_HPL_GAIN_MASK) >> AUD_HPL_GAIN_SFT;
-> +		priv->ana_gain[ANALOG_VOLUME_HPOUTR] =
-> +			(reg & AUD_HPR_GAIN_MASK) >> AUD_HPR_GAIN_SFT;
-> +		break;
-
-It would probably be less code and would definitely be clearer and
-simpler to just read the values when we need them rather than constatly
-keeping a cache separate to the register cache.
-
-> +	/* ul channel swap */
-> +	SOC_SINGLE("UL LR Swap", MT6357_AFE_UL_DL_CON0, AFE_UL_LR_SWAP_SFT, 1, 0),
-
-On/off controls should end in Switch.
-
-> +static const char * const hslo_mux_map[] = {
-> +	"Open", "DACR", "Playback", "Test mode"
-> +};
-> +
-> +static int hslo_mux_map_value[] = {
-> +	0x0, 0x1, 0x2, 0x3,
-> +};
-
-Why not just use a normal mux here, there's no missing values or
-reordering?  Similarly for other muxes.
-
-> +static unsigned int mt6357_read(struct snd_soc_component *codec, unsigned int reg)
-> +{
-> +	struct mt6357_priv *priv = snd_soc_component_get_drvdata(codec);
-> +	unsigned int val;
-> +
-> +	pr_debug("%s() reg = 0x%x", __func__, reg);
-> +	regmap_read(priv->regmap, reg, &val);
-> +	return val;
-> +}
-
-Remove these, there are vastly more logging facilities as standard in
-the regmap core.
-
-> +/* Reg bit defines */
-> +/* MT6357_GPIO_DIR0 */
-> +#define GPIO8_DIR_MASK				BIT(8)
-> +#define GPIO8_DIR_INPUT				0
-
-Please namespace your defines, these look very generic.
-
---CwpsPPtJ8s7wyugW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXct7QACgkQJNaLcl1U
-h9Agkgf7BBrglcg7jMvSrH2s1xIYkCIuoub5OdCpv9Ph6xdo47W9uy2hoGlAK6nD
-BS+w4kyaZmwgueREI0Rf/l6hYRPKJtWv9emek2zz9z5r4R7xzhdbzj2R4MVJkcJH
-O9QTkYk0PoAJkgVJnH6XNqFGriEYmNxkuRdF4l3Mdbn6KiHlf4XwaqWx29KLmXci
-bxoCisLzrR5rPaZAKPMuf8lPvMAQr19dvvk1RlMkyZ2Di1mpakxQIn+QZY7ja2GI
-dJs9hbr+UAJTCKhf0uhtslARm+WZfNCHtGbr8YUjZnzQ+z6vAcNdTTfgDBYINKSC
-AWTgPQtQPSt9Ti03CsQj0ka+/ujatQ==
-=uDQI
------END PGP SIGNATURE-----
-
---CwpsPPtJ8s7wyugW--
+>  The TI Davinci family of SoCs usually contains a TI DSP Core sub-system that
+>  is used to offload some of the processor-intensive tasks or algorithms, for
+>  achieving various system level goals.
+> -- 
+> 2.34.1
+> 
 
