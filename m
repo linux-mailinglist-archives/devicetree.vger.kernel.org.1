@@ -1,121 +1,106 @@
-Return-Path: <devicetree+bounces-46003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46004-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78C58867A5A
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 16:34:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20812867A65
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 16:37:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F3B6294DFB
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 15:34:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A23E41F252E4
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 15:36:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFF7E12AAFF;
-	Mon, 26 Feb 2024 15:34:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="2PNEOOjn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD83E12AAD8;
+	Mon, 26 Feb 2024 15:36:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2826C7E794;
-	Mon, 26 Feb 2024 15:34:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40C5F12B159;
+	Mon, 26 Feb 2024 15:36:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708961668; cv=none; b=KebEiYaptD1ZT9p+iEhgBHW8cXw0DK4/9HGww4BH/U9ui6MHWnjobvLEyzTssYtV2nHW4JuxbeMLcBfHV546J+ypfrrvdPxHe80Tj+SFi7WfbIUxSqXMh6Ja6N11jAjL19llNBjnIFmQIRvNEspMfP2jhQw6faP0XMxwtlL4RSo=
+	t=1708961814; cv=none; b=OyLHp7L/8ZDyKhBnkRgsAKeZJk9Y6xSW9AoRx+HExISbEnLhPT3FA3CQFMYHTuWnDKcHN4AnMUKkeAXZOCaOt8GbgKThAEqRi0rsIYAwnJ5aFtXGGpBkjr0yGEWJDZPK2szFTWsFkAL2ssMk0AmjfI8UE7Mw2H8uLou/isRJ4sc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708961668; c=relaxed/simple;
-	bh=kuB0H4FU8bT6x452qiWGPFUounbrJC67yGBA/EwPPlc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jclwg94lTS/nm/c2Qhg7MijWDQanJrj1yr128PL1yROmjDgFB4bkwK8Ak4raC/GYOA02Ao3eLcZdrhu9Z7Eo9EU6Pb+OT89UGidq++lOHpIZqggTYj9uIZ/Wn6N18v7AFdBL30im93c/VG7GxzyIyM/zD9FHVhNuJSEqTi6kMRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=2PNEOOjn; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=Fr1Kk+BTfvCgehT0HKmG9zqX5uvmp1iVYnEnXQZLIm0=; b=2P
-	NEOOjnRUsWhPnM+8MVmxsJVwF19KuGfFLSVatDNgAJFpGgAQ6uIdkWd8t9vaVK7JXSnsJJ/e0PnIX
-	0b6do8qtJ7zYkI5uelSWBco6g5F3ZKq2HMfFOo79V25DwLUJD+QsnvJUu9FX7dHc9/IR60Zytl8nD
-	hvVYPqK4Br2HqWc=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1reczy-008jmA-Bn; Mon, 26 Feb 2024 16:34:34 +0100
-Date: Mon, 26 Feb 2024 16:34:34 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: =?iso-8859-1?Q?J=E9r=E9mie?= Dautheribes <jeremie.dautheribes@bootlin.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, Andrew Davis <afd@ti.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
-	Yen-Mei Goh <yen-mei.goh@keysight.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>
-Subject: Re: [PATCH net-next 2/3] net: phy: dp83826: Add support for phy-mode
- configuration
-Message-ID: <aee610ab-2815-42f0-a4e4-5f695238beae@lunn.ch>
-References: <20240222103117.526955-1-jeremie.dautheribes@bootlin.com>
- <20240222103117.526955-3-jeremie.dautheribes@bootlin.com>
+	s=arc-20240116; t=1708961814; c=relaxed/simple;
+	bh=BjNxNSutKJiNR5zXcgPNhRhILN601sd61EC4YV5AKX8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tom+X2Bmo/q3kfQcEBkTpEzkTwmEJpGj7CLtAJ5NQ+9xdnUYIf0p1Z9OBRsQTeizTmIjmJd60CasTHaZljvV2IezPmSIxkwQ1aPppVAV/+Jfa0Y/SS7q0sp9E029P+gS2ESj49Gv9I5mD5rbM2nVFKjxg7V3KICmaiRJdh7E8bU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-608342633b8so28058337b3.1;
+        Mon, 26 Feb 2024 07:36:53 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708961811; x=1709566611;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6sTzvocRErrvVxGZHtwvRZxdbc4PLEFDUqv58JeN2Rk=;
+        b=oVu86ljrU5JbLkxU0BQ9Vp/OqFMHWHQ9XpO8OD86pA0/GUrtKEPV46866KKa4Jvx0x
+         To7ByAOLBp3/GzCP7Ok/uhGAi/Jm2RCng3g+083lf/Or1/0D2UednzARdqdDCYCcIX0O
+         vjKJA90Oat+tATTAo646Px2HbuAbPTEgxdWnQODS+7I5xJk62Ewfw7Pnx4z2S/k/Azx3
+         E6pCDsYY65bxLq30bmyEgaulDBz9GwEeKVsqEBumWu7NSwbc/cGVrwGNn5JJ9yIyiksU
+         bLD3IZlxM9XVmBa9sjpC1wjpU9ZszwLGLRJQsC8BhSt2IDwljMC5J0T/Jw8g9C9CvEKu
+         eXPQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWaIowlxjuNIWIDQ3v/hSU9IyoAL+iUKQtSe6orOrRHZebgtwYe5c0JbjCzZ5duLWIqmY7XYSRqi0vkazBazDdkazV2ykVBMOmUag+p/yP9unPNsY7KRSU6fvNE6k5ZcL/t8ZMoiL+w2A==
+X-Gm-Message-State: AOJu0Yyjpe4MH2Q6X0Xi+4a3hWteMLkqg99wuRWqvg4BFdktSt+tOoYr
+	8AuKvGcgSJAZDNUajjvB0h+j0HccQrrDrHz5fSrB5nczMYd621sBJTeMaGQPUJo=
+X-Google-Smtp-Source: AGHT+IErRkgW4BaT5Z+TBbzM2IZ5mgxoI04IY2LWrdSTfjDiQXuA4FF3aV+SK6ux0G4uDnsu9JF/ew==
+X-Received: by 2002:a81:d208:0:b0:607:8afd:fa32 with SMTP id x8-20020a81d208000000b006078afdfa32mr6808614ywi.28.1708961811681;
+        Mon, 26 Feb 2024 07:36:51 -0800 (PST)
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
+        by smtp.gmail.com with ESMTPSA id s6-20020a815e06000000b006079e8f3572sm1235572ywb.85.2024.02.26.07.36.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Feb 2024 07:36:51 -0800 (PST)
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-dc6e080c1f0so2594908276.2;
+        Mon, 26 Feb 2024 07:36:51 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXRTlzjHd0y9wTdnpMKk9BGTAO+IiVIX+axmnBVLb0pXV0Hylicks4hf6LmRRrGq2GiJh1LtKajEQpgwZzGgfjqFsVFSfn/ybi6Pu9P+DxpvdXkk+tGibcFYuRuPGO9uyJ1i7WrqHSmnw==
+X-Received: by 2002:a25:dbd1:0:b0:dcc:9e88:b15 with SMTP id
+ g200-20020a25dbd1000000b00dcc9e880b15mr5134183ybf.41.1708961811025; Mon, 26
+ Feb 2024 07:36:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240222103117.526955-3-jeremie.dautheribes@bootlin.com>
+References: <20240219170337.2161754-1-andriy.shevchenko@linux.intel.com> <20240219170337.2161754-3-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20240219170337.2161754-3-andriy.shevchenko@linux.intel.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 26 Feb 2024 16:36:39 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVSZZdRwxUOgz9-SkPwoC4FMYtfwhncC19kNHPmy_Bp2A@mail.gmail.com>
+Message-ID: <CAMuHMdVSZZdRwxUOgz9-SkPwoC4FMYtfwhncC19kNHPmy_Bp2A@mail.gmail.com>
+Subject: Re: [PATCH v3 2/9] auxdisplay: linedisp: Allocate buffer for the string
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Andy Shevchenko <andy@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Robin van der Gracht <robin@protonic.nl>, Paul Burton <paulburton@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 22, 2024 at 11:31:16AM +0100, Jérémie Dautheribes wrote:
-> The TI DP83826 PHY can operate in either MII mode or RMII mode.
-> By default, it is configured by straps.
-> It can also be configured by writing to the bit 5 of register 0x17 - RMII
-> and Status Register (RCSR).
-> 
-> When phydev->interface is rmii, rmii mode must be enabled, otherwise
-> mii mode must be set.
-> This prevents misconfiguration of hw straps.
-> 
-> Signed-off-by: Jérémie Dautheribes <jeremie.dautheribes@bootlin.com>
-> ---
->  drivers/net/phy/dp83822.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/drivers/net/phy/dp83822.c b/drivers/net/phy/dp83822.c
-> index 30f2616ab1c2..2d8275e59dcc 100644
-> --- a/drivers/net/phy/dp83822.c
-> +++ b/drivers/net/phy/dp83822.c
-> @@ -100,6 +100,7 @@
->  #define DP83822_WOL_CLR_INDICATION BIT(11)
->  
->  /* RCSR bits */
-> +#define DP83822_RMII_MODE_EN	BIT(5)
->  #define DP83822_RGMII_MODE_EN	BIT(9)
->  #define DP83822_RX_CLK_SHIFT	BIT(12)
->  #define DP83822_TX_CLK_SHIFT	BIT(11)
-> @@ -500,6 +501,16 @@ static int dp83826_config_init(struct phy_device *phydev)
->  	u16 val, mask;
->  	int ret;
->  
-> +	if (phydev->interface == PHY_INTERFACE_MODE_RMII)
-> +		ret = phy_set_bits_mmd(phydev, DP83822_DEVADDR, MII_DP83822_RCSR,
-> +				       DP83822_RMII_MODE_EN);
-> +	else
-> +		ret = phy_clear_bits_mmd(phydev, DP83822_DEVADDR, MII_DP83822_RCSR,
-> +					 DP83822_RMII_MODE_EN);
+On Mon, Feb 19, 2024 at 6:03=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+> Always allocate a buffer for the currently displayed characters.
+> It makes the line display API simpler.
+>
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-I would probably add a test for MII and return -EINVAL if asked to do
-something else altogether.
+Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
 
-	  Andrew
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
