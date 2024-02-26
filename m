@@ -1,139 +1,121 @@
-Return-Path: <devicetree+bounces-45846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 489D4866FEC
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 11:06:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5EAA867008
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 11:09:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E21C11F23CD1
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:06:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91AC3285907
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:09:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51E7F604CB;
-	Mon, 26 Feb 2024 09:43:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 451976217F;
+	Mon, 26 Feb 2024 09:47:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BMQO1ZH/"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="JxSo1t98"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0E43CA4E;
-	Mon, 26 Feb 2024 09:43:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E45951CD32;
+	Mon, 26 Feb 2024 09:47:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708940602; cv=none; b=qW4XKN0+i1M5HK45595FiqFw2YLM5hF01vWT6PU7yKbu28wWAIv1rBKq4QL3NbT6F1SncSkfMyu/+kjSVpF4nATjrG9zIbVlt5T3vV5h/V+9njXYfRIMYKpACVAN+7Pxw7J9LKWyreeIRPQFSVmLQekCPaq3kAQXmYXZPwD13nY=
+	t=1708940845; cv=none; b=Y2hEaMa4V+Yf/kLHGeu7RdE70ZBw1h7A8AZfszfU8EzbFGdanXzmwRPCgphEFEsKIUhh0TsRQttQlvycjqUU6gaG5xQEb1hUVtqXn8ENzrcWfWMKHZMd4LJreEo+tKmi/qDNsszzJsNS7pV8n7NcdGul7Yoled3BnKiZEP3TRRY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708940602; c=relaxed/simple;
-	bh=K4GBuBvY1jfaKNJfI+V2iQAToLrbcQCzobKkx+s7CfI=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=otiKHpXIaZR9Zg3jh9jSvazyWHyEiP1pcKM574ZLnB0jwis9+jRuw4y+QtEcffRhhCuRdDRGpgFW1zxi/OyheND5DFZtZpgIj287yD1C7A9IGe3bXtKsOob4bkYHs+rJTVmBcV/h2UW2/t1LFhKVG31hWq624NNJvDkRJreuZIQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BMQO1ZH/; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41Q9PrLp028933;
-	Mon, 26 Feb 2024 09:43:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:mime-version:content-type; s=
-	qcppdkim1; bh=tPqIhtoFZXpZFmCyP7Lnu9T4i55IofRcpfNy6UEYCmY=; b=BM
-	QO1ZH/h1SrCYOvYK0GONf06sofiRF/gqfcIRaF/dC4hx2zVcCbBJslkuSVcAqEsr
-	p1u61ruVFRdcebf8gUI/6lMpwVKge5lrCZdafHTGgKlsDuk2Skqt7QfRwClmgmJj
-	LMWGj5TZkWv4VXjaStQpLq3ynH64vw0YLSdxd/iYo5UZAZP/C1iQPVJGKUrtaJnD
-	FxeJScgVepVK+0R+fPR+ndyBdGEWfhA62tGSMFKVtDStXke42PUee9JE45XvGgg8
-	iP7y3MNlIqDBn3gcGsfofSahzfM0MNKe/GbNkp1nVkUTj08YlouvGi3TC3HuY/uA
-	/4hdsrVR/DByZ2STvVtQ==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wgkxkrh25-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 26 Feb 2024 09:43:05 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41Q9h4OM019569
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 26 Feb 2024 09:43:04 GMT
-Received: from hu-sarohasa-hyd.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Mon, 26 Feb 2024 01:42:54 -0800
-From: Sarosh Hasan <quic_sarohasa@quicinc.com>
-To: Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        "Bjorn
- Andersson" <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        "Jose
- Abreu" <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>, <netdev@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Prasad Sodagudi
-	<psodagud@quicinc.com>,
-        Andrew Halaney <ahalaney@redhat.com>, Rob Herring
-	<robh@kernel.org>
-CC: <kernel@quicinc.com>, Sneh Shah <quic_snehshah@quicinc.com>,
-        Suraj Jaiswal
-	<quic_jsuraj@quicinc.com>
-Subject: [PATCH net-next v2] net: stmmac: dwmac-qcom-ethqos: Update link clock rate only for RGMII
-Date: Mon, 26 Feb 2024 15:12:26 +0530
-Message-ID: <20240226094226.14276-1-quic_sarohasa@quicinc.com>
-X-Mailer: git-send-email 2.17.1
+	s=arc-20240116; t=1708940845; c=relaxed/simple;
+	bh=GUBUJnhCJ+5svJV4Frsq2xuX833M2pcxXkLKdnw/2XQ=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=L9YGkiPeEsbJSrYsor3JsT9GLVXOUzE0OI9xulqbk298sDKTTVPfB4CIRwsk0ZqDfEwXciqYopME1+5WKJqWvvtm8sxWePkwafcd+Z3kRzjB3zCJ0TReBQw2zMaGgBfgqQSMnzOBz7odRaql5dAi1sxfWygAqApl6MwLRHFzpss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=JxSo1t98; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1708940842; x=1740476842;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=GUBUJnhCJ+5svJV4Frsq2xuX833M2pcxXkLKdnw/2XQ=;
+  b=JxSo1t98+6pArKhTViKwZsuKfzhAjveG6DM9ktOyY1u1Wz9MB+D+/D3A
+   aD6LkeqtRYmGuWMC8jkSGiIXAYIdv/CYeQ8fToYT9D0YHenVJj3OVJ0e9
+   g8WhqIH1f6yGOOB/TQDG/AP8+gjFIVC1XYMNt48DolvvWFqOI23agt7A2
+   o2ddoyVAFvZQZ8mx02XToYdqwfC2QG9qj+s1T3rz5PTgvIArpKwCLkUhy
+   rZdeo+l7bHWlGx/4eWjyqp3BlXfSf5ICzeQliTdy6J/m0zioPjjefU3by
+   itxYQvk+dMkedUnzCDU4G4Z7NoD/bkMYj5Nk+1tEdAdq8XifNCHuEy3TD
+   w==;
+X-CSE-ConnectionGUID: 3TUWboU7Q1e+0wVDoOdcMg==
+X-CSE-MsgGUID: Th18ok6cRYSjDiY187FfJw==
+X-IronPort-AV: E=Sophos;i="6.06,185,1705388400"; 
+   d="asc'?scan'208";a="16814562"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 26 Feb 2024 02:47:20 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 26 Feb 2024 02:46:59 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Mon, 26 Feb 2024 02:46:58 -0700
+Date: Mon, 26 Feb 2024 09:46:15 +0000
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Conor Dooley <conor@kernel.org>
+CC: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>, Rob Herring
+	<robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+	<aou@eecs.berkeley.edu>, <linux-riscv@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/1] dt-bindings: riscv: cpus: reg matches hart ID
+Message-ID: <20240226-esteemed-bagginess-7373abcdcefe@wendy>
+References: <20240128180621.85686-1-heinrich.schuchardt@canonical.com>
+ <20240128-simile-endocrine-9e8af979d361@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: tUDjRYwkIeEMxJzJSSUfF6jLBNtXEbHZ
-X-Proofpoint-GUID: tUDjRYwkIeEMxJzJSSUfF6jLBNtXEbHZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-26_07,2024-02-23_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- lowpriorityscore=0 phishscore=0 mlxlogscore=924 malwarescore=0
- suspectscore=0 bulkscore=0 adultscore=0 spamscore=0 clxscore=1015
- priorityscore=1501 mlxscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2402120000 definitions=main-2402260073
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="6pjag9RV18K1QWjn"
+Content-Disposition: inline
+In-Reply-To: <20240128-simile-endocrine-9e8af979d361@spud>
 
-Updating link clock rate for different speeds is only needed when
-using RGMII, as that mode requires changing clock speed when the link
-speed changes. Let's restrict updating the link clock speed in
-ethqos_update_link_clk() to just RGMII. Other modes such as SGMII
-only need to enable the link clock (which is already done in probe).
+--6pjag9RV18K1QWjn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Sarosh Hasan <quic_sarohasa@quicinc.com>
----
-v2 changelog:
-- Addressed Konrad Dybcio comment on optimizing the patch
----
- drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c | 3 +++
- 1 file changed, 3 insertions(+)
+On Sun, Jan 28, 2024 at 06:20:46PM +0000, Conor Dooley wrote:
+> On Sun, Jan 28, 2024 at 07:06:21PM +0100, Heinrich Schuchardt wrote:
+> > Add a description to the CPU reg property to clarify that
+> > the reg property must match the hart ID.
+>=20
+> That is the expected usage alright. Did you come across something where
+> it was not being used in that way?
+>=20
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-index 31631e3f89d0..c182294a6515 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-@@ -169,6 +169,9 @@ static void rgmii_dump(void *priv)
- static void
- ethqos_update_link_clk(struct qcom_ethqos *ethqos, unsigned int speed)
- {
-+	if (!phy_interface_mode_is_rgmii(ethqos->phy_mode))
-+		return;
-+
- 	switch (speed) {
- 	case SPEED_1000:
- 		ethqos->link_clk_rate =  RGMII_1000_NOM_CLK_FREQ;
--- 
-2.17.1
+I think I pinged Palmer to grab this, but since it's been a month and
+not picked up, I've gone and applied this.
 
+Thanks,
+Conor.
+
+
+--6pjag9RV18K1QWjn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdxd5wAKCRB4tDGHoIJi
+0rpKAQDtHi/6j4X2TxwcayQZ0w2Lut2Pa5wamAt/W3HRnT4ENAD/cOo9XIvgbe7q
+tntBZhh1qRKSOacwcfw2GY4q5z0E+A4=
+=ZusI
+-----END PGP SIGNATURE-----
+
+--6pjag9RV18K1QWjn--
 
