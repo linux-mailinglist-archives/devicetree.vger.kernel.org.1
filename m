@@ -1,122 +1,96 @@
-Return-Path: <devicetree+bounces-46145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25AAD868378
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 23:06:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F10798683BC
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 23:29:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D43BC2850C5
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 22:06:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C7EEC1C24265
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 22:29:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95615131E30;
-	Mon, 26 Feb 2024 22:06:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC5DE133280;
+	Mon, 26 Feb 2024 22:29:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sQoy0Wb3"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="XBlCq1DE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6722E1AACD;
-	Mon, 26 Feb 2024 22:06:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 864461DDD7;
+	Mon, 26 Feb 2024 22:29:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708985214; cv=none; b=f7E/4nLK9Y7zag6t4/UL2qsZsT+NDDhyyXIiWRQ8p5NSLMlDhxCeJiRgAvDUNLGfYIfEHh+ccksFTTHy6vlg/vo/ANDlfZLuttMeMPwm5Av/pcdZS4gBSw0TOZdMdmItumytdSh6V47E7JJGWXfc+KLO4sbFVyuvmNQtbYIN2Co=
+	t=1708986544; cv=none; b=p9ch4sGGd+sAvr6pLoEFt3NpH+ISy4HS4jr0MLw9LuO9aLkDzFVvWbRfCvdD4aArMewjPv2qAcm4ftaQ2917cDPv1cuYFFGxLvq9B+h1VvC+3fLsb+FhAQ0SWCxHKLwM0PxtFsjqsqMzMO5rwhWUTIUC5OSt1WgoO7PidrpeMUk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708985214; c=relaxed/simple;
-	bh=AhAkCYM47O8dKZ4IHxet9r4VJYofKYTUO2jJeRmXvNI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TJ2Jz0m7mrmtw24FMGB1X969T5Sn87zlQVTGVeu1a0cmV5pSWyTOTFfGuHuXWyDrsQtdmiz0v85s9P8uWEWPGYXiQ1NEmaRvhpE1GcwdcvFa6X656LQlQaW/v3XIGMTAsCHpGDvoqGVnSioChIVFuGU9GKsOYa8/+c5mRhgATpU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sQoy0Wb3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46901C433F1;
-	Mon, 26 Feb 2024 22:06:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708985213;
-	bh=AhAkCYM47O8dKZ4IHxet9r4VJYofKYTUO2jJeRmXvNI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=sQoy0Wb3pbFwWi3l8cO0Qvzmaa0DZej3NmaCW4Jvq2S5oSoBZ9TQs90YRXIKOKwji
-	 gTaTZbZmlXLHdR3k6qBAC8JdTMwGbBdnCpd5AxjK9VdPh/QijxSq2TWBFryB7ZOBxG
-	 4PWHDZvR08tUOpi7o+7UHrzZuLFoa2vVC42hYh0ZDGw8ON/d7N4b++9y2wfakJGJsG
-	 yK3XM1YFRiIxLzCxmYNYrXwNszp3FM/H6uKRyj7lQZ9p4lWqNmiHVdaldYs6Dn4hGs
-	 Xqhqm2EiKhofgwXmNwlk8Nh1SzH4PMbXn6aXtgdWseilZAm8oASqOyrYlPB6eiftTp
-	 mclBdC8x7im5w==
-Date: Mon, 26 Feb 2024 22:06:37 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, haibo.chen@nxp.com,
- lars@metafoo.de, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
- kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Peng
- Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: imx93: drop the 4th
- interrupt
-Message-ID: <20240226220637.7bc64b95@jic23-huawei>
-In-Reply-To: <20240226-rectangle-pacifist-633ae3b801c7@spud>
-References: <20240226130826.3824251-1-peng.fan@oss.nxp.com>
-	<20240226-germinate-anymore-fb85ca9bb226@spud>
-	<20240226192055.54b4a6b1@jic23-huawei>
-	<20240226-rectangle-pacifist-633ae3b801c7@spud>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1708986544; c=relaxed/simple;
+	bh=huo/vjj5S//g2ksHGxO/GrVhnULxzjju8V8Mw6hlVFM=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=M7lIePbhV6safjR+9kudOJV7Yj4GiDU+PqBdzZC/P791aZHfG4W2O0TD1XOuVAIp0LxGqfjf89yHuw78gFvST1dBSDX55DTrkzMVpDiU7R23ueE6uAQ7dFFw3V157GLQRyjbTD3u4PyAvBwW6YJ5Ixx1BgMOlPPP1lDoK+fBlHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=XBlCq1DE; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+Received: from [192.168.68.112] (ppp118-210-168-240.adl-adc-lon-bras34.tpg.internode.on.net [118.210.168.240])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 0645720127;
+	Tue, 27 Feb 2024 06:28:56 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1708986539;
+	bh=8eEw/FtaaqWX/jVY5OVj7vtAlz28XQ3GCy3aQ75fMEc=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=XBlCq1DEyt1YVQIrQWcOGMdZNCgE4w/xv4+a5wqpEiRCjnKTnasyBg//tPzMkesFu
+	 OILCdfmqH9X1RCfZ1SN9zNaCARMT/sB3IO58WyUKoHmLfCMl8QIYtp2qt2lSootyW+
+	 /hdBMOBZ0cgiOyl978UBaqVV13gT+mca0bkKhBxd15+1dDcpYg/VrDLVfHyHJhWUQc
+	 pD5t+Brn1TewzecmHZFl2kpVnBbPY6JpFOEHBsfmuLUmWMXeFTPTfabdwQC32xk6u8
+	 cx8gWGIJzWGwVASAbrtEuoS0pTDUiRSDwU+Ef/49Ky/RQCAl2BtuVug+WjKFYkBsdd
+	 Ka47d+jW2KUgA==
+Message-ID: <afee602b57f95a2d3162a601832d3a087ea5f0d6.camel@codeconstruct.com.au>
+Subject: Re: [PATCH] ARM: dts: aspeed: ahe50dc: Update lm25066 regulator name
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Rob Herring <robh@kernel.org>, Zev Weiss <zev@bewilderbeest.net>
+Cc: Guenter Roeck <linux@roeck-us.net>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, linux-kernel@vger.kernel.org, Joel
+ Stanley <joel@jms.id.au>, Rob Herring <robh+dt@kernel.org>,
+ devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org, Conor
+ Dooley <conor+dt@kernel.org>,  linux-aspeed@lists.ozlabs.org
+Date: Tue, 27 Feb 2024 08:58:52 +1030
+In-Reply-To: <170896502304.859066.13236138723073669130.robh@kernel.org>
+References: <20240226091754.16027-2-zev@bewilderbeest.net>
+	 <170896502304.859066.13236138723073669130.robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
 
-On Mon, 26 Feb 2024 21:17:06 +0000
-Conor Dooley <conor@kernel.org> wrote:
+On Mon, 2024-02-26 at 10:54 -0600, Rob Herring wrote:
+> On Mon, 26 Feb 2024 01:17:53 -0800, Zev Weiss wrote:
+> > A recent change to the lm25066 driver changed the name of its
+> > regulator from vout0 to vout; device-tree users of lm25066's regulator
+> > functionality (of which ahe50dc is the only one) thus require a
+> > corresponding update.
+> >=20
+> > Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+> > Cc: Conor Dooley <conor+dt@kernel.org>
+> > Cc: Guenter Roeck <linux@roeck-us.net>
+> > ---
+> >  arch/arm/boot/dts/aspeed/aspeed-bmc-delta-ahe50dc.dts | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >=20
+>=20
+>=20
+> My bot found new DT warnings on the .dts files added or changed in this
+> series.
+>=20
 
-> On Mon, Feb 26, 2024 at 07:20:55PM +0000, Jonathan Cameron wrote:
-> > On Mon, 26 Feb 2024 16:24:47 +0000
-> > Conor Dooley <conor@kernel.org> wrote:
-> >   
-> > > On Mon, Feb 26, 2024 at 09:08:25PM +0800, Peng Fan (OSS) wrote:  
-> > > > From: Peng Fan <peng.fan@nxp.com>
-> > > > 
-> > > > Per i.MX93 Reference Mannual Rev.4, 12/2013, there is no interrupt 268,
-> > > > so drop it.    
-> > > 
-> > > Don't just remove it from the example, drop it from the binding too?
-> > > It does permit a 4th "self testing" interrupt.  
-> > 
-> > I'm missing something. See below...  
-> > > 
-> > > Thanks,
-> > > Conor.
-> > >   
-> > > > 
-> > > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > > > ---
-> > > >  Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml | 4 +---
-> > > >  1 file changed, 1 insertion(+), 3 deletions(-)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
-> > > > index dacc526dc695..dfc3f512918f 100644
-> > > > --- a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
-> > > > +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
-> > > > @@ -31,7 +31,6 @@ properties:
-> > > >        - description: normal conversion, include EOC (End of Conversion),
-> > > >            ECH (End of Chain), JEOC (End of Injected Conversion) and
-> > > >            JECH (End of injected Chain).
-> > > > -      - description: Self-testing Interrupts.  
-> > 
-> > Eyes skipped over this maybe?  The 4th interrupt is removed from binding here...  
-> 
-> Huh, wonder how I missed that. I thought I double checked...
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> 
-> Cheers,
-> Conor.
+For what it's worth I've put together a set of patches that resolve
+almost all the warnings in the Aspeed DTSIs. My current approach is to
+progressively send them out - I'm starting slow so where possible I can
+avoid making the same mistake multiple times.
 
-Happens to us all!  Applied patch 1 to the togreg branch of iio.git and pushed
-it out as testing so 0-day can poke at it.
-Thanks,
-
-Jonathan
+Andrew
 
