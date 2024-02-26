@@ -1,131 +1,118 @@
-Return-Path: <devicetree+bounces-45912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B8C0867465
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 13:08:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 870FE867440
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 13:04:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D4521C25479
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 12:08:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27A571F2E3EA
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 12:04:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75B1B60276;
-	Mon, 26 Feb 2024 12:07:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCE895A7B5;
+	Mon, 26 Feb 2024 12:04:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LI3t4JJz"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="mPbWIPfk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CF0E60271;
-	Mon, 26 Feb 2024 12:07:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 234755B67A;
+	Mon, 26 Feb 2024 12:04:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708949273; cv=none; b=mIhvs65bZT0IDxQ7YDjYiHTGeHe+MNuNE65iWJVVc2JdeXHRgiPM5QScgiCDgwknsnjkKluMlUaHCFdrVKyJ1PIjIbLIubmbGfmuSTIkpuUyWQLNfwnwbhh+Ddi1JJzzPfPbVWTbmOYwaP7092F/h1kINDmoKOSP+0GPrb4RIjs=
+	t=1708949047; cv=none; b=ncM7R6RLgkY4DMe70mhtxk/oZTQC8Ot/75iL2dqlrQ2Rqt6uTwZt7L59YW/L2LG9KD9UAz3fk60N7UcT9px5AAFeQdv5bcZe1ckLUbokO3xgpwFLFSN3DVJdz4kT2tCN3tSFjGAlM024OgbG42SS6kVZWJ/ovO57lgNXtgkr5hw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708949273; c=relaxed/simple;
-	bh=yhNQ8J3ezya7MzsJi4oxXaVl6ki5AxSw4uGOVzBJvnE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=GQqR4LMpov3OcybmoQotpCOBdiygZn8P3MSWx5Ulm5i8eV9ycytyDMSARSkwu121k0C9vGwk2JIyaneCO05d0DFNnVWcSEYbm+WOMog94Edb0CucXOSB5ZvedK0ipWWfGWJblN6MzeTajfLZMYnqz2p/aLqFJFAFE/yaW+OOBR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LI3t4JJz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA94FC433F1;
-	Mon, 26 Feb 2024 12:07:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708949272;
-	bh=yhNQ8J3ezya7MzsJi4oxXaVl6ki5AxSw4uGOVzBJvnE=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=LI3t4JJzX4NkiH5Mygn0RUawrLduN2S/Kx06qHbK45Vu4TD5W7Y/1JodeZnDUbRPy
-	 eit1Lpgfpgj7rQTxUOsmCQNCgpBttNWobQdR+QUBBwGhUe+HmvHmItnpsovn3uCG6E
-	 i8KTV9iu0Hve3bzpScOEkaIWnNCNxOhAUOk/akAMobFrutk2+PaEZkZy52u8/114AR
-	 Qpu8Os25/MJcEt8sZoIOzszUbert+wP8Lt6zkOsZXvPk2PD7tMZYB6AlYdFyqH8+lq
-	 oM3m82QSkPAQbDs+f+4P16dcTz67gga9/lXUb7BuG9/20/MvbD1WAiwW3DvT89ALFo
-	 vnN3gwthQ/hog==
-From: Roger Quadros <rogerq@kernel.org>
-Date: Mon, 26 Feb 2024 14:03:10 +0200
-Subject: [PATCH v6 4/4] arm64: dts: ti: k3-am62a: Disable USB LPM
+	s=arc-20240116; t=1708949047; c=relaxed/simple;
+	bh=bryulsiKq3ve8zKcjTqag/EYyIM+Iaohm5MG5leshDI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ORDDysv55F49S06l1WQKnBsJiWEfwxDiIhPPYeqKCna6/HpsKcjteMMTjSpl7Kt4/l530V0xDspjJSSgUs4POGOHuvY9e8hE2N5w9L5GQMarNOKaTqWZ3KPk8mmir6e1bG2w9eJjhetrQ5ShMztEqu0hRrUGbSqQZ83MjCnKixw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=mPbWIPfk; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id C8880240006;
+	Mon, 26 Feb 2024 12:04:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1708949043;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=bryulsiKq3ve8zKcjTqag/EYyIM+Iaohm5MG5leshDI=;
+	b=mPbWIPfknva1dRICGDzC5GN1JsKtBztxWr7Q4iSmzWegwLJRDa6bMg4CBajkbQcGJCBh5b
+	cmkt7qOszyCrrpQgU3FQDkxCEcWhrlQcI/x52fEjaIyY7dlbJy82awsLLvXy+x6JKiuPP4
+	ypQMLlUl7QHaHbKCfhbN4DbUFePGZEZ95drCYolQkigdsSG8R1BYixmLupzj1hfIkf7OXR
+	3RbcuzQsKKxJOORmFLOTTs1MXqOOLt9ZuFY5gjEi1b0eNovR7DVTYt4frloptzoXEiQWxS
+	qDSVLQYoxBlakIiRmmOjXNe24+Zm5QfB/3hEh6J2tfiqGidJ/O1XH66W1xxNaQ==
+Date: Mon, 26 Feb 2024 13:04:01 +0100
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Saravana Kannan <saravanak@google.com>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>
+Cc: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
+ =?UTF-8?Q?Herv=C3=A9?= Codina <herve.codina@bootlin.com>,
+ kernel-team@android.com, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, stable
+ <stable@vger.kernel.org>
+Subject: Re: [PATCH] of: property: fw_devlink: Fix stupid bug in
+ remote-endpoint parsing
+Message-ID: <20240226130401.7565f0da@booty>
+In-Reply-To: <CAGETcx_m22xLSDz_kk9ovw5veKaij49+LdcRx0iyzEk8iEz_+A@mail.gmail.com>
+References: <20240224052436.3552333-1-saravanak@google.com>
+	<CAGETcx_m22xLSDz_kk9ovw5veKaij49+LdcRx0iyzEk8iEz_+A@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240226-b4-for-v6-5-am62-usb-typec-dt-v6-4-acf77fff4344@kernel.org>
-References: <20240226-b4-for-v6-5-am62-usb-typec-dt-v6-0-acf77fff4344@kernel.org>
-In-Reply-To: <20240226-b4-for-v6-5-am62-usb-typec-dt-v6-0-acf77fff4344@kernel.org>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, 
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>
-Cc: Andrew Davis <afd@ti.com>, b-liu@ti.com, srk@ti.com, 
- r-gunasekaran@ti.com, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Roger Quadros <rogerq@kernel.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1274; i=rogerq@kernel.org;
- h=from:subject:message-id; bh=yhNQ8J3ezya7MzsJi4oxXaVl6ki5AxSw4uGOVzBJvnE=;
- b=owEBbQKS/ZANAwAIAdJaa9O+djCTAcsmYgBl3H8GlZuvs1LgXW2hWF11aIrdETFf5xUjB0qFP
- WK4Tx3KxN+JAjMEAAEIAB0WIQRBIWXUTJ9SeA+rEFjSWmvTvnYwkwUCZdx/BgAKCRDSWmvTvnYw
- k3k2EACme9ce01lZ/4fRM5/UQEahEtSPvQwmjFPD/8hiesgzz+rjM8ndty1vc/7Juu8ekFB4GWH
- 7gt1vzzhAOqsWwPUIO3dMUtGFwrTd5tAbZXikN8Zw+Mg0U5xsBDngTA8WHw/ixAsvf4tbsHum5/
- rjZcX6xzdOsVC7v7lrs3LyEY4A0DLU+3KCeRMjFc+PLehnHWV/mhTjgI7IfNw7SMZSdB3x+NOf5
- KurQxbSKOJyVNPqp8mMEeMQF+HIBF+8XToleMSYAyfKyC2TiliyEjOxfEkPHoQZN3anAzTCLYLZ
- Lfo6OZNHGz/PKPGMNcP6w1YpFpE0ms6hXNrKnu/elkhilTJQ89eA6Ynw5/XOM7eTVeFwcsIgDCa
- UTKGybEzf310tpOKMzZExM19PBH0UQKv+og17VxUMBBIirAYLhF9VWVrRhK6Zmzs7rAe+Rsx0Xe
- fZrSeeR7FG92cJH/ViN/aYJMm1qetJqEPlMjbju7caG99P5/4j3qz89b2zZG4cgORDPE48TyDbQ
- qzcfvbnQx9qcXwhvodLQUwK0PJrSpOE83UYpP80LPsho7Wcm2XpbGkPPq4HQRsxbaC2fQ1vZpsW
- Q51LWOmOjb3lUX14EuR8SbcGafdBWnLjzRQ6otHv9k5WRkl/y4EXReCBf8iSS4S6SMXHiw28sgY
- DOB9/PbpUNQwd+Q==
-X-Developer-Key: i=rogerq@kernel.org; a=openpgp;
- fpr=412165D44C9F52780FAB1058D25A6BD3BE763093
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: luca.ceresoli@bootlin.com
 
-As per AM62A TRM [1] USB Link Power Management (LPM)
-feature is not supported. Disable it else it may
-cause enumeration failure on some devices.
+Hello Greg, Saravana,
 
-> 4.9.2.1 USB2SS Unsupported Features
-> The following features are not supported on this family of devices:
-> ...
-> - USB 2.0 ECN: Link Power Management (LPM)
-> ...
+On Fri, 23 Feb 2024 21:28:18 -0800
+Saravana Kannan <saravanak@google.com> wrote:
 
-[1] - https://www.ti.com/lit/pdf/spruj16
+> On Fri, Feb 23, 2024 at 9:24=E2=80=AFPM Saravana Kannan <saravanak@google=
+.com> wrote:
+> >
+> > Introduced a stupid bug in commit 782bfd03c3ae ("of: property: Improve
+> > finding the supplier of a remote-endpoint property") due to a last minu=
+te
+> > incorrect edit of "index !=3D0" into "!index". This patch fixes it to be
+> > "index > 0" to match the comment right next to it. =20
+>=20
+> Greg, this needs to land in the stable branches once Rob picks it up
+> for the next 6.8-rc.
+>=20
+> -Saravana
+>=20
+> >
+> > Reported-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> > Link: https://lore.kernel.org/lkml/20240223171849.10f9901d@booty/
+> > Fixes: 782bfd03c3ae ("of: property: Improve finding the supplier of a r=
+emote-endpoint property")
+> > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > ---
+> > Using Link: instead of Closes: because Luca reported two separate issue=
+s.
 
-Signed-off-by: Roger Quadros <rogerq@kernel.org>
----
-Changelog:
-v6 - Rebased on next-20240226
-v5 - new patch
----
- arch/arm64/boot/dts/ti/k3-am62a-main.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+As Saravana mentioned, this fixes only one bug in the original commit.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-index a158df0d0ba6..adaf578280f9 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-@@ -621,6 +621,8 @@ usb0: usb@31000000 {
- 			interrupt-names = "host", "peripheral";
- 			maximum-speed = "high-speed";
- 			dr_mode = "otg";
-+			snps,usb2-gadget-lpm-disable;
-+			snps,usb2-lpm-disable;
- 		};
- 	};
- 
-@@ -644,6 +646,8 @@ usb1: usb@31100000 {
- 			interrupt-names = "host", "peripheral";
- 			maximum-speed = "high-speed";
- 			dr_mode = "otg";
-+			snps,usb2-gadget-lpm-disable;
-+			snps,usb2-lpm-disable;
- 		};
- 	};
- 
+Unless there is a quick solution for the other bug, we are still left with
+a regression since that got merged in 6.8-rc5.
 
--- 
-2.34.1
+So I propose to revert 782bfd03c3ae instead of applying this one, to
+leave the needed time for a correct solution to be deviesd.
 
+Luca
+
+--=20
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
