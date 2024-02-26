@@ -1,110 +1,126 @@
-Return-Path: <devicetree+bounces-46068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4465C867DCA
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 18:14:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98EB2867DFC
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 18:19:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C702C28B852
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 17:14:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA4A11C2C0AC
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 17:19:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1AF51350F4;
-	Mon, 26 Feb 2024 17:05:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A515132473;
+	Mon, 26 Feb 2024 17:12:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LKdY0dNo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UAMLG4mC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A87912C55E;
-	Mon, 26 Feb 2024 17:05:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47C64132474;
+	Mon, 26 Feb 2024 17:12:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708967106; cv=none; b=rWofvR3vCtn64VyRba/A3o7UiNiZgFQZHJpsZUS8nGeXgyxoC1uwgfad2SEP4+pyns/EzHQPOWYtvZhV7a/xxajXNS9hs1EBVjzo++fmf8gUw7LsxM5uYPQKvn4tw0ZcNC+L8A53g7cwSfoiE6FoyfmxCffHrsiFoLZ3/SbLB6o=
+	t=1708967577; cv=none; b=BFLx+dYLKS7crzs97oq1DnOswMzXSwQ8JdAt88IWj6AKcZD/fEnJwullDWREE7uRNajyL1HTVYt7nEVwC5d7JpHyLkogDi0PzDFag7WoDOBrnQHT6r4KNb4emek/lGWgdpclqy9Fdj0/hHVqdwR8lD3piejdYqqFEzADQeElhOQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708967106; c=relaxed/simple;
-	bh=MRsBgIxlb/4Wq6P8y8ODlq2nplU2xHNAakSQBx9Hqe8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uKcxylM0baurjMTspuJgLs8rLUsnndXcxDqgFlBgvco8j5dSd5A+/au5VtGVby5OcsaBKnnDKh3HEj/huOxkao0xINjYLfvEaERwcqhVJg7OS1YQplfk1xqbWLyjTOTGYC2sG3v/l0hDpfLzdOTTEQYYuwC6eB6MLSa0bvVX9ww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LKdY0dNo; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1708967106; x=1740503106;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=MRsBgIxlb/4Wq6P8y8ODlq2nplU2xHNAakSQBx9Hqe8=;
-  b=LKdY0dNo8EuSYIzbvJLkRlnZqXGkRLZ3Dl4j9E2hsG/MxJytbTBg3dDT
-   m5R3Wnq3dIyEDgvi5wGRoPV6Z+3tXtapKt3POC/zPPOGJwcVh//gfNYA+
-   x27NCGZpVa3JJXafjlZq+YRpoWNnGcQTx/TpS/Hk0IE4A9OeW3jotdQWU
-   /p7oov2nWbSL+3VrdV9Y+m2WTs/MHU9SQHgUP7UjZXDJDu3S3CaaoXTVz
-   5wNn+6Vp0r7juVh3pXLj/B+C48QHJ0qJWuJB2exnejijq/0wZ+7Me5C5k
-   /Dny1RYE1mFB7QBCdQ+BxvasE+gNOGE372ItLRcYyV11Wq2JNxKC5cwlF
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="13905916"
-X-IronPort-AV: E=Sophos;i="6.06,186,1705392000"; 
-   d="scan'208";a="13905916"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Feb 2024 09:05:04 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="913882130"
-X-IronPort-AV: E=Sophos;i="6.06,186,1705392000"; 
-   d="scan'208";a="913882130"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Feb 2024 09:05:00 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1reePR-00000007k7J-2SR5;
-	Mon, 26 Feb 2024 19:04:57 +0200
-Date: Mon, 26 Feb 2024 19:04:57 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Robin van der Gracht <robin@protonic.nl>,
-	Paul Burton <paulburton@kernel.org>
-Subject: Re: [PATCH v3 9/9] auxdisplay: Add driver for MAX695x 7-segment LED
- controllers
-Message-ID: <ZdzEud8hZ2fXsVar@smile.fi.intel.com>
-References: <20240219170337.2161754-1-andriy.shevchenko@linux.intel.com>
- <20240219170337.2161754-10-andriy.shevchenko@linux.intel.com>
- <CAMuHMdWpepH0P8g9dPfq1rsZRJsvOnoZ7VnjqTL9nkSGtKFpYQ@mail.gmail.com>
+	s=arc-20240116; t=1708967577; c=relaxed/simple;
+	bh=qfs9npxew4QZJ2PWJjpG7NN0CXdtBE3vktHY5s5LCmo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=dXkkHZmj4k/Wew4saBrih3JsOjS4YLZxsUTps0W0RysDTF2DxCr84kb4Ms9cXa+QXlevFvAnhL9Ta2TmvfDsDtpyEDr+aRwnOc423ujCmKw3JxQARHX16SrE+C+XMW8jIwIezBy2zdKi2Q6QNiLNSLNzHBLj3rIcbggvu8MyfYk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UAMLG4mC; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-55a8fd60af0so4371070a12.1;
+        Mon, 26 Feb 2024 09:12:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708967574; x=1709572374; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xHsvO2ojw3wAaSXT20nex1iPrH3WjQEzc6x+r/FAtBs=;
+        b=UAMLG4mCy7Emc1QlJQxXFY7FYiSNAwxODcROdyPXF/n4LE41sgkX8DeiX3hBOP4i+B
+         NsXZv7o3/2uxr2SeEogJay2d6j1KuQRiBohJ7JLB8/sMQ/TA+c/ThjWxyGFA+I+cgUMv
+         lWO19AVGAdz1GIO59Z6OS+gUiX8O4vUBU+YMPEWV5yxkKiWDU4r6JjVuWhMmxMAHWStu
+         joSYuuDN5et5Nwl6WGX06vDROT2ylLEjW0RagNZ8FLv6otSgafbuwKevzICzDZuqvDK0
+         OBu4GucoJdWfVLpYoflFhSJFPZ2pSW7HqcHRlBOLJ5FD/4STwvvxXBso+i/B4vVuz4QS
+         kp5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708967574; x=1709572374;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xHsvO2ojw3wAaSXT20nex1iPrH3WjQEzc6x+r/FAtBs=;
+        b=erSRFz9Iz1YjL/wSAbkYgKJx+O8+bQwKZnW3yIRKHPelimzggd/OKatcFKH5CdNBVA
+         tDV8g34/erShfsTooZYae3kBniDkB6unoJ5ZLwh5MNRZHmZ4vPwJxVqXz3vMUAN7Qsq8
+         5xV6gCPQtqMuYGKV/yAhP1iTe7wa1bSOvOz6ZDk9xn2p4kv1jfbAl47+p5x9+3aFY4WL
+         LOSUyxtR7IqYW4t7VyLiZepCxejiERDfktYanHouivKo3E/IcXU2z14Mn5jXV7s/dm1a
+         YVAs2LgKJWjhHFHVkXhSEayKzrdONpRgAhr4CUTbAREBKgeZrGIaZaxAIpP55p+U23kh
+         zm5w==
+X-Forwarded-Encrypted: i=1; AJvYcCUGhA1CSPl80BdbnTU0ulyyr+X1h8v9tf0gua1aE9rrUt4Rz5M6vhdEbF2QINyJe8UmXAzRkZqC4We9aKdDHSndmpqTm5+dmx+mFheIOAr4yy0+S4zLLV/UeYIiMatCUOYLsV6H/mR27g==
+X-Gm-Message-State: AOJu0Yx2/tdOiRvH4hEL2csbIydEGBxIywG783ZV41B/rW9zZwZXx9gQ
+	gdt5lOeA+vflcYO91i2Q23NhkIkKAC5USUqDwA63XGQV9tunRMk0
+X-Google-Smtp-Source: AGHT+IH5frrm0IXBGW0E8O+sVSV0Pc15SBSqYT7kfDX8vi7iJPKdrue3XGDQNR9RWKKAlFGQL8P+Uw==
+X-Received: by 2002:a17:906:b115:b0:a3f:5b9b:a17b with SMTP id u21-20020a170906b11500b00a3f5b9ba17bmr4675959ejy.53.1708967574495;
+        Mon, 26 Feb 2024 09:12:54 -0800 (PST)
+Received: from [192.168.20.102] (57657817.catv.pool.telekom.hu. [87.101.120.23])
+        by smtp.googlemail.com with ESMTPSA id ss3-20020a170907c00300b00a4396e930bdsm98989ejc.79.2024.02.26.09.12.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Feb 2024 09:12:54 -0800 (PST)
+From: Gabor Juhos <j4g8y7@gmail.com>
+Subject: [PATCH v2 0/2] arm64: add minimal boot support for TP-Link Archer
+ AX55 v1
+Date: Mon, 26 Feb 2024 18:12:38 +0100
+Message-Id: <20240226-archer-ax55-v1-v2-0-3776eb61f432@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdWpepH0P8g9dPfq1rsZRJsvOnoZ7VnjqTL9nkSGtKFpYQ@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIbG3GUC/13MTQrCMBCG4auUWRvJj7GNK+8hXYR00g7YpiQSK
+ iV3NxbcCLN5B75nh4SRMMGt2SFipkRhqSFPDbjJLiMyGmqD5PLCpRTMRjdhZHbTmmXBWoWDEda
+ 07opQR2tET9sBPvraE6VXiO/Dz+L7/VHqn6rHmTG+81Y61enuPs6WnmcXZuhLKR8FA57YrAAAA
+ A==
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Gabor Juhos <j4g8y7@gmail.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.12.3
 
-On Mon, Feb 26, 2024 at 05:01:46PM +0100, Geert Uytterhoeven wrote:
-> On Mon, Feb 19, 2024 at 6:03 PM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
-> > Add initial driver for the MAX6958 and MAX6959 7-segment LED
-> > controllers.
+The purpose of this series to add minimal boot support for the
+TP-Link Archer AX55 v1 dual-band wireless router.
 
-...
+There are two patches:
+  - the first one adds the compatible for the board into the dt-bindings
+    documentation,
+  - the second patch introduces a minimal device tree source which can be
+    used for booting initramfs images
 
-> LGTM, so
-> Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
+---
+Changes in v2:
+  - reorder pin configuration properties in patch 2/2
+  - add 'Acked-by' tag to patch 1/2
+  - Link to v1: https://lore.kernel.org/r/20240223-archer-ax55-v1-v1-0-99f8fa2c3858@gmail.com
 
-As per discussion, let consider maximum digits as a next feature coming later
-on. I'll take this tag, tell me if I shouldn't.
-Thank you!
+---
+Gabor Juhos (2):
+      dt-bindings: arm: qcom: add TP-Link Archer AX55 v1
+      arm64: dts: qcom: add TP-Link Archer AX55 v1
 
+ Documentation/devicetree/bindings/arm/qcom.yaml    |   1 +
+ arch/arm64/boot/dts/qcom/Makefile                  |   1 +
+ .../dts/qcom/ipq5018-tplink-archer-ax55-v1.dts     | 133 +++++++++++++++++++++
+ 3 files changed, 135 insertions(+)
+---
+base-commit: b401b621758e46812da61fa58a67c3fd8d91de0d
+change-id: 20240221-archer-ax55-v1-73ed91a97c6e
+
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
-
+Gabor Juhos <j4g8y7@gmail.com>
 
 
