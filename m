@@ -1,73 +1,74 @@
-Return-Path: <devicetree+bounces-45802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45803-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CACE866BA0
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 09:01:59 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2A31866BA3
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 09:02:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6FF661C20433
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 08:01:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03D0AB22DF6
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 08:02:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95AA41C28F;
-	Mon, 26 Feb 2024 08:01:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C3EE1C68A;
+	Mon, 26 Feb 2024 08:02:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FJks3vWa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ame78ELc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFFA81CA83
-	for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 08:01:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9FA11C68C
+	for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 08:02:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708934514; cv=none; b=IjwwaHUoJqYyaVfXNO1MPXUVLTdgwrPXCiNBkyiVsIAnHM8B3PoUk2xe0+Q3lCY/PxTwi2ronZOcbKeebHv0GQWTiqVroACEmnsKJTvq3lx2L9eiUS/cEeDNOkxvj7Vq7m1HAqKyqrhk74MUGgdrfIXDGRFe47GFLHuUdQfZ0N8=
+	t=1708934554; cv=none; b=Qrb6eN39Gm3q46ndRaaDlMQLMfFV0ttD65LycLlutfCv3OPB6qJoKkxmI7t487xNoCuLHX08UlUZ2GPB+l6NgJKIdvNhUnzoOp4Gffj5HIpORL3x6Vbf0Iyy3wywlQLX5HNizZQWca8w2/dFyEpCr+2XV5QC37MQTncTtIwMlIM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708934514; c=relaxed/simple;
-	bh=VGxWxy9skHW9/UiaM1LL46KGhCSFefhCm25LomCpg5g=;
+	s=arc-20240116; t=1708934554; c=relaxed/simple;
+	bh=9xnOGx7WaP5Uc/baHSuN5Bk6KWOKBbWKDo3XN7jsqD4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mTin6wEpWi3MVlZdFv4HgSEqjVcHQtH0kvhlrtj4xTixi/a4o6bvgFTjJ79sWIONaxkg25d0VGyxQQiOsbY9efsesOegyTdWq/sBJiZ2DvzZv5Vv2K4RH7BUuGBXWIpW7RUddEZvKwANPUvtWMJeujGEIuqmXCFX6vdRjnN8vAE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FJks3vWa; arc=none smtp.client-ip=209.85.208.53
+	 In-Reply-To:Content-Type; b=AS2Li7lS056YSFIQshuTvuQAtV0MVIvD5CbOTQbbAraRX0BrMSEWVIW3WOZdz7+svnHU419/ftBgamO6F1rD7fFN+5m90I+BfYYwmVCq+Z4RDN81cIHNT1ZGhqWDQuDQyFev1KIHHDiEOiNyh84Sq+9w1sFnUkgSs+9rjz5itdo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ame78ELc; arc=none smtp.client-ip=209.85.208.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-563b7b3e3ecso3749857a12.0
-        for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 00:01:52 -0800 (PST)
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-55f50cf2021so4164614a12.1
+        for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 00:02:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708934511; x=1709539311; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1708934551; x=1709539351; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kUXF7KhDywrA7hvLz9/cRwe+/meEyC6uqfp1PEa82vQ=;
-        b=FJks3vWaxGRA6GHL83Kg3AdOs+WZ0m/kBD23hdMtxojBkdyaPddNukofmw257PSRK+
-         nth/MUcJSSFzNOw/DwCXRxZzmZzzYNY4CCwRjmQPiBwGUzP4S+lOWpCBP3Qt4ger3Xv/
-         tsRgGST56HbiqUdjZ0lrUvwsRDhEVTEkM49p+basBWBgx8WFG6BMxXpRZ9BW6DI6isZf
-         IS8IjFE9wuS0Ux5xTjSTSyiBPmcw91zb5nU3rDCju1YafXHCuJ3SDVn8RzaD3DbiAmkP
-         wSMW0JREQz9x9Vx1VCSXeYi3f/TN3ex1rYTPB/9m/3kbUZ4M1r5/ER9fsSBga3n+cL7X
-         l3Cg==
+        bh=soC8CX2j/bFMKsGTx220hrOgW/KeIshjACOSeQIT7LA=;
+        b=ame78ELc6+wskDyFtknqxwaN4vrM03lWrDYrtjPBSf+oy+t94vpJPQa6xdpmCe2Bid
+         GJuiCPzS/cWm+FAZv/d3iIqd6+VFpSI8g5uRizMkDt57O/6ejWIyxpnx66ynYFU1G3/t
+         jJd4CAQETxC0wg9z4slS/UMoePaZVnuYGcT8Vw0CNHB/OJ5ID6qRSpPbF7TwnIB3DPp/
+         gS8ZGwEvmVAOPB1OVy2e1MopmtGWR95bOD9czuw2icteEjoH/Ko/eRdiD6k0CclIz7q5
+         lOM5bLuw+YGYp7y8RWoDg9MbO3ccSCT/xfyd+AePtHVEtUHmj3a6qRbaE1E0DbzJ/iaP
+         t9UQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708934511; x=1709539311;
+        d=1e100.net; s=20230601; t=1708934551; x=1709539351;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kUXF7KhDywrA7hvLz9/cRwe+/meEyC6uqfp1PEa82vQ=;
-        b=DJHqkO8e/E20EuQqPeSSLa/16u0b05S4Me2YQtbwKrES1zx8zqcpxY2XxsXBS48c5C
-         0IJKK+7j8E1ufJkt+CIPVbQpMOfcYn8LtB+I/QvXkdHKmNmGusbFHFSTx5FJHuGrEa+J
-         fQBkh9viXs5AxcfEU7gipFtPLCmVRCzDKIstgBM3mbFYLg3bTN9EQO8jAKYbzU3GWdnk
-         cQsmEIkC2VqA0pDMfj8NsmfD33hHww7LVRuXBkJWNiVnJa9hFhFhwBOWpcs8WTiX9KnK
-         NwgAHcuOYAvBypLqDv2cOPKOHwpNl4BgnHk9JBqii/BB0odxkIodFkYE7UjBUbyML+zD
-         8l2Q==
-X-Gm-Message-State: AOJu0Yxl2KaiQWxzrrMF1txujXJYJZ1+bXBg/WV+suEkj4+WQ6wbS2h1
-	xMtOunhOInx2Ny9a6RgEHmlLCD3EpAQK1zlNjiAziUeLEoopo3PgMmhbsPm/low=
-X-Google-Smtp-Source: AGHT+IFyWjHSVF4dvCCMiYIPLpQhIt9lexeXyEpjA5Mi3B9gAbJQGNDvRjTpLOT8qPFZXZkBH3mz/Q==
-X-Received: by 2002:aa7:d297:0:b0:563:ccd1:26bd with SMTP id w23-20020aa7d297000000b00563ccd126bdmr3970060edq.2.1708934511019;
-        Mon, 26 Feb 2024 00:01:51 -0800 (PST)
+        bh=soC8CX2j/bFMKsGTx220hrOgW/KeIshjACOSeQIT7LA=;
+        b=nPNlFnpJLh0U6aImlQfUyQold8DVl6d85kwsYBNoiXJ7taJpP34qFYdY0NPfScXM1k
+         5FflzP6EsaJhtf6iTezOekHUhBHrMzbzma3JnrxBBEsKL61kRNxZgsUNVWVdQvTx7ZWO
+         ZzrM7TObTPGoPK8aoMJZOw09L6eaeJvHl97zZw2wpRZeveCMxHIYQHVjCA+lmEXZbSiy
+         xZSej36CXOD8vRgqwpCV6qEHJvsoRsY5MYVplqPgK20pp2qDaxW+edZySSh4l0SI2l7m
+         UbvkpvPBGLfYk0DIuaWZSI4YNRSilMCg9rbRKJozW9gJGV/8zEjP432HpO+EPI5s42eR
+         gjPA==
+X-Forwarded-Encrypted: i=1; AJvYcCWtDKzshclMj7URfGWzVvLRBe5a0HrDs3SbHxrRm3li4jSGPPJnK9nFvU82i6n92Ej3SoQCqcrEJDYmKUUsU2L1dXgh2oeWpMSv+w==
+X-Gm-Message-State: AOJu0Yx9zrODfJyQLVdhCjUpXVMnCY0XvhWrgXjyRngwqHBwTUX/7N7x
+	5KsC9e5Wbf+OE7NlKnGf4SBZxpcIYa9aQ1rPlRQyjOYzf7i1DVYJzVik9dxrpao=
+X-Google-Smtp-Source: AGHT+IEh4UoHibcStiR2cVowrevnnxMHPxi9MVSf2WTOPhUAqfsiazAQnXiDCUH/mINyxIH+oEDvgQ==
+X-Received: by 2002:aa7:dd12:0:b0:565:7c8d:5790 with SMTP id i18-20020aa7dd12000000b005657c8d5790mr3906095edv.4.1708934551235;
+        Mon, 26 Feb 2024 00:02:31 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id r22-20020aa7cfd6000000b0056536eed484sm2102206edy.35.2024.02.26.00.01.49
+        by smtp.gmail.com with ESMTPSA id r22-20020aa7cfd6000000b0056536eed484sm2102206edy.35.2024.02.26.00.02.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Feb 2024 00:01:50 -0800 (PST)
-Message-ID: <5ac7534e-3fc3-4e96-84af-035ea30462ac@linaro.org>
-Date: Mon, 26 Feb 2024 09:01:49 +0100
+        Mon, 26 Feb 2024 00:02:30 -0800 (PST)
+Message-ID: <5a4a597e-8d5b-42a7-ad9e-226daf4126e8@linaro.org>
+Date: Mon, 26 Feb 2024 09:02:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,16 +76,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: simple-pm-bus: Add optional resets
+Subject: Re: [PATCH v4 4/4] dt-bindings: mmc: hisilicon,hi3798cv200-dw-mshc:
+ rename to hisilicon,hi3798-dw-mshc
 Content-Language: en-US
-To: forbidden405@outlook.com, Rob Herring <robh+dt@kernel.org>,
+To: forbidden405@outlook.com, Ulf Hansson <ulf.hansson@linaro.org>,
+ Jaehoon Chung <jh80.chung@samsung.com>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240223-b4-bus-v2-0-da8ba83c1a5f@outlook.com>
- <20240223-b4-bus-v2-1-da8ba83c1a5f@outlook.com>
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Igor Opaniuk <igor.opaniuk@linaro.org>,
+ tianshuliang <tianshuliang@hisilicon.com>, David Yang <mmyangfl@gmail.com>,
+ linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240217-b4-mmc-hi3798mv200-v4-0-0fdd9bd48532@outlook.com>
+ <20240217-b4-mmc-hi3798mv200-v4-4-0fdd9bd48532@outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -130,52 +134,21 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240223-b4-bus-v2-1-da8ba83c1a5f@outlook.com>
+In-Reply-To: <20240217-b4-mmc-hi3798mv200-v4-4-0fdd9bd48532@outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/02/2024 11:10, Yang Xiwen via B4 Relay wrote:
+On 17/02/2024 14:00, Yang Xiwen via B4 Relay wrote:
 > From: Yang Xiwen <forbidden405@outlook.com>
 > 
-> For some on-soc buses, it is also needed to deassert the resets before
-> access. Document it in the binding.
+> Add binding and an extra property for Hi3798MV200 DWMMC specific extension.
 > 
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
 > ---
->  Documentation/devicetree/bindings/bus/simple-pm-bus.yaml | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml b/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
-> index 182134d7a6a3..430638104980 100644
-> --- a/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
-> +++ b/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
-> @@ -14,8 +14,9 @@ description: |
->    driver, as it's typically initialized by the boot loader.
->  
->    However, its bus controller is part of a PM domain, or under the control
-> -  of a functional clock.  Hence, the bus controller's PM domain and/or
-> -  clock must be enabled for child devices connected to the bus (either
-> +  of a functional clock, and it might have a reset control signal.  Hence,
-> +  the bus controller's PM domain and/or clock must be enabled, reset control
-> +  signal must be deasserted for child devices connected to the bus (either
->    on-SoC or externally) to function.
->  
->    While "simple-pm-bus" follows the "simple-bus" set of properties, as
-> @@ -49,6 +50,8 @@ properties:
->      # Required if clocks is absent, optional otherwise
->      minItems: 1
->  
-> +  resets: true
+>  .../bindings/mmc/hisilicon,hi3798cv200-dw-mshc.yaml | 21 ++++++++++++++++++++-
+>  1 file changed, 20 insertions(+), 1 deletion(-)
 
-If you have to toggle some resets (and often actually in some order),
-then it is not a simple-bus anymore.
-
-This looks more and more like a one-binding-to-rule-them-all.
-
-Especially that description clearly states: "does not need real driver"
-and "typically initialized by the boot loader", but here I see more and
-more of a driver, and more and more of doing things by Linux.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
