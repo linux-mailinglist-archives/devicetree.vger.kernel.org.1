@@ -1,91 +1,91 @@
-Return-Path: <devicetree+bounces-45842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F916866F9F
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 11:00:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EBA2866FAC
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 11:01:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A2DAC1C25BC2
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:00:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49AB6287918
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:01:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B1FB5A0F8;
-	Mon, 26 Feb 2024 09:34:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1FB32032B;
+	Mon, 26 Feb 2024 09:37:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="TsHTKA2I"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f1Lwlc1n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2067.outbound.protection.outlook.com [40.107.94.67])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1FBE59B70;
-	Mon, 26 Feb 2024 09:34:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.94.67
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708940052; cv=fail; b=PYpW4dIsfE4+Hlz9Z59anjMfdJtDMnGiG9Ihd5ehfkLq2j88k2sCk2VW3zcAawYmeSo74U+eycmmWi7sSbb4LaHBwV/Y9U13FOGYiPLKq9CGyAaKWtakEB7VJBJ45k+jLnhJHO+fB0qJPU2QI/OD1AC6Ggodh9f+Jmhdj9hqcPE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708940052; c=relaxed/simple;
-	bh=n5kdWOGHcqUQi1C01+5xje06SaqcPxfMqLu+q83VKK4=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ViAcKJHVKi2sRoGofdJ9QQWWQ32vAL7Q6FMpr+TVSNafMn1YFSzaxEfz8qSp0JnjHQz8gC+EUuVuCdJHOdofxTDzqOpZOWlgJpFKhc/7fFc2QTx978IvX131Q3Z7qI1Zu1AzTYWC7M78dxrwAZHjLA5begoT1K599W/KZeimnaA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=TsHTKA2I; arc=fail smtp.client-ip=40.107.94.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mqEp6MbfqJw7ez7MHtwL5MqPoUWxKGtlfh/lUIWGXcAPJ+fdCH+nJxiM46CBm5vCg7iBa3FxKTXeGGplTy82b74VFBX/1pNx8jzmpiE3kdQGaEW0D9U4/ZuArC/bKTSpKF3IzRa9WXGAuscZ9T/Zx1ljlgIcWItqWXn+dT44YYKK4HULCfIH1gZKPlPe+10e+7xuUdLENOt0BX3mkqUy8ZtuCYrPzhdbcWFM5HIChU1PygsxhNZcQypQLpPaI666h1/ev2lfzj4N32LIw6kml4jhyj4WK2NZtTAwGTuZ8nubvv2WJ7jc7qbSJmBxOTtzoJR40CnFHS1cdLIV4NZqEg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Q+O5bCVThQKY+yU0HHeTtd7kcs7uNH9IJcrnKxTr0gc=;
- b=iu1Qu8kmg2MKSkqNmBJfub5hkTV/txDxeBf8SvPyRI6OoP0DRLYgvLo5USLv1cQjLzLm9lzjU2DL08r0kGa8Jp6i3UCEmSQRYM6sMFPyENSs3wOO9Ae7efjg11TDFX5tX4Igu6nHdrNs2hO5MZBGM2UxtBe2n1ztYhVZ/TU6q9eAHqpuq9YLob200hUgku78VHZpLZ4dk0MTpU9s3rXmH+iFncaHs+o/fl+UHn1I8XiggZ9w2aa/b/UKt6MvZ1lM+LRJj2ePB9cFbL9SX08sUErPxzI7SUu1RLYt83dH3F5WwttIWbf2zYlDswR3utcnFOwNmyyB5vx+EVIpZIZmfQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Q+O5bCVThQKY+yU0HHeTtd7kcs7uNH9IJcrnKxTr0gc=;
- b=TsHTKA2I/QbuP/gPefJHdkq6xGw8qPls8m27NG4SesyMp1JkWqJYQLaKgK4EgpjYk/4gNX1Ib6DSlY/2dPRAzwfX0eFbwdiB0L3l/xWUhiKmMZOoObp1riAD4bs5Iqqy/7fUqnaxR8adQ5QStLE/TO8VOejDG6zBPssqINVcI/Y=
-Received: from SA9PR10CA0024.namprd10.prod.outlook.com (2603:10b6:806:a7::29)
- by PH8PR12MB7136.namprd12.prod.outlook.com (2603:10b6:510:22b::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.33; Mon, 26 Feb
- 2024 09:34:05 +0000
-Received: from SN1PEPF0002BA4D.namprd03.prod.outlook.com
- (2603:10b6:806:a7:cafe::1d) by SA9PR10CA0024.outlook.office365.com
- (2603:10b6:806:a7::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.49 via Frontend
- Transport; Mon, 26 Feb 2024 09:34:05 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- SN1PEPF0002BA4D.mail.protection.outlook.com (10.167.242.70) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7292.25 via Frontend Transport; Mon, 26 Feb 2024 09:34:05 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 26 Feb
- 2024 03:34:04 -0600
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 26 Feb
- 2024 03:34:04 -0600
-Received: from xhdmubinusm40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Mon, 26 Feb 2024 03:34:01 -0600
-From: Mubin Sayyed <mubin.sayyed@amd.com>
-To: <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>
-CC: <daniel.lezcano@linaro.org>, <tglx@linutronix.de>, <michal.simek@amd.com>,
-	<linux-kernel@vger.kernel.org>, Mubin Sayyed <mubin.sayyed@amd.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3] dt-bindings: timer: Add support for cadence TTC PWM
-Date: Mon, 26 Feb 2024 15:03:33 +0530
-Message-ID: <20240226093333.2581092-1-mubin.sayyed@amd.com>
-X-Mailer: git-send-email 2.25.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F35411EF1C;
+	Mon, 26 Feb 2024 09:37:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708940273; cv=none; b=nZMUU2vFMjYMnjix9pRqCBZaOaAnRjejzlRAQqbx+28aAHbA7PdGx/+G5tp0wTSoFxBpwBlf0HbE2gfjDmALW8oWh/GOjmulTbnI7whUmE+pUmCkIZhkqcdUcxIMx9DUo2x2mBKCLMXMIG5DbrTHlxb86vySJJNtxQxScXbM4eI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708940273; c=relaxed/simple;
+	bh=+M/IcrkC4KiqVSgKEfF4MEPWWH07B+P/vlCcnh7YeNg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=rgPyfyTUrf4PDlUtoR/y2lJ1K05SZX9xPjyrTV6dLDgQabvjKgPB+uA4saiPJa6itwXB+ABRg5vttBeBN7jRinTEMUcNkb4UgaCZdyrkn+B7hV1+vZUrSzz1AGb6VGDR5LYF0rNwF+8sNcg60OXAGgA4MzT0IjuBoqZB3jssJ8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f1Lwlc1n; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-563cb3ba9daso2720838a12.3;
+        Mon, 26 Feb 2024 01:37:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708940270; x=1709545070; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dpglvbug8B6rz9FHKHRWvwGpjAjoa19+rytvw+mL+G8=;
+        b=f1Lwlc1nJ23KoFpVKfKTBefiJxDqBhxJLy3yztn2bHXbQcz6AA4Lr1/8EZykTn8d51
+         omSe/nkP4SAUj+5q+0EnKHOnkM1FUk19dWnm+SANNb2gnOPuD1uWgFlmIvB+zhu5yCwC
+         VaR/IBca1owsr15UV9uNZr9XH66ZcDb3vedWfYhuSV/nFSfsBfazgXtFpwJGVw+ts4ZH
+         MplEZyDDHsic35Yi4NILEi1nW8bFWi8WogbKs/1l/juLmYc4Oz2cbn6jelf1TNE7Fhk5
+         vXgLdLe5vQJq3GL340H5h7FqVvFOYKFacyk94U/X0C6qtwjxfWhQIvgTHLU1fNJadfEy
+         ZlCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708940270; x=1709545070;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dpglvbug8B6rz9FHKHRWvwGpjAjoa19+rytvw+mL+G8=;
+        b=JliV5GyzGuinQbX3clhgUl5ToQ2M0N/C3GFkUJy2eaD2h6uEHLx01izaOni/8YfbMj
+         Xh95eO8n/yygbk+wxz+7qhYBkLPJH9TBxScICrTr4bh4ewI1rXZwlAFl+efoxe+BSL8V
+         jLqWloJflqoinHsqCFcbd+24sFXiXHFJIEfDuIQJNcBTl/3wi6BaHnwcIIAiCXgFNZlh
+         tFCjA5Gn6epNB1X+1xHrkTQepHkNJLW14gaukMnPu9yedumasx/7uVLpl6YFl1EH7FBv
+         j+P/eB3KS8P+yA6E6YNE+YVGTsqNvFjUWuLs4EA9U1Ungo5PLvUQd6VzirtPvlDGgdyD
+         /+8A==
+X-Forwarded-Encrypted: i=1; AJvYcCUwv7JZPP5xu+QXwIGte+Gi0cR3qI5GJDRtPuveomu2PPfJ9CDlV5S8EUduJRiz3Edp5MUa7XI1688Qtbbntra2UVsN/hOCoYvq764wpGRR5Gro3IMCd7pHlnaD+7XXNo9zrVXl+V0MjpujxWqfVFCIgqC+cRuk3uoXnpBe7fXHzuoBVZ/xHdgyHzstZiC2u0UHbeomFv3XISMlOrdhKcs5Er9+
+X-Gm-Message-State: AOJu0YzObl3bpeVFUMDjtCFQfUudij0I+iSs9EDzuxEk7hTaCuDrTb1D
+	aNW2hRimsJWw3w5voLLsdreg8mjCWNAXUut5Vsfn8fPWeP+UJ/Jv
+X-Google-Smtp-Source: AGHT+IFpjaJu2T4JoRmMtw8TqqMu8ND9Hg9Vv19TGQBE+b1X9rROjlzEQ5fx+rLOm05RPrsgBI8FWQ==
+X-Received: by 2002:aa7:d9c8:0:b0:565:ebf3:e28a with SMTP id v8-20020aa7d9c8000000b00565ebf3e28amr1603276eds.31.1708940270082;
+        Mon, 26 Feb 2024 01:37:50 -0800 (PST)
+Received: from unknown.netbird.cloud (net-93-65-126-20.cust.vodafonedsl.it. [93.65.126.20])
+        by smtp.googlemail.com with ESMTPSA id fd13-20020a056402388d00b00562d908daf4sm2158595edb.84.2024.02.26.01.37.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Feb 2024 01:37:49 -0800 (PST)
+From: Gianluca Boiano <morf3089@gmail.com>
+To: Pavel Machek <pavel@ucw.cz>,
+	Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Cc: Gianluca Boiano <morf3089@gmail.com>
+Subject: [PATCH v2 1/3] leds: qcom-lpg: Add support for PMI8950 PWM
+Date: Mon, 26 Feb 2024 10:37:30 +0100
+Message-ID: <20240226093732.3478845-1-morf3089@gmail.com>
+X-Mailer: git-send-email 2.44.0
+In-Reply-To: <d17121a0-ca14-41fd-9802-bb4118629e34@linaro.org>
+References: <d17121a0-ca14-41fd-9802-bb4118629e34@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,101 +93,41 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA4D:EE_|PH8PR12MB7136:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4f070777-eeaf-4ae0-178f-08dc36ae131b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	b+3GVh9E4He4LKOgIDz3aH4KW5f+yhX2iDS3GlXhYQDqLG5HFs8zYCmUhvAWYgcbcS88S3I0Fgb49wNUN6zYOB+4RizUAM5K2FN81BQsliSjEbMjLFOy49YjvIjYBnzno7bBbLJkxyl+fqv0XQo6IxuzS94BDGtJdQ0a+QycjOWNhMGM3qv6XkNYFTFeIeeHKI1Xt+wnflSYt/x9iWks6E5J2MEnUq+YBAtE1eYRkPl79l70uM9u9tLZ6Rr9cKcIr5I8NWnmaJ/zvDDaVtB8LQb+L+96DZ8lrAKMYqh3mm5i0dPN0cSA0UNFQhl03Au+C/8O2byIM8BxmPNVJit9k0BjQzBiSL+thf769G9+IZtg3q2SAiRCaKn3c4k6WARixCm5PaqLF79KkrWr+tTsYItV4pVNNy+nF1C/gs3Rh7+qi7tP20TVAR2dNfANdUiAWM6qG2t51Ywb34VAQEXiVmi1czKCmtazuT9Rq5dg5ogKcyTvw8yljzNEQL579nbWf24X6Kssvn5WDCo+4gJUY5VcG9g5cMCUsYHFh9jKVWlWBvpj+rwspA7uBHbiqzxdCpnFLKDA/Qwv6Wa3yIlSIdIL/NUJuUFVq4qahC71z4fX5om2i/TNEKOeBRVBlwgRtf3tF1Et36t3nu5muB1ymfyQU6/2vZwOIyFXo4ggb8tn0RUuacVIWEnnRHZ3/P37TBh5H5FtCZKO+GA0tcCLOC4v71LOhzG0Bu82MF3xaCuiOM6e8BGw0nGm4IIy3q09
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(36860700004);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2024 09:34:05.1894
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4f070777-eeaf-4ae0-178f-08dc36ae131b
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SN1PEPF0002BA4D.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7136
 
-Cadence TTC can act as PWM device, it will be supported through
-separate PWM framework based driver. Decision to configure
-specific TTC device as PWM or clocksource/clockevent would
-be done based on presence of "#pwm-cells" property.
+The PMI8950 PMIC contains 1 PWM channel
 
-Also, interrupt property is not required for TTC PWM driver.
-Update bindings to support TTC PWM configuration.
-
-Signed-off-by: Mubin Sayyed <mubin.sayyed@amd.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Gianluca Boiano <morf3089@gmail.com>
 ---
-Changes for v3:
-  Add Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-  tag
-  Remove bindings from subject
-  1/3 and 3/3 are dropped as of now (WIP).
+ drivers/leds/rgb/leds-qcom-lpg.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-Changes for v2:
-  Update subject
-  Modify #pwm-cells to constant 3
-  Update example to use generic name
-
-link for v2:
-  https://lore.kernel.org/linux-arm-kernel/20231114124748.581850-2-mubin.sayyed@amd.com/T/
----
- .../devicetree/bindings/timer/cdns,ttc.yaml   | 22 ++++++++++++++++++-
- 1 file changed, 21 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/timer/cdns,ttc.yaml b/Documentation/devicetree/bindings/timer/cdns,ttc.yaml
-index dbba780c9b02..da342464d32e 100644
---- a/Documentation/devicetree/bindings/timer/cdns,ttc.yaml
-+++ b/Documentation/devicetree/bindings/timer/cdns,ttc.yaml
-@@ -32,12 +32,23 @@ properties:
-     description: |
-       Bit width of the timer, necessary if not 16.
+diff --git a/drivers/leds/rgb/leds-qcom-lpg.c b/drivers/leds/rgb/leds-qcom-lpg.c
+index 6bdc5b923f98..9467c796bd04 100644
+--- a/drivers/leds/rgb/leds-qcom-lpg.c
++++ b/drivers/leds/rgb/leds-qcom-lpg.c
+@@ -1693,6 +1693,13 @@ static const struct lpg_data pm8941_lpg_data = {
+ 	},
+ };
  
-+  "#pwm-cells":
-+    const: 3
++static const struct lpg_data pmi8950_pwm_data = {
++	.num_channels = 1,
++	.channels = (const struct lpg_channel_data[]) {
++		{ .base = 0xb000 },
++	},
++};
 +
- required:
-   - compatible
-   - reg
--  - interrupts
-   - clocks
- 
-+allOf:
-+  - if:
-+      not:
-+        required:
-+          - "#pwm-cells"
-+    then:
-+      required:
-+        - interrupts
-+
- additionalProperties: false
- 
- examples:
-@@ -50,3 +61,12 @@ examples:
-         clocks = <&cpu_clk 3>;
-         timer-width = <32>;
-     };
-+
-+  - |
-+    pwm: pwm@f8002000 {
-+        compatible = "cdns,ttc";
-+        reg = <0xf8002000 0x1000>;
-+        clocks = <&cpu_clk 3>;
-+        timer-width = <32>;
-+        #pwm-cells = <3>;
-+    };
+ static const struct lpg_data pm8994_lpg_data = {
+ 	.lut_base = 0xb000,
+ 	.lut_size = 64,
+@@ -1819,6 +1826,7 @@ static const struct of_device_id lpg_of_table[] = {
+ 	{ .compatible = "qcom,pm8941-lpg", .data = &pm8941_lpg_data },
+ 	{ .compatible = "qcom,pm8994-lpg", .data = &pm8994_lpg_data },
+ 	{ .compatible = "qcom,pmi632-lpg", .data = &pmi632_lpg_data },
++	{ .compatible = "qcom,pmi8950-pwm", .data = &pmi8950_pwm_data },
+ 	{ .compatible = "qcom,pmi8994-lpg", .data = &pmi8994_lpg_data },
+ 	{ .compatible = "qcom,pmi8998-lpg", .data = &pmi8998_lpg_data },
+ 	{ .compatible = "qcom,pmc8180c-lpg", .data = &pm8150l_lpg_data },
 -- 
-2.25.1
+2.44.0
 
 
