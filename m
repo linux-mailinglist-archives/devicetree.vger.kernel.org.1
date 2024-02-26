@@ -1,81 +1,67 @@
-Return-Path: <devicetree+bounces-45873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D2D78671D4
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 11:49:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D2ED8671E9
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 11:50:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E186F29599C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:49:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BBEA6295AC7
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:50:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B258333995;
-	Mon, 26 Feb 2024 10:44:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1584F53818;
+	Mon, 26 Feb 2024 10:44:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Vt8SWyJz"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="MoqjKKzW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E05852F9E;
-	Mon, 26 Feb 2024 10:44:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2792E54663;
+	Mon, 26 Feb 2024 10:44:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708944271; cv=none; b=HprFUe14NBmRYw12kSQr2/9u1aw8eRMCMYVcORgLLGkcFXNNNMSc7Tckr0wAKinH2GSjWABtc3KbpZvT2qwBB1M5/+vxXHPghnKxDJFjH2WAjiSNI6rzMqMNmXHsli03IAkH6U0IVALpJY7ySSnDxyM+oClgAROh2JbLj/j/RF0=
+	t=1708944290; cv=none; b=L72VvWhi7VHrl2SJiwQoRAMh/LwdTdGQjyN+taRqWRpJ8Ba+IzyYgeHomMkW2d3lGCB7811Vww67m2UHwLNTUTa7qwcO0LEind1jp7S6uL3o0vFLMCDJDxHPSzueIWVL5imz7qpEqJj6qQoueRFZsr1xEqy9yLaogTq2AuYat4M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708944271; c=relaxed/simple;
-	bh=69wWbe/mEk0VJyv+TyFSRMjK5u8I2kjvN0O6anX54Kk=;
+	s=arc-20240116; t=1708944290; c=relaxed/simple;
+	bh=p4FzrSKtLqpdf2GkM0vLpgXgNXtRineCJJsAfVApjIo=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=a0jS4PEat8LY/x0fi1+6+iOgQgEFNONktA/DNPCNXqA/T7MsDm+zm2ww2S6A6Bq+c8QlUkLLhr6thvBdHdwmz27FY2RMx6oFMAIl9RLr1K3+IlXWkzxtu0bILM3ICAALDLRqqh7jmC+eimZYSYNvodnVwYVz1+5yQ2/GqxnYhx8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Vt8SWyJz; arc=none smtp.client-ip=217.70.183.193
+	 MIME-Version; b=p2ZWcUFEr5dsHYXIbs8djEvH/VnwFtolWDIErrwHWbdHXVT5JIO7QyQACTvM5UStLijgF6EvphPxxeagiVZ7AbaPzmi1KFcz28H8zsjy09tG47SvfuXlkUPczZqYh6BYRFLsFloMd3XOmUxAulNFbNhCpjs8hMqOUN9/1HLRUQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=MoqjKKzW; arc=none smtp.client-ip=217.70.183.196
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B8AC8240003;
-	Mon, 26 Feb 2024 10:44:26 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id DA30AE0002;
+	Mon, 26 Feb 2024 10:44:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1708944267;
+	t=1708944286;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=HtJbw8drebThVn+++F6e1cdtMET0CoLNh6oFq9m0eQw=;
-	b=Vt8SWyJzgk6IKZnzFORX4BEe5ryE1AkAm+FY/06nKZsWKYs8/Sg8xziXPSQPXUpiHBiIrY
-	p4wS+HHnJnSSY3rYB/b3Vefc0cmaIUS+MjKCM8AfjXOscjMhFd4fSq+/K/h5dszmxu1vE1
-	I0+8IoMNY2pGUexKXjrlKBzifLZBtHfnRXpL88qsVkTDZI4K/FCMd52FTMq6cAIoPrXl7a
-	zXDmEoowyLQo8U8/Mk5MGEhgYsRmBor38BGPsK3yvMkGTMC5HVhjKUej58KSI7ODE7uinE
-	RVtiYBAKxXg1IbfjJc/SkO+DsBVMKUiFaYE9X8r2Tzvrch8jiKLqyII5zrwkqg==
+	bh=AO4akNw+96Nu8tYAznJ+U/EWh5SkwWOrFAKal+L/WwY=;
+	b=MoqjKKzWXG0b3EBe8D9j+rmKxHoUn0TlC8U+WLxwFy6KATGubMq+rkhE3TlWjpNWEYeMe5
+	/xgaTNwLMeFUwEfo2IjJNWpYxMn0rJsNuuj0rcJho501SWMzUvwXijWRCii9gtN16CUCpL
+	2H5sFXeWTbdSxQz2wx2Z5rGP6Ua33RC24ejaIH4Q7foyQA47I8ee+81vhjXpoUtydQHcK5
+	mGnDEH3zN4nXz5gEVLOxGDKv6eXT61ewSjxeXkP4qnub/qnpGv1eHfG+r5UZ0QCZpS7oVv
+	XC3768fpMK1InfB9vN5lO45qmKJcr1mPYyeAkdGbfWC4pDTuGvmGVJCvaDTCFw==
 From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: William Zhang <william.zhang@broadcom.com>,
-	Linux MTD List <linux-mtd@lists.infradead.org>,
-	Linux ARM List <linux-arm-kernel@lists.infradead.org>,
-	Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
-	f.fainelli@gmail.com,
-	kursad.oney@broadcom.com,
-	joel.peshkin@broadcom.com,
-	anand.gore@broadcom.com,
-	dregan@mail.com,
-	kamal.dasu@broadcom.com,
-	tomer.yacoby@broadcom.com,
-	dan.beygelman@broadcom.com,
-	David Regan <dregan@broadcom.com>,
-	Rob Herring <robh@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	devicetree@vger.kernel.org,
-	Brian Norris <computersforpeace@gmail.com>,
+To: Christophe Kerello <christophe.kerello@foss.st.com>,
+	miquel.raynal@bootlin.com,
+	richard@nod.at,
+	vigneshr@ti.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: linux-mtd@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Richard Weinberger <richard@nod.at>,
-	Kamal Dasu <kdasu.kdev@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v6 04/13] dt-bindings: mtd: brcmnand: Updates for bcmbca SoCs
-Date: Mon, 26 Feb 2024 11:44:26 +0100
-Message-Id: <20240226104426.489713-1-miquel.raynal@bootlin.com>
+	linux-stm32@st-md-mailman.stormreply.com,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] mtd: rawnand: stm32_fmc2: use dma_get_slave_caps to get DMA max burst
+Date: Mon, 26 Feb 2024 11:44:45 +0100
+Message-Id: <20240226104445.489926-1-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240223034758.13753-5-william.zhang@broadcom.com>
+In-Reply-To: <20240219140505.85794-3-christophe.kerello@foss.st.com>
 References: 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -84,23 +70,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'59e8c2e011160551124df919c5bd8689760dcea1'
+X-linux-mtd-patch-commit: b'a9ae475cc60d908dfd232d1c064fc34ec51d3228'
 Content-Transfer-Encoding: 8bit
 X-GND-Sasl: miquel.raynal@bootlin.com
 
-On Fri, 2024-02-23 at 03:47:49 UTC, William Zhang wrote:
-> Update the descriptions to reflect different families of broadband SoC and
-> use the general name bcmbca for ARM based SoC.
+On Mon, 2024-02-19 at 14:05:04 UTC, Christophe Kerello wrote:
+> Use dma_get_slave_caps API to get the max burst size of a DMA channel.
 > 
-> Remove the requirement of interrupts property to reflect the driver
-> code and only require interrupt-names when interrupts property present.
+> For MP1 SoCs, MDMA is used and the max burst size is 128.
+> For MP25 SoC, DMA3 is used and the max burst size is 64.
 > 
-> Also add myself to the list of maintainers.
-> 
-> Signed-off-by: William Zhang <william.zhang@broadcom.com>
-> Reviewed-by: David Regan <dregan@broadcom.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+> Signed-off-by: Christophe Kerello <christophe.kerello@foss.st.com>
 
 Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
 
