@@ -1,73 +1,72 @@
-Return-Path: <devicetree+bounces-45747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BD9B86693C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 05:11:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B358E86693E
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 05:11:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA7A82847A9
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 04:11:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E533B1C240AF
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 04:11:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 936AF1BDEB;
-	Mon, 26 Feb 2024 04:09:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB30C1BF20;
+	Mon, 26 Feb 2024 04:09:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="dwc7GpKW"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="UvHc+HTW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A9141CABF
-	for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 04:09:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D86E1CF8B
+	for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 04:09:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708920592; cv=none; b=I0aWK90HxohA5s/nyuj7zPzTgR+qmCvw1wuZL7fjQhOvls4+Q2o5/5rRlr8qi37Cz01yvCMi810/UeScm5vLF4lgTA8TfNO57jLrCnc1VuMZ0f7Q/B8gQ4drcOCKzRjhw2r6dltPrDFtlrYGrDcox9ndfREBy0wAzkHpZbjLWg0=
+	t=1708920597; cv=none; b=c/GQY3TnWYIBRxhyLuvHZjo0gG+8cBh0RAM2hvnAB+b2farfuhUWBrH/zLkL8PrrLbFU8a0yTPOEKBxc/7z2qKyeXEJbkr4MJO5zuJXwXEaR68ig7cvURHBPqkQcuMmVl+Pe7TOwup4bYAZIiJGhRhnSTA0RLT7Hqn1UQO4USF8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708920592; c=relaxed/simple;
-	bh=hb7lwuFLB9UuIJTL//kIhghW1ugqaGYSY/RdRY1h8Zc=;
+	s=arc-20240116; t=1708920597; c=relaxed/simple;
+	bh=cHX9yVZX2U/M0SSdzvjQb4m+7zWASmD9kQu3egh0Rao=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=CyRyW/HxeWIIIKdYsP8gueUCazKUHFf+zs4HB9HGFcyx7uSw7RtowA5A1vLrZ3wL44mJGdC5VXVp2uYHrfyvaxRr/1ACcrW7rEFX5dTp3TMLn7ci1n+fN/HKX3fm0Gizg7Mv6Wx8xVvK1uV7yj2c7i+meyel0xFUQ/6A487fDbA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=dwc7GpKW; arc=none smtp.client-ip=209.85.214.177
+	 MIME-Version; b=oPojVZVFcCS+Ni1f1ihrqcY0YvPMEa2KJ9Vqb6Id+Iq/RIttbNmdwnt3ML0mXmcaDiBiNJHGTN6lXegX+gIik08lHbB2oMSQ5PIXM4iUYpuv6STggibE4jFpaJBTSCVwLy+5agdMoPoeE6xQgAnMoV5aZCa6oJtbNBfHKW94I8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=UvHc+HTW; arc=none smtp.client-ip=209.85.210.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-1dc139ed11fso15912145ad.0
-        for <devicetree@vger.kernel.org>; Sun, 25 Feb 2024 20:09:50 -0800 (PST)
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-6e4f49c5632so231245b3a.0
+        for <devicetree@vger.kernel.org>; Sun, 25 Feb 2024 20:09:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1708920590; x=1709525390; darn=vger.kernel.org;
+        d=ventanamicro.com; s=google; t=1708920595; x=1709525395; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=71v8gbBOdtXGvo9g+2jtAQQQGBX8E4yEXl9JiWYqu5c=;
-        b=dwc7GpKWBVvr3lmulYldeZrdTRsDcwFfVDeQWMYhulBzM7SxNS15jjFrqSAoyAcGqC
-         CnMNcakNaD9FZwIGMEyL5i1lbsnptZw+eXDplL88JpLPVz4uSnRQrQLuVpVaXj+stTZZ
-         AcDMftbvmVCvh2ij4noangbxzdG9gS9kd8dK1XMvNuYpheOjdSi2TKo/mPMsbakzdfsG
-         KjnDzZPl55+NLOqFS4LNdo4KsI9LRqJgjyPKkiIeC57qmnyYMWY8KPTRbHT9sdv8H/v7
-         /Qk7m2ywIwQCsQMtRRX0eHVl76To0PiKnfHBc7hlndwW/cjPwzP894++kEOtphVqQ5bx
-         iGyA==
+        bh=KTFsbe7fY6CIFM3QbszGAvcCN7xF4yBveTkrIBLrPJ8=;
+        b=UvHc+HTW/kng637kcRm+uzKhBY/NCdx5AyH5TZfTlbjx6rxCM1THjniPNlTUWKaFcr
+         GrMuw0MTV1/yiy94RcBlCe775nGgAakK+ujukMofkKMHF0Iy88Mzi2PwvwhZmhgGysae
+         LgosrDS2dBVMEg8alKkPlr8TaZ0+542EAccbbmzlqZPisYzFiSmpG2DmFPpmM20RA58O
+         YqcSj2cZ73GJ8icc1/uRwVCFAjUti28CbYi0nfNmArgHsqZRP+3iqs1pTu99LagtyWO5
+         iXzD0EhxvnxxADFIhcwXG7C9zPIP1IVNHKFjlPTaGjO1FWrkhLn0CkFsm5PHM8/RiR7W
+         eHmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708920590; x=1709525390;
+        d=1e100.net; s=20230601; t=1708920595; x=1709525395;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=71v8gbBOdtXGvo9g+2jtAQQQGBX8E4yEXl9JiWYqu5c=;
-        b=UdBmOg/ursdHiOC2cYa6raO86AoJyojzjg85KZntMHG2Vtk5oF4Q0Yf+5HID5qXsTk
-         UuooYxZdloL6/id7OrLFNIw5/TJPdZqkWvHoU38yjfY/kOdjq+vzljCg9SmUegQcWf1h
-         /bMYjFZS8t5NtqOwk2+Miej/u9Iy1Hev8owU5BhwgmYwCwUzRliES3Zqz4sGZ1flWXHE
-         5jIiKWNGrus1eHVJ8wF3yZ7WB+WATtVVpyEI0fCrhzo504OVIyg1YYDP4CMa0gQpcWqD
-         YkClL9d8KUbYOQX3I6GkFxeQcsKmQhr8BIXzb6DLg10Pypt2NVqyeXuojs+wK066XpyP
-         88Xw==
-X-Forwarded-Encrypted: i=1; AJvYcCXO2SOkOc0d0jVx1rULPZr02PDB5qCXR9f9yB4dkJv6lqleKoC3PkBlWMrmV/mTETMJAMq/ijfiwRBv2ttB/k/QAOhNc1ARhieplg==
-X-Gm-Message-State: AOJu0YxEky3uaL6Vz3dHC5GUN4BcPDSECysXmaQweA9GF7pzU+1HI8MZ
-	ryx9zF873+Y/zOr8A5K9yG0u+6Z32+gJuq+2rd3tsRJwbvwZWHZzJZUny+vGcK6ArhavPKtszkN
-	2
-X-Google-Smtp-Source: AGHT+IEwlanO4JPKzdgN6wkOm19zbqiNyltkZpN8bf1Fq3GRBwTmQiinNj/aHk9GOAdxbUx2fEyhNA==
-X-Received: by 2002:a17:903:120c:b0:1dc:1df6:48d3 with SMTP id l12-20020a170903120c00b001dc1df648d3mr6878693plh.17.1708920590363;
-        Sun, 25 Feb 2024 20:09:50 -0800 (PST)
+        bh=KTFsbe7fY6CIFM3QbszGAvcCN7xF4yBveTkrIBLrPJ8=;
+        b=TZODCNfPMrgUvDwKZ76gbcm/7s+7s8HBEGMg36MsbjdYYLLd+fN3Wv/ZJneACMH1ht
+         At5xJinjP0gntI+pI7QCyGCj+3nnBJb0E0nApUd2+YQtzMdaZHb8e8enuDYO41uxYBDq
+         lK1ZH/x0M+CZmoM1SccSHJjWK3XPjff1suy3VYViNMOA/ERgNQxMBFtpGcX0yM9n+GWb
+         u8NDznY50JnaM3Hztnl2CkNq5NQLm3pyH7yozRZlSHD1EJZVVJW+1g/S1v3lMLi0QkS/
+         Y0lnW2+wG7RgIi+xedDDOyrmat38gTENphs5FI0eeZ0hzow19qSrX2UZTx+AMOsN9X6R
+         r/cA==
+X-Forwarded-Encrypted: i=1; AJvYcCUpehuQtT6U/7VKb+0+Xl/Rzeb7NhOMZ6mTrryUa23hkXOhro/TWLplx3Zvp+c9qGJPMhbClQ8lowiSF6uj/fiRTvOM7dHs/0g3ZQ==
+X-Gm-Message-State: AOJu0YzmVu39c1kPTd5J/MNbMLThpZD52f8y5mcceBHjAz0k1o1n2Me/
+	V4cg/XgIE09ECyZwNkVPOXRE2jx9TlgMgf2j9dUiuoaW7cD39p9tHFqo1ke3X1c=
+X-Google-Smtp-Source: AGHT+IHj9OgwVeQU3Cywg5QOFfuPC+ebRt4KQX5RwmYYiHt6jMDZHnRVOUIEP3MvR2JMPDXGFDjhPA==
+X-Received: by 2002:a05:6a21:350f:b0:1a0:e8dd:f488 with SMTP id zc15-20020a056a21350f00b001a0e8ddf488mr5082090pzb.3.1708920595534;
+        Sun, 25 Feb 2024 20:09:55 -0800 (PST)
 Received: from localhost.localdomain ([171.76.86.62])
-        by smtp.gmail.com with ESMTPSA id d11-20020a170902654b00b001dc6f7e794dsm3023258pln.16.2024.02.25.20.09.45
+        by smtp.gmail.com with ESMTPSA id d11-20020a170902654b00b001dc6f7e794dsm3023258pln.16.2024.02.25.20.09.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Feb 2024 20:09:49 -0800 (PST)
+        Sun, 25 Feb 2024 20:09:55 -0800 (PST)
 From: Anup Patel <apatel@ventanamicro.com>
 To: Palmer Dabbelt <palmer@dabbelt.com>,
 	Paul Walmsley <paul.walmsley@sifive.com>,
@@ -87,11 +86,10 @@ Cc: Marc Zyngier <maz@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	Anup Patel <apatel@ventanamicro.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v15 09/10] RISC-V: Select APLIC and IMSIC drivers
-Date: Mon, 26 Feb 2024 09:37:45 +0530
-Message-Id: <20240226040746.1396416-10-apatel@ventanamicro.com>
+	Anup Patel <apatel@ventanamicro.com>
+Subject: [PATCH v15 10/10] MAINTAINERS: Add entry for RISC-V AIA drivers
+Date: Mon, 26 Feb 2024 09:37:46 +0530
+Message-Id: <20240226040746.1396416-11-apatel@ventanamicro.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240226040746.1396416-1-apatel@ventanamicro.com>
 References: <20240226040746.1396416-1-apatel@ventanamicro.com>
@@ -103,29 +101,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The QEMU virt machine supports AIA emulation and quite a few RISC-V
-platforms with AIA support are under development so select APLIC and
-IMSIC drivers for all RISC-V platforms.
+Add myself as maintainer for RISC-V AIA drivers including the
+RISC-V INTC driver which supports both AIA and non-AIA platforms.
 
 Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- arch/riscv/Kconfig | 2 ++
- 1 file changed, 2 insertions(+)
+ MAINTAINERS | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-index bffbd869a068..569f2b6fd60a 100644
---- a/arch/riscv/Kconfig
-+++ b/arch/riscv/Kconfig
-@@ -162,6 +162,8 @@ config RISCV
- 	select PCI_DOMAINS_GENERIC if PCI
- 	select PCI_MSI if PCI
- 	select RISCV_ALTERNATIVE if !XIP_KERNEL
-+	select RISCV_APLIC
-+	select RISCV_IMSIC
- 	select RISCV_INTC
- 	select RISCV_TIMER if RISCV_SBI
- 	select SIFIVE_PLIC
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 9ed4d3868539..d948f9210f1b 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -18801,6 +18801,20 @@ S:	Maintained
+ F:	drivers/mtd/nand/raw/r852.c
+ F:	drivers/mtd/nand/raw/r852.h
+ 
++RISC-V AIA DRIVERS
++M:	Anup Patel <anup@brainfault.org>
++L:	linux-riscv@lists.infradead.org
++S:	Maintained
++F:	Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
++F:	Documentation/devicetree/bindings/interrupt-controller/riscv,imsics.yaml
++F:	drivers/irqchip/irq-riscv-aplic-*.c
++F:	drivers/irqchip/irq-riscv-aplic-*.h
++F:	drivers/irqchip/irq-riscv-imsic-*.c
++F:	drivers/irqchip/irq-riscv-imsic-*.h
++F:	drivers/irqchip/irq-riscv-intc.c
++F:	include/linux/irqchip/riscv-aplic.h
++F:	include/linux/irqchip/riscv-imsic.h
++
+ RISC-V ARCHITECTURE
+ M:	Paul Walmsley <paul.walmsley@sifive.com>
+ M:	Palmer Dabbelt <palmer@dabbelt.com>
 -- 
 2.34.1
 
