@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-45820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BF57866EA4
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:36:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8F2A866EA6
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:36:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74D46B21759
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 09:34:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57CD31F25FD0
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 09:36:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 277B81DA21;
-	Mon, 26 Feb 2024 08:54:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91CC164CE9;
+	Mon, 26 Feb 2024 08:56:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Y8uHFjKc"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="hQcQo6ua"
 X-Original-To: devicetree@vger.kernel.org
 Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E8221CD2B;
-	Mon, 26 Feb 2024 08:54:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C629B64CCE;
+	Mon, 26 Feb 2024 08:56:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708937652; cv=none; b=PLzoCQw89wFOLttVIvmpUcqGj5SGyWj499jDyY0C0DDySFp4ttn3x1J4v5hzdME+Q8qLVPfdpcJNUmzQuj/JEIxbcX3s7CeCw/jaggKtdOhoY2VlviluGb6afY/bdvCgFqgADiaySw3pnUUMA4X5SmFLMWjve9eu2eWDhin9Qfc=
+	t=1708937778; cv=none; b=ftzZ+va1EO8rkZUupAdaBamtq2BhGY5ZSiMsIu7VOmudi2De0HISogVgZacaDCEH/38W/ytHoieUOxG1yoW8TMYXCc+uZNHYateCNecyzdgCcP/OQ5dgX/KkmcsXM0PGocxpNoaK4/ka7WU+7xZMBQyubj3p+hl723pATanthdk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708937652; c=relaxed/simple;
-	bh=pjv2fhOW94iLLWS4VEuh49cFeCknKUZZbCQ8xc1tWOc=;
+	s=arc-20240116; t=1708937778; c=relaxed/simple;
+	bh=22mIqwheuC6Rn5p1Eu5S1/Bl6YMtGWLbnEVTK4n7+gc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K773oyh61RPPg4ILDQzZMA07oUTEoqxC4h0hz/8k2euClfSqAHFNjzT5uHAlMV68dy2mOp41Zv2sTywn2hsYf8MWY/DWt8MZapK87syErg1U2YBnDv6Bcx4xyxWKbHm8B2D5g7hj82UfF70rbzwQDMYegwfOUWBH/dY2ALPrMic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Y8uHFjKc; arc=none smtp.client-ip=46.235.227.194
+	 In-Reply-To:Content-Type; b=J0e0tKbSzk5V0JfpB3iotkcakf6aJUcc8rDZSM+k8kjdt6Fhu/RJVqglawEFyHERgArbo+3uAmnrpFAHZVALIsmLndt2e5GnfGwPpzps6T/xS39dgUNjL7neIwpQ7QQHYIW/OyBkVlX1PFIR2PEUn/YjZVJDI4I8+6IUt8nk/1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=hQcQo6ua; arc=none smtp.client-ip=46.235.227.194
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1708937648;
-	bh=pjv2fhOW94iLLWS4VEuh49cFeCknKUZZbCQ8xc1tWOc=;
+	s=mail; t=1708937775;
+	bh=22mIqwheuC6Rn5p1Eu5S1/Bl6YMtGWLbnEVTK4n7+gc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Y8uHFjKcveo1pVJZlRfFNFHwPbJMhQ6YfKl5FXTPDX1/vf96Z9+SBvqwh0BWUs/7Q
-	 ppn6luqf/Aci81+xb2qMABaa5fK7ROaTv0m+VA4rEqwAIesYC1QXzIvNZVuLEokSmw
-	 eRflYxpwL1Y13iMSmu2lf2GCsVv5Se+8ToY38OvsnoPDgbexRtcCT9SSccFaeQ0rm6
-	 xh4Xr9IAQph6NrfOog4b56SusB90LxmG634DJ7dEhi/8UXfnJ0Yyla8QriLbdemgaU
-	 +HcqatEWq+XMHbKqDKZDxRWCdtJ9hI0wUhLXi+nyCz2ikSNZeTbIJEYCH3UD7v30nm
-	 G1rXyzsxbPPnw==
+	b=hQcQo6ua6hBX65ziMOVXmhxYZeUzXhC6tVf1nnhfV459MFCnw9caTTUatBS2relKw
+	 pVOHkZngubhf3ma8nVCckAkPKECa7ujGkRUmXpeYbNoFlxop+LkGhHayDAL2wNMGJ3
+	 A/n37eJWXzPa92hQuJcEFig2Db1/P7hUbxDlakLM8fp+n9y7vzm7ceaStFszOtPb66
+	 AUW1xtauYgLiHoWMLSWQFSMTH36Igz8SGgsgWoA7f3v7e8VKfMn1Z0tMX9f5mwbvGe
+	 JMzNMuy7drEdZXKVa8nVigbB/aRPLPCM62X+CcwSI+dF2RG7/aJhtIIow3thpfzf9d
+	 YjNzlQOAbl2iw==
 Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 1CE373781183;
-	Mon, 26 Feb 2024 08:54:08 +0000 (UTC)
-Message-ID: <feab2039-5745-41a4-87c3-44fa266efc1d@collabora.com>
-Date: Mon, 26 Feb 2024 09:54:07 +0100
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id C23F9378207B;
+	Mon, 26 Feb 2024 08:56:13 +0000 (UTC)
+Message-ID: <7e0a003c-7016-4de7-a193-2db28995e6ea@collabora.com>
+Date: Mon, 26 Feb 2024 09:56:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,70 +57,38 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8183: Add power-domains properity
- to mfgcfg
+Subject: Re: [PATCH V2 1/4] dt-bindings: vendor-prefixes: add Cudy
 Content-Language: en-US
-To: Chen-Yu Tsai <wenst@chromium.org>,
- Matthias Brugger <matthias.bgg@gmail.com>
-Cc: Ikjoon Jang <ikjn@chromium.org>, devicetree@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Weiyi Lu <weiyi.lu@mediatek.com>
-References: <20240223091122.2430037-1-wenst@chromium.org>
+To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Chen-Yu Tsai <wenst@chromium.org>, Hsin-Yi Wang <hsinyi@chromium.org>,
+ =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
+ Heiko Stuebner <heiko.stuebner@cherry.de>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Chris Morgan <macromorgan@hotmail.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Sean Wang
+ <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-kernel@vger.kernel.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20240223101709.30072-1-zajec5@gmail.com>
+ <20240223101709.30072-2-zajec5@gmail.com>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20240223091122.2430037-1-wenst@chromium.org>
+In-Reply-To: <20240223101709.30072-2-zajec5@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Il 23/02/24 10:11, Chen-Yu Tsai ha scritto:
-> From: Ikjoon Jang <ikjn@chromium.org>
+Il 23/02/24 11:17, Rafał Miłecki ha scritto:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> mfgcfg clock is under MFG_ASYNC power domain.
+> Cudy is a Chinese company providing networking products.
 > 
-> Fixes: e526c9bc11f8 ("arm64: dts: Add Mediatek SoC MT8183 and evaluation board dts and Makefile")
-> Fixes: 37fb78b9aeb7 ("arm64: dts: mediatek: Add mt8183 power domains controller")
-> Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
-> Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
-> Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> ---
-> This patch is long overdue. Could we merge it for fixes for this or the
-> next release?
-> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-A clock controller that needs a power domain? Can you please describe the issue
-that you're trying to solve with this?
-
-It's not very uncommon but I'm not entirely convinced that this is right, because
-the MFG_BG3D is a gate - and it's *not* outputting a clock rate on its own: the
-mfgcfg is entirely GPU related and if there is no GPU support this clock is not
-even ever needed.
-
-MediaTek, can you please clarify if (and why) this gate clock needs a MTCMOS to
-be ungated?
-
-Thanks,
-Angelo
-
-> Changes since v2:
-> - Rebased onto current tree
-> - Added Fixes tags
-> - Fix up subject prefix
-> 
->   arch/arm64/boot/dts/mediatek/mt8183.dtsi | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> index 93dfbf130231..774ae5d9143f 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> @@ -1637,6 +1637,7 @@ mfgcfg: syscon@13000000 {
->   			compatible = "mediatek,mt8183-mfgcfg", "syscon";
->   			reg = <0 0x13000000 0 0x1000>;
->   			#clock-cells = <1>;
-> +			power-domains = <&spm MT8183_POWER_DOMAIN_MFG_ASYNC>;
->   		};
->   
->   		gpu: gpu@13040000 {
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
 
 
