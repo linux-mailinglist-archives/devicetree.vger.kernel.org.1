@@ -1,128 +1,95 @@
-Return-Path: <devicetree+bounces-45885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CE348673A0
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 12:42:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7D07867314
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 12:30:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4676EB29A7F
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:59:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B95CB28BC3
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 11:06:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A58731CD1D;
-	Mon, 26 Feb 2024 10:58:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74B8C1CD3A;
+	Mon, 26 Feb 2024 11:06:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZVJ7rE4m"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="p1MrETxd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E90901CD08;
-	Mon, 26 Feb 2024 10:58:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F7DC1B966;
+	Mon, 26 Feb 2024 11:06:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708945102; cv=none; b=ZuXTAgj8UsqU483tb9oOOWFNSnafSEyU+YqYo6Ne/5FrmcTbvGEhkTEHjHRFS1UJJMigKRwKa9cE/jRlt2887gzR1gVZlfDUtyuWjWcu80+5n2g7gdWcNurSbZXgh/PSmxTEVDZ3XiJmhtIsJ1N0B9ddZwD870mIDfnp97YlfwY=
+	t=1708945583; cv=none; b=dQaCCIRWAAxHP2CHA33RFDx7YAvfw1qs42ghBVoa7xb9TevFSrKzvDPCNoCm+lRZ9yXj/0+sqa7f5RUd6zOeg38j7Skjnk1xhMp7E9qjVPddRS+AQTWYt0DS8xIYM/1c8k36UyIWVcQfZZ4+pgPkuw/PmJawaNdezZNjiYkTsmE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708945102; c=relaxed/simple;
-	bh=31a5GEP8D1PpwdN5PyjwuEtq748f/aUOFXdtpk75vgo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=YgLNh2IeiWHPtKpOKjGFLMaUK7d9ztTXEDdfyxmqFa7ppqd7M8Ca6T9HrG85sYdGZ8hQQGTiQ2DlXIxY7jEQb0Ygsz1XyTXCtUltfrSboChnbZAjXpzk8/lJK2xOhyzdDPc0oARpikce7B3VUhPn89eS/DhoN0xUUkKHEHlinEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZVJ7rE4m; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-563c0f13cabso3691154a12.3;
-        Mon, 26 Feb 2024 02:58:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708945099; x=1709549899; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CyUeNBz/6EL4JMqPMkzQBEjM7Nv00R+NzMPMSoNI1/U=;
-        b=ZVJ7rE4mNVo6NjFAJ9mUqSSeDTKwjDKhZFwMleepIFJ0wqwpVA6mAe/72zRtpU5vI2
-         SEtgl6yA/PcTcO7Sj3FwwjtHwq/BLDoxVI8kju9sULKYfdxtC1mlpSYKaEBoDVq/fKu9
-         OvD8gVFXqqBgsl6iG9XSCtimRfPX1AvjKDbKkS2FLvvIhrQbRsq8b4HhsSuXRVxl270U
-         GOtPSI3yirmcurj3nVtuAg6D/IEsRZk+EoHiWpDKYl6PHA+DwUSsRMG/iftH/37O2iUv
-         mGUD8b3rQbWpR1diLZbE75g1tyDiiKLI7+rlzgPRgI31Kx+Mjw15XeQOqTW2rxUMFHsZ
-         ut7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708945099; x=1709549899;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CyUeNBz/6EL4JMqPMkzQBEjM7Nv00R+NzMPMSoNI1/U=;
-        b=TCicjiXfgT8bR8UpoOxkY+XV4d0Biztr7XD4spBT3U3qcJe+qg1jgK1DiimLI7jHi2
-         xS5F35TDu3zOO/sd6hccYTwPtfW+p1nROrmZg+AU8VSl8gpZZPRm7o1k9TeQH1l04RTO
-         QqNUVdhRp7Wa/apg+I0q7CaRm7zgOevPrRm9Uzqd30nq2R1iDQI1QDRU/hJ7HXqyo+F2
-         7uVrTELJuho9vSY9j/cABmfOsQnN4IT5tvbwALK/Up78VGtGUuKAzVXH9/9q6Z7KjUow
-         dcglvYPgLZGWzI9yfuztyMSme315pUCzhcwdLRP2O+cXklaiTSdoSnMWUEY21x2wOMyE
-         KRog==
-X-Forwarded-Encrypted: i=1; AJvYcCX7434+wfmFqRUF42R9Zr3E/KwjokmRqxmKXOlnakPcY6Xsw5MiOskSk8LRvp6Z5FvodmHkmEEV7y4eU18OfazOf17xkZ/0Kf0QKHemvOhYUNfQxIEipDXrn5lH79LcqMAAodEnVPHf9cyHjI01oPKTi3Qels/d/pleUUPdLgUAZkgwSkSmJacWZ0x2y2SGyUPiKc43VLYlMtcre1iDjnOY/4Pi
-X-Gm-Message-State: AOJu0YzhlD9sAs8ge2CLoAwQtK1dWrx8LF+f8JZEVj6gXXNlT2y+Bw7A
-	8X9achQAVC4j7zeIdfvEjIJxoE/1LrgKwz1/H8QvRyOSaSzTwPA7
-X-Google-Smtp-Source: AGHT+IGzqOtHqjLiDsEl8WzUqKK2zSVWIx6yPNJ87ooYwr8b50Gw9cKmXCgF/K8pSI/yEBZgak3vHg==
-X-Received: by 2002:a17:906:3cd:b0:a43:68b:6a3a with SMTP id c13-20020a17090603cd00b00a43068b6a3amr2822093eja.65.1708945099057;
-        Mon, 26 Feb 2024 02:58:19 -0800 (PST)
-Received: from unknown.netbird.cloud (net-93-65-126-20.cust.vodafonedsl.it. [93.65.126.20])
-        by smtp.googlemail.com with ESMTPSA id f19-20020a170906085300b00a3fce8c0f99sm2315769ejd.191.2024.02.26.02.58.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Feb 2024 02:58:18 -0800 (PST)
-From: Gianluca Boiano <morf3089@gmail.com>
-To: Pavel Machek <pavel@ucw.cz>,
-	Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1708945583; c=relaxed/simple;
+	bh=WHdbQnlfcOYTc10sxSqdjWKBT+rdFQUDsUt4B65OTok=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nyrMZg/jy31D+tfOZnQqBlW9shit5N6MZ986/WZJWx7GHvpGEuiROWQ2nQ9/5633VUHeuKQAu8ZWdI8j3n3YrYIbjr6dfQwUdDsduiMzvljY8ywkgHyDIgs1eiV4GmP/1fpOqrPmzPIiUAiqvraBOsViLMj4fe43WVw521jFu68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=p1MrETxd; arc=none smtp.client-ip=198.137.202.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
+	:References:Message-ID:Subject:To:From:Date:Sender:Reply-To:Cc:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=WHdbQnlfcOYTc10sxSqdjWKBT+rdFQUDsUt4B65OTok=; b=p1MrETxdo6Glkfbn+2vVS2RuEW
+	rinH2/GnYT9ViW/GlytDBwgUUtTmnis3fU16E3YJmEwQC9ppSayw//xMK1gh+p4YTgQjTMFqJHEq9
+	EGHfRR1+FVVXnJBKnyD5CGzrLHZzFN8poH8dC8IOvgs/LoXfchH+F3fORvbr2AItKgENhoT9g8Dau
+	OTvOqDvrbmYPADRsOV309CtAb8CVNuHcxv5itsGIy4yAQHEKYP1h/QtwFTlQOcl48BVWZwdRfhtWM
+	5j+LF4wnMJO5aqsNE4p3awTDT0ZraCyFA+kgCejP6UdgG9Dot1X7WSItWQtst1GF1lj+UpLVZen1r
+	2VWNAtIw==;
+Received: from hch by bombadil.infradead.org with local (Exim 4.97.1 #2 (Red Hat Linux))
+	id 1reYoF-00000000Gzk-46br;
+	Mon, 26 Feb 2024 11:06:11 +0000
+Date: Mon, 26 Feb 2024 03:06:11 -0800
+From: Christoph Hellwig <hch@infradead.org>
+To: Christoph Hellwig <hch@infradead.org>, Will Deacon <will@kernel.org>,
+	Quentin Perret <qperret@google.com>,
+	Chris Goldsworthy <quic_cgoldswo@quicinc.com>,
+	Android KVM <android-kvm@google.com>,
+	Patrick Daly <quic_pdaly@quicinc.com>,
+	Alex Elder <elder@linaro.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Murali Nalajal <quic_mnalajal@quicinc.com>,
+	Trilok Soni <quic_tsoni@quicinc.com>,
+	Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+	Carl van Schaik <quic_cvanscha@quicinc.com>,
+	Philip Derrin <quic_pderrin@quicinc.com>,
+	Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
 	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org
-Cc: Gianluca Boiano <morf3089@gmail.com>
-Subject: [PATCH 2/3] arm64: dts: qcom: pmi8950: add pwm node
-Date: Mon, 26 Feb 2024 11:57:46 +0100
-Message-ID: <20240226105747.3547856-2-morf3089@gmail.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240226105747.3547856-1-morf3089@gmail.com>
-References: <d17121a0-ca14-41fd-9802-bb4118629e34@linaro.org>
- <20240226105747.3547856-1-morf3089@gmail.com>
+	Bjorn Andersson <andersson@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Fuad Tabba <tabba@google.com>,
+	Sean Christopherson <seanjc@google.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org
+Subject: Re: [PATCH v17 19/35] arch/mm: Export direct {un,}map functions
+Message-ID: <Zdxwo0abvklfam-Z@infradead.org>
+References: <20240222-gunyah-v17-0-1e9da6763d38@quicinc.com>
+ <20240222-gunyah-v17-19-1e9da6763d38@quicinc.com>
+ <ZdhEtH7xzbzdhS2j@infradead.org>
+ <20240223071006483-0800.eberman@hu-eberman-lv.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240223071006483-0800.eberman@hu-eberman-lv.qualcomm.com>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
 
-This node is actually found on some msm8953 devices (xiaomi-mido) and
-allows irled enablement
-
-Signed-off-by: Gianluca Boiano <morf3089@gmail.com>
----
- arch/arm64/boot/dts/qcom/pmi8950.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/pmi8950.dtsi b/arch/arm64/boot/dts/qcom/pmi8950.dtsi
-index 1029f3b1bb9a..b4822cb17a37 100644
---- a/arch/arm64/boot/dts/qcom/pmi8950.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pmi8950.dtsi
-@@ -84,6 +84,14 @@ pmic@3 {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
-+		pmi8950_pwm: pwm@b000 {
-+			compatible = "qcom,pmi8950-pwm";
-+			reg = <0xb000 0x100>;
-+			#pwm-cells = <2>;
-+
-+			status = "disabled";
-+		};
-+
- 		pmi8950_wled: leds@d800 {
- 			compatible = "qcom,pmi8950-wled";
- 			reg = <0xd800>, <0xd900>;
--- 
-2.44.0
+The point is that we can't we just allow modules to unmap data from
+the kernel mapping, no matter how noble your intentions are.
 
 
