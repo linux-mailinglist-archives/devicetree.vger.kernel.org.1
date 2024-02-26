@@ -1,154 +1,117 @@
-Return-Path: <devicetree+bounces-46066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43098867DA1
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 18:11:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1EE2867DC2
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 18:14:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 750D91C239DA
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 17:11:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D254F1C2A6A3
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 17:14:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95BAB132C12;
-	Mon, 26 Feb 2024 16:58:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D03DF134CC4;
+	Mon, 26 Feb 2024 17:03:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="g3tzPsg/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6AA112CD83;
-	Mon, 26 Feb 2024 16:58:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCE4812CDAE;
+	Mon, 26 Feb 2024 17:03:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708966724; cv=none; b=fJs7+T2xFFn+qa056jt36jOCZu3olH9mRLmQSqMmmZxFtXL1ZBMJR6XHICly1fq+8tvI9w7/4RX9aQud4yk9oO5L11kLw97S3uWNnjgdO1s/g8Z4MyGQNjW7Ikf2iGSrD3rcVHtwr0WPRpcTt5hh9my7BbzZ2joDlED5mOYaDu4=
+	t=1708966993; cv=none; b=HH3lCU0GG05JtttK0FMn+yV8FT6VpO/rl60mSRYglwl4UTdVHf7xk3dTR8hPOM/Zb3bNjQ/Sxft+4dWIohDJtzrMoVJ7f2Np2MgyBt9J0gRDbbtDlKyIYhL+fm8yOu3FLkkxTc2dni8FJ499KTt676CczyPMLeonTEj8YOaN2OQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708966724; c=relaxed/simple;
-	bh=LV1lgUElkVfzNOqis9pVzjpqJoYJQJQBjKfDVfkceJo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qCv95nA80od+2JykVwol5bMwGx8NyTblWaW1tawG/uQ0pzSag++vVwebMGLUAUCjMt9hzd4/ZckF9QSmRAUNs/lxBerY9XbaXW9rnhy85P+kH4eEHjerxU1oa5wLvpanjiQFjMhFHWNEVsWUnwd4BKGL7E2uu16j9d9w1oRbbJY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-dcdb210cb6aso3682106276.2;
-        Mon, 26 Feb 2024 08:58:42 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708966721; x=1709571521;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=e4qKUYUF0RxYNDdA27YqJy76NZTg9yYGjFyTyqzOPJg=;
-        b=VHg+wdDUYK+rayYVabacVZSfGQpiVtULTk5SKozRiYOD/eTkGkRsDIOh9eF/pGg/rZ
-         5fBeU7Et6XR/zl12N5z6kLaCM8ncgct7OiKRNF/lSEzXkQ9MO5hXRduF3H5eI1h1TIF5
-         WbhHLBQ5dXlWUtJwjAcuNFoSu3ekmoBd+T/1I59Ay/cqd15LgTQhhmRRGf7aZrapaSTS
-         DkAqHypnXwNssJWTWkMFDtlj3iuoORPm5bqlfOz9+FXxZHsBUuRrh5rwfvzm4SLkp7QC
-         n0j79Y/FXW5eeNf8lHIZXAWz6P8gu6rbVK8myliT/6pDp/sdyQH53lHypNtqLr9Id5jZ
-         o6jQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUUVIul+eHs1EW5ryXyXXLa+Av8el2I2dwQYiUqjtDU0pI1wOl5TTweHOFMJe4F9vDuaUWWYo2PAoyUwXBn4LOiPH3AyVz8ItGCUamoOFdVLAgWklK7oZvcqxSdfOpHnAQE5yyiExAPEQ==
-X-Gm-Message-State: AOJu0YwRQGoZgcNp+NQl1U5K6y1JpYEeF4dHIhAMQNFJlVr1gs1wJ9KG
-	+oyuWdVSQwFI8Y43ZrG8gp/yaEprUDYp6MS/JICoMktuYtWtyxKVEhK2ra6c6Uo=
-X-Google-Smtp-Source: AGHT+IFK8Zm7a4KvkSxxt6fsiofJN1Bn3s6+e5z5rAsUhJ+LRp0VHWLLnhkWeWr14Oq0BQBgcsAfRw==
-X-Received: by 2002:a25:84c6:0:b0:dcc:f2a4:153e with SMTP id x6-20020a2584c6000000b00dccf2a4153emr4745621ybm.46.1708966721409;
-        Mon, 26 Feb 2024 08:58:41 -0800 (PST)
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
-        by smtp.gmail.com with ESMTPSA id w18-20020a25c712000000b00dc6f4c19d93sm1026752ybe.7.2024.02.26.08.58.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Feb 2024 08:58:41 -0800 (PST)
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-dcdb210cb6aso3682081276.2;
-        Mon, 26 Feb 2024 08:58:41 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVW7cy1WRAGuMRpmG7Feo5z0YLimpUg5yRbMEpCJrN9Y0bZi4chGGQABa0RrkEP79GwAJAeXdCupP5zb2g00gYxj07G9cmWyeFELUxH43UItZZ9AgI2MP9OlV6/UkV0cP9NsRGmNirX0g==
-X-Received: by 2002:a25:820e:0:b0:dcc:273e:1613 with SMTP id
- q14-20020a25820e000000b00dcc273e1613mr5147543ybk.40.1708966720897; Mon, 26
- Feb 2024 08:58:40 -0800 (PST)
+	s=arc-20240116; t=1708966993; c=relaxed/simple;
+	bh=NUzHR+U4SYb2lE4JHpxCjO2+K8X+/FKb4mt4Sicx7s0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mIRv7JdH/1A/bRtlUvLObFv8guvh2rUyOy0hdXw8zAh3+chfO4jC5TU1VKTx3r8cP83wy2C601/dCDQ7XrCawMVzU4rda2sN4jWAbbPDiREk6b3ie39N/yUkEWeMyEGEP6xK56SVEn5OxljvHR16XNKRH6VdMUmkZuuzOPHoCZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=g3tzPsg/; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1708966992; x=1740502992;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=NUzHR+U4SYb2lE4JHpxCjO2+K8X+/FKb4mt4Sicx7s0=;
+  b=g3tzPsg//Pg+Pza2arRbxD+ppjDi0Vbz95htOS6LezOASQm0UkgRIvpP
+   NOH5k03/lScFkFXsZ2nDgEwFR8OJh1xBV4bHbtHp6sF9HyWg45Cqb0XS1
+   q/Qk0JOkqC3WCi+WSp5tH9iynxe9/wxqUQxIBaP3D4tJNYf9g0LtZD6F9
+   IzC4kOoxnXOTWojqzdT7nGC2OsnqhoFkqhZVA6076NTQ+Qj7mPPYsKhuC
+   yLn5AGs+PNB9uzZZfMKRxkcNdbUOFlhCqUoGdxZNi0vjOKpWUByHvRVy1
+   LOb843Q5cw6rVhXIqAYVUx7VJ0h8kObqOVWidzaDqVTm4Jwp1V6TO8u8h
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="13905714"
+X-IronPort-AV: E=Sophos;i="6.06,186,1705392000"; 
+   d="scan'208";a="13905714"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Feb 2024 09:03:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="913882086"
+X-IronPort-AV: E=Sophos;i="6.06,186,1705392000"; 
+   d="scan'208";a="913882086"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Feb 2024 09:03:08 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1reeNe-00000007k6Q-0DB5;
+	Mon, 26 Feb 2024 19:03:06 +0200
+Date: Mon, 26 Feb 2024 19:03:05 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Robin van der Gracht <robin@protonic.nl>,
+	Paul Burton <paulburton@kernel.org>
+Subject: Re: [PATCH v3 8/9] dt-bindings: auxdisplay: Add Maxim MAX6958/6959
+Message-ID: <ZdzESR_sELGcHsi7@smile.fi.intel.com>
+References: <20240219170337.2161754-1-andriy.shevchenko@linux.intel.com>
+ <20240219170337.2161754-9-andriy.shevchenko@linux.intel.com>
+ <CAMuHMdVjh3jofcf2SdjRO5bAfokEzjoxv_z89JJyyfwwt5DZsw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240219170337.2161754-1-andriy.shevchenko@linux.intel.com>
- <20240219170337.2161754-10-andriy.shevchenko@linux.intel.com>
- <CAMuHMdWpepH0P8g9dPfq1rsZRJsvOnoZ7VnjqTL9nkSGtKFpYQ@mail.gmail.com> <Zdy5lDOBrQ9XFCpm@smile.fi.intel.com>
-In-Reply-To: <Zdy5lDOBrQ9XFCpm@smile.fi.intel.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 26 Feb 2024 17:58:29 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWoFQfMV90kwy8rxqVt+1eGvh=F7GqtJri5BSydWDiiMQ@mail.gmail.com>
-Message-ID: <CAMuHMdWoFQfMV90kwy8rxqVt+1eGvh=F7GqtJri5BSydWDiiMQ@mail.gmail.com>
-Subject: Re: [PATCH v3 9/9] auxdisplay: Add driver for MAX695x 7-segment LED controllers
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Robin van der Gracht <robin@protonic.nl>, Paul Burton <paulburton@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMuHMdVjh3jofcf2SdjRO5bAfokEzjoxv_z89JJyyfwwt5DZsw@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Hi Andy,
+On Mon, Feb 26, 2024 at 04:52:34PM +0100, Geert Uytterhoeven wrote:
+> On Mon, Feb 19, 2024 at 6:03 PM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
 
-On Mon, Feb 26, 2024 at 5:17=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
-> On Mon, Feb 26, 2024 at 05:01:46PM +0100, Geert Uytterhoeven wrote:
-> > On Mon, Feb 19, 2024 at 6:03=E2=80=AFPM Andy Shevchenko
-> > <andriy.shevchenko@linux.intel.com> wrote:
-> > > Add initial driver for the MAX6958 and MAX6959 7-segment LED
-> > > controllers.
->
-> > LGTM, so
-> > Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
->
-> Thanks, but see below.
->
-> ...
->
-> > > +       u8 buf[4];
-> > > +
-> > > +       /* Map segments according to datasheet */
-> > > +       buf[0] =3D bitrev8(map_to_seg7(&map->map.seg7, *s++)) >> 1;
-> > > +       buf[1] =3D bitrev8(map_to_seg7(&map->map.seg7, *s++)) >> 1;
-> > > +       buf[2] =3D bitrev8(map_to_seg7(&map->map.seg7, *s++)) >> 1;
-> > > +       buf[3] =3D bitrev8(map_to_seg7(&map->map.seg7, *s++)) >> 1;
-> >
-> > for (unsigned int i =3D 0; i < linedisp->num_chars; i++) { ... }
-> >
-> > > +
-> > > +       regmap_bulk_write(priv->regmap, REG_DIGIT(0), buf, ARRAY_SIZE=
-(buf));
-> >
-> > linedisp->num_chars
->
-> Maybe, but then we probably want to synchronize the 4 there and here as w=
-e
-> can't have VLA on stack.
+...
 
-You can still keep the maximum buf[4], so no VLA needed?
+> To handle cases where less than 4 characters are wired
+> (based on hit,hd44780.yaml):
+> 
+>     display-width-chars:
+>       description: Width of the display, in character cells.
+>       minimum: 1
+>       maximum: 4
+>       default: 4
 
->
-> > > +}
->
-> ...
->
-> > > +       ret =3D linedisp_register(&priv->linedisp, dev, 4, &max6959_l=
-inedisp_ops);
-> >
-> > + device_property_read_u32(dev, "display-width-chars", ...) handling.
->
-> Not sure it should be part of this series.
+As discussed in the patch 9 this seems to be a material for other update.
 
-Fair enough, so please go ahead without.
+> The rest LGTM, so
+> Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
 
-Even "display-width-chars" might not cover all cases, as a board
-may use any subset of the 4 DIGn signals, even in any order...
+I'll take this tag when applying the patch. Tell me if it's not the case.
+Thank you!
 
-Gr{oetje,eeting}s,
+-- 
+With Best Regards,
+Andy Shevchenko
 
-                        Geert
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
