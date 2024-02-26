@@ -1,119 +1,146 @@
-Return-Path: <devicetree+bounces-45952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AE888676B9
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 14:37:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25D498676F4
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 14:44:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3719128C1AD
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 13:37:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 49F051C296CE
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 13:44:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E60B7128818;
-	Mon, 26 Feb 2024 13:37:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b="rPELn4eS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA0C11292EE;
+	Mon, 26 Feb 2024 13:41:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from meesny.iki.fi (meesny.iki.fi [195.140.195.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5B8784FD5;
-	Mon, 26 Feb 2024 13:37:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=195.140.195.201
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708954638; cv=pass; b=Iqv70mWDVuE/RStSHOafKlmvzas7n0jzpl2WZ4wIOKY4TZbUq59pqgcYfdoG4/lU2Qogrx1VnJrDHytoMh2mQGjJAJNyyMw2pTqrGiALns9wOtgP7j7GW3gIhT0vpCn8WS5d9L7xOSxNXgwmXk34m6vmWu/Uc/6V0zJKXsHIw5g=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708954638; c=relaxed/simple;
-	bh=9X0WPimBd7+YxQonIEPwecnreVRwiL9MavIFtObtiVo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Tv0KLNaKV/VOcuG6La3B03krff4XtzqbIENo6ooYtZ0Q9Hut/9aRcy3114QH41eYG2G5EPnl9dqxZPscL5XdulSshAD5WcDN4129HKzSvtUPiUIVxOsYSE6sl676ZeYUAk45ULJYYHZMA+9r/fk0eWULq4EAa/DStQB5d0GZ/m8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b=rPELn4eS; arc=pass smtp.client-ip=195.140.195.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
-Received: from hillosipuli.retiisi.eu (80-248-247-191.cust.suomicom.net [80.248.247.191])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sailus)
-	by meesny.iki.fi (Postfix) with ESMTPSA id 4Tk1r918mZzyR8;
-	Mon, 26 Feb 2024 15:37:12 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-	t=1708954633;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=XIpF/Sg4r6DeZMEmHnWTsmCravJhaXcupIIojuBrgeA=;
-	b=rPELn4eS8RPLE5/+Cs2aO6RNKyLvE1t4PXXNklovD50kA+0jpODkZ4PulC+fuXCDxxDLdQ
-	VQOt1PFctdMaoh0los5VxkYfRsmyvkd6IHNCagai4sjmufXaPMybRAGvPhodJPY+EnhdGH
-	dUv0ZNIC0tKi7qZfn9XQHWkhpgryDLk=
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1708954633; a=rsa-sha256; cv=none;
-	b=qjx5dNdlHBBzxDYAdvlw1FwdzaCe9OEMdEAnklmdJcQQak8wRlplV7MvXUZbaWIUrF0Obx
-	krEaag3Uwe+GfeWjBhEckLXZrh8MpMLfApJRZQaCEerXpI7DmlLcwiEJ0nmZ6VnJFYBm1E
-	QSFS5HYZ4RYC4gJ1HQr+o7opF5a3SLw=
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-	s=meesny; t=1708954633;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=XIpF/Sg4r6DeZMEmHnWTsmCravJhaXcupIIojuBrgeA=;
-	b=Y4PPyJKtxv/5nCr07vT1IXJ+uCMMb9o7sK0MzugmF+RZBsIayYI2RCMD3r1K3E/O099li2
-	mZ8cl4Hdqnaj6HfOtwKOOU3biGfnvsDW+jPdycftI1auhvfom6HHASKUahkiWEC4wrDcqo
-	y84qor90mJUV10MkWx9azKYIiHP64Ek=
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id B18FA634C93;
-	Mon, 26 Feb 2024 15:37:11 +0200 (EET)
-Date: Mon, 26 Feb 2024 13:37:11 +0000
-From: Sakari Ailus <sakari.ailus@iki.fi>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Daniel Scally <dan.scally@ideasonboard.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
-	nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com
-Subject: Re: [PATCH v2 2/5] dt-bindings: media: Add bindings for ARM mali-c55
-Message-ID: <ZdyUB_SEx8Gfa7OP@valkosipuli.retiisi.eu>
-References: <20240214141906.245685-1-dan.scally@ideasonboard.com>
- <20240214141906.245685-3-dan.scally@ideasonboard.com>
- <Zdx77nyiQn4zya3h@valkosipuli.retiisi.eu>
- <20240226120431.GA25561@pendragon.ideasonboard.com>
- <ZdyB_yHn9yImTuhm@valkosipuli.retiisi.eu>
- <20240226125818.GA26163@pendragon.ideasonboard.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B16C128389;
+	Mon, 26 Feb 2024 13:41:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708954898; cv=none; b=j1yII5X7Lr9U1G8XzYOM2YkLbjRtD3+HNB0iOE4lItG0H2LhMiKy4ZChdGinTUaHAgFFhYLKu2fijIVun/6KWb5DqRkTAIVfqg+dBl5jYhVU8Cc1RKXvp9RDcr+OTBGbAJO2wHRQdTWBQAypkvRSvV+/uu62+VbdLz8mgeqc3yA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708954898; c=relaxed/simple;
+	bh=KkHOuTxfojJAebXRZa+XnGZj2GHfgqfYukTvO9EQtV8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GM2Oh6EGKWWxEejWVNhRdfKeIOqVq1nS3bIT5zyvcdJ6wor6k7cu5FTc54EuyscwZ+KKYOTBac2qF0luzoRNW5caKpQiec/x0U97LbJsiiUa3MF1VL2RLjsvzzZz8xMdyvRVP9G6fEwrDzmSxvzX8qpsAN/W976Hf+jq7WDxDMY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-60853ad17f9so23735087b3.0;
+        Mon, 26 Feb 2024 05:41:36 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708954895; x=1709559695;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=k+OhW/XaI7vSIwrRRZgNy39CQ/IuoQT/QK0SjQNuYlY=;
+        b=MIjWoMcaWkBCDlQo4YBghPH2dKIIMX62O2/0+Z4fKO6Yp05xBEN6KpLL2buKABiC3V
+         GksOhot416kR+dvSh025Ib4ErSZ6EGgPx1Fl/JXC4iqiY6WsqaPATFz6ry5aXc1H9A8A
+         1oxvVnWCnXadXAvRjI8/LWnrkQLuuZWurwBnMZTPPTvSKeYBtjsHwZ12rBYa6khcRunc
+         cWbnKCebB0K1BiqLK/uJt3duTI7YEYWn++3YCirka3LBnkKtYSTgZ+iW1SO9EINnbG+Y
+         DP97US9igRcs4HYHe8mlcehQGx4YWCbFZpqCnBs7AUf+sfiFEaYSlDArKM5b5XB7AuDl
+         cbcQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXoRX47MTuckJNZW5Px3LkL1enfAuOepx00sZtEl8UuU9vzUsF81s3LCMVDB4wC0vDOZMcVqObE/YE2bZZK1JALDGrwHhhCgkpae7GfMUXHD7jEqY57uzh+OpORr8pUxg+BOz+80HB3pL1TC4J/leOuMYujgChRpzfeBCPQxBHuM03j0BH5RBv22a6C
+X-Gm-Message-State: AOJu0YyhFvISx1JmPx/KAD1/5Ew7H7izC5xgpvIx8/HObXulJ15OJRPb
+	O1xun5IgFmFoBAkEQozWozFVaUK/LoShLOHILco5wl/2oi7C3FGBqbs5v17bNRQ=
+X-Google-Smtp-Source: AGHT+IFD37X8nqQ64iCS0SOCkDERHWJpLennLTe0KLo/NJf+4Z73ZnUNEVPd8ZbMMDcU/1rdJfTeJA==
+X-Received: by 2002:a05:690c:f88:b0:608:ff01:5128 with SMTP id df8-20020a05690c0f8800b00608ff015128mr1721062ywb.15.1708954895023;
+        Mon, 26 Feb 2024 05:41:35 -0800 (PST)
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
+        by smtp.gmail.com with ESMTPSA id f187-20020a0dc3c4000000b00607bc220c5esm1167720ywd.102.2024.02.26.05.41.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Feb 2024 05:41:34 -0800 (PST)
+Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-dc742543119so3162363276.0;
+        Mon, 26 Feb 2024 05:41:33 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUbYVyHpPZCzB9o3Nsx7Usvk19lWPyK37Y+8MG0h54DhCdpICKzrEzsuFTitkfYimR6JKl6HlAjJYEXpIXtDLRO7gmhuu2j6mPTqJ41TZXxSoe7efc0EGJBYaofCjpdcQySA+GhagVjHLzkraGwY7cDKmAofB13e3tfFCvZwx40Ngnqhgp+QloFi/2e
+X-Received: by 2002:a25:dbcd:0:b0:dcc:1a56:597a with SMTP id
+ g196-20020a25dbcd000000b00dcc1a56597amr3993501ybf.36.1708954893612; Mon, 26
+ Feb 2024 05:41:33 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240226125818.GA26163@pendragon.ideasonboard.com>
+References: <20240219160912.1206647-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240219160912.1206647-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240219160912.1206647-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 26 Feb 2024 14:41:21 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWw4V7p9RXqx_GeL6LC=rYscChbcnkuJcDzqjfac7-XoA@mail.gmail.com>
+Message-ID: <CAMuHMdWw4V7p9RXqx_GeL6LC=rYscChbcnkuJcDzqjfac7-XoA@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: soc: renesas: Document Renesas RZ/V2H{P}
+ SoC variants
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Laurent,
+Hi Prabhakar,
 
-On Mon, Feb 26, 2024 at 02:58:18PM +0200, Laurent Pinchart wrote:
-> > > > > +              remote-endpoint = <&mipi_out>;
-> > > > 
-> > > > I suppose this is a CSI-2 interface with D-PHY?
-> > > 
-> > > No, that's an internal parallel bus. Depending on the SoC integration,
-> > > it can be connected to a CSI-2 receiver, a DMA engine, or a mux to
-> > > select between different sources.
-> > 
-> > The name suggests otherwise. Maybe change that to something more
-> > descriptive?
-> 
-> We could rename mipi_out to csi2_rx_out, sure.
+Thanks for your patch!
 
-Sounds good to me.
+On Mon, Feb 19, 2024 at 5:10=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
+om> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Document Renesas RZ/V2H{P} (R9A09G057) SoC variants.
 
--- 
-Sakari Ailus
+I think "RZ/V2H(P)" would be better, as curly braces are usually used
+to group multiple values (e.g. "RZ/G2{L,LC}").
+
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> ---
+>  .../devicetree/bindings/soc/renesas/renesas.yaml          | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml b=
+/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
+> index c1ce4da2dc32..109fbc8d48db 100644
+> --- a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
+> +++ b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
+> @@ -513,6 +513,14 @@ properties:
+>                - renesas,rzv2mevk2   # RZ/V2M Eval Board v2.0
+>            - const: renesas,r9a09g011
+>
+> +      - description: RZ/V2H{P} (R9A09G057)
+
+RZ/V2H(P)
+
+> +        items:
+> +          - enum:
+> +              - renesas,r9a09g057h41 # RZ/V2H
+> +              - renesas,r9a09g057h42 # RZ/V2H with Mali-G31 support
+> +              - renesas,r9a09g057h44 # RZ/V2HP with Mali-G31 + Mali-C55 =
+support
+> +          - const: renesas,r9a09g057
+> +
+>  additionalProperties: true
+
+The rest LGTM, so
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
