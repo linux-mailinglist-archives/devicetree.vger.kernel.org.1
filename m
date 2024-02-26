@@ -1,110 +1,86 @@
-Return-Path: <devicetree+bounces-46026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAA7F867C37
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 17:40:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76DB6867C72
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 17:49:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC2C91C2B40E
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 16:40:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A83271C2B627
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 16:49:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97AEE12AAEF;
-	Mon, 26 Feb 2024 16:40:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E20AF12CD86;
+	Mon, 26 Feb 2024 16:48:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cfwS3AVG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD242433C4;
-	Mon, 26 Feb 2024 16:40:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA47560DC6;
+	Mon, 26 Feb 2024 16:48:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708965654; cv=none; b=hPZwRctzKVUnYYFix0VR4bmcHGAqm0t7+t3Wroqacy3tpzGTzxDyj9B1YIRK/3TtkFjAjmTJ/bGTXsI+jTimWZOdMWsBjj0rBDnQ/uGySYW3j4EUcQFCnXQ49ODSlisAGYU58LOF5dXvQR6hYyHEawOZ2OURLht4SYVdTm4xHcA=
+	t=1708966109; cv=none; b=SRDOofeVwi/Fz2eohYGWXi9T/mHOnZ/yIX/pm854ar8jezgGZo07miqcnAzNqZcPzY9SYc/gpwCFdlxm5NqvsGo5vVQ4RuRllHii7rPL2lefUmL5Yj5lAWHct4XEEyMHtL+IkaKPy2OPoMsbobkTEVU/2Am7a4eCIzBZejggdEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708965654; c=relaxed/simple;
-	bh=tbrC+G2poxmPDlALZboFVqjxLPIIMR/BR+gc8VJamMg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qn9q/Pzf2yaRza7/gf5lWAPSB8H/6PBrVNNM/4ECnI6dpZ+l3XO1HeCRvdMx+8NHAn7yeFgOJCVbSbB3F3F3BjkXHN1/AyEvP1NKisLExzgBM/uBfW1Biv4Ys+vi55HFSdxI/WvbDXvxusYycoj+AajBDzeL/rrffYO111b3Zbw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="13903010"
-X-IronPort-AV: E=Sophos;i="6.06,186,1705392000"; 
-   d="scan'208";a="13903010"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Feb 2024 08:40:52 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="913881452"
-X-IronPort-AV: E=Sophos;i="6.06,186,1705392000"; 
-   d="scan'208";a="913881452"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Feb 2024 08:40:48 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andy.shevchenko@gmail.com>)
-	id 1ree21-00000007jed-1KuH;
-	Mon, 26 Feb 2024 18:40:45 +0200
-Date: Mon, 26 Feb 2024 18:40:45 +0200
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: ojeda@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, andrew@lunn.ch, gregory.clement@bootlin.com,
-	sebastian.hesselbarth@gmail.com, geert@linux-m68k.org, pavel@ucw.cz,
-	lee@kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-leds@vger.kernel.org
-Subject: Re: [PATCH 0/3] auxdisplay: 7 segment LED display
-Message-ID: <Zdy_DRAJaHXY7xov@smile.fi.intel.com>
-References: <20240225213423.690561-1-chris.packham@alliedtelesis.co.nz>
- <CAHp75Vc9OBtxdKSmk9Uu9G3j+mfN8+9prTEVx3LyUcdBYFEqwg@mail.gmail.com>
+	s=arc-20240116; t=1708966109; c=relaxed/simple;
+	bh=TBcPD0LiF4Ta/LAWQUOaW1Bzs0XKAIO3UtxBPZmhSCE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HP7W+z3jto40JdrsdvECjBs6LTpC64yvx7KB6IBBQgGcd+6BTu4dfiIQVOZEJpFH8Xp4Ws2SaplN2M9AAbOZpA917bNKeXh1DwLDXhsR9QGa4GiJ4sNcocGkNrT0Lm+6O0rp5YvyM0oeLii26QPwQvQ9RvZNRGenZeDPGeS8JDY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cfwS3AVG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B5ECC433C7;
+	Mon, 26 Feb 2024 16:48:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708966109;
+	bh=TBcPD0LiF4Ta/LAWQUOaW1Bzs0XKAIO3UtxBPZmhSCE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=cfwS3AVGyDk9cwQGgcUr5wo93F5HwFmgSTtUjh5LvJLwOA2olSE4sKBqb4Xt4FL53
+	 ddb7+Pgz2pWhl0SlqWEE+hDP7zG/D9Hb0CW/5gafRvNk7arKgJ05azCC7hqNp0tWEX
+	 wxR/caxRt4KBSXTuyFL6aT3bRkoOdKma0vx2eRTaloWxfGiQ6luyfXn6GpAo0xnowF
+	 gazK6bBNB0xIIoWLTZ3g2yUBIZcGAGauqCbM/k90sqtYuy9IXu8gV89XKRfmUQbT/4
+	 fRQPIil8JoqBc3pyLsIrLPwrwEB2Av+Uj8xUILIPpUz1G97w2q0mREM3SdM+aOh9LM
+	 cBvLspv5OnJgA==
+Message-ID: <7b03fe64-abe0-4a3c-9a23-1dbed465ed37@kernel.org>
+Date: Mon, 26 Feb 2024 18:48:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAHp75Vc9OBtxdKSmk9Uu9G3j+mfN8+9prTEVx3LyUcdBYFEqwg@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v3 01/10] dt-bindings: net: Add support for AM65x
+ SR1.0 in ICSSG
+Content-Language: en-US
+To: Diogo Ivo <diogo.ivo@siemens.com>, danishanwar@ti.com,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org
+Cc: jan.kiszka@siemens.com
+References: <20240221152421.112324-1-diogo.ivo@siemens.com>
+ <20240221152421.112324-2-diogo.ivo@siemens.com>
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20240221152421.112324-2-diogo.ivo@siemens.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Feb 26, 2024 at 04:23:15AM +0200, Andy Shevchenko wrote:
-> On Sun, Feb 25, 2024 at 11:34 PM Chris Packham
-> <chris.packham@alliedtelesis.co.nz> wrote:
-> >
-> > This series adds a driver for a 7 segment LED display.
-> >
-> > I'd like to get some feedback on how this could be extended to support >1
-> > character. The driver as presented is sufficient for my hardware which only has
-> > a single character display but I can see that for this to be generically useful
-> > supporting more characters would be desireable.
-> >
-> > Earlier I posted an idea that the characters could be represended by
-> > sub-nodes[1] but there doesn't seem to be a way of having that and keeping the
-> > convenience of using devm_gpiod_get_array() (unless I've missed something).
+
+
+On 21/02/2024 17:24, Diogo Ivo wrote:
+> Silicon Revision 1.0 of the AM65x came with a slightly different ICSSG
+> support: Only 2 PRUs per slice are available and instead 2 additional
+> DMA channels are used for management purposes. We have no restrictions
+> on specified PRUs, but the DMA channels need to be adjusted.
 > 
-> It seems you didn't know that the tree for auxdisplay has been changed.
-> Can you rebase your stuff on top of
-> https://git.kernel.org/pub/scm/linux/kernel/git/andy/linux-auxdisplay.git/log/?h=for-next?
-> It will reduce your code base by ~50%.
+> Co-developed-by: Jan Kiszka <jan.kiszka@siemens.com>
+> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+> Signed-off-by: Diogo Ivo <diogo.ivo@siemens.com>
 
-I have just updated the branch so it adds one patch that changes the prototype
-of linedisp_register().
-
-> WRT subnodes, you can go with device_for_each_child_node() and
-> retrieve gpio array per digit. It means you will have an array of
-> arrays of GPIOs.
-
-Btw, as Geert proposed for another 7-segment driver, we might gain from the
-display-width-chars property. But I think this property has to be parsed on
-top of line display library, no need to have it in each affected driver.
-
-> > [1] - https://lore.kernel.org/lkml/2a8d19ee-b18b-4b7c-869f-7d601cea30b6@alliedtelesis.co.nz/
+Reviewed-by: Roger Quadros <rogerq@kernel.org>
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+cheers,
+-roger
 
