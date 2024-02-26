@@ -1,215 +1,181 @@
-Return-Path: <devicetree+bounces-45901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45903-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 259788673F6
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 12:54:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F6DE8673FF
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 12:57:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8FE4D1F2CB43
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 11:54:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B5321F26138
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 11:57:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03A9F5A7A6;
-	Mon, 26 Feb 2024 11:54:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 273685A7AF;
+	Mon, 26 Feb 2024 11:57:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b="PbDOzeXo"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="yc8jOMi2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54C7A249F9;
-	Mon, 26 Feb 2024 11:54:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=185.185.170.37
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708948475; cv=pass; b=m3fr8pg/pLCHLV8jhE5+tr/uA6T/nMadGkpU7CFW3M+zsHzaAJRY2WltOw2qj0xogWoYqV2+ey77uKGxGH22d09SIl2wU2UkeBvRKJ6V+O4y3DF5KV0eiWzczYR8+6lQeAVduqKuIu8/aHdw1jMlNstEzvR3FKi7iisr1tFGnJ8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708948475; c=relaxed/simple;
-	bh=P2nBjIZ8Qk9BLeXDaUReVS3IAhuCOfkOnwJNXC8P3Bo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ez7VvQ2DVZkMVGCm8wfj3PUl4yPo634TDRPk8eHHpkb9cra3vGnUPzJ8ni7l9b+qtm6zhoby7w0Uf2g4ivlDXp6jayat8TkYWpkcIPkC6Y6ds5+O5pnuHVgbOeF/8GmkFuh7n/V2OBuoejeDImRkFqs1qbZ7KIiuU681qBZnGs8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b=PbDOzeXo; arc=pass smtp.client-ip=185.185.170.37
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
-Received: from hillosipuli.retiisi.eu (2a00-1190-d1dd-0-c641-1eff-feae-163c.v6.cust.suomicom.net [IPv6:2a00:1190:d1dd:0:c641:1eff:feae:163c])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sailus)
-	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4TjzYW2m3Lz49Psw;
-	Mon, 26 Feb 2024 13:54:23 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
-	t=1708948464;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=jzvy2SvKDmvv4WetelVqs47ATPl2lFOOSOxgQnJjjpA=;
-	b=PbDOzeXouZ2AcWWUg83/ia1tRZWe9oxDxtat5ClEu/d7l7MNU7urvjmT7QeSNil8KCnRDh
-	7n6SuSQyEdfYhxFZyZ8vL+kVAMtuUSqlRDSPG0x9JlPhttO9MCUwwuGAUKDdIf02k0fhDs
-	K+s1P1mXo0WCfBD6ShzZVxIzXUX/W7chHfkyczq0B3LtPxHy6bMglFJlfTiPua50JaarTm
-	27wQD1eS7sdhdGGu4SIQUVw7FExesVPxt0utlIly0dD1ixqhESqhGP85bSsFIaE6vYLvWg
-	bI4hh+NbI3fpYMMDUtAaI6zOzC5t3BWqv+aNwnqs8a2dpy0lkVfUfABX2lpBDw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-	s=lahtoruutu; t=1708948464;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=jzvy2SvKDmvv4WetelVqs47ATPl2lFOOSOxgQnJjjpA=;
-	b=agPwmz3VwyrSGyTuRJk1Nxy0wO/4WASn2UOqttVEXMpYHaDQCisLl7S8TcHteD0uIUpOJ1
-	1Wyjpnd5znr2Kvu7dDd4K8f7//Mdf7UZ6FGXUEWvAe9c+WN2eCHF6wwaXVmyj6OJlOKmKV
-	V6tVTGHesbxN1YS9wvDBI9S9fjTyMxE1rG3jgBOJBb2IEMNG4L7/nQgvpAA1tFfoaiEQIp
-	MvM6pu8vihk8IAl88jZOcfUWgnOkMosxEfx5XTDA0u9AwQ5toSngATnWDC7pDr9svHY5Ja
-	UI9eaqQLyf2jbN+5i1+jxLzUMg1cPxsrg6i2c49kEIq4nC33eP9N1GxCDzu4gQ==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1708948464; a=rsa-sha256;
-	cv=none;
-	b=awCHdMVw2e253Vz+PZOmX0ZfklcotmJUaJN7XO5YR0NcSV2XZl2oOLcpPS+WKhGP1OigFn
-	SOkmW6ZhV5B/hOIZLku5hPms22vWvKbsHN6ujDX/8eGlUxc7ebDLPFqr8/S6f/5BctG2GK
-	G9BRjQXGQO1wuNoXa8LgnjCBbT3S+4ZcKdz611J7cx/Xcz6MI9KkpxBkd4x+3pB5umBhnS
-	GVSvzRQlbqvfJVuXR2h5gkNqz5dBn3yv+9IKKKvOPJS4CRUIgiCCOVOzw645kj5OJqIKsU
-	uLRvk/QTzOfJWoR0Mzu/3PJMvueEmcaAouFtZ/KTp2/yAOSw6OOEoSMUPdXh0w==
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 2D3F5634C93;
-	Mon, 26 Feb 2024 13:54:22 +0200 (EET)
-Date: Mon, 26 Feb 2024 11:54:22 +0000
-From: Sakari Ailus <sakari.ailus@iki.fi>
-To: Daniel Scally <dan.scally@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
-	nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
-	laurent.pinchart@ideasonboard.com
-Subject: Re: [PATCH v2 2/5] dt-bindings: media: Add bindings for ARM mali-c55
-Message-ID: <Zdx77nyiQn4zya3h@valkosipuli.retiisi.eu>
-References: <20240214141906.245685-1-dan.scally@ideasonboard.com>
- <20240214141906.245685-3-dan.scally@ideasonboard.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B41761DA5F;
+	Mon, 26 Feb 2024 11:57:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708948638; cv=none; b=ZoQqFN7kRmuOLasQCSt17qb8TR2cLX0LpsmSqa+TcB+bZ+yM3H10JoSWnU990DqaoMfazzYrEFQABAkhU0FpWptR2OI70DfivhPfxtnov/GoVg5wA1BlVLElc8bPSp/GrY5OEvjuBW9JAqcRuzAiFGCBHPqxA1brrtrgFmDOJao=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708948638; c=relaxed/simple;
+	bh=LXxr0oCyAyi941LBQn7wpQyHhte7aRcvaiULQ0755YM=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=n1ZByZi92Y6SsUjLOwU5CA4EVKwbK9OP3MutEUa+ekhq1sIR2RUAIPWtmydV2sNbT7Hur8EZLXXp9swsHRFVE0sGpJrIE81igy6u592nKb/dV5pOnYVEax9b91x6NOFsb3nWwyYx/62c10X7N8ljaGIo1lNKdnKqYwseOtvo6Zk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=yc8jOMi2; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1708948635; x=1740484635;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=LXxr0oCyAyi941LBQn7wpQyHhte7aRcvaiULQ0755YM=;
+  b=yc8jOMi2NAlTLGpqikrG98GznAWohFNaEJpv6zoNkRPneZdUPx6IWNwj
+   QKIivt6HMczgUkKVpcYt4hgUeXWaYyH/ezFeZCszl9yB2aGLO8k08NyB1
+   lbJLOftKCYH7cmMJ5ESDgT3XE+zyRwpAVMgcVOu2NB3DwLRFYerQ4aCpq
+   QRI39ga7Mh3SHZvGOhd6rMvqCfAZG6xcqGlyWzi78Qs5eJ+V2sv2Um5oB
+   zM3bZuqZS6McEX4RxqY4PU5mtP+jvS5DTSnWI6l741xuXO7645makrR6c
+   L9Md/xOlNiDTrsPD+4ZbrsCuA2xcA8jJQB7Ax7ktQ1Pl3EvODes53/DdB
+   w==;
+X-CSE-ConnectionGUID: Szb1mO22RbmH0OMhJ27Cfw==
+X-CSE-MsgGUID: vdi+E3YdQS6QNTLBV3VCmQ==
+X-IronPort-AV: E=Sophos;i="6.06,185,1705388400"; 
+   d="asc'?scan'208";a="184093811"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 26 Feb 2024 04:57:14 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 26 Feb 2024 04:57:02 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Mon, 26 Feb 2024 04:56:59 -0700
+Date: Mon, 26 Feb 2024 11:56:16 +0000
+From: Conor Dooley <conor.dooley@microchip.com>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+CC: Conor Dooley <conor@kernel.org>, Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Roger Quadros <rogerq@kernel.org>, Peter Chen
+	<peter.chen@kernel.org>, Pawel Laszczak <pawell@cadence.com>, Nishanth Menon
+	<nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo
+	<kristo@kernel.org>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>, Kevin
+ Hilman <khilman@kernel.org>, Alan Stern <stern@rowland.harvard.edu>,
+	<linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v3 1/8] dt-bindings: usb: ti,j721e-usb: drop useless
+ compatible list
+Message-ID: <20240226-portable-rockslide-e501667a0d9a@wendy>
+References: <20240223-j7200-usb-suspend-v3-0-b41c9893a130@bootlin.com>
+ <20240223-j7200-usb-suspend-v3-1-b41c9893a130@bootlin.com>
+ <20240223-clarity-variably-206b01b7276a@spud>
+ <CZEXXXQDZZWB.1M5CTZAFVO4YP@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="y/81symxI7pz60lC"
 Content-Disposition: inline
-In-Reply-To: <20240214141906.245685-3-dan.scally@ideasonboard.com>
+In-Reply-To: <CZEXXXQDZZWB.1M5CTZAFVO4YP@bootlin.com>
 
-Hi Dan,
+--y/81symxI7pz60lC
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 14, 2024 at 02:19:03PM +0000, Daniel Scally wrote:
-> Add the yaml binding for ARM's Mali-C55 Image Signal Processor.
-> 
-> Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
-> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
-> ---
-> Changes in v2:
-> 
-> 	- Added clocks information
-> 	- Fixed the warnings raised by Rob
-> 
->  .../bindings/media/arm,mali-c55.yaml          | 77 +++++++++++++++++++
->  1 file changed, 77 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/arm,mali-c55.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/arm,mali-c55.yaml b/Documentation/devicetree/bindings/media/arm,mali-c55.yaml
-> new file mode 100644
-> index 000000000000..30038cfec3a4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/arm,mali-c55.yaml
-> @@ -0,0 +1,77 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/arm,mali-c55.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ARM Mali-C55 Image Signal Processor
-> +
-> +maintainers:
-> +  - Daniel Scally <dan.scally@ideasonboard.com>
-> +  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: arm,mali-c55
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: ISP video clock
-> +      - description: ISP AXI clock
-> +      - description: ISP AHB-lite clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: vclk
-> +      - const: aclk
-> +      - const: hclk
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/graph.yaml#/properties/endpoint
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    mali_c55: isp@400000 {
-> +      compatible = "arm,mali-c55";
-> +      reg = <0x400000 0x200000>;
-> +      clocks = <&clk 0>, <&clk 1>, <&clk 2>;
-> +      clock-names = "vclk", "aclk", "hclk";
-> +      interrupts = <0>;
-> +
-> +      ports {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        port@0 {
-> +          reg = <0>;
-> +          isp_in: endpoint {
-> +              remote-endpoint = <&mipi_out>;
+On Mon, Feb 26, 2024 at 11:33:06AM +0100, Th=E9o Lebrun wrote:
+> Hello Conor,
+>=20
+> On Fri Feb 23, 2024 at 7:12 PM CET, Conor Dooley wrote:
+> > On Fri, Feb 23, 2024 at 05:05:25PM +0100, Th=E9o Lebrun wrote:
+> > > Compatible can be A or B, not A or B or A+B. Remove last option.
+> > > A=3Dti,j721e-usb and B=3Dti,am64-usb.
+> > >=20
+> > > Signed-off-by: Th=E9o Lebrun <theo.lebrun@bootlin.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml | 9 +++------
+> > >  1 file changed, 3 insertions(+), 6 deletions(-)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml =
+b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+> > > index 95ff9791baea..949f45eb45c2 100644
+> > > --- a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+> > > +++ b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+> > > @@ -11,12 +11,9 @@ maintainers:
+> > > =20
+> > >  properties:
+> > >    compatible:
+> > > -    oneOf:
+> > > -      - const: ti,j721e-usb
+> > > -      - const: ti,am64-usb
+> > > -      - items:
+> > > -          - const: ti,j721e-usb
+> > > -          - const: ti,am64-usb
+> >
+> > Correct, this makes no sense. The devices seem to be compatible though,
+> > so I would expect this to actually be:
+> > oneOf:
+> >   - const: ti,j721e-usb
+> >   - items:
+> >       - const: ti,am64-usb
+> >       - const: ti,j721e-usb
+>=20
+> I need your help to grasp what that change is supposed to express? Would
+> you mind turning it into english sentences?
+> A=3Dti,j721e-usb and B=3Dti,am64-usb. My understanding of your proposal is
+> that a device can either be compat with A or B. But B is compatible
+> with A so you express it as a list of items. If B is compat with A then
+> A is compat with B. Does the order of items matter?
 
-I suppose this is a CSI-2 interface with D-PHY?
+The two devices are compatible with each other, based on an inspection of
+the driver and the existing "A+B" setup. If this was a newly submitted
+binding, "B" would not get approved because "A+B" allows support without
+software changes and all that jazz.
 
-How many lanes do you have and is lane remapping / polarity inversion
-supported?
+Your patch says that allowing "A", "B" and "A+B" makes no sense and you
+suggest removing "A+B". I am agreeing that it makes no sense to allow
+all 3 of these situations.
 
-This should be reflected in bindings.
+What I also noticed is other problems with the binding. What should have
+been "A+B" is actually documented as "B+A", but that doesn't make sense
+when the originally supported device is "A".
 
-> +          };
-> +        };
-> +      };
-> +    };
-> +...
+Therefore my suggestion was to only allow "A" and "A+B", which is what
+we would (hopefully) tell you to do were you submitting the am64 support
+as a new patch today.
 
--- 
-Regards,
+> I've not applied your proposal to check for dtbs_check but I'd guess it
+> would throw warnings for the single existing upstream DTSI (as of
+> v6.8-rc6) that uses "ti,am64-usb"? See:
+> arch/arm64/boot/dts/ti/k3-am64-main.dtsi.
 
-Sakari Ailus
+Yeah, it would but it's not as if that cannot be changed. There's no
+concerns here about backwards compatibility here, right?
+
+--y/81symxI7pz60lC
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdx8YAAKCRB4tDGHoIJi
+0sCAAPwLF+i1FiXIYJ+rJDn2P1nOhyEPNbA2O5VrdxWhaSS8qgEA0qc5dIt6gFNG
+4p7KsxNzS7FXx8EctGxE6ZdwAUiC5Qo=
+=QOfZ
+-----END PGP SIGNATURE-----
+
+--y/81symxI7pz60lC--
 
