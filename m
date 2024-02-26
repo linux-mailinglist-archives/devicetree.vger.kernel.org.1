@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-45932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D34A486755B
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 13:42:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 679CD867569
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 13:44:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 88B1A28989E
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 12:42:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F3B831F2354C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 12:44:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADEEB7F49E;
-	Mon, 26 Feb 2024 12:42:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 760217F7E6;
+	Mon, 26 Feb 2024 12:43:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KDdyAzHZ"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="HMR8jM7J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7BD37F7DB
-	for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 12:42:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32B1F7F475
+	for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 12:43:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708951346; cv=none; b=DC1OXdUM5Oqx+C8eYc4hClpYfP1JzfogRSK2eKX3rakIzBnrypsyHat56u9ENjC9I1WICRAa/WyuiWqPwJRFv1uV1TZFnXoz0npkNVuZDtocVe7vLYxG3rrOMZQ0UBFMW3XR3yAqn0mM/UIQP7rtddbXRouYGryJOlFuSRIYrTA=
+	t=1708951439; cv=none; b=Y6SaB1K6UQtUUC8c85t33ez6Qkfn7E5aMj1FpnbAmIQpR/eCmKKWqYiMk8Q2piSHj72sBTOFb1i9vCweb7wFPWsXZTW74JwS7wnX7Y8G4snfIWWBl83ZItcneCqLQ91sjcQPi55GMmXbQcWgFTmPxRo1VcW6H1HgNgfM1tH1Fc0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708951346; c=relaxed/simple;
-	bh=iK0pc9/o4qPy2MF+4qVH/jaVBhhheQRx/oHhwarLJJQ=;
+	s=arc-20240116; t=1708951439; c=relaxed/simple;
+	bh=QWUMPu+CtYb0e6Z/NfDSuuMZHNPPaOp7x8I5Ob5Dgfo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mgdyHaKdtNwTB3bUJj9YRVq5iE9MI96eWn5gYXI8Iqoj2Y5DTwtRvUzbso3f71+Iqadp/rUvExIkPV9xKdQOt2BZaZOp74YXBQDF7JaDC2UcwAVeOolqx7mUcJEHPx1c1tQfhh3d0Kjx/3wJA+Fw27Cu2/Zi2KtLk/MfukWKOnM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KDdyAzHZ; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-564e4df00f3so3835080a12.3
-        for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 04:42:24 -0800 (PST)
+	 In-Reply-To:Content-Type; b=GqN/iQAC1dsnyCSmk6Byf9479xrAJYvzb3uK3PUOetXkh1BqlPADG+LgGiujaC81pK1D+doNj+X5Fyvg0HYku9tXkR1iAI6dD6yNi2XB2tspcY03Zf2JS8ztv/bbC0VKgNQWB64U6GFvTxk1E50txNafYRYbNPYrNdGibC1knoo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=HMR8jM7J; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-512fd840142so1044814e87.2
+        for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 04:43:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708951343; x=1709556143; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1708951434; x=1709556234; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=d8DHJsu3a8iuvwFkA7p3y2llhbLihbwINAFhLWQK3ys=;
-        b=KDdyAzHZdx5yJH2/3rNgX8DDCZtMuKTROk0kLJXYSVwMjuE6plYbINSpz1PrSqYY8x
-         4Z9rxBOC3ggp/96WT0qkEFg4PuBnH39CNlgvx3rBhP1yvjgOfCgDgAUXKTZfPgA3CvRf
-         jiA+nCYtNf3ReLL6OHgXFjQCkfnF+nTAlOZbhjbe6z8yX0iNNTaSyQ+sPm+ncVC2Jx1y
-         f2w4F/uwpaSgdrgxm9et13rsBdSaM43/vz7iUFQuepFZSW16gHzMEjrGJSMrOrWrNyG/
-         48kxyUcn0hv/agQ2KsyJXWcGAP/Py2imQxERfWfSD7kSjTFtzV9z1BKUHeOW+NG1VDSM
-         9TNw==
+        bh=naqFL0E+hNyDvv+vNCMwB2nUVsIEfS7e+n3trxNKW+M=;
+        b=HMR8jM7JnQfNJZAtaIKkDoP+fKuLdKMrOAtYXHo1zHaQrU8Sl/ohZHUdzAOYq5+Ng0
+         ZNsI1MLI6NiOEj6aJgWXvOccyrRT0m9mvxXIKAV5Fqz6Bi2ixqn/QE1ojOsuQnow4jfw
+         lyimbQGdC8KGdukVkB9G3VrB5ML/1hl8UbWPCmDgayAYZQ0uXe1XrQWjhazEAT5sGrgZ
+         TfWLl/MtYh56y6c8EI+IvzZdPCF3IkrcuUGc64YZOdtJ4kWbE+r4GgETJ4rl+2+jAj7q
+         NLM/tyyt/1i2d6Yhol1TYjDrrn+dbnEn8GoXGI6qInNdrK5dhYKJ3y3neuOosxnuH4H2
+         FQ1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708951343; x=1709556143;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1708951434; x=1709556234;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d8DHJsu3a8iuvwFkA7p3y2llhbLihbwINAFhLWQK3ys=;
-        b=QMwF+5z02/FGYVIdHgzfIYqvJzszTFuc0Unq/jS7cEX4VnVjHXpCeJ2574MfkUYWmn
-         Rlg3Cm/C0UYoPqCCUJUK01D4PtKpqqogfO//mD2LQzZ+H6dJ0/YVr5GU6ecWxMzqGy2d
-         uy5Z9MTBBd+3vlhX5y2aFxyolRTWghC5SzQ5XlP+CR7u+u58fGA/cK2dMKtBIBimjKOu
-         vZg+3kkFXbx3XdUdIiPRjcvaZd+bMplzvhVNg55PtZE0gSpt8VNoX1Qam7npMCyIUYTs
-         Ba9cL/Ej/0uJAREvGJF6SK2wsRQzWqaMvIauJ5EG/V8x03mcXurn5Zb602xsFBQwwhF0
-         QjHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXeyhIAx8emNe2af0QWvxZ4CLuRjofkg+qkULOHxGqT0r+v/pFADcNIqSX3Y0Sm/HR9BqneBydTGKkhOYiYXyGS6CrRSi5UwMN9Lg==
-X-Gm-Message-State: AOJu0YwlEZVMfztSPHAYDKXGIxzwtuOSsRtYEd1nNgPNZR60i/S3732t
-	1Z/OdW2oLSMvf4NEZ3Wc+ckA8X5qa88k7Lwd3Rq0KwKxMmjsYHcY12+37hD0HeI=
-X-Google-Smtp-Source: AGHT+IEXFJfAeWP0vTf6kRL2dq7bUv/fdef3FkLB7jkozzsXfpKBEMYxD6469aiAi4j9MXCdpauccA==
-X-Received: by 2002:aa7:d4c3:0:b0:565:ed50:8ba7 with SMTP id t3-20020aa7d4c3000000b00565ed508ba7mr1792722edr.26.1708951343108;
-        Mon, 26 Feb 2024 04:42:23 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id p24-20020aa7cc98000000b00564da28dfe2sm2290778edt.19.2024.02.26.04.42.21
+        bh=naqFL0E+hNyDvv+vNCMwB2nUVsIEfS7e+n3trxNKW+M=;
+        b=rQO14N9WbW4ESMemichiWlk50uQbgBEP9djs6lP+PjFzRTDk2Xzj6NjQzPsha5uQL6
+         oRsCVcDIeItfzUmAI8RgsaxpcimbAtQ5u7b0dit5UExhPWity+r8K5giIvIm+THaThzy
+         R36lurWMK9Gojpkv+0iBquYhDvhi+ITbZKGbqWOmtH4v/d9KM5yTMiqiuv06+COo++Xf
+         zJL3yMi0hSLza0OSVhZ+J2ppp68est5dvncvh6Ibh7fvKQFrn/HvVt7A18GbmbV73GkT
+         6nEkY/+c/CnwN5vds51i8c2dw84FLYBWErqhF9LjRM1cTLXywYKuUtc5TAjzbfmFUyZI
+         rYdg==
+X-Forwarded-Encrypted: i=1; AJvYcCXyYbo2jRcGe1dY5c4LQ6CHo5bxWCGmc6wGKR9KOEWxNYJfEhImpzJm6yeykjRfbwfqGlpVSSPJAXfMaq1VcNJWF/rCFE0aryLRLw==
+X-Gm-Message-State: AOJu0Yww3iLOh94hwUykthnTrabZbN2C2dGRnlO2RBNtxTjgiVKl06MM
+	7Un8yNseAwI0/+yUUHYywhALOLDcI7uULSfE1IQiay1vo61TN6a0fi4zbnbFq/8=
+X-Google-Smtp-Source: AGHT+IEr6GkkP+hEkx/7rVH3ZwrWmBQXEk8hVCRf2PMK+0MkEU8g/LzJ/x61wmA8BWhBFLisUVyRlw==
+X-Received: by 2002:a05:6512:1156:b0:512:b426:53e8 with SMTP id m22-20020a056512115600b00512b42653e8mr5504601lfg.30.1708951434428;
+        Mon, 26 Feb 2024 04:43:54 -0800 (PST)
+Received: from [192.168.1.70] ([84.102.31.43])
+        by smtp.gmail.com with ESMTPSA id d11-20020a056512368b00b00513022c0d3esm42963lfs.91.2024.02.26.04.43.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Feb 2024 04:42:22 -0800 (PST)
-Message-ID: <09f4b87e-8344-4051-aa69-5117f6c5e481@linaro.org>
-Date: Mon, 26 Feb 2024 13:42:20 +0100
+        Mon, 26 Feb 2024 04:43:54 -0800 (PST)
+Message-ID: <8f09bc42-b85d-446f-bd9d-77155060a4b8@baylibre.com>
+Date: Mon, 26 Feb 2024 13:43:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,105 +76,72 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: iio: ti,tmp117: add optional label binding
+Subject: Re: [PATCH v2 08/14] misc: tps6594-pfsm: Add TI TPS65224 PMIC PFSM
 Content-Language: en-US
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: puranjay12@gmail.com, jic23@kernel.org, lars@metafoo.de,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, kernel@pengutronix.de
-References: <20240223162042.2658620-1-m.felsch@pengutronix.de>
- <e6bb70fc-81ed-4775-8d3e-4bf177c6f22f@linaro.org>
- <20240226102323.6awrkxrdfq7j3ymj@pengutronix.de>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240226102323.6awrkxrdfq7j3ymj@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To: Bhargav Raviprakash <bhargav.r@ltts.com>, linux-kernel@vger.kernel.org
+Cc: m.nirmaladevi@ltts.com, lee@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, arnd@arndb.de, gregkh@linuxfoundation.org,
+ lgirdwood@gmail.com, broonie@kernel.org, linus.walleij@linaro.org,
+ linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org, nm@ti.com,
+ vigneshr@ti.com, kristo@kernel.org
+References: <20240223093701.66034-1-bhargav.r@ltts.com>
+ <20240223093701.66034-9-bhargav.r@ltts.com>
+From: Julien Panis <jpanis@baylibre.com>
+In-Reply-To: <20240223093701.66034-9-bhargav.r@ltts.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 26/02/2024 11:23, Marco Felsch wrote:
-> On 24-02-26, Krzysztof Kozlowski wrote:
->> On 23/02/2024 17:20, Marco Felsch wrote:
->>> Add the support to provide an optional label like we do for ADC
->>> channels to identify the device more easily.
->>>
->>> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
->>> ---
->>> Hi,
->>>
->>> patchset [1] should be applied first to avoid merge conflicts.
->>>
->>> [1] https://lore.kernel.org/all/20240219131114.134607-1-m.felsch@pengutronix.de/#t
->>>
->>> Regards,
->>>   Marco
->>>
->>>  .../devicetree/bindings/iio/temperature/ti,tmp117.yaml        | 4 ++++
->>>  1 file changed, 4 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml b/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
->>> index 33f2e9c5bd81..f00c1cb89acd 100644
->>> --- a/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
->>> +++ b/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
->>> @@ -27,6 +27,10 @@ properties:
->>>    vcc-supply:
->>>      description: provide VCC power to the sensor.
->>>  
->>> +  label:
->>> +    $ref: /schemas/types.yaml#/definitions/string
->>
->> Drop ref. Did you take it from any existing binding?
-> 
-> I used Documentation/devicetree/bindings/iio/adc/adc.yaml as reference.
+On 2/23/24 10:36, Bhargav Raviprakash wrote:
+> Add support for TPS65224 PFSM in the TPS6594 PFSM driver
+> as they share significant functionality.
+>
+> Signed-off-by: Bhargav Raviprakash <bhargav.r@ltts.com>
+> ---
+>   drivers/misc/tps6594-pfsm.c | 55 +++++++++++++++++++++++++++----------
+>   1 file changed, 40 insertions(+), 15 deletions(-)
+>
+> diff --git a/drivers/misc/tps6594-pfsm.c b/drivers/misc/tps6594-pfsm.c
+> index 88dcac814..4fa071093 100644
+> --- a/drivers/misc/tps6594-pfsm.c
+> +++ b/drivers/misc/tps6594-pfsm.c
+> @@ -1,6 +1,6 @@
+>   // SPDX-License-Identifier: GPL-2.0
+>   /*
+> - * PFSM (Pre-configurable Finite State Machine) driver for TI TPS6594/TPS6593/LP8764 PMICs
+> + * PFSM (Pre-configurable Finite State Machine) driver for TI TPS65224/TPS6594/TPS6593/LP8764 PMICs
+>    *
+>    * Copyright (C) 2023 BayLibre Incorporated - https://www.baylibre.com/
+>    */
+> @@ -34,15 +34,17 @@
+>   
+>   #define TPS6594_FILE_TO_PFSM(f) container_of((f)->private_data, struct tps6594_pfsm, miscdev)
+>   
+> -/**
+> +/*
 
-I'll fix it there.
+Here it should be /** for the structure documentation, I think.
+Please check in kernel doc.
 
-Anyway, label comes from iio schema in dtschema, so this should be just
-"true".
+[...]
 
-Best regards,
-Krzysztof
+> @@ -210,8 +230,12 @@ static long tps6594_pfsm_ioctl(struct file *f, unsigned int cmd, unsigned long a
+>   			return ret;
+>   
+>   		/* Modify NSLEEP1-2 bits */
+> -		ret = regmap_clear_bits(pfsm->regmap, TPS6594_REG_FSM_NSLEEP_TRIGGERS,
+> -					TPS6594_BIT_NSLEEP2B);
+> +		if (pfsm->chip_id == TPS65224)
+> +			ret = regmap_clear_bits(pfsm->regmap, TPS6594_REG_FSM_NSLEEP_TRIGGERS,
+> +						TPS6594_BIT_NSLEEP1B);
+> +		else
+> +			ret = regmap_clear_bits(pfsm->regmap, TPS6594_REG_FSM_NSLEEP_TRIGGERS,
+> +						TPS6594_BIT_NSLEEP2B);
+
+Instead of this if/else, a ternary operator might do the trick here:
+regmap_clear_bits(pfsm->regmap, TPS6594_REG_FSM_NSLEEP_TRIGGERS,
+                               pfsm->chip_id == TPS65224 ? TPS6594_BIT_NSLEEP1B : TPS6594_BIT_NSLEEP2B)
+
+Julien
 
 
