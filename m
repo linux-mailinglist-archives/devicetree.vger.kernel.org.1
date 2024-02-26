@@ -1,92 +1,169 @@
-Return-Path: <devicetree+bounces-46150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E25E8684A3
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 00:39:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC0C98684B0
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 00:45:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0589C1F22845
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 23:39:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7986B1F23059
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 23:45:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D467135A4F;
-	Mon, 26 Feb 2024 23:39:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65179135A73;
+	Mon, 26 Feb 2024 23:45:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="iJfF8cvJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fOEEIWd3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AEC260864;
-	Mon, 26 Feb 2024 23:39:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7A43135A46;
+	Mon, 26 Feb 2024 23:45:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708990754; cv=none; b=UstDb94ctG2rEKBmuirEzQCiPUSZ3c33dNxLRYnbQxzP1ny0RYqa7gKZik50D3dv5tnkf9EjqO4I4u86oEWnNeR2kMniWPH2FM2togJTI4PbkbsmGUKsd1ZEytv5L6yF8i0pCHJyuLLAOzwkHL+/kxQtzznvnPrMLTLW72EUuvU=
+	t=1708991145; cv=none; b=OjD29ngl2hE6qYc/ZSObyLiS1yITjRhbu+lxjx9zIVMlQDoOY0ARxB3Isz+psXFQqaMkANMerWzJdVctbHpu5/yTbxwASzJIIj56Wxg66rUsTMwlCI7BGAAcMDqAtdAGaaAl/So5y7bRwS9LvaUcg21QjUsVwRNGcRu4LZwNKLo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708990754; c=relaxed/simple;
-	bh=DC4XPRGfDGkd+lTP0RPnZft98OYBjzRmA203J/eHadU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M8ZqRbk2FejGtmzCPXisOn7D5VRpecw8cpBmNGpaQunJdl7m8brHnBH6F91REsSIm2jNDu2DMAfTLj0ebZ1pt0HnGxizhiSRszutay4x+U1F/yfCMIZV65kBvotmrBL7UlrgvErKSx63VfFMLWURppggcLyMaLKvj1Ca1Ulad8o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=iJfF8cvJ; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=7Otld8V/bzkJaFDg5xKk0LY1UIWmUWFwWmtXGjOC6yU=; b=iJfF8cvJ/VlmCEUV3k+y55j5+A
-	jkGnLmwMn+4b2kyVoBJ/ZtWI/CW5V/ZkvTFCytF3AwIpxEmkYl+bihY0OvF0ggYrnagtM1bKTjEz+
-	QwFY7UAe0ZIPxTtz8KS7RSTlC22W6N8L/gj80aLXSljhSBIHboaYRtnTi7ChWqLlFQ9E=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rekZ5-008lx7-6g; Tue, 27 Feb 2024 00:39:19 +0100
-Date: Tue, 27 Feb 2024 00:39:19 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Sarosh Hasan <quic_sarohasa@quicinc.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	s=arc-20240116; t=1708991145; c=relaxed/simple;
+	bh=TtompIHgbeY/OA3WXAshQm3+E9k8UAMGdrcANzV0VD4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=LeNRka4+D/pisGjpIn50ajGLPOpZasPIRtnZQRNsOJ97s6XAcwDZAAZ/LaqwGdQZqOq5nVykmzlsiRXc7ueLeSigYTSQMigsVnchW9jglWFuyNexPWPeTCvUSyll8GSe1/bl1L/NpapQe3cqossLL1JKA/76KKcsFoiQNukYir4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fOEEIWd3; arc=none smtp.client-ip=209.85.166.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-io1-f54.google.com with SMTP id ca18e2360f4ac-7c7964d109aso143349839f.2;
+        Mon, 26 Feb 2024 15:45:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708991137; x=1709595937; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YWIbvre+rElW1Hi4Tns90pWqujeQfsqDKyIvXn+Wd7Y=;
+        b=fOEEIWd3086f1u4xx4mKSytKgBkEHsP1A4cNmsfb9LmOwWL+UO/DUAHNMLmdf/PnMr
+         crVfgaTuNrk7R9Ts6jWRs2yIwqV9DF4+dkboPyyFf9td4QsxnCJ2Yzum8l4fC+PJna7f
+         xAo4FqU01JkAJGLyyguJrKygpkiTE+JiRb+PITD3M98ZR8/Qg/zvYwbisM7lbA5Idsbz
+         AZ+aCEIVcexK4Ugbf9GjdVV0kt35BBSOJwaY2ot9nHEftHXeAhK6T3U1Z6w71q76+tWB
+         /dOAkOzvWxyZk4jZu2bZ7JkrC9ljChBvEGCuiXOy1bdOGnLGS9vuUgEcnFC4A9w5yOBe
+         uCCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708991137; x=1709595937;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YWIbvre+rElW1Hi4Tns90pWqujeQfsqDKyIvXn+Wd7Y=;
+        b=cflUdTP4bNa58z5PEwYkfsUeKWNWoLubiCM+zNxFBvi9XvKZt+amyI5c4oeTcbhSNF
+         KGvCvTVhQ+GaDN8BX2kXXr3zCPQX4iEj//TjYQ/h+Zb64hDLHdOxIz5T/gyELeyb2Jf6
+         vrVmM+V+kOGljgKjZeaGsxbmXM+tOXnnaTYk2kXdwqfuagUKCBMiq6H0Jpq1cSRUdYq/
+         fAg41CCLbhNw+aFdsP7SYr/PpYUnLLlxUr8S0zhkbC4BR8EAbbUkmTfkr6h/tcwj7EnB
+         o+koZSN9biBvxHa6XL69XIF9mUNr29JmZLyk75TrSvBMfrFRAteviY1aUUuZ2r0J5QsX
+         xHFg==
+X-Forwarded-Encrypted: i=1; AJvYcCXmWipvJLHX/AOthJl77YI21ruK4f/mHS5y1uJnNArAQP+LPsvdIuwhZvdlYrXYN2zi35nI8KVKe/RDmxqd6Q+7/50Thi/Xv/0Lb1JccZhvwzQaJO/dRTUHfPDo3sh3GzXyo2KVWBiURQ==
+X-Gm-Message-State: AOJu0Yy0F6gNYuaOY7udtskAuMKC7LPeQ6CCnj6FYO9JRdN1T//yEF8S
+	ZibW49Zr2s1AZwsU/+lthIySx+Bi0vjkYj9jMXzFgDkDh+vibGsC
+X-Google-Smtp-Source: AGHT+IEFd1YNIU2pFTFYWayiyy5owHCUX8d2oFahEMWR2wOBYQt4gvySx+O01SGAjDhoU7jBjgwbnA==
+X-Received: by 2002:a05:6602:1d01:b0:7c7:da5e:3a61 with SMTP id hh1-20020a0566021d0100b007c7da5e3a61mr2215880iob.9.1708991136677;
+        Mon, 26 Feb 2024 15:45:36 -0800 (PST)
+Received: from aford-System-Version.lan ([2601:447:d002:5be:9c95:d061:819a:2ab2])
+        by smtp.gmail.com with ESMTPSA id c25-20020a023319000000b004741cf1e95esm1545317jae.11.2024.02.26.15.45.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Feb 2024 15:45:36 -0800 (PST)
+From: Adam Ford <aford173@gmail.com>
+To: linux-arm-kernel@lists.infradead.org,
+	linux-phy@lists.infradead.org
+Cc: aford@beaconembedded.com,
+	Adam Ford <aford173@gmail.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	Prasad Sodagudi <psodagud@quicinc.com>,
-	Andrew Halaney <ahalaney@redhat.com>, Rob Herring <robh@kernel.org>,
-	kernel@quicinc.com, Sneh Shah <quic_snehshah@quicinc.com>,
-	Suraj Jaiswal <quic_jsuraj@quicinc.com>
-Subject: Re: [PATCH net-next v2] net: stmmac: dwmac-qcom-ethqos: Update link
- clock rate only for RGMII
-Message-ID: <dd9b608d-aa37-4798-b1ca-20ee447d3065@lunn.ch>
-References: <20240226094226.14276-1-quic_sarohasa@quicinc.com>
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH V6 0/6] soc: imx8mp: Finish support for HDMI
+Date: Mon, 26 Feb 2024 17:45:11 -0600
+Message-ID: <20240226234532.80114-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240226094226.14276-1-quic_sarohasa@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon, Feb 26, 2024 at 03:12:26PM +0530, Sarosh Hasan wrote:
-> Updating link clock rate for different speeds is only needed when
-> using RGMII, as that mode requires changing clock speed when the link
-> speed changes. Let's restrict updating the link clock speed in
-> ethqos_update_link_clk() to just RGMII. Other modes such as SGMII
-> only need to enable the link clock (which is already done in probe).
-> 
-> Signed-off-by: Sarosh Hasan <quic_sarohasa@quicinc.com>
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Adam Ford <aford173@gmail.com>
+Sat, Feb 17, 10:16 PM (9 days ago)
+to linux-arm-kernel, linux-phy, aford, me, Vinod, Kishon, Rob, Krzysztof, Conor, Shawn, Sascha, Pengutronix, Fabio, NXP, Catalin, Will, Lucas, devicetree, linux-kernel
 
-    Andrew
+The i.MX8M Plus has an HDMI controller, which depends on several
+other systems.  The Parallel Video Interface (PVI) and the
+HDMI-TX are already in the Linux-Next staging area 20240209, but
+the HDMI PHY driver and several device trees updates are still needed.
+
+This series is adapted from multiple series from Lucas Stach with
+edits and suggestions from feedback from various attemps, but it
+since it's difficult to use and test them independently,
+I merged them into on unified series.  The version history is a
+bit ambiguous since different components were submitted at different
+times and had different amount of attempts.
+
+The previous attempt I did used the wrong starting point for the PHY,
+so this update includes a newer starting point with tags from that version
+and fixes from various people's feedback.  I hope I caught them all, but
+I apologize if I missed something. Any tags from the previous attempt I
+made were intentionally dropped, because of the significant change,
+but I kept tags from the newer version I grabbed from patchwork.
+
+Because several items from the last attempt were merged, this
+series is only focussed on adding the HDMI PHY driver, and enabling
+the power domain, irqsteer interrupt controller, and HDMI pipeline
+in the device tree. The version numbers are a bit strange since
+these all got pulled from various attempts with different versions,
+but I wanted to push them together as a series to complete the pending
+work.
+
+This series restarted at V4 based on the version of the PHY driver and
+the other drivers and power-domain changes have been applied already.
+
+V6:  Make the PHY driver depend on COMMON_CLK to fix build errors
+     Make LCDIF3 disabled by default since it depends on hardware.
+
+V5 primarily updates feedback from the PHY driver itself, but a small
+   adjustment was made to the register size in the device tree.
+Adam Ford (1):
+  arm64: defconfig: Enable DRM_IMX8MP_DW_HDMI_BRIDGE as module
+  
+  
+
+Adam Ford (1):
+  arm64: defconfig: Enable DRM_IMX8MP_DW_HDMI_BRIDGE as module
+
+Lucas Stach (5):
+  dt-bindings: phy: add binding for the i.MX8MP HDMI PHY
+  phy: freescale: add Samsung HDMI PHY
+  arm64: dts: imx8mp: add HDMI power-domains
+  arm64: dts: imx8mp: add HDMI irqsteer
+  arm64: dts: imx8mp: add HDMI display pipeline
+
+ .../bindings/phy/fsl,imx8mp-hdmi-phy.yaml     |  62 ++
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi     | 146 ++++
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/phy/freescale/Kconfig                 |   6 +
+ drivers/phy/freescale/Makefile                |   1 +
+ drivers/phy/freescale/phy-fsl-samsung-hdmi.c  | 720 ++++++++++++++++++
+ 6 files changed, 936 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/fsl,imx8mp-hdmi-phy.yaml
+ create mode 100644 drivers/phy/freescale/phy-fsl-samsung-hdmi.c
+
+-- 
+2.43.0
+
 
