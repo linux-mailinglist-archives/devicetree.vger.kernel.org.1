@@ -1,115 +1,122 @@
-Return-Path: <devicetree+bounces-46113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 372A5868176
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 20:51:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BC6F868181
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 20:56:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1E5E1F25330
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 19:51:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EBC6D1F260B7
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 19:56:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 549C512FF7B;
-	Mon, 26 Feb 2024 19:51:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C15EB130ADB;
+	Mon, 26 Feb 2024 19:56:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IxbsFE44"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EAA6129A91;
-	Mon, 26 Feb 2024 19:51:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5810C12FF9E;
+	Mon, 26 Feb 2024 19:56:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708977074; cv=none; b=N1xtA4VDIRs72K3mMeOmgrhdqbuTOcN6NLB4I4C2N6kBsxn9AwPhcW4IOhZx7dYDc+ui6YPpayntjW4itNa32XDQKR12p0bqvdVt2/PNM77pz3JSQE+NGZ9neOILLHKrmvZ4HeiRAirJaoomJc+BSsuI10n2wPnd5WfxB7eeC5k=
+	t=1708977367; cv=none; b=NA0cavUC/Lw0q1Mxqfk5dawTRGuABZm3z39hl69tsmRw07hpOmTA1BK8NlfpYR6Vm3pgby5/p3E7e4GYlhu8mrfFPmn+pxRquiXYgWQBd4oZWlIQgY/6mpvV6XGrG1c4ytwkA1HGvG8CYbgPAfvAIpgzV/LfILPutXwrNhaUZN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708977074; c=relaxed/simple;
-	bh=SImoMYy+vbpJP+9LvAT8t025ogqUoRGR56ZQ3Q1R/+0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mMpdCHauPK5xOufQ4XZ/ENtsr2+fDYrqGH1LXw6v+QXrdZyFe3kCVLYoTUfTenT0JLcuOSqmI0cJcGek75mr5JA+s3IAqKTKhqV1sFKQqidkzKNoRKbU2jnUeCIkkz/XzMev4/0mzLTu0/kyXfxcdGgjAO8LQuQHlZcfdad2sto=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1708977367; c=relaxed/simple;
+	bh=6Zl7pRrMwE9dGNrCDqkWNA3304G2EaRtfiPFgXD6Pog=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=nsxNtpNakkB53EXcyYaJS2P0ajcNOFoSWfgU4yzRrQsYoy4usmzTKZ5JSU34QnH8l9HSHaIS0HtNvQv1kjZQl0tYwqniHjrl2E1/hod0/OajRVmN2Rp85TlUXx+v9beEikJeMUSp9oJgqLlF9eYNtOE8gqsouKABdgESaf9kxBw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IxbsFE44; arc=none smtp.client-ip=209.85.210.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-db4364ecd6aso3871800276.2;
-        Mon, 26 Feb 2024 11:51:12 -0800 (PST)
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-6e4f45d4369so1047167b3a.0;
+        Mon, 26 Feb 2024 11:56:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708977365; x=1709582165; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cJVioeNisc4dy/+Rk70H6D/CcaCXrKsjxQfBoFKY1rM=;
+        b=IxbsFE44+h3EGs1rnmzsmcAJHk0OyAZtf6n2Lh0FgAjWqy1+PEJB9EYGMmFAPQ9gEq
+         fqdtuC8TkxmYDpq9UClUhHc78GBrgXdzxC3jDz0nc/7oA16vDISoYD5qmOy6sZX0ALMw
+         mSvENgzK/n9a1acPZSPIxd21k61eUVbKrb65uSYW6qF5DXB/hiKPN4f8NwonezYy4KKD
+         9jzFkOT6T2H+RzrlrDcjs5Do/WVunq/0zCYpttZVP2SgibCcEVvXYZsY6RHU5epvaI47
+         p9AU+9+Y92bgulRLuUhCfo6lA0ScPdI5jc5Cydb8lffHKkEjV6QjQ40U9GilRPnCdmJN
+         tDuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708977070; x=1709581870;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1708977365; x=1709582165;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=mEg3XQKBbY8aMs/xFapOciK2fQQojJh026UMPG5tC14=;
-        b=HHcHH66GqXWc4svvifqnbpE7lnwuiMVfHfvxAB0uDkUPAFZk7TJDgLxt7l5HDR+L+Z
-         OpVpsZjcH76iXB2Duy/vF/6Vf31AXW2qnxnz0iIZym7nIcf9gd1fAB3wHEioXV+Q+1ew
-         8fWoea1ZhURojwoA21+G3DdI4a0+jfgzCJmEB1Rr2k2oM7YmsfBr7UV1RdAiDfGKhUd4
-         sEvm0gWLUc1vC4zqqXkyQyXYkprKfbZ92qnw4ZzkfFPSiPC++lXV3EERmzRNdONQuiAJ
-         VQBXq2IGHEE+LIXXT7yr7iD5F5vz07eeTWlfNeC6Lt5Q6SjpZeKbpixAt+jQli9ZHqqi
-         YQMA==
-X-Forwarded-Encrypted: i=1; AJvYcCUYr/zs7eH4VrX/gW9BWFwVQFTaFayJnrXzjC/35sN6vHyZzjhy1fJwTTu275HKnFTicpgO1necRM3vm4KwDf1cFN/3rQdcwpxTf7teXdheVcUVbcFO/dPdE+b9ZoDdKIKZBkDdJJF11CxwHJEN
-X-Gm-Message-State: AOJu0Yy29CO26HB5XyY+5KO+M85UZEXMj9A7kkapPi9FCuT6znkYpM1t
-	GX8rXUN27ZBeGM5skIFYarjlCt381UpB5+Z30kfkzXCdJZ06AdyeIC96qC1iiqU=
-X-Google-Smtp-Source: AGHT+IHQWJRhCrj9XjZy21CZFc0+dlCHnPViotNuTv4pnNHfrPlNlV6zr+af+JpQ5RZvHpO1sRLgqQ==
-X-Received: by 2002:a5b:40f:0:b0:dcc:9aed:6282 with SMTP id m15-20020a5b040f000000b00dcc9aed6282mr159788ybp.65.1708977069747;
-        Mon, 26 Feb 2024 11:51:09 -0800 (PST)
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
-        by smtp.gmail.com with ESMTPSA id v124-20020a25c582000000b00dcdbe11c243sm1100356ybe.1.2024.02.26.11.51.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Feb 2024 11:51:09 -0800 (PST)
-Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-db4364ecd6aso3871738276.2;
-        Mon, 26 Feb 2024 11:51:08 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXIsa/D3SMR9fbpT8euH5wzmxiiKWAwRJyztXodbFQfBnN/NVCAij/t8eDD3Lxg6EqhKBvKRdwf1Exv4en5r8aUK8hD+FbvSnfJ84M7Qr9mkSwCkdC6zxmc6vPEnblkuVOTJa4susB9JLCtTwv8
-X-Received: by 2002:a25:2088:0:b0:dcb:b572:4aaa with SMTP id
- g130-20020a252088000000b00dcbb5724aaamr170659ybg.38.1708977068002; Mon, 26
- Feb 2024 11:51:08 -0800 (PST)
+        bh=cJVioeNisc4dy/+Rk70H6D/CcaCXrKsjxQfBoFKY1rM=;
+        b=ScGCEixwvZbikANxGTewEoCCx9o3cjB0Gj5Uftf3Q6lpL7BlTv08SoY7RWfeNGNGca
+         ZAcDDIJty242siHtmh75QWam+xsHoAurujhOKmEov0plWInQ3MJw6vrt43/MO65hIM4W
+         iHEC8wI+jDzLJhI6FtU8LjgdeECikOnWQXhwv4jcH7htjHqpRDHKeVklhmkEuQpi2I6a
+         vhYCD/J/fUU+WCmVh9dWB892L59/O8YU4yDOkytq+77AZwsNtgjCRAD5/1R0ppjEZwYm
+         WUcVxeZHLUmTnlo1VdiJ7lxyOA+EpCHTHPo8xndIYD+GqJ6XOcpDH2Cg/OW/njew18x1
+         LZng==
+X-Forwarded-Encrypted: i=1; AJvYcCUKn2+VcIuTfG1vjB1wdjZPMT3YDSmbp/BKwYVXGonAlUOoEHDpQKlHH1cGH14f0NEkPQOwAbVWYHbRTw9ON+UxJj2GcjO22+OHWdYrYo2u9V4RAGsL0GLIMsVo7BrEMK7P0jxv0M5D3cEPLpULe6Bb686cCLtf1SXPr6XE6DYebc0N7A6jr02SvFuIw7dgII0rO7ZjEuma+dn+coLfg/slZ4O6cCE6hEI=
+X-Gm-Message-State: AOJu0Yz+McaKtFgbXZWaGlrCzAjreaLHlscujjL8NvXcki1WpVq9Og4Y
+	UhdF8Z7jwtLBVU3oJxUAKy+tSLUsIyOL1zHjhd2dztHitHhRqG6T
+X-Google-Smtp-Source: AGHT+IE0vdy4nq3mjSDWbLvfK/nPZRJvq7XrZHmv1/yQFVMoH09Wq0qFtlEesXmEaNamvmG6Vn7uqw==
+X-Received: by 2002:a05:6a00:2d96:b0:6e5:3e08:cbf1 with SMTP id fb22-20020a056a002d9600b006e53e08cbf1mr2371390pfb.23.1708977365278;
+        Mon, 26 Feb 2024 11:56:05 -0800 (PST)
+Received: from localhost.localdomain ([115.187.42.119])
+        by smtp.gmail.com with ESMTPSA id ls25-20020a056a00741900b006e532495091sm1902252pfb.73.2024.02.26.11.56.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Feb 2024 11:56:04 -0800 (PST)
+From: Raihan Ahamed <raihan1999ahamed@gmail.com>
+To: krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org
+Cc: raihan1999ahamed@gmail.com,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kees Cook <keescook@chromium.org>,
+	Tony Luck <tony.luck@intel.com>,
+	"Guilherme G. Piccoli" <gpiccoli@igalia.com>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-hardening@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: arm: qcom: Add Lenovo P2
+Date: Tue, 27 Feb 2024 01:24:41 +0530
+Message-ID: <20240226195516.174737-1-raihan1999ahamed@gmail.com>
+X-Mailer: git-send-email 2.44.0
+In-Reply-To: <20240226055615.79195-1-raihan1999ahamed@gmail.com>
+References: <20240226055615.79195-1-raihan1999ahamed@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240226194715.427597-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20240226194715.427597-1-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 26 Feb 2024 20:50:55 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdW9VXjRKD9+akp67sqBj_CHLSnSt0cw_DvcGuwm4t1=Kg@mail.gmail.com>
-Message-ID: <CAMuHMdW9VXjRKD9+akp67sqBj_CHLSnSt0cw_DvcGuwm4t1=Kg@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] Enable DA9062 PMIC and built-in RTC, GPIO and ONKEY
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Biju,
+Document the compatible for the MSM8953-based Lenovo P2 smartphone released in 2016.
 
-On Mon, Feb 26, 2024 at 8:47=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
-m> wrote:
-> This patch series aims to enable DA9062 PMIC and built-in RTC, GPIO and
-> ONKEY modules on the RZ/{G2UL,Five} SMARC EVK development boards.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Raihan Ahamed <raihan1999ahamed@gmail.com>
+---
+ Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Thanks for your series!
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 1a5fb889a444..6cc19c8d116d 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -263,6 +263,7 @@ properties:
+ 
+       - items:
+           - enum:
++              - lenovo,kuntao
+               - motorola,potter
+               - xiaomi,daisy
+               - xiaomi,mido
+-- 
+2.44.0
 
-
-> Biju Das (2):
->   arm64: dts: renesas: rzg2ul-smarc: Enable PMIC and built-in RTC, GPIO
->     and ONKEY
->   arm64: dts: renesas: rzg2ul-smarc: [DO NOT APPLY] Add PMIC IRQ
->     property
-
-Why "[DO NOT APPLY]"?
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
