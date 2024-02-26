@@ -1,54 +1,53 @@
-Return-Path: <devicetree+bounces-45778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7F88866AD9
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 08:33:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FFD2866ADB
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 08:33:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 78F8F1F211C4
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 07:33:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CB792840BA
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 07:33:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C86B71CFB6;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F119E1D53D;
 	Mon, 26 Feb 2024 07:31:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dnuV5s76"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l5Iv2znI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C6C91CD3C;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C33761CFB4;
 	Mon, 26 Feb 2024 07:31:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708932683; cv=none; b=paPciwR9uow8LkCEKCWhkG9pEjJsbz/2GDKJeS/1L2ETvepb/wfu0nP95cPf8NUAGoYGAfCCfTjJPPtTgIjYTrIDdgGUMkcxC96UmPtZCiGzn5Dko2XPKFzQdHYpmQcncREJAqX+M1N1BHWkb3j8C6JDT3imYuRzjaSM2fYTgv0=
+	t=1708932683; cv=none; b=bWpXK48R2KFhrJ2wgATZlD4lwnZr7U214Ve49W7Qy7PQo/7NUixvUP2X7ZdmTo4TvpCjy+m/sEc40LllRPBewB3Hyf53zIBfhXib5RB1oaJOHord7CisNeO+Qi51MmnV5LrY1pMkeKrzyxcME+HNkEKesP8DZvQz6QSKaJDGbdU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1708932683; c=relaxed/simple;
-	bh=54Nt44uzjzCFnj+OxusuOrTsRFxaxwM69uLh7J3UaoM=;
+	bh=BxsLiKTEX27UORawY3AEl0fNb8Nhi3xPg5lbcf9bCHU=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Klkv8qzi81hjOx0eNV2c1okpMS/vL0hi3k3NaZ2nvsWIbdB4R7aBsoQ3fkvFzPjUWVByoTz2rwN8sPJQR1TMowqvwatfYaP3w247Z3v+obSbgLfILQerldyt6t6JzT0Q7TQdbcXLOs42Khz69bUlnGHjyQ++Xvgc/nm+UeJt3Ww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dnuV5s76; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 73D4EC4E68B;
+	 In-Reply-To:To:Cc; b=XGiholl/KXVLNmOUN1gqOs/qZHOb66kElWzbQNHa3ujqFnE24lQegWNuZqdymcjPLY9omf3qNBClAZSTHz2tawlw7YqJos4G759f5Mhmuc+tIrbps2gI7tKe3CCEHXHQ3ih4BDlyxtYm7LMhZYolWvibcN9sOznuOaRC2LSzQeM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l5Iv2znI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 8AE6AC4E754;
 	Mon, 26 Feb 2024 07:31:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1708932683;
-	bh=54Nt44uzjzCFnj+OxusuOrTsRFxaxwM69uLh7J3UaoM=;
+	bh=BxsLiKTEX27UORawY3AEl0fNb8Nhi3xPg5lbcf9bCHU=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=dnuV5s76rYgbZin/DYKASEHrWl8gU3lOWT2bGBAUNBx8+xGqN8hktNb0wrgK36eF9
-	 XpFcVe2kMfG+RrFyULSQxTgV0QOh1J5CgKwNGF8WaChXUkwv4KZBdA6IdnItitz4sA
-	 mOoSvTeCm8DvCYO+Mt3UodMaBaVv0G+PluMfGSxkBYA4sOiNae/qdXhY/ONQhXsshK
-	 FXJW59FrJIeax8kfoQsKZEl3KAfE3c3KlIuKXLgGXCiWQYHIAnh7H8BzqZaP+1/tRx
-	 4VqtE9k1anb9BmHjMXRIjg4tKwLeOoq7Qdw8NTYxhfFaHOtptJLp2rb530Ze6LkNi/
-	 7F7M4ZB14oh8Q==
+	b=l5Iv2znIns7UtRBBvCV3aDO5JXql/CiMS9zKn25FVd0jt78OO3JSmBnbbRWzoxOqN
+	 EjtQerre9HfuNVR57CRetCca+Yg8Ubh6jpWldK6mjLZBtjgWDUWk6zjIG6YK+kJ6kk
+	 QrDpn0Rs6qNkHpMDFAbtcb+vSy+8PUGTkLtnTJdwC+OomWN149JpUNwmX1PwYudFBU
+	 5cHssWR5Erc+WUQA+OB0EjxaNlvtP4cj3qPFrmcj6pU4x2YSK79domGlMKz1862rLK
+	 UMw3Z46sP7yMtJ2gyYxKbLsbxWTdE/Wjsxq34UtWBydHg+kqpPpyfvWi6cpCotrpuQ
+	 1XBD7/gIfABqA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5C260C48BF6;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7787BC54E49;
 	Mon, 26 Feb 2024 07:31:23 +0000 (UTC)
 From:
  Nikita Shubin via B4 Relay <devnull+nikita.shubin.maquefel.me@kernel.org>
-Date: Mon, 26 Feb 2024 10:30:23 +0300
-Subject: [PATCH v8 27/38] ASoC: dt-bindings: ep93xx: Document Audio Port
- support
+Date: Mon, 26 Feb 2024 10:30:25 +0300
+Subject: [PATCH v8 29/38] ARM: dts: add Cirrus EP93XX SoC .dtsi
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,25 +56,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240226-ep93xx-v8-27-3136dca7238f@maquefel.me>
+Message-Id: <20240226-ep93xx-v8-29-3136dca7238f@maquefel.me>
 References: <20240226-ep93xx-v8-0-3136dca7238f@maquefel.me>
 In-Reply-To: <20240226-ep93xx-v8-0-3136dca7238f@maquefel.me>
-To: Hartley Sweeten <hsweeten@visionengravers.com>, 
- Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
+To: Rob Herring <robh+dt@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Arnd Bergmann <arnd@arndb.de>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ Conor Dooley <conor+dt@kernel.org>, 
+ Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
+ Nikita Shubin <nikita.shubin@maquefel.me>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Arnd Bergmann <arnd@arndb.de>
 X-Mailer: b4 0.13-dev-e3e53
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1708932678; l=848;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1708932678; l=11961;
  i=nikita.shubin@maquefel.me; s=20230718; h=from:subject:message-id;
- bh=0LgX6xJfVzU1kIBxobRUjsHWxEbHLzVzD6pHlBy8Ioo=; =?utf-8?q?b=3DU1lC2bs9+0/I?=
- =?utf-8?q?5vF/qIOo0do9Kh6YKmsipTUByix7465MEJvmXAMwpgEEp7WPRtu/7Ifk1cjXaENb?=
- QnzPBZurAiSmBeHyFWFzS7WvW3M5KO3JHXJKgrmfmDznCZWvDFaY
+ bh=hsGDTVaNARgHD7dPi/ImN4OlyIJePha9DSNh2dBhSGM=; =?utf-8?q?b=3D/aRIf0613uaR?=
+ =?utf-8?q?RaDF/Jdo+xiv6+v5rC9//hZA+t2TCDXsbJu3+Z5LIvIKHdJxnkLJpI0pBFQ6pa6P?=
+ r7IzSPJvBF89/vzXLA5yV+viCM9ekvo95tBtmIybf4JotrUBiRuj
 X-Developer-Key: i=nikita.shubin@maquefel.me; a=ed25519;
  pk=vqf5YIUJ7BJv3EJFaNNxWZgGuMgDH6rwufTLflwU9ac=
 X-Endpoint-Received:
@@ -85,29 +81,462 @@ Reply-To: <nikita.shubin@maquefel.me>
 
 From: Nikita Shubin <nikita.shubin@maquefel.me>
 
-Document Audio Graph Port support in binding document.
+Add support for Cirrus Logic EP93XX SoC's family.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Co-developed-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
 Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
 ---
- Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+ arch/arm/boot/dts/cirrus/ep93xx.dtsi | 441 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 441 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml b/Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml
-index 36a320ddf534..4693e85aed37 100644
---- a/Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml
-+++ b/Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml
-@@ -50,6 +50,10 @@ properties:
-       - const: tx
-       - const: rx
- 
-+  port:
-+    $ref: audio-graph-port.yaml#
-+    unevaluatedProperties: false
+diff --git a/arch/arm/boot/dts/cirrus/ep93xx.dtsi b/arch/arm/boot/dts/cirrus/ep93xx.dtsi
+new file mode 100644
+index 000000000000..e6ced628f570
+--- /dev/null
++++ b/arch/arm/boot/dts/cirrus/ep93xx.dtsi
+@@ -0,0 +1,441 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Device Tree file for Cirrus Logic systems EP93XX SoC
++ */
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/leds/common.h>
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/clock/cirrus,ep9301-syscon.h>
++/ {
++	soc: soc {
++		compatible = "simple-bus";
++		ranges;
++		#address-cells = <1>;
++		#size-cells = <1>;
 +
- required:
-   - compatible
-   - '#sound-dai-cells'
++		syscon: syscon@80930000 {
++			compatible = "cirrus,ep9301-syscon", "syscon";
++			reg = <0x80930000 0x1000>;
++
++			#clock-cells = <1>;
++			clocks = <&xtali>;
++
++			spi_default_pins: pins-spi {
++				function = "spi";
++				groups = "ssp";
++			};
++
++			ac97_default_pins: pins-ac97 {
++				function = "ac97";
++				groups = "ac97";
++			};
++
++			i2s_on_ssp_pins: pins-i2sonssp {
++				function = "i2s";
++				groups = "i2s_on_ssp";
++			};
++
++			i2s_on_ac97_pins: pins-i2sonac97 {
++				function = "i2s";
++				groups = "i2s_on_ac97";
++			};
++
++			gpio1_default_pins: pins-gpio1 {
++				function = "gpio";
++				groups = "gpio1agrp";
++			};
++
++			pwm1_default_pins: pins-pwm1 {
++				function = "pwm";
++				groups = "pwm1";
++			};
++
++			gpio2_default_pins: pins-gpio2 {
++				function = "gpio";
++				groups = "gpio2agrp";
++			};
++
++			gpio3_default_pins: pins-gpio3 {
++				function = "gpio";
++				groups = "gpio3agrp";
++			};
++
++			keypad_default_pins: pins-keypad {
++				function = "keypad";
++				groups = "keypadgrp";
++			};
++
++			gpio4_default_pins: pins-gpio4 {
++				function = "gpio";
++				groups = "gpio4agrp";
++			};
++
++			gpio6_default_pins: pins-gpio6 {
++				function = "gpio";
++				groups = "gpio6agrp";
++			};
++
++			gpio7_default_pins: pins-gpio7 {
++				function = "gpio";
++				groups = "gpio7agrp";
++			};
++
++			ide_default_pins: pins-ide {
++				function = "pata";
++				groups = "idegrp";
++			};
++
++			lcd_on_dram0_pins: pins-rasteronsdram0 {
++				function = "lcd";
++				groups = "rasteronsdram0grp";
++			};
++
++			lcd_on_dram3_pins: pins-rasteronsdram3 {
++				function = "lcd";
++				groups = "rasteronsdram3grp";
++			};
++		};
++
++		adc: adc@80900000 {
++			compatible = "cirrus,ep9301-adc";
++			reg = <0x80900000 0x28>;
++			clocks = <&syscon EP93XX_CLK_ADC>;
++			interrupt-parent = <&vic0>;
++			interrupts = <30>;
++			status = "disabled";
++		};
++
++		/*
++		 * The EP93XX expansion bus is a set of up to 7 each up to 16MB
++		 * windows in the 256MB space from 0x50000000 to 0x5fffffff.
++		 * But since we don't require to setup it in any way, we can
++		 * represent it as a simple-bus.
++		 */
++		ebi: bus@80080000 {
++			compatible = "simple-bus";
++			reg = <0x80080000 0x20>;
++			native-endian;
++			#address-cells = <1>;
++			#size-cells = <1>;
++			ranges;
++		};
++
++		dma0: dma-controller@80000000 {
++			compatible = "cirrus,ep9301-dma-m2p";
++			reg = <0x80000000 0x0040>,
++			      <0x80000040 0x0040>,
++			      <0x80000080 0x0040>,
++			      <0x800000c0 0x0040>,
++			      <0x80000240 0x0040>,
++			      <0x80000200 0x0040>,
++			      <0x800002c0 0x0040>,
++			      <0x80000280 0x0040>,
++			      <0x80000340 0x0040>,
++			      <0x80000300 0x0040>;
++			clocks = <&syscon EP93XX_CLK_M2P0>,
++				 <&syscon EP93XX_CLK_M2P1>,
++				 <&syscon EP93XX_CLK_M2P2>,
++				 <&syscon EP93XX_CLK_M2P3>,
++				 <&syscon EP93XX_CLK_M2P4>,
++				 <&syscon EP93XX_CLK_M2P5>,
++				 <&syscon EP93XX_CLK_M2P6>,
++				 <&syscon EP93XX_CLK_M2P7>,
++				 <&syscon EP93XX_CLK_M2P8>,
++				 <&syscon EP93XX_CLK_M2P9>;
++			clock-names = "m2p0", "m2p1",
++				      "m2p2", "m2p3",
++				      "m2p4", "m2p5",
++				      "m2p6", "m2p7",
++				      "m2p8", "m2p9";
++			interrupt-parent = <&vic0>;
++			interrupts = <7>, <8>, <9>, <10>, <11>,
++				<12>, <13>, <14>, <15>, <16>;
++			#dma-cells = <2>;
++		};
++
++		dma1: dma-controller@80000100 {
++			compatible = "cirrus,ep9301-dma-m2m";
++			reg = <0x80000100 0x0040>,
++			      <0x80000140 0x0040>;
++			clocks = <&syscon EP93XX_CLK_M2M0>,
++				 <&syscon EP93XX_CLK_M2M1>;
++			clock-names = "m2m0", "m2m1";
++			interrupt-parent = <&vic0>;
++			interrupts = <17>, <18>;
++			#dma-cells = <2>;
++		};
++
++		eth0: ethernet@80010000 {
++			compatible = "cirrus,ep9301-eth";
++			reg = <0x80010000 0x10000>;
++			interrupt-parent = <&vic1>;
++			interrupts = <7>;
++			mdio0: mdio {
++				#address-cells = <1>;
++				#size-cells = <0>;
++			};
++		};
++
++		gpio0: gpio@80840000 {
++			compatible = "cirrus,ep9301-gpio";
++			reg = <0x80840000 0x04>,
++			      <0x80840010 0x04>,
++			      <0x80840090 0x1c>;
++			reg-names = "data", "dir", "intr";
++			gpio-controller;
++			#gpio-cells = <2>;
++			interrupt-controller;
++			interrupt-parent = <&vic1>;
++			interrupts = <27>;
++		};
++
++		gpio1: gpio@80840004 {
++			compatible = "cirrus,ep9301-gpio";
++			reg = <0x80840004 0x04>,
++			      <0x80840014 0x04>,
++			      <0x808400ac 0x1c>;
++			reg-names = "data", "dir", "intr";
++			gpio-controller;
++			#gpio-cells = <2>;
++			interrupt-controller;
++			interrupt-parent = <&vic1>;
++			interrupts = <27>;
++		};
++
++		gpio2: gpio@80840008 {
++			compatible = "cirrus,ep9301-gpio";
++			reg = <0x80840008 0x04>,
++			      <0x80840018 0x04>;
++			reg-names = "data", "dir";
++			gpio-controller;
++			#gpio-cells = <2>;
++			pinctrl-names = "default";
++			pinctrl-0 = <&gpio2_default_pins>;
++		};
++
++		gpio3: gpio@8084000c {
++			compatible = "cirrus,ep9301-gpio";
++			reg = <0x8084000c 0x04>,
++			      <0x8084001c 0x04>;
++			reg-names = "data", "dir";
++			gpio-controller;
++			#gpio-cells = <2>;
++			pinctrl-names = "default";
++			pinctrl-0 = <&gpio3_default_pins>;
++		};
++
++		gpio4: gpio@80840020 {
++			compatible = "cirrus,ep9301-gpio";
++			reg = <0x80840020 0x04>,
++			      <0x80840024 0x04>;
++			reg-names = "data", "dir";
++			gpio-controller;
++			#gpio-cells = <2>;
++			pinctrl-names = "default";
++			pinctrl-0 = <&gpio4_default_pins>;
++		};
++
++		gpio5: gpio@80840030 {
++			compatible = "cirrus,ep9301-gpio";
++			reg = <0x80840030 0x04>,
++			      <0x80840034 0x04>,
++			      <0x8084004c 0x1c>;
++			reg-names = "data", "dir", "intr";
++			gpio-controller;
++			#gpio-cells = <2>;
++			interrupt-controller;
++			interrupts-extended = <&vic0 19>, <&vic0 20>,
++					      <&vic0 21>, <&vic0 22>,
++					      <&vic1 15>, <&vic1 16>,
++					      <&vic1 17>, <&vic1 18>;
++		};
++
++		gpio6: gpio@80840038 {
++			compatible = "cirrus,ep9301-gpio";
++			reg = <0x80840038 0x04>,
++			      <0x8084003c 0x04>;
++			reg-names = "data", "dir";
++			gpio-controller;
++			#gpio-cells = <2>;
++			pinctrl-names = "default";
++			pinctrl-0 = <&gpio6_default_pins>;
++		};
++
++		gpio7: gpio@80840040 {
++			compatible = "cirrus,ep9301-gpio";
++			reg = <0x80840040 0x04>,
++			      <0x80840044 0x04>;
++			reg-names = "data", "dir";
++			gpio-controller;
++			#gpio-cells = <2>;
++			pinctrl-names = "default";
++			pinctrl-0 = <&gpio7_default_pins>;
++		};
++
++		i2s: i2s@80820000 {
++			compatible = "cirrus,ep9301-i2s";
++			reg = <0x80820000 0x100>;
++			#sound-dai-cells = <0>;
++			interrupt-parent = <&vic1>;
++			interrupts = <28>;
++			clocks = <&syscon EP93XX_CLK_I2S_MCLK>,
++				 <&syscon EP93XX_CLK_I2S_SCLK>,
++				 <&syscon EP93XX_CLK_I2S_LRCLK>;
++			clock-names = "mclk", "sclk", "lrclk";
++			dmas = <&dma0 0 1>, <&dma0 0 2>;
++			dma-names = "tx", "rx";
++			status = "disabled";
++		};
++
++		ide: ide@800a0000 {
++			compatible = "cirrus,ep9312-pata";
++			reg = <0x800a0000 0x38>;
++			interrupt-parent = <&vic1>;
++			interrupts = <8>;
++			pinctrl-names = "default";
++			pinctrl-0 = <&ide_default_pins>;
++			status = "disabled";
++		};
++
++		vic0: interrupt-controller@800b0000 {
++			compatible = "arm,pl192-vic";
++			reg = <0x800b0000 0x1000>;
++			interrupt-controller;
++			#interrupt-cells = <1>;
++			valid-mask = <0x7ffffffc>;
++			valid-wakeup-mask = <0x0>;
++		};
++
++		vic1: interrupt-controller@800c0000 {
++			compatible = "arm,pl192-vic";
++			reg = <0x800c0000 0x1000>;
++			interrupt-controller;
++			#interrupt-cells = <1>;
++			valid-mask = <0x1fffffff>;
++			valid-wakeup-mask = <0x0>;
++		};
++
++		keypad: keypad@800f0000 {
++			compatible = "cirrus,ep9307-keypad";
++			reg = <0x800f0000 0x0c>;
++			interrupt-parent = <&vic0>;
++			interrupts = <29>;
++			clocks = <&syscon EP93XX_CLK_KEYPAD>;
++			pinctrl-names = "default";
++			pinctrl-0 = <&keypad_default_pins>;
++			linux,keymap =	<KEY_UP>,
++					<KEY_DOWN>,
++					<KEY_VOLUMEDOWN>,
++					<KEY_HOME>,
++					<KEY_RIGHT>,
++					<KEY_LEFT>,
++					<KEY_ENTER>,
++					<KEY_VOLUMEUP>,
++					<KEY_F6>,
++					<KEY_F8>,
++					<KEY_F9>,
++					<KEY_F10>,
++					<KEY_F1>,
++					<KEY_F2>,
++					<KEY_F3>,
++					<KEY_POWER>;
++		};
++
++		pwm0: pwm@80910000 {
++			compatible = "cirrus,ep9301-pwm";
++			reg = <0x80910000 0x10>;
++			clocks = <&syscon EP93XX_CLK_PWM>;
++			#pwm-cells = <3>;
++			status = "disabled";
++		};
++
++		pwm1: pwm@80910020 {
++			compatible = "cirrus,ep9301-pwm";
++			reg = <0x80910020 0x10>;
++			clocks = <&syscon EP93XX_CLK_PWM>;
++			#pwm-cells = <3>;
++			pinctrl-names = "default";
++			pinctrl-0 = <&pwm1_default_pins>;
++			status = "disabled";
++		};
++
++		rtc0: rtc@80920000 {
++			compatible = "cirrus,ep9301-rtc";
++			reg = <0x80920000 0x100>;
++		};
++
++		spi0: spi@808a0000 {
++			compatible = "cirrus,ep9301-spi";
++			reg = <0x808a0000 0x18>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			interrupt-parent = <&vic1>;
++			interrupts = <21>;
++			clocks = <&syscon EP93XX_CLK_SPI>;
++			pinctrl-names = "default";
++			pinctrl-0 = <&spi_default_pins>;
++			status = "disabled";
++		};
++
++		timer: timer@80810000 {
++			compatible = "cirrus,ep9301-timer";
++			reg = <0x80810000 0x100>;
++			interrupt-parent = <&vic1>;
++			interrupts = <19>;
++		};
++
++		uart0: serial@808c0000 {
++			compatible = "arm,pl011", "arm,primecell";
++			reg = <0x808c0000 0x1000>;
++			arm,primecell-periphid = <0x00041010>;
++			clocks = <&syscon EP93XX_CLK_UART1>, <&syscon EP93XX_CLK_UART>;
++			clock-names = "uartclk", "apb_pclk";
++			interrupt-parent = <&vic1>;
++			interrupts = <20>;
++			status = "disabled";
++		};
++
++		uart1: uart@808d0000 {
++			compatible = "arm,primecell";
++			reg = <0x808d0000 0x1000>;
++			arm,primecell-periphid = <0x00041010>;
++			clocks = <&syscon EP93XX_CLK_UART2>, <&syscon EP93XX_CLK_UART>;
++			clock-names = "apb:uart2", "apb_pclk";
++			interrupt-parent = <&vic1>;
++			interrupts = <22>;
++			status = "disabled";
++		};
++
++		uart2: uart@808b0000 {
++			compatible = "arm,primecell";
++			reg = <0x808b0000 0x1000>;
++			arm,primecell-periphid = <0x00041010>;
++			clocks = <&syscon EP93XX_CLK_UART3>, <&syscon EP93XX_CLK_UART>;
++			clock-names = "apb:uart3", "apb_pclk";
++			interrupt-parent = <&vic1>;
++			interrupts = <23>;
++			status = "disabled";
++		};
++
++		usb0: usb@80020000 {
++			compatible = "generic-ohci";
++			reg = <0x80020000 0x10000>;
++			interrupt-parent = <&vic1>;
++			interrupts = <24>;
++			clocks = <&syscon EP93XX_CLK_USB>;
++			status = "disabled";
++		};
++
++		watchdog0: watchdog@80940000 {
++			compatible = "cirrus,ep9301-wdt";
++			reg = <0x80940000 0x08>;
++		};
++	};
++
++	xtali: oscillator {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <14745600>;
++		clock-output-names = "xtali";
++	};
++};
 
 -- 
 2.41.0
