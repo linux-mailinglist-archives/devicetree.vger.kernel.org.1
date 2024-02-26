@@ -1,228 +1,143 @@
-Return-Path: <devicetree+bounces-45850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01AC7867057
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 11:16:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F33D4867089
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 11:20:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 252301C2571B
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:16:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68CD01F2B358
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:20:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C54EF3D55B;
-	Mon, 26 Feb 2024 09:52:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5D821CD30;
+	Mon, 26 Feb 2024 10:01:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mistralsolutions.com header.i=@mistralsolutions.com header.b="i5ik96/D"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="czKMvXSh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from egress-ip12b.ess.de.barracuda.com (egress-ip12b.ess.de.barracuda.com [18.185.115.216])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5280D2D029
-	for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 09:52:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.185.115.216
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAC101BF53;
+	Mon, 26 Feb 2024 10:01:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708941178; cv=none; b=kOHBhG+QfYP1mv0j7O+bEGTcoXUi9DqXxD2hvICNf0arxfJ7vx4bBLqwf8FzgZIvmfYJVFtL6XuXRONyqomgMUco6/XH6z19HAFsg2wERznb3Ah3TojyQ7ouRi+l9AWvPkWdVcT5kt5f+Ut44ul/9U5759VB30gDt+v5PT7S5kE=
+	t=1708941676; cv=none; b=BKzwNfZG9NaRW+q73BWOEwr0idf1Ivsdas4p7rXPes8Pl0DbgMLFkeamoSqVZS8bgk10HSESCaErMNV4BUNeHX7AzdhYN8w3QVosHNbnxlaLNAaSjnEP4M8+u/TlM1JNpoQjHcyfM/iZ6A1NU+u+j32OZvJVaOYsEkhAFduRUfI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708941178; c=relaxed/simple;
-	bh=KPcwfWdpX8YK0QQBA1KIIQNBU2j+KBxkMlHqfMTxePI=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=HkJoDzVjS89Rgiz/O3ksMdddQTUZ9xmIzOcnycsd+L+FKDK0JliCoRU3bRi2r9WFK0jpm51Oqdog6VBMu1xe1AdJkgGKGLfDTuBoEbf6+ga6ug8D/ISfw6hntCii2J0DvzlA86V2DHLiKch61huHLVanAL5OEUhSXDWzXpVo2bU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mistralsolutions.com; spf=pass smtp.mailfrom=mistralsolutions.com; dkim=pass (1024-bit key) header.d=mistralsolutions.com header.i=@mistralsolutions.com header.b=i5ik96/D; arc=none smtp.client-ip=18.185.115.216
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mistralsolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mistralsolutions.com
-Received: from mail-oa1-f71.google.com (mail-oa1-f71.google.com [209.85.160.71]) by mx-outbound19-13.eu-central-1b.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Mon, 26 Feb 2024 09:52:47 +0000
-Received: by mail-oa1-f71.google.com with SMTP id 586e51a60fabf-214d020850eso3048671fac.2
-        for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 01:52:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistralsolutions.com; s=google; t=1708941167; x=1709545967; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=tKQNwvH/UeIkXyNOqlphLDdRi9b8R2L805pgQZbjTtE=;
-        b=i5ik96/DhzPZ5kT8NW0/sjtd7DSqIy3gfBWYSivpaCF1zQyYttXkrPIIteEpyqznjw
-         0g/6cQaS9Kixxon54k5SCaqEnYSO1ofJMlEXXdgtPTSrN3NaP3osA6AE4K3RL2xHaRev
-         w5vNA03fCWe3TUN82ZCzrubhZS1I7XigQBlYY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708941167; x=1709545967;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tKQNwvH/UeIkXyNOqlphLDdRi9b8R2L805pgQZbjTtE=;
-        b=wcyOZZgXr3ZQoDjrF6nIV4yR+RQXO43JHgnM8KnBYWxF/dQ7nnGeYq8ncUCJBxkBqG
-         e2XzguBVZfpT0IBIpZsEii79++uGp0ywG+9nFWAGHuUGX9z0ldWI/keLCMVVGLMiHX5X
-         jpoDPxEVCs1E5TpSA+JTPyVB+oJ+t81O3WKfo7V7IqCH4ASejK2rmC0Naazo9y0nJg8W
-         m+bFiy8X0Plnl1OYgSZJ5dOJR/rYFFkAgDYAZF74XspsFdcvzfJ1pedmhMJjQ/m6W1nl
-         +gKsbhClaanqQzx0ZsQfw1ikzgxGcg1P4JSL2WnRhg2nzrbphnXC0T+zqWJrN94aNK/5
-         +qGg==
-X-Forwarded-Encrypted: i=1; AJvYcCVIgiJYgyHTix++mXgvGRa18HhGs5i6ovZulc0vgBOOb584skkkUtNWsJ/j6SQ2/mA6oSQSDqKItTWStPtYWH2OSlNMtvvIJjVUJQ==
-X-Gm-Message-State: AOJu0YzxEh+v2FnzO3HJhdCZ2SesSYA1MtwkfDYzJveJTTo+ZERyFLuY
-	3G4aTYWzp6hhe5ok/aHfZB8B6zQw5x9Btdes8N8QOP/yDxTImfw/emFCjr2Uauam7fakt6Iz4yY
-	8uQhC83atyd1jhtgJPPH5lEHQ/lkv6nMocfR1utjzyO2v0kXNZ7AfFSPF/HGXt4yPED5W/jd1EJ
-	ZToXwK8KWdRWX+XTPLZw==
-X-Received: by 2002:a05:6871:28a9:b0:21f:67a:198 with SMTP id bq41-20020a05687128a900b0021f067a0198mr8304857oac.56.1708941167078;
-        Mon, 26 Feb 2024 01:52:47 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFqQCb/6BUEcCnB9ST+4FjZQjRJInWfuJCpWHsp3I/vbtkGbQzkeMWlC+S1O3eY8mxcJ7RmdQ==
-X-Received: by 2002:a05:6871:28a9:b0:21f:67a:198 with SMTP id bq41-20020a05687128a900b0021f067a0198mr8304852oac.56.1708941166815;
-        Mon, 26 Feb 2024 01:52:46 -0800 (PST)
-Received: from LAP568U.mistral.in ([106.51.69.35])
-        by smtp.gmail.com with ESMTPSA id h10-20020a63f90a000000b005dc4829d0e1sm3545202pgi.85.2024.02.26.01.52.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Feb 2024 01:52:46 -0800 (PST)
-From: Sinthu Raja <sinthu.raja@mistralsolutions.com>
-X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
-To: Nishanth Menon <nm@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Udit Kumar <u-kumar1@ti.com>
-Cc: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Sinthu Raja <sinthu.raja@ti.com>
-Subject: [PATCH V3] arm64: dts: ti: k3-am68-sk-som: Add support for OSPI flash
-Date: Mon, 26 Feb 2024 15:22:31 +0530
-Message-Id: <20240226095231.35684-1-sinthu.raja@ti.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1708941676; c=relaxed/simple;
+	bh=20R+xqDeDVw9ZtogwM2IQU2YVHkmY//AxAOlDJCpmQY=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bG0eAplGY+vhF1uGgueMdhYh1RvojE07cpsfp7/MsTFe12CUyAP8PFQXOEA1eUnkVl9KkhRZqVKwMUWIYPlBL3qz+KQT7Lz8lzDFtOr6jT6dBO5UgsGlC7KoSUbgG+dXBQs/88ssImhmb7PE5KqpoFBryNXbt/ZyXqbk05WCOYA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=czKMvXSh; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1708941675; x=1740477675;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=20R+xqDeDVw9ZtogwM2IQU2YVHkmY//AxAOlDJCpmQY=;
+  b=czKMvXSh8aZMnPGlbdekLT8KXPCAKZrmKkjl2xbX1M9Pv8MylKQDtMOS
+   wXBJYGC5u4Yg42sRBLz6YJVOgzmmRc9m0d5ecjEfJEk7Syd2DM+zhdjDU
+   Lq8QfhzgU3HJ1OPFdl8LnLUCv33cl3jNE2MnB62JFiPvs9QkDix/hl8hi
+   RHuiMghND83YRFzFGXqnWzBd0yLVDfN33tP2mFEp/Xe2lX515rFqLmo5H
+   lemrCvIEluFT2dfwzTagUqq5lZtEZQxqJcd/U8/apd7QV9KwEKiZKLoGq
+   WAP9BCcNiUHl3YGsW9JxQH7FUQMdZDk7yBIFyflrrfcL4aUD8XG+NF0cL
+   g==;
+X-CSE-ConnectionGUID: gRuuUu1JT96ZGupzs5M00w==
+X-CSE-MsgGUID: hu0OAtBmSMyULpQwlqszwA==
+X-IronPort-AV: E=Sophos;i="6.06,185,1705388400"; 
+   d="asc'?scan'208";a="18370423"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 26 Feb 2024 03:01:11 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 26 Feb 2024 03:01:06 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Mon, 26 Feb 2024 03:01:03 -0700
+Date: Mon, 26 Feb 2024 10:00:21 +0000
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
+CC: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>, Conor Dooley
+	<conor+dt@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+	<aou@eecs.berkeley.edu>, William Qiu <william.qiu@starfivetech.com>, Ley Foon
+ Tan <leyfoon.tan@starfivetech.com>, <linux-pwm@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH] dt-bindings: pwm: opencores: Add compatible for StarFive
+ JH8100
+Message-ID: <20240226-greasily-balcony-cee5014f5b8b@wendy>
+References: <20240226033945.816974-1-jisheng.teoh@starfivetech.com>
+ <opzxowacxsagwgw3l33p6y7omzjokus2bi3ol5wizfwjwi2s44@3p5frb4ysji7>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-BESS-ID: 1708941167-304877-12446-3258-1
-X-BESS-VER: 2019.1_20240214.1700
-X-BESS-Apparent-Source-IP: 209.85.160.71
-X-BESS-Parts: H4sIAAAAAAACA4uuVkqtKFGyUirNy1bSUcovVrIyNjI1BrIygIKWhsmJBhZGBi
-	lppubJJubGSSnGycZGSUZJKWlJhqlGBkq1sQATCvmSQQAAAA==
-X-BESS-Outbound-Spam-Score: 0.40
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.254481 [from 
-	cloudscan22-15.eu-central-1b.ess.aws.cudaops.com]
-	Rule breakdown below
-	 pts rule name              description
-	---- ---------------------- --------------------------------
-	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-	0.40 BSF_SC0_SA085b         META: Custom Rule SA085b 
-	0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
-X-BESS-Outbound-Spam-Status: SCORE=0.40 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND, BSF_SC0_SA085b, BSF_SC0_MISMATCH_TO
-X-BESS-BRTS-Status:1
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="qIf1NVTAKfLs5NKT"
+Content-Disposition: inline
+In-Reply-To: <opzxowacxsagwgw3l33p6y7omzjokus2bi3ol5wizfwjwi2s44@3p5frb4ysji7>
 
-From: Sinthu Raja <sinthu.raja@ti.com>
+--qIf1NVTAKfLs5NKT
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-AM68 SK has an OSPI NOR flash on its SOM connected to OSPI0 instance.
-Enable support for the same. Also, describe the OSPI flash partition
-information through the device tree, according to the offsets in the
-bootloader.
+On Mon, Feb 26, 2024 at 09:11:23AM +0100, Uwe Kleine-K=F6nig wrote:
+> Hello,
+>=20
+> On Mon, Feb 26, 2024 at 11:39:45AM +0800, Ji Sheng Teoh wrote:
+> > StarFive JH8100 uses the same OpenCores PWM controller as JH7110.
+> > Mark JH8100 as compatible to the OpenCores PWM controller.
+> >=20
+> > Signed-off-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
+> > Signed-off-by: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+> >=20
+> > ---
+> >=20
+> > This patch depends on patch [1] ("dt-bindings: pwm: Add bindings for
+> > OpenCores PWM Controller") in Conor's riscv-dt-for-next branch.
+> > [1] https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/com=
+mit/?h=3Driscv-dt-for-next&id=3D2529085831b01fcd02ff58ab4e2596d3b31bcf80
+>=20
+> I recommend to make use of git format-patch's --base parameter to
+> additionally(!) make this information available to the build bots.
 
-Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
----
+I like the "additionally" :)
+>=20
+> Looks fine to me.
+>=20
+> Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+>=20
+> Coner: If you're happy with this patch, please apply it in the same way
+> as the initial OpenCores PWM Controller binding patch.
 
-Changes in V3:
-Address review comments:
-   a. Fix the make dtbs_check error related to ospi pinctrl
-   b. Increase the partition 0 size to 1MB and update the following
-partitions start address accordingly.
+Ye, I can do. Although, I suppose this is an example of why the driver
+maintainers applying the bindings is preferred, even if the driver patch
+itself isn't ready or there is no driver patch.
 
-V2: https://lore.kernel.org/linux-arm-kernel/20240219075932.6458-1-sinthu.raja@ti.com/
+Cheers,
+Conor.
 
- arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi | 78 ++++++++++++++++++++++
- 1 file changed, 78 insertions(+)
+--qIf1NVTAKfLs5NKT
+Content-Type: application/pgp-signature; name="signature.asc"
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi b/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
-index 0f4a5da0ebc4..d3e869c250a2 100644
---- a/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
-@@ -130,6 +130,24 @@ rtos_ipc_memory_region: ipc-memories@a8000000 {
- 	};
- };
- 
-+&wkup_pmx0 {
-+	mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-pins {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x000, PIN_OUTPUT, 0) /* (D19) MCU_OSPI0_CLK */
-+			J721S2_WKUP_IOPAD(0x02c, PIN_OUTPUT, 0) /* (F15) MCU_OSPI0_CSn0 */
-+			J721S2_WKUP_IOPAD(0x00c, PIN_INPUT, 0) /* (C19) MCU_OSPI0_D0 */
-+			J721S2_WKUP_IOPAD(0x010, PIN_INPUT, 0) /* (F16) MCU_OSPI0_D1 */
-+			J721S2_WKUP_IOPAD(0x014, PIN_INPUT, 0) /* (G15) MCU_OSPI0_D2 */
-+			J721S2_WKUP_IOPAD(0x018, PIN_INPUT, 0) /* (F18) MCU_OSPI0_D3 */
-+			J721S2_WKUP_IOPAD(0x01c, PIN_INPUT, 0) /* (E19) MCU_OSPI0_D4 */
-+			J721S2_WKUP_IOPAD(0x020, PIN_INPUT, 0) /* (G19) MCU_OSPI0_D5 */
-+			J721S2_WKUP_IOPAD(0x024, PIN_INPUT, 0) /* (F19) MCU_OSPI0_D6 */
-+			J721S2_WKUP_IOPAD(0x028, PIN_INPUT, 0) /* (F20) MCU_OSPI0_D7 */
-+			J721S2_WKUP_IOPAD(0x008, PIN_INPUT, 0) /* (E18) MCU_OSPI0_DQS */
-+		>;
-+	};
-+};
-+
- &wkup_pmx2 {
- 	wkup_i2c0_pins_default: wkup-i2c0-default-pins {
- 		pinctrl-single,pins = <
-@@ -152,6 +170,66 @@ eeprom@51 {
- 	};
- };
- 
-+&ospi0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0x0>;
-+		spi-tx-bus-width = <8>;
-+		spi-rx-bus-width = <8>;
-+		spi-max-frequency = <25000000>;
-+		cdns,tshsl-ns = <60>;
-+		cdns,tsd2d-ns = <60>;
-+		cdns,tchsh-ns = <60>;
-+		cdns,tslch-ns = <60>;
-+		cdns,read-delay = <4>;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				label = "ospi.tiboot3";
-+				reg = <0x0 0x100000>;
-+			};
-+
-+			partition@100000 {
-+				label = "ospi.tispl";
-+				reg = <0x100000 0x200000>;
-+			};
-+
-+			partition@300000 {
-+				label = "ospi.u-boot";
-+				reg = <0x300000 0x400000>;
-+			};
-+
-+			partition@700000 {
-+				label = "ospi.env";
-+				reg = <0x700000 0x40000>;
-+			};
-+
-+			partition@740000 {
-+				label = "ospi.env.backup";
-+				reg = <0x740000 0x40000>;
-+			};
-+
-+			partition@800000 {
-+				label = "ospi.rootfs";
-+				reg = <0x800000 0x37c0000>;
-+			};
-+
-+			partition@3fc0000 {
-+				label = "ospi.phypattern";
-+				reg = <0x3fc0000 0x40000>;
-+			};
-+		};
-+	};
-+};
-+
- &mailbox0_cluster0 {
- 	status = "okay";
- 	interrupts = <436>;
--- 
-2.34.1
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdxhNAAKCRB4tDGHoIJi
+0sfGAP4gXa3ZQBTcw4KYOWpO4Y9Hl56JOtYMdxzTr8/ALwaDwAD/WwrHnl741xey
+Tfp2k4uQHY/CONnty4macPOekNyY4wI=
+=Oyq2
+-----END PGP SIGNATURE-----
+
+--qIf1NVTAKfLs5NKT--
 
