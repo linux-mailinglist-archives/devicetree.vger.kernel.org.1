@@ -1,115 +1,130 @@
-Return-Path: <devicetree+bounces-46024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5727867BD2
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 17:25:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D3CD867C10
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 17:32:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A2191F285AF
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 16:25:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37AE9292ABD
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 16:32:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D47B12D77C;
-	Mon, 26 Feb 2024 16:24:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4B0212F375;
+	Mon, 26 Feb 2024 16:24:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XRJI2YzF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H7H+L9C8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B279512D74D;
-	Mon, 26 Feb 2024 16:24:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7905E12D766;
+	Mon, 26 Feb 2024 16:24:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708964676; cv=none; b=Jrk7WTgItAvVIXvp1VfCafUe5FuT1w78mfF2Zo6qSh98WneykyNoU+sW/YxLc4qEfoBaB8mOWjryo4ZoZweDCjt1iSp/8v+ht5gPmP2pBtRBAt8EpP20j7Ihv+mgx9qaeQwWLrEZzWtCBIT0pyCBHAufV/jvSi4VlwGzWl+eiP0=
+	t=1708964693; cv=none; b=dhMtJL1OeNs0uOGd2bfb47glNJzWKZKBZmNv/ir3cuO+PURMNwdDSnWnbI681vHKgnNYYDP8DsRVgVV+MIopSRYKitnpXQpfIp3Gs4xbzUy7j0BPcWWWW+8bjCDwpwey4M7sNBo3hLDDSZdsaJVdseY3xpS5tR7xsMacNlmp3Ak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708964676; c=relaxed/simple;
-	bh=3/lHKkguOmtJzs2ExxNbRkvOsyAUWG+6gLyLF788gl4=;
+	s=arc-20240116; t=1708964693; c=relaxed/simple;
+	bh=xA7rJ3U9BuNcjzyN+hOIyJEDKeHkmFiAgGybOThfT6c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P+H3M6hDY09xgS4D0uZ0NqzFGIQXs6w5z9tBhvn+jsOKNZq+ZZc0YkUQiiwH1oCu4yiWagmZdQRx1JU8FyeSmd3tyWNie/EQ542ZLJCVDS+NdFyOuPAYbVbFI+ZkxD+rIs5CGuS8Nuq6ozDzWScVCHbR2uT6dOgr9BFaEG/O8cQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XRJI2YzF; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1708964675; x=1740500675;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=3/lHKkguOmtJzs2ExxNbRkvOsyAUWG+6gLyLF788gl4=;
-  b=XRJI2YzFSNavNIsoQkWCrDTLKII5x02o/jmdgFQOkW1HCc0xSH+ASNgi
-   HvUNj4afxphr+9QxYg15UttJQaetYJp6ACUK3u+LKiTdlbuoWdUjO25xV
-   15axf98AUm69goSVw2OB2orR/35hiNTD3/OG6CK5fesk0H7GJzM7jm93M
-   IGYJMHmrgU85qGL0EI5RmoKOnqiIoW9e+GQR8Gf6GKZkbpi1bfHk8F0D3
-   Pg0qokBfsuMC8wDvKEgve4viV7EKNhpmSjUtChaIHZS1hdlVVURJMLA5b
-   k0G7t6KGcdb/isHz6cwhIhxxYhxdRRPI4nHuaOJ+E2aiaBWvpZmHRUkR7
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="3184309"
-X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; 
-   d="scan'208";a="3184309"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Feb 2024 08:24:34 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="913880658"
-X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; 
-   d="scan'208";a="913880658"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Feb 2024 08:24:31 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1redmH-00000007jOr-0fde;
-	Mon, 26 Feb 2024 18:24:29 +0200
-Date: Mon, 26 Feb 2024 18:24:28 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Robin van der Gracht <robin@protonic.nl>,
-	Paul Burton <paulburton@kernel.org>
-Subject: Re: [PATCH v3 0/9] auxdisplay: linedisp: Clean up and add new driver
-Message-ID: <Zdy7PH8R21Zgzq1t@smile.fi.intel.com>
-References: <20240219170337.2161754-1-andriy.shevchenko@linux.intel.com>
- <ZddRZWftWhMHUl23@smile.fi.intel.com>
- <CAMuHMdWQ1hx143eJYyCcEj-uqQ3uXLWfB_x70bQDn=wp3kQG7A@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=FBRWxdzw8Mv5OrQ1tGoEKnETEQfLnyMjTveYt+uKE55axgOwFiRJyoaAo8fAE9NTAWgcVBuEdnPxIRox/IwL9ta8JXbK+QxwFxhF0J2/s5ogSONGW8AjvCwsSy4nhC9l1eFodX0jkfSyHjoUxIbOHmWQNCs2p9T38ZTDWz9inWY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H7H+L9C8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A94D1C43390;
+	Mon, 26 Feb 2024 16:24:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708964693;
+	bh=xA7rJ3U9BuNcjzyN+hOIyJEDKeHkmFiAgGybOThfT6c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=H7H+L9C8w5vx49N2lLinQDgZHOIrLm/m+T4KikquLtF1IHtBQlNWW8OuCqWd80p3/
+	 sekPxizzUUd20P8CNQ/yO6jEwQM5CXyFGkYdyCKefG5u0acChlxWTTk+30A69ZNtnR
+	 vfgQ6JEN8FPqKk7zmByDSil2/9FClpM9nEtseDhJsU6BQgAYVfWgNYEnr25LaEuPwk
+	 I7dOYSTZ6u0p2umXFQRByIGuOdMMgGrD/DnvYChXM/tnB7fuoFrqkaIO7CzuPnSqiq
+	 IFDZD8918rPMfywzYD0btMEdQdlU9kqG7nBfv2pHxPE7zl3t/esuL5KSAHNkF9olXM
+	 T/RIHBOIx9tLw==
+Date: Mon, 26 Feb 2024 16:24:47 +0000
+From: Conor Dooley <conor@kernel.org>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: haibo.chen@nxp.com, jic23@kernel.org, lars@metafoo.de, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, linux-imx@nxp.com, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: imx93: drop the 4th interrupt
+Message-ID: <20240226-germinate-anymore-fb85ca9bb226@spud>
+References: <20240226130826.3824251-1-peng.fan@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="KDf/GB9r/eUFTniC"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdWQ1hx143eJYyCcEj-uqQ3uXLWfB_x70bQDn=wp3kQG7A@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-
-On Thu, Feb 22, 2024 at 02:56:35PM +0100, Geert Uytterhoeven wrote:
-> On Thu, Feb 22, 2024 at 2:51 PM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
-> > On Mon, Feb 19, 2024 at 06:57:59PM +0200, Andy Shevchenko wrote:
-> > > Add a new initial driver for Maxim MAX6958/6959 chips.
-> > > While developing that driver I realised that there is a lot
-> > > of duplication between ht16k33 and a new one. Hence set of
-> > > cleanups and refactorings.
-> > >
-> > > Note, the new driver has minimum support of the hardware and
-> > > I have plans to cover more features in the future.
-> >
-> > Geert, would it be possible to give one more round of reviewing/testing
-> > this week? I want to close auxdisplay for next merge window next week.
-> 
-> For 1-7 (linedisp and ht16k33):
-> Tested-by: Geert Uytterhoeven <geert@linux-m68k.org>
-
-Thank you for the testing and review, I have pushed patches 2-7, postponed
-patch 1 and will see what I can do with patches 8-9.
-
--- 
-With Best Regards,
-Andy Shevchenko
+In-Reply-To: <20240226130826.3824251-1-peng.fan@oss.nxp.com>
 
 
+--KDf/GB9r/eUFTniC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Feb 26, 2024 at 09:08:25PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+>=20
+> Per i.MX93 Reference Mannual Rev.4, 12/2013, there is no interrupt 268,
+> so drop it.
+
+Don't just remove it from the example, drop it from the binding too?
+It does permit a 4th "self testing" interrupt.
+
+Thanks,
+Conor.
+
+>=20
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml=
+ b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+> index dacc526dc695..dfc3f512918f 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+> @@ -31,7 +31,6 @@ properties:
+>        - description: normal conversion, include EOC (End of Conversion),
+>            ECH (End of Chain), JEOC (End of Injected Conversion) and
+>            JECH (End of injected Chain).
+> -      - description: Self-testing Interrupts.
+> =20
+>    clocks:
+>      maxItems: 1
+> @@ -70,8 +69,7 @@ examples:
+>              reg =3D <0x44530000 0x10000>;
+>              interrupts =3D <GIC_SPI 217 IRQ_TYPE_LEVEL_HIGH>,
+>                           <GIC_SPI 218 IRQ_TYPE_LEVEL_HIGH>,
+> -                         <GIC_SPI 219 IRQ_TYPE_LEVEL_HIGH>,
+> -                         <GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH>;
+> +                         <GIC_SPI 219 IRQ_TYPE_LEVEL_HIGH>;
+>              clocks =3D <&clk IMX93_CLK_ADC1_GATE>;
+>              clock-names =3D "ipg";
+>              vref-supply =3D <&reg_vref_1v8>;
+> --=20
+> 2.37.1
+>=20
+
+--KDf/GB9r/eUFTniC
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZdy7TwAKCRB4tDGHoIJi
+0jiBAP47uO3KUowK4k4Q2P4b5rgtZ/Y4YuZ79RpRL0Rb4+E1jAD/deGLacfUyxqF
+xY7kk9/vNJWngdQW7RU/N6r/w/U/LgE=
+=oLVV
+-----END PGP SIGNATURE-----
+
+--KDf/GB9r/eUFTniC--
 
