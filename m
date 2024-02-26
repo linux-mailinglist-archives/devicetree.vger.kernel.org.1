@@ -1,118 +1,189 @@
-Return-Path: <devicetree+bounces-46017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 412EA867B1B
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 17:05:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E649867B34
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 17:10:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 716491C26244
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 16:05:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7FCF41C29D14
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 16:09:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14A4912C7FD;
-	Mon, 26 Feb 2024 16:05:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABBF212C807;
+	Mon, 26 Feb 2024 16:09:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b="Bb8irr0I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gFKSjVwP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.thorsis.com (mail.thorsis.com [92.198.35.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A96F12C547;
-	Mon, 26 Feb 2024 16:05:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.198.35.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7386212C547;
+	Mon, 26 Feb 2024 16:09:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708963510; cv=none; b=kCOQyWlemhCzCK0h2HyPaB0oCQe+uhPUorBBufjiEVREQ0WF0dDvvRyM/fm1pgZyr/VLFrMyq81IjhnK8k5HPojNlWoIasWKEBpEyevb1MLKbj4u0bzFicxzZlhnRynwWqhXDaj9dk0G2j/0DXTMPGO4GrmXaw0oSq0bamGLu4Y=
+	t=1708963774; cv=none; b=WPqiz+eQ9gDbjfmUrWDXLlnc31+G7AZA/i5f8+JzHrqjwhW5ugRR0etVuEap21U40UHeVNUV9p00+rK4XE9RVublif9Kz9u42zI15aNUSsYYjfzC6qrkdtldGn0XalmuyGXK+ZzLG7kG1pnkAmYQeW+OoFmA2zWXsktZYxRH+MU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708963510; c=relaxed/simple;
-	bh=thP/qrj7uMkjSVxts1RK1BXictk3p7xFgucV+Uip45c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To; b=OH2Yfw1vNepo3JLFpPop9jZuK0/nZJDMZtvlewS5RWtuZ1TCiX1O+LoFoRo4nOk4AhrrssIovDh2Y8mvWXNbx+UUH5QHr7w/bG5Lr+69kQMR0frxaGSYA16dQLCLyal53YqjNt/I7VllkuK6NzkWu+iFszlBUB5UC7bq0DW9U9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com; spf=pass smtp.mailfrom=thorsis.com; dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b=Bb8irr0I; arc=none smtp.client-ip=92.198.35.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thorsis.com
-Date: Mon, 26 Feb 2024 17:04:58 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=default;
-	t=1708963503;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:content-type:content-type:in-reply-to:in-reply-to:
-	 references:references; bh=my0PEDa0k0ziVwc0VTyV85bWDxYwPP0Y8LGXCUo7Iso=;
-	b=Bb8irr0ITsejK7apGvbacbNwF6sCnh+Zu4m/PDjvzCZECMKNxf2qzIvxOq1MCFYvG/C7vo
-	cFRjQW/9/ntfcPtyqHC0gW3v6ETFOIjpl0RFbaktjPvQTsH0AhBp3DiJaI82ygnJx4Bzb6
-	F9IgnYjBN9BSU4yhfDtllQe40XtdBCUFaim3eYDdz2l8oLHvCvekZTbTJSO8PMpJsEaE5G
-	4ZYqXKzBwykjAY7raDXsSgfyStwmZxupMmeSELrZzp28Bxo52lPu9uM4vz/bvOnfs5rSU1
-	tr6ukVSFgwfnTcevHeZNizN6GAetOQnyLG5ggNX8Y0MVVbrJFbsbYW2VJlokVg==
-From: Alexander Dahl <ada@thorsis.com>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: ojeda@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, andrew@lunn.ch, gregory.clement@bootlin.com,
-	sebastian.hesselbarth@gmail.com, andy.shevchenko@gmail.com,
-	geert@linux-m68k.org, pavel@ucw.cz, lee@kernel.org,
+	s=arc-20240116; t=1708963774; c=relaxed/simple;
+	bh=544qUMhqgYQOHGl46eHK6g/2ihFgsZn/LHzZzuoNf14=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=i4mJ0pVA9S2hBdWVQ73eeeMwlxu9QAX/yJGlbs17nqEExN2S7I9qNoXk7iMn5e5br5IyBMj0SMjzhVsJi87VIESrJQYKaMt2orV6Ziu1AeJa2ByHTWY3WXyWqChTnOmQ9iAjrBTHx6TA6c3k/doKAsjhkJcAg6UknGas/psdvZ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gFKSjVwP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3858C433F1;
+	Mon, 26 Feb 2024 16:09:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708963774;
+	bh=544qUMhqgYQOHGl46eHK6g/2ihFgsZn/LHzZzuoNf14=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gFKSjVwP60i6oW9D7LFMScKauvLLEEnmQASp+Uth6mTofKuSpkIQq72+2SDSFXZ6R
+	 Lq1ZT4yI+OaSa41rwTMpeOj5sbsruVuvaxytpdeoM3mWQ6iV+7K1OeNGrhBLoCz/2i
+	 dTrZH7dG03AaoXC267IIp6BIqJ2w1vurx7gjm8QLgpfD5U7WkqMKQYhBBbyRT9fpOc
+	 HDalcrYaW3e2HphJwpjaqrUVi3BGrjIH2eQGKh6nHJGgmqSAQnXBCyaFcFggWxVqn5
+	 vJqdYB/klAj/39MMDPZHvGtUhlGcsH9DLE4+bQbCDJWVo2dydZozgQ9SPNQ+YZwRHv
+	 7TuEZXZlVRG3A==
+Date: Mon, 26 Feb 2024 16:09:25 +0000
+From: Mark Brown <broonie@kernel.org>
+To: amergnat@baylibre.com
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Sumit Semwal <sumit.semwal@linaro.org>,
+	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, linux-sound@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-leds@vger.kernel.org
-Subject: Re: [PATCH 0/3] auxdisplay: 7 segment LED display
-Message-ID: <20240226-scabby-fiber-87d5d6e45028@thorsis.com>
-Mail-Followup-To: Chris Packham <chris.packham@alliedtelesis.co.nz>,
-	ojeda@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	andrew@lunn.ch, gregory.clement@bootlin.com,
-	sebastian.hesselbarth@gmail.com, andy.shevchenko@gmail.com,
-	geert@linux-m68k.org, pavel@ucw.cz, lee@kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-leds@vger.kernel.org
-References: <20240225213423.690561-1-chris.packham@alliedtelesis.co.nz>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240225213423.690561-1-chris.packham@alliedtelesis.co.nz>
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+	Nicolas Belin <nbelin@baylibre.com>
+Subject: Re: [PATCH 12/18] ASoC: codecs: mt6357: add MT6357 codec
+Message-ID: <9891855d-2284-42e4-9d3a-35ba406540e8@sirena.org.uk>
+References: <20240226-audio-i350-v1-0-4fa1cea1667f@baylibre.com>
+ <20240226-audio-i350-v1-12-4fa1cea1667f@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="CwpsPPtJ8s7wyugW"
+Content-Disposition: inline
+In-Reply-To: <20240226-audio-i350-v1-12-4fa1cea1667f@baylibre.com>
+X-Cookie: Walk softly and carry a BFG-9000.
 
-Hello Chris,
 
-Am Mon, Feb 26, 2024 at 10:34:20AM +1300 schrieb Chris Packham:
-> This series adds a driver for a 7 segment LED display.
-> 
-> I'd like to get some feedback on how this could be extended to support >1
-> character. The driver as presented is sufficient for my hardware which only has
-> a single character display but I can see that for this to be generically useful
-> supporting more characters would be desireable.
-> 
-> Earlier I posted an idea that the characters could be represended by
-> sub-nodes[1] but there doesn't seem to be a way of having that and keeping the
-> convenience of using devm_gpiod_get_array() (unless I've missed something).
-> 
-> [1] - https://lore.kernel.org/lkml/2a8d19ee-b18b-4b7c-869f-7d601cea30b6@alliedtelesis.co.nz/
+--CwpsPPtJ8s7wyugW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Read that thread out of curiosity and I'm sorry if I'm late to the
-party, but I wondered why this is limited to LEDs connected to GPIOs?
+On Mon, Feb 26, 2024 at 03:01:50PM +0100, amergnat@baylibre.com wrote:
 
-Would it be possible to somehow stack this on top of some existing
-LEDs?  I mean you could wire a 7 segment device to almost any LED
-driver IC with enough channels, couldn't you?
+> index 000000000000..13e95c227114
+> --- /dev/null
+> +++ b/sound/soc/codecs/mt6357.c
+> @@ -0,0 +1,1805 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * MT6357 ALSA SoC audio codec driver
+> + *
 
-Greets
-Alex
+Please use a C++ comment for the whole comment to make it clearer that
+this is intentional.
 
-> 
-> Chris Packham (3):
->   auxdisplay: Add 7 segment LED display driver
->   dt-bindings: auxdisplay: Add bindings for generic 7 segment LED
->   ARM: dts: marvell: Add 7 segment LED display on x530
-> 
->  .../auxdisplay/generic,gpio-7seg.yaml         |  40 +++++
->  .../boot/dts/marvell/armada-385-atl-x530.dts  |  13 +-
->  drivers/auxdisplay/Kconfig                    |   7 +
->  drivers/auxdisplay/Makefile                   |   1 +
->  drivers/auxdisplay/seg-led.c                  | 152 ++++++++++++++++++
->  5 files changed, 212 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/devicetree/bindings/auxdisplay/generic,gpio-7seg.yaml
->  create mode 100644 drivers/auxdisplay/seg-led.c
-> 
-> -- 
-> 2.43.2
-> 
-> 
+> +static void set_playback_gpio(struct mt6357_priv *priv, bool enable)
+> +{
+> +	if (enable) {
+> +		/* set gpio mosi mode */
+> +		regmap_write(priv->regmap, MT6357_GPIO_MODE2_CLR, GPIO_MODE2_CLEAR_ALL);
+> +		regmap_write(priv->regmap, MT6357_GPIO_MODE2_SET, GPIO8_MODE_SET_AUD_CLK_MOSI |
+> +								  GPIO9_MODE_SET_AUD_DAT_MOSI0 |
+> +								  GPIO10_MODE_SET_AUD_DAT_MOSI1 |
+> +								  GPIO11_MODE_SET_AUD_SYNC_MOSI);
+
+This would be a lot more legible if you worked out the values to set and
+then had a single set of writes, currently the indentation makes it very
+hard to read.  Similarly for other similar functions.
+
+> +static int mt6357_put_volsw(struct snd_kcontrol *kcontrol, struct snd_ctl_elem_value *ucontrol)
+> +{
+> +	struct snd_soc_component *component = snd_soc_kcontrol_component(kcontrol);
+> +	struct mt6357_priv *priv = snd_soc_component_get_drvdata(component);
+> +	struct soc_mixer_control *mc = (struct soc_mixer_control *)kcontrol->private_value;
+> +	unsigned int reg;
+> +	int ret;
+> +
+> +	ret = snd_soc_put_volsw(kcontrol, ucontrol);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	switch (mc->reg) {
+> +	case MT6357_ZCD_CON2:
+> +		regmap_read(priv->regmap, MT6357_ZCD_CON2, &reg);
+> +		priv->ana_gain[ANALOG_VOLUME_HPOUTL] =
+> +			(reg & AUD_HPL_GAIN_MASK) >> AUD_HPL_GAIN_SFT;
+> +		priv->ana_gain[ANALOG_VOLUME_HPOUTR] =
+> +			(reg & AUD_HPR_GAIN_MASK) >> AUD_HPR_GAIN_SFT;
+> +		break;
+
+It would probably be less code and would definitely be clearer and
+simpler to just read the values when we need them rather than constatly
+keeping a cache separate to the register cache.
+
+> +	/* ul channel swap */
+> +	SOC_SINGLE("UL LR Swap", MT6357_AFE_UL_DL_CON0, AFE_UL_LR_SWAP_SFT, 1, 0),
+
+On/off controls should end in Switch.
+
+> +static const char * const hslo_mux_map[] = {
+> +	"Open", "DACR", "Playback", "Test mode"
+> +};
+> +
+> +static int hslo_mux_map_value[] = {
+> +	0x0, 0x1, 0x2, 0x3,
+> +};
+
+Why not just use a normal mux here, there's no missing values or
+reordering?  Similarly for other muxes.
+
+> +static unsigned int mt6357_read(struct snd_soc_component *codec, unsigned int reg)
+> +{
+> +	struct mt6357_priv *priv = snd_soc_component_get_drvdata(codec);
+> +	unsigned int val;
+> +
+> +	pr_debug("%s() reg = 0x%x", __func__, reg);
+> +	regmap_read(priv->regmap, reg, &val);
+> +	return val;
+> +}
+
+Remove these, there are vastly more logging facilities as standard in
+the regmap core.
+
+> +/* Reg bit defines */
+> +/* MT6357_GPIO_DIR0 */
+> +#define GPIO8_DIR_MASK				BIT(8)
+> +#define GPIO8_DIR_INPUT				0
+
+Please namespace your defines, these look very generic.
+
+--CwpsPPtJ8s7wyugW
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXct7QACgkQJNaLcl1U
+h9Agkgf7BBrglcg7jMvSrH2s1xIYkCIuoub5OdCpv9Ph6xdo47W9uy2hoGlAK6nD
+BS+w4kyaZmwgueREI0Rf/l6hYRPKJtWv9emek2zz9z5r4R7xzhdbzj2R4MVJkcJH
+O9QTkYk0PoAJkgVJnH6XNqFGriEYmNxkuRdF4l3Mdbn6KiHlf4XwaqWx29KLmXci
+bxoCisLzrR5rPaZAKPMuf8lPvMAQr19dvvk1RlMkyZ2Di1mpakxQIn+QZY7ja2GI
+dJs9hbr+UAJTCKhf0uhtslARm+WZfNCHtGbr8YUjZnzQ+z6vAcNdTTfgDBYINKSC
+AWTgPQtQPSt9Ti03CsQj0ka+/ujatQ==
+=uDQI
+-----END PGP SIGNATURE-----
+
+--CwpsPPtJ8s7wyugW--
 
