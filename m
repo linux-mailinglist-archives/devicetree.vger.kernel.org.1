@@ -1,276 +1,163 @@
-Return-Path: <devicetree+bounces-45835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C82B866F1C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:47:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A054866F2C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 10:49:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2FE9A286CEB
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 09:47:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C75841F263CE
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 09:49:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 972688529F;
-	Mon, 26 Feb 2024 09:13:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EC6F129A88;
+	Mon, 26 Feb 2024 09:15:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sEkyWpAe"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rzmvm2gp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 568C785294
-	for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 09:13:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E451129A74
+	for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 09:15:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708938810; cv=none; b=gUAm1TpT2n+0Bk4SsPEQwgCMUhmxJYdfPBSakYSCbu0X01npfbGTZeqNYszaBO0NWIdlOMzqF95CGWYITMnyQn0s/wQzpW6K2wgkXTsqGiS5nErLxLpiZjmere/2o5WNWpTrx2NcX9C6Y8atE5PFMeZV++ce3irS7CBEeEvIhx8=
+	t=1708938920; cv=none; b=i/qh+EPSW5lPdj2MkUxz1GNbwhEzI7BfCHExzxoU8arRSfuxZ2c9GaBh6Krn9EBtvhzJD/TnVSWdj2e14lkMUD0wpKMwLQc7WrJVKgFVMTS9pMEM2pUxXskt+RrryNjIqiiuuzUfRWZyxrqB6U/hi1f829aQuNPXZvgWnz9itNA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708938810; c=relaxed/simple;
-	bh=QbANRChfEsLlRShvnymeKAkc2TXGDF3qZnv/aAw/lt0=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=bNEniGx4lHAt5TawU2l/OgymJJNz9y8YxnXuyfks6l6JfRB7r6T4Z1/eag7S07EG03ibH3rYdjoj5pFVSjy6sm5MRFndAyCGQD4Vb/UqLlg1mxuX32P+EjbD+aVi/jN+R4YQq7gpDPAbCRwlvDInK/fBA3eC1JCEvDVW7ch5zRM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sEkyWpAe; arc=none smtp.client-ip=209.85.167.46
+	s=arc-20240116; t=1708938920; c=relaxed/simple;
+	bh=G566LV+/F51/W9KYFln95LPDYYcArDHrm4mzHyYxoZ0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=u2nO6n3WPViV+lCsEgkcZRtP/1QL3Mu+gj3khta7Pg6Fq4KNVMh9Pl+t9Ib32gsBDCgrDzEF/JO83Dv+rqL2r+1o2SJLcBWFH8zCRsqt+ht7AEzrGcQHhJYhv7Pr+uxVKesTThq3C7oXXRe+LM9RVE/RZo21SgVft29eO2/5bjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rzmvm2gp; arc=none smtp.client-ip=209.85.218.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-512e568607aso2538954e87.1
-        for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 01:13:28 -0800 (PST)
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a3d5e77cfbeso493929766b.0
+        for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 01:15:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708938806; x=1709543606; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=dLR1nF0u3m/pNXvlylaKQvnEVsgTQRO3IAjTH1HLyfw=;
-        b=sEkyWpAeDQOZQR6nN/M7xF9xlp0MWjkzpNQQyuOSm4cWUhBSSPAkbrp2pAIyc9XGNe
-         O3sbGhdEPSbBmEuCty/15w0gbaSwVOxlH2ihGxkvhc6zFT/mcOQ+4y5mx4MWFwp6Zxbd
-         BDiRRz6YRnnNh5N5CA1GQ5ogy9Xs4ikQXkef7Eo4hhjG2nOnOiiZo1TBEZHDgZucsCR6
-         +t0yJ7X+iP5/Mn4MCKmNLtdismu/rtCG0e9t7vq5KdaHejM5IUCVos/nj5Gtqq5Ca0OV
-         xAod0XWGtzuxzompIC4B5tpfpNjy0j2hzN4J9a/iEDsBgkhLIZXoZSm2rn44C7g75Kls
-         UaSA==
+        d=linaro.org; s=google; t=1708938917; x=1709543717; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wlH1Ter4o/LuhmUGIySGl8jfbKhW6NJPyE0QFDQ/6s4=;
+        b=rzmvm2gpLi5FHXiOATNBh0HPBz6oZK3tydPONzg486EPi+f+whxmorKHyAtJCQgihS
+         waGCktYzu1er1GADpg9n5pLevWKBJlwlxC8weJkbQtOCifNuGOq3a5KhzZad7gjedCyo
+         +lgMyZ3g7rxBGrOgnYDCeSyT0eBz0Vi6S6IXVBs2OvYnihxMHkFxaLL19g9YzkJR6mye
+         RsixNiZZ9zIPc293Rq6jkJD6WUaYd0tO/GSgychq79NUPetImQU6weoikR8qiiVflAeb
+         OYmkLfYGwr0/Diz36Vdv/QeGAyW3JWo8yV0HgHmGSv3Y77LCnx4VnhUvwDe4ZMEAfdZf
+         whsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708938806; x=1709543606;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dLR1nF0u3m/pNXvlylaKQvnEVsgTQRO3IAjTH1HLyfw=;
-        b=cesbMoNEd6JT9xXx9ZBnJNk8y/o1s/CUZfpiH7TdX72nGByIAD9T8FevYiF+PfOeuY
-         w1pInaub0Zl/ydBiAr8cNtFKQE6S8kyOBSG2CU3dRVjQKgz2O8Rm4SROs3G8cIq5P+C+
-         GN9zXp+8m0EHv5tNrxoseV9PtXKwgIIOHugS4uPNukcnqto7dH99yJDc+SJ2lGsZgwnr
-         X2IDYLy35xwow8EnSOB1F8NOLav3pkXbqlORm9HlLkDuF5WvyYQFgbxYszy3G6+Eipct
-         eMPi34SFbLRjt+vyUrFJhLvm9TDihVCJAZSFKMfOWA9gJe8OveZDy8vH/YBWz8ioqEt4
-         3+qg==
-X-Forwarded-Encrypted: i=1; AJvYcCVJz5EaQ8nhYpoNbHc62atTSNCPQLn9RUvZ6AatyqR5jXjbDTHoJFdRhXD/rA+k8t5iREtnj+oz5IFzJS4mwBHqF1fI9epnO51ePg==
-X-Gm-Message-State: AOJu0YwWkYL1cR0Oo2G9NYzFlIzfLoiPM6xBExD/RQmrC32PILUoxm+I
-	jzXk+oXACJrTb9UOoRQpOHxIL2Mq8wMT9X6an4SE5eZC3Hr10M9dxdD9WXm88q8=
-X-Google-Smtp-Source: AGHT+IFzkpKEy758/uKgT+OoHpp+sYhJU6lmcs5xoEid5uQRGgRW7kbOrz6EGxUCtJtLuE7J5fYh7Q==
-X-Received: by 2002:a19:5e19:0:b0:512:b27c:18b5 with SMTP id s25-20020a195e19000000b00512b27c18b5mr3776613lfb.30.1708938806264;
-        Mon, 26 Feb 2024 01:13:26 -0800 (PST)
-Received: from localhost ([102.222.70.76])
-        by smtp.gmail.com with ESMTPSA id r15-20020adfce8f000000b0033db2d6bf83sm7550422wrn.34.2024.02.26.01.13.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Feb 2024 01:13:26 -0800 (PST)
-Date: Mon, 26 Feb 2024 12:13:22 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev,
-	Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>,
-	Yisen Zhuang <yisen.zhuang@huawei.com>,
-	Salil Mehta <salil.mehta@huawei.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Yang Xiwen <forbidden405@foxmail.com>, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/6] net: hisilicon: add support for hisi_femac core on
- Hi3798MV200
-Message-ID: <8af83663-e7d9-4a18-833f-a32df97b96e7@moroto.mountain>
+        d=1e100.net; s=20230601; t=1708938917; x=1709543717;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wlH1Ter4o/LuhmUGIySGl8jfbKhW6NJPyE0QFDQ/6s4=;
+        b=UQrDH9OY9oM/R6nqsN7L9L8EFGpaj4jaYV+iHuM1NfkaU0pDptubGepWGw3yCZoBVI
+         mOtLZHMidkhMhk4ngAge8dgLjsk4rJkdDtTnvoR+22d6wZcWSxpcUURkITLxoQ3WFP3p
+         ys1jw6bHPwIv3vf7MO9j2RgJp9DrfD5Wtyg239nK5po5600JnuAAuWbrzLRMF0RtHsTx
+         J4+btTfY2e6/ZYgBPsN5j6pEFC53BkQT3mfRVLbMKS9A4ajv0N4DHRPrdcwwENs9z9YO
+         eCUdr7dGtdJZwLP7bsB+92OjDeOxlnCMH45ozgEjMoy7h8vXU+nVUZr2YmrfVkoTOVsk
+         Le5Q==
+X-Gm-Message-State: AOJu0YyKt30tJpUbBgh84riWx4BpkKZgYT0KYziotqPReAZ6piiZBSKd
+	G9a//NP0uXoXdvBMpy0SaH4VQQ1MniyAJFdPcvnUFnFyl21dBkgVOLKrtx1BdGE=
+X-Google-Smtp-Source: AGHT+IEXUVR/N8Ym4kzVlbEuwaD2lWsgOYP5/F36Su6nMdyWMJ//J8As/t2DKFX23EsFXq+ZVVEfZg==
+X-Received: by 2002:a17:906:1745:b0:a3f:2168:214b with SMTP id d5-20020a170906174500b00a3f2168214bmr5890928eje.1.1708938916861;
+        Mon, 26 Feb 2024 01:15:16 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.116])
+        by smtp.gmail.com with ESMTPSA id tl18-20020a170907c31200b00a437d3e975esm167009ejc.210.2024.02.26.01.15.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Feb 2024 01:15:16 -0800 (PST)
+Message-ID: <310cefcb-a4d5-4f4f-a482-ba2ff08a57f6@linaro.org>
+Date: Mon, 26 Feb 2024 10:15:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240216-net-v1-1-e0ad972cda99@outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 9/9] ARM: dts: chameleonv3: Add video device nodes
+Content-Language: en-US
+To: =?UTF-8?Q?Pawe=C5=82_Anikiel?= <panikiel@google.com>, airlied@gmail.com,
+ akpm@linux-foundation.org, conor+dt@kernel.org, daniel@ffwll.ch,
+ dinguyen@kernel.org, hverkuil-cisco@xs4all.nl,
+ krzysztof.kozlowski+dt@linaro.org, maarten.lankhorst@linux.intel.com,
+ mchehab@kernel.org, mripard@kernel.org, robh+dt@kernel.org,
+ tzimmermann@suse.de
+Cc: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ chromeos-krk-upstreaming@google.com, ribalda@chromium.org
+References: <20240221160215.484151-1-panikiel@google.com>
+ <20240221160215.484151-10-panikiel@google.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240221160215.484151-10-panikiel@google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Yang,
+On 21/02/2024 17:02, Paweł Anikiel wrote:
+> Add device nodes for the video system present on the Chameleon v3.
+> It consists of six framebuffers and two Intel Displayport receivers.
+> 
+> Signed-off-by: Paweł Anikiel <panikiel@google.com>
+> ---
 
-kernel test robot noticed the following build warnings:
+...
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Yang-Xiwen-via-B4-Relay/net-hisilicon-add-support-for-hisi_femac-core-on-Hi3798MV200/20240216-075015
-base:   8d3dea210042f54b952b481838c1e7dfc4ec751d
-patch link:    https://lore.kernel.org/r/20240216-net-v1-1-e0ad972cda99%40outlook.com
-patch subject: [PATCH 1/6] net: hisilicon: add support for hisi_femac core on Hi3798MV200
-config: arm-randconfig-r081-20240223 (https://download.01.org/0day-ci/archive/20240224/202402242354.leEII4M9-lkp@intel.com/config)
-compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project edd4aee4dd9b5b98b2576a6f783e4086173d902a)
+> +		dprx_sst: dp-receiver@c0064000 {
+> +			compatible = "intel,dprx-20.0.1";
+> +			reg = <0xc0064000 0x800>;
+> +			interrupt-parent = <&dprx_sst_irq>;
+> +			interrupts = <0 IRQ_TYPE_EDGE_RISING>;
+> +			intel,max-link-rate = <0x1e>;
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202402242354.leEII4M9-lkp@intel.com/
+Rate is not in hex! Rate is in Hz, at least usually...
 
-smatch warnings:
-drivers/net/ethernet/hisilicon/hisi_femac.c:931 hisi_femac_drv_probe() error: uninitialized symbol 'ret'.
+Fix your bindings...
 
-vim +/ret +931 drivers/net/ethernet/hisilicon/hisi_femac.c
-
-542ae60af24f02 Dongpo Li      2016-07-15  786  static int hisi_femac_drv_probe(struct platform_device *pdev)
-542ae60af24f02 Dongpo Li      2016-07-15  787  {
-542ae60af24f02 Dongpo Li      2016-07-15  788  	struct device *dev = &pdev->dev;
-3c2c758a1607ea Yang Xiwen     2024-02-16  789  	struct device_node *node = dev->of_node, *mdio_np;
-542ae60af24f02 Dongpo Li      2016-07-15  790  	struct net_device *ndev;
-542ae60af24f02 Dongpo Li      2016-07-15  791  	struct hisi_femac_priv *priv;
-542ae60af24f02 Dongpo Li      2016-07-15  792  	struct phy_device *phy;
-3c2c758a1607ea Yang Xiwen     2024-02-16  793  	int ret, i;
-3c2c758a1607ea Yang Xiwen     2024-02-16  794  	bool mdio_registered = false;
-3c2c758a1607ea Yang Xiwen     2024-02-16  795  	static const char * const clk_strs[] = {
-3c2c758a1607ea Yang Xiwen     2024-02-16  796  		[CLK_MAC] = "mac",
-3c2c758a1607ea Yang Xiwen     2024-02-16  797  		[CLK_BUS] = "bus",
-3c2c758a1607ea Yang Xiwen     2024-02-16  798  		[CLK_PHY] = "phy",
-3c2c758a1607ea Yang Xiwen     2024-02-16  799  	};
-542ae60af24f02 Dongpo Li      2016-07-15  800  
-542ae60af24f02 Dongpo Li      2016-07-15  801  	ndev = alloc_etherdev(sizeof(*priv));
-542ae60af24f02 Dongpo Li      2016-07-15  802  	if (!ndev)
-542ae60af24f02 Dongpo Li      2016-07-15  803  		return -ENOMEM;
-542ae60af24f02 Dongpo Li      2016-07-15  804  
-542ae60af24f02 Dongpo Li      2016-07-15  805  	platform_set_drvdata(pdev, ndev);
-2087d421a5a1af Dongpo Li      2016-12-12  806  	SET_NETDEV_DEV(ndev, &pdev->dev);
-542ae60af24f02 Dongpo Li      2016-07-15  807  
-542ae60af24f02 Dongpo Li      2016-07-15  808  	priv = netdev_priv(ndev);
-542ae60af24f02 Dongpo Li      2016-07-15  809  	priv->dev = dev;
-542ae60af24f02 Dongpo Li      2016-07-15  810  	priv->ndev = ndev;
-542ae60af24f02 Dongpo Li      2016-07-15  811  
-56170ba3bd9098 Jiangfeng Xiao 2019-07-12  812  	priv->port_base = devm_platform_ioremap_resource(pdev, 0);
-542ae60af24f02 Dongpo Li      2016-07-15  813  	if (IS_ERR(priv->port_base)) {
-542ae60af24f02 Dongpo Li      2016-07-15  814  		ret = PTR_ERR(priv->port_base);
-542ae60af24f02 Dongpo Li      2016-07-15  815  		goto out_free_netdev;
-542ae60af24f02 Dongpo Li      2016-07-15  816  	}
-542ae60af24f02 Dongpo Li      2016-07-15  817  
-56170ba3bd9098 Jiangfeng Xiao 2019-07-12  818  	priv->glb_base = devm_platform_ioremap_resource(pdev, 1);
-542ae60af24f02 Dongpo Li      2016-07-15  819  	if (IS_ERR(priv->glb_base)) {
-542ae60af24f02 Dongpo Li      2016-07-15  820  		ret = PTR_ERR(priv->glb_base);
-542ae60af24f02 Dongpo Li      2016-07-15  821  		goto out_free_netdev;
-542ae60af24f02 Dongpo Li      2016-07-15  822  	}
-542ae60af24f02 Dongpo Li      2016-07-15  823  
-3c2c758a1607ea Yang Xiwen     2024-02-16  824  	for (i = 0; i < CLK_NUM; i++) {
-3c2c758a1607ea Yang Xiwen     2024-02-16  825  		priv->clks[i] = devm_clk_get_enabled(&pdev->dev, clk_strs[i]);
-3c2c758a1607ea Yang Xiwen     2024-02-16  826  		if (IS_ERR(priv->clks[i])) {
-3c2c758a1607ea Yang Xiwen     2024-02-16  827  			dev_err(dev, "failed to get enabled clk %s: %ld\n", clk_strs[i],
-3c2c758a1607ea Yang Xiwen     2024-02-16  828  				PTR_ERR(priv->clks[i]));
-542ae60af24f02 Dongpo Li      2016-07-15  829  			ret = -ENODEV;
-542ae60af24f02 Dongpo Li      2016-07-15  830  			goto out_free_netdev;
-542ae60af24f02 Dongpo Li      2016-07-15  831  		}
-542ae60af24f02 Dongpo Li      2016-07-15  832  	}
-542ae60af24f02 Dongpo Li      2016-07-15  833  
-542ae60af24f02 Dongpo Li      2016-07-15  834  	priv->mac_rst = devm_reset_control_get(dev, "mac");
-542ae60af24f02 Dongpo Li      2016-07-15  835  	if (IS_ERR(priv->mac_rst)) {
-542ae60af24f02 Dongpo Li      2016-07-15  836  		ret = PTR_ERR(priv->mac_rst);
-3c2c758a1607ea Yang Xiwen     2024-02-16  837  		goto out_free_netdev;
-542ae60af24f02 Dongpo Li      2016-07-15  838  	}
-542ae60af24f02 Dongpo Li      2016-07-15  839  	hisi_femac_core_reset(priv);
-542ae60af24f02 Dongpo Li      2016-07-15  840  
-542ae60af24f02 Dongpo Li      2016-07-15  841  	priv->phy_rst = devm_reset_control_get(dev, "phy");
-542ae60af24f02 Dongpo Li      2016-07-15  842  	if (IS_ERR(priv->phy_rst)) {
-542ae60af24f02 Dongpo Li      2016-07-15  843  		priv->phy_rst = NULL;
-542ae60af24f02 Dongpo Li      2016-07-15  844  	} else {
-542ae60af24f02 Dongpo Li      2016-07-15  845  		ret = of_property_read_u32_array(node,
-542ae60af24f02 Dongpo Li      2016-07-15  846  						 PHY_RESET_DELAYS_PROPERTY,
-542ae60af24f02 Dongpo Li      2016-07-15  847  						 priv->phy_reset_delays,
-542ae60af24f02 Dongpo Li      2016-07-15  848  						 DELAYS_NUM);
-542ae60af24f02 Dongpo Li      2016-07-15  849  		if (ret)
-3c2c758a1607ea Yang Xiwen     2024-02-16  850  			goto out_free_netdev;
-542ae60af24f02 Dongpo Li      2016-07-15  851  		hisi_femac_phy_reset(priv);
-542ae60af24f02 Dongpo Li      2016-07-15  852  	}
-542ae60af24f02 Dongpo Li      2016-07-15  853  
-3c2c758a1607ea Yang Xiwen     2024-02-16  854  	// Register the optional MDIO bus
-3c2c758a1607ea Yang Xiwen     2024-02-16  855  	for_each_available_child_of_node(node, mdio_np) {
-3c2c758a1607ea Yang Xiwen     2024-02-16  856  		if (of_node_name_prefix(mdio_np, "mdio")) {
-3c2c758a1607ea Yang Xiwen     2024-02-16  857  			priv->mdio_pdev = of_platform_device_create(mdio_np, NULL, dev);
-3c2c758a1607ea Yang Xiwen     2024-02-16  858  			of_node_put(mdio_np);
-3c2c758a1607ea Yang Xiwen     2024-02-16  859  			if (!priv->mdio_pdev) {
-3c2c758a1607ea Yang Xiwen     2024-02-16  860  				dev_err(dev, "failed to register MDIO bus device\n");
-
-ret = -ENOMEM;
-
-3c2c758a1607ea Yang Xiwen     2024-02-16  861  				goto out_free_netdev;
-3c2c758a1607ea Yang Xiwen     2024-02-16  862  			}
-3c2c758a1607ea Yang Xiwen     2024-02-16  863  			mdio_registered = true;
-3c2c758a1607ea Yang Xiwen     2024-02-16  864  			break;
-3c2c758a1607ea Yang Xiwen     2024-02-16  865  		}
-3c2c758a1607ea Yang Xiwen     2024-02-16  866  	}
-3c2c758a1607ea Yang Xiwen     2024-02-16  867  
-3c2c758a1607ea Yang Xiwen     2024-02-16  868  	if (!mdio_registered)
-3c2c758a1607ea Yang Xiwen     2024-02-16  869  		dev_warn(dev, "MDIO subnode notfound. This is usually a bug.\n");
-3c2c758a1607ea Yang Xiwen     2024-02-16  870  
-542ae60af24f02 Dongpo Li      2016-07-15  871  	phy = of_phy_get_and_connect(ndev, node, hisi_femac_adjust_link);
-542ae60af24f02 Dongpo Li      2016-07-15  872  	if (!phy) {
-542ae60af24f02 Dongpo Li      2016-07-15  873  		dev_err(dev, "connect to PHY failed!\n");
-542ae60af24f02 Dongpo Li      2016-07-15  874  		ret = -ENODEV;
-3c2c758a1607ea Yang Xiwen     2024-02-16  875  		goto out_unregister_mdio_bus;
-542ae60af24f02 Dongpo Li      2016-07-15  876  	}
-542ae60af24f02 Dongpo Li      2016-07-15  877  
-542ae60af24f02 Dongpo Li      2016-07-15  878  	phy_attached_print(phy, "phy_id=0x%.8lx, phy_mode=%s\n",
-542ae60af24f02 Dongpo Li      2016-07-15  879  			   (unsigned long)phy->phy_id,
-542ae60af24f02 Dongpo Li      2016-07-15  880  			   phy_modes(phy->interface));
-542ae60af24f02 Dongpo Li      2016-07-15  881  
-9ca01b25dffffe Jakub Kicinski 2021-10-06  882  	ret = of_get_ethdev_address(node, ndev);
-83216e3988cd19 Michael Walle  2021-04-12  883  	if (ret) {
-542ae60af24f02 Dongpo Li      2016-07-15  884  		eth_hw_addr_random(ndev);
-542ae60af24f02 Dongpo Li      2016-07-15  885  		dev_warn(dev, "using random MAC address %pM\n",
-542ae60af24f02 Dongpo Li      2016-07-15  886  			 ndev->dev_addr);
-542ae60af24f02 Dongpo Li      2016-07-15  887  	}
-542ae60af24f02 Dongpo Li      2016-07-15  888  
-542ae60af24f02 Dongpo Li      2016-07-15  889  	ndev->watchdog_timeo = 6 * HZ;
-542ae60af24f02 Dongpo Li      2016-07-15  890  	ndev->priv_flags |= IFF_UNICAST_FLT;
-542ae60af24f02 Dongpo Li      2016-07-15  891  	ndev->netdev_ops = &hisi_femac_netdev_ops;
-542ae60af24f02 Dongpo Li      2016-07-15  892  	ndev->ethtool_ops = &hisi_femac_ethtools_ops;
-b707b89f7be361 Jakub Kicinski 2022-05-06  893  	netif_napi_add_weight(ndev, &priv->napi, hisi_femac_poll,
-b707b89f7be361 Jakub Kicinski 2022-05-06  894  			      FEMAC_POLL_WEIGHT);
-542ae60af24f02 Dongpo Li      2016-07-15  895  
-542ae60af24f02 Dongpo Li      2016-07-15  896  	hisi_femac_port_init(priv);
-542ae60af24f02 Dongpo Li      2016-07-15  897  
-542ae60af24f02 Dongpo Li      2016-07-15  898  	ret = hisi_femac_init_tx_and_rx_queues(priv);
-542ae60af24f02 Dongpo Li      2016-07-15  899  	if (ret)
-542ae60af24f02 Dongpo Li      2016-07-15  900  		goto out_disconnect_phy;
-542ae60af24f02 Dongpo Li      2016-07-15  901  
-542ae60af24f02 Dongpo Li      2016-07-15  902  	ndev->irq = platform_get_irq(pdev, 0);
-ae1d60c41e581b Ruan Jinjie    2023-07-31  903  	if (ndev->irq < 0) {
-ae1d60c41e581b Ruan Jinjie    2023-07-31  904  		ret = ndev->irq;
-542ae60af24f02 Dongpo Li      2016-07-15  905  		goto out_disconnect_phy;
-542ae60af24f02 Dongpo Li      2016-07-15  906  	}
-542ae60af24f02 Dongpo Li      2016-07-15  907  
-542ae60af24f02 Dongpo Li      2016-07-15  908  	ret = devm_request_irq(dev, ndev->irq, hisi_femac_interrupt,
-542ae60af24f02 Dongpo Li      2016-07-15  909  			       IRQF_SHARED, pdev->name, ndev);
-542ae60af24f02 Dongpo Li      2016-07-15  910  	if (ret) {
-542ae60af24f02 Dongpo Li      2016-07-15  911  		dev_err(dev, "devm_request_irq %d failed!\n", ndev->irq);
-542ae60af24f02 Dongpo Li      2016-07-15  912  		goto out_disconnect_phy;
-542ae60af24f02 Dongpo Li      2016-07-15  913  	}
-542ae60af24f02 Dongpo Li      2016-07-15  914  
-542ae60af24f02 Dongpo Li      2016-07-15  915  	ret = register_netdev(ndev);
-542ae60af24f02 Dongpo Li      2016-07-15  916  	if (ret) {
-542ae60af24f02 Dongpo Li      2016-07-15  917  		dev_err(dev, "register_netdev failed!\n");
-542ae60af24f02 Dongpo Li      2016-07-15  918  		goto out_disconnect_phy;
-542ae60af24f02 Dongpo Li      2016-07-15  919  	}
-542ae60af24f02 Dongpo Li      2016-07-15  920  
-542ae60af24f02 Dongpo Li      2016-07-15  921  	return ret;
-542ae60af24f02 Dongpo Li      2016-07-15  922  
-542ae60af24f02 Dongpo Li      2016-07-15  923  out_disconnect_phy:
-542ae60af24f02 Dongpo Li      2016-07-15  924  	netif_napi_del(&priv->napi);
-542ae60af24f02 Dongpo Li      2016-07-15  925  	phy_disconnect(phy);
-3c2c758a1607ea Yang Xiwen     2024-02-16  926  out_unregister_mdio_bus:
-3c2c758a1607ea Yang Xiwen     2024-02-16  927  	platform_device_unregister(priv->mdio_pdev);
-542ae60af24f02 Dongpo Li      2016-07-15  928  out_free_netdev:
-542ae60af24f02 Dongpo Li      2016-07-15  929  	free_netdev(ndev);
-542ae60af24f02 Dongpo Li      2016-07-15  930  
-542ae60af24f02 Dongpo Li      2016-07-15 @931  	return ret;
-542ae60af24f02 Dongpo Li      2016-07-15  932  }
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Best regards,
+Krzysztof
 
 
