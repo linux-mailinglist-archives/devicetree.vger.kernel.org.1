@@ -1,176 +1,128 @@
-Return-Path: <devicetree+bounces-45988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 047C08678E7
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 15:46:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 893DB867973
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 16:06:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F8F51F27B52
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 14:46:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D38C1F2BD2E
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 15:06:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BDC6134CC1;
-	Mon, 26 Feb 2024 14:36:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A10B5131743;
+	Mon, 26 Feb 2024 14:44:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="iKTqD1KN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oqqs7shT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D58C6134727;
-	Mon, 26 Feb 2024 14:36:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C189012BE9F
+	for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 14:44:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708958166; cv=none; b=LGCeAEUgHGHdLfxO8zk7fCqey//n4DP7OM9VOQqo3lrtiIpL6ajrSHUUbFdklB9PH8zl3x6Gki6fQbJ/E8UrlfBaGlpHJ6TUWLz6QG84vxAH4lsBO03+Cz6jsqzZ2qoRwrakNiWiH49vHmmlkXiwSA8qcytL/C2n5l2kIWH7aGA=
+	t=1708958686; cv=none; b=EruFUvx+NBBAtZtUwdrVDuW1OBPRIjD7uniKM7oMvxPbN0Cewyj6oP9xHrmLdoaWr6mI0KFj4809FB2m4tzYmAwvq8VEUBaoXREROZbe6TBaXGsWju+pYQlc5hhDnJJ9jPUnqRkRtFCGWCeaqUKU3DwgxHZpsNG+TdskWYFbadA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708958166; c=relaxed/simple;
-	bh=9ywEGY5Eo3x6FAI3cUqz0fj17fVyroyFNHMiCN6mL/0=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
-	 References:In-Reply-To; b=AL3yII8vq0mTujTbnvC0jhlf86YzXSYe9nmhJB7H7mLfiJ7XD14Q1XRx1qqy8vRZJG5wwdBX1UDQLpuFfQU2U71yd1IYvSHpCflQ9XyIJCTs/NY+57Nat6XgensQqeNUTvtCz2xRt6C6Gbosb5QGuzay2XDJ4gohBXKMzgibQe8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=iKTqD1KN; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 751121BF209;
-	Mon, 26 Feb 2024 14:35:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1708958161;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=xzRRKGTCf49DCuAE0sJucov1JPKZw/oB6zFjk/bAKO0=;
-	b=iKTqD1KNUEKWwhSN9AhG2JhtpDWL87tAJ9I4T86LLIn0QkDMqI+Oq/4+t5fhJHfsecTixf
-	s+/UCitLkC/j7Yzf2luIY9kN/WVrqMOEEhpie7a1JCoV8PxKfF7ZsBq1MSbynBrgmJ/0G8
-	ZxSoSjSk+MX665A3cbZFKu1gKOPna55GAkVF91br9adMhh4PNkUAXQV2JhQDci4qKmmejm
-	JL2SGM4FZHA5FflxtIvKquzoswqNZ3772Bw7PYJFrEI13XKigy9mEFjpYofCBWCbm8cCGy
-	ekDso4pH4pexQ/dQvsW+ccS6C8ALdQM9DHAkXv9hA7YZiY3GXIkRlLIWyj4lqg==
+	s=arc-20240116; t=1708958686; c=relaxed/simple;
+	bh=+7EGPxI8njojWIFtKK0niBxOgiA/ror8Zq84fmjVI+s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IK3yrN0A9yHlivO4f19q8fNQMHah87gXpQSncqW+bobmcB/8gqWEjul2BFoWq+1IVKbpSvmVsb//KbX7M1G7AYz8IvmcKWIN4KHqHy9OCtX2U3/EsbJ730V7zOxsNMAGL5NEV8lBWHJo1RcQABD/KGOeIbgmH6jQhdysYeiW9cc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oqqs7shT; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-412a882bd4eso3565595e9.1
+        for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 06:44:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708958683; x=1709563483; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xebCF9Rlp7+lnTRinKmQM1qUIifmCWo6oOreD/07nk0=;
+        b=oqqs7shTGESEKQNn6q9EY0l+JAG9rPGh9KneyUKyY1Gb/QVjOzpdbXgc9gc7TdXgKW
+         yzIWcNlbH0QNXTfH55/oeUkSA1Tx2roq1KL9bb/smfdYRgPWuJF8PZ6MDMP/uuKJAMHA
+         lL9g43jLJKeyD0Ktc9YGjAfYUKYb5iq0jcA4DMRU3JtaiU9D1IcP6OwsMqApQtRx+y6Y
+         CMZpIne3ANYaKB5apSijLkgSG5F/hbVOAHoqcC01KkFhcdM4jp9S18Ezj4fYVac1DTB5
+         HAmUafG5tWnWHduUJf9Yfa2J3nnR2v+bOez0FE4dCY2m0t5bLf3dAegtdkwsVSsAy6Li
+         0vVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708958683; x=1709563483;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xebCF9Rlp7+lnTRinKmQM1qUIifmCWo6oOreD/07nk0=;
+        b=hW63VDvPhzmrdCDSgjjvYQID1UvaHnQDPZUTkVUuWXDtEitOMKvoFXwsCv57NnkMLI
+         W9o85rhkSqb7kSsQiqGdEipvCv41qFjHDCKxRWSgzWNWnQ/U9H93gd7TrQxAaaX5cByZ
+         G9YfLGFN6Ohq8NZnCp0L2GsDNkChWxtHD9CTMFECWG3EiTsHA4lSxm9NKcqG2kwz07+n
+         SPb2i2vA/j81YlrqSD8E/K4rbfP74p6bMHSL0GpefjUWo2jPBhbVBLi4+qojSzHi9jYb
+         2vfck1El55hJP7f+rGiUIYwpB3XM9esqrXqA9poSo0dCsBl6QYVLG32UOczGZQA1nfcg
+         Y5fQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVnfo2gUQXsdRPS8ypqe9FAJXmfTKyiT8W/QNPs44Rv3aZ18zBO7Zlnl3312uudBkoKhiu/0jI22AZeKh+9XWmAG1OS+LGnjC1ZQg==
+X-Gm-Message-State: AOJu0YyDt3Po9axs9p1SPuZGcVc5CWWTiCPGdPWI+8/MpNZDUx1Pg2b4
+	2091UH0zT9BM5NT4E1L741Z+lfV8V1n8UskXpgQA4j3V+Y7arToQVE11BFqRRs8=
+X-Google-Smtp-Source: AGHT+IG9SpqrImlSczgJxnpgDOf0lff+zMPddH3C9S1iodwRZL/rSMYdzPAPbQ3AXMmt1pT+Z1JJIw==
+X-Received: by 2002:a05:600c:35d1:b0:412:a927:a646 with SMTP id r17-20020a05600c35d100b00412a927a646mr582114wmq.24.1708958683167;
+        Mon, 26 Feb 2024 06:44:43 -0800 (PST)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id n1-20020a05600c4f8100b004127ead18aasm8586036wmq.22.2024.02.26.06.44.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Feb 2024 06:44:42 -0800 (PST)
+Message-ID: <46630fa5-381a-4006-ade4-2c18e76331ff@linaro.org>
+Date: Mon, 26 Feb 2024 15:44:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 26 Feb 2024 15:35:59 +0100
-Message-Id: <CZF33W51MC4M.3GUBZFQXT39DB@bootlin.com>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH v3 1/8] dt-bindings: usb: ti,j721e-usb: drop useless
- compatible list
-Cc: "Conor Dooley" <conor@kernel.org>, "Greg Kroah-Hartman"
- <gregkh@linuxfoundation.org>, "Rob Herring" <robh+dt@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Roger Quadros" <rogerq@kernel.org>, "Peter Chen"
- <peter.chen@kernel.org>, "Pawel Laszczak" <pawell@cadence.com>, "Nishanth
- Menon" <nm@ti.com>, "Vignesh Raghavendra" <vigneshr@ti.com>, "Tero Kristo"
- <kristo@kernel.org>, "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>,
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Kevin
- Hilman" <khilman@kernel.org>, "Alan Stern" <stern@rowland.harvard.edu>,
- <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-To: "Conor Dooley" <conor.dooley@microchip.com>
-X-Mailer: aerc 0.15.2
-References: <20240223-j7200-usb-suspend-v3-0-b41c9893a130@bootlin.com>
- <20240223-j7200-usb-suspend-v3-1-b41c9893a130@bootlin.com>
- <20240223-clarity-variably-206b01b7276a@spud>
- <CZEXXXQDZZWB.1M5CTZAFVO4YP@bootlin.com>
- <20240226-portable-rockslide-e501667a0d9a@wendy>
-In-Reply-To: <20240226-portable-rockslide-e501667a0d9a@wendy>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] dt-bindings: timer: Add support for cadence TTC PWM
+Content-Language: en-US
+To: Mubin Sayyed <mubin.sayyed@amd.com>, krzysztof.kozlowski+dt@linaro.org,
+ robh+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+Cc: tglx@linutronix.de, michal.simek@amd.com, linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20240226093333.2581092-1-mubin.sayyed@amd.com>
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20240226093333.2581092-1-mubin.sayyed@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hello,
+On 26/02/2024 10:33, Mubin Sayyed wrote:
+> Cadence TTC can act as PWM device, it will be supported through
+> separate PWM framework based driver. Decision to configure
+> specific TTC device as PWM or clocksource/clockevent would
+> be done based on presence of "#pwm-cells" property.
+> 
+> Also, interrupt property is not required for TTC PWM driver.
+> Update bindings to support TTC PWM configuration.
+> 
+> Signed-off-by: Mubin Sayyed <mubin.sayyed@amd.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+> Changes for v3:
+>    Add Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>    tag
+>    Remove bindings from subject
+>    1/3 and 3/3 are dropped as of now (WIP).
+> 
+> Changes for v2:
+>    Update subject
+>    Modify #pwm-cells to constant 3
+>    Update example to use generic name
+> 
+> link for v2:
+>    https://lore.kernel.org/linux-arm-kernel/20231114124748.581850-2-mubin.sayyed@amd.com/T/
+> ---
 
-On Mon Feb 26, 2024 at 12:56 PM CET, Conor Dooley wrote:
-> On Mon, Feb 26, 2024 at 11:33:06AM +0100, Th=C3=A9o Lebrun wrote:
-> > Hello Conor,
-> >=20
-> > On Fri Feb 23, 2024 at 7:12 PM CET, Conor Dooley wrote:
-> > > On Fri, Feb 23, 2024 at 05:05:25PM +0100, Th=C3=A9o Lebrun wrote:
-> > > > Compatible can be A or B, not A or B or A+B. Remove last option.
-> > > > A=3Dti,j721e-usb and B=3Dti,am64-usb.
-> > > >=20
-> > > > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
-> > > > ---
-> > > >  Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml | 9 +++---=
----
-> > > >  1 file changed, 3 insertions(+), 6 deletions(-)
-> > > >=20
-> > > > diff --git a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yam=
-l b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-> > > > index 95ff9791baea..949f45eb45c2 100644
-> > > > --- a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-> > > > +++ b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-> > > > @@ -11,12 +11,9 @@ maintainers:
-> > > > =20
-> > > >  properties:
-> > > >    compatible:
-> > > > -    oneOf:
-> > > > -      - const: ti,j721e-usb
-> > > > -      - const: ti,am64-usb
-> > > > -      - items:
-> > > > -          - const: ti,j721e-usb
-> > > > -          - const: ti,am64-usb
-> > >
-> > > Correct, this makes no sense. The devices seem to be compatible thoug=
-h,
-> > > so I would expect this to actually be:
-> > > oneOf:
-> > >   - const: ti,j721e-usb
-> > >   - items:
-> > >       - const: ti,am64-usb
-> > >       - const: ti,j721e-usb
-> >=20
-> > I need your help to grasp what that change is supposed to express? Woul=
-d
-> > you mind turning it into english sentences?
-> > A=3Dti,j721e-usb and B=3Dti,am64-usb. My understanding of your proposal=
- is
-> > that a device can either be compat with A or B. But B is compatible
-> > with A so you express it as a list of items. If B is compat with A then
-> > A is compat with B. Does the order of items matter?
->
-> The two devices are compatible with each other, based on an inspection of
-> the driver and the existing "A+B" setup. If this was a newly submitted
-> binding, "B" would not get approved because "A+B" allows support without
-> software changes and all that jazz.
->
-> Your patch says that allowing "A", "B" and "A+B" makes no sense and you
-> suggest removing "A+B". I am agreeing that it makes no sense to allow
-> all 3 of these situations.
->
-> What I also noticed is other problems with the binding. What should have
-> been "A+B" is actually documented as "B+A", but that doesn't make sense
-> when the originally supported device is "A".
->
-> Therefore my suggestion was to only allow "A" and "A+B", which is what
-> we would (hopefully) tell you to do were you submitting the am64 support
-> as a new patch today.
+Applied, thanks
 
-Thank you for the in-depth explanation! It makes much more sense now,
-especially the handling of historic stuff that ideally wouldn't have
-been done this way but that won't be changed from now on.
 
-> > I've not applied your proposal to check for dtbs_check but I'd guess it
-> > would throw warnings for the single existing upstream DTSI (as of
-> > v6.8-rc6) that uses "ti,am64-usb"? See:
-> > arch/arm64/boot/dts/ti/k3-am64-main.dtsi.
->
-> Yeah, it would but it's not as if that cannot be changed. There's no
-> concerns here about backwards compatibility here, right?
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-I'm not involved in the maintenance of this platform so I do not believe
-I should be answering this question. I asked the question because I
-taught there always were concerns of backwards-compat when it comes to
-DT and dt-bindings (in the best of all possible worlds).
-
-K3 maintainers are already in cc.
-
-Thanks,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
 
