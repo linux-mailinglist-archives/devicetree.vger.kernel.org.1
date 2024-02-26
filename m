@@ -1,96 +1,93 @@
-Return-Path: <devicetree+bounces-46005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEB5E867A6E
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 16:38:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76EA5867A75
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 16:41:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78BA2289193
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 15:38:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A7E8B1C23D52
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 15:40:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BB4C12B159;
-	Mon, 26 Feb 2024 15:38:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F40A612B17B;
+	Mon, 26 Feb 2024 15:40:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A38121E51D;
-	Mon, 26 Feb 2024 15:38:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8923612B159;
+	Mon, 26 Feb 2024 15:40:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708961915; cv=none; b=R2XNYIyJ7er0JHMmhXxr7MGaE0av3fSDHTGId/w9AlMQnHhgqpLjfoQx/5ZrhCl65XV3+qo0byh8c6m010UnUQxZRlPZecPdiclsIlG5q36RrHNSBXe2bkyhdo4zHjQDFtPF0Xe1dgnkoPB+CtwCcLbWhy/muIz7V0Z0ZdJ7z0M=
+	t=1708962055; cv=none; b=d6vVdKeLG9439B4sBDHH98oxj+CbIHlDco8L3SJ9pRhQkdi9E3GSZ13lfupp2vfjbHCURWCIOjxNrOuJaB1aDvhW+8ErtqHH271hM0bO3IQAGuWfgY04ymOJxLPix8lK33zrzCY6AcZ39h89aMhmNHQJvT/Jx5GzA7aRk6eWg0M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708961915; c=relaxed/simple;
-	bh=L7qz4q8oWIeDBkqYVr/UL7/lk3Oozt04Alwv/TxizvE=;
+	s=arc-20240116; t=1708962055; c=relaxed/simple;
+	bh=JvGqVtPMzjCWMpjEKF/jb89vLcg20ScqtVMRggNfqfE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=giesBmClsADmZVwkl12SI+UgS0EjslQ7LyUhUCOlys+Bs+sgntShK8OGASaIBod0SHgwKDo8ikjfvs9NHxZYTLf5p45tMp6jCYvE8zDA4q2dzcRSLg/+KOtsnpUOOT6CM6xeoMONxIlb1IBTeM6D9T2/qk+VePAdWnMA5oZBMZI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.170
+	 To:Cc:Content-Type; b=PeOrF7zvWuXhOI6fkuIsfSlPNUZdBXmQ0LwNJs3rBoVLBk882oklrlgRyQBMQjWjzIbAjC/+e3BTizhEk0n74/vuBIuyH3F6pYy5nijySA8uj0nDpJ57v5jufFLmnI8mL7XVhWkwShpk8sqex0xHM+CJPcn+ZPJl+dJaVAyHUww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-608e3530941so16120107b3.1;
-        Mon, 26 Feb 2024 07:38:33 -0800 (PST)
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-60822b444c9so20073037b3.2;
+        Mon, 26 Feb 2024 07:40:54 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708961912; x=1709566712;
+        d=1e100.net; s=20230601; t=1708962053; x=1709566853;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ocbT52q9GFO3nyDUIiXOIkIiOkdC6TMGN9Xh09tUq64=;
-        b=TXVsKxyWveamTglZn6NV9ghRwlNH12YahSyyjrWu9ag3h8hLP8gEmyPPq214wyggJr
-         qBfvrh7yXFehB/z5QX2nmOF6NDm5+9DELxs3I5Yq/OkPct0IFx1xAOw2NbU/NCsVY8ni
-         fsJZ2TXH6G0l/xADLwCtnuzt1/pAm7HdNnNku5H+dBuChfX8V74lyYspKnbpVIlyOLrz
-         JiHn4mGwer84PND7p4vFCbiEnnaZX/PWIaTNBndZR7A8Y5phhlsPCJycU/UBdGqzA/pW
-         pPEdwL+rXqc9yfLZo+fDCf3GS0VZt7OlO47uq+rgCqPGi6g1xL0cym6aVPro0zhAH2IO
-         1lGw==
-X-Forwarded-Encrypted: i=1; AJvYcCVqyyJ1X2Yzp8nWa960X/8wr/+5rIay19zojCyNAvB1Y0Ds0e0gNkeIzZmL+n6u05T6Fe6fr2fSpsbzq0xaDLO7aaFHzmUrqw9wb3nnXsTp2rF42hoc6SUvgBk1WKoNd2nzbwS/hp1ifg==
-X-Gm-Message-State: AOJu0YxYa3WMEuXZoMITjD+WylkShRHD2G2zxlWdJ1DXDpFLgo4uiD3i
-	IjlgwZDr8Nt0IVZTbdx8Ln+U9gr9LT9oOC10gUHn1ZvOYsxDDdA1cL0S/2FHGNQ=
-X-Google-Smtp-Source: AGHT+IFXpz6VFtTBRq8jXZDVghK/JocQ/QKR6JfBEAwXoINcf0NPiwTmUPBtPiR6XY4h9lXXgFuD7w==
-X-Received: by 2002:a0d:d507:0:b0:607:9dd9:ce65 with SMTP id x7-20020a0dd507000000b006079dd9ce65mr6302778ywd.44.1708961911815;
-        Mon, 26 Feb 2024 07:38:31 -0800 (PST)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
-        by smtp.gmail.com with ESMTPSA id c11-20020a81b54b000000b00608d9358ccbsm1085986ywk.132.2024.02.26.07.38.31
+        bh=xtU3gBiSlF+zY1t4TZQha65DndWfF2kOq1bgpFzA6E0=;
+        b=GYRQ+SOxJq+9gbNMTAHgHaCRIU4EXo9LY4SqKsJ81VzSaOgBjCsfVmtrGUM8FopB82
+         3K822OgMPXz/euo0aB3Fm/QahCcdDy+4WBrW4VQRu8O3NakccN5hY4ALDG6rnGETHUTb
+         upPTKtanVi+m7lON2ngVRiLukGboz2PbJc1DBzkRpVDWLBjO2Oge7PFrHSKgr2P4+yDZ
+         009SvzDa+i3QW2O0lxd1hTJoJDBXnrXu3TSTim3AHKtGwvwCKwYeq4Fn3fLi2fhDa+4H
+         d2pXXkLMX8NdjzhUHvitI1ESD5iXe4pi/pItPdfWEftvZYCduIzh5wfVsB6bSYg1m09o
+         lfhw==
+X-Forwarded-Encrypted: i=1; AJvYcCVknfQ2TZ/O+jldSQox71Vp+o4YRh0jqjVnbt3dZrSXSQXdr8GexY9US7ndHUAzThc0wwmxdxTPptF0xrOC9k/HtZdS9TFrYPyn3MwlfzlZorXxGGgUGyrRdDzN2hnJZqFlGhDsV/3Gfw==
+X-Gm-Message-State: AOJu0Yyy2xk9Sp9LaPQeseA9IOjDGmegJ+ulCEK5/T+uwxIDI8BFByVR
+	5+HulIxog/gpdZpfJdzjK5uTHdY0FE8inTFoFSO1+5ub7Z5hTJAY8UxKmNdumC8=
+X-Google-Smtp-Source: AGHT+IFEfCOkQ1T8BKL6ipSFMTFi4GzxkTFlbcihhfK8vKLGglPSH3UA3YdgS0yk7shnY+J+wemyfg==
+X-Received: by 2002:a05:690c:fc6:b0:608:bec5:f27d with SMTP id dg6-20020a05690c0fc600b00608bec5f27dmr7444033ywb.41.1708962053130;
+        Mon, 26 Feb 2024 07:40:53 -0800 (PST)
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
+        by smtp.gmail.com with ESMTPSA id l37-20020a81ad25000000b00608d55efe59sm1192421ywh.112.2024.02.26.07.40.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Feb 2024 07:38:31 -0800 (PST)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-609210a679bso483947b3.3;
-        Mon, 26 Feb 2024 07:38:31 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXKyMQPpHCM2pyByXEOF7bGoZMwJCZ4OlEjGfkkJgm6F4QmlfF+zMOnYzlNB2VhLA6B8VYBCaJDPhnqFgCIly/ynhXIf0yiLRlvC9q8DsRz4XIrqlExtk0VcwJWrkyOlPs0WPPwvmzbkg==
-X-Received: by 2002:a25:2fc3:0:b0:dcd:3a37:bdb1 with SMTP id
- v186-20020a252fc3000000b00dcd3a37bdb1mr4995732ybv.44.1708961911092; Mon, 26
- Feb 2024 07:38:31 -0800 (PST)
+        Mon, 26 Feb 2024 07:40:52 -0800 (PST)
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-dc6d8bd618eso3217906276.3;
+        Mon, 26 Feb 2024 07:40:52 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUR8Au/rELoLXN1T2MJNVK5z+vjcbKptYByRgDA5qozXTpDbmOT4CkuXKO6rlC9E8bUekoP9uvo2XUKs4SXke5W93ooFVQKsB7oMxecNtbKSprT6Pd0Xdb8GWx3XkHeCMImZ4vslTINIA==
+X-Received: by 2002:a25:5f4e:0:b0:dc6:ebca:c2e8 with SMTP id
+ h14-20020a255f4e000000b00dc6ebcac2e8mr4934465ybm.5.1708962052506; Mon, 26 Feb
+ 2024 07:40:52 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240219170337.2161754-1-andriy.shevchenko@linux.intel.com> <20240219170337.2161754-4-andriy.shevchenko@linux.intel.com>
-In-Reply-To: <20240219170337.2161754-4-andriy.shevchenko@linux.intel.com>
+References: <20240219170337.2161754-1-andriy.shevchenko@linux.intel.com>
+ <20240219170337.2161754-6-andriy.shevchenko@linux.intel.com> <ZdTp5LQOTpL5ke96@smile.fi.intel.com>
+In-Reply-To: <ZdTp5LQOTpL5ke96@smile.fi.intel.com>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 26 Feb 2024 16:38:19 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXs6eSYyvKO06=ADExrO4agSmOUvm++n077WB=FV70fUg@mail.gmail.com>
-Message-ID: <CAMuHMdXs6eSYyvKO06=ADExrO4agSmOUvm++n077WB=FV70fUg@mail.gmail.com>
-Subject: Re: [PATCH v3 3/9] auxdisplay: ht16k33: Add default to switch-cases
+Date: Mon, 26 Feb 2024 16:40:41 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWYy1-TeofX9NnQ0anbJDz8N3Y_uSnR94Bz=VJ+H2yRWQ@mail.gmail.com>
+Message-ID: <CAMuHMdWYy1-TeofX9NnQ0anbJDz8N3Y_uSnR94Bz=VJ+H2yRWQ@mail.gmail.com>
+Subject: Re: [PATCH v3 5/9] auxdisplay: ht16k33: Define a few helper macros
 To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Andy Shevchenko <andy@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
+	linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
 	Robin van der Gracht <robin@protonic.nl>, Paul Burton <paulburton@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Feb 19, 2024 at 6:03=E2=80=AFPM Andy Shevchenko
+On Tue, Feb 20, 2024 at 7:05=E2=80=AFPM Andy Shevchenko
 <andriy.shevchenko@linux.intel.com> wrote:
-> Currently the compiler (GCC) is able to figure out that there is no
-> other choices possible than those that are already listed in the
-> switch-cases. However, if we want to move some code to the callback,
-> compiler will start complaining that no default is defined. Make
-> sure we have all switch-cases equiped with default.
+> On Mon, Feb 19, 2024 at 06:58:04PM +0200, Andy Shevchenko wrote:
+> > Define a few helper macros =E2=80=94 wrappers on contaoner_of)() =E2=80=
+=94 for easier
 >
-> Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> I have fixed 'container_of()' above locally.
 
 Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
 
