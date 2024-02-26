@@ -1,172 +1,153 @@
-Return-Path: <devicetree+bounces-45815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9CA3866C15
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 09:26:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DB5F866C21
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 09:27:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 06BE11C213A3
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 08:26:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF52D1F24753
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 08:27:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A640E1CAB1;
-	Mon, 26 Feb 2024 08:26:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D02E51CAA2;
+	Mon, 26 Feb 2024 08:27:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iDGRSOE8"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="eSYuuTHo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA9AB1CA81;
-	Mon, 26 Feb 2024 08:26:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B1A81CA91;
+	Mon, 26 Feb 2024 08:27:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708935965; cv=none; b=sTmqdHIG3rMIb1NTFpbPIjmhirW9QTYRQxh7YnSeLGRS4JJKWnWFbw29MU89zNcH8ushlyZ8TqhS22prFyKE05kTCMH2TrgUTmenVP4nm1TPPPbTPSIPGnT3lXnCNJBjz5mMb693rFg1JtW9CzaHOqgxMQNt28qofPiNihBW94U=
+	t=1708936032; cv=none; b=u6SHYpaJrBlowXPAGqtTpTIJfUk8d5FQv4meM1ZWG47kY0s+CgFikau4diXetBHQBlaeL0R8OUZA/Jmx5TrilqOjuhTYbMQjsBjW7UtFeua5/3Y0UiGdsU3plBXQ+DiOHimSwov11HOPHkAuYyvuxRqU6xl/6rcG7bPuOXg97kA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708935965; c=relaxed/simple;
-	bh=8aEYoORsIwQSwWsOthBtc3VFHs8XMlL/TLNLBS9ZIII=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=FGql63F4vE+Vo4mtFJILvQIKFuMFVS7CM7kaNkcAWi78IGydgxnV+61VNE6/KaX/qXODQE/QG/r0OzyPTaRuCTeKSG+gx1S6FmLzB08bULRt09mBIjRSAauSZLxq1w9koHYlMV7GW0WVUpjihR1ezasLQhQqK6GrLi4mbmMKnOI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iDGRSOE8; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a3ee69976c9so336991866b.0;
-        Mon, 26 Feb 2024 00:26:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708935961; x=1709540761; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=2ttUCqTABwqmssEUu9Ok4fCv5vcEs8kW80tdvfui/rs=;
-        b=iDGRSOE8zP8zpWOmAFdLZuGAdoJr2SXOzNNUJy8Z+3Qv+IY77Sh/lEVN+A3AeCL3FA
-         27HU9dCqJBHxtwZJT1XGCbza9WAZuI9MmeuwzAOQ5kRwz1LKcVtUENC+H3V0CuDo2t0m
-         XlzqvAiLDpmqZ/k+qiUi1uGcMajRp3QvNXB6ZKTphsP1sUq4q25LZhST4Kj7WrsmBJgY
-         AOWnf9/+LJwRbLTUnaoqSWz2HVtAMuzT8Jovuc24jR+9ygdSSk6Y6oEwQMCZYvFW2iFI
-         774LBpZ3J4uhX8ES0FzGXkUQZHOR9FP70okQEebW7RA8sxkcXXm4O8XQRzYikxed1ijo
-         RTOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708935961; x=1709540761;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2ttUCqTABwqmssEUu9Ok4fCv5vcEs8kW80tdvfui/rs=;
-        b=Rjn3fE3NgNg4inYLvg8eeGHesHLodH0GE0OKLU6E1hbGr4HTKvir6DusleWeRCo4UF
-         EKivyEnc8I1pUZS+bspni7PrpiRzUqOdEd/0UJars+UhX2pg+uIvFnXBWMwTIfTuVnzV
-         TkCdm+uIxUnyTC4AiMP2O6h800muILdQuqdoDw/NygrLTA/BGRedSNhTnSl0wdqmdkrA
-         PaVcY/0yYFKWOzOK+IOLEAZTqdCuZWdmnMKSHNsUplti0GOI7WuiLGouk9UM3P5WaSR8
-         UeX0tQNXiRlJdMFo8/7q4D+aW4aWslyiB+NUOfDvcAfEcYQe55NugaiOiRMIIM9UKG2r
-         Y4OA==
-X-Forwarded-Encrypted: i=1; AJvYcCWTLqljXtUcwwGRIfBmf5ePlZdY75t43wMg7WUlG91cFUcZpOF9Vf/UnQSErom7DWN6ul1NFzQPw3p97ErKTHBor01L+P45XGeih33HFjhfbFay8ZyR74hYyN10+IHYFjlVg+iDykul12PzH4BU7ylVbQoNV8Ui95zRNGTp+XJc0/WP/Q==
-X-Gm-Message-State: AOJu0YwoSUSMir7pKuhH3vlOfr5f6Lw8Sa8toIy1h/vNlujs4MxNjkSZ
-	xIhMZhEFkQUQDrSo9qMFYPgjjWyn8TUvWAHvEPx/oiO/np75I3Go
-X-Google-Smtp-Source: AGHT+IHfZDix/7vs3eLadAmGpaat3fXEVGE5oqibwXpzt5hRoNLjvHxb0Sk87Iw4q5y1UDLbp4H3Rg==
-X-Received: by 2002:a17:906:140f:b0:a3f:c932:9c67 with SMTP id p15-20020a170906140f00b00a3fc9329c67mr4078407ejc.68.1708935960718;
-        Mon, 26 Feb 2024 00:26:00 -0800 (PST)
-Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
-        by smtp.gmail.com with ESMTPSA id hu21-20020a170907a09500b00a43389c8a1asm1057465ejc.113.2024.02.26.00.25.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Feb 2024 00:26:00 -0800 (PST)
-Message-ID: <2dbc4a0faaef7f4b7d1cd7d46c75e30fb563b227.camel@gmail.com>
-Subject: Re: [PATCH v5 5/5] iio: amplifiers: hmc425a: add support for
- LTC6373 Instrumentation Amplifier
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Dumitru Ceclan <mitrutzceclan@gmail.com>, Lars-Peter Clausen
-	 <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	 <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Ceclan Dumitru <dumitru.ceclan@analog.com>
-Date: Mon, 26 Feb 2024 09:25:59 +0100
-In-Reply-To: <20240224175448.484ccd10@jic23-huawei>
-References: <20240220153553.2432-1-mitrutzceclan@gmail.com>
-	 <20240220153553.2432-6-mitrutzceclan@gmail.com>
-	 <c92c4c71f433c7375588e832d3c084a50190a1b5.camel@gmail.com>
-	 <20240224175448.484ccd10@jic23-huawei>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+	s=arc-20240116; t=1708936032; c=relaxed/simple;
+	bh=opGkT1SPK5IIzhy5L61IRDO4fs/Se1zLuTjvPJtOAos=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ObZop8PBzhA+wPDNiW+KQDdjDhUFwD5F4zuhoRHJvFGlkG7XNKzuq6u4zoaGj3m4q+6vczGpndpGc4A3RG4JsTStUdg5HuL4315VMlDhbaPSzUgiZJfmWf5Na2j1F/NPoyGCbwlYl7mjVMS+Xj33/R//O/ihV2+PEeoki2HAeaM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=eSYuuTHo; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41Q7U9S0026021;
+	Mon, 26 Feb 2024 09:27:04 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=+LqaC1k2A/CeSV89OpDz4o3lBGabPbXT8Ayn3ozZF+E=; b=eS
+	YuuTHoml5z4VcKgqoFxayaUxIXvZSZB5J9MSNBejh+kYnNzSshlK2EiAPBI8DJe2
+	MCNR+59y/W9S+eQXxCokj1fFMX+uSHTgnUt8hqFAuQJRdMF+6HbFCTrt5SM+7vq0
+	t9gLrO9z36cI62RYxzuqB8qfS5IDP0GYIw42pVMC/zqEokI4RS2waTulWb7zBIx/
+	DFOVgq1A4BKKUjaR6UFwpMyrVcELCxAl1Oq9XHZBwv9zfJ+bWyrhnnFyjWblaWo1
+	G8+AheIRSbOKpbNKX+UK6U7/wRs+ejgX9goH80q1Obauw1HD22z1IFtV5CghkE28
+	GEoj3u7rKgOgS+qveTtw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3wftw4kys9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 26 Feb 2024 09:27:04 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 54A3840047;
+	Mon, 26 Feb 2024 09:27:01 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B2CC424DFE9;
+	Mon, 26 Feb 2024 09:26:32 +0100 (CET)
+Received: from [10.201.21.177] (10.201.21.177) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 26 Feb
+ 2024 09:26:31 +0100
+Message-ID: <9fb17963-8942-4810-ae86-508fd7b3466a@foss.st.com>
+Date: Mon, 26 Feb 2024 09:26:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/5] memory: stm32-fmc2-ebi: add MP25 support
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <devicetree@vger.kernel.org>
+References: <20240219140202.85680-1-christophe.kerello@foss.st.com>
+ <20240219140202.85680-4-christophe.kerello@foss.st.com>
+ <21ad2752-ad25-451a-b892-6b3b31c1031a@linaro.org>
+From: Christophe Kerello <christophe.kerello@foss.st.com>
+In-Reply-To: <21ad2752-ad25-451a-b892-6b3b31c1031a@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-26_05,2024-02-23_01,2023-05-22_02
 
-On Sat, 2024-02-24 at 17:54 +0000, Jonathan Cameron wrote:
-> On Wed, 21 Feb 2024 14:23:51 +0100
-> Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
->=20
-> > On Tue, 2024-02-20 at 17:34 +0200, Dumitru Ceclan wrote:
-> > > This adds support for LTC6373 36 V Fully-Differential Programmable-Ga=
-in
-> > > Instrumentation Amplifier with 25 pA Input Bias Current.
-> > > The user can program the gain to one of seven available settings thro=
-ugh
-> > > a 3-bit parallel interface (A2 to A0).
-> > >=20
-> > > Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
-> > > ---=C2=A0=20
-> >=20
-> > Just one minor comment. With that:
-> >=20
-> > Reviewed-by: Nuno Sa <nuno.sa@analog.com>
-> >=20
-> > > =C2=A0drivers/iio/amplifiers/hmc425a.c | 124 ++++++++++++++++++++++++=
-++++++-
-> > > =C2=A01 file changed, 120 insertions(+), 4 deletions(-)
-> > >=20
-> > > diff --git a/drivers/iio/amplifiers/hmc425a.c
-> > > b/drivers/iio/amplifiers/hmc425a.c
-> > > index 77872e2dfdfe..50c86c2d28d7 100644
-> > > --- a/drivers/iio/amplifiers/hmc425a.c
-> > > +++ b/drivers/iio/amplifiers/hmc425a.c
-> > > @@ -2,9 +2,10 @@
-> > > =C2=A0/*
-> > > =C2=A0 * HMC425A and similar Gain Amplifiers
-> > > =C2=A0 *
-> > > - * Copyright 2020 Analog Devices Inc.
-> > > + * Copyright 2020, 2024 Analog Devices Inc.
-> > > =C2=A0 */=C2=A0=20
-> >=20
-> > ...
-> >=20
-> > >=20
-> > > =C2=A0
-> > > +static ssize_t ltc6373_read_powerdown(struct iio_dev *indio_dev,
-> > > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uintptr_t private,
-> > > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct iio_chan_spec *chan,
-> > > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 char *buf)
-> > > +{
-> > > +	struct hmc425a_state *st =3D iio_priv(indio_dev);
-> > > +
-> > > +	return sysfs_emit(buf, "%d\n", st->powerdown);=C2=A0=20
-> >=20
-> > Well, in theory the read should also be protected with the lock...
->=20
-> Only reason I can think of for that is potential read tearing.
-> If that happens on a bool we are going to be in a mess so I think this
-> is in practice fine without, though paranoia might suggest locking.
+Hi Krzysztof,
 
-Yeah, also mentioned it for correctness. I mean, in theory, read_once() sho=
-uld be
-more that enough in here but I often find that too much for using in "simpl=
-e" drivers
-where a lock is surely easier to understand for someone reading the code.
+On 2/21/24 09:32, Krzysztof Kozlowski wrote:
+> On 19/02/2024 15:02, Christophe Kerello wrote:
+>> Add the support of the revision 2 of FMC2 IP.
+>>       - PCSCNTR register has been removed,
+>>       - CFGR register has been added,
+>>       - the bit used to enable the IP has moved from BCR1 to CFGR,
+>>       - the timeout for CEx deassertion has moved from PCSCNTR to BCRx,
+>>       - the continuous clock enable has moved from BCR1 to CFGR,
+>>       - the clk divide ratio has moved from BCR1 to CFGR.
+>>
+>> The MP1 SoCs have only one signal to manage all the controllers (NWAIT).
+>> The MP25 SOC has one RNB signal for the NAND controller and one NWAIT
+>> signal for the memory controller.
+>>
+>> Let's use a platform data structure for parameters that will differ
+>> between MP1 and MP25.
+> 
+> 
+> ...
+> 
+>> +
+>>   	ebi->regmap = device_node_to_regmap(dev->of_node);
+>>   	if (IS_ERR(ebi->regmap))
+>>   		return PTR_ERR(ebi->regmap);
+>> @@ -1190,9 +1502,11 @@ static int stm32_fmc2_ebi_probe(struct platform_device *pdev)
+>>   	if (ret)
+>>   		goto err_release;
+>>   
+>> -	ret = stm32_fmc2_ebi_save_setup(ebi);
+>> -	if (ret)
+>> -		goto err_release;
+>> +	if (ebi->data->save_setup) {
+> 
+> This cannot be NULL.
 
-Now, about your bool comment, I used to think like that until I saw the LF =
-rcu
-mentorship video from Paul. I'm fairly sure he comes up with some "crazy" p=
-ossibility
-about the CPU/compiler screwing you even on a char (IIRC, he was also argui=
-ng about
-not using read_once() on a bool).
+Ok, it will be done in V3.
 
-Now, practically speaking, I tend to agree that for the archs we care this =
-will
-likely never be an issue but yeah, not 100% correct kernel code IMO.
+Regards,
+Christophe Kerello.
 
-- Nuno S=C3=A1
-
-
+> 
+>> +		ret = ebi->data->save_setup(ebi);
+>> +		if (ret)
+>> +			goto err_release;
+>> +	}
+>>   
+>>   	platform_set_drvdata(pdev, ebi);
+>>   
+>> @@ -1238,7 +1552,9 @@ static int __maybe_unused stm32_fmc2_ebi_resume(struct device *dev)
+>>   	if (ret)
+>>   		return ret;
+>>   
+>> -	stm32_fmc2_ebi_set_setup(ebi);
+>> +	if (ebi->data->set_setup)
+> 
+> This cannot be NULL.
+> 
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
