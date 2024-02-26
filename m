@@ -1,198 +1,134 @@
-Return-Path: <devicetree+bounces-45954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C79808676F7
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 14:44:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92D6C8676FB
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 14:44:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F6E11F2B0CB
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 13:44:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31BEB1F2B111
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 13:44:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 126371292C0;
-	Mon, 26 Feb 2024 13:42:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A72512B146;
+	Mon, 26 Feb 2024 13:42:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="eM+R8sZh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F276128839;
-	Mon, 26 Feb 2024 13:41:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F38BB1AACC;
+	Mon, 26 Feb 2024 13:42:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708954920; cv=none; b=AXJHQ7fbzc03/M8g+0ZBtHU2fwIqnGfIWQQ/1h3MkOOgP+R5Hl8Ylh3ybLnfrnal+tsTnStnxobKlRTuA7veDrKLlZwi4ddm/84+1ZmRZCVZZ/FiWdb/u88iZ0h6q26d90rKyD+xj88F+e2vtbwDx+W+ib1crjrVWMuZQXKteaI=
+	t=1708954946; cv=none; b=gUZjFM6KRQQzcuUyGKnB5f3ficbqjasUT/oy+Pu7a4ykFvmkmPgqJdvAbjkB0uKgcq/CZmeRfVMCph8trslIVNCavsOY/I8FU8EX9jjKwsxqNaN+5nQGFUXmRfCkJlPKn7dD2ykajUHk8D8TdE7AF8sNVZdYg7Oallg6dSMu2OY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708954920; c=relaxed/simple;
-	bh=uf4G1LQtE+of00JBn2elTsV8rbTDZ2t6XSM35puzMBg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=shEyiBZlkg8GSJgKvNMu4qDCbRMq/Rpm88m2Sqw/QTtAA5tTfH1Tsw/RUEA+XGxW/CrQ40l4gCE1XklmX7Lm9/ax35gsh0cYTIpxDF3SBaaXNCmtbXJaVFtW3gvKMx+4ZBymOuiOmNS0A9Gt3t6phw0xmAfa+K0pFW0Bw5FP8us=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-dcd94fb9e4dso3249752276.2;
-        Mon, 26 Feb 2024 05:41:58 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708954916; x=1709559716;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZOqgtv4IqErN2hXEaQAp3E0TLQstXToESwKXSzCVbV0=;
-        b=taHCDHxd/ldJ8Hj3HmymEqAq5r0R6iBu5E36uVvXkyTbaqeAmVYdWxKasEeAXGlGQm
-         0soTkccC5gJOeY+CHJlJ9kV1hVuatx4ENdxw0A0exhIbQ7o0tua57UqLVAKtwDpC1ypj
-         tcKUDdcLwla7lhe2TZ/jtfZYhFZt1MiVqyJFILkkr3wj/Hri9aR1fF3NuLjmipYTiNqZ
-         BWc40VxOGC1wiI4mfD2NP+7KQa8VNQYsq3xyb0a7UFdZdrlXMukZXdC4VcLxlhzC6adm
-         uuxlA5t/0Ox9dtEkmXBD4F+z7QbYvVlsMrwVJidV73iO2prTH5HUCTYgulUvxRBpdDUk
-         1bEg==
-X-Forwarded-Encrypted: i=1; AJvYcCU5tkBao5GSZz6ifB8cdVsjoJ/rs4Mizoz3i7UPYoEd75I6V9XcFybOQ91NEH3rOsqRjEhB9s55308ep7SFvmIHBXOhLhgf3PtuSW2xg62Klw5K2d370eDnM7QMuAV3PVlEF2764l8LoOssLf1tMIel5/p9CCRxCAQeb6Qa6e1LM1Bo0EHQZkQkbXcR
-X-Gm-Message-State: AOJu0YxtGqObbLhQJr6FSZ/Z9CeF61SOlXMu/oGdKBJCIG6URyyMczpi
-	qvXnZ4e/Q5piolny3P3xa7vN70CrBDhg4dqbhLIBuGhMmx1JjUBc5un1V++o6QE=
-X-Google-Smtp-Source: AGHT+IE+rYqLeZ6bxu/lNYvBqjVLEwDToJomctgoAxCc+HNSWVu+u3FfeX8yD+N+gcBZ7jYb5S/KJQ==
-X-Received: by 2002:a25:8402:0:b0:dcf:2b44:f38d with SMTP id u2-20020a258402000000b00dcf2b44f38dmr4696830ybk.49.1708954916180;
-        Mon, 26 Feb 2024 05:41:56 -0800 (PST)
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
-        by smtp.gmail.com with ESMTPSA id s16-20020a25aa10000000b00dcd3487c8f5sm956814ybi.12.2024.02.26.05.41.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Feb 2024 05:41:55 -0800 (PST)
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-607c5679842so30471357b3.2;
-        Mon, 26 Feb 2024 05:41:55 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU3JsSlVGTtkewnLTlWhTI6/Itk4ShLcAhSAPC0n5wWoMhqqPN56Nivm024b9Swy+09B2z66MYhkSub8O5mw/ChgevGCqiJstnETjR2EB+dwzL52bD39lEFr95R9dS/kzHeF4u/Ykztph00O8IQZ/Aq8iG1rT7lNWzbRB+a0ElhHhdf7SK/Uvzb7sdj
-X-Received: by 2002:a25:ad17:0:b0:dbe:9f4a:6bb0 with SMTP id
- y23-20020a25ad17000000b00dbe9f4a6bb0mr4308468ybi.56.1708954914960; Mon, 26
- Feb 2024 05:41:54 -0800 (PST)
+	s=arc-20240116; t=1708954946; c=relaxed/simple;
+	bh=nIcCg5T9ZTEmb0CkrYbj52KN6wLyDw12Rc2oQRTF2QA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XtEWlQqFRlESl5Dg14F4u80x49MGd+isGB+bnzq8y1HqrF+KJLSqBOsBaLQ5obJql2pQ/f3Wdix1hNrfEUfqxoVN/+4Z841mmTrLSBxI0Ne5z8WdWzTZCB6aEMdOwsTx/NGnpiZB11fiWFDv+XW4i7hO9eWwbutxlnBD69rZ3hk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=eM+R8sZh; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 082D0673;
+	Mon, 26 Feb 2024 14:42:10 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1708954931;
+	bh=nIcCg5T9ZTEmb0CkrYbj52KN6wLyDw12Rc2oQRTF2QA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=eM+R8sZhLv3OoEHjB7AiqEwMmy6Qed2Y1Go4/d7Y60P/aWtl+KCLWYgNoWSocsPbs
+	 /1VdRwx0LZqImItJTg5ILgn8SVESm1NwkpmLn9CKB5d1J7GoJRdyPx3PZs1biKqlUC
+	 oCCvVX99aaHOsgDGkVCSxbgKPjOlK7n7dSdwZKbo=
+Message-ID: <a0a79b77-8e87-499b-9646-bc6abf98bf69@ideasonboard.com>
+Date: Mon, 26 Feb 2024 13:42:19 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240219160912.1206647-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240219160912.1206647-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20240219160912.1206647-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 26 Feb 2024 14:41:43 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdV3eVTek9sYwXbqu98ta8wx197GMc-k3q1RZRb8ar=jFg@mail.gmail.com>
-Message-ID: <CAMuHMdV3eVTek9sYwXbqu98ta8wx197GMc-k3q1RZRb8ar=jFg@mail.gmail.com>
-Subject: Re: [PATCH 2/4] dt-bindings: arm: renesas: Document Renesas RZ/V2H{P}
- System Controller
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/5] dt-bindings: media: Add bindings for ARM mali-c55
+Content-Language: en-US
+To: Sakari Ailus <sakari.ailus@iki.fi>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
+ nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com
+References: <20240214141906.245685-1-dan.scally@ideasonboard.com>
+ <20240214141906.245685-3-dan.scally@ideasonboard.com>
+ <Zdx77nyiQn4zya3h@valkosipuli.retiisi.eu>
+ <20240226120431.GA25561@pendragon.ideasonboard.com>
+ <ZdyB_yHn9yImTuhm@valkosipuli.retiisi.eu>
+ <20240226125818.GA26163@pendragon.ideasonboard.com>
+ <ZdyUB_SEx8Gfa7OP@valkosipuli.retiisi.eu>
+From: Dan Scally <dan.scally@ideasonboard.com>
+Autocrypt: addr=dan.scally@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <ZdyUB_SEx8Gfa7OP@valkosipuli.retiisi.eu>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Prabhakar,
+Hi Sakari - thanks for reviews!
 
-Thanks for your patch!
-
-On Mon, Feb 19, 2024 at 5:10=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
-om> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 26/02/2024 13:37, Sakari Ailus wrote:
+> Hi Laurent,
 >
-> Add DT binding documentation for System Controller (SYS) found on
-> RZ/V2H{P} ("R9A09G057") SoC's.
-
-RZ/V2H(P)
-
+> On Mon, Feb 26, 2024 at 02:58:18PM +0200, Laurent Pinchart wrote:
+>>>>>> +              remote-endpoint = <&mipi_out>;
+>>>>> I suppose this is a CSI-2 interface with D-PHY?
+>>>> No, that's an internal parallel bus. Depending on the SoC integration,
+>>>> it can be connected to a CSI-2 receiver, a DMA engine, or a mux to
+>>>> select between different sources.
+>>> The name suggests otherwise. Maybe change that to something more
+>>> descriptive?
+>> We could rename mipi_out to csi2_rx_out, sure.
+> Sounds good to me.
 >
-> SYS block contains the SYS_LSI_DEVID register which can be used to
-> retrieve SoC version information.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/renesas/renesas,r9a09g057-sys=
-.yaml
-> @@ -0,0 +1,59 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/renesas/renesas,r9a09g057-sys.yam=
-l#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/V2H{P} System Controller (SYS)
-> +
-> +maintainers:
-> +  - Geert Uytterhoeven <geert+renesas@glider.be>
-> +
-> +description:
-> +  The RZ/V2H{P} SYS (System Controller) controls the overall
-
-RZ/V2H(P)
-
-> +  configuration of the LSI and supports the following functions,
-> +  - Trust zone control
-> +  - Extend access by specific masters to address beyond 4GB space
-> +  - GBETH configuration
-> +  - Control of settings and states of SRAM/PCIe/CM33/CA55/CR8/xSPI/ADC/T=
-SU
-> +  - LSI version
-> +  - WDT stop control
-> +  - General registers
-> +
-> +properties:
-> +  compatible:
-> +    const: renesas,r9a09g057-sys
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: Clock from external oscillator
-
-Isn't this SYS_0_PCLK inside the CPG?
-
-> +
-> +  resets:
-> +    items:
-> +      - description: SYS_0_PRESETN reset signal
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - resets
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    extal_clk: extal-clk {
-> +        compatible =3D "fixed-clock";
-> +        #clock-cells =3D <0>;
-> +        clock-frequency =3D <24000000>;
-> +    };
-> +
-> +    sys: system-controller@10430000 {
-> +        compatible =3D "renesas,r9a09g057-sys";
-> +        reg =3D <0x10430000 0x10000>;
-> +        clocks =3D <&extal_clk>;
-
-clocks =3D <&cpg 1>;
-
-(I guess it will be 1 ;-)
-
-> +        resets =3D <&cpg 1>;
-> +    };
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+OK, will do - and likewise the description you suggested above.
 
