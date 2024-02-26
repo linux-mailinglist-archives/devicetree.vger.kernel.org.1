@@ -1,102 +1,180 @@
-Return-Path: <devicetree+bounces-45931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45932-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18D91867559
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 13:42:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D34A486755B
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 13:42:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 47B2C1C27CB8
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 12:42:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 88B1A28989E
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 12:42:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81E7D80602;
-	Mon, 26 Feb 2024 12:40:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADEEB7F49E;
+	Mon, 26 Feb 2024 12:42:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KDdyAzHZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFAA080056
-	for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 12:40:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7BD37F7DB
+	for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 12:42:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708951251; cv=none; b=Kr4naBuHpp7LpwvA/6Egnnw5rYQHvLvK3r7dYrsWta5ALISRxr0sUGQEEIKe6XnvOgVs1cGWYjKp3N27vCY7T4ENGFR7UystjjeNG+M0yyk4fQHyop4hd34QpGc9sDhNzjJubdEu2gUmxQw0SH0LVD6tJMM7efQgx6s1pnAzth0=
+	t=1708951346; cv=none; b=DC1OXdUM5Oqx+C8eYc4hClpYfP1JzfogRSK2eKX3rakIzBnrypsyHat56u9ENjC9I1WICRAa/WyuiWqPwJRFv1uV1TZFnXoz0npkNVuZDtocVe7vLYxG3rrOMZQ0UBFMW3XR3yAqn0mM/UIQP7rtddbXRouYGryJOlFuSRIYrTA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708951251; c=relaxed/simple;
-	bh=lzZNBO8vtsRT5OvlPh9a/kUqH9opSZXmEh0Kf0DJQ70=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UGIxB+Jialdnf7NUSACcp6p8VK5veAOj9f5FoHjG+EzaXvc4UhZG3Oi1Xd6+1uXpoVX9qPRTQyOazeNs4u0381olD9BjxzR75U08KuAv7RRa+szc11mOXXQIfmH7bdIxpwWIkMVUUftpMx41I4Lc6dtyqr9kWGVL4BJy1/KDTBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1reaHd-0006dA-BP; Mon, 26 Feb 2024 13:40:37 +0100
-Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1reaHc-002ztr-JH; Mon, 26 Feb 2024 13:40:36 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1reaHc-0095bI-1d;
-	Mon, 26 Feb 2024 13:40:36 +0100
-Date: Mon, 26 Feb 2024 13:40:36 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	hns@goldelico.com, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	kernel@pengutronix.de
-Subject: Re: [PATCH] dt-bindings: iio: gyroscope: bosch,bmg160: add
- spi-max-frequency binding
-Message-ID: <20240226124036.zzj5p7tlubc332r3@pengutronix.de>
-References: <20240221174305.3423039-1-m.felsch@pengutronix.de>
- <91f29265-36fd-4d0e-99b1-61eaada59601@linaro.org>
+	s=arc-20240116; t=1708951346; c=relaxed/simple;
+	bh=iK0pc9/o4qPy2MF+4qVH/jaVBhhheQRx/oHhwarLJJQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mgdyHaKdtNwTB3bUJj9YRVq5iE9MI96eWn5gYXI8Iqoj2Y5DTwtRvUzbso3f71+Iqadp/rUvExIkPV9xKdQOt2BZaZOp74YXBQDF7JaDC2UcwAVeOolqx7mUcJEHPx1c1tQfhh3d0Kjx/3wJA+Fw27Cu2/Zi2KtLk/MfukWKOnM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KDdyAzHZ; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-564e4df00f3so3835080a12.3
+        for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 04:42:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1708951343; x=1709556143; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=d8DHJsu3a8iuvwFkA7p3y2llhbLihbwINAFhLWQK3ys=;
+        b=KDdyAzHZdx5yJH2/3rNgX8DDCZtMuKTROk0kLJXYSVwMjuE6plYbINSpz1PrSqYY8x
+         4Z9rxBOC3ggp/96WT0qkEFg4PuBnH39CNlgvx3rBhP1yvjgOfCgDgAUXKTZfPgA3CvRf
+         jiA+nCYtNf3ReLL6OHgXFjQCkfnF+nTAlOZbhjbe6z8yX0iNNTaSyQ+sPm+ncVC2Jx1y
+         f2w4F/uwpaSgdrgxm9et13rsBdSaM43/vz7iUFQuepFZSW16gHzMEjrGJSMrOrWrNyG/
+         48kxyUcn0hv/agQ2KsyJXWcGAP/Py2imQxERfWfSD7kSjTFtzV9z1BKUHeOW+NG1VDSM
+         9TNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708951343; x=1709556143;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=d8DHJsu3a8iuvwFkA7p3y2llhbLihbwINAFhLWQK3ys=;
+        b=QMwF+5z02/FGYVIdHgzfIYqvJzszTFuc0Unq/jS7cEX4VnVjHXpCeJ2574MfkUYWmn
+         Rlg3Cm/C0UYoPqCCUJUK01D4PtKpqqogfO//mD2LQzZ+H6dJ0/YVr5GU6ecWxMzqGy2d
+         uy5Z9MTBBd+3vlhX5y2aFxyolRTWghC5SzQ5XlP+CR7u+u58fGA/cK2dMKtBIBimjKOu
+         vZg+3kkFXbx3XdUdIiPRjcvaZd+bMplzvhVNg55PtZE0gSpt8VNoX1Qam7npMCyIUYTs
+         Ba9cL/Ej/0uJAREvGJF6SK2wsRQzWqaMvIauJ5EG/V8x03mcXurn5Zb602xsFBQwwhF0
+         QjHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXeyhIAx8emNe2af0QWvxZ4CLuRjofkg+qkULOHxGqT0r+v/pFADcNIqSX3Y0Sm/HR9BqneBydTGKkhOYiYXyGS6CrRSi5UwMN9Lg==
+X-Gm-Message-State: AOJu0YwlEZVMfztSPHAYDKXGIxzwtuOSsRtYEd1nNgPNZR60i/S3732t
+	1Z/OdW2oLSMvf4NEZ3Wc+ckA8X5qa88k7Lwd3Rq0KwKxMmjsYHcY12+37hD0HeI=
+X-Google-Smtp-Source: AGHT+IEXFJfAeWP0vTf6kRL2dq7bUv/fdef3FkLB7jkozzsXfpKBEMYxD6469aiAi4j9MXCdpauccA==
+X-Received: by 2002:aa7:d4c3:0:b0:565:ed50:8ba7 with SMTP id t3-20020aa7d4c3000000b00565ed508ba7mr1792722edr.26.1708951343108;
+        Mon, 26 Feb 2024 04:42:23 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.116])
+        by smtp.gmail.com with ESMTPSA id p24-20020aa7cc98000000b00564da28dfe2sm2290778edt.19.2024.02.26.04.42.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Feb 2024 04:42:22 -0800 (PST)
+Message-ID: <09f4b87e-8344-4051-aa69-5117f6c5e481@linaro.org>
+Date: Mon, 26 Feb 2024 13:42:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <91f29265-36fd-4d0e-99b1-61eaada59601@linaro.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: iio: ti,tmp117: add optional label binding
+Content-Language: en-US
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: puranjay12@gmail.com, jic23@kernel.org, lars@metafoo.de,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, kernel@pengutronix.de
+References: <20240223162042.2658620-1-m.felsch@pengutronix.de>
+ <e6bb70fc-81ed-4775-8d3e-4bf177c6f22f@linaro.org>
+ <20240226102323.6awrkxrdfq7j3ymj@pengutronix.de>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240226102323.6awrkxrdfq7j3ymj@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 24-02-26, Krzysztof Kozlowski wrote:
-> On 21/02/2024 18:43, Marco Felsch wrote:
-> > Make use of the common spi-peripheral-props.yaml to pull in the common
-> > spi device properties and limit the spi-max-frequency to 10 MHz as this
-> > is the max. frequency if VDDIO >= 1.62V.
+On 26/02/2024 11:23, Marco Felsch wrote:
+> On 24-02-26, Krzysztof Kozlowski wrote:
+>> On 23/02/2024 17:20, Marco Felsch wrote:
+>>> Add the support to provide an optional label like we do for ADC
+>>> channels to identify the device more easily.
+>>>
+>>> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+>>> ---
+>>> Hi,
+>>>
+>>> patchset [1] should be applied first to avoid merge conflicts.
+>>>
+>>> [1] https://lore.kernel.org/all/20240219131114.134607-1-m.felsch@pengutronix.de/#t
+>>>
+>>> Regards,
+>>>   Marco
+>>>
+>>>  .../devicetree/bindings/iio/temperature/ti,tmp117.yaml        | 4 ++++
+>>>  1 file changed, 4 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml b/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
+>>> index 33f2e9c5bd81..f00c1cb89acd 100644
+>>> --- a/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
+>>> +++ b/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
+>>> @@ -27,6 +27,10 @@ properties:
+>>>    vcc-supply:
+>>>      description: provide VCC power to the sensor.
+>>>  
+>>> +  label:
+>>> +    $ref: /schemas/types.yaml#/definitions/string
+>>
+>> Drop ref. Did you take it from any existing binding?
 > 
-> The example uses i2c, so I would expect to see in commit msg explanation
-> which devices are SPI devices.
+> I used Documentation/devicetree/bindings/iio/adc/adc.yaml as reference.
 
-All listed devices can either operate in I2C or in SPI mode.
+I'll fix it there.
 
-> Also:
-> A nit, subject: drop second/last, redundant "binding". The "dt-bindings"
-> prefix is already stating that these are bindings.
-> See also:
-> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+Anyway, label comes from iio schema in dtschema, so this should be just
+"true".
 
-Will rephrase it if you want me to update the commit message.
+Best regards,
+Krzysztof
 
-Regards,
-  Marco
-
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
 
