@@ -1,214 +1,226 @@
-Return-Path: <devicetree+bounces-46101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 384BF86812E
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 20:39:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B27E868148
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 20:42:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C1611C22B7C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 19:39:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A0861C2491A
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 19:42:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1C1012FF64;
-	Mon, 26 Feb 2024 19:39:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8FA512FF71;
+	Mon, 26 Feb 2024 19:42:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="TbT37zpY"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="N2UCnFCx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9CA012FB3A;
-	Mon, 26 Feb 2024 19:39:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 336B812F361
+	for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 19:42:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708976350; cv=none; b=mAcFhVMYaQv9NA+ZZQyn6oW7Rlc9BtoGAEqHOpQ45g70+JG4AM0CibcepQ1SIuS0f4uiJ4az414msVlY0Qb1ue5Cio4EK/l7axMAmeHaNqYqIWbVlF/baJjQwEM5Lg7QUnkbcGNPEG5Ekzjnc7iwLCRK6K6iZHSOIEXAixG/2XU=
+	t=1708976535; cv=none; b=FwVfL8L9sde7TKixsvYr+gWIGMW6T9Gh/sUB3ZJ3hUxe7wpNtRAwwUivkeBxzRk05zSOOJ+Qdpl+4Lgg8TcYxbsIf4VF2VEObGUJwFyUATwIfrU54pThcgEfNU+PjZihRN45NE7yIrl5VvRw8LTx8sRAF8ILiPy6xKBQDtWw+O0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708976350; c=relaxed/simple;
-	bh=LbcZ6qWq9CdIRdNMvzTM4cnq43tnvnfCY02gSxkWg6o=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=FrIcdbuQ282hq6Rw8Fuduno4P5UEQB6DI72PgnvcqUtfEPNJ1Mph6LmFlDz5bgdpMgnl5KeyGmTCAn9N27a286j4Uu+gxdypVtd7M//eYqZGf1XhPQLYKz7Xye0e9IHZtbu0SwjM3vD5AhFzfICNEkOV2BCZBvPDjE7TLDmfMwg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=TbT37zpY; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1708976346;
-	bh=LbcZ6qWq9CdIRdNMvzTM4cnq43tnvnfCY02gSxkWg6o=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=TbT37zpYPH5KAbLLpe855oKrwwrgqsQTCy4TiemFVOyKXSaJiWz2opdr8Nv6I6pkI
-	 qO3j1L259B+bCL8rDsIhIqIiihW5PBHv6znH/zNcJDLcP5yyW57KeIQ+4n9CyFUvyg
-	 HCOyP5tEaNXgn8x21wTBF9E0cUmGyxqbuaxj3GxdqYUo/d0ysHemRo0SiEndbYmygl
-	 4Syxih5KS0pDrQN5FvJoeaFcxuIjUy4SydreT2KygZe/yltMuEoQG196PuWEgdV4i/
-	 ezujIPTzItOBSZuly5GkFggB0LRyPIqhImuFe8NGtVEAUSndzLro9pNgBfyL9wLzb0
-	 i1dEGh3rUiIgQ==
-Received: from nicolas-tpx395.localdomain (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5165937820AF;
-	Mon, 26 Feb 2024 19:39:04 +0000 (UTC)
-Message-ID: <a50530974d05fb9a625b4bf6fbf531035161f443.camel@collabora.com>
-Subject: Re: [PATCH v3,1/2] media: mediatek: vcodec: adding lock to protect
- decoder context list
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Yunfei Dong <yunfei.dong@mediatek.com>, =?ISO-8859-1?Q?N=EDcolas?= "F .
- R . A . Prado" <nfraprado@collabora.com>, Hans Verkuil
- <hverkuil-cisco@xs4all.nl>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, Benjamin Gaignard
- <benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>, 
- Irui Wang <irui.wang@mediatek.com>
-Cc: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig
- <frkoenig@chromium.org>,  Daniel Vetter <daniel@ffwll.ch>, Steve Cho
- <stevecho@chromium.org>, linux-media@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Project_Global_Chrome_Upstream_Group@mediatek.com, Steve Cho
- <stevecho@google.com>
-Date: Mon, 26 Feb 2024 14:39:00 -0500
-In-Reply-To: <20240222092609.31382-2-yunfei.dong@mediatek.com>
-References: <20240222092609.31382-1-yunfei.dong@mediatek.com>
-	 <20240222092609.31382-2-yunfei.dong@mediatek.com>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=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
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+	s=arc-20240116; t=1708976535; c=relaxed/simple;
+	bh=ZT5HcRPbW+RFUTZ2YfmyYtg32pbnAdei7wzBLQD+xPc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=d7t4ykwDFg4p9aOq4SZSQvFUOU3/tQpnE4QZSZ7nF9yRlgoxQ49bUIm5C0Wi2RnIvsL19bBWHXSkPXIYSKG3xa1Brv5PPdFuyp0rI9Bl9UK9QjnDzQnZ+Qdkx1RK3e8T8WOVwlaNZ+EpeMajME3KiFemsu7GTsE2ABnQeQehF88=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=N2UCnFCx; arc=none smtp.client-ip=209.85.219.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-68f74fb38a8so14624686d6.3
+        for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 11:42:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1708976533; x=1709581333; darn=vger.kernel.org;
+        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=EKYe+0Ie8mEhAQbxbxa8vhVunPKlxF7RODNEqmTXfRc=;
+        b=N2UCnFCxIYQJ8TvXKGN/V4/aYDxJ3W39tPJNpRcFl20LL5KTXRQJ5CRPiImhHuFQ/o
+         8hgqWTIBXGv5zPbmT/WT4rJUQXmKRuismRBVvlxQSBREwQCLF10lx2Zo3uiCacRcWaJo
+         Vv+Va21JrzdWenrUbN92p+CVXIts8hZU1PeTs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708976533; x=1709581333;
+        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EKYe+0Ie8mEhAQbxbxa8vhVunPKlxF7RODNEqmTXfRc=;
+        b=Dgq03TWtvf9PZB3+560Br8t4XYfnu/MBNP0cjJ8l7xZ4va5Ck+4VDVHJgmx9vpOCjJ
+         oyCJjC+jv+txUNMWg9KFNkJ+w64gnpkA1fYuBH6Nlklp8FQUC2Tgv5VjLPN1prMueDG8
+         yr+kyqk+XbjlzWskIVUP6N48EaqlI3lLFOzyXQKhHCjsGw4ennaXyyUcAqaV73/na9WT
+         jdVm0iamYj/MV0yzUjll8URpGm7iGSHqaWPxGRme+TnGtz/xEjNgypgJB6sxe8/QmMkM
+         td+ElkFPGY5aP18vayUKUot/QeWg4zMka6dRtOIZkhIBwFx7g29VgnNb0pi1lils757x
+         j2Zg==
+X-Forwarded-Encrypted: i=1; AJvYcCUD+ktEqeqN+91fy5Q3OQ40iL7NzUiiswI0hg9IP1ihYknQT23zT/JDV8DqSIU4otjykmBtSg2CmwJhpGbIMK04GVMd3Y3Cq3I6gQ==
+X-Gm-Message-State: AOJu0YzetxJhUPu4YqdyrWa/8Pf41dM+CQGRHSlyA5bXoODmVHqvX8ng
+	OYjKIE8mVf20vHNNY3EcF2cB6QIIP6JgRak3qR1G8mCyIaQK63HoTLkByYtYNg==
+X-Google-Smtp-Source: AGHT+IFIUjgr9Pr42P0T3vSgrnGlm/GOsIPOky9cChtXWCjg6r3k1pxqbPrg/CFJwArBgAyW+70QWA==
+X-Received: by 2002:a05:6214:cae:b0:68f:8ddd:aad3 with SMTP id s14-20020a0562140cae00b0068f8dddaad3mr173321qvs.20.1708976532987;
+        Mon, 26 Feb 2024 11:42:12 -0800 (PST)
+Received: from [10.69.74.12] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id f6-20020ad45586000000b0068f920768a5sm3225619qvx.140.2024.02.26.11.42.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Feb 2024 11:42:12 -0800 (PST)
+Message-ID: <b6c74bbe-89f0-4201-b968-57996f0e0223@broadcom.com>
+Date: Mon, 26 Feb 2024 11:42:09 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next resend 2/6] dt-bindings: net: brcm,asp-v2.0: Add
+ asp-v2.2
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ netdev@vger.kernel.org
+Cc: bcm-kernel-feedback-list@broadcom.com, florian.fainelli@broadcom.com,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, opendmb@gmail.com, andrew@lunn.ch,
+ hkallweit1@gmail.com, linux@armlinux.org.uk, rafal@milecki.pl,
+ devicetree@vger.kernel.org
+References: <20240223222434.590191-1-justin.chen@broadcom.com>
+ <20240223222434.590191-3-justin.chen@broadcom.com>
+ <b9164eae-69e2-44f3-8deb-e3a5180e459c@linaro.org>
+From: Justin Chen <justin.chen@broadcom.com>
+In-Reply-To: <b9164eae-69e2-44f3-8deb-e3a5180e459c@linaro.org>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+	boundary="0000000000003294a606124e1b15"
 
-Hi,
+--0000000000003294a606124e1b15
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Le jeudi 22 f=C3=A9vrier 2024 =C3=A0 17:26 +0800, Yunfei Dong a =C3=A9crit=
-=C2=A0:
-> The ctx_list will be deleted when scp getting unexpected behavior, then t=
-he
-> ctx_list->next will be NULL, the kernel driver maybe access NULL pointer =
-in
-> function vpu_dec_ipi_handler when going through each context, then reboot=
-.
->=20
-> Need to add lock to protect the ctx_list to make sure the ctx_list->next =
-isn't
-> NULL pointer.
 
-The cited crash no longer occurs for me, but it still sometimes crashes whi=
-le
-the SCP being rebooted. I think this patch can still go in, as it overall
-improves the situation.
 
-Meanwhile, here's my stress test using GStreamer and stream downloaded by
-fluster. I call this script few times this way as it does not always crash.=
- The
-test just keep starting decode sessions and terminate them after 2 seconds.=
- It
-is highly parallel. Using too low number does not reproduce the crash, usin=
-g too
-high number leads to alloc failure, which wasn't the goal of this test.
+On 2/24/24 2:22 AM, Krzysztof Kozlowski wrote:
+> On 23/02/2024 23:24, Justin Chen wrote:
+>> Add support for ASP 2.2.
+>>
+>> Signed-off-by: Justin Chen <justin.chen@broadcom.com>
+>> ---
+>>   Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml | 4 ++++
+>>   1 file changed, 4 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml b/Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
+>> index 75d8138298fb..5a345f03de17 100644
+>> --- a/Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
+>> +++ b/Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
+>> @@ -15,6 +15,10 @@ description: Broadcom Ethernet controller first introduced with 72165
+>>   properties:
+>>     compatible:
+>>       oneOf:
+>> +      - items:
+>> +          - enum:
+>> +              - brcm,bcm74165-asp
+>> +          - const: brcm,asp-v2.2
+>>         - items:
+>>             - enum:
+>>                 - brcm,bcm74165-asp
+> 
+> Hm, this confuses me: why do you have same SoC with three different
+> versions of the same block?
+> 
 
-./mtk-vcodec-crash.sh 100
+bcm72165 -> asp-v2.0
+bcm74165 -> asp-v2.1
+Are two different SoCs.
 
-Script code:
-***
-#!/bin/bash
+The entry I just added is
+bcm74165 -> asp-v2.2
+This is a SoC minor revision. Maybe it should bcm74165b0-asp instead? 
+Not sure what the protocol is.
 
-test() {
-	gst-launch-1.0 --no-fault filesrc location=3DTILES_B_Cisco_1.bin ! h265par=
-se ! v4l2slh265dec ! fakevideosink &
-	pid=3D$!
+Thanks,
+Justin
 
-	sleep 2
-	kill $pid
-}
+> Best regards,
+> Krzysztof
+> 
 
-for i in $(seq 1 $1)
-do
-	test &
-done
+--0000000000003294a606124e1b15
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
-wait
-***
-
-The kernel Crash:
-[   93.261248] Unable to handle kernel NULL pointer dereference at virtual
-address 0000000000000008
-[   93.270056] Mem abort info:
-[   93.272880]   ESR =3D 0x0000000096000004
-[   93.276804]   EC =3D 0x25: DABT (current EL), IL =3D 32 bits
-[   93.282233]   SET =3D 0, FnV =3D 0
-[   93.285372]   EA =3D 0, S1PTW =3D 0
-[   93.288561]   FSC =3D 0x04: level 0 translation fault
-[   93.293493] Data abort info:
-[   93.296424]   ISV =3D 0, ISS =3D 0x00000004, ISS2 =3D 0x00000000
-[   93.301920]   CM =3D 0, WnR =3D 0, TnD =3D 0, TagAccess =3D 0
-[   93.306977]   GCS =3D 0, Overlay =3D 0, DirtyBit =3D 0, Xs =3D 0
-[   93.312321] user pgtable: 4k pages, 48-bit VAs, pgdp=3D0000000168daf000
-[   93.318790] [0000000000000008] pgd=3D0000000000000000, p4d=3D00000000000=
-00000
-[   93.325588] Internal error: Oops: 0000000096000004 [#1] PREEMPT SMP
-[   93.331842] Modules linked in: mt7921e mt7921_common mt792x_lib
-mt76_connac_lib mt76 mac80211 btusb btintel mtk_vcodec_dec_hw btmtk btrtl
-mtk_vcodec_dec btbcm cfg80211 bluetooth snd_sof_mt8195 mtk_vcodec_enc
-mtk_adsp_common uvcvideo v4l2_vp9 snd_sof_xtensa_dsp v4l2_h264 mtk_vcodec_d=
-bgfs
-snd_sof_of snd_sof ecdh_generic mtk_vcodec_common ecc uvc elan_i2c
-videobuf2_vmalloc crct10dif_ce cros_ec_lid_angle cros_ec_sensors snd_sof_ut=
-ils
-cros_ec_sensors_core cros_usbpd_logger cros_usbpd_charger fuse ip_tables ip=
-v6
-[   93.376652] CPU: 5 PID: 3210 Comm: h265parse0:sink Tainted: G        W  =
-   =20
-6.8.0-rc4-next-20240212+ #14
-[   93.386463] Hardware name: Acer Tomato (rev3 - 4) board (DT)
-[   93.392107] pstate: 80400009 (Nzcv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=
-=3D--)
-[   93.399054] pc : vcodec_vpu_send_msg+0x4c/0x190 [mtk_vcodec_dec]
-[   93.405058] lr : vcodec_send_ap_ipi+0x78/0x170 [mtk_vcodec_dec]
-[   93.410968] sp : ffff80008750bc20
-[   93.414269] x29: ffff80008750bc20 x28: ffff1299f6d70000 x27: 00000000000=
-00000
-[   93.421391] x26: 0000000000000000 x25: 0000000000000000 x24: 00000000000=
-00000
-[   93.428512] x23: ffff80008750bc98 x22: 000000000000a003 x21: ffffd45c4cf=
-ae000
-[   93.435632] x20: 0000000000000010 x19: ffff1299fd668310 x18: 00000000000=
-0001a
-[   93.442753] x17: 000000040044ffff x16: ffffd45cb15dc648 x15: 00000000000=
-00000
-[   93.449874] x14: ffff1299c08da1c0 x13: ffffd45cb1f87a10 x12: ffffd45cb2f=
-5fe80
-[   93.456995] x11: 0000000000000001 x10: 0000000000001b30 x9 : ffffd45c4d1=
-2b488
-[   93.464116] x8 : 1fffe25339380d81 x7 : 0000000000000001 x6 : ffff1299c9c=
-06c00
-[   93.471236] x5 : 0000000000000132 x4 : 0000000000000000 x3 : 00000000000=
-00000
-[   93.478358] x2 : 0000000000000010 x1 : ffff80008750bc98 x0 : 00000000000=
-00000
-[   93.485479] Call trace:
-[   93.487914]  vcodec_vpu_send_msg+0x4c/0x190 [mtk_vcodec_dec]
-[   93.493563]  vcodec_send_ap_ipi+0x78/0x170 [mtk_vcodec_dec]
-[   93.499125]  vpu_dec_deinit+0x1c/0x30 [mtk_vcodec_dec]
-[   93.504254]  vdec_hevc_slice_deinit+0x30/0x98 [mtk_vcodec_dec]
-[   93.510076]  vdec_if_deinit+0x38/0x68 [mtk_vcodec_dec]
-[   93.515205]  mtk_vcodec_dec_release+0x20/0x40 [mtk_vcodec_dec]
-[   93.521027]  fops_vcodec_release+0x64/0x118 [mtk_vcodec_dec]
-[   93.526677]  v4l2_release+0x7c/0x100
-[   93.530245]  __fput+0x80/0x2d8
-[   93.533292]  __fput_sync+0x58/0x70
-[   93.536681]  __arm64_sys_close+0x40/0x90
-[   93.540590]  invoke_syscall+0x50/0x128
-[   93.544329]  el0_svc_common.constprop.0+0x48/0xf0
-[   93.549020]  do_el0_svc+0x24/0x38
-[   93.552323]  el0_svc+0x38/0xd8
-[   93.555367]  el0t_64_sync_handler+0xc0/0xc8
-[   93.559537]  el0t_64_sync+0x1a8/0x1b0
-[   93.563189] Code: d503201f f9401660 b900127f b900227f (f9400400)=20
-[   93.569268] ---[ end trace 0000000000000000 ]---
+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
+NhTY3E+cXCB11wty89QStajwXdhGJTYEvUgvsq1h8CwJj9w/38ldAQf5WjhPmApYeJR2ewFrBMCM
+4lHkdRJ6TDc9nXoEkypUfjJkJHe7Eal06tosh6JpAgMBAAGjggHZMIIB1TAOBgNVHQ8BAf8EBAMC
+BaAwgaMGCCsGAQUFBwEBBIGWMIGTME4GCCsGAQUFBzAChkJodHRwOi8vc2VjdXJlLmdsb2JhbHNp
+Z24uY29tL2NhY2VydC9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcnQwQQYIKwYBBQUHMAGG
+NWh0dHA6Ly9vY3NwLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwME0G
+A1UdIARGMEQwQgYKKwYBBAGgMgEoCjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3dy5nbG9iYWxz
+aWduLmNvbS9yZXBvc2l0b3J5LzAJBgNVHRMEAjAAMEkGA1UdHwRCMEAwPqA8oDqGOGh0dHA6Ly9j
+cmwuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3JsMCMGA1UdEQQc
+MBqBGGp1c3Rpbi5jaGVuQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAfBgNVHSME
+GDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUIWGeYuaTsnIada5Xx8TR3cheUbgw
+DQYJKoZIhvcNAQELBQADggEBAHNQlMqQOFYPYFO71A+8t+qWMmtOdd2iGswSOvpSZ/pmGlfw8ZvY
+dRTkl27m37la84AxRkiVMes14JyOZJoMh/g7fbgPlU14eBc6WQWkIA6AmNkduFWTr1pRezkjpeo6
+xVmdBLM4VY1TFDYj7S8H2adPuypd62uHMY/MZi+BIUys4uAFA+N3NuUBNjcVZXYPplYxxKEuIFq6
+sDL+OV16G+F9CkNMN3txsym8Nnx5WAYZb6+rBUIhMGz70V05xsHQfzvo2s7f0J1tJ5BoRlPPhL0h
+VOnWA3h71u9TfSsv+PXVm3P21TfOS2uc1hbzEqyENCP4i5XQ0rv0TmPW42GZ0o4xggJtMIICaQIB
+ATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhH
+bG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwj8BKLXNpALfemdRAwDQYJ
+YIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIGvaHLPlnvjYM31I+CH+MHbjhayJqjU9NQl3
+56b0p0/OMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI0MDIyNjE5
+NDIxM1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFl
+AwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFlAwQCATAN
+BgkqhkiG9w0BAQEFAASCAQAglDoxk1yyJQNEkLjXw5TzHKfIIX3Z4waYO8B6WzQpiyOoGdCWb/UU
+zNKdDiRvfnT7eQ0dr+xWsoQXLyFPIKbK3wzGXZY7x9YrIWtLKgik/DbIBzmWWB1I7Kl9hledKd38
+dQyZSDrrlObxnXRpkpDf1Y/XJu7xGBPkXE6jK3HmhewZpa2t47aqX0bSPG4fRMAmds0hx44bpIJc
+FmI/GxH6isMjQCr5m3S7iOMbrxiBTCPv3w2k+ksSUHG8JrIjIFd07AXsjusxarBDAkoV8ZfmuCUj
+hVWA4c7TVwyZ1sqQ2VDBi6tivtZ4ijyyxcgnUK87BK6QHtBcdPRZvvP17IXX
+--0000000000003294a606124e1b15--
 
