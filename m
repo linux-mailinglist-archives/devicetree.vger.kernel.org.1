@@ -1,102 +1,122 @@
-Return-Path: <devicetree+bounces-46144-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46145-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B23E868375
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 23:05:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25AAD868378
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 23:06:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 535A728455E
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 22:05:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D43BC2850C5
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 22:06:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90C6A131E28;
-	Mon, 26 Feb 2024 22:05:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95615131E30;
+	Mon, 26 Feb 2024 22:06:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="WAOAtxwr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sQoy0Wb3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 301E7131750;
-	Mon, 26 Feb 2024 22:05:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6722E1AACD;
+	Mon, 26 Feb 2024 22:06:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708985118; cv=none; b=JoC4omrZF/s8cmiznFgN+zCwcKaEM32Svv+j4FcI+gY+wwpPcMUdTSRSet/tEh0Y1vtxyBVhZDNwMGmDWW1ztGLxD5IPg9kWrkRnrPUBG7wjqg6RxkvwjY8ZKNzsW31ZBlaGI/P0WNMEHxk4E7mQU9rJKSpTh2EXAenabwkTiwo=
+	t=1708985214; cv=none; b=f7E/4nLK9Y7zag6t4/UL2qsZsT+NDDhyyXIiWRQ8p5NSLMlDhxCeJiRgAvDUNLGfYIfEHh+ccksFTTHy6vlg/vo/ANDlfZLuttMeMPwm5Av/pcdZS4gBSw0TOZdMdmItumytdSh6V47E7JJGWXfc+KLO4sbFVyuvmNQtbYIN2Co=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708985118; c=relaxed/simple;
-	bh=p/3wyl8Jo2S9QJLB6T+6NCzPxPyNA7mOUdaRW8YuZWw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AzTBmYLNZbfQpPcI6AgZJ7sWr7zgma6qrq6PGw+mZjN6uLaklznBOjUAbhSI4H5mfes33xdOj1xHc4kttoZjx+BHBPCvLur6XT6Dz0qeeYit6P76JPeAg8fweq99cCebgce3G3ONhRpZ+tNP3qXqWAupYfAYRa5IA293bbcCXqA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=WAOAtxwr; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1dc0e5b223eso30079575ad.1;
-        Mon, 26 Feb 2024 14:05:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1708985116; x=1709589916; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=p/3wyl8Jo2S9QJLB6T+6NCzPxPyNA7mOUdaRW8YuZWw=;
-        b=WAOAtxwr1TMCWC/ibqjgpAobRjQUwP8jClDyALdoPMFqUXqyDo4rYFmTb2s7dTuILB
-         j81PKUJYiDH/ILJspfU0GZrj1dGXSErINkFVscAkRRfBnWa6NQ55a4GyiW/faV5TW4cb
-         5Fa7gUhPSSXYlU0suYNBnhTwXEGqU1n6QtL0v6M4XZp7vkt67PjcmNxdA3ohCR6gq0Ve
-         yWTV0lvHuqTiYpIxEhnBiCvoWsReAqBDUQa3RhNsvkWJZF/E24TpoP157xbN3rhbvRcd
-         SnulNUEwVylV4wC322/4qXQFeXjUebrLg8359Qrhr4XmvZp4qFGVCi+vnsnDYE+Z1vvF
-         MWMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708985116; x=1709589916;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=p/3wyl8Jo2S9QJLB6T+6NCzPxPyNA7mOUdaRW8YuZWw=;
-        b=SKRklSOttPYq9KA/hILxi7xAUDzyw+qTgDWzIljU9FEFg8nFS28PbDbe6F39YFvfCQ
-         RbhxOITePEkXuotUnIieS9MPKEYWc5FEnTdETu6vfHMYNjLlhICGXgSqOw5rF3UvXwRr
-         AiH1tne8leMullCtBk6OjwCJtH96wiq1wtyinz8MZPDfoRAgzUcHEgJGs3QNq5itbfr5
-         f/dovsL2Uc1JhIWpitx3ls+/++riMIbxeHEi0gvxNd9W1Fr6jch6OQXD1haemBCKQn0s
-         JFe/3Eb1lufqXfPgVqXdCl5f8Lr9PevYiK7Ayusi8v3+iG6br0jiwvK3lnfoWYkhnImi
-         o4oA==
-X-Forwarded-Encrypted: i=1; AJvYcCX9TsACsjnH1Fv9APlOwNpgVrkbb1+4nAkrRE4AcwGZtUGPuduGpxUWwhclUAhDSxKMe9SKAxHH2V1ANJTe4Ecp6C6FPibZw3LryT3fN1CWLaZbS+1tkYjT97VtHuqTkx0DJyirDRC/7Q==
-X-Gm-Message-State: AOJu0YzfJJMNEXPA6+x0eHikRMrXdfJFdkriK72lZ0zj9x8ClyxqzZxi
-	ez0ZHxBwgrZuYkR40EG5Q6FyFKyBGvgahn5JkToxXARr8dQTfGJFCCwuqHgdmf/Xafdijh34gXp
-	hfgvaBPb0g2N2W2Z1eOGjffwp/kU=
-X-Google-Smtp-Source: AGHT+IF/GAOdaVYQdXJhgPE9e+g37fsL94g20U51TnMoE/5craeH10xNbQkGDkY7uYATSqOuqeXz+FrRGZ5PzyVFXo8=
-X-Received: by 2002:a17:902:ea08:b0:1dc:1ff2:c6d6 with SMTP id
- s8-20020a170902ea0800b001dc1ff2c6d6mr8707132plg.22.1708985116478; Mon, 26 Feb
- 2024 14:05:16 -0800 (PST)
+	s=arc-20240116; t=1708985214; c=relaxed/simple;
+	bh=AhAkCYM47O8dKZ4IHxet9r4VJYofKYTUO2jJeRmXvNI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=TJ2Jz0m7mrmtw24FMGB1X969T5Sn87zlQVTGVeu1a0cmV5pSWyTOTFfGuHuXWyDrsQtdmiz0v85s9P8uWEWPGYXiQ1NEmaRvhpE1GcwdcvFa6X656LQlQaW/v3XIGMTAsCHpGDvoqGVnSioChIVFuGU9GKsOYa8/+c5mRhgATpU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sQoy0Wb3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46901C433F1;
+	Mon, 26 Feb 2024 22:06:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708985213;
+	bh=AhAkCYM47O8dKZ4IHxet9r4VJYofKYTUO2jJeRmXvNI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=sQoy0Wb3pbFwWi3l8cO0Qvzmaa0DZej3NmaCW4Jvq2S5oSoBZ9TQs90YRXIKOKwji
+	 gTaTZbZmlXLHdR3k6qBAC8JdTMwGbBdnCpd5AxjK9VdPh/QijxSq2TWBFryB7ZOBxG
+	 4PWHDZvR08tUOpi7o+7UHrzZuLFoa2vVC42hYh0ZDGw8ON/d7N4b++9y2wfakJGJsG
+	 yK3XM1YFRiIxLzCxmYNYrXwNszp3FM/H6uKRyj7lQZ9p4lWqNmiHVdaldYs6Dn4hGs
+	 Xqhqm2EiKhofgwXmNwlk8Nh1SzH4PMbXn6aXtgdWseilZAm8oASqOyrYlPB6eiftTp
+	 mclBdC8x7im5w==
+Date: Mon, 26 Feb 2024 22:06:37 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, haibo.chen@nxp.com,
+ lars@metafoo.de, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+ kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Peng
+ Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: imx93: drop the 4th
+ interrupt
+Message-ID: <20240226220637.7bc64b95@jic23-huawei>
+In-Reply-To: <20240226-rectangle-pacifist-633ae3b801c7@spud>
+References: <20240226130826.3824251-1-peng.fan@oss.nxp.com>
+	<20240226-germinate-anymore-fb85ca9bb226@spud>
+	<20240226192055.54b4a6b1@jic23-huawei>
+	<20240226-rectangle-pacifist-633ae3b801c7@spud>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240224084030.5867-1-krzysztof.kozlowski@linaro.org>
- <20240224084030.5867-2-krzysztof.kozlowski@linaro.org> <e2cda8f8-4250-4ac5-b7ba-6069f37c1b98@linaro.org>
-In-Reply-To: <e2cda8f8-4250-4ac5-b7ba-6069f37c1b98@linaro.org>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 26 Feb 2024 23:05:05 +0100
-Message-ID: <CAFBinCAymkEJycdvBeumMVL04_7mNCdr7yGz9pKxh__-Uo3rrA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: arm: amlogic: add Neil, Martin and
- Jerome as maintainers
-To: neil.armstrong@linaro.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Mon, Feb 26, 2024 at 9:21=E2=80=AFAM Neil Armstrong
-<neil.armstrong@linaro.org> wrote:
->
-> + linux-amlogic@lists.infradead.org
->
-> On 24/02/2024 09:40, Krzysztof Kozlowski wrote:
-> > Add rest of Linux Amlogic Meson SoC maintainers and reviewers to the
-> > Amlogic board/SoC binding maintainers.
-> >
-> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+On Mon, 26 Feb 2024 21:17:06 +0000
+Conor Dooley <conor@kernel.org> wrote:
+
+> On Mon, Feb 26, 2024 at 07:20:55PM +0000, Jonathan Cameron wrote:
+> > On Mon, 26 Feb 2024 16:24:47 +0000
+> > Conor Dooley <conor@kernel.org> wrote:
+> >   
+> > > On Mon, Feb 26, 2024 at 09:08:25PM +0800, Peng Fan (OSS) wrote:  
+> > > > From: Peng Fan <peng.fan@nxp.com>
+> > > > 
+> > > > Per i.MX93 Reference Mannual Rev.4, 12/2013, there is no interrupt 268,
+> > > > so drop it.    
+> > > 
+> > > Don't just remove it from the example, drop it from the binding too?
+> > > It does permit a 4th "self testing" interrupt.  
+> > 
+> > I'm missing something. See below...  
+> > > 
+> > > Thanks,
+> > > Conor.
+> > >   
+> > > > 
+> > > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > > > ---
+> > > >  Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml | 4 +---
+> > > >  1 file changed, 1 insertion(+), 3 deletions(-)
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+> > > > index dacc526dc695..dfc3f512918f 100644
+> > > > --- a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+> > > > +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+> > > > @@ -31,7 +31,6 @@ properties:
+> > > >        - description: normal conversion, include EOC (End of Conversion),
+> > > >            ECH (End of Chain), JEOC (End of Injected Conversion) and
+> > > >            JECH (End of injected Chain).
+> > > > -      - description: Self-testing Interrupts.  
+> > 
+> > Eyes skipped over this maybe?  The 4th interrupt is removed from binding here...  
+> 
+> Huh, wonder how I missed that. I thought I double checked...
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> 
+> Cheers,
+> Conor.
+
+Happens to us all!  Applied patch 1 to the togreg branch of iio.git and pushed
+it out as testing so 0-day can poke at it.
+Thanks,
+
+Jonathan
 
