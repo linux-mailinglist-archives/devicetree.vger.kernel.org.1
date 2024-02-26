@@ -1,168 +1,176 @@
-Return-Path: <devicetree+bounces-45987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-45988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76CC8867890
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 15:33:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 047C08678E7
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 15:46:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8195E1C2A76D
-	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 14:33:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F8F51F27B52
+	for <lists+devicetree@lfdr.de>; Mon, 26 Feb 2024 14:46:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5FBD12A172;
-	Mon, 26 Feb 2024 14:31:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BDC6134CC1;
+	Mon, 26 Feb 2024 14:36:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jv6/2o7V"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="iKTqD1KN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E75D64C70;
-	Mon, 26 Feb 2024 14:31:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D58C6134727;
+	Mon, 26 Feb 2024 14:36:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708957877; cv=none; b=lfM3sAmXz6tpGWMRVQ0K+vgn0ccke2Pk3cjb/IwJ/Rh/2Le3H7H1O+vxjiFvpkBVgX+nGaTJq9/wp6okEdcRwb+DithMd9jnNKps2pv5ucOjuByce6MSlK3CbpkI86oXw2VV+CSnMNPrKYr1+7h+c3fBQ7TG8f2nXUY9Hbmj7sU=
+	t=1708958166; cv=none; b=LGCeAEUgHGHdLfxO8zk7fCqey//n4DP7OM9VOQqo3lrtiIpL6ajrSHUUbFdklB9PH8zl3x6Gki6fQbJ/E8UrlfBaGlpHJ6TUWLz6QG84vxAH4lsBO03+Cz6jsqzZ2qoRwrakNiWiH49vHmmlkXiwSA8qcytL/C2n5l2kIWH7aGA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708957877; c=relaxed/simple;
-	bh=cJT2DX6qZTAJQvVvn+j2hEoIyZTT0t/G+xkC6QYj65o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HOBie/NJuyhheOEJ0GvPVxBzDkvuxSkfZmUWLU5ijJqhhdqbaDyJq/FbTuuZiYoqHKxYJOu8cv50PArfRgfAwbtRJYKQm7zMGyUO503Y+CYocPFZLKNknmYVZFmHiuSD3tlqpSaEH7FxSH0wzPsipRpXZL2xYoL1OuRQKoyIlig=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jv6/2o7V; arc=none smtp.client-ip=209.85.210.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-6e4f569f326so1150658b3a.2;
-        Mon, 26 Feb 2024 06:31:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708957875; x=1709562675; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=LWWuiJoTDaQBVsd81KE3QCvkjLb2V6msKrjw0bQgEd0=;
-        b=jv6/2o7VYPJY4hU56wNVTUAPwmkx9jJlwcG45MteekqiLj55IgfrSHJL2Raf4s3v/H
-         +RjGRBvFGrthEJJeb52asKP5NZBVem+mOyAqr8xJAmo/rqPbfjX8JBwszud2KzTARZRk
-         yhBh36BAey9mE0qvpXmbA7sdlGMAxvDZ/9eKDGNpc5rC9RgkwITwm56ktRsii770fa2r
-         MCoJ/poRXiY6YgiUmj+FeAy0kQBb5Nxi6yBz/HnRfXAM/HBTg42ZO0I43JIyf7xqwb4n
-         F6D7WKlIPtp+L9/bu3BHv/ijfhRAufGISVg4ojt/XrpUqaM62n40aBJCnFnKuQZPOXkX
-         DriQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708957875; x=1709562675;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LWWuiJoTDaQBVsd81KE3QCvkjLb2V6msKrjw0bQgEd0=;
-        b=Mz8utyiP75wqkZ+M4Y9sGB7/pdteMgZrTzbCHroHHr2RRALxi9/pknl7lz6PXR81Kv
-         l42syMj2MV8VyONFsb+OTagvPJHrLMt8O4hN8qkxRjm7TsIvpbCbvrjuP5XnUjQ+pfXe
-         tcqkSlXLq4SX4S/WmW9wLwYfuF2mMK4FKMEK5t8IQ+zbQP1RyWVwVyHYufM93+zP4Glm
-         vCh75GAVB7MhEdGw55R88NI/JmoPOjIc8ZqSvHSVRKv65TYgr4PVjdZMHHhuXkk4C7eH
-         QFJJxz15yNwLLyO8sRoJTIBocI2vbnMLrssfYGLGbmEA3qWA/zwniPAKIPvP45kOhqFC
-         1pPw==
-X-Forwarded-Encrypted: i=1; AJvYcCVCBT+TMm6iamY5digYyE0+xk/lZWCIj5SoTdXwtJw6jsjZz0M/H9dsKtS/yZaXMyJWa8ol0iK6b3cSevHG3pzHnTjMdbr8uK2Os/71VDNN1Qqhxc5vndqWqQh7TOHoaNtiGd8xvKBXxA==
-X-Gm-Message-State: AOJu0YzxrpqjhAeYY4Ckj5f3Vxtivxtg8/QV+6QAtAofxeZSjRgIhqwA
-	uyFzBwwIrgjcFhEq4y7rWnLOBdYy+6USE4Mu83OXMLKC856UL7ip
-X-Google-Smtp-Source: AGHT+IFqyi3o6xHZkdxbBtLmmrIbIjgmkd3NDPjnXdABZL53amIBVS9EAjjWzBiDxTZ/1NmSAKrTDA==
-X-Received: by 2002:a05:6a21:3183:b0:1a0:ea31:c34f with SMTP id za3-20020a056a21318300b001a0ea31c34fmr9507014pzb.38.1708957875058;
-        Mon, 26 Feb 2024 06:31:15 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id c2-20020a63a402000000b005e45b337b34sm4028346pgf.0.2024.02.26.06.31.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Feb 2024 06:31:14 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <da20a51f-bf6a-466a-b4ab-401f831182c3@roeck-us.net>
-Date: Mon, 26 Feb 2024 06:31:14 -0800
+	s=arc-20240116; t=1708958166; c=relaxed/simple;
+	bh=9ywEGY5Eo3x6FAI3cUqz0fj17fVyroyFNHMiCN6mL/0=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
+	 References:In-Reply-To; b=AL3yII8vq0mTujTbnvC0jhlf86YzXSYe9nmhJB7H7mLfiJ7XD14Q1XRx1qqy8vRZJG5wwdBX1UDQLpuFfQU2U71yd1IYvSHpCflQ9XyIJCTs/NY+57Nat6XgensQqeNUTvtCz2xRt6C6Gbosb5QGuzay2XDJ4gohBXKMzgibQe8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=iKTqD1KN; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 751121BF209;
+	Mon, 26 Feb 2024 14:35:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1708958161;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=xzRRKGTCf49DCuAE0sJucov1JPKZw/oB6zFjk/bAKO0=;
+	b=iKTqD1KNUEKWwhSN9AhG2JhtpDWL87tAJ9I4T86LLIn0QkDMqI+Oq/4+t5fhJHfsecTixf
+	s+/UCitLkC/j7Yzf2luIY9kN/WVrqMOEEhpie7a1JCoV8PxKfF7ZsBq1MSbynBrgmJ/0G8
+	ZxSoSjSk+MX665A3cbZFKu1gKOPna55GAkVF91br9adMhh4PNkUAXQV2JhQDci4qKmmejm
+	JL2SGM4FZHA5FflxtIvKquzoswqNZ3772Bw7PYJFrEI13XKigy9mEFjpYofCBWCbm8cCGy
+	ekDso4pH4pexQ/dQvsW+ccS6C8ALdQM9DHAkXv9hA7YZiY3GXIkRlLIWyj4lqg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: aspeed: ahe50dc: Update lm25066 regulator name
-Content-Language: en-US
-To: Zev Weiss <zev@bewilderbeest.net>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>
-Cc: Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org
-References: <20240226091754.16027-2-zev@bewilderbeest.net>
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20240226091754.16027-2-zev@bewilderbeest.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 26 Feb 2024 15:35:59 +0100
+Message-Id: <CZF33W51MC4M.3GUBZFQXT39DB@bootlin.com>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH v3 1/8] dt-bindings: usb: ti,j721e-usb: drop useless
+ compatible list
+Cc: "Conor Dooley" <conor@kernel.org>, "Greg Kroah-Hartman"
+ <gregkh@linuxfoundation.org>, "Rob Herring" <robh+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Roger Quadros" <rogerq@kernel.org>, "Peter Chen"
+ <peter.chen@kernel.org>, "Pawel Laszczak" <pawell@cadence.com>, "Nishanth
+ Menon" <nm@ti.com>, "Vignesh Raghavendra" <vigneshr@ti.com>, "Tero Kristo"
+ <kristo@kernel.org>, "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>,
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Kevin
+ Hilman" <khilman@kernel.org>, "Alan Stern" <stern@rowland.harvard.edu>,
+ <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+To: "Conor Dooley" <conor.dooley@microchip.com>
+X-Mailer: aerc 0.15.2
+References: <20240223-j7200-usb-suspend-v3-0-b41c9893a130@bootlin.com>
+ <20240223-j7200-usb-suspend-v3-1-b41c9893a130@bootlin.com>
+ <20240223-clarity-variably-206b01b7276a@spud>
+ <CZEXXXQDZZWB.1M5CTZAFVO4YP@bootlin.com>
+ <20240226-portable-rockslide-e501667a0d9a@wendy>
+In-Reply-To: <20240226-portable-rockslide-e501667a0d9a@wendy>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On 2/26/24 01:17, Zev Weiss wrote:
-> A recent change to the lm25066 driver changed the name of its
-> regulator from vout0 to vout; device-tree users of lm25066's regulator
-> functionality (of which ahe50dc is the only one) thus require a
-> corresponding update.
-> 
-> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Guenter Roeck <linux@roeck-us.net>
+Hello,
 
-Acked-by: Guenter Roeck <linux@roeck-us.net>
+On Mon Feb 26, 2024 at 12:56 PM CET, Conor Dooley wrote:
+> On Mon, Feb 26, 2024 at 11:33:06AM +0100, Th=C3=A9o Lebrun wrote:
+> > Hello Conor,
+> >=20
+> > On Fri Feb 23, 2024 at 7:12 PM CET, Conor Dooley wrote:
+> > > On Fri, Feb 23, 2024 at 05:05:25PM +0100, Th=C3=A9o Lebrun wrote:
+> > > > Compatible can be A or B, not A or B or A+B. Remove last option.
+> > > > A=3Dti,j721e-usb and B=3Dti,am64-usb.
+> > > >=20
+> > > > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+> > > > ---
+> > > >  Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml | 9 +++---=
+---
+> > > >  1 file changed, 3 insertions(+), 6 deletions(-)
+> > > >=20
+> > > > diff --git a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yam=
+l b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+> > > > index 95ff9791baea..949f45eb45c2 100644
+> > > > --- a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+> > > > +++ b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+> > > > @@ -11,12 +11,9 @@ maintainers:
+> > > > =20
+> > > >  properties:
+> > > >    compatible:
+> > > > -    oneOf:
+> > > > -      - const: ti,j721e-usb
+> > > > -      - const: ti,am64-usb
+> > > > -      - items:
+> > > > -          - const: ti,j721e-usb
+> > > > -          - const: ti,am64-usb
+> > >
+> > > Correct, this makes no sense. The devices seem to be compatible thoug=
+h,
+> > > so I would expect this to actually be:
+> > > oneOf:
+> > >   - const: ti,j721e-usb
+> > >   - items:
+> > >       - const: ti,am64-usb
+> > >       - const: ti,j721e-usb
+> >=20
+> > I need your help to grasp what that change is supposed to express? Woul=
+d
+> > you mind turning it into english sentences?
+> > A=3Dti,j721e-usb and B=3Dti,am64-usb. My understanding of your proposal=
+ is
+> > that a device can either be compat with A or B. But B is compatible
+> > with A so you express it as a list of items. If B is compat with A then
+> > A is compat with B. Does the order of items matter?
+>
+> The two devices are compatible with each other, based on an inspection of
+> the driver and the existing "A+B" setup. If this was a newly submitted
+> binding, "B" would not get approved because "A+B" allows support without
+> software changes and all that jazz.
+>
+> Your patch says that allowing "A", "B" and "A+B" makes no sense and you
+> suggest removing "A+B". I am agreeing that it makes no sense to allow
+> all 3 of these situations.
+>
+> What I also noticed is other problems with the binding. What should have
+> been "A+B" is actually documented as "B+A", but that doesn't make sense
+> when the originally supported device is "A".
+>
+> Therefore my suggestion was to only allow "A" and "A+B", which is what
+> we would (hopefully) tell you to do were you submitting the am64 support
+> as a new patch today.
 
-> ---
->   arch/arm/boot/dts/aspeed/aspeed-bmc-delta-ahe50dc.dts | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-delta-ahe50dc.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-delta-ahe50dc.dts
-> index 6600f7e9bf5e..93f3be849071 100644
-> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-delta-ahe50dc.dts
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-delta-ahe50dc.dts
-> @@ -18,7 +18,7 @@ efuse@##hexaddr {							\
->   		reg = <0x##hexaddr>;						\
->   		shunt-resistor-micro-ohms = <675>;				\
->   		regulators {							\
-> -			efuse##num: vout0 {					\
-> +			efuse##num: vout {					\
->   				regulator-name = __stringify(efuse##num##-reg);	\
->   			};							\
->   		};								\
+Thank you for the in-depth explanation! It makes much more sense now,
+especially the handling of historic stuff that ideally wouldn't have
+been done this way but that won't be changed from now on.
+
+> > I've not applied your proposal to check for dtbs_check but I'd guess it
+> > would throw warnings for the single existing upstream DTSI (as of
+> > v6.8-rc6) that uses "ti,am64-usb"? See:
+> > arch/arm64/boot/dts/ti/k3-am64-main.dtsi.
+>
+> Yeah, it would but it's not as if that cannot be changed. There's no
+> concerns here about backwards compatibility here, right?
+
+I'm not involved in the maintenance of this platform so I do not believe
+I should be answering this question. I asked the question because I
+taught there always were concerns of backwards-compat when it comes to
+DT and dt-bindings (in the best of all possible worlds).
+
+K3 maintainers are already in cc.
+
+Thanks,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
