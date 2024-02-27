@@ -1,135 +1,235 @@
-Return-Path: <devicetree+bounces-46394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E65386916B
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 14:11:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EA7A869175
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 14:13:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1654A1F21C56
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 13:11:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 33912B2AF36
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 13:13:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78F6813AA5C;
-	Tue, 27 Feb 2024 13:11:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9E5A13B293;
+	Tue, 27 Feb 2024 13:13:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="tvsnowVK"
+	dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b="ImQ4DNw3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEC3013AA46
-	for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 13:11:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DDEB1EB25
+	for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 13:12:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709039501; cv=none; b=FGhyJqaDh8Dhi5xow169fiYYDBRvy1FDptg2kk20owPlVXuxspDOqFjZvLwmyU1rO13wnV1NfesDLh9uZqqQSc/uItbot9IDQOaXnHmbCr7IXxdc9+puwkqVaLsUsirbZZIjiMVsbqgLxRyzq8Kne0KSXqvCrs//V+GbIM7VCyQ=
+	t=1709039580; cv=none; b=r8RW5yr1uPq2tknbn2O4HBqN9mo3hJVcLLSB42Vx7+Q17ZXenKsesgvP7abXFyl5nCjUwwADnmx7dM6DV9ZbXkX6oQQL1PGMrlWvYWoeNHJ73M+bEOfBIDGKDAKvihteWbB6c3Qud/PRqA0we4YauWKbL29EBEYdcBfCmkneU5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709039501; c=relaxed/simple;
-	bh=bAZ3iM58OJ/c+sYIqOEGYcO2YI1AZnqpgNdLdjXcmvg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sqRDkNbCNOwZLY24GxmqJdn2KwzWMGWi3w/4XGo8H0SLFYUErtl1Cq8Oq3r+HXM1VG+O6xY8c3MGwcRVVIiy/b2nOYjCz+IklhdTw02xVR2tGMjxI0G4dcffWyxELMxH+2QYwrPeeZch0SXIZKGieqDJqS+O9lyaJuHllHs84H4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=tvsnowVK; arc=none smtp.client-ip=209.85.166.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-io1-f42.google.com with SMTP id ca18e2360f4ac-7c796072dafso181904839f.0
-        for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 05:11:39 -0800 (PST)
+	s=arc-20240116; t=1709039580; c=relaxed/simple;
+	bh=r/94iCN20Fk2NhI03wn/nZawp0Hom6G4UHrshYpmT20=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hTqyFoDgnMgFq8aoJvoPAYjlWsqev8a8pwhTrAsGu6EcX/jjIanrcyjC7U7owILwsg0a7Kr3QzVTEAxDUmecBq71wTF1KLablqiXOWMp9r95Qg58UcCm4lSSjNpsFwU4xBsPy+6bbw/frD5Evy9FLnUkyJZcnvyIVTj2f18G/b0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tweaklogic.com; spf=pass smtp.mailfrom=tweaklogic.com; dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b=ImQ4DNw3; arc=none smtp.client-ip=209.85.210.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tweaklogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tweaklogic.com
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-6e55101cc56so199913b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 05:12:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1709039499; x=1709644299; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=udo8bD1gQZ0TgNyTOs65mIj8/NeIRI7TPXyi6M/72Q4=;
-        b=tvsnowVK+HdQ/3oyJsC+yItPc89cXzDqP0xkfENlrJci+0g3TmzU6Ayir/FDTZUfrI
-         8fArkCp2LIIlIKgszr2sUpfVtinWm6wfiUAq33Gpya8d+d8cQZTm8s34g2ExuvuEd6lU
-         TSVRMF076NIUSwQoZPInIH1kELkiCxdvcHOvyIMHjjwd4E67K0mSiWG2G5ET1CvINVs0
-         ZelU7nOBzfxSXEQA9TMWdkor7aBDmOQ0wOVnbZ42nId2hMORIED159uH/kDXObTafSJ7
-         kybSfEPnRr5rqhnoPU5xhERt68jrSuuWKNFL8fzOZft19paTlx29N+gd7B3A5fMdyzYJ
-         9+hQ==
+        d=tweaklogic.com; s=google; t=1709039578; x=1709644378; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jCk7kBUbkEDCNNZZvLnoeTcO/DOClexbrTDxgBd3Qvk=;
+        b=ImQ4DNw3IgF7FYTNz8ieFU4J3racq6Wg3KLhmFvh1qWLyOSAEf2G3hBKGr7gvzPW6m
+         ApXSF5r7CgtdUzmICdIFAjbtVXs0ZR2tKhhXUvJgUkxEvgFm0XN/9ljJoaB1lwwnGCgu
+         16b2LVFPyo5wTGi/Y1qk1OUSrGo4kM5lM5o+lnt74U7Wv8Q2e3vT3lFT7Pl+DgyuRlDd
+         wP9+x6fuuK3BFV8vhZp905mD1UkNbLNH0cVp0i4SMvHxNVweqQridBhrtbBU1kM/vxje
+         RsG2kAWv3FbVbQdaAaxGfTCh6kmL6908QfXbxrWbMz75kNpIVXNx0bCDo2SehpxVAKrr
+         Bh9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709039499; x=1709644299;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=udo8bD1gQZ0TgNyTOs65mIj8/NeIRI7TPXyi6M/72Q4=;
-        b=WQ50jVf5gAhQsPCyxc2Qtc0GTm5gjXqXZdc8cNlw05lXUcTbnpHJoyt+K72IpFLYX+
-         IEHZg5QD11lajYyiz9J0y0kD5W7RfcT+X/ANMsOTudPcYkZhecVdJRwYyyLCNiAC3erP
-         I9uXee83f7OpyQlx7jHZdCEUB7VhDqauTCUjWadMgkUxGl7io12aT0RptavIGhI2gNpd
-         O4nS387wvEmSBKt5KoeH/1wEmnF+tJhQHJ8G8Qmy+CEQDy8MtNoTec6qwyh9g436YheD
-         P3TVXezMkQPZ45mW2nFleKORiRHDg85OqQoXXtTOHw5dfoPIN95sLZXYeyt7B1bNxySZ
-         JhrA==
-X-Forwarded-Encrypted: i=1; AJvYcCXTq8MUof/rGP5QYmZAsPV4cwFjN9X2r6bPo6k+Vm+q1vFBguBI04oHnSvAb7vuZrUu7G8pw9z9+vT/nhW7BuQ2uRXt4dpbB4Pplg==
-X-Gm-Message-State: AOJu0YwW2NlZMvCk9gn5nR+qKNbPhuVHqt7c1DY7RW2bKmvkT8DFWGDD
-	kCL6qTO5jTxDv15uk3Xr/YGWoGQULjxVXNgwoOQUumdviZCycce8sR/lChV5hnQNRmM/rBDuNa/
-	Ge4IzqJ8eGTNcGp+/TerXf0GCCFqDEvuS4BHL
-X-Google-Smtp-Source: AGHT+IEbvZWYzJhRl38v/+RURp8VhVb+sc2/zv8znFskRMA/IxEBLb5NyDAoUgrrhIG+yRmDNWyZC23b3qgda22u2K8=
-X-Received: by 2002:a05:6602:14c7:b0:7c7:e2c5:569e with SMTP id
- b7-20020a05660214c700b007c7e2c5569emr2368172iow.7.1709039499002; Tue, 27 Feb
- 2024 05:11:39 -0800 (PST)
+        d=1e100.net; s=20230601; t=1709039578; x=1709644378;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jCk7kBUbkEDCNNZZvLnoeTcO/DOClexbrTDxgBd3Qvk=;
+        b=WTygjU8tbWcXQURXCVvxX/oKiOycwKrP0CVbvcRGhH6gh+eVHZf6wx4X/qq8jxV7yZ
+         Th2prg1p2Tt4caruJCnkhckCgea5lLATUIGYW+wqFrc+UCxsig0wOW+SBxeREBt/9Oe+
+         YEW/Y94AwYU7HBnnZG30FiVQ9Cr/HPGQFJb8WXljw0v8ZngKePXEPwePHJnjr6TXzUrz
+         i6f8s7zSbeS7G4Tyi/TxXRSCBDmw3Xhr6Xs+Tws7iDn3s6EL2W0IJgaONiKvg+Nu9KRr
+         p423v0Skg8xepxZrUImw69OGFHnHn7eneVoLg46iPTJ7PaL8+XpcaUhSwV3oBf4FBfbu
+         RnwQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWdLiC+ZSFImF9mpUQaLdL1TCc1s4umrCEIHIgHZGqRUpirsmJGIcswc8U3l1+HB+KIMsAc/k1X5hZHMK5JVBB3hZJWyAZoH5EgbQ==
+X-Gm-Message-State: AOJu0Yz113c8ihMcJ5FoPJ7ZbxeKPNo/a3xnOAfbQPNS0Nimn/q8qMYL
+	qACc2TaKvsB6asxl6fszfw7u+Tpi2o7iVNW2ORhdhM5MLpjEVqgvd0bYXJzK/ME=
+X-Google-Smtp-Source: AGHT+IElVotDjmybxm6A/bANYneip6rEcVYA8BZjYqYHCjXxGr1LIAXaukd9DC+7GRyLF3yr1NzIBA==
+X-Received: by 2002:a05:6a21:350f:b0:1a0:f096:5022 with SMTP id zc15-20020a056a21350f00b001a0f0965022mr2427341pzb.46.1709039577571;
+        Tue, 27 Feb 2024 05:12:57 -0800 (PST)
+Received: from [192.168.20.11] ([180.150.112.31])
+        by smtp.gmail.com with ESMTPSA id i4-20020a632204000000b005dc26144d96sm5723883pgi.75.2024.02.27.05.12.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Feb 2024 05:12:57 -0800 (PST)
+Message-ID: <a94b86fe-0896-47ba-a597-0cd59a0665a2@tweaklogic.com>
+Date: Tue, 27 Feb 2024 23:42:48 +1030
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240221160215.484151-1-panikiel@google.com> <20240221160215.484151-9-panikiel@google.com>
- <13aeb2ff-72f4-49d9-b65e-ddc31569a936@linaro.org> <CAM5zL5q0oKoTMR0jSwYVAChCOJ9iKYPRFiU1vH4qDqhHALKz4w@mail.gmail.com>
- <e1fd8cbd-060b-4d15-8256-6d8dbba545da@linaro.org> <CAM5zL5qxBM1xQ__t86gxUKMy8O3BzoCe_vTFxxsqFq7mw4-8EQ@mail.gmail.com>
- <890afb05-1b19-47b2-bfd8-5f6de0caeda3@linaro.org>
-In-Reply-To: <890afb05-1b19-47b2-bfd8-5f6de0caeda3@linaro.org>
-From: =?UTF-8?Q?Pawe=C5=82_Anikiel?= <panikiel@google.com>
-Date: Tue, 27 Feb 2024 14:11:27 +0100
-Message-ID: <CAM5zL5rs4JyFznnWDLZP_2jwnX+yc+OwwOijGZGsQK+WtpiWKA@mail.gmail.com>
-Subject: Re: [PATCH v2 8/9] media: dt-bindings: Add Intel Displayport RX IP
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: airlied@gmail.com, akpm@linux-foundation.org, conor+dt@kernel.org, 
-	daniel@ffwll.ch, dinguyen@kernel.org, hverkuil-cisco@xs4all.nl, 
-	krzysztof.kozlowski+dt@linaro.org, maarten.lankhorst@linux.intel.com, 
-	mchehab@kernel.org, mripard@kernel.org, robh+dt@kernel.org, 
-	tzimmermann@suse.de, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
-	linux-media@vger.kernel.org, chromeos-krk-upstreaming@google.com, 
-	ribalda@chromium.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 5/5] iio: light: Add support for APDS9306 Light Sensor
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Matti Vaittinen <mazziesaccount@gmail.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Marek Vasut <marex@denx.de>, Anshul Dalal <anshulusr@gmail.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Matt Ranostay <matt@ranostay.sg>,
+ Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240218054826.2881-1-subhajit.ghosh@tweaklogic.com>
+ <20240218054826.2881-6-subhajit.ghosh@tweaklogic.com>
+ <20240224151340.3f2f51e8@jic23-huawei>
+Content-Language: en-US
+From: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+In-Reply-To: <20240224151340.3f2f51e8@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Feb 26, 2024 at 6:29=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 26/02/2024 13:43, Pawe=C5=82 Anikiel wrote:
-> >>>>> +  intel,max-stream-count:
-> >>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>>>> +    description: Max stream count configuration parameter
-> >>>>> +
-> >>>>> +  port:
-> >>>>> +    $ref: /schemas/graph.yaml#/properties/port
-> >>>>> +    description: SST main link
-> >>>>
-> >>>> I don't understand why you have both port and ports. Shouldn't this =
-be
-> >>>> under ports?
-> >>>
-> >>> I put both so that you can use the shorter port property when the
-> >>> device only has one port (i.e. no MST support). It would work fine
-> >>> without it. If you think that's unnecessary, I can remove it (and use
-> >>> the ports property even if there is only one).
-> >>
-> >> No, it is fine, but then you need allOf: which will restrict to only o=
-ne
-> >> of them: either port or ports.
-> >
-> > There already is an allOf below that says that ports is required for
-> > MST support and port is required otherwise. Isn't this enough?
->
-> Add both port and ports and see if it is enough.
+On 25/2/24 01:43, Jonathan Cameron wrote:
+> On Sun, 18 Feb 2024 16:18:26 +1030
+> Subhajit Ghosh <subhajit.ghosh@tweaklogic.com> wrote:
+> 
+>> Driver support for Avago (Broadcom) APDS9306 Ambient Light Sensor.
+>> It has two channels - ALS and CLEAR. The ALS (Ambient Light Sensor)
+>> channel approximates the response of the human-eye providing direct
+>> read out where the output count is proportional to ambient light levels.
+>> It is internally temperature compensated and rejects 50Hz and 60Hz flicker
+>> caused by artificial light sources. Hardware interrupt configuration is
+>> optional. It is a low power device with 20 bit resolution and has
+>> configurable adaptive interrupt mode and interrupt persistence mode.
+>> The device also features inbuilt hardware gain, multiple integration time
+>> selection options and sampling frequency selection options.
+>>
+>> This driver also uses the IIO GTS (Gain Time Scale) Helpers Namespace for
+>> Scales, Gains and Integration time implementation.
+>>
+>> Signed-off-by: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+> I applied this but then got some build warnings that made me look
+> more closely at the int_src handling.
+> 
+> This is confusing because of the less than helpful datasheet defintion
+> of a 2 bit register that takes values 0 and 1 only.
+> 
+> I thought about trying to fix this up whilst applying but the event code
+> issue is too significant to do without a means to test it.
+> 
+> Jonathan
+> 
 
-Ok, I see. I tried and this seems to work:
+>> +static int apds9306_read_data(struct apds9306_data *data, int *val, int reg)
+>> +{
+>> +	struct device *dev = data->dev;
+>> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
+>> +	struct apds9306_regfields *rf = &data->rf;
+>> +	int ret, delay, intg_time, intg_time_idx, repeat_rate_idx, int_src;
+>> +	int status = 0;
+>> +	u8 buff[3];
+>> +
+>> +	ret = pm_runtime_resume_and_get(data->dev);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = regmap_field_read(rf->intg_time, &intg_time_idx);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = regmap_field_read(rf->repeat_rate, &repeat_rate_idx);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = regmap_field_read(rf->int_src, &int_src);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	intg_time = iio_gts_find_int_time_by_sel(&data->gts, intg_time_idx);
+>> +	if (intg_time < 0)
+>> +		return intg_time;
+>> +
+>> +	/* Whichever is greater - integration time period or sampling period. */
+>> +	delay = max(intg_time, apds9306_repeat_rate_period[repeat_rate_idx]);
+>> +
+>> +	/*
+>> +	 * Clear stale data flag that might have been set by the interrupt
+>> +	 * handler if it got data available flag set in the status reg.
+>> +	 */
+>> +	data->read_data_available = 0;
+>> +
+>> +	/*
+>> +	 * If this function runs parallel with the interrupt handler, either
+>> +	 * this reads and clears the status registers or the interrupt handler
+>> +	 * does. The interrupt handler sets a flag for read data available
+>> +	 * in our private structure which we read here.
+>> +	 */
+>> +	ret = regmap_read_poll_timeout(data->regmap, APDS9306_MAIN_STATUS_REG,
+>> +				       status, data->read_data_available ||
+>> +				       (status & (APDS9306_ALS_DATA_STAT_MASK |
+>> +						  APDS9306_ALS_INT_STAT_MASK)),
+>> +				       APDS9306_ALS_READ_DATA_DELAY_US, delay * 2);
+>> +
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	/* If we reach here before the interrupt handler we push an event */
+>> +	if ((status & APDS9306_ALS_INT_STAT_MASK))
+>> +		iio_push_event(indio_dev, IIO_UNMOD_EVENT_CODE(IIO_LIGHT,
+>> +			       int_src, IIO_EV_TYPE_THRESH, IIO_EV_DIR_EITHER),
+> 
+> You are pushing an event on channel 0 or 1 (which is non obvious as that
+> int_src is a 2 bit value again).  However you don't use indexed channels
+> so this is wrong.
+> It's also pushing IIO_LIGHT for both channels which makes no sense as you
+> only have one IIO_LIGHT channel.
+Hi Jonathan,
 
-oneOf:
-  - required:
-      - port
-  - required:
-      - ports
+For the above fix I am supplying the second parameter to IIO_UNMOD_EVENT_CODE()
+as "0" which gives me the below output from userspace:
+./iio_event_monitor /dev/iio:device0
+Event: time: xx, type: illuminance, channel: 0, evtype: thresh, direction: either
+Event: time: yy, type: intensity, channel: 0, evtype: thresh, direction: either
 
-And that would make the if/else with port and ports below not needed.
+As I do not have indexed channels, I have used zero for both Light and Intensity
+channel numbers. Should I make the intensity type as channel one for the output
+to look like this?
+Event: time: xx, type: illuminance, channel: 0, evtype: thresh, direction: either
+Event: time: yy, type: intensity, channel: 1, evtype: thresh, direction: either
+
 What do you think?
+
+Regards,
+Subhajit Ghosh
+> 
+> 
+>> +			       iio_get_time_ns(indio_dev));
+>> +
+>> +	ret = regmap_bulk_read(data->regmap, reg, buff, sizeof(buff));
+>> +	if (ret) {
+>> +		dev_err_ratelimited(dev, "read data failed\n");
+>> +		return ret;
+>> +	}
+>> +
+>> +	*val = get_unaligned_le24(&buff);
+>> +
+>> +	pm_runtime_mark_last_busy(data->dev);
+>> +	pm_runtime_put_autosuspend(data->dev);
+>> +
+>> +	return 0;
+>> +}
+>> +
+> 
+> ...
+
+
 
