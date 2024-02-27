@@ -1,164 +1,160 @@
-Return-Path: <devicetree+bounces-46413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEEA28696A0
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 15:14:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BCCA8696F9
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 15:17:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F10D01C236EA
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 14:14:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A294286609
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 14:17:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7A3B14532C;
-	Tue, 27 Feb 2024 14:13:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ae5IGL4z"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88EC213B78E;
+	Tue, 27 Feb 2024 14:17:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E4D813B797;
-	Tue, 27 Feb 2024 14:13:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 341C613B29C;
+	Tue, 27 Feb 2024 14:17:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709043201; cv=none; b=GGagJ9nDI3rIj6rwf2klzWsFGU4fsB4K5fKcY9ZOLMfOw7VeVg/KE6GObHMD93JEUbGqELrKB1O637PynjKaFyQ0jlzKZNkQ2aWtKaeX3lAaX/L2Wg7pkP2AwCXRCvGtL0FgTbvfv881pBIuJaT84T2zyz8ep9nWcH1FIS6+g1s=
+	t=1709043428; cv=none; b=POmsRFfr0Hi5796GauALbL8HWKuDMCmeNJTJE5GXo5auqm4V4djAa0qUoPH15+0GuqI+y74eRryJcZccQiZHZpocW2SpRG5P2P5smoRVAtIKdlDlmp4+kuXMgSHaYED0FnWIeqIhPhxvueX+A8yaWSUAhTTty5cKCV07zQ+CQBU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709043201; c=relaxed/simple;
-	bh=mUuwmlC0meHZASaEIz5WA4LuGQ0Dr67URk+uNV/EgD8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=otsexT7/s6mGLaezXUeYHLis80pVvANB+dUgCeNfgdfQvjFtPPlEgG0WZF67AorokwhO8FkyiEB2xRPSsrazSNQYtnc990VdaK2t1iM27GUpQ84YjOvb9yVFjSvjuUKyPtqdH3BOGH59rx/npDQQkxlHRHakdV2G8UqQfON2mvs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ae5IGL4z; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41RED0Cm064396;
-	Tue, 27 Feb 2024 08:13:00 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1709043180;
-	bh=89TgnGcV7AWusBNJIhZxYRDeSlSzPcr0Ty7C/sjjwMQ=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=ae5IGL4z5LmTchav//6gcnweNsR0f5yZ34OmA5EpMpCAEMVBOpAtkC4Dr7SkdtWYz
-	 woLcVnujhS1I3y0E3kIGL3xdkc412smFXhW+iN+FaMGwlyt4k7Aw/1bpWikz2QnHna
-	 mV6U6gmYpqCCx1rmVjyLATMyMNBZ3TaZWvTBw8UU=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41RED01U055730
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 27 Feb 2024 08:13:00 -0600
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 27
- Feb 2024 08:13:00 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 27 Feb 2024 08:13:00 -0600
-Received: from [172.24.227.94] (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41RECuKD000420;
-	Tue, 27 Feb 2024 08:12:56 -0600
-Message-ID: <c4f9bbf2-a30e-44bb-91ee-8e6ab209115b@ti.com>
-Date: Tue, 27 Feb 2024 19:42:55 +0530
+	s=arc-20240116; t=1709043428; c=relaxed/simple;
+	bh=Xn6o2bGF5DiPX8HAPawgpYy3iLQQ0+lG4YhM53gHcLg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=l0UICuO51+tLTQhG4I+6H0RNNs+ybgpL2m9PhyD1mZG8yHNUOaWhrMZLZm6SQuT8bGLBf6qk7oL2NH4Wdr67mFv+1Uvcij/dn7REgL4Ui335mWSJ7Cky4uXZbwT1DLQQMUdm9hAuzDgAJeUoR7Jq0Ei5bMwBBzEHK7izOl16hnY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-6089b64f4eeso42979507b3.2;
+        Tue, 27 Feb 2024 06:17:05 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709043424; x=1709648224;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VP3AOk86O1fQXduz5wbAFP5nZBmS0VH1bQ23IBAgmNQ=;
+        b=aB4E+kufs7EtoPfws5kT6nXiRqPUpTDrECmyhVfbxwbYuLM0Z0GlWTrqUVDC5j/pWN
+         JKZA9ytxA2C5XQYiNl0rRC3gAXRdie/yXpkNZjFq7iNHeeYYoUgq4Mbf16gJEirfsG/A
+         QdJJttcrLDt0cVC7ew3MU2pthFZIjg3pGS+daw9QfFhT/t5LBpBOLZwBVfpoQNNceZpc
+         8obZ5XwwhDlujY4wsqNxShRlDaVzi6oqZQnkgurBujuOUvyXwSpB608K3GbL9O0QEc33
+         cDl0yF0UZ0zoyuVxbJ7MDkyk/MJIieG0C0FnGQYZvHoo0hDB+G3rpLX77yQUSe6INjpM
+         KdCA==
+X-Forwarded-Encrypted: i=1; AJvYcCVtJcbIRe0fskcU5BJWkxwjohiMUCPP+XbZvDrs8bQBx8hcgPn+jfqXdRThd0qjmvuZzVpcvMIZYXR79wNS1/agp/StxoZ3dx8TIDPgSMek7OTtsfTFjRISzSD1Z7JGLX2d6gifkeZguWYrGqa8
+X-Gm-Message-State: AOJu0Yw+VbBIsUXcrtb8ulb+tO6YpA7XHccFTABAYC2cyR5R3i+RxLpf
+	Tr/XnNJZwy3++TYhrYh4h0wbPBHYHbPf5F1yEzlQYMhuTLy/deaPf2i57zqb6bI=
+X-Google-Smtp-Source: AGHT+IHxN5Mqj/L6kI+YD79l+7qLq/3jH5koGKPgBY27P/fPGUviS42r1QMmAZ6k6lJD13+ODlB5cA==
+X-Received: by 2002:a81:9b05:0:b0:607:a8bd:c24 with SMTP id s5-20020a819b05000000b00607a8bd0c24mr2348739ywg.29.1709043423330;
+        Tue, 27 Feb 2024 06:17:03 -0800 (PST)
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
+        by smtp.gmail.com with ESMTPSA id v6-20020a25ab86000000b00dcda3959006sm1469395ybi.33.2024.02.27.06.17.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Feb 2024 06:17:03 -0800 (PST)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-60922e16f6fso10203287b3.3;
+        Tue, 27 Feb 2024 06:17:03 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCW9AtzlqMoTeqjGRbS3KRx+pWzG6uyrKDwtHRq8LkqXbqPrH4Dty32L2yGhRskTf5FGs/4cO+/WRG68cYjxFrb3whW/ilKbCZ/n1PNm/BjmIySS02HGFuJX0wzZxgKu+brgfcSHkkIHgOlQK7uI
+X-Received: by 2002:a5b:80a:0:b0:dcc:1f6a:d755 with SMTP id
+ x10-20020a5b080a000000b00dcc1f6ad755mr2167596ybp.39.1709043422906; Tue, 27
+ Feb 2024 06:17:02 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/4] arm64: dts: ti: k3-am64-main: Add ICSSG IEP nodes
-Content-Language: en-US
-To: Josua Mayer <josua@solid-run.com>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo
-	<kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Yazan Shhady <yazan.shhady@solid-run.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Suman Anna <s-anna@ti.com>,
-        Grygorii Strashko
-	<grygorii.strashko@ti.com>,
-        MD Danish Anwar <danishanwar@ti.com>
-References: <20240219-add-am64-som-v7-0-0e6e95b0a05d@solid-run.com>
- <20240219-add-am64-som-v7-2-0e6e95b0a05d@solid-run.com>
-From: Vignesh Raghavendra <vigneshr@ti.com>
-In-Reply-To: <20240219-add-am64-som-v7-2-0e6e95b0a05d@solid-run.com>
+References: <20240226194715.427597-1-biju.das.jz@bp.renesas.com> <20240226194715.427597-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20240226194715.427597-2-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 27 Feb 2024 15:16:50 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXarkL=pVH+4vutNf_g2MX=Y25YM1bFLHJjOE2OQAd+qA@mail.gmail.com>
+Message-ID: <CAMuHMdXarkL=pVH+4vutNf_g2MX=Y25YM1bFLHJjOE2OQAd+qA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] arm64: dts: renesas: rzg2ul-smarc: Enable PMIC and
+ built-in RTC, GPIO and ONKEY
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: quoted-printable
 
+Hi Biju,
 
-
-On 19/02/24 20:33, Josua Mayer wrote:
-> From: Suman Anna <s-anna@ti.com>
-> 
-> The ICSSG IP on AM64x SoCs have two Industrial Ethernet Peripherals (IEPs)
-> to manage/generate Industrial Ethernet functions such as time stamping.
-> Each IEP sub-module is sourced from an internal clock mux that can be
-> derived from either of the IP instance's ICSSG_IEP_GCLK or from another
-> internal ICSSG CORE_CLK mux. Add both the IEP nodes for both the ICSSG
-> instances. The IEP clock is currently configured to be derived
-> indirectly from the ICSSG_ICLK running at 250 MHz.
-> 
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-> Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
-> Signed-off-by: Suman Anna <s-anna@ti.com>
-> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
-> Signed-off-by: Josua Mayer <josua@solid-run.com>
+On Mon, Feb 26, 2024 at 8:47=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
+m> wrote:
+> Enable PMIC DA9062 and the built-in RTC, GPIO and ONKEY modules on the
+> RZ/{G2UL,Five} SMARC EVK development boards.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 > ---
+> v1->v2:
+>  * Dropped disabled status from gpio and onkey nodes.
+>  * Added gpio hog nodes.
 
-This patch is already picked as part of different series:
+Thanks for the update!
 
-https://lore.kernel.org/all/20240215103036.2825096-2-danishanwar@ti.com/
+> --- a/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi
+> @@ -5,6 +5,7 @@
+>   * Copyright (C) 2022 Renesas Electronics Corp.
+>   */
+>
+> +#include <dt-bindings/gpio/gpio.h>
 
->  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 24 ++++++++++++++++++++++++
->  1 file changed, 24 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> index e348114f42e0..9d2dad8ae8df 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> @@ -1244,6 +1244,18 @@ icssg0_iepclk_mux: iepclk-mux@30 {
->  			};
->  		};
->  
-> +		icssg0_iep0: iep@2e000 {
-> +			compatible = "ti,am654-icss-iep";
-> +			reg = <0x2e000 0x1000>;
-> +			clocks = <&icssg0_iepclk_mux>;
-> +		};
-> +
-> +		icssg0_iep1: iep@2f000 {
-> +			compatible = "ti,am654-icss-iep";
-> +			reg = <0x2f000 0x1000>;
-> +			clocks = <&icssg0_iepclk_mux>;
-> +		};
-> +
->  		icssg0_mii_rt: mii-rt@32000 {
->  			compatible = "ti,pruss-mii", "syscon";
->  			reg = <0x32000 0x100>;
-> @@ -1385,6 +1397,18 @@ icssg1_iepclk_mux: iepclk-mux@30 {
->  			};
->  		};
->  
-> +		icssg1_iep0: iep@2e000 {
-> +			compatible = "ti,am654-icss-iep";
-> +			reg = <0x2e000 0x1000>;
-> +			clocks = <&icssg1_iepclk_mux>;
-> +		};
-> +
-> +		icssg1_iep1: iep@2f000 {
-> +			compatible = "ti,am654-icss-iep";
-> +			reg = <0x2f000 0x1000>;
-> +			clocks = <&icssg1_iepclk_mux>;
-> +		};
-> +
->  		icssg1_mii_rt: mii-rt@32000 {
->  			compatible = "ti,pruss-mii", "syscon";
->  			reg = <0x32000 0x100>;
-> 
+Yep, we need this...
 
--- 
-Regards
-Vignesh
+>  #include "rzg2ul-smarc-pinfunction.dtsi"
+>  #include "rz-smarc-common.dtsi"
+>
+> @@ -23,6 +24,63 @@ &cpu_dai {
+>  &i2c0 {
+>         clock-frequency =3D <400000>;
+>
+> +       da9062: pmic@58 {
+> +               compatible =3D "dlg,da9062";
+> +               reg =3D <0x58>;
+> +               gpio-controller;
+> +               #gpio-cells =3D <2>;
+> +
+> +               gpio {
+> +                       compatible =3D "dlg,da9062-gpio";
+> +               };
+> +
+> +               onkey {
+> +                       compatible =3D "dlg,da9062-onkey";
+> +               };
+> +
+> +               pmic-good-hog {
+> +                       gpio-hog;
+> +                       gpios =3D <4 0>;
+
+... so this can be replaced by <4 GPIO_ACTIVE_HIGH> ;-)
+
+> +                       output-high;
+> +                       line-name =3D "PMIC_PGOOD";
+> +               };
+
+Same for the other gpios.
+
+Anyway, LGTM
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.10, with s/0/GPIO_ACTIVE_HIGH/.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
