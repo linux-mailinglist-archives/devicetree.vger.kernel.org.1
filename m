@@ -1,153 +1,206 @@
-Return-Path: <devicetree+bounces-46302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6141868CF3
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 11:08:23 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37E07868CFC
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 11:10:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DBDDA1C22948
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 10:08:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 85FF9B217A6
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 10:10:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BB28137C4D;
-	Tue, 27 Feb 2024 10:08:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2ECF137C5A;
+	Tue, 27 Feb 2024 10:10:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Sm0n5pQF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zPt4FQgB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B02613699F;
-	Tue, 27 Feb 2024 10:08:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FF05137C21
+	for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 10:10:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709028496; cv=none; b=CBPpsfNSWs0+NhfviOIpkV9GgXsV8f26lFxEF2/yQpxq6ZL2drl8ZWqXfboeowkt9/DNuatFuvIgLJxHi9NV+NUEEtT2tNp/5zNJWukCCuldV9MMTzRqqpOA/caDNXHvBojju0GJ3c7lfsAmDPJ1LpwXZXJPIlT5LeHZsx3YNKs=
+	t=1709028634; cv=none; b=bkqtRV/s51MZuPVKqmPlwFSAtAL7tvK1u4dpxTRGuKAGVOttDlbwws5e0q9Ghdk6MaDtPzLMRsDyU7OejP46Qgo0IMt5InMFodjOxGtpKLUWY+7/6im0seprWEkO10d1JRPTWpevwB1UgtRAHhkILhmC/8/Ap968tT1OS0NagP8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709028496; c=relaxed/simple;
-	bh=gayX3MThRtKAbxiT63s1KOxQeJc59MH4mNLhm21wvus=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=H+VKAqoM62FmadKG8l7GM4+ymUCYjuhNDhRSQGtatYEw9oNH1OdlEpRByzM7aDEykKc5OZps2xH+HIfIkrV7JQGlqlWXwOFvxxZdjXU8nNt0d58hK92BODU8nL6Z/lZ0Yrgw5ER4okXPpoRMrKhYqS1e8zoPZl3aYU6I8K5nq+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Sm0n5pQF; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 1B79C240008;
-	Tue, 27 Feb 2024 10:08:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709028486;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=xvLaYo71E/i5pWv7T61eLjy9zgmIF4EWr3dIPInc76E=;
-	b=Sm0n5pQFxXJLkiaB1TAaCuo0oEs+Mv9KG/JGBjQ91ZO5oPkAegydRj38YtkVb6gEQ8TBGh
-	Obumgxy9ZP2JClMj0wIprCxMKrLtD29lZbBFNu28M5SXXAIA7WmTQlSepiTjtAQLUjuVGS
-	o2Xadk0RaiA/446C7RrtFdY6k1bGuhNfDT2LnpRmSZhKlfWR4Awkf1q7LGu3R31kltysjQ
-	j9H7+dpJUj6qS67T7BAy03eSeUkLRY8t9H3mK2smKAzwQJrbW1hNhgsYHhAZe8QEr7Sl7x
-	hQ9dJnLSqTGkOzOQaCofynCSP9bfxCY6/ZtUXDA8dN/3eMNMvsJqwL7nEM0uKg==
-Date: Tue, 27 Feb 2024 11:08:02 +0100
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: Bastien Curutchet <bastien.curutchet@bootlin.com>
-Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, Richard Cochran
- <richardcochran@gmail.com>, Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit
- <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-leds@vger.kernel.org, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, herve.codina@bootlin.com,
- christophercordahi@nanometrics.ca
-Subject: Re: [PATCH v2 5/6] net: phy: DP83640: Explicitly disabling PHY
- Control Frames
-Message-ID: <20240227110802.552bff55@device-28.home>
-In-Reply-To: <20240227093945.21525-6-bastien.curutchet@bootlin.com>
-References: <20240227093945.21525-1-bastien.curutchet@bootlin.com>
-	<20240227093945.21525-6-bastien.curutchet@bootlin.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1709028634; c=relaxed/simple;
+	bh=axYkiK27hZmU3U5ZgLd8K7xnXx4RM0UWCxboUYZ9Wrc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FM+7cfDCpI0Bntf7h4hT9NYBVHUmn1HoAPEjRFb72AMTlIughhj9JERGBx0nNyOu4//6k7hTTijDoPQhLv48IEKQcyr3H5Od/2gHicXTOLxzm+7mokjR9QsWitxQ0mU5REMhtuV3yMQM2atfvGjhdD1ezT3xYWowTMjldgaNnv4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zPt4FQgB; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-563c403719cso5043884a12.2
+        for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 02:10:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709028629; x=1709633429; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XORW/Iqcagckfu19U8I7p8d13VH75gCtuVI6ZW/vguM=;
+        b=zPt4FQgBcTGS0PnyScoR4CVDiUWJMjFdxvKAD6Vdg+2Cr5f4JW41YT4riCpFriTXdq
+         QW6QZv4N80miPoFPZVnZkrYbSBgE6QvRsmzLIKi8MW3GgedmEwpHwz6uWuCrzVPmSQHP
+         SEtYKkxAPo/kpYLuZBvKmTy8uAbaEimGSI1LJmqcPWQZPMCpAun3OuCaNqMW1c+I9nF+
+         dXra96kMCwg7V2qXc/rJUxXx/GaZXskVhWeBa9PkMz7qwdgO2O26WhJlWmYR8hRyIKbj
+         W2Zw9htrSaD081jwgXQsCzlQUhdUcx8Dpi3dDCo5Sn81ExAUQU+6PyvlSOwz96plRjXU
+         6JWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709028629; x=1709633429;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XORW/Iqcagckfu19U8I7p8d13VH75gCtuVI6ZW/vguM=;
+        b=BWviMC4A4i1Pa7RE3peRuCV7YCFPaM80aXjJSfoGkd5xXsyNHZI2LW6twehR3q5LY6
+         /Yc5wLt1qiB5FoTafGvGcq9RKzSe8IbUgbtV7eGPq0SU2fPH4MD9j/oopufZXf6Wcn8r
+         /ctDIznKAQGpBncM250gy1wxRd42VoICqMYjhXyKn1Pa/2GjcK4viiS7CxOVzGGcycQ1
+         POvBrbgJ0U/og1baFEc7pp5Kbt9y28sjS001JrzSWr/HJkUVODvprjZw2f3F2gZjItXV
+         8qHEVy0zk1//yliCFrtuMSe/4ZAX4k7ojGQGPek742TXJBogcBlzBsmFZg7v650Fojyp
+         cw5A==
+X-Forwarded-Encrypted: i=1; AJvYcCWvYZU0iMLUsiv9bi1Y7FHSK67YaRiBMsUvC67ie9JMsA8Zni63fy+112ENyS1zhDopGHtUVAX3wl5NDsPSmF9jRJ8FI+dBDfaRLQ==
+X-Gm-Message-State: AOJu0Yx1Tc5PIrDWvBL0nkfVf2qlo4fEKmmH7uvDq1dKDEA12gSNK1Ua
+	F3q65e9zzllo2KdUQidtLS9BMhO1FGMnekcuty84x4cNvH7lQG9q5VIaCXijogI=
+X-Google-Smtp-Source: AGHT+IFjcbEZbar9UxYuUJqI6s2AFCWSOGrFEY4venV9yuOsBPAxM+xYmyyooD8ohZEI7G1h9Aj5xw==
+X-Received: by 2002:a17:906:c02:b0:a3d:78a:bffa with SMTP id s2-20020a1709060c0200b00a3d078abffamr6348294ejf.0.1709028629283;
+        Tue, 27 Feb 2024 02:10:29 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.116])
+        by smtp.gmail.com with ESMTPSA id cw4-20020a170907160400b00a43a5bdd58bsm514990ejd.211.2024.02.27.02.10.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Feb 2024 02:10:28 -0800 (PST)
+Message-ID: <4a9f0eef-590b-45df-92bc-b63ad9282e18@linaro.org>
+Date: Tue, 27 Feb 2024 11:10:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/3] dt-bindings: fpga: xlnx,fpga-selectmap: add DT
+ schema
+Content-Language: en-US
+To: Charles Perry <charles.perry@savoirfairelinux.com>, mdf@kernel.org
+Cc: avandiver@markem-imaje.com, bcody@markem-imaje.com,
+ Wu Hao <hao.wu@intel.com>, Xu Yilun <yilun.xu@intel.com>,
+ Tom Rix <trix@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>,
+ linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20240221195058.1281973-1-charles.perry@savoirfairelinux.com>
+ <20240221195058.1281973-3-charles.perry@savoirfairelinux.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240221195058.1281973-3-charles.perry@savoirfairelinux.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-GND-Sasl: maxime.chevallier@bootlin.com
 
-Hi Bastien,
-
-On Tue, 27 Feb 2024 10:39:44 +0100
-Bastien Curutchet <bastien.curutchet@bootlin.com> wrote:
-
-> The PHY offers a PHY control frame feature that allows to access PHY
-> registers through the MAC transmit data interface. This functionality
-> is not handled by the driver but can be enabled via hardware strap or
-> register access.
+On 21/02/2024 20:50, Charles Perry wrote:
+> Document the SelectMAP interface of Xilinx 7 series FPGA.
 > 
-> Disable the feature in config_init() to save some latency on MII packets.
-> 
-> Signed-off-by: Bastien Curutchet <bastien.curutchet@bootlin.com>
+> Signed-off-by: Charles Perry <charles.perry@savoirfairelinux.com>
 > ---
->  drivers/net/phy/dp83640.c     | 6 ++++++
->  drivers/net/phy/dp83640_reg.h | 4 ++++
->  2 files changed, 10 insertions(+)
+>  .../bindings/fpga/xlnx,fpga-selectmap.yaml    | 86 +++++++++++++++++++
+>  1 file changed, 86 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
 > 
-> diff --git a/drivers/net/phy/dp83640.c b/drivers/net/phy/dp83640.c
-> index 16c9fda50b19..b371dea23937 100644
-> --- a/drivers/net/phy/dp83640.c
-> +++ b/drivers/net/phy/dp83640.c
-> @@ -1120,6 +1120,7 @@ static int dp83640_config_init(struct phy_device *phydev)
->  {
->  	struct dp83640_private *dp83640 = phydev->priv;
->  	struct dp83640_clock *clock = dp83640->clock;
-> +	int val;
->  
->  	if (clock->chosen && !list_empty(&clock->phylist))
->  		recalibrate(clock);
-> @@ -1135,6 +1136,11 @@ static int dp83640_config_init(struct phy_device *phydev)
->  	ext_write(0, phydev, PAGE4, PTP_CTL, PTP_ENABLE);
->  	mutex_unlock(&clock->extreg_lock);
->  
-> +	/* Disable unused PHY control frames */
-> +	phy_write(phydev, PAGESEL, 0);
-> +	val = phy_read(phydev, PCFCR) & ~PCF_EN;
-> +	phy_write(phydev, PCFCR, val);
-
-Use phy_modify instead, and you might also want to look at the paging.
-The ext_write before apparently does some page-management itself through
-the clock struct (?).
-
+> diff --git a/Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml b/Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
+> new file mode 100644
+> index 0000000000000..08a5e92781657
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
+> @@ -0,0 +1,86 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/fpga/xlnx,fpga-selectmap.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  	return 0;
->  }
->  
-> diff --git a/drivers/net/phy/dp83640_reg.h b/drivers/net/phy/dp83640_reg.h
-> index bf34d422d91e..b5adb8958c08 100644
-> --- a/drivers/net/phy/dp83640_reg.h
-> +++ b/drivers/net/phy/dp83640_reg.h
-> @@ -10,6 +10,7 @@
->  #define PHYCR                     0x0019 /* PHY Control Register */
->  #define PHYCR2                    0x001c /* PHY Control Register 2 */
->  #define EDCR                      0x001D /* Energy Detect Control Register */
-> +#define PCFCR                     0x001F /* PHY Control Frames Control Register */
->  
->  #define PAGE4                     0x0004
->  #define PTP_CTL                   0x0014 /* PTP Control Register */
-> @@ -68,6 +69,9 @@
->  /* Bit definitions for the EDCR register */
->  #define ED_EN		          BIT(15) /* Enable Energy Detect Mode */
->  
-> +/* Bit definitions for the PCFCR register */
-> +#define PCF_EN                    BIT(0)  /* Enable PHY Control Frames */
+> +title: Xilinx SelectMAP FPGA interface
 > +
->  /* Bit definitions for the PTP_CTL register */
->  #define TRIG_SEL_SHIFT            (10)    /* PTP Trigger Select */
->  #define TRIG_SEL_MASK             (0x7)
+> +maintainers:
+> +  - Charles Perry <charles.perry@savoirfairelinux.com>
+> +
+> +description: |
+> +  Xilinx 7 Series FPGAs support a method of loading the bitstream over a
+> +  parallel port named the SelectMAP interface in the documentation. Only
+> +  the x8 mode is supported where data is loaded at one byte per rising edge of
+> +  the clock, with the MSB of each byte presented to the D0 pin.
+> +
+> +  Datasheets:
+> +    https://www.xilinx.com/support/documentation/user_guides/ug470_7Series_Config.pdf
+> +
+> +allOf:
+> +  - $ref: /schemas/memory-controllers/mc-peripheral-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - xlnx,fpga-xc7s-selectmap
+> +      - xlnx,fpga-xc7a-selectmap
+> +      - xlnx,fpga-xc7k-selectmap
+> +      - xlnx,fpga-xc7v-selectmap
+> +
+> +  reg:
+> +    description:
+> +      At least 1 byte of memory mapped IO
+> +    maxItems: 1
+> +
+> +  prog_b-gpios:
 
-Thanks,
+I commented on this and still see underscore. Nothing in commit msg
+explains why this should have underscore. Changelog is also vague -
+describes that you brought back underscores, instead of explaining why
+you did it.
 
-Maxime
+So the same comments as usual:
+
+No underscores in names.
+
+Best regards,
+Krzysztof
+
 
