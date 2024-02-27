@@ -1,285 +1,378 @@
-Return-Path: <devicetree+bounces-46535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 524A1869FA6
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 19:56:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E2EF869FFA
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 20:16:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03FD428A7E9
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 18:56:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7D4B7B2AF8B
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 19:08:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 116B914D420;
-	Tue, 27 Feb 2024 18:55:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DF064EB43;
+	Tue, 27 Feb 2024 19:08:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="J0w7DRA7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nbdqzm+6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7966F14AD2D
-	for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 18:55:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 447FB3D988;
+	Tue, 27 Feb 2024 19:08:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709060112; cv=none; b=MpO8oMUXk3imNzrd7WTL2stvlD2AMh6Kr9+6jZaMGbQVawui4vd34z3r4TXGiR9/rXj+IQPlgN1WTiw+/JRbY8TQitEIVlg8uZZTXjANvs2qtPeismP8x5jFse21BqfVqMBbvdRPfEwrS4j+l4Nf/SoUne6isxLHNCGFH9Johl8=
+	t=1709060890; cv=none; b=e+/1fQc0+smHrQfuFBJ2tBoPkWqPd8Tsa2FXM3Jp/WG5EmWMwxpVNFHGyE9Y2IEcripkoSi1Fl6ehXqxCUyJkGMznRR0T0nqX4XhJu19QiojVG2/nz/Ts8xP6oM6hSLGwTOYG/i6vsZHC7N2SyEFScsSq+iEraYmBdaCgg5wkxI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709060112; c=relaxed/simple;
-	bh=tFnrW6WRoGnRORriLJ8XHXevQlv7HSyl3eGZDO4dMEY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WVIb4k+w65+N+x8w1K5YxV40RdJK02ydCx5PHRl5hYi7EIZUBY4glbd67VjhgLM0LuRqcYKZd7e4dZurEntBn15CohV65eHd1/RbCqPG8TkQ+ycCee/Ov6FONtuVZ9YdTuiNGRKhVmTEqepXNVr9VsliBMxd7AKcg9WgyV0OUBM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=J0w7DRA7; arc=none smtp.client-ip=209.85.210.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-6e508725b64so1178643b3a.3
-        for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 10:55:10 -0800 (PST)
+	s=arc-20240116; t=1709060890; c=relaxed/simple;
+	bh=TQh6LW1PVOfcw8bXd7iNWDVNACOkDhRazrivKvtV6eA=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ZKG8tTKyKlcD9hnvjuUSXu8WsJQayfvgGAhHwE1e0VnJ/W4aJUzOGJCxagOSRsfj3orOi2ADLmmeoPe4qhdcU5YzzFKklyQoqg5Lz9RLbMf1clTaWrpSuubJkUi+TXDhbDaMltfsQZEHU2p+QkeL3y/PkLcLJXV5FFAr5wv7VsI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nbdqzm+6; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5129e5b8cecso5708672e87.3;
+        Tue, 27 Feb 2024 11:08:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1709060110; x=1709664910; darn=vger.kernel.org;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=vl0kJZWeWFMIsba9DAkOqIvrl2ol3zlHeO7/OxnDV0g=;
-        b=J0w7DRA7JgBZolrkssMVAeCFEnKr7e8TINIBTK1tvW6zwVryyayIJei9tSuWRN+vUu
-         oididunPpbtvODr1J30UmQERxYTz/B/SjxqMyPkjk6uWhISTHDRAvzYpRsmxdA6a+AjA
-         6b0vYvqtZj/ORM7qB/ATm/ZJ6+ePdQKA3x5HU=
+        d=gmail.com; s=20230601; t=1709060886; x=1709665686; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=TQh6LW1PVOfcw8bXd7iNWDVNACOkDhRazrivKvtV6eA=;
+        b=nbdqzm+6f5Yh6AqPrSaiPUUvBH5DrDlZAbyxgUZHMTPe+as0221GC+Fg0nIOB//iE/
+         4BmiQ9YjEljFkXUzMqKh5zVmqIXVMYZEhBdbReY9LfpayhUTjS4mQOKOKTwErYmGCKGy
+         RtC9+A6MaNqn4H1m3dPjQGlZFI6D6Bkg5L9AMdNnRt412XfUpHQmVm38XKKcSqdJ2P1i
+         JCut8i29dy8XbiFaxhvpQIg2ZUOfadHKezJRZl/SlvanJr3Vk9Swnls886HDljW2osbn
+         jMaUpP43x2VsHdO3hNghP+TRo+gAtmWZPxn3q6EEZEyMw9mAdnVAbTI31GG6RAiMhVrI
+         v5HQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709060110; x=1709664910;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vl0kJZWeWFMIsba9DAkOqIvrl2ol3zlHeO7/OxnDV0g=;
-        b=ojkJMZhFQa+FikbV4mRIRnPkLGGTjIXNEw4nsoLoi6KFJ0cOLPprw36RUihY70PJKM
-         qdTpimtlFkDS6QE9rpZAirkJuDj7Zx9/AZniO8Xj1AWl2poM2XZ0R50wIla26wuwULgh
-         9Q3SiDrzkbbKlhyheiCLeR7E+LzT2oJq/IvWIRwEvdz/6V9Uev7PB9BZblVmZ4DjoTyQ
-         DvgdTquE2N37Lg+obL2ZoCnNk54XsFoSesis39zc3TDcnIm1eK9VgDyGdcmwT0n7IU/F
-         HBAqNkIqWDehazCOa/fy+aRcBAq/zZd0yZPuTDV3hJ5kiUIL4XpumpHFGsZEBY80opSB
-         jQJw==
-X-Forwarded-Encrypted: i=1; AJvYcCW/11hZ85OJxFr29WRY9ZqJtMhIaRGEIwp2in39mbdBdBGNjm0rVrbYvztiiVn7IcDoJ5WHSoC7QviPOor52mq94OmRSgXu8IOikQ==
-X-Gm-Message-State: AOJu0YwtGKjcrD2jqvbMgbgjib0SdHolmNEvnKNc9n5vjyuoKLCJQMtH
-	KEX4kWer+qtdVygQOvTA8rEFiymWKMHh55RREf7+QI2LBD59e/HVOHdKCnEAZg==
-X-Google-Smtp-Source: AGHT+IG6+amgoqxQKHjGq6XjXVCP0fU7/gBclv8pHu2hAOCpHmPldwnoy9Bh81RxGTjV8HVEVg9JGQ==
-X-Received: by 2002:a05:6a00:6c99:b0:6e5:54b5:f16c with SMTP id jc25-20020a056a006c9900b006e554b5f16cmr1952800pfb.0.1709060109803;
-        Tue, 27 Feb 2024 10:55:09 -0800 (PST)
-Received: from stbirv-lnx-1.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id r6-20020aa79886000000b006e466369645sm6236898pfl.132.2024.02.27.10.55.08
+        d=1e100.net; s=20230601; t=1709060886; x=1709665686;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TQh6LW1PVOfcw8bXd7iNWDVNACOkDhRazrivKvtV6eA=;
+        b=wc//2WMa8LhrExDNGShZwxnpGlLrhYqN4/tqEM9BMhpIkjDq9JsKZtR+TIfcbBOl/p
+         FHAYtQTzPRDE2iGBhbBCAzv0ch6vfUKfEP8KJWcxlpOy0htccYWJZUEB4JkXNa9qvX4h
+         hqLxuic9q1u74owZClXlA9GcAUCJIuZeinHfvrPHvUX2seRpqEVdvc4IVC9XEUyVpcc/
+         M3leyIpvkLsF4yYoTvzLTC3SvywI1/lU4S/jEr90Cudofgh7B+pQDjp3m/HNqPwmoEBU
+         J2vpaoV6hmVwnz28JYLfHkrphqd9gsZuRpMewq5yOEoyCwrE5wDmErVuZg6+NifQuxuA
+         PWzw==
+X-Forwarded-Encrypted: i=1; AJvYcCWCROvPBvBp4FPPQ5w0of0+TXkPZlr3N/8AgVlG61m8r3WZz0dom+qYcBRPhpYbli+0V5MzcYSf5J2HLYAf/zEOkEoYtWpTRMb9qTb29ICPeAdYy6EKzM6YIa2ogkN3cPRNyUStUC8qOQ==
+X-Gm-Message-State: AOJu0Yw9zm3ub4VcpkBTR1y74gfZVM+4eRqD4CiU4cXB2jAVY5KCD82+
+	Cbj4qgrNvwsjbOICCQmIBJvBLJa0PNnFxiRYswVy3VaufWTgscx6
+X-Google-Smtp-Source: AGHT+IF9Eb7aJCmvFjgVa4JvyKENTpBU9O4sSWo5TWq/zGN5Tl8NmF0e39RI98BdQUS/fX0zy9Qpag==
+X-Received: by 2002:a05:6512:3996:b0:513:13ef:187 with SMTP id j22-20020a056512399600b0051313ef0187mr1336647lfu.51.1709060886143;
+        Tue, 27 Feb 2024 11:08:06 -0800 (PST)
+Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
+        by smtp.gmail.com with ESMTPSA id m18-20020a50d7d2000000b00564e4debe29sm1081306edj.78.2024.02.27.11.08.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Feb 2024 10:55:09 -0800 (PST)
-From: Justin Chen <justin.chen@broadcom.com>
-To: netdev@vger.kernel.org
-Cc: florian.fainelli@broadcom.com,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	opendmb@gmail.com,
-	bcm-kernel-feedback-list@broadcom.com,
-	andrew@lunn.ch,
-	hkallweit1@gmail.com,
-	linux@armlinux.org.uk,
-	rafal@milecki.pl,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Justin Chen <justin.chen@broadcom.com>
-Subject: [PATCH net-next v2 6/6] net: bcmasp: Add support for PHY interrupts
-Date: Tue, 27 Feb 2024 10:54:54 -0800
-Message-Id: <20240227185454.2767610-7-justin.chen@broadcom.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240227185454.2767610-1-justin.chen@broadcom.com>
-References: <20240227185454.2767610-1-justin.chen@broadcom.com>
+        Tue, 27 Feb 2024 11:08:05 -0800 (PST)
+Message-ID: <9ae28df7a4770bf94358dac36fd5e0942877f147.camel@gmail.com>
+Subject: Re: [PATCH 2/2] of: overlay: Synchronize of_overlay_remove() with
+ the devlink removals
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Saravana Kannan <saravanak@google.com>, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, Nuno Sa <nuno.sa@analog.com>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Frank Rowand
+ <frowand.list@gmail.com>, Lizhi Hou <lizhi.hou@amd.com>,  Max Zhen
+ <max.zhen@amd.com>, Sonal Santan <sonal.santan@amd.com>, Stefano Stabellini
+ <stefano.stabellini@xilinx.com>, Jonathan Cameron
+ <Jonathan.Cameron@huawei.com>,  linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>,
+ Horatiu Vultur <horatiu.vultur@microchip.com>,  Steen Hegelund
+ <steen.hegelund@microchip.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, Android Kernel Team
+ <kernel-team@android.com>
+Date: Tue, 27 Feb 2024 20:07:59 +0100
+In-Reply-To: <20240227185402.57a3b924@bootlin.com>
+References: <20231130174126.688486-1-herve.codina@bootlin.com>
+	 <20231130174126.688486-3-herve.codina@bootlin.com>
+	 <CAGETcx_zB95nyTpi-_kYW_VqnPqMEc8mS9sewSwRNVr0x=7+kA@mail.gmail.com>
+	 <20240227162422.76a00f11@bootlin.com>
+	 <86f2262d059db84070745e299d96dde3e6078220.camel@gmail.com>
+	 <20240227185402.57a3b924@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="000000000000c4e70706126190bb"
 
---000000000000c4e70706126190bb
-Content-Transfer-Encoding: 8bit
+Hi Herve,
 
-Hook up the phy interrupts for internal phys to reduce mdio traffic
-and improve responsiveness of link changes.
+On Tue, 2024-02-27 at 18:54 +0100, Herve Codina wrote:
+> Hi Nuno,
+>=20
+> On Tue, 27 Feb 2024 17:55:07 +0100
+> Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
+>=20
+> > On Tue, 2024-02-27 at 16:24 +0100, Herve Codina wrote:
+> > > Hi Saravana, Luca, Nuno,
+> > >=20
+> > > On Tue, 20 Feb 2024 16:37:05 -0800
+> > > Saravana Kannan <saravanak@google.com> wrote:
+> > >=20
+> > > ...
+> > > =C2=A0=20
+> > > > >=20
+> > > > > diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
+> > > > > index a9a292d6d59b..5c5f808b163e 100644
+> > > > > --- a/drivers/of/overlay.c
+> > > > > +++ b/drivers/of/overlay.c
+> > > > > @@ -1202,6 +1202,12 @@ int of_overlay_remove(int *ovcs_id)
+> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 goto out;
+> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
+> > > > >=20
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /*
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * Wait for any ongoin=
+g device link removals before removing some
+> > > > > of
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * nodes
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 device_link_wait_removal();
+> > > > > +=C2=A0=C2=A0=C2=A0=20
+> > > >=20
+> > > > Nuno in his patch[1] had this "wait" happen inside
+> > > > __of_changeset_entry_destroy(). Which seems to be necessary to not =
+hit
+> > > > the issue that Luca reported[2] in this patch series. Is there any
+> > > > problem with doing that?
+> > > >=20
+> > > > Luca for some reason did a unlock/lock(of_mutex) in his test patch =
+and
+> > > > I don't think that's necessary.=C2=A0=20
+> > >=20
+> > > I think the unlock/lock in Luca's case and so in Nuno's case is neede=
+d.
+> > >=20
+> > > I do the device_link_wait_removal() wihout having the of_mutex locked=
+.
+> > >=20
+> > > Now, suppose I do the device_link_wait_removal() call with the of_mut=
+ex locked.
+> > > The following flow is allowed and a deadlock is present.
+> > >=20
+> > > of_overlay_remove()
+> > > =C2=A0 lock(of_mutex)
+> > > =C2=A0=C2=A0=C2=A0=C2=A0 device_link_wait_removal()
+> > >=20
+> > > And, from the workqueue jobs execution:
+> > > =C2=A0 ...
+> > > =C2=A0=C2=A0=C2=A0 device_put()
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 some_driver->remove()
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 of_overlay_remove() <--- T=
+he job will never end.
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 It is waiting for of_mutex=
+.
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Deadlock
+> > > =C2=A0=20
+> >=20
+> > We may need some input from Saravana (and others) on this. I might be m=
+issing
+> > something but can a put_device() lead into a driver remove callback? Dr=
+iver code
+> > is
+> > not device code and put_device() leads to device_release() which will e=
+ither call
+> > the
+> > device=C2=A0->release(), ->type->release() or the class ->dev_release()=
+. And, IMO,
+> > calling
+> > of_overlay_remove() or something like that (like something that would l=
+ead to
+> > unbinding a device from it's driver) in a device release callback would=
+ be at the
+> > very least very questionable. Typically, what you see in there is of_no=
+de_put()
+> > and
+> > things like kfree() of the device itself or any other data.
+>=20
+> I think that calling of_overlay_remove() in a device release callback mak=
+es
+> sense. The overlay is used to declare sub-nodes from the device node. It
+> does not add/remove the device node itself but sub-nodes.
+>=20
 
-Signed-off-by: Justin Chen <justin.chen@broadcom.com>
-Acked-by: Florian Fainelli <florian.fainelli@broadcom.com>
----
- drivers/net/ethernet/broadcom/asp2/bcmasp.c     | 17 +++++++++++++++++
- drivers/net/ethernet/broadcom/asp2/bcmasp.h     |  4 ++++
- .../net/ethernet/broadcom/asp2/bcmasp_intf.c    |  5 +++++
- 3 files changed, 26 insertions(+)
+I think we are speaking about two different things... device release is not=
+ the same
+as the driver remove callback. I admit the pci case seems to be a beast of =
+it's own
+and I just spent some time (given your links) on it so I can't surely be su=
+re about
+what I'm about to say... But, AFAICT, I did not saw any overlay or changese=
+t being
+removed from a kobj_type release callback.
 
-diff --git a/drivers/net/ethernet/broadcom/asp2/bcmasp.c b/drivers/net/ethernet/broadcom/asp2/bcmasp.c
-index 100c69f3307a..a806dadc4196 100644
---- a/drivers/net/ethernet/broadcom/asp2/bcmasp.c
-+++ b/drivers/net/ethernet/broadcom/asp2/bcmasp.c
-@@ -31,6 +31,20 @@ static void _intr2_mask_set(struct bcmasp_priv *priv, u32 mask)
- 	priv->irq_mask |= mask;
- }
- 
-+void bcmasp_enable_phy_irq(struct bcmasp_intf *intf, int en)
-+{
-+	struct bcmasp_priv *priv = intf->parent;
-+
-+	/* Only supported with internal phys */
-+	if (!intf->internal_phy)
-+		return;
-+
-+	if (en)
-+		_intr2_mask_clear(priv, ASP_INTR2_PHY_EVENT(intf->channel));
-+	else
-+		_intr2_mask_set(priv, ASP_INTR2_PHY_EVENT(intf->channel));
-+}
-+
- void bcmasp_enable_tx_irq(struct bcmasp_intf *intf, int en)
- {
- 	struct bcmasp_priv *priv = intf->parent;
-@@ -79,6 +93,9 @@ static void bcmasp_intr2_handling(struct bcmasp_intf *intf, u32 status)
- 			__napi_schedule_irqoff(&intf->tx_napi);
- 		}
- 	}
-+
-+	if (status & ASP_INTR2_PHY_EVENT(intf->channel))
-+		phy_mac_interrupt(intf->ndev->phydev);
- }
- 
- static irqreturn_t bcmasp_isr(int irq, void *data)
-diff --git a/drivers/net/ethernet/broadcom/asp2/bcmasp.h b/drivers/net/ethernet/broadcom/asp2/bcmasp.h
-index 127a5340625e..f93cb3da44b0 100644
---- a/drivers/net/ethernet/broadcom/asp2/bcmasp.h
-+++ b/drivers/net/ethernet/broadcom/asp2/bcmasp.h
-@@ -19,6 +19,8 @@
- #define ASP_INTR2_TX_DESC(intr)			BIT((intr) + 14)
- #define ASP_INTR2_UMC0_WAKE			BIT(22)
- #define ASP_INTR2_UMC1_WAKE			BIT(28)
-+#define ASP_INTR2_PHY_EVENT(intr)		((intr) ? BIT(30) | BIT(31) : \
-+						BIT(24) | BIT(25))
- 
- #define ASP_WAKEUP_INTR2_OFFSET			0x1200
- #define  ASP_WAKEUP_INTR2_STATUS		0x0
-@@ -556,6 +558,8 @@ void bcmasp_enable_tx_irq(struct bcmasp_intf *intf, int en);
- 
- void bcmasp_enable_rx_irq(struct bcmasp_intf *intf, int en);
- 
-+void bcmasp_enable_phy_irq(struct bcmasp_intf *intf, int en);
-+
- void bcmasp_flush_rx_port(struct bcmasp_intf *intf);
- 
- extern const struct ethtool_ops bcmasp_ethtool_ops;
-diff --git a/drivers/net/ethernet/broadcom/asp2/bcmasp_intf.c b/drivers/net/ethernet/broadcom/asp2/bcmasp_intf.c
-index 0b378a6d43e7..8fbeb506abb9 100644
---- a/drivers/net/ethernet/broadcom/asp2/bcmasp_intf.c
-+++ b/drivers/net/ethernet/broadcom/asp2/bcmasp_intf.c
-@@ -382,6 +382,7 @@ static void bcmasp_netif_start(struct net_device *dev)
- 
- 	bcmasp_enable_rx_irq(intf, 1);
- 	bcmasp_enable_tx_irq(intf, 1);
-+	bcmasp_enable_phy_irq(intf, 1);
- 
- 	phy_start(dev->phydev);
- }
-@@ -890,6 +891,7 @@ static void bcmasp_netif_deinit(struct net_device *dev)
- 	/* Disable interrupts */
- 	bcmasp_enable_tx_irq(intf, 0);
- 	bcmasp_enable_rx_irq(intf, 0);
-+	bcmasp_enable_phy_irq(intf, 0);
- 
- 	netif_napi_del(&intf->tx_napi);
- 	netif_napi_del(&intf->rx_napi);
-@@ -1028,6 +1030,9 @@ static int bcmasp_netif_init(struct net_device *dev, bool phy_connect)
- 			goto err_phy_disable;
- 		}
- 
-+		if (intf->internal_phy)
-+			dev->phydev->irq = PHY_MAC_INTERRUPT;
-+
- 		/* Indicate that the MAC is responsible for PHY PM */
- 		phydev->mac_managed_pm = true;
- 	} else if (!intf->wolopts) {
--- 
-2.34.1
+> The use case is the use of DT overlays to describe PCI devices.
+> https://lore.kernel.org/all/1692120000-46900-1-git-send-email-lizhi.hou@a=
+md.com/
+> https://lore.kernel.org/lkml/20220427094502.456111-1-clement.leger@bootli=
+n.com/
+> --- 8< ---
+> The lan966x SoCs can be used in two different ways:
+>=20
+> =C2=A0- It can run Linux by itself, on ARM64 cores included in the SoC. T=
+his
+> =C2=A0=C2=A0 use-case of the lan966x is currently being upstreamed, using=
+ a
+> =C2=A0=C2=A0 traditional Device Tree representation of the lan996x HW blo=
+cks [1]
+> =C2=A0=C2=A0 A number of drivers for the different IPs of the SoC have al=
+ready
+> =C2=A0=C2=A0 been merged in upstream Linux.
+>=20
+> =C2=A0- It can be used as a PCIe endpoint, connected to a separate platfo=
+rm
+> =C2=A0=C2=A0 that acts as the PCIe root complex. In this case, all the de=
+vices
+> =C2=A0=C2=A0 that are embedded on this SoC are exposed through PCIe BARs =
+and the
+> =C2=A0=C2=A0 ARM64 cores of the SoC are not used. Since this is a PCIe ca=
+rd, it
+> =C2=A0=C2=A0 can be plugged on any platform, of any architecture supporti=
+ng PCIe.
+> --- 8< ---
+>=20
+> This quite long story led to DT overlay support for PCI devices and so th=
+e
+> unittest I mentioned:
+> =C2=A0 https://elixir.bootlin.com/linux/v6.8-rc6/source/drivers/of/unitte=
+st.c#L3946
+>=20
+>=20
+> So, I have a PCI driver that bind to the lan966x PCI board.
+> This driver loads an overlay at probe() and unload it at remove().
+> Also, this driver can be module. A simple rmmod leads to the remove() cal=
+l.
+>=20
 
+Hmm, and I think that would not be an issue... Note that the code that runs=
+ in
+device_link_release_fn() is doing put_device() which ends ups on the kobj_t=
+ype
+release callback and so far I could not see any evidence of such a callback=
+ being
+responsible of calling device_remove() on another device. That would be wei=
+rd (I
+think) since I would expect such a call to happen in a kind of unregister f=
+unction.
 
---000000000000c4e70706126190bb
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+> This driver is not yet upstream because I haven't yet fixed all the issue=
+s I
+> encountered that's why of now, I can point only the unittest related to o=
+verlay
+> support for PCI.
+>=20
+> >=20
+> > The driver remove callback should be called when unbinding the device f=
+rom it's
+> > drivers and devlinks should also be removed after device_unbind_cleanup=
+() (i.e,
+> > after
+> > the driver remove callback).
+> >=20
+> > Having said the above, the driver core has lots of subtleties so, again=
+, I can be
+> > missing something. But at this point I'm still not seeing any deadlock.=
+..
+> >=20
+>=20
+> I gave a wrong example.
+> Based on Luca's sequence he gave in
+> =C2=A0 https://lore.kernel.org/all/20231220181627.341e8789@booty/
 
-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
-NhTY3E+cXCB11wty89QStajwXdhGJTYEvUgvsq1h8CwJj9w/38ldAQf5WjhPmApYeJR2ewFrBMCM
-4lHkdRJ6TDc9nXoEkypUfjJkJHe7Eal06tosh6JpAgMBAAGjggHZMIIB1TAOBgNVHQ8BAf8EBAMC
-BaAwgaMGCCsGAQUFBwEBBIGWMIGTME4GCCsGAQUFBzAChkJodHRwOi8vc2VjdXJlLmdsb2JhbHNp
-Z24uY29tL2NhY2VydC9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcnQwQQYIKwYBBQUHMAGG
-NWh0dHA6Ly9vY3NwLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwME0G
-A1UdIARGMEQwQgYKKwYBBAGgMgEoCjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3dy5nbG9iYWxz
-aWduLmNvbS9yZXBvc2l0b3J5LzAJBgNVHRMEAjAAMEkGA1UdHwRCMEAwPqA8oDqGOGh0dHA6Ly9j
-cmwuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3JsMCMGA1UdEQQc
-MBqBGGp1c3Rpbi5jaGVuQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAfBgNVHSME
-GDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUIWGeYuaTsnIada5Xx8TR3cheUbgw
-DQYJKoZIhvcNAQELBQADggEBAHNQlMqQOFYPYFO71A+8t+qWMmtOdd2iGswSOvpSZ/pmGlfw8ZvY
-dRTkl27m37la84AxRkiVMes14JyOZJoMh/g7fbgPlU14eBc6WQWkIA6AmNkduFWTr1pRezkjpeo6
-xVmdBLM4VY1TFDYj7S8H2adPuypd62uHMY/MZi+BIUys4uAFA+N3NuUBNjcVZXYPplYxxKEuIFq6
-sDL+OV16G+F9CkNMN3txsym8Nnx5WAYZb6+rBUIhMGz70V05xsHQfzvo2s7f0J1tJ5BoRlPPhL0h
-VOnWA3h71u9TfSsv+PXVm3P21TfOS2uc1hbzEqyENCP4i5XQ0rv0TmPW42GZ0o4xggJtMIICaQIB
-ATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhH
-bG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwj8BKLXNpALfemdRAwDQYJ
-YIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIBL2PUZbS/aoX38lhR+IKRcmTA05mglO39Sf
-0PIpUpr/MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI0MDIyNzE4
-NTUxMFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFl
-AwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFlAwQCATAN
-BgkqhkiG9w0BAQEFAASCAQBLmWQKCLnQNO4g1l+vPkKK6KzcJpXHdRNzCGk7GJJoVpOp6AaawRAE
-Amw6IezGjYa56/50sarMzhlLpBZFcgf0JbTS81BlN1y+pd4NVNHTwRI02gzI25qgVRV1cEPkwiaY
-g167Kn4TAVws+Tj1+9C03QoQDQd1tv933x9CYLSpTj97lnK0TP029kq6GFa/bl0XyNq4VIjK4RWG
-vIwlmWfnSFhg0FuU/wN3jt7Kr/pPy6ywfcEDLy4GIcDo1WfGSxfg/lS97miv9SUstnHyKZwnXPGH
-2zLturly6H6mnPKOsVKdb+pCMWPLthZAqiheGo6cZP3BFary+ZBXnTuASn/P
---000000000000c4e70706126190bb--
+Regarding Luca's comments, my first approach was actually to just make the =
+devlink
+removal synchronously... I'm still not sure what would be the issue of doin=
+g that
+(other than potentially waiting some time for the srcu synchronization). Ab=
+out the
+unlock, I'm just not sure what could happen if someone else (other than us)=
+ sneaks in
+and grabs the of_mutex while we are in the middle of removing an overlay...
+
+>=20
+> We can have the following:=20
+>=20
+> --- 8< ---
+> int of_overlay_remove(int *ovcs_id)
+> {
+> =C2=A0=C2=A0=C2=A0 ...
+>=20
+> =C2=A0=C2=A0=C2=A0 device_link_wait_removal(); // proposed by this patch =
+series
+>=20
+> =C2=A0=C2=A0=C2=A0 mutex_lock(&of_mutex);
+>=20
+> =C2=A0=C2=A0=C2=A0 ...
+>=20
+> =C2=A0=C2=A0=C2=A0 ret =3D __of_changeset_revert_notify(&ovcs->cset);
+> =C2=A0=C2=A0=C2=A0 // this ends up calling (excerpt from a long stack tra=
+ce):
+> =C2=A0=C2=A0=C2=A0 // -> of_i2c_notify
+> =C2=A0=C2=A0=C2=A0 // -> device_remove
+> =C2=A0=C2=A0=C2=A0 // -> devm_regulator_release
+> =C2=A0=C2=A0=C2=A0 // -> device_link_remove
+> =C2=A0=C2=A0=C2=A0 // -> devlink_dev_release, which queues work for
+> =C2=A0=C2=A0=C2=A0 //=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 device_link_release_f=
+n, which in turn calls:
+> =C2=A0=C2=A0=C2=A0 //=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -> device_put
+> =C2=A0=C2=A0=C2=A0 //=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -> device_release
+> =C2=A0=C2=A0=C2=A0 //=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -> {platform,regulato=
+r,...}_dev*_release
+> =C2=A0=C2=A0=C2=A0 //=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -> of_node_put() [**]
+>=20
+> =C2=A0=C2=A0=C2=A0 ...
+>=20
+> =C2=A0=C2=A0=C2=A0 free_overlay_changeset(ovcs);
+> =C2=A0=C2=A0=C2=A0 // calls:
+> =C2=A0=C2=A0=C2=A0 // -> of_changeset_destroy
+> =C2=A0=C2=A0=C2=A0 // -> __of_changeset_entry_destroy
+> =C2=A0=C2=A0=C2=A0 // -> pr_err("ERROR: memory leak, expected refcount 1 =
+instead of %d...
+> =C2=A0=C2=A0=C2=A0 // The error appears or not, based on when the workque=
+ue runs
+>=20
+> err_unlock:
+> =C2=A0=C2=A0=C2=A0 mutex_unlock(&of_mutex);
+>=20
+> =C2=A0=C2=A0=C2=A0 ...
+> }
+> --- 8< ---
+>=20
+> I think, on your side, you can have something similar.
+> I was wrong (sorry for my mistake). the problem is not device_put() but
+> device_remove().
+
+But I'm not seeing how device_remove() can deadlock since I'm not sure we c=
+an go from
+device_link_release_fn() to device_remove(). If there's such a path, then I=
+'ll agree
+on the deadlock.
+
+>=20
+> In my deadlog example, s/device_put()/device_remove()/
+>=20
+
+Exactly... and that is why my first question was to wonder about put_device=
+() being
+able to call any overlay removal code. So, do you know if it's really possi=
+ble for a
+device release callback to end up calling device_remove()? Because, then I =
+could see
+the deadlock as device_remove() can end up unbinding the device from it's d=
+river and
+hence calling drv->remove().
+
+- Nuno S=C3=A1
 
