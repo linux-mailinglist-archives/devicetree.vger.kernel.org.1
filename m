@@ -1,145 +1,287 @@
-Return-Path: <devicetree+bounces-46274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7678D868B85
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 10:03:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0C0B868BA8
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 10:06:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F2B82B2338E
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 09:03:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D7311F22DD7
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 09:06:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EB8C136641;
-	Tue, 27 Feb 2024 09:02:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79903135A65;
+	Tue, 27 Feb 2024 09:06:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="bfN7JS4o"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uPVimYY0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB07954BCB;
-	Tue, 27 Feb 2024 09:02:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81993134CD5
+	for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 09:06:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709024573; cv=none; b=AxvsOd2pG1oV0vt6xID0lHWpqud7N+exyPaRAdct3LHZUKjCuzKgFii8PYpWW/dTg060YGyvmJ9Y4pVEl62ZhBdLu0oN2KTPyqMkOT1uLpgvCNtj1Pl1uw/MRwdLvZMKDub6YD8FgT85rPdv+hThPEH44YONRdzf8xSey+e1tAI=
+	t=1709024808; cv=none; b=SCUSnD0MqqzkrVicJIFyYx8uNX3VE7ZII/QtZ+zB5jQmTv4UlaTg6T5BX/AyFNlkI/b7y6SNMQZbAwhUl4P2e/CGeLr32EHApXBt+8qds6LSYL3MYeGHWccbSoldvde3Z6zh5XeWNQbTlu9gImFdyndIc+IRGa9oRbJgTYV08Lo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709024573; c=relaxed/simple;
-	bh=5XGsyfkhdqZJfxTu2MezsTiwGPmdEGuU82hbzxU8+Ww=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Ipdc/2biofRtozmCzR0U2ehinE3mkSkVygo6EDLbrXCsHRWt4EILJfIxy5GO+tBGjMtvRX5ed4LP/a/cCXhkAtrwzrkfKB9k+qK1HhnqzKgehXgfIQ/hO3g7OBOTC0NuD64BuYPySp16Lf1HWcQGHObu7bHRniG2Ey//16yzO1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=bfN7JS4o; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: f4766138d54e11eea528b71b88a53856-20240227
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=8OThIfn6BIQq05HaqmPcAmZQvWHQOfMXh3CrMlCShBo=;
-	b=bfN7JS4oKqWjny3XooJ0iH9PrtLmM60LgtHNzgpteQ9DVr96y3BnrW3vXcV3IYjGJpfT+ZrFn2rP7tmGlhLpWGcjFj6f1InguoTSUT3K3NKZdAKwmpsWmyEAaRGmdKgSCICAylCez3C+V7N3uljJ+GmqrtHSxftVaKPep5n5YIs=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.37,REQID:3fcb109a-2b38-4ce1-a031-1077d0c83628,IP:0,U
-	RL:0,TC:0,Content:-25,EDM:-30,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACT
-	ION:release,TS:-55
-X-CID-META: VersionHash:6f543d0,CLOUDID:ce58c58f-e2c0-40b0-a8fe-7c7e47299109,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:2,IP:nil,UR
-	L:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,S
-	PR:NO,DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: f4766138d54e11eea528b71b88a53856-20240227
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1390185718; Tue, 27 Feb 2024 17:02:38 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Tue, 27 Feb 2024 17:02:36 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Tue, 27 Feb 2024 17:02:36 +0800
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring
-	<robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Matthias Kaehlcke <mka@chromium.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, <linux-usb@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>
-CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
-	Chunfeng Yun <chunfeng.yun@mediatek.com>, Yow-shin Liou
-	<yow-shin.liou@mediatek.com>, MediaTek Chromebook Upstream
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai
-	<wenst@chromium.org>
-Subject: [PATCH 2/2] usb: misc: onboard_usb_hub: Add support for TI TUSB8020B
-Date: Tue, 27 Feb 2024 17:02:28 +0800
-Message-ID: <20240227090228.22156-2-macpaul.lin@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20240227090228.22156-1-macpaul.lin@mediatek.com>
-References: <20240227090228.22156-1-macpaul.lin@mediatek.com>
+	s=arc-20240116; t=1709024808; c=relaxed/simple;
+	bh=dpNCzHlcYCYV7LeOLMvXF8fh7wgPwNlXfNPIl3AIj30=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lyyISewOT0TdItPEGxCjt3rlAY4uz1Fs+jJQ8fM3/gArnRPYCPRrXtAAwegVV7+DRX2Ui4JZbbDJhxBD6ucZCU/Zx5Dbpe4578uWet02rQTFuosCqSbsYDE7GSk+JJRBqY/2EUjG9nEIaUyz/7MK3Oczu3cR0sg5rMwDNXpgTNc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uPVimYY0; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a3d5e77cfbeso706832366b.0
+        for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 01:06:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709024805; x=1709629605; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=aWMOyAMGj4BPUfVQH/f9CThvYEhtc8ZUIoj4aNclbDw=;
+        b=uPVimYY03n6NOdnUv5TR16GTyHXAKmLbs+gWD7ZP/cLS/mYyPbflKFDf9EHJYp4kBw
+         4cqMNwK2HI2yj/4hzMH4n9s2Y23pFPiP/40vD6DqH1BH+5Mh5pQv5Xq5PYcghu0001k+
+         KPrpS/iTSM8CfUZRDgdF3T+MW4WR+TBClLQ7ASkZpYB06ZwCLCsVevfkYzlyNS+gqef9
+         UTtjdE+PMnsZDXVXirZ5DlI8NDIBXklT0DHAmPFw3ZmVG8ZeYvQ9l/+U6/KBcgPMWIbd
+         pvTFPxdcMTDdc62c4atpU3lOUikBHWRZ50h735yiu7Y40X9zxtfpvel8BF8W6aVJ+w1G
+         PzfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709024805; x=1709629605;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aWMOyAMGj4BPUfVQH/f9CThvYEhtc8ZUIoj4aNclbDw=;
+        b=hs6mJU1/oVWxc9t3Yrr5AVp0jsSrR+dzGGAnsoNvzv1Jd3up+9ouQRHg3A42/6qzk0
+         UqyfJyZMb2BlPTUqE0QNE6NtWCItA20QUroGCjvE9jv27/KTQeTQxLluJOMVYP2KzjbJ
+         9s0plhOkJaGKTCOLIX5d1sX+5yVU787BhiiBwMKbJY8lw2cgUmCTmxviaiNuukZoKVGI
+         KNLl8cC6QSNjLRcjhqqxUv4vGQFTaNdVcemiPucyPxiVFQZorxK2eAKQeLDKbt+xSnsk
+         0iFhT8S+Y8Nk3BMlXwnU5TW4HsnP1OVo77f2ohKMBHlfYrojtz5R2zebm3tzSVN0CmFs
+         5vqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUqaJ9hY2/NVhhDs8kK+TReF8WiLm+oxsZP7a7ivMMQmW0imdH75WqraUhBjRu3J2JeIBHgnBYCBX57u8yMFEomp0xJW06jyPHrBw==
+X-Gm-Message-State: AOJu0YxNkgA0OdCiOatGrweNfGts2DlZnJo1mITS2FQ8whmcK9XcLjOs
+	Yq84cZ4MxJImjkHAjVFvJiT/ZPqfjCGF/T6MfMr/TIr4OIO37VUamck0S0x1HGQ=
+X-Google-Smtp-Source: AGHT+IEovXgAKdcS8TSAMgvRMulbwgj3LkU/1bchkBdxalI2nz+zFL8jWTP4iUK9IOgaIRhW10dMuA==
+X-Received: by 2002:a17:906:4a4a:b0:a43:a1b5:66f with SMTP id a10-20020a1709064a4a00b00a43a1b5066fmr1249287ejv.10.1709024804807;
+        Tue, 27 Feb 2024 01:06:44 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.116])
+        by smtp.gmail.com with ESMTPSA id h19-20020a170906719300b00a3e92467f22sm547354ejk.163.2024.02.27.01.06.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Feb 2024 01:06:44 -0800 (PST)
+Message-ID: <16739065-4187-4e51-b7f0-4a55de101744@linaro.org>
+Date: Tue, 27 Feb 2024 10:06:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 02/18] ASoC: dt-bindings: mediatek,mt8365-mt6357: Add
+ audio sound card document
+Content-Language: en-US
+To: Alexandre Mergnat <amergnat@baylibre.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
+References: <20240226-audio-i350-v1-0-4fa1cea1667f@baylibre.com>
+ <20240226-audio-i350-v1-2-4fa1cea1667f@baylibre.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240226-audio-i350-v1-2-4fa1cea1667f@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The TI TUSB8020B is a 2-port USB 3.0 hub. Add support for
-this hub in the driver in order to bring up reset, and supply
-dependencies.
+On 26/02/2024 15:01, Alexandre Mergnat wrote:
+> Add soundcard bindings for the MT8365 SoC with the MT6357 audio codec.
+> 
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> ---
+>  .../bindings/sound/mediatek,mt8365-mt6357.yaml     | 127 +++++++++++++++++++++
+>  1 file changed, 127 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt8365-mt6357.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt8365-mt6357.yaml
+> new file mode 100644
+> index 000000000000..f469611ec6b6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/mediatek,mt8365-mt6357.yaml
+> @@ -0,0 +1,127 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/mediatek,mt8365-mt6357.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Mediatek MT8365 sound card with MT6357 sound codec.
 
-Power-up: Issue a GPIO reset (GRSTz) 3ms after VDD and VDD33 stabilize.
+Drop full stop. This is title.
 
-Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
----
- drivers/usb/misc/onboard_usb_hub.c | 2 ++
- drivers/usb/misc/onboard_usb_hub.h | 7 +++++++
- 2 files changed, 9 insertions(+)
+> +
+> +maintainers:
+> +  - Alexandre Mergnat <amergnat@baylibre.com>
+> +
+> +description:
+> +  This binding describes the MT8365 sound card.
 
-diff --git a/drivers/usb/misc/onboard_usb_hub.c b/drivers/usb/misc/onboard_usb_hub.c
-index 1e169c97f45e..e19c11a64923 100644
---- a/drivers/usb/misc/onboard_usb_hub.c
-+++ b/drivers/usb/misc/onboard_usb_hub.c
-@@ -457,6 +457,8 @@ static const struct usb_device_id onboard_hub_id_table[] = {
- 	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x5411) }, /* RTS5411 USB 2.1 */
- 	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x0414) }, /* RTS5414 USB 3.2 */
- 	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x5414) }, /* RTS5414 USB 2.1 */
-+	{ USB_DEVICE(VENDOR_ID_TI, 0x8025) }, /* TI USB8020B 3.0 */
-+	{ USB_DEVICE(VENDOR_ID_TI, 0x8027) }, /* TI USB8020B 2.0 */
- 	{ USB_DEVICE(VENDOR_ID_TI, 0x8140) }, /* TI USB8041 3.0 */
- 	{ USB_DEVICE(VENDOR_ID_TI, 0x8142) }, /* TI USB8041 2.0 */
- 	{ USB_DEVICE(VENDOR_ID_VIA, 0x0817) }, /* VIA VL817 3.1 */
-diff --git a/drivers/usb/misc/onboard_usb_hub.h b/drivers/usb/misc/onboard_usb_hub.h
-index 373192afd022..874473e60132 100644
---- a/drivers/usb/misc/onboard_usb_hub.h
-+++ b/drivers/usb/misc/onboard_usb_hub.h
-@@ -31,6 +31,11 @@ static const struct onboard_hub_pdata realtek_rts5411_data = {
- 	.num_supplies = 1,
- };
- 
-+static const struct onboard_hub_pdata ti_tusb8020b_data = {
-+	.reset_us = 3000,
-+	.num_supplies = 1,
-+};
-+
- static const struct onboard_hub_pdata ti_tusb8041_data = {
- 	.reset_us = 3000,
- 	.num_supplies = 1,
-@@ -70,6 +75,8 @@ static const struct of_device_id onboard_hub_match[] = {
- 	{ .compatible = "usb424,2744", .data = &microchip_usb5744_data, },
- 	{ .compatible = "usb424,5733", .data = &microchip_usb5734_data, },
- 	{ .compatible = "usb424,5744", .data = &microchip_usb5744_data, },
-+	{ .compatible = "usb451,8025", .data = &ti_tusb8020b_data, },
-+	{ .compatible = "usb451,8027", .data = &ti_tusb8020b_data, },
- 	{ .compatible = "usb451,8140", .data = &ti_tusb8041_data, },
- 	{ .compatible = "usb451,8142", .data = &ti_tusb8041_data, },
- 	{ .compatible = "usb4b4,6504", .data = &cypress_hx3_data, },
--- 
-2.18.0
+Say something useful. There is no need to say that binding is a binding
+describing something. Or just drop it if this is obvious.
+
+
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt8365-mt6357
+> +
+> +  mediatek,hp-pull-down:
+> +    description:
+> +      Earphone driver positive output stage short to the
+> +      audio reference ground.
+> +      Default value is false.
+
+That's obvious, isn't it? Drop.
+
+> +    type: boolean
+> +
+> +  mediatek,micbias0-microvolt:
+> +    description: |
+> +      Selects MIC Bias 0 output voltage.
+> +      [1.7v, 1.8v, 1.9v, 2.0v, 2.1v, 2.5v, 2.6v, 2.7v]
+> +    enum: [0, 1, 2, 3, 4, 5, 6, 7]
+
+0 is 0V, not 1.7! That's total mess. You use here microvolts. Look at
+property name.
+
+> +
+> +  mediatek,micbias1-microvolt:
+> +    description: |
+> +      Selects MIC Bias 1 output voltage.
+> +      [1.7v, 1.8v, 1.9v, 2.0v, 2.1v, 2.5v, 2.6v, 2.7v]
+> +    enum: [0, 1, 2, 3, 4, 5, 6, 7]
+> +
+> +  mediatek,platform:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: The phandle of MT8365 ASoC platform.
+> +
+> +  pinctrl-names:
+> +    minItems: 1
+> +    items:
+> +      - const: aud_default
+
+Drop redundant parts. aud looks like block name.
+
+> +      - const: aud_dmic
+> +      - const: aud_miso_off
+> +      - const: aud_miso_on
+> +      - const: aud_mosi_off
+> +      - const: aud_mosi_on
+> +
+> +  vaud28-supply:
+> +    description:
+> +      2.8 volt supply for the audio codec
+> +
+> +patternProperties:
+> +  "^dai-link-[0-9]+$":
+> +    type: object
+> +    description:
+> +      Container for dai-link level properties and CODEC sub-nodes.
+> +
+> +    properties:
+> +      codec:
+> +        type: object
+> +        description: Holds subnode which indicates codec dai.
+> +
+> +        properties:
+> +          sound-dai:
+> +            maxItems: 1
+> +            description: phandle of the codec DAI
+> +
+> +        additionalProperties: false
+> +
+> +      link-name:
+> +        description:
+> +          This property corresponds to the name of the BE dai-link to which
+> +          we are going to update parameters in this node.
+> +        items:
+> +          const: 2ND I2S BE
+> +
+> +      sound-dai:
+> +        maxItems: 1
+> +        description: phandle of the CPU DAI
+> +
+> +    additionalProperties: false
+> +
+> +    required:
+> +      - link-name
+> +      - sound-dai
+> +
+> +additionalProperties: false
+
+This goes after required: block. See example schema.
+
+> +
+> +required:
+> +  - compatible
+> +  - mediatek,platform
+> +  - pinctrl-names
+> +  - vaud28-supply
+> +
+
+
+Best regards,
+Krzysztof
 
 
