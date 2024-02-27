@@ -1,177 +1,196 @@
-Return-Path: <devicetree+bounces-46490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F4E9869C76
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 17:41:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D6B3869CA4
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 17:45:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A6CF1C25713
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 16:41:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 867C7B2B5AB
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 16:43:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 121563E480;
-	Tue, 27 Feb 2024 16:38:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="IpJjC/Lu"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53C8C39FFA;
+	Tue, 27 Feb 2024 16:41:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F71D2576B;
-	Tue, 27 Feb 2024 16:38:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2CCA208AD;
+	Tue, 27 Feb 2024 16:41:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709051936; cv=none; b=OHAPSEkg3TiY/iB7JtuwTqZZ2OnJtpCGbC8xLUVbxNpSgvnTGk30fYdlfaKh+GrXApQ/G/lskG99NwsytjFij4I8HPzVrNdobgqLUH0oypOgOdc3r69aruAW9GSERRUnTPY8WrY9udTokWYNvx8JStPM7FEL2A7TM+r8kCIOC4o=
+	t=1709052077; cv=none; b=UWw+9UQ26ntNPlQIt/WYXejYFisfus+XMssXp/wYksauvC5RO9FovSxM8TntqJRGhPNTxJ/0hodtT3wSwL7hMPMHLGl/ktA1MlPzWf1kraZ2Ywc92dzheBimKMst6OpDlBQVgacJEGuF+Gs52H8LuS40MSp3fjZq99wfCee2w30=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709051936; c=relaxed/simple;
-	bh=1IoZXMC1FAl+Q4jvjN+QVZ8Gg6WkcDFeKX+wwqu8edc=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=XdaXfaEyCNIM3C9uwsZcmjKsBP1d3rx27OT6Bgri/FLUlIsGNoTo+PSOmZCZ2KNna5meHjw2N1LfqeVv8+iE1yvZ1I8socWecAW9KL79/A2dUBrUtFiSyhZDRkNzbMboaDeVX6v4uitA17aZn6UqTjo6VMwSIfwI7SwFOSny5Wo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=IpJjC/Lu; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 506B51BF204;
-	Tue, 27 Feb 2024 16:38:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709051931;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=qXbl2mGg/fnH2m6J+jYG9ljSlv6ApYY+HEqrYS8n/8s=;
-	b=IpJjC/LuJtuaeJEc7hJzBiD5+6HsM1sYggGNhS1SMtXWsndQj0rPxQ7mpE61Q/m2LYI5br
-	aY381mYvPNCHjNafhHJ7RxIjREI9uZmRQ0MGZEgFMKeGI7+IrBEeXCRmh6mhGtNvGeQTVJ
-	pjwaYRWmNNVUPO4GWzpwcuDmr1rpaPXjCKSs4/6DMs6Uo3iP3SNfCPyqPz+ypFYUsVpose
-	h2cftDAqNCCd3LniGekZTvs6mRauRbJvyljGp6YxvkKzhkByLluzSNltrpZNFz+XnSlWbB
-	onoGvPoRhSXBG8nURecnsndxfQg8NrANZxai4ttVJAQeZtF4NtmtHGM18U31jg==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: =?utf-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>, Andrew Lunn
- <andrew@lunn.ch>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, =?utf-8?Q?Rafa=C5=82_Mi=C5=82ecki?=
- <rafal@milecki.pl>
-Subject: Re: [PATCH] arm64: dts: marvell: reorder crypto interrupts on
- Armada SoCs
-In-Reply-To: <20240123122258.24218-1-zajec5@gmail.com>
-References: <20240123122258.24218-1-zajec5@gmail.com>
-Date: Tue, 27 Feb 2024 17:38:49 +0100
-Message-ID: <87y1b5j206.fsf@BL-laptop>
+	s=arc-20240116; t=1709052077; c=relaxed/simple;
+	bh=Auiob5o1YiESgmh2qGEQ64V8+hNAmx59W2PnXQ/O2q0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NNYiQT+E006w1O3+71BTq2IyNmTvJeopZrkPT6+xB5OFTb5oNahJL/ZFPTKLGmlhBp/9E0Nv53SayZwAcCGr8XgKNEPDD8v/BXoCX129qLiLqYhtDqsj8prqDlCK/EZBXS1hFNCELwPyBk/lOn/mhUYA+nsxIni/vPEbAsZv9qs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
+X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="3245944"
+X-IronPort-AV: E=Sophos;i="6.06,188,1705392000"; 
+   d="scan'208";a="3245944"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Feb 2024 08:41:14 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="913916735"
+X-IronPort-AV: E=Sophos;i="6.06,188,1705392000"; 
+   d="scan'208";a="913916735"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Feb 2024 08:41:11 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andy.shevchenko@gmail.com>)
+	id 1rf0Vw-00000007zsC-1bg5;
+	Tue, 27 Feb 2024 18:41:08 +0200
+Date: Tue, 27 Feb 2024 18:41:08 +0200
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Angelo Compagnucci <angelo.compagnucci@gmail.com>,
+	Philip Howard <phil@gadgetoid.com>, Sean Young <sean@mess.org>,
+	Linus Walleij <linus.walleij@linaro.org>, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Vincent Whitchurch <vincent.whitchurch@axis.com>
+Subject: Re: [PATCH V4 2/2] pwm: Add GPIO PWM driver
+Message-ID: <Zd4QpBsyTnuM8hwt@smile.fi.intel.com>
+References: <20240204220851.4783-1-wahrenst@gmx.net>
+ <20240204220851.4783-3-wahrenst@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: gregory.clement@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240204220851.4783-3-wahrenst@gmx.net>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Hi Rafa=C5=82 Mi=C5=82ecki,
+On Sun, Feb 04, 2024 at 11:08:51PM +0100, Stefan Wahren wrote:
+> From: Vincent Whitchurch <vincent.whitchurch@axis.com>
+> 
+> Add a software PWM which toggles a GPIO from a high-resolution timer.
+> 
+> This will naturally not be as accurate or as efficient as a hardware
+> PWM, but it is useful in some cases.  I have for example used it for
+> evaluating LED brightness handling (via leds-pwm) on a board where the
+> LED was just hooked up to a GPIO, and for a simple verification of the
+> timer frequency on another platform.
+> 
+> Since high-resolution timers are used, sleeping gpio chips are not
 
-> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
->
-> Match order specified in binding documentation. It says "mem" should be
-> the last interrupt.
->
-> This fixes:
-> arch/arm64/boot/dts/marvell/armada-3720-db.dtb: crypto@90000: interrupt-n=
-ames:0: 'ring0' was expected
->         from schema $id: http://devicetree.org/schemas/crypto/inside-secu=
-re,safexcel.yaml#
-> arch/arm64/boot/dts/marvell/armada-3720-db.dtb: crypto@90000: interrupt-n=
-ames:1: 'ring1' was expected
->         from schema $id: http://devicetree.org/schemas/crypto/inside-secu=
-re,safexcel.yaml#
-> arch/arm64/boot/dts/marvell/armada-3720-db.dtb: crypto@90000: interrupt-n=
-ames:2: 'ring2' was expected
->         from schema $id: http://devicetree.org/schemas/crypto/inside-secu=
-re,safexcel.yaml#
-> arch/arm64/boot/dts/marvell/armada-3720-db.dtb: crypto@90000: interrupt-n=
-ames:3: 'ring3' was expected
->         from schema $id: http://devicetree.org/schemas/crypto/inside-secu=
-re,safexcel.yaml#
-> arch/arm64/boot/dts/marvell/armada-3720-db.dtb: crypto@90000: interrupt-n=
-ames:4: 'eip' was expected
->         from schema $id: http://devicetree.org/schemas/crypto/inside-secu=
-re,safexcel.yaml#
-> arch/arm64/boot/dts/marvell/armada-3720-db.dtb: crypto@90000: interrupt-n=
-ames:5: 'mem' was expected
->         from schema $id: http://devicetree.org/schemas/crypto/inside-secu=
-re,safexcel.yaml#
->
-> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+GPIO
 
-Applied on mvebu/dt64
+> supported and are rejected in the probe function.
 
-Thanks,
+Overall LGTM, but I have a few comments below.
 
-Gregory
+...
 
-> ---
->  arch/arm64/boot/dts/marvell/armada-37xx.dtsi  | 10 +++++-----
->  arch/arm64/boot/dts/marvell/armada-cp11x.dtsi | 10 +++++-----
->  2 files changed, 10 insertions(+), 10 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi b/arch/arm64/bo=
-ot/dts/marvell/armada-37xx.dtsi
-> index e300145ad1a6..1cc3fa1c354d 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
-> @@ -431,14 +431,14 @@ xor11 {
->  			crypto: crypto@90000 {
->  				compatible =3D "inside-secure,safexcel-eip97ies";
->  				reg =3D <0x90000 0x20000>;
-> -				interrupts =3D <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>,
-> -					     <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>,
-> +				interrupts =3D <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>,
->  					     <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>,
->  					     <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>,
->  					     <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>,
-> -					     <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
-> -				interrupt-names =3D "mem", "ring0", "ring1",
-> -						  "ring2", "ring3", "eip";
-> +					     <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
-> +					     <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
-> +				interrupt-names =3D "ring0", "ring1", "ring2",
-> +						  "ring3", "eip", "mem";
->  				clocks =3D <&nb_periph_clk 15>;
->  			};
->=20=20
-> diff --git a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi b/arch/arm64/b=
-oot/dts/marvell/armada-cp11x.dtsi
-> index 4ec1aae0a3a9..7e595ac80043 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
-> @@ -511,14 +511,14 @@ CP11X_LABEL(sdhci0): mmc@780000 {
->  		CP11X_LABEL(crypto): crypto@800000 {
->  			compatible =3D "inside-secure,safexcel-eip197b";
->  			reg =3D <0x800000 0x200000>;
-> -			interrupts =3D <87 IRQ_TYPE_LEVEL_HIGH>,
-> -				<88 IRQ_TYPE_LEVEL_HIGH>,
-> +			interrupts =3D <88 IRQ_TYPE_LEVEL_HIGH>,
->  				<89 IRQ_TYPE_LEVEL_HIGH>,
->  				<90 IRQ_TYPE_LEVEL_HIGH>,
->  				<91 IRQ_TYPE_LEVEL_HIGH>,
-> -				<92 IRQ_TYPE_LEVEL_HIGH>;
-> -			interrupt-names =3D "mem", "ring0", "ring1",
-> -				"ring2", "ring3", "eip";
-> +				<92 IRQ_TYPE_LEVEL_HIGH>,
-> +				<87 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names =3D "ring0", "ring1", "ring2", "ring3",
-> +					  "eip", "mem";
->  			clock-names =3D "core", "reg";
->  			clocks =3D <&CP11X_LABEL(clk) 1 26>,
->  				 <&CP11X_LABEL(clk) 1 17>;
-> --=20
-> 2.35.3
->
++ container_of.h
 
---=20
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+> +#include <linux/device.h>
+> +#include <linux/err.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/hrtimer.h>
+> +#include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pwm.h>
+> +#include <linux/spinlock.h>
+
++ time.h
++ types.h
+
+...
+
+> +static enum hrtimer_restart pwm_gpio_timer(struct hrtimer *gpio_timer)
+> +{
+> +	struct pwm_gpio *gpwm = container_of(gpio_timer, struct pwm_gpio,
+> +					     gpio_timer);
+> +	unsigned long next_toggle;
+> +	unsigned long flags;
+> +	bool new_level;
+
+> +	spin_lock_irqsave(&gpwm->lock, flags);
+
+Can we use cleanup.h from day 1?
+
+> +	/* Apply new state at end of current period */
+> +	if (!gpwm->level && gpwm->changing) {
+> +		gpwm->changing = false;
+> +		gpwm->state = gpwm->next_state;
+> +		new_level = !!gpwm->state.duty_cycle;
+> +	} else {
+> +		new_level = !gpwm->level;
+> +	}
+> +
+> +	next_toggle = pwm_gpio_toggle(gpwm, new_level);
+> +	if (next_toggle) {
+> +		hrtimer_forward(gpio_timer, hrtimer_get_expires(gpio_timer),
+> +				ns_to_ktime(next_toggle));
+> +	}
+> +
+> +	spin_unlock_irqrestore(&gpwm->lock, flags);
+> +
+> +	return next_toggle ? HRTIMER_RESTART : HRTIMER_NORESTART;
+> +}
+
+...
+
+> +		/*
+> +		 * This just enables the output, but pwm_gpio_toggle()
+> +		 * really starts the duty cycle.
+> +		 */
+> +		int ret = gpiod_direction_output(gpwm->gpio, invert);
+> +
+> +		if (ret)
+> +			return ret;
+
+Better to have it written as
+
+		int ret;
+
+		/*
+		 * This just enables the output, but pwm_gpio_toggle()
+		 * really starts the duty cycle.
+		 */
+		ret = gpiod_direction_output(gpwm->gpio, invert);
+		if (ret)
+			return ret;
+
+...
+
+> +	gpwm->gpio = devm_gpiod_get(dev, NULL, GPIOD_ASIS);
+> +	if (IS_ERR(gpwm->gpio)) {
+> +		return dev_err_probe(dev, PTR_ERR(gpwm->gpio),
+> +				     "could not get gpio\n");
+> +	}
+
+{} are not needed.
+
+...
+
+> +	if (gpiod_cansleep(gpwm->gpio)) {
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "sleeping GPIO %d not supported\n",
+
+> +				     desc_to_gpio(gpwm->gpio));
+
+Do not use plain GPIO numbers.
+
+> +	}
+
+{} are not needed.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
