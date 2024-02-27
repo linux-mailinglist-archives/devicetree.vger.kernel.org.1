@@ -1,401 +1,214 @@
-Return-Path: <devicetree+bounces-46461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AA06869A72
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 16:33:05 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A33FF869AB5
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 16:42:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E9BF28F8EA
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 15:33:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E980CB28232
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 15:42:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87EF913B79F;
-	Tue, 27 Feb 2024 15:33:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eZ0YvUKx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E073D1468E4;
+	Tue, 27 Feb 2024 15:42:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C19B213A89E;
-	Tue, 27 Feb 2024 15:32:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2AEE145351;
+	Tue, 27 Feb 2024 15:42:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709047981; cv=none; b=o+sg13D1/waHs4eJ2vRSmqIrwOz5YlC+e+FCruFyEHSmfibo11Pn+MzuABorb8qTfaxzOfpkcHnM4Nn073XTNtad9eZQ8pErjxnvUnPvIxYXuOU1LTkZbTqUPrbdiF/R0QOE+US2tIQ8Vufyxw7hI/JV9C38E3dkAwx39fVNJNg=
+	t=1709048535; cv=none; b=aE2IVL4oC/XbovkX8jmCM8tVb8Nz1v6r962UYPTzYxDQ+F4IkVT3AK0IwilGyPTFF5Tkf3oIdrE/c8/byAwY8yRJdw3SQSTuzfaaj5OsKxPHz3sWtzVAXfqCyd7zPR1QoI100Etw/OVDbUrXsAJPU/F9AGOEhUyNMYbNtu9bD0U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709047981; c=relaxed/simple;
-	bh=T4j8xfqw+zwHLE/uUZt6NV8Iqspz2dNbcwLvHsIhPsc=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FSDa/7Rgi+OnMYGgGe+IIGGnPTPlqCKjlR24F4k7UQO+brTJKII4t37oCilGHBFvEBTnnL2v1ue8mhiEwjabfkrMHmaHAfy8Nuq25XuRnlAcQaKpLJr+T/XoUf2Y6b4FDoTZVFtUID3gpneHxdGD76Zc7HmP5wNPFafSjX00xbs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eZ0YvUKx; arc=none smtp.client-ip=209.85.167.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1709048535; c=relaxed/simple;
+	bh=8RA+fvGI7H8/KVOcw5fiLDDRe4rFaB568t+6OOKeC2k=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=p+3x4ApVRN1NxraBXCIS33KMvabtzT2MR8CoZaM/kuuahjCX2hC3bzrKN9DATmLxIFy/7C7mo5yvopxsDp8U9LKgr7QmK4MM5TMYcC4DZe3k+ik67c7DoZXOzfiWL7uCwM5Kamql3o0SzTFvmrZidFQrakqwTJ6p4PzZdaL+T9s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-3c19937913fso2448706b6e.3;
-        Tue, 27 Feb 2024 07:32:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709047979; x=1709652779; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Rl6JaZXqKyU5LHyUlDo+U8J8lU9YJxtct56VSY1/70I=;
-        b=eZ0YvUKxb06n3Ded53v60tLTHhjUGOk3LNO4xhiWYf/p8XCb6R24ZU09DcAdfOm6H2
-         xeSii60Kk0JkwLhTwYctZFYvf4AekGP0Fkuw2ShnPIQEwSinGoSCYl52nkTh2ROr4uZF
-         YIaqnESFobs38ijReYYG3yMohMJpPbk2rNrNx6IjPHpjxmthcMMVzw2CeCzHo0vpRnpC
-         yU8qeeFuhE7/GKV7+W3492nMqvi0evtpNkonH/SkRczS2gcfh5tyTxuFw6aj0DWl1m79
-         C2JB9GgpoS6bDiooOo8n2pOKAi3KCtNRu38Zcv3Bta92riUNjHDk/asgKMKAyHXMN7ht
-         w5mw==
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-dcbc00f6c04so4540504276.3;
+        Tue, 27 Feb 2024 07:42:13 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709047979; x=1709652779;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Rl6JaZXqKyU5LHyUlDo+U8J8lU9YJxtct56VSY1/70I=;
-        b=SNuybdOLjSNQ0KeOPobMCJY07cA+Buw4D6Z5heU5f5vj5weWxKXOLQ7HFcUGypCCIB
-         SL6D9J+0dtSMG996ZyeonohmGdEd3OrvvuIeVldsE7oJVWYjN1lrd/G8/E2A5sMYe8gW
-         seB8IsXRgYnJ5sQudDn8bpb3J+phZlw6vTuAYdQVEJrVTRcIPt7+7t1t7Hr9rbT48t4a
-         QBpVrHaf5boYTPWxx2yaQJ7pyWVqH4O5jL4Fd7Yns17XNHN7xg55KOoA4bQXPpj9dzYH
-         Arjk/oxh22ujJA6ix+/rYfMS0As8KpFghqt4QfRkK2KVWAt7tbqg27kS/DLCAx3HyZZr
-         4gZg==
-X-Forwarded-Encrypted: i=1; AJvYcCVXdNDAOeWErq70iEQFkpYrBnxFWFaPbLcXZXMWDieu4OK9E112okxu0hJ3DiFSkM3NyTq8vm08fcTdJQC3/VqimuiRi1vBv5U/i4FWjBvsmOMrj4z+kmd6RU9lZvu2nhr9qiRMH7PRYuY4CevVcVDuSzw9ecpvtHvGdWVMvcSzoXE=
-X-Gm-Message-State: AOJu0Yx6TxERxjXU0r5ZlRWIYZ+NkMOTLAT0h8Vr/oDtfDs+FjWh44Qh
-	YiOnYyPWGnRogW9dk1mz6uB2wfvlGMMkShsTOKJn+F+tX2IZwL+I
-X-Google-Smtp-Source: AGHT+IH9bDXhSqDoPR+g2PorBmQZm2q/zIIpODkOLUwEpA7jfBXUAwEPEOGibiufDKOoWrKKTEBqIg==
-X-Received: by 2002:a05:6808:1292:b0:3c1:340d:30b2 with SMTP id a18-20020a056808129200b003c1340d30b2mr2960755oiw.47.1709047978826;
-        Tue, 27 Feb 2024 07:32:58 -0800 (PST)
-Received: from neuromancer. ([75.28.21.198])
-        by smtp.gmail.com with ESMTPSA id 3-20020a544183000000b003c17fd0ed2bsm1464347oiy.47.2024.02.27.07.32.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Feb 2024 07:32:58 -0800 (PST)
-Message-ID: <65de00aa.540a0220.f1081.6933@mx.google.com>
-X-Google-Original-Message-ID: <Zd4AqT3EriAKVfji@neuromancer.>
-Date: Tue, 27 Feb 2024 09:32:57 -0600
-From: Chris Morgan <macroalpha82@gmail.com>
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, andy.shevchenko@gmail.com,
-	Angelo Compagnucci <angelo.compagnucci@gmail.com>,
-	Philip Howard <phil@gadgetoid.com>, Sean Young <sean@mess.org>,
-	Linus Walleij <linus.walleij@linaro.org>, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Vincent Whitchurch <vincent.whitchurch@axis.com>
-Subject: Re: [PATCH V4 2/2] pwm: Add GPIO PWM driver
-References: <20240204220851.4783-1-wahrenst@gmx.net>
- <20240204220851.4783-3-wahrenst@gmx.net>
+        d=1e100.net; s=20230601; t=1709048528; x=1709653328;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=PepN+vzOJ7FGNHjryvCGPsAuXBvDik+gwGMOhn9mKt8=;
+        b=N6wctiwwpFmbv9BAb4BDuHk+YeQStoucApHGbpiSurAtmjS+jzhQX7qlLRFr+duC6C
+         i9MVPilOmUcq8Wkhp4vcwRicsn8diYVNOuWM/+J1Dt7N8ywLcHbH1vyHBRlVTFzHgl+N
+         3Zx4YH7juiK/0xiQ/1GFLd5/3jJDaX3xXZE+cZPEJBRSB6kWAA59g+6AUDkdYSbW2SQo
+         xfyUrt+VRUvq+nVXerSZN4F+u4+FIio/j6vboTtkFrktSGotG3Ag56K/J640SpUvZZCp
+         nx0lshSzedd4PZHYdCG2snii/suD2IL6CDHIhOZf9ko6+oTv3peosKRrOoqKSQYViXzB
+         iJPQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXm10v4OnaK9P/TbR7VSgCjlnzcpR8Y/+Fhaml50F3CKFgjrlJf2tm0mVTOM/Y5OWgRG6jUPKQ/wiw6QsSfwEZtSDcG7RnBVE5f2EPlVmjYeYxBjB2sk5OnVR3mKGlQOh8dB/SWiknRx6kL0mQ7L4kdleIidZQBhnpW8nJH7OqR2ujunPIVVPXCjpH1wWqm3TR6eYnP7kDSzvBsZtsS6W6U0aIhNnCAXzhvR4bKqYnSYw+ZJntdfUPj3iitrnnGSW3qevnDM3LZtOh52/pwyB4S7s7bAFw5wst5Z4SSVBZjBtrMMR9YSoBbCdmeqrLAcxWEM7Ex4CxBp4Zq2NlTqyprkzNnfp0sqqOLaHZP8a8G1vqrBIAkBKc=
+X-Gm-Message-State: AOJu0YxiTJXYjYkKWUAJeLrwAm230U/o2QoC7OBIVdKcytvGlV5Bt9wj
+	qXKEwCo5iZu9GXXZzXzcoXdw6sosomujJt7hRfNgrWD2CxsWuIuDZhyPGR5ndmk=
+X-Google-Smtp-Source: AGHT+IEUcfdqh71Dtl7eW8/tkosUi5WmMzjDNAqSGpKFhGK2wgo/gMrGDS2YM3WM69M9FP1mi9359g==
+X-Received: by 2002:a25:6c8a:0:b0:dcc:b719:4e4f with SMTP id h132-20020a256c8a000000b00dccb7194e4fmr2370192ybc.53.1709048527700;
+        Tue, 27 Feb 2024 07:42:07 -0800 (PST)
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
+        by smtp.gmail.com with ESMTPSA id g12-20020a25ef0c000000b00dcd56356c80sm1422691ybd.47.2024.02.27.07.42.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Feb 2024 07:42:07 -0800 (PST)
+Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-dbed0710c74so3987152276.1;
+        Tue, 27 Feb 2024 07:42:07 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWfO9wEY764J3VK0NnmS+VTkQP0AFYTR2L5vMuQPjIzDvPJ6Lycky+djp5Jk3CC6Cw0GP14KSOvyzmF6Q4u2nYJmLf+xNJjeAd6qMOTYMQjcvHKzn8XrdLkadou7G68TT1YOPw9q50Tvb+RBmjt/0xtsO/lkkDan/E6aBlNur4hugmS5Su0FY1LleKIREhLOdZ3yMZ8JpX5u7jQYov4PtgeAaE1SeLQp19kxkbzwiFBHnfOugndwJ7/KcAWtpzFAeEZbb2wShKjGGbVSAqo8fLS2uY9uuou03yUNvunllulsLwD20XLvIK0cq8BtR8ATlv1bO4XlWWWkasJNTjM8GVPaRwgBc4ICsAdFpklxyiO7rE/PnIDPro=
+X-Received: by 2002:a05:6902:2412:b0:dc7:4cb1:6817 with SMTP id
+ dr18-20020a056902241200b00dc74cb16817mr2901377ybb.22.1709048525820; Tue, 27
+ Feb 2024 07:42:05 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240204220851.4783-3-wahrenst@gmx.net>
+References: <cover.1704788539.git.ysato@users.sourceforge.jp> <222dd134b5e1c8cc5baa7afc64a3441a8174e979.1704788539.git.ysato@users.sourceforge.jp>
+In-Reply-To: <222dd134b5e1c8cc5baa7afc64a3441a8174e979.1704788539.git.ysato@users.sourceforge.jp>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 27 Feb 2024 16:41:53 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVxWrrKT8H_47EPjZ61QnEvvtrZYXFo=FmozhVeYf=4Bw@mail.gmail.com>
+Message-ID: <CAMuHMdVxWrrKT8H_47EPjZ61QnEvvtrZYXFo=FmozhVeYf=4Bw@mail.gmail.com>
+Subject: Re: [DO NOT MERGE v6 14/37] clk: Compatible with narrow registers
+To: Yoshinori Sato <ysato@users.sourceforge.jp>
+Cc: linux-sh@vger.kernel.org, Damien Le Moal <dlemoal@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Thomas Gleixner <tglx@linutronix.de>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Rich Felker <dalias@libc.org>, 
+	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, Lee Jones <lee@kernel.org>, 
+	Helge Deller <deller@gmx.de>, Heiko Stuebner <heiko@sntech.de>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Chris Morgan <macromorgan@hotmail.com>, 
+	Yang Xiwen <forbidden405@foxmail.com>, Sebastian Reichel <sre@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Randy Dunlap <rdunlap@infradead.org>, 
+	Arnd Bergmann <arnd@arndb.de>, Vlastimil Babka <vbabka@suse.cz>, Hyeonggon Yoo <42.hyeyoo@gmail.com>, 
+	David Rientjes <rientjes@google.com>, Baoquan He <bhe@redhat.com>, 
+	Andrew Morton <akpm@linux-foundation.org>, Guenter Roeck <linux@roeck-us.net>, 
+	Stephen Rothwell <sfr@canb.auug.org.au>, Azeem Shaikh <azeemshaikh38@gmail.com>, 
+	Javier Martinez Canillas <javierm@redhat.com>, Max Filippov <jcmvbkbc@gmail.com>, 
+	Palmer Dabbelt <palmer@rivosinc.com>, Bin Meng <bmeng@tinylab.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Jacky Huang <ychuang3@nuvoton.com>, 
+	Lukas Bulwahn <lukas.bulwahn@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+	Sam Ravnborg <sam@ravnborg.org>, Sergey Shtylyov <s.shtylyov@omp.ru>, 
+	Michael Karcher <kernel@mkarcher.dialup.fu-berlin.de>, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, linux-ide@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-pci@vger.kernel.org, 
+	linux-serial@vger.kernel.org, linux-fbdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, Feb 04, 2024 at 11:08:51PM +0100, Stefan Wahren wrote:
-> From: Vincent Whitchurch <vincent.whitchurch@axis.com>
-> 
-> Add a software PWM which toggles a GPIO from a high-resolution timer.
-> 
-> This will naturally not be as accurate or as efficient as a hardware
-> PWM, but it is useful in some cases.  I have for example used it for
-> evaluating LED brightness handling (via leds-pwm) on a board where the
-> LED was just hooked up to a GPIO, and for a simple verification of the
-> timer frequency on another platform.
-> 
-> Since high-resolution timers are used, sleeping gpio chips are not
-> supported and are rejected in the probe function.
-> 
-> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
-> Co-developed-by: Stefan Wahren <wahrenst@gmx.net>
-> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
-> ---
->  drivers/pwm/Kconfig    |  11 ++
->  drivers/pwm/Makefile   |   1 +
->  drivers/pwm/pwm-gpio.c | 228 +++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 240 insertions(+)
->  create mode 100644 drivers/pwm/pwm-gpio.c
-> 
-> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> index 4b956d661755..7cfda2cde130 100644
-> --- a/drivers/pwm/Kconfig
-> +++ b/drivers/pwm/Kconfig
-> @@ -227,6 +227,17 @@ config PWM_FSL_FTM
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called pwm-fsl-ftm.
-> 
-> +config PWM_GPIO
-> +	tristate "GPIO PWM support"
-> +	depends on GPIOLIB
-> +	depends on HIGH_RES_TIMERS
-> +	help
-> +	  Generic PWM framework driver for a software PWM toggling a GPIO pin
-> +	  from kernel high-resolution timers.
-> +
-> +	  To compile this driver as a module, choose M here: the module
-> +	  will be called pwm-gpio.
-> +
->  config PWM_HIBVT
->  	tristate "HiSilicon BVT PWM support"
->  	depends on ARCH_HISI || COMPILE_TEST
-> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-> index c5ec9e168ee7..59d1a46bb1af 100644
-> --- a/drivers/pwm/Makefile
-> +++ b/drivers/pwm/Makefile
-> @@ -19,6 +19,7 @@ obj-$(CONFIG_PWM_DWC_CORE)	+= pwm-dwc-core.o
->  obj-$(CONFIG_PWM_DWC)		+= pwm-dwc.o
->  obj-$(CONFIG_PWM_EP93XX)	+= pwm-ep93xx.o
->  obj-$(CONFIG_PWM_FSL_FTM)	+= pwm-fsl-ftm.o
-> +obj-$(CONFIG_PWM_GPIO)		+= pwm-gpio.o
->  obj-$(CONFIG_PWM_HIBVT)		+= pwm-hibvt.o
->  obj-$(CONFIG_PWM_IMG)		+= pwm-img.o
->  obj-$(CONFIG_PWM_IMX1)		+= pwm-imx1.o
-> diff --git a/drivers/pwm/pwm-gpio.c b/drivers/pwm/pwm-gpio.c
-> new file mode 100644
-> index 000000000000..4435f275f509
-> --- /dev/null
-> +++ b/drivers/pwm/pwm-gpio.c
-> @@ -0,0 +1,228 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Generic software PWM for modulating GPIOs
-> + *
-> + * Copyright (C) 2020 Axis Communications AB
-> + * Copyright (C) 2020 Nicola Di Lieto
-> + * Copyright (C) 2024 Stefan Wahren
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/err.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/hrtimer.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pwm.h>
-> +#include <linux/spinlock.h>
-> +
-> +struct pwm_gpio {
-> +	struct pwm_chip chip;
-> +	struct hrtimer gpio_timer;
-> +	struct gpio_desc *gpio;
-> +	struct pwm_state state;
-> +	struct pwm_state next_state;
-> +
-> +	/* Protect internal state between pwm_ops and hrtimer */
-> +	spinlock_t lock;
-> +
-> +	bool changing;
-> +	bool running;
-> +	bool level;
-> +};
-> +
-> +static unsigned long pwm_gpio_toggle(struct pwm_gpio *gpwm, bool level)
-> +{
-> +	const struct pwm_state *state = &gpwm->state;
-> +	bool invert = state->polarity == PWM_POLARITY_INVERSED;
-> +
-> +	gpwm->level = level;
-> +	gpiod_set_value(gpwm->gpio, gpwm->level ^ invert);
-> +
-> +	if (!state->duty_cycle || state->duty_cycle == state->period) {
-> +		gpwm->running = false;
-> +		return 0;
-> +	}
-> +
-> +	gpwm->running = true;
-> +	return level ? state->duty_cycle : state->period - state->duty_cycle;
-> +}
-> +
-> +static enum hrtimer_restart pwm_gpio_timer(struct hrtimer *gpio_timer)
-> +{
-> +	struct pwm_gpio *gpwm = container_of(gpio_timer, struct pwm_gpio,
-> +					     gpio_timer);
-> +	unsigned long next_toggle;
-> +	unsigned long flags;
-> +	bool new_level;
-> +
-> +	spin_lock_irqsave(&gpwm->lock, flags);
-> +
-> +	/* Apply new state at end of current period */
-> +	if (!gpwm->level && gpwm->changing) {
-> +		gpwm->changing = false;
-> +		gpwm->state = gpwm->next_state;
-> +		new_level = !!gpwm->state.duty_cycle;
-> +	} else {
-> +		new_level = !gpwm->level;
-> +	}
-> +
-> +	next_toggle = pwm_gpio_toggle(gpwm, new_level);
-> +	if (next_toggle) {
-> +		hrtimer_forward(gpio_timer, hrtimer_get_expires(gpio_timer),
-> +				ns_to_ktime(next_toggle));
-> +	}
-> +
-> +	spin_unlock_irqrestore(&gpwm->lock, flags);
-> +
-> +	return next_toggle ? HRTIMER_RESTART : HRTIMER_NORESTART;
-> +}
-> +
-> +static int pwm_gpio_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> +			  const struct pwm_state *state)
-> +{
-> +	struct pwm_gpio *gpwm = container_of(chip, struct pwm_gpio, chip);
-> +	bool invert = state->polarity == PWM_POLARITY_INVERSED;
-> +	unsigned long flags;
-> +
-> +	if (state->duty_cycle && state->duty_cycle < hrtimer_resolution)
-> +		return -EINVAL;
-> +
-> +	if (state->duty_cycle != state->period &&
-> +	    (state->period - state->duty_cycle < hrtimer_resolution))
-> +		return -EINVAL;
-> +
-> +	if (!state->enabled) {
-> +		hrtimer_cancel(&gpwm->gpio_timer);
-> +	} else if (!gpwm->running) {
-> +		/*
-> +		 * This just enables the output, but pwm_gpio_toggle()
-> +		 * really starts the duty cycle.
-> +		 */
-> +		int ret = gpiod_direction_output(gpwm->gpio, invert);
-> +
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	spin_lock_irqsave(&gpwm->lock, flags);
-> +
-> +	if (!state->enabled) {
-> +		gpwm->state = *state;
-> +		gpwm->running = false;
-> +		gpwm->changing = false;
-> +
-> +		gpiod_set_value(gpwm->gpio, invert);
-> +	} else if (gpwm->running) {
-> +		gpwm->next_state = *state;
-> +		gpwm->changing = true;
-> +	} else {
-> +		unsigned long next_toggle;
-> +
-> +		gpwm->state = *state;
-> +		gpwm->changing = false;
-> +
-> +		next_toggle = pwm_gpio_toggle(gpwm, !!state->duty_cycle);
-> +		if (next_toggle) {
-> +			hrtimer_start(&gpwm->gpio_timer, next_toggle,
-> +				      HRTIMER_MODE_REL);
-> +		}
-> +	}
-> +
-> +	spin_unlock_irqrestore(&gpwm->lock, flags);
-> +
-> +	return 0;
-> +}
-> +
-> +static int pwm_gpio_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-> +			       struct pwm_state *state)
-> +{
-> +	struct pwm_gpio *gpwm = container_of(chip, struct pwm_gpio, chip);
-> +	unsigned long flags;
-> +
-> +	spin_lock_irqsave(&gpwm->lock, flags);
-> +
-> +	if (gpwm->changing)
-> +		*state = gpwm->next_state;
-> +	else
-> +		*state = gpwm->state;
-> +
-> +	spin_unlock_irqrestore(&gpwm->lock, flags);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct pwm_ops pwm_gpio_ops = {
-> +	.apply = pwm_gpio_apply,
-> +	.get_state = pwm_gpio_get_state,
-> +};
-> +
-> +static int pwm_gpio_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct pwm_gpio *gpwm;
-> +	int ret;
-> +
-> +	gpwm = devm_kzalloc(dev, sizeof(*gpwm), GFP_KERNEL);
-> +	if (!gpwm)
-> +		return -ENOMEM;
-> +
-> +	spin_lock_init(&gpwm->lock);
-> +
-> +	gpwm->gpio = devm_gpiod_get(dev, NULL, GPIOD_ASIS);
-> +	if (IS_ERR(gpwm->gpio)) {
-> +		return dev_err_probe(dev, PTR_ERR(gpwm->gpio),
-> +				     "could not get gpio\n");
-> +	}
-> +
-> +	if (gpiod_cansleep(gpwm->gpio)) {
-> +		return dev_err_probe(dev, -EINVAL,
-> +				     "sleeping GPIO %d not supported\n",
-> +				     desc_to_gpio(gpwm->gpio));
-> +	}
-> +
-> +	gpwm->chip.dev = dev;
-> +	gpwm->chip.ops = &pwm_gpio_ops;
-> +	gpwm->chip.npwm = 1;
-> +	gpwm->chip.atomic = true;
-> +
-> +	hrtimer_init(&gpwm->gpio_timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
-> +	gpwm->gpio_timer.function = pwm_gpio_timer;
-> +
-> +	ret = pwmchip_add(&gpwm->chip);
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret, "could not add pwmchip\n");
-> +
-> +	platform_set_drvdata(pdev, gpwm);
-> +
-> +	return 0;
-> +}
-> +
-> +static void pwm_gpio_remove(struct platform_device *pdev)
-> +{
-> +	struct pwm_gpio *gpwm = platform_get_drvdata(pdev);
-> +
-> +	pwmchip_remove(&gpwm->chip);
-> +	hrtimer_cancel(&gpwm->gpio_timer);
-> +}
-> +
-> +static const struct of_device_id pwm_gpio_dt_ids[] = {
-> +	{ .compatible = "pwm-gpio" },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, pwm_gpio_dt_ids);
-> +
-> +static struct platform_driver pwm_gpio_driver = {
-> +	.driver = {
-> +		.name = "pwm-gpio",
-> +		.of_match_table = pwm_gpio_dt_ids,
-> +	},
-> +	.probe = pwm_gpio_probe,
-> +	.remove_new = pwm_gpio_remove,
-> +};
-> +module_platform_driver(pwm_gpio_driver);
-> +
-> +MODULE_DESCRIPTION("PWM GPIO driver");
-> +MODULE_AUTHOR("Vincent Whitchurch");
-> +MODULE_LICENSE("GPL");
-> --
-> 2.34.1
-> 
+Hi Sato-san,
 
-I have a series of devices with GPIO controlled force feedback that
-this driver helps us control better. So I'm looking forward to this,
-thank you.
+On Tue, Jan 9, 2024 at 9:24=E2=80=AFAM Yoshinori Sato
+<ysato@users.sourceforge.jp> wrote:
+> divider and gate only support 32-bit registers.
+> Older hardware uses narrower registers, so I want to be able to handle
+> 8-bit and 16-bit wide registers.
+>
+> Seven clk_divider flags are used, and if I add flags for 8bit access and
+> 16bit access, 8bit will not be enough, so I expanded it to u16.
+>
+> Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
 
-Note that when I set the resolution too low (I got confused and set
-the period to 255) my device locked up hard and only a forced
-power cycle could bring it back.
+Thanks for your patch!
 
-Tested-by: Chris Morgan <macromorgan@hotmail.com>
+> --- a/drivers/clk/clk-gate.c
+> +++ b/drivers/clk/clk-gate.c
+> @@ -143,6 +161,18 @@ struct clk_hw *__clk_hw_register_gate(struct device =
+*dev,
+>                         return ERR_PTR(-EINVAL);
+>                 }
+
+Please add a check for invalid CLK_GATE_HIWORD_MASK
+and register width combinations:
+
+                if (clk_gate_flags & (CLK_GATE_REG_16BIT | CLK_GATE_REG_8BI=
+T)) {
+                        pr_err("HIWORD_MASK needs 32-bit registers\n");
+                        return ERR_PTR(-EINVAL);
+                }
+
+>         }
+> +       if (clk_gate_flags & CLK_GATE_REG_16BIT) {
+> +               if (bit_idx > 15) {
+> +                       pr_err("gate bit exceeds 16 bits\n");
+> +                       return ERR_PTR(-EINVAL);
+> +               }
+> +       }
+> +       if (clk_gate_flags & CLK_GATE_REG_8BIT) {
+> +               if (bit_idx > 7) {
+> +                       pr_err("gate bit exceeds 8 bits\n");
+> +                       return ERR_PTR(-EINVAL);
+> +               }
+> +       }
+>
+>         /* allocate the gate */
+>         gate =3D kzalloc(sizeof(*gate), GFP_KERNEL);
+> diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
+> index ace3a4ce2fc9..e2dfc1f083f4 100644
+> --- a/include/linux/clk-provider.h
+> +++ b/include/linux/clk-provider.h
+> @@ -508,12 +508,16 @@ void of_fixed_clk_setup(struct device_node *np);
+>   * CLK_GATE_BIG_ENDIAN - by default little endian register accesses are =
+used for
+>   *     the gate register.  Setting this flag makes the register accesses=
+ big
+>   *     endian.
+> + * CLK_GATE_REG_8BIT - by default 32bit register accesses are used for
+> + *     the gate register.  Setting this flag makes the register accesses=
+ 8bit.
+> + * CLK_GATE_REG_16BIT - by default 32bit register accesses are used for
+> + *     the gate register.  Setting this flag makes the register accesses=
+ 16bit.
+>   */
+>  struct clk_gate {
+>         struct clk_hw hw;
+>         void __iomem    *reg;
+>         u8              bit_idx;
+> -       u8              flags;
+> +       u32             flags;
+
+There is no need to increase the size of the flags field for the gate clock=
+.
+
+>         spinlock_t      *lock;
+>  };
+>
+> @@ -522,6 +526,8 @@ struct clk_gate {
+>  #define CLK_GATE_SET_TO_DISABLE                BIT(0)
+>  #define CLK_GATE_HIWORD_MASK           BIT(1)
+>  #define CLK_GATE_BIG_ENDIAN            BIT(2)
+> +#define CLK_GATE_REG_8BIT              BIT(3)
+> +#define CLK_GATE_REG_16BIT             BIT(4)
+>
+>  extern const struct clk_ops clk_gate_ops;
+>  struct clk_hw *__clk_hw_register_gate(struct device *dev,
+
+The rest LGTM.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
