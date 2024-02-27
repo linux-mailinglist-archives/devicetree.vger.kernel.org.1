@@ -1,154 +1,115 @@
-Return-Path: <devicetree+bounces-46205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1EE686879E
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 04:15:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91D2C8687B4
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 04:20:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C1F511C21818
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 03:15:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BB84283700
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 03:20:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDABB1B27D;
-	Tue, 27 Feb 2024 03:15:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 493991F605;
+	Tue, 27 Feb 2024 03:20:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="g1HFiLex"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GGZalQiN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 815FA1F947;
-	Tue, 27 Feb 2024 03:15:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C82DE1B7E9;
+	Tue, 27 Feb 2024 03:20:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709003715; cv=none; b=Kvt5S6vNTC3Npzq+92zNGR8qyiq84GUmNeepuwShETO6b/TOENANqDP+ItXRGuHPiOhN01C5t7FSD6whLBDXGZnsqlumkqJ37dKbbh2VW/5l/QTbFi5pHJdGE9t3Ni1D09PyS/7zlzooXXApE2rS4oqn0Thwk9QoXZZ2hlmL7zg=
+	t=1709004031; cv=none; b=IxOTh+BGCwLXRjyeSUUJ+fwuC9FS+tvqptP0Z0GB66+ezn9s+klu1NofDh7doMEljRFM7pxAg7rb655uPrPDDKw5iQHFpq9E9pAUTYBRg8d5zsZGzlcmqMYhBzRG6YvGqIQmOvS+wXVGrN4ISPHCSi3eS1OtpWsTIvkrJ2J1rXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709003715; c=relaxed/simple;
-	bh=zvPm5PzDdLsLLfyUhF6DNmti8ozkQ94Jv6QvBNkp2wE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=XJCQKsGOeDnzCTKjIR9RGENx3ZHQo5zKKiTQU/+mqonwXYak0iHD7RHGGqUIczuFgWESlZ9JiyQUiZthwNQ68M+6aOhMSxs3F4nUvG7+RU5gAvqyrcQkun+/zk2ztnekw0K1sn0wzUPg3G+bv7R+m+SdGjBcFFINH/UL7OKyUTc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=g1HFiLex; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41R2T0eR032284;
-	Tue, 27 Feb 2024 03:15:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=6KBaG3igfsBnKJhPA45En8jYeIyXoOOVGsO8fBNA/HU=; b=g1
-	HFiLexIJmYPiXOFpbBspBe+ex45h+7FHUVlKm4u15Ni9mFoepDW/8jIoEt79WWbX
-	Zho0PO/IhtwdHGyuEcdMK0aY0HXpg8C++0bxy6gWtrtwL1sitoFQRlPbCbuNMy3S
-	ivRNNwjQWJt2H+nB3EMnmzLOrkNqtqY68vapMDcPI952WaIyZgo1Y/VNDvH5rL8m
-	h8uW12uwkBeFMnYWBdj3wWGdEKwu6hY7vhdWOXfpeyEIMaY0GGBMPQ9ElUmXZUWZ
-	PiPTIKPUmrw806wsvIUUkgppYAYnaFeikuJrz3+V1O07Xbu2G6RpkjVQfoVHPXtq
-	LDphH+n0c4gj6A4+A7iQ==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wh50789ux-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 27 Feb 2024 03:15:05 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41R3F3ag025064
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 27 Feb 2024 03:15:03 GMT
-Received: from [10.216.14.152] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 26 Feb
- 2024 19:14:56 -0800
-Message-ID: <c5e041dc-42b0-86f2-aba3-28d4db305c38@quicinc.com>
-Date: Tue, 27 Feb 2024 08:44:53 +0530
+	s=arc-20240116; t=1709004031; c=relaxed/simple;
+	bh=aEWeFJ2eAgzcvr+OaHdaIiM7TBOw2JHpdO912FAxBrQ=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=HiDNt3fnVXuGP2LZk9qZX6eq0d0c0aHWyi4s/80M34OXbJbLQ0J+BReyCNw8eAKY9rCvr6VjJ7pN8M4WAekOtB54cMsOofMp24ivlAhmBNBf5UmI1QFYq+WU5u3l5DwZNV0a4VpiDqu6rL8hyOpmG68YqCbm5Pz0yNEydiltP6U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GGZalQiN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 601C6C433F1;
+	Tue, 27 Feb 2024 03:20:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709004030;
+	bh=aEWeFJ2eAgzcvr+OaHdaIiM7TBOw2JHpdO912FAxBrQ=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=GGZalQiNOWNgvr31MEFJ81Scx/q8IuKaZAqiPFZE+SD8pSdQWwG3CioqZpDlRQUAD
+	 jKvVifURv7BOpc25WdOU3fYy6BfTMtetonGpoamgfDO3hXxtvjNyuDx94vkioJxfvV
+	 MubNjVgf5u85jr4mrAuCzosl1CeEkeDYgrDKshVma4vowdYyZfX9/uNolq5oS00HY6
+	 VdQ/8vtg8n+7bDwLjb5y8Yg2i9Qutge32EjMjVf5A2q9l0zWeu9yL5HgzRZ4UWdsvX
+	 1U/1FgMqGQhy/VrktEoQPhkUCFsQrCXfoN9l9KW3KzU1jxRXAX9mECe7VQa53IR0gn
+	 sUUzlKI2AvVrA==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 3DB28D88FB2;
+	Tue, 27 Feb 2024 03:20:30 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH v7 3/7] PCI: qcom: Add ICC bandwidth vote for CPU to PCIe
- path
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Rob Herring
-	<robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Brian Masney
-	<bmasney@redhat.com>, Georgi Djakov <djakov@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <vireshk@kernel.org>, <quic_vbadigan@quicinc.com>,
-        <quic_skananth@quicinc.com>, <quic_nitegupt@quicinc.com>,
-        <quic_parass@quicinc.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-References: <20240223-opp_support-v7-0-10b4363d7e71@quicinc.com>
- <20240223-opp_support-v7-3-10b4363d7e71@quicinc.com>
- <53f486d1-94c7-4dd9-89fc-d80a92301700@linaro.org>
-From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-In-Reply-To: <53f486d1-94c7-4dd9-89fc-d80a92301700@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: NagUTDU7pvt2aIge6frUEj6VXHrP0rNI
-X-Proofpoint-GUID: NagUTDU7pvt2aIge6frUEj6VXHrP0rNI
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-26_11,2024-02-26_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 suspectscore=0
- clxscore=1015 mlxscore=0 malwarescore=0 impostorscore=0 phishscore=0
- lowpriorityscore=0 mlxlogscore=999 priorityscore=1501 spamscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2402270024
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v4 00/39] Add support for sam9x7 SoC family
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <170900403024.25082.9031028983461362329.git-patchwork-notify@kernel.org>
+Date: Tue, 27 Feb 2024 03:20:30 +0000
+References: <20240223171342.669133-1-varshini.rajendran@microchip.com>
+In-Reply-To: <20240223171342.669133-1-varshini.rajendran@microchip.com>
+To: Varshini Rajendran <varshini.rajendran@microchip.com>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, nicolas.ferre@microchip.com,
+ alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
+ mturquette@baylibre.com, sboyd@kernel.org, herbert@gondor.apana.org.au,
+ davem@davemloft.net, andi.shyti@kernel.org, tglx@linutronix.de,
+ tudor.ambarus@linaro.org, miquel.raynal@bootlin.com, richard@nod.at,
+ vigneshr@ti.com, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+ linus.walleij@linaro.org, sre@kernel.org, u.kleine-koenig@pengutronix.de,
+ p.zabel@pengutronix.de, olivia@selenic.com, radu_nicolae.pirea@upb.ro,
+ richard.genoud@gmail.com, gregkh@linuxfoundation.org, jirislaby@kernel.org,
+ lgirdwood@gmail.com, broonie@kernel.org, wim@linux-watchdog.org,
+ linux@roeck-us.net, linux@armlinux.org.uk, andrei.simion@microchip.com,
+ mihai.sain@microchip.com, andre.przywara@arm.com, neil.armstrong@linaro.org,
+ tony@atomide.com, durai.manickamkr@microchip.com, geert+renesas@glider.be,
+ arnd@arndb.de, Jason@zx2c4.com, rdunlap@infradead.org, rientjes@google.com,
+ vbabka@suse.cz, mripard@kernel.org, codrin.ciubotariu@microchip.com,
+ eugen.hristev@collabora.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux-mtd@lists.infradead.org,
+ netdev@vger.kernel.org, linux-gpio@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-pwm@vger.kernel.org, linux-rtc@vger.kernel.org,
+ linux-spi@vger.kernel.org, linux-serial@vger.kernel.org,
+ alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
+ linux-watchdog@vger.kernel.org
 
+Hello:
 
+This patch was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-On 2/24/2024 5:32 AM, Konrad Dybcio wrote:
-> On 23.02.2024 15:48, Krishna chaitanya chundru wrote:
->> To access PCIe registers, PCIe BAR space, config space the CPU-PCIe
->> ICC(interconnect consumers) path should be voted otherwise it may
->> lead to NoC(Network on chip) timeout. We are surviving because of
->> other driver vote for this path.
->> As there is less access on this path compared to PCIe to mem path
->> add minimum vote i.e 1KBps bandwidth always.
->>
->> In suspend remove the disable this path after register space access
->> is done.
->>
->> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
->> ---
+On Fri, 23 Feb 2024 22:43:42 +0530 you wrote:
+> This patch series adds support for the new SoC family - sam9x7.
+>  - The device tree, configs and drivers are added
+>  - Clock driver for sam9x7 is added
+>  - Support for basic peripherals is added
+>  - Target board SAM9X75 Curiosity is added
+> 
+>  Changes in v4:
 > 
 > [...]
-> 
->>   
->> +	/* Remove cpu path vote after all the register access is done */
->> +	ret = icc_disable(pcie->icc_cpu);
->> +	if (ret) {
->> +		dev_err(dev, "failed to disable icc path of cpu-pcie: %d\n", ret);
->> +		if (pcie->suspended) {
->> +			qcom_pcie_host_init(&pcie->pci->pp);
->> +			pcie->suspended = false;
->> +		}
->> +		qcom_pcie_icc_opp_update(pcie);
-> 
-> This doesn't compile (you rename it in patch 6, this is patch 3)
-> 
-> Konrad
-> 
-I will fix this in my next series.
 
-- Krishna Chaitanya.
+Here is the summary with links:
+  - [v4,01/39] dt-bindings: net: cdns,macb: add sam9x7 ethernet interface
+    https://git.kernel.org/netdev/net-next/c/5c237967e632
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
 
