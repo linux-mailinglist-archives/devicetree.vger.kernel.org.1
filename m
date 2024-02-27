@@ -1,81 +1,82 @@
-Return-Path: <devicetree+bounces-46477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6B41869C16
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 17:28:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48CA6869C1F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 17:29:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C98A28F09D
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 16:28:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 797D51C22F37
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 16:29:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BEBB148319;
-	Tue, 27 Feb 2024 16:28:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A5A3148319;
+	Tue, 27 Feb 2024 16:29:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VAj5g07b"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UziWEeKT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57E57145321;
-	Tue, 27 Feb 2024 16:28:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55161148FF4;
+	Tue, 27 Feb 2024 16:29:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709051291; cv=none; b=NRu4t4KpM5sY3kdaDGPVbjv3MBZHvg9r0jFFW7NasQjJ9RxO09UVhICrWhtcBntgQrKMXRMuxalTKEeToxPiN/quvrDYwenH8zHG5mFupP0TOZXtiC/Us29dxRyEfunggWxLGmOy+qW1EzzPf40GYWlZ8RxOv3Ggp/h4D+W1tmw=
+	t=1709051374; cv=none; b=Z5Y/4gEYdS6z94HRY4R41UxnBNkaGLV6Ml5EN5Y7Dcj7u5SZkXYuazsN8WL51Al+kbNBdCfIJ92uZrn7H1rFNKB/ccTiEEkMPUU65Y417J5RULnoMR0LXT1yyoF/RfsbjXkn6vvxrx90fjplpGGKLAWPqszs/qd+6Sh3PDUKoUM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709051291; c=relaxed/simple;
-	bh=gxRtFtSYjnlTrJJn3q7eEW0xJvelWZEgyZ88iY2xwfM=;
+	s=arc-20240116; t=1709051374; c=relaxed/simple;
+	bh=HXzssYEYqtzr5qnD1CqK7udX2j/OUVEGL3tqoCbTsBU=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BQM3XyKXrJC3JyoFZi/x7bFmJ3FEeYEghd7MeLibxZj+ozJrLHledjCR7reLxunMIEc4XiCRwIhLdA65RxwcEU6irCDqY1qLjeVIc8H9m5cCmqk2uuN2JdyQ9VE3QfsT6cDieFtZY+yTcxYW53diNyVgPEF809+rCZGQMX8QsEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VAj5g07b; arc=none smtp.client-ip=209.85.208.48
+	 To:Cc:Content-Type; b=uiTEYXledCZXAHVV3W6i9hnrDWrSU8tLD+jeco854JiqMTvNXKLTFzYjXwsRvlbdyAhxQIH5Isk8Swg3RMz4GqFl7djGtNSiLB/lj2TwRX/K4SVChBzvJfd5vcIHKoMBbaDq/3AqavcIqF+pwiL9s8ci0/ieVhTHcT2m4Zttptg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UziWEeKT; arc=none smtp.client-ip=209.85.218.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-564fc495d83so5246451a12.0;
-        Tue, 27 Feb 2024 08:28:09 -0800 (PST)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a4396b785b8so176734566b.3;
+        Tue, 27 Feb 2024 08:29:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709051288; x=1709656088; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1709051370; x=1709656170; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=M0dTpHR1K23pB61bzvysNHvrksQiS977Ao80yDg/2EM=;
-        b=VAj5g07bYTxruMJ1tS1EuN4sc1+h9xFPBX1J4SW9aerhhTbeBp6dXglHlYZ4Y7jcev
-         lQb72QQfTYqDCzKIidma5Wi/KLPiiuUwEgcIHVPiPzQA6Y2N5t0VfEArQ+Y+/ihwr+3b
-         LqUqfmVCAGNDG7kF2Mj/a7y9DbragoOU5jzeFg395CEa9Oj1Qi7JzUDpvu2hhqPUq2UX
-         QvwKgjK2WrHr3Nxd9+DzTKsCY+Gzuav65q7y47La0r53+gBTHo/EWjF6VVMeqZ1khiL1
-         ggnq6RGWbiXw4vp3lEPUtrC5gSZceJlt3rBDzNeu9hfcDIhkisZ0Ul+2nvtLme69hJ6b
-         gPNA==
+        bh=M+v8WkYj+V0jmQrnbBd89P9mj/CLIV68PxeJ4A/mdwE=;
+        b=UziWEeKTqhOU5lAXQ666cgnXqS56Lcgr6ySjzWM9vGsdlAlu8107o/PrjH77+3mIjW
+         z2oLJ/sJq9Ka0GfBDNKXvOuoJoVofHeTCiyMX4YZShhQTyiJ2wla/1STNk5f6WSxuwc6
+         25mh7VJ6veHLifAVbsfY8IEefEIHkMz9gft8JcdyofBbMPGNVrIVLeHdTNYKmrd2ewM2
+         zm+QV58Xgvag2x6Hpnu36AvjxOa0if7QX4mIJD6JH0/o7XqOKrF5V6fngCHwr0nK2JEt
+         qK+GVgS3mm2U3/jLNFPRkCfT6dYijkV+dTS+FemO6mY2OCiFi7bm+SV4Xcuf4gXBf7lR
+         rvDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709051288; x=1709656088;
+        d=1e100.net; s=20230601; t=1709051370; x=1709656170;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=M0dTpHR1K23pB61bzvysNHvrksQiS977Ao80yDg/2EM=;
-        b=VIZxYjyLythc5S9/gfddo/5uvboI26guj/WuSZadXnSVvrLLLeaEg1r0dKDOJQ8BN7
-         nwThDEmsMwltMTEgH/fjwt/BC2ZqwvjibKnxkNucQT3nVcvGZAvJp9RJ+Q8Y9ag4KGuM
-         2+cDsFNCZ8ZxOkl1Jki0jdKNiLsgaCmB9put/nu8VcMlKuL6PCZbLJTXCG7WSojklS/j
-         qk7OjKX/vnk76ZMdfHGGXwZnoJQoLQ7o+o/mIkF8GwlmRrNakMWZwQLmwDsLk8/4EXRw
-         FkqHzJ6DRaUCvNqH/gWoQhADhv/x8K8AzTFM2kauConIfOdqHPoXAMuIwqSmYsmctKPp
-         BU+A==
-X-Forwarded-Encrypted: i=1; AJvYcCWAN2QZivaQkHETFgqi/blMelIfTfSwSUVI40fkUqfOGL8tz35SMR/hVg56eMcSKXrT+t4CPWqZqv0FbLAapWzZEtP7J8Xd7fmXNisKsyyIGcvqDLrRSOtOz0oPgrFiWdqo0UN8YpbBFA==
-X-Gm-Message-State: AOJu0YxpEan7hBfthZ2PMkQzUAoVImANxwHje9DUFah/heFO8UhQjGbI
-	3xiHo9F/qKbTsS3WP1ZD1IlHjm1nqGhs0Qf0mHqGj3ZMFUE+LqjtMVvW39uNQZCYOdpNw5OaMmq
-	UxSDBqoDb4iPzHQzxaTQ/TIN6AnU=
-X-Google-Smtp-Source: AGHT+IGzJBW8k7ldwen5EXjuSmgR3l2IjW+yccX6qBQwDIsY+xoBXnRY/aIUOm+e4NHYEM1QabbatXe2pbsUDCTTnSo=
-X-Received: by 2002:a17:906:5804:b0:a43:a7:c683 with SMTP id
- m4-20020a170906580400b00a4300a7c683mr5916386ejq.42.1709051287508; Tue, 27 Feb
- 2024 08:28:07 -0800 (PST)
+        bh=M+v8WkYj+V0jmQrnbBd89P9mj/CLIV68PxeJ4A/mdwE=;
+        b=JgcAzqkUFJh7sR77Xk7PZHger0dakMjfz84YLR5uLKnVo5mKAHqoXrZ4JGitmR4p+/
+         IlX5Xe8uK+gzIaNFckqUkyvP/i2P0DiZOdnbvb1YT9NDYdeG5Hp2l7P/rdR+RGM6FFb2
+         2wgdQFoZ/NKG7w00TB07Nohj6K9WyYGfPPmFXFkNGV4K6Vu6WdMAG6olYednd1Y5OyYB
+         QbVMi8pMwj9qOPsRxvj6WCSs8yezIyZYeDlqDzn93ABDyXnRj6U+sTjiq8BHlMYHh/M4
+         A9xBxSwSHscLEaNmKEPbFLIn096N3sVrDTCL7GNRuZ6FfIgLnx0SKZJQE8HJlpcEtvns
+         rGQg==
+X-Forwarded-Encrypted: i=1; AJvYcCWXMY8HvjeOoscGHi+GyZM03In5BHU41SuAN8qlYIGgFggPsbwtwkNivvAec2c9AtBX4hsUtuoQT76JUBME48sWwvITjptzBtz3My2oeXOPJZaXnjDWbwifNZ90O0zRlh3sR0dQOR2/OA==
+X-Gm-Message-State: AOJu0Yxx1T0cJ3MBZCkdOKvnVCMmDRc2cw9140AeL1EQ2BS1/dsDRI2i
+	M1G/bK0xPp8oFP7rMJnqgCXIsn9H+4u31boyk4kILG2YbLOPfj8vOL16rZFNKljUZZbAPAvpeZy
+	ob8c8pmwWRo31hNW0NVgzitqHx4Q=
+X-Google-Smtp-Source: AGHT+IF5cEV1+76NYOs+Omrynj4SA56WXsfZuwIoV5pmFaKXW0rXxBMKRAb+95kzbV3G/8fND+psJN9gkQVVzVm4zP4=
+X-Received: by 2002:a17:906:f44:b0:a3e:a712:ba9d with SMTP id
+ h4-20020a1709060f4400b00a3ea712ba9dmr7700879ejj.4.1709051370555; Tue, 27 Feb
+ 2024 08:29:30 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240227123602.258190-1-javier.garcia.ta@udima.es> <20240227160952.615291-1-javier.garcia.ta@udima.es>
-In-Reply-To: <20240227160952.615291-1-javier.garcia.ta@udima.es>
+References: <20240227123602.258190-1-javier.garcia.ta@udima.es>
+ <20240227160952.615291-1-javier.garcia.ta@udima.es> <CAEnQRZDY5Jfj6d008goccsWwwUuUuryw1s8xJH6EyGXEiqnovw@mail.gmail.com>
+In-Reply-To: <CAEnQRZDY5Jfj6d008goccsWwwUuUuryw1s8xJH6EyGXEiqnovw@mail.gmail.com>
 From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Tue, 27 Feb 2024 18:27:55 +0200
-Message-ID: <CAEnQRZDY5Jfj6d008goccsWwwUuUuryw1s8xJH6EyGXEiqnovw@mail.gmail.com>
+Date: Tue, 27 Feb 2024 18:29:18 +0200
+Message-ID: <CAEnQRZAvqHfNYu+dYObJA=T7S_KfQMxB8TJGmdjK9Ea_FPrLOA@mail.gmail.com>
 Subject: Re: [PATCH v2] ASoC: dt-bindings: img,spdif-in: Convert to dtschema
 To: =?UTF-8?Q?Javier_Garc=C3=ADa?= <javier.garcia.ta@udima.es>
 Cc: daniel.baluta@nxp.com, broonie@kernel.org, krzysztof.kozlowski@linaro.org, 
@@ -86,50 +87,49 @@ Cc: daniel.baluta@nxp.com, broonie@kernel.org, krzysztof.kozlowski@linaro.org,
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-This looks much better than v1. Make sure you have addressed all
-comments from the previous version
-and add a short log under the scissor line explaining what you have changed=
+On Tue, Feb 27, 2024 at 6:27=E2=80=AFPM Daniel Baluta <daniel.baluta@gmail.=
+com> wrote:
+>
+> This looks much better than v1. Make sure you have addressed all
+> comments from the previous version
+> and add a short log under the scissor line explaining what you have chang=
+ed.
+>
+> Few comments inline:
+>
+>
+> On Tue, Feb 27, 2024 at 6:13=E2=80=AFPM Javier Garc=C3=ADa <javier.garcia=
+.ta@udima.es> wrote:
+> >
+> > Convert the Imagination Technologies SPDIF Input Controllerto DT schema=
 .
-
-Few comments inline:
-
-
-On Tue, Feb 27, 2024 at 6:13=E2=80=AFPM Javier Garc=C3=ADa <javier.garcia.t=
-a@udima.es> wrote:
+> >
+> > Signed-off-by: Javier Garc=C3=ADa <javier.garcia.ta@udima.es>
+> > ---
+> ^ this is the scissor line. Here you add the change log.
 >
-> Convert the Imagination Technologies SPDIF Input Controllerto DT schema.
+> Changes since v1:
+> - re-written the subject inline to include relevant prefix
+> - removed header file as it is not used
+> - ....etc
 >
-> Signed-off-by: Javier Garc=C3=ADa <javier.garcia.ta@udima.es>
-> ---
-^ this is the scissor line. Here you add the change log.
+>
+> > +$id: http://devicetree.org/schemas/sound/img,spdif-in.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Imagination Technologies SPDIF Input Controller
+> > +
+> > +maintainers:
+> > +  - Liam Girdwood <lgirdwood@gmail.com>
+> > +  - Mark Brown <broonie@kernel.org>
+>
+> Please do not blindly add people here. The most proper candidate for this
+> is the people who wrote the original file.
+>
+> Using git log we can find Damien.Horsley <Damien.Horsley@imgtec.com>
 
-Changes since v1:
-- re-written the subject inline to include relevant prefix
-- removed header file as it is not used
-- ....etc
+Looks like this address bounced back.
 
-
-> +$id: http://devicetree.org/schemas/sound/img,spdif-in.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Imagination Technologies SPDIF Input Controller
-> +
-> +maintainers:
-> +  - Liam Girdwood <lgirdwood@gmail.com>
-> +  - Mark Brown <broonie@kernel.org>
-
-Please do not blindly add people here. The most proper candidate for this
-is the people who wrote the original file.
-
-Using git log we can find Damien.Horsley <Damien.Horsley@imgtec.com>
-
-Damien,
-
-Is it OK to add you as a maintainer for this file as you wrote the
-original driver?
-
-Other than this looks good to me as far as i can tell.
-
-thanks,
-Daniel.
+@Krzysztof Kozlowski @Mark Brown is it OK to add a mailing list as
+maintainer for a yml file?
 
