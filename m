@@ -1,229 +1,128 @@
-Return-Path: <devicetree+bounces-46260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E2F7868A76
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 09:08:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79C49868A7F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 09:09:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE8451F24EA6
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 08:08:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22F201F24D23
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 08:09:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C46A5647D;
-	Tue, 27 Feb 2024 08:08:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="ZxtxggaW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09FCB55E71;
+	Tue, 27 Feb 2024 08:09:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94C8954F96;
-	Tue, 27 Feb 2024 08:08:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61B9056442;
+	Tue, 27 Feb 2024 08:09:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709021290; cv=none; b=Dw8z/sH/UFzCYfLOzl7THWNQTo37GQxHVb0z5GdA06BG5/WRTizRFyORufObyUkk/5c2cCTV0bHN0V1pkF2rkDz6dNX2jp85AaR7QLzQxlV3d/bnfcNn9oKjh3vHjKe8pBYj5I7Fp4fOTmKBbNTa7rI1Htq3abtPI7hV1sDv/z4=
+	t=1709021376; cv=none; b=tZscGh+Jlp9cUy5D2Ft/sYsI6SRemBZOgVEoCRETMsDzJGkr7ih9ZpTHepBv+etAiUQZ30Z3qHzQyKouN1xv5gZmUp1gkiQeojeMj4Q+VGDz7QOPWAhpmIRuDcFJycxR0JXMq6S1u1O3S4L7zZGCm5L5ck3nIlJBYb2mUIiIOJU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709021290; c=relaxed/simple;
-	bh=PtGQ5goxDMxof1agQAKAmcbBfhYu//IL5yynJzGYrkk=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h5aUEZaJG2N7GyWPvTE5JwhcpNSPjhZoXeJci4UPwVMkCN46FhFmjuSk8LwZLaDByvO1gKJ7/4c4x1itbL5lgdQ/iOReyPn6GBacoBAjhHP3FdXT2OFs5/R13rqV7iLJmWIRgKSFbrhYtDLz97YoWc8R/ZxigLDhmKMSU+vnBrA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=ZxtxggaW; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1709021287; x=1740557287;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=PtGQ5goxDMxof1agQAKAmcbBfhYu//IL5yynJzGYrkk=;
-  b=ZxtxggaWVeP6OE7vRGNzobZUh6wCGiMgFkrOEB2DufTEnAv5Z7H287Bx
-   NZ8H7XE/M5xASHTC7iKiJLaRCgJr0V5fCROBrWkSrYUiAxNC2WatH2amq
-   gbN6q1c6cBWFXT6xGXCX6yH3qZVmiXG8ibYoZT2VUNnLLRc+Kk8fVTyTu
-   bJM3tIxqldWsoz5tTTBn71uaqhcZeLHjZyq9M7oAU+4GJJlILsLU+SFGn
-   mGECeRHS5/9FAJtXW3VMprYc0gniP767OxM4KydF8Aq22mrK+LrXEy28p
-   9I9u5IHkkX92uxk4//w/LNqMV24pqtHzOBTW7Pe0Yq2umGGYgNPiw+bTx
-   g==;
-X-CSE-ConnectionGUID: 0gWJqGn3RPCuMO9uL5SkUQ==
-X-CSE-MsgGUID: BzrlcXhkTAK8tf8Bn43wyw==
-X-IronPort-AV: E=Sophos;i="6.06,187,1705388400"; 
-   d="asc'?scan'208";a="17406316"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 27 Feb 2024 01:08:06 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 27 Feb 2024 01:07:48 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Tue, 27 Feb 2024 01:07:45 -0700
-Date: Tue, 27 Feb 2024 08:07:02 +0000
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>
-CC: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>, Conor Dooley
-	<conor@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Roger Quadros <rogerq@kernel.org>, Peter Chen <peter.chen@kernel.org>, Pawel
- Laszczak <pawell@cadence.com>, Nishanth Menon <nm@ti.com>, Tero Kristo
-	<kristo@kernel.org>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>, Kevin
- Hilman <khilman@kernel.org>, Alan Stern <stern@rowland.harvard.edu>,
-	<linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v3 1/8] dt-bindings: usb: ti,j721e-usb: drop useless
- compatible list
-Message-ID: <20240227-radiated-fame-57a2e685f1b0@wendy>
-References: <20240223-j7200-usb-suspend-v3-0-b41c9893a130@bootlin.com>
- <20240223-j7200-usb-suspend-v3-1-b41c9893a130@bootlin.com>
- <20240223-clarity-variably-206b01b7276a@spud>
- <CZEXXXQDZZWB.1M5CTZAFVO4YP@bootlin.com>
- <20240226-portable-rockslide-e501667a0d9a@wendy>
- <CZF33W51MC4M.3GUBZFQXT39DB@bootlin.com>
- <37ab0886-0cd1-4188-9177-8b7ef0ad9eca@ti.com>
+	s=arc-20240116; t=1709021376; c=relaxed/simple;
+	bh=Cd3nKfsn1CmK7TjQsqqae5bIuxcmc17vi4cKxuDwdXI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eg0FJ1Gtp9qcVQkR2dZh5R9BpO95XrPVRhunSgMdWAGG1J6O+K3Un3IpIAD8ggx6Dzci42JNp/b8G7wD/lL/ZALeROrJ8WeXkVg1ASb6dtUZ9flawf+lOIo9rYBp8sMSEtUoA8Ovtivg048Miog0LgOOS5Qk8LiqxW+rs8qyttk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-6089b64f4eeso39945787b3.2;
+        Tue, 27 Feb 2024 00:09:35 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709021374; x=1709626174;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=FxX6RgMhHn+61tSmT8CWOQW7owJHb+LAZ7EIbG00Oes=;
+        b=Lu0g0/ypkUKMmELukkMQMwZckHBUyfixbsOGqU886lmET27WRZ8DOpMpVVT/denF91
+         p/RWJY4UAXzuRTKxn9jqjJOoHMTyRANSG0tw9cnN14uMqmiIidfQHQWe5x2zd9mZuHEW
+         BDgGOgc1EdqSa/yxwcCtoQ0e9/iQq7vH8OQNdmyxBUYa632tDHgamS0AihmefgkZcT9m
+         q3dYv2yJQ/iK2SNPAkq6tbGvC3mOim7a+Q3+oxSkGxZ/5VqEAawyXQmcdXcCOf4LJIlR
+         uhCd34fhu2If/5rhYhQ6Om/W7V62ZtXPM6dD3FwiDic7YOSM0M+mdGeNxQhLleQo5SrY
+         GoYg==
+X-Forwarded-Encrypted: i=1; AJvYcCV5mnlQt4XXjHgYSXiw23GtSFztKfIMjGGsUQUozWwu7iW5IRCb6aIaKbixnyE7fVU3RZB3uM6yUR39lO2IerJ0Kof3PZ7Iof8EVjH77mx/0GhmnHdu2HcKojwaYoxHpBuXFDJeRaMfp+yMwXjDv6ZcrqL18F5Q4mFvv+wgeu8ASmPFf8QQQtqRAupi
+X-Gm-Message-State: AOJu0Yx4iZGzchE30v/1Mi9UhmNCpaa6bqaNsz15Fe3Q+8F3Rf/OdNsU
+	rI3CRdc7gFhRHbBMunmf7ieatopcRp3KK7gzSg6unKUlWubPDnAL2QhJj0L1gCA=
+X-Google-Smtp-Source: AGHT+IG9+pEFYRnV3Vs/Op0zIXiS8hO6DFhbFYz8aV1rH/fibW9jG9k431KodJjx6pL17YG6jLEf2Q==
+X-Received: by 2002:a81:a107:0:b0:607:e374:762e with SMTP id y7-20020a81a107000000b00607e374762emr1543247ywg.16.1709021373732;
+        Tue, 27 Feb 2024 00:09:33 -0800 (PST)
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com. [209.85.128.173])
+        by smtp.gmail.com with ESMTPSA id n188-20020a0dcbc5000000b006092073cc7csm444717ywd.107.2024.02.27.00.09.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Feb 2024 00:09:32 -0800 (PST)
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-60922e16f6fso6683497b3.3;
+        Tue, 27 Feb 2024 00:09:32 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVSOYlhcHsgL61YZwjN3D9uUKyUgL3kbpL9Ff34zlmFqxQcSYcIsbmuVkdjfvxE+UusoNEn6yrUORBHmz34p20wUUI7p1jxbR9FdFHqVdOe27c+6onwom+D3FXYEJ9G//wS5h2s952Bu3tZXa02Y8PFfdDk9XQOxZNWJ1Ey7eVuAIKVQi0BhEklRZLz
+X-Received: by 2002:a25:8392:0:b0:dcd:1f17:aaea with SMTP id
+ t18-20020a258392000000b00dcd1f17aaeamr1417412ybk.26.1709021372474; Tue, 27
+ Feb 2024 00:09:32 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="+JNVmkXccn+hyfZl"
-Content-Disposition: inline
-In-Reply-To: <37ab0886-0cd1-4188-9177-8b7ef0ad9eca@ti.com>
-
---+JNVmkXccn+hyfZl
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+References: <20240227034539.193573-1-aford173@gmail.com> <20240227034539.193573-2-aford173@gmail.com>
+ <CAMuHMdWhtu7nuBpC=TSY6rMaReJNgYok535xXotDyKJDT1_Mzw@mail.gmail.com>
+In-Reply-To: <CAMuHMdWhtu7nuBpC=TSY6rMaReJNgYok535xXotDyKJDT1_Mzw@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 27 Feb 2024 09:09:20 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdViTAxWk8uvT-tgD4X2MJW5R3R1aqrv1K=FyQLdAciFcg@mail.gmail.com>
+Message-ID: <CAMuHMdViTAxWk8uvT-tgD4X2MJW5R3R1aqrv1K=FyQLdAciFcg@mail.gmail.com>
+Subject: Re: [PATCH 1/6] dt-bindings: gpu: powervr-rogue: Add PowerVR support
+ for some Renesas GPUs
+To: Adam Ford <aford173@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org, 
+	aford@beaconembedded.com, Frank Binns <frank.binns@imgtec.com>, 
+	Matt Coster <matt.coster@imgtec.com>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Feb 27, 2024 at 09:54:30AM +0530, Vignesh Raghavendra wrote:
-> On 26/02/24 20:05, Th=E9o Lebrun wrote:
-> > On Mon Feb 26, 2024 at 12:56 PM CET, Conor Dooley wrote:
-> >> On Mon, Feb 26, 2024 at 11:33:06AM +0100, Th=E9o Lebrun wrote:
-> >>> Hello Conor,
-> >>>
-> >>> On Fri Feb 23, 2024 at 7:12 PM CET, Conor Dooley wrote:
-> >>>> On Fri, Feb 23, 2024 at 05:05:25PM +0100, Th=E9o Lebrun wrote:
-> >>>>> Compatible can be A or B, not A or B or A+B. Remove last option.
-> >>>>> A=3Dti,j721e-usb and B=3Dti,am64-usb.
-> >>>>>
-> >>>>> Signed-off-by: Th=E9o Lebrun <theo.lebrun@bootlin.com>
-> >>>>> ---
-> >>>>>  Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml | 9 +++---=
----
-> >>>>>  1 file changed, 3 insertions(+), 6 deletions(-)
-> >>>>>
-> >>>>> diff --git a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yam=
-l b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-> >>>>> index 95ff9791baea..949f45eb45c2 100644
-> >>>>> --- a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-> >>>>> +++ b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-> >>>>> @@ -11,12 +11,9 @@ maintainers:
-> >>>>> =20
-> >>>>>  properties:
-> >>>>>    compatible:
-> >>>>> -    oneOf:
-> >>>>> -      - const: ti,j721e-usb
-> >>>>> -      - const: ti,am64-usb
-> >>>>> -      - items:
-> >>>>> -          - const: ti,j721e-usb
-> >>>>> -          - const: ti,am64-usb
-> >>>>
-> >>>> Correct, this makes no sense. The devices seem to be compatible thou=
-gh,
-> >>>> so I would expect this to actually be:
-> >>>> oneOf:
-> >>>>   - const: ti,j721e-usb
-> >>>>   - items:
-> >>>>       - const: ti,am64-usb
-> >>>>       - const: ti,j721e-usb
-> >>>
-> >>> I need your help to grasp what that change is supposed to express? Wo=
-uld
-> >>> you mind turning it into english sentences?
-> >>> A=3Dti,j721e-usb and B=3Dti,am64-usb. My understanding of your propos=
-al is
-> >>> that a device can either be compat with A or B. But B is compatible
-> >>> with A so you express it as a list of items. If B is compat with A th=
-en
-> >>> A is compat with B. Does the order of items matter?
-> >>
-> >> The two devices are compatible with each other, based on an inspection=
- of
-> >> the driver and the existing "A+B" setup. If this was a newly submitted
-> >> binding, "B" would not get approved because "A+B" allows support witho=
-ut
-> >> software changes and all that jazz.
-> >>
-> >> Your patch says that allowing "A", "B" and "A+B" makes no sense and you
-> >> suggest removing "A+B". I am agreeing that it makes no sense to allow
-> >> all 3 of these situations.
-> >>
-> >> What I also noticed is other problems with the binding. What should ha=
-ve
-> >> been "A+B" is actually documented as "B+A", but that doesn't make sense
-> >> when the originally supported device is "A".
+Hi Adam,
 
-This A and B stuff confused me, I should just have used the actual
-compatibles. I meant
-| What should have been "B+A" is actually documented as "A+B", but that
-| doesn't make sense when the originally supported device is "A"
+On Tue, Feb 27, 2024 at 8:48=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+> On Tue, Feb 27, 2024 at 4:46=E2=80=AFAM Adam Ford <aford173@gmail.com> wr=
+ote:
+> > Update the binding to add support for various Renesas SoC's with PowerV=
+R
+> > Rogue GX6250 and GX6650 GPUs.  These devices only need one clock, so up=
+date
+> > the table to indicate such like what was done for the ti,am62-gpu.
+> >
+> > Signed-off-by: Adam Ford <aford173@gmail.com>
 
-> >>
-> >> Therefore my suggestion was to only allow "A" and "A+B", which is what
-> >> we would (hopefully) tell you to do were you submitting the am64 suppo=
-rt
-> >> as a new patch today.
-> >=20
-> > Thank you for the in-depth explanation! It makes much more sense now,
-> > especially the handling of historic stuff that ideally wouldn't have
-> > been done this way but that won't be changed from now on.
-> >=20
->=20
-> IIRC, idea behind adding new compatible for AM64 even though register
-> map is very much compatible is just being future proof as AM64 and J721e
-> belong to different product groups and thus have differences wrt SoC
-> level integration etc which may need SoC specific handling later on.
+> > --- a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
+> > +++ b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
 
-That is fine, I don't think anyone here is disputing a soc-specific
-compatible existing for this device.
+> > +          - renesas,r8a77951-gpu
+>
+>     ... # PowerVR Series 6XT GX6650 on R-Car H3 ES2.0+
 
-> Also, note that AM64 SoC support was added long after J721e. So ideally
-> should be B+A if at all we need a fallback compatible.
+All compatible values for R-Car H3 variants use the r8a7795 "base" value,
+so that should be:
 
-Correct, I accidentally wrote "A+B", but you can see that that
-conflicted with the actual example I had given above.
+     - renesas,r8a7795-gpu # PowerVR Series 6XT GX6650 on R-Car H3
 
-> I don't see any DT (now or in the past) using
->=20
-> compatible =3D B,A or compatible =3D A,B
->=20
-> So do we really need A+B to be supported by binding?
+Gr{oetje,eeting}s,
 
-Given the mistake, I am going to take this as meaning should the
-fallback be supported. My take is that if we are going to remove
-something, it should be "ti,am64-usb" isolation that should go.
-The devicetrees can be update without concerns about compatibility.
+                        Geert
 
-Cheers,
-Conor.
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-
-
---+JNVmkXccn+hyfZl
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZd2YIQAKCRB4tDGHoIJi
-0pqQAQCXBm9gvKWGSQ2qQ4acHNjGMTaMyayfkfljweUbpW9QywD/ehe10Pr1OdhV
-WFOesqEw7mNUg37j97LIT669LzLlmwM=
-=VE72
------END PGP SIGNATURE-----
-
---+JNVmkXccn+hyfZl--
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
