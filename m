@@ -1,139 +1,341 @@
-Return-Path: <devicetree+bounces-46271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9891D868B60
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 09:55:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FB0A868B7D
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 10:02:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C8C2FB25D01
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 08:55:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34AFD286E9F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 09:02:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1954313665F;
-	Tue, 27 Feb 2024 08:55:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 565971350E4;
+	Tue, 27 Feb 2024 09:02:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="1UT8AN/A"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LZFTRpLM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDF757BAE7;
-	Tue, 27 Feb 2024 08:55:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62795131750
+	for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 09:02:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709024109; cv=none; b=pHKzFIdHBQyxsIDKh1bMVbgx5g/T6DWrnsWGqdRE8GaY2QG0In1pe9h9YXsGZ2ia/CJKbbc9bXNDQYYPR2WtDzQ195dzAI8C+/zn+feefqL8zJMYTsMqxiy8CPHYTSCwrA4LjBgOYlkKyBwLOWZVofk0dw0FgYDRWvpR7Fl04LA=
+	t=1709024527; cv=none; b=hXelo713M4iwHsdjVgAyrQJhHpSWswOf7fC92K+9oYr/e+vZvxDZD3bsKR9h7BZVO8UXDPKShQxZt7p5fsvdpvSbIqHfA4roY3YHUef723TgwOSrPQryos9wVN5rpUdlycJVQM1iA1n01Ti8iLcioM7fQI4CArcfAamvi4wSnMw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709024109; c=relaxed/simple;
-	bh=WoJYGL2TCnkr2w1VlrLBVfG92mEtbt6KEliQlVa4KHQ=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ISDZx+QJiBnj8CtVVKrxtI4FanTIsc8SB1Da2HcqYo2MI4PWPmPTtyniOrE1GOsPNQkRt+iWQedZYJOKYdJ1B9fvGyaTZgSZDCPIXY2X3YVs00B611svbIaiYv6iMrxgNQiT6P+L9i8rFt8fNaYI/1mwYR6Dj0jqd+/2UsdH6fc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=1UT8AN/A; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1709024108; x=1740560108;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=WoJYGL2TCnkr2w1VlrLBVfG92mEtbt6KEliQlVa4KHQ=;
-  b=1UT8AN/AnsMhR7Nwq6MSV7adnExMBihos/+JW3t8FDl5u3Kpg092vPxR
-   oINp5VWK7v7U4uJJ6gYJ0hMn1ayEdIru7aQ59Lm9UPqL3zQ27HKiZ+Omv
-   nkVUClQhaoak/Do/isO7SFD9s91jcMUiVohQTDO6Vh0vBC9UR2YXMEPco
-   QO0ifMOJ4Lli0gj2XIhU9xgmEAjZ8ELrrpeFuTm7hNpvF2WwWnXe7g/zt
-   pPNm1jx5eIjB202krE79MBP1/MIz7zpxQ1ix2kdDIT7GbJHacfBhq/fI8
-   7kOBYBK/2ZN2V7o3MGgXrxCXVFv4xorsHviotOFJq22KOEY68lBue90ba
-   g==;
-X-CSE-ConnectionGUID: qD79kU+kQWmT4/4KcnQg6g==
-X-CSE-MsgGUID: cXEwV6uyTb+fwDN6W0wmcg==
-X-IronPort-AV: E=Sophos;i="6.06,187,1705388400"; 
-   d="asc'?scan'208";a="16875102"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 27 Feb 2024 01:55:00 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 27 Feb 2024 01:54:46 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex03.mchp-main.com (10.10.85.151)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Tue, 27 Feb 2024 01:54:43 -0700
-Date: Tue, 27 Feb 2024 08:54:01 +0000
-From: Conor Dooley <conor.dooley@microchip.com>
-To: JiSheng Teoh <jisheng.teoh@starfivetech.com>
-CC: Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	"linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>, Leyfoon
- Tan <leyfoon.tan@starfivetech.com>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Palmer Dabbelt <palmer@dabbelt.com>, Rob
- Herring <robh+dt@kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
-	Albert Ou <aou@eecs.berkeley.edu>, Paul Walmsley <paul.walmsley@sifive.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Xingyu Wu
-	<xingyu.wu@starfivetech.com>, Guenter Roeck <linux@roeck-us.net>, Wim Van
- Sebroeck <wim@linux-watchdog.org>, "linux-riscv@lists.infradead.org"
-	<linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH v5 1/2] dt-bindings: watchdog: starfive,jh7100-wdt: Add
- compatible for JH8100
-Message-ID: <20240227-arrange-theft-021133800c24@wendy>
-References: <20231221084358.3458713-1-jisheng.teoh@starfivetech.com>
- <20231221084358.3458713-2-jisheng.teoh@starfivetech.com>
- <170319257135.88357.1722653226891421278.robh@kernel.org>
- <ZQ0PR01MB11603A15E27E344ADA11AC43EB59A@ZQ0PR01MB1160.CHNPR01.prod.partner.outlook.cn>
+	s=arc-20240116; t=1709024527; c=relaxed/simple;
+	bh=dIHgpUoyDbkjZSwPQJqklMusZJz7R2JT5dRnTlej35I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uR8cXg+6sRqd7Z7+kkx+nFQQg5rK2WY1Lal41Sk1tp6mBJmPRZktxBP35DrqhRyKpOLXEXKyNQDEKJbauKWxYlC2OJjc2RVNZL4zEIKXZSJxzSbtxRfdlV90v4Su7fGmDoXJzMcGx7gDtWzgUm1aIy8ZYfk8ob73331y/tebLyw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LZFTRpLM; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-56647babfe6so292095a12.3
+        for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 01:02:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709024523; x=1709629323; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2UFRVzRGdKbrh6OpmSoCELk6m/tgkgNo+Ce19meRH6Q=;
+        b=LZFTRpLM3taKNjNDj7xf9ZoVL3lu0RS1biifhIJXz9MOZy31l/o13F4qNMivN5iDlh
+         LJiROwgCl3pAlUfJRATTxCXYQqIZiWUoVvrR2PO9VR1En6ZX1QqdGsA8mjXmABI9I4Br
+         RHH48c9UBZ8psyYS4vMQ0KizOqDK0QVz142MITBmQbLlxeZE64Zi4aBpsexKy6DzPrTP
+         U27AmBkCMTvMh6+gJa0R6lganwrr/9iDdjCthRrF1PpNI2M8RkSR7O0XM5k7kwlsFLek
+         VOjCKxE8HkX1a5kgzM4KV65iTE9NxDvgq6Z4FlZD2WxrNThJUIg/zbdshLRBHeEzuq8Y
+         yoGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709024523; x=1709629323;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2UFRVzRGdKbrh6OpmSoCELk6m/tgkgNo+Ce19meRH6Q=;
+        b=O5CNs+VFEtU98fxG3eDkU+nHx7+GQMeAz/AvezfgUiNWApmVRLNyDDmAi6787pfCh7
+         vl7+oIzeRS1zCbqIGKQ9txd6hFYN9TEHucUWRrUD09oNS2FTSuOgkyeG060sD5QzYC3e
+         dyGpy08E5f9ZjHgQLrANcIHZbB4mP/voJHYhKCoyGz2pHXccs8M56rmjj6ATxnhBO1av
+         SxXFa74Tda7TE8oBhdbyQb627gZZphz/9X9gzjNGsco8KoH2Er1PF+uQSzlrbPOmphD8
+         3flgHRCsEKV9MdtO8cUl1yexBJEgiF4rVeumGWSz/LQobIot0eBgLtTnowY6LKuH7947
+         qoyA==
+X-Forwarded-Encrypted: i=1; AJvYcCUbM60apPfGr/ovFuHiKr6Hohg3Yb1HzbFOINKW1Ev8i4jCx0G1gAwOnNZoKRZmRDcH8pVoejdbbAT7QEIdhR3hOxKgIbkxLAPe5Q==
+X-Gm-Message-State: AOJu0Yx1FZGcMpoYt65EU/nr27HbdBw+FjKGVF1xPAUsFnZinAim7CJ/
+	tjwt7ZDUTlnRPfvQGXe7OxdtaCNCchptzx+4Iu2GmLptW72V7S7NQyOCIkiV4LU=
+X-Google-Smtp-Source: AGHT+IGc2QWR0Rom1zSmTHDgmMau7w3Y2LbkBFSHyz26l01oceBcm30z5SU15vWVjJT25rM6B2UZ0w==
+X-Received: by 2002:a17:906:2e89:b0:a3f:5144:ada2 with SMTP id o9-20020a1709062e8900b00a3f5144ada2mr6800588eji.2.1709024523555;
+        Tue, 27 Feb 2024 01:02:03 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.116])
+        by smtp.gmail.com with ESMTPSA id s12-20020a17090699cc00b00a3e8c3fc3ffsm560002ejn.10.2024.02.27.01.01.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Feb 2024 01:02:03 -0800 (PST)
+Message-ID: <ce5f71a9-1b5f-4724-89db-dae2f64e8008@linaro.org>
+Date: Tue, 27 Feb 2024 10:01:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="5/NNhPt6yL350ZtX"
-Content-Disposition: inline
-In-Reply-To: <ZQ0PR01MB11603A15E27E344ADA11AC43EB59A@ZQ0PR01MB1160.CHNPR01.prod.partner.outlook.cn>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 01/18] ASoC: dt-bindings: mediatek,mt8365-afe: Add audio
+ afe document
+Content-Language: en-US
+To: Alexandre Mergnat <amergnat@baylibre.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
+References: <20240226-audio-i350-v1-0-4fa1cea1667f@baylibre.com>
+ <20240226-audio-i350-v1-1-4fa1cea1667f@baylibre.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240226-audio-i350-v1-1-4fa1cea1667f@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---5/NNhPt6yL350ZtX
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 26/02/2024 15:01, Alexandre Mergnat wrote:
+> Add MT8365 audio front-end bindings
+> 
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> ---
+>  .../bindings/sound/mediatek,mt8365-afe.yaml        | 164 +++++++++++++++++++++
+>  1 file changed, 164 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt8365-afe.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt8365-afe.yaml
+> new file mode 100644
+> index 000000000000..1d7eb2532ad2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/mediatek,mt8365-afe.yaml
+> @@ -0,0 +1,164 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/mediatek,mt8365-afe.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek AFE PCM controller for MT8365
+> +
+> +maintainers:
+> +  - Alexandre Mergnat <amergnat@baylibre.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt8365-afe-pcm
+> +
+> +  reg:
+> +    maxItems: 2
 
-On Tue, Feb 27, 2024 at 01:57:43AM +0000, JiSheng Teoh wrote:
-> > On Thu, 21 Dec 2023 16:43:57 +0800, Ji Sheng Teoh wrote:
-> > > Add "starfive,jh8100-wdt" compatible string for StarFive's JH8100
-> > > watchdog.
-> > > Since JH8100 watchdog only has 1 reset signal, update binding document
-> > > to support one reset for "starfive,jh8100-wdt" compatible.
-> > >
-> > > Signed-off-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
-> > > Signed-off-by: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
-> > > ---
-> > >  .../watchdog/starfive,jh7100-wdt.yaml         | 40 ++++++++++++++---=
---
-> > >  1 file changed, 31 insertions(+), 9 deletions(-)
-> > >
-> >=20
-> > Reviewed-by: Rob Herring <robh@kernel.org>
->=20
-> Hi Conor, since this patch is reviewed, could you help to pick this
-> dt-bindings patch for riscv-dt-for-next branch?
+You must describe the items.
 
-Ideally I would not and it would go via the watchdog tree.
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  mediatek,topckgen:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: The phandle of the mediatek topckgen controller
 
-Failing that, I'd rather Rob take it.
+What for? Don't repeat the property name. Say something useful.
 
-Thanks,
-Conor.
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  "#sound-dai-cells":
+> +    const: 0
+> +
+> +  clocks:
+> +    items:
+> +      - description: 26M clock
+> +      - description: mux for audio clock
+> +      - description: audio i2s0 mck
+> +      - description: audio i2s1 mck
+> +      - description: audio i2s2 mck
+> +      - description: audio i2s3 mck
+> +      - description: engen 1 clock
+> +      - description: engen 2 clock
+> +      - description: audio 1 clock
+> +      - description: audio 2 clock
+> +      - description: mux for i2s0
+> +      - description: mux for i2s1
+> +      - description: mux for i2s2
+> +      - description: mux for i2s3
+> +
+> +  clock-names:
+> +    items:
+> +      - const: top_clk26m_clk
+> +      - const: top_audio_sel
+> +      - const: audio_i2s0_m
+> +      - const: audio_i2s1_m
+> +      - const: audio_i2s2_m
+> +      - const: audio_i2s3_m
+> +      - const: engen1
+> +      - const: engen2
+> +      - const: aud1
+> +      - const: aud2
+> +      - const: i2s0_m_sel
+> +      - const: i2s1_m_sel
+> +      - const: i2s2_m_sel
+> +      - const: i2s3_m_sel
+> +
+> +  mediatek,i2s-shared-clock:
 
---5/NNhPt6yL350ZtX
-Content-Type: application/pgp-signature; name="signature.asc"
+Why do you need this property? Linux (and other systems) handle sharing
+clocks properly.
 
------BEGIN PGP SIGNATURE-----
+> +    description:
+> +      i2s modules can share the same external clock pin.
+> +      If this property is not present the clock mode is separrate.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZd2jGwAKCRB4tDGHoIJi
-0o02AQDUgzrn6JnUOaFQ4y/ICrPh1DIxb6FFKMBBGx82o4xb8QEA2JRBmceCzOh8
-/YRRWMvcMwl2ARgGcFNuZBE0hbOttgU=
-=x9oX
------END PGP SIGNATURE-----
+Typo
 
---5/NNhPt6yL350ZtX--
+> +    type: boolean
+> +
+> +  mediatek,dmic-iir-on:
+> +    description:
+> +      Boolean which specifies whether the DMIC IIR is enabled.
+> +      If this property is not present the IIR is disabled.
+
+"is enabled" or "enable it"?
+
+You described the desired Linux feature or behavior, not the actual
+hardware. The bindings are about the latter, so instead you need to
+rephrase the property and its description to match actual hardware
+capabilities/features/configuration etc.
+
+> +    type: boolean
+> +
+> +  mediatek,dmic-irr-mode:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Selects stop band of IIR DC-removal filter.
+> +      0 = Software programmable custom coeff loaded by the driver.
+
+Bindings are for hardware, not drivers. Why is this a property of board DTS?
+
+> +      1 = 5Hz if 48KHz mode.
+> +      2 = 10Hz if 48KHz mode.
+> +      3 = 25Hz if 48KHz mode.
+> +      4 = 50Hz if 48KHz mode.
+> +      5 = 65Hz if 48KHz mode.
+
+Use proper unit suffixes - hz.
+
+
+> +    enum:
+> +      - 0
+> +      - 1
+> +      - 2
+> +      - 3
+> +      - 4
+> +      - 5
+> +
+> +  mediatek,dmic-two-wire-mode:
+> +    description:
+> +      Boolean which turns on digital microphone for two wire mode.
+> +      If this property is not present the two wire mode is disabled.
+
+This looks like hardware property, but the naming looks like SW. Again
+you instruct what driver should do. Standard disclaimer:
+
+You described the desired Linux feature or behavior, not the actual
+hardware. The bindings are about the latter, so instead you need to
+rephrase the property and its description to match actual hardware
+capabilities/features/configuration etc.
+
+
+> +    type: boolean
+> +
+> +
+
+Just one blank line.
+
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - power-domains
+> +  - mediatek,topckgen
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/mediatek,mt8365-clk.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/power/mediatek,mt8365-power.h>
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        afe@11220000 {
+
+What is AFE?
+
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +            compatible = "mediatek,mt8365-afe-pcm";
+
+
+Best regards,
+Krzysztof
+
 
