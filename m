@@ -1,105 +1,118 @@
-Return-Path: <devicetree+bounces-46548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46549-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47D7986A0DD
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 21:32:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B66C86A10E
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 21:47:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D6A71C25150
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 20:32:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8DACB1C244BF
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 20:47:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75653149E15;
-	Tue, 27 Feb 2024 20:31:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F11B14DFF2;
+	Tue, 27 Feb 2024 20:47:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gf0SlyF7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h2LWMRG1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AFA8134B1;
-	Tue, 27 Feb 2024 20:31:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8328B1D6A8;
+	Tue, 27 Feb 2024 20:47:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709065916; cv=none; b=L8EqYndQNQw5/a2mP1L2pO7QvwUxEc52vaq4xkUMGZ5nyw4Xh2ctcx5KxR7+BbjMzh3/dm79XQWqT8sla+0kpG0+hagVSkwZveyH3QWrl8S7ic0h3JKlL054YD11BB/C3xC2pyeegxDc7EsYpwVwZmggO2C8NaakVvU+POlV+Sk=
+	t=1709066865; cv=none; b=FhNhAuzwV5gj2ZZppUV/A0c5vZ+a7JSr2CbFjLPP0iBs6nUBzlF0aCD2ZmvPief62EzPaRLHney9Jox4MgQ++GjriJJhE0QzqEGDmE9sO8T1koDA04lFd9rTWfjda9+a08nrker+XNO4QXO3qJhp8CGntG5lRsEdN7vfvt+XgZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709065916; c=relaxed/simple;
-	bh=fnVlCrmOpBZf3giskThx7p/gnI8js0oR22HyRkAsQ+Q=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=EvJ6fFrW3GrJljK/RvAtmovORokELqOf5xsNzi99J5se1cBYng7OcoQrluioJiwvYdc8ioHTeHEfeleTRWjs/G3Bq/1O67S55v9RXV5Bbfc5Suwdbzunr0d043ePGOS98o5Kr0+xJwvMCpSSZUAN3u0RyDXNLEx+WBP5MufObyI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gf0SlyF7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81124C433F1;
-	Tue, 27 Feb 2024 20:31:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709065915;
-	bh=fnVlCrmOpBZf3giskThx7p/gnI8js0oR22HyRkAsQ+Q=;
-	h=Date:Cc:Subject:From:To:References:In-Reply-To:From;
-	b=gf0SlyF7XhMTKfjg7swqje5YhC8369WV1Qx37qrq3VKAvDKFzvpwXkPat/8ebcl0i
-	 RsOFY6L5Sm5msTqucaM8L1ihzJBXbOIdSEt3GJmEnKeJ5ySKBuuZ1+iELQWmUHXLG0
-	 ZaHOjaDZHJpsx1rj57rLLLRSbekK8/C1vlAb5R3zUyVKedzGN7ZOeoDxnn+6S9yBQV
-	 iz7QLGGNSQvaxUa5mam4P+oJ61wBZK0Y4NFYN0fY6PcF8uvLtAczLkh84Xz2loMQNU
-	 INIJlvWAlRbPiM/h/kTpY9tMvZg0jbsrkTVtiJagxGNtET4FNRdW9Q8HwGV7RJzxHk
-	 z1PbqNReHbAtA==
+	s=arc-20240116; t=1709066865; c=relaxed/simple;
+	bh=OUADjx4SOc5A1Ri6Vi34pFWMGjuDJOR9dIkKdh9E9Co=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=II5LfYUMn8E3P8lJyRTBp/tRZB6WCMTJ7TIfeHDZ9sOssiiPMkbvTUSvvgQZF+LhaXfqOEiX1sUoBzZEN1bkXYyDKPvxTPZHNNLM+jRyxz5FqHtji1iaOdl/slBNuklsZPwnk014XPJTl5y5C0mc4xNx22Pe44VbE/3zO/c0tJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h2LWMRG1; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a3e7ce7dac9so539278666b.1;
+        Tue, 27 Feb 2024 12:47:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1709066862; x=1709671662; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tGt7UYMc7sk+QFfwDQiPohUDlq3sHFZgI2iybV829Cw=;
+        b=h2LWMRG1+9ta7VhBZAdd+1og1b9wLoKe3ta/oLvTSUL093h4cJi0HEVl8vAIaIpMmF
+         b9WFachrujMnx6+VGBT+5fAKo0bfgtyf8CqD/2DaF6YlWjsx2R+DOk+6/WgrmswEbw2P
+         3M/m3+mEDeok7x1gzQrfJtgCZxSLSDvV6exRG8RXYafoTPFKYRjiFdjKxU+OMDt9e1c0
+         Dde0kR83F4Xh0IkWmYAVZVGx++HJ99RgimXYRnUMn1SCN2NlutpWEKvAOEjGkoCY98Uz
+         dCAYCO+RrrsrOKvq04nLQ9dKXBpB921z4QsUJrkpWdFUdLziiBKs/VXFWJGTLfvmJ1OK
+         ODpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709066862; x=1709671662;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tGt7UYMc7sk+QFfwDQiPohUDlq3sHFZgI2iybV829Cw=;
+        b=VIqIB1Iq0bVQirGFSgXN3NvfKhiKXcnm5n4mFk0SgAmdPAIJCuPZ47KupoWTKmn9BQ
+         NHcN33bm+1K9F9jTbBjlht0cdy4kdMUdNGdUwmPopsnRFw+UKkNnOKAszZ789nT3Aquo
+         mdv0oPdnNjJgeDJQM5NMgneNyglcOaoEY5GwVbcJPoVRenGZH/3aAsvo4+R/VfqxPUbH
+         TcPA5zf7wVVvBAxtnCimxfnm1E8wV51JWK9X9hzU3Oeuh9KJlJj2oUiuAemFWiXHpTeq
+         YGt+2UrS76E0ifKFx3mNG1/y+Q8qNarWDXQjJgUu0j7P/5OFxGeTPagUdrvIRT3x+hVP
+         8Wyg==
+X-Forwarded-Encrypted: i=1; AJvYcCWRyNjpuzXM1HyVeieTJjLWshAp4NLo28E0+jPs6eKs6r+TjVunxLxRynL9TtF0C6qAOG0OSDH5B6GcLJ8IKcEsgC7vSyCbRkYg1BtVsztB5krjPB97bfj+ybmz9sr6euON8UXmrC/g8011cW1z5o16GJWItpPMt1y0UXDQTq3d/eo=
+X-Gm-Message-State: AOJu0YyfkA60Pcg099GV+8metVyKNwnniRtvA9ug5RREmBsVAzpt7enM
+	vMerm3SHYtpHataDYpolbBUdaigzuzOsQrjd5mhJ2tlLHcUa83VDgmm9D5c2SXXBVWDz998sjmB
+	icGT7FYm8CXU7RpKulLtp0S0wnZU=
+X-Google-Smtp-Source: AGHT+IHEN2PWdgzpnChJ+QhemSSTknAuMPhJxhSAphB3nWS/x+S6z+kPZLBlofJjhUMYYoqgmKMj9fhnK/XhzPyrKWI=
+X-Received: by 2002:a17:906:4bd4:b0:a3d:994a:791d with SMTP id
+ x20-20020a1709064bd400b00a3d994a791dmr7669046ejv.59.1709066861803; Tue, 27
+ Feb 2024 12:47:41 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <20240204220851.4783-1-wahrenst@gmx.net> <20240204220851.4783-3-wahrenst@gmx.net>
+ <Zd4QpBsyTnuM8hwt@smile.fi.intel.com> <4a6d8417-402e-4d40-96c5-15c2f1dba887@gmx.net>
+In-Reply-To: <4a6d8417-402e-4d40-96c5-15c2f1dba887@gmx.net>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 27 Feb 2024 22:47:05 +0200
+Message-ID: <CAHp75VdLJi2eiFmwjskMmp2adG8k7zO5aDRb-5=4eQKHhB=PXg@mail.gmail.com>
+Subject: Re: [PATCH V4 2/2] pwm: Add GPIO PWM driver
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Angelo Compagnucci <angelo.compagnucci@gmail.com>, Philip Howard <phil@gadgetoid.com>, 
+	Sean Young <sean@mess.org>, Linus Walleij <linus.walleij@linaro.org>, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	Vincent Whitchurch <vincent.whitchurch@axis.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 27 Feb 2024 22:31:52 +0200
-Message-Id: <CZG5AX6QHHQW.YPMIE23V9P2B@kernel.org>
-Cc: <linux-integrity@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] MAINTAINERS: Add TPM DT bindings to TPM maintainers
-From: "Jarkko Sakkinen" <jarkko@kernel.org>
-To: "Rob Herring" <robh@kernel.org>, "Peter Huewe" <peterhuewe@gmx.de>,
- "Jason Gunthorpe" <jgg@ziepe.ca>
-X-Mailer: aerc 0.17.0
-References: <20240130215917.2473250-1-robh@kernel.org>
- <CAL_JsqJetnzuBcKQMoswuL1X-uwi=meL1EaMOD2LVBg_T_Zn3A@mail.gmail.com>
-In-Reply-To: <CAL_JsqJetnzuBcKQMoswuL1X-uwi=meL1EaMOD2LVBg_T_Zn3A@mail.gmail.com>
 
-On Tue Feb 27, 2024 at 4:54 PM EET, Rob Herring wrote:
-> On Tue, Jan 30, 2024 at 3:59=E2=80=AFPM Rob Herring <robh@kernel.org> wro=
-te:
-> >
-> > Bindings for a given device class generally go to the respective
-> > subsystem maintainers. Add the TPM bindings to the TPM
-> > maintainers entry.
-> >
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  MAINTAINERS | 1 +
-> >  1 file changed, 1 insertion(+)
+On Tue, Feb 27, 2024 at 10:25=E2=80=AFPM Stefan Wahren <wahrenst@gmx.net> w=
+rote:
 >
-> Ping!
+> Hi,
 >
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 97f51d5ec1cf..e5e3dd672018 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -22040,6 +22040,7 @@ S:      Maintained
-> >  W:     https://kernsec.org/wiki/index.php/Linux_Kernel_Integrity
-> >  Q:     https://patchwork.kernel.org/project/linux-integrity/list/
-> >  T:     git git://git.kernel.org/pub/scm/linux/kernel/git/jarkko/linux-=
-tpmdd.git
-> > +F:     Documentation/devicetree/bindings/tpm/
-> >  F:     drivers/char/tpm/
+> Am 27.02.24 um 17:41 schrieb Andy Shevchenko:
+> > On Sun, Feb 04, 2024 at 11:08:51PM +0100, Stefan Wahren wrote:
+> > ...
 > >
-> >  TPS546D24 DRIVER
-> > --
-> > 2.43.0
-> >
+> >> +    if (gpiod_cansleep(gpwm->gpio)) {
+> >> +            return dev_err_probe(dev, -EINVAL,
+> >> +                                 "sleeping GPIO %d not supported\n",
+> >> +                                 desc_to_gpio(gpwm->gpio));
+> > Do not use plain GPIO numbers.
+> Uwe already complained this, but i didn't receive a reply on the
+> question how do we provide a useful log message (reference to the
+> affected GPIO) here? AFAIK the GPIO names are optional.
 
-Somehow went out of my radar, sorry.
+You have a firmware node path, also you may add a label to GPIO, but
+it's unrelated to the message (as it's constant).
+%pfw
 
-Thanks, it does make sense. I can pick the patches but it would be
-good if you can check them still.
 
-Reviewed-by: Jarkko Sakkinen <jarkko@kernel.ogr>
-
-BR, Jarkko
+--=20
+With Best Regards,
+Andy Shevchenko
 
