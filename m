@@ -1,277 +1,112 @@
-Return-Path: <devicetree+bounces-46450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DB1C869987
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 15:59:14 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE0018699BD
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 16:03:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B3481F2BF44
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 14:59:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 90841B29842
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 15:02:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 864AE14EFC0;
-	Tue, 27 Feb 2024 14:55:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F02D149E14;
+	Tue, 27 Feb 2024 14:58:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="H+OZFst1"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="DoNs7ATA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 994DF14A4F8;
-	Tue, 27 Feb 2024 14:55:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12F3C1474D7;
+	Tue, 27 Feb 2024 14:58:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709045747; cv=none; b=nQIVBd1eKRTnzeS3PbqmLf+WqAirdA5icY9vNV6wnozFovFz1WuYc68z51GdQ0VzAvAMAxdV1g3d/G4TCqQOY8B2JFx9Rf+JPZkDDkzT4CY2aRHUPJZLGQ/Q/gb3jhNVqavkP7fZMynx1MtYLLf6XvZSChhv0tvzQVYYsX6I0lY=
+	t=1709045885; cv=none; b=A+b9eM5dGPaX4/p4hT0zaOnLrDiw1b1SQvK1DGGLw1cmA6Edx8pjtnRgzWxs/c2oygudTiF2YyUo5U2uaVMLK8HPZRwO5j/cXjDTcQ0wBWc1WQz8qfsBnJjj9329dg/J8F3tANBaxuqZt/jUB1zRdAYdylLIOwAhW68nAn6TRA4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709045747; c=relaxed/simple;
-	bh=ASd69u0I7SU4qzmJO0DB7/S/1jbhc1uarpxnqwKp12c=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=drSHSE9Umjp48xTAOU7DBjXqx/aTGxls1d49RdZDTatAEvXvbAN38WUF7vomQBmj+rqhBLcRXQ6g9R+FB5YXN4UGAQbJE4U+e16PqtAhVtZzDa+ZQI+/b2Cerm7TQQ5sr8z8ZYCV9QzF6frsBfggJ27NzocwDp97jQ+kfBQnfFA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=H+OZFst1; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 458C820012;
-	Tue, 27 Feb 2024 14:55:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709045743;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=9s9oAdESsrV46T4nbDU9Q0fjXUiQdF5VfTZvtbztdWE=;
-	b=H+OZFst1JZ5ZjhEg3jAy0DbPEI80an/tSfNlCv0ZCjbD2p19e35jvlIvmzxrK/PDdcaj28
-	/ad0lEU2tZ6UAt6O6Qd3RL3w/UAo89jjifziCX05APN0xw0qaEv5oHAXXD72+DBrAsve53
-	+aq1ho/7P/h16gnuOL35b8QpAUuY9ahv9W7J3FRi3ixLwhFEiKDFd6AxRXQBdYc9a1ThdU
-	Zv8e1clDwB33m7Cy3+vtKKBWtzNvyquI8nL83Zxg7xlxDa8/5zGta4vWdmjxRrFsv2Qj2g
-	fQIm0YsG/d/ZyeE2NDZfAu6YgzTO83QsueE0kAufqK5aO4xugORf6xTdIaTBPQ==
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Date: Tue, 27 Feb 2024 15:55:31 +0100
-Subject: [PATCH v8 10/10] MIPS: mobileye: eyeq5: add pinctrl node & pinmux
- function nodes
+	s=arc-20240116; t=1709045885; c=relaxed/simple;
+	bh=y1Ygv47ECIb/VfxJUSJLmULU1TrWL/0eo2q14QVsgbw=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=qSdtThfUbQh13PrQ/90MOrUmmCBjXsKP4n6CrB35ggrelsia4f3Ql8EwI71vZdfMtq2Z0zcdSjIQmu3+4WcpdaHzjhddRWx4n0oEx5zjo82ittEPY+hWuab4I3oCNo7aSPyA8TKJ0OzAQ2MvnITWaSmeMYrMDGMaIiI62hMBWhg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=DoNs7ATA; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240227-mbly-clk-v8-10-c57fbda7664a@bootlin.com>
-References: <20240227-mbly-clk-v8-0-c57fbda7664a@bootlin.com>
-In-Reply-To: <20240227-mbly-clk-v8-0-c57fbda7664a@bootlin.com>
-To: Gregory CLEMENT <gregory.clement@bootlin.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- linux-mips@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-gpio@vger.kernel.org, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: b4 0.13.0
-X-GND-Sasl: theo.lebrun@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1709045880;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=JTZuVi0d9uvRZL4My10OcZy9FBePsZQVwsZhJKzdOL4=;
+	b=DoNs7ATAI7kNuKmqWQm1bN1fJwd8ZKY0K+/yD1DzuW7xgfvgw085ZOa2rLbXEDfuKVk5eg
+	srCPtSdxKNKeetNpEEgERqTKNRJhl01qdjIWrF6mqwLnL911EQzC9pOB2B0RB+RhwGfI+V
+	aClodNXyGmn3uX4EbE1IaAdiJWLtv8l0sFoBva7b/FMoo/kEbvZNDXIKly3UXMPftKJCA3
+	LiOFFyDaOYXrbbcvBKBC+Ea9cL63jHxLMlniykE9TxQWcgADEZg2IPCCc77GRE4P5HcYUN
+	aq/ErBLdPaNAPly9K2A59/SrjU2IsgIiVHHqLGWNkvBc9IzHVL0bVtOb9MVyuA==
+Date: Tue, 27 Feb 2024 15:58:00 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] arm64: dts: rockchip: Add cache information to the
+ Rockchip RK3566 and RK3568 SoC
+In-Reply-To: <CANAwSgQnoBx+th6s254sML+Zw+RZQC6WU9TjfMoWgHxmCqbDcw@mail.gmail.com>
+References: <20240226182310.4032-1-linux.amoon@gmail.com>
+ <8ceea100f2ef7cce296943ce1397161a@manjaro.org>
+ <CANAwSgQnoBx+th6s254sML+Zw+RZQC6WU9TjfMoWgHxmCqbDcw@mail.gmail.com>
+Message-ID: <4676da62ec0fc0fe89318baea0678e0c@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Pins on this platform have two functions: GPIO or something-else. We
-create function nodes for each something-else based on functions.
+On 2024-02-27 13:49, Anand Moon wrote:
+> On Tue, 27 Feb 2024 at 00:39, Dragan Simic <dsimic@manjaro.org> wrote:
+>> On 2024-02-26 19:23, Anand Moon wrote:
+>> > As per RK3568 Datasheet and TRM add missing cache information to
+>> > the Rockchip RK3566 and RK3568 SoC.
+>> >
+>> > - Each Cortex-A55 core has 32KB of L1 instruction cache available and
+>> >       32KB of L1 data cache available with ECC.
+>> > - Along with 512KB Unified L3 cache with ECC.
+>> >
+>> > With adding instruction cache and data cache and a write buffer to
+>> > reduce the effect of main memory bandwidth and latency on data
+>> > access performance.
+>> >
+>> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+>> 
+>> I was about to send my own patch that adds the same missing cache
+>> information, so please allow me to describe the proposed way to move
+>> forward.
+>> 
+>> The way I see it, your commit summary and description need a rather
+>> complete rewrite, to be more readable, more accurate, and to avoid
+>> including an irrelevant (and slightly misleading) description of the
+>> general role of caches.
+>> 
+>> Also, the changes to the dtsi file would benefit from small touch-ups
+>> here and there, for improved consistency, etc.
+>> 
+>> With all that in mind, I propose that you withdraw your patch and let
+>> me send my patch that will addresses all these issues, of course with
+>> a proper tag that lists you as a co-developer.  I think that would
+>> save us a fair amount of time going back and forth.
+>> 
+>> I hope you agree.
+> 
+> I have no issue with this,.If you have a better version plz share this.
 
-UART nodes are present in the platform devicetree. Add pinctrl to them
-now that the pin controller is supported.
-
-Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
----
- arch/mips/boot/dts/mobileye/eyeq5-pins.dtsi | 125 ++++++++++++++++++++++++++++
- arch/mips/boot/dts/mobileye/eyeq5.dtsi      |  13 +++
- 2 files changed, 138 insertions(+)
-
-diff --git a/arch/mips/boot/dts/mobileye/eyeq5-pins.dtsi b/arch/mips/boot/dts/mobileye/eyeq5-pins.dtsi
-new file mode 100644
-index 000000000000..42acda13e57a
---- /dev/null
-+++ b/arch/mips/boot/dts/mobileye/eyeq5-pins.dtsi
-@@ -0,0 +1,125 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+
-+/*
-+ * Default pin configuration for Mobileye EyeQ5 boards. We mostly create one
-+ * pin configuration node per function.
-+ */
-+
-+&pinctrl {
-+	timer0_pins: timer0-pins {
-+		function = "timer0";
-+		pins = "PA0", "PA1";
-+	};
-+	timer1_pins: timer1-pins {
-+		function = "timer1";
-+		pins = "PA2", "PA3";
-+	};
-+	timer2_pins: timer2-pins {
-+		function = "timer2";
-+		pins = "PA4", "PA5";
-+	};
-+	pps0_pins: pps0-pin {
-+		function = "timer2";
-+		pins = "PA4";
-+	};
-+	pps1_pins: pps1-pin {
-+		function = "timer2";
-+		pins = "PA5";
-+	};
-+	timer5_ext_pins: timer5-ext-pins {
-+		function = "timer5";
-+		pins = "PA6", "PA7", "PA8", "PA9";
-+	};
-+	timer5_ext_input_pins: timer5-ext-input-pins {
-+		function = "timer5";
-+		pins = "PA6", "PA7";
-+	};
-+	timer5_ext_incap_a_pins: timer5-ext-incap-a-pin {
-+		function = "timer5";
-+		pins = "PA6";
-+	};
-+	timer5_ext_incap_b_pins: timer5-ext-incap-b-pin {
-+		function = "timer5";
-+		pins = "PA7";
-+	};
-+	can0_pins: can0-pins {
-+		function = "can0";
-+		pins = "PA14", "PA15";
-+	};
-+	can1_pins: can1-pins {
-+		function = "can1";
-+		pins = "PA16", "PA17";
-+	};
-+	uart0_pins: uart0-pins {
-+		function = "uart0";
-+		pins = "PA10", "PA11";
-+	};
-+	uart1_pins: uart1-pins {
-+		function = "uart1";
-+		pins = "PA12", "PA13";
-+	};
-+	spi0_pins: spi0-pins {
-+		function = "spi0";
-+		pins = "PA18", "PA19", "PA20", "PA21", "PA22";
-+	};
-+	spi1_pins: spi1-pins {
-+		function = "spi1";
-+		pins = "PA23", "PA24", "PA25", "PA26", "PA27";
-+	};
-+	spi1_slave_pins: spi1-slave-pins {
-+		function = "spi1";
-+		pins = "PA24", "PA25", "PA26";
-+	};
-+	refclk0_pins: refclk0-pin {
-+		function = "refclk0";
-+		pins = "PA28";
-+	};
-+	timer3_pins: timer3-pins {
-+		function = "timer3";
-+		pins = "PB0", "PB1";
-+	};
-+	timer4_pins: timer4-pins {
-+		function = "timer4";
-+		pins = "PB2", "PB3";
-+	};
-+	timer6_ext_pins: timer6-ext-pins {
-+		function = "timer6";
-+		pins = "PB4", "PB5", "PB6", "PB7";
-+	};
-+	timer6_ext_input_pins: timer6-ext-input-pins {
-+		function = "timer6";
-+		pins = "PB4", "PB5";
-+	};
-+	timer6_ext_incap_a_pins: timer6-ext-incap-a-pin {
-+		function = "timer6";
-+		pins = "PB4";
-+	};
-+	timer6_ext_incap_b_pins: timer6-ext-incap-b-pin {
-+		function = "timer6";
-+		pins = "PB5";
-+	};
-+	can2_pins: can2-pins {
-+		function = "can2";
-+		pins = "PB10", "PB11";
-+	};
-+	uart2_pins: uart2-pins {
-+		function = "uart2";
-+		pins = "PB8", "PB9";
-+	};
-+	spi2_pins: spi2-pins {
-+		function = "spi2";
-+		pins = "PB12", "PB13", "PB14", "PB15", "PB16";
-+	};
-+	spi3_pins: spi3-pins {
-+		function = "spi3";
-+		pins = "PB17", "PB18", "PB19", "PB20", "PB21";
-+	};
-+	spi3_slave_pins: spi3-slave-pins {
-+		function = "spi3";
-+		pins = "PB18", "PB19", "PB20";
-+	};
-+	mclk0_pins: mclk0-pin {
-+		function = "mclk0";
-+		pins = "PB22";
-+	};
-+};
-diff --git a/arch/mips/boot/dts/mobileye/eyeq5.dtsi b/arch/mips/boot/dts/mobileye/eyeq5.dtsi
-index 76935f237ab5..8d4f65ec912d 100644
---- a/arch/mips/boot/dts/mobileye/eyeq5.dtsi
-+++ b/arch/mips/boot/dts/mobileye/eyeq5.dtsi
-@@ -79,6 +79,8 @@ uart0: serial@800000 {
- 			clocks  = <&uart_clk>, <&occ_periph>;
- 			clock-names = "uartclk", "apb_pclk";
- 			resets = <&reset 0 10>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&uart0_pins>;
- 		};
- 
- 		uart1: serial@900000 {
-@@ -90,6 +92,8 @@ uart1: serial@900000 {
- 			clocks  = <&uart_clk>, <&occ_periph>;
- 			clock-names = "uartclk", "apb_pclk";
- 			resets = <&reset 0 11>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&uart1_pins>;
- 		};
- 
- 		uart2: serial@a00000 {
-@@ -101,6 +105,8 @@ uart2: serial@a00000 {
- 			clocks  = <&uart_clk>, <&occ_periph>;
- 			clock-names = "uartclk", "apb_pclk";
- 			resets = <&reset 0 12>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&uart2_pins>;
- 		};
- 
- 		olb: system-controller@e00000 {
-@@ -125,6 +131,11 @@ clocks: clock-controller@e0002c {
- 				clocks = <&xtal>;
- 				clock-names = "ref";
- 			};
-+
-+			pinctrl: pinctrl@e000b0 {
-+				compatible = "mobileye,eyeq5-pinctrl";
-+				reg = <0x0b0 0x30>;
-+			};
- 		};
- 
- 		gic: interrupt-controller@140000 {
-@@ -149,3 +160,5 @@ timer {
- 		};
- 	};
- };
-+
-+#include "eyeq5-pins.dtsi"
-
--- 
-2.44.0
-
+Thank you, I'll send my patch within the next couple of days.
 
