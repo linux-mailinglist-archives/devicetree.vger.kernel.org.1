@@ -1,140 +1,240 @@
-Return-Path: <devicetree+bounces-46471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9BD0869B9A
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 17:07:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D8B5869BC3
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 17:14:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D19341C228BD
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 16:07:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAD78282D18
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 16:14:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15D13146E8D;
-	Tue, 27 Feb 2024 16:07:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3858A14830E;
+	Tue, 27 Feb 2024 16:13:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=udima.es header.i=@udima.es header.b="io+5H2+g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84E571468FF;
-	Tue, 27 Feb 2024 16:07:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73B2714831F
+	for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 16:13:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709050040; cv=none; b=QgF8TxbakqucrjTLtrqXQdW4g75Q3iWsEv3g5I3a55cifhQ11F9f9i+UBXjosWHArxQ7+1SREIzxmlLfdC2vEom2O3QgmHgcFVtUuyf9nYy+GtQ9wosbIR5OH82PrD1RzbmTkNArPmGhgJOr3p7ZoRPxh2JHVT+QT7OLJCxMZIk=
+	t=1709050434; cv=none; b=UL1SVlHwqkg6KSGMlwWdvFiUD6AaQjZ2+euyWT+rBDNaW3JypaYcksDYnN6D7iedUQalwCDEZdNJrdvKXg7MGooqg6lQKcaqM9rQZ287LoH48yndWKJzDP/zUMLcDsvGCQgC4hlHAr9E+csjCLOUzDOKRx1HQQMKat18FxRDzQM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709050040; c=relaxed/simple;
-	bh=0eMZGYC3Obzp7NPifMc1wZQmW1MjzPdlblY+FimfEZ0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ElDxVw8oKpnCzoa91nZVCxFeR6P6HSErUQQkEGQbEPmJ5DaYzlx9M2LXc4u1Q5EpGu/2tjih8M4qzbB3g4mw8RkFpy2NebOihlL6dRcKVJQ9ywpbAPxsvgTzeTY/1pRdtw4NjUiYLyhqv80DWpZBa8DWVCFPe4+ZvIjleyGtDDg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-607e54b6cf5so30881707b3.0;
-        Tue, 27 Feb 2024 08:07:18 -0800 (PST)
+	s=arc-20240116; t=1709050434; c=relaxed/simple;
+	bh=ynCwNGBCpdLuOAMyA2li1eRc4k2Kg54U/5iHg9f2QIA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=pktVl6iZntoHPX9OH6B+MiqmjiuLQA6294DdU+JKv25JG5MZKh5pmR6Sl6Pv+ZIS8D/G48uRWxKJTj+twc5Sz/dG23UGTswgXkceHkE6tM3B/FxTJAQ4n1F+Q891Q39NsWMas/hyRHEPHqhDmOcbwDEOJDQ4UxYkGKhtsl0jqWM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=udima.es; spf=pass smtp.mailfrom=udima.es; dkim=pass (1024-bit key) header.d=udima.es header.i=@udima.es header.b=io+5H2+g; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=udima.es
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=udima.es
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-412ae087378so5705935e9.3
+        for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 08:13:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=udima.es; s=google; t=1709050429; x=1709655229; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lIjsoxnq6AgqQD4mfxCKabO/R3fvGqki3BITIbxy4c0=;
+        b=io+5H2+gKcpS6u5J5aqxUB7can1uMBSJBYmRSSjzAMa2BrvNHb0em1JFhMcY5vvY1M
+         c+PyGMXI66qd+wbRa0FW2gVzgbS3+0YJ5wPAZFH+a8qZkdX430ww0rHlbUvQK9XZyijG
+         i28ZQQ4WUpOAye3rXamyle7wnCmuIVST+WmoM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709050036; x=1709654836;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1709050429; x=1709655229;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=LHoeDfHGuL96HTfNJMCJ2+Eu2KeeOnl/Onf9zZl0DK4=;
-        b=Ry6Xn8rOh85MZTr34gAT8nTAsEDBUSbUBiiNY82yOWDL3KCLz1mrsamKK1bacHqt8o
-         /o6H/uT6hOZbTR3gvkAT9VOqRIzCw/VASdIH7YaPToczsDqODtUH0/N9ydm05GfXYuku
-         oTb7DDKLshxBmFKkDOUx27spNjEjeAfAgR2S2Z8BgU7FEAvqJ3zieioXSE7LrMiTbuH3
-         XEBncJ39duya1c45cwVg/V0DZGivXTIqhOGw5OHyI/7XsWF8yLzLsh6VeO0LvL+w4Xjl
-         NnQq88gtN7lVXpIewgdlke+WfBkSKXKvCIQ5ZwISKeMhx5YecJwNFXgCpS12GXzqO/2r
-         qW8A==
-X-Forwarded-Encrypted: i=1; AJvYcCWx/XNft0W/4F/6UjqiG9O0mdvBMVieZKz+cYsjO9plbNdLQQy1KUoOYGX3rfiHcma/BSXx2lWwjbKVll86xdMi+szAOzQ8CI2jdxha1lNcMGWf358q5o6rHnOEQfx1FKEG7ZlAC+PVk9gJdzil97k9SLy7hy0KquW4CoLbN9FTGz2PEj0s5IID0AX6KuMDBanDRMocDJicHz6fEkqgGfxYL18fDF3bTL9bmWRVlid1Gy9dm5nt30E/Dr+Yefg7Zy+s2GeU+1gvbb+0Ep9tP2CjRp7tUR/7JWC9Hrz1rkSHZF9QNp+tTVUmk0sK/JpP8wLn4tVZNPyXdold1qIwZv9mGZ0+iYFZ1kKLyWRPgDyT3/r5zC9MTXI=
-X-Gm-Message-State: AOJu0YwlQqnez9RI5JvFumeLV6TrEsgi+q7+8PehBHVua2BmGptBab6x
-	nvV208MvLUVGE3/LRnfG9WbvK5DmpqayRIk7iF9jrberGea3wtVV7ZNbEukuewEpPw==
-X-Google-Smtp-Source: AGHT+IGhZl/N4STVFVAAaDLTG1/F+S0zR94f1PsVA0f9mmC1AZfChV3CA8f756jwCAgg85Mhd6VcLQ==
-X-Received: by 2002:a81:5749:0:b0:609:2fbb:96fb with SMTP id l70-20020a815749000000b006092fbb96fbmr785251ywb.8.1709050036308;
-        Tue, 27 Feb 2024 08:07:16 -0800 (PST)
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com. [209.85.219.170])
-        by smtp.gmail.com with ESMTPSA id p2-20020a815b02000000b006079f55766bsm1831057ywb.68.2024.02.27.08.07.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Feb 2024 08:07:15 -0800 (PST)
-Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-dbed179f0faso2696644276.1;
-        Tue, 27 Feb 2024 08:07:15 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCW1V6P1cQSqqc/sR+3StMok/gHJFsd4v4Fue08kfyBON/a79tgRnI7A6UpgSRoB3QdlUjsfTaazFtmjc6foS7jCjEa+tILuEO9qs4gS1Fk4/Sn7oi4F1yZ3yAK2a5MzBSPoWqrtm+dHeU+h0NtPzYMDcJHIXJdF+mbVrUvZbEZosBgfA1DFtWCWBoEloQBOiPPdwz9N3anwleIeiHR+euX59hF9Oh94a6fpacda1PCMh3Yr0oQ27g4MfLUzie6JCg4uB4Gtz8yH0Nq2L1Gfp1LUKLh7OU+ZSHlI4YUnBlI9wrYrcwLXhUWuHQD5TCaRlIKfLHCGMrP4pcV4rXcLnqrxWtQm91dD1BVyoqB5MJcuH6psHoxIk44=
-X-Received: by 2002:a25:d6d6:0:b0:dc6:daa4:e808 with SMTP id
- n205-20020a25d6d6000000b00dc6daa4e808mr1755203ybg.12.1709050035153; Tue, 27
- Feb 2024 08:07:15 -0800 (PST)
+        bh=lIjsoxnq6AgqQD4mfxCKabO/R3fvGqki3BITIbxy4c0=;
+        b=CH+Ji5MAorEPTzZ2708AIwgtYhh49n7yuGG6awrQG/0c2I2bU/lCDmd8ZZnYlH92cQ
+         pIJXzzCkjCUYveY8Mx+CwLKCXnZliKgKqeNy52eqYNRLq4gNNBsHdie3/lakInrIxJxa
+         VsU46y/mZpnYRkC8xDflNmxqeDfbxSgWXuVvPLQaWPtHrjV5OSA++tuuAyyS0wHcZJxH
+         HiZMHmN21io/IpEx5pJmM5pyioQ1OtFaXJvjqAEPDRj2PIWU9ERp7wCxu2SMPqDmbtKV
+         AjqI+OhFlxwn2RLDY/Li420r0PnB5P+KWuscQCFHvrxL9lJF7dpLNmSS6mWypcTH9iv4
+         R6bQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU2jg34wIrtwdUyXS6aQWGm/4IQ6aUQ9qW8fZP2BZ5om91saoBPc5PmAKE3J8eXyitbBhR92y4l0fIzZbLfjWzjHqV2WaYKxOeGiQ==
+X-Gm-Message-State: AOJu0YznK7bhyPwKzdqGnWc53W4AL/dpeSdP3l3Kn7wMvImvIjy0vymu
+	HFiBWr1op/5xNtPmBgk2vn012negy3hJtIG1jSwhgzZvnRI7jJMO2YY9vgT14t4=
+X-Google-Smtp-Source: AGHT+IG06PGVQEU3WAnZ+8bEx0FEcvUA92bULNNkoRNL4eczSC9AUEzpmKjluS0KPvrpX9I8Z/LbZA==
+X-Received: by 2002:a05:600c:1989:b0:412:9dfc:f67a with SMTP id t9-20020a05600c198900b004129dfcf67amr7819985wmq.12.1709050429339;
+        Tue, 27 Feb 2024 08:13:49 -0800 (PST)
+Received: from portatil76.udima ([79.116.0.170])
+        by smtp.googlemail.com with ESMTPSA id 9-20020a05600c020900b004104bc8d841sm15225371wmi.13.2024.02.27.08.13.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Feb 2024 08:13:49 -0800 (PST)
+From: =?UTF-8?q?Javier=20Garc=C3=ADa?= <javier.garcia.ta@udima.es>
+To: 
+Cc: daniel.baluta@nxp.com,
+	javier.garcia.ta@udima.es,
+	daniel.baluta@gmail.com,
+	broonie@kernel.org,
+	krzysztof.kozlowski@linaro.org,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	alsa-devel@alsa-project.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] ASoC: dt-bindings: img,spdif-in: Convert to dtschema
+Date: Tue, 27 Feb 2024 17:09:47 +0100
+Message-ID: <20240227160952.615291-1-javier.garcia.ta@udima.es>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240227123602.258190-1-javier.garcia.ta@udima.es>
+References: <20240227123602.258190-1-javier.garcia.ta@udima.es>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1704788539.git.ysato@users.sourceforge.jp> <22c41c392762f282752b2f31deeaf8f1f2254061.1704788539.git.ysato@users.sourceforge.jp>
-In-Reply-To: <22c41c392762f282752b2f31deeaf8f1f2254061.1704788539.git.ysato@users.sourceforge.jp>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 27 Feb 2024 17:07:03 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUK6fKZuFN2kqrnzfvxcnJZS=YQm3oeQRczAjRG66ebMg@mail.gmail.com>
-Message-ID: <CAMuHMdUK6fKZuFN2kqrnzfvxcnJZS=YQm3oeQRczAjRG66ebMg@mail.gmail.com>
-Subject: Re: [DO NOT MERGE v6 33/37] sh: j2_mimas_v2.dts update
-To: Yoshinori Sato <ysato@users.sourceforge.jp>
-Cc: linux-sh@vger.kernel.org, Damien Le Moal <dlemoal@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Thomas Gleixner <tglx@linutronix.de>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Rich Felker <dalias@libc.org>, 
-	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, Lee Jones <lee@kernel.org>, 
-	Helge Deller <deller@gmx.de>, Heiko Stuebner <heiko@sntech.de>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Chris Morgan <macromorgan@hotmail.com>, 
-	Yang Xiwen <forbidden405@foxmail.com>, Sebastian Reichel <sre@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Randy Dunlap <rdunlap@infradead.org>, 
-	Arnd Bergmann <arnd@arndb.de>, Vlastimil Babka <vbabka@suse.cz>, Hyeonggon Yoo <42.hyeyoo@gmail.com>, 
-	David Rientjes <rientjes@google.com>, Baoquan He <bhe@redhat.com>, 
-	Andrew Morton <akpm@linux-foundation.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Stephen Rothwell <sfr@canb.auug.org.au>, Azeem Shaikh <azeemshaikh38@gmail.com>, 
-	Javier Martinez Canillas <javierm@redhat.com>, Max Filippov <jcmvbkbc@gmail.com>, 
-	Palmer Dabbelt <palmer@rivosinc.com>, Bin Meng <bmeng@tinylab.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Jacky Huang <ychuang3@nuvoton.com>, 
-	Lukas Bulwahn <lukas.bulwahn@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Sam Ravnborg <sam@ravnborg.org>, Sergey Shtylyov <s.shtylyov@omp.ru>, 
-	Michael Karcher <kernel@mkarcher.dialup.fu-berlin.de>, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, linux-ide@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-pci@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-fbdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Sato-san,
+Convert the Imagination Technologies SPDIF Input Controllerto DT schema.
 
-On Tue, Jan 9, 2024 at 9:24=E2=80=AFAM Yoshinori Sato
-<ysato@users.sourceforge.jp> wrote:
-> Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
+Signed-off-by: Javier García <javier.garcia.ta@udima.es>
+---
+ .../bindings/sound/img,spdif-in.txt           | 41 ----------
+ .../bindings/sound/img,spdif-in.yaml          | 78 +++++++++++++++++++
+ 2 files changed, 78 insertions(+), 41 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/img,spdif-in.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/img,spdif-in.yaml
 
-Thanks for your patch!
+diff --git a/Documentation/devicetree/bindings/sound/img,spdif-in.txt b/Documentation/devicetree/bindings/sound/img,spdif-in.txt
+deleted file mode 100644
+index f7ea8c87bf34..000000000000
+--- a/Documentation/devicetree/bindings/sound/img,spdif-in.txt
++++ /dev/null
+@@ -1,41 +0,0 @@
+-Imagination Technologies SPDIF Input Controller
+-
+-Required Properties:
+-
+-  - compatible : Compatible list, must contain "img,spdif-in"
+-
+-  - #sound-dai-cells : Must be equal to 0
+-
+-  - reg : Offset and length of the register set for the device
+-
+-  - dmas: Contains an entry for each entry in dma-names.
+-
+-  - dma-names: Must include the following entry:
+-	"rx"
+-
+-  - clocks : Contains an entry for each entry in clock-names
+-
+-  - clock-names : Includes the following entries:
+-	"sys"	The system clock
+-
+-Optional Properties:
+-
+-  - resets: Should contain a phandle to the spdif in reset signal, if any
+-
+-  - reset-names: Should contain the reset signal name "rst", if a
+-	reset phandle is given
+-
+-  - interrupts : Contains the spdif in interrupt, if present
+-
+-Example:
+-
+-spdif_in: spdif-in@18100e00 {
+-	compatible = "img,spdif-in";
+-	reg = <0x18100E00 0x100>;
+-	interrupts = <GIC_SHARED 20 IRQ_TYPE_LEVEL_HIGH>;
+-	dmas = <&mdc 15 0xffffffff 0>;
+-	dma-names = "rx";
+-	clocks = <&cr_periph SYS_CLK_SPDIF_IN>;
+-	clock-names = "sys";
+-	#sound-dai-cells = <0>;
+-};
+diff --git a/Documentation/devicetree/bindings/sound/img,spdif-in.yaml b/Documentation/devicetree/bindings/sound/img,spdif-in.yaml
+new file mode 100644
+index 000000000000..1d2e318b349f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/img,spdif-in.yaml
+@@ -0,0 +1,78 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/img,spdif-in.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Imagination Technologies SPDIF Input Controller
++
++maintainers:
++  - Liam Girdwood <lgirdwood@gmail.com>
++  - Mark Brown <broonie@kernel.org>
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    enum:
++      - img,spdif-in
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  dmas:
++    maxItems: 1
++
++  dma-names:
++    items:
++      - const: rx
++
++  clocks:
++    items:
++      - description: The system clock
++
++  clock-names:
++    items:
++      - const: sys
++
++  '#sound-dai-cells':
++    const: 0
++
++  resets:
++    maxItems: 1
++
++  reset-names:
++    items:
++      - const: rst
++
++required:
++  - compatible
++  - reg
++  - dmas
++  - dma-names
++  - clocks
++  - clock-names
++  - '#sound-dai-cells'
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/pistachio-clk.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/interrupt-controller/mips-gic.h>
++    spdif_in: spdif@18100e00 {
++        compatible = "img,spdif-in";
++        reg = <0x18100e00 0x100>;
++        interrupts = <GIC_SHARED 20 IRQ_TYPE_LEVEL_HIGH>;
++        dmas = <&mdc 15 0xffffffff 0>;
++        dma-names = "rx";
++        clocks = <&cr_periph SYS_CLK_SPDIF_IN>;
++        clock-names = "sys";
++
++        #sound-dai-cells = <0>;
++    };
+-- 
+2.43.0
 
-Please enhance the one-line summary, e.g.
-
-    sh: j2_mimas_v2: Update CPU compatible value
-
-For the actual changes:
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
