@@ -1,91 +1,107 @@
-Return-Path: <devicetree+bounces-46582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13C4186A369
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 00:15:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A696786A398
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 00:30:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F43DB2A0BB
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 23:14:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C8AF1F24098
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 23:30:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D27055E48;
-	Tue, 27 Feb 2024 23:13:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E76A56B72;
+	Tue, 27 Feb 2024 23:22:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CLOFHpjf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1E2856766;
-	Tue, 27 Feb 2024 23:13:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BEE556B71;
+	Tue, 27 Feb 2024 23:22:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709075614; cv=none; b=k5xCrjSNgHroRsryHbT28QU2ZnHusjxSpkWsD6Dwhug25RWu3D/6f5dsb/eTODedc+WlshkvD0BaA+Gjg2rLbgw1YyKiCA+zU2tnMcfJYdxCmtjccVYs5GGBNiLJs7CEiJfL8AQ2lKkCY02/tPPJOTxG+m1r+noJdlCirw7FCvw=
+	t=1709076157; cv=none; b=i5RE2j8xz8dQcGVKp0Bolh76477+mwu2DGN6+Fb9XjhzPai8FDu9T4BwwB+9rCvQv6xOKPEInpW0HdtJ+nH5vCk4XflA1eb1zCCcF2EL6qtd0iPOCFaOZUTv16nqgRofekgAKjqsdXFeg0KpNxRlAKATt7FtHwqKvz4bO7UJOjo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709075614; c=relaxed/simple;
-	bh=B4DKrRNSUjPldZnmQy7qW35XpULDoHvXd5QTDp2J6fw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IVz2CCfcC9HNW2Tt6OeMtwRl7hJXLROtjMRm6/oG0bGpJTfExMe6HymgG1lvbFB0jX4C7HSwlhEPC1MGX1o/EUN6bWL/2FgMGRH5F7X1Cr14/VkAl6OdfNy5RNuVtVWA6H/C4gUgQ2pGYLsHU4T+KMeLehT0icxv1tUU+tKNoBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875b6c.versanet.de ([83.135.91.108] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rf6dY-0002LS-HQ; Wed, 28 Feb 2024 00:13:24 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org,
-	Elon Zhang <zhangzj@rock-chips.com>,
-	conor+dt@kernel.org
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	devicetree@vger.kernel.org,
-	weizhao.ouyang@arm.com,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] arm64: dts: rockchip: Add devicetree support for TB-RK3588X board
-Date: Wed, 28 Feb 2024 00:13:21 +0100
-Message-Id: <170907558763.800427.16777226137397657885.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240221022902.751528-1-zhangzj@rock-chips.com>
-References: <20240221022902.751528-1-zhangzj@rock-chips.com>
+	s=arc-20240116; t=1709076157; c=relaxed/simple;
+	bh=LAf/7ZQIyaKEaPAbEIeoxEYJIciVBx9bL3fJcDzt+1E=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=oYviBPWXVEtf+9TBcKZhd3ieyDMOIq4jVzJ7eU1zPJM1RznPCpGfYKssfpJgESsD4hLqm3ahmNbFGmAZOFu865j6xIJJRMWWROprXueoWCW3XVI3wIvIi9Vx+02OtJGL8Dj6JHxiLL9Zdmas07zXfxr98BOX/vTQNZoBeH7MHoY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CLOFHpjf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A48D6C433F1;
+	Tue, 27 Feb 2024 23:22:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709076156;
+	bh=LAf/7ZQIyaKEaPAbEIeoxEYJIciVBx9bL3fJcDzt+1E=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=CLOFHpjf9zIIqBZHK7Hh4NtlLW8Dbl11MFex2P55uBFSPYYxhpKfxPiwtstGfS8TM
+	 AT0hKGyTH7/LkeG3Vji0fm+6k5p2fm97EPn1RDdNCL0RhUjHO0C4SRwI5jzVNBDa4n
+	 9BEJqpuaqT8cyFtSNwdziRC/my23uyjpQnsblwMAyUPb1eFZ1reCkLJOc2kUV/p6wZ
+	 geD6qLDTCrqxgJ+rYEaTOvRiMfLB58KNxTfEpUtxqvFuRQuIileNBuNDNVhNDXJ+9Q
+	 AGJZ83+7M6UppXkIp3+AAhtNiA9uSgycA5Uv1Sl6XB1mtBQhV+1IkT07Ftt8BQ/V8a
+	 pUtcaMqLLD9EA==
+Date: Tue, 27 Feb 2024 17:22:35 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Brian Masney <bmasney@redhat.com>,
+	Georgi Djakov <djakov@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, vireshk@kernel.org,
+	quic_vbadigan@quicinc.com, quic_skananth@quicinc.com,
+	quic_nitegupt@quicinc.com, quic_parass@quicinc.com,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: Re: [PATCH v7 3/7] PCI: qcom: Add ICC bandwidth vote for CPU to PCIe
+ path
+Message-ID: <20240227232235.GA251235@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240223-opp_support-v7-3-10b4363d7e71@quicinc.com>
 
-On Wed, 21 Feb 2024 10:29:01 +0800, Elon Zhang wrote:
-> Add board file for Rockchip Toybrick TB-RK3588X board.
-> 
-> Specification:
-> 	Rockchip Rk3588 SoC
-> 	4x ARM Cortex-A76, 4x ARM Cortex-A55
-> 	8/16GB Memory LPDDR4x
-> 	Mali G610MC4 GPU
-> 	2× MIPI-CSI0 Connector
-> 	1x 2Lanes PCIe3.0 Connector
-> 	1x SATA3.0 Connector
-> 	32GB eMMC Module
-> 	2x USB 2.0, 2x USB 3.0
-> 	1x HDMI Output, 1x HDMI Input
-> 	2x Ethernet Port
-> 
-> [...]
+On Fri, Feb 23, 2024 at 08:18:00PM +0530, Krishna chaitanya chundru wrote:
+> To access PCIe registers, PCIe BAR space, config space the CPU-PCIe
+> ICC(interconnect consumers) path should be voted otherwise it may
+> lead to NoC(Network on chip) timeout. We are surviving because of
+> other driver vote for this path.
+> As there is less access on this path compared to PCIe to mem path
+> add minimum vote i.e 1KBps bandwidth always.
 
-Applied, thanks!
+Add blank line between paragraphs or wrap into a single paragraph.
 
-[1/2] arm64: dts: rockchip: Add devicetree support for TB-RK3588X board
-      commit: 8ffe365f8dc798a08bf21d5050f7b21bd6a855a4
-[2/2] dt-bindings: arm: rockchip: Add Toybrick TB-RK3588X
-      commit: 7140387ff49d0f44648d26f975c6fead1c5055b0
+Add space before open paren, e.g., "ICC (interconnect consumers)",
+"NoC (Network on Chip)".
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+> In suspend remove the disable this path after register space access
+> is done.
+
+"... remove the disable this path ..." has too many verbs :)
+Maybe "When suspending, disable this path ..."?
+
+> +	 * The config space, BAR space and registers goes through cpu-pcie path.
+> +	 * Set peak bandwidth to 1KBps as recommended by HW team for this path all the time.
+
+Wrap to fit in 80 columns.
+
+> +	/* Remove cpu path vote after all the register access is done */
+
+One of the other patches has s/cpu/CPU/ in it.  Please do the same
+here.
+
+Bjorn
 
