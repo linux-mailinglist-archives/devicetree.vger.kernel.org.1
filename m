@@ -1,106 +1,119 @@
-Return-Path: <devicetree+bounces-46399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A8788692A5
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 14:37:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FF178692C6
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 14:38:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53D0628EFB3
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 13:37:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A1C6B1C211BC
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 13:38:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B27613DBAA;
-	Tue, 27 Feb 2024 13:37:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE0C813B295;
+	Tue, 27 Feb 2024 13:38:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oGUhtyOl"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="L3nHvMeK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A61D13B79F;
-	Tue, 27 Feb 2024 13:37:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4523B78B61;
+	Tue, 27 Feb 2024 13:38:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709041039; cv=none; b=P3l97krUudpeqsbFfdg4m1PWMSA5BsXOem/SCnPjRJmTeJTFHRDBjucRjJ5k0cMQJhy8oHDy+OjUVk41rNHx04nAh+zxdu+lA8gT7Rn7wT3k+y0NBu3DzQB8dWmisa5oeo1Rfgxk68ckya0GK0Hps3E8yXEQyQExV7f9mUgn06w=
+	t=1709041125; cv=none; b=kHkLaD4VVHf8/b8sICjEe7j42wRsna2DOYkWL8zuKA2QUTqcF13Q7XlMuXBNKmBHOJihk5T3JI3p06lHM2QVCbpHwftpi1cPxG6XeqiZI/t2VRbUoYin2JQzVnb+41nKskKZ+2qvwsyRTvAEGbPSPZ/Nu845SQoXxzAYoz0uuBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709041039; c=relaxed/simple;
-	bh=H1c/bi5IfYB1iSUBfPU6PzkgJpun/PjAJmV416IBnMo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=E4ffLRmMZJs/wTS27sJ7I28BQ8gTp9FtxwfMtn8dBNUFTELJjZj2sLNlZjzStt+w5zUBa+SXwpSuxkcu3SKW7ClWWyVWGGCT2tgIAPBZEHI0JnciD9VCEcxNasObYp0vJy+hoNjpND7bC7VwoqRtnKRqfkqtajvePhXgr8eAP/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oGUhtyOl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05AD9C433A6;
-	Tue, 27 Feb 2024 13:37:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709041039;
-	bh=H1c/bi5IfYB1iSUBfPU6PzkgJpun/PjAJmV416IBnMo=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=oGUhtyOleFDlVprD+BHiw5msYy/xXs7n8MPnqXIQXA7gm9Hx35qZCdT4MhSOkx4hP
-	 rz+kq2hfyJ9mFuFg2rQVbGqBXf+nptZOB8OM7UT6xaUH3iMMaxxSmajFqxPHBnzAR2
-	 Z9GJJwS9G96S3zO0litfHxufug7uCe1lCZFFT56C87WkeQDL+I4v4QXuX8grK9DK9D
-	 3pWJdu1qsuFeWnfa5CV7khEuxTM+E2w8PI8eWAJ2bCM15KQYtu69N3jg2cCT2OyII3
-	 zJcPL97J4E6ztRARi9eXcpjCj5XiuknpZeMhbq6LZztKrzW9e2bfKWRYyIWLElKDeT
-	 ca9EXgFPfgyVw==
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2d299b4ad6aso6253751fa.1;
-        Tue, 27 Feb 2024 05:37:18 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVgNfEOMMgUcZ8yAb6NZ8shSj9KY9s0ABYFaEi7uD7kPospD1lnx4ZSNAefMnvc/t+sMkndaZp2/AoJmmm2KJ0CFN+0wTI2vxBcEo6UtaLioKehCGJMJZgBUrFp99G53tRc8SEQFbHCtuZnHdVOhmLQR7SeALudoOQn/MAX3gSdabBvhGrg4fveyM3Nn30+OVkJ67Se7Ej7AWcM0akpaBZDA0dH
-X-Gm-Message-State: AOJu0YyXmFy4A9xiTp1WE9AbjH6NS0kh5XVFQejDAI9s4b/wZG3KzF+8
-	xJsAiqytGo9z7N4s2VyOC7IsaO5dl8MZH3VdMe8pNgD0z7dykXzb+zRNShNb7Wzc3Ln9XLHU4lB
-	iVkT9Xu7T68Vq8/JfhbOM7IzQIQ==
-X-Google-Smtp-Source: AGHT+IG5QHJKq6z8x6+mL6APDMaMcHT+R6XCLzJCa5meAUVodTB8s4RdbL4+VxRoHLTrkZTvWB3wRm4Tes8nApxV0wo=
-X-Received: by 2002:a05:6512:1317:b0:512:f4f6:9343 with SMTP id
- x23-20020a056512131700b00512f4f69343mr3796213lfu.26.1709041037258; Tue, 27
- Feb 2024 05:37:17 -0800 (PST)
+	s=arc-20240116; t=1709041125; c=relaxed/simple;
+	bh=Ad3s8txV/LRKTi3+KCXHUIgZVNfAZ9S2VAZ3ew4nrfE=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=cOeh57Dc1AWTwyOMGig60WauZRu/SvzKXRAio42hrVkBkOVHHEcEC+FWKmQDrix54IRwaZgF7jquNJYuKAXHP1cGkXyAf6VFLGTsMzkv3wlNwQ3AYSheOEbE0i8sTUsMu/KuhB6uCeBPzEVmV2Sfi7c4Wzroarp51ZOVywUcFu4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=L3nHvMeK; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A454D24000A;
+	Tue, 27 Feb 2024 13:38:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709041120;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=4ugB9QxiL2b1VXZ64TujSRaUb9sqfq1WG8mbx8ms1t8=;
+	b=L3nHvMeKugiy6LAMcXCUL40zZFkFyG3stQRCERhiPdxJe3E0Hmzaxmc4okAgDcBr9U4dce
+	MabFzn95ayqAVbsXsICU+hIghagnyW62tfkH76EGxaxLevNTkTGL7T6XXxpG7c70YJRida
+	FsCqgDEloarSSvHd4W++4CkZQYK7cLR9DS9kgJNX3q+JzZ5uiocuE4/suGqZXVocBmi8S2
+	gL/nime4cLazyjWSWNAtEfsIqac3zN1ZGMiosIt069itDFdoNzDLaRnxFTn69FLMXouH+X
+	PzS/pk0jhfoT+W4YHIa8JMziWyCDQXmifs9+5/3Jp5yBpS8z6kKpuNkqLvZG2A==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20240129092512.23602-1-quic_tengfan@quicinc.com> <20240129092512.23602-2-quic_tengfan@quicinc.com>
-In-Reply-To: <20240129092512.23602-2-quic_tengfan@quicinc.com>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Tue, 27 Feb 2024 07:37:05 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJfsWaj9OPkvc34rBvx7W_3v9+1kZqNu6QKDsA=iWAA4w@mail.gmail.com>
-Message-ID: <CAL_JsqJfsWaj9OPkvc34rBvx7W_3v9+1kZqNu6QKDsA=iWAA4w@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: qcom: update compatible name
- for match with driver
-To: Tengfei Fan <quic_tengfan@quicinc.com>
-Cc: andersson@kernel.org, konrad.dybcio@linaro.org, linus.walleij@linaro.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 27 Feb 2024 14:38:39 +0100
+Message-Id: <CZFWIJE9978P.G3TZC2YIUST9@bootlin.com>
+Subject: Re: [PATCH 09/13] i2c: nomadik: fetch timeout-usecs property from
+ devicetree
+Cc: "Linus Walleij" <linus.walleij@linaro.org>, "Andi Shyti"
+ <andi.shyti@kernel.org>, "Rob Herring" <robh+dt@kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-mips@vger.kernel.org>, "Gregory Clement"
+ <gregory.clement@bootlin.com>, "Vladimir Kondratiev"
+ <vladimir.kondratiev@mobileye.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>
+To: "Wolfram Sang" <wsa@kernel.org>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+X-Mailer: aerc 0.15.2
+References: <20240215-mbly-i2c-v1-0-19a336e91dca@bootlin.com>
+ <20240215-mbly-i2c-v1-9-19a336e91dca@bootlin.com>
+ <Zd3SJMBp23ybgdsJ@shikoro>
+In-Reply-To: <Zd3SJMBp23ybgdsJ@shikoro>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On Mon, Jan 29, 2024 at 3:25=E2=80=AFAM Tengfei Fan <quic_tengfan@quicinc.c=
-om> wrote:
->
-> Use compatible name "qcom,sm4450-tlmm" instead of "qcom,sm4450-pinctrl"
-> to match the compatible name in sm4450 pinctrl driver.
->
-> Fixes: 7bf8b78f86db ("dt-bindings: pinctrl: qcom: Add SM4450 pinctrl")
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.y=
-aml b/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
-> index bb08ca5a1509..bb675c8ec220 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
-> @@ -17,7 +17,7 @@ allOf:
->
->  properties:
->    compatible:
-> -    const: qcom,sm4450-pinctrl
-> +    const: qcom,sm4450-tlmm
+Hello,
 
-I think you forgot to update the example:
+On Tue Feb 27, 2024 at 1:14 PM CET, Wolfram Sang wrote:
+> > +	/* Slave response timeout */
+> > +	if (!of_property_read_u32(np, "timeout-usecs", &timeout_usecs))
+> > +		priv->timeout_usecs =3D timeout_usecs;
+> > +	else
+> > +		priv->timeout_usecs =3D 200 * USEC_PER_MSEC;
+>
+> I could imagine to add 'transfer_timeout_us' to struct i2c_timings.
+> Then, you could use 'i2c_parse_fw_timings' to obtain the value. What
+> values/value range do you use here? I can't find them in the DTS
+> additions.
 
-Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.example.dtb:
-/example-0/pinctrl@f100000: failed to match any schema with
-compatible: ['qcom,sm4450-tlmm']
+That sounds good. I have not used this prop in the DTS as it does not
+make much sense for an eval board. The target is production boards.
+
+An order of magnitude is a few transfers every 15ms. It means a timeout
+of 15ms divided by "a few". I don't have more precise values, but I
+could if you consider it useful.
+
+I've done some testing at 50~100=C2=B5s timeouts and it works as expected. =
+At
+those values timerslack is important to consider (default of 50=C2=B5s).
+This is at 400kHz clock frequency. Keep in mind the controllers support
+up to 3.4MHz (not yet upstreamed) so timeouts could in theory go
+lower if required by the usecase.
+
+My upcoming question is how to move forward on this series. I can do the
+patch to i2c_parse_fw_timings() in the next revision. That way it gets
+added alongside the first user of this feature. Would it work for you?
+
+Thanks,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
