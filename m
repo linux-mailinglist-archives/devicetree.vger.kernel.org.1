@@ -1,120 +1,117 @@
-Return-Path: <devicetree+bounces-46415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43F0F8697C1
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 15:24:55 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0902869878
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 15:34:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0E7C289703
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 14:24:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B47BAB2E68E
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 14:27:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 122841420C9;
-	Tue, 27 Feb 2024 14:24:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1B6D14532D;
+	Tue, 27 Feb 2024 14:27:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pm9/YHG6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fCBXkvLk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6D8413B798;
-	Tue, 27 Feb 2024 14:24:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B60F13B2B8
+	for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 14:27:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709043885; cv=none; b=OWVq6hMQOV4pmAt2huOOO0oRR4XKOEk/OnqMXMunHM+0LsW/To0riYPj05jkR0ZMMrymodCpR89LoBXdLUnW0y1vRYdirxHU6yEuwlV6o1R6Md+8AkP8fGValaRVP0Zdgp+xJEuhUpZO/MwCvJAaOF38OeDTnsrbcgfA4qvvITo=
+	t=1709044051; cv=none; b=VvYl1rHW2p1o1/yIffEMaZz/eNQH4ScDKtap1djpa5kiLw/+P9sTm5r79WSweN09Eozy2OkXAXlkQbzXXI74/JDcaoKjrpGBNFZIMFjKd68/yXwUStolnfrVszCDp+4FEtqu/EgZ/TiOsXjKX4sUmTiQKKZo/CkpaRkeoyR1Jvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709043885; c=relaxed/simple;
-	bh=y5hECNS3lW8/P87KlOIBOFLlBqMFwb8pWysds1a84KA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IrJB2Q2nyNEMzGk/egMC0OwvvE6yW6293ZS4QC/MRtMEWAgAaGKi8pb2uNT9hRsUFxCUWVJcreGBH5Uelvsz9T4NDfVr2SEijTiPP9n9DhUvY0SrViKegcoogombDWBLO6Wv0FhoFfYBnz0pLNJU7mo++OmRGKkPcQWKhJK+iMw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pm9/YHG6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 147B8C433C7;
-	Tue, 27 Feb 2024 14:24:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709043884;
-	bh=y5hECNS3lW8/P87KlOIBOFLlBqMFwb8pWysds1a84KA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Pm9/YHG6O2HDZ0A57Pt97CBOHlsFbQaPxF8FEqHjpkSuGre+5rjKvGzg++0+3YRI8
-	 QZJTpaZ/UkFXGeIJio7C5iC1BkDTSWQ9L16LAdw3gIEBSv6mpWRgzn4l8qQm78jb+1
-	 OeebeBnHKovuG8y8nKOrj7HfBXQmEvCJ01NNyRiQEM38qYV+XKiqdpRmG54g7yT5vB
-	 vWzvY4b+M3RDGa6MvgKrIVcd0ThjE8bCn8SFPM1DrvHYyHmfsP/blMci+RO+ZrII+y
-	 t4ftu+ERpB5LXLyUUBhX5+ryx619zmo/7itU9BDB/5ha1D5XQ26bIaamxjOL6b+Bpy
-	 FkW8Os/vdXLag==
-Date: Tue, 27 Feb 2024 08:24:40 -0600
-From: Rob Herring <robh@kernel.org>
-To: =?utf-8?B?UGF3ZcWC?= Anikiel <panikiel@google.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, airlied@gmail.com,
-	akpm@linux-foundation.org, conor+dt@kernel.org, daniel@ffwll.ch,
-	dinguyen@kernel.org, hverkuil-cisco@xs4all.nl,
-	krzysztof.kozlowski+dt@linaro.org,
-	maarten.lankhorst@linux.intel.com, mchehab@kernel.org,
-	mripard@kernel.org, tzimmermann@suse.de, devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org, chromeos-krk-upstreaming@google.com,
-	ribalda@chromium.org
-Subject: Re: [PATCH v2 8/9] media: dt-bindings: Add Intel Displayport RX IP
-Message-ID: <20240227142440.GA3863852-robh@kernel.org>
-References: <20240221160215.484151-1-panikiel@google.com>
- <20240221160215.484151-9-panikiel@google.com>
- <13aeb2ff-72f4-49d9-b65e-ddc31569a936@linaro.org>
- <CAM5zL5q0oKoTMR0jSwYVAChCOJ9iKYPRFiU1vH4qDqhHALKz4w@mail.gmail.com>
- <e1fd8cbd-060b-4d15-8256-6d8dbba545da@linaro.org>
- <CAM5zL5qxBM1xQ__t86gxUKMy8O3BzoCe_vTFxxsqFq7mw4-8EQ@mail.gmail.com>
- <890afb05-1b19-47b2-bfd8-5f6de0caeda3@linaro.org>
- <CAM5zL5rs4JyFznnWDLZP_2jwnX+yc+OwwOijGZGsQK+WtpiWKA@mail.gmail.com>
+	s=arc-20240116; t=1709044051; c=relaxed/simple;
+	bh=roGU0rn07H+CN0BM1sUoDiaaO7W9Oh8V2PP/kib7geI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=MPAkCurOTneD2oYvOEFtw54ZXHXT32X+rxR4GwsMlqPBjCXrSe4eCtHEDf2mBjlryWCUPkajOXscxPxqfpXzqrLc9JZgVXAyunU537x7OU9xQFuncnbLpUK9T0tBGcOmhtnYM+yYZv6tLR5iGtR8wjL/6uI9LU57jmA1jlYniHA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fCBXkvLk; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-565d1656c12so4568869a12.1
+        for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 06:27:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709044048; x=1709648848; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kD3E49r73xF3oSKYiHLwdSLYHlLARjZJlqpTBrcFb9U=;
+        b=fCBXkvLk+hm+MKUbNugqE6LE7woJFLfgTUylpeSfToQcXyiK/F8cYx4+IrS8eSwwws
+         pIql7z50wvZ3mLhApQVvDObSRfJIn/A2grnDFxcPVa/rU58Q97L8ZnN8jNvB0XjuVtjj
+         slJnH6TvH/GWPi1tvyAXvBNVBQy2bfyJklVnw/vuH5nIpeXYUPM0v/BC0SK6rT8WZYAr
+         Q1S5rkNYFwO78J7167TdJj5Y9WbSOBFQcWp/T6QFXjAaud/bE+1D8EC8B8s+SQ3zTKv1
+         AuUjQnBi8UjNVH7yPwyNuvMw3pLPmlDK63ruIHOR8GHDZYA/vw0kImlWSPX2FLNHv5mi
+         8Wxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709044048; x=1709648848;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kD3E49r73xF3oSKYiHLwdSLYHlLARjZJlqpTBrcFb9U=;
+        b=lGTyQ9enJcKYDhaMqsjiv8pgUmnnn+d7NfDMe0X3788V78Z2ynVu6yBianTK+++U76
+         l03F8ZJOksLTtbF7xQurDRWnuDS8GKW1be3kKLAiLnJWcF0m/r4TCdfD24oWxUgwG5Ng
+         cN380/XghvIgEf8upDDKVIVZSEeyKaBXirJvVnyRCLQ+qMVWVDfQYdJ5FFS0wKNKrYnO
+         GYpkB8Dik5xIIZsCFzlc57AHNaCurx1Yd5V0stuKiYA0YrHamBt2WtXXnT3CwAvKkvFt
+         DS+Bt+AY5iMUAwTdLCfb1J7IrB/FG1Irtcu3qBp/FV9Fjk/yhl+aVbSloxTAmDHTWyxU
+         CqRA==
+X-Forwarded-Encrypted: i=1; AJvYcCUU36YYgEG+BmhvvJx2NUkCrfuNGc4rlJ2Ue/KSjltIH6g7s9mNvQQxaZ/xx6hQq5bEpigLu2yoVJjUvRXgrRSKOEFqZ/3BJO5mhg==
+X-Gm-Message-State: AOJu0Yy/FcmtlZ2qBCxxMx5p+LkuDov5v3D6IokaabbwGQxdQWSYeuj4
+	jLQcLQSZHpzww5rl3j6YB900Ou72M8aOgArAoV4hJW4iGFN0WjqBv+whN8mWWnU=
+X-Google-Smtp-Source: AGHT+IH+vbojxEnn+q7wE1Tb1TklvJPquiR1ZswOzPjeIqK3cxgxvqiDg7NnGIz9znnAY9OtFPH/Og==
+X-Received: by 2002:a05:6402:448e:b0:566:3d1a:92f with SMTP id er14-20020a056402448e00b005663d1a092fmr1391251edb.16.1709044048533;
+        Tue, 27 Feb 2024 06:27:28 -0800 (PST)
+Received: from krzk-bin.. ([178.197.222.116])
+        by smtp.gmail.com with ESMTPSA id u16-20020aa7d550000000b00564c7454bf3sm813689edr.8.2024.02.27.06.27.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Feb 2024 06:27:28 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/3] arm64: dts: qcom: x1e80100: correct SWR1 pack mode
+Date: Tue, 27 Feb 2024 15:27:23 +0100
+Message-Id: <20240227142725.625561-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAM5zL5rs4JyFznnWDLZP_2jwnX+yc+OwwOijGZGsQK+WtpiWKA@mail.gmail.com>
 
-On Tue, Feb 27, 2024 at 02:11:27PM +0100, Paweł Anikiel wrote:
-> On Mon, Feb 26, 2024 at 6:29 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
-> >
-> > On 26/02/2024 13:43, Paweł Anikiel wrote:
-> > >>>>> +  intel,max-stream-count:
-> > >>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> > >>>>> +    description: Max stream count configuration parameter
-> > >>>>> +
-> > >>>>> +  port:
-> > >>>>> +    $ref: /schemas/graph.yaml#/properties/port
-> > >>>>> +    description: SST main link
-> > >>>>
-> > >>>> I don't understand why you have both port and ports. Shouldn't this be
-> > >>>> under ports?
-> > >>>
-> > >>> I put both so that you can use the shorter port property when the
-> > >>> device only has one port (i.e. no MST support). It would work fine
-> > >>> without it. If you think that's unnecessary, I can remove it (and use
-> > >>> the ports property even if there is only one).
-> > >>
-> > >> No, it is fine, but then you need allOf: which will restrict to only one
-> > >> of them: either port or ports.
-> > >
-> > > There already is an allOf below that says that ports is required for
-> > > MST support and port is required otherwise. Isn't this enough?
-> >
-> > Add both port and ports and see if it is enough.
-> 
-> Ok, I see. I tried and this seems to work:
-> 
-> oneOf:
->   - required:
->       - port
->   - required:
->       - ports
-> 
-> And that would make the if/else with port and ports below not needed.
-> What do you think?
+Correct the SWR1 Soundwire controller port block pack mode to match
+reference code.  Not sure if this has any impact.
 
-Just always use 'ports' rather than complicate things.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Rob
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+index c6b025503f4f..be4d2674151a 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+@@ -3430,7 +3430,7 @@ swr1: soundwire@6ad0000 {
+ 			qcom,ports-hstart =		/bits/ 8 <0xff 0x03 0x00 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff>;
+ 			qcom,ports-hstop =		/bits/ 8 <0xff 0x06 0x0f 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff>;
+ 			qcom,ports-word-length =	/bits/ 8 <0x01 0x07 0x04 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff>;
+-			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0x00 0x01 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff>;
++			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0xff 0x01 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff>;
+ 			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff>;
+ 			qcom,ports-lane-control =	/bits/ 8 <0x01 0x00 0x00 0x00 0x00 0xff 0xff 0xff 0xff 0xff 0xff 0xff>;
+ 
+-- 
+2.34.1
+
 
