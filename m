@@ -1,121 +1,157 @@
-Return-Path: <devicetree+bounces-46418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3610E86987D
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 15:36:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A10B86983B
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 15:30:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 311A8B24B64
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 14:28:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 951C71C2177F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 14:30:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E51AD145B18;
-	Tue, 27 Feb 2024 14:27:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C797146000;
+	Tue, 27 Feb 2024 14:29:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pevypelx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e7zrkFUJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2440B14532C
-	for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 14:27:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71992145FF9;
+	Tue, 27 Feb 2024 14:29:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709044054; cv=none; b=D4NI5ccxwGqP57ZC5ynF8XjCsLNUBm9ab4RXZ5sV1kZcB+hNon6stXxAyAekKLA/Zy2qEhpgi1txhiEhi4qUNXDnNDOy0gP4HpRdZ5+McKTpGAeZVqGVz/htYlJOD/ZH9BsNfgrd5ETUSu78xc9R286bbJUr3Q4l+seIbb6vbc8=
+	t=1709044153; cv=none; b=rVviKp4YL8MBuVPdoTxRlRBkJO+K2DIQEBtZINDI93wCPe47XpNUJy72B5gtBLHFKvvQPUMy5+AZ271yjireVQ+k6NgLxV4mim+gG3ugpupXMGv2dBitPQnejkVZlCpeU0ditARn5QqfEdswc9fiyA16r3a+0HhraEt03taiybg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709044054; c=relaxed/simple;
-	bh=ab6q27R3QlFLFfpy8puelAUfdFCANtrxW82g4p7AAaY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=LfTJmbkbsUU+e56hGNPLHPou+Q8K6CaEsGBZeaKpMnrIEl3ZJUpsXkX85PIneC3wJ+Q48fg6nfe8vwUKQIZWMtm+Y6hreXIMFmEuQHisGa7APWt9zGV70OD2wHTp7oie4zMv5QwUDsuYpJ9E8Dqy0ZFEtISNY8Et+cp75Thn/yU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pevypelx; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-565d1656c12so4568994a12.1
-        for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 06:27:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709044051; x=1709648851; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nsr/AiI0N0LjdjI2GsJqDjqyT+l1PI1B8gFeuYj95io=;
-        b=pevypelxVUn9u8BZ9ayxMCkHazDRu/0KV1ltZNr6QC6TF+DKYXYNbiNCdWz0CV7Ytk
-         pDNKsZbWYo1T9qlU3kLhHy3OhocuuEYZHWYr5V6wZX1rJnNbAZLK7sZXbBtGCpe17mdI
-         n8GAnZeS1dSXTPRiuKfC0Zb1895kjxDIEOT4bWhdHouH4iLjNYSLXVshaeg5El7M8/1f
-         qeodq3OJUYRPgfX7ZDx1isbsZzrY+obvujDE2PGPWfq0kv8GHcop32XibVs6YWxpw595
-         INzVjT0xNoAI2v1TJ1aejGpNQc1jrJlgb/LaBSWRhrXEzEAs9cZ8EIK5kt2AMH/gUeQ1
-         TdqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709044051; x=1709648851;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nsr/AiI0N0LjdjI2GsJqDjqyT+l1PI1B8gFeuYj95io=;
-        b=kCxtUu9c2QeFarXX2J0Cpc68UbZAIy9Hx8d8DistlDYcHUitpy2BUJmZAI+1LCgI6c
-         4JK8Q5Rzs1Vn0z4QxVYGCMuOe1DcobbYI+ehIbN4FIgXQfyz+JD9axgHQnBZFLsFjkUl
-         gT8LXjgZmXdg1xHPt7FTYf1DsHu4g70D2mGdfSssrm57zByu5W+swe/w11v6Q1hG7QkQ
-         dGOeaNXTYvGAXJ4eBgrYwAcssLkqXGI8VIDdlWfqzZYqFk7ZxE2YXMM2X5wh6GxqO8m+
-         xhYGVoLisgz4vss4TVMNwzQenbu6J9C3xDUMnLUc7pZcl+473OtdpsquXsoqyXVkqF+N
-         JbWg==
-X-Forwarded-Encrypted: i=1; AJvYcCU4JUHqO/osWGNDbyD3UVxCQQsHCLUzIei9lqt8UsEYohpb4fEmN5HvM4g23XI6PzKDZRBsU8uHBC2EJQrknHtAk9TZEnfBagKKyw==
-X-Gm-Message-State: AOJu0YwfzJ+pUM+lCLJAYUF2h/C2tA7V1NXUB9FAL7SNwUVpL3lHAgmA
-	W8sBE+4r8OCXBF7xdkYSGtpYe8ksF3xTXC2eQa6xqu+0RyQD7JzIFm0N2XxauaU=
-X-Google-Smtp-Source: AGHT+IFusTJZzlMLAmX1/SlunCdlq9zrBA5BARec3/3Z2lzwXCSXw2wRXASMrtR7vVo7sQdCMlx+Mg==
-X-Received: by 2002:aa7:ccd4:0:b0:565:f077:d872 with SMTP id y20-20020aa7ccd4000000b00565f077d872mr4712627edt.15.1709044051484;
-        Tue, 27 Feb 2024 06:27:31 -0800 (PST)
-Received: from krzk-bin.. ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id u16-20020aa7d550000000b00564c7454bf3sm813689edr.8.2024.02.27.06.27.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Feb 2024 06:27:31 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/3] arm64: defconfig: enable reset-gpio driver as module
-Date: Tue, 27 Feb 2024 15:27:25 +0100
-Message-Id: <20240227142725.625561-3-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240227142725.625561-1-krzysztof.kozlowski@linaro.org>
-References: <20240227142725.625561-1-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1709044153; c=relaxed/simple;
+	bh=BeuKeRmCI8fl+4Mky6qTDE0ESLxkqayEq8heDHUciIc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=R1vlyfTIEhhDx+NrrCDLla3+KcSIeW5VgJ+zSrqzPy59to4T1+OihuRQOtessErjmQSq/yu9e4rcEz+jejfJRH3px4n2eOm35RDHK+qEhB4h4KBSSaNMtOoICN3Rq73ChOsyyAxwoFZx2/ielFfkbAf8VY8tEZbW6Sxmr5cj3bc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e7zrkFUJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEB05C43390;
+	Tue, 27 Feb 2024 14:29:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709044153;
+	bh=BeuKeRmCI8fl+4Mky6qTDE0ESLxkqayEq8heDHUciIc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=e7zrkFUJjNkuT6ejQss+PGilg6MNPyI006Dx1xx8Zoe39qoMrNhJei7Ymxa34PjBb
+	 XXEnchbRee8ptxfWLoZirWVOzrypkJuJN831n7y8aYviicaZZkbm+K+6LgaO8GRodf
+	 axaBwr1hpp/O4zsmtbMqRFCMz0fc/Bskw7Pa1KxBm8uKJbKWG3qPPaTTAVv2M1bfVm
+	 ZEc1BIqE6o2uzkwBPWVH3HjI46Kt9VBq12B5U+pPIDmsPZW7eVb2W4vmdytNSbU8P6
+	 hTbFCfJ7AxhuU5WdnavbGLC8XrL90TYMhcDVVgjnjns8L6ETTmUknj8su/EcURMCGE
+	 ia+RFHnjoLtnA==
+Date: Tue, 27 Feb 2024 08:29:11 -0600
+From: Rob Herring <robh@kernel.org>
+To: =?utf-8?B?UGF3ZcWC?= Anikiel <panikiel@google.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, airlied@gmail.com,
+	akpm@linux-foundation.org, conor+dt@kernel.org, daniel@ffwll.ch,
+	dinguyen@kernel.org, hverkuil-cisco@xs4all.nl,
+	krzysztof.kozlowski+dt@linaro.org,
+	maarten.lankhorst@linux.intel.com, mchehab@kernel.org,
+	mripard@kernel.org, tzimmermann@suse.de, devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org, chromeos-krk-upstreaming@google.com,
+	ribalda@chromium.org
+Subject: Re: [PATCH v2 8/9] media: dt-bindings: Add Intel Displayport RX IP
+Message-ID: <20240227142911.GB3863852-robh@kernel.org>
+References: <20240221160215.484151-1-panikiel@google.com>
+ <20240221160215.484151-9-panikiel@google.com>
+ <13aeb2ff-72f4-49d9-b65e-ddc31569a936@linaro.org>
+ <CAM5zL5q0oKoTMR0jSwYVAChCOJ9iKYPRFiU1vH4qDqhHALKz4w@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAM5zL5q0oKoTMR0jSwYVAChCOJ9iKYPRFiU1vH4qDqhHALKz4w@mail.gmail.com>
 
-Qualcomm X1E80100-CRD board uses shared reset GPIOs for speakers: each
-pair out of four speakers share the GPIO.  Enable the reset-gpio driver
-which handles such case seamlessly.
+On Mon, Feb 26, 2024 at 11:59:42AM +0100, Paweł Anikiel wrote:
+> On Mon, Feb 26, 2024 at 10:13 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> >
+> > On 21/02/2024 17:02, Paweł Anikiel wrote:
+> > > The Intel Displayport RX IP is a part of the DisplayPort Intel FPGA IP
+> > > Core. It implements a DisplayPort 1.4 receiver capable of HBR3 video
+> > > capture and Multi-Stream Transport. The user guide can be found here:
+> > >
+> > > https://www.intel.com/programmable/technical-pdfs/683273.pdf
+> > >
+> > > Signed-off-by: Paweł Anikiel <panikiel@google.com>
+> > > ---
+> > >  .../devicetree/bindings/media/intel,dprx.yaml | 160 ++++++++++++++++++
+> > >  1 file changed, 160 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/media/intel,dprx.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/media/intel,dprx.yaml b/Documentation/devicetree/bindings/media/intel,dprx.yaml
+> > > new file mode 100644
+> > > index 000000000000..31025f2d5dcd
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/media/intel,dprx.yaml
+> > > @@ -0,0 +1,160 @@
+> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/media/intel,dprx.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Intel DisplayPort RX IP
+> > > +
+> > > +maintainers:
+> > > +  - Paweł Anikiel <panikiel@google.com>
+> > > +
+> > > +description: |
+> > > +  The Intel Displayport RX IP is a part of the DisplayPort Intel FPGA IP
+> > > +  Core. It implements a DisplayPort 1.4 receiver capable of HBR3 video
+> > > +  capture and Multi-Stream Transport.
+> > > +
+> > > +  The IP features a large number of configuration parameters, found at:
+> > > +  https://www.intel.com/content/www/us/en/docs/programmable/683273/23-3-20-0-1/sink-parameters.html
+> > > +
+> > > +  The following parameters have to be enabled:
+> > > +    - Support DisplayPort sink
+> > > +    - Enable GPU control
+> > > +  The following parameters' values have to be set in the devicetree:
+> > > +    - RX maximum link rate
+> > > +    - Maximum lane count
+> > > +    - Support MST
+> > > +    - Max stream count (only if Support MST is enabled)
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: intel,dprx-20.0.1
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 1
+> > > +
+> > > +  intel,max-link-rate:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    description: Max link rate configuration parameter
+> >
+> > Please do not duplicate property name in description. It's useless.
+> > Instead explain what is this responsible for.
+> >
+> > Why max-link-rate would differ for the same dprx-20.0.1? And why
+> > standard properties cannot be used?
+> >
+> > Same for all questions below.
+> 
+> These four properties are the IP configuration parameters mentioned in
+> the device description. When generating the IP core you can set these
+> parameters, which could make them differ for the same dprx-20.0.1.
+> They are documented in the user guide, for which I also put a link in
+> the description. Is that enough? Or should I also document these
+> parameters here?
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Use the standard properties: link-frequencies and data-lanes. Those go 
+under the port(s) because they are inheritly per logical link.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 3f44aebafda8..746ea4499e72 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1473,6 +1473,7 @@ CONFIG_PWM_VISCONTI=m
- CONFIG_SL28CPLD_INTC=y
- CONFIG_QCOM_PDC=y
- CONFIG_QCOM_MPM=y
-+CONFIG_RESET_GPIO=m
- CONFIG_RESET_IMX7=y
- CONFIG_RESET_QCOM_AOSS=y
- CONFIG_RESET_QCOM_PDC=m
--- 
-2.34.1
-
+Rob
 
