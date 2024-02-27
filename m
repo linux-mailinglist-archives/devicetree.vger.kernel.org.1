@@ -1,143 +1,162 @@
-Return-Path: <devicetree+bounces-46510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3E66869D8B
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 18:27:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01470869D93
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 18:28:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 680FC2842B7
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 17:27:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 96DA61F20ACA
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 17:28:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E9B61419B3;
-	Tue, 27 Feb 2024 17:22:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AD75149E1E;
+	Tue, 27 Feb 2024 17:23:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ZCTy7ll7"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="XJOxg1si"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D55F13A884;
-	Tue, 27 Feb 2024 17:22:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6DD81487EB;
+	Tue, 27 Feb 2024 17:23:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709054572; cv=none; b=HbA2pVsKoRScba5O0uzcSYs188CmyA/eVnD+Z7/LPyyCvnhuBez94u75iue/afQKxKBf1FBNnZOEh+jgQLJR8ZVs1ybYQI2YbkRmiZHnUatVpDWZP+Rsf8nHkPXNcnOURNX6ePwIUIaDGZSoBdPuMebgoXjtgPkh5LSlUg06f4Y=
+	t=1709054637; cv=none; b=N2m/UOBKMGiswoYqPAmSMNRC60vZX4uTax9um6eGUpLt5O7ndtEtiy9BRW1kaFwJQ0sv/VjrjjxxeeaXz1CmD93k7Fq1NiDxRrV4/578qgZpHWk6RkW/6PRCRMoKv3BHmUdG+NsXRv/XnGDkm/L1h4McSsbiXG8+o0wCygIUF/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709054572; c=relaxed/simple;
-	bh=OZd+QJFTU/LwgL/Zknn60/sBgfvG6r1OawibkMwoaGU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=XbZE8uL7AGM6Vgk6U4wEpVhROd/dBvPlfLT6nV7wGt1tGKaUDhohMKffXNosS8wcErA4elPeJRW7s++SQf/TqRSFjh6Uqth4mBXP9zZaQOe9KbtNJ0dDraNhS1vQUra26JQlZwr+zB4rjyiuo17KN5k1Ef6L/S9q4E+5YM1OvNo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ZCTy7ll7; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41RBX79s001966;
-	Tue, 27 Feb 2024 17:22:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=g5/OtNFrU+q0HQTPqi/YEqGkmh+JvEMc5GWZqEAuWTI=; b=ZC
-	Ty7ll71rN8DODt66sNrLm4IsEKMm6JRxG05CVnpfRXo6OegPCKDvFzQ4GxX0CMA7
-	4HNUafYKe5AudJDKFjmcea1gMW0KGeT6PdWPywzN1AVEplxwVG0CooOWxTp/myOt
-	2mjU2d+DqRe2gTvEHJH23s5DgpDKagmG76roSWmoOHbXcJ+Svi3c2aE5FNC5/HgH
-	aFhE3aMXbor6h74LbXirvAOe7/ZsQPsAPM2netNnHAdy0bdZLdhLkcwKAt6Jqqo6
-	SCMqsHjNKWyeU7bOtGu69TrxoBzgWC/IxrmU5iFyQKYepTgcuOKquSWi7keqMaIQ
-	pneMgdpWLPJqaymHobug==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wh64h22ex-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 27 Feb 2024 17:22:23 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41RHMMUH001769
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 27 Feb 2024 17:22:22 GMT
-Received: from [10.71.110.192] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 27 Feb
- 2024 09:22:21 -0800
-Message-ID: <9336c99d-ca56-4d01-b9b2-18539ef0b725@quicinc.com>
-Date: Tue, 27 Feb 2024 09:22:13 -0800
+	s=arc-20240116; t=1709054637; c=relaxed/simple;
+	bh=JKaLeWJMv2PiLodxVF66I8/DgXnvXTCAEkmR/iAlsMA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=I+kR6AS/Wkud+VRHLtaP7eoxvRSPvz6riBQ/AlZxZZig6k9PAulG9tbGrxS0YN6zMOonOl/B6V/p2xrHG1t3TH70yRKRLGeNA/FZC+Al5Xs0bDgtmO3Rj/fC6HtdFWikwO4vRQo8/ITT3BW950GRHd7JRfKtBywpHafL9Tjcrbo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=XJOxg1si; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id B123D60003;
+	Tue, 27 Feb 2024 17:23:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709054631;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=sl3yY0W8c5HJd45w2Vd535hfLRJOaX7Ck1Cj7Bauwxc=;
+	b=XJOxg1siDRaJgIfy64860PCWq4wFV5cuCinGiDdOwRKiX6ANk4dFMOr6WfOJNhFT5AGfE9
+	VMTvHBOM6oJR+7rYkkhDC6WHj3ZtnfRiN6kJqubVDYic5KDv2689jr8KNswAaPYxbxcRdd
+	asKmhwLumJQj2RdBlxr5Qpo9RcIec+VDhW4WKUbLm0Y81D3FYRO9+jtyH6ugJI1hoo71Ag
+	5zK2I1mZ7fcsPo2eka09VbAOmflI8GtvuX9hR+5MhmbaNS5NnDd2g+LkJq58p33//0SSrW
+	3INvr9x8HcV6KbqqEMfe/JkiZo7d4Jd7FpFiCxvjC09wD5ezQiDNaQzySvVrPw==
+Date: Tue, 27 Feb 2024 18:23:46 +0100
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Adam Ford <aford173@gmail.com>
+Cc: Marco Felsch <m.felsch@pengutronix.de>,
+ linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org, Marek
+ Vasut <marex@denx.de>, Kishon Vijay Abraham I <kishon@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>, Will Deacon
+ <will@kernel.org>, Rob Herring <robh@kernel.org>, imx@lists.linux.dev,
+ Sascha Hauer <s.hauer@pengutronix.de>, aford@beaconembedded.com,
+ linux-kernel@vger.kernel.org, Vinod Koul <vkoul@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Catalin Marinas
+ <catalin.marinas@arm.com>, Shawn Guo <shawnguo@kernel.org>,
+ devicetree@vger.kernel.org, Lucas Stach <l.stach@pengutronix.de>
+Subject: Re: [PATCH V6 5/6] arm64: dts: imx8mp: add HDMI display pipeline
+Message-ID: <20240227182346.6e67cc88@booty>
+In-Reply-To: <CAHCN7xKnEvrfYMZau95e7aknTkdqrQLfgWZTfb6mS3Yt5BT6+Q@mail.gmail.com>
+References: <20240226234532.80114-1-aford173@gmail.com>
+	<20240226234532.80114-6-aford173@gmail.com>
+	<20240227083301.4saxxuv4n6aoqnl6@pengutronix.de>
+	<CAHCN7xKnEvrfYMZau95e7aknTkdqrQLfgWZTfb6mS3Yt5BT6+Q@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/7] arm64: Unconditionally call
- unflatten_device_tree()
-Content-Language: en-US
-To: Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <patches@lists.linux.dev>,
-        <linux-um@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
-        <kunit-dev@googlegroups.com>, <linux-kselftest@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Frank Rowand <frowand.list@gmail.com>,
-        Catalin
- Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Mark
- Rutland <mark.rutland@arm.com>
-References: <20240217010557.2381548-1-sboyd@kernel.org>
- <20240217010557.2381548-6-sboyd@kernel.org>
-From: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
-In-Reply-To: <20240217010557.2381548-6-sboyd@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: U-zGZIHscjx7uttOwzY-n83UKqVrV9ux
-X-Proofpoint-GUID: U-zGZIHscjx7uttOwzY-n83UKqVrV9ux
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-27_03,2024-02-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 clxscore=1011
- bulkscore=0 spamscore=0 lowpriorityscore=0 impostorscore=0 malwarescore=0
- mlxlogscore=999 priorityscore=1501 adultscore=0 phishscore=0 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2402120000
- definitions=main-2402270134
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: luca.ceresoli@bootlin.com
 
-On 2/16/2024 5:05 PM, Stephen Boyd wrote:
+On Tue, 27 Feb 2024 07:51:58 -0600
+Adam Ford <aford173@gmail.com> wrote:
 
-> Call this function unconditionally so that we can populate an empty DTB
-> on platforms that don't boot with a firmware provided or builtin DTB.
-> When ACPI is in use, unflatten_device_tree() ignores the
-> 'initial_boot_params' pointer so the live DT on those systems won't be
-> whatever that's pointing to. Similarly, when kexec copies the DT data
-> the previous kernel to the new one on ACPI systems,
-> of_kexec_alloc_and_setup_fdt() will ignore the live DT (the empty root
-> one) and copy the 'initial_boot_params' data.
->
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Cc: Catalin Marinas <catalin.marinas@arm.com>
-> Cc: Will Deacon <will@kernel.org>
-> Cc: Mark Rutland <mark.rutland@arm.com>
-> Cc: <linux-arm-kernel@lists.infradead.org>
-> Signed-off-by: Stephen Boyd <sboyd@kernel.org>
+> On Tue, Feb 27, 2024 at 2:33=E2=80=AFAM Marco Felsch <m.felsch@pengutroni=
+x.de> wrote:
+> >
+> > Hi Adam,
+> >
+> > thanks a lot for pushing this topic.
+> >
+> > On 24-02-26, Adam Ford wrote: =20
+> > > From: Lucas Stach <l.stach@pengutronix.de>
+> > >
+> > > This adds the DT nodes for all the peripherals that make up the
+> > > HDMI display pipeline.
+> > >
+> > > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> > > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > > Tested-by: Marek Vasut <marex@denx.de>
+> > > Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> > > ---
+> > > V6:  Make LCDIF3 disabled by default
+> > >
+> > > V5:  No change
+> > >
+> > > V3:  Re-ordered the HDMI parts to properly come after irqstree_hdmi
+> > >      inside AIPS4.  Change size of LCDIF3 and PVI to match TRM sizes
+> > >      of 4KB.
+> > >
+> > > V2:  I took this from Lucas' original submission with the following:
+> > >      Removed extra clock from HDMI-TX since it is now part of the
+> > >      power domain
+> > >      Added interrupt-parent to PVI
+> > >      Changed the name of the HDMI tranmitter to fsl,imx8mp-hdmi-tx
+> > >      Added ports to HDMI-tx
+> > > ---
+> > >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 95 +++++++++++++++++++++=
+++
+> > >  1 file changed, 95 insertions(+)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/b=
+oot/dts/freescale/imx8mp.dtsi
+> > > index 18bfa7d9aa7f..637b0265b0f1 100644
+> > > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > > @@ -1940,6 +1940,101 @@ irqsteer_hdmi: interrupt-controller@32fc2000 {
+> > >                               clock-names =3D "ipg";
+> > >                               power-domains =3D <&hdmi_blk_ctrl IMX8M=
+P_HDMIBLK_PD_IRQSTEER>;
+> > >                       };
+> > > +
+> > > +                     hdmi_pvi: display-bridge@32fc4000 {
+> > > +                             compatible =3D "fsl,imx8mp-hdmi-pvi";
+> > > +                             reg =3D <0x32fc4000 0x1000>;
+> > > +                             interrupt-parent =3D <&irqsteer_hdmi>;
+> > > +                             interrupts =3D <12>;
+> > > +                             power-domains =3D <&hdmi_blk_ctrl IMX8M=
+P_HDMIBLK_PD_PVI>; =20
+> >
+> > this node should be 'status =3D "disabled";' as reported by Luca else t=
+his
+> > node will EPROBE_DEFER. With that beeing fixed you can add my: =20
+>=20
+> sorry I missed that one...and I though I was done...sigh.  I hope it's
+> not too late to get this into the next release.
+> >
+> > Tested-by: Marco Felsch <m.felsch@pengutronix.de>
+> > =20
+>=20
+> I'll push a V7 tonight and add your tested-by.  Thanks for testing.
 
-This change looks good to me. I am working on a patch set that will benefit from this.
-Reviewed-by: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+And with that fixed you can add to v7:
 
-Regards,
-Oreoluwa
+ Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
-> ---
->  arch/arm64/kernel/setup.c | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
->
-> diff --git a/arch/arm64/kernel/setup.c b/arch/arm64/kernel/setup.c
-> index 42c690bb2d60..0d210720d47d 100644
-> --- a/arch/arm64/kernel/setup.c
-> +++ b/arch/arm64/kernel/setup.c
-> @@ -351,8 +351,7 @@ void __init __no_sanitize_address setup_arch(char **cmdline_p)
->  	/* Parse the ACPI tables for possible boot-time configuration */
->  	acpi_boot_table_init();
->  
-> -	if (acpi_disabled)
-> -		unflatten_device_tree();
-> +	unflatten_device_tree();
->  
->  	bootmem_init();
+Luca
+
+--=20
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
