@@ -1,174 +1,186 @@
-Return-Path: <devicetree+bounces-46468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AA60869B6B
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 16:59:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93EF0869B75
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 17:00:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17524283803
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 15:59:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 850821C246E1
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 16:00:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5401814690D;
-	Tue, 27 Feb 2024 15:58:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD6B0145B09;
+	Tue, 27 Feb 2024 16:00:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="ubQN3Jar"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E939E1386C0;
-	Tue, 27 Feb 2024 15:58:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A609145B0C;
+	Tue, 27 Feb 2024 16:00:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709049538; cv=none; b=DNeNXXvmYqy98cK/hqwlMpFT5Z5CKF4zPBAq+g+SxWnQT/6C1IYKDaOBXx3mTiT4qyly3rMaHXSwNaWCWBC6PdojBe1C86YliYMMM0a6yUy3Sv2A3dg30kVNM4n23qqSGB7GLbqG9pb6Q65r95A44mSG+3qykvrrErGwgq1Pi8E=
+	t=1709049640; cv=none; b=JbWSHp+jpE+OAxnwC7OZawqJNv5m8H8JXuQAuGMR5o892/vwWxxLY9nK/k16duyNJeci5GLRtSuEMsA3xkRbTfTfSvpPUIk9IJz9EuRihVMtQ89PNUYFIUfHegzz/zkoGML3cGiQqi7wvNL7GafJm5jgQbwdALf50Rn66dLlU0U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709049538; c=relaxed/simple;
-	bh=mBSyYqleRcEXku7CRgtMvn6An1lA5+02Qx+tnSuzV+M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sq8msdQU3icIJWDZ+fBSOgI7owZn6zc6qFZmGG7MkzWwOu3ovIM7rG3F4oxfqUL9F3Y4uVT+4CVr3VEclLJEjjMCUrcfmIxnIFhnoPSYrlsg5o8vqm/EmR8G/Tt2trW3ZkusGoQV0xgAcFs4N1P5oB1yBuLcEvfVEx4156cTpns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-512e1991237so3758435e87.1;
-        Tue, 27 Feb 2024 07:58:55 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709049529; x=1709654329;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IptBoEO/nbU9/WEAcwSC51BarbPlLUIodqi54T15K7k=;
-        b=FkyMr3Q7pzaxQMomViT+wdKth/6hHkbpgRMuWVygnwqnPSM6UeLLp0njS570RNU6W8
-         RtEtSVlCQ7ZBHSp8xOF3mh0lIzEK0LxbdS3ud/JMnjT3/GNB1g12/DYRO8pIUC+HE2pP
-         siqqcMJ4GQYM+od9JPY6b+LUQ5cM16vsfdn/Ie2CF9kYe4lbUCkxprvytdQ1m1/sC72R
-         FeoJWu3iaocGhnxtRK0ans8Ns/1zsoCV6P2Pd32F9PCiZ6cSdDceopxr58ts8aLa3wwX
-         FrgJMgE9PcTn7UgrwXfkqQlRDAmC71zq852xKGdrKyDZ3osHBszQjsmPyjuFKGoFFvS8
-         vFMA==
-X-Forwarded-Encrypted: i=1; AJvYcCWAXc+Lt83Jnw2dcYBIfIffUEftzovIhbz2jMKsSMSoBP/iWwuCfxJqWoRVHnYyEMeUU5s9yShooBg1uLRJrt3QTaxwtNkJ7G6QwvtcyzzNSx/khPIUBz1tjpIiqGcsdVni3S1PIsFd9UF1yQ8Pta5UiwS4R4fSdyZUmtYLW2rCzPCNwzyG8tUWQhC/CvoMBMr39m15z8deOaH/NVXINNzoGGO51/7ucocHl9jAzALcCJMNsfvHFtXOU2WwZKb4i4WkwQeHMVR1ZWnV+S2vd89ptgLDeWmhdv0GrOA7UZ8NdwNJ7zj2+3jmnvt+v7ZKCNvHV+lA+tUnLp2Jc+N2ETr1kBgLJ3WInI8F1AkWHg6QAaXoZ5EQX6Q=
-X-Gm-Message-State: AOJu0YzNTL5fd+1k7HcPNrETw3B652FFUrtMQOmQEV1h1TfBTjMY2ZQj
-	Q+Quvmxo2uqjJhUJyPoaHHVQOxtzKHWd+7DNgZhA0INDSBM+jpO7iUXPnmBTRAXzXg==
-X-Google-Smtp-Source: AGHT+IF2XNDa9MSeMwrVojS828vVxFODf36eJsV45noAKB63psjpU5C9g1ooL8srnPiNpOIKyfDVhw==
-X-Received: by 2002:a05:6512:3b97:b0:513:9b2:5bc5 with SMTP id g23-20020a0565123b9700b0051309b25bc5mr974805lfv.13.1709049529104;
-        Tue, 27 Feb 2024 07:58:49 -0800 (PST)
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com. [209.85.208.171])
-        by smtp.gmail.com with ESMTPSA id r9-20020ac252a9000000b00512fcd4d6fasm818378lfm.11.2024.02.27.07.58.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Feb 2024 07:58:47 -0800 (PST)
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2d269dc3575so40584901fa.1;
-        Tue, 27 Feb 2024 07:58:47 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWszVg/yTz2hdHkVnJa5E4GIf9NdCN2rYsIZBKCEe70wHtKhd0qTgisdU6pGUjZA4FiTeGs1cm4KUZDEah3ehARpJ4gNg2SjveWHdCpB/1dgTYnoeLaAYzlnoOuyS4M4+F49qkj6p1q8DFAat5PB3kmHjhhS29orIP/2rMsBYyTqbepBWaBrNuzmlT56lN86515ovpp3MvLc+T1XtlqA/j5HHtbVKh1eli/Auhon0yH1gLjy1mzqUF4hSP7Q4Xjw0blMYCRkU4wEw9g1k7ISXuv7WgkHXIyBHqfNcTBicR+h3RreTwN4QEKcUoHfbepC3VDyHnkmlL3sGEb4KwfMN2dpFIzYaRov+77oFOiQ1Osug4Ko2aiSHQ=
-X-Received: by 2002:a2e:b541:0:b0:2d2:43a3:1355 with SMTP id
- a1-20020a2eb541000000b002d243a31355mr2766471ljn.15.1709049527187; Tue, 27 Feb
- 2024 07:58:47 -0800 (PST)
+	s=arc-20240116; t=1709049640; c=relaxed/simple;
+	bh=eiMVjMY2eJZ0WHua7P/FmW7E68ijkTKDc8/jZWDrrtQ=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=b9OBsVOqBHAjLy/Pk4OToYs0EKZDFPP62GVqyZ+gaBSFQYDlY6G42jFxmFLcrdqbfWQUifCRX7GtpouCIWfeJgnL7hJqb50I2UA73AATpEy+JUXbu92cfc6uQHX6xs9xlpmRcpgf8ZC+egx+WtxSIgwjKnE1d55ADS5LyMxLD4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=ubQN3Jar; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1704788539.git.ysato@users.sourceforge.jp> <d832abfa099355b90eba461f22116a6e426c1648.1704788539.git.ysato@users.sourceforge.jp>
-In-Reply-To: <d832abfa099355b90eba461f22116a6e426c1648.1704788539.git.ysato@users.sourceforge.jp>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 27 Feb 2024 16:58:32 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXMLPtO49kmxfSVEXLYOVLj+tqisYTwYqSeyJgy3bir8A@mail.gmail.com>
-Message-ID: <CAMuHMdXMLPtO49kmxfSVEXLYOVLj+tqisYTwYqSeyJgy3bir8A@mail.gmail.com>
-Subject: Re: [DO NOT MERGE v6 28/37] dt-bindings: soc: renesas: sh: Add SH7751
- based target
-To: Yoshinori Sato <ysato@users.sourceforge.jp>
-Cc: linux-sh@vger.kernel.org, Damien Le Moal <dlemoal@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Thomas Gleixner <tglx@linutronix.de>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Rich Felker <dalias@libc.org>, 
-	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, Lee Jones <lee@kernel.org>, 
-	Helge Deller <deller@gmx.de>, Heiko Stuebner <heiko@sntech.de>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Chris Morgan <macromorgan@hotmail.com>, 
-	Yang Xiwen <forbidden405@foxmail.com>, Sebastian Reichel <sre@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Randy Dunlap <rdunlap@infradead.org>, 
-	Arnd Bergmann <arnd@arndb.de>, Vlastimil Babka <vbabka@suse.cz>, Hyeonggon Yoo <42.hyeyoo@gmail.com>, 
-	David Rientjes <rientjes@google.com>, Baoquan He <bhe@redhat.com>, 
-	Andrew Morton <akpm@linux-foundation.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Stephen Rothwell <sfr@canb.auug.org.au>, Azeem Shaikh <azeemshaikh38@gmail.com>, 
-	Javier Martinez Canillas <javierm@redhat.com>, Max Filippov <jcmvbkbc@gmail.com>, 
-	Palmer Dabbelt <palmer@rivosinc.com>, Bin Meng <bmeng@tinylab.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Jacky Huang <ychuang3@nuvoton.com>, 
-	Lukas Bulwahn <lukas.bulwahn@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Sam Ravnborg <sam@ravnborg.org>, Sergey Shtylyov <s.shtylyov@omp.ru>, 
-	Michael Karcher <kernel@mkarcher.dialup.fu-berlin.de>, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, linux-ide@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-pci@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-fbdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1709049634;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=S0ScTYlEOMm7KmQCkQkjYPl7d36pL1WA+3JbO05QOqI=;
+	b=ubQN3Jar96vFnIYInc7ImePz/0CkVCFsr74WzTjjQdPtwsi60iNnB6cRKzrHdG1qgUwYp7
+	+HHx/D9waAvr2uAC/VMpdmpH3hEWLK5qN8ycT6DLK11gHLgxDnTad92LiZ6CdNZE5q+sjS
+	Now4X4w1N+hgQmQ1GEZ/85EHSfPI3kXOS6OAGpeg5AgUf5RQp1zPDH8ikupOF3HM1b1TOa
+	m6QfN2IpgGTWpwLotmL/uhQgQLjGex3j6LnA2XzNbqfS+BZ68s8dGYG7ZcF1iyle+QpvDp
+	5OMHpDbdXhv/o+20dnda6iO1DfNY4J2Do0+4v41OaHbBh/yghGugRNUeFYMBwg==
+Date: Tue, 27 Feb 2024 17:00:31 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Christopher Obbard <chris.obbard@collabora.com>
+Cc: Folker Schwesinger <dev@folker-schwesinger.de>, Alban Browaeys
+ <alban.browaeys@gmail.com>, Doug Anderson <dianders@chromium.org>, Jensen
+ Huang <jensenhuang@friendlyarm.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+ <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Vinod Koul <vkoul@kernel.org>, Chris
+ Ruehl <chris.ruehl@gtsys.com.hk>, Brian Norris <briannorris@chromium.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, Linux ARM
+ <linux-arm-kernel@lists.infradead.org>, "open list:ARM/Rockchip SoC..."
+ <linux-rockchip@lists.infradead.org>, LKML <linux-kernel@vger.kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>
+Subject: Re: [PATCH] arm64: dts: rockchip: add enable-strobe-pulldown to emmc
+ phy on rk3399
+In-Reply-To: <eafd8d8c0cbcaca1b190f84ec17a1dcd7aec0306.camel@collabora.com>
+References: <20220822074139.3810-1-jensenhuang@friendlyarm.com>
+ <23552842.6Emhk5qWAg@diego>
+ <CAD=FV=W-ajJDfYcP3P8Jyk_KgsUAbdTtmwiNXqJ=Ab2ojgrUGw@mail.gmail.com>
+ <CAMpZ1qEe7xFr+XaXsS_hWDLnGGA8PfzQiToOjY1N_1ctyQ+KxA@mail.gmail.com>
+ <CAD=FV=U-=2GpQTb0N1p3Qe2TAb=JhyZJw2V8T-qbLs5TYhW7qA@mail.gmail.com>
+ <7873090c4aad382813a65e35157d8684e8842974.camel@gmail.com>
+ <CZFS45VOLIKW.2VS3M3VOMBT8V@folker-schwesinger.de>
+ <eafd8d8c0cbcaca1b190f84ec17a1dcd7aec0306.camel@collabora.com>
+Message-ID: <ca5b7cad01f645c7c559ab26a8db8085@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hi Sato-san,
+Hello,
 
-On Tue, Jan 9, 2024 at 9:24=E2=80=AFAM Yoshinori Sato
-<ysato@users.sourceforge.jp> wrote:
-> Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
+On 2024-02-27 11:38, Christopher Obbard wrote:
+> On Tue, 2024-02-27 at 10:11 +0000, Folker Schwesinger wrote:
+>> On Tue Feb 27, 2024 at 3:05 AM CET, Alban Browaeys wrote:
+>> > Le mercredi 24 août 2022 à 07:57 -0700, Doug Anderson a écrit :
+>> > > On Tue, Aug 23, 2022 at 8:11 PM Jensen Huang
+>> > > <jensenhuang@friendlyarm.com> wrote:
+>> > > > I realized that only some devices may be affected, so I considered
+>> > > > modifying rk3399-nanopi4.dtsi only,
+>> > > > but other boards without external pull-down should still need this
+>> > > > patch.
+>> > >
+>> > > I guess the other alternative would be to change how the dt property
+>> > > works. You could say:
+>> > >
+>> > > 1. If `enable-strobe-pulldown` is set then enable the strobe
+>> > > pulldown.
+>> > >
+>> > > 2. If `enable-strobe-pulldown` is not set then don't touch the pin in
+>> > > the kernel.
+>> > >
+>> > > 3. If someone later needs to explicitly disable the strobe pulldown
+>> > > they could add a new property like `disable-strobe-pulldown`.
+>> > >
+>> > >
+>> > > Obviously there are tradeoffs between that and what you've done and
+>> > > I'm happy to let others make the call of which they'd prefer.
+>> > >
+>> >
+>> > Christopher could you try "ROCK Pi 4" and "ROCK Pi 4+" with
+>> > "enable-strobe-pulldown" instead of disabling HS400 as you did in July
+>> > 2023?
+>> >
+>> 
+>> with the following applied, the EMMC related errors are gone. dmesg 
+>> only
+>> shows "Purging ... bytes" during my tests:
+>> 
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+>> b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+>> index f2279aa6ca9e..ae0fb87e1a8b 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+>> @@ -647,8 +647,10 @@ &saradc {
+>>  &sdhci {
+>>         max-frequency = <150000000>;
+>>         bus-width = <8>;
+>> -       mmc-hs200-1_8v;
+>> +       mmc-hs400-1_8v;
+>> +       mmc-hs400-enhanced-strobe;
+>>         non-removable;
+>> +       rockchip,enable-strobe-pulldown;
+>>         status = "okay";
+>>  };
+>> 
+>> For testing I ran dd three times in a row:
+>> 
+>> dd if=/dev/zero of=./zero.bin bs=1M count=5000
+>> 
+>> I tested this on both a Rock 4SE board and a Rock Pi 4B+ board with 
+>> the
+>> same results.
+> 
+> Just for the record, all Rock 4 board schematics have no external 
+> strobe
+> pulldown resistor on the board, so we should be good to enable this.
+> 
+> I wonder what other boards this could be enabled for ?
+> 
+> It seemed to be the case on some eMMC it would work, others it 
+> wouldn't.
+> 
+> I haven't yet tested the above diff here as yet, but I can do that this 
+> week
+> on multiple boards & eMMC combos.
+> 
+> The diff above is also missing a fixes tag (and also be fixed for 
+> rk3399-rock-
+> 4c-plus.dts).
 
-Thanks for your patch!
+When it comes to HS400 support on the RockPro64 and the Pinebook Pro,
+they're unfortunately miswired in a hopeless way, causing the DATA
+STROBE signal from the eMMC chip (i.e. the eMMC module) not to even
+reach the right ball on the RK3399 SoC.
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/renesas/sh.yaml
-> @@ -0,0 +1,32 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/renesas/sh.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas SuperH Platform
-> +
-> +maintainers:
-> +  - Yoshinori Sato <ysato@users.sourceforge.jp>
-> +
-> +properties:
-> +  $nodename:
-> +    const: '/'
-> +  compatible:
-> +    oneOf:
-> +      - description: RTS7751R2D Plus
-> +        items:
-> +          - enum:
-> +              - renesas,rts7751r2d # Renesas SH4 2D graphics board
-> +          - const: renesas,sh7751r
-> +
-> +      - description: Julian board
-> +        items:
-> +          - enum:
-> +              - iodata,landisk  # LANDISK HDL-U
-> +              - iodata,usl-5p   # USL-5P
-> +          - const: renesas,sh7751r
+Here are a few screenshots from the schematics that illustrate this
+issue (the first one is from the eMMC module schematic, the remaining
+two are from the RockPro64 schematic, which are pretty much exactly
+the same in the Pinebook Pro schematic):
 
-As both use the same fallback compatible value, I would just merge
-them into a single section for SH7751R.
+- https://i.imgur.com/MqD7rcG.png
+- https://i.imgur.com/hrlQBck.png
+- https://i.imgur.com/mtYvc9s.png
 
-> +
-> +additionalProperties: true
-> +
-> +...
+There have been some Pine64 community attempts to have this fixed in
+new RockPro64 and Pinebook Pro hardware revisions, but such attempts
+unfortunately failed. :/
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Thus, we'll unfortunately have to deal with the whole thing on the
+board level, instead of making changes on the SoC level.
 
