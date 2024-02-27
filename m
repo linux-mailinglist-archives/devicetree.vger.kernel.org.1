@@ -1,234 +1,223 @@
-Return-Path: <devicetree+bounces-46294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37BA2868C81
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 10:41:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CE84868CA7
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 10:49:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A2CF9B25D76
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 09:41:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B72F3281667
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 09:49:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE520139579;
-	Tue, 27 Feb 2024 09:40:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EBB31369BD;
+	Tue, 27 Feb 2024 09:49:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ele8Kxd/"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="JI6vBKO1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ED461384A9;
-	Tue, 27 Feb 2024 09:40:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AA1A1369B4
+	for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 09:49:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709026817; cv=none; b=JqQ03QaEtymczjWvWTHfGawlgwFNUYhqCBaXwpe/PxL46yC6WYbGq0VEcNnZ2FlJuHmKLsqQhJctJfiB1VSMnze4mh8QYGa3v/ARBDx2CQhUGEkO/oNZxB0yBlkQWmXy8R3ktNh5D6H/UCqmhW8syNjatMcZKasEz+69YA1NBa4=
+	t=1709027380; cv=none; b=UczwBYqLN/TnE1v6SJQ9cUw4FsJGMSQJebNud0drPAwZFDQoH/hFMr+0hqka8oodS5+JPGUHwBwmpSSbg6InyE0osKLDEvAUcE27f2G+dv++2sWGElmcgyXR10b2E7FjI2/dcObua3MfcLV4u/TdUb4FInyBeeNf3udD60e1mIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709026817; c=relaxed/simple;
-	bh=WKyTm9tvEpOHc9SUmAoFjXDcY9NXpqkPz111tBhUrs0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=LiYrgGId+YFjBL8BV1Ik1rOhzaaosfEtetQNUj1Lbogm5T193omDE3+YfhmkT6ILK++cQNkl12lxwCni6IyG0aDzk5/lfbZTwkp+xMFufDodL0i+MRM99lelKKtf+eCndSqrD3vGnCcg6QDrXWXE7tb2zuiD0kEPwpt6Vm63WA8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ele8Kxd/; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPA id 500A91BF21B;
-	Tue, 27 Feb 2024 09:40:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709026813;
+	s=arc-20240116; t=1709027380; c=relaxed/simple;
+	bh=eM1jOyGccXhfAqWDZxycXnwHdgXUi/cszVVXxT5H+F0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=cO6i1J6QLwE8v/rHVhADVE+qdDTJuwgb+2bZPIgUIT7UsUGj2g5SxffjMKDjKBCbx2KPX3C+FqbSEhnNm7dd+4Q+mMLdoYxNR3jvXtj5svhMmA9tT3U47H6+zCxPsQNC36XkYHYs07wEBeEU4Wmfi4W5MvQai8WOTG/BRf/QHes=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=JI6vBKO1; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1709027377;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=rgaNBK3volcj4FhXmaNO+Po++qQCUID/slrT9VBh2II=;
-	b=ele8Kxd/pDw2DVnj7w1ZSTVzt5dJp44Z34mJh3wAoCCb1F8Uowblgmmil72EwgmkzjIbbq
-	BnV0zkfG0sko4SN3vb3/BWQ/gGE3L68HdzcY2vqoe79/DT+2DyGyv2Yr6dAGkh5Q8VVSuB
-	PvND6VZRvmeiIZUB8ODZVYVHr1W5pqL9g0E5v3GoDa2QO1eIq+yfgPuPqjaMkqKqZpAssh
-	ZwlzFMmrhJzAeju2hJO5tc4OKbrrq1B1wFgI31ZAwpE54t+edRu4BFKmyTSr1n1G22TrXu
-	mg5xISlvcK4u7ko++V1NXOoQ4jc5fEgEYKuEsupodVlBQ1ZvcE57gIFjl7rCYg==
-From: Bastien Curutchet <bastien.curutchet@bootlin.com>
-To: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Pavel Machek <pavel@ucw.cz>,
-	Lee Jones <lee@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Bastien Curutchet <bastien.curutchet@bootlin.com>
-Cc: linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-leds@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	herve.codina@bootlin.com,
-	maxime.chevallier@bootlin.com,
-	christophercordahi@nanometrics.ca
-Subject: [PATCH v2 6/6] net: phy: DP83640: Add fiber mode enabling/disabling from device tree
-Date: Tue, 27 Feb 2024 10:39:45 +0100
-Message-ID: <20240227093945.21525-7-bastien.curutchet@bootlin.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240227093945.21525-1-bastien.curutchet@bootlin.com>
-References: <20240227093945.21525-1-bastien.curutchet@bootlin.com>
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=K9Wy9hH8J7IASYziq/iVvUDp2uf5+n8c1Y4zRrtlQTM=;
+	b=JI6vBKO1KSwlzcL6zulgWR91BM5oPeJQpY6Cvy4lX7sMvavaLY/M0b+RA8URvdg6OvkGZX
+	FW5fgsWX/tjF56lyMPMego/KBFW351JSS76H2dWc/L09mtqbMWRKsYMnSRy9KiT6q46kNF
+	aRTaymK79NApwOiQs1c+L52vEtzT6bw=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-196-9vECSyCINdis688SJaqAHA-1; Tue, 27 Feb 2024 04:49:36 -0500
+X-MC-Unique: 9vECSyCINdis688SJaqAHA-1
+Received: by mail-wm1-f72.google.com with SMTP id 5b1f17b1804b1-40e435a606aso21418205e9.3
+        for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 01:49:35 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709027375; x=1709632175;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt:from
+         :references:to:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=K9Wy9hH8J7IASYziq/iVvUDp2uf5+n8c1Y4zRrtlQTM=;
+        b=SSqb4wR/eOxv3Snzu44zTIUjmaPPUqtFNh3mkM92UEVpibCt8tsQCtOOYBFLHASINM
+         s7OfEiSrn/grbOiQrfRjBVod55raGKGFFqwasf1m2/+bqSaXbXpSG+iqaZnYupWfVFFJ
+         557PZC6Jg8o2blyMMQA0yjCb/gpbVaF9eHHXzJOR+EMeOzzhdwgvkHdloSUZr/m95uGr
+         0O4txTdtSxGIaQ/bd7iHl6khOywmb4UImgLTpshJeFKvF7bnn6yj1XA24d1OTXFMTZ1X
+         AEz4evERipyde5xeM2Am80Zp+Vju2MXRYkRC3Zqy4Tks13Sy7T/6A6HgUPq9v2k1JlrR
+         4OIQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXn8TtaUAWOyOU2hhIHZF1NWrTI0zvexEVFHj1cuW1HvWWJtld/z8tYWRONzs/3Pb067PdThQ2FhIpWRhoCh8wLYAV0gSPXdJiXHA==
+X-Gm-Message-State: AOJu0YySrgAzmkLmvHbuEkCa6LQcHWkl9PQFdkyuK8SoMBdBHApWA5UX
+	aSc8ek+lign2kjn/7Gc0z/C/y651BgbRE3mekLB05vlr40jjgPc3H0eHRHoHswX36p41JEurRLY
+	9lw+7x9Z/uIwHmEuu9SRtlDPHBc3CWzQn0meheNiqvBxGiArRBpqNVYjcbo8=
+X-Received: by 2002:adf:f98a:0:b0:33d:adce:568a with SMTP id f10-20020adff98a000000b0033dadce568amr6015928wrr.33.1709027374987;
+        Tue, 27 Feb 2024 01:49:34 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFrZ3o90tbfsSAm8szNCeQ4oLshVp32LO99oJt22pj9/1XoHnWNB8pQBLT0AS3AbTSWgBlSag==
+X-Received: by 2002:adf:f98a:0:b0:33d:adce:568a with SMTP id f10-20020adff98a000000b0033dadce568amr6015910wrr.33.1709027374560;
+        Tue, 27 Feb 2024 01:49:34 -0800 (PST)
+Received: from ?IPV6:2003:cb:c707:7600:5c18:5a7d:c5b7:e7a9? (p200300cbc70776005c185a7dc5b7e7a9.dip0.t-ipconnect.de. [2003:cb:c707:7600:5c18:5a7d:c5b7:e7a9])
+        by smtp.gmail.com with ESMTPSA id ck12-20020a5d5e8c000000b0033d9f0dcb35sm11103216wrb.87.2024.02.27.01.49.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Feb 2024 01:49:34 -0800 (PST)
+Message-ID: <49d14780-56f4-478d-9f5f-0857e788c667@redhat.com>
+Date: Tue, 27 Feb 2024 10:49:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: bastien.curutchet@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v17 19/35] arch/mm: Export direct {un,}map functions
+Content-Language: en-US
+To: Christoph Hellwig <hch@infradead.org>, Will Deacon <will@kernel.org>,
+ Quentin Perret <qperret@google.com>,
+ Chris Goldsworthy <quic_cgoldswo@quicinc.com>,
+ Android KVM <android-kvm@google.com>, Patrick Daly <quic_pdaly@quicinc.com>,
+ Alex Elder <elder@linaro.org>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Murali Nalajal <quic_mnalajal@quicinc.com>,
+ Trilok Soni <quic_tsoni@quicinc.com>,
+ Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+ Carl van Schaik <quic_cvanscha@quicinc.com>,
+ Philip Derrin <quic_pderrin@quicinc.com>,
+ Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+ Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
+ <catalin.marinas@arm.com>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Fuad Tabba
+ <tabba@google.com>, Sean Christopherson <seanjc@google.com>,
+ Andrew Morton <akpm@linux-foundation.org>, linux-arm-msm@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mm@kvack.org
+References: <20240222-gunyah-v17-0-1e9da6763d38@quicinc.com>
+ <20240222-gunyah-v17-19-1e9da6763d38@quicinc.com>
+ <ZdhEtH7xzbzdhS2j@infradead.org>
+ <20240223071006483-0800.eberman@hu-eberman-lv.qualcomm.com>
+ <Zdxwo0abvklfam-Z@infradead.org>
+ <2f4c44ad-b309-4baa-ac21-2ae19efd31fb@redhat.com>
+ <20240226092020370-0800.eberman@hu-eberman-lv.qualcomm.com>
+From: David Hildenbrand <david@redhat.com>
+Autocrypt: addr=david@redhat.com; keydata=
+ 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
+ WNyWQQ==
+Organization: Red Hat
+In-Reply-To: <20240226092020370-0800.eberman@hu-eberman-lv.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-The PHY is able to use copper or fiber. The fiber mode can be enabled or
-disabled by hardware strap. If hardware strap is incorrect, PHY can't
-establish link.
+On 26.02.24 18:27, Elliot Berman wrote:
+> On Mon, Feb 26, 2024 at 12:53:48PM +0100, David Hildenbrand wrote:
+>> On 26.02.24 12:06, Christoph Hellwig wrote:
+>>> The point is that we can't we just allow modules to unmap data from
+>>> the kernel mapping, no matter how noble your intentions are.
+>>
+>> I absolutely agree.
+>>
+> 
+> Hi David and Chirstoph,
+> 
+> Are your preferences that we should make Gunyah builtin only or should add
+> fixing up S2 PTW errors (or something else)?
 
-Add a DT attribute 'ti,fiber-mode' that can be use to override the
-hardware strap configuration. If the property is not present, hardware
-strap configuration is left as is.
+Having that built into the kernel certainly does sound better than 
+exposing that functionality to arbitrary OOT modules. But still, this 
+feels like it is using a "too-low-level" interface.
 
-Signed-off-by: Bastien Curutchet <bastien.curutchet@bootlin.com>
----
- drivers/net/phy/dp83640.c     | 55 +++++++++++++++++++++++++++++++++++
- drivers/net/phy/dp83640_reg.h |  5 ++++
- 2 files changed, 60 insertions(+)
+> 
+> Also, do you extend that preference to modifying S2 mappings? This would
+> require any hypervisor driver that supports confidential compute
+> usecases to only ever be builtin.
+> 
+> Is your concern about unmapping data from kernel mapping, then module
+> being unloaded, and then having no way to recover the mapping? Would a
+> permanent module be better? The primary reason we were wanting to have
+> it as module was to avoid having driver in memory if you're not a Gunyah
+> guest.
 
-diff --git a/drivers/net/phy/dp83640.c b/drivers/net/phy/dp83640.c
-index b371dea23937..886f2bc3710d 100644
---- a/drivers/net/phy/dp83640.c
-+++ b/drivers/net/phy/dp83640.c
-@@ -16,6 +16,7 @@
- #include <linux/net_tstamp.h>
- #include <linux/netdevice.h>
- #include <linux/if_vlan.h>
-+#include <linux/of.h>
- #include <linux/phy.h>
- #include <linux/ptp_classify.h>
- #include <linux/ptp_clock_kernel.h>
-@@ -141,6 +142,11 @@ struct dp83640_private {
- 	/* queues of incoming and outgoing packets */
- 	struct sk_buff_head rx_queue;
- 	struct sk_buff_head tx_queue;
-+
-+#define FIBER_MODE_DEFAULT	0
-+#define FIBER_MODE_ENABLE	1
-+#define FIBER_MODE_DISABLE	2
-+	int fiber;
- };
- 
- struct dp83640_clock {
-@@ -1141,6 +1147,17 @@ static int dp83640_config_init(struct phy_device *phydev)
- 	val = phy_read(phydev, PCFCR) & ~PCF_EN;
- 	phy_write(phydev, PCFCR, val);
- 
-+	if (dp83640->fiber != FIBER_MODE_DEFAULT) {
-+		val = phy_read(phydev, PCSR) & ~FX_EN;
-+		if (dp83640->fiber == FIBER_MODE_ENABLE)
-+			val |= FX_EN;
-+		phy_write(phydev, PCSR, val);
-+
-+		/* Write SOFT_RESET bit to ensure configuration */
-+		val = phy_read(phydev, PHYCR2) | SOFT_RESET;
-+		phy_write(phydev, PHYCR2, val);
-+	}
-+
- 	return 0;
- }
- 
-@@ -1440,6 +1457,39 @@ static int dp83640_ts_info(struct mii_timestamper *mii_ts,
- 	return 0;
- }
- 
-+#ifdef CONFIG_OF_MDIO
-+static int dp83640_of_init(struct phy_device *phydev)
-+{
-+	struct dp83640_private *dp83640 = phydev->priv;
-+	struct device *dev = &phydev->mdio.dev;
-+	struct device_node *of_node = dev->of_node;
-+	const char *fiber;
-+	int ret;
-+
-+	if (of_property_present(of_node, "ti,fiber-mode")) {
-+		ret = of_property_read_string(of_node, "ti,fiber-mode", &fiber);
-+		if (ret)
-+			return ret;
-+
-+		dp83640->fiber = FIBER_MODE_DEFAULT;
-+		if (!strncmp(fiber, "enable", 6))
-+			dp83640->fiber = FIBER_MODE_ENABLE;
-+		else if (!strncmp(fiber, "disable", 7))
-+			dp83640->fiber = FIBER_MODE_DISABLE;
-+		else
-+			return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+#else
-+static int dp83640_of_init(struct phy_device *phydev)
-+{
-+	dp83640->fiber = FIBER_MODE_DEFAULT;
-+	return 0;
-+}
-+#endif /* CONFIG_OF_MDIO */
-+
- static int dp83640_probe(struct phy_device *phydev)
- {
- 	struct dp83640_clock *clock;
-@@ -1472,6 +1522,10 @@ static int dp83640_probe(struct phy_device *phydev)
- 	phydev->mii_ts = &dp83640->mii_ts;
- 	phydev->priv = dp83640;
- 
-+	err = dp83640_of_init(phydev);
-+	if (err < 0)
-+		goto of_failed;
-+
- 	spin_lock_init(&dp83640->rx_lock);
- 	skb_queue_head_init(&dp83640->rx_queue);
- 	skb_queue_head_init(&dp83640->tx_queue);
-@@ -1494,6 +1548,7 @@ static int dp83640_probe(struct phy_device *phydev)
- 
- no_register:
- 	clock->chosen = NULL;
-+of_failed:
- 	kfree(dp83640);
- no_memory:
- 	dp83640_clock_put(clock);
-diff --git a/drivers/net/phy/dp83640_reg.h b/drivers/net/phy/dp83640_reg.h
-index b5adb8958c08..cbecf04da5a5 100644
---- a/drivers/net/phy/dp83640_reg.h
-+++ b/drivers/net/phy/dp83640_reg.h
-@@ -6,6 +6,7 @@
- #define HAVE_DP83640_REGISTERS
- 
- /* #define PAGE0                  0x0000 */
-+#define PCSR                      0x0016 /* PCS Configuration and Status Register */
- #define LEDCR                     0x0018 /* PHY Control Register */
- #define PHYCR                     0x0019 /* PHY Control Register */
- #define PHYCR2                    0x001c /* PHY Control Register 2 */
-@@ -54,6 +55,9 @@
- #define PTP_GPIOMON               0x001e /* PTP GPIO Monitor Register */
- #define PTP_RXHASH                0x001f /* PTP Receive Hash Register */
- 
-+/* Bit definitions for the PCSR register */
-+#define FX_EN		          BIT(6)  /* Enable FX Fiber Mode */
-+
- /* Bit definitions for the LEDCR register */
- #define DP83640_LED_DIS(x)        BIT((x) + 9) /* Disable LED */
- #define DP83640_LED_DRV(x)        BIT((x) + 3) /* Force LED val to output */
-@@ -64,6 +68,7 @@
- #define LED_CNFG_1	          BIT(6)  /* LED configuration, bit 1 */
- 
- /* Bit definitions for the PHYCR2 register */
-+#define SOFT_RESET		  BIT(9)  /* Soft Reset */
- #define BC_WRITE                  (1<<11) /* Broadcast Write Enable */
- 
- /* Bit definitions for the EDCR register */
+What I didn't grasp from this patch description: is the area where a 
+driver would unmap/remap that memory somehow known ahead of time and 
+limited?
+
+How would the driver obtain that memory it would try to unmap/remap the 
+direct map of? Simply allocate some pages and then unmap the direct map?
+
+For example, we do have mm/secretmem.c, where we unmap the directmap on 
+allocation and remap when freeing a page. A nice abstraction on 
+alloc/free, so one cannot really do a lot of harm.
+
+Further, we enlightened the remainder of the system about secretmem, 
+such that we can detect that the directmap is no longer there. As one 
+example, see the secretmem_active() check in kernel/power/hibernate.c.
+
+A similar abstraction would make sense (I remember a discussion about 
+having secretmem functionality in guest_memfd, would that help?), but 
+the question is "which" memory you want to unmap the direct map of, and 
+how the driver became "owner" of that memory such that it would really 
+be allowed to mess with the directmap.
+
 -- 
-2.43.0
+Cheers,
+
+David / dhildenb
 
 
