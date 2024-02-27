@@ -1,332 +1,143 @@
-Return-Path: <devicetree+bounces-46330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46328-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94FDF868E64
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 12:09:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBEF9868E5C
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 12:08:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 649F0B22415
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 11:09:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76E271F2350B
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 11:08:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5C89139598;
-	Tue, 27 Feb 2024 11:09:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79EB71386D3;
+	Tue, 27 Feb 2024 11:08:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="aSOu/gAU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2116.outbound.protection.partner.outlook.cn [139.219.17.116])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DE02139566;
-	Tue, 27 Feb 2024 11:09:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.116
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709032180; cv=fail; b=muvGYDUrYpZDJann9tJ0izjdaa3x5W8wPi6bILOsWAYDz1EVOyJy6qcPLFPXl8rcBzQs1rHaQpb+ufTiIQPltSErIHTXtM4VLUMc3zn3O42yhtGgyMoXrbSReEUDJegZ/RqHsrnjMwk+O6CGSpNoPSVszDcW4o5kKZOcD4s3FqY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709032180; c=relaxed/simple;
-	bh=+XR95O94FvOWrP++2cvScYdRO3BZXTL/7OgAr1OBYVI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=pmqSxChxuysXD0socX+tPoBsFVFSCHO8eDWGH3kHLs04xcNAmLyQGTmLmkgijLhBQNg3ysvt9BhNf1bintBCmwH7DLOTNEPRmQ0QyzmF2Itl3DL7jhAzyl1JdZaMMvqBLCUDjGGdrNuJ2907oOsd7L7S5TyOrZCMfsXOyhnxFpU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TT4GKAgjdhXv9pb/Pu0cbvSs59aczwh+PcdYN8y+pQBKCW+lVN8SzG6XZRGG9cs6RSLRwVGUtmS8CTYjNDjDq+F+e31rzTlZviCXKOxGOSP04vY0iud+vVQZnWD2x0Jwe/i5cw+H5c1/CJGAf8hd7nZVr1DD2+Vk2Wys7XpM4qCxcJlrtuooq0GtMuUxfcHBZ2teN3MwOhqF+UlthivtIFZoW9TWGIA3fSjJ4FbEb0S7qSkpTj20uXMMXT/UeAMbqRH7gzeRnWYfxnhMilQlEXSWr5uaHhblTVhtYwlCJUzph3M95FpxbcdgAgwe/lL2d7wUYqTTWEr658cPKuFOdA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wIppChXKdfBPnlczcIvPyd3KB2Im4cgmJK8iWQ76edM=;
- b=cGnbCe87wXpLHrAqXjmml5uLEd5uuWAt8L3Trbnng9AQjCkW3rZjP/P3J4Hl7GtXn+AVlFZGV5shsd9GEV8oYMPZs28e2RJaSoDlmPHBq14e9dErNxOBIwdw6QRthcJo3qmdipoUiCwZKnXe2rznYM2aLr2St6bEclSYTa+IqdqhWDV75fMNLEK6R4kKHJG2gbfCMIG0qJLh53Ljlr+Few9OKmNNRbCNopG1bKg8ky8049eWTeC2wYKSa8KRrHy8jeTsHHTbME+FH1RRwsoyOHW2DYXvPiDx9S4ViLQuJu5mY3JPhgj5XB3XzwH5oRUwe8F/xNtFNXh/qrvjYk9lWA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:25::15) by SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:25::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.47; Tue, 27 Feb
- 2024 10:35:53 +0000
-Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
- ([fe80::5a5a:fa59:15fd:63dc]) by
- SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn ([fe80::5a5a:fa59:15fd:63dc%3])
- with mapi id 15.20.7270.047; Tue, 27 Feb 2024 10:35:53 +0000
-From: Minda Chen <minda.chen@starfivetech.com>
-To: Conor Dooley <conor@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-pci@vger.kernel.org,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Mason Huo <mason.huo@starfivetech.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Kevin Xie <kevin.xie@starfivetech.com>,
-	Minda Chen <minda.chen@starfivetech.com>
-Subject: [PATCH v15,RESEND 23/23] riscv: dts: starfive: add PCIe dts configuration for JH7110
-Date: Tue, 27 Feb 2024 18:35:22 +0800
-Message-Id: <20240227103522.80915-24-minda.chen@starfivetech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20240227103522.80915-1-minda.chen@starfivetech.com>
-References: <20240227103522.80915-1-minda.chen@starfivetech.com>
-Content-Type: text/plain
-X-ClientProxiedBy: NT0PR01CA0003.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c510::15) To SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:25::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0BCC1386B9;
+	Tue, 27 Feb 2024 11:08:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709032083; cv=none; b=s8Pb6eQOssUad9OqwZBYl0h+9HPY+1VYvVIHrzRCydBBZo1yKOZZ+eS+8oqd60xMnxZMcC30hqx0hWu68gVez4rIsLwEhksQ68bDanRBaXlNnwyqb62/4rs/gfM8fL+h127kJyTIE5lBDA6bo0T+J9AcgeFAvboaS7A7ND69/14=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709032083; c=relaxed/simple;
+	bh=91zHcn3MJxhMJjDwzdIUiuB3M2CKCuchs9SG2CkeaW8=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mzso4UM252QBjrPuoK9rzd4gSW+iJBYNhTwnyrnUPdwrOOEAzzKknHmmyTaBFWdcl20xOAMzXoHY1banCgeW8E/UpdlgsjRzuUPHvHyfOO53sFOqMazPigO6H0NZOzw3zT+W4cumKAtMu2jF3poXdNQoun4xZU0CPoFz7L5+4t0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=aSOu/gAU; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1709032081; x=1740568081;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=91zHcn3MJxhMJjDwzdIUiuB3M2CKCuchs9SG2CkeaW8=;
+  b=aSOu/gAU5Ra83maQjMsOhJ7PqR3PgFutLGdKf2J7bUrWCh0j4PkDOLaH
+   /wUz2la/dKPxCj520aXmrIZVX6mfY1NQP5VgmtUrqZ/RrqnOjNzSzMFBK
+   V07Z1xH3JEwFQs8plnVTI+jjmNgzo755jb3krej79SRPzv/qyWF53tfwb
+   xz9dLPumiR/iz0haPx0RTVFVvA5+US4SrguKok/oRYu/5Npl0oLgzfwyb
+   sDfO7q4LvGr6mT+r1CU8wCW5XOMb8hsW5keFluGEUeN7GspUCz9bTwZY3
+   Gu42bX1OXG9ffkEsdRDiHhsUfAJy24BHQCtfBmU2ZASgRYsFtEqKyRtvH
+   g==;
+X-CSE-ConnectionGUID: ISOzzPUQSGWIbJkVIBtfBA==
+X-CSE-MsgGUID: eG+1hg29Rg+lI88KmeakeQ==
+X-IronPort-AV: E=Sophos;i="6.06,187,1705388400"; 
+   d="asc'?scan'208";a="184154380"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 27 Feb 2024 04:08:00 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 27 Feb 2024 04:08:00 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Tue, 27 Feb 2024 04:07:58 -0700
+Date: Tue, 27 Feb 2024 11:07:15 +0000
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Yangyu Chen <cyy@cyyself.name>
+CC: <linux-riscv@lists.infradead.org>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+	<aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
+	<linux-kernel@vger.kernel.org>, Masahiro Yamada <masahiroy@kernel.org>,
+	Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh+dt@kernel.org>,
+	<devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2] riscv: dts: Move BUILTIN_DTB_SOURCE to common Kconfig
+Message-ID: <20240227-lifting-durable-484a2f1ddedc@wendy>
+References: <tencent_61DFA8E0B13696A3256E538C4BC856633406@qq.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SHXPR01MB0863:EE_
-X-MS-Office365-Filtering-Correlation-Id: 259c9233-0771-4d6c-6e18-08dc377fdf83
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	BKKmxHvXUGKzE0UUn9rsuZzWzi4np8dIAVuhgthQ9U8ytiUbx5WO2uRghE6zLQ/25IKnaIYWoJ/5jzqvQ293tZK/+qTq8NVVODCap2BMZuWKE3afS+Oa9UHx3ey7nrZ6rjRj2a9uMr1auVDWMXe0p6StrHcBDWj+Y+x+hSJsWGQ7rYSUM29YgbrtWp9XliuZVdSBgz5zw7v7ya6bufTpd4RxlNfPTBVj86rLSOalZXI5njGIIuC6yKIAugoeaS0ZMMlO/7o9LgNLalH5N3jveBhlFFqFfz72dXAgzsX4ujeF2ednhR9oT37M98cqOsDFYs39oobCdvpcqbE9JLG4HCwkt2E/9XCx1LgWpXf4F4vnpKoMrVD2lFIuv0N7q9PJZQpckBnbvFWuKib6bp7/va5yOF7Jc5npAEmKmwezJUuMMV57enSqslX+299nzOmEQc/LmPzwhCqFooxh5yFFBWfdMyZhrzykC2NPtzYoXzoY7ZLb/wM623kbP6ashrIZzUAwZXL7wz+vzwqGAbMtzftysr2offKBVYRpfOqrCUsn5Q5nK6kFdRKED8Hbt5swpCJXqP6wAJOsedSUwh85t8E9MKiSr89sIRlIGYaJNzd7MyCBDAvQzCAmyDXVNRSw
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(38350700005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?AGoncGn1Q1pwQFiXydEbCqjGkEexop5pjvBeeSWqcucaB9mwxebmQ/JbfRz/?=
- =?us-ascii?Q?KgOGa+Y2nXdzh0dKAXsqV6cJjG1suivxwyLxJpEfim5NwgbUJo+FlkjYNZW4?=
- =?us-ascii?Q?n1HBHPZFTzNZZTMB1b/GM5egJgbX3v00L3D34D/OOlFonR683ZMLXeTk9TFf?=
- =?us-ascii?Q?4mT6XEA7+TIB1voxFyTtTRXKGGGGDLgACdHfMqupRGy5abCAeHiF2hgXvmde?=
- =?us-ascii?Q?Glwm8OV4gi3Q4fj62ohI9SyYbJYAL397FCF/TtUqH1N+41wWguytQLA5/wuh?=
- =?us-ascii?Q?U38zkv+WQ2ypKkMhhbhaXA26mdWLNgGsudMaTmPuEvivnEskOkDfeB2gkrA7?=
- =?us-ascii?Q?LrdZyYyAZLs0qPevRdizwAFhHVMMu93HonbZxc0RyDp/E01WSU7iXh9Qp/Dg?=
- =?us-ascii?Q?0E9iebwvQHUpGxF2n0RrGZrOc4zXbZ3xeUTdDa6AsuaCtjdJlz6PfZDEd/sh?=
- =?us-ascii?Q?9iwAVH6LKeKOTPl8JrOKFn+jRVtqCj1yZNK5A273PMwrHvYydQAN+gi/d1UO?=
- =?us-ascii?Q?hyjzB/3h0VeHYVfpj/MM3mR9oerP2rfpL0NSP9OscvCZlbvb/az2qO014dzu?=
- =?us-ascii?Q?MdCJW4+uNngxE8ZfTxa2h9NpFwfsO6QU9mJsBSQ1XvloUmNxGtA6CfjwqVHQ?=
- =?us-ascii?Q?8RJX1HvJGvvPz3hP9vBUhRWb+rkt607zHI7wMQRdEmTrR9Os6a0GFiFrH3io?=
- =?us-ascii?Q?LCI+vztWPrTsyDUo6X4B4D1YsT6UbwoIl4Z36JwTIqRCmSeLppfHd7bry42h?=
- =?us-ascii?Q?Uv+pUD+QGgdhfekc8Sjz0Dm/Zmd0hQ2SbfzMTSjymaGjanRMDnBYYb8DkbSj?=
- =?us-ascii?Q?12MM1iI+1jYLXje3s92DcRUVVxS/u01HL9A65HUXnoIeMMT5E+yED3wXClip?=
- =?us-ascii?Q?gDw/UFiKGI/Y1rzOPhrz7temFI2T8x7SnNMhzWwFfe0KGR9mHhi3qJwc4rAi?=
- =?us-ascii?Q?smMgvnrD9Q03I7oLfEYLjPcBDvrgQmfQZ6XSx7R2yuaE8VMX/wzBF1TXmSkS?=
- =?us-ascii?Q?/YumJ/mUhdoe7LC/KOQuyt/OofOShnuXLWIkjnwAlXu9jythp2mSsO3f8qMh?=
- =?us-ascii?Q?Ugzw1C17axkfMy3PkTbypfgkxHy5oRZKl0fmN8MAhS6fC7x2APFZb/e2rMch?=
- =?us-ascii?Q?S5XB7XjO5i8fJ1Yx8gGaY+r5uCVjVMoeIZob7n5SzotYnLTTidK0IuCAVskf?=
- =?us-ascii?Q?bMv5uvRodbv9Qch3vtF2GhjJNxgqq74Um/xQuaJ4K1IleLW8YYde2uphOb9G?=
- =?us-ascii?Q?0JziWl4S88Y7EUY0fUFjSDNAvkeWH9LyIoMPik17nERl+txk+JZy4ieC0IrL?=
- =?us-ascii?Q?wG9EqbVFpMXF6aG1863p8IqN1HnzMSgUrDXTvVCDdfClrkhnJ3dsWaP03A7S?=
- =?us-ascii?Q?vI2ZpX2tu31MisVjiy+vHkiKjHD1iOy0Okp+o0UkRo0cCm5VAT7/tynBh772?=
- =?us-ascii?Q?kkr+N7nnagv4l3tPMSkfuW00Y2ZN3B4Cl7uudeuKoCYOMFJG/vv5ZZJEiP+q?=
- =?us-ascii?Q?WB9Wup/AhnF29lNxiFLsJQpeDSj3g2Mv7dBtPDMuADuRoYTQITjDTk6qphDr?=
- =?us-ascii?Q?pKlIhpW9fAb5J869AXU7dlC+0KhZZP8pNhYqAKi2gFAj2Qm0aZZErFprgXO1?=
- =?us-ascii?Q?Jg=3D=3D?=
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 259c9233-0771-4d6c-6e18-08dc377fdf83
-X-MS-Exchange-CrossTenant-AuthSource: SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2024 10:35:53.1447
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UEVTDFhv9XXOev/SwjPpgPd+wCsa+bDSmGLNTI47xT1ijO6Jhsgl9dcM1xpH87phkO6aJ0J6hbScjw4GATCfwvtkMPK28rjngbeJILE3AdQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SHXPR01MB0863
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="k8Kp3dpRM3Rjn4tM"
+Content-Disposition: inline
+In-Reply-To: <tencent_61DFA8E0B13696A3256E538C4BC856633406@qq.com>
 
-Add PCIe dts configuraion for JH7110 SoC platform.
+--k8Kp3dpRM3Rjn4tM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
----
- .../jh7110-starfive-visionfive-2.dtsi         | 64 ++++++++++++++
- arch/riscv/boot/dts/starfive/jh7110.dtsi      | 86 +++++++++++++++++++
- 2 files changed, 150 insertions(+)
+On Sat, Feb 24, 2024 at 04:05:07AM +0800, Yangyu Chen wrote:
+> The BUILTIN_DTB_SOURCE is only configured for K210 before. Since
+> SOC_BUILTIN_DTB_DECLARE is removed at commit d5805af9fe9f ("riscv: Fix
+> builtin DTB handling") from patch [1], the kernel cannot choose one of the
+> dtbs from then on and always take the first one dtb to use. Then, another
+> commit 0ddd7eaffa64 ("riscv: Fix BUILTIN_DTB for sifive and microchip soc=
+")
+> from patch [2] supports BUILTIN_DTB_SOURCE for other SoCs. However, this
+> feature will only work if the Kconfig we use links the dtb we expected in
+> the first place as mentioned in the thread [3]. Thus, a config
+> BUILTIN_DTB_SOURCE is needed for all SoCs to choose one dtb to use.
+>=20
+> For some considerations, this patch also removes default y if XIP_KERNEL
+> for BUILTIN_DTB, as this requires setting a proper dtb to use on the
+> BUILTIN_DTB_SOURCE, else the kernel with XIP but does not set
+> BUILTIN_DTB_SOURCE or unselect BUILTIN_DTB will not boot.
+>=20
+> Also, this patch removes the default dtb string for k210 from Kconfig to
+> nommu_k210_defconfig and nommu_k210_sdcard_defconfig to avoid complex
+> Kconfig settings for other SoCs in the future.
+>=20
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index b89e9791efa7..ff55a66d7603 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -281,6 +281,22 @@
- 	status = "okay";
- };
- 
-+&pcie0 {
-+	perst-gpios = <&sysgpio 26 GPIO_ACTIVE_LOW>;
-+	phys = <&pciephy0>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie0_pins>;
-+	status = "okay";
-+};
-+
-+&pcie1 {
-+	perst-gpios = <&sysgpio 28 GPIO_ACTIVE_LOW>;
-+	phys = <&pciephy1>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie1_pins>;
-+	status = "okay";
-+};
-+
- &pwmdac {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pwmdac_pins>;
-@@ -497,6 +513,54 @@
- 		};
- 	};
- 
-+	pcie0_pins: pcie0-0 {
-+		clkreq-pins {
-+			pinmux = <GPIOMUX(27, GPOUT_LOW,
-+					      GPOEN_DISABLE,
-+					      GPI_NONE)>;
-+			bias-pull-down;
-+			drive-strength = <2>;
-+			input-enable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+
-+		wake-pins {
-+			pinmux = <GPIOMUX(32, GPOUT_LOW,
-+					      GPOEN_DISABLE,
-+					      GPI_NONE)>;
-+			bias-pull-up;
-+			drive-strength = <2>;
-+			input-enable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+	};
-+
-+	pcie1_pins: pcie1-0 {
-+		clkreq-pins {
-+			pinmux = <GPIOMUX(29, GPOUT_LOW,
-+					      GPOEN_DISABLE,
-+					      GPI_NONE)>;
-+			bias-pull-down;
-+			drive-strength = <2>;
-+			input-enable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+
-+		wake-pins {
-+			pinmux = <GPIOMUX(21, GPOUT_LOW,
-+					      GPOEN_DISABLE,
-+					      GPI_NONE)>;
-+			bias-pull-up;
-+			drive-strength = <2>;
-+			input-enable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+	};
-+
- 	pwmdac_pins: pwmdac-0 {
- 		pwmdac-pins {
- 			pinmux = <GPIOMUX(33, GPOUT_SYS_PWMDAC_LEFT,
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index 74ed3b9264d8..db96214fd443 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -1138,5 +1138,91 @@
- 			#reset-cells = <1>;
- 			power-domains = <&pwrc JH7110_PD_VOUT>;
- 		};
-+
-+		pcie0: pcie@940000000 {
-+			compatible = "starfive,jh7110-pcie";
-+			reg = <0x9 0x40000000 0x0 0x1000000>,
-+			      <0x0 0x2b000000 0x0 0x100000>;
-+			reg-names = "cfg", "apb";
-+			linux,pci-domain = <0>;
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+			#interrupt-cells = <1>;
-+			ranges = <0x82000000  0x0 0x30000000  0x0 0x30000000 0x0 0x08000000>,
-+				 <0xc3000000  0x9 0x00000000  0x9 0x00000000 0x0 0x40000000>;
-+			interrupts = <56>;
-+			interrupt-map-mask = <0x0 0x0 0x0 0x7>;
-+			interrupt-map = <0x0 0x0 0x0 0x1 &pcie_intc0 0x1>,
-+					<0x0 0x0 0x0 0x2 &pcie_intc0 0x2>,
-+					<0x0 0x0 0x0 0x3 &pcie_intc0 0x3>,
-+					<0x0 0x0 0x0 0x4 &pcie_intc0 0x4>;
-+			msi-controller;
-+			device_type = "pci";
-+			starfive,stg-syscon = <&stg_syscon>;
-+			bus-range = <0x0 0xff>;
-+			clocks = <&syscrg JH7110_SYSCLK_NOC_BUS_STG_AXI>,
-+				 <&stgcrg JH7110_STGCLK_PCIE0_TL>,
-+				 <&stgcrg JH7110_STGCLK_PCIE0_AXI_MST0>,
-+				 <&stgcrg JH7110_STGCLK_PCIE0_APB>;
-+			clock-names = "noc", "tl", "axi_mst0", "apb";
-+			resets = <&stgcrg JH7110_STGRST_PCIE0_AXI_MST0>,
-+				 <&stgcrg JH7110_STGRST_PCIE0_AXI_SLV0>,
-+				 <&stgcrg JH7110_STGRST_PCIE0_AXI_SLV>,
-+				 <&stgcrg JH7110_STGRST_PCIE0_BRG>,
-+				 <&stgcrg JH7110_STGRST_PCIE0_CORE>,
-+				 <&stgcrg JH7110_STGRST_PCIE0_APB>;
-+			reset-names = "mst0", "slv0", "slv", "brg",
-+				      "core", "apb";
-+			status = "disabled";
-+
-+			pcie_intc0: interrupt-controller {
-+				#address-cells = <0>;
-+				#interrupt-cells = <1>;
-+				interrupt-controller;
-+			};
-+		};
-+
-+		pcie1: pcie@9c0000000 {
-+			compatible = "starfive,jh7110-pcie";
-+			reg = <0x9 0xc0000000 0x0 0x1000000>,
-+			      <0x0 0x2c000000 0x0 0x100000>;
-+			reg-names = "cfg", "apb";
-+			linux,pci-domain = <1>;
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+			#interrupt-cells = <1>;
-+			ranges = <0x82000000  0x0 0x38000000  0x0 0x38000000 0x0 0x08000000>,
-+				 <0xc3000000  0x9 0x80000000  0x9 0x80000000 0x0 0x40000000>;
-+			interrupts = <57>;
-+			interrupt-map-mask = <0x0 0x0 0x0 0x7>;
-+			interrupt-map = <0x0 0x0 0x0 0x1 &pcie_intc1 0x1>,
-+					<0x0 0x0 0x0 0x2 &pcie_intc1 0x2>,
-+					<0x0 0x0 0x0 0x3 &pcie_intc1 0x3>,
-+					<0x0 0x0 0x0 0x4 &pcie_intc1 0x4>;
-+			msi-controller;
-+			device_type = "pci";
-+			starfive,stg-syscon = <&stg_syscon>;
-+			bus-range = <0x0 0xff>;
-+			clocks = <&syscrg JH7110_SYSCLK_NOC_BUS_STG_AXI>,
-+				 <&stgcrg JH7110_STGCLK_PCIE1_TL>,
-+				 <&stgcrg JH7110_STGCLK_PCIE1_AXI_MST0>,
-+				 <&stgcrg JH7110_STGCLK_PCIE1_APB>;
-+			clock-names = "noc", "tl", "axi_mst0", "apb";
-+			resets = <&stgcrg JH7110_STGRST_PCIE1_AXI_MST0>,
-+				 <&stgcrg JH7110_STGRST_PCIE1_AXI_SLV0>,
-+				 <&stgcrg JH7110_STGRST_PCIE1_AXI_SLV>,
-+				 <&stgcrg JH7110_STGRST_PCIE1_BRG>,
-+				 <&stgcrg JH7110_STGRST_PCIE1_CORE>,
-+				 <&stgcrg JH7110_STGRST_PCIE1_APB>;
-+			reset-names = "mst0", "slv0", "slv", "brg",
-+				      "core", "apb";
-+			status = "disabled";
-+
-+			pcie_intc1: interrupt-controller {
-+				#address-cells = <0>;
-+				#interrupt-cells = <1>;
-+				interrupt-controller;
-+			};
-+		};
- 	};
- };
--- 
-2.17.1
+> Changes since v1:
+> - remove default y for BULTIN_DTB in any cases
+> - remove default DTB_SOURCE for k210 and moved to its defconfig file
+> - remove building dtb object file for other SoCs
+> - reword help message to say N if unsure for BUILTIN_DTB_SOURCE
+> - reword commit message
+> - v1: https://lore.kernel.org/linux-riscv/tencent_AB625442CC1BCFF86E04D7B=
+5891C43719109@qq.com/
 
+This section here (the changelog) should be below the --- line so that
+it does not get into the commit history.
+
+Otherwise
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+--k8Kp3dpRM3Rjn4tM
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZd3CYwAKCRB4tDGHoIJi
+0nqDAP9ZSWhGK0NbSy2naaZGv5BXsi+RLfI7+rTaQogrTDN45QD9F4Dn8U8zNXOG
+7jz12a3xzz+19gUbN2sU+O8G2vwdoQ8=
+=7IVR
+-----END PGP SIGNATURE-----
+
+--k8Kp3dpRM3Rjn4tM--
 
