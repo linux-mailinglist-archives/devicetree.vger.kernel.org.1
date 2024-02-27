@@ -1,178 +1,130 @@
-Return-Path: <devicetree+bounces-46370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04217869020
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 13:18:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5933869031
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 13:20:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B38802813CF
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 12:18:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A130B2829AD
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 12:20:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 080A514F98E;
-	Tue, 27 Feb 2024 12:11:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1563E13AA4C;
+	Tue, 27 Feb 2024 12:14:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="UbZhegny"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jd6qTlbe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6F2214F9D5;
-	Tue, 27 Feb 2024 12:11:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D45A813957E;
+	Tue, 27 Feb 2024 12:14:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709035867; cv=none; b=dLS7XSDEjsDEnbC3ZqLrvWCJPDcCgwlWBf9OYo4ad/epvS+yaC07K2/eJ2gDnnurq4JDpo96pU62UcRfjdv1kOBbfK+2L4/t3ywt2g85eLz1563c3tzobUa7YZ3VLeWOrEmQTatGA19IjONM4haxWluALr4dMupfNmt28BaF7/o=
+	t=1709036072; cv=none; b=I+nSjS46lL9wB/af9FiHOr2IpW/Jy7lLyQareCPWjxlH1okuY9UE2naq3fB7uCqm2qDh9+3JRHiR8Z+GVPoRx8ZOHGXRy1uTKaSCy7y8zJ42nD435X01esCbsNB+fufS+GpU7L+mPCOYpJUiXCd3PlRGi6j4IYOU4x7nY92nqL4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709035867; c=relaxed/simple;
-	bh=8bxWkdHWjuivwKz8TBybuK02NLszyCe4cZF3c/Vh6Zg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=h+N0zXxAlrSro60GCa0l+VHXv2y7Z3UhbZeLEo9+B8kThm8Sad4Btexar4X4YNaSbmh0vUSd0HlxhPAdfQTmmQADYCdRxPLd7Kv8xAPDsUiXqL4nI8Zctqc99w+23NC0gRpw8ZP6EPAgFLAmE+bR5PcdLWq1HeVG3cifdq38RMU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=UbZhegny; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1709035864;
-	bh=8bxWkdHWjuivwKz8TBybuK02NLszyCe4cZF3c/Vh6Zg=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=UbZhegny3dX5c5Ge2uf8Vf0e4f5bvOx9G2h0WeuWNKBmlSmVZVJ4pSer12jNuDAgl
-	 XLGCdiHd5iIgtvrCebyFu9KAwn93c7avtXOxTOoXDDm+QGKtf78g0Tmr7+qf9YDBTZ
-	 WNcMQ5QlycAGFk3qX+VPdvxvOEvaS7GKC1QqBXikVtWwDBnuTi6IHOiqEmzS/qK5A7
-	 YZCxu2h1AuTGBMdZrrfTCkrbdQHR2rnwLiJ2dtwrzHd+k0E++sOWc2DqSFjleIt1f+
-	 2kWgp4GRvH2dh/X+5niD+4XmJGqYERLi1TyOUQ/oU8s3Y+cAN+g2QMyWYjpbltqeYW
-	 gRBO63LnWu6AQ==
-Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 195D837820EF;
-	Tue, 27 Feb 2024 12:11:02 +0000 (UTC)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: broonie@kernel.org
-Cc: wenst@chromium.org,
-	lgirdwood@gmail.com,
-	robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	perex@perex.cz,
-	tiwai@suse.com,
-	trevor.wu@mediatek.com,
-	maso.huang@mediatek.com,
-	xiazhengqiao@huaqin.corp-partner.google.com,
-	arnd@arndb.de,
-	kuninori.morimoto.gx@renesas.com,
-	shraash@google.com,
-	amergnat@baylibre.com,
-	nicolas.ferre@microchip.com,
-	u.kleine-koenig@pengutronix.de,
-	dianders@chromium.org,
-	frank.li@vivo.com,
-	allen-kh.cheng@mediatek.com,
-	eugen.hristev@collabora.com,
-	claudiu.beznea@tuxon.dev,
-	jarkko.nikula@bitmer.com,
-	jiaxin.yu@mediatek.com,
-	alpernebiyasak@gmail.com,
-	ckeepax@opensource.cirrus.com,
-	zhourui@huaqin.corp-partner.google.com,
-	nfraprado@collabora.com,
-	alsa-devel@alsa-project.org,
-	shane.chien@mediatek.com,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	kernel@collabora.com,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH 22/22] arm64: dts: mediatek: mt8186-corsola: Specify sound DAI links and routing
-Date: Tue, 27 Feb 2024 13:09:39 +0100
-Message-ID: <20240227120939.290143-23-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240227120939.290143-1-angelogioacchino.delregno@collabora.com>
-References: <20240227120939.290143-1-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1709036072; c=relaxed/simple;
+	bh=MNBdJ8ynd91q3yNgGWy7eWN2H5Og6NctVsNLSrm0mDg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lOKNIqdDvUjhGdZRAJME9auz2WhpMeEJTsEPfTMgeeNL1tVyKDBtqrSg4Wp9PKLU642qVaO5qHpxPd5j2lyr4Y+9vT+a2ZoJtw0n0lhnBBPRX/4XsfmOc1slBLs778neBmPMziY/25tG0dcxJh9l6+IhCPEGzppbpJ8hx3HLvT4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jd6qTlbe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9E7CC433C7;
+	Tue, 27 Feb 2024 12:14:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709036071;
+	bh=MNBdJ8ynd91q3yNgGWy7eWN2H5Og6NctVsNLSrm0mDg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Jd6qTlberk/kGxBOED8pcbAmtgSvDFQzjM6u+xO5Oq//PaNH6aIBCVAreCSUhgTr7
+	 hKlpPsooyoAfhJ4p5NgipQRMYF2WSvhVw/i2hMK9IBVEG71zDvfTqtES6wI8sp+X4J
+	 4vI5vq1ZOImg0yKS83SO4LCOJpGG1UA/pCPN2en/t9JvkDJoraQG+9xIwhpg+4vJud
+	 On5Q0sJw8+BKci0a2NAsMsVFcYDfPu6Y5DplkRX1CzmCd3wfI6aFN6Xp5WuOIg4Zkv
+	 kUEfwrv6wEezf0T0AFJLUxyqThh0r7I5mzANUlpvU7tDN/AgLxXURvAx8S+yepZuIE
+	 RaKrcbJNp1tLg==
+Date: Tue, 27 Feb 2024 13:14:28 +0100
+From: Wolfram Sang <wsa@kernel.org>
+To: =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mips@vger.kernel.org,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+Subject: Re: [PATCH 09/13] i2c: nomadik: fetch timeout-usecs property from
+ devicetree
+Message-ID: <Zd3SJMBp23ybgdsJ@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+	=?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mips@vger.kernel.org,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+References: <20240215-mbly-i2c-v1-0-19a336e91dca@bootlin.com>
+ <20240215-mbly-i2c-v1-9-19a336e91dca@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="l9/qv/BPwfFxGsXr"
+Content-Disposition: inline
+In-Reply-To: <20240215-mbly-i2c-v1-9-19a336e91dca@bootlin.com>
 
-The drivers and bindings acquired support for specifying audio hardware
-and links in device tree: describe and link the sound related HW of this
-machine.
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- .../boot/dts/mediatek/mt8186-corsola.dtsi     | 42 ++++++++++++++++---
- 1 file changed, 37 insertions(+), 5 deletions(-)
+--l9/qv/BPwfFxGsXr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-index 3dea28f1d806..0bdb83c3e560 100644
---- a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-@@ -42,7 +42,7 @@ backlight_lcd0: backlight-lcd0 {
- 		default-brightness-level = <576>;
- 	};
- 
--	bt-sco-codec {
-+	bt-sco {
- 		compatible = "linux,bt-sco";
- 		#sound-dai-cells = <0>;
- 	};
-@@ -223,12 +223,44 @@ sound: sound {
- 		mediatek,adsp = <&adsp>;
- 		mediatek,platform = <&afe>;
- 
--		playback-codecs {
--			sound-dai = <&it6505dptx>, <&rt1019p>;
-+		audio-routing =
-+			"Headphone", "HPOL",
-+			"Headphone", "HPOR",
-+			"IN1P", "Headset Mic",
-+			"Speakers", "Speaker",
-+			"HDMI1", "TX";
-+
-+		hs-playback-dai-link {
-+			link-name = "I2S0";
-+			dai-format = "i2s";
-+			mediatek,clk-provider = "cpu";
-+			codec {
-+				sound-dai = <&rt5682s 0>;
-+			};
-+		};
-+
-+		hs-capture-dai-link {
-+			link-name = "I2S1";
-+			dai-format = "i2s";
-+			mediatek,clk-provider = "cpu";
-+			codec {
-+				sound-dai = <&rt5682s 0>;
-+			};
- 		};
- 
--		headset-codec {
--			sound-dai = <&rt5682s 0>;
-+		spk-share-dai-link {
-+			link-name = "I2S2";
-+			mediatek,clk-provider = "cpu";
-+		};
-+
-+		spk-hdmi-playback-dai-link {
-+			link-name = "I2S3";
-+			dai-format = "i2s";
-+			mediatek,clk-provider = "cpu";
-+			/* RT1019P and IT6505 connected to the same I2S line */
-+			codec {
-+				sound-dai = <&it6505dptx>, <&rt1019p>;
-+			};
- 		};
- 	};
- 
--- 
-2.44.0
 
+> +	/* Slave response timeout */
+> +	if (!of_property_read_u32(np, "timeout-usecs", &timeout_usecs))
+> +		priv->timeout_usecs = timeout_usecs;
+> +	else
+> +		priv->timeout_usecs = 200 * USEC_PER_MSEC;
+
+I could imagine to add 'transfer_timeout_us' to struct i2c_timings.
+Then, you could use 'i2c_parse_fw_timings' to obtain the value. What
+values/value range do you use here? I can't find them in the DTS
+additions.
+
+
+--l9/qv/BPwfFxGsXr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmXd0iAACgkQFA3kzBSg
+KbZx1A/9Hn3nig9zw0s6qvC2FrKzAOepBjzkFqAjpqgK4uUcsXVZ0Gfhk0lVkYtx
+XOjWnyYadJYToHFj97q/Ruabu2HhE/XZktuWhenAFOla7UbYMAUzxKSCrnJrT+l5
+SmmSaco3Tvje0tGv3yHbqNX12ge9EqkbO8Y+qv4ftbiKOcMGuUoIavZvyQ6GTWM+
+ZBdocOy77UwFXru/oirdRxKj99M8CKIMaQ1QsPUxr3H4hTADgjRv60GhiQVfZKUn
+vdaoEiRVe8VAxj6oTEmIm6zZSw4zls4QH2vSXTEDufU6VeAKS+Xrqh7XLC8K9T/V
+qgcYANSP+6sKVP8eWcaWwaAP1px/zE2oZ9SmTJKqkELEwpahagaWxQ6Hxgb1xCLa
+r3vukZ8+cNGKXBAQeaucmiYbSvILfuTBniJsAkuhz7ex9N6M3ervF2xUpsI3jBm0
+uvok3LtFqBxtIlxwMSV/nelJmO4R5sYHojtkuri/rxuDQ6lSCFvh40hWeb5ereE2
+r7VRqrNrRbz0Gyi/6XJqTKSXPtz8YF3efTzuI1JydYlvtaRtyK0UGCceQfL4brZJ
+DYW2s6hGM7ZKEgZ4wI3aW/Vz1QA3vxkmi2KyXZaWlzBLTQ/chlx+L2jB5N4LaTob
+kJEXKchldbVmVf43xyzr36PNySUiIC8xumknTEskp2+aetFHRD0=
+=7Ca2
+-----END PGP SIGNATURE-----
+
+--l9/qv/BPwfFxGsXr--
 
