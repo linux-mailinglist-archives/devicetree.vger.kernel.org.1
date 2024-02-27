@@ -1,196 +1,116 @@
-Return-Path: <devicetree+bounces-46491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D6B3869CA4
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 17:45:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A742C869C96
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 17:44:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 867C7B2B5AB
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 16:43:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6224A2845CB
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 16:44:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53C8C39FFA;
-	Tue, 27 Feb 2024 16:41:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1D03249F5;
+	Tue, 27 Feb 2024 16:42:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="A363ersE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2CCA208AD;
-	Tue, 27 Feb 2024 16:41:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B2734D9F0;
+	Tue, 27 Feb 2024 16:42:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709052077; cv=none; b=UWw+9UQ26ntNPlQIt/WYXejYFisfus+XMssXp/wYksauvC5RO9FovSxM8TntqJRGhPNTxJ/0hodtT3wSwL7hMPMHLGl/ktA1MlPzWf1kraZ2Ywc92dzheBimKMst6OpDlBQVgacJEGuF+Gs52H8LuS40MSp3fjZq99wfCee2w30=
+	t=1709052140; cv=none; b=McNo+J/P7ctVihrHsvcsg+TWdJLYqj4T/7XVYcF75kpr4DxtrV1zwQsDJGVOvOuVKPhhi8HvTPdrYDeoKX9Sc51bSRy0/RB8YO/e9dQm+6dF1H0I14bam0IsNNtRNSfE5ST+OS4Z++hHvvZCNpE1BFZHWjTeQ4EOuxNKzJhZKv0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709052077; c=relaxed/simple;
-	bh=Auiob5o1YiESgmh2qGEQ64V8+hNAmx59W2PnXQ/O2q0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NNYiQT+E006w1O3+71BTq2IyNmTvJeopZrkPT6+xB5OFTb5oNahJL/ZFPTKLGmlhBp/9E0Nv53SayZwAcCGr8XgKNEPDD8v/BXoCX129qLiLqYhtDqsj8prqDlCK/EZBXS1hFNCELwPyBk/lOn/mhUYA+nsxIni/vPEbAsZv9qs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="3245944"
-X-IronPort-AV: E=Sophos;i="6.06,188,1705392000"; 
-   d="scan'208";a="3245944"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Feb 2024 08:41:14 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="913916735"
-X-IronPort-AV: E=Sophos;i="6.06,188,1705392000"; 
-   d="scan'208";a="913916735"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Feb 2024 08:41:11 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andy.shevchenko@gmail.com>)
-	id 1rf0Vw-00000007zsC-1bg5;
-	Tue, 27 Feb 2024 18:41:08 +0200
-Date: Tue, 27 Feb 2024 18:41:08 +0200
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Angelo Compagnucci <angelo.compagnucci@gmail.com>,
-	Philip Howard <phil@gadgetoid.com>, Sean Young <sean@mess.org>,
-	Linus Walleij <linus.walleij@linaro.org>, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Vincent Whitchurch <vincent.whitchurch@axis.com>
-Subject: Re: [PATCH V4 2/2] pwm: Add GPIO PWM driver
-Message-ID: <Zd4QpBsyTnuM8hwt@smile.fi.intel.com>
-References: <20240204220851.4783-1-wahrenst@gmx.net>
- <20240204220851.4783-3-wahrenst@gmx.net>
+	s=arc-20240116; t=1709052140; c=relaxed/simple;
+	bh=wqGBDu2iVSiFPGeYB2ZaQCe+qtPB3V7wawJrssUmrcY=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=WVDjaN6DVyR7ciU/WdBKUTBVveM3tGBAQdJtCxNxv/42+uvq0jNu5qFjzIL+hJYdvIYN8YKjpLlH+N8VCVlNRz53qB/CuUtrova+kUzxktMc61ulXuy9xmd+6pSPO7qQMiO+kG6MA+lxQEbgYbRGBwsB3DYM59KAeW6CRQUc7BA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=A363ersE; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E5DA3C000D;
+	Tue, 27 Feb 2024 16:42:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709052136;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=OFFvc/kXhhPE/Ai0TIt6kItQ96wA8rGqNC6w6HzN1PM=;
+	b=A363ersE126DmTtgO2Pm7Xjs9TB4ShvnciloCFnEm1bPZxUViUJkaDudlz8V3WUcg1pOmb
+	RKDfoLjsW3mbkH9LmaSkEoO0EFAx+/mQSLhceGjThBsbprz9nP0igw7buJChkPpdYAyZlB
+	C6mQAUo4K6b2IUa2aBkg5QUo2pGWy5QLhkLQOMLOnvtNoluPmILEMN1MMmok7ZA7rokgkm
+	TPZwie/mN6bS1/wXIzRRGfRM0gn6OYAyuvPTOf+zK/rxsr7xF2buCug/8y1w4LDVlpagvX
+	TlNpPUxPPws9A9AgiOpe+/IuVv4FMbh5F7eR8Hml12btt/HsyU14UZNhAgnW2Q==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Stefan Eichenberger <eichest@gmail.com>, andrew@lunn.ch,
+ sebastian.hesselbarth@gmail.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Alex Leibovich <alexl@marvell.com>, Stefan
+ Chulski <stefanc@marvell.com>, Russell King <rmk+kernel@armlinux.org.uk>
+Subject: Re: [PATCH v2] arm64: dts: armada-ap807: update thermal compatible
+In-Reply-To: <20240208081413.7923-1-eichest@gmail.com>
+References: <20240208081413.7923-1-eichest@gmail.com>
+Date: Tue, 27 Feb 2024 17:42:14 +0100
+Message-ID: <87ttltj1uh.fsf@BL-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240204220851.4783-3-wahrenst@gmx.net>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain
+X-GND-Sasl: gregory.clement@bootlin.com
 
-On Sun, Feb 04, 2024 at 11:08:51PM +0100, Stefan Wahren wrote:
-> From: Vincent Whitchurch <vincent.whitchurch@axis.com>
-> 
-> Add a software PWM which toggles a GPIO from a high-resolution timer.
-> 
-> This will naturally not be as accurate or as efficient as a hardware
-> PWM, but it is useful in some cases.  I have for example used it for
-> evaluating LED brightness handling (via leds-pwm) on a board where the
-> LED was just hooked up to a GPIO, and for a simple verification of the
-> timer frequency on another platform.
-> 
-> Since high-resolution timers are used, sleeping gpio chips are not
+Hi Stefan Eichenberger,
 
-GPIO
+> From: Alex Leibovich <alexl@marvell.com>
+>
+> Use the correct thermal coefficients for the Armada AP807 dies.
+>
+> Signed-off-by: Alex Leibovich <alexl@marvell.com>
+> Reviewed-by: Stefan Chulski <stefanc@marvell.com>
+> Tested-by: Stefan Chulski <stefanc@marvell.com>
+> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> Signed-off-by: Stefan Eichenberger <eichest@gmail.com>
 
-> supported and are rejected in the probe function.
 
-Overall LGTM, but I have a few comments below.
+Applied on mvebu/dt64
 
-...
+Thanks,
 
-+ container_of.h
+Gregory
 
-> +#include <linux/device.h>
-> +#include <linux/err.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/hrtimer.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pwm.h>
-> +#include <linux/spinlock.h>
-
-+ time.h
-+ types.h
-
-...
-
-> +static enum hrtimer_restart pwm_gpio_timer(struct hrtimer *gpio_timer)
-> +{
-> +	struct pwm_gpio *gpwm = container_of(gpio_timer, struct pwm_gpio,
-> +					     gpio_timer);
-> +	unsigned long next_toggle;
-> +	unsigned long flags;
-> +	bool new_level;
-
-> +	spin_lock_irqsave(&gpwm->lock, flags);
-
-Can we use cleanup.h from day 1?
-
-> +	/* Apply new state at end of current period */
-> +	if (!gpwm->level && gpwm->changing) {
-> +		gpwm->changing = false;
-> +		gpwm->state = gpwm->next_state;
-> +		new_level = !!gpwm->state.duty_cycle;
-> +	} else {
-> +		new_level = !gpwm->level;
-> +	}
-> +
-> +	next_toggle = pwm_gpio_toggle(gpwm, new_level);
-> +	if (next_toggle) {
-> +		hrtimer_forward(gpio_timer, hrtimer_get_expires(gpio_timer),
-> +				ns_to_ktime(next_toggle));
-> +	}
-> +
-> +	spin_unlock_irqrestore(&gpwm->lock, flags);
-> +
-> +	return next_toggle ? HRTIMER_RESTART : HRTIMER_NORESTART;
-> +}
-
-...
-
-> +		/*
-> +		 * This just enables the output, but pwm_gpio_toggle()
-> +		 * really starts the duty cycle.
-> +		 */
-> +		int ret = gpiod_direction_output(gpwm->gpio, invert);
-> +
-> +		if (ret)
-> +			return ret;
-
-Better to have it written as
-
-		int ret;
-
-		/*
-		 * This just enables the output, but pwm_gpio_toggle()
-		 * really starts the duty cycle.
-		 */
-		ret = gpiod_direction_output(gpwm->gpio, invert);
-		if (ret)
-			return ret;
-
-...
-
-> +	gpwm->gpio = devm_gpiod_get(dev, NULL, GPIOD_ASIS);
-> +	if (IS_ERR(gpwm->gpio)) {
-> +		return dev_err_probe(dev, PTR_ERR(gpwm->gpio),
-> +				     "could not get gpio\n");
-> +	}
-
-{} are not needed.
-
-...
-
-> +	if (gpiod_cansleep(gpwm->gpio)) {
-> +		return dev_err_probe(dev, -EINVAL,
-> +				     "sleeping GPIO %d not supported\n",
-
-> +				     desc_to_gpio(gpwm->gpio));
-
-Do not use plain GPIO numbers.
-
-> +	}
-
-{} are not needed.
+> ---
+> Changes in v2:
+> - Added me as last signed-off-by
+> - Besides that it is the third patch of this series:
+> https://lore.kernel.org/all/ZIxMYXDCTB7IvsDk@shell.armlinux.org.uk/
+> - The first two patches in the series are already applied
+> ---
+>  arch/arm64/boot/dts/marvell/armada-ap807.dtsi | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/marvell/armada-ap807.dtsi b/arch/arm64/boot/dts/marvell/armada-ap807.dtsi
+> index 4a23f65d475f..a3328d05fc94 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-ap807.dtsi
+> +++ b/arch/arm64/boot/dts/marvell/armada-ap807.dtsi
+> @@ -33,3 +33,6 @@ &ap_sdhci0 {
+>  		     "marvell,armada-ap806-sdhci"; /* Backward compatibility */
+>  };
+>  
+> +&ap_thermal {
+> +	compatible = "marvell,armada-ap807-thermal";
+> +};
+> -- 
+> 2.40.1
+>
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
 
