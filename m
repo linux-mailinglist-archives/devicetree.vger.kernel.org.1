@@ -1,181 +1,348 @@
-Return-Path: <devicetree+bounces-46200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27BEB8686A8
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 03:17:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9BD386868D
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 03:05:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B6931C222C8
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 02:17:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76CE01F21C9B
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 02:05:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AF29F4F1;
-	Tue, 27 Feb 2024 02:17:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CFD4D304;
+	Tue, 27 Feb 2024 02:05:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Iw6W/AbJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2119.outbound.protection.partner.outlook.cn [139.219.146.119])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0DD74A2D;
-	Tue, 27 Feb 2024 02:17:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.119
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709000228; cv=fail; b=HbDhCZR4pgrWT+w+7T/70gw8bTh0E8SV4VF9f4rkd63eVsbyT18q1Rf/16hXWfCJZa0CCT/rVqMYyK4SMWZagegwxoXz8kv7z0IZIlQx3axZ4AJU/WM9V3futFAikadDsZ0I5FPeV+X21otP0zZ5oi82pFVP4X6NLZHJJt68BG4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709000228; c=relaxed/simple;
-	bh=uP/uCjvH8rULe/GeZo6TBM8HDRbxNQedOIwo23BFRqI=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=jOr7C+sOO4ZbzbBRfJLtM078NVshICJSdgw+gnKt2KtyHPbKoWKFJrGO940+xO370OxNmeOSW4MD+Unxx+OPNj5Q+iA05kPaPSUb3RNXFqpkLDKESiiAjkt7wYPQ8jeORQmR9Qm9uT6HZ699jVdTDtQSuEoPtF/bphiAaqR/xAY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.119
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GJG9ecQIg9BoowzmRPvbSTBUS/2l4xo+uU3Q3EKa/bIsvi5Gaarh1QtARuqZqcN0pW+oj4qzgkBIZcZdXm47MjiH/vuzAgQBCA9ISfDYI0VjzZoyUvR36midWKwua1WyqWrc/utw3MxDCskT8yDqMgiTEIHWSkaJpSn7uK6wJoyY9a9H/O9Ew2dVLCT8nQ09DIZ5kntcIxxeyvkBS6LRrCZQBcpG9VOfS91utNTzox2bLgQk6bg4rUA6ftQZ4RQu5ev7ZZJLR8IGr5dCYniI8EugDnrw66w/lQONWR2oFQqaCKkH3Uy+cmycUQHrcO5ulDDqAgAzy0G8gcKCuT0ztg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uP/uCjvH8rULe/GeZo6TBM8HDRbxNQedOIwo23BFRqI=;
- b=UgPHHBfP5Q4mKSq+IdmS72tKrLAU8pnqCzI3Pg261Iav1NvNq1AQfyA3jy0T+/LhiUscXkaXqZGp0fX5Y/jgrRKJW4RJtMnwH6FIF+UQjwUa1HcjR9Rq91Ak/f17UasuHluOpTtO32ixq/JWpljup41LTeJ+OdPjVehWg8pZC5eymdJH8ap1ee2XYltimbDlvw3RKLBie2gdeK9Vl+V/AxEgY/JPHtOQTmVe2wOhVVVAqo5FMne9fiG2WogzgIa756RQhEG4Pg9j32sWxhdOuBblqGg8FE0KfhhRZcOblwPBkAFBRjP3kaoVq3yNQYYHFYXqRJW3eFi15ykjW+ad4Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Received: from ZQ0PR01MB1160.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:19::6) by ZQ0PR01MB1304.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:19::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.47; Tue, 27 Feb
- 2024 02:01:11 +0000
-Received: from ZQ0PR01MB1160.CHNPR01.prod.partner.outlook.cn
- ([fe80::d0fb:daf7:3f8b:868c]) by
- ZQ0PR01MB1160.CHNPR01.prod.partner.outlook.cn ([fe80::d0fb:daf7:3f8b:868c%3])
- with mapi id 15.20.7270.047; Tue, 27 Feb 2024 02:01:11 +0000
-From: JiSheng Teoh <jisheng.teoh@starfivetech.com>
-To: Conor Dooley <conor.dooley@microchip.com>,
-	=?iso-8859-1?Q?Uwe_Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
-CC: Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Paul Walmsley
-	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>, William Qiu <william.qiu@starfivetech.com>, Leyfoon
- Tan <leyfoon.tan@starfivetech.com>, "linux-pwm@vger.kernel.org"
-	<linux-pwm@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-riscv@lists.infradead.org"
-	<linux-riscv@lists.infradead.org>
-Subject: RE: [PATCH] dt-bindings: pwm: opencores: Add compatible for StarFive
- JH8100
-Thread-Topic: [PATCH] dt-bindings: pwm: opencores: Add compatible for StarFive
- JH8100
-Thread-Index: AQHaaGW7VzRQ9wtUqUKZWkKdga1H6rEcRfqAgAAecoCAAQwPkA==
-Date: Tue, 27 Feb 2024 02:01:11 +0000
-Message-ID:
- <ZQ0PR01MB11608585A27081C61ACB93F8EB59A@ZQ0PR01MB1160.CHNPR01.prod.partner.outlook.cn>
-References: <20240226033945.816974-1-jisheng.teoh@starfivetech.com>
- <opzxowacxsagwgw3l33p6y7omzjokus2bi3ol5wizfwjwi2s44@3p5frb4ysji7>
- <20240226-greasily-balcony-cee5014f5b8b@wendy>
-In-Reply-To: <20240226-greasily-balcony-cee5014f5b8b@wendy>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: ZQ0PR01MB1160:EE_|ZQ0PR01MB1304:EE_
-x-ms-office365-filtering-correlation-id: 1296ecae-ee53-4433-d698-08dc3737f877
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- IK5Tbh1sxvxZn26uJxcxnJM7ZL4SlLvHrzKExe0ML2CDv/NfMNEpDsg75RaqmBoVk3zBp8AmL7YK0MvfmtypLyZwa5LH6b1z2rR8N8cOCPnX4anH7Blok2E207EYQcgr+LRG0cerauKo6BeWRhls0MSfQXIr5lFPztpZkyT0kRNdhQGOy1dYjetxuoRiE2MNVwUQa3Nlj0y7NoczmcKzO2LdnOIc2fJfKaju5t4p/qpCyMjTVB1DbSRq2XnwQWwndJDEoF+ZuhS8d7FzA47atxIhhQLLXZ/kLkfsbriGEBUlrISSBmg3aJ/g05jGcMV/O9iedrfZMV1EsZNKEFYprdDb4J/oEvB6WJVqkxt0HMWz3DDxSUvnS0BpxRra/WSwwKiLMzl/+kDF6P8LtFcm2gum/MPUXNd+5vuSaLiAkTfKHVaTmqs2IjnetmNpR27L9Kzsi7vztWRvQx3/Tf+D6C7f64feVDzWpCjNrgy5N/Gc2Z3nFoxNg2BREf6nMxskCwxKaZQ3fOD1zepkpvJloj0XGU9ERL99yIIB77MRDzOrxhGzdhzVjEvfgDA5qcsZ2cYmaYqlRQZKHpPjBmwxNoBfxPhPvBw3T5ckeofqdnL3CxIJoEAr9eg6xkR1oukQ
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ0PR01MB1160.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(38070700009);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-1?Q?XEoGErlho1AAYwB0dDidiqhs1+Y6e1cUZeTMYVw9KHepCsR0b290LfpRXj?=
- =?iso-8859-1?Q?Ez6eLPoQiqQCzUedHBDS29GRLhSQGwTSCA4IHTuIvuw2bihFjEGauVmzWa?=
- =?iso-8859-1?Q?UfOR26Ru06QU/W6CnmHoyQsS16LaT9MS5CDzOp+F1T+i+Q28WM1Eb3NCZJ?=
- =?iso-8859-1?Q?PoZfO7SvT1NnoXwFLDf9kd0Vv7WKJgeQjDKw6xvq3bsi+iewhIl5m2rUJI?=
- =?iso-8859-1?Q?pg3MVA8QmGghXVfr3livsfBwETWSo6S6YrAiDeVXXHlGeCsqT2x9Uc4ZCf?=
- =?iso-8859-1?Q?q8hqr28klkSmcklCTqigjVGzt35zYQ4OcZck4h1CcL19cXjpV3cfH5R6Cg?=
- =?iso-8859-1?Q?nPanzc6QqTsDiK7f36H405AcRT8pov/MbJcRLPQ2Fa3QCJfvegsHWisslM?=
- =?iso-8859-1?Q?HEVGdSpV9/uPj6pAFgva8b/p3NGfgUm/gq+ttULlFJmOBVLyS+nXtvmmc3?=
- =?iso-8859-1?Q?ArwhsNAbEdqKRY1IRdh5Tha6Z+Pe+DF5IIX45VgMqRvd8ZuNfGNZ4eJtHF?=
- =?iso-8859-1?Q?iVEd6CCkKZAlDHZUlGZiIEq1vbw7ATJzynbaC1uu4kzCr8cRPjuC7WSUw8?=
- =?iso-8859-1?Q?EAAXDOktLei8woulHC3kJkWqHq1zhwg7FCoko1viUW9eOoFdinZkFuWRXE?=
- =?iso-8859-1?Q?1a8Wi0DVk8RPsUp5ARsWaka/JxMjG4Pu7jr75NxsvD6esfp+/I10eZtjSY?=
- =?iso-8859-1?Q?QErTLbJF1I21xdtVtYy/3QSC1eZ1KNGmmtuNXkyt1p8Vw+/UMq31q1Hwbn?=
- =?iso-8859-1?Q?F9Boa1V9A0G2jcq+5dMeNHLhdrvSpH5T5aIz2ncTysde9p3aDcEwnf1B7u?=
- =?iso-8859-1?Q?cM9H7UZHsMPEhrjtGQPh8BdMok6Vc/sH2iIIGsq6Trr2+oAtVfZU836GNd?=
- =?iso-8859-1?Q?HQzhmcoEr8Z/LsnGbkngTw6OlCp7dg/V91WCzeFPyJi8FDdKO7ysaRWwI/?=
- =?iso-8859-1?Q?R9SwWq3yUFKoYEVCQrzLOkqEuHb0CXcPLIaIV9C38+kkl0hfyLL8OTs5wA?=
- =?iso-8859-1?Q?XvH5lOw9eGJA2NYpAbiKA4KZc26n/+qyeblhKfhutZkGyyXA5zkGzP7/tN?=
- =?iso-8859-1?Q?WYpugOA9TUQYCODKNc97H7IMS6Cs+z356XkT4CGzNsyFXcy2fuA6I9NnVM?=
- =?iso-8859-1?Q?R6Wim7ztR2id3ZMbN0oCbz/adoIWCR3pMy1UtNGUfUJC736RHb4FbZ9ldh?=
- =?iso-8859-1?Q?/NYEpVEoSgQziDUcqFqNFDT0NYh7BC91dSppG1oJARtuFm6KcCTUi/ZU2v?=
- =?iso-8859-1?Q?Y/JqUG+MSIFVr+vfJlHwyQsotiM178W5Lscuq76aA6+N4p3mXfa1lt9F5Y?=
- =?iso-8859-1?Q?w6UZtBMHmGnkjHKRd/pZs5Dur9sF99aMWRXVvPbs6qZOg280kY1xxeRvRQ?=
- =?iso-8859-1?Q?MYKk3/0jfOIfxw8b6uo3lFb9zA6f46WMhV94icTBbLxjEwka+xb/t6RkW7?=
- =?iso-8859-1?Q?VbkUiOQ4NuYRE8Iepbvac/FWaB/mm7hLI4K6SXqFX2M+k3YwNPQpC+08e1?=
- =?iso-8859-1?Q?GHSPBcJm0psYDWgfxJzoM+CBGGDXurlb1muLD3iP6+BJ0WzpG692yUhqy6?=
- =?iso-8859-1?Q?P+68AqWqbEKhtIstPn8Wi7bnf5NxJKrHZlAib8NeFbkFYdBDtITXbuDo+f?=
- =?iso-8859-1?Q?H08aQMPoQKYaB/tB5UOszG9uqczfd0kClfRmSBWpFr9dWTAKS3iAnfuA?=
- =?iso-8859-1?Q?=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3B374C9B;
+	Tue, 27 Feb 2024 02:05:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708999529; cv=none; b=QvqP6nfiamp9vbArzqVewJpkL+SD1RMPiG5ZH/pgcvF48bKZ3dvQYDxCcSIZMa9AaZBexlsP166RGGvOaUMHMAaZISMFXMFz8Hy2MdpjIWrowY5dh/98q2ZDkqpwH+PNkqpB4ikPVyTvVUftULz2f++Ce6eXAa+LipJB4Kq+uqU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708999529; c=relaxed/simple;
+	bh=ErLlH/TGOo0dL5Rd8UEpsIla8TcQM25WQ4Yl4lpfKyU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=a85lNxwmD/oMbApztOlMjOcdj3FZZxIUt3jJ1s94eYcb7lDuHZfMfW0b5zCZis4gXtt5HH/pmmI8MCmOPRC/DGNO1OdTZYH0nCgachLGSaaPV5xZiquzfutQwceYKisNd88h2tKHWrMWD6ga5lVOeo968p7TZGIqRyjR7fBn+To=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Iw6W/AbJ; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-33d066f8239so2711186f8f.1;
+        Mon, 26 Feb 2024 18:05:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708999526; x=1709604326; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=dhK7JWt2k6gkXm6u+aVq5274iL8Ug4hk7tF+Akknlns=;
+        b=Iw6W/AbJghK0hTXdJToNaYeDCnrfkQ7Ceifel9uNrkd6JyLBgeSyZ3uQTgd2lQiMpd
+         Do4ndllmAXznGoHF3He3imeYO1ejcBowwBSEbs2XJfduEK3+gQrWtWS52tuk4Jhz7CKU
+         tg2xPUAZqMfGBbeg8UrgnaBgGQdtysFfb+PYzY1sZfIMBUxFXps/O+iaC8k+jpMZawCG
+         /D8O/n3jh6FSqp9FNCldR+XNiJGTbbFR0v+CABuLw2guZ36ErSz2dllWdWfQVT/f3HjQ
+         wwy8iOmpTe0rew/kmLB/5SSPC33UAPG+naU5kpZMTDbuJfhq0dwGoGYWO2sG06azcgFW
+         yYSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708999526; x=1709604326;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dhK7JWt2k6gkXm6u+aVq5274iL8Ug4hk7tF+Akknlns=;
+        b=hySOFCkrQ6+lK3G6vRG8oUi51pkpBWfaEtFeO7DX6VduLaLiO9Iwm+cxpG75w1H5kB
+         MVEKwdcZ6XcjIlPI5oRIg0VO4gcJaliWJXcRVaLRvJJIIrdGt53SK+HIzGlSrK/1x0uY
+         e19HE1W1yE3V6k6QAB7NXYoEoxPAjCw3rqMNFxNjNCr2Acx888z5YRzQs/Adwlg2v/23
+         pAk/h0QeqYXm0Y8p3FSC0xvHMBmr/ZxKY1vwuNuvc3no6/ljIPV53eBevU+kn8HmAX4t
+         q9DxQ1Yv1wFhJet0rC71OsV89EzFcBw9bwsVgmok+DB478ZaaRRvmQkLeWP5hDC3nJMW
+         cWTw==
+X-Forwarded-Encrypted: i=1; AJvYcCU6V5y1e/Cuw6PeDsfsXloI4tTK0uTXFEfPma/GKLXryunlSRfpFrnqITbA7hc6WGKJpW8Ar7VX9bR8CDmZySAw2uVscnq8Iwer6X5MeS2FTdq1PbvxKIZP2fJ7hWgvl7O3zJYQiQwFyQ==
+X-Gm-Message-State: AOJu0Yw5+RdVtrxU9w/FXi1lOZIWMQGiN4xarX7sB/7LoDKvEVaibWRv
+	aC9Efkxuq6crm4oOgGqmIFqEuy2qFxRCcn2kvFIW5Vji8kEPw3qe
+X-Google-Smtp-Source: AGHT+IGWoLYQu+tTdr3nwb/NPpBxokRJ7MVxE3QnJ+9qWZeHXJyZEW0RWoX8qiApwbpWHTg7Z7E46w==
+X-Received: by 2002:adf:f783:0:b0:33d:23a6:56ba with SMTP id q3-20020adff783000000b0033d23a656bamr5584823wrp.42.1708999526014;
+        Mon, 26 Feb 2024 18:05:26 -0800 (PST)
+Received: from hermes.prahal.homelinux.net (91-175-163-178.subs.proxad.net. [91.175.163.178])
+        by smtp.gmail.com with ESMTPSA id bw1-20020a0560001f8100b0033af3a43e91sm9921656wrb.46.2024.02.26.18.05.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Feb 2024 18:05:25 -0800 (PST)
+Message-ID: <7873090c4aad382813a65e35157d8684e8842974.camel@gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: add enable-strobe-pulldown to
+ emmc phy on rk3399
+From: Alban Browaeys <alban.browaeys@gmail.com>
+To: Doug Anderson <dianders@chromium.org>, Jensen Huang
+	 <jensenhuang@friendlyarm.com>
+Cc: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,  Vinod Koul <vkoul@kernel.org>, Chris
+ Ruehl <chris.ruehl@gtsys.com.hk>, Brian Norris <briannorris@chromium.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, Linux ARM
+ <linux-arm-kernel@lists.infradead.org>, "open list:ARM/Rockchip SoC..."
+ <linux-rockchip@lists.infradead.org>, LKML <linux-kernel@vger.kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Christopher Obbard
+ <chris.obbard@collabora.com>
+Date: Tue, 27 Feb 2024 03:05:25 +0100
+In-Reply-To: <CAD=FV=U-=2GpQTb0N1p3Qe2TAb=JhyZJw2V8T-qbLs5TYhW7qA@mail.gmail.com>
+References: <20220822074139.3810-1-jensenhuang@friendlyarm.com>
+	 <23552842.6Emhk5qWAg@diego>
+	 <CAD=FV=W-ajJDfYcP3P8Jyk_KgsUAbdTtmwiNXqJ=Ab2ojgrUGw@mail.gmail.com>
+	 <CAMpZ1qEe7xFr+XaXsS_hWDLnGGA8PfzQiToOjY1N_1ctyQ+KxA@mail.gmail.com>
+	 <CAD=FV=U-=2GpQTb0N1p3Qe2TAb=JhyZJw2V8T-qbLs5TYhW7qA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.3-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: ZQ0PR01MB1160.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1296ecae-ee53-4433-d698-08dc3737f877
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Feb 2024 02:01:11.0983
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 8jAt54IDIELoJSMHu2ZclQgbHUlAiS3QNhpgrF9wiEDPyCmdRl8kaC9V2bi9esCk+ZNT0Fu0+cSa82q1WPK+IiPnWc6YXmTIVDWyP5ey0D8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ0PR01MB1304
 
-> On Mon, Feb 26, 2024 at 09:11:23AM +0100, Uwe Kleine-K=F6nig wrote:
-> > Hello,
-> >
-> > On Mon, Feb 26, 2024 at 11:39:45AM +0800, Ji Sheng Teoh wrote:
-> > > StarFive JH8100 uses the same OpenCores PWM controller as JH7110.
-> > > Mark JH8100 as compatible to the OpenCores PWM controller.
-> > >
-> > > Signed-off-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
-> > > Signed-off-by: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
-> > >
-> > > ---
-> > >
-> > > This patch depends on patch [1] ("dt-bindings: pwm: Add bindings for
-> > > OpenCores PWM Controller") in Conor's riscv-dt-for-next branch.
-> > > [1]
-> > > https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/comm
-> > > it/?h=3Driscv-dt-for-next&id=3D2529085831b01fcd02ff58ab4e2596d3b31bcf=
-80
-> >
-> > I recommend to make use of git format-patch's --base parameter to
-> > additionally(!) make this information available to the build bots.
+Le mercredi 24 ao=C3=BBt 2022 =C3=A0 07:57 -0700, Doug Anderson a =C3=A9cri=
+t=C2=A0:
+> On Tue, Aug 23, 2022 at 8:11 PM Jensen Huang
+> <jensenhuang@friendlyarm.com> wrote:
+> > I realized that only some devices may be affected, so I considered
+> > modifying rk3399-nanopi4.dtsi only,
+> > but other boards without external pull-down should still need this
+> > patch.
 >=20
-> I like the "additionally" :)
+> I guess the other alternative would be to change how the dt property
+> works. You could say:
+>=20
+> 1. If `enable-strobe-pulldown` is set then enable the strobe
+> pulldown.
+>=20
+> 2. If `enable-strobe-pulldown` is not set then don't touch the pin in
+> the kernel.
+>=20
+> 3. If someone later needs to explicitly disable the strobe pulldown
+> they could add a new property like `disable-strobe-pulldown`.
+>=20
+>=20
+> Obviously there are tradeoffs between that and what you've done and
+> I'm happy to let others make the call of which they'd prefer.
+>=20
 
-Alright, I will take note of that. Thanks=20
+Christopher could you try "ROCK Pi 4" and "ROCK Pi 4+" with=20
+"enable-strobe-pulldown" instead of disabling HS400 as you did in July
+2023?
 
-> >
-> > Looks fine to me.
-> >
-> > Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
-> >
-> > Coner: If you're happy with this patch, please apply it in the same
-> > way as the initial OpenCores PWM Controller binding patch.
+
+Could the behavior be reverted to let the vendor kernel default for the
+default case (ie enable pulldown)?
+
+
+
+
+I believe 99% of the boards are now broken with this new internal
+pulldown behavior (all  these with internal pulldown). More on that
+later but to sum up, nobody  complained because downstream kernels like
+Armbian all disabled HS400 for all boards, at least for rk3399.
+
+
+Do we really want to ask 99% of the board dts to add this "enable-
+strobe-pulldown" in their dts?
+Chris, was your custom board not working with the vender kernel default
+to enable unconditionaly?
+What was the rationale to  choose the opposite default from the vendor
+kernel one?
+
+
+As told in the commit that introduced this new behavior the default for
+the vendor kernel was the opposite of what was introduced in the Linux
+kernel:
+"
+https://github.com/torvalds/linux/commit/8b5c2b45b8f0a11c9072da0f7baf9ee986=
+d3151e
+
+commit 8b5c2b45b8f0a11c9072da0f7baf9ee986d3151e
+Author: Chris Ruehl <chris.ruehl@gtsys.com.hk>
+Date:   Sun Nov 29 13:44:14 2020 +0800
+
+phy: rockchip: set pulldown for strobe line in dts
+
+This patch add support to set the internal pulldown via dt property
+and allow simplify the board design for the trace from emmc-phy to
+the eMMC chipset.
+Default to not set the pull-down.
+
+This patch was inspired from the 4.4 tree of the
+Rockchip SDK, where it is enabled unconditional.
+The patch had been tested with our rk3399 customized board.
+"
+
+
+
+For RK3588 I see this commit which makes me believe the internal
+pulldown case is the most common "
+commit 37f3d6108730713c411827ab4af764909f4dfc78
+Author: Sam Edwards <cfsworks@gmail.com>
+Date:   Tue Dec 5 12:29:00 2023 -0800
+
+
+arm64: dts: rockchip: Fix eMMC Data Strobe PD on rk3588
+
+JEDEC standard JESD84-B51 defines the eMMC Data Strobe line, which is
+currently used only in HS400 mode, as a device->host clock signal that
+"is used only in read operation. The Data Strobe is always High-Z (not
+driven by the device and pulled down by RDS) or Driven Low in write
+operation, except during CRC status response." RDS is a pull-down
+resistor specified in the 10K-100K ohm range. Thus per the standard,
+the
+Data Strobe is always pulled to ground (by the eMMC and/or RDS) during
+write operations.
+
+Evidently, the eMMC host controller in the RK3588 considers an active
+voltage on the eMMC-DS line during a write to be an error.
+
+The default (i.e. hardware reset, and Rockchip BSP) behavior for the
+RK3588 is to activate the eMMC-DS pin's builtin pull-down. As a result,
+many RK3588 board designers do not bother adding a dedicated RDS
+resistor, instead relying on the RK3588's internal bias. The current
+devicetree, however, disables this bias (`pcfg_pull_none`), breaking
+HS400-mode writes for boards without a dedicated RDS, but with an eMMC
+chip that chooses to High-Z (instead of drive-low) the eMMC-DS line.
+(The Turing RK1 is one such board.)
+
+Fix this by changing the bias in the (common) emmc_data_strobe case to
+reflect the expected hardware/BSP behavior. This is unlikely to cause
+regressions elsewhere: the pull-down is only relevant for High-Z eMMCs,
+and if this is redundant with a (dedicated) RDS resistor, the effective
+result is only a lower resistance to ground -- where the range of
+tolerance is quite high. If it does, it's better fixed in the specific
+devicetrees.
+"
+
+
+
+
+
+
+Lately two other upstream dts disabled HS400 due to this new behavior I
+believe:
+"
+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/arc=
+h/arm64/boot/dts/rockchip?id=3D2bd1d2dd808c60532283e9cf05110bf1bf2f9079
+author	Christopher Obbard <chris.obbard@collabora.com>	2023-
+07-05 15:42:55 +0100
+committer	Heiko Stuebner <heiko@sntech.de>	2023-07-10
+15:43:24 +0200
+commit	2bd1d2dd808c60532283e9cf05110bf1bf2f9079 (patch)
+tree	57cbf7eaa91deb68f143577d5d1dbc0d9141480e
+/arch/arm64/boot/dts/rockchip
+parent	cee572756aa2cb46e959e9797ad4b730b78a050b (diff)
+download	linux-2bd1d2dd808c60532283e9cf05110bf1bf2f9079.tar.gz
+arm64: dts: rockchip: Disable HS400 for eMMC on ROCK 4C+
+
+
+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/arc=
+h/arm64/boot/dts/rockchip?id=3Dcee572756aa2cb46e959e9797ad4b730b78a050b
+author	Christopher Obbard <chris.obbard@collabora.com>	2023-
+07-05 15:42:54 +0100
+committer	Heiko Stuebner <heiko@sntech.de>	2023-07-10
+15:43:24 +0200
+commit	cee572756aa2cb46e959e9797ad4b730b78a050b (patch)
+tree	cf3ed8ff6230cbde04353503417c1a75ba15c249
+/arch/arm64/boot/dts/rockchip
+parent	5ce6971e5279c569defc2f2ac800692049bbaa90 (diff)
+download	linux-cee572756aa2cb46e959e9797ad4b730b78a050b.tar.gz
+arm64: dts: rockchip: Disable HS400 for eMMC on ROCK Pi 4
+"
+
+
+All Armbian RK3399 boards, as far as I know, had to disable HS400, I
+also believe due to this commit.
+
+You can also search google for "running cqe recovery rk3399 armbian".
+
+
+This was never reported upstream though. But as HS400 is disabled
+everywhere nobody notice the regression nowadays.
+
+
 >=20
-> Ye, I can do. Although, I suppose this is an example of why the driver ma=
-intainers applying the bindings is preferred, even if the driver
-> patch itself isn't ready or there is no driver patch.
->=20
-> Cheers,
-> Conor.
+> > BR,
+> > Jensen
+> >=20
+> > On Tue, Aug 23, 2022 at 10:13 PM Doug Anderson
+> > <dianders@chromium.org> wrote:
+> > >=20
+> > > Hi,
+> > >=20
+> > > On Tue, Aug 23, 2022 at 4:53 AM Heiko St=C3=BCbner <heiko@sntech.de>
+> > > wrote:
+> > > >=20
+> > > > Am Montag, 22. August 2022, 09:41:39 CEST schrieb Jensen Huang:
+> > > > > Internal pull-down for strobe line (GRF_EMMCPHY_CON2[9]) was
+> > > > > disabled
+> > > > > by commit 8b5c2b45b8f0, which causes I/O error in HS400 mode.
+> > > > >=20
+> > > > > Tested on NanoPC-T4.
+> > > > >=20
+> > > > > Fixes: 8b5c2b45b8f0 ("phy: rockchip: set pulldown for strobe
+> > > > > line in dts")
+> > > > > Signed-off-by: Jensen Huang <jensenhuang@friendlyarm.com>
+> > > >=20
+> > > > ok, so this looks like it restores previous functionality.
+> > > >=20
+> > > > I'm just wondering as the "offending" patch is from 2020, why
+> > > > this
+> > > > only turns up now. Any ideas?
+> > >=20
+
+Probbaly because the introduction of PROBE_DEFERRED in regulator core
+before that (in 5.10.60) already broke at least my board HS400 due to
+double init. Thus why it took me so long to see this new pulldown
+behavior commit. I was testing every regulator core double init fixup
+patchset while not understanding why reverting the PROBE_DEFERRED
+commit on 5.10.60 worked but not on newer kernels (ie this new pulldown
+behavior was introduced in 5.11...).
+
+
+
+
+> > > Ah, I see. So before the offending patch we used to just leave
+> > > the
+> > > pull state at whatever the default was when the kernel was
+> > > booted.
+> > > After the offending patch we chose a default.
+> > >=20
+> > > On kevin I see an external pull down on this line. Enabling both
+> > > the
+> > > internal and external is probably not a huge deal, it'll just
+> > > affect
+> > > the strength of the pull.
+> > >=20
+> > > On bob I _think_ the external pull down is also stuffed.
+> > >=20
+> > > ...so I guess that would explain why it didn't cause a problem
+> > > for at
+> > > least those two boards?
+> > >=20
+> > > -Doug
+
+
+In my opinion it is about these board already being broken by the
+regulator core change, so nobody noticed the second regression. When
+the first regression was fixed, it was very hard to correlate the still
+broken behavior to the second regression.
+
+
+I confirm that on Helios64, setting "enable-strobe-pulldown" fixes the
+EMMC error I had when writing with HS400ES enabled:
+mmc1: running CQE recovery=20
+mmc1: cqhci: spurious TCN for tag 12
+
+It also took me so long to report upstream as my board code (rk3399-
+kobol-helios64.dts) is not completely upstreamed yet so I use an
+Armbian patched kernel.
+
+
+
+Alban
+
+
 
