@@ -1,112 +1,76 @@
-Return-Path: <devicetree+bounces-46578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB60186A255
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 23:21:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AADD86A2A6
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 23:38:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D2209B22542
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 22:19:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A56F41C23648
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 22:38:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21E70151CD9;
-	Tue, 27 Feb 2024 22:19:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KS8VmaMB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99E7C55774;
+	Tue, 27 Feb 2024 22:38:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7EBA14F961;
-	Tue, 27 Feb 2024 22:19:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 939F155766;
+	Tue, 27 Feb 2024 22:38:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709072363; cv=none; b=SsWeVMYvPfPecbkyey+gyeKsla2Jcm696BuotiN/MLx+OOWXefXwc0DsboNJsqHG3ymfgq+XAXK+8LYovWNj9d34h4/NMCwVulqe9EaPExMaKhC0ShGckDgv5WarG7hKxa7vR3Nw8zz591PYn5Ve1W8mHeYgPsEHxFYD2EuKRHo=
+	t=1709073483; cv=none; b=Q1I8n5g6MSk2KByRSjdLHxh3rzOpZe4j4mQmOqJLXNiS1OnHy5gx4H/j+mlSJc0ToNTBwUTMbJcRcWevu1XqjYxEK+t5Jes5FEQ8Vh42GVPF8+cV1aIXbSFXyRExJ/Han7bKA8irGNS9qQHmDayKNWJuk9qFwLQDS51HAYD4KME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709072363; c=relaxed/simple;
-	bh=o9svJsP9nzZVOUnXBU3iRQDLYitUEw+4EwfW5E0njzo=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=P1B6P+39UhsTCV9suG5fm38HmlkOo5fE8/XNb6mZGCXOX6j3/wZl0VzsnRycYQ+hC6cdTYlWrHIfrMGWC+JupLe2chgN+hlzCwYhWc1m0aUFuE0aj4oAqbXIB42K2ARppzIJUcqW4plVVP+ERs/w7yWluCNYww9MWlQa+ZmD6c0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KS8VmaMB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37C97C433C7;
-	Tue, 27 Feb 2024 22:19:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709072362;
-	bh=o9svJsP9nzZVOUnXBU3iRQDLYitUEw+4EwfW5E0njzo=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=KS8VmaMBkpXv9qmsgAQsQ5t6hh1qpU7R7Hl6HsLUvFVI5Qi8zQvw+shX26X6EzRhY
-	 5M8oeuGQBQ31mzlfrPnQY9yCmXylxGyA6cg4ofniswej5i2KkwVF21bfLLlkWJNw1y
-	 IeibV7Y5A3vcDOAa0JuXoLPCLVg99HB9dWUrFQbmfOxHRBVTqlfvegK60GDSlEyn4n
-	 2Uu2cf1K1QFSImx88D2lNPVw7W8LXeJRLUunB7TqWPHszC6kYZxemtj+a63egyuBGn
-	 af2kzpJhzS9wYKCswKu1r9kHFx++IQkGlU5EA1dXRc7U1OfacFHXfOe3gSXdkCCmFf
-	 bDwH4CLyOKCfQ==
-Date: Tue, 27 Feb 2024 16:19:21 -0600
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	s=arc-20240116; t=1709073483; c=relaxed/simple;
+	bh=+DlitPmYM0HC8EOJO9yn2RR3WbloWULPH0NZS9721WI=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rw5wa/B9g1D22vWUNob/xbq9L9CE2n5HbUPuMgl9m1Z73jvanbyR3mGUsOcpJ6kcHiwW0lgtspRkbAR1ubKKOFf7iAOpvqKReWKQ5O7e3oPmK0mtbIxIOkS/JV/ZHmrDRYb4SN9UPVpaiSkzaeDuGsKPcnxOcpV9h3Bzon7EQJY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875b6c.versanet.de ([83.135.91.108] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1rf656-0001zj-70; Tue, 27 Feb 2024 23:37:48 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Rob Herring <robh@kernel.org>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	kernel@collabora.com,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Add HDMI0 PHY to rk3588
+Date: Tue, 27 Feb 2024 23:37:46 +0100
+Message-Id: <170907346109.770500.8777873527393464298.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20240219204626.284399-1-cristian.ciocaltea@collabora.com>
+References: <20240219204626.284399-1-cristian.ciocaltea@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: pavel@ucw.cz, linux-kernel@vger.kernel.org, lee@kernel.org, 
- robh+dt@kernel.org, gregory.clement@bootlin.com, conor+dt@kernel.org, 
- ojeda@kernel.org, tzimmermann@suse.de, devicetree@vger.kernel.org, 
- javierm@redhat.com, krzysztof.kozlowski+dt@linaro.org, 
- linux-leds@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- geert@linux-m68k.org, andrew@lunn.ch, andy@kernel.org, 
- sebastian.hesselbarth@gmail.com, robin@protonic.nl
-In-Reply-To: <20240227212244.262710-3-chris.packham@alliedtelesis.co.nz>
-References: <20240227212244.262710-1-chris.packham@alliedtelesis.co.nz>
- <20240227212244.262710-3-chris.packham@alliedtelesis.co.nz>
-Message-Id: <170907236007.645402.4701945428447873129.robh@kernel.org>
-Subject: Re: [PATCH v2 2/4] dt-bindings: auxdisplay: Add bindings for
- generic 7 segment LED
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-
-On Wed, 28 Feb 2024 10:22:42 +1300, Chris Packham wrote:
-> Add bindings for a generic 7 segment LED display using GPIOs.
+On Mon, 19 Feb 2024 22:46:25 +0200, Cristian Ciocaltea wrote:
+> Add DT nodes for HDMI0 PHY and related syscon found on RK3588 SoC.
 > 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> ---
-> 
-> Notes:
->     Changes in v2:
->     - Use compatible = "generic-gpio-7seg" to keep checkpatch.pl happy
-> 
->  .../auxdisplay/generic-gpio-7seg.yaml         | 40 +++++++++++++++++++
->  1 file changed, 40 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/auxdisplay/generic-gpio-7seg.yaml
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Applied, thanks!
 
-yamllint warnings/errors:
+[1/1] arm64: dts: rockchip: Add HDMI0 PHY to rk3588
+      commit: 11d28971aaaf5de6f50790fb21f1113fee21d320
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/auxdisplay/generic-gpio-7seg.yaml: $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
- 	 $id: http://devicetree.org/schemas/auxdisplay/generic,gpio-7seg.yaml
- 	file: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/auxdisplay/generic-gpio-7seg.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240227212244.262710-3-chris.packham@alliedtelesis.co.nz
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
