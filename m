@@ -1,236 +1,197 @@
-Return-Path: <devicetree+bounces-46175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46177-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DECC868573
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 02:03:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 014CE86858E
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 02:10:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7EF731C223FD
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 01:03:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 515FEB21414
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 01:09:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD394522A;
-	Tue, 27 Feb 2024 01:03:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E1C14A0A;
+	Tue, 27 Feb 2024 01:09:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="SXdnW8ZR"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="Asl02ldA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn2030.outbound.protection.outlook.com [40.92.103.30])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1690C4A2D
-	for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 01:03:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708995802; cv=none; b=EEsl2vQsESQARpPNY9DcoPeJ75pJFsz6ZsrnaAl55golGCmQVF5DK8v1IzqP18sOvGMg78Xg0c+gVlefN8YhJ6cGb6kSaHX1nDdMLdzywu8bmqE9l8mWbzW1yaJee8Kv6IfDstYiO7I/stNBZLxaA6D8Y7Au6Chh0lY6RcuuoJc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708995802; c=relaxed/simple;
-	bh=RwCvkBpjWjZdDzoyR0sUhIz+j7ms5wHaCth84P3MKYs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OtUUiuxooq+1kuKWSPGJ45ORSMJiOARPFfQUiPmtgCqkiziptpupPqQAQwcRpd7s6vs9bqkGEJAkcs4so+JyWhyeMD9EVWCy1z2gBQsT99hjHu++rkfkSk7GWr3btzN3mN+dPKqLQpZZo6nqrT6hfsQMwEy+q1C+bY2WFFQ4bfk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=SXdnW8ZR; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 9BB282C0657;
-	Tue, 27 Feb 2024 14:03:19 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1708995799;
-	bh=wH2e4GGOGFrvrqcOtz3dw/t+ACqpEAmKW5pshoxQMl0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=SXdnW8ZRYoXWowI1tt+OTin8WfwlTlcBB2mrxkVTqzTyOw8LvdkjK5Xb2Yf7SfuGn
-	 +EvGUPa5UEh1saNoNzZtgOHT9md7UIiKzsRTUInUc6g/PFWzX3vLNRYqflSF0TKHK+
-	 AwU1dN46bOca0yPL7hVN0JUBtVSFykmPQi7dZeW/BuPI/Inp7riL68YxlmH1WZz4Aj
-	 9QhujcQKBrn1IiZr0/ROUMHyCg2KZL9qhRJM0m0f7Lgh9hdlUoymXJLfaVtSqnm3VT
-	 DpP5s/PrD4KV/ysdvtbYx+RLWs5PnHbhiXeiU3j0ptf93Kw2i553x6b4v3uHZZYU/N
-	 9K6sYPTu5dKvg==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B65dd34d70000>; Tue, 27 Feb 2024 14:03:19 +1300
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id 4793E13ED8D;
-	Tue, 27 Feb 2024 14:03:19 +1300 (NZDT)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-	id 445FF2807DC; Tue, 27 Feb 2024 14:03:19 +1300 (NZDT)
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-To: antoniu.miclaus@analog.com,
-	alexandre.belloni@bootlin.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	jdelvare@suse.com,
-	linux@roeck-us.net
-Cc: linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org,
-	Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-	Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>,
-	Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH v8 2/2] dt-bindings: rtc: add max313xx RTCs
-Date: Tue, 27 Feb 2024 14:03:10 +1300
-Message-ID: <20240227010312.3305966-3-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240227010312.3305966-1-chris.packham@alliedtelesis.co.nz>
-References: <20240227010312.3305966-1-chris.packham@alliedtelesis.co.nz>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B5A623B1;
+	Tue, 27 Feb 2024 01:09:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.103.30
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1708996194; cv=fail; b=gRFbJFZ5QqUp2Z4/eSUNvayUFM5HOL37qpMRXb+bTjWzhLGex00XjGV1spLU0sSonh5dGtX3zr/G5nj+NDz0c7Nb70cvKkHGnCsICn2QtqUcHeF1zrV0kZNxt+hTYq6JPMu/ry6tuMxPDwtRTbvFyu93J5HS3xNy5CJdhzZ+FWI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1708996194; c=relaxed/simple;
+	bh=N4wtrGoA39k7iaUMNC+F3XNjvyF2dLZF3rtz8DC+w4U=;
+	h=Message-ID:Date:Subject:From:To:References:Cc:In-Reply-To:
+	 Content-Type:MIME-Version; b=XdspPSYOBNZUzy6IcBeE6sd3mc1mC/NeLv7kWjxnhxfNAYb4RL+diCcGmEPkv2JgOJbZMMgwPof1aG7nijEHSdQunLcEAmb7nQ4Kf3HJfan4UlmjQcrvwaPYHalY4vfJ760fW+CRMlmoY54Hpc4A5m6DNOcQzSFT0slMbvXzj6w=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=Asl02ldA; arc=fail smtp.client-ip=40.92.103.30
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=E3hPkGe2ig4VUKuSMxDgJQV6yNDrpOk2U+S7fLpniJAfIMd51adicDLOUBCSe2OfMPLMOaB2UJCIWq2AaVhd+foqc7CdxNmTiZIHWgNbRWGDIgSMYXdG32ecDoTe8A3wHgu/7HALAgDeCDEhKpcmIX/FJ+3Ylf0yAmtBMgqXxcMr8PQ4hsIr1YNfb934whScm2FwJDiPlvAvOs8zpXaUVmsP7cO4u7enIvhkpb32lianYeE3aONLeYr8tf2h4bDqx6dCfCB78vwO88W0PHwpUrxr7eGjzj+1JR56gvaF8DucYNQWGdmONLnbwVfxpLPX7O955UZ446vF6gz5iGwV+w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VEFW7z3hcdaOooNGB9OZ1hY6Rk6BSpKhU+YfzSoqnsk=;
+ b=hKgRbTjpLrXeFhZBeEuUul4ZcsPI6KliGn1veUAaSZ4xYCUX2Wpjd58m4Cvn19ANiULVczqFvRtC2XpqxMbIFmrH1Yl6fdUC9o8Qca5xzZ1i8CcTiN7FH1lecw8uf35METqVtzL6+zy7PdUp3PRYAgBWsJtkBsNoyntsfbgAGMNTpjozbOC05Xmmj0yUZiSENwGgbNC0HPE5V9Cdp2+mM0qaIksafURObYjGLFRH/omDO4Ntidrva/UnmJ2eIdSRGdTO6TXPfaMNWEoD7fmPO7gplto//9tEWt9tbP0UEwSjEgLynptQFYGwwf9fCJLee+BDO5QpHpSvTNoVYJRl1w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VEFW7z3hcdaOooNGB9OZ1hY6Rk6BSpKhU+YfzSoqnsk=;
+ b=Asl02ldAhSb3Ar5giASxjRCP/lYL77X4JO7bZXblZ/85U3vaJFrPwMZL3XyOZt6lBqm89UrfLzHN84YpzbFZO1NvKmq/FA8PBntRfL38a00jLDYy1MNeUaYzIRQBuVIvDmTmJVmF7GtKBLf4yAQ58WfJcfv2oApPau2MDEg2CsTk5ZsV+d5lnLseawRLR6E+QUFYPV9ItzNXHNtoVZgbK8dPWUBYRRhadRDVeYN+88HaWPVT/wSy9aati4tXHlyFloSCvIxHJaHy2dkApgB/Ak+DwJHKTneKQCB9aDpNPo+/XMIAT3w5eYUMjQHP22nynsYkQyu9jfsfWzM+RFkYwQ==
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
+ by MA0P287MB2235.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:101::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.36; Tue, 27 Feb
+ 2024 01:09:44 +0000
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::8473:67b4:9a2a:3a69]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::8473:67b4:9a2a:3a69%7]) with mapi id 15.20.7316.032; Tue, 27 Feb 2024
+ 01:09:44 +0000
+Message-ID:
+ <MA0P287MB28224A3BAA6CA0D4833B5C30FE592@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+Date: Tue, 27 Feb 2024 09:09:35 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 4/5] clk: sophgo: Add SG2042 clock driver
+From: Chen Wang <unicorn_wang@outlook.com>
+To: Stephen Boyd <sboyd@kernel.org>
+References: <cover.1708397315.git.unicorn_wang@outlook.com>
+ <d7c74c2cfa410850c044ff2879720db06c2f8272.1708397315.git.unicorn_wang@outlook.com>
+ <MA0P287MB282275AB71CC3A7E2F3792B2FE552@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+Cc: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
+ chao.wei@sophgo.com, conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ mturquette@baylibre.com, palmer@dabbelt.com, paul.walmsley@sifive.com,
+ richardcochran@gmail.com, robh+dt@kernel.org, sboyd@kernel.org,
+ devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com, guoren@kernel.org,
+ jszhang@kernel.org, inochiama@outlook.com, samuel.holland@sifive.com
+In-Reply-To: <MA0P287MB282275AB71CC3A7E2F3792B2FE552@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-TMN: [0mChtVThbM5wabG7JeN6mGo7R5US1Jek]
+X-ClientProxiedBy: TYCP286CA0290.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:3c8::7) To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:138::5)
+X-Microsoft-Original-Message-ID:
+ <16630cc7-3c6f-4950-98cc-700e8f3b58dd@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=BKkQr0QG c=1 sm=1 tr=0 ts=65dd34d7 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=IkcTkHD0fZMA:10 a=k7vzHIieQBIA:10 a=gAnH3GRIAAAA:8 a=gEfo2CItAAAA:8 a=ZcN8bhqOFn-iYlg87JMA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=oVHKYsEdi7-vN-J5QA_j:22 a=sptkURWiP4Gy88Gu7hUp:22
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|MA0P287MB2235:EE_
+X-MS-Office365-Filtering-Correlation-Id: b649b014-d85b-4a70-4289-08dc3730c7c5
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	ylba+/GJ7Jn9CX3gYcl8vHFzQI6sPi91Aqg2yxcjWYTzY/9aw5/IiV3PGJ2XR5Wnc1t1YW93ar7iCoiblfcfR0eU4RcxDAPCdZm7Fb+6Ly6YK49S/IhAb/GL8M4Wh4fux7tV7pw6d3YdBhZMyYiovlxOIA7EcdcDlE0MitZlAImS1lwY5RwYuky1ASPG8Qfky4V24Wrm89ZWCXZk5IFdY6T2UVYGDjDuD9j/YYU64C3PfbyVJIK64tzhf9hEbwR4vA4uv1pSWGXNSAm5BIcwePXontcL+kEbjGAzZkmcnrcsgRUwuR7+Q5TFW8Qenqf14OYg+x5TBC5t995/FG37Ni0hWVeD6YjGJehR4ewzSoFXFBRdRZ2kLjk0DHG8E7EewvpBkJZoFlMCFDSBcm3BioXwksU/RL8AOSRBPzMYopT1X/xpXyVX3wUjsUmITFbGZoTLKWsNKDVCSbOIHJYy3nKWywWUXDEfoOnqqHEwqVZ5A/Wr67FxmgzFGhClfL/YuXaKVf4jtA1l/H7Tc6jLy/PxuP2gzBRTmERyrLvqujGaa2d02KIAdiyLSahbkNHVd1eVPeQxFR++lFUqdOp3Xhg9JNFEuXR1888jFCl/gZsNOUMHvezYG2oUabUZuXTKxXJ/WxLn4/bGBKUaFp2Q05I6wuOokpRa6QQT3+K0uWI=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?MDh6WmZQVGlqcjVqdFJuWjlkTGhyZFU5dzRIZ0IxRXd5VFg2eHN2S1JWeGVW?=
+ =?utf-8?B?Z0ZZSm14SkthUmZyQXVLRXVkbDhOdWF1THpuYXlFaDU3eFJXQTRsTzZ0RkNY?=
+ =?utf-8?B?T1VHRi9xb21nUlpvdDhFNDZMTDJSeTU3WVV3YWZrM0orQXhvSXBuT2N0Z2N6?=
+ =?utf-8?B?RERjdktrWEhad1hHbU5KRTdQK280cWxiL2YrOEpobTlJYzEwOFUxNTI0Tmtj?=
+ =?utf-8?B?VlVpOURna3l2SUFCTmI0WVhWZC91SFd0c01ZMjBFYUQ4ejllUFY4dGRTWlA1?=
+ =?utf-8?B?enN3TUN2UzltUjN5QjJYUVArT2gwakF3QnArWW9NTE9QbzllOTRXWk16RnMv?=
+ =?utf-8?B?TTlaam8yRGFNSnZJK2VCd0dVckhqYkkvdEgvTzhuUUYwVzh5WTliK2FwdjBy?=
+ =?utf-8?B?RHdxOVpqUTJ1eWQ5bUx5d041VTN6SUlHUFp1ZVpSOVJMdGY0RXA1MGtIeElS?=
+ =?utf-8?B?RS9QRUtVc1B1Zm1LMzhtWU9MeWY2UUlaRmxpTW01eFRic05adkV0SXlIdG9z?=
+ =?utf-8?B?TlczNVBEZDd4YnBDYkd6RFJ1V1k2ekdSWU9uTDhuSWdCMjQvOXJ1T1JPeHcy?=
+ =?utf-8?B?TzQ1RmFRekNvTzdjWTBkdGtqbVRtWnlaenZnSndldXZkY2ZDZWthdmYyQlRY?=
+ =?utf-8?B?UkpkbFRhMmtvbWtNczhCaTVGWWhrckUvYmNFNkUxMnN2MWdxTzJ1WjgyQndQ?=
+ =?utf-8?B?bXlXenpyd2o0VTRsWWowTWZ5ZldGUCtzdFViVWM2YjNIb3kwMEw3MkVuQzky?=
+ =?utf-8?B?cHU5OEltOUpqZUtwZWoveFh4ZzZxc2E2S1RtR3JHbFlYcFV2SXNYMzhiZ2tF?=
+ =?utf-8?B?S2cyNHFqOVRyWXFiZjMwQmNVQWx6YXIwUmdIanpIRFNxUzVsdTVCc3lWRXFk?=
+ =?utf-8?B?clJhN0RkekoxSFQ0N2VtUWxTUU5EV3Q5SkZ0ZFEzaDRCTlFNdDl1ekNLdHJo?=
+ =?utf-8?B?V2xoYko4ejllS3dvUzJFSkxnbVJQYnV4aGltdncyQVJpUkRFbm8zTHdKVzRG?=
+ =?utf-8?B?S1ZwN1g3cGhJcHBYbXFQMXhIdHA1OVVwYWQzaWtIVG1XNmZNTG9rNmcyYW9P?=
+ =?utf-8?B?N1VMeVRBN1UrR050OEZ6bDhXSTNEU3pwV0ZqQ25pOUZBMm9LUTBuLzlVZnMx?=
+ =?utf-8?B?RWV3QmJ4MkNtWklITS9BMkcrNGNIQUhQZlA2OVVKTkdPTG5nMVovS2ZvOUNX?=
+ =?utf-8?B?cWt2SUd6VDFJcjRmVjFwdWFSNkxZRWh2aGo4ZHJBd0Q4c2E4cXBiV3NTWXpW?=
+ =?utf-8?B?WjdLRDJucThCN1QxMXhubmd5V1BpT0NEMVE5b1laaHYrYk9lbTRKRlVXSm9s?=
+ =?utf-8?B?NUV2NHlyRkZHOVVFL3Y4akd0eldVbWg2L0NxYVlJTHJuS2NGdkRXcDhNazVE?=
+ =?utf-8?B?SFp0b2JiY1V4YzBqWmJIMlpLZFg4cUYwSXlkRFJteU10WjY2V2s1Q1kxcUgy?=
+ =?utf-8?B?K1VodUovSE53cUo1OERJSnVVRUUrTSsrUk1lcFJpSTAwSWhKM3FDa2MzRlIr?=
+ =?utf-8?B?Nys0cjlyekFwMlE3VExpck1zWTRpYVJKTFNWVDRmWnEyS25qS0RMTzFmWi9y?=
+ =?utf-8?B?RUFOa1F4OHkvRk9jZjd1K0ZzRWpkMzVnUkQxWHpmQk83WjdBMGFBYkJrSDRV?=
+ =?utf-8?B?NkdLWWdybENXdGw5ZkFvWWpKSXB6eTFBa0NvdlVGNUU3cnRzMUs2TFdmMWdT?=
+ =?utf-8?Q?ApvHLxtuCX+AGUESLmDh?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b649b014-d85b-4a70-4289-08dc3730c7c5
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2024 01:09:44.6152
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA0P287MB2235
 
-From: Ibrahim Tilki <Ibrahim.Tilki@analog.com>
+Ping ~~~
 
-Add devicetree binding documentation for Analog Devices MAX313XX RTCs.
-This combines the new models with the existing max31335 binding.
+Hi, Stepen,
 
-Signed-off-by: Ibrahim Tilki <Ibrahim.Tilki@analog.com>
-Signed-off-by: Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
----
- .../devicetree/bindings/rtc/adi,max31335.yaml | 88 ++++++++++++++++---
- 1 file changed, 78 insertions(+), 10 deletions(-)
+Can you please have a review of this, any question please feel free let 
+me know.
 
-diff --git a/Documentation/devicetree/bindings/rtc/adi,max31335.yaml b/Do=
-cumentation/devicetree/bindings/rtc/adi,max31335.yaml
-index 0125cf6727cc..ad8d6fec9a2b 100644
---- a/Documentation/devicetree/bindings/rtc/adi,max31335.yaml
-+++ b/Documentation/devicetree/bindings/rtc/adi,max31335.yaml
-@@ -1,36 +1,54 @@
- # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+# Copyright 2022 Analog Devices Inc.
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/rtc/adi,max31335.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
-=20
--title: Analog Devices MAX31335 RTC
-+title: Analog Devices MAX313XX series I2C RTCs
-=20
- maintainers:
-   - Antoniu Miclaus <antoniu.miclaus@analog.com>
-+  - Chris Packham <chris.packham@alliedtelesis.co.nz>
-=20
--description:
--  Analog Devices MAX31335 I2C RTC =C2=B12ppm Automotive Real-Time Clock =
-with
--  Integrated MEMS Resonator.
--
--allOf:
--  - $ref: rtc.yaml#
-+description: Analog Devices MAX313XX series I2C RTCs.
-=20
- properties:
-   compatible:
--    const: adi,max31335
-+    enum:
-+      - adi,max31328
-+      - adi,max31329
-+      - adi,max31331
-+      - adi,max31334
-+      - adi,max31335
-+      - adi,max31341
-+      - adi,max31342
-+      - adi,max31343
-=20
-   reg:
--    maxItems: 1
-+    description: I2C address of the RTC
-+    items:
-+      - enum: [0x68, 0x69]
-=20
-   interrupts:
-+    description:
-+      Alarm1 interrupt line of the RTC. Some of the RTCs have two interr=
-upt
-+      lines and alarm1 interrupt muxing depends on the clockin/clockout
-+      configuration.
-     maxItems: 1
-=20
-   "#clock-cells":
-     description:
--      RTC can be used as a clock source through its clock output pin.
-+      RTC can be used as a clock source through its clock output pin whe=
-n
-+      supplied.
-     const: 0
-=20
-+  clocks:
-+    description:
-+      RTC uses this clock for clock input when supplied. Clock has to pr=
-ovide
-+      one of these four frequencies - 1Hz, 50Hz, 60Hz or 32.768kHz.
-+    maxItems: 1
-+
-   adi,tc-diode:
-     description:
-       Select the diode configuration for the trickle charger.
-@@ -48,6 +66,56 @@ required:
-   - compatible
-   - reg
-=20
-+allOf:
-+  - $ref: rtc.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - adi,max31328
-+              - adi,max31342
-+
-+    then:
-+      properties:
-+        aux-voltage-chargeable: false
-+        trickle-resistor-ohms: false
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - adi,max31328
-+              - adi,max31331
-+              - adi,max31334
-+              - adi,max31335
-+              - adi,max31343
-+
-+    then:
-+      properties:
-+        clocks: false
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - adi,max31341
-+              - adi,max31342
-+
-+    then:
-+      properties:
-+        reg:
-+          items:
-+            - const: 0x69
-+
-+    else:
-+      properties:
-+        reg:
-+          items:
-+            - const: 0x68
-+
- unevaluatedProperties: false
-=20
- examples:
---=20
-2.43.2
+BTW, if it is ok for you, will you pick this driver patch together with 
+the bindings for v6.9? Bindings related patches have been reviewed by 
+Rob, and I can handle the other stuff such as dts.
 
+Thanks,
+
+Chen
+
+On 2024/2/23 11:01, Chen Wang wrote:
+> Ping ~~~
+>
+> On 2024/2/20 11:09, Chen Wang wrote:
+>> From: Chen Wang <unicorn_wang@outlook.com>
+>>
+>> Add a driver for the SOPHGO SG2042 clocks.
+>>
+>> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
+>> ---
+>>   drivers/clk/Kconfig                    |    1 +
+>>   drivers/clk/Makefile                   |    1 +
+>>   drivers/clk/sophgo/Kconfig             |    8 +
+>>   drivers/clk/sophgo/Makefile            |    2 +
+>>   drivers/clk/sophgo/clk-sophgo-sg2042.c | 1401 ++++++++++++++++++++++++
+>>   drivers/clk/sophgo/clk-sophgo-sg2042.h |  233 ++++
+>>   6 files changed, 1646 insertions(+)
+>>   create mode 100644 drivers/clk/sophgo/Kconfig
+>>   create mode 100644 drivers/clk/sophgo/Makefile
+>>   create mode 100644 drivers/clk/sophgo/clk-sophgo-sg2042.c
+>>   create mode 100644 drivers/clk/sophgo/clk-sophgo-sg2042.h
+> [......]
+>
+> Hi, Stephen,
+>
+> Can you please have a review of this, any question please feel free 
+> let me know.
+>
+> BTW, if it is ok for you, will you pick this driver patch together 
+> with the bindings for v6.9? Bindings related patches have been 
+> reviewed by Rob, and I can handle the other stuff such as dts.
+>
+> Thanks,
+>
+> Chen
+>
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
