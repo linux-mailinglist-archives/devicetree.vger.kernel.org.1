@@ -1,152 +1,221 @@
-Return-Path: <devicetree+bounces-46538-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46539-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E37E869FF5
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 20:15:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4092786A05B
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 20:40:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 240D7293733
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 19:15:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1EDFDB30AAC
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 19:21:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6DC951C28;
-	Tue, 27 Feb 2024 19:15:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7808143C48;
+	Tue, 27 Feb 2024 19:20:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="atBgt5rs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fEuUcZVn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B32E851004
-	for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 19:15:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A41D51C33;
+	Tue, 27 Feb 2024 19:20:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709061348; cv=none; b=VuVcXQdBV/hPFzlOEo81EplrkxY4ZcY5Qy93M2sl5kLdelq5z+w844nEKzTIZk4pigsiGmSUVCAjlfJL+dVdDWpZ3C/GxS/9KnLyhQz6esCz/hNTDaTjvBtOFYd0mibs+Y6341owHDNc4Um22jgsC+Sd/h+/xjD9olDYWUY//GA=
+	t=1709061650; cv=none; b=HXhXugU1bS2RNW3lczRGRbUkrtsRU56NuH3A6H/YW1sp+I8TWlzOMej+HwICu1uhk1aqfKoGlKXpIQEEEvFhGyJ5pEpXqHY4Y1pFOfpsnd+YCQsWYPphf2RgsHW1/SZZSzzjTEAZfLHE0HXVv5gYCiDB8U6LwDBCr1kBOlzTTmU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709061348; c=relaxed/simple;
-	bh=hSOP0N0YnxaxmNk6dWKQDrgD1IqOFCwJ/jiRO1WVjPQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PFFDPAWNUSDxOvTaZoh5Arr8GNmcKYUO5nYD+XpZKuA2d5g1Cp5eVJ1q4dlxb6OqwYql73FvKXUTlGJHmAwghMccGJM+N7RLZJlVKfFTXH/NKUFVg2VBhpVT6jV6XqcRk35xSf7fpehm1aUJC1T+9Itjmapd/khueclXJiw3zBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=atBgt5rs; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2d220e39907so73412081fa.1
-        for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 11:15:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1709061345; x=1709666145; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nVKUFrfD0l+ZJGZDjLAoImGvdko1W6B9y4j/PD4Lp0o=;
-        b=atBgt5rsptJiNIbTWTfFDb1a6h7P96eC80d3zsUMheFNN6VHGWk/pSxLVDsXnTWCSa
-         3MaVwg7iJDOZL6AUQVUDkoMF+uFVVmjXOnK/skvSFv46I7Hs3LD+VP8bfHVHCq8OD080
-         mQueZQJAKaF49U431E3/0UEljtVk1o4qTns9x9LpbnF6Wnvl6dDnLUIhTqADZ39bm4/D
-         m88Ml6sxGlObG4CrlDdy3Z86YCTTw3uYDNoWMtowIRDxEvcMJCO/gso41MOK5fp0F+SP
-         2MQpZppZlL4oAnt6t+u73KaZwHasaZMUMbmA9NfRbQ1cyaZL27VeQ0w5jOqNb/pkTSUK
-         Ob5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709061345; x=1709666145;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nVKUFrfD0l+ZJGZDjLAoImGvdko1W6B9y4j/PD4Lp0o=;
-        b=KGQt+jYrGjv7BEdp+Rz8xtTtSufvf0qT1PatozbfrOoq1+xF/+Uf31qFgDpxmTEGeS
-         x1/BJ5tKJlE5q9EOTYaFzHZtyEmPy3HXh75DP/9py9MxhtxuFuSy+qluGPKeKbD9f5zY
-         nzCkbu3YsBxzjzW3ZBExvuXtvMI/UpqGA1IXokJUr+kABMKpCj1/yBHyqNKWV6XM8vlX
-         Af5alMtVympWkKaI5dWo6TPkPax+dgc+69NGkAjWQxGdJELfPGkUBKtaFKmxXtnHDYnW
-         /Bqdj65IDu9Fj6IkRhXpLw/XfGPPTuxZ1rCGSZyTswo/aofsU7me8maHZCExwdWOLU0v
-         W1jw==
-X-Forwarded-Encrypted: i=1; AJvYcCUjAqMH83Vp096UQX4YzeJ32Roo2Gjkodg6Bwu7aGEZ69kx0c0SsC+3u4DbZ4NJQoKioEUAL5Wl83JCVlQpBSyHnZbmyTXp6Z+0xA==
-X-Gm-Message-State: AOJu0Yw2kDB7GVz/C7PKU+7T2QWuRl9D8vvsBiRIBKFJtlYQKFEHIKCv
-	hOsCePnoDcZJ27EGNiSjLfRDROiyYA0BwGTqsk9Ok8nyizehg3cBNtVNDV7guYHiT7S9hgRlRGx
-	6Yege0fVXhQnKXyQ+tTB8h8ngcrb4WdqoAc7N9w==
-X-Google-Smtp-Source: AGHT+IFOOCfT5qLgXVlNq4RDSVuUSSjIvbst3+ktr42fu2XeJjJseZ2PRhKODqIVQssDN1WPGkGvKMEtniDLuom5+1M=
-X-Received: by 2002:a2e:7215:0:b0:2d2:37d6:350c with SMTP id
- n21-20020a2e7215000000b002d237d6350cmr7283638ljc.12.1709061344774; Tue, 27
- Feb 2024 11:15:44 -0800 (PST)
+	s=arc-20240116; t=1709061650; c=relaxed/simple;
+	bh=AcsguI5VlTxYraStv84Cz5LPfQ1mLD4JEQO3egcz8aQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=t1XUOJaJelDUXGZ7OD9hqXUCUJ3Q9eapMcJaYjRhC5OcI/fdvBYK54PCzhwteIQwYxeW2OBPsQsIFRHrrVaJGCWk+VB0m816TtCmreROnj5BJk9HZelR/kOxYSMh6MQWvwgN7AcUfIbNCeLvNFXFq8E5FewrOqQKT4r6wXgkj+0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fEuUcZVn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D5BCC433C7;
+	Tue, 27 Feb 2024 19:20:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709061650;
+	bh=AcsguI5VlTxYraStv84Cz5LPfQ1mLD4JEQO3egcz8aQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=fEuUcZVnvT7jPeRafbXwl9X2+Ue1xo/+Fc1S1CoA6CTSWszlq2B2iX+dEQnBi/bjq
+	 FuJ2sHKeIy7v6s+iH/eUqiz7dtHyaxeQMxAgAm0oONOV2mMUGRUfyPXrJNwH0GtPKO
+	 e2eeqqvroNjt8+bTBvFs4mDxZubuqWdt4MpipKpH5lKSxtux6KzrATZuIC2FT7qeoq
+	 BJMhnVF/EbSPeT8NTwZo6qVQ9n3DFqhERHkFnxvyspyg0GGbnPOQm+iCStVLku0AvN
+	 O30yLFvvQDeYAdZC1OGfeeBs0m/FZdXc0NaZPcflZKU9UMnfYN7LP2ij4U0L4zrGHW
+	 giKX/UJvS9RJQ==
+Date: Tue, 27 Feb 2024 19:20:32 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matti Vaittinen <mazziesaccount@gmail.com>, Andy
+ Shevchenko <andriy.shevchenko@linux.intel.com>, Marek Vasut
+ <marex@denx.de>, Anshul Dalal <anshulusr@gmail.com>, Javier Carrasco
+ <javier.carrasco.cruz@gmail.com>, Matt Ranostay <matt@ranostay.sg>, Stefan
+ Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 5/5] iio: light: Add support for APDS9306 Light
+ Sensor
+Message-ID: <20240227192032.12def64a@jic23-huawei>
+In-Reply-To: <a94b86fe-0896-47ba-a597-0cd59a0665a2@tweaklogic.com>
+References: <20240218054826.2881-1-subhajit.ghosh@tweaklogic.com>
+	<20240218054826.2881-6-subhajit.ghosh@tweaklogic.com>
+	<20240224151340.3f2f51e8@jic23-huawei>
+	<a94b86fe-0896-47ba-a597-0cd59a0665a2@tweaklogic.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240216-ad7944-mainline-v2-0-7eb69651e592@baylibre.com>
- <20240216-ad7944-mainline-v2-1-7eb69651e592@baylibre.com> <20240221152226.GA2868707-robh@kernel.org>
- <CAMknhBFytGYNo8FviHepoxLApoGyo0mVhL2BzVmm1vt8-Evn9Q@mail.gmail.com> <CAL_Jsq+diFUEn=Tf99_FkXqLHuyLrZW_jaYoPjGhGjGbecgivg@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+diFUEn=Tf99_FkXqLHuyLrZW_jaYoPjGhGjGbecgivg@mail.gmail.com>
-From: David Lechner <dlechner@baylibre.com>
-Date: Tue, 27 Feb 2024 13:15:33 -0600
-Message-ID: <CAMknhBE7r7aRYA5Sm6UhC3pNBMhAvcB4+ZbRZcsRp=PxTG_2Kg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: add ad7944 ADCs
-To: Rob Herring <robh@kernel.org>
-Cc: linux-iio@vger.kernel.org, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Thu, Feb 22, 2024 at 9:34=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
-:
->
-> On Wed, Feb 21, 2024 at 8:44=E2=80=AFAM David Lechner <dlechner@baylibre.=
-com> wrote:
-> >
-> > On Wed, Feb 21, 2024 at 9:22=E2=80=AFAM Rob Herring <robh@kernel.org> w=
-rote:
-> > >
-> > > On Fri, Feb 16, 2024 at 01:46:18PM -0600, David Lechner wrote:
-> >
-> > ...
-> >
-> > > > +  adi,spi-mode:
-> > > > +    $ref: /schemas/types.yaml#/definitions/string
-> > > > +    enum: [ single, multi, chain ]
-> > > > +    default: multi
-> > > > +    description: |
-> > > > +      * single: The datasheet calls this "3-wire mode". It is ofte=
-n used when
-> > > > +        the ADC is the only device on the bus. In this mode, SDI i=
-s tied to VIO,
-> > > > +        and the CNV line can be connected to the CS line of the SP=
-I controller
-> > > > +        or to a GPIO, in which case the CS line of the controller =
-is unused.
-> > >
-> > > We have a standard property for this.
-> >
-> > As discussed in v1 [1], the datasheet's definition of "3-wire mode" is
-> > _not_ the same as the standard spi-3wire property. I can add that to
-> > the description here to clarify (I hoped changing the enum name was
-> > enough, but perhaps not). Or is there a different property you are
-> > referring to?
-> >
-> > [1]: https://lore.kernel.org/all/20240216140826.58b3318d@jic23-huawei/
-> >
-> > >
-> > > > +      * multi: The datasheet calls this "4-wire mode". This is the=
- convential
->
-> Also, typo.
->
-> > > > +        SPI mode used when there are multiple devices on the same =
-bus. In this
-> > > > +        mode, the CNV line is used to initiate the conversion and =
-the SDI line
-> > > > +        is connected to CS on the SPI controller.
-> > >
-> > > That's "normal" mode.
-> >
-> > That was my first choice, but the datasheet uses the term "normal
-> > mode" to mean not TURBO mode which is something else unrelated to the
-> > SPI mode.
->
-> What I mean is this should be conveyed by the absence of any property.
-> You don't need a property for "normal SPI mode".
+On Tue, 27 Feb 2024 23:42:48 +1030
+Subhajit Ghosh <subhajit.ghosh@tweaklogic.com> wrote:
 
-The binding already has `default: multi` to cover this case. But I
-suppose we can just leave out the option altogether if you prefer.
+> On 25/2/24 01:43, Jonathan Cameron wrote:
+> > On Sun, 18 Feb 2024 16:18:26 +1030
+> > Subhajit Ghosh <subhajit.ghosh@tweaklogic.com> wrote:
+> >   
+> >> Driver support for Avago (Broadcom) APDS9306 Ambient Light Sensor.
+> >> It has two channels - ALS and CLEAR. The ALS (Ambient Light Sensor)
+> >> channel approximates the response of the human-eye providing direct
+> >> read out where the output count is proportional to ambient light levels.
+> >> It is internally temperature compensated and rejects 50Hz and 60Hz flicker
+> >> caused by artificial light sources. Hardware interrupt configuration is
+> >> optional. It is a low power device with 20 bit resolution and has
+> >> configurable adaptive interrupt mode and interrupt persistence mode.
+> >> The device also features inbuilt hardware gain, multiple integration time
+> >> selection options and sampling frequency selection options.
+> >>
+> >> This driver also uses the IIO GTS (Gain Time Scale) Helpers Namespace for
+> >> Scales, Gains and Integration time implementation.
+> >>
+> >> Signed-off-by: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>  
+> > I applied this but then got some build warnings that made me look
+> > more closely at the int_src handling.
+> > 
+> > This is confusing because of the less than helpful datasheet defintion
+> > of a 2 bit register that takes values 0 and 1 only.
+> > 
+> > I thought about trying to fix this up whilst applying but the event code
+> > issue is too significant to do without a means to test it.
+> > 
+> > Jonathan
+> >   
+> 
+> >> +static int apds9306_read_data(struct apds9306_data *data, int *val, int reg)
+> >> +{
+> >> +	struct device *dev = data->dev;
+> >> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
+> >> +	struct apds9306_regfields *rf = &data->rf;
+> >> +	int ret, delay, intg_time, intg_time_idx, repeat_rate_idx, int_src;
+> >> +	int status = 0;
+> >> +	u8 buff[3];
+> >> +
+> >> +	ret = pm_runtime_resume_and_get(data->dev);
+> >> +	if (ret)
+> >> +		return ret;
+> >> +
+> >> +	ret = regmap_field_read(rf->intg_time, &intg_time_idx);
+> >> +	if (ret)
+> >> +		return ret;
+> >> +
+> >> +	ret = regmap_field_read(rf->repeat_rate, &repeat_rate_idx);
+> >> +	if (ret)
+> >> +		return ret;
+> >> +
+> >> +	ret = regmap_field_read(rf->int_src, &int_src);
+> >> +	if (ret)
+> >> +		return ret;
+> >> +
+> >> +	intg_time = iio_gts_find_int_time_by_sel(&data->gts, intg_time_idx);
+> >> +	if (intg_time < 0)
+> >> +		return intg_time;
+> >> +
+> >> +	/* Whichever is greater - integration time period or sampling period. */
+> >> +	delay = max(intg_time, apds9306_repeat_rate_period[repeat_rate_idx]);
+> >> +
+> >> +	/*
+> >> +	 * Clear stale data flag that might have been set by the interrupt
+> >> +	 * handler if it got data available flag set in the status reg.
+> >> +	 */
+> >> +	data->read_data_available = 0;
+> >> +
+> >> +	/*
+> >> +	 * If this function runs parallel with the interrupt handler, either
+> >> +	 * this reads and clears the status registers or the interrupt handler
+> >> +	 * does. The interrupt handler sets a flag for read data available
+> >> +	 * in our private structure which we read here.
+> >> +	 */
+> >> +	ret = regmap_read_poll_timeout(data->regmap, APDS9306_MAIN_STATUS_REG,
+> >> +				       status, data->read_data_available ||
+> >> +				       (status & (APDS9306_ALS_DATA_STAT_MASK |
+> >> +						  APDS9306_ALS_INT_STAT_MASK)),
+> >> +				       APDS9306_ALS_READ_DATA_DELAY_US, delay * 2);
+> >> +
+> >> +	if (ret)
+> >> +		return ret;
+> >> +
+> >> +	/* If we reach here before the interrupt handler we push an event */
+> >> +	if ((status & APDS9306_ALS_INT_STAT_MASK))
+> >> +		iio_push_event(indio_dev, IIO_UNMOD_EVENT_CODE(IIO_LIGHT,
+> >> +			       int_src, IIO_EV_TYPE_THRESH, IIO_EV_DIR_EITHER),  
+> > 
+> > You are pushing an event on channel 0 or 1 (which is non obvious as that
+> > int_src is a 2 bit value again).  However you don't use indexed channels
+> > so this is wrong.
+> > It's also pushing IIO_LIGHT for both channels which makes no sense as you
+> > only have one IIO_LIGHT channel.  
+> Hi Jonathan,
+> 
+> For the above fix I am supplying the second parameter to IIO_UNMOD_EVENT_CODE()
+> as "0" which gives me the below output from userspace:
+> ./iio_event_monitor /dev/iio:device0
+> Event: time: xx, type: illuminance, channel: 0, evtype: thresh, direction: either
+> Event: time: yy, type: intensity, channel: 0, evtype: thresh, direction: either
+> 
+> As I do not have indexed channels, I have used zero for both Light and Intensity
+> channel numbers. Should I make the intensity type as channel one for the output
+> to look like this?
+> Event: time: xx, type: illuminance, channel: 0, evtype: thresh, direction: either
+> Event: time: yy, type: intensity, channel: 1, evtype: thresh, direction: either
+> 
+No need. It's not an ABI bug if you did have that mix of channels, but you'd
+need to make them indexed in the chan_spec to match.  Don't bother.
+
+You should however us a modified event for the intensity channel seeing as
+it is .modified = 1, IIO_MOD_LIGHT_CLEAR
+
+So IIO_MOD_EVENT_CODE would be appropriate.
+
+
+> What do you think?
+> 
+> Regards,
+> Subhajit Ghosh
+> > 
+> >   
+> >> +			       iio_get_time_ns(indio_dev));
+> >> +
+> >> +	ret = regmap_bulk_read(data->regmap, reg, buff, sizeof(buff));
+> >> +	if (ret) {
+> >> +		dev_err_ratelimited(dev, "read data failed\n");
+> >> +		return ret;
+> >> +	}
+> >> +
+> >> +	*val = get_unaligned_le24(&buff);
+> >> +
+> >> +	pm_runtime_mark_last_busy(data->dev);
+> >> +	pm_runtime_put_autosuspend(data->dev);
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +  
+> > 
+> > ...  
+> 
+> 
+
 
