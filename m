@@ -1,135 +1,246 @@
-Return-Path: <devicetree+bounces-46478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48CA6869C1F
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 17:29:47 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A32CE869C44
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 17:36:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 797D51C22F37
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 16:29:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9B46AB21F7C
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 16:33:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A5A3148319;
-	Tue, 27 Feb 2024 16:29:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 895471D54A;
+	Tue, 27 Feb 2024 16:32:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UziWEeKT"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="R0+sMRFv";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="mfiDY1/j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55161148FF4;
-	Tue, 27 Feb 2024 16:29:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA1901C697;
+	Tue, 27 Feb 2024 16:32:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709051374; cv=none; b=Z5Y/4gEYdS6z94HRY4R41UxnBNkaGLV6Ml5EN5Y7Dcj7u5SZkXYuazsN8WL51Al+kbNBdCfIJ92uZrn7H1rFNKB/ccTiEEkMPUU65Y417J5RULnoMR0LXT1yyoF/RfsbjXkn6vvxrx90fjplpGGKLAWPqszs/qd+6Sh3PDUKoUM=
+	t=1709051578; cv=none; b=FYmXWaZ0T1gk7WG40K1CY5r0vfFvPuylWriMLZMO2f09Esd6rkjjqxNMczj4BagKgGgDsG+iJ1x2LjabZPZjMK/FYeIWB2SSCoVuONZXgla8za9va+x68HY2AR09MwY2xKSCfYdMWt17J1IqhOkITWAe1ceDcY49jK/vnlwu5j0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709051374; c=relaxed/simple;
-	bh=HXzssYEYqtzr5qnD1CqK7udX2j/OUVEGL3tqoCbTsBU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uiTEYXledCZXAHVV3W6i9hnrDWrSU8tLD+jeco854JiqMTvNXKLTFzYjXwsRvlbdyAhxQIH5Isk8Swg3RMz4GqFl7djGtNSiLB/lj2TwRX/K4SVChBzvJfd5vcIHKoMBbaDq/3AqavcIqF+pwiL9s8ci0/ieVhTHcT2m4Zttptg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UziWEeKT; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a4396b785b8so176734566b.3;
-        Tue, 27 Feb 2024 08:29:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709051370; x=1709656170; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=M+v8WkYj+V0jmQrnbBd89P9mj/CLIV68PxeJ4A/mdwE=;
-        b=UziWEeKTqhOU5lAXQ666cgnXqS56Lcgr6ySjzWM9vGsdlAlu8107o/PrjH77+3mIjW
-         z2oLJ/sJq9Ka0GfBDNKXvOuoJoVofHeTCiyMX4YZShhQTyiJ2wla/1STNk5f6WSxuwc6
-         25mh7VJ6veHLifAVbsfY8IEefEIHkMz9gft8JcdyofBbMPGNVrIVLeHdTNYKmrd2ewM2
-         zm+QV58Xgvag2x6Hpnu36AvjxOa0if7QX4mIJD6JH0/o7XqOKrF5V6fngCHwr0nK2JEt
-         qK+GVgS3mm2U3/jLNFPRkCfT6dYijkV+dTS+FemO6mY2OCiFi7bm+SV4Xcuf4gXBf7lR
-         rvDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709051370; x=1709656170;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=M+v8WkYj+V0jmQrnbBd89P9mj/CLIV68PxeJ4A/mdwE=;
-        b=JgcAzqkUFJh7sR77Xk7PZHger0dakMjfz84YLR5uLKnVo5mKAHqoXrZ4JGitmR4p+/
-         IlX5Xe8uK+gzIaNFckqUkyvP/i2P0DiZOdnbvb1YT9NDYdeG5Hp2l7P/rdR+RGM6FFb2
-         2wgdQFoZ/NKG7w00TB07Nohj6K9WyYGfPPmFXFkNGV4K6Vu6WdMAG6olYednd1Y5OyYB
-         QbVMi8pMwj9qOPsRxvj6WCSs8yezIyZYeDlqDzn93ABDyXnRj6U+sTjiq8BHlMYHh/M4
-         A9xBxSwSHscLEaNmKEPbFLIn096N3sVrDTCL7GNRuZ6FfIgLnx0SKZJQE8HJlpcEtvns
-         rGQg==
-X-Forwarded-Encrypted: i=1; AJvYcCWXMY8HvjeOoscGHi+GyZM03In5BHU41SuAN8qlYIGgFggPsbwtwkNivvAec2c9AtBX4hsUtuoQT76JUBME48sWwvITjptzBtz3My2oeXOPJZaXnjDWbwifNZ90O0zRlh3sR0dQOR2/OA==
-X-Gm-Message-State: AOJu0Yxx1T0cJ3MBZCkdOKvnVCMmDRc2cw9140AeL1EQ2BS1/dsDRI2i
-	M1G/bK0xPp8oFP7rMJnqgCXIsn9H+4u31boyk4kILG2YbLOPfj8vOL16rZFNKljUZZbAPAvpeZy
-	ob8c8pmwWRo31hNW0NVgzitqHx4Q=
-X-Google-Smtp-Source: AGHT+IF5cEV1+76NYOs+Omrynj4SA56WXsfZuwIoV5pmFaKXW0rXxBMKRAb+95kzbV3G/8fND+psJN9gkQVVzVm4zP4=
-X-Received: by 2002:a17:906:f44:b0:a3e:a712:ba9d with SMTP id
- h4-20020a1709060f4400b00a3ea712ba9dmr7700879ejj.4.1709051370555; Tue, 27 Feb
- 2024 08:29:30 -0800 (PST)
+	s=arc-20240116; t=1709051578; c=relaxed/simple;
+	bh=t9pqBmZVkQ/Fpn1eD9/FTS+0fHOWuP1ehf9RwlvwGww=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=lUwaLnQvEjKIimabc0F6j/NhuSsoCnobCWPbNppn7DQCw3ufTLsbR1j7aBsvfGxaTQ1VKm+/P7MafpJg3tGJV9IvM57rfPQAWnR7toQCUKxvCp4zf84+MYKCsnUSWREtfz/J/YxXH+AC61uWnMh6yi4pGyEPL02BtMGkWT5bNIE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=R0+sMRFv; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=mfiDY1/j; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1709051574;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=SyV9bHeQYh2STSu1Aki+bC1PiR0RG4rZPyWUkh6MdoI=;
+	b=R0+sMRFv9b8X+E5PlHqAnffQ9ul2R0l+89oJsQQqPEMzobmGax2CGW1kgeoxp2g7FE7y/H
+	ZduHQ6oyjWkm9ZA5CLqotQqDCEtKhwhNagXbhtZj6x2P+eXwHgq8bn9YKdtPqmPMLZ9XkY
+	0M9kSqf3ORH7ZF9SDePLRmHMbqIQkX3kvhftVrbUGqMyDdK+NZuwrz7YR5i9fjoBUyHlEZ
+	SK+iNEKoWW3HFdwTwutyndjzwqx2Aso9GloWF+coyojZ7RwUTRw16z46SpvLt8Du7dXC26
+	ttqFrpCCC/bMioXhJFtXB4Q09O1kXf9MzyxWlYi+Q24GgLZuajw5i7BshrGUfw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1709051574;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=SyV9bHeQYh2STSu1Aki+bC1PiR0RG4rZPyWUkh6MdoI=;
+	b=mfiDY1/jYFYVkT3N2Y3yq9fwkvbnzRzZ3jJHlKwl01nm/DAsIpCmKZZwXdjDRmVLCuGQl6
+	9QNGSBRBpVnBP7Cg==
+To: Xingyu Wu <xingyu.wu@starfivetech.com>, Daniel Lezcano
+ <daniel.lezcano@linaro.org>, Emil Renner Berthing
+ <emil.renner.berthing@canonical.com>, Christophe JAILLET
+ <christophe.jaillet@wanadoo.fr>
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+ <aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>, Walker
+ Chen <walker.chen@starfivetech.com>, Xingyu Wu
+ <xingyu.wu@starfivetech.com>, linux-kernel@vger.kernel.org, Conor Dooley
+ <conor@kernel.org>
+Subject: Re: [PATCH v8 2/3] clocksource: Add JH7110 timer driver
+In-Reply-To: <20231219145402.7879-3-xingyu.wu@starfivetech.com>
+References: <20231219145402.7879-1-xingyu.wu@starfivetech.com>
+ <20231219145402.7879-3-xingyu.wu@starfivetech.com>
+Date: Tue, 27 Feb 2024 17:32:54 +0100
+Message-ID: <877cipamvd.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240227123602.258190-1-javier.garcia.ta@udima.es>
- <20240227160952.615291-1-javier.garcia.ta@udima.es> <CAEnQRZDY5Jfj6d008goccsWwwUuUuryw1s8xJH6EyGXEiqnovw@mail.gmail.com>
-In-Reply-To: <CAEnQRZDY5Jfj6d008goccsWwwUuUuryw1s8xJH6EyGXEiqnovw@mail.gmail.com>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Tue, 27 Feb 2024 18:29:18 +0200
-Message-ID: <CAEnQRZAvqHfNYu+dYObJA=T7S_KfQMxB8TJGmdjK9Ea_FPrLOA@mail.gmail.com>
-Subject: Re: [PATCH v2] ASoC: dt-bindings: img,spdif-in: Convert to dtschema
-To: =?UTF-8?Q?Javier_Garc=C3=ADa?= <javier.garcia.ta@udima.es>
-Cc: daniel.baluta@nxp.com, broonie@kernel.org, krzysztof.kozlowski@linaro.org, 
-	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	alsa-devel@alsa-project.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, "Damien.Horsley" <Damien.Horsley@imgtec.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 
-On Tue, Feb 27, 2024 at 6:27=E2=80=AFPM Daniel Baluta <daniel.baluta@gmail.=
-com> wrote:
->
-> This looks much better than v1. Make sure you have addressed all
-> comments from the previous version
-> and add a short log under the scissor line explaining what you have chang=
-ed.
->
-> Few comments inline:
->
->
-> On Tue, Feb 27, 2024 at 6:13=E2=80=AFPM Javier Garc=C3=ADa <javier.garcia=
-.ta@udima.es> wrote:
-> >
-> > Convert the Imagination Technologies SPDIF Input Controllerto DT schema=
-.
-> >
-> > Signed-off-by: Javier Garc=C3=ADa <javier.garcia.ta@udima.es>
-> > ---
-> ^ this is the scissor line. Here you add the change log.
->
-> Changes since v1:
-> - re-written the subject inline to include relevant prefix
-> - removed header file as it is not used
-> - ....etc
->
->
-> > +$id: http://devicetree.org/schemas/sound/img,spdif-in.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Imagination Technologies SPDIF Input Controller
-> > +
-> > +maintainers:
-> > +  - Liam Girdwood <lgirdwood@gmail.com>
-> > +  - Mark Brown <broonie@kernel.org>
->
-> Please do not blindly add people here. The most proper candidate for this
-> is the people who wrote the original file.
->
-> Using git log we can find Damien.Horsley <Damien.Horsley@imgtec.com>
+On Tue, Dec 19 2023 at 22:54, Xingyu Wu wrote:
+> +
+> +struct jh7110_clkevt {
+> +	struct clk *clk;
+> +	struct reset_control *rst;
+> +	void __iomem *base;
+> +	u32 reload_val;
+> +	int irq;
+> +	char name[sizeof("jh7110-timer.chX")];
+> +};
+> +
+> +struct jh7110_timer_priv {
+> +	struct reset_control *prst;
+> +	struct device *dev;
+> +	struct jh7110_clkevt clkevt[JH7110_TIMER_CH_MAX];
+> +};
 
-Looks like this address bounced back.
+Please format your data structures according to documentation:
 
-@Krzysztof Kozlowski @Mark Brown is it OK to add a mailing list as
-maintainer for a yml file?
+https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#struct-declarations-and-initializers
+
+> +/* IRQ handler for the timer */
+> +static irqreturn_t jh7110_timer_interrupt(int irq, void *data)
+> +{
+> +	struct clock_event_device *evt = data;
+> +	struct jh7110_clkevt *clkevt = &jh7110_timer_info.clkevt[0];
+> +	u8 cpu_id = smp_processor_id();
+> +	u32 reg = readl(clkevt->base + JH7110_TIMER_INT_STATUS);
+
+https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#variable-declarations
+
+> +	/* Check interrupt status and channel(cpu) ID */
+> +	if (!(reg & BIT(cpu_id)))
+> +		return IRQ_NONE;
+> +
+> +	clkevt = &jh7110_timer_info.clkevt[cpu_id];
+> +	writel(JH7110_TIMER_INT_CLR_ENA, (clkevt->base + JH7110_TIMER_INT_CLR));
+> +
+> +	if (evt->event_handler)
+> +		evt->event_handler(evt);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int jh7110_timer_set_periodic(struct clock_event_device *evt)
+> +{
+> +	struct jh7110_clkevt *clkevt = JH7110_PERCPU_GET_CLKEVT;
+> +
+> +	writel(JH7110_TIMER_MODE_CONTIN, clkevt->base + JH7110_TIMER_CTL);
+> +	return 0;
+> +}
+> +
+> +static int jh7110_timer_set_oneshot(struct clock_event_device *evt)
+> +{
+> +	struct jh7110_clkevt *clkevt = JH7110_PERCPU_GET_CLKEVT;
+> +
+> +	writel(JH7110_TIMER_MODE_SINGLE, clkevt->base + JH7110_TIMER_CTL);
+> +	return 0;
+> +}
+> +
+> +static int jh7110_timer_set_next_event(unsigned long next,
+> +				       struct clock_event_device *evt)
+> +{
+> +	struct jh7110_clkevt *clkevt = JH7110_PERCPU_GET_CLKEVT;
+> +
+> +	writel(JH7110_TIMER_MODE_SINGLE, clkevt->base + JH7110_TIMER_CTL);
+> +	writel(next, clkevt->base + JH7110_TIMER_LOAD);
+> +
+> +	return jh7110_timer_start(clkevt);
+> +}
+> +
+> +static DEFINE_PER_CPU(struct clock_event_device, jh7110_clock_event) = {
+> +	.features = CLOCK_EVT_FEAT_PERIODIC | CLOCK_EVT_FEAT_ONESHOT,
+> +	.rating = JH7110_CLOCKEVENT_RATING,
+> +	.set_state_shutdown = jh7110_timer_shutdown,
+> +	.set_state_periodic = jh7110_timer_set_periodic,
+> +	.set_state_oneshot = jh7110_timer_set_oneshot,
+> +	.set_state_oneshot_stopped = jh7110_timer_shutdown,
+> +	.tick_resume = jh7110_timer_tick_resume,
+> +	.set_next_event = jh7110_timer_set_next_event,
+> +	.suspend = jh7110_timer_suspend,
+> +	.resume = jh7110_timer_resume,
+> +};
+
+See formatting rules.
+
+> +static int jh7110_timer_starting_cpu(unsigned int cpu)
+> +{
+> +	struct clock_event_device *evt = per_cpu_ptr(&jh7110_clock_event, cpu);
+> +	struct jh7110_timer_priv *priv = &jh7110_timer_info;
+> +	int ret;
+> +	u32 rate;
+> +
+> +	if (cpu >= JH7110_TIMER_CH_MAX)
+> +		return -ENOMEM;
+> +
+> +	ret = clk_prepare_enable(priv->clkevt[cpu].clk);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = reset_control_deassert(priv->clkevt[cpu].rst);
+> +	if (ret)
+> +		return ret;
+> +
+> +	rate = clk_get_rate(priv->clkevt[cpu].clk);
+> +	evt->cpumask = cpumask_of(cpu);
+> +	evt->irq = priv->clkevt[cpu].irq;
+> +	evt->name = priv->clkevt[cpu].name;
+> +	clockevents_config_and_register(evt, rate, JH7110_TIMER_MIN_TICKS,
+> +					JH7110_TIMER_MAX_TICKS);
+> +
+> +	ret = devm_request_irq(priv->dev, evt->irq, jh7110_timer_interrupt,
+> +			       IRQF_TIMER | IRQF_IRQPOLL,
+> +			       evt->name, evt);
+
+How is this all supposed to work from a CPU hotplug state callback which
+runs in the early bringup phase with interrupts disabled? clk_prepare()
+which is invoked from clk_prepare_enable() can sleep and
+devm_request_irq() can sleep too.
+
+Did you ever test this with the required debug config options enabled?
+
+  https://www.kernel.org/doc/html/latest/process/submit-checklist.html
+
+Obviously not.
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = irq_set_affinity(evt->irq, cpumask_of(cpu));
+> +	if (ret)
+> +		return ret;
+> +	/* Use one-shot mode */
+> +	writel(JH7110_TIMER_MODE_SINGLE, (priv->clkevt[cpu].base + JH7110_TIMER_CTL));
+> +
+> +	return jh7110_timer_start(&priv->clkevt[cpu]);
+> +}
+> +
+> +static void jh7110_timer_release(void *data)
+> +{
+> +	struct jh7110_timer_priv *priv = data;
+> +	int i;
+> +
+> +	for (i = 0; i < JH7110_TIMER_CH_MAX; i++) {
+> +		/* Disable each channel of timer */
+> +		if (priv->clkevt[i].base)
+> +			writel(JH7110_TIMER_DIS, priv->clkevt[i].base + JH7110_TIMER_ENABLE);
+> +
+> +		/* Avoid no initialization in the loop of the probe */
+> +		if (!IS_ERR_OR_NULL(priv->clkevt[i].rst))
+> +			reset_control_assert(priv->clkevt[i].rst);
+> +
+> +		if (!IS_ERR_OR_NULL(priv->clkevt[i].clk))
+> +			clk_disable_unprepare(priv->clkevt[i].clk);
+
+Same problem. And of course this does not undo the other steps of
+jh7110_timer_starting_cpu() so if you offline a CPU and then online it
+again the callback will fail because the clockevent is already
+registered and the interrupt requested. Clearly untested too.
+
+Thanks,
+
+        tglx
+
+
 
