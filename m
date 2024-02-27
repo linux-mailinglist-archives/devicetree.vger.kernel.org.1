@@ -1,189 +1,240 @@
-Return-Path: <devicetree+bounces-46342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A3A1868F75
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 12:53:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2994868F80
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 12:55:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2519283902
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 11:53:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A76F128481D
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 11:55:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47F8D13A24E;
-	Tue, 27 Feb 2024 11:52:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6430613A24E;
+	Tue, 27 Feb 2024 11:55:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=debian.org header.i=@debian.org header.b="sx3V4GXF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WQySPxZh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from master.debian.org (master.debian.org [82.195.75.110])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4AF1139599
-	for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 11:52:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=82.195.75.110
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B404E1386C8;
+	Tue, 27 Feb 2024 11:55:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709034779; cv=none; b=a8fDLfAlz0rP7iUwRW8VFLjvpeb92/K1k/qc5rcL2+JtzprPniY7HjavsJxbigXdWhf2Pcd80ssN5j79cAoMU2FryzdWXrX1Nqrf4HfqQacsIhCr185GZ+iFAdHlOitGM22z0rUf+JzbMADEPYs2OG1ZPTe0PKVwAYvHvmQlhAg=
+	t=1709034903; cv=none; b=DTZBzmfpcmIgVk4l6t4ThOXoHtg8IbBwoo2/HaUm6UixCi3lvOVQRKnoF2Wwln8cvBg+IgV/6BAJVXGYRiFgSS6Ig9wHG6gJJ+nvTrtnjoQ5ZH7jTmUJ+5+Ajdb0kf7wEWkKIJie4YKl8Yyl+LzSeAtUSQpSEJh0ZkCLcfXLEzA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709034779; c=relaxed/simple;
-	bh=0/KQgzCRTqQpKGH2iEZhXMAV6et+cwrsmr3lJKOcLps=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GOzdVcQf4kVVxkIK0/PZaI/JJc85lFX+f5S4brDCTc/bQpev+aPmlu0MpKSf6X09vvrsZneoyO/dfhKEhchIe+E1GAqsxzVX5K8FhbqVE+gQLTvyTCiqHHTl6ypwIAtrcm1QT1fvRe2UbQI///jGmzVKe1MSdz2Gntw97470fTQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org; spf=none smtp.mailfrom=master.debian.org; dkim=pass (2048-bit key) header.d=debian.org header.i=@debian.org header.b=sx3V4GXF; arc=none smtp.client-ip=82.195.75.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=master.debian.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=debian.org;
-	s=smtpauto.master; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID
-	:Content-Description; bh=MNjM4sKWc6EVyuSoSJar6AQqTqLQhUbvZgc3em3wuAk=; b=sx3V
-	4GXFVfSDsPrqpp1cMUxvQEqyJmCfSPM3H3d+7Vu0trwbjwT2gpPnJocodS19/iNLQRWIN5gpATn8a
-	Sy2lC9hc8ki4zG820+LUNDBUEJG74eJCdIUimxbtPSN2eOrbglBkDAfUxJ4W0cY5rce7JqiqyuVzP
-	+cNlKQzPMnFN/+RdZ3oxI9Gs2ToNkg/0gt93d4k+/oDv3S5964TypveQpbaOt4RQjOrsLL+S3b9aV
-	s0KlXtgNM5wvacoWTsv2iLoA41b4Yh0FmfCFFV2ZLTnx4swSARLzqbL0jO8MrRFT0udKYMJ+woq58
-	dA5WF3hYigGw9gAQ0ie+uMZQ0hBPng==;
-Received: from ukleinek by master.debian.org with local (Exim 4.94.2)
-	(envelope-from <ukleinek@master.debian.org>)
-	id 1rew11-005f8x-1h; Tue, 27 Feb 2024 11:52:55 +0000
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@debian.org>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: [PATCH 2/2] arm64: dts: rockchip: Add basic support for QNAP TS-433
-Date: Tue, 27 Feb 2024 12:52:37 +0100
-Message-ID:  <0d9fa5d730ac1cb91261b25b6809fcef3a12f03a.1709034476.git.ukleinek@debian.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1709034476.git.ukleinek@debian.org>
-References: <cover.1709034476.git.ukleinek@debian.org>
+	s=arc-20240116; t=1709034903; c=relaxed/simple;
+	bh=FUyhKiJCVkumDr18k9AE+n3vk0YM19EfHCPUG652SPY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=bOpPVhhdYjiNxYfqIcKeHa4ZzGVwl7B3aSLZ73D/S/Isgl63QRCWEBMtHqCKFnDfFlg8PLYS83TRlLKVt/p+tHV0FjMbeo6HMCpYL/aB+jfz7t+Scblzlmnt7WyV6StRBa5ky0FcoSjLHi3cT1H81/RRtZABWbiC0fFKnbsC4jE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WQySPxZh; arc=none smtp.client-ip=209.85.216.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-29ad73b4686so1069958a91.0;
+        Tue, 27 Feb 2024 03:55:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1709034901; x=1709639701; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=m4ZJKN0Q446qEQVH8mpv7kUe4f1OhDtxTG8dtoHu+5I=;
+        b=WQySPxZhL3KuqMW3scxSr6Gzp0rMIKyAJDy1erDequ4Nv5rKpi1/XlpZQd9IlWYFcl
+         S8hVlaJQTLdNfsp81/zIW0GB1z2joXVZYvI+hY1WdBlCd2qv1mNyrMEK3uqYkNoa1yZ0
+         DpJJx/Jz4OYDmTR7B9PyL5NXdxPTz7jwDVZTqOZ3P/ClCEzxBCBwDIVppZq82DO8GeiP
+         2juESsI8Q96uHCCf8t8ykC/oEJ+IoxujVyr1arfn+4eByFstAfAR5RwASabE8S6V/Vya
+         n+EToYICaJR3EJl3hF9b3P2RFlimijS/0u7nQtkU4H/LlcMOJPa2AhIN7EIfSuAyPSbf
+         ysog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709034901; x=1709639701;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=m4ZJKN0Q446qEQVH8mpv7kUe4f1OhDtxTG8dtoHu+5I=;
+        b=MZJ3rw2E6ayvDm62lsiE7avE8PiQRkFAnQtSADXm2gWy9PRCfhBkxlDyiIM85LNwiH
+         BvFSRmN/PFYnWJqHTXyCmDQwb8Pjo14rBxwc7myEtq/77aZvdOz23aWN0sXdiV3u8hyh
+         pi36HIQ3AYqh8cb1spc0OA5vteIEFDFTpTd5pHrtAct9/Mj3/if5xGOn6BAxR249fSW2
+         y0L/FchR1qvWk2kW8iyTLMHnrWQZYN8PDThI4nITWWX2tidZXzJGB7mJ3POWjJO02fcy
+         Fa8djDQDNC5LMrsUnyCO8LDp2fgIblnNOz4gBv4cI1rbYkNpVVouGJ6agGMYPlrNHiAy
+         FaPQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVCC1YiNCc7RbjdvBADdnujGFlXXFhhT1MKdFl8gH0OpZVe3aqM9+59Le8ycqfpMvi8Cf6E8nwXSw8zZYkzbnYSJrC9TrPLsfgK4CZXtmu68RN9uoqpQ4tFCWSJh5+GUNijnmXl/hsHT9ZqtnJ4CnCXWiviplchMhWVyp4JxRdXq829m5Tj67kEMojg
+X-Gm-Message-State: AOJu0YxmgmlvHLonUnSzEc6R+pBj3CCteH/igBIKgkgkkzj18G+ixI5w
+	O/ZZxm1ST49va0C4seF0SOgrSwoGNSdAdYm0GHJemAVElmyepOGrXFcMF+kkTcLPC0hszdBWXal
+	pmjkfvq0UmTWy8TfCF1N2oB/fk3g=
+X-Google-Smtp-Source: AGHT+IHhPXWnX3QrXvJQ64wVH2LfXjnYJhDx8xAd+mEkx47SJCQDUZTu6xGwgmXEb/CzTUNjcuLdUFEZ+c71XRKGPJY=
+X-Received: by 2002:a17:90a:5d0d:b0:299:9d8:d7c9 with SMTP id
+ s13-20020a17090a5d0d00b0029909d8d7c9mr7489843pji.18.1709034900760; Tue, 27
+ Feb 2024 03:55:00 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3188; i=ukleinek@debian.org; h=from:subject:message-id; bh=0/KQgzCRTqQpKGH2iEZhXMAV6et+cwrsmr3lJKOcLps=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBl3c0I48qcXyDJrhVKlUfCsiHDANQobD3jG2JM9 6njmEYh13CJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZd3NCAAKCRCPgPtYfRL+ ThOiB/9OX3oap/SoHCeoVjXQd7gVtPEYmvQ6Qrktl2EOK7xsiGoLeoTKXl/iB275jwE3PEQl2+N lGoVA8TK0XacViyMyPH8HadpEWT7OzdzRFCG1nWxWXeHzzkVwNL+W/LuEmuBNP8vHBYSaSUXby2 Ws6WM/4hItx02hvtq6M1HbulxokPACaOU4w6dI4e+WN9jfcqFW9kd0OVAOD4DwT7VJcDK2K/88k xLxLEH4HYYYAKE//sr3QkAgWTl54y/QgLnQMbk1o4DkChKR7qKnW8lLY39ESeMiOIs8StYRtboE lVxAk7fCa12jcfM/Ml7JkqxGLKxs/AejVbJY4uO+I6Q9FeNr
-X-Developer-Key: i=ukleinek@debian.org; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-Content-Transfer-Encoding: 8bit
+References: <20240227034539.193573-1-aford173@gmail.com> <20240227034539.193573-3-aford173@gmail.com>
+ <39aead3b-b809-4c9c-8a5d-c0be2b36ea47@imgtec.com> <CAMuHMdW5vWg=tpB9PCRXmdBmLtt0wNN9dOEN1Lp_N7R68jz0tA@mail.gmail.com>
+In-Reply-To: <CAMuHMdW5vWg=tpB9PCRXmdBmLtt0wNN9dOEN1Lp_N7R68jz0tA@mail.gmail.com>
+From: Adam Ford <aford173@gmail.com>
+Date: Tue, 27 Feb 2024 05:54:49 -0600
+Message-ID: <CAHCN7x+EV8rw-Ya=wHOr6jsFAg47DDwKg3FZ9p=W-zDaBQEByw@mail.gmail.com>
+Subject: Re: [PATCH 2/6] arm64: dts: renesas: r8a774a1: Enable GPU
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Matt Coster <Matt.Coster@imgtec.com>, 
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, Adam Ford <aford@beaconembedded.com>, 
+	Frank Binns <Frank.Binns@imgtec.com>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-This is enough to make eMMC, networking, UART (console), RTC and a hard
-disk accessible. Still missing are (at least): USB, LEDs, regulators,
-fan.
+On Tue, Feb 27, 2024 at 5:04=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+>
+> Hi Matt,
+>
+> On Tue, Feb 27, 2024 at 10:31=E2=80=AFAM Matt Coster <Matt.Coster@imgtec.=
+com> wrote:
+> >
+> > Hi Adam,
+> >
+> > Thanks for these patches! I'll just reply to this one patch, but my
+> > comments apply to them all.
+> >
+> > On 27/02/2024 03:45, Adam Ford wrote:
+> > > The GPU on the RZ/G2M is a Rogue GX6250 which uses firmware
+> > > rogue_4.45.2.58_v1.fw available from Imagination.
+> > >
+> > > When enumerated, it appears as:
+> > >   powervr fd000000.gpu: [drm] loaded firmware powervr/rogue_4.45.2.58=
+_v1.fw
+> > >   powervr fd000000.gpu: [drm] FW version v1.0 (build 6513336 OS)
+> >
+> > These messages are printed after verifying the firmware blob=E2=80=99s =
+headers,
+> > *before* attempting to upload it to the device. Just because they appea=
+r
+> > in dmesg does *not* imply the device is functional beyond the handful o=
+f
+> > register reads in pvr_load_gpu_id().
+> >
+> > Since Mesa does not yet have support for this GPU, there=E2=80=99s not =
+a lot
+> > that can be done to actually test these bindings.
+>
+> OK.
+>
+> > When we added upstream support for the first GPU (the AXE core in TI=E2=
+=80=99s
+> > AM62), we opted to wait until userspace was sufficiently progressed to
+> > the point it could be used for testing. This thought process still
+> > applies when adding new GPUs.
+> >
+> > Our main concern is that adding bindings for GPUs implies a level of
+> > support that cannot be tested. That in turn may make it challenging to
+> > justify UAPI changes if/when they=E2=80=99re needed to actually make th=
+ese GPUs
+> > functional.
+>
+> I guess that applies to "[PATCH 00/11] Device tree support for
+> Imagination Series5 GPU", too, which has been in linux-next for about
+> a month?
+> https://lore.kernel.org/all/20240109171950.31010-1-afd@ti.com/
+>
+> > > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > >
+> > > diff --git a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi b/arch/arm64/b=
+oot/dts/renesas/r8a774a1.dtsi
+> > > index a8a44fe5e83b..8923d9624b39 100644
+> > > --- a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
+> > > +++ b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
+> > > @@ -2352,6 +2352,16 @@ gic: interrupt-controller@f1010000 {
+> > >                       resets =3D <&cpg 408>;
+> > >               };
+> > >
+> > > +             gpu: gpu@fd000000 {
+> > > +                     compatible =3D "renesas,r8a774a1-gpu", "img,img=
+-axe";
+> >
+> > The GX6250 is *not* an AXE core - it shouldn=E2=80=99t be listed as com=
+patible
+> > with one. For prior art, see [1] where we added support for the MT8173
+> > found in Elm Chromebooks R13 (also a Series6XT GPU).
+>
+> IC. And the bindings in [2].
+>
+> >
+> > > +                     reg =3D <0 0xfd000000 0 0x20000>;
+> > > +                     clocks =3D <&cpg CPG_MOD 112>;
+> > > +                     clock-names =3D "core";
+> >
+> > Series6XT cores have three clocks (see [1] again). I don=E2=80=99t have=
+ a
+> > Renesas TRM to hand =E2=80=93 do you know if their docs go into detail =
+on the
+> > GPU integration?
+>
+> Not really. The diagram in the Hardware User's Manual just shows the
+> following clock inputs:
+>   - Clock (ZG=CF=95) from CPG,
+>   - Clock (S3D1=CF=95) from CPG,
+>   - MSTP (ST112) from CPG.
+>
+> ZG is the main (programmable) 3DGE clock, running at up to 600 MHz.
+> S3D1 is the fixed 266 MHz AXI bus clock.
+> MSTP112 is the gateable module clock (part of the SYSC/CPG clock
+> domain), and its parent is ZG.
+>
+> According to the sources:
+>   - "core" is the primary clock used by the entire GPU core, so we use
+>     MSTP112 for that.
+>   - "sys" is the optional system bus clock, so that could be S3D1,
+>   - "mem" is the optional memory clock, no idea what that would map to.
+>
+> But IMHO the two optional clocks do not matter at all (the driver
+> doesn't care about their rates, and just enables them together with
+> the core clock), and S3D1 is always-on, so I'd just limit clocks to
+> a single item.
 
-Signed-off-by: Uwe Kleine-König <ukleinek@debian.org>
----
- arch/arm64/boot/dts/rockchip/Makefile         |  1 +
- .../boot/dts/rockchip/rk3568-qnap-ts433.dts   | 86 +++++++++++++++++++
- 2 files changed, 87 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts
+Matt,
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index a7b30e11beaf..a28a6d445929 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -98,6 +98,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-lubancat-2.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-nanopi-r5c.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-nanopi-r5s.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-odroid-m1.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-qnap-ts433.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-radxa-e25.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-roc-pc.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-rock-3a.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts b/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts
-new file mode 100644
-index 000000000000..ba7137f80075
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts
-@@ -0,0 +1,86 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2021 Rockchip Electronics Co., Ltd.
-+ * Copyright (c) 2024 Uwe Kleine-König
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include "rk3568.dtsi"
-+
-+/ {
-+	model = "Qnap TS-433-4G NAS System 4-Bay";
-+	compatible = "qnap,ts433", "rockchip,rk3568";
-+};
-+
-+&i2c0 {
-+	pmic@20 {
-+		compatible = "rockchip,rk809";
-+		reg = <0x20>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+
-+	rtc@51 {
-+		compatible = "microcrystal,rv8263";
-+		reg = <0x51>;
-+		wakeup-source;
-+	};
-+};
-+
-+&gmac0 {
-+	assigned-clocks = <&cru SCLK_GMAC0_RX_TX>, <&cru SCLK_GMAC0>;
-+	assigned-clock-parents = <&cru SCLK_GMAC0_RGMII_SPEED>, <&cru CLK_MAC0_2TOP>;
-+	assigned-clock-rates = <0>, <125000000>;
-+	clock_in_out = "output";
-+	phy-handle = <&rgmii_phy0>;
-+	phy-mode = "rgmii";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac0_miim
-+		     &gmac0_tx_bus2
-+		     &gmac0_rx_bus2
-+		     &gmac0_rgmii_clk
-+		     &gmac0_rgmii_bus>;
-+	rx_delay = <0x2f>;
-+	tx_delay = <0x3c>;
-+	status = "okay";
-+};
-+
-+&mdio0 {
-+	rgmii_phy0: ethernet-phy@0 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <0x0>;
-+	};
-+};
-+
-+&pcie30phy {
-+	status = "okay";
-+};
-+
-+&pcie3x1 {
-+	/* The downstream dts has: rockchip,bifurcation, XXX: find out what this is about */
-+	reset-gpios = <&gpio0 RK_PC7 GPIO_ACTIVE_HIGH>;
-+	status = "okay";
-+};
-+
-+&sdhci {
-+	bus-width = <8>;
-+	max-frequency = <200000000>;
-+	non-removable;
-+	status = "okay";
-+};
-+
-+/*
-+ * Pins available on CN2 connector at TTL voltage level (3V3).
-+ * ,_  _.
-+ * |1234|  1=TX 2=VCC
-+ * `----'  3=RX 4=GND
-+ */
-+&uart2 {
-+	status = "okay";
-+};
--- 
-2.43.0
+When the time is right, and the driver is ready for Series 6XT-based
+systems, would Geert's rationale for supporting one clock be
+acceptable if I added his clock description to the commit message?
 
+>
+> Just wondering: is the availability of 1 clock specific to AXE, or to
+> the AXE integration on AM62x?
+>
+> > +                     interrupts =3D <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
+> > +                     power-domains =3D <&sysc R8A774A1_PD_3DG_B>;
+> > +                     resets =3D <&cpg 112>;
+> > +             };
+>
+> > [1]: https://gitlab.freedesktop.org/imagination/linux/-/blob/b3506b8bc4=
+5ed6d4005eb32a994df0e33d6613f1/arch/arm64/boot/dts/mediatek/mt8173.dtsi#L99=
+3-1006
+>
+> [2] https://gitlab.freedesktop.org/imagination/linux/-/blob/b3506b8bc45ed=
+6d4005eb32a994df0e33d6613f1/Documentation/devicetree/bindings/gpu/img,power=
+vr.yaml
+>
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
+8k.org
+>
+> In personal conversations with technical people, I call myself a hacker. =
+But
+> when I'm talking to journalists I just say "programmer" or something like=
+ that.
+>                                 -- Linus Torvalds
 
