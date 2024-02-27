@@ -1,82 +1,49 @@
-Return-Path: <devicetree+bounces-46279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 064BA868C08
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 10:18:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43A50868C1E
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 10:24:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9944D1F22E36
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 09:18:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5020B28DF9
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 09:24:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EF8E136645;
-	Tue, 27 Feb 2024 09:18:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA077136664;
+	Tue, 27 Feb 2024 09:24:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DrfpclUb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PbunBls5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C212F134CD5
-	for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 09:18:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 769C27BAE7;
+	Tue, 27 Feb 2024 09:24:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709025522; cv=none; b=iWAJMGHop/x8tgwOCwuZJfOAnofHmocbEfeQB+eFiyNwsyajNhWLfOKENl/B3fZpglrTJDLTlFgMpzom7+12a8MBHcI1LP9g1XlMnBwXoqc6eRB8WGKd8cr9muxCtgSdEFzlY9t0DqNnIg5xTrEeFuQgoiz0nJbDvETK3r7oFck=
+	t=1709025872; cv=none; b=LQwaJf9hySjeSt6cUqnrvRLNUVWbg7ZKWbK0pSN55foD5EuDMIHq09XhJ395zNMs0CCb0JcSj3Z6oYZ2qosro4vLfAse4aGrrxpSQyH8llHtsebuiLOKwJfsOA/bsoh5THX8QkCDl3IKdshtRuMNNius23H24lEDimDBa5B7o0E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709025522; c=relaxed/simple;
-	bh=+caxhbxvXcG5btEQEz+HchYw+UK5NIuQWCABSjExhS8=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=jOqMQDKI5SVXKrXl6Zqd1grlkCTurD9LPxXDhHbC9c1HYQMb/qFb0LLTDKiqVcN6CF3W5gXeyfbLj++JMaIcF+ZKCwn03TiDcLq4AVxM8OASDySaxI1bFUQEpRQuljIELLs43bl9Pqmujugvk93xvdw6HTIApw8+gcNi8JsBXhQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DrfpclUb; arc=none smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-564647bcdbfso4101576a12.2
-        for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 01:18:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709025519; x=1709630319; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CTxdDYxyQ3IqtlRrYxG0cMi0muAaZV+mdO2HgBPhVk4=;
-        b=DrfpclUbD5IJXFN/GU5JTGVnzMh00BH7P+hNogtw/Ep6Qc2RcJ8GkdP0Li2jjt2N2h
-         rcyqcgQlkt6t0UvUusHvnHjhLOyqHnC33oz6OB0cmX5mM9Utq3AeOGIQvRPQjQ4oV3sZ
-         wz1ZtpJDcN24A03hnenEOBYRRVLWI5nULGuCwFiK67Hl7d8qxrHRCn2b1zsbwxsYMVqe
-         THiN71AQoiR0mLKQN3Y4YavM5KyKiELJpTMViy9I17nGWAncI3Ih73Zbgjf3+OxR+6TB
-         7ik7WtYPzlJ9z9a6xXC3Go+rYE4Axd0aOAMUfDlAkmC2tuwX2+Pw6ZRPydOFN8yBT4Jr
-         PlWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709025519; x=1709630319;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CTxdDYxyQ3IqtlRrYxG0cMi0muAaZV+mdO2HgBPhVk4=;
-        b=SKWVeMfdwd7zn93KBLosBH5gbhXMuDpB7tgzx3Htt0ZnP9eu14rrbMMqSn5MP81y+T
-         QZjzRRrJNg9RZJZRkJLRC+jJ9sX9NJ9l36u4hvaI1cpI/wgSp5gN0ugxuyZ4W7i8nTwT
-         rdnNRXz+fQXSnhnU7ZK0mOkTl7A1z9TguUg1fh3XjAsSuB9w0QODOzafad4cge5TZv+Q
-         zH01IZqYhK3cdm6pGdjd5Bg058DMgPfnJ/kfDQAicJhsNbWGGtBITNNaxZPy6+xYR4fk
-         +xM9cSSf3gdSdOH798lYYzbtd5dA3ATupSxKCYKBiVA7FQW/g/F2CB9y9CosYXG2SU6v
-         6oyw==
-X-Forwarded-Encrypted: i=1; AJvYcCWea8xfhDmO7vhIoM5cXYOG6F9KFd1jNNLYAgX3DsVcA7KTh2pj3hDRKoqMXeZs7eIGpEoEpuHvmRhf3XYMMurE2QL3pezLLIKDLw==
-X-Gm-Message-State: AOJu0YyEs6e+8ULBU4AX7oHVtvtPQIv5A/lzE/ShDSYTF60o8Z2g7SAK
-	eW8diTdrADQKfNzTh3uXuMHuNjdDgrgBFQSJ+9WT4QuKqKAArISCwbFKWfY4oQQ=
-X-Google-Smtp-Source: AGHT+IH5qDiaCJ1Kc19hS+XkEPETptoM/fW2uFhb8X4AvKdAgnH5cE9EdnEx4zaM+SmijwWe1GLcsw==
-X-Received: by 2002:a17:906:3c05:b0:a3f:4596:c3c8 with SMTP id h5-20020a1709063c0500b00a3f4596c3c8mr6253526ejg.53.1709025518961;
-        Tue, 27 Feb 2024 01:18:38 -0800 (PST)
-Received: from [127.0.1.1] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id a11-20020a1709065f8b00b00a4395a7adecsm561154eju.165.2024.02.27.01.18.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Feb 2024 01:18:38 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
- conor+dt@kernel.org, Christophe Kerello <christophe.kerello@foss.st.com>
-Cc: linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
- devicetree@vger.kernel.org
-In-Reply-To: <20240226101428.37791-1-christophe.kerello@foss.st.com>
-References: <20240226101428.37791-1-christophe.kerello@foss.st.com>
-Subject: Re: [PATCH v3 0/5] memory: stm32-fmc2-ebi: Add MP25 FMC2 support
-Message-Id: <170902551749.40155.4302792627974952211.b4-ty@linaro.org>
-Date: Tue, 27 Feb 2024 10:18:37 +0100
+	s=arc-20240116; t=1709025872; c=relaxed/simple;
+	bh=qWXeJYjYG0Iu2gVtoyFChyerwaz4BDAl6pUAVNJwAyI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=PPxYXYcBWVqtVzuG/cydt5svwGtql4AHkivoH5ZGRLeXAqxkwDLGTK2CE3p3HwQLAOlL4hj1lAqhK0n9qZ28rXgB19e4wYr/0plh4hoMPv7toikBM6g+PTLGABiwWU/MQj8lSyEFCvNeZWpfDUmONEcexgrSIL/1CZ2fHDbWUVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PbunBls5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7ED07C433C7;
+	Tue, 27 Feb 2024 09:24:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709025872;
+	bh=qWXeJYjYG0Iu2gVtoyFChyerwaz4BDAl6pUAVNJwAyI=;
+	h=From:Subject:Date:To:Cc:From;
+	b=PbunBls5HB3SN/51UU63RdLqmiFfJYxT9fThuHN/byaMMnC2kiF6JhAr23oKZN8U+
+	 tlzD+W4LOb2FBmJLOsExkOwMOSggjLHKXaHSC8qscqWpd+6Q8Av3TZZMWx/co6SmUR
+	 V3eihkdp5ToBzo9XSzSjlZ1E+/miD6uiNHRDS3jb9WbXb7g4MhpOmt/tpUvnu2Nv10
+	 FBBjMetWYM1RNa520iPOILiK0pyNtw6Ma8gFoOJimkWGbY2fcpICuvaEFWzlS7N19S
+	 RKGalgK1ROMao7MIfPet+0ZCmCPoi7kMwGwBAtlNv8xRC9KRiRi/YHGvf2lrBzfUQa
+	 6H4ucXU5jHrnQ==
+From: Roger Quadros <rogerq@kernel.org>
+Subject: [PATCH v4 0/4] usb: dwc3-am62: module removal and errata fixes
+Date: Tue, 27 Feb 2024 11:23:47 +0200
+Message-Id: <20240227-for-v6-9-am62-usb-errata-3-0-v4-0-0ada8ddb0767@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,36 +52,71 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACOq3WUC/32NwQ6CMBBEf4Xs2TWlrRU8+R+GQy0LNCo1W2w0h
+ H+3EM9eJnmTyZsZIrGnCKdiBqbkow9jBr0rwA127Al9mxmkkFpIYbALjMlgjfZhJL7iFYnZThY
+ VCpRK5R3ZiuoWsuLJ1Pn3pr80mQcfp8Cf7S2ptf2JS/1fnNYo9ZHcgSyVlTvfiEe67wP30CzL8
+ gWvwZo8yQAAAA==
+To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: nm@ti.com, r-gunasekaran@ti.com, afd@ti.com, b-liu@ti.com, srk@ti.com, 
+ francesco@dolcini.it, linux-usb@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Roger Quadros <rogerq@kernel.org>, stable@vger.kernel.org
 X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1196; i=rogerq@kernel.org;
+ h=from:subject:message-id; bh=qWXeJYjYG0Iu2gVtoyFChyerwaz4BDAl6pUAVNJwAyI=;
+ b=owEBbQKS/ZANAwAIAdJaa9O+djCTAcsmYgBl3apL5DmuXLAjol07Uty2PLmZIKZVsiG7CZKEo
+ Rt3IEnUJOmJAjMEAAEIAB0WIQRBIWXUTJ9SeA+rEFjSWmvTvnYwkwUCZd2qSwAKCRDSWmvTvnYw
+ k85RD/9HceSMPbvjt8T5xNwY1GjiHk21GjKlrHh6/0irDsQMDqHYVbfYaah8GRynSd+GGyW9tNZ
+ SmHzZ3OJ3QMXoIZocJ9dSldrPoAyto/N90Y8OLrcx0vz5YzaT5S0IZSlc4qKOYeIhvFFVI9qwzV
+ euenR27I5FvEmist/ZgTvtTuLwp53E+HbSlSwQpOZuF8YNX0GxQBhzNj8qBqUx6xoI0vjTu3ABo
+ RfwqTe/dqIVkegGQYwRM9nvbiCbvDxsVbgzMSIJ30CTW1JYQu3yVgJz+04R+QeyzpIdWH6Ie35a
+ mMzAmLGXt9gPedsRBK0BlC6C4gNDxHGKSyeu6AU6PwHJZBpEfgY3l6eJoXfB2QVBhviq6kejGWZ
+ R2ALn81zjoWd6aoTV4WQBtqNBYBjfSBKzXHzzlfCNIJtw0M/r2KDrzEq8e+kwNL5WmPSkq0TG5J
+ +OPVdGrPLT/jtYmNBLrackbe4tiglk5qLt40Ioj7CQJC0Pw2wF8+4r/gdSKJh98FeLwBze0BB5+
+ R5aeT0Nd56ZMa4WC0+TbxPxQQ6lfBftBXJXJfbDxursPt8kFg8ndl6vQLs13IdGzN4EMIMaKI2w
+ NWsKg9WvIdSIRFJYHb3HGQdivDadDU8AqeLAxFdLiSntUa7kq71nRInn4VcD3h2QAMynLAZIhMX
+ /v29G4SmotjsgDg==
+X-Developer-Key: i=rogerq@kernel.org; a=openpgp;
+ fpr=412165D44C9F52780FAB1058D25A6BD3BE763093
 
+Hi,
 
-On Mon, 26 Feb 2024 11:14:23 +0100, Christophe Kerello wrote:
-> On MP1 SoC, RNB signal (NAND controller signal) and NWAIT signal (PSRAM
-> controller signal) have been integrated together in the SoC. That means
-> that the NAND controller and the PSRAM controller (if the signal is
-> used) can not be used at the same time. On MP25 SoC, the 2 signals can
-> be used outside the SoC, so there is no more restrictions.
-> 
-> MP1 SoC also embeds revision 1.1 of the FMC2 IP when MP25 SoC embeds
-> revision 2.0 of the FMC2 IP.
-> 
-> [...]
+This series fixes errors during module removal. It also
+implements PHY core voltage selection as per TI recommendation
+and workaround for Errata i2409 [1].
 
-Applied, thanks!
+The workaround needs PHY2 region to be present in device node.
+The device tree patch will be sent later after the DT binding doc
+is merged.
 
-[1/5] dt-bindings: memory-controller: st,stm32: add MP25 support
-      https://git.kernel.org/krzk/linux-mem-ctrl/c/97dcd1ef76412d0f25d2d50215565fd4d9ef91db
-[2/5] memory: stm32-fmc2-ebi: check regmap_read return value
-      https://git.kernel.org/krzk/linux-mem-ctrl/c/722463f73bcf65a8c818752a38c14ee672c77da1
-[3/5] memory: stm32-fmc2-ebi: add MP25 support
-      https://git.kernel.org/krzk/linux-mem-ctrl/c/2ff761ff29f6e2d0e616b21af3e054dac1f2c5f4
-[4/5] memory: stm32-fmc2-ebi: add MP25 RIF support
-      https://git.kernel.org/krzk/linux-mem-ctrl/c/cc7d5cf8021983a736f9d963dda2dd45de02b395
-[5/5] memory: stm32-fmc2-ebi: keep power domain on
-      https://git.kernel.org/krzk/linux-mem-ctrl/c/e46076906722ee6f9e7fd5abad7f909cd11a26af
+[1] - https://www.ti.com/lit/er/sprz487d/sprz487d.pdf
+
+Signed-off-by: Roger Quadros <rogerq@kernel.org>
+---
+Changes in v4:
+- re-arranged patches into first 2 bug-fixes and added Cc stable for them
+- Added Acked-by
+- Link to v3: https://lore.kernel.org/r/20240214-for-v6-9-am62-usb-errata-3-0-v3-0-147ec5eae18c@kernel.org
+
+---
+Roger Quadros (4):
+      usb: dwc3-am62: fix module unload/reload behavior
+      usb: dwc3-am62: Disable wakeup at remove
+      usb: dwc3-am62: Fix PHY core voltage selection
+      usb: dwc3-am62: add workaround for Errata i2409
+
+ drivers/usb/dwc3/dwc3-am62.c | 42 ++++++++++++++++++++++++++++++------------
+ 1 file changed, 30 insertions(+), 12 deletions(-)
+---
+base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
+change-id: 20240206-for-v6-9-am62-usb-errata-3-0-233024ea8e9d
 
 Best regards,
 -- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Roger Quadros <rogerq@kernel.org>
 
 
