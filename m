@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-46235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11C7D86892C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 07:49:12 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91F7886892F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 07:51:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 912B01F2644C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 06:49:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DAAADB23A1C
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 06:51:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDD4352F90;
-	Tue, 27 Feb 2024 06:49:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE7105338F;
+	Tue, 27 Feb 2024 06:51:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PYI3FfcP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oDsSTZ1H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CC295338C
-	for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 06:49:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FE6FEAD5
+	for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 06:51:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709016546; cv=none; b=lE5uECysuSD7W9ZAom5zZFosItdvQ62gVPoMRjGBOXxwnXpeSk/PDGzWd7bcoHO5f5lUFgqqcpI8hUqXpyLbDtOoUrZ2i5QvD8Sq0znJERcLsXFGY5neXH+1fAMqfOEGut0nhmLaNVH14ReT9kqwzNdMjVHberSb8dqgzbMHSDI=
+	t=1709016678; cv=none; b=lU3k+S+BP/HYl9OYkD12vhTqfpgt1FT3tgDwAZ4gughqOyuQ6kMWaHrsEatJ4r3CGZOlxFIBKu0WtTUH5K8MDIOQpJboq6lJNXzlyUh5ujoQ178AkJ/BkF4DoF4jjdlkIDamF6gMsI22bD28LFvCkfLireishAIOyye5cJi/zR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709016546; c=relaxed/simple;
-	bh=I/d0eMnYNaKxnQ9oXD2YJWd3h2CUwLNVAGEaDralJhg=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:References:
-	 In-Reply-To:Content-Type; b=DU5dn0Bd4DxECmA2iQi1eoQZ82DHkMOourr90KCzhhsq24taplLyCT8emmuKdjRqfxJZiSz/ASBRHv/5P8DR/YNpYT3dhtFfiy0IxCtVv+Q1iBvIDTyq3bEhv0dwbzomymeL0Ff5ncrIwdE1qYw7OVdER4/zDaQ/5qt5Kij0CJ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PYI3FfcP; arc=none smtp.client-ip=209.85.218.45
+	s=arc-20240116; t=1709016678; c=relaxed/simple;
+	bh=kMm0MhaI2hrFFVsLzwvLF6qO1EAC/UVvmQ2fD2bFDAw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dI+mf1LL2+gjnW5yaKl42LQxlzXkek3MxhttEpmjwg/R3A2JwIQAEPpNrEM6SmKvRJJJ2nmvf2MlmkWQtdGbW9iWSOWMsde5PgB+0ejSJa0HIn18N1Ha28bY/ipsFGO2rUBqguigVSneJCdFNRbeohAgCEOONhPr2EmJLxvZJQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oDsSTZ1H; arc=none smtp.client-ip=209.85.218.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a36126ee41eso458678266b.2
-        for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 22:49:04 -0800 (PST)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a26fa294e56so663211066b.0
+        for <devicetree@vger.kernel.org>; Mon, 26 Feb 2024 22:51:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709016543; x=1709621343; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:references:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1709016675; x=1709621475; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ftppbX4prfipbrJE2dRlWG+6CjMRbjIGhcz5uRsqIR0=;
-        b=PYI3FfcPo4pywsNIFXbkB1k0haaq+mHQl6e/NMb80CdwLUJeDOo9CY6izHf0mEQsWJ
-         6f9SKuzM/XwsngWjUyI0oIUMLkyyp20AUDq68M6W2LXidSirqR9nQnkbM3PL0rApGT9z
-         wkTYA9a5Kx/iIxfF6Fclf57nb4Zs8wDNAHmeH5Huftkp3N78XJfHWSZNVMsqNuwMqWDK
-         YuDop771IoAlX5iZmo1zDqgK6KFESQq+XT1Fa105nsHzJp1lErihiBD1u/JalDVD8h6c
-         nmUvC5hn5cGHA48rsnoXS709mddpSr7JViKuMT7MIy0PPRX+p8fu1KpmdObqcZMr3TGp
-         Vb6A==
+        bh=KyzYi/oCIq0JMIl4Zm7WvnQjiUgOFPhkkdhV4XV1/bY=;
+        b=oDsSTZ1HKhB9DxGPQTeDuqXqUB0aFjWi60RN7KSTAJLs9EDSwzurTDi0Tw02tenrSr
+         w4jGjgQdp96wlvI0vlkbUOrnv3PrRZ6NKnGh6x3vo7YuTLLo0/RHy7MxLEBczuJpub6Q
+         atleOoABi9wnqIY5pbSre7QV9xNiNMx9BLR5mbFXhExnO7L0p4S1PPZMc/soYMpgZuHT
+         wL/5dRRe948gbxTXPafKe6oE27xOuScPFBd9kRN8RU+FJy47QKqxYvEfGgx2+Bu8YuDo
+         htoraWos+yWriPA+nbMQ6pPu64rQo3457+B4OVWtQq4GN99dGP/RIeHns1JpbNQRzayE
+         XVQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709016543; x=1709621343;
-        h=content-transfer-encoding:in-reply-to:autocrypt:references:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1709016675; x=1709621475;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ftppbX4prfipbrJE2dRlWG+6CjMRbjIGhcz5uRsqIR0=;
-        b=Z0I2zVjX7uHGKUYWQ3Y6qqwzHWA+jCQNLR9Wgk5oXMK7AwQJ/8qhGKjzsX9XoumIyi
-         MiicA6Y1ryyjmlHnfKlYBRwxmw5lA32TfCqpqxN2ftntWwsU3hFfXgk7CSdvFrWYDt40
-         4KI1haozzOU6h5GShlUp0WGGesZN+WeZZXEDpT1e8W/9PcIziGG0rvl2pLx01KISuyiC
-         UbAnYVoWlvMWaN+rkyFROpEa+U+GU4mq8iOVP1UegFkk4fNZyTd2rNuYF0k4iolTOw0k
-         sYMn+IR2Eb3b0DXj/dNXUUmudp6k8XWbuwd8UG0sMd3P/C5wsk0aJHlREQ13qSgSa/Gq
-         SxlA==
-X-Forwarded-Encrypted: i=1; AJvYcCUfMXDfgzii3HlWMQkfH41GZaBGFFgawTRJjgkGgpb2U3ysZ91DfOP1aURBYXhDVkW0TA+NLpB03lwwOQgkInpdwozjkpwILnLlJw==
-X-Gm-Message-State: AOJu0YzjWBWNbYvO6L/vGeNbLfhlEE2NpzeKFAnQFpkd/FcHYnQzdXRI
-	SyxvWaYUee1gJjpGCn6n9StAL0U0Ta71EADOAfuEaWK1Gt6MnX8P69RMd58ilnM=
-X-Google-Smtp-Source: AGHT+IFyUFbqRik0WxKEMrK61br7bRoBs9dysbrmk6zhOHxcrwDwAtYvRFr0QLbw4Etr9K3s5DLDpw==
-X-Received: by 2002:a17:906:a1d3:b0:a3f:5104:dabb with SMTP id bx19-20020a170906a1d300b00a3f5104dabbmr5716010ejb.63.1709016543469;
-        Mon, 26 Feb 2024 22:49:03 -0800 (PST)
+        bh=KyzYi/oCIq0JMIl4Zm7WvnQjiUgOFPhkkdhV4XV1/bY=;
+        b=qqb1PoiAXOx5oo5GM69zj4Kj2EnD0KGXtM/BoM0+tMN20RgdC4zSsVmciaaBVNj3Z8
+         opOBbzeQIQqXVH7qQo6Cn2X3fn8vpyRAnKBoHjx1xQtG+L7S18bAYdyR3W4CYcLNWW2I
+         Cx8ii9tUkptM6/LGF5addXtrKFXK3MIFkG01WmneZLNvlFtFxkKokaYvqiZoJbwGhLdm
+         X9qDvrrupRTh3RY/BSBBKj8Gd02BiET1k+QiERgLONISY5EouVHaBjYG6Q/kosV3HiBL
+         0f29k2z8TV/BjHNithSK1PuWs72ig9jSrBVoBbQBcEO/AFI5HkNO13fqX4rjTHdwgsdj
+         AXJw==
+X-Forwarded-Encrypted: i=1; AJvYcCXCWQZrotlde9o1VDfG2AHuoUt1mkWVWpLJLevrE8nnr7zB4SHqDqz0523O1NnnsuUXrjG7CwhVegR5UF33VrRIPPHABeLEzk8bmw==
+X-Gm-Message-State: AOJu0YwUoqdMicLMBFyhJ3l3tyFg2oRdjbQoAu7yUNYP1/n6ORnusRq/
+	qd+0yI0TFeTp1bQu5zQSnwMBBjnz17UpxWjbyFPhdaSNgSpIPGH8mEzHGixHQHs=
+X-Google-Smtp-Source: AGHT+IEyY0uo9sxm3c77EHMIMldafeOPLJD2VjS8oEye05bD2H7dpe+TuMi9MuCDSKsXFoJEhRus7A==
+X-Received: by 2002:a17:906:528d:b0:a3f:4b56:b9bc with SMTP id c13-20020a170906528d00b00a3f4b56b9bcmr6779201ejm.47.1709016675374;
+        Mon, 26 Feb 2024 22:51:15 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id m13-20020a1709066d0d00b00a430da5de71sm448236ejr.152.2024.02.26.22.49.02
+        by smtp.gmail.com with ESMTPSA id k7-20020a17090627c700b00a3f81200425sm448734ejc.122.2024.02.26.22.51.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Feb 2024 22:49:03 -0800 (PST)
-Message-ID: <bc9f5dc6-dea3-4e1e-9c23-00fefb5f5439@linaro.org>
-Date: Tue, 27 Feb 2024 07:49:01 +0100
+        Mon, 26 Feb 2024 22:51:14 -0800 (PST)
+Message-ID: <2e277281-0c28-4159-8c32-4e96254339c3@linaro.org>
+Date: Tue, 27 Feb 2024 07:51:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,22 +76,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: input: allwinner,sun4i-a10-lrad: drop
- redundant type from label
+Subject: Re: [PATCH net-next v4 3/6] dt-bindings: net: remove outdated
+ hisilicon-femac
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>,
- Hans de Goede <hdegoede@redhat.com>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
+To: Yang Xiwen <forbidden405@outlook.com>,
+ Yisen Zhuang <yisen.zhuang@huawei.com>, Salil Mehta
+ <salil.mehta@huawei.com>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20240226122934.89257-1-krzysztof.kozlowski@linaro.org>
- <3207352.5fSG56mABF@jernej-laptop>
- <907d61f3-4c9e-42b6-b314-927fd77e0b94@linaro.org>
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>
+Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240222-net-v4-0-eea68f93f090@outlook.com>
+ <20240222-net-v4-3-eea68f93f090@outlook.com>
+ <c3f3d276-46a5-4cc7-ab79-e1ca3262abdf@linaro.org>
+ <SEZPR06MB695901BB60F786D7E209EAAC96592@SEZPR06MB6959.apcprd06.prod.outlook.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -136,25 +138,41 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <907d61f3-4c9e-42b6-b314-927fd77e0b94@linaro.org>
+In-Reply-To: <SEZPR06MB695901BB60F786D7E209EAAC96592@SEZPR06MB6959.apcprd06.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 27/02/2024 07:48, Krzysztof Kozlowski wrote:
-> On 26/02/2024 18:31, Jernej Škrabec wrote:
->> Dne ponedeljek, 26. februar 2024 ob 13:29:34 CET je Krzysztof Kozlowski napisal(a):
->>> dtschema defines label as string, so $ref in other bindings is
->>> redundant.
+On 27/02/2024 02:43, Yang Xiwen wrote:
+> On 2/26/2024 3:50 PM, Krzysztof Kozlowski wrote:
+>> On 22/02/2024 13:43, Yang Xiwen via B4 Relay wrote:
+>>> From: Yang Xiwen <forbidden405@outlook.com>
 >>>
->>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> The user documented(Hi3516) is not found in current kernel anymore. And
+>>> it seems this SoC has been EOL for a long time. While at it, Remove this
+>>> binding entirely due to recent driver changes.
 >>
->> Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+>> This removes documented compatibles, which:
+>> 1. should cause checkpatch issues,
+>> 2. is not what we want.
 >>
->> I already send PR for 6.9. Do you mind if it waits on next cycle?
+>> Driver is still there, so first the driver would have to be removed...
+>> but then why do you add it immediately back? No, it does not work like that.
 > 
-> Yes.
+> I has downloaded TRM for this old Hi3519 SoC. So i think with the new
+> driver, it still works for Hi3519 FEMAC controller. So i'll rewrite
+> these 3 patches and describe the whole thing in commit logs. i.e. the
+> old binding is wrong, inconsistent with real hardware, etc..
+> 
+> So you mean conversion to YAML first, in a separate commit. And then do
+> necessary edition to match the real hardware? I believe Hi3519 FEMAC and
+> Hi3798MV200 FEMAC are compatible in hardware. So the old binding is
+> wrong, missing critical hardware resources.
 
-Damn English. I don't mind, but as Rob pointed this is patch for input.
+If you remove binding, then it has to be done in reverse order than
+adding it (see DT submitting patches). However removing binding and
+re-adding it, is not what you think. It's a obfuscated way to make a
+change, so better just make a change and explicitly say why and what is
+happening
 
 Best regards,
 Krzysztof
