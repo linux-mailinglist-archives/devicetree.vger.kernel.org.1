@@ -1,133 +1,126 @@
-Return-Path: <devicetree+bounces-46208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F28698687D5
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 04:41:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E16D48687DE
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 04:46:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8145AB21CBD
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 03:41:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1052D1C21A07
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 03:46:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16B61219EA;
-	Tue, 27 Feb 2024 03:40:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 665853309E;
+	Tue, 27 Feb 2024 03:45:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mcpnKLv3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z8TZ5Fnl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC58A20DD3;
-	Tue, 27 Feb 2024 03:40:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB79E2B9AE;
+	Tue, 27 Feb 2024 03:45:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709005251; cv=none; b=DTtERpymvymxrQ+PrqzDZrTVxeGdUtdxUIgEs9zOm+sS6CzPNbYIz1sn4KbuHP1UrG3B1Sg7Gzjf+amGQPr6x2DDi4jfLKR95b/xQaaTfk9r7ndKEPsZ/d8MyLZMf+r5tyVB1B2q6jJQiqwrLBdBBYW0yTom1nm7Z71X3xhMsWg=
+	t=1709005559; cv=none; b=NfvJo3uH3MgIxp6daEO0KQfM0m0XgHtVVo4rmtTIs682bUYy9LWe4tkDE5LJtdlmCl/+a0himtCPfrkITfBfj4VbjVMWqsHnkOS93NjvYwq+0rqZCLSvcAy2ioJ+8qMMeIMjzqKkmHOo1LHH1ra4IjEbuhRVyI1YKgIwOFo6FIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709005251; c=relaxed/simple;
-	bh=F7EpFyKjl+IHhn75vKorY4OI7se0+dD77WgdblI6/x0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bcLg21tA9bWbM//FyKZ79X18NrWfTEQoQ3B3G4jN7ThBj6xJ5wyKM2QQCpXodseacP11UPCLgDqoj36HSH1YwHM+dUM7+7zFGYC1T79N2WI24E1VFAztJp/2CNkPeeXgNha5ABNqaNdwtaQmTrH8xYHn/hSokUQ8GuehDIxqTJI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mcpnKLv3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FFDDC433C7;
-	Tue, 27 Feb 2024 03:40:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709005250;
-	bh=F7EpFyKjl+IHhn75vKorY4OI7se0+dD77WgdblI6/x0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mcpnKLv33h4/RDikiNfpNAwZoEGni5wy7RwuQuOUWYZ49SjyUiEHngtHF/Ie0byu3
-	 zpsuIyUhjpkniZG2ThzQAmVfzuckmU25CMlnu07msCPm0xA5nxUqrzReC8yNd0vBld
-	 huBTwoZQViD7rgdF2SEPq/mNYA/hNRvN10y8GM+M+etVEzSW0iA2W/1i9HQdFG2oI4
-	 Q6xHXFfc+l5TTEYV6q1+uuKcbHLr89FQmlIVZn8+Va3Fb72zXHpAtWTIk6NseIFSLP
-	 dY5fghMr+ashA33RN9xeGZNk6adadUcknmYMkKwXvbgtQTqPS4jGFq2UXtg0BaCJWq
-	 Huol/qweALfYQ==
-Date: Mon, 26 Feb 2024 21:40:47 -0600
-From: Rob Herring <robh@kernel.org>
-To: Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: joel@jms.id.au, krzysztof.kozlowski+dt@linaro.org,
-	linux-aspeed@lists.ozlabs.org, brgl@bgdev.pl,
-	linux-arm-kernel@lists.infradead.org, linus.walleij@linaro.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org, conor+dt@kernel.org
-Subject: Re: [PATCH v4] dt-bindings: gpio: aspeed,ast2400-gpio: Convert to DT
- schema
-Message-ID: <20240227034047.GA2644802-robh@kernel.org>
-References: <20240227004414.841391-1-andrew@codeconstruct.com.au>
- <170900020204.2360855.790404478830111761.robh@kernel.org>
+	s=arc-20240116; t=1709005559; c=relaxed/simple;
+	bh=vcai9d1SaHknWypx9g0oBQddWEqztQWNUPqi7bp1fLU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jgPshzcLVC32y4kemjqLMJnPmeXTroXSwWYe6l9trrKmMsLgKz3zknAj8eS+SrwZfRPqnAavZPlxYOGok21upEVQm/p182hOXpRKJQpbO5p3X/zd/MX66/9YOFEDRXS4UpeUFqKvkZZhoJJTwwkjLmmzrLkyEafLVrF6bGDnIJA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z8TZ5Fnl; arc=none smtp.client-ip=209.85.166.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-il1-f181.google.com with SMTP id e9e14a558f8ab-36517219a19so12634125ab.1;
+        Mon, 26 Feb 2024 19:45:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1709005557; x=1709610357; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wl0bBkvRiqQeuBTLPhRoK2WWUUi11l8F15u5KFX7dWY=;
+        b=Z8TZ5Fnlg2OmPpbZ8Z7DE59CLKXi6uBIJT5IMxa/9Xr+zCQUioxm/cBQ4Q2k4pHrOl
+         nK3xfNDvZpMGYaTGFwXU66PuiyLJp7+jxCcE7BSCT4FpYPuzmI2no9ruEluN4cztq153
+         NgMeayEBtiQuIAz3P+4ZmDq6ZjOneudMZHcyf1cNDfvARqXb0tVK61G/6BEUCj2StYwW
+         5sOOZzG4UGGiED8O9mYtMvPGH2VAoHOHEhd38axYESyrP/SYrr+gY8mmijzBwOup1eXP
+         7ap0y4B3MD4fU1jAaiD1UigVWc2TBiavjhtpNq6Bpa0kSZIFVGE9mWW/qgMxQX1ulku7
+         eyNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709005557; x=1709610357;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wl0bBkvRiqQeuBTLPhRoK2WWUUi11l8F15u5KFX7dWY=;
+        b=B4ykBnn5YkWBVlN+ihN8JZ4dd+0RV5powiLpZRb/bdDq4wM9lREQUSxMICFahdtks4
+         40f31SxgIsMfBLl6Fg0oLldAA0Dl2Jjl8uQ8PcA1MnvhEN629mjwx51GlagYym4CbdWq
+         D9Pub0VkXkwsPWNkHIdAh/x2cE5fDhCDgQa5lnWxWYQ4Rpihyo6wEyJgxHwXpLNN8LM7
+         0dAJYz47VTERz9N6aMV/dSxNFvQMWRDVa2etVtZ3cMhz3rOO26WCtqaSEMcJ9Kg6vbnt
+         14DTPs5LsNU0HrHK+Prn++aIfIuu+K6XwT1XC/nKUKXBnZo0lSUKa67GldjcHww8ux7r
+         EbhQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXwuuhI8/ex7FR6RKp7hczmvKhC4dVkNRoY+ZiyhmqZzpwIihPdYx7XPCZTffL1yYlOyWDRbbBM1bO3uUUXF7HAUr81KyHCL58q5p39FutW5wMNMayA9l+N7rCOi3qUaAo1nI0nzL7cb0j1uKNFbpvKcuFlY93oVN7vbxNcmunuPBUuNhRmA7dAZs/P
+X-Gm-Message-State: AOJu0YxU8HDbTLfClZCtugpPegkhgGqxcKfwf0fusrG6n7G8IIJ9HcSU
+	aRQ8oQZkiM4E7D3t0zi1uF4nFwUU7REmGoB3zXocbdJ8EfREJo0pGfSNj9nh8Vu4N7+K
+X-Google-Smtp-Source: AGHT+IF5iCsGO7Lh19DB7/toWuvvr5zyzgW6mtDlHlNqxuxd8xI4191wlLaB8IhucWBfHVJ3P+Nsjw==
+X-Received: by 2002:a92:ab03:0:b0:365:858:d6d1 with SMTP id v3-20020a92ab03000000b003650858d6d1mr8892141ilh.1.1709005556933;
+        Mon, 26 Feb 2024 19:45:56 -0800 (PST)
+Received: from aford-System-Version.lan ([2601:447:d002:5be:1712:c48b:aaa0:cd8b])
+        by smtp.gmail.com with ESMTPSA id w4-20020a92ad04000000b00362b4d251a5sm1891566ilh.25.2024.02.26.19.45.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Feb 2024 19:45:56 -0800 (PST)
+From: Adam Ford <aford173@gmail.com>
+To: dri-devel@lists.freedesktop.org,
+	linux-renesas-soc@vger.kernel.org
+Cc: aford@beaconembedded.com,
+	Adam Ford <aford173@gmail.com>,
+	Frank Binns <frank.binns@imgtec.com>,
+	Matt Coster <matt.coster@imgtec.com>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/6] gpu: powervr-rogue: Add PowerVR support for some Renesas devices
+Date: Mon, 26 Feb 2024 21:45:30 -0600
+Message-ID: <20240227034539.193573-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <170900020204.2360855.790404478830111761.robh@kernel.org>
+Content-Transfer-Encoding: 8bit
 
-On Mon, Feb 26, 2024 at 08:16:43PM -0600, Rob Herring wrote:
-> 
-> On Tue, 27 Feb 2024 11:14:14 +1030, Andrew Jeffery wrote:
-> > Squash warnings such as:
-> > 
-> > ```
-> > arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-galaxy100.dtb: /ahb/apb@1e600000/gpio@1e780000: failed to match any schema with compatible: ['aspeed,ast2400-gpio']
-> > ```
-> > 
-> > Signed-off-by: Andrew Jeffery <andrew@codeconstruct.com.au>
-> > ---
-> > v4: Add constraints for gpio-line-names, ngpios as requested by Krzysztof:
-> >     https://lore.kernel.org/all/458becdb-fb1e-4808-87b6-3037ec945647@linaro.org/
-> > 
-> >     Add more examples to exercise constraints.
-> > 
-> > v3: https://lore.kernel.org/all/20240226051645.414935-1-andrew@codeconstruct.com.au/
-> > 
-> >     Base on v6.8-rc6, fix yamllint warning
-> > 
-> >     Rob's bot picked the missing `#interrupt-cells` in the example on v2[1]. The
-> >     patch was based on v6.8-rc1, and going back over my shell history I missed
-> >     the following output from `make dt_binding_check`:
-> > 
-> >     ```
-> >     ...
-> >       LINT    Documentation/devicetree/bindings
-> >       usage: yamllint [-h] [-] [-c CONFIG_FILE | -d CONFIG_DATA] [--list-files] [-f {parsable,standard,colored,github,auto}] [-s] [--no-warnings] [-v] [FILE_OR_DIR ...]
-> >       yamllint: error: one of the arguments FILE_OR_DIR - is required
-> >     ...
-> >     ```
-> > 
-> >     I've rebased on v6.8-rc6 and no-longer see the issue with the invocation
-> >     of `yamllint`.
-> > 
-> > [1]: https://lore.kernel.org/all/170892197611.2260479.15343562563553959436.robh@kernel.org/
-> > 
-> > v2: https://lore.kernel.org/all/20240226031951.284847-1-andrew@codeconstruct.com.au/
-> > 
-> >     Address feedback from Krzysztof:
-> >     https://lore.kernel.org/all/0d1dd262-b6dd-4d71-9239-8b0aec8cceff@linaro.org/
-> > 
-> > v1: https://lore.kernel.org/all/20240220052918.742793-1-andrew@codeconstruct.com.au/
-> > 
-> >  .../bindings/gpio/aspeed,ast2400-gpio.yaml    | 149 ++++++++++++++++++
-> >  .../devicetree/bindings/gpio/gpio-aspeed.txt  |  39 -----
-> >  2 files changed, 149 insertions(+), 39 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/gpio/aspeed,ast2400-gpio.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-aspeed.txt
-> > 
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> In file included from Documentation/devicetree/bindings/gpio/aspeed,ast2400-gpio.example.dts:91:
-> ./scripts/dtc/include-prefixes/dt-bindings/clock/ast2600-clock.h:14: warning: "ASPEED_CLK_GATE_LCLK" redefined
->    14 | #define ASPEED_CLK_GATE_LCLK            6
+Renesas has used a few variants of the Power VR GPU in their R-Car
+and RZ/G2 families.  While there is still some work to do at the Mesa
+level,  adding these device tree nodes allows the Power VR driver
+to enumerate and load the respective firmware located:
 
-The examples aren't isolated from each other, so you can't have 
-conflicting includes. You'll have to drop some of the examples or drop 
-their use of the conflicting include.
+https://gitlab.freedesktop.org/imagination/linux-firmware/-/tree/powervr/powervr?ref_type=heads
 
-Rob
+Adam Ford (6):
+  dt-bindings: gpu: powervr-rogue: Add PowerVR support for some Renesas
+    GPUs
+  arm64: dts: renesas: r8a774a1: Enable GPU
+  arm64: dts: renesas: r8a774e1: Enable GPU
+  arm64: dts: renesas: r8a77951: Enable GPU
+  arm64: dts: renesas: r8a77960: Enable GPU
+  arm64: dts: renesas: r8a77961: Enable GPU
+
+ .../devicetree/bindings/gpu/img,powervr-rogue.yaml  | 13 ++++++++++++-
+ arch/arm64/boot/dts/renesas/r8a774a1.dtsi           | 10 ++++++++++
+ arch/arm64/boot/dts/renesas/r8a774e1.dtsi           | 10 ++++++++++
+ arch/arm64/boot/dts/renesas/r8a77951.dtsi           | 10 ++++++++++
+ arch/arm64/boot/dts/renesas/r8a77960.dtsi           | 10 ++++++++++
+ arch/arm64/boot/dts/renesas/r8a77961.dtsi           | 10 ++++++++++
+ 6 files changed, 62 insertions(+), 1 deletion(-)
+
+-- 
+2.43.0
+
 
