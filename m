@@ -1,138 +1,103 @@
-Return-Path: <devicetree+bounces-46438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24D7E86990C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 15:51:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8629869927
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 15:54:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B377C282158
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 14:51:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE9101C237BF
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 14:54:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 482C413AA29;
-	Tue, 27 Feb 2024 14:51:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F1F413A890;
+	Tue, 27 Feb 2024 14:54:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mXxZG9Xn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YeiVk1QB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92BDC31A66;
-	Tue, 27 Feb 2024 14:51:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D698D3D68;
+	Tue, 27 Feb 2024 14:54:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709045473; cv=none; b=hgADmdfvjECAzf5ufUmqk/3XdiPAYJgRln6Wuz+dE/sp0/aZ1xYJQadLjxR/hmpKLQtxp7/3smzvIj4/zdwAhHX5FpfORU6wANncBvKrucD5k7ocWnu9dY9f5l+bRrNVhQUzf0DXEmILluy/lis8kaUkfMNMuLlhpn0Pkrl3krM=
+	t=1709045666; cv=none; b=UUqje/z7ArW9AiLF6yla0cv9sENEJeK9xoW/pVeMsOGyGQDrKR8Vbtc3lpTbC5LHhZ65Qo9WAx6otBxC329GuQTKd//XJN/rc+BdSkxu9Y7ohzeKl8xwUDhato2jRHmy0dpVy2MNyCG5JjWhwA9FosISAqHNba6g6OuAFMmtvz4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709045473; c=relaxed/simple;
-	bh=R3XD/vBPL+EGtNTzCG+o2q6YHuxrQVUHvjfvDTkhdpE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nScfmpefgptzTJ0seiSQbnSyEBLlhDn11RdvTpLMHjuM7LHKyTOFooIs0OfwUO1sIpNdYFuvgeMGMBrqKKRzkkldyKtbqjmyfiwQqgwKxe4Mx7KMHreALkAGtriMy2Jv6K+9KiU1foTgaD4LshEESFo5+rQ+YswECCTqlLU1CTw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mXxZG9Xn; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a34c5ca2537so585466866b.0;
-        Tue, 27 Feb 2024 06:51:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709045469; x=1709650269; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fIlOzHqEp95yte5/lk8bBybFxMXMoO07BYsA/z9Wq8g=;
-        b=mXxZG9XnrioG5vO1NtNsv7E5JEhNq5MZuGZJ9pvgOWpNVLK6FBESlrvxcKHZWbHGX5
-         H5eXO089hWfFv/iWUxRIU08oYxxAcFBLVBOSt0wJjv8tc/prZHzl3sJEEDm5MNNZ2Rdi
-         It4uMd+nbdkJ4+keKFtRgAN+CroLB5Yj389Qo3me6uysnoLjTtWZUgK1hm56dibaKy95
-         X7OjKv4FMyqIIQ4g+69u4INBKMrO8w102KSFUW6TFHlmQ/jnWFTZPKrqbutAnqWW73I8
-         nTkkZNYVAwFLuyiN/frs6mCJVSZmjyp4icDKTZrxRmItNhaJX2OYC4KwmffIH26HnkkI
-         OFtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709045469; x=1709650269;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fIlOzHqEp95yte5/lk8bBybFxMXMoO07BYsA/z9Wq8g=;
-        b=LfN1LRCskehDBGXUS64S3iHWrFto3KP5Zu+UOOxi+YDBdtDb5S5Fzjki7+3j4v2lXg
-         XKX7CDzdzr/nvndrtNelbO7pKkBTVUSbRceqEQCQEUkcFygRfHGKxAJmou6wcfz5gptl
-         VotHw47uw6ZeoWH68EdwFgt3BKsbtWi+joJocK4NaoVsmB3TPMqXbXVNmV1RXWqpDylL
-         p2PCHwAOkjlGE++WGXvD1OHHK6JKMiyfq6r2l6pLLJtuyyadeh9wyjnrzOhsc0iLqnln
-         QB7MmhrNaixo9iAyLPB+aJyN7lXEBFkBojL6hZUxhgHeqxqFLLRo/zZc9AeeV1nfWJLL
-         T2Bg==
-X-Forwarded-Encrypted: i=1; AJvYcCXT/pgdwz1O5DITDBo6k4y5PIDBjAT5RWx1xcRwx4M0NAfItRbQqXRDrCfEgpTjy8sZVBs3FP4KUF0mH+NGii3LLqVqkliXjd1y7k279tT0N0sVJezkAgiWKZH3zDolq8uLoBD0vQhlR/3GmA==
-X-Gm-Message-State: AOJu0YxHPLmvcYMEiJ85Kv5hgdjdvlNOrbEL6uIL95CmPqUp14CyPF1r
-	V2A8onjfh8ZdEoLR2ukkzYGtQpAH0OkVXn43ONILfhXlbFl2hoc2
-X-Google-Smtp-Source: AGHT+IE3ZB1Z0msJDUIuHUHIEcO1rzR/aLiA76RUHE7bq23rGMw0G5szxhq3tRqr6Gw13AnxURzpqA==
-X-Received: by 2002:a17:906:3c05:b0:a3f:4596:c3c8 with SMTP id h5-20020a1709063c0500b00a3f4596c3c8mr6891560ejg.53.1709045469077;
-        Tue, 27 Feb 2024 06:51:09 -0800 (PST)
-Received: from [192.168.20.170] (57657817.catv.pool.telekom.hu. [87.101.120.23])
-        by smtp.gmail.com with ESMTPSA id oq19-20020a170906cc9300b00a3f9a10f792sm833657ejb.7.2024.02.27.06.51.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Feb 2024 06:51:08 -0800 (PST)
-Message-ID: <203eaca6-7631-42ae-af37-8affa76c44b9@gmail.com>
-Date: Tue, 27 Feb 2024 15:51:08 +0100
+	s=arc-20240116; t=1709045666; c=relaxed/simple;
+	bh=hIhNyqJUEiZN+Q1N6J4Q/ktoIRmeCxMfviyFtGZdXVI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SfBrzrr2baWVWziwOayWh8qukhBWgtJyh/oT6MPLC5WXdTEmt2ZikQA9nwG5IWgagiQ8dgzblwrQcfi2PCoP0gUuZ6QXUWmy1t3BXYvD+AgbzOc5otrq4I+9YVAN0LlHpvicaF6xdxayjnolAUYRUlrYKK4SndCiaLLoVZ63pWU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YeiVk1QB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71B38C43394;
+	Tue, 27 Feb 2024 14:54:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709045665;
+	bh=hIhNyqJUEiZN+Q1N6J4Q/ktoIRmeCxMfviyFtGZdXVI=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=YeiVk1QB7nCsh3iV46eE9q6Rk11a3XXJpj7lFkV4QbwZvPGBx7021K5rbQgtJNVvB
+	 PhJNVfFb/dV974/ShA0egPpZ9Gk6VZMhSql79tXM49hk9H+HW8ZNOOoQmHwP7NCHW+
+	 FQSoVUyylsHdhVUqjfj/g7/mux/2RBrxxbdqmI5Np+Jc3Q5XXh6+DezzPUR2HKpHng
+	 fPGr4csRkFTDqN0sOSVBlfQ7/JtDRW+f6ZkIUEv5A4CQc6eYI2N1nuaznu5S8fajcF
+	 4oeC7pQMnttsUwRkkeZIjwtVpdDjxOmFxEn0ROwPSO/72t4JeGtTra7U+OrykENkpL
+	 P6VhdNpe5N7jw==
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-512cc3ea7a5so4501246e87.3;
+        Tue, 27 Feb 2024 06:54:25 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUGwp21NSPOS6hWUaW//3yws70IZV50f5TqDQwsd+MoiTXOQ3+2P/PpVbnHctmkDwNzS1ZD3o2MMWQEGjUl7qfhsNOVjKFd5nW60RokicTx/8MdvQPpaUVm4EsCwDHnXzQDyPNl3JbnJA==
+X-Gm-Message-State: AOJu0YyliS3a4P/ofFafZtvRQ4z446I70803PiXYo9xbrpAqLzrLU8AV
+	0dtWwSfvEg1UYREaQHhQAfYgfJNzTyYoOkGj5lsf9k2GePnidcK8EnGoe7iufnGesdBGAv+2MN+
+	QLBTjMMbJg7DIulCTNUdkzTg4ag==
+X-Google-Smtp-Source: AGHT+IHJzEDBGszspLSh2F/04WXP9nSH45zW0hLtY31ORWuJmFaF1Nxdo+Xa9QfFG6VoTA89OuQkwta26HCPu23LWCE=
+X-Received: by 2002:a05:6512:1094:b0:512:bc0f:2400 with SMTP id
+ j20-20020a056512109400b00512bc0f2400mr8253176lfg.50.1709045663627; Tue, 27
+ Feb 2024 06:54:23 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/2] arm64: add minimal boot support for TP-Link Archer
- AX55 v1
-Content-Language: hu
-To: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- Conor Dooley <conor.dooley@microchip.com>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>
-References: <20240226-archer-ax55-v1-v2-0-3776eb61f432@gmail.com>
- <170904127322.3703788.10984942827471381721.robh@kernel.org>
-From: Gabor Juhos <j4g8y7@gmail.com>
-In-Reply-To: <170904127322.3703788.10984942827471381721.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240130215917.2473250-1-robh@kernel.org>
+In-Reply-To: <20240130215917.2473250-1-robh@kernel.org>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 27 Feb 2024 08:54:10 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJetnzuBcKQMoswuL1X-uwi=meL1EaMOD2LVBg_T_Zn3A@mail.gmail.com>
+Message-ID: <CAL_JsqJetnzuBcKQMoswuL1X-uwi=meL1EaMOD2LVBg_T_Zn3A@mail.gmail.com>
+Subject: Re: [PATCH] MAINTAINERS: Add TPM DT bindings to TPM maintainers
+To: Peter Huewe <peterhuewe@gmx.de>, Jarkko Sakkinen <jarkko@kernel.org>, Jason Gunthorpe <jgg@ziepe.ca>
+Cc: linux-integrity@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello Rob,
+On Tue, Jan 30, 2024 at 3:59=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> Bindings for a given device class generally go to the respective
+> subsystem maintainers. Add the TPM bindings to the TPM
+> maintainers entry.
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  MAINTAINERS | 1 +
+>  1 file changed, 1 insertion(+)
 
-2024. 02. 27. 14:45 keltezéssel, Rob Herring írta:
+Ping!
 
-> My bot found new DT warnings on the .dts files added or changed in this
-> series.
-> 
-> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-> are fixed by another series. Ultimately, it is up to the platform
-> maintainer whether these warnings are acceptable or not.
-> 
-> If you already ran DT checks and didn't see these error(s), then
-> make sure dt-schema is up to date:
-> 
->   pip3 install dtschema --upgrade
-> 
-> 
-> New warnings running 'make CHECK_DTBS=y qcom/ipq5018-tplink-archer-ax55-v1.dtb' for 20240226-archer-ax55-v1-v2-0-3776eb61f432@gmail.com:
-> 
-> arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dtb: usb@8af8800: interrupts: [[0, 62, 4]] is too short
-> 	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
-> arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dtb: usb@8af8800: interrupt-names: ['hs_phy_irq'] is too short
-> 	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
-> arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dtb: usb@8af8800: interrupts: [[0, 62, 4]] is too short
-> 	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
-> arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dtb: usb@8af8800: interrupt-names:0: 'pwr_event' was expected
-> 	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
-> arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dtb: usb@8af8800: interrupt-names: ['hs_phy_irq'] is too short
-> 	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
-> 
-
-These are caused by the 'usb@8af8800' defined in the SoC .dtsi
-(arch/arm64/boot/dts/qcom/ipq5018.dtsi) file. I saw the warnings, and I have
-indicated that in the previous version of the patch [1].
-
-Sorry, I should have kept that note in the current version as well.
-
-Regards,
-Gabor
-
-1. https://lore.kernel.org/r/20240223-archer-ax55-v1-v1-2-99f8fa2c3858@gmail.com
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 97f51d5ec1cf..e5e3dd672018 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -22040,6 +22040,7 @@ S:      Maintained
+>  W:     https://kernsec.org/wiki/index.php/Linux_Kernel_Integrity
+>  Q:     https://patchwork.kernel.org/project/linux-integrity/list/
+>  T:     git git://git.kernel.org/pub/scm/linux/kernel/git/jarkko/linux-tp=
+mdd.git
+> +F:     Documentation/devicetree/bindings/tpm/
+>  F:     drivers/char/tpm/
+>
+>  TPS546D24 DRIVER
+> --
+> 2.43.0
+>
 
