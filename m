@@ -1,173 +1,188 @@
-Return-Path: <devicetree+bounces-46387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28C7986912E
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 14:01:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE4BE86913C
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 14:03:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 37A171C27CF9
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 13:01:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C97128F72C
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 13:03:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D24213A892;
-	Tue, 27 Feb 2024 13:01:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F6EA13AA55;
+	Tue, 27 Feb 2024 13:03:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WmB6Myd9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f5NXArEV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DE2C2F2D;
-	Tue, 27 Feb 2024 13:01:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BB2313A892;
+	Tue, 27 Feb 2024 13:03:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709038898; cv=none; b=EI8EV8h4L8Xh/nuOgyWq7El0sujSj2Vo3vf7dJuBx4xLOI1U0pI+2GJj/1Svj408BD5bwj+UwWZ/3WVLm16Fco6wCz8UCyGkeR9rjBSadmD6TedwDYiXIAQTYIwbwDZlHJjy/xQsck/pJ/8sdMUHAdn9ex8ZHkUXGPYySe2sOpc=
+	t=1709039007; cv=none; b=nQJ1uzHexx251/IgqilMNh6fU5mM+xCiTLtd3CZzPwBDx0pMhF+JZSBbqVgtMqA6nzFm3N5MO7SQ5n5sOT64h/Ktd+Etn09R4TqPea7jnzCeM38b5nrozyEvbsy1083LRsjxHECI0lwdrIqJl4dut4P4/ha4BRpmKqbS37AMjDw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709038898; c=relaxed/simple;
-	bh=hVPtSdJtYddAG+EIclbX7xD+HPT6FRQSRfWO26yzzGA=;
+	s=arc-20240116; t=1709039007; c=relaxed/simple;
+	bh=6EyxiHcbJEh3svJuBfcyNS1BNR8m7lp1BcGOod3rF1E=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Content-Type; b=eTeQU7zY0XQj2YkzFxUR0qOOq1cHSHTSg4ArrQFgVzFGXNDg8gxsQlxbi2WjEk4V1kX5ih+qNPIjk6oRfE31ev+18zaDTKYHqtxiftuSA4268WVK0Qpj6LE387mQFJa2ZmjfOAHum+DXEJ8L6d13JJJo1XTAdo1U7xJwhf9s9uw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WmB6Myd9; arc=none smtp.client-ip=209.85.218.42
+	 To:Cc:Content-Type; b=E0wv3Dj8nDRCECZgBF22RVyTILzdOVWEmYWdDsF/XfXWcRlKAYNZB4BYY1oBa5fQtAANebLT9/CS1HfDUSJpt/RRUEvaX5PKH5SodiBjIyF4V+QId6kl7/M3ba18B0QKtUHnxMWhe/hbssUhwmDU8MhxjvIDdw1wqwy6nQF6Tkc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f5NXArEV; arc=none smtp.client-ip=209.85.161.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a3f893ad5f4so603076166b.2;
-        Tue, 27 Feb 2024 05:01:36 -0800 (PST)
+Received: by mail-oo1-f51.google.com with SMTP id 006d021491bc7-5a0ad7ad6c0so297002eaf.2;
+        Tue, 27 Feb 2024 05:03:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709038895; x=1709643695; darn=vger.kernel.org;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UikzpkujjXwCtreWrXfmmEcvmx/a1ETRiTxhijrjC1Y=;
-        b=WmB6Myd9gQ+wtlgDVse3Rtv19VyY9RF9oPksLHlmw44u9wke31zPi63wJYnwg2X6IM
-         aPxac8Im3X7UnmZB71cqjvsH8g8JS6vPT1QPJ3LcZ4Cdk8ydxzL+/72QFY3fXKEqCBul
-         IIj6n5jQLvXAn82+o69mCtW47QUMlKnxGVY+7PP4rkJlU9Ek6Rscxj0nIXkeXQ56bUzl
-         I3crMTTKa5++qWuePOwEknlN2p+rk0Hk6C38L5Z6UjiPdCGsxUZ4Yd18a1KF+GRRpSkA
-         MvHaLs43MvBpLnuxF0RnveJUwtmbdgOtfipsDRQXEOLyHtBiEfjzxeqsvXiHuyqna/AS
-         ZaXA==
+        d=gmail.com; s=20230601; t=1709039004; x=1709643804; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=4IP/lc1tu6L75ZltzpJOjRv1Wc7ej1h8ro3tZmKncqs=;
+        b=f5NXArEVasG3yxcZg5wyim4A6hP5o+8Q9hoCuK2+pv4bTWb/jfEv1PYh2b9/juFxoV
+         AVMZWZvLh9cBkut88+bMNCWnoIIBX4YNGYreDvxCvx/RR7RSRVDBw+umBl2qhfXhKcgw
+         thJgaK8icqAYTpxuClUfbSoC2HvQUTItzdGnXoEB8Gm0OrTlxmQvm1uqfLerLEAyBu2Y
+         +uHqwcwP3co4mJeKiVkeqi7vqs4hRnZO+eTsGVBesTZRcQzDAHbOjI4Ciu857R3Onfo0
+         c0E3oRnb1LaEJoItgqi1yUSdW91H9xaIi7Q5VBFuC1pm0zHDEpNPW6uCaYGQD+CJa6jt
+         8ZbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709038895; x=1709643695;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UikzpkujjXwCtreWrXfmmEcvmx/a1ETRiTxhijrjC1Y=;
-        b=NKvzdGC+xHDxsxeVkz6bMP+ce1CskrPQOb8dDkZ3uBsFyJtK3AZd3r8vjFm+ivdQz0
-         d49Uwfde+euqR9OlryejXaJjdZuoh8Hm5cz8J1f4JQUyoqMowxhBMRLVzObqpSawlfc7
-         QRVK5iRzWgnB7xMXyNW/QRD/+zMPpGDmuEUUW/blEAh6pb83ArmPqn7Fdc7N0Vz8ZErL
-         Kbx2cwcYhyuuMurPSHhm5b3OrcGX31BsQpMw8YWKXTrK9xeZnTkDUjyWsk6TjJZ5Kq81
-         MdydKoiVVr/IQcWIfvI4pokEMkThn27A/GZZlyz0WEMo93WAtxDej6xFuvmu8hwHGpyg
-         FskQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVoRU9F1Le0Dq2n/6RIGQUQECCZociqVyJpzP2+HO2IVyLpZy4WcBAuQvT2pKGcBUadoh2RsDTgKHtdyz9YSeqMDycWKRAaErt59H+CUdnrTKBghR3eEIwFWwjbYRM1ToWfXoJ40vUD+sO58iDGEAZNejKqAFMZe2cAcpi754lSrxzcJ10=
-X-Gm-Message-State: AOJu0YzJwMBEtajklC7qnwEN6gHQnnP7dV8e4lQb9GVXuFiOejyZPg/R
-	sP8tZbvCSsaVMb0WbDHzISOFmAo6Db2Z3OSFuuvP27Qg5H0fMcSA37ryjl1QdqK83tfc3Fnu36G
-	jIugmtzHKhOnSDo90d3Zq3CChpS0=
-X-Google-Smtp-Source: AGHT+IHb++aO+WH0LPzz8cPRkyvMXG9JIS7JDxPe6iL2Dh7/MmMI+nRWcQtgev94gQgJ4/smhdGR0UO1XtOlfDYiQRk=
-X-Received: by 2002:a17:906:1b43:b0:a3f:1c10:5a63 with SMTP id
- p3-20020a1709061b4300b00a3f1c105a63mr6925228ejg.38.1709038894414; Tue, 27 Feb
- 2024 05:01:34 -0800 (PST)
+        d=1e100.net; s=20230601; t=1709039004; x=1709643804;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4IP/lc1tu6L75ZltzpJOjRv1Wc7ej1h8ro3tZmKncqs=;
+        b=nAyrF5BzHXmTiWI9Rt2Y3fx23ZSbVb2QHXiwWziYOvWGaYnkyUusVy/pWDxulzmu2E
+         1NTJqofaOypsywEc8l6GTxHk109MSpbgEueMhtkjzb085f8aosvQibYTw4NyPrmO367E
+         FsX+ZL+dx2n6T1RJK+nCmVxhyVWK6kl61fHRYcFWh6dJVjI9dTpjp4ErgkvFTWy7qV4y
+         OIC6/Eoeo68vb9qZUoQqaFVdgwlPIw1qh0T1g8f4VsTtyWp1fSh+bOPV/ILu2o2tQ+3Y
+         rATH6pdAcHSKVyjYkSLpnIt3G9SXMFr9eQGDVTC+J3BiBn6g5x+Mt8MCrhHjdbYc7oCY
+         qQ1g==
+X-Forwarded-Encrypted: i=1; AJvYcCWg4VMq8U4W/qmqiLKxaGt4ChpRqubw5mrUKdj6INeBvyQC6DuAD549m6CX4R/SV1fOYUMYYw39rqrjq/uuQSJgKJrR4V5WuB4zmG2z
+X-Gm-Message-State: AOJu0YxNclgxtT4JPjwh8OLKTATeol4yFe0v0llFwgc8rJjRt6tgyC8q
+	L7Qnjvzb4+jnMvvhTsscgqGTSGaKrkWR4e6EAeAS8hgoR+DfLpXd4cIjtmC/BsH45TzuKyEQqoU
+	lFjvbhIfcDg+SbYo7AL4YXHe+UGY=
+X-Google-Smtp-Source: AGHT+IGAP8utKe86sQghKbQOxWb39Elk4eQMDdlg0E4ZOowf5TBPfCkJPQMtKF7OVN8Y9rNxMQ7LLdcQY/Q9n9gM9LE=
+X-Received: by 2002:a4a:c80a:0:b0:5a0:9513:484d with SMTP id
+ s10-20020a4ac80a000000b005a09513484dmr4603772ooq.9.1709039004466; Tue, 27 Feb
+ 2024 05:03:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240225213423.690561-1-chris.packham@alliedtelesis.co.nz>
- <20240226-scabby-fiber-87d5d6e45028@thorsis.com> <fd1c8657-62e6-449c-b47f-a2c3223b405c@alliedtelesis.co.nz>
- <20240227-married-amulet-da532c0a70d3@thorsis.com>
-In-Reply-To: <20240227-married-amulet-da532c0a70d3@thorsis.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Tue, 27 Feb 2024 15:00:58 +0200
-Message-ID: <CAHp75Vd3aza1192YpRHvi6y7oEsrAoYA3+Qcja7Fw22c9+xhRQ@mail.gmail.com>
-Subject: Re: [PATCH 0/3] auxdisplay: 7 segment LED display
-To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>, 
-	"ojeda@kernel.org" <ojeda@kernel.org>, "robh+dt@kernel.org" <robh+dt@kernel.org>, 
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, 
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "andrew@lunn.ch" <andrew@lunn.ch>, 
-	"gregory.clement@bootlin.com" <gregory.clement@bootlin.com>, 
-	"sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>, 
-	"andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>, "geert@linux-m68k.org" <geert@linux-m68k.org>, 
-	"pavel@ucw.cz" <pavel@ucw.cz>, "lee@kernel.org" <lee@kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>
+References: <20240205171930.968-1-linux.amoon@gmail.com> <20240205171930.968-2-linux.amoon@gmail.com>
+In-Reply-To: <20240205171930.968-2-linux.amoon@gmail.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Tue, 27 Feb 2024 18:33:08 +0530
+Message-ID: <CANAwSgSzUW97U8MbWPdb_g4hqEpvLrVDGHG9Gjs2xALbDasqmg@mail.gmail.com>
+Subject: Re: [PATCHv1 1/5] arm64: dts: amlogic: Add cache information to the
+ Amlogic GXBB and GXL SoC
+To: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Feb 27, 2024 at 10:43=E2=80=AFAM Alexander Dahl <ada@thorsis.com> w=
-rote:
-> Am Mon, Feb 26, 2024 at 08:10:07PM +0000 schrieb Chris Packham:
-> > On 27/02/24 05:04, Alexander Dahl wrote:
-> > > Am Mon, Feb 26, 2024 at 10:34:20AM +1300 schrieb Chris Packham:
-> > >> This series adds a driver for a 7 segment LED display.
-> > >>
-> > >> I'd like to get some feedback on how this could be extended to suppo=
-rt >1
-> > >> character. The driver as presented is sufficient for my hardware whi=
-ch only has
-> > >> a single character display but I can see that for this to be generic=
-ally useful
-> > >> supporting more characters would be desireable.
-> > >>
-> > >> Earlier I posted an idea that the characters could be represended by
-> > >> sub-nodes[1] but there doesn't seem to be a way of having that and k=
-eeping the
-> > >> convenience of using devm_gpiod_get_array() (unless I've missed some=
-thing).
-> > >>
-> > >> [1] - https://scanmail.trustwave.com/?c=3D20988&d=3Dtrbc5eARVo-5gepR=
-nwbAKbQmiGk1bOSpqZDQx9bx7w&u=3Dhttps%3a%2f%2flore%2ekernel%2eorg%2flkml%2f2=
-a8d19ee-b18b-4b7c-869f-7d601cea30b6%40alliedtelesis%2eco%2enz%2f
-> > > Read that thread out of curiosity and I'm sorry if I'm late to the
-> > > party, but I wondered why this is limited to LEDs connected to GPIOs?
-> > >
-> > > Would it be possible to somehow stack this on top of some existing
-> > > LEDs?  I mean you could wire a 7 segment device to almost any LED
-> > > driver IC with enough channels, couldn't you?
-> >
-> > Mainly because the GPIO version is the hardware I have. I do wonder how
-> > this might work with something like the pca9551 which really is just a
-> > fancy version of the pca9554 on my board. A naive implementation would
-> > be to configure all the pca9551 pins as GPIOs and use what I have as-is=
-.
->
-> My idea was to do it on top of the LED abstraction, not on top of the
-> GPIO abstraction.  Currently you are using the GPIO consumer interface
-> and group 7 gpios which are supplied by that pca9554 in your case, but
-> could also be coming from a SoC or a 74hc595 etc.
->
-> Why not put it a level of abstraction higher, and let it consume LEDs
-> instead of GPIOs?  Your usecase would still be possible then.
->
-> As far as I could see the concept of a LED consumer can be done, the
-> leds-group-multicolor driver in
-> drivers/leds/rgb/leds-group-multicolor.c does that, introduced with
-> kernel v6.6 not so long ago.  It sets the sysfs entries of the LEDs
-> part of the group to readonly so they are not usable on their own
-> anymore and one would not disturb the grouped multicolor LED.
->
-> This would allow to use LEDs as a 7 segment group driven by any LED
-> driver including leds-gpio.
+Hi Neil,
 
-7-segment LEDs are not just a bunch of leds, they have explicit
-meaning and using LED infrastructure is an obscuration of what's going
-on (too many unrelated details are exposed, too hard to achieve what
-user needs). In the auxdisplay we have already the concept of "line
-display" with a 7-segment, or 14 (that are two main standards) with
-respective character mapping in case somebody wants to print more than
-hexadecimal digits on them. If I am mistaken, I would like to see the
-concept in the example here on how user space will take care of
-displaying (an arbitrary) data. Can you provide a draft of (user-side)
-documentation before we even start going this direction?
-
-> > Making a line display out of LED triggers might be another way of doing
-> > it but not something I really want to pursue.
+On Mon, 5 Feb 2024 at 22:50, Anand Moon <linux.amoon@gmail.com> wrote:
 >
-> Fair enough.  I just wanted to share my idea.  Didn't want to pressure
-> you in any direction. :-)
+> As per S905 and S905X datasheet add missing cache information to
+> the Amlogic GXBB and GXL SoC.
+>
+> - Each Cortex-A53 core has 32KB of L1 instruction cache available and
+>         32KB of L1 data cache available.
+> - Along with 512KB Unified L2 cache.
+>
+> To improve system performance.
+>
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> ---
+> Datasheet
+> [0] https://dn.odroid.com/S905/DataSheet/S905_Public_Datasheet_V1.1.4.pdf
+> ---
+
+As per the Arm Cortex A53 TRM documentation
+[0] https://developer.arm.com/documentation/ddi0500/j/Introduction/Implementation-options?lang=en
+
+Since this SoC supports arm-pmu we could  read cache info using perf
+[1] https://www.baeldung.com/linux/analyze-cache-misses
+
+[alarm@archl-librecm ~]$ sudo perf list
+
+List of pre-defined events (to be used in -e or -M):
+
+  branch-instructions OR branches                    [Hardware event]
+  branch-misses                                      [Hardware event]
+  bus-cycles                                         [Hardware event]
+  cache-misses                                       [Hardware event]
+  cache-references                                   [Hardware event]
+  cpu-cycles OR cycles                               [Hardware event]
+  instructions                                       [Hardware event]
+  alignment-faults                                   [Software event]
+  bpf-output                                         [Software event]
+  cgroup-switches                                    [Software event]
+  context-switches OR cs                             [Software event]
+  cpu-clock                                          [Software event]
+  cpu-migrations OR migrations                       [Software event]
+  dummy                                              [Software event]
+  emulation-faults                                   [Software event]
+  major-faults                                       [Software event]
+  minor-faults                                       [Software event]
+  page-faults OR faults                              [Software event]
+  task-clock                                         [Software event]
+  duration_time                                      [Tool event]
+  user_time                                          [Tool event]
+  system_time                                        [Tool event]
+
+armv8_cortex_a53:
+  L1-dcache-loads OR armv8_cortex_a53/L1-dcache-loads/
+  L1-dcache-load-misses OR armv8_cortex_a53/L1-dcache-load-misses/
+  L1-dcache-prefetch-misses OR armv8_cortex_a53/L1-dcache-prefetch-misses/
+  L1-icache-loads OR armv8_cortex_a53/L1-icache-loads/
+  L1-icache-load-misses OR armv8_cortex_a53/L1-icache-load-misses/
+  dTLB-load-misses OR armv8_cortex_a53/dTLB-load-misses/
+  iTLB-load-misses OR armv8_cortex_a53/iTLB-load-misses/
+  branch-loads OR armv8_cortex_a53/branch-loads/
+  branch-load-misses OR armv8_cortex_a53/branch-load-misses/
+  node-loads OR armv8_cortex_a53/node-loads/
+  node-stores OR armv8_cortex_a53/node-stores/
+  br_immed_retired OR armv8_cortex_a53/br_immed_retired/[Kernel PMU event]
+  br_mis_pred OR armv8_cortex_a53/br_mis_pred/       [Kernel PMU event]
+  br_pred OR armv8_cortex_a53/br_pred/               [Kernel PMU event]
+  bus_access OR armv8_cortex_a53/bus_access/         [Kernel PMU event]
+  bus_cycles OR armv8_cortex_a53/bus_cycles/         [Kernel PMU event]
+  cid_write_retired OR armv8_cortex_a53/cid_write_retired/[Kernel PMU event]
+  cpu_cycles OR armv8_cortex_a53/cpu_cycles/         [Kernel PMU event]
+  exc_return OR armv8_cortex_a53/exc_return/         [Kernel PMU event]
+
+[alarm@archl-librecm ~]$ perf stat -B -e
+cache-references,cache-misses,cycles,instructions,branches,faults,migrations
+sleep 5
+
+ Performance counter stats for 'sleep 5':
+
+             52794      cache-references:u
+              2311      cache-misses:u                   #    4.38% of
+all cache refs
+            480343      cycles:u
+            140018      instructions:u                   #    0.29
+insn per cycle
+             15012      branches:u
+                46      faults:u
+                 0      migrations:u
+
+       5.008073381 seconds time elapsed
+
+       0.000000000 seconds user
+       0.006952000 seconds sys
+
+Thanks
 
 
---=20
-With Best Regards,
-Andy Shevchenko
+
+-Anand
 
