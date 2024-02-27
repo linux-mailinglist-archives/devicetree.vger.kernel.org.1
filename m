@@ -1,120 +1,80 @@
-Return-Path: <devicetree+bounces-46513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D35A1869E39
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 18:47:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13B33869DDA
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 18:37:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 82234B33349
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 17:36:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C2FD728909D
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 17:37:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7165B4D9F3;
-	Tue, 27 Feb 2024 17:35:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EC9014DFEC;
+	Tue, 27 Feb 2024 17:35:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A775F4C63D;
-	Tue, 27 Feb 2024 17:35:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9635B14C5A4
+	for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 17:35:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709055308; cv=none; b=DdiVwXecPb1BEJKXSCRR5Tey4wsZdmXEy1ImsLELcnclY5aLwLe4kopKXO0lxYGVvXzgylRLj6KSnaeM5fayY6xG0cAWar1XBocuxEA1CPPA9Sy8B0Y1s+XlxmyQdMmwYu7FG1qSFoN0tzcYWOYwr+xIN4bKhWZirGrMcYN5e0U=
+	t=1709055334; cv=none; b=F31QI1ldHQlHzLr2Fhck3hgzz6o7Q7jL51/F8rtK4ZRHqJnGGnBVhrfX3qq7Knwn6NtFBkYMzcktY0F9HGJUIApbI+ewxvloq4SstfCDjaTLpcRKa+KkomZ5MczK1S85AgPL2w47LodhpC4wbu5Sv8RkHiFarbVyFbph7Gy5Xwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709055308; c=relaxed/simple;
-	bh=hQ2ryKGeq/r38RlaFN/f0EoXXlr9M7MA/Gh4pDclvGs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JPxDP0Q/IDEwbooYMwHJdaAAsf9oC6PEGWQnIIoD0hBHzPmZCyMpPjaVz62PQPjeCJP9aal/6QVlAXB2OqmD7HqzkKCux080q9tPihuhggZnQ2MQoya+ZrFAgpDro2yNl+W6DIx7Y4526Mpoz97iFCA1XA8/SCMcQ7C3+7g8dvI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6984ADA7;
-	Tue, 27 Feb 2024 09:35:43 -0800 (PST)
-Received: from FVFF77S0Q05N.cambridge.arm.com (FVFF77S0Q05N.cambridge.arm.com [10.1.28.137])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DFCFE3F73F;
-	Tue, 27 Feb 2024 09:35:02 -0800 (PST)
-Date: Tue, 27 Feb 2024 17:34:58 +0000
-From: Mark Rutland <mark.rutland@arm.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Will Deacon <will@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-	linux-kernel@vger.kernel.org, patches@lists.linux.dev,
-	linux-um@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	kunit-dev@googlegroups.com, linux-kselftest@vger.kernel.org,
-	devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-	Catalin Marinas <catalin.marinas@arm.com>
-Subject: Re: [PATCH v4 5/7] arm64: Unconditionally call
- unflatten_device_tree()
-Message-ID: <Zd4dQpHO7em1ji67@FVFF77S0Q05N.cambridge.arm.com>
-References: <20240217010557.2381548-1-sboyd@kernel.org>
- <20240217010557.2381548-6-sboyd@kernel.org>
- <20240223000317.GA3835346-robh@kernel.org>
- <20240223102345.GA10274@willie-the-truck>
- <CAL_JsqJSeSHeWV3YJE9n2NuY+s_iE6f7N5C_oguEJn7jTZ20xA@mail.gmail.com>
+	s=arc-20240116; t=1709055334; c=relaxed/simple;
+	bh=ubULC/5eC1VCTdiM9DNxtfh6XgJCdUQ+GNEAlJIW6fU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=nZL2Z55TJZk1M+0XTagiKaT12P/ZxW1ee4DQv1JZN3gfPe25GDtM7BpyAp3q8SmIBKMAXL4TR078LSKOztBgq7Lzq0vdzhi/QTv0SNvmU78bqoSVZiXnzjp+RYyQjAvUhgju/5Eu5aFk06XREy18a0AP0KZOjdochjIbBJDrNsw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875b6c.versanet.de ([83.135.91.108] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1rf1MW-0007MJ-LL; Tue, 27 Feb 2024 18:35:28 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: linux-rockchip@lists.infradead.org
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	heiko@sntech.de,
+	ukleinek@debian.org,
+	Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Subject: [PATCH 1/2] arm64: dts: rockchip: add missing interrupt-names for rk356x vdpu
+Date: Tue, 27 Feb 2024 18:35:25 +0100
+Message-Id: <20240227173526.710056-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqJSeSHeWV3YJE9n2NuY+s_iE6f7N5C_oguEJn7jTZ20xA@mail.gmail.com>
 
-On Fri, Feb 23, 2024 at 11:17:02AM -0700, Rob Herring wrote:
-> On Fri, Feb 23, 2024 at 3:23 AM Will Deacon <will@kernel.org> wrote:
-> >
-> > On Thu, Feb 22, 2024 at 05:03:17PM -0700, Rob Herring wrote:
-> > > On Fri, Feb 16, 2024 at 05:05:54PM -0800, Stephen Boyd wrote:
-> > > > Call this function unconditionally so that we can populate an empty DTB
-> > > > on platforms that don't boot with a firmware provided or builtin DTB.
-> > > > When ACPI is in use, unflatten_device_tree() ignores the
-> > > > 'initial_boot_params' pointer so the live DT on those systems won't be
-> > > > whatever that's pointing to. Similarly, when kexec copies the DT data
-> > > > the previous kernel to the new one on ACPI systems,
-> > > > of_kexec_alloc_and_setup_fdt() will ignore the live DT (the empty root
-> > > > one) and copy the 'initial_boot_params' data.
-> > > >
-> > > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > > Cc: Frank Rowand <frowand.list@gmail.com>
-> > > > Cc: Catalin Marinas <catalin.marinas@arm.com>
-> > > > Cc: Will Deacon <will@kernel.org>
-> > > > Cc: Mark Rutland <mark.rutland@arm.com>
-> > > > Cc: <linux-arm-kernel@lists.infradead.org>
-> > > > Signed-off-by: Stephen Boyd <sboyd@kernel.org>
-> > > > ---
-> > > >  arch/arm64/kernel/setup.c | 3 +--
-> > > >  1 file changed, 1 insertion(+), 2 deletions(-)
-> > >
-> > > Catalin, Will, Can I get an ack on this so I can take the series via the
-> > > DT tree.
-> >
-> > Mark had strong pretty strong objections to this in version one:
-> 
-> Yes, I had concerns with it as well.
-> 
-> > https://lore.kernel.org/all/ZaZtbU9hre3YhZam@FVFF77S0Q05N/
-> >
-> > and this patch looks the same now as it did then. Did something else
-> > change?
-> 
-> Yes, that version unflattened the bootloader passed DT. Now within
-> unflatten_devicetree(), the bootloader DT is ignored if ACPI is
-> enabled and we unflatten an empty tree. That will prevent the kernel
-> getting 2 h/w descriptions if/when a platform does such a thing. Also,
-> kexec still uses the bootloader provided DT as before.
+The video-codec@fdea0400 was missing the interrupt-names property that is
+part of the binding. Add it.
 
-That avoids the main instance of my concern, and means that this'll boot
-without issue, but IIUC this opens the door to dynamically instantiating DT
-devices atop an ACPI base system, which I think in general is something that's
-liable to cause more problems than it solves.
+Fixes: 944be6fba401 ("arm64: dts: rockchip: Add VPU support for RK3568/RK3566")
+Cc: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+---
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-I understand that's desireable for the selftests, though I still don't believe
-it's strictly necessary -- there are plenty of other things that only work if
-the kernel is booted in a specific configuration.
+diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+index c19c0f1b3778f..6a9bfb0550c04 100644
+--- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+@@ -597,6 +597,7 @@ vpu: video-codec@fdea0400 {
+ 		compatible = "rockchip,rk3568-vpu";
+ 		reg = <0x0 0xfdea0000 0x0 0x800>;
+ 		interrupts = <GIC_SPI 139 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-names = "vdpu";
+ 		clocks = <&cru ACLK_VPU>, <&cru HCLK_VPU>;
+ 		clock-names = "aclk", "hclk";
+ 		iommus = <&vdpu_mmu>;
+-- 
+2.39.2
 
-Putting the selftests aside, why do we need to do this? Is there any other
-reason to enable this?
-
-Mark.
 
