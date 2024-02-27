@@ -1,178 +1,199 @@
-Return-Path: <devicetree+bounces-46338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07ED7868F62
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 12:45:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6891868F6D
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 12:50:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E0341C20A18
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 11:45:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D5FA2867DF
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 11:50:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BF9B1386BF;
-	Tue, 27 Feb 2024 11:45:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA2E713959F;
+	Tue, 27 Feb 2024 11:50:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="fcZ88ODs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NwQ6Ohr9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8522C139590
-	for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 11:45:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CDD41386D4;
+	Tue, 27 Feb 2024 11:50:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709034355; cv=none; b=ekq31xXIrdluauPyZF9Kj9YHyq1MR77Af3T3SWfiec3kgFystxLl53f4gVSdqQTONPRN42dR1pa39rXsOeyYpq2Z2+HLiixB0pTRzmWqO7RRCvfSi0FyxKlIh5D6TlRwxpgXZn54bPlqxOrljqlw9dJmKkYx9pr+w/Fw1tfcB6c=
+	t=1709034655; cv=none; b=Ikvc4MYGtPfARhrtG8mvg48e9Bde6nKsO+XUoLms6QXl/1/xN5BtDHCcP8RPGLG7AeC7uXsnu03h66NEJN4cqRM0ZelU48M+6gNL9J9MQYxpQBnm5GeLwPUNmpJwhvNEqB3pAxW5XWyrH2QAqnhDcHSujuvPHyVNM/Exeld8zPU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709034355; c=relaxed/simple;
-	bh=xFt7TcJ2O8tEOIXD6Jmcidfp7BHJpkg6WOVsVDSWACo=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=mZzyhizE0fwd4KTUry8NbcSXqzvleiCNjAnmOfKJVFnSrdr7Q4PRV0R3jRREePzMLI3XqPMYF7p/Zj8asTZheHnyQ65cg1jGOMVFU7CllCg2o9vhKETTpfolceYaxauOgxh0lIPe0g3JOCpuXmO566DpYswyg17M97UDkuuDPi4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=fcZ88ODs; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1709034352;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=yNeL6cMune++QSJiWmgjhpkk8+HIlgdUXjqshRiIhkw=;
-	b=fcZ88ODsIurODYywgQgER+fdTSWt2RC63TdH8u8JX5Yt6EZtlkzIY4Lv6EgKdyqCOC9yNN
-	md+MNMC0j5tHgbbGc+Eq74zEgPIM8ZvTa0q4UlQy4D2azUMjVZ0c9PlJISTfjQICivLdP4
-	0lh3hYEmdXxiOE5rhdHJ90TGLbWT0as=
-Received: from mail-lj1-f200.google.com (mail-lj1-f200.google.com
- [209.85.208.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-483-cJ-9van9M6aFMkRb9tD1tw-1; Tue, 27 Feb 2024 06:45:51 -0500
-X-MC-Unique: cJ-9van9M6aFMkRb9tD1tw-1
-Received: by mail-lj1-f200.google.com with SMTP id 38308e7fff4ca-2d2a269ead9so263001fa.0
-        for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 03:45:50 -0800 (PST)
+	s=arc-20240116; t=1709034655; c=relaxed/simple;
+	bh=i0MNHvBEyvrrz/r9ERUgGvr7jDMCWr36xdWDXtvGdgQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=OKpEqx3JPXw1R7cyktJo6sUf6fl1UlpJtNXmkOmZltEzEqm8VEoWzPC6nZLSpfOeQ1WYZvj1X+jlRHIUkUzv7mZy/7EKCK+vUZ19Ntn5foW/V/yQnMCHBp206zj6H+uIzvLWISs72JQ+gmaSiHGYYn9IMQFfuoLHvuu6iq9QayU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NwQ6Ohr9; arc=none smtp.client-ip=209.85.215.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-5c6bd3100fcso3116352a12.3;
+        Tue, 27 Feb 2024 03:50:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1709034653; x=1709639453; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rDoS3gLGI0Ru88ibWZYCmaUVCnms/5yXvnI03PkRJbQ=;
+        b=NwQ6Ohr9RXgRR/E8HhpgGlNW4TkTHcWoRuW58BEtV44tftqHkWilk4kDBRuA70F1fy
+         PfO17hlYFknaE4BY+jHnqvY9FoJALKVSC+Bj2FLPiRwkVZrjlRWgQYGNApY/UT9Ti8w6
+         fLAaQv2sPJXXbAEJYJ6ZVNFwr29FNh/nwblWJs0iX+OKIRSTay7Kch2QqgnVm4toS5yf
+         lYWgtKqlr6bGBvzCHQE15zOssFS7eQQ+jZYjWRvdeE1/4T7l+KC7CdkRtlPyS4MBEhlJ
+         gNcGQytMEaMHx/INMj582MYaIucT7y0GgL/fstqpB5sUXvo1DV1ztCRsvCZ9nTOmVApV
+         Z7LQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709034349; x=1709639149;
-        h=mime-version:user-agent:content-transfer-encoding:autocrypt
-         :references:in-reply-to:date:cc:to:from:subject:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yNeL6cMune++QSJiWmgjhpkk8+HIlgdUXjqshRiIhkw=;
-        b=mNwogCjE8QdhAuDEpLtJCTWHHkfc5B3SHyd+Hpyt9Wzr/EZQNA3x4Ryv0bM7/dg/Cp
-         O0+h4+RpP3h4IvpEKmTjgjiplzzj50YOkafM6k2b3jLocXZ2bqGFR+KChgd0J6lHqGrB
-         uC92OX0/Ze82T4d8g0P9lmDzvN8HbhWw+02wLgYhg0Bt1K5XQlf3YyZ8kXAfBCQdBDTo
-         7t9uBsLCR/9ZfPOuesrw4HjC1JA+cm3K6z6ulzhdi0iUrML4khPXk+7G1CpCmiOkDQP6
-         9FVgf6YcBSvPiQQpYvAUNp0gk46K+1w9WqcQXwnmwZGxVfB81NycRLcbuNWP0Cd+nxRT
-         solA==
-X-Forwarded-Encrypted: i=1; AJvYcCUkQx6wmKVbEJ0LpIuPwR34uoXVTbTcymx3xVNxx29nA8D6SFZbx6uzsKJjRN9VV7o9neU6tCR2PI0/SV1REsYajhKQrCgiO2Df6g==
-X-Gm-Message-State: AOJu0YxVcan/J1t7i6yOqBsiAJI/LrlO9Zu/2KyXPpGHIrYdkbRYiHSa
-	NEJ11uiad7GY94MAIJwuvO60JpxzZC7/IROB6OWg+qahL1o/ARq2I5fOwcPypZESpGECCsDrbi6
-	KP8zdGGW1ElWl6mI3TmlmYgoownRDqW8Z14PCQtpap0ZigZT/R4MSZc84eOI=
-X-Received: by 2002:a2e:9f42:0:b0:2d2:3178:6b5b with SMTP id v2-20020a2e9f42000000b002d231786b5bmr5960693ljk.3.1709034349644;
-        Tue, 27 Feb 2024 03:45:49 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEwRi2G2y071WE+2dwqaYTGStIysDm6JbR5gPBoWIed3UDGNULeEYzBfwRqbHARV6NDxfaNEA==
-X-Received: by 2002:a2e:9f42:0:b0:2d2:3178:6b5b with SMTP id v2-20020a2e9f42000000b002d231786b5bmr5960673ljk.3.1709034349286;
-        Tue, 27 Feb 2024 03:45:49 -0800 (PST)
-Received: from gerbillo.redhat.com (146-241-245-60.dyn.eolo.it. [146.241.245.60])
-        by smtp.gmail.com with ESMTPSA id a2-20020a2e8302000000b002d2934578e1sm312310ljh.19.2024.02.27.03.45.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Feb 2024 03:45:48 -0800 (PST)
-Message-ID: <414f4e710890fde702fd0aeb91990f92ede3bafc.camel@redhat.com>
-Subject: Re: [PATCH net-next resend 2/6] dt-bindings: net: brcm,asp-v2.0:
- Add asp-v2.2
-From: Paolo Abeni <pabeni@redhat.com>
-To: Justin Chen <justin.chen@broadcom.com>, Krzysztof Kozlowski
-	 <krzysztof.kozlowski@linaro.org>, netdev@vger.kernel.org
-Cc: bcm-kernel-feedback-list@broadcom.com, florian.fainelli@broadcom.com, 
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- robh+dt@kernel.org,  krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, opendmb@gmail.com,  andrew@lunn.ch,
- hkallweit1@gmail.com, linux@armlinux.org.uk, rafal@milecki.pl, 
- devicetree@vger.kernel.org
-Date: Tue, 27 Feb 2024 12:45:46 +0100
-In-Reply-To: <09c07d4b-6004-4897-adca-0d6211414d2a@broadcom.com>
-References: <20240223222434.590191-1-justin.chen@broadcom.com>
-	 <20240223222434.590191-3-justin.chen@broadcom.com>
-	 <b9164eae-69e2-44f3-8deb-e3a5180e459c@linaro.org>
-	 <b6c74bbe-89f0-4201-b968-57996f0e0223@broadcom.com>
-	 <c0e9eb68-f485-40a9-b025-82a73af06006@linaro.org>
-	 <09c07d4b-6004-4897-adca-0d6211414d2a@broadcom.com>
-Autocrypt: addr=pabeni@redhat.com; prefer-encrypt=mutual; keydata=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
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+        d=1e100.net; s=20230601; t=1709034653; x=1709639453;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rDoS3gLGI0Ru88ibWZYCmaUVCnms/5yXvnI03PkRJbQ=;
+        b=P5yuQQTWiawAkzlUIuL0VQ7UvoDkyvskXBJR3W5boo1515yTqcH/xVQ2KOX4TSc+lB
+         +JbEZORGi9BLFn3wMjOO+3BUIiOkvBMbueNsYUC13Am6F6D4p4131H7wf0owj6JdEjwj
+         DLIdFB8mlA8uq7kLovjITl66iA0/jaOmOwvgrFuxf1dvKTtd8KWGhtL5/fCeeFE1hGMr
+         z7nx56pvXVl4IpuS7Vj18naMUVmnn8e2yGxvcc+U0wk1FWtgr9XSPN8lfqdPk8wx9tvZ
+         yQXmovbGX4khhj9ZDCK63NqnJF4HjKlq0HbLYntKc6FZYRqmjcqOwSKxKV6F2vQgDQ1U
+         9jJw==
+X-Forwarded-Encrypted: i=1; AJvYcCW2jTE301NPcKxXRaxT5DNWLDF3rB3FG9fsJVjjnP5K0oS7GbKk4TTwt8P/wWiFe+5891TOylDsRuO2o5rvYweLLSXOZmY111TR15tVxQh82VOiusTcIDB0Im4uOwmCHNVSSGWjfXWj/TZTXGOfFzTPUei88SzV6yqb6C5IigUH3TwPzYRQ2gnHmOFl
+X-Gm-Message-State: AOJu0YybvOv95qOdEOb/WCRpy/pE2Q+Kn+lp+jphaBXOLVNW71JlA064
+	NXdxjeSfTqo9Keu5SJEWq6VFZ/ue2Q5Gxo8AT5K1fEg+hvMsSxe6iAUwqSOswJpZmVuIOgBC/2Z
+	LGjGq2HWSbpl9VaN+g/PesS1eKrk=
+X-Google-Smtp-Source: AGHT+IELcr6v/ZNF99nQU0H9fb5ytljAs2NYlh9FX6CrCFlQCTtIeotChVLyYxSxOWpUFjR/B4u1AgxDqXdtxZrOxA0=
+X-Received: by 2002:a05:6a20:d41b:b0:1a0:e5a7:60b7 with SMTP id
+ il27-20020a056a20d41b00b001a0e5a760b7mr1460652pzb.29.1709034653492; Tue, 27
+ Feb 2024 03:50:53 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20240227034539.193573-1-aford173@gmail.com> <20240227034539.193573-3-aford173@gmail.com>
+ <39aead3b-b809-4c9c-8a5d-c0be2b36ea47@imgtec.com>
+In-Reply-To: <39aead3b-b809-4c9c-8a5d-c0be2b36ea47@imgtec.com>
+From: Adam Ford <aford173@gmail.com>
+Date: Tue, 27 Feb 2024 05:50:42 -0600
+Message-ID: <CAHCN7xJnKNdsrs+UMvPqdkN+j8v+8UaoH=zargcKRi7dw0GLNA@mail.gmail.com>
+Subject: Re: [PATCH 2/6] arm64: dts: renesas: r8a774a1: Enable GPU
+To: Matt Coster <Matt.Coster@imgtec.com>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, Adam Ford <aford@beaconembedded.com>, 
+	Frank Binns <Frank.Binns@imgtec.com>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 2024-02-26 at 23:07 -0800, Justin Chen wrote:
-> On 2/26/2024 10:55 PM, Krzysztof Kozlowski wrote:
-> > On 26/02/2024 20:42, Justin Chen wrote:
-> > > On 2/24/24 2:22 AM, Krzysztof Kozlowski wrote:
-> > > > On 23/02/2024 23:24, Justin Chen wrote:
-> > > > > Add support for ASP 2.2.
-> > > > >=20
-> > > > > Signed-off-by: Justin Chen <justin.chen@broadcom.com>
-> > > > > ---
-> > > > >    Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml | 4 +=
-+++
-> > > > >    1 file changed, 4 insertions(+)
-> > > > >=20
-> > > > > diff --git a/Documentation/devicetree/bindings/net/brcm,asp-v2.0.=
-yaml b/Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
-> > > > > index 75d8138298fb..5a345f03de17 100644
-> > > > > --- a/Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
-> > > > > @@ -15,6 +15,10 @@ description: Broadcom Ethernet controller firs=
-t introduced with 72165
-> > > > >    properties:
-> > > > >      compatible:
-> > > > >        oneOf:
-> > > > > +      - items:
-> > > > > +          - enum:
-> > > > > +              - brcm,bcm74165-asp
-> > > > > +          - const: brcm,asp-v2.2
-> > > > >          - items:
-> > > > >              - enum:
-> > > > >                  - brcm,bcm74165-asp
-> > > >=20
-> > > > Hm, this confuses me: why do you have same SoC with three different
-> > > > versions of the same block?
-> > > >=20
-> > >=20
-> > > bcm72165 -> asp-v2.0
-> > > bcm74165 -> asp-v2.1
-> > > Are two different SoCs.
-> >=20
-> > Ah, right, existing bindings has two SoCs.
-> >=20
-> > >=20
-> > > The entry I just added is
-> > > bcm74165 -> asp-v2.2
-> > > This is a SoC minor revision. Maybe it should bcm74165b0-asp instead?
-> > > Not sure what the protocol is.
-> >=20
-> > So still the confusion - same SoC with different IP blocks. That's
-> > totally opposite of what we expect: same version of IP block used in
-> > multiple SoCs.
->=20
-> Agreed. Unfortunately what we expect is not always what comes to fruition=
-...
->=20
-> Thinking about it again, I prefer bcm74165b0-asp. Otherwise it doesn't=
-=20
-> properly describe the hardware as we do not have one SoC with two=20
-> different IP blocks.
+On Tue, Feb 27, 2024 at 3:31=E2=80=AFAM Matt Coster <Matt.Coster@imgtec.com=
+> wrote:
+>
+> Hi Adam,
+>
+> Thanks for these patches! I'll just reply to this one patch, but my
+> comments apply to them all.
+>
+> On 27/02/2024 03:45, Adam Ford wrote:
+> > The GPU on the RZ/G2M is a Rogue GX6250 which uses firmware
+> > rogue_4.45.2.58_v1.fw available from Imagination.
+> >
+> > When enumerated, it appears as:
+> >   powervr fd000000.gpu: [drm] loaded firmware powervr/rogue_4.45.2.58_v=
+1.fw
+> >   powervr fd000000.gpu: [drm] FW version v1.0 (build 6513336 OS)
+>
+> These messages are printed after verifying the firmware blob=E2=80=99s he=
+aders,
+> *before* attempting to upload it to the device. Just because they appear
+> in dmesg does *not* imply the device is functional beyond the handful of
+> register reads in pvr_load_gpu_id().
+>
+> Since Mesa does not yet have support for this GPU, there=E2=80=99s not a =
+lot
+> that can be done to actually test these bindings.
+>
+> When we added upstream support for the first GPU (the AXE core in TI=E2=
+=80=99s
+> AM62), we opted to wait until userspace was sufficiently progressed to
+> the point it could be used for testing. This thought process still
+> applies when adding new GPUs.
+>
+> Our main concern is that adding bindings for GPUs implies a level of
+> support that cannot be tested. That in turn may make it challenging to
+> justify UAPI changes if/when they=E2=80=99re needed to actually make thes=
+e GPUs
+> functional.
 
-I read the above as you intend to send a v2 with an update dt-binding.
-Please correct me if I'm wrong.
+I wrongly assumed that when the firmware was ready, there was some
+preliminary functionality, but it sounds like we need to work for
+Series6XT support to be added to the driver.  I only used the AXE
+compatible since it appeared to the be the only one and the existing
+binding document stated "model/revision is fully discoverable" which I
+interpreted to mean that the AXE compatible was sufficient.
+>
+> > Signed-off-by: Adam Ford <aford173@gmail.com>
+> >
+> > diff --git a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi b/arch/arm64/boo=
+t/dts/renesas/r8a774a1.dtsi
+> > index a8a44fe5e83b..8923d9624b39 100644
+> > --- a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
+> > +++ b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
+> > @@ -2352,6 +2352,16 @@ gic: interrupt-controller@f1010000 {
+> >                       resets =3D <&cpg 408>;
+> >               };
+> >
+> > +             gpu: gpu@fd000000 {
+> > +                     compatible =3D "renesas,r8a774a1-gpu", "img,img-a=
+xe";
+>
+> The GX6250 is *not* an AXE core - it shouldn=E2=80=99t be listed as compa=
+tible
+> with one. For prior art, see [1] where we added support for the MT8173
+> found in Elm Chromebooks R13 (also a Series6XT GPU).
+>
+> > +                     reg =3D <0 0xfd000000 0 0x20000>;
+> > +                     clocks =3D <&cpg CPG_MOD 112>;
+> > +                     clock-names =3D "core";
+>
+> Series6XT cores have three clocks (see [1] again). I don=E2=80=99t have a
+> Renesas TRM to hand =E2=80=93 do you know if their docs go into detail on=
+ the
+> GPU integration?
+>
+> > +                     interrupts =3D <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
+> > +                     power-domains =3D <&sysc R8A774A1_PD_3DG_B>;
+> > +                     resets =3D <&cpg 112>;
+> > +             };
+> > +
+> >               pciec0: pcie@fe000000 {
+> >                       compatible =3D "renesas,pcie-r8a774a1",
+> >                                    "renesas,pcie-rcar-gen3";
+>
+> As you probably expect by this point, I have to nack this series for
+> now. I appreciate your effort here and I=E2=80=99ll be happy to help you =
+land
 
-Meanwhile dropping this revision from PW.
+I get that.  I wasn't sure if I should have even pushed this, but I
+wanted to get a little traction, because I know there are people like
+myself who want to use the 3D in the Renesas boards, but don't want to
+use the closed-source blobs tied to EULA and NDA documents.
 
-Cheers,
+> these once Mesa gains some form of usable support to allow testing.
 
-Paolo
-
+Is there a way for your group to add me to the CC list when future
+updates are submitted?  I'd like to follow this and resubmit when it's
+ready.
+>
+> Cheers,
+> Matt
+>
+> [1]: https://gitlab.freedesktop.org/imagination/linux/-/blob/b3506b8bc45e=
+d6d4005eb32a994df0e33d6613f1/arch/arm64/boot/dts/mediatek/mt8173.dtsi#L993-=
+1006
 
