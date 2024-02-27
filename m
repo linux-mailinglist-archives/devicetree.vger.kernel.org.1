@@ -1,86 +1,99 @@
-Return-Path: <devicetree+bounces-46221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42A9C86880D
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 04:50:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3F22868816
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 04:55:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDE991F22AAF
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 03:50:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 730CD1F21F44
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 03:55:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB21047F4A;
-	Tue, 27 Feb 2024 03:50:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDA643309E;
+	Tue, 27 Feb 2024 03:55:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZnKwf/MG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mTrLlMjX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCEE1EAD7;
-	Tue, 27 Feb 2024 03:50:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8EEA4CDE0;
+	Tue, 27 Feb 2024 03:55:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709005812; cv=none; b=ldDLzQtwmvabnYNZxq4IW6QWCJT4RAR2DUPdeZZXBH+yzY1LfTKz6MdZT3077fEXZ/vrmD1X2hdqLfx5E31nvmF+goDNuFAqKFQ1DoeNPzvGCcvY+XRrA+jpxjVnUOUcvppRI0jtSgig8EnCHemB9tTYiDpxtYPONQiRzd8IIsg=
+	t=1709006104; cv=none; b=JO/mgZI2cs02g7N1WGe5HhchqbJ/CnwXsrD68TQBcg86z5gKkSuzr2CRYGOA/9B9JKU/NKnWAJ8mST9oiB++4uXuTXnirly8q8Gu4HdIh1OGUMnqdh2gnZptozYDJ592DU38nSO2JEWgoUG+LMIPSDeKf9KVmGVJ/Apf4E27rRk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709005812; c=relaxed/simple;
-	bh=hOMeGK3M1MNEfZ1lZ/JwrqcEakbzHAYTL05Yftym9lM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pyiq+DD96/RCof/24ExELc9pEMVKwjSNwOAYrAMS8v6QYCtRjkv5lO1Tt6IGiZ0KONTWt7uc0WaKAM8lP74O7oQmvBymsdMXWv5/NrcU5Y1hCKfH0QNtGvfttnHdReM4BCAZxLaTRmhH8YyqX/SuQlYJyrnRwQaDt9AIlFNv03Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZnKwf/MG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A341C433F1;
-	Tue, 27 Feb 2024 03:50:11 +0000 (UTC)
+	s=arc-20240116; t=1709006104; c=relaxed/simple;
+	bh=GapRhH6Ok62RJMtMFM7fqvjgxBgjNKUulRJwiJTDpRY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GJJVt8SUDpE8e97A1hY1wA0HY3xX6Gh3t5D0+b5qjQ1rDDK+XBSRsN6ECClfgl/dFH3Vd/XBkj67Qqx2CbkJz2b156IxTX8L0lformJB0h2sfXGVz/oG3nLm3g+Dp11HHzjpBeWIlIyRYo6HL9ADQWI3PUvQHrr/vgxYg/8aQoU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mTrLlMjX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE542C43394;
+	Tue, 27 Feb 2024 03:55:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709005812;
-	bh=hOMeGK3M1MNEfZ1lZ/JwrqcEakbzHAYTL05Yftym9lM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZnKwf/MGF396PEh1KPYyWEmNmIaAFk0e2kERcHFD98DCp2imkkPC2epPI0F92BQn2
-	 gQXk1Dw4rhrsz5oNN7A7prp6ddNokkg++RRTZNrlpw02oW4A2GhM1g7tjA5ind6xM+
-	 VHkAlQehrKEXOPb/xQEuMcX3qJ0rd4Q5SoBPeloeZIrSSR+fNFf+vJq/utbaZwl7ev
-	 cUIbVG0TYjB3Sj95bRA5OHWtJ9lcOdjTiQKN6TyNjqVCc5v23BM9MdSCO3r0BYiIwF
-	 eTPhNN+rzH5FJmqbmz/jK2GO9DomFe3JH32SXGQ9MOvgyCuQEobh2Bm1QCK+kLC3IE
-	 RiPByKZfP8CuA==
-Date: Mon, 26 Feb 2024 21:50:10 -0600
-From: Rob Herring <robh@kernel.org>
-To: Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>
-Cc: Hans de Goede <hdegoede@redhat.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Samuel Holland <samuel@sholland.org>,
-	Maxime Ripard <mripard@kernel.org>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] dt-bindings: input: allwinner,sun4i-a10-lrad: drop
- redundant type from label
-Message-ID: <20240227035010.GA2663086-robh@kernel.org>
-References: <20240226122934.89257-1-krzysztof.kozlowski@linaro.org>
- <3207352.5fSG56mABF@jernej-laptop>
+	s=k20201202; t=1709006104;
+	bh=GapRhH6Ok62RJMtMFM7fqvjgxBgjNKUulRJwiJTDpRY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=mTrLlMjX/+85j1Qik9LUrEUIPSGS/IIWHxZbi/K6RhtrnbpBYdwh7KC+WHJZk1dJH
+	 o136O7M9cCBrJRyTK5ZO4VAmu4ouLE1ArFofsbFxNRJ+a8c2dfHpjLJ6efsr1LcuWX
+	 qyaDnrxqCwCRikGfwfnV+0I76TIaC1zVWppLh6VDVe0pR5ONXcdSG0dFHywNw8voFA
+	 hBlNEQnsbdtWOP1zT1Ix/hRig9SravsJ0aIZoDLincjCTXjIpiZ28gtJP4LLiXMINC
+	 MqTI70oc9oTlnw52Xn6U51t1XFpHPT7h4m43I/Vwg8dotyrQfOcOoUoFHnbNZ3aKBF
+	 zD0HaymskfPoQ==
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-512ff385589so1917052e87.1;
+        Mon, 26 Feb 2024 19:55:03 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXCuQK0vAlB3sbjL3aPPEq3FvP1Cw1AF6oojkyv3sKFKSupwCHQnTFZE0v1DEmUwfOrHiQE0aAI6jRtKr32gj5Ua3TQQHX15H2rZFuTAvfz/c4NAF9SH2YwU0t0GpOhC3Zw+ZnNBUVbq10fl1u5wSstBWc65Z1HZ3lGztmC5zGvquXcngnqaYX9GHAWaPHc2tljPKidCniLT33rpUV72j36fkdrRK65+n4=
+X-Gm-Message-State: AOJu0Yy0Oz5Q08ETrEv68ElEV6e0DRd59vZLb5jyKTbyG55G94ZWIYi7
+	EkQK23YnKZwJF9JSEFrjWFPnZFr4ek49QpLTYDUjh4BLHcdAbTbvy6tvSHJrpvMej48K0v9Rohi
+	nwMaX2Tz19hbt8OcwoZnX3aiHUQ==
+X-Google-Smtp-Source: AGHT+IEa5SEn2U+j2tz2rEkGzuP63uIymMu+x3njmMP2xVTj3Tb+5qkgznrNTzN48OXftf7xrzekiuie5b0+ROvcOPY=
+X-Received: by 2002:a05:6512:2241:b0:513:34b:67ec with SMTP id
+ i1-20020a056512224100b00513034b67ecmr965394lfu.58.1709006102187; Mon, 26 Feb
+ 2024 19:55:02 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3207352.5fSG56mABF@jernej-laptop>
+References: <20240226055615.79195-1-raihan1999ahamed@gmail.com>
+ <20240226195516.174737-1-raihan1999ahamed@gmail.com> <20240226195516.174737-2-raihan1999ahamed@gmail.com>
+In-Reply-To: <20240226195516.174737-2-raihan1999ahamed@gmail.com>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Mon, 26 Feb 2024 21:54:48 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+Z5UA1jEJSL0tRSXrC+Juud6ZMXtvR9ne5Cn_-cw9UzA@mail.gmail.com>
+Message-ID: <CAL_Jsq+Z5UA1jEJSL0tRSXrC+Juud6ZMXtvR9ne5Cn_-cw9UzA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: msm8953-lenovo-kuntao: Add
+ initial device tree
+To: Raihan Ahamed <raihan1999ahamed@gmail.com>
+Cc: krzysztof.kozlowski+dt@linaro.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kees Cook <keescook@chromium.org>, Tony Luck <tony.luck@intel.com>, 
+	"Guilherme G. Piccoli" <gpiccoli@igalia.com>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-hardening@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Feb 26, 2024 at 06:31:38PM +0100, Jernej Škrabec wrote:
-> Dne ponedeljek, 26. februar 2024 ob 13:29:34 CET je Krzysztof Kozlowski napisal(a):
-> > dtschema defines label as string, so $ref in other bindings is
-> > redundant.
-> > 
-> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-> 
-> I already send PR for 6.9. Do you mind if it waits on next cycle?
+On Mon, Feb 26, 2024 at 1:56=E2=80=AFPM Raihan Ahamed
+<raihan1999ahamed@gmail.com> wrote:
+>
+> Lenovo P2 is a handset using the MSM8953 SoC released in 2016
+>
+> Add a device tree with initial support for:
+>
+> - GPIO keys
+> - SDHCI (internal and external storage)
+> - USB Device Mode
+> - WCNSS (WiFi/BT)
+> - Regulators
+>
+> Acked-by: Rob Herring <robh+dt@kernel.org>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-This should go via input tree, not allwinner.
+We gave no such tag. I'd suggest you go read what these mean.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Rob
 
