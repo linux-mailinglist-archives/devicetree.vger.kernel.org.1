@@ -1,95 +1,96 @@
-Return-Path: <devicetree+bounces-46520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3061869E86
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 19:02:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 853F8869E91
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 19:07:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE4AD1C23984
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 18:02:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 29DF11F248EC
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 18:07:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3B411487D5;
-	Tue, 27 Feb 2024 18:02:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C07ED143C46;
+	Tue, 27 Feb 2024 18:07:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="KQJB7qCP"
+	dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b="B7+p+wRe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from hall.aurel32.net (hall.aurel32.net [195.154.113.88])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 182C91482E2
-	for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 18:02:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C69D4F213;
+	Tue, 27 Feb 2024 18:07:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.154.113.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709056946; cv=none; b=fi+YSFF4qNNquYsKV5gXdiyetSNuihCIHBCadrzOeSPEcejEM/wV5OyQgdARlWhxaOFE0AyKp/fR0ekhHp2eo1W2aCbAneHPr3KwaIpljlj1+ITxmq6nukFsgyFpF7ozPkOj0pvO9uIgMqPVBCCRUbHWxN0AXm4aoOGGileba0c=
+	t=1709057234; cv=none; b=YR4LvseAwm8/o62KwkXsOk+WM8ddopUl3Y1txZ+i5S7kbqL2cWe1R++GJscIQPbeIa41/LAY03y3EAF2RAYQIDY4EiouRvHl4t3aB7W8f7ovMz2g+c1en5AyOIfvAt7qG5AgSKwpxEvGRVtwMdyzBTOeaypsEnNexTkxekicOSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709056946; c=relaxed/simple;
-	bh=9srZA86tRQ0Lc6f+G5Z/wjNPWsbOftV358BYgV3yd4M=;
+	s=arc-20240116; t=1709057234; c=relaxed/simple;
+	bh=EDGc4T90gSY2gzBl84gNJRzHa6ffsk6idxwQzqrzpco=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rudnttM01Mp3fEK0+WNFz1TEPZIHQJKjmV1W+tO7cKnSNJRtH3k8n6RYCtyKkbCdYBysYJFxwELehW0S1Sg1yjsDlWVPG0G6wIEHtKjXGk++a4h+ELTHPKvN0GR83y93gfMAj1NgdHGD+KVzg0T3U9I1k5bieo3LsRpk0qpTZ/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=KQJB7qCP; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1709056944;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=RxNc/aFVnNDKr6nzABJwfQofcGO3o2pWudIkQ0RdBpM=;
-	b=KQJB7qCPdgO/nUaozij8iGXpPNk8Z6J61GiIl9IQQPAYOCHjbiqGhtXnovdEUBwkiq8Vyx
-	yiCCZTc+l3GmEoOFqclfByJDxsU7T0lxTwxJB4hfXN0+7L6Rq/+jS41fvdD1DCL4/4kvmi
-	y4cOznl54ZLnIaa1VWpFXgRoZoFTUJ0=
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
- [209.85.160.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-408-V5aw6B1oMBKKK64jVIv1pw-1; Tue, 27 Feb 2024 13:02:17 -0500
-X-MC-Unique: V5aw6B1oMBKKK64jVIv1pw-1
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-42e7b88bfa5so24836311cf.3
-        for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 10:02:17 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709056937; x=1709661737;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RxNc/aFVnNDKr6nzABJwfQofcGO3o2pWudIkQ0RdBpM=;
-        b=XaKw1mLikl2StGjwMRXSObFn0um0z6qpucpbtNEsFvy8Hq7GHekAnPZ2IGeV8BeoSn
-         8n6oETFxK646UuWxj0SkArwuFXWpDq8goryreI0mCiN1UXUN6bKath4XZFodrndpm40o
-         qOfWdilO/NEi0lDIMA7kncp97Cp3zTCUtDGGUnTkgHzJXgQOSnI0w1lzX+HqSI86glsc
-         LRGsZYCX5omyXRJfdgduD4crfSlu4AyXQBTluFJb1Q3mRHGITHD7c45ZgCLVcutmFLbK
-         RtfQc0Ao3twf8ym3vh5YCLSMyZH29oaT8XlPHKK5UeOz7C1AD5usNL81xKcK+uhGssBV
-         mJFA==
-X-Forwarded-Encrypted: i=1; AJvYcCUUtQasILuIKYzMA2xqnMJC/PrMGr9yq5jRFNp8EcqZjbZhgA99lZiSlwhD20pRcvVJkDXsuMkgHEhxm3dQJ427RZ0FtKhFUE7uAA==
-X-Gm-Message-State: AOJu0Yz8NP0ost8AT/fUZs9UWxVVtRiB5DDANAcvanA3ca6KsEH6KWpI
-	npxSEQ/kxLu8AHLol41GpGZYKTXN9pXWvZt/CaajvO7o7ukOBsikX3YZelZLF2Is16pVmYm2EcU
-	qEcHO01D0v/QW9h2+Htm0bY+N1vBAcoooucqTW+5XOldK2sGonucDee/0/Mo=
-X-Received: by 2002:a05:622a:1a97:b0:42e:a717:cbca with SMTP id s23-20020a05622a1a9700b0042ea717cbcamr802355qtc.41.1709056936780;
-        Tue, 27 Feb 2024 10:02:16 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFdFPNupQsoGCNMoyarnVyVV+samDOQcNLB9zEJi7UDBBSyn6KQpoOrEG/VbkkBYeBv36V0Uw==
-X-Received: by 2002:a05:622a:1a97:b0:42e:a717:cbca with SMTP id s23-20020a05622a1a9700b0042ea717cbcamr802291qtc.41.1709056936129;
-        Tue, 27 Feb 2024 10:02:16 -0800 (PST)
-Received: from fedora ([2600:1700:1ff0:d0e0::37])
-        by smtp.gmail.com with ESMTPSA id f12-20020a05622a1a0c00b0042c7b9abef7sm3766020qtb.96.2024.02.27.10.02.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Feb 2024 10:02:15 -0800 (PST)
-Date: Tue, 27 Feb 2024 12:02:13 -0600
-From: Andrew Halaney <ahalaney@redhat.com>
-To: Sarosh Hasan <quic_sarohasa@quicinc.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, Prasad Sodagudi <psodagud@quicinc.com>, 
-	Rob Herring <robh@kernel.org>, kernel@quicinc.com, Sneh Shah <quic_snehshah@quicinc.com>, 
-	Suraj Jaiswal <quic_jsuraj@quicinc.com>
-Subject: Re: [PATCH net-next v2] net: stmmac: dwmac-qcom-ethqos: Update link
- clock rate only for RGMII
-Message-ID: <3refwt5x2xplibxkne5sae4ybic7inzmfwna4vkhprpf3nyqom@lwng6mkbe3gc>
-References: <20240226094226.14276-1-quic_sarohasa@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=lVbd44uRf5gL3rM/0xLjaxLli2K/iBeRwe0R5kL51VQuyykEHbgpGt+jh6yOBpLWc4clQXncLAN121Jqb4QS+AmdwbjVEXCGk44uUKjcpAudmQeRzopnqpMfTNJRdOstmQXJZhp9pktK/mi5H5VVACgjVJFjCNm4xXUm2G49tsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net; spf=pass smtp.mailfrom=aurel32.net; dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b=B7+p+wRe; arc=none smtp.client-ip=195.154.113.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aurel32.net
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
+	; s=202004.hall; h=In-Reply-To:Content-Type:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Content-Transfer-Encoding:From:Reply-To:
+	Subject:Content-ID:Content-Description:X-Debbugs-Cc;
+	bh=cCXTnPPUlwvk/cW+Q4SojvQKobQ4NrfAODoD6AwFqkE=; b=B7+p+wReujVPyD97CCYJ3zpaa4
+	x2kte552EqPOHJrblcwDoKNvonak17Y34QCJkH0Y3z1Yxv/h35uaYjeMHX1Mgxx/jMeXGXgYRLBBB
+	kGQ0ugTuhcRwwL+3DARJaYzlL04zk5WS1pJpP/vpqymTC5QXv3hluQ1owY0Wnv7qXcKAPXXg0U3K/
+	fswEK8jf+r5mmH0LfYVPmLKfjE4q+MZWC5UzD8PGvFXcQbDm5kNfky7mP41n9yNU9R0SrK6vOyb7s
+	7ERL+dqalYI2mOBehgZbarvMzJf8SW/4bpY/ymOKkTcUBUaPMFZ4Y3hoG9jLdkg7Er/4RpTneR7DA
+	83MOZJ3Q==;
+Received: from ohm.aurel32.net ([2001:bc8:30d7:111::2] helo=ohm.rr44.fr)
+	by hall.aurel32.net with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <aurelien@aurel32.net>)
+	id 1rf1qt-005Xko-1r;
+	Tue, 27 Feb 2024 19:06:51 +0100
+Date: Tue, 27 Feb 2024 19:06:50 +0100
+From: Aurelien Jarno <aurelien@aurel32.net>
+To: Minda Chen <minda.chen@starfivetech.com>
+Cc: Conor Dooley <conor@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Mason Huo <mason.huo@starfivetech.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Kevin Xie <kevin.xie@starfivetech.com>
+Subject: Re: [PATCH v15,RESEND 00/23] Refactoring Microchip PCIe driver and
+ add StarFive PCIe
+Message-ID: <Zd4kuuh_1xWoZBrn@aurel32.net>
+Mail-Followup-To: Minda Chen <minda.chen@starfivetech.com>,
+	Conor Dooley <conor@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Mason Huo <mason.huo@starfivetech.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Kevin Xie <kevin.xie@starfivetech.com>
+References: <20240227103522.80915-1-minda.chen@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,43 +99,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240226094226.14276-1-quic_sarohasa@quicinc.com>
+In-Reply-To: <20240227103522.80915-1-minda.chen@starfivetech.com>
+User-Agent: Mutt/2.2.12 (2023-09-09)
 
-On Mon, Feb 26, 2024 at 03:12:26PM +0530, Sarosh Hasan wrote:
-> Updating link clock rate for different speeds is only needed when
-> using RGMII, as that mode requires changing clock speed when the link
-> speed changes. Let's restrict updating the link clock speed in
-> ethqos_update_link_clk() to just RGMII. Other modes such as SGMII
-> only need to enable the link clock (which is already done in probe).
+On 2024-02-27 18:34, Minda Chen wrote:
+> This patchset final purpose is add PCIe driver for StarFive JH7110 SoC.
+> JH7110 using PLDA XpressRICH PCIe IP. Microchip PolarFire Using the
+> same IP and have commit their codes, which are mixed with PLDA
+> controller codes and Microchip platform codes.
 > 
-> Signed-off-by: Sarosh Hasan <quic_sarohasa@quicinc.com>
-
-Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
-Tested-by: Andrew Halaney <ahalaney@redhat.com> # sa8775p-ride
-
-> ---
-> v2 changelog:
-> - Addressed Konrad Dybcio comment on optimizing the patch
-> ---
->  drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> index 31631e3f89d0..c182294a6515 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> @@ -169,6 +169,9 @@ static void rgmii_dump(void *priv)
->  static void
->  ethqos_update_link_clk(struct qcom_ethqos *ethqos, unsigned int speed)
->  {
-> +	if (!phy_interface_mode_is_rgmii(ethqos->phy_mode))
-> +		return;
-> +
->  	switch (speed) {
->  	case SPEED_1000:
->  		ethqos->link_clk_rate =  RGMII_1000_NOM_CLK_FREQ;
-> -- 
-> 2.17.1
+> For re-use the PLDA controller codes, I request refactoring microchip
+> codes, move PLDA common codes to PLDA files.
+> Desigware and Cadence is good example for refactoring codes.
 > 
 
+Thanks for the resend, I confirm that now the mail threading is correct.
+
+-- 
+Aurelien Jarno                          GPG: 4096R/1DDD8C9B
+aurelien@aurel32.net                     http://aurel32.net
 
