@@ -1,195 +1,181 @@
-Return-Path: <devicetree+bounces-46196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE5FE86866D
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 02:51:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27BEB8686A8
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 03:17:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5AFCF1F22E81
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 01:51:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B6931C222C8
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 02:17:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D62AA748A;
-	Tue, 27 Feb 2024 01:51:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="HI/qXUx8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AF29F4F1;
+	Tue, 27 Feb 2024 02:17:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01olkn2046.outbound.protection.outlook.com [40.92.107.46])
+Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2119.outbound.protection.partner.outlook.cn [139.219.146.119])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD88015D0;
-	Tue, 27 Feb 2024 01:51:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.107.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0DD74A2D;
+	Tue, 27 Feb 2024 02:17:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.119
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1708998701; cv=fail; b=pHLDb56RvDFEhBa8AcI7AA643rZZgro9TZsG0pEFYzVMgXceiCBiKuZmIsZ+K8DZdE3V/BUwCqSgczvDWyToOtChn5dlc/UfIPf1mO4otxwYMwx/3RBCqxBXUgfSZskKUBWVAf6vVgGYwCI536J9o8cYIcNUwuxEfBmlaLR0WDY=
+	t=1709000228; cv=fail; b=HbDhCZR4pgrWT+w+7T/70gw8bTh0E8SV4VF9f4rkd63eVsbyT18q1Rf/16hXWfCJZa0CCT/rVqMYyK4SMWZagegwxoXz8kv7z0IZIlQx3axZ4AJU/WM9V3futFAikadDsZ0I5FPeV+X21otP0zZ5oi82pFVP4X6NLZHJJt68BG4=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1708998701; c=relaxed/simple;
-	bh=RwTGrO2Fo8MhMpW6TnGW95iFjJjsHgynTf6qnpCUZDY=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=ghV3QRHYGeWFIlkDIBmIVR+s87Ii895G5/8nJRG+hiQKhPifIdKwfnZY5o9mKclYC3MgxTFYVPAD/r5qdl//8WN3xu1Fp2KDkqbMPEYaTJ4sXKVreeqR6DFoHWInEMgpSynAz7Av/FsWFlLFV3PM0RzJtH7IlUsGoX5TmG/eLAU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=HI/qXUx8; arc=fail smtp.client-ip=40.92.107.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+	s=arc-20240116; t=1709000228; c=relaxed/simple;
+	bh=uP/uCjvH8rULe/GeZo6TBM8HDRbxNQedOIwo23BFRqI=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=jOr7C+sOO4ZbzbBRfJLtM078NVshICJSdgw+gnKt2KtyHPbKoWKFJrGO940+xO370OxNmeOSW4MD+Unxx+OPNj5Q+iA05kPaPSUb3RNXFqpkLDKESiiAjkt7wYPQ8jeORQmR9Qm9uT6HZ699jVdTDtQSuEoPtF/bphiAaqR/xAY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.119
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=M/xKRCYUpReRrdlZyHHDp/5JaSZgsMDzHtWPxs+ETm4t+wyxWmnXtp2in0eAsrwthbKAQxZeQcs/3fnnIYz/9R8Fqbx9Sjducsu42b9MjDAmIfGg2klcbV86KKZOyU8zg36srBjV15O2lXS535231aJJoRJyiZcVliCEcom8lLTnqKFP/fhG8DC9NarLAqowsk8FXzUFfB7eGRZVHzm3MT2rR7ATIChAM/D6jjr7EZe7DgZwoQUgTQQmDEL7b6Yxhup12GTxk8avPz3oKLBpDiwrRmlSZoh6S5PCCiEK6LMlqY18l+RyUnVw/viGgXBhgQLKUqRQVTT7YSFMMS66Aw==
+ b=GJG9ecQIg9BoowzmRPvbSTBUS/2l4xo+uU3Q3EKa/bIsvi5Gaarh1QtARuqZqcN0pW+oj4qzgkBIZcZdXm47MjiH/vuzAgQBCA9ISfDYI0VjzZoyUvR36midWKwua1WyqWrc/utw3MxDCskT8yDqMgiTEIHWSkaJpSn7uK6wJoyY9a9H/O9Ew2dVLCT8nQ09DIZ5kntcIxxeyvkBS6LRrCZQBcpG9VOfS91utNTzox2bLgQk6bg4rUA6ftQZ4RQu5ev7ZZJLR8IGr5dCYniI8EugDnrw66w/lQONWR2oFQqaCKkH3Uy+cmycUQHrcO5ulDDqAgAzy0G8gcKCuT0ztg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RWl6ccEQSSClHaBJleXwc/gRqz7Cm8tu3Llhj7MiiuE=;
- b=gZkB6wqzKG10bav9TJcTUzblO6GPQc+3J/Gu/BItz4JuB7P35+qZ2HDJYk28mggXlMTbmfoGvpl0h5OHtqq/J95E6soLG0+a4IjO55EKJB3BTTx7sL/Qz6WWj1nLZaWlOIbNMQAendkMkbRdh1nF4GfbxBQfu+nF71TYtd2zSyQ4w239GluECmhfAwUCiBYq9MrLfVqpYQ5ENlb1Zs7gNozKlsZjVoAXCDw3yxJmNp5bAne7IYjd767nxp5raVLzqaGubCeqxfP93q48pvjSq2wpttTFzdxC5K3tcKPojL827SPwFDYuC9NaGbK3/qmAdy3GQeNSDKDd39IEBmOpyg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RWl6ccEQSSClHaBJleXwc/gRqz7Cm8tu3Llhj7MiiuE=;
- b=HI/qXUx86p0F9eiYLa2L84Ie4zsV9JU6H/qpYckvj7S5ERzja9OOmLXLm8hAfXRCaz+HvQJOWjL1medXv6y94pvtQC7xGHCT4Vhn2TtxSgbzurvwSb33k6k+4OL8Poiz/gKYUGvczNBYJNCkHYu0Mkf8oErV5uRbQBNPWvVgmm0xZCfIF/ngW5viWHoGvOqoj+TFHSfO4VYiiFbbaspQnd6ZlqdLyQ/3n6h/bLJO2AT9MauMh3sHFWnVpZrcJrQ4Yh0tT7r2gM03epHKsuJPwfJgdqIHnh99+WBhAjj89ZdTmfDXHvBAMo/cBWkIQeVhzkj8fWMDbb2hCxBVq6B2Sg==
-Received: from SEZPR06MB6959.apcprd06.prod.outlook.com (2603:1096:101:1ed::14)
- by JH0PR06MB6439.apcprd06.prod.outlook.com (2603:1096:990:3b::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.24; Tue, 27 Feb
- 2024 01:51:33 +0000
-Received: from SEZPR06MB6959.apcprd06.prod.outlook.com
- ([fe80::53da:a8a:83cb:b9ad]) by SEZPR06MB6959.apcprd06.prod.outlook.com
- ([fe80::53da:a8a:83cb:b9ad%4]) with mapi id 15.20.7316.035; Tue, 27 Feb 2024
- 01:51:32 +0000
+ bh=uP/uCjvH8rULe/GeZo6TBM8HDRbxNQedOIwo23BFRqI=;
+ b=UgPHHBfP5Q4mKSq+IdmS72tKrLAU8pnqCzI3Pg261Iav1NvNq1AQfyA3jy0T+/LhiUscXkaXqZGp0fX5Y/jgrRKJW4RJtMnwH6FIF+UQjwUa1HcjR9Rq91Ak/f17UasuHluOpTtO32ixq/JWpljup41LTeJ+OdPjVehWg8pZC5eymdJH8ap1ee2XYltimbDlvw3RKLBie2gdeK9Vl+V/AxEgY/JPHtOQTmVe2wOhVVVAqo5FMne9fiG2WogzgIa756RQhEG4Pg9j32sWxhdOuBblqGg8FE0KfhhRZcOblwPBkAFBRjP3kaoVq3yNQYYHFYXqRJW3eFi15ykjW+ad4Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from ZQ0PR01MB1160.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:19::6) by ZQ0PR01MB1304.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:19::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.47; Tue, 27 Feb
+ 2024 02:01:11 +0000
+Received: from ZQ0PR01MB1160.CHNPR01.prod.partner.outlook.cn
+ ([fe80::d0fb:daf7:3f8b:868c]) by
+ ZQ0PR01MB1160.CHNPR01.prod.partner.outlook.cn ([fe80::d0fb:daf7:3f8b:868c%3])
+ with mapi id 15.20.7270.047; Tue, 27 Feb 2024 02:01:11 +0000
+From: JiSheng Teoh <jisheng.teoh@starfivetech.com>
+To: Conor Dooley <conor.dooley@microchip.com>,
+	=?iso-8859-1?Q?Uwe_Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
+CC: Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+	<aou@eecs.berkeley.edu>, William Qiu <william.qiu@starfivetech.com>, Leyfoon
+ Tan <leyfoon.tan@starfivetech.com>, "linux-pwm@vger.kernel.org"
+	<linux-pwm@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-riscv@lists.infradead.org"
+	<linux-riscv@lists.infradead.org>
+Subject: RE: [PATCH] dt-bindings: pwm: opencores: Add compatible for StarFive
+ JH8100
+Thread-Topic: [PATCH] dt-bindings: pwm: opencores: Add compatible for StarFive
+ JH8100
+Thread-Index: AQHaaGW7VzRQ9wtUqUKZWkKdga1H6rEcRfqAgAAecoCAAQwPkA==
+Date: Tue, 27 Feb 2024 02:01:11 +0000
 Message-ID:
- <SEZPR06MB69590A200BDDD6D3DA4CD2DA96592@SEZPR06MB6959.apcprd06.prod.outlook.com>
-Date: Tue, 27 Feb 2024 09:51:26 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v4 6/6] net: hisi_femac: remove unused compatible
- strings
+ <ZQ0PR01MB11608585A27081C61ACB93F8EB59A@ZQ0PR01MB1160.CHNPR01.prod.partner.outlook.cn>
+References: <20240226033945.816974-1-jisheng.teoh@starfivetech.com>
+ <opzxowacxsagwgw3l33p6y7omzjokus2bi3ol5wizfwjwi2s44@3p5frb4ysji7>
+ <20240226-greasily-balcony-cee5014f5b8b@wendy>
+In-Reply-To: <20240226-greasily-balcony-cee5014f5b8b@wendy>
+Accept-Language: en-US
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Yisen Zhuang <yisen.zhuang@huawei.com>, Salil Mehta
- <salil.mehta@huawei.com>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>
-Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240222-net-v4-0-eea68f93f090@outlook.com>
- <20240222-net-v4-6-eea68f93f090@outlook.com>
- <ccdcdb1b-44a9-4233-994e-18d875a99c2f@linaro.org>
-From: Yang Xiwen <forbidden405@outlook.com>
-In-Reply-To: <ccdcdb1b-44a9-4233-994e-18d875a99c2f@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-TMN: [hamtEx/FyRYd9ehj0OR0hLzQZVyRviU51+9rEJ0ibBVw00ldPF2m+Bsr/C8HWT/6]
-X-ClientProxiedBy: SI2PR01CA0030.apcprd01.prod.exchangelabs.com
- (2603:1096:4:192::15) To SEZPR06MB6959.apcprd06.prod.outlook.com
- (2603:1096:101:1ed::14)
-X-Microsoft-Original-Message-ID:
- <876febcf-f24d-4416-9e6a-579fe0512cfb@outlook.com>
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: ZQ0PR01MB1160:EE_|ZQ0PR01MB1304:EE_
+x-ms-office365-filtering-correlation-id: 1296ecae-ee53-4433-d698-08dc3737f877
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ IK5Tbh1sxvxZn26uJxcxnJM7ZL4SlLvHrzKExe0ML2CDv/NfMNEpDsg75RaqmBoVk3zBp8AmL7YK0MvfmtypLyZwa5LH6b1z2rR8N8cOCPnX4anH7Blok2E207EYQcgr+LRG0cerauKo6BeWRhls0MSfQXIr5lFPztpZkyT0kRNdhQGOy1dYjetxuoRiE2MNVwUQa3Nlj0y7NoczmcKzO2LdnOIc2fJfKaju5t4p/qpCyMjTVB1DbSRq2XnwQWwndJDEoF+ZuhS8d7FzA47atxIhhQLLXZ/kLkfsbriGEBUlrISSBmg3aJ/g05jGcMV/O9iedrfZMV1EsZNKEFYprdDb4J/oEvB6WJVqkxt0HMWz3DDxSUvnS0BpxRra/WSwwKiLMzl/+kDF6P8LtFcm2gum/MPUXNd+5vuSaLiAkTfKHVaTmqs2IjnetmNpR27L9Kzsi7vztWRvQx3/Tf+D6C7f64feVDzWpCjNrgy5N/Gc2Z3nFoxNg2BREf6nMxskCwxKaZQ3fOD1zepkpvJloj0XGU9ERL99yIIB77MRDzOrxhGzdhzVjEvfgDA5qcsZ2cYmaYqlRQZKHpPjBmwxNoBfxPhPvBw3T5ckeofqdnL3CxIJoEAr9eg6xkR1oukQ
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ0PR01MB1160.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(38070700009);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-1?Q?XEoGErlho1AAYwB0dDidiqhs1+Y6e1cUZeTMYVw9KHepCsR0b290LfpRXj?=
+ =?iso-8859-1?Q?Ez6eLPoQiqQCzUedHBDS29GRLhSQGwTSCA4IHTuIvuw2bihFjEGauVmzWa?=
+ =?iso-8859-1?Q?UfOR26Ru06QU/W6CnmHoyQsS16LaT9MS5CDzOp+F1T+i+Q28WM1Eb3NCZJ?=
+ =?iso-8859-1?Q?PoZfO7SvT1NnoXwFLDf9kd0Vv7WKJgeQjDKw6xvq3bsi+iewhIl5m2rUJI?=
+ =?iso-8859-1?Q?pg3MVA8QmGghXVfr3livsfBwETWSo6S6YrAiDeVXXHlGeCsqT2x9Uc4ZCf?=
+ =?iso-8859-1?Q?q8hqr28klkSmcklCTqigjVGzt35zYQ4OcZck4h1CcL19cXjpV3cfH5R6Cg?=
+ =?iso-8859-1?Q?nPanzc6QqTsDiK7f36H405AcRT8pov/MbJcRLPQ2Fa3QCJfvegsHWisslM?=
+ =?iso-8859-1?Q?HEVGdSpV9/uPj6pAFgva8b/p3NGfgUm/gq+ttULlFJmOBVLyS+nXtvmmc3?=
+ =?iso-8859-1?Q?ArwhsNAbEdqKRY1IRdh5Tha6Z+Pe+DF5IIX45VgMqRvd8ZuNfGNZ4eJtHF?=
+ =?iso-8859-1?Q?iVEd6CCkKZAlDHZUlGZiIEq1vbw7ATJzynbaC1uu4kzCr8cRPjuC7WSUw8?=
+ =?iso-8859-1?Q?EAAXDOktLei8woulHC3kJkWqHq1zhwg7FCoko1viUW9eOoFdinZkFuWRXE?=
+ =?iso-8859-1?Q?1a8Wi0DVk8RPsUp5ARsWaka/JxMjG4Pu7jr75NxsvD6esfp+/I10eZtjSY?=
+ =?iso-8859-1?Q?QErTLbJF1I21xdtVtYy/3QSC1eZ1KNGmmtuNXkyt1p8Vw+/UMq31q1Hwbn?=
+ =?iso-8859-1?Q?F9Boa1V9A0G2jcq+5dMeNHLhdrvSpH5T5aIz2ncTysde9p3aDcEwnf1B7u?=
+ =?iso-8859-1?Q?cM9H7UZHsMPEhrjtGQPh8BdMok6Vc/sH2iIIGsq6Trr2+oAtVfZU836GNd?=
+ =?iso-8859-1?Q?HQzhmcoEr8Z/LsnGbkngTw6OlCp7dg/V91WCzeFPyJi8FDdKO7ysaRWwI/?=
+ =?iso-8859-1?Q?R9SwWq3yUFKoYEVCQrzLOkqEuHb0CXcPLIaIV9C38+kkl0hfyLL8OTs5wA?=
+ =?iso-8859-1?Q?XvH5lOw9eGJA2NYpAbiKA4KZc26n/+qyeblhKfhutZkGyyXA5zkGzP7/tN?=
+ =?iso-8859-1?Q?WYpugOA9TUQYCODKNc97H7IMS6Cs+z356XkT4CGzNsyFXcy2fuA6I9NnVM?=
+ =?iso-8859-1?Q?R6Wim7ztR2id3ZMbN0oCbz/adoIWCR3pMy1UtNGUfUJC736RHb4FbZ9ldh?=
+ =?iso-8859-1?Q?/NYEpVEoSgQziDUcqFqNFDT0NYh7BC91dSppG1oJARtuFm6KcCTUi/ZU2v?=
+ =?iso-8859-1?Q?Y/JqUG+MSIFVr+vfJlHwyQsotiM178W5Lscuq76aA6+N4p3mXfa1lt9F5Y?=
+ =?iso-8859-1?Q?w6UZtBMHmGnkjHKRd/pZs5Dur9sF99aMWRXVvPbs6qZOg280kY1xxeRvRQ?=
+ =?iso-8859-1?Q?MYKk3/0jfOIfxw8b6uo3lFb9zA6f46WMhV94icTBbLxjEwka+xb/t6RkW7?=
+ =?iso-8859-1?Q?VbkUiOQ4NuYRE8Iepbvac/FWaB/mm7hLI4K6SXqFX2M+k3YwNPQpC+08e1?=
+ =?iso-8859-1?Q?GHSPBcJm0psYDWgfxJzoM+CBGGDXurlb1muLD3iP6+BJ0WzpG692yUhqy6?=
+ =?iso-8859-1?Q?P+68AqWqbEKhtIstPn8Wi7bnf5NxJKrHZlAib8NeFbkFYdBDtITXbuDo+f?=
+ =?iso-8859-1?Q?H08aQMPoQKYaB/tB5UOszG9uqczfd0kClfRmSBWpFr9dWTAKS3iAnfuA?=
+ =?iso-8859-1?Q?=3D=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SEZPR06MB6959:EE_|JH0PR06MB6439:EE_
-X-MS-Office365-Filtering-Correlation-Id: f35b58bd-9ac3-4a9a-9be7-08dc37369f72
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	aDw9keObvhZ19e6Pu7nJQWs1SHzPJDVTc3NkjveCGbgZkG0Jgv0cRLdZlLbPYIOfYJecoEeyjk/Lz/plrW1+3JkEMf/YKY8nlAABZRkh/CDYMn78k0f1g76H6plS9d1btOl20T4Pb0W0bp4UqBi8gcafo+I7ZacaVULJKHpjgYhQs2218VlrXUj1Pb6ZSfZAzb2jCQdUexu8Kz0ae4B650byUCA0DWnqC1CUvokkvFMfnJ/5kc+GUB0/IHrujZb+NKZivuAhRvH/E6tnfVJuCaCjj9dQafrx6d19lyvKrgI1e+/eRKBhDNIQX9bJkcIKzhlzHfWF33Ry/rknlTvCEZnZBTiIAtvyv10XDT7kickfVvqCj+JoAUmuJyHAZVbBRxWxzcwN+Q4oWaWeQFe+OdoHm65qtvZyin0lT0Dzd8ahFJfURB3w6iPl8jwDPvu7xXWY5OtpbtB9FbnnfGLSDMmDPiUFuafM6cx+XQuhsQ3IocWsyzyU2svQSNjvzWLHEiUbL4LKw/ulgEVsZ3KxanferxzPzjBAPxhKQtNBSIdhiReLXXZSmY4M4yYGMJAK
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?V1VEVEVwMlB0NkJnOW5XQUR0WlZHWlhHaXo2RnQ5MTQydy9VbVlob0hUOUQ1?=
- =?utf-8?B?NWV4TGpmYWpLREtLNy9wUGlkY3dLYTdMOUdHUUtxY3FENU0rZ2d5QkVlMnYx?=
- =?utf-8?B?aXR4RWpTQWJHNWdLMVFDWEVPWVFMbjlOM09QeGlta2JkczNmTWFQblpTVWRx?=
- =?utf-8?B?WGhZdWpxT28vazJ1aHliZ3JoczFOc3oxR1lRRXFZVEVSN21FclhXWjhuU3d1?=
- =?utf-8?B?L3BnK1J4OGhJZG1LblRQSzRSbTZ5cDhleWtCc3h4NENQZWFQbHhHMnExYlNV?=
- =?utf-8?B?a2traW1YZzB4Q3N1NE5lV0hnOVlNM043STY2c01zTHpyV2FXUGYxOWE3d3BQ?=
- =?utf-8?B?bkgwckNiK1ZFdGpkK0xPd21oazMybW1DOWFyL0pxR3l4d2lrUkNlOTRFYVcw?=
- =?utf-8?B?NFNyb2dXWE95Wlp3OXRqSlRaaXV6cUNtbVBSanlRdUVhQy9TY3FsUmpETE1v?=
- =?utf-8?B?Qk1PdnFmeUFTdUszaGJEMDVtbEt6ZUZzM1FObnNYUERyZ3hxeXc0TDZVZjhD?=
- =?utf-8?B?VkhxaXFqZ25GVWRkUzI5SmI1TXN0c0dOVlh3YkdJVG1LZ2JrSEdycllPbWNU?=
- =?utf-8?B?STRCNmEvalNrS0g4cUdTZHo4T1RmMTNOazZBRld3citocTdIMjNwNkdhZzdY?=
- =?utf-8?B?OW1oUXFoSDRxdlBhYlQ2MEJBQzdUSERlYnlwYjI2RFc1eUFZZ2wrL0tQUWJi?=
- =?utf-8?B?Yk9WV0lqbkFvdTdHdGZJdjVrUXpKNlNvQlhXUElXVzdIS2R2OEJXU1hITFIv?=
- =?utf-8?B?RzN2T2xnYVMwY2gxY09QTWJBQ0VYRlp3TUpjUVZWSDJjMzJ3K0tFMVZCeHp6?=
- =?utf-8?B?ODU4YTJtbnp0ZmVyTW0vZER3cUE0UTdzd2c0Uk5NWHM4SGVDUUllTGpwUEM5?=
- =?utf-8?B?RlVvSjFkTDRCc3pKb3lIYXpKeTl0cTJ1eldNSXkyVXVETTBOanlFN3czUlpV?=
- =?utf-8?B?VHErODNmenI0RTMzOXQ3MjI2akw2bzZFbVFkcmVVajc5TUdGRWYzYXhCZjBM?=
- =?utf-8?B?SSs4OVcrMFJ0MEorLy9hVTdSTGVIRnFNVFd4bThIK3c1L3IvY282QzY4N0RZ?=
- =?utf-8?B?YmcwNTZ0d3FNc0ZIMXNaYVcrNkU1MDlOaTd1U0huRmE1ckJJaTRnem1DZkUx?=
- =?utf-8?B?ZHRXNWc5TEtZaTZJK29RdmhRamFLSmZ5c0RlSXMrOW5hN1BrcjYzVVJaZ3Jq?=
- =?utf-8?B?cVdCWDkyVjZZMUVBcml3S093a05ybURYdFRSeGV5ODJEaStMNXAySW9tYXli?=
- =?utf-8?B?SERia3FLb3FaWVl5aFQ0cUVyZS91dmcxaWRTR0dxK2NoRlJ1ekdxWXBwdUxr?=
- =?utf-8?B?UHpTSnZ4Tnk5MVlqSlpyNHFuK1hxcHVhT2VhSGJOUll2bWY0UGFScnB1MDMr?=
- =?utf-8?B?cW9CcHRrd3d0SDZWUU9ObFBsNi85Uk5LRXJVcVMxUnhScW1lL2VjUHI1b09j?=
- =?utf-8?B?VjJaRVQ0ZnUrVWdTaC9KWWtXOGdGK1VFYmtIY3g1ZkZSWHRkcjZSWGVUY0Ny?=
- =?utf-8?B?L2ZVWHB0QWtxVFhXcG1PK3JhTVE3QmJZem5hMGs2MW1IdUh2dmZoNFAxWjgv?=
- =?utf-8?B?Z0lWQnBXTlM4R2hVME4vSlBTdWJVVUNzKzZBem5xMmVCRzl3enFhREpuaUJq?=
- =?utf-8?B?OXR0Wml4bitSek9CVzRKS1ZnS3FMS0RzYjc0RkxiMjU0UzBFK0NRNTc2TmdH?=
- =?utf-8?B?NHhGcVZuUWYvTWNDaHllMWtITW1nR1JWNFBoMlQ5TnFsSUNIejZMOHVuQlZ4?=
- =?utf-8?Q?ycGeL6IRQ+qQKY9nkDmUVBSSa7x8OlvpezDJNWv?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f35b58bd-9ac3-4a9a-9be7-08dc37369f72
-X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB6959.apcprd06.prod.outlook.com
+X-OriginatorOrg: starfivetech.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2024 01:51:32.4663
+X-MS-Exchange-CrossTenant-AuthSource: ZQ0PR01MB1160.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1296ecae-ee53-4433-d698-08dc3737f877
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Feb 2024 02:01:11.0983
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR06MB6439
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 8jAt54IDIELoJSMHu2ZclQgbHUlAiS3QNhpgrF9wiEDPyCmdRl8kaC9V2bi9esCk+ZNT0Fu0+cSa82q1WPK+IiPnWc6YXmTIVDWyP5ey0D8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ0PR01MB1304
 
-On 2/26/2024 3:55 PM, Krzysztof Kozlowski wrote:
-> On 22/02/2024 13:43, Yang Xiwen via B4 Relay wrote:
->> From: Yang Xiwen <forbidden405@outlook.com>
->>
->> The only documented SoC Hi3516DV300 does not receive any updates from 8
->> years ago. With the recent driver changes, it unlikely works for this
->> SoC anymore. Remove the binding for this SoC.
->>
->> Also it's hard to get the version number and it's unknown how the
->> version can be used. Remove them until it's really needed.
->>
->> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
->> ---
->>  drivers/net/ethernet/hisilicon/hisi_femac.c | 4 +---
->>  1 file changed, 1 insertion(+), 3 deletions(-)
->>
->> diff --git a/drivers/net/ethernet/hisilicon/hisi_femac.c b/drivers/net/ethernet/hisilicon/hisi_femac.c
->> index eab91e011d11..9466ca9da2bb 100644
->> --- a/drivers/net/ethernet/hisilicon/hisi_femac.c
->> +++ b/drivers/net/ethernet/hisilicon/hisi_femac.c
->> @@ -990,9 +990,7 @@ static int hisi_femac_drv_resume(struct platform_device *pdev)
->>  #endif
->>  
->>  static const struct of_device_id hisi_femac_match[] = {
->> -	{.compatible = "hisilicon,hisi-femac-v1",},
->> -	{.compatible = "hisilicon,hisi-femac-v2",},
->> -	{.compatible = "hisilicon,hi3516cv300-femac",},
->> +	{.compatible = "hisilicon,hisi-femac",},
-> 
-> What is happening here? Removal could be justified, but then order of
-> your patches is totally wrong. But that hisi-femac is a no-go or provide
-> proper rationale.
+> On Mon, Feb 26, 2024 at 09:11:23AM +0100, Uwe Kleine-K=F6nig wrote:
+> > Hello,
+> >
+> > On Mon, Feb 26, 2024 at 11:39:45AM +0800, Ji Sheng Teoh wrote:
+> > > StarFive JH8100 uses the same OpenCores PWM controller as JH7110.
+> > > Mark JH8100 as compatible to the OpenCores PWM controller.
+> > >
+> > > Signed-off-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
+> > > Signed-off-by: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+> > >
+> > > ---
+> > >
+> > > This patch depends on patch [1] ("dt-bindings: pwm: Add bindings for
+> > > OpenCores PWM Controller") in Conor's riscv-dt-for-next branch.
+> > > [1]
+> > > https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/comm
+> > > it/?h=3Driscv-dt-for-next&id=3D2529085831b01fcd02ff58ab4e2596d3b31bcf=
+80
+> >
+> > I recommend to make use of git format-patch's --base parameter to
+> > additionally(!) make this information available to the build bots.
+>=20
+> I like the "additionally" :)
 
-I don't understand exactly... In dts, we commonly have a SoC specific
-compatible string first, generic compatible string the second. e.g.
+Alright, I will take note of that. Thanks=20
 
-compatible = "hisilicon,hi3798mv200-perictrl", "syscon", "simple-mfd".
-
-So i think this is recommended. Or does it mean we only need them in
-dts, not in the driver? The generic driver only needs a generic
-compatible "hisilicon,hisi-femac" in all?
-
-> 
-> Best regards,
-> Krzysztof
-> 
-
--- 
-Best regards,
-Yang Xiwen
-
+> >
+> > Looks fine to me.
+> >
+> > Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+> >
+> > Coner: If you're happy with this patch, please apply it in the same
+> > way as the initial OpenCores PWM Controller binding patch.
+>=20
+> Ye, I can do. Although, I suppose this is an example of why the driver ma=
+intainers applying the bindings is preferred, even if the driver
+> patch itself isn't ready or there is no driver patch.
+>=20
+> Cheers,
+> Conor.
 
