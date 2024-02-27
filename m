@@ -1,111 +1,82 @@
-Return-Path: <devicetree+bounces-46580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C816C86A2AE
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 23:40:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4B5B86A35F
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 00:13:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DBCBFB27A67
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 22:39:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62BB21F2E418
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 23:13:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFF5F5577C;
-	Tue, 27 Feb 2024 22:39:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fS5JWD5J"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FF5356748;
+	Tue, 27 Feb 2024 23:13:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B04854746;
-	Tue, 27 Feb 2024 22:39:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5CC055E40;
+	Tue, 27 Feb 2024 23:13:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709073570; cv=none; b=FV7/0btiAe5ksgrqGx701Zysqz1h7M1WPtRrhI4KGtRwggHtJJXsQGYN4z/QDiQaaltTPDdbQW9GvWCUbFyyCI6HgI9RfFw2S+8bqoggiXtJTaKjD3jXByd+mtQXPBwHfq81N/PMb3Ax0HNFIq/TqcfsqXw6ve5I46PxtZ5c7ck=
+	t=1709075611; cv=none; b=joJy+cjzqbqEySUwpwEU6h8bFdEN5xPbmn1Z3a/EJKkH/eWQifMwShHp562cjFKYuEM4/dl/VpGOwrkgm02qh2gffUmEg8G/wfscqrQR2vYgCH/YhT8FecnsAhwN2pf4rrX2Cm4y1DvzW6EyvK7M5o+cjaSym2H30B+/JArJS6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709073570; c=relaxed/simple;
-	bh=VSsJLgNCXRcSmh0ht0CqUGAtiZOOxIyeddN2UmKKkmY=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=ie2hnb8PiP9cHG1iKsx1SIW7HX+YgXiTnI0iAhHsClV+MdyhY+9G+S8BwAYKxtJqOEtGlFUYfrHsuXEn0aKDo6OnErTwyUBME/kJRJRaVu1pxUiCYw+6LF8gSHOKdnK3E/PSr+8EgLRbRObd4YCrglfq51YvcXRreSrBWKOIUsQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fS5JWD5J; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03B0FC433F1;
-	Tue, 27 Feb 2024 22:39:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709073570;
-	bh=VSsJLgNCXRcSmh0ht0CqUGAtiZOOxIyeddN2UmKKkmY=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=fS5JWD5JnoKQamXdztCJNqLtdrSbK5enNt7PJm1xeUOvnwVDqvBweMc2PB4CSl6I2
-	 U3ZtHeku9kxl8m58sEn2XykI3Zzd9DkAXVY8p7BIt62Rhh81qcoLvI5mOJe6fidNU+
-	 t5QyrjP1w6j2DKVBCUV7/BK4IEoOiNQkjb91b6NcsWE7V8lPj8GhPS/Mda2qUl7xer
-	 sjN1dGHe8znB08qcdx0i9qOkUTT6I3NRSuXHWp6pzF6Aa8Jt9TsLI+e0DzDkCcZyx2
-	 I7zU1RXp4S/R4WmSMrypr3EgvuD5k2IRuAmDSZjGxK8pj15lKdlfZyU2w22YzweIbb
-	 gMfuvPt/x0Viw==
-Date: Tue, 27 Feb 2024 16:39:28 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1709075611; c=relaxed/simple;
+	bh=VuBuF9yGCqTCh37BqBXbY+hS7Z8P6vlEOFLcsts82aI=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=hBntXtk1J0uBGE4+rG5w007OrFsYy7daH8emoiIytdcGyYYWAJmzWgTlwJx1/dqn1C57SZRYK70jed9ukQT8uguW8mxxyMQIxZJfTzSE6iv1VNPDA6nKlUZHW+YbSnkt3Kxdxp1xJlYYYHjmzhD04o4cbASYJFwwtZZpo3mpJ+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875b6c.versanet.de ([83.135.91.108] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1rf6dX-0002LS-AB; Wed, 28 Feb 2024 00:13:23 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: linux-rockchip@lists.infradead.org,
+	Tim Lunn <tim@feathertop.org>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] dts fixes for Sonoff iHost
+Date: Wed, 28 Feb 2024 00:13:19 +0100
+Message-Id: <170907558762.800427.11245323145550658595.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20240215110425.934740-1-tim@feathertop.org>
+References: <20240215110425.934740-1-tim@feathertop.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Mark Brown <broonie@kernel.org>, linux-sound@vger.kernel.org, 
- Fabio Estevam <festevam@gmail.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- linux-kernel@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, devicetree@vger.kernel.org, 
- imx@lists.linux.dev, Shengjiu Wang <shengjiu.wang@nxp.com>, 
- Liam Girdwood <lgirdwood@gmail.com>
-In-Reply-To: <20240227-asrc_8qxp-v2-2-521bcc7eb1c0@nxp.com>
-References: <20240227-asrc_8qxp-v2-0-521bcc7eb1c0@nxp.com>
- <20240227-asrc_8qxp-v2-2-521bcc7eb1c0@nxp.com>
-Message-Id: <170907356786.667244.11380900266331011977.robh@kernel.org>
-Subject: Re: [PATCH v2 2/4] ASoC: dt-bindings: fsl,imx-asrc: update max
- interrupt numbers
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-
-On Tue, 27 Feb 2024 15:54:10 -0500, Frank Li wrote:
-> fsl,imx8qxp-spdif and fsl,imx8qm-spdif have 2 interrupts. Other platforms
-> have 1 interrupt.
+On Thu, 15 Feb 2024 22:04:23 +1100, Tim Lunn wrote:
+> A couple of tweaks to the dts for Sonoff iHost.
 > 
-> Increase max interrupt number to 2 and add restriction for platforms except
-> i.MX8QXP and i.MX8QM.
+> Add aliases for sdio and sdmmc to ensure consistent ordering of devices
+> on boot.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  .../devicetree/bindings/sound/fsl,spdif.yaml          | 19 ++++++++++++++++++-
->  1 file changed, 18 insertions(+), 1 deletion(-)
+> Tweak sdio properties to improve detection of the rtl8723ds sdio wifi module.
 > 
+> [...]
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Applied, thanks!
 
-yamllint warnings/errors:
+[1/2] ARM: dts: rockchip: mmc aliases for Sonoff iHost
+      commit: eb246eaaa55aaa52c0c183f835157a56270ce81e
+[2/2] ARM: dts: rockchip: Wifi improvements for Sonoff iHost
+      commit: 391f46c775fa2108952c8f9a88b5bea2c3c74d1d
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,spdif.example.dtb: spdif@2004000: interrupts: [[0, 52, 4]] is too short
-	from schema $id: http://devicetree.org/schemas/sound/fsl,spdif.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240227-asrc_8qxp-v2-2-521bcc7eb1c0@nxp.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
