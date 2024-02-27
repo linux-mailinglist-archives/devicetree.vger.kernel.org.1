@@ -1,114 +1,235 @@
-Return-Path: <devicetree+bounces-46266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46267-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B39E6868A9F
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 09:13:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEA31868ACD
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 09:33:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4DE61C20D96
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 08:13:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 415921F22B64
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 08:33:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC23556463;
-	Tue, 27 Feb 2024 08:13:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3E9312FF96;
+	Tue, 27 Feb 2024 08:33:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1880856449;
-	Tue, 27 Feb 2024 08:13:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C50187E761
+	for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 08:33:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709021596; cv=none; b=VAvdFEYgMMBizwtCZm4mZM4I4Jvd4eYppM6TrCDideGJbsXB90e50oaVjiPAb+NrIMmJ/NoJJHmaO8jxT6i9VD0x0y1G33FFNZr81G6wQYN7qp/IJJtFtOG81TycElPK6hdpqtQwFbIq53kCbDeyl6wtbhnDGigiX0+SmbH5QA8=
+	t=1709022815; cv=none; b=KIeegvXqwXOTE2Q1YUHmnDu7iwyeQd98HTFUdmj+0eTE5+QTmC0/DlWvbeiooHJuREhchhaQr2zTH+W0I+d9m0bQ/JzmbFkQw7NlBRkQx55xLHxkMYZZxmjIFzAbIsxjWoPD/+CclpAs3MtrWaR90WnRxigtDNGOnAer4MrlXJA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709021596; c=relaxed/simple;
-	bh=9RD7LxWeQLqLBg9sjVSIvwV6LHoARcR1L/9VpDZCB8E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DFYuVYYTOO6UcXkDgVWiKtF5q6LzaAYLV8BCH4b2MlmOiyHezUjjbVgthCUm7tOdspvDFKNouP0je5fiokm3+Fo1IdIv4s9TIGIlPybB1nU6eUBoQ9gxNlCgKhs3fS3YXHHmJVdEPCdl+jKpGEpmyqDhO8ayip1OH8VmLFqPKZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-6093247d1acso121827b3.0;
-        Tue, 27 Feb 2024 00:13:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709021593; x=1709626393;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XVOe12NY6Hd6XHyETGn8V8NNE5eD7ofZbpGZVlTMsYw=;
-        b=fg+u/jmtZA+vQM9caxTAVHoUE2hRgvrpfiwolwKGbYjCsfYwcJX9YTAwvJRACG7gqD
-         KDB6kmy4v0kBeLoyDSn0iQutKKLgZLeSAZU7SMUjaEbQRxseTE8K0FsDz9jec8b3pHH8
-         REWYzvn9uEC7cyRPLIkYrDCNMf6oAvL/K2D+17XbQeJxM821eGd201FWdhrmNNxyxt7x
-         BcOGNPsg7R4HsRnJWX+RCSyLML88UyRoY1n2+nrCeV81YRH+ebD8bqOyMsjXSzQsIP4Z
-         ZG8cBH5J64Qny1NWrPY3RAq+fUq4w7uCN8G4EPgmL7L29dEGPvQ3ppaBAEiSAsv0AeW6
-         Dq1A==
-X-Forwarded-Encrypted: i=1; AJvYcCWL33GX+19vG/MPlJ8t4R3ofYnnS+0mm7DnFjfwoFtYTfFjQwiLhRy0KdPjZlVAYRanPtpS0ls3naaCCqB+JIylspaOpDlVxCyyspnJMNmuas+Oat1xhz6vExFkmTO3GZSuaFGnrrRIPy68Uy4epJ7lYNzrrwU0zZc/Sz0Xlk62RxacxoyK8NW+ptHx
-X-Gm-Message-State: AOJu0YzXUlANE7wd+tZRU8ZyEDJPQNgMwFdbUyPBL/CHjEixHk2A++T4
-	YhjajokE33LEHF5nPmwUgMI9zxGvD0PIYm5qa3RinudoVxS5aun4Zc+ba1oCTsE=
-X-Google-Smtp-Source: AGHT+IFkkXieFkInDtmRulTNtba82nRl+8H0i4kdTdk2SXIz1K6bDy0tC0IVBI+AL4y18YQPt0D0QQ==
-X-Received: by 2002:a81:5217:0:b0:607:fc53:8a40 with SMTP id g23-20020a815217000000b00607fc538a40mr1548093ywb.28.1709021592937;
-        Tue, 27 Feb 2024 00:13:12 -0800 (PST)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
-        by smtp.gmail.com with ESMTPSA id a11-20020a81bb4b000000b006049167ccffsm1583692ywl.65.2024.02.27.00.13.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Feb 2024 00:13:12 -0800 (PST)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-607cd210962so35914947b3.2;
-        Tue, 27 Feb 2024 00:13:12 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCX/m2/38wejeKdfCPE44e/3gFVzXEIyssRFRyYDEVnhbGRTradk9DaxDzVGeyBQbavo3nkbgMmEbbPdv6AAbxATp7QDZFG0Pl92C8PKfQiV8Izqu2YzojGNnrofT55Og+N/gScVkXXNlIIvF+8OE5yickq+//aLV0oiH/4vXvA6pyAbr/mAo4MQ6XaS
-X-Received: by 2002:a25:ce11:0:b0:dcf:a52d:6134 with SMTP id
- x17-20020a25ce11000000b00dcfa52d6134mr1335614ybe.26.1709021591812; Tue, 27
- Feb 2024 00:13:11 -0800 (PST)
+	s=arc-20240116; t=1709022815; c=relaxed/simple;
+	bh=rW7fAbIhtIRH6uFf53KwWwv4BvDxmE1+BtDpctFXvJ8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BcHg0ELTaKxfkLlDBdjgxqcsJl/X3gyTEu1vSSYFhGrpg0U2hDqDcb6fGlZ+9/BWwkFYaz+mXFhKVU7oTClg9riAgKqk4wN6hH06Bf5NdKNfZXHD/7hUGEAL0cMeEgORfIKkvM/pW6j9jbWTuXUS8EJwGYYUUU5EK223Oq4J68g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1resta-0001UR-RL; Tue, 27 Feb 2024 09:33:02 +0100
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1restZ-0039fx-Ie; Tue, 27 Feb 2024 09:33:01 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1restZ-00AXPK-1V;
+	Tue, 27 Feb 2024 09:33:01 +0100
+Date: Tue, 27 Feb 2024 09:33:01 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Adam Ford <aford173@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
+	Marek Vasut <marex@denx.de>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Will Deacon <will@kernel.org>, Rob Herring <robh@kernel.org>,
+	imx@lists.linux.dev, Sascha Hauer <s.hauer@pengutronix.de>,
+	aford@beaconembedded.com, linux-kernel@vger.kernel.org,
+	Vinod Koul <vkoul@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	devicetree@vger.kernel.org, Lucas Stach <l.stach@pengutronix.de>
+Subject: Re: [PATCH V6 5/6] arm64: dts: imx8mp: add HDMI display pipeline
+Message-ID: <20240227083301.4saxxuv4n6aoqnl6@pengutronix.de>
+References: <20240226234532.80114-1-aford173@gmail.com>
+ <20240226234532.80114-6-aford173@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240227034539.193573-1-aford173@gmail.com> <20240227034539.193573-7-aford173@gmail.com>
-In-Reply-To: <20240227034539.193573-7-aford173@gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 27 Feb 2024 09:12:59 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXtO9nnGWtqP9P5Qw98gsdf3ayHJ=nW_F3AcNk_3egGkw@mail.gmail.com>
-Message-ID: <CAMuHMdXtO9nnGWtqP9P5Qw98gsdf3ayHJ=nW_F3AcNk_3egGkw@mail.gmail.com>
-Subject: Re: [PATCH 6/6] arm64: dts: renesas: r8a77961: Enable GPU
-To: Adam Ford <aford173@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org, 
-	aford@beaconembedded.com, Frank Binns <frank.binns@imgtec.com>, 
-	Matt Coster <matt.coster@imgtec.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240226234532.80114-6-aford173@gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Tue, Feb 27, 2024 at 4:46=E2=80=AFAM Adam Ford <aford173@gmail.com> wrot=
-e:
-> The GPU on the R-Car M3-W+ is a Rogue GX6250 which uses firmware
-> rogue_4.45.2.58_v1.fw available from Imagination.
->
-> When enumerated, it appears as:
-> powervr fd000000.gpu: [drm] loaded firmware powervr/rogue_4.45.2.58_v1.fw
-> powervr fd000000.gpu: [drm] FW version v1.0 (build 6513336 OS)
->
+Hi Adam,
+
+thanks a lot for pushing this topic.
+
+On 24-02-26, Adam Ford wrote:
+> From: Lucas Stach <l.stach@pengutronix.de>
+> 
+> This adds the DT nodes for all the peripherals that make up the
+> HDMI display pipeline.
+> 
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
 > Signed-off-by: Adam Ford <aford173@gmail.com>
+> Tested-by: Marek Vasut <marex@denx.de>
+> Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> ---
+> V6:  Make LCDIF3 disabled by default
+> 
+> V5:  No change
+> 
+> V3:  Re-ordered the HDMI parts to properly come after irqstree_hdmi
+>      inside AIPS4.  Change size of LCDIF3 and PVI to match TRM sizes
+>      of 4KB.
+> 
+> V2:  I took this from Lucas' original submission with the following:
+>      Removed extra clock from HDMI-TX since it is now part of the
+>      power domain
+>      Added interrupt-parent to PVI
+>      Changed the name of the HDMI tranmitter to fsl,imx8mp-hdmi-tx
+>      Added ports to HDMI-tx
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 95 +++++++++++++++++++++++
+>  1 file changed, 95 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> index 18bfa7d9aa7f..637b0265b0f1 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> @@ -1940,6 +1940,101 @@ irqsteer_hdmi: interrupt-controller@32fc2000 {
+>  				clock-names = "ipg";
+>  				power-domains = <&hdmi_blk_ctrl IMX8MP_HDMIBLK_PD_IRQSTEER>;
+>  			};
+> +
+> +			hdmi_pvi: display-bridge@32fc4000 {
+> +				compatible = "fsl,imx8mp-hdmi-pvi";
+> +				reg = <0x32fc4000 0x1000>;
+> +				interrupt-parent = <&irqsteer_hdmi>;
+> +				interrupts = <12>;
+> +				power-domains = <&hdmi_blk_ctrl IMX8MP_HDMIBLK_PD_PVI>;
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+this node should be 'status = "disabled";' as reported by Luca else this
+node will EPROBE_DEFER. With that beeing fixed you can add my:
 
-Gr{oetje,eeting}s,
+Tested-by: Marco Felsch <m.felsch@pengutronix.de>
 
-                        Geert
+Regards,
+  Marco
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> +
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					port@0 {
+> +						reg = <0>;
+> +						pvi_from_lcdif3: endpoint {
+> +							remote-endpoint = <&lcdif3_to_pvi>;
+> +						};
+> +					};
+> +
+> +					port@1 {
+> +						reg = <1>;
+> +						pvi_to_hdmi_tx: endpoint {
+> +							remote-endpoint = <&hdmi_tx_from_pvi>;
+> +						};
+> +					};
+> +				};
+> +			};
+> +
+> +			lcdif3: display-controller@32fc6000 {
+> +				compatible = "fsl,imx8mp-lcdif";
+> +				reg = <0x32fc6000 0x1000>;
+> +				interrupt-parent = <&irqsteer_hdmi>;
+> +				interrupts = <8>;
+> +				clocks = <&hdmi_tx_phy>,
+> +					 <&clk IMX8MP_CLK_HDMI_APB>,
+> +					 <&clk IMX8MP_CLK_HDMI_ROOT>;
+> +				clock-names = "pix", "axi", "disp_axi";
+> +				power-domains = <&hdmi_blk_ctrl IMX8MP_HDMIBLK_PD_LCDIF>;
+> +				status = "disabled";
+> +
+> +				port {
+> +					lcdif3_to_pvi: endpoint {
+> +						remote-endpoint = <&pvi_from_lcdif3>;
+> +					};
+> +				};
+> +			};
+> +
+> +			hdmi_tx: hdmi@32fd8000 {
+> +				compatible = "fsl,imx8mp-hdmi-tx";
+> +				reg = <0x32fd8000 0x7eff>;
+> +				interrupt-parent = <&irqsteer_hdmi>;
+> +				interrupts = <0>;
+> +				clocks = <&clk IMX8MP_CLK_HDMI_APB>,
+> +					 <&clk IMX8MP_CLK_HDMI_REF_266M>,
+> +					 <&clk IMX8MP_CLK_32K>,
+> +					 <&hdmi_tx_phy>;
+> +				clock-names = "iahb", "isfr", "cec", "pix";
+> +				assigned-clocks = <&clk IMX8MP_CLK_HDMI_REF_266M>;
+> +				assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_266M>;
+> +				power-domains = <&hdmi_blk_ctrl IMX8MP_HDMIBLK_PD_HDMI_TX>;
+> +				reg-io-width = <1>;
+> +				status = "disabled";
+> +
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					port@0 {
+> +						reg = <0>;
+> +
+> +						hdmi_tx_from_pvi: endpoint {
+> +							remote-endpoint = <&pvi_to_hdmi_tx>;
+> +						};
+> +					};
+> +
+> +					port@1 {
+> +						reg = <1>;
+> +						/* Point endpoint to the HDMI connector */
+> +					};
+> +				};
+> +			};
+> +
+> +			hdmi_tx_phy: phy@32fdff00 {
+> +				compatible = "fsl,imx8mp-hdmi-phy";
+> +				reg = <0x32fdff00 0x100>;
+> +				clocks = <&clk IMX8MP_CLK_HDMI_APB>,
+> +					 <&clk IMX8MP_CLK_HDMI_24M>;
+> +				clock-names = "apb", "ref";
+> +				assigned-clocks = <&clk IMX8MP_CLK_HDMI_24M>;
+> +				assigned-clock-parents = <&clk IMX8MP_CLK_24M>;
+> +				power-domains = <&hdmi_blk_ctrl IMX8MP_HDMIBLK_PD_HDMI_TX_PHY>;
+> +				#clock-cells = <0>;
+> +				#phy-cells = <0>;
+> +				status = "disabled";
+> +			};
+>  		};
+>  
+>  		pcie: pcie@33800000 {
+> -- 
+> 2.43.0
+> 
+> 
+> 
 
