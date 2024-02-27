@@ -1,221 +1,401 @@
-Return-Path: <devicetree+bounces-46460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBF36869A67
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 16:31:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AA06869A72
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 16:33:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3A1B7B22B2C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 15:31:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E9BF28F8EA
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 15:33:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CBD9145B07;
-	Tue, 27 Feb 2024 15:31:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87EF913B79F;
+	Tue, 27 Feb 2024 15:33:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mojatatu-com.20230601.gappssmtp.com header.i=@mojatatu-com.20230601.gappssmtp.com header.b="F5WsoJYQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eZ0YvUKx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CA0A13A89E
-	for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 15:31:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C19B213A89E;
+	Tue, 27 Feb 2024 15:32:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709047880; cv=none; b=pYYB4kpbrHNuYxUnwiJ6BBJz15odkDQN8XCElyq2wZOFt3XxkUbMcKp3WzcwrXldIizZYwhU14hBs9nWzgB3oFMN0Azr9/AqNDx4fiK3SnNBUyZjqW6bHfCmdeG3qT6mZE+pBAvKAoDaXO45ijseiOy7+Ig0qLBifP1c8QJ7LLw=
+	t=1709047981; cv=none; b=o+sg13D1/waHs4eJ2vRSmqIrwOz5YlC+e+FCruFyEHSmfibo11Pn+MzuABorb8qTfaxzOfpkcHnM4Nn073XTNtad9eZQ8pErjxnvUnPvIxYXuOU1LTkZbTqUPrbdiF/R0QOE+US2tIQ8Vufyxw7hI/JV9C38E3dkAwx39fVNJNg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709047880; c=relaxed/simple;
-	bh=/M8wynPJ9hWR3NdkG8xbaATbFhESmsZqG6LLBAZyUR4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gE98VwtB3GvnZeIPYveNWeailgbwI/u23jg7KiudX/y6WF4NuUf6ivM2SbYalFkoQ/feJZuhF85Ev9VvEw/3EHWRZ6UyyXnYAw/IldL/9exe8uyT0AcMM72mUqSJvXTk/L0BVije6B5mbFRuoMRsxhmkMuSMjTF9mmew5p517J8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mojatatu.com; spf=none smtp.mailfrom=mojatatu.com; dkim=pass (2048-bit key) header.d=mojatatu-com.20230601.gappssmtp.com header.i=@mojatatu-com.20230601.gappssmtp.com header.b=F5WsoJYQ; arc=none smtp.client-ip=209.85.128.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mojatatu.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mojatatu.com
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-608841dfcafso40201437b3.2
-        for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 07:31:17 -0800 (PST)
+	s=arc-20240116; t=1709047981; c=relaxed/simple;
+	bh=T4j8xfqw+zwHLE/uUZt6NV8Iqspz2dNbcwLvHsIhPsc=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FSDa/7Rgi+OnMYGgGe+IIGGnPTPlqCKjlR24F4k7UQO+brTJKII4t37oCilGHBFvEBTnnL2v1ue8mhiEwjabfkrMHmaHAfy8Nuq25XuRnlAcQaKpLJr+T/XoUf2Y6b4FDoTZVFtUID3gpneHxdGD76Zc7HmP5wNPFafSjX00xbs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eZ0YvUKx; arc=none smtp.client-ip=209.85.167.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-3c19937913fso2448706b6e.3;
+        Tue, 27 Feb 2024 07:32:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mojatatu-com.20230601.gappssmtp.com; s=20230601; t=1709047876; x=1709652676; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gRYaqYRi+3F/3uHRenTFC45AylG9BESTewFZhEha2sQ=;
-        b=F5WsoJYQK5AH1MPqbbHIYhug+7Pyz8L8FB/wfVealauGGoMB4M3llImhTkTWnvVcxM
-         l8idYkOFGQscDsEQs48Udv8mvGdWY8AoNujzuLPeiXcAgF57cUCpOGi73N85Nof+OfhX
-         6+xC9vtN0d1vuLSiOzGbV+Be5oQ3NKu4Z7G9jOOLjfPPIciCMiUqDRY5kLKDij8NTt4V
-         izxpyv4lZbmUBhnl9/hhfiAOKwK6HRgObsHN1t4wOip2alc5illGJmIfFJSvnQii2g68
-         yS59Yg3QclVDh/samMgr6c0guF3+4YrXKszk74VFaQdWacwyMKxYwCaoY54UduJ/IUpM
-         oPzA==
+        d=gmail.com; s=20230601; t=1709047979; x=1709652779; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Rl6JaZXqKyU5LHyUlDo+U8J8lU9YJxtct56VSY1/70I=;
+        b=eZ0YvUKxb06n3Ded53v60tLTHhjUGOk3LNO4xhiWYf/p8XCb6R24ZU09DcAdfOm6H2
+         xeSii60Kk0JkwLhTwYctZFYvf4AekGP0Fkuw2ShnPIQEwSinGoSCYl52nkTh2ROr4uZF
+         YIaqnESFobs38ijReYYG3yMohMJpPbk2rNrNx6IjPHpjxmthcMMVzw2CeCzHo0vpRnpC
+         yU8qeeFuhE7/GKV7+W3492nMqvi0evtpNkonH/SkRczS2gcfh5tyTxuFw6aj0DWl1m79
+         C2JB9GgpoS6bDiooOo8n2pOKAi3KCtNRu38Zcv3Bta92riUNjHDk/asgKMKAyHXMN7ht
+         w5mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709047876; x=1709652676;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gRYaqYRi+3F/3uHRenTFC45AylG9BESTewFZhEha2sQ=;
-        b=lNfCfzLmxroCU+Q3zmxrWld6+JWHQH0EH17go7QuWSbt9NnV5RslTwg/VZRUeYMd3V
-         YM0GLuBG7l041SKzt3b5BKXDPIgkVdcOjLoQfA58DIpEUHBWbTuqlLbux7D75l+EXNYL
-         NQgyMRkRWMscVTkmw2xx+UF7ct6XuSHiOmrtKYuU4gq2akUrZkHs88dr0ah1R+mSlTc1
-         vcIrrE3/JysWMeJKKnSoz6O9Rw5QlwtqDyYHZEfZt+dyFoGNozvN8VvG3UvSwx5rH8gn
-         o7M/IdBTh5pYzke+TmbPLqB455w7I3uNa3zm/l2Q1yq82kzvEBUaoVx8ahqWtwlCmFJh
-         Rp2g==
-X-Forwarded-Encrypted: i=1; AJvYcCWmeVZdNwYz6s2aRZcpBhFUvngEMx2430JP+KeyGN1Gy33CXqM7IkAu7UsaUeKUeIs5mppH5ODmPDiCfHV5O99Nz9QUgaMuWVNOXw==
-X-Gm-Message-State: AOJu0YzRcQWhSSjY7BZCsOF8AtTLwFJ+lFudxxGGNtL5kT+W+15lzbnx
-	finTbJ1atW5lTirHr4NoyGmH+8F5QXCOEAIkHreynBEBBCuUe8z2ijb28zTGizU3IqBdJ7LHLbj
-	5CtPkAukIxDKV1si1ADSizQv2mx70L4Uh5PhQ
-X-Google-Smtp-Source: AGHT+IGy0eQ3YNLVWVgjeMOPTQb/2KqLY7USqqeVSG+fxHnakfCslc6a0iEyqlZgE+HoAi+0hU5T2r0o/4IueD1WwyU=
-X-Received: by 2002:a81:9107:0:b0:608:bc79:1af5 with SMTP id
- i7-20020a819107000000b00608bc791af5mr2680393ywg.18.1709047876681; Tue, 27 Feb
- 2024 07:31:16 -0800 (PST)
+        d=1e100.net; s=20230601; t=1709047979; x=1709652779;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Rl6JaZXqKyU5LHyUlDo+U8J8lU9YJxtct56VSY1/70I=;
+        b=SNuybdOLjSNQ0KeOPobMCJY07cA+Buw4D6Z5heU5f5vj5weWxKXOLQ7HFcUGypCCIB
+         SL6D9J+0dtSMG996ZyeonohmGdEd3OrvvuIeVldsE7oJVWYjN1lrd/G8/E2A5sMYe8gW
+         seB8IsXRgYnJ5sQudDn8bpb3J+phZlw6vTuAYdQVEJrVTRcIPt7+7t1t7Hr9rbT48t4a
+         QBpVrHaf5boYTPWxx2yaQJ7pyWVqH4O5jL4Fd7Yns17XNHN7xg55KOoA4bQXPpj9dzYH
+         Arjk/oxh22ujJA6ix+/rYfMS0As8KpFghqt4QfRkK2KVWAt7tbqg27kS/DLCAx3HyZZr
+         4gZg==
+X-Forwarded-Encrypted: i=1; AJvYcCVXdNDAOeWErq70iEQFkpYrBnxFWFaPbLcXZXMWDieu4OK9E112okxu0hJ3DiFSkM3NyTq8vm08fcTdJQC3/VqimuiRi1vBv5U/i4FWjBvsmOMrj4z+kmd6RU9lZvu2nhr9qiRMH7PRYuY4CevVcVDuSzw9ecpvtHvGdWVMvcSzoXE=
+X-Gm-Message-State: AOJu0Yx6TxERxjXU0r5ZlRWIYZ+NkMOTLAT0h8Vr/oDtfDs+FjWh44Qh
+	YiOnYyPWGnRogW9dk1mz6uB2wfvlGMMkShsTOKJn+F+tX2IZwL+I
+X-Google-Smtp-Source: AGHT+IH9bDXhSqDoPR+g2PorBmQZm2q/zIIpODkOLUwEpA7jfBXUAwEPEOGibiufDKOoWrKKTEBqIg==
+X-Received: by 2002:a05:6808:1292:b0:3c1:340d:30b2 with SMTP id a18-20020a056808129200b003c1340d30b2mr2960755oiw.47.1709047978826;
+        Tue, 27 Feb 2024 07:32:58 -0800 (PST)
+Received: from neuromancer. ([75.28.21.198])
+        by smtp.gmail.com with ESMTPSA id 3-20020a544183000000b003c17fd0ed2bsm1464347oiy.47.2024.02.27.07.32.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Feb 2024 07:32:58 -0800 (PST)
+Message-ID: <65de00aa.540a0220.f1081.6933@mx.google.com>
+X-Google-Original-Message-ID: <Zd4AqT3EriAKVfji@neuromancer.>
+Date: Tue, 27 Feb 2024 09:32:57 -0600
+From: Chris Morgan <macroalpha82@gmail.com>
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, andy.shevchenko@gmail.com,
+	Angelo Compagnucci <angelo.compagnucci@gmail.com>,
+	Philip Howard <phil@gadgetoid.com>, Sean Young <sean@mess.org>,
+	Linus Walleij <linus.walleij@linaro.org>, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Vincent Whitchurch <vincent.whitchurch@axis.com>
+Subject: Re: [PATCH V4 2/2] pwm: Add GPIO PWM driver
+References: <20240204220851.4783-1-wahrenst@gmx.net>
+ <20240204220851.4783-3-wahrenst@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240227-feature_poe-v5-0-28f0aa48246d@bootlin.com>
-In-Reply-To: <20240227-feature_poe-v5-0-28f0aa48246d@bootlin.com>
-From: Jamal Hadi Salim <jhs@mojatatu.com>
-Date: Tue, 27 Feb 2024 10:31:05 -0500
-Message-ID: <CAM0EoM=Q3hdXSHNADKX=erJQJWT4Jz0XeAD8kMYHv_VGagvPQA@mail.gmail.com>
-Subject: Re: [PATCH net-next v5 00/17] net: Add support for Power over
- Ethernet (PoE)
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, 
-	Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Oleksij Rempel <o.rempel@pengutronix.de>, Mark Brown <broonie@kernel.org>, 
-	Frank Rowand <frowand.list@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
-	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
-	devicetree@vger.kernel.org, Dent Project <dentproject@linuxfoundation.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240204220851.4783-3-wahrenst@gmx.net>
 
-On Tue, Feb 27, 2024 at 9:43=E2=80=AFAM Kory Maincent <kory.maincent@bootli=
-n.com> wrote:
->
-> This patch series aims at adding support for PoE (Power over Ethernet),
-> based on the already existing support for PoDL (Power over Data Line)
-> implementation. In addition, it adds support for two specific PoE
-> controller, the Microchip PD692x0 and the TI TPS23881.
->
-> This patch series is sponsored by Dent Project
-> <dentproject@linuxfoundation.org>.
-
-Sorry, couldnt resist because it sounded like a commercial;-> And
-likely i am out of touch. I am all for giving credit but does it have
-to be explicitly called out as "this patch is sponsored by X"?
-
-cheers,
-jamal
-
-
-> In detail:
-> - Patch 1 to 13 prepare net to support PoE devices.
-> - Patch 14 and 15 add PD692x0 PoE PSE controller driver and its binding.
-> - Patch 16 and 17 add TI TPS23881 PSE controller driver and its binding.
->
-> Changes in v5:
-> - Fix bindings nit.
-> - Add supported-polarity parameter to bindings.
-> - Fix yamllint binding errors.
-> - Remove the nested lock brought by the use of regulator framework.
-> - Link to v4: https://lore.kernel.org/r/20240215-feature_poe-v4-0-35bb4c2=
-3266c@bootlin.com
->
-> Changes in v4:
-> - Replaced sponsored-by tag by a simple sentence.
-> - Fix pse_pi node bindings.
-> - Add pse pi documentation written by Oleksij.
-> - Link to v3: https://lore.kernel.org/r/20240208-feature_poe-v3-0-531d267=
-4469e@bootlin.com
->
-> Changes in v3:
-> - Add patches to add Oleksij and myself to PSE MAINTAINERS.
-> - Add patches to add pse devlink.
-> - Add TI TPS23881 PSE controller driver with its binding.
-> - Replace pse_get_types helper by pse_has_podl and pse_has_c33
-> - Changed the PSE core bindings.
-> - Add a setup_pi_matrix callback.
-> - Register regulator for each PSE PI (Power Interface).
-> - Changed the PD692x0 bindings.
-> - Updated PD692x0 drivers to new bindings and PSE PI description.
-> - Updated PD692x0 drivers according to the reviews and made fixes.
-> - Link to v2: https://lore.kernel.org/r/20231201-feature_poe-v2-0-56d8cac=
-607fa@bootlin.com
->
-> Changes in v2:
-> - Extract "firmware_loader: Expand Firmware upload error codes patches" t=
-o
->   send it alone and get it merge in an immutable branch.
-> - Add "c33" prefix for PoE variables and enums.
-> - Enhance few comments.
-> - Add PSE Documentation.
-> - Make several changes in pd692x0 driver, mainly for readibility.
-> - Link to v1: https://lore.kernel.org/r/20231116-feature_poe-v1-0-be48044=
-bf249@bootlin.com
->
-> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+On Sun, Feb 04, 2024 at 11:08:51PM +0100, Stefan Wahren wrote:
+> From: Vincent Whitchurch <vincent.whitchurch@axis.com>
+> 
+> Add a software PWM which toggles a GPIO from a high-resolution timer.
+> 
+> This will naturally not be as accurate or as efficient as a hardware
+> PWM, but it is useful in some cases.  I have for example used it for
+> evaluating LED brightness handling (via leds-pwm) on a board where the
+> LED was just hooked up to a GPIO, and for a simple verification of the
+> timer frequency on another platform.
+> 
+> Since high-resolution timers are used, sleeping gpio chips are not
+> supported and are rejected in the probe function.
+> 
+> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
+> Co-developed-by: Stefan Wahren <wahrenst@gmx.net>
+> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
 > ---
-> Kory Maincent (17):
->       MAINTAINERS: net: Add Oleksij to pse-pd maintainers
->       of: property: Add fw_devlink support for pse parent
->       net: pse-pd: Rectify and adapt the naming of admin_cotrol member of=
- struct pse_control_config
->       ethtool: Expand Ethernet Power Equipment with c33 (PoE) alongside P=
-oDL
->       net: pse-pd: Introduce PSE types enumeration
->       net: ethtool: pse-pd: Expand pse commands with the PSE PoE interfac=
-e
->       netlink: specs: Modify pse attribute prefix
->       netlink: specs: Expand the pse netlink command with PoE interface
->       MAINTAINERS: Add myself to pse networking maintainer
->       net: pse-pd: Add support for PSE PIs
->       dt-bindings: net: pse-pd: Add another way of describing several PSE=
- PIs
->       net: pse-pd: Add support for setup_pi_matrix callback
->       net: pse-pd: Use regulator framework within PSE framework
->       dt-bindings: net: pse-pd: Add bindings for PD692x0 PSE controller
->       net: pse-pd: Add PD692x0 PSE controller driver
->       dt-bindings: net: pse-pd: Add bindings for TPS23881 PSE controller
->       net: pse-pd: Add TI TPS23881 PSE controller driver
->
->  .../bindings/net/pse-pd/microchip,pd692x0.yaml     |  158 +++
->  .../bindings/net/pse-pd/pse-controller.yaml        |  100 +-
->  .../bindings/net/pse-pd/ti,tps23881.yaml           |   93 ++
->  Documentation/netlink/specs/ethtool.yaml           |   33 +-
->  Documentation/networking/ethtool-netlink.rst       |   20 +
->  Documentation/networking/index.rst                 |    1 +
->  Documentation/networking/pse-pd/index.rst          |   10 +
->  Documentation/networking/pse-pd/introduction.rst   |   73 ++
->  Documentation/networking/pse-pd/pse-pi.rst         |  302 +++++
->  MAINTAINERS                                        |    8 +
->  drivers/net/mdio/fwnode_mdio.c                     |   29 +-
->  drivers/net/pse-pd/Kconfig                         |   20 +
->  drivers/net/pse-pd/Makefile                        |    2 +
->  drivers/net/pse-pd/pd692x0.c                       | 1223 ++++++++++++++=
-++++++
->  drivers/net/pse-pd/pse_core.c                      |  429 ++++++-
->  drivers/net/pse-pd/pse_regulator.c                 |   49 +-
->  drivers/net/pse-pd/tps23881.c                      |  818 +++++++++++++
->  drivers/of/property.c                              |    2 +
->  include/linux/pse-pd/pse.h                         |   86 +-
->  include/uapi/linux/ethtool.h                       |   55 +
->  include/uapi/linux/ethtool_netlink.h               |    3 +
->  net/ethtool/pse-pd.c                               |   60 +-
->  22 files changed, 3451 insertions(+), 123 deletions(-)
-> ---
-> base-commit: f308eae1e1cdacca3cef65c7f4f691dfcb0c8976
-> change-id: 20231024-feature_poe-139490e73403
->
-> Best regards,
+>  drivers/pwm/Kconfig    |  11 ++
+>  drivers/pwm/Makefile   |   1 +
+>  drivers/pwm/pwm-gpio.c | 228 +++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 240 insertions(+)
+>  create mode 100644 drivers/pwm/pwm-gpio.c
+> 
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index 4b956d661755..7cfda2cde130 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -227,6 +227,17 @@ config PWM_FSL_FTM
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called pwm-fsl-ftm.
+> 
+> +config PWM_GPIO
+> +	tristate "GPIO PWM support"
+> +	depends on GPIOLIB
+> +	depends on HIGH_RES_TIMERS
+> +	help
+> +	  Generic PWM framework driver for a software PWM toggling a GPIO pin
+> +	  from kernel high-resolution timers.
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called pwm-gpio.
+> +
+>  config PWM_HIBVT
+>  	tristate "HiSilicon BVT PWM support"
+>  	depends on ARCH_HISI || COMPILE_TEST
+> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> index c5ec9e168ee7..59d1a46bb1af 100644
+> --- a/drivers/pwm/Makefile
+> +++ b/drivers/pwm/Makefile
+> @@ -19,6 +19,7 @@ obj-$(CONFIG_PWM_DWC_CORE)	+= pwm-dwc-core.o
+>  obj-$(CONFIG_PWM_DWC)		+= pwm-dwc.o
+>  obj-$(CONFIG_PWM_EP93XX)	+= pwm-ep93xx.o
+>  obj-$(CONFIG_PWM_FSL_FTM)	+= pwm-fsl-ftm.o
+> +obj-$(CONFIG_PWM_GPIO)		+= pwm-gpio.o
+>  obj-$(CONFIG_PWM_HIBVT)		+= pwm-hibvt.o
+>  obj-$(CONFIG_PWM_IMG)		+= pwm-img.o
+>  obj-$(CONFIG_PWM_IMX1)		+= pwm-imx1.o
+> diff --git a/drivers/pwm/pwm-gpio.c b/drivers/pwm/pwm-gpio.c
+> new file mode 100644
+> index 000000000000..4435f275f509
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-gpio.c
+> @@ -0,0 +1,228 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Generic software PWM for modulating GPIOs
+> + *
+> + * Copyright (C) 2020 Axis Communications AB
+> + * Copyright (C) 2020 Nicola Di Lieto
+> + * Copyright (C) 2024 Stefan Wahren
+> + */
+> +
+> +#include <linux/device.h>
+> +#include <linux/err.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/hrtimer.h>
+> +#include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pwm.h>
+> +#include <linux/spinlock.h>
+> +
+> +struct pwm_gpio {
+> +	struct pwm_chip chip;
+> +	struct hrtimer gpio_timer;
+> +	struct gpio_desc *gpio;
+> +	struct pwm_state state;
+> +	struct pwm_state next_state;
+> +
+> +	/* Protect internal state between pwm_ops and hrtimer */
+> +	spinlock_t lock;
+> +
+> +	bool changing;
+> +	bool running;
+> +	bool level;
+> +};
+> +
+> +static unsigned long pwm_gpio_toggle(struct pwm_gpio *gpwm, bool level)
+> +{
+> +	const struct pwm_state *state = &gpwm->state;
+> +	bool invert = state->polarity == PWM_POLARITY_INVERSED;
+> +
+> +	gpwm->level = level;
+> +	gpiod_set_value(gpwm->gpio, gpwm->level ^ invert);
+> +
+> +	if (!state->duty_cycle || state->duty_cycle == state->period) {
+> +		gpwm->running = false;
+> +		return 0;
+> +	}
+> +
+> +	gpwm->running = true;
+> +	return level ? state->duty_cycle : state->period - state->duty_cycle;
+> +}
+> +
+> +static enum hrtimer_restart pwm_gpio_timer(struct hrtimer *gpio_timer)
+> +{
+> +	struct pwm_gpio *gpwm = container_of(gpio_timer, struct pwm_gpio,
+> +					     gpio_timer);
+> +	unsigned long next_toggle;
+> +	unsigned long flags;
+> +	bool new_level;
+> +
+> +	spin_lock_irqsave(&gpwm->lock, flags);
+> +
+> +	/* Apply new state at end of current period */
+> +	if (!gpwm->level && gpwm->changing) {
+> +		gpwm->changing = false;
+> +		gpwm->state = gpwm->next_state;
+> +		new_level = !!gpwm->state.duty_cycle;
+> +	} else {
+> +		new_level = !gpwm->level;
+> +	}
+> +
+> +	next_toggle = pwm_gpio_toggle(gpwm, new_level);
+> +	if (next_toggle) {
+> +		hrtimer_forward(gpio_timer, hrtimer_get_expires(gpio_timer),
+> +				ns_to_ktime(next_toggle));
+> +	}
+> +
+> +	spin_unlock_irqrestore(&gpwm->lock, flags);
+> +
+> +	return next_toggle ? HRTIMER_RESTART : HRTIMER_NORESTART;
+> +}
+> +
+> +static int pwm_gpio_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+> +			  const struct pwm_state *state)
+> +{
+> +	struct pwm_gpio *gpwm = container_of(chip, struct pwm_gpio, chip);
+> +	bool invert = state->polarity == PWM_POLARITY_INVERSED;
+> +	unsigned long flags;
+> +
+> +	if (state->duty_cycle && state->duty_cycle < hrtimer_resolution)
+> +		return -EINVAL;
+> +
+> +	if (state->duty_cycle != state->period &&
+> +	    (state->period - state->duty_cycle < hrtimer_resolution))
+> +		return -EINVAL;
+> +
+> +	if (!state->enabled) {
+> +		hrtimer_cancel(&gpwm->gpio_timer);
+> +	} else if (!gpwm->running) {
+> +		/*
+> +		 * This just enables the output, but pwm_gpio_toggle()
+> +		 * really starts the duty cycle.
+> +		 */
+> +		int ret = gpiod_direction_output(gpwm->gpio, invert);
+> +
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	spin_lock_irqsave(&gpwm->lock, flags);
+> +
+> +	if (!state->enabled) {
+> +		gpwm->state = *state;
+> +		gpwm->running = false;
+> +		gpwm->changing = false;
+> +
+> +		gpiod_set_value(gpwm->gpio, invert);
+> +	} else if (gpwm->running) {
+> +		gpwm->next_state = *state;
+> +		gpwm->changing = true;
+> +	} else {
+> +		unsigned long next_toggle;
+> +
+> +		gpwm->state = *state;
+> +		gpwm->changing = false;
+> +
+> +		next_toggle = pwm_gpio_toggle(gpwm, !!state->duty_cycle);
+> +		if (next_toggle) {
+> +			hrtimer_start(&gpwm->gpio_timer, next_toggle,
+> +				      HRTIMER_MODE_REL);
+> +		}
+> +	}
+> +
+> +	spin_unlock_irqrestore(&gpwm->lock, flags);
+> +
+> +	return 0;
+> +}
+> +
+> +static int pwm_gpio_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
+> +			       struct pwm_state *state)
+> +{
+> +	struct pwm_gpio *gpwm = container_of(chip, struct pwm_gpio, chip);
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&gpwm->lock, flags);
+> +
+> +	if (gpwm->changing)
+> +		*state = gpwm->next_state;
+> +	else
+> +		*state = gpwm->state;
+> +
+> +	spin_unlock_irqrestore(&gpwm->lock, flags);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct pwm_ops pwm_gpio_ops = {
+> +	.apply = pwm_gpio_apply,
+> +	.get_state = pwm_gpio_get_state,
+> +};
+> +
+> +static int pwm_gpio_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct pwm_gpio *gpwm;
+> +	int ret;
+> +
+> +	gpwm = devm_kzalloc(dev, sizeof(*gpwm), GFP_KERNEL);
+> +	if (!gpwm)
+> +		return -ENOMEM;
+> +
+> +	spin_lock_init(&gpwm->lock);
+> +
+> +	gpwm->gpio = devm_gpiod_get(dev, NULL, GPIOD_ASIS);
+> +	if (IS_ERR(gpwm->gpio)) {
+> +		return dev_err_probe(dev, PTR_ERR(gpwm->gpio),
+> +				     "could not get gpio\n");
+> +	}
+> +
+> +	if (gpiod_cansleep(gpwm->gpio)) {
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "sleeping GPIO %d not supported\n",
+> +				     desc_to_gpio(gpwm->gpio));
+> +	}
+> +
+> +	gpwm->chip.dev = dev;
+> +	gpwm->chip.ops = &pwm_gpio_ops;
+> +	gpwm->chip.npwm = 1;
+> +	gpwm->chip.atomic = true;
+> +
+> +	hrtimer_init(&gpwm->gpio_timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+> +	gpwm->gpio_timer.function = pwm_gpio_timer;
+> +
+> +	ret = pwmchip_add(&gpwm->chip);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "could not add pwmchip\n");
+> +
+> +	platform_set_drvdata(pdev, gpwm);
+> +
+> +	return 0;
+> +}
+> +
+> +static void pwm_gpio_remove(struct platform_device *pdev)
+> +{
+> +	struct pwm_gpio *gpwm = platform_get_drvdata(pdev);
+> +
+> +	pwmchip_remove(&gpwm->chip);
+> +	hrtimer_cancel(&gpwm->gpio_timer);
+> +}
+> +
+> +static const struct of_device_id pwm_gpio_dt_ids[] = {
+> +	{ .compatible = "pwm-gpio" },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, pwm_gpio_dt_ids);
+> +
+> +static struct platform_driver pwm_gpio_driver = {
+> +	.driver = {
+> +		.name = "pwm-gpio",
+> +		.of_match_table = pwm_gpio_dt_ids,
+> +	},
+> +	.probe = pwm_gpio_probe,
+> +	.remove_new = pwm_gpio_remove,
+> +};
+> +module_platform_driver(pwm_gpio_driver);
+> +
+> +MODULE_DESCRIPTION("PWM GPIO driver");
+> +MODULE_AUTHOR("Vincent Whitchurch");
+> +MODULE_LICENSE("GPL");
 > --
-> K=C3=B6ry Maincent, Bootlin
-> Embedded Linux and kernel engineering
-> https://bootlin.com
->
->
+> 2.34.1
+> 
+
+I have a series of devices with GPIO controlled force feedback that
+this driver helps us control better. So I'm looking forward to this,
+thank you.
+
+Note that when I set the resolution too low (I got confused and set
+the period to 255) my device locked up hard and only a forced
+power cycle could bring it back.
+
+Tested-by: Chris Morgan <macromorgan@hotmail.com>
 
