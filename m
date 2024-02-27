@@ -1,20 +1,20 @@
-Return-Path: <devicetree+bounces-46238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D7F6868950
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 07:53:43 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFDE686894E
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 07:53:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF5461C21E9F
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 06:53:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2BC42B25D5F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 06:53:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 497775578E;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 496E25578D;
 	Tue, 27 Feb 2024 06:52:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
 	dkim=pass (2048-bit key) header.d=sonic.net header.i=@sonic.net header.b="Ml0hgHv7"
-X-Original-To: devicetree+subscribe@vger.kernel.org
+X-Original-To: devicetree+unsubscribe@vger.kernel.org
 Received: from c.mail.sonic.net (c.mail.sonic.net [64.142.111.80])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
